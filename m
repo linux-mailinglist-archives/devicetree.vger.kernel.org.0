@@ -2,132 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 213622C71A9
-	for <lists+devicetree@lfdr.de>; Sat, 28 Nov 2020 23:01:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EE3C42C7607
+	for <lists+devicetree@lfdr.de>; Sat, 28 Nov 2020 23:30:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391337AbgK1WA6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 28 Nov 2020 17:00:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42850 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2391402AbgK1WA6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Nov 2020 17:00:58 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED6FDC0613D4
-        for <devicetree@vger.kernel.org>; Sat, 28 Nov 2020 14:00:17 -0800 (PST)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[127.0.0.1])
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <a.fatoum@pengutronix.de>)
-        id 1kj8GF-0005eW-NB; Sat, 28 Nov 2020 23:00:07 +0100
-Subject: Re: [Linux-stm32] [PATCH v8 3/5] ARM: dts: stm32: Fix schema warnings
- for pwm-leds
-To:     Alexander Dahl <post@lespocky.de>, Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, Alexander Dahl <ada@thorsis.com>,
-        linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        linux-amlogic@lists.infradead.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-leds@vger.kernel.org
-References: <20201128215353.3991-1-post@lespocky.de>
- <20201128215353.3991-4-post@lespocky.de>
-From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
-Message-ID: <044d49be-2016-818e-b1b0-ee50c3b744e7@pengutronix.de>
-Date:   Sat, 28 Nov 2020 23:00:06 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.3.1
+        id S1726706AbgK1W3J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 28 Nov 2020 17:29:09 -0500
+Received: from relay8-d.mail.gandi.net ([217.70.183.201]:56857 "EHLO
+        relay8-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725294AbgK1W3J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Nov 2020 17:29:09 -0500
+X-Originating-IP: 86.194.74.19
+Received: from localhost (lfbn-lyo-1-997-19.w86-194.abo.wanadoo.fr [86.194.74.19])
+        (Authenticated sender: alexandre.belloni@bootlin.com)
+        by relay8-d.mail.gandi.net (Postfix) with ESMTPSA id DD1C41BF203;
+        Sat, 28 Nov 2020 22:28:25 +0000 (UTC)
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Ludovic Desroches <ludovic.desroches@microchip.com>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>
+Subject: [PATCH v3 00/10] iio: adc: at91_adc: cleanup DT bindings
+Date:   Sat, 28 Nov 2020 23:28:08 +0100
+Message-Id: <20201128222818.1910764-1-alexandre.belloni@bootlin.com>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-In-Reply-To: <20201128215353.3991-4-post@lespocky.de>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28.11.20 22:53, Alexander Dahl wrote:
-> The node names for devices using the pwm-leds driver follow a certain
-> naming scheme (now).  Parent node name is not enforced, but recommended
-> by DT project.
-> 
->   DTC     arch/arm/boot/dts/stm32mp157c-lxa-mc1.dt.yaml
->   CHECK   arch/arm/boot/dts/stm32mp157c-lxa-mc1.dt.yaml
-> /home/alex/build/linux/arch/arm/boot/dts/stm32mp157c-lxa-mc1.dt.yaml: led-rgb: 'led-blue', 'led-green', 'led-red' do not match any of the regexes: '^led(-[0-9a-f]+)?$', 'pinctrl-[0-9]+'
->         From schema: /home/alex/src/linux/leds/Documentation/devicetree/bindings/leds/leds-pwm.yaml
-> 
-> Signed-off-by: Alexander Dahl <post@lespocky.de>
-> ---
-> 
-> Notes:
->     v7 -> v8:
->       * rebased on v5.10-rc1
->       * updated indexes and added comment (Ahmad Fatoum)
+Hello,
 
-Acked-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
+This series cleans up the at91_adc devicetree bindings. This mainly
+moves back the resolution options and names and the triggers description
+back in the driver.
 
-Thanks,
+Changes in v3:
+ - rebased on the togreg branch of iio.git
+ - dropped "iio: adc: at91_adc: remove forward declaration" as it was already
+   done in tree
+ - Reworked patch 1 from "iio: adc: at91_adc: remove platform data" to "iio:
+   adc: at91_adc: remove at91_adc_ids"
 
->     
->     v6 -> v7:
->       * split up patch (one per sub arch)
->       * added actual warnings to commit message
-> 
->  arch/arm/boot/dts/stm32mp157c-lxa-mc1.dts | 13 +++++++------
->  1 file changed, 7 insertions(+), 6 deletions(-)
-> 
-> diff --git a/arch/arm/boot/dts/stm32mp157c-lxa-mc1.dts b/arch/arm/boot/dts/stm32mp157c-lxa-mc1.dts
-> index 1e5333fd437f..5ed58110d963 100644
-> --- a/arch/arm/boot/dts/stm32mp157c-lxa-mc1.dts
-> +++ b/arch/arm/boot/dts/stm32mp157c-lxa-mc1.dts
-> @@ -36,34 +36,35 @@
->  		stdout-path = &uart4;
->  	};
->  
-> -	led-act {
-> +	led-controller-0 {
->  		compatible = "gpio-leds";
->  
-> -		led-green {
-> +		led-0 {
->  			label = "mc1:green:act";
->  			gpios = <&gpioa 13 GPIO_ACTIVE_LOW>;
->  			linux,default-trigger = "heartbeat";
->  		};
->  	};
->  
-> -	led-rgb {
-> +	led-controller-1 {
->  		compatible = "pwm-leds";
->  
-> -		led-red {
-> +		/* led-1 to led-3 are part of a single RGB led */
-> +		led-1 {
->  			label = "mc1:red:rgb";
->  			pwms = <&leds_pwm 1 1000000 0>;
->  			max-brightness = <255>;
->  			active-low;
->  		};
->  
-> -		led-green {
-> +		led-2 {
->  			label = "mc1:green:rgb";
->  			pwms = <&leds_pwm 2 1000000 0>;
->  			max-brightness = <255>;
->  			active-low;
->  		};
->  
-> -		led-blue {
-> +		led-3 {
->  			label = "mc1:blue:rgb";
->  			pwms = <&leds_pwm 3 1000000 0>;
->  			max-brightness = <255>;
-> 
+Changes in v2:
+ - separated out the dt-binding change to give a chance to Rob to actually
+   review them.
+ - Dropped "iio: adc: at91_adc: use devm_input_allocate_device"
+ - Collected tags
+ - use of_device_get_match_data instead of device_get_match_data
+ - include backportable sam9rl trigger fix
+
+
+Alexandre Belloni (9):
+  iio: adc: at91_adc: remove at91_adc_ids
+  iio: adc: at91_adc: rework resolution selection
+  dt-bindings:iio:adc:remove atmel,adc-res and atmel,adc-res-names
+  iio: adc: at91_adc: rework trigger definition
+  dt-bindings:iio:adc:remove triggers
+  iio: adc: at91_adc: merge at91_adc_probe_dt back in at91_adc_probe
+  ARM: dts: at91: sama5d3: use proper ADC compatible
+  ARM: dts: at91: at91sam9rl: fix ADC triggers
+  ARM: dts: at91: remove deprecated ADC properties
+
+Jonathan Cameron (1):
+  dt-bindings:iio:adc:atmel,sama9260-adc: conversion to yaml from
+    at91_adc.txt
+
+ .../devicetree/bindings/iio/adc/at91_adc.txt  |  83 -----
+ .../bindings/iio/adc/atmel,sama9260-adc.yaml  | 121 +++++++
+ arch/arm/boot/dts/at91sam9260.dtsi            |  25 --
+ arch/arm/boot/dts/at91sam9g45.dtsi            |  27 --
+ arch/arm/boot/dts/at91sam9rl.dtsi             |  25 --
+ arch/arm/boot/dts/at91sam9x5.dtsi             |  28 --
+ arch/arm/boot/dts/sama5d3.dtsi                |  26 +-
+ arch/arm/boot/dts/sama5d4.dtsi                |  22 --
+ drivers/iio/adc/at91_adc.c                    | 294 +++++++-----------
+ 9 files changed, 237 insertions(+), 414 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/iio/adc/at91_adc.txt
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/atmel,sama9260-adc.yaml
 
 -- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+2.28.0
+
