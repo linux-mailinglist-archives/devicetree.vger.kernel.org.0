@@ -2,233 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 778482C6E16
-	for <lists+devicetree@lfdr.de>; Sat, 28 Nov 2020 02:11:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C5DE82C6E3D
+	for <lists+devicetree@lfdr.de>; Sat, 28 Nov 2020 02:44:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729309AbgK1BJC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Nov 2020 20:09:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43394 "EHLO
+        id S1730218AbgK1Blv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Nov 2020 20:41:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52622 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731419AbgK1Aks (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Nov 2020 19:40:48 -0500
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3932C0613D4
-        for <devicetree@vger.kernel.org>; Fri, 27 Nov 2020 16:40:42 -0800 (PST)
-Received: by mail-lj1-x22e.google.com with SMTP id o24so7726353ljj.6
-        for <devicetree@vger.kernel.org>; Fri, 27 Nov 2020 16:40:42 -0800 (PST)
+        with ESMTP id S1730112AbgK1BlJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Nov 2020 20:41:09 -0500
+Received: from mail-ed1-x542.google.com (mail-ed1-x542.google.com [IPv6:2a00:1450:4864:20::542])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3785DC0613D1;
+        Fri, 27 Nov 2020 17:41:09 -0800 (PST)
+Received: by mail-ed1-x542.google.com with SMTP id y4so7462774edy.5;
+        Fri, 27 Nov 2020 17:41:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=i4MNSv4gC+pj1p9yYQOx1CnSc25gU9FzxQHw5nZNAz8=;
-        b=p2ZmCu99QuXp11puTEU9+0EBkB2vn2swUXMkZh7xaXqLDfbom0RMT0HZzICgtfJmPP
-         kPFOrc7bjeILmS2Z9biQ9mvQnUEYzQ9f/QpRfto0v0SgLWue7bdfvyYOT0BdWcJsHbtK
-         OweCNZcyyH2jhu6WS1/NDGX7ibuDRPoHh8FZV3am+zTPtraYavzv7ZHVlxDb6HVLSv8y
-         xA5Mx0+WP7PkMtZzCymF2vqrxxoQGwD6nkPHjIdKV17tv3TAHJQk6xnytnk9Dzv1V+hQ
-         pRRWMiTX9sRQg00Melsl/RzraO89ysAHYbYY5yFveOaT0Jcr5Ryf+ZHeAYL1tj216pZL
-         oEqg==
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=qGD9xnb8v5qrR9LK2TyNHXn3ImQC3Ik9wtWDyCz2wbo=;
+        b=mpOItXd5ChwZlHQFKAnJ/MdmVNOgemxhczQHSgaVDt82Qi35d5fsH3hnnMrDrMrLHF
+         Ud6eS8cYtQKiZYk/WiDXwd7JLfbowV9lq5YCew0cwaHt2J7CLXxkxqXmK5U72dxwqQgK
+         2NjScAj6C5DTtcyCgkuWWn54et5X6YQhrpssHvL4FNAd+Qh0fXcpsx/5pHzBpShJKbEL
+         XSQR7T/OLmG1IV3LKuZrLTTvzB5pE/1pnRd9BV8fT9MsyUlYUE29RwLhmIyXLxQAmBAG
+         Bpbc68sgPhmeS+UbnB6xxpphf4ZkrAobV0B+v6y/LWi+6SX6SoF70TxTre/arkcDCLns
+         k26g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=i4MNSv4gC+pj1p9yYQOx1CnSc25gU9FzxQHw5nZNAz8=;
-        b=pm+rFyvZIRvuBytFzccWszxY2zODLPsVy2cKuOakLm7A2IWrR00ayOcFWkSyeWnCQW
-         h4B09+nlz5HhxnFzWILhT0MK6quY80tjrn9Rc0z2gpynSSYEECQcZu35IdK2A/OAUmIw
-         5BgpSo/0EFE6BedK4HPS5xouaO+T6NdGzAGOLl9rLberbI8nPUxiqGW5nGJHb7Bxx54z
-         s6nvr6XoWU7p1uGCCABth0z361IwiHTHKxOm02KUjgKr47NYLXojfU+ynTu+anIRlHsn
-         7/X8/bEL8GUfSQSXHC5omNOzpD3mRmjpYSdXcresHOCy1O6PSwpEXDG+0+ksZM03dx1e
-         Bg+g==
-X-Gm-Message-State: AOAM532tUBQ36Rz/98Q+l5YKCRNgeu9ol3c8CN1cVx/aR0XECvAQuqY1
-        HmZkNXTIifbTAq3R0eq5LiI7Uw==
-X-Google-Smtp-Source: ABdhPJxtQfnTIdZMpyl/YY61Q2nkfdUYtJUK36a6HJf004y0Fx3S3eosiEoVeEqUVrMqrFFV59Cbdw==
-X-Received: by 2002:a2e:a202:: with SMTP id h2mr5079119ljm.346.1606524041071;
-        Fri, 27 Nov 2020 16:40:41 -0800 (PST)
-Received: from localhost.bredbandsbolaget (c-92d7225c.014-348-6c756e10.bbcust.telenor.se. [92.34.215.146])
-        by smtp.gmail.com with ESMTPSA id z7sm906892lfq.50.2020.11.27.16.40.40
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=qGD9xnb8v5qrR9LK2TyNHXn3ImQC3Ik9wtWDyCz2wbo=;
+        b=pCzTBgyrapOvg2YOGa4N/CnGrddZEE/E/lnzABvLCEU1d57TDHzrusjIj3jioEuPFz
+         yS/WQnn0ZSiw1L1pVkYcdXdo53Rmwxy++CmtfxxmiRoC2k/rgk03LrNuI2tQxQRpa88N
+         IgAYZu4s2t+RhDESvVf0eORk07E4Fjo9b4BYeenzd/VnfAZp8LBDmJ8pQMgZlVhd7Uuf
+         nKa//THLCQheqfbtP49M8fLskxWt3DsMNVf64tiVdEZHYbR525bm+MIMF20ZiwYCxD/+
+         ZTNbxe8lIUW112a0traJvxDnr+eIuuD1QB6oDKkPC8TXrEfQULNOsed5wqJ6/D5kpDYS
+         YH1g==
+X-Gm-Message-State: AOAM533CbfnKWsybyCxUXUNJKREedl6DZI0DAuWwugsDbmnhOx6fNrFW
+        nnloS6z417GsDAs3HoQ/hV60dHIGTCo=
+X-Google-Smtp-Source: ABdhPJzeywY9JhPURSMrDkD3ZdZTJ+PY3XfIY+cZjq7hNXfuwOd1dyTDG+dPxihAADAgja2EPUuueg==
+X-Received: by 2002:a50:d5dd:: with SMTP id g29mr11210380edj.344.1606527667876;
+        Fri, 27 Nov 2020 17:41:07 -0800 (PST)
+Received: from skbuf ([188.25.2.120])
+        by smtp.gmail.com with ESMTPSA id y14sm5729154edi.16.2020.11.27.17.41.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Nov 2020 16:40:40 -0800 (PST)
-From:   Linus Walleij <linus.walleij@linaro.org>
-To:     Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org
-Cc:     Hartmut Knaack <knaack.h@gmx.de>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        devicetree@vger.kernel.org, phone-devel@vger.kernel.org
-Subject: [PATCH 1/2 v2] iio: accel: yamaha-yas53x: Add DT bindings
-Date:   Sat, 28 Nov 2020 01:40:37 +0100
-Message-Id: <20201128004038.883289-1-linus.walleij@linaro.org>
-X-Mailer: git-send-email 2.26.2
+        Fri, 27 Nov 2020 17:41:07 -0800 (PST)
+Date:   Sat, 28 Nov 2020 03:41:06 +0200
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     Jakub Kicinski <kuba@kernel.org>,
+        George McCollister <george.mccollister@gmail.com>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
+        "open list:OPEN FIRMWARE AND..." <devicetree@vger.kernel.org>
+Subject: Re: [PATCH net-next v2 2/3] net: dsa: add Arrow SpeedChips XRS700x
+ driver
+Message-ID: <20201128014106.lcqi6btkudbnj3mc@skbuf>
+References: <20201126220500.av3clcxbbvogvde5@skbuf>
+ <20201127103503.5cda7f24@kicinski-fedora-pc1c0hjn.DHCP.thefacebook.com>
+ <CAFSKS=MAdnR2jzmkQfTnSQZ7GY5x5KJE=oeqPCQdbZdf5n=4ZQ@mail.gmail.com>
+ <20201127195057.ac56bimc6z3kpygs@skbuf>
+ <CAFSKS=Pf6zqQbNhaY=A_Da9iz9hcyxQ8E1FBp2o7a_KLBbopYw@mail.gmail.com>
+ <20201127133753.4cf108cb@kicinski-fedora-pc1c0hjn.DHCP.thefacebook.com>
+ <20201127233048.GB2073444@lunn.ch>
+ <20201127233916.bmhvcep6sjs5so2e@skbuf>
+ <20201128000234.hwd5zo2d4giiikjc@skbuf>
+ <20201128003912.GA2191767@lunn.ch>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201128003912.GA2191767@lunn.ch>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds device tree bindings for the Yamaha YAS53x
-magnetometers/compass sensors.
+On Sat, Nov 28, 2020 at 01:39:12AM +0100, Andrew Lunn wrote:
+> > This means, as far as I understand, 2 things:
+> > 1. call_netdevice_notifiers_info doesn't help, since our problem is the
+> >    same
+> > 2. I think that holding the RTNL should also be a valid way to iterate
+> >    through the net devices in the current netns, and doing just that
+> >    could be the simplest way out. It certainly worked when I tried it.
+> >    But those could also be famous last words...
+>
+> DSA makes the assumption it can block in a notifier change event.  For
+> example, NETDEV_CHANGEUPPER calls dsa_slave_changeupper() which calls
+> into the driver. We have not seen any warnings about sleeping while
+> atomic. So maybe see how NETDEV_CHANGEUPPER is issued.
 
-Cc: devicetree@vger.kernel.org
-Cc: phone-devel@vger.kernel.org
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
----
-ChangeLog v2->v3:
-- Restrict to cover the YAS53x variants, it turns out that
-  YAS529 is a very different component from the others so
-  keep that for a separate document when/if needed.
-- Rename the file and binding yamaha,53x.yaml
-- Use - if: clauses to restrict some properties.
-- Fix some spelling mistakes.
-- Restrict the nodename to be "magnetometer@[0-9a-f]"
-ChangeLog v1->v2:
-- Add Yamaha to the vendor list, I was surprised to find
-  they were not yet listed.
+Yes, this is in line with what I said. Even though we are pure readers,
+it is still sufficient (albeit not necessary) to hold rtnl in order to
+safely iterate through net->dev_base_head (or in this case, through its
+hashmaps per name and per ifindex). However, rtnl is the only one that
+offers sleepable context, since it is the only one that is a mutex.
 
-I am still working on the actual driver for the magnetometer
-but why not send out the DT bindings for review, the
-hardware variants are easy to describe. This makes it possibe
-for people to include these magnetometers in device
-trees.
----
- .../iio/magnetometer/yamaha,yas53x.yaml       | 116 ++++++++++++++++++
- .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
- 2 files changed, 118 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/magnetometer/yamaha,yas53x.yaml
+So the patch could simply look like this, no notifiers needed:
 
-diff --git a/Documentation/devicetree/bindings/iio/magnetometer/yamaha,yas53x.yaml b/Documentation/devicetree/bindings/iio/magnetometer/yamaha,yas53x.yaml
-new file mode 100644
-index 000000000000..e14668a6388d
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/magnetometer/yamaha,yas53x.yaml
-@@ -0,0 +1,116 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/magnetometer/yamaha,yas53x.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Yamaha YAS53x magnetometer sensors
-+
-+maintainers:
-+  - Linus Walleij <linus.walleij@linaro.org>
-+
-+description:
-+  The Yamaha YAS53x magnetometers is a line of 3-axis magnetometers
-+  first introduced by Yamaha in 2009 with the YAS530. They are successors
-+  of Yamaha's first magnetometer YAS529. Over the years this magnetometer
-+  has been miniaturized and appeared in a number of different variants.
-+
-+properties:
-+  $nodename:
-+    pattern: '^magnetometer@[0-9a-f]+$'
-+
-+  compatible:
-+    items:
-+      - enum:
-+          - yamaha,yas530
-+          - yamaha,yas532
-+          - yamaha,yas533
-+          - yamaha,yas535
-+          - yamaha,yas536
-+          - yamaha,yas537
-+          - yamaha,yas539
-+
-+  reg:
-+    maxItems: 1
-+
-+  reset-gpios:
-+    description: The YAS530 sensor has a RSTN pin used to reset
-+      the logic inside the sensor. This GPIO line should connect
-+      to that pin and be marked as GPIO_ACTIVE_LOW.
-+
-+  interrupts:
-+    description: Interrupt for INT pin for interrupt generation.
-+      The polarity, whether the interrupt is active on the rising
-+      or the falling edge, is software-configurable in the hardware.
-+
-+  vdd-supply:
-+    description: An optional regulator providing core power supply
-+      on the VDD pin, typically 1.8 V or 3.0 V.
-+
-+  iovdd-supply:
-+    description: An optional regulator providing I/O power supply
-+      for the I2C interface on the IOVDD pin, typically 1.8 V.
-+
-+  mount-matrix:
-+    description: An optional 3x3 mounting rotation matrix.
-+
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          items:
-+            const: yamaha,yas530
-+    then:
-+      properties:
-+        reset-gpios:
-+          maxItems: 1
-+
-+  - if:
-+      properties:
-+        compatible:
-+          enum:
-+            - yamaha,yas530
-+            - yamaha,yas532
-+            - yamaha,yas533
-+            - yamaha,yas535
-+            - yamaha,yas536
-+            - yamaha,yas537
-+    then:
-+      properties:
-+        interrupts:
-+          maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/gpio/gpio.h>
-+    i2c-0 {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        magnetometer@2e {
-+          compatible = "yamaha,yas530";
-+          reg = <0x2e>;
-+          vdd-supply = <&ldo1_reg>;
-+          iovdd-supply = <&ldo2_reg>;
-+          reset-gpios = <&gpio6 12 GPIO_ACTIVE_LOW>;
-+          interrupts = <&gpio6 13 IRQ_TYPE_EDGE_RISING>;
-+        };
-+    };
-+
-+    i2c-1 {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        magnetometer@2e {
-+          compatible = "yamaha,yas539";
-+          reg = <0x2e>;
-+          vdd-supply = <&ldo1_reg>;
-+        };
-+    };
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index 2735be1a8470..0340674c72bd 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -1210,6 +1210,8 @@ patternProperties:
-     description: Shenzhen Xunlong Software CO.,Limited
-   "^xylon,.*":
-     description: Xylon
-+  "^yamaha,.*":
-+    description: Yamaha Corporation
-   "^ylm,.*":
-     description: Shenzhen Yangliming Electronic Technology Co., Ltd.
-   "^yna,.*":
--- 
-2.26.2
+-----------------------------[cut here]-----------------------------
+diff --git a/net/core/net-procfs.c b/net/core/net-procfs.c
+index c714e6a9dad4..1429e8c066d8 100644
+--- a/net/core/net-procfs.c
++++ b/net/core/net-procfs.c
+@@ -1,6 +1,7 @@
+ // SPDX-License-Identifier: GPL-2.0
+ #include <linux/netdevice.h>
+ #include <linux/proc_fs.h>
++#include <linux/rtnetlink.h>
+ #include <linux/seq_file.h>
+ #include <net/wext.h>
+ 
+@@ -21,7 +22,7 @@ static inline struct net_device *dev_from_same_bucket(struct seq_file *seq, loff
+ 	unsigned int count = 0, offset = get_offset(*pos);
+ 
+ 	h = &net->dev_index_head[get_bucket(*pos)];
+-	hlist_for_each_entry_rcu(dev, h, index_hlist) {
++	hlist_for_each_entry(dev, h, index_hlist) {
+ 		if (++count == offset)
+ 			return dev;
+ 	}
+@@ -51,9 +52,9 @@ static inline struct net_device *dev_from_bucket(struct seq_file *seq, loff_t *p
+  *	in detail.
+  */
+ static void *dev_seq_start(struct seq_file *seq, loff_t *pos)
+-	__acquires(RCU)
++	__acquires(rtnl_mutex)
+ {
+-	rcu_read_lock();
++	rtnl_lock();
+ 	if (!*pos)
+ 		return SEQ_START_TOKEN;
+ 
+@@ -70,9 +71,9 @@ static void *dev_seq_next(struct seq_file *seq, void *v, loff_t *pos)
+ }
+ 
+ static void dev_seq_stop(struct seq_file *seq, void *v)
+-	__releases(RCU)
++	__releases(rtnl_mutex)
+ {
+-	rcu_read_unlock();
++	rtnl_unlock();
+ }
+ 
+ static void dev_seq_printf_stats(struct seq_file *seq, struct net_device *dev)
+-----------------------------[cut here]-----------------------------
 
+The advantage is that it can now sleep.
+
+The disadvantage is that now it can sleep. It is a writer, so other
+writers can block it out, and it can block out other writers. More
+contention. Speaking of, here's an interesting patch from someone who
+seems to enjoy running ifconfig:
+
+commit f04565ddf52e401880f8ba51de0dff8ba51c99fd
+Author: Mihai Maruseac <mihai.maruseac@gmail.com>
+Date:   Thu Oct 20 20:45:10 2011 +0000
+
+    dev: use name hash for dev_seq_ops
+
+    Instead of using the dev->next chain and trying to resync at each call to
+    dev_seq_start, use the name hash, keeping the bucket and the offset in
+    seq->private field.
+
+    Tests revealed the following results for ifconfig > /dev/null
+            * 1000 interfaces:
+                    * 0.114s without patch
+                    * 0.089s with patch
+            * 3000 interfaces:
+                    * 0.489s without patch
+                    * 0.110s with patch
+            * 5000 interfaces:
+                    * 1.363s without patch
+                    * 0.250s with patch
+            * 128000 interfaces (other setup):
+                    * ~100s without patch
+                    * ~30s with patch
+
+    Signed-off-by: Mihai Maruseac <mmaruseac@ixiacom.com>
+    Signed-off-by: Eric Dumazet <eric.dumazet@gmail.com>
+    Signed-off-by: David S. Miller <davem@davemloft.net>
+
+Jakub, I would like to hear more from you. I would still like to try
+this patch out. You clearly have a lot more background with the code.
+You said in an earlier reply that you should have also documented that
+ndo_get_stats64 is one of the few NDOs that does not take the RTNL. Is
+there a particular reason for that being so, and a reason why it can't
+change?
