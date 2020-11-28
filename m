@@ -2,147 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C6562C746B
-	for <lists+devicetree@lfdr.de>; Sat, 28 Nov 2020 23:19:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C6F312C751A
+	for <lists+devicetree@lfdr.de>; Sat, 28 Nov 2020 23:23:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387420AbgK1Vtl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 28 Nov 2020 16:49:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44300 "EHLO
+        id S2387761AbgK1Vt2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 28 Nov 2020 16:49:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37688 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387427AbgK1THa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Nov 2020 14:07:30 -0500
-Received: from mail-io1-xd2d.google.com (mail-io1-xd2d.google.com [IPv6:2607:f8b0:4864:20::d2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DE44C02A184;
-        Sat, 28 Nov 2020 03:54:17 -0800 (PST)
-Received: by mail-io1-xd2d.google.com with SMTP id d17so7156010ion.4;
-        Sat, 28 Nov 2020 03:54:17 -0800 (PST)
+        with ESMTP id S1725989AbgK1SW6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Nov 2020 13:22:58 -0500
+Received: from mail-lj1-x242.google.com (mail-lj1-x242.google.com [IPv6:2a00:1450:4864:20::242])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6387C02A18A
+        for <devicetree@vger.kernel.org>; Sat, 28 Nov 2020 04:25:06 -0800 (PST)
+Received: by mail-lj1-x242.google.com with SMTP id i17so9064064ljd.3
+        for <devicetree@vger.kernel.org>; Sat, 28 Nov 2020 04:25:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=kMJjaDqWu8SIrRxN1/QhPBWAa69bgxwXfwhv5mcpQCg=;
-        b=tRxMJgXatjJlXrsne/uHFdIEERR3fjha/6l0gtIOY8lPlttwBGhFwS/7FOENu/bsS0
-         ARo6/UoEn1eJ8mk2iJM5fLTlnrJWnyg/FUpaifFDYkQ84uWFHS+fURml8iK6ePTBT4v4
-         7Ctm+ITLSylSWtsoUHBHLrOLLyjMhLyAZRQ44xLNCD5/36nC/1sBqFGWnzOOz28hVMJo
-         n7rZPv/hEFLVeQqac3TOy3j6mM4ouaVwtcgeYy4NzBiYID6n5TxzlLRs2ZK4rJGp9CqG
-         KbCybHEOp+YrautriY35UEXHVQ6tqiDzeZ+pi/TOjTUU9rvwTrEc+wqhlTLx8tC9kDFK
-         hWsw==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=PYgQnFYgqUddsNplUpnQ4HvBK/TKAevGLbAhKiY2Sqc=;
+        b=fIMIGrnMtMGMEQHKUg84oqutRK7An0A4QoghvTjaNXNAHu7IsPMzqKYeQhmZboXDzx
+         qQeqDC1U+k4iI3d7AWDKdOWJiIFamQMdsVmZsl4gKDDRq0i+jlI8C4Fwy/7b2oMszEdS
+         qdcTC5oxaSBXyAup0bm7F1mZ67s2RhL89iM/bf7Cf7L+4U0sK2MT1yLst3NKUcNPzTj6
+         VEMobKzhttO5DxKgO/Ltyzwbd8t5UfC92/w5dzLqBYxCzfxtISEof+9hd8oQzCXcyrPQ
+         Ja125i5V6Ht+IpAD3hoXhWDOBmgqXvfqUKPyY/xXYsF0z3PGmvcngJ579HKFB2ZkcHDQ
+         Kz+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=kMJjaDqWu8SIrRxN1/QhPBWAa69bgxwXfwhv5mcpQCg=;
-        b=jbZqK4D6mp1iyb8sqIW0bUVVNecBjnRbVKVs1pyZx8/miOHLsR35nnQ2WQ2f/Ax1c8
-         mYIHLp47Cq6U46BnShDNBKgSh3bVQlXojEGdlBhV4juf76ce/CFnB9TKJjkz0BOinIDM
-         ihPNB0nLr565UFxJcknPL7tPvDfP7neSoi20mYVPcSEt/78PdeEBdPiIOkmP3GXhsTYj
-         TS0xsS1I6sFTOskDsmdV6G6Kq6XUz34FD+mForQePN5t2ldOLcBwUFYeVblHGM/uGRIN
-         OwLx/ddhTCc+pWTsubVU9O4YFadZ8x9zz2cx+HHLoxCZd2tWT4TYP3+FrcfawXzsOlau
-         bi4Q==
-X-Gm-Message-State: AOAM533KpYvkrXxbhoX1WGHh/qZxU1MZJlMuDwkngfMhTzjVas3OwNp/
-        OnH9rA1d0lPpiMqXTRVAt9O3A1eXAhPUT9SY3LQ=
-X-Google-Smtp-Source: ABdhPJxO/gfRABaLOYVENcxLdVOY2/zhTsTuA6eQ4fSpbMgtZvmiiVoHbOJAH2fA/Gh/o3fyhNQZ8225h6K7iO7pqWE=
-X-Received: by 2002:a5d:9710:: with SMTP id h16mr3868396iol.123.1606564455484;
- Sat, 28 Nov 2020 03:54:15 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=PYgQnFYgqUddsNplUpnQ4HvBK/TKAevGLbAhKiY2Sqc=;
+        b=dh4BL7sjyyii7AI8LgaKcGJt8kYgU+wmi7k+YqOPo+uPcMwuJrCUFE3RKu8AIbwn22
+         a0OeaJKIvRlpmP7bukgOxZaZr5JBZI0Uzhg9JlOoUy7OuzhQ6H2hXWc/ayQpLgj70r0k
+         SQ0iNk7ptpVmrv0cm13b8LR8j5BKQd7q/OWI4UPU4qyb9EjO8o4VPmXr7C2VfEY6l56E
+         pvAiVz3QhErMW/EY+v2jhZjz3N8cKOIq2fpe5+ld8jRmevf8ehL//eQMbCz0cYYIhZFp
+         JOjHWLgNjVasWhq9I/jczVWygPh8EKJdiTHDFzcJhodoMe3CD9GxWzW22HtXLHSoiMuk
+         UrCw==
+X-Gm-Message-State: AOAM532tX6GhFOsOrupc6i2fB3x9GeuVTTElnHfHjUhdSkS+VJvpQxRb
+        6AlBbo/0I8TdxqI7NNOEgHMCPMVGSOSRllAy
+X-Google-Smtp-Source: ABdhPJzRKZv6BWNPJR4vg7a2vtSAmL9dIGprulpJaUGZoeRquRv8tvUhN3N6eQT+f1s8ji97RQm7HQ==
+X-Received: by 2002:a2e:2a86:: with SMTP id q128mr5357135ljq.158.1606566305424;
+        Sat, 28 Nov 2020 04:25:05 -0800 (PST)
+Received: from jade (h-249-223.A175.priv.bahnhof.se. [98.128.249.223])
+        by smtp.gmail.com with ESMTPSA id u25sm1315496lji.6.2020.11.28.04.25.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 28 Nov 2020 04:25:04 -0800 (PST)
+Date:   Sat, 28 Nov 2020 13:25:02 +0100
+From:   Jens Wiklander <jens.wiklander@linaro.org>
+To:     Sudeep Holla <sudeep.holla@arm.com>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Trilok Soni <tsoni@codeaurora.org>,
+        Trilok Soni <tsoni@quicinc.com>, arve@android.com,
+        Andrew Walbran <qwandor@google.com>,
+        David Hartley <dhh@qti.qualcomm.com>,
+        Achin Gupta <Achin.Gupta@arm.com>,
+        Android Kernel Team <kernel-team@android.com>,
+        Fuad Tabba <tabba@google.com>
+Subject: Re: [PATCH v2 0/9] firmware: Add initial support for Arm FF-A
+Message-ID: <20201128122502.GA8649@jade>
+References: <20201103174350.991593-1-sudeep.holla@arm.com>
 MIME-Version: 1.0
-References: <6175E674-E8BC-4199-8BE8-A983065C32D5@aosc.io> <20201116155508.364dg6ycklwylswe@gilmour.lan>
- <8FFC1A6C-9CA4-4F94-91C4-F111A7519979@aosc.io> <20201120155939.3ajmbny2pka2vsnf@gilmour>
- <A8E91BA0-22FD-47F4-A5B2-A80A38FE9A0E@aosc.io> <38ee5feb-e35d-801f-99a1-65e23618e73b@sholland.org>
- <20201123111512.y7lbwsipbkcpuleb@gilmour> <97E2037C-3C3C-4B0B-8462-39B9E38CB3BB@aosc.io>
- <20201123125332.2p5z3ew7svszvyfs@gilmour> <009A22D9-AF20-45C4-9674-13334B3EFFBA@aosc.io>
- <20201128103827.d6sfc2eumli2betx@gilmour> <1666a61f6ea3e7d573795f9000a0b096c7b7dee0.camel@aosc.io>
-In-Reply-To: <1666a61f6ea3e7d573795f9000a0b096c7b7dee0.camel@aosc.io>
-From:   =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
-Date:   Sat, 28 Nov 2020 12:54:04 +0100
-Message-ID: <CAJiuCcfEcM+Dksm4uoRPCiRepDSnEmp7pr8Qk5EsFSH_zEOTYA@mail.gmail.com>
-Subject: Re: [linux-sunxi] Re: [PATCH 3/3] arm64: allwinner: dts: a64: add DT
- for PineTab developer sample
-To:     Icenowy Zheng <icenowy@aosc.io>
-Cc:     Maxime Ripard <maxime@cerno.tech>,
-        Samuel Holland <samuel@sholland.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        linux-sunxi <linux-sunxi@googlegroups.com>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20201103174350.991593-1-sudeep.holla@arm.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Icenowy,
+Hi Sudeep,
 
-On Sat, 28 Nov 2020 at 12:28, Icenowy Zheng <icenowy@aosc.io> wrote:
->
-> =E5=9C=A8 2020-11-28=E6=98=9F=E6=9C=9F=E5=85=AD=E7=9A=84 11:38 +0100=EF=
-=BC=8CMaxime Ripard=E5=86=99=E9=81=93=EF=BC=9A
-> > On Mon, Nov 23, 2020 at 09:10:38PM +0800, Icenowy Zheng wrote:
-> > > > > > > > Okay. But I'm not satisfied with a non-public sample
-> > > > > > > > occupies
-> > > > > > > > the pinetab name. Is rename it to pinetab-dev and add a
-> > > > > > > > pinetab-retail okay?
-> > > > > > >
-> > > > > > > To me, naming the production version anything but "pinetab"
-> > > > > > > isn't
-> > > > > > > satisfying either.
-> > > > > >
-> > > > > > I understand where you're coming from, but the point I was
-> > > > > > making my
-> > > > > > previous mail is precisely that it's not really possible.
-> > > > > >
-> > > > > > You want to name the early adopter version _the_ production
-> > > > > > version. Let's assume the hardware changes again between the
-> > > > > > early
-> > > > > > adopter and mass-production version. Which one will be _the_
-> > > > > > production version? The early-adopter or the mass-produced
-> > > > > > one?
-> > > > > >
-> > > > > > There's really no good answer here, and both would suck in
-> > > > > > their
-> > > > > > own way. The only way to deal with this is to simply avoid
-> > > > > > defining one version as the one true board, and just loading
-> > > > > > the
-> > > > > > proper DT in u-boot based on whatever clue we have of the
-> > > > > > hardware
-> > > > > > revision.
-> > > > > Then will it be okay to rename current pinetab DT to
-> > > > > pinetab-sample and then introduce new DTs all with suffixes?
-> > > >
-> > > > No. From my previous mail:
-> > >
-> > > It can be seen as dropping the PineTab DT and introduce new DTs
-> > > with
-> > > suffix.
-> > >
-> > > Do we have rule that we cannot drop boards?
-> >
-> > Are you really arguing that removing a DT and then adding an
-> > identical
-> > one under a different name is not renaming it?
->
-> Then we can just keep confusing name?
+On Tue, Nov 03, 2020 at 05:43:41PM +0000, Sudeep Holla wrote:
+> Hi all,
+> 
+> Let me start stating this is just initial implementation to check on
+> the idea of providing more in-kernel and userspace support. Lot of things
+> are still work in progress, I am posting just to get the early feedback
+> before building lot of things on this idea. Consider this more as RFC
+> though not tagged explicity(just to avoid it being ignored :))
+> 
+> Arm Firmware Framework for Armv8-A specification[1] describes a software
+> architecture that provides mechanism to utilise the virtualization
+> extension to isolate software images and describes interfaces that
+> standardize communication between the various software images. This
+> includes communication between images in the Secure and Normal world.
+> 
+> The main idea here is to create FFA device to establish any communication
+> with a partition(secure or normal world VM).
+> 
+> If it is a partition managed by hypervisor, then we will register chardev
+> associated with each of those partition FFA device.
+> 
+> /dev/arm_ffa:
+> 
+> e3a48fa5-dc54-4a8b-898b-bdc4dfeeb7b8
+> 49f65057-d002-4ae2-b4ee-d31c7940a13d
+> 
+> For in-kernel usage(mostly communication with secure partitions), only
+> in-kernel APIs are accessible(no userspace). There may be a need to
+> provide userspace access instead of in-kernel, it is not yet support
+> in this series as we need way to identify those and I am not sure if
+> that belong to DT.
 
-Sorry maybe I missed some information
-But why don't you do like pinephone?
-sun50i-a64-pinetab-1.0.dts
-sun50i-a64-pinetab-1.1.dts
+With unfiltered VM to VM commnication from user space there's no easy
+way for two VMs to exchange privileged information that excludes user
+space. Perhaps access to the FFA device is considered privileged and
+enough for all purposes.
 
--dev is also a confusing name I think, as the board has been already shippe=
-d.
+If I've understood it correctly is VM to SP communication only allowed
+via kernel mode in the VM. The communication with OP-TEE depends on this
+with the recent commit c5b4312bea5d ("tee: optee: Add support for session
+login client UUID generation").
 
-Regards,
-Clement
-
-
->
-> If we do so, how can we mark the new DT as "the user should use this
-> one"?
->
-> --
-> You received this message because you are subscribed to the Google Groups=
- "linux-sunxi" group.
-> To unsubscribe from this group and stop receiving emails from it, send an=
- email to linux-sunxi+unsubscribe@googlegroups.com.
-> To view this discussion on the web, visit https://groups.google.com/d/msg=
-id/linux-sunxi/1666a61f6ea3e7d573795f9000a0b096c7b7dee0.camel%40aosc.io.
+Cheers,
+Jens
