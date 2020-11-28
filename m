@@ -2,87 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 009A92C746E
-	for <lists+devicetree@lfdr.de>; Sat, 28 Nov 2020 23:19:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DACF82C7464
+	for <lists+devicetree@lfdr.de>; Sat, 28 Nov 2020 23:19:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729590AbgK1Vtk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 28 Nov 2020 16:49:40 -0500
-Received: from mail.kernel.org ([198.145.29.99]:51236 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2387420AbgK1TH1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 28 Nov 2020 14:07:27 -0500
-Received: from archlinux (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id C3B2A246CC;
-        Sat, 28 Nov 2020 16:39:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1606581572;
-        bh=noFCBd4nTh2GdZ4T+8oNdS+9TrApdROYtx/lAjMcsAY=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=ySX/gR4gf4f/DaHfs91hZ1bb9j2YaSoTRfhHZ9itoWj+lMX5csFvT2EL4Tlx8WnZg
-         EDHK0N9w1n5my1Glwj/xPyeyj+1tT2zBg1rTJgTBF/Kl5dLI65RUMJEg0FFIisV9TA
-         Wpogfn58e1UFRQDB37BzoVkoCmbNXTHET/DfAeCs=
-Date:   Sat, 28 Nov 2020 16:39:28 +0000
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>
-Subject: Re: [PATCH 0/3] dt-bindings:iio:adc: Convert generic ADC channel
- binding to yaml
-Message-ID: <20201128163928.4ef2a43a@archlinux>
-In-Reply-To: <20201103023146.GA692453@bogus>
-References: <20201031182423.742798-1-jic23@kernel.org>
-        <20201103023146.GA692453@bogus>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S2388570AbgK1Vtl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 28 Nov 2020 16:49:41 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:53532 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2387678AbgK1UVB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Nov 2020 15:21:01 -0500
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0ASGflTR059408;
+        Sat, 28 Nov 2020 10:41:47 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1606581707;
+        bh=Fa1YXFsJNI6xMSU6Zh7w6W5GFNicthju+NAZLmb99Qw=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=ipKVk5CpzOuxUfpCobp3BYnNKJ2Xm/XDw1bmhfbYVscp01TJGfwdQZX12CaF1I2gF
+         YLHaYUSF91zmO6cwH18qIvZCG7PGEvrlfFVNQnE4eVIhXtrAkLz2loEPgps4BmlNfg
+         UAsBkoFVNZZqFtMTmq03g9jRW81Ge9U9MLOZlza4=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0ASGflpj011948
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Sat, 28 Nov 2020 10:41:47 -0600
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Sat, 28
+ Nov 2020 10:41:47 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Sat, 28 Nov 2020 10:41:47 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0ASGflL1063586;
+        Sat, 28 Nov 2020 10:41:47 -0600
+Date:   Sat, 28 Nov 2020 10:41:46 -0600
+From:   Nishanth Menon <nm@ti.com>
+To:     Sekhar Nori <nsekhar@ti.com>
+CC:     Tero Kristo <t-kristo@ti.com>, Faiz Abbas <faiz_abbas@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Device Tree Mailing List <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v2 2/2] arm64: dts: ti: k3-j721e-common-proc-board: Add
+ support SD card UHS modes
+Message-ID: <20201128164146.53zz4vfg7jg2nppf@refinance>
+References: <20201127201024.64836-1-nsekhar@ti.com>
+ <20201127201024.64836-3-nsekhar@ti.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20201127201024.64836-3-nsekhar@ti.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2 Nov 2020 20:31:46 -0600
-Rob Herring <robh@kernel.org> wrote:
+On 01:40-20201128, Sekhar Nori wrote:
+[...]
 
-> On Sat, Oct 31, 2020 at 06:24:20PM +0000, Jonathan Cameron wrote:
-> > From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> > 
-> > This channel binding is not yet that heavily used, though that will slowly
-> > change now we have a standard binding.  There are more properties coming
-> > for this binding in the near future.
-> > 
-> > This series converts the channel binding itself then leverages it to
-> > reduce repitition and improve consistency in a couple of drivers.
-> > 
-> > One thing to note is that we have similar defintion for DACs but so
-> > far there are no generic properties.
-> > 
-> > Jonathan Cameron (3):
-> >   dt-bindings:iio:adc: convert adc.txt to yaml
-> >   dt-bindings:iio:adc:adi,ad7124: Use the new adc.yaml channel binding
-> >   dt-bindings:iio:adc:adi,ad7292: Use new adc.yaml binding for channels.  
-> 
-> For the series:
-> 
-> Reviewed-by: Rob Herring <robh@kernel.org>
-Series applied with just that small addition to patch 1.
+> -	main_usbss0_pins_default: main-usbss0-pins-default {
+> +	vdd_sd_dv_alt_pins_default: vdd_sd_dv_alt_pins_default {
+> +		pinctrl-single,pins = <
+> +			J721E_IOPAD(0x1d8, PIN_INPUT, 7) /* (W4) SPI1_CS1.GPIO0_117 */
+> +		>;
+> +	};
+> +
+> +	main_usbss0_pins_default: main_usbss0_pins_default {
 
-Thanks,
+Could you not switch the node name to _ ? We just fixed that
+bunch. Now, this patch introduces the following with W=2:
+arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts: /bus@100000/pinctrl@11c000/vdd_sd_dv_alt_pins_default: Character '_' not recommended in node name
+arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts: /bus@100000/pinctrl@11c000/main_usbss0_pins_default: Character '_' not recommended in node name
 
-Jonathan
 
-> 
-> > 
-> >  .../devicetree/bindings/iio/adc/adc.txt       | 23 -----------
-> >  .../devicetree/bindings/iio/adc/adc.yaml      | 38 +++++++++++++++++++
-> >  .../bindings/iio/adc/adi,ad7124.yaml          | 14 +++----
-> >  .../bindings/iio/adc/adi,ad7292.yaml          |  8 ++--
-> >  4 files changed, 47 insertions(+), 36 deletions(-)
-> >  delete mode 100644 Documentation/devicetree/bindings/iio/adc/adc.txt
-> >  create mode 100644 Documentation/devicetree/bindings/iio/adc/adc.yaml
-> > 
-> > -- 
-> > 2.28.0
-> >   
-
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
