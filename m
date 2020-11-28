@@ -2,95 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5647D2C7032
+	by mail.lfdr.de (Postfix) with ESMTP id C6CF82C7033
 	for <lists+devicetree@lfdr.de>; Sat, 28 Nov 2020 18:57:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732638AbgK1E6Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Nov 2020 23:58:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54110 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732598AbgK1E4Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Nov 2020 23:56:24 -0500
-Received: from mail-pg1-x544.google.com (mail-pg1-x544.google.com [IPv6:2607:f8b0:4864:20::544])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5F83C0613D1;
-        Fri, 27 Nov 2020 20:56:23 -0800 (PST)
-Received: by mail-pg1-x544.google.com with SMTP id l17so5841298pgk.1;
-        Fri, 27 Nov 2020 20:56:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=AynNNkh5VMrHwuoivbI//59qdaXTX0lKYpqD3IR09vQ=;
-        b=qJwXsWuFZDukcWWX2ic/SJrEf1OmG6OT4G8oHqhDGU5SsKyoN9T5QlBd7EfTYGk2tl
-         AXE9CvM6Qij2WsiqjEHgPLVverkC3gKeAj0q+TtLGFbzXvwx+sZOEZd5I+1kbUlZgTHD
-         OCB+XFawjMK6DYUReqjKQKkpGAC0ycZCo5Em4vtrGtKoWSLcyICSdI0rNz5N1HWeESlh
-         mQ2k104OMSpDAWKGUU1sF1ia1mI4xOqcJrDETBHupk+TfdMq2cBLSVp68Mx2NVO2qNnW
-         jRLSCMao358yS38C0zqJ6fZJf7kElg+AHCiLThY4rw35FnqlJwU+jX7nZsa22xVILiHo
-         KAkg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=AynNNkh5VMrHwuoivbI//59qdaXTX0lKYpqD3IR09vQ=;
-        b=EDd/56hJywmjKEJ60JoigjPEqryHpnlARX6sIfOlsnZjBuyF84C9rZKtkxBUwATmI8
-         92B9g81h7cAVjLu+e8F2qSPEtbEfBvI4bDg+0m7T4OcUriZ1KlAqrEYwtRUBI5afN6i4
-         MwqosVgW5YxLnpNl+m/zG8UZdzrRlLlF1L8cTK5nmoMTXA2Fioz41OJ8h6ZFAKG11nOo
-         ucyvrO+j/Iq8spdyHK7HhxKtu4mGPbuvp8q1D2bNuSWynYUPnaw2/YrDnODsIzcU00yZ
-         AmSqJZ62vk8HxATuf5tYv2pMq8pZ1a7NSb1fLGU3W45JkoI9AkXzuGKAKw4meBKSY86i
-         Dugg==
-X-Gm-Message-State: AOAM533E46i+Qcsn28NU17tEAMsLti26Mua3jokJMSNKTAyz7McR93C+
-        hj6gr7rSrEhy3izI6WF8AIk=
-X-Google-Smtp-Source: ABdhPJyai5WIqCy2vTOQE8AhHLgDK6b2Uk43FrLvE2tErD7V05XptsN39P1xAm5yL6Kkq6XL7kMmXA==
-X-Received: by 2002:a63:6447:: with SMTP id y68mr9444390pgb.407.1606539383346;
-        Fri, 27 Nov 2020 20:56:23 -0800 (PST)
-Received: from [10.230.28.242] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id v23sm9313818pfn.141.2020.11.27.20.56.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 27 Nov 2020 20:56:22 -0800 (PST)
-Subject: Re: [PATCH 1/2] dt-bindings: PCI: brcmstb: add BCM4908 binding
-To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-Cc:     Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        linux-rpi-kernel@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-References: <20201126135939.21982-1-zajec5@gmail.com>
- <20201126135939.21982-2-zajec5@gmail.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-Message-ID: <d4de2fd7-b606-ab2e-8829-ba52a2d23d12@gmail.com>
-Date:   Fri, 27 Nov 2020 20:56:20 -0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.5.0
-MIME-Version: 1.0
-In-Reply-To: <20201126135939.21982-2-zajec5@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+        id S1732767AbgK1FBx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 28 Nov 2020 00:01:53 -0500
+Received: from m42-4.mailgun.net ([69.72.42.4]:20573 "EHLO m42-4.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1732720AbgK1FA2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 28 Nov 2020 00:00:28 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1606539590; h=References: In-Reply-To: Message-Id: Date:
+ Subject: Cc: To: From: Sender;
+ bh=3DD1BYpF+9SW/CAV4x8bQZJk2llp6RrwWAsrxopZpsw=; b=YsWg4m7TU3qZFcE053vUaWBxOIwO4rGfe1Wh4RW0K7BsAp95SKotAljgucWM08SEY0Rz0/lZ
+ m/HQIUaJCi77tCSVVPHpa03Hgnr69gRc2IYK39iPReHNo//EWCieoN1OZhvejQepciT2CJAp
+ KGv9geU5PZ1VA/uSkH78mrj+WdQ=
+X-Mailgun-Sending-Ip: 69.72.42.4
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n03.prod.us-west-2.postgun.com with SMTP id
+ 5fc1d93e1dba509aae478027 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Sat, 28 Nov 2020 04:59:42
+ GMT
+Sender: srivasam=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id E2511C43464; Sat, 28 Nov 2020 04:59:42 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+Received: from hyd-lnxbld210.qualcomm.com (unknown [202.46.22.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: srivasam)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 07451C433C6;
+        Sat, 28 Nov 2020 04:59:36 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 07451C433C6
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=srivasam@codeaurora.org
+From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+To:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
+        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
+        srinivas.kandagatla@linaro.org, rohitkr@codeaurora.org,
+        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
+        V Sujith Kumar Reddy <vsujithk@codeaurora.org>
+Subject: [PATCH v4 1/2] Partially revert ASoC: qcom: Fix enabling BCLK and LRCLK in LPAIF invalid state
+Date:   Sat, 28 Nov 2020 10:29:18 +0530
+Message-Id: <1606539559-4277-2-git-send-email-srivasam@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1606539559-4277-1-git-send-email-srivasam@codeaurora.org>
+References: <1606539559-4277-1-git-send-email-srivasam@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This reverts part of commit b1824968221c
+("ASoC: qcom: Fix enabling BCLK and LRCLK in LPAIF invalid state")
 
+To identify LPAIF invalid state after device suspend and resume,
+made I2S and DMA control registers not volatile, which is not necessary.
+Instead invalid reg state can be handled with regcache APIs.
+The BCLK ref count is necessary to enable clock only it's in disable state.
 
-On 11/26/2020 5:59 AM, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
-> 
-> BCM4908 is a SoC family with PCIe controller sharing design with the one
-> for STB. BCM4908 has different power management and memory controller so
-> few tweaks are required.
-> 
-> PERST# signal on BCM4908 is handled by an external MISC block so it
-> needs specifying a reset phandle.
-> 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+Signed-off-by: V Sujith Kumar Reddy <vsujithk@codeaurora.org>
+Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+---
+ sound/soc/qcom/lpass-cpu.c      | 20 ++------------------
+ sound/soc/qcom/lpass-platform.c | 11 -----------
+ 2 files changed, 2 insertions(+), 29 deletions(-)
 
-Acked-by: Florian Fainelli <f.fainelli@gmail.com>
+diff --git a/sound/soc/qcom/lpass-cpu.c b/sound/soc/qcom/lpass-cpu.c
+index af684fd..c5e99c2 100644
+--- a/sound/soc/qcom/lpass-cpu.c
++++ b/sound/soc/qcom/lpass-cpu.c
+@@ -270,18 +270,6 @@ static int lpass_cpu_daiops_trigger(struct snd_pcm_substream *substream,
+ 	struct lpaif_i2sctl *i2sctl = drvdata->i2sctl;
+ 	unsigned int id = dai->driver->id;
+ 	int ret = -EINVAL;
+-	unsigned int val = 0;
+-
+-	ret = regmap_read(drvdata->lpaif_map,
+-				LPAIF_I2SCTL_REG(drvdata->variant, dai->driver->id), &val);
+-	if (ret) {
+-		dev_err(dai->dev, "error reading from i2sctl reg: %d\n", ret);
+-		return ret;
+-	}
+-	if (val == LPAIF_I2SCTL_RESET_STATE) {
+-		dev_err(dai->dev, "error in i2sctl register state\n");
+-		return -ENOTRECOVERABLE;
+-	}
+ 
+ 	switch (cmd) {
+ 	case SNDRV_PCM_TRIGGER_START:
+@@ -454,20 +442,16 @@ static bool lpass_cpu_regmap_volatile(struct device *dev, unsigned int reg)
+ 	struct lpass_variant *v = drvdata->variant;
+ 	int i;
+ 
+-	for (i = 0; i < v->i2s_ports; ++i)
+-		if (reg == LPAIF_I2SCTL_REG(v, i))
+-			return true;
+ 	for (i = 0; i < v->irq_ports; ++i)
+ 		if (reg == LPAIF_IRQSTAT_REG(v, i))
+ 			return true;
+ 
+ 	for (i = 0; i < v->rdma_channels; ++i)
+-		if (reg == LPAIF_RDMACURR_REG(v, i) || reg == LPAIF_RDMACTL_REG(v, i))
++		if (reg == LPAIF_RDMACURR_REG(v, i))
+ 			return true;
+ 
+ 	for (i = 0; i < v->wrdma_channels; ++i)
+-		if (reg == LPAIF_WRDMACURR_REG(v, i + v->wrdma_channel_start) ||
+-			reg == LPAIF_WRDMACTL_REG(v, i + v->wrdma_channel_start))
++		if (reg == LPAIF_WRDMACURR_REG(v, i + v->wrdma_channel_start))
+ 			return true;
+ 
+ 	return false;
+diff --git a/sound/soc/qcom/lpass-platform.c b/sound/soc/qcom/lpass-platform.c
+index 80b09de..0e71899 100644
+--- a/sound/soc/qcom/lpass-platform.c
++++ b/sound/soc/qcom/lpass-platform.c
+@@ -452,7 +452,6 @@ static int lpass_platform_pcmops_trigger(struct snd_soc_component *component,
+ 	unsigned int reg_irqclr = 0, val_irqclr = 0;
+ 	unsigned int  reg_irqen = 0, val_irqen = 0, val_mask = 0;
+ 	unsigned int dai_id = cpu_dai->driver->id;
+-	unsigned int dma_ctrl_reg = 0;
+ 
+ 	ch = pcm_data->dma_ch;
+ 	if (dir ==  SNDRV_PCM_STREAM_PLAYBACK) {
+@@ -469,17 +468,7 @@ static int lpass_platform_pcmops_trigger(struct snd_soc_component *component,
+ 		id = pcm_data->dma_ch - v->wrdma_channel_start;
+ 		map = drvdata->lpaif_map;
+ 	}
+-	ret = regmap_read(map, LPAIF_DMACTL_REG(v, ch, dir, dai_id), &dma_ctrl_reg);
+-	if (ret) {
+-		dev_err(soc_runtime->dev, "error reading from rdmactl reg: %d\n", ret);
+-		return ret;
+-	}
+ 
+-	if (dma_ctrl_reg == LPAIF_DMACTL_RESET_STATE ||
+-		dma_ctrl_reg == LPAIF_DMACTL_RESET_STATE + 1) {
+-		dev_err(soc_runtime->dev, "error in rdmactl register state\n");
+-		return -ENOTRECOVERABLE;
+-	}
+ 	switch (cmd) {
+ 	case SNDRV_PCM_TRIGGER_START:
+ 	case SNDRV_PCM_TRIGGER_RESUME:
 -- 
-Florian
+Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
+is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
+
