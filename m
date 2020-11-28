@@ -2,584 +2,259 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C9B1C2C7507
-	for <lists+devicetree@lfdr.de>; Sat, 28 Nov 2020 23:23:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 611312C74CB
+	for <lists+devicetree@lfdr.de>; Sat, 28 Nov 2020 23:23:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731748AbgK1Vt3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 28 Nov 2020 16:49:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37802 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728607AbgK1SXo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Nov 2020 13:23:44 -0500
-Received: from mail-lj1-x244.google.com (mail-lj1-x244.google.com [IPv6:2a00:1450:4864:20::244])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4D81C02A19F
-        for <devicetree@vger.kernel.org>; Sat, 28 Nov 2020 05:37:00 -0800 (PST)
-Received: by mail-lj1-x244.google.com with SMTP id y7so9193371lji.8
-        for <devicetree@vger.kernel.org>; Sat, 28 Nov 2020 05:37:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=RTiAuHIspxTKxgurDeYWJ6nwzackT/gcyrbaq1YooiU=;
-        b=qQcNNvzJP5sWwGrKnwAz2qkelaBmc653akRyfJLyAojVs+DyPP60gtje8HYBC1B6JZ
-         9CWbu/F/itSJzno26YjLWp10VR23SWAdmRkIQkckvLLcz9OZTpgmEa+YT7lmXbUcbZyC
-         PXiWVaJUIhC4TDpbesnPeMJmKR5ZKOoqtt7jwPdy9M2zp5ORSIAnpk/6XkvVVxljW9CH
-         0dzU8+/ssUrbMztH8ufgQUEZEhB3ig7y3pJzJZonGEGBWe2UUoYjclfETdGLll/ue3Qt
-         3Srv5Wij9tyYg0BVRh4n4hmR9NuYB3F9FT+n3MZmtphqdW0JNeBL2k4dyfNAdHTozSA5
-         +0MA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=RTiAuHIspxTKxgurDeYWJ6nwzackT/gcyrbaq1YooiU=;
-        b=gdntGOxJ9UE3I0L3hiVe8gkpztiWF0sgCFz3WtC/HdqUmlSjqQKQGdHzRD+aNGJ2cl
-         PYluPaI2HP+QIT/tOGpEGrOKYUNqxky2EZRd1+E4gjhn5/zZI1+oQGl8dRospuhWAdg4
-         Xvi4e+5zE758VkvqpXTRX2N7NvzfTkkPmx47Bo7n0Jti694xDoxWBzGXOG32OavZ0y+H
-         rY0J7n9/UK1zRfJSYAmoR3esu0sC9cwUc5u6hIF7BhGL/3GTt82Om4SH5gwLQkRVm0+f
-         AwJcu+WdG8pXTm3dLhVd7Vy6GqWm36GL8E+LaLvwI4CLs32MmM5crBQLBtSiuTjAHUOW
-         iPuw==
-X-Gm-Message-State: AOAM5311C9BJp+x/h04rhDYBx70d6bx/QZs3qAWJjH5/p0my7pFE3lGy
-        20x5JtzKuOzKFYmGOFbQS/mSbw==
-X-Google-Smtp-Source: ABdhPJzkzWfnfP1fw7JDEFxaKopyFhbFkbFEny0Ih4G+QY8ZxsSsox3T/EEIUTvpbyrCzh6PM5PONg==
-X-Received: by 2002:a2e:5810:: with SMTP id m16mr5556124ljb.152.1606570618611;
-        Sat, 28 Nov 2020 05:36:58 -0800 (PST)
-Received: from jade (h-249-223.A175.priv.bahnhof.se. [98.128.249.223])
-        by smtp.gmail.com with ESMTPSA id c23sm1351115ljd.33.2020.11.28.05.36.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 28 Nov 2020 05:36:57 -0800 (PST)
-Date:   Sat, 28 Nov 2020 14:36:55 +0100
-From:   Jens Wiklander <jens.wiklander@linaro.org>
-To:     Sudeep Holla <sudeep.holla@arm.com>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Trilok Soni <tsoni@codeaurora.org>,
-        Trilok Soni <tsoni@quicinc.com>, arve@android.com,
-        Andrew Walbran <qwandor@google.com>,
-        David Hartley <dhh@qti.qualcomm.com>,
-        Achin Gupta <Achin.Gupta@arm.com>,
-        Android Kernel Team <kernel-team@android.com>,
-        Fuad Tabba <tabba@google.com>
-Subject: Re: [PATCH v2 7/9] firmware: arm_ffa: Setup in-kernel users of FFA
- partitions
-Message-ID: <20201128133655.GB8649@jade>
-References: <20201103174350.991593-1-sudeep.holla@arm.com>
- <20201103174350.991593-8-sudeep.holla@arm.com>
+        id S2388373AbgK1Vtg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 28 Nov 2020 16:49:36 -0500
+Received: from mail.kernel.org ([198.145.29.99]:48494 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1731633AbgK1Syn (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 28 Nov 2020 13:54:43 -0500
+Received: from archlinux (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id C2AB124680;
+        Sat, 28 Nov 2020 14:04:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1606572272;
+        bh=6js5XI5p0Mnk++hEY907GUh8S1l4NEaanh58aW0/SSs=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=rEONj2AD49CrgVgwezdLkoV9XbBlr0jpAS/E9HgdxVWDiQ0UieEv4ss7U8ZkmLZJb
+         BdVaThnH5KfQfaECFZno5JKIvDPp59rEmZ11N87bhdG6VcXCSRXmx7Yo6rC8lzGZpg
+         /2rJGxGmbE7I9Fw4K56jIDr5vKHwcc4In7YEVqyQ=
+Date:   Sat, 28 Nov 2020 14:04:27 +0000
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc:     Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Ludovic Desroches <ludovic.desroches@microchip.com>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 01/11] iio: adc: at91_adc: remove platform data
+Message-ID: <20201128140427.61dbaceb@archlinux>
+In-Reply-To: <20201117140656.1235055-2-alexandre.belloni@bootlin.com>
+References: <20201117140656.1235055-1-alexandre.belloni@bootlin.com>
+        <20201117140656.1235055-2-alexandre.belloni@bootlin.com>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20201103174350.991593-8-sudeep.holla@arm.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sudeep,
+On Tue, 17 Nov 2020 15:06:46 +0100
+Alexandre Belloni <alexandre.belloni@bootlin.com> wrote:
 
-On Tue, Nov 03, 2020 at 05:43:48PM +0000, Sudeep Holla wrote:
-> Parse the FFA nodes from the device-tree and register all the partitions
-> whose services will be used in the kernel.
+> The at91 platforms have been DT only for a while, remove platform data.
 > 
-> In order to also enable in-kernel users of FFA interface, let us add
-> simple set of operations for such devices.
-> 
-> The in-kernel users are registered without the character device interface.
-> 
-> Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
+> Signed-off-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
+> Reviewed-by: Ludovic Desroches <ludovic.desroches@microchip.com>
+
+Hi Alexandre,
+
+I'd completely forgotten that we actually had a similar patch that
+is already applied from Alexandru back in September.
+
+Given vast majority matched, I've just changed your patch into one
+that drops the id_table (which Alexandru didn't do).
+
+So with that tweak applied to the togreg branch of iio.git.
+
+Thanks,
+
+Jonathan
+
 > ---
->  drivers/firmware/arm_ffa/bus.c    |   2 +
->  drivers/firmware/arm_ffa/driver.c | 281 ++++++++++++++++++++++++++++++
->  include/linux/arm_ffa.h           |  15 ++
->  include/uapi/linux/arm_ffa.h      |  56 ++++++
->  4 files changed, 354 insertions(+)
->  create mode 100644 include/uapi/linux/arm_ffa.h
+>  drivers/iio/adc/at91_adc.c             | 80 +++++++-------------------
+>  include/linux/platform_data/at91_adc.h | 49 ----------------
+>  2 files changed, 22 insertions(+), 107 deletions(-)
+>  delete mode 100644 include/linux/platform_data/at91_adc.h
 > 
-> diff --git a/drivers/firmware/arm_ffa/bus.c b/drivers/firmware/arm_ffa/bus.c
-> index 2dbcf356bd8b..de4f8b54271a 100644
-> --- a/drivers/firmware/arm_ffa/bus.c
-> +++ b/drivers/firmware/arm_ffa/bus.c
-> @@ -90,6 +90,7 @@ static void ffa_release_device(struct device *dev)
->  {
->  	struct ffa_device *ffa_dev = to_ffa_dev(dev);
->  
-> +	mutex_destroy(&ffa_dev->mutex);
->  	kfree(ffa_dev);
->  }
->  
-> @@ -127,6 +128,7 @@ int ffa_device_register(struct ffa_device *ffa_dev)
->  
->  	dev = &ffa_dev->dev;
->  	cdev = &ffa_dev->cdev;
-> +	mutex_init(&ffa_dev->mutex);
->  
->  	dev->bus = &ffa_bus_type;
->  	dev->type = &ffa_dev_type;
-> diff --git a/drivers/firmware/arm_ffa/driver.c b/drivers/firmware/arm_ffa/driver.c
-> index 1c4a5e5095b5..2e5fa56fffb7 100644
-> --- a/drivers/firmware/arm_ffa/driver.c
-> +++ b/drivers/firmware/arm_ffa/driver.c
-> @@ -24,9 +24,16 @@
->  
->  #include <linux/arm_ffa.h>
->  #include <linux/bitfield.h>
-> +#include <linux/device.h>
-> +#include <linux/fs.h>
->  #include <linux/io.h>
-> +#include <linux/kernel.h>
->  #include <linux/module.h>
-> +#include <linux/of.h>
+> diff --git a/drivers/iio/adc/at91_adc.c b/drivers/iio/adc/at91_adc.c
+> index 9b2c548fae95..62bd35af8b13 100644
+> --- a/drivers/iio/adc/at91_adc.c
+> +++ b/drivers/iio/adc/at91_adc.c
+> @@ -22,8 +22,6 @@
 >  #include <linux/slab.h>
-> +#include <linux/uaccess.h>
-> +#include <linux/uuid.h>
-> +#include <uapi/linux/arm_ffa.h>
+>  #include <linux/wait.h>
 >  
->  #include "common.h"
+> -#include <linux/platform_data/at91_adc.h>
+> -
+>  #include <linux/iio/iio.h>
+>  #include <linux/iio/buffer.h>
+>  #include <linux/iio/trigger.h>
+> @@ -153,6 +151,25 @@
+>  #define TOUCH_SHTIM                    0xa
+>  #define TOUCH_SCTIM_US		10		/* 10us for the Touchscreen Switches Closure Time */
 >  
-> @@ -48,6 +55,13 @@
->  /* Keeping RX TX buffer size as 64K for now */
->  #define RXTX_BUFFER_SIZE	SZ_64K
->  
-> +#define list_to_ffa_dev(n)	container_of(n, struct ffa_device, node)
-> +
-> +/* List of all FFA devices active in system */
-> +static LIST_HEAD(ffa_devs_list);
-> +/* Protection for the entire list */
-> +static DEFINE_MUTEX(ffa_devs_list_mutex);
-> +
->  static ffa_fn *invoke_ffa_fn;
->  
->  static const int ffa_linux_errmap[] = {
-> @@ -104,6 +118,20 @@ static int ffa_version_check(u32 *version)
->  	return 0;
->  }
->  
-> +static int ffa_rx_release(void)
-> +{
-> +	ffa_res_t ret;
-> +
-> +	ret = invoke_ffa_fn(FFA_RX_RELEASE, 0, 0, 0, 0, 0, 0, 0);
-> +
-> +	if (ret.a0 == FFA_ERROR)
-> +		return ffa_to_linux_errno((int)ret.a2);
-> +
-> +	/* check for ret.a0 == FFA_RX_RELEASE ? */
-> +
-> +	return 0;
-> +}
-> +
->  static int ffa_rxtx_map(phys_addr_t tx_buf, phys_addr_t rx_buf, u32 pg_cnt)
->  {
->  	ffa_res_t ret;
-> @@ -128,6 +156,50 @@ static int ffa_rxtx_unmap(u16 vm_id)
->  	return 0;
->  }
->  
-> +static int ffa_partition_info_get(u32 uuid0, u32 uuid1, u32 uuid2, u32 uuid3,
-> +				  struct ffa_partition_info **buffer)
-> +{
-> +	int count;
-> +	ffa_res_t partition_info;
-> +
-> +	mutex_lock(&drv_info->rx_lock);
-> +	partition_info = invoke_ffa_fn(FFA_PARTITION_INFO_GET, uuid0, uuid1,
-> +				       uuid2, uuid3, 0, 0, 0);
-> +
-> +	if (partition_info.a0 == FFA_ERROR)
-> +		return ffa_to_linux_errno((int)partition_info.a2);
-> +
-> +	count = partition_info.a2;
-> +
-> +	if (buffer)
-> +		memcpy(*buffer, drv_info->rx_buffer, sizeof(*buffer) * count);
-> +
-> +	ffa_rx_release();
-> +
-> +	mutex_unlock(&drv_info->rx_lock);
-> +
-> +	return count;
-> +}
-> +
-> +static int ffa_partition_probe(const char *uuid_str,
-> +			       struct ffa_partition_info *buffer)
-> +{
-> +	int count;
-> +	uuid_t uuid;
-> +	u32 uuid0_4[4] = { 0 };
-> +
-> +	if (uuid_parse(uuid_str, &uuid)) {
-> +		pr_err("invalid uuid (%s)\n", uuid_str);
-> +		return -ENODEV;
-> +	}
-> +
-> +	export_uuid((u8 *)uuid0_4, &uuid);
-> +	count = ffa_partition_info_get(uuid0_4[0], uuid0_4[1], uuid0_4[2],
-> +				       uuid0_4[3], &buffer);
-> +
-> +	return count;
-> +}
-> +
->  #define VM_ID_MASK	GENMASK(15, 0)
->  static int ffa_id_get(u16 *vm_id)
->  {
-> @@ -143,6 +215,205 @@ static int ffa_id_get(u16 *vm_id)
->  	return 0;
->  }
->  
-> +static int ffa_msg_send_direct_req(u16 src_id, u16 dst_id,
-> +				   struct ffa_send_direct_data *data)
-> +{
-> +	u32 src_dst_ids = PACK_TARGET_INFO(src_id, dst_id);
-> +	ffa_res_t ret;
-> +
-> +	ret = invoke_ffa_fn(FFA_FN_NATIVE(MSG_SEND_DIRECT_REQ), src_dst_ids, 0,
-> +			    data->data0, data->data1, data->data2,
-> +			    data->data3, data->data4);
-> +
-> +	while (ret.a0 == FFA_INTERRUPT)
-> +		ret = invoke_ffa_fn(FFA_RUN, ret.a1, 0, 0, 0, 0, 0, 0);
-> +	if (ret.a0 == FFA_ERROR)
-> +		return ffa_to_linux_errno((int)ret.a2);
-> +
-> +	if (ret.a0 == FFA_FN_NATIVE(MSG_SEND_DIRECT_RESP)) {
-> +		data->data0 = ret.a3;
-> +		data->data1 = ret.a4;
-> +		data->data2 = ret.a5;
-> +		data->data3 = ret.a6;
-> +		data->data4 = ret.a7;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static void ffa_device_get(struct ffa_device *ffa_dev)
-> +{
-> +	mutex_lock(&ffa_dev->mutex);
-> +	ffa_dev->num_users++;
-> +	mutex_unlock(&ffa_dev->mutex);
-> +}
-> +
-> +static void ffa_device_put(struct ffa_device *ffa_dev)
-> +{
-> +	mutex_lock(&ffa_dev->mutex);
-> +	ffa_dev->num_users--;
-> +	mutex_unlock(&ffa_dev->mutex);
-> +}
-> +
-> +static const struct ffa_dev_ops ffa_ops;
-> +
-> +const struct ffa_dev_ops *ffa_dev_ops_get(struct ffa_device *dev)
-> +{
-> +	struct list_head *p;
-> +	const struct ffa_dev_ops *ops = NULL;
-> +
-> +	if (uuid_is_null(&dev->uuid))
-> +		return NULL;
-> +
-> +	mutex_lock(&ffa_devs_list_mutex);
-> +
-> +	list_for_each(p, &ffa_devs_list) {
-> +		struct ffa_device *tmp_dev;
-> +
-> +		tmp_dev = list_to_ffa_dev(p);
-> +
-> +		if (uuid_equal(&tmp_dev->uuid, &dev->uuid)) {
-> +			ops = &ffa_ops;
-> +			break;
-> +		}
-> +	}
-> +
-> +	mutex_unlock(&ffa_devs_list_mutex);
-> +
-> +	return ops;
-> +}
-> +
-> +static int ffa_dev_open(struct ffa_device *ffa_dev)
-> +{
-> +	ffa_device_get(ffa_dev);
-> +
-> +	return 0;
-> +}
-> +
-> +static int ffa_dev_close(struct ffa_device *ffa_dev)
-> +{
-> +	ffa_device_put(ffa_dev);
-> +
-> +	return 0;
-> +}
-> +
-> +static long
-> +ffa_dev_ioctl(struct ffa_device *ffa_dev, unsigned int ioctl, void *arg)
-> +{
-> +	long r = -EINVAL;
-> +
-> +	switch (ioctl) {
-> +	case FFA_GET_API_VERSION:
-> +		return drv_info->version;
-> +	case FFA_GET_PARTITION_ID:
-> +		return ffa_dev->vm_id;
-> +	case FFA_GET_PARTITION_INFO: {
-> +		struct ffa_part_info *pinfo = arg;
-> +
-> +		if (ffa_partition_probe(pinfo->uuid_str, &pinfo->info) != 1)
-> +			r = -E2BIG;
-> +		break;
-> +	}
-> +	case FFA_SEND_RECEIVE_SYNC: {
-> +		struct ffa_send_recv_sync *kdata = arg;
-> +
-> +		r = ffa_msg_send_direct_req(ffa_dev->vm_id, kdata->endpoint_id,
-> +					    &kdata->data);
-> +		break;
-> +	}
-> +	default:
-> +		r = -EINVAL;
-> +	}
-> +
-> +	return r;
-> +}
-> +
-> +static const struct ffa_dev_ops ffa_ops = {
-> +	.open = ffa_dev_open,
-> +	.close = ffa_dev_close,
-> +	.ioctl = ffa_dev_ioctl,
+> +enum atmel_adc_ts_type {
+> +	ATMEL_ADC_TOUCHSCREEN_NONE = 0,
+> +	ATMEL_ADC_TOUCHSCREEN_4WIRE = 4,
+> +	ATMEL_ADC_TOUCHSCREEN_5WIRE = 5,
 > +};
 > +
-> +static int ffa_device_alloc_register(const char *name, u16 vm_id, uuid_t *uuid,
-> +				     const struct file_operations *fops)
-> +{
-> +	int ret;
-> +	struct ffa_device *ffa_dev;
+> +/**
+> + * struct at91_adc_trigger - description of triggers
+> + * @name:		name of the trigger advertised to the user
+> + * @value:		value to set in the ADC's trigger setup register
+> + *			to enable the trigger
+> + * @is_external:	Does the trigger rely on an external pin?
+> + */
+> +struct at91_adc_trigger {
+> +	const char	*name;
+> +	u8		value;
+> +	bool		is_external;
+> +};
 > +
-> +	ffa_dev = kzalloc(sizeof(*ffa_dev), GFP_KERNEL);
-> +	if (!ffa_dev)
-> +		return -ENOMEM;
-> +
-> +	ffa_dev->vm_id = vm_id;
-> +	if (uuid)
-> +		uuid_copy(&ffa_dev->uuid, uuid);
-> +
-> +	dev_set_name(&ffa_dev->dev, name);
-> +	dev_set_drvdata(&ffa_dev->dev, drv_info);
-> +	cdev_init(&ffa_dev->cdev, fops);
-> +
-> +	ret = ffa_device_register(ffa_dev);
+>  /**
+>   * struct at91_adc_reg_desc - Various informations relative to registers
+>   * @channel_base:	Base offset for the channel data registers
+> @@ -875,9 +892,6 @@ static int at91_adc_probe_dt(struct iio_dev *idev,
+>  	int i = 0, ret;
+>  	u32 prop;
+>  
+> -	if (!node)
+> -		return -EINVAL;
+> -
+>  	st->caps = (struct at91_adc_caps *)
+>  		of_match_device(at91_adc_dt_ids, &pdev->dev)->data;
+>  
+> @@ -960,30 +974,6 @@ static int at91_adc_probe_dt(struct iio_dev *idev,
+>  	return ret;
+>  }
+>  
+> -static int at91_adc_probe_pdata(struct at91_adc_state *st,
+> -				struct platform_device *pdev)
+> -{
+> -	struct at91_adc_data *pdata = pdev->dev.platform_data;
+> -
+> -	if (!pdata)
+> -		return -EINVAL;
+> -
+> -	st->caps = (struct at91_adc_caps *)
+> -			platform_get_device_id(pdev)->driver_data;
+> -
+> -	st->use_external = pdata->use_external_triggers;
+> -	st->vref_mv = pdata->vref;
+> -	st->channels_mask = pdata->channels_used;
+> -	st->num_channels = st->caps->num_channels;
+> -	st->startup_time = pdata->startup_time;
+> -	st->trigger_number = pdata->trigger_number;
+> -	st->trigger_list = pdata->trigger_list;
+> -	st->registers = &st->caps->registers;
+> -	st->touchscreen_type = pdata->touchscreen_type;
+> -
+> -	return 0;
+> -}
+> -
+>  static const struct iio_info at91_adc_info = {
+>  	.read_raw = &at91_adc_read_raw,
+>  };
+> @@ -1160,15 +1150,9 @@ static int at91_adc_probe(struct platform_device *pdev)
+>  
+>  	st = iio_priv(idev);
+>  
+> -	if (pdev->dev.of_node)
+> -		ret = at91_adc_probe_dt(idev, pdev);
+> -	else
+> -		ret = at91_adc_probe_pdata(st, pdev);
+> -
+> -	if (ret) {
+> -		dev_err(&pdev->dev, "No platform data available.\n");
+> -		return -EINVAL;
+> -	}
+> +	ret = at91_adc_probe_dt(idev, pdev);
 > +	if (ret)
 > +		return ret;
-> +
-> +	mutex_lock(&ffa_devs_list_mutex);
-> +	list_add_tail(&ffa_dev->node, &ffa_devs_list);
-> +	mutex_unlock(&ffa_devs_list_mutex);
-> +
-> +	return 0;
-> +}
-> +
-> +int ffa_setup_partitions(const char *compatible,
-> +			 const struct file_operations *fops)
-> +{
-> +	int ret;
-> +	struct ffa_partition_info pbuf;
-> +	struct device_node *child, *parent;
-> +	const char *p_uuid, *pfx = "Ignoring FFA partition";
-> +	uuid_t uuid = UUID_INIT(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-> +
-> +	parent = of_find_compatible_node(NULL, NULL, compatible);
-> +	if (!parent)
-> +		return 0;
-> +
-> +	for_each_child_of_node(parent, child) {
-> +		if (!of_device_is_compatible(child, "arm,ffa-1.0-partition")) {
-> +			of_node_put(child);
-> +			continue;
-> +		}
-> +
-> +		if (of_property_read_string(child, "uuid", &p_uuid)) {
-> +			pr_err("%s: failed to parse \"uuid\" property\n", pfx);
-> +			of_node_put(child);
-> +			continue;
-> +		}
-> +
-> +		of_node_put(child);
-> +
-> +		if (uuid_parse(p_uuid, &uuid)) {
-> +			pr_err("%s: invalid \"uuid\" property (%s)\n",
-> +			       pfx, p_uuid);
-> +			continue;
-> +		}
-> +
-> +		ret = ffa_partition_probe(p_uuid, &pbuf);
-> +		if (ret != 1) {
-> +			pr_err("%s: %s partition info probe failed\n",
-> +			       pfx, p_uuid);
-> +			return -EINVAL;
-> +		}
-> +
-> +		ret = ffa_device_alloc_register(p_uuid, pbuf.id, &uuid, fops);
-> +		if (ret) {
-> +			pr_err("%s: failed to register %s\n", pfx, p_uuid);
-> +			continue;
-> +		}
-> +	}
-> +
-> +	of_node_put(parent);
-> +	return 0;
-> +}
-> +
->  static int __init ffa_init(void)
->  {
->  	int ret;
-> @@ -192,6 +463,9 @@ static int __init ffa_init(void)
->  	mutex_init(&drv_info->rx_lock);
->  	mutex_init(&drv_info->tx_lock);
 >  
-> +	/* Set up all the partitions which have in-kernel drivers */
-> +	ffa_setup_partitions("arm,ffa-1.0", NULL);
-> +
->  	return 0;
->  free_pages:
->  	if (drv_info->tx_buffer)
-> @@ -205,6 +479,13 @@ module_init(ffa_init);
+>  	platform_set_drvdata(pdev, idev);
 >  
->  static void __exit ffa_exit(void)
->  {
-> +	struct list_head *p;
-> +
-> +	mutex_lock(&ffa_devs_list_mutex);
-> +	list_for_each(p, &ffa_devs_list)
-> +		ffa_device_unregister(list_to_ffa_dev(p));
-> +	mutex_unlock(&ffa_devs_list_mutex);
-> +
->  	ffa_rxtx_unmap(drv_info->vm_id);
->  	free_pages_exact(drv_info->tx_buffer, RXTX_BUFFER_SIZE);
->  	free_pages_exact(drv_info->rx_buffer, RXTX_BUFFER_SIZE);
-> diff --git a/include/linux/arm_ffa.h b/include/linux/arm_ffa.h
-> index 6185d0d12f15..719ef02fe42d 100644
-> --- a/include/linux/arm_ffa.h
-> +++ b/include/linux/arm_ffa.h
-> @@ -11,6 +11,7 @@
->  #include <linux/module.h>
->  #include <linux/types.h>
->  #include <linux/uuid.h>
-> +#include <uapi/linux/arm_ffa.h>
->  
->  #define FFA_SMC(calling_convention, func_num)				\
->  	ARM_SMCCC_CALL_VAL(ARM_SMCCC_FAST_CALL, (calling_convention),	\
-> @@ -94,6 +95,9 @@ struct ffa_device {
->  	uuid_t uuid;
->  	struct device dev;
->  	struct cdev cdev;
-> +	size_t num_users;
-> +	struct mutex mutex;	/* protects num_users */
-> +	struct list_head node;
+> @@ -1444,29 +1428,9 @@ static const struct of_device_id at91_adc_dt_ids[] = {
 >  };
+>  MODULE_DEVICE_TABLE(of, at91_adc_dt_ids);
 >  
->  #define to_ffa_dev(d) container_of(d, struct ffa_device, dev)
-> @@ -113,12 +117,19 @@ struct ffa_driver {
->  
->  #define to_ffa_driver(d) container_of(d, struct ffa_driver, driver)
->  
-> +struct ffa_dev_ops {
-> +	int (*open)(struct ffa_device *dev);
-> +	int (*close)(struct ffa_device *dev);
-> +	long (*ioctl)(struct ffa_device *dev, unsigned int ioctl, void *arg);
-> +};
+> -static const struct platform_device_id at91_adc_ids[] = {
+> -	{
+> -		.name = "at91sam9260-adc",
+> -		.driver_data = (unsigned long)&at91sam9260_caps,
+> -	}, {
+> -		.name = "at91sam9rl-adc",
+> -		.driver_data = (unsigned long)&at91sam9rl_caps,
+> -	}, {
+> -		.name = "at91sam9g45-adc",
+> -		.driver_data = (unsigned long)&at91sam9g45_caps,
+> -	}, {
+> -		.name = "at91sam9x5-adc",
+> -		.driver_data = (unsigned long)&at91sam9x5_caps,
+> -	}, {
+> -		/* terminator */
+> -	}
+> -};
+> -MODULE_DEVICE_TABLE(platform, at91_adc_ids);
+> -
+>  static struct platform_driver at91_adc_driver = {
+>  	.probe = at91_adc_probe,
+>  	.remove = at91_adc_remove,
+> -	.id_table = at91_adc_ids,
+>  	.driver = {
+>  		   .name = DRIVER_NAME,
+>  		   .of_match_table = of_match_ptr(at91_adc_dt_ids),
+> diff --git a/include/linux/platform_data/at91_adc.h b/include/linux/platform_data/at91_adc.h
+> deleted file mode 100644
+> index f20eaeb827ce..000000000000
+> --- a/include/linux/platform_data/at91_adc.h
+> +++ /dev/null
+> @@ -1,49 +0,0 @@
+> -/* SPDX-License-Identifier: GPL-2.0-or-later */
+> -/*
+> - * Copyright (C) 2011 Free Electrons
+> - */
+> -
+> -#ifndef _AT91_ADC_H_
+> -#define _AT91_ADC_H_
+> -
+> -enum atmel_adc_ts_type {
+> -	ATMEL_ADC_TOUCHSCREEN_NONE = 0,
+> -	ATMEL_ADC_TOUCHSCREEN_4WIRE = 4,
+> -	ATMEL_ADC_TOUCHSCREEN_5WIRE = 5,
+> -};
+> -
+> -/**
+> - * struct at91_adc_trigger - description of triggers
+> - * @name:		name of the trigger advertised to the user
+> - * @value:		value to set in the ADC's trigger setup register
+> -			to enable the trigger
+> - * @is_external:	Does the trigger rely on an external pin?
+> - */
+> -struct at91_adc_trigger {
+> -	const char	*name;
+> -	u8		value;
+> -	bool		is_external;
+> -};
+> -
+> -/**
+> - * struct at91_adc_data - platform data for ADC driver
+> - * @channels_used:		channels in use on the board as a bitmask
+> - * @startup_time:		startup time of the ADC in microseconds
+> - * @trigger_list:		Triggers available in the ADC
+> - * @trigger_number:		Number of triggers available in the ADC
+> - * @use_external_triggers:	does the board has external triggers availables
+> - * @vref:			Reference voltage for the ADC in millivolts
+> - * @touchscreen_type:		If a touchscreen is connected, its type (4 or 5 wires)
+> - */
+> -struct at91_adc_data {
+> -	unsigned long			channels_used;
+> -	u8				startup_time;
+> -	struct at91_adc_trigger		*trigger_list;
+> -	u8				trigger_number;
+> -	bool				use_external_triggers;
+> -	u16				vref;
+> -	enum atmel_adc_ts_type		touchscreen_type;
+> -};
+> -
+> -extern void __init at91_add_device_adc(struct at91_adc_data *data);
+> -#endif
 
-I assume that all interaction with a SP is done via ffa_ops->ioctl().
-For example the ffa_msg_send_direct_req() function is then called via:
-struct ffa_send_recv_sync arg = { .endpoint_id = xxx, .data = yyy };
-rc = ffa_ops->ioctl(ffa_dev, FFA_SEND_RECEIVE_SYNC, &arg);
-
-That isn't too hard to use, but is a bit inconvenient and less safe
-compared to a plain:
-rc = ffa_ops->send_recieve_sync(ffa_dev, xxx, yyy);
-
-I don't see any big win in then next patch with ffa_ioctl() either. That
-function must still do some actions specific for each ioctl id. So I'm a
-bit curious about the design choice.
-
-Cheers,
-Jens
-
-> +
->  #if IS_REACHABLE(CONFIG_ARM_FFA_TRANSPORT)
->  int ffa_device_register(struct ffa_device *ffa_dev);
->  void ffa_device_unregister(struct ffa_device *ffa_dev);
->  int ffa_driver_register(struct ffa_driver *driver, struct module *owner,
->  			const char *mod_name);
->  void ffa_driver_unregister(struct ffa_driver *driver);
-> +const struct ffa_dev_ops *ffa_dev_ops_get(struct ffa_device *dev);
->  
->  #else
->  static inline int ffa_device_register(struct ffa_device *ffa_dev)
-> @@ -137,6 +148,10 @@ ffa_driver_register(struct ffa_driver *driver, struct module *owner,
->  
->  static inline void ffa_driver_unregister(struct ffa_driver *driver) {}
->  
-> +const struct ffa_dev_ops *ffa_dev_ops_get(struct ffa_device *dev)
-> +{
-> +	return NULL;
-> +}
->  #endif /* CONFIG_ARM_FFA_TRANSPORT */
->  
->  #define ffa_register(driver) \
-> diff --git a/include/uapi/linux/arm_ffa.h b/include/uapi/linux/arm_ffa.h
-> new file mode 100644
-> index 000000000000..88ddddb4742f
-> --- /dev/null
-> +++ b/include/uapi/linux/arm_ffa.h
-> @@ -0,0 +1,56 @@
-> +/* SPDX-License-Identifier: GPL-2.0 WITH Linux-syscall-note */
-> +/*
-> + * Copyright (C) 2020 Arm Ltd.
-> + */
-> +
-> +#ifndef _UAPI_LINUX_ARM_FFA_H
-> +#define _UAPI_LINUX_ARM_FFA_H
-> +
-> +#include <linux/types.h>
-> +#include <linux/ioctl.h>
-> +
-> +#define FFA_BASE	0xFF
-> +
-> +struct ffa_partition_info {
-> +	__u16 id;
-> +	__u16 exec_ctxt;
-> +/* partition supports receipt of direct requests */
-> +#define FFA_PARTITION_DIRECT_RECV	BIT(0)
-> +/* partition can send direct requests. */
-> +#define FFA_PARTITION_DIRECT_SEND	BIT(1)
-> +/* partition can send and receive indirect messages. */
-> +#define FFA_PARTITION_INDIRECT_MSG	BIT(2)
-> +	__u32 properties;
-> +};
-> +
-> +struct ffa_part_info {
-> +	char uuid_str[36];
-> +	struct ffa_partition_info info;
-> +};
-> +
-> +struct ffa_send_direct_data {
-> +	unsigned long data0;
-> +	unsigned long data1;
-> +	unsigned long data2;
-> +	unsigned long data3;
-> +	unsigned long data4;
-> +};
-> +
-> +struct ffa_send_recv_sync {
-> +	__u16 endpoint_id;
-> +	struct ffa_send_direct_data data;
-> +};
-> +
-> +struct ffa_send_recv_async {
-> +	__u16 endpoint_id;
-> +	int length;
-> +	char buffer[];
-> +};
-> +
-> +#define FFA_GET_API_VERSION	_IO(FFA_BASE, 0x00)
-> +#define FFA_GET_PARTITION_ID	_IO(FFA_BASE, 0x01)
-> +#define FFA_GET_PARTITION_INFO	_IOWR(FFA_BASE, 0x02, struct ffa_part_info)
-> +#define FFA_SEND_RECEIVE_SYNC	_IOWR(FFA_BASE, 0x03, struct ffa_send_recv_sync)
-> +#define FFA_SEND_RECEIVE_ASYNC	_IOW(FFA_BASE, 0x04, struct ffa_send_recv_async)
-> +
-> +#endif /*_UAPI_LINUX_ARM_FFA_H*/
-> -- 
-> 2.25.1
-> 
