@@ -2,112 +2,231 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 279042C7B68
-	for <lists+devicetree@lfdr.de>; Sun, 29 Nov 2020 22:34:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 94EED2C7B82
+	for <lists+devicetree@lfdr.de>; Sun, 29 Nov 2020 22:55:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728071AbgK2Veb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 29 Nov 2020 16:34:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32884 "EHLO
+        id S1727992AbgK2VzO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 29 Nov 2020 16:55:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36032 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727992AbgK2Vea (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 29 Nov 2020 16:34:30 -0500
-Received: from mail-lj1-x242.google.com (mail-lj1-x242.google.com [IPv6:2a00:1450:4864:20::242])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54CB4C0613D4
-        for <devicetree@vger.kernel.org>; Sun, 29 Nov 2020 13:33:50 -0800 (PST)
-Received: by mail-lj1-x242.google.com with SMTP id s9so13985175ljo.11
-        for <devicetree@vger.kernel.org>; Sun, 29 Nov 2020 13:33:50 -0800 (PST)
+        with ESMTP id S1726512AbgK2VzL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 29 Nov 2020 16:55:11 -0500
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14C94C0613D2
+        for <devicetree@vger.kernel.org>; Sun, 29 Nov 2020 13:54:31 -0800 (PST)
+Received: by mail-lf1-x12d.google.com with SMTP id z21so17007076lfe.12
+        for <devicetree@vger.kernel.org>; Sun, 29 Nov 2020 13:54:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=DRks1S+Ljz02h+7aEMkPQyYH0KJUMNRRjQT6vkjrJ6U=;
-        b=LzYwWyNh2aq60HnaalbW2E/tfDV3QS5ABPetwv/LjVocBlaMX7p8EW6wSpLS5A+xb6
-         3RYtKYPxh3tlC4eQbu6yQKmPtsDYTe+XHrG3aefbkfkGpkyuGSceFP20lxofOmU62OuZ
-         jCDZzZvOeeb9rr+liyzgPtp15kW0t5oMmCWPVHMtFmJUzKwYJoSvUw+IOgwl+OIitkEt
-         0GYNtHEFzYR21Fqyfr9LrWkLBvuAdd7WcEJWkhAd5/ypnjcyODBcG34cskFi3J5BnKCE
-         bwGyj3H502ljkfysjViKkFi0CqGDKaKGdxv8ZMvvVu2cqiGIfoSS8QAhEPPPNcA5KDjB
-         cyMA==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=22v+25uLTpzoU6j998AK5X4aT/wXdw1+Ijxp1BLCpE8=;
+        b=A8NUZbjezyMvrsQv/uqg7rzmqp2cVN8OcJVFDHRBvPy2ys5HPVB8vr/QAg/4hBjY9F
+         /l7h0ctiklIIVnMNzgKhHjZoO4DItwuY9tjQBWsURDkfLzoyzw0BWbTuyKnxN+svZGZq
+         iXaY8M5BNPXdb6uoQ0NX8Pf+a5I/TbUpVelpVs7t2tIjl8+v5lfZKigHISQBCnj+Y6HT
+         cIhdSSkODDq+rOqvNQqY28XVNo1pPfFZghIU9ba5V4k+TN3pcqCQtA3FJ5UG+zGy658p
+         6wu/OHAgRpkUSR6GH+28HZy9mWNlNaj+2dlWeHp2ctLsKb4Dnk2GhlmA8lqY+7jCHmCC
+         xH5w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=DRks1S+Ljz02h+7aEMkPQyYH0KJUMNRRjQT6vkjrJ6U=;
-        b=WSe8D2EOqkgf52c15uShBBgCx+fUeGcCvt5rNCflJ3b7+s8M8kmCmmoLWeHu+SI9zY
-         5wRS52jWw5uSfsNHxh0168lFTasOuKjsGb8SQQYIkTe+LJ3vXVLIXJZtkcwAmnDC58LZ
-         oTUf3vjx2JmD/a1PslDn43DUqJBY9auJuVVGDaahN5Bh+pV8PDNZPcfpiJgcPUQ4Yjwv
-         dFWGXHrm/ZbDS5hmVnvYUl5Ak/0LRJ4l1ozTpFxfFtzWQBzKO/01GjwgX8y7HFwRy6nG
-         9N6GAbLRctKwPQ1yWGbpdXIsnVs1FTFthyocxpd6a8/CDJxoeLNvviR3x5Z5fiLcKDLG
-         mInQ==
-X-Gm-Message-State: AOAM53136g1zpXXvVnhonE5bq2+pikMEfB1I0zDMimEzM1RCG2734stI
-        2Yy2Hib4guYC7jfRYDGXktf7B6dRwVLnrw6/iD/b2Q==
-X-Google-Smtp-Source: ABdhPJytWDlyUMuTJm2jW8TQXYrQA7Ue6rxAsqM+YqSfqeqX2hNWQDHsQOsrBzNYb3DWeZ5mYjjq9y/2I8HLd94BvcY=
-X-Received: by 2002:a2e:321a:: with SMTP id y26mr7756884ljy.293.1606685627784;
- Sun, 29 Nov 2020 13:33:47 -0800 (PST)
-MIME-Version: 1.0
-References: <20201107081420.60325-1-damien.lemoal@wdc.com> <20201107081420.60325-21-damien.lemoal@wdc.com>
- <CACRpkdZhOxz5NhrkFxZ5G4aOrmBoAcQodOvqzNROQtXpHVQGDQ@mail.gmail.com> <CH2PR04MB65228DE061918A4D2A08A0CFE7FB0@CH2PR04MB6522.namprd04.prod.outlook.com>
-In-Reply-To: <CH2PR04MB65228DE061918A4D2A08A0CFE7FB0@CH2PR04MB6522.namprd04.prod.outlook.com>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=22v+25uLTpzoU6j998AK5X4aT/wXdw1+Ijxp1BLCpE8=;
+        b=khIRP2X1FWdj90dg9osvhXgmWdAM3knzoUNl+IYYni6qF/OSe+eQbSbHDh/D3k3IZG
+         9ShJWyLjZ/WOQsaIX8oXBMyawEnkDn7XjxPtLrx1mdVPQureXuFxGzeUV2zr+Rnfj5nv
+         h7BYeOFaJWU4MTvS6XHJwPchVDdlIu4Fgjtk5TNfnD/NYkrb11G6sV661HORAF0BtQoe
+         +q2vTpTIJOzRofn0Tnz4ivnj/E56E5KfQwhAXyaPjrSd0fguFobMCTNkwsJAgsR0vvso
+         BKM6ec4QSiEBH1z8QH55+edTK6UC+JKwNTX4s/iqjw1IGpNhr/6bO0pEyPP92mPr/lx8
+         SRnA==
+X-Gm-Message-State: AOAM532ycTgKBdFqhmTTg1cK0BvWzm1WW8cudybCG6nZM5Q3dmHboKvr
+        XHAfvGg0+K7knWDg6bjKZsQjdg==
+X-Google-Smtp-Source: ABdhPJzudox51pF9Kzryw57vD8MLgv9T2fSKBN+wQO7xB3e4M6fY/+wCDEuulZhtw7he1t/AwYoJcQ==
+X-Received: by 2002:a19:8a46:: with SMTP id m67mr7791662lfd.515.1606686869439;
+        Sun, 29 Nov 2020 13:54:29 -0800 (PST)
+Received: from localhost.bredbandsbolaget (c-92d7225c.014-348-6c756e10.bbcust.telenor.se. [92.34.215.146])
+        by smtp.gmail.com with ESMTPSA id b18sm2268654ljp.124.2020.11.29.13.54.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 29 Nov 2020 13:54:28 -0800 (PST)
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Sun, 29 Nov 2020 22:33:36 +0100
-Message-ID: <CACRpkdbA_JMiyraKC_3WT26mMUxfuLD=Q_HREmbEB=yNPpuHjw@mail.gmail.com>
-Subject: Re: [PATCH 20/32] riscv: Add Kendryte K210 FPIOA pinctrl driver
-To:     Damien Le Moal <Damien.LeMoal@wdc.com>
-Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
-        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        linux-spi <linux-spi@vger.kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Sean Anderson <seanga2@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+To:     Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org
+Cc:     Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        devicetree@vger.kernel.org, phone-devel@vger.kernel.org
+Subject: [PATCH 1/2 v4] iio: accel: yamaha-yas530: Add DT bindings
+Date:   Sun, 29 Nov 2020 22:54:20 +0100
+Message-Id: <20201129215421.1177990-1-linus.walleij@linaro.org>
+X-Mailer: git-send-email 2.26.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 24, 2020 at 9:53 AM Damien Le Moal <Damien.LeMoal@wdc.com> wrote:
-> On 2020/11/24 17:43, Linus Walleij wrote:
+This adds device tree bindings for the Yamaha YAS530
+family of magnetometers/compass sensors.
 
-> > Would also be nice if the maintainer could add some comments?
->
-> What do you mean ? I do not understand. scripts/get_maintainer.pl indicates that
-> you are the maintainer of the pinctrl drivers subsystem.
+Cc: devicetree@vger.kernel.org
+Cc: phone-devel@vger.kernel.org
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+---
+ChangeLog v3->v4:
+- Rename the bindings and file yas530 after the first
+  introduced component in the family.
+- Simplify conditional logic using the if: not: YAML
+  constructions.
+- Use the possibility to set a property to false to just
+  remvove reset GPIOs and interrupts from variants that
+  do not have them.
+ChangeLog v2->v3:
+- Restrict to cover the YAS53x variants, it turns out that
+  YAS529 is a very different component from the others so
+  keep that for a separate document when/if needed.
+- Rename the file and binding yamaha,53x.yaml
+- Use - if: clauses to restrict some properties.
+- Fix some spelling mistakes.
+- Restrict the nodename to be "magnetometer@[0-9a-f]"
+ChangeLog v1->v2:
+- Add Yamaha to the vendor list, I was surprised to find
+  they were not yet listed.
+---
+ .../iio/magnetometer/yamaha,yas530.yaml       | 112 ++++++++++++++++++
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ 2 files changed, 114 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/magnetometer/yamaha,yas530.yaml
 
-Sorry I thought we had a RISCV driver already, and we don't
-so this is cool.
+diff --git a/Documentation/devicetree/bindings/iio/magnetometer/yamaha,yas530.yaml b/Documentation/devicetree/bindings/iio/magnetometer/yamaha,yas530.yaml
+new file mode 100644
+index 000000000000..4b0ef1ef5445
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iio/magnetometer/yamaha,yas530.yaml
+@@ -0,0 +1,112 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iio/magnetometer/yamaha,yas530.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Yamaha YAS530 family of magnetometer sensors
++
++maintainers:
++  - Linus Walleij <linus.walleij@linaro.org>
++
++description:
++  The Yamaha YAS530 magnetometers is a line of 3-axis magnetometers
++  first introduced by Yamaha in 2009 with the YAS530. They are successors
++  of Yamaha's first magnetometer YAS529. Over the years this magnetometer
++  has been miniaturized and appeared in a number of different variants.
++
++properties:
++  $nodename:
++    pattern: '^magnetometer@[0-9a-f]+$'
++
++  compatible:
++    items:
++      - enum:
++          - yamaha,yas530
++          - yamaha,yas532
++          - yamaha,yas533
++          - yamaha,yas535
++          - yamaha,yas536
++          - yamaha,yas537
++          - yamaha,yas539
++
++  reg:
++    maxItems: 1
++
++  reset-gpios:
++    maxItems: 1
++    description: The YAS530 sensor has a RSTN pin used to reset
++      the logic inside the sensor. This GPIO line should connect
++      to that pin and be marked as GPIO_ACTIVE_LOW.
++
++  interrupts:
++    maxItems: 1
++    description: Interrupt for INT pin for interrupt generation.
++      The polarity, whether the interrupt is active on the rising
++      or the falling edge, is software-configurable in the hardware.
++
++  vdd-supply:
++    description: An optional regulator providing core power supply
++      on the VDD pin, typically 1.8 V or 3.0 V.
++
++  iovdd-supply:
++    description: An optional regulator providing I/O power supply
++      for the I2C interface on the IOVDD pin, typically 1.8 V.
++
++  mount-matrix:
++    description: An optional 3x3 mounting rotation matrix.
++
++allOf:
++  - if:
++      not:
++        properties:
++          compatible:
++            items:
++              const: yamaha,yas530
++    then:
++      properties:
++        reset-gpios: false
++
++  - if:
++      properties:
++        compatible:
++          items:
++            const: yamaha,yas539
++    then:
++      properties:
++        interrupts: false
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    #include <dt-bindings/gpio/gpio.h>
++    i2c-0 {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        magnetometer@2e {
++          compatible = "yamaha,yas530";
++          reg = <0x2e>;
++          vdd-supply = <&ldo1_reg>;
++          iovdd-supply = <&ldo2_reg>;
++          reset-gpios = <&gpio6 12 GPIO_ACTIVE_LOW>;
++          interrupts = <&gpio6 13 IRQ_TYPE_EDGE_RISING>;
++        };
++    };
++
++    i2c-1 {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        magnetometer@2e {
++          compatible = "yamaha,yas539";
++          reg = <0x2e>;
++          vdd-supply = <&ldo1_reg>;
++        };
++    };
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 2735be1a8470..0340674c72bd 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -1210,6 +1210,8 @@ patternProperties:
+     description: Shenzhen Xunlong Software CO.,Limited
+   "^xylon,.*":
+     description: Xylon
++  "^yamaha,.*":
++    description: Yamaha Corporation
+   "^ylm,.*":
+     description: Shenzhen Yangliming Electronic Technology Co., Ltd.
+   "^yna,.*":
+-- 
+2.26.2
 
-> Do you mean adding an
-> entry to the MAINTAINER file for this driver ? I can do that and put my self as
-> maintainer. Or do you mean you would like a comment from Palmer (riscv arch
-> maintainer) ?
-
-That would be nice. Whoever will enthusiastically review patches to
-this driver and make sure it works and get modernized should ideally
-be listed as maintainer. I suggest you list yourself.
-
-The only input I want from the RISCV arch maintainer would
-be on this code:
-
-+/*
-+ * Most devices on the K210 SoC depend on pin mapping changes to initialize
-+ * correctly. So initialize this driver early as part of the post core
-+ * initialization.
-+ */
-+static int __init k210_fpioa_init(void)
-+{
-+       return platform_driver_register(&k210_fpioa_driver);
-+}
-+postcore_initcall(k210_fpioa_init);
-
-This is a bit nasty and we do not recommend it. But I will accept it
-if the arch maintainer claims it is necessary. What happens if you
-just make it initialize at driver level?
-
-Yours,
-Linus Walleij
