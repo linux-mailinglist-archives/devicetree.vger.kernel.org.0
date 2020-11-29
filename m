@@ -2,81 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 720032C7931
-	for <lists+devicetree@lfdr.de>; Sun, 29 Nov 2020 13:59:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7926E2C7942
+	for <lists+devicetree@lfdr.de>; Sun, 29 Nov 2020 14:11:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387441AbgK2M6z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 29 Nov 2020 07:58:55 -0500
-Received: from mail.kernel.org ([198.145.29.99]:49354 "EHLO mail.kernel.org"
+        id S1727664AbgK2NBu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 29 Nov 2020 08:01:50 -0500
+Received: from mail.kernel.org ([198.145.29.99]:52354 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727676AbgK2M6y (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 29 Nov 2020 07:58:54 -0500
-Received: from mail-vs1-f50.google.com (mail-vs1-f50.google.com [209.85.217.50])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        id S1727555AbgK2NBt (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 29 Nov 2020 08:01:49 -0500
+Received: from archlinux (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 8476720855
-        for <devicetree@vger.kernel.org>; Sun, 29 Nov 2020 12:58:13 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id D6934207FF;
+        Sun, 29 Nov 2020 13:01:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1606654693;
-        bh=ELHNBHt4EqshhUGNuAZ5/xfd1MTVG6aw9M7tUezJtcw=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=lUSUlXk7ni4Qqk6/GO9uT9RLb9C5iar9YSvOCMP0dsEiOe4Y/pgDquhrtfDKXxuYK
-         /QrbLJEnAhyNpDv3JXiIf5sq0w5jq8QqwKvjvP4zwRa8hpG21qVSLkGxCle5Ebhw6j
-         Ldud0ctji2XFmdAof/2QF5pjW0PIkwMKE75WiLd0=
-Received: by mail-vs1-f50.google.com with SMTP id q5so2410133vsg.0
-        for <devicetree@vger.kernel.org>; Sun, 29 Nov 2020 04:58:13 -0800 (PST)
-X-Gm-Message-State: AOAM5335TXASzp4AQSd51+axV01XXHHdR5u86+q7GrdrjDRQK2/3BWw9
-        qb500oshTTtEI5sP0bgFL0uAehASV43d0hwBq5Eqeg==
-X-Google-Smtp-Source: ABdhPJzhn1fsp9EHXvRGhpUoP1eGJoSFTv0W/yDjP/8SVVYy5I7YyO+aQKszItKWdNicTfimgy14oUOjpOK0S4oleTM=
-X-Received: by 2002:a67:ce1a:: with SMTP id s26mr12147763vsl.0.1606654692685;
- Sun, 29 Nov 2020 04:58:12 -0800 (PST)
+        s=default; t=1606654869;
+        bh=YnoZnoBKK1Cao/C3DYbfai6083EuHlqcF3OyCuh5BT4=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=IdFNKentfqtDOkxF9RXv9XqnZi2bNMlzqsNEvlT+pjtNTWLVFvx6b07pGi4vwTy8O
+         dag85qj4vttdsK+xMy28Q5DCAu1waoq+Syx81CdZhZM9ajS3LA8aC2hYnrDuGe/2/+
+         inJbee6n1tMS2E14HIdJtOn/tfJaHj+lljv1h1DE=
+Date:   Sun, 29 Nov 2020 13:01:04 +0000
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc:     Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Ludovic Desroches <ludovic.desroches@microchip.com>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 00/10] iio: adc: at91_adc: cleanup DT bindings
+Message-ID: <20201129130104.5a8aee50@archlinux>
+In-Reply-To: <20201128222818.1910764-1-alexandre.belloni@bootlin.com>
+References: <20201128222818.1910764-1-alexandre.belloni@bootlin.com>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-References: <20200814134123.14566-1-ansuelsmth@gmail.com> <20200814134123.14566-3-ansuelsmth@gmail.com>
- <CAHLCerMArOceCFQ1XFbsZCAnUdKVX3TVnAb502w+kxmO97bdJg@mail.gmail.com> <20201125122228.GB23592@ansuel-xps20.localdomain>
-In-Reply-To: <20201125122228.GB23592@ansuel-xps20.localdomain>
-From:   Amit Kucheria <amitk@kernel.org>
-Date:   Sun, 29 Nov 2020 18:28:01 +0530
-X-Gmail-Original-Message-ID: <CAHLCerNTNpEGiGT6Veroeh1b8pOCiYYFhpnj5YqZcFZxAXGB-A@mail.gmail.com>
-Message-ID: <CAHLCerNTNpEGiGT6Veroeh1b8pOCiYYFhpnj5YqZcFZxAXGB-A@mail.gmail.com>
-Subject: Re: [RFC PATCH v6 2/8] drivers: thermal: tsens: Add VER_0 tsens version
-To:     Ansuel Smith <ansuelsmth@gmail.com>
-Cc:     Amit Kucheria <amit.kucheria@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Linux PM list <linux-pm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 26, 2020 at 2:16 AM Ansuel Smith <ansuelsmth@gmail.com> wrote:
+On Sat, 28 Nov 2020 23:28:08 +0100
+Alexandre Belloni <alexandre.belloni@bootlin.com> wrote:
 
-> > >  };
-> > > @@ -441,6 +442,10 @@ enum regfield_ids {
-> > >         CRIT_THRESH_14,
-> > >         CRIT_THRESH_15,
-> > >
-> > > +       /* VER_0 MIN MAX THRESH */
-> > > +       MIN_THRESH_0,
-> > > +       MAX_THRESH_0,
-> > > +
-> >
-> > Consider reusing LOW_THRESH_0 and UP_THRESH_0 for these?
-> >
->
-> As we already have defined LOW_THRESH and UP how can we reuse that
-> regfield to define MIN and MAX?
->
+> Hello,
+> 
+> This series cleans up the at91_adc devicetree bindings. This mainly
+> moves back the resolution options and names and the triggers description
+> back in the driver.
+> 
 
-We are using MIN and MAX THRESH on the apq8064 to mean LOW and UP
-THRESOLD, isn't it? IIUC, It was just named differently earlier.
+Applied 1-7 to the togreg branch of iio.git and pushed out as testing
+for the autobuilders to do their magic.
 
-When the driver is loaded on the apq8064, only that one field will be
-use since v0 has a single threshold for all sensors. When the driver
-is loaded on new IPs, all fields will be used.
+Thanks,
+
+Jonathan
+
+> Changes in v3:
+>  - rebased on the togreg branch of iio.git
+>  - dropped "iio: adc: at91_adc: remove forward declaration" as it was already
+>    done in tree
+>  - Reworked patch 1 from "iio: adc: at91_adc: remove platform data" to "iio:
+>    adc: at91_adc: remove at91_adc_ids"
+> 
+> Changes in v2:
+>  - separated out the dt-binding change to give a chance to Rob to actually
+>    review them.
+>  - Dropped "iio: adc: at91_adc: use devm_input_allocate_device"
+>  - Collected tags
+>  - use of_device_get_match_data instead of device_get_match_data
+>  - include backportable sam9rl trigger fix
+> 
+> 
+> Alexandre Belloni (9):
+>   iio: adc: at91_adc: remove at91_adc_ids
+>   iio: adc: at91_adc: rework resolution selection
+>   dt-bindings:iio:adc:remove atmel,adc-res and atmel,adc-res-names
+>   iio: adc: at91_adc: rework trigger definition
+>   dt-bindings:iio:adc:remove triggers
+>   iio: adc: at91_adc: merge at91_adc_probe_dt back in at91_adc_probe
+>   ARM: dts: at91: sama5d3: use proper ADC compatible
+>   ARM: dts: at91: at91sam9rl: fix ADC triggers
+>   ARM: dts: at91: remove deprecated ADC properties
+> 
+> Jonathan Cameron (1):
+>   dt-bindings:iio:adc:atmel,sama9260-adc: conversion to yaml from
+>     at91_adc.txt
+> 
+>  .../devicetree/bindings/iio/adc/at91_adc.txt  |  83 -----
+>  .../bindings/iio/adc/atmel,sama9260-adc.yaml  | 121 +++++++
+>  arch/arm/boot/dts/at91sam9260.dtsi            |  25 --
+>  arch/arm/boot/dts/at91sam9g45.dtsi            |  27 --
+>  arch/arm/boot/dts/at91sam9rl.dtsi             |  25 --
+>  arch/arm/boot/dts/at91sam9x5.dtsi             |  28 --
+>  arch/arm/boot/dts/sama5d3.dtsi                |  26 +-
+>  arch/arm/boot/dts/sama5d4.dtsi                |  22 --
+>  drivers/iio/adc/at91_adc.c                    | 294 +++++++-----------
+>  9 files changed, 237 insertions(+), 414 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/iio/adc/at91_adc.txt
+>  create mode 100644 Documentation/devicetree/bindings/iio/adc/atmel,sama9260-adc.yaml
+> 
+
