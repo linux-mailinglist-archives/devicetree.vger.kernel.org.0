@@ -2,74 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A44372C781A
-	for <lists+devicetree@lfdr.de>; Sun, 29 Nov 2020 06:54:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5531C2C7881
+	for <lists+devicetree@lfdr.de>; Sun, 29 Nov 2020 10:44:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725900AbgK2FyW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 29 Nov 2020 00:54:22 -0500
-Received: from server-x.ipv4.hkg02.ds.network ([27.111.83.178]:40208 "EHLO
-        mail.gtsys.com.hk" rhost-flags-OK-FAIL-OK-OK) by vger.kernel.org
-        with ESMTP id S1725852AbgK2FyW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 29 Nov 2020 00:54:22 -0500
-X-Greylist: delayed 473 seconds by postgrey-1.27 at vger.kernel.org; Sun, 29 Nov 2020 00:54:22 EST
-Received: from localhost (localhost [127.0.0.1])
-        by mail.gtsys.com.hk (Postfix) with ESMTP id 3F76B2002390;
-        Sun, 29 Nov 2020 13:45:43 +0800 (HKT)
-X-Virus-Scanned: Debian amavisd-new at gtsys.com.hk
-Received: from mail.gtsys.com.hk ([127.0.0.1])
-        by localhost (mail.gtsys.com.hk [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id meYs45fgQ6dV; Sun, 29 Nov 2020 13:45:43 +0800 (HKT)
-Received: from s01.gtsys.com.hk (unknown [10.128.4.2])
-        by mail.gtsys.com.hk (Postfix) with ESMTP id 24F5E20020FC;
-        Sun, 29 Nov 2020 13:45:43 +0800 (HKT)
-Received: from armhf2.gtsys.com.hk (unknown [10.128.4.15])
-        by s01.gtsys.com.hk (Postfix) with ESMTP id 1E2AFC019E2;
-        Sun, 29 Nov 2020 13:45:43 +0800 (HKT)
-Received: by armhf2.gtsys.com.hk (Postfix, from userid 1000)
-        id 2005C200756; Sun, 29 Nov 2020 13:45:43 +0800 (HKT)
-From:   Chris Ruehl <chris.ruehl@gtsys.com.hk>
-Cc:     devicetree@vger.kernel.org, Chris Ruehl <chris.ruehl@gtsys.com.hk>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org
-Subject: [PATCH v2 2/2] devicetree: phy: rockchip-emmc: pulldown property
-Date:   Sun, 29 Nov 2020 13:44:15 +0800
-Message-Id: <20201129054416.3980-3-chris.ruehl@gtsys.com.hk>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20201129054416.3980-1-chris.ruehl@gtsys.com.hk>
-References: <20201129054416.3980-1-chris.ruehl@gtsys.com.hk>
+        id S1726780AbgK2JoJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 29 Nov 2020 04:44:09 -0500
+Received: from mail.kernel.org ([198.145.29.99]:45200 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725830AbgK2JoI (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 29 Nov 2020 04:44:08 -0500
+Received: from localhost.localdomain (unknown [151.66.8.153])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 377DE20771;
+        Sun, 29 Nov 2020 09:43:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1606643008;
+        bh=IzjRM2tz17biWFG4O1LOuBRWuG84FDy/u1xJLI70bVM=;
+        h=From:To:Cc:Subject:Date:From;
+        b=eJswMQtuxVLGWJ5D8CeiokLDey6HorsFuVHIQrks2wwlKieFcWtN8qe+Z8AadgGnI
+         n4yeOzgeVo8WNljWS49vGmORM1Ki0X/9PEZykEzNUOcDs2VnaMXk47pxthOS4Ps9sq
+         tpcFgDgMaMRbX8By3X7QHWr7/wwT8l4wDQFsP6Fc=
+From:   Lorenzo Bianconi <lorenzo@kernel.org>
+To:     jic23@kernel.org
+Cc:     lorenzo.bianconi@redhat.com, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH 0/2] add support for LSM6DSOP
+Date:   Sun, 29 Nov 2020 10:43:05 +0100
+Message-Id: <cover.1606642528.git.lorenzo@kernel.org>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update the documentation and add the bool property
-enable-strobe-pulldown used to enable the internal pull-down for the
-strobe line.
+Add support for LSM6DSOP IMU mems sensor
+https://www.st.com/resource/en/datasheet/lsm6dsop.pdf
 
-Signed-off-by: Chris Ruehl <chris.ruehl@gtsys.com.hk>
----
- Documentation/devicetree/bindings/phy/rockchip-emmc-phy.txt | 2 ++
- 1 file changed, 2 insertions(+)
+This series is based on "iio: imu: st_lsmdsx: compact
+st_lsm6dsx_sensor_settings table"
+https://patchwork.kernel.org/project/linux-iio/list/?series=392743
 
-diff --git a/Documentation/devicetree/bindings/phy/rockchip-emmc-phy.txt b/Documentation/devicetree/bindings/phy/rockchip-emmc-phy.txt
-index e728786f21e0..3e4d2d79a65d 100644
---- a/Documentation/devicetree/bindings/phy/rockchip-emmc-phy.txt
-+++ b/Documentation/devicetree/bindings/phy/rockchip-emmc-phy.txt
-@@ -16,6 +16,8 @@ Optional properties:
-  - drive-impedance-ohm: Specifies the drive impedance in Ohm.
-                         Possible values are 33, 40, 50, 66 and 100.
-                         If not set, the default value of 50 will be applied.
-+ - enable-strobe-pulldown: Enable internal pull-down for the strobe line.
-+                           If not set, pull-down is not used.
- 
- Example:
- 
+Lorenzo Bianconi (2):
+  iio: imu: st_lsm6dsx: add support to LSM6DSOP
+  dt-bindings: iio: imu: st_lsm6dsx: add lsm6dsop device bindings
+
+ Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml | 1 +
+ drivers/iio/imu/st_lsm6dsx/Kconfig                        | 2 +-
+ drivers/iio/imu/st_lsm6dsx/st_lsm6dsx.h                   | 2 ++
+ drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_buffer.c            | 2 +-
+ drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_core.c              | 6 +++++-
+ drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_i2c.c               | 5 +++++
+ drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_spi.c               | 5 +++++
+ 7 files changed, 20 insertions(+), 3 deletions(-)
+
 -- 
-2.20.1
+2.28.0
 
