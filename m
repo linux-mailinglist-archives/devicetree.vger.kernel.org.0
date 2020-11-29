@@ -2,275 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0916E2C78C7
-	for <lists+devicetree@lfdr.de>; Sun, 29 Nov 2020 12:18:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 237D32C78CE
+	for <lists+devicetree@lfdr.de>; Sun, 29 Nov 2020 12:26:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725882AbgK2LSM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 29 Nov 2020 06:18:12 -0500
-Received: from relay4-d.mail.gandi.net ([217.70.183.196]:57049 "EHLO
-        relay4-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725852AbgK2LSL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 29 Nov 2020 06:18:11 -0500
+        id S1725852AbgK2L0S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 29 Nov 2020 06:26:18 -0500
+Received: from relay3-d.mail.gandi.net ([217.70.183.195]:57865 "EHLO
+        relay3-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725830AbgK2L0R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 29 Nov 2020 06:26:17 -0500
 X-Originating-IP: 91.175.115.186
 Received: from localhost (91-175-115-186.subs.proxad.net [91.175.115.186])
         (Authenticated sender: gregory.clement@bootlin.com)
-        by relay4-d.mail.gandi.net (Postfix) with ESMTPSA id 264EEE0006;
-        Sun, 29 Nov 2020 11:17:27 +0000 (UTC)
+        by relay3-d.mail.gandi.net (Postfix) with ESMTPSA id B0F8460003;
+        Sun, 29 Nov 2020 11:25:31 +0000 (UTC)
 From:   Gregory CLEMENT <gregory.clement@bootlin.com>
-To:     Vladimir Vid <vladimir.vid@sartura.hr>, devicetree@vger.kernel.org
-Cc:     pali@kernel.org, a.heider@gmail.com, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, tmn505@gmail.com,
-        sebastian.hesselbarth@gmail.com, andrew@lunn.ch,
-        jason@lakedaemon.net, robh+dt@kernel.org,
-        Vladimir Vid <vladimir.vid@sartura.hr>
-Subject: Re: [PATCH v5] arm64: dts: marvell: add DT for ESPRESSObin-Ultra
-In-Reply-To: <20201026184441.96395-1-vladimir.vid@sartura.hr>
-References: <20201026184441.96395-1-vladimir.vid@sartura.hr>
-Date:   Sun, 29 Nov 2020 12:17:27 +0100
-Message-ID: <87sg8sjttk.fsf@BL-laptop>
+To:     sven.auhagen@voleatech.de, axboe@kernel.dk, hdegoede@redhat.com,
+        robh+dt@kernel.org, tglx@linutronix.de, maz@kernel.org
+Cc:     linux-ide@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, jason@lakedaemon.net, andrew@lunn.ch,
+        rjw@rjwysocki.net, viresh.kumar@linaro.org,
+        antoine.tenart@bootlin.com, maxime.chevallier@bootlin.com,
+        thomas.petazzoni@bootlin.com, miquel.raynal@bootlin.com
+Subject: Re: [PATCH v3 9/9] arm64: dts: marvell: armada-cp110: Switch to
+ per-port SATA interrupts
+In-Reply-To: <20201109173948.96663-10-sven.auhagen@voleatech.de>
+References: <20201109173948.96663-1-sven.auhagen@voleatech.de>
+ <20201109173948.96663-10-sven.auhagen@voleatech.de>
+Date:   Sun, 29 Nov 2020 12:25:31 +0100
+Message-ID: <87pn3wjtg4.fsf@BL-laptop>
 MIME-Version: 1.0
 Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Vladimir,
+Hi Sven,
 
-> This adds support for ESPRESSObin-Ultra from Globalscale.
+> From: Sven Auhagen <sven.auhagen@voleatech.de>
 >
-> Specifications are similar to the base ESPRESSObin board, with main
-> difference being being WAN port with PoE capability and 2 additional ethernet ports.
+> There are two SATA ports per CP110. Each of them has a dedicated
+> interrupt. Describe the real hardware by adding two SATA ports to the
+> CP110 SATA node.
 >
-> Full specifications:
->
-> 1x Marvell 64 bit Dual Core ARM A53 Armada 3700 SOC clocked up to 1.2Ghz
-> 1x Topaz 6341 Networking Switch
-> 1GB DDR4
-> 8GB eMMC
-> 1x WAN with 30W POE
-> 4x Gb LAN
-> 1x RTC Clock and battery
-> 1x DC Jack
-> 1x USB 3.0 Type A
-> 1x USB 2.0 Type A
-> 1x SIM NanoSIM card Slot
-> 1x Power Button
-> 4x LED
-> 1x Reset button
-> 1x microUSB for UART
-> 1x M.2 2280 slot for memory
-> 1x 2x2 802.11ac Wi-Fi
-> 1x MiniPCIE slot for Wi-Fi (PCIe interface)
->
-> Signed-off-by: Vladimir Vid <vladimir.vid@sartura.hr>
-
+> Reviewed-by: Hans de Goede <hdegoede@redhat.com>
+> Signed-off-by: Sven Auhagen <sven.auhagen@voleatech.de>
+> Signed-off-by: Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
 
 Applied on mvebu/dt64
-
-I know that usb3 node is not yet enabled but we are a really close to the
-end of the merge window for ARM so let's have this version in 5.11, and
-then we can improve it in future version.
 
 Thanks,
 
 Gregory
 
 > ---
+>  arch/arm64/boot/dts/marvell/armada-cp11x.dtsi | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
 >
-> v5 changes:
-> - update ethernet-phy@1 to match reg value
->
-> ---
->  arch/arm64/boot/dts/marvell/Makefile          |   1 +
->  .../marvell/armada-3720-espressobin-ultra.dts | 165 ++++++++++++++++++
->  2 files changed, 166 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/marvell/armada-3720-espressobin-ultra.dts
->
-> diff --git a/arch/arm64/boot/dts/marvell/Makefile b/arch/arm64/boot/dts/marvell/Makefile
-> index 3e5f2e7a040c..094f451fdd1d 100644
-> --- a/arch/arm64/boot/dts/marvell/Makefile
-> +++ b/arch/arm64/boot/dts/marvell/Makefile
-> @@ -3,6 +3,7 @@
->  dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-db.dtb
->  dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin.dtb
->  dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin-emmc.dtb
-> +dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin-ultra.dtb
->  dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin-v7.dtb
->  dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin-v7-emmc.dtb
->  dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-turris-mox.dtb
-> diff --git a/arch/arm64/boot/dts/marvell/armada-3720-espressobin-ultra.dts b/arch/arm64/boot/dts/marvell/armada-3720-espressobin-ultra.dts
-> new file mode 100644
-> index 000000000000..c5eb3604dd5b
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/marvell/armada-3720-espressobin-ultra.dts
-> @@ -0,0 +1,165 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Device Tree file for ESPRESSObin-Ultra board.
-> + * Copyright (C) 2019 Globalscale technologies, Inc.
-> + *
-> + * Jason Hung <jhung@globalscaletechnologies.com>
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "armada-3720-espressobin.dtsi"
-> +
-> +/ {
-> +	model = "Globalscale Marvell ESPRESSOBin Ultra Board";
-> +	compatible = "globalscale,espressobin-ultra", "marvell,armada3720",
-> +		     "marvell,armada3710";
-> +
-> +	aliases {
-> +		/* ethernet1 is WAN port */
-> +		ethernet1 = &switch0port5;
-> +		ethernet2 = &switch0port1;
-> +		ethernet3 = &switch0port2;
-> +		ethernet4 = &switch0port3;
-> +		ethernet5 = &switch0port4;
-> +	};
-> +
-> +	reg_usb3_vbus: usb3-vbus {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "usb3-vbus";
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +		enable-active-high;
-> +		gpio = <&gpionb 19 GPIO_ACTIVE_HIGH>;
-> +	};
-> +
-> +	usb3_phy: usb3-phy {
-> +		compatible = "usb-nop-xceiv";
-> +		vcc-supply = <&reg_usb3_vbus>;
-> +	};
-> +
-> +	gpio-leds {
-> +		pinctrl-names = "default";
-> +		compatible = "gpio-leds";
-> +		/* No assigned functions to the LEDs by default */
-> +		led1 {
-> +			label = "ebin-ultra:blue:led1";
-> +			gpios = <&gpionb 11 GPIO_ACTIVE_LOW>;
-> +		};
-> +		led2 {
-> +			label = "ebin-ultra:green:led2";
-> +			gpios = <&gpionb 12 GPIO_ACTIVE_LOW>;
-> +		};
-> +		led3 {
-> +			label = "ebin-ultra:red:led3";
-> +			gpios = <&gpionb 13 GPIO_ACTIVE_LOW>;
-> +		};
-> +		led4 {
-> +			label = "ebin-ultra:yellow:led4";
-> +			gpios = <&gpionb 14 GPIO_ACTIVE_LOW>;
-> +		};
-> +	};
-> +};
-> +
-> +&sdhci0 {
-> +	status = "okay";
-> +};
-> +
-> +&sdhci1 {
-> +	status = "disabled";
-> +};
-> +
-> +&spi0 {
-> +	flash@0 {
-> +		spi-max-frequency = <108000000>;
-> +		spi-rx-bus-width = <4>;
-> +		spi-tx-bus-width = <4>;
-> +
-> +		partitions {
-> +			compatible = "fixed-partitions";
-> +			#address-cells = <1>;
-> +			#size-cells = <1>;
-> +
-> +			partition@0 {
-> +				label = "firmware";
-> +				reg = <0x0 0x3e0000>;
-> +			};
-> +			partition@3e0000 {
-> +				label = "hw-info";
-> +				reg = <0x3e0000 0x10000>;
-> +				read-only;
-> +			};
-> +			partition@3f0000 {
-> +				label = "u-boot-env";
-> +				reg = <0x3f0000 0x10000>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&i2c0 {
-> +	status = "okay";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&i2c1_pins>;
-> +
-> +	clock-frequency = <100000>;
-> +
-> +	rtc@51 {
-> +		compatible = "nxp,pcf8563";
-> +		reg = <0x51>;
-> +	};
-> +};
-> +
-> +&usb3 {
-> +	usb-phy = <&usb3_phy>;
-> +	status = "disabled";
-> +};
-> +
-> +&mdio {
-> +	extphy: ethernet-phy@1 {
-> +		reg = <1>;
-> +	};
-> +};
-> +
-> +&switch0 {
-> +	reg = <3>;
-> +
-> +	ports {
-> +		switch0port1: port@1 {
-> +			reg = <1>;
-> +			label = "lan0";
-> +			phy-handle = <&switch0phy0>;
-> +		};
-> +
-> +		switch0port2: port@2 {
-> +			reg = <2>;
-> +			label = "lan1";
-> +			phy-handle = <&switch0phy1>;
-> +		};
-> +
-> +		switch0port3: port@3 {
-> +			reg = <3>;
-> +			label = "lan2";
-> +			phy-handle = <&switch0phy2>;
-> +		};
-> +
-> +		switch0port4: port@4 {
-> +			reg = <4>;
-> +			label = "lan3";
-> +			phy-handle = <&switch0phy3>;
-> +		};
-> +
-> +		switch0port5: port@5 {
-> +			reg = <5>;
-> +			label = "wan";
-> +			phy-handle = <&extphy>;
-> +			phy-mode = "sgmii";
-> +		};
-> +	};
-> +
-> +	mdio {
-> +		switch0phy3: switch0phy3@14 {
-> +			reg = <0x14>;
-> +		};
-> +	};
-> +};
+> diff --git a/arch/arm64/boot/dts/marvell/armada-cp11x.dtsi b/arch/arm64/boot/dts/marvell/armada-cp11x.dtsi
+> index 9dcf16beabf5..ec27294f097b 100644
+> --- a/arch/arm64/boot/dts/marvell/armada-cp11x.dtsi
+> +++ b/arch/arm64/boot/dts/marvell/armada-cp11x.dtsi
+> @@ -300,11 +300,9 @@
+>  		};
+>  
+>  		CP11X_LABEL(sata0): sata@540000 {
+> -			compatible = "marvell,armada-8k-ahci",
+> -			"generic-ahci";
+> +			compatible = "marvell,armada-8k-ahci";
+>  			reg = <0x540000 0x30000>;
+>  			dma-coherent;
+> -			interrupts = <107 IRQ_TYPE_LEVEL_HIGH>;
+>  			clocks = <&CP11X_LABEL(clk) 1 15>,
+>  				 <&CP11X_LABEL(clk) 1 16>;
+>  			#address-cells = <1>;
+> @@ -312,10 +310,12 @@
+>  			status = "disabled";
+>  
+>  			sata-port@0 {
+> +				interrupts = <109 IRQ_TYPE_LEVEL_HIGH>;
+>  				reg = <0>;
+>  			};
+>  
+>  			sata-port@1 {
+> +				interrupts = <107 IRQ_TYPE_LEVEL_HIGH>;
+>  				reg = <1>;
+>  			};
+>  		};
 > -- 
-> 2.27.0
+> 2.20.1
 >
 
 -- 
