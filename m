@@ -2,183 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CF1632C8344
-	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 12:31:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BC5822C8366
+	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 12:42:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726337AbgK3Lao (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Nov 2020 06:30:44 -0500
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:38698 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726270AbgK3Lan (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Nov 2020 06:30:43 -0500
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0AUBTcAb071715;
-        Mon, 30 Nov 2020 05:29:38 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1606735778;
-        bh=TjBN0NXqqYSaqwmN5l3Qfp52xfEoL7nhUZ7nOsXPtMw=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=PwoXzR/G2BMW/UiaN0Q+PmGgERDB4ffSTHwPOS7nZ+1TmjM13Ku16fqOkOZB4pxy4
-         SjwUDTJYBhpUeFuLAxc1nC7ZxOlhLnqzbOA+AkGFaawY4byt07uUQCtsKEicFAv4Ie
-         Hq7Q84qwKYCyLPz+tSNIbiMKRr4vzobgKWO1hPoA=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0AUBTc1m031432
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 30 Nov 2020 05:29:38 -0600
-Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Mon, 30
- Nov 2020 05:29:37 -0600
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Mon, 30 Nov 2020 05:29:37 -0600
-Received: from deskari.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0AUBTSFZ047293;
-        Mon, 30 Nov 2020 05:29:35 -0600
-From:   Tomi Valkeinen <tomi.valkeinen@ti.com>
-To:     <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>
-CC:     Nikhil Devshatwar <nikhil.nd@ti.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        <ville.syrjala@linux.intel.com>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Swapnil Kashinath Jakhade <sjakhade@cadence.com>,
-        Sekhar Nori <nsekhar@ti.com>,
-        Tomi Valkeinen <tomi.valkeinen@ti.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Subject: [PATCH v4 2/2] drm/bridge: display-connector: add DP support
-Date:   Mon, 30 Nov 2020 13:29:19 +0200
-Message-ID: <20201130112919.241054-3-tomi.valkeinen@ti.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20201130112919.241054-1-tomi.valkeinen@ti.com>
-References: <20201130112919.241054-1-tomi.valkeinen@ti.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S1728579AbgK3Lmk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Nov 2020 06:42:40 -0500
+Received: from mail-eopbgr40070.outbound.protection.outlook.com ([40.107.4.70]:48256
+        "EHLO EUR03-DB5-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1728544AbgK3Lmk (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 30 Nov 2020 06:42:40 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=VzsK771KAZtn07TQgGBNW4ddXsXneri8WBQ5ytmddzWj1iL4aF6ZImYHfKQXsKz1YlpPz2mD4WkfN0hmjoRcALPVuud9L+B9wvTpM8PcMbV7OHUp6LFaenAe8qNWLy/T5OeLxImv8EAsSqkxwttxJmsgK6ug0HUdF971f/WTFuWyLvmqflBNHPaK3VAbb1SJeWn5RrUVbWMkV6ZgSCLCwVr/fn1eZSeXBqxIdHE+wsHOIxd59Qtur/eth3o8/X0BeNVc3WGrbMpZ2frXEiQHlMGMHRMK4DVKIDkE37g+5s0RihMem1h39mouZm3jn/yNqmNxmMNWQAnzZN4yhW2SIw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=6bRiV7Sbv6163zvky1R20srl2ARvWEP4PWH7kgKZTzc=;
+ b=caF+xGv/WiNjduX3jH2aiUlknIkzf68obyBywSRvX2ZUW0qIYoW8kYWJsdWA4XFhAVB0JKFhyX/mSuMPG9VdZDqayURPVIApsDWE4xoWa2YeAInrAPgA305GBApzvewjZ0oadwWC0HbEzbaMVOoeYb/iairhr7w+J7veudStwKYawVI1LfqwPzipl+WMz33dCrUM/AiSz29MtoHyeUi5iOzJnPg+xQrc7pOX9pudM6RG1UA6N76j4vP6vwct3hc7aLCiv5qrrvzO6xfHJjZxBHg8+QREIaIYW9+ihcSQzv1wJ9/tWsh4BmwF6niB8dZdZ3ugg1JJkI+ZLCLWkgNGTw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=6bRiV7Sbv6163zvky1R20srl2ARvWEP4PWH7kgKZTzc=;
+ b=pQqkOSBaXKAyCjdaJDijqrWvcdzU0t2zuUkh2kv/de9lTdo1Odkdvzb6K0P8pyDfepMpT5WRRonXdQ/03m7fwEjuQ+tmYnhgL/1+T9RjPZjqYOt896iVKBHQHOpbSPtetB/c2KBGMXHOlloMIgnBT5QIqxZKb+g55Rf6qpx0nxk=
+Authentication-Results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
+Received: from DB8PR04MB6795.eurprd04.prod.outlook.com (2603:10a6:10:fa::15)
+ by DB7PR04MB4106.eurprd04.prod.outlook.com (2603:10a6:5:19::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3564.25; Mon, 30 Nov
+ 2020 11:41:49 +0000
+Received: from DB8PR04MB6795.eurprd04.prod.outlook.com
+ ([fe80::b83c:2edc:17e8:2666]) by DB8PR04MB6795.eurprd04.prod.outlook.com
+ ([fe80::b83c:2edc:17e8:2666%4]) with mapi id 15.20.3611.025; Mon, 30 Nov 2020
+ 11:41:48 +0000
+From:   Joakim Zhang <qiangqing.zhang@nxp.com>
+To:     will@kernel.org, john.garry@huawei.com, robh+dt@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-imx@nxp.com, frank.li@nxp.com
+Subject: [PATCH V2 0/2] perf/imx_ddr: Add sysfs identifier file
+Date:   Mon, 30 Nov 2020 19:42:00 +0800
+Message-Id: <20201130114202.26057-1-qiangqing.zhang@nxp.com>
+X-Mailer: git-send-email 2.17.1
 Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Originating-IP: [119.31.174.71]
+X-ClientProxiedBy: SG2PR06CA0099.apcprd06.prod.outlook.com
+ (2603:1096:3:14::25) To DB8PR04MB6795.eurprd04.prod.outlook.com
+ (2603:10a6:10:fa::15)
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from localhost.localdomain (119.31.174.71) by SG2PR06CA0099.apcprd06.prod.outlook.com (2603:1096:3:14::25) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3611.20 via Frontend Transport; Mon, 30 Nov 2020 11:41:46 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: b60e7590-e91e-4d23-489f-08d89524ec20
+X-MS-TrafficTypeDiagnostic: DB7PR04MB4106:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <DB7PR04MB41063E0697E2AE851E2F7394E6F50@DB7PR04MB4106.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:4303;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: hZ9z5e37wep2O23qIrAkT8XIIHtaGySOkwdWsEzD66dT/dGZi3avOXfUV2FmGa1cj89MG54xAa1N6awRwBthvwcYMM8lR3b0olRlWRArdRWlGc9yPoUS0LotZJRZiom6YX5GIFwRuaWGREVFXuPRcOw9iYLgVUl/XOc+HreuwHXzVvom+toNxtEReVwBQ/lfO4j3UmpbslfRLrXnpmpYxM/IWTR8sunjGKn8KE+vQ75BQP5w9elc8SUxExKcPRjNmkSOtyl294w7IYoNkZlQSp/eA0L+evfC57OqjY59zeRNWgzbqm/rcwFGN6Yuea76+DHw9XnBrGOIK173xH+KPyRuqiUi+ScAMAkBVO9ks8us/EHRQjALmTB5FMd20buL
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB8PR04MB6795.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(376002)(346002)(396003)(39860400002)(136003)(366004)(6666004)(36756003)(5660300002)(86362001)(6486002)(2616005)(956004)(478600001)(66476007)(316002)(66556008)(66946007)(6512007)(52116002)(8676002)(8936002)(4326008)(4744005)(186003)(6506007)(26005)(1076003)(16526019)(69590400008)(2906002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?9hn21a7N7sVWt3nqWJOQEpK82PKLQ4VxsXJL4Ah9mYvBx5Ol2wOJRtHOJAoF?=
+ =?us-ascii?Q?paG4kGjuC3G7FHFK13GWi3EPHjVn1SNea1PcQTMwQSIsM4GPCntWOpB1tFFR?=
+ =?us-ascii?Q?dJ9nnteUY799yBy1zcanRiwp88ga3EWWQ+FHwwKVD5VdWiAjfTyvSmr5sthv?=
+ =?us-ascii?Q?2JrO643ccJMyV+tS7Ua1eJK4uHOun9uVZTK8E4fcjeXpiLODHA4LpP8UkOB+?=
+ =?us-ascii?Q?5T7K+s6G5S2rQNqbvTvJ/TYcdALm1rgYkL7yiI3tix40C63FaFl+9R4wrcV5?=
+ =?us-ascii?Q?xm/CM/EnfUTg9Cz+XTf3F5W3ssgKKmTfAN3/N+VvGlTqhJ0uKh/PH2EZn1t4?=
+ =?us-ascii?Q?zHBTH1c+CnNvfC5O1fF7vZ/Ry4GYcYCMCJg0X7rTFJumqo/FtovXlIC00SJf?=
+ =?us-ascii?Q?81S63tTPfeVtX0MRGlAHUmk68IQzZGpb3XM6iRdNaI1iSdznOEzh1bFwugai?=
+ =?us-ascii?Q?qDfzDZMP5yZEmAnOurtxMLWNu8DJxzO2d3lS2OINWr1zPK5AY3mBtzwIN0S4?=
+ =?us-ascii?Q?b3LNbXYYdQPAF3aitO89v/mfRwR07GHJxXLNtC6/K39JaibVkGBl6kZeLt+O?=
+ =?us-ascii?Q?KF03htQHxpBAfN5e/cRoVl8bV0YpwcummHEog7s1p2uZ5At8XhLOsalGlhwE?=
+ =?us-ascii?Q?FopLiQOJJtORnMs9QaaoYAf39JICciiEkkV04tf09nb3oNu4toBrijv+j7XO?=
+ =?us-ascii?Q?W+9z/+f4q90n2Dmbyj7+mXqEjymRvEWO2gaDaVxRusC3TBiMmczJd1opkvEX?=
+ =?us-ascii?Q?7p6RY98S65QuxoljmKZStjcW7MTlHaXIlDilwjV7hkTOgfludMLhNgeiURpb?=
+ =?us-ascii?Q?I0ejnf9Mh9YObxe0c/O483XxbKUavaqhrnxz0lIr7uC9Crs+vRtK0xQaaSWE?=
+ =?us-ascii?Q?oXx65Xo74FKkFAUUE6kebsvZDteDQ0OggrHuZ07k9dRY1MOyIb1TmNSJBcAZ?=
+ =?us-ascii?Q?qIHFgdEiemYzZmj83QAwfH37IOB3UwUhJC3FvUvdtg/3L5UiHToXYzs2d7rV?=
+ =?us-ascii?Q?i3ml?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b60e7590-e91e-4d23-489f-08d89524ec20
+X-MS-Exchange-CrossTenant-AuthSource: DB8PR04MB6795.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Nov 2020 11:41:48.9439
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: gVnC6iZkEjhPjCAXzE2iu9E8uPyVLaQsXbZNQGGSGxQ+c7pkMLzUoYSY4F9cqn3BK2oVnAqhBnKaoX4O7c0wTg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB7PR04MB4106
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add DP support to display-connector driver. The driver will support HPD
-via a GPIO and DP PWR.
+Add sysfs identifier file for imx ddr perf.
 
-DP PWR will be enabled at probe, which is not optimal, but I'm not sure
-what would be a good place to enable and disable DP PWR. Perhaps
-attach/detach, but I don't know if enabling HW is something that attach
-is supposed to do.
+ChangeLogs:
+V1->V2:
+	* don't show identifier file if not set.
 
-In any case, I don't think there's much difference in power consumption
-between the version in this patch and enabling the regulator later: if
-the driver probes, supposedly it will attach very soon afterwards, and
-we need to enable the DP PWR as soon as possible.
+Joakim Zhang (2):
+  bindings: perf: imx-ddr: add compatible string
+  perf/imx_ddr: Add system PMU identifier for userspace
 
-Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ti.com>
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
----
- drivers/gpu/drm/bridge/display-connector.c | 46 +++++++++++++++++++++-
- 1 file changed, 44 insertions(+), 2 deletions(-)
+ .../devicetree/bindings/perf/fsl-imx-ddr.yaml |  3 +
+ drivers/perf/fsl_imx8_ddr_perf.c              | 55 +++++++++++++++++++
+ 2 files changed, 58 insertions(+)
 
-diff --git a/drivers/gpu/drm/bridge/display-connector.c b/drivers/gpu/drm/bridge/display-connector.c
-index 4d278573cdb9..05eb759da6fc 100644
---- a/drivers/gpu/drm/bridge/display-connector.c
-+++ b/drivers/gpu/drm/bridge/display-connector.c
-@@ -11,6 +11,7 @@
- #include <linux/of.h>
- #include <linux/of_device.h>
- #include <linux/platform_device.h>
-+#include <linux/regulator/consumer.h>
- 
- #include <drm/drm_bridge.h>
- #include <drm/drm_edid.h>
-@@ -20,6 +21,8 @@ struct display_connector {
- 
- 	struct gpio_desc	*hpd_gpio;
- 	int			hpd_irq;
-+
-+	struct regulator	*dp_pwr;
- };
- 
- static inline struct display_connector *
-@@ -172,11 +175,12 @@ static int display_connector_probe(struct platform_device *pdev)
- 	of_property_read_string(pdev->dev.of_node, "label", &label);
- 
- 	/*
--	 * Get the HPD GPIO for DVI and HDMI connectors. If the GPIO can provide
-+	 * Get the HPD GPIO for DVI, HDMI and DP connectors. If the GPIO can provide
- 	 * edge interrupts, register an interrupt handler.
- 	 */
- 	if (type == DRM_MODE_CONNECTOR_DVII ||
--	    type == DRM_MODE_CONNECTOR_HDMIA) {
-+	    type == DRM_MODE_CONNECTOR_HDMIA ||
-+	    type == DRM_MODE_CONNECTOR_DisplayPort) {
- 		conn->hpd_gpio = devm_gpiod_get_optional(&pdev->dev, "hpd",
- 							 GPIOD_IN);
- 		if (IS_ERR(conn->hpd_gpio)) {
-@@ -223,6 +227,38 @@ static int display_connector_probe(struct platform_device *pdev)
- 		}
- 	}
- 
-+	/* Get the DP PWR for DP connector. */
-+	if (type == DRM_MODE_CONNECTOR_DisplayPort) {
-+		int ret;
-+
-+		conn->dp_pwr = devm_regulator_get_optional(&pdev->dev, "dp-pwr");
-+
-+		if (IS_ERR(conn->dp_pwr)) {
-+			ret = PTR_ERR(conn->dp_pwr);
-+
-+			switch (ret) {
-+			case -ENODEV:
-+				conn->dp_pwr = NULL;
-+				break;
-+
-+			case -EPROBE_DEFER:
-+				return -EPROBE_DEFER;
-+
-+			default:
-+				dev_err(&pdev->dev, "failed to get DP PWR regulator: %d\n", ret);
-+				return ret;
-+			}
-+		}
-+
-+		if (conn->dp_pwr) {
-+			ret = regulator_enable(conn->dp_pwr);
-+			if (ret) {
-+				dev_err(&pdev->dev, "failed to enable DP PWR regulator: %d\n", ret);
-+				return ret;
-+			}
-+		}
-+	}
-+
- 	conn->bridge.funcs = &display_connector_bridge_funcs;
- 	conn->bridge.of_node = pdev->dev.of_node;
- 
-@@ -251,6 +287,9 @@ static int display_connector_remove(struct platform_device *pdev)
- {
- 	struct display_connector *conn = platform_get_drvdata(pdev);
- 
-+	if (conn->dp_pwr)
-+		regulator_disable(conn->dp_pwr);
-+
- 	drm_bridge_remove(&conn->bridge);
- 
- 	if (!IS_ERR(conn->bridge.ddc))
-@@ -275,6 +314,9 @@ static const struct of_device_id display_connector_match[] = {
- 	}, {
- 		.compatible = "vga-connector",
- 		.data = (void *)DRM_MODE_CONNECTOR_VGA,
-+	}, {
-+		.compatible = "dp-connector",
-+		.data = (void *)DRM_MODE_CONNECTOR_DisplayPort,
- 	},
- 	{},
- };
 -- 
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+2.17.1
 
