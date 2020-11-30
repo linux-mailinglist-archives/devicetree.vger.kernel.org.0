@@ -2,105 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DE0A12C86EB
-	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 15:37:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 01EA22C86F2
+	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 15:40:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726620AbgK3Ohm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Nov 2020 09:37:42 -0500
-Received: from relay10.mail.gandi.net ([217.70.178.230]:55627 "EHLO
-        relay10.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726440AbgK3Ohm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Nov 2020 09:37:42 -0500
-Received: from localhost (91-175-115-186.subs.proxad.net [91.175.115.186])
-        (Authenticated sender: gregory.clement@bootlin.com)
-        by relay10.mail.gandi.net (Postfix) with ESMTPSA id 55CA5240019;
-        Mon, 30 Nov 2020 14:36:58 +0000 (UTC)
-From:   Gregory CLEMENT <gregory.clement@bootlin.com>
-To:     Tomasz Nowicki <tn@semihalf.com>, will@kernel.org,
-        robin.murphy@arm.com, joro@8bytes.org, robh+dt@kernel.org,
-        hannah@marvell.com
-Cc:     linux-kernel@vger.kernel.org, iommu@lists.linux-foundation.org,
-        devicetree@vger.kernel.org, catalin.marinas@arm.com,
-        nadavh@marvell.com, linux-arm-kernel@lists.infradead.org,
-        mw@semihalf.com, d.odintsov@traviangames.com,
-        stable@vger.kernel.org, Tomasz Nowicki <tn@semihalf.com>
-Subject: Re: [PATCH 1/1] arm64: dts: marvell: keep SMMU disabled by default
- for Armada 7040 and 8040
-In-Reply-To: <20201105112602.164739-1-tn@semihalf.com>
-References: <20201105112602.164739-1-tn@semihalf.com>
-Date:   Mon, 30 Nov 2020 15:36:57 +0100
-Message-ID: <87tut6j4hi.fsf@BL-laptop>
+        id S1726730AbgK3OkV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Nov 2020 09:40:21 -0500
+Received: from mail.kernel.org ([198.145.29.99]:49392 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725859AbgK3OkU (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 30 Nov 2020 09:40:20 -0500
+Received: from dragon (80.251.214.228.16clouds.com [80.251.214.228])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id D3B7420725;
+        Mon, 30 Nov 2020 14:39:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1606747180;
+        bh=UtCy0Q6iAI4eqrqdFVaVCDH6fxHOhNgoqJvsr9jGwsM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=gg/Ygpse1DxxvOKzrzCjkMF/Pgu5rh3vH7qvVS8mBomxHfCZK3OZhKvLU4LgxQBud
+         RisRlDu+LAZ9haxNjtRDI0ST9xxrOMVjj6vyl17VJCsxpPrh7GM8fSCXeP4YEIoN9Z
+         H6aN7ObL2gz1snrIYOScVqA1+c8o/pBKkjfv1mfw=
+Date:   Mon, 30 Nov 2020 22:39:32 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Vladimir Oltean <vladimir.oltean@nxp.com>
+Cc:     Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Ashish Kumar <Ashish.Kumar@nxp.com>,
+        Yangbo Lu <yangbo.lu@nxp.com>, Michael Walle <michael@walle.cc>
+Subject: Re: [PATCH v2] arm64: dts: ls1028a: make the eMMC and SD card
+ controllers use fixed indices
+Message-ID: <20201130143923.GK4072@dragon>
+References: <20201119163821.980841-1-vladimir.oltean@nxp.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201119163821.980841-1-vladimir.oltean@nxp.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Thu, Nov 19, 2020 at 06:38:21PM +0200, Vladimir Oltean wrote:
+> As the boot order in the kernel continues to change, sometimes it may
+> happen that the eSDHC controller mmc@2150000 (the one for eMMC) gets
+> probed before the one at mmc@2140000 (for external SD cards). The effect
+> is that the eMMC controller gets the /dev/mmcblk0 name, and the SD card
+> gets /dev/mmcblk1.
+> 
+> Since the introduction of this SoC, that has never happened in practice,
+> even though it was never guaranteed in theory. Setting
+> "root=/dev/mmcblk0p2" in /proc/cmdline has always caused the kernel to
+> use the second partition from the SD card as the rootfs.
+> 
+> The NXP development boards are typically shipped with either
+> - LSDK, which uses "root=UUID=", or
+> - OpenIL, which uses "root=/dev/mmcblkNp2"
+> 
+> So for OpenIL, let's preserve that old behavior by adding some aliases
+> which create naming consistency (for LSDK it doesn't matter):
+> - the SD card controller uses /dev/mmcblk0
+> - the eMMC controller uses /dev/mmcblk1
+> 
+> For the Kontron SL28 boards, Michael Walle says that they are shipped
+> with "root=UUID=" already, so the probing order doesn't matter, but it
+> is more natural to him for /dev/mmcblk0 to be the eMMC, so let's do it
+> the other way around there.
+> 
+> The aliases are parsed by mmc_alloc_host() in drivers/mmc/core/host.c.
+> 
+> Cc: Ashish Kumar <Ashish.Kumar@nxp.com>
+> Cc: Yangbo Lu <yangbo.lu@nxp.com>
+> Cc: Michael Walle <michael@walle.cc>
+> Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
 
-> FW has to configure devices' StreamIDs so that SMMU is able to lookup
-> context and do proper translation later on. For Armada 7040 & 8040 and
-> publicly available FW, most of the devices are configured properly,
-> but some like ap_sdhci0, PCIe, NIC still remain unassigned which
-> results in SMMU faults about unmatched StreamID (assuming
-> ARM_SMMU_DISABLE_BYPASS_BY_DEFAUL=y).
->
-> Since there is dependency on custom FW let SMMU be disabled by default.
-> People who still willing to use SMMU need to enable manually and
-> use ARM_SMMU_DISABLE_BYPASS_BY_DEFAUL=n (or via kernel command line)
-> with extra caution.
->
-> Fixes: 83a3545d9c37 ("arm64: dts: marvell: add SMMU support")
-> Cc: <stable@vger.kernel.org> # 5.9+
-> Signed-off-by: Tomasz Nowicki <tn@semihalf.com>
-
-
-Applied on mvebu/dt64
-
-Thanks,
-
-Gregory
-
-> ---
->  arch/arm64/boot/dts/marvell/armada-7040.dtsi | 4 ----
->  arch/arm64/boot/dts/marvell/armada-8040.dtsi | 4 ----
->  2 files changed, 8 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/marvell/armada-7040.dtsi b/arch/arm64/boot/dts/marvell/armada-7040.dtsi
-> index 7a3198cd7a07..2f440711d21d 100644
-> --- a/arch/arm64/boot/dts/marvell/armada-7040.dtsi
-> +++ b/arch/arm64/boot/dts/marvell/armada-7040.dtsi
-> @@ -15,10 +15,6 @@ / {
->  		     "marvell,armada-ap806";
->  };
->  
-> -&smmu {
-> -	status = "okay";
-> -};
-> -
->  &cp0_pcie0 {
->  	iommu-map =
->  		<0x0   &smmu 0x480 0x20>,
-> diff --git a/arch/arm64/boot/dts/marvell/armada-8040.dtsi b/arch/arm64/boot/dts/marvell/armada-8040.dtsi
-> index 79e8ce59baa8..22c2d6ebf381 100644
-> --- a/arch/arm64/boot/dts/marvell/armada-8040.dtsi
-> +++ b/arch/arm64/boot/dts/marvell/armada-8040.dtsi
-> @@ -15,10 +15,6 @@ / {
->  		     "marvell,armada-ap806";
->  };
->  
-> -&smmu {
-> -	status = "okay";
-> -};
-> -
->  &cp0_pcie0 {
->  	iommu-map =
->  		<0x0   &smmu 0x480 0x20>,
-> -- 
-> 2.25.1
->
-
--- 
-Gregory Clement, Bootlin
-Embedded Linux and Kernel engineering
-http://bootlin.com
+Applied, thanks.
