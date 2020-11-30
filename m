@@ -2,134 +2,326 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 25AC22C911D
-	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 23:31:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 99E6A2C913C
+	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 23:36:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728707AbgK3WaA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Nov 2020 17:30:00 -0500
-Received: from mail-io1-f66.google.com ([209.85.166.66]:38276 "EHLO
-        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728255AbgK3WaA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Nov 2020 17:30:00 -0500
-Received: by mail-io1-f66.google.com with SMTP id y5so12473021iow.5;
-        Mon, 30 Nov 2020 14:29:44 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=8/EaFjzChv3yuUtw47TiG5tYxU7hn1SO6HPIjLuIIAI=;
-        b=I0dozF/A3S8FdBHjRuRyLa61+NKtTzjBquERqRrxqCgPP61Xi5dmA8/EF0dS1mLQUK
-         5Gt+7Qt3+0p0aHuE2lIIe+2OiiN8gScINUPB7tSeVS+c0BvqyJnJGGBhNOm0Y2ed2o0S
-         UM49+QjXI6jqvj37rwX9Ie1ay+BkxWSK57NePbC6Wcn2vMl0j6beNyIk0X38PgzK3U8m
-         F758MqiivDaGUf+WY7xvErqepHGDDmP3UHzdcONzBapneTXuDL/CFVrSM+Hs3+17S8Fo
-         WeqpGEYjhPCOFtyBR8Q8HFgI2EsP0E/agip+n1BKoZG/QjeJ5xX6diMsPdeUXV4Y6tdx
-         ifTQ==
-X-Gm-Message-State: AOAM533FQN4UCeZssfa7TEnXHRcQk8b9S735RQRkKuTDuhExZGkI/fU4
-        1idV74hggml+GfgBb/2OPg==
-X-Google-Smtp-Source: ABdhPJz4ardhIRNFqAXT1upJpFbz8RfML0C1QTA3Qpn7yesfFDmNiEL36ARSBrxNackgrWiKJHU2XQ==
-X-Received: by 2002:a02:b011:: with SMTP id p17mr16475329jah.55.1606775358790;
-        Mon, 30 Nov 2020 14:29:18 -0800 (PST)
-Received: from xps15 ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id y13sm5373842iop.14.2020.11.30.14.29.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Nov 2020 14:29:18 -0800 (PST)
-Received: (nullmailer pid 3151605 invoked by uid 1000);
-        Mon, 30 Nov 2020 22:29:16 -0000
-Date:   Mon, 30 Nov 2020 15:29:16 -0700
-From:   Rob Herring <robh@kernel.org>
-To:     Sia Jee Heng <jee.heng.sia@intel.com>
-Cc:     vkoul@kernel.org, Eugeniy.Paltsev@synopsys.com,
-        andriy.shevchenko@linux.intel.com, dmaengine@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 10/16] dt-binding: dma: dw-axi-dmac: Add support for
- Intel KeemBay AxiDMA
-Message-ID: <20201130222916.GA3146362@robh.at.kernel.org>
-References: <20201123023452.7894-1-jee.heng.sia@intel.com>
- <20201123023452.7894-11-jee.heng.sia@intel.com>
+        id S1730841AbgK3Wfz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Nov 2020 17:35:55 -0500
+Received: from gate2.alliedtelesis.co.nz ([202.36.163.20]:40608 "EHLO
+        gate2.alliedtelesis.co.nz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730839AbgK3Wfy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Nov 2020 17:35:54 -0500
+Received: from mmarshal3.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (Client did not present a certificate)
+        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 670C9806A8;
+        Tue,  1 Dec 2020 11:35:11 +1300 (NZDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+        s=mail181024; t=1606775711;
+        bh=j1o8Z1G2dtitXOlimluovlxKc4vbfO3wabNM431FbrM=;
+        h=From:To:Cc:Subject:Date;
+        b=wLXCzGzaVF+m+7uOhnKjEUuCAJSY8f7EPU/Rdic74LgnxVcodBaWDPTE6bVU2cslh
+         zW6GvmD4GTwHw4UEHgbYYW25piBtB8BAmAwIa+fhlSZlXH42r7843eNi0RtA1Y+rWS
+         bqNEGoSarWEkpXlTI4ozs3mlcuzf4X630i3DwBgJcAreGUF+35CWonLXBkp8Br+XYV
+         gSjFPlX5RrXv8txTTEZudYwLktjbIyY3+QWqWi4ZhrJRuwEO1ExwCyif1kBkgKEncU
+         rcbdX5qdNTLJ4Yfz9vhSu6D9yDikUtaZ5qCW/PPNNzU0UbCG556dqDTvKMbAN/JFWe
+         jyj90r7pV2Z4g==
+Received: from smtp (Not Verified[10.32.16.33]) by mmarshal3.atlnz.lc with Trustwave SEG (v7,5,8,10121)
+        id <B5fc5739e0000>; Tue, 01 Dec 2020 11:35:10 +1300
+Received: from aryans-dl.ws.atlnz.lc (aryans-dl.ws.atlnz.lc [10.33.21.30])
+        by smtp (Postfix) with ESMTP id E6A5213EEBB;
+        Tue,  1 Dec 2020 11:35:09 +1300 (NZDT)
+Received: by aryans-dl.ws.atlnz.lc (Postfix, from userid 1844)
+        id 1B41014C2F7F; Tue,  1 Dec 2020 11:35:11 +1300 (NZDT)
+From:   Aryan Srivastava <aryan.srivastava@alliedtelesis.co.nz>
+To:     robh+dt@kernel.org, andrew@lunn.ch, gregory.clement@bootlin.com,
+        sebastian.hesselbarth@gmail.com
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        chris.packham@alliedtelesis.co.nz,
+        Aryan Srivastava <aryan.srivastava@alliedtelesis.co.nz>
+Subject: [PATCH v2] ARM: dts: mvebu: Add device tree for ATL-x530 Board
+Date:   Tue,  1 Dec 2020 11:35:07 +1300
+Message-Id: <20201130223507.23571-1-aryan.srivastava@alliedtelesis.co.nz>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201123023452.7894-11-jee.heng.sia@intel.com>
+Content-Transfer-Encoding: quoted-printable
+x-atlnz-ls: pat
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 23, 2020 at 10:34:46AM +0800, Sia Jee Heng wrote:
-> Add support for Intel KeemBay AxiDMA to the dw-axi-dmac
-> Schemas DT binding.
-> 
-> Signed-off-by: Sia Jee Heng <jee.heng.sia@intel.com>
-> ---
->  .../bindings/dma/snps,dw-axi-dmac.yaml        | 27 +++++++++++++++++++
->  1 file changed, 27 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml b/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
-> index 6c2e8e612af5..9e3ca9083814 100644
-> --- a/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
-> +++ b/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
-> @@ -8,6 +8,7 @@ title: Synopsys DesignWare AXI DMA Controller
->  
->  maintainers:
->    - Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com
+Add device tree file for x530 board. This has an Armada 385 SoC. Has
+NAND-flash for user storage and SPI for booting. Covers majority of x530
+and GS980MX variants.
 
-Also, for the first patch, missing a '>' on the end.
+Signed-off-by: Aryan Srivastava <aryan.srivastava@alliedtelesis.co.nz>
+Reviewed-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+---
+Notes:
+	Changes in v2:
+	-Adding to Makefile
 
-> +  - Jee Heng Sia <jee.heng.sia@intel.com>
->  
->  description: |
->   Synopsys DesignWare AXI DMA Controller DT Binding
-> @@ -16,14 +17,18 @@ properties:
->    compatible:
->      enum:
->        - snps,axi-dma-1.01a
-> +      - intel,kmb-axi-dma
->  
->    reg:
-> +    minItems: 1
->      items:
->        - description: Address range of the DMAC registers
-> +      - description: Address range of the DMAC APB registers
+ arch/arm/boot/dts/Makefile                |   1 +
+ arch/arm/boot/dts/armada-385-atl-x530.dts | 235 ++++++++++++++++++++++
+ 2 files changed, 236 insertions(+)
+ create mode 100644 arch/arm/boot/dts/armada-385-atl-x530.dts
 
-Nevermind for my 'reg' comment on the first patch.
+diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+index a60407ad7347..d65d84e9bf9c 100644
+--- a/arch/arm/boot/dts/Makefile
++++ b/arch/arm/boot/dts/Makefile
+@@ -1320,6 +1320,7 @@ dtb-$(CONFIG_MACH_ARMADA_375) +=3D \
+ 	armada-375-db.dtb
+ dtb-$(CONFIG_MACH_ARMADA_38X) +=3D \
+ 	armada-382-rd-ac3x-48g4x2xl.dtb \
++	armada-385-atl-x530.dtb\
+ 	armada-385-clearfog-gtr-s4.dtb \
+ 	armada-385-clearfog-gtr-l8.dtb \
+ 	armada-385-db-88f6820-amc.dtb \
+diff --git a/arch/arm/boot/dts/armada-385-atl-x530.dts b/arch/arm/boot/dt=
+s/armada-385-atl-x530.dts
+new file mode 100644
+index 000000000000..2041bf09c578
+--- /dev/null
++++ b/arch/arm/boot/dts/armada-385-atl-x530.dts
+@@ -0,0 +1,235 @@
++// SPDX-License-Identifier: (GPL-2.0 OR MIT)
++/*
++ * Device Tree file for Armada 385 Allied Telesis x530/GS980MX Board.
++ (x530/AT-GS980MX)
++ *
++ Copyright (C) 2020 Allied Telesis Labs
++ */
++
++/dts-v1/;
++#include "armada-385.dtsi"
++
++#include <dt-bindings/gpio/gpio.h>
++
++/ {
++	model =3D "x530/AT-GS980MX";
++	compatible =3D "alliedtelesis,gs980mx", "alliedtelesis,x530", "marvell,=
+armada385", "marvell,armada380";
++
++	chosen {
++		stdout-path =3D "serial1:115200n8";
++	};
++
++	memory {
++		device_type =3D "memory";
++		reg =3D <0x00000000 0x40000000>; /* 1GB */
++	};
++
++	soc {
++		ranges =3D <MBUS_ID(0xf0, 0x01) 0 0xf1000000 0x100000
++			  MBUS_ID(0x01, 0x3d) 0 0xf4800000 0x80000
++			  MBUS_ID(0x01, 0x1d) 0 0xfff00000 0x100000>;
++
++		internal-regs {
++			i2c0: i2c@11000 {
++				pinctrl-names =3D "default";
++				pinctrl-0 =3D <&i2c0_pins>;
++				status =3D "okay";
++			};
++
++			uart0: serial@12000 {
++				pinctrl-names =3D "default";
++				pinctrl-0 =3D <&uart0_pins>;
++				status =3D "okay";
++			};
++		};
++	};
++};
++
++&pciec {
++	status =3D "okay";
++};
++
++&pcie1 {
++	status =3D "okay";
++	reset-gpios =3D <&gpio1 23 GPIO_ACTIVE_LOW>;
++	reset-delay-us =3D <400000>;
++};
++
++&pcie2 {
++	status =3D "okay";
++};
++
++&devbus_cs1 {
++	compatible =3D "marvell,mvebu-devbus";
++	status =3D "okay";
++
++	devbus,bus-width    =3D <8>;
++	devbus,turn-off-ps  =3D <60000>;
++	devbus,badr-skew-ps =3D <0>;
++	devbus,acc-first-ps =3D <124000>;
++	devbus,acc-next-ps  =3D <248000>;
++	devbus,rd-setup-ps  =3D <0>;
++	devbus,rd-hold-ps   =3D <0>;
++
++	/* Write parameters */
++	devbus,sync-enable =3D <0>;
++	devbus,wr-high-ps  =3D <60000>;
++	devbus,wr-low-ps   =3D <60000>;
++	devbus,ale-wr-ps   =3D <60000>;
++
++	nvs@0 {
++		status =3D "okay";
++
++		compatible =3D "mtd-ram";
++		reg =3D <0 0x00080000>;
++		bank-width =3D <1>;
++		label =3D "nvs";
++	};
++};
++
++&pinctrl {
++	i2c0_gpio_pins: i2c-gpio-pins-0 {
++		marvell,pins =3D "mpp2", "mpp3";
++		marvell,function =3D "gpio";
++	};
++};
++
++&i2c0 {
++	clock-frequency =3D <100000>;
++	status =3D "okay";
++
++	pinctrl-names =3D "default", "gpio";
++	pinctrl-0 =3D <&i2c0_pins>;
++	pinctrl-1 =3D <&i2c0_gpio_pins>;
++	scl-gpio =3D <&gpio0 2 (GPIO_ACTIVE_HIGH|GPIO_OPEN_DRAIN)>;
++	sda-gpio =3D <&gpio0 3 (GPIO_ACTIVE_HIGH|GPIO_OPEN_DRAIN)>;
++
++	i2c0mux: mux@71 {
++		#address-cells =3D <1>;
++		#size-cells =3D <0>;
++		compatible =3D "nxp,pca9544";
++		reg =3D <0x71>;
++		i2c-mux-idle-disconnect;
++
++		i2c@0 { /* POE devices MUX */
++			#address-cells =3D <1>;
++			#size-cells =3D <0>;
++			reg =3D <0>;
++		};
++
++		i2c@1 {
++			#address-cells =3D <1>;
++			#size-cells =3D <0>;
++			reg =3D <1>;
++
++			adt7476_2e: hwmon@2e {
++				compatible =3D "adi,adt7476";
++				reg =3D <0x2e>;
++			};
++
++			adt7476_2d: hwmon@2d {
++				compatible =3D "adi,adt7476";
++				reg =3D <0x2d>;
++			};
++		};
++
++		i2c@2 {
++			#address-cells =3D <1>;
++			#size-cells =3D <0>;
++			reg =3D <2>;
++
++			rtc@68 {
++				compatible =3D "dallas,ds1340";
++				reg =3D <0x68>;
++			};
++		};
++
++		i2c@3 {
++			#address-cells =3D <1>;
++			#size-cells =3D <0>;
++			reg =3D <3>;
++
++			gpio@20 {
++				compatible =3D "nxp,pca9554";
++				gpio-controller;
++				#gpio-cells =3D <2>;
++				reg =3D <0x20>;
++			};
++		};
++	};
++};
++
++&usb0 {
++	status =3D "okay";
++};
++
++&spi1 {
++	pinctrl-names =3D "default";
++	pinctrl-0 =3D <&spi1_pins>;
++	status =3D "okay";
++
++	spi-flash@0 {
++		#address-cells =3D <1>;
++		#size-cells =3D <1>;
++		compatible =3D "jedec,spi-nor";
++		reg =3D <1>; /* Chip select 1 */
++		spi-max-frequency =3D <54000000>;
++
++		partitions {
++			compatible =3D "fixed-partitions";
++			#address-cells =3D <1>;
++			#size-cells =3D <1>;
++			partition@u-boot {
++				reg =3D <0x00000000 0x00100000>;
++				label =3D "u-boot";
++			};
++			partition@u-boot-env {
++				reg =3D <0x00100000 0x00040000>;
++				label =3D "u-boot-env";
++			};
++			partition@unused {
++				reg =3D <0x00140000 0x00e80000>;
++				label =3D "unused";
++			};
++			partition@idprom {
++				reg =3D <0x00fc0000 0x00040000>;
++				label =3D "idprom";
++			};
++		};
++	};
++};
++
++&nand_controller {
++	status =3D "okay";
++
++	nand@0 {
++		reg =3D <0>;
++		label =3D "pxa3xx_nand-0";
++		nand-rb =3D <0>;
++		nand-on-flash-bbt;
++		nand-ecc-strength =3D <4>;
++		nand-ecc-step-size =3D <512>;
++
++		marvell,nand-enable-arbiter;
++
++		partitions {
++			compatible =3D "fixed-partitions";
++			#address-cells =3D <1>;
++			#size-cells =3D <1>;
++			partition@user {
++				reg =3D <0x00000000 0x0f000000>;
++				label =3D "user";
++			};
++			partition@errlog {
++				/* Maximum mtdoops size is 8MB, so set to that. */
++				reg =3D <0x0f000000 0x00800000>;
++				label =3D "errlog";
++			};
++			partition@nand-bbt {
++				reg =3D <0x0f800000 0x00800000>;
++				label =3D "nand-bbt";
++			};
++		};
++	};
++};
++
+--=20
+2.29.2
 
->  
->    reg-names:
->      items:
->        - const: axidma_ctrl_regs
-> +      - const: axidma_apb_regs
->  
->    interrupts:
->      maxItems: 1
-> @@ -124,3 +129,25 @@ examples:
->           snps,priority = <0 1 2 3>;
->           snps,axi-max-burst-len = <16>;
->       };
-> +
-> +  - |
-
-For what's just a new compatible and extra reg field, I don't think we 
-need another example.
-
-> +     #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +     #include <dt-bindings/interrupt-controller/irq.h>
-> +     /* example with intel,kmb-axi-dma */
-> +     #define KEEM_BAY_PSS_AXI_DMA
-> +     #define KEEM_BAY_PSS_APB_AXI_DMA
-> +     axi_dma: dma@28000000 {
-> +         compatible = "intel,kmb-axi-dma";
-> +         reg = <0x28000000 0x1000>, <0x20250000 0x24>;
-> +         reg-names = "axidma_ctrl_regs", "axidma_apb_regs";
-> +         interrupts = <GIC_SPI 88 IRQ_TYPE_LEVEL_HIGH>;
-> +         clock-names = "core-clk", "cfgr-clk";
-> +         clocks = <&scmi_clk KEEM_BAY_PSS_AXI_DMA>, <&scmi_clk KEEM_BAY_PSS_APB_AXI_DMA>;
-> +         #dma-cells = <1>;
-> +         dma-channels = <8>;
-> +         snps,dma-masters = <1>;
-> +         snps,data-width = <4>;
-> +         snps,priority = <0 0 0 0 0 0 0 0>;
-> +         snps,block-size = <1024 1024 1024 1024 1024 1024 1024 1024>;
-> +         snps,axi-max-burst-len = <16>;
-> +     };
-> -- 
-> 2.18.0
-> 
