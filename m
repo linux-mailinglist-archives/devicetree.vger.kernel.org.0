@@ -2,69 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 084C32C82CD
-	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 12:03:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C6A7D2C82D1
+	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 12:03:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728903AbgK3LDI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Nov 2020 06:03:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43424 "EHLO
+        id S1728924AbgK3LDY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Nov 2020 06:03:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43466 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728505AbgK3LDH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Nov 2020 06:03:07 -0500
-Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com [IPv6:2a00:1450:4864:20::444])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DA59C0613D3
-        for <devicetree@vger.kernel.org>; Mon, 30 Nov 2020 03:02:27 -0800 (PST)
-Received: by mail-wr1-x444.google.com with SMTP id i2so15574634wrs.4
-        for <devicetree@vger.kernel.org>; Mon, 30 Nov 2020 03:02:27 -0800 (PST)
+        with ESMTP id S1728610AbgK3LDX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Nov 2020 06:03:23 -0500
+Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com [IPv6:2a00:1450:4864:20::343])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC4B0C0617A7
+        for <devicetree@vger.kernel.org>; Mon, 30 Nov 2020 03:02:32 -0800 (PST)
+Received: by mail-wm1-x343.google.com with SMTP id v14so12404110wml.1
+        for <devicetree@vger.kernel.org>; Mon, 30 Nov 2020 03:02:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=subject:to:cc:references:from:message-id:date:user-agent
          :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=GVA/a06QRaXa5UUbFhiaFdgC4CC6v0BqUoUGNrRgXR0=;
-        b=gf1sV6Jdnp0Ez0iXo7JOX6AmaLUkjXUth37Aatk0rPwIpGbjGhb+gdzyAmT1/O/o0b
-         zBdyHSV8RmldNeao1x9pwHOvB++AzS/36BtDFchPtEClUHn8M/rbAyUGOP+oPAWlygju
-         hYK0HA7eH3VZZ02OXGyXdfLc/KKSdGavKVtWIloNPP7f7LMq0p0zMf81Rt1lEYmJ9EgU
-         xKox6cIwIz1J0T39Q9eSJrEsZTJc2dby/2cnnAwtKER8ArLLQOnNQu96zDtQLHnT6g6y
-         /MIiWTxTu56ylJE2LblOlk84zKjWwbgIL45Hf9Csk599Mk9hP72Xj18aLK2eevWpDxtg
-         102A==
+        bh=7f0W4vL0xlDeDL3x7JN2ia6TPDjtyH+/47iU1sBkTes=;
+        b=B87p3t0QMfrUOJU+H+Lr2IwBCr1333AC0dSV391wrAHoVQbdzZdeQ1yb3ygJE2Pcke
+         xDc5fda84oeZwMt3T5y7ueyj5WtBlbVDu6b3OxcsABz3utzwcD9aIcvzZ3mCc/btM9LF
+         vflSeLOJGffNWWXB6W3SOYp+gxlpR9tq1NC+fw922EnvkXpQawV1Vamo3GBOWUJNNXUb
+         agpu2lEnvKTnTmDxHDDI2zlXVREX8jqO2UxmH7vKTwuQZ+ChcwHhuPkDsRGWARN51eyr
+         AsSuf+SnylqzXm8/U9afXA6U7KOPfoe2y4lQr8zlDSJEoTcHwZDdnlEsXBX/SwTBU1Fb
+         h3+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=GVA/a06QRaXa5UUbFhiaFdgC4CC6v0BqUoUGNrRgXR0=;
-        b=G8MYpk8mykXdD2P5NqlSBq7asvYzn4pmx6jxwQ6oYkUTLXaGTn+qNW1CiU26U92QLl
-         9lrESDp44fGUuAzGpWP9A+v4MXhpvtzqUSTFG6zGbrnKpN5GMfZSx8Mp/RLZx8yQCCNJ
-         hpA8bhlF7Z66D/eC3zEH7/6fHkt2zdzjfPUddXmQDcEeauXFJfMY8MqxOFQgUhkZoTWp
-         1OM9EHPYA9hJuhXQZDsR/4dZxxqfV95CUeBje6gQ8/tZusylGoZRzREQiFJPDBOClQWj
-         Bfrue9/XOESPZQ8Xo8n/s+rKZsyfjnSzULTI3egiRwCKOaub/M8ASVYSg35qYu0KzNHS
-         M0EA==
-X-Gm-Message-State: AOAM533fOp6ruTDImYrP6WGhfwh9D3RJlaU2ItjFVO3SMSseiUT/f7DU
-        N9nWwKSTx+tEUuWOx5lSq74cZg==
-X-Google-Smtp-Source: ABdhPJyOQndQGBHb3QQLR2sTHvtw5ItpuGumvBpM8L9ehU/q/yOgm2ar7QCzRgGCtmpw6POBrZEwyQ==
-X-Received: by 2002:adf:f888:: with SMTP id u8mr27083831wrp.381.1606734145961;
-        Mon, 30 Nov 2020 03:02:25 -0800 (PST)
+        bh=7f0W4vL0xlDeDL3x7JN2ia6TPDjtyH+/47iU1sBkTes=;
+        b=EP8OJDvgtqBfHg/bNu2otoQ6vK6d5iag7ExQRLaS0zbs0H4di8t5sYUZpkg/4EjZoj
+         wK/dQm0vNAju01ZFr4MLNo9hEmTUfOrvqy8orBX38Nz3msfzvBJi4n1hlk0E2kguRVGp
+         FvLoJ+RNMmZtUxZ0Si6Q1ShibDQWX7xQZuHEqIotfGw7tM+43Bl/E0zESvr8P0qGhcQy
+         p5y4+/eZG9xuS361v5eBDBy3rNaGiWrbFzAdd84r2cyGpNzCRcV2ETVeTcXwSvzy6wq+
+         tBifPFnlK959cIh4vHc7uTzJFE/66GIcxzaRRc7o3m7kWzxHhjMMuGLlr5ebLcCc/Twk
+         F+CQ==
+X-Gm-Message-State: AOAM531MQhQMJGrIoE1W2A510FjPygva0iLk2vFO9dzjLPp3hJ6c6vtf
+        nzy40vRGduVomrFYyBP0pKSLJQ==
+X-Google-Smtp-Source: ABdhPJxVo/5vsApqEyBSQwmb1Q/m3aw6KRuVQfHspGcwzY6k0X2hVQ2wvg8pvgA1XMgx67xaCc+ldQ==
+X-Received: by 2002:a1c:7e87:: with SMTP id z129mr22698447wmc.176.1606734151516;
+        Mon, 30 Nov 2020 03:02:31 -0800 (PST)
 Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.googlemail.com with ESMTPSA id f16sm23036731wmh.7.2020.11.30.03.02.24
+        by smtp.googlemail.com with ESMTPSA id o2sm17201493wrq.37.2020.11.30.03.02.30
         (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 30 Nov 2020 03:02:25 -0800 (PST)
-Subject: Re: [PATCH v4] arm64: dts: qcom: sc7180: Add lpass cpu node for I2S
- driver
+        Mon, 30 Nov 2020 03:02:30 -0800 (PST)
+Subject: Re: [PATCH v3 2/2] arm64: dts: qcom: sc7180-trogdor: Add lpass dai
+ link for HDMI
 To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
         agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, rohitkr@codeaurora.org
-Cc:     Ajit Pandey <ajitp@codeaurora.org>,
-        Cheng-Yi Chiang <cychiang@chromium.org>,
-        V Sujith Kumar Reddy <vsujithk@codeaurora.org>
-References: <1600450426-14063-1-git-send-email-srivasam@codeaurora.org>
+Cc:     V Sujith Kumar Reddy <vsujithk@codeaurora.org>
+References: <1601448168-18396-1-git-send-email-srivasam@codeaurora.org>
+ <1601448168-18396-3-git-send-email-srivasam@codeaurora.org>
 From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <ad3221fb-4148-6457-05dd-3fece2677b13@linaro.org>
-Date:   Mon, 30 Nov 2020 11:02:23 +0000
+Message-ID: <7e17ecf8-f191-1d6c-3473-d8bb060f2e84@linaro.org>
+Date:   Mon, 30 Nov 2020 11:02:29 +0000
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.8.0
 MIME-Version: 1.0
-In-Reply-To: <1600450426-14063-1-git-send-email-srivasam@codeaurora.org>
+In-Reply-To: <1601448168-18396-3-git-send-email-srivasam@codeaurora.org>
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -74,116 +73,59 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 18/09/2020 18:33, Srinivasa Rao Mandadapu wrote:
-> From: Ajit Pandey <ajitp@codeaurora.org>
+On 30/09/2020 07:42, Srinivasa Rao Mandadapu wrote:
+> From: V Sujith Kumar Reddy <vsujithk@codeaurora.org>
 > 
-> Add the I2S controller node to sc7180 dtsi.
-> Add pinmux for primary and secondary I2S.
+> Add dai link in sc7180-trogdor.dtsi for supporting audio over DP
 > 
-> Signed-off-by: Ajit Pandey <ajitp@codeaurora.org>
-> Signed-off-by: Cheng-Yi Chiang <cychiang@chromium.org>
 > Signed-off-by: V Sujith Kumar Reddy <vsujithk@codeaurora.org>
 > Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-> ---
 
 Reviewed-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 
-> Changes since v3:
->     -- The typo error fix
-> Changes since v2:
->     -- The plement of lpass_cpu node is changed
-> Changes since v1:
->     -- Updated I2S pin control nodes  with grouping common pin controls
->     -- Updated lpass_cpu node with proper control names
+
+> ---
+>   arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi | 15 +++++++++++++++
+>   1 file changed, 15 insertions(+)
 > 
->   arch/arm64/boot/dts/qcom/sc7180.dtsi | 69 ++++++++++++++++++++++++++++++++++++
->   1 file changed, 69 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> index 6678f1e..427a4bf 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> @@ -1742,6 +1742,45 @@
->   				};
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> index 5724982..850b43e 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> @@ -231,6 +231,7 @@
+>   
+>   		audio-jack = <&alc5682>;
+>   
+> +		#sound-dai-cells = <0>;
+>   		#address-cells = <1>;
+>   		#size-cells = <0>;
+>   
+> @@ -257,6 +258,17 @@
+>   				sound-dai = <&max98357a>;
 >   			};
->   
-> +			sec_mi2s_active: sec-mi2s-active {
-> +				pinmux {
-> +					pins = "gpio49", "gpio50", "gpio51";
-> +					function = "mi2s_1";
-> +				};
-> +
-> +				pinconf {
-> +					pins = "gpio49", "gpio50", "gpio51";
-> +					drive-strength = <8>;
-> +					bias-pull-up;
-> +				};
-> +			};
-> +
-> +			pri_mi2s_active: pri-mi2s-active {
-> +				pinmux {
-> +					pins = "gpio53", "gpio54", "gpio55", "gpio56";
-> +					function = "mi2s_0";
-> +				};
-> +
-> +				pinconf {
-> +					pins = "gpio53", "gpio54", "gpio55", "gpio56";
-> +					drive-strength = <8>;
-> +					bias-pull-up;
-> +				};
-> +			};
-> +
-> +			pri_mi2s_mclk_active: pri-mi2s-mclk-active {
-> +				pinmux {
-> +					pins = "gpio57";
-> +					function = "lpass_ext";
-> +				};
-> +
-> +				pinconf {
-> +					pins = "gpio57";
-> +					drive-strength = <8>;
-> +					bias-pull-up;
-> +				};
-> +			};
-> +
->   			sdc1_on: sdc1-on {
->   				pinconf-clk {
->   					pins = "sdc1_clk";
-> @@ -3389,6 +3428,36 @@
->   			#power-domain-cells = <1>;
 >   		};
->   
-> +		lpass_cpu: lpass@62f00000 {
-> +			compatible = "qcom,sc7180-lpass-cpu";
+> +		dai-link@2 {
+> +			link-name = "MultiMedia2";
+> +			reg = <2>;
+> +			cpu {
+> +				sound-dai = <&lpass_cpu 2>;
+> +			};
 > +
-> +			reg = <0 0x62f00000 0 0x29000>;
-> +			reg-names = "lpass-lpaif";
-> +
-> +			iommus = <&apps_smmu 0x1020 0>;
-> +
-> +			power-domains = <&lpass_hm LPASS_CORE_HM_GDSCR>;
-> +
-> +			clocks = <&gcc GCC_LPASS_CFG_NOC_SWAY_CLK>,
-> +				 <&lpasscc LPASS_AUDIO_CORE_CORE_CLK>,
-> +				 <&lpasscc LPASS_AUDIO_CORE_EXT_MCLK0_CLK>,
-> +				 <&lpasscc LPASS_AUDIO_CORE_SYSNOC_MPORT_CORE_CLK>,
-> +				 <&lpasscc LPASS_AUDIO_CORE_LPAIF_PRI_IBIT_CLK>,
-> +				 <&lpasscc LPASS_AUDIO_CORE_LPAIF_SEC_IBIT_CLK>;
-> +
-> +			clock-names = "pcnoc-sway-clk", "audio-core",
-> +					"mclk0", "pcnoc-mport-clk",
-> +					"mi2s-bit-clk0", "mi2s-bit-clk1";
-> +
-> +
-> +			#sound-dai-cells = <1>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			interrupts = <GIC_SPI 160 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-names = "lpass-irq-lpaif";
+> +			codec {
+> +				sound-dai = <&msm_dp>;
+> +			};
 > +		};
-> +
->   		lpass_hm: clock-controller@63000000 {
->   			compatible = "qcom,sc7180-lpasshm";
->   			reg = <0 0x63000000 0 0x28>;
+>   	};
+>   };
+>   
+> @@ -782,6 +794,9 @@ hp_i2c: &i2c9 {
+>   		reg = <MI2S_SECONDARY>;
+>   		qcom,playback-sd-lines = <0>;
+>   	};
+> +	hdmi-primary@0 {
+> +		reg = <LPASS_DP_RX>;
+> +	};
+>   };
+>   
+>   &mdp {
 > 
