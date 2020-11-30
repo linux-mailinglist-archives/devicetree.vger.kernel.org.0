@@ -2,149 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 83BA22C85C4
-	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 14:42:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 69BC82C85C7
+	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 14:43:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726320AbgK3Nld (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Nov 2020 08:41:33 -0500
-Received: from mga07.intel.com ([134.134.136.100]:53734 "EHLO mga07.intel.com"
+        id S1726339AbgK3Nnj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Nov 2020 08:43:39 -0500
+Received: from mail.kernel.org ([198.145.29.99]:60664 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726220AbgK3Nlc (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 30 Nov 2020 08:41:32 -0500
-IronPort-SDR: gGytLDsimFrk50+dmk2X2EH1gsc4POSraJdWAo+KUi93MnbGqAk07Bvam6vsVxwGJf2oSz5wx1
- ndocO2ORWxaA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9820"; a="236757839"
-X-IronPort-AV: E=Sophos;i="5.78,381,1599548400"; 
-   d="scan'208";a="236757839"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Nov 2020 05:39:51 -0800
-IronPort-SDR: N3ryU2U5GWh96LcV/5uY/T0DXkcqTsWwzyafOtJ4D1+SJiOaQwHrEApHPJPDZYHkHc/BT4ZAjg
- zLwf7tvmHeMQ==
-X-IronPort-AV: E=Sophos;i="5.78,381,1599548400"; 
-   d="scan'208";a="404729837"
-Received: from paasikivi.fi.intel.com ([10.237.72.42])
-  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Nov 2020 05:39:49 -0800
-Received: by paasikivi.fi.intel.com (Postfix, from userid 1000)
-        id C2BDD208FD; Mon, 30 Nov 2020 15:39:45 +0200 (EET)
-Date:   Mon, 30 Nov 2020 15:39:45 +0200
-From:   'Sakari Ailus' <sakari.ailus@linux.intel.com>
-To:     martinax.krasteva@linux.intel.com
-Cc:     'Jacopo Mondi' <jacopo@jmondi.org>, linux-media@vger.kernel.org,
-        mchehab@kernel.org, robh+dt@kernel.org, devicetree@vger.kernel.org,
-        daniele.alessandrelli@linux.intel.com,
-        gjorgjix.rosikopulos@linux.intel.com
-Subject: Re: [PATCH 2/2] media: Add imx334 camera sensor driver
-Message-ID: <20201130133945.GV3940@paasikivi.fi.intel.com>
-References: <20201120142803.308-1-martinax.krasteva@linux.intel.com>
- <20201120142803.308-3-martinax.krasteva@linux.intel.com>
- <20201123111029.rcoxchzj332tu6y4@uno.localdomain>
- <20201123140223.GZ3940@paasikivi.fi.intel.com>
- <001f01d6c702$8b760d40$a26227c0$@linux.intel.com>
+        id S1726220AbgK3Nnj (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 30 Nov 2020 08:43:39 -0500
+Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com [209.85.210.42])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 26E48206F9;
+        Mon, 30 Nov 2020 13:42:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1606743778;
+        bh=XOgBHPz/V3tzcQ87M9AwtxgpAehQUDA1Xi/TdXN7xMs=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=IU08llQH7ryG6ji46RvMgvS6GWBWUd5Pqk1ANGEE5KO3nOaGeADN9a0QC7x5FgYAp
+         18fLEwPltogLtdbjhjY1NI0qQZNAmBrWPDwP2Hq6DWd9G/yhIUQZHTCvyyj+I2pt/X
+         LOsLiMbnLPFqiaERgETfoRAWlqLCnkUBn+y/MahI=
+Received: by mail-ot1-f42.google.com with SMTP id f16so11244647otl.11;
+        Mon, 30 Nov 2020 05:42:58 -0800 (PST)
+X-Gm-Message-State: AOAM532ASuHI1KffnR0mGb+ADtAK9yZhAl/aVC1DAGEkyFEYLobSoh65
+        UmAodcpjUn1pC4lp8MM1g+viKlXvHWdU58+Fm7g=
+X-Google-Smtp-Source: ABdhPJwE6gHqXSv89hp5ehZefQ3Qo8TpQnuU2cOmgVCzlJWC6i2h1pQ58b4YiPoiweX/9Zrwnsraf5fho2qkU5mLf+g=
+X-Received: by 2002:a05:6830:22d2:: with SMTP id q18mr15896825otc.305.1606743777410;
+ Mon, 30 Nov 2020 05:42:57 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <001f01d6c702$8b760d40$a26227c0$@linux.intel.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20201130131047.2648960-1-daniel@0x0f.com> <20201130131047.2648960-10-daniel@0x0f.com>
+In-Reply-To: <20201130131047.2648960-10-daniel@0x0f.com>
+From:   Arnd Bergmann <arnd@kernel.org>
+Date:   Mon, 30 Nov 2020 14:42:41 +0100
+X-Gmail-Original-Message-ID: <CAK8P3a15Q=97iWyGu6=2aKfVtrYNL2BgmszHqoqYxFT_uHoP4A@mail.gmail.com>
+Message-ID: <CAK8P3a15Q=97iWyGu6=2aKfVtrYNL2BgmszHqoqYxFT_uHoP4A@mail.gmail.com>
+Subject: Re: [PATCH 9/9] ARM: mstar: SMP support
+To:     Daniel Palmer <daniel@0x0f.com>
+Cc:     DTML <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>, Rob Herring <robh@kernel.org>,
+        Willy Tarreau <w@1wt.eu>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Martina,
+On Mon, Nov 30, 2020 at 2:10 PM Daniel Palmer <daniel@0x0f.com> wrote:
 
-On Mon, Nov 30, 2020 at 10:21:12AM -0000, martinax.krasteva@linux.intel.com wrote:
-> Hi Sakari, Jacopo,
-> 
-> Thank you for the review
-> 
-> > -----Original Message-----
-> > From: Sakari Ailus <sakari.ailus@linux.intel.com>
-> > Sent: Monday, November 23, 2020 2:02 PM
-> > To: Jacopo Mondi <jacopo@jmondi.org>
-> > Cc: Martina Krasteva <martinax.krasteva@linux.intel.com>; linux-
-> > media@vger.kernel.org; mchehab@kernel.org; robh+dt@kernel.org;
-> > devicetree@vger.kernel.org; daniele.alessandrelli@linux.intel.com;
-> > gjorgjix.rosikopulos@linux.intel.com
-> > Subject: Re: [PATCH 2/2] media: Add imx334 camera sensor driver
-> > 
-> > Hi Jacopo,
-> > 
-> > On Mon, Nov 23, 2020 at 12:10:29PM +0100, Jacopo Mondi wrote:
-> > ...
-> > > > +#include <media/v4l2-fwnode.h>
-> > >
-> > > You only use v4l2_async_register_subdev_sensor_common() from fwnde.h
-> > > If you think you can replace it with v4l2_async_register_subdev() (see
-> > > below comment) this should be changed in v4l2-async.h
-> > 
-> > Either is fine in principle. I'd use
-> > v4l2_async_register_subdev_sensor_common() for sensors though, as it
-> allows
-> > connecting lens and flash sub-devices.
-> > 
-> > Regarding DT bindings --- I wonder if there's a way to say these are
-> relevant for
-> > all sensors. That'd be another discussion though.
-> > 
-> 
-> Should I add lens and flash in DT binding doc, so it is clear that
-> connecting such sub-devs is supported?
-> I thought the binding doc should include only the bare minimum for a certain
-> driver to be used, but it does make sense adding this info.
+> +#ifdef CONFIG_SMP
+> +static int mstarv7_boot_secondary(unsigned int cpu, struct task_struct *idle)
+> +{
+> +       struct device_node *np;
+> +       u32 bootaddr = (u32) __pa_symbol(secondary_startup_arm);
+> +       void __iomem *smpctrl = 0;
 
-I wouldn't add them to bindings here as they're not related to this device
-but to other devices.
+The initialization is wrong here: it's not a pointer and the value '0'
+is not useful.
 
-I wonder what Rob thinks.
+> +struct smp_operations __initdata mstarv7_smp_ops  = {
+> +       .smp_boot_secondary = mstarv7_boot_secondary,
+> +};
+> +#endif
 
-...
+So no hotplug operations?
 
-> > > > +static const struct media_entity_operations imx334_subdev_entity_ops
-> = {
-> > > > +	.link_validate = v4l2_subdev_link_validate, };
-> > >
-> > > Is link_validate called on sensor subdev ? My understanding is that
-> > > they're called on the sink entity, but I might be mistaken.
-> > 
-> > Correct.
-> > 
-> 
-> This is what I read in the v4l2-subdev.rst:
-> " If the subdev driver intends to process video and integrate with the media
-> framework, it must implement format related functionality using
-> :c:type:`v4l2_subdev_pad_ops` instead of :c:type:`v4l2_subdev_video_ops`.
-> 
-> In that case, the subdev driver may set the link_validate field to provide
-> its own link validation function. <<The link validation function is called
-> for
-> every link in the pipeline where both of the ends of the links are V4L2
-> sub-devices.>> The driver is still responsible for validating the
-> correctness
-> of the format configuration between sub-devices and video nodes."
-> 
-> I find it a bit misleading, however I checked the source code, so I will
-> remove it in the next version.
-> 
-> Something that is not clear to me is, do I have to explicitly set
-> link_validate for the sink pad's entity to trigger validation. According to
-> the doc
-> I don't need to, but I cannot find the place in the source code where the
-> default func is called even if the op is not set, neither setting default
-> ops in case they weren't set.
->  
-> "If link_validate op is not set, the default function
-> :c:func:`v4l2_subdev_link_validate_default` is used instead. This function
-> ensures that width, height and the media bus pixel code are equal on both
-> source
-> and sink of the link. Subdev drivers are also free to use this function to
-> perform the checks mentioned above in addition to their own checks."
+> @@ -78,4 +125,7 @@ static void __init mstarv7_init(void)
+>  DT_MACHINE_START(MSTARV7_DT, "MStar/Sigmastar Armv7 (Device Tree)")
+>         .dt_compat      = mstarv7_board_dt_compat,
+>         .init_machine   = mstarv7_init,
+> +#ifdef CONFIG_SMP
+> +       .smp            = smp_ops(mstarv7_smp_ops),
+> +#endif
+>  MACHINE_END
 
-When a link is validated, it's the link_validate callback of the sink pad
-that will be used for the purpose. This is currently not documented here
-but should be added.
+Drop the #ifdef, smp_ops() already makes the assignment conditional.
 
--- 
-Kind regards,
+Or better, use CPU_METHOD_OF_DECLARE() instead of smp_ops.
 
-Sakari Ailus
+       Arnd
