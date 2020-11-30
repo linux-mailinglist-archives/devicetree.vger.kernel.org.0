@@ -2,424 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6214C2C7E08
-	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 07:12:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4BA802C7E2D
+	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 07:25:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726623AbgK3GJ0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Nov 2020 01:09:26 -0500
-Received: from wout4-smtp.messagingengine.com ([64.147.123.20]:60377 "EHLO
-        wout4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726566AbgK3GJ0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 30 Nov 2020 01:09:26 -0500
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailout.west.internal (Postfix) with ESMTP id 13887E24;
-        Mon, 30 Nov 2020 01:08:40 -0500 (EST)
-Received: from imap2 ([10.202.2.52])
-  by compute3.internal (MEProxy); Mon, 30 Nov 2020 01:08:40 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=
-        mime-version:message-id:in-reply-to:references:date:from:to:cc
-        :subject:content-type; s=fm1; bh=C5J1tdXluFxh4c0JQjvN0sOfQgNwkXI
-        lVaVmjYnYzWs=; b=I28mP9V5ITl5zDh2s7vN8v3EZsV/lK5FyPlRYoXBcViZEP4
-        V7ABGPs5qEHTtMnYYblMcEl5jDjFFrB3uRWwEpG+/7tch3P0W8UQhj8qrGWBb/bE
-        UspX1w+AHKB+7A9sp2TFzWYGD0Jxy6DwW8jRLRel0FQp7DSw8f6PwotEK+IwBs4G
-        Zdnc4RHlWgSX6SjjVS8ZuaycjXCaclkeSYpGQP3rcj7NE0RDkWuaJWGwyulFqQSz
-        3tNXQBV2KsjTWGgAJWAOYXFl38v0v0Ppg1yZT8orpcsmnernkd6iWc7hCT4zLGrr
-        KTBc3Ma2ro4ky2POypMqdTjZ7cjjRxKlr6zvNUQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=C5J1td
-        XluFxh4c0JQjvN0sOfQgNwkXIlVaVmjYnYzWs=; b=YXKxGXsBkzgsq8Eobu9mqZ
-        3zdZeIrc9nuBwKPVdOkXgRI+atriuO+Erj1H0hVxfirhQUd6OBeZllQKjud8nbP1
-        McjowS7K6AUqasRwWRClXgawEPMiptX0vz82mwqLm39+FaNkt+A6VcxY9z/AJqI8
-        Hepu0sgMTmCRVupGLhp8QAKcqptY9BawDJvO9kIOroEWv9pCSMFDzgK/on5Izxfj
-        7/8C0VNdNpczqtUR9JT1uQD6/G739Cndx0bTbauZ3kSw49Lhr3BZuijn2NiuJo/s
-        Nn5V+Bb9rPjOGq42rhFKgQ7cFFCvqvnEay0rvHzPEeiFCkddPaqlYaDXSHbNv03Q
-        ==
-X-ME-Sender: <xms:ZozEX9Eb5aB7qrpv5-E_S83e9i7kfWBiUvgXFYD1e_46Qf05m7o7IA>
-    <xme:ZozEXyW6LIMroeYaqiX2BbV-MZvZZ4A_jzLOj4cxfwqv5Q7BBLGxgK5BCciPFrnXG
-    _neQ-I55cAllnhSNw>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrudehledgleduucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvffutgesthdtredtreerjeenucfhrhhomhepfdetnhgu
-    rhgvficulfgvfhhfvghrhidfuceorghnughrvgifsegrjhdrihgurdgruheqnecuggftrf
-    grthhtvghrnhepuddttdekueeggedvtddtueekiedutdfguedutdefieeuteefieelteet
-    vddthfeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomh
-    eprghnughrvgifsegrjhdrihgurdgruh
-X-ME-Proxy: <xmx:ZozEX_LXxLCLJ_nlk_GaAV_GNnqaa84FHEdfs_GQ-A6pDepKgG_ViQ>
-    <xmx:ZozEXzHKzlE-CerT5hW-bHdlM8Pn6hIrcWF2Wm98qvDAn4jeZOL_tQ>
-    <xmx:ZozEXzXhI76n5_xvnFEjm31cxhL7Uq_WN9JJZZStdgtUZiLPlZPnaw>
-    <xmx:Z4zEX5xkFMpfTm-oaF6PJ1zWTPGhiPA93SxBk5ZFXajbzwRvhAlpdA>
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id 28857E00C9; Mon, 30 Nov 2020 01:08:36 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.3.0-622-g4a97c0b-fm-20201115.001-g4a97c0b3
-Mime-Version: 1.0
-Message-Id: <a6855c9f-c843-4e54-bef0-469b5097d596@www.fastmail.com>
-In-Reply-To: <CACPK8XfttMptuYFsocBaj2v4z1vzNjDUfe18FeDcAbmZjWKjfQ@mail.gmail.com>
-References: <1605247168-1028-1-git-send-email-vishwa@linux.vnet.ibm.com>
- <1605247168-1028-6-git-send-email-vishwa@linux.vnet.ibm.com>
- <CACPK8XfttMptuYFsocBaj2v4z1vzNjDUfe18FeDcAbmZjWKjfQ@mail.gmail.com>
-Date:   Mon, 30 Nov 2020 16:38:17 +1030
-From:   "Andrew Jeffery" <andrew@aj.id.au>
-To:     "Joel Stanley" <joel@jms.id.au>,
-        vishwa <vishwa@linux.vnet.ibm.com>,
-        "Eddie James" <eajames@linux.ibm.com>,
-        "Brad Bishop" <bradleyb@fuzziesquirrel.com>
-Cc:     linux-aspeed <linux-aspeed@lists.ozlabs.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        "Rob Herring" <robh+dt@kernel.org>
-Subject: =?UTF-8?Q?Re:_[PATCH_6/6]_ARM:_dts:_aspeed:_rainier:_Add_leds_that_are_o?=
- =?UTF-8?Q?n_optional_PCI_cable_cards?=
-Content-Type: text/plain
+        id S1726883AbgK3GW2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Nov 2020 01:22:28 -0500
+Received: from mga17.intel.com ([192.55.52.151]:54715 "EHLO mga17.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726658AbgK3GW1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 30 Nov 2020 01:22:27 -0500
+IronPort-SDR: 2VSjGSOs/S2KyzIfmfjFoLpDD9my70Slsi5Rwdu2yX77N5+QbTwrTUpimfuOoSs8S2V8zhjg8k
+ nL8jiyp6T9Rw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9820"; a="152420868"
+X-IronPort-AV: E=Sophos;i="5.78,379,1599548400"; 
+   d="scan'208";a="152420868"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Nov 2020 22:20:46 -0800
+IronPort-SDR: Krr3AKvXUs6qVabHOv/HaoRzR7w2qTJsFvdlnWhM04sWM4Jo9AVdwY2UiUjIzukiSF1COyQXA6
+ 1NR05iQ6DQjw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.78,379,1599548400"; 
+   d="scan'208";a="314458633"
+Received: from linux.intel.com ([10.54.29.200])
+  by fmsmga008.fm.intel.com with ESMTP; 29 Nov 2020 22:20:46 -0800
+Received: from [10.215.249.62] (mreddy3x-MOBL.gar.corp.intel.com [10.215.249.62])
+        by linux.intel.com (Postfix) with ESMTP id 74B8A580515;
+        Sun, 29 Nov 2020 22:20:43 -0800 (PST)
+Subject: Re: [PATCH v9 2/2] Add Intel LGM SoC DMA support.
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+        robh+dt@kernel.org, linux-kernel@vger.kernel.org,
+        andriy.shevchenko@intel.com, chuanhua.lei@linux.intel.com,
+        cheol.yong.kim@intel.com, qi-ming.wu@intel.com,
+        malliamireddy009@gmail.com, peter.ujfalusi@ti.com
+References: <cover.1605158930.git.mallikarjunax.reddy@linux.intel.com>
+ <67be905aa3bcb9faac424f2a134e88d076700419.1605158930.git.mallikarjunax.reddy@linux.intel.com>
+ <20201118173840.GW50232@vkoul-mobl>
+ <a4ea240f-b121-5bc9-a046-95bbcff87553@linux.intel.com>
+ <20201121121701.GB8403@vkoul-mobl>
+ <dc8c5f27-bce6-d276-af0b-93c6e63e85a1@linux.intel.com>
+ <20201124172149.GT8403@vkoul-mobl>
+ <ee275d37-5dda-205a-a897-7a61ad13b536@linux.intel.com>
+ <20201126045035.GI8403@vkoul-mobl>
+From:   "Reddy, MallikarjunaX" <mallikarjunax.reddy@linux.intel.com>
+Message-ID: <1900dc8f-acd1-54a2-1666-cd73bdc4888b@linux.intel.com>
+Date:   Mon, 30 Nov 2020 14:20:42 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.5.0
+MIME-Version: 1.0
+In-Reply-To: <20201126045035.GI8403@vkoul-mobl>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Vinod,
 
+Thanks for your valuable comments. My reply inline.
 
-On Mon, 16 Nov 2020, at 16:43, Joel Stanley wrote:
-> On Fri, 13 Nov 2020 at 05:59, Vishwanatha Subbanna
-> <vishwa@linux.vnet.ibm.com> wrote:
-> >
-> > These are LEDs on the cable cards that plug into PCIE slots.
-> > The LEDs are controlled by PCA9552 I2C expander
-> >
-> > Signed-off-by: Vishwanatha Subbanna <vishwa@linux.vnet.ibm.com>
-> > ---
-> >  arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts | 288 +++++++++++++++++++++++++++
-> >  1 file changed, 288 insertions(+)
-> >
-> > diff --git a/arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts b/arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts
-> > index 67c8c40..7de5f76 100644
-> > --- a/arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts
-> > +++ b/arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts
-> > @@ -696,6 +696,70 @@
-> >                         gpios = <&pca4 7 GPIO_ACTIVE_LOW>;
-> >                 };
-> >         };
-> > +
-> > +       leds-optional-cablecard0 {
-> 
-> Is it necessary to have separate nodes for each of the different GPIO devices?
+On 11/26/2020 12:50 PM, Vinod Koul wrote:
+> On 25-11-20, 18:39, Reddy, MallikarjunaX wrote:
+>
+>>>>>> desc needs to be configure for each dma channel and the remapped address of
+>>>>>> the IGP & EGP is desc base adress.
+>>>>> Why should this address not passed as src_addr/dst_addr?
+>>>> src_addr/dst_addr is the data pointer. Data pointer indicates address
+>>>> pointer of data buffer.
+>>>>
+>>>> ldma_chan_desc_cfg() carries the descriptor address.
+>>>>
+>>>> The descriptor list entry contains the data pointer, which points to the
+>>>> data section in the memory.
+>>>>
+>>>> So we should not use src_addr/dst_addr as desc base address.
+>>> Okay sounds reasonable. why is this using in API here?
+>> descriptor base address needs to be write into the dma register (DMA_CDBA).
+> Why cant descriptor be allocated by damenegine driver, passed to client
+> as we normally do in prep_* callbacks ? Why do you need a custom API
+1)
+client needs to set the descriptor base address and also number of 
+descriptors used in the descriptor list.
+reg DMA_CDBA used to configure descriptor base address and reg DMA_CDLEN 
+used to configure number of descriptors used in the descriptor list.
 
-Good question. Vishwa, what's the advantage either way here?
+In case of (ver > DMA_VER22) all descriptor fields and data pointer will 
+be set by client, so we just need to write desc base and num desc length 
+in to corresponding registers from the driver side.
 
-> 
-> Would it make sense to combine them, or is it better to be separate?
-> 
-> Andrew, Eddie, Brad: please review this one before I merge it.
-> 
-> > +               compatible = "gpio-leds";
-> > +
-> > +               cablecard0-cxp-top {
-> > +                       retain-state-shutdown;
-> > +                       default-state = "keep";
-> > +                       gpios = <&pca5 0 GPIO_ACTIVE_LOW>;
-> > +               };
-> > +
-> > +               cablecard0-cxp-bot {
-> > +                       retain-state-shutdown;
-> > +                       default-state = "keep";
-> > +                       gpios = <&pca5 1 GPIO_ACTIVE_LOW>;
-> > +               };
-> > +       };
-> > +
-> > +       leds-optional-cablecard3 {
-> > +               compatible = "gpio-leds";
-> > +
-> > +               cablecard3-cxp-top {
-> > +                       retain-state-shutdown;
-> > +                       default-state = "keep";
-> > +                       gpios = <&pca6 0 GPIO_ACTIVE_LOW>;
-> > +               };
-> > +
-> > +               cablecard3-cxp-bot {
-> > +                       retain-state-shutdown;
-> > +                       default-state = "keep";
-> > +                       gpios = <&pca6 1 GPIO_ACTIVE_LOW>;
-> > +               };
-> > +       };
-> > +
-> > +       leds-optional-cablecard4 {
-> > +               compatible = "gpio-leds";
-> > +
-> > +               cablecard4-cxp-top {
-> > +                       retain-state-shutdown;
-> > +                       default-state = "keep";
-> > +                       gpios = <&pca7 0 GPIO_ACTIVE_LOW>;
-> > +               };
-> > +
-> > +               cablecard4-cxp-bot {
-> > +                       retain-state-shutdown;
-> > +                       default-state = "keep";
-> > +                       gpios = <&pca7 1 GPIO_ACTIVE_LOW>;
-> > +               };
-> > +       };
-> > +
-> > +       leds-optional-cablecard10 {
-> > +               compatible = "gpio-leds";
-> > +
-> > +               cablecard10-cxp-top {
-> > +                       retain-state-shutdown;
-> > +                       default-state = "keep";
-> > +                       gpios = <&pca8 0 GPIO_ACTIVE_LOW>;
-> > +               };
-> > +
-> > +               cablecard10-cxp-bot {
-> > +                       retain-state-shutdown;
-> > +                       default-state = "keep";
-> > +                       gpios = <&pca8 1 GPIO_ACTIVE_LOW>;
-> > +               };
-> > +       };
-> >  };
-> >
-> >  &ehci1 {
-> > @@ -1212,6 +1276,180 @@
-> >                 compatible = "atmel,24c64";
-> >                 reg = <0x52>;
-> >         };
-> > +
-> > +       pca5: pca9551@60 {
-> > +               compatible = "nxp,pca9551";
-> > +               reg = <0x60>;
-> > +               #address-cells = <1>;
-> > +               #size-cells = <0>;
-> > +
-> > +               gpio-controller;
-> > +               #gpio-cells = <2>;
-> > +
-> > +               gpio@0 {
-> > +                       reg = <0>;
-> > +                       type = <PCA955X_TYPE_GPIO>;
-> > +               };
-> > +
-> > +               gpio@1 {
-> > +                       reg = <1>;
-> > +                       type = <PCA955X_TYPE_GPIO>;
-> > +               };
-> > +
-> > +               gpio@2 {
-> > +                       reg = <2>;
-> > +                       type = <PCA955X_TYPE_GPIO>;
-> > +               };
-> > +
-> > +               gpio@3 {
-> > +                       reg = <3>;
-> > +                       type = <PCA955X_TYPE_GPIO>;
-> > +               };
-> > +
-> > +               gpio@4 {
-> > +                       reg = <4>;
-> > +                       type = <PCA955X_TYPE_GPIO>;
-> > +               };
-> > +
-> > +               gpio@5 {
-> > +                       reg = <5>;
-> > +                       type = <PCA955X_TYPE_GPIO>;
-> > +               };
-> > +
-> > +               gpio@6 {
-> > +                       reg = <6>;
-> > +                       type = <PCA955X_TYPE_GPIO>;
-> > +               };
-> > +
-> > +               gpio@7 {
-> > +                       reg = <7>;
-> > +                       type = <PCA955X_TYPE_GPIO>;
-> > +               };
-> > +       };
-> > +};
-> > +
-> > +&i2c5 {
-> > +       status = "okay";
-> > +
-> > +       tmp275@48 {
-> > +               compatible = "ti,tmp275";
-> > +               reg = <0x48>;
-> > +       };
-> > +
-> > +       tmp275@49 {
-> > +               compatible = "ti,tmp275";
-> > +               reg = <0x49>;
-> > +       };
+dma_async_tx_descriptor * data is not really needed from driver to 
+client side , so i am not planned to return 'struct 
+dma_async_tx_descriptor *'.
 
-These aren't LED devices.
+because of this reason i used custom API (return -Ve for error and ZERO 
+for success) instead of standard dmaengine_prep_slave_sg() callback 
+(return 'struct dma_async_tx_descriptor *' descriptor)
 
-> > +
-> > +       eeprom@50 {
-> > +               compatible = "atmel,24c64";
-> > +               reg = <0x50>;
-> > +       };
-> > +
-> > +       eeprom@51 {
-> > +               compatible = "atmel,24c64";
-> > +               reg = <0x51>;
-> > +       };
+2)
+We can also use the dmaengine_prep_slave_sg( ) to pass desc base addr & 
+desc number from client.
+In that case we have to use (sg)->dma_address as desc base address and 
+(sg)->length as desc length.
 
-Neither are these.
+dmaengine prep_* callback return 'struct dma_async_tx_descriptor *, this 
+can be used on client side as to check  prep_* callback SUCCESS/FAIL.
 
-> > +
-> > +       pca6: pca9551@60 {
-> > +               compatible = "nxp,pca9551";
-> > +               reg = <0x60>;
-> > +               #address-cells = <1>;
-> > +               #size-cells = <0>;
-> > +
-> > +               gpio-controller;
-> > +               #gpio-cells = <2>;
-> > +
-> > +               gpio@0 {
-> > +                       reg = <0>;
-> > +                       type = <PCA955X_TYPE_GPIO>;
-> > +               };
-> > +
-> > +               gpio@1 {
-> > +                       reg = <1>;
-> > +                       type = <PCA955X_TYPE_GPIO>;
-> > +               };
-> > +
-> > +               gpio@2 {
-> > +                       reg = <2>;
-> > +                       type = <PCA955X_TYPE_GPIO>;
-> > +               };
-> > +
-> > +               gpio@3 {
-> > +                       reg = <3>;
-> > +                       type = <PCA955X_TYPE_GPIO>;
-> > +               };
-> > +
-> > +               gpio@4 {
-> > +                       reg = <4>;
-> > +                       type = <PCA955X_TYPE_GPIO>;
-> > +               };
-> > +
-> > +               gpio@5 {
-> > +                       reg = <5>;
-> > +                       type = <PCA955X_TYPE_GPIO>;
-> > +               };
-> > +
-> > +               gpio@6 {
-> > +                       reg = <6>;
-> > +                       type = <PCA955X_TYPE_GPIO>;
-> > +               };
-> > +
-> > +               gpio@7 {
-> > +                       reg = <7>;
-> > +                       type = <PCA955X_TYPE_GPIO>;
-> > +               };
-> > +       };
-> > +
-> > +       pca7: pca9551@61 {
-> > +               compatible = "nxp,pca9551";
-> > +               reg = <0x61>;
-> > +               #address-cells = <1>;
-> > +               #size-cells = <0>;
-> > +
-> > +               gpio-controller;
-> > +               #gpio-cells = <2>;
-> > +
-> > +               gpio@0 {
-> > +                       reg = <0>;
-> > +                       type = <PCA955X_TYPE_GPIO>;
-> > +               };
-> > +
-> > +               gpio@1 {
-> > +                       reg = <1>;
-> > +                       type = <PCA955X_TYPE_GPIO>;
-> > +               };
-> > +
-> > +               gpio@2 {
-> > +                       reg = <2>;
-> > +                       type = <PCA955X_TYPE_GPIO>;
-> > +               };
-> > +
-> > +               gpio@3 {
-> > +                       reg = <3>;
-> > +                       type = <PCA955X_TYPE_GPIO>;
-> > +               };
-> > +
-> > +               gpio@4 {
-> > +                       reg = <4>;
-> > +                       type = <PCA955X_TYPE_GPIO>;
-> > +               };
-> > +
-> > +               gpio@5 {
-> > +                       reg = <5>;
-> > +                       type = <PCA955X_TYPE_GPIO>;
-> > +               };
-> > +
-> > +               gpio@6 {
-> > +                       reg = <6>;
-> > +                       type = <PCA955X_TYPE_GPIO>;
-> > +               };
-> > +
-> > +               gpio@7 {
-> > +                       reg = <7>;
-> > +                       type = <PCA955X_TYPE_GPIO>;
-> > +               };
-> > +       };
-> >  };
-> >
-> >  &i2c5 {
-> > @@ -2028,6 +2266,56 @@
-> >                 compatible = "atmel,24c64";
-> >                 reg = <0x51>;
-> >         };
-> > +
-> > +       pca8: pca9551@60 {
-> > +               compatible = "nxp,pca9551";
-> > +               reg = <0x60>;
-> > +               #address-cells = <1>;
-> > +               #size-cells = <0>;
-> > +
-> > +               gpio-controller;
-> > +               #gpio-cells = <2>;
-> > +
-> > +               gpio@0 {
-> > +                       reg = <0>;
-> > +                       type = <PCA955X_TYPE_GPIO>;
-> > +               };
-> > +
-> > +               gpio@1 {
-> > +                       reg = <1>;
-> > +                       type = <PCA955X_TYPE_GPIO>;
-> > +               };
-> > +
-> > +               gpio@2 {
-> > +                       reg = <2>;
-> > +                       type = <PCA955X_TYPE_GPIO>;
-> > +               };
-> > +
-> > +               gpio@3 {
-> > +                       reg = <3>;
-> > +                       type = <PCA955X_TYPE_GPIO>;
-> > +               };
-> > +
-> > +               gpio@4 {
-> > +                       reg = <4>;
-> > +                       type = <PCA955X_TYPE_GPIO>;
-> > +               };
-> > +
-> > +               gpio@5 {
-> > +                       reg = <5>;
-> > +                       type = <PCA955X_TYPE_GPIO>;
-> > +               };
-> > +
-> > +               gpio@6 {
-> > +                       reg = <6>;
-> > +                       type = <PCA955X_TYPE_GPIO>;
-> > +               };
-> > +
-> > +               gpio@7 {
-> > +                       reg = <7>;
-> > +                       type = <PCA955X_TYPE_GPIO>;
-> > +               };
-> > +       };
-> >  };
+Example:
+/* code snippet */
 
-If we're adding LEDs, why aren't we using PCA955X_TYPE_LED? Why the indirection through the leds-gpio driver?
+static struct dma_async_tx_descriptor *
+ldma_prep_slave_sg(struct dma_chan *chan, struct scatterlist *sgl,
+                   unsigned int sglen, enum dma_transfer_direction dir,
+                   unsigned long flags, void *context)
+{
 
-Andrew
+.....
+
+     if (d->ver > DMA_VER22)
+         return ldma_chan_desc_cfg(chan, sgl->dma_address, sglen);
+
+.....
+
+}
+
+static struct dma_async_tx_descriptor *
+ldma_chan_desc_cfg(struct dma_chan *chan, dma_addr_t desc_base, int 
+desc_num)
+{
+         struct ldma_chan *c = to_ldma_chan(chan);
+         struct ldma_dev *d = to_ldma_dev(c->vchan.chan.device);
+         struct dma_async_tx_descriptor *tx;
+         struct dw2_desc_sw *ds;
+
+         if (!desc_num) {
+                 dev_err(d->dev, "Channel %d must allocate descriptor 
+first\n",
+                         c->nr);
+                 return NULL;
+         }
+
+         if (desc_num > DMA_MAX_DESC_NUM) {
+                 dev_err(d->dev, "Channel %d descriptor number out of 
+range %d\n",
+                         c->nr, desc_num);
+                 return NULL;
+         }
+
+         ldma_chan_desc_hw_cfg(c, desc_base, desc_num);
+         c->flags |= DMA_HW_DESC;
+         c->desc_cnt = desc_num;
+         c->desc_phys = desc_base;
+
+         ds = kzalloc(sizeof(*ds), GFP_NOWAIT);
+         if (!ds)
+                 return NULL;
+
+         tx = &ds->vdesc.tx;
+         dma_async_tx_descriptor_init(tx, chan);
+
+         return tx;
+}
+Please let me know if this is OK, So that i will include in the next patch.
+>
