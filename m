@@ -2,54 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A8532C8513
-	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 14:26:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A46862C8515
+	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 14:26:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726188AbgK3N0J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Nov 2020 08:26:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37492 "EHLO
+        id S1726265AbgK3N0a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Nov 2020 08:26:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37548 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725875AbgK3N0I (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Nov 2020 08:26:08 -0500
+        with ESMTP id S1726258AbgK3N0a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Nov 2020 08:26:30 -0500
 Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com [IPv6:2a00:1450:4864:20::343])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A35CC0613D2
-        for <devicetree@vger.kernel.org>; Mon, 30 Nov 2020 05:25:28 -0800 (PST)
-Received: by mail-wm1-x343.google.com with SMTP id f190so22119967wme.1
-        for <devicetree@vger.kernel.org>; Mon, 30 Nov 2020 05:25:28 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8436EC0613D6
+        for <devicetree@vger.kernel.org>; Mon, 30 Nov 2020 05:25:49 -0800 (PST)
+Received: by mail-wm1-x343.google.com with SMTP id a3so25156361wmb.5
+        for <devicetree@vger.kernel.org>; Mon, 30 Nov 2020 05:25:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
         h=subject:to:cc:references:from:autocrypt:organization:message-id
          :date:user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=l0shX+sCSeRMp58xcC0HzGwE/yEJsp/smhugW9tOkWE=;
-        b=GrNypqsZNHs6S+K/VGLpnBipUOS4+z9xAkrGsnGW3SEN0NiY2b9jwWucqK4GLK9QFE
-         LpY3RsnMLzZdz70wALryWDpC3/SdkiidudQZe8OxaUrzFeyDnc5T7IwP0FWdq5C+da+R
-         UhQn168bkRxzz7PyO3ByCdBqXf844hSrXB2inj5N4Hkz+6cip5LoOMHZT3s30cc2Q1JO
-         Mx/DExkWE6A3YmgMTLaH0TJx2a9qtmhPRvhcZtnBq3+8otlzDla4h9FiU+nWeISkmnV+
-         cuJFHkC64LLMltZ6LmXhYVrHieRQxzoWWt1UHK7YRrfpXogXhWS+iQvzUUwKJ7cK8Fo7
-         FNSw==
+        bh=imDbNzTq1REIzdtg+PEjyslOlxjZtkiSfNa3OIYZ7pM=;
+        b=1wEu7aRdvwZHsvs4VpuwCp9xb8k72JcS+nk70AfqItlZBg4uONw6Miv/1sFJqtDw3m
+         Ic0uFdLIsxs98G+erAxJAYkh22wO0TpAJniog6VVbTLmQYsIqXTOd9FVFrSq23Fl/utk
+         gzj4m491evJSeEQ5J/jw2pE42D+Y8yts2Kk0HTtQD1VLZTzy2nebrqiM6j4alzQfGVp9
+         WZBl9J3LgUntXNoY4RKmy3ksbwyQ7LjYD6E8NLuYTw50w5qHNXTgMz/P26MutWRuePGh
+         ZYCeum3yYNTl223GeqW6vMiDd1pPReuCX92DFps98m+tWoBS+nZJ17tDpStjpXrLx5b0
+         MoPg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:autocrypt
          :organization:message-id:date:user-agent:mime-version:in-reply-to
          :content-language:content-transfer-encoding;
-        bh=l0shX+sCSeRMp58xcC0HzGwE/yEJsp/smhugW9tOkWE=;
-        b=FgMzIe+ccBurQWgk2+M4rClCQYMysGw5Ok+hUGzX09QIgVZNwqcq1ug4y+h3uxLGfT
-         LPch9EgqrkppajT9V1JZGtndddVA1JGbdDM6AaV4LVzt8WrH8Y1bsOe2QAtda9hG7urD
-         hsyk1ZzeD67CwPnFqxAL/evvI//zUg8rzLI0cK8O8Nzc4XD9B+u8FCXUBe2NHp8Z/q3L
-         X0cF+f+ydubESU9VWYnXpP6pFsRgOxALR4i2t6FJ63SHNn9R1sXkXrWIH94r8eURPjA1
-         128T3weQmasU7ImnA3+w9xu4+EHf7o7ZNgFI3jfyCaX8p3yvroGNvkoX/tIbFDqfyghr
-         BAQw==
-X-Gm-Message-State: AOAM533kn2frwc9/1t+hFXT3qFVJ8kYQaDKtvBuFAY0mwivSSClBUyjk
-        rNr1XOgY5Nw59yXtBeE+O2i82w==
-X-Google-Smtp-Source: ABdhPJwgDQaUobvgZCuGcqI//qWBkfw+ORVRmtt5yv6AuOdTGVJ0gNsOxyZNof+YUbkPwRyp44UODQ==
-X-Received: by 2002:a7b:c954:: with SMTP id i20mr23289319wml.56.1606742726690;
-        Mon, 30 Nov 2020 05:25:26 -0800 (PST)
+        bh=imDbNzTq1REIzdtg+PEjyslOlxjZtkiSfNa3OIYZ7pM=;
+        b=dfK/QD1VJPipypE0yhGh1d4Cua7V/LYwmOBwhAzZWmBHd4bPKGSGKpn0NWH+iUEblb
+         niee+TmsGTDYx07/hyb7G9uuPPbh/m623d61Ymd/GlAdB9sPkIo7QQMcmo4tO3XrzvLA
+         MoHBqm4JDtUg8MdmoUFkrT3W/X25IyJIBMNIwgMrq4qmSudxVEAWfXgUBFl+uw6ssHaR
+         BNLFfekyxLtTa9nhv/iyeA9S+RY9nibyN/H2SproNcC1jaceAIlrDq4J+SjYsIBGvFmu
+         ks9HVLz1sTyyqdHW7tWMlOl+1KzOKuEFNnez7FMl838LG1pq0GtXmehOO3srlX54BDHB
+         OMeg==
+X-Gm-Message-State: AOAM532jnIBUxdNae9PAdtiPpDNBHkAxSNFdhCIyVhGT7WWboDqphyk+
+        fklx03dzeT6BmXevU5QdCx6ajSPgklTxsGWp
+X-Google-Smtp-Source: ABdhPJwb+9GKM/I70i10A05hcMaIvZXaNUZtIV8B7onXCfk5xAy087QjeGMrztv7jtxj7R71HzRsaQ==
+X-Received: by 2002:a05:600c:255:: with SMTP id 21mr23833237wmj.69.1606742748023;
+        Mon, 30 Nov 2020 05:25:48 -0800 (PST)
 Received: from [10.1.3.24] (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id q17sm32327983wro.36.2020.11.30.05.25.25
+        by smtp.gmail.com with ESMTPSA id o74sm1509474wme.36.2020.11.30.05.25.46
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 30 Nov 2020 05:25:25 -0800 (PST)
-Subject: Re: [PATCH] arm64: dts: meson: update the Khadas VIM3/3L LED bindings
+        Mon, 30 Nov 2020 05:25:46 -0800 (PST)
+Subject: Re: [PATCH] arm64: dts: meson: fix spi-max-frequency on Khadas VIM2
 To:     Christian Hewitt <christianshewitt@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
@@ -57,7 +57,7 @@ To:     Christian Hewitt <christianshewitt@gmail.com>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
 Cc:     Artem Lapkin <art@khadas.com>
-References: <20201125052914.4092-1-christianshewitt@gmail.com>
+References: <20201125024001.19036-1-christianshewitt@gmail.com>
 From:   Neil Armstrong <narmstrong@baylibre.com>
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  mQENBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -109,12 +109,12 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <d481a9f0-1d9c-2989-edd3-83f7c549f228@baylibre.com>
-Date:   Mon, 30 Nov 2020 14:25:25 +0100
+Message-ID: <0d4e54a3-9eb1-db9e-7d17-985262ed251f@baylibre.com>
+Date:   Mon, 30 Nov 2020 14:25:45 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20201125052914.4092-1-christianshewitt@gmail.com>
+In-Reply-To: <20201125024001.19036-1-christianshewitt@gmail.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -122,53 +122,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/11/2020 06:29, Christian Hewitt wrote:
-> Update the VIM3/3L common dtsi to use the new function/color bindings.
+On 25/11/2020 03:40, Christian Hewitt wrote:
+> From: Artem Lapkin <art@khadas.com>
 > 
-> Suggested-by: Artem Lapkin <art@khadas.com>
-> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+> The max frequency for the w25q32 (VIM v1.2) and w25q128 (VIM v1.4) spifc
+> chip should be 104Mhz not 30MHz.
+> 
+> Fixes: b8b74dda3908 ("ARM64: dts: meson-gxm: Add support for Khadas VIM2")
+> Signed-off-by: Artem Lapkin <art@khadas.com>
 > ---
-> This supersedes a previous submission from Art [0] and uses the updated
-> LED bindings suggested by Neil.
+> This change was previously submitted as [0] which has style issues and
+> remains unmerged. It is also part of a two patch series where the other
+> patch needs further work to convert to newer LED bindings.
 > 
-> [0] https://patchwork.kernel.org/project/linux-amlogic/patch/20200925033017.1790973-4-art@khadas.com/
+> [0] https://patchwork.kernel.org/project/linux-amlogic/patch/20200928092613.273998-3-art@khadas.com/
 > 
->  arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi | 11 +++++++----
->  1 file changed, 7 insertions(+), 4 deletions(-)
+>  arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi b/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
-> index 87bd8c9516f2..8f8656262ae7 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
-> @@ -6,6 +6,7 @@
->   */
->  
->  #include <dt-bindings/input/input.h>
-> +#include <dt-bindings/leds/common.h>
->  #include <dt-bindings/gpio/meson-g12a-gpio.h>
->  #include <dt-bindings/sound/meson-g12a-tohdmitx.h>
->  
-> @@ -42,14 +43,16 @@
->  	leds {
->  		compatible = "gpio-leds";
->  
-> -		led-white {
-> -			label = "vim3:white:sys";
-> +		white {
-> +			color = <LED_COLOR_ID_WHITE>;
-> +			function = LED_FUNCTION_STATUS;
->  			gpios = <&gpio_ao GPIOAO_4 GPIO_ACTIVE_HIGH>;
->  			linux,default-trigger = "heartbeat";
->  		};
->  
-> -		led-red {
-> -			label = "vim3:red";
-> +		red {
-> +			color = <LED_COLOR_ID_RED>;
-> +			function = LED_FUNCTION_STATUS;
->  			gpios = <&gpio_expander 5 GPIO_ACTIVE_HIGH>;
->  		};
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
+> index 39e6047056b2..079500ed5066 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
+> +++ b/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
+> @@ -391,7 +391,7 @@
+>  		#size-cells = <1>;
+>  		compatible = "winbond,w25q16", "jedec,spi-nor";
+>  		reg = <0>;
+> -		spi-max-frequency = <3000000>;
+> +		spi-max-frequency = <104000000>;
 >  	};
+>  };
+>  
 > 
 
 Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
