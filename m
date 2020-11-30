@@ -2,158 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 87B152C813C
-	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 10:42:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D4F2E2C815B
+	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 10:48:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726158AbgK3Jl3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Nov 2020 04:41:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59048 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725902AbgK3Jl2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Nov 2020 04:41:28 -0500
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CBA4C0613D3
-        for <devicetree@vger.kernel.org>; Mon, 30 Nov 2020 01:40:42 -0800 (PST)
-Received: by mail-wr1-x42f.google.com with SMTP id u12so15217375wrt.0
-        for <devicetree@vger.kernel.org>; Mon, 30 Nov 2020 01:40:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=N+D9qspU/bPnujVIhBzSLSBFh/Erq3Zz8Zph/XPoLdU=;
-        b=PXN4zvJY6xEi7NtVks3NdM773rCmmIFJdFFaJw/jIQzzVVjwYb/7ZELgEaBTW00NME
-         TN+JSR6mytfTkAFqecbQksX+FG1vV7gl3Lgretdk+mZ5A4hHaqbmuZwbXePjKjECMKs4
-         rH4YJIH/uWIrEmQFpYyxed7ZZ2sygkm+bWiO6sjxFbW81ExyIT4g+CptleljcX0eG16z
-         dJDi2dDwzhd/PIfyZh9oNydsY9EHMqIz9cqE5nsRwpHKhCDXIY9b2uIzeqEQru2B8QTM
-         uou2W8vuNrys+TkK+bC3tZMixm6+FCvMoXgfHLIUesCcjbuW3yQJS0tMPnpzoqsfK7U2
-         okfw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=N+D9qspU/bPnujVIhBzSLSBFh/Erq3Zz8Zph/XPoLdU=;
-        b=VB0n+DQouZiiMpYs8oMZav/65mTd5SM+r2QRcJc/PiDcmEK5Jq9uvH64uAUYrfjQW1
-         AQWKmkeyUriD3HbUXw2j5p9OC6U7cI97rgP3hoNHSbMJi2LMCzwRuFWRmryb/I7qt907
-         O2LDKuCKw/m57s1kJIE8ABkaBmjNyI3nwKH4k42o7pqBrvgXBnL62tHkodsXerr9RiI3
-         e37k4N8GyEea6aEF3jAzvFQJkdrOEkyGwTsiSKEMP1ky4QEuezLTGOvJ1+5eQJlIReU6
-         qOegvlRel6C5L0xbahOUzX3gi/8T5EjvYyzcQgPTG/7pLi4E98RGdC5+KoOkTm9KtMFc
-         LXBw==
-X-Gm-Message-State: AOAM531kmX+aUS8PENamQIUCo/nahEqpiImGsEBLwHX2mBaElZcZ8RXC
-        cwL/FRHsBMYkxIryzlWobS1fYQ==
-X-Google-Smtp-Source: ABdhPJyw6K28mNe+MvOP/X16K9BPwGgApu5AI/HQ+sU8ZFk1ZF1Uj99iAgO8McEKf5wxTx4LVRtDgA==
-X-Received: by 2002:adf:e788:: with SMTP id n8mr27310799wrm.84.1606729239874;
-        Mon, 30 Nov 2020 01:40:39 -0800 (PST)
-Received: from ?IPv6:2a01:e34:ed2f:f020:a9e1:bc04:469:f21b? ([2a01:e34:ed2f:f020:a9e1:bc04:469:f21b])
-        by smtp.googlemail.com with ESMTPSA id 189sm10523997wma.22.2020.11.30.01.40.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 30 Nov 2020 01:40:39 -0800 (PST)
-Subject: Re: [RFC 1/2] dt-bindings: thermal: sprd: Add virtual thermal
- documentation
-To:     gao yunxiao <gao.yunxiao6@gmail.com>,
-        Lukasz Luba <lukasz.luba@arm.com>
-Cc:     rui.zhang@intel.com, amitk@kernel.org, robh+dt@kernel.org,
-        javi.merino@kernel.org, linux-pm@vger.kernel.org,
-        kernel-team@android.com, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, orsonzhai@gmail.com,
-        zhang.lyra@gmail.com, "jeson.gao" <jeson.gao@unisoc.com>
-References: <1606466112-31584-1-git-send-email-gao.yunxiao6@gmail.com>
- <724ddf78-483c-2cf3-441c-4885af8425a9@arm.com>
- <1af5220c-f598-58f4-488e-fdd505477ed5@linaro.org>
- <fc2e095f-d417-1547-4075-9ece1aeaaf4d@arm.com>
- <CANO_MS+n6CTom-o7Hs4dKtPf-2uih5R7_8BnU_b4Jv8g1a5dkg@mail.gmail.com>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-Message-ID: <b98c6196-d3e5-888b-e85e-633deefe1a49@linaro.org>
-Date:   Mon, 30 Nov 2020 10:40:37 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1728313AbgK3JrL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Nov 2020 04:47:11 -0500
+Received: from frasgout.his.huawei.com ([185.176.79.56]:2173 "EHLO
+        frasgout.his.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726270AbgK3JrL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Nov 2020 04:47:11 -0500
+Received: from fraeml708-chm.china.huawei.com (unknown [172.18.147.200])
+        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4Cl0fd2Ccgz67KRZ;
+        Mon, 30 Nov 2020 17:43:37 +0800 (CST)
+Received: from lhreml724-chm.china.huawei.com (10.201.108.75) by
+ fraeml708-chm.china.huawei.com (10.206.15.36) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2106.2; Mon, 30 Nov 2020 10:46:28 +0100
+Received: from [10.47.3.199] (10.47.3.199) by lhreml724-chm.china.huawei.com
+ (10.201.108.75) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.1913.5; Mon, 30 Nov
+ 2020 09:46:27 +0000
+Subject: Re: [PATCH 2/2] perf/imx_ddr: Add system PMU identifier for userspace
+To:     Joakim Zhang <qiangqing.zhang@nxp.com>, <will@kernel.org>,
+        <robh+dt@kernel.org>
+CC:     <devicetree@vger.kernel.org>, <linux-imx@nxp.com>,
+        <frank.li@nxp.com>
+References: <20201128053627.7971-1-qiangqing.zhang@nxp.com>
+ <20201128053627.7971-3-qiangqing.zhang@nxp.com>
+From:   John Garry <john.garry@huawei.com>
+Message-ID: <6b4e567b-4b94-4c21-d506-829b5a7ec15e@huawei.com>
+Date:   Mon, 30 Nov 2020 09:46:02 +0000
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.1.2
 MIME-Version: 1.0
-In-Reply-To: <CANO_MS+n6CTom-o7Hs4dKtPf-2uih5R7_8BnU_b4Jv8g1a5dkg@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
+In-Reply-To: <20201128053627.7971-3-qiangqing.zhang@nxp.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.47.3.199]
+X-ClientProxiedBy: lhreml704-chm.china.huawei.com (10.201.108.53) To
+ lhreml724-chm.china.huawei.com (10.201.108.75)
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/11/2020 10:03, gao yunxiao wrote:
-> Hi Daniel
+On 28/11/2020 05:36, Joakim Zhang wrote:
+> The DDR Perf for i.MX8 is a system PMU whose AXI ID would different from
+> SoC to SoC. Need expose system PMU identifier for userspace which refer
+> to /sys/bus/event_source/devices/<PMU DEVICE>/identifier.
 > 
-> Thank you for your the new information
+> Signed-off-by: Joakim Zhang <qiangqing.zhang@nxp.com>
+> ---
+>   drivers/perf/fsl_imx8_ddr_perf.c | 42 ++++++++++++++++++++++++++++++++
+>   1 file changed, 42 insertions(+)
 > 
-> I have a question trouble to you
-> We should choose which per-core thermal zone as the IPA's input
-> reference temperature in the current kernel version? thank you.
+> diff --git a/drivers/perf/fsl_imx8_ddr_perf.c b/drivers/perf/fsl_imx8_ddr_perf.c
+> index 4f063fb1c6b4..3517d2fb1469 100644
+> --- a/drivers/perf/fsl_imx8_ddr_perf.c
+> +++ b/drivers/perf/fsl_imx8_ddr_perf.c
+> @@ -50,6 +50,7 @@ static DEFINE_IDA(ddr_ida);
+>   
+>   struct fsl_ddr_devtype_data {
+>   	unsigned int quirks;    /* quirks needed for different DDR Perf core */
+> +	const char *identifier;	/* system PMU identifier for userspace */
 
-Can you give a pointer to a DT describing your hardware ?
+so if this is not set, then what does the sysfs identifier file show?
 
+It seems to be not set for "fsl,imx8-ddr-pmu" or "fsl,imx8m-ddr-pmu" 
+matching.
 
+Maybe it's better do like I did for SMMU PMCG, and not show the file if 
+not set.
 
-> On 27/11/2020, Lukasz Luba <lukasz.luba@arm.com> wrote:
->>
->>
->> On 11/27/20 1:26 PM, Daniel Lezcano wrote:
->>>
->>> Hi Lukasz,
->>>
->>> On 27/11/2020 10:27, Lukasz Luba wrote:
->>>>
->>>>
->>>> On 11/27/20 8:35 AM, gao.yunxiao6@gmail.com wrote:
->>>>> From: "jeson.gao" <jeson.gao@unisoc.com>
->>>>>
->>>>> virtual thermal node definition description in dts file
->>>>>
->>>>> Signed-off-by: jeson.gao <jeson.gao@unisoc.com>
->>>>> ---
->>>
->>> [ ... ]
->>>
->>>> It's coming back. There were attempts to solve this problem.
->>>> Javi tried to solved this using hierarchical thermal zones [1].
->>>> It was even agreed (IIRC during LPC) but couldn't continue. Then Eduardo
->>>> was going to continue this (last message at [3]). Unfortunately,
->>>> development stopped.
->>>>
->>>> I also have out-of-tree similar implementation for my Odroid-xu4,
->>>> which does no have an 'SoC' sensor, but have CPU sensors and needs
->>>> some aggregation function to get temperature.
->>>>
->>>> I can pick up Javi's patches and continue 'hierarchical thermal zones'
->>>> approach.
->>>>
->>>> Javi, Daniel, Rui what do you think?
->>>
->>> I already worked on the hierarchical thermal zones and my opinion is
->>> that fits not really well.
->>>
->>> We want to define a new feature because the thermal framework is built
->>> on the 1:1 relationship between a governor and a thermal zone.
->>>
->>> Practically speaking, we want to mitigate two thermal zones from one
->>> governor, especially here the IPA governor.
->>>
->>> The DTPM framework is being implemented to solve that by providing an
->>> automatic power rebalancing between the power manageable capable devices.
->>>
->>> In our case, the IPA would stick on the 'sustainable-power' resulting on
->>> the aggregation of the two performance domains and set the power limit
->>> on the parent node. The automatic power rebalancing will ensure maximum
->>> throughput between the two performance domains instead of capping the
->>> whole.
->>>
->>>
->>
->> Make sense. Thank you for sharing valuable opinion.
->>
->> Regards,
->> Lukasz
->>
+Thanks,
+John
 
+>   };
+>   
+>   static const struct fsl_ddr_devtype_data imx8_devtype_data;
+> @@ -58,13 +59,32 @@ static const struct fsl_ddr_devtype_data imx8m_devtype_data = {
+>   	.quirks = DDR_CAP_AXI_ID_FILTER,
+>   };
+>   
+> +static const struct fsl_ddr_devtype_data imx8mq_devtype_data = {
+> +	.quirks = DDR_CAP_AXI_ID_FILTER,
+> +	.identifier = "i.MX8MQ",
+> +};
+> +
+> +static const struct fsl_ddr_devtype_data imx8mm_devtype_data = {
+> +	.quirks = DDR_CAP_AXI_ID_FILTER,
+> +	.identifier = "i.MX8MM",
+> +};
+> +
+> +static const struct fsl_ddr_devtype_data imx8mn_devtype_data = {
+> +	.quirks = DDR_CAP_AXI_ID_FILTER,
+> +	.identifier = "i.MX8MN",
+> +};
+> +
+>   static const struct fsl_ddr_devtype_data imx8mp_devtype_data = {
+>   	.quirks = DDR_CAP_AXI_ID_FILTER_ENHANCED,
+> +	.identifier = "i.MX8MP",
+>   };
+>   
+>   static const struct of_device_id imx_ddr_pmu_dt_ids[] = {
+>   	{ .compatible = "fsl,imx8-ddr-pmu", .data = &imx8_devtype_data},
+>   	{ .compatible = "fsl,imx8m-ddr-pmu", .data = &imx8m_devtype_data},
+> +	{ .compatible = "fsl,imx8mq-ddr-pmu", .data = &imx8mq_devtype_data},
+> +	{ .compatible = "fsl,imx8mm-ddr-pmu", .data = &imx8mm_devtype_data},
+> +	{ .compatible = "fsl,imx8mn-ddr-pmu", .data = &imx8mn_devtype_data},
+>   	{ .compatible = "fsl,imx8mp-ddr-pmu", .data = &imx8mp_devtype_data},
+>   	{ /* sentinel */ }
+>   };
+> @@ -84,6 +104,27 @@ struct ddr_pmu {
+>   	int id;
+>   };
+>   
+> +static ssize_t ddr_perf_identifier_show(struct device *dev,
+> +					struct device_attribute *attr,
+> +					char *page)
+> +{
+> +	struct ddr_pmu *pmu = dev_get_drvdata(dev);
+> +
+> +	return sprintf(page, "%s\n", pmu->devtype_data->identifier);
+> +}
+> +
+> +static struct device_attribute ddr_perf_identifier_attr =
+> +	__ATTR(identifier, 0444, ddr_perf_identifier_show, NULL);
+> +
+> +static struct attribute *ddr_perf_identifier_attrs[] = {
+> +	&ddr_perf_identifier_attr.attr,
+> +	NULL,
+> +};
+> +
+> +static struct attribute_group ddr_perf_identifier_attr_group = {
+> +	.attrs = ddr_perf_identifier_attrs,
+> +};
+> +
+>   enum ddr_perf_filter_capabilities {
+>   	PERF_CAP_AXI_ID_FILTER = 0,
+>   	PERF_CAP_AXI_ID_FILTER_ENHANCED,
+> @@ -237,6 +278,7 @@ static const struct attribute_group *attr_groups[] = {
+>   	&ddr_perf_format_attr_group,
+>   	&ddr_perf_cpumask_attr_group,
+>   	&ddr_perf_filter_cap_attr_group,
+> +	&ddr_perf_identifier_attr_group,
+>   	NULL,
+>   };
+>   
+> 
 
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
