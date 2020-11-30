@@ -2,126 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 274F22C8AEC
-	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 18:26:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E67DF2C8B11
+	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 18:33:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387538AbgK3R0k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Nov 2020 12:26:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46970 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387405AbgK3R0k (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Nov 2020 12:26:40 -0500
-Received: from mail-oi1-x242.google.com (mail-oi1-x242.google.com [IPv6:2607:f8b0:4864:20::242])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C1C7C0613D6
-        for <devicetree@vger.kernel.org>; Mon, 30 Nov 2020 09:26:00 -0800 (PST)
-Received: by mail-oi1-x242.google.com with SMTP id l206so14954447oif.12
-        for <devicetree@vger.kernel.org>; Mon, 30 Nov 2020 09:26:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=kali.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-transfer-encoding:content-language;
-        bh=Ru7NLccMoPibYPRiKwpFm+Vj44WvO34VSPqaKP+92ak=;
-        b=Kh3Kt8oEDlhs3pKFJGJqSbxdh3/n7jwMaX8Vdoy2d4Kkq7FjR4PhSmV/g00+P8RNm7
-         +VfgHkuYFsgjU1Gsq/WdWVSio15EzpL+3GQQ/tGGwtXKeVYa260+DildkHcYl6Gwtcci
-         g1H9BSZZCS2wB0Ssi3onqx/C1kZwl1YVg63KzhEGhfCZ753gZMtfq+RMIVGw/lmUkuAw
-         P6P8Aa3nBiyihnX/eRNo0JUwRh4PA53r5OHzmjc5Wnvm6IwDVLSAGCW3tWE7KLf5kSVf
-         FbB+eQdU7R8Rcev7NrSaftTkvRiec89HJrUkhGDHM2jdDE+FPFJf5d1PpkbqHiEQ3LIH
-         hBpw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-transfer-encoding
-         :content-language;
-        bh=Ru7NLccMoPibYPRiKwpFm+Vj44WvO34VSPqaKP+92ak=;
-        b=ocE+S4GD8WE3+3toc0xzT/s7bcF3TvCF+HIivHj73Tf7sa8qOvEMXW09lvYYPjNNOa
-         QR8/h2mjv2nuxY9lG6RDfryQLQt/cFcavu25qrUiFB/MPbhv4Ndf/Qn2r3wxJYQm6/Bv
-         0nz7uzHkRtN1JXAOrMOV9/6on54cdrwut/ni36NGd2cf2M5bFTRESj5Aps+PraByHBat
-         6LFise+B0yKZ58k3kkFr9NuK72iQkTDUINSN4fpWoWqvMpDDYpHZ9rTjyLtGN50o1zcm
-         Eb9yPyI4jyHoLgiwFSsbucs2PyoTQK6QIzNg6ZWT3Md+2tDoGr4nqoNuAMkdKtiD0gu9
-         mY0A==
-X-Gm-Message-State: AOAM530ODmCtMhnimRlEbUaiL5xwcWtKDVCu0flv1VqHGyVxUu5hY+BZ
-        9dA32rUyVlLvfhuf7TfxnXDO4Q==
-X-Google-Smtp-Source: ABdhPJyAMv3FHovUbayRLahomb+9JxRUxoLtpBroVudFxPP9U7QGw1edXqxkdwuZCCAsJ/En4ZHrdA==
-X-Received: by 2002:a05:6808:8c8:: with SMTP id k8mr15419478oij.84.1606757159932;
-        Mon, 30 Nov 2020 09:25:59 -0800 (PST)
-Received: from Steevs-MBP.hackershack.net (cpe-173-175-113-3.satx.res.rr.com. [173.175.113.3])
-        by smtp.gmail.com with ESMTPSA id e15sm9319333otj.43.2020.11.30.09.25.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 30 Nov 2020 09:25:59 -0800 (PST)
-Subject: Re: [PATCH] arm64: dts: qcom: c630: Fix pinctrl pins properties
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Shawn Guo <shawn.guo@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20201130170028.319798-1-bjorn.andersson@linaro.org>
-From:   Steev Klimaszewski <steev@kali.org>
-Message-ID: <58cf6829-4121-db46-04f7-0dc6c59b2053@kali.org>
-Date:   Mon, 30 Nov 2020 11:25:58 -0600
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.16; rv:78.0)
- Gecko/20100101 Thunderbird/78.4.3
+        id S1729362AbgK3Rar (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Nov 2020 12:30:47 -0500
+Received: from mail.kernel.org ([198.145.29.99]:42626 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726897AbgK3Rar (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 30 Nov 2020 12:30:47 -0500
+Received: from localhost (129.sub-72-107-112.myvzw.com [72.107.112.129])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 7E9332076E;
+        Mon, 30 Nov 2020 17:30:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1606757406;
+        bh=IToxAulcLFljIt9BT9SqHMDRczdFs12OnHYPP1zKJFA=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:From;
+        b=jGfZDrX4SkWN1omKwJldR/43kCrQeKgACf5gruqhAT2JYzX1CpNNNLy/xqb4G3zyJ
+         OkymF/y5eo0iXBkXioJND067zPFbtxHvmI/h1vaab17xze4FZ2BU2XnReIqeI3vkat
+         xHw5rG76uTucS1eFYYk8eCHtbIMQhF5lj0hNpCiU=
+Date:   Mon, 30 Nov 2020 11:30:05 -0600
+From:   Bjorn Helgaas <helgaas@kernel.org>
+To:     Jianjun Wang <jianjun.wang@mediatek.com>
+Cc:     Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Ryder Lee <ryder.lee@mediatek.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        davem@davemloft.net, linux-pci@vger.kernel.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Sj Huang <sj.huang@mediatek.com>, youlin.pei@mediatek.com,
+        chuanjia.liu@mediatek.com, qizhong.cheng@mediatek.com,
+        sin_jieyang@mediatek.com, Lukas Wunner <lukas@wunner.de>
+Subject: Re: [v4,2/3] PCI: mediatek: Add new generation controller support
+Message-ID: <20201130173005.GA1088958@bjorn-Precision-5520>
 MIME-Version: 1.0
-In-Reply-To: <20201130170028.319798-1-bjorn.andersson@linaro.org>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1606113913.14736.37.camel@mhfsdcap03>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+[+cc Lukas, pciehp power control question]
 
-On 11/30/20 11:00 AM, Bjorn Andersson wrote:
-> The "pins" property takes an array of pin _names_, not pin numbers. Fix
-> this.
->
-> Fixes: 44acee207844 ("arm64: dts: qcom: Add Lenovo Yoga C630")
-> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts | 8 ++++----
->  1 file changed, 4 insertions(+), 4 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-> index 399aef2a0951..bb314973eb0c 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-> +++ b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-> @@ -432,7 +432,7 @@ &tlmm {
->  	gpio-reserved-ranges = <0 4>, <81 4>;
->  
->  	i2c3_hid_active: i2c2-hid-active {
-> -		pins = <37>;
-> +		pins = "gpio37";
->  		function = "gpio";
->  
->  		input-enable;
-> @@ -441,7 +441,7 @@ i2c3_hid_active: i2c2-hid-active {
->  	};
->  
->  	i2c5_hid_active: i2c5-hid-active {
-> -		pins = <125>;
-> +		pins = "gpio125";
->  		function = "gpio";
->  
->  		input-enable;
-> @@ -450,7 +450,7 @@ i2c5_hid_active: i2c5-hid-active {
->  	};
->  
->  	i2c11_hid_active: i2c11-hid-active {
-> -		pins = <92>;
-> +		pins = "gpio92";
->  		function = "gpio";
->  
->  		input-enable;
-> @@ -459,7 +459,7 @@ i2c11_hid_active: i2c11-hid-active {
->  	};
->  
->  	wcd_intr_default: wcd_intr_default {
-> -		pins = <54>;
-> +		pins = "gpio54";
->  		function = "gpio";
->  
->  		input-enable;
+On Mon, Nov 23, 2020 at 02:45:13PM +0800, Jianjun Wang wrote:
+> On Thu, 2020-11-19 at 14:28 -0600, Bjorn Helgaas wrote:
+> > "Add new generation" really contains no information.  And "mediatek"
+> > is already used for the pcie-mediatek.c driver, so we should have a
+> > new tag for this new driver.  Include useful information in the
+> > subject, e.g.,
+> > 
+> >   PCI: mediatek-gen3: Add MediaTek Gen3 driver for MT8192
 
-Tested-by: Steev Klimaszewski <steev@kali.org>
+> > > +static int mtk_pcie_setup(struct mtk_pcie_port *port)
+> > > +{
+> > > +	struct device *dev = port->dev;
+> > > +	struct platform_device *pdev = to_platform_device(dev);
+> > > +	struct resource *regs;
+> > > +	int err;
+> > > +
+> > > +	regs = platform_get_resource_byname(pdev, IORESOURCE_MEM, "pcie-mac");
+> > > +	port->base = devm_ioremap_resource(dev, regs);
+> > > +	if (IS_ERR(port->base)) {
+> > > +		dev_notice(dev, "failed to map register base\n");
+> > > +		return PTR_ERR(port->base);
+> > > +	}
+> > > +
+> > > +	port->reg_base = regs->start;
+> > > +
+> > > +	/* Don't touch the hardware registers before power up */
+> > > +	err = mtk_pcie_power_up(port);
+> > > +	if (err)
+> > > +		return err;
+> > > +
+> > > +	/* Try link up */
+> > > +	err = mtk_pcie_startup_port(port);
+> > > +	if (err) {
+> > > +		dev_notice(dev, "PCIe link down\n");
+> > > +		goto err_setup;
+> > 
+> > Generally it should not be a fatal error if the link is not up at
+> > probe-time.  You may be able to hot-add a device, or the device may
+> > have some external power control that will power it up later.
+> 
+> This is for the power saving requirement. If there is no device
+> connected with the PCIe slot, the PCIe MAC and PHY should be powered
+> off.
+> 
+> Is there any standard flow to support power down the hardware at
+> probe-time if no device is connected and power it up when hot-add a
+> device?
 
+That's a good question.  I assume this looks like a standard PCIe
+hot-add event?
 
+When you hot-add a device, does the Root Port generate a Presence
+Detect Changed interrupt?  The pciehp driver should field that
+interrupt and turn on power to the slot via the Power Controller
+Control bit in the Slot Control register.
+
+Does your hardware require something more than that to control the MAC
+and PHY power?
+
+Bjorn
