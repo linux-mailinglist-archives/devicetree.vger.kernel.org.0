@@ -2,85 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 02F6A2C7C85
-	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 02:42:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E17C2C7C93
+	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 02:53:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727804AbgK3Bln (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 29 Nov 2020 20:41:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42250 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727322AbgK3Bln (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 29 Nov 2020 20:41:43 -0500
-Received: from mail-ej1-x644.google.com (mail-ej1-x644.google.com [IPv6:2a00:1450:4864:20::644])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45820C0613D4
-        for <devicetree@vger.kernel.org>; Sun, 29 Nov 2020 17:41:03 -0800 (PST)
-Received: by mail-ej1-x644.google.com with SMTP id gj5so18183392ejb.8
-        for <devicetree@vger.kernel.org>; Sun, 29 Nov 2020 17:41:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=YNYyQoH11Uy49BqvFcvhTDHG+XYaaGyowBqhzVBSUAY=;
-        b=WwNrl0Ybr20BSwcEyIynEsdNTjjydkiaOOK+8xaxlNamiVtWQDFg4dSjd7crFvEsFa
-         0hUWJGsxkcsFjLP18+Kcky7cgJGqLjlr/e1HCFaCSXVnMX3gNDW8vDsvNNbpM8YXCB6P
-         eKBamIGx4Oi7tF70nS13vGryycE4zosApoI4ZLqtutxVBbGt+1t4q5zfjkQrJWlTF86Q
-         e7PbXx5U6mpoMEl1gbMbd0o7wo8juA3U4/yO1goCXLEyaEan2jY+uYjt0tEaMwMSRuwo
-         S8NGrNH+N/A5k8yAKdnmicNWjDMCtR4/HbVPVQzcNmniBbtYNs9AagYYNd9f+F9Pgk1l
-         wQpA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=YNYyQoH11Uy49BqvFcvhTDHG+XYaaGyowBqhzVBSUAY=;
-        b=jqP1tzcFFyukSEeZbGWmBZcKWmR6WArU+ySWNRWots+9qHBASS3dkWZ7EH+XDrN+lJ
-         swo/wEDuORsncN54RTY28bRIch/q9C6UhqJAW8DpImOpt/JClscDIYkvGcwlLU29hEaa
-         Yi0OeOGNFidhLyg2tWgLGmwPDG3zWsstpQu9z+cm+elkOMmWhMlBN5n8NQnsXXr7uOTT
-         4YpcB3NW2JK6S2NA/pYoBWsv+JCV1yV5HYTGfLoPZn1pCc9XVIhBj1gxLIFCiOtVm8GS
-         I7AdEnk8IhRBMuQumCgSWKewk49ZOpqzqgEpjkjNTg1jbnmO+LgbtnvI14SA4erqFTf/
-         kpeQ==
-X-Gm-Message-State: AOAM530b+DMAvu/+SbZ3y9gSGgdT3k5ud3pfo5oBqGIMiM5midNkybQC
-        OvdNyQyBeOmZRQKqwYWwCKnexk6GVhqQ/s82Ow7LHw==
-X-Google-Smtp-Source: ABdhPJyI8iq9Qcoh9z+BgQGsOaQVWGtfyNzvOoKL5oqxj8FOxSgc4pj2PZ1+KU9i112A2dmNHWlk9d0rgvij/Qc7bQE=
-X-Received: by 2002:a17:907:3f93:: with SMTP id hr19mr18726449ejc.235.1606700461879;
- Sun, 29 Nov 2020 17:41:01 -0800 (PST)
+        id S1727812AbgK3Bwv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 29 Nov 2020 20:52:51 -0500
+Received: from gloria.sntech.de ([185.11.138.130]:40856 "EHLO gloria.sntech.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727543AbgK3Bwv (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 29 Nov 2020 20:52:51 -0500
+Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=phil.lan)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1kjYME-0007OY-4p; Mon, 30 Nov 2020 02:52:02 +0100
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     Will Deacon <will@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Catalin Marinas <catalin.marinas@arm.com>
+Cc:     Heiko Stuebner <heiko@sntech.de>,
+        Suniel Mahesh <sunil@amarulasolutions.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Michael Trimarchi <michael@amarulasolutions.com>,
+        linux-rockchip@lists.infradead.org,
+        linux-amarula <linux-amarula@amarulasolutions.com>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 0/9] arm64: dts: rockchip: Engicam PX30.Core changes
+Date:   Mon, 30 Nov 2020 02:51:56 +0100
+Message-Id: <160670107989.1055391.7542778986080357647.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.29.2
+In-Reply-To: <20201109181017.206834-1-jagan@amarulasolutions.com>
+References: <20201109181017.206834-1-jagan@amarulasolutions.com>
 MIME-Version: 1.0
-References: <20200930081645.3434-1-jun.nie@linaro.org> <43318c75-cfe2-d219-2ea4-7a130ea5883b@linaro.org>
-In-Reply-To: <43318c75-cfe2-d219-2ea4-7a130ea5883b@linaro.org>
-From:   Jun Nie <jun.nie@linaro.org>
-Date:   Mon, 30 Nov 2020 09:40:50 +0800
-Message-ID: <CABymUCOjh0BEwaZsFO6YzbMskeNnhPCDLAOhzU8Civ_3JM0yrw@mail.gmail.com>
-Subject: Re: [PATCH 0/5] Consolidate RPM interconnect and support to MSM8939
-To:     Georgi Djakov <georgi.djakov@linaro.org>
-Cc:     devicetree@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        agross@kernel.org, linux-pm@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh@kernel.org>, Shawn Guo <shawn.guo@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Georgi Djakov <georgi.djakov@linaro.org> =E4=BA=8E2020=E5=B9=B411=E6=9C=882=
-6=E6=97=A5=E5=91=A8=E5=9B=9B =E4=B8=8B=E5=8D=888:20=E5=86=99=E9=81=93=EF=BC=
-=9A
->
-> On 9/30/20 11:16, Jun Nie wrote:
-> > This patch set split shared RPM based interconnect operation code and a=
-dd
-> > support to MSM8939 interconnect.
-> >
->
-> Hi Jun,
->
-> Are you planning to refresh this patchset?
+On Mon, 9 Nov 2020 23:40:08 +0530, Jagan Teki wrote:
+> Series support Engicam PX30.Core SOM changes along with C.TOUCH
+> Open Frame 10.1" board.
+> 
+> All respetive LCD panels are in Mainline already.
+> 
+> thanks,
+> Jagan.
+> 
+> [...]
 
-Yes. Just come back from a long vocation. Thanks for reminder!
+Applied, thanks!
 
-Jun
+[1/9] arm64: dts: rockchip: px30-enagicam: Enable USB Host, OTG
+      commit: 4548ea027c900f1e0f07a292b8e10dc3d2725f44
+[2/9] arm64: dts: rockchip: px30-engicam-edimm2.2: Enable LVDS panel
+      commit: 87761edeb2cd90b8251f269eb52c4b48152aace8
+[3/9] dt-bindings: arm: rockchip: Add Engicam PX30.Core C.TOUCH 2.0 10.1" OF
+      commit: 23708d46101b5d5538c88b84b764d0ed9d8957ca
+[4/9] arm64: dts: rockchip: Add Engicam PX30.Core C.TOUCH 2.0 10.1" OF
+      commit: 0e418423be1c824b2cda37fd00528f62231cd219
+[5/9] arm64: dts: rockchip: px30-engicam: Add WiFi support
+      commit: 93a4e7d12468b0ab46796f3ed8dc5838dc7f63bc
+[6/9] arm64: dts: rockchip: px30-engicam: Add BT support
+      commit: 1cc1e851d15b4ebd4c6c5f741cfdb58b988a4445
+[7/9] arm64: defconfig: Enable ROCKCHIP_LVDS
+      commit: dbb378a59cb2bdb01454098513d9b61355fbe377
+[8/9] arm64: defconfig: Enable PHY_ROCKCHIP_INNO_DSIDPHY
+      commit: ec68a66395d9ccedc9b2b2f6452edfd7cb0fdfd5
+[9/9] arm64: defconfig: Enable USB_SERIAL_CP210X
+      commit: cf35bff64f79b4ca8785766d67b608b76404d43f
 
->
-> Thanks,
-> Georgi
+Best regards,
+-- 
+Heiko Stuebner <heiko@sntech.de>
