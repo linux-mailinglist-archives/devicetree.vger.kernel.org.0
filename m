@@ -2,88 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B3CD42C89BD
-	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 17:41:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 98F462C89BF
+	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 17:41:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728872AbgK3QjY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Nov 2020 11:39:24 -0500
-Received: from mail-io1-f65.google.com ([209.85.166.65]:40489 "EHLO
-        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728841AbgK3QjW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Nov 2020 11:39:22 -0500
-Received: by mail-io1-f65.google.com with SMTP id r9so12408947ioo.7;
-        Mon, 30 Nov 2020 08:39:06 -0800 (PST)
+        id S1728142AbgK3QkA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Nov 2020 11:40:00 -0500
+Received: from mail-il1-f193.google.com ([209.85.166.193]:32945 "EHLO
+        mail-il1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727924AbgK3QkA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Nov 2020 11:40:00 -0500
+Received: by mail-il1-f193.google.com with SMTP id y9so11901624ilb.0;
+        Mon, 30 Nov 2020 08:39:44 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=6I9VGJWSiiniPwoytIW7/IWLQ2Yesh4ZxepFqF8IfbQ=;
-        b=t6n3NXnSZDQi5B1jUIYMtxDfc889f3/JBY4RvBeFNcyJPT7RjCu5zSkGEjKOCwQpM5
-         fsVM2pAMjfDQ4vkT4iTBE+jm8fmR20P/HFIPx7UJzWVLJfSMd4VSnB3GTC81ri0HA/cP
-         z6E+1g60OojXmbvItHDG8boJByp5y+ziRzrkhoKmn8h2uB23QDM06uKMSWuxOaBNKSqC
-         pX/xf9aWjNEzLJ7K/3mIohzKsTHH/E4h0dAIO2YwBOZ6UHXKkVoUXRRaPpjxXm8rUM4m
-         u4sQeGdl/pnl99FZD9sgcevE+s/bmM/FYr8nkjHvRf4IcfGmpUOiqRPy+zVVL/ZTLHIz
-         EvVw==
-X-Gm-Message-State: AOAM531vR0R57JsYkUpXfqlSyFKYLhXfYaE5HWXFkLvV9t3NEsTD7LqX
-        +/L1MnLBk7xQvA2mN8O3Xw==
-X-Google-Smtp-Source: ABdhPJz3Y8funAZBlLqf8d+aAk9THXhAiQ3D80fWbYx3siUEKY6mKSIlfIFxbQhgs8zsrdXxZhLAmg==
-X-Received: by 2002:a6b:8d58:: with SMTP id p85mr16907880iod.74.1606754320872;
-        Mon, 30 Nov 2020 08:38:40 -0800 (PST)
+        bh=GxbcPm40Z/OfvA3tX+RN9PfY6ghzBrA55YxrDnO7ysY=;
+        b=M6lpowL3qpdVRL5koaCCc14/I589CBqNBouWLk7DkXiVeRFnJeQqC8kUn0EThTRfPa
+         5Uk4V9IEP4DbTq/iSWClXh+LZgso1a9vNOeXa+UR82tkORmP0mlpB4VYhwGjAw49uiKO
+         j1WvdNNgm+1t6ed7ifac83QV9pokgjusQ9KN30LjGJoQxr0ilfPpR7JIVaxhOD9CiYk+
+         AyTTGmkGUxoH0guNya7lm7tqsWnr0Z1fj9GzrczIgdsavC2A/tfoY7ktsg0coCAdOLmy
+         db3cxGPo3abraxF4/q7LQbHWQ1jUcEIwv+bGSciS+KbkDgFA0P+d5BNrZEY3D1m6Bk9z
+         TH/w==
+X-Gm-Message-State: AOAM530TSZeGTNdFqwywg6NsDtecmQrG39BcxyoI8oy0wPupQk/nx+gn
+        Ta4VVNfvHCKfI3FSvmXP+w==
+X-Google-Smtp-Source: ABdhPJzY9MzktBK1OkYtWSDkzwOcRYCFt2VHyLCC7bUEJXijT3EkfPx6av4RZ3T4OMflXGgu5ppcjw==
+X-Received: by 2002:a92:607:: with SMTP id x7mr18906592ilg.34.1606754358863;
+        Mon, 30 Nov 2020 08:39:18 -0800 (PST)
 Received: from xps15 ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id 10sm10999380ill.75.2020.11.30.08.38.39
+        by smtp.gmail.com with ESMTPSA id b9sm4311464iok.20.2020.11.30.08.39.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Nov 2020 08:38:40 -0800 (PST)
-Received: (nullmailer pid 2592489 invoked by uid 1000);
-        Mon, 30 Nov 2020 16:38:38 -0000
-Date:   Mon, 30 Nov 2020 09:38:38 -0700
+        Mon, 30 Nov 2020 08:39:18 -0800 (PST)
+Received: (nullmailer pid 2593543 invoked by uid 1000);
+        Mon, 30 Nov 2020 16:39:15 -0000
+Date:   Mon, 30 Nov 2020 09:39:15 -0700
 From:   Rob Herring <robh@kernel.org>
-To:     Cristian Pop <cristian.pop@analog.com>
-Cc:     linux-iio@vger.kernel.org, jic23@kernel.org,
-        devicetree@vger.kernel.org, robh+dt@kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: iio: dac: AD5766 yaml documentation
-Message-ID: <20201130163838.GB2590579@robh.at.kernel.org>
-References: <20201123145042.18930-1-cristian.pop@analog.com>
+To:     Damien Le Moal <damien.lemoal@wdc.com>
+Cc:     Stephen Boyd <sboyd@kernel.org>, Sean Anderson <seanga2@gmail.com>,
+        linux-clk@vger.kernel.org, Philipp Zabel <p.zabel@pengutronix.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v2 09/21] dt-bindings: Document canaan,k210-fpioa bindings
+Message-ID: <20201130163915.GA2593105@robh.at.kernel.org>
+References: <20201124043728.199852-1-damien.lemoal@wdc.com>
+ <20201124043728.199852-10-damien.lemoal@wdc.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201123145042.18930-1-cristian.pop@analog.com>
+In-Reply-To: <20201124043728.199852-10-damien.lemoal@wdc.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 23 Nov 2020 16:50:41 +0200, Cristian Pop wrote:
-> This adds device tree bindings for the AD5766 DAC.
+On Tue, 24 Nov 2020 13:37:16 +0900, Damien Le Moal wrote:
+> Document the device tree bindings for the Canaan Kendryte K210 SoC
+> Fully Programmable IO Array (FPIOA) pinctrl driver in
+> Documentation/devicetree/bindings/pinctrl/canaan,k210-fpioa.yaml. The
+> new header file include/dt-bindings/pinctrl/k210-fpioa.h is added to
+> define all 256 possible pin functions of the SoC IO pins, as well as
+> macros simplifying the definition of pin functions in a device tree.
 > 
-> Signed-off-by: Cristian Pop <cristian.pop@analog.com>
+> Signed-off-by: Damien Le Moal <damien.lemoal@wdc.com>
 > ---
->  .../bindings/iio/dac/adi,ad5766.yaml          | 52 +++++++++++++++++++
->  1 file changed, 52 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/dac/adi,ad5766.yaml
+>  .../bindings/pinctrl/canaan,k210-fpioa.yaml   | 165 +++++++++++
+>  include/dt-bindings/pinctrl/k210-fpioa.h      | 276 ++++++++++++++++++
+>  2 files changed, 441 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/canaan,k210-fpioa.yaml
+>  create mode 100644 include/dt-bindings/pinctrl/k210-fpioa.h
 > 
 
 
 My bot found errors running 'make dt_binding_check' on your patch:
 
 yamllint warnings/errors:
+./Documentation/devicetree/bindings/pinctrl/canaan,k210-fpioa.yaml:59:1: [error] syntax error: found character '\t' that cannot start any token (syntax)
 
 dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/dac/adi,ad5766.yaml: 'additionalProperties' is a required property
-./Documentation/devicetree/bindings/iio/dac/adi,ad5766.yaml: $id: relative path/filename doesn't match actual path or filename
-	expected: http://devicetree.org/schemas/iio/dac/adi,ad5766.yaml#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/dac/adi,ad5766.yaml: ignoring, error in schema: 
-warning: no schema found in file: ./Documentation/devicetree/bindings/iio/dac/adi,ad5766.yaml
-Documentation/devicetree/bindings/iio/dac/adi,ad5766.example.dts:21.13-23: Warning (reg_format): /example-0/ad5766@0:reg: property has invalid length (4 bytes) (#address-cells == 1, #size-cells == 1)
-Documentation/devicetree/bindings/iio/dac/adi,ad5766.example.dt.yaml: Warning (pci_device_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/iio/dac/adi,ad5766.example.dt.yaml: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/iio/dac/adi,ad5766.example.dt.yaml: Warning (simple_bus_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/iio/dac/adi,ad5766.example.dt.yaml: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/iio/dac/adi,ad5766.example.dt.yaml: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/dac/adi,ad5766.example.dt.yaml: example-0: ad5766@0:reg:0: [0] is too short
-	From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/reg.yaml
+Traceback (most recent call last):
+  File "/usr/local/bin/dt-extract-example", line 45, in <module>
+    binding = yaml.load(open(args.yamlfile, encoding='utf-8').read())
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/main.py", line 343, in load
+    return constructor.get_single_data()
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 111, in get_single_data
+    node = self.composer.get_single_node()
+  File "_ruamel_yaml.pyx", line 706, in _ruamel_yaml.CParser.get_single_node
+  File "_ruamel_yaml.pyx", line 724, in _ruamel_yaml.CParser._compose_document
+  File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
+  File "_ruamel_yaml.pyx", line 889, in _ruamel_yaml.CParser._compose_mapping_node
+  File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
+  File "_ruamel_yaml.pyx", line 889, in _ruamel_yaml.CParser._compose_mapping_node
+  File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
+  File "_ruamel_yaml.pyx", line 889, in _ruamel_yaml.CParser._compose_mapping_node
+  File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
+  File "_ruamel_yaml.pyx", line 889, in _ruamel_yaml.CParser._compose_mapping_node
+  File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
+  File "_ruamel_yaml.pyx", line 889, in _ruamel_yaml.CParser._compose_mapping_node
+  File "_ruamel_yaml.pyx", line 731, in _ruamel_yaml.CParser._compose_node
+  File "_ruamel_yaml.pyx", line 904, in _ruamel_yaml.CParser._parse_next_event
+ruamel.yaml.scanner.ScannerError: while scanning a plain scalar
+  in "<unicode string>", line 58, column 11
+found a tab character that violates indentation
+  in "<unicode string>", line 59, column 1
+make[1]: *** [Documentation/devicetree/bindings/Makefile:20: Documentation/devicetree/bindings/pinctrl/canaan,k210-fpioa.example.dts] Error 1
+make[1]: *** Deleting file 'Documentation/devicetree/bindings/pinctrl/canaan,k210-fpioa.example.dts'
+make[1]: *** Waiting for unfinished jobs....
+make[1]: *** [Documentation/devicetree/bindings/Makefile:59: Documentation/devicetree/bindings/processed-schema-examples.json] Error 123
+make: *** [Makefile:1364: dt_binding_check] Error 2
 
 
-See https://patchwork.ozlabs.org/patch/1404863
+See https://patchwork.ozlabs.org/patch/1405241
 
 The base for the patch is generally the last rc1. Any dependencies
 should be noted.
