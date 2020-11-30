@@ -2,64 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 60E642C85CC
-	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 14:45:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7918E2C85D6
+	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 14:49:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725933AbgK3No6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Nov 2020 08:44:58 -0500
-Received: from mail.kernel.org ([198.145.29.99]:60868 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725898AbgK3No5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 30 Nov 2020 08:44:57 -0500
-Received: from mail-oi1-f178.google.com (mail-oi1-f178.google.com [209.85.167.178])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 2A1832084C;
-        Mon, 30 Nov 2020 13:44:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1606743857;
-        bh=RuL1VPb/aH3ouO0yRSUZBs5Sdi2gPTNK5Jp6oAALH5g=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=RgLE1V08ucz64n1ocMed+WEWNV+LReCz0rhZPNUYglqauUixajLLZS0ySCRJmtQdZ
-         XZ78OspTY3dDraF1qyqJR9uZpSywTiaTsYfs6AyC6oHM4Fr51ckx+84A3ltNmY1xYt
-         qEXIAYod6LD+6k976Bn5d71NrwoGAYfA9a5a+yYw=
-Received: by mail-oi1-f178.google.com with SMTP id v202so14126328oia.9;
-        Mon, 30 Nov 2020 05:44:17 -0800 (PST)
-X-Gm-Message-State: AOAM530twa26Ydfo6r+0aHLk1Dz5+tnbB/42NdFpSxuetI94IA/Nk24c
-        ZPR3WTIZly66odlk6vDUGmkzOEoslaVH2nvcGy0=
-X-Google-Smtp-Source: ABdhPJwEQ1XYt0NhUsEH8AoSwfpK7gARdHvypcO5F5o8vmSxNJbh+Q3XTUjF4p8KSSTk+sTK7WHpVBI4Wt+LTzFbsZw=
-X-Received: by 2002:aca:fd42:: with SMTP id b63mr3731072oii.11.1606743856339;
- Mon, 30 Nov 2020 05:44:16 -0800 (PST)
+        id S1725912AbgK3Nss (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Nov 2020 08:48:48 -0500
+Received: from relay7-d.mail.gandi.net ([217.70.183.200]:45845 "EHLO
+        relay7-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725859AbgK3Nss (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Nov 2020 08:48:48 -0500
+X-Originating-IP: 93.29.109.196
+Received: from aptenodytes (196.109.29.93.rev.sfr.net [93.29.109.196])
+        (Authenticated sender: paul.kocialkowski@bootlin.com)
+        by relay7-d.mail.gandi.net (Postfix) with ESMTPSA id A133A20006;
+        Mon, 30 Nov 2020 13:48:05 +0000 (UTC)
+Date:   Mon, 30 Nov 2020 14:48:04 +0100
+From:   Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+To:     Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v4 2/2] media: i2c: Add support for the OV5648 image
+ sensor
+Message-ID: <X8T4FH/QjRdLu0hS@aptenodytes>
+References: <20201128143350.531460-1-paul.kocialkowski@bootlin.com>
+ <20201128143350.531460-3-paul.kocialkowski@bootlin.com>
+ <20201130092802.GU3940@paasikivi.fi.intel.com>
 MIME-Version: 1.0
-References: <20201130131047.2648960-1-daniel@0x0f.com> <20201130131047.2648960-9-daniel@0x0f.com>
-In-Reply-To: <20201130131047.2648960-9-daniel@0x0f.com>
-From:   Arnd Bergmann <arnd@kernel.org>
-Date:   Mon, 30 Nov 2020 14:43:59 +0100
-X-Gmail-Original-Message-ID: <CAK8P3a2oqc51Aw7fyjW7t_zzRYX4Xxa7SS72faj7zvcZfyuaFg@mail.gmail.com>
-Message-ID: <CAK8P3a2oqc51Aw7fyjW7t_zzRYX4Xxa7SS72faj7zvcZfyuaFg@mail.gmail.com>
-Subject: Re: [PATCH 8/9] ARM: mstar: Add smp ctrl registers to infinity2m dtsi
-To:     Daniel Palmer <daniel@0x0f.com>
-Cc:     DTML <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>, Rob Herring <robh@kernel.org>,
-        Willy Tarreau <w@1wt.eu>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="CRkzk4adFE2kMeBa"
+Content-Disposition: inline
+In-Reply-To: <20201130092802.GU3940@paasikivi.fi.intel.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 30, 2020 at 2:10 PM Daniel Palmer <daniel@0x0f.com> wrote:
->
-> +&riu {
-> +       smpctrl@204000 {
-> +               compatible = "mstar,smpctrl";
-> +               reg = <0x204000 0x200>;
-> +               status = "okay";
-> +       };
 
-You probably want some more specific compatible value, in case there are
-multiple SoCs from mstar that have an smpctrl block and they don't all use
-an exactly identical register layout.
+--CRkzk4adFE2kMeBa
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-     Arnd
+Hi Sakari,
+
+On Mon 30 Nov 20, 11:28, Sakari Ailus wrote:
+> Hi Paul,
+>=20
+> Thanks for the update. I have a few comments on the driver, too.
+
+Thanks for the review!
+
+[...]
+
+> > +	ret =3D ov5648_write(sensor, OV5648_GAIN_BLUE_MAN_L_REG,
+> > +			   OV5648_GAIN_BLUE_MAN_L(blue_balance));
+>=20
+> return ...
+>=20
+> Same below (and above).
+
+Well I don't think that makes any functional difference, right?
+My personal preference is to have explicit checks even at the end of functi=
+ons
+for symetry and alignment with other blocks.
+
+If it's okay, it'd like to keep it as-is. But if that's against kernel codi=
+ng
+style guidelines, I won't argue more.
+
+[...]
+
+> > +	/* Gain */
+> > +
+> > +	ctrls->gain_auto =3D
+> > +		v4l2_ctrl_new_std(handler, ops, V4L2_CID_AUTOGAIN, 0, 1, 1, 1);
+> > +
+> > +	ctrls->gain =3D v4l2_ctrl_new_std(handler, ops, V4L2_CID_GAIN, 16, 10=
+23,
+> > +					16, 16);
+> > +	ctrls->gain->flags |=3D V4L2_CTRL_FLAG_VOLATILE;
+>=20
+> Note that ctrls->gain may be NULL here. Please move after the handler's
+> error check. Same for link_freq and pixel_rate.
+
+You're right, this is not very safe, I'll fix it.
+
+[...]
+
+> > +static int ov5648_remove(struct i2c_client *client)
+> > +{
+> > +	struct v4l2_subdev *subdev =3D i2c_get_clientdata(client);
+> > +	struct ov5648_sensor *sensor =3D ov5648_subdev_sensor(subdev);
+> > +
+> > +	clk_rate_exclusive_put(sensor->xvclk);
+>=20
+> This seems to be extra now.
+
+Good catch, that's indeed a mistake!
+
+Cheers and thanks,
+
+Paul
+
+--=20
+Paul Kocialkowski, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
+
+--CRkzk4adFE2kMeBa
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEJZpWjZeIetVBefti3cLmz3+fv9EFAl/E+BQACgkQ3cLmz3+f
+v9GHhAf8CLLaWEXbSysD7y5nk1maTTqdd5IRG0Y1IEIzEZI9RSDhumcq+i8ug3sc
+zxQuUnXASqk2Cd+gP9+gOdMEKXPG6MIi5rwPvdbQcgvYN8ueDvQcuzF+bWim3aQ9
+LIbdS9QJgNmSwuC1r6yzQb1nDizd3pcJ5kLHcrX7BCq8MgAu1bTO7ifB8jKU00RY
+cHV5G4FfNz9iDPeDpxQ2RFsEHSPqYN0dd1vXG0a6YYsWfhVw4fuZeXN/DxcBQhV7
+NKo0ORcHSrjVTcRSVloT6CB6pKWJ3xgGt8Ls/lcXxF/7dlNg3pvVAMMHLpSTowpj
+t+atTLuKufo/bs9A7/FM+ING5S+ndA==
+=ATUE
+-----END PGP SIGNATURE-----
+
+--CRkzk4adFE2kMeBa--
