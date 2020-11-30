@@ -2,227 +2,325 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 09EC72C9092
-	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 23:07:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D1892C90A0
+	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 23:08:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730375AbgK3WGW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Nov 2020 17:06:22 -0500
-Received: from gproxy3-pub.mail.unifiedlayer.com ([69.89.30.42]:41658 "EHLO
-        gproxy3-pub.mail.unifiedlayer.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1727590AbgK3WGW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 30 Nov 2020 17:06:22 -0500
-Received: from cmgw10.unifiedlayer.com (unknown [10.9.0.10])
-        by gproxy3.mail.unifiedlayer.com (Postfix) with ESMTP id 7F5AB4002D
-        for <devicetree@vger.kernel.org>; Mon, 30 Nov 2020 15:05:40 -0700 (MST)
-Received: from bh-25.webhostbox.net ([208.91.199.152])
-        by cmsmtp with ESMTP
-        id jrIikluFODlydjrIikZehL; Mon, 30 Nov 2020 15:05:40 -0700
-X-Authority-Reason: nr=8
-X-Authority-Analysis: v=2.3 cv=CakmGojl c=1 sm=1 tr=0
- a=QNED+QcLUkoL9qulTODnwA==:117 a=2cfIYNtKkjgZNaOwnGXpGw==:17
- a=dLZJa+xiwSxG16/P+YVxDGlgEgI=:19 a=kj9zAlcOel0A:10:nop_charset_1
- a=nNwsprhYR40A:10:nop_rcvd_month_year
- a=evQFzbml-YQA:10:endurance_base64_authed_username_1 a=QyXUC8HyAAAA:8
- a=vvbB_Vv7OeDdoZYpeNwA:9 a=CjuIK1q_8ugA:10:nop_charset_2
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=roeck-us.net; s=default; h=In-Reply-To:Content-Type:MIME-Version:References
-        :Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding
-        :Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-        List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=JV5ixtqas0rkze2zayAqxHWmFcjBhEM3F/GNV/L3a1Q=; b=eje+mNUodM+kgX9vRNkXT/7bN5
-        rS5+o2FgIrdK7+3/ZsK979Tul6n5v7+z72cvq9EvgB2lshAlPR6wQAtzuINlkAwI7C9cphRhT5rHw
-        1jI31h9us5TQjVwKwF5ixB5Eh6HAoDyxf5htgm5Aspv/AZYKQ6sQHOQ7hKWkiho8SH0sXG9gjBeNS
-        8Zp6i8azxrs39jIpA45M0OHsEiXI8Op0gKPizTBh9V/7SJ/MqBZ9cnvcbv5XSFxcf+4fzhBve9hL1
-        sOixBzgxBSm5BL9JB3qp2rbqwpGHno1VE3sFA/liSkZMEkqFyAgLF5sA8LLi2tim28gIKN/MNjF7S
-        Z9D22GHg==;
-Received: from 108-223-40-66.lightspeed.sntcca.sbcglobal.net ([108.223.40.66]:56760 helo=localhost)
-        by bh-25.webhostbox.net with esmtpa (Exim 4.93)
-        (envelope-from <linux@roeck-us.net>)
-        id 1kjrIh-001e2T-FL; Mon, 30 Nov 2020 22:05:39 +0000
-Date:   Mon, 30 Nov 2020 14:05:38 -0800
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     vijayakannan.ayyathurai@intel.com
-Cc:     wim@linux-watchdog.org, robh+dt@kernel.org,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        andriy.shevchenko@linux.intel.com, mgross@linux.intel.com,
-        wan.ahmad.zainie.wan.mohamad@intel.com,
-        lakshmi.bai.raja.subramanian@intel.com
-Subject: Re: [PATCH v2 1/2] watchdog: Add watchdog driver for Intel Keembay
- Soc
-Message-ID: <20201130220538.GA42581@roeck-us.net>
-References: <cover.1605028524.git.vijayakannan.ayyathurai@intel.com>
- <870c2fda29b290ee6b9f88b15bd1f173bfad8723.1605028524.git.vijayakannan.ayyathurai@intel.com>
+        id S1730425AbgK3WH4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Nov 2020 17:07:56 -0500
+Received: from mail-il1-f194.google.com ([209.85.166.194]:45472 "EHLO
+        mail-il1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729461AbgK3WH4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Nov 2020 17:07:56 -0500
+Received: by mail-il1-f194.google.com with SMTP id w8so12878303ilg.12;
+        Mon, 30 Nov 2020 14:07:39 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=Il5bX+C/6AFCcXPkSp4GDC8FUcjzfQ4UtKU2jfJxUuU=;
+        b=TyTx369moS42kfKTGXs0al3LkpHJtTmZARxEhU29reT0/yK7JayKuAm1hA3Rux3IFl
+         cXPBmw6d58bx18ZKCQpEbcBiguG6gdR+KE83XWlIrvOvrPB/uIBLILd+lMY2kKVgnmIL
+         gsr5TSm3MChZG+G7lfbAL1p26upLJUqfFlcCZDNnwMKMtWVHYYAUqvEbdcQwuKETfa+i
+         OX9lPo8bJSgL+FHiXNKoisL0Ms5tB7LuaptCgXexxxEkCZPxAukP2n1TU4hLhs0xNXT2
+         3+ksnG2ZsnZwbg0bsRrBHT5svOKsEzIAmKTLoWoIry/Cv2CLFP6MFS8IQOkt0tOj1wgF
+         961w==
+X-Gm-Message-State: AOAM530+ITqiy+GoJnarwwLQdZVijLPFR4JY9vdvX5zrT2pfrD5+JhK5
+        QDw4HxyrBhS4U7X08xX9+A==
+X-Google-Smtp-Source: ABdhPJyHEYIlPLINmOKAGg88zs45cA/PyIQKFe86oDTQlgjR4fA9EKs6gMw9Hbut0YzVaFwN0JE23w==
+X-Received: by 2002:a92:d03:: with SMTP id 3mr21496223iln.197.1606774034237;
+        Mon, 30 Nov 2020 14:07:14 -0800 (PST)
+Received: from xps15 ([64.188.179.253])
+        by smtp.gmail.com with ESMTPSA id o7sm8287994iov.1.2020.11.30.14.07.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 30 Nov 2020 14:07:13 -0800 (PST)
+Received: (nullmailer pid 3117129 invoked by uid 1000);
+        Mon, 30 Nov 2020 22:07:11 -0000
+Date:   Mon, 30 Nov 2020 15:07:11 -0700
+From:   Rob Herring <robh@kernel.org>
+To:     Dongjiu Geng <gengdongjiu@huawei.com>
+Cc:     mturquette@baylibre.com, sboyd@kernel.org, vkoul@kernel.org,
+        dan.j.williams@intel.com, p.zabel@pengutronix.de,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dmaengine@vger.kernel.org
+Subject: Re: [PATCH v5 1/4] dt-bindings: Document the hi3559a clock bindings
+Message-ID: <20201130220711.GA3112118@robh.at.kernel.org>
+References: <20201119200129.28532-1-gengdongjiu@huawei.com>
+ <20201119200129.28532-2-gengdongjiu@huawei.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <870c2fda29b290ee6b9f88b15bd1f173bfad8723.1605028524.git.vijayakannan.ayyathurai@intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - bh-25.webhostbox.net
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - roeck-us.net
-X-BWhitelist: no
-X-Source-IP: 108.223.40.66
-X-Source-L: No
-X-Exim-ID: 1kjrIh-001e2T-FL
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-Source-Sender: 108-223-40-66.lightspeed.sntcca.sbcglobal.net (localhost) [108.223.40.66]:56760
-X-Source-Auth: guenter@roeck-us.net
-X-Email-Count: 5
-X-Org:  HG=direseller_whb_net_legacy;ORG=directi;
-X-Source-Cap: cm9lY2s7YWN0aXZzdG07YmgtMjUud2ViaG9zdGJveC5uZXQ=
-X-Local-Domain: yes
+In-Reply-To: <20201119200129.28532-2-gengdongjiu@huawei.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 11, 2020 at 01:53:07AM +0800, vijayakannan.ayyathurai@intel.com wrote:
-> From: Vijayakannan Ayyathurai <vijayakannan.ayyathurai@intel.com>
+On Thu, Nov 19, 2020 at 08:01:26PM +0000, Dongjiu Geng wrote:
+> Add DT bindings documentation for hi3559a SoC clock.
 > 
-> Intel Keembay Soc requires watchdog timer support.
-> Add watchdog driver to enable this.
-> 
-> Signed-off-by: Vijayakannan Ayyathurai <vijayakannan.ayyathurai@intel.com>
-> Acked-by: Mark Gross <mgross@linux.intel.com>
-> Acked-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> Signed-off-by: Dongjiu Geng <gengdongjiu@huawei.com>
 > ---
->  drivers/watchdog/Kconfig       |  13 ++
->  drivers/watchdog/Makefile      |   1 +
->  drivers/watchdog/keembay_wdt.c | 288 +++++++++++++++++++++++++++++++++
->  3 files changed, 302 insertions(+)
->  create mode 100644 drivers/watchdog/keembay_wdt.c
+>  .../clock/hisilicon,hi3559av100-clock.yaml    |  66 +++++++
+>  include/dt-bindings/clock/hi3559av100-clock.h | 165 ++++++++++++++++++
+>  2 files changed, 231 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/hisilicon,hi3559av100-clock.yaml
+>  create mode 100644 include/dt-bindings/clock/hi3559av100-clock.h
 > 
-> diff --git a/drivers/watchdog/Kconfig b/drivers/watchdog/Kconfig
-> index fd7968635e6d..f412cf2d0f1a 100644
-> --- a/drivers/watchdog/Kconfig
-> +++ b/drivers/watchdog/Kconfig
-> @@ -2163,4 +2163,17 @@ config USBPCWATCHDOG
->  
->  	  Most people will say N.
->  
-> +config KEEMBAY_WATCHDOG
-> +	tristate "Intel Keem Bay SoC non-secure watchdog"
-> +	depends on ARCH_KEEMBAY || (ARM64 && COMPILE_TEST)
-> +	select WATCHDOG_CORE
-> +	help
-> +	 This option enable support for an In-secure watchdog timer driver for
-> +	 Intel Keem Bay SoC. This WDT has a 32 bit timer and decrements in every
-> +	 count unit. An interrupt will be triggered, when the count crosses
-> +	 the thershold configured in the register.
-> +
-> +	 To compile this driver as a module, choose M here: the
-> +	 module will be called keembay_wdt.
-> +
->  endif # WATCHDOG
-> diff --git a/drivers/watchdog/Makefile b/drivers/watchdog/Makefile
-> index 071a2e50be98..f6f9f434f407 100644
-> --- a/drivers/watchdog/Makefile
-> +++ b/drivers/watchdog/Makefile
-> @@ -146,6 +146,7 @@ obj-$(CONFIG_INTEL_MEI_WDT) += mei_wdt.o
->  obj-$(CONFIG_NI903X_WDT) += ni903x_wdt.o
->  obj-$(CONFIG_NIC7018_WDT) += nic7018_wdt.o
->  obj-$(CONFIG_MLX_WDT) += mlx_wdt.o
-> +obj-$(CONFIG_KEEMBAY_WATCHDOG) += keembay_wdt.o
->  
->  # M68K Architecture
->  obj-$(CONFIG_M54xx_WATCHDOG) += m54xx_wdt.o
-> diff --git a/drivers/watchdog/keembay_wdt.c b/drivers/watchdog/keembay_wdt.c
+> diff --git a/Documentation/devicetree/bindings/clock/hisilicon,hi3559av100-clock.yaml b/Documentation/devicetree/bindings/clock/hisilicon,hi3559av100-clock.yaml
 > new file mode 100644
-> index 000000000000..1d08c7f0f16c
+> index 000000000000..0f531e8186d2
 > --- /dev/null
-> +++ b/drivers/watchdog/keembay_wdt.c
-> @@ -0,0 +1,288 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
+> +++ b/Documentation/devicetree/bindings/clock/hisilicon,hi3559av100-clock.yaml
+> @@ -0,0 +1,66 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/hisilicon,hi3559av100-clock.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Hisilicon SOC Clock for HI3559AV100
+> +
+> +maintainers:
+> +  - Dongjiu Geng <gengdongjiu@huawei.com>
+> +
+> +description: |
+> +  Hisilicon SOC clock control module which supports the clocks, resets and
+> +  power domains on HI3559AV100.
+> +
+> +  See also:
+> +    dt-bindings/clock/hi3559av100-clock.h
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - hisilicon,hi3559av100-clock
+> +      - hisilicon,hi3559av100-shub-clock
+> +
+> +  reg:
+> +    minItems: 1
+> +    maxItems: 2
+> +
+> +  '#clock-cells':
+> +    const: 1
+> +
+> +  '#reset-cells':
+> +    const: 2
+
+What's in each cell?
+
+> +
+> +  '#address-cells':
+> +    const: 2
+> +
+> +  '#size-cells':
+> +    const: 2
+
+#address-cells and #size-cells are for child nodes, but you have none so 
+drop them.
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - '#clock-cells'
+> +  - '#reset-cells'
+> +  - '#address-cells'
+> +  - '#size-cells'
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    soc {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +
+> +        clock: clock0@12010000 {
+
+clock-controller@...
+
+> +            compatible = "hisilicon,hi3559av100-clock";
+> +            #address-cells = <2>;
+> +            #size-cells = <2>;
+> +            #clock-cells = <1>;
+> +            #reset-cells = <2>;
+> +            reg = <0x0 0x12010000 0x0 0x10000>;
+> +        };
+> +    };
+> +...
+> diff --git a/include/dt-bindings/clock/hi3559av100-clock.h b/include/dt-bindings/clock/hi3559av100-clock.h
+> new file mode 100644
+> index 000000000000..88baa86cff85
+> --- /dev/null
+> +++ b/include/dt-bindings/clock/hi3559av100-clock.h
+> @@ -0,0 +1,165 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
+
+Don't care about non-GPL OS/users?
+
 > +/*
-> + * Watchdog driver for Intel Keem Bay non-secure watchdog.
+> + * Copyright (c) 2019-2020, Huawei Tech. Co., Ltd.
 > + *
-> + * Copyright (C) 2020 Intel Corporation
+> + * Author: Dongjiu Geng <gengdongjiu@huawei.com>
 > + */
 > +
-> +#include <linux/arm-smccc.h>
-> +#include <linux/bits.h>
-> +#include <linux/clk.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/io.h>
-> +#include <linux/limits.h>
-> +#include <linux/module.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/reboot.h>
-> +#include <linux/watchdog.h>
+> +#ifndef __DTS_HI3559AV100_CLOCK_H
+> +#define __DTS_HI3559AV100_CLOCK_H
 > +
-> +/* Non-secure watchdog register offsets */
-> +#define TIM_WATCHDOG		0x0
-> +#define TIM_WATCHDOG_INT_THRES	0x4
-> +#define TIM_WDOG_EN		0x8
-> +#define TIM_SAFE		0xc
+> +/*  fixed   rate    */
+> +#define HI3559AV100_FIXED_1188M     1
+> +#define HI3559AV100_FIXED_1000M     2
+> +#define HI3559AV100_FIXED_842M      3
+> +#define HI3559AV100_FIXED_792M      4
+> +#define HI3559AV100_FIXED_750M      5
+> +#define HI3559AV100_FIXED_710M      6
+> +#define HI3559AV100_FIXED_680M      7
+> +#define HI3559AV100_FIXED_667M      8
+> +#define HI3559AV100_FIXED_631M      9
+> +#define HI3559AV100_FIXED_600M      10
+> +#define HI3559AV100_FIXED_568M      11
+> +#define HI3559AV100_FIXED_500M      12
+> +#define HI3559AV100_FIXED_475M      13
+> +#define HI3559AV100_FIXED_428M      14
+> +#define HI3559AV100_FIXED_400M      15
+> +#define HI3559AV100_FIXED_396M      16
+> +#define HI3559AV100_FIXED_300M      17
+> +#define HI3559AV100_FIXED_250M      18
+> +#define HI3559AV100_FIXED_198M      19
+> +#define HI3559AV100_FIXED_187p5M    20
+> +#define HI3559AV100_FIXED_150M      21
+> +#define HI3559AV100_FIXED_148p5M    22
+> +#define HI3559AV100_FIXED_125M      23
+> +#define HI3559AV100_FIXED_107M      24
+> +#define HI3559AV100_FIXED_100M      25
+> +#define HI3559AV100_FIXED_99M       26
+> +#define HI3559AV100_FIXED_74p25M    27
+> +#define HI3559AV100_FIXED_72M       28
+> +#define HI3559AV100_FIXED_60M       29
+> +#define HI3559AV100_FIXED_54M       30
+> +#define HI3559AV100_FIXED_50M       31
+> +#define HI3559AV100_FIXED_49p5M     32
+> +#define HI3559AV100_FIXED_37p125M   33
+> +#define HI3559AV100_FIXED_36M       34
+> +#define HI3559AV100_FIXED_32p4M     35
+> +#define HI3559AV100_FIXED_27M       36
+> +#define HI3559AV100_FIXED_25M       37
+> +#define HI3559AV100_FIXED_24M       38
+> +#define HI3559AV100_FIXED_12M       39
+> +#define HI3559AV100_FIXED_3M        40
+> +#define HI3559AV100_FIXED_1p6M      41
+> +#define HI3559AV100_FIXED_400K      42
+> +#define HI3559AV100_FIXED_100K      43
+> +#define HI3559AV100_FIXED_200M      44
+> +#define HI3559AV100_FIXED_75M       75
 > +
-> +#define WDT_ISR_MASK		GENMASK(9, 8)
-> +#define WDT_ISR_CLEAR		0x8200ff18
-> +#define WDT_UNLOCK		0xf1d0dead
-> +#define WDT_LOAD_MAX		U32_MAX
-> +#define WDT_LOAD_MIN		1
-> +#define WDT_TIMEOUT		5
+> +#define HI3559AV100_I2C0_CLK    50
+> +#define HI3559AV100_I2C1_CLK    51
+> +#define HI3559AV100_I2C2_CLK    52
+> +#define HI3559AV100_I2C3_CLK    53
+> +#define HI3559AV100_I2C4_CLK    54
+> +#define HI3559AV100_I2C5_CLK    55
+> +#define HI3559AV100_I2C6_CLK    56
+> +#define HI3559AV100_I2C7_CLK    57
+> +#define HI3559AV100_I2C8_CLK    58
+> +#define HI3559AV100_I2C9_CLK    59
+> +#define HI3559AV100_I2C10_CLK   60
+> +#define HI3559AV100_I2C11_CLK   61
 > +
-> +static unsigned int timeout = WDT_TIMEOUT;
-> +module_param(timeout, int, 0);
-> +MODULE_PARM_DESC(timeout, "Watchdog timeout period in seconds (default = "
-> +		 __MODULE_STRING(WDT_TIMEOUT) ")");
+> +#define HI3559AV100_SPI0_CLK    62
+> +#define HI3559AV100_SPI1_CLK    63
+> +#define HI3559AV100_SPI2_CLK    64
+> +#define HI3559AV100_SPI3_CLK    65
+> +#define HI3559AV100_SPI4_CLK    66
+> +#define HI3559AV100_SPI5_CLK    67
+> +#define HI3559AV100_SPI6_CLK    68
 > +
-> +static bool nowayout = WATCHDOG_NOWAYOUT;
-> +module_param(nowayout, bool, 0);
-> +MODULE_PARM_DESC(nowayout, "Watchdog cannot be stopped once started (default = "
-> +		 __MODULE_STRING(WATCHDOG_NOWAYOUT) ")");
+> +#define HI3559AV100_EDMAC_CLK     69
+> +#define HI3559AV100_EDMAC_AXICLK  70
+> +#define HI3559AV100_EDMAC1_CLK    71
+> +#define HI3559AV100_EDMAC1_AXICLK 72
+> +#define HI3559AV100_VDMAC_CLK     73
 > +
-> +struct keembay_wdt {
-> +	struct watchdog_device	wdd;
-> +	struct clk		*clk;
-> +	unsigned int		rate;
-> +	int			to_irq;
-> +	int			th_irq;
-> +	void __iomem		*base;
-> +};
+> +/*  mux clocks  */
+> +#define HI3559AV100_FMC_MUX     80
+> +#define HI3559AV100_SYSAPB_MUX  81
+> +#define HI3559AV100_UART_MUX    82
+> +#define HI3559AV100_SYSBUS_MUX  83
+> +#define HI3559AV100_A73_MUX     84
+> +#define HI3559AV100_MMC0_MUX    85
+> +#define HI3559AV100_MMC1_MUX    86
+> +#define HI3559AV100_MMC2_MUX    87
+> +#define HI3559AV100_MMC3_MUX    88
 > +
-> +static inline u32 keembay_wdt_readl(struct keembay_wdt *wdt, u32 offset)
-> +{
-> +	return readl(wdt->base + offset);
-> +}
+> +/*  gate    clocks  */
+> +#define HI3559AV100_FMC_CLK     90
+> +#define HI3559AV100_UART0_CLK   91
+> +#define HI3559AV100_UART1_CLK   92
+> +#define HI3559AV100_UART2_CLK   93
+> +#define HI3559AV100_UART3_CLK   94
+> +#define HI3559AV100_UART4_CLK   95
+> +#define HI3559AV100_MMC0_CLK    96
+> +#define HI3559AV100_MMC1_CLK    97
+> +#define HI3559AV100_MMC2_CLK    98
+> +#define HI3559AV100_MMC3_CLK    99
 > +
-> +static inline void keembay_wdt_writel(struct keembay_wdt *wdt,
-> +				      u32 offset, u32 val)
-> +{
-> +	writel(WDT_UNLOCK, wdt->base + TIM_SAFE);
-> +	writel(val, wdt->base + offset);
-> +}
+> +#define HI3559AV100_ETH_CLK         100
+> +#define HI3559AV100_ETH_MACIF_CLK   101
+> +#define HI3559AV100_ETH1_CLK        102
+> +#define HI3559AV100_ETH1_MACIF_CLK  103
 > +
-> +static void keembay_wdt_set_timeout_reg(struct watchdog_device *wdog, bool ping)
-> +{
-> +	struct keembay_wdt *wdt = watchdog_get_drvdata(wdog);
-> +	u32 th_val = 0;
+> +/*  complex */
+> +#define HI3559AV100_MAC0_CLK                110
+> +#define HI3559AV100_MAC1_CLK                111
+> +#define HI3559AV100_SATA_CLK                112
+> +#define HI3559AV100_USB_CLK                 113
+> +#define HI3559AV100_USB1_CLK                114
 > +
-> +	if (ping)
-> +		keembay_wdt_writel(wdt, TIM_WATCHDOG, wdog->timeout * wdt->rate);
+> +/* pll clocks */
+> +#define HI3559AV100_APLL_CLK                250
+> +#define HI3559AV100_GPLL_CLK                251
 > +
-> +	if (!ping && wdog->pretimeout) {
-> +		th_val = wdog->timeout - wdog->pretimeout;
-> +		keembay_wdt_writel(wdt, TIM_WATCHDOG_INT_THRES, th_val * wdt->rate);
-> +	}
+> +#define HI3559AV100_CRG_NR_CLKS	            256
 > +
-> +	if (!ping)
-> +		keembay_wdt_writel(wdt, TIM_WATCHDOG, wdog->timeout * wdt->rate);
-
-I am a bit at loss here. This seems unnecessarily complex. Why not just the following ?
-
-	if (!ping && wdog->pretimeout) {
-		th_val = wdog->timeout - wdog->pretimeout;
-		keembay_wdt_writel(wdt, TIM_WATCHDOG_INT_THRES, th_val * wdt->rate);
-	}
-	keembay_wdt_writel(wdt, TIM_WATCHDOG, wdog->timeout * wdt->rate);
-
-Thanks,
-Guenter
+> +#define HI3559AV100_SHUB_SOURCE_SOC_24M	    0
+> +#define HI3559AV100_SHUB_SOURCE_SOC_200M    1
+> +#define HI3559AV100_SHUB_SOURCE_SOC_300M    2
+> +#define HI3559AV100_SHUB_SOURCE_PLL         3
+> +#define HI3559AV100_SHUB_SOURCE_CLK         4
+> +
+> +#define HI3559AV100_SHUB_I2C0_CLK           10
+> +#define HI3559AV100_SHUB_I2C1_CLK           11
+> +#define HI3559AV100_SHUB_I2C2_CLK           12
+> +#define HI3559AV100_SHUB_I2C3_CLK           13
+> +#define HI3559AV100_SHUB_I2C4_CLK           14
+> +#define HI3559AV100_SHUB_I2C5_CLK           15
+> +#define HI3559AV100_SHUB_I2C6_CLK           16
+> +#define HI3559AV100_SHUB_I2C7_CLK           17
+> +
+> +#define HI3559AV100_SHUB_SPI_SOURCE_CLK     20
+> +#define HI3559AV100_SHUB_SPI4_SOURCE_CLK    21
+> +#define HI3559AV100_SHUB_SPI0_CLK           22
+> +#define HI3559AV100_SHUB_SPI1_CLK           23
+> +#define HI3559AV100_SHUB_SPI2_CLK           24
+> +#define HI3559AV100_SHUB_SPI3_CLK           25
+> +#define HI3559AV100_SHUB_SPI4_CLK           26
+> +
+> +#define HI3559AV100_SHUB_UART_CLK_32K       30
+> +#define HI3559AV100_SHUB_UART_SOURCE_CLK    31
+> +#define HI3559AV100_SHUB_UART_DIV_CLK       32
+> +#define HI3559AV100_SHUB_UART0_CLK          33
+> +#define HI3559AV100_SHUB_UART1_CLK          34
+> +#define HI3559AV100_SHUB_UART2_CLK          35
+> +#define HI3559AV100_SHUB_UART3_CLK          36
+> +#define HI3559AV100_SHUB_UART4_CLK          37
+> +#define HI3559AV100_SHUB_UART5_CLK          38
+> +#define HI3559AV100_SHUB_UART6_CLK          39
+> +
+> +#define HI3559AV100_SHUB_EDMAC_CLK          40
+> +
+> +#define HI3559AV100_SHUB_NR_CLKS            50
+> +
+> +#endif  /* __DTS_HI3559AV100_CLOCK_H */
+> +
+> -- 
+> 2.17.1
+> 
