@@ -2,33 +2,34 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 79E2F2C826E
-	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 11:44:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BCFDA2C8273
+	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 11:44:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727288AbgK3Kmy convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 30 Nov 2020 05:42:54 -0500
-Received: from relay12.mail.gandi.net ([217.70.178.232]:55335 "EHLO
-        relay12.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726928AbgK3Kmy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Nov 2020 05:42:54 -0500
+        id S1728360AbgK3KoY convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 30 Nov 2020 05:44:24 -0500
+Received: from relay6-d.mail.gandi.net ([217.70.183.198]:46023 "EHLO
+        relay6-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726928AbgK3KoX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Nov 2020 05:44:23 -0500
+X-Originating-IP: 91.175.115.186
 Received: from localhost (91-175-115-186.subs.proxad.net [91.175.115.186])
         (Authenticated sender: gregory.clement@bootlin.com)
-        by relay12.mail.gandi.net (Postfix) with ESMTPSA id EFF11200002;
-        Mon, 30 Nov 2020 10:42:11 +0000 (UTC)
+        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id 13421C0007;
+        Mon, 30 Nov 2020 10:43:40 +0000 (UTC)
 From:   Gregory CLEMENT <gregory.clement@bootlin.com>
-To:     Pali =?utf-8?Q?Roh=C3=A1r?= <pali@kernel.org>
-Cc:     Jason Cooper <jason@lakedaemon.net>, Andrew Lunn <andrew@lunn.ch>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andre Heider <a.heider@gmail.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] arm64: dts: marvell: espressobin: Update link to V7
- schematic
-In-Reply-To: <20201005133513.8649-1-pali@kernel.org>
-References: <20200925084306.16309-1-pali@kernel.org>
- <20201005133513.8649-1-pali@kernel.org>
-Date:   Mon, 30 Nov 2020 11:42:11 +0100
-Message-ID: <87eekbjfcs.fsf@BL-laptop>
+To:     Marek =?utf-8?Q?Beh=C3=BAn?= <kabel@kernel.org>
+Cc:     arm@kernel.org, Marek =?utf-8?Q?Beh=C3=BAn?= <kabel@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <uwe@kleine-koenig.org>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Andreas =?utf-8?Q?F=C3=A4rber?= <afaerber@suse.de>,
+        Andrew Lunn <andrew@lunn.ch>, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH mvebu-dt v3 0/7] Turris Omnia device-tree changes
+In-Reply-To: <20201115135923.11523-1-kabel@kernel.org>
+References: <20201115135923.11523-1-kabel@kernel.org>
+Date:   Mon, 30 Nov 2020 11:43:40 +0100
+Message-ID: <87blffjfab.fsf@BL-laptop>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 8BIT
@@ -36,57 +37,59 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Pali,
+Hello Marek,
 
-> Up-to-date version of V7 schematic is on new URL linked from official
-> tech-spec webpage http://espressobin.net/tech-spec/
+> Hi Gregory,
 >
-> Signed-off-by: Pali Rohár <pali@kernel.org>
+> v3 of series with changes for Turris Omnia device tree.
 
-
-Applied on mvebu/dt64
+I applied the full series on mvebu/dt
 
 Thanks,
 
 Gregory
 
+
 >
-> ---
-> Changes in V2:
-> * Added commit description
-> ---
->  arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7-emmc.dts | 2 +-
->  arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7.dts      | 2 +-
->  2 files changed, 2 insertions(+), 2 deletions(-)
+> Changes since v2 (mostly thanks to Andreas):
+> - fixed typo in 2/7
+> - updated comment in 4/7 (describing current SFP cage binding status)
+> - changed commit message in 4/7 a little bit
+> - changed LED_FUNCTION_DEBUG to LED_FUNCTION_INDICATOR in 5/7
+> - updated comment about LED controller in 5/7
+> - added 7/7 which removes 2 unneeded status = "okay"
 >
-> diff --git a/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7-emmc.dts b/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7-emmc.dts
-> index e225dce64b9e..4775a7eda481 100644
-> --- a/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7-emmc.dts
-> +++ b/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7-emmc.dts
-> @@ -8,7 +8,7 @@
->   *
->   */
->  /*
-> - * Schematic available at http://wiki.espressobin.net/tiki-download_file.php?fileId=200
-> + * Schematic available at http://espressobin.net/wp-content/uploads/2020/05/ESPRESSObin_V7-0_Schematic.pdf
->   */
->  
->  /dts-v1/;
-> diff --git a/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7.dts b/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7.dts
-> index 44dbe9a21cc7..c47a93978386 100644
-> --- a/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7.dts
-> +++ b/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7.dts
-> @@ -8,7 +8,7 @@
->   *
->   */
->  /*
-> - * Schematic available at http://wiki.espressobin.net/tiki-download_file.php?fileId=200
-> + * Schematic available at http://espressobin.net/wp-content/uploads/2020/05/ESPRESSObin_V7-0_Schematic.pdf
->   */
->  
->  /dts-v1/;
+> Changes since v1:
+> - added patch which adds description for switch interrupt
+> - removed patch adding ethernet-phy interrupt: the PHY interrupt is
+>   asserted by level low, but the GPIO expander driver supports only
+>   edge rising/falling, and even then it may not be correct when an
+>   interrupt storm occurs. So keep polling the PHY
+> - added Andrew's Reviewed-by tags
+>
+> Cc: linux-arm-kernel@lists.infradead.org
+> Cc: Uwe Kleine-König <uwe@kleine-koenig.org>
+> Cc: Jason Cooper <jason@lakedaemon.net>
+> Cc: Gregory CLEMENT <gregory.clement@bootlin.com>
+> Cc: Andreas Färber <afaerber@suse.de>
+> Cc: Andrew Lunn <andrew@lunn.ch>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: devicetree@vger.kernel.org
+>
+> Marek Behún (7):
+>   ARM: dts: turris-omnia: enable HW buffer management
+>   ARM: dts: turris-omnia: add comphy handle to eth2
+>   ARM: dts: turris-omnia: describe switch interrupt
+>   ARM: dts: turris-omnia: add SFP node
+>   ARM: dts: turris-omnia: add LED controller node
+>   ARM: dts: turris-omnia: update ethernet-phy node and handle name
+>   ARM: dts: turris-omnia: remove unneeded status = "okay" properties
+>
+>  arch/arm/boot/dts/armada-385-turris-omnia.dts | 178 +++++++++++++++++-
+>  1 file changed, 170 insertions(+), 8 deletions(-)
+>
 > -- 
-> 2.20.1
+> 2.26.2
 >
 
 -- 
