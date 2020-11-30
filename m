@@ -2,96 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 600922C89C5
-	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 17:41:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D21F12C89D7
+	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 17:47:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727935AbgK3Qkx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Nov 2020 11:40:53 -0500
-Received: from mail-il1-f195.google.com ([209.85.166.195]:42323 "EHLO
-        mail-il1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727924AbgK3Qkw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Nov 2020 11:40:52 -0500
-Received: by mail-il1-f195.google.com with SMTP id f5so11882352ilj.9;
-        Mon, 30 Nov 2020 08:40:37 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=bAYc28O40kbetv9cXus2ITFmscdZF+ewqzJQFnlg8NE=;
-        b=rTGAJbaL01siTjSFUfKc6mUECZtsPovF879e/C22LUBk/TOWLtMEmOtVLV66m6dEmb
-         U5bUEaxTqmPxbbymDBgK60X5e66ZJUnY0kxP+XqOSaEGQQxEPO4T2qS6+BDRtt96dp/x
-         Gdmw4FYJlzn/xJZ/vGUWqkswnQ7b9+NkX/WM0Y8e6aGULUCFw5WWlDLq2ZlE/WiYEAtK
-         pTLJCWm1raiVg8UtBSmxGbTP7J19im7zyIU8RqpvZzh9A7iNdAsXxT/XBtKObB5Kglju
-         SeqSuOBcUJvhH1oS8YieiLeB3AiCba6rBrhatDAFclVhr6dEmX7iHasA29f3zeDn/gvf
-         V3/w==
-X-Gm-Message-State: AOAM533K8eWJejk4x0atbvD2ztrsNjLfKhfOHQ+QqDhlLxu1PJMeiVSZ
-        0KErhXzF7aJmwInhKT37Vw==
-X-Google-Smtp-Source: ABdhPJxRWZfczSYCVHlAHpdcSkC/qm5wJX03gIby4IS304rXTN1z3EjI2USfEgJ9eEXADu3AgXzv6g==
-X-Received: by 2002:a92:c887:: with SMTP id w7mr18648555ilo.277.1606754411806;
-        Mon, 30 Nov 2020 08:40:11 -0800 (PST)
-Received: from xps15 ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id u1sm11192110ilb.74.2020.11.30.08.40.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Nov 2020 08:40:11 -0800 (PST)
-Received: (nullmailer pid 2594996 invoked by uid 1000);
-        Mon, 30 Nov 2020 16:40:09 -0000
-Date:   Mon, 30 Nov 2020 09:40:09 -0700
-From:   Rob Herring <robh@kernel.org>
-To:     Damien Le Moal <damien.lemoal@wdc.com>
+        id S1726270AbgK3QqQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Nov 2020 11:46:16 -0500
+Received: from mail.kernel.org ([198.145.29.99]:60134 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726063AbgK3QqQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 30 Nov 2020 11:46:16 -0500
+Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 961862073C;
+        Mon, 30 Nov 2020 16:45:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1606754735;
+        bh=Oh3tU0deY++C3c9fSEU3/i5KpOc3iveL2tcsF2s9Uco=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=ap9Y4tbjDuDnDzzEGXp19gyhaf74pgh52Qahrg7y2ucf6bdhTiY0aEaIch3eMLJen
+         wje+rqRWRXWZPz8Og3Wf+TT/R3zG58O49A1RqyMUAKW1AKLCd4+b7adE2MO5z01RLH
+         P2JVW1/yd/j1Els3nybx1fX/egf6/dbj0OsoJEpk=
+Date:   Mon, 30 Nov 2020 16:45:06 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Adam Ward <Adam.Ward.opensource@diasemi.com>
 Cc:     Rob Herring <robh+dt@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Sean Anderson <seanga2@gmail.com>, linux-clk@vger.kernel.org,
-        Stephen Boyd <sboyd@kernel.org>,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-gpio@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>
-Subject: Re: [PATCH v2 10/21] dt-binding: Document canaan,k210-sysctl bindings
-Message-ID: <20201130164009.GA2593992@robh.at.kernel.org>
-References: <20201124043728.199852-1-damien.lemoal@wdc.com>
- <20201124043728.199852-11-damien.lemoal@wdc.com>
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Vincent Whitchurch <vincent.whitchurch@axis.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Support Opensource <support.opensource@diasemi.com>
+Subject: Re: [PATCH V2 0/9] regulator: da9121: extend support to variants,
+ add features
+Message-ID: <20201130164506.GD4756@sirena.org.uk>
+References: <cover.1606750000.git.Adam.Ward.opensource@diasemi.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="hxkXGo8AKqTJ+9QI"
 Content-Disposition: inline
-In-Reply-To: <20201124043728.199852-11-damien.lemoal@wdc.com>
+In-Reply-To: <cover.1606750000.git.Adam.Ward.opensource@diasemi.com>
+X-Cookie: Space is limited.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 24 Nov 2020 13:37:17 +0900, Damien Le Moal wrote:
-> Document the device tree bindings of the Canaan Kendryte K210 SoC
-> system controller driver in
-> Documentation/devicetree/bindings/mfd/canaan,k210-sysctl.yaml.
-> 
-> Signed-off-by: Damien Le Moal <damien.lemoal@wdc.com>
-> ---
->  .../bindings/mfd/canaan,k210-sysctl.yaml      | 116 ++++++++++++++++++
->  1 file changed, 116 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mfd/canaan,k210-sysctl.yaml
-> 
 
+--hxkXGo8AKqTJ+9QI
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-My bot found errors running 'make dt_binding_check' on your patch:
+On Mon, Nov 30, 2020 at 03:42:44PM +0000, Adam Ward wrote:
+>   regulator: da9121: add interrupt support
+>=20
+>  drivers/regulator/Kconfig            |   14 +-
+>  drivers/regulator/da9121-regulator.c | 1033 ++++++++++++++++++++++++++++=
+++++--
+>  drivers/regulator/da9121-regulator.h |  291 ++++++++++
+>  include/linux/regulator/da9121.h     |   36 ++
+>  4 files changed, 1336 insertions(+), 38 deletions(-)
+>  create mode 100644 drivers/regulator/da9121-regulator.h
+>  create mode 100644 include/linux/regulator/da9121.h
 
-yamllint warnings/errors:
+This adds new compatible strings so needs to update the binding document
+too.
 
-dtschema/dtc warnings/errors:
-Unknown file referenced: [Errno 2] No such file or directory: '/usr/local/lib/python3.8/dist-packages/dtschema/schemas/clock/canaan,k210-clk.yaml'
-xargs: dt-doc-validate: exited with status 255; aborting
-make[1]: *** [Documentation/devicetree/bindings/Makefile:59: Documentation/devicetree/bindings/processed-schema-examples.json] Error 124
-make: *** [Makefile:1364: dt_binding_check] Error 2
+--hxkXGo8AKqTJ+9QI
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
 
-See https://patchwork.ozlabs.org/patch/1405243
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl/FIZEACgkQJNaLcl1U
+h9CftQf/fl2XdJ8/F5kP1quQjffPcGmM12vnnT1giLEmyB0D5a/tW33woT+4ZAzK
+A5ytp9+QXkoUC4OWDk/xu6hFyoX9+Gf8P+nDhJ24fQKlQwK56gb/06bHSE/XiDSY
+4qEm4idyExUU5/5QzJk4gSazKD9An9BNeyO6JEBe+dLk4FqPUkOfcsogd1ifyZVP
+vK5Z7qhiCa2yNaoUnjjnhmUf4gKdRi3rTkGiiJpTSb+tbrPIAtlJzgQuXm4Kn5BU
+K2rJbao2slWNFASutbMzOalF7Ste9Az6+cnfOIq1RWiZIxBsI+wSoo5+O7ktuBW1
+yZ9jW/g6SO1R52XiwPgG+HKX+IKxmg==
+=5k7c
+-----END PGP SIGNATURE-----
 
-The base for the patch is generally the last rc1. Any dependencies
-should be noted.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+--hxkXGo8AKqTJ+9QI--
