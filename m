@@ -2,97 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BCFDA2C8273
-	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 11:44:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D4442C8298
+	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 11:51:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728360AbgK3KoY convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 30 Nov 2020 05:44:24 -0500
-Received: from relay6-d.mail.gandi.net ([217.70.183.198]:46023 "EHLO
-        relay6-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726928AbgK3KoX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Nov 2020 05:44:23 -0500
-X-Originating-IP: 91.175.115.186
-Received: from localhost (91-175-115-186.subs.proxad.net [91.175.115.186])
-        (Authenticated sender: gregory.clement@bootlin.com)
-        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id 13421C0007;
-        Mon, 30 Nov 2020 10:43:40 +0000 (UTC)
-From:   Gregory CLEMENT <gregory.clement@bootlin.com>
-To:     Marek =?utf-8?Q?Beh=C3=BAn?= <kabel@kernel.org>
-Cc:     arm@kernel.org, Marek =?utf-8?Q?Beh=C3=BAn?= <kabel@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <uwe@kleine-koenig.org>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Andreas =?utf-8?Q?F=C3=A4rber?= <afaerber@suse.de>,
-        Andrew Lunn <andrew@lunn.ch>, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH mvebu-dt v3 0/7] Turris Omnia device-tree changes
-In-Reply-To: <20201115135923.11523-1-kabel@kernel.org>
-References: <20201115135923.11523-1-kabel@kernel.org>
-Date:   Mon, 30 Nov 2020 11:43:40 +0100
-Message-ID: <87blffjfab.fsf@BL-laptop>
+        id S1725976AbgK3Kt1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Nov 2020 05:49:27 -0500
+Received: from mail.kernel.org ([198.145.29.99]:33400 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725972AbgK3Kt1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 30 Nov 2020 05:49:27 -0500
+Received: from localhost (unknown [122.171.214.243])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id B32C7206B7;
+        Mon, 30 Nov 2020 10:48:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1606733326;
+        bh=t4+Yw1to2e7xKgHNLaIR4ydZHUYF8sCvmH3H7OvgUYw=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Q6ABZ3ILaOWWixyG25jTCRyYw/uqAHD9dELum8N03AlcBEwYd8gq9fdQHnsBzaylV
+         bGU9UyYOpsWAfD3puDwururN+Tzl0434GJ4LlgBMz9u0FXWwKbuHTeHmzJtlAytemB
+         mMZyT19WvoNPT3aaiswPrSSMzSzw3/uN+AvIf2gY=
+Date:   Mon, 30 Nov 2020 16:18:37 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Cc:     robh+dt@kernel.org, kishon@ti.com, gregkh@linuxfoundation.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        devel@driverdev.osuosl.org, neil@brown.name
+Subject: Re: [PATCH v6 0/4] MT7621 PCIe PHY
+Message-ID: <20201130104837.GO8403@vkoul-mobl>
+References: <20201121155037.21354-1-sergio.paracuellos@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201121155037.21354-1-sergio.paracuellos@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Marek,
+On 21-11-20, 16:50, Sergio Paracuellos wrote:
+> This series adds support for the PCIe PHY found in the Mediatek
+> MT7621 SoC.
+> 
+> There is also a 'mt7621-pci' driver which is the controller part
+> which is still in staging and is a client of this phy.
+> 
+> Both drivers have been tested together in a gnubee1 board.
+> 
+> This series are rebased on the top of linux-phy:
+> commit 768a711e2d4b ("phy: samsung: phy-exynos-pcie: fix typo 'tunning'")
 
-> Hi Gregory,
->
-> v3 of series with changes for Turris Omnia device tree.
-
-I applied the full series on mvebu/dt
-
-Thanks,
-
-Gregory
-
-
->
-> Changes since v2 (mostly thanks to Andreas):
-> - fixed typo in 2/7
-> - updated comment in 4/7 (describing current SFP cage binding status)
-> - changed commit message in 4/7 a little bit
-> - changed LED_FUNCTION_DEBUG to LED_FUNCTION_INDICATOR in 5/7
-> - updated comment about LED controller in 5/7
-> - added 7/7 which removes 2 unneeded status = "okay"
->
-> Changes since v1:
-> - added patch which adds description for switch interrupt
-> - removed patch adding ethernet-phy interrupt: the PHY interrupt is
->   asserted by level low, but the GPIO expander driver supports only
->   edge rising/falling, and even then it may not be correct when an
->   interrupt storm occurs. So keep polling the PHY
-> - added Andrew's Reviewed-by tags
->
-> Cc: linux-arm-kernel@lists.infradead.org
-> Cc: Uwe Kleine-König <uwe@kleine-koenig.org>
-> Cc: Jason Cooper <jason@lakedaemon.net>
-> Cc: Gregory CLEMENT <gregory.clement@bootlin.com>
-> Cc: Andreas Färber <afaerber@suse.de>
-> Cc: Andrew Lunn <andrew@lunn.ch>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: devicetree@vger.kernel.org
->
-> Marek Behún (7):
->   ARM: dts: turris-omnia: enable HW buffer management
->   ARM: dts: turris-omnia: add comphy handle to eth2
->   ARM: dts: turris-omnia: describe switch interrupt
->   ARM: dts: turris-omnia: add SFP node
->   ARM: dts: turris-omnia: add LED controller node
->   ARM: dts: turris-omnia: update ethernet-phy node and handle name
->   ARM: dts: turris-omnia: remove unneeded status = "okay" properties
->
->  arch/arm/boot/dts/armada-385-turris-omnia.dts | 178 +++++++++++++++++-
->  1 file changed, 170 insertions(+), 8 deletions(-)
->
-> -- 
-> 2.26.2
->
+Applied, thanks
 
 -- 
-Gregory Clement, Bootlin
-Embedded Linux and Kernel engineering
-http://bootlin.com
+~Vinod
