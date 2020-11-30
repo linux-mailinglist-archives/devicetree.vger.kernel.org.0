@@ -2,62 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7DA302C8984
-	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 17:29:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D64162C899C
+	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 17:34:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728764AbgK3Q3V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Nov 2020 11:29:21 -0500
-Received: from gloria.sntech.de ([185.11.138.130]:45408 "EHLO gloria.sntech.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728863AbgK3Q3U (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 30 Nov 2020 11:29:20 -0500
-Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=phil.lan)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1kjm2R-0003Mu-Bk; Mon, 30 Nov 2020 17:28:31 +0100
-From:   Heiko Stuebner <heiko@sntech.de>
-To:     linux-media@vger.kernel.org,
-        Helen Koike <helen.koike@collabora.com>
-Cc:     Heiko Stuebner <heiko@sntech.de>, kernel@collabora.com,
-        dafna.hirschfeld@collabora.com, devicetree@vger.kernel.org,
-        karthik.poduval@gmail.com, zhengsq@rock-chips.com,
-        linux-kernel@vger.kernel.org, robin.murphy@arm.com,
-        linux-rockchip@lists.infradead.org, hverkuil-cisco@xs4all.nl,
-        mark.rutland@arm.com, jbx6244@gmail.com,
-        devel@driverdev.osuosl.org, eddie.cai.linux@gmail.com,
-        robh+dt@kernel.org
-Subject: Re: (subset) [PATCH v6 0/9] move Rockchip ISP bindings out of staging / add ISP DT nodes for RK3399
-Date:   Mon, 30 Nov 2020 17:28:29 +0100
-Message-Id: <160675369960.1150759.2276623622378204083.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20201020193850.1460644-1-helen.koike@collabora.com>
-References: <20201020193850.1460644-1-helen.koike@collabora.com>
+        id S1726026AbgK3QeF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Nov 2020 11:34:05 -0500
+Received: from mail-il1-f194.google.com ([209.85.166.194]:33553 "EHLO
+        mail-il1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726770AbgK3QeF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Nov 2020 11:34:05 -0500
+Received: by mail-il1-f194.google.com with SMTP id y9so11879802ilb.0;
+        Mon, 30 Nov 2020 08:33:43 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=ZBBwW3NkUSuFPPRYNjLGyBC//UcL1yNtoBYCa8FcsK4=;
+        b=ZCnA5OhcK1zttpXixcGIBvgg7tB4wK3exzkRPip6aNgaTvcJ69ehPYbi/ZjzhVmOKA
+         nmoH9hE2tLi6DZJ0FzfIw+0u6nIb82U2BpuyPwWysostnHbmx6nPUOJ6+eQsDphnbOWx
+         ZzL866n3otTYuDSCKJPUXOXOSfu62cKaT2PY2xdp893TJawNOEd8FK7YsafBlSjTbfdS
+         AWgGlMGOtXqWA1raf+GukMQ4GBkjWKvesHGFV2iyd4c4n/VJIC84LqFb1zhr1Q4mhUmW
+         roucR7HJEzwxmKcfiuy8mPX9ll5J2b1D7ThiEITJW2au/AJoxa+k9xWTXKutq2KVihRm
+         TMYQ==
+X-Gm-Message-State: AOAM533XlfEi2HMk+ElEyQCR0Owz/Ey/ECeoP4BlM25uQNd82jm/sKWV
+        Q0Xh8nUJBxNZ8/KU1WysVg==
+X-Google-Smtp-Source: ABdhPJwo98x9fcLfGsa/fOEkRiiTPfg0HG5OZjgyT5/bJuvDcYPknYRrLNe/75450Ba2DHlYQ7En3w==
+X-Received: by 2002:a92:444e:: with SMTP id a14mr2066584ilm.129.1606753998497;
+        Mon, 30 Nov 2020 08:33:18 -0800 (PST)
+Received: from xps15 ([64.188.179.253])
+        by smtp.gmail.com with ESMTPSA id c8sm8427863ioq.40.2020.11.30.08.33.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 30 Nov 2020 08:33:17 -0800 (PST)
+Received: (nullmailer pid 2583689 invoked by uid 1000);
+        Mon, 30 Nov 2020 16:33:14 -0000
+Date:   Mon, 30 Nov 2020 09:33:14 -0700
+From:   Rob Herring <robh@kernel.org>
+To:     Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
+        Rob Herring <robh+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3 3/8] dt-bindings: regulator: Add document for MT6359
+ regulator
+Message-ID: <20201130163314.GA2583085@robh.at.kernel.org>
+References: <1606103290-15034-1-git-send-email-hsin-hsiung.wang@mediatek.com>
+ <1606103290-15034-4-git-send-email-hsin-hsiung.wang@mediatek.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1606103290-15034-4-git-send-email-hsin-hsiung.wang@mediatek.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 20 Oct 2020 16:38:41 -0300, Helen Koike wrote:
-> Move the bindings out of drivers/staging and place them in
-> Documentation/devicetree/bindings instead.
+On Mon, 23 Nov 2020 11:48:05 +0800, Hsin-Hsiung Wang wrote:
+> add dt-binding document for MediaTek MT6359 PMIC
 > 
-> Also, add DT nodes for RK3399 and verify with make ARCH=arm64 dtbs_check
-> and make ARCH=arm64 dt_binding_check.
+> Signed-off-by: Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
+> ---
+>  .../bindings/regulator/mt6359-regulator.yaml  | 145 ++++++++++++++++++
+>  1 file changed, 145 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/regulator/mt6359-regulator.yaml
 > 
-> Tested by verifying images streamed from Scarlet Chromebook
-> 
-> [...]
 
-Applied, thanks!
 
-[8/9] arm64: dts: rockchip: add isp0 node for rk3399
-      commit: 97a0115cd96a173369ef30eee2290184921b3f24
-[9/9] arm64: dts: rockchip: add isp and sensors for Scarlet
-      commit: ef098edc9c245dd1c150001e22c78e6a3ffd7ff8
+My bot found errors running 'make dt_binding_check' on your patch:
 
-Best regards,
--- 
-Heiko Stuebner <heiko@sntech.de>
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/regulator/mt6359-regulator.yaml: 'additionalProperties' is a required property
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/regulator/mt6359-regulator.yaml: ignoring, error in schema: 
+warning: no schema found in file: ./Documentation/devicetree/bindings/regulator/mt6359-regulator.yaml
+
+
+See https://patchwork.ozlabs.org/patch/1404625
+
+The base for the patch is generally the last rc1. Any dependencies
+should be noted.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
