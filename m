@@ -2,91 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2253A2C83F9
-	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 13:16:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C23E82C8410
+	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 13:24:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726385AbgK3MQN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Nov 2020 07:16:13 -0500
-Received: from userp2130.oracle.com ([156.151.31.86]:54190 "EHLO
-        userp2130.oracle.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726197AbgK3MQN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Nov 2020 07:16:13 -0500
-Received: from pps.filterd (userp2130.oracle.com [127.0.0.1])
-        by userp2130.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 0AUCFAZA134302;
-        Mon, 30 Nov 2020 12:15:25 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=date : from : to : cc
- : subject : message-id : references : mime-version : content-type :
- in-reply-to; s=corp-2020-01-29;
- bh=Welqfb51u2AFKJ0r8dnMRt+sOVkpF+0KUkstdgNij/Y=;
- b=vLHoq1OlD8yV0Z3n87/HTCdmkpYfJscayQaXNDhpJSa5dxzdo6rZB4B/yFE6JKfqOIGB
- l69y1iE71DMlP1TZWkPF9ElWlrbFdqZR8dCEQlCcacUMPRe5OSOV/HsVIOm8jUQXwR8W
- ULbnrKA5COBsG+FJDjMOM4tb351Ork8PwzRq79r3oaOqPVz7Q3uXP9HxZXrNVkGDerO+
- MrodHCxlkHQUnQp+dNJaES/PBx63HXwqKoSdhrfc5w/zpiAjfjO0XHTl+v4BbGs6vwtE
- Gm4g7b638RuYcGGpQhqef7l6F3zDIzZi3twbE9caCs4rvOhEwQKVmx283RKkwRmogR/j SQ== 
-Received: from userp3030.oracle.com (userp3030.oracle.com [156.151.31.80])
-        by userp2130.oracle.com with ESMTP id 353dyqcqsy-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 30 Nov 2020 12:15:25 +0000
-Received: from pps.filterd (userp3030.oracle.com [127.0.0.1])
-        by userp3030.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 0AUCBF4K014080;
-        Mon, 30 Nov 2020 12:15:25 GMT
-Received: from userv0122.oracle.com (userv0122.oracle.com [156.151.31.75])
-        by userp3030.oracle.com with ESMTP id 3540fv0k6h-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Mon, 30 Nov 2020 12:15:24 +0000
-Received: from abhmp0017.oracle.com (abhmp0017.oracle.com [141.146.116.23])
-        by userv0122.oracle.com (8.14.4/8.14.4) with ESMTP id 0AUCFMwv030718;
-        Mon, 30 Nov 2020 12:15:23 GMT
-Received: from kadam (/102.36.221.92)
-        by default (Oracle Beehive Gateway v4.0)
-        with ESMTP ; Mon, 30 Nov 2020 04:15:16 -0800
-Date:   Mon, 30 Nov 2020 15:15:07 +0300
-From:   Dan Carpenter <dan.carpenter@oracle.com>
-To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Cc:     Vinod Koul <vkoul@kernel.org>,
-        "open list:STAGING SUBSYSTEM" <devel@driverdev.osuosl.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Greg KH <gregkh@linuxfoundation.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Rob Herring <robh+dt@kernel.org>, NeilBrown <neil@brown.name>
-Subject: Re: [PATCH v4 2/4] phy: ralink: Add PHY driver for MT7621 PCIe PHY
-Message-ID: <20201130121506.GB2767@kadam>
-References: <20201031122246.16497-1-sergio.paracuellos@gmail.com>
- <20201031122246.16497-3-sergio.paracuellos@gmail.com>
- <20201119053059.GY50232@vkoul-mobl>
- <CAMhs-H8uyoVGUjrG_V2ueZN1UC7jSMZ-6E4YCDw1xqGKNFPv5w@mail.gmail.com>
+        id S1726006AbgK3MYb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Nov 2020 07:24:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56162 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726001AbgK3MYa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Nov 2020 07:24:30 -0500
+Received: from mail-ej1-x642.google.com (mail-ej1-x642.google.com [IPv6:2a00:1450:4864:20::642])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B6DFC0613CF;
+        Mon, 30 Nov 2020 04:23:44 -0800 (PST)
+Received: by mail-ej1-x642.google.com with SMTP id s13so6059792ejr.1;
+        Mon, 30 Nov 2020 04:23:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=Hj58atYHNsjUADrTNQ6rEQLtFtphE98duXIfLMcX7Bs=;
+        b=d1HX085oWS72Y6jTHNC+YbV35KkyALeW7xBbeQ4SqmHXLcHFQ8kz/Gbl339zBP/ZL6
+         Df7g/4vqxMD7diYuf9YKbEXV/vOv287n2IB9hv+hen2qKgXMNkn88PNkiRwgldrF9eAa
+         dAhBO8xikTnY7syZA685HaYhQ2QKQfk6bXz78izCT9tas0du01sYXZAJC7xUNMJAaWIa
+         /N8wH0tIQT3xP3Pc19MiYoAWqGhP3MFMx5zu4+Vu+PWoFSDpUTv5tHu2drHXtOFi5Y6/
+         u1L0qYUJSiSxoZ37yD24ylvb+YP38Uue/7FCVdBIgjKOuW/jT+Okz9qXO6XA7ojxpGZA
+         Ox8Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=Hj58atYHNsjUADrTNQ6rEQLtFtphE98duXIfLMcX7Bs=;
+        b=XP0OFm19GEa9CdZQ/U1ZxxawVLS9NxAiC9GqEdCfPFrtu1dsQxsAfzJBa3wjDKknXk
+         qXl8lhxTNGutAxWx6MJjUYSu9STvp1mbGBfokjv9DfU50p2Zz6BwKUh6MfA2TLncKUN9
+         z+6sTULnN+F8fRLpVSifjiq1ZV4kfmAzIX0SgMFLfkQ0EuChI8vt0aAD9dnyfeVolLBF
+         NK80ep7dyO31VZoSBCGtGhW/ICCnhXiSttLE1w3SuUYpkiCcGqolxi9XqieeZ9K1mesf
+         oEriWyFq/uCwTPSQyAiCmgmOM/Kd5P/WqpqDPvPyFRwEk/fThOHarIxEHJqg5+y8s8wB
+         7prA==
+X-Gm-Message-State: AOAM5309dEQ8iZ+BlzJwG72wWDgAOyb3EAVOvw+qq3aQ0S73GDRezhMq
+        w99Xyxpjsq4Gq8FGYXf2Et8=
+X-Google-Smtp-Source: ABdhPJwgWYjsH2RlX5CzBXKBKH/5GOX3qie1Q6J718aa6KLhkAjzCDmzUM9IWKxjTDyjVTrEEPA6yA==
+X-Received: by 2002:a17:906:1450:: with SMTP id q16mr1212100ejc.524.1606739023318;
+        Mon, 30 Nov 2020 04:23:43 -0800 (PST)
+Received: from localhost ([62.96.65.119])
+        by smtp.gmail.com with ESMTPSA id b17sm6254659eju.76.2020.11.30.04.23.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 30 Nov 2020 04:23:42 -0800 (PST)
+Date:   Mon, 30 Nov 2020 13:23:41 +0100
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Jon Hunter <jonathanh@nvidia.com>
+Cc:     Thierry Reding <treding@nvidia.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: Correct GV11B GPU register sizes
+Message-ID: <X8TkTQ4MZR/I9kcB@ulmo>
+References: <20201124121842.1037035-1-jonathanh@nvidia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="3xezRJ/dTBvDl7fn"
 Content-Disposition: inline
-In-Reply-To: <CAMhs-H8uyoVGUjrG_V2ueZN1UC7jSMZ-6E4YCDw1xqGKNFPv5w@mail.gmail.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9820 signatures=668682
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 malwarescore=0 suspectscore=0
- phishscore=0 mlxlogscore=999 adultscore=0 mlxscore=0 bulkscore=0
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2009150000 definitions=main-2011300080
-X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9820 signatures=668682
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 malwarescore=0 bulkscore=0
- clxscore=1011 mlxscore=0 spamscore=0 priorityscore=1501 mlxlogscore=999
- suspectscore=0 lowpriorityscore=0 phishscore=0 adultscore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2009150000 definitions=main-2011300080
+In-Reply-To: <20201124121842.1037035-1-jonathanh@nvidia.com>
+User-Agent: Mutt/2.0.2 (d9268908) (2020-11-20)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 19, 2020 at 07:05:22AM +0100, Sergio Paracuellos wrote:
-> > > +static inline void phy_write(struct mt7621_pci_phy *phy, u32 val, u32 reg)
-> > > +{
-> > > +     regmap_write(phy->regmap, reg, val);
-> >
-> > Why not use regmap_ calls directly and avoid the dummy wrappers..?
-> 
-> This is because name was the dummy names are a bit shorter :) but if
-> it is also necessary I will use directly regmap_ functions.
 
-At least don't swap the last two arguments around.
+--3xezRJ/dTBvDl7fn
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-regards,
-dan carpenter
+On Tue, Nov 24, 2020 at 12:18:42PM +0000, Jon Hunter wrote:
+> Commit 90a09178f309 ("dt-bindings: Add documentation for GV11B GPU")
+> added the GV11B GPU device-tree bindings information but incorrectly
+> added an additional 0 to the size of the addresses in the example.
+>=20
+> Fixes: 90a09178f309 ("dt-bindings: Add documentation for GV11B GPU")
+> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
+> ---
+>  Documentation/devicetree/bindings/gpu/nvidia,gk20a.txt | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 
+Acked-by: Thierry Reding <treding@nvidia.com>
+
+--3xezRJ/dTBvDl7fn
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl/E5EoACgkQ3SOs138+
+s6EBOxAAiuCgSdW3O/2JYtfIFAXviz2Acd3cANdmQnhuz8WoOcw4STA4ka0jBIp/
+GGa95K2DtEV+l04pfzplqa1CZI0r42eRERejtS/axzGo1o6NJO8IP99QkFT60/9c
+JhMApiy/dDBL0Qi5gnphoT3sO9CgpBWYyYpVEWVdPEJgWwIXAEdVVvaY/odNkC+y
+eUau6mRyrbKD8yk2iaAGVnfysipodzT0gEYxfudHAwEjG2RHT14UcI6xvm4F7aVv
+HhyAsdF0YKnfNqrmi6jIh39SCB+m3aPof0vM4ZrL/7Sg+Q6QKiTCsQ+hqnVcE8bo
+mHFOsHFjv2pPUfLV+cXIOdKOCGJAlhey07r+7XOlFWL3SJxK04YM9vEyrpoNXqR+
+JeyLK2ygc3tmhq3E0ULOmQqMZkcZyJJ/xhT9FKkTF+7XkEpGtmIDY8vIG8ovIjK0
+15UVsnNxEqgOnH+Q3zDjAPvn68jE8eXj574GPyWWdBkx+Wt7Fs5KCNXR/8D1VoxA
+tufZvpNiAS2str1+arVMtKfrf5bI+IKnnxp7KpifP62o9qmE//Civ9r835rGMjJG
+Ig5jUtldq5SRWPw1mQRf3uWS5wQ00o7e9BW25bkcGe1INRb1ayWOKD/Fgdu2eIpG
+wVngsKUsHYLxUaUvM0PDIddbnBO0OgDkv7cISbPIktNWozpcI2U=
+=Yp5G
+-----END PGP SIGNATURE-----
+
+--3xezRJ/dTBvDl7fn--
