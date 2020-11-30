@@ -2,94 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D64162C899C
-	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 17:34:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6307E2C89BA
+	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 17:41:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726026AbgK3QeF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Nov 2020 11:34:05 -0500
-Received: from mail-il1-f194.google.com ([209.85.166.194]:33553 "EHLO
-        mail-il1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726770AbgK3QeF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Nov 2020 11:34:05 -0500
-Received: by mail-il1-f194.google.com with SMTP id y9so11879802ilb.0;
-        Mon, 30 Nov 2020 08:33:43 -0800 (PST)
+        id S1728773AbgK3QjV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Nov 2020 11:39:21 -0500
+Received: from mail-io1-f68.google.com ([209.85.166.68]:33875 "EHLO
+        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728670AbgK3QjU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Nov 2020 11:39:20 -0500
+Received: by mail-io1-f68.google.com with SMTP id d7so3577383iok.1;
+        Mon, 30 Nov 2020 08:38:59 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=ZBBwW3NkUSuFPPRYNjLGyBC//UcL1yNtoBYCa8FcsK4=;
-        b=ZCnA5OhcK1zttpXixcGIBvgg7tB4wK3exzkRPip6aNgaTvcJ69ehPYbi/ZjzhVmOKA
-         nmoH9hE2tLi6DZJ0FzfIw+0u6nIb82U2BpuyPwWysostnHbmx6nPUOJ6+eQsDphnbOWx
-         ZzL866n3otTYuDSCKJPUXOXOSfu62cKaT2PY2xdp893TJawNOEd8FK7YsafBlSjTbfdS
-         AWgGlMGOtXqWA1raf+GukMQ4GBkjWKvesHGFV2iyd4c4n/VJIC84LqFb1zhr1Q4mhUmW
-         roucR7HJEzwxmKcfiuy8mPX9ll5J2b1D7ThiEITJW2au/AJoxa+k9xWTXKutq2KVihRm
-         TMYQ==
-X-Gm-Message-State: AOAM533XlfEi2HMk+ElEyQCR0Owz/Ey/ECeoP4BlM25uQNd82jm/sKWV
-        Q0Xh8nUJBxNZ8/KU1WysVg==
-X-Google-Smtp-Source: ABdhPJwo98x9fcLfGsa/fOEkRiiTPfg0HG5OZjgyT5/bJuvDcYPknYRrLNe/75450Ba2DHlYQ7En3w==
-X-Received: by 2002:a92:444e:: with SMTP id a14mr2066584ilm.129.1606753998497;
-        Mon, 30 Nov 2020 08:33:18 -0800 (PST)
+        bh=tFYu+zcPVaijJyMJm5EUKsYsvWv061fpjh0clpgn5vA=;
+        b=a6yEhklVNxGdEvn697Qn0gETYsfkQuW3OomXwYGuRQCRUJgDtZ5liBqrbJRQTAyQLs
+         Mepj9siQMWhmSnKFEdFN+gYOYuJvZGpoWPe9l4EWkOyPAIz5Z/+fdEMqQoWMKQMCgEgo
+         xtoQQ1L1iVayaET8dgPOKEbS/zco3uboRlTtY4cGdEYUpyAoP4/BsSQRJPNHjMH6nhG2
+         8RbVJfP/d7iazXTOoxA32pvhFythtoZmljasjnuZqjnQViQk5ZlVDePq9oMP80pXHvkX
+         lWLEKtz6lvKMmBIfobVCuA8Egbdr5vpVkaM36SFhHUq3NTCOJrCKFsY6DDzU2Xjcc+G7
+         Rqeg==
+X-Gm-Message-State: AOAM533d0ycgkU7GDp/bv1VN4U4FrfiP8MKSD/8/JTvtYwFiQlB/jIER
+        bNhSFiragOeSLJfLrYNyO38exiLY9Q==
+X-Google-Smtp-Source: ABdhPJwO8/AKHHQtotzeksDXX1wp3u3t+G5jA46XRQZErHhLBCCcrUV6i188c/xtoojwacdGbzMMXA==
+X-Received: by 2002:a6b:b514:: with SMTP id e20mr17078716iof.105.1606754313679;
+        Mon, 30 Nov 2020 08:38:33 -0800 (PST)
 Received: from xps15 ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id c8sm8427863ioq.40.2020.11.30.08.33.16
+        by smtp.gmail.com with ESMTPSA id u11sm8273653iol.51.2020.11.30.08.38.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Nov 2020 08:33:17 -0800 (PST)
-Received: (nullmailer pid 2583689 invoked by uid 1000);
-        Mon, 30 Nov 2020 16:33:14 -0000
-Date:   Mon, 30 Nov 2020 09:33:14 -0700
+        Mon, 30 Nov 2020 08:38:32 -0800 (PST)
+Received: (nullmailer pid 2592217 invoked by uid 1000);
+        Mon, 30 Nov 2020 16:38:29 -0000
+Date:   Mon, 30 Nov 2020 09:38:29 -0700
 From:   Rob Herring <robh@kernel.org>
-To:     Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
-        Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v3 3/8] dt-bindings: regulator: Add document for MT6359
- regulator
-Message-ID: <20201130163314.GA2583085@robh.at.kernel.org>
-References: <1606103290-15034-1-git-send-email-hsin-hsiung.wang@mediatek.com>
- <1606103290-15034-4-git-send-email-hsin-hsiung.wang@mediatek.com>
+To:     Laurentiu Tudor <laurentiu.tudor@nxp.com>
+Cc:     linuxppc-dev@lists.ozlabs.org, netdev@vger.kernel.org,
+        robh+dt@kernel.org, davem@davemloft.net, ioana.ciornei@nxp.com,
+        Ionut-robert Aron <ionut-robert.aron@nxp.com>,
+        linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, corbet@lwn.net, leoyang.li@nxp.com,
+        linux-arm-kernel@lists.infradead.org, kuba@kernel.org
+Subject: Re: [PATCH v4] dt-bindings: misc: convert fsl,qoriq-mc from txt to
+ YAML
+Message-ID: <20201130163829.GA2590579@robh.at.kernel.org>
+References: <20201123090035.15734-1-laurentiu.tudor@nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1606103290-15034-4-git-send-email-hsin-hsiung.wang@mediatek.com>
+In-Reply-To: <20201123090035.15734-1-laurentiu.tudor@nxp.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 23 Nov 2020 11:48:05 +0800, Hsin-Hsiung Wang wrote:
-> add dt-binding document for MediaTek MT6359 PMIC
+On Mon, 23 Nov 2020 11:00:35 +0200, Laurentiu Tudor wrote:
+> From: Ionut-robert Aron <ionut-robert.aron@nxp.com>
 > 
-> Signed-off-by: Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
+> Convert fsl,qoriq-mc to YAML in order to automate the verification
+> process of dts files. In addition, update MAINTAINERS accordingly
+> and, while at it, add some missing files.
+> 
+> Signed-off-by: Ionut-robert Aron <ionut-robert.aron@nxp.com>
+> [laurentiu.tudor@nxp.com: update MINTAINERS, updates & fixes in schema]
+> Signed-off-by: Laurentiu Tudor <laurentiu.tudor@nxp.com>
 > ---
->  .../bindings/regulator/mt6359-regulator.yaml  | 145 ++++++++++++++++++
->  1 file changed, 145 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/regulator/mt6359-regulator.yaml
+> Changes in v4:
+>  - use $ref to point to fsl,qoriq-mc-dpmac binding
+> 
+> Changes in v3:
+>  - dropped duplicated "fsl,qoriq-mc-dpmac" schema and replaced with
+>    reference to it
+>  - fixed a dt_binding_check warning
+> 
+> Changes in v2:
+>  - fixed errors reported by yamllint
+>  - dropped multiple unnecessary quotes
+>  - used schema instead of text in description
+>  - added constraints on dpmac reg property
+> 
+>  .../devicetree/bindings/misc/fsl,qoriq-mc.txt | 196 ------------------
+>  .../bindings/misc/fsl,qoriq-mc.yaml           | 186 +++++++++++++++++
+>  .../ethernet/freescale/dpaa2/overview.rst     |   5 +-
+>  MAINTAINERS                                   |   4 +-
+>  4 files changed, 193 insertions(+), 198 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/misc/fsl,qoriq-mc.txt
+>  create mode 100644 Documentation/devicetree/bindings/misc/fsl,qoriq-mc.yaml
 > 
 
+As there's a dependency on fsl,qoriq-mc-dpmac, this needs to go via 
+netdev tree.
 
-My bot found errors running 'make dt_binding_check' on your patch:
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/regulator/mt6359-regulator.yaml: 'additionalProperties' is a required property
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/regulator/mt6359-regulator.yaml: ignoring, error in schema: 
-warning: no schema found in file: ./Documentation/devicetree/bindings/regulator/mt6359-regulator.yaml
-
-
-See https://patchwork.ozlabs.org/patch/1404625
-
-The base for the patch is generally the last rc1. Any dependencies
-should be noted.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+Reviewed-by: Rob Herring <robh@kernel.org>
