@@ -2,110 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 51C282C8A39
-	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 18:01:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2816D2C8A4E
+	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 18:01:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729145AbgK3RAO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Nov 2020 12:00:14 -0500
-Received: from mail-io1-f66.google.com ([209.85.166.66]:42501 "EHLO
-        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729141AbgK3RAN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Nov 2020 12:00:13 -0500
-Received: by mail-io1-f66.google.com with SMTP id q137so8873448iod.9;
-        Mon, 30 Nov 2020 08:59:57 -0800 (PST)
+        id S1729021AbgK3RBH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Nov 2020 12:01:07 -0500
+Received: from mail-il1-f194.google.com ([209.85.166.194]:42503 "EHLO
+        mail-il1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729002AbgK3RBG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Nov 2020 12:01:06 -0500
+Received: by mail-il1-f194.google.com with SMTP id f5so11952183ilj.9;
+        Mon, 30 Nov 2020 09:00:45 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=Hq1MJpvbDh7bba2e04fPTBnORo/SbAhyQcObblCnObs=;
-        b=e9nRknYpuq2gvfoe4HOKpeAZVgxHazGOwdFcyefos6U+sWdAlZcDHTwDLReNNOWGZ6
-         63OEyMBYK4F6QDkSsPBBz2SNwHwIrbeacllRsfsolPY1C1177xfCs4EZjHzYDHdQmzb7
-         1v/EyQBKdeXxRqmv/eoOQV+hnIsLQiWaVolCkIqcnQH4f1APhPP0thftpI+92KQT6fV3
-         NSwM++S7oJ1fka5RMy+Vow4dqMr0wF+XfXwlTgGWL5D3YWWNLVP+BA69c1hZSk9isfk7
-         ysaeGfHGSlO50qGY77GOVe880JwX/m4q4vXeNq+UGyV5L1w7FiCPLgAqmv3C9572koTa
-         BmJg==
-X-Gm-Message-State: AOAM532yaK3ix/uPji+Rt4DstH3KVGjghFVHQPfPDvatpjOBWzS0pRyo
-        BrEjL928AqRSut0R7anAMw==
-X-Google-Smtp-Source: ABdhPJzEFd02WNAYRRP4EaId0gS+QWu5Mv0Ty/p0+ar97FxggjqT8eC4thWRaa2uFkQA0ZhScIq8dg==
-X-Received: by 2002:a6b:ea0d:: with SMTP id m13mr15605478ioc.148.1606755571994;
-        Mon, 30 Nov 2020 08:59:31 -0800 (PST)
+        bh=ys3u80YWm2n1y1SiIy+1AjD/yGj5IqZVpmp0UPeLTFc=;
+        b=X3YLVEGzFOgIxCBEczHPp4fn7KmJZw7c6rDnEa1ByszNQlC7Vd+o7U9U13KgfRWppX
+         +b2UgReL/KDcbCdX501YhCJDQjnBOcPKX/UfQmNMDsSM8NKPzopA2ZqASh+U5J4sB8B4
+         VEsP1CRauDbVByui2psajUhJNomMGdIgitGRSYqxQNSfvTOY8qY0MUlzWAR+TPqlVeMT
+         54xYkI4nhEqHattOUrBTTg5gU3vvWMjehVLvqU9IwpB/dQQ2vOgwDCoIRgxwvJ45uvcv
+         m1bDD9/GRR5Xm5aJ0heGndD1gTsyTsKOdkLKAsDltdzesqAMKn5gXAFfUwqFV6Orp0Fe
+         Rn2w==
+X-Gm-Message-State: AOAM533razlbL0qQLbBJVFlKUEDW2Tqh1Xu0K+NscLopEZLQUaum6A8o
+        ADrSyUE2deEzzSFQtbpUb0f9guyMkw==
+X-Google-Smtp-Source: ABdhPJw6VaP/RnZBv3k7M+pa9KVTNDlb/oF2rO3Gs/4K5LDmZBrx0XWdO9CiO5XGY1kZa2zrXMeKUw==
+X-Received: by 2002:a92:d03:: with SMTP id 3mr20233279iln.197.1606755620113;
+        Mon, 30 Nov 2020 09:00:20 -0800 (PST)
 Received: from xps15 ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id f2sm8214670iow.4.2020.11.30.08.59.29
+        by smtp.gmail.com with ESMTPSA id u12sm10962776ilg.10.2020.11.30.09.00.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Nov 2020 08:59:31 -0800 (PST)
-Received: (nullmailer pid 2625316 invoked by uid 1000);
-        Mon, 30 Nov 2020 16:59:28 -0000
-Date:   Mon, 30 Nov 2020 09:59:28 -0700
+        Mon, 30 Nov 2020 09:00:19 -0800 (PST)
+Received: (nullmailer pid 2626733 invoked by uid 1000);
+        Mon, 30 Nov 2020 17:00:18 -0000
+Date:   Mon, 30 Nov 2020 10:00:18 -0700
 From:   Rob Herring <robh@kernel.org>
-To:     Ansuel Smith <ansuelsmth@gmail.com>
-Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-pm@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, Zhang Rui <rui.zhang@intel.com>,
-        linux-kernel@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v7 8/8] dt-bindings: thermal: tsens: Document ipq8064
- bindings
-Message-ID: <20201130165928.GA2624688@robh.at.kernel.org>
-References: <20201125174826.24462-1-ansuelsmth@gmail.com>
- <20201125174826.24462-9-ansuelsmth@gmail.com>
+To:     Michael Tretter <m.tretter@pengutronix.de>
+Cc:     kernel@pengutronix.de, devicetree@vger.kernel.org,
+        hverkuil-cisco@xs4all.nl, robh+dt@kernel.org,
+        linux-media@vger.kernel.org
+Subject: Re: [PATCH 2/4] dt-bindings: media: allegro,al5e: Convert to YAML
+Message-ID: <20201130170018.GA2626099@robh.at.kernel.org>
+References: <20201126152941.3825721-1-m.tretter@pengutronix.de>
+ <20201126152941.3825721-3-m.tretter@pengutronix.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201125174826.24462-9-ansuelsmth@gmail.com>
+In-Reply-To: <20201126152941.3825721-3-m.tretter@pengutronix.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 25 Nov 2020 18:48:25 +0100, Ansuel Smith wrote:
-> Document the use of bindings used for msm8960 tsens based devices.
-> msm8960 use the same gcc regs and is set as a child of the qcom gcc.
+On Thu, 26 Nov 2020 16:29:39 +0100, Michael Tretter wrote:
+> Convert the Allegro DVT video IP codec text binding to Yaml.
 > 
-> Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
+> Add the converted binding to the MAINTAINERS file.
+> 
+> Signed-off-by: Michael Tretter <m.tretter@pengutronix.de>
 > ---
->  .../bindings/thermal/qcom-tsens.yaml          | 103 ++++++++++++++----
->  1 file changed, 79 insertions(+), 24 deletions(-)
+>  .../bindings/media/allegro,al5e.yaml          | 95 +++++++++++++++++++
+>  .../devicetree/bindings/media/allegro.txt     | 43 ---------
+>  MAINTAINERS                                   |  1 +
+>  3 files changed, 96 insertions(+), 43 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/media/allegro,al5e.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/media/allegro.txt
 > 
 
 
 My bot found errors running 'make dt_binding_check' on your patch:
 
 yamllint warnings/errors:
-./Documentation/devicetree/bindings/thermal/qcom-tsens.yaml:25:13: [warning] wrong indentation: expected 14 but found 12 (indentation)
-./Documentation/devicetree/bindings/thermal/qcom-tsens.yaml:121:8: [error] empty value in block mapping (empty-values)
-./Documentation/devicetree/bindings/thermal/qcom-tsens.yaml:133:3: [error] syntax error: expected <block end>, but found '?' (syntax)
-./Documentation/devicetree/bindings/thermal/qcom-tsens.yaml:134:5: [warning] wrong indentation: expected 6 but found 4 (indentation)
-./Documentation/devicetree/bindings/thermal/qcom-tsens.yaml:140:3: [warning] wrong indentation: expected 4 but found 2 (indentation)
-./Documentation/devicetree/bindings/thermal/qcom-tsens.yaml:141:5: [warning] wrong indentation: expected 6 but found 4 (indentation)
+./Documentation/devicetree/bindings/media/allegro,al5e.yaml:24:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
+./Documentation/devicetree/bindings/media/allegro,al5e.yaml:27:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
 
 dtschema/dtc warnings/errors:
-Traceback (most recent call last):
-  File "/usr/local/bin/dt-extract-example", line 45, in <module>
-    binding = yaml.load(open(args.yamlfile, encoding='utf-8').read())
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/main.py", line 343, in load
-    return constructor.get_single_data()
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 111, in get_single_data
-    node = self.composer.get_single_node()
-  File "_ruamel_yaml.pyx", line 706, in _ruamel_yaml.CParser.get_single_node
-  File "_ruamel_yaml.pyx", line 724, in _ruamel_yaml.CParser._compose_document
-  File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
-  File "_ruamel_yaml.pyx", line 889, in _ruamel_yaml.CParser._compose_mapping_node
-  File "_ruamel_yaml.pyx", line 773, in _ruamel_yaml.CParser._compose_node
-  File "_ruamel_yaml.pyx", line 852, in _ruamel_yaml.CParser._compose_sequence_node
-  File "_ruamel_yaml.pyx", line 904, in _ruamel_yaml.CParser._parse_next_event
-ruamel.yaml.parser.ParserError: while parsing a block collection
-  in "<unicode string>", line 101, column 3
-did not find expected '-' indicator
-  in "<unicode string>", line 133, column 3
-make[1]: *** [Documentation/devicetree/bindings/Makefile:20: Documentation/devicetree/bindings/thermal/qcom-tsens.example.dts] Error 1
-make[1]: *** Deleting file 'Documentation/devicetree/bindings/thermal/qcom-tsens.example.dts'
-make[1]: *** Waiting for unfinished jobs....
-make[1]: *** [Documentation/devicetree/bindings/Makefile:59: Documentation/devicetree/bindings/processed-schema-examples.json] Error 123
-make: *** [Makefile:1364: dt_binding_check] Error 2
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/media/allegro,al5e.example.dt.yaml: example-0: video-codec@a0009000:reg:0: [0, 2684391424, 0, 4096] is too long
+	From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/reg.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/media/allegro,al5e.example.dt.yaml: example-0: video-codec@a0009000:reg:1: [0, 2684354560, 0, 32768] is too long
+	From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/reg.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/media/allegro,al5e.example.dt.yaml: example-1: video-codec@a0029000:reg:0: [0, 2684522496, 0, 4096] is too long
+	From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/reg.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/media/allegro,al5e.example.dt.yaml: example-1: video-codec@a0029000:reg:1: [0, 2684485632, 0, 32768] is too long
+	From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/reg.yaml
 
 
-See https://patchwork.ozlabs.org/patch/1406385
+See https://patchwork.ozlabs.org/patch/1406739
 
 The base for the patch is generally the last rc1. Any dependencies
 should be noted.
