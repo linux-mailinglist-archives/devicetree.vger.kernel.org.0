@@ -2,104 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3372C2C89FC
-	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 17:56:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CAF1B2C8A06
+	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 17:57:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728938AbgK3Qym (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Nov 2020 11:54:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42022 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728141AbgK3Qym (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Nov 2020 11:54:42 -0500
-Received: from mail-oi1-x242.google.com (mail-oi1-x242.google.com [IPv6:2607:f8b0:4864:20::242])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF74EC0613D3
-        for <devicetree@vger.kernel.org>; Mon, 30 Nov 2020 08:54:01 -0800 (PST)
-Received: by mail-oi1-x242.google.com with SMTP id l206so14829571oif.12
-        for <devicetree@vger.kernel.org>; Mon, 30 Nov 2020 08:54:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=sv1SKckcJv3B5DgQbB2Tk+aXvCrbP4vplhN5EODrXhM=;
-        b=yM6DQbA70Db5lqgpT159je8vwpOeW0EPWeFsMm7rAsjq5N9TMjcCqHNnI7KKlaV0tG
-         lDD7vZXARA6h53tBdq3/ipCe2w7PnsM7ss97YWxeQ66wUVD7NqqdN37SOkQdmbmvJ+/J
-         57r9lxvgYwhreOqoeSps6lVrX3Ov8FTxIyzbOckz/b7cve8ajKjuiPL9sFkOMjkndo75
-         Ih5GxrJbfwdWFJ4k/SuG5UjnshwYkBXoyO3RB7FqGJDMcqsgRhyX8KDthphVPs3sbRcB
-         o+cN3kpv/WqrXJ0USmnSVLh7/aCbn19ef9/fzmXcXTsmefUsp64mWURpdNkCQcBJL8TJ
-         rhmg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=sv1SKckcJv3B5DgQbB2Tk+aXvCrbP4vplhN5EODrXhM=;
-        b=dQr7dmE10Ztp8CK4g1N2qCNUr5gUt25afoKdHMHp+CCsBVQrW4vtC6mIl+TxHqE4Ze
-         W465VqJi3G1onEDUOCiG4ckUVzaz/YgSI69mBQOEEMwew/Omyqmo/bq7ldCaLqGfKVqz
-         FYBvKBqQk4x0M/oEeOZV3fgySlgF/SHctWimB6QXLhZyGPAbIHECSJNGsjEX5leySOKB
-         j8MddJMv8LETb1Jo3E9m/2Vf3KvfYxw279+yaHc+3U6dR6s6LAqUJK1CjvB9JpvB+0k8
-         eCaj5wcQEVwhDgGtBGOS6YXTvZUkpUtLpMqOSABTeF4Z6YHAd5eHtvDNSKPOTJJRVSJ7
-         agqA==
-X-Gm-Message-State: AOAM530Apy68cUG5htYXLyhUK/jTVDkGPbDe2vg+491mGGQ8ec6ZJTSw
-        bqvqQs5++NifJay6ldSNidHSwA==
-X-Google-Smtp-Source: ABdhPJx21PdPq1O4ig7ZXTyS8AkkQsMLXFyHSEPENeZFPBU9H6PQsRWWBeRtgJiMT+Xzo8HToEr1MQ==
-X-Received: by 2002:aca:4fc7:: with SMTP id d190mr15717264oib.13.1606755241025;
-        Mon, 30 Nov 2020 08:54:01 -0800 (PST)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id h8sm9809119oom.41.2020.11.30.08.54.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Nov 2020 08:54:00 -0800 (PST)
-Date:   Mon, 30 Nov 2020 10:53:58 -0600
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-Cc:     agross@kernel.org, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, rohitkr@codeaurora.org,
-        srinivas.kandagatla@linaro.org
-Subject: Re: [PATCH v3 0/2] Qualcomm's lpass device tree changes
-Message-ID: <X8UjpqeolZpVeg8J@builder.lan>
-References: <1601448168-18396-1-git-send-email-srivasam@codeaurora.org>
+        id S1726769AbgK3Q4S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Nov 2020 11:56:18 -0500
+Received: from mail.kernel.org ([198.145.29.99]:34124 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726505AbgK3Q4S (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 30 Nov 2020 11:56:18 -0500
+Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 3F5B32067C;
+        Mon, 30 Nov 2020 16:55:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1606755337;
+        bh=rBr8YtlXc+2AXACTkB4gNA9wQVJzRxTliFY7C0TWO3Y=;
+        h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+        b=1gCl4bVsz5iftTDm64p7k6IURVp2RgRve+bOgK/DBo4xevhr7NIzgXtej2qZQJfwM
+         GPPYTBZhO5S0Q/XX6Z62Rxv4PP7SfbDXImKraW1l5ZSOaAhJXBobxuw2t7J+FUxJKr
+         DJayfl8cMfhjddchVTvz2N1C3x1pkcluDlicuAGo=
+Date:   Mon, 30 Nov 2020 16:55:09 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        alsa-devel@alsa-project.org
+In-Reply-To: <20201104201209.907018-1-alexandre.belloni@bootlin.com>
+References: <20201104201209.907018-1-alexandre.belloni@bootlin.com>
+Subject: Re: [PATCH 1/2] dt-bindings: sound: adau1372: Add bindings documentation
+Message-Id: <160675530954.30326.371904938338211202.b4-ty@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1601448168-18396-1-git-send-email-srivasam@codeaurora.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed 30 Sep 01:42 CDT 2020, Srinivasa Rao Mandadapu wrote:
+On Wed, 4 Nov 2020 21:12:08 +0100, Alexandre Belloni wrote:
+> Add device tree binding documentation for Analog Devices ADAU1372.
 
-> These patches are device tree changes to support audio over DP.
-> It includes changes of HDMI reg, interrupt and iommu and 
-> hdmi dai link.
-> These patches depends on the lpass I2S patch series
-> and DP dts node patch series:
->   -- https://patchwork.kernel.org/patch/11785073/
+Applied to
 
-I've merged this one.
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
->   -- https://patchwork.kernel.org/patch/11785235/
->   -- https://patchwork.kernel.org/patch/11719511/
+Thanks!
 
-But please advice on what I should do with these two.
+[1/2] ASoC: adau1372: Add bindings documentation
+      commit: 32025c7c50c602a6c0bc3bef0e9a774003e2e7ae
+[2/2] ASoC: Add ADAU1372 audio CODEC support
+      commit: 6cd4c6459e47402ab90802eca61a18b231434053
 
-Regards,
-Bjorn
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
-> 
-> Changes Since v2:
->   -- Removed obsolete hdmi-jack property.
->   -- Updated sound dai cells property
-> Changes Since v1:
->   -- hdmi dai is added in lpass-cpu node.
-> 
-> V Sujith Kumar Reddy (2):
->   arm64: dts: qcom: sc7180: Update lpass cpu node for audio over dp
->   arm64: dts: qcom: sc7180-trogdor: Add lpass dai link for HDMI
-> 
->  arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi | 15 +++++++++++++++
->  arch/arm64/boot/dts/qcom/sc7180.dtsi         | 17 ++++++++++-------
->  2 files changed, 25 insertions(+), 7 deletions(-)
-> 
-> -- 
-> Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
-> is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
-> 
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
