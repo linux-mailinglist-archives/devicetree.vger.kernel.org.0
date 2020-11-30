@@ -2,93 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BDDFF2C85FB
-	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 14:57:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 820322C862A
+	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 15:06:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727080AbgK3NzT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Nov 2020 08:55:19 -0500
-Received: from mga17.intel.com ([192.55.52.151]:29006 "EHLO mga17.intel.com"
+        id S1725897AbgK3OGH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Nov 2020 09:06:07 -0500
+Received: from vps0.lunn.ch ([185.16.172.187]:57300 "EHLO vps0.lunn.ch"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726737AbgK3NzT (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 30 Nov 2020 08:55:19 -0500
-IronPort-SDR: ZcpUTZ7YSJhmyl1ZRw3msG66XeVayhVjlcyXoA9WeWYrRUA435n6kRFoS+IeyJxVEB00VrqFLX
- Ach4TbMIIxTg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9820"; a="152469864"
-X-IronPort-AV: E=Sophos;i="5.78,381,1599548400"; 
-   d="scan'208";a="152469864"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Nov 2020 05:53:38 -0800
-IronPort-SDR: Ao8RXvPmDEAz0Ds/itDE6rFJeK3ffp0ww976qNBmYThfMVH9nOR0jPRlWneQX1FQMxXiWm79uV
- B4d8NxJ8kEEQ==
-X-IronPort-AV: E=Sophos;i="5.78,381,1599548400"; 
-   d="scan'208";a="549105746"
-Received: from paasikivi.fi.intel.com ([10.237.72.42])
-  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Nov 2020 05:53:35 -0800
-Received: by paasikivi.fi.intel.com (Postfix, from userid 1000)
-        id 58269208FD; Mon, 30 Nov 2020 15:53:31 +0200 (EET)
-Date:   Mon, 30 Nov 2020 15:53:31 +0200
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        id S1725859AbgK3OGH (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 30 Nov 2020 09:06:07 -0500
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94)
+        (envelope-from <andrew@lunn.ch>)
+        id 1kjjno-009Vq6-RZ; Mon, 30 Nov 2020 15:05:16 +0100
+Date:   Mon, 30 Nov 2020 15:05:16 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Steen Hegelund <steen.hegelund@microchip.com>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v4 2/2] media: i2c: Add support for the OV5648 image
- sensor
-Message-ID: <20201130135331.GW3940@paasikivi.fi.intel.com>
-References: <20201128143350.531460-1-paul.kocialkowski@bootlin.com>
- <20201128143350.531460-3-paul.kocialkowski@bootlin.com>
- <20201130092802.GU3940@paasikivi.fi.intel.com>
- <X8T4FH/QjRdLu0hS@aptenodytes>
+        Lars Povlsen <lars.povlsen@microchip.com>,
+        Bjarni Jonasson <bjarni.jonasson@microchip.com>,
+        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Microsemi List <microsemi@lists.bootlin.com>,
+        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [RFC PATCH 1/3] dt-bindings: net: sparx5: Add sparx5-switch
+ bindings
+Message-ID: <20201130140516.GC2073444@lunn.ch>
+References: <20201127133307.2969817-1-steen.hegelund@microchip.com>
+ <20201127133307.2969817-2-steen.hegelund@microchip.com>
+ <20201127170052.GV2073444@lunn.ch>
+ <20201130130934.o47mdjiqidtznm2t@mchp-dev-shegelun>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <X8T4FH/QjRdLu0hS@aptenodytes>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20201130130934.o47mdjiqidtznm2t@mchp-dev-shegelun>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Paul,
-
-On Mon, Nov 30, 2020 at 02:48:04PM +0100, Paul Kocialkowski wrote:
-> Hi Sakari,
-> 
-> On Mon 30 Nov 20, 11:28, Sakari Ailus wrote:
-> > Hi Paul,
+On Mon, Nov 30, 2020 at 02:09:34PM +0100, Steen Hegelund wrote:
+> On 27.11.2020 18:00, Andrew Lunn wrote:
+> > EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
 > > 
-> > Thanks for the update. I have a few comments on the driver, too.
-> 
-> Thanks for the review!
-> 
-> [...]
-> 
-> > > +	ret = ov5648_write(sensor, OV5648_GAIN_BLUE_MAN_L_REG,
-> > > +			   OV5648_GAIN_BLUE_MAN_L(blue_balance));
+> > > +  reg-names:
+> > > +    minItems: 153
+> > > +    items:
+> > > +      - const: dev2g5_0
+> > > +      - const: dev5g_0
+> > > +      - const: pcs5g_br_0
+> > > +      - const: dev2g5_1
+> > > +      - const: dev5g_1
+> > ...
+> > > +      - const: ana_ac
+> > > +      - const: vop
 > > 
-> > return ...
+> > > +    switch: switch@600000000 {
+> > > +      compatible = "microchip,sparx5-switch";
+> > > +      reg = <0x10004000 0x4000>, /* dev2g5_0 */
+> > > +        <0x10008000 0x4000>, /* dev5g_0 */
+> > > +        <0x1000c000 0x4000>, /* pcs5g_br_0 */
+> > > +        <0x10010000 0x4000>, /* dev2g5_1 */
+> > > +        <0x10014000 0x4000>, /* dev5g_1 */
 > > 
-> > Same below (and above).
+> > ...
+> > 
+> > > +        <0x11800000 0x100000>, /* ana_l2 */
+> > > +        <0x11900000 0x100000>, /* ana_ac */
+> > > +        <0x11a00000 0x100000>; /* vop */
+> > 
+> > This is a pretty unusual binding.
+> > 
+> > Why is it not
+> > 
+> > reg = <0x10004000 0x1af8000>
+> > 
+> > and the driver can then break up the memory into its sub ranges?
+> > 
+> >    Andrew
+> Hi Andrew,
 > 
-> Well I don't think that makes any functional difference, right?
-> My personal preference is to have explicit checks even at the end of functions
-> for symetry and alignment with other blocks.
-> 
-> If it's okay, it'd like to keep it as-is. But if that's against kernel coding
-> style guidelines, I won't argue more.
+> Since the targets used by the driver is not always in the natural
+> address order (e.g. the dev2g5_x targets), I thought it best to let the DT
+> take care of this since this cannot be probed.  I am aware that this causes
+> extra mappings compared to the one-range strategy, but this layout seems more
+> transparent to me, also when mapped over PCIe.
 
-Please do change them.
+The question is, do you have a device tree usage for this? Are there
+devices in the family which have the regions in a different order?
 
-It's useless code, repeated at the end of a number of functions in this
-driver. I wouldn't mind otherwise, but people do take examples from
-existing drivers so such patterns tend to repeat in other places.
+You can easily move this table into the driver, and let the driver
+break the region up. That would be normal.
 
--- 
-Regards,
-
-Sakari Ailus
+      Andrew
