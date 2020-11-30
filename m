@@ -2,132 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 18EB92C8C38
-	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 19:10:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D949A2C8CA3
+	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 19:23:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387937AbgK3SJb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Nov 2020 13:09:31 -0500
-Received: from mail.kernel.org ([198.145.29.99]:54848 "EHLO mail.kernel.org"
+        id S1729385AbgK3SXL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Nov 2020 13:23:11 -0500
+Received: from mail.kernel.org ([198.145.29.99]:60822 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2387935AbgK3SJb (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 30 Nov 2020 13:09:31 -0500
-Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
+        id S1728560AbgK3SXK (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 30 Nov 2020 13:23:10 -0500
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id DCE702074A;
-        Mon, 30 Nov 2020 18:08:49 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 349A420825;
+        Mon, 30 Nov 2020 18:22:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1606759730;
-        bh=d9yV1lEnxveUgluSCBhCoa0hj6naPZXSjmqKjTGnqZM=;
+        s=default; t=1606760549;
+        bh=E0BB209av1T4xjJt8kpahDP7HWO4xmG/752fcnwHuQ8=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=N6+Rb6NqtVzTm7cj5nI5LTYGHTw+f/9KD7YKEhPTp37nUluml0326Lt9AYPNb+7v+
-         FKZ91iOd6v2r6MJOe0s7i80u/YQeZv+o3IoGk5PcckK1us/9Kk+dBplNZKTnYfjm2i
-         VAONbr7C48ySDw3DgZBh9Z+iGkLQDOgFZafyRKH0=
-Received: by mail-ed1-f46.google.com with SMTP id m16so17445596edr.3;
-        Mon, 30 Nov 2020 10:08:49 -0800 (PST)
-X-Gm-Message-State: AOAM532MxsZQDJFA/Q43fF7V4LeW5X7YoVibF+5TqE1gFrFC9fdYwAdm
-        HoBUpRg3polj2mTJLtEgS8+NLN3hY9ZUVHJRCQ==
-X-Google-Smtp-Source: ABdhPJyalbIM7zr/ARvNlPV82k6Cgt37L4bcmR5TSLk5r69qVnqord2DUkoKhs5fFIwJgGOnz5KCzKqjvzYlAfk1W3c=
-X-Received: by 2002:aa7:c80c:: with SMTP id a12mr13080489edt.165.1606759728286;
- Mon, 30 Nov 2020 10:08:48 -0800 (PST)
+        b=QcuAlpFbiwESgR2Fj27yHh+PTsUf5dtG3KT7rwm4bti7dGE6dMIppQvCiMo6pdXkj
+         ZWppZdcvgaEyZ3lXhXw75wORyK2bnKybK9ZsbFgAnZifNia04u2D6i1pCnnGkXNKK5
+         iDasGt+5drd0sVOrGgK/fE5l2tTzPyEu/HaXVwqc=
+Received: by mail-ej1-f47.google.com with SMTP id m19so806185ejj.11;
+        Mon, 30 Nov 2020 10:22:29 -0800 (PST)
+X-Gm-Message-State: AOAM530zzoVn+ZgWtitL9fAkF7r29DToBeqh35E7q5eSH1aXjAJHT+cP
+        nyp7S+k/M+6asJ7xZ/7ccMDic+scVTzVNGsaow==
+X-Google-Smtp-Source: ABdhPJyFXzK9r0+Iq/RD0xk5Sv0ZjyHxf2HQDuB9wTBjW13VgvYZTDrt6EdHznDLJXLUx5QV3ZAnjwzk/CmJafmC3rg=
+X-Received: by 2002:a17:906:c20f:: with SMTP id d15mr22155794ejz.341.1606760547636;
+ Mon, 30 Nov 2020 10:22:27 -0800 (PST)
 MIME-Version: 1.0
-References: <20201129000040.24777-1-sonals@xilinx.com>
-In-Reply-To: <20201129000040.24777-1-sonals@xilinx.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Mon, 30 Nov 2020 11:08:36 -0700
-X-Gmail-Original-Message-ID: <CAL_JsqLod6FBGFhu7WXtMrB_z7wj8-up0EetM1QS9M3gjm8d7Q@mail.gmail.com>
-Message-ID: <CAL_JsqLod6FBGFhu7WXtMrB_z7wj8-up0EetM1QS9M3gjm8d7Q@mail.gmail.com>
-Subject: Re: [PATCH Xilinx Alveo 0/8] Xilinx Alveo/XRT patch overview
-To:     Sonal Santan <sonal.santan@xilinx.com>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Sonal Santan <sonals@xilinx.com>, linux-fpga@vger.kernel.org,
-        maxz@xilinx.com, lizhih@xilinx.com,
-        Michal Simek <michal.simek@xilinx.com>,
-        Stefano Stabellini <stefanos@xilinx.com>,
+References: <20201119060921.311747-1-damien.lemoal@wdc.com>
+ <20201119060921.311747-2-damien.lemoal@wdc.com> <20201125210629.27al2cjp5jjuj354@mobilestation>
+In-Reply-To: <20201125210629.27al2cjp5jjuj354@mobilestation>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Mon, 30 Nov 2020 11:22:15 -0700
+X-Gmail-Original-Message-ID: <CAL_JsqK3VDb4Jv2H+0Rh7V3ZA+PmKt=+fbn+_a4eHHh8zQmQ9Q@mail.gmail.com>
+Message-ID: <CAL_JsqK3VDb4Jv2H+0Rh7V3ZA+PmKt=+fbn+_a4eHHh8zQmQ9Q@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] of: Fix property supplier parsing
+To:     Serge Semin <fancer.lancer@gmail.com>
+Cc:     Damien Le Moal <damien.lemoal@wdc.com>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
         devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Nov 28, 2020 at 5:02 PM Sonal Santan <sonal.santan@xilinx.com> wrote:
+On Wed, Nov 25, 2020 at 2:06 PM Serge Semin <fancer.lancer@gmail.com> wrote:
 >
-> Hello,
+> On Thu, Nov 19, 2020 at 03:09:20PM +0900, Damien Le Moal wrote:
+> > The DesignWare gpio-dwapb GPIO driver ("snps,dw-apb-gpio" or
+> > "apm,xgene-gpio-v2" compatible string) defines the now deprecated
+> > property "snps,nr-gpios" to specify the number of GPIOs available
+> > on a port. However, if this property is used in a device tree, its
+> > "-gpios" suffix causes the generic property supplier parsing code to
+> > interpret it as a cell reference when properties are parsed in
+> > of_link_to_suppliers(), leading to an error messages such as:
+> >
+> > OF: /soc/bus@50200000/gpio-controller@50200000/gpio-port@0: could not
+> > find phandle
+> >
+> > Fix this by manually defining a parse_gpios() function which ignores
+> > this deprecated property that is still present in many device trees,
+> > skipping the search for the supplier and thus avoiding the device tree
+> > parsing error.
+> >
+> > Signed-off-by: Damien Le Moal <damien.lemoal@wdc.com>
+> > ---
+> >  drivers/of/property.c | 16 +++++++++++++++-
+> >  1 file changed, 15 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/of/property.c b/drivers/of/property.c
+> > index 408a7b5f06a9..4eefe8efc2fe 100644
+> > --- a/drivers/of/property.c
+> > +++ b/drivers/of/property.c
+> > @@ -1308,7 +1308,6 @@ DEFINE_SIMPLE_PROP(pinctrl7, "pinctrl-7", NULL)
+> >  DEFINE_SIMPLE_PROP(pinctrl8, "pinctrl-8", NULL)
+> >  DEFINE_SUFFIX_PROP(regulators, "-supply", NULL)
+> >  DEFINE_SUFFIX_PROP(gpio, "-gpio", "#gpio-cells")
+> > -DEFINE_SUFFIX_PROP(gpios, "-gpios", "#gpio-cells")
+> >
+> >  static struct device_node *parse_iommu_maps(struct device_node *np,
+> >                                           const char *prop_name, int index)
+> > @@ -1319,6 +1318,21 @@ static struct device_node *parse_iommu_maps(struct device_node *np,
+> >       return of_parse_phandle(np, prop_name, (index * 4) + 1);
+> >  }
+> >
+> > +static struct device_node *parse_gpios(struct device_node *np,
+> > +                                    const char *prop_name, int index)
+> > +{
+> > +     /*
+> > +      * Quirk for the deprecated "snps,nr-gpios" property of the
+> > +      * DesignWare gpio-dwapb GPIO driver: as this property parsing
+> > +      * conflicts with the "xx-gpios" phandle reference property, ignore it.
+> > +      */
 >
-> This patch series adds management physical function driver for Xilinx Alveo PCIe
-> accelerator cards, https://www.xilinx.com/products/boards-and-kits/alveo.html
-> This driver is part of Xilinx Runtime (XRT) open source stack.
+> > +     if (strcmp(prop_name, "snps,nr-gpios") == 0)
+> > +             return NULL;
 >
-> The patch depends on the "PATCH Xilinx Alveo libfdt prep" which was posted
-> before.
+> What about printing the warning from instead of doing that from the driver?
+> Like this:
 >
-> ALVEO PLATFORM ARCHITECTURE
+> +       if (strcmp(prop_name, "snps,nr-gpios") == 0) {
+> +               pr_warn("%pOF: %s is deprecated in favor of ngpios\n");
+> +               return NULL;
+> +       }
 >
-> Alveo PCIe FPGA based platforms have a static *shell* partition and a partial
-> re-configurable *user* partition. The shell partition is automatically loaded from
-> flash when host is booted and PCIe is enumerated by BIOS. Shell cannot be changed
-> till the next cold reboot. The shell exposes two PCIe physical functions:
->
-> 1. management physical function
-> 2. user physical function
->
-> The patch series includes Documentation/xrt.rst which describes Alveo
-> platform, xmgmt driver architecture and deployment model in more more detail.
->
-> Users compile their high level design in C/C++/OpenCL or RTL into FPGA image
-> using Vitis https://www.xilinx.com/products/design-tools/vitis/vitis-platform.html
-> tools. The image is packaged as xclbin and contains partial bitstream for the
-> user partition and necessary metadata. Users can dynamically swap the image
-> running on the user partition in order to switch between different workloads.
->
-> ALVEO DRIVERS
->
-> Alveo Linux kernel driver *xmgmt* binds to management physical function of
-> Alveo platform. The modular driver framework is organized into several
-> platform drivers which primarily handle the following functionality:
->
-> 1.  Loading firmware container also called xsabin at driver attach time
-> 2.  Loading of user compiled xclbin with FPGA Manager integration
-> 3.  Clock scaling of image running on user partition
-> 4.  In-band sensors: temp, voltage, power, etc.
-> 5.  Device reset and rescan
-> 6.  Flashing static *shell* partition
->
-> The platform drivers are packaged into *xrt-lib* helper module with a well
-> defined interfaces the details of which can be found in Documentation/xrt.rst.
->
-> xmgmt driver is second generation Alveo management driver and evolution of
-> the first generation (out of tree) Alveo management driver, xclmgmt. The
-> sources of the first generation drivers were posted on LKML last year--
-> https://lore.kernel.org/lkml/20190319215401.6562-1-sonal.santan@xilinx.com/
->
-> Changes since the first generation driver include the following: the driver
-> has been re-architected as data driven modular driver; the driver has been
-> split into xmgmt and xrt-lib; user physical function driver has been removed
-> from the patch series.
->
-> Alveo/XRT security and platform architecture is documented on the following
-> GitHub pages:
-> https://xilinx.github.io/XRT/master/html/security.html
-> https://xilinx.github.io/XRT/master/html/platforms_partitions.html
->
-> User physical function driver is not included in this patch series.
->
-> TESTING AND VALIDATION
->
-> xmgmt driver can be tested with full XRT open source stack which includes
-> user space libraries, board utilities and (out of tree) first generation
-> user physical function driver xocl. XRT open source runtime stack is
-> available at https://github.com/Xilinx/XRT. This patch series has been
-> validated on Alveo U50 platform.
->
-> Complete documentation for XRT open source stack can be found here--
-> https://xilinx.github.io/XRT/master/html/index.html
+> So when the property is removed from all dts'es we wouldn't
+> forget to discard the quirk?
 
-I've not gotten into the patch details, but I'm not clear on what the
-lifecycle of the DT looks like here. What's the starting point and
-what manipulations to the DT are being done? I'm trying to understand
-if using libfdt is the right way versus operating on an unflattened
-tree.
+Why do we need this change at all? We've already got a message printed
+and devlink is still default off. If someone cares about devlink and
+the error message, then they should fix their dts file.
+
+Now if there's a stable/mature platform using "snps,nr-gpios" and we
+enable devlink by default (which needs to happen at some point), then
+I'd feel differently and we'll need to handle this. But until then, I
+don't want to carry this quirk.
 
 Rob
