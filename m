@@ -2,102 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AC8882C8D19
-	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 19:45:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D09AD2C8DA6
+	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 20:04:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729783AbgK3Smj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Nov 2020 13:42:39 -0500
-Received: from mo4-p01-ob.smtp.rzone.de ([81.169.146.167]:29266 "EHLO
-        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727626AbgK3Smj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Nov 2020 13:42:39 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1606761585;
-        s=strato-dkim-0002; d=fossekall.de;
-        h=Message-Id:Date:Subject:Cc:To:From:X-RZG-CLASS-ID:X-RZG-AUTH:From:
-        Subject:Sender;
-        bh=m33IIaYJF3O/xPuoQve3F1xb1VC6UKc+YqedJ1FE7UI=;
-        b=eEmP7bHPhRN2hSAsi10WnfJmXOeaUa02ni2ysCb5kT/51uw2ShlR5h6EFl6jJhScdx
-        VWGoGcQG2lLy/EJVtTtUkeOBNevJUEa+rme84QciLILtFIxPCM66+sHl1HOKIavFyDrv
-        5UckFRGERvSQXCoGHMNcDkB4CazD4Btj0BPF2rZQ371X2xvMnV74gVxwL4CtaPoBBh8A
-        jUexf0CoW4b5ZdENEIJlVnzw7d5u9l/nyDqhFRfDKtOB/ZCB5K/S6k+QyaHx6o4uqAoe
-        SAEqbyoNsLwIu5r2uZ5vBVvBdKJvlD8dJ5TM+T8vzQDZ6pPrtIEhvxI/yTYw8qyiR6ha
-        X+oQ==
-X-RZG-AUTH: ":O2kGeEG7b/pS1EzgE2y7nF0STYsSLflpbjNKxx7cGrBOdI6BL9pkS3QW19mO7I+/JwRspuzJFZuRzQ=="
-X-RZG-CLASS-ID: mo00
-Received: from aerfugl
-        by smtp.strato.de (RZmta 47.3.4 AUTH)
-        with ESMTPSA id g02087wAUIdhofS
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
-        (Client did not present a certificate);
-        Mon, 30 Nov 2020 19:39:43 +0100 (CET)
-Received: from koltrast.a98shuttle.de ([192.168.1.27] helo=a98shuttle.de)
-        by aerfugl with smtp (Exim 4.89)
-        (envelope-from <michael@a98shuttle.de>)
-        id 1kjo5M-0005JM-Sg; Mon, 30 Nov 2020 19:39:40 +0100
-Received: (nullmailer pid 136773 invoked by uid 502);
-        Mon, 30 Nov 2020 18:39:40 -0000
-From:   Michael Klein <michael@fossekall.de>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Michael Klein <michael@fossekall.de>
-Subject: [PATCH] ARM: dts: sun8i-h2-plus-bananapi-m2-zero: add regulator nodes vcc-dram and vcc1v2
-Date:   Mon, 30 Nov 2020 19:38:43 +0100
-Message-Id: <20201130183841.136708-1-michael@fossekall.de>
-X-Mailer: git-send-email 2.29.2
+        id S2388124AbgK3TDY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Nov 2020 14:03:24 -0500
+Received: from mail.kernel.org ([198.145.29.99]:43294 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2387983AbgK3TDY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 30 Nov 2020 14:03:24 -0500
+Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 43369207F7
+        for <devicetree@vger.kernel.org>; Mon, 30 Nov 2020 19:02:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1606762963;
+        bh=ywtuw6YcYIC+0BnoE7DJgPDW9mku/bZrfLQLWhyt2fo=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=QRROzbAxkNb+hHydftCb7h2S2mEaMp/XgVuN7IR279RYTxSfilKKQ5hGlKMqFhIwk
+         2rRMabhAIsxbbbCs3BYrNO8eLnTEho5Ckuh/e4VxdpHVR5ju0W/dtkK4uHxGL0NEoU
+         Rg/XaeVBAx7l/t7081Fnadd8l+oNfaA3z4hiaRJE=
+Received: by mail-ed1-f49.google.com with SMTP id m16so17692983edr.3
+        for <devicetree@vger.kernel.org>; Mon, 30 Nov 2020 11:02:43 -0800 (PST)
+X-Gm-Message-State: AOAM532K3xEexvMLbmCnUe2vfkV9KNIsVjMZKAua35eharEGuV7+CJXA
+        HkoZ4UsBg6Y/q9S7FF2Iqp7P0AuYC9i2OrocGg==
+X-Google-Smtp-Source: ABdhPJymwrlB3PlX6ClMp64S/Q9+zA/ikFnHvUlhtgaMe79yQTPSwjOkntQBUuHWGgF/tfSjhyv+RxpO6fmlz8JPkwg=
+X-Received: by 2002:aa7:d154:: with SMTP id r20mr6111086edo.258.1606762961761;
+ Mon, 30 Nov 2020 11:02:41 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <b4c0976e36a3a6e45b1042d4587e2eb9@codeaurora.org>
+In-Reply-To: <b4c0976e36a3a6e45b1042d4587e2eb9@codeaurora.org>
+From:   Rob Herring <robh@kernel.org>
+Date:   Mon, 30 Nov 2020 12:02:29 -0700
+X-Gmail-Original-Message-ID: <CAL_JsqLuZkL6XztT_Wid3R_ohU01zQwU5HywqpN7hAS4fUNa=g@mail.gmail.com>
+Message-ID: <CAL_JsqLuZkL6XztT_Wid3R_ohU01zQwU5HywqpN7hAS4fUNa=g@mail.gmail.com>
+Subject: Re: viability of dt-schema long-term
+To:     mturney@codeaurora.org
+Cc:     devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add regulator nodes vcc-dram and vcc1v2 to the devicetree. These
-regulators correspond to U4 and U5 in the schematics:
+On Wed, Nov 25, 2020 at 2:13 PM <mturney@codeaurora.org> wrote:
+>
+>
+> Folks,
+> I am advocating use of dt-schema project internally to validate DTS
+> files.
+> I should add that our use is outside kernel tree on proprietary project.
+>
+> One of the push-backs I'm getting from the management chain is along the
+> lines of...
+>
+> Who is this Rob Herring guy and why should we use a project that is only
+> sourced on https://github.com/robherring/dt-schema?
 
-http://forum.banana-pi.org/t/bpi-m2-zero-schematic-diagram-public/4111
+I wouldn't trust him...
 
-Signed-off-by: Michael Klein <michael@fossekall.de>
----
- .../dts/sun8i-h2-plus-bananapi-m2-zero.dts    | 24 +++++++++++++++++++
- 1 file changed, 24 insertions(+)
+That's the wrong repo though: https://github.com/devicetree-org/dt-schema
 
-diff --git a/arch/arm/boot/dts/sun8i-h2-plus-bananapi-m2-zero.dts b/arch/arm/boot/dts/sun8i-h2-plus-bananapi-m2-zero.dts
-index 4c6704e4c57e..74d5732c412b 100644
---- a/arch/arm/boot/dts/sun8i-h2-plus-bananapi-m2-zero.dts
-+++ b/arch/arm/boot/dts/sun8i-h2-plus-bananapi-m2-zero.dts
-@@ -62,6 +62,30 @@ reg_vdd_cpux: vdd-cpux-regulator {
- 		states = <1100000 0>, <1300000 1>;
- 	};
- 
-+	reg_vcc_dram: vcc-dram {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc-dram";
-+		regulator-min-microvolt = <1500000>;
-+		regulator-max-microvolt = <1500000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+		enable-active-high;
-+		gpio = <&r_pio 0 9 GPIO_ACTIVE_HIGH>; /* PL9 */
-+		vin-supply = <&reg_vcc5v0>;
-+	};
-+
-+	reg_vcc1v2: vcc1v2 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc1v2";
-+		regulator-min-microvolt = <1200000>;
-+		regulator-max-microvolt = <1200000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+		enable-active-high;
-+		gpio = <&r_pio 0 8 GPIO_ACTIVE_HIGH>; /* PL8 */
-+		vin-supply = <&reg_vcc5v0>;
-+	};
-+
- 	wifi_pwrseq: wifi_pwrseq {
- 		compatible = "mmc-pwrseq-simple";
- 		reset-gpios = <&r_pio 0 7 GPIO_ACTIVE_LOW>; /* PL7 */
--- 
-2.29.2
+(Unfortunately, GH's forks is misleading as the 'root' repo has changed.)
 
+> If the kernel project is using it, why isn't kernel.org hosting the
+> project?
+
+It's not a kernel project. That's why devicetree.org hosts it.
+
+> What is kernel plan if Rob walks away from the project, is this going to
+> wither away and die?
+
+IMO, only if folks don't find validation valuable or a better
+implementation comes along.
+
+> There are more, but the above pseudo-quotes grab the gist of the
+> management complaints.
+>
+> Q.1) Is there a plan for the kernel project to suck dt-schema into its
+> orbit?
+
+No, the 'plan' (more like desire) is more in the opposite direction.
+Move more of DT (bindings and dts files) out of the kernel for other
+projects to use. For now, we have the 'devicetree-rebasing' tree which
+is just the DT bits from the kernel tree.
+
+> Q.2) How many active maintainers are there for dt-schema?
+
+Mostly just me. Maxime Ripard is also one. Others could be if the need arose.
+
+> Q.3) How do I respond to the above types of complaints?
+
+jsonschema python module which is our main dependency is also just a
+single maintainer. So is dtc. Maybe not what you want to highlight.
+
+Rob
