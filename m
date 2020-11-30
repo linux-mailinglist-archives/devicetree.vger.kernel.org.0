@@ -2,152 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 208032C8232
-	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 11:32:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B053B2C8266
+	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 11:42:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728084AbgK3KbU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Nov 2020 05:31:20 -0500
-Received: from mail.kernel.org ([198.145.29.99]:52444 "EHLO mail.kernel.org"
+        id S1728540AbgK3Kln (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Nov 2020 05:41:43 -0500
+Received: from ns.mm-sol.com ([37.157.136.199]:60963 "EHLO extserv.mm-sol.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727288AbgK3KbU (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 30 Nov 2020 05:31:20 -0500
-Received: from localhost (unknown [122.171.214.243])
+        id S1728505AbgK3Kln (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 30 Nov 2020 05:41:43 -0500
+X-Greylist: delayed 403 seconds by postgrey-1.27 at vger.kernel.org; Mon, 30 Nov 2020 05:41:40 EST
+Received: from [192.168.0.3] (hst-221-92.medicom.bg [84.238.221.92])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id F253320708;
-        Mon, 30 Nov 2020 10:30:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1606732236;
-        bh=+mNAuwEK4cx729Qu4tU7yoERlzupdG5c5Y5WYvAGTC4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=r0A7GnviLclz96J05ChsOdA0314ig1iDpH0YN/t2pYQZzTXe7rkH8g1nAxXipxqWz
-         0jiWl5zkry+mjAgEVXHx/2QlK7icSPJCHJO+FTSiyJ2vtnRr7Cpv05/wLllFumUf0a
-         4BhrBYDcBRiSWAsOF8Llo7foJOpq7eZx6bJMFCLc=
-Date:   Mon, 30 Nov 2020 16:00:23 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, linuxarm@huawei.com,
-        mauro.chehab@huawei.com, John Stultz <john.stultz@linaro.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Alex Dewar <alex.dewar90@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Yu Chen <chenyu56@huawei.com>, devel@driverdev.osuosl.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/8] phy: phy-hi3670-usb3: move driver from staging into
- phy
-Message-ID: <20201130103023.GM8403@vkoul-mobl>
-References: <cover.1605530560.git.mchehab+huawei@kernel.org>
- <420faf39bb03d07f8823b03bc55a429e975e23a0.1605530560.git.mchehab+huawei@kernel.org>
+        (Client did not present a certificate)
+        (Authenticated sender: svarbanov@mm-sol.com)
+        by extserv.mm-sol.com (Postfix) with ESMTPSA id 05962D0A7;
+        Mon, 30 Nov 2020 12:34:16 +0200 (EET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mm-sol.com; s=201706;
+        t=1606732456; bh=Y3kmBtJDunBAQtrIx3VvhZQtHBPVVJ1VC870yw0gzyE=;
+        h=Subject:To:Cc:From:Date:From;
+        b=cuSv8Ya70Tpk3tbAbiFda22GPoPTeR8sypm/zU/svTAex4ypO6zqO9pOsVo7oZQ9C
+         gkbpvE5WeoiNX5u/qDHssPE+hPerCkr7TCBjaDJIscN8m1RXCNxvzEqUFJteCTL22y
+         9OKScUyiQvMSmbT4VGdU9Kt8sba2KU5NCWdvVgr2PGjuU1gIM7GIZyKRL0XoTTy4DK
+         0twQ6PtjYiwNnY/07Chf/Yk+AR2weYBVjq3Z//rJ+y20ll2Lq04DStw/o8PcxTn5Bv
+         cOcZoNVCY6ytbJ8Ahfzu9GvDDqg+VN1jG/az9teP8mpkm2MAxnV3jVgOI5YKqJ6/5o
+         mddJSbHamstqQ==
+Subject: Re: [PATCH 15/17] arm64: dts: sdm845: Add interconnect properties for
+ Venus
+To:     Georgi Djakov <georgi.djakov@linaro.org>,
+        Stanimir Varbanov <stanimir.varbanov@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org
+References: <20201102113529.16152-1-stanimir.varbanov@linaro.org>
+ <04afbbe2-0e31-1ca1-8215-504e64186969@linaro.org>
+From:   Stanimir Varbanov <svarbanov@mm-sol.com>
+Message-ID: <cf5470a8-d810-6b08-9490-a9036eeef938@mm-sol.com>
+Date:   Mon, 30 Nov 2020 12:34:13 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <420faf39bb03d07f8823b03bc55a429e975e23a0.1605530560.git.mchehab+huawei@kernel.org>
+In-Reply-To: <04afbbe2-0e31-1ca1-8215-504e64186969@linaro.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16-11-20, 13:59, Mauro Carvalho Chehab wrote:
+Bjorn, could you take this for v5.11.
 
-> +#define CTRL7_USB2_REFCLKSEL_MASK	(3 << 3)
-> +#define CTRL7_USB2_REFCLKSEL_ABB	(3 << 3)
-> +#define CTRL7_USB2_REFCLKSEL_PAD	(2 << 3)
+On 11/2/20 2:07 PM, Georgi Djakov wrote:
+> Hi Stan,
+> 
+> On 11/2/20 13:35, Stanimir Varbanov wrote:
+>> Populate Venus DT node with interconnect properties.
+>>
+>> Signed-off-by: Stanimir Varbanov <stanimir.varbanov@linaro.org>
+> 
+> Reviewed-by: Georgi Djakov <georgi.djakov@linaro.org>
+> 
+> Thanks!
+> Georgi
+> 
+>> ---
+>>  arch/arm64/boot/dts/qcom/sdm845.dtsi | 3 +++
+>>  1 file changed, 3 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+>> index 40e8c11f23ab..aca7e9c954e0 100644
+>> --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+>> @@ -3661,6 +3661,9 @@
+>>  			iommus = <&apps_smmu 0x10a0 0x8>,
+>>  				 <&apps_smmu 0x10b0 0x0>;
+>>  			memory-region = <&venus_mem>;
+>> +			interconnects = <&mmss_noc MASTER_VIDEO_P0 0 &mem_noc SLAVE_EBI1 0>,
+>> +					<&gladiator_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_VENUS_CFG 0>;
+>> +			interconnect-names = "video-mem", "cpu-cfg";
+>>  
+>>  			video-core0 {
+>>  				compatible = "venus-decoder";
+>>
 
-This should use GENMASK()
-> +
-> +#define CFG50_USB3_PHY_TEST_POWERDOWN	BIT(23)
-> +
-> +#define CFG54_USB31PHY_CR_ADDR_MASK	(0xFFFF)
-> +#define CFG54_USB31PHY_CR_ADDR_SHIFT	(16)
-
-We can skip this by using FIELD_GET/FIELD_SET macros and only define
-register fields.
-
-> +static int hi3670_phy_cr_start(struct regmap *usb31misc, int direction)
-> +{
-> +	int ret;
-> +
-> +	if (direction)
-> +		ret = regmap_update_bits(usb31misc, USB_MISC_CFG54,
-> +					 CFG54_USB31PHY_CR_WR_EN,
-> +					 CFG54_USB31PHY_CR_WR_EN);
-> +	else
-> +		ret = regmap_update_bits(usb31misc, USB_MISC_CFG54,
-> +					 CFG54_USB31PHY_CR_RD_EN,
-> +					 CFG54_USB31PHY_CR_RD_EN);
-
-how about:
-        if direction
-                reg = CFG54_USB31PHY_CR_WR_EN;
-        else
-                reg = CFG54_USB31PHY_CR_RD_EN;
-
-        regmap_update_bits(usb31misc, USB_MISC_CFG54, reg, reg);
- 
-> +
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = hi3670_phy_cr_clk(usb31misc);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = regmap_update_bits(usb31misc, USB_MISC_CFG54,
-> +				 CFG54_USB31PHY_CR_RD_EN | CFG54_USB31PHY_CR_WR_EN, 0);
-> +
-> +	return ret;
-
-        return regmap_update_bits()
-
-> +static int hi3670_phy_cr_wait_ack(struct regmap *usb31misc)
-> +{
-> +	u32 reg;
-> +	int retry = 100000;
-> +	int ret;
-> +
-> +	while (retry-- > 0) {
-> +		ret = regmap_read(usb31misc, USB_MISC_CFG54, &reg);
-> +		if (ret)
-> +			return ret;
-> +		if ((reg & CFG54_USB31PHY_CR_ACK) == CFG54_USB31PHY_CR_ACK)
-> +			return 0;
-> +
-> +		ret = hi3670_phy_cr_clk(usb31misc);
-> +		if (ret)
-> +			return ret;
-
-No delay in between reads..? maybe add a small delay and reduce the
-retries?
-
-> +static int hi3670_phy_cr_set_addr(struct regmap *usb31misc, u32 addr)
-> +{
-> +	u32 reg;
-> +	int ret;
-> +
-> +	ret = regmap_read(usb31misc, USB_MISC_CFG54, &reg);
-> +	if (ret)
-> +		return ret;
-> +
-> +	reg &= ~(CFG54_USB31PHY_CR_ADDR_MASK << CFG54_USB31PHY_CR_ADDR_SHIFT);
-> +	reg |= ((addr & CFG54_USB31PHY_CR_ADDR_MASK) << CFG54_USB31PHY_CR_ADDR_SHIFT);
-> +	ret = regmap_write(usb31misc, USB_MISC_CFG54, reg);
-
-regmap_update_bits() ?
-
-> +static int hi3670_is_abbclk_seleted(struct hi3670_priv *priv)
-> +{
-> +	u32 reg;
-> +
-> +	if (!priv->sctrl) {
-> +		dev_err(priv->dev, "priv->sctrl is null!\n");
-> +		return 1;
-> +	}
-> +
-> +	if (regmap_read(priv->sctrl, SCTRL_SCDEEPSLEEPED, &reg)) {
-> +		dev_err(priv->dev, "SCTRL_SCDEEPSLEEPED read failed!\n");
-> +		return 1;
-
-Not a -ve error code?
 -- 
-~Vinod
+regards,
+Stan
