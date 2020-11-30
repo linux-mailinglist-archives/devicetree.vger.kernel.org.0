@@ -2,55 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 927B42C810E
-	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 10:31:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CCBB62C8124
+	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 10:37:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726337AbgK3JbI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Nov 2020 04:31:08 -0500
-Received: from mail.kernel.org ([198.145.29.99]:52064 "EHLO mail.kernel.org"
+        id S1727375AbgK3JhN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Nov 2020 04:37:13 -0500
+Received: from mail.kernel.org ([198.145.29.99]:53186 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726249AbgK3JbI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 30 Nov 2020 04:31:08 -0500
+        id S1726298AbgK3JhN (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 30 Nov 2020 04:37:13 -0500
 Received: from dragon (80.251.214.228.16clouds.com [80.251.214.228])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id A6A122076E;
-        Mon, 30 Nov 2020 09:30:24 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 65F8620578;
+        Mon, 30 Nov 2020 09:36:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1606728625;
-        bh=OPTZZoFbOuM/K/lSXF9disfU6si2jVW+WQde1KUIGoE=;
+        s=default; t=1606728993;
+        bh=d4lgpKU06SJ+PAtZJyVWZbeLI8bmr3++iqfqZhWWmIA=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ed/aBH0s8uK2fUHb7qJDigmHnICrHXVdp5WXXrk+1cXCXXdEINonbLWFwf4mk0pfg
-         UsX1xesaT2tr4LDEYdJMbogI2SHGTnDh+9pMTYEXQ+7ukg6l+Ay/vWx5nsLuA5Cn+F
-         uWy1pMVvi4wZyvNeCiOj7uPNjE3a6Bi0WCEAW8bc=
-Date:   Mon, 30 Nov 2020 17:30:21 +0800
+        b=D9Z/LprowU2b42t1gpqRQYY74yc+jGCFAh1MY81ER8lTQHvMaVyIUP9qW5bSWLBSY
+         +TXhhnPisdMDeSwunThQQUjgSsigH2vYECYJH0rRiFZxEIAixncZ6AXIHwTcfbMfDa
+         HI4HYsJsK+1mCRpG4dO/xVmuxRHyhiUodDtF+0Ow=
+Date:   Mon, 30 Nov 2020 17:36:26 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
-To:     Michael Walle <michael@walle.cc>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Li Yang <leoyang.li@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH] arm64: dts: freescale: sl28: combine SPI MTD partitions
-Message-ID: <20201130093020.GD4072@dragon>
-References: <20201115225435.8529-1-michael@walle.cc>
+To:     andy.tang@nxp.com
+Cc:     leoyang.li@nxp.com, robh+dt@kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] arm64: dts: freescale: update calibration table for
+ TMU module
+Message-ID: <20201130093625.GF4072@dragon>
+References: <20201117034305.42546-1-andy.tang@nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201115225435.8529-1-michael@walle.cc>
+In-Reply-To: <20201117034305.42546-1-andy.tang@nxp.com>
 User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Nov 15, 2020 at 11:54:35PM +0100, Michael Walle wrote:
-> The upstream port, doesn't really follow the vendor partitioning. The
-> bootloader partition has one U-Boot FIT image containing all needed
-> bits and pieces. Even today the bootloader is already larger than the
-> current "bootloader" partition. Thus, fold all the partitions into one
-> and keep the environment one. The latter is still valid.
-> We keep the failsafe partitions because the first half of the SPI flash
-> is preinstalled by the vendor and immutable.
+On Tue, Nov 17, 2020 at 11:43:04AM +0800, andy.tang@nxp.com wrote:
+> From: Yuantian Tang <andy.tang@nxp.com>
 > 
-> Fixes: 815364d0424e ("arm64: dts: freescale: add Kontron sl28 support")
-> Signed-off-by: Michael Walle <michael@walle.cc>
+> Update the calibration table to make the temperature more accurate.
+> Three platforms have been updated: ls1012a, ls1043a and ls1046a.
+> 
+> Signed-off-by: Yuantian Tang <andy.tang@nxp.com>
 
-Applied, thanks.
+Applied both, thanks.
