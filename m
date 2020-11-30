@@ -2,85 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F3DC22C80C3
-	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 10:18:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EF2DF2C80D4
+	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 10:21:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727898AbgK3JRX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Nov 2020 04:17:23 -0500
-Received: from mail-oi1-f170.google.com ([209.85.167.170]:43736 "EHLO
-        mail-oi1-f170.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726634AbgK3JRX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Nov 2020 04:17:23 -0500
-Received: by mail-oi1-f170.google.com with SMTP id t143so13420398oif.10;
-        Mon, 30 Nov 2020 01:17:07 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=UpFsmKHMxP9g9q5APyn1icsD+ymXQt4NPSq031N1NNI=;
-        b=WSrp/PyOB4L9ORnsszYo+I4K2SIz1/wJvFA1s/5m8MZVPiZ4melDWHVnxfqKIw2xpr
-         odlBczevnikx2AgQZ1mI7OYLuNLOjWgC1tRw6v/4Ao0F1BNkOiHDJC/CCx9SJcDJkSKe
-         AR3tMA03ly/5yXdFmrpsLpm2YkGri6N//vKec1SUY/cr5BMMhLSMmGW++odDT/5zhkRV
-         K8hr+9l8ZlOvPy5uHrYd1LHLZxUhrIM7tUuj0wHUNvRCCf+Zzgux1zBSYIQCvMvFrKAE
-         NxL20bAFqecuTclGBHLRh+1n1/zyYDOU9a15jM+Sjf00z+lc2+0zImHcQSmbNN1Z9JHL
-         MTgw==
-X-Gm-Message-State: AOAM533FVcx4kDXJ/Uipq+k8tnq0t5cBRUEE6lXYKQ67TIpihDEWgRSh
-        FF7Go04FXiObu+WLc0fDYodrtbTUudvEYl2XjQeoZ1+DRvE=
-X-Google-Smtp-Source: ABdhPJzeINpx9GMKwjhKFTAHXMl7bD1gJfOA2/3YLUwKSuBIptgaIj//KON2S18pSW1vwn1PxT6uD5Ljvsv/bbYS8tk=
-X-Received: by 2002:aca:1c0f:: with SMTP id c15mr13811815oic.54.1606727802158;
- Mon, 30 Nov 2020 01:16:42 -0800 (PST)
+        id S1726832AbgK3JVS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Nov 2020 04:21:18 -0500
+Received: from mail.kernel.org ([198.145.29.99]:49278 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726498AbgK3JVS (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 30 Nov 2020 04:21:18 -0500
+Received: from dragon (80.251.214.228.16clouds.com [80.251.214.228])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 0C435207BC;
+        Mon, 30 Nov 2020 09:20:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1606728037;
+        bh=JTMsRQDp629j0dDn+/Ii7q+0c+mGzBEO4MsM2ildxw4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=cIwSEEUdanV3hCJbL4T7FGDLe4qQFPXBBiErSdDQPctij3nfOIfDtojyznxtyFy/v
+         7ZTnPr1mhPof1cVn/04DxOJq6SDkMcpP0yfGvxj1A9aIrmdzBVyMJnXsBva6+nYgFL
+         ozEKcnHRhBk8GhLyIPd2ibIGAoUhIm1Qr/sZatY8=
+Date:   Mon, 30 Nov 2020 17:20:31 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Michael Walle <michael@walle.cc>
+Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        "Y . b . Lu" <yangbo.lu@nxp.com>,
+        Xiaowei Bao <xiaowei.bao@nxp.com>,
+        Ashish Kumar <Ashish.Kumar@nxp.com>,
+        Vladimir Oltean <vladimir.oltean@nxp.com>
+Subject: Re: [PATCH v3 1/9] arm64: dts: ls1028a: fix ENETC PTP clock input
+Message-ID: <20201130092030.GA4072@dragon>
+References: <20201108185113.31377-1-michael@walle.cc>
+ <20201108185113.31377-2-michael@walle.cc>
 MIME-Version: 1.0
-References: <20201126115927.4089838-1-geert@linux-m68k.org>
-In-Reply-To: <20201126115927.4089838-1-geert@linux-m68k.org>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 30 Nov 2020 10:16:31 +0100
-Message-ID: <CAMuHMdXPrfEvFUDEU72odcS6S8e0GS_XRcrcDsQMvSHxMcxwYg@mail.gmail.com>
-Subject: Re: [PATCH/RFC] dt-bindings: pci: rcar-pci-ep: Document missing
- interrupts property
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Marek Vasut <marek.vasut+renesas@gmail.com>
-Cc:     linux-pci <linux-pci@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201108185113.31377-2-michael@walle.cc>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 26, 2020 at 3:20 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> The R-Car PCIe controller does not use interrupts when configured
-> for endpoint mode, hence the bindings do not document the interrupt
-> property.  However, all DTS files provide interrupts properties, and
-> thus fail to validate.
->
-> Fix this by documenting the interrupts property.
->
-> Fixes: 5be478f9c24fbdf8 ("dt-bindings: Another round of adding missing 'additionalProperties'")
-> Fixes: 4c0f80920923f103 ("dt-bindings: PCI: rcar: Add bindings for R-Car PCIe endpoint controller")
-> Signed-off-by: Geert Uytterhoeven <geert@linux-m68k.org>
+On Sun, Nov 08, 2020 at 07:51:05PM +0100, Michael Walle wrote:
+> On the LS1028A the ENETC reference clock is connected to 4th HWA output,
+> see Figure 7 "Clock subsystem block diagram".
+> 
+> The PHC may run with a wrong frequency. ptp_qoriq_auto_config() will read
+> the clock speed of the clock given in the device tree. It is likely that,
+> on the reference board this wasn't noticed because both clocks have the
+> same frequency. But this must not be always the case. Fix it.
+> 
+> Fixes: 49401003e260 ("arm64: dts: fsl: ls1028a: add ENETC 1588 timer node")
+> Signed-off-by: Michael Walle <michael@walle.cc>
 
-Oops, this should have been geert+renesas@glider.be.
-
-> ---
-> Alternatively, the interrupts properties should be removed from the
-> corresponding device nodes in the DTS files.  Obviously they should be
-> retained in the device nodes representing PCIe controllers configured in
-> host mode, which describe the same hardware...
-
-Anyway, waiting for your comments ;-)
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Applied, thanks.
