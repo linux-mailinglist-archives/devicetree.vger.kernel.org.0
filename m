@@ -2,88 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AF3282C8DBA
-	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 20:14:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C90B2C8E39
+	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 20:40:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726007AbgK3TMa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Nov 2020 14:12:30 -0500
-Received: from mail.kernel.org ([198.145.29.99]:44750 "EHLO mail.kernel.org"
+        id S1728803AbgK3Tj4 convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 30 Nov 2020 14:39:56 -0500
+Received: from aposti.net ([89.234.176.197]:48400 "EHLO aposti.net"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725897AbgK3TMa (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 30 Nov 2020 14:12:30 -0500
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id D11BA20825
-        for <devicetree@vger.kernel.org>; Mon, 30 Nov 2020 19:11:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1606763509;
-        bh=qFMB0S5F8DWHbnHyt7f10TUyK5zOuc8LJf/u7hmm/YA=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=bHh5EAF3fz3WfnyjhcyNsRuF6REFs2wJ6SlKIIT1fc99fNfJOEoHtP6fY7r4tj1NW
-         Bk9Z/sCQHgpwjTR/ZDbBH5Ap+V5SdER+PWqEptS51bGz6gHS711AT4w42LroDo5oN4
-         i9uGkjp+2+KqLL3G8N3Q/HQ+Y3JLZXncuVdaZhCY=
-Received: by mail-ej1-f54.google.com with SMTP id lt17so23968417ejb.3
-        for <devicetree@vger.kernel.org>; Mon, 30 Nov 2020 11:11:48 -0800 (PST)
-X-Gm-Message-State: AOAM53351D2k9gUwVhgGcASrdTePkR+NPfsr+4TtNSlGqX+VjHfHo1V2
-        7hJvmzH0kGu6yY33WegdfxiG5ne0UFPArU5N4A==
-X-Google-Smtp-Source: ABdhPJwPYfRrWknfKDJEK0dgwlh/PR29Wjzsq8O5ntEoyBT/NfKcgJlzRSyOR2SQAPE+nBkbam1iZaJhtxSRSZeEPgo=
-X-Received: by 2002:a17:906:d87:: with SMTP id m7mr8167514eji.108.1606763507318;
- Mon, 30 Nov 2020 11:11:47 -0800 (PST)
+        id S1728156AbgK3Tjz (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 30 Nov 2020 14:39:55 -0500
+Date:   Mon, 30 Nov 2020 19:39:01 +0000
+From:   Paul Cercueil <paul@crapouillou.net>
+Subject: Re: [PATCH 2/4] dt-bindings: display: Add ABT Y030XX067A panel
+ bindings
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Sam Ravnborg <sam@ravnborg.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Christophe Branchereau <cbranchereau@gmail.com>, od@zcrc.me,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Message-Id: <1XJMKQ.YER47WG3D7R41@crapouillou.net>
+In-Reply-To: <CAL_JsqLSGMFibm8tVKqNe1SFBzXTU2=M2jZmpfrHeGUqS3foRg@mail.gmail.com>
+References: <20201101093150.8071-1-paul@crapouillou.net>
+        <20201101093150.8071-3-paul@crapouillou.net>
+        <20201101122900.GB1269759@ravnborg.org>
+        <9CZ5JQ.CWYPSJ8EDOW4@crapouillou.net>
+        <CAL_JsqLSGMFibm8tVKqNe1SFBzXTU2=M2jZmpfrHeGUqS3foRg@mail.gmail.com>
 MIME-Version: 1.0
-References: <CAFr9PXkX3UnLzGsPntXSum1978BkDJ1sn5XCp9Ze9KnHdmBDrw@mail.gmail.com>
-In-Reply-To: <CAFr9PXkX3UnLzGsPntXSum1978BkDJ1sn5XCp9Ze9KnHdmBDrw@mail.gmail.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Mon, 30 Nov 2020 12:11:35 -0700
-X-Gmail-Original-Message-ID: <CAL_JsqLcg4z7CnKf=7CsL1x3sPS+e2OxshGoD5j8kN4hQCFqrQ@mail.gmail.com>
-Message-ID: <CAL_JsqLcg4z7CnKf=7CsL1x3sPS+e2OxshGoD5j8kN4hQCFqrQ@mail.gmail.com>
-Subject: Re: How to describe a device that sits across two busses.
-To:     Daniel Palmer <daniel@0x0f.com>
-Cc:     DTML <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=iso-8859-1; format=flowed
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Nov 28, 2020 at 11:00 AM Daniel Palmer <daniel@0x0f.com> wrote:
->
-> Hi all,
->
-> I have a driver for a SPI flash controller that I want to mainline
-> soon and I'm cleaning up the device tree part for it at the moment.
->
-> This device has registers that are children in a "simple bus" and a
-> memory mapped area that is in the soc simple bus because it's not
-> connected via the same bus as the registers.
->
-> Right now I have the driver's node in the soc simple bus like this:
->
-> isp: isp@1f001000 {
->   compatible = "mstar,msc313-isp";
->   reg = <0x1f001000 0x400>,
->            <0x1f002c00 0x200>,
->            <0x1f002e00 0x200>,
->            <0x14000000 0x1000000>;
-> };
->
-> Really the first 3 reg values belong to this simple bus:
->
-> riu: bus@1f000000 {
->   compatible = "simple-bus";
->   reg = <0x1f000000 0x00400000>;
+Hi Rob,
 
-If it's 'simple', then it shouldn't have regs...
+Le lun. 30 nov. 2020 à 7:32, Rob Herring <robh+dt@kernel.org> a écrit 
+:
+> On Mon, Nov 2, 2020 at 3:19 AM Paul Cercueil <paul@crapouillou.net> 
+> wrote:
+>> 
+>> 
+>> 
+>>  Le dim. 1 nov. 2020 à 13:29, Sam Ravnborg <sam@ravnborg.org> a 
+>> écrit :
+>>  > On Sun, Nov 01, 2020 at 09:31:48AM +0000, Paul Cercueil wrote:
+>>  >>  The Asia Better Technology (ABT) Y030XX067A panel is a 3.0" 
+>> 320x480
+>>  >>  24-bit IPS LCD panel. Its particularity is that it has 
+>> non-square
+>>  >> pixels
+>>  >>  (as it is 4:3 for a resolution of 320x480), and that it 
+>> requires odd
+>>  >>  lines to be sent as RGB and even lines to be sent as GRB on its
+>>  >> 8-bit
+>>  >>  bus.
+>>  >>
+>>  >>  Signed-off-by: Paul Cercueil <paul@crapouillou.net>
+>>  >>  ---
+>>  >>   .../display/panel/abt,y030xx067a.yaml         | 54
+>>  >> +++++++++++++++++++
+>>  >>   1 file changed, 54 insertions(+)
+>>  >>   create mode 100644
+>>  >> 
+>> Documentation/devicetree/bindings/display/panel/abt,y030xx067a.yaml
+>>  >>
+>>  >>  diff --git
+>>  >> 
+>> a/Documentation/devicetree/bindings/display/panel/abt,y030xx067a.yaml
+>>  >> 
+>> b/Documentation/devicetree/bindings/display/panel/abt,y030xx067a.yaml
+>>  >>  new file mode 100644
+>>  >>  index 000000000000..6407e8bf45fa
+>>  >>  --- /dev/null
+>>  >>  +++
+>>  >> 
+>> b/Documentation/devicetree/bindings/display/panel/abt,y030xx067a.yaml
+>>  >>  @@ -0,0 +1,54 @@
+>>  >>  +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>>  >>  +%YAML 1.2
+>>  >>  +---
+>>  >>  +$id:
+>>  >> http://devicetree.org/schemas/display/panel/abt,y030xx067a.yaml#
+>>  >>  +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>  >>  +
+>>  >>  +title: Asia Better Technology 3.0" (320x480 pixels) 24-bit IPS 
+>> LCD
+>>  >> panel
+>>  >>  +
+>>  >>  +description: |
+>>  >>  +  The panel must obey the rules for a SPI slave device as
+>>  >> specified in
+>>  >>  +  spi/spi-controller.yaml
+>>  >>  +
+>>  >>  +maintainers:
+>>  >>  +  - Paul Cercueil <paul@crapouillou.net>
+>>  >>  +
+>>  >>  +allOf:
+>>  >>  +  - $ref: panel-common.yaml#
+>>  >>  +
+>>  >>  +properties:
+>>  >>  +  compatible:
+>>  >>  +    const: abt,y030xx067a
+>>  >>  +
+>>  >>  +  backlight: true
+>>  >>  +  port: true
+>>  >>  +  power-supply: true
+>>  >>  +  reg: true
+>>  >>  +  reset-gpios: true
+>>  >
+>>  > The binding is missing:
+>>  > required:
+>>  >   - compatible
+>>  >   - reg
+>>  >   - power-supply
+>>  >   - reset-gpios
+>>  >   - ...
+>>  >
+>>  > additionalProperties: false
+>>  >
+>>  > So r-b only with these added.
+>> 
+>>  Stupid mistake, sorry about that.
+>> 
+>>  I'll V2.
+> 
+> I don't have any V2 in my inbox, but looks like it is in linux-next 
+> now:
 
-> };
->
-> Is there a good way to describe this? I think maybe the memory mapped
-> area should be another node (syscon?) and that should be referenced in
-> the driver node and the driver node itself nested in the riu simple
-> bus where the registers are.
+Yes, Sam told me on IRC I could fix it while applying and avoid the V2.
 
-There's not really a better way. I would stick with 'reg' and not a
-syscon. Unless you restrict the address space with 'ranges' nothing
-prevents having the above. The main thing we want to avoid is having
-the same address used (in 'reg') by multiple nodes.
+> /builds/robherring/linux-dt-bindings/Documentation/devicetree/bindings/display/panel/abt,y030xx067a.example.dt.yaml:
+> panel@0: 'spi-max-frequency' does not match any of the regexes:
+> 'pinctrl-[0-9]+'
+>  From schema: 
+> /builds/robherring/linux-dt-bindings/Documentation/devicetree/bindings/display/panel/abt,y030xx067a.yaml
 
-Rob
+"make dt_binding_check 
+DT_SCHEMA_FILES=Documentation/devicetree/bindings/display/panel/abt,y030xx067a.yaml" 
+doesn't complain here :(
+
+-Paul
+
+
