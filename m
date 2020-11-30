@@ -2,52 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CCBB62C8124
-	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 10:37:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 87B152C813C
+	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 10:42:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727375AbgK3JhN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Nov 2020 04:37:13 -0500
-Received: from mail.kernel.org ([198.145.29.99]:53186 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726298AbgK3JhN (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 30 Nov 2020 04:37:13 -0500
-Received: from dragon (80.251.214.228.16clouds.com [80.251.214.228])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 65F8620578;
-        Mon, 30 Nov 2020 09:36:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1606728993;
-        bh=d4lgpKU06SJ+PAtZJyVWZbeLI8bmr3++iqfqZhWWmIA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=D9Z/LprowU2b42t1gpqRQYY74yc+jGCFAh1MY81ER8lTQHvMaVyIUP9qW5bSWLBSY
-         +TXhhnPisdMDeSwunThQQUjgSsigH2vYECYJH0rRiFZxEIAixncZ6AXIHwTcfbMfDa
-         HI4HYsJsK+1mCRpG4dO/xVmuxRHyhiUodDtF+0Ow=
-Date:   Mon, 30 Nov 2020 17:36:26 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     andy.tang@nxp.com
-Cc:     leoyang.li@nxp.com, robh+dt@kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] arm64: dts: freescale: update calibration table for
- TMU module
-Message-ID: <20201130093625.GF4072@dragon>
-References: <20201117034305.42546-1-andy.tang@nxp.com>
+        id S1726158AbgK3Jl3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Nov 2020 04:41:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59048 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725902AbgK3Jl2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Nov 2020 04:41:28 -0500
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CBA4C0613D3
+        for <devicetree@vger.kernel.org>; Mon, 30 Nov 2020 01:40:42 -0800 (PST)
+Received: by mail-wr1-x42f.google.com with SMTP id u12so15217375wrt.0
+        for <devicetree@vger.kernel.org>; Mon, 30 Nov 2020 01:40:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=N+D9qspU/bPnujVIhBzSLSBFh/Erq3Zz8Zph/XPoLdU=;
+        b=PXN4zvJY6xEi7NtVks3NdM773rCmmIFJdFFaJw/jIQzzVVjwYb/7ZELgEaBTW00NME
+         TN+JSR6mytfTkAFqecbQksX+FG1vV7gl3Lgretdk+mZ5A4hHaqbmuZwbXePjKjECMKs4
+         rH4YJIH/uWIrEmQFpYyxed7ZZ2sygkm+bWiO6sjxFbW81ExyIT4g+CptleljcX0eG16z
+         dJDi2dDwzhd/PIfyZh9oNydsY9EHMqIz9cqE5nsRwpHKhCDXIY9b2uIzeqEQru2B8QTM
+         uou2W8vuNrys+TkK+bC3tZMixm6+FCvMoXgfHLIUesCcjbuW3yQJS0tMPnpzoqsfK7U2
+         okfw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=N+D9qspU/bPnujVIhBzSLSBFh/Erq3Zz8Zph/XPoLdU=;
+        b=VB0n+DQouZiiMpYs8oMZav/65mTd5SM+r2QRcJc/PiDcmEK5Jq9uvH64uAUYrfjQW1
+         AQWKmkeyUriD3HbUXw2j5p9OC6U7cI97rgP3hoNHSbMJi2LMCzwRuFWRmryb/I7qt907
+         O2LDKuCKw/m57s1kJIE8ABkaBmjNyI3nwKH4k42o7pqBrvgXBnL62tHkodsXerr9RiI3
+         e37k4N8GyEea6aEF3jAzvFQJkdrOEkyGwTsiSKEMP1ky4QEuezLTGOvJ1+5eQJlIReU6
+         qOegvlRel6C5L0xbahOUzX3gi/8T5EjvYyzcQgPTG/7pLi4E98RGdC5+KoOkTm9KtMFc
+         LXBw==
+X-Gm-Message-State: AOAM531kmX+aUS8PENamQIUCo/nahEqpiImGsEBLwHX2mBaElZcZ8RXC
+        cwL/FRHsBMYkxIryzlWobS1fYQ==
+X-Google-Smtp-Source: ABdhPJyw6K28mNe+MvOP/X16K9BPwGgApu5AI/HQ+sU8ZFk1ZF1Uj99iAgO8McEKf5wxTx4LVRtDgA==
+X-Received: by 2002:adf:e788:: with SMTP id n8mr27310799wrm.84.1606729239874;
+        Mon, 30 Nov 2020 01:40:39 -0800 (PST)
+Received: from ?IPv6:2a01:e34:ed2f:f020:a9e1:bc04:469:f21b? ([2a01:e34:ed2f:f020:a9e1:bc04:469:f21b])
+        by smtp.googlemail.com with ESMTPSA id 189sm10523997wma.22.2020.11.30.01.40.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 30 Nov 2020 01:40:39 -0800 (PST)
+Subject: Re: [RFC 1/2] dt-bindings: thermal: sprd: Add virtual thermal
+ documentation
+To:     gao yunxiao <gao.yunxiao6@gmail.com>,
+        Lukasz Luba <lukasz.luba@arm.com>
+Cc:     rui.zhang@intel.com, amitk@kernel.org, robh+dt@kernel.org,
+        javi.merino@kernel.org, linux-pm@vger.kernel.org,
+        kernel-team@android.com, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, orsonzhai@gmail.com,
+        zhang.lyra@gmail.com, "jeson.gao" <jeson.gao@unisoc.com>
+References: <1606466112-31584-1-git-send-email-gao.yunxiao6@gmail.com>
+ <724ddf78-483c-2cf3-441c-4885af8425a9@arm.com>
+ <1af5220c-f598-58f4-488e-fdd505477ed5@linaro.org>
+ <fc2e095f-d417-1547-4075-9ece1aeaaf4d@arm.com>
+ <CANO_MS+n6CTom-o7Hs4dKtPf-2uih5R7_8BnU_b4Jv8g1a5dkg@mail.gmail.com>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+Message-ID: <b98c6196-d3e5-888b-e85e-633deefe1a49@linaro.org>
+Date:   Mon, 30 Nov 2020 10:40:37 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201117034305.42546-1-andy.tang@nxp.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <CANO_MS+n6CTom-o7Hs4dKtPf-2uih5R7_8BnU_b4Jv8g1a5dkg@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 17, 2020 at 11:43:04AM +0800, andy.tang@nxp.com wrote:
-> From: Yuantian Tang <andy.tang@nxp.com>
+On 30/11/2020 10:03, gao yunxiao wrote:
+> Hi Daniel
 > 
-> Update the calibration table to make the temperature more accurate.
-> Three platforms have been updated: ls1012a, ls1043a and ls1046a.
+> Thank you for your the new information
 > 
-> Signed-off-by: Yuantian Tang <andy.tang@nxp.com>
+> I have a question trouble to you
+> We should choose which per-core thermal zone as the IPA's input
+> reference temperature in the current kernel version? thank you.
 
-Applied both, thanks.
+Can you give a pointer to a DT describing your hardware ?
+
+
+
+> On 27/11/2020, Lukasz Luba <lukasz.luba@arm.com> wrote:
+>>
+>>
+>> On 11/27/20 1:26 PM, Daniel Lezcano wrote:
+>>>
+>>> Hi Lukasz,
+>>>
+>>> On 27/11/2020 10:27, Lukasz Luba wrote:
+>>>>
+>>>>
+>>>> On 11/27/20 8:35 AM, gao.yunxiao6@gmail.com wrote:
+>>>>> From: "jeson.gao" <jeson.gao@unisoc.com>
+>>>>>
+>>>>> virtual thermal node definition description in dts file
+>>>>>
+>>>>> Signed-off-by: jeson.gao <jeson.gao@unisoc.com>
+>>>>> ---
+>>>
+>>> [ ... ]
+>>>
+>>>> It's coming back. There were attempts to solve this problem.
+>>>> Javi tried to solved this using hierarchical thermal zones [1].
+>>>> It was even agreed (IIRC during LPC) but couldn't continue. Then Eduardo
+>>>> was going to continue this (last message at [3]). Unfortunately,
+>>>> development stopped.
+>>>>
+>>>> I also have out-of-tree similar implementation for my Odroid-xu4,
+>>>> which does no have an 'SoC' sensor, but have CPU sensors and needs
+>>>> some aggregation function to get temperature.
+>>>>
+>>>> I can pick up Javi's patches and continue 'hierarchical thermal zones'
+>>>> approach.
+>>>>
+>>>> Javi, Daniel, Rui what do you think?
+>>>
+>>> I already worked on the hierarchical thermal zones and my opinion is
+>>> that fits not really well.
+>>>
+>>> We want to define a new feature because the thermal framework is built
+>>> on the 1:1 relationship between a governor and a thermal zone.
+>>>
+>>> Practically speaking, we want to mitigate two thermal zones from one
+>>> governor, especially here the IPA governor.
+>>>
+>>> The DTPM framework is being implemented to solve that by providing an
+>>> automatic power rebalancing between the power manageable capable devices.
+>>>
+>>> In our case, the IPA would stick on the 'sustainable-power' resulting on
+>>> the aggregation of the two performance domains and set the power limit
+>>> on the parent node. The automatic power rebalancing will ensure maximum
+>>> throughput between the two performance domains instead of capping the
+>>> whole.
+>>>
+>>>
+>>
+>> Make sense. Thank you for sharing valuable opinion.
+>>
+>> Regards,
+>> Lukasz
+>>
+
+
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
