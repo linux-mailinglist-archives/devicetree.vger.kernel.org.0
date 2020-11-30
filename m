@@ -2,82 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 368072C8CD1
-	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 19:31:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AC8882C8D19
+	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 19:45:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728648AbgK3SaV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Nov 2020 13:30:21 -0500
-Received: from mail-wr1-f68.google.com ([209.85.221.68]:33842 "EHLO
-        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388026AbgK3SaU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Nov 2020 13:30:20 -0500
-Received: by mail-wr1-f68.google.com with SMTP id k14so17533834wrn.1;
-        Mon, 30 Nov 2020 10:30:03 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=BL7GgKlxyULO787aR2VhuF5srikfeJ8kPXa9y9+CzWY=;
-        b=X0AOD0U4uW7Zue0QXS+WOt6DllIhtqcJv3kIn8ECmIvm+rW95lsBEEG89APAZmiWDn
-         K7Vzl3SEVimEC3rC7C8wHGEVK/lSUGy1SXqN6RaQyTyyQLLeOa2vnmPqQ1Qhi2pffcvR
-         QASHdGQ7v5l6ByShPncIxQWJ6IlKu5qZsCcXxkOBp/mgLPJR9sqiIAf9ko0RsoGdxOOS
-         02/lG5VUzVdUoWtPM5xWTEOmLodSmUqIG2JNjlYAEsIGelPVOtZv+pDCTuUl7Afl67Xf
-         LKCUYeeapTDEfZTwq0JJHEHb0hF5SupYSTPtzHetcJdCI/WZFOQzTLHS4ySjwPRVgQ8N
-         a9tQ==
-X-Gm-Message-State: AOAM533zWlmzdrqbECc9MUqLnVJrGyJ9ET6m/AszVG31QtIxsdsSyA5q
-        wThPYgZHTKvwK8XmdUV3Zog=
-X-Google-Smtp-Source: ABdhPJy0qru9FG+0tWt9eOshF9nKj7ldKMBW7pMLd3yrYEw5pvskZP1IW/CKEzIrXt9WowIPsBTZeA==
-X-Received: by 2002:a5d:5689:: with SMTP id f9mr29965801wrv.181.1606760978169;
-        Mon, 30 Nov 2020 10:29:38 -0800 (PST)
-Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
-        by smtp.googlemail.com with ESMTPSA id b12sm924332wmj.2.2020.11.30.10.29.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Nov 2020 10:29:37 -0800 (PST)
-Date:   Mon, 30 Nov 2020 20:29:35 +0200
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Jakub Kicinski <kuba@kernel.org>
-Cc:     Bongsu jeon <bongsu.jeon2@gmail.com>, linux-nfc@lists.01.org,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Bongsu Jeon <bongsu.jeon@samsung.com>
-Subject: Re: [PATCH v2 net-next 1/4] dt-bindings: net: nfc: s3fwrn5: Support
- a UART interface
-Message-ID: <20201130182935.GA28735@kozik-lap>
-References: <1606737627-29485-1-git-send-email-bongsu.jeon@samsung.com>
- <20201130085542.45184040@kicinski-fedora-pc1c0hjn.DHCP.thefacebook.com>
+        id S1729783AbgK3Smj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Nov 2020 13:42:39 -0500
+Received: from mo4-p01-ob.smtp.rzone.de ([81.169.146.167]:29266 "EHLO
+        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727626AbgK3Smj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Nov 2020 13:42:39 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1606761585;
+        s=strato-dkim-0002; d=fossekall.de;
+        h=Message-Id:Date:Subject:Cc:To:From:X-RZG-CLASS-ID:X-RZG-AUTH:From:
+        Subject:Sender;
+        bh=m33IIaYJF3O/xPuoQve3F1xb1VC6UKc+YqedJ1FE7UI=;
+        b=eEmP7bHPhRN2hSAsi10WnfJmXOeaUa02ni2ysCb5kT/51uw2ShlR5h6EFl6jJhScdx
+        VWGoGcQG2lLy/EJVtTtUkeOBNevJUEa+rme84QciLILtFIxPCM66+sHl1HOKIavFyDrv
+        5UckFRGERvSQXCoGHMNcDkB4CazD4Btj0BPF2rZQ371X2xvMnV74gVxwL4CtaPoBBh8A
+        jUexf0CoW4b5ZdENEIJlVnzw7d5u9l/nyDqhFRfDKtOB/ZCB5K/S6k+QyaHx6o4uqAoe
+        SAEqbyoNsLwIu5r2uZ5vBVvBdKJvlD8dJ5TM+T8vzQDZ6pPrtIEhvxI/yTYw8qyiR6ha
+        X+oQ==
+X-RZG-AUTH: ":O2kGeEG7b/pS1EzgE2y7nF0STYsSLflpbjNKxx7cGrBOdI6BL9pkS3QW19mO7I+/JwRspuzJFZuRzQ=="
+X-RZG-CLASS-ID: mo00
+Received: from aerfugl
+        by smtp.strato.de (RZmta 47.3.4 AUTH)
+        with ESMTPSA id g02087wAUIdhofS
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
+        (Client did not present a certificate);
+        Mon, 30 Nov 2020 19:39:43 +0100 (CET)
+Received: from koltrast.a98shuttle.de ([192.168.1.27] helo=a98shuttle.de)
+        by aerfugl with smtp (Exim 4.89)
+        (envelope-from <michael@a98shuttle.de>)
+        id 1kjo5M-0005JM-Sg; Mon, 30 Nov 2020 19:39:40 +0100
+Received: (nullmailer pid 136773 invoked by uid 502);
+        Mon, 30 Nov 2020 18:39:40 -0000
+From:   Michael Klein <michael@fossekall.de>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Michael Klein <michael@fossekall.de>
+Subject: [PATCH] ARM: dts: sun8i-h2-plus-bananapi-m2-zero: add regulator nodes vcc-dram and vcc1v2
+Date:   Mon, 30 Nov 2020 19:38:43 +0100
+Message-Id: <20201130183841.136708-1-michael@fossekall.de>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20201130085542.45184040@kicinski-fedora-pc1c0hjn.DHCP.thefacebook.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 30, 2020 at 08:55:42AM -0800, Jakub Kicinski wrote:
-> On Mon, 30 Nov 2020 21:00:27 +0900 Bongsu jeon wrote:
-> > From: Bongsu Jeon <bongsu.jeon@samsung.com>
-> > 
-> > Since S3FWRN82 NFC Chip, The UART interface can be used.
-> > S3FWRN82 supports I2C and UART interface.
-> > 
-> > Signed-off-by: Bongsu Jeon <bongsu.jeon@samsung.com>
-> 
-> All patches in the series should have the same version.
-> 
-> If the patch was not changes in the given repost you can add:
-> 
->  v3:
->   - no change
-> 
-> Or just not mention the version in the changelog.
-> 
-> It's also best to provide a cover letter describing what the series
-> does as a whole for series with more than 2 patches.
+Add regulator nodes vcc-dram and vcc1v2 to the devicetree. These
+regulators correspond to U4 and U5 in the schematics:
 
-Beside that I received just 1/4 of v2. LKML has one as well:
-https://lore.kernel.org/lkml/1606737627-29485-1-git-send-email-bongsu.jeon@samsung.com/
+http://forum.banana-pi.org/t/bpi-m2-zero-schematic-diagram-public/4111
 
-Where are the others?
+Signed-off-by: Michael Klein <michael@fossekall.de>
+---
+ .../dts/sun8i-h2-plus-bananapi-m2-zero.dts    | 24 +++++++++++++++++++
+ 1 file changed, 24 insertions(+)
 
-Best regards,
-Krzysztof
+diff --git a/arch/arm/boot/dts/sun8i-h2-plus-bananapi-m2-zero.dts b/arch/arm/boot/dts/sun8i-h2-plus-bananapi-m2-zero.dts
+index 4c6704e4c57e..74d5732c412b 100644
+--- a/arch/arm/boot/dts/sun8i-h2-plus-bananapi-m2-zero.dts
++++ b/arch/arm/boot/dts/sun8i-h2-plus-bananapi-m2-zero.dts
+@@ -62,6 +62,30 @@ reg_vdd_cpux: vdd-cpux-regulator {
+ 		states = <1100000 0>, <1300000 1>;
+ 	};
+ 
++	reg_vcc_dram: vcc-dram {
++		compatible = "regulator-fixed";
++		regulator-name = "vcc-dram";
++		regulator-min-microvolt = <1500000>;
++		regulator-max-microvolt = <1500000>;
++		regulator-always-on;
++		regulator-boot-on;
++		enable-active-high;
++		gpio = <&r_pio 0 9 GPIO_ACTIVE_HIGH>; /* PL9 */
++		vin-supply = <&reg_vcc5v0>;
++	};
++
++	reg_vcc1v2: vcc1v2 {
++		compatible = "regulator-fixed";
++		regulator-name = "vcc1v2";
++		regulator-min-microvolt = <1200000>;
++		regulator-max-microvolt = <1200000>;
++		regulator-always-on;
++		regulator-boot-on;
++		enable-active-high;
++		gpio = <&r_pio 0 8 GPIO_ACTIVE_HIGH>; /* PL8 */
++		vin-supply = <&reg_vcc5v0>;
++	};
++
+ 	wifi_pwrseq: wifi_pwrseq {
+ 		compatible = "mmc-pwrseq-simple";
+ 		reset-gpios = <&r_pio 0 7 GPIO_ACTIVE_LOW>; /* PL7 */
+-- 
+2.29.2
 
