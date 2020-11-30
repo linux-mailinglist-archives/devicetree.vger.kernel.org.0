@@ -2,147 +2,290 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C0972C8313
-	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 12:20:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EB5942C8324
+	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 12:25:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728619AbgK3LT5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Nov 2020 06:19:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46168 "EHLO
+        id S1728544AbgK3LYh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Nov 2020 06:24:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46870 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726991AbgK3LT4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Nov 2020 06:19:56 -0500
-Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com [IPv6:2a00:1450:4864:20::341])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61A48C0613CF
-        for <devicetree@vger.kernel.org>; Mon, 30 Nov 2020 03:19:16 -0800 (PST)
-Received: by mail-wm1-x341.google.com with SMTP id v14so12470883wml.1
-        for <devicetree@vger.kernel.org>; Mon, 30 Nov 2020 03:19:16 -0800 (PST)
+        with ESMTP id S1727569AbgK3LYh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Nov 2020 06:24:37 -0500
+Received: from mail-pl1-x644.google.com (mail-pl1-x644.google.com [IPv6:2607:f8b0:4864:20::644])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE5C5C0613D2
+        for <devicetree@vger.kernel.org>; Mon, 30 Nov 2020 03:23:50 -0800 (PST)
+Received: by mail-pl1-x644.google.com with SMTP id u2so6292949pls.10
+        for <devicetree@vger.kernel.org>; Mon, 30 Nov 2020 03:23:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=kA1B+3YWtsqZLdoP/PFm3M4IJcbU3ZY5uXa3zxL9D5U=;
-        b=kXGC/hkXw3WUjUW8dyzi+KxMgQfPrY9PpqKHsi6N9ndZtsG6e1wl8Up32s/Q/MNzp/
-         TG9HDjXySSC8sE2voSaQHmDaGs9ApE6cX2ZNK53ZPBiJ241946+2OdCXXwPPnyrB2g+I
-         28BidxQ1k8Au44U2UvYUWh31ljl4YB44MmNzpBNIHXAKL2MNDa3DHBIzbXfbexLzRLoV
-         LZWfLOWLBxWYNWAFbrN54yQ203hMABfhBDAabKVsALajqJXsZNN2leThKFjssZbpiSiw
-         Z+c5ECJwrCHcsmjolzUkNOdA8OGjcKfgivWeo2E9oLtTVUs9KWRQwfWxaBSN1NwZ9fYe
-         bEfA==
+        d=amarulasolutions.com; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=5KQEYcp6l6dBFn1raevTr29TeoPJz8nJ6f6yY9EnMeE=;
+        b=c3Y5DGTqRSegKH/Wo4ABWzvfq7RxsnyYIx8B7v8xobbvKb66SB8rBO0w8hXYuKkItB
+         muDZA+nshAnhkHJmWg44802W6iE8REMKvEIC4SzIquVSP6nR+9jMPm+iRMuP2hAiXIEe
+         uPD/iILXOc3Ey5btuRWXZr9WjbVrhisMoUp3g=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=kA1B+3YWtsqZLdoP/PFm3M4IJcbU3ZY5uXa3zxL9D5U=;
-        b=oDTBx3kDdr/aJWbvnKHJ929CirLn1V+hnVx9CS9qVmEFRPStLs5VLVA1NCD6N9oCIz
-         3i/T4UddzVFGTwMtrxOMICGWwxRg+20YJRZOXzywexzUBs7eQdCRrYs66c/a2YYYKfx+
-         AABcJH0/8/fq+8O0uklSLh/CZli0tSiyJb+uZnyKOBjhUsTA66Vbq9+ojM7HbSDr8QfQ
-         Jl2VVNHRZHMaQnwD+9HVK9yqWInjxqQxebNa9FqBgHcxAAaa3Apm+Ubl2AfPadtYdnuy
-         aAmaHEs1mSqBgRrsZ/ty8H28eVL+hICkxyFrZGOzUnUx5mnzTWGEjtnTMInboL2EffGf
-         PCAA==
-X-Gm-Message-State: AOAM530vAMd342zzCulebJbkVJFCcvkJ1sTQUYwz+AvVQNqFoaSgA767
-        KU7taITGt1iaAr9XsExMfh7LvA==
-X-Google-Smtp-Source: ABdhPJx7hVSTJ3o2Q+DoAP6jkZgpwx9aW3qQbrc5tsnfxpODLxn1PpVJnz6LFK/zs2NdbZFgj3iJPw==
-X-Received: by 2002:a1c:4802:: with SMTP id v2mr14690593wma.13.1606735155159;
-        Mon, 30 Nov 2020 03:19:15 -0800 (PST)
-Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.googlemail.com with ESMTPSA id j14sm26432119wrs.49.2020.11.30.03.19.13
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 30 Nov 2020 03:19:14 -0800 (PST)
-Subject: Re: [PATCH v4 2/2] ASoC: qcom: Add support for playback recover after
- resume
-To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
-        agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
-        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
-        rohitkr@codeaurora.org, linux-arm-msm@vger.kernel.org,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     V Sujith Kumar Reddy <vsujithk@codeaurora.org>
-References: <1606539559-4277-1-git-send-email-srivasam@codeaurora.org>
- <1606539559-4277-3-git-send-email-srivasam@codeaurora.org>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <76b8d52f-4f54-734f-683a-72fe62fdd8e4@linaro.org>
-Date:   Mon, 30 Nov 2020 11:19:13 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        bh=5KQEYcp6l6dBFn1raevTr29TeoPJz8nJ6f6yY9EnMeE=;
+        b=OhlQwKdhGTcJgcWq8rZCrw4MhWOjfpDXxyZRCZ6SMH6TQCObtCJP06Oui/hu1GVFxf
+         8fkYoilZvQQ8Vq1w4bOLh6p9y2GjFVj/JYqdQxyfqSHGMIlYCVSczF66SuR1PFSJWJBg
+         V7RIYj/J/jBtA/VWwb63XKhNv2OtAizETeicwQONETLNzRxySKG7HX1+boVMLRhsdbim
+         33zETmFuUeB9uhoTvcC2aveTBIRLBXqmDNjyMXLYVWytLOWxCCKJHcJO33nZW1osj7bp
+         c6FKFS/Ve/lz4+DtREV3gmm7BdnmHXQKU3jPWEBrZ37L3XCzkWG/mqCcocp5uFYPVTKL
+         gT8A==
+X-Gm-Message-State: AOAM533nqSaa7EQ3BpZfs4hbMb7Esb+K0nJELDkrvx999cgG03pYEUyW
+        5yFVlwjPNg530ZLhKY1WbZYlEQ==
+X-Google-Smtp-Source: ABdhPJzgaq+7GVK8vXDvTehlFsfhsh/zRT+j1VOIpCOeuDHv3wSCATz00rLvomKzjQP3aybSXjjEBA==
+X-Received: by 2002:a17:902:a5c1:b029:d8:d387:3c23 with SMTP id t1-20020a170902a5c1b02900d8d3873c23mr18245054plq.22.1606735430157;
+        Mon, 30 Nov 2020 03:23:50 -0800 (PST)
+Received: from localhost.localdomain ([2405:201:c00a:a884:741b:45e2:5211:48e3])
+        by smtp.gmail.com with ESMTPSA id d19sm22438326pjs.0.2020.11.30.03.23.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 30 Nov 2020 03:23:49 -0800 (PST)
+From:   Jagan Teki <jagan@amarulasolutions.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>
+Cc:     Troy Kisky <troy.kisky@boundarydevices.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Jagan Teki <jagan@amarulasolutions.com>
+Subject: [PATCH 1/2] dt-bindings: regulator: Add pf8x00 regulator bindings
+Date:   Mon, 30 Nov 2020 16:53:28 +0530
+Message-Id: <20201130112329.104614-1-jagan@amarulasolutions.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <1606539559-4277-3-git-send-email-srivasam@codeaurora.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add NXP PF8100/PF8121A/PF8200 regulators bindings.
 
+Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+---
+ .../regulator/nxp,pf8x00-regulator.yaml       | 211 ++++++++++++++++++
+ 1 file changed, 211 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/regulator/nxp,pf8x00-regulator.yaml
 
-On 28/11/2020 04:59, Srinivasa Rao Mandadapu wrote:
-> To support playback continuation after hard suspend(bypass powerd)
-> and resume add component driver ops and do regcache sync.
-> 
-> Signed-off-by: V Sujith Kumar Reddy <vsujithk@codeaurora.org>
-> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+diff --git a/Documentation/devicetree/bindings/regulator/nxp,pf8x00-regulator.yaml b/Documentation/devicetree/bindings/regulator/nxp,pf8x00-regulator.yaml
+new file mode 100644
+index 000000000000..a6c259ce9785
+--- /dev/null
++++ b/Documentation/devicetree/bindings/regulator/nxp,pf8x00-regulator.yaml
+@@ -0,0 +1,211 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/regulator/nxp,pf8x00-regulator.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: NXP PF8100/PF8121A/PF8200 PMIC regulators
++
++maintainers:
++  - Jagan Teki <jagan@amarulasolutions.com>
++  - Troy Kisky <troy.kisky@boundarydevices.com>
++
++description: |
++  PF8100/PF8121A/PF8200 is a PMIC designed for highperformance consumer
++  applications. It features seven high efficiency buck converters, four
++  linear and one vsnvs regulators. It has built-in one time programmable
++  fuse bank for device configurations.
++
++properties:
++  compatible:
++    enum:
++      - nxp,pf8x00
++
++  reg:
++    maxItems: 1
++
++  regulators:
++    type: object
++    description: |
++      list of regulators provided by this controller
++
++    patternProperties:
++      "^ldo[1-4]$":
++        type: object
++        $ref: regulator.yaml#
++        description:
++          Properties for single LDO regulator.
++
++        properties:
++          regulator-name:
++            pattern: "^ldo[1-4]$"
++            description:
++              should be "ldo1", ..., "ldo4"
++
++        unevaluatedProperties: false
++
++      "^buck[1-7]$":
++        type: object
++        $ref: regulator.yaml#
++        description:
++          Properties for single BUCK regulator.
++
++        properties:
++          regulator-name:
++            pattern: "^buck[1-7]$"
++            description:
++              should be "buck1", ..., "buck7"
++
++          nxp,ilim-ma:
++            $ref: "/schemas/types.yaml#/definitions/uint32"
++            minimum: 2100
++            maximum: 4500
++            description:
++              BUCK regulators current limit in mA.
++
++              Listed current limits in mA are,
++              2100 (default)
++              2600
++              3000
++              4500
++
++          nxp,phase-shift:
++            $ref: "/schemas/types.yaml#/definitions/uint32"
++            minimum: 45
++            maximum: 0
++            description:
++              BUCK regulators phase shift control in degrees.
++
++              Listed phase shift control values in degrees are,
++              45
++              90
++              135
++              180
++              225
++              270
++              315
++              0 (default)
++
++        unevaluatedProperties: false
++
++      "^vsnvs$":
++        type: object
++        $ref: regulator.yaml#
++        description:
++          Properties for single VSNVS regulator.
++
++        properties:
++          regulator-name:
++            pattern: "^vsnvs$"
++            description:
++              should be "vsnvs"
++
++        unevaluatedProperties: false
++
++    additionalProperties: false
++
++required:
++  - compatible
++  - reg
++  - regulators
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c1 {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        pmic@8 {
++            compatible = "nxp,pf8x00";
++            reg = <0x08>;
++
++            regulators {
++                reg_ldo1: ldo1 {
++                    regulator-always-on;
++                    regulator-boot-on;
++                    regulator-max-microvolt = <5000000>;
++                    regulator-min-microvolt = <1500000>;
++                };
++
++                reg_ldo2: ldo2 {
++                    regulator-always-on;
++                    regulator-boot-on;
++                    regulator-max-microvolt = <5000000>;
++                    regulator-min-microvolt = <1500000>;
++                };
++
++                reg_ldo3: ldo3 {
++                    regulator-always-on;
++                    regulator-boot-on;
++                    regulator-max-microvolt = <5000000>;
++                    regulator-min-microvolt = <1500000>;
++                };
++
++                reg_ldo4: ldo4 {
++                    regulator-always-on;
++                    regulator-boot-on;
++                    regulator-max-microvolt = <5000000>;
++                    regulator-min-microvolt = <1500000>;
++                };
++
++                reg_buck1: buck1 {
++                    nxp,ilim-ma = <4500>;
++                    regulator-always-on;
++                    regulator-boot-on;
++                    regulator-max-microvolt = <1800000>;
++                    regulator-min-microvolt =  <400000>;
++                };
++
++                reg_buck2: buck2 {
++                    regulator-always-on;
++                    regulator-boot-on;
++                    regulator-max-microvolt = <1800000>;
++                    regulator-min-microvolt =  <400000>;
++                };
++
++                reg_buck3: buck3 {
++                    regulator-always-on;
++                    regulator-boot-on;
++                    regulator-max-microvolt = <1800000>;
++                    regulator-min-microvolt =  <400000>;
++                };
++
++                reg_buck4: buck4 {
++                    regulator-always-on;
++                    regulator-boot-on;
++                    regulator-max-microvolt = <1800000>;
++                    regulator-min-microvolt =  <400000>;
++                };
++
++                reg_buck5: buck5 {
++                    regulator-always-on;
++                    regulator-boot-on;
++                    regulator-max-microvolt = <1800000>;
++                    regulator-min-microvolt =  <400000>;
++                };
++
++                reg_buck6: buck6 {
++                    regulator-always-on;
++                    regulator-boot-on;
++                    regulator-max-microvolt = <1800000>;
++                    regulator-min-microvolt =  <400000>;
++                };
++
++                reg_buck7: buck7 {
++                    regulator-always-on;
++                    regulator-boot-on;
++                    regulator-max-microvolt = <3300000>;
++                    regulator-min-microvolt = <3300000>;
++                };
++
++                reg_vsnvs: vsnvs {
++                    regulator-always-on;
++                    regulator-boot-on;
++                    regulator-max-microvolt = <3300000>;
++                    regulator-min-microvolt = <1800000>;
++                };
++            };
++        };
++    };
+-- 
+2.25.1
 
-LGTM,
-
-Reviewed-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-
-
-> ---
->   sound/soc/qcom/lpass-platform.c | 35 +++++++++++++++++++++++++++++++++++
->   1 file changed, 35 insertions(+)
-> 
-> diff --git a/sound/soc/qcom/lpass-platform.c b/sound/soc/qcom/lpass-platform.c
-> index 0e71899..12764a8 100644
-> --- a/sound/soc/qcom/lpass-platform.c
-> +++ b/sound/soc/qcom/lpass-platform.c
-> @@ -827,6 +827,39 @@ static void lpass_platform_pcm_free(struct snd_soc_component *component,
->   	}
->   }
->   
-> +static int lpass_platform_pcmops_suspend(struct snd_soc_component *component)
-> +{
-> +	struct lpass_data *drvdata = snd_soc_component_get_drvdata(component);
-> +	struct regmap *map;
-> +	unsigned int dai_id = component->id;
-> +
-> +	if (dai_id == LPASS_DP_RX)
-> +		map = drvdata->hdmiif_map;
-> +	else
-> +		map = drvdata->lpaif_map;
-> +
-> +	regcache_cache_only(map, true);
-> +	regcache_mark_dirty(map);
-> +
-> +	return 0;
-> +}
-> +
-> +static int lpass_platform_pcmops_resume(struct snd_soc_component *component)
-> +{
-> +	struct lpass_data *drvdata = snd_soc_component_get_drvdata(component);
-> +	struct regmap *map;
-> +	unsigned int dai_id = component->id;
-> +
-> +	if (dai_id == LPASS_DP_RX)
-> +		map = drvdata->hdmiif_map;
-> +	else
-> +		map = drvdata->lpaif_map;
-> +
-> +	regcache_cache_only(map, false);
-> +	return regcache_sync(map);
-> +}
-> +
-> +
->   static const struct snd_soc_component_driver lpass_component_driver = {
->   	.name		= DRV_NAME,
->   	.open		= lpass_platform_pcmops_open,
-> @@ -839,6 +872,8 @@ static const struct snd_soc_component_driver lpass_component_driver = {
->   	.mmap		= lpass_platform_pcmops_mmap,
->   	.pcm_construct	= lpass_platform_pcm_new,
->   	.pcm_destruct	= lpass_platform_pcm_free,
-> +	.suspend		= lpass_platform_pcmops_suspend,
-> +	.resume			= lpass_platform_pcmops_resume,
->   
->   };
->   
-> 
