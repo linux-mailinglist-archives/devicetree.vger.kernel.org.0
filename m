@@ -2,72 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 723F82C91A1
-	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 23:53:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 774772C9210
+	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 00:08:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388755AbgK3WxT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Nov 2020 17:53:19 -0500
-Received: from mail-io1-f66.google.com ([209.85.166.66]:46918 "EHLO
-        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727692AbgK3WxS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Nov 2020 17:53:18 -0500
-Received: by mail-io1-f66.google.com with SMTP id d8so12408593ioc.13;
-        Mon, 30 Nov 2020 14:53:02 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=jQxo5nO8zmqw2jwvx/vy+F9rgLp3uMdl3MFsTPmA484=;
-        b=s+oxCt+2RXVRvLJF1FMNJ1YtWHM6NU9jW2ACplK362nJyB2O0zlf8PfPErv3GWYqh+
-         Gs8d55+HloylGkl/3hfNrETyle1rYWx+HT6XNbBMpAkG/7fEX00j5N12g4r+o1vfKrGG
-         OtXVQ5K/sEDxKPws4KnihdGAS5b78QALA8NSsebXzFraRx/5GmJFu4XhDnhCbImZOI4u
-         GxnvHlG4NeP6zC/pyTYcvJTMVmQZjwzbJpdz4mFcMhZj+SJ1npLAnTNWzv9HwFiQm942
-         lhdaNyhBsRh9N3BG9hC+k5Vkd80ZQo9nTyn/NF/a1RmViwdqtxN+T3eU14GhSiACmLqc
-         XICQ==
-X-Gm-Message-State: AOAM5323jPffxtFcgPmskjNBYSEsRFG6DEyiFquAunbM6nS0zoeLE39m
-        W27HJW+vYPCJtLShU3hOVA==
-X-Google-Smtp-Source: ABdhPJydhW/G4MdLCL1q9Gm4u1FaokUX5UUzaA1Sb7cgD7Rk6NHP4vg7vt34/NMJkGVTxiSbjNX0Ig==
-X-Received: by 2002:a05:6602:14ca:: with SMTP id b10mr71037iow.40.1606776757519;
-        Mon, 30 Nov 2020 14:52:37 -0800 (PST)
-Received: from xps15 ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id r4sm5231004iop.24.2020.11.30.14.52.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Nov 2020 14:52:36 -0800 (PST)
-Received: (nullmailer pid 3188013 invoked by uid 1000);
-        Mon, 30 Nov 2020 22:52:34 -0000
-Date:   Mon, 30 Nov 2020 15:52:34 -0700
-From:   Rob Herring <robh@kernel.org>
-To:     Gregory CLEMENT <gregory.clement@bootlin.com>
-Cc:     linux-kernel@vger.kernel.org, Jason Cooper <jason@lakedaemon.net>,
-        devicetree@vger.kernel.org, Steen.Hegelund@microchip.com,
-        Rob Herring <robh+dt@kernel.org>,
-        Lars Povlsen <lars.povlsen@microchip.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>
-Subject: Re: [PATCH v5 2/6] dt-bindings: interrupt-controller: Add binding
- for few Microsemi interrupt controllers
-Message-ID: <20201130225234.GA3187956@robh.at.kernel.org>
-References: <20201125103206.136498-1-gregory.clement@bootlin.com>
- <20201125103206.136498-3-gregory.clement@bootlin.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201125103206.136498-3-gregory.clement@bootlin.com>
+        id S1730488AbgK3XI1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Nov 2020 18:08:27 -0500
+Received: from mga01.intel.com ([192.55.52.88]:23561 "EHLO mga01.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727590AbgK3XI1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 30 Nov 2020 18:08:27 -0500
+IronPort-SDR: YmdvjUFTuEHZc8d7Ar+OkzNDgcHO2maEyKIvTCA9YgmpfekWCLNaYfc7MrXeeUUXEL7UmbbfR2
+ Tn+6e9s0olyg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9821"; a="190917246"
+X-IronPort-AV: E=Sophos;i="5.78,382,1599548400"; 
+   d="scan'208";a="190917246"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Nov 2020 15:07:09 -0800
+IronPort-SDR: cZDlgJaLX2BETdCJLqtbHp2k5oLEIafFOlWLOnMzqspwmeVQnQavbWx30Zc3SMdJt3rH40XUN5
+ G+3W2DUahoXA==
+X-IronPort-AV: E=Sophos;i="5.78,382,1599548400"; 
+   d="scan'208";a="404892841"
+Received: from smtp.ostc.intel.com ([10.54.29.231])
+  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Nov 2020 15:07:09 -0800
+Received: from mtg-dev (mtg-dev.jf.intel.com [10.54.74.10])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by smtp.ostc.intel.com (Postfix) with ESMTPS id A2C5D636D;
+        Mon, 30 Nov 2020 15:07:09 -0800 (PST)
+Received: from mgross by mtg-dev with local (Exim 4.90_1)
+        (envelope-from <mgross@linux.intel.com>)
+        id 1kjsGD-000C4l-Ge; Mon, 30 Nov 2020 15:07:09 -0800
+From:   mgross@linux.intel.com
+To:     linux-kernel@vger.kernel.org
+Cc:     markgross@kernel.org, mgross@linux.intel.com,
+        adam.r.gretzinger@intel.com,
+        Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH 02/22] dt-bindings: Add bindings for Keem Bay IPC driver
+Date:   Mon, 30 Nov 2020 15:06:47 -0800
+Message-Id: <20201130230707.46351-3-mgross@linux.intel.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20201130230707.46351-1-mgross@linux.intel.com>
+References: <20201130230707.46351-1-mgross@linux.intel.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 25 Nov 2020 11:32:02 +0100, Gregory CLEMENT wrote:
-> Add the Device Tree binding documentation for the Microsemi Jaguar2,
-> Luton and Serval interrupt controller that is part of the ICPU. It is
-> connected directly to the MIPS core interrupt controller.
-> 
-> Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
-> ---
->  .../bindings/interrupt-controller/mscc,ocelot-icpu-intr.yaml  | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
+From: Daniele Alessandrelli <daniele.alessandrelli@intel.com>
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Add DT binding documentation for the Intel Keem Bay IPC driver, which
+enables communication between the Computing Sub-System (CSS) and the
+Multimedia Sub-System (MSS) of the Intel Movidius SoC code named Keem
+Bay.
+
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: devicetree@vger.kernel.org
+Reviewed-by: Mark Gross <mgross@linux.intel.com>
+Signed-off-by: Daniele Alessandrelli <daniele.alessandrelli@intel.com>
+---
+ .../bindings/soc/intel/intel,keembay-ipc.yaml | 63 +++++++++++++++++++
+ 1 file changed, 63 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/soc/intel/intel,keembay-ipc.yaml
+
+diff --git a/Documentation/devicetree/bindings/soc/intel/intel,keembay-ipc.yaml b/Documentation/devicetree/bindings/soc/intel/intel,keembay-ipc.yaml
+new file mode 100644
+index 000000000000..6e21c54d8f34
+--- /dev/null
++++ b/Documentation/devicetree/bindings/soc/intel/intel,keembay-ipc.yaml
+@@ -0,0 +1,63 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++# Copyright (C) 2020 Intel Corporation
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/soc/intel/intel,keembay-ipc.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: Keem Bay IPC
++
++maintainers:
++  - Daniele Alessandrelli <daniele.alessandrelli@intel.com>
++
++description:
++  The Keem Bay IPC driver enables Inter-Processor Communication (IPC) with the
++  Visual Processor Unit (VPU) embedded in the Intel Movidius SoC code named
++  Keem Bay.
++
++properties:
++  compatible:
++    const: intel,keembay-ipc
++
++  reg:
++    items:
++      - description: The CSS (CPU) FIFO registers
++      - description: The MSS (VPU) FIFO registers
++
++  reg-names:
++    items:
++      - const: css_fifo
++      - const: mss_fifo
++
++  interrupts:
++    items:
++      - description: CSS FIFO not-empty interrupt
++
++  interrupt-controller: true
++
++  memory-region:
++    items:
++      - description: Reserved memory region used for CSS IPC buffers
++      - description: Reserved memory region used for MSS IPC buffers
++
++required:
++  - compatible
++  - reg
++  - reg-names
++  - interrupts
++  - memory-region
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    ipc@203300f0 {
++          compatible = "intel,keembay-ipc";
++          reg = <0x203300f0 0x310>, /* CPU TIM FIFO */
++                <0x208200f0 0x310>; /* VPU TIM FIFO */
++          reg-names = "css_fifo", "mss_fifo";
++          interrupts = <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>;
++          memory-region = <&css_ipc_reserved>, <&mss_ipc_reserved>;
++    };
+-- 
+2.17.1
+
