@@ -2,70 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 87C9C2C8B4C
-	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 18:38:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F7772C8B52
+	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 18:38:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387749AbgK3Rg5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Nov 2020 12:36:57 -0500
-Received: from mail-il1-f196.google.com ([209.85.166.196]:40487 "EHLO
-        mail-il1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387637AbgK3Rg4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Nov 2020 12:36:56 -0500
-Received: by mail-il1-f196.google.com with SMTP id g1so12089534ilk.7;
-        Mon, 30 Nov 2020 09:36:40 -0800 (PST)
+        id S2387646AbgK3RhU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Nov 2020 12:37:20 -0500
+Received: from mail-il1-f193.google.com ([209.85.166.193]:41774 "EHLO
+        mail-il1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2387521AbgK3RhT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Nov 2020 12:37:19 -0500
+Received: by mail-il1-f193.google.com with SMTP id p5so12089431iln.8;
+        Mon, 30 Nov 2020 09:37:04 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=YuxRGNlv6QYt4AK3oJIWSaBLT8dt75Vrt5dYo5MWBhg=;
-        b=uf63ef0Yx+AG4wDCTULpHspe34X+mISGy/VIHRiP3C0JlSo/gyDpEHhiYu3DMYLEOy
-         baow4d/tqFeC6pNJU6X/ggr3djko2vUmDz4YQV37dbYbpeUoiy4FMtud43QhA7ac08zo
-         xhHKGywk2PspLdoUC6ioML0VD+XpkXrKVvAwfrQnvQpcXndlXXmtKDlhQPdN43AwepBx
-         0D5rvMgJRsqWjWrIWPB6PCLCIOx5rxiDBgATDPngE5gEWOBBKJ2lHwr2OpGHZMJQzSAc
-         AzWdm5QYBZtPbOiqRP9npiIFYUTMqboYAp+Tmv8UdntVqeAjZja6DHmLwxMR0gztBE/l
-         V5/w==
-X-Gm-Message-State: AOAM5338unJbgWvD2uku9jVpbQCdLmXAPymIXPJV8i8DwbwhfeVDYcu2
-        RYRCT8nwHtDclZjq9pa+2Q==
-X-Google-Smtp-Source: ABdhPJyo4ZN8rI5Ly+F9Z0ZjEj3ZWTEVZuPTRCBjJKgbwZEAYb38kcRggMqNsU01kSmfvhdLrMJKwg==
-X-Received: by 2002:a05:6e02:ca5:: with SMTP id 5mr18434270ilg.183.1606757775075;
-        Mon, 30 Nov 2020 09:36:15 -0800 (PST)
+        bh=fsp1blWR1sEPQhmBclKQNeakz0wx8DgrPZF+YSlf8PE=;
+        b=P/DwguoO8p/OuWF4ZnDju9y8l+uwsiTS+9s6LCvDQYi9AC7+yodR0fevdse1KHIzag
+         ao61r+09bAOwJBZFFoBTgNj2F5AAWi5Wnm5LnTPbip3qrI3unFwRUICprdkFmTcngamC
+         WvsHMOcWphP74eNMbvupi/20PPmwuogmBdJZCf8Wz7AkbOkqvE2Boa0T+3uT3/cd8CT/
+         h9Y8WNYCT7JlDAM9+d4qtD6vJ7ifE9grwwEgDPys6+rJ2ZGGvDOdnOQHzTCKC5/xsNsa
+         aHazL03JfvH5ISIO9PO5thumzmwx58WvRMJPp1kxTqEeq4MScaBqXqpuPDh3s+Pl4blh
+         WTJw==
+X-Gm-Message-State: AOAM530loeN/xLdFzsckxDpevME8qR6USuK9UXDlvU00MFkIJPertL89
+        5jgwHZp5oZ4BvvsLnDnmWA==
+X-Google-Smtp-Source: ABdhPJyd53GgrWq2rCHuy4ycE05CbnIyKRy6oXyUGYnljoiHnpBLlcUSgkG9E9NzQtPg7PzsjLLLZw==
+X-Received: by 2002:a92:cc03:: with SMTP id s3mr19936624ilp.146.1606757798763;
+        Mon, 30 Nov 2020 09:36:38 -0800 (PST)
 Received: from xps15 ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id q140sm7696530iod.43.2020.11.30.09.36.12
+        by smtp.gmail.com with ESMTPSA id p89sm11835225ili.29.2020.11.30.09.36.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Nov 2020 09:36:14 -0800 (PST)
-Received: (nullmailer pid 2683006 invoked by uid 1000);
-        Mon, 30 Nov 2020 17:36:11 -0000
-Date:   Mon, 30 Nov 2020 10:36:11 -0700
+        Mon, 30 Nov 2020 09:36:37 -0800 (PST)
+Received: (nullmailer pid 2683783 invoked by uid 1000);
+        Mon, 30 Nov 2020 17:36:36 -0000
+Date:   Mon, 30 Nov 2020 10:36:36 -0700
 From:   Rob Herring <robh@kernel.org>
-To:     gao.yunxiao6@gmail.com
-Cc:     linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, zhang.lyra@gmail.com,
-        "jeson.gao" <jeson.gao@unisoc.com>, orsonzhai@gmail.com,
-        rui.zhang@intel.com, amitk@kernel.org, kernel-team@android.com,
-        linux-pm@vger.kernel.org, javi.merino@kernel.org,
-        daniel.lezcano@linaro.org
-Subject: Re: [RFC 1/2] dt-bindings: thermal: sprd: Add virtual thermal
- documentation
-Message-ID: <20201130173611.GA2680517@robh.at.kernel.org>
-References: <1606466112-31584-1-git-send-email-gao.yunxiao6@gmail.com>
+To:     tomislav.denis@avl.com
+Cc:     devicetree@vger.kernel.org, jic23@kernel.org,
+        linux-iio@vger.kernel.org
+Subject: Re: [PATCH 2/2] bindings: iio: adc: Add documentation for ADS131E0x
+ ADC driver
+Message-ID: <20201130173636.GA2683425@robh.at.kernel.org>
+References: <20201127194240.15060-1-tomislav.denis@avl.com>
+ <20201127194240.15060-3-tomislav.denis@avl.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1606466112-31584-1-git-send-email-gao.yunxiao6@gmail.com>
+In-Reply-To: <20201127194240.15060-3-tomislav.denis@avl.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 27 Nov 2020 16:35:12 +0800, gao.yunxiao6@gmail.com wrote:
-> From: "jeson.gao" <jeson.gao@unisoc.com>
+On Fri, 27 Nov 2020 20:42:40 +0100, tomislav.denis@avl.com wrote:
+> From: Tomislav Denis <tomislav.denis@avl.com>
 > 
-> virtual thermal node definition description in dts file
+> Add a device tree binding documentation for Texas Instruments
+> ADS131E0x ADC family driver.
 > 
-> Signed-off-by: jeson.gao <jeson.gao@unisoc.com>
+> Signed-off-by: Tomislav Denis <tomislav.denis@avl.com>
 > ---
->  .../thermal/sprd-virtual-thermal.yaml         | 38 +++++++++++++++++++
->  1 file changed, 38 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/thermal/sprd-virtual-thermal.yaml
+>  .../devicetree/bindings/iio/adc/ti,ads131e08.yaml  | 145 +++++++++++++++++++++
+>  MAINTAINERS                                        |   1 +
+>  2 files changed, 146 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/adc/ti,ads131e08.yaml
 > 
 
 
@@ -74,17 +73,20 @@ My bot found errors running 'make dt_binding_check' on your patch:
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/thermal/sprd-virtual-thermal.example.dts:21.11-21: Warning (reg_format): /example-0/virtual-sensor@1:reg: property has invalid length (4 bytes) (#address-cells == 1, #size-cells == 1)
-Documentation/devicetree/bindings/thermal/sprd-virtual-thermal.example.dt.yaml: Warning (pci_device_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/thermal/sprd-virtual-thermal.example.dt.yaml: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/thermal/sprd-virtual-thermal.example.dt.yaml: Warning (simple_bus_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/thermal/sprd-virtual-thermal.example.dt.yaml: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/thermal/sprd-virtual-thermal.example.dt.yaml: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/thermal/sprd-virtual-thermal.example.dt.yaml: example-0: virtual-sensor@1:reg:0: [1] is too short
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/adc/ti,ads131e08.yaml: 'additionalProperties' is a required property
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/adc/ti,ads131e08.yaml: ignoring, error in schema: 
+warning: no schema found in file: ./Documentation/devicetree/bindings/iio/adc/ti,ads131e08.yaml
+Documentation/devicetree/bindings/iio/adc/ti,ads131e08.example.dts:23.11-21: Warning (reg_format): /example-0/spidev@0:reg: property has invalid length (4 bytes) (#address-cells == 1, #size-cells == 1)
+Documentation/devicetree/bindings/iio/adc/ti,ads131e08.example.dt.yaml: Warning (pci_device_reg): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/iio/adc/ti,ads131e08.example.dt.yaml: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/iio/adc/ti,ads131e08.example.dt.yaml: Warning (simple_bus_reg): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/iio/adc/ti,ads131e08.example.dt.yaml: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/iio/adc/ti,ads131e08.example.dt.yaml: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/adc/ti,ads131e08.example.dt.yaml: example-0: spidev@0:reg:0: [0] is too short
 	From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/reg.yaml
 
 
-See https://patchwork.ozlabs.org/patch/1407041
+See https://patchwork.ozlabs.org/patch/1407724
 
 The base for the patch is generally the last rc1. Any dependencies
 should be noted.
