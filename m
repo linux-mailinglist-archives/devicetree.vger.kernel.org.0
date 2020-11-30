@@ -2,135 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6FC752C83A9
-	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 13:01:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2253A2C83F9
+	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 13:16:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727569AbgK3MBP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Nov 2020 07:01:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52622 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725976AbgK3MBP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Nov 2020 07:01:15 -0500
-Received: from mail-pf1-x442.google.com (mail-pf1-x442.google.com [IPv6:2607:f8b0:4864:20::442])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 076EDC0613CF;
-        Mon, 30 Nov 2020 04:00:50 -0800 (PST)
-Received: by mail-pf1-x442.google.com with SMTP id 131so10237352pfb.9;
-        Mon, 30 Nov 2020 04:00:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id;
-        bh=lj9ZT1pXkce5/+KagnCXuquk6qct2qT6C8O4RgX4/Xg=;
-        b=IZ+kgCy7F2PIHzD82xdfzWESDTLBKVDit3oepMt6or94hwmauw9zsHoPuL0ec3B4AE
-         BiAfnxcDTQAzGXrHoFwTkx8xGQu1c25Lq48PslFQj1v6BzpjV6NdMjtsYggpLKEn2f7Q
-         HC78lhJ+6KD9CZ+39ufaMy8VTUP5Z9awImFifRP4Pcf+Hz3G9YFkGpG1iK1aIY1YP16L
-         9+dPpBP0wPwazWDrZ7+ZBHVwYxJzUi6UdGU22Eb3mfGbu3xtD1WwLp7tPfBd5NvLMIZG
-         s045nSacOV5F3DJ3oo1cBlD8UUjHAPlfjpH0wv9plcdeEXcpk76/jhcyoNA8jICUlo/w
-         eyAg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=lj9ZT1pXkce5/+KagnCXuquk6qct2qT6C8O4RgX4/Xg=;
-        b=RBzvJDiVMgNxhrjq6e1zeTRpxwMMP5EHRHwCYcffDMMgLt8ft3SzeTcmjizkBhISVQ
-         QxNB0y+6Lbl94aq9jCqiCuIs/9WmyFwD4u23svBnr7CscFxu3yE8lg16SGDV3iRo9YQX
-         9oYx7zpYigbLdWuukDCzqu3hRT8jBV6Dx/YstbuVgPwk6Qh7NM9t6EVnVM+X49H+r/xX
-         VW2JWqCwWfnWGjR3a5X/h4ojSW2+Uem10jroMqCXLNWx/cH0tGqsYZygwGRoIu9VJqMZ
-         qpPr0dCNd8pnYxjKYLTpE2ZqxyVTOW0Ipjw7hAftQ8r9oL5PZxmAdIXiUJ0Y1u0xqwc9
-         quSw==
-X-Gm-Message-State: AOAM533CuoUpjiTmxxcoOu6zTdfj8k/GkkTewTIDUavUAH6i7WbagDpU
-        /8S8XvZAcO/bPw3O2q6Fw99PZwJR1tY=
-X-Google-Smtp-Source: ABdhPJx3saLPTWk9JX5niWrD8QDAOqBEjZC/gsHloavwuqIlpVFqtG26bcVWa0MjLpyJXoXddoalpQ==
-X-Received: by 2002:a05:6a00:13a3:b029:18b:d5d2:196 with SMTP id t35-20020a056a0013a3b029018bd5d20196mr18635748pfg.62.1606737649541;
-        Mon, 30 Nov 2020 04:00:49 -0800 (PST)
-Received: from localhost.localdomain ([182.226.226.37])
-        by smtp.googlemail.com with ESMTPSA id s17sm1802737pge.37.2020.11.30.04.00.46
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 30 Nov 2020 04:00:48 -0800 (PST)
-From:   Bongsu jeon <bongsu.jeon2@gmail.com>
-X-Google-Original-From: Bongsu jeon
-To:     krzk@kernel.org
-Cc:     linux-nfc@lists.01.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Bongsu Jeon <bongsu.jeon@samsung.com>
-Subject: [PATCH v2 net-next 1/4] dt-bindings: net: nfc: s3fwrn5: Support a UART interface
-Date:   Mon, 30 Nov 2020 21:00:27 +0900
-Message-Id: <1606737627-29485-1-git-send-email-bongsu.jeon@samsung.com>
-X-Mailer: git-send-email 1.9.1
+        id S1726385AbgK3MQN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Nov 2020 07:16:13 -0500
+Received: from userp2130.oracle.com ([156.151.31.86]:54190 "EHLO
+        userp2130.oracle.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726197AbgK3MQN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Nov 2020 07:16:13 -0500
+Received: from pps.filterd (userp2130.oracle.com [127.0.0.1])
+        by userp2130.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 0AUCFAZA134302;
+        Mon, 30 Nov 2020 12:15:25 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=date : from : to : cc
+ : subject : message-id : references : mime-version : content-type :
+ in-reply-to; s=corp-2020-01-29;
+ bh=Welqfb51u2AFKJ0r8dnMRt+sOVkpF+0KUkstdgNij/Y=;
+ b=vLHoq1OlD8yV0Z3n87/HTCdmkpYfJscayQaXNDhpJSa5dxzdo6rZB4B/yFE6JKfqOIGB
+ l69y1iE71DMlP1TZWkPF9ElWlrbFdqZR8dCEQlCcacUMPRe5OSOV/HsVIOm8jUQXwR8W
+ ULbnrKA5COBsG+FJDjMOM4tb351Ork8PwzRq79r3oaOqPVz7Q3uXP9HxZXrNVkGDerO+
+ MrodHCxlkHQUnQp+dNJaES/PBx63HXwqKoSdhrfc5w/zpiAjfjO0XHTl+v4BbGs6vwtE
+ Gm4g7b638RuYcGGpQhqef7l6F3zDIzZi3twbE9caCs4rvOhEwQKVmx283RKkwRmogR/j SQ== 
+Received: from userp3030.oracle.com (userp3030.oracle.com [156.151.31.80])
+        by userp2130.oracle.com with ESMTP id 353dyqcqsy-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 30 Nov 2020 12:15:25 +0000
+Received: from pps.filterd (userp3030.oracle.com [127.0.0.1])
+        by userp3030.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 0AUCBF4K014080;
+        Mon, 30 Nov 2020 12:15:25 GMT
+Received: from userv0122.oracle.com (userv0122.oracle.com [156.151.31.75])
+        by userp3030.oracle.com with ESMTP id 3540fv0k6h-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Mon, 30 Nov 2020 12:15:24 +0000
+Received: from abhmp0017.oracle.com (abhmp0017.oracle.com [141.146.116.23])
+        by userv0122.oracle.com (8.14.4/8.14.4) with ESMTP id 0AUCFMwv030718;
+        Mon, 30 Nov 2020 12:15:23 GMT
+Received: from kadam (/102.36.221.92)
+        by default (Oracle Beehive Gateway v4.0)
+        with ESMTP ; Mon, 30 Nov 2020 04:15:16 -0800
+Date:   Mon, 30 Nov 2020 15:15:07 +0300
+From:   Dan Carpenter <dan.carpenter@oracle.com>
+To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Cc:     Vinod Koul <vkoul@kernel.org>,
+        "open list:STAGING SUBSYSTEM" <devel@driverdev.osuosl.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Greg KH <gregkh@linuxfoundation.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Rob Herring <robh+dt@kernel.org>, NeilBrown <neil@brown.name>
+Subject: Re: [PATCH v4 2/4] phy: ralink: Add PHY driver for MT7621 PCIe PHY
+Message-ID: <20201130121506.GB2767@kadam>
+References: <20201031122246.16497-1-sergio.paracuellos@gmail.com>
+ <20201031122246.16497-3-sergio.paracuellos@gmail.com>
+ <20201119053059.GY50232@vkoul-mobl>
+ <CAMhs-H8uyoVGUjrG_V2ueZN1UC7jSMZ-6E4YCDw1xqGKNFPv5w@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAMhs-H8uyoVGUjrG_V2ueZN1UC7jSMZ-6E4YCDw1xqGKNFPv5w@mail.gmail.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9820 signatures=668682
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 malwarescore=0 suspectscore=0
+ phishscore=0 mlxlogscore=999 adultscore=0 mlxscore=0 bulkscore=0
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2009150000 definitions=main-2011300080
+X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9820 signatures=668682
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 malwarescore=0 bulkscore=0
+ clxscore=1011 mlxscore=0 spamscore=0 priorityscore=1501 mlxlogscore=999
+ suspectscore=0 lowpriorityscore=0 phishscore=0 adultscore=0
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2009150000 definitions=main-2011300080
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Bongsu Jeon <bongsu.jeon@samsung.com>
+On Thu, Nov 19, 2020 at 07:05:22AM +0100, Sergio Paracuellos wrote:
+> > > +static inline void phy_write(struct mt7621_pci_phy *phy, u32 val, u32 reg)
+> > > +{
+> > > +     regmap_write(phy->regmap, reg, val);
+> >
+> > Why not use regmap_ calls directly and avoid the dummy wrappers..?
+> 
+> This is because name was the dummy names are a bit shorter :) but if
+> it is also necessary I will use directly regmap_ functions.
 
-Since S3FWRN82 NFC Chip, The UART interface can be used.
-S3FWRN82 supports I2C and UART interface.
+At least don't swap the last two arguments around.
 
-Signed-off-by: Bongsu Jeon <bongsu.jeon@samsung.com>
----
-
-Changes in v2:
- -change the compatible name.
- -change the const to enum for compatible.
- -change the node name to nfc.
-
- .../bindings/net/nfc/samsung,s3fwrn5.yaml          | 32 ++++++++++++++++++++--
- 1 file changed, 29 insertions(+), 3 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/net/nfc/samsung,s3fwrn5.yaml b/Documentation/devicetree/bindings/net/nfc/samsung,s3fwrn5.yaml
-index cb0b8a5..481bbcc 100644
---- a/Documentation/devicetree/bindings/net/nfc/samsung,s3fwrn5.yaml
-+++ b/Documentation/devicetree/bindings/net/nfc/samsung,s3fwrn5.yaml
-@@ -12,7 +12,10 @@ maintainers:
- 
- properties:
-   compatible:
--    const: samsung,s3fwrn5-i2c
-+    oneOf:
-+      - enum:
-+        - samsung,s3fwrn5-i2c
-+        - samsung,s3fwrn82
- 
-   en-gpios:
-     maxItems: 1
-@@ -47,10 +50,19 @@ additionalProperties: false
- required:
-   - compatible
-   - en-gpios
--  - interrupts
--  - reg
-   - wake-gpios
- 
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: samsung,s3fwrn5-i2c
-+    then:
-+      required:
-+        - interrupts
-+        - reg
-+
- examples:
-   - |
-     #include <dt-bindings/gpio/gpio.h>
-@@ -71,3 +83,17 @@ examples:
-             wake-gpios = <&gpj0 2 GPIO_ACTIVE_HIGH>;
-         };
-     };
-+  # UART example on Raspberry Pi
-+  - |
-+    uart0 {
-+        status = "okay";
-+
-+        nfc {
-+            compatible = "samsung,s3fwrn82";
-+
-+            en-gpios = <&gpio 20 0>;
-+            wake-gpios = <&gpio 16 0>;
-+
-+            status = "okay";
-+        };
-+    };
--- 
-1.9.1
+regards,
+dan carpenter
 
