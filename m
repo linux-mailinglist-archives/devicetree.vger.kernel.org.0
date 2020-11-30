@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A46862C8515
-	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 14:26:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8BBFC2C8517
+	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 14:26:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726265AbgK3N0a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Nov 2020 08:26:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37548 "EHLO
+        id S1726754AbgK3N0f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Nov 2020 08:26:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37546 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726258AbgK3N0a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Nov 2020 08:26:30 -0500
-Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com [IPv6:2a00:1450:4864:20::343])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8436EC0613D6
-        for <devicetree@vger.kernel.org>; Mon, 30 Nov 2020 05:25:49 -0800 (PST)
-Received: by mail-wm1-x343.google.com with SMTP id a3so25156361wmb.5
-        for <devicetree@vger.kernel.org>; Mon, 30 Nov 2020 05:25:49 -0800 (PST)
+        with ESMTP id S1726426AbgK3N0f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Nov 2020 08:26:35 -0500
+Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com [IPv6:2a00:1450:4864:20::442])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5C62C0613D4
+        for <devicetree@vger.kernel.org>; Mon, 30 Nov 2020 05:25:48 -0800 (PST)
+Received: by mail-wr1-x442.google.com with SMTP id r3so16219748wrt.2
+        for <devicetree@vger.kernel.org>; Mon, 30 Nov 2020 05:25:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
         h=subject:to:cc:references:from:autocrypt:organization:message-id
          :date:user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
         bh=imDbNzTq1REIzdtg+PEjyslOlxjZtkiSfNa3OIYZ7pM=;
-        b=1wEu7aRdvwZHsvs4VpuwCp9xb8k72JcS+nk70AfqItlZBg4uONw6Miv/1sFJqtDw3m
-         Ic0uFdLIsxs98G+erAxJAYkh22wO0TpAJniog6VVbTLmQYsIqXTOd9FVFrSq23Fl/utk
-         gzj4m491evJSeEQ5J/jw2pE42D+Y8yts2Kk0HTtQD1VLZTzy2nebrqiM6j4alzQfGVp9
-         WZBl9J3LgUntXNoY4RKmy3ksbwyQ7LjYD6E8NLuYTw50w5qHNXTgMz/P26MutWRuePGh
-         ZYCeum3yYNTl223GeqW6vMiDd1pPReuCX92DFps98m+tWoBS+nZJ17tDpStjpXrLx5b0
-         MoPg==
+        b=Xa33s5lLp/F+1bfugEA+Cl6VbiBZwyCZZ4jrzK5johvmC4dEMV3ItCsKGx9zhJ0vFm
+         33YSvJB1iNxFeoQGO8ih3W7FdbumPg1l45JSWj+RMdVIVUlcuftA4SSs/0iblL8Hgg1G
+         UZh0vJcLpLyXdoOQPKx4Rq4FW49hKZ003LpmWqR9Ua24+uu541VtTtOUU4yJOhVAzqP6
+         jrvc7/DCBx3AOimFcNnIpaVMWc8AFnVabXAfoThWHmxfPewhjdCo1hH39OJEYBwVBZlC
+         At2DcmDUSuZIuC3SS7ydREC0TboubOfiNqZWS2kRsnZ/uHN2Z+kml0B1/m0t65iEH/7o
+         RvRQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:autocrypt
          :organization:message-id:date:user-agent:mime-version:in-reply-to
          :content-language:content-transfer-encoding;
         bh=imDbNzTq1REIzdtg+PEjyslOlxjZtkiSfNa3OIYZ7pM=;
-        b=dfK/QD1VJPipypE0yhGh1d4Cua7V/LYwmOBwhAzZWmBHd4bPKGSGKpn0NWH+iUEblb
-         niee+TmsGTDYx07/hyb7G9uuPPbh/m623d61Ymd/GlAdB9sPkIo7QQMcmo4tO3XrzvLA
-         MoHBqm4JDtUg8MdmoUFkrT3W/X25IyJIBMNIwgMrq4qmSudxVEAWfXgUBFl+uw6ssHaR
-         BNLFfekyxLtTa9nhv/iyeA9S+RY9nibyN/H2SproNcC1jaceAIlrDq4J+SjYsIBGvFmu
-         ks9HVLz1sTyyqdHW7tWMlOl+1KzOKuEFNnez7FMl838LG1pq0GtXmehOO3srlX54BDHB
-         OMeg==
-X-Gm-Message-State: AOAM532jnIBUxdNae9PAdtiPpDNBHkAxSNFdhCIyVhGT7WWboDqphyk+
-        fklx03dzeT6BmXevU5QdCx6ajSPgklTxsGWp
-X-Google-Smtp-Source: ABdhPJwb+9GKM/I70i10A05hcMaIvZXaNUZtIV8B7onXCfk5xAy087QjeGMrztv7jtxj7R71HzRsaQ==
-X-Received: by 2002:a05:600c:255:: with SMTP id 21mr23833237wmj.69.1606742748023;
-        Mon, 30 Nov 2020 05:25:48 -0800 (PST)
+        b=O+DIUFDMV2hxMq6MYHz3/yzfTm1Xc4gG5uB+5riFxq1h9fYeSxSdVB8UhGC2nGi0wd
+         UEUA0YmtCcM02G43gmotaZZARZhw0KJ5YuNsBiNtwGmW84k8fLr6pSO8gVSaM4AznwAY
+         QyzFDU+IZQfOcL4OJzy2i6VRwugYXTtYUSEZC1jMgqP2gF3twvVnkmVzm2XTgE/BI+tr
+         S4OJMMTMn7YGm6sZi8RTfZG8JhYb2EbSp2JxWWOoIrzXfDlb7hKAsUyYp2JR0Km43BbQ
+         H1Itj1e/3wEPDveMXqt+13i33NwRz0coFdJeqAnInb9lnpN6T9VY34muk49Cbn58JVe9
+         S07w==
+X-Gm-Message-State: AOAM5304NeoONEc0zM7lvqrVjwHqcATlPkfTuUwHgM89+voz9a65vvZC
+        znJBG+QiKvuyMpWkmIMm6hO8uQ==
+X-Google-Smtp-Source: ABdhPJxDuK0a5JGsWpyiLEVaETQkn3niXI89PAF+elQN38ps10GnYqcUFRMRQ31rVqh/75xBqKfASQ==
+X-Received: by 2002:adf:e447:: with SMTP id t7mr28719164wrm.218.1606742747511;
+        Mon, 30 Nov 2020 05:25:47 -0800 (PST)
 Received: from [10.1.3.24] (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id o74sm1509474wme.36.2020.11.30.05.25.46
+        by smtp.gmail.com with ESMTPSA id a15sm28835299wrn.75.2020.11.30.05.25.46
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
         Mon, 30 Nov 2020 05:25:46 -0800 (PST)
 Subject: Re: [PATCH] arm64: dts: meson: fix spi-max-frequency on Khadas VIM2
@@ -109,7 +109,7 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <0d4e54a3-9eb1-db9e-7d17-985262ed251f@baylibre.com>
+Message-ID: <0a6efe60-ef5e-a71b-7b27-2a3562ca6d75@baylibre.com>
 Date:   Mon, 30 Nov 2020 14:25:45 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
