@@ -2,104 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4EBEF2C89FA
-	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 17:56:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3372C2C89FC
+	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 17:56:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728829AbgK3Qx3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Nov 2020 11:53:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41818 "EHLO
+        id S1728938AbgK3Qym (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Nov 2020 11:54:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42022 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726769AbgK3Qx2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Nov 2020 11:53:28 -0500
-Received: from mail-ot1-x344.google.com (mail-ot1-x344.google.com [IPv6:2607:f8b0:4864:20::344])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7E1FC0613D4;
-        Mon, 30 Nov 2020 08:52:48 -0800 (PST)
-Received: by mail-ot1-x344.google.com with SMTP id 11so11905842oty.9;
-        Mon, 30 Nov 2020 08:52:48 -0800 (PST)
+        with ESMTP id S1728141AbgK3Qym (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Nov 2020 11:54:42 -0500
+Received: from mail-oi1-x242.google.com (mail-oi1-x242.google.com [IPv6:2607:f8b0:4864:20::242])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF74EC0613D3
+        for <devicetree@vger.kernel.org>; Mon, 30 Nov 2020 08:54:01 -0800 (PST)
+Received: by mail-oi1-x242.google.com with SMTP id l206so14829571oif.12
+        for <devicetree@vger.kernel.org>; Mon, 30 Nov 2020 08:54:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=3WA540gSHh8kQNe0lWG+yli/wrKJPqlogKyvN8EdAR0=;
-        b=KTWXa6hK5yeoleLSGEzoPfOiFalYXKt2bSNkbLFYPcRQIsZt+JdyjG++UWPySpxpQ+
-         5TXPQcRXjv0DvLrZ3gGwHRXLmmCSiKwCPvdqkc2n9jplKmEOfTrmkjCEzmeI/iGMhy3J
-         zDgxn0BZ4JBFyhAoPJOCFPieYnfIENezF/8PADY9HBAd6Vpo4jMhPzNPY/rZCuFXoLb2
-         n7rqFzSh8yJPu1amSqOwer9+jgV+1NMSe5VeOsVJxCFC90PtDiyGvJDgGd5Y5hgi9kaS
-         QW9ykI29mhYIdGY6yZ3WZWZKBGunxov1xkm2G1+GjDHMYGMlD5A5h/s7VKSAdyi1GicF
-         xp8g==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=sv1SKckcJv3B5DgQbB2Tk+aXvCrbP4vplhN5EODrXhM=;
+        b=yM6DQbA70Db5lqgpT159je8vwpOeW0EPWeFsMm7rAsjq5N9TMjcCqHNnI7KKlaV0tG
+         lDD7vZXARA6h53tBdq3/ipCe2w7PnsM7ss97YWxeQ66wUVD7NqqdN37SOkQdmbmvJ+/J
+         57r9lxvgYwhreOqoeSps6lVrX3Ov8FTxIyzbOckz/b7cve8ajKjuiPL9sFkOMjkndo75
+         Ih5GxrJbfwdWFJ4k/SuG5UjnshwYkBXoyO3RB7FqGJDMcqsgRhyX8KDthphVPs3sbRcB
+         o+cN3kpv/WqrXJ0USmnSVLh7/aCbn19ef9/fzmXcXTsmefUsp64mWURpdNkCQcBJL8TJ
+         rhmg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=3WA540gSHh8kQNe0lWG+yli/wrKJPqlogKyvN8EdAR0=;
-        b=jkjXn4/2iZpTij1eEpwJcxoajTvjXZaCYcljQnzQ5jmlGfriNgqkDq3j8LcA41TI6P
-         1j9OFkFRU/4AnE/y8ChnR2+dpGR5Qww2WO16rOt5A+rM2fcs9ks8qg0Ox1F/1VZODfBA
-         eEWiFBoOwvPGc2GINs4wp/nAusd+DjwD5CxcydCJkmW/kIgeiXjLS3xntHP+Ak5y2lri
-         7mNSqUwgEOA7+HH3x+DHPIRc/h3do1cbTYZn8gXCX+WeM7ZdlI2YcX8N97nYF4RHF208
-         NYJh7Yh9ECX8lBXbinq4KM/p4i5nEV16kcn//feoA8Lm+0FaavmU3bGyx8Da/lQCRdg9
-         fM8w==
-X-Gm-Message-State: AOAM532H2+3SR1VyOoZY++d2CdR2942ecqYMc4YkPihKM2evJQJARfGG
-        1xyAkCYTOAF2BhMY+qeh/yoVEXK93MiG07/TyeE2KsfV2g==
-X-Google-Smtp-Source: ABdhPJy2y/TGo8SvnA68QX0kOXVSSywHbstLw2XAyMQNOLwB1TnHZb6CwaZo4HB3Jk1cbHjd/yhDtb+EXiWOIamw3JA=
-X-Received: by 2002:a9d:4713:: with SMTP id a19mr17913519otf.132.1606755168216;
- Mon, 30 Nov 2020 08:52:48 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=sv1SKckcJv3B5DgQbB2Tk+aXvCrbP4vplhN5EODrXhM=;
+        b=dQr7dmE10Ztp8CK4g1N2qCNUr5gUt25afoKdHMHp+CCsBVQrW4vtC6mIl+TxHqE4Ze
+         W465VqJi3G1onEDUOCiG4ckUVzaz/YgSI69mBQOEEMwew/Omyqmo/bq7ldCaLqGfKVqz
+         FYBvKBqQk4x0M/oEeOZV3fgySlgF/SHctWimB6QXLhZyGPAbIHECSJNGsjEX5leySOKB
+         j8MddJMv8LETb1Jo3E9m/2Vf3KvfYxw279+yaHc+3U6dR6s6LAqUJK1CjvB9JpvB+0k8
+         eCaj5wcQEVwhDgGtBGOS6YXTvZUkpUtLpMqOSABTeF4Z6YHAd5eHtvDNSKPOTJJRVSJ7
+         agqA==
+X-Gm-Message-State: AOAM530Apy68cUG5htYXLyhUK/jTVDkGPbDe2vg+491mGGQ8ec6ZJTSw
+        bqvqQs5++NifJay6ldSNidHSwA==
+X-Google-Smtp-Source: ABdhPJx21PdPq1O4ig7ZXTyS8AkkQsMLXFyHSEPENeZFPBU9H6PQsRWWBeRtgJiMT+Xzo8HToEr1MQ==
+X-Received: by 2002:aca:4fc7:: with SMTP id d190mr15717264oib.13.1606755241025;
+        Mon, 30 Nov 2020 08:54:01 -0800 (PST)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id h8sm9809119oom.41.2020.11.30.08.54.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 30 Nov 2020 08:54:00 -0800 (PST)
+Date:   Mon, 30 Nov 2020 10:53:58 -0600
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+Cc:     agross@kernel.org, robh+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, rohitkr@codeaurora.org,
+        srinivas.kandagatla@linaro.org
+Subject: Re: [PATCH v3 0/2] Qualcomm's lpass device tree changes
+Message-ID: <X8UjpqeolZpVeg8J@builder.lan>
+References: <1601448168-18396-1-git-send-email-srivasam@codeaurora.org>
 MIME-Version: 1.0
-References: <20201126220500.av3clcxbbvogvde5@skbuf> <20201127103503.5cda7f24@kicinski-fedora-pc1c0hjn.DHCP.thefacebook.com>
- <CAFSKS=MAdnR2jzmkQfTnSQZ7GY5x5KJE=oeqPCQdbZdf5n=4ZQ@mail.gmail.com>
- <20201127195057.ac56bimc6z3kpygs@skbuf> <CAFSKS=Pf6zqQbNhaY=A_Da9iz9hcyxQ8E1FBp2o7a_KLBbopYw@mail.gmail.com>
- <20201127133753.4cf108cb@kicinski-fedora-pc1c0hjn.DHCP.thefacebook.com>
- <20201127233048.GB2073444@lunn.ch> <20201127233916.bmhvcep6sjs5so2e@skbuf>
- <20201128000234.hwd5zo2d4giiikjc@skbuf> <20201128003912.GA2191767@lunn.ch>
- <20201128014106.lcqi6btkudbnj3mc@skbuf> <20201127181525.2fe6205d@kicinski-fedora-pc1c0hjn.DHCP.thefacebook.com>
-In-Reply-To: <20201127181525.2fe6205d@kicinski-fedora-pc1c0hjn.DHCP.thefacebook.com>
-From:   George McCollister <george.mccollister@gmail.com>
-Date:   Mon, 30 Nov 2020 10:52:35 -0600
-Message-ID: <CAFSKS=O-TDPax1smCPq=b1w3SVqJokesWx02AUGUXD0hUwXbAg@mail.gmail.com>
-Subject: Re: [PATCH net-next v2 2/3] net: dsa: add Arrow SpeedChips XRS700x driver
-To:     Jakub Kicinski <kuba@kernel.org>
-Cc:     Vladimir Oltean <olteanv@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
-        "open list:OPEN FIRMWARE AND..." <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1601448168-18396-1-git-send-email-srivasam@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 27, 2020 at 8:15 PM Jakub Kicinski <kuba@kernel.org> wrote:
->
-> On Sat, 28 Nov 2020 03:41:06 +0200 Vladimir Oltean wrote:
-> > Jakub, I would like to hear more from you. I would still like to try
-> > this patch out. You clearly have a lot more background with the code.
->
-> Well, I've seen people run into the problem of this NDO not being able
-> to sleep, but I don't have much background or knowledge of what impact
-> the locking will have on real systems.
->
-> We will need to bring this up with Eric (probably best after the turkey
-> weekend is over).
->
-> In the meantime if you feel like it you may want to add some tracing /
-> printing to check which processes are accessing /proc/net/dev on your
-> platforms of interest, see if there is anything surprising.
->
-> > You said in an earlier reply that you should have also documented that
-> > ndo_get_stats64 is one of the few NDOs that does not take the RTNL. Is
-> > there a particular reason for that being so, and a reason why it can't
-> > change?
->
-> I just meant that as a way of documenting the status quo. I'm not aware
-> of any other place reading stats under RCU (which doesn't mean it
-> doesn't exist :)).
->
-> That said it is a little tempting to add a new per-netdev mutex here,
-> instead of congesting RTNL lock further, since today no correct driver
-> should depend on the RTNL lock.
+On Wed 30 Sep 01:42 CDT 2020, Srinivasa Rao Mandadapu wrote:
 
-Another possible option could be replacing for_each_netdev_rcu with
-for_each_netdev_srcu and using list_for_each_entry_srcu (though it's
-currently used nowhere else in the kernel). Has anyone considered
-using sleepable RCUs or thought of a reason they wouldn't work or
-wouldn't be desirable? For more info search for SRCU in
-Documentation/RCU/RTFP.txt
+> These patches are device tree changes to support audio over DP.
+> It includes changes of HDMI reg, interrupt and iommu and 
+> hdmi dai link.
+> These patches depends on the lpass I2S patch series
+> and DP dts node patch series:
+>   -- https://patchwork.kernel.org/patch/11785073/
+
+I've merged this one.
+
+>   -- https://patchwork.kernel.org/patch/11785235/
+>   -- https://patchwork.kernel.org/patch/11719511/
+
+But please advice on what I should do with these two.
+
+Regards,
+Bjorn
+
+> 
+> Changes Since v2:
+>   -- Removed obsolete hdmi-jack property.
+>   -- Updated sound dai cells property
+> Changes Since v1:
+>   -- hdmi dai is added in lpass-cpu node.
+> 
+> V Sujith Kumar Reddy (2):
+>   arm64: dts: qcom: sc7180: Update lpass cpu node for audio over dp
+>   arm64: dts: qcom: sc7180-trogdor: Add lpass dai link for HDMI
+> 
+>  arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi | 15 +++++++++++++++
+>  arch/arm64/boot/dts/qcom/sc7180.dtsi         | 17 ++++++++++-------
+>  2 files changed, 25 insertions(+), 7 deletions(-)
+> 
+> -- 
+> Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
+> is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
+> 
