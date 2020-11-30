@@ -2,300 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 091D92C88B6
-	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 16:57:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3580C2C88C3
+	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 16:58:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728224AbgK3P4d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Nov 2020 10:56:33 -0500
-Received: from mail.v3.sk ([167.172.186.51]:47294 "EHLO shell.v3.sk"
+        id S1728525AbgK3P6N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Nov 2020 10:58:13 -0500
+Received: from mail-dm6nam12on2060.outbound.protection.outlook.com ([40.107.243.60]:21525
+        "EHLO NAM12-DM6-obe.outbound.protection.outlook.com"
         rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1727767AbgK3P4a (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 30 Nov 2020 10:56:30 -0500
-Received: from localhost (localhost.localdomain [127.0.0.1])
-        by zimbra.v3.sk (Postfix) with ESMTP id BC50FE06E1;
-        Mon, 30 Nov 2020 15:52:52 +0000 (UTC)
-Received: from shell.v3.sk ([127.0.0.1])
-        by localhost (zimbra.v3.sk [127.0.0.1]) (amavisd-new, port 10032)
-        with ESMTP id KeiXWeDLxPcx; Mon, 30 Nov 2020 15:52:52 +0000 (UTC)
-Received: from localhost (localhost.localdomain [127.0.0.1])
-        by zimbra.v3.sk (Postfix) with ESMTP id 1020EE06C5;
-        Mon, 30 Nov 2020 15:52:52 +0000 (UTC)
-X-Virus-Scanned: amavisd-new at zimbra.v3.sk
-Received: from shell.v3.sk ([127.0.0.1])
-        by localhost (zimbra.v3.sk [127.0.0.1]) (amavisd-new, port 10026)
-        with ESMTP id aEQF7agQduk1; Mon, 30 Nov 2020 15:52:51 +0000 (UTC)
-Received: from localhost (unknown [109.183.109.54])
-        by zimbra.v3.sk (Postfix) with ESMTPSA id C246AE0701;
-        Mon, 30 Nov 2020 15:52:51 +0000 (UTC)
-From:   Lubomir Rintel <lkundrak@v3.sk>
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc:     Pavel Machek <pavel@ucw.cz>, linux-input@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Lubomir Rintel <lkundrak@v3.sk>
-Subject: [PATCH v3 2/2] Input: add driver for power button on Dell Wyse 3020
-Date:   Mon, 30 Nov 2020 16:55:37 +0100
-Message-Id: <20201130155537.1665091-3-lkundrak@v3.sk>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20201130155537.1665091-1-lkundrak@v3.sk>
-References: <20201130155537.1665091-1-lkundrak@v3.sk>
+        id S1727373AbgK3P6M (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 30 Nov 2020 10:58:12 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=jp481aXJPOMCWLIQF/NrY/EpHjpvTeYLxpv5o6HvZdZtwTl23d6YoBMwk63hjE3Fl7JRL3C07t7WabVBauwQ+qXG1vI5rbwrvpkB4iisDAlvsjafYYC7xz3P1k2+chNJgiNfXjaCK5QGlvnK+6B/v/AH3JNtuqq8VGhabEsIp/vwZzs5ifh2/+NvVJiQNzKs+6AzliNt/oVVc2X+xCN8Skl3W0pOFopN9DrYudwJC74TQ8nhUk2L+HD072ou+OaOa0gGKJBqqd/AkgD88zqkVPn1xu+B2mQn7cCe65s7E3EtJv5aAWRSvvoZPUotzNu07/tE7xBHri2RV5p2dptsow==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=TIULJmF7wjtlaGevAKRRqKeEwv9aSRzQj+Yo/L7n4Wk=;
+ b=RUObsu6cj1tW37t5LFcP4CA2JgAnL8OUHfKbEFoEW+WRU2COudyqyx6haz4h+XNZbpmuBiufKwVZKWsJ+/U5youD2R2mbTPOF33/aFwQWmcTDD4J7w2YNxC+sI1WVIVCivlfgU5EfO0Sbo5da5jO9cb68GQezvV/2z0UqdUeX7ZyJBEZCyFPUlAm7spoiOPnexMkb82RTCCCLUhsfV95cJj7yI2JZNwEQ96pvakjBvKdbWYEFRXFDj2Qz4oqQ+inwyF+bFNxhOjyiKpukKM6G7GURwY7PKmox3X3xq1pQMirV6uhyzSJtuf+DKjZY0xWXStSMj4x5nmvzOknbkwXLQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 149.199.62.198) smtp.rcpttodomain=linaro.org smtp.mailfrom=xilinx.com;
+ dmarc=bestguesspass action=none header.from=xilinx.com; dkim=none (message
+ not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=TIULJmF7wjtlaGevAKRRqKeEwv9aSRzQj+Yo/L7n4Wk=;
+ b=XsWf4mOx5r5lFtz+3YVgjazErSj9EH8y+uEWH+ZpI/TQDBvSpwO3bt6RGw+a4FCzRPZNH0Hw9To+4oCLEjjLs54I/oEsMYjZCSoGLrdEuHz6FvHJS9cmH2zWShTJvxYRnLbDkQg4ISNUZSj1Mg9bAczr5hGpWbOzFZoChtA4nRU=
+Received: from SA9PR13CA0046.namprd13.prod.outlook.com (2603:10b6:806:22::21)
+ by PH0PR02MB7653.namprd02.prod.outlook.com (2603:10b6:510:5e::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3611.25; Mon, 30 Nov
+ 2020 15:57:18 +0000
+Received: from SN1NAM02FT018.eop-nam02.prod.protection.outlook.com
+ (2603:10b6:806:22:cafe::3e) by SA9PR13CA0046.outlook.office365.com
+ (2603:10b6:806:22::21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3632.9 via Frontend
+ Transport; Mon, 30 Nov 2020 15:57:17 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
+ smtp.mailfrom=xilinx.com; linaro.org; dkim=none (message not signed)
+ header.d=none;linaro.org; dmarc=bestguesspass action=none
+ header.from=xilinx.com;
+Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
+ 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=149.199.62.198; helo=xsj-pvapexch01.xlnx.xilinx.com;
+Received: from xsj-pvapexch01.xlnx.xilinx.com (149.199.62.198) by
+ SN1NAM02FT018.mail.protection.outlook.com (10.152.72.122) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.3611.27 via Frontend Transport; Mon, 30 Nov 2020 15:57:17 +0000
+Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
+ xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1913.5; Mon, 30 Nov 2020 07:57:17 -0800
+Received: from smtp.xilinx.com (172.19.127.95) by
+ xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
+ 15.1.1913.5 via Frontend Transport; Mon, 30 Nov 2020 07:57:17 -0800
+Envelope-to: mathieu.poirier@linaro.org,
+ devicetree@vger.kernel.org,
+ linux-remoteproc@vger.kernel.org,
+ linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+Received: from [172.19.2.206] (port=47338 helo=xsjblevinsk50.xilinx.com)
+        by smtp.xilinx.com with esmtp (Exim 4.90)
+        (envelope-from <ben.levinsky@xilinx.com>)
+        id 1kjlYD-000342-75; Mon, 30 Nov 2020 07:57:17 -0800
+From:   Ben Levinsky <ben.levinsky@xilinx.com>
+To:     <mathieu.poirier@linaro.org>
+CC:     <devicetree@vger.kernel.org>, <linux-remoteproc@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: [PATCH v24 0/5] Provide basic driver to control Arm R5 co-processor found on Xilinx ZynqMP
+Date:   Mon, 30 Nov 2020 07:57:12 -0800
+Message-ID: <20201130155717.26008-1-ben.levinsky@xilinx.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: d77b04b2-d701-4aa0-e030-08d895489d17
+X-MS-TrafficTypeDiagnostic: PH0PR02MB7653:
+X-Microsoft-Antispam-PRVS: <PH0PR02MB76531FEFBDEAB799CB23F675B5F50@PH0PR02MB7653.namprd02.prod.outlook.com>
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-Oob-TLC-OOBClassifiers: OLM:4502;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: eo1Pw5X5OVa5SsoIVZcwG52KHOjeAdiDMY/jVNc3Y/9pV2TEkazM+sMjiSt/h790aSxbwbpt/z7ymLwRYoNzNOPlpx8BAzyu8m1q0w2o3BmXfuzIwBVhpPtRYNf2hDeih9Adrm5rMI9jThnp0DzOS82tKlolFLYD6ejRi8zEx8dtgIqkUw68BzvXnGMh3mCR4+KojLBmZmSBZwG0bxBzrRikbMrmx7HDfzHM+niJamQ7J+aY+hkq+PlxRP2y6lAroj8W5+9sStWko/j3NAKizwRW7sGWRmVoHkl5Lgy3iP3X42BLl/hlYN9UMbRcIN/vEV6IhHXp7uE/lM3hATP2ANwcRQxlyJg8De2QKHGLuXuUjGyGQ9tR6Omwvw9QxCstPYEiNj5mI/Y/vvQfp+EY22MAPZ46c0OtN8X0kFs0OLIOeXJBFnqJJ7rKyGUeQJEFB3qpxsOkauuuIaDC/fhWALBpPLN7wGsliHh+YDsOugTqkvqLmIPSz3IAjbD5WV2q
+X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch01.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(4636009)(396003)(346002)(136003)(376002)(39860400002)(46966005)(83380400001)(4326008)(36756003)(8936002)(7696005)(82310400003)(82740400003)(6666004)(7636003)(1076003)(47076004)(356005)(2906002)(5660300002)(44832011)(70206006)(426003)(70586007)(26005)(36906005)(316002)(8676002)(336012)(6916009)(966005)(478600001)(186003)(54906003)(2616005)(9786002)(102446001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Nov 2020 15:57:17.7877
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: d77b04b2-d701-4aa0-e030-08d895489d17
+X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch01.xlnx.xilinx.com]
+X-MS-Exchange-CrossTenant-AuthSource: SN1NAM02FT018.eop-nam02.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR02MB7653
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds support for the power button attached to the Embedded Controlle=
-r
-on a Dell Wyse 3020 "Ariel" board.
 
-The Embedded Controller's SPI interface is actually capable sending and
-receiving the PS/2 keyboard and mouse protocol data, which looks like
-a good fit for a serio driver. Howerver, I don't know of any machines whe=
-re
-this is actually used.
+v24:
+fix  'make dt_binding_check' errors
 
-My board only has a single power button and no way to connect an actual
-keyboard or a mouse. Using the atkbd driver with serio would be an overki=
-ll
-and would be inconvenient for the userspace. Therefore this driver
-registers an input device that is only capable of reporting the power
-button presses and releases.
+v23:
+- add TCM Nodes to xlnx-zynqmp.h to be used in R5 Remoteproc Driver
+- Update grammar and capitalization in device tree bindings and R5 remoteproc
+  driver comments
+- Update device tree bindings and driver to align with TI Remoteproc R5 driver
+- fix minor comments in v22 review
 
-Signed-off-by: Lubomir Rintel <lkundrak@v3.sk>
+Previous version:
+https://patchwork.kernel.org/project/linux-remoteproc/list/?series=384227
 
----
-Changes since v2:
-(All by the suggestions of Dmitry Torokhov. Thank you Dmitry!)
-- Add more includes
-- Make ariel_pwrbutton.msg_counter not a bitfield
-- Include an error code in error message when ec_input_read() fails in
-  the interrupt handler.
-- Return from the interrupt handler from a single point.
-- Remove a forgotten debug statement.
-- s/ret/error/
-- Return -EINVAL instead of -ENXIO when the IRQ line is not specified.
-- Don't hardcode rising edge trigger, rely on DT instead
-- Remove a banner print at the end of probe().
+Ben Levinsky (5):
+  firmware: xilinx: Add ZynqMP firmware ioctl enums for RPU
+    configuration.
+  firmware: xilinx: Add shutdown/wakeup APIs
+  firmware: xilinx: Add RPU configuration APIs
+  dt-bindings: remoteproc: Add documentation for ZynqMP R5 rproc
+    bindings
+  remoteproc: Add initial zynqmp R5 remoteproc driver
 
-Changes since v1:
-- Do away bitfields in order to be endian independent
+ .../xilinx,zynqmp-r5-remoteproc.yaml          | 223 +++++
+ drivers/firmware/xilinx/zynqmp.c              |  96 ++
+ drivers/remoteproc/Kconfig                    |   8 +
+ drivers/remoteproc/Makefile                   |   1 +
+ drivers/remoteproc/zynqmp_r5_remoteproc.c     | 872 ++++++++++++++++++
+ include/linux/firmware/xlnx-zynqmp.h          |  64 ++
+ 6 files changed, 1264 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/remoteproc/xilinx,zynqmp-r5-remoteproc.yaml
+ create mode 100644 drivers/remoteproc/zynqmp_r5_remoteproc.c
 
- drivers/input/misc/Kconfig           |  11 ++
- drivers/input/misc/Makefile          |   1 +
- drivers/input/misc/ariel-pwrbutton.c | 169 +++++++++++++++++++++++++++
- 3 files changed, 181 insertions(+)
- create mode 100644 drivers/input/misc/ariel-pwrbutton.c
-
-diff --git a/drivers/input/misc/Kconfig b/drivers/input/misc/Kconfig
-index 362e8a01980cd..e7bb572e15182 100644
---- a/drivers/input/misc/Kconfig
-+++ b/drivers/input/misc/Kconfig
-@@ -73,6 +73,17 @@ config INPUT_AD714X_SPI
- 	  To compile this driver as a module, choose M here: the
- 	  module will be called ad714x-spi.
-=20
-+config INPUT_ARIEL_PWRBUTTON
-+	tristate "Dell Wyse 3020 Power Button Driver"
-+	depends on SPI
-+	depends on MACH_MMP3_DT || COMPILE_TEST
-+	help
-+	  Say Y to enable support for reporting power button status on
-+	  on Dell Wyse 3020 ("Ariel") thin client.
-+
-+	  To compile this driver as a module, choose M here: the module
-+	  will be called ariel-pwrbutton.
-+
- config INPUT_ARIZONA_HAPTICS
- 	tristate "Arizona haptics support"
- 	depends on MFD_ARIZONA && SND_SOC
-diff --git a/drivers/input/misc/Makefile b/drivers/input/misc/Makefile
-index a48e5f2d859d4..062cea9f181c9 100644
---- a/drivers/input/misc/Makefile
-+++ b/drivers/input/misc/Makefile
-@@ -15,6 +15,7 @@ obj-$(CONFIG_INPUT_ADXL34X)		+=3D adxl34x.o
- obj-$(CONFIG_INPUT_ADXL34X_I2C)		+=3D adxl34x-i2c.o
- obj-$(CONFIG_INPUT_ADXL34X_SPI)		+=3D adxl34x-spi.o
- obj-$(CONFIG_INPUT_APANEL)		+=3D apanel.o
-+obj-$(CONFIG_INPUT_ARIEL_PWRBUTTON)	+=3D ariel-pwrbutton.o
- obj-$(CONFIG_INPUT_ARIZONA_HAPTICS)	+=3D arizona-haptics.o
- obj-$(CONFIG_INPUT_ATI_REMOTE2)		+=3D ati_remote2.o
- obj-$(CONFIG_INPUT_ATLAS_BTNS)		+=3D atlas_btns.o
-diff --git a/drivers/input/misc/ariel-pwrbutton.c b/drivers/input/misc/ar=
-iel-pwrbutton.c
-new file mode 100644
-index 0000000000000..eda86ab552b9c
---- /dev/null
-+++ b/drivers/input/misc/ariel-pwrbutton.c
-@@ -0,0 +1,169 @@
-+// SPDX-License-Identifier: BSD-2-Clause OR GPL-2.0-or-later
-+/*
-+ * Dell Wyse 3020 a.k.a. "Ariel" Power Button Driver
-+ *
-+ * Copyright (C) 2020 Lubomir Rintel
-+ */
-+
-+#include <linux/device.h>
-+#include <linux/gfp.h>
-+#include <linux/input.h>
-+#include <linux/interrupt.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/module.h>
-+#include <linux/spi/spi.h>
-+
-+#define RESP_COUNTER(response)	(response.header & 0x3)
-+#define RESP_SIZE(response)	((response.header >> 2) & 0x3)
-+#define RESP_TYPE(response)	((response.header >> 4) & 0xf)
-+
-+struct ec_input_response {
-+	u8 reserved;
-+	u8 header;
-+	u8 data[3];
-+} __packed;
-+
-+struct ariel_pwrbutton {
-+	struct spi_device *client;
-+	struct input_dev *input;
-+	u8 msg_counter;
-+};
-+
-+static int ec_input_read(struct ariel_pwrbutton *priv,
-+			 struct ec_input_response *response)
-+{
-+	u8 read_request[] =3D { 0x00, 0x5a, 0xa5, 0x00, 0x00 };
-+	struct spi_device *spi =3D priv->client;
-+	struct spi_transfer t =3D {
-+		.tx_buf =3D read_request,
-+		.rx_buf =3D response,
-+		.len =3D sizeof(read_request),
-+	};
-+
-+	compiletime_assert(sizeof(read_request) =3D=3D sizeof(*response),
-+			   "SPI xfer request/response size mismatch");
-+
-+	return spi_sync_transfer(spi, &t, 1);
-+}
-+
-+static irqreturn_t ec_input_interrupt(int irq, void *dev_id)
-+{
-+	struct ariel_pwrbutton *priv =3D dev_id;
-+	struct spi_device *spi =3D priv->client;
-+	struct ec_input_response response;
-+	int error;
-+	int i;
-+
-+	error =3D ec_input_read(priv, &response);
-+	if (error < 0) {
-+		dev_err(&spi->dev, "EC read failed: %d\n", error);
-+		goto out;
-+	}
-+
-+	if (priv->msg_counter =3D=3D RESP_COUNTER(response)) {
-+		dev_warn(&spi->dev, "No new data to read?\n");
-+		goto out;
-+	}
-+
-+	priv->msg_counter =3D RESP_COUNTER(response);
-+
-+	if (RESP_TYPE(response) !=3D 0x3 && RESP_TYPE(response) !=3D 0xc) {
-+		dev_dbg(&spi->dev, "Ignoring message that's not kbd data\n");
-+		goto out;
-+	}
-+
-+	for (i =3D 0; i < RESP_SIZE(response); i++) {
-+		switch (response.data[i]) {
-+		case 0x74:
-+			input_report_key(priv->input, KEY_POWER, 1);
-+			input_sync(priv->input);
-+			break;
-+		case 0xf4:
-+			input_report_key(priv->input, KEY_POWER, 0);
-+			input_sync(priv->input);
-+			break;
-+		default:
-+			dev_dbg(&spi->dev, "Unknown scan code: %02x\n",
-+				response.data[i]);
-+		}
-+	}
-+
-+out:
-+	return IRQ_HANDLED;
-+}
-+
-+static int ariel_pwrbutton_probe(struct spi_device *spi)
-+{
-+	struct ec_input_response response;
-+	struct ariel_pwrbutton *priv;
-+	int error;
-+
-+	if (!spi->irq) {
-+		dev_err(&spi->dev, "Missing IRQ.\n");
-+		return -EINVAL;
-+	}
-+
-+	priv =3D devm_kzalloc(&spi->dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	priv->client =3D spi;
-+	spi_set_drvdata(spi, priv);
-+
-+	priv->input =3D devm_input_allocate_device(&spi->dev);
-+	if (!priv->input)
-+		return -ENOMEM;
-+	priv->input->name =3D "Power Button";
-+	priv->input->dev.parent =3D &spi->dev;
-+	input_set_capability(priv->input, EV_KEY, KEY_POWER);
-+	error =3D input_register_device(priv->input);
-+	if (error) {
-+		dev_err(&spi->dev, "error registering input device: %d\n", error);
-+		return error;
-+	}
-+
-+	error =3D ec_input_read(priv, &response);
-+	if (error < 0) {
-+		dev_err(&spi->dev, "EC read failed: %d\n", error);
-+		return error;
-+	}
-+	priv->msg_counter =3D RESP_COUNTER(response);
-+
-+	error =3D devm_request_threaded_irq(&spi->dev, spi->irq, NULL,
-+					  ec_input_interrupt,
-+					  IRQF_ONESHOT,
-+					  "Ariel EC Input", priv);
-+
-+	if (error) {
-+		dev_err(&spi->dev, "Failed to request IRQ %d: %d\n",
-+			spi->irq, error);
-+		return error;
-+	}
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id ariel_pwrbutton_of_match[] =3D {
-+	{ .compatible =3D "dell,wyse-ariel-ec-input" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, ariel_pwrbutton_of_match);
-+
-+static const struct spi_device_id ariel_pwrbutton_id_table[] =3D {
-+	{ "wyse-ariel-ec-input", 0 },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(spi, ariel_pwrbutton_id_table);
-+
-+static struct spi_driver ariel_pwrbutton_driver =3D {
-+	.driver =3D {
-+		.name =3D "dell-wyse-ariel-ec-input",
-+		.of_match_table =3D ariel_pwrbutton_of_match,
-+	},
-+	.probe =3D ariel_pwrbutton_probe,
-+};
-+module_spi_driver(ariel_pwrbutton_driver);
-+
-+MODULE_AUTHOR("Lubomir Rintel <lkundrak@v3.sk>");
-+MODULE_DESCRIPTION("Dell Wyse 3020 Power Button Input Driver");
-+MODULE_LICENSE("Dual BSD/GPL");
---=20
-2.28.0
+-- 
+2.17.1
 
