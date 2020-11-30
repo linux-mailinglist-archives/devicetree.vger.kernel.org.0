@@ -2,32 +2,32 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 730C92C7C8F
-	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 02:53:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C2DF2C7C95
+	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 02:53:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726755AbgK3Bws (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 29 Nov 2020 20:52:48 -0500
-Received: from gloria.sntech.de ([185.11.138.130]:40834 "EHLO gloria.sntech.de"
+        id S1727294AbgK3Bwu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 29 Nov 2020 20:52:50 -0500
+Received: from gloria.sntech.de ([185.11.138.130]:40846 "EHLO gloria.sntech.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726299AbgK3Bws (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 29 Nov 2020 20:52:48 -0500
+        id S1726510AbgK3Bwt (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 29 Nov 2020 20:52:49 -0500
 Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=phil.lan)
         by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <heiko@sntech.de>)
-        id 1kjYME-0007OY-EN; Mon, 30 Nov 2020 02:52:02 +0100
+        id 1kjYMF-0007OY-Kl; Mon, 30 Nov 2020 02:52:03 +0100
 From:   Heiko Stuebner <heiko@sntech.de>
-To:     Johan Jonker <jbx6244@gmail.com>
+To:     Chen-Yu Tsai <wens@kernel.org>, Rob Herring <robh+dt@kernel.org>
 Cc:     Heiko Stuebner <heiko@sntech.de>,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org, linux-rockchip@lists.infradead.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: rockchip: rename sdhci nodename to mmc in rk3399.dtsi
-Date:   Mon, 30 Nov 2020 02:51:57 +0100
-Message-Id: <160670107988.1055391.14402297807608969522.b4-ty@sntech.de>
+        Chen-Yu Tsai <wens@csie.org>,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 0/3] arm64: dts: rockchip: rk3328-roc-cc: Misc improvements
+Date:   Mon, 30 Nov 2020 02:52:00 +0100
+Message-Id: <160670107988.1055391.17437580601124113737.b4-ty@sntech.de>
 X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20201116132311.8318-1-jbx6244@gmail.com>
-References: <20201116132311.8318-1-jbx6244@gmail.com>
+In-Reply-To: <20201126073336.30794-1-wens@kernel.org>
+References: <20201126073336.30794-1-wens@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -35,21 +35,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 16 Nov 2020 14:23:11 +0100, Johan Jonker wrote:
-> A test with the command below gives for example this error:
+On Thu, 26 Nov 2020 15:33:33 +0800, Chen-Yu Tsai wrote:
+> Here are some improvements for the ROC-RK3328-CC.
 > 
-> /arch/arm64/boot/dts/rockchip/rk3399-evb.dt.yaml:
-> sdhci@fe330000: $nodename:0: 'sdhci@fe330000'
-> does not match '^mmc(@.*)?$'
+> Patch 1 sets dr_mode to "host" for OTG. Since the board has a type A
+> host port wired to the OTG controller, setting this is appropriate.
 > 
-> Fix it by renaming sdhci to mmc.
+> Patch 2 enables HDMI audio.
 > 
 > [...]
 
 Applied, thanks!
 
-[1/1] arm64: dts: rockchip: rename sdhci nodename to mmc in rk3399.dtsi
-      commit: 9a9f642784074d09efe9337e64b959f76c9f6913
+[1/3] arm64: dts: rockchip: rk3328-roc-cc: Set dr_mode to "host" for OTG
+      commit: 4076a007bd0f6171434bdb119a0b8797749b0502
+[2/3] arm64: dts: rockchip: rk3328-roc-cc: Enable HDMI audio
+      commit: 65f0b420dea7e70d70cd6ef0f12f9ff81ab90d23
+[3/3] arm64: dts: rockchip: rk3328-roc-cc: Enable analog audio
+      commit: 5df4d4d16ce4c6e6a5cb9d4b684b187f28258219
 
 Best regards,
 -- 
