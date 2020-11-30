@@ -2,306 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 39AA72C8820
-	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 16:36:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C5132C8826
+	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 16:37:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727058AbgK3PfU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Nov 2020 10:35:20 -0500
-Received: from mail.kernel.org ([198.145.29.99]:42232 "EHLO mail.kernel.org"
+        id S1727836AbgK3PhC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Nov 2020 10:37:02 -0500
+Received: from mail.kernel.org ([198.145.29.99]:42838 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726614AbgK3PfU (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 30 Nov 2020 10:35:20 -0500
-Received: from localhost (unknown [122.171.214.243])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S1727128AbgK3PhC (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 30 Nov 2020 10:37:02 -0500
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id A5FD02076C;
-        Mon, 30 Nov 2020 15:34:37 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 4A726207F7;
+        Mon, 30 Nov 2020 15:36:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1606750478;
-        bh=n20D+/Y5vTS9xKJv9aHowCaS3OlPRr1jLxQk2PopG+Y=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=NfCNSNb8EqX9I5fP7vNaFjNJHRpjInOso2fe5DbKjaZweyjB3UK74VVgV72pkhU82
-         jqmuduB0Kd7Eb+ouUG4I6wlMzXJ1sdf66z8OtjQyMllx02UQb0InLtQyXvPj8lVMjq
-         A2mpaQmTdp8zomc8HhK/jHkZqh3Bzs+s+/FVzK+U=
-Date:   Mon, 30 Nov 2020 21:04:34 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     linux-kernel@vger.kernel.org,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Subject: Re: [PATCH] dt-bindings: phy: Convert Broadcom SATA PHY to YAML
-Message-ID: <20201130153434.GT8403@vkoul-mobl>
-References: <20201122032926.2185026-1-f.fainelli@gmail.com>
+        s=default; t=1606750580;
+        bh=LzsPK0L9PUxgZ6Z+37fS4TS1uDQ2SzZG9WCwz1ZOsgM=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=mXcLdHi6/vI0ZnBL6aMniEUMTAcGPibdZXYZIGd4FwUOv6Kp8ngTcEugAxRct5IU0
+         XrDAIX5lEawYz8bjbG2kkwo7hFFava230fTsjpBiZ7nFGznkf3kIM+3WXy5gIlAPov
+         Xb/02fkxekRvwz/ZugD64UozkzQFjFdmxQsMw6DU=
+Received: by mail-ej1-f50.google.com with SMTP id x16so15466091ejj.7;
+        Mon, 30 Nov 2020 07:36:20 -0800 (PST)
+X-Gm-Message-State: AOAM532y8JDvRCAxNBlHxZGDqMMZrgIASuJTd14JSNGpAUDDSp2ht8uT
+        ClRIKAZiZlYKlFI8k97vlu1QcamOyxeFYSg+PA==
+X-Google-Smtp-Source: ABdhPJxWrvafzpbFRaZpB7xhU0lMwNaXi8tL7tYdUxlmVXzNWJKkwJnGaiNrJS+0OBFJq4dDKn0z8a9HVtiXLS5lu1U=
+X-Received: by 2002:a17:906:a418:: with SMTP id l24mr8806944ejz.360.1606750578769;
+ Mon, 30 Nov 2020 07:36:18 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201122032926.2185026-1-f.fainelli@gmail.com>
+References: <1605172274-44916-1-git-send-email-yash.shah@sifive.com>
+ <20201121125443.GA2076465@robh.at.kernel.org> <BY5PR13MB445328314FB3521DE257C57782FC0@BY5PR13MB4453.namprd13.prod.outlook.com>
+In-Reply-To: <BY5PR13MB445328314FB3521DE257C57782FC0@BY5PR13MB4453.namprd13.prod.outlook.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Mon, 30 Nov 2020 08:36:06 -0700
+X-Gmail-Original-Message-ID: <CAL_JsqLy8kVNcMwkHCXRPvazrRmX+mfUmD4iwAAFvna+1zRaXg@mail.gmail.com>
+Message-ID: <CAL_JsqLy8kVNcMwkHCXRPvazrRmX+mfUmD4iwAAFvna+1zRaXg@mail.gmail.com>
+Subject: Re: [PATCH 1/2] RISC-V: Update l2 cache DT documentation to add
+ support for SiFive FU740
+To:     Yash Shah <yash.shah@openfive.com>
+Cc:     "Paul Walmsley ( Sifive)" <paul.walmsley@sifive.com>,
+        "palmer@dabbelt.com" <palmer@dabbelt.com>,
+        "aou@eecs.berkeley.edu" <aou@eecs.berkeley.edu>,
+        "Jonathan.Cameron@huawei.com" <Jonathan.Cameron@huawei.com>,
+        "wsa@kernel.org" <wsa@kernel.org>,
+        "sam@ravnborg.org" <sam@ravnborg.org>,
+        Sagar Kadam <sagar.kadam@openfive.com>,
+        "anup@brainfault.org" <anup@brainfault.org>,
+        "bp@suse.de" <bp@suse.de>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Sachin Ghadi <sachin.ghadi@openfive.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Florian,
+On Mon, Nov 23, 2020 at 3:32 AM Yash Shah <yash.shah@openfive.com> wrote:
+>
+> > -----Original Message-----
+> > From: Rob Herring <robh@kernel.org>
+> > Sent: 21 November 2020 18:25
+> > To: Yash Shah <yash.shah@openfive.com>
+> > Cc: Paul Walmsley ( Sifive) <paul.walmsley@sifive.com>;
+> > palmer@dabbelt.com; aou@eecs.berkeley.edu;
+> > Jonathan.Cameron@huawei.com; wsa@kernel.org; sam@ravnborg.org;
+> > Sagar Kadam <sagar.kadam@openfive.com>; anup@brainfault.org;
+> > bp@suse.de; devicetree@vger.kernel.org; linux-riscv@lists.infradead.org;
+> > linux-kernel@vger.kernel.org; Sachin Ghadi <sachin.ghadi@openfive.com>
+> > Subject: Re: [PATCH 1/2] RISC-V: Update l2 cache DT documentation to add
+> > support for SiFive FU740
+> >
+> > [External Email] Do not click links or attachments unless you recognize the
+> > sender and know the content is safe
+> >
+> > On Thu, Nov 12, 2020 at 02:41:13PM +0530, Yash Shah wrote:
+> > > The L2 cache controller in SiFive FU740 has 4 ECC interrupt sources as
+> > > compared to 3 in FU540. Update the DT documentation accordingly with
+> > > "compatible" and "interrupt" property changes.
+> > >
+> > > Signed-off-by: Yash Shah <yash.shah@sifive.com>
+> > > ---
+> > >  .../devicetree/bindings/riscv/sifive-l2-cache.yaml | 33
+> > > +++++++++++++++++-----
+> > >  1 file changed, 26 insertions(+), 7 deletions(-)
+> > >
+> > > diff --git
+> > > a/Documentation/devicetree/bindings/riscv/sifive-l2-cache.yaml
+> > > b/Documentation/devicetree/bindings/riscv/sifive-l2-cache.yaml
+> > > index efc0198..4873d5c 100644
+> > > --- a/Documentation/devicetree/bindings/riscv/sifive-l2-cache.yaml
+> > > +++ b/Documentation/devicetree/bindings/riscv/sifive-l2-cache.yaml
+>
+> <...>
+>
+> > > @@ -51,12 +54,6 @@ properties:
+> > >
+> > >    cache-unified: true
+> > >
+> > > -  interrupts:
+> > > -    description: |
+> > > -      Must contain entries for DirError, DataError and DataFail signals.
+> > > -    minItems: 3
+> > > -    maxItems: 3
+> >
+> > Keep this here and just change maxItems to 4. Really, what each interrupt is
+> > should be listed out as an 'items' entry.
+> >
+>
+> Sure will send a v2 with the above modifications.
+>
+> <...>
+>
+> >
+> > > +
+> > > +else:
+> > > +  properties:
+> > > +    interrupts:
+> > > +      description: |
+> > > +        Must contain entries for DirError, DirFail, DataError, DataFail signals.
+> >
+> > DirFail should be last so you keep the same indices.
+>
+> Actually, the interrupts have been numbered like that in FU740 SoCs and the driver expects the interrupts to be in this order.
+> I will keep the same order for v2 as well. Let me know if you still disagree.
 
+Numbered within the cache block or the interrupt controller? If the
+former, then fine. The latter would be outside the scope of the
+binding. Another SoC could hook up interrupts differently.
 
-On 21-11-20, 19:29, Florian Fainelli wrote:
-> Update the Broadcom SATA PHY Device Tree binding to a YAML format.
-> 
-> Suggested-by: Vinod Koul <vkoul@kernel.org>
-> Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
+It's going to be easier for the driver to deal with 1 new irq index
+rather than 2 whole sets of different indices, but if you want to do
+it the hard way...
 
-I am getting these warns:
-
-Documentation/devicetree/bindings/phy/brcm,sata-phy.yaml:19:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
-Documentation/devicetree/bindings/phy/brcm,sata-phy.yaml:20:12: [warning] wrong indentation: expected 12 but found 11 (indentation)
-Documentation/devicetree/bindings/phy/brcm,sata-phy.yaml:26:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
-Documentation/devicetree/bindings/phy/brcm,sata-phy.yaml:28:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
-Documentation/devicetree/bindings/phy/brcm,sata-phy.yaml:30:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
-Documentation/devicetree/bindings/phy/brcm,sata-phy.yaml:51:6: [warning] wrong indentation: expected 4 but found 5 (indentation)
-Documentation/devicetree/bindings/phy/brcm,sata-phy.yaml:71:11: [warning] wrong indentation: expected 9 but found 10 (indentation)
-Documentation/devicetree/bindings/phy/brcm,sata-phy.yaml:80:11: [warning] wrong indentation: expected 9 but found 10 (indentation)
-Documentation/devicetree/bindings/phy/brcm,sata-phy.yaml:88:11: [warning] wrong indentation: expected 9 but found 10 (indentation)
-
-Documentation/devicetree/bindings/phy/brcm,sata-phy.example.dt.yaml: sata-phy@f0458100: '#phy-cells' is a required property
-	From schema: /usr/local/lib/python3.8/site-packages/dtschema/schemas/phy/phy-provider.yaml
-
-> ---
-> This is based on phy/next and it depends on the following commit:
-> 
-> https://git.kernel.org/pub/scm/linux/kernel/git/phy/linux-phy.git/commit/?h=next&id=6d3b3f88423e4edc0fad5853c10558b42e1a91dd
-> 
-> it would make sense to have Vinod apply this change.
-> 
->  .../bindings/phy/brcm,sata-phy.yaml           | 148 ++++++++++++++++++
->  .../devicetree/bindings/phy/brcm-sata-phy.txt |  61 --------
->  2 files changed, 148 insertions(+), 61 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/phy/brcm,sata-phy.yaml
->  delete mode 100644 Documentation/devicetree/bindings/phy/brcm-sata-phy.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/phy/brcm,sata-phy.yaml b/Documentation/devicetree/bindings/phy/brcm,sata-phy.yaml
-> new file mode 100644
-> index 000000000000..979b7419dc69
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/phy/brcm,sata-phy.yaml
-> @@ -0,0 +1,148 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/phy/brcm,sata-phy.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +
-> +title: Broadcom SATA3 PHY
-> +
-> +maintainers:
-> +  - Florian Fainelli <f.fainelli@gmail.com>
-> +
-> +properties:
-> +  $nodename:
-> +    pattern: "^sata[-|_]phy(@.*)?$"
-> +
-> +  compatible:
-> +    oneOf:
-> +      - items:
-> +        - enum:
-> +           - brcm,bcm7216-sata-phy
-> +           - brcm,bcm7425-sata-phy
-> +           - brcm,bcm7445-sata-phy
-> +           - brcm,bcm63138-sata-phy
-> +        - const: brcm,phy-sata3
-> +      - items:
-> +        - const: brcm,iproc-nsp-sata-phy
-> +      - items:
-> +        - const: brcm,iproc-ns2-sata-phy
-> +      - items:
-> +        - const: brcm,iproc-sr-sata-phy
-> +
-> +  reg:
-> +    minItems: 1
-> +    maxItems: 2
-> +
-> +  reg-names:
-> +    minItems: 1
-> +    maxItems: 2
-> +    items:
-> +      - const: phy
-> +      - const: phy-ctrl
-> +
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 0
-> +
-> +patternProperties:
-> +  "^sata-phy@[0-9]+$":
-> +     type: object
-> +     description: |
-> +       Each port's PHY should be represented as a sub-node.
-> +
-> +     properties:
-> +       reg:
-> +         description: The SATA PHY port number
-> +         maxItems: 1
-> +
-> +       "#phy-cells":
-> +         const: 0
-> +
-> +       "brcm,enable-ssc":
-> +         $ref: /schemas/types.yaml#/definitions/flag
-> +         description: |
-> +           Use spread spectrum clocking (SSC) on this port
-> +           This property is not applicable for "brcm,iproc-ns2-sata-phy",
-> +           "brcm,iproc-nsp-sata-phy" and "brcm,iproc-sr-sata-phy".
-> +
-> +       "brcm,rxaeq-mode":
-> +          $ref: /schemas/types.yaml#/definitions/string
-> +          description:
-> +            String that indicates the desired RX equalizer mode.
-> +          enum:
-> +            - off
-> +            - auto
-> +            - manual
-> +
-> +       "brcm,rxaeq-value":
-> +          $ref: /schemas/types.yaml#/definitions/uint32
-> +          description: |
-> +            When 'brcm,rxaeq-mode' is set to "manual", provides the RX
-> +            equalizer value that should be used.
-> +          minimum: 0
-> +          maximum: 63
-> +
-> +       "brcm,tx-amplitude-millivolt":
-> +          description: |
-> +            Transmit amplitude voltage in millivolt.
-> +          $ref: /schemas/types.yaml#/definitions/uint32
-> +          enum: [400, 500, 600, 800]
-> +
-> +     required:
-> +       - reg
-> +       - "#phy-cells"
-> +
-> +     additionalProperties: false
-> +
-> +if:
-> +  properties:
-> +    compatible:
-> +      items:
-> +        const: brcm,iproc-ns2-sata-phy
-> +then:
-> +  properties:
-> +    reg:
-> +      maxItems: 2
-> +    reg-names:
-> +      items:
-> +        - const: "phy"
-> +        - const: "phy-ctrl"
-> +else:
-> +  properties:
-> +    reg:
-> +      maxItems: 1
-> +    reg-names:
-> +      maxItems: 1
-> +      items:
-> +        - const: "phy"
-> +
-> +required:
-> +  - compatible
-> +  - "#address-cells"
-> +  - "#size-cells"
-> +  - reg
-> +  - reg-names
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    sata-phy@f0458100 {
-> +        compatible = "brcm,bcm7445-sata-phy", "brcm,phy-sata3";
-> +        reg = <0xf0458100 0x1e00>;
-> +        reg-names = "phy";
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        sata-phy@0 {
-> +                reg = <0>;
-> +                #phy-cells = <0>;
-> +        };
-> +
-> +        sata-phy@1 {
-> +                reg = <1>;
-> +                #phy-cells = <0>;
-> +        };
-> +    };
-> diff --git a/Documentation/devicetree/bindings/phy/brcm-sata-phy.txt b/Documentation/devicetree/bindings/phy/brcm-sata-phy.txt
-> deleted file mode 100644
-> index e5abbace93a3..000000000000
-> --- a/Documentation/devicetree/bindings/phy/brcm-sata-phy.txt
-> +++ /dev/null
-> @@ -1,61 +0,0 @@
-> -* Broadcom SATA3 PHY
-> -
-> -Required properties:
-> -- compatible: should be one or more of
-> -     "brcm,bcm7216-sata-phy"
-> -     "brcm,bcm7425-sata-phy"
-> -     "brcm,bcm7445-sata-phy"
-> -     "brcm,iproc-ns2-sata-phy"
-> -     "brcm,iproc-nsp-sata-phy"
-> -     "brcm,phy-sata3"
-> -     "brcm,iproc-sr-sata-phy"
-> -     "brcm,bcm63138-sata-phy"
-> -- address-cells: should be 1
-> -- size-cells: should be 0
-> -- reg: register ranges for the PHY PCB interface
-> -- reg-names: should be "phy" and "phy-ctrl"
-> -     The "phy-ctrl" registers are only required for
-> -     "brcm,iproc-ns2-sata-phy" and "brcm,iproc-sr-sata-phy".
-> -
-> -Sub-nodes:
-> -  Each port's PHY should be represented as a sub-node.
-> -
-> -Sub-nodes required properties:
-> -- reg: the PHY number
-> -- phy-cells: generic PHY binding; must be 0
-> -
-> -Sub-nodes optional properties:
-> -- brcm,enable-ssc: use spread spectrum clocking (SSC) on this port
-> -     This property is not applicable for "brcm,iproc-ns2-sata-phy",
-> -     "brcm,iproc-nsp-sata-phy" and "brcm,iproc-sr-sata-phy".
-> -
-> -- brcm,rxaeq-mode: string that indicates the desired RX equalizer
-> -  mode, possible values are:
-> -	"off" (equivalent to not specifying the property)
-> -	"auto"
-> -	"manual" (brcm,rxaeq-value is used in that case)
-> -
-> -- brcm,rxaeq-value: when 'rxaeq-mode' is set to "manual", provides the RX
-> -  equalizer value that should be used. Allowed range is 0..63.
-> -
-> -- brcm,tx-amplitude-millivolt: transmit amplitude voltage in millivolt.
-> -  Possible values are 400, 500, 600 or 800 mV.
-> -
-> -Example
-> -	sata-phy@f0458100 {
-> -		compatible = "brcm,bcm7445-sata-phy", "brcm,phy-sata3";
-> -		reg = <0xf0458100 0x1e00>, <0xf045804c 0x10>;
-> -		reg-names = "phy";
-> -		#address-cells = <1>;
-> -		#size-cells = <0>;
-> -
-> -		sata-phy@0 {
-> -			reg = <0>;
-> -			#phy-cells = <0>;
-> -		};
-> -
-> -		sata-phy@1 {
-> -			reg = <1>;
-> -			#phy-cells = <0>;
-> -		};
-> -	};
-> -- 
-> 2.25.1
-
--- 
-~Vinod
+Rob
