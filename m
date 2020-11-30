@@ -2,174 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E60E82C89F7
-	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 17:56:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4EBEF2C89FA
+	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 17:56:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728065AbgK3QxK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Nov 2020 11:53:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41770 "EHLO
+        id S1728829AbgK3Qx3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Nov 2020 11:53:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41818 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726970AbgK3QxK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Nov 2020 11:53:10 -0500
-Received: from mail-ot1-x341.google.com (mail-ot1-x341.google.com [IPv6:2607:f8b0:4864:20::341])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7DDAC0613D3
-        for <devicetree@vger.kernel.org>; Mon, 30 Nov 2020 08:52:29 -0800 (PST)
-Received: by mail-ot1-x341.google.com with SMTP id l36so11940549ota.4
-        for <devicetree@vger.kernel.org>; Mon, 30 Nov 2020 08:52:29 -0800 (PST)
+        with ESMTP id S1726769AbgK3Qx2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Nov 2020 11:53:28 -0500
+Received: from mail-ot1-x344.google.com (mail-ot1-x344.google.com [IPv6:2607:f8b0:4864:20::344])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7E1FC0613D4;
+        Mon, 30 Nov 2020 08:52:48 -0800 (PST)
+Received: by mail-ot1-x344.google.com with SMTP id 11so11905842oty.9;
+        Mon, 30 Nov 2020 08:52:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=/XXlFUfvEmfiDn/MNxM4LtUq+eujOKOrXOcsUik59H8=;
-        b=vWn4k2e3hASoVqqW1KaPIjR/pt4eEcJvI6l+KWsXBNrwMF24HhuNGqikWKn2P+1hWU
-         4WDuhxfz9mZaoRkeusXue9+mpes6rEmF+vbRzNsbKnzb7On5VTc1adrWRTIoIwTdNoGn
-         Zp0Eysb6uyd6L8t3UjdkdLQBRjKzcDXmwOvkaOmEZ/sdD3buLcbRQd90KxK3I3LoA9i3
-         PH84klrCOC4fzBqNwc8jUxthxMMcAplNfccmZyQkDm6VdWq8iLeEpqsE+gNxCmOM1Kmd
-         Ex/bdXWLQfnCfJIfsJYhDQJy4Zd8D8qZc0KuiQrZBfaO0xQI8IPUOlhgAnMFriwwmTEB
-         iNtw==
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=3WA540gSHh8kQNe0lWG+yli/wrKJPqlogKyvN8EdAR0=;
+        b=KTWXa6hK5yeoleLSGEzoPfOiFalYXKt2bSNkbLFYPcRQIsZt+JdyjG++UWPySpxpQ+
+         5TXPQcRXjv0DvLrZ3gGwHRXLmmCSiKwCPvdqkc2n9jplKmEOfTrmkjCEzmeI/iGMhy3J
+         zDgxn0BZ4JBFyhAoPJOCFPieYnfIENezF/8PADY9HBAd6Vpo4jMhPzNPY/rZCuFXoLb2
+         n7rqFzSh8yJPu1amSqOwer9+jgV+1NMSe5VeOsVJxCFC90PtDiyGvJDgGd5Y5hgi9kaS
+         QW9ykI29mhYIdGY6yZ3WZWZKBGunxov1xkm2G1+GjDHMYGMlD5A5h/s7VKSAdyi1GicF
+         xp8g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=/XXlFUfvEmfiDn/MNxM4LtUq+eujOKOrXOcsUik59H8=;
-        b=VpIwv+9/bVP/BG06abClV0sBhq32WFZ9BrFGUxwhDtQvx4YvMtbiRheHTn9LhrwXL0
-         DXyLcohMxWNT4Q5agB9G+4Gt1DXnYcFkzrpMeyMJLBLYETmSHiSEhJBALj14Ue22ZzR7
-         0X1k9HHChaA2YsF77DISfa8ufEJLjoZ9dloLahNr9nhZLRmgRTdbL8m6Zj6F/wFumMCn
-         pIHKH9tGMCiAJWJZ3vxDK1HDa1Bz8RFSBw/tguxrH0/uzRs/4wC426/qGaiR4JY6I/90
-         5ZDbDJxUlfXVPCLAnCw6HN3SDM4tmFHIvoYzQ/qSJGiTWAj+nt4hFDG71CDS22iGr5Qd
-         aJ3A==
-X-Gm-Message-State: AOAM533aEMHOr3U/KwTptvqTE4DkefmCPWLIgiC3ZDipGvA7NnSTdOpp
-        EKP0e/2pTUR8/mxHmYOiDfQ+Hw==
-X-Google-Smtp-Source: ABdhPJyf+HzoZY0JkxVZtejoP3tDH9NuzEFnXB3oRNpPA4uz7o2H3uqU/nSnUsKFXUwUMVl35e4z4Q==
-X-Received: by 2002:a05:6830:1199:: with SMTP id u25mr17849430otq.323.1606755149178;
-        Mon, 30 Nov 2020 08:52:29 -0800 (PST)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id t5sm9233268oth.16.2020.11.30.08.52.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Nov 2020 08:52:28 -0800 (PST)
-Date:   Mon, 30 Nov 2020 10:52:26 -0600
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-Cc:     agross@kernel.org, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, rohitkr@codeaurora.org,
-        srinivas.kandagatla@linaro.org, Ajit Pandey <ajitp@codeaurora.org>,
-        V Sujith Kumar Reddy <vsujithk@codeaurora.org>
-Subject: Re: [PATCH] arm64: dts: qcom: sc7180-trogdor: Add lpass dai link for
- I2S driver
-Message-ID: <X8UjShseQ0F7itZe@builder.lan>
-References: <1600440678-2137-1-git-send-email-srivasam@codeaurora.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=3WA540gSHh8kQNe0lWG+yli/wrKJPqlogKyvN8EdAR0=;
+        b=jkjXn4/2iZpTij1eEpwJcxoajTvjXZaCYcljQnzQ5jmlGfriNgqkDq3j8LcA41TI6P
+         1j9OFkFRU/4AnE/y8ChnR2+dpGR5Qww2WO16rOt5A+rM2fcs9ks8qg0Ox1F/1VZODfBA
+         eEWiFBoOwvPGc2GINs4wp/nAusd+DjwD5CxcydCJkmW/kIgeiXjLS3xntHP+Ak5y2lri
+         7mNSqUwgEOA7+HH3x+DHPIRc/h3do1cbTYZn8gXCX+WeM7ZdlI2YcX8N97nYF4RHF208
+         NYJh7Yh9ECX8lBXbinq4KM/p4i5nEV16kcn//feoA8Lm+0FaavmU3bGyx8Da/lQCRdg9
+         fM8w==
+X-Gm-Message-State: AOAM532H2+3SR1VyOoZY++d2CdR2942ecqYMc4YkPihKM2evJQJARfGG
+        1xyAkCYTOAF2BhMY+qeh/yoVEXK93MiG07/TyeE2KsfV2g==
+X-Google-Smtp-Source: ABdhPJy2y/TGo8SvnA68QX0kOXVSSywHbstLw2XAyMQNOLwB1TnHZb6CwaZo4HB3Jk1cbHjd/yhDtb+EXiWOIamw3JA=
+X-Received: by 2002:a9d:4713:: with SMTP id a19mr17913519otf.132.1606755168216;
+ Mon, 30 Nov 2020 08:52:48 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1600440678-2137-1-git-send-email-srivasam@codeaurora.org>
+References: <20201126220500.av3clcxbbvogvde5@skbuf> <20201127103503.5cda7f24@kicinski-fedora-pc1c0hjn.DHCP.thefacebook.com>
+ <CAFSKS=MAdnR2jzmkQfTnSQZ7GY5x5KJE=oeqPCQdbZdf5n=4ZQ@mail.gmail.com>
+ <20201127195057.ac56bimc6z3kpygs@skbuf> <CAFSKS=Pf6zqQbNhaY=A_Da9iz9hcyxQ8E1FBp2o7a_KLBbopYw@mail.gmail.com>
+ <20201127133753.4cf108cb@kicinski-fedora-pc1c0hjn.DHCP.thefacebook.com>
+ <20201127233048.GB2073444@lunn.ch> <20201127233916.bmhvcep6sjs5so2e@skbuf>
+ <20201128000234.hwd5zo2d4giiikjc@skbuf> <20201128003912.GA2191767@lunn.ch>
+ <20201128014106.lcqi6btkudbnj3mc@skbuf> <20201127181525.2fe6205d@kicinski-fedora-pc1c0hjn.DHCP.thefacebook.com>
+In-Reply-To: <20201127181525.2fe6205d@kicinski-fedora-pc1c0hjn.DHCP.thefacebook.com>
+From:   George McCollister <george.mccollister@gmail.com>
+Date:   Mon, 30 Nov 2020 10:52:35 -0600
+Message-ID: <CAFSKS=O-TDPax1smCPq=b1w3SVqJokesWx02AUGUXD0hUwXbAg@mail.gmail.com>
+Subject: Re: [PATCH net-next v2 2/3] net: dsa: add Arrow SpeedChips XRS700x driver
+To:     Jakub Kicinski <kuba@kernel.org>
+Cc:     Vladimir Oltean <olteanv@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
+        "open list:OPEN FIRMWARE AND..." <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri 18 Sep 09:51 CDT 2020, Srinivasa Rao Mandadapu wrote:
+On Fri, Nov 27, 2020 at 8:15 PM Jakub Kicinski <kuba@kernel.org> wrote:
+>
+> On Sat, 28 Nov 2020 03:41:06 +0200 Vladimir Oltean wrote:
+> > Jakub, I would like to hear more from you. I would still like to try
+> > this patch out. You clearly have a lot more background with the code.
+>
+> Well, I've seen people run into the problem of this NDO not being able
+> to sleep, but I don't have much background or knowledge of what impact
+> the locking will have on real systems.
+>
+> We will need to bring this up with Eric (probably best after the turkey
+> weekend is over).
+>
+> In the meantime if you feel like it you may want to add some tracing /
+> printing to check which processes are accessing /proc/net/dev on your
+> platforms of interest, see if there is anything surprising.
+>
+> > You said in an earlier reply that you should have also documented that
+> > ndo_get_stats64 is one of the few NDOs that does not take the RTNL. Is
+> > there a particular reason for that being so, and a reason why it can't
+> > change?
+>
+> I just meant that as a way of documenting the status quo. I'm not aware
+> of any other place reading stats under RCU (which doesn't mean it
+> doesn't exist :)).
+>
+> That said it is a little tempting to add a new per-netdev mutex here,
+> instead of congesting RTNL lock further, since today no correct driver
+> should depend on the RTNL lock.
 
-> From: Ajit Pandey <ajitp@codeaurora.org>
-> 
-> Add dai link for supporting lpass I2S driver, which is used
-> for audio capture and playback.
-> Add lpass-cpu node with  pin controls and i2s primary
-> and secondary dai-links
-> 
-> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-> Signed-off-by: V Sujith Kumar Reddy <vsujithk@codeaurora.org>
-
-Ajit needs to certify the origin of the patch, with his signed-off-by
-and as you are the last to touch it your signed-off-by should be last.
-
-Also, please advice on the dependencies of this patch, because the tree
-doesn't build after applying this patch.
-
-Regards,
-Bjorn
-
-> ---
->  arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi | 59 ++++++++++++++++++++++++++++
->  1 file changed, 59 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-> index bf87558..5724982 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-> @@ -220,6 +220,44 @@
->  			max-brightness = <1023>;
->  		};
->  	};
-> +
-> +	sound {
-> +		compatible = "qcom,sc7180-sndcard";
-> +		model = "sc7180-snd-card";
-> +
-> +		audio-routing =
-> +			"Headphone Jack", "HPOL",
-> +			"Headphone Jack", "HPOR";
-> +
-> +		audio-jack = <&alc5682>;
-> +
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		dai-link@0 {
-> +			link-name = "MultiMedia0";
-> +			reg = <0>;
-> +			cpu {
-> +				sound-dai = <&lpass_cpu 0>;
-> +			};
-> +
-> +			codec {
-> +				sound-dai = <&alc5682 0>;
-> +			};
-> +		};
-> +
-> +		dai-link@1 {
-> +			link-name = "MultiMedia1";
-> +			reg = <1>;
-> +			cpu {
-> +				sound-dai = <&lpass_cpu 1>;
-> +			};
-> +
-> +			codec {
-> +				sound-dai = <&max98357a>;
-> +			};
-> +		};
-> +	};
->  };
->  
->  &qfprom {
-> @@ -725,6 +763,27 @@ hp_i2c: &i2c9 {
->  	modem-init;
->  };
->  
-> +&lpass_cpu {
-> +	status = "okay";
-> +
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&sec_mi2s_active &pri_mi2s_active &pri_mi2s_mclk_active>;
-> +
-> +	#address-cells = <1>;
-> +	#size-cells = <0>;
-> +
-> +	mi2s-primary@0 {
-> +		reg = <MI2S_PRIMARY>;
-> +		qcom,playback-sd-lines = <1>;
-> +		qcom,capture-sd-lines = <0>;
-> +	};
-> +
-> +	mi2s-secondary@1 {
-> +		reg = <MI2S_SECONDARY>;
-> +		qcom,playback-sd-lines = <0>;
-> +	};
-> +};
-> +
->  &mdp {
->  	status = "okay";
->  };
-> -- 
-> Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
-> is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
-> 
+Another possible option could be replacing for_each_netdev_rcu with
+for_each_netdev_srcu and using list_for_each_entry_srcu (though it's
+currently used nowhere else in the kernel). Has anyone considered
+using sleepable RCUs or thought of a reason they wouldn't work or
+wouldn't be desirable? For more info search for SRCU in
+Documentation/RCU/RTFP.txt
