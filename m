@@ -2,94 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E57912C8727
-	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 15:53:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 033A32C8745
+	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 15:59:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726871AbgK3OxA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Nov 2020 09:53:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51004 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726878AbgK3OxA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Nov 2020 09:53:00 -0500
-Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com [IPv6:2a00:1450:4864:20::341])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA9ECC0613D6
-        for <devicetree@vger.kernel.org>; Mon, 30 Nov 2020 06:52:19 -0800 (PST)
-Received: by mail-wm1-x341.google.com with SMTP id k10so12362143wmi.3
-        for <devicetree@vger.kernel.org>; Mon, 30 Nov 2020 06:52:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:mime-version
-         :in-reply-to:content-language:content-transfer-encoding;
-        bh=xRnSTPJtYHlLo5f9Pcsa1HU4sAtrN1byx2aGSuuHdV8=;
-        b=KN3UUO6NsVuwUQVEDTZ2eiYecoqvNhR/NsquvyGZPENcBLAyo8q/C4dYMO+H+VQ96t
-         5h9oUwxaBfOaLvuQ0L6H5f+d+IFUQEoUu1ofoqdOG/b9fvX7vUCmEyny6PlmOwJSQW3v
-         AuI3AqTN2jX/dBo9wJwQMxb8MU8C63QRPm6wrG05BXMo4no3DMFCJosPhHrn+eKzznQO
-         HI9tXsU0w7Z69+PrGI3zDrz9SK8Co0CXu+NmXIifeWxOWSCVo8lgXrvezUV5WGTw6Y76
-         h80FhNNmb9WkXBX/jH2mGOv9iABOrVq11bdvGVIpU3ZsseaaIAt++1dt/x4ZgoaIFFgE
-         LLwg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=xRnSTPJtYHlLo5f9Pcsa1HU4sAtrN1byx2aGSuuHdV8=;
-        b=Jfi2B15SfHWRt1TMrj9oGTrrI3DLJixyYj6M4pPFB+RGw/5G4aBV0PXxCh36QsgBdL
-         k79AwmgfmR3O+IhLExYYfSHMz5+DJjZaks6KJetlsyVxMvxvxO7Oe2LlunW81GSZsGfR
-         x9D14SZAhPUCRoW38kyCddyDkGEoRdz/q7s8kbDFHttZnEtJ4ag2C68OS2lXMmM2ukLV
-         6n4xn2+U/bkFCRkWmLNfCDhgHYQJ9ZULalJexrf3b+KqDywdrvNeYUPHEzTlKJJqAMw0
-         PBZEqtqc92UJ2iep2mnZ231PraBfumkZ3LO7+3tW1VLA+Wth0HisEPd1uTjRTbrXxEQK
-         JpQg==
-X-Gm-Message-State: AOAM532u5gvnYwn85xh/Jm7WL4RaV2Cs3IloKaAxcXmcoR2QmIlDlis3
-        BkkvY4lUlrlcpaKPAq1cVowFiA==
-X-Google-Smtp-Source: ABdhPJzh786ywQLuYKfZnHtZFKJOE4q0GObaoeKTiokZ7B8y0EIQtjGY+u9FB3q3p8aiNx3HcptlMg==
-X-Received: by 2002:a1c:a9cc:: with SMTP id s195mr1189482wme.97.1606747938163;
-        Mon, 30 Nov 2020 06:52:18 -0800 (PST)
-Received: from MacBook-Pro.local ([212.45.64.13])
-        by smtp.googlemail.com with ESMTPSA id n189sm1072983wmf.20.2020.11.30.06.52.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 30 Nov 2020 06:52:17 -0800 (PST)
-Subject: Re: [PATCH v4 1/2] dt-bindings: interconnect: Add bindings for
- Qualcomm SDM660 NoC
-To:     Rob Herring <robh@kernel.org>,
-        Martin Botka <martin.botka1@gmail.com>
-Cc:     AngeloGioacchino Del Regno <kholk11@gmail.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>, marijns95@gmail.com,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        phone-devel@vger.kernel.org,
-        "open list:THERMAL" <linux-pm@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>
-References: <20201017133718.31327-1-kholk11@gmail.com>
- <20201017133718.31327-2-kholk11@gmail.com> <20201019195807.GA3508546@bogus>
- <CADQ2G_HZ9nt88vW9MNiC-+Rdjzsu-hSHoqmqLC75vyiG2JKpQQ@mail.gmail.com>
- <CAL_Jsq+ZsOP1=+N0yu1Dc+2ZpkJic8XSGhTf0H8yRzYfbk1T9g@mail.gmail.com>
-From:   Georgi Djakov <georgi.djakov@linaro.org>
-Message-ID: <f9096036-b47a-bc0e-af32-041d800b19e1@linaro.org>
-Date:   Mon, 30 Nov 2020 16:52:15 +0200
+        id S1727795AbgK3O64 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Nov 2020 09:58:56 -0500
+Received: from mail.kernel.org ([198.145.29.99]:59012 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727305AbgK3O64 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 30 Nov 2020 09:58:56 -0500
+Received: from mail-ot1-f49.google.com (mail-ot1-f49.google.com [209.85.210.49])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 476BF20725;
+        Mon, 30 Nov 2020 14:58:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1606748295;
+        bh=b/MCI1CHgTxdFgi97gwnhlTrwv0Lqog/dfBx21I6rPY=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=MAFqCo7H8oelm63xRjmLJsSNS0PcM2c5zVDJHFoVCxDahCB+3GXQ0kil3W4VFowMG
+         h7oZdGWLnF+2I4cXX6PWdmXWkwE9mxGFeTtnHifjCfjoedILg6I1kpGyzBz3EqMlBN
+         2MlqQPA6Rwi4gr+LVpEdyQMe5gzGMupyxSmmCB5c=
+Received: by mail-ot1-f49.google.com with SMTP id t18so3069757otk.2;
+        Mon, 30 Nov 2020 06:58:15 -0800 (PST)
+X-Gm-Message-State: AOAM530hiH8SoucH6hvrWK0/YyEnOfMOHdUVre//psaRBBOj+n84ItQt
+        6LYSbeTah8ZyICJpIhp3j4P8k2tUlIMr7zm5tHI=
+X-Google-Smtp-Source: ABdhPJyEsDj83c39B/yKqumUg6NRPSWr9AkBO1DJNWG4L9CS8X2nKsDjX5Ek23PxYsaWYqXQRb7n4LpUaYFDGm6CwPc=
+X-Received: by 2002:a9d:be1:: with SMTP id 88mr17243238oth.210.1606748294497;
+ Mon, 30 Nov 2020 06:58:14 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <CAL_Jsq+ZsOP1=+N0yu1Dc+2ZpkJic8XSGhTf0H8yRzYfbk1T9g@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20201130131047.2648960-1-daniel@0x0f.com> <20201130131047.2648960-9-daniel@0x0f.com>
+ <CAK8P3a2oqc51Aw7fyjW7t_zzRYX4Xxa7SS72faj7zvcZfyuaFg@mail.gmail.com> <CAFr9PXnkxBeujWFqVWfonEKEJ81ExnYcjr3jRMTBobGf9q2jsA@mail.gmail.com>
+In-Reply-To: <CAFr9PXnkxBeujWFqVWfonEKEJ81ExnYcjr3jRMTBobGf9q2jsA@mail.gmail.com>
+From:   Arnd Bergmann <arnd@kernel.org>
+Date:   Mon, 30 Nov 2020 15:57:58 +0100
+X-Gmail-Original-Message-ID: <CAK8P3a2MC5m4PdmXnwjGw_oZinKU93LP+eYQ8qaCmH4EesH0Bw@mail.gmail.com>
+Message-ID: <CAK8P3a2MC5m4PdmXnwjGw_oZinKU93LP+eYQ8qaCmH4EesH0Bw@mail.gmail.com>
+Subject: Re: [PATCH 8/9] ARM: mstar: Add smp ctrl registers to infinity2m dtsi
+To:     Daniel Palmer <daniel@0x0f.com>
+Cc:     DTML <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>, Rob Herring <robh@kernel.org>,
+        Willy Tarreau <w@1wt.eu>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30.11.20 16:29, Rob Herring wrote:
-> On Mon, Oct 19, 2020 at 2:45 PM Martin Botka <martin.botka1@gmail.com> wrote:
->>
->>> Documentation/devicetree/bindings/interconnect/qcom,sdm660.example.dts:20:18: fatal error: dt-bindings/clock/qcom,mmcc-sdm660.h: No such file or directory
->>>     20 |         #include <dt-bindings/clock/qcom,mmcc-sdm660.h>
->>>        |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->>
->> This patch depends on my MMCC patch (sent by angelo).
-> 
-> Seems this landed in linux-next now and the dependency is not there.
-> Revert, drop, or fix the dependency please.
-> 
+On Mon, Nov 30, 2020 at 3:11 PM Daniel Palmer <daniel@0x0f.com> wrote:
+>
+> Hi Arnd,
+>
+> On Mon, 30 Nov 2020 at 22:44, Arnd Bergmann <arnd@kernel.org> wrote:
+> >
+> > On Mon, Nov 30, 2020 at 2:10 PM Daniel Palmer <daniel@0x0f.com> wrote:
+> > >
+> > > +&riu {
+> > > +       smpctrl@204000 {
+> > > +               compatible = "mstar,smpctrl";
+> > > +               reg = <0x204000 0x200>;
+> > > +               status = "okay";
+> > > +       };
+> >
+> > You probably want some more specific compatible value, in case there are
+> > multiple SoCs from mstar that have an smpctrl block and they don't all use
+> > an exactly identical register layout.
+>
+> From what I can tell these are in the same place for the infinity2m and
+> the other SMP chip in this series that are in the infinity6 series.
+>
+> Would "mstar,i2m-smpctrl" make more sense?
 
-Thanks Rob. I'll drop it for now.
+Please use the exact name of the chip for the most specific name,
+plus a generic identifier that makes sense for all of them. For the
+generic identifier, you can normally just use whatever the oldest
+chip is that you can find with that IP block.
 
-BR,
-Georgi
+      Arnd
