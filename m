@@ -2,134 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 907B52C837F
-	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 12:51:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6FC752C83A9
+	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 13:01:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728801AbgK3LuL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Nov 2020 06:50:11 -0500
-Received: from mail-eopbgr40107.outbound.protection.outlook.com ([40.107.4.107]:13710
-        "EHLO EUR03-DB5-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1728459AbgK3LuK (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 30 Nov 2020 06:50:10 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=MY0VvmmxklsFMQQQkwsY6LtcPtioWzR9rn3QakVbslw8iaeahrRx3rbdERuXmACjeroFoSd5qem29d3hhm2RTCIMPKMLHjEaRVfia8mjFtajUnxzINEpGZ8ZiIcXsrccH001+XewxSlpxuhqhaEUq2kT8iFyQbJP6+gIxGATqqs6XkBK/GfgR6loDatz/9NkH5lkKPQr5iuLKTRR2Sp3FeH7IB0/pgvxt5mPLgudS/q1m+jTDIo+swhbuGoDKryNLuW/bGCMDAO4Ppm5gbW5+S0HFuhsWmqMsHhnNdSlTH5cSr1pl5SNE3WPS1dkY5trCOcSMHXhzRvpdgKw/Vpx1g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=vZdIu0CUxJC8GYJxH04kMAoSdeS+IYXr7+KJac/OwDM=;
- b=LQcrZd8PnvY6ylE9OWGtt9LKcz1Wqk6eNAqVXsZbyno2J23uXc1bFwHt8zenhnB3KLGm9qQ9/d5lea2yC9XAmQtgoVRtnF/9w7mGcOfHXNpo6pxH3tdh+1zAppzdekUlLSyLsBzPHRkJ4Cg6FMAhLhccQRlD5lVLww9IY3eUcQsMeRSjyoB5dD0ggFhOiYZKzhbwZ7ESaWdFQPFB/sDCMysestwatnV8+LXqDW6eIGl9xEH6l+rg1qjVERynI46kId76Dpd+JQKd6LiUIdIcXmrPsD+1kAtPJtXqP9ifwgIPCPGXz4DvCMjCAN00WlSWkY52LuQ+g0X2evbC8aPCjA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=kontron.de; dmarc=pass action=none header.from=kontron.de;
- dkim=pass header.d=kontron.de; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mysnt.onmicrosoft.com;
- s=selector2-mysnt-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=vZdIu0CUxJC8GYJxH04kMAoSdeS+IYXr7+KJac/OwDM=;
- b=MCmJnUNRgH9FkcnqNL+bab3ID4PCGbxiuoAnf6waOneQRmQbDnXmO+hYPnqeQo2kemE96NIbpqlSLF6UTKhtT8MtXUOLDC3oyEGOFBaFh9rTGME68tObhzOKcYA4NrdYSn/JiQUUxCgMJsV/vIxrY2Jvu6BGl2TKtxT9FMqSj0E=
-Authentication-Results: gerhold.net; dkim=none (message not signed)
- header.d=none;gerhold.net; dmarc=none action=none header.from=kontron.de;
-Received: from AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:208:157::14)
- by AM0PR10MB3617.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:15f::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3611.23; Mon, 30 Nov
- 2020 11:49:19 +0000
-Received: from AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::9d5:953d:42a3:f862]) by AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::9d5:953d:42a3:f862%7]) with mapi id 15.20.3611.031; Mon, 30 Nov 2020
- 11:49:19 +0000
-Subject: Re: [PATCH] NFC: nxp-nci: Make firmware GPIO pin optional
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Charles Gorand <charles.gorand@effinnov.com>,
-        =?UTF-8?Q?Cl=c3=a9ment_Perrochaud?= 
-        <clement.perrochaud@effinnov.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-nfc@lists.01.org, netdev <netdev@vger.kernel.org>,
-        Stephan Gerhold <stephan@gerhold.net>
-References: <20201130110447.16891-1-frieder.schrempf@kontron.de>
- <CAHp75Vfwp_uvVW51FwwRWorDibJTu4zRpMhQ9iF3sTe1yrmsTw@mail.gmail.com>
-From:   Frieder Schrempf <frieder.schrempf@kontron.de>
-Message-ID: <991f6ede-fe3c-91b5-317c-de6c0c767400@kontron.de>
-Date:   Mon, 30 Nov 2020 12:49:17 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-In-Reply-To: <CAHp75Vfwp_uvVW51FwwRWorDibJTu4zRpMhQ9iF3sTe1yrmsTw@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [46.142.77.113]
-X-ClientProxiedBy: AM5PR0101CA0007.eurprd01.prod.exchangelabs.com
- (2603:10a6:206:16::20) To AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM
- (2603:10a6:208:157::14)
-MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [192.168.10.17] (46.142.77.113) by AM5PR0101CA0007.eurprd01.prod.exchangelabs.com (2603:10a6:206:16::20) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3611.20 via Frontend Transport; Mon, 30 Nov 2020 11:49:18 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 0fa0039b-3c2b-4b51-e78f-08d89525f8bf
-X-MS-TrafficTypeDiagnostic: AM0PR10MB3617:
-X-Microsoft-Antispam-PRVS: <AM0PR10MB3617783D37579386B472120EE9F50@AM0PR10MB3617.EURPRD10.PROD.OUTLOOK.COM>
-X-MS-Oob-TLC-OOBClassifiers: OLM:7219;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: SGO3R85cT/QbqsJ1w4hgoN2mz265uSJ1xnUdd1U9YacTJGoY7fcLfBRgSDAUbIPacW1Nkbvrb6uzDxOQ4ulK/Kk97z+A5nOwX46bVXYxZZQcqgZ7HAZo91vXI2lIhimZj3g3FgmJWuWAiOQdeOD58sljwcv46X7sNNrDAgIyiC12vIUMzoik3DfWAvac3VdYI4gjv/JJ4S6lsaA2YtJRT7nq7bmaN13mkcaRsrvDMsxxQ8EdkUIe+t90/3VDAMoQU+2LNfDIN1xKVbiUXahIWoZSkmJBR/MpXdNZ5YrURX0+B5EGtkyNmfuL63n+cuJAfibTNF6NLQowUSqnd6DMY4c3fpBlXzV+9sR3S3do6oAIIxpQpNeBzSkq+hnLQ/f6
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(4636009)(396003)(136003)(39860400002)(366004)(346002)(376002)(2616005)(4744005)(44832011)(86362001)(66556008)(2906002)(31696002)(66946007)(5660300002)(66476007)(956004)(478600001)(8676002)(6486002)(6916009)(54906003)(26005)(16576012)(52116002)(186003)(53546011)(16526019)(4326008)(8936002)(316002)(31686004)(36756003)(83380400001)(43740500002);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData: =?utf-8?B?ZGN3eThQK0NxNldIcUhUSlVuT1AxK3dHTitmb1VBaTlERFpMelpMQkR4anI3?=
- =?utf-8?B?VGJBYmNydHNTemZjcUYwRml3eGRSWkh6V1JsaFhYY05oQjZyY2YwWS9TUzNm?=
- =?utf-8?B?RzdoWlUrQm5HWjQ1QytRdjk3WmtKNTdYeWhJaDk5b3RLVjdGc2lDMVJPemE1?=
- =?utf-8?B?QVlQdjJrRG5HVFZ3SzRUOWpTcWIvdHhtVGZIT1BiWUM3L1d5N2JEZWdBWDNW?=
- =?utf-8?B?SDlYMCt4dmZwei9RT3VVdE9VOTRMZ1NpMng2dXJEOVIzbU5KVjZhN3dDV3Y2?=
- =?utf-8?B?N21JczVrN3lSNFJJTkN2dHpMY01zTDRCZExGaG9YWHZnTFE1dmVjbXc5SHVj?=
- =?utf-8?B?ZWZsUmlpV0l5eUEzTm1iQk1zT2J6MHhBMjJremdjOUVKdmh5TnhXMlN0UVMx?=
- =?utf-8?B?VnZNZHJhRklMV0h1eFdicTZQQmJ3TzVkYTJOZ0NManFmVmNsSFRUbTIrWG0z?=
- =?utf-8?B?Q1ZmanpjQkNvVHdudDZ2a0VneDRScDAvN2o3cFFNeHFKbmpseVkzckUxdXFa?=
- =?utf-8?B?SWNDd1FXVnR3UjNFUlkwZGFtdDlKM3N1VkYvOFdETU00RVBuWEdlbVZYay9I?=
- =?utf-8?B?UzlhR0xaN0hRc1FqYVQ5Rmt6bHNBN2ZrZHJkZUNLVWlzTVU4b0NVZ2xUMUlH?=
- =?utf-8?B?czFVdHJ0elJUWmZuTThJazhvdy9pWTNSMCsvd2tzT2ZTcGZmdTNuUVdPTEZh?=
- =?utf-8?B?S0tzQWZWdDFGbDA3S2tubFpOZ1pCTmlIRDl3VlpobWR2bUljcU8zcGt5Y2Q3?=
- =?utf-8?B?cGZaOVFsNlN0U2dIbWpHVExkTHcyYUtpVUNNd2JLT0I4OTdzZmxPZ1VxdDFj?=
- =?utf-8?B?THJuby94bXVtRzl0TXRXMlNMSzN2TXZrWlBLWEt6TmVQN3U4WFpjeFRyTlNC?=
- =?utf-8?B?NE5hUU1NZk1KNzZBczZDU2Jlb0wwY3AwVGNLUjRJWWM0S1E1STR2d3AxT2Er?=
- =?utf-8?B?U2g0eEJKZWtoVVdlb0Z0bFUxWkVQODEyMGYydXpDT25lOWRkQVVrN0lYeUE2?=
- =?utf-8?B?V2JGeVZqV3NpQ0RxZ2dZa1k0MlJ2c2Q5eUhYV21DaXZFS0hudzg1VjEzUGtz?=
- =?utf-8?B?UVBQNFZzbEtwWFJuRlVmUmtoRzFnclU0ZC9JQWpnWTNNL1kvemNTdk5EWElL?=
- =?utf-8?B?WS8xVFRkam9jdUJJSjVHc0tuUDdKTmI4eXRVM2YrQlJYN2s3dktyMnVPcWFw?=
- =?utf-8?B?ZkJGU2x0RzVneHhUWnFIay9CVHlYTDVjOWt5Sy83UW1rY1ZJNlh0RE05TnVv?=
- =?utf-8?B?RlNidXVBSzNGam9ac29ld3ArMm8rNldCRU4zMzVWa0xNcVQrVi9NSG5UQkFl?=
- =?utf-8?Q?wqu/viBAUmWREYzgaQH/JPbpKnOO0glabm?=
-X-OriginatorOrg: kontron.de
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0fa0039b-3c2b-4b51-e78f-08d89525f8bf
-X-MS-Exchange-CrossTenant-AuthSource: AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Nov 2020 11:49:19.3699
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 8c9d3c97-3fd9-41c8-a2b1-646f3942daf1
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 4Mk2jou+QzNh29miw5si44fKo9SEggnsw5XRsVTbFFipOntl4YOh/FDH7XJFIcYT9rOxReOqiYpwJ5eotSOQBzMcWeZd9ojAk/vznrGHKOU=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR10MB3617
+        id S1727569AbgK3MBP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Nov 2020 07:01:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52622 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725976AbgK3MBP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Nov 2020 07:01:15 -0500
+Received: from mail-pf1-x442.google.com (mail-pf1-x442.google.com [IPv6:2607:f8b0:4864:20::442])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 076EDC0613CF;
+        Mon, 30 Nov 2020 04:00:50 -0800 (PST)
+Received: by mail-pf1-x442.google.com with SMTP id 131so10237352pfb.9;
+        Mon, 30 Nov 2020 04:00:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=lj9ZT1pXkce5/+KagnCXuquk6qct2qT6C8O4RgX4/Xg=;
+        b=IZ+kgCy7F2PIHzD82xdfzWESDTLBKVDit3oepMt6or94hwmauw9zsHoPuL0ec3B4AE
+         BiAfnxcDTQAzGXrHoFwTkx8xGQu1c25Lq48PslFQj1v6BzpjV6NdMjtsYggpLKEn2f7Q
+         HC78lhJ+6KD9CZ+39ufaMy8VTUP5Z9awImFifRP4Pcf+Hz3G9YFkGpG1iK1aIY1YP16L
+         9+dPpBP0wPwazWDrZ7+ZBHVwYxJzUi6UdGU22Eb3mfGbu3xtD1WwLp7tPfBd5NvLMIZG
+         s045nSacOV5F3DJ3oo1cBlD8UUjHAPlfjpH0wv9plcdeEXcpk76/jhcyoNA8jICUlo/w
+         eyAg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=lj9ZT1pXkce5/+KagnCXuquk6qct2qT6C8O4RgX4/Xg=;
+        b=RBzvJDiVMgNxhrjq6e1zeTRpxwMMP5EHRHwCYcffDMMgLt8ft3SzeTcmjizkBhISVQ
+         QxNB0y+6Lbl94aq9jCqiCuIs/9WmyFwD4u23svBnr7CscFxu3yE8lg16SGDV3iRo9YQX
+         9oYx7zpYigbLdWuukDCzqu3hRT8jBV6Dx/YstbuVgPwk6Qh7NM9t6EVnVM+X49H+r/xX
+         VW2JWqCwWfnWGjR3a5X/h4ojSW2+Uem10jroMqCXLNWx/cH0tGqsYZygwGRoIu9VJqMZ
+         qpPr0dCNd8pnYxjKYLTpE2ZqxyVTOW0Ipjw7hAftQ8r9oL5PZxmAdIXiUJ0Y1u0xqwc9
+         quSw==
+X-Gm-Message-State: AOAM533CuoUpjiTmxxcoOu6zTdfj8k/GkkTewTIDUavUAH6i7WbagDpU
+        /8S8XvZAcO/bPw3O2q6Fw99PZwJR1tY=
+X-Google-Smtp-Source: ABdhPJx3saLPTWk9JX5niWrD8QDAOqBEjZC/gsHloavwuqIlpVFqtG26bcVWa0MjLpyJXoXddoalpQ==
+X-Received: by 2002:a05:6a00:13a3:b029:18b:d5d2:196 with SMTP id t35-20020a056a0013a3b029018bd5d20196mr18635748pfg.62.1606737649541;
+        Mon, 30 Nov 2020 04:00:49 -0800 (PST)
+Received: from localhost.localdomain ([182.226.226.37])
+        by smtp.googlemail.com with ESMTPSA id s17sm1802737pge.37.2020.11.30.04.00.46
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 30 Nov 2020 04:00:48 -0800 (PST)
+From:   Bongsu jeon <bongsu.jeon2@gmail.com>
+X-Google-Original-From: Bongsu jeon
+To:     krzk@kernel.org
+Cc:     linux-nfc@lists.01.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Bongsu Jeon <bongsu.jeon@samsung.com>
+Subject: [PATCH v2 net-next 1/4] dt-bindings: net: nfc: s3fwrn5: Support a UART interface
+Date:   Mon, 30 Nov 2020 21:00:27 +0900
+Message-Id: <1606737627-29485-1-git-send-email-bongsu.jeon@samsung.com>
+X-Mailer: git-send-email 1.9.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30.11.20 12:44, Andy Shevchenko wrote:
-> On Mon, Nov 30, 2020 at 1:06 PM Schrempf Frieder
-> <frieder.schrempf@kontron.de> wrote:
->>
->> From: Frieder Schrempf <frieder.schrempf@kontron.de>
->>
->> There are other NXP NCI compatible NFC controllers such as the PN7150
->> that use an integrated firmware and therefore do not have a GPIO to
->> select firmware downloading mode. To support these kind of chips,
->> let's make the firmware GPIO optional.
-> 
-> ...
-> 
->> -       gpiod_set_value(phy->gpiod_fw, (mode == NXP_NCI_MODE_FW) ? 1 : 0);
->> +       if (phy->gpiod_fw)
->> +               gpiod_set_value(phy->gpiod_fw, (mode == NXP_NCI_MODE_FW) ? 1 : 0);
-> 
-> This change is not needed.
+From: Bongsu Jeon <bongsu.jeon@samsung.com>
 
-Indeed, thanks!
+Since S3FWRN82 NFC Chip, The UART interface can be used.
+S3FWRN82 supports I2C and UART interface.
+
+Signed-off-by: Bongsu Jeon <bongsu.jeon@samsung.com>
+---
+
+Changes in v2:
+ -change the compatible name.
+ -change the const to enum for compatible.
+ -change the node name to nfc.
+
+ .../bindings/net/nfc/samsung,s3fwrn5.yaml          | 32 ++++++++++++++++++++--
+ 1 file changed, 29 insertions(+), 3 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/net/nfc/samsung,s3fwrn5.yaml b/Documentation/devicetree/bindings/net/nfc/samsung,s3fwrn5.yaml
+index cb0b8a5..481bbcc 100644
+--- a/Documentation/devicetree/bindings/net/nfc/samsung,s3fwrn5.yaml
++++ b/Documentation/devicetree/bindings/net/nfc/samsung,s3fwrn5.yaml
+@@ -12,7 +12,10 @@ maintainers:
+ 
+ properties:
+   compatible:
+-    const: samsung,s3fwrn5-i2c
++    oneOf:
++      - enum:
++        - samsung,s3fwrn5-i2c
++        - samsung,s3fwrn82
+ 
+   en-gpios:
+     maxItems: 1
+@@ -47,10 +50,19 @@ additionalProperties: false
+ required:
+   - compatible
+   - en-gpios
+-  - interrupts
+-  - reg
+   - wake-gpios
+ 
++allOf:
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: samsung,s3fwrn5-i2c
++    then:
++      required:
++        - interrupts
++        - reg
++
+ examples:
+   - |
+     #include <dt-bindings/gpio/gpio.h>
+@@ -71,3 +83,17 @@ examples:
+             wake-gpios = <&gpj0 2 GPIO_ACTIVE_HIGH>;
+         };
+     };
++  # UART example on Raspberry Pi
++  - |
++    uart0 {
++        status = "okay";
++
++        nfc {
++            compatible = "samsung,s3fwrn82";
++
++            en-gpios = <&gpio 20 0>;
++            wake-gpios = <&gpio 16 0>;
++
++            status = "okay";
++        };
++    };
+-- 
+1.9.1
+
