@@ -2,109 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DA04B2C8CA8
-	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 19:25:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 368072C8CD1
+	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 19:31:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728560AbgK3SYK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Nov 2020 13:24:10 -0500
-Received: from mail-il1-f193.google.com ([209.85.166.193]:33503 "EHLO
-        mail-il1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727125AbgK3SYK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Nov 2020 13:24:10 -0500
-Received: by mail-il1-f193.google.com with SMTP id y9so12259270ilb.0;
-        Mon, 30 Nov 2020 10:23:54 -0800 (PST)
+        id S1728648AbgK3SaV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Nov 2020 13:30:21 -0500
+Received: from mail-wr1-f68.google.com ([209.85.221.68]:33842 "EHLO
+        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388026AbgK3SaU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Nov 2020 13:30:20 -0500
+Received: by mail-wr1-f68.google.com with SMTP id k14so17533834wrn.1;
+        Mon, 30 Nov 2020 10:30:03 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=0neMxzWOSFLOXSknMHOSEKClv5G9ep++zXnTP/Rc0O8=;
-        b=d2UxlyWgyZXI/Whc9L/l+nMUi/oHDXXWPi9QAfCiaYCNmplfik0llX+NQuopFCnlgC
-         z0epDf/Gn2R3hSUrn2rHcRJcpyqRAG9v4xb0JaaP/Jp9X4XMnaOGqUjo/DSf0YaFGtRL
-         xbNgiYiymexklk46FMIFNWqqlULbhV/WLk0V4lKCVxLeBvuOWTn95Z7e/x3BCkJ4CZjg
-         WL5ugCX0rjLQSUva8+zgjaBvIjy/5NKqiqY9HSIBGT5u/E3OexlmF6NYqsoPpLiNe1nh
-         2+7mnPn3No680kQXM/BzfYHRVn+t1e8zCi8XYy94sCY63S0tsebdBjboWggOitkMVkw7
-         knJA==
-X-Gm-Message-State: AOAM530s/UW591LODMcvBAaitUePNNmUTdbvIueXBYJkkLTYKPEh0yxM
-        SunSt7EFwgRBRcxfqNdKDhez6JlwvA==
-X-Google-Smtp-Source: ABdhPJzHXlx/TfQVfpIfEHQeSQemYh6/jCa4ib42N0v8d/w5/13Z4A2a0QvXXmVQUGCBpZNO2HvgFQ==
-X-Received: by 2002:a92:40c8:: with SMTP id d69mr19411707ill.66.1606760608911;
-        Mon, 30 Nov 2020 10:23:28 -0800 (PST)
-Received: from xps15 ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id z6sm11205177ilm.69.2020.11.30.10.23.25
+        bh=BL7GgKlxyULO787aR2VhuF5srikfeJ8kPXa9y9+CzWY=;
+        b=X0AOD0U4uW7Zue0QXS+WOt6DllIhtqcJv3kIn8ECmIvm+rW95lsBEEG89APAZmiWDn
+         K7Vzl3SEVimEC3rC7C8wHGEVK/lSUGy1SXqN6RaQyTyyQLLeOa2vnmPqQ1Qhi2pffcvR
+         QASHdGQ7v5l6ByShPncIxQWJ6IlKu5qZsCcXxkOBp/mgLPJR9sqiIAf9ko0RsoGdxOOS
+         02/lG5VUzVdUoWtPM5xWTEOmLodSmUqIG2JNjlYAEsIGelPVOtZv+pDCTuUl7Afl67Xf
+         LKCUYeeapTDEfZTwq0JJHEHb0hF5SupYSTPtzHetcJdCI/WZFOQzTLHS4ySjwPRVgQ8N
+         a9tQ==
+X-Gm-Message-State: AOAM533zWlmzdrqbECc9MUqLnVJrGyJ9ET6m/AszVG31QtIxsdsSyA5q
+        wThPYgZHTKvwK8XmdUV3Zog=
+X-Google-Smtp-Source: ABdhPJy0qru9FG+0tWt9eOshF9nKj7ldKMBW7pMLd3yrYEw5pvskZP1IW/CKEzIrXt9WowIPsBTZeA==
+X-Received: by 2002:a5d:5689:: with SMTP id f9mr29965801wrv.181.1606760978169;
+        Mon, 30 Nov 2020 10:29:38 -0800 (PST)
+Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
+        by smtp.googlemail.com with ESMTPSA id b12sm924332wmj.2.2020.11.30.10.29.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Nov 2020 10:23:26 -0800 (PST)
-Received: (nullmailer pid 2759200 invoked by uid 1000);
-        Mon, 30 Nov 2020 18:23:24 -0000
-Date:   Mon, 30 Nov 2020 11:23:24 -0700
-From:   Rob Herring <robh@kernel.org>
-To:     Yifeng Zhao <yifeng.zhao@rock-chips.com>
-Cc:     linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
-        linux-kernel@vger.kernel.org, vigneshr@ti.com,
-        linux-mtd@lists.infradead.org, richard@nod.at,
-        miquel.raynal@bootlin.com, heiko@sntech.de
-Subject: Re: [PATCH v14 1/8] dt-bindings: mtd: Describe Rockchip RK3xxx NAND
- flash controller
-Message-ID: <20201130182324.GA2757731@robh.at.kernel.org>
-References: <20201120095613.20172-1-yifeng.zhao@rock-chips.com>
- <20201120095613.20172-2-yifeng.zhao@rock-chips.com>
+        Mon, 30 Nov 2020 10:29:37 -0800 (PST)
+Date:   Mon, 30 Nov 2020 20:29:35 +0200
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Jakub Kicinski <kuba@kernel.org>
+Cc:     Bongsu jeon <bongsu.jeon2@gmail.com>, linux-nfc@lists.01.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Bongsu Jeon <bongsu.jeon@samsung.com>
+Subject: Re: [PATCH v2 net-next 1/4] dt-bindings: net: nfc: s3fwrn5: Support
+ a UART interface
+Message-ID: <20201130182935.GA28735@kozik-lap>
+References: <1606737627-29485-1-git-send-email-bongsu.jeon@samsung.com>
+ <20201130085542.45184040@kicinski-fedora-pc1c0hjn.DHCP.thefacebook.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20201120095613.20172-2-yifeng.zhao@rock-chips.com>
+In-Reply-To: <20201130085542.45184040@kicinski-fedora-pc1c0hjn.DHCP.thefacebook.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 20 Nov 2020 17:56:10 +0800, Yifeng Zhao wrote:
-> Documentation support for Rockchip RK3xxx NAND flash controllers
+On Mon, Nov 30, 2020 at 08:55:42AM -0800, Jakub Kicinski wrote:
+> On Mon, 30 Nov 2020 21:00:27 +0900 Bongsu jeon wrote:
+> > From: Bongsu Jeon <bongsu.jeon@samsung.com>
+> > 
+> > Since S3FWRN82 NFC Chip, The UART interface can be used.
+> > S3FWRN82 supports I2C and UART interface.
+> > 
+> > Signed-off-by: Bongsu Jeon <bongsu.jeon@samsung.com>
 > 
-> Signed-off-by: Yifeng Zhao <yifeng.zhao@rock-chips.com>
-> ---
+> All patches in the series should have the same version.
 > 
-> Changes in v14: None
-> Changes in v13: None
-> Changes in v12:
-> - Fix some warnings while make dt_binding_check
-> - Drop a allOf defined
+> If the patch was not changes in the given repost you can add:
 > 
-> Changes in v11: None
-> Changes in v10: None
-> Changes in v9: None
-> Changes in v8:
-> - Fix a error while make dt_binding_check
+>  v3:
+>   - no change
 > 
-> Changes in v7:
-> - Fix some wrong define
+> Or just not mention the version in the changelog.
 > 
-> Changes in v6:
-> - Fix some wrong define
-> - Modified the definition of compatible
-> 
-> Changes in v5:
-> - Fix some wrong define.
-> - Add boot-medium define.
-> - Remove some compatible define.
-> 
-> Changes in v4:
-> - The compatible define with rkxx_nfc.
-> - Add assigned-clocks.
-> - Fix some wrong defineChanges in.
-> 
-> Changes in v3:
-> - Change the title for the dt-bindings.
-> 
-> Changes in v2: None
-> 
->  .../mtd/rockchip,nand-controller.yaml         | 161 ++++++++++++++++++
->  1 file changed, 161 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mtd/rockchip,nand-controller.yaml
-> 
+> It's also best to provide a cover letter describing what the series
+> does as a whole for series with more than 2 patches.
 
+Beside that I received just 1/4 of v2. LKML has one as well:
+https://lore.kernel.org/lkml/1606737627-29485-1-git-send-email-bongsu.jeon@samsung.com/
 
-Please add Acked-by/Reviewed-by tags when posting new versions. However,
-there's no need to repost patches *only* to add the tags. The upstream
-maintainer will do that for acks received on the version they apply.
+Where are the others?
 
-If a tag was not added on purpose, please state why and what changed.
+Best regards,
+Krzysztof
 
