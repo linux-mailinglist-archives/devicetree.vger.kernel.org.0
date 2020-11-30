@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E60222C8B62
-	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 18:40:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D5E42C8B6B
+	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 18:40:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387531AbgK3Rim (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Nov 2020 12:38:42 -0500
-Received: from mail-io1-f68.google.com ([209.85.166.68]:40836 "EHLO
-        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726897AbgK3Rim (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Nov 2020 12:38:42 -0500
-Received: by mail-io1-f68.google.com with SMTP id r9so12635001ioo.7;
-        Mon, 30 Nov 2020 09:38:21 -0800 (PST)
+        id S1729464AbgK3Rjv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Nov 2020 12:39:51 -0500
+Received: from mail-il1-f195.google.com ([209.85.166.195]:40687 "EHLO
+        mail-il1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728451AbgK3Rju (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Nov 2020 12:39:50 -0500
+Received: by mail-il1-f195.google.com with SMTP id g1so12100063ilk.7;
+        Mon, 30 Nov 2020 09:39:35 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=CerhPbui13FpoNb9exSHqzyCHaCrXMui37OolaLymdI=;
-        b=VSZQJ0ftd+cf3qTlsHfB2zLffYcUS7CjeVh2U61sBeD0hPZ2hlOp9I5OsgIpkWefoZ
-         EC8eldkz9xP9VH1XZSaWYDg+pqr/yWxvMZhVkSKGRg7upIptx4kOg/c8kwSHTO20AR8G
-         ckBVjMNr/sLlhEWHwnFsDQDzMCHgBpov6X8CUYXJ4zSZVGCGaCNeavVQ/lkPLuVOeaPG
-         BcyOoji9UMEjXYsecuddl4klkml0SsiBTzGpNaj8L3EzoeZTb60IFZY3SQseo+cI79ED
-         a+CYhoYXIl0oOlCE4KnznuJo7y5B4jjJhwPl+BnHxDsFk6zPT2r7E3sVR/RrV6HktqLo
-         Dmzw==
-X-Gm-Message-State: AOAM530a0Td8OE1ooT5o6qYmdlVw6bbsWC9MFzWX0dzXSWqWevNZVGzD
-        HYNxTlXYQTM/UVEqncaf3g==
-X-Google-Smtp-Source: ABdhPJypUuXxZGps6TUoa95Rtjj/XPIIiHpxIqJRHsDJJ6Ot8Q0BJDrdM/QZlzr/20MMDG2qqUjIHA==
-X-Received: by 2002:a6b:d61a:: with SMTP id w26mr16910378ioa.117.1606757875758;
-        Mon, 30 Nov 2020 09:37:55 -0800 (PST)
+        bh=B4A0okbUHqv5B5dj/XPLmtnTNoOEsXTfn/5l90uEFoM=;
+        b=IWCMS3ZMZ90s757ED+4XguK+HL0TsWbt8n/WxBfOLIiV9/lCbDf3sPrIUDJEbb8RWx
+         fTkUKuGrwWnHQYZ0iEQVtTdspwFCXYDRMAtXAu+GNra4H3yZUpzAO2Nzh6GJ/axWpuV8
+         AUT7XX4r0rUVO+sc7AJkaTVcojE5yeiMMAaQUbt9eMOufwn8kCuSLxRVqgmDBf325we+
+         pGb/Cp6tZAa3TDWj4LGdNV4etv+VntS5FgNJPJxZVWdCPbInLnVVSzpS/3ZXIbLsim0W
+         Fu+SfCLwEHCACVkuxpD4dgikkyQIv0j7qCtProWFZQ3FAfsUGC3ypQvfB8Jd9Bn6HjCd
+         KLhA==
+X-Gm-Message-State: AOAM531GI6YivhkYWQNKDY3ZykCJEdOQRBew/47c9MEoX8Hg+DNBk9ps
+        WEKCjOnuI0rxN/2n9ZqoJg==
+X-Google-Smtp-Source: ABdhPJy1tBVfvlTKy8Ljdlf32Xy2YiZmMU6KG7fY9ZP9pCrPJVaDW4rUpvEHw3svnPb/szKFx5xlXw==
+X-Received: by 2002:a92:dd87:: with SMTP id g7mr21491077iln.102.1606757950052;
+        Mon, 30 Nov 2020 09:39:10 -0800 (PST)
 Received: from xps15 ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id f29sm9898312ilg.3.2020.11.30.09.37.53
+        by smtp.gmail.com with ESMTPSA id a7sm3382492ioq.38.2020.11.30.09.39.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Nov 2020 09:37:54 -0800 (PST)
-Received: (nullmailer pid 2685982 invoked by uid 1000);
-        Mon, 30 Nov 2020 17:37:52 -0000
-Date:   Mon, 30 Nov 2020 10:37:52 -0700
+        Mon, 30 Nov 2020 09:39:09 -0800 (PST)
+Received: (nullmailer pid 2687938 invoked by uid 1000);
+        Mon, 30 Nov 2020 17:39:08 -0000
+Date:   Mon, 30 Nov 2020 10:39:08 -0700
 From:   Rob Herring <robh@kernel.org>
 To:     Bongsu jeon <bongsu.jeon2@gmail.com>
-Cc:     Bongsu Jeon <bongsu.jeon@samsung.com>, linux-nfc@lists.01.org,
-        krzk@kernel.org, devicetree@vger.kernel.org,
-        netdev@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     krzk@kernel.org, linux-nfc@lists.01.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Bongsu Jeon <bongsu.jeon@samsung.com>
 Subject: Re: [PATCH v2 net-next 1/4] dt-bindings: net: nfc: s3fwrn5: Support
  a UART interface
-Message-ID: <20201130173752.GB2684526@robh.at.kernel.org>
+Message-ID: <20201130173908.GC2684526@robh.at.kernel.org>
 References: <1606737627-29485-1-git-send-email-bongsu.jeon@samsung.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
@@ -53,7 +53,7 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 30 Nov 2020 21:00:27 +0900, Bongsu jeon wrote:
+On Mon, Nov 30, 2020 at 09:00:27PM +0900, Bongsu jeon wrote:
 > From: Bongsu Jeon <bongsu.jeon@samsung.com>
 > 
 > Since S3FWRN82 NFC Chip, The UART interface can be used.
@@ -70,26 +70,65 @@ On Mon, 30 Nov 2020 21:00:27 +0900, Bongsu jeon wrote:
 >  .../bindings/net/nfc/samsung,s3fwrn5.yaml          | 32 ++++++++++++++++++++--
 >  1 file changed, 29 insertions(+), 3 deletions(-)
 > 
+> diff --git a/Documentation/devicetree/bindings/net/nfc/samsung,s3fwrn5.yaml b/Documentation/devicetree/bindings/net/nfc/samsung,s3fwrn5.yaml
+> index cb0b8a5..481bbcc 100644
+> --- a/Documentation/devicetree/bindings/net/nfc/samsung,s3fwrn5.yaml
+> +++ b/Documentation/devicetree/bindings/net/nfc/samsung,s3fwrn5.yaml
+> @@ -12,7 +12,10 @@ maintainers:
+>  
+>  properties:
+>    compatible:
+> -    const: samsung,s3fwrn5-i2c
+> +    oneOf:
 
+Don't need 'oneOf' here.
 
-My bot found errors running 'make dt_binding_check' on your patch:
-
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/net/nfc/samsung,s3fwrn5.yaml:17:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
-
-dtschema/dtc warnings/errors:
-
-
-See https://patchwork.ozlabs.org/patch/1408172
-
-The base for the patch is generally the last rc1. Any dependencies
-should be noted.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+> +      - enum:
+> +        - samsung,s3fwrn5-i2c
+> +        - samsung,s3fwrn82
+>  
+>    en-gpios:
+>      maxItems: 1
+> @@ -47,10 +50,19 @@ additionalProperties: false
+>  required:
+>    - compatible
+>    - en-gpios
+> -  - interrupts
+> -  - reg
+>    - wake-gpios
+>  
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: samsung,s3fwrn5-i2c
+> +    then:
+> +      required:
+> +        - interrupts
+> +        - reg
+> +
+>  examples:
+>    - |
+>      #include <dt-bindings/gpio/gpio.h>
+> @@ -71,3 +83,17 @@ examples:
+>              wake-gpios = <&gpj0 2 GPIO_ACTIVE_HIGH>;
+>          };
+>      };
+> +  # UART example on Raspberry Pi
+> +  - |
+> +    uart0 {
+> +        status = "okay";
+> +
+> +        nfc {
+> +            compatible = "samsung,s3fwrn82";
+> +
+> +            en-gpios = <&gpio 20 0>;
+> +            wake-gpios = <&gpio 16 0>;
+> +
+> +            status = "okay";
+> +        };
+> +    };
+> -- 
+> 1.9.1
+> 
