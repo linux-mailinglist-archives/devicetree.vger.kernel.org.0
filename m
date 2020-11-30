@@ -2,105 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 94DA92C8310
-	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 12:19:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C0972C8313
+	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 12:20:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726197AbgK3LSl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Nov 2020 06:18:41 -0500
-Received: from foss.arm.com ([217.140.110.172]:52672 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725902AbgK3LSl (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 30 Nov 2020 06:18:41 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id CCB101042;
-        Mon, 30 Nov 2020 03:17:55 -0800 (PST)
-Received: from bogus (unknown [10.57.62.34])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 3F7593F66B;
-        Mon, 30 Nov 2020 03:17:53 -0800 (PST)
-Date:   Mon, 30 Nov 2020 11:17:50 +0000
-From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     Jens Wiklander <jens.wiklander@linaro.org>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Trilok Soni <tsoni@codeaurora.org>,
-        Trilok Soni <tsoni@quicinc.com>, arve@android.com,
-        Andrew Walbran <qwandor@google.com>,
-        David Hartley <dhh@qti.qualcomm.com>,
-        Achin Gupta <Achin.Gupta@arm.com>,
-        Android Kernel Team <kernel-team@android.com>,
-        Fuad Tabba <tabba@google.com>
-Subject: Re: [PATCH v2 0/9] firmware: Add initial support for Arm FF-A
-Message-ID: <20201130111750.uiws2f2neygs7qrg@bogus>
-References: <20201103174350.991593-1-sudeep.holla@arm.com>
- <20201128122502.GA8649@jade>
+        id S1728619AbgK3LT5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Nov 2020 06:19:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46168 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726991AbgK3LT4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Nov 2020 06:19:56 -0500
+Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com [IPv6:2a00:1450:4864:20::341])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61A48C0613CF
+        for <devicetree@vger.kernel.org>; Mon, 30 Nov 2020 03:19:16 -0800 (PST)
+Received: by mail-wm1-x341.google.com with SMTP id v14so12470883wml.1
+        for <devicetree@vger.kernel.org>; Mon, 30 Nov 2020 03:19:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=kA1B+3YWtsqZLdoP/PFm3M4IJcbU3ZY5uXa3zxL9D5U=;
+        b=kXGC/hkXw3WUjUW8dyzi+KxMgQfPrY9PpqKHsi6N9ndZtsG6e1wl8Up32s/Q/MNzp/
+         TG9HDjXySSC8sE2voSaQHmDaGs9ApE6cX2ZNK53ZPBiJ241946+2OdCXXwPPnyrB2g+I
+         28BidxQ1k8Au44U2UvYUWh31ljl4YB44MmNzpBNIHXAKL2MNDa3DHBIzbXfbexLzRLoV
+         LZWfLOWLBxWYNWAFbrN54yQ203hMABfhBDAabKVsALajqJXsZNN2leThKFjssZbpiSiw
+         Z+c5ECJwrCHcsmjolzUkNOdA8OGjcKfgivWeo2E9oLtTVUs9KWRQwfWxaBSN1NwZ9fYe
+         bEfA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=kA1B+3YWtsqZLdoP/PFm3M4IJcbU3ZY5uXa3zxL9D5U=;
+        b=oDTBx3kDdr/aJWbvnKHJ929CirLn1V+hnVx9CS9qVmEFRPStLs5VLVA1NCD6N9oCIz
+         3i/T4UddzVFGTwMtrxOMICGWwxRg+20YJRZOXzywexzUBs7eQdCRrYs66c/a2YYYKfx+
+         AABcJH0/8/fq+8O0uklSLh/CZli0tSiyJb+uZnyKOBjhUsTA66Vbq9+ojM7HbSDr8QfQ
+         Jl2VVNHRZHMaQnwD+9HVK9yqWInjxqQxebNa9FqBgHcxAAaa3Apm+Ubl2AfPadtYdnuy
+         aAmaHEs1mSqBgRrsZ/ty8H28eVL+hICkxyFrZGOzUnUx5mnzTWGEjtnTMInboL2EffGf
+         PCAA==
+X-Gm-Message-State: AOAM530vAMd342zzCulebJbkVJFCcvkJ1sTQUYwz+AvVQNqFoaSgA767
+        KU7taITGt1iaAr9XsExMfh7LvA==
+X-Google-Smtp-Source: ABdhPJx7hVSTJ3o2Q+DoAP6jkZgpwx9aW3qQbrc5tsnfxpODLxn1PpVJnz6LFK/zs2NdbZFgj3iJPw==
+X-Received: by 2002:a1c:4802:: with SMTP id v2mr14690593wma.13.1606735155159;
+        Mon, 30 Nov 2020 03:19:15 -0800 (PST)
+Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
+        by smtp.googlemail.com with ESMTPSA id j14sm26432119wrs.49.2020.11.30.03.19.13
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 30 Nov 2020 03:19:14 -0800 (PST)
+Subject: Re: [PATCH v4 2/2] ASoC: qcom: Add support for playback recover after
+ resume
+To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
+        agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
+        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
+        rohitkr@codeaurora.org, linux-arm-msm@vger.kernel.org,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     V Sujith Kumar Reddy <vsujithk@codeaurora.org>
+References: <1606539559-4277-1-git-send-email-srivasam@codeaurora.org>
+ <1606539559-4277-3-git-send-email-srivasam@codeaurora.org>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Message-ID: <76b8d52f-4f54-734f-683a-72fe62fdd8e4@linaro.org>
+Date:   Mon, 30 Nov 2020 11:19:13 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201128122502.GA8649@jade>
-User-Agent: NeoMutt/20171215
+In-Reply-To: <1606539559-4277-3-git-send-email-srivasam@codeaurora.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Nov 28, 2020 at 01:25:02PM +0100, Jens Wiklander wrote:
-> Hi Sudeep,
+
+
+On 28/11/2020 04:59, Srinivasa Rao Mandadapu wrote:
+> To support playback continuation after hard suspend(bypass powerd)
+> and resume add component driver ops and do regcache sync.
 > 
-> On Tue, Nov 03, 2020 at 05:43:41PM +0000, Sudeep Holla wrote:
-> > Hi all,
-> > 
-> > Let me start stating this is just initial implementation to check on
-> > the idea of providing more in-kernel and userspace support. Lot of things
-> > are still work in progress, I am posting just to get the early feedback
-> > before building lot of things on this idea. Consider this more as RFC
-> > though not tagged explicity(just to avoid it being ignored :))
-> > 
-> > Arm Firmware Framework for Armv8-A specification[1] describes a software
-> > architecture that provides mechanism to utilise the virtualization
-> > extension to isolate software images and describes interfaces that
-> > standardize communication between the various software images. This
-> > includes communication between images in the Secure and Normal world.
-> > 
-> > The main idea here is to create FFA device to establish any communication
-> > with a partition(secure or normal world VM).
-> > 
-> > If it is a partition managed by hypervisor, then we will register chardev
-> > associated with each of those partition FFA device.
-> > 
-> > /dev/arm_ffa:
-> > 
-> > e3a48fa5-dc54-4a8b-898b-bdc4dfeeb7b8
-> > 49f65057-d002-4ae2-b4ee-d31c7940a13d
-> > 
-> > For in-kernel usage(mostly communication with secure partitions), only
-> > in-kernel APIs are accessible(no userspace). There may be a need to
-> > provide userspace access instead of in-kernel, it is not yet support
-> > in this series as we need way to identify those and I am not sure if
-> > that belong to DT.
+> Signed-off-by: V Sujith Kumar Reddy <vsujithk@codeaurora.org>
+> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+
+LGTM,
+
+Reviewed-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+
+
+> ---
+>   sound/soc/qcom/lpass-platform.c | 35 +++++++++++++++++++++++++++++++++++
+>   1 file changed, 35 insertions(+)
 > 
-> With unfiltered VM to VM commnication from user space there's no easy
-> way for two VMs to exchange privileged information that excludes user
-> space.
-
-Though this usercase is dropped now, it was targeted for VMM and may be
-it was not an issue there.
-
-> Perhaps access to the FFA device is considered privileged and
-> enough for all purposes.
->
-
-I don't know TBH.
-
-> If I've understood it correctly is VM to SP communication only allowed
-> via kernel mode in the VM.
-
-Correct.
-
-> The communication with OP-TEE depends on this with the recent commit
-> c5b4312bea5d ("tee: optee: Add support for session login client UUID
-> generation").
->
-
-OK, thanks for the info.
-
--- 
-Regards,
-Sudeep
+> diff --git a/sound/soc/qcom/lpass-platform.c b/sound/soc/qcom/lpass-platform.c
+> index 0e71899..12764a8 100644
+> --- a/sound/soc/qcom/lpass-platform.c
+> +++ b/sound/soc/qcom/lpass-platform.c
+> @@ -827,6 +827,39 @@ static void lpass_platform_pcm_free(struct snd_soc_component *component,
+>   	}
+>   }
+>   
+> +static int lpass_platform_pcmops_suspend(struct snd_soc_component *component)
+> +{
+> +	struct lpass_data *drvdata = snd_soc_component_get_drvdata(component);
+> +	struct regmap *map;
+> +	unsigned int dai_id = component->id;
+> +
+> +	if (dai_id == LPASS_DP_RX)
+> +		map = drvdata->hdmiif_map;
+> +	else
+> +		map = drvdata->lpaif_map;
+> +
+> +	regcache_cache_only(map, true);
+> +	regcache_mark_dirty(map);
+> +
+> +	return 0;
+> +}
+> +
+> +static int lpass_platform_pcmops_resume(struct snd_soc_component *component)
+> +{
+> +	struct lpass_data *drvdata = snd_soc_component_get_drvdata(component);
+> +	struct regmap *map;
+> +	unsigned int dai_id = component->id;
+> +
+> +	if (dai_id == LPASS_DP_RX)
+> +		map = drvdata->hdmiif_map;
+> +	else
+> +		map = drvdata->lpaif_map;
+> +
+> +	regcache_cache_only(map, false);
+> +	return regcache_sync(map);
+> +}
+> +
+> +
+>   static const struct snd_soc_component_driver lpass_component_driver = {
+>   	.name		= DRV_NAME,
+>   	.open		= lpass_platform_pcmops_open,
+> @@ -839,6 +872,8 @@ static const struct snd_soc_component_driver lpass_component_driver = {
+>   	.mmap		= lpass_platform_pcmops_mmap,
+>   	.pcm_construct	= lpass_platform_pcm_new,
+>   	.pcm_destruct	= lpass_platform_pcm_free,
+> +	.suspend		= lpass_platform_pcmops_suspend,
+> +	.resume			= lpass_platform_pcmops_resume,
+>   
+>   };
+>   
+> 
