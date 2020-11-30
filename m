@@ -2,84 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D21F12C89D7
-	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 17:47:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E60E82C89F7
+	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 17:56:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726270AbgK3QqQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Nov 2020 11:46:16 -0500
-Received: from mail.kernel.org ([198.145.29.99]:60134 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726063AbgK3QqQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 30 Nov 2020 11:46:16 -0500
-Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 961862073C;
-        Mon, 30 Nov 2020 16:45:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1606754735;
-        bh=Oh3tU0deY++C3c9fSEU3/i5KpOc3iveL2tcsF2s9Uco=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ap9Y4tbjDuDnDzzEGXp19gyhaf74pgh52Qahrg7y2ucf6bdhTiY0aEaIch3eMLJen
-         wje+rqRWRXWZPz8Og3Wf+TT/R3zG58O49A1RqyMUAKW1AKLCd4+b7adE2MO5z01RLH
-         P2JVW1/yd/j1Els3nybx1fX/egf6/dbj0OsoJEpk=
-Date:   Mon, 30 Nov 2020 16:45:06 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Adam Ward <Adam.Ward.opensource@diasemi.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Vincent Whitchurch <vincent.whitchurch@axis.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Support Opensource <support.opensource@diasemi.com>
-Subject: Re: [PATCH V2 0/9] regulator: da9121: extend support to variants,
- add features
-Message-ID: <20201130164506.GD4756@sirena.org.uk>
-References: <cover.1606750000.git.Adam.Ward.opensource@diasemi.com>
+        id S1728065AbgK3QxK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Nov 2020 11:53:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41770 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726970AbgK3QxK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Nov 2020 11:53:10 -0500
+Received: from mail-ot1-x341.google.com (mail-ot1-x341.google.com [IPv6:2607:f8b0:4864:20::341])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7DDAC0613D3
+        for <devicetree@vger.kernel.org>; Mon, 30 Nov 2020 08:52:29 -0800 (PST)
+Received: by mail-ot1-x341.google.com with SMTP id l36so11940549ota.4
+        for <devicetree@vger.kernel.org>; Mon, 30 Nov 2020 08:52:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=/XXlFUfvEmfiDn/MNxM4LtUq+eujOKOrXOcsUik59H8=;
+        b=vWn4k2e3hASoVqqW1KaPIjR/pt4eEcJvI6l+KWsXBNrwMF24HhuNGqikWKn2P+1hWU
+         4WDuhxfz9mZaoRkeusXue9+mpes6rEmF+vbRzNsbKnzb7On5VTc1adrWRTIoIwTdNoGn
+         Zp0Eysb6uyd6L8t3UjdkdLQBRjKzcDXmwOvkaOmEZ/sdD3buLcbRQd90KxK3I3LoA9i3
+         PH84klrCOC4fzBqNwc8jUxthxMMcAplNfccmZyQkDm6VdWq8iLeEpqsE+gNxCmOM1Kmd
+         Ex/bdXWLQfnCfJIfsJYhDQJy4Zd8D8qZc0KuiQrZBfaO0xQI8IPUOlhgAnMFriwwmTEB
+         iNtw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=/XXlFUfvEmfiDn/MNxM4LtUq+eujOKOrXOcsUik59H8=;
+        b=VpIwv+9/bVP/BG06abClV0sBhq32WFZ9BrFGUxwhDtQvx4YvMtbiRheHTn9LhrwXL0
+         DXyLcohMxWNT4Q5agB9G+4Gt1DXnYcFkzrpMeyMJLBLYETmSHiSEhJBALj14Ue22ZzR7
+         0X1k9HHChaA2YsF77DISfa8ufEJLjoZ9dloLahNr9nhZLRmgRTdbL8m6Zj6F/wFumMCn
+         pIHKH9tGMCiAJWJZ3vxDK1HDa1Bz8RFSBw/tguxrH0/uzRs/4wC426/qGaiR4JY6I/90
+         5ZDbDJxUlfXVPCLAnCw6HN3SDM4tmFHIvoYzQ/qSJGiTWAj+nt4hFDG71CDS22iGr5Qd
+         aJ3A==
+X-Gm-Message-State: AOAM533aEMHOr3U/KwTptvqTE4DkefmCPWLIgiC3ZDipGvA7NnSTdOpp
+        EKP0e/2pTUR8/mxHmYOiDfQ+Hw==
+X-Google-Smtp-Source: ABdhPJyf+HzoZY0JkxVZtejoP3tDH9NuzEFnXB3oRNpPA4uz7o2H3uqU/nSnUsKFXUwUMVl35e4z4Q==
+X-Received: by 2002:a05:6830:1199:: with SMTP id u25mr17849430otq.323.1606755149178;
+        Mon, 30 Nov 2020 08:52:29 -0800 (PST)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id t5sm9233268oth.16.2020.11.30.08.52.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 30 Nov 2020 08:52:28 -0800 (PST)
+Date:   Mon, 30 Nov 2020 10:52:26 -0600
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+Cc:     agross@kernel.org, robh+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, rohitkr@codeaurora.org,
+        srinivas.kandagatla@linaro.org, Ajit Pandey <ajitp@codeaurora.org>,
+        V Sujith Kumar Reddy <vsujithk@codeaurora.org>
+Subject: Re: [PATCH] arm64: dts: qcom: sc7180-trogdor: Add lpass dai link for
+ I2S driver
+Message-ID: <X8UjShseQ0F7itZe@builder.lan>
+References: <1600440678-2137-1-git-send-email-srivasam@codeaurora.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="hxkXGo8AKqTJ+9QI"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <cover.1606750000.git.Adam.Ward.opensource@diasemi.com>
-X-Cookie: Space is limited.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <1600440678-2137-1-git-send-email-srivasam@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri 18 Sep 09:51 CDT 2020, Srinivasa Rao Mandadapu wrote:
 
---hxkXGo8AKqTJ+9QI
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> From: Ajit Pandey <ajitp@codeaurora.org>
+> 
+> Add dai link for supporting lpass I2S driver, which is used
+> for audio capture and playback.
+> Add lpass-cpu node with  pin controls and i2s primary
+> and secondary dai-links
+> 
+> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+> Signed-off-by: V Sujith Kumar Reddy <vsujithk@codeaurora.org>
 
-On Mon, Nov 30, 2020 at 03:42:44PM +0000, Adam Ward wrote:
->   regulator: da9121: add interrupt support
->=20
->  drivers/regulator/Kconfig            |   14 +-
->  drivers/regulator/da9121-regulator.c | 1033 ++++++++++++++++++++++++++++=
-++++--
->  drivers/regulator/da9121-regulator.h |  291 ++++++++++
->  include/linux/regulator/da9121.h     |   36 ++
->  4 files changed, 1336 insertions(+), 38 deletions(-)
->  create mode 100644 drivers/regulator/da9121-regulator.h
->  create mode 100644 include/linux/regulator/da9121.h
+Ajit needs to certify the origin of the patch, with his signed-off-by
+and as you are the last to touch it your signed-off-by should be last.
 
-This adds new compatible strings so needs to update the binding document
-too.
+Also, please advice on the dependencies of this patch, because the tree
+doesn't build after applying this patch.
 
---hxkXGo8AKqTJ+9QI
-Content-Type: application/pgp-signature; name="signature.asc"
+Regards,
+Bjorn
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl/FIZEACgkQJNaLcl1U
-h9CftQf/fl2XdJ8/F5kP1quQjffPcGmM12vnnT1giLEmyB0D5a/tW33woT+4ZAzK
-A5ytp9+QXkoUC4OWDk/xu6hFyoX9+Gf8P+nDhJ24fQKlQwK56gb/06bHSE/XiDSY
-4qEm4idyExUU5/5QzJk4gSazKD9An9BNeyO6JEBe+dLk4FqPUkOfcsogd1ifyZVP
-vK5Z7qhiCa2yNaoUnjjnhmUf4gKdRi3rTkGiiJpTSb+tbrPIAtlJzgQuXm4Kn5BU
-K2rJbao2slWNFASutbMzOalF7Ste9Az6+cnfOIq1RWiZIxBsI+wSoo5+O7ktuBW1
-yZ9jW/g6SO1R52XiwPgG+HKX+IKxmg==
-=5k7c
------END PGP SIGNATURE-----
-
---hxkXGo8AKqTJ+9QI--
+> ---
+>  arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi | 59 ++++++++++++++++++++++++++++
+>  1 file changed, 59 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> index bf87558..5724982 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> @@ -220,6 +220,44 @@
+>  			max-brightness = <1023>;
+>  		};
+>  	};
+> +
+> +	sound {
+> +		compatible = "qcom,sc7180-sndcard";
+> +		model = "sc7180-snd-card";
+> +
+> +		audio-routing =
+> +			"Headphone Jack", "HPOL",
+> +			"Headphone Jack", "HPOR";
+> +
+> +		audio-jack = <&alc5682>;
+> +
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		dai-link@0 {
+> +			link-name = "MultiMedia0";
+> +			reg = <0>;
+> +			cpu {
+> +				sound-dai = <&lpass_cpu 0>;
+> +			};
+> +
+> +			codec {
+> +				sound-dai = <&alc5682 0>;
+> +			};
+> +		};
+> +
+> +		dai-link@1 {
+> +			link-name = "MultiMedia1";
+> +			reg = <1>;
+> +			cpu {
+> +				sound-dai = <&lpass_cpu 1>;
+> +			};
+> +
+> +			codec {
+> +				sound-dai = <&max98357a>;
+> +			};
+> +		};
+> +	};
+>  };
+>  
+>  &qfprom {
+> @@ -725,6 +763,27 @@ hp_i2c: &i2c9 {
+>  	modem-init;
+>  };
+>  
+> +&lpass_cpu {
+> +	status = "okay";
+> +
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&sec_mi2s_active &pri_mi2s_active &pri_mi2s_mclk_active>;
+> +
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
+> +
+> +	mi2s-primary@0 {
+> +		reg = <MI2S_PRIMARY>;
+> +		qcom,playback-sd-lines = <1>;
+> +		qcom,capture-sd-lines = <0>;
+> +	};
+> +
+> +	mi2s-secondary@1 {
+> +		reg = <MI2S_SECONDARY>;
+> +		qcom,playback-sd-lines = <0>;
+> +	};
+> +};
+> +
+>  &mdp {
+>  	status = "okay";
+>  };
+> -- 
+> Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
+> is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
+> 
