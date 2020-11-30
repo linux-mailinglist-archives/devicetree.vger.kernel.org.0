@@ -2,189 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 884B12C8FAC
-	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 22:12:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 708A02C8FAE
+	for <lists+devicetree@lfdr.de>; Mon, 30 Nov 2020 22:12:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729296AbgK3VMi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Nov 2020 16:12:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54108 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729243AbgK3VMi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Nov 2020 16:12:38 -0500
-Received: from mail-pl1-x643.google.com (mail-pl1-x643.google.com [IPv6:2607:f8b0:4864:20::643])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EB2FC0613D4
-        for <devicetree@vger.kernel.org>; Mon, 30 Nov 2020 13:11:58 -0800 (PST)
-Received: by mail-pl1-x643.google.com with SMTP id x15so7204071pll.2
-        for <devicetree@vger.kernel.org>; Mon, 30 Nov 2020 13:11:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=yneeqQNOQj9qjF5x0RqWgnAortyjfe1zOPMh+CLe5B0=;
-        b=iQIgXXHnSwGkxd2SRiw2Kd6nObL+V9hHwOL1ATXsHspIF/e8ppNttGSdzHaWDOXiWD
-         6gpe8LZtiPXgcGPSIn0FbZfznkA7IzTuTAVc5GnRakRqtBh+fnJEEp9aMFgrqGdk4wg6
-         woToPDXxeELdfvne+1ZY4KVXSBlQh6CsBR4+o=
+        id S2387520AbgK3VMp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Nov 2020 16:12:45 -0500
+Received: from mail-il1-f196.google.com ([209.85.166.196]:39240 "EHLO
+        mail-il1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729292AbgK3VMp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Nov 2020 16:12:45 -0500
+Received: by mail-il1-f196.google.com with SMTP id q1so12749205ilt.6;
+        Mon, 30 Nov 2020 13:12:29 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=yneeqQNOQj9qjF5x0RqWgnAortyjfe1zOPMh+CLe5B0=;
-        b=onMtQIMZ3V70FnIzN7GdAG7OitIN++6IUMFafB31VJz9iRbPy0zL12GwFpiweOgAhs
-         z5r+nTev4I7y1BhhG4ybqiJ+BashXPFRyUghibFNxVuWFfY5tB209dlaUNKwjVMlyhiY
-         wlf/frvSkSfh4QJtqUNwdM/FE2yG5Xk2FIXye8JNpjpPxw0cIAclidXKNnQk5isIKDlV
-         0H+92/UXt8x0mHtAa8lhLE00TP5V7ByeFCSRCh1p1aLP7dJaQeTMvsknD5x2RcpXcTla
-         5iqKI3hM6SPYJrOv+bCuDtF6Ove3525+FCQ94XEKbIs7msL+5UIpHbQqCBVtY5uVHpQ4
-         AeGA==
-X-Gm-Message-State: AOAM532UuXB6W09rTXWtBr7IigV0FbcFLXukACOZh/uZ0pZ7zJ8LJFo8
-        B8hXoVeEr3aPC6KpNMYpMBjiuw==
-X-Google-Smtp-Source: ABdhPJzRQke6uT7FovaEx+L4etK8b5fM8BziYQXO1XKG3Rq6oGVl74ZIKhf5C1mhETLiozT8J0TfnQ==
-X-Received: by 2002:a17:902:a9cb:b029:d8:fae5:9e9a with SMTP id b11-20020a170902a9cbb02900d8fae59e9amr20836663plr.32.1606770717848;
-        Mon, 30 Nov 2020 13:11:57 -0800 (PST)
-Received: from stbsrv-and-01.and.broadcom.net ([192.19.231.250])
-        by smtp.gmail.com with ESMTPSA id m7sm18320441pfh.72.2020.11.30.13.11.55
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=WxsxXvfuMvWF5lnBY7VRxT7Ln+DOtZrxCb5729Hx5GE=;
+        b=OUF9tLIxbJZK8q+1LYTu2YBjNh4lFXEQMDA2/V7muiVoMSJmQHfp6VLqBrzuL258eE
+         C5Fh2t2o0phqhwtGYg9PDJdH88g4p5Za8VnhBJLeu6eUO0/VsIRXhW2dQBl1UBAjAb4e
+         EUm6bmHqv9Z5az2pr2oiuLytv1MCh05ZDVeCLwwHajiOFrNyUuHE1YI16u0kMu3mzCUj
+         2JlLqm9UuqSdFAAw64DDZC7hV+22badgBEy0s02bqHCXbY/2OE6VU2VjhJtqN8G6Z1N+
+         M573jgls5Sqt11Z+EiyROcqgYvkvXRMmmZpZOppQ9/SkQ0Y1JNyPm5Kpdc7xdS3y6wEm
+         uIdQ==
+X-Gm-Message-State: AOAM533M0/CSSdLhL323X/zyOog/LAzKQjXSfn3uq/kx2chd1FRHs1Uq
+        5BMgp+6byiSsqvb/bfPBlo6iGW5DeQ==
+X-Google-Smtp-Source: ABdhPJw8TNihGk5KIKz2Y6ESbSW8iFmz1M+bCJhphdgM2aFwwEkkRA0LwfHHL5UB2FsRCdCoKVC3DQ==
+X-Received: by 2002:a92:520b:: with SMTP id g11mr20335993ilb.14.1606770723876;
+        Mon, 30 Nov 2020 13:12:03 -0800 (PST)
+Received: from xps15 ([64.188.179.253])
+        by smtp.gmail.com with ESMTPSA id u12sm11224669ilg.10.2020.11.30.13.12.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Nov 2020 13:11:57 -0800 (PST)
-From:   Jim Quinlan <james.quinlan@broadcom.com>
-To:     linux-pci@vger.kernel.org,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        broonie@kernel.org, bcm-kernel-feedback-list@broadcom.com,
-        james.quinlan@broadcom.com
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-rpi-kernel@lists.infradead.org (moderated list:BROADCOM
-        BCM2711/BCM2835 ARM ARCHITECTURE),
-        linux-arm-kernel@lists.infradead.org (moderated list:BROADCOM
-        BCM2711/BCM2835 ARM ARCHITECTURE),
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH v2 1/6] dt-bindings: PCI: Add bindings for Brcmstb EP voltage regulators
-Date:   Mon, 30 Nov 2020 16:11:38 -0500
-Message-Id: <20201130211145.3012-2-james.quinlan@broadcom.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20201130211145.3012-1-james.quinlan@broadcom.com>
-References: <20201130211145.3012-1-james.quinlan@broadcom.com>
-Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-        boundary="000000000000e4841f05b55975c2"
+        Mon, 30 Nov 2020 13:12:02 -0800 (PST)
+Received: (nullmailer pid 3030088 invoked by uid 1000);
+        Mon, 30 Nov 2020 21:11:59 -0000
+Date:   Mon, 30 Nov 2020 14:11:59 -0700
+From:   Rob Herring <robh@kernel.org>
+To:     Gene Chen <gene.chen.richtek@gmail.com>
+Cc:     robh+dt@kernel.org, pavel@ucw.cz, cy_huang@richtek.com,
+        linux-leds@vger.kernel.org, benjamin.chao@mediatek.com,
+        dmurphy@ti.com, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, shufan_lee@richtek.com,
+        jacek.anaszewski@gmail.com, Wilma.Wu@mediatek.com,
+        devicetree@vger.kernel.org, gene_chen@richtek.com,
+        matthias.bgg@gmail.com, linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v10 3/6] dt-bindings: leds: Add LED_FUNCTION_MOONLIGHT
+ definitions
+Message-ID: <20201130211159.GA3030057@robh.at.kernel.org>
+References: <1606447736-7944-1-git-send-email-gene.chen.richtek@gmail.com>
+ <1606447736-7944-4-git-send-email-gene.chen.richtek@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1606447736-7944-4-git-send-email-gene.chen.richtek@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---000000000000e4841f05b55975c2
+On Fri, 27 Nov 2020 11:28:53 +0800, Gene Chen wrote:
+> From: Gene Chen <gene_chen@richtek.com>
+> 
+> Add LED_FUNCTION_MOONLIGHT definitions
+> 
+> Signed-off-by: Gene Chen <gene_chen@richtek.com>
+> Acked-by: Jacek Anaszewski <jacek.anaszewski@gmail.com>
+> ---
+>  include/dt-bindings/leds/common.h | 1 +
+>  1 file changed, 1 insertion(+)
+> 
 
-Quite similar to the regulator bindings found in "rockchip-pcie-host.txt",
-this allows optional regulators to be attached and controlled by the
-PCIe RC driver.
-
-Signed-off-by: Jim Quinlan <james.quinlan@broadcom.com>
----
- .../devicetree/bindings/pci/brcm,stb-pcie.yaml       | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-index 807694b4f41f..baacc3d7ec87 100644
---- a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-+++ b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-@@ -85,6 +85,18 @@ properties:
-       minItems: 1
-       maxItems: 3
- 
-+  vpcie12v-supply:
-+    description: 12v regulator phandle for the endpoint device
-+
-+  vpcie3v3-supply:
-+    description: 3.3v regulator phandle for the endpoint device
-+
-+  vpcie1v8-supply:
-+    description: 1.8v regulator phandle for the endpoint device
-+
-+  vpcie0v9-supply:
-+    description: 0.9v regulator phandle for the endpoint device
-+
- required:
-   - reg
-   - ranges
--- 
-2.17.1
-
-
---000000000000e4841f05b55975c2
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
-
-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
-mOxPm7sNHsn0TVdPryi9+T2d8fVC/kUmuEdTYP/Hdu4W4b4T9BcW57fInYrmaJ+uotS6X59rAgMB
-AAGjggHRMIIBzTAOBgNVHQ8BAf8EBAMCBaAwgZ4GCCsGAQUFBwEBBIGRMIGOME0GCCsGAQUFBzAC
-hkFodHRwOi8vc2VjdXJlLmdsb2JhbHNpZ24uY29tL2NhY2VydC9nc3BlcnNvbmFsc2lnbjJzaGEy
-ZzNvY3NwLmNydDA9BggrBgEFBQcwAYYxaHR0cDovL29jc3AyLmdsb2JhbHNpZ24uY29tL2dzcGVy
-c29uYWxzaWduMnNoYTJnMzBNBgNVHSAERjBEMEIGCisGAQQBoDIBKAowNDAyBggrBgEFBQcCARYm
-aHR0cHM6Ly93d3cuZ2xvYmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADBEBgNVHR8E
-PTA7MDmgN6A1hjNodHRwOi8vY3JsLmdsb2JhbHNpZ24uY29tL2dzcGVyc29uYWxzaWduMnNoYTJn
-My5jcmwwJQYDVR0RBB4wHIEaamFtZXMucXVpbmxhbkBicm9hZGNvbS5jb20wEwYDVR0lBAwwCgYI
-KwYBBQUHAwQwHwYDVR0jBBgwFoAUaXKCYjFnlUSFd5GAxAQ2SZ17C2EwHQYDVR0OBBYEFNYm4GDl
-4WOt3laB3gNKFfYyaM8bMA0GCSqGSIb3DQEBCwUAA4IBAQBD+XYEgpG/OqeRgXAgDF8sa+lQ/00T
-wCP/3nBzwZPblTyThtDE/iaL/YZ5rdwqXwdCnSFh9cMhd/bnA+Eqw89clgTixvz9MdL9Vuo8LACI
-VpHO+sxZ2Cu3bO5lpK+UVCyr21y1zumOICsOuu4MJA5mtkpzBXQiA7b/ogjGxG+5iNjt9FAMX4JP
-V6GuAMmRknrzeTlxPy40UhUcRKk6Nm8mxl3Jh4KB68z7NFVpIx8G5w5I7S5ar1mLGNRjtFZ0RE4O
-lcCwKVGUXRaZMgQGrIhxGVelVgrcBh2vjpndlv733VI2VKE/TvV5MxMGU18RnogYSm66AEFA/Zb+
-5ztz1AtIMYICbzCCAmsCAQEwbTBdMQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBu
-di1zYTEzMDEGA1UEAxMqR2xvYmFsU2lnbiBQZXJzb25hbFNpZ24gMiBDQSAtIFNIQTI1NiAtIEcz
-AgwTv2xmtR4KOmK4QvMwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIHZ682fwVMlJ
-Jlzxa97Bd4tt+xrNv/m/eieyNuutpUQNMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZI
-hvcNAQkFMQ8XDTIwMTEzMDIxMTE1OFowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJ
-YIZIAWUDBAEWMAsGCWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcN
-AQEHMAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQB+emIJsZpXsk2nJ0/hzmyek91g3Q7J
-f3edpvKbFFaCovVYE0o3ZqH55AMriI0glsJSjSroq5YkOR8hSb58YD8aR/OSF2v8U9WE6zzHq9+o
-fe5Zjuun8uo9HuGdSWkgYKRygOp5vov6+I1g5xcgjkZmb0cbFWadDr2uEL4d6/5/SevCVOll9ml9
-KIGaI6iSk7nafAIoElc9bMCAx3n+o6SFj/Z4v7/YXTinSaZvURn7kJnCk+Ce/AtUMw81WGSBu7DJ
-w/WIqDZeGKNSB9B4f6bLImcrO5PuCG4gW+4C3NfZzuLjkekuqwfskUmZjln6qksmVOIz2HJvGGAV
-3RmzoeS8
---000000000000e4841f05b55975c2--
+Acked-by: Rob Herring <robh@kernel.org>
