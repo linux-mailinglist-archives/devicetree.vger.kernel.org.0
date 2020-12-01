@@ -2,150 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AE2A72CA434
-	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 14:47:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E08872CA43D
+	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 14:47:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391252AbgLANpO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Dec 2020 08:45:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39078 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2391105AbgLANpN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Dec 2020 08:45:13 -0500
-Received: from mail-pj1-x1044.google.com (mail-pj1-x1044.google.com [IPv6:2607:f8b0:4864:20::1044])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E98FC08E85E
-        for <devicetree@vger.kernel.org>; Tue,  1 Dec 2020 05:44:06 -0800 (PST)
-Received: by mail-pj1-x1044.google.com with SMTP id ms7so1245879pjb.4
-        for <devicetree@vger.kernel.org>; Tue, 01 Dec 2020 05:44:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=0x0f.com; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=hS2wM3FNHgJIyxJqyl8PuGsAWH0z3tsao6nHf2xVIB0=;
-        b=nnfurCprKeYaMHdKwLLhAtc/7QpVAwGhPiDAysu4bgwUr0HPOE7DAtY2+DHE3HciSB
-         qJwqpC+9ktJuXLvVQjVQh2XoVwielD3rNowfs4bNkzgY5SamuuXZAPkVrKYTncoBWhdL
-         nPvmrVVHPUMiT7h//1NrmmPmFubTs8wcA+/QQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=hS2wM3FNHgJIyxJqyl8PuGsAWH0z3tsao6nHf2xVIB0=;
-        b=AW/NwtBaK7xUO8qQfXp5Xgd5zflRiftBO66P+5i1LaxoB7ehwwwcp/4V6lJ92fZwhH
-         MljLAB5DndfygWJPLzrNnTDKUqmA/H41HdhMxHb68VL7hk9NHmRHNPyeJVxRIMqDsBsQ
-         C2A+CilptzxW64B2maRU5mjaguC3o0eO1M6ALBXnQ3OtpUXRe5qdy49BGAE8UGFEXTiR
-         VI7msujVrTQ4zwIEs73bCCpfQGwlPAIasIsouGyM6SzZy92kPwz+YJ2/sSpGuVxZ9j37
-         URdIVh5fT5aiOFE9so9/L46/CJezEB/FWzRdbvLrBPwdO/e71bsUT0d1segbz5Rn8gC5
-         /dUg==
-X-Gm-Message-State: AOAM532ciq+SVq7YAldoqaNFAQgcHmgGdFem2R9LnA5Sf62MuUXXQyMK
-        +BO6MZUoxwxcQhXDAWP72icY7LcLEw3o3A==
-X-Google-Smtp-Source: ABdhPJxJNuH03WeV+YCdxfpaFYEMD4f1GrVM3nOVUTLhZyrwQYDtwe6t9D1rzEqXhNFq2WjbkzhtWQ==
-X-Received: by 2002:a17:902:9894:b029:da:5698:7f7b with SMTP id s20-20020a1709029894b02900da56987f7bmr2891979plp.78.1606830245846;
-        Tue, 01 Dec 2020 05:44:05 -0800 (PST)
-Received: from shiro.work (p1268123-ipngn200803sizuokaden.shizuoka.ocn.ne.jp. [118.13.124.123])
-        by smtp.googlemail.com with ESMTPSA id g14sm2839248pji.32.2020.12.01.05.44.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Dec 2020 05:44:05 -0800 (PST)
-From:   Daniel Palmer <daniel@0x0f.com>
-To:     devicetree@vger.kernel.org, soc@kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Cc:     linux-kernel@vger.kernel.org, olof@lixom.net, arnd@arndb.de,
-        robh@kernel.org, w@1wt.eu, daniel@0x0f.com
-Subject: [PATCH v2 10/10] ARM: mstar: SMP support
-Date:   Tue,  1 Dec 2020 22:43:30 +0900
-Message-Id: <20201201134330.3037007-11-daniel@0x0f.com>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20201201134330.3037007-1-daniel@0x0f.com>
-References: <20201201134330.3037007-1-daniel@0x0f.com>
+        id S2387999AbgLANrY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Dec 2020 08:47:24 -0500
+Received: from honk.sigxcpu.org ([24.134.29.49]:45966 "EHLO honk.sigxcpu.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2391101AbgLANrX (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 1 Dec 2020 08:47:23 -0500
+Received: from localhost (localhost [127.0.0.1])
+        by honk.sigxcpu.org (Postfix) with ESMTP id 87F2AFB03;
+        Tue,  1 Dec 2020 14:46:39 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at honk.sigxcpu.org
+Received: from honk.sigxcpu.org ([127.0.0.1])
+        by localhost (honk.sigxcpu.org [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id X1ChpxCqEnvi; Tue,  1 Dec 2020 14:46:38 +0100 (CET)
+Received: by bogon.sigxcpu.org (Postfix, from userid 1000)
+        id 33DF04068E; Tue,  1 Dec 2020 14:46:38 +0100 (CET)
+Date:   Tue, 1 Dec 2020 14:46:38 +0100
+From:   Guido =?iso-8859-1?Q?G=FCnther?= <guido.gunther@puri.sm>
+To:     Martin Kepplinger <martin.kepplinger@puri.sm>
+Cc:     robh@kernel.org, shawnguo@kernel.org, festevam@gmail.com,
+        catalin.marinas@arm.com, will@kernel.org, georgi.djakov@linaro.org,
+        cdleonard@gmail.com, kernel@pengutronix.de, linux-imx@nxp.com,
+        kernel@puri.sm, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Subject: Re: [PATCH v2 4/7] dt-bindings: mxsfb: Add interconnect bindings for
+ LCDIF path
+Message-ID: <20201201134638.GA305734@bogon.m.sigxcpu.org>
+References: <20201201123932.12312-1-martin.kepplinger@puri.sm>
+ <20201201123932.12312-5-martin.kepplinger@puri.sm>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201201123932.12312-5-martin.kepplinger@puri.sm>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds SMP support for MStar/Sigmastar chips that have a second core
-like those in the infinity2m family.
+Hi Martin,
+On Tue, Dec 01, 2020 at 01:39:29PM +0100, Martin Kepplinger wrote:
+> Add optional interconnect properties for the dram path requests.
+> 
+> Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
+> ---
+>  Documentation/devicetree/bindings/display/mxsfb.txt | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/mxsfb.txt b/Documentation/devicetree/bindings/display/mxsfb.txt
+> index c985871c46b3..d494a2674290 100644
+> --- a/Documentation/devicetree/bindings/display/mxsfb.txt
+> +++ b/Documentation/devicetree/bindings/display/mxsfb.txt
+> @@ -15,6 +15,12 @@ Required properties:
+>      - "pix" for the LCDIF block clock
+>      - (MX6SX-only) "axi", "disp_axi" for the bus interface clock
+>  
+> +Optional properties:
+> +- interconnects : interconnect path specifier for LCDIF according to
+> +		Documentation/devicetree/bindings/interconnect/interconnect.txt.
+> +- interconnect-names: the name describing the interconnect path.
+> +		Should be "dram" for i.MX8MQ.
+> +
 
-So far only single and dual core chips have been found so this does
-the bare minimum to boot the second core. From what I can tell not having
-the "holding pen" code to handle multiple cores is fine if there is only
-one core the will get booted. This might need to be reconsidered if chips
-with more cores turn up.
+There's a yaml conversion by Laurentiu for mxsfb in flight:
 
-Signed-off-by: Daniel Palmer <daniel@0x0f.com>
----
- arch/arm/mach-mstar/mstarv7.c | 48 +++++++++++++++++++++++++++++++++++
- 1 file changed, 48 insertions(+)
+    https://lore.kernel.org/dri-devel/20201007012438.27970-2-laurent.pinchart@ideasonboard.com/
 
-diff --git a/arch/arm/mach-mstar/mstarv7.c b/arch/arm/mach-mstar/mstarv7.c
-index 1aa748fa006e..274c4f0df270 100644
---- a/arch/arm/mach-mstar/mstarv7.c
-+++ b/arch/arm/mach-mstar/mstarv7.c
-@@ -31,6 +31,13 @@
- #define MSTARV7_L3BRIDGE_FLUSH_TRIGGER	BIT(0)
- #define MSTARV7_L3BRIDGE_STATUS_DONE	BIT(12)
- 
-+#ifdef CONFIG_SMP
-+#define MSTARV7_CPU1_BOOT_ADDR_HIGH	0x4c
-+#define MSTARV7_CPU1_BOOT_ADDR_LOW	0x50
-+#define MSTARV7_CPU1_UNLOCK		0x58
-+#define MSTARV7_CPU1_UNLOCK_MAGIC	0xbabe
-+#endif
-+
- static void __iomem *l3bridge;
- 
- static const char * const mstarv7_board_dt_compat[] __initconst = {
-@@ -63,6 +70,46 @@ static void mstarv7_mb(void)
- 	}
- }
- 
-+#ifdef CONFIG_SMP
-+static int mstarv7_boot_secondary(unsigned int cpu, struct task_struct *idle)
-+{
-+	struct device_node *np;
-+	u32 bootaddr = (u32) __pa_symbol(secondary_startup_arm);
-+	void __iomem *smpctrl;
-+
-+	/*
-+	 * right now we don't know how to boot anything except
-+	 * cpu 1.
-+	 */
-+	if (cpu != 1)
-+		return -EINVAL;
-+
-+	np = of_find_compatible_node(NULL, NULL, "mstar,smpctrl");
-+	smpctrl = of_iomap(np, 0);
-+
-+	if (!smpctrl)
-+		return -ENODEV;
-+
-+	/* set the boot address for the second cpu */
-+	writew(bootaddr & 0xffff, smpctrl + MSTARV7_CPU1_BOOT_ADDR_LOW);
-+	writew((bootaddr >> 16) & 0xffff, smpctrl + MSTARV7_CPU1_BOOT_ADDR_HIGH);
-+
-+	/* unlock the second cpu */
-+	writew(MSTARV7_CPU1_UNLOCK_MAGIC, smpctrl + MSTARV7_CPU1_UNLOCK);
-+
-+	/* and away we go...*/
-+	arch_send_wakeup_ipi_mask(cpumask_of(cpu));
-+
-+	iounmap(smpctrl);
-+
-+	return 0;
-+}
-+
-+static const struct smp_operations __initdata mstarv7_smp_ops = {
-+	.smp_boot_secondary = mstarv7_boot_secondary,
-+};
-+#endif
-+
- static void __init mstarv7_init(void)
- {
- 	struct device_node *np;
-@@ -78,4 +125,5 @@ static void __init mstarv7_init(void)
- DT_MACHINE_START(MSTARV7_DT, "MStar/Sigmastar Armv7 (Device Tree)")
- 	.dt_compat	= mstarv7_board_dt_compat,
- 	.init_machine	= mstarv7_init,
-+	.smp		= smp_ops(mstarv7_smp_ops),
- MACHINE_END
--- 
-2.29.2
+Cheers,
+ -- Guido
 
+>  Required sub-nodes:
+>    - port: The connection to an encoder chip.
+>  
+> -- 
+> 2.20.1
+> 
