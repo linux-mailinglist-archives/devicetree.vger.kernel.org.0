@@ -2,157 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F32722C93AF
-	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 01:09:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2AF712C93BA
+	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 01:15:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730994AbgLAAJR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Nov 2020 19:09:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53346 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730984AbgLAAJR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Nov 2020 19:09:17 -0500
-Received: from mail-io1-xd41.google.com (mail-io1-xd41.google.com [IPv6:2607:f8b0:4864:20::d41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E202CC0613D2;
-        Mon, 30 Nov 2020 16:08:36 -0800 (PST)
-Received: by mail-io1-xd41.google.com with SMTP id f20so5374276ioc.12;
-        Mon, 30 Nov 2020 16:08:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=+LIjPe1ddrNQtbgZL7NsrcHrWkQiww/enltfYuRG5i8=;
-        b=fxM2869V3mR9pm1gipA3kIqryH7UQmMjU+8MmCehC8LspUN+DJTpbsi25AKovL1bZU
-         2+88Bku7SvpGfhP2L9BblYiFvBvqosyqQfQ35wG2EUhVnYctvsXgU0W6gSzsSO6iVtUu
-         5zQU1d2rLISVW2O665ajvuFAFuHIY7mxwebHCehUUWx8Zar5Pw5Co0ebN31DiGu+btQ4
-         9CJl912AF8f/735NGUkp5QQrFZajOI68IY9iURvYIoWQQpV0VpLXAmqc46Y5wns3iABI
-         AJbuqXcmwGoeO56Sr+vs4qqxtyNiLhT3ybxUgaiJtqEznO8w23/YBgQhde6YnJWXl/fh
-         yy9A==
+        id S1729765AbgLAAOf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Nov 2020 19:14:35 -0500
+Received: from mail-io1-f68.google.com ([209.85.166.68]:43000 "EHLO
+        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725870AbgLAAOf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Nov 2020 19:14:35 -0500
+Received: by mail-io1-f68.google.com with SMTP id q137so10151085iod.9;
+        Mon, 30 Nov 2020 16:14:19 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=+LIjPe1ddrNQtbgZL7NsrcHrWkQiww/enltfYuRG5i8=;
-        b=Vxrq+JwaRaBy6jcKBLTQod2MfXpu9EFShIjXt0xJ4DAvBsIdyWgyXBvtAQPOlymlWg
-         AKi8T0rjWcj6tufNMqh9SbaPKMgunnU6uc+InKtMjQxKgM8WRXWP+tVB3EEd0F4324Y/
-         i0GZBBcRjdCKaVb0bzAgNU5ZY5t9odYpeE9TrU5CuMbXzZEQ5G2pWghla1eXn9A0/OaC
-         s/TG8IWPBQWhgSm9KaaPbxavbO0u8l6wzCTzaRPjwx7pmIrXJhZEhIwFF/ZXyvzLjohK
-         XqiLFl5XOwQpPmeh4OUQfAbAjMA0wJq4dhyPAc/qLPbSczA34NLMMDYGaRfiJnLfZn4u
-         GiDA==
-X-Gm-Message-State: AOAM532ooKQxsvxm/+1mur3taXCLiT0UnnF412J6bRRdUjJ4t6m+XIpo
-        3VLe8BMpGaPa9ctWujTnrsKhHIZLzWg6ETKFekgdSrbDvKp7Sg==
-X-Google-Smtp-Source: ABdhPJxixhvFBhd/XUaDp+4XSCsCo5c26Ri07x0QWOOht/Fm978RKOghwM2ctILkGH2Ba1FXAL+/GVH2P1emb6WumO0=
-X-Received: by 2002:a05:6638:153:: with SMTP id y19mr301689jao.47.1606781316019;
- Mon, 30 Nov 2020 16:08:36 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=J2Bb/DGEU59ID0I1yu+Ty12fNud+2TMEJ9OnlDR+Pyk=;
+        b=my9z4rYOJF26IoCKKb76dA0VlQeLFcuyaH/HL9t/h06/yH3Na8ruWjvhx7tYSFAsko
+         MoLFLRsgk/omKHTerqweI8iS+E7AKnW7982w90Ka1RolzdjVBAh7Q6JQHhGES6h/Fnq0
+         4unD7W61cgJ+MlRXot6l1Bd7+R31B2oZ1f3N6rIJiEUXDkGS+0l/uHAKsNKLKYk4sFjG
+         4ZPOjknlZaItPZCDr/3ju0RirF82O67OHf8hegZuq4aEIHIpj2qwhhkOwF0U71qlmlru
+         CgS4q1oKC5Ah3xWY/t78w64+z8tVLZi7DRIuVivZgqC5QVfynIWpUfUqT36xIAS20leW
+         wOPQ==
+X-Gm-Message-State: AOAM532e/+xDXH0nOhQTnuYMxvRfoJlezESXUniKjLIp8trqSoqw3AoX
+        6T7e0P5iJxXeF2PCTXFq1A==
+X-Google-Smtp-Source: ABdhPJwaK7q88mv2geaFyacMh+hTtMxdNocxVnhcxhWh7u79E8m8YJseXiGOimQ1zC8gLTT6FTGPSg==
+X-Received: by 2002:a02:2e52:: with SMTP id u18mr306280jae.29.1606781634329;
+        Mon, 30 Nov 2020 16:13:54 -0800 (PST)
+Received: from xps15 ([64.188.179.253])
+        by smtp.gmail.com with ESMTPSA id o12sm103316ilj.55.2020.11.30.16.13.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 30 Nov 2020 16:13:53 -0800 (PST)
+Received: (nullmailer pid 3315444 invoked by uid 1000);
+        Tue, 01 Dec 2020 00:13:51 -0000
+Date:   Mon, 30 Nov 2020 17:13:51 -0700
+From:   Rob Herring <robh@kernel.org>
+To:     Dan Murphy <dmurphy@ti.com>
+Cc:     davem@davemloft.net, andrew@lunn.ch, f.fainelli@gmail.com,
+        hkallweit1@gmail.com, ciorneiioana@gmail.com,
+        devicetree@vger.kernel.org, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next v4 3/4] dt-bindings: dp83td510: Add binding for
+ DP83TD510 Ethernet PHY
+Message-ID: <20201201001351.GA3297586@robh.at.kernel.org>
+References: <20201117201555.26723-1-dmurphy@ti.com>
+ <20201117201555.26723-4-dmurphy@ti.com>
 MIME-Version: 1.0
-References: <20201107115809.1866131-1-aford173@gmail.com> <20201107115809.1866131-2-aford173@gmail.com>
- <CAHCN7xLxUHoc=VFHhbo36ytCLMc11a8DbD1Gh5eK2vogO=75Ww@mail.gmail.com>
-In-Reply-To: <CAHCN7xLxUHoc=VFHhbo36ytCLMc11a8DbD1Gh5eK2vogO=75Ww@mail.gmail.com>
-From:   Adam Ford <aford173@gmail.com>
-Date:   Mon, 30 Nov 2020 18:08:25 -0600
-Message-ID: <CAHCN7xJ8y--v-xbY+Z-SjxScDsAqkxBiqgCMyZMTLzJxdy8nig@mail.gmail.com>
-Subject: Re: [PATCH V4 2/5] arm64: dts: imx8mn: Enable Asynchronous Sample
- Rate Converter
-To:     arm-soc <linux-arm-kernel@lists.infradead.org>
-Cc:     Adam Ford-BE <aford@beaconembedded.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201117201555.26723-4-dmurphy@ti.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 18, 2020 at 5:13 PM Adam Ford <aford173@gmail.com> wrote:
->
-> On Sat, Nov 7, 2020 at 5:58 AM Adam Ford <aford173@gmail.com> wrote:
-> >
-> > The driver exists for the Enhanced Asynchronous Sample Rate Converter
-> > (EASRC) Controller, but there isn't a device tree entry for it.
-> >
-> > On the vendor kernel, they put this on a spba-bus for SDMA support.
-> >
-> > Add the node for the spba-bus with the easrc node inside.
-> >
-> > Signed-off-by: Adam Ford <aford173@gmail.com>
->
-> Shawn,
->
-> I split the dt-binding into a separate patch since I was struggling
-> with checking the yaml syntax.  Rob helped me find the proper branch
-> to use. I hope it goes through this time.
->
-> Do you have any comments on the rest of the series? I would like to
-> fix them if you have any concerns so I can resend if/when the
-> dt-binding is accepted.
+On Tue, Nov 17, 2020 at 02:15:54PM -0600, Dan Murphy wrote:
+> The DP83TD510 is a 10M single twisted pair Ethernet PHY
+> 
+> Signed-off-by: Dan Murphy <dmurphy@ti.com>
+> ---
+>  .../devicetree/bindings/net/ti,dp83td510.yaml | 64 +++++++++++++++++++
+>  1 file changed, 64 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/ti,dp83td510.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/net/ti,dp83td510.yaml b/Documentation/devicetree/bindings/net/ti,dp83td510.yaml
+> new file mode 100644
+> index 000000000000..d3c97bb4d820
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/ti,dp83td510.yaml
+> @@ -0,0 +1,64 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright (C) 2020 Texas Instruments Incorporated
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/net/ti,dp83td510.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +
+> +title: TI DP83TD510 ethernet PHY
+> +
+> +allOf:
+> +  - $ref: "ethernet-controller.yaml#"
+> +  - $ref: "ethernet-phy.yaml#"
+> +
+> +maintainers:
+> +  - Dan Murphy <dmurphy@ti.com>
+> +
+> +description: |
+> +  The PHY is an twisted pair 10Mbps Ethernet PHY that support MII, RMII and
+> +  RGMII interfaces.
+> +
+> +  Specifications about the Ethernet PHY can be found at:
+> +    http://www.ti.com/lit/ds/symlink/dp83td510e.pdf
+> +
+> +properties:
+> +  reg:
+> +    maxItems: 1
+> +
+> +  tx-fifo-depth:
+> +    description: |
+> +       Transmitt FIFO depth for RMII mode.  The PHY only exposes 4 nibble
+> +       depths. The valid nibble depths are 4, 5, 6 and 8.
+> +    enum: [ 4, 5, 6, 8 ]
+> +    default: 5
+> +
+> +  rx-internal-delay-ps:
+> +    description: |
+> +       Setting this property to a non-zero number sets the RX internal delay
+> +       for the PHY.  The internal delay for the PHY is fixed to 30ns relative
+> +       to receive data.
 
-Shawn,
+I'm confused. The delay is 30ns +/- whatever is set here?
 
-The dt-binding was accepted per [1].  How do you want me to proceed
-for the rest of the series?  I can resend the other parts without the
-dt-binding if you like.
+> +
+> +  tx-internal-delay-ps:
+> +    description: |
+> +       Setting this property to a non-zero number sets the TX internal delay
+> +       for the PHY.  The internal delay for the PHY has a range of -4 to 4ns
+> +       relative to transmit data.
 
-thanks,
+Sounds like constraints?
 
-adam
-[1] - https://lkml.org/lkml/2020/11/30/1211
+We do have a problem handling negative values though. Addressing in dtc 
+was rejected, so we'll need to fixup the schema with unsigned values. 
+But here it should just be negative values.
 
->
-> thanks,
->
-> adam
->
-> > ---
-> > V4:  No change
-> > V3:  Change spba-bus@30000000 to spba: bus@30000000
-> > V2:  Make the DT node more in-line with the dt binding and remove
-> >      vendor customizations that are not applicable.
-> >  arch/arm64/boot/dts/freescale/imx8mn.dtsi | 28 +++++++++++++++++++++++
-> >  1 file changed, 28 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/freescale/imx8mn.dtsi b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-> > index a06d2a6268e6..61560c083300 100644
-> > --- a/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-> > +++ b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-> > @@ -253,6 +253,34 @@ aips1: bus@30000000 {
-> >                         #size-cells = <1>;
-> >                         ranges;
-> >
-> > +                       spba: bus@30000000 {
-> > +                               compatible = "fsl,spba-bus", "simple-bus";
-> > +                               #address-cells = <1>;
-> > +                               #size-cells = <1>;
-> > +                               reg = <0x30000000 0x100000>;
-> > +                               ranges;
-> > +
-> > +                               easrc: easrc@300c0000 {
-> > +                                       compatible = "fsl,imx8mn-easrc";
-> > +                                       reg = <0x300c0000 0x10000>;
-> > +                                       interrupts = <GIC_SPI 122 IRQ_TYPE_LEVEL_HIGH>;
-> > +                                       clocks = <&clk IMX8MN_CLK_ASRC_ROOT>;
-> > +                                       clock-names = "mem";
-> > +                                       dmas = <&sdma2 16 23 0> , <&sdma2 17 23 0>,
-> > +                                              <&sdma2 18 23 0> , <&sdma2 19 23 0>,
-> > +                                              <&sdma2 20 23 0> , <&sdma2 21 23 0>,
-> > +                                              <&sdma2 22 23 0> , <&sdma2 23 23 0>;
-> > +                                       dma-names = "ctx0_rx", "ctx0_tx",
-> > +                                                   "ctx1_rx", "ctx1_tx",
-> > +                                                   "ctx2_rx", "ctx2_tx",
-> > +                                                   "ctx3_rx", "ctx3_tx";
-> > +                                       firmware-name = "imx/easrc/easrc-imx8mn.bin";
-> > +                                       fsl,asrc-rate  = <8000>;
-> > +                                       fsl,asrc-format = <2>;
-> > +                                       status = "disabled";
-> > +                               };
-> > +                       };
-> > +
-> >                         gpio1: gpio@30200000 {
-> >                                 compatible = "fsl,imx8mn-gpio", "fsl,imx35-gpio";
-> >                                 reg = <0x30200000 0x10000>;
-> > --
-> > 2.25.1
-> >
+> +
+> +unevaluatedProperties: false
+> +
+> +required:
+> +  - reg
+> +
+> +examples:
+> +  - |
+> +    mdio0 {
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +      ethphy0: ethernet-phy@0 {
+> +        reg = <0>;
+> +        tx-rx-output-high;
+> +        tx-fifo-depth = <5>;
+> +        rx-internal-delay-ps = <1>;
+> +        tx-internal-delay-ps = <1>;
+> +      };
+> +    };
+> -- 
+> 2.29.2
+> 
