@@ -2,101 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 650D22CA4B5
-	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 15:00:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E71DB2CA4DE
+	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 15:05:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391504AbgLAN7W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Dec 2020 08:59:22 -0500
-Received: from mail.kernel.org ([198.145.29.99]:45574 "EHLO mail.kernel.org"
+        id S2387744AbgLAOCs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Dec 2020 09:02:48 -0500
+Received: from mail.kernel.org ([198.145.29.99]:47386 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2391492AbgLAN7W (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 1 Dec 2020 08:59:22 -0500
+        id S1727132AbgLAOCs (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 1 Dec 2020 09:02:48 -0500
 Received: from localhost (cpc102334-sgyl38-2-0-cust884.18-2.cable.virginm.net [92.233.91.117])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 10D472086A;
-        Tue,  1 Dec 2020 13:58:40 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 90665206A5;
+        Tue,  1 Dec 2020 14:02:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1606831121;
-        bh=CXjSiL5hvWtSjMiTwdtyZhoUE2ZQn85HkMUoJAFtBNQ=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=DxAIE96ZH2rpJ+5RpUudr4DFeAF3x6Bd2z0tHgsBAmyBfp69UDS3JgDJyCmxERtxq
-         iPZZOnCFi7teBd0k0uGwbGyx7gWCAzsL2l5NZUFL7o9awsajH7c+yAt52asSE/dQFl
-         mOC6drlxMHF86GXVbIQh6W8t6eLITb2Fpc5Vlu/w=
+        s=default; t=1606831328;
+        bh=aW2Hilu+u+FMSDt5jSfZ3YdcB27AWISjkZ0EP8TJWQ0=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=CtqmQG0koaZUqaFmNb+rtx67Tm9dd6VjODehyw6xXK8mEEyh7DeGkwz/gajC6g3nv
+         loRp7Ac3YteEiU1ejG1M0OyeYdVkUza0H+cu8Q5qAOBneQekHh40FygeggCjOdac3u
+         R77KJSip6s/6h3NLaJtD2XEn7i00eU2/YQLgT+N0=
+Date:   Tue, 1 Dec 2020 14:01:38 +0000
 From:   Mark Brown <broonie@kernel.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Adam Ward <Adam.Ward.opensource@diasemi.com>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+To:     Adam Ward <Adam.Ward.opensource@diasemi.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
         Vincent Whitchurch <vincent.whitchurch@axis.com>,
-        devicetree@vger.kernel.org,
-        Support Opensource <support.opensource@diasemi.com>,
-        linux-kernel@vger.kernel.org
-In-Reply-To: <cover.1606755367.git.Adam.Ward.opensource@diasemi.com>
-References: <cover.1606755367.git.Adam.Ward.opensource@diasemi.com>
-Subject: Re: [PATCH V3 00/10] regulator: da9121: extend support to variants, add features
-Message-Id: <160683107677.35139.1688443189294014005.b4-ty@kernel.org>
-Date:   Tue, 01 Dec 2020 13:57:56 +0000
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Support Opensource <support.opensource@diasemi.com>
+Subject: Re: [PATCH V4 00/10] regulator: da9121: extend support to variants,
+ add features
+Message-ID: <20201201140138.GC5239@sirena.org.uk>
+References: <cover.1606830377.git.Adam.Ward.opensource@diasemi.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="yLVHuoLXiP9kZBkt"
+Content-Disposition: inline
+In-Reply-To: <cover.1606830377.git.Adam.Ward.opensource@diasemi.com>
+X-Cookie: Who was that masked man?
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 30 Nov 2020 16:59:04 +0000, Adam Ward wrote:
-> This series extends the DA9121 driver to add support for related products:
-> 
->   DA9130, 10A, Dual-Phase (Automotive Grade)
->   DA9122, 5A + 5A
->   DA9131, 5A + 5A (Automotive Grade)
->   DA9220, 3A + 3A
->   DA9132, 3A + 3A (Automotive Grade)
->   DA9217, 6A, Dual-Phase
-> 
-> [...]
 
-Applied to
+--yLVHuoLXiP9kZBkt
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+On Tue, Dec 01, 2020 at 01:52:26PM +0000, Adam Ward wrote:
 
-Thanks!
+> V4:
+>=20
+>  - Request IRQ directly and free in release function to avoid masking race
 
-[01/10] regulator: Update DA9121 dt-bindings
-        (no commit info)
-[02/10] regulator: da9121: Add header file
-        (no commit info)
-[03/10] regulator: da9121: Add device variants
-        (no commit info)
-[04/10] regulator: da9121: Add device variant regmaps
-        (no commit info)
-[05/10] regulator: da9121: Add device variant descriptors
-        (no commit info)
-[06/10] regulator: da9121: Add support for device variants via devicetree
-        (no commit info)
-[07/10] regulator: da9121: Update registration to support multiple buck variants
-        (no commit info)
-[08/10] regulator: da9121: add current support
-        (no commit info)
-[09/10] regulator: da9121: add mode support
-        (no commit info)
-[10/10] regulator: da9121: add interrupt support
-        (no commit info)
+I already applied the previous version, please send an incremental patch
+with this change.
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+--yLVHuoLXiP9kZBkt
+Content-Type: application/pgp-signature; name="signature.asc"
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+-----BEGIN PGP SIGNATURE-----
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl/GTMIACgkQJNaLcl1U
+h9Akqwf+PbJNGSNYmM2ZeJY3L9kNFrayy+mO58TU0LyCIz+mdLJshwoRPcNoqqha
+YsGcVXjLMRMG6RFUicFl9xJLjFp4gW84CzBu4BfdcQZ2fjn9tkS6O/F9oVA4r3G3
+UcGsuLOR5vMtNQeejOueBhKcmYhU9Ln24lZMXflcSYU955AC0Wk9djbAE3F7KUGo
+cU1ViyZyiC6nzVwb7Vx8PC3Dwp6MS8vZeL9FziGMYHMyiGmnCs7oPYocB61tK5lt
+Xz2/lfJEXzu/En2/ukFPv2Nsn2Oepyf2cE6UGtjOVdm6OgKCJ3bVK9phRCakXUxo
+hhAKaCyVg2ZgPAani37viP09EdPb/A==
+=YEEb
+-----END PGP SIGNATURE-----
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+--yLVHuoLXiP9kZBkt--
