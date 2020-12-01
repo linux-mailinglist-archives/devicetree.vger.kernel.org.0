@@ -2,129 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4042F2C951B
-	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 03:19:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D7B92C94F3
+	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 03:04:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726646AbgLACSw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Nov 2020 21:18:52 -0500
-Received: from mout.gmx.net ([212.227.17.21]:48665 "EHLO mout.gmx.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726630AbgLACSw (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 30 Nov 2020 21:18:52 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1606788972;
-        bh=8cmA5+575w3kIUQc3qXvROhNutCWPpMSRH/kfain2W0=;
-        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=hGMyhd+XtmP+GM9R7TS52XclLKeqwEkivy2O7PwaE4E9TOymjTMoCBYCPDFgjf5j1
-         LtipnREP3YC30EkhkV5/I5oROkqG9NJofY4Vd0MZxIUxpdgdDY04ojnO210YH7/sx/
-         Zrs3ZbOcR+bxXN1MK7x3WyqaUe/6PFtAbjOSbIpI=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from longitude ([37.201.214.162]) by mail.gmx.com (mrgmx104
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1MxlzC-1jz7qv3REc-00zJ9R; Tue, 01
- Dec 2020 03:16:11 +0100
-From:   =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
-To:     linux-kernel@vger.kernel.org
-Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Heiko Stuebner <heiko.stuebner@theobroma-systems.com>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Lubomir Rintel <lkundrak@v3.sk>,
-        Mark Brown <broonie@kernel.org>, allen <allen.chen@ite.com.tw>,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org, linux-pwm@vger.kernel.org,
-        linux-rtc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Heiko Stuebner <heiko@sntech.de>,
-        Josua Mayer <josua.mayer@jm0.eu>,
-        Andreas Kemnade <andreas@kemnade.info>,
-        Arnd Bergmann <arnd@arndb.de>, Daniel Palmer <daniel@0x0f.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Subject: [PATCH v5 1/7] dt-bindings: Add vendor prefix for Netronix, Inc.
-Date:   Tue,  1 Dec 2020 02:15:07 +0100
-Message-Id: <20201201011513.1627028-2-j.neuschaefer@gmx.net>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20201201011513.1627028-1-j.neuschaefer@gmx.net>
-References: <20201201011513.1627028-1-j.neuschaefer@gmx.net>
+        id S1726343AbgLACDu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Nov 2020 21:03:50 -0500
+Received: from mail-io1-f68.google.com ([209.85.166.68]:44210 "EHLO
+        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725900AbgLACDt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Nov 2020 21:03:49 -0500
+Received: by mail-io1-f68.google.com with SMTP id z5so31016iob.11;
+        Mon, 30 Nov 2020 18:03:34 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=6Zy3hLt0xkkBgO7Nur8AYnrY8ZOOFFFXYaDalID7C9w=;
+        b=GKM1IX/Ym8xobUV/IjNdOHdMBszOwNffarMHkyfd2glyUpT5Ajr3gSNyLPz1l8Wdf2
+         sCpy+xzOtDHvcO21gAAprGthzFwjMA2DbPjgHmtD4av4a2e0XBh1QNQZVc8PUc0epj0H
+         Gr49GuArWLU+nT3hVHClqM5TWG7hTVkx+HquA/mRbknmqKKV55v/qFDVWED2eBrvdG6+
+         yYCudI0o+fv5CueT8I0mo0LtTw9eg71aMl9gGtvLlQPB7zTjSTkVGvwBJRnO0pS3xbc3
+         bENfvNcAeDyc4H2VkowNlfLCifd5J7obDCdmHhwys/11kZr3J1b1LCwRj3MJmKrYop6Z
+         gM8g==
+X-Gm-Message-State: AOAM530qof8+947d+6lmyb9mCssJDNY/eaBAa57TqvR6YDmAcVwfJpya
+        dG0pyEn5YsZNujEr5DBVyw==
+X-Google-Smtp-Source: ABdhPJyJO19//cOlfXYuKkU69EBSQ7B5q3bGWe2glFhP12AG6qNZC3Z/SLpJjYEVdrkPAxDh5KMhzw==
+X-Received: by 2002:a02:85cc:: with SMTP id d70mr658274jai.83.1606788188806;
+        Mon, 30 Nov 2020 18:03:08 -0800 (PST)
+Received: from xps15 ([64.188.179.253])
+        by smtp.gmail.com with ESMTPSA id 12sm215807ily.42.2020.11.30.18.03.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 30 Nov 2020 18:03:07 -0800 (PST)
+Received: (nullmailer pid 3484888 invoked by uid 1000);
+        Tue, 01 Dec 2020 02:02:56 -0000
+Date:   Mon, 30 Nov 2020 19:02:56 -0700
+From:   Rob Herring <robh@kernel.org>
+To:     Daniel Palmer <daniel@0x0f.com>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-gpio@vger.kernel.org, soc@kernel.org,
+        linux-arm-kernel@lists.infradead.org, linus.walleij@linaro.org,
+        w@1wt.eu
+Subject: Re: [PATCH v4 2/5] dt-bindings: gpio: Binding for MStar MSC313 GPIO
+ controller
+Message-ID: <20201201020256.GA3484800@robh.at.kernel.org>
+References: <20201129110803.2461700-1-daniel@0x0f.com>
+ <20201129110803.2461700-3-daniel@0x0f.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:FyMg03WbZYrN6o5UWchWZJEKNCGTDCfkSp/27SBR7cFGJC8SORp
- IBE5E2Gyp78ZTRYBNUSBAqmgGFEluAVNiWoFkVT+iUiof2Qjzp5JzYp9Oqo18BspG+mJV1s
- i8iDtW7ka6pcjlV8bg9qwDGnQ5aIGOSjCEbb/fs8NKQZfGCjw5mW4BD2yWM7PuAGqHpqYNn
- z+T2+vmxpdMTGQMsEPvOQ==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:gqmnMUIVyf8=:HHqzUP80JNa5jQucQSmXMX
- 61vPKxGzQoq8PbfTLaSAmDfdnrjlwAGPZBM1aeYHE+iEtETuqjSTilPrPAE0e9zk+iJ6PjL7S
- jkRfiEPsA0heclhSHpLl0EKC0Nta+z+29tP1X1/JnauKS42ic033Ki0BpgKoGgiR7hXrmZX9l
- JzIrGRkyYFZMVvfi6D3Krwe1Z8+f38ydd3rNPCjsR/poQzKwBalbvN31dY9Ig/pYBNIymOexn
- RiOn5BQlZl22QXSX8mLi8vQ/4BqzFWq30DpwNRBgZv6ERNkpPMF9BD7n0zNeaY3SRjRfSFHgC
- ju+c95tl3vC1lPKwZ/Rlm8/8i256DhohfOns2kqsQX5gnC041BfV1SS5ooKM06afXyLvQ8B0G
- OYBsPGNxtU0zCP8ER/QTHqQP+8VRZEy2jwRP4U9lDH/tb5Dp8M4eYKSH/+FukWYMhq3vGBr5F
- THblPmGB2SFinz/YnLXXzKLSUXjRP+fltgVCOmTFmtJYFsSHctsriJ1XMi5LEry4AvXXP3pb5
- 0jaMPeH6dvUg2zElwDiLogb7QvXWCbMFAs5LjtRdveapHkQMZCsKQuUhvyXX9XZeDwdapW1dR
- JMPVdOuNyt8bG06Ae9vrIjhY+7W/iEBml+Mxq2MzHWUhkyb0GIw4z4lcztN/fS4m7y0+6Elgl
- Ib5pXaukX7QPlrRtCLqg5GBaK/9g208uIClOf7zbs3ra3kUymt1R/ffJx1K4Am2k4QTOB5WtX
- 6wcFY5wHVqcP28EsEeZS+WHwVuN0UWde+9WSHz3aTTTYqdBZQcmIX2e8dl1DUps+DdLpdPZxC
- hMqRxEOu10V2ctRiF9TYQ7SgWZ+iVgBaUQw+aQmW3tMIv4J9K/bwgYA9PTL4iPmdtLN1hZIcC
- gZ17LKy76qejSQlg8EEw==
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201129110803.2461700-3-daniel@0x0f.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Netronix, Inc. (http://www.netronixinc.com/) makes ebook reader board
-designs, which are for example used in Kobo and Tolino devices.
+On Sun, 29 Nov 2020 20:07:59 +0900, Daniel Palmer wrote:
+> Add a binding description for the MStar/SigmaStar GPIO controller
+> found in the MSC313 and later ARMv7 SoCs.
+> 
+> Signed-off-by: Daniel Palmer <daniel@0x0f.com>
+> ---
+>  .../bindings/gpio/mstar,msc313-gpio.yaml      | 59 +++++++++++++++++++
+>  MAINTAINERS                                   |  1 +
+>  2 files changed, 60 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/gpio/mstar,msc313-gpio.yaml
+> 
 
-An alternative prefix for Netronix would be "ntx", which is already used
-in code released by Netronix. It is shorter, but perhaps less clear.
-
-Signed-off-by: Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>
-Acked-by: Rob Herring <robh@kernel.org>
-=2D--
-
-v4, v5:
-- No changes
-
-v3:
-- https://lore.kernel.org/lkml/20200924192455.2484005-2-j.neuschaefer@gmx.=
-net/
-- Add Acked-by tag
-
-v2:
-- No changes
-=2D--
- Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Docu=
-mentation/devicetree/bindings/vendor-prefixes.yaml
-index 2735be1a84709..cbf28f992b71e 100644
-=2D-- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -726,6 +726,8 @@ patternProperties:
-     description: Broadcom Corporation (formerly NetLogic Microsystems)
-   "^netron-dy,.*":
-     description: Netron DY
-+  "^netronix,.*":
-+    description: Netronix, Inc.
-   "^netxeon,.*":
-     description: Shenzhen Netxeon Technology CO., LTD
-   "^neweast,.*":
-=2D-
-2.29.2
-
+Reviewed-by: Rob Herring <robh@kernel.org>
