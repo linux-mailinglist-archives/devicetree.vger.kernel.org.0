@@ -2,308 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 80E952CA856
-	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 17:36:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CC6E82CA8CA
+	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 17:53:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726206AbgLAQgL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Dec 2020 11:36:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37682 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726032AbgLAQgL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Dec 2020 11:36:11 -0500
-Received: from mail-lf1-x141.google.com (mail-lf1-x141.google.com [IPv6:2a00:1450:4864:20::141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0589BC0613CF;
-        Tue,  1 Dec 2020 08:35:24 -0800 (PST)
-Received: by mail-lf1-x141.google.com with SMTP id d20so5373827lfe.11;
-        Tue, 01 Dec 2020 08:35:24 -0800 (PST)
+        id S2389602AbgLAQwr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Dec 2020 11:52:47 -0500
+Received: from mail-db8eur05on2061.outbound.protection.outlook.com ([40.107.20.61]:57967
+        "EHLO EUR05-DB8-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S2387795AbgLAQwq (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 1 Dec 2020 11:52:46 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=noml8yJsUgQa4MVDmeCgsmYutTV9eWSfGLsMWgY4H4nUG1UpEsDeABp7QQi0t1XbBj6S1JQf7WbLdERrhdx7dFDNPmuo4Pnqjdjgae5x4CawGu6V0ZLKJNVw/V+MHoMsl3LpuzPuZ0WAjP/A52d+b94jCdRVhKm8Pa+3grsW1Se/AHdi4KfE5wYQmRFwkdzdEpAm6w0P0ITV0jWeCAaNLHzf5y0cYV3ctHdfUPMApqW/WmvRNWXavWxKMFZA2+IYuDX6l87CPHnXJQ4N745pcVTBDYizZFKR4KUsWdHaTQ0vvDRGjCg4+WZt55juHd9zg5YlOQOCH7BdG+uxQJZQZw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=dUBTfqcvayTrpMtuwdJTWd1jxDC19ETPJxZOmrRNH20=;
+ b=f95Iv54nhNHTEViDUTuLvRCkUEayH5tDrPq5VMrE9FLitKfmKHjlSNYih3JmzSL3KrF/3TcMmKEa+d+OVPKzoXZiqEns7+rLjscdiGt6m9fN015ycmkRfR9cDyVvS5aiuUXFYx77ZQXKA+EYFH/Y9Qqme4k4OQ3ihON5AtPz/y8nJME2OE3J20BlZ7YMjUF2ZO1G6kEoFC6f5djF7tXfTwbVKb/21wc53THq5tn/34TXmsgfRcb0sZ5dXiPK5HTBjO03uD+EJaRARZUXubU07ffD8xoNtSaU7P2FPESPPfeNtawC6Q5w0xfgpR54AKHs/BTl7+s5RP0itThYLu8jGg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=diasemi.com; dmarc=pass action=none header.from=diasemi.com;
+ dkim=pass header.d=diasemi.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=N/JmDiej85wrGWSfQ3GjLEa75NHZA8Mf8kh4AeeifPA=;
-        b=jqDMS4E9j+o8eb3vgEduE1EA5iWwtjEXXZTXP5ijaXR9gWz/iBHRjXxSmnXQBvW1Jt
-         F2Frbk+kPI4v39OLDdjeckNqwZQz/DJg5VE7YEUtA/FLG5ozzTQleHLzzo/bT0D76oVc
-         XvNzQHHJNsJzpZcsZ0WGmarIJPQBuomTO/GhIawvgtG85ETk3+XsRlnCaZrzYR/yTd3F
-         kGNOW6wPoPtGqwGMvaHqEFMycfFTuOoJ5xos7CUB/2ftRhnwOX+KmZXEW3aEnSwb6rPz
-         uZGP02r0Z59jKqpgRjG2tqr8MdZ688wMbS764V2K1WKg8OI6G1ykXo8EMBrNe7RiC/oN
-         ZO4Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=N/JmDiej85wrGWSfQ3GjLEa75NHZA8Mf8kh4AeeifPA=;
-        b=Ks1HaiFVAf02aDY+Bsq8Lm/PrSvk8AmTnM47Y+Dfjx0UzmUFZnzxQMUsRhCDYFOorR
-         FJ0nYrJuXAhtRLaX91zyjQOEkawrfgLwyBQ98325A1Inz4eqgiTSgFFkd7H6oJH2jcVe
-         OUf9Z0KKjVHzvQRNXvXfMCc4sL76iMF0Rn0OT+IkQbZRLwuCJFbXzFnpb4o2a7DpbZnh
-         3MgsRDntYoohsVWXBOdXdN/0ARFAnLL1PAbFbKJRzdqoeUfiqUbAHcpeCK18+1ul+plH
-         arRa0uImjDbmt5dgIOcPPKpNFvDDf0666xZBIe9xEKvTnz7eDFdBJ98qmjc9zni/Td8O
-         CUaQ==
-X-Gm-Message-State: AOAM530T+piOy4Y7YHqZQt3dN5HgN0Bdm4Yc5kLNnzJNDew9j73CrZzI
-        G0wJuD2nxYlhOPArNM7ARg33z9AhJv3LEZuLTtRtCexInOE=
-X-Google-Smtp-Source: ABdhPJxEHLFJwIPECJ2ENE3Ak/v9VSqQ6FUO5vC0yVLQ7vVjs+2ddOgmlF/gT4tQK+hu7xhfQFYzI6wOlN2wZEoOe5k=
-X-Received: by 2002:a19:6a1a:: with SMTP id u26mr1610848lfu.209.1606840523173;
- Tue, 01 Dec 2020 08:35:23 -0800 (PST)
+ d=dialogsemiconductor.onmicrosoft.com;
+ s=selector1-dialogsemiconductor-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=dUBTfqcvayTrpMtuwdJTWd1jxDC19ETPJxZOmrRNH20=;
+ b=PWNZ/DOLJb4fVvtd2HHLPD+vmTCZ7zaVxINWYecwe671JOjIPGe6S3RBhz1pBrAmyYpziR+qHkdLqVIv/6haUMEYlWoV0WMq7muXoNpVcZYxfFWR9HaMyFQxahNt2aqlXxwEEyZ29YIFNk/yyZfjMHmcYQJiwWcNeTja0a74C/U=
+Received: from PR3PR10MB4142.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:102:ac::5)
+ by PA4PR10MB4384.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:102:be::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3611.23; Tue, 1 Dec
+ 2020 16:51:43 +0000
+Received: from PR3PR10MB4142.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::67:233d:68c6:cabc]) by PR3PR10MB4142.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::67:233d:68c6:cabc%7]) with mapi id 15.20.3611.023; Tue, 1 Dec 2020
+ 16:51:43 +0000
+From:   Adam Thomson <Adam.Thomson.Opensource@diasemi.com>
+To:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Adam Ward <Adam.Ward.opensource@diasemi.com>
+CC:     Liam Girdwood <lgirdwood@gmail.com>,
+        Vincent Whitchurch <vincent.whitchurch@axis.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Support Opensource <Support.Opensource@diasemi.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: RE: [PATCH V3 00/10] regulator: da9121: extend support to variants,
+ add features
+Thread-Topic: [PATCH V3 00/10] regulator: da9121: extend support to variants,
+ add features
+Thread-Index: AQHWxzog6Yib7XBzdU6un7pKnt6hn6niRXwAgAAvq9A=
+Date:   Tue, 1 Dec 2020 16:51:43 +0000
+Message-ID: <PR3PR10MB4142434AF67B4976D8095ABD80F40@PR3PR10MB4142.EURPRD10.PROD.OUTLOOK.COM>
+References: <cover.1606755367.git.Adam.Ward.opensource@diasemi.com>
+ <160683107677.35139.1688443189294014005.b4-ty@kernel.org>
+In-Reply-To: <160683107677.35139.1688443189294014005.b4-ty@kernel.org>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=diasemi.com;
+x-ms-exchange-messagesentrepresentingtype: 1
+x-originating-ip: [165.225.196.102]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 8deea1e1-0271-47cc-8d85-08d896196230
+x-ms-traffictypediagnostic: PA4PR10MB4384:
+x-ms-exchange-sharedmailbox-routingagent-processed: True
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <PA4PR10MB4384F07FB0A436B4F23F38ACA7F40@PA4PR10MB4384.EURPRD10.PROD.OUTLOOK.COM>
+x-ms-oob-tlc-oobclassifiers: OLM:6430;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: ELHBrBRUC3u/3WGMg7rhilQJDl3MQuLYgqeJ/Cin3FTf3SbMnqhSaellQe18nDYa0/cHK6XiWoauRAvVXJwJd8hG+rtuEFGr5UryqvcVhUFMHrme9TVmcsbhkxcElChWak82ddJXE7R0nPdw5KaTjSYyTTckNO2+v80b20kaRSpfBgFk12BbUYIuVI2PKUjKUcRYni4n3KZdWmvpqLdlOykQ4eRSrR4NdN/4RPPAuReTgWStU4hoFN5aQZrdgy7DABeg+BbfH+D6ZtlCvyOm80xi/CiHtjOs165XpftHOl+61r33F/slVP6JE2vWOnpCWxXso74xrT4rnlBbhV//hcTsQnRN2LKN53cinlNomXtD0TVAIP8zzRM8lPycHYiUFuFSWhble4wOsGzS6f3ANg==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PR3PR10MB4142.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(4636009)(376002)(136003)(39850400004)(396003)(346002)(366004)(4326008)(9686003)(8936002)(110136005)(55016002)(86362001)(966005)(8676002)(316002)(66476007)(64756008)(66946007)(76116006)(33656002)(66556008)(66446008)(52536014)(54906003)(7696005)(6636002)(2906002)(478600001)(186003)(5660300002)(26005)(53546011)(55236004)(6506007)(4744005)(71200400001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: =?utf-8?B?elpqcHNFRHBUakR6NGZDdUJjTmpxK052UkFQVjhoNXJmZ3lkZXlSVk8xNkNz?=
+ =?utf-8?B?cDBIK1gyT0tDWElaMjV5WmQrZnRDR1RvdFpoYjU5RFVYRm94djNCNG1udkRP?=
+ =?utf-8?B?Ti9LT2Q1SG9yLzB1ZEVWQVlpNkVCSkRRTjZiV0IzdURXTEdKWFBTa0hxazMw?=
+ =?utf-8?B?empwdk5rOFR4Y250dGptU3Q3UUxYTW9ybHpHd042eFFHZjRwUzE0OHk1U3Ns?=
+ =?utf-8?B?a1NZMjNNb1RGWXVpVS84bEtqSGpCVFhJaW15WmIxM0xCb0pEWkdjMFUrSHpm?=
+ =?utf-8?B?a3hTak1RSWdlanp6a1NGVXZjUWJvdGlpN3lYalp2ZFdkOVh1anUwL0VCd3Ba?=
+ =?utf-8?B?cWN4RGd5aVl4VnBTZ0toQVZjNUYvM2ZhVXBESjZNM1hrTTZ3Q2tQNythazhJ?=
+ =?utf-8?B?dWp5eGFBNE01STViTjZKSTZjL0MvUzVJTmQ5dldCT3dMUzZlSmhTQytKWEJQ?=
+ =?utf-8?B?dlRxY0w2OWhtNldQbzB5NGN3cEVYNVpsMTU0aldlRElSZmVDOW1sL1pOQmpC?=
+ =?utf-8?B?aVhkS0RISy8xTisvRGpLMUg2WW1OUnloYnovNTFRTzlZalVjTU1MajRKdDhl?=
+ =?utf-8?B?N3FYR2pRZG9WaUtqdTAzVzNucWlldmhKQlJ2QnBGRkszZUM5ZWMvVVBIQlVU?=
+ =?utf-8?B?R3pOTk51T2FMeXpTVWNmM3hYZ0t4aUcwSlNYQnRvQ3RORUd0TElkbndaSHJD?=
+ =?utf-8?B?aDRmVENjMW42cDlwVXBLaDJCbzRNSG1BNkZ3cnRPWk1waExrM2tzV0ZYbGFH?=
+ =?utf-8?B?dmNlcEJaU25WN1lCeGRvTGF1QXlyL0pGcWJiTlVIUi80aVBXS0ZtMWtoZThY?=
+ =?utf-8?B?QWh2czhaQmpiQkZSOTVLZGxIMGYybGxITzl0YndwMzFrUGNTdXNIZGtnTFF1?=
+ =?utf-8?B?bklOV2NMRnp2NEdMN05IdHdvOWF4bkozSHM4bVd2elNIWVR6ZFY2M2k3bTVa?=
+ =?utf-8?B?TUI5MHBTNS82eDJrZU4ySnlNMXRVQm12ZUpxZWg3SzJGWXNvaW5BblhrNU1J?=
+ =?utf-8?B?UGJSNzk5Z1JKUlNTRU9OUXJIVU1YM2drTEtBamREcHVMWUx3YlVVaDE2L3F5?=
+ =?utf-8?B?QWNNMmlaM09TQnArcWhFN28wTEJWcFdKd2xwK2hRdnNwWG1qNkJ5bHVOSjdK?=
+ =?utf-8?B?NTU3OHBybWJRV21uSTlPS2dBa091eVdlQStoTWpEV2k4bVFrSXNFRVR0Y1hh?=
+ =?utf-8?B?enlRYThXTkEwbEs0RlFIS0pnWVlHZmRxZW5lMm10WnhPN3BEL3F0dFN6dG9C?=
+ =?utf-8?B?NjVJV0MvRFdpMlB0NEhBUGZwK1ZVT1gwdlVMR250dTArRExsdkhaQThNMTVP?=
+ =?utf-8?Q?dJnb/TBRx+WPA3CzzPrE1SDxpa2DfqSG2r?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-References: <1604286803-20698-1-git-send-email-u0084500@gmail.com> <20201125164207.GD4716@dell>
-In-Reply-To: <20201125164207.GD4716@dell>
-From:   ChiYuan Huang <u0084500@gmail.com>
-Date:   Wed, 2 Dec 2020 00:35:11 +0800
-Message-ID: <CADiBU3_bgx-K_zxzKCSL8w=meZu3cA3uWoC-3QVsBAuNJW1uiw@mail.gmail.com>
-Subject: Re: [PATCH v1 1/2] mfd: rt4831: Adds support for Richtek RT4831 MFD core
-To:     Lee Jones <lee.jones@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, cy_huang <cy_huang@richtek.com>,
-        lkml <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-OriginatorOrg: diasemi.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PR3PR10MB4142.EURPRD10.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8deea1e1-0271-47cc-8d85-08d896196230
+X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Dec 2020 16:51:43.7916
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 511e3c0e-ee96-486e-a2ec-e272ffa37b7c
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: YempX900f3sfs766hu0cPanYYIR9cBOAiJDbM99bNAChRn2dohXyTMKqhnbULi9+JGjv+5BOr1XZvzLSN7OepUTNYEX5NS48J2OlInhqxm0=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR10MB4384
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Lee Jones <lee.jones@linaro.org> =E6=96=BC 2020=E5=B9=B411=E6=9C=8826=E6=97=
-=A5 =E9=80=B1=E5=9B=9B =E4=B8=8A=E5=8D=8812:42=E5=AF=AB=E9=81=93=EF=BC=9A
->
-> On Mon, 02 Nov 2020, cy_huang wrote:
->
-> > From: ChiYuan Huang <cy_huang@richtek.com>
-> >
-> > Adds support Richtek RT4831 MFD core.
-> > RT4831 includes backlight and DSV part that can provode display panel
-> > for postive and negative voltage and WLED driving.
-> >
-> > Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
-> > ---
-> >  drivers/mfd/Kconfig       |  11 +++++
-> >  drivers/mfd/Makefile      |   1 +
-> >  drivers/mfd/rt4831-core.c | 119 ++++++++++++++++++++++++++++++++++++++=
-++++++++
-> >  3 files changed, 131 insertions(+)
-> >  create mode 100644 drivers/mfd/rt4831-core.c
-> >
-> > diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
-> > index 8b99a13..a22f002 100644
-> > --- a/drivers/mfd/Kconfig
-> > +++ b/drivers/mfd/Kconfig
-> > @@ -1088,6 +1088,17 @@ config MFD_RDC321X
-> >         southbridge which provides access to GPIOs and Watchdog using t=
-he
-> >         southbridge PCI device configuration space.
-> >
-> > +config MFD_RT4831
-> > +     tristate "Richtek RT4831 WLED and DSV IC"
->
-> Please expand on WLED and DSV.
->
-> This is documentation and should leave nothing to the imagination.
->
-Rewrite to "Richtek RT4831 four channel WLED and display bias
-voltage", is it okay?
-> > +     depends on I2C
-> > +     select MFD_CORE
-> > +     select REGMAP_I2C
-> > +     help
-> > +       This enables support for the Richtek RT4831.
-> > +       RT4831 includes WLED driver and DisplayBias voltage(+/-) regula=
-tor.
-> > +       It's common used to provide the display power and to drive the
-> > +       display backlight WLED.
->
-> Please don't line-wrap unnecessarily.
->
-> Please re-work the last sentence, as it doesn't quite make sense.
->
-Rewrite the whole sentence like as below
-"This enables support for the Richtek RT4831. It includes 4 channel
-WLED driving and Display Bias voltage output. It's commonly used to
-provide the LCD power and to drive LCD backlight."
-
-> >  config MFD_RT5033
-> >       tristate "Richtek RT5033 Power Management IC"
-> >       depends on I2C
-> > diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
-> > index 1780019..4108141 100644
-> > --- a/drivers/mfd/Makefile
-> > +++ b/drivers/mfd/Makefile
-> > @@ -235,6 +235,7 @@ obj-$(CONFIG_MFD_MENF21BMC)       +=3D menf21bmc.o
-> >  obj-$(CONFIG_MFD_HI6421_PMIC)        +=3D hi6421-pmic-core.o
-> >  obj-$(CONFIG_MFD_HI655X_PMIC)   +=3D hi655x-pmic.o
-> >  obj-$(CONFIG_MFD_DLN2)               +=3D dln2.o
-> > +obj-$(CONFIG_MFD_RT4831)     +=3D rt4831-core.o
-> >  obj-$(CONFIG_MFD_RT5033)     +=3D rt5033.o
-> >  obj-$(CONFIG_MFD_SKY81452)   +=3D sky81452.o
-> >
-> > diff --git a/drivers/mfd/rt4831-core.c b/drivers/mfd/rt4831-core.c
-> > new file mode 100644
-> > index 00000000..5342959
-> > --- /dev/null
-> > +++ b/drivers/mfd/rt4831-core.c
-> > @@ -0,0 +1,119 @@
-> > +// SPDX-License-Identifier: GPL-2.0+
->
-> No copyright?
->
-Yes, I'll add the copyright like as below
-/*
- * Copyright (c) 2020 Richtek Inc.
- *
- * Author: ChiYuan Huang <cy_huang@richtek.com>
- */
-> > +#include <linux/gpio/consumer.h>
-> > +#include <linux/i2c.h>
-> > +#include <linux/kernel.h>
-> > +#include <linux/mfd/core.h>
-> > +#include <linux/module.h>
-> > +#include <linux/regmap.h>
-> > +
-> > +#define RT4831_REG_REVISION  0x01
-> > +#define RT4831_REG_ENABLE    0x08
-> > +#define RT4831_REG_I2CPROT   0x15
-> > +
-> > +#define RICHTEK_VID          0x03
-> > +#define RT4831_VID_MASK              GENMASK(1, 0)
-> > +#define RT4831_RESET_MASK    BIT(7)
-> > +#define RT4831_I2CSAFETMR_MASK       BIT(0)
-> > +
-> > +static const struct mfd_cell rt4831_subdevs[] =3D {
-> > +     OF_MFD_CELL("rt4831-backlight", NULL, NULL, 0, 0, "richtek,rt4831=
--backlight"),
-> > +     MFD_CELL_NAME("rt4831-regulator")
-> > +};
-> > +
-> > +static bool rt4831_is_accessible_reg(struct device *dev, unsigned int =
-reg)
-> > +{
-> > +     if (reg >=3D RT4831_REG_REVISION && reg <=3D RT4831_REG_I2CPROT)
-> > +             return true;
-> > +     return false;
-> > +}
-> > +
-> > +static const struct regmap_config rt4831_regmap_config =3D {
-> > +     .reg_bits =3D 8,
-> > +     .val_bits =3D 8,
-> > +     .max_register =3D RT4831_REG_I2CPROT,
-> > +
-> > +     .readable_reg =3D rt4831_is_accessible_reg,
-> > +     .writeable_reg =3D rt4831_is_accessible_reg,
-> > +};
-> > +
-> > +static int rt4831_probe(struct i2c_client *client)
-> > +{
-> > +     struct gpio_desc *enable;
-> > +     struct regmap *regmap;
-> > +     unsigned int val;
-> > +     int ret;
-> > +
-> > +     enable =3D devm_gpiod_get_optional(&client->dev, "enable", GPIOD_=
-OUT_HIGH);
-> > +     if (IS_ERR(enable)) {
-> > +             dev_err(&client->dev, "Failed to get chip enable gpio\n")=
-;
->
-> "Failed to get 'enable' GPIO chip"
->
-May I remove "chip" word? It seems redundant.
-"Failed to get 'enable' GPIO" is better.
-Because 'enable' is a physical input pin for RT4831.
-> > +             return PTR_ERR(enable);
-> > +     }
-> > +
-> > +     regmap =3D devm_regmap_init_i2c(client, &rt4831_regmap_config);
-> > +     if (IS_ERR(regmap)) {
-> > +             dev_err(&client->dev, "Failed to init regmap\n");
->
-> "initialise"
->
-Change to verb "initialize"
-> > +             return PTR_ERR(regmap);
-> > +     }
-> > +
-> > +     ret =3D regmap_read(regmap, RT4831_REG_REVISION, &val);
-> > +     if (ret) {
-> > +             dev_err(&client->dev, "Fail to get version id\n");
->
-> "Failed to get H/W revision"
->
-Ack
-> > +             return ret;
-> > +     }
-> > +
-> > +     if ((val & RT4831_VID_MASK) !=3D RICHTEK_VID) {
-> > +             dev_err(&client->dev, "VID not matched, val =3D 0x%02x\n"=
-, val);
-> > +             return -ENODEV;
-> > +     }
-> > +
-> > +     /*
-> > +      * Used to prevent the abnormal shutdown.
-> > +      * If SCL/SDA both keep low for one second to reset HW.
-> > +      */
-> > +     ret =3D regmap_update_bits(regmap, RT4831_REG_I2CPROT, RT4831_I2C=
-SAFETMR_MASK,
-> > +                              RT4831_I2CSAFETMR_MASK);
-> > +     if (ret) {
-> > +             dev_err(&client->dev, "Failed to enable I2C safety timer\=
-n");
-> > +             return ret;
-> > +     }
-> > +
-> > +     return devm_mfd_add_devices(&client->dev, PLATFORM_DEVID_AUTO, rt=
-4831_subdevs,
-> > +                                 ARRAY_SIZE(rt4831_subdevs), NULL, 0, =
-NULL);
-> > +}
-> > +
-> > +static int rt4831_remove(struct i2c_client *client)
-> > +{
-> > +     struct regmap *regmap =3D dev_get_regmap(&client->dev, NULL);
-> > +
-> > +     /* Make sure all off before module removal */
->
-> "Disable all <thing your disabling> are disabled before ..."
->
-May I rewrite it to "Configure WLED driving and DSV output all to be
-disabled before MFD module removal"?
-> > +     return regmap_update_bits(regmap, RT4831_REG_ENABLE, RT4831_RESET=
-_MASK, RT4831_RESET_MASK);
-> > +}
-> > +
-> > +static void rt4831_shutdown(struct i2c_client *client)
-> > +{
-> > +     struct regmap *regmap =3D dev_get_regmap(&client->dev, NULL);
-> > +
-> > +     /* Make sure all off before machine shutdown */
->
-> As above.
->
-like as above ".... before 'machine shutdown'
-> > +     regmap_update_bits(regmap, RT4831_REG_ENABLE, RT4831_RESET_MASK, =
-RT4831_RESET_MASK);
-> > +}
-> > +
-> > +static const struct of_device_id __maybe_unused rt4831_of_match[] =3D =
-{
-> > +     { .compatible =3D "richtek,rt4831", },
-> > +     {}
-> > +};
-> > +MODULE_DEVICE_TABLE(of, rt4831_of_match);
-> > +
-> > +static struct i2c_driver rt4831_driver =3D {
-> > +     .driver =3D {
-> > +             .name =3D "rt4831",
-> > +             .of_match_table =3D of_match_ptr(rt4831_of_match),
-> > +     },
-> > +     .probe_new =3D rt4831_probe,
-> > +     .remove =3D rt4831_remove,
-> > +     .shutdown =3D rt4831_shutdown,
-> > +};
-> > +module_i2c_driver(rt4831_driver);
-> > +
-> > +MODULE_AUTHOR("ChiYuan Huang <cy_huang@richtek.com>");
-> > +MODULE_LICENSE("GPL v2");
->
-> --
-> Lee Jones [=E6=9D=8E=E7=90=BC=E6=96=AF]
-> Senior Technical Lead - Developer Services
-> Linaro.org =E2=94=82 Open source software for Arm SoCs
-> Follow Linaro: Facebook | Twitter | Blog
+T24gMDEgRGVjZW1iZXIgMjAyMCAxMzo1OCwgTWFyayBCcm93biB3cm90ZToNCg0KPiBPbiBNb24s
+IDMwIE5vdiAyMDIwIDE2OjU5OjA0ICswMDAwLCBBZGFtIFdhcmQgd3JvdGU6DQo+ID4gVGhpcyBz
+ZXJpZXMgZXh0ZW5kcyB0aGUgREE5MTIxIGRyaXZlciB0byBhZGQgc3VwcG9ydCBmb3IgcmVsYXRl
+ZCBwcm9kdWN0czoNCj4gPg0KPiA+ICAgREE5MTMwLCAxMEEsIER1YWwtUGhhc2UgKEF1dG9tb3Rp
+dmUgR3JhZGUpDQo+ID4gICBEQTkxMjIsIDVBICsgNUENCj4gPiAgIERBOTEzMSwgNUEgKyA1QSAo
+QXV0b21vdGl2ZSBHcmFkZSkNCj4gPiAgIERBOTIyMCwgM0EgKyAzQQ0KPiA+ICAgREE5MTMyLCAz
+QSArIDNBIChBdXRvbW90aXZlIEdyYWRlKQ0KPiA+ICAgREE5MjE3LCA2QSwgRHVhbC1QaGFzZQ0K
+PiA+DQo+ID4gWy4uLl0NCj4gDQo+IEFwcGxpZWQgdG8NCj4gDQo+ICAgIGh0dHBzOi8vZ2l0Lmtl
+cm5lbC5vcmcvcHViL3NjbS9saW51eC9rZXJuZWwvZ2l0L2Jyb29uaWUvc291bmQuZ2l0IGZvci1u
+ZXh0DQo+IA0KDQpIaSBNYXJrLA0KDQpXYXMgdGhlIGludGVudGlvbiB0byBhcHBseSB0aGVzZSB0
+byB0aGUgQVNvQyByZXBvLCBhcyB0aGlzIHBhdGNoIHNldCBpcyBqdXN0DQpmb3IgcmVndWxhdG9y
+PyBKdXN0IHdhbnRlZCB0byBjaGVjay4NCg==
