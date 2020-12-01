@@ -2,73 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 745F02C937E
-	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 01:01:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 76D322C9388
+	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 01:03:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730733AbgLAAAI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Nov 2020 19:00:08 -0500
-Received: from mail-io1-f68.google.com ([209.85.166.68]:32910 "EHLO
-        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727182AbgLAAAI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Nov 2020 19:00:08 -0500
-Received: by mail-io1-f68.google.com with SMTP id o8so13770825ioh.0;
-        Mon, 30 Nov 2020 15:59:52 -0800 (PST)
+        id S1727125AbgLAACp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Nov 2020 19:02:45 -0500
+Received: from mail-il1-f194.google.com ([209.85.166.194]:46111 "EHLO
+        mail-il1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725870AbgLAACp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Nov 2020 19:02:45 -0500
+Received: by mail-il1-f194.google.com with SMTP id b8so13099915ila.13;
+        Mon, 30 Nov 2020 16:02:29 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=WJNfzOEQ8T3wBcehY2qskJURbqiKx8Orw4J4b+GZdEs=;
-        b=Em2cHNPBqtvExY2B30ISph8MfX4pz08b6RAlGBgi5HZZ9W3nsQ1Qc3aBfGBb3BMckd
-         GbG2NvXm41gZWM9rQGtfB19hoj4o1jhhetrVYLKQsTBK+QtFmkTOOhytujiYTEBS0F/2
-         JmCjUgpZP/b0BmpY56+UR9PXEV6/jXmUGsQkLsMDGzkpeYK5LsxSV2llXIS7+67A0nch
-         U07RNOplsMEl0GMJRl27iQCBfb3WUB4fGhTDSWBH0Gru45Hxh88FOeNwO1/HBoEUPOah
-         pI7XKJM5qgvSvmt7azXoEOflKrkMUwAjRt7uWehq/cDpwdmhlwqcMWFGgI3fQTxtEueT
-         US9A==
-X-Gm-Message-State: AOAM533SCaJg11s/kTVbThUy2ybBIlAV2q+c2jj3NWNDghlGROjW0d7N
-        XRhIogNoGNJ96WA+co0iFC+ebCVKGA==
-X-Google-Smtp-Source: ABdhPJxHzse2ZFTU+MMgHHw1Xnxr8/g5ZxhJGkgtg4IL3knVu26Eoog2SRsD93KCDYS3O3mGtnA7vw==
-X-Received: by 2002:a02:b011:: with SMTP id p17mr259153jah.55.1606780767542;
-        Mon, 30 Nov 2020 15:59:27 -0800 (PST)
+        bh=x+vU33C5twxuQ+gl2xId1FzTRHdN1feLBu/jqhnvoKc=;
+        b=GHNAS2SqNpOt9h5ZbgM1kHwSipHtxGjN39oIWrBuVvTjMIgSJHJ9x1BsmCZylAOGC/
+         wOlG4srVT8bk/kU5mtMqxUhNz75SJ/EEkvAhMFhW7/266nbimjs0Hu32AWGN29Z/v99R
+         ckH1HS3i152z5GCUmjzgwADzNQEIsjMncAx49y+Ldwq7h6QqxHrunv0aroHxB40Nmeg3
+         V0Pk8A44hRI4aFl8twhjeSQXO0qRJ1UOG+K7CQG7OXOohsJIXS87CIsqamqvlq2KsWd8
+         nFU1laQbY35UfwSejOs0n2HhkJIxRwFnpGO3VZlqQrM27Pr5zkZywHYXqySNQsZ8WOEi
+         t8Og==
+X-Gm-Message-State: AOAM531kn2W0hFaRcsxpTuDJwYsEIt1Dg5LLCcxHv0H/jXhsJaO24D3m
+        V3jIwLI8vQ9inQErzHhsWw==
+X-Google-Smtp-Source: ABdhPJx0o/uvQUwF2q2l2tJUuBSKDHDM+OZ40hNwLRM8YThuYL1/8/EFpzli9WUmHvbkiWC9e0nM1g==
+X-Received: by 2002:a92:aa8b:: with SMTP id p11mr188890ill.5.1606780924118;
+        Mon, 30 Nov 2020 16:02:04 -0800 (PST)
 Received: from xps15 ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id m12sm84067ilq.51.2020.11.30.15.59.26
+        by smtp.gmail.com with ESMTPSA id w12sm81905ilo.63.2020.11.30.16.02.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Nov 2020 15:59:26 -0800 (PST)
-Received: (nullmailer pid 3292959 invoked by uid 1000);
-        Mon, 30 Nov 2020 23:59:25 -0000
-Date:   Mon, 30 Nov 2020 16:59:25 -0700
+        Mon, 30 Nov 2020 16:02:03 -0800 (PST)
+Received: (nullmailer pid 3297076 invoked by uid 1000);
+        Tue, 01 Dec 2020 00:02:01 -0000
+Date:   Mon, 30 Nov 2020 17:02:01 -0700
 From:   Rob Herring <robh@kernel.org>
-To:     Oleksij Rempel <o.rempel@pengutronix.de>
-Cc:     linux-kernel@vger.kernel.org, NXP Linux Team <linux-imx@nxp.com>,
-        David Jander <david@protonic.nl>,
-        Fabio Estevam <festevam@gmail.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Mark Rutland <mark.rutland@arm.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 1/3] dt-bindings: vendor-prefixes: add "virtual" prefix
-Message-ID: <20201130235925.GA3292882@robh.at.kernel.org>
-References: <20201117131354.30943-1-o.rempel@pengutronix.de>
- <20201117131354.30943-2-o.rempel@pengutronix.de>
+To:     Dan Murphy <dmurphy@ti.com>
+Cc:     davem@davemloft.net, andrew@lunn.ch, f.fainelli@gmail.com,
+        hkallweit1@gmail.com, ciorneiioana@gmail.com,
+        devicetree@vger.kernel.org, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next v4 2/4] dt-bindings: net: Add Rx/Tx output
+ configuration for 10base T1L
+Message-ID: <20201201000201.GA3293113@robh.at.kernel.org>
+References: <20201117201555.26723-1-dmurphy@ti.com>
+ <20201117201555.26723-3-dmurphy@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201117131354.30943-2-o.rempel@pengutronix.de>
+In-Reply-To: <20201117201555.26723-3-dmurphy@ti.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 17 Nov 2020 14:13:52 +0100, Oleksij Rempel wrote:
-> "virtual" is used for vendor-less "devices". For example for the GPIO
-> based MDIO bus "virtual,mdio-gpio".
-> 
-> This patch is needed to fix the checkpatch warning for the Protonic WD3 board.
-> 
-> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
-> ---
->  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->  1 file changed, 2 insertions(+)
-> 
+On Tue, Nov 17, 2020 at 02:15:53PM -0600, Dan Murphy wrote:
+> Per the 802.3cg spec the 10base T1L can operate at 2 different
+> differential voltages 1v p2p and 2.4v p2p. The abiility of the PHY to
 
-Acked-by: Rob Herring <robh@kernel.org>
+1.1V?
+
+> drive that output is dependent on the PHY's on board power supply.
+> This common feature is applicable to all 10base T1L PHYs so this binding
+> property belongs in a top level ethernet document.
+> 
+> Signed-off-by: Dan Murphy <dmurphy@ti.com>
+> ---
+>  Documentation/devicetree/bindings/net/ethernet-phy.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/ethernet-phy.yaml b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
+> index 6dd72faebd89..bda1ce51836b 100644
+> --- a/Documentation/devicetree/bindings/net/ethernet-phy.yaml
+> +++ b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
+> @@ -174,6 +174,12 @@ properties:
+>        PHY's that have configurable TX internal delays. If this property is
+>        present then the PHY applies the TX delay.
+>  
+> +  max-tx-rx-p2p-microvolt:
+> +    description: |
+
+Don't need '|' if no formatting.
+
+> +      Configures the Tx/Rx p2p differential output voltage for 10base-T1L PHYs.
+> +    enum: [ 1100, 2400 ]
+> +    default: 2400
+
+Aren't you off by 1000?
+
+> +
+>  required:
+>    - reg
+>  
+> -- 
+> 2.29.2
+> 
