@@ -2,50 +2,30 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C5FF2CA9DE
-	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 18:39:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 965A72CAA3A
+	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 18:53:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391945AbgLARiW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Dec 2020 12:38:22 -0500
-Received: from a2.mail.mailgun.net ([198.61.254.61]:34363 "EHLO
-        a2.mail.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2390726AbgLARiW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Dec 2020 12:38:22 -0500
-X-Greylist: delayed 360 seconds by postgrey-1.27 at vger.kernel.org; Tue, 01 Dec 2020 12:38:22 EST
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1606844276; h=Content-Transfer-Encoding: Content-Type:
- In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
- Subject: Sender; bh=K1x8lx2ayye4/N0xNELnpa6CNM0J4yfcDBWhh1G+S30=; b=nnRuEBU8X2hNdPJDkpZpfrY6i8Xd5bV1+i9ymFB+EgIcX9/KHbogOhoAhZNTG5f851aDzqsT
- KD9Gyvq9fF+E1bdqf5mD32rluEIDSG2fYfHNLhALu0YvLsk6IuZSdFHdc98Lax+nSD7jextH
- WVHB2fWGZ7eDdtXxgg/REqKtaSc=
-X-Mailgun-Sending-Ip: 198.61.254.61
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n10.prod.us-east-1.postgun.com with SMTP id
- 5fc67df3edac2724d86d40e4 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 01 Dec 2020 17:31:31
- GMT
-Sender: srivasam=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 0547DC43462; Tue,  1 Dec 2020 17:31:30 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        NICE_REPLY_A,SPF_FAIL autolearn=no autolearn_force=no version=3.4.0
-Received: from [172.20.10.2] (unknown [27.59.188.56])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        id S2404173AbgLARwq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Dec 2020 12:52:46 -0500
+Received: from mail.kernel.org ([198.145.29.99]:54766 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2391855AbgLARwq (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 1 Dec 2020 12:52:46 -0500
+Received: from localhost (cpc102334-sgyl38-2-0-cust884.18-2.cable.virginm.net [92.233.91.117])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        (Authenticated sender: srivasam)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 47E31C43460;
-        Tue,  1 Dec 2020 17:31:23 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 47E31C43460
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=srivasam@codeaurora.org
-Subject: Re: [PATCH v4 1/2] Partially revert ASoC: qcom: Fix enabling BCLK and
- LRCLK in LPAIF invalid state
-To:     Mark Brown <broonie@kernel.org>
+        by mail.kernel.org (Postfix) with ESMTPSA id CFCF620639;
+        Tue,  1 Dec 2020 17:52:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1606845124;
+        bh=jUfmwSwFjkBDlJ2yKLucSJdrO2Do2GFfT2jP3rl2XF0=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=B6evOfVtPDO/lqPGI4YNEUtxLDjHbZ2Gn0Fo0LlZJhPXn5WYv1KHmWaBDtNZPQcnM
+         mjSeRMfZVph92b22w85+1sXGKO/sK9bLw4OSpTbJAZhnHNFFEl/kxxChQpoT1nfsYF
+         F/Qw+ItDxJumfTk/UJCa0IEZ6Tgyc4WhgJMslYxI=
+Date:   Tue, 1 Dec 2020 17:51:35 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
 Cc:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
         robh+dt@kernel.org, plai@codeaurora.org, bgoswami@codeaurora.org,
         perex@perex.cz, tiwai@suse.com, srinivas.kandagatla@linaro.org,
@@ -53,77 +33,84 @@ Cc:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
         alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org,
         V Sujith Kumar Reddy <vsujithk@codeaurora.org>
+Subject: Re: [PATCH v4 1/2] Partially revert ASoC: qcom: Fix enabling BCLK
+ and LRCLK in LPAIF invalid state
+Message-ID: <20201201175135.GO5239@sirena.org.uk>
 References: <1606539559-4277-1-git-send-email-srivasam@codeaurora.org>
  <1606539559-4277-2-git-send-email-srivasam@codeaurora.org>
  <20201130124617.GC4756@sirena.org.uk>
-From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-Organization: Qualcomm India Private Limited.
-Message-ID: <966993b7-4720-bdd2-cf4d-cf5a7c11a0c1@codeaurora.org>
-Date:   Tue, 1 Dec 2020 23:01:21 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.5.0
+ <966993b7-4720-bdd2-cf4d-cf5a7c11a0c1@codeaurora.org>
 MIME-Version: 1.0
-In-Reply-To: <20201130124617.GC4756@sirena.org.uk>
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="2/+Vq7w28QOSGzSM"
+Content-Disposition: inline
+In-Reply-To: <966993b7-4720-bdd2-cf4d-cf5a7c11a0c1@codeaurora.org>
+X-Cookie: Who was that masked man?
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thanks Mark for your time!!!
 
-On 11/30/2020 6:16 PM, Mark Brown wrote:
-> On Sat, Nov 28, 2020 at 10:29:18AM +0530, Srinivasa Rao Mandadapu wrote:
->> This reverts part of commit b1824968221c
->> ("ASoC: qcom: Fix enabling BCLK and LRCLK in LPAIF invalid state")
->>
->> To identify LPAIF invalid state after device suspend and resume,
->> made I2S and DMA control registers not volatile, which is not necessary.
->> Instead invalid reg state can be handled with regcache APIs.
->> The BCLK ref count is necessary to enable clock only it's in disable state.
-> Part of this commit message says that the problem was making the registers
-> non-volatile but both the change and the rest of the commit message say
-> that the issue was that the registers were made volatile.  I'm also
-> still unclear as to what the issue is either way - how does reading the
-> state of the registers from the hardware instead of the cache affect
-> things?
+--2/+Vq7w28QOSGzSM
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Initial problem was, during playback if device suspended, I2S and DMA 
-control registers
+On Tue, Dec 01, 2020 at 11:01:21PM +0530, Srinivasa Rao Mandadapu wrote:
+> On 11/30/2020 6:16 PM, Mark Brown wrote:
 
-are getting reset and unable to recover playback after resume.
+> > Part of this commit message says that the problem was making the regist=
+ers
+> > non-volatile but both the change and the rest of the commit message say
+> > that the issue was that the registers were made volatile.  I'm also
+> > still unclear as to what the issue is either way - how does reading the
+> > state of the registers from the hardware instead of the cache affect
+> > things?
 
-As these registers were non volatile registers, driver is not getting 
-actual register value
+> Initial problem was, during playback if device suspended, I2S and DMA
+> control registers
 
-and unable to report error state to application. Due to this application
+> are getting reset and unable to recover playback after resume.
 
-keeps on polling for HW current pointer state and not exited from PCM 
-running state.
+> As these registers were non volatile registers, driver is not getting act=
+ual
+> register value
 
-To handle this scenario I made registers volatile and if they are in 
-reset state, reported error
+> and unable to report error state to application. Due to this application
 
-to application(commit b1824968221c).
+> keeps on polling for HW current pointer state and not exited from PCM
+> running state.
 
-Later from review comments by Srinivas kandagatla, I got to know
+> Later from review comments by Srinivas kandagatla, I got to know
+>=20
+> about regcache sync APIs, which can be used=A0 to sync cache after resume=
+ and
+>=20
+> HW registers can be updated with=A0 original values. With that playback c=
+an be
+> continued.
+>=20
+> So is the reason, I am reverting partial changes in the commit b182496822=
+1c.
 
-about regcache sync APIs, which can be used  to sync cache after resume and
+I don't understand why a fix for the register cache not being in sync
+with the hardware doesn't involve syncing the register cache with the
+hardware.
 
-HW registers can be updated with  original values. With that playback 
-can be continued.
+--2/+Vq7w28QOSGzSM
+Content-Type: application/pgp-signature; name="signature.asc"
 
-So is the reason, I am reverting partial changes in the commit b1824968221c.
+-----BEGIN PGP SIGNATURE-----
 
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl/GgqYACgkQJNaLcl1U
+h9AADgf8CR0hjpkrydEc4Jmmddl9qFfQcl6Ce7ZzoFWbuXciX9c8pj+PPVgpoX/K
+jwlx1LwoYv/e+ods31XWXAdp2nRaCef93oB6iUPjUydd6LdsW40FFiBCB4fiT/v/
+6JqlND0PT2+PAgAkoz1sUM9Hn5U5ocdWfs02/3jICjdnfvHjDWtH6XWgNwt+CA1A
+1PpFFUv4RkRTYZFG/LHHNXPOOBc8jqJ1Z66ZjEd38AvpJXaWsDAAlF4hc2XUk15/
+hSoQ97rYQGjGUfQUB/K9qgkhzAj67DtXgif7iosAO+Th/hAkRwH189Z/lTZrkoOd
+Rp1dumAYfp+wg91tB7hho8TJxhmygg==
+=QxRn
+-----END PGP SIGNATURE-----
 
-> Please submit patches using subject lines reflecting the style for the
-> subsystem, this makes it easier for people to identify relevant patches.
-> Look at what existing commits in the area you're changing are doing and
-> make sure your subject lines visually resemble what they're doing.
-> There's no need to resubmit to fix this alone.
-
--- 
-Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
-is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
-
+--2/+Vq7w28QOSGzSM--
