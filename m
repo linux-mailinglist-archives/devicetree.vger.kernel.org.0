@@ -2,123 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EB8162C95AE
-	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 04:19:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 734F62C95B8
+	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 04:20:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727520AbgLADSD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Nov 2020 22:18:03 -0500
-Received: from mx0b-001b2d01.pphosted.com ([148.163.158.5]:32818 "EHLO
-        mx0b-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725859AbgLADSC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 30 Nov 2020 22:18:02 -0500
-Received: from pps.filterd (m0098421.ppops.net [127.0.0.1])
-        by mx0a-001b2d01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 0B131cAv060829;
-        Mon, 30 Nov 2020 22:16:46 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=message-id : subject :
- from : to : cc : date : in-reply-to : references : content-type :
- mime-version : content-transfer-encoding; s=pp1;
- bh=1jmy35x0vr7C4X6dggumRbQlb2Eb0tL0Obh/EuedGys=;
- b=AFwcoEKt/tLxFkUpsMxBeDlbbKmJdB7nSHYqOW6dPid4X7qxcYWkVo73E1gW4tTXwyNO
- jT4KL93EkGLf1x4dIdJ7GStGCFob6e0WQxjhtFn+DhJPTjxsAKGANjZgcmej2Ty9xqkR
- 8mH7ap5Q4zDG1Qsq5hsJ08EO/HxxH53qfsrl6KMqwy/eDQ0n5HuOnCPazQWxvOMOncJO
- eeDVymnGiktnb63upCSAAK/k1entTE+PcoybMMsj3egyXEA0/UTaTLHDgGPVceCQ0Vep
- qgSd41dPIEXEgIK+HZvGTc77fJsCitrRLmrwDjgO1ZpjYgg7TFQp5mf+ctGRDOqfAUtz WQ== 
-Received: from pps.reinject (localhost [127.0.0.1])
-        by mx0a-001b2d01.pphosted.com with ESMTP id 355d9crpss-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 30 Nov 2020 22:16:46 -0500
-Received: from m0098421.ppops.net (m0098421.ppops.net [127.0.0.1])
-        by pps.reinject (8.16.0.36/8.16.0.36) with SMTP id 0B13BnAO100587;
-        Mon, 30 Nov 2020 22:16:43 -0500
-Received: from ppma03ams.nl.ibm.com (62.31.33a9.ip4.static.sl-reverse.com [169.51.49.98])
-        by mx0a-001b2d01.pphosted.com with ESMTP id 355d9crpsa-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 30 Nov 2020 22:16:43 -0500
-Received: from pps.filterd (ppma03ams.nl.ibm.com [127.0.0.1])
-        by ppma03ams.nl.ibm.com (8.16.0.42/8.16.0.42) with SMTP id 0B13Gb33015723;
-        Tue, 1 Dec 2020 03:16:41 GMT
-Received: from b06cxnps4074.portsmouth.uk.ibm.com (d06relay11.portsmouth.uk.ibm.com [9.149.109.196])
-        by ppma03ams.nl.ibm.com with ESMTP id 353e68anwy-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 01 Dec 2020 03:16:41 +0000
-Received: from d06av24.portsmouth.uk.ibm.com (mk.ibm.com [9.149.105.60])
-        by b06cxnps4074.portsmouth.uk.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 0B13Gd1Y63046118
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Tue, 1 Dec 2020 03:16:39 GMT
-Received: from d06av24.portsmouth.uk.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 27E1F42042;
-        Tue,  1 Dec 2020 03:16:39 +0000 (GMT)
-Received: from d06av24.portsmouth.uk.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id E759D4203F;
-        Tue,  1 Dec 2020 03:16:31 +0000 (GMT)
-Received: from li-f45666cc-3089-11b2-a85c-c57d1a57929f.ibm.com (unknown [9.160.59.46])
-        by d06av24.portsmouth.uk.ibm.com (Postfix) with ESMTP;
-        Tue,  1 Dec 2020 03:16:31 +0000 (GMT)
-Message-ID: <582bb3537b10f55c0825ec48e2fc0f6b310efeaa.camel@linux.ibm.com>
-Subject: Re: [PATCH v9 1/8] powerpc: fix compiler warnings and errors
-From:   Mimi Zohar <zohar@linux.ibm.com>
-To:     Lakshmi Ramasubramanian <nramas@linux.microsoft.com>,
-        bauerman@linux.ibm.com, robh@kernel.org,
-        gregkh@linuxfoundation.org, james.morse@arm.com,
-        catalin.marinas@arm.com, sashal@kernel.org, will@kernel.org,
-        mpe@ellerman.id.au, benh@kernel.crashing.org, paulus@samba.org,
-        robh+dt@kernel.org, frowand.list@gmail.com,
-        vincenzo.frascino@arm.com, mark.rutland@arm.com,
-        dmitry.kasatkin@gmail.com, jmorris@namei.org, serge@hallyn.com,
-        pasha.tatashin@soleen.com, allison@lohutok.net,
-        kstewart@linuxfoundation.org, takahiro.akashi@linaro.org,
-        tglx@linutronix.de, masahiroy@kernel.org, bhsharma@redhat.com,
-        mbrugger@suse.com, hsinyi@chromium.org, tao.li@vivo.com,
-        christophe.leroy@c-s.fr
-Cc:     linux-integrity@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, prsriva@linux.microsoft.com,
-        balajib@linux.microsoft.com
-Date:   Mon, 30 Nov 2020 22:16:30 -0500
-In-Reply-To: <20201113192243.1993-2-nramas@linux.microsoft.com>
-References: <20201113192243.1993-1-nramas@linux.microsoft.com>
-         <20201113192243.1993-2-nramas@linux.microsoft.com>
-Content-Type: text/plain; charset="ISO-8859-15"
-X-Mailer: Evolution 3.28.5 (3.28.5-12.el8) 
-Mime-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.312,18.0.737
- definitions=2020-11-30_12:2020-11-30,2020-11-30 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- impostorscore=0 lowpriorityscore=0 phishscore=0 mlxlogscore=999
- clxscore=1011 mlxscore=0 malwarescore=0 spamscore=0 bulkscore=0
- adultscore=0 suspectscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2009150000 definitions=main-2012010015
+        id S1727650AbgLADUr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Nov 2020 22:20:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55306 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726877AbgLADUq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Nov 2020 22:20:46 -0500
+Received: from mail-oi1-x241.google.com (mail-oi1-x241.google.com [IPv6:2607:f8b0:4864:20::241])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0CC8C0613CF
+        for <devicetree@vger.kernel.org>; Mon, 30 Nov 2020 19:20:06 -0800 (PST)
+Received: by mail-oi1-x241.google.com with SMTP id t143so313293oif.10
+        for <devicetree@vger.kernel.org>; Mon, 30 Nov 2020 19:20:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=z0jYbSuM2A7vj2WRSnCHpCXmrIAzvssFmwAmhCHBSEo=;
+        b=XqI9UrtwtN+Xkgx9qqN1YpdIsr6BCmdt1rKQKFt7pEhILlu4Pj/Le6iJMF+WhAOETY
+         A1tu2xf189iKGMPNVQECBebYglBbJzmwEg+sSVVHfEoXAdTuiJjBe9Ir8z1j0+R0dVBm
+         HYQ00J7UwnYAqA1Nxdn9nw2wQRdbvPilvYXoE7ioGCITj7zVdzjB4ifT46aDZO0jpKmK
+         nS3jobLJsNm1kfK1FIG4FZQ3M2CMWM6OUMNT3Ltxazz9OI9PAPVgLsAfRYPIEfrWtVkL
+         1AK5TURlrwTkqXxpvOs46WIIvJFlzFF9U9DyBWq4I9GrSV/nrcJHHLPXazZ3kUH+TfqL
+         vtrw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=z0jYbSuM2A7vj2WRSnCHpCXmrIAzvssFmwAmhCHBSEo=;
+        b=Ovyi+zBrStESJPrcWVsBVAH+in9VuBKSksY6fBu3f9GttK6CaLKrjsTFewyoAPGHBs
+         M9dhHeGpCGOORSZMI3lMKZhYI/tB+CgKh+kX/fXqDEINw3Yeq/ex5fHzyeJqUTKvBnpl
+         vh/XpdzMm43FUU23O7DCcbKM9vjz0+0s8Cl9Y0sAQdyhbmv9eTh3NFyBaaSuwxfA3maA
+         YTVNPvB5PkgyiK3zbICDqtfQgMW9H8CUc8bhklmun7gVMHi0SgxiBlF/EceySHxG4XSC
+         QO2Fg9Y0bY5lbYepd63a4InH2VZykWqq7q+iMEooz3FB3gUMNwJF8PDuJPfAZODMGx8Y
+         KOOg==
+X-Gm-Message-State: AOAM533FgLt1g6XVoHg9Sk93OR5JIoxboJa0yU3hsrb7BFqMQgW4sEZZ
+        0h6CsL+ykgqFx/C0GS4T1kGc0w==
+X-Google-Smtp-Source: ABdhPJyN6aZnDw4AEl91NWEpYuIybD/5h2IcygpeviYHF8UN9qRx/2maQBrEcAUtwwRmtlRlduj85Q==
+X-Received: by 2002:aca:fc92:: with SMTP id a140mr603776oii.4.1606792806105;
+        Mon, 30 Nov 2020 19:20:06 -0800 (PST)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id 189sm127035oob.26.2020.11.30.19.20.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 30 Nov 2020 19:20:05 -0800 (PST)
+Date:   Mon, 30 Nov 2020 21:20:03 -0600
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: sdm845: Add gpi dma node
+Message-ID: <X8W2Y9gH7HBrx20v@builder.lan>
+References: <20201130063946.2060317-1-vkoul@kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201130063946.2060317-1-vkoul@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Lakshmi,
+On Mon 30 Nov 00:39 CST 2020, Vinod Koul wrote:
 
-On Fri, 2020-11-13 at 11:22 -0800, Lakshmi Ramasubramanian wrote:
-> The function prototype for the functions defined in ima.c for powerpc
-> are given in the header file ima.h. But this header file is not
-> included in ima.c resulting in compilation errors such as given below.
+> This add the device node for gpi_dma0 and gpi_dma1 instances found in
+> sdm845.
 > 
-> arch/powerpc/kexec/ima.c:56:5: error: no previous prototype for 'ima_get_kexec_buffer' [-Werror=missing-prototypes]
->    56 | int ima_get_kexec_buffer(void **addr, size_t *size)
->       |     ^~~~~~~~~~~~~~~~~~~~
+> Signed-off-by: Vinod Koul <vkoul@kernel.org>
+> ---
+>  arch/arm64/boot/dts/qcom/sdm845.dtsi | 45 ++++++++++++++++++++++++++++
+>  1 file changed, 45 insertions(+)
 > 
-> The function parameters for remove_ima_buffer() and
-> arch_ima_add_kexec_buffer() are not described in the function header
-> resulting in warnings such as given below.
-> 
-> arch/powerpc/kexec/ima.c:111: warning: Function parameter or member 'fdt' not described in 'remove_ima_buffer'
-> 
-> Include ima.h in ima.c for powerpc. Describe the function parameters for
-> remove_ima_buffer() and arch_ima_add_kexec_buffer().
-> 
-> Co-developed-by: Prakhar Srivastava <prsriva@linux.microsoft.com>
-> Signed-off-by: Prakhar Srivastava <prsriva@linux.microsoft.com>
-> Signed-off-by: Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> index 6465a6653ad9..a6f41678794c 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> @@ -1114,6 +1114,28 @@ opp-128000000 {
+>  			};
+>  		};
+>  
+> +		gpi_dma0: dma-controller@800000 {
+> +			#dma-cells = <3>;
 
-thanks,
+I know you like dma, but may I have the compatible etc first in the
+nodes? Perhaps move #dma-cells down by the other dma- properties?
 
-Reviewed-by:  Mimi Zohar <zohar@linux.ibm.com>
+> +			compatible = "qcom,sdm845-gpi-dma";
+> +			reg = <0 0x00800000 0 0x60000>;
+> +			interrupts = <GIC_SPI 244 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 245 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 246 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 247 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 248 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 249 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 250 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 251 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 252 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 253 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 254 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 255 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 256 IRQ_TYPE_LEVEL_HIGH>;
+> +			dma-channels = <13>;
+> +			dma-channel-mask = <0xfa>;
+> +			iommus = <&apps_smmu 0x0016 0x0>;
+> +		};
+> +
+>  		qupv3_id_0: geniqup@8c0000 {
+>  			compatible = "qcom,geni-se-qup";
+>  			reg = <0 0x008c0000 0 0x6000>;
+> @@ -1454,6 +1476,29 @@ uart7: serial@89c000 {
+>  			};
+>  		};
+>  
+> +		gpi_dma1: dma-controller@0xa00000 {
+> +			#dma-cells = <3>;
+> +			compatible = "qcom,sdm845-gpi-dma";
+> +			reg = <0 0x00a00000 0 0x60000>;
+> +			interrupts = <GIC_SPI 279 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 280 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 281 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 282 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 283 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 284 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 293 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 294 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 295 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 296 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 297 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 298 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 299 IRQ_TYPE_LEVEL_HIGH>;
+> +			dma-channels = <13>;
+> +			dma-channel-mask = <0xfa>;
+> +			iommus = <&apps_smmu 0x06d6 0x0>;
+> +			status = "disabled";
 
+I don't think it's nice to keep gpi_dma0 enabled and gpi_dma1 disabled.
+Either we do both enabled in sdm845.dtsi or we do both disabled and rely
+on the boards to enable what they need.
+
+Regards,
+Bjorn
+
+> +		};
+> +
+>  		qupv3_id_1: geniqup@ac0000 {
+>  			compatible = "qcom,geni-se-qup";
+>  			reg = <0 0x00ac0000 0 0x6000>;
+> -- 
+> 2.26.2
+> 
