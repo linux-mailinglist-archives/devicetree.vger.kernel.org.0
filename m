@@ -2,150 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D9A052C98FA
-	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 09:19:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AC8BF2C98E1
+	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 09:13:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726619AbgLAITi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Dec 2020 03:19:38 -0500
-Received: from mout.gmx.net ([212.227.15.15]:58495 "EHLO mout.gmx.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726343AbgLAITi (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 1 Dec 2020 03:19:38 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1606810636;
-        bh=mRSwhYo5MyWsCdHB5+e3Gx83UCUE0iBfViL+Q4vEyKM=;
-        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=IQJ3KKLuzJx7kX5OrkJhcmO59yN+1029w67QhfziVUyejA6/N5+FWQsA8CWc3mp8a
-         l4hj4FZJgRqazCFym3IK2TfjeO2hpd0x4+hGjr9fR466GiQkNYj1qg1Xgi3Fcdk76y
-         G1ZSa8T9giammzKjrSLPqURBY3AUGINuycdXe8pc=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from longitude ([37.201.214.162]) by mail.gmx.com (mrgmx004
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1MlNtP-1kKFx03OI9-00liNG; Tue, 01
- Dec 2020 09:17:15 +0100
-From:   =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
-To:     linux-kernel@vger.kernel.org
-Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Heiko Stuebner <heiko.stuebner@theobroma-systems.com>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Lubomir Rintel <lkundrak@v3.sk>,
-        Mark Brown <broonie@kernel.org>, allen <allen.chen@ite.com.tw>,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org, linux-pwm@vger.kernel.org,
-        linux-rtc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Heiko Stuebner <heiko@sntech.de>,
-        Josua Mayer <josua.mayer@jm0.eu>,
-        Andreas Kemnade <andreas@kemnade.info>,
-        Arnd Bergmann <arnd@arndb.de>, Daniel Palmer <daniel@0x0f.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>
-Subject: [PATCH v5 7/7] ARM: dts: imx50-kobo-aura: Add Netronix embedded controller
-Date:   Tue,  1 Dec 2020 02:15:13 +0100
-Message-Id: <20201201011513.1627028-8-j.neuschaefer@gmx.net>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20201201011513.1627028-1-j.neuschaefer@gmx.net>
-References: <20201201011513.1627028-1-j.neuschaefer@gmx.net>
+        id S1726390AbgLAINN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Dec 2020 03:13:13 -0500
+Received: from mail-vi1eur05on2106.outbound.protection.outlook.com ([40.107.21.106]:54048
+        "EHLO EUR05-VI1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726120AbgLAINN (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 1 Dec 2020 03:13:13 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=i7LWwyKCJLUShE4mocVP+IP+9hIZ/9BUdz2RhLVy6I38tv+7N5EnmgObuOdya2ewlzH+OzhfoIrXZgixudHvanMEY4o+z5GA+lVgU9gmRy+NRRm8xBQqc0QHuE0WynBlgF4XgWyWxDTNDrCwocUBLtFtb3KrVUR966oQCtdu6yPKbtKZr9f83VlWO21UGERdBpqjjEhbpwioSNUOmxZtLXKv9I1v1GtMzxVTl9uAFZvthPjF5sJA8HzQnVRxvRMwapODyPtIwaOdfyCtESSy/6UdNIpk35adhLuERvucxZXCGg+k9gQKJO7+BqafLlnxc1NPt1VvfGNmfiLXLTxv/A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=PFu8IchtZOeRmHXf5iVcFo2EuAipSvGbYA7AtnDYf2w=;
+ b=R9ec1/op6+pyDSM+TUbUNSgW1ZMGndaYPg6Jxe0ySq8s0AcaxdI/77/FZ2gK3dQb+69bmwsDFvYaJgrROk8TS/wmJlxu3bp7KBqdNfcgbNXcXnaEMd16jS2heXOjuygfub1tvjfflMFjxR/HC3HmIbUqzcbx9Cx3gt6eVzJhFGrIKuwJw3o5C/bZKGYoh/AMWxC1w09djeyjzOSJMUFTcibAei9jZVEZPePY7L3ijCOMIurxP60mS/VWH8FN3ZBE21ms0lA3guJXvwTbVuqmmd8ODflJnB3lj1OZwDExi2S79E/ujnMRu7/tiQuPZQaUTNCS6zS99JK+Lox12xPgbA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=kontron.de; dmarc=pass action=none header.from=kontron.de;
+ dkim=pass header.d=kontron.de; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mysnt.onmicrosoft.com;
+ s=selector2-mysnt-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=PFu8IchtZOeRmHXf5iVcFo2EuAipSvGbYA7AtnDYf2w=;
+ b=Ja+4mqKzVO5WKsW9ExJqfmaIpdoWq4qrSZUIJnzsN6ya9tsOoZjsPCS3lRU2H4Jiuq5n7hgmXLZ8aNp6QMCOtcOwZd/AGTBVXbxdfslCVL7cNH2CEg9WJtFUM+VSueySlgXYP5MH712bCzfrfqxDiUs5jbwcGNbTYB5PvgtPCgQ=
+Authentication-Results: gmail.com; dkim=none (message not signed)
+ header.d=none;gmail.com; dmarc=none action=none header.from=kontron.de;
+Received: from AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:208:157::14)
+ by AM0PR10MB2771.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:208:131::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3611.31; Tue, 1 Dec
+ 2020 08:12:23 +0000
+Received: from AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::9d5:953d:42a3:f862]) by AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::9d5:953d:42a3:f862%7]) with mapi id 15.20.3611.031; Tue, 1 Dec 2020
+ 08:12:23 +0000
+From:   Schrempf Frieder <frieder.schrempf@kontron.de>
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Charles Gorand <charles.gorand@effinnov.com>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-nfc@lists.01.org, netdev@vger.kernel.org,
+        Stephan Gerhold <stephan@gerhold.net>
+Subject: [PATCH v2] NFC: nxp-nci: Make firmware GPIO pin optional
+Date:   Tue,  1 Dec 2020 09:11:38 +0100
+Message-Id: <20201201081146.31332-1-frieder.schrempf@kontron.de>
+X-Mailer: git-send-email 2.17.1
+Content-Type: text/plain
+X-Originating-IP: [46.142.171.176]
+X-ClientProxiedBy: BEXP281CA0015.DEUP281.PROD.OUTLOOK.COM (2603:10a6:b10::25)
+ To AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:208:157::14)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:Cbp+ZxxFLt6uSqgwaiNybHmSG/zGeL63zhvHt9F5lx2AbHxq2sV
- 7lnQCNZlo22TyRxqdG8DRtu+oHo7PHLfysY3ZlpI1Qxbvx+43oTMI4KAPoJYYc9GmrZSiTN
- EU22/wwVBQZhYr8cDz5lwqP6IAWBwCsNvsiuE8IVBYtt8azDWItv+rlXyZnZ3wtSnHBpzle
- 7YTzlkIDJjfEll2nL9flQ==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:sCKVuFCAFfU=:+2W6b2deI1jF9uW9a7VSpM
- 2XjWtm5y38Yk+zrLFekMLK2VvP3KyaGRahTYEXDwrqFpj0m7oyUJFqf/wpHrcwFSzC+Q5xwnN
- KO/4EeE54BTAITBu4PvRQaZPuzBhM/aJWiRpV8P3i1FKc0ijJOwMVH0DoGAQppGlsndFJi4Yw
- R3S7Lcjicoo2ySHHubGIKpsVYOuQSeuwyS8s88H4sQKEv9gngxEdbmrz0rGDhxPnPnvK1Uxgj
- rUFe0nviA0OPziNC1ibAe9RTs2DBIF7WjBNYQdVFfbGSRh32LJ7kFjBsaUnPb59rgKG7Tdw4r
- 7d2UEIOe5284ZmDhuBJVOmHZo0fzt5++lnXGzkM80Dh7/p3Shn66629MFw/V4IJBJLzX0fu5y
- gTJutRqD2SylS2dVvofjMuSRZ9PHXuUy502HmFZhM5ve1fLgU+HtHpjqNjF3vhhKwI+Xhz1gv
- NnbgFPc9kcICepn/JfiT6WBMbJPbxsSKHetaM7dyDoVAgIQK80CPrJX3WX+cpE0KZBvDYq0as
- y0TRwrAW2WeUxLWmNoSMX4YKy5eJ2+Twynl8JtR2SpoLJVKSGPIqHL4+em8Up+sgL0gVla1/8
- F2sqkAqWjgD08U+JBZ49sbRRYqYl7KZL7XLfK4TVl+iiF6+ksN4VB6k/B0hnjFdK9bMUbgtNU
- MZvy3VDIk7dbMTX+7JAW2sbWe5kGsh5jKVff6MGZpkIZXXGXmN77aAn+hDvpXXIGOAbDhtreD
- ep3XmWcLcKpFkY4ji5C4cWstFb0fCd7Hmw21sRS5AhS8+g1HneFPXujIwGSR5DdlmQg3HWnG8
- e/Gw4/hS6t9Gqx0i1IGlqH0jcUiEn1KHbE1B7kPlM+t4hZcUPK6EIdweTnuz4isN/HTFEA6Ce
- 5DjO77E+J1qkcvmzM23g==
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from fs-work.localdomain (46.142.171.176) by BEXP281CA0015.DEUP281.PROD.OUTLOOK.COM (2603:10a6:b10::25) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3632.6 via Frontend Transport; Tue, 1 Dec 2020 08:12:22 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 6ed47b71-d9d8-487d-3d60-08d895d0d4c6
+X-MS-TrafficTypeDiagnostic: AM0PR10MB2771:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <AM0PR10MB27719009A0AC6056C19E4D84E9F40@AM0PR10MB2771.EURPRD10.PROD.OUTLOOK.COM>
+X-MS-Oob-TLC-OOBClassifiers: OLM:5797;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: aSVMowvIA4ssfiU2RSFwL9aKYzqWOqG7OFS+btYDwRiq1wWQrnQuXnPBdKhor9MDe5lE0ymCJ1FaHoYK3FqOOG+szMiaWqCDRGI+/XK5JxVvm5/0GvUYy1jP1BQphR5ywCnddUUm134s+4vHlvo5gG1hdlOFyo0wvq3sY5aFJvmsxvkum7F/N0QcQz5/x+N3la8e57AZujSy58Ps2RCLYdz8HvdoWqRFQhpExUa8ckohL/Yj1fsg4hi0EX6ecoitVkAw/U3weCCMb3NDpg1VCmgFRI/v4GLkDBvzGMj0kfueSfkC2DWIP5QInX+EDf7Ly7dm+LivTkOfx91I/wVvGw==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(4636009)(136003)(366004)(346002)(39850400004)(396003)(376002)(6512007)(2906002)(4326008)(478600001)(52116002)(6666004)(1076003)(86362001)(8936002)(5660300002)(8676002)(2616005)(110136005)(316002)(956004)(54906003)(6486002)(6506007)(26005)(36756003)(16526019)(66946007)(186003)(66476007)(66556008)(83380400001)(7049001);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?Qfs8mUQ8Ld+VklYM4IEPV6tdaOUZ6yYpWlHjxW8gCc0yb9zPwE1cAD5NdmaF?=
+ =?us-ascii?Q?5VCDauADuwaibnxQDkxTP5BGQu7Bcq/zdVXPM1FJNC9QQAIsV8f2H2lulFt5?=
+ =?us-ascii?Q?DEZuT1tZ/VViFCvpniZZUZzJxsOkh0Q2pdqWbszwstErmgvoR06tLZ9DTdFj?=
+ =?us-ascii?Q?76FCmduf2iwfAcBCuUgRzFsejV4ZQLbr6RpCeCDbWFY40e1qxTrPC7/Bqt+U?=
+ =?us-ascii?Q?uTt2c0iVyP6l//r9XXPREgBNsvG60EStO/zrC6fzv1psglgUBFrRNqnncxV0?=
+ =?us-ascii?Q?DhdFZUTeLOuxjwSZa0aKuM0Ojr7soROqe5sqpGbhpU7zX6Z2F43TgbdmVdbH?=
+ =?us-ascii?Q?yyMCBedKtoDWSkJB98yv3o7a58AlsUVVeDQiIOHqjAlI0XBn6pjArdAzmUc0?=
+ =?us-ascii?Q?1lwkt2/e2Q+Sv9AOweggLXBIHw61c0pJ80cjwjs/czFqLLyMJyFPmDzsUv0P?=
+ =?us-ascii?Q?oAukA8yaTx3ZISsaRND64oknHTWAl9BGD4h0YaJY1rsHfUlp8rbVkWggnvv6?=
+ =?us-ascii?Q?c+T2asolOyiG92wDFHziBjFOsxLv7UwQqBtqLRi/PTGxJxSnN98jlNndLB95?=
+ =?us-ascii?Q?HcqHndmcip5aEmUYDCMFyy1s/C+UVRZtUZEAaxbfTc8dCkD89NarHq1tt9rL?=
+ =?us-ascii?Q?TXZqoL2UAbVDfrRqqzTBnRND2augcj0McqVRGOjaj2vOy2qfYyeoLrU0PmJf?=
+ =?us-ascii?Q?fd6qV5X3q309YEEjvlNFmfEuoZustLHE1EGTeRT3ygAas4WdhwixCAIaVYuy?=
+ =?us-ascii?Q?n8hL+jtY/l0E3EKjFclgeX16/HZi4YIXGOnK7NghuaLRiV9F07ORi68/r6Vn?=
+ =?us-ascii?Q?mbKgN/WFunErUtp4C3KltctCU6eHqNghjn12KagHA9f0rcIqro6fwbWtoWTS?=
+ =?us-ascii?Q?Gd4OLghTuILcZE9Iwk67k3HcWRc1iqipeLT2vauUzXIf08LyKjYSSIbjKFse?=
+ =?us-ascii?Q?xCezjHN0pq20wXiXgnUjASLVtjI/R8o7tG9zevTopSSEfdj09TS+9GecoAfE?=
+ =?us-ascii?Q?yheb?=
+X-OriginatorOrg: kontron.de
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6ed47b71-d9d8-487d-3d60-08d895d0d4c6
+X-MS-Exchange-CrossTenant-AuthSource: AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Dec 2020 08:12:23.0341
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 8c9d3c97-3fd9-41c8-a2b1-646f3942daf1
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: CoJASr+x/O3ldhQwZ/EFe6JZq7+Tpog0rMd9PrFtGK0bmmH12nToSxFnLVXR1yGIDM6rfUw16MafJB+s7A5xxIASsN48A6Pswk/WVgioRoY=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR10MB2771
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable the Netronix EC on the Kobo Aura ebook reader.
+From: Frieder Schrempf <frieder.schrempf@kontron.de>
 
-Several features are still missing:
- - Frontlight/backlight. The vendor kernel drives the frontlight LED
-   using the PWM output of the EC and an additional boost pin that
-   increases the brightness.
- - Battery monitoring
- - Interrupts for RTC alarm and low-battery events
+There are other NXP NCI compatible NFC controllers such as the PN7150
+that use an integrated firmware and therefore do not have a GPIO to
+select firmware downloading mode. To support these kind of chips,
+let's make the firmware GPIO optional.
 
-Signed-off-by: Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>
-=2D--
+Signed-off-by: Frieder Schrempf <frieder.schrempf@kontron.de>
 
-v5:
-- no changes
+---
+Changes in v2:
+  * Remove unneeded null check for phy->gpiod_fw
+---
+ Documentation/devicetree/bindings/net/nfc/nxp-nci.txt | 2 +-
+ drivers/nfc/nxp-nci/i2c.c                             | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-v4:
-- Add 'grp' suffix to pinctrl node
-
-v3:
-- https://lore.kernel.org/lkml/20200925050818.2512375-1-j.neuschaefer@gmx.=
-net/
-- Remove interrupt-controller property from embedded-controller node
-- subnodes of embedded-controller node in to the main node
-
-v2:
-- https://lore.kernel.org/lkml/20200905144503.1067124-3-j.neuschaefer@gmx.=
-net/
-- Fix pwm-cells property (should be 2, not 1)
-=2D--
- arch/arm/boot/dts/imx50-kobo-aura.dts | 16 +++++++++++++++-
- 1 file changed, 15 insertions(+), 1 deletion(-)
-
-diff --git a/arch/arm/boot/dts/imx50-kobo-aura.dts b/arch/arm/boot/dts/imx=
-50-kobo-aura.dts
-index 97cfd970fe742..82ce8c43be867 100644
-=2D-- a/arch/arm/boot/dts/imx50-kobo-aura.dts
-+++ b/arch/arm/boot/dts/imx50-kobo-aura.dts
-@@ -143,10 +143,24 @@ &i2c3 {
- 	pinctrl-0 =3D <&pinctrl_i2c3>;
- 	status =3D "okay";
-
--	/* TODO: embedded controller at 0x43 */
-+	embedded-controller@43 {
-+		pinctrl-names =3D "default";
-+		pinctrl-0 =3D <&pinctrl_ec>;
-+		compatible =3D "netronix,ntxec";
-+		reg =3D <0x43>;
-+		system-power-controller;
-+		interrupts-extended =3D <&gpio4 11 IRQ_TYPE_EDGE_FALLING>;
-+		#pwm-cells =3D <2>;
-+	};
- };
-
- &iomuxc {
-+	pinctrl_ec: ecgrp {
-+		fsl,pins =3D <
-+			MX50_PAD_CSPI_SS0__GPIO4_11		0x0	/* INT */
-+		>;
-+	};
-+
- 	pinctrl_gpiokeys: gpiokeysgrp {
- 		fsl,pins =3D <
- 			MX50_PAD_CSPI_MISO__GPIO4_10		0x0
-=2D-
-2.29.2
+diff --git a/Documentation/devicetree/bindings/net/nfc/nxp-nci.txt b/Documentation/devicetree/bindings/net/nfc/nxp-nci.txt
+index cfaf88998918..cb2385c277d0 100644
+--- a/Documentation/devicetree/bindings/net/nfc/nxp-nci.txt
++++ b/Documentation/devicetree/bindings/net/nfc/nxp-nci.txt
+@@ -6,11 +6,11 @@ Required properties:
+ - reg: address on the bus
+ - interrupts: GPIO interrupt to which the chip is connected
+ - enable-gpios: Output GPIO pin used for enabling/disabling the chip
+-- firmware-gpios: Output GPIO pin used to enter firmware download mode
+ 
+ Optional SoC Specific Properties:
+ - pinctrl-names: Contains only one value - "default".
+ - pintctrl-0: Specifies the pin control groups used for this controller.
++- firmware-gpios: Output GPIO pin used to enter firmware download mode
+ 
+ Example (for ARM-based BeagleBone with NPC100 NFC controller on I2C2):
+ 
+diff --git a/drivers/nfc/nxp-nci/i2c.c b/drivers/nfc/nxp-nci/i2c.c
+index 9f60e4dc5a90..7e451c10985d 100644
+--- a/drivers/nfc/nxp-nci/i2c.c
++++ b/drivers/nfc/nxp-nci/i2c.c
+@@ -286,7 +286,7 @@ static int nxp_nci_i2c_probe(struct i2c_client *client,
+ 		return PTR_ERR(phy->gpiod_en);
+ 	}
+ 
+-	phy->gpiod_fw = devm_gpiod_get(dev, "firmware", GPIOD_OUT_LOW);
++	phy->gpiod_fw = devm_gpiod_get_optional(dev, "firmware", GPIOD_OUT_LOW);
+ 	if (IS_ERR(phy->gpiod_fw)) {
+ 		nfc_err(dev, "Failed to get FW gpio\n");
+ 		return PTR_ERR(phy->gpiod_fw);
+-- 
+2.17.1
 
