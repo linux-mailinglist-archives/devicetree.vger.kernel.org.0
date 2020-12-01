@@ -2,146 +2,239 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0213D2CA29F
-	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 13:24:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C0632CA2B4
+	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 13:31:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728372AbgLAMXk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Dec 2020 07:23:40 -0500
-Received: from gproxy3-pub.mail.unifiedlayer.com ([69.89.30.42]:41779 "EHLO
-        gproxy3-pub.mail.unifiedlayer.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726202AbgLAMXj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Dec 2020 07:23:39 -0500
-Received: from cmgw11.unifiedlayer.com (unknown [10.9.0.11])
-        by gproxy3.mail.unifiedlayer.com (Postfix) with ESMTP id 06C3B40382
-        for <devicetree@vger.kernel.org>; Tue,  1 Dec 2020 05:22:30 -0700 (MST)
-Received: from bh-25.webhostbox.net ([208.91.199.152])
-        by cmsmtp with ESMTP
-        id k4ftkmHGldCH5k4ftkqbKM; Tue, 01 Dec 2020 05:22:30 -0700
-X-Authority-Reason: nr=8
-X-Authority-Analysis: v=2.3 cv=MYVCRa3f c=1 sm=1 tr=0
- a=QNED+QcLUkoL9qulTODnwA==:117 a=2cfIYNtKkjgZNaOwnGXpGw==:17
- a=dLZJa+xiwSxG16/P+YVxDGlgEgI=:19 a=kj9zAlcOel0A:10:nop_charset_1
- a=zTNgK-yGK50A:10:nop_rcvd_month_year
- a=evQFzbml-YQA:10:endurance_base64_authed_username_1 a=_jlGtV7tAAAA:8
- a=QyXUC8HyAAAA:8 a=B5D4Pc9JQnwYv9h2Z4UA:9 a=CjuIK1q_8ugA:10:nop_charset_2
- a=nlm17XC03S6CtCLSeiRr:22
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=roeck-us.net; s=default; h=In-Reply-To:Content-Type:MIME-Version:References
-        :Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding
-        :Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-        List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=O5DDS3v3Of4yqWH8zDGHikBnjNwJ0jdPQ3vhYwQldXY=; b=VC5aalLSkxGqCSCHVcfH6EFmcZ
-        x5PLdgFjrgbDjAOWD6gdVsev5FNQMsSJfcsPi8ArQpVrkO0T6m1a8HFe/1YJHbmJXPMJzPv3KWKfp
-        x1xhtJYjY/a7Ui8mOoNazk7ap8CZ+pVs2kYaUZRmsPEL022e8rQBUXOt8BKxydMDxJqIlN1yvHaRC
-        kmF4gxta60YDafAIQPtTPqcAqFv/YmxCvHqZApyWyTI0sX7VA/dg0BRf60N9vBoAVaNtVxouhZVNR
-        ShtmvBe6RJGOS5XSF9tpG1LA830NJthwAngfhx/hbrxKO78eregvjvZmaiY0h1grdrd+wivud2V7g
-        jTy51owg==;
-Received: from 108-223-40-66.lightspeed.sntcca.sbcglobal.net ([108.223.40.66]:59646 helo=localhost)
-        by bh-25.webhostbox.net with esmtpa (Exim 4.93)
-        (envelope-from <linux@roeck-us.net>)
-        id 1kk4fs-0045Po-VF; Tue, 01 Dec 2020 12:22:29 +0000
-Date:   Tue, 1 Dec 2020 04:22:28 -0800
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     "Ayyathurai, Vijayakannan" <vijayakannan.ayyathurai@intel.com>
-Cc:     "wim@linux-watchdog.org" <wim@linux-watchdog.org>,
+        id S1727908AbgLAMaT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Dec 2020 07:30:19 -0500
+Received: from imap3.hz.codethink.co.uk ([176.9.8.87]:51796 "EHLO
+        imap3.hz.codethink.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726619AbgLAMaT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Dec 2020 07:30:19 -0500
+Received: from cpc79921-stkp12-2-0-cust288.10-2.cable.virginm.net ([86.16.139.33] helo=[192.168.0.18])
+        by imap3.hz.codethink.co.uk with esmtpsa  (Exim 4.92 #3 (Debian))
+        id 1kk4mg-0007ti-NP; Tue, 01 Dec 2020 12:29:30 +0000
+Subject: Re: [PATCH v2 3/5] soc: add polarfire soc system controller
+To:     Damien Le Moal <Damien.LeMoal@wdc.com>,
+        "conor.dooley@microchip.com" <conor.dooley@microchip.com>,
         "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>,
+        "jassisinghbrar@gmail.com" <jassisinghbrar@gmail.com>,
+        "aou@eecs.berkeley.edu" <aou@eecs.berkeley.edu>,
+        "paul.walmsley@sifive.com" <paul.walmsley@sifive.com>,
+        "palmer@dabbelt.com" <palmer@dabbelt.com>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "andriy.shevchenko@linux.intel.com" 
-        <andriy.shevchenko@linux.intel.com>,
-        "mgross@linux.intel.com" <mgross@linux.intel.com>,
-        "Wan Mohamad, Wan Ahmad Zainie" 
-        <wan.ahmad.zainie.wan.mohamad@intel.com>,
-        "Raja Subramanian, Lakshmi Bai" 
-        <lakshmi.bai.raja.subramanian@intel.com>
-Subject: Re: [PATCH v2 1/2] watchdog: Add watchdog driver for Intel Keembay
- Soc
-Message-ID: <20201201122228.GA50515@roeck-us.net>
-References: <cover.1605028524.git.vijayakannan.ayyathurai@intel.com>
- <870c2fda29b290ee6b9f88b15bd1f173bfad8723.1605028524.git.vijayakannan.ayyathurai@intel.com>
- <20201130220538.GA42581@roeck-us.net>
- <DM6PR11MB4250802106A1795B78DF3C31FBF40@DM6PR11MB4250.namprd11.prod.outlook.com>
+        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>
+Cc:     "cyril.jean@microchip.com" <cyril.jean@microchip.com>,
+        "david.abdurachmanov@gmail.com" <david.abdurachmanov@gmail.com>,
+        "daire.mcnamara@microchip.com" <daire.mcnamara@microchip.com>,
+        Anup Patel <Anup.Patel@wdc.com>,
+        Atish Patra <Atish.Patra@wdc.com>,
+        "lewis.hanly@microchip.com" <lewis.hanly@microchip.com>
+References: <20201201110257.28507-1-conor.dooley@microchip.com>
+ <CH2PR04MB6522C138E30D5E53FD1317F2E7F40@CH2PR04MB6522.namprd04.prod.outlook.com>
+ <33138723-73d2-1460-2158-bdfc51b4c5c4@codethink.co.uk>
+ <CH2PR04MB6522AA25CA6F470CF2DCBCB7E7F40@CH2PR04MB6522.namprd04.prod.outlook.com>
+From:   Ben Dooks <ben.dooks@codethink.co.uk>
+Organization: Codethink Limited.
+Message-ID: <44a88fda-394c-7324-c996-f33c4b3a0dac@codethink.co.uk>
+Date:   Tue, 1 Dec 2020 12:29:29 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <DM6PR11MB4250802106A1795B78DF3C31FBF40@DM6PR11MB4250.namprd11.prod.outlook.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - bh-25.webhostbox.net
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - roeck-us.net
-X-BWhitelist: no
-X-Source-IP: 108.223.40.66
-X-Source-L: No
-X-Exim-ID: 1kk4fs-0045Po-VF
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-Source-Sender: 108-223-40-66.lightspeed.sntcca.sbcglobal.net (localhost) [108.223.40.66]:59646
-X-Source-Auth: guenter@roeck-us.net
-X-Email-Count: 5
-X-Org:  HG=direseller_whb_net_legacy;ORG=directi;
-X-Source-Cap: cm9lY2s7YWN0aXZzdG07YmgtMjUud2ViaG9zdGJveC5uZXQ=
-X-Local-Domain: yes
+In-Reply-To: <CH2PR04MB6522AA25CA6F470CF2DCBCB7E7F40@CH2PR04MB6522.namprd04.prod.outlook.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 01, 2020 at 06:19:09AM +0000, Ayyathurai, Vijayakannan wrote:
-> Hi Guenter,
+On 01/12/2020 12:21, Damien Le Moal wrote:
+> On 2020/12/01 21:18, Ben Dooks wrote:
+>> On 01/12/2020 12:00, Damien Le Moal wrote:
+>>> On 2020/12/01 20:03, conor.dooley@microchip.com wrote:
+>>>> From: Conor Dooley <conor.dooley@microchip.com>
+>>>>
+>>>> This driver provides an interface for other drivers to access the
+>>>> functions of the system controller on the Microchip PolarFire SoC.
+>>>>
+>>>> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+>>>> ---
+>>>>    drivers/soc/Kconfig                         |   1 +
+>>>>    drivers/soc/Makefile                        |   1 +
+>>>>    drivers/soc/microchip/Kconfig               |  10 ++
+>>>>    drivers/soc/microchip/Makefile              |   1 +
+>>>>    drivers/soc/microchip/mpfs_sys_controller.c | 135 ++++++++++++++++++++
+>>>>    5 files changed, 148 insertions(+)
+>>>>    create mode 100644 drivers/soc/microchip/Kconfig
+>>>>    create mode 100644 drivers/soc/microchip/Makefile
+>>>>    create mode 100644 drivers/soc/microchip/mpfs_sys_controller.c
+>>>>
+>>>> diff --git a/drivers/soc/Kconfig b/drivers/soc/Kconfig
+>>>> index 425ab6f7e375..22cb097bcbdc 100644
+>>>> --- a/drivers/soc/Kconfig
+>>>> +++ b/drivers/soc/Kconfig
+>>>> @@ -9,6 +9,7 @@ source "drivers/soc/bcm/Kconfig"
+>>>>    source "drivers/soc/fsl/Kconfig"
+>>>>    source "drivers/soc/imx/Kconfig"
+>>>>    source "drivers/soc/ixp4xx/Kconfig"
+>>>> +source "drivers/soc/microchip/Kconfig"
+>>>>    source "drivers/soc/mediatek/Kconfig"
+>>>>    source "drivers/soc/qcom/Kconfig"
+>>>>    source "drivers/soc/renesas/Kconfig"
+>>>> diff --git a/drivers/soc/Makefile b/drivers/soc/Makefile
+>>>> index 36452bed86ef..fb084cf2d12e 100644
+>>>> --- a/drivers/soc/Makefile
+>>>> +++ b/drivers/soc/Makefile
+>>>> @@ -14,6 +14,7 @@ obj-$(CONFIG_ARCH_GEMINI)	+= gemini/
+>>>>    obj-y				+= imx/
+>>>>    obj-$(CONFIG_ARCH_IXP4XX)	+= ixp4xx/
+>>>>    obj-$(CONFIG_SOC_XWAY)		+= lantiq/
+>>>> +obj-$(CONFIG_SOC_MICROCHIP_POLARFIRE)	+= microchip/
+>>>>    obj-y				+= mediatek/
+>>>>    obj-y				+= amlogic/
+>>>>    obj-y				+= qcom/
+>>>> diff --git a/drivers/soc/microchip/Kconfig b/drivers/soc/microchip/Kconfig
+>>>> new file mode 100644
+>>>> index 000000000000..40e5203c8ba0
+>>>> --- /dev/null
+>>>> +++ b/drivers/soc/microchip/Kconfig
+>>>> @@ -0,0 +1,10 @@
+>>>> +config MPFS_SYS_CONTROLLER
+>>>> +	tristate "MPFS_SYS_CONTROLLER"
+>>>> +	depends on MPFS_MBOX
+>>>> +	help
+>>>> +	  This driver adds support for the Polarfire SoC system controller.
+>>>> +
+>>>> +	  To compile this driver as a module, choose M here. the
+>>>> +	  module will be called mpfs_system_controller.
+>>>> +
+>>>> +	  If unsure, say N.
+>>>> diff --git a/drivers/soc/microchip/Makefile b/drivers/soc/microchip/Makefile
+>>>> new file mode 100644
+>>>> index 000000000000..23b1f42a37db
+>>>> --- /dev/null
+>>>> +++ b/drivers/soc/microchip/Makefile
+>>>> @@ -0,0 +1 @@
+>>>> +obj-$(CONFIG_MPFS_SYS_CONTROLLER)	+= mpfs_sys_controller.o
+>>>> diff --git a/drivers/soc/microchip/mpfs_sys_controller.c b/drivers/soc/microchip/mpfs_sys_controller.c
+>>>> new file mode 100644
+>>>> index 000000000000..875a0671e196
+>>>> --- /dev/null
+>>>> +++ b/drivers/soc/microchip/mpfs_sys_controller.c
+>>>> @@ -0,0 +1,135 @@
+>>>> +// SPDX-License-Identifier: GPL-2.0
+>>>> +/*
+>>>> + * Microchip MPFS system controller driver
+>>>> + *
+>>>> + * Copyright (c) 2020 Microchip Corporation. All rights reserved.
+>>>> + *
+>>>> + * Author: Conor Dooley <conor.dooley@microchip.com>
+>>>> + *
+>>>> + */
+>>>> +
+>>>> +#include <linux/slab.h>
+>>>> +#include <linux/module.h>
+>>>> +#include <linux/interrupt.h>
+>>>> +#include <linux/of_platform.h>
+>>>> +#include <linux/mailbox_client.h>
+>>>> +#include <linux/platform_device.h>
+>>>> +#include <soc/microchip/mpfs.h>
+>>>> +
+>>>> +static DEFINE_MUTEX(transaction_lock);
+>>>> +
+>>>> +struct mpfs_sys_controller {
+>>>> +	struct mbox_client client;
+>>>> +	struct mbox_chan *chan;
+>>>> +	struct completion c;
+>>>> +	u32 enabled;
+>>>> +	void *response;
+>>>> +	u16 response_size_bytes;
+>>>> +};
+>>>> +
+>>>> +int mpfs_blocking_transaction(struct mpfs_sys_controller *mpfs_client, void *msg,
+>>>> +			      void *response, u16 response_size_bytes)
+>>>> +{
+>>>> +	int ret;
+>>>> +
+>>>> +	mpfs_client->response = response;
+>>>> +	mpfs_client->response_size_bytes = response_size_bytes;
+>>>> +
+>>>> +	mutex_lock_interruptible(&transaction_lock);
+>>>> +
+>>>> +	reinit_completion(&mpfs_client->c);
+>>>> +
+>>>> +	ret = mbox_send_message(mpfs_client->chan, msg);
+>>>> +	if (ret >= 0) {
+>>>> +		if (wait_for_completion_timeout(&mpfs_client->c, HZ)) {
+>>>> +			ret = 0;
+>>>> +		} else {
+>>>> +			ret = -ETIMEDOUT;
+>>>> +			dev_warn(mpfs_client->client.dev, "MPFS sys controller transaction timeout");
+>>>> +		}
+>>>> +	} else {
+>>>> +		dev_err(mpfs_client->client.dev,
+>>>> +			"mpfs sys controller transaction returned %d\r\n", ret);
+>>>> +	}
+>>>> +
+>>>> +	mutex_unlock(&transaction_lock);
+>>>> +
+>>>> +	return ret;
+>>>> +}
+>>>> +EXPORT_SYMBOL(mpfs_blocking_transaction);
+>>>> +
+>>>> +static void rx_callback(struct mbox_client *client, void *msg)
+>>>> +{
+>>>> +	struct mpfs_sys_controller *mpfs_client =
+>>>> +		container_of(client, struct mpfs_sys_controller, client);
+>>>> +
+>>>> +	memcpy(mpfs_client->response, (u8 *)msg,
+>>>> +	       mpfs_client->response_size_bytes);
+>>>> +
+>>>> +	complete(&mpfs_client->c);
+>>>> +}
+>>>> +
+>>>> +static int mpfs_sys_controller_probe(struct platform_device *pdev)
+>>>> +{
+>>>> +	struct device *dev = &pdev->dev;
+>>>> +	struct mpfs_sys_controller *mpfs_client;
+>>>> +
+>>>> +	mpfs_client = devm_kzalloc(dev, sizeof(*mpfs_client), GFP_KERNEL);
+>>>> +	if (!mpfs_client)
+>>>> +		return -ENOMEM;
+>>>> +
+>>>> +	mpfs_client->client.dev = dev;
+>>>> +	mpfs_client->client.rx_callback = rx_callback;
+>>>> +	mpfs_client->client.tx_block = 1U;
+>>>> +
+>>>> +	mpfs_client->chan = mbox_request_channel_byname(&mpfs_client->client,
+>>>> +							"mbox-mpfs");
+>>>> +	if (IS_ERR(mpfs_client->chan)) {
+>>>> +		int ret = PTR_ERR(mpfs_client->chan);
+>>>> +
+>>>> +		if (ret != -EPROBE_DEFER)
+>>>> +			dev_err(dev, "Failed to get mbox channel: %d\n", ret);
+>>>> +		return ret;
+>>>
+>>> You can replace all of this with
+>>>
+>>> 		return dev_err_probe(dev, PTR_ERR(mpfs_client->chan),
+>>> 				     ""Failed to get mbox channel\n");
+>>
+>> you'll spam the error log if you get a lot of probe defferals.
+>> I think the code as is fine.
 > 
-> > From: Guenter Roeck <linux@roeck-us.net>
-> > 
-> > On Wed, Nov 11, 2020 at 01:53:07AM +0800,
-> > vijayakannan.ayyathurai@intel.com wrote:
-> > > From: Vijayakannan Ayyathurai <vijayakannan.ayyathurai@intel.com>
-> > >
-> > > Intel Keembay Soc requires watchdog timer support.
-> > > Add watchdog driver to enable this.
-> > >
-> > > +static void keembay_wdt_set_timeout_reg(struct watchdog_device *wdog,
-> > bool ping)
-> > > +{
-> > > +	struct keembay_wdt *wdt = watchdog_get_drvdata(wdog);
-> > > +	u32 th_val = 0;
-> > > +
-> > > +	if (ping)
-> > > +		keembay_wdt_writel(wdt, TIM_WATCHDOG, wdog->timeout *
-> > wdt->rate);
-> > > +
-> > > +	if (!ping && wdog->pretimeout) {
-> > > +		th_val = wdog->timeout - wdog->pretimeout;
-> > > +		keembay_wdt_writel(wdt, TIM_WATCHDOG_INT_THRES, th_val
-> > * wdt->rate);
-> > > +	}
-> > > +
-> > > +	if (!ping)
-> > > +		keembay_wdt_writel(wdt, TIM_WATCHDOG, wdog->timeout *
-> > wdt->rate);
-> > 
-> > I am a bit at loss here. This seems unnecessarily complex. Why not just the
-> > following ?
-> > 
+> Please look at that function code: it does not print anything if the error is
+> -EPROBE_DEFER.
 > 
-> Sure. I can follow the below way.
-> Let me know if there is further comments to improve for the next version.
-> 
-No, that was all. Driver looks good otherwise.
 
-Guenter
+ah, ok.
 
-> > 	if (!ping && wdog->pretimeout) {
-> > 		th_val = wdog->timeout - wdog->pretimeout;
-> > 		keembay_wdt_writel(wdt, TIM_WATCHDOG_INT_THRES, th_val
-> > * wdt->rate);
-> > 	}
-> > 	keembay_wdt_writel(wdt, TIM_WATCHDOG, wdog->timeout * wdt-
-> > >rate);
-> > 
-> > Thanks,
-> > Guenter
-> 
-> Thanks,
-> Vijay
+
+
+
+-- 
+Ben Dooks				http://www.codethink.co.uk/
+Senior Engineer				Codethink - Providing Genius
+
+https://www.codethink.co.uk/privacy.html
