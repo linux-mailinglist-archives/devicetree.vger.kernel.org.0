@@ -2,85 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 445772CA6D5
-	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 16:19:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C49C82CA72F
+	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 16:38:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387592AbgLAPR4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Dec 2020 10:17:56 -0500
-Received: from mail.kernel.org ([198.145.29.99]:37854 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2390132AbgLAPRz (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 1 Dec 2020 10:17:55 -0500
-Received: from localhost (cpc102334-sgyl38-2-0-cust884.18-2.cable.virginm.net [92.233.91.117])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 835362084C;
-        Tue,  1 Dec 2020 15:17:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1606835835;
-        bh=dGfNSOBgGRBJkk/Dgt6x48Q5cXIZYVgrqNOCHjMDkls=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=jm01DLEJUVd9ljYXUFOFnvDXYouaD7xBo/EfaVWKNbXZaKWnA8Enq2kgNj3Dzr65D
-         9+v/oLboL5EjgttiJnoat4rw1L/ku95iNEl3J7Dtn4AlshxKZvoGi4tm95B8LEE38b
-         6KKT/FCY/dFGKul8AkDWrjXE1u12QzCJedmi23XQ=
-Date:   Tue, 1 Dec 2020 15:16:45 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Shane Chien <shane.chien@mediatek.com>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        devicetree@vger.kernel.org, wsd_upstream@mediatek.com,
-        alsa-devel@alsa-project.org, jiaxin.yu@mediatek.com,
-        chipeng.chang@mediatek.com, jeter.chen@mediatek.com,
-        tzungbi@google.com, fan.chen@mediatek.com,
-        Hsin-Hsiung.Wang@mediatek.com
-Subject: Re: [RFC] ASoC: Add compatible for mt6359-sound device
-Message-ID: <20201201151645.GI5239@sirena.org.uk>
-References: <1606801293-19472-1-git-send-email-shane.chien@mediatek.com>
+        id S2388049AbgLAPh4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Dec 2020 10:37:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56904 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2387532AbgLAPh4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Dec 2020 10:37:56 -0500
+Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com [IPv6:2a00:1450:4864:20::341])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4CF86C0613D4
+        for <devicetree@vger.kernel.org>; Tue,  1 Dec 2020 07:37:16 -0800 (PST)
+Received: by mail-wm1-x341.google.com with SMTP id k10so3826624wmi.3
+        for <devicetree@vger.kernel.org>; Tue, 01 Dec 2020 07:37:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=v1tdT9VkIaH9wWJpbxE5lJpDmELxG1sVxZZj9o9uu3A=;
+        b=fIAyafuTplF29ELTSUubZtnC1Dyco6rIUzftoOb0UqSkgUFVmFCEURfWkTQ1A+3GRJ
+         DQBxJqPptP/Nf9Ety2eKQKTY2hSnVdBl1RuGBL9rZHpCnav58Fs3NmqApk4zVvAI07Lt
+         D+IFze3fa5mS+CKy35+rNPzCy3KY7ihbliGjjKRlGJzj5IFcjuxqj78Z7LmQMpLisXPX
+         U0fFlB9UiHNHcmE8wefkQ0T9CTVNd99+QQzKdJojbdmBnn7RQqUp59FQhX0HUZqR3FNV
+         B3/r7gBGIsVyG9gdMt7KWzr1qtd+ZBr4Gs4x8MUOh/23vGgkJzNEvOmHzw8hC7OC4rKX
+         CU4A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=v1tdT9VkIaH9wWJpbxE5lJpDmELxG1sVxZZj9o9uu3A=;
+        b=S7OwOZH/uXXAvhDEHQ4Ng51pjznlWVwf3EYYXUpzGcte8lLimSdu4rokhjJHy2uxL8
+         +60unmWbm9ShxezQqT+rVDwD/IPpv2XVA4wudnFjLsqFI5ngGheWtN2+nnDuWoow99Dm
+         QzSoB4lndBdR/7k8Ld7cpLfd3TuzBtBbD5tkeQMInM6y7MiUYlRuV7G4eg/DNtkBPtzS
+         DvYL9CaVRYNlkFeWwUFhbkcNGCdfvA9nu4qAkPPWs4GBF07iy1vXFt0//vKWhPvEM8aY
+         rfmgAA+8r0Hsaz91CmmWlMgWjQVNLb5YL6vUJ8GO/bZaMr8Tf3vqHWGzoMkhsgMKWa5p
+         x+mg==
+X-Gm-Message-State: AOAM531LdxtLDAVo1SpOx4mp1x7wu+JSvzew/DMIc6Jeq7OS3DWa/NS5
+        CAZxCNV0Mqbgy6cosVMQrZ8YHA==
+X-Google-Smtp-Source: ABdhPJwIXAaeDJBvwMcw42rQ2vmRrhH0lyO+aKysIJbAeKzKRYsHiu/BePVKP1XpaPQj5dQxkkJ15g==
+X-Received: by 2002:a1c:240a:: with SMTP id k10mr3190455wmk.173.1606837035050;
+        Tue, 01 Dec 2020 07:37:15 -0800 (PST)
+Received: from srini-hackbox.lan (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
+        by smtp.gmail.com with ESMTPSA id y7sm302171wmb.37.2020.12.01.07.37.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 01 Dec 2020 07:37:14 -0800 (PST)
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+To:     bjorn.andersson@linaro.org
+Cc:     linux-arm-msm@vger.kernel.org, agross@kernel.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Subject: [PATCH 0/6] arm64: dts: qcom: qrb5165-rb5 audio support
+Date:   Tue,  1 Dec 2020 15:37:00 +0000
+Message-Id: <20201201153706.13450-1-srinivas.kandagatla@linaro.org>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="xQR6quUbZ63TTuTU"
-Content-Disposition: inline
-In-Reply-To: <1606801293-19472-1-git-send-email-shane.chien@mediatek.com>
-X-Cookie: Who was that masked man?
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This patchset adds support to Qualcomm Robotics RB5 Development Kit based on
+QRB5165 Robotics SoC. This board has 2 WSA881X smart speakers with onboard
+DMIC connected to internal LPASS codec via WSA and VA macros respectively.
 
---xQR6quUbZ63TTuTU
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+All the audio related driver patches are merged via respective maintainer trees
+along with bindings. Only LPI pinctrl driver is not merged yet, however the
+bindings are acked by Rob, so am guessing that the dt changes should be okay to go!
 
-On Tue, Dec 01, 2020 at 01:41:33PM +0800, Shane Chien wrote:
+Thanks,
+srini
 
-> However, if the device is not given a comaptible,
-> of_node of struct device is null. I cannot use
-> devm_iio_channel_get such iio interface to get
-> auxadc value from iio channel. Because during
-> using devm_iio_channel_get, of_node of mt6359-sound is a
-> input parameter of of_iio_channel_get_by_name.
-> If the of_node is null, devm_iio_channel_get will
-> eventually return ENODEV error.
+Srinivas Kandagatla (6):
+  arm64: dts: qcom: sm8250: add apr and its services
+  arm64: dts: qcom: sm8250: add audio clock controllers
+  arm64: dts: qcom: sm8250: add lpass lpi pin controller node
+  arm64: dts: qcom: sm8250: add wsa and va codec macros
+  arm64: dts: qcom: sm8250: add mi2s pinconfs
+  arm64: dts: qcom: qrb5165-rb5: Add Audio support
 
-I would expect the IIO channel to be requestable using the top level
-device for the MFD - part of the deal here is that the function drivers
-for the MFD know they're part of the MFD so can look at their parent
-device for some things (eg, this is how regmaps are normally obtained).
+ arch/arm64/boot/dts/qcom/qrb5165-rb5.dts | 125 +++++++++
+ arch/arm64/boot/dts/qcom/sm8250.dtsi     | 327 +++++++++++++++++++++++
+ 2 files changed, 452 insertions(+)
 
---xQR6quUbZ63TTuTU
-Content-Type: application/pgp-signature; name="signature.asc"
+-- 
+2.21.0
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl/GXlwACgkQJNaLcl1U
-h9BAOwf/YpwGU5QaZRcMFXBXVD7bkQtu2EutCs5svrbEIbr3lA1niZuznQAxi+6a
-EJCmeJQMOhfM1eWqoPsMR8Ys1EKuWKLwG6YQWS08MaQnTYWfxbrUOVojFD58OzaL
-hQo4Yi/3k08L2Hne44kqKBRtlKsOUinIUZi3Bfd+kApSW1EpnKsSr91qfyTJRFrx
-7qBCTxt2qNnd47lDqIrDEm72iyFR9SyCAttQJCGBnqm6ByFEhZgGQh92GOZfWG/w
-Ubq9Y3f3nY08xj3kCQD+H8HAjTPh8zdtXk5oJe8X80j9FyZDbQ01GlFkcnWeL7+p
-cc8ntzCYuiapNx0EQQhYBOrTDUkX8Q==
-=4ZF0
------END PGP SIGNATURE-----
-
---xQR6quUbZ63TTuTU--
