@@ -2,69 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D7B92C94F3
-	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 03:04:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F1202C94FC
+	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 03:09:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726343AbgLACDu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Nov 2020 21:03:50 -0500
-Received: from mail-io1-f68.google.com ([209.85.166.68]:44210 "EHLO
-        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725900AbgLACDt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Nov 2020 21:03:49 -0500
-Received: by mail-io1-f68.google.com with SMTP id z5so31016iob.11;
-        Mon, 30 Nov 2020 18:03:34 -0800 (PST)
+        id S1726602AbgLACIf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Nov 2020 21:08:35 -0500
+Received: from mail-il1-f196.google.com ([209.85.166.196]:35474 "EHLO
+        mail-il1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725900AbgLACIf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Nov 2020 21:08:35 -0500
+Received: by mail-il1-f196.google.com with SMTP id t13so174879ilp.2;
+        Mon, 30 Nov 2020 18:08:14 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=6Zy3hLt0xkkBgO7Nur8AYnrY8ZOOFFFXYaDalID7C9w=;
-        b=GKM1IX/Ym8xobUV/IjNdOHdMBszOwNffarMHkyfd2glyUpT5Ajr3gSNyLPz1l8Wdf2
-         sCpy+xzOtDHvcO21gAAprGthzFwjMA2DbPjgHmtD4av4a2e0XBh1QNQZVc8PUc0epj0H
-         Gr49GuArWLU+nT3hVHClqM5TWG7hTVkx+HquA/mRbknmqKKV55v/qFDVWED2eBrvdG6+
-         yYCudI0o+fv5CueT8I0mo0LtTw9eg71aMl9gGtvLlQPB7zTjSTkVGvwBJRnO0pS3xbc3
-         bENfvNcAeDyc4H2VkowNlfLCifd5J7obDCdmHhwys/11kZr3J1b1LCwRj3MJmKrYop6Z
-         gM8g==
-X-Gm-Message-State: AOAM530qof8+947d+6lmyb9mCssJDNY/eaBAa57TqvR6YDmAcVwfJpya
-        dG0pyEn5YsZNujEr5DBVyw==
-X-Google-Smtp-Source: ABdhPJyJO19//cOlfXYuKkU69EBSQ7B5q3bGWe2glFhP12AG6qNZC3Z/SLpJjYEVdrkPAxDh5KMhzw==
-X-Received: by 2002:a02:85cc:: with SMTP id d70mr658274jai.83.1606788188806;
-        Mon, 30 Nov 2020 18:03:08 -0800 (PST)
+        bh=Wmb1E9vwJ20mbsZfVtg7o1J8TNNKrE+DCJCeq7P0tQw=;
+        b=pysRKWhT42B98wNkRIZYcCmslx5G30b3qu8k0aqO9hm4ucGcrr6Yq78Mll5AwNYtzg
+         Q5BsqZLcSDSpPoMX61BX5koUJkVhpjg7cgm8CQ0HdEYrAJ3ffnKsaJNBm/yHofRO7oOh
+         5vt7ZcheIz0ktvik9QL/9NqMZzVHSwfd++nauMAXCMBGVnSAgUPQNtOxP5fOP5bRfUZm
+         L1TyTwXPwsHNjffylnK76lcbjTWMUsd5jx8TYe8c7eIv7Te8d4njeCWT2b0GFbQ82RLA
+         61B9ZJDLMrcN+FPcN0VX9DXKW6ZVAHUZy0RcF37CGJBPTke9kngvz76yTChM976RwWGX
+         wuXw==
+X-Gm-Message-State: AOAM531t4QCXJr1KVnu7eqjAQCmBFSYE0Okun8HtEw5LfWbWjOPBShTb
+        MA1hCgEsyJ2syMN1Nu9IUA==
+X-Google-Smtp-Source: ABdhPJw+YP5JQ39895685yf6gbmiiehuqB9qVkocRfkDD2sFBTw28pMjbGcSkhIKB8CwvBwoRMckqA==
+X-Received: by 2002:a92:da87:: with SMTP id u7mr670427iln.230.1606788468742;
+        Mon, 30 Nov 2020 18:07:48 -0800 (PST)
 Received: from xps15 ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id 12sm215807ily.42.2020.11.30.18.03.07
+        by smtp.gmail.com with ESMTPSA id w14sm222589ilu.54.2020.11.30.18.07.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Nov 2020 18:03:07 -0800 (PST)
-Received: (nullmailer pid 3484888 invoked by uid 1000);
-        Tue, 01 Dec 2020 02:02:56 -0000
-Date:   Mon, 30 Nov 2020 19:02:56 -0700
+        Mon, 30 Nov 2020 18:07:47 -0800 (PST)
+Received: (nullmailer pid 3492586 invoked by uid 1000);
+        Tue, 01 Dec 2020 02:07:46 -0000
+Date:   Mon, 30 Nov 2020 19:07:46 -0700
 From:   Rob Herring <robh@kernel.org>
-To:     Daniel Palmer <daniel@0x0f.com>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-gpio@vger.kernel.org, soc@kernel.org,
-        linux-arm-kernel@lists.infradead.org, linus.walleij@linaro.org,
-        w@1wt.eu
-Subject: Re: [PATCH v4 2/5] dt-bindings: gpio: Binding for MStar MSC313 GPIO
- controller
-Message-ID: <20201201020256.GA3484800@robh.at.kernel.org>
-References: <20201129110803.2461700-1-daniel@0x0f.com>
- <20201129110803.2461700-3-daniel@0x0f.com>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     devicetree@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        linux-iio@vger.kernel.org, phone-devel@vger.kernel.org
+Subject: Re: [PATCH 1/2 v4] iio: accel: yamaha-yas530: Add DT bindings
+Message-ID: <20201201020746.GA3492504@robh.at.kernel.org>
+References: <20201129215421.1177990-1-linus.walleij@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201129110803.2461700-3-daniel@0x0f.com>
+In-Reply-To: <20201129215421.1177990-1-linus.walleij@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 29 Nov 2020 20:07:59 +0900, Daniel Palmer wrote:
-> Add a binding description for the MStar/SigmaStar GPIO controller
-> found in the MSC313 and later ARMv7 SoCs.
+On Sun, 29 Nov 2020 22:54:20 +0100, Linus Walleij wrote:
+> This adds device tree bindings for the Yamaha YAS530
+> family of magnetometers/compass sensors.
 > 
-> Signed-off-by: Daniel Palmer <daniel@0x0f.com>
+> Cc: devicetree@vger.kernel.org
+> Cc: phone-devel@vger.kernel.org
+> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 > ---
->  .../bindings/gpio/mstar,msc313-gpio.yaml      | 59 +++++++++++++++++++
->  MAINTAINERS                                   |  1 +
->  2 files changed, 60 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/gpio/mstar,msc313-gpio.yaml
+> ChangeLog v3->v4:
+> - Rename the bindings and file yas530 after the first
+>   introduced component in the family.
+> - Simplify conditional logic using the if: not: YAML
+>   constructions.
+> - Use the possibility to set a property to false to just
+>   remvove reset GPIOs and interrupts from variants that
+>   do not have them.
+> ChangeLog v2->v3:
+> - Restrict to cover the YAS53x variants, it turns out that
+>   YAS529 is a very different component from the others so
+>   keep that for a separate document when/if needed.
+> - Rename the file and binding yamaha,53x.yaml
+> - Use - if: clauses to restrict some properties.
+> - Fix some spelling mistakes.
+> - Restrict the nodename to be "magnetometer@[0-9a-f]"
+> ChangeLog v1->v2:
+> - Add Yamaha to the vendor list, I was surprised to find
+>   they were not yet listed.
+> ---
+>  .../iio/magnetometer/yamaha,yas530.yaml       | 112 ++++++++++++++++++
+>  .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+>  2 files changed, 114 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/magnetometer/yamaha,yas530.yaml
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
