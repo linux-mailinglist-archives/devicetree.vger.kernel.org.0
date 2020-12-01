@@ -2,125 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C8D712CA6C9
-	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 16:17:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 445772CA6D5
+	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 16:19:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390431AbgLAPPB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Dec 2020 10:15:01 -0500
-Received: from mga17.intel.com ([192.55.52.151]:40961 "EHLO mga17.intel.com"
+        id S2387592AbgLAPR4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Dec 2020 10:17:56 -0500
+Received: from mail.kernel.org ([198.145.29.99]:37854 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2390196AbgLAPPA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 1 Dec 2020 10:15:00 -0500
-IronPort-SDR: 12fG4knu+0DifWo+BmUpmE7SAhb6THt3qZTP6gBu4B/0YbmWst29hv3hR2KQ1Yfts0EbY9X8y3
- IwkRocjT7WXw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9822"; a="152672047"
-X-IronPort-AV: E=Sophos;i="5.78,384,1599548400"; 
-   d="scan'208";a="152672047"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Dec 2020 07:14:02 -0800
-IronPort-SDR: a0KysZT6sQuLQH8IIUgQfx7UPoR/Os9NDvsegeq32UJgef6ftYNxvKO9Rmv4/LJ1vvX0MchrY/
- ABFzevBnEZsw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.78,384,1599548400"; 
-   d="scan'208";a="364774847"
-Received: from ubuntu18.png.intel.com ([10.88.229.38])
-  by fmsmga004.fm.intel.com with ESMTP; 01 Dec 2020 07:14:00 -0800
-From:   vijayakannan.ayyathurai@intel.com
-To:     wim@linux-watchdog.org, linux@roeck-us.net, robh+dt@kernel.org
-Cc:     linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        andriy.shevchenko@linux.intel.com, mgross@linux.intel.com,
-        wan.ahmad.zainie.wan.mohamad@intel.com,
-        lakshmi.bai.raja.subramanian@intel.com,
-        vijayakannan.ayyathurai@intel.com
-Subject: [PATCH v3 2/2] dt-bindings: watchdog: Add bindings for Intel Keem Bay SoC
-Date:   Tue,  1 Dec 2020 23:10:34 +0800
-Message-Id: <c3ffd4c2becada82c631ca035a3a1a8f0bd38dc8.1606833303.git.vijayakannan.ayyathurai@intel.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <cover.1606833303.git.vijayakannan.ayyathurai@intel.com>
-References: <cover.1606833303.git.vijayakannan.ayyathurai@intel.com>
-In-Reply-To: <cover.1606833303.git.vijayakannan.ayyathurai@intel.com>
-References: <cover.1606833303.git.vijayakannan.ayyathurai@intel.com>
+        id S2390132AbgLAPRz (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 1 Dec 2020 10:17:55 -0500
+Received: from localhost (cpc102334-sgyl38-2-0-cust884.18-2.cable.virginm.net [92.233.91.117])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 835362084C;
+        Tue,  1 Dec 2020 15:17:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1606835835;
+        bh=dGfNSOBgGRBJkk/Dgt6x48Q5cXIZYVgrqNOCHjMDkls=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=jm01DLEJUVd9ljYXUFOFnvDXYouaD7xBo/EfaVWKNbXZaKWnA8Enq2kgNj3Dzr65D
+         9+v/oLboL5EjgttiJnoat4rw1L/ku95iNEl3J7Dtn4AlshxKZvoGi4tm95B8LEE38b
+         6KKT/FCY/dFGKul8AkDWrjXE1u12QzCJedmi23XQ=
+Date:   Tue, 1 Dec 2020 15:16:45 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Shane Chien <shane.chien@mediatek.com>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        devicetree@vger.kernel.org, wsd_upstream@mediatek.com,
+        alsa-devel@alsa-project.org, jiaxin.yu@mediatek.com,
+        chipeng.chang@mediatek.com, jeter.chen@mediatek.com,
+        tzungbi@google.com, fan.chen@mediatek.com,
+        Hsin-Hsiung.Wang@mediatek.com
+Subject: Re: [RFC] ASoC: Add compatible for mt6359-sound device
+Message-ID: <20201201151645.GI5239@sirena.org.uk>
+References: <1606801293-19472-1-git-send-email-shane.chien@mediatek.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="xQR6quUbZ63TTuTU"
+Content-Disposition: inline
+In-Reply-To: <1606801293-19472-1-git-send-email-shane.chien@mediatek.com>
+X-Cookie: Who was that masked man?
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Vijayakannan Ayyathurai <vijayakannan.ayyathurai@intel.com>
 
-Add Device Tree binding document for Watchdog IP in the Intel Keem Bay SoC.
+--xQR6quUbZ63TTuTU
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Signed-off-by: Vijayakannan Ayyathurai <vijayakannan.ayyathurai@intel.com>
-Acked-by: Mark Gross <mgross@linux.intel.com>
-Acked-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
----
- .../bindings/watchdog/intel,keembay-wdt.yaml  | 57 +++++++++++++++++++
- 1 file changed, 57 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/watchdog/intel,keembay-wdt.yaml
+On Tue, Dec 01, 2020 at 01:41:33PM +0800, Shane Chien wrote:
 
-diff --git a/Documentation/devicetree/bindings/watchdog/intel,keembay-wdt.yaml b/Documentation/devicetree/bindings/watchdog/intel,keembay-wdt.yaml
-new file mode 100644
-index 000000000000..1437ff8a122f
---- /dev/null
-+++ b/Documentation/devicetree/bindings/watchdog/intel,keembay-wdt.yaml
-@@ -0,0 +1,57 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/watchdog/intel,keembay-wdt.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Intel Keem Bay SoC non-secure Watchdog Timer
-+
-+maintainers:
-+  - Wan Ahmad Zainie <wan.ahmad.zainie.wan.mohamad@intel.com>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - intel,keembay-wdt
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  interrupts:
-+    items:
-+      - description: interrupt specifier for threshold interrupt line
-+      - description: interrupt specifier for timeout interrupt line
-+
-+  interrupt-names:
-+    items:
-+      - const: threshold
-+      - const: timeout
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - interrupt-names
-+  - clocks
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #define KEEM_BAY_A53_TIM
-+
-+    watchdog: watchdog@2033009c {
-+        compatible = "intel,keembay-wdt";
-+        reg = <0x2033009c 0x10>;
-+        interrupts = <GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 2 IRQ_TYPE_LEVEL_HIGH>;
-+        interrupt-names = "threshold", "timeout";
-+        clocks = <&scmi_clk KEEM_BAY_A53_TIM>;
-+    };
-+
-+...
--- 
-2.17.1
+> However, if the device is not given a comaptible,
+> of_node of struct device is null. I cannot use
+> devm_iio_channel_get such iio interface to get
+> auxadc value from iio channel. Because during
+> using devm_iio_channel_get, of_node of mt6359-sound is a
+> input parameter of of_iio_channel_get_by_name.
+> If the of_node is null, devm_iio_channel_get will
+> eventually return ENODEV error.
 
+I would expect the IIO channel to be requestable using the top level
+device for the MFD - part of the deal here is that the function drivers
+for the MFD know they're part of the MFD so can look at their parent
+device for some things (eg, this is how regmaps are normally obtained).
+
+--xQR6quUbZ63TTuTU
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl/GXlwACgkQJNaLcl1U
+h9BAOwf/YpwGU5QaZRcMFXBXVD7bkQtu2EutCs5svrbEIbr3lA1niZuznQAxi+6a
+EJCmeJQMOhfM1eWqoPsMR8Ys1EKuWKLwG6YQWS08MaQnTYWfxbrUOVojFD58OzaL
+hQo4Yi/3k08L2Hne44kqKBRtlKsOUinIUZi3Bfd+kApSW1EpnKsSr91qfyTJRFrx
+7qBCTxt2qNnd47lDqIrDEm72iyFR9SyCAttQJCGBnqm6ByFEhZgGQh92GOZfWG/w
+Ubq9Y3f3nY08xj3kCQD+H8HAjTPh8zdtXk5oJe8X80j9FyZDbQ01GlFkcnWeL7+p
+cc8ntzCYuiapNx0EQQhYBOrTDUkX8Q==
+=4ZF0
+-----END PGP SIGNATURE-----
+
+--xQR6quUbZ63TTuTU--
