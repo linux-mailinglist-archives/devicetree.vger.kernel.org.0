@@ -2,102 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5174E2CACD0
-	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 20:57:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 40CF82CAD00
+	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 21:09:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727957AbgLAT4S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Dec 2020 14:56:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40484 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727739AbgLAT4R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Dec 2020 14:56:17 -0500
-Received: from mail-lf1-x144.google.com (mail-lf1-x144.google.com [IPv6:2a00:1450:4864:20::144])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65D5BC0613D4
-        for <devicetree@vger.kernel.org>; Tue,  1 Dec 2020 11:55:37 -0800 (PST)
-Received: by mail-lf1-x144.google.com with SMTP id j205so6857103lfj.6
-        for <devicetree@vger.kernel.org>; Tue, 01 Dec 2020 11:55:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=uleOdIY2dPVjuzMxg8MkWbINrRuRor9z1336VqiWwIs=;
-        b=rjKwiAtdM07kxDIHbmBNBCSxxv7ZgDnJckuzF/SL50Bq4jMru817AZa80ptEQnwd24
-         o06MPFT8lKB7zvRmqAnQi118Sds0KWLGdi8VKFs/HMa4hMSGCUXOYIQRedXwwWLpRzYi
-         YZ9aAgc1lXBu7Pd1dwjW1V1ux/6kyMW8iDVz0yIbUm3rxd2AKqaWwxELG3jX+ggKR1Zo
-         Pjg8OGf0discQPX3aIVa4YjJB2gFb7m5nUpTVoRC0MivRjSBaaiHS9D2xFIMdTGjSqTo
-         uuhqVoMk0BO+1i3zMDGnmKaugdyYI+s2VJ1dnySGcxawHHCxJVdXsLOVnZxyS5Bt5Tf7
-         hAIg==
+        id S1728033AbgLAUIK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Dec 2020 15:08:10 -0500
+Received: from mail-ej1-f67.google.com ([209.85.218.67]:38054 "EHLO
+        mail-ej1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727450AbgLAUIK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Dec 2020 15:08:10 -0500
+Received: by mail-ej1-f67.google.com with SMTP id a16so6882133ejj.5;
+        Tue, 01 Dec 2020 12:07:53 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=uleOdIY2dPVjuzMxg8MkWbINrRuRor9z1336VqiWwIs=;
-        b=gHqrsLS5qcfNxQbpe8uNRnYzmdyVLHI1Q4NsJqriBeTDjUXrbuXIQHzjWPb+IIwseS
-         2rp0/P+iVxhmPdAUCOOQIvp4vbv/ZV/auxIZa++l76BtzmUXE1RxemOPfk4poav6qPYQ
-         B4ZZHhTFCiCiVNyc3M/QU4Fg45w7M2+y1XaxkQo9s2YwF9ZFrycmh1Y7phm69TW6wDfb
-         7PehKRXlt5p2S15f684/tsFSQ0GsuCNy+sXu7O8n4usnQQivNqMIMuicOcjpCOpcQYgo
-         Dhs3tYrSm3gSmeqVxgsd3eqJIVL6pzgjq7uUaqLpoziYvtcLixE5xQbP+Z//TAMnLRea
-         knYg==
-X-Gm-Message-State: AOAM530d4+19+WjTLiC0W6pzd05Ibj6qVuRGwk0kbXvxYIyXQ6qkKMJI
-        jCoA6U/ReNoaoIkvc3PLFAjtrw==
-X-Google-Smtp-Source: ABdhPJxDo0Wz6SOFwxRNSZRtexgV/f1rIrUpMXsrSwVcg3iJQSPz3oTl/zUiVMQvOvX+kz+RkHI6QQ==
-X-Received: by 2002:a05:6512:20c9:: with SMTP id u9mr2062802lfr.280.1606852535838;
-        Tue, 01 Dec 2020 11:55:35 -0800 (PST)
-Received: from [192.168.0.150] ([188.162.65.76])
-        by smtp.gmail.com with ESMTPSA id x8sm64685lfq.143.2020.12.01.11.55.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 01 Dec 2020 11:55:35 -0800 (PST)
-Subject: Re: [PATCH 0/6] arm64: dts: qcom: qrb5165-rb5 audio support
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        bjorn.andersson@linaro.org
-Cc:     linux-arm-msm@vger.kernel.org, agross@kernel.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20201201153706.13450-1-srinivas.kandagatla@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Message-ID: <3c880eaa-32bc-d3c4-d657-76c058601c49@linaro.org>
-Date:   Tue, 1 Dec 2020 22:55:33 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.5.0
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=o8OpMIpKsvTP+ao76T3f62qpT21Ac6Cs3TQoq3094Zc=;
+        b=P8mANsRRp6HF4fvCFXGvFUPxx9YpzxAqR7WouCMGIY7a94OPI1O2pJujIhfByHnm27
+         evu/tRmylhgi1HOghsJWiDfk4eUjpAph2N3SrfkP/nvW4KBq/AdAnugJ+Hsk4C/toxew
+         1qT8RTR7N5+7rPbvDtIyyvFe3VCcU64TL71yiCyjdrrhOx0myczCv0VtquBr1J2YWIFC
+         GczZLKR5pq/BBV3MESFdGx61J5P4yC1B/knGQUtS32UTSvPfl1ChjBacy+cb4lmnZIbU
+         Scy0M+mRpBRxMRFjmR1Y0kBZeW0PZ9bs5zt9Z3mz0dMrb7bOPz1BVhPdfVeRpMlrSyWB
+         AgZg==
+X-Gm-Message-State: AOAM533ffen631trtoL2j3NhljyQcs3ax9dVr3DB/tAQim15rmoD2jN/
+        Swp3qPYr0Lv70KF+oz0Nj2dFhkB0r0c=
+X-Google-Smtp-Source: ABdhPJza6eg+oPJXQ5ReF6xIUHNqwcfSXWPMj952gZlGgpNUU+Gspt9SH0D1dl7xx52uuqb0E4/0BQ==
+X-Received: by 2002:a17:906:c0d1:: with SMTP id bn17mr5003733ejb.114.1606853248214;
+        Tue, 01 Dec 2020 12:07:28 -0800 (PST)
+Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
+        by smtp.googlemail.com with ESMTPSA id s15sm391164edj.75.2020.12.01.12.07.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 01 Dec 2020 12:07:27 -0800 (PST)
+Date:   Tue, 1 Dec 2020 22:07:25 +0200
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Bongsu Jeon <bongsu.jeon2@gmail.com>
+Cc:     linux-nfc@lists.01.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Bongsu Jeon <bongsu.jeon@samsung.com>
+Subject: Re: [PATCH v4 net-next 1/4] dt-bindings: net: nfc: s3fwrn5: Support
+ a UART interface
+Message-ID: <20201201200725.GB2435@kozik-lap>
+References: <1606830628-10236-1-git-send-email-bongsu.jeon@samsung.com>
+ <1606830628-10236-2-git-send-email-bongsu.jeon@samsung.com>
 MIME-Version: 1.0
-In-Reply-To: <20201201153706.13450-1-srinivas.kandagatla@linaro.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <1606830628-10236-2-git-send-email-bongsu.jeon@samsung.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/12/2020 18:37, Srinivas Kandagatla wrote:
-> This patchset adds support to Qualcomm Robotics RB5 Development Kit based on
-> QRB5165 Robotics SoC. This board has 2 WSA881X smart speakers with onboard
-> DMIC connected to internal LPASS codec via WSA and VA macros respectively.
+On Tue, Dec 01, 2020 at 10:50:25PM +0900, Bongsu Jeon wrote:
+> From: Bongsu Jeon <bongsu.jeon@samsung.com>
 > 
-> All the audio related driver patches are merged via respective maintainer trees
-> along with bindings. Only LPI pinctrl driver is not merged yet, however the
-> bindings are acked by Rob, so am guessing that the dt changes should be okay to go!
+> Since S3FWRN82 NFC Chip, The UART interface can be used.
+> S3FWRN82 supports I2C and UART interface.
 > 
-> Thanks,
-> srini
+> Signed-off-by: Bongsu Jeon <bongsu.jeon@samsung.com>
+> ---
+>  .../bindings/net/nfc/samsung,s3fwrn5.yaml          | 32 ++++++++++++++++++++--
+>  1 file changed, 29 insertions(+), 3 deletions(-)
 > 
-> Srinivas Kandagatla (6):
->    arm64: dts: qcom: sm8250: add apr and its services
->    arm64: dts: qcom: sm8250: add audio clock controllers
->    arm64: dts: qcom: sm8250: add lpass lpi pin controller node
->    arm64: dts: qcom: sm8250: add wsa and va codec macros
->    arm64: dts: qcom: sm8250: add mi2s pinconfs
->    arm64: dts: qcom: qrb5165-rb5: Add Audio support
+> diff --git a/Documentation/devicetree/bindings/net/nfc/samsung,s3fwrn5.yaml b/Documentation/devicetree/bindings/net/nfc/samsung,s3fwrn5.yaml
+> index cb0b8a5..cc5f9a1 100644
+> --- a/Documentation/devicetree/bindings/net/nfc/samsung,s3fwrn5.yaml
+> +++ b/Documentation/devicetree/bindings/net/nfc/samsung,s3fwrn5.yaml
+> @@ -12,7 +12,10 @@ maintainers:
+>  
+>  properties:
+>    compatible:
+> -    const: samsung,s3fwrn5-i2c
+> +    items:
 
-Tested-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+This still has items but it should be a simple enum.
 
-> 
->   arch/arm64/boot/dts/qcom/qrb5165-rb5.dts | 125 +++++++++
->   arch/arm64/boot/dts/qcom/sm8250.dtsi     | 327 +++++++++++++++++++++++
->   2 files changed, 452 insertions(+)
-> 
+> +      - enum:
+> +          - samsung,s3fwrn5-i2c
+> +          - samsung,s3fwrn82
+>  
+>    en-gpios:
+>      maxItems: 1
+> @@ -47,10 +50,19 @@ additionalProperties: false
+>  required:
+>    - compatible
+>    - en-gpios
+> -  - interrupts
+> -  - reg
+>    - wake-gpios
+>  
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: samsung,s3fwrn5-i2c
+> +    then:
+> +      required:
+> +        - interrupts
+> +        - reg
+> +
+>  examples:
+>    - |
+>      #include <dt-bindings/gpio/gpio.h>
+> @@ -71,3 +83,17 @@ examples:
+>              wake-gpios = <&gpj0 2 GPIO_ACTIVE_HIGH>;
+>          };
+>      };
+> +  # UART example on Raspberry Pi
+> +  - |
+> +    uart0 {
+> +        status = "okay";
+> +
+> +        nfc {
+> +            compatible = "samsung,s3fwrn82";
+> +
+> +            en-gpios = <&gpio 20 0>;
+> +            wake-gpios = <&gpio 16 0>;
 
+Use GPIO flags like in example above.
 
--- 
-With best wishes
-Dmitry
+Best regards,
+Krzysztof
