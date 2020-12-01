@@ -2,88 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1167A2C9862
-	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 08:46:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ACDB12C9880
+	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 08:49:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727850AbgLAHqk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Dec 2020 02:46:40 -0500
-Received: from hqnvemgate26.nvidia.com ([216.228.121.65]:6440 "EHLO
-        hqnvemgate26.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727837AbgLAHqk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Dec 2020 02:46:40 -0500
-Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate26.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
-        id <B5fc5f4b80001>; Mon, 30 Nov 2020 23:46:00 -0800
-Received: from [10.25.98.41] (10.124.1.5) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 1 Dec
- 2020 07:45:56 +0000
-Subject: Re: [PATCH 2/4] ASoC: dt-bindings: Use OF graph schema
-To:     Rob Herring <robh@kernel.org>, Mark Brown <broonie@kernel.org>
-CC:     <devicetree@vger.kernel.org>,
-        Linux-ALSA <alsa-devel@alsa-project.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        Lubomir Rintel <lkundrak@v3.sk>
-References: <20201117013349.2458416-1-robh@kernel.org>
- <20201117013349.2458416-3-robh@kernel.org>
- <CAL_Jsq+eOfhDzPV8A_hhGpkY3zpiVAuZ=Y353Ltn61ecCV2Dqg@mail.gmail.com>
-From:   Sameer Pujar <spujar@nvidia.com>
-Message-ID: <51a9b84d-ea93-0871-aa93-d9bdf50d5a47@nvidia.com>
-Date:   Tue, 1 Dec 2020 13:15:51 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1728503AbgLAHrd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Dec 2020 02:47:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39578 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726314AbgLAHrc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Dec 2020 02:47:32 -0500
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a01:238:4321:8900:456f:ecd6:43e:202c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E8B8C0613CF;
+        Mon, 30 Nov 2020 23:46:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=kemnade.info; s=20180802; h=Content-Transfer-Encoding:MIME-Version:
+        Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=shdMYNE0Mq9qFYvxyoeGFa2qNxlUtzdlvQ2JRBwtIgs=; b=lu93fcP9H5sEyrH+ZY6uOUfVQB
+        /SMPcunpSi+4ioQUgFSp5XJYFu8ndKSNM9cqgLkVYuiAfCg0CohPYVbxRcl6rzPLK5xT3DqIHETFG
+        ET0kSx2vqIHr8+cNKmTL1l0mEu1TW5FKu/V0WoXDWHYK1M6T5bLqHtDP7g7eXhOKDVoE=;
+Received: from p200300ccff124e001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:cc:ff12:4e00:1a3d:a2ff:febf:d33a] helo=aktux)
+        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <andreas@kemnade.info>)
+        id 1kk0N4-0005jJ-8T; Tue, 01 Dec 2020 08:46:46 +0100
+Received: from andi by aktux with local (Exim 4.92)
+        (envelope-from <andreas@kemnade.info>)
+        id 1kk0N3-00057S-Sq; Tue, 01 Dec 2020 08:46:45 +0100
+From:   Andreas Kemnade <andreas@kemnade.info>
+To:     bcousson@baylibre.com, tony@atomide.com, robh+dt@kernel.org,
+        linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Andreas Kemnade <andreas@kemnade.info>
+Subject: [PATCH] ARM: dts: omap3-gta04: fix twl4030-power settings
+Date:   Tue,  1 Dec 2020 08:46:28 +0100
+Message-Id: <20201201074628.19628-1-andreas@kemnade.info>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-In-Reply-To: <CAL_Jsq+eOfhDzPV8A_hhGpkY3zpiVAuZ=Y353Ltn61ecCV2Dqg@mail.gmail.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-GB
-X-Originating-IP: [10.124.1.5]
-X-ClientProxiedBy: HQMAIL111.nvidia.com (172.20.187.18) To
- HQMAIL107.nvidia.com (172.20.187.13)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1606808760; bh=zgYgcsWSQ5ZLwwDEgMwRA/eS3vCY9/kmIKMLZ9mDae8=;
-        h=Subject:To:CC:References:From:Message-ID:Date:User-Agent:
-         MIME-Version:In-Reply-To:Content-Type:Content-Transfer-Encoding:
-         Content-Language:X-Originating-IP:X-ClientProxiedBy;
-        b=GO0Hi6Jj2/DmYB/GM7YG4wVWTxSL5zvKh3rdOlYAkMDfoxXTT9tzXMCa5qKVQBXQv
-         63OxVvG4DLGOIi0JEV7yTSebsgdIfBz50YlRyi1VyIhFEzgRRrtRyqLQ2+Yk13FtxQ
-         wP9nlH98FWQI87aSfZTnIQzWazb82o3KcwvFqIBY+4HPMJX8bgA9Y/x8nDAwlprBPU
-         rYkIweFAHYPEnfkxi78BildHYhPsRLBL9kzRWIkw+gLqp47h2mKKTLdB3A4vFMo56W
-         Xf2ClgFT5s8347OJDLMSkwY0Px7C1sdzyYiRsMyuf3oj4qGLYTXpur6Wma0H4c9YE3
-         sYtXLqHS94GQA==
+Content-Transfer-Encoding: 8bit
+X-Spam-Score: -1.0 (-)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Things are wired up for powersaving, so lets use the corresponding
+compatible and also update a deprecated property name.
 
->> Now that we have an OF graph schema, let's use it for the
->> audio-graph-port schema.
->>
->> There's no need to define 'ports' nodes as specific bindings must define
->> that and port numbering of the child 'port' nodes.
->>
->> Signed-off-by: Rob Herring <robh@kernel.org>
->> ---
->> Note that graph.yaml is part of dtschema now intead of the kernel tree.
->> ---
->>   .../bindings/sound/audio-graph-port.yaml         | 16 ++--------------
->>   1 file changed, 2 insertions(+), 14 deletions(-)
-> Hold off on applying this. I think graph.yaml is going to need some
-> more refinement.
+Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+---
+ arch/arm/boot/dts/omap3-gta04.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-Would this be OK if below part of the patch is submitted separately in 
-case above is not immediately planned?
-
--        required:
--          - remote-endpoint
--
-
-Currently I have dependency on this for series 
-https://patchwork.kernel.org/project/alsa-devel/list/?series=391735&state=*. 
-
-
->
-> The rest should be able to be applied without this patch.
->
-> Rob
+diff --git a/arch/arm/boot/dts/omap3-gta04.dtsi b/arch/arm/boot/dts/omap3-gta04.dtsi
+index c8745bc800f7..cbe9ce739170 100644
+--- a/arch/arm/boot/dts/omap3-gta04.dtsi
++++ b/arch/arm/boot/dts/omap3-gta04.dtsi
+@@ -489,8 +489,8 @@
+ 		};
+ 
+ 		twl_power: power {
+-			compatible = "ti,twl4030-power";
+-			ti,use_poweroff;
++			compatible = "ti,twl4030-power-idle";
++			ti,system-power-controller;
+ 		};
+ 	};
+ };
+-- 
+2.20.1
 
