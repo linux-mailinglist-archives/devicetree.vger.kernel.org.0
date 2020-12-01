@@ -2,103 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DD8872C99F7
-	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 09:53:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 70BEF2C9C72
+	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 10:18:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726620AbgLAIxI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Dec 2020 03:53:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49592 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725955AbgLAIxI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Dec 2020 03:53:08 -0500
-Received: from mail.kmu-office.ch (mail.kmu-office.ch [IPv6:2a02:418:6a02::a2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D6B7C0613CF;
-        Tue,  1 Dec 2020 00:52:27 -0800 (PST)
-Received: from webmail.kmu-office.ch (unknown [IPv6:2a02:418:6a02::a3])
-        by mail.kmu-office.ch (Postfix) with ESMTPSA id ADAB25C0930;
-        Tue,  1 Dec 2020 09:52:24 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=agner.ch; s=dkim;
-        t=1606812744;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=vZodXyawqfmhzApkl+PJz1fcLX5uRiTYHumDpkFd5hs=;
-        b=HyZ5RtOinN2JFcNOxIy7mUwszPE8yBz2bTjXwSg7YI9AYhS48fwqgF7k63oSRljnqgXwaZ
-        yDM7I0Ezu53i6IXgVoVE0eZFMFMFkcQymy1HHV3Sqee1tAq8d9Kxj0U3OKt6BrFtW0+VOT
-        JtZ84kbZotnZ6EBMS1pT37Hz4VDeoMw=
+        id S2390521AbgLAJSK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Dec 2020 04:18:10 -0500
+Received: from mo-csw1516.securemx.jp ([210.130.202.155]:34400 "EHLO
+        mo-csw.securemx.jp" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2390506AbgLAJSF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Dec 2020 04:18:05 -0500
+Received: by mo-csw.securemx.jp (mx-mo-csw1516) id 0B19Fwxw003761; Tue, 1 Dec 2020 18:15:59 +0900
+X-Iguazu-Qid: 34trnO8aDoHi8rwigd
+X-Iguazu-QSIG: v=2; s=0; t=1606814158; q=34trnO8aDoHi8rwigd; m=CQIFhqIeZ/1OaGN+K0KBw/hoFYRMv2SIsojsKTfpIuc=
+Received: from imx2.toshiba.co.jp (imx2.toshiba.co.jp [106.186.93.51])
+        by relay.securemx.jp (mx-mr1510) id 0B19FwwH036934;
+        Tue, 1 Dec 2020 18:15:58 +0900
+Received: from enc01.toshiba.co.jp ([106.186.93.100])
+        by imx2.toshiba.co.jp  with ESMTP id 0B19FvRW024694;
+        Tue, 1 Dec 2020 18:15:57 +0900 (JST)
+Received: from hop001.toshiba.co.jp ([133.199.164.63])
+        by enc01.toshiba.co.jp  with ESMTP id 0B19Fv1N031159;
+        Tue, 1 Dec 2020 18:15:57 +0900
+From:   Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>
+Cc:     punit1.agrawal@toshiba.co.jp, yuji2.ishikawa@toshiba.co.jp,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+Subject: [PATCH v3 0/4] gpio: visconti: Add Toshiba Visconti GPIO support
+Date:   Wed,  2 Dec 2020 03:14:02 +0900
+X-TSB-HOP: ON
+Message-Id: <20201201181406.2371881-1-nobuhiro1.iwamatsu@toshiba.co.jp>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-Date:   Tue, 01 Dec 2020 09:52:24 +0100
-From:   Stefan Agner <stefan@agner.ch>
-To:     Jerome Brunet <jbrunet@baylibre.com>
-Cc:     robh+dt@kernel.org, khilman@baylibre.com, narmstrong@baylibre.com,
-        martin.blumenstingl@googlemail.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: meson: fix PHY deassert timing requirements
-In-Reply-To: <1j8sai7wr0.fsf@starbuckisacylon.baylibre.com>
-References: <e4df74aed2a7cff09366e72c87d408f41317907f.1606782187.git.stefan@agner.ch>
- <1j8sai7wr0.fsf@starbuckisacylon.baylibre.com>
-User-Agent: Roundcube Webmail/1.4.9
-Message-ID: <fd174decc948aa7a9c8cf62d23371480@agner.ch>
-X-Sender: stefan@agner.ch
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2020-12-01 09:31, Jerome Brunet wrote:
-> On Tue 01 Dec 2020 at 01:25, Stefan Agner <stefan@agner.ch> wrote:
-> 
->> According to the datasheet (Rev. 1.4, page 30) the RTL8211F requires
->> at least 50ms "for internal circuits settling time" before accessing
->> the PHY registers. This fixes an issue where the Ethernet link doesn't
->> come up when using ip link set down/up:
->>   [   29.360965] meson8b-dwmac ff3f0000.ethernet eth0: Link is Down
->>   [   34.569012] meson8b-dwmac ff3f0000.ethernet eth0: PHY [0.0:00] driver [RTL8211F Gigabit Ethernet] (irq=31)
->>   [   34.676732] meson8b-dwmac ff3f0000.ethernet: Failed to reset the dma
->>   [   34.678874] meson8b-dwmac ff3f0000.ethernet eth0: stmmac_hw_setup: DMA engine initialization failed
->>   [   34.687850] meson8b-dwmac ff3f0000.ethernet eth0: stmmac_open: Hw setup failed
->>
->> Fixes: 658e4129bb81 ("arm64: dts: meson: g12b: odroid-n2: add the Ethernet PHY reset line")
->> Signed-off-by: Stefan Agner <stefan@agner.ch>
->> ---
->>  arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi | 2 +-
->>  1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
->> index 6982632ae646..a5652caacb27 100644
->> --- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
->> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
->> @@ -413,7 +413,7 @@ external_phy: ethernet-phy@0 {
->>  		max-speed = <1000>;
->>
->>  		reset-assert-us = <10000>;
->> -		reset-deassert-us = <30000>;
->> +		reset-deassert-us = <50000>;
->>  		reset-gpios = <&gpio GPIOZ_15 (GPIO_ACTIVE_LOW | GPIO_OPEN_DRAIN)>;
->>
->>  		interrupt-parent = <&gpio_intc>;
-> 
-> Thanks for sharing this is Stefan,
-> The title of your patch should probably be modified to show that it
-> addresses the odroid n2 only, as it stands.
+Hi,
 
-Yes make sense. Hm, are there other boards with RTL8211F? From the
-comments in the DT it seems several other boards use the same PHY. Some
-however do not have any reset timing data at all currently it seems.
+This series is the GPIO driver for Toshiba's ARM SoC, Visconti[0].
+This provides DT binding documentation, device driver, MAINTAINER files, and updates to DT files.
 
-> 
-> I have checked the RTL8211F doc I have, v1.9, and this one mention
-> "72ms at least - not including the 1.0V supply rise time" before
-> accessing the PHY registers :/ ... so 80ms maybe ?
+Update:
 
-Uh interesting, so it seems they increased it over documentation
-revisions. Yeah agreed 80ms is the safer value then.
+  dt-bindings: gpio: Add bindings for Toshiba Visconti GPIO Controller:
+    v2 -> v3: Fix dtschema/dtc warnings.
+      dtschema/dtc warnings/errors:
+        Documentation/devicetree/bindings/gpio/toshiba,gpio-visconti.example.dt.yaml: gpio@28020000: interrupts: [[0, 24, 4], [0, 25, 4], [0, 26, 4], [0, 27, 4], [0, 28, 4], [0, 29, 4], [0, 30, 4], [0, 31, 4], [0, 32, 4], [0, 33, 4], [0, 34, 4], [0, 35, 4], [0, 36, 4], [0, 37, 4], [0, 38, 4], [0, 39, 4]] is too short
+	  From schema: Documentation/devicetree/bindings/gpio/toshiba,gpio-visconti.yaml
+    v1 -> v2: Fix typo.
 
-FWIW, I did test it with 50ms in a continuous loop for an hour or so
-without seeing any failure, but that was room temperature only.
+  gpio: visoconti: Add Toshiba Visconti GPIO support:
+    v2 -> v3: Add select GPIO_GENERIC
+              Use genric MMIO GPIO library
+              Use bgpio_init() as initialized the generic helpers.
+              Use irqchip template instead of gpiochip_irqchip_add().
+    v1 -> v2: No update
 
---
-Stefan
+  MAINTAINERS: Add entries for Toshiba Visconti GPIO controller:
+    v2 -> v3: No update
+    v1 -> v2: No update
+
+  arm: dts: visconti: Add DT support for Toshiba Visconti5 GPIO driver:
+    v2 -> v3: Fix compatible string.
+    v1 -> v2: No update
+
+Best regards,
+  Nobuhiro
+
+[0]: https://toshiba.semicon-storage.com/ap-en/semiconductor/product/image-recognition-processors-visconti.html
+
+Nobuhiro Iwamatsu (4):
+  dt-bindings: gpio: Add bindings for Toshiba Visconti GPIO Controller
+  gpio: visconti: Add Toshiba Visconti GPIO support
+  MAINTAINERS: Add entries for Toshiba Visconti GPIO controller
+  arm: dts: visconti: Add DT support for Toshiba Visconti5 GPIO driver
+
+ .../bindings/gpio/toshiba,gpio-visconti.yaml  |  85 +++++++
+ MAINTAINERS                                   |   2 +
+ .../boot/dts/toshiba/tmpv7708-rm-mbrc.dts     |   4 +
+ arch/arm64/boot/dts/toshiba/tmpv7708.dtsi     |  27 ++
+ drivers/gpio/Kconfig                          |   9 +
+ drivers/gpio/Makefile                         |   1 +
+ drivers/gpio/gpio-visconti.c                  | 232 ++++++++++++++++++
+ drivers/pinctrl/visconti/pinctrl-common.c     |  23 ++
+ 8 files changed, 383 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/gpio/toshiba,gpio-visconti.yaml
+ create mode 100644 drivers/gpio/gpio-visconti.c
+
+-- 
+2.29.2
