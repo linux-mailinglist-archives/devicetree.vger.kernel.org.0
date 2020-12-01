@@ -2,68 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2CE852C94CC
-	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 02:41:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8FE402C94CE
+	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 02:43:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729909AbgLABlH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Nov 2020 20:41:07 -0500
-Received: from mail-il1-f194.google.com ([209.85.166.194]:43919 "EHLO
-        mail-il1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728678AbgLABlF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Nov 2020 20:41:05 -0500
-Received: by mail-il1-f194.google.com with SMTP id z14so101415ilm.10;
-        Mon, 30 Nov 2020 17:40:50 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=tS+akVXCXQeo5clvNOOFrqcagg0b7+JKhB3morgjsO4=;
-        b=OszfUUrofoRx/xBYbzWTfOmyUUxZlEV6LP0RhGLt6cXm+vAhICU7V3khZBozHAbe7N
-         wc1J3bRDoPrBbCWIfIxhRkqt8Y0efCG54rtw5nbLLsvfMUNkdHxNQQObLOSfQy9+m3bd
-         D9xsDXhGjXkJyHaBlmKg9ChJkr9AZaSY/odYWVwywi8OtuBjH/7Zedv7zm1tkh+vQmNt
-         Fsd66y3VHL01w6tgM0NaQmcq5/KNZJTmiys/gtOj02E2k2wg7rMv5nK7NWOd3jyRdUnY
-         ZcFubSDT2OcTCpXoYCspp+52QLlSx0AibzQoCiRtpjqC1sthR5HVN8lQumfTAjB1Z/Gt
-         PhjQ==
-X-Gm-Message-State: AOAM531NgdSxoaFb1yQPylypaeJ59GqFaEUutLNXuWwWs16RhC58Wmwj
-        puGpZgNnwZvKhdzJF/KiptojfIfrnQ==
-X-Google-Smtp-Source: ABdhPJyO9V0PSoCoEdWgEM/khWUk9iPvFlLurxSewZcp74f39RaIQqRRq8hz7+qXOJIPjRP9EeXQDg==
-X-Received: by 2002:a92:cd43:: with SMTP id v3mr545988ilq.58.1606786825067;
-        Mon, 30 Nov 2020 17:40:25 -0800 (PST)
-Received: from xps15 ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id m12sm193738ilq.51.2020.11.30.17.40.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Nov 2020 17:40:24 -0800 (PST)
-Received: (nullmailer pid 3449338 invoked by uid 1000);
-        Tue, 01 Dec 2020 01:40:21 -0000
-Date:   Mon, 30 Nov 2020 18:40:21 -0700
-From:   Rob Herring <robh@kernel.org>
-To:     Dong Aisheng <aisheng.dong@nxp.com>
-Cc:     linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
-        linux-mmc@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH RESEND v4 03/18] dt-bindings: mailbox: mu: add imx8qm
- support
-Message-ID: <20201201014021.GA3449286@robh.at.kernel.org>
-References: <20201126105900.26658-1-aisheng.dong@nxp.com>
- <20201126105900.26658-4-aisheng.dong@nxp.com>
+        id S1727813AbgLABnM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Nov 2020 20:43:12 -0500
+Received: from mail.kernel.org ([198.145.29.99]:39520 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728678AbgLABnL (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 30 Nov 2020 20:43:11 -0500
+Received: from dragon (80.251.214.228.16clouds.com [80.251.214.228])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 6277D206E0;
+        Tue,  1 Dec 2020 01:42:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1606786951;
+        bh=lTRsEMrpRvS2rkpUlAULfE1RMIMXCz4/9GqqdWBH9Fs=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=ZNTGYkwQKGjoSgP5+hkVLJMA8B6mn5neQMmBS2FNKmKo272Q+rDMiz3z1oQ9mtxLM
+         Ps0RQsoKBHhl5YQTTJGjq29sjkp1R5Msc7n9ninTMrB4g4e4Ed9GUixyhlV59q8VxW
+         8FoN9bjlzcbr/M4VzDHMQONqoCqE9CE7dQQQAXyA=
+Date:   Tue, 1 Dec 2020 09:42:25 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Lukasz Majewski <lukma@denx.de>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/3] ARM: dts: imx28: Fix label name for L2 switch
+Message-ID: <20201201014204.GT4072@dragon>
+References: <20201125161815.2361-1-lukma@denx.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201126105900.26658-4-aisheng.dong@nxp.com>
+In-Reply-To: <20201125161815.2361-1-lukma@denx.de>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 26 Nov 2020 18:58:45 +0800, Dong Aisheng wrote:
-> Add imx8qm support
+On Wed, Nov 25, 2020 at 05:18:13PM +0100, Lukasz Majewski wrote:
+> The 'eth_switch' name has been misspelled in the imx28.dtsi file,
+> so this change fixes it.
 > 
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Cc: Shawn Guo <shawnguo@kernel.org>
-> Signed-off-by: Dong Aisheng <aisheng.dong@nxp.com>
-> ---
->  Documentation/devicetree/bindings/mailbox/fsl,mu.yaml | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
-> 
+> Signed-off-by: Lukasz Majewski <lukma@denx.de>
 
-Acked-by: Rob Herring <robh@kernel.org>
+Applied, thanks.
