@@ -2,324 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B70222C9779
-	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 07:19:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8286F2C977E
+	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 07:20:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725962AbgLAGTZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Dec 2020 01:19:25 -0500
-Received: from mout.gmx.net ([212.227.15.15]:46605 "EHLO mout.gmx.net"
+        id S1726826AbgLAGTx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Dec 2020 01:19:53 -0500
+Received: from mga05.intel.com ([192.55.52.43]:20041 "EHLO mga05.intel.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725916AbgLAGTZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 1 Dec 2020 01:19:25 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1606803416;
-        bh=VMPvoAHYxmMDRj16a7w6y8QFmIsE7CM4wC3v0+745VI=;
-        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=UNvuRN3kxgfErz8FEqmM8DRWoF+Byr7eEVqkOMqMTkELQKccaLaCo+daNw1q/ckLY
-         2tycyJumEaBWR9U7ZUbi82e7/Zsc5Hp/Wya998sQnw9TEc0cY12YoS/xltR+7xHYW9
-         8o0aE2Xj76UfDoNYSYSUVprqs2xnpVY4IZ+08J8s=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from longitude ([37.201.214.162]) by mail.gmx.com (mrgmx005
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1MJE2D-1kUmGZ1Wih-00Kcsh; Tue, 01
- Dec 2020 07:16:56 +0100
-From:   =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
-To:     linux-kernel@vger.kernel.org
-Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Heiko Stuebner <heiko.stuebner@theobroma-systems.com>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Lubomir Rintel <lkundrak@v3.sk>,
-        Mark Brown <broonie@kernel.org>, allen <allen.chen@ite.com.tw>,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org, linux-pwm@vger.kernel.org,
-        linux-rtc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Heiko Stuebner <heiko@sntech.de>,
-        Josua Mayer <josua.mayer@jm0.eu>,
-        Andreas Kemnade <andreas@kemnade.info>,
-        Arnd Bergmann <arnd@arndb.de>, Daniel Palmer <daniel@0x0f.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>
-Subject: [PATCH v5 5/7] rtc: New driver for RTC in Netronix embedded controller
-Date:   Tue,  1 Dec 2020 02:15:11 +0100
-Message-Id: <20201201011513.1627028-6-j.neuschaefer@gmx.net>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20201201011513.1627028-1-j.neuschaefer@gmx.net>
-References: <20201201011513.1627028-1-j.neuschaefer@gmx.net>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+        id S1725916AbgLAGTw (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 1 Dec 2020 01:19:52 -0500
+IronPort-SDR: rpN3G/5DZL9+Z/U8tqzTJLBDyZnMfzolCLLVL3l43c5Yj+a2m1OcS/6EubldZN7iufgZzEm9UQ
+ 1xsco7PlRpKg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9821"; a="257483678"
+X-IronPort-AV: E=Sophos;i="5.78,383,1599548400"; 
+   d="scan'208";a="257483678"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Nov 2020 22:19:11 -0800
+IronPort-SDR: J3wD0kIokFkduCBdFdNwq4no6A2U0X/G8tO9E5a0JVBcJqJt6eBxjZ9+FoP2vm/c/PwLXi9vRE
+ 1vewbU7QR+1w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.78,383,1599548400"; 
+   d="scan'208";a="334959693"
+Received: from orsmsx606.amr.corp.intel.com ([10.22.229.19])
+  by orsmga006.jf.intel.com with ESMTP; 30 Nov 2020 22:19:11 -0800
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX606.amr.corp.intel.com (10.22.229.19) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Mon, 30 Nov 2020 22:19:10 -0800
+Received: from orsmsx607.amr.corp.intel.com (10.22.229.20) by
+ ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Mon, 30 Nov 2020 22:19:10 -0800
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx607.amr.corp.intel.com (10.22.229.20) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5
+ via Frontend Transport; Mon, 30 Nov 2020 22:19:10 -0800
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.104)
+ by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.1713.5; Mon, 30 Nov 2020 22:19:10 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Ph0uvZusglfsMPRAEM+bVgMniQvhJ5m/+ZfZCobs9o3fdEkhIt2kHMAMB+fzSQdtzLq+7MnLJwKwW0HEakT4SlQzS5V/rTmo43E5kXjYcULcpH9uyrjxlW9G0Szzqq7u6xwXXMVfL0WVU7qKttFytCCPfKw86Hoyo3YWm48u8he59KqTA8U9qv44muDhQg7/ybedmGZn85xxk2hin302lrWBxNJJrInvtrG3dZ3GyYpLm6uu0UJl/89ft2pPjVQND96VyFrsmdOcU7y2phD+9kOxGGYaqCjv2FHBLiemsVtAlbi/6RXRISZGKxvOurgy1QAtSGeE/aKZgcGO2fG6NQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=odn7ZTqC2OJVQO+G+AVhcwJzOPyEwa7oQFocE8xoK6Q=;
+ b=Ei17VhtshNUMv/dq4zf5pw3udP4OjpMv5IoK9NvJ/aVL2XE8HjnfOljNdgWSQ2m/fx5/a+4W+WqeagUqChBJAWtvHWpOw2KxoslGG/GE7FJBW+JripN+gEaR8yOLN++mLfP4zMcHieFV90v/z66En/o1DiWXAsAVfwsm5HGJO3lQeAVZbVjKHV9DFcKFpuaVln0tFExddoF+AjFnlO0BlKYwo/ffHco7Mlxe81n/LbleXLobg2aslxlUPbQM65a8i/hP56qwCfqTOXqCoUDnA4oMtPbq8qfZ+TClmDd/rdI0PLgZWOZfpUjgBUrA0SapGonOvlCDJtpi08oCQVgAsw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com;
+ s=selector2-intel-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=odn7ZTqC2OJVQO+G+AVhcwJzOPyEwa7oQFocE8xoK6Q=;
+ b=aJoSGQned/EsZ22il5xCWgBmS/63cez1Llqm5qHRL42ku29DBSxFQBKH73afRRofen9IxJmZsXUw5tFGZJ+eAYQTsr+lDbkKiM9WFoAdb47JkpMiVbTpyAB93rfZCZWBwHqiJ8B9o23lsn7MaZXbBUw273rIBp++IzRoBZ16qy4=
+Received: from DM6PR11MB4250.namprd11.prod.outlook.com (2603:10b6:5:1df::18)
+ by DM5PR11MB1817.namprd11.prod.outlook.com (2603:10b6:3:10e::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3611.20; Tue, 1 Dec
+ 2020 06:19:09 +0000
+Received: from DM6PR11MB4250.namprd11.prod.outlook.com
+ ([fe80::b90d:d053:9de6:e5ef]) by DM6PR11MB4250.namprd11.prod.outlook.com
+ ([fe80::b90d:d053:9de6:e5ef%4]) with mapi id 15.20.3611.025; Tue, 1 Dec 2020
+ 06:19:09 +0000
+From:   "Ayyathurai, Vijayakannan" <vijayakannan.ayyathurai@intel.com>
+To:     Guenter Roeck <linux@roeck-us.net>
+CC:     "wim@linux-watchdog.org" <wim@linux-watchdog.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "andriy.shevchenko@linux.intel.com" 
+        <andriy.shevchenko@linux.intel.com>,
+        "mgross@linux.intel.com" <mgross@linux.intel.com>,
+        "Wan Mohamad, Wan Ahmad Zainie" 
+        <wan.ahmad.zainie.wan.mohamad@intel.com>,
+        "Raja Subramanian, Lakshmi Bai" 
+        <lakshmi.bai.raja.subramanian@intel.com>
+Subject: RE: [PATCH v2 1/2] watchdog: Add watchdog driver for Intel Keembay
+ Soc
+Thread-Topic: [PATCH v2 1/2] watchdog: Add watchdog driver for Intel Keembay
+ Soc
+Thread-Index: AQHWt4c5ZwJ1t/qEwUKjQl0U5XrjKKnhWtAAgACGFqA=
+Date:   Tue, 1 Dec 2020 06:19:09 +0000
+Message-ID: <DM6PR11MB4250802106A1795B78DF3C31FBF40@DM6PR11MB4250.namprd11.prod.outlook.com>
+References: <cover.1605028524.git.vijayakannan.ayyathurai@intel.com>
+ <870c2fda29b290ee6b9f88b15bd1f173bfad8723.1605028524.git.vijayakannan.ayyathurai@intel.com>
+ <20201130220538.GA42581@roeck-us.net>
+In-Reply-To: <20201130220538.GA42581@roeck-us.net>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+dlp-version: 11.5.1.3
+authentication-results: roeck-us.net; dkim=none (message not signed)
+ header.d=none;roeck-us.net; dmarc=none action=none header.from=intel.com;
+x-originating-ip: [42.106.176.52]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: cf20d2b2-4eba-4de6-5da1-08d895c10382
+x-ms-traffictypediagnostic: DM5PR11MB1817:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <DM5PR11MB181774D12FDACCADD7CF8FA0FBF40@DM5PR11MB1817.namprd11.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:7219;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: zS3qNKMfNYjhCnKZIkcn1Ga1TLnUdb/g5agW3Fdki+wIyigp3y+Gxa49kxIlf7TAxPvYs8cD4BlEbrSQspTguZIX+GBCYpJ3cjkmomFsKoFWTLOKsxalRdpV2KV+ZCHdnHt8sqfsOYrvt9QiPFU44xiBFzoILobe0H7NHlj8zHFFVsNYkjH9xQpxPiK5lISOAlRAy4iO3YOH0pwlxN+IceZiSAOroYU93P+w94KhhOO//WInW3zQ1ppUU/IQKZx9wIdGrsKRjco7rFwkDH3d2R9G/MHA4OLBAeWzeB5fz0Tu+SwJMw5Il/GEZqQrRdFjx6PrkJJOLmc56bJVEJIAeA==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR11MB4250.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(376002)(39860400002)(346002)(366004)(136003)(396003)(4326008)(26005)(71200400001)(2906002)(52536014)(6916009)(8936002)(316002)(66476007)(8676002)(7696005)(66556008)(33656002)(64756008)(76116006)(6506007)(55016002)(186003)(5660300002)(66446008)(9686003)(478600001)(66946007)(86362001)(54906003);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata: E46B6FOGU5rQqGUMrGBAt6E86OPEqGPz+pbNFABmm431+0u/9PWt1nFgw+CNL20L02uKkUoC37EKm+pLZj0qCAC5/H7hhN7zUEekf6nqAQS6n9XUWnGXDniQ+O83lnda1BN/3EdJrG9X4uOiXiEQm89RI/0z2l1VJ54hrnkbQLvdBPb8hNePlbmP3w0Xzc2sqHRANGFv+Ih6I0BTFHTfAxnzMhXdkKDgllgaWr8RnzpbUbE2Xip0Wttnpp7PDJvcundoLhmmmDKmU46rPcKm/iszmOQ6Jmxy2pyi6iHH/8uPAP/rFfvaeqtPUBL0Xh6PZFlQBVgcd5Yjra+xXGCKi9QC3+DqnR2SyBVCu0DUfJmNtOBSnoqToqbVpxjlThSNIT8mpTmXVJGnzBO9e5Ry6N4qN+K21DTnHkOXTAy9jvlrhyfEpPHNKnwY+SobH1Uf2oaCEglzf5RKVfq5JWDikWTq9S1IbDVRVcCUTykpsLFhZrbR1ypmR10wl9ny6qn2u1I7Qj8rww+utGdLBwfhqD4e54NHqEw7s+fVBN2lzLZ5J+lZacuADXsnply07ulwZNLQpzGG5pEVNrRLcbT96y4A2u1pgtOl2BZstUNIsab3vvtMI0ILzc0l3/qoHjnGI6Gk3/R6R3zFEffKq7dj4wAO1bbSar/bkNkwdXXWHG86g97d2xoZLcQJHx3HGEEsnBCBTkYQ9GNkQs9m7V9VkuTNUgH7ep/7KPDP0A+m1Zw=
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:/vWLyRziBMYITZyheOSqHmiaF6RCH+TYOX+X/GMCIlBeY/rZZJU
- PUSz77dtX23p4Z7f1nMURNpe9z3mZvpn3jTNWTTPFmoiVW/aaNGckIXU6z4RuGP56HhcPRq
- cd3g7Q8gVfmqxLAqNDWV11QxZuvhDCjcVktf4vf2zsLvNAAUBDKUlfqijs1U6VkIg8QKZpE
- GUG+iRnYR3COFGNXpaTVg==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:dzt7iPwBz3c=:6s0zoM/ez4jfPyYgCjZbYE
- xHsAbOJA2aiPk1ASYNj9rOReO3YgJ/CYnATxql7wq6PcMTHToVJF5SB1TTG25cTFyNUOwxezH
- Kd2f4xAPMOcw2ZUyJf7Ip1uvrW53i4+JHED+9iDDanwXmdB3igrvTK7ynwEpmleFOnmIQ4wZ2
- Uvii8b7PuV1Vx8IH2G1spHq1C5k0EVj8Ni6gqvUk+KPpjikn1iF5+5OMzve2NpS7BCFjkQ7+g
- tB1LPWB0rUSFcDtm9Zheq7j6KQsJM+PAE1dzftTfsc+tY7UtBejrACRc39zF5lNkLIqIuU/rz
- Jn8zpf86xfpSzMu+VPH6Lq02pTxvBEKpZzPsT5VtChWEc5UQip6bBjP+rxoG/X/FWzM4bDphj
- fr75QF6yoxohaAzox/zPEn97ql3o6TUmN4VFkJfk7mCFnBpxSmW62jI7qsNwS6By/nuvopUl9
- VZJamELtqEvjTX3T6zLrNS1v5bJyn80TlgS4CRU+Yt54Ube7PlLloLzId2aqpJnYkrElo9h4M
- Ax2yPMBEw5gR3CuTv71Q110nB/aqlLGI0maHsyqNIunKwc+Wz5T3xADd9JTsBIhnlRHIMSUe1
- sAgG+kFMbluLtjZpMJ7K3cWKoJ6LWfl8PS8XqTsNpggGrlBc3ejNUBdLGwaPNSM3VDSFrekQC
- +PK7WzRmOmNEzjO/4cTzgtXVf9Delru4n5siu0zWpGGVREnN5gQzhsp1ZvsqSCp8BFlmjy1Pz
- aLf7ROTgouKpjXt9oZIuecCk/ZmmdMBboBgezB5CiQIhZJc7ouNnIq1dXF8Bzr0wFelTJ0RrN
- E+FM+L0gr7Vcr88YAugi/l6Ec5zuVB4XEZ1DQb09uNccwuX+O8coSTrkkmT9j7F4dzP7iC2Yk
- sLhxCfTjFU8+Wocaocew==
+MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB4250.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: cf20d2b2-4eba-4de6-5da1-08d895c10382
+X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Dec 2020 06:19:09.1408
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: nmGN6YJ5wQ1F0fO2OlWWCrbjdnxKUEyJJKISzN3Q+qZ69fmN9eofNMF5E9jO5KDxfcnADrlZhNGx0ocf4KtlAJZnqLva0nl9TFatz4vKHCmALHCBeiCYK6e7kf6QDJ9m
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR11MB1817
+X-OriginatorOrg: intel.com
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-With this driver, mainline Linux can keep its time and date in sync with
-the vendor kernel.
+Hi Guenter,
 
-Advanced functionality like alarm and automatic power-on is not yet
-supported.
+> From: Guenter Roeck <linux@roeck-us.net>
+>=20
+> On Wed, Nov 11, 2020 at 01:53:07AM +0800,
+> vijayakannan.ayyathurai@intel.com wrote:
+> > From: Vijayakannan Ayyathurai <vijayakannan.ayyathurai@intel.com>
+> >
+> > Intel Keembay Soc requires watchdog timer support.
+> > Add watchdog driver to enable this.
+> >
+> > +static void keembay_wdt_set_timeout_reg(struct watchdog_device *wdog,
+> bool ping)
+> > +{
+> > +	struct keembay_wdt *wdt =3D watchdog_get_drvdata(wdog);
+> > +	u32 th_val =3D 0;
+> > +
+> > +	if (ping)
+> > +		keembay_wdt_writel(wdt, TIM_WATCHDOG, wdog->timeout *
+> wdt->rate);
+> > +
+> > +	if (!ping && wdog->pretimeout) {
+> > +		th_val =3D wdog->timeout - wdog->pretimeout;
+> > +		keembay_wdt_writel(wdt, TIM_WATCHDOG_INT_THRES, th_val
+> * wdt->rate);
+> > +	}
+> > +
+> > +	if (!ping)
+> > +		keembay_wdt_writel(wdt, TIM_WATCHDOG, wdog->timeout *
+> wdt->rate);
+>=20
+> I am a bit at loss here. This seems unnecessarily complex. Why not just t=
+he
+> following ?
+>=20
 
-Signed-off-by: Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>
-Acked-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
-=2D--
+Sure. I can follow the below way.
+Let me know if there is further comments to improve for the next version.
 
-v5:
-- Add Alexandre Belloni's A-b
-- Use regmap_multi_reg_write
+> 	if (!ping && wdog->pretimeout) {
+> 		th_val =3D wdog->timeout - wdog->pretimeout;
+> 		keembay_wdt_writel(wdt, TIM_WATCHDOG_INT_THRES, th_val
+> * wdt->rate);
+> 	}
+> 	keembay_wdt_writel(wdt, TIM_WATCHDOG, wdog->timeout * wdt-
+> >rate);
+>=20
+> Thanks,
+> Guenter
 
-v4:
-- https://lore.kernel.org/lkml/20201122222739.1455132-6-j.neuschaefer@gmx.=
-net/
-- Remove "driver" from Kconfig entry for consistency with most other entri=
-es
-- Add missing MODULE_ALIAS line
-- Give NTXEC_REG_READ_ macros longer names
-- Solve the read tearing issue using Alexandre Belloni's algorithm
-- Solve the write tearing issue using Uwe Kleine-K=C3=B6nig's algorithm
-- Spell out ODM
-
-v3:
-- https://lore.kernel.org/lkml/20200924192455.2484005-6-j.neuschaefer@gmx.=
-net/
-- Add email address to copyright line
-- Remove OF compatible string and don't include linux/of_device.h
-- Don't use a comma after sentinels
-- Avoid ret |=3D ... pattern
-- Move 8-bit register conversion to ntxec.h
-- Relicense as GPLv2 or later
-
-v2:
-- https://lore.kernel.org/lkml/20200905133230.1014581-7-j.neuschaefer@gmx.=
-net/
-- Rework top-of-file comment [Lee Jones]
-- Sort the #include lines [Alexandre Belloni]
-- don't align =3D signs in struct initializers [Uwe Kleine-K=C3=B6nig]
-- Switch to regmap
-- Fix register number used to read minutes and seconds
-- Prefix registers with NTXEC_REG_
-- Add help text to the Kconfig option
-- Use devm_rtc_allocate_device and rtc_register_device, set ->range_min an=
-d ->range_max
-=2D--
- drivers/rtc/Kconfig     |   8 +++
- drivers/rtc/Makefile    |   1 +
- drivers/rtc/rtc-ntxec.c | 143 ++++++++++++++++++++++++++++++++++++++++
- 3 files changed, 152 insertions(+)
- create mode 100644 drivers/rtc/rtc-ntxec.c
-
-diff --git a/drivers/rtc/Kconfig b/drivers/rtc/Kconfig
-index 65ad9d0b47ab1..fe009949728b3 100644
-=2D-- a/drivers/rtc/Kconfig
-+++ b/drivers/rtc/Kconfig
-@@ -1311,6 +1311,14 @@ config RTC_DRV_CROS_EC
- 	  This driver can also be built as a module. If so, the module
- 	  will be called rtc-cros-ec.
-
-+config RTC_DRV_NTXEC
-+	tristate "Netronix embedded controller RTC"
-+	depends on MFD_NTXEC
-+	help
-+	  Say yes here if you want to support the RTC functionality of the
-+	  embedded controller found in certain e-book readers designed by the
-+	  original design manufacturer Netronix.
-+
- comment "on-CPU RTC drivers"
-
- config RTC_DRV_ASM9260
-diff --git a/drivers/rtc/Makefile b/drivers/rtc/Makefile
-index bfb57464118d0..5f2a7582b2780 100644
-=2D-- a/drivers/rtc/Makefile
-+++ b/drivers/rtc/Makefile
-@@ -111,6 +111,7 @@ obj-$(CONFIG_RTC_DRV_MT7622)	+=3D rtc-mt7622.o
- obj-$(CONFIG_RTC_DRV_MV)	+=3D rtc-mv.o
- obj-$(CONFIG_RTC_DRV_MXC)	+=3D rtc-mxc.o
- obj-$(CONFIG_RTC_DRV_MXC_V2)	+=3D rtc-mxc_v2.o
-+obj-$(CONFIG_RTC_DRV_NTXEC)	+=3D rtc-ntxec.o
- obj-$(CONFIG_RTC_DRV_OMAP)	+=3D rtc-omap.o
- obj-$(CONFIG_RTC_DRV_OPAL)	+=3D rtc-opal.o
- obj-$(CONFIG_RTC_DRV_PALMAS)	+=3D rtc-palmas.o
-diff --git a/drivers/rtc/rtc-ntxec.c b/drivers/rtc/rtc-ntxec.c
-new file mode 100644
-index 0000000000000..c7cff7802895b
-=2D-- /dev/null
-+++ b/drivers/rtc/rtc-ntxec.c
-@@ -0,0 +1,143 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ * The Netronix embedded controller is a microcontroller found in some
-+ * e-book readers designed by the original design manufacturer Netronix, =
-Inc.
-+ * It contains RTC, battery monitoring, system power management, and PWM
-+ * functionality.
-+ *
-+ * This driver implements access to the RTC time and date.
-+ *
-+ * Copyright 2020 Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>
-+ */
-+
-+#include <linux/mfd/ntxec.h>
-+#include <linux/module.h>
-+#include <linux/platform_device.h>
-+#include <linux/regmap.h>
-+#include <linux/rtc.h>
-+#include <linux/types.h>
-+
-+struct ntxec_rtc {
-+	struct device *dev;
-+	struct ntxec *ec;
-+};
-+
-+#define NTXEC_REG_WRITE_YEAR	0x10
-+#define NTXEC_REG_WRITE_MONTH	0x11
-+#define NTXEC_REG_WRITE_DAY	0x12
-+#define NTXEC_REG_WRITE_HOUR	0x13
-+#define NTXEC_REG_WRITE_MINUTE	0x14
-+#define NTXEC_REG_WRITE_SECOND	0x15
-+
-+#define NTXEC_REG_READ_YEAR_MONTH	0x20
-+#define NTXEC_REG_READ_MDAY_HOUR	0x21
-+#define NTXEC_REG_READ_MINUTE_SECOND	0x23
-+
-+static int ntxec_read_time(struct device *dev, struct rtc_time *tm)
-+{
-+	struct ntxec_rtc *rtc =3D dev_get_drvdata(dev);
-+	unsigned int value;
-+	int res;
-+
-+retry:
-+	res =3D regmap_read(rtc->ec->regmap, NTXEC_REG_READ_MINUTE_SECOND, &valu=
-e);
-+	if (res < 0)
-+		return res;
-+
-+	tm->tm_min =3D value >> 8;
-+	tm->tm_sec =3D value & 0xff;
-+
-+	res =3D regmap_read(rtc->ec->regmap, NTXEC_REG_READ_MDAY_HOUR, &value);
-+	if (res < 0)
-+		return res;
-+
-+	tm->tm_mday =3D value >> 8;
-+	tm->tm_hour =3D value & 0xff;
-+
-+	res =3D regmap_read(rtc->ec->regmap, NTXEC_REG_READ_YEAR_MONTH, &value);
-+	if (res < 0)
-+		return res;
-+
-+	tm->tm_year =3D (value >> 8) + 100;
-+	tm->tm_mon =3D (value & 0xff) - 1;
-+
-+	/*
-+	 * Read the minutes/seconds field again. If it changed since the first
-+	 * read, we can't assume that the values read so far are consistent,
-+	 * and should start from the beginning.
-+	 */
-+	res =3D regmap_read(rtc->ec->regmap, NTXEC_REG_READ_MINUTE_SECOND, &valu=
-e);
-+	if (res < 0)
-+		return res;
-+
-+	if (tm->tm_min !=3D value >> 8 || tm->tm_sec !=3D (value & 0xff))
-+		goto retry;
-+
-+	return 0;
-+}
-+
-+static int ntxec_set_time(struct device *dev, struct rtc_time *tm)
-+{
-+	struct ntxec_rtc *rtc =3D dev_get_drvdata(dev);
-+
-+	/*
-+	 * To avoid time overflows while we're writing the full date/time,
-+	 * set the seconds field to zero before doing anything else. For the
-+	 * next 59 seconds (plus however long it takes until the RTC's next
-+	 * update of the second field), the seconds field will not overflow
-+	 * into the other fields.
-+	 */
-+	struct reg_sequence regs[] =3D {
-+		{ NTXEC_REG_WRITE_SECOND, ntxec_reg8(0) },
-+		{ NTXEC_REG_WRITE_YEAR, ntxec_reg8(tm->tm_year - 100) },
-+		{ NTXEC_REG_WRITE_MONTH, ntxec_reg8(tm->tm_mon + 1) },
-+		{ NTXEC_REG_WRITE_DAY, ntxec_reg8(tm->tm_mday) },
-+		{ NTXEC_REG_WRITE_HOUR, ntxec_reg8(tm->tm_hour) },
-+		{ NTXEC_REG_WRITE_MINUTE, ntxec_reg8(tm->tm_min) },
-+		{ NTXEC_REG_WRITE_SECOND, ntxec_reg8(tm->tm_sec) },
-+	};
-+
-+	return regmap_multi_reg_write(rtc->ec->regmap, regs, ARRAY_SIZE(regs));
-+}
-+
-+static const struct rtc_class_ops ntxec_rtc_ops =3D {
-+	.read_time =3D ntxec_read_time,
-+	.set_time =3D ntxec_set_time,
-+};
-+
-+static int ntxec_rtc_probe(struct platform_device *pdev)
-+{
-+	struct rtc_device *dev;
-+	struct ntxec_rtc *rtc;
-+
-+	rtc =3D devm_kzalloc(&pdev->dev, sizeof(*rtc), GFP_KERNEL);
-+	if (!rtc)
-+		return -ENOMEM;
-+
-+	rtc->dev =3D &pdev->dev;
-+	rtc->ec =3D dev_get_drvdata(pdev->dev.parent);
-+	platform_set_drvdata(pdev, rtc);
-+
-+	dev =3D devm_rtc_allocate_device(&pdev->dev);
-+	if (IS_ERR(dev))
-+		return PTR_ERR(dev);
-+
-+	dev->ops =3D &ntxec_rtc_ops;
-+	dev->range_min =3D RTC_TIMESTAMP_BEGIN_2000;
-+	dev->range_max =3D 9025257599LL; /* 2255-12-31 23:59:59 */
-+
-+	return rtc_register_device(dev);
-+}
-+
-+static struct platform_driver ntxec_rtc_driver =3D {
-+	.driver =3D {
-+		.name =3D "ntxec-rtc",
-+	},
-+	.probe =3D ntxec_rtc_probe,
-+};
-+module_platform_driver(ntxec_rtc_driver);
-+
-+MODULE_AUTHOR("Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>");
-+MODULE_DESCRIPTION("RTC driver for Netronix EC");
-+MODULE_LICENSE("GPL");
-+MODULE_ALIAS("platform:ntxec-rtc");
-=2D-
-2.29.2
-
+Thanks,
+Vijay
