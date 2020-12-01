@@ -2,238 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2301F2CA747
-	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 16:43:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B1C2D2CA74F
+	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 16:43:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391908AbgLAPiy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Dec 2020 10:38:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57026 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2391906AbgLAPiy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Dec 2020 10:38:54 -0500
-Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com [IPv6:2a00:1450:4864:20::444])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF243C061A55
-        for <devicetree@vger.kernel.org>; Tue,  1 Dec 2020 07:37:30 -0800 (PST)
-Received: by mail-wr1-x444.google.com with SMTP id s8so3258166wrw.10
-        for <devicetree@vger.kernel.org>; Tue, 01 Dec 2020 07:37:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=AnsMipShbEp5shIcSQnSsR/KPaRGHHYiZS/KJVFuEzU=;
-        b=d3V33ds+V2uGSuK1Is8LyL+zdVqoj2udYUXfK4dLGmW2Bu0VXwd6Sj3QW7fRQkkU61
-         xeCDUXF7bmZbbXy6FJAepXvT+L7qt7YmfYXMlM6RoU36fxpIX412g1D75jtmKLAJzEUT
-         a6R35abPN7caHzjaUW49Fh4bB72Zqlm12q1Axl82i31TjFrnel64kHCu1cv+Hy/Z0IKe
-         KO++BNLnVTQJqWUoAdg8EuonQx8kXDLdLHMFaPaCXth25PGK1cSt7C983M0fgT2zTYNj
-         EU4/OntdFvIGOPbnTDJDMuhAQlnwy4/HPaYJcKgaN9ROWfani0vDRlvsXdpjYa4CEOmL
-         INMA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=AnsMipShbEp5shIcSQnSsR/KPaRGHHYiZS/KJVFuEzU=;
-        b=krFiAVFMHQVSjvLrbC/DsAoVGouFEkcJa98kK0XkozOMWf0BVmm01Rl/9nhjUV2JTJ
-         C3Y2sViJjE30Qcp5RwOu4IXhCAiXHjkUoZ8u0hNn2iaf0fHh7U7NBZLVDxXgMQHwcrBE
-         RxnQEX++aeyMmPNjsbleOoRA6NsH/+20iLc1svDt2DzFgJmPG2/s0IqDWnbHfgBm/Ua6
-         Va0d3t9F60RrvoXhlWN5dIB/C5T+Qyuzgz/jTkyDGZbyel+hH+qnQt3cmbngfsDGhjUy
-         iQumYzVdzaM/HhVQZJ4XMja6eBDwfPd0EY5BI5UgTQXssciL7I6rVhwObLSsPZZ/RYNN
-         FpuQ==
-X-Gm-Message-State: AOAM530SasO7XzWzeewcQ9nEvTHb/iLY8hwbKwvKsg+XuEPa3RYjKZ0O
-        pUo735ZVxC+kNN6jAFV3gqz6DA==
-X-Google-Smtp-Source: ABdhPJyt5IlNdbjrOGpmBV9L5vRASf03V/hmdFs2fwLA5QsQmAzOtR1xYDaA2k4qSSP6BP4ceEPuEg==
-X-Received: by 2002:a5d:6503:: with SMTP id x3mr4647417wru.151.1606837049436;
-        Tue, 01 Dec 2020 07:37:29 -0800 (PST)
-Received: from srini-hackbox.lan (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.gmail.com with ESMTPSA id y7sm302171wmb.37.2020.12.01.07.37.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Dec 2020 07:37:28 -0800 (PST)
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-To:     bjorn.andersson@linaro.org
-Cc:     linux-arm-msm@vger.kernel.org, agross@kernel.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Subject: [PATCH 6/6] arm64: dts: qcom: qrb5165-rb5: Add Audio support
-Date:   Tue,  1 Dec 2020 15:37:06 +0000
-Message-Id: <20201201153706.13450-7-srinivas.kandagatla@linaro.org>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20201201153706.13450-1-srinivas.kandagatla@linaro.org>
-References: <20201201153706.13450-1-srinivas.kandagatla@linaro.org>
+        id S2389952AbgLAPmV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Dec 2020 10:42:21 -0500
+Received: from mga12.intel.com ([192.55.52.136]:61189 "EHLO mga12.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2389443AbgLAPmV (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 1 Dec 2020 10:42:21 -0500
+IronPort-SDR: JivhYQtM4rvMDlAgfuzDH6JT4QUnXKOwhMEqE2cOnRN8SGyscDdtUZckSsfOmOp2V7+BPk5Dlk
+ yYu6jQssydHg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9822"; a="152100625"
+X-IronPort-AV: E=Sophos;i="5.78,384,1599548400"; 
+   d="scan'208";a="152100625"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Dec 2020 07:41:40 -0800
+IronPort-SDR: LcgkthKaw9Y91+rxGt4s6eSJ6h0ol1ZZ3QABe7pD+VMgguT9TlrEbv8ybZQK05oTKR+zlshSn2
+ Cjk6Gc017aXQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.78,384,1599548400"; 
+   d="scan'208";a="537572721"
+Received: from fmsmsx605.amr.corp.intel.com ([10.18.126.85])
+  by fmsmga006.fm.intel.com with ESMTP; 01 Dec 2020 07:41:39 -0800
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx605.amr.corp.intel.com (10.18.126.85) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Tue, 1 Dec 2020 07:41:39 -0800
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5
+ via Frontend Transport; Tue, 1 Dec 2020 07:41:39 -0800
+Received: from NAM02-BL2-obe.outbound.protection.outlook.com (104.47.38.50) by
+ edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.1713.5; Tue, 1 Dec 2020 07:41:39 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=MpkQLeAXtuetqyh6a+9+1vQz62Vhj905EIEYeEw3XRaJXG8gEJ2w+VcA9V6Yr0pJpLkxJrCCr4Spjqf7fS7813UPGdt6iBeNz13ZJnSQowYfQnctuXZpBVekLX9+3P6vBF9546BuAvHZhNeBZlD7YSGK3uKft73p7mnbfP9rHfEeaghDht+2CcW1w4Vu2gHU5Gmn57GBDxMFkJ3Sx6CnQggyoC3LZ1wk85iQEOY9sgsBO//ldyMTQ8Whtq4fzPE4bRmDXjiUWGSyz6Eo4roiXaenAey33OHEiOurJjBsv3jmH0JXJmZ2y5GkmbFKnjkjTR90Z8TougcDRrbAjr+YMQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=XqstsU4fvp5VML2iPgWO3yuuuilXQZZmSPNYhT6hSWM=;
+ b=EFIzEE4UoqXb4v5dhEy+Wmz/9SeZDjbGGPSYNkpsf2qJ8io0PlYVYBHz4Y0ox7wnU9FNKWFUMO3NsXTeawnmiWzTLlrrsWUnilj6EzD1eRCExxf8zKS4a32T42zzYEAyer3MQeutlLMoP5Lw97hBKR6NQOup1BNf+B5DxPqGfG7LegCwmP43ljGAn/G0Jq9nBQFUBQO3iU+ghvVmpLqKH8buFhvW6F/xD3qhDArRa21+GlJiU31cmf6heibmKu54S3DiuPzT2xMTicCnqBizDpzshJSw1y7Ih62VPBn4bv21H/OcC45sgN5i050EM6Yg3xhIKzyO3o1MJ9LNOGZw8g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com;
+ s=selector2-intel-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=XqstsU4fvp5VML2iPgWO3yuuuilXQZZmSPNYhT6hSWM=;
+ b=G2SutcWgDHO5bXkmAZlRUt2l/mh3a/foakSKpU40xXL9k0pw0vhZrNUXArtC7qH7j8pMl4unx6uVIdkviA053j7Um/arvzVzsatvNnyfzvBblXogFxgT5NVyeL6FGOsaFIWJokyR/zdUAFwpU9vanzFvhDj4kmFhF1SNifuVuac=
+Received: from DM6PR11MB4250.namprd11.prod.outlook.com (2603:10b6:5:1df::18)
+ by DM6PR11MB2825.namprd11.prod.outlook.com (2603:10b6:5:c5::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3611.31; Tue, 1 Dec
+ 2020 15:41:38 +0000
+Received: from DM6PR11MB4250.namprd11.prod.outlook.com
+ ([fe80::b90d:d053:9de6:e5ef]) by DM6PR11MB4250.namprd11.prod.outlook.com
+ ([fe80::b90d:d053:9de6:e5ef%4]) with mapi id 15.20.3611.025; Tue, 1 Dec 2020
+ 15:41:38 +0000
+From:   "Ayyathurai, Vijayakannan" <vijayakannan.ayyathurai@intel.com>
+To:     "wim@linux-watchdog.org" <wim@linux-watchdog.org>,
+        "linux@roeck-us.net" <linux@roeck-us.net>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>
+CC:     "linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "andriy.shevchenko@linux.intel.com" 
+        <andriy.shevchenko@linux.intel.com>,
+        "mgross@linux.intel.com" <mgross@linux.intel.com>,
+        "Wan Mohamad, Wan Ahmad Zainie" 
+        <wan.ahmad.zainie.wan.mohamad@intel.com>,
+        "Raja Subramanian, Lakshmi Bai" 
+        <lakshmi.bai.raja.subramanian@intel.com>
+Subject: RE: [PATCH v3 2/2] dt-bindings: watchdog: Add bindings for Intel Keem
+ Bay SoC
+Thread-Topic: [PATCH v3 2/2] dt-bindings: watchdog: Add bindings for Intel
+ Keem Bay SoC
+Thread-Index: AQHWx/CMPyJ54KhtzECLIIMtmp7yx6niYKQw
+Date:   Tue, 1 Dec 2020 15:41:38 +0000
+Message-ID: <DM6PR11MB42502F3008B27BEB7C58E8B9FBF40@DM6PR11MB4250.namprd11.prod.outlook.com>
+References: <cover.1606833303.git.vijayakannan.ayyathurai@intel.com>
+ <c3ffd4c2becada82c631ca035a3a1a8f0bd38dc8.1606833303.git.vijayakannan.ayyathurai@intel.com>
+In-Reply-To: <c3ffd4c2becada82c631ca035a3a1a8f0bd38dc8.1606833303.git.vijayakannan.ayyathurai@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+dlp-version: 11.5.1.3
+authentication-results: linux-watchdog.org; dkim=none (message not signed)
+ header.d=none;linux-watchdog.org; dmarc=none action=none
+ header.from=intel.com;
+x-originating-ip: [42.106.176.52]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 37b47006-fb85-4cb7-d784-08d8960f9797
+x-ms-traffictypediagnostic: DM6PR11MB2825:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <DM6PR11MB2825687D5DF76A764DC7B64CFBF40@DM6PR11MB2825.namprd11.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:4125;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: HkIy3OMdplemkgLiFry3K3q96N4JthMcewo3lWnO/p9iyJPmNOM33oPb8c1Zx4F8SfKrCszktCvy26BzvlyY398rtvX5dJ0ksOMvdBt/R9i0BqnG8Y9QzkZjTaGeq1xpoBbVDCg63N9+SbyDFCaNebj5rznaW93eDGyn6ZRuL3AJ2nswUcDqEeSqyuuGHPiDOxQ8yqKYPpTcLv+nKm/rKD2YesiN+XC+Jfog4Egs4zTpsr5xYHldfU0w35rSNJh3NY431BVvYvVoIz4qXTAV7clkbxnkM/bhvYOphdYb/Gxc/kNCqnpVRm2wgiqGE4VCP2Nt1aBTtHNtCOMx42Vlbw==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR11MB4250.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(396003)(346002)(376002)(39860400002)(136003)(366004)(8936002)(52536014)(5660300002)(54906003)(33656002)(86362001)(110136005)(8676002)(76116006)(64756008)(186003)(316002)(66446008)(66556008)(66946007)(6506007)(26005)(66476007)(7696005)(478600001)(4744005)(4326008)(55016002)(9686003)(71200400001)(2906002);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata: =?us-ascii?Q?wTINJ9tOibXz9c8FO8Q1s8zppDEPfp6Em+SBeW0IkEJHPeZvZHZbOBlu4aix?=
+ =?us-ascii?Q?zR+2W/Dgs0Vnqi//3mZCBmpP5PSxfEOJ5RI0n4rlX6XF+wSUlHQ1vo1/qn0K?=
+ =?us-ascii?Q?qOg7noBYJclOFZlLTnhh+xdM+T7c11IMrDKryxbd7HGUyShqN8LrAKLJEecb?=
+ =?us-ascii?Q?PEG95VlFgXcGo9ciZIr8l5Ln24p1y83ppuQ/tDT75w6H7f/5B6nD1Uzt0WxT?=
+ =?us-ascii?Q?GY5jsYAOV8AXUodAVmtpCQPuWwBpJ9D8BKvwashbwRD4ePGPnoaTqIcg+BOy?=
+ =?us-ascii?Q?836aWyRExd28eKnbTxKkVn6VCHTn2K5iwJB5vW+207IvcW6CWZP+g8lBJh0T?=
+ =?us-ascii?Q?nCmhOYisDZR5fphwZXFG69L7gRvd1o+axbaMY0iRkNT3SAmobZRFmXV/Cll0?=
+ =?us-ascii?Q?zNNJ4CUiPRqGRVyusAKPm1Y3tuB0RdXf0t44eQvrZkkEkfeOHfjeQoSkJwYT?=
+ =?us-ascii?Q?AYvtqztmTDCr3dK4bhmWpEhjPQDOn0LBDY6mVTSnXXkWc5jqnOZP6m1qcTGr?=
+ =?us-ascii?Q?KSle9Nx9wcFphc8uW04YX0YCrJBq6SGDaUK7dcYHhD+Xj9LfQVbrne3kiX3W?=
+ =?us-ascii?Q?D6cwZ6pmj8xNrZmZXDl3c9aG3zKRwAoeWs0kxeogaatSmHwg1ZoCaxZBtU73?=
+ =?us-ascii?Q?UagTeF4TFZ6FXLYQPpS0nWNpvOnvQVznl8o/3Fg691G8ShJMGzOCnVSLILAo?=
+ =?us-ascii?Q?xoQWpbM7RvGDKZsE5CrJUMfvJbfKCGbYdu1Zssty8rh3HccWVnT0FM1IqHng?=
+ =?us-ascii?Q?STzkLvE+M7AgEWHhQaFSZb+Er5hbl6cMLK68o308bWNtZdx+j+Jy8HpT0mgq?=
+ =?us-ascii?Q?neHBAwFK5iLU0OZkbKJuIs7tTXi1fZueeCdIT+E8J6yzktHuz4ENqQJm5b1c?=
+ =?us-ascii?Q?TuOMMh8zun89FskoV1lk9ZoCAU1WOtZr4np/RvnFwziN1UsE3uEGYDVru3Dd?=
+ =?us-ascii?Q?H1WOlb6RFOvy40dBhCvm0Z+jh9ZKw9Jh6GATOVS4ydY=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB4250.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 37b47006-fb85-4cb7-d784-08d8960f9797
+X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Dec 2020 15:41:38.3622
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 95Ds0Qp6LEAxi4gobed9GWGkWkbgEH7BrAu3n7jLOyvuuSbOWcbWPbdYn62+Ok4P+VO9QkbHEm4oNs2XT9QRi1cNf1APDk+MNSFWo0geHci0FSojaiIBLOfH5xfbX/8S
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB2825
+X-OriginatorOrg: intel.com
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch add support for two WSA881X smart speakers attached via Soundwire
-and a DMIC0 on the main board.
+Hi,
 
-Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
----
- arch/arm64/boot/dts/qcom/qrb5165-rb5.dts | 125 +++++++++++++++++++++++
- 1 file changed, 125 insertions(+)
+> From: Ayyathurai, Vijayakannan <vijayakannan.ayyathurai@intel.com>
+>=20
+> Add Device Tree binding document for Watchdog IP in the Intel Keem Bay So=
+C.
+>=20
+> Signed-off-by: Vijayakannan Ayyathurai <vijayakannan.ayyathurai@intel.com=
+>
+> Acked-by: Mark Gross <mgross@linux.intel.com>
+> Acked-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 
-diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-index ce22d4fa383e..03229d5cb9d3 100644
---- a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-+++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-@@ -7,6 +7,8 @@
- 
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
-+#include <dt-bindings/sound/qcom,q6afe.h>
-+#include <dt-bindings/sound/qcom,q6asm.h>
- #include "sm8250.dtsi"
- #include "pm8150.dtsi"
- #include "pm8150b.dtsi"
-@@ -120,6 +122,11 @@
- 	};
- };
- 
-+&adsp {
-+	status = "okay";
-+	firmware-name = "qcom/sm8250/adsp.mdt";
-+};
-+
- &apps_rsc {
- 	pm8009-rpmh-regulators {
- 		compatible = "qcom,pm8009-rpmh-regulators";
-@@ -483,6 +490,35 @@
- 	status = "okay";
- };
- 
-+&q6afedai {
-+	qi2s@16 {
-+		reg = <16>;
-+		qcom,sd-lines = <0 1 2 3>;
-+	};
-+};
-+
-+/* TERT I2S Uses 1 I2S SD Lines for audio on LT9611 HDMI Bridge */
-+&q6afedai {
-+	qi2s@20 {
-+		reg = <20>;
-+		qcom,sd-lines = <0>;
-+	};
-+};
-+
-+&q6asmdai {
-+	dai@0 {
-+		reg = <0>;
-+	};
-+
-+	dai@1 {
-+		reg = <1>;
-+	};
-+
-+	dai@2 {
-+		reg = <2>;
-+	};
-+};
-+
- &sdhc_2 {
- 	status = "okay";
- 	pinctrl-names = "default";
-@@ -497,6 +533,88 @@
- 	no-emmc;
- };
- 
-+&swr0 {
-+
-+	left_spkr: wsa8810-left{
-+		compatible = "sdw10217211000";
-+		reg = <0 3>;
-+		powerdown-gpios = <&tlmm 130 GPIO_ACTIVE_HIGH>;
-+		#thermal-sensor-cells = <0>;
-+		sound-name-prefix = "SpkrLeft";
-+		#sound-dai-cells = <0>;
-+	};
-+
-+
-+	right_spkr: wsa8810-right{
-+		compatible = "sdw10217211000";
-+		reg = <0 4>;
-+		powerdown-gpios = <&tlmm 130 GPIO_ACTIVE_HIGH>;
-+		#thermal-sensor-cells = <0>;
-+		sound-name-prefix = "SpkrRight";
-+		#sound-dai-cells = <0>;
-+	};
-+};
-+
-+&sound {
-+	compatible = "qcom,qrb5165-rb5";
-+	pinctrl-0 = <&tert_mi2s_sck_active
-+			 &tert_mi2s_sd0_active
-+			 &tert_mi2s_ws_active>;
-+	pinctrl-names = "default";
-+	model = "Qualcomm-RB5-WSA8815-Speakers-DMIC0";
-+	audio-routing =
-+		"SpkrLeft IN", "WSA_SPK1 OUT",
-+		"SpkrRight IN", "WSA_SPK2 OUT",
-+		"VA DMIC0", "vdd-micb",
-+                "VA DMIC1", "vdd-micb",
-+		"MM_DL1",  "MultiMedia1 Playback",
-+		"MultiMedia3 Capture", "MM_UL3";
-+
-+	mm1-dai-link {
-+		link-name = "MultiMedia1";
-+		cpu {
-+			sound-dai = <&q6asmdai  MSM_FRONTEND_DAI_MULTIMEDIA1>;
-+		};
-+	};
-+
-+	mm3-dai-link {
-+		link-name = "MultiMedia3";
-+		cpu {
-+			sound-dai = <&q6asmdai  MSM_FRONTEND_DAI_MULTIMEDIA3>;
-+		};
-+	};
-+
-+	dma-dai-link {
-+		link-name = "WSA Playback";
-+		cpu {
-+			sound-dai = <&q6afedai WSA_CODEC_DMA_RX_0>;
-+		};
-+
-+		platform {
-+			sound-dai = <&q6routing>;
-+		};
-+
-+		codec {
-+			sound-dai = <&left_spkr>, <&right_spkr>, <&swr0 0>, <&wsamacro 0>;
-+		};
-+	};
-+
-+	va-dai-link {
-+		link-name = "VA Capture";
-+		cpu {
-+			sound-dai = <&q6afedai VA_CODEC_DMA_TX_0>;
-+		};
-+
-+		platform {
-+			sound-dai = <&q6routing>;
-+		};
-+
-+		codec {
-+			sound-dai = <&vamacro 0>;
-+		};
-+	};
-+};
-+
- /* CAN */
- &spi0 {
- 	status = "okay";
-@@ -792,3 +910,10 @@
- 	vdda-phy-supply = <&vreg_l9a_1p2>;
- 	vdda-pll-supply = <&vreg_l18a_0p92>;
- };
-+
-+&vamacro {
-+	pinctrl-0 = <&cdc_dmic01_clk_active &cdc_dmic01_data_active>;
-+	pinctrl-names = "default";
-+	vdd-micb-supply = <&vreg_s4a_1p8>;
-+	qcom,dmic-sample-rate = <600000>;
-+};
--- 
-2.21.0
+Sorry, by mistake I missed adding Rob's Reviewed-by: tag.
 
+> ---
+>  .../bindings/watchdog/intel,keembay-wdt.yaml  | 57 +++++++++++++++++++
+>  1 file changed, 57 insertions(+)
+>  create mode 100644
+> Documentation/devicetree/bindings/watchdog/intel,keembay-wdt.yaml
+>
+Thanks,
+Vijay
