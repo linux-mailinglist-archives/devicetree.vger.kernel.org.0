@@ -2,71 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D94FF2CAC88
-	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 20:39:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AC92D2CAC91
+	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 20:41:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2392474AbgLATjF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Dec 2020 14:39:05 -0500
-Received: from mail-io1-f65.google.com ([209.85.166.65]:34300 "EHLO
-        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2392472AbgLATjF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Dec 2020 14:39:05 -0500
-Received: by mail-io1-f65.google.com with SMTP id i18so109618ioa.1;
-        Tue, 01 Dec 2020 11:38:49 -0800 (PST)
+        id S2392426AbgLATkG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Dec 2020 14:40:06 -0500
+Received: from mail-io1-f66.google.com ([209.85.166.66]:43823 "EHLO
+        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2389343AbgLATj7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Dec 2020 14:39:59 -0500
+Received: by mail-io1-f66.google.com with SMTP id n14so2838078iom.10;
+        Tue, 01 Dec 2020 11:39:43 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=XYryzA4/mFCMKCIdF4yV/ZR2i0tUMBhkZeyfOMT4X4g=;
-        b=OjaEdSpELliFKxKeBdaOHijvUIXrUOzw6P9kGsvT0CDXGl6DnpM6IgPngXvIyqwVOO
-         ltpP3iBJn6a8gEyXhQTmCsE1ApTt4GeHc0bN5I7h4mOSn/58tW4jke2a7i7b/7AfRAuh
-         RiMGQFaAspVvLyhjUgIXRXrmCW5zsW3sGkk9vkuEqKHSyQdmPySuD2ueeGgTbf8a4S4W
-         UIUVjiJvR5iNz4j9yhOwEGVDaBwTGMFgZFtJIL7q9xTBsCgxPrbIvkc7+SDLKCiqxJSF
-         6O8otMQVPdg0btoDJfyXZcVwGWwvA9kqQbhevEtkA1JHMoCdcD2/L2ywkN5BZuV70ZRP
-         kl8Q==
-X-Gm-Message-State: AOAM531HS7E4slPXqxRf7y4Kd//ulW5QtlAkhPIiHnsb0v13lJU/mol8
-        ImrjRy93VbNZq5PHu/N4+w==
-X-Google-Smtp-Source: ABdhPJz6y0nwODn3fi22qW0p1MoAqQH5CE857hDxXdkRZT/O3+x/q/eHKcGoz/oIUzGrKCRWBlG6Ow==
-X-Received: by 2002:a02:7124:: with SMTP id n36mr4080721jac.59.1606851504458;
-        Tue, 01 Dec 2020 11:38:24 -0800 (PST)
+        bh=Jq7u5/UfncNIXt0qMkxHCilNHf/0tvbW1U30cwWUoHA=;
+        b=QlG3WRkkQWH0ipPUOeJRQFsc2ZwARJNVZFZ30XY4Wuyt0cUOubjqRsYz5us0490k66
+         nYoWlxi4iX0srTtw1j4rolkiL+tVyzgL7wSNMBRrQIvoRxeN5j11YIy6s1Z7bGED+cOl
+         nozWJnP8w7y5E9uxd5tMyEWC/XPd8KQzXeyoNNiG/dlbR5aockHUZTKiEwhFBtTmTMyw
+         VApT9BnBkvhJ2gmPZlkWQVMGrijBMWC9Ng9FfrUloWHgBIBQSMd4g8tleEZWtUxyjhLP
+         Cbic1TRW2+oS2is77/bRT8mV7ZJ+/323JoS3yfxoq0ChgPUdpK/9/3+t7GQsfV84j5gP
+         mb5Q==
+X-Gm-Message-State: AOAM532k7M19xQa8MgQb+ICwAmGYR/52HB9aIQ8tTJotvnGXDGKs8LBH
+        JA5h95Rqb6O/85qHQQYKag==
+X-Google-Smtp-Source: ABdhPJxfrgZAxduHRKzNo2RBuk+51qGlK4QYC5A5RaXdhzhkKQOJbkkHDFsBY8Q3kqPdqmY8ZFhU1w==
+X-Received: by 2002:a02:650e:: with SMTP id u14mr1783751jab.143.1606851558412;
+        Tue, 01 Dec 2020 11:39:18 -0800 (PST)
 Received: from xps15 ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id k28sm293101ilg.40.2020.12.01.11.38.21
+        by smtp.gmail.com with ESMTPSA id n16sm275022ilj.19.2020.12.01.11.39.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Dec 2020 11:38:23 -0800 (PST)
-Received: (nullmailer pid 929500 invoked by uid 1000);
-        Tue, 01 Dec 2020 19:38:20 -0000
-Date:   Tue, 1 Dec 2020 12:38:20 -0700
+        Tue, 01 Dec 2020 11:39:17 -0800 (PST)
+Received: (nullmailer pid 931037 invoked by uid 1000);
+        Tue, 01 Dec 2020 19:39:15 -0000
+Date:   Tue, 1 Dec 2020 12:39:15 -0700
 From:   Rob Herring <robh@kernel.org>
-To:     Martin Cerveny <m.cerveny@computer.org>
-Cc:     linux-kernel@vger.kernel.org, Lee Jones <lee.jones@linaro.org>,
-        Icenowy Zheng <icenowy@aosc.io>, devel@driverdev.osuosl.org,
-        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
-        linux-media@vger.kernel.org, Maxime Ripard <mripard@kernel.org>,
-        devicetree@vger.kernel.org, Mark Brown <broonie@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Subject: Re: [PATCH v3 5/6] dt-bindings: media: cedrus: Add V3s compatible
-Message-ID: <20201201193820.GA929471@robh.at.kernel.org>
-References: <20201116125617.7597-1-m.cerveny@computer.org>
- <20201116125617.7597-6-m.cerveny@computer.org>
+To:     Daniele Alessandrelli <daniele.alessandrelli@linux.intel.com>
+Cc:     linux-crypto@vger.kernel.org,
+        Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
+        Declan Murphy <declan.murphy@intel.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        Mark Gross <mgross@linux.intel.com>,
+        devicetree@vger.kernel.org,
+        "David S. Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v3 1/3] dt-bindings: crypto: Add Keem Bay OCS HCU bindings
+Message-ID: <20201201193915.GA930982@robh.at.kernel.org>
+References: <20201116185846.773464-1-daniele.alessandrelli@linux.intel.com>
+ <20201116185846.773464-2-daniele.alessandrelli@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201116125617.7597-6-m.cerveny@computer.org>
+In-Reply-To: <20201116185846.773464-2-daniele.alessandrelli@linux.intel.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 16 Nov 2020 13:56:16 +0100, Martin Cerveny wrote:
-> Allwinner V3s SoC contains video engine. Add compatible for it.
+On Mon, 16 Nov 2020 18:58:44 +0000, Daniele Alessandrelli wrote:
+> From: Declan Murphy <declan.murphy@intel.com>
 > 
-> Signed-off-by: Martin Cerveny <m.cerveny@computer.org>
+> Add device-tree bindings for the Intel Keem Bay Offload Crypto Subsystem
+> (OCS) Hashing Control Unit (HCU) crypto driver.
+> 
+> Signed-off-by: Declan Murphy <declan.murphy@intel.com>
+> Signed-off-by: Daniele Alessandrelli <daniele.alessandrelli@intel.com>
+> Acked-by: Mark Gross <mgross@linux.intel.com>
 > ---
->  .../bindings/media/allwinner,sun4i-a10-video-engine.yaml         | 1 +
->  1 file changed, 1 insertion(+)
+>  .../crypto/intel,keembay-ocs-hcu.yaml         | 46 +++++++++++++++++++
+>  1 file changed, 46 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/crypto/intel,keembay-ocs-hcu.yaml
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
