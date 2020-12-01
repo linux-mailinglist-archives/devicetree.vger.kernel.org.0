@@ -2,103 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CE0CD2C93D0
-	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 01:21:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B6F652C93E2
+	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 01:27:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729387AbgLAAUp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Nov 2020 19:20:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55110 "EHLO
+        id S1728371AbgLAA0f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Nov 2020 19:26:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56044 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727373AbgLAAUo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Nov 2020 19:20:44 -0500
-Received: from mail-ej1-x641.google.com (mail-ej1-x641.google.com [IPv6:2a00:1450:4864:20::641])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68166C0613D3;
-        Mon, 30 Nov 2020 16:19:58 -0800 (PST)
-Received: by mail-ej1-x641.google.com with SMTP id d17so157533ejy.9;
-        Mon, 30 Nov 2020 16:19:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=bBjclvgWoSr+bRB1ITg2zTw2nWf07seRYzMFcnIsPu4=;
-        b=LYNZz/WVkbWUB4pZOLqNxwvsh4b7KxMBDmOBP8APt6ahYfooauzViPUDwB3ZyRXp9B
-         EBO/nFUF9cePoyMuZQjtHd2aMFSmxgpxw/IXDjppqUaoynJo2t+yRpiuxAth+EfFNplk
-         RngY70xpoHSAlKpkjgUSpm6Ma7uJCLQmExuUXmXrmQEXITj2/YV8cmRW4O6oC7BbMtuB
-         ej8noBf/xZzk41yjJ1Y6jrgmIZtqW+jHYm7L2p9Ofpb60CLde9AYWZQYtA7W5XIKVVRZ
-         ZRRGGMRZTvBkZSvOS85VuwUiNHPCr60CcAihlTg8FL7IWeS4i6BlXDHp4dBQ3/r29ZXd
-         tgRg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=bBjclvgWoSr+bRB1ITg2zTw2nWf07seRYzMFcnIsPu4=;
-        b=Z6+s3rnw8uiTL3oKavIkA+5rVvYqITotQPNTq7eI3nDysz6Velsey1vzhOIO8J2AlU
-         AzgUYvt2yqcSg5XJpvuVu638Kpi4I9Egnj6Ily4VGSy7uWMYuAmxv+vNeFDlbv2voIYF
-         +2c0HC/9JS2vEA63WfLN4H0CfmRo7JUg7xc/kS6rF6nsZKQqmgXyBeKapnW3+Ysb/TO5
-         m3B0L03eInw8OxmUoD8Br/8+e7iXOHQdbQdLm+TLEcV/F7iSvdVxqbw4JW0qOWm0VjAB
-         qq0kro7UFx3cW6JkW2OdYNyvqRvp7ulRQ90frKpXA+6HTqvCsXqtTPuhL3uhioLn4hXR
-         a+tQ==
-X-Gm-Message-State: AOAM533jh8VOiFjlqPsLuwSRHycAULiJ8+bPCQnX2351mhCJWDKP+pxL
-        +M+Esaxa/uCRDazA4euz3VM=
-X-Google-Smtp-Source: ABdhPJxRNMQJ/SPGOOj7Yu+TGXnJZECryZcNa0ht/Sg3H8EQbY+TgY6ZD1qEClYvkkZPMDyJwUGlhQ==
-X-Received: by 2002:a17:906:98d4:: with SMTP id zd20mr408403ejb.532.1606781997082;
-        Mon, 30 Nov 2020 16:19:57 -0800 (PST)
-Received: from skbuf ([188.25.2.120])
-        by smtp.gmail.com with ESMTPSA id oz19sm26555ejb.28.2020.11.30.16.19.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Nov 2020 16:19:56 -0800 (PST)
-Date:   Tue, 1 Dec 2020 02:19:55 +0200
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     George McCollister <george.mccollister@gmail.com>
-Cc:     Jakub Kicinski <kuba@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
-        "open list:OPEN FIRMWARE AND..." <devicetree@vger.kernel.org>
-Subject: Re: [PATCH net-next v2 2/3] net: dsa: add Arrow SpeedChips XRS700x
- driver
-Message-ID: <20201201001955.gy4fq4cxo6clw2it@skbuf>
-References: <20201127133753.4cf108cb@kicinski-fedora-pc1c0hjn.DHCP.thefacebook.com>
- <20201127233048.GB2073444@lunn.ch>
- <20201127233916.bmhvcep6sjs5so2e@skbuf>
- <20201128000234.hwd5zo2d4giiikjc@skbuf>
- <20201128003912.GA2191767@lunn.ch>
- <20201128014106.lcqi6btkudbnj3mc@skbuf>
- <20201127181525.2fe6205d@kicinski-fedora-pc1c0hjn.DHCP.thefacebook.com>
- <CAFSKS=O-TDPax1smCPq=b1w3SVqJokesWx02AUGUXD0hUwXbAg@mail.gmail.com>
- <20201130235031.cdxkp344ph7uob7o@skbuf>
- <CAFSKS=NR6Toww7xj797Z09FNDXYawPFbbavv8hTzXJ2KFki=hg@mail.gmail.com>
+        with ESMTP id S1726316AbgLAA0e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Nov 2020 19:26:34 -0500
+Received: from mail.kmu-office.ch (mail.kmu-office.ch [IPv6:2a02:418:6a02::a2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08A01C0613CF;
+        Mon, 30 Nov 2020 16:25:54 -0800 (PST)
+Received: from allenwind.lan (unknown [IPv6:2a02:169:3df5::979])
+        by mail.kmu-office.ch (Postfix) with ESMTPSA id 475505C072A;
+        Tue,  1 Dec 2020 01:25:51 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=agner.ch; s=dkim;
+        t=1606782351;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:
+         content-transfer-encoding:content-transfer-encoding:in-reply-to:
+         references; bh=KS8mEizFb71H5F58oXI23doUtIDgwBwc4nDVzFsr1GQ=;
+        b=boTNXx86+d6LfiIEM/Jwsm9QLSOWO013Ncwju9egxzB+BRaSWkZqTjLi9Fh1sNb2ETgBsT
+        H0oBiRa5+NeSOcjD2d9rx7S0V1ZgiJdinuou9bRoYsRjFog6biP6UO6f19Jd+QqzKKffwD
+        JCKSWImKeQQyNK6G5k8RTxPDLLYNwY8=
+From:   Stefan Agner <stefan@agner.ch>
+To:     robh+dt@kernel.org, khilman@baylibre.com
+Cc:     narmstrong@baylibre.com, jbrunet@baylibre.com,
+        martin.blumenstingl@googlemail.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Stefan Agner <stefan@agner.ch>
+Subject: [PATCH] arm64: dts: meson: fix PHY deassert timing requirements
+Date:   Tue,  1 Dec 2020 01:25:50 +0100
+Message-Id: <e4df74aed2a7cff09366e72c87d408f41317907f.1606782187.git.stefan@agner.ch>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAFSKS=NR6Toww7xj797Z09FNDXYawPFbbavv8hTzXJ2KFki=hg@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 30, 2020 at 05:58:17PM -0600, George McCollister wrote:
-> On Mon, Nov 30, 2020 at 5:50 PM Vladimir Oltean <olteanv@gmail.com> wrote:
-> >
-> > On Mon, Nov 30, 2020 at 10:52:35AM -0600, George McCollister wrote:
-> > > Another possible option could be replacing for_each_netdev_rcu with
-> > > for_each_netdev_srcu and using list_for_each_entry_srcu (though it's
-> > > currently used nowhere else in the kernel). Has anyone considered
-> > > using sleepable RCUs or thought of a reason they wouldn't work or
-> > > wouldn't be desirable? For more info search for SRCU in
-> > > Documentation/RCU/RTFP.txt
-> >
-> > Want to take the lead?
->
-> I certainly could take a stab at it. It would be nice to get a
-> "doesn't sound like a terrible idea at first glance" from Jakub (and
-> anyone else) before starting on it. Maybe someone has brought this up
-> before and was shot down for $reason. If so that would be nice to
-> know. Of course it's possible I could also find some reason it won't
-> work after investigating/implementing/testing.
+According to the datasheet (Rev. 1.4, page 30) the RTL8211F requires
+at least 50ms "for internal circuits settling time" before accessing
+the PHY registers. This fixes an issue where the Ethernet link doesn't
+come up when using ip link set down/up:
+  [   29.360965] meson8b-dwmac ff3f0000.ethernet eth0: Link is Down
+  [   34.569012] meson8b-dwmac ff3f0000.ethernet eth0: PHY [0.0:00] driver [RTL8211F Gigabit Ethernet] (irq=31)
+  [   34.676732] meson8b-dwmac ff3f0000.ethernet: Failed to reset the dma
+  [   34.678874] meson8b-dwmac ff3f0000.ethernet eth0: stmmac_hw_setup: DMA engine initialization failed
+  [   34.687850] meson8b-dwmac ff3f0000.ethernet eth0: stmmac_open: Hw setup failed
 
-Well, for one thing, I don't think the benefit justifies the effort, but
-then again, it's not my effort... I think there are simpler ways to get
-sleepable context for the callers of dev_get_stats, I have some patches
-that I'm working on. Not sure if you saw the discussion here.
-https://lore.kernel.org/netdev/20201129205817.hti2l4hm2fbp2iwy@skbuf/
-Let that not stop you, though.
+Fixes: 658e4129bb81 ("arm64: dts: meson: g12b: odroid-n2: add the Ethernet PHY reset line")
+Signed-off-by: Stefan Agner <stefan@agner.ch>
+---
+ arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
+index 6982632ae646..a5652caacb27 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
+@@ -413,7 +413,7 @@ external_phy: ethernet-phy@0 {
+ 		max-speed = <1000>;
+ 
+ 		reset-assert-us = <10000>;
+-		reset-deassert-us = <30000>;
++		reset-deassert-us = <50000>;
+ 		reset-gpios = <&gpio GPIOZ_15 (GPIO_ACTIVE_LOW | GPIO_OPEN_DRAIN)>;
+ 
+ 		interrupt-parent = <&gpio_intc>;
+-- 
+2.29.2
+
