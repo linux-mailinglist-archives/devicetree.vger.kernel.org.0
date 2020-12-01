@@ -2,351 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A3352CA460
-	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 14:54:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E64BB2CA46A
+	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 14:54:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391336AbgLANvx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Dec 2020 08:51:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40204 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2391334AbgLANvx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Dec 2020 08:51:53 -0500
-Received: from mail-pf1-x441.google.com (mail-pf1-x441.google.com [IPv6:2607:f8b0:4864:20::441])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93DDEC061A04;
-        Tue,  1 Dec 2020 05:51:24 -0800 (PST)
-Received: by mail-pf1-x441.google.com with SMTP id d77so701897pfd.2;
-        Tue, 01 Dec 2020 05:51:24 -0800 (PST)
+        id S2391355AbgLANxR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Dec 2020 08:53:17 -0500
+Received: from mail-vi1eur05on2054.outbound.protection.outlook.com ([40.107.21.54]:27975
+        "EHLO EUR05-VI1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S2388187AbgLANxQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 1 Dec 2020 08:53:16 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=REFVrHhEB4MTU8ZNuJVjYrRntoiaG1F5r1fN1iC+7YKnEra6YUcQGK/Zu4MnkgQR9J26ia3LtfW4OGk7SrEDrWpi8L8z4RSnJ9pXGcxfFV2lFpF/Lq/u974ksfvQUy+6tjsgt0Ur1JVlNdyUHEcwLxqFMxye0adE93uFBiMbreHYMdvZ3F/oct+aS86+k+JWgQCwBoupL0ic2JT766rchRqliQ3sOJfeTgZ7V/YfShGcTU+mg5/iYE0C9aw+cPyPdfFKoaag36U4tLkOBCgyzGrLr/z8UtE0C9O0UUDPIYrQYRd8GPzo5uVwd2bSO6BOnxEIXNypmQtImw6BC4yLrg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=214ZgoVw1jj62rObcawquy4Y9Pm2tW+lqHv5kF0O8XI=;
+ b=Gbqb3o9B2qs8gYdurl9wDqnKMn57ZzTnf+AFqT0k/FVg7qFlN7fVNInN0bGYJ/YrpipuA9b3jXnfYqqN6gPI9u3fOZjlOmCS9Sqw4nyXKqPC+E+XtjkwF/tN41kQZ7N90Vqq7h2ZUdPtmaic8EeocF5tNAIK3qhW+5rHge+lDQOCB2NuzqAGA6p/lnj6WMUd9rJ9C18NZlXvCDYrLXXdXjtbLiLRikFPWKg1YBOCougvG36Rb/VD48DTFoLNIWXCIdwLaFQHJf7ps751QyHgsghPvdfhbPDfgVPBb/t5L1OIycUKe7ok1Ymrx5CYV9JCgPRNh3ZBZnbENfX/UFNwaQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=softfail (sender ip
+ is 193.240.239.45) smtp.rcpttodomain=kernel.org smtp.mailfrom=diasemi.com;
+ dmarc=fail (p=none sp=none pct=100) action=none header.from=diasemi.com;
+ dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=1Z7unpyyAKqPaIPQ8XswaqhIgFtGGf6CTAdKh/+0DN4=;
-        b=cAYoH4hHJHFUCrxQZ0bP9is7GhLr4Tnayt2xhV0vgeyJykPYPgS67T4w/zxyUfvVp/
-         Ie4H3R+xY8xKQ7oNNn3TPMn7pnIN/8Zq00cFOTQ4xZkggOA3qn5dKiOYAI8gLJPL8W0q
-         PDFjkGeoJGNF8QuSWIFyhM/UlVd2sG6W9Ep/VLB9M6IpJYBhPhNhruvCeNJc6p4PiRU2
-         LYFjo2wE6oFp2iG8om+yfxtQ3iFQRksRKt4YPK/4FkReC4I3trqyqdzclgrnFYjh+cJj
-         fj9ti81TCg1y6hFpLyYJ0CoWL11MFUvEegj4s7NmQqC1fPxc899dyT1YsADFBOAL8C6D
-         cK9A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=1Z7unpyyAKqPaIPQ8XswaqhIgFtGGf6CTAdKh/+0DN4=;
-        b=WPaRS+FM5ZC3bmoFZkwOBcqo4ROORIjNgFQJbFvUKvC18wXNaXDscS5s+FOmXxQX/j
-         +OOeRl/TRUTBjRJW9D4Ap7+H8aLBSckLvznGvg6tb9YMZ/+TTrvFJg5fWKXRf+382Zow
-         TX8L3l/cNwL+qlgUFinOcZOmhO9/KttiX+cdyUPdRJ+BPPv2iY2hF0IYt/xvURXYROaW
-         slL+EB3FC4Y+QwQLQTK2S6IXDeyxxHQuV8dG47Dq1ObfLc3GHONiqesl8OlWzt7PcuGO
-         w3z/tIti3klWEQvkhXDup8QMZGSxHbE0G9U+cTAg6CF6lRjMauncTab3JWg1OEBEgTf5
-         jx7A==
-X-Gm-Message-State: AOAM533yLGTSdvl2GAhx7dGhEtuJH/m/UAMqeXPRQBa93YgtpxvapyJy
-        /wqMPyUWBi0QhrHi6Zr0xWrJ0GxS5nE=
-X-Google-Smtp-Source: ABdhPJydBuNow9mH9wFIRzXoGfX0RzO9kkbxGuoyaI5dh0ztgk3snPDEc0RtuRsjj5DmJBKXGVRhMw==
-X-Received: by 2002:a63:4a0e:: with SMTP id x14mr2366649pga.376.1606830684167;
-        Tue, 01 Dec 2020 05:51:24 -0800 (PST)
-Received: from localhost.localdomain ([182.226.226.37])
-        by smtp.googlemail.com with ESMTPSA id z22sm3134111pfn.153.2020.12.01.05.51.21
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 01 Dec 2020 05:51:23 -0800 (PST)
-From:   Bongsu Jeon <bongsu.jeon2@gmail.com>
-X-Google-Original-From: Bongsu Jeon
-To:     krzk@kernel.org
-Cc:     linux-nfc@lists.01.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Bongsu Jeon <bongsu.jeon@samsung.com>
-Subject: [PATCH v4 net-next 4/4] nfc: s3fwrn5: Support a UART interface
-Date:   Tue,  1 Dec 2020 22:50:28 +0900
-Message-Id: <1606830628-10236-5-git-send-email-bongsu.jeon@samsung.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1606830628-10236-1-git-send-email-bongsu.jeon@samsung.com>
-References: <1606830628-10236-1-git-send-email-bongsu.jeon@samsung.com>
+ d=dialogsemiconductor.onmicrosoft.com;
+ s=selector1-dialogsemiconductor-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=214ZgoVw1jj62rObcawquy4Y9Pm2tW+lqHv5kF0O8XI=;
+ b=ZwmO0FwlOgczWSjhxWwsOCNxFrV1jRF1/HFdX3GbkbpD7oE2+tr6i+hWgMcXPhbhcGRfrGsXXOq9EjQQ4n5elXZjPiQvkY8uSyDRvyjkrNNEVPe1jYXcV0t3M9EQSVFF97oxlkMheBONX7vqXRRsIBKNLnXLwYka3/rufrfS3FU=
+Received: from AM9P195CA0027.EURP195.PROD.OUTLOOK.COM (2603:10a6:20b:21f::32)
+ by AM6PR10MB1958.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:209:35::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3611.25; Tue, 1 Dec
+ 2020 13:52:27 +0000
+Received: from AM5EUR02FT064.eop-EUR02.prod.protection.outlook.com
+ (2603:10a6:20b:21f:cafe::42) by AM9P195CA0027.outlook.office365.com
+ (2603:10a6:20b:21f::32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3611.22 via Frontend
+ Transport; Tue, 1 Dec 2020 13:52:27 +0000
+X-MS-Exchange-Authentication-Results: spf=softfail (sender IP is
+ 193.240.239.45) smtp.mailfrom=diasemi.com; kernel.org; dkim=none (message not
+ signed) header.d=none;kernel.org; dmarc=fail action=none
+ header.from=diasemi.com;
+Received-SPF: SoftFail (protection.outlook.com: domain of transitioning
+ diasemi.com discourages use of 193.240.239.45 as permitted sender)
+Received: from mailrelay1.diasemi.com (193.240.239.45) by
+ AM5EUR02FT064.mail.protection.outlook.com (10.152.9.51) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.20.3611.23 via Frontend Transport; Tue, 1 Dec 2020 13:52:27 +0000
+Received: from swsrvapps-01.diasemi.com (10.20.28.141) by
+ NB-EX-CASHUB01.diasemi.com (10.1.16.140) with Microsoft SMTP Server id
+ 14.3.468.0; Tue, 1 Dec 2020 14:52:26 +0100
+Received: by swsrvapps-01.diasemi.com (Postfix, from userid 23378)      id
+ 6B40D3FBBB; Tue,  1 Dec 2020 13:52:26 +0000 (GMT)
+Message-ID: <cover.1606830377.git.Adam.Ward.opensource@diasemi.com>
+From:   Adam Ward <Adam.Ward.opensource@diasemi.com>
+Date:   Tue, 1 Dec 2020 13:52:26 +0000
+Subject: [PATCH V4 00/10] regulator: da9121: extend support to variants, add features
+To:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>
+CC:     Liam Girdwood <lgirdwood@gmail.com>,
+        Vincent Whitchurch <vincent.whitchurch@axis.com>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Support Opensource <support.opensource@diasemi.com>
+MIME-Version: 1.0
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 43e73e18-d15b-4377-524a-08d8960056ce
+X-MS-TrafficTypeDiagnostic: AM6PR10MB1958:
+X-Microsoft-Antispam-PRVS: <AM6PR10MB1958D6F653C58CCC3D5F4D7DCBF40@AM6PR10MB1958.EURPRD10.PROD.OUTLOOK.COM>
+X-MS-Oob-TLC-OOBClassifiers: OLM:6790;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: fa0nbSSb7wyWcRfvnNz0RT6/xBjUE4tQB4lwckKKtW5dqBTj5a7L/J50Tq2QY5Ixrvg66JDkcoiKVvyyuPkkSt/0FM1cxjSEAektCRAZKSF819KCcX0PiPISk/RXnLY10uq4n/4erUuEe7oHso3y/BVlJK+qHHsxxH5BP6upqrIqOOuTGLdhnHIil8t9dkRdO/yqgJPfsca/0DMBxyUDs/nfLksEOyWDLRWowpLtz3I1t2sKj5X4jvYjaoCUO8n4UQvo0RfVQ+0LesfOwOk6+HkZXgiaIBkaHR/xjgXK2ghAcJGi8c7i7zVo0VA42YIVbeho9c198nvdSp4dYCAGyiuvrbSwgE0Gfup7KnHy27bZr2cHbnsUkfP/qMqArb9w8W3xG/nES1zZj+hvTRWC134r2Q5Uu/tp8Z5UjCxvVvlcOrz2dRgowiwiYfDbTNPz7Zb3VOnANBFj9wlByWjek7BCxkHrrtdlZHj1+GAImYA=
+X-Forefront-Antispam-Report: CIP:193.240.239.45;CTRY:GB;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mailrelay1.diasemi.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(4636009)(46966005)(86362001)(54906003)(36756003)(4326008)(2616005)(110136005)(83380400001)(5660300002)(2906002)(82310400003)(8936002)(426003)(47076004)(81166007)(336012)(356005)(42186006)(186003)(6266002)(107886003)(966005)(70206006)(26005)(70586007)(8676002)(498600001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: diasemi.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Dec 2020 13:52:27.1054
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 43e73e18-d15b-4377-524a-08d8960056ce
+X-MS-Exchange-CrossTenant-Id: 511e3c0e-ee96-486e-a2ec-e272ffa37b7c
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=511e3c0e-ee96-486e-a2ec-e272ffa37b7c;Ip=[193.240.239.45];Helo=[mailrelay1.diasemi.com]
+X-MS-Exchange-CrossTenant-AuthSource: AM5EUR02FT064.eop-EUR02.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM6PR10MB1958
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Bongsu Jeon <bongsu.jeon@samsung.com>
+This series extends the DA9121 driver to add support for related products:
 
-Since S3FWRN82 NFC Chip, The UART interface can be used.
-S3FWRN82 uses NCI protocol and supports I2C and UART interface.
+  DA9130, 10A, Dual-Phase (Automotive Grade)
+  DA9122, 5A + 5A
+  DA9131, 5A + 5A (Automotive Grade)
+  DA9220, 3A + 3A
+  DA9132, 3A + 3A (Automotive Grade)
+  DA9217, 6A, Dual-Phase
 
-Signed-off-by: Bongsu Jeon <bongsu.jeon@samsung.com>
----
- drivers/nfc/s3fwrn5/Kconfig      |  12 +++
- drivers/nfc/s3fwrn5/Makefile     |   2 +
- drivers/nfc/s3fwrn5/phy_common.c |  12 +++
- drivers/nfc/s3fwrn5/phy_common.h |   1 +
- drivers/nfc/s3fwrn5/uart.c       | 196 +++++++++++++++++++++++++++++++++++++++
- 5 files changed, 223 insertions(+)
- create mode 100644 drivers/nfc/s3fwrn5/uart.c
+It also extends support to cover DT configured GPIO enable, current limit
+setting, and interrupt handling for all devices.
 
-diff --git a/drivers/nfc/s3fwrn5/Kconfig b/drivers/nfc/s3fwrn5/Kconfig
-index 3f8b6da..8a6b1a7 100644
---- a/drivers/nfc/s3fwrn5/Kconfig
-+++ b/drivers/nfc/s3fwrn5/Kconfig
-@@ -20,3 +20,15 @@ config NFC_S3FWRN5_I2C
- 	  To compile this driver as a module, choose m here. The module will
- 	  be called s3fwrn5_i2c.ko.
- 	  Say N if unsure.
-+
-+config NFC_S3FWRN82_UART
-+        tristate "Samsung S3FWRN82 UART support"
-+        depends on NFC_NCI && SERIAL_DEV_BUS
-+        select NFC_S3FWRN5
-+        help
-+          This module adds support for a UART interface to the S3FWRN82 chip.
-+          Select this if your platform is using the UART bus.
-+
-+          To compile this driver as a module, choose m here. The module will
-+          be called s3fwrn82_uart.ko.
-+          Say N if unsure.
-diff --git a/drivers/nfc/s3fwrn5/Makefile b/drivers/nfc/s3fwrn5/Makefile
-index 6b6f52d..7da827a 100644
---- a/drivers/nfc/s3fwrn5/Makefile
-+++ b/drivers/nfc/s3fwrn5/Makefile
-@@ -5,6 +5,8 @@
- 
- s3fwrn5-objs = core.o firmware.o nci.o phy_common.o
- s3fwrn5_i2c-objs = i2c.o
-+s3fwrn82_uart-objs = uart.o
- 
- obj-$(CONFIG_NFC_S3FWRN5) += s3fwrn5.o
- obj-$(CONFIG_NFC_S3FWRN5_I2C) += s3fwrn5_i2c.o
-+obj-$(CONFIG_NFC_S3FWRN82_UART) += s3fwrn82_uart.o
-diff --git a/drivers/nfc/s3fwrn5/phy_common.c b/drivers/nfc/s3fwrn5/phy_common.c
-index 5cad1f4..497b02b 100644
---- a/drivers/nfc/s3fwrn5/phy_common.c
-+++ b/drivers/nfc/s3fwrn5/phy_common.c
-@@ -47,6 +47,18 @@ bool s3fwrn5_phy_power_ctrl(struct phy_common *phy, enum s3fwrn5_mode mode)
- }
- EXPORT_SYMBOL(s3fwrn5_phy_power_ctrl);
- 
-+void s3fwrn5_phy_set_mode(void *phy_id, enum s3fwrn5_mode mode)
-+{
-+	struct phy_common *phy = phy_id;
-+
-+	mutex_lock(&phy->mutex);
-+
-+	s3fwrn5_phy_power_ctrl(phy, mode);
-+
-+	mutex_unlock(&phy->mutex);
-+}
-+EXPORT_SYMBOL(s3fwrn5_phy_set_mode);
-+
- enum s3fwrn5_mode s3fwrn5_phy_get_mode(void *phy_id)
- {
- 	struct phy_common *phy = phy_id;
-diff --git a/drivers/nfc/s3fwrn5/phy_common.h b/drivers/nfc/s3fwrn5/phy_common.h
-index b98531d..99749c9 100644
---- a/drivers/nfc/s3fwrn5/phy_common.h
-+++ b/drivers/nfc/s3fwrn5/phy_common.h
-@@ -31,6 +31,7 @@ struct phy_common {
- 
- void s3fwrn5_phy_set_wake(void *phy_id, bool wake);
- bool s3fwrn5_phy_power_ctrl(struct phy_common *phy, enum s3fwrn5_mode mode);
-+void s3fwrn5_phy_set_mode(void *phy_id, enum s3fwrn5_mode mode);
- enum s3fwrn5_mode s3fwrn5_phy_get_mode(void *phy_id);
- 
- #endif /* __NFC_S3FWRN5_PHY_COMMON_H */
-diff --git a/drivers/nfc/s3fwrn5/uart.c b/drivers/nfc/s3fwrn5/uart.c
-new file mode 100644
-index 0000000..82ea35d
---- /dev/null
-+++ b/drivers/nfc/s3fwrn5/uart.c
-@@ -0,0 +1,196 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * UART Link Layer for S3FWRN82 NCI based Driver
-+ *
-+ * Copyright (C) 2015 Samsung Electronics
-+ * Robert Baldyga <r.baldyga@samsung.com>
-+ * Copyright (C) 2020 Samsung Electronics
-+ * Bongsu Jeon <bongsu.jeon@samsung.com>
-+ */
-+
-+#include <linux/device.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/nfc.h>
-+#include <linux/netdevice.h>
-+#include <linux/of.h>
-+#include <linux/serdev.h>
-+#include <linux/gpio.h>
-+#include <linux/of_gpio.h>
-+
-+#include "phy_common.h"
-+
-+#define S3FWRN82_NCI_HEADER 3
-+#define S3FWRN82_NCI_IDX 2
-+#define NCI_SKB_BUFF_LEN 258
-+
-+struct s3fwrn82_uart_phy {
-+	struct phy_common common;
-+	struct serdev_device *ser_dev;
-+	struct sk_buff *recv_skb;
-+};
-+
-+static int s3fwrn82_uart_write(void *phy_id, struct sk_buff *out)
-+{
-+	struct s3fwrn82_uart_phy *phy = phy_id;
-+	int err;
-+
-+	err = serdev_device_write(phy->ser_dev,
-+				  out->data, out->len,
-+				  MAX_SCHEDULE_TIMEOUT);
-+	if (err < 0)
-+		return err;
-+
-+	return 0;
-+}
-+
-+static const struct s3fwrn5_phy_ops uart_phy_ops = {
-+	.set_wake = s3fwrn5_phy_set_wake,
-+	.set_mode = s3fwrn5_phy_set_mode,
-+	.get_mode = s3fwrn5_phy_get_mode,
-+	.write = s3fwrn82_uart_write,
-+};
-+
-+static int s3fwrn82_uart_read(struct serdev_device *serdev,
-+			      const unsigned char *data,
-+			      size_t count)
-+{
-+	struct s3fwrn82_uart_phy *phy = serdev_device_get_drvdata(serdev);
-+	size_t i;
-+
-+	for (i = 0; i < count; i++) {
-+		skb_put_u8(phy->recv_skb, *data++);
-+
-+		if (phy->recv_skb->len < S3FWRN82_NCI_HEADER)
-+			continue;
-+
-+		if ((phy->recv_skb->len - S3FWRN82_NCI_HEADER)
-+				< phy->recv_skb->data[S3FWRN82_NCI_IDX])
-+			continue;
-+
-+		s3fwrn5_recv_frame(phy->common.ndev, phy->recv_skb,
-+				   phy->common.mode);
-+		phy->recv_skb = alloc_skb(NCI_SKB_BUFF_LEN, GFP_KERNEL);
-+		if (!phy->recv_skb)
-+			return 0;
-+	}
-+
-+	return i;
-+}
-+
-+static const struct serdev_device_ops s3fwrn82_serdev_ops = {
-+	.receive_buf = s3fwrn82_uart_read,
-+	.write_wakeup = serdev_device_write_wakeup,
-+};
-+
-+static const struct of_device_id s3fwrn82_uart_of_match[] = {
-+	{ .compatible = "samsung,s3fwrn82", },
-+	{},
-+};
-+MODULE_DEVICE_TABLE(of, s3fwrn82_uart_of_match);
-+
-+static int s3fwrn82_uart_parse_dt(struct serdev_device *serdev)
-+{
-+	struct s3fwrn82_uart_phy *phy = serdev_device_get_drvdata(serdev);
-+	struct device_node *np = serdev->dev.of_node;
-+
-+	if (!np)
-+		return -ENODEV;
-+
-+	phy->common.gpio_en = of_get_named_gpio(np, "en-gpios", 0);
-+	if (!gpio_is_valid(phy->common.gpio_en))
-+		return -ENODEV;
-+
-+	phy->common.gpio_fw_wake = of_get_named_gpio(np, "wake-gpios", 0);
-+	if (!gpio_is_valid(phy->common.gpio_fw_wake))
-+		return -ENODEV;
-+
-+	return 0;
-+}
-+
-+static int s3fwrn82_uart_probe(struct serdev_device *serdev)
-+{
-+	struct s3fwrn82_uart_phy *phy;
-+	int ret = -ENOMEM;
-+
-+	phy = devm_kzalloc(&serdev->dev, sizeof(*phy), GFP_KERNEL);
-+	if (!phy)
-+		goto err_exit;
-+
-+	phy->recv_skb = alloc_skb(NCI_SKB_BUFF_LEN, GFP_KERNEL);
-+	if (!phy->recv_skb)
-+		goto err_exit;
-+
-+	mutex_init(&phy->common.mutex);
-+	phy->common.mode = S3FWRN5_MODE_COLD;
-+
-+	phy->ser_dev = serdev;
-+	serdev_device_set_drvdata(serdev, phy);
-+	serdev_device_set_client_ops(serdev, &s3fwrn82_serdev_ops);
-+	ret = serdev_device_open(serdev);
-+	if (ret) {
-+		dev_err(&serdev->dev, "Unable to open device\n");
-+		goto err_skb;
-+	}
-+
-+	ret = serdev_device_set_baudrate(serdev, 115200);
-+	if (ret != 115200) {
-+		ret = -EINVAL;
-+		goto err_serdev;
-+	}
-+
-+	serdev_device_set_flow_control(serdev, false);
-+
-+	ret = s3fwrn82_uart_parse_dt(serdev);
-+	if (ret < 0)
-+		goto err_serdev;
-+
-+	ret = devm_gpio_request_one(&phy->ser_dev->dev, phy->common.gpio_en,
-+				    GPIOF_OUT_INIT_HIGH, "s3fwrn82_en");
-+	if (ret < 0)
-+		goto err_serdev;
-+
-+	ret = devm_gpio_request_one(&phy->ser_dev->dev,
-+				    phy->common.gpio_fw_wake,
-+				    GPIOF_OUT_INIT_LOW, "s3fwrn82_fw_wake");
-+	if (ret < 0)
-+		goto err_serdev;
-+
-+	ret = s3fwrn5_probe(&phy->common.ndev, phy, &phy->ser_dev->dev,
-+			    &uart_phy_ops);
-+	if (ret < 0)
-+		goto err_serdev;
-+
-+	return ret;
-+
-+err_serdev:
-+	serdev_device_close(serdev);
-+err_skb:
-+	kfree_skb(phy->recv_skb);
-+err_exit:
-+	return ret;
-+}
-+
-+static void s3fwrn82_uart_remove(struct serdev_device *serdev)
-+{
-+	struct s3fwrn82_uart_phy *phy = serdev_device_get_drvdata(serdev);
-+
-+	s3fwrn5_remove(phy->common.ndev);
-+	serdev_device_close(serdev);
-+	kfree_skb(phy->recv_skb);
-+}
-+
-+static struct serdev_device_driver s3fwrn82_uart_driver = {
-+	.probe = s3fwrn82_uart_probe,
-+	.remove = s3fwrn82_uart_remove,
-+	.driver = {
-+		.name = "s3fwrn82_uart",
-+		.of_match_table = s3fwrn82_uart_of_match,
-+	},
-+};
-+
-+module_serdev_device_driver(s3fwrn82_uart_driver);
-+
-+MODULE_LICENSE("GPL");
-+MODULE_DESCRIPTION("UART driver for Samsung NFC");
-+MODULE_AUTHOR("Bongsu Jeon <bongsu.jeon@samsung.com>");
+The datasheets are currently available here:
+
+https://www.dialog-semiconductor.com/sites/default/files/da9122_datasheet_2v1.pdf
+https://www.dialog-semiconductor.com/sites/default/files/da9220_datasheet_2v1.pdf
+https://www.dialog-semiconductor.com/sites/default/files/da9217_datasheet_2v1.pdf
+https://www.dialog-semiconductor.com/sites/default/files/da9130-a_datasheet_1v0.pdf
+https://www.dialog-semiconductor.com/sites/default/files/da9131-a_datasheet_1v0.pdf
+https://www.dialog-semiconductor.com/sites/default/files/da9132-a_datasheet_1v0.pdf
+
+V4:
+
+ - Request IRQ directly and free in release function to avoid masking race
+
+V3:
+
+ - Restored missing DT bindings patch
+
+V2:
+
+ - Remove Vincent Whitchurch as DT maintainer, as requested
+ - Use configuration to select register map
+ - Split regmap and description patch
+ - Defer device ID check to negate, not gatekeep
+ - Removed superfluous compatible check
+ - Tidied banner comment
+ - Switched to using of_parse_cb()
+ - Simplified buck checks accordingly
+ - Simplified current/mode register/mask use
+ - Simplified interrupt handling
+ - Synchronise workqueue at driver exit
+
+Adam Ward (10):
+  regulator: Update DA9121 dt-bindings
+  regulator: da9121: Add header file
+  regulator: da9121: Add device variants
+  regulator: da9121: Add device variant regmaps
+  regulator: da9121: Add device variant descriptors
+  regulator: da9121: Add support for device variants via devicetree
+  regulator: da9121: Update registration to support multiple buck
+    variants
+  regulator: da9121: add current support
+  regulator: da9121: add mode support
+  regulator: da9121: add interrupt support
+
+ .../devicetree/bindings/regulator/dlg,da9121.yaml  |  164 +++-
+ MAINTAINERS                                        |    2 +
+ drivers/regulator/Kconfig                          |   14 +-
+ drivers/regulator/da9121-regulator.c               | 1033 +++++++++++++++++++-
+ drivers/regulator/da9121-regulator.h               |  291 ++++++
+ .../dt-bindings/regulator/dlg,da9121-regulator.h   |   22 +
+ include/linux/regulator/da9121.h                   |   36 +
+ 7 files changed, 1513 insertions(+), 49 deletions(-)
+ create mode 100644 drivers/regulator/da9121-regulator.h
+ create mode 100644 include/dt-bindings/regulator/dlg,da9121-regulator.h
+ create mode 100644 include/linux/regulator/da9121.h
+
 -- 
 1.9.1
 
