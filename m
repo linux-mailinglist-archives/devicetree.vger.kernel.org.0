@@ -2,84 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C6FFE2CA15C
-	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 12:30:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AEC1D2CA185
+	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 12:36:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730598AbgLALag (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Dec 2020 06:30:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45898 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727717AbgLALag (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Dec 2020 06:30:36 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E996C0613D3
-        for <devicetree@vger.kernel.org>; Tue,  1 Dec 2020 03:29:56 -0800 (PST)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <l.stach@pengutronix.de>)
-        id 1kk3qv-00073U-QX; Tue, 01 Dec 2020 12:29:49 +0100
-Message-ID: <f2752e5d36f97d9da3d83b2d0a987dbd9c2d1a9c.camel@pengutronix.de>
-Subject: Re: [PATCH 5/6] arm64: defconfig: Enable interconnect for imx8mq
-From:   Lucas Stach <l.stach@pengutronix.de>
-To:     Martin Kepplinger <martin.kepplinger@puri.sm>, robh@kernel.org,
-        shawnguo@kernel.org, festevam@gmail.com, catalin.marinas@arm.com,
-        will@kernel.org, georgi.djakov@linaro.org, cdleonard@gmail.com
-Cc:     devicetree@vger.kernel.org, kernel@puri.sm,
-        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-imx@nxp.com, kernel@pengutronix.de,
-        linux-arm-kernel@lists.infradead.org
-Date:   Tue, 01 Dec 2020 12:29:48 +0100
-In-Reply-To: <20201201100124.4676-6-martin.kepplinger@puri.sm>
-References: <20201201100124.4676-1-martin.kepplinger@puri.sm>
-         <20201201100124.4676-6-martin.kepplinger@puri.sm>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.38.1 (3.38.1-1.fc33) 
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+        id S1730680AbgLALgK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Dec 2020 06:36:10 -0500
+Received: from mx0a-001b2d01.pphosted.com ([148.163.156.1]:6262 "EHLO
+        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1730675AbgLALgK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Dec 2020 06:36:10 -0500
+Received: from pps.filterd (m0098394.ppops.net [127.0.0.1])
+        by mx0a-001b2d01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 0B1BWdNZ152956;
+        Tue, 1 Dec 2020 06:34:31 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=message-id : subject :
+ from : to : cc : date : in-reply-to : references : content-type :
+ mime-version : content-transfer-encoding; s=pp1;
+ bh=6dOOmuAhcFYy1V0srYlZmyMBY0b460IWVa15T4SNKLE=;
+ b=PM5inC31pxQ0BremLAog5n2IGiZrr0KZKfgVX/G0rKCALaIEl61kUd2K3Pq6QU0NYNZj
+ dxiAzq+NgFlNNngoVvpV1dYj3GkfYKGMut0OL2pHvbQFxz0V3pNwqSlhusUYs7/y8nTP
+ LAI2SQybckcKsOjJN08XNXLswvNnCHk/E0qa6thLthJfv/YSTlIroBLaqq2/FyWqnn+7
+ WsHZOgZq7DtZRSZhCIwlMOmpEihlzk1rh8r9PHosQjTgnaW8+Bw0dOsqDOS6xZyEInJy
+ Lij/vBqOy3EusKjeA126UOnSjMFbDfkpwH+2r+Pi3L+adXsjNjYJGglJbJPlv2HtJHQx hA== 
+Received: from pps.reinject (localhost [127.0.0.1])
+        by mx0a-001b2d01.pphosted.com with ESMTP id 355gtbfx1p-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 01 Dec 2020 06:34:31 -0500
+Received: from m0098394.ppops.net (m0098394.ppops.net [127.0.0.1])
+        by pps.reinject (8.16.0.36/8.16.0.36) with SMTP id 0B1BXxXs158528;
+        Tue, 1 Dec 2020 06:34:30 -0500
+Received: from ppma03ams.nl.ibm.com (62.31.33a9.ip4.static.sl-reverse.com [169.51.49.98])
+        by mx0a-001b2d01.pphosted.com with ESMTP id 355gtbfx0x-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 01 Dec 2020 06:34:30 -0500
+Received: from pps.filterd (ppma03ams.nl.ibm.com [127.0.0.1])
+        by ppma03ams.nl.ibm.com (8.16.0.42/8.16.0.42) with SMTP id 0B1BMYCd029933;
+        Tue, 1 Dec 2020 11:34:28 GMT
+Received: from b06cxnps4075.portsmouth.uk.ibm.com (d06relay12.portsmouth.uk.ibm.com [9.149.109.197])
+        by ppma03ams.nl.ibm.com with ESMTP id 353e68b2y0-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 01 Dec 2020 11:34:27 +0000
+Received: from d06av25.portsmouth.uk.ibm.com (d06av25.portsmouth.uk.ibm.com [9.149.105.61])
+        by b06cxnps4075.portsmouth.uk.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 0B1BYP3m24904068
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Tue, 1 Dec 2020 11:34:25 GMT
+Received: from d06av25.portsmouth.uk.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 9D92711C04A;
+        Tue,  1 Dec 2020 11:34:25 +0000 (GMT)
+Received: from d06av25.portsmouth.uk.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 1AFC511C05C;
+        Tue,  1 Dec 2020 11:34:19 +0000 (GMT)
+Received: from li-f45666cc-3089-11b2-a85c-c57d1a57929f.ibm.com (unknown [9.160.54.13])
+        by d06av25.portsmouth.uk.ibm.com (Postfix) with ESMTP;
+        Tue,  1 Dec 2020 11:34:18 +0000 (GMT)
+Message-ID: <a73a47da53b795617758cc23991624dfca173eba.camel@linux.ibm.com>
+Subject: Re: [PATCH v9 0/8] Carry forward IMA measurement log on kexec on
+ ARM64
+From:   Mimi Zohar <zohar@linux.ibm.com>
+To:     Lakshmi Ramasubramanian <nramas@linux.microsoft.com>,
+        Rob Herring <robh@kernel.org>
+Cc:     bauerman@linux.ibm.com, gregkh@linuxfoundation.org,
+        james.morse@arm.com, catalin.marinas@arm.com, sashal@kernel.org,
+        will@kernel.org, mpe@ellerman.id.au, benh@kernel.crashing.org,
+        paulus@samba.org, frowand.list@gmail.com,
+        vincenzo.frascino@arm.com, mark.rutland@arm.com,
+        dmitry.kasatkin@gmail.com, jmorris@namei.org, serge@hallyn.com,
+        pasha.tatashin@soleen.com, allison@lohutok.net,
+        kstewart@linuxfoundation.org, takahiro.akashi@linaro.org,
+        tglx@linutronix.de, masahiroy@kernel.org, bhsharma@redhat.com,
+        mbrugger@suse.com, hsinyi@chromium.org, tao.li@vivo.com,
+        christophe.leroy@c-s.fr, linux-integrity@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        prsriva@linux.microsoft.com, balajib@linux.microsoft.com
+Date:   Tue, 01 Dec 2020 06:34:18 -0500
+In-Reply-To: <415b4d0b-3d93-40ce-b74e-48fdce7fbf7f@linux.microsoft.com>
+References: <20201113192243.1993-1-nramas@linux.microsoft.com>
+         <20201121135719.GA2134870@robh.at.kernel.org>
+         <415b4d0b-3d93-40ce-b74e-48fdce7fbf7f@linux.microsoft.com>
+Content-Type: text/plain; charset="ISO-8859-15"
+X-Mailer: Evolution 3.28.5 (3.28.5-12.el8) 
+Mime-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-TM-AS-GCONF: 00
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.312,18.0.737
+ definitions=2020-12-01_04:2020-11-30,2020-12-01 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 bulkscore=0
+ spamscore=0 priorityscore=1501 lowpriorityscore=0 mlxlogscore=978
+ clxscore=1015 adultscore=0 mlxscore=0 impostorscore=0 malwarescore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2009150000 definitions=main-2012010072
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Dienstag, den 01.12.2020, 11:01 +0100 schrieb Martin Kepplinger:
-> Enable INTERCONNECT_IMX8MQ in order to make interconnect more widely
-> available for testing.
+On Sat, 2020-11-21 at 06:38 -0800, Lakshmi Ramasubramanian wrote:
+> On 11/21/20 5:57 AM, Rob Herring wrote:
+> > On Fri, Nov 13, 2020 at 11:22:35AM -0800, Lakshmi Ramasubramanian wrote:
+
+> >>   arch/powerpc/include/asm/kexec.h       |   1 -
+> >>   arch/powerpc/kexec/Makefile            |   7 +-
+> >>   arch/powerpc/kexec/file_load.c         |  32 --------
+> >>   arch/powerpc/kexec/ima.c               | 106 ++-----------------------
+> >>   drivers/of/Makefile                    |   9 +++
+> > 
+> >>   drivers/of/ima_kexec.c                 |  91 +++++++++++++++++++++
+> >>   drivers/of/kexec_fdt.c                 |  55 +++++++++++++
+> > 
+> > Does this need to be 2 files? Just kexec.c?
 > 
-> Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
-> ---
->  arch/arm64/configs/defconfig | 5 +++--
->  1 file changed, 3 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-> index 867cc4a5f00f..57cf2f50b5f7 100644
-> --- a/arch/arm64/configs/defconfig
-> +++ b/arch/arm64/configs/defconfig
-> @@ -1051,10 +1051,11 @@ CONFIG_OF_FPGA_REGION=m
->  CONFIG_TEE=y
->  CONFIG_OPTEE=y
->  CONFIG_SLIMBUS=m
-> +CONFIG_MUX_MMIO=y
+> Since the functions defined in "ima_kexec.c" and "kexec_fdt.c" are 
+> enabled on 2 different kernel CONFIGs, keeping them in 2 files enables 
+> us to avoid using "#ifdef" in C files.
 
-This change should be part of the other patch to regenerate the config
-without functional changes. Also order of the patches should be the
-other way around: first regenerate without changes, then stack the
-INTERCONNECT_IMX8MQ enable on top.
+Normally that is true, but just as all of the kexec related functions
+are co-located in ima/ima_kexec.c, co-locating all of the kexec related
+functions in drivers/of makes sense.  
 
-Regards,
-Lucas
+thanks,
 
->  CONFIG_SLIM_QCOM_CTRL=m
->  CONFIG_SLIM_QCOM_NGD_CTRL=m
-> -CONFIG_MUX_MMIO=y
-> -CONFIG_INTERCONNECT=y
-> +CONFIG_INTERCONNECT_IMX=m
-> +CONFIG_INTERCONNECT_IMX8MQ=m
->  CONFIG_INTERCONNECT_QCOM=y
->  CONFIG_INTERCONNECT_QCOM_MSM8916=m
->  CONFIG_INTERCONNECT_QCOM_OSM_L3=m
-
+Mimi
 
