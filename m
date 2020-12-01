@@ -2,185 +2,440 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 354342CA840
-	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 17:29:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D74422CA851
+	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 17:32:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726441AbgLAQ1t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Dec 2020 11:27:49 -0500
-Received: from esa6.microchip.iphmx.com ([216.71.154.253]:9010 "EHLO
-        esa6.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726037AbgLAQ1s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Dec 2020 11:27:48 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1606840068; x=1638376068;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-id:content-transfer-encoding:
-   mime-version;
-  bh=l+qKWlKYMEBthv4evDfq2mp13ksFllYa7w7Tlf8VBqY=;
-  b=shWAE9TJiSWglTLSTM+knrxyMi1ehpHeIZdg2StJlAiSB/5JuFAa4T1a
-   orHu/dF8SkvjZDgfyy+WlaY2f3p08XjCWg37CqD9P+OulbBvw22N7Asgp
-   W97y+0hLswnPcH2zqASkyGQpZI1atiL+shdmcLGL78OSJjI/EtPgQ8YRY
-   ElKrx1gLjl9bSGlh3h3v1WdWtO5W67hqauXgYkZEbezm6WLY09Tm4xmqZ
-   GxdRneK0dIt0WNutaq5JuSF5aSPijq71IWNRhrztgQU+/IId3bEmXcauz
-   3XYHJ8VNXu53kG+PsjmO1ozVHySnPD9cKfImMfvl50jBSRRO1/9gA7NCL
-   Q==;
-IronPort-SDR: pL2x+Gvb8R4+rZUPLkc4SIEc2eFtMKqvEDSpUYIXzTk5nX/inrJXM09+SJx7R9m/kmReQA5ng5
- q6/mNJ6QnJTnqCDwVadlEINDkubuAPAUnXsNtYKQtio7EqxjUmzcmTJ4KHSn9NBgrL2457v9yg
- pQUN65p+vIWnjhjtJnM4Nd1yW00ctXOHFYMNK5UtgTytmhc12KVoenIOiJLg7QST9PShudHxqA
- 9wUloa3CHNXLTYXAiIpsqlMnfKW3TxAkFWBAN6v363q0vTDMSXrmfyDtkheh++mOu6nx/aZTT8
- Zf8=
-X-IronPort-AV: E=Sophos;i="5.78,384,1599548400"; 
-   d="scan'208";a="35623351"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 01 Dec 2020 09:26:42 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1979.3; Tue, 1 Dec 2020 09:26:42 -0700
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (10.10.215.89) by
- email.microchip.com (10.10.87.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3 via Frontend
- Transport; Tue, 1 Dec 2020 09:26:42 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=N5a+F5DrtXrEn4BcAX9Z7K0/O/lRdy08wYnewsOaNgNvJbrPnE9fbPorAhJF0OR2ZqQyv8JCsx7mIh0s/9A7yrf/8tuPA75I6iEKbGiTWVVL+/6Etx3HA+IfR7LOa/LAFLHDUgmT84QN1jGa6IUB1qPag2mn/AVDW+HAR1Dcl1ldp76gHKlxQm2CxAgxHSq5rqmvpEcOtaWMlJzD4CKYhUVFVb/erSbH+oiOfZtSJsU83jjV0ORkiAwhl6VkQhLG64/7rCAJ2a/v7H+k5o7eCZ+dt0XvGu8NZdd6JPSKwMkUoHr9/K3EQQphp4TX1uD8FQrP2MCX0Vec74830QwCoA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=tu28krhHz3i9jbK0NybkgQMtVjNE/+GAOLwbkd15S+k=;
- b=fJNc1vG83+yZ/8jrhYistnFzk61MDpNheG6q3m6bgXxl1HUGUp4HsPRq2P/krEXfle8hcqaBuHlMYGEMkC5K3n7E8FEfsnszwpRyA7QW+l5TNRS8NRggPDA6eRe5cAs6H11YY8uALVrcnLUBvRHJSvS6Ge3nsg7ttvjG3WCdOCN37bQXtUHfDN7E/ypgy1gGkYi53tXjFOTFI9uYQFIxYVCwZ0ESVzhbAN3qOQipWJSV66BZF/q3iMEPGcj9gQIYjgwwefJwfqmtRQTN8wunT0MVk1os4teCF8cmdHZmKXlwvAJrOw/lYE63JtejgFzpbj/JBpabzruFPCDnbaFewg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=microchip.com; dmarc=pass action=none
- header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=microchiptechnology.onmicrosoft.com;
- s=selector2-microchiptechnology-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=tu28krhHz3i9jbK0NybkgQMtVjNE/+GAOLwbkd15S+k=;
- b=Ss1F3GGyZf7pdY7plJHTljTspKq3R87JdsKqT62iFDNpL8wyM2x14TRGT7UIKy7TQiRpff6xb6cg7W2v5s0m2HNaHGlwM7KyuW/3rUMTIFdZPhMmWaxDU8GvNuauQvmqrC+gCfNQRyv1qC/hh/T1umjlCBBvCnGKJxZ3khAQ7r0=
-Received: from CO1PR11MB5154.namprd11.prod.outlook.com (2603:10b6:303:95::7)
- by MW3PR11MB4714.namprd11.prod.outlook.com (2603:10b6:303:5d::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3611.24; Tue, 1 Dec
- 2020 16:26:41 +0000
-Received: from CO1PR11MB5154.namprd11.prod.outlook.com
- ([fe80::a007:19e8:3f74:b14d]) by CO1PR11MB5154.namprd11.prod.outlook.com
- ([fe80::a007:19e8:3f74:b14d%5]) with mapi id 15.20.3589.037; Tue, 1 Dec 2020
- 16:26:41 +0000
-From:   <Conor.Dooley@microchip.com>
-To:     <j.neuschaefer@gmx.net>
-CC:     <robh+dt@kernel.org>, <damien.lemoal@wdc.com>,
-        <jassisinghbrar@gmail.com>, <aou@eecs.berkeley.edu>,
-        <paul.walmsley@sifive.com>, <palmer@dabbelt.com>,
-        <devicetree@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
-        <Cyril.Jean@microchip.com>, <david.abdurachmanov@gmail.com>,
-        <Daire.McNamara@microchip.com>, <anup.patel@wdc.com>,
-        <atish.patra@wdc.com>, <Lewis.Hanly@microchip.com>
-Subject: Re: [PATCH v2 1/5] mbox: add polarfire soc system controller mailbox
-Thread-Topic: [PATCH v2 1/5] mbox: add polarfire soc system controller mailbox
-Thread-Index: AQHWx9GEFTONGkHUEEK7u8XSwGTWUKniSKQAgAAlNwA=
-Date:   Tue, 1 Dec 2020 16:26:40 +0000
-Message-ID: <f5683df4-8e90-7d39-189a-0f7faf1d899e@microchip.com>
-References: <20201201110242.28369-1-conor.dooley@microchip.com>
- <20201201141328.GJ456020@latitude>
-In-Reply-To: <20201201141328.GJ456020@latitude>
-Accept-Language: en-IE, en-US
-Content-Language: en-IE
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-authentication-results: gmx.net; dkim=none (message not signed)
- header.d=none;gmx.net; dmarc=none action=none header.from=microchip.com;
-x-originating-ip: [89.204.252.178]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 5322f9bb-e2cb-4667-1601-08d89615e271
-x-ms-traffictypediagnostic: MW3PR11MB4714:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <MW3PR11MB4714A870A6AE5E9E4F638EB198F40@MW3PR11MB4714.namprd11.prod.outlook.com>
-x-bypassexternaltag: True
-x-ms-oob-tlc-oobclassifiers: OLM:4941;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: xvwAJPnT8EoxVJebNg82wc/GLdaVQ4racnSyxKC5e5AMjPLDbeAWexVuF9j2eYylG/AkHxjoxI6dopliQFcqTU0S69DHwRQqlmPVEkNqUP44pfzXpUUTRbd/fDBTKP6PFPe/SlhY/6rxvFffAGBPXWwCId3L97oHRadoX4TlzytAfBTD/7Bl+fYHN2DJ8g5q3ispne4GzcfXTUUr/BnklwRN7Y+lG9ZvEb8/IVkbjtO4C37gKxfcuShpCDvlj2GW6Tg0BGJyvgabJlMxu/iD1loQoXYvG0zqELnV+ALhui8MkVQuGKLyJbPYLz1ab5L1OHRWIH7h9sSc55xY21yV+V/2k0jvVHCRNbEcDRHvUU20EHIFJypaHQYa+7NyRuco
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO1PR11MB5154.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(346002)(376002)(136003)(39860400002)(366004)(396003)(6512007)(83380400001)(26005)(8676002)(4326008)(2616005)(71200400001)(31686004)(53546011)(36756003)(316002)(8936002)(6506007)(31696002)(2906002)(86362001)(186003)(478600001)(7416002)(6916009)(66574015)(5660300002)(54906003)(107886003)(66946007)(6486002)(15650500001)(66556008)(76116006)(66476007)(64756008)(66446008)(91956017)(43740500002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: =?Windows-1252?Q?neMUkQY6nWk0mBfFVdgopNLFralgFN4T5vEqQ5JHG59hK0QEMyKoBfo1?=
- =?Windows-1252?Q?4k4mJJ+2oObybcGza9GELNblPl8pJlzPtq6RDpPajhm2TAqjJ58zmLd+?=
- =?Windows-1252?Q?CRYPH2G3udhP+4k6Ypv3dtE173qlPrlxNhbi1kskNw9UmC06Dc++HdTt?=
- =?Windows-1252?Q?LWtT5sWx0IbcEky3+m6jJ2+RjJc75FVTifOcd18SpG2X24BTZ8LtMs1r?=
- =?Windows-1252?Q?Gs6gHocUNjCzyRMKRcrQMh/7NXqqiKH0Z0nE1K2kCoaeLlZHS6lE+Kva?=
- =?Windows-1252?Q?oeLT60WMpncRYxKiWSkROhGMmiDTsK6V00au2Oaw/hYfZgXfAD20xIfU?=
- =?Windows-1252?Q?J5RKUbQC5tfuUgNsfcFyKxSeWBXJwztpOGHb+QPrFpHECXnkSP3VmvNu?=
- =?Windows-1252?Q?TYC2MrHjVFOAKqkCu8iu8n+XrLCZChcZsebpoTkBtWe/I5fle5OUCYqW?=
- =?Windows-1252?Q?voO5PSxVfZUDBjGYeGdcQk7W+VfMC6YeuMT1Llq3D5UyUsKdJ0hUv9ni?=
- =?Windows-1252?Q?/sSk+X+HC4eCwF1nHFvCIbJNUWWyrAbnkPczSab+kuTBRUGepc67kYH8?=
- =?Windows-1252?Q?wjMYzbGrsuvdP5Qk0AbjzvghVwAFkidWQSPen9/KB884LgGhcs8sqYc0?=
- =?Windows-1252?Q?YIXoSYIkJItgVlliFZHCdJ4XkvU4zreP84SdB28d3OIq89PiWAkrgb/n?=
- =?Windows-1252?Q?d2lzTsyLw6IRWGvRFjsM8UtprFM7DtYtTY2o7jMYphGXvFL542Hhqxz1?=
- =?Windows-1252?Q?NB02SuGSfE/GWGEDAtqqU2Z+McpDwTtjRaUX3BXItC5oBcgkfKQhUwyx?=
- =?Windows-1252?Q?ZyoWoIsX5cF83UeLAZl1Vx+M6l2K8CPOuE41+mFuwLpsNTcKfOCxFMY4?=
- =?Windows-1252?Q?3zzPgl/agPl2cvRGXJh4bnkEboRHGylYoedbglIXnGknpYC5p5HS919p?=
- =?Windows-1252?Q?0QLtxl/KCteHR9nLe+NvqmsQJVC+7ZYBcKrG2UAPEvVuj1mmcfBJPSqB?=
- =?Windows-1252?Q?JzI+FO1qr7ciIi56y4GDINd0QtMNFwCrrhmx/sYnjXRWhAVHlno=3D?=
-Content-Type: text/plain; charset="Windows-1252"
-Content-ID: <B7900DE6CC02CE42A04FD8002B35729D@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: quoted-printable
+        id S1726085AbgLAQb2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Dec 2020 11:31:28 -0500
+Received: from gproxy10-pub.mail.unifiedlayer.com ([69.89.20.226]:34737 "EHLO
+        gproxy10-pub.mail.unifiedlayer.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1725885AbgLAQb2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Dec 2020 11:31:28 -0500
+Received: from cmgw11.unifiedlayer.com (unknown [10.9.0.11])
+        by gproxy10.mail.unifiedlayer.com (Postfix) with ESMTP id 716C514052F
+        for <devicetree@vger.kernel.org>; Tue,  1 Dec 2020 09:30:46 -0700 (MST)
+Received: from bh-25.webhostbox.net ([208.91.199.152])
+        by cmsmtp with ESMTP
+        id k8Y9kncR3dCH5k8YAkruox; Tue, 01 Dec 2020 09:30:46 -0700
+X-Authority-Reason: nr=8
+X-Authority-Analysis: v=2.3 cv=MYVCRa3f c=1 sm=1 tr=0
+ a=QNED+QcLUkoL9qulTODnwA==:117 a=2cfIYNtKkjgZNaOwnGXpGw==:17
+ a=dLZJa+xiwSxG16/P+YVxDGlgEgI=:19 a=kj9zAlcOel0A:10:nop_charset_1
+ a=zTNgK-yGK50A:10:nop_rcvd_month_year
+ a=evQFzbml-YQA:10:endurance_base64_authed_username_1 a=QyXUC8HyAAAA:8
+ a=0SxRSwYGAAAA:8 a=WFEaG0DHoqVv2NmT4k4A:9 a=CjuIK1q_8ugA:10:nop_charset_2
+ a=evtWB9OUeeBtXImRToD_:22
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=roeck-us.net; s=default; h=In-Reply-To:Content-Type:MIME-Version:References
+        :Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding
+        :Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=MW45SPmUAqASbOxPmbjdhQwoPvzAULe2X/U49k7ExjY=; b=yB18T7r2fYvNiN4RwBRvrpRJL/
+        0SvhxSdFpL/iQwzsKWjtoDiWrgGI7Vg5XYDNrF5x50IupfpAhAVMRM4tGlN33wRUIpSBd38w0HcNU
+        ZwT1MKiHSZQV3+gBqUzpQTmYtvzlJolV7GiOJYNk96jiFMtgHFyigjCcvZNKets/K9k/oS3rdfmgZ
+        ChfHzwLNasbabuFUomVbTgceD5GQftWA7gn3PKXSR7Y8FfyW+hMJSRwuRlSpl8TanAj6/2nBLmCLM
+        QrPh3zCwE/yBXTyy8AyBHj2YiI+MkR9nPct8+Og8Mkt8kcYIMBFMHLZKqbVInkOWrlewE9utoHlYZ
+        vy5sRVyw==;
+Received: from 108-223-40-66.lightspeed.sntcca.sbcglobal.net ([108.223.40.66]:60740 helo=localhost)
+        by bh-25.webhostbox.net with esmtpa (Exim 4.93)
+        (envelope-from <linux@roeck-us.net>)
+        id 1kk8Y9-001KHq-7E; Tue, 01 Dec 2020 16:30:45 +0000
+Date:   Tue, 1 Dec 2020 08:30:44 -0800
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     vijayakannan.ayyathurai@intel.com
+Cc:     wim@linux-watchdog.org, robh+dt@kernel.org,
+        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        andriy.shevchenko@linux.intel.com, mgross@linux.intel.com,
+        wan.ahmad.zainie.wan.mohamad@intel.com,
+        lakshmi.bai.raja.subramanian@intel.com
+Subject: Re: [PATCH v3 1/2] watchdog: Add watchdog driver for Intel Keembay
+ Soc
+Message-ID: <20201201163044.GA89174@roeck-us.net>
+References: <cover.1606833303.git.vijayakannan.ayyathurai@intel.com>
+ <e941999cb6ccd19d1830b3205ec3a66081ed29fd.1606833303.git.vijayakannan.ayyathurai@intel.com>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB5154.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5322f9bb-e2cb-4667-1601-08d89615e271
-X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Dec 2020 16:26:40.9311
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 5bKa0l7CZ5F6Rr++5Oz/2WAV6oj5G8uCpwSsdeH/Ftq3O0VWcCKLFLLof75D0pB35GH7IdCfDantaAROJl3PVrou4SRKoYEelGnkyLs1rgQ=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR11MB4714
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e941999cb6ccd19d1830b3205ec3a66081ed29fd.1606833303.git.vijayakannan.ayyathurai@intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - bh-25.webhostbox.net
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - roeck-us.net
+X-BWhitelist: no
+X-Source-IP: 108.223.40.66
+X-Source-L: No
+X-Exim-ID: 1kk8Y9-001KHq-7E
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-Source-Sender: 108-223-40-66.lightspeed.sntcca.sbcglobal.net (localhost) [108.223.40.66]:60740
+X-Source-Auth: guenter@roeck-us.net
+X-Email-Count: 5
+X-Source-Cap: cm9lY2s7YWN0aXZzdG07YmgtMjUud2ViaG9zdGJveC5uZXQ=
+X-Local-Domain: yes
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/12/2020 14:13, Jonathan Neusch=E4fer wrote:
-> EXTERNAL EMAIL: Do not click links or open attachments unless you know th=
-e content is safe
->
-> On Tue, Dec 01, 2020 at 11:02:42AM +0000, conor.dooley@microchip.com wrot=
-e:
-> > From: Conor Dooley <conor.dooley@microchip.com>
-> >
-> > This driver adds support for the single mailbox channel of the MSS
-> > system controller on the Microchip PolarFire SoC.
->
-> Out of my curiosity: What is MSS? Is it the Microprocessor Subsystem in
-> the SoC?
->
-yes, it is the microprocessor subsystem
-> (It isn't quite clear from the PolarFire documentation I could find)
->
-> >
-> > Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> > ---
-> [...]
-> > +config MPFS_MBOX
-> > +	tristate "MPFS Mailbox"
->
-> "MPFS" in the title seems (to me) a bit too obscure for the uninitiated.
-> Perhaps you could use something slightly longer that mentions Microchip
-> and/or the PolarFire series?
-Sure. MPFS is the part name while PolarFire SoC is the marketing name.
-I will switch it in the next version to POLARFIRE_SOC_MBOX, which better ma=
-tches
-the config option for the SoC directory that's in Atish's patches anyway.
-> > +++ b/drivers/mailbox/mailbox-mpfs.c
-> > @@ -0,0 +1,285 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +/*
-> > + * Microchip MPFS system controller/mailbox controller driver
->
-> The same might apply here.
->
->
-> Best regards,
-> Jonathan Neusch=E4fer
->
+On Tue, Dec 01, 2020 at 11:10:33PM +0800, vijayakannan.ayyathurai@intel.com wrote:
+> From: Vijayakannan Ayyathurai <vijayakannan.ayyathurai@intel.com>
+> 
+> Intel Keembay Soc requires watchdog timer support.
+> Add watchdog driver to enable this.
+> 
+> Signed-off-by: Vijayakannan Ayyathurai <vijayakannan.ayyathurai@intel.com>
+> Acked-by: Mark Gross <mgross@linux.intel.com>
+> Acked-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> ---
+>  drivers/watchdog/Kconfig       |  13 ++
+>  drivers/watchdog/Makefile      |   1 +
+>  drivers/watchdog/keembay_wdt.c | 284 +++++++++++++++++++++++++++++++++
+>  3 files changed, 298 insertions(+)
+>  create mode 100644 drivers/watchdog/keembay_wdt.c
+> 
+> diff --git a/drivers/watchdog/Kconfig b/drivers/watchdog/Kconfig
+> index fd7968635e6d..f412cf2d0f1a 100644
+> --- a/drivers/watchdog/Kconfig
+> +++ b/drivers/watchdog/Kconfig
+> @@ -2163,4 +2163,17 @@ config USBPCWATCHDOG
+>  
+>  	  Most people will say N.
+>  
+> +config KEEMBAY_WATCHDOG
+> +	tristate "Intel Keem Bay SoC non-secure watchdog"
+> +	depends on ARCH_KEEMBAY || (ARM64 && COMPILE_TEST)
+> +	select WATCHDOG_CORE
+> +	help
+> +	 This option enable support for an In-secure watchdog timer driver for
+> +	 Intel Keem Bay SoC. This WDT has a 32 bit timer and decrements in every
+> +	 count unit. An interrupt will be triggered, when the count crosses
+> +	 the thershold configured in the register.
+> +
+> +	 To compile this driver as a module, choose M here: the
+> +	 module will be called keembay_wdt.
+> +
+>  endif # WATCHDOG
+> diff --git a/drivers/watchdog/Makefile b/drivers/watchdog/Makefile
+> index 071a2e50be98..f6f9f434f407 100644
+> --- a/drivers/watchdog/Makefile
+> +++ b/drivers/watchdog/Makefile
+> @@ -146,6 +146,7 @@ obj-$(CONFIG_INTEL_MEI_WDT) += mei_wdt.o
+>  obj-$(CONFIG_NI903X_WDT) += ni903x_wdt.o
+>  obj-$(CONFIG_NIC7018_WDT) += nic7018_wdt.o
+>  obj-$(CONFIG_MLX_WDT) += mlx_wdt.o
+> +obj-$(CONFIG_KEEMBAY_WATCHDOG) += keembay_wdt.o
+>  
+>  # M68K Architecture
+>  obj-$(CONFIG_M54xx_WATCHDOG) += m54xx_wdt.o
+> diff --git a/drivers/watchdog/keembay_wdt.c b/drivers/watchdog/keembay_wdt.c
+> new file mode 100644
+> index 000000000000..1e1a1447c729
+> --- /dev/null
+> +++ b/drivers/watchdog/keembay_wdt.c
+> @@ -0,0 +1,284 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Watchdog driver for Intel Keem Bay non-secure watchdog.
+> + *
+> + * Copyright (C) 2020 Intel Corporation
+> + */
+> +
+> +#include <linux/arm-smccc.h>
+> +#include <linux/bits.h>
+> +#include <linux/clk.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/io.h>
+> +#include <linux/limits.h>
+> +#include <linux/module.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/reboot.h>
+> +#include <linux/watchdog.h>
+> +
+> +/* Non-secure watchdog register offsets */
+> +#define TIM_WATCHDOG		0x0
+> +#define TIM_WATCHDOG_INT_THRES	0x4
+> +#define TIM_WDOG_EN		0x8
+> +#define TIM_SAFE		0xc
+> +
+> +#define WDT_ISR_MASK		GENMASK(9, 8)
+> +#define WDT_ISR_CLEAR		0x8200ff18
+> +#define WDT_UNLOCK		0xf1d0dead
+> +#define WDT_LOAD_MAX		U32_MAX
+> +#define WDT_LOAD_MIN		1
+> +#define WDT_TIMEOUT		5
+> +
+> +static unsigned int timeout = WDT_TIMEOUT;
+> +module_param(timeout, int, 0);
+> +MODULE_PARM_DESC(timeout, "Watchdog timeout period in seconds (default = "
+> +		 __MODULE_STRING(WDT_TIMEOUT) ")");
+> +
+> +static bool nowayout = WATCHDOG_NOWAYOUT;
+> +module_param(nowayout, bool, 0);
+> +MODULE_PARM_DESC(nowayout, "Watchdog cannot be stopped once started (default = "
+> +		 __MODULE_STRING(WATCHDOG_NOWAYOUT) ")");
+> +
+> +struct keembay_wdt {
+> +	struct watchdog_device	wdd;
+> +	struct clk		*clk;
+> +	unsigned int		rate;
+> +	int			to_irq;
+> +	int			th_irq;
+> +	void __iomem		*base;
+> +};
+> +
+> +static inline u32 keembay_wdt_readl(struct keembay_wdt *wdt, u32 offset)
+> +{
+> +	return readl(wdt->base + offset);
+> +}
+> +
+> +static inline void keembay_wdt_writel(struct keembay_wdt *wdt,
+> +				      u32 offset, u32 val)
+> +{
+> +	writel(WDT_UNLOCK, wdt->base + TIM_SAFE);
+> +	writel(val, wdt->base + offset);
+> +}
+> +
+> +static void keembay_wdt_set_timeout_reg(struct watchdog_device *wdog, bool ping)
+> +{
+> +	struct keembay_wdt *wdt = watchdog_get_drvdata(wdog);
+> +	u32 th_val = 0;
+> +
+> +	if (!ping && wdog->pretimeout) {
+> +		th_val = wdog->timeout - wdog->pretimeout;
+> +		keembay_wdt_writel(wdt, TIM_WATCHDOG_INT_THRES, th_val * wdt->rate);
 
+Sorry for annoying you now, but I may have found another potential problem.
+
+What happens if the user sets a pretimeout, then removes it ?
+What should TIM_WATCHDOG_INT_THRES be set to in that case ?
+Right now TIM_WATCHDOG_INT_THRES won't be updated anymore
+in that case, which seems wrong. This might get worse with
+the following sequence.
+
+- set pretimeout
+- clear pretimeout
+- set timeout to some other value
+
+Thanks,
+Guenter
+
+> +	}
+> +
+> +	keembay_wdt_writel(wdt, TIM_WATCHDOG, wdog->timeout * wdt->rate);
+> +}
+> +
+> +static int keembay_wdt_start(struct watchdog_device *wdog)
+> +{
+> +	struct keembay_wdt *wdt = watchdog_get_drvdata(wdog);
+> +
+> +	keembay_wdt_set_timeout_reg(wdog, false);
+> +	keembay_wdt_writel(wdt, TIM_WDOG_EN, 1);
+> +
+> +	return 0;
+> +}
+> +
+> +static int keembay_wdt_stop(struct watchdog_device *wdog)
+> +{
+> +	struct keembay_wdt *wdt = watchdog_get_drvdata(wdog);
+> +
+> +	keembay_wdt_writel(wdt, TIM_WDOG_EN, 0);
+> +
+> +	return 0;
+> +}
+> +
+> +static int keembay_wdt_ping(struct watchdog_device *wdog)
+> +{
+> +	keembay_wdt_set_timeout_reg(wdog, true);
+> +
+> +	return 0;
+> +}
+> +
+> +static int keembay_wdt_set_timeout(struct watchdog_device *wdog, u32 t)
+> +{
+> +	wdog->timeout = t;
+> +	keembay_wdt_set_timeout_reg(wdog, false);
+> +
+> +	return 0;
+> +}
+> +
+> +static int keembay_wdt_set_pretimeout(struct watchdog_device *wdog, u32 t)
+> +{
+> +	wdog->pretimeout = t;
+> +	keembay_wdt_set_timeout_reg(wdog, false);
+> +
+> +	return 0;
+> +}
+> +
+> +static unsigned int keembay_wdt_get_timeleft(struct watchdog_device *wdog)
+> +{
+> +	struct keembay_wdt *wdt = watchdog_get_drvdata(wdog);
+> +
+> +	return keembay_wdt_readl(wdt, TIM_WATCHDOG) / wdt->rate;
+> +}
+> +
+> +/*
+> + * SMC call is used to clear the interrupt bits, because the TIM_GEN_CONFIG
+> + * register is in the secure bank.
+> + */
+> +static irqreturn_t keembay_wdt_to_isr(int irq, void *dev_id)
+> +{
+> +	struct keembay_wdt *wdt = dev_id;
+> +	struct arm_smccc_res res;
+> +
+> +	keembay_wdt_writel(wdt, TIM_WATCHDOG, 1);
+> +	arm_smccc_smc(WDT_ISR_CLEAR, WDT_ISR_MASK, 0, 0, 0, 0, 0, 0, &res);
+> +	dev_crit(wdt->wdd.parent, "Intel Keem Bay non-sec wdt timeout.\n");
+> +	emergency_restart();
+> +
+> +	return IRQ_HANDLED;
+> +}
+> +
+> +static irqreturn_t keembay_wdt_th_isr(int irq, void *dev_id)
+> +{
+> +	struct keembay_wdt *wdt = dev_id;
+> +	struct arm_smccc_res res;
+> +	u32 th_val = 0;
+> +
+> +	if (wdt->wdd.pretimeout)
+> +		th_val = wdt->wdd.timeout - wdt->wdd.pretimeout;
+> +
+> +	keembay_wdt_writel(wdt, TIM_WATCHDOG, th_val * wdt->rate + 1);
+> +	arm_smccc_smc(WDT_ISR_CLEAR, WDT_ISR_MASK, 0, 0, 0, 0, 0, 0, &res);
+> +	dev_crit(wdt->wdd.parent, "Intel Keem Bay non-sec wdt pre-timeout.\n");
+> +	watchdog_notify_pretimeout(&wdt->wdd);
+> +
+> +	return IRQ_HANDLED;
+> +}
+> +
+> +static const struct watchdog_info keembay_wdt_info = {
+> +	.identity	= "Intel Keem Bay Watchdog Timer",
+> +	.options	= WDIOF_SETTIMEOUT |
+> +			  WDIOF_PRETIMEOUT |
+> +			  WDIOF_MAGICCLOSE |
+> +			  WDIOF_KEEPALIVEPING,
+> +};
+> +
+> +static const struct watchdog_ops keembay_wdt_ops = {
+> +	.owner		= THIS_MODULE,
+> +	.start		= keembay_wdt_start,
+> +	.stop		= keembay_wdt_stop,
+> +	.ping		= keembay_wdt_ping,
+> +	.set_timeout	= keembay_wdt_set_timeout,
+> +	.set_pretimeout	= keembay_wdt_set_pretimeout,
+> +	.get_timeleft	= keembay_wdt_get_timeleft,
+> +};
+> +
+> +static int keembay_wdt_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct keembay_wdt *wdt;
+> +	int ret;
+> +
+> +	wdt = devm_kzalloc(dev, sizeof(*wdt), GFP_KERNEL);
+> +	if (!wdt)
+> +		return -ENOMEM;
+> +
+> +	wdt->base = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(wdt->base))
+> +		return PTR_ERR(wdt->base);
+> +
+> +	/* we do not need to enable the clock as it is enabled by default */
+> +	wdt->clk = devm_clk_get(dev, NULL);
+> +	if (IS_ERR(wdt->clk))
+> +		return dev_err_probe(dev, PTR_ERR(wdt->clk), "Failed to get clock\n");
+> +
+> +	wdt->rate = clk_get_rate(wdt->clk);
+> +	if (!wdt->rate)
+> +		return dev_err_probe(dev, -EINVAL, "Failed to get clock rate\n");
+> +
+> +	wdt->th_irq = platform_get_irq_byname(pdev, "threshold");
+> +	if (wdt->th_irq < 0)
+> +		return dev_err_probe(dev, wdt->th_irq, "Failed to get IRQ for threshold\n");
+> +
+> +	ret = devm_request_irq(dev, wdt->th_irq, keembay_wdt_th_isr, 0,
+> +			       "keembay-wdt", wdt);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Failed to request IRQ for threshold\n");
+> +
+> +	wdt->to_irq = platform_get_irq_byname(pdev, "timeout");
+> +	if (wdt->to_irq < 0)
+> +		return dev_err_probe(dev, wdt->to_irq, "Failed to get IRQ for timeout\n");
+> +
+> +	ret = devm_request_irq(dev, wdt->to_irq, keembay_wdt_to_isr, 0,
+> +			       "keembay-wdt", wdt);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Failed to request IRQ for timeout\n");
+> +
+> +	wdt->wdd.parent		= dev;
+> +	wdt->wdd.info		= &keembay_wdt_info;
+> +	wdt->wdd.ops		= &keembay_wdt_ops;
+> +	wdt->wdd.min_timeout	= WDT_LOAD_MIN;
+> +	wdt->wdd.max_timeout	= WDT_LOAD_MAX / wdt->rate;
+> +	wdt->wdd.timeout	= WDT_TIMEOUT;
+> +
+> +	watchdog_set_drvdata(&wdt->wdd, wdt);
+> +	watchdog_set_nowayout(&wdt->wdd, nowayout);
+> +	watchdog_init_timeout(&wdt->wdd, timeout, dev);
+> +	keembay_wdt_set_timeout(&wdt->wdd, wdt->wdd.timeout);
+> +
+> +	ret = devm_watchdog_register_device(dev, &wdt->wdd);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Failed to register watchdog device.\n");
+> +
+> +	platform_set_drvdata(pdev, wdt);
+> +	dev_info(dev, "Initial timeout %d sec%s.\n",
+> +		 wdt->wdd.timeout, nowayout ? ", nowayout" : "");
+> +
+> +	return 0;
+> +}
+> +
+> +static int __maybe_unused keembay_wdt_suspend(struct device *dev)
+> +{
+> +	struct keembay_wdt *wdt = dev_get_drvdata(dev);
+> +
+> +	if (watchdog_active(&wdt->wdd))
+> +		return keembay_wdt_stop(&wdt->wdd);
+> +
+> +	return 0;
+> +}
+> +
+> +static int __maybe_unused keembay_wdt_resume(struct device *dev)
+> +{
+> +	struct keembay_wdt *wdt = dev_get_drvdata(dev);
+> +
+> +	if (watchdog_active(&wdt->wdd))
+> +		return keembay_wdt_start(&wdt->wdd);
+> +
+> +	return 0;
+> +}
+> +
+> +static SIMPLE_DEV_PM_OPS(keembay_wdt_pm_ops, keembay_wdt_suspend,
+> +			 keembay_wdt_resume);
+> +
+> +static const struct of_device_id keembay_wdt_match[] = {
+> +	{ .compatible = "intel,keembay-wdt" },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(of, keembay_wdt_match);
+> +
+> +static struct platform_driver keembay_wdt_driver = {
+> +	.probe		= keembay_wdt_probe,
+> +	.driver		= {
+> +		.name		= "keembay_wdt",
+> +		.of_match_table	= keembay_wdt_match,
+> +		.pm		= &keembay_wdt_pm_ops,
+> +	},
+> +};
+> +
+> +module_platform_driver(keembay_wdt_driver);
+> +
+> +MODULE_DESCRIPTION("Intel Keem Bay SoC watchdog driver");
+> +MODULE_AUTHOR("Wan Ahmad Zainie <wan.ahmad.zainie.wan.mohamad@intel.com");
+> +MODULE_LICENSE("GPL v2");
+> -- 
+> 2.17.1
+> 
