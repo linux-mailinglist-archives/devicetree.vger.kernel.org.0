@@ -2,115 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 33CAF2C97C5
-	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 08:04:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 905302C97DA
+	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 08:12:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727194AbgLAHBv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Dec 2020 02:01:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60734 "EHLO
+        id S1727096AbgLAHK6 convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 1 Dec 2020 02:10:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33892 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727173AbgLAHBv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Dec 2020 02:01:51 -0500
-Received: from mail-pj1-x1041.google.com (mail-pj1-x1041.google.com [IPv6:2607:f8b0:4864:20::1041])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 841EDC0613CF;
-        Mon, 30 Nov 2020 23:01:11 -0800 (PST)
-Received: by mail-pj1-x1041.google.com with SMTP id b12so659889pjl.0;
-        Mon, 30 Nov 2020 23:01:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=Ngvoe86XzVxBfY2DEjilLAjY3kEDlzG9OjcsBvIxHYc=;
-        b=QC+OVFANJzpHO5Nu2sN5nqotWc9pcesf/sigDDcm6aqOkldfQm4AfMiaC2JDVkI/Ip
-         8cY2gdBKRIKQGZdEx31oqyGP3/XKRiZ7mIZW4mjht2qjQPlDHOI28pJfkefwrX7IQ4d+
-         /Y7eJQD/egEq4oTf5gWW4EAUzFT6R0MkDRVeqhSurz7/grGLdwpfILvZqBhPwfYIwTzG
-         88/997TMGVZJteafhUXdbYd7dfeUtHuqs62tLTPrCcJx2n4z8meRgMElfKG89NSRV2kh
-         nd9r6wP7hyhNtv0JstzmfuGeQGMxx6Ev8ekD24DJlynRN5h9f2LJlRK8xmTDBpzytmmJ
-         5Kcw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Ngvoe86XzVxBfY2DEjilLAjY3kEDlzG9OjcsBvIxHYc=;
-        b=sl3WU3BBrp5r8Zn77nA7+gW7krwoDa50sEVExcSD8SbpqQSzuck6zQlF7V0uxEfoUO
-         Jop85vUN81Eat4wZwbjnCYqq092RyN6PnsYa4WOlMijCVUJok8UEvtPF0WoNPZQfbJAo
-         MRiCHHbrNp0oe4psTgcV2BFhv4PKlNY6pJfMIZNjJPX8Y9QHneaZk/a3+fwJUGWY2zBW
-         7KbZUZKp3CXduyRVicNeDJoVnuFA1nxq0KnOOBCzBN8gRFV4fa7xXp3ALiDPXVbftkhk
-         xTgX40VPJRYbGdzX9XZFpVvOy7dEZl1oT5yUQUgTFgNK+kv48pq9bu8wFf267zLh5wt4
-         fXyA==
-X-Gm-Message-State: AOAM532BFw79wseF7MHJHOolrcBc/hnMTZ3UOfRDe3jkpm2p3vqJOw71
-        3tmuo+TK7NuGCioXWJ6Cy7MuzmdywPI=
-X-Google-Smtp-Source: ABdhPJziOej+w4a6O49GSjDIbdGXWv7MO0iRD/vkiANDYmPRC/F/ol3EWWwMWIheOlYhLAo4N3Wh6w==
-X-Received: by 2002:a17:90a:7343:: with SMTP id j3mr1333032pjs.51.1606806070980;
-        Mon, 30 Nov 2020 23:01:10 -0800 (PST)
-Received: from dtor-ws ([2620:15c:202:201:a6ae:11ff:fe11:fcc3])
-        by smtp.gmail.com with ESMTPSA id h5sm1437075pfk.126.2020.11.30.23.01.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Nov 2020 23:01:08 -0800 (PST)
-Date:   Mon, 30 Nov 2020 23:01:06 -0800
-From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To:     Jeff LaBundy <jeff@labundy.com>
-Cc:     robh+dt@kernel.org, linux-input@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/2] input: Add support for Azoteq IQS626A
-Message-ID: <20201201070106.GS2034289@dtor-ws>
-References: <1606084748-4097-1-git-send-email-jeff@labundy.com>
- <1606084748-4097-3-git-send-email-jeff@labundy.com>
- <20201123070307.GE2034289@dtor-ws>
- <20201124001516.GA6249@labundy.com>
+        with ESMTP id S1725859AbgLAHK6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Dec 2020 02:10:58 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3A86C0613D2
+        for <devicetree@vger.kernel.org>; Mon, 30 Nov 2020 23:10:17 -0800 (PST)
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1kjznf-0000Bz-1A; Tue, 01 Dec 2020 08:10:11 +0100
+Received: from ore by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <ore@pengutronix.de>)
+        id 1kjzne-0006Fw-G9; Tue, 01 Dec 2020 08:10:10 +0100
+Date:   Tue, 1 Dec 2020 08:10:10 +0100
+From:   Oleksij Rempel <o.rempel@pengutronix.de>
+To:     Fabio Estevam <festevam@gmail.com>
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        David Jander <david@protonic.nl>
+Subject: Re: [PATCH v1 2/2] ARM: dts: add Protonic MVT board
+Message-ID: <20201201071010.e6joif4aoxdy23xg@pengutronix.de>
+References: <20201130131406.10925-1-o.rempel@pengutronix.de>
+ <20201130131406.10925-2-o.rempel@pengutronix.de>
+ <CAOMZO5DM8aToy_PRrY2cW5zbZf0xjfN9H4PrYTy+9Mq0NRii7w@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20201124001516.GA6249@labundy.com>
+Content-Transfer-Encoding: 8BIT
+In-Reply-To: <CAOMZO5DM8aToy_PRrY2cW5zbZf0xjfN9H4PrYTy+9Mq0NRii7w@mail.gmail.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 08:05:44 up 381 days, 22:24, 51 users,  load average: 0.09, 0.06,
+ 0.01
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 23, 2020 at 06:15:16PM -0600, Jeff LaBundy wrote:
-> Hi Dmitry,
+On Mon, Nov 30, 2020 at 10:22:38AM -0300, Fabio Estevam wrote:
+> Hi Oleksij,
 > 
-> Thank you for taking a look.
+> On Mon, Nov 30, 2020 at 10:14 AM Oleksij Rempel <o.rempel@pengutronix.de> wrote:
 > 
-> On Sun, Nov 22, 2020 at 11:03:07PM -0800, Dmitry Torokhov wrote:
-> > Hi Jeff,
-> > 
-> > On Sun, Nov 22, 2020 at 04:39:08PM -0600, Jeff LaBundy wrote:
-> > > +
-> > > +		if ((sys_reg->active & tp_mask) == tp_mask)
-> > > +			input_set_abs_params(iqs626->trackpad,
-> > > +					     ABS_X, 0, 255, 0, 0);
-> > > +		else
-> > > +			input_set_abs_params(iqs626->trackpad,
-> > > +					     ABS_X, 0, 128, 0, 0);
-> > > +#ifdef CONFIG_TOUCHSCREEN_PROPERTIES
-> > > +		touchscreen_parse_properties(iqs626->trackpad, false,
-> > > +					     &iqs626->prop);
-> > > +#endif /* CONFIG_TOUCHSCREEN_PROPERTIES */
-> > 
-> > This should not be separately selectable from CONFIG_INPUT, so there is
-> > not need to have this guard.
-> > 
-> > The reason it is a separate symbol is historical - it used to depend on
-> > OF in addition to INPUT. I suppose I can drop it now.
+> > +&ecspi1 {
+> > +       cs-gpios = <&gpio3 19 GPIO_ACTIVE_HIGH>;
 > 
-> Without these guards, the build fails if CONFIG_INPUT_TOUCHSCREEN=n and
-> I felt it too heavy-handed to add a 'depends on' for what is ultimately
-> a corner-case of sorts for this device.
+> Shouldn't this be GPIO_ACTIVE_LOW instead?
 
-Ah, I missed the fat that we got outside of the
-drivers/input/toucscreen.
+ACK, it was fixed up by this code:
+https://elixir.bootlin.com/linux/v5.10-rc6/source/drivers/gpio/gpiolib-of.c#L210
 
-> 
-> The touchscreen helpers are useful for more than just touchscreens, and
-> we can extend them to all of input with something like the patch below.
-> If it looks OK to you, I can insert it into v2 after I collect feedback
-> from Rob for the binding.
+So, it was still working.
 
-Yes, I guess we should move into core. Can you move the file into
-drivers/input and maybe we should rename it into touch-properties.c? And
-start renaming the API form touchscreen_*() to touch_()?
+Thank you! I'll fix it.
 
-Thanks.
-
+Regards,
+Oleksij
 -- 
-Dmitry
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
