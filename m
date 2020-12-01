@@ -2,231 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 32FED2C9EE3
-	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 11:15:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5ABE02C9FDC
+	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 11:37:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729734AbgLAKOh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Dec 2020 05:14:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33988 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729615AbgLAKOg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Dec 2020 05:14:36 -0500
-Received: from mail-lf1-x144.google.com (mail-lf1-x144.google.com [IPv6:2a00:1450:4864:20::144])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E9F4C0613D6
-        for <devicetree@vger.kernel.org>; Tue,  1 Dec 2020 02:13:56 -0800 (PST)
-Received: by mail-lf1-x144.google.com with SMTP id q13so2997532lfr.10
-        for <devicetree@vger.kernel.org>; Tue, 01 Dec 2020 02:13:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=EpTyVObyidZ7afZe2Xs7DnnCx9ZUD9L2PJpxRCgQy1Q=;
-        b=IQkH9IZFy0od+oQknsmtn3hLQBjVycftewD4WssFOmVU9SMKCDyZE0mnXDDgTjnPB0
-         th10nWKszbWiGbUp0dg9ew1raNVi0pTzeu8mMj09PX0VAPeKPYRPS3H6uEcCEa7GqoHE
-         s+vi6PLpngkTC8Lvh8o/AGse9LjOLGLz/Zu209gC42MeFDs9FEtEiX+mPM3Kk1iBSfMC
-         v2ygK5TSPigrQplLCeqTa7N2i+YG5oTAZXsjGUXmxIk0oa/1bzYGJ/AaNSR4/Sm16pS+
-         O/Jg1RXnzJP3Ek1BDMzxhhd9AfF3tYwK5XOiNIl9EoVj/Km0zU1m/PvKUsFrdghBi1eQ
-         0LZQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=EpTyVObyidZ7afZe2Xs7DnnCx9ZUD9L2PJpxRCgQy1Q=;
-        b=GZTm1+n9/Eu556wN4lz+5Vbn9q6cNtKXqplu6ThqdOabnkY5czvyjyxjleoghHXIsK
-         udhCInVmlAyEoc9MgPfLVgFJrZdipS1WSu7DmkEKTpFJ2/C8KXm0ZqYbDnChFiqG9Xn6
-         Zt48YoUAphXWkXiwofr7ZLxYcS8phjeqYiX8rNJdt5iRmffE+U/DLYDU2d8plJWotTN7
-         BdGrtt4GxH5FOuKbo8Zcngl4eEH+BilIsfy1AVsCcHhVP3kZcqWqt+11grKuVhHgwaB3
-         /PeaHAGh1UdpiYqumkxV445QmvFpOaxQygIHNtw7BuRSox+KAgBACuMdALUPVzpZAgOS
-         71Pw==
-X-Gm-Message-State: AOAM533vwlPbnw13rto3nNnUZSJod041F6vHId0OYvpOY9DX2VMd/xxN
-        WmIvyABAO6AclnNTPTDp+xyyxg==
-X-Google-Smtp-Source: ABdhPJxjWhIfTnswlk7jEvjzsccOqgYgmAk/RQdgUEbNmFrA+TVRdzgA1LYCwcT4oTFNwcmy1aTOnA==
-X-Received: by 2002:a05:6512:3054:: with SMTP id b20mr927260lfb.45.1606817634498;
-        Tue, 01 Dec 2020 02:13:54 -0800 (PST)
-Received: from localhost.bredbandsbolaget (c-92d7225c.014-348-6c756e10.bbcust.telenor.se. [92.34.215.146])
-        by smtp.gmail.com with ESMTPSA id z20sm151495ljh.86.2020.12.01.02.13.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Dec 2020 02:13:53 -0800 (PST)
-From:   Linus Walleij <linus.walleij@linaro.org>
-To:     Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>
-Cc:     linux-leds@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Sakari Ailus <sakari.ailus@iki.fi>, newbytee@protonmail.com,
-        Stephan Gerhold <stephan@gerhold.net>,
-        phone-devel@vger.kernel.org, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Sakari Ailus <sakari.ailus@linux.intel.com>
-Subject: [PATCH 1/2 v7] dt-bindings: leds: Add DT binding for Richtek RT8515
-Date:   Tue,  1 Dec 2020 11:13:49 +0100
-Message-Id: <20201201101350.1401956-1-linus.walleij@linaro.org>
-X-Mailer: git-send-email 2.26.2
+        id S1729811AbgLAKep (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Dec 2020 05:34:45 -0500
+Received: from wout1-smtp.messagingengine.com ([64.147.123.24]:47843 "EHLO
+        wout1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726871AbgLAKek (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Dec 2020 05:34:40 -0500
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailout.west.internal (Postfix) with ESMTP id A018612F7;
+        Tue,  1 Dec 2020 05:33:48 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute6.internal (MEProxy); Tue, 01 Dec 2020 05:33:49 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm1; bh=miypkxvthetDBOn9oi94R0JCWeh
+        iNAhQ1JY9FWr5gUc=; b=ZQ8sL1l9cQD7eWkMldcwaECkS5P9JRvlEYdsNBfi8WD
+        4VnLiM7Jd455Gwy7Euoh70SntSP0PTLWRlwaWHbtXHdjF7HoSwEJD5ntjWCrrBtV
+        mk8Th7bESJw2AFWreCY4ZwTMAM0+BdeEOaDhM63MLHxtm8JTY62jUCMzvvZJfyXW
+        WEmm2nWT8WUF7G7ub1aAzKrdEaoC0DAfontrwJQ2SfAgkCbHIMv2p/U+mon2JHQJ
+        NKIXUCVbwP+w7+ynSpFKWR+1e/YSw6Um/a+nJgTZzuxK7C7Um2kQKz4XOrBH4YnH
+        4jruP/9Lntor5HJzgESt5T+KBli5tbrwIklPFp2rWuA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=miypkx
+        vthetDBOn9oi94R0JCWehiNAhQ1JY9FWr5gUc=; b=C5jRc34TmyVb+Jd63uC2MA
+        zKp4aCpTW76YZPSB163pksJSuscmk+YfwxKLbUDxDMT+3I5jhc8MvEWJF7D4DUdZ
+        NmA2z54wIyiB4/0Ytt3JS7Dyd7Y6/fGqK8ZV9XzhW51DOvcnsRZeKxDSs/3Sf5JH
+        KjrD6NFG3efWb4/sGBREWRzYcezYZRkEW+geJmvcp9wzXmU+tCCzJuA8qexMSCys
+        c/RKoojHq2AenVXcUU85EpHVN7YnRFrLK5JMER1ZwOdSxAxHSt/op+TS3wb6OXLk
+        U8wDt40mKvn0k7QE67HUxHcjSzzmuhCrz89V/Nv/CfdGSHFRUbriZLx+vIjkgttw
+        ==
+X-ME-Sender: <xms:ChzGXyL1N8TP0-FRdDWukIwdI10Yvyua1oTeNyUFQLZ-rDIhzKjbyw>
+    <xme:ChzGX6IHXpEpPYRKXtCDUxoZWtwGX08FBZ1ddOSmy10Y8Cfr9mYqfI1PGwvYDqxW5
+    asxWhi32JwT1sar-TA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrudeivddgudekucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
+    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
+    gedunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
+    frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:ChzGXyskndzYKl9H-N95TZddXCmzRBubhrLtNIu8mclmadyItNZHCg>
+    <xmx:ChzGX3Z07gOTVhyIh8pLK2hNGTIhbYxLeyyMLcce51VpPFEHKZRSeg>
+    <xmx:ChzGX5ZeNdYNUAc-8ICi5TCqzbU5s3gldoJum13DVE2yBj7bukKZ2g>
+    <xmx:DBzGX8ybq8L_BBQFISfAwY1X1DXp5Cly50z_7ypcpVbs4OFBuTO_8A>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 4FCE73280068;
+        Tue,  1 Dec 2020 05:33:46 -0500 (EST)
+Date:   Tue, 1 Dec 2020 11:33:44 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Heinrich Schuchardt <xypron.glpk@gmx.de>
+Cc:     Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Willy Liu <willy.liu@realtek.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/1] arm64: dts: allwinner: A64 Sopine: phy-mode rgmii-id
+Message-ID: <20201201103344.5zc35klj334aflpk@gilmour>
+References: <20201129162627.1244808-1-xypron.glpk@gmx.de>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="phy4sbo5vae5y3zo"
+Content-Disposition: inline
+In-Reply-To: <20201129162627.1244808-1-xypron.glpk@gmx.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a YAML devicetree binding for the Richtek RT8515
-dual channel flash/torch LED driver.
 
-Cc: Sakari Ailus <sakari.ailus@iki.fi>
-Cc: newbytee@protonmail.com
-Cc: Stephan Gerhold <stephan@gerhold.net>
-Cc: phone-devel@vger.kernel.org
-Cc: linux-media@vger.kernel.org
-Cc: devicetree@vger.kernel.org
-Reviewed-by: Sakari Ailus <sakari.ailus@linux.intel.com>
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
----
-ChangeLog v6->v7:
-- Use led-max-microamp for the torch mode max current.
-- Drop the torch-specific new property from common.yaml in
-  favor of this property.
-- Collect Sakari's review tag.
-ChangeLog v5->v6:
-- Use the suffix -ohms for the resistor values as this gets
-  recognized by default by dtschema and is nominal.
-ChangeLog v4->v5:
-- Fix the RFS/RTS resistors to reference the u32 schema.
-- Fix resisitor speling error.
-ChangeLog v3->v4:
-- Add DT attributes for the RFS and RTS resistors, so that
-  the hardware-defined maximum current can be determined.
-- Add torch-max-microamp to the common bindings so we can
-  set an attribute for the max microamp in torch mode.
-- Add flash-max-microamp and torch-max-microamp as optional
-  to the LED node.
-- Slot in some elabortative descriptions of the new
-  properties and describe what the hardware is doing.
-- Cc phone-devel@vger.kernel.org
-ChangeLog v2->v3:
-- Add Sakari to CC
-- Resend
-ChangeLog v1->v2:
-- Explicitly inherit function, color and flash-max-timeout-us
-  from common.yaml
-- Add "led" node as required.
----
- .../bindings/leds/richtek,rt8515.yaml         | 109 ++++++++++++++++++
- 1 file changed, 109 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/leds/richtek,rt8515.yaml
+--phy4sbo5vae5y3zo
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/Documentation/devicetree/bindings/leds/richtek,rt8515.yaml b/Documentation/devicetree/bindings/leds/richtek,rt8515.yaml
-new file mode 100644
-index 000000000000..3190e4fcfdf2
---- /dev/null
-+++ b/Documentation/devicetree/bindings/leds/richtek,rt8515.yaml
-@@ -0,0 +1,109 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/leds/richtek,rt8515.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Richtek RT8515 1.5A dual channel LED driver
-+
-+maintainers:
-+  - Linus Walleij <linus.walleij@linaro.org>
-+
-+description: |
-+  The Richtek RT8515 is a dual channel (two mode) LED driver that
-+  supports driving a white LED in flash or torch mode. The maximum
-+  current for each mode is defined in hardware using two resistors
-+  RFS and RTS.
-+
-+properties:
-+  compatible:
-+    const: richtek,rt8515
-+
-+  enf-gpios:
-+    maxItems: 1
-+    description: A connection to the 'ENF' (enable flash) pin.
-+
-+  ent-gpios:
-+    maxItems: 1
-+    description: A connection to the 'ENT' (enable torch) pin.
-+
-+  richtek,rfs-ohms:
-+    minimum: 7680
-+    maximum: 367000
-+    description: The resistance value of the RFS resistor. This
-+      resistors limits the maximum flash current. This must be set
-+      for the property flash-max-microamp to work, the RFS resistor
-+      defines the range of the dimmer setting (brightness) of the
-+      flash LED.
-+
-+  richtek,rts-ohms:
-+    minimum: 7680
-+    maximum: 367000
-+    description: The resistance value of the RTS resistor. This
-+      resistors limits the maximum torch current. This must be set
-+      for the property torch-max-microamp to work, the RTS resistor
-+      defines the range of the dimmer setting (brightness) of the
-+      torch LED.
-+
-+  led:
-+    type: object
-+    $ref: common.yaml#
-+    properties:
-+      function: true
-+      color: true
-+      flash-max-timeout-us: true
-+
-+      flash-max-microamp:
-+        maximum: 700000
-+        description: The maximum current for flash mode
-+          is hardwired to the component using the RFS resistor to
-+          ground. The maximum hardware current setting is calculated
-+          according to the formula Imax = 5500 / RFS. The lowest
-+          allowed resistance value is 7.86 kOhm giving an absolute
-+          maximum current of 700mA. By setting this attribute in
-+          the device tree, you can further restrict the maximum
-+          current below the hardware limit. This requires the RFS
-+          to be defined as it defines the maximum range.
-+
-+      led-max-microamp:
-+        maximum: 700000
-+        description: The maximum current for torch mode
-+          is hardwired to the component using the RTS resistor to
-+          ground. The maximum hardware current setting is calculated
-+          according to the formula Imax = 5500 / RTS. The lowest
-+          allowed resistance value is 7.86 kOhm giving an absolute
-+          maximum current of 700mA. By setting this attribute in
-+          the device tree, you can further restrict the maximum
-+          current below the hardware limit. This requires the RTS
-+          to be defined as it defines the maximum range.
-+
-+required:
-+  - compatible
-+  - ent-gpios
-+  - enf-gpios
-+  - led
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/leds/common.h>
-+
-+    led-controller {
-+        compatible = "richtek,rt8515";
-+        enf-gpios = <&gpio4 12 GPIO_ACTIVE_HIGH>;
-+        ent-gpios = <&gpio4 13 GPIO_ACTIVE_HIGH>;
-+        richtek,rfs-ohms = <16000>;
-+        richtek,rts-ohms = <100000>;
-+
-+        led {
-+            function = LED_FUNCTION_FLASH;
-+            color = <LED_COLOR_ID_WHITE>;
-+            flash-max-timeout-us = <250000>;
-+            flash-max-microamp = <150000>;
-+            torch-max-microamp = <25000>;
-+        };
-+    };
-+
-+...
--- 
-2.26.2
+On Sun, Nov 29, 2020 at 05:26:27PM +0100, Heinrich Schuchardt wrote:
+> Since commit bbc4d71d6354 ("net: phy: realtek: fix rtl8211e rx/tx
+> delay config") iSCSI booting fails on the Pine A64 LTS.
+>=20
+> This patch changes the phy-mode to use internal delays both for RX and TX
+> as has been done for other boards affected by the same commit.
+>=20
+> Fixes: bbc4d71d6354 ("net: phy: realtek: fix rtl8211e rx/tx delay config")
+> Signed-off-by: Heinrich Schuchardt <xypron.glpk@gmx.de>
 
+Applied, thanks
+Maxime
+
+--phy4sbo5vae5y3zo
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX8YcCAAKCRDj7w1vZxhR
+xf02AQD/FiprdlhjFA/6zTeA0NIXyimkwUHILyJsDztvkohCygEAq9I6EY0gfVLt
+MCyjkdzLXqvbUOwgm+7AhXF6gadupAM=
+=JuLM
+-----END PGP SIGNATURE-----
+
+--phy4sbo5vae5y3zo--
