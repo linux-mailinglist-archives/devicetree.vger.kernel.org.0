@@ -2,82 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 20C582CA386
-	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 14:16:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6874C2CA3AC
+	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 14:24:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726166AbgLANQW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Dec 2020 08:16:22 -0500
-Received: from comms.puri.sm ([159.203.221.185]:37396 "EHLO comms.puri.sm"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725977AbgLANQW (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 1 Dec 2020 08:16:22 -0500
-Received: from localhost (localhost [127.0.0.1])
-        by comms.puri.sm (Postfix) with ESMTP id 9914FE0410;
-        Tue,  1 Dec 2020 05:15:11 -0800 (PST)
-Received: from comms.puri.sm ([127.0.0.1])
-        by localhost (comms.puri.sm [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id YGom1B7VPFvx; Tue,  1 Dec 2020 05:15:10 -0800 (PST)
-Subject: Re: [PATCH v2 7/7] arm64: defconfig: Enable interconnect for imx8mq
-To:     Georgi Djakov <georgi.djakov@linaro.org>, robh@kernel.org,
-        shawnguo@kernel.org, festevam@gmail.com, catalin.marinas@arm.com,
-        will@kernel.org, cdleonard@gmail.com
-Cc:     kernel@pengutronix.de, linux-imx@nxp.com, kernel@puri.sm,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
-References: <20201201123932.12312-1-martin.kepplinger@puri.sm>
- <20201201123932.12312-8-martin.kepplinger@puri.sm>
- <cb498c2c-e052-390a-c64a-2be44d1d2b42@linaro.org>
-From:   Martin Kepplinger <martin.kepplinger@puri.sm>
-Message-ID: <a2c0fae4-13c5-9114-876f-bc324138e6cc@puri.sm>
-Date:   Tue, 1 Dec 2020 14:15:04 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.5.0
-In-Reply-To: <cb498c2c-e052-390a-c64a-2be44d1d2b42@linaro.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
+        id S1729951AbgLANWd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Dec 2020 08:22:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35598 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727630AbgLANWc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Dec 2020 08:22:32 -0500
+Received: from mail.kmu-office.ch (mail.kmu-office.ch [IPv6:2a02:418:6a02::a2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF1EDC0613D6;
+        Tue,  1 Dec 2020 05:21:51 -0800 (PST)
+Received: from allenwind.lan (unknown [IPv6:2a02:169:3df5::979])
+        by mail.kmu-office.ch (Postfix) with ESMTPSA id 5F65F5C118A;
+        Tue,  1 Dec 2020 14:21:49 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=agner.ch; s=dkim;
+        t=1606828909;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:
+         content-transfer-encoding:content-transfer-encoding:in-reply-to:
+         references; bh=7owwV4HhbSIw8M7DidVUBuRSta6G+JiGAUZhNrn3vRQ=;
+        b=O5S7flAstTLUI9BgxGPSIADM1dUD8xxa2YMTpIzuzO/JOWvUuhFyhLrVSy7+rP5lOnbZiZ
+        5pXNC34bRNgL8DnDeMG7K9tJSQZ/fQN9GAtg4+j+XD+oN0H46UIjZZInl3uMko9w1X/9CD
+        ru27N2KhWsTvnUM9xw/nJyDqNUdZbEA=
+From:   Stefan Agner <stefan@agner.ch>
+To:     khilman@baylibre.com
+Cc:     robh+dt@kernel.org, narmstrong@baylibre.com, jbrunet@baylibre.com,
+        martin.blumenstingl@googlemail.com, christianshewitt@gmail.com,
+        jian.hu@amlogic.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Stefan Agner <stefan@agner.ch>
+Subject: [PATCH v2 1/5] arm64: dts: meson: g12b: odroid-n2: fix PHY deassert timing requirements
+Date:   Tue,  1 Dec 2020 14:21:37 +0100
+Message-Id: <14754fd95378b78eb9a0a3f8b6bab13f7263c7f1.1606828668.git.stefan@agner.ch>
+X-Mailer: git-send-email 2.29.2
+MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01.12.20 14:10, Georgi Djakov wrote:
-> On 1.12.20 14:39, Martin Kepplinger wrote:
->> Enable INTERCONNECT_IMX8MQ in order to make interconnect more widely
->> available for testing.
-> 
-> I hope that it's not just for testing, but using it.
+According to the datasheet (Rev. 1.9) the RTL8211F requires at least
+72ms "for internal circuits settling time" before accessing the PHY
+egisters. This fixes an issue where the Ethernet link doesn't come up
+when using ip link set down/up:
+  [   29.360965] meson8b-dwmac ff3f0000.ethernet eth0: Link is Down
+  [   34.569012] meson8b-dwmac ff3f0000.ethernet eth0: PHY [0.0:00] driver [RTL8211F Gigabit Ethernet] (irq=31)
+  [   34.676732] meson8b-dwmac ff3f0000.ethernet: Failed to reset the dma
+  [   34.678874] meson8b-dwmac ff3f0000.ethernet eth0: stmmac_hw_setup: DMA engine initialization failed
+  [   34.687850] meson8b-dwmac ff3f0000.ethernet eth0: stmmac_open: Hw setup failed
 
-sure, I just think that most people will use their own config for 
-production but that's a different story. I can rephrase.
+Fixes: 658e4129bb81 ("arm64: dts: meson: g12b: odroid-n2: add the Ethernet PHY reset line")
+Signed-off-by: Stefan Agner <stefan@agner.ch>
+---
+ arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-> 
->> Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
->> ---
->>   arch/arm64/configs/defconfig | 3 ++-
->>   1 file changed, 2 insertions(+), 1 deletion(-)
->>
->> diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
->> index 1fed16950a7c..830c26a95b3d 100644
->> --- a/arch/arm64/configs/defconfig
->> +++ b/arch/arm64/configs/defconfig
->> @@ -1023,7 +1023,8 @@ CONFIG_OPTEE=y
->>   CONFIG_MUX_MMIO=y
->>   CONFIG_SLIM_QCOM_CTRL=m
->>   CONFIG_SLIM_QCOM_NGD_CTRL=m
->> -CONFIG_INTERCONNECT=y
-> 
-> Why are you removing this line?
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
+index 6982632ae646..39a09661c5f6 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
+@@ -413,7 +413,7 @@ external_phy: ethernet-phy@0 {
+ 		max-speed = <1000>;
+ 
+ 		reset-assert-us = <10000>;
+-		reset-deassert-us = <30000>;
++		reset-deassert-us = <80000>;
+ 		reset-gpios = <&gpio GPIOZ_15 (GPIO_ACTIVE_LOW | GPIO_OPEN_DRAIN)>;
+ 
+ 		interrupt-parent = <&gpio_intc>;
+-- 
+2.29.2
 
-savedefconfig removes it. INTERCONNECT_IMX below depends on it.
-
-> 
-> Thanks,
-> Georgi
-> 
->> +CONFIG_INTERCONNECT_IMX=m
->> +CONFIG_INTERCONNECT_IMX8MQ=m
->>   CONFIG_INTERCONNECT_QCOM=y
->>   CONFIG_INTERCONNECT_QCOM_MSM8916=m
->>   CONFIG_INTERCONNECT_QCOM_SDM845=m
->>
-> 
