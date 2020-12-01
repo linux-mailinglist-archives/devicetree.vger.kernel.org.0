@@ -2,440 +2,308 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D74422CA851
-	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 17:32:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 80E952CA856
+	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 17:36:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726085AbgLAQb2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Dec 2020 11:31:28 -0500
-Received: from gproxy10-pub.mail.unifiedlayer.com ([69.89.20.226]:34737 "EHLO
-        gproxy10-pub.mail.unifiedlayer.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725885AbgLAQb2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Dec 2020 11:31:28 -0500
-Received: from cmgw11.unifiedlayer.com (unknown [10.9.0.11])
-        by gproxy10.mail.unifiedlayer.com (Postfix) with ESMTP id 716C514052F
-        for <devicetree@vger.kernel.org>; Tue,  1 Dec 2020 09:30:46 -0700 (MST)
-Received: from bh-25.webhostbox.net ([208.91.199.152])
-        by cmsmtp with ESMTP
-        id k8Y9kncR3dCH5k8YAkruox; Tue, 01 Dec 2020 09:30:46 -0700
-X-Authority-Reason: nr=8
-X-Authority-Analysis: v=2.3 cv=MYVCRa3f c=1 sm=1 tr=0
- a=QNED+QcLUkoL9qulTODnwA==:117 a=2cfIYNtKkjgZNaOwnGXpGw==:17
- a=dLZJa+xiwSxG16/P+YVxDGlgEgI=:19 a=kj9zAlcOel0A:10:nop_charset_1
- a=zTNgK-yGK50A:10:nop_rcvd_month_year
- a=evQFzbml-YQA:10:endurance_base64_authed_username_1 a=QyXUC8HyAAAA:8
- a=0SxRSwYGAAAA:8 a=WFEaG0DHoqVv2NmT4k4A:9 a=CjuIK1q_8ugA:10:nop_charset_2
- a=evtWB9OUeeBtXImRToD_:22
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=roeck-us.net; s=default; h=In-Reply-To:Content-Type:MIME-Version:References
-        :Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding
-        :Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-        List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=MW45SPmUAqASbOxPmbjdhQwoPvzAULe2X/U49k7ExjY=; b=yB18T7r2fYvNiN4RwBRvrpRJL/
-        0SvhxSdFpL/iQwzsKWjtoDiWrgGI7Vg5XYDNrF5x50IupfpAhAVMRM4tGlN33wRUIpSBd38w0HcNU
-        ZwT1MKiHSZQV3+gBqUzpQTmYtvzlJolV7GiOJYNk96jiFMtgHFyigjCcvZNKets/K9k/oS3rdfmgZ
-        ChfHzwLNasbabuFUomVbTgceD5GQftWA7gn3PKXSR7Y8FfyW+hMJSRwuRlSpl8TanAj6/2nBLmCLM
-        QrPh3zCwE/yBXTyy8AyBHj2YiI+MkR9nPct8+Og8Mkt8kcYIMBFMHLZKqbVInkOWrlewE9utoHlYZ
-        vy5sRVyw==;
-Received: from 108-223-40-66.lightspeed.sntcca.sbcglobal.net ([108.223.40.66]:60740 helo=localhost)
-        by bh-25.webhostbox.net with esmtpa (Exim 4.93)
-        (envelope-from <linux@roeck-us.net>)
-        id 1kk8Y9-001KHq-7E; Tue, 01 Dec 2020 16:30:45 +0000
-Date:   Tue, 1 Dec 2020 08:30:44 -0800
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     vijayakannan.ayyathurai@intel.com
-Cc:     wim@linux-watchdog.org, robh+dt@kernel.org,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        andriy.shevchenko@linux.intel.com, mgross@linux.intel.com,
-        wan.ahmad.zainie.wan.mohamad@intel.com,
-        lakshmi.bai.raja.subramanian@intel.com
-Subject: Re: [PATCH v3 1/2] watchdog: Add watchdog driver for Intel Keembay
- Soc
-Message-ID: <20201201163044.GA89174@roeck-us.net>
-References: <cover.1606833303.git.vijayakannan.ayyathurai@intel.com>
- <e941999cb6ccd19d1830b3205ec3a66081ed29fd.1606833303.git.vijayakannan.ayyathurai@intel.com>
+        id S1726206AbgLAQgL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Dec 2020 11:36:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37682 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726032AbgLAQgL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Dec 2020 11:36:11 -0500
+Received: from mail-lf1-x141.google.com (mail-lf1-x141.google.com [IPv6:2a00:1450:4864:20::141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0589BC0613CF;
+        Tue,  1 Dec 2020 08:35:24 -0800 (PST)
+Received: by mail-lf1-x141.google.com with SMTP id d20so5373827lfe.11;
+        Tue, 01 Dec 2020 08:35:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=N/JmDiej85wrGWSfQ3GjLEa75NHZA8Mf8kh4AeeifPA=;
+        b=jqDMS4E9j+o8eb3vgEduE1EA5iWwtjEXXZTXP5ijaXR9gWz/iBHRjXxSmnXQBvW1Jt
+         F2Frbk+kPI4v39OLDdjeckNqwZQz/DJg5VE7YEUtA/FLG5ozzTQleHLzzo/bT0D76oVc
+         XvNzQHHJNsJzpZcsZ0WGmarIJPQBuomTO/GhIawvgtG85ETk3+XsRlnCaZrzYR/yTd3F
+         kGNOW6wPoPtGqwGMvaHqEFMycfFTuOoJ5xos7CUB/2ftRhnwOX+KmZXEW3aEnSwb6rPz
+         uZGP02r0Z59jKqpgRjG2tqr8MdZ688wMbS764V2K1WKg8OI6G1ykXo8EMBrNe7RiC/oN
+         ZO4Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=N/JmDiej85wrGWSfQ3GjLEa75NHZA8Mf8kh4AeeifPA=;
+        b=Ks1HaiFVAf02aDY+Bsq8Lm/PrSvk8AmTnM47Y+Dfjx0UzmUFZnzxQMUsRhCDYFOorR
+         FJ0nYrJuXAhtRLaX91zyjQOEkawrfgLwyBQ98325A1Inz4eqgiTSgFFkd7H6oJH2jcVe
+         OUf9Z0KKjVHzvQRNXvXfMCc4sL76iMF0Rn0OT+IkQbZRLwuCJFbXzFnpb4o2a7DpbZnh
+         3MgsRDntYoohsVWXBOdXdN/0ARFAnLL1PAbFbKJRzdqoeUfiqUbAHcpeCK18+1ul+plH
+         arRa0uImjDbmt5dgIOcPPKpNFvDDf0666xZBIe9xEKvTnz7eDFdBJ98qmjc9zni/Td8O
+         CUaQ==
+X-Gm-Message-State: AOAM530T+piOy4Y7YHqZQt3dN5HgN0Bdm4Yc5kLNnzJNDew9j73CrZzI
+        G0wJuD2nxYlhOPArNM7ARg33z9AhJv3LEZuLTtRtCexInOE=
+X-Google-Smtp-Source: ABdhPJxEHLFJwIPECJ2ENE3Ak/v9VSqQ6FUO5vC0yVLQ7vVjs+2ddOgmlF/gT4tQK+hu7xhfQFYzI6wOlN2wZEoOe5k=
+X-Received: by 2002:a19:6a1a:: with SMTP id u26mr1610848lfu.209.1606840523173;
+ Tue, 01 Dec 2020 08:35:23 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <e941999cb6ccd19d1830b3205ec3a66081ed29fd.1606833303.git.vijayakannan.ayyathurai@intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - bh-25.webhostbox.net
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - roeck-us.net
-X-BWhitelist: no
-X-Source-IP: 108.223.40.66
-X-Source-L: No
-X-Exim-ID: 1kk8Y9-001KHq-7E
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-Source-Sender: 108-223-40-66.lightspeed.sntcca.sbcglobal.net (localhost) [108.223.40.66]:60740
-X-Source-Auth: guenter@roeck-us.net
-X-Email-Count: 5
-X-Source-Cap: cm9lY2s7YWN0aXZzdG07YmgtMjUud2ViaG9zdGJveC5uZXQ=
-X-Local-Domain: yes
+References: <1604286803-20698-1-git-send-email-u0084500@gmail.com> <20201125164207.GD4716@dell>
+In-Reply-To: <20201125164207.GD4716@dell>
+From:   ChiYuan Huang <u0084500@gmail.com>
+Date:   Wed, 2 Dec 2020 00:35:11 +0800
+Message-ID: <CADiBU3_bgx-K_zxzKCSL8w=meZu3cA3uWoC-3QVsBAuNJW1uiw@mail.gmail.com>
+Subject: Re: [PATCH v1 1/2] mfd: rt4831: Adds support for Richtek RT4831 MFD core
+To:     Lee Jones <lee.jones@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, cy_huang <cy_huang@richtek.com>,
+        lkml <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 01, 2020 at 11:10:33PM +0800, vijayakannan.ayyathurai@intel.com wrote:
-> From: Vijayakannan Ayyathurai <vijayakannan.ayyathurai@intel.com>
-> 
-> Intel Keembay Soc requires watchdog timer support.
-> Add watchdog driver to enable this.
-> 
-> Signed-off-by: Vijayakannan Ayyathurai <vijayakannan.ayyathurai@intel.com>
-> Acked-by: Mark Gross <mgross@linux.intel.com>
-> Acked-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-> ---
->  drivers/watchdog/Kconfig       |  13 ++
->  drivers/watchdog/Makefile      |   1 +
->  drivers/watchdog/keembay_wdt.c | 284 +++++++++++++++++++++++++++++++++
->  3 files changed, 298 insertions(+)
->  create mode 100644 drivers/watchdog/keembay_wdt.c
-> 
-> diff --git a/drivers/watchdog/Kconfig b/drivers/watchdog/Kconfig
-> index fd7968635e6d..f412cf2d0f1a 100644
-> --- a/drivers/watchdog/Kconfig
-> +++ b/drivers/watchdog/Kconfig
-> @@ -2163,4 +2163,17 @@ config USBPCWATCHDOG
->  
->  	  Most people will say N.
->  
-> +config KEEMBAY_WATCHDOG
-> +	tristate "Intel Keem Bay SoC non-secure watchdog"
-> +	depends on ARCH_KEEMBAY || (ARM64 && COMPILE_TEST)
-> +	select WATCHDOG_CORE
-> +	help
-> +	 This option enable support for an In-secure watchdog timer driver for
-> +	 Intel Keem Bay SoC. This WDT has a 32 bit timer and decrements in every
-> +	 count unit. An interrupt will be triggered, when the count crosses
-> +	 the thershold configured in the register.
-> +
-> +	 To compile this driver as a module, choose M here: the
-> +	 module will be called keembay_wdt.
-> +
->  endif # WATCHDOG
-> diff --git a/drivers/watchdog/Makefile b/drivers/watchdog/Makefile
-> index 071a2e50be98..f6f9f434f407 100644
-> --- a/drivers/watchdog/Makefile
-> +++ b/drivers/watchdog/Makefile
-> @@ -146,6 +146,7 @@ obj-$(CONFIG_INTEL_MEI_WDT) += mei_wdt.o
->  obj-$(CONFIG_NI903X_WDT) += ni903x_wdt.o
->  obj-$(CONFIG_NIC7018_WDT) += nic7018_wdt.o
->  obj-$(CONFIG_MLX_WDT) += mlx_wdt.o
-> +obj-$(CONFIG_KEEMBAY_WATCHDOG) += keembay_wdt.o
->  
->  # M68K Architecture
->  obj-$(CONFIG_M54xx_WATCHDOG) += m54xx_wdt.o
-> diff --git a/drivers/watchdog/keembay_wdt.c b/drivers/watchdog/keembay_wdt.c
-> new file mode 100644
-> index 000000000000..1e1a1447c729
-> --- /dev/null
-> +++ b/drivers/watchdog/keembay_wdt.c
-> @@ -0,0 +1,284 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Watchdog driver for Intel Keem Bay non-secure watchdog.
-> + *
-> + * Copyright (C) 2020 Intel Corporation
-> + */
-> +
-> +#include <linux/arm-smccc.h>
-> +#include <linux/bits.h>
-> +#include <linux/clk.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/io.h>
-> +#include <linux/limits.h>
-> +#include <linux/module.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/reboot.h>
-> +#include <linux/watchdog.h>
-> +
-> +/* Non-secure watchdog register offsets */
-> +#define TIM_WATCHDOG		0x0
-> +#define TIM_WATCHDOG_INT_THRES	0x4
-> +#define TIM_WDOG_EN		0x8
-> +#define TIM_SAFE		0xc
-> +
-> +#define WDT_ISR_MASK		GENMASK(9, 8)
-> +#define WDT_ISR_CLEAR		0x8200ff18
-> +#define WDT_UNLOCK		0xf1d0dead
-> +#define WDT_LOAD_MAX		U32_MAX
-> +#define WDT_LOAD_MIN		1
-> +#define WDT_TIMEOUT		5
-> +
-> +static unsigned int timeout = WDT_TIMEOUT;
-> +module_param(timeout, int, 0);
-> +MODULE_PARM_DESC(timeout, "Watchdog timeout period in seconds (default = "
-> +		 __MODULE_STRING(WDT_TIMEOUT) ")");
-> +
-> +static bool nowayout = WATCHDOG_NOWAYOUT;
-> +module_param(nowayout, bool, 0);
-> +MODULE_PARM_DESC(nowayout, "Watchdog cannot be stopped once started (default = "
-> +		 __MODULE_STRING(WATCHDOG_NOWAYOUT) ")");
-> +
-> +struct keembay_wdt {
-> +	struct watchdog_device	wdd;
-> +	struct clk		*clk;
-> +	unsigned int		rate;
-> +	int			to_irq;
-> +	int			th_irq;
-> +	void __iomem		*base;
-> +};
-> +
-> +static inline u32 keembay_wdt_readl(struct keembay_wdt *wdt, u32 offset)
-> +{
-> +	return readl(wdt->base + offset);
-> +}
-> +
-> +static inline void keembay_wdt_writel(struct keembay_wdt *wdt,
-> +				      u32 offset, u32 val)
-> +{
-> +	writel(WDT_UNLOCK, wdt->base + TIM_SAFE);
-> +	writel(val, wdt->base + offset);
-> +}
-> +
-> +static void keembay_wdt_set_timeout_reg(struct watchdog_device *wdog, bool ping)
-> +{
-> +	struct keembay_wdt *wdt = watchdog_get_drvdata(wdog);
-> +	u32 th_val = 0;
-> +
-> +	if (!ping && wdog->pretimeout) {
-> +		th_val = wdog->timeout - wdog->pretimeout;
-> +		keembay_wdt_writel(wdt, TIM_WATCHDOG_INT_THRES, th_val * wdt->rate);
+Lee Jones <lee.jones@linaro.org> =E6=96=BC 2020=E5=B9=B411=E6=9C=8826=E6=97=
+=A5 =E9=80=B1=E5=9B=9B =E4=B8=8A=E5=8D=8812:42=E5=AF=AB=E9=81=93=EF=BC=9A
+>
+> On Mon, 02 Nov 2020, cy_huang wrote:
+>
+> > From: ChiYuan Huang <cy_huang@richtek.com>
+> >
+> > Adds support Richtek RT4831 MFD core.
+> > RT4831 includes backlight and DSV part that can provode display panel
+> > for postive and negative voltage and WLED driving.
+> >
+> > Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
+> > ---
+> >  drivers/mfd/Kconfig       |  11 +++++
+> >  drivers/mfd/Makefile      |   1 +
+> >  drivers/mfd/rt4831-core.c | 119 ++++++++++++++++++++++++++++++++++++++=
+++++++++
+> >  3 files changed, 131 insertions(+)
+> >  create mode 100644 drivers/mfd/rt4831-core.c
+> >
+> > diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
+> > index 8b99a13..a22f002 100644
+> > --- a/drivers/mfd/Kconfig
+> > +++ b/drivers/mfd/Kconfig
+> > @@ -1088,6 +1088,17 @@ config MFD_RDC321X
+> >         southbridge which provides access to GPIOs and Watchdog using t=
+he
+> >         southbridge PCI device configuration space.
+> >
+> > +config MFD_RT4831
+> > +     tristate "Richtek RT4831 WLED and DSV IC"
+>
+> Please expand on WLED and DSV.
+>
+> This is documentation and should leave nothing to the imagination.
+>
+Rewrite to "Richtek RT4831 four channel WLED and display bias
+voltage", is it okay?
+> > +     depends on I2C
+> > +     select MFD_CORE
+> > +     select REGMAP_I2C
+> > +     help
+> > +       This enables support for the Richtek RT4831.
+> > +       RT4831 includes WLED driver and DisplayBias voltage(+/-) regula=
+tor.
+> > +       It's common used to provide the display power and to drive the
+> > +       display backlight WLED.
+>
+> Please don't line-wrap unnecessarily.
+>
+> Please re-work the last sentence, as it doesn't quite make sense.
+>
+Rewrite the whole sentence like as below
+"This enables support for the Richtek RT4831. It includes 4 channel
+WLED driving and Display Bias voltage output. It's commonly used to
+provide the LCD power and to drive LCD backlight."
 
-Sorry for annoying you now, but I may have found another potential problem.
-
-What happens if the user sets a pretimeout, then removes it ?
-What should TIM_WATCHDOG_INT_THRES be set to in that case ?
-Right now TIM_WATCHDOG_INT_THRES won't be updated anymore
-in that case, which seems wrong. This might get worse with
-the following sequence.
-
-- set pretimeout
-- clear pretimeout
-- set timeout to some other value
-
-Thanks,
-Guenter
-
-> +	}
-> +
-> +	keembay_wdt_writel(wdt, TIM_WATCHDOG, wdog->timeout * wdt->rate);
-> +}
-> +
-> +static int keembay_wdt_start(struct watchdog_device *wdog)
-> +{
-> +	struct keembay_wdt *wdt = watchdog_get_drvdata(wdog);
-> +
-> +	keembay_wdt_set_timeout_reg(wdog, false);
-> +	keembay_wdt_writel(wdt, TIM_WDOG_EN, 1);
-> +
-> +	return 0;
-> +}
-> +
-> +static int keembay_wdt_stop(struct watchdog_device *wdog)
-> +{
-> +	struct keembay_wdt *wdt = watchdog_get_drvdata(wdog);
-> +
-> +	keembay_wdt_writel(wdt, TIM_WDOG_EN, 0);
-> +
-> +	return 0;
-> +}
-> +
-> +static int keembay_wdt_ping(struct watchdog_device *wdog)
-> +{
-> +	keembay_wdt_set_timeout_reg(wdog, true);
-> +
-> +	return 0;
-> +}
-> +
-> +static int keembay_wdt_set_timeout(struct watchdog_device *wdog, u32 t)
-> +{
-> +	wdog->timeout = t;
-> +	keembay_wdt_set_timeout_reg(wdog, false);
-> +
-> +	return 0;
-> +}
-> +
-> +static int keembay_wdt_set_pretimeout(struct watchdog_device *wdog, u32 t)
-> +{
-> +	wdog->pretimeout = t;
-> +	keembay_wdt_set_timeout_reg(wdog, false);
-> +
-> +	return 0;
-> +}
-> +
-> +static unsigned int keembay_wdt_get_timeleft(struct watchdog_device *wdog)
-> +{
-> +	struct keembay_wdt *wdt = watchdog_get_drvdata(wdog);
-> +
-> +	return keembay_wdt_readl(wdt, TIM_WATCHDOG) / wdt->rate;
-> +}
-> +
-> +/*
-> + * SMC call is used to clear the interrupt bits, because the TIM_GEN_CONFIG
-> + * register is in the secure bank.
-> + */
-> +static irqreturn_t keembay_wdt_to_isr(int irq, void *dev_id)
-> +{
-> +	struct keembay_wdt *wdt = dev_id;
-> +	struct arm_smccc_res res;
-> +
-> +	keembay_wdt_writel(wdt, TIM_WATCHDOG, 1);
-> +	arm_smccc_smc(WDT_ISR_CLEAR, WDT_ISR_MASK, 0, 0, 0, 0, 0, 0, &res);
-> +	dev_crit(wdt->wdd.parent, "Intel Keem Bay non-sec wdt timeout.\n");
-> +	emergency_restart();
-> +
-> +	return IRQ_HANDLED;
-> +}
-> +
-> +static irqreturn_t keembay_wdt_th_isr(int irq, void *dev_id)
-> +{
-> +	struct keembay_wdt *wdt = dev_id;
-> +	struct arm_smccc_res res;
-> +	u32 th_val = 0;
-> +
-> +	if (wdt->wdd.pretimeout)
-> +		th_val = wdt->wdd.timeout - wdt->wdd.pretimeout;
-> +
-> +	keembay_wdt_writel(wdt, TIM_WATCHDOG, th_val * wdt->rate + 1);
-> +	arm_smccc_smc(WDT_ISR_CLEAR, WDT_ISR_MASK, 0, 0, 0, 0, 0, 0, &res);
-> +	dev_crit(wdt->wdd.parent, "Intel Keem Bay non-sec wdt pre-timeout.\n");
-> +	watchdog_notify_pretimeout(&wdt->wdd);
-> +
-> +	return IRQ_HANDLED;
-> +}
-> +
-> +static const struct watchdog_info keembay_wdt_info = {
-> +	.identity	= "Intel Keem Bay Watchdog Timer",
-> +	.options	= WDIOF_SETTIMEOUT |
-> +			  WDIOF_PRETIMEOUT |
-> +			  WDIOF_MAGICCLOSE |
-> +			  WDIOF_KEEPALIVEPING,
-> +};
-> +
-> +static const struct watchdog_ops keembay_wdt_ops = {
-> +	.owner		= THIS_MODULE,
-> +	.start		= keembay_wdt_start,
-> +	.stop		= keembay_wdt_stop,
-> +	.ping		= keembay_wdt_ping,
-> +	.set_timeout	= keembay_wdt_set_timeout,
-> +	.set_pretimeout	= keembay_wdt_set_pretimeout,
-> +	.get_timeleft	= keembay_wdt_get_timeleft,
-> +};
-> +
-> +static int keembay_wdt_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct keembay_wdt *wdt;
-> +	int ret;
-> +
-> +	wdt = devm_kzalloc(dev, sizeof(*wdt), GFP_KERNEL);
-> +	if (!wdt)
-> +		return -ENOMEM;
-> +
-> +	wdt->base = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(wdt->base))
-> +		return PTR_ERR(wdt->base);
-> +
-> +	/* we do not need to enable the clock as it is enabled by default */
-> +	wdt->clk = devm_clk_get(dev, NULL);
-> +	if (IS_ERR(wdt->clk))
-> +		return dev_err_probe(dev, PTR_ERR(wdt->clk), "Failed to get clock\n");
-> +
-> +	wdt->rate = clk_get_rate(wdt->clk);
-> +	if (!wdt->rate)
-> +		return dev_err_probe(dev, -EINVAL, "Failed to get clock rate\n");
-> +
-> +	wdt->th_irq = platform_get_irq_byname(pdev, "threshold");
-> +	if (wdt->th_irq < 0)
-> +		return dev_err_probe(dev, wdt->th_irq, "Failed to get IRQ for threshold\n");
-> +
-> +	ret = devm_request_irq(dev, wdt->th_irq, keembay_wdt_th_isr, 0,
-> +			       "keembay-wdt", wdt);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "Failed to request IRQ for threshold\n");
-> +
-> +	wdt->to_irq = platform_get_irq_byname(pdev, "timeout");
-> +	if (wdt->to_irq < 0)
-> +		return dev_err_probe(dev, wdt->to_irq, "Failed to get IRQ for timeout\n");
-> +
-> +	ret = devm_request_irq(dev, wdt->to_irq, keembay_wdt_to_isr, 0,
-> +			       "keembay-wdt", wdt);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "Failed to request IRQ for timeout\n");
-> +
-> +	wdt->wdd.parent		= dev;
-> +	wdt->wdd.info		= &keembay_wdt_info;
-> +	wdt->wdd.ops		= &keembay_wdt_ops;
-> +	wdt->wdd.min_timeout	= WDT_LOAD_MIN;
-> +	wdt->wdd.max_timeout	= WDT_LOAD_MAX / wdt->rate;
-> +	wdt->wdd.timeout	= WDT_TIMEOUT;
-> +
-> +	watchdog_set_drvdata(&wdt->wdd, wdt);
-> +	watchdog_set_nowayout(&wdt->wdd, nowayout);
-> +	watchdog_init_timeout(&wdt->wdd, timeout, dev);
-> +	keembay_wdt_set_timeout(&wdt->wdd, wdt->wdd.timeout);
-> +
-> +	ret = devm_watchdog_register_device(dev, &wdt->wdd);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "Failed to register watchdog device.\n");
-> +
-> +	platform_set_drvdata(pdev, wdt);
-> +	dev_info(dev, "Initial timeout %d sec%s.\n",
-> +		 wdt->wdd.timeout, nowayout ? ", nowayout" : "");
-> +
-> +	return 0;
-> +}
-> +
-> +static int __maybe_unused keembay_wdt_suspend(struct device *dev)
-> +{
-> +	struct keembay_wdt *wdt = dev_get_drvdata(dev);
-> +
-> +	if (watchdog_active(&wdt->wdd))
-> +		return keembay_wdt_stop(&wdt->wdd);
-> +
-> +	return 0;
-> +}
-> +
-> +static int __maybe_unused keembay_wdt_resume(struct device *dev)
-> +{
-> +	struct keembay_wdt *wdt = dev_get_drvdata(dev);
-> +
-> +	if (watchdog_active(&wdt->wdd))
-> +		return keembay_wdt_start(&wdt->wdd);
-> +
-> +	return 0;
-> +}
-> +
-> +static SIMPLE_DEV_PM_OPS(keembay_wdt_pm_ops, keembay_wdt_suspend,
-> +			 keembay_wdt_resume);
-> +
-> +static const struct of_device_id keembay_wdt_match[] = {
-> +	{ .compatible = "intel,keembay-wdt" },
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(of, keembay_wdt_match);
-> +
-> +static struct platform_driver keembay_wdt_driver = {
-> +	.probe		= keembay_wdt_probe,
-> +	.driver		= {
-> +		.name		= "keembay_wdt",
-> +		.of_match_table	= keembay_wdt_match,
-> +		.pm		= &keembay_wdt_pm_ops,
-> +	},
-> +};
-> +
-> +module_platform_driver(keembay_wdt_driver);
-> +
-> +MODULE_DESCRIPTION("Intel Keem Bay SoC watchdog driver");
-> +MODULE_AUTHOR("Wan Ahmad Zainie <wan.ahmad.zainie.wan.mohamad@intel.com");
-> +MODULE_LICENSE("GPL v2");
-> -- 
-> 2.17.1
-> 
+> >  config MFD_RT5033
+> >       tristate "Richtek RT5033 Power Management IC"
+> >       depends on I2C
+> > diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
+> > index 1780019..4108141 100644
+> > --- a/drivers/mfd/Makefile
+> > +++ b/drivers/mfd/Makefile
+> > @@ -235,6 +235,7 @@ obj-$(CONFIG_MFD_MENF21BMC)       +=3D menf21bmc.o
+> >  obj-$(CONFIG_MFD_HI6421_PMIC)        +=3D hi6421-pmic-core.o
+> >  obj-$(CONFIG_MFD_HI655X_PMIC)   +=3D hi655x-pmic.o
+> >  obj-$(CONFIG_MFD_DLN2)               +=3D dln2.o
+> > +obj-$(CONFIG_MFD_RT4831)     +=3D rt4831-core.o
+> >  obj-$(CONFIG_MFD_RT5033)     +=3D rt5033.o
+> >  obj-$(CONFIG_MFD_SKY81452)   +=3D sky81452.o
+> >
+> > diff --git a/drivers/mfd/rt4831-core.c b/drivers/mfd/rt4831-core.c
+> > new file mode 100644
+> > index 00000000..5342959
+> > --- /dev/null
+> > +++ b/drivers/mfd/rt4831-core.c
+> > @@ -0,0 +1,119 @@
+> > +// SPDX-License-Identifier: GPL-2.0+
+>
+> No copyright?
+>
+Yes, I'll add the copyright like as below
+/*
+ * Copyright (c) 2020 Richtek Inc.
+ *
+ * Author: ChiYuan Huang <cy_huang@richtek.com>
+ */
+> > +#include <linux/gpio/consumer.h>
+> > +#include <linux/i2c.h>
+> > +#include <linux/kernel.h>
+> > +#include <linux/mfd/core.h>
+> > +#include <linux/module.h>
+> > +#include <linux/regmap.h>
+> > +
+> > +#define RT4831_REG_REVISION  0x01
+> > +#define RT4831_REG_ENABLE    0x08
+> > +#define RT4831_REG_I2CPROT   0x15
+> > +
+> > +#define RICHTEK_VID          0x03
+> > +#define RT4831_VID_MASK              GENMASK(1, 0)
+> > +#define RT4831_RESET_MASK    BIT(7)
+> > +#define RT4831_I2CSAFETMR_MASK       BIT(0)
+> > +
+> > +static const struct mfd_cell rt4831_subdevs[] =3D {
+> > +     OF_MFD_CELL("rt4831-backlight", NULL, NULL, 0, 0, "richtek,rt4831=
+-backlight"),
+> > +     MFD_CELL_NAME("rt4831-regulator")
+> > +};
+> > +
+> > +static bool rt4831_is_accessible_reg(struct device *dev, unsigned int =
+reg)
+> > +{
+> > +     if (reg >=3D RT4831_REG_REVISION && reg <=3D RT4831_REG_I2CPROT)
+> > +             return true;
+> > +     return false;
+> > +}
+> > +
+> > +static const struct regmap_config rt4831_regmap_config =3D {
+> > +     .reg_bits =3D 8,
+> > +     .val_bits =3D 8,
+> > +     .max_register =3D RT4831_REG_I2CPROT,
+> > +
+> > +     .readable_reg =3D rt4831_is_accessible_reg,
+> > +     .writeable_reg =3D rt4831_is_accessible_reg,
+> > +};
+> > +
+> > +static int rt4831_probe(struct i2c_client *client)
+> > +{
+> > +     struct gpio_desc *enable;
+> > +     struct regmap *regmap;
+> > +     unsigned int val;
+> > +     int ret;
+> > +
+> > +     enable =3D devm_gpiod_get_optional(&client->dev, "enable", GPIOD_=
+OUT_HIGH);
+> > +     if (IS_ERR(enable)) {
+> > +             dev_err(&client->dev, "Failed to get chip enable gpio\n")=
+;
+>
+> "Failed to get 'enable' GPIO chip"
+>
+May I remove "chip" word? It seems redundant.
+"Failed to get 'enable' GPIO" is better.
+Because 'enable' is a physical input pin for RT4831.
+> > +             return PTR_ERR(enable);
+> > +     }
+> > +
+> > +     regmap =3D devm_regmap_init_i2c(client, &rt4831_regmap_config);
+> > +     if (IS_ERR(regmap)) {
+> > +             dev_err(&client->dev, "Failed to init regmap\n");
+>
+> "initialise"
+>
+Change to verb "initialize"
+> > +             return PTR_ERR(regmap);
+> > +     }
+> > +
+> > +     ret =3D regmap_read(regmap, RT4831_REG_REVISION, &val);
+> > +     if (ret) {
+> > +             dev_err(&client->dev, "Fail to get version id\n");
+>
+> "Failed to get H/W revision"
+>
+Ack
+> > +             return ret;
+> > +     }
+> > +
+> > +     if ((val & RT4831_VID_MASK) !=3D RICHTEK_VID) {
+> > +             dev_err(&client->dev, "VID not matched, val =3D 0x%02x\n"=
+, val);
+> > +             return -ENODEV;
+> > +     }
+> > +
+> > +     /*
+> > +      * Used to prevent the abnormal shutdown.
+> > +      * If SCL/SDA both keep low for one second to reset HW.
+> > +      */
+> > +     ret =3D regmap_update_bits(regmap, RT4831_REG_I2CPROT, RT4831_I2C=
+SAFETMR_MASK,
+> > +                              RT4831_I2CSAFETMR_MASK);
+> > +     if (ret) {
+> > +             dev_err(&client->dev, "Failed to enable I2C safety timer\=
+n");
+> > +             return ret;
+> > +     }
+> > +
+> > +     return devm_mfd_add_devices(&client->dev, PLATFORM_DEVID_AUTO, rt=
+4831_subdevs,
+> > +                                 ARRAY_SIZE(rt4831_subdevs), NULL, 0, =
+NULL);
+> > +}
+> > +
+> > +static int rt4831_remove(struct i2c_client *client)
+> > +{
+> > +     struct regmap *regmap =3D dev_get_regmap(&client->dev, NULL);
+> > +
+> > +     /* Make sure all off before module removal */
+>
+> "Disable all <thing your disabling> are disabled before ..."
+>
+May I rewrite it to "Configure WLED driving and DSV output all to be
+disabled before MFD module removal"?
+> > +     return regmap_update_bits(regmap, RT4831_REG_ENABLE, RT4831_RESET=
+_MASK, RT4831_RESET_MASK);
+> > +}
+> > +
+> > +static void rt4831_shutdown(struct i2c_client *client)
+> > +{
+> > +     struct regmap *regmap =3D dev_get_regmap(&client->dev, NULL);
+> > +
+> > +     /* Make sure all off before machine shutdown */
+>
+> As above.
+>
+like as above ".... before 'machine shutdown'
+> > +     regmap_update_bits(regmap, RT4831_REG_ENABLE, RT4831_RESET_MASK, =
+RT4831_RESET_MASK);
+> > +}
+> > +
+> > +static const struct of_device_id __maybe_unused rt4831_of_match[] =3D =
+{
+> > +     { .compatible =3D "richtek,rt4831", },
+> > +     {}
+> > +};
+> > +MODULE_DEVICE_TABLE(of, rt4831_of_match);
+> > +
+> > +static struct i2c_driver rt4831_driver =3D {
+> > +     .driver =3D {
+> > +             .name =3D "rt4831",
+> > +             .of_match_table =3D of_match_ptr(rt4831_of_match),
+> > +     },
+> > +     .probe_new =3D rt4831_probe,
+> > +     .remove =3D rt4831_remove,
+> > +     .shutdown =3D rt4831_shutdown,
+> > +};
+> > +module_i2c_driver(rt4831_driver);
+> > +
+> > +MODULE_AUTHOR("ChiYuan Huang <cy_huang@richtek.com>");
+> > +MODULE_LICENSE("GPL v2");
+>
+> --
+> Lee Jones [=E6=9D=8E=E7=90=BC=E6=96=AF]
+> Senior Technical Lead - Developer Services
+> Linaro.org =E2=94=82 Open source software for Arm SoCs
+> Follow Linaro: Facebook | Twitter | Blog
