@@ -2,38 +2,38 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E4C572CB041
-	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 23:39:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 311932CB04E
+	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 23:39:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726130AbgLAWiL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Dec 2020 17:38:11 -0500
-Received: from mga06.intel.com ([134.134.136.31]:7589 "EHLO mga06.intel.com"
+        id S1726120AbgLAWin (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Dec 2020 17:38:43 -0500
+Received: from mga11.intel.com ([192.55.52.93]:7370 "EHLO mga11.intel.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726041AbgLAWiL (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 1 Dec 2020 17:38:11 -0500
-IronPort-SDR: 9PlaVMXo20shIaAd+yt4ppPDPJUJ5z80k1UrMNZ6gl2dDvu/vc4E3v9WUX8KuvtVO5JVbwi+Px
- ZRrld5gxnhhA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9822"; a="234524378"
+        id S1726066AbgLAWik (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 1 Dec 2020 17:38:40 -0500
+IronPort-SDR: Gh0d3W4Oo7/5j4xjXEfYxh00a+EHPBM4ygeZDoW2woV0uFQq5uzyrpiIvMG54dudFLkj8ZUt/X
+ kBwL0aXGH7Vw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9822"; a="169416568"
 X-IronPort-AV: E=Sophos;i="5.78,385,1599548400"; 
-   d="scan'208";a="234524378"
+   d="scan'208";a="169416568"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Dec 2020 14:35:14 -0800
-IronPort-SDR: MCGM7UNs6JhI5nIwBAMmJJpdpSaKKKOjb57WW93ezciaENNAN0QwSVcb72OONsd/QpnNZWLt8r
- IfLweSCJHb4w==
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Dec 2020 14:35:15 -0800
+IronPort-SDR: YswbMJ+IN3soPpq4WkJs72GcO4x0hEYnyc2AqhZR8mqMpNxqr3rM+2hSoouElvIhr9WF/8sqlA
+ 2V2ZS8iO0ZOg==
 X-IronPort-AV: E=Sophos;i="5.78,385,1599548400"; 
-   d="scan'208";a="405290675"
+   d="scan'208";a="345642777"
 Received: from smtp.ostc.intel.com ([10.54.29.231])
-  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Dec 2020 14:35:14 -0800
+  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Dec 2020 14:35:15 -0800
 Received: from mtg-dev (mtg-dev.jf.intel.com [10.54.74.10])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by smtp.ostc.intel.com (Postfix) with ESMTPS id 79CE06363;
-        Tue,  1 Dec 2020 14:35:14 -0800 (PST)
+        by smtp.ostc.intel.com (Postfix) with ESMTPS id 84436636F;
+        Tue,  1 Dec 2020 14:35:15 -0800 (PST)
 Received: from mgross by mtg-dev with local (Exim 4.90_1)
         (envelope-from <mgross@linux.intel.com>)
-        id 1kkEEs-000H4R-BU; Tue, 01 Dec 2020 14:35:14 -0800
+        id 1kkEEt-000H4y-Bw; Tue, 01 Dec 2020 14:35:15 -0800
 From:   mgross@linux.intel.com
 To:     markgross@kernel.org, mgross@linux.intel.com, arnd@arndb.de,
         bp@suse.de, damien.lemoal@wdc.com, dragan.cvetic@xilinx.com,
@@ -42,12 +42,12 @@ To:     markgross@kernel.org, mgross@linux.intel.com, arnd@arndb.de,
         paul.walmsley@sifive.com, peng.fan@nxp.com, robh+dt@kernel.org,
         shawnguo@kernel.org
 Cc:     linux-kernel@vger.kernel.org,
-        Paul Murphy <paul.j.murphy@intel.com>,
+        Seamus Kelly <seamus.kelly@intel.com>,
         devicetree@vger.kernel.org,
-        Daniele Alessandrelli <daniele.alessandrelli@intel.com>
-Subject: [PATCH 04/22] dt-bindings: Add bindings for Keem Bay VPU IPC driver
-Date:   Tue,  1 Dec 2020 14:34:53 -0800
-Message-Id: <20201201223511.65542-5-mgross@linux.intel.com>
+        Ryan Carnaghi <ryan.r.carnaghi@intel.com>
+Subject: [PATCH 15/22] xlink-ipc: Add xlink ipc device tree bindings
+Date:   Tue,  1 Dec 2020 14:35:04 -0800
+Message-Id: <20201201223511.65542-16-mgross@linux.intel.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20201201223511.65542-1-mgross@linux.intel.com>
 References: <20201201223511.65542-1-mgross@linux.intel.com>
@@ -55,176 +55,75 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Paul Murphy <paul.j.murphy@intel.com>
+From: Seamus Kelly <seamus.kelly@intel.com>
 
-Add DT bindings documentation for the Keem Bay VPU IPC driver.
+Add device tree bindings for the xLink IPC driver which enables xLink to
+control and communicate with the VPU IP present on the Intel Keem Bay
+SoC.
 
 Cc: devicetree@vger.kernel.org
 Reviewed-by: Mark Gross <mgross@linux.intel.com>
-Signed-off-by: Paul Murphy <paul.j.murphy@intel.com>
-Co-developed-by: Daniele Alessandrelli <daniele.alessandrelli@intel.com>
-Signed-off-by: Daniele Alessandrelli <daniele.alessandrelli@intel.com>
+Signed-off-by: Seamus Kelly <seamus.kelly@intel.com>
+Signed-off-by: Ryan Carnaghi <ryan.r.carnaghi@intel.com>
 ---
- .../soc/intel/intel,keembay-vpu-ipc.yaml      | 151 ++++++++++++++++++
- 1 file changed, 151 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/soc/intel/intel,keembay-vpu-ipc.yaml
+ .../misc/intel,keembay-xlink-ipc.yaml         | 49 +++++++++++++++++++
+ 1 file changed, 49 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/misc/intel,keembay-xlink-ipc.yaml
 
-diff --git a/Documentation/devicetree/bindings/soc/intel/intel,keembay-vpu-ipc.yaml b/Documentation/devicetree/bindings/soc/intel/intel,keembay-vpu-ipc.yaml
+diff --git a/Documentation/devicetree/bindings/misc/intel,keembay-xlink-ipc.yaml b/Documentation/devicetree/bindings/misc/intel,keembay-xlink-ipc.yaml
 new file mode 100644
-index 000000000000..60d4a028563c
+index 000000000000..699e43c4cd40
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/soc/intel/intel,keembay-vpu-ipc.yaml
-@@ -0,0 +1,151 @@
++++ b/Documentation/devicetree/bindings/misc/intel,keembay-xlink-ipc.yaml
+@@ -0,0 +1,49 @@
 +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
 +# Copyright (c) Intel Corporation. All rights reserved.
 +%YAML 1.2
 +---
-+$id: "http://devicetree.org/schemas/soc/intel/intel,keembay-vpu-ipc.yaml#"
++$id: "http://devicetree.org/schemas/misc/intel,keembay-xlink-ipc.yaml#"
 +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
 +
-+title: Intel Keem Bay VPU IPC
++title: Intel Keem Bay xlink IPC
 +
 +maintainers:
-+  - Paul Murphy <paul.j.murphy@intel.com>
++  - Kelly Seamus <seamus.kelly@intel.com>
 +
-+description:
-+  The VPU IPC driver facilitates loading of firmware, control, and communication
-+  with the VPU over the IPC FIFO in the Intel Keem Bay SoC.
++description: |
++  The Keem Bay xlink IPC driver enables the communication/control sub-system
++  for internal IPC communications within the Intel Keem Bay SoC.
 +
 +properties:
 +  compatible:
 +    oneOf:
 +      - items:
-+        - const: intel,keembay-vpu-ipc
-+
-+  reg:
-+    items:
-+      - description: NCE WDT registers
-+      - description: NCE TIM_GEN_CONFIG registers
-+      - description: MSS WDT registers
-+      - description: MSS TIM_GEN_CONFIG registers
-+
-+  reg-names:
-+    items:
-+      - const: nce_wdt
-+      - const: nce_tim_cfg
-+      - const: mss_wdt
-+      - const: mss_tim_cfg
++        - const: intel,keembay-xlink-ipc
 +
 +  memory-region:
 +    items:
-+      - description: reference to the VPU reserved memory region
-+      - description: reference to the X509 reserved memory region
-+      - description: reference to the MSS IPC area
-+
-+  clocks:
-+    items:
-+      - description: cpu clock
-+      - description: pll 0 out 0 rate
-+      - description: pll 0 out 1 rate
-+      - description: pll 0 out 2 rate
-+      - description: pll 0 out 3 rate
-+      - description: pll 1 out 0 rate
-+      - description: pll 1 out 1 rate
-+      - description: pll 1 out 2 rate
-+      - description: pll 1 out 3 rate
-+      - description: pll 2 out 0 rate
-+      - description: pll 2 out 1 rate
-+      - description: pll 2 out 2 rate
-+      - description: pll 2 out 3 rate
-+
-+  clocks-names:
-+    items:
-+      - const: cpu_clock
-+      - const: pll_0_out_0
-+      - const: pll_0_out_1
-+      - const: pll_0_out_2
-+      - const: pll_0_out_3
-+      - const: pll_1_out_0
-+      - const: pll_1_out_1
-+      - const: pll_1_out_2
-+      - const: pll_1_out_3
-+      - const: pll_2_out_0
-+      - const: pll_2_out_1
-+      - const: pll_2_out_2
-+      - const: pll_2_out_3
-+
-+  interrupts:
-+    items:
-+      - description: number of NCE sub-system WDT timeout IRQ
-+      - description: number of MSS sub-system WDT timeout IRQ
-+
-+  interrupt-names:
-+    items:
-+      - const: nce_wdt
-+      - const: mss_wdt
-+
-+  intel,keembay-vpu-ipc-nce-wdt-redirect:
-+    $ref: "/schemas/types.yaml#/definitions/uint32"
-+    description:
-+      Number to which we will request that the NCE sub-system
-+      re-directs it's WDT timeout IRQ
-+
-+  intel,keembay-vpu-ipc-mss-wdt-redirect:
-+    $ref: "/schemas/types.yaml#/definitions/uint32"
-+    description:
-+      Number to which we will request that the MSS sub-system
-+      re-directs it's WDT timeout IRQ
-+
-+  intel,keembay-vpu-ipc-imr:
-+    $ref: "/schemas/types.yaml#/definitions/uint32"
-+    description:
-+      IMR (isolated memory region) number which we will request
-+      the runtime service uses to protect the VPU memory region
-+      before authentication
++      - description: reference to the CSS xlink IPC reserved memory region.
++      - description: reference to the MSS xlink IPC reserved memory region.
 +
 +  intel,keembay-vpu-ipc-id:
 +    $ref: "/schemas/types.yaml#/definitions/uint32"
-+    description: The VPU ID to be passed to the VPU firmware.
++    description: The numeric ID identifying the VPU within the xLink stack.
++
++  intel,keembay-vpu-ipc-name:
++    $ref: "/schemas/types.yaml#/definitions/string"
++    description: User-friendly name for the VPU within the xLink stack.
++
++  intel,keembay-vpu-ipc:
++    $ref: "/schemas/types.yaml#/definitions/phandle"
++    description: reference to the corresponding intel,keembay-vpu-ipc node.
 +
 +examples:
 +  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    vpu-ipc@3f00209c {
-+        compatible = "intel,keembay-vpu-ipc";
-+        reg = <0x3f00209c 0x10>,
-+              <0x3f003008 0x4>,
-+              <0x2082009c 0x10>,
-+              <0x20821008 0x4>;
-+        reg-names = "nce_wdt",
-+                    "nce_tim_cfg",
-+                    "mss_wdt",
-+                    "mss_tim_cfg";
-+        memory-region = <&vpu_reserved>,
-+                        <&vpu_x509_reserved>,
-+                        <&mss_ipc_reserved>;
-+        clocks = <&scmi_clk 0>,
-+                 <&scmi_clk 0>,
-+                 <&scmi_clk 1>,
-+                 <&scmi_clk 2>,
-+                 <&scmi_clk 3>,
-+                 <&scmi_clk 4>,
-+                 <&scmi_clk 5>,
-+                 <&scmi_clk 6>,
-+                 <&scmi_clk 7>,
-+                 <&scmi_clk 8>,
-+                 <&scmi_clk 9>,
-+                 <&scmi_clk 10>,
-+                 <&scmi_clk 11>;
-+        clock-names = "cpu_clock",
-+                      "pll_0_out_0", "pll_0_out_1",
-+                      "pll_0_out_2", "pll_0_out_3",
-+                      "pll_1_out_0", "pll_1_out_1",
-+                      "pll_1_out_2", "pll_1_out_3",
-+                      "pll_2_out_0", "pll_2_out_1",
-+                      "pll_2_out_2", "pll_2_out_3";
-+        interrupts = <GIC_SPI 63 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 47 IRQ_TYPE_LEVEL_HIGH>;
-+        interrupt-names = "nce_wdt", "mss_wdt";
-+        intel,keembay-vpu-ipc-nce-wdt-redirect = <63>;
-+        intel,keembay-vpu-ipc-mss-wdt-redirect = <47>;
-+        intel,keembay-vpu-ipc-imr = <9>;
-+        intel,keembay-vpu-ipc-id = <0>;
++    xlink-ipc {
++        compatible = "intel,keembay-xlink-ipc";
++        memory-region = <&css_xlink_reserved>,
++                        <&mss_xlink_reserved>;
++        intel,keembay-vpu-ipc-id = <0x0>;
++        intel,keembay-vpu-ipc-name = "vpu-slice-0";
++        intel,keembay-vpu-ipc = <&vpuipc>;
 +    };
 -- 
 2.17.1
