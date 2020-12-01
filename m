@@ -2,130 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A47D2C96A7
-	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 06:04:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B23362C9713
+	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 06:36:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725912AbgLAFES (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Dec 2020 00:04:18 -0500
-Received: from mo-csw1116.securemx.jp ([210.130.202.158]:38624 "EHLO
-        mo-csw.securemx.jp" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725849AbgLAFES (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Dec 2020 00:04:18 -0500
-Received: by mo-csw.securemx.jp (mx-mo-csw1116) id 0B1527gj002940; Tue, 1 Dec 2020 14:02:08 +0900
-X-Iguazu-Qid: 2wHHLA7xMpfc7myY54
-X-Iguazu-QSIG: v=2; s=0; t=1606798927; q=2wHHLA7xMpfc7myY54; m=cJHqGlfb1V063hhBREcXiFkKnrnXq0x2hVYSI8uE6DE=
-Received: from imx12.toshiba.co.jp (imx12.toshiba.co.jp [61.202.160.132])
-        by relay.securemx.jp (mx-mr1111) id 0B1526Ji038343;
-        Tue, 1 Dec 2020 14:02:07 +0900
-Received: from enc02.toshiba.co.jp ([61.202.160.51])
-        by imx12.toshiba.co.jp  with ESMTP id 0B1526H1009157;
-        Tue, 1 Dec 2020 14:02:06 +0900 (JST)
-Received: from hop101.toshiba.co.jp ([133.199.85.107])
-        by enc02.toshiba.co.jp  with ESMTP id 0B1526wY012148;
-        Tue, 1 Dec 2020 14:02:06 +0900
-Date:   Tue, 1 Dec 2020 14:02:04 +0900
-From:   Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Punit Agrawal <punit1.agrawal@toshiba.co.jp>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, yuji2.ishikawa@toshiba.co.jp,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v2 2/4] gpio: visoconti: Add Toshiba Visconti GPIO support
-X-TSB-HOP: ON
-Message-ID: <20201201050204.jlwmkdptrxxptzil@toshiba.co.jp>
-References: <20201112084057.1399983-1-nobuhiro1.iwamatsu@toshiba.co.jp>
- <20201112084057.1399983-3-nobuhiro1.iwamatsu@toshiba.co.jp>
- <CACRpkdbtkLjzMqRKzd3ppmwZ9hZESL4+zGOf7-uqjuF==Wm=3A@mail.gmail.com>
+        id S1726023AbgLAFge (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Dec 2020 00:36:34 -0500
+Received: from mail.kernel.org ([198.145.29.99]:53802 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725962AbgLAFge (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 1 Dec 2020 00:36:34 -0500
+Received: from localhost.localdomain (unknown [122.171.214.243])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 512FC2085B;
+        Tue,  1 Dec 2020 05:35:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1606800953;
+        bh=035VIv0GRh3/oat1wjyeHPrM7YiefIf5kZbPlJyaNnY=;
+        h=From:To:Cc:Subject:Date:From;
+        b=KTj5oRwmhxb+PlRmm9m0C+SddhGftvfy7IPATLO0+h2RoFFnJB/o/E8AIMWCwaWvv
+         v7lWT9EOlggAJjo4Ahwtfn1xcnPeTjTw3Urp2vFeRp349dkFUsM1oaUQwvUcexlFKS
+         Uo5gmLbQ1vGVsBtL/aLkW9s06ULCmjHRaGuyGOC8=
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Marc Zyngier <maz@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>, Andy Gross <agross@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH] dt-bindings: qcom,pdc: Add compatible for SM8250
+Date:   Tue,  1 Dec 2020 11:05:37 +0530
+Message-Id: <20201201053537.2134991-1-vkoul@kernel.org>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CACRpkdbtkLjzMqRKzd3ppmwZ9hZESL4+zGOf7-uqjuF==Wm=3A@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Add the compatible string for SM8250 SoC from Qualcomm. This compatible
+is used already in DTS files but not documented yet
 
-Thanks for your review.
+Signed-off-by: Vinod Koul <vkoul@kernel.org>
+---
+ .../devicetree/bindings/interrupt-controller/qcom,pdc.txt        | 1 +
+ 1 file changed, 1 insertion(+)
 
-On Tue, Nov 17, 2020 at 09:59:06PM +0100, Linus Walleij wrote:
-> Hi Nobuhiro,
-> 
-> On Thu, Nov 12, 2020 at 12:42 AM Nobuhiro Iwamatsu
-> <nobuhiro1.iwamatsu@toshiba.co.jp> wrote:
-> 
-> > Add the GPIO driver for Toshiba Visconti ARM SoCs.
-> >
-> > Signed-off-by: Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-> 
-> I just noticed this:
-> 
-> > +config GPIO_VISCONTI
-> > +       tristate "Toshiba Visconti GPIO support"
-> > +       depends on ARCH_VISCONTI || COMPILE_TEST
-> > +       depends on OF_GPIO
-> > +       select GPIOLIB_IRQCHIP
-> > +       help
-> > +         Say yes here to support GPIO on Tohisba Visconti.
-> 
-> Add:
-> select GPIO_GENERIC
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.txt b/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.txt
+index 1df293953327..9c1a046e6fd9 100644
+--- a/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.txt
++++ b/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.txt
+@@ -20,6 +20,7 @@ Properties:
+ 	Definition: Should contain "qcom,<soc>-pdc" and "qcom,pdc"
+ 		    - "qcom,sc7180-pdc": For SC7180
+ 		    - "qcom,sdm845-pdc": For SDM845
++		    - "qcom,sdm8250-pdc": For SM8250
+ 
+ - reg:
+ 	Usage: required
+-- 
+2.26.2
 
-OK, I will add this.
-
-> 
-> Then all of these:
-> 
-> > +static int visconti_gpio_get(struct gpio_chip *chip, unsigned int offset)
-> > +static void visconti_gpio_set(struct gpio_chip *chip, unsigned int offset, int value)
-> > +static int visconti_gpio_get_dir(struct gpio_chip *chip, unsigned int offset)
-> > +static int visconti_gpio_dir_in(struct gpio_chip *chip, unsigned int offset)
-> > +static int visconti_gpio_dir_out(struct gpio_chip *chip, unsigned int offset, int value)
-> 
-> Can be implemented by the genric MMIO GPIO library.
-
-I see. I will update using generic MMIO GPIO library.
-
-> 
-> > +       gpio_chip = &priv->gpio_chip;
-> > +       gpio_chip->label = name;
-> > +       gpio_chip->owner = THIS_MODULE;
-> > +       gpio_chip->parent = dev;
-> > +       gpio_chip->request = gpiochip_generic_request;
-> > +       gpio_chip->free = gpiochip_generic_free;
-> > +       gpio_chip->get = visconti_gpio_get;
-> > +       gpio_chip->set = visconti_gpio_set;
-> > +       gpio_chip->get_direction = visconti_gpio_get_dir;
-> > +       gpio_chip->direction_input = visconti_gpio_dir_in;
-> > +       gpio_chip->direction_output = visconti_gpio_dir_out;
-> > +       gpio_chip->base = 0;
-> > +       gpio_chip->ngpio = VISCONTI_GPIO_NR;
-> > +       gpio_chip->irq.init_valid_mask = visconti_init_irq_valid_mask;
-> 
-> Initialized the generic helpers using the addresses of the
-> GPIO registers here by a call to bgpio_init().
-> 
-> Check this driver for an example:
-> drivers/gpio/gpio-ftgpio010.c
-> 
-> If you get uncertain about the arguments to bgpio_init()
-> check drivers/gpio/gpio-mmio.c, there is kerneldoc for the
-> function.
-> 
-> By doing this you get implementations of gpio_[get|set]_multiple()
-> for free.
-
-
-Thanks for your suggestion.
-I see. I will check these and update.
-
-
-> 
-> Yours,
-> Linus Walleij
-
-Best regards,
-  Nobuhiro
