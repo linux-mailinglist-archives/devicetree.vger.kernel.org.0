@@ -2,55 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 141B52CB08A
-	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 23:57:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 078FA2CB0F7
+	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 00:39:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726618AbgLAW4p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Dec 2020 17:56:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40174 "EHLO
+        id S1727102AbgLAXjI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Dec 2020 18:39:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46706 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725955AbgLAW4o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Dec 2020 17:56:44 -0500
-Received: from mail-pj1-x1041.google.com (mail-pj1-x1041.google.com [IPv6:2607:f8b0:4864:20::1041])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 739E8C0613D4;
-        Tue,  1 Dec 2020 14:55:58 -0800 (PST)
-Received: by mail-pj1-x1041.google.com with SMTP id iq13so2260787pjb.3;
-        Tue, 01 Dec 2020 14:55:58 -0800 (PST)
+        with ESMTP id S1727162AbgLAXjH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Dec 2020 18:39:07 -0500
+Received: from mail-ot1-x342.google.com (mail-ot1-x342.google.com [IPv6:2607:f8b0:4864:20::342])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D5ADC0613D6
+        for <devicetree@vger.kernel.org>; Tue,  1 Dec 2020 15:38:27 -0800 (PST)
+Received: by mail-ot1-x342.google.com with SMTP id 11so3434716oty.9
+        for <devicetree@vger.kernel.org>; Tue, 01 Dec 2020 15:38:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=sender:date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=xF9wBhJ/ruSDlA6Srxw1jVi0WbujgXsPSvslQZosYxU=;
-        b=kJ3eowGG6g5XcJ9j4rRIQL+S4zJl30r+BhTrFCtmOwibuAKtR4DDYXdV8bKdDWROYr
-         hIJWB+9HfBhIHCvajqYuY/YoA4dBE9kgYcK1rvjITkuv9vWV2vbKzN4c3Q2M/9dDbTvJ
-         mb0KuF4fCvmofdUjb/UAqGCpTb4hHuzvX9Pp0eKJE0uGqhqHNCW8i/nE6BO94oySkznK
-         JLSsVoxB7aGrcQt0uGkK+SXilz9hE+OhFDpfodutUmq7ZEyoOhnvKWj70Np9qJ5QN6o1
-         B7eFOzNhMNQr5jL8B58gtPE6Rx15ttucZ4kxgzye2HAVpNsA0P6gnZc5Q169xinM0Bka
-         kbcw==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=AcUljttS1/Kv9szBrro01vh8YqqJASGgC7Alt3BmlWo=;
+        b=CyOy3yOcWwb512J6zbdkSYqy0VmZT8LjbKvW5Ky+B3G9Z7qUsmCHoGpbA7yV3cUOjs
+         ip2Oy1mvs3e72TrbAVkqZqwnrCQzLpybnu0i+q/GSgEpZfuqNu2sVHUqKOvwkgar/PBj
+         1ZN0M8jT/41HGZ+A72nYrBwgA+LlOlis+FtY8ssnKqPHb6uJ3qDr5BwMOtmf2bwA6+6k
+         dv/i1SRkl7IM+qxg3BUtn32XMZ8MZaeNnDEMPaLMKyPzTL+LhJ9LwoHLRvK5Ei8VMerb
+         /YyXsuqWwkuud/IDiJpGaq7nDUutOqhJsHgHuXRl0o/7TUKs00JD7vth9PRfzWEYWCkC
+         XcAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
-         :references:mime-version:content-disposition:in-reply-to;
-        bh=xF9wBhJ/ruSDlA6Srxw1jVi0WbujgXsPSvslQZosYxU=;
-        b=YgutM2LfeURqdiYqx9qjEmgvLPQw/I7sBusQ/2prij7s/2OkGMjVxwRY9SSl1+OKb6
-         LD82ciUGrTdACG/eqsvREedbq9tnJakO1Yu3L2EeOq5qcGnSEHlgF1+hBKJx1uj/9khe
-         R4SPWgeEAkqNmvgpNSo72AZtq8mPC1+JVmsWFUic9xDlGLTLsl2T69J8lWRC8EoN2JDq
-         qNtC9sdoh4zNFTpN1lk5F/BaVBi5606+9AL3b8kpQnG/qjyoIoNBun6AZ8XU0ZM26BWI
-         QSt3R67sM8HEBu5QuNzN24YN1DOe1HsFmp5C/hS6sJVBC2IRO00riyXRQ3e1uajV91NW
-         2P7Q==
-X-Gm-Message-State: AOAM533ruUbWnOTBSnLeatNOQGBre0WWfm81RBGoKkZwFxqQnKDNGmjd
-        7I1BPos4oU6BzqMv51+LGCw=
-X-Google-Smtp-Source: ABdhPJy3f2TRP3AqnHaRLUzLECJ1htGQGvX3mrji3EHlmRSp8/8UXe2pBn1MoP8oA9an04VIieWPDQ==
-X-Received: by 2002:a17:90a:d308:: with SMTP id p8mr5051014pju.110.1606863357919;
-        Tue, 01 Dec 2020 14:55:57 -0800 (PST)
-Received: from google.com ([2620:15c:211:201:7220:84ff:fe09:5e58])
-        by smtp.gmail.com with ESMTPSA id v196sm758721pfc.34.2020.12.01.14.55.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Dec 2020 14:55:56 -0800 (PST)
-Sender: Minchan Kim <minchan.kim@gmail.com>
-Date:   Tue, 1 Dec 2020 14:55:54 -0800
-From:   Minchan Kim <minchan@kernel.org>
-To:     John Stultz <john.stultz@linaro.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=AcUljttS1/Kv9szBrro01vh8YqqJASGgC7Alt3BmlWo=;
+        b=p0J7ac/6ON1ab0kKl4CDaDvWwBQ3hoYjGmQwlVoiRmiUQUI5s2CtBoS5OexBg9BT6o
+         y6pN9+gjreeIoEVtBcZ/p0k74sAiADXTNVSkC/wBwhbYOhAjI+v9SjqevIYn/v7SVP/o
+         u/bZoxfQpwNznISjyR+l9aMGSNmktQzHAP808uCwYjHXm7vngysXJNTUpAYalkveGHB5
+         aYTwId0/iNbQvYvX52fz7sLfewQOSABv2kaqmEcJBPDKS9YAkDtrv3Tg4bVQiElfcAQf
+         WdHsrWrfqHCuvdW8cgYNB9i/YiZI7ovsXiy5DNHOj91fkFsL9i4PBzvHBLNZUslnSza9
+         IM5Q==
+X-Gm-Message-State: AOAM531PZnPXqJUHRDq6oJQqPMYrEBufNekIn2gZSYEmmWf9ubXvUCAZ
+        QqcOqWNpC9pDQ5WnN5yD2CXyEQphh8U7Wmpd3fJIVw==
+X-Google-Smtp-Source: ABdhPJzqg9/cJFXzsEKuui5LLQmcVlIxqfx8S0xbUl9UXyu4UIrtiWJuNliEU6VKkP4JD9lJJVAJhVhQ6gN0sNwiUhw=
+X-Received: by 2002:a9d:851:: with SMTP id 75mr3804830oty.102.1606865906861;
+ Tue, 01 Dec 2020 15:38:26 -0800 (PST)
+MIME-Version: 1.0
+References: <20201201175144.3996569-1-minchan@kernel.org> <20201201175144.3996569-5-minchan@kernel.org>
+ <CALAqxLXFeUStaJ8Mtm5v3kSxmeqnjzLTsyathkrKF0ke3fYGiQ@mail.gmail.com> <20201201225554.GA3968963@google.com>
+In-Reply-To: <20201201225554.GA3968963@google.com>
+From:   John Stultz <john.stultz@linaro.org>
+Date:   Tue, 1 Dec 2020 15:38:14 -0800
+Message-ID: <CALAqxLW-n4-VSd9dj=KXS4WRDrPmKOShAwP9tCfCZnk+4kxW-w@mail.gmail.com>
+Subject: Re: [PATCH v2 4/4] dma-buf: heaps: add chunk heap to dmabuf heaps
+To:     Minchan Kim <minchan@kernel.org>
 Cc:     Andrew Morton <akpm@linux-foundation.org>,
         LKML <linux-kernel@vger.kernel.org>,
         linux-mm <linux-mm@kvack.org>, Hyesoo Yu <hyesoo.yu@samsung.com>,
@@ -68,51 +69,54 @@ Cc:     Andrew Morton <akpm@linux-foundation.org>,
         Christian Koenig <christian.koenig@amd.com>,
         "moderated list:DMA BUFFER SHARING FRAMEWORK" 
         <linaro-mm-sig@lists.linaro.org>
-Subject: Re: [PATCH v2 4/4] dma-buf: heaps: add chunk heap to dmabuf heaps
-Message-ID: <20201201225554.GA3968963@google.com>
-References: <20201201175144.3996569-1-minchan@kernel.org>
- <20201201175144.3996569-5-minchan@kernel.org>
- <CALAqxLXFeUStaJ8Mtm5v3kSxmeqnjzLTsyathkrKF0ke3fYGiQ@mail.gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CALAqxLXFeUStaJ8Mtm5v3kSxmeqnjzLTsyathkrKF0ke3fYGiQ@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 01, 2020 at 11:48:15AM -0800, John Stultz wrote:
-> On Tue, Dec 1, 2020 at 9:51 AM Minchan Kim <minchan@kernel.org> wrote:
-> 
-> Thanks for reworking and resending this!
-> 
-> ...
-> > +static int __init chunk_heap_init(void)
-> > +{
-> > +       struct cma *default_cma = dev_get_cma_area(NULL);
-> > +       struct dma_heap_export_info exp_info;
-> > +       struct chunk_heap *chunk_heap;
-> > +
-> > +       if (!default_cma)
-> > +               return 0;
-> > +
-> > +       chunk_heap = kzalloc(sizeof(*chunk_heap), GFP_KERNEL);
-> > +       if (!chunk_heap)
-> > +               return -ENOMEM;
-> > +
-> > +       chunk_heap->order = CHUNK_HEAP_ORDER;
-> > +       chunk_heap->cma = default_cma;
-> > +
-> > +       exp_info.name = cma_get_name(default_cma);
-> 
-> So, this would create a chunk heap name with the default CMA name,
-> which would be indistinguishable from the heap name used for the plain
-> CMA heap.
-> 
-> Probably a good idea to prefix it with "chunk-" so the heap device
-> names are unique?
+On Tue, Dec 1, 2020 at 2:55 PM Minchan Kim <minchan@kernel.org> wrote:
+> On Tue, Dec 01, 2020 at 11:48:15AM -0800, John Stultz wrote:
+> > On Tue, Dec 1, 2020 at 9:51 AM Minchan Kim <minchan@kernel.org> wrote:
+> >
+> > Thanks for reworking and resending this!
+> >
+> > ...
+> > > +static int __init chunk_heap_init(void)
+> > > +{
+> > > +       struct cma *default_cma = dev_get_cma_area(NULL);
+> > > +       struct dma_heap_export_info exp_info;
+> > > +       struct chunk_heap *chunk_heap;
+> > > +
+> > > +       if (!default_cma)
+> > > +               return 0;
+> > > +
+> > > +       chunk_heap = kzalloc(sizeof(*chunk_heap), GFP_KERNEL);
+> > > +       if (!chunk_heap)
+> > > +               return -ENOMEM;
+> > > +
+> > > +       chunk_heap->order = CHUNK_HEAP_ORDER;
+> > > +       chunk_heap->cma = default_cma;
+> > > +
+> > > +       exp_info.name = cma_get_name(default_cma);
+> >
+> > So, this would create a chunk heap name with the default CMA name,
+> > which would be indistinguishable from the heap name used for the plain
+> > CMA heap.
+> >
+> > Probably a good idea to prefix it with "chunk-" so the heap device
+> > names are unique?
+>
+> That will give an impression to user that they are using different CMA
+> area but that's not true. IMHO, let's be honest at this moment.
 
-That will give an impression to user that they are using different CMA
-area but that's not true. IMHO, let's be honest at this moment.
-When DT binding with CMA is landing down, it could provide unique name.
-Thought?
+I disagree.  The dmabuf heaps provide an abstraction for allocating a
+type of memory, and while your heap is pulling from CMA, you aren't
+"just" allocating CMA as the existing CMA heap would suffice for that.
+
+Since you need a slightly different method to allocate high order
+pages in bulk, we really should have a unique way to name the
+allocator interface. That's why I'd suggest the "chunk-" prefix to the
+heap name.
+
+thanks
+-john
