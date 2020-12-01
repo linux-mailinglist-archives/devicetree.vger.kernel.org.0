@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AB47A2CA746
-	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 16:42:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2301F2CA747
+	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 16:43:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391901AbgLAPiw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Dec 2020 10:38:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57014 "EHLO
+        id S2391908AbgLAPiy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Dec 2020 10:38:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57026 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2391840AbgLAPiv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Dec 2020 10:38:51 -0500
-Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com [IPv6:2a00:1450:4864:20::443])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 611BBC061A51
-        for <devicetree@vger.kernel.org>; Tue,  1 Dec 2020 07:37:29 -0800 (PST)
-Received: by mail-wr1-x443.google.com with SMTP id s8so3258036wrw.10
-        for <devicetree@vger.kernel.org>; Tue, 01 Dec 2020 07:37:29 -0800 (PST)
+        with ESMTP id S2391906AbgLAPiy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Dec 2020 10:38:54 -0500
+Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com [IPv6:2a00:1450:4864:20::444])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF243C061A55
+        for <devicetree@vger.kernel.org>; Tue,  1 Dec 2020 07:37:30 -0800 (PST)
+Received: by mail-wr1-x444.google.com with SMTP id s8so3258166wrw.10
+        for <devicetree@vger.kernel.org>; Tue, 01 Dec 2020 07:37:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=6vXiT5FpPdzP+F5sPQwMF6j9EVgTdZPYADmNV8Tr/zQ=;
-        b=TbVdQfZdGXdVxc/qIYtd7/2RnLmbhk9iHaPbVGxFpQrpBDSS/iC/zhk0Mpty5j2yvd
-         MMejl3MDG9f106+i9JnkxzHN38reC3FB6VXryJ2wlyRDzUO5GjqtVJoFLuXNu34ISPU0
-         ViPvsutDNP180YEf8K195Sb1Pjbz1nCCKGjKEvwru2GmOyhrOy03li0QpF2cVn6J8GwV
-         orv5Gme+c3L862r4n05I0S/iTEwgG7tTdurW4841H4DihC3tch67vtZH/t1QQuuXmy8r
-         jRM7Ac0fTReQi/OmH/sTr01B1qkhCwjQU9fDW3/nlIYyA74wSEQCej/TTYryuPdEGMPH
-         AqDQ==
+        bh=AnsMipShbEp5shIcSQnSsR/KPaRGHHYiZS/KJVFuEzU=;
+        b=d3V33ds+V2uGSuK1Is8LyL+zdVqoj2udYUXfK4dLGmW2Bu0VXwd6Sj3QW7fRQkkU61
+         xeCDUXF7bmZbbXy6FJAepXvT+L7qt7YmfYXMlM6RoU36fxpIX412g1D75jtmKLAJzEUT
+         a6R35abPN7caHzjaUW49Fh4bB72Zqlm12q1Axl82i31TjFrnel64kHCu1cv+Hy/Z0IKe
+         KO++BNLnVTQJqWUoAdg8EuonQx8kXDLdLHMFaPaCXth25PGK1cSt7C983M0fgT2zTYNj
+         EU4/OntdFvIGOPbnTDJDMuhAQlnwy4/HPaYJcKgaN9ROWfani0vDRlvsXdpjYa4CEOmL
+         INMA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=6vXiT5FpPdzP+F5sPQwMF6j9EVgTdZPYADmNV8Tr/zQ=;
-        b=s2XjDUK51gyMaXTn3n1Rd6fUqTtJhybcARUlwAmBbZV0AGxfMNd8nq9cuyU3CarAlM
-         ERj/XbTDZjpsxexjEvxFDOJuXmtQxdYIdxc4dim2rQfcJPLDP5fq6glVcefFLaeeoBub
-         9fQV25I3tKnE9s77bv7U8+HWU05un0rMIcxFqqkUgqZwy7DbU47nv/3uEAbZRYYjpY/k
-         fADUzWdfbceTCZbYZprMqAewQvic8e6I/9hPFakVc35QhphaID/s0zwnhIpJuLGe3iPW
-         FY0ktfKH7q0nDp9HxBFQaajL4N4QZigFdJpwLCr/Vy3pHXs8Kv7Vdj0O3l4v/F/kEDg5
-         YG4A==
-X-Gm-Message-State: AOAM532Nit5Fz/zGX+/OWbM56g7GGUjKp/4RyuJpqfG5ts7ik5iVZMz9
-        NBQfHjfNIKewKIIfZgyu1RFNNQ==
-X-Google-Smtp-Source: ABdhPJwpSRyY1JngpXYaiQ/Pmaldz9WrCP/ULRroZLPPi+CRiFFopPSDfB0moPEm6/LpXN/QTbiTlA==
-X-Received: by 2002:a5d:4dd0:: with SMTP id f16mr4445405wru.8.1606837048122;
-        Tue, 01 Dec 2020 07:37:28 -0800 (PST)
+        bh=AnsMipShbEp5shIcSQnSsR/KPaRGHHYiZS/KJVFuEzU=;
+        b=krFiAVFMHQVSjvLrbC/DsAoVGouFEkcJa98kK0XkozOMWf0BVmm01Rl/9nhjUV2JTJ
+         C3Y2sViJjE30Qcp5RwOu4IXhCAiXHjkUoZ8u0hNn2iaf0fHh7U7NBZLVDxXgMQHwcrBE
+         RxnQEX++aeyMmPNjsbleOoRA6NsH/+20iLc1svDt2DzFgJmPG2/s0IqDWnbHfgBm/Ua6
+         Va0d3t9F60RrvoXhlWN5dIB/C5T+Qyuzgz/jTkyDGZbyel+hH+qnQt3cmbngfsDGhjUy
+         iQumYzVdzaM/HhVQZJ4XMja6eBDwfPd0EY5BI5UgTQXssciL7I6rVhwObLSsPZZ/RYNN
+         FpuQ==
+X-Gm-Message-State: AOAM530SasO7XzWzeewcQ9nEvTHb/iLY8hwbKwvKsg+XuEPa3RYjKZ0O
+        pUo735ZVxC+kNN6jAFV3gqz6DA==
+X-Google-Smtp-Source: ABdhPJyt5IlNdbjrOGpmBV9L5vRASf03V/hmdFs2fwLA5QsQmAzOtR1xYDaA2k4qSSP6BP4ceEPuEg==
+X-Received: by 2002:a5d:6503:: with SMTP id x3mr4647417wru.151.1606837049436;
+        Tue, 01 Dec 2020 07:37:29 -0800 (PST)
 Received: from srini-hackbox.lan (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.gmail.com with ESMTPSA id y7sm302171wmb.37.2020.12.01.07.37.26
+        by smtp.gmail.com with ESMTPSA id y7sm302171wmb.37.2020.12.01.07.37.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Dec 2020 07:37:27 -0800 (PST)
+        Tue, 01 Dec 2020 07:37:28 -0800 (PST)
 From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 To:     bjorn.andersson@linaro.org
 Cc:     linux-arm-msm@vger.kernel.org, agross@kernel.org,
         robh+dt@kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org,
         Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Subject: [PATCH 5/6] arm64: dts: qcom: sm8250: add mi2s pinconfs
-Date:   Tue,  1 Dec 2020 15:37:05 +0000
-Message-Id: <20201201153706.13450-6-srinivas.kandagatla@linaro.org>
+Subject: [PATCH 6/6] arm64: dts: qcom: qrb5165-rb5: Add Audio support
+Date:   Tue,  1 Dec 2020 15:37:06 +0000
+Message-Id: <20201201153706.13450-7-srinivas.kandagatla@linaro.org>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20201201153706.13450-1-srinivas.kandagatla@linaro.org>
 References: <20201201153706.13450-1-srinivas.kandagatla@linaro.org>
@@ -65,136 +65,175 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add primary and tertinary mi2s pinconfs required to get I2S audio.
+This patch add support for two WSA881X smart speakers attached via Soundwire
+and a DMIC0 on the main board.
 
 Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sm8250.dtsi | 98 ++++++++++++++++++++++++++++
- 1 file changed, 98 insertions(+)
+ arch/arm64/boot/dts/qcom/qrb5165-rb5.dts | 125 +++++++++++++++++++++++
+ 1 file changed, 125 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-index 19dd7460e586..a87940e157be 100644
---- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-@@ -1561,6 +1561,9 @@
- 			};
- 		};
+diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+index ce22d4fa383e..03229d5cb9d3 100644
+--- a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
++++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+@@ -7,6 +7,8 @@
  
-+		sound: sound {
+ #include <dt-bindings/gpio/gpio.h>
+ #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
++#include <dt-bindings/sound/qcom,q6afe.h>
++#include <dt-bindings/sound/qcom,q6asm.h>
+ #include "sm8250.dtsi"
+ #include "pm8150.dtsi"
+ #include "pm8150b.dtsi"
+@@ -120,6 +122,11 @@
+ 	};
+ };
+ 
++&adsp {
++	status = "okay";
++	firmware-name = "qcom/sm8250/adsp.mdt";
++};
++
+ &apps_rsc {
+ 	pm8009-rpmh-regulators {
+ 		compatible = "qcom,pm8009-rpmh-regulators";
+@@ -483,6 +490,35 @@
+ 	status = "okay";
+ };
+ 
++&q6afedai {
++	qi2s@16 {
++		reg = <16>;
++		qcom,sd-lines = <0 1 2 3>;
++	};
++};
++
++/* TERT I2S Uses 1 I2S SD Lines for audio on LT9611 HDMI Bridge */
++&q6afedai {
++	qi2s@20 {
++		reg = <20>;
++		qcom,sd-lines = <0>;
++	};
++};
++
++&q6asmdai {
++	dai@0 {
++		reg = <0>;
++	};
++
++	dai@1 {
++		reg = <1>;
++	};
++
++	dai@2 {
++		reg = <2>;
++	};
++};
++
+ &sdhc_2 {
+ 	status = "okay";
+ 	pinctrl-names = "default";
+@@ -497,6 +533,88 @@
+ 	no-emmc;
+ };
+ 
++&swr0 {
++
++	left_spkr: wsa8810-left{
++		compatible = "sdw10217211000";
++		reg = <0 3>;
++		powerdown-gpios = <&tlmm 130 GPIO_ACTIVE_HIGH>;
++		#thermal-sensor-cells = <0>;
++		sound-name-prefix = "SpkrLeft";
++		#sound-dai-cells = <0>;
++	};
++
++
++	right_spkr: wsa8810-right{
++		compatible = "sdw10217211000";
++		reg = <0 4>;
++		powerdown-gpios = <&tlmm 130 GPIO_ACTIVE_HIGH>;
++		#thermal-sensor-cells = <0>;
++		sound-name-prefix = "SpkrRight";
++		#sound-dai-cells = <0>;
++	};
++};
++
++&sound {
++	compatible = "qcom,qrb5165-rb5";
++	pinctrl-0 = <&tert_mi2s_sck_active
++			 &tert_mi2s_sd0_active
++			 &tert_mi2s_ws_active>;
++	pinctrl-names = "default";
++	model = "Qualcomm-RB5-WSA8815-Speakers-DMIC0";
++	audio-routing =
++		"SpkrLeft IN", "WSA_SPK1 OUT",
++		"SpkrRight IN", "WSA_SPK2 OUT",
++		"VA DMIC0", "vdd-micb",
++                "VA DMIC1", "vdd-micb",
++		"MM_DL1",  "MultiMedia1 Playback",
++		"MultiMedia3 Capture", "MM_UL3";
++
++	mm1-dai-link {
++		link-name = "MultiMedia1";
++		cpu {
++			sound-dai = <&q6asmdai  MSM_FRONTEND_DAI_MULTIMEDIA1>;
++		};
++	};
++
++	mm3-dai-link {
++		link-name = "MultiMedia3";
++		cpu {
++			sound-dai = <&q6asmdai  MSM_FRONTEND_DAI_MULTIMEDIA3>;
++		};
++	};
++
++	dma-dai-link {
++		link-name = "WSA Playback";
++		cpu {
++			sound-dai = <&q6afedai WSA_CODEC_DMA_RX_0>;
 +		};
 +
- 		usb_1_hsphy: phy@88e3000 {
- 			compatible = "qcom,sm8250-usb-hs-phy",
- 				     "qcom,usb-snps-hs-7nm-phy";
-@@ -1884,6 +1887,60 @@
- 			gpio-ranges = <&tlmm 0 0 180>;
- 			wakeup-parent = <&pdc>;
- 
-+			pri_mi2s_sck_active: pri-mi2s-sck-active {
-+				mux {
-+					pins = "gpio138";
-+					function = "mi2s0_sck";
-+				};
++		platform {
++			sound-dai = <&q6routing>;
++		};
 +
-+				config {
-+					pins = "gpio138";
-+					drive-strength = <8>;
-+					bias-disable;
-+					output-high;
-+				};
-+			};
++		codec {
++			sound-dai = <&left_spkr>, <&right_spkr>, <&swr0 0>, <&wsamacro 0>;
++		};
++	};
 +
-+			pri_mi2s_ws_active: pri-mi2s-ws-active {
-+				mux {
-+					pins = "gpio141";
-+					function = "mi2s0_ws";
-+				};
++	va-dai-link {
++		link-name = "VA Capture";
++		cpu {
++			sound-dai = <&q6afedai VA_CODEC_DMA_TX_0>;
++		};
 +
-+				config {
-+					pins = "gpio141";
-+					drive-strength = <8>;
-+					output-high;
-+				};
-+			};
++		platform {
++			sound-dai = <&q6routing>;
++		};
 +
-+			pri_mi2s_sd0_active: pri-mi2s-sd0-active {
-+				mux {
-+					pins = "gpio139";
-+					function = "mi2s0_data0";
-+				};
++		codec {
++			sound-dai = <&vamacro 0>;
++		};
++	};
++};
 +
-+				config {
-+					pins = "gpio139";
-+					drive-strength = <8>;
-+					bias-disable;
-+					output-high;
-+				};
-+			};
+ /* CAN */
+ &spi0 {
+ 	status = "okay";
+@@ -792,3 +910,10 @@
+ 	vdda-phy-supply = <&vreg_l9a_1p2>;
+ 	vdda-pll-supply = <&vreg_l18a_0p92>;
+ };
 +
-+			pri_mi2s_sd1_active: pri-mi2s-sd1-active {
-+				mux {
-+					pins = "gpio140";
-+					function = "mi2s0_data1";
-+				};
-+
-+				config {
-+					pins = "gpio140";
-+					drive-strength = <8>;
-+					output-high;
-+				};
-+			};
-+
- 			qup_i2c0_default: qup-i2c0-default {
- 				mux {
- 					pins = "gpio28", "gpio29";
-@@ -2480,6 +2537,47 @@
- 					function = "qup18";
- 				};
- 			};
-+
-+			tert_mi2s_sck_active: tert-mi2s-sck-active {
-+				mux {
-+					pins = "gpio133";
-+					function = "mi2s2_sck";
-+				};
-+
-+				config {
-+					pins = "gpio133";
-+					drive-strength = <8>;
-+					bias-disable;
-+					output-high;
-+				};
-+			};
-+
-+			tert_mi2s_sd0_active: tert-mi2s-sd0-active {
-+				mux {
-+					pins = "gpio134";
-+					function = "mi2s2_data0";
-+				};
-+
-+				config {
-+					pins = "gpio134";
-+					drive-strength = <8>;
-+					bias-disable;
-+					output-high;
-+				};
-+			};
-+
-+			tert_mi2s_ws_active: tert-mi2s-ws-active {
-+				mux {
-+					pins = "gpio135";
-+					function = "mi2s2_ws";
-+				};
-+
-+				config {
-+					pins = "gpio135";
-+					drive-strength = <8>;
-+					output-high;
-+				};
-+			};
- 		};
- 
- 		apps_smmu: iommu@15000000 {
++&vamacro {
++	pinctrl-0 = <&cdc_dmic01_clk_active &cdc_dmic01_data_active>;
++	pinctrl-names = "default";
++	vdd-micb-supply = <&vreg_s4a_1p8>;
++	qcom,dmic-sample-rate = <600000>;
++};
 -- 
 2.21.0
 
