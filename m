@@ -2,131 +2,212 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E1A02CAB9B
-	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 20:18:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A87842CABA5
+	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 20:21:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730166AbgLATRH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Dec 2020 14:17:07 -0500
-Received: from mx0b-001b2d01.pphosted.com ([148.163.158.5]:41952 "EHLO
-        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1727375AbgLATRG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Dec 2020 14:17:06 -0500
-Received: from pps.filterd (m0098419.ppops.net [127.0.0.1])
-        by mx0b-001b2d01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 0B1J21hA176659;
-        Tue, 1 Dec 2020 14:15:45 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=message-id : subject :
- from : to : cc : date : in-reply-to : references : content-type :
- mime-version : content-transfer-encoding; s=pp1;
- bh=n0NxD7lrbqckDQQ/ZLO3t41mjgVN/FduFORCHpjZTXw=;
- b=WolUiGa+BdtX8n15X50oF5SbIs3fAd5+jjy/EEJaLh4pPwMo1ILvQ4ZqpV2ja/ClESeZ
- KDodunVe3NLp0lkIb1lWKm0D/jpvq6Y85YqpqD57tFtyPWcO55NQ8D+QqekkhuJ81eKh
- MwhJZu8+ouvTGKewb8u3Tih9MT/WKO9uV5A8DGDs5UDmMzFO9ccyPF2M/Px/arz03y9b
- wXPqC7t/mVMa25BBx84S9jtmYxxrCxv/HickEKEy4wkCdvIXaVTN8BhJ1GdJQEtPRiTP
- NQMN2icKOwpKudDS6dRBOmSf76UgU7qDpBXoODlq/ZK1ELft/dkhKGsOMQt3N8w1WadK xA== 
-Received: from pps.reinject (localhost [127.0.0.1])
-        by mx0b-001b2d01.pphosted.com with ESMTP id 355k52js71-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 01 Dec 2020 14:15:45 -0500
-Received: from m0098419.ppops.net (m0098419.ppops.net [127.0.0.1])
-        by pps.reinject (8.16.0.36/8.16.0.36) with SMTP id 0B1J3GB4184172;
-        Tue, 1 Dec 2020 14:15:44 -0500
-Received: from ppma04fra.de.ibm.com (6a.4a.5195.ip4.static.sl-reverse.com [149.81.74.106])
-        by mx0b-001b2d01.pphosted.com with ESMTP id 355k52js6b-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 01 Dec 2020 14:15:44 -0500
-Received: from pps.filterd (ppma04fra.de.ibm.com [127.0.0.1])
-        by ppma04fra.de.ibm.com (8.16.0.42/8.16.0.42) with SMTP id 0B1JFgC0026687;
-        Tue, 1 Dec 2020 19:15:42 GMT
-Received: from b06cxnps3075.portsmouth.uk.ibm.com (d06relay10.portsmouth.uk.ibm.com [9.149.109.195])
-        by ppma04fra.de.ibm.com with ESMTP id 353e689sq0-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 01 Dec 2020 19:15:42 +0000
-Received: from b06wcsmtp001.portsmouth.uk.ibm.com (b06wcsmtp001.portsmouth.uk.ibm.com [9.149.105.160])
-        by b06cxnps3075.portsmouth.uk.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 0B1JFehI64094576
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Tue, 1 Dec 2020 19:15:40 GMT
-Received: from b06wcsmtp001.portsmouth.uk.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id ED5C5A4064;
-        Tue,  1 Dec 2020 19:15:39 +0000 (GMT)
-Received: from b06wcsmtp001.portsmouth.uk.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 42123A4054;
-        Tue,  1 Dec 2020 19:15:34 +0000 (GMT)
-Received: from li-f45666cc-3089-11b2-a85c-c57d1a57929f.ibm.com (unknown [9.160.54.13])
-        by b06wcsmtp001.portsmouth.uk.ibm.com (Postfix) with ESMTP;
-        Tue,  1 Dec 2020 19:15:34 +0000 (GMT)
-Message-ID: <f25df5ba1cda54f3b7c555367f58f43caf3a3c7d.camel@linux.ibm.com>
-Subject: Re: [PATCH v9 0/8] Carry forward IMA measurement log on kexec on
- ARM64
-From:   Mimi Zohar <zohar@linux.ibm.com>
-To:     Lakshmi Ramasubramanian <nramas@linux.microsoft.com>,
-        Rob Herring <robh@kernel.org>
-Cc:     bauerman@linux.ibm.com, gregkh@linuxfoundation.org,
-        james.morse@arm.com, catalin.marinas@arm.com, sashal@kernel.org,
-        will@kernel.org, mpe@ellerman.id.au, benh@kernel.crashing.org,
-        paulus@samba.org, frowand.list@gmail.com,
-        vincenzo.frascino@arm.com, mark.rutland@arm.com,
-        dmitry.kasatkin@gmail.com, jmorris@namei.org, serge@hallyn.com,
-        pasha.tatashin@soleen.com, allison@lohutok.net,
-        kstewart@linuxfoundation.org, takahiro.akashi@linaro.org,
-        tglx@linutronix.de, masahiroy@kernel.org, bhsharma@redhat.com,
-        mbrugger@suse.com, hsinyi@chromium.org, tao.li@vivo.com,
-        christophe.leroy@c-s.fr, linux-integrity@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        prsriva@linux.microsoft.com, balajib@linux.microsoft.com
-Date:   Tue, 01 Dec 2020 14:15:33 -0500
-In-Reply-To: <76a749ac-8465-1d82-0ff5-0a46e0a29f18@linux.microsoft.com>
-References: <20201113192243.1993-1-nramas@linux.microsoft.com>
-         <20201121135719.GA2134870@robh.at.kernel.org>
-         <415b4d0b-3d93-40ce-b74e-48fdce7fbf7f@linux.microsoft.com>
-         <a73a47da53b795617758cc23991624dfca173eba.camel@linux.ibm.com>
-         <76a749ac-8465-1d82-0ff5-0a46e0a29f18@linux.microsoft.com>
-Content-Type: text/plain; charset="ISO-8859-15"
-X-Mailer: Evolution 3.28.5 (3.28.5-12.el8) 
-Mime-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.312,18.0.737
- definitions=2020-12-01_07:2020-11-30,2020-12-01 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999
- lowpriorityscore=0 mlxscore=0 malwarescore=0 priorityscore=1501
- phishscore=0 bulkscore=0 impostorscore=0 spamscore=0 clxscore=1015
- adultscore=0 suspectscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2009150000 definitions=main-2012010112
+        id S2392320AbgLATUG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Dec 2020 14:20:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34814 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388525AbgLATUG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Dec 2020 14:20:06 -0500
+Received: from mail-ot1-x343.google.com (mail-ot1-x343.google.com [IPv6:2607:f8b0:4864:20::343])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC5ACC0613CF
+        for <devicetree@vger.kernel.org>; Tue,  1 Dec 2020 11:19:25 -0800 (PST)
+Received: by mail-ot1-x343.google.com with SMTP id z24so2772186oto.6
+        for <devicetree@vger.kernel.org>; Tue, 01 Dec 2020 11:19:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=LckDgaqy2Wn4VuU1MAexf+GwPBgKOOjs/09Enf2QqEI=;
+        b=jvGu+3Q2FsjzlBtj5IKsZi6iALz3dK5Xe3RDwwDEe1RT2cUcBSZmgBrAEOUEy0o6h7
+         Znugijy0meUrqw/tVTge/FAqw7rmxM+jFVbXFXnewASdmgRQGEazt0bvEfji8750r+Tf
+         zpINcxzekeIzYml0kcdkNaQ48tq+QTDU7oQoplnoj/QcQ5VXENH2vFCv7U3OdurXFpcx
+         39Tt4JyzaZL28+wB8w3eVpIrtF3s0dU+yYwl4mCZ1uTruwlPZHgywD6y1cMn3mZkLokV
+         8lvGdixK+43GbWXPwT2HBi77PqcpznA2HnucSvw6FetZzxUPlyvNT27HgMXME4SxGtRv
+         6BYA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=LckDgaqy2Wn4VuU1MAexf+GwPBgKOOjs/09Enf2QqEI=;
+        b=f+ZT6viSuE2U9Tp9inGb3889gZs3DUUbQvYvFOEmW5ZbVwuF/QTv+ZGrYTmZd+eZL9
+         +mHbnLU2TjMNgsrcHq+h8MyOd+/vRk2yeXPYbHQezQ7Gqe+c7tE2yApTi/l0c6GwKA3P
+         2CsS6Uz+8l3r00aYrbyXHoSWJhOOkPDuXC3/bvWIp09suv6GxdscfkG72Gg962FmWZd4
+         DxqVMk3Bnlgib/0kKVkeknHXkXel1L0blLKt+52DDHf389Kd9MaIHkQIk1O19uJZV6sn
+         gTDeDoLNlxOUYeYty4eLp+Z5x6bywBrzLl9g2GPdjiZMdOZ8mlUaGIC3LOlwbi18VwEf
+         l9SA==
+X-Gm-Message-State: AOAM532+iNi3nWb0sdALgwOARR3gRG8nN7mxSMnfG+wPv9Y0xsoXUoXR
+        dN+EFxrXyd2VBLoftSCjp+ag+uy3amITMA==
+X-Google-Smtp-Source: ABdhPJziF8nfchXr/paN/pGLeZ7h7zcwalH41lLBL6jw9cAaRkTEMDNlDx8yasaAW1upVFR/s15mIw==
+X-Received: by 2002:a05:6830:1e08:: with SMTP id s8mr2926116otr.144.1606850365226;
+        Tue, 01 Dec 2020 11:19:25 -0800 (PST)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id u20sm99053oie.56.2020.12.01.11.19.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 01 Dec 2020 11:19:24 -0800 (PST)
+Date:   Tue, 1 Dec 2020 13:19:22 -0600
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, agross@kernel.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 5/6] arm64: dts: qcom: sm8250: add mi2s pinconfs
+Message-ID: <X8aXOp/E226yyufx@builder.lan>
+References: <20201201153706.13450-1-srinivas.kandagatla@linaro.org>
+ <20201201153706.13450-6-srinivas.kandagatla@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201201153706.13450-6-srinivas.kandagatla@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 2020-12-01 at 11:10 -0800, Lakshmi Ramasubramanian wrote:
-> On 12/1/20 3:34 AM, Mimi Zohar wrote:
-> > On Sat, 2020-11-21 at 06:38 -0800, Lakshmi Ramasubramanian wrote:
-> >> On 11/21/20 5:57 AM, Rob Herring wrote:
-> >>> On Fri, Nov 13, 2020 at 11:22:35AM -0800, Lakshmi Ramasubramanian wrote:
-> > 
-> >>>>    arch/powerpc/include/asm/kexec.h       |   1 -
-> >>>>    arch/powerpc/kexec/Makefile            |   7 +-
-> >>>>    arch/powerpc/kexec/file_load.c         |  32 --------
-> >>>>    arch/powerpc/kexec/ima.c               | 106 ++-----------------------
-> >>>>    drivers/of/Makefile                    |   9 +++
-> >>>
-> >>>>    drivers/of/ima_kexec.c                 |  91 +++++++++++++++++++++
-> >>>>    drivers/of/kexec_fdt.c                 |  55 +++++++++++++
-> >>>
-> >>> Does this need to be 2 files? Just kexec.c?
-> >>
-> >> Since the functions defined in "ima_kexec.c" and "kexec_fdt.c" are
-> >> enabled on 2 different kernel CONFIGs, keeping them in 2 files enables
-> >> us to avoid using "#ifdef" in C files.
-> > 
-> > Normally that is true, but just as all of the kexec related functions
-> > are co-located in ima/ima_kexec.c, co-locating all of the kexec related
-> > functions in drivers/of makes sense.
-> > 
+On Tue 01 Dec 09:37 CST 2020, Srinivas Kandagatla wrote:
+
+> Add primary and tertinary mi2s pinconfs required to get I2S audio.
 > 
-> Sounds good - i'll make the change.
-> Instead of "#ifdef" will use "IS_ENABLED" macro, and define the kexec 
-> related functions in drivers/of/ima_kexec.c
+> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> ---
+>  arch/arm64/boot/dts/qcom/sm8250.dtsi | 98 ++++++++++++++++++++++++++++
+>  1 file changed, 98 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> index 19dd7460e586..a87940e157be 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> @@ -1561,6 +1561,9 @@
+>  			};
+>  		};
+>  
+> +		sound: sound {
+> +		};
+> +
+>  		usb_1_hsphy: phy@88e3000 {
+>  			compatible = "qcom,sm8250-usb-hs-phy",
+>  				     "qcom,usb-snps-hs-7nm-phy";
+> @@ -1884,6 +1887,60 @@
+>  			gpio-ranges = <&tlmm 0 0 180>;
+>  			wakeup-parent = <&pdc>;
+>  
+> +			pri_mi2s_sck_active: pri-mi2s-sck-active {
+> +				mux {
 
-Perhaps name the file kexec.c, as Rob suggested.
+As in patch 3, please make these state-centric and flatten the inner
+subnode.
 
-Mimi
+> +					pins = "gpio138";
+> +					function = "mi2s0_sck";
+> +				};
+> +
+> +				config {
+> +					pins = "gpio138";
+> +					drive-strength = <8>;
+> +					bias-disable;
+> +					output-high;
 
+If function is mi2s0_sck is the output value relevant? Or should this
+be dropped?
+
+Regards,
+Bjorn
+
+> +				};
+> +			};
+> +
+> +			pri_mi2s_ws_active: pri-mi2s-ws-active {
+> +				mux {
+> +					pins = "gpio141";
+> +					function = "mi2s0_ws";
+> +				};
+> +
+> +				config {
+> +					pins = "gpio141";
+> +					drive-strength = <8>;
+> +					output-high;
+> +				};
+> +			};
+> +
+> +			pri_mi2s_sd0_active: pri-mi2s-sd0-active {
+> +				mux {
+> +					pins = "gpio139";
+> +					function = "mi2s0_data0";
+> +				};
+> +
+> +				config {
+> +					pins = "gpio139";
+> +					drive-strength = <8>;
+> +					bias-disable;
+> +					output-high;
+> +				};
+> +			};
+> +
+> +			pri_mi2s_sd1_active: pri-mi2s-sd1-active {
+> +				mux {
+> +					pins = "gpio140";
+> +					function = "mi2s0_data1";
+> +				};
+> +
+> +				config {
+> +					pins = "gpio140";
+> +					drive-strength = <8>;
+> +					output-high;
+> +				};
+> +			};
+> +
+>  			qup_i2c0_default: qup-i2c0-default {
+>  				mux {
+>  					pins = "gpio28", "gpio29";
+> @@ -2480,6 +2537,47 @@
+>  					function = "qup18";
+>  				};
+>  			};
+> +
+> +			tert_mi2s_sck_active: tert-mi2s-sck-active {
+> +				mux {
+> +					pins = "gpio133";
+> +					function = "mi2s2_sck";
+> +				};
+> +
+> +				config {
+> +					pins = "gpio133";
+> +					drive-strength = <8>;
+> +					bias-disable;
+> +					output-high;
+> +				};
+> +			};
+> +
+> +			tert_mi2s_sd0_active: tert-mi2s-sd0-active {
+> +				mux {
+> +					pins = "gpio134";
+> +					function = "mi2s2_data0";
+> +				};
+> +
+> +				config {
+> +					pins = "gpio134";
+> +					drive-strength = <8>;
+> +					bias-disable;
+> +					output-high;
+> +				};
+> +			};
+> +
+> +			tert_mi2s_ws_active: tert-mi2s-ws-active {
+> +				mux {
+> +					pins = "gpio135";
+> +					function = "mi2s2_ws";
+> +				};
+> +
+> +				config {
+> +					pins = "gpio135";
+> +					drive-strength = <8>;
+> +					output-high;
+> +				};
+> +			};
+>  		};
+>  
+>  		apps_smmu: iommu@15000000 {
+> -- 
+> 2.21.0
+> 
