@@ -2,154 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EADD82C9555
-	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 03:40:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E2F752C956E
+	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 03:54:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726775AbgLACjX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Nov 2020 21:39:23 -0500
-Received: from mail-eopbgr140051.outbound.protection.outlook.com ([40.107.14.51]:48352
-        "EHLO EUR01-VE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726103AbgLACjX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 30 Nov 2020 21:39:23 -0500
+        id S1726873AbgLACyi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Nov 2020 21:54:38 -0500
+Received: from mga04.intel.com ([192.55.52.120]:30601 "EHLO mga04.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725859AbgLACyh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 30 Nov 2020 21:54:37 -0500
+IronPort-SDR: dtc5zLVXiXC+7wGHmQSVWZ4FmDo6H312pxI/FRhBhsUUrg0UaxfPsZqxdlC0o1q86OfLcOOtyv
+ kTAaLyYTC8zA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9821"; a="170187952"
+X-IronPort-AV: E=Sophos;i="5.78,382,1599548400"; 
+   d="scan'208";a="170187952"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Nov 2020 18:53:56 -0800
+IronPort-SDR: /X9FE4ho7+XQqsukeX1jogu7a+lfikc6J2zhbML497lviy9KhEhgRVhShWlfLp9Q9lFXwtnxgP
+ KI+RV96Tx6ug==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.78,382,1599548400"; 
+   d="scan'208";a="549366530"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+  by orsmga005.jf.intel.com with ESMTP; 30 Nov 2020 18:53:56 -0800
+Received: from orsmsx604.amr.corp.intel.com (10.22.229.17) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Mon, 30 Nov 2020 18:53:55 -0800
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx604.amr.corp.intel.com (10.22.229.17) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5
+ via Frontend Transport; Mon, 30 Nov 2020 18:53:55 -0800
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.170)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.1713.5; Mon, 30 Nov 2020 18:53:55 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=CWsqWYeGX++fVTFmFZHZdexvT915ZdjatLdet9pY+rVLNEoD8S3Ffp2RhzfQ1dJb6JD/G1taaqkZO6UOXP9hKC2Q0Mot/ahccb3Yuc4iYzCxq1R1dZcXcuzSzPwddD5Qhkh8WVHnIckMlr5dbV+evVJIgwYdTXppcvtd6rtDyi7yhAVf5OCC/I0M++avm+1ZNH0KJeDh0JkFYvptWrjjOdwWie2AmZyxiHKfpoHuZLUIZtoo4QwAWmoEFc0vc6ahwFSCH/RJk+I9gZ+S4S4z7bLdNO9p0RB4iyxkIqEaRQ03EUCKBzPG1fS6JVvzCWpXbi4Pjej/HvwPJfBGT5Nhfg==
+ b=PIm7lIgGyMDAn8O4ss8DCspRY34kFZaJ5F8p8nJlOvAFonIF22V5Po9PK1WLV8TWB964uGDLODa32mOEAaOT/CmqzdfxX6S/8bpx+cU7xayLi9scshEnAcUsd4O8VW5SD7ZDjsSkACSkMSwgNbTFZxcrwunuOqXEQ5A64NKyjrTskyxgwNwa4typA29jgpyhAC5oe6uaqa8ucvDzSV2RZWLwaUAAOtU6ysBJkuW73mfIMYKdWIpSVcxdo/h4VC4lAYxmNv7JY7VHHo+C2iA+Ss9W/zqQfOHAe01r0Nt3mJErN3G7+UWKCh8QdqQuiW2KKeb9rneb658ML8MU//2Jog==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=LeRRzp15yMvGiKAdFjtG47jY5vEO2tfpbszZMVTsrxA=;
- b=aGwkk3X1DvnHF1QU4qhXJounnBNTs60kJabKqWzjw8yM1Fg2n+LRoae7kXokAnk7HDGiB5UxU6tABU9/N7ieViVQvlGw0dpRnlQFjzkovsejI8/uqt99Z4Cl7es8gZpkAZLcW12hUCB921MZljt0XcElDy/cgYSw8x/936WcWiGKZrI3/T98DVbtkqWX42twTs7QziMSbTMYnEI6AaiybLm4bfnIscMInfZknZzqhk0Jb6OE47+yERvljB0Xc+RHHTxPnRgvZuZX//VlWmnViVTsI+NBp457PokT4/foccdJIw8weVJkR+a2iD+VTi818u2Ah6zDi638RCiX+OYx4g==
+ bh=iH3l9b9i5qx4cRWNhl0LBfmDOIdARY0QI6f5WKAYP/I=;
+ b=iNCjTtQdlZHTKwC2DlwcfdwcvyhLEJbJENADJs0xtvjTTHAZPXo1NyUrrSsbHgO6iOi+Q39wQjB1cXzPlkXNf46Q0Gt57+wKdYjtmb/3ivRz51j8t0Y59h4RKjK1Z4DtcILL6uoCSJTCFwqsVm61AzYPrNV33Wkd44fUnnkGFiceYUS+OTwg28SgTlByGcvK13XdnLZfyGRtu9/9D9ZGD4phFPNIHQSldH2Fl0dsUMFgvDeOObMTMQ33bL1t/JwtGZ6rTSUBMO89F2hHvLD/KH4ekMqujtyrTF0HNoLjqp4hJPcIGCfUz56h0n5bXhK3ubES4NZu0nRXTiWeooB4Sw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com;
+ s=selector2-intel-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=LeRRzp15yMvGiKAdFjtG47jY5vEO2tfpbszZMVTsrxA=;
- b=rCURioND7RIlLiHa/L6Rd8lSQa3wgibXnchQrAbQK5GCUg7FkVKOyUfB0O3hFJu5lLx2jQLJUuJXoGDQJk8rT+lnLHXFtINcI2FKqafaMWNByNyA/KN5zSpeGObSZ7PjMmNg0Rs9pgU75l9HQYouHaPeG0vgf5bcaoqGAujrrlM=
-Received: from AM7PR04MB6885.eurprd04.prod.outlook.com (2603:10a6:20b:10d::24)
- by AM7PR04MB6903.eurprd04.prod.outlook.com (2603:10a6:20b:10d::9) with
+ bh=iH3l9b9i5qx4cRWNhl0LBfmDOIdARY0QI6f5WKAYP/I=;
+ b=d1vnUlGhoSf19DkLbGm3CQa0ghFd5Tw9UBbFm8yNMCSPAe377sKk5NEBJgcVD6mBxWMFnbv5q6DQNPfx5oqz7j7xipZdXeCDsbK1+ovWzCTATCMpGTiQFh4SIvw7x+bD1S1j6XbSeOFP4xhpg6247bbBqpzWsLC/3Dp8g3w0AR4=
+Received: from DM6PR11MB3721.namprd11.prod.outlook.com (2603:10b6:5:142::10)
+ by DM6PR11MB2668.namprd11.prod.outlook.com (2603:10b6:5:c7::14) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3611.20; Tue, 1 Dec
- 2020 02:38:33 +0000
-Received: from AM7PR04MB6885.eurprd04.prod.outlook.com
- ([fe80::a90d:1d14:7235:b56f]) by AM7PR04MB6885.eurprd04.prod.outlook.com
- ([fe80::a90d:1d14:7235:b56f%4]) with mapi id 15.20.3611.031; Tue, 1 Dec 2020
- 02:38:33 +0000
-From:   "Y.b. Lu" <yangbo.lu@nxp.com>
-To:     Shawn Guo <shawnguo@kernel.org>, Michael Walle <michael@walle.cc>
-CC:     Vladimir Oltean <vladimir.oltean@nxp.com>,
-        Leo Li <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3611.24; Tue, 1 Dec
+ 2020 02:53:26 +0000
+Received: from DM6PR11MB3721.namprd11.prod.outlook.com
+ ([fe80::51e0:f848:dadc:bc01]) by DM6PR11MB3721.namprd11.prod.outlook.com
+ ([fe80::51e0:f848:dadc:bc01%4]) with mapi id 15.20.3611.025; Tue, 1 Dec 2020
+ 02:53:26 +0000
+From:   "Wan Mohamad, Wan Ahmad Zainie" 
+        <wan.ahmad.zainie.wan.mohamad@intel.com>
+To:     Vinod Koul <vkoul@kernel.org>
+CC:     "kishon@ti.com" <kishon@ti.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Ashish Kumar <ashish.kumar@nxp.com>
-Subject: RE: [PATCH] arm64: dts: ls1028a: make the eMMC and SD card
- controllers use fixed indices
-Thread-Topic: [PATCH] arm64: dts: ls1028a: make the eMMC and SD card
- controllers use fixed indices
-Thread-Index: AQHWvovBvcqJCTixR025fdiTeTkR06nQRXqQgAB88ACABimgIIAAB1IAgAAEgOCAAAokAIAAAQaQgAAZ0oCAAARV8IAAC5AAgAD/ncCAAF+YgIAIQVaAgADLcWA=
-Date:   Tue, 1 Dec 2020 02:38:33 +0000
-Message-ID: <AM7PR04MB68854DC5F2C391130581FD8DF8F40@AM7PR04MB6885.eurprd04.prod.outlook.com>
-References: <VI1PR04MB6896C22F6B304F365C3BA626F8FB0@VI1PR04MB6896.eurprd04.prod.outlook.com>
- <71a86b0fbc95892f8fd240e0919e7e23@walle.cc>
- <AM7PR04MB6885CA8A965A49C456454254F8FB0@AM7PR04MB6885.eurprd04.prod.outlook.com>
- <3293d698bf26ecf08f22e7e2ffe55e74@walle.cc>
- <AM7PR04MB688518B8AE836C2CC37FED6AF8FB0@AM7PR04MB6885.eurprd04.prod.outlook.com>
- <20201124103128.zucizod344dgme4o@skbuf>
- <AM7PR04MB688567CA698191E2DB73DEF5F8FB0@AM7PR04MB6885.eurprd04.prod.outlook.com>
- <20201124112822.2ui57jmoc73top35@skbuf>
- <AM7PR04MB688524B26F99EB2C5B86ED48F8FA0@AM7PR04MB6885.eurprd04.prod.outlook.com>
- <31db48954bdf02fc0af73871043fc76b@walle.cc> <20201130142918.GJ4072@dragon>
-In-Reply-To: <20201130142918.GJ4072@dragon>
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "andriy.shevchenko@linux.intel.com" 
+        <andriy.shevchenko@linux.intel.com>,
+        "mgross@linux.intel.com" <mgross@linux.intel.com>,
+        "Raja Subramanian, Lakshmi Bai" 
+        <lakshmi.bai.raja.subramanian@intel.com>
+Subject: RE: [PATCH v4 0/2] phy: intel: Add Keem Bay USB PHY support
+Thread-Topic: [PATCH v4 0/2] phy: intel: Add Keem Bay USB PHY support
+Thread-Index: AQHWvBF/Fs+HoW0qd0q8yG+/Th9nsqngh5qAgAEadwA=
+Date:   Tue, 1 Dec 2020 02:53:26 +0000
+Message-ID: <DM6PR11MB3721B396A85CF22987DD0F4FDDF40@DM6PR11MB3721.namprd11.prod.outlook.com>
+References: <20201116120831.32641-1-wan.ahmad.zainie.wan.mohamad@intel.com>
+ <20201130100211.GL8403@vkoul-mobl>
+In-Reply-To: <20201130100211.GL8403@vkoul-mobl>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+dlp-version: 11.5.1.3
 authentication-results: kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
-x-originating-ip: [119.31.174.73]
+ header.d=none;kernel.org; dmarc=none action=none header.from=intel.com;
+x-originating-ip: [192.198.147.212]
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: 1f2dfef9-3c0d-4546-d3b5-08d895a2322b
-x-ms-traffictypediagnostic: AM7PR04MB6903:
+x-ms-office365-filtering-correlation-id: 9ef9154a-4a17-43b7-d597-08d895a4469b
+x-ms-traffictypediagnostic: DM6PR11MB2668:
 x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <AM7PR04MB69030ADD36FB47DAED2AB355F8F40@AM7PR04MB6903.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8882;
+x-microsoft-antispam-prvs: <DM6PR11MB266876CC9CEA63503ADBBD7FDDF40@DM6PR11MB2668.namprd11.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:2399;
 x-ms-exchange-senderadcheck: 1
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: TVW0So0TFqnpEzYFGpAs1CVhgt1k8HFgHOswkbCUgW6UulpK77wmrOrLY/cWE1dqMqTsZ6Cc1424c7OEbvYKs1cTe1YrHj/UrVgEIM+pFhX3Jl/DEJRh+HqYKv44MPMPl/JnpuFQfKwNffgFfL28HSlx/SBTAHeDxIBAXGCsxpa94JEpmrKUp+PwCIIzyEIZOKF6EORmjy1CjJ7B1QRbhuqQ/E94/YzO0ddW+mwHvuhBsZlLaUCYbGWv8yKNA9Z+cpqxeFmdHuOg9aew5+B6pcimcsfTrDX1geYZ9QOues69VJPVDjpl9TB54q4IQmteHdYIxxhdnAuXorGoy5Vp0Q==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR04MB6885.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(39850400004)(376002)(346002)(136003)(396003)(52536014)(4326008)(5660300002)(71200400001)(86362001)(2906002)(66946007)(66556008)(66446008)(64756008)(76116006)(9686003)(478600001)(110136005)(7696005)(316002)(54906003)(8676002)(55016002)(66476007)(8936002)(186003)(6506007)(26005)(33656002)(53546011)(83380400001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: =?us-ascii?Q?qih9OAtCpwYixQkLrDOg/tLZKsrzFJVF+6Asl1WoocoURjrhBqb5LE41V/h4?=
- =?us-ascii?Q?M+rZSuoppeitmo7Zu8chAXT+tIu0ULE8fXR76G2XMAPOasTEXsRbtd05nawY?=
- =?us-ascii?Q?KodGnF+KtvN1xUgpzwVXEwmKDuDV0H4NGKA8pp3TtbsdeNxMLjisN5u0HT/O?=
- =?us-ascii?Q?mchD+U85rAefYXwcch4oh91RXeK38t5FR8GhElaiIJSCYc6QiAUcv/U0vVWQ?=
- =?us-ascii?Q?wGW6UqsWTupa9wtzfGaG/X+CnzwmyFPMZ2+LnhnJwIo8AIfymH1Dg0f3BVJj?=
- =?us-ascii?Q?OnXnmaYRgich5abywF7SIozhsYAmjGIcMf7SC1APOF8L8JLu23wxtYwQOTjG?=
- =?us-ascii?Q?vv8Iw/EYzeRnH+XpQJxQG5efptNuEQ3fHklwSifIWrF9o5LuinK25FygYwOG?=
- =?us-ascii?Q?Rhm8MPnw6btEI9Rncj4W/hcj/oDyBEoVjMLP3HqhzvTxyIhQhBOv2m/dyoJS?=
- =?us-ascii?Q?pTcwT5I4Pkrdv31eIhqVEb5UWd0bGA5/euCNE69NQPhF7+656FdDseEZBITl?=
- =?us-ascii?Q?6kat5IYxrmVWW6e4O82RcoE8mFV4OE1Bs0+ouyrrhK3bDMBqds1IEdu4Jtdv?=
- =?us-ascii?Q?crfhInbEPBliC4woPZhpgZSVE7I+AIwwxJz4Mau83aeo2gjSVpUkhn1D2uqF?=
- =?us-ascii?Q?+gWc11Ef9W8xG5J1V5d+LURP287N1yAfNc5bZ8eCmToR5XcRKhMVH8qfUhJk?=
- =?us-ascii?Q?gLeDVRsgOdD62VkEGi/FWRqATtXuufWUmPfVGEmGCLdaN8Rc9Xs44RavUaqM?=
- =?us-ascii?Q?uR6miSpQBiiXFryw7G5vemh6KYx5AkCv3pblb+sVfus3BZB8vLtqMoMUQkYK?=
- =?us-ascii?Q?tjIKILeqAgXCoBwCDgEaioaymhMCflWYPf375ymSp9u+GAn/rg4zASII0ZaX?=
- =?us-ascii?Q?UzlvQmNfy4wTRbakLtR6az9229lj1icPrslfJJY7cBlkLFimYsl6+tUuYL1r?=
- =?us-ascii?Q?IPlz/tdo13N/xeC0L8MUrdzhaUi7F8y1N3WvdPu7qmE=3D?=
+x-microsoft-antispam-message-info: MM829IDz5eLIab6xHolNt21Shl+PqPWQpEFQV/TChfzJ35g/ZgyVQN5+HB0f2WaeI5tYZbPCr9mSIVUAic9Z7BnXcus4lTDc3uULs2ap98si2sJ9HbLdstBY82ihxjp//6cdrgOJe+JMFiWqjO5+0lCE8hqV7MTjmUAz2aZh+U0D9cHF6ADZqLRaF6PcyBe+0Nj1tEPkbKQidxR3az2dV/a3TEeskHAin0mUCr/h32YcWrK3jpTV/89tbhJUWfXBccMA2EGGfXOD30gLsX4p+li2XXnxPqiG3vnGRzR0tUypEw5luoMv5US0+oy/vaWs0uUoRTyU/J/jjOc4jiEoKA==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR11MB3721.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(39860400002)(346002)(396003)(136003)(376002)(8676002)(71200400001)(316002)(54906003)(86362001)(7696005)(55016002)(186003)(4326008)(478600001)(9686003)(8936002)(26005)(66446008)(83380400001)(66556008)(64756008)(53546011)(76116006)(66476007)(66946007)(33656002)(4744005)(52536014)(6506007)(5660300002)(2906002)(6916009);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata: =?us-ascii?Q?uLyYWDoeTHVV3rsvoTm49p5Q+eXpndQaxCkhr0MvE5BI0b9uVkTAVzlxTygM?=
+ =?us-ascii?Q?S/rEzSzD14Ddy+ni2kM/MUQoBb+PCgTwgG/ED3db9Saww4HB0L1om1w+aITl?=
+ =?us-ascii?Q?VxuOhSEnWjBdcKDgjh/6LHHcGyj78Ea2vjA/xzUnX1BIseJa23p424xsdBEm?=
+ =?us-ascii?Q?+3AsW/P7e8ut6WM/iiy3Wxnd4Et683MN2c6PTnV6dljNaYpxFCZscx/t+c3z?=
+ =?us-ascii?Q?iKlDlBH+fnQm61NnoblCkUVo5gRd0Vuoyf96rp1SnPn42hoG01N8xc705l2K?=
+ =?us-ascii?Q?5Gj24bUdyJ+U1WsKvs5Go555bxkEJlecKmi1tXyUxrovUVBUOffn+hjVH1NV?=
+ =?us-ascii?Q?DI0iCKfWDPIKentJVYsyO3S8Wh3W/WMOmHa32/OjsmMWMVc0pEjcGyc4AxoH?=
+ =?us-ascii?Q?vTziLLChqAKFxhVYTkNF/0XMqDpNLiNH+S+vi2RoiFkN2nuEQUd8TuWwWM75?=
+ =?us-ascii?Q?Oh9+qMmiFOlTznsqEYpuWDcfnYvZGfOlAuIvXLU3K1jtUDnDy05UjhuXymwv?=
+ =?us-ascii?Q?M12K/VP1FtEkbKjUuS7INmNCbkNpPZDK47wR3TWFbqBXtCBSvmS7Y4kceRhc?=
+ =?us-ascii?Q?Rq02FnxjHC5KBaqeXjL85nWJ2vmpeAiii8vNDhE1cQiKw7DtVZeVDM2BDZBS?=
+ =?us-ascii?Q?Bkd5F2poTYS8IZ55VtppRgP1WRLvm0XfBOR3JiQuOv3NWfF5B3+A8FzpTSXT?=
+ =?us-ascii?Q?B2PAfUkrCtJEpY70ocDDIzeyt5xTDE7Mg7WjbTT0waQW9wGdEKVxtD9v1pIV?=
+ =?us-ascii?Q?tpfbzstV9TDMN3PxGnD5mJXON9/3vRIBrei8J/b+E3T9PrSgSEmaPg/HCZ+v?=
+ =?us-ascii?Q?tVSEB5CPVx8V6SiRt1G7raWndMkRoymsdul7CRWWlgJrZ8iLGAudNG68+5Ns?=
+ =?us-ascii?Q?Afzg606Mkicjdf0V+/L7i9Apgn1DxBFIja8MaT1b/GzuT4+bp8BrrEh/tkoa?=
+ =?us-ascii?Q?Yov8aE0us7dIrbMajZsn44Kmk27uDiTzk+Gp3zK8yrI=3D?=
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AM7PR04MB6885.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1f2dfef9-3c0d-4546-d3b5-08d895a2322b
-X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Dec 2020 02:38:33.1600
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB3721.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9ef9154a-4a17-43b7-d597-08d895a4469b
+X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Dec 2020 02:53:26.3169
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: hIae2l1rQgW1xjZomShIsq96pgBdrUWGaLyE3jOunVk8jZDenT9Sb+m0BCY9HavCAiiRvpDSGkZo2e4uDl6IQA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM7PR04MB6903
+X-MS-Exchange-CrossTenant-userprincipalname: cwyhwV6ezneEbgq+1JBLRLpMuRB0StYCfiJ87UpSLBg+x3GOQgu+TggLrqAFBd7bjonJk/K5TdUkV6mpf0INDvHAdtoXBPy/y9cDTK7+LyGvoRUzLEA8QllNCsHNQBlW
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB2668
+X-OriginatorOrg: intel.com
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Thanks Vinod.
+
 > -----Original Message-----
-> From: Shawn Guo <shawnguo@kernel.org>
-> Sent: Monday, November 30, 2020 10:29 PM
-> To: Michael Walle <michael@walle.cc>
-> Cc: Y.b. Lu <yangbo.lu@nxp.com>; Vladimir Oltean
-> <vladimir.oltean@nxp.com>; Leo Li <leoyang.li@nxp.com>; Rob Herring
-> <robh+dt@kernel.org>; linux-arm-kernel@lists.infradead.org;
-> devicetree@vger.kernel.org; Adrian Hunter <adrian.hunter@intel.com>; Ulf
-> Hansson <ulf.hansson@linaro.org>; linux-mmc@vger.kernel.org;
-> linux-kernel@vger.kernel.org; Ashish Kumar <ashish.kumar@nxp.com>
-> Subject: Re: [PATCH] arm64: dts: ls1028a: make the eMMC and SD card
-> controllers use fixed indices
+> From: Vinod Koul <vkoul@kernel.org>
+> Sent: Monday, November 30, 2020 6:02 PM
+> To: Wan Mohamad, Wan Ahmad Zainie
+> <wan.ahmad.zainie.wan.mohamad@intel.com>
+> Cc: kishon@ti.com; robh+dt@kernel.org; linux-kernel@vger.kernel.org;
+> devicetree@vger.kernel.org; andriy.shevchenko@linux.intel.com;
+> mgross@linux.intel.com; Raja Subramanian, Lakshmi Bai
+> <lakshmi.bai.raja.subramanian@intel.com>
+> Subject: Re: [PATCH v4 0/2] phy: intel: Add Keem Bay USB PHY support
 >=20
-> On Wed, Nov 25, 2020 at 09:25:23AM +0100, Michael Walle wrote:
-> > We are going cirlces here. I guess Shawn (as the soc maintainer) has to
-> > step in and decide if a common soc include should contain aliases for
-> > nodes which are disabled. That is what it boils down to.
+> On 16-11-20, 20:08, Wan Ahmad Zainie wrote:
+> > Hi.
 > >
-> > All other arguments against having aliases in the common include can be
-> > found in this thread.
-> >
-> > > Distros, bootloaders, and users' cases using fixed index before could
-> > > avoid issues, and been used as they were.
-> >
-> > Nobody argue against having these alias. We are arguing against having
-> > them in the common soc include.
+> > Intel Keem Bay USB subsystem incorporates DesignWare USB3.1
+> > controller, an USB3.1 (Gen1/2) PHY and an USB2.0 PHY. It is a Dual
+> > Role Device (DRD), operating as either a USB host or a USB device.
 >=20
-> 342ab37ecaf8 ("arm64: dts: freescale: use fixed index mmcN for
-> layerscape") is dropped from my tree.
-
-Ok, fine. Let me send board dts patches for NXP development boards instead.
-Thanks.
-
+> Applied all, thanks
 >=20
-> Shawn
+> --
+> ~Vinod
