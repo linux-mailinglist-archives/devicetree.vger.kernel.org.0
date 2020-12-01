@@ -2,129 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A70732C97FE
-	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 08:20:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 33CAF2C97C5
+	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 08:04:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727791AbgLAHTe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Dec 2020 02:19:34 -0500
-Received: from mout.gmx.net ([212.227.15.19]:43011 "EHLO mout.gmx.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727102AbgLAHTd (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 1 Dec 2020 02:19:33 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1606807025;
-        bh=5CW4HOQArD0ga03PAufrXrrqr/PGZhg5w5QyN9LY5+w=;
-        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=dg6UYBrRE4m7GWZcAN2j1qNMHWUO0AYCJiSafjFy9jcQbH/SIOebw5Ds5kyt7OXO1
-         BdBYum4+sqr0YFVnqrCKym+4YGVZzihT+nnTngUyhKShWC/E1WiiAuepb1FbZsHa/a
-         PD6+MQL1hRaxiRDSRjVnFsufu9H0x1HB+ZXhCpfM=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from longitude ([37.201.214.162]) by mail.gmx.com (mrgmx005
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1MuUnA-1jtXud0Y9C-00rUKI; Tue, 01
- Dec 2020 08:17:05 +0100
-From:   =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
-To:     linux-kernel@vger.kernel.org
-Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Heiko Stuebner <heiko.stuebner@theobroma-systems.com>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Lubomir Rintel <lkundrak@v3.sk>,
-        Mark Brown <broonie@kernel.org>, allen <allen.chen@ite.com.tw>,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org, linux-pwm@vger.kernel.org,
-        linux-rtc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Heiko Stuebner <heiko@sntech.de>,
-        Josua Mayer <josua.mayer@jm0.eu>,
-        Andreas Kemnade <andreas@kemnade.info>,
-        Arnd Bergmann <arnd@arndb.de>, Daniel Palmer <daniel@0x0f.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>
-Subject: [PATCH v5 6/7] MAINTAINERS: Add entry for Netronix embedded controller
-Date:   Tue,  1 Dec 2020 02:15:12 +0100
-Message-Id: <20201201011513.1627028-7-j.neuschaefer@gmx.net>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20201201011513.1627028-1-j.neuschaefer@gmx.net>
-References: <20201201011513.1627028-1-j.neuschaefer@gmx.net>
+        id S1727194AbgLAHBv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Dec 2020 02:01:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60734 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727173AbgLAHBv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Dec 2020 02:01:51 -0500
+Received: from mail-pj1-x1041.google.com (mail-pj1-x1041.google.com [IPv6:2607:f8b0:4864:20::1041])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 841EDC0613CF;
+        Mon, 30 Nov 2020 23:01:11 -0800 (PST)
+Received: by mail-pj1-x1041.google.com with SMTP id b12so659889pjl.0;
+        Mon, 30 Nov 2020 23:01:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=Ngvoe86XzVxBfY2DEjilLAjY3kEDlzG9OjcsBvIxHYc=;
+        b=QC+OVFANJzpHO5Nu2sN5nqotWc9pcesf/sigDDcm6aqOkldfQm4AfMiaC2JDVkI/Ip
+         8cY2gdBKRIKQGZdEx31oqyGP3/XKRiZ7mIZW4mjht2qjQPlDHOI28pJfkefwrX7IQ4d+
+         /Y7eJQD/egEq4oTf5gWW4EAUzFT6R0MkDRVeqhSurz7/grGLdwpfILvZqBhPwfYIwTzG
+         88/997TMGVZJteafhUXdbYd7dfeUtHuqs62tLTPrCcJx2n4z8meRgMElfKG89NSRV2kh
+         nd9r6wP7hyhNtv0JstzmfuGeQGMxx6Ev8ekD24DJlynRN5h9f2LJlRK8xmTDBpzytmmJ
+         5Kcw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=Ngvoe86XzVxBfY2DEjilLAjY3kEDlzG9OjcsBvIxHYc=;
+        b=sl3WU3BBrp5r8Zn77nA7+gW7krwoDa50sEVExcSD8SbpqQSzuck6zQlF7V0uxEfoUO
+         Jop85vUN81Eat4wZwbjnCYqq092RyN6PnsYa4WOlMijCVUJok8UEvtPF0WoNPZQfbJAo
+         MRiCHHbrNp0oe4psTgcV2BFhv4PKlNY6pJfMIZNjJPX8Y9QHneaZk/a3+fwJUGWY2zBW
+         7KbZUZKp3CXduyRVicNeDJoVnuFA1nxq0KnOOBCzBN8gRFV4fa7xXp3ALiDPXVbftkhk
+         xTgX40VPJRYbGdzX9XZFpVvOy7dEZl1oT5yUQUgTFgNK+kv48pq9bu8wFf267zLh5wt4
+         fXyA==
+X-Gm-Message-State: AOAM532BFw79wseF7MHJHOolrcBc/hnMTZ3UOfRDe3jkpm2p3vqJOw71
+        3tmuo+TK7NuGCioXWJ6Cy7MuzmdywPI=
+X-Google-Smtp-Source: ABdhPJziOej+w4a6O49GSjDIbdGXWv7MO0iRD/vkiANDYmPRC/F/ol3EWWwMWIheOlYhLAo4N3Wh6w==
+X-Received: by 2002:a17:90a:7343:: with SMTP id j3mr1333032pjs.51.1606806070980;
+        Mon, 30 Nov 2020 23:01:10 -0800 (PST)
+Received: from dtor-ws ([2620:15c:202:201:a6ae:11ff:fe11:fcc3])
+        by smtp.gmail.com with ESMTPSA id h5sm1437075pfk.126.2020.11.30.23.01.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 30 Nov 2020 23:01:08 -0800 (PST)
+Date:   Mon, 30 Nov 2020 23:01:06 -0800
+From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To:     Jeff LaBundy <jeff@labundy.com>
+Cc:     robh+dt@kernel.org, linux-input@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/2] input: Add support for Azoteq IQS626A
+Message-ID: <20201201070106.GS2034289@dtor-ws>
+References: <1606084748-4097-1-git-send-email-jeff@labundy.com>
+ <1606084748-4097-3-git-send-email-jeff@labundy.com>
+ <20201123070307.GE2034289@dtor-ws>
+ <20201124001516.GA6249@labundy.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:0jQyFfee5jYVyk0F/4yqqagvTFNbSZgQo8QuIW7MRTI/7zgyN7O
- NUPnrSUmpRGSqdeGOZoszPfCMlM6oNVN7LlIDRyjrTDO/h2Qn2gaIC8vA5IhmuJ39Pooz36
- nlM/3P1J61T/bKwoiQ9XGdmXuOgBPWty5Tp896ty8u15ZklcEffVY4tHUDmyeiTygJUFOMa
- 1jTKwKhGfkQhxC+YQ07JQ==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:vBQhdFPsBIU=:sBSq7NRSzSOvrGYzREJRwQ
- JAUmJhJCCo2QWEY4ELIVfJ5db0D5qCziYoafcpbVi9eXgeGKsz9ly1m7kP9psevyA0CRzTaZk
- mx5ITA0z3I4XAI8elaakBesiuQ+olW0TtfQi6znOdrAF+NO9bBJl9T89X5RL3yA7JG5KV8/KJ
- 9nbLmVF7m9V8FRrZ38J4cavpIgH28qHVltqbnBaemvtcf+YwRnmNCmvQWer160oJmncM3WrKj
- LTnJZpfq4/dZv5OulQuNSWF/1c8KnSK7xvGPu02lRhFvLYsxDipAwcQ1ClynpJ1guu5JwfhK9
- 7d1n578hVnlwwfo2J1QM4HnCCT+uNNABew925vgnMJ5NESnLFoz0+7EGR31eMxUDtfzZLhnLQ
- ///6pfpoHKaJzyrJoqEWliVBJnmJa87kfP6L+x8YSuw7mpCGbNdFc6fDwOtoRdgJmNVgkOgQ5
- eOq9bJqF+8AQOlHzCike98dTFbxR0iGQubXTmLV8MP1ascXtQgFHR5N2zwSCXIjURYKKUPbHm
- 3rTqYmp3jbMR8DujI1j/2VLzotzg/e72fGtYcRKQU+BbvbN8I/QWB/YFnlG8TER6TvTBMiKFT
- gR7XPxcXpnRlLNYrT1ovBNDA6YHoyL53yDlykYVZPGCnTnocnA5kb165snzA0lsxVemf6K8hn
- CAx81MvqazviJkZVLK4H+24IUmt4gHaXtZpMiGBDVM0bWbF0PzImjfhxNK1Dco1ck148nU7/z
- oQBOXXg3a2LArpzN/mKHYgaAwaVzDl8ZabZ+VIOymqwaXD/TJgvtUSi+bNBZOo/Ij9Ld7yABE
- nesgWiqzwgvsfPlj6OU0dJDO/0546Ey1TL91HlyI+zt+ilon/zM04bLCqqTRu4IJjrV8L+9P3
- FkkPw9ub4bekq1pu3bAw==
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201124001516.GA6249@labundy.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Let's make sure I'll notice when there are patches for the NTXEC
-drivers.
+On Mon, Nov 23, 2020 at 06:15:16PM -0600, Jeff LaBundy wrote:
+> Hi Dmitry,
+> 
+> Thank you for taking a look.
+> 
+> On Sun, Nov 22, 2020 at 11:03:07PM -0800, Dmitry Torokhov wrote:
+> > Hi Jeff,
+> > 
+> > On Sun, Nov 22, 2020 at 04:39:08PM -0600, Jeff LaBundy wrote:
+> > > +
+> > > +		if ((sys_reg->active & tp_mask) == tp_mask)
+> > > +			input_set_abs_params(iqs626->trackpad,
+> > > +					     ABS_X, 0, 255, 0, 0);
+> > > +		else
+> > > +			input_set_abs_params(iqs626->trackpad,
+> > > +					     ABS_X, 0, 128, 0, 0);
+> > > +#ifdef CONFIG_TOUCHSCREEN_PROPERTIES
+> > > +		touchscreen_parse_properties(iqs626->trackpad, false,
+> > > +					     &iqs626->prop);
+> > > +#endif /* CONFIG_TOUCHSCREEN_PROPERTIES */
+> > 
+> > This should not be separately selectable from CONFIG_INPUT, so there is
+> > not need to have this guard.
+> > 
+> > The reason it is a separate symbol is historical - it used to depend on
+> > OF in addition to INPUT. I suppose I can drop it now.
+> 
+> Without these guards, the build fails if CONFIG_INPUT_TOUCHSCREEN=n and
+> I felt it too heavy-handed to add a 'depends on' for what is ultimately
+> a corner-case of sorts for this device.
 
-Signed-off-by: Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>
-=2D--
+Ah, I missed the fat that we got outside of the
+drivers/input/toucscreen.
 
-v4, v5:
-- no changes
+> 
+> The touchscreen helpers are useful for more than just touchscreens, and
+> we can extend them to all of input with something like the patch below.
+> If it looks OK to you, I can insert it into v2 after I collect feedback
+> from Rob for the binding.
 
-v3:
-- https://lore.kernel.org/lkml/20200924192455.2484005-7-j.neuschaefer@gmx.=
-net/
-- Remove pwm and rtc bindings
+Yes, I guess we should move into core. Can you move the file into
+drivers/input and maybe we should rename it into touch-properties.c? And
+start renaming the API form touchscreen_*() to touch_()?
 
-v2:
-- https://lore.kernel.org/lkml/20200905144503.1067124-2-j.neuschaefer@gmx.=
-net/
-- No changes
-=2D--
- MAINTAINERS | 9 +++++++++
- 1 file changed, 9 insertions(+)
+Thanks.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 2daa6ee673f7f..9eedf3c1e1e09 100644
-=2D-- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -12087,6 +12087,15 @@ F:	include/net/netrom.h
- F:	include/uapi/linux/netrom.h
- F:	net/netrom/
-
-+NETRONIX EMBEDDED CONTROLLER
-+M:	Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/mfd/netronix,ntxec.yaml
-+F:	drivers/mfd/ntxec.c
-+F:	drivers/pwm/pwm-ntxec.c
-+F:	drivers/rtc/rtc-ntxec.c
-+F:	include/linux/mfd/ntxec.h
-+
- NETRONOME ETHERNET DRIVERS
- M:	Simon Horman <simon.horman@netronome.com>
- R:	Jakub Kicinski <kuba@kernel.org>
-=2D-
-2.29.2
-
+-- 
+Dmitry
