@@ -2,66 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 81D162C94C2
-	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 02:39:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D2AD2C94C8
+	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 02:40:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730675AbgLABjI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Nov 2020 20:39:08 -0500
-Received: from mail-io1-f66.google.com ([209.85.166.66]:32974 "EHLO
-        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730096AbgLABjI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Nov 2020 20:39:08 -0500
-Received: by mail-io1-f66.google.com with SMTP id o8so25543ioh.0;
-        Mon, 30 Nov 2020 17:38:47 -0800 (PST)
+        id S1731261AbgLABjq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Nov 2020 20:39:46 -0500
+Received: from mail-il1-f196.google.com ([209.85.166.196]:33790 "EHLO
+        mail-il1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731246AbgLABjq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Nov 2020 20:39:46 -0500
+Received: by mail-il1-f196.google.com with SMTP id y9so133360ilb.0;
+        Mon, 30 Nov 2020 17:39:31 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=9OeJWnpbG+zxIgcKq2BZN7xUVLsnki92nBChXkb1cmI=;
-        b=Msj8lApcPzVsEJMxwQN1srBwyHwxKqBvNk5ewffSXh5IMfutsmnCHnUXCwxkQksAig
-         qnoEG79u6khGXQrqQBH/YYlxw/KATJgC+wfRr1uRN60X58WX2Bvi+nvXonXtWvB/VhfA
-         KxluVMYfc5w8zqg2+sw4ML8t6DYIv7fudq1shVVq3m/I4uBeCs0Udl9+MIPwZMOcjr4+
-         9fsZQBk2tFSfwfvmLBkkto0xGQBpIcCSMuwKHShCF0C41EX81AIUvyD0d/m/X8OmLYa2
-         jXqnGIV/H2xL6VjOiEcH3B3omam8zrUCj9/Tn4fms5U2XSlZlq8uSDdYFKZ52XoLsDs3
-         RAcw==
-X-Gm-Message-State: AOAM5311B+Lio46dcIg2e2ndoj/R0MuNeexivYmQG9XeNQu5T2qKjIED
-        IWiu8JTl7r5j67qosg+LlRdEDFEqiw==
-X-Google-Smtp-Source: ABdhPJzrq8Yv7N2B6nNUFmcDmw4WI9s3GELNLVyNe56+SfGH0bGJAoULzpnvsJAhGQBOTZF6dW3PPg==
-X-Received: by 2002:a05:6638:526:: with SMTP id j6mr588070jar.1.1606786701660;
-        Mon, 30 Nov 2020 17:38:21 -0800 (PST)
+        bh=aFtL1H7loFGYO+c900rrh3RzbynWEEM3DE8u4tmHGbM=;
+        b=nrDmcr7YI8dey3T4O9114EAK9SJG9MtMiU5IK6+Rc7V2rWQWuEqSx0Cxy8Z2zVvCeG
+         87vefrNLALNa+cyCQ/37+py816XZ+duZov8KNfl40HBcgpKW+9YHZ3ZSSYeC4CaUV3uy
+         Q1621+yjRCmX6rj0gW0hT2cQyLn1/6vC0W05I3fdRRjmFFMCdqtoNNhIP9y+zxX7lhC9
+         6my3ePerLFyNOmzbSvh2FCeg7trwbd7XPA7+5DPZGnuyZUeLhXkJSHj31mAUElH0L6on
+         y1ebzjCPiOdaN6ulYpP5wwcAaNsg1S5QkXFmDbnB7TJyisiN2ddNVVxRjNLvsWjJtIVQ
+         MyGw==
+X-Gm-Message-State: AOAM531DMBgjbuoUoxIKLlh/4wLtdCBbI9uYVabkGJAC2y/HS9Qadg5a
+        MOIztBex28Fys7kFQrmmQg==
+X-Google-Smtp-Source: ABdhPJxdjICj/+PdHev1sJ928jx+YdcRmxgrh97vCxIJcSSvxnlhvW632SpflFpFKHB24PLed3NLMw==
+X-Received: by 2002:a92:6e05:: with SMTP id j5mr545097ilc.136.1606786745651;
+        Mon, 30 Nov 2020 17:39:05 -0800 (PST)
 Received: from xps15 ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id o10sm188296ili.82.2020.11.30.17.38.20
+        by smtp.gmail.com with ESMTPSA id s17sm188876ilj.25.2020.11.30.17.39.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Nov 2020 17:38:20 -0800 (PST)
-Received: (nullmailer pid 3445725 invoked by uid 1000);
-        Tue, 01 Dec 2020 01:38:19 -0000
-Date:   Mon, 30 Nov 2020 18:38:19 -0700
+        Mon, 30 Nov 2020 17:39:04 -0800 (PST)
+Received: (nullmailer pid 3446943 invoked by uid 1000);
+        Tue, 01 Dec 2020 01:39:03 -0000
+Date:   Mon, 30 Nov 2020 18:39:03 -0700
 From:   Rob Herring <robh@kernel.org>
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     devicetree@vger.kernel.org, mturquette@baylibre.com,
-        linux-arm-msm@vger.kernel.org, vkoul@kernel.org,
-        bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        linux-clk@vger.kernel.org, sboyd@kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [RESEND PATCH v4 5/6] dt-bindings: clock: Add GDSC in SDX55 GCC
-Message-ID: <20201201013819.GA3445671@robh.at.kernel.org>
-References: <20201126072844.35370-1-manivannan.sadhasivam@linaro.org>
- <20201126072844.35370-6-manivannan.sadhasivam@linaro.org>
+To:     Dong Aisheng <aisheng.dong@nxp.com>
+Cc:     linux-imx@nxp.com, linux-mmc@vger.kernel.org,
+        Haibo Chen <haibo.chen@nxp.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH RESEND v4 01/18] dt-bindings: mmc: imx: fix the wrongly
+ dropped imx8qm compatible string
+Message-ID: <20201201013903.GA3446913@robh.at.kernel.org>
+References: <20201126105900.26658-1-aisheng.dong@nxp.com>
+ <20201126105900.26658-2-aisheng.dong@nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201126072844.35370-6-manivannan.sadhasivam@linaro.org>
+In-Reply-To: <20201126105900.26658-2-aisheng.dong@nxp.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 26 Nov 2020 12:58:43 +0530, Manivannan Sadhasivam wrote:
-> Add GDSC instances in SDX55 GCC block.
+On Thu, 26 Nov 2020 18:58:43 +0800, Dong Aisheng wrote:
+> The compatible string "fsl,imx8qm-usdhc" was wrongly dropped in patch:
+> commit 80fd350b9590 ("dt-bindings: mmc: fsl-imx-esdhc: Fix i.MX 8 compatible matching")
+> Add it back.
 > 
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> Cc: Haibo Chen <haibo.chen@nxp.com>
+> Cc: Krzysztof Kozlowski <krzk@kernel.org>
+> Cc: Ulf Hansson <ulf.hansson@linaro.org>
+> Fixes: 80fd350b9590 ("dt-bindings: mmc: fsl-imx-esdhc: Fix i.MX 8 compatible matching")
+> Signed-off-by: Dong Aisheng <aisheng.dong@nxp.com>
 > ---
->  include/dt-bindings/clock/qcom,gcc-sdx55.h | 5 +++++
->  1 file changed, 5 insertions(+)
+>  Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
 
 Acked-by: Rob Herring <robh@kernel.org>
