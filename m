@@ -2,148 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F8092C9780
-	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 07:22:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A70732C97FE
+	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 08:20:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726213AbgLAGWW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Dec 2020 01:22:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54716 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725859AbgLAGWW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Dec 2020 01:22:22 -0500
-Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com [IPv6:2a00:1450:4864:20::441])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4015C0613CF;
-        Mon, 30 Nov 2020 22:21:41 -0800 (PST)
-Received: by mail-wr1-x441.google.com with SMTP id i2so810167wrs.4;
-        Mon, 30 Nov 2020 22:21:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id;
-        bh=B4+vAwQ0XCGKpTMOHLaGMHXIiumHxrp3xUNQ40+C1+8=;
-        b=rXJKZ0qW5KrSEWabbe0E2m7shheeGE//k5UkLxCKEibmNwbb3xc2/iAp3VyX58+7/P
-         QibHPg4Rhn/mQDnynGzpK6nPXS984H0gSIdB75Yht6kObRNXRmFrav4WPk7Rws2+J1FS
-         z50xoyhegyr/gZVre+FVn898P1i3GnhQIGqNq3I4eUVPbAIObq5xocfqUFkbw2pDA+Vg
-         kjjCYdoud/eT+Bibe+X3EriN1zWQjnwYjoggn9uRkKpHLgb/S8eZNXZDtxK5ZMo+zfvC
-         +3nTGhXnVkOQvNqZc34EioGCAE0i39rO8Icpqr7eEeNcTXttvOZQ1mW1xnsNgmIBt098
-         1wyQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=B4+vAwQ0XCGKpTMOHLaGMHXIiumHxrp3xUNQ40+C1+8=;
-        b=N0xM2lQQvQgsH5qO7JEE8Hl2K9CqgnJOT838Q7/9rMx6kFxJgzC50e1Xpc3TAaH2FX
-         7nDdXL8v54zfhhjCJILpqMOWTO6Ccxgjf4bM3liQo3v7Uh9xTJq1U5S8OpTEwBJjgoRJ
-         YRv2fFhXu8Pyv2FyZM0NHwsQYtzU4XE7YH0ZO4bjTJGCF8Z5cmNK0/9P3K+ChBXCJ5lH
-         y7xGjn+Ds2ideuzthBRPzlEjYvTd2bMszgCDI7NRJS52kDDuRyVWTpnq5anow+lgLhCu
-         6s67W5LCGv+3NDQTp9T2PvkV/tHm338HpVf+SWTgv8fG4h9cJoMP1vaEt1RpMBizJx58
-         kv1Q==
-X-Gm-Message-State: AOAM531RdSLMA2JAVhYK5a8baRLFkmw02xiMytpOqkvBiNkrSoKivS13
-        Hyny2i4VV7sY9nhUSfYtOy4=
-X-Google-Smtp-Source: ABdhPJxp4scGf9eqgOeK9SrGoge69GmJOdlImhNfFcszMuRmEiHWjISTjs6y6cynMoOYb+ygD6AxTw==
-X-Received: by 2002:adf:9bd0:: with SMTP id e16mr1716956wrc.196.1606803700442;
-        Mon, 30 Nov 2020 22:21:40 -0800 (PST)
-Received: from localhost.localdomain ([87.200.95.144])
-        by smtp.gmail.com with ESMTPSA id 90sm1182182wra.95.2020.11.30.22.21.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Nov 2020 22:21:39 -0800 (PST)
-From:   Christian Hewitt <christianshewitt@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     Christian Hewitt <christianshewitt@gmail.com>
-Subject: [PATCH] arm64: dts: meson: add i2c3/rtc nodes and vrtc alias to GT-King/GT-King-Pro
-Date:   Tue,  1 Dec 2020 06:21:35 +0000
-Message-Id: <20201201062135.18241-1-christianshewitt@gmail.com>
-X-Mailer: git-send-email 2.17.1
+        id S1727791AbgLAHTe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Dec 2020 02:19:34 -0500
+Received: from mout.gmx.net ([212.227.15.19]:43011 "EHLO mout.gmx.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727102AbgLAHTd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 1 Dec 2020 02:19:33 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1606807025;
+        bh=5CW4HOQArD0ga03PAufrXrrqr/PGZhg5w5QyN9LY5+w=;
+        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
+        b=dg6UYBrRE4m7GWZcAN2j1qNMHWUO0AYCJiSafjFy9jcQbH/SIOebw5Ds5kyt7OXO1
+         BdBYum4+sqr0YFVnqrCKym+4YGVZzihT+nnTngUyhKShWC/E1WiiAuepb1FbZsHa/a
+         PD6+MQL1hRaxiRDSRjVnFsufu9H0x1HB+ZXhCpfM=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from longitude ([37.201.214.162]) by mail.gmx.com (mrgmx005
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1MuUnA-1jtXud0Y9C-00rUKI; Tue, 01
+ Dec 2020 08:17:05 +0100
+From:   =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
+To:     linux-kernel@vger.kernel.org
+Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+        =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Heiko Stuebner <heiko.stuebner@theobroma-systems.com>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Lubomir Rintel <lkundrak@v3.sk>,
+        Mark Brown <broonie@kernel.org>, allen <allen.chen@ite.com.tw>,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org, linux-pwm@vger.kernel.org,
+        linux-rtc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Heiko Stuebner <heiko@sntech.de>,
+        Josua Mayer <josua.mayer@jm0.eu>,
+        Andreas Kemnade <andreas@kemnade.info>,
+        Arnd Bergmann <arnd@arndb.de>, Daniel Palmer <daniel@0x0f.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>
+Subject: [PATCH v5 6/7] MAINTAINERS: Add entry for Netronix embedded controller
+Date:   Tue,  1 Dec 2020 02:15:12 +0100
+Message-Id: <20201201011513.1627028-7-j.neuschaefer@gmx.net>
+X-Mailer: git-send-email 2.29.2
+In-Reply-To: <20201201011513.1627028-1-j.neuschaefer@gmx.net>
+References: <20201201011513.1627028-1-j.neuschaefer@gmx.net>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:0jQyFfee5jYVyk0F/4yqqagvTFNbSZgQo8QuIW7MRTI/7zgyN7O
+ NUPnrSUmpRGSqdeGOZoszPfCMlM6oNVN7LlIDRyjrTDO/h2Qn2gaIC8vA5IhmuJ39Pooz36
+ nlM/3P1J61T/bKwoiQ9XGdmXuOgBPWty5Tp896ty8u15ZklcEffVY4tHUDmyeiTygJUFOMa
+ 1jTKwKhGfkQhxC+YQ07JQ==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:vBQhdFPsBIU=:sBSq7NRSzSOvrGYzREJRwQ
+ JAUmJhJCCo2QWEY4ELIVfJ5db0D5qCziYoafcpbVi9eXgeGKsz9ly1m7kP9psevyA0CRzTaZk
+ mx5ITA0z3I4XAI8elaakBesiuQ+olW0TtfQi6znOdrAF+NO9bBJl9T89X5RL3yA7JG5KV8/KJ
+ 9nbLmVF7m9V8FRrZ38J4cavpIgH28qHVltqbnBaemvtcf+YwRnmNCmvQWer160oJmncM3WrKj
+ LTnJZpfq4/dZv5OulQuNSWF/1c8KnSK7xvGPu02lRhFvLYsxDipAwcQ1ClynpJ1guu5JwfhK9
+ 7d1n578hVnlwwfo2J1QM4HnCCT+uNNABew925vgnMJ5NESnLFoz0+7EGR31eMxUDtfzZLhnLQ
+ ///6pfpoHKaJzyrJoqEWliVBJnmJa87kfP6L+x8YSuw7mpCGbNdFc6fDwOtoRdgJmNVgkOgQ5
+ eOq9bJqF+8AQOlHzCike98dTFbxR0iGQubXTmLV8MP1ascXtQgFHR5N2zwSCXIjURYKKUPbHm
+ 3rTqYmp3jbMR8DujI1j/2VLzotzg/e72fGtYcRKQU+BbvbN8I/QWB/YFnlG8TER6TvTBMiKFT
+ gR7XPxcXpnRlLNYrT1ovBNDA6YHoyL53yDlykYVZPGCnTnocnA5kb165snzA0lsxVemf6K8hn
+ CAx81MvqazviJkZVLK4H+24IUmt4gHaXtZpMiGBDVM0bWbF0PzImjfhxNK1Dco1ck148nU7/z
+ oQBOXXg3a2LArpzN/mKHYgaAwaVzDl8ZabZ+VIOymqwaXD/TJgvtUSi+bNBZOo/Ij9Ld7yABE
+ nesgWiqzwgvsfPlj6OU0dJDO/0546Ey1TL91HlyI+zt+ilon/zM04bLCqqTRu4IJjrV8L+9P3
+ FkkPw9ub4bekq1pu3bAw==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The GT-King and GT-King-Pro boxes have an RTC chip and power cell, so enable it.
+Let's make sure I'll notice when there are patches for the NTXEC
+drivers.
 
-GTKING:~ # dmesg | grep rtc
-[    5.237245] meson-vrtc ff8000a8.rtc: registered as rtc1
-[    5.261869] rtc-hym8563 0-0051: registered as rtc0
-[    5.265016] rtc-hym8563 0-0051: setting system clock to 2020-11-30T09:16:54 UTC (1606727814)
+Signed-off-by: Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>
+=2D--
 
-Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
----
- .../boot/dts/amlogic/meson-g12b-gtking-pro.dts | 17 +++++++++++++++++
- .../boot/dts/amlogic/meson-g12b-gtking.dts     | 18 ++++++++++++++++++
- 2 files changed, 35 insertions(+)
+v4, v5:
+- no changes
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-gtking-pro.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-gtking-pro.dts
-index f0c56a16af3d..0e5c500fb78f 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12b-gtking-pro.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12b-gtking-pro.dts
-@@ -14,6 +14,11 @@
- 	compatible = "azw,gtking", "amlogic,g12b";
- 	model = "Beelink GT-King Pro";
- 
-+	aliases {
-+		rtc0 = &rtc;
-+		rtc1 = &vrtc;
-+	};
+v3:
+- https://lore.kernel.org/lkml/20200924192455.2484005-7-j.neuschaefer@gmx.=
+net/
+- Remove pwm and rtc bindings
+
+v2:
+- https://lore.kernel.org/lkml/20200905144503.1067124-2-j.neuschaefer@gmx.=
+net/
+- No changes
+=2D--
+ MAINTAINERS | 9 +++++++++
+ 1 file changed, 9 insertions(+)
+
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 2daa6ee673f7f..9eedf3c1e1e09 100644
+=2D-- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -12087,6 +12087,15 @@ F:	include/net/netrom.h
+ F:	include/uapi/linux/netrom.h
+ F:	net/netrom/
+
++NETRONIX EMBEDDED CONTROLLER
++M:	Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>
++S:	Maintained
++F:	Documentation/devicetree/bindings/mfd/netronix,ntxec.yaml
++F:	drivers/mfd/ntxec.c
++F:	drivers/pwm/pwm-ntxec.c
++F:	drivers/rtc/rtc-ntxec.c
++F:	include/linux/mfd/ntxec.h
 +
- 	gpio-keys-polled {
- 		compatible = "gpio-keys-polled";
- 		#address-cells = <1>;
-@@ -112,6 +117,18 @@
- 	status = "okay";
- };
- 
-+&i2c3 {
-+	status = "okay";
-+	pinctrl-0 = <&i2c3_sda_a_pins>, <&i2c3_sck_a_pins>;
-+	pinctrl-names = "default";
-+
-+	rtc: rtc@51 {
-+		compatible = "nxp,pcf8563";
-+		reg = <0x51>;
-+		wakeup-source;
-+	};
-+};
-+
- &tdmif_b {
- 	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-gtking.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-gtking.dts
-index eeb7bc5539ef..10b87eb97b14 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12b-gtking.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12b-gtking.dts
-@@ -14,6 +14,11 @@
- 	compatible = "azw,gtking", "amlogic,g12b";
- 	model = "Beelink GT-King";
- 
-+	aliases {
-+		rtc0 = &rtc;
-+		rtc1 = &vrtc;
-+	};
-+
- 	spdif_dit: audio-codec-1 {
- 		#sound-dai-cells = <0>;
- 		compatible = "linux,spdif-dit";
-@@ -122,6 +127,19 @@
- 	status = "okay";
- };
- 
-+
-+&i2c3 {
-+	status = "okay";
-+	pinctrl-0 = <&i2c3_sda_a_pins>, <&i2c3_sck_a_pins>;
-+	pinctrl-names = "default";
-+
-+	rtc: rtc@51 {
-+		compatible = "nxp,pcf8563";
-+		reg = <0x51>;
-+		wakeup-source;
-+	};
-+};
-+
- &spdifout {
- 	pinctrl-0 = <&spdif_out_h_pins>;
- 	pinctrl-names = "default";
--- 
-2.17.1
+ NETRONOME ETHERNET DRIVERS
+ M:	Simon Horman <simon.horman@netronome.com>
+ R:	Jakub Kicinski <kuba@kernel.org>
+=2D-
+2.29.2
 
