@@ -2,133 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2EB062CA569
-	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 15:18:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C82102CA5A5
+	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 15:31:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387586AbgLAOSE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Dec 2020 09:18:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44224 "EHLO
+        id S2389098AbgLAOan (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Dec 2020 09:30:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46172 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728702AbgLAOSE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Dec 2020 09:18:04 -0500
-Received: from mail-lf1-x142.google.com (mail-lf1-x142.google.com [IPv6:2a00:1450:4864:20::142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6302C0613D4;
-        Tue,  1 Dec 2020 06:17:23 -0800 (PST)
-Received: by mail-lf1-x142.google.com with SMTP id j205so4441170lfj.6;
-        Tue, 01 Dec 2020 06:17:23 -0800 (PST)
+        with ESMTP id S2388950AbgLAOam (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Dec 2020 09:30:42 -0500
+Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com [IPv6:2a00:1450:4864:20::442])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4EFCC0613D4
+        for <devicetree@vger.kernel.org>; Tue,  1 Dec 2020 06:30:02 -0800 (PST)
+Received: by mail-wr1-x442.google.com with SMTP id r3so2938938wrt.2
+        for <devicetree@vger.kernel.org>; Tue, 01 Dec 2020 06:30:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=+/VDVLzOBDjqiEu/N1C0eMmuynbTWK2RMfkKzr3b440=;
-        b=NFS1gJ6qIMEM0tjrCNFlTLXIiKzLUz8Gnm9RoDkDgAGoOrAmFH665FazAn65xfep9j
-         q1MzYJOj3Zlv/6l+94KjbYlkwVpip2977xGSaKfNO/trDYc5k7c4/WcDtCzjHhJivaw4
-         R3wSqZQpSfK8urUC+KUWSI03zjKLD2qUjSA1Sh36Vv3gkEPtGffag2dP6CvSTvSq3UKY
-         YylNKX7Dx4eifs+51m341bLnClw1F91DSN9xMT666b1NKXE2m8BabsDyn4Az/aDh03d7
-         EAnoQKdNqE2iVos9mifhxROnB6lM4QDKR2vwmfs0SCZYZPWhyhwrUHdSXnF5Z6q3a5OU
-         KfeA==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=QmS1AOYTJduZm5RuQkzYgqsOUKH55c+00NGS1pLNVMw=;
+        b=U7Achn23CBNyWiH9eyYw/aWefQrW+ASyn4yKEpWMYJUwhlPPUMme07oCKzPf8LUSBZ
+         3TW8JV0qltTaXmMPQGHK14uoSVRBiBR09eSUf0dHlpGlyGPIjDroTGYwe9DrsNCCXbWC
+         h01ABC+rQE3wLPACeaDRqHLlwx2X+X/36u0MA/M+MnJAnw4cWRoVNxNHC/H0vXTtJwmR
+         Pg4tMXkWoMm9H4N/RpY2HbR8j74KBSezAMG61XzGn7Cv4c0S8e/Hfa4DPqnlw/jSQa22
+         kD4TbEdj02R8t6OKYhHzsmRBp80GsYktvrurnHZ3Xy14qqivJgDwqoDnZwnz5SZv6krG
+         dSAQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=+/VDVLzOBDjqiEu/N1C0eMmuynbTWK2RMfkKzr3b440=;
-        b=LdNCmRtHMzL2CqWs+Cppu8mR/wz1IRS+Q3HJ6rWJ4WI1lx9muj5HlNQJ974cTIIXgD
-         AFb/Rwop+vGgpCExbZLizRj4hdcjyLrPmrVptyWgLLd5FO472G4U4dmpg/bRIThDT/tz
-         lJCHymwruUxKSZD4uk7zIWt5Yb1GHUlGwcl5TgMn39C79RhCX0ori5L5je3JdROGWnzB
-         awLwEMYRElFPSpi+OeEjEPwmAYiP8aJRgzUNKOLnUH6AbqtkzzoPjSk3GoSclkIiof6P
-         81wBEar6Zb2y+leq85hAgHPfW1xQMUTi8+nfr/yqMni7mmp1vNj0lXm2tNqIIz5NXLDX
-         JL5g==
-X-Gm-Message-State: AOAM530E8mB5IY9b0+f5BrpGPt4Ed00Qk19r7ox/PNJzObu5RUHGXCiI
-        IKifSrFP1lWbaplpkpllVzWjOsdpv+M=
-X-Google-Smtp-Source: ABdhPJy45twU6WKpFARyvJXmOYuPohM+PTgEg36doZmYuxa+KLwfB3LOW5+S25YIdNCijAJHOc0fgg==
-X-Received: by 2002:ac2:5503:: with SMTP id j3mr1305836lfk.94.1606832242037;
-        Tue, 01 Dec 2020 06:17:22 -0800 (PST)
-Received: from [192.168.2.145] (109-252-192-53.dynamic.spd-mgts.ru. [109.252.192.53])
-        by smtp.googlemail.com with ESMTPSA id p16sm214803lfe.255.2020.12.01.06.17.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 01 Dec 2020 06:17:21 -0800 (PST)
-Subject: Re: [PATCH v1 00/30] Introduce core voltage scaling for NVIDIA
- Tegra20/30 SoCs
-To:     Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Peter Chen <Peter.Chen@nxp.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Nicolas Chauvet <kwizart@gmail.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>
-Cc:     linux-mmc@vger.kernel.org, devel@driverdev.osuosl.org,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-pwm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org, linux-usb@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, linux-media@vger.kernel.org
-References: <20201104234427.26477-1-digetx@gmail.com>
- <160683107675.35139.13466076210885462180.b4-ty@kernel.org>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <858e4183-5064-084f-9b80-870e118c3edc@gmail.com>
-Date:   Tue, 1 Dec 2020 17:17:20 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.4.2
+        bh=QmS1AOYTJduZm5RuQkzYgqsOUKH55c+00NGS1pLNVMw=;
+        b=CGtMvZ6ZL6lNXMa16jl6hMs+PvoWWM3yeCfKdGK8C3ZPgUQUq25LjgJA9kfFg3tbgs
+         rVMcrST5iMrjg40ROCYhscyJK9S++nws6zmczNXTx1pupIMtxmMP1N3eOb8iEAL0XbVZ
+         b33Vm3TzfVf7PehR3LWM3MJMt0lFklCn3J7f6jjAl1ACAdBbpBuWkq/fWReY2BfYdZ1t
+         ZEcMyKqwVA1v3rxwAaFG4ip11YhyCT7TYWlX92nN6XBXmBymzJYwWIhs3AZKhn8gsJgm
+         DEfSLD2BwVOYTDFtF9bEXXdUaow52L+qpyJEiMGSzMt06p6dSWc6yvybrsHrobVXruvc
+         NjVg==
+X-Gm-Message-State: AOAM531YYSzXGa4DBSTMKsQ82vQgbmO397+kdfo/Xggt5cdJVN4ccmxG
+        LHfoTppdKSBqMXatkNyGuNmslQ==
+X-Google-Smtp-Source: ABdhPJx/A1S/sUAIDOjXHOpNutH0g6JC8i23aEvaWrE3KOCtK0MgOn3D5mrAp+1vSBZju0YnKfPoEg==
+X-Received: by 2002:adf:9124:: with SMTP id j33mr4052062wrj.376.1606833001420;
+        Tue, 01 Dec 2020 06:30:01 -0800 (PST)
+Received: from srini-hackbox.lan (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
+        by smtp.gmail.com with ESMTPSA id 20sm50488wmk.16.2020.12.01.06.30.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 01 Dec 2020 06:30:00 -0800 (PST)
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+To:     linus.walleij@linaro.org, bjorn.andersson@linaro.org
+Cc:     robh+dt@kernel.org, agross@kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        srinivas.kandagatla@linaro.org
+Subject: [PATCH v5 0/2] pinctrl: qcom: Add sm8250 lpass lpi pinctrl support
+Date:   Tue,  1 Dec 2020 14:28:28 +0000
+Message-Id: <20201201142830.13152-1-srinivas.kandagatla@linaro.org>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-In-Reply-To: <160683107675.35139.13466076210885462180.b4-ty@kernel.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-01.12.2020 16:57, Mark Brown пишет:
-> On Thu, 5 Nov 2020 02:43:57 +0300, Dmitry Osipenko wrote:
->> Introduce core voltage scaling for NVIDIA Tegra20/30 SoCs, which reduces
->> power consumption and heating of the Tegra chips. Tegra SoC has multiple
->> hardware units which belong to a core power domain of the SoC and share
->> the core voltage. The voltage must be selected in accordance to a minimum
->> requirement of every core hardware unit.
->>
->> The minimum core voltage requirement depends on:
->>
->> [...]
-> 
-> Applied to
-> 
->    https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
-> 
-> Thanks!
-> 
-> [1/1] regulator: Allow skipping disabled regulators in regulator_check_consumers()
->       (no commit info)
-> 
-> All being well this means that it will be integrated into the linux-next
-> tree (usually sometime in the next 24 hours) and sent to Linus during
-> the next merge window (or sooner if it is a bug fix), however if
-> problems are discovered then the patch may be dropped or reverted.
-> 
-> You may get further e-mails resulting from automated or manual testing
-> and review of the tree, please engage with people reporting problems and
-> send followup patches addressing any issues that are reported if needed.
-> 
-> If any updates are required or you are submitting further changes they
-> should be sent as incremental updates against current git, existing
-> patches will not be replaced.
-> 
-> Please add any relevant lists and maintainers to the CCs when replying
-> to this mail.
+This patch adds support for LPASS (Low Power Audio SubSystem)
+LPI (Low Power Island) pinctrl on SM8250.
 
-Hello Mark,
+This patch has been tested on support to Qualcomm Robotics RB5 Development
+Kit based on QRB5165 Robotics SoC. This board has 2 WSA881X smart speakers
+with onboard DMIC connected to internal LPASS codec via WSA  and VA macros
+respectively.
 
-Could you please hold on this patch? It won't be needed in a v2, which
-will use power domains.
+Most of the work is derived from downstream Qualcomm kernels.
+Credits to various Qualcomm authors from Patrick Lai's team who have
+contributed to this code.
 
-Also, I'm not sure whether the "sound" tree is suitable for any of the
-patches in this series.
+Am guessing existing qcom folder should cover maintining this driver too!
+If not I can send additional patch to consolidate this along with other
+Audio related drivers in Maintainer file!
+
+Changes since v4:
+	- added Rob's review
+	- updated slew reg range
+	- used u32p_replace_bits
+	- sorted pin functions and its defines
+	- address various trivial comments from Bjorn
+
+Srinivas Kandagatla (2):
+  dt-bindings: pinctrl: qcom: Add sm8250 lpass lpi pinctrl bindings
+  pinctrl: qcom: Add sm8250 lpass lpi pinctrl driver
+
+ .../pinctrl/qcom,lpass-lpi-pinctrl.yaml       | 132 ++++
+ drivers/pinctrl/qcom/Kconfig                  |   8 +
+ drivers/pinctrl/qcom/Makefile                 |   1 +
+ drivers/pinctrl/qcom/pinctrl-lpass-lpi.c      | 727 ++++++++++++++++++
+ 4 files changed, 868 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,lpass-lpi-pinctrl.yaml
+ create mode 100644 drivers/pinctrl/qcom/pinctrl-lpass-lpi.c
+
+-- 
+2.21.0
+
