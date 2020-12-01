@@ -2,176 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DD83A2CA94E
-	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 18:07:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E2A32CA9A3
+	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 18:30:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728107AbgLARHk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Dec 2020 12:07:40 -0500
-Received: from new1-smtp.messagingengine.com ([66.111.4.221]:35031 "EHLO
-        new1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726485AbgLARHj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Dec 2020 12:07:39 -0500
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 506485804DF;
-        Tue,  1 Dec 2020 12:06:53 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute6.internal (MEProxy); Tue, 01 Dec 2020 12:06:53 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm1; bh=Xd6YAdRZAzxCRta9Q2GO691ERFj
-        8lTLDd0OONx3VR7Y=; b=nzFriMZy/B9T0a2mZez5WqDg34pqluEv+kVPTdqwZmW
-        NGIvIz9YCD8A/LSaUikbzMJmmE2gRkE0db+M8WYLq3K5G9H68pGyKoLJDSdrKrzi
-        SZHuZuzqKOrcU9YqpKU40jRFVslV2WrszqS9g0rx4AVQgWci1JvXBLIJsqr5/qsz
-        n0nUJAlCpr27JY2Da+V/CXqO8o0EnA8F5lIezwivmndvRKXoHHyDQb/cJfKE0byD
-        i0bTWIR/EmdJZXKKB2O5UeD5ae7t9q31raYAinM+yz4YgXO2IQHyOM8vWuWnx8Pa
-        RaQbuXuoejVZJsqWGKi2Hs0iDSGT7PhscQrBTABKjYQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=Xd6YAd
-        RZAzxCRta9Q2GO691ERFj8lTLDd0OONx3VR7Y=; b=qahOjexe5lLpNScI+3Ef/D
-        FRE89sGJvpgJuhcn6Mef601uLSqtLIuYuPx1m61KoPa1HZVn6230aaP84Lmi6qCN
-        OBBcs66imAaI/N7ig70V7XiHp+r83U1ZTLBjBkKIZxwsz6wP2UTWTF1QJdE+s9j0
-        e9k8uXN0Og+8AvAjlktgxs+F6vTyGxtThXDvGLmDxvBetIxr3PvH9WA2V51rvZ2Y
-        VMdiu4lCqtmYx5zXpo+uAB3Y+glVvC1ffMUVCU8BNdFi7b/AJq8rsoXLVhCdZZBc
-        SlXcbKUctG8JxgoriVWZczhSgWQvRZjkO6yHWZph8kCu21QdH/YeatEpppCvw3Sg
-        ==
-X-ME-Sender: <xms:KnjGXxSxvYOq6W3FM-O2Y-to176KpIP1pTgFlixMv6lpeNr8qqC7JA>
-    <xme:KnjGX6x5QmPqO5WLrOipWXHVD4zD57lNrWyxM0nHHhSKEnrRMEU7kw56zjLDg9i-X
-    2V_vIMddO9qkSrOAZQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrudeivddgleelucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
-    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
-    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
-    gedunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
-    frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:KnjGX22ujkZxjPdtQrVxXrrv-bawqwb-hY3ZKxe0hfRdr8Yd63wHew>
-    <xmx:KnjGX5Ce1dJOxwz7kLMKkhhgMp4nx3jwlw_ZK-c5cqKOtJ4A_0zafA>
-    <xmx:KnjGX6inbfoCooJrj40Ye-URO3CGN51p4g72VV6T1Jq3SQVD7BwmlQ>
-    <xmx:LXjGXxQ7nc5SgCnf1NI33nok_UnwMVz5VCP8mcs6wOl3u7gTZQM-qw>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 8EEB83280063;
-        Tue,  1 Dec 2020 12:06:50 -0500 (EST)
-Date:   Tue, 1 Dec 2020 18:06:49 +0100
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Thomas Zimmermann <tzimmermann@suse.de>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Eric Anholt <eric@anholt.net>,
-        Daniel Vetter <daniel.vetter@intel.com>,
-        David Airlie <airlied@linux.ie>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rpi-kernel@lists.infradead.org,
-        dri-devel@lists.freedesktop.org,
-        Tim Gover <tim.gover@raspberrypi.com>,
-        Phil Elwell <phil@raspberrypi.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Dave Stevenson <dave.stevenson@raspberrypi.com>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 6/8] drm/vc4: kms: Wait on previous FIFO users before a
- commit
-Message-ID: <20201201170649.g2uo6c7ngxdvfw3j@gilmour>
-References: <20201113152956.139663-1-maxime@cerno.tech>
- <20201113152956.139663-7-maxime@cerno.tech>
- <8c5f37b3-a4ff-d4d0-ebe0-8bc931416293@suse.de>
+        id S1731145AbgLAR3M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Dec 2020 12:29:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45880 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731141AbgLAR3M (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Dec 2020 12:29:12 -0500
+Received: from mail-ot1-x343.google.com (mail-ot1-x343.google.com [IPv6:2607:f8b0:4864:20::343])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D908C0613D4
+        for <devicetree@vger.kernel.org>; Tue,  1 Dec 2020 09:28:26 -0800 (PST)
+Received: by mail-ot1-x343.google.com with SMTP id x15so2420725otp.4
+        for <devicetree@vger.kernel.org>; Tue, 01 Dec 2020 09:28:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=TQyDhRIJ7rEiN9hCk9WyxKUDIyuozNAVVNkVc8YrpXg=;
+        b=HfuFhzV/ccCro+uCbOb/y50FQGd5wN4ICHnvajiWVk0nS0pZiS+AOSFCnDHG7PnRCa
+         GEox+dpy6qHL+erQkJ2IQLymTJ6UQECBqBn5BvhP7dbdM0wD5uLSEmIYpiNlFrDQ827v
+         jMOmW+I724aOht3pb+uWjMxOQRMrdGoRi1HBBi9hfK2ymeetdRiogM10SAQnKMbzIm0G
+         UsPT43p69dvtYbW3lCG+44I27of1q2IDNftLwQWY6AsqBeGi7Ci9v08C0oNx5g8eVL+E
+         y23fVimIgWEuF98Q/cOVWI/lqISILVUdDAFTu7TGq0FjEU+RkKrtkNH54u6DYZxd0OL8
+         +N6g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=TQyDhRIJ7rEiN9hCk9WyxKUDIyuozNAVVNkVc8YrpXg=;
+        b=KT3MYUwu+kD+I9FuDhhw6nxpNLsGBhhQhwua/N0IRIyYKZf9w0RJOiNd7BaEixMFNv
+         koT4JV2Z5XyCdClaKADsHpFMUTjshpBFpd4nNRqCxv7Mn7WfKQY6Qn0aijBSDw4Y8dZB
+         R4uQx2qi7CmIFHYUQONncArOE5L9mPNk+fHUjgn1MHnlgRzFkvkYXwlmre6ShClv4Lle
+         gQ4PLnUHvR4pDbbNQnjWVfgKr3GUA/qgtTHjTPREqvnkMplHMs11PPO7DRfiKHi3yKpV
+         KmQ/QHzYHg1wJdAy5qegeP2umSDhlE+1X47FCAGW1jojuZBR5dXZPFb0nDwlNBq+VycR
+         lXGw==
+X-Gm-Message-State: AOAM5338gZVmiO70lLJhVjRUmuZyi56LuHKiyw/zcLPDvMXwqpsnqUb9
+        4FXz0CPQDrXKKyZi/PdwxTABzw==
+X-Google-Smtp-Source: ABdhPJyUjovjQasEJ8gL40gzaNNC8d5vbgNE/y2i5fRr/dA851rZ+zDqg+lrEeDCBXhCwBTr76kNkA==
+X-Received: by 2002:a05:6830:1af7:: with SMTP id c23mr2591590otd.358.1606843705684;
+        Tue, 01 Dec 2020 09:28:25 -0800 (PST)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id g2sm78160ooh.39.2020.12.01.09.28.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 01 Dec 2020 09:28:25 -0800 (PST)
+Date:   Tue, 1 Dec 2020 11:28:23 -0600
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc:     linus.walleij@linaro.org, robh+dt@kernel.org, agross@kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 2/2] pinctrl: qcom: Add sm8250 lpass lpi pinctrl driver
+Message-ID: <X8Z9N2Yu8xiyPRmj@builder.lan>
+References: <20201116143432.15809-1-srinivas.kandagatla@linaro.org>
+ <20201116143432.15809-3-srinivas.kandagatla@linaro.org>
+ <X8WSucFKyROFJ7gF@builder.lan>
+ <ec14afaa-8660-03ac-fbf9-79ff37889de3@linaro.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="rp2onweshvrmr67z"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <8c5f37b3-a4ff-d4d0-ebe0-8bc931416293@suse.de>
+In-Reply-To: <ec14afaa-8660-03ac-fbf9-79ff37889de3@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue 01 Dec 04:01 CST 2020, Srinivas Kandagatla wrote:
 
---rp2onweshvrmr67z
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> Many thanks for review Bjorn,
+> 
+> 
+> On 01/12/2020 00:47, Bjorn Andersson wrote:
+> > On Mon 16 Nov 08:34 CST 2020, Srinivas Kandagatla wrote:
+> > 
+> > > Add initial pinctrl driver to support pin configuration for
+> > > LPASS (Low Power Audio SubSystem) LPI (Low Power Island) pinctrl
+> > > on SM8250.
+> > > 
+> > > This IP is an additional pin control block for Audio Pins on top the
+> > > existing SoC Top level pin-controller.
+> > > Hardware setup looks like:
+> > > 
+> > > TLMM GPIO[146 - 159] --> LPASS LPI GPIO [0 - 13]
+> > > 
+> > 
+> > Iiuc the LPI TLMM block is just "another pinmux/pinconf block" found in
+> > these SoCs, with the additional magic that the 14 pads are muxed with
+> > some of the TLMM pins - to allow the system integrator to choose how
+> > many pins the LPI should have access to.
+> > 
+> > I also believe this is what the "egpio" bit in the TLMM registers are
+> > used for (i.e. egpio = route to LPI, egpio = 1 route to TLMM), so we
+> > should need to add support for toggling this bit in the TLMM as well
+> > (which I think we should do as a pinconf in the pinctrl-msm).
+> 
+> Yes, we should add egpio function to these pins in main TLMM pinctrl!
+> 
 
-Hi Thomas,
+I was thinking about abusing the pinconf system, but reading you
+sentence makes me feel that expressing it as a "function" and adding a
+special case handling in msm_pinmux_set_mux() would actually make things
+much cleaner to the outside.
 
-On Fri, Nov 20, 2020 at 02:19:45PM +0100, Thomas Zimmermann wrote:
-> Am 13.11.20 um 16:29 schrieb Maxime Ripard:
-> > If we're having two subsequent, non-blocking, commits on two different
-> > CRTCs that share no resources, there's no guarantee on the order of
-> > execution of both commits.
->=20
-> Can there only ever be two commits that flip order?
+i.e. we would then end up with something in DT like:
 
-It needs a bit of bad luck, but the patch 2 provides a bit more details.
+	pin-is-normal-tlmm-pin {
+		pins = "gpio146";
+		function = "gpio";
+	};
 
-Basically, if there's two subsequent non-blocking commits, affecting
-different CRTCs without anything shared between those CRTCs (so no
-plane, encoder or connector in common), you have no guarantee on the
-commit order.
+and
 
-Most of the time it's not a big deal precisely because they don't share
-anything. However if the private state is shared between the CRTCs then
-it becomes an issue and we need to make sure that the ordering is
-respected.
+	pin-routed-to-lpi-pin {
+		pins = "gpio146";
+		function = "egpio";
+	};
 
-> > However, the second one will consider the first one as the old state,
-> > and will be in charge of freeing it once that second commit is done.
-> >=20
-> > If the first commit happens after that second commit, it might access
-> > some resources related to its state that has been freed, resulting in a
-> > use-after-free bug.
-> >=20
-> > The standard DRM objects are protected against this, but our HVS private
-> > state isn't so let's make sure we wait for all the previous FIFO users
-> > to finish their commit before going with our own.
->=20
-> I'd appreciate a comment in the code that explains a bit how this works.
-> It's sort of clear to me, but not enough to fully get it.
+Only "drawback" I can see is that we're inverting the chip's meaning of
+"egpio" (i.e. active means route-to-tlmm in the hardware).
 
-I'm not sure to get what "this" means and what do you want me to comment
-there?
+> > 
+> > > This pin controller has some similarities compared to Top level
+> > > msm SoC Pin controller like 'each pin belongs to a single group'
+> > > and so on. However this one is intended to control only audio
+> > > pins in particular, which can not be configured/touched by the
+> > > Top level SoC pin controller except setting them as gpios.
+[..]
+> > > diff --git a/drivers/pinctrl/qcom/pinctrl-lpass-lpi.c b/drivers/pinctrl/qcom/pinctrl-lpass-lpi.c
+[..]
+> > > +	LPI_MUX_qua_mi2s_sclk,
+> > > +	LPI_MUX_swr_tx_data1,
+> > 
+> > As there's no single pin that can be both data1 and data2 I think you
+> > should have a single group for swr_tx_data and use this function for
+> > both swr_tx_data pins. Or perhaps even just have one for swr or swr_tx.
+> > 
+> > (This is nice when you're writing DT later on)
+> 
+> I did think about this, but we have a rx_data2 pin in different function
+> compared to other rx data pins.
+> 
+> The reason to keep it as it is :
+> 1> as this will bring in an additional complexity to the code
 
-> >=20
-> > Signed-off-by: Maxime Ripard <maxime@cerno.tech>
-> > ---
-> >   drivers/gpu/drm/vc4/vc4_kms.c | 118 +++++++++++++++++++++++++++++++++-
-> >   1 file changed, 117 insertions(+), 1 deletion(-)
-> >=20
-> > diff --git a/drivers/gpu/drm/vc4/vc4_kms.c b/drivers/gpu/drm/vc4/vc4_km=
-s.c
-> > index 3034a5a6637e..849bc6b4cea4 100644
-> > --- a/drivers/gpu/drm/vc4/vc4_kms.c
-> > +++ b/drivers/gpu/drm/vc4/vc4_kms.c
-> > @@ -40,6 +40,11 @@ static struct vc4_ctm_state *to_vc4_ctm_state(struct=
- drm_private_state *priv)
-> >   struct vc4_hvs_state {
-> >   	struct drm_private_state base;
-> >   	unsigned int unassigned_channels;
-> > +
-> > +	struct {
-> > +		unsigned in_use: 1;
-> > +		struct drm_crtc_commit *last_user;
->=20
-> Can these updates run concurrently? If so, the concurrency control via
-> in_use is dubious.
+For each pin lpi_gpio_set_mux() will be invoked and you'd be searching
+for the index (i) among that pins .funcs. So it doesn't matter that
+looking up a particular function results in different register values
+for different pins, it's already dealt with.
 
-No, there's only ever one commit being done. We just need to make sure
-they are in the right order.
+> 2> we have these represented exactly as what hw data sheet mentions it!
+> 
 
-I'll address your other comments
+That is true, but the result is that you have to write 2 states in the
+DT to get your 2 pins to switch to the particular function. By grouping
+them you could do:
 
-Maxime
+	data-pins {
+		pins = "gpio1", "gpio2";
+		function = "swr_tx_data";
+	};
 
---rp2onweshvrmr67z
-Content-Type: application/pgp-signature; name="signature.asc"
 
------BEGIN PGP SIGNATURE-----
+We do this quite extensively for the TLMM (pinctrl-msm) because it
+results in cleaner DT.
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX8Z4KQAKCRDj7w1vZxhR
-xRdQAQDoXrTwcEx5wJMf83iJozqAbfCdz7arV6qk2uQFSKxBfAD/amH5tGFvCrOx
-XbpFO45SKECLhELNs5ADEMKKwVXE1wE=
-=LWnB
------END PGP SIGNATURE-----
+> > 
+> > > +	LPI_MUX_qua_mi2s_ws,
+[..]
+> > > +static struct lpi_pinctrl_variant_data sm8250_lpi_data = {
+> > > +	.tlmm_reg_offset = 0x1000,
+> > 
+> > Do we have any platform in sight where this is not 0x1000? Could we just
+> > make a define out of it?
+> Am not 100% sure ATM, But I wanted to keep this flexible as these offsets in
+> downstream were part of device tree for some reason, so having offset here
+> for particular compatible made more sense for me!
+> 
 
---rp2onweshvrmr67z--
+Downtream does indeed favor "flexible" code. I tend to prefer a #define
+until we actually need the flexibility...
+
+Regards,
+Bjorn
