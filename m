@@ -2,78 +2,203 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BC3D22CA315
-	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 13:51:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BFF0B2CA345
+	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 13:58:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728570AbgLAMqu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Dec 2020 07:46:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58284 "EHLO
+        id S1726988AbgLAM5h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Dec 2020 07:57:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59972 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727852AbgLAMqt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Dec 2020 07:46:49 -0500
-Received: from mail-qt1-x833.google.com (mail-qt1-x833.google.com [IPv6:2607:f8b0:4864:20::833])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE3F4C0613CF
-        for <devicetree@vger.kernel.org>; Tue,  1 Dec 2020 04:46:03 -0800 (PST)
-Received: by mail-qt1-x833.google.com with SMTP id v11so921723qtq.12
-        for <devicetree@vger.kernel.org>; Tue, 01 Dec 2020 04:46:03 -0800 (PST)
+        with ESMTP id S1727116AbgLAM5h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Dec 2020 07:57:37 -0500
+Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com [IPv6:2a00:1450:4864:20::442])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EFD0C061A48
+        for <devicetree@vger.kernel.org>; Tue,  1 Dec 2020 04:56:49 -0800 (PST)
+Received: by mail-wr1-x442.google.com with SMTP id o1so2464176wrx.7
+        for <devicetree@vger.kernel.org>; Tue, 01 Dec 2020 04:56:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=0x0f.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=7iNX4az0YeQfomexDkoph7IZwiZmUXVX26ZXAR+tods=;
-        b=vggdqk5aaktOHGIiecOKj9mHsAdpVWlmG07NrAco+OMmBHIN4PwaT7GVVVRxEvOmh5
-         hl8G9ASvZIP3Z6g9IkSAN88An7XUCbKg/+zR8m20Ymtme9XxzqlaJfPzRNWLWl5DUZzG
-         D9U15chzY3KzoEBs0LnsZEuCujEndhDySVSOY=
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:mime-version
+         :in-reply-to:content-language:content-transfer-encoding;
+        bh=fhSdydiNHIuE7kH/VZv5LNrrxvRIALi9bCyYo0cAOQ0=;
+        b=GBU61fFcIfgXME5qVa36xFJVFJmb5+EHsvpQuu7GUNrca+sC99MVJa5L3eXYGY/ue6
+         vdeiDP5CstZt8slf4x3ydVOXINeGZElSS0q8mbuRJvo6Oqwe3F/cohI9+8Dctlke5zAs
+         iBJHA+WM/dzYl8ENXWS1nAFYIlYtk9O8bO7h/hv1Gg8OJbrpYerXmC11DJn2tcMn60JM
+         R0LUj26CsIy4MI6mFnbb5TJS7rlRV/CJ0eE8mqt7lXv9PQKD+LghHjpWccgBryN6KDJ1
+         QqgwV6HnY3qwDzziY9sCwy8lwtq8pK7Xz55e2dVFbR/or3HpVdiqom+tOB5TDbf1QNKB
+         GMTg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=7iNX4az0YeQfomexDkoph7IZwiZmUXVX26ZXAR+tods=;
-        b=URwZAw7yqZnZr1Mgwms147Ot9rRrH2Vd29WQpMYLLTr/3P2x2UCfFOasRNqoNZCMnW
-         +KlH+zwtnCvi7CLb0KkQaDaPSnYTh7k4C4SSK/zDFP43Y9TPU/7jcSoL3jxtWd7trOh2
-         Kv8J8N+cxmN1Qty4xyxyTCKz27o5aTjGazPBNc1Vtn1jpUYJ6zd9gS9SmwMqfFMJZ29g
-         RvO6HTSqNCdHUpNXjCQ8KtE0Fezns++EbJxZ5Quov9Qa5XVHYXerDWHvq16S1/qHRJh7
-         HjmvgFSO/IoTZidhmX/02baR9K3AtiY1ojbOZUp+EOvTvJhXb+2CsP3n7rb9INTgcCa/
-         k2uA==
-X-Gm-Message-State: AOAM532HMLWUSXllMw61VT5Ln+NkaCRKKhDLfONR8xqm9B/NWEkBWwHZ
-        C4X+NJb1dohJGWubSUf23qUfMQVnlnqm3dAgNyO15A==
-X-Google-Smtp-Source: ABdhPJzu/DymQqqoFzpM9sg+fMa+dytMTJSApuPKs0qPezXDvj20YtDP/Q12Zwv4DT9Vt3h0OAR5EpVlA2b5FnR8EVc=
-X-Received: by 2002:ac8:5450:: with SMTP id d16mr2545505qtq.33.1606826763118;
- Tue, 01 Dec 2020 04:46:03 -0800 (PST)
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=fhSdydiNHIuE7kH/VZv5LNrrxvRIALi9bCyYo0cAOQ0=;
+        b=igqwXKdv5LBMpoBQWlFQqdioXmexnMSsnL23n3bl3mQr3Zozv6b50PKMb9tJ1OWqW+
+         QM5HJDlX15+ChvFB5I4xO5JigNm7hkeBDU6D7Zo/RiT1T8QVtsR+YDVj2hE8ASn3K/XG
+         QARhENerVwSpMdFtWUZQbHEXK1PxzCw1hBT3MFZzrRmbWXTobawVArXGqj+DyktgAh3k
+         +6X3jkj8K5Q3uFsiwK7YkuWpNYAOePrZyS3rQEM1k3PXkHQqH0Jj7oRhP57WQtqJAN4+
+         kSMdbrOU3EHWF2jkrvn6MiXQrTIB9U52vtY0cfb6o23uHEyfEg8CHkaMD7x8K0jdamg2
+         pfWA==
+X-Gm-Message-State: AOAM532xag3dq/pkvwAAiWN/WWYiXDVWOPvUhNDxZ5RzEzeSbxnUDluR
+        zdS5HihGiL/C8AuMq3sH5q025g==
+X-Google-Smtp-Source: ABdhPJzQ1k3k98QkgMHXg5Y+DER3dcc331ppnIuJxF97i7TDGLT/iMqZRO5mfpwO6uJSzeSvhQu5ow==
+X-Received: by 2002:a5d:4e87:: with SMTP id e7mr3887518wru.70.1606827408027;
+        Tue, 01 Dec 2020 04:56:48 -0800 (PST)
+Received: from MacBook-Pro.local ([212.45.64.13])
+        by smtp.googlemail.com with ESMTPSA id t136sm2859898wmt.18.2020.12.01.04.56.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 01 Dec 2020 04:56:47 -0800 (PST)
+Subject: Re: [PATCH v2 1/7] arm64: dts: imx8m: Add NOC nodes
+To:     Martin Kepplinger <martin.kepplinger@puri.sm>, robh@kernel.org,
+        shawnguo@kernel.org, festevam@gmail.com, catalin.marinas@arm.com,
+        will@kernel.org, cdleonard@gmail.com
+Cc:     kernel@pengutronix.de, linux-imx@nxp.com, kernel@puri.sm,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        Leonard Crestez <leonard.crestez@nxp.com>
+References: <20201201123932.12312-1-martin.kepplinger@puri.sm>
+ <20201201123932.12312-2-martin.kepplinger@puri.sm>
+From:   Georgi Djakov <georgi.djakov@linaro.org>
+Message-ID: <4d089936-65fe-8601-73e7-0424d363b6f2@linaro.org>
+Date:   Tue, 1 Dec 2020 14:56:46 +0200
 MIME-Version: 1.0
-References: <CAFr9PXkX3UnLzGsPntXSum1978BkDJ1sn5XCp9Ze9KnHdmBDrw@mail.gmail.com>
- <CAL_JsqLcg4z7CnKf=7CsL1x3sPS+e2OxshGoD5j8kN4hQCFqrQ@mail.gmail.com>
-In-Reply-To: <CAL_JsqLcg4z7CnKf=7CsL1x3sPS+e2OxshGoD5j8kN4hQCFqrQ@mail.gmail.com>
-From:   Daniel Palmer <daniel@0x0f.com>
-Date:   Tue, 1 Dec 2020 21:45:52 +0900
-Message-ID: <CAFr9PX=A745aJ=Nz0wd014=xK5ujKDUTU69F5z5OHei+e+1doA@mail.gmail.com>
-Subject: Re: How to describe a device that sits across two busses.
-To:     Rob Herring <robh@kernel.org>
-Cc:     DTML <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20201201123932.12312-2-martin.kepplinger@puri.sm>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Hi Martin,
 
-On Tue, 1 Dec 2020 at 04:11, Rob Herring <robh@kernel.org> wrote:
+Thank you for sending the patches.
 
-> > Is there a good way to describe this? I think maybe the memory mapped
-> > area should be another node (syscon?) and that should be referenced in
-> > the driver node and the driver node itself nested in the riu simple
-> > bus where the registers are.
->
-> There's not really a better way. I would stick with 'reg' and not a
-> syscon. Unless you restrict the address space with 'ranges' nothing
-> prevents having the above. The main thing we want to avoid is having
-> the same address used (in 'reg') by multiple nodes.
+On 1.12.20 14:39, Martin Kepplinger wrote:
+> From: Leonard Crestez <leonard.crestez@nxp.com>
+> 
+> Add initial support for dynamic frequency scaling of main NOC.
+> 
+> Make DDRC the parent of the NOC (using passive governor) so that the
+> main NOC is automatically scaled together with DDRC by default.
+> 
+> Support for proactive scaling via interconnect will come on top.
+> 
+> Signed-off-by: Leonard Crestez <leonard.crestez@nxp.com>
+> Tested-by: Martin Kepplinger <martin.kepplinger@puri.sm> (imx8mq)
 
-Ok, I'll go for a node with 'reg' that the driver node references. The
-simple bus
-the registers are in does now have a range that doesn't include where the
-memory mapped region is.
+As you are sending this, i believe that it should have your signed-off 
+line (please check Documentation/process/submitting-patches.rst).
 
-Thank you for the input.
+Also please give people some time to look into this (at least 1-2 weeks) 
+before submitting a new version.
 
-Daniel
+Thanks,
+Georgi
+
+> ---
+>   arch/arm64/boot/dts/freescale/imx8mm.dtsi | 22 ++++++++++++++++++++++
+>   arch/arm64/boot/dts/freescale/imx8mn.dtsi | 22 ++++++++++++++++++++++
+>   arch/arm64/boot/dts/freescale/imx8mq.dtsi | 22 ++++++++++++++++++++++
+>   3 files changed, 66 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+> index c824f2615fe8..835b19f0ea42 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+> @@ -921,6 +921,28 @@
+>   
+>   		};
+>   
+> +		noc: interconnect@32700000 {
+> +			compatible = "fsl,imx8mm-noc", "fsl,imx8m-noc";
+> +			reg = <0x32700000 0x100000>;
+> +			clocks = <&clk IMX8MM_CLK_NOC>;
+> +			devfreq = <&ddrc>;
+> +			operating-points-v2 = <&noc_opp_table>;
+> +
+> +			noc_opp_table: opp-table {
+> +				compatible = "operating-points-v2";
+> +
+> +				opp-150M {
+> +					opp-hz = /bits/ 64 <150000000>;
+> +				};
+> +				opp-375M {
+> +					opp-hz = /bits/ 64 <375000000>;
+> +				};
+> +				opp-750M {
+> +					opp-hz = /bits/ 64 <750000000>;
+> +				};
+> +			};
+> +		};
+> +
+>   		aips4: bus@32c00000 {
+>   			compatible = "fsl,aips-bus", "simple-bus";
+>   			reg = <0x32c00000 0x400000>;
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mn.dtsi b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
+> index a06d2a6268e6..8e2d413f97d4 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mn.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
+> @@ -772,6 +772,28 @@
+>   
+>   		};
+>   
+> +		noc: interconnect@32700000 {
+> +			compatible = "fsl,imx8mn-noc", "fsl,imx8m-noc";
+> +			reg = <0x32700000 0x100000>;
+> +			clocks = <&clk IMX8MN_CLK_NOC>;
+> +			devfreq = <&ddrc>;
+> +			operating-points-v2 = <&noc_opp_table>;
+> +
+> +			noc_opp_table: opp-table {
+> +				compatible = "operating-points-v2";
+> +
+> +				opp-100M {
+> +					opp-hz = /bits/ 64 <100000000>;
+> +				};
+> +				opp-600M {
+> +					opp-hz = /bits/ 64 <600000000>;
+> +				};
+> +				opp-800M {
+> +					opp-hz = /bits/ 64 <800000000>;
+> +				};
+> +			};
+> +		};
+> +
+>   		aips4: bus@32c00000 {
+>   			compatible = "fsl,aips-bus", "simple-bus";
+>   			reg = <0x32c00000 0x400000>;
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+> index a841a023e8e0..d139a46ee8ce 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+> @@ -1158,6 +1158,28 @@
+>   			};
+>   		};
+>   
+> +		noc: interconnect@32700000 {
+> +			compatible = "fsl,imx8mq-noc", "fsl,imx8m-noc";
+> +			reg = <0x32700000 0x100000>;
+> +			clocks = <&clk IMX8MQ_CLK_NOC>;
+> +			devfreq = <&ddrc>;
+> +			operating-points-v2 = <&noc_opp_table>;
+> +
+> +			noc_opp_table: opp-table {
+> +				compatible = "operating-points-v2";
+> +
+> +				opp-133M {
+> +					opp-hz = /bits/ 64 <133333333>;
+> +				};
+> +				opp-400M {
+> +					opp-hz = /bits/ 64 <400000000>;
+> +				};
+> +				opp-800M {
+> +					opp-hz = /bits/ 64 <800000000>;
+> +				};
+> +			};
+> +		};
+> +
+>   		bus@32c00000 { /* AIPS4 */
+>   			compatible = "fsl,aips-bus", "simple-bus";
+>   			reg = <0x32c00000 0x400000>;
+> 
+
