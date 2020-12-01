@@ -2,40 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D8722C9829
-	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 08:33:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0883F2C984E
+	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 08:42:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727949AbgLAHcz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Dec 2020 02:32:55 -0500
-Received: from muru.com ([72.249.23.125]:49616 "EHLO muru.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727937AbgLAHcy (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 1 Dec 2020 02:32:54 -0500
-Received: from atomide.com (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTPS id 83B6A80A9;
-        Tue,  1 Dec 2020 07:32:21 +0000 (UTC)
-Date:   Tue, 1 Dec 2020 09:32:10 +0200
-From:   Tony Lindgren <tony@atomide.com>
-To:     Aaro Koskinen <aaro.koskinen@iki.fi>
-Cc:     =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
+        id S1728240AbgLAHmV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Dec 2020 02:42:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38778 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726314AbgLAHmV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Dec 2020 02:42:21 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96FACC0613D4
+        for <devicetree@vger.kernel.org>; Mon, 30 Nov 2020 23:41:40 -0800 (PST)
+Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1kk0Hw-0004UY-Ir; Tue, 01 Dec 2020 08:41:28 +0100
+Received: from ore by dude.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1kk0Hv-00035x-7t; Tue, 01 Dec 2020 08:41:27 +0100
+From:   Oleksij Rempel <o.rempel@pengutronix.de>
+To:     Mark Rutland <mark.rutland@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Adam Ford <aford173@gmail.com>, linux-omap@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] ARM: dts: OMAP3: disable AES on N950/N9
-Message-ID: <20201201073210.GU26857@atomide.com>
-References: <20201129144710.25521-1-aaro.koskinen@iki.fi>
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>
+Cc:     Oleksij Rempel <o.rempel@pengutronix.de>,
+        devicetree@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        David Jander <david@protonic.nl>
+Subject: [PATCH v2 0/2] mainline Protonic MVT board 
+Date:   Tue,  1 Dec 2020 08:41:23 +0100
+Message-Id: <20201201074125.11806-1-o.rempel@pengutronix.de>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201129144710.25521-1-aaro.koskinen@iki.fi>
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::7
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-* Aaro Koskinen <aaro.koskinen@iki.fi> [201129 16:47]:
-> AES needs to be disabled on Nokia N950/N9 as well (HS devices), otherwise
-> kernel fails to boot.
+changes v2:
+- fix active level of SPI CS GPIOs
 
-Thanks applying into fixes.
+Oleksij Rempel (2):
+  dt-bindings: arm: fsl: add Protonic MVT board
+  ARM: dts: add Protonic MVT board
 
-Tony
+ .../devicetree/bindings/arm/fsl.yaml          |   1 +
+ arch/arm/boot/dts/Makefile                    |   1 +
+ arch/arm/boot/dts/imx6dl-prtmvt.dts           | 851 ++++++++++++++++++
+ 3 files changed, 853 insertions(+)
+ create mode 100644 arch/arm/boot/dts/imx6dl-prtmvt.dts
+
+-- 
+2.29.2
+
