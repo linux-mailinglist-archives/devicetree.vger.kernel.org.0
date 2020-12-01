@@ -2,78 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E71DB2CA4DE
-	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 15:05:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 78BA52CA562
+	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 15:18:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387744AbgLAOCs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Dec 2020 09:02:48 -0500
-Received: from mail.kernel.org ([198.145.29.99]:47386 "EHLO mail.kernel.org"
+        id S1729233AbgLAOPZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Dec 2020 09:15:25 -0500
+Received: from mout.gmx.net ([212.227.15.15]:53319 "EHLO mout.gmx.net"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727132AbgLAOCs (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 1 Dec 2020 09:02:48 -0500
-Received: from localhost (cpc102334-sgyl38-2-0-cust884.18-2.cable.virginm.net [92.233.91.117])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 90665206A5;
-        Tue,  1 Dec 2020 14:02:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1606831328;
-        bh=aW2Hilu+u+FMSDt5jSfZ3YdcB27AWISjkZ0EP8TJWQ0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=CtqmQG0koaZUqaFmNb+rtx67Tm9dd6VjODehyw6xXK8mEEyh7DeGkwz/gajC6g3nv
-         loRp7Ac3YteEiU1ejG1M0OyeYdVkUza0H+cu8Q5qAOBneQekHh40FygeggCjOdac3u
-         R77KJSip6s/6h3NLaJtD2XEn7i00eU2/YQLgT+N0=
-Date:   Tue, 1 Dec 2020 14:01:38 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Adam Ward <Adam.Ward.opensource@diasemi.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Vincent Whitchurch <vincent.whitchurch@axis.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Support Opensource <support.opensource@diasemi.com>
-Subject: Re: [PATCH V4 00/10] regulator: da9121: extend support to variants,
- add features
-Message-ID: <20201201140138.GC5239@sirena.org.uk>
-References: <cover.1606830377.git.Adam.Ward.opensource@diasemi.com>
+        id S1729277AbgLAOPY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 1 Dec 2020 09:15:24 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1606832015;
+        bh=l5QbF6xOGKc4x8zAs8vjuIjnCCSeS/QenCxa/1DVlbI=;
+        h=X-UI-Sender-Class:Date:From:To:Cc:Subject:References:In-Reply-To;
+        b=i+oV1QvSArc/D0OsTzqzu3au1xQ+RB4CLJZ6R1m5FT/P4X0fP5IABHiC4nMLKIKva
+         2o0J+14UN1auWK9ulMl93TA0zDhX8dwgU7kxV+F+x41Wg8svew1fhrJ9RVxx0P3U+6
+         T4eIgyCXsBaotDRaZZ9qXTLqbSsa8zvQRhxGJyCk=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from longitude ([37.201.214.162]) by mail.gmx.com (mrgmx004
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1MjS5A-1kLVy83v7i-00kwOK; Tue, 01
+ Dec 2020 15:13:35 +0100
+Date:   Tue, 1 Dec 2020 15:13:28 +0100
+From:   Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
+To:     conor.dooley@microchip.com
+Cc:     robh+dt@kernel.org, damien.lemoal@wdc.com,
+        jassisinghbrar@gmail.com, aou@eecs.berkeley.edu,
+        paul.walmsley@sifive.com, palmer@dabbelt.com,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        cyril.jean@microchip.com, david.abdurachmanov@gmail.com,
+        daire.mcnamara@microchip.com, anup.patel@wdc.com,
+        atish.patra@wdc.com, lewis.hanly@microchip.com
+Subject: Re: [PATCH v2 1/5] mbox: add polarfire soc system controller mailbox
+Message-ID: <20201201141328.GJ456020@latitude>
+References: <20201201110242.28369-1-conor.dooley@microchip.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="yLVHuoLXiP9kZBkt"
+        protocol="application/pgp-signature"; boundary="YrQNB5Deg1WGKZi3"
 Content-Disposition: inline
-In-Reply-To: <cover.1606830377.git.Adam.Ward.opensource@diasemi.com>
-X-Cookie: Who was that masked man?
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20201201110242.28369-1-conor.dooley@microchip.com>
+X-Provags-ID: V03:K1:37pHlLEsoLHtPL7pyVcuzsHHd8XEuhHoKSZiTsSXcfIpElIfo37
+ /z9NgeUST6MhZlvyOSqi2rQxgmcD4qYHWwksr6sBuRnvGEPpu2043vVFoiQ29ZRYxNZkuVA
+ DMokTDJXoi93oZLrfJA9gCqrsKE4Bwq/4rlFl650SdsrgAX9EVSck70ODQSUB4Rcxinklv/
+ RQ1uYI7TI2a5E10UxHUWg==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:9Y/UJe4bFbU=:43MWcI7119WJd3yzIcJ1UC
+ tUNwLdMUDueJ8d5gzH7hBww0c5T3nh9HnRUtOtzLxtfG1MfLWN4NsfljZN5uY3ZlHnXl8bEx+
+ +d0psYG8K8ezvIEIbNkFAeKIMjPwzTLozXdKjLADA0nVd4Jy57/qp7wBZe2gTDSojVySt7Jfk
+ GsEYUj4kwPaKGaHQqnPylR5tINKBMFO9k56tnylQO6/9Tee2iYdjVbz5t67ezupagqfwfoZF+
+ X5Cu2ltmDK+hr6apONjUn1JUOEibPrQorASHBaV+95Shof2ab4clIfOT2UTVP+t2gcfARcRMn
+ REqQUVsrTELJty2Pu7sSOn+zO4jW+qV2ktqGwydUO7XGu26SQpEqo915bQ40uH1Kr7Mh7BEDR
+ QheL6cnAxMQG3B4KjnD75UIR7/qvj/6aQiIj6SD22S3qmHOBRp6TJtM1Fo+H0ATwbJeaZWK7Z
+ VgXaanpFEoxG0wgYVmQrkThfQtBLF7UIgL2ntuCUzDI02/aoGL4dRN+oYf5PWvTm411MkjZ1o
+ zdlgjnzf/FhGarqHhe4DMeKiYb3cEPZjsSzXo3/qdQ2gTtqeHy9tqQ+411CfgmU53rgsOAtZ+
+ jc38nhHde0gxwqxItpOF//rS5R4OboBa8b69rhPoalaQov6XTo3hpLLOimnoaP3QhtIEaHNOe
+ 3A8hz0YTTz7oyAZy2IF1nkDxCHYn7/0QVSjX1/pJootgJNpdMQadcOdDevdrqw7ThIiXEoKAe
+ WtHATPTeP2Q4ogZa7WjS2mZ/8JKYxWAt46ABCgf6ogHUopfF7odK/gA4mrl8dkz1fdSeJ2vkQ
+ Uk+eJ7k1zfSkO6sswU5SyGG7d2kOo2ctVGDLeWbs07I3LOG0QL3jp0drodhDmQTEfpD2vTXw8
+ W11PxG2O0zEK2e0STGtQ==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---yLVHuoLXiP9kZBkt
-Content-Type: text/plain; charset=us-ascii
+--YrQNB5Deg1WGKZi3
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Dec 01, 2020 at 01:52:26PM +0000, Adam Ward wrote:
-
-> V4:
+On Tue, Dec 01, 2020 at 11:02:42AM +0000, conor.dooley@microchip.com wrote:
+> From: Conor Dooley <conor.dooley@microchip.com>
 >=20
->  - Request IRQ directly and free in release function to avoid masking race
+> This driver adds support for the single mailbox channel of the MSS
+> system controller on the Microchip PolarFire SoC.
 
-I already applied the previous version, please send an incremental patch
-with this change.
+Out of my curiosity: What is MSS? Is it the Microprocessor Subsystem in
+the SoC?
 
---yLVHuoLXiP9kZBkt
+(It isn't quite clear from the PolarFire documentation I could find)
+
+>=20
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> ---
+[...]
+> +config MPFS_MBOX
+> +	tristate "MPFS Mailbox"
+
+"MPFS" in the title seems (to me) a bit too obscure for the uninitiated.
+Perhaps you could use something slightly longer that mentions Microchip
+and/or the PolarFire series?
+
+> +++ b/drivers/mailbox/mailbox-mpfs.c
+> @@ -0,0 +1,285 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Microchip MPFS system controller/mailbox controller driver
+
+The same might apply here.
+
+
+Best regards,
+Jonathan Neusch=C3=A4fer
+
+--YrQNB5Deg1WGKZi3
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl/GTMIACgkQJNaLcl1U
-h9Akqwf+PbJNGSNYmM2ZeJY3L9kNFrayy+mO58TU0LyCIz+mdLJshwoRPcNoqqha
-YsGcVXjLMRMG6RFUicFl9xJLjFp4gW84CzBu4BfdcQZ2fjn9tkS6O/F9oVA4r3G3
-UcGsuLOR5vMtNQeejOueBhKcmYhU9Ln24lZMXflcSYU955AC0Wk9djbAE3F7KUGo
-cU1ViyZyiC6nzVwb7Vx8PC3Dwp6MS8vZeL9FziGMYHMyiGmnCs7oPYocB61tK5lt
-Xz2/lfJEXzu/En2/ukFPv2Nsn2Oepyf2cE6UGtjOVdm6OgKCJ3bVK9phRCakXUxo
-hhAKaCyVg2ZgPAani37viP09EdPb/A==
-=YEEb
+iQIzBAABCgAdFiEEvHAHGBBjQPVy+qvDCDBEmo7zX9sFAl/GT24ACgkQCDBEmo7z
+X9vLPg/9HXIgvL+0QiHxk0z5m2E2vboBkUMD91d2NyxSgHg3M1m1IObVvevEguHI
+ixifEXKpXgMIAnxqwGRZZ66PZCrFvBRfEpumMf1bVnylLfpuFJKPF6PjSDoJXvED
+4GsUQhJwkrHxwm3ADPOh4fSqiRl+QSP1h6FckdZnhBabfF/wTZ3whYyJ22pV9brB
+5zPLDiRob/LxzRlr9ba22HgpFEn28VZa/kC2OWF9cXfrU5HLA9+63hU44+9yBc2P
+d4V1990W0y1nT9GNqJZuB3YZJlps+cSzrghUU1s1FuBTeSZMxJK/dqq18eqLjVtr
+UZybZGy0ZUntpYJ2Z5V0/bE1Gb69QW0vR6urR3AdWzkLjGNh7hnCZ8JB61eFHMEH
+ucLtV2W6v9utNBWrasbKMrbrxQnjRefEOoMj3XBw8MOOUdu99yiQwa+NVSNxJIZb
+0NHJF0KaCAeNRJKEGhYi8WVbxCTNSwwHpg6CW0Ung7OwFKDkXjGyAL9F7gnFKqRO
+zM1pzWm55Dro7la/7ZE9Y5oUrjamDKzhVK3VFTYQo+ieREnVnuaUxmtcCtHrp8G0
+a8mCmqFQK5k6scsm6YvcFfI+JilklC4jndFc4G9S8oKv9FLwpSbtKe79NnrszUK3
+9ZQXg9rRIHTbRxNpMXBJVSFMENDli4W6pieSWM+yNqq+KN/nwzo=
+=13L1
 -----END PGP SIGNATURE-----
 
---yLVHuoLXiP9kZBkt--
+--YrQNB5Deg1WGKZi3--
