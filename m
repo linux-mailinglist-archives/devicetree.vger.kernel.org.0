@@ -2,797 +2,328 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 042E02CA295
-	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 13:24:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E3112CA299
+	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 13:24:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727891AbgLAMVb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Dec 2020 07:21:31 -0500
-Received: from new4-smtp.messagingengine.com ([66.111.4.230]:46095 "EHLO
-        new4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726390AbgLAMVa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Dec 2020 07:21:30 -0500
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 1F8A958055B;
-        Tue,  1 Dec 2020 07:20:43 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute3.internal (MEProxy); Tue, 01 Dec 2020 07:20:43 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm1; bh=xMkazwppNpf+eo0G/7VDvsioA8Q
-        u7LbmHSrB0Ky+Nh0=; b=ZNjBTI0JlwNXNJSrjsoF6MBLLZHcGNOPyw2HICXOMCr
-        xayhPvijI+A6JcFOYiKywoR0qq4KSzL8ieEuO7WTh2b1j+/zpcTn8P7vqkE5ymEP
-        pOvhPbCh1CLW2cjDWiUu/6922LXh8ZqqW2XmLoGzlwtp5IGMz7Qvqez54HNxqkAz
-        YTIM27emdEgr9uUsT6mUovoLyU3uPdUcNYBtmuR5NH1P1Vx+pifdAkcZ3MWwwUvs
-        o0yzMP4JS4lZuzTywd890iOGOwKab/RlITEsNvOnUQjJD0TRCnA6NDbhXXm/j+qZ
-        Lpd9y+RGTw9A/cOaWx1gZbxRt56h2e4h9NPwsNw8mWg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=xMkazw
-        ppNpf+eo0G/7VDvsioA8Qu7LbmHSrB0Ky+Nh0=; b=SspGVdhIju34NC+EFHZjQX
-        0nSrV8AYfplUxQeqaADnQ4vpgdIc7rG7jOFyajYv6EAlZBk3cVwfnwLnd1R9j0db
-        rLSHFgAyyejbGeCafhA33X59zbm3ncebLXiNP8/ktLZqmmJ3AeOyF0vYqgTdeLno
-        YlJBUnI177gQ1Q1sordcMuM8NMXJRFl0+ExkQhNSjgKooHT4Om0ULtxMkVEl89kK
-        9T0lbre6xUWR9lEkmtr3vUAxvdP+eDTAGrCpHfJdzZ6EauIkQ7554EhLcZwTS76A
-        yHgTq5h3hjl3ARj4pEu4GMljF+xdpcFUYviym91ayngSLffTNZaUrRrdJuIZbgZQ
-        ==
-X-ME-Sender: <xms:GDXGX5bb2M-KrVnupHgZKA0IfAOIPLJme9ZWh37-Ic7zK9TbodoMPA>
-    <xme:GDXGX3KTqVnKogJEzHca6fBc3KIagDPvM5qG64Vgz7HWSPqeurBCyybEpy2NJjnR3
-    vZ9EObfzBlpGfW48LA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrudeivddggedtucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
-    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
-    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
-    gedunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
-    frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:GDXGX9sTeIPOD9hFnuA8Y1jsqrqwserCFznWyuyAyKlmQpb8gWf0RA>
-    <xmx:GDXGXzUL-ZpdJGHETUVBZsX2LCLVZHGbhMSVVIWhLLMfaHUuVP-hOg>
-    <xmx:GDXGXwgZhBRHWXQyACAeW0xwfHQrNHFCJMbXAJgmSmp-INiCoqA2LA>
-    <xmx:GzXGX6Lvyb__WEZYPwaHxdVd9M4J23z2tz98T2uD2kQMQI9QNjh2bw>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id F03CE1080067;
-        Tue,  1 Dec 2020 07:20:39 -0500 (EST)
-Date:   Tue, 1 Dec 2020 13:20:38 +0100
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-doc@vger.kernel.org, devel@driverdev.osuosl.org,
-        linux-sunxi@googlegroups.com, Yong Deng <yong.deng@magewell.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Helen Koike <helen.koike@collabora.com>,
-        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Hans Verkuil <hans.verkuil@cisco.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        kevin.lhopital@hotmail.com
-Subject: Re: [PATCH v2 13/19] media: sunxi: Add support for the A31 MIPI
- CSI-2 controller
-Message-ID: <20201201122038.bxk3vu2w3mg43ayq@gilmour>
-References: <20201128142839.517949-1-paul.kocialkowski@bootlin.com>
- <20201128142839.517949-14-paul.kocialkowski@bootlin.com>
+        id S1728419AbgLAMWc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Dec 2020 07:22:32 -0500
+Received: from esa2.hgst.iphmx.com ([68.232.143.124]:63064 "EHLO
+        esa2.hgst.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726862AbgLAMWc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Dec 2020 07:22:32 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
+  t=1606825696; x=1638361696;
+  h=from:to:cc:subject:date:message-id:references:
+   content-transfer-encoding:mime-version;
+  bh=lklpcndLwRiTwpIHhz2Sbr9x2cA8j2vyaAIINKo8yis=;
+  b=JimusGrrSO/bpYVoiFf6FLb5H84AXid8/WbCOm7zTvsBnB0BQ0wjQ7Nq
+   ZrpUPVC2tuvZmua8CNSQNb9VLtL3af2hqZiV4VbP3ha8NaJ1WK/zspnnj
+   XwVABX9qlJ9IcdkB/uBGR9i9oV8LMsxYkRYF6TdgDSjh+W1wmJ+AlZFlg
+   WNYqipR1GOv1ahDrGpyPhOHMtxGDtTP7IUIjwUoZKP34dOUGE70qMqIxr
+   BQYVWbCxyBvEbUi8zDMK9knbpqGjylMK7r74Qzuvr9KIradnwTmBVFAlb
+   RA7aYqhLbbKSaN8hI8l+Pb4AuerI4OuBi3BVU+aQ0Ghgk3zuSwwcuz/aO
+   g==;
+IronPort-SDR: fQ80MZx5twsgiBgsCuIOFBenlB8GlvGAH65+gUbtB87avL8Lgi9OpdzjIWhSrqeW/rL+5FDnq8
+ ckcrlF5AIu7XGCPqVyDDktPehDe7NuKzm1GuOODXNKXI9GlgJXlT2okceAow6Sk8hhvVqGZk3V
+ 4N701EE7IbZR1lBfVWG9FyT4jVm19dD1z8xVvCXKPoDPJQ917lB90h1wKFeMBFConxPQ1DgQML
+ 53dNTP3ALt4lSK5qDC0m2ksBZeU+/jlR+FAU7kmxceB+JZSamfFv91Z98JJ705/YZZ9cl23OcR
+ xO8=
+X-IronPort-AV: E=Sophos;i="5.78,384,1599494400"; 
+   d="scan'208";a="257596610"
+Received: from mail-co1nam11lp2177.outbound.protection.outlook.com (HELO NAM11-CO1-obe.outbound.protection.outlook.com) ([104.47.56.177])
+  by ob1.hgst.iphmx.com with ESMTP; 01 Dec 2020 20:26:35 +0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=HxmrRpJLrttgG2MjoYYtbRYiMiYvUqOsx5Q8ms+gW9/ljyy5FwGdBP9opOmh4dfZj0gq0UxmC47Gxxx3PNQ1nN1DwatQ0Me7fetrEfri1Zcy/IfoCOR7v1b+FPN4QRRZO0tI9v+LNgcw336UX4JrpOxN2OUN2VbpjaXU2bsnV6ufKMhF6G9Zqnr7FL+dl+0zLSNADEVs9kWscfSkuHe5qJkXN0nRe1UVQ+AqUlVUmmyF4ZFSKr9Wm5bw9Ph9CB0M/VT4uLzfjcmOFh/r6dPJF3E+tfTqNKxVkJsm3Ve4XBilXWskXf9ne7h0k2jFXVJn1sdMFwjkWLvZlRUpFO4zgQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=9AU3+gbsqjIaWKRjpPsOliHwKBm98t4xFO294/WymAs=;
+ b=i4zuroODyg0V81etB88opSTEkGEpqoOStS70ZA+JTwJUpqeVADREUDf4qql8af7b3/guC/PMD6P+mz3jVdaznSKxMMvlAqmu1xk1O5Tjtq8QcujVCwJer8CooopWeHdPszHgRlVZH9dNrbQddM2jMufKH1kPcwEjVd+vSFidXduryj5dsZqOJlQG+LxbAo+VhQ7avfGZZwatvQuf3qOsjX4bymS23tJ44CI0J6oUXbnYmlze/nuZCUwwj7Lh4EXnXggL5TZxldBFdWBzRmmhd+QsSJblGQLpJLEoFZflQef3j0Fmlm5d7XzK0bYKo4OrRC5NvkhFsbX5z4kzkoE7Gw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=wdc.com; dmarc=pass action=none header.from=wdc.com; dkim=pass
+ header.d=wdc.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=sharedspace.onmicrosoft.com; s=selector2-sharedspace-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=9AU3+gbsqjIaWKRjpPsOliHwKBm98t4xFO294/WymAs=;
+ b=e4QvUsw/rTWs/nGzd8jr2vAzEkLPbabGL3qXfU/0EXJFUyXvV4VK1td0zv38nQuAZE2WE0clyfEyfeGSJk8rIz6VVpO2XRrf6y2RM0zQgv1PtgljXHAibwjkXyaSyuLaordZMd5PLpGZaeyHLgeSwcrNBykSsStgAHT4k/s2058=
+Received: from CH2PR04MB6522.namprd04.prod.outlook.com (2603:10b6:610:34::19)
+ by CH2PR04MB6631.namprd04.prod.outlook.com (2603:10b6:610:9f::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3611.25; Tue, 1 Dec
+ 2020 12:21:21 +0000
+Received: from CH2PR04MB6522.namprd04.prod.outlook.com
+ ([fe80::897c:a04b:4eb0:640a]) by CH2PR04MB6522.namprd04.prod.outlook.com
+ ([fe80::897c:a04b:4eb0:640a%7]) with mapi id 15.20.3589.022; Tue, 1 Dec 2020
+ 12:21:21 +0000
+From:   Damien Le Moal <Damien.LeMoal@wdc.com>
+To:     Ben Dooks <ben.dooks@codethink.co.uk>,
+        "conor.dooley@microchip.com" <conor.dooley@microchip.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "jassisinghbrar@gmail.com" <jassisinghbrar@gmail.com>,
+        "aou@eecs.berkeley.edu" <aou@eecs.berkeley.edu>,
+        "paul.walmsley@sifive.com" <paul.walmsley@sifive.com>,
+        "palmer@dabbelt.com" <palmer@dabbelt.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>
+CC:     "cyril.jean@microchip.com" <cyril.jean@microchip.com>,
+        "david.abdurachmanov@gmail.com" <david.abdurachmanov@gmail.com>,
+        "daire.mcnamara@microchip.com" <daire.mcnamara@microchip.com>,
+        Anup Patel <Anup.Patel@wdc.com>,
+        Atish Patra <Atish.Patra@wdc.com>,
+        "lewis.hanly@microchip.com" <lewis.hanly@microchip.com>
+Subject: Re: [PATCH v2 3/5] soc: add polarfire soc system controller
+Thread-Topic: [PATCH v2 3/5] soc: add polarfire soc system controller
+Thread-Index: AQHWx9GPBNmhkWSEf0arVrOyBIjWRw==
+Date:   Tue, 1 Dec 2020 12:21:21 +0000
+Message-ID: <CH2PR04MB6522AA25CA6F470CF2DCBCB7E7F40@CH2PR04MB6522.namprd04.prod.outlook.com>
+References: <20201201110257.28507-1-conor.dooley@microchip.com>
+ <CH2PR04MB6522C138E30D5E53FD1317F2E7F40@CH2PR04MB6522.namprd04.prod.outlook.com>
+ <33138723-73d2-1460-2158-bdfc51b4c5c4@codethink.co.uk>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: codethink.co.uk; dkim=none (message not signed)
+ header.d=none;codethink.co.uk; dmarc=none action=none header.from=wdc.com;
+x-originating-ip: [2400:2411:43c0:6000:18de:edc1:5ede:e698]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: 46fc3a95-8ca2-4d0b-d38a-08d895f39d13
+x-ms-traffictypediagnostic: CH2PR04MB6631:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <CH2PR04MB66311C4A8F165EF21B8A7708E7F40@CH2PR04MB6631.namprd04.prod.outlook.com>
+wdcipoutbound: EOP-TRUE
+x-ms-oob-tlc-oobclassifiers: OLM:7691;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: ocvcYx3pbW6UrP+4fWPL0nrKDUx42ZUIGXxCJB4SzhwtXcLAWNY4VBneM+z8ASX4Xf611LlfwFAbu1tiK41+o9GoFiAunwB+evCaIVmzqLZ0VNZYvG8RvTGVu8Cbe8ZtIT4B61xWJaKvGfOxpG3l/OiIGDG4oC7jRND1RWIU0pcfCRuvZCFMDystW6rJEXvH0Uo8JxOFMwX/CQrBXfxbXQrp5FmXDqpLGIirAL7UYUcpySDDNAypI9seQj827k4X/WnvhmqWFpuFgTZfpA7GQum1pWua1vBHNUOAXR7tDUKw5ykpTORN0GGRgiGwTBUA
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CH2PR04MB6522.namprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(7416002)(498600001)(76116006)(66446008)(66946007)(91956017)(33656002)(8676002)(66476007)(66556008)(64756008)(6506007)(52536014)(4326008)(8936002)(186003)(7696005)(53546011)(5660300002)(110136005)(55016002)(2906002)(54906003)(86362001)(71200400001)(83380400001)(9686003);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata: =?us-ascii?Q?ajFaem7Bx6wm1ig9yXXTuxBqgphTa4aD/AzXL8xCEX+OB8OqMdmRuZzE/BKh?=
+ =?us-ascii?Q?1UJKtQpJl8962V5M1e+GDRle+lRh70rK21FNQvgkzp4PEZI99G6u8tlJlLvU?=
+ =?us-ascii?Q?6X4bdeVIZMTetCaSlrZaBSYOnxktEjxUr2YvyJAqh4jtUmAq2FcgUdEVJxJx?=
+ =?us-ascii?Q?ArJAvk0xFhoJogYLfFUlIw0bT6t23vErQW7dRC6LNA+8PWa63VUQp3LoT3eo?=
+ =?us-ascii?Q?6CqQEdDqOD9hTviljaKlS1V69yDh+jkK9DEuw47mjRQpxWC9py0udTyGlTPq?=
+ =?us-ascii?Q?1K+Yjq+DrLufVLo1wRXOBAhwAkULS4Z95w+coW92uG7SPvDyMszpYRZOhVkD?=
+ =?us-ascii?Q?nt5FQ7CzXzFZDus7f8gt5VXZeSrP9McS0RQrychnCn6XLRRLZcXfg1p4SXul?=
+ =?us-ascii?Q?l/RrdRRZjhKyW1FLn26z331TOxYdYWOYrFZOlVT6ziFdOG4z9sZyf/Ix6HWq?=
+ =?us-ascii?Q?mS1rdn/UlxCYqeLxhRu1UAc+5R6QYZVSbH4Q5NAG3cCg8qEL2XSgBRcwMNmi?=
+ =?us-ascii?Q?ImslqXRnmnFvVUWfM5TkpeMRjjPL77Q0RMUKCo1pr44Fckj0y0f0LtHUlV1W?=
+ =?us-ascii?Q?3raCmwazzDSmRQTZvb+RC4E87CRJPo+JuddXpthqaS6hpvhyMOockGanes3K?=
+ =?us-ascii?Q?tXRMLC436MyM5eJkjSILsh0KnHGL9Ndyd/xmnVmBBF75LdQ1lWkr2jMRjTq9?=
+ =?us-ascii?Q?RwcllO+XhsWIg9JCRIje3FB1AW8bFbjAG1lL446Y2FwAd6Kv35YPc2jY/i0W?=
+ =?us-ascii?Q?UOVpR6k8xTKs7LB8m9L5Ky5RStsNpmDx771mcFiX4A99546SrFyZzg1+ex01?=
+ =?us-ascii?Q?b/OUy70ZfQ3/l0H0OeBJbz+m6Q7w+MzPZzd2DjoK/IKHGItQbCO8l0zscNF1?=
+ =?us-ascii?Q?MKjYgGaUiumfQEkpSQsZfe/5OFe8Zns+kH6RiFli5x9R1JAEadzzO0MmikdH?=
+ =?us-ascii?Q?2vuWR1qszWWlF9+3ARQ3fa+3rC1WUIxM+XrOgAYy6Alhz1b4PFSYdOKlSty7?=
+ =?us-ascii?Q?5XyOccTNApgOTvD41KgKkOr4bUtHpmnDxaPyrUfiAtDzp2N2LNAA1JXXKjaZ?=
+ =?us-ascii?Q?tSOSj8Ld?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="xyg3j2piqrsy5z5r"
-Content-Disposition: inline
-In-Reply-To: <20201128142839.517949-14-paul.kocialkowski@bootlin.com>
+X-OriginatorOrg: wdc.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: CH2PR04MB6522.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 46fc3a95-8ca2-4d0b-d38a-08d895f39d13
+X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Dec 2020 12:21:21.6853
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: b61c8803-16f3-4c35-9b17-6f65f441df86
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 3A0WBRjN0EIah29Q4AHz6RNoR+oxDeqfiD7naJ517tXyl5rJOIm+Y7cje0RzIJpohnf/Qy0qZxvAmqP7DctNyQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR04MB6631
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---xyg3j2piqrsy5z5r
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hi,
-
-On Sat, Nov 28, 2020 at 03:28:33PM +0100, Paul Kocialkowski wrote:
-> The A31 MIPI CSI-2 controller is a dedicated MIPI CSI-2 bridge
-> found on Allwinner SoCs such as the A31 and V3/V3s.
->=20
-> It is a standalone block, connected to the CSI controller on one side
-> and to the MIPI D-PHY block on the other. It has a dedicated address
-> space, interrupt line and clock.
->=20
-> It is represented as a V4L2 subdev to the CSI controller and takes a
-> MIPI CSI-2 sensor as its own subdev, all using the fwnode graph and
-> media controller API.
->=20
-> Only 8-bit and 10-bit Bayer formats are currently supported.
-> While up to 4 internal channels to the CSI controller exist, only one
-> is currently supported by this implementation.
->=20
-> Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-> ---
->  drivers/media/platform/sunxi/Kconfig          |   1 +
->  drivers/media/platform/sunxi/Makefile         |   1 +
->  .../platform/sunxi/sun6i-mipi-csi2/Kconfig    |  12 +
->  .../platform/sunxi/sun6i-mipi-csi2/Makefile   |   4 +
->  .../sunxi/sun6i-mipi-csi2/sun6i_mipi_csi2.c   | 591 ++++++++++++++++++
->  .../sunxi/sun6i-mipi-csi2/sun6i_mipi_csi2.h   | 117 ++++
->  6 files changed, 726 insertions(+)
->  create mode 100644 drivers/media/platform/sunxi/sun6i-mipi-csi2/Kconfig
->  create mode 100644 drivers/media/platform/sunxi/sun6i-mipi-csi2/Makefile
->  create mode 100644 drivers/media/platform/sunxi/sun6i-mipi-csi2/sun6i_mi=
-pi_csi2.c
->  create mode 100644 drivers/media/platform/sunxi/sun6i-mipi-csi2/sun6i_mi=
-pi_csi2.h
->=20
-> diff --git a/drivers/media/platform/sunxi/Kconfig b/drivers/media/platfor=
-m/sunxi/Kconfig
-> index 7151cc249afa..9684e07454ad 100644
-> --- a/drivers/media/platform/sunxi/Kconfig
-> +++ b/drivers/media/platform/sunxi/Kconfig
-> @@ -2,3 +2,4 @@
-> =20
->  source "drivers/media/platform/sunxi/sun4i-csi/Kconfig"
->  source "drivers/media/platform/sunxi/sun6i-csi/Kconfig"
-> +source "drivers/media/platform/sunxi/sun6i-mipi-csi2/Kconfig"
-> diff --git a/drivers/media/platform/sunxi/Makefile b/drivers/media/platfo=
-rm/sunxi/Makefile
-> index fc537c9f5ca9..887a7cae8fca 100644
-> --- a/drivers/media/platform/sunxi/Makefile
-> +++ b/drivers/media/platform/sunxi/Makefile
-> @@ -2,5 +2,6 @@
-> =20
->  obj-y		+=3D sun4i-csi/
->  obj-y		+=3D sun6i-csi/
-> +obj-y		+=3D sun6i-mipi-csi2/
-
-I'm not sure we need a new folder here, it's only ever tied to sun6i-csi
-so it would make more sense to have it in the same folder.
-
->  obj-y		+=3D sun8i-di/
->  obj-y		+=3D sun8i-rotate/
-> diff --git a/drivers/media/platform/sunxi/sun6i-mipi-csi2/Kconfig b/drive=
-rs/media/platform/sunxi/sun6i-mipi-csi2/Kconfig
-> new file mode 100644
-> index 000000000000..3260591ed5c0
-> --- /dev/null
-> +++ b/drivers/media/platform/sunxi/sun6i-mipi-csi2/Kconfig
-> @@ -0,0 +1,12 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
-> +config VIDEO_SUN6I_MIPI_CSI2
-> +	tristate "Allwinner A31 MIPI CSI-2 Controller Driver"
-> +	depends on VIDEO_V4L2 && COMMON_CLK
-> +	depends on ARCH_SUNXI || COMPILE_TEST
-> +	select PHY_SUN6I_MIPI_DPHY
-> +	select MEDIA_CONTROLLER
-> +	select VIDEO_V4L2_SUBDEV_API
-> +	select REGMAP_MMIO
-> +	select V4L2_FWNODE
-> +	help
-> +	   Support for the Allwinner A31 MIPI CSI-2 Controller.
-> diff --git a/drivers/media/platform/sunxi/sun6i-mipi-csi2/Makefile b/driv=
-ers/media/platform/sunxi/sun6i-mipi-csi2/Makefile
-> new file mode 100644
-> index 000000000000..14e4e03818b5
-> --- /dev/null
-> +++ b/drivers/media/platform/sunxi/sun6i-mipi-csi2/Makefile
-> @@ -0,0 +1,4 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
-> +sun6i-mipi-csi2-y +=3D sun6i_mipi_csi2.o
-> +
-> +obj-$(CONFIG_VIDEO_SUN6I_MIPI_CSI2) +=3D sun6i-mipi-csi2.o
-> diff --git a/drivers/media/platform/sunxi/sun6i-mipi-csi2/sun6i_mipi_csi2=
-=2Ec b/drivers/media/platform/sunxi/sun6i-mipi-csi2/sun6i_mipi_csi2.c
-> new file mode 100644
-> index 000000000000..a6567ef82fb4
-> --- /dev/null
-> +++ b/drivers/media/platform/sunxi/sun6i-mipi-csi2/sun6i_mipi_csi2.c
-> @@ -0,0 +1,591 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/*
-> + * Copyright 2020 Bootlin
-> + * Author: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-> + */
-> +
-> +#include <linux/clk.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/of_device.h>
-> +#include <linux/phy/phy.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/pm_runtime.h>
-> +#include <linux/regmap.h>
-> +#include <linux/reset.h>
-> +#include <media/v4l2-ctrls.h>
-> +#include <media/v4l2-device.h>
-> +#include <media/v4l2-fwnode.h>
-> +
-> +#include "sun6i_mipi_csi2.h"
-> +
-> +#define MODULE_NAME	"sun6i-mipi-csi2"
-> +
-> +static const u32 sun6i_mipi_csi2_mbus_codes[] =3D {
-> +	MEDIA_BUS_FMT_SBGGR8_1X8,
-> +	MEDIA_BUS_FMT_SGBRG8_1X8,
-> +	MEDIA_BUS_FMT_SGRBG8_1X8,
-> +	MEDIA_BUS_FMT_SRGGB8_1X8,
-> +	MEDIA_BUS_FMT_SBGGR10_1X10,
-> +	MEDIA_BUS_FMT_SGBRG10_1X10,
-> +	MEDIA_BUS_FMT_SGRBG10_1X10,
-> +	MEDIA_BUS_FMT_SRGGB10_1X10,
-> +};
-> +
-> +/* Video */
-> +
-> +static int sun6i_mipi_csi2_s_stream(struct v4l2_subdev *subdev, int on)
-> +{
-> +	struct sun6i_mipi_csi2_video *video =3D
-> +		sun6i_mipi_csi2_subdev_video(subdev);
-> +	struct sun6i_mipi_csi2_dev *cdev =3D sun6i_mipi_csi2_video_dev(video);
-> +	struct v4l2_subdev *remote_subdev =3D video->remote_subdev;
-> +	struct v4l2_fwnode_bus_mipi_csi2 *bus_mipi_csi2 =3D
-> +		&video->endpoint.bus.mipi_csi2;
-> +	union phy_configure_opts dphy_opts =3D { 0 };
-> +	struct phy_configure_opts_mipi_dphy *dphy_cfg =3D &dphy_opts.mipi_dphy;
-> +	struct regmap *regmap =3D cdev->regmap;
-> +	struct v4l2_ctrl *ctrl;
-> +	unsigned int lanes_count;
-> +	unsigned int bpp;
-> +	unsigned long pixel_rate;
-> +	u8 data_type =3D 0;
-> +	u32 version =3D 0;
-> +	/* Initialize to 0 to use both in disable label (ret !=3D 0) and off. */
-> +	int ret =3D 0;
-> +
-> +	if (!remote_subdev)
-> +		return -ENODEV;
-> +
-> +	if (!on) {
-> +		v4l2_subdev_call(remote_subdev, video, s_stream, 0);
-> +		goto disable;
-> +	}
-> +
-> +	switch (video->mbus_format.code) {
-> +	case MEDIA_BUS_FMT_SBGGR8_1X8:
-> +	case MEDIA_BUS_FMT_SGBRG8_1X8:
-> +	case MEDIA_BUS_FMT_SGRBG8_1X8:
-> +	case MEDIA_BUS_FMT_SRGGB8_1X8:
-> +		data_type =3D MIPI_CSI2_DATA_TYPE_RAW8;
-> +		bpp =3D 8;
-> +		break;
-> +	case MEDIA_BUS_FMT_SBGGR10_1X10:
-> +	case MEDIA_BUS_FMT_SGBRG10_1X10:
-> +	case MEDIA_BUS_FMT_SGRBG10_1X10:
-> +	case MEDIA_BUS_FMT_SRGGB10_1X10:
-> +		data_type =3D MIPI_CSI2_DATA_TYPE_RAW10;
-> +		bpp =3D 10;
-> +		break;
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +
-> +	/* Sensor pixel rate */
-> +
-> +	ctrl =3D v4l2_ctrl_find(remote_subdev->ctrl_handler, V4L2_CID_PIXEL_RAT=
-E);
-> +	if (!ctrl) {
-> +		dev_err(cdev->dev,
-> +			"%s: no MIPI CSI-2 pixel rate from the sensor\n",
-> +			__func__);
-> +		return -ENODEV;
-> +	}
-> +
-> +	pixel_rate =3D (unsigned long)v4l2_ctrl_g_ctrl_int64(ctrl);
-> +	if (!pixel_rate) {
-> +		dev_err(cdev->dev,
-> +			"%s: zero MIPI CSI-2 pixel rate from the sensor\n",
-> +			__func__);
-> +		return -ENODEV;
-> +	}
-> +
-> +	/* Power management */
-> +
-> +	ret =3D pm_runtime_get_sync(cdev->dev);
-> +	if (ret < 0) {
-> +		pm_runtime_put_noidle(cdev->dev);
-> +		return ret;
-> +	}
-> +
-> +	/* D-PHY configuration */
-> +
-> +	lanes_count =3D bus_mipi_csi2->num_data_lanes;
-> +	phy_mipi_dphy_get_default_config(pixel_rate, bpp, lanes_count,
-> +					 dphy_cfg);
-> +
-> +	/*
-> +	 * Note that our hardware is using DDR, which is not taken in account by
-> +	 * phy_mipi_dphy_get_default_config when calculating hs_clk_rate from
-> +	 * the pixel rate, lanes count and bpp.
-> +	 *
-> +	 * The resulting clock rate is basically the symbol rate over the whole
-> +	 * link. The actual clock rate is calculated with division by two since
-> +	 * DDR samples both on rising and falling edges.
-> +	 */
-> +
-> +	dev_dbg(cdev->dev, "A31 MIPI CSI-2 config:\n");
-> +	dev_dbg(cdev->dev, "%ld pixels/s, %u bits/pixel, %lu Hz clock\n",
-> +		pixel_rate, bpp, dphy_cfg->hs_clk_rate / 2);
-> +
-> +	ret =3D phy_reset(cdev->dphy);
-> +	if (ret) {
-> +		dev_err(cdev->dev, "failed to reset MIPI D-PHY\n");
-> +		goto error_pm;
-> +	}
-> +
-> +	ret =3D phy_set_mode_ext(cdev->dphy, PHY_MODE_MIPI_DPHY,
-> +			       PHY_MIPI_DPHY_SUBMODE_RX);
-> +	if (ret) {
-> +		dev_err(cdev->dev, "failed to set MIPI D-PHY mode\n");
-> +		goto error_pm;
-> +	}
-> +
-> +	ret =3D phy_configure(cdev->dphy, &dphy_opts);
-> +	if (ret) {
-> +		dev_err(cdev->dev, "failed to configure MIPI D-PHY\n");
-> +		goto error_pm;
-> +	}
-> +
-> +	ret =3D phy_power_on(cdev->dphy);
-> +	if (ret) {
-> +		dev_err(cdev->dev, "failed to power on MIPI D-PHY\n");
-> +		goto error_pm;
-> +	}
-> +
-> +	/* MIPI CSI-2 controller setup */
-> +
-> +	/*
-> +	 * The enable flow in the Allwinner BSP is a bit different: the enable
-> +	 * and reset bits are set together before starting the CSI controller.
-> +	 *
-> +	 * In mainline we enable the CSI controller first (due to subdev logic).
-> +	 * One reliable way to make this work is to deassert reset, configure
-> +	 * registers and enable the controller when everything's ready.
-> +	 *
-> +	 * However, setting the version enable bit and removing it afterwards
-> +	 * appears necessary for capture to work reliably, while replacing it
-> +	 * with a delay doesn't do the trick.
-> +	 */
-> +	regmap_write(regmap, SUN6I_MIPI_CSI2_CTL_REG,
-> +		     SUN6I_MIPI_CSI2_CTL_RESET_N |
-> +		     SUN6I_MIPI_CSI2_CTL_VERSION_EN |
-> +		     SUN6I_MIPI_CSI2_CTL_UNPK_EN);
-> +
-> +	regmap_read(regmap, SUN6I_MIPI_CSI2_VERSION_REG, &version);
-> +
-> +	regmap_update_bits(regmap, SUN6I_MIPI_CSI2_CTL_REG,
-> +				   SUN6I_MIPI_CSI2_CTL_VERSION_EN, 0);
-> +
-> +	dev_dbg(cdev->dev, "A31 MIPI CSI-2 version: %04x\n", version);
-> +
-> +	regmap_write(regmap, SUN6I_MIPI_CSI2_CFG_REG,
-> +		     SUN6I_MIPI_CSI2_CFG_CHANNEL_MODE(1) |
-> +		     SUN6I_MIPI_CSI2_CFG_LANE_COUNT(lanes_count));
-> +
-> +	/*
-> +	 * Our MIPI CSI-2 controller has internal channels that can be
-> +	 * configured to match a specific MIPI CSI-2 virtual channel and/or
-> +	 * a specific data type. Each internal channel can be piped to an
-> +	 * internal channel of the CSI controller.
-> +	 *
-> +	 * We set virtual channel numbers to all channels to make sure that
-> +	 * virtual channel 0 goes to CSI channel 0 only.
-> +	 */
-> +	regmap_write(regmap, SUN6I_MIPI_CSI2_VCDT_RX_REG,
-> +		     SUN6I_MIPI_CSI2_VCDT_RX_CH_VC(3, 3) |
-> +		     SUN6I_MIPI_CSI2_VCDT_RX_CH_VC(2, 2) |
-> +		     SUN6I_MIPI_CSI2_VCDT_RX_CH_VC(1, 1) |
-> +		     SUN6I_MIPI_CSI2_VCDT_RX_CH_VC(0, 0) |
-> +		     SUN6I_MIPI_CSI2_VCDT_RX_CH_DT(0, data_type));
-> +
-> +	regmap_update_bits(regmap, SUN6I_MIPI_CSI2_CTL_REG,
-> +			   SUN6I_MIPI_CSI2_CTL_EN, SUN6I_MIPI_CSI2_CTL_EN);
-> +
-> +	ret =3D v4l2_subdev_call(remote_subdev, video, s_stream, 1);
-> +	if (ret)
-> +		goto disable;
-> +
-> +	return 0;
-> +
-> +disable:
-> +	regmap_update_bits(regmap, SUN6I_MIPI_CSI2_CTL_REG,
-> +			   SUN6I_MIPI_CSI2_CTL_EN, 0);
-> +
-> +	phy_power_off(cdev->dphy);
-> +
-> +error_pm:
-> +	pm_runtime_put(cdev->dev);
-> +
-> +	return ret;
-> +}
-> +
-> +static const struct v4l2_subdev_video_ops sun6i_mipi_csi2_subdev_video_o=
-ps =3D {
-> +	.s_stream	=3D sun6i_mipi_csi2_s_stream,
-> +};
-> +
-> +/* Pad */
-> +
-> +static int
-> +sun6i_mipi_csi2_enum_mbus_code(struct v4l2_subdev *subdev,
-> +			       struct v4l2_subdev_pad_config *config,
-> +			       struct v4l2_subdev_mbus_code_enum *code_enum)
-> +{
-> +	if (code_enum->index >=3D ARRAY_SIZE(sun6i_mipi_csi2_mbus_codes))
-> +		return -EINVAL;
-> +
-> +	code_enum->code =3D sun6i_mipi_csi2_mbus_codes[code_enum->index];
-> +
-> +	return 0;
-> +}
-> +
-> +static int sun6i_mipi_csi2_get_fmt(struct v4l2_subdev *subdev,
-> +				   struct v4l2_subdev_pad_config *config,
-> +				   struct v4l2_subdev_format *format)
-> +{
-> +	struct sun6i_mipi_csi2_video *video =3D
-> +		sun6i_mipi_csi2_subdev_video(subdev);
-> +	struct v4l2_mbus_framefmt *mbus_format =3D &format->format;
-> +
-> +	if (format->which =3D=3D V4L2_SUBDEV_FORMAT_TRY)
-> +		*mbus_format =3D *v4l2_subdev_get_try_format(subdev, config,
-> +							   format->pad);
-> +	else
-> +		*mbus_format =3D video->mbus_format;
-> +
-> +	return 0;
-> +}
-> +
-> +static int sun6i_mipi_csi2_set_fmt(struct v4l2_subdev *subdev,
-> +				   struct v4l2_subdev_pad_config *config,
-> +				   struct v4l2_subdev_format *format)
-> +{
-> +	struct sun6i_mipi_csi2_video *video =3D
-> +		sun6i_mipi_csi2_subdev_video(subdev);
-> +	struct v4l2_mbus_framefmt *mbus_format =3D &format->format;
-> +
-> +	if (format->which =3D=3D V4L2_SUBDEV_FORMAT_TRY)
-> +		*v4l2_subdev_get_try_format(subdev, config, format->pad) =3D
-> +			*mbus_format;
-> +	else
-> +		video->mbus_format =3D *mbus_format;
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct v4l2_subdev_pad_ops sun6i_mipi_csi2_subdev_pad_ops =
-=3D {
-> +	.enum_mbus_code	=3D sun6i_mipi_csi2_enum_mbus_code,
-> +	.get_fmt	=3D sun6i_mipi_csi2_get_fmt,
-> +	.set_fmt	=3D sun6i_mipi_csi2_set_fmt,
-> +};
-> +
-> +/* Subdev */
-> +
-> +static const struct v4l2_subdev_ops sun6i_mipi_csi2_subdev_ops =3D {
-> +	.video		=3D &sun6i_mipi_csi2_subdev_video_ops,
-> +	.pad		=3D &sun6i_mipi_csi2_subdev_pad_ops,
-> +};
-> +
-> +/* Notifier */
-> +
-> +static int
-> +sun6i_mipi_csi2_notifier_bound(struct v4l2_async_notifier *notifier,
-> +			       struct v4l2_subdev *remote_subdev,
-> +			       struct v4l2_async_subdev *remote_subdev_async)
-> +{
-> +	struct v4l2_subdev *subdev =3D notifier->sd;
-> +	struct sun6i_mipi_csi2_video *video =3D
-> +		sun6i_mipi_csi2_subdev_video(subdev);
-> +	struct sun6i_mipi_csi2_dev *cdev =3D sun6i_mipi_csi2_video_dev(video);
-> +	int source_pad;
-> +	int ret;
-> +
-> +	source_pad =3D media_entity_get_fwnode_pad(&remote_subdev->entity,
-> +						 remote_subdev->fwnode,
-> +						 MEDIA_PAD_FL_SOURCE);
-> +	if (source_pad < 0)
-> +		return source_pad;
-> +
-> +	ret =3D media_create_pad_link(&remote_subdev->entity, source_pad,
-> +				    &subdev->entity, 0,
-> +				    MEDIA_LNK_FL_ENABLED |
-> +				    MEDIA_LNK_FL_IMMUTABLE);
-> +	if (ret) {
-> +		dev_err(cdev->dev, "failed to create %s:%u -> %s:%u link\n",
-> +			remote_subdev->entity.name, source_pad,
-> +			subdev->entity.name, 0);
-> +		return ret;
-> +	}
-> +
-> +	video->remote_subdev =3D remote_subdev;
-> +
-> +	return 0;
-> +}
-> +
-> +static const
-> +struct v4l2_async_notifier_operations sun6i_mipi_csi2_notifier_ops =3D {
-> +	.bound		=3D sun6i_mipi_csi2_notifier_bound,
-> +};
-> +
-> +/* Media Entity */
-> +
-> +static const struct media_entity_operations sun6i_mipi_csi2_entity_ops =
-=3D {
-> +	.link_validate	=3D v4l2_subdev_link_validate,
-> +};
-> +
-> +/* Base Driver */
-> +
-> +static int __maybe_unused sun6i_mipi_csi2_suspend(struct device *dev)
-> +{
-> +	struct sun6i_mipi_csi2_dev *cdev =3D dev_get_drvdata(dev);
-> +
-> +	clk_disable_unprepare(cdev->clk_mod);
-> +	clk_disable_unprepare(cdev->clk_bus);
-> +	reset_control_assert(cdev->reset);
-> +
-> +	return 0;
-> +}
-> +
-> +static int __maybe_unused sun6i_mipi_csi2_resume(struct device *dev)
-> +{
-> +	struct sun6i_mipi_csi2_dev *cdev =3D dev_get_drvdata(dev);
-> +	int ret;
-> +
-> +	ret =3D reset_control_deassert(cdev->reset);
-> +	if (ret) {
-> +		dev_err(cdev->dev, "failed to deassert reset\n");
-> +		return ret;
-> +	}
-> +
-> +	ret =3D clk_prepare_enable(cdev->clk_bus);
-> +	if (ret) {
-> +		dev_err(cdev->dev, "failed to enable bus clock\n");
-> +		goto error_reset;
-> +	}
-> +
-> +	ret =3D clk_prepare_enable(cdev->clk_mod);
-> +	if (ret) {
-> +		dev_err(cdev->dev, "failed to enable module clock\n");
-> +		goto error_clk_bus;
-> +	}
-> +
-> +	return 0;
-> +
-> +error_clk_bus:
-> +	clk_disable_unprepare(cdev->clk_bus);
-> +
-> +error_reset:
-> +	reset_control_assert(cdev->reset);
-> +
-> +	return ret;
-> +}
-
-I'm guessing you set the __maybe_unused attribute because you're using
-SET_RUNTIME_PM_OPS, but what would happen if runtime_pm isn't selected?
-It looks like you don't handle that case.
-
-> +static int sun6i_mipi_csi2_v4l2_setup(struct sun6i_mipi_csi2_dev *cdev)
-> +{
-> +	struct sun6i_mipi_csi2_video *video =3D &cdev->video;
-> +	struct v4l2_subdev *subdev =3D &video->subdev;
-> +	struct v4l2_async_notifier *notifier =3D &video->notifier;
-> +	struct fwnode_handle *handle;
-> +	struct v4l2_fwnode_endpoint *endpoint;
-> +	struct v4l2_async_subdev *subdev_async;
-> +	int ret;
-> +
-> +	/* Subdev */
-> +
-> +	v4l2_subdev_init(subdev, &sun6i_mipi_csi2_subdev_ops);
-> +	subdev->dev =3D cdev->dev;
-> +	subdev->flags |=3D V4L2_SUBDEV_FL_HAS_DEVNODE;
-> +	strscpy(subdev->name, MODULE_NAME, sizeof(subdev->name));
-> +	v4l2_set_subdevdata(subdev, cdev);
-> +
-> +	/* Entity */
-> +
-> +	subdev->entity.function =3D MEDIA_ENT_F_VID_IF_BRIDGE;
-> +	subdev->entity.ops =3D &sun6i_mipi_csi2_entity_ops;
-> +
-> +	/* Pads */
-> +
-> +	video->pads[0].flags =3D MEDIA_PAD_FL_SINK;
-> +	video->pads[1].flags =3D MEDIA_PAD_FL_SOURCE;
-> +
-> +	ret =3D media_entity_pads_init(&subdev->entity, 2, video->pads);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* Endpoint */
-> +
-> +	handle =3D fwnode_graph_get_endpoint_by_id(dev_fwnode(cdev->dev), 0, 0,
-> +						 FWNODE_GRAPH_ENDPOINT_NEXT);
-> +	if (!handle) {
-> +		ret =3D -ENODEV;
-> +		goto error_media_entity;
-> +	}
-> +
-> +	endpoint =3D &video->endpoint;
-> +	endpoint->bus_type =3D V4L2_MBUS_CSI2_DPHY;
-> +
-> +	ret =3D v4l2_fwnode_endpoint_parse(handle, endpoint);
-> +	fwnode_handle_put(handle);
-> +	if (ret)
-> +		goto error_media_entity;
-> +
-> +	/* Notifier */
-> +
-> +	v4l2_async_notifier_init(notifier);
-> +
-> +	subdev_async =3D &video->subdev_async;
-> +	ret =3D v4l2_async_notifier_add_fwnode_remote_subdev(notifier, handle,
-> +							   subdev_async);
-> +	if (ret)
-> +		goto error_media_entity;
-> +
-> +	video->notifier.ops =3D &sun6i_mipi_csi2_notifier_ops;
-> +
-> +	ret =3D v4l2_async_subdev_notifier_register(subdev, notifier);
-> +	if (ret < 0)
-> +		goto error_notifier;
-> +
-> +	/* Subdev */
-> +
-> +	ret =3D v4l2_async_register_subdev(subdev);
-> +	if (ret < 0)
-> +		goto error_notifier_registered;
-> +
-> +	/* Runtime PM */
-> +
-> +	pm_runtime_enable(cdev->dev);
-> +	pm_runtime_set_suspended(cdev->dev);
-> +
-> +	return 0;
-> +
-> +error_notifier_registered:
-> +	v4l2_async_notifier_unregister(notifier);
-> +error_notifier:
-> +	v4l2_async_notifier_cleanup(notifier);
-> +error_media_entity:
-> +	media_entity_cleanup(&subdev->entity);
-> +
-> +	return ret;
-> +}
-> +
-> +static int sun6i_mipi_csi2_v4l2_teardown(struct sun6i_mipi_csi2_dev *cde=
-v)
-> +{
-> +	struct sun6i_mipi_csi2_video *video =3D &cdev->video;
-> +	struct v4l2_subdev *subdev =3D &video->subdev;
-> +	struct v4l2_async_notifier *notifier =3D &video->notifier;
-> +
-> +	v4l2_async_unregister_subdev(subdev);
-> +	v4l2_async_notifier_unregister(notifier);
-> +	v4l2_async_notifier_cleanup(notifier);
-> +	media_entity_cleanup(&subdev->entity);
-> +	v4l2_device_unregister_subdev(subdev);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct regmap_config sun6i_mipi_csi2_regmap_config =3D {
-> +	.reg_bits       =3D 32,
-> +	.reg_stride     =3D 4,
-> +	.val_bits       =3D 32,
-> +	.max_register	=3D 0x400,
-> +};
-> +
-> +static int sun6i_mipi_csi2_probe(struct platform_device *pdev)
-> +{
-> +	struct sun6i_mipi_csi2_dev *cdev;
-> +	struct resource *res;
-> +	void __iomem *io_base;
-> +	int ret;
-> +
-> +	cdev =3D devm_kzalloc(&pdev->dev, sizeof(*cdev), GFP_KERNEL);
-> +	if (!cdev)
-> +		return -ENOMEM;
-> +
-> +	cdev->dev =3D &pdev->dev;
-> +
-> +	res =3D platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> +	io_base =3D devm_ioremap_resource(&pdev->dev, res);
-> +	if (IS_ERR(io_base))
-> +		return PTR_ERR(io_base);
-> +
-> +	cdev->regmap =3D devm_regmap_init_mmio(&pdev->dev, io_base,
-> +					     &sun6i_mipi_csi2_regmap_config);
-> +	if (IS_ERR(cdev->regmap)) {
-> +		dev_err(&pdev->dev, "failed to init register map\n");
-> +		return PTR_ERR(cdev->regmap);
-> +	}
-> +
-> +	cdev->clk_bus =3D devm_clk_get(&pdev->dev, "bus");
-> +	if (IS_ERR(cdev->clk_bus)) {
-> +		dev_err(&pdev->dev, "failed to acquire bus clock\n");
-> +		return PTR_ERR(cdev->clk_bus);
-> +	}
-> +
-> +	cdev->clk_mod =3D devm_clk_get(&pdev->dev, "mod");
-> +	if (IS_ERR(cdev->clk_mod)) {
-> +		dev_err(&pdev->dev, "failed to acquire mod clock\n");
-> +		return PTR_ERR(cdev->clk_mod);
-> +	}
-> +
-> +	cdev->reset =3D devm_reset_control_get_shared(&pdev->dev, NULL);
-> +	if (IS_ERR(cdev->reset)) {
-> +		dev_err(&pdev->dev, "failed to get reset controller\n");
-> +		return PTR_ERR(cdev->reset);
-> +	}
-> +
-> +	cdev->dphy =3D devm_phy_get(&pdev->dev, "dphy");
-> +	if (IS_ERR(cdev->dphy)) {
-> +		dev_err(&pdev->dev, "failed to get the MIPI D-PHY\n");
-> +		return PTR_ERR(cdev->dphy);
-> +	}
-> +
-> +	ret =3D phy_init(cdev->dphy);
-> +	if (ret) {
-> +		dev_err(&pdev->dev, "failed to initialize the MIPI D-PHY\n");
-> +		return ret;
-> +	}
-> +
-> +	platform_set_drvdata(pdev, cdev);
-> +
-> +	ret =3D sun6i_mipi_csi2_v4l2_setup(cdev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return 0;
-> +}
-> +
-> +static int sun6i_mipi_csi2_remove(struct platform_device *pdev)
-> +{
-> +	struct sun6i_mipi_csi2_dev *cdev =3D platform_get_drvdata(pdev);
-> +
-> +	phy_exit(cdev->dphy);
-> +
-> +	return sun6i_mipi_csi2_v4l2_teardown(cdev);
-
-This seem to be the only user and its content is pretty straightforward,
-so we shouldn't have a separate function here
-
-> +}
-> +
-> +static const struct dev_pm_ops sun6i_mipi_csi2_pm_ops =3D {
-> +	SET_RUNTIME_PM_OPS(sun6i_mipi_csi2_suspend, sun6i_mipi_csi2_resume,
-> +			   NULL)
-> +};
-> +
-> +static const struct of_device_id sun6i_mipi_csi2_of_match[] =3D {
-> +	{ .compatible =3D "allwinner,sun6i-a31-mipi-csi2" },
-> +	{ .compatible =3D "allwinner,sun8i-v3s-mipi-csi2", },
-
-There's no need for the v3s compatible here, it will fallback to the a31
-one anyway.
-
-Maxime
-
---xyg3j2piqrsy5z5r
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX8Y1FgAKCRDj7w1vZxhR
-xbKgAQDhKjer8YZ3QwsRdd411yhbUrsioVOy/ZoAYW4ICDemsgEA58qGq9sgAJB1
-P9Hq5R02fk5eRxhVh+JBvYS8zLoHQgA=
-=Kixd
------END PGP SIGNATURE-----
-
---xyg3j2piqrsy5z5r--
+On 2020/12/01 21:18, Ben Dooks wrote:=0A=
+> On 01/12/2020 12:00, Damien Le Moal wrote:=0A=
+>> On 2020/12/01 20:03, conor.dooley@microchip.com wrote:=0A=
+>>> From: Conor Dooley <conor.dooley@microchip.com>=0A=
+>>>=0A=
+>>> This driver provides an interface for other drivers to access the=0A=
+>>> functions of the system controller on the Microchip PolarFire SoC.=0A=
+>>>=0A=
+>>> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>=0A=
+>>> ---=0A=
+>>>   drivers/soc/Kconfig                         |   1 +=0A=
+>>>   drivers/soc/Makefile                        |   1 +=0A=
+>>>   drivers/soc/microchip/Kconfig               |  10 ++=0A=
+>>>   drivers/soc/microchip/Makefile              |   1 +=0A=
+>>>   drivers/soc/microchip/mpfs_sys_controller.c | 135 +++++++++++++++++++=
++=0A=
+>>>   5 files changed, 148 insertions(+)=0A=
+>>>   create mode 100644 drivers/soc/microchip/Kconfig=0A=
+>>>   create mode 100644 drivers/soc/microchip/Makefile=0A=
+>>>   create mode 100644 drivers/soc/microchip/mpfs_sys_controller.c=0A=
+>>>=0A=
+>>> diff --git a/drivers/soc/Kconfig b/drivers/soc/Kconfig=0A=
+>>> index 425ab6f7e375..22cb097bcbdc 100644=0A=
+>>> --- a/drivers/soc/Kconfig=0A=
+>>> +++ b/drivers/soc/Kconfig=0A=
+>>> @@ -9,6 +9,7 @@ source "drivers/soc/bcm/Kconfig"=0A=
+>>>   source "drivers/soc/fsl/Kconfig"=0A=
+>>>   source "drivers/soc/imx/Kconfig"=0A=
+>>>   source "drivers/soc/ixp4xx/Kconfig"=0A=
+>>> +source "drivers/soc/microchip/Kconfig"=0A=
+>>>   source "drivers/soc/mediatek/Kconfig"=0A=
+>>>   source "drivers/soc/qcom/Kconfig"=0A=
+>>>   source "drivers/soc/renesas/Kconfig"=0A=
+>>> diff --git a/drivers/soc/Makefile b/drivers/soc/Makefile=0A=
+>>> index 36452bed86ef..fb084cf2d12e 100644=0A=
+>>> --- a/drivers/soc/Makefile=0A=
+>>> +++ b/drivers/soc/Makefile=0A=
+>>> @@ -14,6 +14,7 @@ obj-$(CONFIG_ARCH_GEMINI)	+=3D gemini/=0A=
+>>>   obj-y				+=3D imx/=0A=
+>>>   obj-$(CONFIG_ARCH_IXP4XX)	+=3D ixp4xx/=0A=
+>>>   obj-$(CONFIG_SOC_XWAY)		+=3D lantiq/=0A=
+>>> +obj-$(CONFIG_SOC_MICROCHIP_POLARFIRE)	+=3D microchip/=0A=
+>>>   obj-y				+=3D mediatek/=0A=
+>>>   obj-y				+=3D amlogic/=0A=
+>>>   obj-y				+=3D qcom/=0A=
+>>> diff --git a/drivers/soc/microchip/Kconfig b/drivers/soc/microchip/Kcon=
+fig=0A=
+>>> new file mode 100644=0A=
+>>> index 000000000000..40e5203c8ba0=0A=
+>>> --- /dev/null=0A=
+>>> +++ b/drivers/soc/microchip/Kconfig=0A=
+>>> @@ -0,0 +1,10 @@=0A=
+>>> +config MPFS_SYS_CONTROLLER=0A=
+>>> +	tristate "MPFS_SYS_CONTROLLER"=0A=
+>>> +	depends on MPFS_MBOX=0A=
+>>> +	help=0A=
+>>> +	  This driver adds support for the Polarfire SoC system controller.=
+=0A=
+>>> +=0A=
+>>> +	  To compile this driver as a module, choose M here. the=0A=
+>>> +	  module will be called mpfs_system_controller.=0A=
+>>> +=0A=
+>>> +	  If unsure, say N.=0A=
+>>> diff --git a/drivers/soc/microchip/Makefile b/drivers/soc/microchip/Mak=
+efile=0A=
+>>> new file mode 100644=0A=
+>>> index 000000000000..23b1f42a37db=0A=
+>>> --- /dev/null=0A=
+>>> +++ b/drivers/soc/microchip/Makefile=0A=
+>>> @@ -0,0 +1 @@=0A=
+>>> +obj-$(CONFIG_MPFS_SYS_CONTROLLER)	+=3D mpfs_sys_controller.o=0A=
+>>> diff --git a/drivers/soc/microchip/mpfs_sys_controller.c b/drivers/soc/=
+microchip/mpfs_sys_controller.c=0A=
+>>> new file mode 100644=0A=
+>>> index 000000000000..875a0671e196=0A=
+>>> --- /dev/null=0A=
+>>> +++ b/drivers/soc/microchip/mpfs_sys_controller.c=0A=
+>>> @@ -0,0 +1,135 @@=0A=
+>>> +// SPDX-License-Identifier: GPL-2.0=0A=
+>>> +/*=0A=
+>>> + * Microchip MPFS system controller driver=0A=
+>>> + *=0A=
+>>> + * Copyright (c) 2020 Microchip Corporation. All rights reserved.=0A=
+>>> + *=0A=
+>>> + * Author: Conor Dooley <conor.dooley@microchip.com>=0A=
+>>> + *=0A=
+>>> + */=0A=
+>>> +=0A=
+>>> +#include <linux/slab.h>=0A=
+>>> +#include <linux/module.h>=0A=
+>>> +#include <linux/interrupt.h>=0A=
+>>> +#include <linux/of_platform.h>=0A=
+>>> +#include <linux/mailbox_client.h>=0A=
+>>> +#include <linux/platform_device.h>=0A=
+>>> +#include <soc/microchip/mpfs.h>=0A=
+>>> +=0A=
+>>> +static DEFINE_MUTEX(transaction_lock);=0A=
+>>> +=0A=
+>>> +struct mpfs_sys_controller {=0A=
+>>> +	struct mbox_client client;=0A=
+>>> +	struct mbox_chan *chan;=0A=
+>>> +	struct completion c;=0A=
+>>> +	u32 enabled;=0A=
+>>> +	void *response;=0A=
+>>> +	u16 response_size_bytes;=0A=
+>>> +};=0A=
+>>> +=0A=
+>>> +int mpfs_blocking_transaction(struct mpfs_sys_controller *mpfs_client,=
+ void *msg,=0A=
+>>> +			      void *response, u16 response_size_bytes)=0A=
+>>> +{=0A=
+>>> +	int ret;=0A=
+>>> +=0A=
+>>> +	mpfs_client->response =3D response;=0A=
+>>> +	mpfs_client->response_size_bytes =3D response_size_bytes;=0A=
+>>> +=0A=
+>>> +	mutex_lock_interruptible(&transaction_lock);=0A=
+>>> +=0A=
+>>> +	reinit_completion(&mpfs_client->c);=0A=
+>>> +=0A=
+>>> +	ret =3D mbox_send_message(mpfs_client->chan, msg);=0A=
+>>> +	if (ret >=3D 0) {=0A=
+>>> +		if (wait_for_completion_timeout(&mpfs_client->c, HZ)) {=0A=
+>>> +			ret =3D 0;=0A=
+>>> +		} else {=0A=
+>>> +			ret =3D -ETIMEDOUT;=0A=
+>>> +			dev_warn(mpfs_client->client.dev, "MPFS sys controller transaction =
+timeout");=0A=
+>>> +		}=0A=
+>>> +	} else {=0A=
+>>> +		dev_err(mpfs_client->client.dev,=0A=
+>>> +			"mpfs sys controller transaction returned %d\r\n", ret);=0A=
+>>> +	}=0A=
+>>> +=0A=
+>>> +	mutex_unlock(&transaction_lock);=0A=
+>>> +=0A=
+>>> +	return ret;=0A=
+>>> +}=0A=
+>>> +EXPORT_SYMBOL(mpfs_blocking_transaction);=0A=
+>>> +=0A=
+>>> +static void rx_callback(struct mbox_client *client, void *msg)=0A=
+>>> +{=0A=
+>>> +	struct mpfs_sys_controller *mpfs_client =3D=0A=
+>>> +		container_of(client, struct mpfs_sys_controller, client);=0A=
+>>> +=0A=
+>>> +	memcpy(mpfs_client->response, (u8 *)msg,=0A=
+>>> +	       mpfs_client->response_size_bytes);=0A=
+>>> +=0A=
+>>> +	complete(&mpfs_client->c);=0A=
+>>> +}=0A=
+>>> +=0A=
+>>> +static int mpfs_sys_controller_probe(struct platform_device *pdev)=0A=
+>>> +{=0A=
+>>> +	struct device *dev =3D &pdev->dev;=0A=
+>>> +	struct mpfs_sys_controller *mpfs_client;=0A=
+>>> +=0A=
+>>> +	mpfs_client =3D devm_kzalloc(dev, sizeof(*mpfs_client), GFP_KERNEL);=
+=0A=
+>>> +	if (!mpfs_client)=0A=
+>>> +		return -ENOMEM;=0A=
+>>> +=0A=
+>>> +	mpfs_client->client.dev =3D dev;=0A=
+>>> +	mpfs_client->client.rx_callback =3D rx_callback;=0A=
+>>> +	mpfs_client->client.tx_block =3D 1U;=0A=
+>>> +=0A=
+>>> +	mpfs_client->chan =3D mbox_request_channel_byname(&mpfs_client->clien=
+t,=0A=
+>>> +							"mbox-mpfs");=0A=
+>>> +	if (IS_ERR(mpfs_client->chan)) {=0A=
+>>> +		int ret =3D PTR_ERR(mpfs_client->chan);=0A=
+>>> +=0A=
+>>> +		if (ret !=3D -EPROBE_DEFER)=0A=
+>>> +			dev_err(dev, "Failed to get mbox channel: %d\n", ret);=0A=
+>>> +		return ret;=0A=
+>>=0A=
+>> You can replace all of this with=0A=
+>>=0A=
+>> 		return dev_err_probe(dev, PTR_ERR(mpfs_client->chan),=0A=
+>> 				     ""Failed to get mbox channel\n");=0A=
+> =0A=
+> you'll spam the error log if you get a lot of probe defferals.=0A=
+> I think the code as is fine.=0A=
+=0A=
+Please look at that function code: it does not print anything if the error =
+is=0A=
+-EPROBE_DEFER.=0A=
+=0A=
+-- =0A=
+Damien Le Moal=0A=
+Western Digital Research=0A=
