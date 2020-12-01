@@ -2,598 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A08B2CA817
-	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 17:22:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 354342CA840
+	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 17:29:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390832AbgLAQVc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Dec 2020 11:21:32 -0500
-Received: from mailout04.rmx.de ([94.199.90.94]:44854 "EHLO mailout04.rmx.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2390664AbgLAQVa (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 1 Dec 2020 11:21:30 -0500
-Received: from kdin01.retarus.com (kdin01.dmz1.retloc [172.19.17.48])
-        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        by mailout04.rmx.de (Postfix) with ESMTPS id 4ClnQN288sz3qs4T;
-        Tue,  1 Dec 2020 17:20:44 +0100 (CET)
-Received: from mta.arri.de (unknown [217.111.95.66])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by kdin01.retarus.com (Postfix) with ESMTPS id 4ClnNv2yG1z2xZn;
-        Tue,  1 Dec 2020 17:19:27 +0100 (CET)
-Received: from N95HX1G2.wgnetz.xx (192.168.54.19) by mta.arri.de
- (192.168.100.104) with Microsoft SMTP Server (TLS) id 14.3.487.0; Tue, 1 Dec
- 2020 17:11:31 +0100
-From:   Christian Eggers <ceggers@arri.de>
-To:     Vladimir Oltean <olteanv@gmail.com>,
-        Jakub Kicinski <kuba@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-        Richard Cochran <richardcochran@gmail.com>,
-        "Rob Herring" <robh+dt@kernel.org>
-CC:     Vivien Didelot <vivien.didelot@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Kurt Kanzenbach <kurt.kanzenbach@linutronix.de>,
-        George McCollister <george.mccollister@gmail.com>,
-        Marek Vasut <marex@denx.de>,
-        Helmut Grohne <helmut.grohne@intenta.de>,
-        Paul Barker <pbarker@konsulko.com>,
-        Codrin Ciubotariu <codrin.ciubotariu@microchip.com>,
-        Tristram Ha <Tristram.Ha@microchip.com>,
-        Woojung Huh <woojung.huh@microchip.com>,
-        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
-        Christian Eggers <ceggers@arri.de>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH net-next v4 9/9] net: dsa: microchip: ksz9477: add periodic output support
-Date:   Tue, 1 Dec 2020 17:06:11 +0100
-Message-ID: <20201201160611.22129-10-ceggers@arri.de>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20201201160611.22129-1-ceggers@arri.de>
-References: <20201201160611.22129-1-ceggers@arri.de>
+        id S1726441AbgLAQ1t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Dec 2020 11:27:49 -0500
+Received: from esa6.microchip.iphmx.com ([216.71.154.253]:9010 "EHLO
+        esa6.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726037AbgLAQ1s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Dec 2020 11:27:48 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1606840068; x=1638376068;
+  h=from:to:cc:subject:date:message-id:references:
+   in-reply-to:content-id:content-transfer-encoding:
+   mime-version;
+  bh=l+qKWlKYMEBthv4evDfq2mp13ksFllYa7w7Tlf8VBqY=;
+  b=shWAE9TJiSWglTLSTM+knrxyMi1ehpHeIZdg2StJlAiSB/5JuFAa4T1a
+   orHu/dF8SkvjZDgfyy+WlaY2f3p08XjCWg37CqD9P+OulbBvw22N7Asgp
+   W97y+0hLswnPcH2zqASkyGQpZI1atiL+shdmcLGL78OSJjI/EtPgQ8YRY
+   ElKrx1gLjl9bSGlh3h3v1WdWtO5W67hqauXgYkZEbezm6WLY09Tm4xmqZ
+   GxdRneK0dIt0WNutaq5JuSF5aSPijq71IWNRhrztgQU+/IId3bEmXcauz
+   3XYHJ8VNXu53kG+PsjmO1ozVHySnPD9cKfImMfvl50jBSRRO1/9gA7NCL
+   Q==;
+IronPort-SDR: pL2x+Gvb8R4+rZUPLkc4SIEc2eFtMKqvEDSpUYIXzTk5nX/inrJXM09+SJx7R9m/kmReQA5ng5
+ q6/mNJ6QnJTnqCDwVadlEINDkubuAPAUnXsNtYKQtio7EqxjUmzcmTJ4KHSn9NBgrL2457v9yg
+ pQUN65p+vIWnjhjtJnM4Nd1yW00ctXOHFYMNK5UtgTytmhc12KVoenIOiJLg7QST9PShudHxqA
+ 9wUloa3CHNXLTYXAiIpsqlMnfKW3TxAkFWBAN6v363q0vTDMSXrmfyDtkheh++mOu6nx/aZTT8
+ Zf8=
+X-IronPort-AV: E=Sophos;i="5.78,384,1599548400"; 
+   d="scan'208";a="35623351"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 01 Dec 2020 09:26:42 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1979.3; Tue, 1 Dec 2020 09:26:42 -0700
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (10.10.215.89) by
+ email.microchip.com (10.10.87.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3 via Frontend
+ Transport; Tue, 1 Dec 2020 09:26:42 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=N5a+F5DrtXrEn4BcAX9Z7K0/O/lRdy08wYnewsOaNgNvJbrPnE9fbPorAhJF0OR2ZqQyv8JCsx7mIh0s/9A7yrf/8tuPA75I6iEKbGiTWVVL+/6Etx3HA+IfR7LOa/LAFLHDUgmT84QN1jGa6IUB1qPag2mn/AVDW+HAR1Dcl1ldp76gHKlxQm2CxAgxHSq5rqmvpEcOtaWMlJzD4CKYhUVFVb/erSbH+oiOfZtSJsU83jjV0ORkiAwhl6VkQhLG64/7rCAJ2a/v7H+k5o7eCZ+dt0XvGu8NZdd6JPSKwMkUoHr9/K3EQQphp4TX1uD8FQrP2MCX0Vec74830QwCoA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=tu28krhHz3i9jbK0NybkgQMtVjNE/+GAOLwbkd15S+k=;
+ b=fJNc1vG83+yZ/8jrhYistnFzk61MDpNheG6q3m6bgXxl1HUGUp4HsPRq2P/krEXfle8hcqaBuHlMYGEMkC5K3n7E8FEfsnszwpRyA7QW+l5TNRS8NRggPDA6eRe5cAs6H11YY8uALVrcnLUBvRHJSvS6Ge3nsg7ttvjG3WCdOCN37bQXtUHfDN7E/ypgy1gGkYi53tXjFOTFI9uYQFIxYVCwZ0ESVzhbAN3qOQipWJSV66BZF/q3iMEPGcj9gQIYjgwwefJwfqmtRQTN8wunT0MVk1os4teCF8cmdHZmKXlwvAJrOw/lYE63JtejgFzpbj/JBpabzruFPCDnbaFewg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=microchip.com; dmarc=pass action=none
+ header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=microchiptechnology.onmicrosoft.com;
+ s=selector2-microchiptechnology-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=tu28krhHz3i9jbK0NybkgQMtVjNE/+GAOLwbkd15S+k=;
+ b=Ss1F3GGyZf7pdY7plJHTljTspKq3R87JdsKqT62iFDNpL8wyM2x14TRGT7UIKy7TQiRpff6xb6cg7W2v5s0m2HNaHGlwM7KyuW/3rUMTIFdZPhMmWaxDU8GvNuauQvmqrC+gCfNQRyv1qC/hh/T1umjlCBBvCnGKJxZ3khAQ7r0=
+Received: from CO1PR11MB5154.namprd11.prod.outlook.com (2603:10b6:303:95::7)
+ by MW3PR11MB4714.namprd11.prod.outlook.com (2603:10b6:303:5d::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3611.24; Tue, 1 Dec
+ 2020 16:26:41 +0000
+Received: from CO1PR11MB5154.namprd11.prod.outlook.com
+ ([fe80::a007:19e8:3f74:b14d]) by CO1PR11MB5154.namprd11.prod.outlook.com
+ ([fe80::a007:19e8:3f74:b14d%5]) with mapi id 15.20.3589.037; Tue, 1 Dec 2020
+ 16:26:41 +0000
+From:   <Conor.Dooley@microchip.com>
+To:     <j.neuschaefer@gmx.net>
+CC:     <robh+dt@kernel.org>, <damien.lemoal@wdc.com>,
+        <jassisinghbrar@gmail.com>, <aou@eecs.berkeley.edu>,
+        <paul.walmsley@sifive.com>, <palmer@dabbelt.com>,
+        <devicetree@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
+        <Cyril.Jean@microchip.com>, <david.abdurachmanov@gmail.com>,
+        <Daire.McNamara@microchip.com>, <anup.patel@wdc.com>,
+        <atish.patra@wdc.com>, <Lewis.Hanly@microchip.com>
+Subject: Re: [PATCH v2 1/5] mbox: add polarfire soc system controller mailbox
+Thread-Topic: [PATCH v2 1/5] mbox: add polarfire soc system controller mailbox
+Thread-Index: AQHWx9GEFTONGkHUEEK7u8XSwGTWUKniSKQAgAAlNwA=
+Date:   Tue, 1 Dec 2020 16:26:40 +0000
+Message-ID: <f5683df4-8e90-7d39-189a-0f7faf1d899e@microchip.com>
+References: <20201201110242.28369-1-conor.dooley@microchip.com>
+ <20201201141328.GJ456020@latitude>
+In-Reply-To: <20201201141328.GJ456020@latitude>
+Accept-Language: en-IE, en-US
+Content-Language: en-IE
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
+authentication-results: gmx.net; dkim=none (message not signed)
+ header.d=none;gmx.net; dmarc=none action=none header.from=microchip.com;
+x-originating-ip: [89.204.252.178]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 5322f9bb-e2cb-4667-1601-08d89615e271
+x-ms-traffictypediagnostic: MW3PR11MB4714:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <MW3PR11MB4714A870A6AE5E9E4F638EB198F40@MW3PR11MB4714.namprd11.prod.outlook.com>
+x-bypassexternaltag: True
+x-ms-oob-tlc-oobclassifiers: OLM:4941;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: xvwAJPnT8EoxVJebNg82wc/GLdaVQ4racnSyxKC5e5AMjPLDbeAWexVuF9j2eYylG/AkHxjoxI6dopliQFcqTU0S69DHwRQqlmPVEkNqUP44pfzXpUUTRbd/fDBTKP6PFPe/SlhY/6rxvFffAGBPXWwCId3L97oHRadoX4TlzytAfBTD/7Bl+fYHN2DJ8g5q3ispne4GzcfXTUUr/BnklwRN7Y+lG9ZvEb8/IVkbjtO4C37gKxfcuShpCDvlj2GW6Tg0BGJyvgabJlMxu/iD1loQoXYvG0zqELnV+ALhui8MkVQuGKLyJbPYLz1ab5L1OHRWIH7h9sSc55xY21yV+V/2k0jvVHCRNbEcDRHvUU20EHIFJypaHQYa+7NyRuco
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO1PR11MB5154.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(346002)(376002)(136003)(39860400002)(366004)(396003)(6512007)(83380400001)(26005)(8676002)(4326008)(2616005)(71200400001)(31686004)(53546011)(36756003)(316002)(8936002)(6506007)(31696002)(2906002)(86362001)(186003)(478600001)(7416002)(6916009)(66574015)(5660300002)(54906003)(107886003)(66946007)(6486002)(15650500001)(66556008)(76116006)(66476007)(64756008)(66446008)(91956017)(43740500002);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: =?Windows-1252?Q?neMUkQY6nWk0mBfFVdgopNLFralgFN4T5vEqQ5JHG59hK0QEMyKoBfo1?=
+ =?Windows-1252?Q?4k4mJJ+2oObybcGza9GELNblPl8pJlzPtq6RDpPajhm2TAqjJ58zmLd+?=
+ =?Windows-1252?Q?CRYPH2G3udhP+4k6Ypv3dtE173qlPrlxNhbi1kskNw9UmC06Dc++HdTt?=
+ =?Windows-1252?Q?LWtT5sWx0IbcEky3+m6jJ2+RjJc75FVTifOcd18SpG2X24BTZ8LtMs1r?=
+ =?Windows-1252?Q?Gs6gHocUNjCzyRMKRcrQMh/7NXqqiKH0Z0nE1K2kCoaeLlZHS6lE+Kva?=
+ =?Windows-1252?Q?oeLT60WMpncRYxKiWSkROhGMmiDTsK6V00au2Oaw/hYfZgXfAD20xIfU?=
+ =?Windows-1252?Q?J5RKUbQC5tfuUgNsfcFyKxSeWBXJwztpOGHb+QPrFpHECXnkSP3VmvNu?=
+ =?Windows-1252?Q?TYC2MrHjVFOAKqkCu8iu8n+XrLCZChcZsebpoTkBtWe/I5fle5OUCYqW?=
+ =?Windows-1252?Q?voO5PSxVfZUDBjGYeGdcQk7W+VfMC6YeuMT1Llq3D5UyUsKdJ0hUv9ni?=
+ =?Windows-1252?Q?/sSk+X+HC4eCwF1nHFvCIbJNUWWyrAbnkPczSab+kuTBRUGepc67kYH8?=
+ =?Windows-1252?Q?wjMYzbGrsuvdP5Qk0AbjzvghVwAFkidWQSPen9/KB884LgGhcs8sqYc0?=
+ =?Windows-1252?Q?YIXoSYIkJItgVlliFZHCdJ4XkvU4zreP84SdB28d3OIq89PiWAkrgb/n?=
+ =?Windows-1252?Q?d2lzTsyLw6IRWGvRFjsM8UtprFM7DtYtTY2o7jMYphGXvFL542Hhqxz1?=
+ =?Windows-1252?Q?NB02SuGSfE/GWGEDAtqqU2Z+McpDwTtjRaUX3BXItC5oBcgkfKQhUwyx?=
+ =?Windows-1252?Q?ZyoWoIsX5cF83UeLAZl1Vx+M6l2K8CPOuE41+mFuwLpsNTcKfOCxFMY4?=
+ =?Windows-1252?Q?3zzPgl/agPl2cvRGXJh4bnkEboRHGylYoedbglIXnGknpYC5p5HS919p?=
+ =?Windows-1252?Q?0QLtxl/KCteHR9nLe+NvqmsQJVC+7ZYBcKrG2UAPEvVuj1mmcfBJPSqB?=
+ =?Windows-1252?Q?JzI+FO1qr7ciIi56y4GDINd0QtMNFwCrrhmx/sYnjXRWhAVHlno=3D?=
+Content-Type: text/plain; charset="Windows-1252"
+Content-ID: <B7900DE6CC02CE42A04FD8002B35729D@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [192.168.54.19]
-X-RMX-ID: 20201201-171931-4ClnNv2yG1z2xZn-0@kdin01
-X-RMX-SOURCE: 217.111.95.66
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB5154.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5322f9bb-e2cb-4667-1601-08d89615e271
+X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Dec 2020 16:26:40.9311
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 5bKa0l7CZ5F6Rr++5Oz/2WAV6oj5G8uCpwSsdeH/Ftq3O0VWcCKLFLLof75D0pB35GH7IdCfDantaAROJl3PVrou4SRKoYEelGnkyLs1rgQ=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR11MB4714
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The KSZ9563 has a Trigger Output Unit (TOU) which can be used to
-generate periodic signals.
-
-The pulse length can be altered via a device attribute.
-
-Tested on a Microchip KSZ9563 switch.
-
-Signed-off-by: Christian Eggers <ceggers@arri.de>
----
-Changes in v4:
---------------
-- 80 chars per line
-- reverse christmas tree
-- Set default pulse width for perout pulse to 50% (max. 125ms)
-- reject unsupported flags for perout_request
-
-On Saturday, 21 November 2020, 00:48:08 CET, Vladimir Oltean wrote:
-> On Wed, Nov 18, 2020 at 09:30:13PM +0100, Christian Eggers wrote:
-
-> >  static int ksz9477_ptp_adjtime(struct ptp_clock_info *ptp, s64 delta)
-> > @@ -241,6 +256,15 @@ static int ksz9477_ptp_adjtime(struct ptp_clock_info *ptp, s64 delta)
-> >  	case KSZ_PTP_TOU_IDLE:
-> >  		break;
-> >  
-> > +	case KSZ_PTP_TOU_PEROUT:
-> > +		dev_info(dev->dev, "Restarting periodic output signal\n");
-> 
-> Isn't this a bit too verbose, or is there something for the user to be
-> concerned about?
-In my setup this message appears only once after ptp4l has been started. Shall
-I remove it?
-
-> Watch out for 80 characters, please!
-A few long line are left (for instance ksz9477_ptp_enable_perout). Please let
-me know how I shall wrap them.
-
-> > +	if (perout_request->flags & PTP_PEROUT_DUTY_CYCLE) {
-> > +		u64 value = perout_request->on.sec * NSEC_PER_SEC +
-> > +			    perout_request->on.nsec;
-> > +
-> > +		ret = ksz9477_ptp_tou_pulse_verify(value);
-> > +		if (ret)
-> > +			return ret;
-> > +
-> > +		dev->ptp_perout_pulse_width_ns = value;
-> > +	}
-> 
-> It is not guaranteed that user space will set this flag. Shouldn't you
-> assign a default value for the pulse width? I don't know, half the
-> period should be a good default.
-Yes I should. The hardware support a maximum "duty cycle" of a little bit
-more than 125 ms. As PPS signals often have a 125 ms high period, I use this
-duration as the maximum.
-
-> > +	/* Check error flag:
-> > +	 * - the ACTIVE flag is NOT cleared an error!
-> > +	 */
-> > +	ret = ksz_read32(dev, REG_PTP_TRIG_STATUS__4, &gpio_stat0);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	if (gpio_stat0 & (1 << (0 + TRIG_ERROR_S))) {
-> 
-> What is the role of this "0 +" term here?
-> 
-> > +		dev_err(dev->dev, "%s: Trigger unit0 error!\n", __func__);
-This is the index of the used trigger unit.
-
- drivers/net/dsa/microchip/ksz9477_ptp.c | 357 +++++++++++++++++++++++-
- drivers/net/dsa/microchip/ksz9477_ptp.h |   4 +
- drivers/net/dsa/microchip/ksz_common.h  |  10 +
- 3 files changed, 369 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/net/dsa/microchip/ksz9477_ptp.c b/drivers/net/dsa/microchip/ksz9477_ptp.c
-index e68c9fc8e679..c3a0275e444a 100644
---- a/drivers/net/dsa/microchip/ksz9477_ptp.c
-+++ b/drivers/net/dsa/microchip/ksz9477_ptp.c
-@@ -19,6 +19,140 @@
- #define KSZ_PTP_INC_NS 40  /* HW clock is incremented every 40 ns (by 40) */
- #define KSZ_PTP_SUBNS_BITS 32  /* Number of bits in sub-nanoseconds counter */
- 
-+/* Shared register access routines (Trigger Output Unit) */
-+
-+static int ksz9477_ptp_tou_reset(struct ksz_device *dev, unsigned int unit)
-+{
-+	u32 ctrl_stat, data;
-+	int ret;
-+
-+	/* Reset trigger unit (clears TRIGGER_EN, but not GPIOSTATx) */
-+	ret = ksz_read32(dev, REG_PTP_CTRL_STAT__4, &ctrl_stat);
-+	if (ret)
-+		return ret;
-+
-+	ctrl_stat |= TRIG_RESET;
-+
-+	ret = ksz_write32(dev, REG_PTP_CTRL_STAT__4, ctrl_stat);
-+	if (ret)
-+		return ret;
-+
-+	/* Clear DONE */
-+	data = 1 << (unit + TRIG_DONE_S);
-+	ret = ksz_write32(dev, REG_PTP_TRIG_STATUS__4, data);
-+	if (ret)
-+		return ret;
-+
-+	/* Clear IRQ */
-+	data = 1 << (unit + TRIG_INT_S);
-+	ret = ksz_write32(dev, REG_PTP_INT_STATUS__4, data);
-+	if (ret)
-+		return ret;
-+
-+	/* Clear reset and set GPIO direction */
-+	ctrl_stat &= ~TRIG_ENABLE;  /* clear cached bit :-) */
-+	ctrl_stat &= ~TRIG_RESET;
-+
-+	ret = ksz_write32(dev, REG_PTP_CTRL_STAT__4, ctrl_stat);
-+	if (ret)
-+		return ret;
-+
-+	return 0;
-+}
-+
-+static int ksz9477_ptp_tou_cycle_width_set(struct ksz_device *dev, u32 width_ns)
-+{
-+	int ret;
-+
-+	ret = ksz_write32(dev, REG_TRIG_CYCLE_WIDTH, width_ns);
-+	if (ret)
-+		return ret;
-+
-+	return 0;
-+}
-+
-+static int ksz9477_ptp_tou_cycle_count_set(struct ksz_device *dev, u16 count)
-+{
-+	u32 data;
-+	int ret;
-+
-+	ret = ksz_read32(dev, REG_TRIG_CYCLE_CNT, &data);
-+	if (ret)
-+		return ret;
-+
-+	data &= ~(TRIG_CYCLE_CNT_M << TRIG_CYCLE_CNT_S);
-+	data |= (count & TRIG_CYCLE_CNT_M) << TRIG_CYCLE_CNT_S;
-+
-+	ret = ksz_write32(dev, REG_TRIG_CYCLE_CNT, data);
-+	if (ret)
-+		return ret;
-+
-+	return 0;
-+}
-+
-+static int ksz9477_ptp_tou_pulse_verify(u64 pulse_ns)
-+{
-+	u32 data;
-+
-+	if (pulse_ns & 0x3)
-+		return -EINVAL;
-+
-+	data = (pulse_ns / 8);
-+	if (data != (data & TRIG_PULSE_WIDTH_M))
-+		return -ERANGE;
-+
-+	return 0;
-+}
-+
-+static int ksz9477_ptp_tou_pulse_set(struct ksz_device *dev, u32 pulse_ns)
-+{
-+	u32 data;
-+
-+	data = (pulse_ns / 8);
-+
-+	return ksz_write32(dev, REG_TRIG_PULSE_WIDTH__4, data);
-+}
-+
-+static int ksz9477_ptp_tou_target_time_set(struct ksz_device *dev, struct timespec64 const *ts)
-+{
-+	int ret;
-+
-+	/* Hardware has only 32 bit */
-+	if ((ts->tv_sec & 0xffffffff) != ts->tv_sec)
-+		return -EINVAL;
-+
-+	ret = ksz_write32(dev, REG_TRIG_TARGET_NANOSEC, ts->tv_nsec);
-+	if (ret)
-+		return ret;
-+
-+	ret = ksz_write32(dev, REG_TRIG_TARGET_SEC, ts->tv_sec);
-+	if (ret)
-+		return ret;
-+
-+	return 0;
-+}
-+
-+static int ksz9477_ptp_tou_start(struct ksz_device *dev, u32 *ctrl_stat_)
-+{
-+	u32 ctrl_stat;
-+	int ret;
-+
-+	ret = ksz_read32(dev, REG_PTP_CTRL_STAT__4, &ctrl_stat);
-+	if (ret)
-+		return ret;
-+
-+	ctrl_stat |= TRIG_ENABLE;
-+
-+	ret = ksz_write32(dev, REG_PTP_CTRL_STAT__4, ctrl_stat);
-+	if (ret)
-+		return ret;
-+
-+	if (ctrl_stat_)
-+		*ctrl_stat_ = ctrl_stat;
-+
-+	return 0;
-+}
-+
- /* Posix clock support */
- 
- static int ksz9477_ptp_adjfine(struct ptp_clock_info *ptp, long scaled_ppm)
-@@ -76,6 +210,8 @@ static int ksz9477_ptp_adjfine(struct ptp_clock_info *ptp, long scaled_ppm)
- 	return ret;
- }
- 
-+static int ksz9477_ptp_restart_perout(struct ksz_device *dev);
-+
- static int ksz9477_ptp_adjtime(struct ptp_clock_info *ptp, s64 delta)
- {
- 	struct ksz_device *dev = container_of(ptp, struct ksz_device, ptp_caps);
-@@ -115,6 +251,20 @@ static int ksz9477_ptp_adjtime(struct ptp_clock_info *ptp, s64 delta)
- 	if (ret)
- 		goto error_return;
- 
-+	switch (dev->ptp_tou_mode) {
-+	case KSZ_PTP_TOU_IDLE:
-+		break;
-+
-+	case KSZ_PTP_TOU_PEROUT:
-+		dev_info(dev->dev, "Restarting periodic output signal\n");
-+
-+		ret = ksz9477_ptp_restart_perout(dev);
-+		if (ret)
-+			goto error_return;
-+
-+		break;
-+	}
-+
- 	spin_lock_bh(&ptp_shared->ptp_clock_lock);
- 	ptp_shared->ptp_clock_time = timespec64_add(ptp_shared->ptp_clock_time,
- 						    delta64);
-@@ -218,6 +368,20 @@ static int ksz9477_ptp_settime(struct ptp_clock_info *ptp,
- 	if (ret)
- 		goto error_return;
- 
-+	switch (dev->ptp_tou_mode) {
-+	case KSZ_PTP_TOU_IDLE:
-+		break;
-+
-+	case KSZ_PTP_TOU_PEROUT:
-+		dev_info(dev->dev, "Restarting periodic output signal\n");
-+
-+		ret = ksz9477_ptp_restart_perout(dev);
-+		if (ret)
-+			goto error_return;
-+
-+		break;
-+	}
-+
- 	spin_lock_bh(&ptp_shared->ptp_clock_lock);
- 	ptp_shared->ptp_clock_time = *ts;
- 	spin_unlock_bh(&ptp_shared->ptp_clock_lock);
-@@ -227,10 +391,199 @@ static int ksz9477_ptp_settime(struct ptp_clock_info *ptp,
- 	return ret;
- }
- 
-+static int ksz9477_ptp_configure_perout(struct ksz_device *dev,
-+					u32 cycle_width_ns, u16 cycle_count,
-+					u32 pulse_width_ns,
-+					struct timespec64 const *target_time)
-+{
-+	u32 trig_ctrl;
-+	int ret;
-+
-+	/* Enable notify, set rising edge, set periodic pattern */
-+	trig_ctrl = TRIG_NOTIFY | (TRIG_POS_PERIOD << TRIG_PATTERN_S);
-+	ret = ksz_write32(dev, REG_TRIG_CTRL__4, trig_ctrl);
-+	if (ret)
-+		return ret;
-+
-+	ret = ksz9477_ptp_tou_cycle_width_set(dev, cycle_width_ns);
-+	if (ret)
-+		return ret;
-+
-+	ksz9477_ptp_tou_cycle_count_set(dev,  cycle_count);
-+	if (ret)
-+		return ret;
-+
-+	ret = ksz9477_ptp_tou_pulse_set(dev, pulse_width_ns);
-+	if (ret)
-+		return ret;
-+
-+	ret = ksz9477_ptp_tou_target_time_set(dev, target_time);
-+	if (ret)
-+		return ret;
-+
-+	return 0;
-+}
-+
-+#define KSZ9477_PEROUT_VALID_FLAGS ( \
-+	PTP_PEROUT_DUTY_CYCLE \
-+)
-+
-+static int ksz9477_ptp_enable_perout(struct ksz_device *dev,
-+				     struct ptp_perout_request const *perout_request,
-+				     int on)
-+{
-+	u64 cycle_width_ns;
-+	u64 pulse_width_ns;
-+	u32 gpio_stat0;
-+	int ret;
-+
-+	if (perout_request->flags & ~KSZ9477_PEROUT_VALID_FLAGS)
-+		return -EINVAL;
-+
-+	if (dev->ptp_tou_mode != KSZ_PTP_TOU_PEROUT &&
-+	    dev->ptp_tou_mode != KSZ_PTP_TOU_IDLE)
-+		return -EBUSY;
-+
-+	ret = ksz9477_ptp_tou_reset(dev, 0);
-+	if (ret)
-+		return ret;
-+
-+	if (!on) {
-+		dev->ptp_tou_mode = KSZ_PTP_TOU_IDLE;
-+		return 0;  /* success */
-+	}
-+
-+	dev->ptp_perout_target_time_first.tv_sec  = perout_request->start.sec;
-+	dev->ptp_perout_target_time_first.tv_nsec = perout_request->start.nsec;
-+
-+	dev->ptp_perout_period.tv_sec = perout_request->period.sec;
-+	dev->ptp_perout_period.tv_nsec = perout_request->period.nsec;
-+
-+	cycle_width_ns = timespec64_to_ns(&dev->ptp_perout_period);
-+	if ((cycle_width_ns & GENMASK(31, 0)) != cycle_width_ns)
-+		return -EINVAL;
-+
-+	if (perout_request->flags & PTP_PEROUT_DUTY_CYCLE)
-+		pulse_width_ns = perout_request->on.sec * NSEC_PER_SEC +
-+				 perout_request->on.nsec;
-+
-+	else
-+		/* Use a duty cycle of 50%. Maximum pulse width supported by the
-+		 * hardware is a little bit more than 125 ms.
-+		 */
-+		pulse_width_ns = min_t(u64,
-+				       (perout_request->period.sec * NSEC_PER_SEC
-+					+ perout_request->period.nsec) / 2
-+				       / 8 * 8,
-+				       125000000LL);
-+
-+	ret = ksz9477_ptp_tou_pulse_verify(pulse_width_ns);
-+	if (ret)
-+		return ret;
-+
-+	dev->ptp_perout_pulse_width_ns = pulse_width_ns;
-+
-+	ret = ksz9477_ptp_configure_perout(dev, cycle_width_ns,
-+					   dev->ptp_perout_cycle_count,
-+					   dev->ptp_perout_pulse_width_ns,
-+					   &dev->ptp_perout_target_time_first);
-+	if (ret)
-+		return ret;
-+
-+	/* Activate trigger unit */
-+	ret = ksz9477_ptp_tou_start(dev, NULL);
-+	if (ret)
-+		return ret;
-+
-+	/* Check error flag:
-+	 * - the ACTIVE flag is NOT cleared an error!
-+	 */
-+	ret = ksz_read32(dev, REG_PTP_TRIG_STATUS__4, &gpio_stat0);
-+	if (ret)
-+		return ret;
-+
-+	if (gpio_stat0 & (1 << (0 + TRIG_ERROR_S))) {
-+		dev_err(dev->dev, "%s: Trigger unit0 error!\n", __func__);
-+		ret = -EIO;
-+		/* Unit will be reset on next access */
-+		return ret;
-+	}
-+
-+	dev->ptp_tou_mode = KSZ_PTP_TOU_PEROUT;
-+	return 0;
-+}
-+
-+static int ksz9477_ptp_restart_perout(struct ksz_device *dev)
-+{
-+	s64 now_ns, first_ns, period_ns, next_ns;
-+	struct timespec64 now;
-+	unsigned int count;
-+	int ret;
-+
-+	ret = _ksz9477_ptp_gettime(dev, &now);
-+	if (ret)
-+		return ret;
-+
-+	now_ns = timespec64_to_ns(&now);
-+	first_ns = timespec64_to_ns(&dev->ptp_perout_target_time_first);
-+
-+	/* Calculate next perout event based on start time and period */
-+	period_ns = timespec64_to_ns(&dev->ptp_perout_period);
-+
-+	if (first_ns < now_ns) {
-+		count = div_u64(now_ns - first_ns, period_ns);
-+		next_ns = first_ns + count * period_ns;
-+	} else {
-+		next_ns = first_ns;
-+	}
-+
-+	/* Ensure 100 ms guard time prior next event */
-+	while (next_ns < now_ns + 100000000)
-+		next_ns += period_ns;
-+
-+	/* Restart periodic output signal */
-+	{
-+		struct timespec64 next = ns_to_timespec64(next_ns);
-+		struct ptp_perout_request perout_request = {
-+			.start = {
-+				.sec  = next.tv_sec,
-+				.nsec = next.tv_nsec
-+			},
-+			.period = {
-+				.sec  = dev->ptp_perout_period.tv_sec,
-+				.nsec = dev->ptp_perout_period.tv_nsec
-+			},
-+			.index = 0,
-+			.flags = 0,  /* keep current values */
-+		};
-+		ret = ksz9477_ptp_enable_perout(dev, &perout_request, 1);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	return 0;
-+}
-+
- static int ksz9477_ptp_enable(struct ptp_clock_info *ptp,
- 			      struct ptp_clock_request *req, int on)
- {
--	return -EOPNOTSUPP;
-+	struct ksz_device *dev = container_of(ptp, struct ksz_device, ptp_caps);
-+	int ret;
-+
-+	switch (req->type) {
-+	case PTP_CLK_REQ_PEROUT: {
-+		struct ptp_perout_request const *perout_request = &req->perout;
-+
-+		mutex_lock(&dev->ptp_mutex);
-+		ret = ksz9477_ptp_enable_perout(dev, perout_request, on);
-+		mutex_unlock(&dev->ptp_mutex);
-+		return ret;
-+	}
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	return 0;
- }
- 
- static long ksz9477_ptp_do_aux_work(struct ptp_clock_info *ptp)
-@@ -592,7 +945,7 @@ int ksz9477_ptp_init(struct ksz_device *dev)
- 	dev->ptp_caps.max_adj     = 6249999;
- 	dev->ptp_caps.n_alarm     = 0;
- 	dev->ptp_caps.n_ext_ts    = 0;  /* currently not implemented */
--	dev->ptp_caps.n_per_out   = 0;
-+	dev->ptp_caps.n_per_out   = 1;
- 	dev->ptp_caps.pps         = 0;
- 	dev->ptp_caps.adjfine     = ksz9477_ptp_adjfine;
- 	dev->ptp_caps.adjtime     = ksz9477_ptp_adjtime;
-diff --git a/drivers/net/dsa/microchip/ksz9477_ptp.h b/drivers/net/dsa/microchip/ksz9477_ptp.h
-index 2f7c4fa0753a..4d20decf0ad7 100644
---- a/drivers/net/dsa/microchip/ksz9477_ptp.h
-+++ b/drivers/net/dsa/microchip/ksz9477_ptp.h
-@@ -20,6 +20,7 @@
- int ksz9477_ptp_init(struct ksz_device *dev);
- void ksz9477_ptp_deinit(struct ksz_device *dev);
- 
-+irqreturn_t ksz9477_ptp_interrupt(struct ksz_device *dev);
- irqreturn_t ksz9477_ptp_port_interrupt(struct ksz_device *dev, int port);
- 
- int ksz9477_ptp_get_ts_info(struct dsa_switch *ds, int port,
-@@ -36,6 +37,9 @@ bool ksz9477_ptp_port_txtstamp(struct dsa_switch *ds, int port,
- static inline int ksz9477_ptp_init(struct ksz_device *dev) { return 0; }
- static inline void ksz9477_ptp_deinit(struct ksz_device *dev) {}
- 
-+static inline irqreturn_t ksz9477_ptp_interrupt(struct ksz_device *dev)
-+{ return IRQ_NONE; }
-+
- static inline irqreturn_t ksz9477_ptp_port_interrupt(struct ksz_device *dev,
- 						     int port)
- { return IRQ_NONE; }
-diff --git a/drivers/net/dsa/microchip/ksz_common.h b/drivers/net/dsa/microchip/ksz_common.h
-index 483a2f0e59d2..c9495c92a32d 100644
---- a/drivers/net/dsa/microchip/ksz_common.h
-+++ b/drivers/net/dsa/microchip/ksz_common.h
-@@ -52,6 +52,11 @@ struct ksz_port {
- #endif
- };
- 
-+enum ksz_ptp_tou_mode {
-+	KSZ_PTP_TOU_IDLE,
-+	KSZ_PTP_TOU_PEROUT,
-+};
-+
- struct ksz_device {
- 	struct dsa_switch *ds;
- 	struct ksz_platform_data *pdata;
-@@ -109,6 +114,11 @@ struct ksz_device {
- 	struct hwtstamp_config tstamp_config;
- 	struct mutex ptp_mutex;		/* protects PTP related hardware */
- 	struct ksz_device_ptp_shared ptp_shared;
-+	enum ksz_ptp_tou_mode ptp_tou_mode;
-+	struct timespec64 ptp_perout_target_time_first;  /* start of first perout pulse */
-+	struct timespec64 ptp_perout_period;
-+	u32 ptp_perout_pulse_width_ns;
-+	u16 ptp_perout_cycle_count;
- #endif
- };
- 
--- 
-Christian Eggers
-Embedded software developer
-
-Arnold & Richter Cine Technik GmbH & Co. Betriebs KG
-Sitz: Muenchen - Registergericht: Amtsgericht Muenchen - Handelsregisternummer: HRA 57918
-Persoenlich haftender Gesellschafter: Arnold & Richter Cine Technik GmbH
-Sitz: Muenchen - Registergericht: Amtsgericht Muenchen - Handelsregisternummer: HRB 54477
-Geschaeftsfuehrer: Dr. Michael Neuhaeuser; Stephan Schenk; Walter Trauninger; Markus Zeiler
+On 01/12/2020 14:13, Jonathan Neusch=E4fer wrote:
+> EXTERNAL EMAIL: Do not click links or open attachments unless you know th=
+e content is safe
+>
+> On Tue, Dec 01, 2020 at 11:02:42AM +0000, conor.dooley@microchip.com wrot=
+e:
+> > From: Conor Dooley <conor.dooley@microchip.com>
+> >
+> > This driver adds support for the single mailbox channel of the MSS
+> > system controller on the Microchip PolarFire SoC.
+>
+> Out of my curiosity: What is MSS? Is it the Microprocessor Subsystem in
+> the SoC?
+>
+yes, it is the microprocessor subsystem
+> (It isn't quite clear from the PolarFire documentation I could find)
+>
+> >
+> > Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> > ---
+> [...]
+> > +config MPFS_MBOX
+> > +	tristate "MPFS Mailbox"
+>
+> "MPFS" in the title seems (to me) a bit too obscure for the uninitiated.
+> Perhaps you could use something slightly longer that mentions Microchip
+> and/or the PolarFire series?
+Sure. MPFS is the part name while PolarFire SoC is the marketing name.
+I will switch it in the next version to POLARFIRE_SOC_MBOX, which better ma=
+tches
+the config option for the SoC directory that's in Atish's patches anyway.
+> > +++ b/drivers/mailbox/mailbox-mpfs.c
+> > @@ -0,0 +1,285 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> > +/*
+> > + * Microchip MPFS system controller/mailbox controller driver
+>
+> The same might apply here.
+>
+>
+> Best regards,
+> Jonathan Neusch=E4fer
+>
 
