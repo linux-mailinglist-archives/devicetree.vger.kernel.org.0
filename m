@@ -2,482 +2,442 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 54E4A2C9DEE
-	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 10:41:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B5D102C9E1C
+	for <lists+devicetree@lfdr.de>; Tue,  1 Dec 2020 10:41:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390882AbgLAJ3f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Dec 2020 04:29:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55168 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2390879AbgLAJ3P (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Dec 2020 04:29:15 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1087FC061A47
-        for <devicetree@vger.kernel.org>; Tue,  1 Dec 2020 01:28:25 -0800 (PST)
-Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1kk1wn-0000MV-9p; Tue, 01 Dec 2020 10:27:45 +0100
-Received: from ore by dude.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1kk1wl-0004iL-SQ; Tue, 01 Dec 2020 10:27:43 +0100
-From:   Oleksij Rempel <o.rempel@pengutronix.de>
-To:     Mark Rutland <mark.rutland@arm.com>,
+        id S1726716AbgLAJiE convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 1 Dec 2020 04:38:04 -0500
+Received: from mail-eopbgr1300138.outbound.protection.outlook.com ([40.107.130.138]:34473
+        "EHLO APC01-HK2-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1725955AbgLAJiE (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 1 Dec 2020 04:38:04 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=nwOisIr557I4urYrvRluOlTlrUOfeewfDwOB1gMwnSqb6MCW6dCM7JxWsIrtrED6HUhDY42CYPJD3xwrTJU9+rqKkW7EygE6bt4xX7QbmK4Wtb5Z9oEbUnk8KL3FTz8RTQQwtCZBSWpiVwnZpV8TY/udCC//fMXlYp04Zu2jN5ZNVNfNC12rVIeBGugJR7Slw3PP407mpA1NtjU1JBh/+Q1pya6ugIqdr4mPIiqzEHIUOhRLshlyqVlHths1cxRoHhp3heiD6vuaodMd1++SrKLCszVul6urFwuMNuywBlnxslRwqwR0OZpEMVfVqBIH9pUBxWEawXrdfuJscVSzNg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=akPEsnARS/1rqXyDYJ+ZBFJqw9b/DzwLclcllG1TZNI=;
+ b=jHjIZe6LiDUR78ngTEHfUS0bi5qy/ztV57ne7x0lLq1jBaX2PBeUB9pFYY7Df4fQJ8j/iM1rB0qLu4b1kf1dCFMmwpIFRz1f4OZOUOP7wq5+6EQq0by9XLl2s3e8Dnkv++XhSpFPj6NIzEeFdx6AOi7IWE8SKiuexfz1TZ4GDqRys+IbZRS7LBzJk7cWlan7OyoawbIv0T23YTrvl4a4d0fC1vRrYrMEy38EtTgldtGg+7HAgFdULgBp7pNF+AMFNSi4NiYOVU3yWGUIRo735rxvzhWYzC/Dmt/ilGXiC8VABzfdHZyeBYCySEsC+InSxhlXrvZ3tbgC222ab2BBzA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=aspeedtech.com; dmarc=pass action=none
+ header.from=aspeedtech.com; dkim=pass header.d=aspeedtech.com; arc=none
+Received: from PS1PR06MB2600.apcprd06.prod.outlook.com (2603:1096:803:4d::19)
+ by PS1PR06MB2629.apcprd06.prod.outlook.com (2603:1096:803:4a::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3611.31; Tue, 1 Dec
+ 2020 09:36:26 +0000
+Received: from PS1PR06MB2600.apcprd06.prod.outlook.com
+ ([fe80::7d57:cb3c:146c:36e3]) by PS1PR06MB2600.apcprd06.prod.outlook.com
+ ([fe80::7d57:cb3c:146c:36e3%4]) with mapi id 15.20.3611.031; Tue, 1 Dec 2020
+ 09:36:26 +0000
+From:   Troy Lee <troy_lee@aspeedtech.com>
+To:     Andrew Jeffery <andrew@aj.id.au>,
+        Stefan M Schaeckeler <sschaeck@cisco.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>
-Cc:     Oleksij Rempel <o.rempel@pengutronix.de>,
-        David Jander <david@protonic.nl>, devicetree@vger.kernel.org,
-        Fabio Estevam <festevam@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        dri-devel@lists.freedesktop.org
-Subject: [PATCH v5 6/6] ARM: dts: add Plymovent BAS board
-Date:   Tue,  1 Dec 2020 10:27:42 +0100
-Message-Id: <20201201092742.17658-7-o.rempel@pengutronix.de>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20201201092742.17658-1-o.rempel@pengutronix.de>
-References: <20201201092742.17658-1-o.rempel@pengutronix.de>
+        Joel Stanley <joel@jms.id.au>, Borislav Petkov <bp@alien8.de>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Tony Luck <tony.luck@intel.com>,
+        James Morse <james.morse@arm.com>,
+        Robert Richter <rrichter@marvell.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
+        <linux-aspeed@lists.ozlabs.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        "open list:EDAC-CORE" <linux-edac@vger.kernel.org>
+CC:     "leetroy@gmail.com" <leetroy@gmail.com>,
+        Ryan Chen <ryan_chen@aspeedtech.com>
+Subject: RE: [PATCH 3/3] edac: Supporting AST2400 and AST2600 edac driver
+Thread-Topic: [PATCH 3/3] edac: Supporting AST2400 and AST2600 edac driver
+Thread-Index: AQHWxvOZHTlrFWqSykaazJ8oPL0cyKnhb/yAgABzVqA=
+Date:   Tue, 1 Dec 2020 09:36:26 +0000
+Message-ID: <PS1PR06MB2600A3B6B961FAA7BB5621878AF40@PS1PR06MB2600.apcprd06.prod.outlook.com>
+References: <20201130083345.4814-1-troy_lee@aspeedtech.com>
+ <20201130083345.4814-3-troy_lee@aspeedtech.com>
+ <d6138f1e-f054-4a1e-8c49-f0c32a9352e8@www.fastmail.com>
+In-Reply-To: <d6138f1e-f054-4a1e-8c49-f0c32a9352e8@www.fastmail.com>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: aj.id.au; dkim=none (message not signed)
+ header.d=none;aj.id.au; dmarc=none action=none header.from=aspeedtech.com;
+x-originating-ip: [118.99.190.129]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 092f84cf-4acc-40fb-fb13-08d895dc931e
+x-ms-traffictypediagnostic: PS1PR06MB2629:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <PS1PR06MB262962C9F4C53FB215969DA18AF40@PS1PR06MB2629.apcprd06.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:10000;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 9sCWX3a2x4+9posQMk1oih38YmGe5eEopi0oErKk41NjJ7Bv9Ujh2PZvcbwWzqyYPtvLqH1ofJAY+goIs0jM23Su5AhJG+SWl6AjyT/fohYxna5WsVEFCn9lRE7qKIPoZ5gTao8vsimzZkxJBZKaX73nJ7/j0KlonvPYBOSLoT9EHkwIz/1CsqREiuZSiGAq8Sj7FRNgQ42uTXKWsF9GuvWiWdNX+Vnn7B26DI4+v9CYJG6TTQVrx3xgAw1cyLffzVkSKWUrv7x5wbo31KJ8zsn4mCT42qhiPdUeo4/3AjSLN2fZCm/wmku88oUOb+VXafYeK/Z+z1jpM7GwleQEuyNGbc5C2ZL2clzvv/CU5PoM+zhq+o74hUAa+MQ+kPdk
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PS1PR06MB2600.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(39840400004)(136003)(346002)(366004)(396003)(376002)(7696005)(8676002)(2906002)(83380400001)(110136005)(33656002)(9686003)(316002)(6506007)(71200400001)(53546011)(54906003)(55016002)(7416002)(107886003)(52536014)(86362001)(8936002)(478600001)(26005)(5660300002)(4326008)(64756008)(66946007)(76116006)(66556008)(66476007)(921005)(66446008)(186003);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata: =?us-ascii?Q?mTAx3n2L8JSOBOlYYWFn4SLQE7CeqvOIoq3uFt6FuarJFph8SqZz+RCp7FC+?=
+ =?us-ascii?Q?yvjsOfnRAmXcU/asGhx763MjFmw/dW0WVg/RadtH4CERBWpIKNbZXhJOzGls?=
+ =?us-ascii?Q?wynm2jBDEEBnL9TOwDEuMGpaYuekf2X4CvoM3ht3iMXbFwopoIXJ9a82Yc4D?=
+ =?us-ascii?Q?ilU7yHDHndyb8oTp4ewpvGyxVOMmQW/DsZVv/BFlDSGG9b/G/QGeaJGjzUWc?=
+ =?us-ascii?Q?y5oyjMWxTOUe81GCNEuVJB+HGVmGfjmGJtifruFw8Hd+eVlNid1OGVR0BsUb?=
+ =?us-ascii?Q?X/ldbru0fpdXywsomyTDVTvS5yh8hF+K+SU749JXHZCoFnqB17FKi3GMTul0?=
+ =?us-ascii?Q?7a+Yq5yxN7xTswREV90qURdZggKVQC66afTDMI6bQISwqLEWKX5O4KmfzWUv?=
+ =?us-ascii?Q?C49dLFGITdBO6r3GrFTjylAvPJfpBBNjDY9TJV9uQjlWmYVRjR0jAjLD7YuO?=
+ =?us-ascii?Q?zjCimwvgcY1IQGq6geZBTvX/RBQrOQvUH3+Bta/FciRBBIpjT3LzjZc2pgpi?=
+ =?us-ascii?Q?Kdx+WGttM0iCg9TSea1RzOuA1YRfmoJQCPLeRb5T8tFFzP/s3myTTyMQCRiK?=
+ =?us-ascii?Q?WJGVdl03Km1QFgTbC2ckdXGEn8HgEBc6a09fl5+L4uB7uz0wUVtcXbT0p0ng?=
+ =?us-ascii?Q?6VpgoiWRJomlD7VF/CpSxc/ySmYYn02k2/+2RRalzl64uQbdxWoLU6e4jzr3?=
+ =?us-ascii?Q?QNU22HYY2arY0WSsMj+aPMIvYpSF+TwxHJlOLXWbak2xNYuI8M/8RUw9t6GO?=
+ =?us-ascii?Q?G7y96FpXkNzoRD56WTCPuUy/vIz6JVncJ2V4DmA0nN4XkT3BUCeub7aAkQgp?=
+ =?us-ascii?Q?ijmVbaZZef4W7IZP80bxwvtmTUAykgG0naJcsY76xmQxfqyZTbwI4ZasKdcu?=
+ =?us-ascii?Q?hv3q/5HdZiloyI/WN1VZta49cZ0/GBlsUDpSy6LjcPGjQ3SaSQqGjdhcItnk?=
+ =?us-ascii?Q?nem1lU0Gxjk3VxnuRlNXoeQa0c63/8xf4uKlDZTYyjk=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 8BIT
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::7
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-OriginatorOrg: aspeedtech.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PS1PR06MB2600.apcprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 092f84cf-4acc-40fb-fb13-08d895dc931e
+X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Dec 2020 09:36:26.5470
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 43d4aa98-e35b-4575-8939-080e90d5a249
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: TBHbKq4fKJeRO+Ck3LBGD13dSn4/kM1L/42Aoj/EDGrl4L3JbDqHAUF6yWdROxgZC2a8vgH/JVdilMxLuZ6Plw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PS1PR06MB2629
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Plymovent BAS is a base system controller produced for the Plymovent filter
-systems.
+Hi Andrew,
 
-Co-Developed-by: David Jander <david@protonic.nl>
-Signed-off-by: David Jander <david@protonic.nl>
-Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
----
- arch/arm/boot/dts/Makefile          |   1 +
- arch/arm/boot/dts/imx6dl-plybas.dts | 394 ++++++++++++++++++++++++++++
- 2 files changed, 395 insertions(+)
- create mode 100644 arch/arm/boot/dts/imx6dl-plybas.dts
+Great suggestion, responses inline below. We'll remove build-time SoC dependency driver code and submit an updated v2 patch.
 
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index 31249fc5f85c..ee725aebc3a8 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -461,6 +461,7 @@ dtb-$(CONFIG_SOC_IMX6Q) += \
- 	imx6dl-pico-hobbit.dtb \
- 	imx6dl-pico-nymph.dtb \
- 	imx6dl-pico-pi.dtb \
-+	imx6dl-plybas.dtb \
- 	imx6dl-plym2m.dtb \
- 	imx6dl-prtrvt.dtb \
- 	imx6dl-prtvt7.dtb \
-diff --git a/arch/arm/boot/dts/imx6dl-plybas.dts b/arch/arm/boot/dts/imx6dl-plybas.dts
-new file mode 100644
-index 000000000000..333c306aa946
---- /dev/null
-+++ b/arch/arm/boot/dts/imx6dl-plybas.dts
-@@ -0,0 +1,394 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Copyright (c) 2014 Protonic Holland
-+ * Copyright (c) 2020 Oleksij Rempel <kernel@pengutronix.de>, Pengutronix
-+ */
-+
-+/dts-v1/;
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/leds/common.h>
-+#include "imx6dl.dtsi"
-+
-+/ {
-+	model = "Plymovent BAS board";
-+	compatible = "ply,plybas", "fsl,imx6dl";
-+
-+	chosen {
-+		stdout-path = &uart4;
-+	};
-+
-+	gpio_keys {
-+		compatible = "gpio-keys";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		autorepeat;
-+
-+		button@20 {
-+			label = "START";
-+			linux,code = <31>;
-+			gpios = <&gpio5 8 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		button@21 {
-+			label = "CLEAN";
-+			linux,code = <46>;
-+			gpios = <&gpio5 9 GPIO_ACTIVE_LOW>;
-+		};
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_leds>;
-+
-+		led-0 {
-+			label = "debug0";
-+			gpios = <&gpio1 8 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		led-1 {
-+			label = "debug1";
-+			gpios = <&gpio1 9 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		led-2 {
-+			label = "light_tower1";
-+			gpios = <&gpio4 22 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "heartbeat";
-+		};
-+
-+		led-3 {
-+			label = "light_tower2";
-+			gpios = <&gpio4 23 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		led-4 {
-+			label = "light_tower3";
-+			gpios = <&gpio4 24 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		led-5 {
-+			label = "light_tower4";
-+			gpios = <&gpio4 25 GPIO_ACTIVE_HIGH>;
-+		};
-+	};
-+
-+	clk50m_phy: phy-clock {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <50000000>;
-+	};
-+
-+	reg_5v0: regulator-5v0 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "5v0";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+	};
-+};
-+
-+&can1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_can1>;
-+	xceiver-supply = <&reg_5v0>;
-+	status = "okay";
-+};
-+
-+&can2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_can2>;
-+	xceiver-supply = <&reg_5v0>;
-+	status = "okay";
-+};
-+
-+&ecspi1 {
-+	cs-gpios = <&gpio3 19 GPIO_ACTIVE_LOW>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_ecspi1>;
-+	status = "okay";
-+
-+	flash@0 {
-+		compatible = "jedec,spi-nor";
-+		reg = <0>;
-+		spi-max-frequency = <20000000>;
-+	};
-+};
-+
-+&fec {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_enet>;
-+	phy-mode = "rmii";
-+	clocks = <&clks IMX6QDL_CLK_ENET>,
-+		 <&clks IMX6QDL_CLK_ENET>,
-+		 <&clk50m_phy>;
-+	clock-names = "ipg", "ahb", "ptp";
-+	phy-handle = <&rgmii_phy>;
-+	status = "okay";
-+
-+	mdio {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		/* Microchip KSZ8081RNA PHY */
-+		rgmii_phy: ethernet-phy@0 {
-+			reg = <0>;
-+			interrupts-extended = <&gpio4 30 IRQ_TYPE_LEVEL_LOW>;
-+			reset-gpios = <&gpio4 26 GPIO_ACTIVE_LOW>;
-+			reset-assert-us = <10000>;
-+			reset-deassert-us = <300>;
-+		};
-+	};
-+};
-+
-+&gpio1 {
-+	gpio-line-names =
-+		"", "SD1_CD", "", "", "", "", "", "",
-+		"DEBUG_0", "DEBUG_1", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "";
-+};
-+
-+&gpio3 {
-+	gpio-line-names =
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "ECSPI1_SS1", "", "USB_EXT_PWR", "", "",
-+		"", "", "", "", "", "", "", "";
-+};
-+
-+&gpio4 {
-+	gpio-line-names =
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "CAN1_SR", "CAN2_SR", "", "",
-+		"LED_DI0_DEBUG_0", "LED_DI0_DEBUG_1", "IMX6_IN12", "IMX6_HMI",
-+			"IMX6_IN11", "IMX6_BUZZER", "IMX6_LED1", "IMX6_LED2",
-+		"IMX6_LED3", "IMX6_LED4", "ETH_RESET", "IMX6_ANA_OUT_SD",
-+			"IMX6_ANA_OUT_ERR", "IMX6_ANA_OUT", "ETH_INTRP", "";
-+};
-+
-+&gpio5 {
-+	gpio-line-names =
-+		"", "", "", "", "", "IMX6_RELAY1", "IMX6_RELAY2", "",
-+		"IMX6_IN1", "IMX6_IN2", "IMX6_IN3", "IMX6_IN4", "IMX6_IN5",
-+			"IMX6_IN6", "IMX6_IN7", "IMX6_IN8",
-+		"IMX6_IN9", "IMX6_IN10", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "";
-+};
-+
-+&i2c1 {
-+	clock-frequency = <100000>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_i2c1>;
-+	status = "okay";
-+
-+	/* additional i2c devices are added automatically by the boot loader */
-+};
-+
-+&i2c3 {
-+	clock-frequency = <100000>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_i2c3>;
-+	status = "okay";
-+
-+	temperature-sensor@70 {
-+		compatible = "ti,tmp103";
-+		reg = <0x70>;
-+	};
-+
-+	rtc@51 {
-+		compatible = "nxp,pcf8563";
-+		reg = <0x51>;
-+	};
-+};
-+
-+&pwm1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_pwm1>;
-+	status = "okay";
-+};
-+
-+&uart1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart1>;
-+	status = "okay";
-+};
-+
-+&uart2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart2>;
-+	fsl,uart-has-rtscts;
-+	linux,rs485-enabled-at-boot-time;
-+	rs485-rts-delay = <0 20>;
-+	status = "okay";
-+};
-+
-+&uart4 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart4>;
-+	status = "okay";
-+};
-+
-+&usbotg {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_usbotg>;
-+	phy_type = "utmi";
-+	dr_mode = "host";
-+	disable-over-current;
-+	status = "okay";
-+};
-+
-+&usbphynop1 {
-+	status = "disabled";
-+};
-+
-+&usbphynop2 {
-+	status = "disabled";
-+};
-+
-+&iomuxc {
-+	pinctrl_can1: can1grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_KEY_ROW2__FLEXCAN1_RX		0x1b000
-+			MX6QDL_PAD_KEY_COL2__FLEXCAN1_TX		0x3008
-+			/* CAN1_SR */
-+			MX6QDL_PAD_KEY_COL3__GPIO4_IO12			0x13008
-+		>;
-+	};
-+
-+	pinctrl_can2: can2grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_KEY_ROW4__FLEXCAN2_RX		0x1b000
-+			MX6QDL_PAD_KEY_COL4__FLEXCAN2_TX		0x3008
-+			/* CAN2_SR */
-+			MX6QDL_PAD_KEY_ROW3__GPIO4_IO13			0x13008
-+		>;
-+	};
-+
-+	pinctrl_ecspi1: ecspi1grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_EIM_D17__ECSPI1_MISO			0x1b000
-+			MX6QDL_PAD_EIM_D18__ECSPI1_MOSI			0x3008
-+			MX6QDL_PAD_EIM_D16__ECSPI1_SCLK			0x3008
-+			/* CS */
-+			MX6QDL_PAD_EIM_D19__GPIO3_IO19			0x3008
-+		>;
-+	};
-+
-+	pinctrl_enet: enetgrp {
-+		fsl,pins = <
-+			/* MX6QDL_ENET_PINGRP4 */
-+			MX6QDL_PAD_ENET_MDC__ENET_MDC			0x1b0b0
-+			MX6QDL_PAD_ENET_MDIO__ENET_MDIO			0x1b0b0
-+			MX6QDL_PAD_ENET_RXD0__ENET_RX_DATA0		0x1b0b0
-+			MX6QDL_PAD_ENET_RXD1__ENET_RX_DATA1		0x1b0b0
-+			MX6QDL_PAD_ENET_RX_ER__ENET_RX_ER		0x1b0b0
-+			MX6QDL_PAD_ENET_TX_EN__ENET_TX_EN		0x1b0b0
-+			MX6QDL_PAD_ENET_TXD0__ENET_TX_DATA0		0x1b0b0
-+			MX6QDL_PAD_ENET_TXD1__ENET_TX_DATA1		0x1b0b0
-+			MX6QDL_PAD_ENET_CRS_DV__ENET_RX_EN		0x1b0b0
-+
-+			MX6QDL_PAD_GPIO_16__ENET_REF_CLK		0x1b0b0
-+			/* Phy reset */
-+			MX6QDL_PAD_DISP0_DAT5__GPIO4_IO26		0x1b0b0
-+			/* nINTRP */
-+			MX6QDL_PAD_DISP0_DAT9__GPIO4_IO30		0x1b0b0
-+		>;
-+	};
-+
-+	pinctrl_i2c1: i2c1grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_CSI0_DAT8__I2C1_SDA			0x4001f8b1
-+			MX6QDL_PAD_CSI0_DAT9__I2C1_SCL			0x4001f8b1
-+		>;
-+	};
-+
-+	pinctrl_i2c3: i2c3grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_GPIO_5__I2C3_SCL			0x4001b8b1
-+			MX6QDL_PAD_GPIO_6__I2C3_SDA			0x4001b8b1
-+		>;
-+	};
-+
-+	pinctrl_leds: ledsgrp {
-+		fsl,pins = <
-+			/* DEBUG_0 */
-+			MX6QDL_PAD_GPIO_8__GPIO1_IO08			0x1b0b0
-+			/* DEBUG_1 */
-+			MX6QDL_PAD_GPIO_9__GPIO1_IO09			0x1b0b0
-+
-+			/* LED1 (lighttower) */
-+			MX6QDL_PAD_DISP0_DAT1__GPIO4_IO22		0x13070
-+			/* LED2 (lighttower) */
-+			MX6QDL_PAD_DISP0_DAT2__GPIO4_IO23		0x13070
-+			/* LED3 (lighttower) */
-+			MX6QDL_PAD_DISP0_DAT3__GPIO4_IO24		0x13070
-+			/* LED4 (lighttower) */
-+			MX6QDL_PAD_DISP0_DAT4__GPIO4_IO25		0x13070
-+		>;
-+	};
-+
-+	pinctrl_pwm1: pwm1grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_DISP0_DAT8__PWM1_OUT			0x1b0b0
-+		>;
-+	};
-+
-+	/* YaCO AUX Uart */
-+	pinctrl_uart1: uart1grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_CSI0_DAT10__UART1_TX_DATA		0x1b0b1
-+			MX6QDL_PAD_CSI0_DAT11__UART1_RX_DATA		0x1b0b1
-+		>;
-+	};
-+
-+	pinctrl_uart2: uart2grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_EIM_D26__UART2_TX_DATA		0x1b0b1
-+			MX6QDL_PAD_EIM_D27__UART2_RX_DATA		0x1b0b1
-+			MX6QDL_PAD_EIM_D28__UART2_DTE_CTS_B		0x130b1
-+		>;
-+	};
-+
-+	pinctrl_uart4: uart4grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_KEY_COL0__UART4_TX_DATA		0x1b0b1
-+			MX6QDL_PAD_KEY_ROW0__UART4_RX_DATA		0x1b0b1
-+		>;
-+	};
-+
-+	pinctrl_usbotg: usbotggrp {
-+		fsl,pins = <
-+			MX6QDL_PAD_EIM_D21__USB_OTG_OC			0x1b0b0
-+			/* power enable, high active */
-+			MX6QDL_PAD_EIM_D22__GPIO3_IO22			0x1b0b0
-+		>;
-+	};
-+
-+	pinctrl_usdhc1: usdhc1grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_SD1_CMD__SD1_CMD			0x170f9
-+			MX6QDL_PAD_SD1_CLK__SD1_CLK			0x100f9
-+			MX6QDL_PAD_SD1_DAT0__SD1_DATA0			0x170f9
-+			MX6QDL_PAD_SD1_DAT1__SD1_DATA1			0x170f9
-+			MX6QDL_PAD_SD1_DAT2__SD1_DATA2			0x170f9
-+			MX6QDL_PAD_SD1_DAT3__SD1_DATA3			0x170f9
-+			MX6QDL_PAD_GPIO_1__GPIO1_IO01			0x1b0b0
-+		>;
-+	};
-+
-+	pinctrl_usdhc3: usdhc3grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_SD3_CMD__SD3_CMD			0x17099
-+			MX6QDL_PAD_SD3_CLK__SD3_CLK			0x10099
-+			MX6QDL_PAD_SD3_DAT0__SD3_DATA0			0x17099
-+			MX6QDL_PAD_SD3_DAT1__SD3_DATA1			0x17099
-+			MX6QDL_PAD_SD3_DAT2__SD3_DATA2			0x17099
-+			MX6QDL_PAD_SD3_DAT3__SD3_DATA3			0x17099
-+			MX6QDL_PAD_SD3_DAT4__SD3_DATA4			0x17099
-+			MX6QDL_PAD_SD3_DAT5__SD3_DATA5			0x17099
-+			MX6QDL_PAD_SD3_DAT6__SD3_DATA6			0x17099
-+			MX6QDL_PAD_SD3_DAT7__SD3_DATA7			0x17099
-+			MX6QDL_PAD_SD3_RST__SD3_RESET			0x1b0b1
-+		>;
-+	};
-+};
--- 
-2.29.2
+Thanks,
+Troy Lee
 
+> -----Original Message-----
+> From: Andrew Jeffery <andrew@aj.id.au>
+> Sent: Tuesday, December 1, 2020 9:12 AM
+> To: Troy Lee <troy_lee@aspeedtech.com>; Stefan M Schaeckeler
+> <sschaeck@cisco.com>; Rob Herring <robh+dt@kernel.org>; Joel Stanley
+> <joel@jms.id.au>; Borislav Petkov <bp@alien8.de>; Mauro Carvalho Chehab
+> <mchehab@kernel.org>; Tony Luck <tony.luck@intel.com>; James Morse
+> <james.morse@arm.com>; Robert Richter <rrichter@marvell.com>; open
+> list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS
+> <devicetree@vger.kernel.org>; moderated list:ARM/ASPEED MACHINE
+> SUPPORT <linux-arm-kernel@lists.infradead.org>; moderated
+> list:ARM/ASPEED MACHINE SUPPORT <linux-aspeed@lists.ozlabs.org>; open
+> list <linux-kernel@vger.kernel.org>; open list:EDAC-CORE
+> <linux-edac@vger.kernel.org>
+> Cc: leetroy@gmail.com; Ryan Chen <ryan_chen@aspeedtech.com>
+> Subject: Re: [PATCH 3/3] edac: Supporting AST2400 and AST2600 edac driver
+> 
+> Hi Troy,
+> 
+> I like the idea of expanding the driver's support to cover the other SoC
+> generations, but not at the cost of making the build of the driver SoC-specific.
+> I've made some comments below in this regard.
+> 
+> On Mon, 30 Nov 2020, at 19:03, Troy Lee wrote:
+> > Adding AST2400 and AST2600 edac driver support.
+> >
+> > Signed-off-by: Troy Lee <troy_lee@aspeedtech.com>
+> > ---
+> >  drivers/edac/Kconfig       |   6 +-
+> >  drivers/edac/aspeed_edac.c | 114
+> > +++++++++++++++++++++++++++++--------
+> >  2 files changed, 94 insertions(+), 26 deletions(-)
+> >
+> > diff --git a/drivers/edac/Kconfig b/drivers/edac/Kconfig index
+> > fc30f2ef9782..8ea70746d0bf 100644
+> > --- a/drivers/edac/Kconfig
+> > +++ b/drivers/edac/Kconfig
+> > @@ -508,10 +508,10 @@ config EDAC_QCOM
+> >  	  health, you should probably say 'Y' here.
+> >
+> >  config EDAC_ASPEED
+> > -	tristate "Aspeed AST 2500 SoC"
+> > -	depends on MACH_ASPEED_G5
+> > +	tristate "Aspeed AST BMC SoC"
+> > +	depends on (MACH_ASPEED_G4 || MACH_ASPEED_G5 ||
+> MACH_ASPEED_G6)
+> >  	help
+> > -	  Support for error detection and correction on the Aspeed AST 2500 SoC.
+> > +	  Support for error detection and correction on the Aspeed AST BMC SoC.
+> >
+> >  	  First, ECC must be configured in the bootloader. Then, this driver
+> >  	  will expose error counters via the EDAC kernel framework.
+> > diff --git a/drivers/edac/aspeed_edac.c b/drivers/edac/aspeed_edac.c
+> > index fbec28dc661d..03a3c12f6bf6 100644
+> > --- a/drivers/edac/aspeed_edac.c
+> > +++ b/drivers/edac/aspeed_edac.c
+> > @@ -14,12 +14,11 @@
+> >  #include <linux/regmap.h>
+> >  #include "edac_module.h"
+> >
+> > -
+> >  #define DRV_NAME "aspeed-edac"
+> >
+> > -
+> >  #define ASPEED_MCR_PROT        0x00 /* protection key register */
+> >  #define ASPEED_MCR_CONF        0x04 /* configuration register */
+> > +#define ASPEED_MCR_REQ         0x08 /* Graphics Memory Protection
+> register */
+> >  #define ASPEED_MCR_INTR_CTRL   0x50 /* interrupt control/status
+> register */
+> >  #define ASPEED_MCR_ADDR_UNREC  0x58 /* address of first
+> un-recoverable error */
+> >  #define ASPEED_MCR_ADDR_REC    0x5c /* address of last recoverable
+> error */
+> > @@ -34,10 +33,8 @@
+> >  #define ASPEED_MCR_INTR_CTRL_CNT_UNREC GENMASK(15, 12)
+> #define
+> > ASPEED_MCR_INTR_CTRL_ENABLE  (BIT(0) | BIT(1))
+> >
+> > -
+> >  static struct regmap *aspeed_regmap;
+> >
+> > -
+> >  static int regmap_reg_write(void *context, unsigned int reg, unsigned
+> > int val)  {
+> >  	void __iomem *regs = (void __iomem *)context; @@ -53,7 +50,6 @@
+> > static int regmap_reg_write(void *context, unsigned int reg, unsigned
+> > int val)
+> >  	return 0;
+> >  }
+> >
+> > -
+> >  static int regmap_reg_read(void *context, unsigned int reg, unsigned
+> > int *val)  {
+> >  	void __iomem *regs = (void __iomem *)context; @@ -63,6 +59,76 @@
+> > static int regmap_reg_read(void *context, unsigned int reg, unsigned
+> > int *val)
+> >  	return 0;
+> >  }
+> >
+> > +extern void aspeed_sdmc_disable_mem_protection(u8 req) {
+> > +	u32 req_val = 0;
+> > +
+> > +	regmap_read(aspeed_regmap, ASPEED_MCR_REQ, &req_val);
+> > +
+> > +	req_val &= ~BIT(req);
+> > +
+> > +	regmap_write(aspeed_regmap, ASPEED_MCR_REQ, req_val); }
+> > +EXPORT_SYMBOL(aspeed_sdmc_disable_mem_protection);
+> > +
+> > +static const u32 ast2400_dram_table[] = {
+> > +	0x04000000,	//64MB
+> > +	0x08000000,	//128MB
+> > +	0x10000000,	//256MB
+> > +	0x20000000,	//512MB
+> > +};
+> 
+> You could perhaps save us from the size comments here by using e.g.
+> 
+> static const u32 ast2400_dram_table[] = {
+>     64 << 20,
+>     128 << 20,
+>     256 << 20,
+>     512 << 20,
+> };
+> 
+Fixed all in v2.
+
+> > +
+> > +static const u32 ast2500_dram_table[] = {
+> > +	0x08000000,	//128MB
+> > +	0x10000000,	//256MB
+> > +	0x20000000,	//512MB
+> > +	0x40000000,	//1024MB
+> > +};
+> > +
+> > +static const u32 ast2600_dram_table[] = {
+> > +	0x10000000,	//256MB
+> > +	0x20000000,	//512MB
+> > +	0x40000000,	//1024MB
+> > +	0x80000000,	//2048MB
+> > +};
+> > +
+> > +extern u32 aspeed_get_dram_size(void) {
+> > +	u32 reg04;
+> > +	u32 size;
+> > +
+> > +	regmap_read(aspeed_regmap, ASPEED_MCR_CONF, &reg04);
+> > +
+> > +#if defined(CONFIG_MACH_ASPEED_G6)
+> > +	size = ast2600_dram_table[reg04 & 0x3]; #elif
+> > +defined(CONFIG_MACH_ASPEED_G5)
+> > +	size = ast2500_dram_table[reg04 & 0x3]; #else
+> > +	size = ast2400_dram_table[reg04 & 0x3]; #endif
+> > +	return size;
+> > +}
+> > +EXPORT_SYMBOL(aspeed_get_dram_size);
+> 
+> The driver must support running on any of the SoC generations without being
+> recompiled. This requires the driver be compiled for a specific SoC generation.
+> 
+> The right way to do this is to use the OF match table data. Please fix it.
+> 
+Fixed in v2, driver can check the DRAM controller hardware version from MCR_CONF [31:28].
+
+> > +
+> > +static const u32 aspeed_vga_table[] = {
+> > +	0x800000,	//8MB
+> > +	0x1000000,	//16MB
+> > +	0x2000000,	//32MB
+> > +	0x4000000,	//64MB
+> > +};
+> > +
+> > +extern u32 aspeed_get_vga_size(void)
+> > +{
+> > +	u32 reg04;
+> > +	u32 size;
+> > +
+> > +	regmap_read(aspeed_regmap, ASPEED_MCR_CONF, &reg04);
+> > +
+> > +	size = aspeed_vga_table[((reg04 & 0xC) >> 2)];
+> > +	return size;
+> > +}
+> > +EXPORT_SYMBOL(aspeed_get_vga_size);
+> > +
+> >  static bool regmap_is_volatile(struct device *dev, unsigned int reg)
+> > {
+> >  	switch (reg) {
+> > @@ -209,8 +275,8 @@ static int config_irq(void *ctx, struct
+> > platform_device *pdev)
+> >  	/* register interrupt handler */
+> >  	irq = platform_get_irq(pdev, 0);
+> >  	dev_dbg(&pdev->dev, "got irq %d\n", irq);
+> > -	if (irq < 0)
+> > -		return irq;
+> > +	if (!irq)
+> > +		return -ENODEV;
+> 
+> The documentation for platform_get_irq() says "Return: IRQ number on
+> success, negative error number on failure."
+> 
+> So this change doesn't look right.
+> 
+Fixed in v2.
+
+> >
+> >  	rc = devm_request_irq(&pdev->dev, irq, mcr_isr, IRQF_TRIGGER_HIGH,
+> >  			      DRV_NAME, ctx);
+> > @@ -239,7 +305,11 @@ static int init_csrows(struct mem_ctl_info *mci)
+> >  	int rc;
+> >
+> >  	/* retrieve info about physical memory from device tree */
+> > -	np = of_find_node_by_path("/memory");
+> > +#ifdef CONFIG_MACH_ASPEED_G4
+> > +	np = of_find_node_by_path("/memory@40000000");
+> > +#else
+> > +	np = of_find_node_by_path("/memory@80000000");
+> > +#endif
+> 
+> Again, this makes the driver SoC-specific at compile time, and that's not going
+> to fly. If we need it, this should be solved with a phandle to the appropriate
+> memory node.
+> 
+Fixed in v2 by using of_find_node_by_name(NULL, "memory") instead.
+
+> >  	if (!np) {
+> >  		dev_err(mci->pdev, "dt: missing /memory node\n");
+> >  		return -ENODEV;
+> > @@ -281,11 +351,19 @@ static int aspeed_probe(struct platform_device
+> *pdev)
+> >  	struct device *dev = &pdev->dev;
+> >  	struct edac_mc_layer layers[2];
+> >  	struct mem_ctl_info *mci;
+> > +	struct device_node *np;
+> > +	struct resource *res;
+> >  	void __iomem *regs;
+> > -	u32 reg04;
+> >  	int rc;
+> >
+> > -	regs = devm_platform_ioremap_resource(pdev, 0);
+> > +	/* setup regmap */
+> > +	np = dev->of_node;
+> > +
+> > +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> > +	if (!res)
+> > +		return -ENOENT;
+> > +
+> > +	regs = devm_ioremap_resource(dev, res);
+> >  	if (IS_ERR(regs))
+> >  		return PTR_ERR(regs);
+> 
+> Why is this change necessary?
+> 
+Not necessary, so I'll reverted this part of change in v2.
+
+> >
+> > @@ -294,13 +372,6 @@ static int aspeed_probe(struct platform_device
+> *pdev)
+> >  	if (IS_ERR(aspeed_regmap))
+> >  		return PTR_ERR(aspeed_regmap);
+> >
+> > -	/* bail out if ECC mode is not configured */
+> > -	regmap_read(aspeed_regmap, ASPEED_MCR_CONF, &reg04);
+> > -	if (!(reg04 & ASPEED_MCR_CONF_ECC)) {
+> > -		dev_err(&pdev->dev, "ECC mode is not configured in u-boot\n");
+> > -		return -EPERM;
+> > -	}
+> > -
+> 
+> Why shouldn't we do this check?
+The driver can handle both ECC on and off, so this check might not be necessary.
+
+> >  	edac_op_state = EDAC_OPSTATE_INT;
+> >
+> >  	/* allocate & init EDAC MC data structure */ @@ -373,13 +444,13 @@
+> > static int aspeed_remove(struct platform_device *pdev)
+> >  	return 0;
+> >  }
+> >
+> > -
+> >  static const struct of_device_id aspeed_of_match[] = {
+> > +	{ .compatible = "aspeed,ast2400-sdram-edac" },
+> >  	{ .compatible = "aspeed,ast2500-sdram-edac" },
+> > +	{ .compatible = "aspeed,ast2600-sdram-edac" },
+> 
+> The .data member of struct of_device_id is where you need to attach your
+> SoC-generation-specific data.
+> 
+> Cheers,
+> 
+> Andrew
+> 
+> >  	{},
+> >  };
+> >
+> > -
+> >  static struct platform_driver aspeed_driver = {
+> >  	.driver		= {
+> >  		.name	= DRV_NAME,
+> > @@ -395,18 +466,15 @@ static int __init aspeed_init(void)
+> >  	return platform_driver_register(&aspeed_driver);
+> >  }
+> >
+> > -
+> >  static void __exit aspeed_exit(void)
+> >  {
+> >  	platform_driver_unregister(&aspeed_driver);
+> >  }
+> >
+> > -
+> >  module_init(aspeed_init);
+> >  module_exit(aspeed_exit);
+> >
+> > -
+> >  MODULE_LICENSE("GPL");
+> >  MODULE_AUTHOR("Stefan Schaeckeler <sschaeck@cisco.com>");
+> > -MODULE_DESCRIPTION("Aspeed AST2500 EDAC driver");
+> > +MODULE_DESCRIPTION("Aspeed EDAC driver");
+> >  MODULE_VERSION("1.0");
+> > --
+> > 2.17.1
+> >
+> >
