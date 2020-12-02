@@ -2,65 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 636F62CBF0F
-	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 15:08:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D3812CBF0C
+	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 15:08:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388909AbgLBOH4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Dec 2020 09:07:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39200 "EHLO
+        id S2388793AbgLBOHv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Dec 2020 09:07:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39204 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728942AbgLBOHo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Dec 2020 09:07:44 -0500
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E251C061A49
-        for <devicetree@vger.kernel.org>; Wed,  2 Dec 2020 06:06:24 -0800 (PST)
-Received: by mail-ej1-x62d.google.com with SMTP id pg6so4486405ejb.6
-        for <devicetree@vger.kernel.org>; Wed, 02 Dec 2020 06:06:24 -0800 (PST)
+        with ESMTP id S2388807AbgLBOHt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Dec 2020 09:07:49 -0500
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90366C061A4B
+        for <devicetree@vger.kernel.org>; Wed,  2 Dec 2020 06:06:26 -0800 (PST)
+Received: by mail-ed1-x535.google.com with SMTP id y4so4030489edy.5
+        for <devicetree@vger.kernel.org>; Wed, 02 Dec 2020 06:06:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=monstr-eu.20150623.gappssmtp.com; s=20150623;
         h=sender:from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=yUUyNhLqJTW8Mklp6WXq5oHjE6EeQcOooLOVP8B0jRI=;
-        b=JWOaKrZAaq9NPwZ02Snsu6Jgr33SrHEqvH97VriFEU0vpDJbt/UoR7GrQwOqIe7C8v
-         lvM4AKccKP5i5IqCG7WpZaVmxkyE7vtG7Osn8yFcF8bo+Omc1ZNlZw4P7pqJEJFtsbUi
-         SJFLH5H3JTPuRd4JPNFdOQhvE7T7TJeCqu9CWqssPjO4uzZ8fTRtT8xM8Fq378OIirYK
-         eRRnoFY2Ud+sAeKickLOX4cTg8z+JeYI5J9Q/pS+e8IT72iUwY8wRYHVU4GQlcS1eOzL
-         vx2Cx5/xfuNum0sKX7bvvA02dCJ1PZuskWwbM1w22vh5bdFfeqUQPCs3fw/pAAdt8TOW
-         I6kA==
+        bh=VYfQkYRVs47XikdYX7n4vb+ADGi5slPK0VELk2dqs+w=;
+        b=s4Bt6ond8f+RcQQIlN7GS6FmmNeEmc+S5Cg/HB/z3plHum23LRkkdxEsA6w/gTii8Z
+         Lcn2edDloqqFiOOwlWsJN2C344VX3Sc8gF6SZqikVBOuls18ctDdH0yN/L7XuB3hu1ZO
+         a5Gq+gROU1V+0Mn7WG31ZSPyUiQaFxULp4DvH7n61qSuZsEZcebQ41Do3QO6048FQ+0e
+         p0jKU2T6WBffB4TWU9oZuX/GZ7Bk6iVOFs9sEzmyzpvsXwL1Efr9LdK/GcVC7amwKpTd
+         mynZx1XwhWfel8usgnWhWV0dpy04qlQHksklvZ/RnngogwqkRpwQM56mWArd576XS6OR
+         1y9A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
          :in-reply-to:references:mime-version:content-transfer-encoding;
-        bh=yUUyNhLqJTW8Mklp6WXq5oHjE6EeQcOooLOVP8B0jRI=;
-        b=soNKW0w7VogWj3vn9IJkn6yjMKC/HJEkZrneChffXnNVP1JA2rZM6isgEK1VcpAI8O
-         RmBoo3dGVGI2nnYiBZ2KdTuXx92ThTi2I0gC/DaSsifZ1hL5LF15kCC07/hJmTVRkOCu
-         XS0IvXEEPWHPdxI8VZGFXMBip8ufPlLH7rQFIEUSyXGOxkBc0ZzvzKoEWFdmmhFj2uWY
-         4kU6SKAEnC+ng6PEumVHvTbBsBZC6zT/HHc6yATuae3CA9hIpHNFEE/6DInWnpMKJjtK
-         Rj4ngT+k0zHI0TTwCe/aRWmLRSSzlw1UeAucHgQH2Folm90GCvYDTz/L5Zq3Kx2ppFgB
-         pfdg==
-X-Gm-Message-State: AOAM533nay2z7RmL3P7XSHNLtqyKDRynMtA0cBlg1K230qO3m2SHFpzE
-        NVniN2lZq3kLjTPJ0cQm4R/Y/A==
-X-Google-Smtp-Source: ABdhPJzQkorR17XrgemWT28k0CenWfUU9I4FH0o7LTncdXq9SyFPxh17/ovr45AiPuZE8beE1G6ZNg==
-X-Received: by 2002:a17:906:3e02:: with SMTP id k2mr2539737eji.92.1606917983227;
-        Wed, 02 Dec 2020 06:06:23 -0800 (PST)
+        bh=VYfQkYRVs47XikdYX7n4vb+ADGi5slPK0VELk2dqs+w=;
+        b=Q+IWJrBXwNUvOe7V33MM6asuEXOI5TdsiAnRqei8Jwo6fpUMfFe4EKNK209xFZ0lJK
+         XKuVNKwcPvs3vxXrgIR2ordWCUlQ4S132rw6+ihyA4DwMQCC2VtLweGSmRYslIa7Xlyi
+         mg2HZw1AJjCIL7jDMYhNuMpuVAKJsEtnLZZM/D2qADlUau3+OjkyOhXjwExk5b9da737
+         /CsDfGBz1UZBOEZQ/h5B2JFhprvGCEaUkOWIGxduhcoIw5/Z4xVvD6A0wIzw68k71bus
+         W/NLHMsBKojiSUVPckoEe8vXl7YBi7ffNGMCOCpKNEXGBpAxVbUOgqBQBxWetVelRYZO
+         Z1IA==
+X-Gm-Message-State: AOAM53279YfT+8mquxZWwxFxT2lydWgMp3ZUhs+tEy0ohJN87v7E3YVz
+        X3HOFD0EXPKJmUksupvhgJclew==
+X-Google-Smtp-Source: ABdhPJxvtX4Ji1KYbcn/ajq6PnsBUNC4t3vFxBkm1PD0RFPAtnvazVtfL9OZ7fuhSbkEmQXwAziEOw==
+X-Received: by 2002:a05:6402:1d13:: with SMTP id dg19mr33800edb.111.1606917985305;
+        Wed, 02 Dec 2020 06:06:25 -0800 (PST)
 Received: from localhost (nat-35.starnet.cz. [178.255.168.35])
-        by smtp.gmail.com with ESMTPSA id i13sm1284622ejc.57.2020.12.02.06.06.22
+        by smtp.gmail.com with ESMTPSA id op5sm966689ejb.43.2020.12.02.06.06.24
         (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Wed, 02 Dec 2020 06:06:22 -0800 (PST)
+        Wed, 02 Dec 2020 06:06:24 -0800 (PST)
 Sender: Michal Simek <monstr@monstr.eu>
 From:   Michal Simek <michal.simek@xilinx.com>
 To:     linux-kernel@vger.kernel.org, monstr@monstr.eu,
         michal.simek@xilinx.com, git@xilinx.com
-Cc:     Kalyani Akula <kalyani.akula@xilinx.com>,
+Cc:     Anurag Kumar Vulisha <anurag.kumar.vulisha@xilinx.com>,
         Krzysztof Kozlowski <krzk@kernel.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Manish Narani <manish.narani@xilinx.com>,
         Rajan Vaja <rajan.vaja@xilinx.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 04/12] arm64: dts: zynqmp: Enable and wire reset controller
-Date:   Wed,  2 Dec 2020 15:06:03 +0100
-Message-Id: <c0a99c5b0438e34073429624d99a2c3f16532016.1606917949.git.michal.simek@xilinx.com>
+        Rob Herring <robh+dt@kernel.org>,
+        Venkatesh Yadav Abbarapu <venkatesh.abbarapu@xilinx.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH 05/12] arm64: dts: zynqmp: Enable phy driver for Sata on zcu102/zcu104/zcu106
+Date:   Wed,  2 Dec 2020 15:06:04 +0100
+Message-Id: <e13ed467d4ef271de41877343fb8f9376f357927.1606917949.git.michal.simek@xilinx.com>
 X-Mailer: git-send-email 2.29.2
 In-Reply-To: <cover.1606917949.git.michal.simek@xilinx.com>
 References: <cover.1606917949.git.michal.simek@xilinx.com>
@@ -70,124 +69,182 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable reset controller for several IPs.
+Enable psgtr driver and write clocks property to get sata to work.
 
 Signed-off-by: Michal Simek <michal.simek@xilinx.com>
 ---
 
- arch/arm64/boot/dts/xilinx/zynqmp.dtsi | 29 ++++++++++++++++++++++++++
- 1 file changed, 29 insertions(+)
+ .../boot/dts/xilinx/zynqmp-zcu102-revA.dts    | 10 +++++++
+ .../boot/dts/xilinx/zynqmp-zcu104-revA.dts    | 28 +++++++++++++++++++
+ .../boot/dts/xilinx/zynqmp-zcu106-revA.dts    | 10 +++++++
+ .../boot/dts/xilinx/zynqmp-zcu111-revA.dts    | 10 +++++++
+ 4 files changed, 58 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-index 68923fbd0e89..4fa820f78d76 100644
---- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-+++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-@@ -187,6 +187,11 @@ zynqmp_pcap: pcap {
- 			xlnx_aes: zynqmp-aes {
- 				compatible = "xlnx,zynqmp-aes";
- 			};
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts
+index 68c2ad30d62d..d92698ffbf8c 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts
+@@ -13,6 +13,7 @@
+ #include "zynqmp-clk-ccf.dtsi"
+ #include <dt-bindings/input/input.h>
+ #include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/phy/phy.h>
+ 
+ / {
+ 	model = "ZynqMP ZCU102 RevA";
+@@ -663,6 +664,13 @@ &pcie {
+ 	status = "okay";
+ };
+ 
++&psgtr {
++	status = "okay";
++	/* pcie, sata, usb3, dp */
++	clocks = <&si5341 0 5>, <&si5341 0 3>, <&si5341 0 2>, <&si5341 0 0>;
++	clock-names = "ref0", "ref1", "ref2", "ref3";
++};
 +
-+			zynqmp_reset: reset-controller {
-+				compatible = "xlnx,zynqmp-reset";
-+				#reset-cells = <1>;
-+			};
- 		};
+ &rtc {
+ 	status = "okay";
+ };
+@@ -678,6 +686,8 @@ &sata {
+ 	ceva,p1-comwake-params = /bits/ 8 <0x06 0x14 0x08 0x0E>;
+ 	ceva,p1-burst-params = /bits/ 8 <0x13 0x08 0x4A 0x06>;
+ 	ceva,p1-retry-params = /bits/ 16 <0x96A4 0x3FFC>;
++	phy-names = "sata-phy";
++	phys = <&psgtr 3 PHY_TYPE_SATA 1 1>;
+ };
+ 
+ /* SD1 with level shifter */
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dts
+index 7a4614e3f5fa..5e2be9abc175 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dts
+@@ -12,6 +12,7 @@
+ #include "zynqmp.dtsi"
+ #include "zynqmp-clk-ccf.dtsi"
+ #include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/phy/phy.h>
+ 
+ / {
+ 	model = "ZynqMP ZCU104 RevA";
+@@ -36,6 +37,24 @@ memory@0 {
+ 		device_type = "memory";
+ 		reg = <0x0 0x0 0x0 0x80000000>;
  	};
++
++	clock_8t49n287_5: clk125 {
++		compatible = "fixed-clock";
++		#clock-cells = <0>;
++		clock-frequency = <125000000>;
++	};
++
++	clock_8t49n287_2: clk26 {
++		compatible = "fixed-clock";
++		#clock-cells = <0>;
++		clock-frequency = <26000000>;
++	};
++
++	clock_8t49n287_3: clk27 {
++		compatible = "fixed-clock";
++		#clock-cells = <0>;
++		clock-frequency = <27000000>;
++	};
+ };
  
-@@ -466,6 +471,8 @@ gem0: ethernet@ff0b0000 {
- 			#address-cells = <1>;
- 			#size-cells = <0>;
- 			power-domains = <&zynqmp_firmware PD_ETH_0>;
-+			resets = <&zynqmp_reset ZYNQMP_RESET_GEM0>;
-+			reset-names = "gem0_rst";
- 		};
+ &can1 {
+@@ -158,6 +177,13 @@ &rtc {
+ 	status = "okay";
+ };
  
- 		gem1: ethernet@ff0c0000 {
-@@ -478,6 +485,8 @@ gem1: ethernet@ff0c0000 {
- 			#address-cells = <1>;
- 			#size-cells = <0>;
- 			power-domains = <&zynqmp_firmware PD_ETH_1>;
-+			resets = <&zynqmp_reset ZYNQMP_RESET_GEM1>;
-+			reset-names = "gem1_rst";
- 		};
++&psgtr {
++	status = "okay";
++	/* nc, sata, usb3, dp */
++	clocks = <&clock_8t49n287_5>, <&clock_8t49n287_2>, <&clock_8t49n287_3>;
++	clock-names = "ref1", "ref2", "ref3";
++};
++
+ &sata {
+ 	status = "okay";
+ 	/* SATA OOB timing settings */
+@@ -169,6 +195,8 @@ &sata {
+ 	ceva,p1-comwake-params = /bits/ 8 <0x06 0x14 0x08 0x0E>;
+ 	ceva,p1-burst-params = /bits/ 8 <0x13 0x08 0x4A 0x06>;
+ 	ceva,p1-retry-params = /bits/ 16 <0x96A4 0x3FFC>;
++	phy-names = "sata-phy";
++	phys = <&psgtr 3 PHY_TYPE_SATA 1 1>;
+ };
  
- 		gem2: ethernet@ff0d0000 {
-@@ -490,6 +499,8 @@ gem2: ethernet@ff0d0000 {
- 			#address-cells = <1>;
- 			#size-cells = <0>;
- 			power-domains = <&zynqmp_firmware PD_ETH_2>;
-+			resets = <&zynqmp_reset ZYNQMP_RESET_GEM2>;
-+			reset-names = "gem2_rst";
- 		};
+ /* SD1 with level shifter */
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts
+index a29ff20090ce..4ec6715abab7 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts
+@@ -13,6 +13,7 @@
+ #include "zynqmp-clk-ccf.dtsi"
+ #include <dt-bindings/input/input.h>
+ #include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/phy/phy.h>
  
- 		gem3: ethernet@ff0e0000 {
-@@ -502,6 +513,8 @@ gem3: ethernet@ff0e0000 {
- 			#address-cells = <1>;
- 			#size-cells = <0>;
- 			power-domains = <&zynqmp_firmware PD_ETH_3>;
-+			resets = <&zynqmp_reset ZYNQMP_RESET_GEM3>;
-+			reset-names = "gem3_rst";
- 		};
+ / {
+ 	model = "ZynqMP ZCU106 RevA";
+@@ -658,6 +659,13 @@ i2c@7 {
+ 	};
+ };
  
- 		gpio: gpio@ff0a0000 {
-@@ -515,6 +528,8 @@ gpio: gpio@ff0a0000 {
- 			#interrupt-cells = <2>;
- 			reg = <0x0 0xff0a0000 0x0 0x1000>;
- 			power-domains = <&zynqmp_firmware PD_GPIO>;
-+			resets = <&zynqmp_reset ZYNQMP_RESET_GPIO>;
-+			reset-names = "gpio_rst";
- 		};
++&psgtr {
++	status = "okay";
++	/* nc, sata, usb3, dp */
++	clocks = <&si5341 0 3>, <&si5341 0 2>, <&si5341 0 0>;
++	clock-names = "ref1", "ref2", "ref3";
++};
++
+ &rtc {
+ 	status = "okay";
+ };
+@@ -673,6 +681,8 @@ &sata {
+ 	ceva,p1-comwake-params = /bits/ 8 <0x06 0x14 0x08 0x0E>;
+ 	ceva,p1-burst-params = /bits/ 8 <0x13 0x08 0x4A 0x06>;
+ 	ceva,p1-retry-params = /bits/ 16 <0x96A4 0x3FFC>;
++	phy-names = "sata-phy";
++	phys = <&psgtr 3 PHY_TYPE_SATA 1 1>;
+ };
  
- 		i2c0: i2c@ff020000 {
-@@ -526,6 +541,8 @@ i2c0: i2c@ff020000 {
- 			#address-cells = <1>;
- 			#size-cells = <0>;
- 			power-domains = <&zynqmp_firmware PD_I2C_0>;
-+			resets = <&zynqmp_reset ZYNQMP_RESET_I2C0>;
-+			reset-names = "i2c0_rst";
- 		};
+ /* SD1 with level shifter */
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts
+index 92b3cee62d11..2969c4b71384 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts
+@@ -13,6 +13,7 @@
+ #include "zynqmp-clk-ccf.dtsi"
+ #include <dt-bindings/input/input.h>
+ #include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/phy/phy.h>
  
- 		i2c1: i2c@ff030000 {
-@@ -537,6 +554,8 @@ i2c1: i2c@ff030000 {
- 			#address-cells = <1>;
- 			#size-cells = <0>;
- 			power-domains = <&zynqmp_firmware PD_I2C_1>;
-+			resets = <&zynqmp_reset ZYNQMP_RESET_I2C1>;
-+			reset-names = "i2c1_rst";
- 		};
+ / {
+ 	model = "ZynqMP ZCU111 RevA";
+@@ -541,6 +542,13 @@ i2c@7 {
+ 	};
+ };
  
- 		pcie: pcie@fd0e0000 {
-@@ -602,6 +621,8 @@ sata: ahci@fd0c0000 {
- 			interrupt-parent = <&gic>;
- 			interrupts = <0 133 4>;
- 			power-domains = <&zynqmp_firmware PD_SATA>;
-+			resets = <&zynqmp_reset ZYNQMP_RESET_SATA>;
-+			reset-names = "sata_rst";
- 		};
++&psgtr {
++	status = "okay";
++	/* nc, sata, usb3, dp */
++	clocks = <&si5341 0 3>, <&si5341 0 2>, <&si5341 0 0>;
++	clock-names = "ref1", "ref2", "ref3";
++};
++
+ &rtc {
+ 	status = "okay";
+ };
+@@ -556,6 +564,8 @@ &sata {
+ 	ceva,p1-comwake-params = /bits/ 8 <0x06 0x14 0x08 0x0E>;
+ 	ceva,p1-burst-params = /bits/ 8 <0x13 0x08 0x4A 0x06>;
+ 	ceva,p1-retry-params = /bits/ 16 <0x96A4 0x3FFC>;
++	phy-names = "sata-phy";
++	phys = <&psgtr 3 PHY_TYPE_SATA 1 1>;
+ };
  
- 		sdhci0: mmc@ff160000 {
-@@ -733,6 +754,10 @@ usb0: usb@fe200000 {
- 			reg = <0x0 0xfe200000 0x0 0x40000>;
- 			clock-names = "clk_xin", "clk_ahb";
- 			power-domains = <&zynqmp_firmware PD_USB_0>;
-+			resets = <&zynqmp_reset ZYNQMP_RESET_USB0_CORERESET>,
-+				 <&zynqmp_reset ZYNQMP_RESET_USB0_HIBERRESET>,
-+				 <&zynqmp_reset ZYNQMP_RESET_USB0_APB>;
-+			reset-names = "usb0_crst", "usb0_hibrst", "usb0_apbrst";
- 		};
- 
- 		usb1: usb@fe300000 {
-@@ -743,6 +768,10 @@ usb1: usb@fe300000 {
- 			reg = <0x0 0xfe300000 0x0 0x40000>;
- 			clock-names = "clk_xin", "clk_ahb";
- 			power-domains = <&zynqmp_firmware PD_USB_1>;
-+			resets = <&zynqmp_reset ZYNQMP_RESET_USB1_CORERESET>,
-+				 <&zynqmp_reset ZYNQMP_RESET_USB1_HIBERRESET>,
-+				 <&zynqmp_reset ZYNQMP_RESET_USB1_APB>;
-+			reset-names = "usb1_crst", "usb1_hibrst", "usb1_apbrst";
- 		};
- 
- 		watchdog0: watchdog@fd4d0000 {
+ /* SD1 with level shifter */
 -- 
 2.29.2
 
