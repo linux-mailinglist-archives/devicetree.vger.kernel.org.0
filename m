@@ -2,120 +2,199 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E479A2CBF55
-	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 15:16:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3920A2CBF64
+	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 15:20:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728203AbgLBOPl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Dec 2020 09:15:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40488 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728197AbgLBOPk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Dec 2020 09:15:40 -0500
-Received: from mail-ej1-x643.google.com (mail-ej1-x643.google.com [IPv6:2a00:1450:4864:20::643])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BD38C0613D6
-        for <devicetree@vger.kernel.org>; Wed,  2 Dec 2020 06:15:00 -0800 (PST)
-Received: by mail-ej1-x643.google.com with SMTP id qw4so4481319ejb.12
-        for <devicetree@vger.kernel.org>; Wed, 02 Dec 2020 06:15:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=monstr-eu.20150623.gappssmtp.com; s=20150623;
-        h=sender:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=+2HhTD5jTn+vklEh4aL5/wMsPXq9tv2fr1AHIakSbyA=;
-        b=rblOepbVJChntb5pg5cBLGVX3v5Npt5ASjgefyud4GisFo2yFRCTCLQcnHLv57iJZy
-         FZjtA/ifq/EDkjfS0l3JHXPmP2cdOXhs+QN6ZKrucHFvH2GJSJlAzf1Rwm1aqfc5zCCc
-         EFzyofbZFHOb/XGKTWCoy1oj+Z6t36qZziiighBXILmtEKnXff210NjSvUZfOgLY9Acb
-         mXwf8UhknA358OtTYehSJdZwuX7AFRj75iv+wdDPi7xXGWvD+NUxyftJkMqQCmlwbpIc
-         FQDXqe9nJY8S0gg6I7VBEmVgYmYH1yWmE/86lDoFae28hkw97olHAQ3fZjM8bAKfWRsr
-         BdcQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
-         :mime-version:content-transfer-encoding;
-        bh=+2HhTD5jTn+vklEh4aL5/wMsPXq9tv2fr1AHIakSbyA=;
-        b=s8ohZ3yD3WQFP06pxpyoBxn3YbvNc7QEWY11jV+ZnDHbcBvH1hjBQ4Fs2I5VbkyAUH
-         nrD7CdvB43/gmLrwuh+YrsBGwNhVqZOd94yKaNs97pi1n+OCQ3Rl7cR7zG7M36YsN3on
-         3qMbnJGRDoBTs8gW3jZUVPRWntusxj6TwCSJeSKfun+H2QoKlM/E41ikZlILl7BuaONH
-         u7yh9G4ZAIEk868mNtMcmgdKGMcGH/sJJgszufe095pTsQihom72Od9he+co7NSJEb/J
-         ymr1xe7mQ7Dy6UsvYv4bsHkjeUd00yeFZviDBb0UHQdI9ojQL92srW3Heyy7PdHOFUHy
-         AA5g==
-X-Gm-Message-State: AOAM530/U6GIOnusK9RnnNuWVV8OyZWj8N1+xYT/BNm9v1NIMAXObBZv
-        eEaVlSTqP3cCSVYWIQE5MdDwVA==
-X-Google-Smtp-Source: ABdhPJxnHneDF4S7sioqi9JTCEQu+HKLJ0bOri7kp9DYkz53zZhgEMxhLu+jj3lvj4omuauMDnAt8w==
-X-Received: by 2002:a17:906:22c7:: with SMTP id q7mr2526176eja.486.1606918499010;
-        Wed, 02 Dec 2020 06:14:59 -0800 (PST)
-Received: from localhost (nat-35.starnet.cz. [178.255.168.35])
-        by smtp.gmail.com with ESMTPSA id e19sm20742edr.61.2020.12.02.06.14.58
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Wed, 02 Dec 2020 06:14:58 -0800 (PST)
-Sender: Michal Simek <monstr@monstr.eu>
-From:   Michal Simek <michal.simek@xilinx.com>
-To:     linux-kernel@vger.kernel.org, monstr@monstr.eu,
-        michal.simek@xilinx.com, git@xilinx.com
-Cc:     Andre Przywara <andre.przywara@arm.com>,
-        Kalyani Akula <kalyani.akula@xilinx.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Manish Narani <manish.narani@xilinx.com>,
-        Rajan Vaja <rajan.vaja@xilinx.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH] arm64: dts: zynqmp: Add address-cells property to interrupt controllers
-Date:   Wed,  2 Dec 2020 15:14:57 +0100
-Message-Id: <e4f54ddce33b79a783aa7c76e0dc6e9787933610.1606918493.git.michal.simek@xilinx.com>
-X-Mailer: git-send-email 2.29.2
+        id S1726012AbgLBORd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Dec 2020 09:17:33 -0500
+Received: from relay7-d.mail.gandi.net ([217.70.183.200]:32809 "EHLO
+        relay7-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727060AbgLBORd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Dec 2020 09:17:33 -0500
+X-Originating-IP: 93.29.109.196
+Received: from aptenodytes (196.109.29.93.rev.sfr.net [93.29.109.196])
+        (Authenticated sender: paul.kocialkowski@bootlin.com)
+        by relay7-d.mail.gandi.net (Postfix) with ESMTPSA id 0F5322001D;
+        Wed,  2 Dec 2020 14:16:44 +0000 (UTC)
+Date:   Wed, 2 Dec 2020 15:16:44 +0100
+From:   Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-doc@vger.kernel.org, devel@driverdev.osuosl.org,
+        linux-sunxi@googlegroups.com, Yong Deng <yong.deng@magewell.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Helen Koike <helen.koike@collabora.com>,
+        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Hans Verkuil <hans.verkuil@cisco.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        kevin.lhopital@hotmail.com
+Subject: Re: [PATCH v2 06/19] dt-bindings: media: sun6i-a31-csi: Add MIPI
+ CSI-2 input port
+Message-ID: <X8ehzCjZJ3yC8YtJ@aptenodytes>
+References: <20201128142839.517949-1-paul.kocialkowski@bootlin.com>
+ <20201128142839.517949-7-paul.kocialkowski@bootlin.com>
+ <20201201104321.rl3ujt5pjre6xlmm@gilmour>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="bQSyNp+lgLUEvy9B"
+Content-Disposition: inline
+In-Reply-To: <20201201104321.rl3ujt5pjre6xlmm@gilmour>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The commit 3eb619b2f7d8 ("scripts/dtc: Update to upstream version
-v1.6.0-11-g9d7888cbf19c") updated dtc version which also contained DTC
-commit
-"81e0919a3e21 checks: Add interrupt provider test"
-where reasons for this checking are mentioned as
-"A missing #address-cells property is less critical, but creates
-ambiguities when used in interrupt-map properties, so warn about this as
-well now."
 
-That's why add address-cells property to gic and gpio nodes to get rid of
-this warning.
+--bQSyNp+lgLUEvy9B
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-CC: Andre Przywara <andre.przywara@arm.com>
-Signed-off-by: Michal Simek <michal.simek@xilinx.com>
----
+Hi,
 
-I was grepping DTSes in the kernel and most of them list it as 0.
-In gicv3 case where its node is added it needs to be filled property that's
-why also non 0 values are there.
-Definitely please let me know if 0 is not the right value here.
+On Tue 01 Dec 20, 11:43, Maxime Ripard wrote:
+> On Sat, Nov 28, 2020 at 03:28:26PM +0100, Paul Kocialkowski wrote:
+> > The A31 CSI controller supports two distinct input interfaces:
+> > parallel and an external MIPI CSI-2 bridge. The parallel interface
+> > is often connected to a set of hardware pins while the MIPI CSI-2
+> > bridge is an internal FIFO-ish link. As a result, these two inputs
+> > are distinguished as two different ports.
+> >=20
+> > Note that only one of the two may be present on a controller instance.
+> > For example, the V3s has one controller dedicated to MIPI-CSI2 and one
+> > dedicated to parallel.
+> >=20
+> > Update the binding with an explicit ports node that holds two distinct
+> > port nodes: one for parallel input and one for MIPI CSI-2.
+> >=20
+> > This is backward-compatible with the single-port approach that was
+> > previously taken for representing the parallel interface port, which
+> > stays enumerated as fwnode port 0. However, it is now marked as
+> > deprecated and the multi-port approach should be preferred.
+> >=20
+> > Note that additional ports may be added in the future, especially to
+> > support feeding the CSI controller's output to the ISP.
+> >=20
+> > Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+> > ---
+> >  .../media/allwinner,sun6i-a31-csi.yaml        | 86 ++++++++++++++++---
+> >  1 file changed, 73 insertions(+), 13 deletions(-)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/media/allwinner,sun6i-a3=
+1-csi.yaml b/Documentation/devicetree/bindings/media/allwinner,sun6i-a31-cs=
+i.yaml
+> > index 1fd9b5532a21..3bcee2d44f3c 100644
+> > --- a/Documentation/devicetree/bindings/media/allwinner,sun6i-a31-csi.y=
+aml
+> > +++ b/Documentation/devicetree/bindings/media/allwinner,sun6i-a31-csi.y=
+aml
+> > @@ -43,6 +43,7 @@ properties:
+> >    # See ./video-interfaces.txt for details
+> >    port:
+> >      type: object
+> > +    deprecated: true
+>=20
+> I'm not sure we want to deprecate it. There's some SoCs with the same
+> controller but without the MIPI-CSI block where this would be completely
+> valid
 
-Based on https://lore.kernel.org/r/cover.1606917949.git.michal.simek@xilinx.com/
+I think we'll need to deprecate it when adding support for the ISP anyway,
+so I figured we might as well do it now. But I'm okay to postpone this for =
+now.
 
----
- arch/arm64/boot/dts/xilinx/zynqmp.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+> >      properties:
+> >        endpoint:
+> > @@ -67,6 +68,59 @@ properties:
+> > =20
+> >      additionalProperties: false
+> > =20
+> > +  ports:
+> > +    type: object
+> > +
+> > +    properties:
+> > +      port@0:
+> > +        type: object
+> > +        description: Parallel input port, connect to a parallel sensor
+> > +
+> > +        properties:
+> > +          reg:
+> > +            const: 0
+> > +
+> > +          endpoint:
+> > +            type: object
+> > +
+> > +            properties:
+> > +              remote-endpoint: true
+> > +
+> > +              bus-width:
+> > +                enum: [ 8, 10, 12, 16 ]
+> > +
+> > +              pclk-sample: true
+> > +              hsync-active: true
+> > +              vsync-active: true
+> > +
+> > +            required:
+> > +              - bus-width
+> > +              - remote-endpoint
+> > +
+> > +        required:
+> > +          - endpoint
+> > +
+> > +        additionalProperties: false
+> > +
+> > +      port@1:
+> > +        type: object
+> > +        description: MIPI CSI-2 bridge input port
+> > +
+> > +        properties:
+> > +          reg:
+> > +            const: 1
+> > +
+> > +          endpoint:
+> > +            type: object
+> > +
+> > +            properties:
+> > +              remote-endpoint: true
+> > +
+> > +            required:
+> > +              - remote-endpoint
+> > +
+> > +        additionalProperties: false
+>=20
+> There's a schema for the OF-graph now, you'll want to use it.
 
-diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-index 14a2e69cf98b..5b2051ac6965 100644
---- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-+++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-@@ -368,6 +368,7 @@ fpd_dma_chan8: dma@fd570000 {
- 
- 		gic: interrupt-controller@f9010000 {
- 			compatible = "arm,gic-400";
-+			#address-cells = <0>;
- 			#interrupt-cells = <3>;
- 			reg = <0x0 0xf9010000 0x0 0x10000>,
- 			      <0x0 0xf9020000 0x0 0x20000>,
-@@ -574,6 +575,7 @@ gem3: ethernet@ff0e0000 {
- 		gpio: gpio@ff0a0000 {
- 			compatible = "xlnx,zynqmp-gpio-1.0";
- 			status = "disabled";
-+			#address-cells = <0>;
- 			#gpio-cells = <0x2>;
- 			gpio-controller;
- 			interrupt-parent = <&gic>;
--- 
-2.29.2
+I didn't know that, thanks for the tip! Will look into it.
 
+Cheers,
+
+Paul
+
+--=20
+Paul Kocialkowski, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
+
+--bQSyNp+lgLUEvy9B
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEJZpWjZeIetVBefti3cLmz3+fv9EFAl/HocwACgkQ3cLmz3+f
+v9GG9Af9H1paVLqMvziqXTI0WNg+VMR5O6DYyo7mI+qYy2k13gShP+emMEuZsLhm
+vSOVR/gIRIotX+0dO2+BOj9ik0+7WiwtAfXdIsUo6kGhHxay1go4E8Xuy5YimqO2
+zMcpf200AlTfTE+1dFfP0Cbujt5wWH0WSYwFL/pbckNDb1TLC6KFJfBIgtN4T9q2
+31Ci4ZtaU1NmOrclYkJTT3eDtzYd4bqgbTScXJ+8gnnrIjRQi8jxEqOJGYj5sx5g
+biJTcl8+INexfPsV6O9c3Jl0QnwjGMp8avD8cjnHVf4SsshhrIklOjAtVxjpAElZ
+zmr7Z4hAcpREkZpZQy5bNeJjzm9gCg==
+=O/vb
+-----END PGP SIGNATURE-----
+
+--bQSyNp+lgLUEvy9B--
