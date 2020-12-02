@@ -2,94 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 734A42CB68C
-	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 09:17:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C4F722CB69F
+	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 09:18:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728912AbgLBIO6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Dec 2020 03:14:58 -0500
-Received: from mail-ed1-f65.google.com ([209.85.208.65]:38880 "EHLO
-        mail-ed1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728839AbgLBIO6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Dec 2020 03:14:58 -0500
-Received: by mail-ed1-f65.google.com with SMTP id y4so2440578edy.5;
-        Wed, 02 Dec 2020 00:14:35 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=TT/uTUFFN/ii3XuIKhocsW1P+4esb3GMyjg45cYhfmw=;
-        b=YDoaOFa1V89kPWEutQF83iLnEE9PdFRebOkk+UmyhQa5kf7AD9egffnUzd9xlOTeNt
-         i5u2g5LHa1fDXI4Rc3V2c1EEwBARUemMZJc2ckepYEgwh+WW6EMpUBztpifN0U/zfHCF
-         /MtRdUKnvq0LRuU10ajPzPMcZ8SrrHlSbpkV2cSzyTt9Au28DypVdkQCrvJS90BNniv4
-         96MchgW8wr9p6hzOK5ote/SYZokgbch2olumONwQOVU9zZPGHiqGgNQ/BW/keneWNdOj
-         3o/g1ITzi45nbcwncL4dEiKGNN3EeMyPXgB5gUUaiZOM42ooBTpf/09HyHc/4lmz8Pu6
-         BcWA==
-X-Gm-Message-State: AOAM530dW6f2swM2y9FwJqU+cfzXRddgQCXzMzGdUmvkaSLVGkIBuw8U
-        2tByO9oUInRNZLzR0OVEi/E=
-X-Google-Smtp-Source: ABdhPJyMM7FKXEQhSlSBoNgKgJu1OHlNcPb6mAKR0YIumHw63tEmeKdRM/o25l4uFRe8+xQEZ27xkQ==
-X-Received: by 2002:a50:fd88:: with SMTP id o8mr1483615edt.386.1606896850107;
-        Wed, 02 Dec 2020 00:14:10 -0800 (PST)
-Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
-        by smtp.googlemail.com with ESMTPSA id dk4sm610413edb.54.2020.12.02.00.14.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Dec 2020 00:14:08 -0800 (PST)
-Date:   Wed, 2 Dec 2020 10:14:07 +0200
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Martin Kepplinger <martin.kepplinger@puri.sm>
-Cc:     robh@kernel.org, shawnguo@kernel.org, festevam@gmail.com,
-        catalin.marinas@arm.com, will@kernel.org, georgi.djakov@linaro.org,
-        cdleonard@gmail.com, kernel@pengutronix.de, linux-imx@nxp.com,
-        kernel@puri.sm, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, Leonard Crestez <leonard.crestez@nxp.com>
-Subject: Re: [PATCH v2 1/7] arm64: dts: imx8m: Add NOC nodes
-Message-ID: <20201202081407.GA7157@kozik-lap>
-References: <20201201123932.12312-1-martin.kepplinger@puri.sm>
- <20201201123932.12312-2-martin.kepplinger@puri.sm>
+        id S1728916AbgLBISs convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 2 Dec 2020 03:18:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41680 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726148AbgLBISr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Dec 2020 03:18:47 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1AF0C0613CF
+        for <devicetree@vger.kernel.org>; Wed,  2 Dec 2020 00:18:07 -0800 (PST)
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1kkNKr-0004eT-QU; Wed, 02 Dec 2020 09:18:01 +0100
+Received: from ore by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <ore@pengutronix.de>)
+        id 1kkNKp-0002Ih-Ff; Wed, 02 Dec 2020 09:17:59 +0100
+Date:   Wed, 2 Dec 2020 09:17:59 +0100
+From:   Oleksij Rempel <o.rempel@pengutronix.de>
+To:     Sam Ravnborg <sam@ravnborg.org>
+Cc:     Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        dri-devel@lists.freedesktop.org, David Airlie <airlied@linux.ie>,
+        Fabio Estevam <festevam@gmail.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Jander <david@protonic.nl>,
+        Shawn Guo <shawnguo@kernel.org>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v5 1/6] dt-bindings: display: simple: Add EDT
+ ETM0700G0BDH6 display
+Message-ID: <20201202081759.rust5if2imggkv2a@pengutronix.de>
+References: <20201201092742.17658-1-o.rempel@pengutronix.de>
+ <20201201092742.17658-2-o.rempel@pengutronix.de>
+ <20201201115612.GA1989765@ravnborg.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20201201123932.12312-2-martin.kepplinger@puri.sm>
+Content-Transfer-Encoding: 8BIT
+In-Reply-To: <20201201115612.GA1989765@ravnborg.org>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 09:17:36 up 382 days, 23:36, 53 users,  load average: 0.17, 0.11,
+ 0.05
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 01, 2020 at 01:39:26PM +0100, Martin Kepplinger wrote:
-> From: Leonard Crestez <leonard.crestez@nxp.com>
+On Tue, Dec 01, 2020 at 12:56:12PM +0100, Sam Ravnborg wrote:
+> Hi Oleksij
 > 
-> Add initial support for dynamic frequency scaling of main NOC.
+> On Tue, Dec 01, 2020 at 10:27:37AM +0100, Oleksij Rempel wrote:
+> > This display is already supported by the panel-simple driver, so add it
+> > to the bindings documentation.
+> > 
+> > This patch is needed to fix checkpatch warnings for the PLYM2M dts.
+> > 
+> > Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+> > ---
+> >  .../devicetree/bindings/display/panel/panel-simple.yaml         | 2 ++
+> >  1 file changed, 2 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+> > index edb53ab0d9eb..a011d9e44af3 100644
+> > --- a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+> > +++ b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+> > @@ -117,6 +117,8 @@ properties:
+> >        - edt,etm0700g0dh6
+> >          # Emerging Display Technology Corp. WVGA TFT Display with capacitive touch
+> >          # Same as ETM0700G0DH6 but with inverted pixel clock.
+> > +      - edt,etm0700g0bdh6
+> > +        # Emerging Display Technology Corp. WVGA TFT Display with capacitive touch
+> >        - edt,etm070080bdh6
+> >          # Emerging Display Technology Corp. WVGA TFT Display with capacitive touch
+> >          # Same display as the ETM0700G0BDH6, but with changed hardware for the
 > 
-> Make DDRC the parent of the NOC (using passive governor) so that the
-> main NOC is automatically scaled together with DDRC by default.
-> 
-> Support for proactive scaling via interconnect will come on top.
-> 
-> Signed-off-by: Leonard Crestez <leonard.crestez@nxp.com>
-> Tested-by: Martin Kepplinger <martin.kepplinger@puri.sm> (imx8mq)
-> ---
->  arch/arm64/boot/dts/freescale/imx8mm.dtsi | 22 ++++++++++++++++++++++
->  arch/arm64/boot/dts/freescale/imx8mn.dtsi | 22 ++++++++++++++++++++++
->  arch/arm64/boot/dts/freescale/imx8mq.dtsi | 22 ++++++++++++++++++++++
->  3 files changed, 66 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-> index c824f2615fe8..835b19f0ea42 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-> @@ -921,6 +921,28 @@
->  
->  		};
->  
-> +		noc: interconnect@32700000 {
-> +			compatible = "fsl,imx8mm-noc", "fsl,imx8m-noc";
-> +			reg = <0x32700000 0x100000>;
-> +			clocks = <&clk IMX8MM_CLK_NOC>;
-> +			devfreq = <&ddrc>;
+> The panels should be listed in alphabetic order which is not the case
+> here. Could you fix the alphabetic order for the edt panels and then
+> insert the new panel in the right spot?
 
-This does not pass the dtschema checks. Are you missing here any
-dependencies?
+ack, will be done
 
-arch/arm64/boot/dts/freescale/imx8mm-evk.dt.yaml: interconnect@32700000: 'devfreq' does not match any of the regexes: 'pinctrl-[0-9]+'
-
-Best regards,
-Krzysztof
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
