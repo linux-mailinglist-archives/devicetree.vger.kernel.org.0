@@ -2,812 +2,407 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5BDC12CC000
-	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 15:47:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A4C992CC019
+	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 15:51:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727289AbgLBOpj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Dec 2020 09:45:39 -0500
-Received: from relay8-d.mail.gandi.net ([217.70.183.201]:50149 "EHLO
-        relay8-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726121AbgLBOpi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Dec 2020 09:45:38 -0500
-X-Greylist: delayed 1537 seconds by postgrey-1.27 at vger.kernel.org; Wed, 02 Dec 2020 09:45:35 EST
-X-Originating-IP: 93.29.109.196
-Received: from aptenodytes (196.109.29.93.rev.sfr.net [93.29.109.196])
-        (Authenticated sender: paul.kocialkowski@bootlin.com)
-        by relay8-d.mail.gandi.net (Postfix) with ESMTPSA id 8B8891BF217;
-        Wed,  2 Dec 2020 14:44:47 +0000 (UTC)
-Date:   Wed, 2 Dec 2020 15:44:47 +0100
-From:   Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-doc@vger.kernel.org, devel@driverdev.osuosl.org,
-        linux-sunxi@googlegroups.com, Yong Deng <yong.deng@magewell.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Helen Koike <helen.koike@collabora.com>,
-        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Hans Verkuil <hans.verkuil@cisco.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        kevin.lhopital@hotmail.com
-Subject: Re: [PATCH v2 13/19] media: sunxi: Add support for the A31 MIPI
- CSI-2 controller
-Message-ID: <X8eoX+M650sMXqpx@aptenodytes>
-References: <20201128142839.517949-1-paul.kocialkowski@bootlin.com>
- <20201128142839.517949-14-paul.kocialkowski@bootlin.com>
- <20201201122038.bxk3vu2w3mg43ayq@gilmour>
+        id S1727309AbgLBOu4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Dec 2020 09:50:56 -0500
+Received: from mail-dm6nam12on2066.outbound.protection.outlook.com ([40.107.243.66]:14305
+        "EHLO NAM12-DM6-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726430AbgLBOuz (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 2 Dec 2020 09:50:55 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=R8/rutCwR9KHk/C6K27lvb6gVFM2GZ2eOpnWFRsuqiuT8pK4oHYnqB5G92Syw3IQT9hCX510JzVZjmndKQpyrCUYzxDzfvtmEZsEw+hEFJjlGtJojmfjav9yfEGW/1IVY0d0p+A+ejTJRLco7kG7sLa8C6Rg8LHnRBnkd6jKYfu2VcHR+1qgQCANERrHIaONtzZz8k/fIPHr7cwKg4rqQ5972mHHTNk6gCh2j4ahGOQFbTt7w8UhXC9eVaPiYG0dYKWLKX0hF+iyUKcO0Al5j7hdJc2IZFsTQfF8gWn/bl6Qb3guBoSgF5g+c35G1li3dYveH2Y0u4/UCr5cYAXtcA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=BUGIzIOrjzJBFKG3ueRE94c3LzqVznXyzXWApympgbk=;
+ b=SSJ5AcxJwNDbEXqpfSegYQDWOXSOAZG3v7202JKwq2HbAPnoVNIvFiIV34vKRDHTSKbi7ZKOlZ4mDw/XLI7Fq+qmSH0/B8/UcmlRxLkXc7gVwW5YIq2bzHTPTaAiPmyBUdhVDcS7fW6RLPGzgWSJ7z8n/svDW8WfXy4Q35BFnJ0LKZ0iftRfk924/wOkkeqCI5nth7tael+T6XgS9BmxCNZJ4R6LdRDisGESaod3nNq2oe3pfhB3hshhJHZwG+Z/nKxgrB8iRbmj9DNYa1LAjzTs1okJwSIot3Oni40rPYE+NLh+JnZEK9/Qzp4cJ5zIbtSASB1/uVV282yF841UyA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 149.199.62.198) smtp.rcpttodomain=kernel.org smtp.mailfrom=xilinx.com;
+ dmarc=bestguesspass action=none header.from=xilinx.com; dkim=none (message
+ not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=BUGIzIOrjzJBFKG3ueRE94c3LzqVznXyzXWApympgbk=;
+ b=SkeZKZ9DM3uXFluL/UOw8pqd1vqzKDfdHJXoLoO5f6j3nLF76sGUgetZJIy8SKswgBTEANhk9zYA9gac7Bu12eulFTFNmb8D0JsgvPWaWvGH0m6lYvyORUF7bcWYZC54Qsw5TIOXjAjrysKZILIlcAfSWJpzQ3wTp0C4HjTdQx0=
+Received: from SN2PR01CA0067.prod.exchangelabs.com (2603:10b6:800::35) by
+ PH0PR02MB7461.namprd02.prod.outlook.com (2603:10b6:510:15::17) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3632.17; Wed, 2 Dec 2020 14:50:01 +0000
+Received: from SN1NAM02FT042.eop-nam02.prod.protection.outlook.com
+ (2603:10b6:800:0:cafe::8d) by SN2PR01CA0067.outlook.office365.com
+ (2603:10b6:800::35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3632.17 via Frontend
+ Transport; Wed, 2 Dec 2020 14:50:01 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
+ smtp.mailfrom=xilinx.com; kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=bestguesspass action=none
+ header.from=xilinx.com;
+Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
+ 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=149.199.62.198; helo=xsj-pvapexch01.xlnx.xilinx.com;
+Received: from xsj-pvapexch01.xlnx.xilinx.com (149.199.62.198) by
+ SN1NAM02FT042.mail.protection.outlook.com (10.152.73.149) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.3611.27 via Frontend Transport; Wed, 2 Dec 2020 14:50:00 +0000
+Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
+ xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1913.5; Wed, 2 Dec 2020 06:49:58 -0800
+Received: from smtp.xilinx.com (172.19.127.96) by
+ xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
+ 15.1.1913.5 via Frontend Transport; Wed, 2 Dec 2020 06:49:58 -0800
+Envelope-to: rvisaval@xilinx.com,
+ dshah@xilinx.com,
+ tejasp@xilinx.com,
+ rajanv@xilinx.com,
+ sboyd@kernel.org,
+ mturquette@baylibre.com,
+ robh+dt@kernel.org,
+ kernel@pengutronix.de,
+ devicetree@vger.kernel.org,
+ linux-clk@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org,
+ m.tretter@pengutronix.de
+Received: from [172.30.17.109] (port=38784)
+        by smtp.xilinx.com with esmtp (Exim 4.90)
+        (envelope-from <michal.simek@xilinx.com>)
+        id 1kkTSA-0005cP-7M; Wed, 02 Dec 2020 06:49:58 -0800
+To:     Michael Tretter <m.tretter@pengutronix.de>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>
+CC:     <rajanv@xilinx.com>, <tejasp@xilinx.com>, <dshah@xilinx.com>,
+        <rvisaval@xilinx.com>, <kernel@pengutronix.de>,
+        <robh+dt@kernel.org>, <mturquette@baylibre.com>, <sboyd@kernel.org>
+References: <20201116075532.4019252-1-m.tretter@pengutronix.de>
+ <20201116075532.4019252-9-m.tretter@pengutronix.de>
+From:   Michal Simek <michal.simek@xilinx.com>
+Subject: Re: [PATCH 08/12] soc: xilinx: vcu: implement clock provider for
+ output clocks
+Message-ID: <71afe870-a10b-755d-37d3-1010abe17fe0@xilinx.com>
+Date:   Wed, 2 Dec 2020 15:49:54 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.5.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="TaE5UDuue3o8CB8f"
-Content-Disposition: inline
-In-Reply-To: <20201201122038.bxk3vu2w3mg43ayq@gilmour>
+In-Reply-To: <20201116075532.4019252-9-m.tretter@pengutronix.de>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 04de3dc7-199f-42be-8a68-08d896d18bc3
+X-MS-TrafficTypeDiagnostic: PH0PR02MB7461:
+X-Microsoft-Antispam-PRVS: <PH0PR02MB7461D14BEB41F2B00285D201C6F30@PH0PR02MB7461.namprd02.prod.outlook.com>
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-Oob-TLC-OOBClassifiers: OLM:843;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: jReer3yL2A0xbMHYOS0zHH+5nJ4f/6XrapvWBK9n7nr2jECNPS6iqoN8Rf9SleOz0vy+P45LmJGfoXxeo1g/bCeRaED+Fi6k8lLqnFU6jQN+oHFmE9pXIwBDXVG4VeBBnGs60aZamz/WwwOWMf1/syDWenmWX4965xI2jhCgaq8flyZLvKTOpiDc9zWW3qL3cfg9zbBRJnGdq8y7FTMNWfqnrsz6WB5p9XYullhorjhOmXLuxADmPLTXISCMFXoi+kEAUcqyPBDoTqaDUKLbRhJynOXNsvHFzPfGAmun9OcSXy++4si30ZG3hmqrI28ZrpNGf4wvU/UpJqk5bF+YIFbS3fSC8JJSIoDtST33O8splri0VFumD6dJvjZICbiRReqMRLkCXR78JLI+9cej1cfUb9g50h4fxj5CvZob5TJv2moO9zvwnx26PviZqUZMuaiMYKwol8Z89OhThfPoqab1eGGSf1a0gaMUePd6lIY=
+X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch01.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(4636009)(376002)(346002)(39860400002)(396003)(136003)(46966005)(5660300002)(6666004)(7636003)(82740400003)(70206006)(356005)(2906002)(31686004)(47076004)(4326008)(44832011)(2616005)(70586007)(9786002)(336012)(36756003)(83380400001)(31696002)(186003)(426003)(8936002)(8676002)(26005)(110136005)(82310400003)(36906005)(54906003)(316002)(478600001)(50156003)(2101003)(43740500002);DIR:OUT;SFP:1101;
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Dec 2020 14:50:00.9264
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 04de3dc7-199f-42be-8a68-08d896d18bc3
+X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch01.xlnx.xilinx.com]
+X-MS-Exchange-CrossTenant-AuthSource: SN1NAM02FT042.eop-nam02.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR02MB7461
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---TaE5UDuue3o8CB8f
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-Hi,
+On 16. 11. 20 8:55, Michael Tretter wrote:
+> The VCU System-Level Control uses an internal PLL to drive the core and
+> MCU clock for the allegro encoder and decoder based on an external PL
+> clock.
+> 
+> In order be able to ensure that the clocks are enabled and to get their
+> rate from other drivers, the module must implement a clock provider and
+> register the clocks at the common clock framework. Other drivers are
+> then able to access the clock via devicetree bindings.
+> 
+> Signed-off-by: Michael Tretter <m.tretter@pengutronix.de>
+> ---
+>  drivers/soc/xilinx/xlnx_vcu.c | 191 +++++++++++++++++++++++++++-------
+>  1 file changed, 154 insertions(+), 37 deletions(-)
+> 
+> diff --git a/drivers/soc/xilinx/xlnx_vcu.c b/drivers/soc/xilinx/xlnx_vcu.c
+> index 725e646aa726..cedc8b7859f7 100644
+> --- a/drivers/soc/xilinx/xlnx_vcu.c
+> +++ b/drivers/soc/xilinx/xlnx_vcu.c
+> @@ -18,6 +18,8 @@
+>  #include <linux/platform_device.h>
+>  #include <linux/regmap.h>
+>  
+> +#include <dt-bindings/clock/xlnx-vcu.h>
+> +
+>  /* vcu slcr registers, bitmask and shift */
+>  #define VCU_PLL_CTRL			0x24
+>  #define VCU_PLL_CTRL_RESET_MASK		0x01
+> @@ -50,11 +52,6 @@
+>  #define VCU_ENC_MCU_CTRL		0x34
+>  #define VCU_DEC_CORE_CTRL		0x38
+>  #define VCU_DEC_MCU_CTRL		0x3c
+> -#define VCU_PLL_DIVISOR_MASK		0x3f
+> -#define VCU_PLL_DIVISOR_SHIFT		4
+> -#define VCU_SRCSEL_MASK			0x01
+> -#define VCU_SRCSEL_SHIFT		0
+> -#define VCU_SRCSEL_PLL			1
+>  
+>  #define VCU_PLL_STATUS			0x60
+>  #define VCU_PLL_STATUS_LOCK_STATUS_MASK	0x01
+> @@ -82,6 +79,7 @@ struct xvcu_device {
+>  	struct regmap *logicore_reg_ba;
+>  	void __iomem *vcu_slcr_ba;
+>  	struct clk_hw *pll;
+> +	struct clk_hw_onecell_data *clk_data;
 
-On Tue 01 Dec 20, 13:20, Maxime Ripard wrote:
-> Hi,
->=20
-> On Sat, Nov 28, 2020 at 03:28:33PM +0100, Paul Kocialkowski wrote:
-> > The A31 MIPI CSI-2 controller is a dedicated MIPI CSI-2 bridge
-> > found on Allwinner SoCs such as the A31 and V3/V3s.
-> >=20
-> > It is a standalone block, connected to the CSI controller on one side
-> > and to the MIPI D-PHY block on the other. It has a dedicated address
-> > space, interrupt line and clock.
-> >=20
-> > It is represented as a V4L2 subdev to the CSI controller and takes a
-> > MIPI CSI-2 sensor as its own subdev, all using the fwnode graph and
-> > media controller API.
-> >=20
-> > Only 8-bit and 10-bit Bayer formats are currently supported.
-> > While up to 4 internal channels to the CSI controller exist, only one
-> > is currently supported by this implementation.
-> >=20
-> > Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-> > ---
-> >  drivers/media/platform/sunxi/Kconfig          |   1 +
-> >  drivers/media/platform/sunxi/Makefile         |   1 +
-> >  .../platform/sunxi/sun6i-mipi-csi2/Kconfig    |  12 +
-> >  .../platform/sunxi/sun6i-mipi-csi2/Makefile   |   4 +
-> >  .../sunxi/sun6i-mipi-csi2/sun6i_mipi_csi2.c   | 591 ++++++++++++++++++
-> >  .../sunxi/sun6i-mipi-csi2/sun6i_mipi_csi2.h   | 117 ++++
-> >  6 files changed, 726 insertions(+)
-> >  create mode 100644 drivers/media/platform/sunxi/sun6i-mipi-csi2/Kconfig
-> >  create mode 100644 drivers/media/platform/sunxi/sun6i-mipi-csi2/Makefi=
-le
-> >  create mode 100644 drivers/media/platform/sunxi/sun6i-mipi-csi2/sun6i_=
-mipi_csi2.c
-> >  create mode 100644 drivers/media/platform/sunxi/sun6i-mipi-csi2/sun6i_=
-mipi_csi2.h
-> >=20
-> > diff --git a/drivers/media/platform/sunxi/Kconfig b/drivers/media/platf=
-orm/sunxi/Kconfig
-> > index 7151cc249afa..9684e07454ad 100644
-> > --- a/drivers/media/platform/sunxi/Kconfig
-> > +++ b/drivers/media/platform/sunxi/Kconfig
-> > @@ -2,3 +2,4 @@
-> > =20
-> >  source "drivers/media/platform/sunxi/sun4i-csi/Kconfig"
-> >  source "drivers/media/platform/sunxi/sun6i-csi/Kconfig"
-> > +source "drivers/media/platform/sunxi/sun6i-mipi-csi2/Kconfig"
-> > diff --git a/drivers/media/platform/sunxi/Makefile b/drivers/media/plat=
-form/sunxi/Makefile
-> > index fc537c9f5ca9..887a7cae8fca 100644
-> > --- a/drivers/media/platform/sunxi/Makefile
-> > +++ b/drivers/media/platform/sunxi/Makefile
-> > @@ -2,5 +2,6 @@
-> > =20
-> >  obj-y		+=3D sun4i-csi/
-> >  obj-y		+=3D sun6i-csi/
-> > +obj-y		+=3D sun6i-mipi-csi2/
->=20
-> I'm not sure we need a new folder here, it's only ever tied to sun6i-csi
-> so it would make more sense to have it in the same folder.
+The same here with clk_data - please update kernel-doc format.
 
-My thinking was that it's a different driver and a different hardware block,
-so it's less confusing to have it in a different directory. I think many wo=
-uld
-expect the driver to share code with sun6i-csi (in a component driver kind =
-of
-way) if it was in the same directory, which is not the case here.
+>  };
+>  
+>  static struct regmap_config vcu_settings_regmap_config = {
+> @@ -403,7 +401,7 @@ static int xvcu_set_vcu_pll_info(struct xvcu_device *xvcu)
+>  	u32 refclk, coreclk, mcuclk, inte, deci;
+>  	u32 divisor_mcu, divisor_core, fvco;
+>  	u32 clkoutdiv, vcu_pll_ctrl, pll_clk;
+> -	u32 mod, ctrl;
+> +	u32 mod;
+>  	int i;
+>  	int ret;
+>  	const struct xvcu_pll_cfg *found = NULL;
+> @@ -478,37 +476,6 @@ static int xvcu_set_vcu_pll_info(struct xvcu_device *xvcu)
+>  	dev_dbg(xvcu->dev, "Actual Core clock freq is %uHz\n", coreclk);
+>  	dev_dbg(xvcu->dev, "Actual Mcu clock freq is %uHz\n", mcuclk);
+>  
+> -	/* Set divisor for the core and mcu clock */
+> -	ctrl = xvcu_read(xvcu->vcu_slcr_ba, VCU_ENC_CORE_CTRL);
+> -	ctrl &= ~(VCU_PLL_DIVISOR_MASK << VCU_PLL_DIVISOR_SHIFT);
+> -	ctrl |= (divisor_core & VCU_PLL_DIVISOR_MASK) <<
+> -		 VCU_PLL_DIVISOR_SHIFT;
+> -	ctrl &= ~(VCU_SRCSEL_MASK << VCU_SRCSEL_SHIFT);
+> -	ctrl |= (VCU_SRCSEL_PLL & VCU_SRCSEL_MASK) << VCU_SRCSEL_SHIFT;
+> -	xvcu_write(xvcu->vcu_slcr_ba, VCU_ENC_CORE_CTRL, ctrl);
+> -
+> -	ctrl = xvcu_read(xvcu->vcu_slcr_ba, VCU_DEC_CORE_CTRL);
+> -	ctrl &= ~(VCU_PLL_DIVISOR_MASK << VCU_PLL_DIVISOR_SHIFT);
+> -	ctrl |= (divisor_core & VCU_PLL_DIVISOR_MASK) <<
+> -		 VCU_PLL_DIVISOR_SHIFT;
+> -	ctrl &= ~(VCU_SRCSEL_MASK << VCU_SRCSEL_SHIFT);
+> -	ctrl |= (VCU_SRCSEL_PLL & VCU_SRCSEL_MASK) << VCU_SRCSEL_SHIFT;
+> -	xvcu_write(xvcu->vcu_slcr_ba, VCU_DEC_CORE_CTRL, ctrl);
+> -
+> -	ctrl = xvcu_read(xvcu->vcu_slcr_ba, VCU_ENC_MCU_CTRL);
+> -	ctrl &= ~(VCU_PLL_DIVISOR_MASK << VCU_PLL_DIVISOR_SHIFT);
+> -	ctrl |= (divisor_mcu & VCU_PLL_DIVISOR_MASK) << VCU_PLL_DIVISOR_SHIFT;
+> -	ctrl &= ~(VCU_SRCSEL_MASK << VCU_SRCSEL_SHIFT);
+> -	ctrl |= (VCU_SRCSEL_PLL & VCU_SRCSEL_MASK) << VCU_SRCSEL_SHIFT;
+> -	xvcu_write(xvcu->vcu_slcr_ba, VCU_ENC_MCU_CTRL, ctrl);
+> -
+> -	ctrl = xvcu_read(xvcu->vcu_slcr_ba, VCU_DEC_MCU_CTRL);
+> -	ctrl &= ~(VCU_PLL_DIVISOR_MASK << VCU_PLL_DIVISOR_SHIFT);
+> -	ctrl |= (divisor_mcu & VCU_PLL_DIVISOR_MASK) << VCU_PLL_DIVISOR_SHIFT;
+> -	ctrl &= ~(VCU_SRCSEL_MASK << VCU_SRCSEL_SHIFT);
+> -	ctrl |= (VCU_SRCSEL_PLL & VCU_SRCSEL_MASK) << VCU_SRCSEL_SHIFT;
+> -	xvcu_write(xvcu->vcu_slcr_ba, VCU_DEC_MCU_CTRL, ctrl);
+> -
+>  	ret = xvcu_pll_set_rate(xvcu, fvco, refclk);
+>  	if (ret)
+>  		return ret;
+> @@ -545,6 +512,146 @@ static int xvcu_set_pll(struct xvcu_device *xvcu)
+>  	return xvcu_pll_enable(xvcu);
+>  }
+>  
+> +static struct clk_hw *xvcu_clk_hw_register_leaf(struct device *dev,
+> +						const char *name,
+> +						const char * const *parent_names,
+> +						u8 num_parents,
+> +						struct clk_hw *parent_default,
+> +						void __iomem *reg,
+> +						spinlock_t *lock)
+> +{
+> +	unsigned long flags = CLK_SET_RATE_NO_REPARENT | CLK_SET_RATE_PARENT;
+> +	u8 divider_flags = CLK_DIVIDER_ONE_BASED | CLK_DIVIDER_ALLOW_ZERO |
+> +			   CLK_DIVIDER_ROUND_CLOSEST;
+> +	struct clk_hw *mux = NULL;
+> +	struct clk_hw *divider = NULL;
+> +	struct clk_hw *gate = NULL;
+> +	char *name_mux;
+> +	char *name_div;
+> +	int err;
+> +
+> +	name_mux = devm_kasprintf(dev, GFP_KERNEL, "%s%s", name, "_mux");
+> +	if (!name_mux) {
+> +		err = -ENOMEM;
+> +		goto err;
+> +	}
+> +	mux = clk_hw_register_mux(dev, name_mux, parent_names, num_parents,
+> +				  flags, reg, 0, 1, 0, lock);
+> +	if (IS_ERR(mux)) {
+> +		err = PTR_ERR(divider);
 
-> >  obj-y		+=3D sun8i-di/
-> >  obj-y		+=3D sun8i-rotate/
-> > diff --git a/drivers/media/platform/sunxi/sun6i-mipi-csi2/Kconfig b/dri=
-vers/media/platform/sunxi/sun6i-mipi-csi2/Kconfig
-> > new file mode 100644
-> > index 000000000000..3260591ed5c0
-> > --- /dev/null
-> > +++ b/drivers/media/platform/sunxi/sun6i-mipi-csi2/Kconfig
-> > @@ -0,0 +1,12 @@
-> > +# SPDX-License-Identifier: GPL-2.0-only
-> > +config VIDEO_SUN6I_MIPI_CSI2
-> > +	tristate "Allwinner A31 MIPI CSI-2 Controller Driver"
-> > +	depends on VIDEO_V4L2 && COMMON_CLK
-> > +	depends on ARCH_SUNXI || COMPILE_TEST
-> > +	select PHY_SUN6I_MIPI_DPHY
-> > +	select MEDIA_CONTROLLER
-> > +	select VIDEO_V4L2_SUBDEV_API
-> > +	select REGMAP_MMIO
-> > +	select V4L2_FWNODE
-> > +	help
-> > +	   Support for the Allwinner A31 MIPI CSI-2 Controller.
-> > diff --git a/drivers/media/platform/sunxi/sun6i-mipi-csi2/Makefile b/dr=
-ivers/media/platform/sunxi/sun6i-mipi-csi2/Makefile
-> > new file mode 100644
-> > index 000000000000..14e4e03818b5
-> > --- /dev/null
-> > +++ b/drivers/media/platform/sunxi/sun6i-mipi-csi2/Makefile
-> > @@ -0,0 +1,4 @@
-> > +# SPDX-License-Identifier: GPL-2.0-only
-> > +sun6i-mipi-csi2-y +=3D sun6i_mipi_csi2.o
-> > +
-> > +obj-$(CONFIG_VIDEO_SUN6I_MIPI_CSI2) +=3D sun6i-mipi-csi2.o
-> > diff --git a/drivers/media/platform/sunxi/sun6i-mipi-csi2/sun6i_mipi_cs=
-i2.c b/drivers/media/platform/sunxi/sun6i-mipi-csi2/sun6i_mipi_csi2.c
-> > new file mode 100644
-> > index 000000000000..a6567ef82fb4
-> > --- /dev/null
-> > +++ b/drivers/media/platform/sunxi/sun6i-mipi-csi2/sun6i_mipi_csi2.c
-> > @@ -0,0 +1,591 @@
-> > +// SPDX-License-Identifier: GPL-2.0+
-> > +/*
-> > + * Copyright 2020 Bootlin
-> > + * Author: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-> > + */
-> > +
-> > +#include <linux/clk.h>
-> > +#include <linux/interrupt.h>
-> > +#include <linux/module.h>
-> > +#include <linux/of.h>
-> > +#include <linux/of_device.h>
-> > +#include <linux/phy/phy.h>
-> > +#include <linux/platform_device.h>
-> > +#include <linux/pm_runtime.h>
-> > +#include <linux/regmap.h>
-> > +#include <linux/reset.h>
-> > +#include <media/v4l2-ctrls.h>
-> > +#include <media/v4l2-device.h>
-> > +#include <media/v4l2-fwnode.h>
-> > +
-> > +#include "sun6i_mipi_csi2.h"
-> > +
-> > +#define MODULE_NAME	"sun6i-mipi-csi2"
-> > +
-> > +static const u32 sun6i_mipi_csi2_mbus_codes[] =3D {
-> > +	MEDIA_BUS_FMT_SBGGR8_1X8,
-> > +	MEDIA_BUS_FMT_SGBRG8_1X8,
-> > +	MEDIA_BUS_FMT_SGRBG8_1X8,
-> > +	MEDIA_BUS_FMT_SRGGB8_1X8,
-> > +	MEDIA_BUS_FMT_SBGGR10_1X10,
-> > +	MEDIA_BUS_FMT_SGBRG10_1X10,
-> > +	MEDIA_BUS_FMT_SGRBG10_1X10,
-> > +	MEDIA_BUS_FMT_SRGGB10_1X10,
-> > +};
-> > +
-> > +/* Video */
-> > +
-> > +static int sun6i_mipi_csi2_s_stream(struct v4l2_subdev *subdev, int on)
-> > +{
-> > +	struct sun6i_mipi_csi2_video *video =3D
-> > +		sun6i_mipi_csi2_subdev_video(subdev);
-> > +	struct sun6i_mipi_csi2_dev *cdev =3D sun6i_mipi_csi2_video_dev(video);
-> > +	struct v4l2_subdev *remote_subdev =3D video->remote_subdev;
-> > +	struct v4l2_fwnode_bus_mipi_csi2 *bus_mipi_csi2 =3D
-> > +		&video->endpoint.bus.mipi_csi2;
-> > +	union phy_configure_opts dphy_opts =3D { 0 };
-> > +	struct phy_configure_opts_mipi_dphy *dphy_cfg =3D &dphy_opts.mipi_dph=
-y;
-> > +	struct regmap *regmap =3D cdev->regmap;
-> > +	struct v4l2_ctrl *ctrl;
-> > +	unsigned int lanes_count;
-> > +	unsigned int bpp;
-> > +	unsigned long pixel_rate;
-> > +	u8 data_type =3D 0;
-> > +	u32 version =3D 0;
-> > +	/* Initialize to 0 to use both in disable label (ret !=3D 0) and off.=
- */
-> > +	int ret =3D 0;
-> > +
-> > +	if (!remote_subdev)
-> > +		return -ENODEV;
-> > +
-> > +	if (!on) {
-> > +		v4l2_subdev_call(remote_subdev, video, s_stream, 0);
-> > +		goto disable;
-> > +	}
-> > +
-> > +	switch (video->mbus_format.code) {
-> > +	case MEDIA_BUS_FMT_SBGGR8_1X8:
-> > +	case MEDIA_BUS_FMT_SGBRG8_1X8:
-> > +	case MEDIA_BUS_FMT_SGRBG8_1X8:
-> > +	case MEDIA_BUS_FMT_SRGGB8_1X8:
-> > +		data_type =3D MIPI_CSI2_DATA_TYPE_RAW8;
-> > +		bpp =3D 8;
-> > +		break;
-> > +	case MEDIA_BUS_FMT_SBGGR10_1X10:
-> > +	case MEDIA_BUS_FMT_SGBRG10_1X10:
-> > +	case MEDIA_BUS_FMT_SGRBG10_1X10:
-> > +	case MEDIA_BUS_FMT_SRGGB10_1X10:
-> > +		data_type =3D MIPI_CSI2_DATA_TYPE_RAW10;
-> > +		bpp =3D 10;
-> > +		break;
-> > +	default:
-> > +		return -EINVAL;
-> > +	}
-> > +
-> > +	/* Sensor pixel rate */
-> > +
-> > +	ctrl =3D v4l2_ctrl_find(remote_subdev->ctrl_handler, V4L2_CID_PIXEL_R=
-ATE);
-> > +	if (!ctrl) {
-> > +		dev_err(cdev->dev,
-> > +			"%s: no MIPI CSI-2 pixel rate from the sensor\n",
-> > +			__func__);
-> > +		return -ENODEV;
-> > +	}
-> > +
-> > +	pixel_rate =3D (unsigned long)v4l2_ctrl_g_ctrl_int64(ctrl);
-> > +	if (!pixel_rate) {
-> > +		dev_err(cdev->dev,
-> > +			"%s: zero MIPI CSI-2 pixel rate from the sensor\n",
-> > +			__func__);
-> > +		return -ENODEV;
-> > +	}
-> > +
-> > +	/* Power management */
-> > +
-> > +	ret =3D pm_runtime_get_sync(cdev->dev);
-> > +	if (ret < 0) {
-> > +		pm_runtime_put_noidle(cdev->dev);
-> > +		return ret;
-> > +	}
-> > +
-> > +	/* D-PHY configuration */
-> > +
-> > +	lanes_count =3D bus_mipi_csi2->num_data_lanes;
-> > +	phy_mipi_dphy_get_default_config(pixel_rate, bpp, lanes_count,
-> > +					 dphy_cfg);
-> > +
-> > +	/*
-> > +	 * Note that our hardware is using DDR, which is not taken in account=
- by
-> > +	 * phy_mipi_dphy_get_default_config when calculating hs_clk_rate from
-> > +	 * the pixel rate, lanes count and bpp.
-> > +	 *
-> > +	 * The resulting clock rate is basically the symbol rate over the who=
-le
-> > +	 * link. The actual clock rate is calculated with division by two sin=
-ce
-> > +	 * DDR samples both on rising and falling edges.
-> > +	 */
-> > +
-> > +	dev_dbg(cdev->dev, "A31 MIPI CSI-2 config:\n");
-> > +	dev_dbg(cdev->dev, "%ld pixels/s, %u bits/pixel, %lu Hz clock\n",
-> > +		pixel_rate, bpp, dphy_cfg->hs_clk_rate / 2);
-> > +
-> > +	ret =3D phy_reset(cdev->dphy);
-> > +	if (ret) {
-> > +		dev_err(cdev->dev, "failed to reset MIPI D-PHY\n");
-> > +		goto error_pm;
-> > +	}
-> > +
-> > +	ret =3D phy_set_mode_ext(cdev->dphy, PHY_MODE_MIPI_DPHY,
-> > +			       PHY_MIPI_DPHY_SUBMODE_RX);
-> > +	if (ret) {
-> > +		dev_err(cdev->dev, "failed to set MIPI D-PHY mode\n");
-> > +		goto error_pm;
-> > +	}
-> > +
-> > +	ret =3D phy_configure(cdev->dphy, &dphy_opts);
-> > +	if (ret) {
-> > +		dev_err(cdev->dev, "failed to configure MIPI D-PHY\n");
-> > +		goto error_pm;
-> > +	}
-> > +
-> > +	ret =3D phy_power_on(cdev->dphy);
-> > +	if (ret) {
-> > +		dev_err(cdev->dev, "failed to power on MIPI D-PHY\n");
-> > +		goto error_pm;
-> > +	}
-> > +
-> > +	/* MIPI CSI-2 controller setup */
-> > +
-> > +	/*
-> > +	 * The enable flow in the Allwinner BSP is a bit different: the enable
-> > +	 * and reset bits are set together before starting the CSI controller.
-> > +	 *
-> > +	 * In mainline we enable the CSI controller first (due to subdev logi=
-c).
-> > +	 * One reliable way to make this work is to deassert reset, configure
-> > +	 * registers and enable the controller when everything's ready.
-> > +	 *
-> > +	 * However, setting the version enable bit and removing it afterwards
-> > +	 * appears necessary for capture to work reliably, while replacing it
-> > +	 * with a delay doesn't do the trick.
-> > +	 */
-> > +	regmap_write(regmap, SUN6I_MIPI_CSI2_CTL_REG,
-> > +		     SUN6I_MIPI_CSI2_CTL_RESET_N |
-> > +		     SUN6I_MIPI_CSI2_CTL_VERSION_EN |
-> > +		     SUN6I_MIPI_CSI2_CTL_UNPK_EN);
-> > +
-> > +	regmap_read(regmap, SUN6I_MIPI_CSI2_VERSION_REG, &version);
-> > +
-> > +	regmap_update_bits(regmap, SUN6I_MIPI_CSI2_CTL_REG,
-> > +				   SUN6I_MIPI_CSI2_CTL_VERSION_EN, 0);
-> > +
-> > +	dev_dbg(cdev->dev, "A31 MIPI CSI-2 version: %04x\n", version);
-> > +
-> > +	regmap_write(regmap, SUN6I_MIPI_CSI2_CFG_REG,
-> > +		     SUN6I_MIPI_CSI2_CFG_CHANNEL_MODE(1) |
-> > +		     SUN6I_MIPI_CSI2_CFG_LANE_COUNT(lanes_count));
-> > +
-> > +	/*
-> > +	 * Our MIPI CSI-2 controller has internal channels that can be
-> > +	 * configured to match a specific MIPI CSI-2 virtual channel and/or
-> > +	 * a specific data type. Each internal channel can be piped to an
-> > +	 * internal channel of the CSI controller.
-> > +	 *
-> > +	 * We set virtual channel numbers to all channels to make sure that
-> > +	 * virtual channel 0 goes to CSI channel 0 only.
-> > +	 */
-> > +	regmap_write(regmap, SUN6I_MIPI_CSI2_VCDT_RX_REG,
-> > +		     SUN6I_MIPI_CSI2_VCDT_RX_CH_VC(3, 3) |
-> > +		     SUN6I_MIPI_CSI2_VCDT_RX_CH_VC(2, 2) |
-> > +		     SUN6I_MIPI_CSI2_VCDT_RX_CH_VC(1, 1) |
-> > +		     SUN6I_MIPI_CSI2_VCDT_RX_CH_VC(0, 0) |
-> > +		     SUN6I_MIPI_CSI2_VCDT_RX_CH_DT(0, data_type));
-> > +
-> > +	regmap_update_bits(regmap, SUN6I_MIPI_CSI2_CTL_REG,
-> > +			   SUN6I_MIPI_CSI2_CTL_EN, SUN6I_MIPI_CSI2_CTL_EN);
-> > +
-> > +	ret =3D v4l2_subdev_call(remote_subdev, video, s_stream, 1);
-> > +	if (ret)
-> > +		goto disable;
-> > +
-> > +	return 0;
-> > +
-> > +disable:
-> > +	regmap_update_bits(regmap, SUN6I_MIPI_CSI2_CTL_REG,
-> > +			   SUN6I_MIPI_CSI2_CTL_EN, 0);
-> > +
-> > +	phy_power_off(cdev->dphy);
-> > +
-> > +error_pm:
-> > +	pm_runtime_put(cdev->dev);
-> > +
-> > +	return ret;
-> > +}
-> > +
-> > +static const struct v4l2_subdev_video_ops sun6i_mipi_csi2_subdev_video=
-_ops =3D {
-> > +	.s_stream	=3D sun6i_mipi_csi2_s_stream,
-> > +};
-> > +
-> > +/* Pad */
-> > +
-> > +static int
-> > +sun6i_mipi_csi2_enum_mbus_code(struct v4l2_subdev *subdev,
-> > +			       struct v4l2_subdev_pad_config *config,
-> > +			       struct v4l2_subdev_mbus_code_enum *code_enum)
-> > +{
-> > +	if (code_enum->index >=3D ARRAY_SIZE(sun6i_mipi_csi2_mbus_codes))
-> > +		return -EINVAL;
-> > +
-> > +	code_enum->code =3D sun6i_mipi_csi2_mbus_codes[code_enum->index];
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int sun6i_mipi_csi2_get_fmt(struct v4l2_subdev *subdev,
-> > +				   struct v4l2_subdev_pad_config *config,
-> > +				   struct v4l2_subdev_format *format)
-> > +{
-> > +	struct sun6i_mipi_csi2_video *video =3D
-> > +		sun6i_mipi_csi2_subdev_video(subdev);
-> > +	struct v4l2_mbus_framefmt *mbus_format =3D &format->format;
-> > +
-> > +	if (format->which =3D=3D V4L2_SUBDEV_FORMAT_TRY)
-> > +		*mbus_format =3D *v4l2_subdev_get_try_format(subdev, config,
-> > +							   format->pad);
-> > +	else
-> > +		*mbus_format =3D video->mbus_format;
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int sun6i_mipi_csi2_set_fmt(struct v4l2_subdev *subdev,
-> > +				   struct v4l2_subdev_pad_config *config,
-> > +				   struct v4l2_subdev_format *format)
-> > +{
-> > +	struct sun6i_mipi_csi2_video *video =3D
-> > +		sun6i_mipi_csi2_subdev_video(subdev);
-> > +	struct v4l2_mbus_framefmt *mbus_format =3D &format->format;
-> > +
-> > +	if (format->which =3D=3D V4L2_SUBDEV_FORMAT_TRY)
-> > +		*v4l2_subdev_get_try_format(subdev, config, format->pad) =3D
-> > +			*mbus_format;
-> > +	else
-> > +		video->mbus_format =3D *mbus_format;
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static const struct v4l2_subdev_pad_ops sun6i_mipi_csi2_subdev_pad_ops=
- =3D {
-> > +	.enum_mbus_code	=3D sun6i_mipi_csi2_enum_mbus_code,
-> > +	.get_fmt	=3D sun6i_mipi_csi2_get_fmt,
-> > +	.set_fmt	=3D sun6i_mipi_csi2_set_fmt,
-> > +};
-> > +
-> > +/* Subdev */
-> > +
-> > +static const struct v4l2_subdev_ops sun6i_mipi_csi2_subdev_ops =3D {
-> > +	.video		=3D &sun6i_mipi_csi2_subdev_video_ops,
-> > +	.pad		=3D &sun6i_mipi_csi2_subdev_pad_ops,
-> > +};
-> > +
-> > +/* Notifier */
-> > +
-> > +static int
-> > +sun6i_mipi_csi2_notifier_bound(struct v4l2_async_notifier *notifier,
-> > +			       struct v4l2_subdev *remote_subdev,
-> > +			       struct v4l2_async_subdev *remote_subdev_async)
-> > +{
-> > +	struct v4l2_subdev *subdev =3D notifier->sd;
-> > +	struct sun6i_mipi_csi2_video *video =3D
-> > +		sun6i_mipi_csi2_subdev_video(subdev);
-> > +	struct sun6i_mipi_csi2_dev *cdev =3D sun6i_mipi_csi2_video_dev(video);
-> > +	int source_pad;
-> > +	int ret;
-> > +
-> > +	source_pad =3D media_entity_get_fwnode_pad(&remote_subdev->entity,
-> > +						 remote_subdev->fwnode,
-> > +						 MEDIA_PAD_FL_SOURCE);
-> > +	if (source_pad < 0)
-> > +		return source_pad;
-> > +
-> > +	ret =3D media_create_pad_link(&remote_subdev->entity, source_pad,
-> > +				    &subdev->entity, 0,
-> > +				    MEDIA_LNK_FL_ENABLED |
-> > +				    MEDIA_LNK_FL_IMMUTABLE);
-> > +	if (ret) {
-> > +		dev_err(cdev->dev, "failed to create %s:%u -> %s:%u link\n",
-> > +			remote_subdev->entity.name, source_pad,
-> > +			subdev->entity.name, 0);
-> > +		return ret;
-> > +	}
-> > +
-> > +	video->remote_subdev =3D remote_subdev;
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static const
-> > +struct v4l2_async_notifier_operations sun6i_mipi_csi2_notifier_ops =3D=
- {
-> > +	.bound		=3D sun6i_mipi_csi2_notifier_bound,
-> > +};
-> > +
-> > +/* Media Entity */
-> > +
-> > +static const struct media_entity_operations sun6i_mipi_csi2_entity_ops=
- =3D {
-> > +	.link_validate	=3D v4l2_subdev_link_validate,
-> > +};
-> > +
-> > +/* Base Driver */
-> > +
-> > +static int __maybe_unused sun6i_mipi_csi2_suspend(struct device *dev)
-> > +{
-> > +	struct sun6i_mipi_csi2_dev *cdev =3D dev_get_drvdata(dev);
-> > +
-> > +	clk_disable_unprepare(cdev->clk_mod);
-> > +	clk_disable_unprepare(cdev->clk_bus);
-> > +	reset_control_assert(cdev->reset);
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int __maybe_unused sun6i_mipi_csi2_resume(struct device *dev)
-> > +{
-> > +	struct sun6i_mipi_csi2_dev *cdev =3D dev_get_drvdata(dev);
-> > +	int ret;
-> > +
-> > +	ret =3D reset_control_deassert(cdev->reset);
-> > +	if (ret) {
-> > +		dev_err(cdev->dev, "failed to deassert reset\n");
-> > +		return ret;
-> > +	}
-> > +
-> > +	ret =3D clk_prepare_enable(cdev->clk_bus);
-> > +	if (ret) {
-> > +		dev_err(cdev->dev, "failed to enable bus clock\n");
-> > +		goto error_reset;
-> > +	}
-> > +
-> > +	ret =3D clk_prepare_enable(cdev->clk_mod);
-> > +	if (ret) {
-> > +		dev_err(cdev->dev, "failed to enable module clock\n");
-> > +		goto error_clk_bus;
-> > +	}
-> > +
-> > +	return 0;
-> > +
-> > +error_clk_bus:
-> > +	clk_disable_unprepare(cdev->clk_bus);
-> > +
-> > +error_reset:
-> > +	reset_control_assert(cdev->reset);
-> > +
-> > +	return ret;
-> > +}
->=20
-> I'm guessing you set the __maybe_unused attribute because you're using
-> SET_RUNTIME_PM_OPS, but what would happen if runtime_pm isn't selected?
-> It looks like you don't handle that case.
+mux here?
+And smatch is reporting also this issue. Please take a look.
 
-Indeed, __maybe_unused is because of the conditional definition of
-SET_RUNTIME_PM_OPS. If CONFIG_PM is not selected, then I guess the controll=
-er
-wouldn't be powered and wouldn't work. So I should definitely add a Kconfig
-dependency on PM then, right?
-
-Thanks for catching this!
-
-> > +static int sun6i_mipi_csi2_v4l2_setup(struct sun6i_mipi_csi2_dev *cdev)
-> > +{
-> > +	struct sun6i_mipi_csi2_video *video =3D &cdev->video;
-> > +	struct v4l2_subdev *subdev =3D &video->subdev;
-> > +	struct v4l2_async_notifier *notifier =3D &video->notifier;
-> > +	struct fwnode_handle *handle;
-> > +	struct v4l2_fwnode_endpoint *endpoint;
-> > +	struct v4l2_async_subdev *subdev_async;
-> > +	int ret;
-> > +
-> > +	/* Subdev */
-> > +
-> > +	v4l2_subdev_init(subdev, &sun6i_mipi_csi2_subdev_ops);
-> > +	subdev->dev =3D cdev->dev;
-> > +	subdev->flags |=3D V4L2_SUBDEV_FL_HAS_DEVNODE;
-> > +	strscpy(subdev->name, MODULE_NAME, sizeof(subdev->name));
-> > +	v4l2_set_subdevdata(subdev, cdev);
-> > +
-> > +	/* Entity */
-> > +
-> > +	subdev->entity.function =3D MEDIA_ENT_F_VID_IF_BRIDGE;
-> > +	subdev->entity.ops =3D &sun6i_mipi_csi2_entity_ops;
-> > +
-> > +	/* Pads */
-> > +
-> > +	video->pads[0].flags =3D MEDIA_PAD_FL_SINK;
-> > +	video->pads[1].flags =3D MEDIA_PAD_FL_SOURCE;
-> > +
-> > +	ret =3D media_entity_pads_init(&subdev->entity, 2, video->pads);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	/* Endpoint */
-> > +
-> > +	handle =3D fwnode_graph_get_endpoint_by_id(dev_fwnode(cdev->dev), 0, =
-0,
-> > +						 FWNODE_GRAPH_ENDPOINT_NEXT);
-> > +	if (!handle) {
-> > +		ret =3D -ENODEV;
-> > +		goto error_media_entity;
-> > +	}
-> > +
-> > +	endpoint =3D &video->endpoint;
-> > +	endpoint->bus_type =3D V4L2_MBUS_CSI2_DPHY;
-> > +
-> > +	ret =3D v4l2_fwnode_endpoint_parse(handle, endpoint);
-> > +	fwnode_handle_put(handle);
-> > +	if (ret)
-> > +		goto error_media_entity;
-> > +
-> > +	/* Notifier */
-> > +
-> > +	v4l2_async_notifier_init(notifier);
-> > +
-> > +	subdev_async =3D &video->subdev_async;
-> > +	ret =3D v4l2_async_notifier_add_fwnode_remote_subdev(notifier, handle,
-> > +							   subdev_async);
-> > +	if (ret)
-> > +		goto error_media_entity;
-> > +
-> > +	video->notifier.ops =3D &sun6i_mipi_csi2_notifier_ops;
-> > +
-> > +	ret =3D v4l2_async_subdev_notifier_register(subdev, notifier);
-> > +	if (ret < 0)
-> > +		goto error_notifier;
-> > +
-> > +	/* Subdev */
-> > +
-> > +	ret =3D v4l2_async_register_subdev(subdev);
-> > +	if (ret < 0)
-> > +		goto error_notifier_registered;
-> > +
-> > +	/* Runtime PM */
-> > +
-> > +	pm_runtime_enable(cdev->dev);
-> > +	pm_runtime_set_suspended(cdev->dev);
-> > +
-> > +	return 0;
-> > +
-> > +error_notifier_registered:
-> > +	v4l2_async_notifier_unregister(notifier);
-> > +error_notifier:
-> > +	v4l2_async_notifier_cleanup(notifier);
-> > +error_media_entity:
-> > +	media_entity_cleanup(&subdev->entity);
-> > +
-> > +	return ret;
-> > +}
-> > +
-> > +static int sun6i_mipi_csi2_v4l2_teardown(struct sun6i_mipi_csi2_dev *c=
-dev)
-> > +{
-> > +	struct sun6i_mipi_csi2_video *video =3D &cdev->video;
-> > +	struct v4l2_subdev *subdev =3D &video->subdev;
-> > +	struct v4l2_async_notifier *notifier =3D &video->notifier;
-> > +
-> > +	v4l2_async_unregister_subdev(subdev);
-> > +	v4l2_async_notifier_unregister(notifier);
-> > +	v4l2_async_notifier_cleanup(notifier);
-> > +	media_entity_cleanup(&subdev->entity);
-> > +	v4l2_device_unregister_subdev(subdev);
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static const struct regmap_config sun6i_mipi_csi2_regmap_config =3D {
-> > +	.reg_bits       =3D 32,
-> > +	.reg_stride     =3D 4,
-> > +	.val_bits       =3D 32,
-> > +	.max_register	=3D 0x400,
-> > +};
-> > +
-> > +static int sun6i_mipi_csi2_probe(struct platform_device *pdev)
-> > +{
-> > +	struct sun6i_mipi_csi2_dev *cdev;
-> > +	struct resource *res;
-> > +	void __iomem *io_base;
-> > +	int ret;
-> > +
-> > +	cdev =3D devm_kzalloc(&pdev->dev, sizeof(*cdev), GFP_KERNEL);
-> > +	if (!cdev)
-> > +		return -ENOMEM;
-> > +
-> > +	cdev->dev =3D &pdev->dev;
-> > +
-> > +	res =3D platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> > +	io_base =3D devm_ioremap_resource(&pdev->dev, res);
-> > +	if (IS_ERR(io_base))
-> > +		return PTR_ERR(io_base);
-> > +
-> > +	cdev->regmap =3D devm_regmap_init_mmio(&pdev->dev, io_base,
-> > +					     &sun6i_mipi_csi2_regmap_config);
-> > +	if (IS_ERR(cdev->regmap)) {
-> > +		dev_err(&pdev->dev, "failed to init register map\n");
-> > +		return PTR_ERR(cdev->regmap);
-> > +	}
-> > +
-> > +	cdev->clk_bus =3D devm_clk_get(&pdev->dev, "bus");
-> > +	if (IS_ERR(cdev->clk_bus)) {
-> > +		dev_err(&pdev->dev, "failed to acquire bus clock\n");
-> > +		return PTR_ERR(cdev->clk_bus);
-> > +	}
-> > +
-> > +	cdev->clk_mod =3D devm_clk_get(&pdev->dev, "mod");
-> > +	if (IS_ERR(cdev->clk_mod)) {
-> > +		dev_err(&pdev->dev, "failed to acquire mod clock\n");
-> > +		return PTR_ERR(cdev->clk_mod);
-> > +	}
-> > +
-> > +	cdev->reset =3D devm_reset_control_get_shared(&pdev->dev, NULL);
-> > +	if (IS_ERR(cdev->reset)) {
-> > +		dev_err(&pdev->dev, "failed to get reset controller\n");
-> > +		return PTR_ERR(cdev->reset);
-> > +	}
-> > +
-> > +	cdev->dphy =3D devm_phy_get(&pdev->dev, "dphy");
-> > +	if (IS_ERR(cdev->dphy)) {
-> > +		dev_err(&pdev->dev, "failed to get the MIPI D-PHY\n");
-> > +		return PTR_ERR(cdev->dphy);
-> > +	}
-> > +
-> > +	ret =3D phy_init(cdev->dphy);
-> > +	if (ret) {
-> > +		dev_err(&pdev->dev, "failed to initialize the MIPI D-PHY\n");
-> > +		return ret;
-> > +	}
-> > +
-> > +	platform_set_drvdata(pdev, cdev);
-> > +
-> > +	ret =3D sun6i_mipi_csi2_v4l2_setup(cdev);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int sun6i_mipi_csi2_remove(struct platform_device *pdev)
-> > +{
-> > +	struct sun6i_mipi_csi2_dev *cdev =3D platform_get_drvdata(pdev);
-> > +
-> > +	phy_exit(cdev->dphy);
-> > +
-> > +	return sun6i_mipi_csi2_v4l2_teardown(cdev);
->=20
-> This seem to be the only user and its content is pretty straightforward,
-> so we shouldn't have a separate function here
-
-This is for symmetry with sun6i_mipi_csi2_v4l2_setup and the intent is to s=
-plit
-v4l2 setup/teardown from driver resources, which makes things clearer and n=
-icer
-to read overall.
-
-What are the downsides and why is it a problem that it has a single caller?
-
-> > +}
-> > +
-> > +static const struct dev_pm_ops sun6i_mipi_csi2_pm_ops =3D {
-> > +	SET_RUNTIME_PM_OPS(sun6i_mipi_csi2_suspend, sun6i_mipi_csi2_resume,
-> > +			   NULL)
-> > +};
-> > +
-> > +static const struct of_device_id sun6i_mipi_csi2_of_match[] =3D {
-> > +	{ .compatible =3D "allwinner,sun6i-a31-mipi-csi2" },
-> > +	{ .compatible =3D "allwinner,sun8i-v3s-mipi-csi2", },
->=20
-> There's no need for the v3s compatible here, it will fallback to the a31
-> one anyway.
-
-Understood.
-
-Thanks for the review!
-
-Cheers,
-
-Paul
+drivers/soc/xilinx/xlnx_vcu.c:541 xvcu_clk_hw_register_leaf() warn:
+passing zero to 'PTR_ERR'
+drivers/soc/xilinx/xlnx_vcu.c:577 xvcu_clk_hw_register_leaf() warn:
+passing zero to 'ERR_PTR'
 
 
---=20
-Paul Kocialkowski, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
 
---TaE5UDuue3o8CB8f
-Content-Type: application/pgp-signature; name="signature.asc"
+> +		goto err;
+> +	}
+> +	clk_hw_set_parent(mux, parent_default);
+> +
+> +	name_div = devm_kasprintf(dev, GFP_KERNEL, "%s%s", name, "_div");
+> +	if (!name_div) {
+> +		err = -ENOMEM;
+> +		goto err;
+> +	}
+> +	divider = clk_hw_register_divider_parent_hw(dev, name_div, mux, flags,
+> +						    reg, 4, 6, divider_flags,
+> +						    lock);
+> +	if (IS_ERR(divider)) {
+> +		err = PTR_ERR(divider);
+> +		goto err;
+> +	}
+> +
+> +	gate = clk_hw_register_gate_parent_hw(dev, name, divider,
+> +					      CLK_SET_RATE_PARENT, reg, 12, 0,
+> +					      lock);
+> +	if (IS_ERR(gate)) {
+> +		err = PTR_ERR(gate);
+> +		goto err;
+> +	}
+> +
+> +	return gate;
+> +
+> +err:
+> +	if (!IS_ERR_OR_NULL(gate))
+> +		clk_hw_unregister_gate(gate);
+> +	if (!IS_ERR_OR_NULL(divider))
+> +		clk_hw_unregister_divider(divider);
+> +	if (!IS_ERR_OR_NULL(mux))
+> +		clk_hw_unregister_divider(mux);
+> +
+> +	return ERR_PTR(err);
+> +}
+> +
+> +static void xvcu_clk_hw_unregister_leaf(struct clk_hw *hw)
+> +{
+> +	struct clk_hw *gate = hw;
+> +	struct clk_hw *divider;
+> +	struct clk_hw *mux;
+> +
+> +	if (!gate)
+> +		return;
+> +
+> +	divider = clk_hw_get_parent(gate);
+> +	clk_hw_unregister_gate(gate);
+> +	if (!divider)
+> +		return;
+> +
+> +	mux = clk_hw_get_parent(divider);
+> +	clk_hw_unregister_mux(mux);
+> +	if (!divider)
+> +		return;
+> +
+> +	clk_hw_unregister_divider(divider);
+> +}
+> +
+> +static DEFINE_SPINLOCK(venc_core_lock);
+> +static DEFINE_SPINLOCK(venc_mcu_lock);
+> +
+> +static int xvcu_register_clock_provider(struct xvcu_device *xvcu)
+> +{
+> +	struct device *dev = xvcu->dev;
+> +	const char *parent_names[2];
+> +	struct clk_hw *parent_default;
+> +	struct clk_hw_onecell_data *data;
+> +	struct clk_hw **hws;
+> +	void __iomem *reg_base = xvcu->vcu_slcr_ba;
+> +
+> +	data = devm_kzalloc(dev, struct_size(data, hws, CLK_XVCU_NUM_CLOCKS), GFP_KERNEL);
+> +	if (!data)
+> +		return -ENOMEM;
+> +	data->num = CLK_XVCU_NUM_CLOCKS;
+> +	hws = data->hws;
+> +
+> +	xvcu->clk_data = data;
+> +
+> +	parent_default = xvcu->pll;
+> +	parent_names[0] = "dummy";
+> +	parent_names[1] = clk_hw_get_name(parent_default);
+> +
+> +	hws[CLK_XVCU_ENC_CORE] =
+> +		xvcu_clk_hw_register_leaf(dev, "venc_core_clk",
+> +					  parent_names,
+> +					  ARRAY_SIZE(parent_names),
+> +					  parent_default,
+> +					  reg_base + VCU_ENC_CORE_CTRL,
+> +					  &venc_core_lock);
+> +	hws[CLK_XVCU_ENC_MCU] =
+> +		xvcu_clk_hw_register_leaf(dev, "venc_mcu_clk",
+> +					  parent_names,
+> +					  ARRAY_SIZE(parent_names),
+> +					  parent_default,
+> +					  reg_base + VCU_ENC_MCU_CTRL,
+> +					  &venc_mcu_lock);
+> +
+> +	return devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get, data);
+> +}
+> +
+> +static void xvcu_unregister_clock_provider(struct xvcu_device *xvcu)
+> +{
+> +	struct clk_hw_onecell_data *data = xvcu->clk_data;
+> +	struct clk_hw **hws = data->hws;
+> +
+> +	if (!IS_ERR_OR_NULL(hws[CLK_XVCU_ENC_MCU]))
+> +		xvcu_clk_hw_unregister_leaf(hws[CLK_XVCU_ENC_MCU]);
+> +	if (!IS_ERR_OR_NULL(hws[CLK_XVCU_ENC_CORE]))
+> +		xvcu_clk_hw_unregister_leaf(hws[CLK_XVCU_ENC_CORE]);
+> +}
+> +
+>  /**
+>   * xvcu_probe - Probe existence of the logicoreIP
+>   *			and initialize PLL
+> @@ -639,10 +746,18 @@ static int xvcu_probe(struct platform_device *pdev)
+>  		goto error_pll_ref;
+>  	}
+>  
+> +	ret = xvcu_register_clock_provider(xvcu);
+> +	if (ret) {
+> +		dev_err(&pdev->dev, "failed to register clock provider\n");
+> +		goto error_clk_provider;
+> +	}
+> +
+>  	dev_set_drvdata(&pdev->dev, xvcu);
+>  
+>  	return 0;
+>  
+> +error_clk_provider:
+> +	xvcu_unregister_clock_provider(xvcu);
+>  error_pll_ref:
+>  	clk_disable_unprepare(xvcu->aclk);
+>  	return ret;
+> @@ -664,6 +779,8 @@ static int xvcu_remove(struct platform_device *pdev)
+>  	if (!xvcu)
+>  		return -ENODEV;
+>  
+> +	xvcu_unregister_clock_provider(xvcu);
+> +
+>  	/* Add the the Gasket isolation and put the VCU in reset. */
+>  	regmap_write(xvcu->logicore_reg_ba, VCU_GASKET_INIT, 0);
+>  
+> 
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEJZpWjZeIetVBefti3cLmz3+fv9EFAl/HqF4ACgkQ3cLmz3+f
-v9GxNQgAlXMK9bhO1HL5TWPg2N58oF1dhvi7Y6xK4JPkggdx6PHO6FhEwrbjFCVT
-sgWPZVcynX/rtaEJ73lMuSapxoYw/HyDsJYtf6vxJTywnddOwNxdY14zgXnwUbVu
-9/j1PwP75J3KIIlZxgRt3CTa4M9iMBwytauNe3KbvbEKbEXgQrgCJeYSh1/4mSbl
-ktc0Z8CLlsNkRmZ5LRjGPmlBIsDWcUHg18pFS/eaROu28Yio3pD55mYKhmOCs2zT
-/jBavDgLIQQuHh8XQkZ8LFYn95o3gBz2FK5pf1TGWRBVe+//4Bb+D9EF3KpjtsIF
-fiMT65MDYtVuQSlT2nsbhmv7QjCBng==
-=6284
------END PGP SIGNATURE-----
-
---TaE5UDuue3o8CB8f--
+M
