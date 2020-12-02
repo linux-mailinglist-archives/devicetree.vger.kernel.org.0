@@ -2,389 +2,628 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DA1962CC8BC
-	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 22:16:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CDFEC2CC8B7
+	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 22:15:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727735AbgLBVPW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Dec 2020 16:15:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49484 "EHLO
+        id S2387621AbgLBVOm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Dec 2020 16:14:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49372 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726471AbgLBVPW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Dec 2020 16:15:22 -0500
-Received: from mail-lj1-x243.google.com (mail-lj1-x243.google.com [IPv6:2a00:1450:4864:20::243])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0116CC061A48
-        for <devicetree@vger.kernel.org>; Wed,  2 Dec 2020 13:14:05 -0800 (PST)
-Received: by mail-lj1-x243.google.com with SMTP id f18so33206ljg.9
-        for <devicetree@vger.kernel.org>; Wed, 02 Dec 2020 13:14:04 -0800 (PST)
+        with ESMTP id S1726880AbgLBVOm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Dec 2020 16:14:42 -0500
+Received: from mail-pj1-x1041.google.com (mail-pj1-x1041.google.com [IPv6:2607:f8b0:4864:20::1041])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F973C0613D6
+        for <devicetree@vger.kernel.org>; Wed,  2 Dec 2020 13:14:02 -0800 (PST)
+Received: by mail-pj1-x1041.google.com with SMTP id j13so1663403pjz.3
+        for <devicetree@vger.kernel.org>; Wed, 02 Dec 2020 13:14:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=q7NYbtygyTG1IxGitcusZU9KV5ZRKQvC8eHatcLLmcQ=;
-        b=lm0uI04I6ie4yuEnn9qyEEMy0ecFrzKrgmaqVCQ5QyOgefZdlHK/dLfrAjtZbmyvH9
-         Sh5PZZhrqq+4jXXem32D7ofYM/6XW4IfqZZxivpbdc3JZO56akstmP10GCZK2ARXwlJ3
-         1o5T2PU1BzaIW2lS6e+24K0N3ynRCYANv03c4UyN+R3WGgMw6PvwhL8o/xAm6DGecpkX
-         IJlGxmXCshuA8E/KmVTIOnKWbqA5Mg5sowSbvouyBO+JLgtW12NNcLn+GUz/UsjOk4dD
-         w+tnBCEGIbjK7xcX4owu8y9lK/O20fYQszYMik3wAiGDntgqwhU1hHbmX34wvijDGBJJ
-         ETIA==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=wSCg47yaORN/8qNO8Wy8pfzStx8GhN8CgYNG825i0KA=;
+        b=s5cXYsIiLOlSpxbn56XRWTSQX6IxDZ2NHkakzGhtTye0Lc2U/t2SfHKszWriGV0RHP
+         3vA7TkAB0gJW9NHefw0ejc52nBd84hMmRPa75NM4gJgnomoVf7jMwUc4EfspWzdl9rBX
+         2qVryu6YxVrz0ZdxMe90IDgr3Jt5MAcBc1vq/0EjRpfO+nzRo1ZkYm6qgCGr/Tsfw7xm
+         qZVarsXQhUZ60BWq2eUSlNHJERUk89DLD9Kdxy/d6BXXtemMg+2PESMiUWGbncipyDVN
+         mQNTzj/XxBTwcNvEisN0bc/JJi/trkkgdMhM0KqXPeqgx09DPGckqyQ87PITe/5a7Fvn
+         rFJA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=q7NYbtygyTG1IxGitcusZU9KV5ZRKQvC8eHatcLLmcQ=;
-        b=rSOBJzlcOxHfCXDdPGDMsjwRRuiEGfueDjFF2TCEI8Cpg9tZSZXOBqDmUIEAb5wQGP
-         1MJRYsxWEABXs9D4w8lIL6x+5p6ushhtYaANzHfAsXEqoTH8/fAgeSwUVHiTKqD2syeE
-         IzVBDxHOiQM+bzhF18e0NWv6LFbDTrNvTNs1c5iVbNEfKeEW0mUTGwHizGLup4lTMXof
-         JKJnAYAsuA/Lh+N/kP9S3zg1+TtODWuMROTtZeWL+cYF51o5n0aAEEi6ZTM4PEG7EH+D
-         g540zZE5gyLGGm5ZR2njur1QoJJ4KDHSqQeTrRVj/JyDJAkAndA9bukcJAazGSQWcoT2
-         Vvgg==
-X-Gm-Message-State: AOAM531V8P7bdLKmJR74cl/dF4Bw4mMjHVF8nn62p3yVmpf7SCmg6683
-        ut21X3N8xrUy/lpMAnXNoA+HbQ==
-X-Google-Smtp-Source: ABdhPJxMm2Yjz1PLVYDFsrPz3j7SrUUgM32bdxWKBrQDdDkqC5yjxnKCGU81tBt4g/8xpJ7gbj43rQ==
-X-Received: by 2002:a2e:87cc:: with SMTP id v12mr2205830ljj.458.1606943643339;
-        Wed, 02 Dec 2020 13:14:03 -0800 (PST)
-Received: from localhost.bredbandsbolaget (c-92d7225c.014-348-6c756e10.bbcust.telenor.se. [92.34.215.146])
-        by smtp.gmail.com with ESMTPSA id z16sm960637ljc.27.2020.12.02.13.14.02
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=wSCg47yaORN/8qNO8Wy8pfzStx8GhN8CgYNG825i0KA=;
+        b=NKhrCCP7JWAFvLnFI8ErSia6HwDCCxnSyepOAF64g5XhPqlgn11tWj1sZRx9JAVWuX
+         PBtxJAp+mfzGHEDM0dVacGxM77cPNjaFdHYTaro3cCs8qZxQtL/DCXaCdigJG7lxQaBD
+         3ZJRgsj7DWUYZOk94oXS4B7t+WHHq4zPjmx+wHnVpzXaYj/pjtssGMRISfMSTvhROpC1
+         ATftjAxYgd9N+TAH8GtcLmAYCTXsJyEVRCuWnIIdQmq6bRMxr249Uk649DLB3Ea7pqHv
+         Fi8PnpY5VvapF5IOcLunP7WLsDBhef3QhL914JW9+r9sextmd4fmVeGyoAJ0pnO+J0sX
+         PENA==
+X-Gm-Message-State: AOAM530YQeid9fisHGl/ra8KjRKXq4ojr4kdMKcInH39WQ16XbOxOKdq
+        MzhrYZlSnKPXClvXF4J2ueYqYQ==
+X-Google-Smtp-Source: ABdhPJwRuYWKV2KamoYNw+NXyh9sJxoGMz/T2LEpkRa1kdEv72mHCfSQu59GXTuCtLNAqSalYkYmVA==
+X-Received: by 2002:a17:902:43:b029:d9:e66c:bbfa with SMTP id 61-20020a1709020043b02900d9e66cbbfamr4290509pla.61.1606943641334;
+        Wed, 02 Dec 2020 13:14:01 -0800 (PST)
+Received: from xps15 (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
+        by smtp.gmail.com with ESMTPSA id a20sm531334pgg.89.2020.12.02.13.13.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Dec 2020 13:14:02 -0800 (PST)
-From:   Linus Walleij <linus.walleij@linaro.org>
-To:     Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org
-Cc:     Hartmut Knaack <knaack.h@gmx.de>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        devicetree@vger.kernel.org
-Subject: [PATCH] iio: st-sensors: Convert bindings to YAML
-Date:   Wed,  2 Dec 2020 22:13:58 +0100
-Message-Id: <20201202211358.1517554-1-linus.walleij@linaro.org>
-X-Mailer: git-send-email 2.26.2
+        Wed, 02 Dec 2020 13:14:00 -0800 (PST)
+Date:   Wed, 2 Dec 2020 14:13:58 -0700
+From:   Mathieu Poirier <mathieu.poirier@linaro.org>
+To:     Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
+Cc:     ohad@wizery.com, bjorn.andersson@linaro.org, s-anna@ti.com,
+        linux-remoteproc@vger.kernel.org, robh+dt@kernel.org,
+        lee.jones@linaro.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, praneeth@ti.com,
+        rogerq@ti.com
+Subject: Re: [PATCH v2 2/6] remoteproc/pru: Add a PRU remoteproc driver
+Message-ID: <20201202211358.GE1282360@xps15>
+References: <20201119140850.12268-1-grzegorz.jaszczyk@linaro.org>
+ <20201119140850.12268-3-grzegorz.jaszczyk@linaro.org>
+ <20201201225436.GB1240310@xps15>
+ <20201202205336.GD1282360@xps15>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201202205336.GD1282360@xps15>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert this large binding to YAML. It is pretty simple
-in it's basic form but the devil is in the details.
-Some -if restrictions painstakingly created by reading through
-all the datasheets.
+On Wed, Dec 02, 2020 at 01:53:36PM -0700, Mathieu Poirier wrote:
+> On Tue, Dec 01, 2020 at 03:54:36PM -0700, Mathieu Poirier wrote:
+> > Hi Grzeg,
+> > 
+> > I have started to review this set - comments will come over the next few days.
+> > 
+> > See below for a start. 
+> > 
+> > On Thu, Nov 19, 2020 at 03:08:46PM +0100, Grzegorz Jaszczyk wrote:
+> > > From: Suman Anna <s-anna@ti.com>
+> > > 
+> > > The Programmable Real-Time Unit Subsystem (PRUSS) consists of
+> > > dual 32-bit RISC cores (Programmable Real-Time Units, or PRUs)
+> > > for program execution. This patch adds a remoteproc platform
+> > > driver for managing the individual PRU RISC cores life cycle.
+> > > 
+> > > The PRUs do not have a unified address space (have an Instruction
+> > > RAM and a primary Data RAM at both 0x0). The PRU remoteproc driver
+> > > therefore uses a custom remoteproc core ELF loader ops. The added
+> > > .da_to_va ops is only used to provide translations for the PRU
+> > > Data RAMs. This remoteproc driver does not have support for error
+> > > recovery and system suspend/resume features. Different compatibles
+> > > are used to allow providing scalability for instance-specific device
+> > > data if needed. The driver uses a default firmware-name retrieved
+> > > from device-tree for each PRU core, and the firmwares are expected
+> > > to be present in the standard Linux firmware search paths. They can
+> > > also be adjusted by userspace if required through the sysfs interface
+> > > provided by the remoteproc core.
+> > > 
+> > > The PRU remoteproc driver uses a client-driven boot methodology: it
+> > > does _not_ support auto-boot so that the PRU load and boot is dictated
+> > > by the corresponding client drivers for achieving various usecases.
+> > > This allows flexibility for the client drivers or applications to set
+> > > a firmware name (if needed) based on their desired functionality and
+> > > boot the PRU. The sysfs bind and unbind attributes have also been
+> > > suppressed so that the PRU devices cannot be unbound and thereby
+> > > shutdown a PRU from underneath a PRU client driver.
+> > > 
+> > > The driver currently supports the AM335x, AM437x, AM57xx and 66AK2G
+> > > SoCs, and support for other TI SoCs will be added in subsequent
+> > > patches.
+> > > 
+> > > Co-developed-by: Andrew F. Davis <afd@ti.com>
+> > > Signed-off-by: Andrew F. Davis <afd@ti.com>
+> > > Signed-off-by: Suman Anna <s-anna@ti.com>
+> > > Co-developed-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
+> > > Signed-off-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
+> > > ---
+> > > v1->v2:
+> > > - Use PRU_IRAM_ADDR_MASK definition instead of raw 0x3ffff.
+> > > - Convert 'len' argument from int to size_t type in all *da_to_va.
+> > > - Return 0 in case of missing .resource_table for pru_rproc_parse_fw()
+> > >   (move the logic from patch #3 where it was corrected).
+> > > ---
+> > >  drivers/remoteproc/Kconfig     |  12 +
+> > >  drivers/remoteproc/Makefile    |   1 +
+> > >  drivers/remoteproc/pru_rproc.c | 435 +++++++++++++++++++++++++++++++++
+> > >  3 files changed, 448 insertions(+)
+> > >  create mode 100644 drivers/remoteproc/pru_rproc.c
+> > > 
+> > > diff --git a/drivers/remoteproc/Kconfig b/drivers/remoteproc/Kconfig
+> > > index d99548fb5dde..3e3865a7cd78 100644
+> > > --- a/drivers/remoteproc/Kconfig
+> > > +++ b/drivers/remoteproc/Kconfig
+> > > @@ -125,6 +125,18 @@ config KEYSTONE_REMOTEPROC
+> > >  	  It's safe to say N here if you're not interested in the Keystone
+> > >  	  DSPs or just want to use a bare minimum kernel.
+> > >  
+> > > +config PRU_REMOTEPROC
+> > > +	tristate "TI PRU remoteproc support"
+> > > +	depends on TI_PRUSS
+> > > +	default TI_PRUSS
+> > > +	help
+> > > +	  Support for TI PRU remote processors present within a PRU-ICSS
+> > > +	  subsystem via the remote processor framework.
+> > > +
+> > > +	  Say Y or M here to support the Programmable Realtime Unit (PRU)
+> > > +	  processors on various TI SoCs. It's safe to say N here if you're
+> > > +	  not interested in the PRU or if you are unsure.
+> > > +
+> > >  config QCOM_PIL_INFO
+> > >  	tristate
+> > >  
+> > > diff --git a/drivers/remoteproc/Makefile b/drivers/remoteproc/Makefile
+> > > index da2ace4ec86c..bb26c9e4ef9c 100644
+> > > --- a/drivers/remoteproc/Makefile
+> > > +++ b/drivers/remoteproc/Makefile
+> > > @@ -18,6 +18,7 @@ obj-$(CONFIG_OMAP_REMOTEPROC)		+= omap_remoteproc.o
+> > >  obj-$(CONFIG_WKUP_M3_RPROC)		+= wkup_m3_rproc.o
+> > >  obj-$(CONFIG_DA8XX_REMOTEPROC)		+= da8xx_remoteproc.o
+> > >  obj-$(CONFIG_KEYSTONE_REMOTEPROC)	+= keystone_remoteproc.o
+> > > +obj-$(CONFIG_PRU_REMOTEPROC)		+= pru_rproc.o
+> > >  obj-$(CONFIG_QCOM_PIL_INFO)		+= qcom_pil_info.o
+> > >  obj-$(CONFIG_QCOM_RPROC_COMMON)		+= qcom_common.o
+> > >  obj-$(CONFIG_QCOM_Q6V5_COMMON)		+= qcom_q6v5.o
+> > > diff --git a/drivers/remoteproc/pru_rproc.c b/drivers/remoteproc/pru_rproc.c
+> > > new file mode 100644
+> > > index 000000000000..b686f19f9b1a
+> > > --- /dev/null
+> > > +++ b/drivers/remoteproc/pru_rproc.c
+> > > @@ -0,0 +1,435 @@
+> > > +// SPDX-License-Identifier: GPL-2.0-only
+> > > +/*
+> > > + * PRU-ICSS remoteproc driver for various TI SoCs
+> > > + *
+> > > + * Copyright (C) 2014-2020 Texas Instruments Incorporated - https://www.ti.com/
+> > > + *
+> > > + * Author(s):
+> > > + *	Suman Anna <s-anna@ti.com>
+> > > + *	Andrew F. Davis <afd@ti.com>
+> > > + *	Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org> for Texas Instruments
+> > > + */
+> > > +
+> > > +#include <linux/bitops.h>
+> > > +#include <linux/module.h>
+> > > +#include <linux/of_device.h>
+> > > +#include <linux/pruss_driver.h>
+> > > +#include <linux/remoteproc.h>
+> > > +
+> > > +#include "remoteproc_internal.h"
+> > > +#include "remoteproc_elf_helpers.h"
+> > > +
+> > > +/* PRU_ICSS_PRU_CTRL registers */
+> > > +#define PRU_CTRL_CTRL		0x0000
+> > > +#define PRU_CTRL_STS		0x0004
+> > > +
+> > > +/* CTRL register bit-fields */
+> > > +#define CTRL_CTRL_SOFT_RST_N	BIT(0)
+> > > +#define CTRL_CTRL_EN		BIT(1)
+> > > +#define CTRL_CTRL_SLEEPING	BIT(2)
+> > > +#define CTRL_CTRL_CTR_EN	BIT(3)
+> > > +#define CTRL_CTRL_SINGLE_STEP	BIT(8)
+> > > +#define CTRL_CTRL_RUNSTATE	BIT(15)
+> > > +
+> > > +/* PRU Core IRAM address masks */
+> > > +#define PRU_IRAM_ADDR_MASK	0x3ffff
+> > > +#define PRU0_IRAM_ADDR_MASK	0x34000
+> > > +#define PRU1_IRAM_ADDR_MASK	0x38000
+> > > +
+> > > +/* PRU device addresses for various type of PRU RAMs */
+> > > +#define PRU_IRAM_DA	0	/* Instruction RAM */
+> > > +#define PRU_PDRAM_DA	0	/* Primary Data RAM */
+> > > +#define PRU_SDRAM_DA	0x2000	/* Secondary Data RAM */
+> > > +#define PRU_SHRDRAM_DA	0x10000 /* Shared Data RAM */
+> > > +
+> > > +/**
+> > > + * enum pru_iomem - PRU core memory/register range identifiers
+> > > + *
+> > > + * @PRU_IOMEM_IRAM: PRU Instruction RAM range
+> > > + * @PRU_IOMEM_CTRL: PRU Control register range
+> > > + * @PRU_IOMEM_DEBUG: PRU Debug register range
+> > > + * @PRU_IOMEM_MAX: just keep this one at the end
+> > > + */
+> > > +enum pru_iomem {
+> > > +	PRU_IOMEM_IRAM = 0,
+> > > +	PRU_IOMEM_CTRL,
+> > > +	PRU_IOMEM_DEBUG,
+> > > +	PRU_IOMEM_MAX,
+> > > +};
+> > > +
+> > > +/**
+> > > + * struct pru_rproc - PRU remoteproc structure
+> > > + * @id: id of the PRU core within the PRUSS
+> > > + * @dev: PRU core device pointer
+> > > + * @pruss: back-reference to parent PRUSS structure
+> > > + * @rproc: remoteproc pointer for this PRU core
+> > > + * @mem_regions: data for each of the PRU memory regions
+> > > + * @fw_name: name of firmware image used during loading
+> > > + */
+> > > +struct pru_rproc {
+> > > +	int id;
+> > > +	struct device *dev;
+> > > +	struct pruss *pruss;
+> > > +	struct rproc *rproc;
+> > > +	struct pruss_mem_region mem_regions[PRU_IOMEM_MAX];
+> > > +	const char *fw_name;
+> > > +};
+> > > +
+> > > +static inline u32 pru_control_read_reg(struct pru_rproc *pru, unsigned int reg)
+> > > +{
+> > > +	return readl_relaxed(pru->mem_regions[PRU_IOMEM_CTRL].va + reg);
+> > > +}
+> > > +
+> > > +static inline
+> > > +void pru_control_write_reg(struct pru_rproc *pru, unsigned int reg, u32 val)
+> > > +{
+> > > +	writel_relaxed(val, pru->mem_regions[PRU_IOMEM_CTRL].va + reg);
+> > > +}
+> > > +
+> > > +static int pru_rproc_start(struct rproc *rproc)
+> > > +{
+> > > +	struct device *dev = &rproc->dev;
+> > > +	struct pru_rproc *pru = rproc->priv;
+> > > +	u32 val;
+> > > +
+> > > +	dev_dbg(dev, "starting PRU%d: entry-point = 0x%llx\n",
+> > > +		pru->id, (rproc->bootaddr >> 2));
+> > > +
+> > > +	val = CTRL_CTRL_EN | ((rproc->bootaddr >> 2) << 16);
+> > > +	pru_control_write_reg(pru, PRU_CTRL_CTRL, val);
+> > > +
+> > > +	return 0;
+> > > +}
+> > > +
+> > > +static int pru_rproc_stop(struct rproc *rproc)
+> > > +{
+> > > +	struct device *dev = &rproc->dev;
+> > > +	struct pru_rproc *pru = rproc->priv;
+> > > +	u32 val;
+> > > +
+> > > +	dev_dbg(dev, "stopping PRU%d\n", pru->id);
+> > > +
+> > > +	val = pru_control_read_reg(pru, PRU_CTRL_CTRL);
+> > > +	val &= ~CTRL_CTRL_EN;
+> > > +	pru_control_write_reg(pru, PRU_CTRL_CTRL, val);
+> > > +
+> > > +	return 0;
+> > > +}
+> > > +
+> > > +/*
+> > > + * Convert PRU device address (data spaces only) to kernel virtual address.
+> > > + *
+> > > + * Each PRU has access to all data memories within the PRUSS, accessible at
+> > > + * different ranges. So, look through both its primary and secondary Data
+> > > + * RAMs as well as any shared Data RAM to convert a PRU device address to
+> > > + * kernel virtual address. Data RAM0 is primary Data RAM for PRU0 and Data
+> > > + * RAM1 is primary Data RAM for PRU1.
+> > > + */
+> > > +static void *pru_d_da_to_va(struct pru_rproc *pru, u32 da, size_t len)
+> > > +{
+> > > +	struct pruss_mem_region dram0, dram1, shrd_ram;
+> > > +	struct pruss *pruss = pru->pruss;
+> > > +	u32 offset;
+> > > +	void *va = NULL;
+> > > +
+> > > +	if (len == 0)
+> > > +		return NULL;
+> > > +
+> > > +	dram0 = pruss->mem_regions[PRUSS_MEM_DRAM0];
+> > > +	dram1 = pruss->mem_regions[PRUSS_MEM_DRAM1];
+> > > +	/* PRU1 has its local RAM addresses reversed */
+> > > +	if (pru->id == 1)
+> > > +		swap(dram0, dram1);
+> > > +	shrd_ram = pruss->mem_regions[PRUSS_MEM_SHRD_RAM2];
+> > > +
+> > > +	if (da >= PRU_PDRAM_DA && da + len <= PRU_PDRAM_DA + dram0.size) {
+> > > +		offset = da - PRU_PDRAM_DA;
+> > > +		va = (__force void *)(dram0.va + offset);
+> > > +	} else if (da >= PRU_SDRAM_DA &&
+> > > +		   da + len <= PRU_SDRAM_DA + dram1.size) {
+> > > +		offset = da - PRU_SDRAM_DA;
+> > > +		va = (__force void *)(dram1.va + offset);
+> > > +	} else if (da >= PRU_SHRDRAM_DA &&
+> > > +		   da + len <= PRU_SHRDRAM_DA + shrd_ram.size) {
+> > > +		offset = da - PRU_SHRDRAM_DA;
+> > > +		va = (__force void *)(shrd_ram.va + offset);
+> > > +	}
+> > > +
+> > > +	return va;
+> > > +}
+> > > +
+> > > +/*
+> > > + * Convert PRU device address (instruction space) to kernel virtual address.
+> > > + *
+> > > + * A PRU does not have an unified address space. Each PRU has its very own
+> > > + * private Instruction RAM, and its device address is identical to that of
+> > > + * its primary Data RAM device address.
+> > > + */
+> > > +static void *pru_i_da_to_va(struct pru_rproc *pru, u32 da, size_t len)
+> > > +{
+> > > +	u32 offset;
+> > > +	void *va = NULL;
+> > > +
+> > > +	if (len == 0)
+> > > +		return NULL;
+> > > +
+> > > +	if (da >= PRU_IRAM_DA &&
+> > > +	    da + len <= PRU_IRAM_DA + pru->mem_regions[PRU_IOMEM_IRAM].size) {
+> > > +		offset = da - PRU_IRAM_DA;
+> > > +		va = (__force void *)(pru->mem_regions[PRU_IOMEM_IRAM].va +
+> > > +				      offset);
+> > > +	}
+> > > +
+> > > +	return va;
+> > > +}
+> > > +
+> > > +/*
+> > > + * Provide address translations for only PRU Data RAMs through the remoteproc
+> > > + * core for any PRU client drivers. The PRU Instruction RAM access is restricted
+> > > + * only to the PRU loader code.
+> > > + */
+> > > +static void *pru_rproc_da_to_va(struct rproc *rproc, u64 da, size_t len)
+> > > +{
+> > > +	struct pru_rproc *pru = rproc->priv;
+> > > +
+> > > +	return pru_d_da_to_va(pru, da, len);
+> > > +}
+> > > +
+> > > +/* PRU-specific address translator used by PRU loader. */
+> > > +static void *pru_da_to_va(struct rproc *rproc, u64 da, size_t len, bool is_iram)
+> > > +{
+> > > +	struct pru_rproc *pru = rproc->priv;
+> > > +	void *va;
+> > > +
+> > > +	if (is_iram)
+> > > +		va = pru_i_da_to_va(pru, da, len);
+> > > +	else
+> > > +		va = pru_d_da_to_va(pru, da, len);
+> > > +
+> > > +	return va;
+> > > +}
+> > > +
+> > > +static struct rproc_ops pru_rproc_ops = {
+> > > +	.start		= pru_rproc_start,
+> > > +	.stop		= pru_rproc_stop,
+> > > +	.da_to_va	= pru_rproc_da_to_va,
+> > > +};
+> > > +
+> > > +static int
+> > > +pru_rproc_load_elf_segments(struct rproc *rproc, const struct firmware *fw)
+> > > +{
+> > > +	struct device *dev = &rproc->dev;
+> > > +	struct elf32_hdr *ehdr;
+> > > +	struct elf32_phdr *phdr;
+> > > +	int i, ret = 0;
+> > > +	const u8 *elf_data = fw->data;
+> > > +
+> > > +	ehdr = (struct elf32_hdr *)elf_data;
+> > > +	phdr = (struct elf32_phdr *)(elf_data + ehdr->e_phoff);
+> > > +
+> > > +	/* go through the available ELF segments */
+> > > +	for (i = 0; i < ehdr->e_phnum; i++, phdr++) {
+> > > +		u32 da = phdr->p_paddr;
+> > > +		u32 memsz = phdr->p_memsz;
+> > > +		u32 filesz = phdr->p_filesz;
+> > > +		u32 offset = phdr->p_offset;
+> > > +		bool is_iram;
+> > > +		void *ptr;
+> > > +
+> > > +		if (phdr->p_type != PT_LOAD)
+> > > +			continue;
+> > > +
+> > > +		dev_dbg(dev, "phdr: type %d da 0x%x memsz 0x%x filesz 0x%x\n",
+> > > +			phdr->p_type, da, memsz, filesz);
+> > > +
+> > > +		if (filesz > memsz) {
+> > > +			dev_err(dev, "bad phdr filesz 0x%x memsz 0x%x\n",
+> > > +				filesz, memsz);
+> > > +			ret = -EINVAL;
+> > > +			break;
+> > > +		}
+> > > +
+> > > +		if (offset + filesz > fw->size) {
+> > > +			dev_err(dev, "truncated fw: need 0x%x avail 0x%zx\n",
+> > > +				offset + filesz, fw->size);
+> > > +			ret = -EINVAL;
+> > > +			break;
+> > > +		}
+> > > +
+> > > +		/* grab the kernel address for this device address */
+> > > +		is_iram = phdr->p_flags & PF_X;
+> > > +		ptr = pru_da_to_va(rproc, da, memsz, is_iram);
+> > > +		if (!ptr) {
+> > > +			dev_err(dev, "bad phdr da 0x%x mem 0x%x\n", da, memsz);
+> > > +			ret = -EINVAL;
+> > > +			break;
+> > > +		}
+> > > +
+> > > +		/* skip the memzero logic performed by remoteproc ELF loader */
+> > > +		if (!phdr->p_filesz)
+> > > +			continue;
+> > 
+> > I don't see the need to do all this if phdr->p_filesz is not valid.  I would move
+> > this below the check for PT_LOAD above.  Otherwise people are looking for some
+> > kind of hidden logic when there isn't any.  The comment should probably go
+> > after the memcpy().
+> 
+> ... and thinking futher on this, it would be nice to know why the memory isn't
+> zero'ed out when a discrepency exists between the segment size in memory and the
+> segment size in the image.  Right now all we know is that it isn't done.
+> 
 
-Cc: devicetree@vger.kernel.org
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
----
- .../devicetree/bindings/iio/st-sensors.txt    |  82 -------
- .../devicetree/bindings/iio/st-sensors.yaml   | 213 ++++++++++++++++++
- 2 files changed, 213 insertions(+), 82 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/iio/st-sensors.txt
- create mode 100644 Documentation/devicetree/bindings/iio/st-sensors.yaml
+With the above:
 
-diff --git a/Documentation/devicetree/bindings/iio/st-sensors.txt b/Documentation/devicetree/bindings/iio/st-sensors.txt
-deleted file mode 100644
-index 3213599c5071..000000000000
---- a/Documentation/devicetree/bindings/iio/st-sensors.txt
-+++ /dev/null
-@@ -1,82 +0,0 @@
--STMicroelectronics MEMS sensors
--
--The STMicroelectronics sensor devices are pretty straight-forward I2C or
--SPI devices, all sharing the same device tree descriptions no matter what
--type of sensor it is.
--
--Required properties:
--- compatible: see the list of valid compatible strings below
--- reg: the I2C or SPI address the device will respond to
--
--Optional properties:
--- vdd-supply: an optional regulator that needs to be on to provide VDD
--  power to the sensor.
--- vddio-supply: an optional regulator that needs to be on to provide the
--  VDD IO power to the sensor.
--- st,drdy-int-pin: the pin on the package that will be used to signal
--  "data ready" (valid values: 1 or 2). This property is not configurable
--  on all sensors.
--- drive-open-drain: the interrupt/data ready line will be configured
--  as open drain, which is useful if several sensors share the same
--  interrupt line. (This binding is taken from pinctrl/pinctrl-bindings.txt)
--  This is a boolean property.
--
--Sensors may also have applicable pin control settings, those use the
--standard bindings from pinctrl/pinctrl-bindings.txt.
--
--Valid compatible strings:
--
--Accelerometers:
--- st,lis3lv02d (deprecated, use st,lis3lv02dl-accel)
--- st,lis302dl-spi (deprecated, use st,lis3lv02dl-accel)
--- st,lis3lv02dl-accel
--- st,lsm303dlh-accel
--- st,lsm303dlhc-accel
--- st,lis3dh-accel
--- st,lsm330d-accel
--- st,lsm330dl-accel
--- st,lsm330dlc-accel
--- st,lis331dl-accel
--- st,lis331dlh-accel
--- st,lsm303dl-accel
--- st,lsm303dlm-accel
--- st,lsm330-accel
--- st,lsm303agr-accel
--- st,lis2dh12-accel
--- st,h3lis331dl-accel
--- st,lng2dm-accel
--- st,lis3l02dq
--- st,lis2dw12
--- st,lis3dhh
--- st,lis3de
--- st,lis2de12
--- st,lis2hh12
--
--Gyroscopes:
--- st,l3g4200d-gyro
--- st,lsm330d-gyro
--- st,lsm330dl-gyro
--- st,lsm330dlc-gyro
--- st,l3gd20-gyro
--- st,l3gd20h-gyro
--- st,l3g4is-gyro
--- st,lsm330-gyro
--- st,lsm9ds0-gyro
--
--Magnetometers:
--- st,lsm303agr-magn
--- st,lsm303dlh-magn
--- st,lsm303dlhc-magn
--- st,lsm303dlm-magn
--- st,lis3mdl-magn
--- st,lis2mdl
--- st,lsm9ds1-magn
--
--Pressure sensors:
--- st,lps001wp-press
--- st,lps25h-press
--- st,lps331ap-press
--- st,lps22hb-press
--- st,lps33hw
--- st,lps35hw
--- st,lps22hh
-diff --git a/Documentation/devicetree/bindings/iio/st-sensors.yaml b/Documentation/devicetree/bindings/iio/st-sensors.yaml
-new file mode 100644
-index 000000000000..6435bbedfd9a
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/st-sensors.yaml
-@@ -0,0 +1,213 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/st-sensors.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: STMicroelectronics MEMS Sensors
-+
-+description: The STMicroelectronics sensor devices are pretty straight-forward
-+  I2C or SPI devices, all sharing the same device tree descriptions no matter
-+  what type of sensor it is.
-+
-+maintainers:
-+  - Linus Walleij <linus.walleij@linaro.org>
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - description: STMicroelectronics Accelerometers
-+        enum:
-+          - st,h3lis331dl-accel
-+          - st,lis2de12
-+          - st,lis2dw12
-+          - st,lis2hh12
-+          - st,lis2dh12-accel
-+          - st,lis331dl-accel
-+          - st,lis331dlh-accel
-+          - st,lis3de
-+          - st,lis3dh-accel
-+          - st,lis3dhh
-+          - st,lis3l02dq
-+          - st,lis3lv02dl-accel
-+          - st,lng2dm-accel
-+          - st,lsm303agr-accel
-+          - st,lsm303dl-accel
-+          - st,lsm303dlh-accel
-+          - st,lsm303dlhc-accel
-+          - st,lsm303dlm-accel
-+          - st,lsm330-accel
-+          - st,lsm330d-accel
-+          - st,lsm330dl-accel
-+          - st,lsm330dlc-accel
-+      - description: STMicroelectronics Gyroscopes
-+        enum:
-+          - st,l3g4200d-gyro
-+          - st,l3g4is-gyro
-+          - st,l3gd20-gyro
-+          - st,l3gd20h-gyro
-+          - st,lsm330-gyro
-+          - st,lsm330d-gyro
-+          - st,lsm330dl-gyro
-+          - st,lsm330dlc-gyro
-+          - st,lsm9ds0-gyro
-+      - description: STMicroelectronics Magnetometers
-+        enum:
-+          - st,lis2mdl
-+          - st,lis3mdl-magn
-+          - st,lsm303agr-magn
-+          - st,lsm303dlh-magn
-+          - st,lsm303dlhc-magn
-+          - st,lsm303dlm-magn
-+          - st,lsm9ds1-magn
-+      - description: STMicroelectronics Pressure Sensors
-+        enum:
-+          - st,lps001wp-press
-+          - st,lps22hb-press
-+          - st,lps22hh
-+          - st,lps25h-press
-+          - st,lps331ap-press
-+          - st,lps33hw
-+          - st,lps35hw
-+      - description: Deprecated bindings
-+        enum:
-+          - st,lis302dl-spi
-+          - st,lis3lv02d
-+        deprecated: true
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    description: interrupt line(s) connected to the DRDY line(s) and/or the
-+      Intertial interrupt lines INT1 and INT2 if these exist. This means up to
-+      three interrupts, and the DRDY must be the first one if it exists on
-+      the package. The trigger edge of the interrupts is sometimes software
-+      configurable in the hardware so the operating system should parse this
-+      flag and set up the trigger edge as indicated in the device tree.
-+    minItems: 1
-+    maxItems: 2
-+
-+  vdd-supply: true
-+  vddio-supply: true
-+
-+  st,drdy-int-pin:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    maxItems: 1
-+    description: the pin on the package that will be used to signal
-+      "data ready" (valid values 1 or 2). This property is not configurable
-+      on all sensors.
-+    items:
-+      minimum: 1
-+      maximum: 2
-+
-+  drive-open-drain:
-+    type: boolean
-+    description: the interrupt/data ready line will be configured
-+      as open drain, which is useful if several sensors share the same
-+      interrupt line. (This binding is taken from pinctrl.)
-+
-+  mount-matrix:
-+    description: an optional 3x3 mounting rotation matrix.
-+
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          enum:
-+            # These have no interrupts
-+            - st,lps001wp
-+    then:
-+      properties:
-+        interrupts: false
-+        st,drdy-int-pin: false
-+        drive-open-drain: false
-+
-+  - if:
-+      properties:
-+        compatible:
-+          enum:
-+            # These have only DRDY
-+            - st,lis2mdl
-+            - st,lis3l02dq
-+            - st,lis3lv02dl-accel
-+            - st,lps22hb-press
-+            - st,lps22hh
-+            - st,lps25h-press
-+            - st,lps33hw
-+            - st,lps35hw
-+            - st,lsm303agr-magn
-+            - st,lsm303dlh-magn
-+            - st,lsm303dlhc-magn
-+            - st,lsm303dlm-magn
-+    then:
-+      properties:
-+        interrupts:
-+          maxItems: 1
-+        st,drdy-int-pin: false
-+
-+  - if:
-+      properties:
-+        compatible:
-+          enum:
-+            # Two intertial interrupts i.e. accelerometer/gyro interrupts
-+            - st,h3lis331dl-accel
-+            - st,l3g4200d-gyro
-+            - st,l3g4is-gyro
-+            - st,l3gd20-gyro
-+            - st,l3gd20h-gyro
-+            - st,lis2de12
-+            - st,lis2dw12
-+            - st,lis2hh12
-+            - st,lis2dh12-accel
-+            - st,lis331dl-accel
-+            - st,lis331dlh-accel
-+            - st,lis3de
-+            - st,lis3dh-accel
-+            - st,lis3dhh
-+            - st,lis3mdl-magn
-+            - st,lng2dm-accel
-+            - st,lps331ap-press
-+            - st,lsm303agr-accel
-+            - st,lsm303dlh-accel
-+            - st,lsm303dlhc-accel
-+            - st,lsm303dlm-accel
-+            - st,lsm330-accel
-+            - st,lsm330-gyro
-+            - st,lsm330d-accel
-+            - st,lsm330d-gyro
-+            - st,lsm330dl-accel
-+            - st,lsm330dl-gyro
-+            - st,lsm330dlc-accel
-+            - st,lsm330dlc-gyro
-+            - st,lsm9ds0-gyro
-+            - st,lsm9ds1-magn
-+    then:
-+      properties:
-+        interrupts:
-+          maxItems: 2
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/gpio/gpio.h>
-+    i2c {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+
-+      accelerometer@1c {
-+        compatible = "st,lis331dl-accel";
-+        reg = <0x1c>;
-+        st,drdy-int-pin = <1>;
-+        vdd-supply = <&ldo1>;
-+        vddio-supply = <&ldo2>;
-+        interrupt-parent = <&gpio>;
-+        interrupts = <18 IRQ_TYPE_EDGE_RISING>, <19 IRQ_TYPE_EDGE_RISING>;
-+      };
-+    };
--- 
-2.26.2
+Reviewed-by: Mathieu Poirier <mathieu.poirier@linaro.org>
 
+> > 
+> > I am running out of time for today and will continue tomorrow.
+> > 
+> > > +
+> > > +		memcpy(ptr, elf_data + phdr->p_offset, filesz);
+> > > +	}
+> > > +
+> > > +	return ret;
+> > > +}
+> > > +
+> > > +/*
+> > > + * Use a custom parse_fw callback function for dealing with PRU firmware
+> > > + * specific sections.
+> > > + */
+> > > +static int pru_rproc_parse_fw(struct rproc *rproc, const struct firmware *fw)
+> > > +{
+> > > +	int ret;
+> > > +
+> > > +	/* load optional rsc table */
+> > > +	ret = rproc_elf_load_rsc_table(rproc, fw);
+> > > +	if (ret == -EINVAL)
+> > > +		dev_dbg(&rproc->dev, "no resource table found for this fw\n");
+> > > +	else if (ret)
+> > > +		return ret;
+> > > +
+> > > +	return 0;
+> > > +}
+> > > +
+> > > +/*
+> > > + * Compute PRU id based on the IRAM addresses. The PRU IRAMs are
+> > > + * always at a particular offset within the PRUSS address space.
+> > > + */
+> > > +static int pru_rproc_set_id(struct pru_rproc *pru)
+> > > +{
+> > > +	int ret = 0;
+> > > +
+> > > +	switch (pru->mem_regions[PRU_IOMEM_IRAM].pa & PRU_IRAM_ADDR_MASK) {
+> > > +	case PRU0_IRAM_ADDR_MASK:
+> > > +		pru->id = 0;
+> > > +		break;
+> > > +	case PRU1_IRAM_ADDR_MASK:
+> > > +		pru->id = 1;
+> > > +		break;
+> > > +	default:
+> > > +		ret = -EINVAL;
+> > > +	}
+> > > +
+> > > +	return ret;
+> > > +}
+> > > +
+> > > +static int pru_rproc_probe(struct platform_device *pdev)
+> > > +{
+> > > +	struct device *dev = &pdev->dev;
+> > > +	struct device_node *np = dev->of_node;
+> > > +	struct platform_device *ppdev = to_platform_device(dev->parent);
+> > > +	struct pru_rproc *pru;
+> > > +	const char *fw_name;
+> > > +	struct rproc *rproc = NULL;
+> > > +	struct resource *res;
+> > > +	int i, ret;
+> > > +	const char *mem_names[PRU_IOMEM_MAX] = { "iram", "control", "debug" };
+> > > +
+> > > +	ret = of_property_read_string(np, "firmware-name", &fw_name);
+> > > +	if (ret) {
+> > > +		dev_err(dev, "unable to retrieve firmware-name %d\n", ret);
+> > > +		return ret;
+> > > +	}
+> > > +
+> > > +	rproc = devm_rproc_alloc(dev, pdev->name, &pru_rproc_ops, fw_name,
+> > > +				 sizeof(*pru));
+> > > +	if (!rproc) {
+> > > +		dev_err(dev, "rproc_alloc failed\n");
+> > > +		return -ENOMEM;
+> > > +	}
+> > > +	/* use a custom load function to deal with PRU-specific quirks */
+> > > +	rproc->ops->load = pru_rproc_load_elf_segments;
+> > > +
+> > > +	/* use a custom parse function to deal with PRU-specific resources */
+> > > +	rproc->ops->parse_fw = pru_rproc_parse_fw;
+> > > +
+> > > +	/* error recovery is not supported for PRUs */
+> > > +	rproc->recovery_disabled = true;
+> > > +
+> > > +	/*
+> > > +	 * rproc_add will auto-boot the processor normally, but this is not
+> > > +	 * desired with PRU client driven boot-flow methodology. A PRU
+> > > +	 * application/client driver will boot the corresponding PRU
+> > > +	 * remote-processor as part of its state machine either through the
+> > > +	 * remoteproc sysfs interface or through the equivalent kernel API.
+> > > +	 */
+> > > +	rproc->auto_boot = false;
+> > > +
+> > > +	pru = rproc->priv;
+> > > +	pru->dev = dev;
+> > > +	pru->pruss = platform_get_drvdata(ppdev);
+> > > +	pru->rproc = rproc;
+> > > +	pru->fw_name = fw_name;
+> > > +
+> > > +	for (i = 0; i < ARRAY_SIZE(mem_names); i++) {
+> > > +		res = platform_get_resource_byname(pdev, IORESOURCE_MEM,
+> > > +						   mem_names[i]);
+> > > +		pru->mem_regions[i].va = devm_ioremap_resource(dev, res);
+> > > +		if (IS_ERR(pru->mem_regions[i].va)) {
+> > > +			dev_err(dev, "failed to parse and map memory resource %d %s\n",
+> > > +				i, mem_names[i]);
+> > > +			ret = PTR_ERR(pru->mem_regions[i].va);
+> > > +			return ret;
+> > > +		}
+> > > +		pru->mem_regions[i].pa = res->start;
+> > > +		pru->mem_regions[i].size = resource_size(res);
+> > > +
+> > > +		dev_dbg(dev, "memory %8s: pa %pa size 0x%zx va %pK\n",
+> > > +			mem_names[i], &pru->mem_regions[i].pa,
+> > > +			pru->mem_regions[i].size, pru->mem_regions[i].va);
+> > > +	}
+> > > +
+> > > +	ret = pru_rproc_set_id(pru);
+> > > +	if (ret < 0)
+> > > +		return ret;
+> > > +
+> > > +	platform_set_drvdata(pdev, rproc);
+> > > +
+> > > +	ret = devm_rproc_add(dev, pru->rproc);
+> > > +	if (ret) {
+> > > +		dev_err(dev, "rproc_add failed: %d\n", ret);
+> > > +		return ret;
+> > > +	}
+> > > +
+> > > +	dev_dbg(dev, "PRU rproc node %pOF probed successfully\n", np);
+> > > +
+> > > +	return 0;
+> > > +}
+> > > +
+> > > +static int pru_rproc_remove(struct platform_device *pdev)
+> > > +{
+> > > +	struct device *dev = &pdev->dev;
+> > > +	struct rproc *rproc = platform_get_drvdata(pdev);
+> > > +
+> > > +	dev_dbg(dev, "%s: removing rproc %s\n", __func__, rproc->name);
+> > > +
+> > > +	return 0;
+> > > +}
+> > > +
+> > > +static const struct of_device_id pru_rproc_match[] = {
+> > > +	{ .compatible = "ti,am3356-pru", },
+> > > +	{ .compatible = "ti,am4376-pru", },
+> > > +	{ .compatible = "ti,am5728-pru", },
+> > > +	{ .compatible = "ti,k2g-pru",    },
+> > > +	{},
+> > > +};
+> > > +MODULE_DEVICE_TABLE(of, pru_rproc_match);
+> > > +
+> > > +static struct platform_driver pru_rproc_driver = {
+> > > +	.driver = {
+> > > +		.name   = "pru-rproc",
+> > > +		.of_match_table = pru_rproc_match,
+> > > +		.suppress_bind_attrs = true,
+> > > +	},
+> > > +	.probe  = pru_rproc_probe,
+> > > +	.remove = pru_rproc_remove,
+> > > +};
+> > > +module_platform_driver(pru_rproc_driver);
+> > > +
+> > > +MODULE_AUTHOR("Suman Anna <s-anna@ti.com>");
+> > > +MODULE_AUTHOR("Andrew F. Davis <afd@ti.com>");
+> > > +MODULE_AUTHOR("Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>");
+> > > +MODULE_DESCRIPTION("PRU-ICSS Remote Processor Driver");
+> > > +MODULE_LICENSE("GPL v2");
+> > > -- 
+> > > 2.29.0
+> > > 
