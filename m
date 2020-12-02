@@ -2,309 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 17D612CC102
-	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 16:38:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EB1542CC118
+	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 16:43:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727116AbgLBPhn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Dec 2020 10:37:43 -0500
-Received: from relay6-d.mail.gandi.net ([217.70.183.198]:54207 "EHLO
-        relay6-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726921AbgLBPhn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Dec 2020 10:37:43 -0500
-X-Originating-IP: 93.29.109.196
-Received: from aptenodytes (196.109.29.93.rev.sfr.net [93.29.109.196])
-        (Authenticated sender: paul.kocialkowski@bootlin.com)
-        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id CA480C0009;
-        Wed,  2 Dec 2020 15:36:59 +0000 (UTC)
-Date:   Wed, 2 Dec 2020 16:36:59 +0100
-From:   Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-To:     Sam Ravnborg <sam@ravnborg.org>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, David Airlie <airlied@linux.ie>,
+        id S1730425AbgLBPmF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Dec 2020 10:42:05 -0500
+Received: from new2-smtp.messagingengine.com ([66.111.4.224]:47801 "EHLO
+        new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1728308AbgLBPmF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Dec 2020 10:42:05 -0500
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 458EC580387;
+        Wed,  2 Dec 2020 10:40:58 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute6.internal (MEProxy); Wed, 02 Dec 2020 10:40:58 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm1; bh=9Gmw2R9k0ECc5QddBoAVCGV1sXx
+        zmzO4YbJmiIaU4YY=; b=XTaU5h2f3WAixKnXCS97j2KVWpPWFVh0YhT+m4Nj3CM
+        d8fTiUZiwPxy0O5RDJhyFigFAz8sZz+tbotDWcC+lmTl53Ikj9hzxkoHOvZx4Hdg
+        FHl+5ybpwHd/CInVL1bT07psyo33xntHw9gOTFFJX3XlcgTC7hIttoxNqcv+uUeo
+        LZQPJSK/VNUNsS9C/ou1MotSZMMX0hGIUtSeitIqp/teQgRTE1jozqWsg2tNM+Vn
+        USR1udlNMb86zaufmPt12VFdaaCvyfDp4yC4U8VFzxXM7WpMW7JKENwMOH/bGpX3
+        WtGeRMbpE+ekTaVlvtl49Bm8G884l6R2RuIACX1pO4w==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=9Gmw2R
+        9k0ECc5QddBoAVCGV1sXxzmzO4YbJmiIaU4YY=; b=GObBsEcZzgssNLZ33qx0AJ
+        GhlgBV+VE8PDXxHuIwxRZtWVbtBsMqOVYwL3HUiCeUs7vY8qYe7eEgG24NXTJrw5
+        eJgCZirNGC/0NxuBWDfYbSsxr1R9Xq00iLJEo3mFb51sjeL9PGDCc09ibc4NbLEd
+        0KooxPvuwHzHE0LxBpGNgx7SCw9X4xddpdRZbhog0DNe1o2WVVFV9AoU8bzzO1NL
+        UW3xSz6z9XM5YMvkD0pfQlzsIhp4ctFCnj2JwxMvQpMw4wAqOGvL5a3BMOQT1teW
+        JwGpgNnv8qyoHrp5w/jg0fLjmzY+6Be9L1HWOP9B78yeu9+bujjcrxCKZT4ofyvQ
+        ==
+X-ME-Sender: <xms:h7XHX6UQeHQEadhXHmWiua1blbeGIYoHmrlI6pKlv80Kx1hkp7LMPg>
+    <xme:h7XHX2lwJSwaWT89wtGtST6xjt8rJR0k4ZT9_TbTo--YaWK9DUy5suydVTxsCrBMk
+    anmTROWQ3BZ2g3drAE>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrudeigedgkeduucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
+    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
+    gedunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
+    frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:h7XHX-aKGxXIfGlJvn1_Dysw-33py4S0qYrfKro6R7oq7vEmSSYZww>
+    <xmx:h7XHXxU0cICtGIQXx-YSPouGHbBpvLURwrA__hpjab2MreoNnOw4Xw>
+    <xmx:h7XHX0nPMPTgDlfrW0B3kohd_CznI66BouVVJPEjF-NshJcMO-eEzw>
+    <xmx:irXHX6vQYPWX-0wHB404TnSZkkQOuwK3QpEq_uaXgxrSibT3kK1dOw>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id D6D14108005B;
+        Wed,  2 Dec 2020 10:40:54 -0500 (EST)
+Date:   Wed, 2 Dec 2020 16:40:53 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-doc@vger.kernel.org, devel@driverdev.osuosl.org,
+        linux-sunxi@googlegroups.com, Yong Deng <yong.deng@magewell.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Helen Koike <helen.koike@collabora.com>,
+        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Hans Verkuil <hans.verkuil@cisco.com>,
         Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>
-Subject: Re: [PATCH v7 2/3] drm: Add support for the LogiCVC display
- controller
-Message-ID: <X8e0mwSnhVZBUcU2@aptenodytes>
-References: <20201102155308.142691-1-paul.kocialkowski@bootlin.com>
- <20201102155308.142691-3-paul.kocialkowski@bootlin.com>
- <20201104212221.GA5588@ravnborg.org>
+        kevin.lhopital@hotmail.com
+Subject: Re: [PATCH v2 07/19] media: sun6i-csi: Add support for MIPI CSI-2
+ bridge input
+Message-ID: <20201202154053.3fcxiift2uyqnjvp@gilmour>
+References: <20201128142839.517949-1-paul.kocialkowski@bootlin.com>
+ <20201128142839.517949-8-paul.kocialkowski@bootlin.com>
+ <20201201121241.cyafjhot45puusfc@gilmour>
+ <X8eiXxYw1iHKbdDV@aptenodytes>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="2Xz4AXsuSr8pfC7G"
+        protocol="application/pgp-signature"; boundary="45hcbhhgcfnzxspi"
 Content-Disposition: inline
-In-Reply-To: <20201104212221.GA5588@ravnborg.org>
+In-Reply-To: <X8eiXxYw1iHKbdDV@aptenodytes>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---2Xz4AXsuSr8pfC7G
-Content-Type: text/plain; charset=utf-8
+--45hcbhhgcfnzxspi
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Hi Sam,
-
-On Wed 04 Nov 20, 22:22, Sam Ravnborg wrote:
-> Hi Paul.
+On Wed, Dec 02, 2020 at 03:19:11PM +0100, Paul Kocialkowski wrote:
+> Hi,
 >=20
-> A few comments in the following. I did not find time to read all of the
-> driver.
-
-Thanks for taking a look at the driver!
-
+> On Tue 01 Dec 20, 13:12, Maxime Ripard wrote:
+> > Hi,
+> >=20
+> > On Sat, Nov 28, 2020 at 03:28:27PM +0100, Paul Kocialkowski wrote:
+> > > The A31 CSI controller supports a MIPI CSI-2 bridge input, which has
+> > > its own dedicated port in the fwnode graph.
+> > >=20
+> > > Support for this input is added with this change:
+> > > - two pads are defined for the media entity instead of one
+> > >   and only one needs to be connected at a time;
+> > > - the pads currently match the fwnode graph representation;
+> > > - links are created between our pads and the subdevs for each
+> > >   interface and are no longer immutable so that userspace can select
+> > >   which interface to use in case both are bound to a subdev;
+> > > - fwnode endpoints are parsed and stored for each interface;
+> > > - the active subdev (and fwnode endpoint) is retrieved when validating
+> > >   the media link at stream on time and cleared at stream off;
+> > > - an error is raised if both links are active at the same time;
+> > > - the MIPI interface bit is set if the MIPI CSI-2 bridge endpoint is
+> > >   active.
+> > >=20
+> > > In the future, the media entity representation might evolve to:
+> > > - distinguish the internal parallel bridge and data formatter;
+> > > - represent each of the 4 internal channels that can exist between
+> > >   the parallel bridge (for BT656 time-multiplex) and MIPI CSI-2
+> > >   (internal channels can be mapped to virtual channels);
+> > > - connect the controller's output to the ISP instead of its
+> > >   DMA engine.
+> > >=20
+> > > Finally note that the MIPI CSI-2 bridges should not be linked in
+> > > the fwnode graph unless they have a sensor subdev attached.
+> >=20
+> > I'll leave most of the review to Laurent and Sakari, but I'm not quite
+> > sure what you meant in the last paragraph. Did you mean that the
+> > MIPI-CSI controller in the Allwinner SoC should only be linked if it has
+> > a sensor attached, or did you mean that any MIPI-CSI2 bridge cannot be
+> > attached to the controller?
 >=20
-> 	Sam
->=20
-> On Mon, Nov 02, 2020 at 04:53:07PM +0100, Paul Kocialkowski wrote:
-> > Introduces a driver for the LogiCVC display controller, a programmable
-> > logic controller optimized for use in Xilinx Zynq-7000 SoCs and other
-> > Xilinx FPGAs. The controller is mostly configured at logic synthesis
-> > time so only a subset of configuration is left for the driver to
-> > handle.
-> >=20
-> > The following features are implemented and tested:
-> > - LVDS 4-bit interface;
-> > - RGB565 pixel formats;
-> > - Multiple layers and hardware composition;
-> > - Layer-wide alpha mode;
-> >=20
-> > The following features are implemented but untested:
-> > - Other RGB pixel formats;
-> > - Layer framebuffer configuration for version 4;
-> > - Lowest-layer used as background color;
-> > - Per-pixel alpha mode.
-> >=20
-> > The following features are not implemented:
-> > - YUV pixel formats;
-> > - DVI, LVDS 3-bit, ITU656 and camera link interfaces;
-> > - External parallel input for layer;
-> > - Color-keying;
-> > - LUT-based alpha modes.
-> >=20
-> > Additional implementation-specific notes:
-> > - Panels are only enabled after the first page flip to avoid flashing a
-> >   white screen.
-> > - Depth used in context of the LogiCVC driver only counts color compone=
-nts
-> >   to match the definition of the synthesis parameters.
-> >=20
-> > Support is implemented for both version 3 and 4 of the controller.
-> >=20
-> > With version 3, framebuffers are stored in a dedicated contiguous
-> > memory area, with a base address hardcoded for each layer. This requires
-> > using a dedicated CMA pool registered at the base address and tweaking a
-> > few offset-related registers to try to use any buffer allocated from
-> > the pool. This is done on a best-effort basis to have the hardware cope
-> > with the DRM framebuffer allocation model and there is no guarantee
-> > that each buffer allocated by GEM CMA can be used for any layer.
-> > In particular, buffers allocated below the base address for a layer are
-> > guaranteed not to be configurable for that layer. See the implementatio=
-n of
-> > logicvc_layer_buffer_find_setup for specifics.
-> >=20
-> > Version 4 allows configuring each buffer address directly, which
-> > guarantees that any buffer can be configured.
-> >=20
-> > Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-> > Reviewed-by: Maxime Ripard <mripard@kernel.org>
-> > ---
-> >  MAINTAINERS                                 |   6 +
-> >  drivers/gpu/drm/Kconfig                     |   2 +
-> >  drivers/gpu/drm/Makefile                    |   1 +
-> >  drivers/gpu/drm/logicvc/Kconfig             |   9 +
-> >  drivers/gpu/drm/logicvc/Makefile            |   4 +
-> >  drivers/gpu/drm/logicvc/logicvc_crtc.c      | 277 +++++++++
-> >  drivers/gpu/drm/logicvc/logicvc_crtc.h      |  21 +
-> >  drivers/gpu/drm/logicvc/logicvc_drm.c       | 472 +++++++++++++++
-> >  drivers/gpu/drm/logicvc/logicvc_drm.h       |  64 ++
-> >  drivers/gpu/drm/logicvc/logicvc_interface.c | 224 +++++++
-> >  drivers/gpu/drm/logicvc/logicvc_interface.h |  30 +
-> >  drivers/gpu/drm/logicvc/logicvc_layer.c     | 615 ++++++++++++++++++++
-> >  drivers/gpu/drm/logicvc/logicvc_layer.h     |  64 ++
-> >  drivers/gpu/drm/logicvc/logicvc_mode.c      | 101 ++++
-> >  drivers/gpu/drm/logicvc/logicvc_mode.h      |  15 +
-> >  drivers/gpu/drm/logicvc/logicvc_of.c        | 197 +++++++
-> >  drivers/gpu/drm/logicvc/logicvc_of.h        |  46 ++
-> >  drivers/gpu/drm/logicvc/logicvc_regs.h      |  88 +++
-> >  18 files changed, 2236 insertions(+)
-> >  create mode 100644 drivers/gpu/drm/logicvc/Kconfig
-> >  create mode 100644 drivers/gpu/drm/logicvc/Makefile
-> >  create mode 100644 drivers/gpu/drm/logicvc/logicvc_crtc.c
-> >  create mode 100644 drivers/gpu/drm/logicvc/logicvc_crtc.h
-> >  create mode 100644 drivers/gpu/drm/logicvc/logicvc_drm.c
-> >  create mode 100644 drivers/gpu/drm/logicvc/logicvc_drm.h
-> >  create mode 100644 drivers/gpu/drm/logicvc/logicvc_interface.c
-> >  create mode 100644 drivers/gpu/drm/logicvc/logicvc_interface.h
-> >  create mode 100644 drivers/gpu/drm/logicvc/logicvc_layer.c
-> >  create mode 100644 drivers/gpu/drm/logicvc/logicvc_layer.h
-> >  create mode 100644 drivers/gpu/drm/logicvc/logicvc_mode.c
-> >  create mode 100644 drivers/gpu/drm/logicvc/logicvc_mode.h
-> >  create mode 100644 drivers/gpu/drm/logicvc/logicvc_of.c
-> >  create mode 100644 drivers/gpu/drm/logicvc/logicvc_of.h
-> >  create mode 100644 drivers/gpu/drm/logicvc/logicvc_regs.h
-> >=20
-> > diff --git a/MAINTAINERS b/MAINTAINERS
-> > index 71e29dc0ab9d..9c4c5edef0ba 100644
-> > --- a/MAINTAINERS
-> > +++ b/MAINTAINERS
-> > @@ -5522,6 +5522,12 @@ S:	Orphan / Obsolete
-> >  F:	drivers/gpu/drm/i810/
-> >  F:	include/uapi/drm/i810_drm.h
-> > =20
-> > +DRM DRIVER FOR LOGICVC DISPLAY CONTROLLER
-> > +M:	Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-> > +T:	git git://anongit.freedesktop.org/drm/drm-misc
-> > +S:	Supported
-> > +F:	drivers/gpu/drm/logicvc/
-> > +
-> >  DRM DRIVER FOR LVDS PANELS
-> >  M:	Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> >  L:	dri-devel@lists.freedesktop.org
-> > diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
-> > index 64376dd298ed..7b280056207f 100644
-> > --- a/drivers/gpu/drm/Kconfig
-> > +++ b/drivers/gpu/drm/Kconfig
-> > @@ -352,6 +352,8 @@ source "drivers/gpu/drm/arc/Kconfig"
-> > =20
-> >  source "drivers/gpu/drm/hisilicon/Kconfig"
-> > =20
-> > +source "drivers/gpu/drm/logicvc/Kconfig"
-> > +
-> >  source "drivers/gpu/drm/mediatek/Kconfig"
-> > =20
-> >  source "drivers/gpu/drm/zte/Kconfig"
-> > diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
-> > index 81569009f884..29fbb7cd9570 100644
-> > --- a/drivers/gpu/drm/Makefile
-> > +++ b/drivers/gpu/drm/Makefile
-> > @@ -102,6 +102,7 @@ obj-$(CONFIG_DRM_STM) +=3D stm/
-> >  obj-$(CONFIG_DRM_STI) +=3D sti/
-> >  obj-y 			+=3D imx/
-> >  obj-$(CONFIG_DRM_INGENIC) +=3D ingenic/
-> > +obj-$(CONFIG_DRM_LOGICVC) +=3D logicvc/
-> >  obj-$(CONFIG_DRM_MEDIATEK) +=3D mediatek/
-> >  obj-$(CONFIG_DRM_MESON)	+=3D meson/
-> >  obj-y			+=3D i2c/
-> > diff --git a/drivers/gpu/drm/logicvc/Kconfig b/drivers/gpu/drm/logicvc/=
-Kconfig
-> > new file mode 100644
-> > index 000000000000..300b2be07385
-> > --- /dev/null
-> > +++ b/drivers/gpu/drm/logicvc/Kconfig
-> > @@ -0,0 +1,9 @@
-> > +config DRM_LOGICVC
-> > +	tristate "LogiCVC DRM"
-> > +	depends on DRM
-> > +	depends on OF || COMPILE_TEST
-> > +	select DRM_KMS_HELPER
-> > +	select DRM_KMS_CMA_HELPER
-> > +	select DRM_GEM_CMA_HELPER
-> > +	help
-> > +	  DRM display driver for the logiCVC programmable logic block from Xy=
-lon
-> > diff --git a/drivers/gpu/drm/logicvc/Makefile b/drivers/gpu/drm/logicvc=
-/Makefile
-> > new file mode 100644
-> > index 000000000000..c09531fbd6ad
-> > --- /dev/null
-> > +++ b/drivers/gpu/drm/logicvc/Makefile
-> > @@ -0,0 +1,4 @@
-> > +logicvc-drm-y +=3D logicvc_crtc.o logicvc_drm.o logicvc_interface.o \
-> > +		 logicvc_layer.o logicvc_mode.o logicvc_of.o
-> > +
-> Even after maintaining kbuild for several years and reading far too many
-> Makefile I still dislike the use of '\' to break long assignments.
->=20
-> logicvc-drm-y :=3D logicvc_crtc.o
-> logicvc-drm-y +=3D logicvc_drm.o
-> logicvc-drm-y +=3D logicvc_interface.o
-> logicvc-drm-y +=3D logicvc_layer.o
-> logicvc-drm-y +=3D logicvc_mode.o
-> logicvc-drm-y +=3D logicvc_of.o
->=20
-> Or if this is too much repeated the shorter:
-> logicvc-drm-y :=3D logicvc_crtc.o logicvc_drm.o logicvc_interface.o
-> logicvc-drm-y +=3D logicvc_layer.o logicvc_mode.o logicvc_of.o
->=20
-> Also note that the first stement is an assingnment and not an addition.
->=20
-> It is a personal thing - so feel free to ignore.
+> So the use of plural was a mistake and your first understanding is the co=
+rrect
+> one: if the bridge is linked to the CSI controller in the OF graph but the
+> bridge doesn't have a sensor attached, the CSI controller driver will fail
+> to probe, as far as I could see.
 
-I agree that it looks ugly and starting with +=3D doesn't really make sense.
-But personally, I find that repeating the variable name doesn't look quite
-nice either. I think I'll settle for something like:
+I'm not sure it's reasonable to not link it in the DTSI then, we'll want
+to reduce as much the boilerplate from the board DTS as possible, and
+the MIPI-CSI controller is always there anyway. However, we should
+definitely have it disabled if there's no sensor, which should solve
+your probe issue
 
-logicvc-drm-y =3D logicvc_crtc.o \
-		logicvc_drm.o \
-		...
-		logicvc_of.o
->=20
-> > +obj-$(CONFIG_DRM_LOGICVC) +=3D logicvc-drm.o
-> > diff --git a/drivers/gpu/drm/logicvc/logicvc_crtc.c b/drivers/gpu/drm/l=
-ogicvc/logicvc_crtc.c
-> > new file mode 100644
-> > index 000000000000..75e6a47a7724
-> > --- /dev/null
-> > +++ b/drivers/gpu/drm/logicvc/logicvc_crtc.c
-> > @@ -0,0 +1,277 @@
-> > +// SPDX-License-Identifier: GPL-2.0+
-> > +/*
-> > + * Copyright (C) 2019 Bootlin
-> > + * Author: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-> > + */
-> > +
-> ...
->=20
->  +
-> > +int logicvc_crtc_init(struct logicvc_drm *logicvc)
-> > +{
-> > +	struct drm_device *drm_dev =3D &logicvc->drm_dev;
-> > +	struct device *dev =3D drm_dev->dev;
-> > +	struct device_node *of_node =3D dev->of_node;
-> > +	struct logicvc_crtc *crtc;
-> > +	struct logicvc_layer *layer_primary;
-> > +	int ret;
-> > +
-> > +	crtc =3D devm_kzalloc(dev, sizeof(*crtc), GFP_KERNEL);
-> > +	if (!crtc)
-> > +		return -ENOMEM;
-> > +
-> > +	layer_primary =3D logicvc_layer_get_primary(logicvc);
-> > +	if (!layer_primary) {
-> > +		DRM_ERROR("Failed to get primary layer\n");
-> > +		return -EINVAL;
-> > +	}
-> Please use drm_err(logicvc->drm, "...") and friends all over the file.
-> DRM_DEV_ERROR() and friends are deprecated.
-> If you have no drm_device use whatever.
+Maxime
 
-Understood, I'll change that in the next revision!
-
-Cheers,
-
-Paul
-
---=20
-Paul Kocialkowski, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
-
---2Xz4AXsuSr8pfC7G
+--45hcbhhgcfnzxspi
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAEBCAAdFiEEJZpWjZeIetVBefti3cLmz3+fv9EFAl/HtJsACgkQ3cLmz3+f
-v9FQDgf/fZpfvWdvgx3Tm9BVP4vHB4lWjs4uxfn2wWWfJYpvh/uJ6j8a/Z9y+BxH
-V7Dgt44xakQhnYa5D1Y8B+3gtRb+aSlwV1bzErc4pRv0Hb/Ld1zeN23Ic8Kf+7I9
-YOrKntMHEunF4QB+CMO0n0yEvQLubl/wWt2Y0SDhS0hvE5bWEMJn1mT+JByhpZYL
-BxMHpUPYAoi3HEnYhm/IJ1sEEk4GIiOa4mn/qZ4LO2PQvNc9WpCAC4iGyrW7xOMU
-a6sGcXcUSyjl2M8I4DhqAe7efcK/e9clRXMxG5HS9vcw6Y36TkAiyiDiMiKKBlPt
-kvlwDl6NWSwGwJUj3nmh8xWbUC727Q==
-=zAa+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX8e1hQAKCRDj7w1vZxhR
+xUmfAQDrnEGoBdbQg8pcpjrHuleZtMVcXIe+BVlxHlRQPOZFXwEAjruXhWd67Q5L
+aw25nh4z4WBzD8T8dUj7t5A/R28hows=
+=crGk
 -----END PGP SIGNATURE-----
 
---2Xz4AXsuSr8pfC7G--
+--45hcbhhgcfnzxspi--
