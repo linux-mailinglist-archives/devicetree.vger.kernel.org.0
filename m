@@ -2,93 +2,356 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BFE132CC953
-	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 23:06:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3ACB92CC95C
+	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 23:10:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727680AbgLBWFP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Dec 2020 17:05:15 -0500
-Received: from mail-ej1-f68.google.com ([209.85.218.68]:41020 "EHLO
-        mail-ej1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726330AbgLBWFP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Dec 2020 17:05:15 -0500
-Received: by mail-ej1-f68.google.com with SMTP id f23so361001ejt.8;
-        Wed, 02 Dec 2020 14:04:59 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=FLQRrJdRQRW07zjr5Xq/Y30bP6fkFk0ghfD0rgGQLLQ=;
-        b=SAilAzUU+JeTrgykOwtvnRZQiqBJG3kTYnK62KtZLvLi/7Kdv0edXOPw+hP77a7DUu
-         EKEcRv3sTsKdY+Hq4JBJcwYHqOfwGzVe4M3flDXtX4VQv/CV2XYTnbbIO7rZk1xJIJTn
-         qEUoJlb+cAet0smOkX3WFlmW0i0XQ/YGDz/MiPshMx/g3U13InW7zYo1OX871xVQquRK
-         skFgPRunxyyC88sqq5gXJbILo8kqFTUMUfGyzE1jax1mz5+7Gxx4HD7Ng6xLRzW15dnu
-         Yn7Mx5bGYADpCQ2yuGqgDXq0ZnzQpKn61hJlNnmQlYih/lXP/U9XzxrZvtiG5pDfwiUg
-         ZnVw==
-X-Gm-Message-State: AOAM533ZCIFnDTliY6qUsYsEi+XQY6E0ehV+YV0WEMLmulcgsllEtLiS
-        0v/qdrkolu4b2GxT4kZwO5s=
-X-Google-Smtp-Source: ABdhPJw8KbLUcLavsavX3o/08tR7+M9k4icmncsa4ebLT0Hev8ojD58k0LbcsMNIwR+Imi2osuZJwQ==
-X-Received: by 2002:a17:906:7e43:: with SMTP id z3mr1786272ejr.67.1606946673313;
-        Wed, 02 Dec 2020 14:04:33 -0800 (PST)
-Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
-        by smtp.googlemail.com with ESMTPSA id n7sm42628edb.34.2020.12.02.14.04.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Dec 2020 14:04:32 -0800 (PST)
-Date:   Thu, 3 Dec 2020 00:04:30 +0200
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Timon Baetz <timon.baetz@protonmail.com>
-Cc:     Sebastian Reichel <sre@kernel.org>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Kukjin Kim <kgene@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH 3/3] ARM: dts: exynos: Fix charging regulator voltage and
- current for i9100
-Message-ID: <20201202220430.GB135888@kozik-lap>
-References: <20201202203516.43053-1-timon.baetz@protonmail.com>
- <20201202203516.43053-3-timon.baetz@protonmail.com>
+        id S1726032AbgLBWKg convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 2 Dec 2020 17:10:36 -0500
+Received: from aposti.net ([89.234.176.197]:36194 "EHLO aposti.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726011AbgLBWKf (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 2 Dec 2020 17:10:35 -0500
+Date:   Wed, 02 Dec 2020 22:09:39 +0000
+From:   Paul Cercueil <paul@crapouillou.net>
+Subject: Re: [PATCH 4/4] clk: Ingenic: Fill unused bits in parents and
+ reformat code.
+To:     =?UTF-8?b?5ZGo55Cw5p2w?= <zhouyanjie@wanyeetech.com>
+Cc:     sboyd@kernel.org, robh+dt@kernel.org, mturquette@baylibre.com,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, dongsheng.qiu@ingenic.com,
+        aric.pzqi@ingenic.com, rick.tyliu@ingenic.com,
+        yanfei.li@ingenic.com, sernia.zhou@foxmail.com,
+        zhenwenjin@gmail.com
+Message-Id: <38GQKQ.Q3V9QMBZFBRU3@crapouillou.net>
+In-Reply-To: <20201125172618.112707-5-zhouyanjie@wanyeetech.com>
+References: <20201125172618.112707-1-zhouyanjie@wanyeetech.com>
+        <20201125172618.112707-5-zhouyanjie@wanyeetech.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20201202203516.43053-3-timon.baetz@protonmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 02, 2020 at 09:07:28PM +0000, Timon Baetz wrote:
-> Set CHARGER current and CHARGER_CV voltage according to Galaxy S2 kernel
-> fork.
+Hi Zhou,
+
+Le jeu. 26 nov. 2020 à 1:26, 周琰杰 (Zhou Yanjie) 
+<zhouyanjie@wanyeetech.com> a écrit :
+> 1.Fill unused bits in parents in jz4780-cgu.c, x1000-cgu.c,
+>   and x1830-cgu.c, these bits should be filled with -1.
+> 2.Reformat code, add missing blank lines, remove unnecessary
+>   tabs, and align code.
 > 
-> Signed-off-by: Timon Baetz <timon.baetz@protonmail.com>
+> Signed-off-by: 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
 > ---
->  arch/arm/boot/dts/exynos4210-i9100.dts | 8 ++++----
->  1 file changed, 4 insertions(+), 4 deletions(-)
+>  drivers/clk/ingenic/jz4780-cgu.c | 12 +++---
+>  drivers/clk/ingenic/x1000-cgu.c  | 20 +++++-----
+>  drivers/clk/ingenic/x1830-cgu.c  | 83 
+> ++++++++++++++++++++--------------------
+>  3 files changed, 60 insertions(+), 55 deletions(-)
 > 
-> diff --git a/arch/arm/boot/dts/exynos4210-i9100.dts b/arch/arm/boot/dts/exynos4210-i9100.dts
-> index 9f8d927e0d21..2700d53ea01b 100644
-> --- a/arch/arm/boot/dts/exynos4210-i9100.dts
-> +++ b/arch/arm/boot/dts/exynos4210-i9100.dts
-> @@ -558,14 +558,14 @@ safe2_sreg: ESAFEOUT2 {
->  
->  			charger_reg: CHARGER {
->  				regulator-name = "CHARGER";
-> -				regulator-min-microamp = <60000>;
-> -				regulator-max-microamp = <2580000>;
-> +				regulator-min-microamp = <200000>;
-> +				regulator-max-microamp = <950000>;
->  			};
->  
->  			chargercv_reg: CHARGER_CV {
->  				regulator-name = "CHARGER_CV";
-> -				regulator-min-microvolt = <3800000>;
-> -				regulator-max-microvolt = <4100000>;
-> +				regulator-min-microvolt = <4200000>;
-> +				regulator-max-microvolt = <4200000>;
+> diff --git a/drivers/clk/ingenic/jz4780-cgu.c 
+> b/drivers/clk/ingenic/jz4780-cgu.c
+> index dcca74e..1b61eaa 100644
+> --- a/drivers/clk/ingenic/jz4780-cgu.c
+> +++ b/drivers/clk/ingenic/jz4780-cgu.c
+> @@ -178,6 +178,7 @@ static int jz4780_otg_phy_set_rate(struct clk_hw 
+> *hw, unsigned long req_rate,
+>  	writel(usbpcr1, cgu->base + CGU_REG_USBPCR1);
+> 
+>  	spin_unlock_irqrestore(&cgu->lock, flags);
+> +
+>  	return 0;
+>  }
+> 
+> @@ -188,6 +189,7 @@ static int jz4780_otg_phy_enable(struct clk_hw 
+> *hw)
+> 
+>  	writel(readl(reg_opcr) | OPCR_SPENDN0, reg_opcr);
+>  	writel(readl(reg_usbpcr) & ~USBPCR_OTG_DISABLE & ~USBPCR_SIDDQ, 
+> reg_usbpcr);
+> +
+>  	return 0;
+>  }
+> 
+> @@ -215,9 +217,9 @@ static const struct clk_ops jz4780_otg_phy_ops = {
+>  	.round_rate = jz4780_otg_phy_round_rate,
+>  	.set_rate = jz4780_otg_phy_set_rate,
+> 
+> -	.enable		= jz4780_otg_phy_enable,
+> -	.disable	= jz4780_otg_phy_disable,
+> -	.is_enabled	= jz4780_otg_phy_is_enabled,
+> +	.enable = jz4780_otg_phy_enable,
+> +	.disable = jz4780_otg_phy_disable,
+> +	.is_enabled = jz4780_otg_phy_is_enabled,
+>  };
+> 
+>  static int jz4780_core1_enable(struct clk_hw *hw)
+> @@ -544,13 +546,13 @@ static const struct ingenic_cgu_clk_info 
+> jz4780_cgu_clocks[] = {
+> 
+>  	[JZ4780_CLK_EXCLK_DIV512] = {
+>  		"exclk_div512", CGU_CLK_FIXDIV,
+> -		.parents = { JZ4780_CLK_EXCLK },
+> +		.parents = { JZ4780_CLK_EXCLK, -1, -1, -1 },
 
-I am looking at my sources of Android 3.0 for GT-I9100 but I cannot find
-charger voltages for it. Where did you find it?
+These -1 are not really needed since the clock doesn't have CGU_CLK_MUX.
 
-Best regards,
-Krzysztof
+>  		.fixdiv = { 512 },
+>  	},
+> 
+>  	[JZ4780_CLK_RTC] = {
+>  		"rtc_ercs", CGU_CLK_MUX | CGU_CLK_GATE,
+> -		.parents = { JZ4780_CLK_EXCLK_DIV512, JZ4780_CLK_RTCLK },
+> +		.parents = { JZ4780_CLK_EXCLK_DIV512, JZ4780_CLK_RTCLK, -1, -1 },
+>  		.mux = { CGU_REG_OPCR, 2, 1},
+
+This clock has CGU_CLK_MUX, but only one bit to change the setting, so 
+only two parents possible; so again these -1 are not really needed.
+
+Cheers,
+-Paul
+
+>  	},
+> 
+> diff --git a/drivers/clk/ingenic/x1000-cgu.c 
+> b/drivers/clk/ingenic/x1000-cgu.c
+> index d340bcd..fe2e274 100644
+> --- a/drivers/clk/ingenic/x1000-cgu.c
+> +++ b/drivers/clk/ingenic/x1000-cgu.c
+> @@ -126,6 +126,7 @@ static int x1000_otg_phy_set_rate(struct clk_hw 
+> *hw, unsigned long req_rate,
+>  	writel(usbpcr1, cgu->base + CGU_REG_USBPCR1);
+> 
+>  	spin_unlock_irqrestore(&cgu->lock, flags);
+> +
+>  	return 0;
+>  }
+> 
+> @@ -136,6 +137,7 @@ static int x1000_usb_phy_enable(struct clk_hw *hw)
+> 
+>  	writel(readl(reg_opcr) | OPCR_SPENDN0, reg_opcr);
+>  	writel(readl(reg_usbpcr) & ~USBPCR_OTG_DISABLE & ~USBPCR_SIDDQ, 
+> reg_usbpcr);
+> +
+>  	return 0;
+>  }
+> 
+> @@ -163,9 +165,9 @@ static const struct clk_ops x1000_otg_phy_ops = {
+>  	.round_rate = x1000_otg_phy_round_rate,
+>  	.set_rate = x1000_otg_phy_set_rate,
+> 
+> -	.enable		= x1000_usb_phy_enable,
+> -	.disable	= x1000_usb_phy_disable,
+> -	.is_enabled	= x1000_usb_phy_is_enabled,
+> +	.enable = x1000_usb_phy_enable,
+> +	.disable = x1000_usb_phy_disable,
+> +	.is_enabled = x1000_usb_phy_is_enabled,
+>  };
+> 
+>  static const s8 pll_od_encoding[8] = {
+> @@ -298,7 +300,7 @@ static const struct ingenic_cgu_clk_info 
+> x1000_cgu_clocks[] = {
+> 
+>  	[X1000_CLK_MAC] = {
+>  		"mac", CGU_CLK_MUX | CGU_CLK_DIV | CGU_CLK_GATE,
+> -		.parents = { X1000_CLK_SCLKA, X1000_CLK_MPLL },
+> +		.parents = { X1000_CLK_SCLKA, X1000_CLK_MPLL, -1, -1 },
+>  		.mux = { CGU_REG_MACCDR, 31, 1 },
+>  		.div = { CGU_REG_MACCDR, 0, 1, 8, 29, 28, 27 },
+>  		.gate = { CGU_REG_CLKGR, 25 },
+> @@ -306,7 +308,7 @@ static const struct ingenic_cgu_clk_info 
+> x1000_cgu_clocks[] = {
+> 
+>  	[X1000_CLK_LCD] = {
+>  		"lcd", CGU_CLK_MUX | CGU_CLK_DIV | CGU_CLK_GATE,
+> -		.parents = { X1000_CLK_SCLKA, X1000_CLK_MPLL },
+> +		.parents = { X1000_CLK_SCLKA, X1000_CLK_MPLL, -1, -1 },
+>  		.mux = { CGU_REG_LPCDR, 31, 1 },
+>  		.div = { CGU_REG_LPCDR, 0, 1, 8, 28, 27, 26 },
+>  		.gate = { CGU_REG_CLKGR, 23 },
+> @@ -314,7 +316,7 @@ static const struct ingenic_cgu_clk_info 
+> x1000_cgu_clocks[] = {
+> 
+>  	[X1000_CLK_MSCMUX] = {
+>  		"msc_mux", CGU_CLK_MUX,
+> -		.parents = { X1000_CLK_SCLKA, X1000_CLK_MPLL},
+> +		.parents = { X1000_CLK_SCLKA, X1000_CLK_MPLL, -1, -1 },
+>  		.mux = { CGU_REG_MSC0CDR, 31, 1 },
+>  	},
+> 
+> @@ -350,7 +352,7 @@ static const struct ingenic_cgu_clk_info 
+> x1000_cgu_clocks[] = {
+> 
+>  	[X1000_CLK_SSIPLL_DIV2] = {
+>  		"ssi_pll_div2", CGU_CLK_FIXDIV,
+> -		.parents = { X1000_CLK_SSIPLL },
+> +		.parents = { X1000_CLK_SSIPLL, -1, -1, -1 },
+>  		.fixdiv = { 2 },
+>  	},
+> 
+> @@ -369,13 +371,13 @@ static const struct ingenic_cgu_clk_info 
+> x1000_cgu_clocks[] = {
+> 
+>  	[X1000_CLK_EXCLK_DIV512] = {
+>  		"exclk_div512", CGU_CLK_FIXDIV,
+> -		.parents = { X1000_CLK_EXCLK },
+> +		.parents = { X1000_CLK_EXCLK, -1, -1, -1 },
+>  		.fixdiv = { 512 },
+>  	},
+> 
+>  	[X1000_CLK_RTC] = {
+>  		"rtc_ercs", CGU_CLK_MUX | CGU_CLK_GATE,
+> -		.parents = { X1000_CLK_EXCLK_DIV512, X1000_CLK_RTCLK },
+> +		.parents = { X1000_CLK_EXCLK_DIV512, X1000_CLK_RTCLK, -1, -1 },
+>  		.mux = { CGU_REG_OPCR, 2, 1},
+>  		.gate = { CGU_REG_CLKGR, 27 },
+>  	},
+> diff --git a/drivers/clk/ingenic/x1830-cgu.c 
+> b/drivers/clk/ingenic/x1830-cgu.c
+> index e76e82c..4d6cca5 100644
+> --- a/drivers/clk/ingenic/x1830-cgu.c
+> +++ b/drivers/clk/ingenic/x1830-cgu.c
+> @@ -15,51 +15,51 @@
+>  #include "pm.h"
+> 
+>  /* CGU register offsets */
+> -#define CGU_REG_CPCCR		0x00
+> -#define CGU_REG_CPPCR		0x0c
+> -#define CGU_REG_APLL		0x10
+> -#define CGU_REG_MPLL		0x14
+> -#define CGU_REG_CLKGR0		0x20
+> -#define CGU_REG_OPCR		0x24
+> -#define CGU_REG_CLKGR1		0x28
+> -#define CGU_REG_DDRCDR		0x2c
+> -#define CGU_REG_USBPCR		0x3c
+> -#define CGU_REG_USBRDT		0x40
+> -#define CGU_REG_USBVBFIL	0x44
+> -#define CGU_REG_USBPCR1		0x48
+> -#define CGU_REG_MACCDR		0x54
+> -#define CGU_REG_EPLL		0x58
+> -#define CGU_REG_I2SCDR		0x60
+> -#define CGU_REG_LPCDR		0x64
+> -#define CGU_REG_MSC0CDR		0x68
+> -#define CGU_REG_I2SCDR1		0x70
+> -#define CGU_REG_SSICDR		0x74
+> -#define CGU_REG_CIMCDR		0x7c
+> -#define CGU_REG_MSC1CDR		0xa4
+> -#define CGU_REG_CMP_INTR	0xb0
+> -#define CGU_REG_CMP_INTRE	0xb4
+> -#define CGU_REG_DRCG		0xd0
+> -#define CGU_REG_CPCSR		0xd4
+> -#define CGU_REG_VPLL		0xe0
+> -#define CGU_REG_MACPHYC		0xe8
+> +#define CGU_REG_CPCCR			0x00
+> +#define CGU_REG_CPPCR			0x0c
+> +#define CGU_REG_APLL			0x10
+> +#define CGU_REG_MPLL			0x14
+> +#define CGU_REG_CLKGR0			0x20
+> +#define CGU_REG_OPCR			0x24
+> +#define CGU_REG_CLKGR1			0x28
+> +#define CGU_REG_DDRCDR			0x2c
+> +#define CGU_REG_USBPCR			0x3c
+> +#define CGU_REG_USBRDT			0x40
+> +#define CGU_REG_USBVBFIL		0x44
+> +#define CGU_REG_USBPCR1			0x48
+> +#define CGU_REG_MACCDR			0x54
+> +#define CGU_REG_EPLL			0x58
+> +#define CGU_REG_I2SCDR			0x60
+> +#define CGU_REG_LPCDR			0x64
+> +#define CGU_REG_MSC0CDR			0x68
+> +#define CGU_REG_I2SCDR1			0x70
+> +#define CGU_REG_SSICDR			0x74
+> +#define CGU_REG_CIMCDR			0x7c
+> +#define CGU_REG_MSC1CDR			0xa4
+> +#define CGU_REG_CMP_INTR		0xb0
+> +#define CGU_REG_CMP_INTRE		0xb4
+> +#define CGU_REG_DRCG			0xd0
+> +#define CGU_REG_CPCSR			0xd4
+> +#define CGU_REG_VPLL			0xe0
+> +#define CGU_REG_MACPHYC			0xe8
+> 
+>  /* bits within the OPCR register */
+> -#define OPCR_GATE_USBPHYCLK	BIT(23)
+> -#define OPCR_SPENDN0		BIT(7)
+> -#define OPCR_SPENDN1		BIT(6)
+> +#define OPCR_GATE_USBPHYCLK		BIT(23)
+> +#define OPCR_SPENDN0			BIT(7)
+> +#define OPCR_SPENDN1			BIT(6)
+> 
+>  /* bits within the USBPCR register */
+> -#define USBPCR_SIDDQ		BIT(21)
+> -#define USBPCR_OTG_DISABLE	BIT(20)
+> +#define USBPCR_SIDDQ			BIT(21)
+> +#define USBPCR_OTG_DISABLE		BIT(20)
+> 
+>  /* bits within the I2SCDR register */
+> -#define I2SCDR_I2PCS_SHIFT	30
+> -#define I2SCDR_I2PCS_MASK	(0x3 << I2SCDR_I2PCS_SHIFT)
+> +#define I2SCDR_I2PCS_SHIFT		30
+> +#define I2SCDR_I2PCS_MASK		(0x3 << I2SCDR_I2PCS_SHIFT)
+>  #define I2SCDR_I2SDIV_M_SHIFT	20
+>  #define I2SCDR_I2SDIV_M_MASK	(0x1ff << I2SCDR_I2SDIV_M_SHIFT)
+>  #define I2SCDR_I2SDIV_N_SHIFT	0
+>  #define I2SCDR_I2SDIV_N_MASK	(0xfffff << I2SCDR_I2SDIV_N_SHIFT)
+> -#define I2SCDR_CE_I2S		BIT(29)
+> +#define I2SCDR_CE_I2S			BIT(29)
+> 
+>  static struct ingenic_cgu *cgu;
+> 
+> @@ -70,6 +70,7 @@ static int x1830_usb_phy_enable(struct clk_hw *hw)
+> 
+>  	writel((readl(reg_opcr) | OPCR_SPENDN0) & ~OPCR_GATE_USBPHYCLK, 
+> reg_opcr);
+>  	writel(readl(reg_usbpcr) & ~USBPCR_OTG_DISABLE & ~USBPCR_SIDDQ, 
+> reg_usbpcr);
+> +
+>  	return 0;
+>  }
+> 
+> @@ -93,9 +94,9 @@ static int x1830_usb_phy_is_enabled(struct clk_hw 
+> *hw)
+>  }
+> 
+>  static const struct clk_ops x1830_otg_phy_ops = {
+> -	.enable		= x1830_usb_phy_enable,
+> -	.disable	= x1830_usb_phy_disable,
+> -	.is_enabled	= x1830_usb_phy_is_enabled,
+> +	.enable = x1830_usb_phy_enable,
+> +	.disable = x1830_usb_phy_disable,
+> +	.is_enabled = x1830_usb_phy_is_enabled,
+>  };
+> 
+>  static u8 x1830_i2s_get_parent(struct clk_hw *hw)
+> @@ -486,7 +487,7 @@ static const struct ingenic_cgu_clk_info 
+> x1830_cgu_clocks[] = {
+> 
+>  	[X1830_CLK_SSIPLL_DIV2] = {
+>  		"ssi_pll_div2", CGU_CLK_FIXDIV,
+> -		.parents = { X1830_CLK_SSIPLL },
+> +		.parents = { X1830_CLK_SSIPLL, -1, -1, -1 },
+>  		.fixdiv = { 2 },
+>  	},
+> 
+> @@ -506,13 +507,13 @@ static const struct ingenic_cgu_clk_info 
+> x1830_cgu_clocks[] = {
+> 
+>  	[X1830_CLK_EXCLK_DIV512] = {
+>  		"exclk_div512", CGU_CLK_FIXDIV,
+> -		.parents = { X1830_CLK_EXCLK },
+> +		.parents = { X1830_CLK_EXCLK, -1, -1, -1 },
+>  		.fixdiv = { 512 },
+>  	},
+> 
+>  	[X1830_CLK_RTC] = {
+>  		"rtc_ercs", CGU_CLK_MUX | CGU_CLK_GATE,
+> -		.parents = { X1830_CLK_EXCLK_DIV512, X1830_CLK_RTCLK },
+> +		.parents = { X1830_CLK_EXCLK_DIV512, X1830_CLK_RTCLK, -1, -1 },
+>  		.mux = { CGU_REG_OPCR, 2, 1},
+>  		.gate = { CGU_REG_CLKGR0, 29 },
+>  	},
+> --
+> 2.7.4
+> 
+
+
