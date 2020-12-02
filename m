@@ -2,165 +2,256 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 600922CC60B
-	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 19:58:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DAF7E2CC66C
+	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 20:21:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726814AbgLBS6H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Dec 2020 13:58:07 -0500
-Received: from mail-bn8nam12on2061.outbound.protection.outlook.com ([40.107.237.61]:13600
-        "EHLO NAM12-BN8-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726104AbgLBS6G (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 2 Dec 2020 13:58:06 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=MVBGeMb2PdC6V2kxdhPt6TO/xk4Akwa8IMtB+5+k22rbKEcmdJtoZbcGaxpKlTlIXuTcz07lHl8h17ark0VAbExxiZ2AEd+lzlemdgEZfPHQhEShUZpsomiHxyaXtMIi6eJGKi0Qw5SdldWduMqTNyjgqCzFZsXijCJuDh/Q0WNTkkttL7tOdvdqfPktLyGc6S+3MZlCDOpW8AhNs5A9tkwHbtk0fjonAwkc/TRJ1oIFDX6Rt9SjJdwLOBwhQ1cAV4FMxn9XVyP1m/LMw3vuycoG+YREvtgaJbyJJZNr2+HmcKexAuPmggp3NxrLpEwRVnD4hhEeG/ML17u7Qelz+Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2ZKtzSPcU3bsCivNCPBSZvkHhSojWtaTswUk+FfSzBk=;
- b=AnjSyntPgqlox4bsYKfmLkcMHszZ7slEy23/0McikAlFHZPnKQOnX8E3qSJDfSJLLzFRgVj92xTwUehgI/qTevEM7DYrfj5TY5OwC7JwPaGDReMWxqRW+OrTeCcX9myADKj6xSVo/siQFzRXRr4VmsuGWU8xPfwdQ5mw473gE06WGP70Fj0rojQM/oqJCQ1C5w9YFGxNJihsbB+iqperBn9PP31ML9cSzM4+hVAT8bUcJUpubjvnj3rVHyqpr4A616RF2RUJ+LUdVwM+mEJ3RAzKy1V5HMrCpqOgH0KIaQD6TDtLZc9LFy2YolwXo9eHaZo7EOrMmj7HnBikkzTqDQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=xilinx.com; dmarc=pass action=none header.from=xilinx.com;
- dkim=pass header.d=xilinx.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2ZKtzSPcU3bsCivNCPBSZvkHhSojWtaTswUk+FfSzBk=;
- b=RE7BpqMbpueS4selrzAPOHpRQrbw1W71sgKTaDvj+eduF6qddoUuxFEU7TYZrFzT/aD1ecsR0MBmu/dG9gbdJIlpWiK2SNN0EhRE1kfp19lFUQEGGknCoIsNELMYYTx71mgePD4apZDzkIC9C0dKrWMxwSF5+uCl2nfZbURHLps=
-Received: from BY5PR02MB6260.namprd02.prod.outlook.com (2603:10b6:a03:1b0::29)
- by BYAPR02MB4839.namprd02.prod.outlook.com (2603:10b6:a03:51::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3611.31; Wed, 2 Dec
- 2020 18:57:11 +0000
-Received: from BY5PR02MB6260.namprd02.prod.outlook.com
- ([fe80::7183:fa14:bfcf:8ff5]) by BY5PR02MB6260.namprd02.prod.outlook.com
- ([fe80::7183:fa14:bfcf:8ff5%7]) with mapi id 15.20.3611.025; Wed, 2 Dec 2020
- 18:57:11 +0000
-From:   Sonal Santan <sonals@xilinx.com>
-To:     Moritz Fischer <mdf@kernel.org>
-CC:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-fpga@vger.kernel.org" <linux-fpga@vger.kernel.org>,
-        Max Zhen <maxz@xilinx.com>, Lizhi Hou <lizhih@xilinx.com>,
-        Michal Simek <michals@xilinx.com>,
-        Stefano Stabellini <stefanos@xilinx.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: RE: [PATCH Xilinx Alveo 2/8] fpga: xrt: Add UAPI header files
-Thread-Topic: [PATCH Xilinx Alveo 2/8] fpga: xrt: Add UAPI header files
-Thread-Index: AQHWxeLgPKk468uu20KtHlzY5ljvuKnhqLiAgAKC/kA=
-Date:   Wed, 2 Dec 2020 18:57:11 +0000
-Message-ID: <BY5PR02MB6260A727613D2D8A447B1D26BBF30@BY5PR02MB6260.namprd02.prod.outlook.com>
-References: <20201129000040.24777-1-sonals@xilinx.com>
- <20201129000040.24777-3-sonals@xilinx.com> <X8XGI7yRAX+xAeqQ@archbook>
-In-Reply-To: <X8XGI7yRAX+xAeqQ@archbook>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
-X-MS-TNEF-Correlator: 
-authentication-results: kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=none action=none header.from=xilinx.com;
-x-originating-ip: [98.207.149.57]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: 49454620-7e40-49f6-e853-08d896f4138c
-x-ms-traffictypediagnostic: BYAPR02MB4839:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <BYAPR02MB48391AAF03D4AD0B08D8B6FEBBF30@BYAPR02MB4839.namprd02.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:9508;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: COnIFCM5RJRkj+ejyln5tO0FtIHyMMrv4JocydTRK4X+CYoeQwhGAJMorOOgYAIrdRyglE+A/kY2hJO/a0lIA1cVy3ojEalHjZFWTfgxhFi0ODVvjzLERmVWW47x+LNlzaIsZHmT5qa5hAJkw5Ch2PJu1Tz9PV71qd/eONtSevaQea1eCyTScdmkeCBXNcZ2wtcdgmyT/+TKl8mupBOBoQ80zwmNIbRMnzIqbmtJq2bEa/ESbN9E++hskO3bx3G3kqN2ZruRDKNU5KKrjWnzJXEuQl5Gkcf10ukjLkmqmTjpaoPU+1EitjVMlSLesNMiWGoOsUg0lHOQ+IMLi0w3vuya9s5ckOsY+7hlkK2LsbGc8K4jNXYRYtpTVKdAlX6F0ipThEUCXIEQar8V4XhwQA==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY5PR02MB6260.namprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(376002)(39860400002)(366004)(136003)(346002)(396003)(83380400001)(6506007)(53546011)(2906002)(66446008)(66946007)(66556008)(71200400001)(64756008)(76116006)(66476007)(55016002)(186003)(4326008)(9686003)(86362001)(52536014)(26005)(966005)(54906003)(33656002)(6916009)(8936002)(316002)(5660300002)(7696005)(478600001)(8676002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: =?us-ascii?Q?IzfPnt3TEKrGF978p3LAfpFVAY4x/8j0E3Yrv2/VzbeEVfWYsOLyBixO+3Nz?=
- =?us-ascii?Q?zDDmqh448tNzVFkOtAFjnX4wOwsoARZ3HoaI2UhxMyiuFOWnCgLvs6rBbeIc?=
- =?us-ascii?Q?YprbQpAbHLheBRUhtSPf4cZ768QUKaBUHY2/Cp3SsGqLpNWaya+QkPkfMz1+?=
- =?us-ascii?Q?f0oHzR99qvrGEsE36jFtPafKwKUZkxecLSMre6g95L4RS6cpBiWzHtiCYloN?=
- =?us-ascii?Q?L6r9/JyLXsKtPHca2oQVkRwlqK++L5epuQ/rFzxkWeOb6g3kOKsLkeXhKyfn?=
- =?us-ascii?Q?ERfnGBIWJVjHw5bEWiqGDEiKUQf6x2oSjuVveEd6UfA3zYyca2O8MOOdRgQN?=
- =?us-ascii?Q?WwXRPMEkuf2jLMVLkxphBHOVFQBOf0C88Ww3DcJh6n4VIx8D3V0QgmMsBlkC?=
- =?us-ascii?Q?XQyexdxFbe41DzOGKPIfy/yr2/xxXXZgkUGgMkwCEhuN0SE1pK5zHaDoqEVF?=
- =?us-ascii?Q?LaYFyAF/VjPDki0QAHaC9hhsO2Y40+6FpFtFsKT7aFru8MA/atypx/DLYd+C?=
- =?us-ascii?Q?oSrswCjZgMvU+qtm+QLCC8ajchui0todFOmZxO14aZWOOatOElA42hg0iYNF?=
- =?us-ascii?Q?6D/Xc2Gc+IwLLW1NSy+1fms8PAJKlm2rNCcCVq4Q0902HRGZ9n+QqOS5Owft?=
- =?us-ascii?Q?EQXRoUgNj1B2gQTpO+5SFuXXG3JHsUGGiVmVBtAAQOpFZ5xftMiC4GT7KUFB?=
- =?us-ascii?Q?urHg9+QdbqACRcL/yTi9CjaZO8RG3yGzMXuZqIdKKSWFVxez61/szAf++IzM?=
- =?us-ascii?Q?9jtT/Rvc3CUXNy50nAk7J3QzaVZauB3MtyMWVPbU38ygko7BlDsQkR7NPvuW?=
- =?us-ascii?Q?7Ts5oBah5WDfAGnElBPwPYvSUcQzPvs4plEezYMCUlDgA9wObkVbLqNy5XN1?=
- =?us-ascii?Q?i6PPnf+E6wJsxIM4kBeN6EZre1GtvWG8QZKGUnwMZB3zS7NdUuG7NK48vU5P?=
- =?us-ascii?Q?od0RA4njqRmjsLNy1aj2I43C8iUYKj3jHXLRdWhZVVI=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        id S2387912AbgLBTR7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Dec 2020 14:17:59 -0500
+Received: from hqnvemgate24.nvidia.com ([216.228.121.143]:13074 "EHLO
+        hqnvemgate24.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2387672AbgLBTR7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Dec 2020 14:17:59 -0500
+Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate24.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
+        id <B5fc7e83e0002>; Wed, 02 Dec 2020 11:17:18 -0800
+Received: from [10.2.49.229] (10.124.1.5) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 2 Dec
+ 2020 19:17:15 +0000
+Subject: Re: [PATCH v1 3/7] spi: qspi-tegra: Add support for Tegra210 QSPI
+ controller
+To:     Mark Brown <broonie@kernel.org>
+CC:     <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
+        <robh+dt@kernel.org>, <linux-spi@vger.kernel.org>,
+        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+References: <1606857168-5839-1-git-send-email-skomatineni@nvidia.com>
+ <1606857168-5839-4-git-send-email-skomatineni@nvidia.com>
+ <20201202172721.GL5560@sirena.org.uk>
+From:   Sowjanya Komatineni <skomatineni@nvidia.com>
+Message-ID: <2257bc33-80ef-a6d8-8542-480defa32937@nvidia.com>
+Date:   Wed, 2 Dec 2020 11:17:18 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BY5PR02MB6260.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 49454620-7e40-49f6-e853-08d896f4138c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Dec 2020 18:57:11.6213
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: S/rMA3iVkhjl45AlcVDT0lHdJKqJs7I9Vy4GdrbNafsDEPyMitSMjWMboWSYwZ0TpKL2OnwlCE4JZzxHadCI9A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR02MB4839
+In-Reply-To: <20201202172721.GL5560@sirena.org.uk>
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-Originating-IP: [10.124.1.5]
+X-ClientProxiedBy: HQMAIL105.nvidia.com (172.20.187.12) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1606936638; bh=WxjuF6/0q6bMF0ahkwQtf8yN1d+vSadpAXD3GqI7mCQ=;
+        h=Subject:To:CC:References:From:Message-ID:Date:User-Agent:
+         MIME-Version:In-Reply-To:Content-Type:Content-Transfer-Encoding:
+         Content-Language:X-Originating-IP:X-ClientProxiedBy;
+        b=ZTLq8A0hyE6SJJKwNDLRvstQX9AamUhnqvvZOIWxdzH8s68Yh+x7dKVaILd5DuuqC
+         QcTYtZbYRiSRYwUKrRdsuEswc2j02dLGnGjO6fVcKf87T5gJK+SNdqHsJSs9EHokH3
+         PqZhzHEkTyac25O1OdVz6YMnZcxHyvq1ZJvjwnEspg5ZvTsu5DcHA+hgnzveTlYyDh
+         XRFMfbB+Xgxw59GtvmaQbzjMXadIdkHyAQSS98gAfieDOj2oOfIjSsuQOigGt8eknZ
+         cYSWym2HlP6tcO28DYNtM1HJtWkq9N1lT3NcUuPVs9/RAdSWa/Enx3wnFNMNDej5KL
+         oS9jSWBY1keqA==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Moritz,
 
-> -----Original Message-----
-> From: Moritz Fischer <mdf@kernel.org>
-> Sent: Monday, November 30, 2020 8:27 PM
-> To: Sonal Santan <sonals@xilinx.com>
-> Cc: linux-kernel@vger.kernel.org; linux-fpga@vger.kernel.org; Max Zhen
-> <maxz@xilinx.com>; Lizhi Hou <lizhih@xilinx.com>; Michal Simek
-> <michals@xilinx.com>; Stefano Stabellini <stefanos@xilinx.com>;
-> devicetree@vger.kernel.org
-> Subject: Re: [PATCH Xilinx Alveo 2/8] fpga: xrt: Add UAPI header files
->=20
-> Hi Sonal,
->=20
-> On Sat, Nov 28, 2020 at 04:00:34PM -0800, Sonal Santan wrote:
-> > From: Sonal Santan <sonal.santan@xilinx.com>
-> >
-> > Add XRT UAPI header files which describe flash layout, XRT mailbox
-> > protocol, xclBin/axlf FPGA image container format and XRT management
-> > physical function driver ioctl interfaces.
-> >
-> > flash_xrt_data.h:
-> > Layout used by XRT to store private data on flash.
-> >
-> > mailbox_proto.h:
-> > Mailbox opcodes and high level data structures representing various
-> > kinds of information like sensors, clock, etc.
-> >
-> > mailbox_transport.h:
-> > Transport protocol used by mailbox.
-> >
-> > xclbin.h:
-> > Container format used to store compiled FPGA image which includes
-> > bitstream and metadata.
->=20
-> Can these headers be introduced together with the code that uses them as
-> logical change?
->=20
-> I haven't looked too closely, but it helps reviewing if you can break it =
-into
-> smaller pieces that can stand by themselves.
->=20
+On 12/2/20 9:27 AM, Mark Brown wrote:
+> On Tue, Dec 01, 2020 at 01:12:44PM -0800, Sowjanya Komatineni wrote:
+>> Tegra SoC has a Quad SPI controller starting from Tegra210.
+>>
+>> This patch adds support for Tegra210 QSPI controller.
+> This looks pretty clean but I've got a few questions below about how
+> this integrates with the frameworks as well as some more minor issues.
+>
+>> +config QSPI_TEGRA
+>> +	tristate "Nvidia Tegra QSPI Controller"
+> Everything else in this file is SPI_, even the qspi controllers.
+Will rename in v2
+>> +++ b/drivers/spi/qspi-tegra.c
+>> @@ -0,0 +1,1418 @@
+>> +// SPDX-License-Identifier: GPL-2.0-only
+>> +/*
+>> + * Copyright (C) 2020 NVIDIA CORPORATION.  All rights reserved.
+>> + */
+> Please make the entire comment a C++ one.  It also appears that the "All
+> rights reserved" here conflicts with the GPL-2.0-only SPDX statement...
+Will fix in v2
+>
+>> +static void
+>> +tegra_qspi_copy_client_txbuf_to_qspi_txbuf(struct tegra_qspi_data *tqspi,
+>> +					   struct spi_transfer *t)
+>> +{
+>> +	/* Make the dma buffer to read by cpu */
+>> +	dma_sync_single_for_cpu(tqspi->dev, tqspi->tx_dma_phys,
+>> +				tqspi->dma_buf_size, DMA_TO_DEVICE);
+>> +
+>> +	if (tqspi->is_packed) {
+>> +		unsigned int len = tqspi->curr_dma_words *
+>> +				   tqspi->bytes_per_word;
+>> +
+>> +		memcpy(tqspi->tx_dma_buf, t->tx_buf + tqspi->cur_pos, len);
+>> +		tqspi->cur_tx_pos += tqspi->curr_dma_words *
+>> +				     tqspi->bytes_per_word;
+> It seems weird that this device needs us to do a memcpy() to do DMA,
+> most devices are able to DMA directly from the buffers provided by the
+> SPI API (and let the SPI core sync things).  What is going on here?
 
-These UAPI header files are used by multiple source files hence I wanted to=
- get=20
-these reviewed separately. However if this is getting in the way, in the ne=
-xt=20
-version of the patch series I would look into arranging the files different=
-ly.
+For transfers of size more than max DMA transfer limit, data transfer 
+happens in multiple iterations with each iteration transferring up to 
+max DMA transfer limit.
 
-You can browse the changes here as well--
-https://github.com/Xilinx/linux-xoclv2/tree/xrtv2-A
+So using separate dma buffers and on every iteration copying them to SPI 
+core provided tx/rx buffers.
 
-Thanks,
--Sonal
+Transferring data logic in this driver is similar as Tegra SPI driver 
+except register changes and some QSPI specific register programming.
 
-> Thanks,
-> Moritz
+>
+>> +	tegra_qspi_writel(tqspi, status, QSPI_FIFO_STATUS);
+>> +	while ((status & QSPI_FIFO_EMPTY) != QSPI_FIFO_EMPTY) {
+>> +		status = tegra_qspi_readl(tqspi, QSPI_FIFO_STATUS);
+>> +		if (time_after(jiffies, timeout)) {
+>> +			dev_err(tqspi->dev,
+>> +				"timeout waiting for fifo flush\n");
+>> +			return -EIO;
+>> +		}
+>> +
+>> +		udelay(1);
+>> +	}
+> It'd be good to put a cpu_relax() in the busy loop.
+Will update in v2.
+>
+>> +static u32 tegra_qspi_setup_transfer_one(struct spi_device *spi,
+>> +					 struct spi_transfer *t,
+>> +					 bool is_first_of_msg)
+>> +{
+>> +		/* toggle cs to active state */
+>> +		if (spi->mode & SPI_CS_HIGH)
+>> +			command1 |= QSPI_CS_SW_VAL;
+>> +		else
+>> +			command1 &= ~QSPI_CS_SW_VAL;
+>> +		tegra_qspi_writel(tqspi, command1, QSPI_COMMAND1);
+> This is worrying, the client device might be confused if /CS is doing
+> things outside of the standard handling.
+
+Do you mean to honor spi_transfer cs_change flag?
+
+Tegra QSPI is master and is used only with QSPI flash devices. Looking 
+at SPI NOR driver, I see QSPI Flash commands are executed with one flash 
+command per spi_message and I dont see cs_change flag usage w.r.t QSPI 
+flash. So, using SW based CS control for QSPI.
+
+Please correct me if I miss something to understand here.
+
+Also Tegra186 and later QSPI controller supports combined sequence mode 
+where command, address, data phases can be combined in a single GO.
+
+This saves some cycles in transfer and for this we need to use SW based 
+CS control only.
+
+
+>> +	of_property_read_u32(slave_np, "nvidia,tx-clk-tap-delay",
+>> +			     &cdata->tx_clk_tap_delay);
+>> +	of_property_read_u32(slave_np, "nvidia,rx-clk-tap-delay",
+>> +			     &cdata->rx_clk_tap_delay);
+> These properties are not mentioned in the binding document.
+Thanks Mark. Missed them. Will add in v2.
+>
+>> +static int tegra_qspi_setup(struct spi_device *spi)
+>> +{
+>> +	if (cdata && cdata->tx_clk_tap_delay)
+>> +		tx_tap = cdata->tx_clk_tap_delay;
+>> +	if (cdata && cdata->rx_clk_tap_delay)
+>> +		rx_tap = cdata->rx_clk_tap_delay;
+>> +	tqspi->def_command2_reg = QSPI_TX_TAP_DELAY(tx_tap) |
+>> +				  QSPI_RX_TAP_DELAY(rx_tap);
+>> +	tegra_qspi_writel(tqspi, tqspi->def_command2_reg, QSPI_COMMAND2);
+> The setup for one device shouldn't be able to affect the operation of
+> another, already running, device so either these need to be configured
+> as part of the controller probe or these configurations need to be
+> deferred until we're actually doing a transfer.
+We will only have 1 device on QSPI as we only support single chip select.
+>
+>> +	/*
+>> +	 * Tegra QSPI hardware support dummy bytes transfer based on the
+>> +	 * programmed dummy clock cyles in QSPI register.
+>> +	 * So, get the total dummy bytes from the dummy bytes transfer in
+>> +	 * spi_messages and convert to dummy clock cyles.
+>> +	 */
+>> +	list_for_each_entry(xfer, &msg->transfers, transfer_list) {
+>> +		if (ntransfers == DUMMY_BYTES_XFER &&
+>> +		    !(list_is_last(&xfer->transfer_list, &msg->transfers)))
+>> +			dummy_cycles = xfer->len * 8 / xfer->tx_nbits;
+>> +		ntransfers++;
+>> +	}
+> This seems weird, there's some hard coded assumption about particular
+> patterns that the client device is going to send.  What's going on here?
+> I don't really understand what this is trying to do.
+
+QSPI flash needs dummy cycles for data read operation which is actually 
+the initial read latency and no. of dummy cycles required are vendor 
+specific.
+
+SPI NOR driver gets required dummy cycles based on mode clock cycles and 
+wait state clock cycles.
+
+During read operations, spi_nor_spimem_read_data() converts dummy cycles 
+to number of dummy bytes.
+
+Tegra QSPI controller supports dummy clock cycles register and when 
+programmed QSPI controller sends dummy bytes rather than SW handling 
+extra cycles for transferring dummy bytes.
+
+Above equation converts this dummy bytes back to dummy clock cycles to 
+program into QSPI register and avoid manual SW transfer of dummy bytes.
+
+>
+>> +static irqreturn_t tegra_qspi_isr(int irq, void *context_data)
+>> +{
+>> +	struct tegra_qspi_data *tqspi = context_data;
+>> +
+>> +	tqspi->status_reg = tegra_qspi_readl(tqspi, QSPI_FIFO_STATUS);
+>> +	if (tqspi->cur_direction & DATA_DIR_TX)
+>> +		tqspi->tx_status = tqspi->status_reg &
+>> +				   (QSPI_TX_FIFO_UNF | QSPI_TX_FIFO_OVF);
+>> +
+>> +	if (tqspi->cur_direction & DATA_DIR_RX)
+>> +		tqspi->rx_status = tqspi->status_reg &
+>> +				   (QSPI_RX_FIFO_OVF | QSPI_RX_FIFO_UNF);
+>> +	tegra_qspi_mask_clear_irq(tqspi);
+>> +
+>> +	return IRQ_WAKE_THREAD;
+>> +}
+> It's a bit unclear to me the value we gain from having this handler - if
+> we don't specify a handler genirq will already mask the interrupt until
+> we get to the thread anyway and we could just read the status in the
+> threaded handler.  OTOH it doesn't do any harm, just struck me as a bit
+> odd.
+
+I started QSPI driver by taking SPI driver as data transfer and 
+interrupt handling are similar.
+
+So kept this handler for clearing status registers and masking 
+interrupts as I did not see anything wrong with this.
+
+>
+>> +	master = spi_alloc_master(&pdev->dev, sizeof(*tqspi));
+>> +	if (!master) {
+>> +		dev_err(&pdev->dev, "master allocation failed\n");
+>> +		return -ENOMEM;
+>> +	}
+> Please switch to using the devm_ version of the API to allocate
+> controller, it makes things much more robust.
+Will update in v2
+>
+>> +	if (of_property_read_u32(pdev->dev.of_node, "spi-max-frequency",
+>> +				 &master->max_speed_hz))
+>> +		master->max_speed_hz = QSPI_MAX_SPEED;
+> The core will do this for you.
+
+Will remove this in v2.
+
+Thanks
+
+Sowjanya
+
