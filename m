@@ -2,251 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DCFB82CC4A7
-	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 19:12:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B39362CC4CF
+	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 19:15:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389342AbgLBSKB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Dec 2020 13:10:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48816 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389249AbgLBSKB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Dec 2020 13:10:01 -0500
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8886C061A56
-        for <devicetree@vger.kernel.org>; Wed,  2 Dec 2020 10:08:00 -0800 (PST)
-Received: by mail-wr1-x42c.google.com with SMTP id p8so5051375wrx.5
-        for <devicetree@vger.kernel.org>; Wed, 02 Dec 2020 10:08:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=KNwBh5Oi//J2Be7LIJjV0b/+HNUbYnjVRXKUnYFcgws=;
-        b=M23B4Idvf4R9I2mTXqkuRiffExFxPJzSnsO0ztMVTMwuIgumwn6JLkI9Bz6PRa6e86
-         QSyVdAOME43qSqmlEl3PQ7LQrbz1h/fJujoTvAWCdYgRE/lpcg+7Z6eJ7WipseTZy0Bd
-         gnNiD33grSx6CG2XxpKH12aLwE/bmjXCTimXwc4mlHgwflfpHoN29NdoAyaCO3T6gCtS
-         nCRpncL6fnO3PAvFZhLJS9KEnPmzaOIkjeJ/oFUe1DKWXDjkj6Uoe7dbVtlWmsA/1Et2
-         FwRFzfF+A5lnLQGyjD4NAD31GCPrNdSOApShhCcZIVy82v2FOzJbBUsy6L74KbQlh0t2
-         PJEQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=KNwBh5Oi//J2Be7LIJjV0b/+HNUbYnjVRXKUnYFcgws=;
-        b=JMFy4pjIn4IsJC7Xo3Lpghvm59ZLmbnpI3Nm/7xeaDEsOV6M7PzzDxAs/ZQFMdEMNF
-         j2Y88CH+BtlZH+Y/Yf3Uu0jA4crrbqKBD0XSyvs9KqnuzMJuoYLoRTmc9VS2j1sqS/M7
-         kIkfIFn5nBExNkxTHcyTYDGr3pc6tixkyZjIuCK/7d1MFuANAe4guGIOwJMWEifgzSef
-         b4rpfwd8r3mOtVzjRQ9GbMFP/uHDzQa0lI20EQ82DsUH9wrL+gUdDPoKcYIN8BcIQMPr
-         XoWlpv+/wMpw/q0/4B2kEgLBcrsrEE6p6l3ZhR6uK6WwWN0OlayDfV5kRrl1ChudurPI
-         fCZQ==
-X-Gm-Message-State: AOAM5307W4oNHQVF+YJoO4KUZtq0ycy2pm7EJdf394lcplzRuR51R3eU
-        W5vpBFeQxp7Pt9/Z4uHKJxishQ==
-X-Google-Smtp-Source: ABdhPJxW7ACqll1VfNJl6wS8dgps8ICPjpYYUy8BXaGNxAPi73N8yjZTjHdceTIKtiO8Jt+l8pBAUQ==
-X-Received: by 2002:adf:916e:: with SMTP id j101mr4842869wrj.55.1606932479522;
-        Wed, 02 Dec 2020 10:07:59 -0800 (PST)
-Received: from srini-hackbox.lan (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.gmail.com with ESMTPSA id a18sm3004404wrr.20.2020.12.02.10.07.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Dec 2020 10:07:58 -0800 (PST)
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-To:     bjorn.andersson@linaro.org
-Cc:     linux-arm-msm@vger.kernel.org, agross@kernel.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Subject: [PATCH v2 6/6] arm64: dts: qcom: qrb5165-rb5: Add Audio support
-Date:   Wed,  2 Dec 2020 18:07:41 +0000
-Message-Id: <20201202180741.16386-7-srinivas.kandagatla@linaro.org>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20201202180741.16386-1-srinivas.kandagatla@linaro.org>
-References: <20201202180741.16386-1-srinivas.kandagatla@linaro.org>
+        id S2389310AbgLBSOU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Dec 2020 13:14:20 -0500
+Received: from mx08-00178001.pphosted.com ([91.207.212.93]:6922 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S2389271AbgLBSOT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Dec 2020 13:14:19 -0500
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 0B2I6tYO028933;
+        Wed, 2 Dec 2020 19:13:33 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=STMicroelectronics;
+ bh=A5jf0Pxg1tcGN9l5WHbXjJkLKz897+02QJ8mF0l9cbA=;
+ b=WsT0M/fKzgDqZfNjQD2S22KAjBjdmpc9YcX63kacaaHMn2RAXPamVBWZmQUQCh+F+0/5
+ sYUATa7WG5L6vOwd2tLkCzKLtBAAd5Sp6/zurKsUlvA6MYFK+wCrlpAOWn/BqdEz1vTC
+ 6vwQNWcBuGvL4s2bgT+Qyy6nPb/oT8TDl2A5LdBodBWbeVALONZWhqSCuoLT7H5pOdPU
+ WLVpcgD08UU3RzNzac2WntGaLnzltN/vATls8VCfx9O48dE905600dp7YJPEckVBwKe+
+ kJk9H7jeDN86bpLOSEngbEc1dQYnTIQ3ckp7oxS2J7xnI/yPfyllO9GU/SVXogbL86Pv ig== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 355w3cd33f-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 02 Dec 2020 19:13:33 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id DBAC810002A;
+        Wed,  2 Dec 2020 19:13:32 +0100 (CET)
+Received: from Webmail-eu.st.com (sfhdag3node1.st.com [10.75.127.7])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id BD4A023FCD5;
+        Wed,  2 Dec 2020 19:13:32 +0100 (CET)
+Received: from lmecxl0889.lme.st.com (10.75.127.49) by SFHDAG3NODE1.st.com
+ (10.75.127.7) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 2 Dec
+ 2020 19:13:32 +0100
+Subject: Re: [PATCH v3 07/15] remoteproc: Add new detach() remoteproc
+ operation
+To:     Mathieu Poirier <mathieu.poirier@linaro.org>,
+        "ohad@wizery.com" <ohad@wizery.com>,
+        "bjorn.andersson@linaro.org" <bjorn.andersson@linaro.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>
+CC:     "linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20201126210642.897302-1-mathieu.poirier@linaro.org>
+ <20201126210642.897302-8-mathieu.poirier@linaro.org>
+From:   Arnaud POULIQUEN <arnaud.pouliquen@st.com>
+Message-ID: <b67a7501-c54c-34c9-1047-e599d5ef9b2f@st.com>
+Date:   Wed, 2 Dec 2020 19:13:30 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20201126210642.897302-8-mathieu.poirier@linaro.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.75.127.49]
+X-ClientProxiedBy: SFHDAG3NODE2.st.com (10.75.127.8) To SFHDAG3NODE1.st.com
+ (10.75.127.7)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.312,18.0.737
+ definitions=2020-12-02_10:2020-11-30,2020-12-02 signatures=0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch add support for two WSA881X smart speakers attached via Soundwire
-and a DMIC0 on the main board.
+Hi Mathieu
 
-Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Tested-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- arch/arm64/boot/dts/qcom/qrb5165-rb5.dts | 121 +++++++++++++++++++++++
- arch/arm64/boot/dts/qcom/sm8250.dtsi     |   3 +
- 2 files changed, 124 insertions(+)
+On 11/26/20 10:06 PM, Mathieu Poirier wrote:
+> Add an new detach() operation in order to support scenarios where
+> the remoteproc core is going away but the remote processor is
+> kept operating.  This could be the case when the system is
+> rebooted or when the platform driver is removed.
+> 
+> Signed-off-by: Mathieu Poirier <mathieu.poirier@linaro.org>
+> Reviewed-by: Peng Fan <peng.fan@nxp.com>
 
-diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-index ce22d4fa383e..475542afecea 100644
---- a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-+++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-@@ -7,6 +7,8 @@
- 
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
-+#include <dt-bindings/sound/qcom,q6afe.h>
-+#include <dt-bindings/sound/qcom,q6asm.h>
- #include "sm8250.dtsi"
- #include "pm8150.dtsi"
- #include "pm8150b.dtsi"
-@@ -120,6 +122,11 @@
- 	};
- };
- 
-+&adsp {
-+	status = "okay";
-+	firmware-name = "qcom/sm8250/adsp.mbn";
-+};
-+
- &apps_rsc {
- 	pm8009-rpmh-regulators {
- 		compatible = "qcom,pm8009-rpmh-regulators";
-@@ -483,6 +490,35 @@
- 	status = "okay";
- };
- 
-+&q6afedai {
-+	qi2s@16 {
-+		reg = <16>;
-+		qcom,sd-lines = <0 1 2 3>;
-+	};
-+};
-+
-+/* TERT I2S Uses 1 I2S SD Lines for audio on LT9611 HDMI Bridge */
-+&q6afedai {
-+	qi2s@20 {
-+		reg = <20>;
-+		qcom,sd-lines = <0>;
-+	};
-+};
-+
-+&q6asmdai {
-+	dai@0 {
-+		reg = <0>;
-+	};
-+
-+	dai@1 {
-+		reg = <1>;
-+	};
-+
-+	dai@2 {
-+		reg = <2>;
-+	};
-+};
-+
- &sdhc_2 {
- 	status = "okay";
- 	pinctrl-names = "default";
-@@ -497,6 +533,84 @@
- 	no-emmc;
- };
- 
-+&swr0 {
-+	left_spkr: wsa8810-left{
-+		compatible = "sdw10217211000";
-+		reg = <0 3>;
-+		powerdown-gpios = <&tlmm 130 GPIO_ACTIVE_HIGH>;
-+		#thermal-sensor-cells = <0>;
-+		sound-name-prefix = "SpkrLeft";
-+		#sound-dai-cells = <0>;
-+	};
-+
-+	right_spkr: wsa8810-right{
-+		compatible = "sdw10217211000";
-+		reg = <0 4>;
-+		powerdown-gpios = <&tlmm 130 GPIO_ACTIVE_HIGH>;
-+		#thermal-sensor-cells = <0>;
-+		sound-name-prefix = "SpkrRight";
-+		#sound-dai-cells = <0>;
-+	};
-+};
-+
-+&sound {
-+	compatible = "qcom,qrb5165-rb5-sndcard";
-+	pinctrl-0 = <&tert_mi2s_active>;
-+	pinctrl-names = "default";
-+	model = "Qualcomm-RB5-WSA8815-Speakers-DMIC0";
-+	audio-routing =
-+		"SpkrLeft IN", "WSA_SPK1 OUT",
-+		"SpkrRight IN", "WSA_SPK2 OUT",
-+		"VA DMIC0", "vdd-micb",
-+                "VA DMIC1", "vdd-micb",
-+		"MM_DL1",  "MultiMedia1 Playback",
-+		"MultiMedia3 Capture", "MM_UL3";
-+
-+	mm1-dai-link {
-+		link-name = "MultiMedia1";
-+		cpu {
-+			sound-dai = <&q6asmdai  MSM_FRONTEND_DAI_MULTIMEDIA1>;
-+		};
-+	};
-+
-+	mm3-dai-link {
-+		link-name = "MultiMedia3";
-+		cpu {
-+			sound-dai = <&q6asmdai  MSM_FRONTEND_DAI_MULTIMEDIA3>;
-+		};
-+	};
-+
-+	dma-dai-link {
-+		link-name = "WSA Playback";
-+		cpu {
-+			sound-dai = <&q6afedai WSA_CODEC_DMA_RX_0>;
-+		};
-+
-+		platform {
-+			sound-dai = <&q6routing>;
-+		};
-+
-+		codec {
-+			sound-dai = <&left_spkr>, <&right_spkr>, <&swr0 0>, <&wsamacro 0>;
-+		};
-+	};
-+
-+	va-dai-link {
-+		link-name = "VA Capture";
-+		cpu {
-+			sound-dai = <&q6afedai VA_CODEC_DMA_TX_0>;
-+		};
-+
-+		platform {
-+			sound-dai = <&q6routing>;
-+		};
-+
-+		codec {
-+			sound-dai = <&vamacro 0>;
-+		};
-+	};
-+};
-+
- /* CAN */
- &spi0 {
- 	status = "okay";
-@@ -792,3 +906,10 @@
- 	vdda-phy-supply = <&vreg_l9a_1p2>;
- 	vdda-pll-supply = <&vreg_l18a_0p92>;
- };
-+
-+&vamacro {
-+	pinctrl-0 = <&dmic01_active>;
-+	pinctrl-names = "default";
-+	vdd-micb-supply = <&vreg_s4a_1p8>;
-+	qcom,dmic-sample-rate = <600000>;
-+};
-diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-index 51cffdae631c..336a4efab0b4 100644
---- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-@@ -1561,6 +1561,9 @@
- 			};
- 		};
- 
-+		sound: sound {
-+		};
-+
- 		usb_1_hsphy: phy@88e3000 {
- 			compatible = "qcom,sm8250-usb-hs-phy",
- 				     "qcom,usb-snps-hs-7nm-phy";
--- 
-2.21.0
+Reviewed-by: Arnaud Pouliquen <arnaud.pouliquen@st.com>
 
+Thanks,
+Arnaud
+> ---
+>  include/linux/remoteproc.h | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/include/linux/remoteproc.h b/include/linux/remoteproc.h
+> index 9be112b5c09d..da15b77583d3 100644
+> --- a/include/linux/remoteproc.h
+> +++ b/include/linux/remoteproc.h
+> @@ -361,6 +361,7 @@ enum rsc_handling_status {
+>   * @start:	power on the device and boot it
+>   * @stop:	power off the device
+>   * @attach:	attach to a device that his already powered up
+> + * @detach:	detach from a device, leaving it powered up
+>   * @kick:	kick a virtqueue (virtqueue id given as a parameter)
+>   * @da_to_va:	optional platform hook to perform address translations
+>   * @parse_fw:	parse firmware to extract information (e.g. resource table)
+> @@ -382,6 +383,7 @@ struct rproc_ops {
+>  	int (*start)(struct rproc *rproc);
+>  	int (*stop)(struct rproc *rproc);
+>  	int (*attach)(struct rproc *rproc);
+> +	int (*detach)(struct rproc *rproc);
+>  	void (*kick)(struct rproc *rproc, int vqid);
+>  	void * (*da_to_va)(struct rproc *rproc, u64 da, size_t len);
+>  	int (*parse_fw)(struct rproc *rproc, const struct firmware *fw);
+> 
