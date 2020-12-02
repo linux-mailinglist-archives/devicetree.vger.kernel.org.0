@@ -2,200 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E2BD42CB7BE
-	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 09:52:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F3FE2CB817
+	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 10:07:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387914AbgLBItz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Dec 2020 03:49:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46516 "EHLO
+        id S2387831AbgLBJGX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Dec 2020 04:06:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49060 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387949AbgLBIty (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Dec 2020 03:49:54 -0500
-Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com [IPv6:2a00:1450:4864:20::341])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D1D7C0613D6
-        for <devicetree@vger.kernel.org>; Wed,  2 Dec 2020 00:49:14 -0800 (PST)
-Received: by mail-wm1-x341.google.com with SMTP id c198so4869273wmd.0
-        for <devicetree@vger.kernel.org>; Wed, 02 Dec 2020 00:49:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=j19GKyry5tuRdKFRzYIexOe7SbGmMibu4GAAw/XxItM=;
-        b=a0ZVGGxMZqbRLcIgLri87RcR/pZvLWtvFcJnaCvnJvn4d19HI7fgDub1UDn9FJUPyD
-         dQj2V4PAMLsUHyJHQ3xX8zZYCzi6sBz6g2ROup1SUGrBkj8Bd78Ux8RN8RFZSuXlaYPk
-         NWQRXjTHRHseUcBgbWsgOta0Xmg9upYVrsEnelJrIelEIKg31ktfNWZwnNUzQF2djsNh
-         BQiq94h0h32XeXSmLc/vpYoeTZaVgqp3hC3/16YH+sIF48aj4XKA/2SgCn1oaCXfcmTv
-         pbA6ffy0Zl1W/xXSwkCA2WwXgdSMPhK+04kQyXXbS8NxpKwiXpplpgMI512OH1V5ZKcU
-         s1xw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=j19GKyry5tuRdKFRzYIexOe7SbGmMibu4GAAw/XxItM=;
-        b=BbdrJEi/oNe2AiCm9WTpbe2BgXB0VA/PtsUnoZBwxQam5zHtB6ZacVTyQWlSYEJc4S
-         1un156hbfCmAhxvk0zYnid5b0Rsua2rILnDWSw+tzV73B+aaYPDwpoDbSnXA0LD3YhGe
-         ByExHn5TOexWXeQBnz6zUhJGtZoFGstegBkW+6G3tvpj1Hswd0IGjt8OWadyTkmL8/NG
-         k0J29N2SLdLiF/Nh39z8uRKAx65n5kKssrPJP7xafAR+KGaCDEFKMosel1FfHXu1XW2Q
-         hWbwSf8gexJFohmaU9PxjEmF7WxDFrqylf6EV6F5HfCwFrtnAJJgPW/oJSHPEB3Ze/sW
-         vf/g==
-X-Gm-Message-State: AOAM5301IS6YkURskRNHVVaKLYM/nqgOBqTmO572RVxJpzUNVyvsCzI2
-        j4t3qgih1GmimZO4BYIlM6vCNA==
-X-Google-Smtp-Source: ABdhPJw6v+SMgDlNtdz/dKvA09A5uJTYLhfUFoDXtNTOstIitHBjaxH2tdopoJgg80NCeRT3jpEtTA==
-X-Received: by 2002:a1c:e10b:: with SMTP id y11mr1954151wmg.65.1606898952395;
-        Wed, 02 Dec 2020 00:49:12 -0800 (PST)
-Received: from dell ([91.110.221.235])
-        by smtp.gmail.com with ESMTPSA id b14sm1194792wrx.35.2020.12.02.00.49.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Dec 2020 00:49:11 -0800 (PST)
-Date:   Wed, 2 Dec 2020 08:49:09 +0000
-From:   Lee Jones <lee.jones@linaro.org>
-To:     ChiYuan Huang <u0084500@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, cy_huang <cy_huang@richtek.com>,
-        lkml <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v1 1/2] mfd: rt4831: Adds support for Richtek RT4831 MFD
- core
-Message-ID: <20201202084909.GI4801@dell>
-References: <1604286803-20698-1-git-send-email-u0084500@gmail.com>
- <20201125164207.GD4716@dell>
- <CADiBU3_bgx-K_zxzKCSL8w=meZu3cA3uWoC-3QVsBAuNJW1uiw@mail.gmail.com>
+        with ESMTP id S2387718AbgLBJGV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Dec 2020 04:06:21 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3DAB6C0613CF
+        for <devicetree@vger.kernel.org>; Wed,  2 Dec 2020 01:05:41 -0800 (PST)
+Received: from [2a0a:edc0:0:1101:1d::39] (helo=dude03.red.stw.pengutronix.de)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mtr@pengutronix.de>)
+        id 1kkO4u-0002XE-Ju; Wed, 02 Dec 2020 10:05:37 +0100
+Received: from mtr by dude03.red.stw.pengutronix.de with local (Exim 4.92)
+        (envelope-from <mtr@dude03.red.stw.pengutronix.de>)
+        id 1kkO4t-0013Ui-MB; Wed, 02 Dec 2020 10:05:35 +0100
+From:   Michael Tretter <m.tretter@pengutronix.de>
+To:     devicetree@vger.kernel.org, michal.simek@xilinx.com
+Cc:     robh+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
+        kernel@pengutronix.de, Michael Tretter <m.tretter@pengutronix.de>
+Date:   Wed,  2 Dec 2020 10:05:22 +0100
+Message-Id: <20201202090522.251607-1-m.tretter@pengutronix.de>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CADiBU3_bgx-K_zxzKCSL8w=meZu3cA3uWoC-3QVsBAuNJW1uiw@mail.gmail.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:1101:1d::39
+X-SA-Exim-Mail-From: mtr@pengutronix.de
+X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on
+        metis.ext.pengutronix.de
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.5 required=4.0 tests=AWL,BAYES_00,RDNS_NONE,
+        SPF_HELO_NONE,SPF_SOFTFAIL,SUBJ_OBFU_PUNCT_FEW,SUBJ_OBFU_PUNCT_MANY,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.2
+Subject: [PATCH] dt-bindings: xlnx,vcu-settings: fix dt_binding_check warnings
+X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
+X-SA-Exim-Scanned: Yes (on metis.ext.pengutronix.de)
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 02 Dec 2020, ChiYuan Huang wrote:
+When running make dt_binding_check, the xlnx,vcu-settings binding
+triggers the following two warnings:
 
-> Lee Jones <lee.jones@linaro.org> 於 2020年11月26日 週四 上午12:42寫道：
-> >
-> > On Mon, 02 Nov 2020, cy_huang wrote:
-> >
-> > > From: ChiYuan Huang <cy_huang@richtek.com>
-> > >
-> > > Adds support Richtek RT4831 MFD core.
-> > > RT4831 includes backlight and DSV part that can provode display panel
-> > > for postive and negative voltage and WLED driving.
-> > >
-> > > Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
-> > > ---
-> > >  drivers/mfd/Kconfig       |  11 +++++
-> > >  drivers/mfd/Makefile      |   1 +
-> > >  drivers/mfd/rt4831-core.c | 119 ++++++++++++++++++++++++++++++++++++++++++++++
-> > >  3 files changed, 131 insertions(+)
-> > >  create mode 100644 drivers/mfd/rt4831-core.c
-> > >
-> > > diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
-> > > index 8b99a13..a22f002 100644
-> > > --- a/drivers/mfd/Kconfig
-> > > +++ b/drivers/mfd/Kconfig
-> > > @@ -1088,6 +1088,17 @@ config MFD_RDC321X
-> > >         southbridge which provides access to GPIOs and Watchdog using the
-> > >         southbridge PCI device configuration space.
-> > >
-> > > +config MFD_RT4831
-> > > +     tristate "Richtek RT4831 WLED and DSV IC"
-> >
-> > Please expand on WLED and DSV.
-> >
-> > This is documentation and should leave nothing to the imagination.
-> >
-> Rewrite to "Richtek RT4831 four channel WLED and display bias
-> voltage", is it okay?
+	'additionalProperties' is a required property
 
-I had to look-up WLED, but I guess it's okay.
+	example-0: vcu@a0041000:reg:0: [0, 2684620800, 0, 4096] is too long
 
-"Display Bias Voltage"
+Fix the binding and make the checker happy.
 
-> > > +     depends on I2C
-> > > +     select MFD_CORE
-> > > +     select REGMAP_I2C
-> > > +     help
-> > > +       This enables support for the Richtek RT4831.
-> > > +       RT4831 includes WLED driver and DisplayBias voltage(+/-) regulator.
-> > > +       It's common used to provide the display power and to drive the
-> > > +       display backlight WLED.
-> >
-> > Please don't line-wrap unnecessarily.
-> >
-> > Please re-work the last sentence, as it doesn't quite make sense.
-> >
-> Rewrite the whole sentence like as below
-> "This enables support for the Richtek RT4831. It includes 4 channel
-> WLED driving and Display Bias voltage output. It's commonly used to
-> provide the LCD power and to drive LCD backlight."
+Signed-off-by: Michael Tretter <m.tretter@pengutronix.de>
+---
 
-"Display Bias Voltage"
+Hi,
 
-"provide power to the LCD display"
+The xlnx,vcu-settings binding was reviewed [0] before the bot started to
+run automated tests on the device tree bindings, but now produces some
+warnings. The original patch that introduces the binding is still in
+Michal's tree and I am not entirely sure how to handle it, but here is a
+patch.
 
-[...]
+Michael
 
-> > > +static int rt4831_probe(struct i2c_client *client)
-> > > +{
-> > > +     struct gpio_desc *enable;
-> > > +     struct regmap *regmap;
-> > > +     unsigned int val;
-> > > +     int ret;
-> > > +
-> > > +     enable = devm_gpiod_get_optional(&client->dev, "enable", GPIOD_OUT_HIGH);
-> > > +     if (IS_ERR(enable)) {
-> > > +             dev_err(&client->dev, "Failed to get chip enable gpio\n");
-> >
-> > "Failed to get 'enable' GPIO chip"
-> >
-> May I remove "chip" word? It seems redundant.
-> "Failed to get 'enable' GPIO" is better.
-> Because 'enable' is a physical input pin for RT4831.
+[0] https://lore.kernel.org/linux-arm-kernel/20200429213659.GA9051@bogus/
+---
+ .../bindings/soc/xilinx/xlnx,vcu-settings.yaml    | 15 ++++++++++++---
+ 1 file changed, 12 insertions(+), 3 deletions(-)
 
-Sounds good.
-
-[...]
-
-> > > +static int rt4831_remove(struct i2c_client *client)
-> > > +{
-> > > +     struct regmap *regmap = dev_get_regmap(&client->dev, NULL);
-> > > +
-> > > +     /* Make sure all off before module removal */
-> >
-> > "Disable all <thing your disabling> are disabled before ..."
-
-This should have said:
-
-  "Ensure all <thing your disabling> are disabled before ..."
-
-> May I rewrite it to "Configure WLED driving and DSV output all to be
-> disabled before MFD module removal"?
-
-You don't need to mention MFD or modules here since we know how the
-Device Driver model works and what .remove() does.
-
-What about:
-
-  "Disable WLED and DSV outputs"
-
-> > > +     return regmap_update_bits(regmap, RT4831_REG_ENABLE, RT4831_RESET_MASK, RT4831_RESET_MASK);
-> > > +}
-> > > +
-> > > +static void rt4831_shutdown(struct i2c_client *client)
-> > > +{
-> > > +     struct regmap *regmap = dev_get_regmap(&client->dev, NULL);
-> > > +
-> > > +     /* Make sure all off before machine shutdown */
-> >
-> > As above.
-> >
-> like as above ".... before 'machine shutdown'
-
-  "Disable WLED and DSV outputs"
-
+diff --git a/Documentation/devicetree/bindings/soc/xilinx/xlnx,vcu-settings.yaml b/Documentation/devicetree/bindings/soc/xilinx/xlnx,vcu-settings.yaml
+index 378d0ced43c8..cb245f400287 100644
+--- a/Documentation/devicetree/bindings/soc/xilinx/xlnx,vcu-settings.yaml
++++ b/Documentation/devicetree/bindings/soc/xilinx/xlnx,vcu-settings.yaml
+@@ -26,9 +26,18 @@ required:
+   - compatible
+   - reg
+ 
++additionalProperties: false
++
+ examples:
+   - |
+-    xlnx_vcu: vcu@a0041000 {
+-          compatible = "xlnx,vcu-settings", "syscon";
+-          reg = <0x0 0xa0041000 0x0 0x1000>;
++    fpga {
++        #address-cells = <2>;
++        #size-cells = <2>;
++
++        xlnx_vcu: vcu@a0041000 {
++            compatible = "xlnx,vcu-settings", "syscon";
++            reg = <0x0 0xa0041000 0x0 0x1000>;
++        };
+     };
++
++...
 -- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+2.20.1
+
