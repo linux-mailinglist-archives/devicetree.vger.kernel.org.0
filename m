@@ -2,178 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 467FE2CBE71
-	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 14:37:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 813B62CBE7E
+	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 14:40:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728012AbgLBNf4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Dec 2020 08:35:56 -0500
-Received: from mga07.intel.com ([134.134.136.100]:57152 "EHLO mga07.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726142AbgLBNfz (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 2 Dec 2020 08:35:55 -0500
-IronPort-SDR: FGjKr/T2llrCp7icYRxZU+ncfbhFRG+cx62lkw2TlKDtvfx0D3YLgHK3scgxtfk8PR4f5pFQR2
- h36EnFVXLYhw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9822"; a="237139830"
-X-IronPort-AV: E=Sophos;i="5.78,386,1599548400"; 
-   d="scan'208";a="237139830"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
-  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Dec 2020 05:35:14 -0800
-IronPort-SDR: 1B/SjGSXmQ/51T99gEuUdjHc3hS13q4zc2A1YmS8mPXtTMuDGX/5si/zMbCL0lOzSHDZsBOtai
- oVJNrZcV0iRA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.78,386,1599548400"; 
-   d="scan'208";a="315347349"
-Received: from ahunter-desktop.fi.intel.com (HELO [10.237.72.94]) ([10.237.72.94])
-  by fmsmga008.fm.intel.com with ESMTP; 02 Dec 2020 05:35:10 -0800
-Subject: Re: [PATCH 4/8] mmc: cqhci: add cqhci_host_ops::program_key
-To:     Eric Biggers <ebiggers@kernel.org>, linux-mmc@vger.kernel.org
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-fscrypt@vger.kernel.org, Satya Tangirala <satyat@google.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Ritesh Harjani <riteshh@codeaurora.org>,
-        Asutosh Das <asutoshd@codeaurora.org>,
+        id S1729848AbgLBNjF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Dec 2020 08:39:05 -0500
+Received: from mailgw01.mediatek.com ([210.61.82.183]:44891 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1727924AbgLBNjF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Dec 2020 08:39:05 -0500
+X-UUID: 9a6bf7d6662d4ddb8bf75a2a1785f47c-20201202
+X-UUID: 9a6bf7d6662d4ddb8bf75a2a1785f47c-20201202
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
+        (envelope-from <jianjun.wang@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1497272996; Wed, 02 Dec 2020 21:38:21 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ mtkmbs08n1.mediatek.inc (172.21.101.55) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Wed, 2 Dec 2020 21:38:17 +0800
+Received: from localhost.localdomain (10.17.3.153) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 2 Dec 2020 21:38:16 +0800
+From:   Jianjun Wang <jianjun.wang@mediatek.com>
+To:     Bjorn Helgaas <bhelgaas@google.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Neeraj Soni <neersoni@codeaurora.org>,
-        Barani Muthukumaran <bmuthuku@codeaurora.org>,
-        Peng Zhou <peng.zhou@mediatek.com>,
-        Stanley Chu <stanley.chu@mediatek.com>,
-        Konrad Dybcio <konradybcio@gmail.com>
-References: <20201112194011.103774-1-ebiggers@kernel.org>
- <20201112194011.103774-5-ebiggers@kernel.org>
-From:   Adrian Hunter <adrian.hunter@intel.com>
-Organization: Intel Finland Oy, Registered Address: PL 281, 00181 Helsinki,
- Business Identity Code: 0357606 - 4, Domiciled in Helsinki
-Message-ID: <e2fce27c-b36d-4585-30d0-c7f563f8455f@intel.com>
-Date:   Wed, 2 Dec 2020 15:34:45 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Ryder Lee <ryder.lee@mediatek.com>
+CC:     Philipp Zabel <p.zabel@pengutronix.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        <davem@davemloft.net>, <linux-pci@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Sj Huang <sj.huang@mediatek.com>,
+        Jianjun Wang <jianjun.wang@mediatek.com>,
+        <youlin.pei@mediatek.com>, <chuanjia.liu@mediatek.com>,
+        <qizhong.cheng@mediatek.com>, <sin_jieyang@mediatek.com>
+Subject: [v5,0/3] PCI: mediatek: Add new generation controller support
+Date:   Wed, 2 Dec 2020 21:38:10 +0800
+Message-ID: <20201202133813.6917-1-jianjun.wang@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-In-Reply-To: <20201112194011.103774-5-ebiggers@kernel.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/11/20 9:40 pm, Eric Biggers wrote:
-> From: Eric Biggers <ebiggers@google.com>
-> 
-> On Snapdragon SoCs, the Linux kernel isn't permitted to directly access
-> the standard CQHCI crypto configuration registers.  Instead, programming
-> and evicting keys must be done through vendor-specific SMC calls.
-> 
-> To support this hardware, add a ->program_key() method to
-> 'struct cqhci_host_ops'.  This allows overriding the standard CQHCI
-> crypto key programming / eviction procedure.
-> 
-> This is inspired by the corresponding UFS crypto support, which uses
-> these same SMC calls.  See commit 1bc726e26ef3 ("scsi: ufs: Add
-> program_key() variant op").
-> 
-> Signed-off-by: Eric Biggers <ebiggers@google.com>
+These series patches add pcie-mediatek-gen3.c and dt-bindings file to
+support new generation PCIe controller.
 
-Acked-by: Adrian Hunter <adrian.hunter@intel.com>
+Changes in v5:
+1. Remove unused macros
+2. Modify the config read/write callbacks, set the config byte field
+   in TLP header and use pci_generic_config_read32/write32
+   to access the config space
+3. Fix the settings of translation window, both MEM and IO regions
+   works properly
+4. Fix typos
 
-> ---
->  drivers/mmc/host/cqhci-crypto.c | 22 +++++++++++++---------
->  drivers/mmc/host/cqhci.h        |  4 ++++
->  2 files changed, 17 insertions(+), 9 deletions(-)
-> 
-> diff --git a/drivers/mmc/host/cqhci-crypto.c b/drivers/mmc/host/cqhci-crypto.c
-> index b14a5a15f5b52..5e3488c19f70e 100644
-> --- a/drivers/mmc/host/cqhci-crypto.c
-> +++ b/drivers/mmc/host/cqhci-crypto.c
-> @@ -30,13 +30,16 @@ cqhci_host_from_ksm(struct blk_keyslot_manager *ksm)
->  	return mmc->cqe_private;
->  }
->  
-> -static void cqhci_crypto_program_key(struct cqhci_host *cq_host,
-> -				     const union cqhci_crypto_cfg_entry *cfg,
-> -				     int slot)
-> +static int cqhci_crypto_program_key(struct cqhci_host *cq_host,
-> +				    const union cqhci_crypto_cfg_entry *cfg,
-> +				    int slot)
->  {
->  	u32 slot_offset = cq_host->crypto_cfg_register + slot * sizeof(*cfg);
->  	int i;
->  
-> +	if (cq_host->ops->program_key)
-> +		return cq_host->ops->program_key(cq_host, cfg, slot);
-> +
->  	/* Clear CFGE */
->  	cqhci_writel(cq_host, 0, slot_offset + 16 * sizeof(cfg->reg_val[0]));
->  
-> @@ -51,6 +54,7 @@ static void cqhci_crypto_program_key(struct cqhci_host *cq_host,
->  	/* Write dword 16, which includes the new value of CFGE */
->  	cqhci_writel(cq_host, le32_to_cpu(cfg->reg_val[16]),
->  		     slot_offset + 16 * sizeof(cfg->reg_val[0]));
-> +	return 0;
->  }
->  
->  static int cqhci_crypto_keyslot_program(struct blk_keyslot_manager *ksm,
-> @@ -67,6 +71,7 @@ static int cqhci_crypto_keyslot_program(struct blk_keyslot_manager *ksm,
->  	int i;
->  	int cap_idx = -1;
->  	union cqhci_crypto_cfg_entry cfg = {};
-> +	int err;
->  
->  	BUILD_BUG_ON(CQHCI_CRYPTO_KEY_SIZE_INVALID != 0);
->  	for (i = 0; i < cq_host->crypto_capabilities.num_crypto_cap; i++) {
-> @@ -93,13 +98,13 @@ static int cqhci_crypto_keyslot_program(struct blk_keyslot_manager *ksm,
->  		memcpy(cfg.crypto_key, key->raw, key->size);
->  	}
->  
-> -	cqhci_crypto_program_key(cq_host, &cfg, slot);
-> +	err = cqhci_crypto_program_key(cq_host, &cfg, slot);
->  
->  	memzero_explicit(&cfg, sizeof(cfg));
-> -	return 0;
-> +	return err;
->  }
->  
-> -static void cqhci_crypto_clear_keyslot(struct cqhci_host *cq_host, int slot)
-> +static int cqhci_crypto_clear_keyslot(struct cqhci_host *cq_host, int slot)
->  {
->  	/*
->  	 * Clear the crypto cfg on the device. Clearing CFGE
-> @@ -107,7 +112,7 @@ static void cqhci_crypto_clear_keyslot(struct cqhci_host *cq_host, int slot)
->  	 */
->  	union cqhci_crypto_cfg_entry cfg = {};
->  
-> -	cqhci_crypto_program_key(cq_host, &cfg, slot);
-> +	return cqhci_crypto_program_key(cq_host, &cfg, slot);
->  }
->  
->  static int cqhci_crypto_keyslot_evict(struct blk_keyslot_manager *ksm,
-> @@ -116,8 +121,7 @@ static int cqhci_crypto_keyslot_evict(struct blk_keyslot_manager *ksm,
->  {
->  	struct cqhci_host *cq_host = cqhci_host_from_ksm(ksm);
->  
-> -	cqhci_crypto_clear_keyslot(cq_host, slot);
-> -	return 0;
-> +	return cqhci_crypto_clear_keyslot(cq_host, slot);
->  }
->  
->  static const struct blk_ksm_ll_ops cqhci_ksm_ops = {
-> diff --git a/drivers/mmc/host/cqhci.h b/drivers/mmc/host/cqhci.h
-> index 5c18734624fea..ece997dd8bcc7 100644
-> --- a/drivers/mmc/host/cqhci.h
-> +++ b/drivers/mmc/host/cqhci.h
-> @@ -287,6 +287,10 @@ struct cqhci_host_ops {
->  				 u64 *data);
->  	void (*pre_enable)(struct mmc_host *mmc);
->  	void (*post_disable)(struct mmc_host *mmc);
-> +#ifdef CONFIG_MMC_CRYPTO
-> +	int (*program_key)(struct cqhci_host *cq_host,
-> +			   const union cqhci_crypto_cfg_entry *cfg, int slot);
-> +#endif
->  };
->  
->  static inline void cqhci_writel(struct cqhci_host *host, u32 val, int reg)
-> 
+Changes in v4:
+1. Fix PCIe power up/down flow
+2. Use "mac" and "phy" for reset names
+3. Add clock names
+4. Fix the variables type
+
+Changes in v3:
+1. Remove standard property in binding document
+2. Return error number when get_optional* API throws an error
+3. Use the bulk clk APIs
+
+Changes in v2:
+1. Fix the typo of dt-bindings patch
+2. Remove the unnecessary properties in binding document
+3. dispos the irq mappings of msi top domain when irq teardown
+
+Jianjun Wang (3):
+  dt-bindings: PCI: mediatek: Add YAML schema
+  PCI: mediatek-gen3: Add MediaTek Gen3 driver for MT8192
+  MAINTAINERS: update entry for MediaTek PCIe controller
+
+ .../bindings/pci/mediatek-pcie-gen3.yaml      |  135 +++
+ MAINTAINERS                                   |    1 +
+ drivers/pci/controller/Kconfig                |   13 +
+ drivers/pci/controller/Makefile               |    1 +
+ drivers/pci/controller/pcie-mediatek-gen3.c   | 1039 +++++++++++++++++
+ 5 files changed, 1189 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
+ create mode 100644 drivers/pci/controller/pcie-mediatek-gen3.c
+
+-- 
+2.25.1
 
