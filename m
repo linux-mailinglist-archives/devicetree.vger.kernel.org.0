@@ -2,103 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E30492CB57A
-	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 08:06:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6BBEC2CB5A3
+	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 08:18:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387597AbgLBHDc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Dec 2020 02:03:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58406 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387511AbgLBHDb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Dec 2020 02:03:31 -0500
-Received: from mail-qt1-x842.google.com (mail-qt1-x842.google.com [IPv6:2607:f8b0:4864:20::842])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DC64C0613CF;
-        Tue,  1 Dec 2020 23:02:51 -0800 (PST)
-Received: by mail-qt1-x842.google.com with SMTP id v11so357336qtq.12;
-        Tue, 01 Dec 2020 23:02:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jms.id.au; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=K/LW+Nm7CzY8OBZABUof+7+4pClm6pGGCifwBOr9FSo=;
-        b=nml25srvIDgKr6LK5pmS34VajNkmFjkz00YZSGgbSDcrSP95OpRfV4p43e7K12yNQ8
-         K0tG/d4v6e6xYCWAWdcu504tuMzyM9sOXQ7dicvJwlJkVAcUjz80FdAAMxnDNcn3YhNj
-         M+JDjHRebHX5h/mHmSEt97z54+MDB4ZlKFIh4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=K/LW+Nm7CzY8OBZABUof+7+4pClm6pGGCifwBOr9FSo=;
-        b=Cgy6DWxfRYmHQW0nhZUKM/iM/wvLoi1ADAZ23I/sm4w/ppBrvDOSW+bMjtFpP47TtW
-         zUBthH+7yoOvpLQoDr1I0rSLnn2RhLhrrrFpQflt/s9uIoEU06MjPgwdD29g6PfRK7Bs
-         FnH0+6BM5VWR8vC0yotsdnPAeOBb0OzbL0aKO/d0004hhj5vawfEO6OPby3t2tM/HpRq
-         jvIxiLPUIUZMDVnX6LFg0HjCkkOcFG2urG4/dJ8czKLjhzA6u+J6J7I94Dbs9eb+9MQg
-         +8mEoHson6uCfVBEtp3jNvaDi5xeplA/FFgXH7sh++WgMc6oyCLc+nFyvOaASpl86Ean
-         Py3g==
-X-Gm-Message-State: AOAM533zR6Ptg6tldPa0EmAQ1JHKq+GObSewqOcAxy5VZdLViFpJCnAr
-        jQjsBNvLolki0i63zu0kuKV4N9bHoI/ILyVz2/0=
-X-Google-Smtp-Source: ABdhPJzO8P9uYlPvdQcAIvJtcX07Y7BQWFF26rgVDS0nYTsEGEzjj1FFaVdSjTQ44wpFZcDyzJ5EkJjcaZ2Mh3e8Pxc=
-X-Received: by 2002:aed:38c8:: with SMTP id k66mr1234725qte.385.1606892570752;
- Tue, 01 Dec 2020 23:02:50 -0800 (PST)
+        id S2387591AbgLBHQh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Dec 2020 02:16:37 -0500
+Received: from guitar.tcltek.co.il ([192.115.133.116]:50242 "EHLO
+        mx.tkos.co.il" rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728105AbgLBHQh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 2 Dec 2020 02:16:37 -0500
+Received: from tarshish.tkos.co.il (unknown [10.0.8.2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mx.tkos.co.il (Postfix) with ESMTPS id 678D24400C5;
+        Wed,  2 Dec 2020 09:15:53 +0200 (IST)
+From:   Baruch Siach <baruch@tkos.co.il>
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Cc:     Baruch Siach <baruch@tkos.co.il>, Andrew Lunn <andrew@lunn.ch>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Chris Packham <chris.packham@alliedtelesis.co.nz>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Ralph Sennhauser <ralph.sennhauser@gmail.com>,
+        linux-pwm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: [PATCH v3 0/6] gpio: mvebu: Armada 8K/7K PWM support
+Date:   Wed,  2 Dec 2020 09:15:31 +0200
+Message-Id: <cover.1606892239.git.baruch@tkos.co.il>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-References: <20201202063612.21241-1-troy_lee@aspeedtech.com> <20201202063612.21241-2-troy_lee@aspeedtech.com>
-In-Reply-To: <20201202063612.21241-2-troy_lee@aspeedtech.com>
-From:   Joel Stanley <joel@jms.id.au>
-Date:   Wed, 2 Dec 2020 07:02:38 +0000
-Message-ID: <CACPK8XeMdz70aH59zR1GjD6+r+68Y46qhreTw0AG7bzctCtxCg@mail.gmail.com>
-Subject: Re: [PATCH v2 2/3] ARM: dts: aspeed: Add AST2600 edac into common devicetree
-To:     Troy Lee <troy_lee@aspeedtech.com>
-Cc:     Stefan Schaeckeler <sschaeck@cisco.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Borislav Petkov <bp@alien8.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Tony Luck <tony.luck@intel.com>,
-        James Morse <james.morse@arm.com>,
-        Robert Richter <rrichter@marvell.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
-        <linux-aspeed@lists.ozlabs.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        "open list:EDAC-CORE" <linux-edac@vger.kernel.org>,
-        leetroy@gmail.com, Ryan Chen <ryan_chen@aspeedtech.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 2 Dec 2020 at 06:37, Troy Lee <troy_lee@aspeedtech.com> wrote:
->
-> Adding Aspeed AST2600 edac node into common devicetree.
->
-> Signed-off-by: Troy Lee <troy_lee@aspeedtech.com>
+The gpio-mvebu driver supports the PWM functionality of the GPIO block for 
+earlier Armada variants like XP, 370 and 38x. This series extends support to 
+newer Armada variants that use CP11x and AP80x, like Armada 8K and 7K.
 
-Reviewed-by: Joel Stanley <joel@jms.id.au>
+This series adds adds the 'pwm-offset' property to DT binding. 'pwm-offset' 
+points to the base of A/B counter registers that determine the PWM period and 
+duty cycle.
 
-> ---
->  arch/arm/boot/dts/aspeed-g6.dtsi | 6 ++++++
->  1 file changed, 6 insertions(+)
->
-> diff --git a/arch/arm/boot/dts/aspeed-g6.dtsi b/arch/arm/boot/dts/aspeed-g6.dtsi
-> index 97ca743363d7..fb144515f397 100644
-> --- a/arch/arm/boot/dts/aspeed-g6.dtsi
-> +++ b/arch/arm/boot/dts/aspeed-g6.dtsi
-> @@ -69,6 +69,12 @@
->                 always-on;
->         };
->
-> +       edac: sdram@1e6e0000 {
-> +               compatible = "aspeed,ast2600-sdram-edac", "syscon";
-> +               reg = <0x1e6e0000 0x174>;
-> +               interrupts = <GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>;
-> +       };
-> +
->         ahb {
->                 compatible = "simple-bus";
->                 #address-cells = <1>;
-> --
-> 2.17.1
->
+The existing PWM DT binding reflects an arbitrary decision to allocate the A 
+counter to the first GPIO block, and B counter to the other one. In attempt to 
+provide better future flexibility, the new 'pwm-offset' property always points 
+to the base address of both A/B counters. The driver code still allocates the 
+counters in the same way, but this might change in the future with no change to
+the DT.
+
+Tested AP806 and CP110 (both) on Armada 8040 based system.
+
+I marked this series as v3 to avoid confusion about the probe resource leak 
+fix that I posted in a separate patch. The (improved) fix is now patch #1 in 
+this series. That is the only change in v3.
+
+Baruch Siach (6):
+  gpio: mvebu: fix potential user-after-free on probe
+  gpio: mvebu: update Armada XP per-CPU comment
+  gpio: mvebu: switch pwm duration registers to regmap
+  gpio: mvebu: add pwm support for Armada 8K/7K
+  arm64: dts: armada: add pwm offsets for ap/cp gpios
+  dt-bindings: ap806: document gpio pwm-offset property
+
+ .../arm/marvell/ap80x-system-controller.txt   |   8 +
+ arch/arm64/boot/dts/marvell/armada-ap80x.dtsi |   3 +
+ arch/arm64/boot/dts/marvell/armada-cp11x.dtsi |  10 ++
+ drivers/gpio/gpio-mvebu.c                     | 170 +++++++++++-------
+ 4 files changed, 128 insertions(+), 63 deletions(-)
+
+-- 
+2.29.2
+
