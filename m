@@ -2,195 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A8B12CC699
-	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 20:26:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B4F502CC6A4
+	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 20:29:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726157AbgLBT02 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Dec 2020 14:26:28 -0500
-Received: from mail-ed1-f68.google.com ([209.85.208.68]:33868 "EHLO
-        mail-ed1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726082AbgLBT01 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Dec 2020 14:26:27 -0500
-Received: by mail-ed1-f68.google.com with SMTP id y22so5285395edv.1;
-        Wed, 02 Dec 2020 11:26:11 -0800 (PST)
+        id S1731053AbgLBT1C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Dec 2020 14:27:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60870 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726028AbgLBT1C (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Dec 2020 14:27:02 -0500
+Received: from mail-pj1-x1043.google.com (mail-pj1-x1043.google.com [IPv6:2607:f8b0:4864:20::1043])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0352C0613D6;
+        Wed,  2 Dec 2020 11:26:15 -0800 (PST)
+Received: by mail-pj1-x1043.google.com with SMTP id iq13so1582735pjb.3;
+        Wed, 02 Dec 2020 11:26:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=sender:date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=gpjxGYzLSyNarmAmbAQjfYVpd3J0HaJaIoHV/RbyoP0=;
+        b=VaodmzoR9g7kj+trfPWTjKbOUGtif1gfK+MnyL7sDiLsjyPyv9Ozrs83cRZhE6sMsD
+         B4rvR5ybl880Y58IX1cTIx/9xN995XcaDz2WforplB/T06qvrvmx8BerjEPT2F2vdfwQ
+         Ossz0JVVbfsMH2GwekdB48BNH0Nq5/MPXAuAkPwkpLCSv9Zf7nMfkdixgZp5Cx66ZXCM
+         yG7FuCrCsM02755Wnk1gKEi9cXAANCbuUPixXWf6wveszg2iZaK/MYobBJAYJlAjgmxa
+         62C0njYK1ROuxHembS4Qg5lX/pBT1Lcs4fh1ORKYWO6VEyQdVU5gcRDw6HMRe2kMGB1n
+         UZaw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=eYcaogqYzN6ZUt28+vyieuwTVixxxaeMvV8MlkHBuEo=;
-        b=WYYscVNw0wP9kFF2QtQrlI2wkFbCerW8TB2pYPhjTFFMx1hXJYhSdkSTfBuELVTmPz
-         pG5+au/hAhk5O336mdGbfoy7yHWjhdj5mLv/kY/QKab1Ly6QgVuTRv2hdzxe8Yk2gf0M
-         59g81pCAAwbF+QdeZYpCn9KhXyh5BXyaoYlIQBW4CcW/k8tU9tIbwJ5msiMqZN61j4a5
-         D1gsbmTMzvv4heQgJWCKz8LDBtnolOH7ZHOTKv3zmzteaB2VRZeTmPnsJu0pdI25uHx2
-         8kQF3+wYzqgVDMtvHnS+1BJ0PLce5fQxmJQ3XRoA8Mx5jBsABClAti/1usZNeKIqARBP
-         qvsA==
-X-Gm-Message-State: AOAM533/UBu2AEGqXahD5rWB7E4adQHI3W3LQnzOtf1TBAKylzQ2Bvhl
-        FjZ5SiEf+U7RzSDWYErP7MQ=
-X-Google-Smtp-Source: ABdhPJxagTWtEJZPAPkpLJVZKLSduip+7GVycNBghRDTPBs9MQMJGf/06IKdC4IlOggUC5dAuIsXnA==
-X-Received: by 2002:a50:e0ce:: with SMTP id j14mr1531711edl.18.1606937145269;
-        Wed, 02 Dec 2020 11:25:45 -0800 (PST)
-Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
-        by smtp.googlemail.com with ESMTPSA id c25sm533612ejx.39.2020.12.02.11.25.43
+        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
+         :references:mime-version:content-disposition:in-reply-to;
+        bh=gpjxGYzLSyNarmAmbAQjfYVpd3J0HaJaIoHV/RbyoP0=;
+        b=lQUegYDCVJ3Jsj1J0shqReRQ5u2Vo16tJEKI57rxGOm/OfrgpjE/zwWRBYMtawON45
+         kzXc1tHN4dhSrGQ0QuAPIVnFOx4cIVJf/yWeB2mFQNW7WmTbYCKNXWjVxh20dY4L40mG
+         graYZtB/oT1UlQ79/DdTvxvu7zTomywrXGYKbwAgyfeeVjPnHawmkVcZnGcOtLZ1hLVD
+         VAO8lFfB0kHJBMKwFbg6xrNZhrZbV+xO2CiGl/A0SffJEjLeFE7YdAW+Br9fh9MDCzPA
+         0DiOgoyycxeB1vrcHKnxpjxsVqVJUN0LB1qu1ddMuSFhnSYvQYE11ufLOxKSpmoj35hU
+         Ri0A==
+X-Gm-Message-State: AOAM5334YXeGcelF911b0RecWd2RUthXOvg4275r1GlXBkQywQIzqqyR
+        eSsTwSwm4BfporcXmtAO5pc=
+X-Google-Smtp-Source: ABdhPJxcdPTZ5uZMP8zvH4q1sui0DmS0RvpM84/fgaeUTS26506J8tp8Ce+fVMlFSti+TUz8UFLwqA==
+X-Received: by 2002:a17:90b:4a03:: with SMTP id kk3mr1260133pjb.97.1606937175483;
+        Wed, 02 Dec 2020 11:26:15 -0800 (PST)
+Received: from google.com ([2620:15c:211:201:7220:84ff:fe09:5e58])
+        by smtp.gmail.com with ESMTPSA id js9sm2652626pjb.2.2020.12.02.11.26.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Dec 2020 11:25:43 -0800 (PST)
-Date:   Wed, 2 Dec 2020 21:25:42 +0200
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Jagan Teki <jagan@amarulasolutions.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Li Yang <leoyang.li@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Matteo Lisi <matteo.lisi@engicam.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-amarula <linux-amarula@amarulasolutions.com>
-Subject: Re: [PATCH 08/10] arm64: dts: imx8mm: Add Engicam i.Core MX8M Mini
- C.TOUCH 2.0
-Message-ID: <20201202192542.GA85884@kozik-lap>
-References: <20201202121241.109952-1-jagan@amarulasolutions.com>
- <20201202121241.109952-9-jagan@amarulasolutions.com>
- <20201202174538.GH3490@kozik-lap>
- <CAMty3ZCv1pBLbXQWbLGqTd+rYPw6L_SbugA5rNdAc8jeWqc6Jg@mail.gmail.com>
+        Wed, 02 Dec 2020 11:26:14 -0800 (PST)
+Sender: Minchan Kim <minchan.kim@gmail.com>
+Date:   Wed, 2 Dec 2020 11:26:11 -0800
+From:   Minchan Kim <minchan@kernel.org>
+To:     Michal Hocko <mhocko@suse.com>
+Cc:     David Hildenbrand <david@redhat.com>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        linux-mm <linux-mm@kvack.org>, hyesoo.yu@samsung.com,
+        willy@infradead.org, iamjoonsoo.kim@lge.com, vbabka@suse.cz,
+        surenb@google.com, pullip.cho@samsung.com, joaodias@google.com,
+        hridya@google.com, sumit.semwal@linaro.org, john.stultz@linaro.org,
+        Brian.Starkey@arm.com, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, robh@kernel.org,
+        christian.koenig@amd.com, linaro-mm-sig@lists.linaro.org
+Subject: Re: [PATCH v2 2/4] mm: introduce cma_alloc_bulk API
+Message-ID: <X8fqU82GXmu57f7V@google.com>
+References: <20201201175144.3996569-1-minchan@kernel.org>
+ <20201201175144.3996569-3-minchan@kernel.org>
+ <8f006a4a-c21d-9db3-5493-fb1cc651b0cf@redhat.com>
+ <20201202154915.GU17338@dhcp22.suse.cz>
+ <X8e9tSwcsrEsAv1O@google.com>
+ <20201202164834.GV17338@dhcp22.suse.cz>
+ <X8fU1ddmsSfuV6sD@google.com>
+ <20201202185107.GW17338@dhcp22.suse.cz>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAMty3ZCv1pBLbXQWbLGqTd+rYPw6L_SbugA5rNdAc8jeWqc6Jg@mail.gmail.com>
+In-Reply-To: <20201202185107.GW17338@dhcp22.suse.cz>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 03, 2020 at 12:50:37AM +0530, Jagan Teki wrote:
-> Hi Krzysztof,
+On Wed, Dec 02, 2020 at 07:51:07PM +0100, Michal Hocko wrote:
+> On Wed 02-12-20 09:54:29, Minchan Kim wrote:
+> > On Wed, Dec 02, 2020 at 05:48:34PM +0100, Michal Hocko wrote:
+> > > On Wed 02-12-20 08:15:49, Minchan Kim wrote:
+> > > > On Wed, Dec 02, 2020 at 04:49:15PM +0100, Michal Hocko wrote:
+> > > [...]
+> > > > > Well, what I can see is that this new interface is an antipatern to our
+> > > > > allocation routines. We tend to control allocations by gfp mask yet you
+> > > > > are introducing a bool parameter to make something faster... What that
+> > > > > really means is rather arbitrary. Would it make more sense to teach
+> > > > > cma_alloc resp. alloc_contig_range to recognize GFP_NOWAIT, GFP_NORETRY resp.
+> > > > > GFP_RETRY_MAYFAIL instead?
+> > > > 
+> > > > If we use cma_alloc, that interface requires "allocate one big memory
+> > > > chunk". IOW, return value is just struct page and expected that the page
+> > > > is a big contiguos memory. That means it couldn't have a hole in the
+> > > > range.
+> > > > However the idea here, what we asked is much smaller chunk rather
+> > > > than a big contiguous memory so we could skip some of pages if they are
+> > > > randomly pinned(long-term/short-term whatever) and search other pages
+> > > > in the CMA area to avoid long stall. Thus, it couldn't work with exising
+> > > > cma_alloc API with simple gfp_mak.
+> > > 
+> > > I really do not see that as something really alient to the cma_alloc
+> > > interface. All you should care about, really, is what size of the object
+> > > you want and how hard the system should try. If you have a problem with
+> > > an internal implementation of CMA and how it chooses a range and deal
+> > > with pinned pages then it should be addressed inside the CMA allocator.
+> > > I suspect that you are effectivelly trying to workaround those problems
+> > > by a side implementation with a slightly different API. Or maybe I still
+> > > do not follow the actual problem.
+> > >  
+> > > > > I am not deeply familiar with the cma allocator so sorry for a
+> > > > > potentially stupid question. Why does a bulk interface performs better
+> > > > > than repeated calls to cma_alloc? Is this because a failure would help
+> > > > > to move on to the next pfn range while a repeated call would have to
+> > > > > deal with the same range?
+> > > > 
+> > > > Yub, true with other overheads(e.g., migration retrial, waiting writeback
+> > > > PCP/LRU draining IPI)
+> > > 
+> > > Why cannot this be implemented in the cma_alloc layer? I mean you can
+> > > cache failed cases and optimize the proper pfn range search.
+> > 
+> > So do you suggest this?
+> > 
+> > enum cma_alloc_mode {
+> > 	CMA_ALLOC_NORMAL,
+> > 	CMA_ALLOC_FAIL_FAST,
+> > };
+> > 
+> > struct page *cma_alloc(struct cma *cma, size_t count, unsigned int
+> > 	align, enum cma_alloc_mode mode);
+> > 
+> > >From now on, cma_alloc will keep last failed pfn and then start to
+> > search from the next pfn for both CMA_ALLOC_NORMAL and
+> > CMA_ALLOC_FAIL_FAST if requested size from the cached pfn is okay
+> > within CMA area and then wraparound it couldn't find right pages
+> > from the cached pfn. Othewise, the cached pfn will reset to the zero
+> > so that it starts the search from the 0. I like the idea since it's
+> > general improvement, I think.
 > 
-> On Wed, Dec 2, 2020 at 11:15 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> >
-> > On Wed, Dec 02, 2020 at 05:42:39PM +0530, Jagan Teki wrote:
-> > > i.Core MX8M Mini is an EDIMM SOM based on NXP i.MX8MM from Engicam.
-> > >
-> > > C.TOUCH 2.0 is a general purpose carrier board with capacitive
-> > > touch interface support.
-> > >
-> > > i.Core MX8M Mini needs to mount on top of this Carrier board for
-> > > creating complete i.Core MX8M Mini C.TOUCH 2.0 board.
-> > >
-> > > Add support for it.
-> > >
-> > > Signed-off-by: Matteo Lisi <matteo.lisi@engicam.com>
-> > > Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
-> > > ---
-> > >  arch/arm64/boot/dts/freescale/Makefile        |  1 +
-> > >  .../imx8mm-engicam-icore-mx8mm-ctouch2.dts    | 21 +++++++++++++++++++
-> > >  2 files changed, 22 insertions(+)
-> > >  create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-engicam-icore-mx8mm-ctouch2.dts
-> > >
-> > > diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-> > > index 4369d783dade..8191db4c64fa 100644
-> > > --- a/arch/arm64/boot/dts/freescale/Makefile
-> > > +++ b/arch/arm64/boot/dts/freescale/Makefile
-> > > @@ -30,6 +30,7 @@ dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-lx2160a-rdb.dtb
-> > >  dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-lx2162a-qds.dtb
-> > >
-> > >  dtb-$(CONFIG_ARCH_MXC) += imx8mm-beacon-kit.dtb
-> > > +dtb-$(CONFIG_ARCH_MXC) += imx8mm-engicam-icore-mx8mm-ctouch2.dtb
-> > >  dtb-$(CONFIG_ARCH_MXC) += imx8mm-engicam-icore-mx8mm-edimm2.2.dtb
-> > >  dtb-$(CONFIG_ARCH_MXC) += imx8mm-evk.dtb
-> > >  dtb-$(CONFIG_ARCH_MXC) += imx8mm-ddr4-evk.dtb
-> > > diff --git a/arch/arm64/boot/dts/freescale/imx8mm-engicam-icore-mx8mm-ctouch2.dts b/arch/arm64/boot/dts/freescale/imx8mm-engicam-icore-mx8mm-ctouch2.dts
-> > > new file mode 100644
-> > > index 000000000000..aa3c03ad3109
-> > > --- /dev/null
-> > > +++ b/arch/arm64/boot/dts/freescale/imx8mm-engicam-icore-mx8mm-ctouch2.dts
-> > > @@ -0,0 +1,21 @@
-> > > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> > > +/*
-> > > + * Copyright (c) 2019 NXP
-> > > + * Copyright (c) 2019 Engicam srl
-> > > + * Copyright (c) 2020 Amarula Solutions(India)
-> > > + */
-> > > +
-> > > +/dts-v1/;
-> > > +#include "imx8mm.dtsi"
-> >
-> > You have multiple DTSI files to only include one DTSI. I was trying to
-> > follow the logic here but I failed...
-> >
-> > This is ctouch, so it should include SoM, which you call icore. But it
-> > also includes ctouch2 which *only* includes common DTSI. It's then
-> > exactly the same as starter kit which includes edimm (which includes
-> > common) and icore.
-> 
-> I hope you have checked the cover letter where I have mentioned all
-> the combinations.
-> 
-> 1. SoM, Starter Kit, Carrier Board, Open Frame are three different hardware.
-> 
-> 2. i.Core MX8M Mini is SoM
-> 
-> 3. EDIMM 2.2 is Starter Kit
-> 
-> 4. C.TOUCH 2.0 is Carrier board
-> 
-> 5. 10"1 Open Frame board for LVDS
-> 
-> The combination of respective hardware mounting is,
-> 
-> 1. SOM+Starter Kitt => i.Core MX8M Mini EDIMM 2.2 Starter Kit
-> 
-> 2. SOM+C.TOUCH 2.0 => i.Core MX8M Mini C.TOUCH 2.0 Carrier board
-> 
-> 3. SOM+C.TOUCH 2.0+10.1" OF => i.Core MX8M Mini C.TOUCH 2.0 10.1" Open
-> Frame board
+> Yes something like that. There are more options to be clever here - e.g.
+> track ranges etc. but I am not sure this is worth the complexity.
 
-It does not explain why you created 3 empty DTSI and 2 empty DTS files.
+Agree. Just last pfn caching would be good enough as simple start.
 
 > 
-> About the bindings, (please check the
-> arch/arm64/boot/dts/rockchip/px30-engicam-*), It's been discussed
-> before with Rob for these boards bindings.
+> > Furthemore, With CMA_ALLOC_FAIL_FAST, it could avoid several overheads
+> > at the cost of sacrificing allocation success ratio like GFP_NORETRY.
+> 
+> I am still not sure a specific flag is a good interface. Really can this
+> be gfp_mask instead?
 
-Refer to my specific comments about bindings.
-
-> 
-> To, compare with what we have described with rockchip
-> 
-> SoM binding,
-> - engicam,icore-mx8mm is binding for i.Core MX8M Mini SoM
-> - engicam,px30-core is binding for PX30.Core SoM
-> 
-> EDIMM 2.2 is Starter Kit binding,
-> - engicam,icore-mx8mm-edimm2.2 is binding for EDIMM 2.2 is Starter Kit
-> in i.MX8MM
-> - engicam,px30-core-edimm2.2 is binding for EDIMM 2.2 is Starter Kit in PX30
-> 
-> C.TOUCH 2.0 is Carrier board binding,
-> - engicam,icore-mx8mm-ctouch2 is binding for C.TOUCH 2.0 is Carrier
-> board in i.MX8MM
-> - engicam,px30-core-ctouch2 is binding for C.TOUCH 2.0 is Carrier board in PX30
-> 
-> C.TOUCH 2.0 10"1 OF binding,
-> - engicam,icore-mx8mm-ctouch2-of10 is binding for C.TOUCH 2.0 10"1 in imx8MM
-> - engicam,px30-core-ctouch2-of10 for C.TOUCH 2.0 10"1 in PX30
-> 
-> So, there are 3 board combinations of which each board has a binding
-> of SoM and respective carrier binding like i.Core MX8M Mini EDIMM 2.2
-> Starter Kit has
-> "engicam,icore-mx8mm-edimm2.2", "engicam,icore-mx8mm"
-> "engicam,icore-mx8mm-ctouch2", "engicam,icore-mx8mm"
-> "engicam,icore-mx8mm-ctouch2-of10", "engicam,icore-mx8mm"
-> 
-> Some of the DTS files are using the engicam-common.dtsi nodes and for
-> ie reason those are empty and some need to have lvds display node
-> which is still underworking.
-
-Therefore add them when you have any contents for these DTS files.
+I am not strong(even, I did it with GFP_NORETRY) but David wanted to
+have special mode and I agreed when he mentioned ALLOC_CONTIG_HARD as
+one of options in future(it would be hard to indicate that mode with
+gfp flags).
 
 > 
-> Hope this information helpful. Let me know for further inputs.
+> > I think that would solve the issue with making the API more flexible.
+> > Before diving into it, I'd like to confirm we are on same page.
+> > Please correct me if I misunderstood.
+> 
+> I am not sure you are still thinking about a bulk interface.
 
-Thanks for the information but it was not much helpful. It does not
-answer at all why you have so many empty files, why you include
-imx8mm.dtsi not in the SoM but somewhere else.
-
-Best regards,
-Krzysztof
+No I am thinking of just using cma_alloc API with cached pfn
+as interal improvement and adding new fast fail mode to the API
+so driver could call the API repeatedly until then can get enough
+pages.
