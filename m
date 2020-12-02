@@ -2,65 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 898B52CB3E7
-	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 05:26:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1EE802CB446
+	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 06:17:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387472AbgLBEZ4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Dec 2020 23:25:56 -0500
-Received: from mo-csw1116.securemx.jp ([210.130.202.158]:54360 "EHLO
-        mo-csw.securemx.jp" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728315AbgLBEZz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Dec 2020 23:25:55 -0500
-Received: by mo-csw.securemx.jp (mx-mo-csw1116) id 0B24NxDh029494; Wed, 2 Dec 2020 13:23:59 +0900
-X-Iguazu-Qid: 2wHHLA7xMrKCChEy9c
-X-Iguazu-QSIG: v=2; s=0; t=1606883038; q=2wHHLA7xMrKCChEy9c; m=F3WaA6VlPhmpj9f7wRS45qVKR3VuOfGCXKN2va3wcB4=
-Received: from imx2.toshiba.co.jp (imx2.toshiba.co.jp [106.186.93.51])
-        by relay.securemx.jp (mx-mr1111) id 0B24NwR3037024;
-        Wed, 2 Dec 2020 13:23:58 +0900
-Received: from enc01.toshiba.co.jp ([106.186.93.100])
-        by imx2.toshiba.co.jp  with ESMTP id 0B24NwIL021669;
-        Wed, 2 Dec 2020 13:23:58 +0900 (JST)
-Received: from hop001.toshiba.co.jp ([133.199.164.63])
-        by enc01.toshiba.co.jp  with ESMTP id 0B24NvUi020550;
-        Wed, 2 Dec 2020 13:23:58 +0900
-From:   Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     punit1.agrawal@toshiba.co.jp, yuji2.ishikawa@toshiba.co.jp,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-Subject: [PATCH] MAINTAINERS: Add entries for Toshiba Visconti5 watchdog driver
-Date:   Wed,  2 Dec 2020 22:22:20 +0900
-X-TSB-HOP: ON
-Message-Id: <20201202132220.2408089-1-nobuhiro1.iwamatsu@toshiba.co.jp>
-X-Mailer: git-send-email 2.29.2
+        id S1728355AbgLBFR2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Dec 2020 00:17:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42142 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725902AbgLBFR2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Dec 2020 00:17:28 -0500
+Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CB14C0613CF
+        for <devicetree@vger.kernel.org>; Tue,  1 Dec 2020 21:16:42 -0800 (PST)
+Received: by mail-pj1-x1030.google.com with SMTP id m5so325794pjv.5
+        for <devicetree@vger.kernel.org>; Tue, 01 Dec 2020 21:16:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bytedance-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=mMf+qfonJLf7vMl0DnttrDvVmDvqtmkJr/AXdH4GU4s=;
+        b=hrM1U8VbENPacYn1U4AEgrTpRajM5sT3t43YDQBM/Mhiz3nSNes8G8wM0MLqhGSgiI
+         bQgsY/YW273VGAxqtuGompMiSNz8t6rLxXFP6i7L0LljLK9T/rY3hJgncGo/Zx4Q40Na
+         OwKm/I1rn6L7NplNlomaG5C13Shg+GMrDrAH95FxeVv57cBjGP/SFp4y0JOrmAfYzYcw
+         7VCDemlO7NH6HG6TIeLtqK70mKT7u1N0m5ig+xdvIrpTxG295LrLqnqyJVP4t0aOnXfz
+         jpYC80w2pJvJtJhstNbv603DQuYlbnLUj7oPigSIb3arvi0kymjxfBzo1YEJ1tmGyCtN
+         7X3A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=mMf+qfonJLf7vMl0DnttrDvVmDvqtmkJr/AXdH4GU4s=;
+        b=lDrAh7KoSqMcma3a3/fJxYvo+i4Y6T2mov3GAfwHLtgyBar+HjBZlDabtJe3eAehWm
+         73GI6A0bS/yVp40Gd8YJr/J94T3gzH34OmHpnSggwxwxHlpNCvbjUzRUqueMHfeSwcx8
+         JY5HDyboQ9JwjEEKUyNEfN6qDsKMKJwkNG/a4+KLXrrPPEjJvz4b01+beg0gsTPJlsEv
+         09DBlvVGQfhQ67P1kPZAD3XnjTGwqbvvlP7BvYouT2joWlAXt537HdR0qpsrIQFpyde0
+         HzzMVBdn73OdHwTIc70u72hBwFJYxmkiLGraQRqSe1DrNpWHcyyThw3h0it0A+hyIlTF
+         gy/w==
+X-Gm-Message-State: AOAM531CdADWPtdu7gsvavkGSJMPm82m4JwMvQSfItosEOt6WpDySRNk
+        55zLDyUVMCZ+s6uTycnCk53vyA==
+X-Google-Smtp-Source: ABdhPJxuNTwTCv2D3U6L3rbi3cQrrCSLTTNwlSwTJWS+yvZfGvkhW5AL6ItOg8ULKPp2ctl9IZCOgQ==
+X-Received: by 2002:a17:902:469:b029:da:17d0:e755 with SMTP id 96-20020a1709020469b02900da17d0e755mr1149263ple.53.1606886202007;
+        Tue, 01 Dec 2020 21:16:42 -0800 (PST)
+Received: from localhost ([61.120.150.72])
+        by smtp.gmail.com with ESMTPSA id c20sm582116pgc.25.2020.12.01.21.16.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 01 Dec 2020 21:16:41 -0800 (PST)
+From:   John Wang <wangzhiqiang.bj@bytedance.com>
+To:     xuxiaohan@bytedance.com, yulei.sh@bytedance.com
+Cc:     Rob Herring <robh+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS),
+        linux-arm-kernel@lists.infradead.org (moderated list:ARM/ASPEED MACHINE
+        SUPPORT),
+        linux-aspeed@lists.ozlabs.org (moderated list:ARM/ASPEED MACHINE
+        SUPPORT), linux-kernel@vger.kernel.org (open list)
+Subject: [PATCH 2/2] ARM: dts: aspeed: Add LCLK to lpc-snoop
+Date:   Wed,  2 Dec 2020 13:16:34 +0800
+Message-Id: <20201202051634.490-2-wangzhiqiang.bj@bytedance.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20201202051634.490-1-wangzhiqiang.bj@bytedance.com>
+References: <20201202051634.490-1-wangzhiqiang.bj@bytedance.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add entries for Toshiba Visconti5 watchdog driver and binding.
-
-Signed-off-by: Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+Signed-off-by: John Wang <wangzhiqiang.bj@bytedance.com>
 ---
- MAINTAINERS | 2 ++
- 1 file changed, 2 insertions(+)
+ arch/arm/boot/dts/aspeed-g4.dtsi | 1 +
+ arch/arm/boot/dts/aspeed-g5.dtsi | 1 +
+ arch/arm/boot/dts/aspeed-g6.dtsi | 1 +
+ 3 files changed, 3 insertions(+)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 2daa6ee673f7..f3ad5c290a8b 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2627,8 +2627,10 @@ S:	Supported
- T:	git git://git.kernel.org/pub/scm/linux/kernel/git/iwamatsu/linux-visconti.git
- F:	Documentation/devicetree/bindings/arm/toshiba.yaml
- F:	Documentation/devicetree/bindings/pinctrl/toshiba,tmpv7700-pinctrl.yaml
-+F:	Documentation/devicetree/bindings/watchdog/toshiba,visconti-wdt.yaml
- F:	arch/arm64/boot/dts/toshiba/
- F:	drivers/pinctrl/visconti/
-+F:	drivers/watchdog/visconti_wdt.c
- N:	visconti
+diff --git a/arch/arm/boot/dts/aspeed-g4.dtsi b/arch/arm/boot/dts/aspeed-g4.dtsi
+index f606fc01ff13..2364b660f2e4 100644
+--- a/arch/arm/boot/dts/aspeed-g4.dtsi
++++ b/arch/arm/boot/dts/aspeed-g4.dtsi
+@@ -370,6 +370,7 @@ lpc_snoop: lpc-snoop@10 {
+ 						compatible = "aspeed,ast2400-lpc-snoop";
+ 						reg = <0x10 0x8>;
+ 						interrupts = <8>;
++						clocks = <&syscon ASPEED_CLK_GATE_LCLK>;
+ 						status = "disabled";
+ 					};
  
- ARM/UNIPHIER ARCHITECTURE
+diff --git a/arch/arm/boot/dts/aspeed-g5.dtsi b/arch/arm/boot/dts/aspeed-g5.dtsi
+index 19288495f41a..30bbf7452b90 100644
+--- a/arch/arm/boot/dts/aspeed-g5.dtsi
++++ b/arch/arm/boot/dts/aspeed-g5.dtsi
+@@ -496,6 +496,7 @@ lpc_snoop: lpc-snoop@10 {
+ 						compatible = "aspeed,ast2500-lpc-snoop";
+ 						reg = <0x10 0x8>;
+ 						interrupts = <8>;
++						clocks = <&syscon ASPEED_CLK_GATE_LCLK>;
+ 						status = "disabled";
+ 					};
+ 
+diff --git a/arch/arm/boot/dts/aspeed-g6.dtsi b/arch/arm/boot/dts/aspeed-g6.dtsi
+index 97ca743363d7..4b1013870fb1 100644
+--- a/arch/arm/boot/dts/aspeed-g6.dtsi
++++ b/arch/arm/boot/dts/aspeed-g6.dtsi
+@@ -520,6 +520,7 @@ lpc_snoop: lpc-snoop@0 {
+ 						compatible = "aspeed,ast2600-lpc-snoop";
+ 						reg = <0x0 0x80>;
+ 						interrupts = <GIC_SPI 144 IRQ_TYPE_LEVEL_HIGH>;
++						clocks = <&syscon ASPEED_CLK_GATE_LCLK>;
+ 						status = "disabled";
+ 					};
+ 
 -- 
-2.29.2
+2.25.1
 
