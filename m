@@ -2,142 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 135452CBB98
-	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 12:35:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7BA682CBBD9
+	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 12:51:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725985AbgLBLdn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Dec 2020 06:33:43 -0500
-Received: from mail-eopbgr00050.outbound.protection.outlook.com ([40.107.0.50]:34735
-        "EHLO EUR02-AM5-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1725885AbgLBLdn (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 2 Dec 2020 06:33:43 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=K4ciM4Ec/momjXCnh+wo1Xywu9S7XJNfD9XppxWYBpPghWc3wl7f4B3L3S288rekPm1xk+ozNuj3XKzM80Xf4nZdDXby3K8x8yo3Qod+/1+/Vxqr7oF7SxCe6C0wVkxVV7AUNjk+VslcyJE4J9mG28GBXyAiYBC8BDiw6ZvjV0TABNFzDeB/b2w9tbViDQC/2Evo274fa+/200YE22XQz/LjnxHav35JnGl+Cp4egjImCrSGhml0A7blF1YwaPfIjld2IYJ3kAlglUElVYx7Y9+VQzp8g4NPfymEAKkwluYNOZ/u2MA508y6ckPY8lTRzE+zAR96J0PdEgCfY582GQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=bf2aVoIivX6mOp2oFy9JdEFuxg3BjYflEbE1hOh9BzM=;
- b=EJ/WLArTDMBXGsPIIXYODPUNOm9ftMSntwWdLiQsGkvfI5ik/2WGr3cSIcvfg2tqBgnNHI+CVd+n/BXvo0PYSAGMrIFBf4gJHzE/9V2s4ao0l0jV0HzVv3p/cfMs91MWdl5+1gKUxd3oUc9DFiwhVIygVi+tZjbdC4VflrkHTwLwo6k8walRr5kNZ3uK7UYIKY+N70mu4EtEyVmpogCp/2Z3ZbLHi5d3TSJCz31pAo0JvpEufnBAoxKcHuy+DmBGq1S1J+Pu73IdzUjm8nQtyY8R+dJ/437eQgIxBbTQ+tvn6ZRdP03vx8+VDAmUlI7Qg8ZY2xzLIR2BH5cGpd+8eA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=softfail (sender ip
- is 193.240.239.45) smtp.rcpttodomain=kernel.org smtp.mailfrom=diasemi.com;
- dmarc=fail (p=none sp=none pct=100) action=none header.from=diasemi.com;
- dkim=none (message not signed); arc=none
+        id S1726705AbgLBLsW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Dec 2020 06:48:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45886 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726539AbgLBLsW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Dec 2020 06:48:22 -0500
+Received: from mail-pg1-x541.google.com (mail-pg1-x541.google.com [IPv6:2607:f8b0:4864:20::541])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE794C0613CF;
+        Wed,  2 Dec 2020 03:47:56 -0800 (PST)
+Received: by mail-pg1-x541.google.com with SMTP id w16so924082pga.9;
+        Wed, 02 Dec 2020 03:47:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=dialogsemiconductor.onmicrosoft.com;
- s=selector1-dialogsemiconductor-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=bf2aVoIivX6mOp2oFy9JdEFuxg3BjYflEbE1hOh9BzM=;
- b=JNl1vfSakRz6N6fcSB4pQfcPhnA/tz5BTW8m7tW+US1VHmdMaT7eQbSbiR+AGRk7Q1o1DruSZXN9QeZq9Tle9qxg9qfaBsPiCfiThPBoYUwegjh5crCV1diYISFQsopLDhg+0mcDTwsagt3NbK/9g+yZoB3Tsa4BAeY/RXPy044=
-Received: from AM6PR10CA0064.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:209:80::41)
- by AM5PR10MB1762.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:206:1d::31) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3632.17; Wed, 2 Dec
- 2020 11:32:50 +0000
-Received: from VE1EUR02FT008.eop-EUR02.prod.protection.outlook.com
- (2603:10a6:209:80:cafe::45) by AM6PR10CA0064.outlook.office365.com
- (2603:10a6:209:80::41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3632.17 via Frontend
- Transport; Wed, 2 Dec 2020 11:32:49 +0000
-X-MS-Exchange-Authentication-Results: spf=softfail (sender IP is
- 193.240.239.45) smtp.mailfrom=diasemi.com; kernel.org; dkim=none (message not
- signed) header.d=none;kernel.org; dmarc=fail action=none
- header.from=diasemi.com;
-Received-SPF: SoftFail (protection.outlook.com: domain of transitioning
- diasemi.com discourages use of 193.240.239.45 as permitted sender)
-Received: from mailrelay1.diasemi.com (193.240.239.45) by
- VE1EUR02FT008.mail.protection.outlook.com (10.152.12.72) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.20.3632.17 via Frontend Transport; Wed, 2 Dec 2020 11:32:49 +0000
-Received: from swsrvapps-01.diasemi.com (10.20.28.141) by
- NB-EX-CASHUB01.diasemi.com (10.1.16.140) with Microsoft SMTP Server id
- 14.3.468.0; Wed, 2 Dec 2020 12:32:47 +0100
-Received: by swsrvapps-01.diasemi.com (Postfix, from userid 23378)      id
- D4F263FBE4; Wed,  2 Dec 2020 11:32:47 +0000 (GMT)
-Message-ID: <24b2d8b0c3536408369add034221b1141e58bbfc.1606908582.git.Adam.Ward.opensource@diasemi.com>
-In-Reply-To: <cover.1606908582.git.Adam.Ward.opensource@diasemi.com>
-References: <cover.1606908582.git.Adam.Ward.opensource@diasemi.com>
-From:   Adam Ward <Adam.Ward.opensource@diasemi.com>
-Date:   Wed, 2 Dec 2020 11:32:47 +0000
-Subject: [PATCH V2 1/1] regulator: da9121: Request IRQ directly and free in
- release function to avoid masking race
-To:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>
-CC:     Liam Girdwood <lgirdwood@gmail.com>,
-        Vincent Whitchurch <vincent.whitchurch@axis.com>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Support Opensource <support.opensource@diasemi.com>
-MIME-Version: 1.0
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: efd88c2c-e664-4494-41de-08d896b5ffe6
-X-MS-TrafficTypeDiagnostic: AM5PR10MB1762:
-X-Microsoft-Antispam-PRVS: <AM5PR10MB17629059D39369F7B9BD737DCBF30@AM5PR10MB1762.EURPRD10.PROD.OUTLOOK.COM>
-X-MS-Oob-TLC-OOBClassifiers: OLM:530;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: SSj834F1pTBtFYZI1BSpBYEZNMA7S1+hE8uuL+Kxyge9itAIjWTusQTbaymxNBu75vVX/eFATqqcYT1HjQ013wZI2Kc50esUD3Zr9mcBz1/JU+ixU5JXwQJodqBUf68x8RFM9Mbf9+kgbWfwj1Rb/xO877TtYP7oRBKselrvNv28mQAhSPrkHePOt/nxQgxVy9BqQiHFp/hDQW9mexjVjRQYsGg7yNm337Ox9AGt6/RzCbjK11wtj5wS09A23gpmFPpT/phLD1XRwxcN0kejCnoXkEgicfqBIGJcLV5stWb97aL0JaKbz+SpssDdV+iSSFVxJHmIqNd345utLsA9xgg87LFsdEzbiSX2xiULhafAEU7r6QQi9oelB3PrD8ROyGtUvmp66xvA0th7/1rOfg==
-X-Forefront-Antispam-Report: CIP:193.240.239.45;CTRY:GB;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mailrelay1.diasemi.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(4636009)(39860400002)(396003)(136003)(346002)(376002)(46966005)(42186006)(8676002)(82740400003)(8936002)(5660300002)(110136005)(186003)(86362001)(54906003)(36756003)(83380400001)(316002)(478600001)(81166007)(426003)(70586007)(70206006)(2616005)(26005)(356005)(47076004)(2906002)(6266002)(82310400003)(107886003)(336012)(4326008);DIR:OUT;SFP:1101;
-X-OriginatorOrg: diasemi.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Dec 2020 11:32:49.6773
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: efd88c2c-e664-4494-41de-08d896b5ffe6
-X-MS-Exchange-CrossTenant-Id: 511e3c0e-ee96-486e-a2ec-e272ffa37b7c
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=511e3c0e-ee96-486e-a2ec-e272ffa37b7c;Ip=[193.240.239.45];Helo=[mailrelay1.diasemi.com]
-X-MS-Exchange-CrossTenant-AuthSource: VE1EUR02FT008.eop-EUR02.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM5PR10MB1762
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=91aj9edY77hTt39KhpEZSPjKyf9MNh9XT2J/er9ipzg=;
+        b=EZR9E0bgDgWC0etCy8AykgZf4yg9d1q/QNSsUz52oU9csexLmcGiMLbnzBtG2pWJWF
+         +Q7h2qXwkUU79wxOwtoB4oeYOLkbrNmhVc9+/UyQKDDD59vZJMMZs8VFxgWRYYB1yCXN
+         j4iUS7fW+e3iCsSF3A1uBPY6QMSFhAS8nP8xJjWK1GJuYcusG8jIvKhSFyO0i+MP7LgG
+         /866WU6Tr+CDSNNbAj/pEjS4qGB0SPNEgaNdQlwAEeUyaLGvgEJvUNzP11sGidLIJ4AB
+         BKEmI5n0wgpBu939mN8jPHAea7ZqzEzyrsMRnOvGlwRjcAsPiNUh4/j1TU2DUdnf5SjO
+         ZfIw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=91aj9edY77hTt39KhpEZSPjKyf9MNh9XT2J/er9ipzg=;
+        b=F7KX0m3vlGqAM/DBstqnOkwBk7MQguWafhVXwMzEWLn1VF3N7j+QsZzLnYa4oP2h7d
+         lrL4zRSKnf8WkQstnSbREwmRE833SeNfihSlw4PbenYbCv/Q7ULf3LbvFCnlJE/ZZfIH
+         GefYuOa7OabarGhDcc2+MftGoCi6+SYsHJvH3BCO1vnQqK+4/GRn+as2eQ31kAsIe60U
+         3mpQGIJkMrZtTWsPI6wjPdy/KtXQPdK2/I9PQjpWXL5kvBvhKWeKM7xZzmX2qopfaonn
+         giyo+77JLDeKpIsz16qibKLoBrQmrCxkOo0qDELp5E7bP7x+d4QCpEH4EpkIpkU6Dq8A
+         yWxA==
+X-Gm-Message-State: AOAM530vS7r9H/B/ycDvDw+c2Ayy9cKD1a+RPuIH2jvP3hwhLZhjli5V
+        bTAx+KBqSprh73lLlpY5Ip1KCmuoKsM=
+X-Google-Smtp-Source: ABdhPJw6SuIwNlvL71go4Pdz71/9jVaJMw3SD7ij3mF7r4stN98PhXQS7CXU//7s3ABIopmsvoX0vQ==
+X-Received: by 2002:a65:6891:: with SMTP id e17mr231710pgt.410.1606909676495;
+        Wed, 02 Dec 2020 03:47:56 -0800 (PST)
+Received: from localhost.localdomain ([182.226.226.37])
+        by smtp.googlemail.com with ESMTPSA id q18sm2108806pfs.150.2020.12.02.03.47.53
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 02 Dec 2020 03:47:55 -0800 (PST)
+From:   Bongsu Jeon <bongsu.jeon2@gmail.com>
+X-Google-Original-From: Bongsu Jeon
+To:     krzk@kernel.org
+Cc:     linux-nfc@lists.01.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Bongsu Jeon <bongsu.jeon@samsung.com>
+Subject: [PATCH v5 net-next 0/4] nfc: s3fwrn5: Support a UART interface
+Date:   Wed,  2 Dec 2020 20:47:37 +0900
+Message-Id: <1606909661-3814-1-git-send-email-bongsu.jeon@samsung.com>
+X-Mailer: git-send-email 1.9.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Signed-off-by: Adam Ward <Adam.Ward.opensource@diasemi.com>
----
- drivers/regulator/da9121-regulator.c | 9 ++++++---
- 1 file changed, 6 insertions(+), 3 deletions(-)
+From: Bongsu Jeon <bongsu.jeon@samsung.com>
 
-diff --git a/drivers/regulator/da9121-regulator.c b/drivers/regulator/da9121-regulator.c
-index d9a8a4b..3ead6a1 100644
---- a/drivers/regulator/da9121-regulator.c
-+++ b/drivers/regulator/da9121-regulator.c
-@@ -945,8 +945,7 @@ static int da9121_config_irq(struct i2c_client *i2c,
- 
- 		chip->passive_delay = p_delay;
- 
--		ret = devm_request_threaded_irq(chip->dev,
--					chip->chip_irq, NULL,
-+		ret = request_threaded_irq(chip->chip_irq, NULL,
- 					da9121_irq_handler,
- 					IRQF_TRIGGER_LOW|IRQF_ONESHOT,
- 					"da9121", chip);
-@@ -960,7 +959,7 @@ static int da9121_config_irq(struct i2c_client *i2c,
- 		if (ret != 0) {
- 			dev_err(chip->dev, "Failed to set IRQ masks: %d\n",
- 				ret);
--			goto error;
-+			goto regmap_error;
- 		}
- 
- 		INIT_DELAYED_WORK(&chip->work, da9121_status_poll_on);
-@@ -969,6 +968,9 @@ static int da9121_config_irq(struct i2c_client *i2c,
- 	}
- error:
- 	return ret;
-+regmap_error:
-+	free_irq(chip->chip_irq, chip);
-+	return ret;
- }
- 
- static const struct of_device_id da9121_dt_ids[] = {
-@@ -1036,6 +1038,7 @@ static int da9121_i2c_remove(struct i2c_client *i2c)
- 	const int mask_all[4] = { 0xFF, 0xFF, 0xFF, 0xFF };
- 	int ret = 0;
- 
-+	free_irq(chip->chip_irq, chip);
- 	cancel_delayed_work_sync(&chip->work);
- 
- 	ret = regmap_bulk_write(chip->regmap, DA9121_REG_SYS_MASK_0, mask_all, 4);
+S3FWRN82 is the Samsung's NFC chip that supports the UART communication.
+Before adding the UART driver module, I did refactoring the s3fwrn5_i2c module 
+to reuse the common blocks.
+
+1/4 is the dt bindings for the RN82 UART interface.
+2/4..3/4 are refactoring the s3fwrn5_i2c module.
+4/4 is the UART driver module implementation.
+
+ChangeLog:
+ v5:
+   1/4
+    - remove the 'items' of the compatible property.
+    - change the GPIO flags.
+ v4:
+   1/4
+    - change 'oneOf' to 'items'.
+    - fix the indentation.
+   2/4
+    - add the ACK tag.
+   4/4
+    - remove the of_match_ptr macro.
+ v3:
+   3/4
+    - move the phy_common object to s3fwrn.ko to avoid duplication.
+    - include the header files to include everything which is used inside.
+    - wrap the lines.
+   4/4
+    - remove the kfree(phy) because of duplicated free.
+    - use the phy_common blocks.
+    - wrap lines properly.
+ v2:
+   1/4
+    - change the compatible name.
+    - change the const to enum for compatible.
+    - change the node name to nfc.
+   3/4
+    - remove the common function's definition in common header file.
+    - make the common phy_common.c file to define the common function.
+    - wrap the lines.
+    - change the Header guard.
+    - remove the unused common function.
+
+Bongsu Jeon (4):
+  dt-bindings: net: nfc: s3fwrn5: Support a UART interface
+  nfc: s3fwrn5: reduce the EN_WAIT_TIME
+  nfc: s3fwrn5: extract the common phy blocks
+  nfc: s3fwrn5: Support a UART interface
+
+ .../bindings/net/nfc/samsung,s3fwrn5.yaml          |  31 +++-
+ drivers/nfc/s3fwrn5/Kconfig                        |  12 ++
+ drivers/nfc/s3fwrn5/Makefile                       |   4 +-
+ drivers/nfc/s3fwrn5/i2c.c                          | 117 ++++--------
+ drivers/nfc/s3fwrn5/phy_common.c                   |  75 ++++++++
+ drivers/nfc/s3fwrn5/phy_common.h                   |  37 ++++
+ drivers/nfc/s3fwrn5/uart.c                         | 196 +++++++++++++++++++++
+ 7 files changed, 390 insertions(+), 82 deletions(-)
+ create mode 100644 drivers/nfc/s3fwrn5/phy_common.c
+ create mode 100644 drivers/nfc/s3fwrn5/phy_common.h
+ create mode 100644 drivers/nfc/s3fwrn5/uart.c
+
 -- 
 1.9.1
 
