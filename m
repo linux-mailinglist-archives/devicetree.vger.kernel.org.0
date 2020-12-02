@@ -2,68 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1BB2B2CC485
-	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 19:08:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0FFF62CC489
+	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 19:08:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387563AbgLBSGs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Dec 2020 13:06:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48312 "EHLO
+        id S1728414AbgLBSId (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Dec 2020 13:08:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48580 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387548AbgLBSGs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Dec 2020 13:06:48 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51BB2C0613CF
-        for <devicetree@vger.kernel.org>; Wed,  2 Dec 2020 10:06:08 -0800 (PST)
-Received: from dude02.hi.pengutronix.de ([2001:67c:670:100:1d::28])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1kkWVv-0002La-GR; Wed, 02 Dec 2020 19:06:03 +0100
-Received: from mfe by dude02.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1kkWVt-0003ql-Rw; Wed, 02 Dec 2020 19:06:01 +0100
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     robh+dt@kernel.org, shawnguo@kernel.org, festevam@gmail.com,
-        u.kleine-koenig@pengutronix.de
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        kernel@pengutronix.de
-Subject: [PATCH] ARM: dts: imx6qdl-kontron-samx6i: fix pwms for lcd-backlight
-Date:   Wed,  2 Dec 2020 19:05:58 +0100
-Message-Id: <20201202180558.14541-1-m.felsch@pengutronix.de>
-X-Mailer: git-send-email 2.20.1
+        with ESMTP id S1727108AbgLBSId (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Dec 2020 13:08:33 -0500
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4597AC0613D4
+        for <devicetree@vger.kernel.org>; Wed,  2 Dec 2020 10:07:53 -0800 (PST)
+Received: by mail-wm1-x329.google.com with SMTP id g185so10793794wmf.3
+        for <devicetree@vger.kernel.org>; Wed, 02 Dec 2020 10:07:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=SsWlwI2/0ReQscJlT7sv5hrpnQn9P8/QKxp+kd8B4HA=;
+        b=ke+qbPwSgkrU1nv6oOE9KLUw43NcLqZDxNlRkgCpeuoumb/KRh7jBz39OAiWn60nii
+         Aorb/7kXEG9plrSeSjHe+WCatQYxteX/y7RA7OnYgl0VsGSC/5OIYe/KaAiGn1sRc6wH
+         cloAVv4a1NmviBwZjXC3tV3erji1cSESREVPu3kxxRAzT7rnDQUlWfJ3MWZidK3kclfy
+         dTlIDgv/SFoZe8J3qBmv8bk5ZYCV/WiwZkJkn0DZJ1fTQmAitWcWStNu7xjqBXPzlD0g
+         42SiAoHxE0ISYuG1VHqe29Y2xlwtjD21glFxBZpUS2stfHLGTIMibsF2EzcBy43ZOUGB
+         iSYQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=SsWlwI2/0ReQscJlT7sv5hrpnQn9P8/QKxp+kd8B4HA=;
+        b=ufjtLXHXSfB+7HDbKf4Kdmh6gblfGTsYy1ndsehdXfMOiBoem00yAvEu/Q3hcRV2bq
+         N9ep+6vBTb3uy24VrYsZMqS8AQCkBNvY9bYrTqrNN4XpIRhMgLfNIZd6Tg+ftRGO4ao4
+         HBHd2Xb1+1Imjam7sr6LyyB9PkFziTcuH+L5vc6kzkP7fSJ78nK3mT+asKPjbq1YKf+6
+         RQksNi85wny1THnLwpOtCqlQAooGokXfpHhpvmRbDBcoRRuIMt1tcMwTVlxbXdTNjE0e
+         PlWmaO6X+fo1HuAqZgVeaLfgIYGcixRSLoPDF8QLm1D7axY5R9POl3pXDYDlkSjVTvWr
+         ijbQ==
+X-Gm-Message-State: AOAM530MlhtQ/XUlvKPN8HUox3lWswAMwE/WLGhxwG+Krn7gji/19CKD
+        aDB4CIFD5Q4zu1akWtwh15YFNw==
+X-Google-Smtp-Source: ABdhPJwlmtcWPmRdDokFICh8Ou0AfhCSZyvSV6GfXqU85c/QDiLDlg7K/9FQM6FJEC5VPH4rhf2hzg==
+X-Received: by 2002:a1c:4c07:: with SMTP id z7mr4338877wmf.142.1606932471819;
+        Wed, 02 Dec 2020 10:07:51 -0800 (PST)
+Received: from srini-hackbox.lan (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
+        by smtp.gmail.com with ESMTPSA id a18sm3004404wrr.20.2020.12.02.10.07.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 02 Dec 2020 10:07:51 -0800 (PST)
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+To:     bjorn.andersson@linaro.org
+Cc:     linux-arm-msm@vger.kernel.org, agross@kernel.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Subject: [PATCH v2 0/6] arm64: dts: qcom: qrb5165-rb5 audio support
+Date:   Wed,  2 Dec 2020 18:07:35 +0000
+Message-Id: <20201202180741.16386-1-srinivas.kandagatla@linaro.org>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::28
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The pwms property have to specify the no-/inverted flag since
-commit fa28d8212ede ("ARM: dts: imx: default to #pwm-cells = <3>
-in the SoC dtsi files").
+This patchset adds support to Qualcomm Robotics RB5 Development Kit based on
+QRB5165 Robotics SoC. This board has 2 WSA881X smart speakers with onboard
+DMIC connected to internal LPASS codec via WSA and VA macros respectively.
 
-Fixes: fa28d8212ede ("ARM: dts: imx: default to #pwm-cells = <3> in the SoC dtsi files")
-Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
----
- arch/arm/boot/dts/imx6qdl-kontron-samx6i.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+All the audio related driver patches are merged via respective maintainer trees
+along with bindings. Only LPI pinctrl driver is not merged yet, however the
+bindings are acked by Rob, so am guessing that the dt changes should be okay to go!
 
-diff --git a/arch/arm/boot/dts/imx6qdl-kontron-samx6i.dtsi b/arch/arm/boot/dts/imx6qdl-kontron-samx6i.dtsi
-index d6df598bd1c2..36c2f0d9ce16 100644
---- a/arch/arm/boot/dts/imx6qdl-kontron-samx6i.dtsi
-+++ b/arch/arm/boot/dts/imx6qdl-kontron-samx6i.dtsi
-@@ -137,7 +137,7 @@
- 
- 	lcd_backlight: lcd-backlight {
- 		compatible = "pwm-backlight";
--		pwms = <&pwm4 0 5000000>;
-+		pwms = <&pwm4 0 5000000 0>;
- 		pwm-names = "LCD_BKLT_PWM";
- 
- 		brightness-levels = <0 10 20 30 40 50 60 70 80 90 100>;
+Thanks,
+srini
+
+Changes since v1:
+	- updated pinctrl nodes as suggested by Bjorn
+	- reordered include files.
+	- removed unnecessary spaces
+	- used mbn instead of mdt for adsp firmware
+
+Srinivas Kandagatla (6):
+  arm64: dts: qcom: sm8250: add apr and its services
+  arm64: dts: qcom: sm8250: add audio clock controllers
+  arm64: dts: qcom: sm8250: add lpass lpi pin controller node
+  arm64: dts: qcom: sm8250: add wsa and va codec macros
+  arm64: dts: qcom: sm8250: add mi2s pinconfs
+  arm64: dts: qcom: qrb5165-rb5: Add Audio support
+
+ arch/arm64/boot/dts/qcom/qrb5165-rb5.dts | 121 ++++++++++
+ arch/arm64/boot/dts/qcom/sm8250.dtsi     | 276 +++++++++++++++++++++++
+ 2 files changed, 397 insertions(+)
+
 -- 
-2.20.1
+2.21.0
 
