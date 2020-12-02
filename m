@@ -2,90 +2,279 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DD2F22CC3D3
-	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 18:31:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A84AF2CC3EA
+	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 18:35:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729255AbgLBRaL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Dec 2020 12:30:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42610 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728873AbgLBRaK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Dec 2020 12:30:10 -0500
-Received: from mail-pg1-x544.google.com (mail-pg1-x544.google.com [IPv6:2607:f8b0:4864:20::544])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D418C0613D6;
-        Wed,  2 Dec 2020 09:29:24 -0800 (PST)
-Received: by mail-pg1-x544.google.com with SMTP id f17so1494435pge.6;
-        Wed, 02 Dec 2020 09:29:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=ryyYawzS2MjebmkZYtVtHUp0Y0QlBniiFC9GtFM7sjg=;
-        b=b5xlFRCbMRItD+HFZcCZb+HbaGxsWgbgub+SCO6VZOqdgpgiloLzr/Y3f6m5NGZo0d
-         a06NZbtaF62w8BaesFML+kfHSY3EA/Cr0qy/0FKGZsYKU5xWQ7SdQMrYwA/YOYjnp58R
-         C+IZ+hRMg8vXYCOfWmC8kCy06LKQmkl8hfGwmZzYoFlsnNw8g1qls4moR92HIgzX2sQm
-         ielZze+J7rzOAPhPK8pXaoHE17NH8yvyRVCYK8+cPJ/0SPYNMxR0FMF9CGcOgaysfWCl
-         HZaLHO8O+3DfP/7mV5VA5YooTJXfZu7eORXTqHf8udFT4V2DiMWK5NzAnMBNcr4UO9JW
-         QArA==
+        id S1726627AbgLBRe6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Dec 2020 12:34:58 -0500
+Received: from mail-ed1-f68.google.com ([209.85.208.68]:34825 "EHLO
+        mail-ed1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726524AbgLBRe5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Dec 2020 12:34:57 -0500
+Received: by mail-ed1-f68.google.com with SMTP id u19so4885696edx.2;
+        Wed, 02 Dec 2020 09:34:34 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=ryyYawzS2MjebmkZYtVtHUp0Y0QlBniiFC9GtFM7sjg=;
-        b=gqTPsB1tj5FkwMhUGT+us1O0oV+BU5+W6SOmw+3R82eq+L2My2wuQGPjmJat6P38wR
-         iceDYegrDriY8ltv4Bxqe1U/MnvQb7lGCmWgJ3CJGLKDUOOZ2u6jkmITQ/LuI7mhIXnS
-         QzybciFxn1daUbNXnY6ZFdFnQ1Q/CAG1xklQwsrQSyD0+AIL1vDSE8ni1DEi2H4ZL+lz
-         m+zSjr6WUl+eTIaXZWW3mFF62Azp4s0VDDr5JtnZCDKyCPoWYTyyH0gh7A0imftGReB8
-         3MJw/glOJWWWdPEmVonCzTf25WuPcJ02ukw+wuGGC8t8Pc9yfcWcGfVIeWoalvG3pv48
-         G4yg==
-X-Gm-Message-State: AOAM532wPYSYuYsUv6PxX3Acq1cD9IY+2j2zEI6aNBsDjVzdgknadhtz
-        BJ5sjXtTxkeGj6fYUG4FWmreHHrFFR8=
-X-Google-Smtp-Source: ABdhPJxgQXx0kr1Swrb/KX+SjSrYEdQ3otcHAy5qmZ1c9fTmh11kgvfHr8IV/bJ85O7X3P1SA1xN8w==
-X-Received: by 2002:a62:6405:0:b029:197:cc73:397b with SMTP id y5-20020a6264050000b0290197cc73397bmr3927426pfb.51.1606930164131;
-        Wed, 02 Dec 2020 09:29:24 -0800 (PST)
-Received: from [10.230.28.242] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id q14sm382946pfl.163.2020.12.02.09.29.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 02 Dec 2020 09:29:22 -0800 (PST)
-Subject: Re: [PATCH v5 05/11] reset: raspberrypi: Release firmware handle on
- unbind
-To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        u.kleine-koenig@pengutronix.de, linux-kernel@vger.kernel.org,
-        Philipp Zabel <p.zabel@pengutronix.de>
-Cc:     f.fainelli@gmail.com, linux-pwm@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        wahrenst@gmx.net, linux-input@vger.kernel.org,
-        dmitry.torokhov@gmail.com, gregkh@linuxfoundation.org,
-        devel@driverdev.osuosl.org, linux-gpio@vger.kernel.org,
-        linus.walleij@linaro.org, linux-clk@vger.kernel.org,
-        sboyd@kernel.org, linux-rpi-kernel@lists.infradead.org,
-        bgolaszewski@baylibre.com, andy.shevchenko@gmail.com
-References: <20201123183833.18750-1-nsaenzjulienne@suse.de>
- <20201123183833.18750-6-nsaenzjulienne@suse.de>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-Message-ID: <848fa5ae-9cc2-a119-64a5-130f25157d56@gmail.com>
-Date:   Wed, 2 Dec 2020 09:29:20 -0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.5.0
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=wJ6pUuszJDg/47iz5wDAOfG7BM1jFUEnOUHSofHoz8M=;
+        b=a/hJ2x6j+o4u3aZwp3jOl80aSnfiUS3IpExNZG1OTsg7uHLucQ7E9HvuJ1IYBvEeQr
+         G0jjtjfAX4uUxH0j6k/VyG+fAkhLneiRJQk5Vu2C+rSSZ5/1/3AgvYqTNHNLpJNk2Dbu
+         NGbjyIZCw57AR9AYWPYMMq9kmvHZPm2xL61hJz0qX86bEwJznojfn/KwIsk0dfvEaXSM
+         mEkV1CL3E1CQhYy2qudtB44/g4d3iNFvS/SowWzgSivL+y8976gUPpTi/DTZUq8ffHZR
+         SB/sSSz54zhOZTSE2JryVekoxvFKd3X0aNtxtUM8A9/BTvyHpN9niiMAw+UlMtAVhKgs
+         5TnQ==
+X-Gm-Message-State: AOAM532KE2xI/3B0WjKqDvY6b173OXCOaaPiKkC2ZEPAR2paV4YYOnsQ
+        UGcLnllkTcnJ2Ju8qE8f9tY=
+X-Google-Smtp-Source: ABdhPJyj/UsZcMRfLFtkUtRT+m8m5Qx2cYcD57OETZKHIiL/OArK75vx3xcijSo8QnmHb4ZyH8FozA==
+X-Received: by 2002:aa7:d459:: with SMTP id q25mr988138edr.279.1606930448646;
+        Wed, 02 Dec 2020 09:34:08 -0800 (PST)
+Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
+        by smtp.googlemail.com with ESMTPSA id k17sm378283ejj.1.2020.12.02.09.34.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 02 Dec 2020 09:34:07 -0800 (PST)
+Date:   Wed, 2 Dec 2020 19:34:05 +0200
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Jagan Teki <jagan@amarulasolutions.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Li Yang <leoyang.li@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Matteo Lisi <matteo.lisi@engicam.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-amarula@amarulasolutions.com
+Subject: Re: [PATCH 04/10] arm64: dts: imx8mm: Add Engicam i.Core MX8M Mini
+ SOM
+Message-ID: <20201202173405.GD3490@kozik-lap>
+References: <20201202121241.109952-1-jagan@amarulasolutions.com>
+ <20201202121241.109952-5-jagan@amarulasolutions.com>
 MIME-Version: 1.0
-In-Reply-To: <20201123183833.18750-6-nsaenzjulienne@suse.de>
 Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+In-Reply-To: <20201202121241.109952-5-jagan@amarulasolutions.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Dec 02, 2020 at 05:42:35PM +0530, Jagan Teki wrote:
+> i.Core MX8M Mini is an EDIMM SOM based on NXP i.MX8MM from Engicam.
 
+s/SOM/SoM/
 
-On 11/23/2020 10:38 AM, Nicolas Saenz Julienne wrote:
-> Use devm_rpi_firmware_get() so as to make sure we release RPi's firmware
-> interface when unbinding the device.
 > 
-> Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+> General features:
+> - NXP i.MX8MM
 
-Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
--- 
-Florian
+i.MX 8M Mini
+as named by NXP:
+https://www.nxp.com/products/processors-and-microcontrollers/arm-processors/i-mx-applications-processors/i-mx-8-processors/i-mx-8m-mini-arm-cortex-a53-cortex-m4-audio-voice-video:i.MX8MMINI
+
+> - Up to 2GB LDDR4
+> - 8/16GB eMMC
+> - Gigabit Ethernet
+> - USB 2.0 Host/OTG
+> - PCIe Gen2 interface
+> - I2S
+> - MIPI DSI to LVDS
+> - rest of i.MX8MM features
+
+Ditto
+
+> 
+> i.Core MX8M Mini needs to mount on top of Engicam baseboards for
+> creating complete platform boards.
+> 
+> Possible baseboards are,
+> - EDIMM2.2
+> - C.TOUCH 2.0
+
+Don't describe baseboards. You add here only SoM.
+
+> 
+> Add support for it.
+> 
+> Signed-off-by: Matteo Lisi <matteo.lisi@engicam.com>
+> Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+> ---
+>  .../freescale/imx8mm-engicam-icore-mx8mm.dtsi | 209 ++++++++++++++++++
+>  1 file changed, 209 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-engicam-icore-mx8mm.dtsi
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-engicam-icore-mx8mm.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-engicam-icore-mx8mm.dtsi
+> new file mode 100644
+> index 000000000000..b87917c40587
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/freescale/imx8mm-engicam-icore-mx8mm.dtsi
+> @@ -0,0 +1,209 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright (c) 2018 NXP
+> + * Copyright (c) 2019 Engicam srl
+> + * Copyright (c) 2020 Amarula Solutons(India)
+> + */
+> +
+> +/ {
+
+Missing "model".
+
+> +	compatible = "engicam,icore-mx8mm", "fsl,imx8mm";
+> +};
+> +
+
+No memory node? Isn't the memory a property of SoM?
+
+> +&A53_0 {
+> +	cpu-supply = <&reg_buck4>;
+> +};
+
+Supplies for the other cores.
+
+> +
+> +&i2c1 {
+> +	clock-frequency = <400000>;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_i2c1>;
+> +	status = "okay";
+> +
+> +	pf8100@8 {
+
+Node name should describe generic class of a device, so probably you
+wanted here "pmic".
+
+> +		compatible = "nxp,pf8x00";
+> +		reg = <0x08>;
+> +
+> +		regulators {
+> +			reg_ldo1: ldo1 {
+> +				regulator-always-on;
+> +				regulator-boot-on;
+
+First min/max constraints. Then always-on and boot-on properties.
+
+> +				regulator-max-microvolt = <5000000>;
+> +				regulator-min-microvolt = <1500000>;
+> +			};
+> +
+> +			reg_ldo2: ldo2 {
+> +				regulator-always-on;
+> +				regulator-boot-on;
+> +				regulator-max-microvolt = <5000000>;
+> +				regulator-min-microvolt = <1500000>;
+> +			};
+> +
+> +			reg_ldo3: ldo3 {
+> +				regulator-always-on;
+> +				regulator-boot-on;
+> +				regulator-max-microvolt = <5000000>;
+> +				regulator-min-microvolt = <1500000>;
+> +			};
+> +
+> +			reg_ldo4: ldo4 {
+> +				regulator-always-on;
+> +				regulator-boot-on;
+> +				regulator-max-microvolt = <5000000>;
+> +				regulator-min-microvolt = <1500000>;
+> +			};
+> +
+> +			reg_buck1: buck1 {
+> +				fsl,ilim-ma = <4500>;
+
+Where is this property documented?
+
+> +				regulator-always-on;
+> +				regulator-boot-on;
+> +				regulator-max-microvolt = <1800000>;
+> +				regulator-min-microvolt =  <400000>;
+> +			};
+> +
+> +			reg_buck2: buck2 {
+> +				regulator-always-on;
+> +				regulator-boot-on;
+> +				regulator-max-microvolt = <1800000>;
+> +				regulator-min-microvolt =  <400000>;
+> +			};
+> +
+> +			reg_buck3: buck3 {
+> +				regulator-always-on;
+> +				regulator-boot-on;
+> +				regulator-max-microvolt = <1800000>;
+> +				regulator-min-microvolt =  <400000>;
+> +			};
+> +
+> +			reg_buck4: buck4 {
+> +				regulator-always-on;
+> +				regulator-boot-on;
+> +				regulator-max-microvolt = <1800000>;
+> +				regulator-min-microvolt =  <400000>;
+> +				fast-slew = <1>;
+
+Where is this property documented?
+
+> +			};
+> +
+> +			reg_buck5: buck5 {
+> +				regulator-always-on;
+> +				regulator-boot-on;
+> +				regulator-max-microvolt = <1800000>;
+> +				regulator-min-microvolt =  <400000>;
+> +			};
+> +
+> +			reg_buck6: buck6 {
+> +				regulator-always-on;
+> +				regulator-boot-on;
+> +				regulator-max-microvolt = <1800000>;
+> +				regulator-min-microvolt =  <400000>;
+> +			};
+> +
+> +			reg_buck7: buck7 {
+> +				regulator-always-on;
+> +				regulator-boot-on;
+> +				regulator-max-microvolt = <3300000>;
+> +				regulator-min-microvolt = <3300000>;
+> +			};
+> +
+> +			reg_vsnvs: vsnvs {
+> +				regulator-always-on;
+> +				regulator-boot-on;
+> +				regulator-max-microvolt = <3300000>;
+> +				regulator-min-microvolt = <1800000>;
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&iomuxc {
+> +	pinctrl_i2c1: i2c1grp {
+> +		fsl,pins = <
+> +			MX8MM_IOMUXC_I2C1_SCL_I2C1_SCL		0x400001c3
+> +			MX8MM_IOMUXC_I2C1_SDA_I2C1_SDA		0x400001c3
+> +		>;
+> +	};
+> +
+> +	pinctrl_uart2: uart2grp {
+
+Not used.
+
+> +		fsl,pins = <
+> +			MX8MM_IOMUXC_UART2_RXD_UART2_DCE_RX	0x140
+> +			MX8MM_IOMUXC_UART2_TXD_UART2_DCE_TX	0x140
+> +		>;
+> +	};
+> +
+> +	pinctrl_usdhc1_gpio: usdhc1grpgpio {
+
+This should complain on bindings check. Please run dtbs_check. The "grp"
+should be a suffix in node name, so "usdhc1gpiogrp".
+
+> +		fsl,pins = <
+> +			MX8MM_IOMUXC_GPIO1_IO06_GPIO1_IO6	0x41
+> +		>;
+> +	};
+> +
+> +	pinctrl_usdhc1: usdhc1grp {
+
+Not used.
+
+Best regards,
+Krzysztof
