@@ -2,87 +2,214 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D54FC2CB9F1
-	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 11:00:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 20E0D2CBA1E
+	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 11:06:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388173AbgLBJ6Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Dec 2020 04:58:25 -0500
-Received: from esa3.microchip.iphmx.com ([68.232.153.233]:15346 "EHLO
-        esa3.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388027AbgLBJ6Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Dec 2020 04:58:24 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1606903104; x=1638439104;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version;
-  bh=37AH/eE7ah8M+AAHKPVe04uSJk40NY7/cY6zhOg1Bck=;
-  b=Hbt8gWEc3RMYPac1pvyhkYqSX8/ddh9rCDCaTfZ0yPwDWVwjYLNFjipO
-   Q4TXJ91sAKG87dCcPmuDJL0BqQ0o77eAVpE3QH15IpLsS51HtkicOiL+t
-   JFe9g9S/6p56b8EwPfBpFp/7f/mUu2PprttQgEo5QIuBTLoesXIKRcsL9
-   0RZ9Ri/a58JMbS2hZsu7osY72IM041Ivh3v8MieRi1N2A8c5wt2e6cymQ
-   KRnx/RuGK3MpbDdk8Uo0uUBO6sdvUT1601ABW6x/P66kntCNIO57JTk3N
-   PFSqj3W1mHLqAgyZNKVeB+Fcrg6OJt2wwnB6vjPAt8FQgStXYekUkWNTa
-   Q==;
-IronPort-SDR: RyaCZZVFCsSwAGrS/9XonAvjQOQg7au2ubI9frfBpinZWJniiC7bHmcgQoEOK/jlJ305drA+nV
- T/8izPZDV88O6Eke0uD0urXTjMDuPmuNix7mNu3lKGr/NsHsCq/IqHcGrSa3arWc77cpZshM8x
- 59j9aladEX+mXERkDYMhHlXdxZxuHpIIHZU14ERAfNY8WI/Q2h+07DiEquOaUZrfQHmbMibq96
- cIiZ7+HHp1PADQcgZhAwm5OjYkbmcckMB7VyEb50hrBEQFC/zV8ePcl1WkHWz7o1kbzkFVFTeq
- GzQ=
-X-IronPort-AV: E=Sophos;i="5.78,386,1599548400"; 
-   d="scan'208";a="101099220"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 02 Dec 2020 02:57:19 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1979.3; Wed, 2 Dec 2020 02:57:18 -0700
-Received: from m18063-ThinkPad-T460p.microchip.com (10.10.115.15) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
- 15.1.1979.3 via Frontend Transport; Wed, 2 Dec 2020 02:57:15 -0700
-From:   Claudiu Beznea <claudiu.beznea@microchip.com>
-To:     <robh+dt@kernel.org>, <nicolas.ferre@microchip.com>,
-        <alexandre.belloni@bootlin.com>, <ludovic.desroches@microchip.com>
-CC:     <sandeepsheriker.mallikarjun@microchip.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>
-Subject: [PATCH 2/2] ARM: dts: at91: sama5d2: map securam as device
-Date:   Wed, 2 Dec 2020 11:57:05 +0200
-Message-ID: <1606903025-14197-3-git-send-email-claudiu.beznea@microchip.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1606903025-14197-1-git-send-email-claudiu.beznea@microchip.com>
-References: <1606903025-14197-1-git-send-email-claudiu.beznea@microchip.com>
+        id S2388116AbgLBKGJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Dec 2020 05:06:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58392 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729350AbgLBKGJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Dec 2020 05:06:09 -0500
+Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com [IPv6:2a00:1450:4864:20::344])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D580DC0613D6
+        for <devicetree@vger.kernel.org>; Wed,  2 Dec 2020 02:05:28 -0800 (PST)
+Received: by mail-wm1-x344.google.com with SMTP id d3so5539064wmb.4
+        for <devicetree@vger.kernel.org>; Wed, 02 Dec 2020 02:05:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=SDFtnRN6FEskyo3h0LoTIhkArTtZvpeIQSQ7/DJT7Ys=;
+        b=ZhQSAsig3KMFt0qx5PU6eRPXM0k444fAf3MSKMZKOTvSCWhSrbWgQhANdPevMtz8eg
+         TycmK8dGTl9+ti8aB+K/RR77gxQK2J9Wc4vvzM1uzA/vUTQsN1BfwqKLyp6OPDTCFq7N
+         3RPc+qxFpywToK9TFttmW3VGSb0nsYx2O1jO0x+/60CHzjCgS2SzyHfQLgCAN7XTPeBq
+         O1NEj6VhYHNCW4Uk8wAzjYgVegStjvMA28A8x9m1qcJ4IWHDUvVomAUm2RsYiLdZNbm1
+         iGDMSQwmWBAptAUlgUfgr5pxKaFCKh7TM5xMho9jUwRA5/92foWQcJ9fbvCxywBtJbqK
+         Cy0Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=SDFtnRN6FEskyo3h0LoTIhkArTtZvpeIQSQ7/DJT7Ys=;
+        b=CMBA+F8r4VwxIIEAFVbtGBTBSQleWtxW0ueyE0a2TvFvqolZMlCq1oogXpWAuGQQJa
+         jo+3S/g5xQvYYVwem+19jW5ZvaXV0nFAnloZcl+D1C5Wi7fLFYb+IrxH1rJozSE3UKCi
+         ZkyM8g6DJ1SckvqXv6PO/5mzKUhjyVV6TD6jqZnpOM94xyAkSeuMfHZTBW4zgzA21Ky2
+         Mx2qhj95PKA1BAppZMJsQddH7yvg96PVIHGKZScDlXEQj0b0GHewabIMn+0egqpjjIBS
+         fScTG0xL/aAuWAtVgq9icq7+WGaKR/nRjZrUvUgmSsynbqyv55FXlPv8V2eN6pSizEAs
+         4x0w==
+X-Gm-Message-State: AOAM533A44tE5AqHYaAeEQ5xlZSiKoKH6L82vWzlIGwslf75w+2/cLer
+        xUXipBUfiwjCwaPPiD49jeOasw==
+X-Google-Smtp-Source: ABdhPJzXEMn0R6VoOGkEgzMTjmkpTQQ0jn2MPMELBpWMHZUMHtvnqC4XyUUUPMstS35w31V7GH3RFQ==
+X-Received: by 2002:a05:600c:2188:: with SMTP id e8mr2237378wme.99.1606903527385;
+        Wed, 02 Dec 2020 02:05:27 -0800 (PST)
+Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
+        by smtp.googlemail.com with ESMTPSA id b83sm1347175wmd.48.2020.12.02.02.05.26
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 02 Dec 2020 02:05:26 -0800 (PST)
+Subject: Re: [PATCH v5 2/2] pinctrl: qcom: Add sm8250 lpass lpi pinctrl driver
+To:     Alex Elder <elder@ieee.org>, linus.walleij@linaro.org,
+        bjorn.andersson@linaro.org
+Cc:     robh+dt@kernel.org, agross@kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20201201142830.13152-1-srinivas.kandagatla@linaro.org>
+ <20201201142830.13152-3-srinivas.kandagatla@linaro.org>
+ <bf18cc63-77b2-7929-625a-1ea3d108916e@ieee.org>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Message-ID: <a3653c84-8d2d-40d5-00b1-8d13bf44f141@linaro.org>
+Date:   Wed, 2 Dec 2020 10:05:25 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: text/plain
+In-Reply-To: <bf18cc63-77b2-7929-625a-1ea3d108916e@ieee.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Due to strobe signal not being propagated from CPU to securam
-the securam needs to be mapped as device or strongly ordered memory
-to work properly. Otherwise, updating to one offset may affect
-the adjacent locations in securam.
+Thanks Alex for the comments,
 
-Fixes: d4ce5f44d4409 ("ARM: dts: at91: sama5d2: Add securam node")
-Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
----
- arch/arm/boot/dts/sama5d2.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+On 01/12/2020 20:21, Alex Elder wrote:
+> On 12/1/20 8:28 AM, Srinivas Kandagatla wrote:
+>> Add initial pinctrl driver to support pin configuration for
+>> LPASS (Low Power Audio SubSystem) LPI (Low Power Island) pinctrl
+>> on SM8250.
+>>
+>> This IP is an additional pin control block for Audio Pins on top the
+>> existing SoC Top level pin-controller.
+>> Hardware setup looks like:
+>>
+>> TLMM GPIO[146 - 159] --> LPASS LPI GPIO [0 - 13]
+>>
+>> This pin controller has some similarities compared to Top level
+>> msm SoC Pin controller like 'each pin belongs to a single group'
+>> and so on. However this one is intended to control only audio
+>> pins in particular, which can not be configured/touched by the
+>> Top level SoC pin controller except setting them as gpios.
+>> Apart from this, slew rate is also available in this block for
+>> certain pins which are connected to SLIMbus or SoundWire Bus.
+>>
+>> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> 
+> Bjorn called my attention to a comment he made on this patch.
+> I'm not giving it a full review right now, but I have a
+> general suggestion below.
+> 
+>> ---
+>>   drivers/pinctrl/qcom/Kconfig             |   8 +
+>>   drivers/pinctrl/qcom/Makefile            |   1 +
+>>   drivers/pinctrl/qcom/pinctrl-lpass-lpi.c | 727 +++++++++++++++++++++++
+>>   3 files changed, 736 insertions(+)
+>>   create mode 100644 drivers/pinctrl/qcom/pinctrl-lpass-lpi.c
+>>
+>> diff --git a/drivers/pinctrl/qcom/Kconfig b/drivers/pinctrl/qcom/Kconfig
+>> index 5fe7b8aaf69d..d3e4e89c2810 100644
+>> --- a/drivers/pinctrl/qcom/Kconfig
+>> +++ b/drivers/pinctrl/qcom/Kconfig
+>> @@ -236,4 +236,12 @@ config PINCTRL_SM8250
+>>         Qualcomm Technologies Inc TLMM block found on the Qualcomm
+>>         Technologies Inc SM8250 platform.
+>> +config PINCTRL_LPASS_LPI
+>> +    tristate "Qualcomm Technologies Inc LPASS LPI pin controller driver"
+>> +    depends on GPIOLIB
+>> +    help
+>> +      This is the pinctrl, pinmux, pinconf and gpiolib driver for the
+>> +      Qualcomm Technologies Inc LPASS (Low Power Audio SubSystem) LPI
+>> +      (Low Power Island) found on the Qualcomm Technologies Inc SoCs.
+>> +
+>>   endif
+>> diff --git a/drivers/pinctrl/qcom/Makefile 
+>> b/drivers/pinctrl/qcom/Makefile
+>> index 9e3d9c91a444..c8520155fb1b 100644
+>> --- a/drivers/pinctrl/qcom/Makefile
+>> +++ b/drivers/pinctrl/qcom/Makefile
+>> @@ -28,3 +28,4 @@ obj-$(CONFIG_PINCTRL_SDM660)   += pinctrl-sdm660.o
+>>   obj-$(CONFIG_PINCTRL_SDM845) += pinctrl-sdm845.o
+>>   obj-$(CONFIG_PINCTRL_SM8150) += pinctrl-sm8150.o
+>>   obj-$(CONFIG_PINCTRL_SM8250) += pinctrl-sm8250.o
+>> +obj-$(CONFIG_PINCTRL_LPASS_LPI) += pinctrl-lpass-lpi.o
+>> diff --git a/drivers/pinctrl/qcom/pinctrl-lpass-lpi.c 
+>> b/drivers/pinctrl/qcom/pinctrl-lpass-lpi.c
+>> new file mode 100644
+>> index 000000000000..96c63a33fc99
+>> --- /dev/null
+>> +++ b/drivers/pinctrl/qcom/pinctrl-lpass-lpi.c
+>> @@ -0,0 +1,727 @@
+>> +// SPDX-License-Identifier: GPL-2.0-only
+>> +/*
+>> + * Copyright (c) 2016-2019, The Linux Foundation. All rights reserved.
+>> + * Copyright (c) 2020 Linaro Ltd.
+>> + */
+>> +
+>> +#include <linux/bitops.h>
+>> +#include <linux/bitfield.h>
+>> +#include <linux/clk.h>
+>> +#include <linux/gpio/driver.h>
+>> +#include <linux/io.h>
+>> +#include <linux/module.h>
+>> +#include <linux/of_device.h>
+>> +#include <linux/of.h>
+>> +#include <linux/pinctrl/pinconf-generic.h>
+>> +#include <linux/pinctrl/pinconf.h>
+>> +#include <linux/pinctrl/pinmux.h>
+>> +#include <linux/platform_device.h>
+>> +#include <linux/slab.h>
+>> +#include <linux/types.h>
+>> +#include "../core.h"
+>> +#include "../pinctrl-utils.h"
+>> +
+>> +#define LPI_GPIO_CFG_REG        0x00
+>> +#define LPI_GPIO_VALUE_REG        0x04
+>> +#define LPI_SLEW_RATE_CTL_REG        0xa000
+>> +#define LPI_SLEW_RATE_MAX        0x03
+>> +#define LPI_SLEW_BITS_SIZE        0x02
+>> +#define LPI_GPIO_PULL_SHIFT        0x0
+>> +#define LPI_GPIO_PULL_MASK        GENMASK(1, 0)
+> 
+> . . .
+> 
+> If you have a mask like this, you do not need the shift.
+> The mask alone encodes both the position and the width
+> of the field you are describing.  It is better to use
+> just the one (mask) value and avoid even the possibility
+> of the mask and shift being inconsistent.  You halve the
+> number of symbols you need to describe fields too.
 
-diff --git a/arch/arm/boot/dts/sama5d2.dtsi b/arch/arm/boot/dts/sama5d2.dtsi
-index 2ddc85dff8ce..6d399ac0385d 100644
---- a/arch/arm/boot/dts/sama5d2.dtsi
-+++ b/arch/arm/boot/dts/sama5d2.dtsi
-@@ -656,6 +656,7 @@
- 				clocks = <&pmc PMC_TYPE_PERIPHERAL 51>;
- 				#address-cells = <1>;
- 				#size-cells = <1>;
-+				no-memory-wc;
- 				ranges = <0 0xf8044000 0x1420>;
- 			};
- 
--- 
-2.7.4
+I did realize that while I was doing replace bits ,but did not go 
+further in possibility of removing the redundant macros!
 
+
+> 
+> For the macros and functions in <linux/bitfield.h> the
+> mask values must be constant at compile time, but you
+> have that here.
+> 
+> For the LPI_GPIO_PULL, you use it below this way:
+>      pull = (ctl_reg & LPI_GPIO_PULL_MASK) >> LPI_GPIO_PULL_SHIFT;
+> Instead, use:
+>      pull = u32_get_bits(ctl_reg, LPI_GPIO_PULL_MASK);
+> 
+> I see you're using u32_replace_bits(), and what I see
+> looks good.  But you can use u32_encode_bits() as well.
+> For example, instead of:
+>      lpi_gpio_write(pctrl, group, LPI_GPIO_VALUE_REG,
+>                     value << LPI_GPIO_DIR_SHIFT);
+> Use:
+>      val = u32_encode_bits(value ? 1 : 0, LPI_GPIO_DIR_MASK);
+>      lpi_gpio_write(pctrl, group, LPI_GPIO_VALUE_REG, val);
+> (This one-bit mask might not be a great example.)
+> 
+> In addition to getting rid of extra symbols, using these
+> functions typically results in simpler-looking code.
+
+Many thanks for the examples,  Will convert to either using FIELD_* 
+macros or u32_encode/get apis and remove redundant SHIFT macros!
+
+--srini
+
+> 
+>                      -Alex
