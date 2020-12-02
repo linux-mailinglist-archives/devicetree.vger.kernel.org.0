@@ -2,180 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 694012CC778
-	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 21:10:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 88B092CC7A9
+	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 21:25:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387653AbgLBUI3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Dec 2020 15:08:29 -0500
-Received: from mailout1.w1.samsung.com ([210.118.77.11]:54015 "EHLO
-        mailout1.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387621AbgLBUI2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Dec 2020 15:08:28 -0500
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20201202200733euoutp011cbf8b5d60a9279fa6d249170b237383~M-xnctH3Q1427914279euoutp01K;
-        Wed,  2 Dec 2020 20:07:33 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20201202200733euoutp011cbf8b5d60a9279fa6d249170b237383~M-xnctH3Q1427914279euoutp01K
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1606939653;
-        bh=nX1/s9F4j0opypv7MLT+Sr3+JETZciJL/oqqq3Yqqxc=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=a+YdXyyTUz8KPN5IAsgsIENqV7HhcqXlfAYvQ2zQrtRjpo7GNxfg4cBiEt8f2dzyU
-         PxjpZLmCXin8TJR5f3+utLjNtK41szXlqv+VbfI70UXFqAateJxFtb9BBiJXWvsmDn
-         AtToMVjXd1Vnrq+uDkCX5V0JXFL6F89jGjt+bKKU=
-Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
-        20201202200728eucas1p1676c086b1d900ebb9eee9506c9b5d92b~M-xilRsLK1724917249eucas1p1i;
-        Wed,  2 Dec 2020 20:07:28 +0000 (GMT)
-Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
-        eusmges3new.samsung.com (EUCPMTA) with SMTP id 53.F6.45488.004F7CF5; Wed,  2
-        Dec 2020 20:07:28 +0000 (GMT)
-Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-        20201202200727eucas1p18311ed19904e8a0c7b8c28cde87f155b~M-xiG0E3P2979929799eucas1p1n;
-        Wed,  2 Dec 2020 20:07:27 +0000 (GMT)
-Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
-        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20201202200727eusmtrp2ac27b6bb7c81afe0e7dd81e663911d7f~M-xiGAnuu2900929009eusmtrp2_;
-        Wed,  2 Dec 2020 20:07:27 +0000 (GMT)
-X-AuditID: cbfec7f5-c5fff7000000b1b0-c7-5fc7f40041f0
-Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
-        eusmgms1.samsung.com (EUCPMTA) with SMTP id 37.9C.21957.FF3F7CF5; Wed,  2
-        Dec 2020 20:07:27 +0000 (GMT)
-Received: from localhost (unknown [106.120.51.46]) by eusmtip2.samsung.com
-        (KnoxPortal) with ESMTPA id
-        20201202200727eusmtip2a27d2352fcd1a034d76327ce441c0f26~M-xh1xuRB0034800348eusmtip2r;
-        Wed,  2 Dec 2020 20:07:27 +0000 (GMT)
-From:   Lukasz Stelmach <l.stelmach@samsung.com>
-To:     Jakub Kicinski <kuba@kernel.org>
-Cc:     Andrew Lunn <andrew@lunn.ch>, jim.cromie@gmail.com,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Kukjin Kim <kgene@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org,
-        =?utf-8?Q?Bart=C5=82omiej_=C5=BBolni?= =?utf-8?Q?erkiewicz?= 
-        <b.zolnierkie@samsung.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>
-Subject: Re: [PATCH v7 3/3] net: ax88796c: ASIX AX88796C SPI Ethernet
- Adapter Driver
-Date:   Wed, 02 Dec 2020 21:07:11 +0100
-In-Reply-To: <20201202091852.69a02069@kicinski-fedora-pc1c0hjn.DHCP.thefacebook.com>
-        (Jakub Kicinski's message of "Wed, 2 Dec 2020 09:18:52 -0800")
-Message-ID: <dleftjsg8oc6q8.fsf%l.stelmach@samsung.com>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+        id S1728846AbgLBUX3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Dec 2020 15:23:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41426 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728814AbgLBUX2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Dec 2020 15:23:28 -0500
+Received: from mail-pj1-x1044.google.com (mail-pj1-x1044.google.com [IPv6:2607:f8b0:4864:20::1044])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC43AC0613D6;
+        Wed,  2 Dec 2020 12:22:48 -0800 (PST)
+Received: by mail-pj1-x1044.google.com with SMTP id r9so1661680pjl.5;
+        Wed, 02 Dec 2020 12:22:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=jPXLgrfmPsVossgPwOVXqHGCtH2YsRf8UcPWK89e/XE=;
+        b=c17HjQZoRSkabFcQ4upzoWsYEn2nhGmFpVMHiOWRalYsFPACNwPPlFHfRqr55n1ifW
+         UIbf93b6R4dwdO/1sf1rOV1GFKBOduB4JyTWTYqkpkMr2k22teMqdR4+8cI+A1Xf+D2d
+         yejUZ1H8KRnenqf603ZtkoJrhm+SiFOvH80nPnS+ngZUT0kThG9j9+fH1Qnsr6MlptDf
+         0dZch+3qT+ebRiq3Qkg6r2MonVxgBYEXmxkarId8LsLmhv/3nzTeapzeuZs8ChORAnMZ
+         WwgpkmAUzoNwyLhfvQ/lGRDDKg2sQNFFVAc7apcQrLmjRb2wyHRF7uhh1+K6blqtJYAL
+         8Vuw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=jPXLgrfmPsVossgPwOVXqHGCtH2YsRf8UcPWK89e/XE=;
+        b=YKBp+bTapsE0sCxkuON+ZifWSo/Yab38n0Ow2CrE2020kTz98HgvmVG7DfU66EqoLu
+         gcLaO4cT8DrZI+Mhl9quYGOwJ7cxrB5xaRPZjDsZZl5z4gsREtJzw9OoUxC0TL9AmJQu
+         DB/mtziYUmai+sbzt904inoTmEVT12cDQao+uH0mnc7751l2kqMen3DCh8EjkbqeTwYB
+         C1f31xIVPoHOvMe/tcUVn08NVAsNslEsCZTHrzzcjxLO3SeHVtHw68OF7mw0QnCoCGzt
+         /FP+4W1DbPsZqeBB6gRXrY63d4BX9OKtLNtGtuGgrMN58FSLDSEnlDlQbBBJqS+VKK4Z
+         QLBw==
+X-Gm-Message-State: AOAM532r3hkILeusLqXeYEDoU3IcC3Gbex7lhNIKm5TyTqloVth3Hcbz
+        tti7iiCm2adzCRr+t69HG24=
+X-Google-Smtp-Source: ABdhPJxyoo5uUzNVQaIgO+msO41uuAmT3ThpDEhUjZBbVx2SqAjC19UkpnvYRwGuaCRaSQqQYxOxaQ==
+X-Received: by 2002:a17:902:7c8d:b029:da:625c:8218 with SMTP id y13-20020a1709027c8db02900da625c8218mr4161472pll.26.1606940568169;
+        Wed, 02 Dec 2020 12:22:48 -0800 (PST)
+Received: from Asurada-Nvidia (thunderhill.nvidia.com. [216.228.112.22])
+        by smtp.gmail.com with ESMTPSA id 143sm593457pfc.119.2020.12.02.12.22.46
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Wed, 02 Dec 2020 12:22:47 -0800 (PST)
+Date:   Wed, 2 Dec 2020 12:19:56 -0800
+From:   Nicolin Chen <nicoleotsuka@gmail.com>
+To:     Shengjiu Wang <shengjiu.wang@nxp.com>
+Cc:     timur@kernel.org, Xiubo.Lee@gmail.com, festevam@gmail.com,
+        broonie@kernel.org, perex@perex.cz, tiwai@suse.com,
+        alsa-devel@alsa-project.org, lgirdwood@gmail.com,
+        robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] ASoC: fsl: Add imx-hdmi machine driver
+Message-ID: <20201202201955.GB1498@Asurada-Nvidia>
+References: <1606455021-18882-1-git-send-email-shengjiu.wang@nxp.com>
+ <1606455021-18882-2-git-send-email-shengjiu.wang@nxp.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="=-=-="; micalg="pgp-sha256";
-        protocol="application/pgp-signature"
-X-Brightmail-Tracker: H4sIAAAAAAAAA02SfUxbVRjGPfejvVRbzzqEk24RRzCxmhY2YdzhXLaEwJUlygwyBBWb7QqL
-        UEgL+yAuG646RCgIEtta0sm3sJbZQkOpKHQFMpbRIhO2CI4BBgYsBLolSEIn5bK4/57zvL/3
-        M4fCxcukhDqlLGBVSkVOOE9A2Af+9cieezSYGaUzCGnPpAunf9G1k7TRoyFok3uYpOuWdSQ9
-        9nCCpCtmFnHa47nGp712LUlbZ8ZIerTbyKN1nt8w2lXTA2ize5JPD1wJob/qcfMPQ2Z0bARn
-        On6+izEOwySfsbZ+w2NsDRcYR5cPY7QdrYDxWV9OptIFB0+yOadOs6rIQ58Ksi977+D5FtHZ
-        SuMSuAg2ni8FQRSC0WjFu8QvBQJKDFsA8msdgHs8AujG7138ACWGPoBG7iU8zehZGyY4qBkg
-        a4Mb46A5gO5OiUoBRfGgHJnNaQE7GEYgjU2/xeNwhEDt3/qIQGAnTEVV62YywBPwVTR0fVeA
-        CYI1AJmGekGAEcJYZHa68IB+CR5AHfP3+Jy/A93Qz27VwWEu0nuWtqZG8I8gZCkrxrlJ41FD
-        2wyf0zvRwmDHtt6NnjhMWKAxghdQddV+LrcMILtxjeCYt9DE8DqP00dQf6VjmxehOw93cH1F
-        qMr+A87ZQlTytZijI5Cl4tftKhJUvtACOM2gNfvG/3cr0cySleAVwzPrGJ5Zx7BZFodS1N4d
-        ydlvoKafFnFOv40slmXiCiBbQShbqM7NYtVvKtkzcrUiV12ozJKfyMu1gs1/eNM/+LgLtCys
-        yF0Ao4ALRGwmT19r8wIJocxTsuHBQsLvzhQLTyrOFbGqvExVYQ6rdoFdFBEeKuzuvJophlmK
-        AvZzls1nVU+jGBUkuYh95JV9TNZGFhx8p276smy8bn+n4Pat7158YYxwfpH6lz3U666K9h++
-        9P7R8RPSL28tmhS6xxlRvfV1jbFt523vmtrde9MylsIU2vQfGzZqeufmMDJfxzbKju+JTkrP
-        CbHbkqupB3Hzs5ZzenHiob6UlcHqVkdCnDOufPWAP+WYMz6q7L3TA3/HXC2Knijvq5l33l+u
-        5eU9SUr5UPrPkaL+EGPFWdCZJjNlVzrXRX8KNM0J17XZGtWDjGmfNGX3eKpt31T9sU+ap47G
-        1MqZxKGB28FNhVbRqsSdv+ezsH3mpsaYkvqk+PsfFE/0Hb85Gnb+THFiv8ab7HxNqo+9lFz7
-        /Wo4oc5W7H0dV6kV/wEdMbJxAgQAAA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrBIsWRmVeSWpSXmKPExsVy+t/xe7r/Px+PN5jQoWtx/u4hZouNM9az
-        Wsw538JiMf/IOVaLRe9nsFpce3uH1aL/8Wtmi/PnN7BbXNjWx2qx6fE1VovLu+awWcw4v4/J
-        4tDUvYwWa4/cZbc4tkDMonXvEXYHAY/L1y4ye2xZeZPJY+esu+wem1Z1snlsXlLvsXPHZyaP
-        vi2rGD0+b5IL4IjSsynKLy1JVcjILy6xVYo2tDDSM7S00DMysdQzNDaPtTIyVdK3s0lJzcks
-        Sy3St0vQy2i/cIO5YB1fxYQ5bxgbGP9ydzFyckgImEjs/XGOpYuRi0NIYCmjRNOnz4xdjBxA
-        CSmJlXPTIWqEJf5c62KDqHnKKNFycy0bSA2bgJ7E2rURIDUiAioSLZtngs1hFrjCIrHqYwsr
-        SEJYIERiQ2M7I4gtJBAssXpeD1gvi4CqxKnD0iD1nAJTGSXmnzoAVsMrYC6xdvchZhBbVMBS
-        YsuL++wQcUGJkzOfsIDYzALZEl9XP2eewCgwC0lqFpLULKAVzAKaEut36UOEtSWWLXzNDGHb
-        Sqxb955lASPrKkaR1NLi3PTcYkO94sTc4tK8dL3k/NxNjMBo3nbs5+YdjPNefdQ7xMjEwXiI
-        UQWo89GG1RcYpVjy8vNSlUR4Wf4diRfiTUmsrEotyo8vKs1JLT7EaAr02kRmKdHkfGCaySuJ
-        NzQzMDU0MbM0MLU0M1YS5906d028kEB6YklqdmpqQWoRTB8TB6dUAxPzCo33y6NjX087ZtLa
-        9GDNnrd3939YfbPKsfbCcdeAt3uv3bz2665qpNAj5jqhJ30ZDz2i95ZwMR2/KGGtEjLbjzlc
-        aTrT8uogn+VyntOPcS76tcm22krAIvvI1j4HsQex92qk/Zx5rt424fdRDstzcbny7UrHocRW
-        bpum14Lqh3bNOjI5Wbnl788zfoW7k19c3V4vumu++YP893merhmSD1ziYnV8dS7M5D9+0zGw
-        4tn3gLnBuvdCrgU07Ji1dKlD+hwf1621ylXtAmphF/9JzfltX+TLckxcLc/rhlf9SreJCu33
-        alcea/l4w7ByWdFZrS+f1c7tL5x5wKtcpElW49EbW/tJsy7mMVaa7VBiKc5INNRiLipOBADe
-        rt/RewMAAA==
-X-CMS-MailID: 20201202200727eucas1p18311ed19904e8a0c7b8c28cde87f155b
-X-Msg-Generator: CA
-X-RootMTR: 20201202200727eucas1p18311ed19904e8a0c7b8c28cde87f155b
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20201202200727eucas1p18311ed19904e8a0c7b8c28cde87f155b
-References: <20201202091852.69a02069@kicinski-fedora-pc1c0hjn.DHCP.thefacebook.com>
-        <CGME20201202200727eucas1p18311ed19904e8a0c7b8c28cde87f155b@eucas1p1.samsung.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1606455021-18882-2-git-send-email-shengjiu.wang@nxp.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---=-=-=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+On Fri, Nov 27, 2020 at 01:30:21PM +0800, Shengjiu Wang wrote:
+> The driver is initially designed for sound card using HDMI
+> interface on i.MX platform. There is internal HDMI IP or
+> external HDMI modules connect with SAI or AUD2HTX interface.
+> It supports both transmitter and receiver devices.
+> 
+> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+> ---
+>  sound/soc/fsl/Kconfig    |  12 ++
+>  sound/soc/fsl/Makefile   |   2 +
+>  sound/soc/fsl/imx-hdmi.c | 235 +++++++++++++++++++++++++++++++++++++++
+>  3 files changed, 249 insertions(+)
+>  create mode 100644 sound/soc/fsl/imx-hdmi.c
 
-It was <2020-12-02 =C5=9Bro 09:18>, when Jakub Kicinski wrote:
-> On Wed, 02 Dec 2020 11:46:28 +0100 Lukasz Stelmach wrote:
->> >> +	status =3D netif_rx(skb);=20=20
->> >
->> > If I'm reading things right this is in process context, so netif_rx_ni=
-()
->> >=20=20
->>=20
->> Is it? The stack looks as follows
->>=20
->>     ax88796c_skb_return()
->>     ax88796c_rx_fixup()
->>     ax88796c_receive()
->>     ax88796c_process_isr()
->>     ax88796c_work()
->>=20
->> and ax88796c_work() is a scheduled in the system_wq.
->
-> Are you asking if work queue gets run in process context? It does.
->
+> diff --git a/sound/soc/fsl/imx-hdmi.c b/sound/soc/fsl/imx-hdmi.c
+> new file mode 100644
+> index 000000000000..ac164514b1b2
+> --- /dev/null
+> +++ b/sound/soc/fsl/imx-hdmi.c
 
-Thanks. Changed.
+> +static int imx_hdmi_hw_params(struct snd_pcm_substream *substream,
+> +			      struct snd_pcm_hw_params *params)
+> +{
+> +	struct snd_soc_pcm_runtime *rtd = substream->private_data;
+> +	struct imx_hdmi_data *data = snd_soc_card_get_drvdata(rtd->card);
+> +	bool tx = substream->stream == SNDRV_PCM_STREAM_PLAYBACK;
+> +	struct snd_soc_dai *cpu_dai = asoc_rtd_to_cpu(rtd, 0);
+> +	struct snd_soc_card *card = rtd->card;
+> +	struct device *dev = card->dev;
+> +	int ret;
+> +
+> +	/* set cpu DAI configuration */
+> +	ret = snd_soc_dai_set_sysclk(cpu_dai, data->cpu_priv.sysclk_id[tx],
+> +				     8 * data->cpu_priv.slot_width * params_rate(params),
 
->> >> +	if (status !=3D NET_RX_SUCCESS)
->> >> +		netif_info(ax_local, rx_err, ndev,
->> >> +			   "netif_rx status %d\n", status);=20=20
->> >
->> > Again, it's inadvisable to put per packet prints without any rate
->> > limiting in the data path.=20=20
->>=20
->> Even if limmited by the msglvl flag, which is off by default?
->
-> I'd err on the side of caution, but up to you.
->
+Looks like fixed 2 slots being used, judging by the set_tdm_slot
+call below. Then...why "8 *"? Probably need a line of comments?
 
-It isn't very common, but a few drivers do this.
+> +				     tx ? SND_SOC_CLOCK_OUT : SND_SOC_CLOCK_IN);
+> +	if (ret && ret != -ENOTSUPP) {
+> +		dev_err(dev, "failed to set cpu sysclk: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	ret = snd_soc_dai_set_tdm_slot(cpu_dai, 0, 0, 2, data->cpu_priv.slot_width);
 
-Thank you.
-=2D-=20
-=C5=81ukasz Stelmach
-Samsung R&D Institute Poland
-Samsung Electronics
+May have a local variable to cache slot_width.
 
---=-=-=
-Content-Type: application/pgp-signature; name="signature.asc"
+> +static int imx_hdmi_probe(struct platform_device *pdev)
 
------BEGIN PGP SIGNATURE-----
+> +	data->dai.name = "i.MX HDMI";
+> +	data->dai.stream_name = "i.MX HDMI";
+> +	data->dai.cpus->dai_name = dev_name(&cpu_pdev->dev);
+> +	data->dai.platforms->of_node = cpu_np;
+> +	data->dai.ops = &imx_hdmi_ops;
+> +	data->dai.playback_only = true;
+> +	data->dai.capture_only = false;
+> +	data->dai.init = imx_hdmi_init;
+> +
+> +
+> +	if (of_property_read_bool(np, "hdmi-out")) {
+> +		data->dai.playback_only = true;
+> +		data->dai.capture_only = false;
+> +		data->dai.codecs->dai_name = "i2s-hifi";
+> +		data->dai.codecs->name = "hdmi-audio-codec.1";
+> +		data->dai.dai_fmt = data->dai_fmt |
+> +				    SND_SOC_DAIFMT_NB_NF |
+> +				    SND_SOC_DAIFMT_CBS_CFS;
+> +	}
+> +
+> +	if (of_property_read_bool(np, "hdmi-in")) {
+> +		data->dai.playback_only = false;
+> +		data->dai.capture_only = true;
+> +		data->dai.codecs->dai_name = "i2s-hifi";
+> +		data->dai.codecs->name = "hdmi-audio-codec.2";
+> +		data->dai.dai_fmt = data->dai_fmt |
+> +				    SND_SOC_DAIFMT_NB_NF |
+> +				    SND_SOC_DAIFMT_CBM_CFM;
+> +	}
+> +
+> +	if ((data->dai.playback_only && data->dai.capture_only) ||
+> +	    (!data->dai.playback_only && !data->dai.capture_only)) {
+> +		dev_err(&pdev->dev, "Wrongly enable HDMI DAI link\n");
+> +		goto fail;
+> +	}
 
-iQEzBAEBCAAdFiEEXpuyqjq9kGEVr9UQsK4enJilgBAFAl/H8+8ACgkQsK4enJil
-gBAukAgAkQTRQG/TV08hxbnOYPNIUZApxZjUBbwMUF6alZVmWZFrc85AxK9+d6xs
-gUPMlb86ylXmRX25dZ2dDCEoUgFOk+GrjLQbLyZTWl3dIIGiDvYJhf09P7qHuPD5
-xbScoNohZrPAHxPlvciWexsAZLyboSunzdwiKGWGxpsWLrqz/Pb/x4DIUadv9QGA
-siJUkTD0ZVKmO0kXjwBFVlqd1UDUpabwpafIgIr0SNMZT4shawKb8hFUtf3zPyZm
-T5de0kdg01XISwJdq9ZnwaN3F4j4Pp2cQGfjPo4rRaztzOm+WytpdudbigmgbhpI
-7PS3/QBVB46BH18tTQbHGLdAfBj0Kg==
-=8UEH
------END PGP SIGNATURE-----
---=-=-=--
+Seems that this condition check can never be true, given that:
+1. By default: playback_only=true && capture_only=false
+2. Conditionally overwritten: playback_only=true && capture_only=false
+3. Conditionally overwritten: playback_only=false && capture_only=true
+
+If I understand it correctly, probably should be something like:
+	bool hdmi_out = of_property_read_bool(np, "hdmi-out");
+	bool hdmi_in = of_property_read_bool(np, "hdmi-in");
+
+	if ((hdmi_out && hdmi_in) || (!hdmi_out || !hdmi_in))
+		// "Invalid HDMI DAI link"; goto fail;
+
+	if (hdmi_out) {
+		// ...
+	} else if (hdmi_in) {
+		// ...
+	} else // No need of this line if two properties are exclusive
+
+> +	data->card.num_links = 1;
+> +	data->card.dai_link = &data->dai;
+> +
+> +	platform_set_drvdata(pdev, &data->card);
+
+Why pass card pointer?
