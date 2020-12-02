@@ -2,77 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1401B2CC352
-	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 18:20:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C13D2CC369
+	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 18:23:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389075AbgLBRTf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Dec 2020 12:19:35 -0500
-Received: from mail.kernel.org ([198.145.29.99]:38520 "EHLO mail.kernel.org"
+        id S1726810AbgLBRUw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Dec 2020 12:20:52 -0500
+Received: from mail.kernel.org ([198.145.29.99]:39028 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2389070AbgLBRTf (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 2 Dec 2020 12:19:35 -0500
-Date:   Wed, 2 Dec 2020 09:18:52 -0800
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1606929534;
-        bh=gdrIoUwM4Jc/bJ/Co4EbSzcZQeThPm4Zexr4TFqA+CM=;
-        h=From:To:Cc:Subject:In-Reply-To:References:From;
-        b=oBN3nitMLZKbd6AWlOeY3V9jesJoJpzC+hiz6NaZY21ZoXjGC+0jhss9M1MNakmaw
-         K0jlcJAPBGJP5evgjM8/V6GCtJ4sAAzwUrsBQ8Fg5lE+nh+jK32xSWsT5ABnAJ2ggl
-         /TvUmkv9rnLcfbTgbcezyUFVU2ZWFxJ6b6z+KM7E=
-From:   Jakub Kicinski <kuba@kernel.org>
-To:     Lukasz Stelmach <l.stelmach@samsung.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>, jim.cromie@gmail.com,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Kukjin Kim <kgene@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org,
-        =?UTF-8?B?QmFydMWCb21pZWogxbtvbG5pZXJr?= =?UTF-8?B?aWV3aWN6?= 
-        <b.zolnierkie@samsung.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>
-Subject: Re: [PATCH v7 3/3] net: ax88796c: ASIX AX88796C SPI Ethernet
- Adapter Driver
-Message-ID: <20201202091852.69a02069@kicinski-fedora-pc1c0hjn.DHCP.thefacebook.com>
-In-Reply-To: <dleftj8sageb97.fsf%l.stelmach@samsung.com>
-References: <20201125132621.628ac98b@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
-        <CGME20201202104645eucas1p25335c0b07b106f932006f2a5bce88b6e@eucas1p2.samsung.com>
-        <dleftj8sageb97.fsf%l.stelmach@samsung.com>
+        id S1726276AbgLBRUw (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 2 Dec 2020 12:20:52 -0500
+From:   Mark Brown <broonie@kernel.org>
+Authentication-Results: mail.kernel.org; dkim=permerror (bad message/signature format)
+To:     Tzung-Bi Shih <tzungbi@google.com>, robh+dt@kernel.org
+Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org
+In-Reply-To: <20201201132614.1691352-1-tzungbi@google.com>
+References: <20201201132614.1691352-1-tzungbi@google.com>
+Subject: Re: [RESEND PATCH 0/6] ASoC: mediatek: mt8192: support new machine rt1015p_rt5682
+Message-Id: <160692956494.33960.780147549576992424.b4-ty@kernel.org>
+Date:   Wed, 02 Dec 2020 17:19:24 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 02 Dec 2020 11:46:28 +0100 Lukasz Stelmach wrote:
-> >> +	status = netif_rx(skb);  
-> >
-> > If I'm reading things right this is in process context, so netif_rx_ni()
-> >  
+On Tue, 1 Dec 2020 21:26:08 +0800, Tzung-Bi Shih wrote:
+> The series supports new machines with rt1015p and rt5682.  Reuses most of
+> the code in mt8192-mt6359-rt1015-rt5682.c.
 > 
-> Is it? The stack looks as follows
+> The first 3 patches refactor the existing mt8192-mt6359-rt1015-rt5682.c.
+> For easier to support newly added components later.
 > 
->     ax88796c_skb_return()
->     ax88796c_rx_fixup()
->     ax88796c_receive()
->     ax88796c_process_isr()
->     ax88796c_work()
+> The 4th patch fixes a typo in DT bindings document.
 > 
-> and ax88796c_work() is a scheduled in the system_wq.
+> [...]
 
-Are you asking if work queue gets run in process context? It does.
+Applied to
 
-> >> +	if (status != NET_RX_SUCCESS)
-> >> +		netif_info(ax_local, rx_err, ndev,
-> >> +			   "netif_rx status %d\n", status);  
-> >
-> > Again, it's inadvisable to put per packet prints without any rate
-> > limiting in the data path.  
-> 
-> Even if limmited by the msglvl flag, which is off by default?
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-I'd err on the side of caution, but up to you.
+Thanks!
+
+[1/6] ASoC: mediatek: mt8192: rename common symbols
+      commit: a5f8037505cbae5b877dea3e15acce4c29e9e797
+[2/6] ASoC: mediatek: mt8192: extract rt1015_rt5682 specific DAI link
+      commit: 2b53d2e16f735d8f13b77fefe03ce6b43c726beb
+[3/6] ASoC: mediatek: mt8192: move rt1015_rt5682 specific data
+      commit: ba499c36d12bcea9d4eba0b021c508bfe13c515d
+[4/6] ASoC: dt-bindings: mt8192-mt6359: fix typo in the example
+      commit: 6552c35de1915c8b423e4969ada1f1f8a53847e1
+[5/6] ASoC: dt-bindings: mt8192-mt6359: add new compatible for using rt1015p
+      commit: 6986256fdfefc2eeaec5f21d7937d57850fd57fe
+[6/6] ASoC: mediatek: mt8192: support rt1015p_rt5682
+      commit: cfd8bb254c9985266e4be7f59042170a72548a8f
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
