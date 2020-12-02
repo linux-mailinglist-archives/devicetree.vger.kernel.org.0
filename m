@@ -2,55 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 73D922CBC4C
-	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 13:05:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8828F2CBC54
+	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 13:05:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726108AbgLBMDW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Dec 2020 07:03:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48178 "EHLO
+        id S1727434AbgLBMEE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Dec 2020 07:04:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48286 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725995AbgLBMDV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Dec 2020 07:03:21 -0500
-Received: from mail-lj1-x243.google.com (mail-lj1-x243.google.com [IPv6:2a00:1450:4864:20::243])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 822BFC0613CF
-        for <devicetree@vger.kernel.org>; Wed,  2 Dec 2020 04:02:41 -0800 (PST)
-Received: by mail-lj1-x243.google.com with SMTP id o24so3303771ljj.6
-        for <devicetree@vger.kernel.org>; Wed, 02 Dec 2020 04:02:41 -0800 (PST)
+        with ESMTP id S1725899AbgLBMED (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Dec 2020 07:04:03 -0500
+Received: from mail-lf1-x143.google.com (mail-lf1-x143.google.com [IPv6:2a00:1450:4864:20::143])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 838A8C0613CF
+        for <devicetree@vger.kernel.org>; Wed,  2 Dec 2020 04:03:22 -0800 (PST)
+Received: by mail-lf1-x143.google.com with SMTP id t6so4192930lfl.13
+        for <devicetree@vger.kernel.org>; Wed, 02 Dec 2020 04:03:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=9Ok4K+mIqVXyay2RRW3bp7ozJI179etZKu1jwJ6RDs4=;
-        b=B3dUpz4sabBgma2BRdldpuDu77t/6Hd5lDUuvP2UyT57QkTTBtcsG5ebn+eJRKhNxZ
-         0tdoF5Bp/ZEBL0dBJska6fRvtOuajzs4+lE+Wt7Oe7Gt6z6u8QSWAOPtGWBHkLvA6JFy
-         FvbysdhrWUIJ64INRgtiHPHSqLCPcK1OLc34nqR7v1eEouVpMtMvzMBB8RZAk0Ox6Eyd
-         6SvpUNsTdGDRY4WsxDQwtJ2xreRodOLD0AC57OlIK9v8sQlhHUJ9GCqARsE+w3liRS6c
-         D2QmBRCCrHdkStEYG4BJQ2cqfaKJLQxZGOGPAB873jyOrFomzrwUnK3AiR4zvMBOVV2D
-         0KJw==
+        bh=JrDxXawKFmfpC0PtwoTfICjU4fGQp1m9XOEUHodRjh4=;
+        b=Jh/GPoSevt3SV5RTaTwsaYQj/V/NpTGVQ3t2qKS6vUGGD7/pTECzTRoxKeELr0B6Rk
+         LzYQFvUHkFufV1RTkLkcaD5H3Qb8Enb+Uo3wGL8Ht0OC1x93y1MY6QbYdC0jgRh1hJ99
+         WQN7urB/BiCmG3Xwm6GHNyP0jUcAfLHEVAqbQofZbzr7xjUOBkx0+32G6WGaLnyqyRnG
+         qXZeXNhYFWSunVN5xBCJ0ZQXYMqw+kjEp/5IQgBAWU0Zts63QXdNW338WQuR6+cd/maW
+         8tX488nHz6Sy/LJtorpFMSyJdhXnuA9vIZ68PUWr6KfTU8+1QFeFDCPbaiAQHU+MY2DB
+         EOjw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=9Ok4K+mIqVXyay2RRW3bp7ozJI179etZKu1jwJ6RDs4=;
-        b=CmZcHU8YOkrGbkFhuU0tUkfxpeGvz65y1O0BbzD6T2eL/OzDkuvE8fIa9Rcm2xgCqh
-         XLjqYqh19aBl1AHgpl8wIBaeNufsvpuKPssIfXFTbKit4XH4vJ44xeZ64oE5BFjimMCY
-         trepYKNDV0YNQ3S/Xajr4BKJzQvEGsH8t5JwyvRTRmUSXUcOsOI65gOS063MCDD4J7Fy
-         Bef1DGb4Qta4aXwH43/Qx9TH4YW1wKNncOJhUrUrcAVIM1lMlE3AofMPAWHRBCKLNsf9
-         VC6857X7EDYMNNBTDxMK2DsSg2mRMKhE5I1xIngUzfwQDN4v/ZdRcU0jmzyBzf2fz9mO
-         H4CA==
-X-Gm-Message-State: AOAM531+3Lfc7+TVnFtsxpWdpohB4tOLswvjm03jZMV1M3HGO5jAIVsm
-        pdrZpQtC3YAI3gWD/Quso1+wz5y484Tke6As5bh3VA==
-X-Google-Smtp-Source: ABdhPJyzfJL3KBSA209hDbk3QOHKy7wLOVNaFMCkj5BA/Way2Q/UljZAi4TUbX9lLOqQK8SYae+wTJ/YZQpq0qMGwMk=
-X-Received: by 2002:a2e:97c8:: with SMTP id m8mr942845ljj.338.1606910560052;
- Wed, 02 Dec 2020 04:02:40 -0800 (PST)
+        bh=JrDxXawKFmfpC0PtwoTfICjU4fGQp1m9XOEUHodRjh4=;
+        b=SPWzu+BHxgG6r1Di2LdKYfDWBckFIOLmq4a9Adcv2iglC+e441FX2XMPHX0s3CC4D1
+         mHNIOwHWlFiMj3tAt1NgU+ODmhrngNFi0Gto95uzDpmqQ9tlHrSUG2BreNJzcg9rxEvE
+         Arv2tIBMIjfHpof4IeQnCG2qm3QYTrsH0QsXxfey/U8MpPpUiGVY1nUGVoPIOBVUQDu6
+         74flpLyS83XC1hEpnmnGb8nY+FDlnITu1/FXc8ttT1pre8AYR54TSJf24b41ZcDL9CCj
+         oQsxhv89kLSTNgQFxtrNmhcpgFaJAlwutErIeVhLiNOPSfhd4ohEvih5MfktaZb9gXGD
+         Q5fg==
+X-Gm-Message-State: AOAM530lHGf63Kw4sMNf9i++AX3r8t3VHRQRzHk1rzG25gyYgRNVqQcl
+        MP8w8e9wwpFWlX3iffSb1qbi/lwXV9PJjIlKevmKAg==
+X-Google-Smtp-Source: ABdhPJw7g4cvh7G0ozEBAQSqX9C4nQr6bZEWkCOmw7+SjxIub91liuDU293pDkzEei2xmCSi1V1nY2t7JtcuqqXZOxY=
+X-Received: by 2002:a19:ad41:: with SMTP id s1mr723702lfd.571.1606910601052;
+ Wed, 02 Dec 2020 04:03:21 -0800 (PST)
 MIME-Version: 1.0
-References: <20201202093322.77114-1-stephan@gerhold.net> <20201202093322.77114-3-stephan@gerhold.net>
-In-Reply-To: <20201202093322.77114-3-stephan@gerhold.net>
+References: <20201202093322.77114-1-stephan@gerhold.net> <20201202093322.77114-4-stephan@gerhold.net>
+In-Reply-To: <20201202093322.77114-4-stephan@gerhold.net>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Wed, 2 Dec 2020 13:02:27 +0100
-Message-ID: <CACRpkdaBxerf0QOzaK8SH0AuJQa9khD_1TrDYegkb5Mk8Vbadw@mail.gmail.com>
-Subject: Re: [PATCH 3/4] dt-bindings: iio: gyroscope: bmg160: Document
- regulator supplies
+Date:   Wed, 2 Dec 2020 13:03:10 +0100
+Message-ID: <CACRpkdb7-sa+9fqa4zuEmvTBKNDR4Nw2pPbeWDu6GhWfUTUNpQ@mail.gmail.com>
+Subject: Re: [PATCH 4/4] iio: gyro: bmg160: Add rudimentary regulator support
 To:     Stephan Gerhold <stephan@gerhold.net>
 Cc:     Jonathan Cameron <jic23@kernel.org>,
         Lars-Peter Clausen <lars@metafoo.de>,
@@ -68,11 +67,13 @@ X-Mailing-List: devicetree@vger.kernel.org
 On Wed, Dec 2, 2020 at 10:33 AM Stephan Gerhold <stephan@gerhold.net> wrote:
 
 > BMG160 needs VDD and VDDIO regulators that might need to be explicitly
-> enabled. Document support for vdd/vddio-supply to implement this.
+> enabled. Add some rudimentary support to obtain and enable these
+> regulators during probe() and disable them during remove()
+> or on the error path.
 >
 > Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
 
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+Reviewed-by: Linus Walleij <linus.walleij@linar.org>
 
 Yours,
 Linus Walleij
