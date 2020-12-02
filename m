@@ -2,146 +2,181 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BB0492CB49A
-	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 06:45:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A34862CB4BD
+	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 06:55:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727278AbgLBFmp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Dec 2020 00:42:45 -0500
-Received: from mail-eopbgr80041.outbound.protection.outlook.com ([40.107.8.41]:26739
-        "EHLO EUR04-VI1-obe.outbound.protection.outlook.com"
+        id S1728338AbgLBFyt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Dec 2020 00:54:49 -0500
+Received: from mail-mw2nam12on2053.outbound.protection.outlook.com ([40.107.244.53]:6784
+        "EHLO NAM12-MW2-obe.outbound.protection.outlook.com"
         rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726125AbgLBFmp (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 2 Dec 2020 00:42:45 -0500
+        id S1725984AbgLBFyt (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 2 Dec 2020 00:54:49 -0500
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=W8BoTZkUZ3hpKXHTzmT0pSKOzskGVuC7hbWOG9wi93QwClOl+1lZOkgmdi/48wR1whDpFJmkh1qRNMjuWSU5nbBuxVzVStsLRivVXYN3EKhsBKwlpv+1fN3qwhuJzqfsB8sztcMa/DcaZ4lJdp/ss7QYLuyPxwYq9folVe6p0vNmKOXIZ7fLK4vN7QliI3FbtEi2oKxJWXQ0prl03kGZiumunu79uktE0sIbKAzrLREvAlF/RYpOG7CE4C2KDjyXtpuaN0AqtLiPC89fxpvEmTCrJuXWmO5IeiY0nb90Zmrwm6vinn1uxlD7o+piaRJPlDlq6Hl8mWiCyAaXcm9boQ==
+ b=iQc2LLHowKleEHsxKKaDVhK+V5IpgxuMJu4aKq1KVqTZmGwfek5fBiGtS/YlafBIz5xh/EwTLWPtjWpbweDlPbFqhtrVjELcg4T7FEzWDh1DrepXxB/6es48wT59g6pdf/62DuhB60x2R3dXhBmBSwmpgvD10Sr0uamAaSVJHkTN6+1oT4ume2ReINmg7MClqQx2/tl2qtWtUjx1bkL7A48vjQPUmdLOpJax78zgbOJ/4PMPibSq0lFvqvkRLcAagh42DKRgnaXMfDyVP7LUeAvVqNHGjtsXQILS6fAt5ynkP5PahFwCMWPmo/R2pBcsMIkwpEzc4NXzscF0Nvd0MA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=EaD33NuIHYcPLEhIc3CTKMMfn1tDp8saCnf9+/I1PPs=;
- b=EJhWuGkmbHd+cDOMBOe6sZzZaY9yj0N+sqhnRqKQrfvIrNubULaBVsQkS/+Lzn0jryoli28Y/sLNim/j3ZqWbmIP900n6V/wThzXsP28knyKH5DRcHKv3HCsiYqjNFYVpSPMCbCOiYKQQtCCUWKrr4OJhq2U3R1aYAhwMzl8tYxVS5z+LIhjsTrYVzOx4tN2yIZHy0Ej+gSRDIp3jY20a47vcOicoquSnvTMPDoDOPeFMST1vLtUGNsNc8lwkwXtKbi9OFnYCwlhku8+bc0U9DD8Sj0fywawIMF4cAoNoL8vJVdU26MG1J4rm2GR/4HQcUlKJp2DC6mzONTVY83qxA==
+ bh=3FbnGcpvtMFQmrTnjY7ihLjO8s2uPrPuXmXpLul5gQQ=;
+ b=K+f3Bsi1bE+AR//gTh5+0VAqgc1M/xqLjYQq/0H/G6Cpnmdf/jm/2ItiDOEKXZbGh7XWjDiJtNtEIHzmnJoNRY/+05y6gU1WRECHvyddJuUg3AmYkqP+A4TxXkXJiI1yuA3u7nI62NsKPMRdnEP+OQR9XH9so5ZKwUD0wvGHsRRzr5255TgGJ3fXEdKb83ZiKg1fzy7o566ss/0pyNPx3idORYwQfp+90GbGp+74hB9DLFqJHPNt1N+3XBrmA0Hfz9MAm1hV7bGqAe3JlElmQ4n9vzUPpBj+anUonWmq4zKA18+68oqG6BFF0NyTK06/mIz40UNwe2PaX9eAzduJJg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ smtp.mailfrom=labundy.com; dmarc=pass action=none header.from=labundy.com;
+ dkim=pass header.d=labundy.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=NETORG5796793.onmicrosoft.com; s=selector1-NETORG5796793-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=EaD33NuIHYcPLEhIc3CTKMMfn1tDp8saCnf9+/I1PPs=;
- b=pnZho1aBZQZo9sfKhrEbALKFInhd3euueah83fUHuKQR4xtYTXrpirmYKUUA7laawrwkccjkH+DizhyYw1myFa9afsU4M97GfUditFg3cyd3J7p3eig8+DVqDDE/sjIF3LK5o8Td3X2rwPrz3w7ztKJu4OSSXBLUBEMME2Dk/zk=
-Authentication-Results: vger.kernel.org; dkim=none (message not signed)
- header.d=none;vger.kernel.org; dmarc=none action=none header.from=nxp.com;
-Received: from VI1PR04MB3983.eurprd04.prod.outlook.com (2603:10a6:803:4c::16)
- by VI1PR04MB7085.eurprd04.prod.outlook.com (2603:10a6:800:122::14) with
+ bh=3FbnGcpvtMFQmrTnjY7ihLjO8s2uPrPuXmXpLul5gQQ=;
+ b=d0uGB6UWTVgoUISretDSQg9PEnpDVQUjOJ0QUiZs1MAhMiLL5FglrLOfclncMmSaWFuQt4J7w0vej/j49HHV4IYFCON9OtAsa4YkNQlIoK9D4Lkq+WvZMr0rY/iU7RNyqxuKaKXKtgCYXp3b/uJ/kbbg50WBszaGUzcSulDE+aE=
+Authentication-Results: gmail.com; dkim=none (message not signed)
+ header.d=none;gmail.com; dmarc=none action=none header.from=labundy.com;
+Received: from SN6PR08MB5517.namprd08.prod.outlook.com (2603:10b6:805:fb::32)
+ by SN4PR0801MB3712.namprd08.prod.outlook.com (2603:10b6:803:4f::31) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3632.18; Wed, 2 Dec
- 2020 05:41:39 +0000
-Received: from VI1PR04MB3983.eurprd04.prod.outlook.com
- ([fe80::dcb7:6117:3def:2685]) by VI1PR04MB3983.eurprd04.prod.outlook.com
- ([fe80::dcb7:6117:3def:2685%7]) with mapi id 15.20.3611.025; Wed, 2 Dec 2020
- 05:41:39 +0000
-From:   Liu Ying <victor.liu@nxp.com>
-To:     linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     mturquette@baylibre.com, sboyd@kernel.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, robh+dt@kernel.org, aisheng.dong@nxp.com
-Subject: [PATCH v2 4/4] clk: imx: clk-imx8qxp: Add some SCU clocks support for MIPI-LVDS subsystems
-Date:   Wed,  2 Dec 2020 13:33:39 +0800
-Message-Id: <1606887219-5854-5-git-send-email-victor.liu@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1606887219-5854-1-git-send-email-victor.liu@nxp.com>
-References: <1606887219-5854-1-git-send-email-victor.liu@nxp.com>
-Content-Type: text/plain
-X-Originating-IP: [119.31.174.66]
-X-ClientProxiedBy: SG2PR03CA0091.apcprd03.prod.outlook.com
- (2603:1096:4:7c::19) To VI1PR04MB3983.eurprd04.prod.outlook.com
- (2603:10a6:803:4c::16)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3611.31; Wed, 2 Dec
+ 2020 05:53:56 +0000
+Received: from SN6PR08MB5517.namprd08.prod.outlook.com
+ ([fe80::1c46:3d4c:10eb:1219]) by SN6PR08MB5517.namprd08.prod.outlook.com
+ ([fe80::1c46:3d4c:10eb:1219%4]) with mapi id 15.20.3611.031; Wed, 2 Dec 2020
+ 05:53:55 +0000
+Date:   Tue, 1 Dec 2020 23:53:50 -0600
+From:   Jeff LaBundy <jeff@labundy.com>
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc:     robh+dt@kernel.org, linux-input@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/2] input: Add support for Azoteq IQS626A
+Message-ID: <20201202055350.GA2709@labundy.com>
+References: <1606084748-4097-1-git-send-email-jeff@labundy.com>
+ <1606084748-4097-3-git-send-email-jeff@labundy.com>
+ <20201123070307.GE2034289@dtor-ws>
+ <20201124001516.GA6249@labundy.com>
+ <20201201070106.GS2034289@dtor-ws>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201201070106.GS2034289@dtor-ws>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+X-Originating-IP: [136.49.227.119]
+X-ClientProxiedBy: SA0PR11CA0061.namprd11.prod.outlook.com
+ (2603:10b6:806:d2::6) To SN6PR08MB5517.namprd08.prod.outlook.com
+ (2603:10b6:805:fb::32)
 MIME-Version: 1.0
 X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from localhost.localdomain (119.31.174.66) by SG2PR03CA0091.apcprd03.prod.outlook.com (2603:1096:4:7c::19) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.20.3632.8 via Frontend Transport; Wed, 2 Dec 2020 05:41:35 +0000
+Received: from labundy.com (136.49.227.119) by SA0PR11CA0061.namprd11.prod.outlook.com (2603:10b6:806:d2::6) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3632.17 via Frontend Transport; Wed, 2 Dec 2020 05:53:55 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 55f07647-95d0-4a8e-aaf5-08d89684f0a5
-X-MS-TrafficTypeDiagnostic: VI1PR04MB7085:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <VI1PR04MB70851CA6460402A6D44A850698F30@VI1PR04MB7085.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:843;
+X-MS-Office365-Filtering-Correlation-Id: d3f053e9-7556-478f-f8b9-08d89686a768
+X-MS-TrafficTypeDiagnostic: SN4PR0801MB3712:
+X-Microsoft-Antispam-PRVS: <SN4PR0801MB3712F0CC364DF1659DDAD409D3F30@SN4PR0801MB3712.namprd08.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8273;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: RjBYFT+o09SFXWbxTb9cF1Emr0/gvH6Dteno28sTOjHruB8Kf0cTJkVN1WxNPSu86QN3NfLeDuLZ2jBNlHj2A4xTMPuGe06RwG8b4Pt0ulY7K23YFHCdqmrAKCGOcj+G15OC5tgTjJEHtCqHOO4VSfiYAMpOh4rS4a9xM0YJ6R4E8h0DTh9u5vEc8925bfVU3C8LiWcCm2/E/1ZiV24oNwgSvRXK7URJGBUnO9otSfcnwFygtBWgPQ/WrwiJJh/qEtfYV2tjUmvCazdgqKqxbeVSNC/wRIaxpoLcZ9s6ThDV9f6L1Lp3wRSzIQaNOJ0WOs+bmpXP+E0azrgk9W9x6HYy5jrE32woPlLz9FNgcRVKLx0YTwk6otDKL+hyFt2M
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB3983.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(346002)(39860400002)(366004)(376002)(396003)(136003)(4326008)(6512007)(83380400001)(6486002)(7416002)(8676002)(36756003)(5660300002)(2906002)(66946007)(66476007)(66556008)(8936002)(26005)(956004)(2616005)(186003)(16526019)(86362001)(316002)(52116002)(69590400008)(6506007)(478600001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?Tsv3y+J2Nay1wfc4roIn5ZhgFJGK4MMthqlMQJm8v73MQOUG2HEuJrk1cf83?=
- =?us-ascii?Q?VQXeiad7/k3DJr3oi9dUyhHDTCcdgqKDk8CvpCMe98BpYJsSD80PxnE4kp8c?=
- =?us-ascii?Q?tTUBznAl2MonzVMTQS+oQNo5YfiIYi0OkXdFqN66tTAbx1x+COwxaeOFUU5x?=
- =?us-ascii?Q?By9m0uOHcKGOnVFd8h+1hYKenKRhI2B78sKLGIY3YFgZHfN8TGw1n+PxaMH4?=
- =?us-ascii?Q?vFqCpQcw3gUiYc6b11cmSwLcy7UT6HwB2V51Vk3SfRVf+7EapM0LAvZaCB3Q?=
- =?us-ascii?Q?h49ajnFQ/zubsKzE512i2xg4j5Ct3cAbTLCTTsMV9hKASWAJl1a2bQmYMt6V?=
- =?us-ascii?Q?d8ue3v/pIdzsQHEPL1/hVKQs9S8sZn6uN5NlwCgINXydc2AujxaSQ/wDp480?=
- =?us-ascii?Q?n7BWSulLG9SjemDnvF/4GEItxN8c2eDg91LtMn0ndYGvPM8/1WzpfITCEVQB?=
- =?us-ascii?Q?J/Ea7K7KgfN0mXkATwMocv431hsW2VCHdsOKgjsDsPA7XNTgBIjBG2g2LeFN?=
- =?us-ascii?Q?yz9T/5q2Bm+BSCaUJey9PvwAPSi+ftgAA2jVF0h9vfTbLJp34kKgi9OG31vT?=
- =?us-ascii?Q?39HNPeGroU9vuvcwq3lVOSwGt4hA/HS1lN1irh8oTOjrFiwCvjMCcFyfDer/?=
- =?us-ascii?Q?ApQNY9h35h8Tm4yl1NROR4bCP6EIpavl/XOQj/b5B1uNMAMzUHzlF78EteNk?=
- =?us-ascii?Q?akEhmvSnVm2OATojUFKr4lntqJoDIYRcn7mUT69sXu17j5Qred0few+En0Fn?=
- =?us-ascii?Q?DqoGPbyZwO/khAExxjT1zpRoUCya79ekMI+SwM9wn8tAk/0VWbiwbB9C17vr?=
- =?us-ascii?Q?ZwSOPkmWkjQNKfNdg/nuyAqXh8PsAHaBdZ6GEDcDcPbfWQb3UvyUaUAMWpHt?=
- =?us-ascii?Q?iLW/noswWibftQK35VgEAAW5pdbU3aqPSa47pSSxxZtTqKvH0mRVHM4JH+FU?=
- =?us-ascii?Q?H0WxDxTm1lGfm4DFMEYiW95obDF5xD6F6+VsH6f8epVq/L0E3bjeBEe27iPj?=
- =?us-ascii?Q?o5wp?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 55f07647-95d0-4a8e-aaf5-08d89684f0a5
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB3983.eurprd04.prod.outlook.com
+X-Microsoft-Antispam-Message-Info: DAC9jaPpXhAgI+cytynkk4ZI5AiUJmLTwv1r7yfDQbtG+ZPtUu1Xm6pXj7of+dA6jEvEfQohwskveNqg1eZw2M3hqdhFslJDF8JbHOTMNlWwswhvTcrmJl2RWCLMHQ8kiQBs72VWWML4PwMJAG5VxuTJjUE350POxbsognqkkqMybURfbb0mDvaqoa+4AFBK0D9zPjJgUAFnphUw7VPMEP7ijLtYvB4O+qrvgvygfw/JKF1mI82xpTuLnYO/V7A4RuwWnZhjkCT+P1xZWgwVLS1q4+IO5UW9AUZ78BxYT6vvVe+Ff0fyXzF86u4k2y40QA0vjWbpPytWJK86/vOC4g==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN6PR08MB5517.namprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(366004)(396003)(136003)(39830400003)(376002)(346002)(36756003)(7696005)(33656002)(8676002)(8886007)(6916009)(52116002)(2616005)(956004)(26005)(16526019)(6666004)(186003)(316002)(55016002)(4326008)(478600001)(2906002)(86362001)(1076003)(83380400001)(66556008)(5660300002)(66946007)(8936002)(66476007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?SPIcpw93sGjvl7GQXlkfcm4cPMQqIkEArq+YcV6RckbSzYHEgau4y1arobwc?=
+ =?us-ascii?Q?VYt/sjfWQqYrJ/4hGD7ersqdPu9UiS5U8zIP4kl/F3DcDK9dpc3+byX2BQ0H?=
+ =?us-ascii?Q?DX5V5fsx1ZNzAiqrZMZH5FG+w+5LSKzh4Dz4eNO+nEZQqfNIPHvm5OFFzfjJ?=
+ =?us-ascii?Q?CbtuE8543Qt/VN2YrxQphKQacDh8y0fS/cgUqEcsXE2arviXkmgvLt2ua7kv?=
+ =?us-ascii?Q?8WorGLB+zhepZvxuiE2j65pAwdIZZ7R8PdUgNlji8bEDpV0d3hBC4DKdR3fh?=
+ =?us-ascii?Q?gdF7hnAD9sMQBp091zPdB9cBS3uMW7aZV2V9JihRDtZ3kuocRy9+8ZxXdJev?=
+ =?us-ascii?Q?aBNs+1J8bGkF/ST/tPmXlce/SneYFwvd3EoSLlKPH6L7p/boRATH656ILUcr?=
+ =?us-ascii?Q?5iREQzF3xFSzqiDKOMoeYgHqyGOasJ6ev9lXIXrtxDaO2OxMwx6bYhnlFx2e?=
+ =?us-ascii?Q?OiYu30QJHa45lAhhQlBbAA5pVy/dogNVsywKbnaUnpygxhWGrr1wQpOJbzVE?=
+ =?us-ascii?Q?8ca3rA9NHaHagRJxMnt4dWUxGT3EqK8fKzROD/Bd2GMj2AMRtYbhOCn5HF0f?=
+ =?us-ascii?Q?HVmYb74PD0YVro7GbB1SZAMwOWAwTYrDSMlsj48F03046kFdIVaDoStbGVos?=
+ =?us-ascii?Q?Ej+ixpclnOezra228ZO9aqrkaJhsDOO+vcqlC5YxoIVJHdAIxEx98nZbK6DR?=
+ =?us-ascii?Q?9885XENi++ikhjgoMt1zoG0PorBDLZSmNkwlwUlMwBuKLbfe+ZxqqyGV1AO2?=
+ =?us-ascii?Q?O3nbELhms/np8nMxwz/3Y3T5wqGC0NhIAKRMSZCcemIMRBimeCTlVbgR2qdI?=
+ =?us-ascii?Q?CcznlAeC7ZlaG4laOv2sORZSRJXQHr6Q5eyinLwZSln8tjgl7TEw1d2nG8a0?=
+ =?us-ascii?Q?AwpF1dIPK4WBYyincVwVVmUapkgqeXx9aBkkoNwrUupyLtEjMEZinPQKGm7A?=
+ =?us-ascii?Q?h+TTeldb74L3URr27hYx7gBnsSnF/zi8Q+LP+X9/A4doy/dUEzy4Hw5bTtI5?=
+ =?us-ascii?Q?jCqt?=
+X-OriginatorOrg: labundy.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d3f053e9-7556-478f-f8b9-08d89686a768
+X-MS-Exchange-CrossTenant-AuthSource: SN6PR08MB5517.namprd08.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Dec 2020 05:41:39.3621
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Dec 2020 05:53:55.5331
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-Id: 00b69d09-acab-4585-aca7-8fb7c6323e6f
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: lKae0BbUxjYmGOdwY47HwuEJvME7roQJl12Vb+36bXQppZARpFeBNMVI0n8ujUXKjM+1Qm+HvJfctPrPxq2LLQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB7085
+X-MS-Exchange-CrossTenant-UserPrincipalName: ApCIGs7ri+KtrfsPVQ11RGvsy3D/3b5DIYcYOJpnOL+gmwdoWxdsIDO10o23xbFAPIViHe0k7KwZ788yDVT0JQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN4PR0801MB3712
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds some SCU clocks support for i.MX8qxp MIPI-LVDS subsystems.
+Hi Dmitry,
 
-Cc: Michael Turquette <mturquette@baylibre.com>
-Cc: Stephen Boyd <sboyd@kernel.org>
-Cc: Shawn Guo <shawnguo@kernel.org>
-Cc: Sascha Hauer <s.hauer@pengutronix.de>
-Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-Cc: Fabio Estevam <festevam@gmail.com>
-Cc: NXP Linux Team <linux-imx@nxp.com>
-Cc: Dong Aisheng <aisheng.dong@nxp.com>
-Signed-off-by: Liu Ying <victor.liu@nxp.com>
----
-v1->v2:
-* No change.
+On Mon, Nov 30, 2020 at 11:01:06PM -0800, Dmitry Torokhov wrote:
+> On Mon, Nov 23, 2020 at 06:15:16PM -0600, Jeff LaBundy wrote:
+> > Hi Dmitry,
+> > 
+> > Thank you for taking a look.
+> > 
+> > On Sun, Nov 22, 2020 at 11:03:07PM -0800, Dmitry Torokhov wrote:
+> > > Hi Jeff,
+> > > 
+> > > On Sun, Nov 22, 2020 at 04:39:08PM -0600, Jeff LaBundy wrote:
+> > > > +
+> > > > +		if ((sys_reg->active & tp_mask) == tp_mask)
+> > > > +			input_set_abs_params(iqs626->trackpad,
+> > > > +					     ABS_X, 0, 255, 0, 0);
+> > > > +		else
+> > > > +			input_set_abs_params(iqs626->trackpad,
+> > > > +					     ABS_X, 0, 128, 0, 0);
+> > > > +#ifdef CONFIG_TOUCHSCREEN_PROPERTIES
+> > > > +		touchscreen_parse_properties(iqs626->trackpad, false,
+> > > > +					     &iqs626->prop);
+> > > > +#endif /* CONFIG_TOUCHSCREEN_PROPERTIES */
+> > > 
+> > > This should not be separately selectable from CONFIG_INPUT, so there is
+> > > not need to have this guard.
+> > > 
+> > > The reason it is a separate symbol is historical - it used to depend on
+> > > OF in addition to INPUT. I suppose I can drop it now.
+> > 
+> > Without these guards, the build fails if CONFIG_INPUT_TOUCHSCREEN=n and
+> > I felt it too heavy-handed to add a 'depends on' for what is ultimately
+> > a corner-case of sorts for this device.
+> 
+> Ah, I missed the fat that we got outside of the
+> drivers/input/toucscreen.
+> 
+> > 
+> > The touchscreen helpers are useful for more than just touchscreens, and
+> > we can extend them to all of input with something like the patch below.
+> > If it looks OK to you, I can insert it into v2 after I collect feedback
+> > from Rob for the binding.
+> 
+> Yes, I guess we should move into core. Can you move the file into
+> drivers/input and maybe we should rename it into touch-properties.c? And
+> start renaming the API form touchscreen_*() to touch_()?
 
- drivers/clk/imx/clk-imx8qxp.c | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+Sure thing, I can move it. I guess we want to do the same for the binding
+too? There are only a handful of other bindings that will need references
+to touchscreen.yaml updated with a new relative path.
 
-diff --git a/drivers/clk/imx/clk-imx8qxp.c b/drivers/clk/imx/clk-imx8qxp.c
-index 0b4bb2c..fbf1170 100644
---- a/drivers/clk/imx/clk-imx8qxp.c
-+++ b/drivers/clk/imx/clk-imx8qxp.c
-@@ -131,8 +131,18 @@ static int imx8qxp_clk_probe(struct platform_device *pdev)
- 	clks[IMX_DC0_BYPASS1_CLK]	= imx_clk_scu("dc0_bypass1_clk", IMX_SC_R_DC_0_VIDEO1, IMX_SC_PM_CLK_BYPASS, clk_cells);
- 
- 	/* MIPI-LVDS SS */
-+	clks[IMX_MIPI0_LVDS_PIXEL_CLK]	= imx_clk_scu("mipi0_lvds_pixel_clk", IMX_SC_R_LVDS_0, IMX_SC_PM_CLK_MISC2, clk_cells);
-+	clks[IMX_MIPI0_LVDS_BYPASS_CLK]	= imx_clk_scu("mipi0_lvds_bypass_clk", IMX_SC_R_LVDS_0, IMX_SC_PM_CLK_BYPASS, clk_cells);
-+	clks[IMX_MIPI0_LVDS_PHY_CLK]	= imx_clk_scu("mipi0_lvds_phy_clk", IMX_SC_R_LVDS_0, IMX_SC_PM_CLK_MISC3, clk_cells);
- 	clks[IMX_MIPI0_I2C0_CLK]	= imx_clk_scu("mipi0_i2c0_clk", IMX_SC_R_MIPI_0_I2C_0, IMX_SC_PM_CLK_MISC2, clk_cells);
- 	clks[IMX_MIPI0_I2C1_CLK]	= imx_clk_scu("mipi0_i2c1_clk", IMX_SC_R_MIPI_0_I2C_1, IMX_SC_PM_CLK_MISC2, clk_cells);
-+	clks[IMX_MIPI0_PWM0_CLK]	= imx_clk_scu("mipi0_pwm0_clk", IMX_SC_R_MIPI_0_PWM_0, IMX_SC_PM_CLK_PER, clk_cells);
-+	clks[IMX_MIPI1_LVDS_PIXEL_CLK]	= imx_clk_scu("mipi1_lvds_pixel_clk", IMX_SC_R_LVDS_1, IMX_SC_PM_CLK_MISC2, clk_cells);
-+	clks[IMX_MIPI1_LVDS_BYPASS_CLK]	= imx_clk_scu("mipi1_lvds_bypass_clk", IMX_SC_R_LVDS_1, IMX_SC_PM_CLK_BYPASS, clk_cells);
-+	clks[IMX_MIPI1_LVDS_PHY_CLK]	= imx_clk_scu("mipi1_lvds_phy_clk", IMX_SC_R_LVDS_1, IMX_SC_PM_CLK_MISC3, clk_cells);
-+	clks[IMX_MIPI1_I2C0_CLK]	= imx_clk_scu("mipi1_i2c0_clk", IMX_SC_R_MIPI_1_I2C_0, IMX_SC_PM_CLK_MISC2, clk_cells);
-+	clks[IMX_MIPI1_I2C1_CLK]	= imx_clk_scu("mipi1_i2c1_clk", IMX_SC_R_MIPI_1_I2C_1, IMX_SC_PM_CLK_MISC2, clk_cells);
-+	clks[IMX_MIPI1_PWM0_CLK]	= imx_clk_scu("mipi1_pwm0_clk", IMX_SC_R_MIPI_1_PWM_0, IMX_SC_PM_CLK_PER, clk_cells);
- 
- 	/* MIPI CSI SS */
- 	clks[IMX_CSI0_CORE_CLK]		= imx_clk_scu("mipi_csi0_core_clk", IMX_SC_R_CSI_0, IMX_SC_PM_CLK_PER, clk_cells);
--- 
-2.7.4
+I'm hesitant to rename the API because we still need to support bindings
+that start with touchscreen-* and having an API with different namespace
+seems inconsistent. How about I volunteer the following for this series:
 
+1. Move of_touchscreen.c to drivers/input, and rename it to touchscreen.c
+   since it is not actually related to OF at this point. This would match
+   the header file too.
+2. Update its introductory comments from:
+   "Generic DT helper functions for touchscreen devices"
+   to:
+   "Generic helper functions for touchscreens and other two-dimensional
+    pointing devices"
+3. Move touchscreen.* from bindings/input/touchscreen to bindings/input,
+   and update the handful of touchscreen bindings that assume a relative
+   path to touchscreen.yaml.
+
+Let me know if this seems like a reasonable compromise.
+
+> 
+> Thanks.
+> 
+> -- 
+> Dmitry
+
+Kind regards,
+Jeff LaBundy
