@@ -2,94 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C6B62CC407
-	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 18:44:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 472252CC423
+	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 18:47:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730712AbgLBRlX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Dec 2020 12:41:23 -0500
-Received: from mail-ed1-f67.google.com ([209.85.208.67]:44436 "EHLO
-        mail-ed1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728414AbgLBRlX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Dec 2020 12:41:23 -0500
-Received: by mail-ed1-f67.google.com with SMTP id l5so4839634edq.11;
-        Wed, 02 Dec 2020 09:41:06 -0800 (PST)
+        id S1730965AbgLBRpH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Dec 2020 12:45:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44950 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730873AbgLBRpH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Dec 2020 12:45:07 -0500
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7087C0613CF
+        for <devicetree@vger.kernel.org>; Wed,  2 Dec 2020 09:44:26 -0800 (PST)
+Received: by mail-wr1-x42c.google.com with SMTP id s8so4925657wrw.10
+        for <devicetree@vger.kernel.org>; Wed, 02 Dec 2020 09:44:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=LzZh3XDG0mukcB0i6UGoQqeuQTlDt+ZadapYwoHki6w=;
+        b=LjseARAchCVgKr1/xZAS9YlojSC+ZoG1giCXorFxPC/1yrZtu8vKsi1pkAL81PN5PH
+         XTczagp8h2VereDh10kVdxOB/K61gmrYm3Lb4hoTsLGdnq4ug925Jlrn7FCjHU2cbuLi
+         P9L/Ph2WRYvuX95JMWGibGKalFICJliBSH3n9dJlI9HIrSAS5jFAjOwPs2UlizlUB6S/
+         h0TMemPHzdLpMWfkDr1LJKyqyZmHn4TxOL7DW1NvKyAy5hoVn7QSIBmRJlEO8+ij+gFQ
+         8DT+17dM+1yQLDZo5WQlgIna3cAup16W8tW+dInT0k19hf55hUJaFfFpL0C4Tk+kRGA9
+         ey7Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=KfQDuc8JDGaeOFT/J+juY74FnBzeM7oQNchYmasmgIE=;
-        b=CbrLrsdQjmkBhaSc7eb8IHHZbKZPHwkDDm2MIvB+ooNjcqPDjvmQo4kx/TZooV/HuZ
-         Xg8TFCys0XuWHRFk8llQUqXAG8l3G+iSjB6S49LLP4jLf7SE7y7fe3wShrRvbnvUcYnh
-         Jjjz4V1pwNOX4yn5S5ieZ03J2lm4eOMfJpvYP3hOzoDO5ei/6YUHRySEVsaP/ajSEBQR
-         Dj4q5PE8MJ7ajd7BVgew0k+yLUmgAnaroOkhr/YaihMmORVIKxGSf95eNPMWu1XQAd4R
-         OtTpZ411/D2YlqNBQrnZTzLOI+YclSamRcc6XcvRHXz88RGQETBdHbJ4k2pbdrZMAYs+
-         NcJw==
-X-Gm-Message-State: AOAM532myMoxrYdzwnW9mRiGm/3u48rGPClCkuB/6uQtB1BkcYODuRq6
-        DWxqNaAA5ICTrqsuUdbq0Ew=
-X-Google-Smtp-Source: ABdhPJyc3MIxUudzkpaxEzu2a0RIqr8H32057Ls1p2FLivkBO22bDn6oASQbAfcIMcGPSKkGontmUA==
-X-Received: by 2002:a50:9ea3:: with SMTP id a32mr1122544edf.40.1606930841062;
-        Wed, 02 Dec 2020 09:40:41 -0800 (PST)
-Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
-        by smtp.googlemail.com with ESMTPSA id b14sm428500edx.0.2020.12.02.09.40.39
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=LzZh3XDG0mukcB0i6UGoQqeuQTlDt+ZadapYwoHki6w=;
+        b=XJ+jOTUOsySC7pROgJ2laDyCPMa7phg22XzCneKYqUjizRu1YKxqQVBJ361M0LnWpQ
+         GPL+Tkkj78iP7WfAed8vEa44cTmLjLsGXLpXGeC9Y3NtxckLQNwSzumXExVCuV3XjxeO
+         k4J8O0RBwN9yTHdfFD1J1Vql6PQ+OedWJi/6F19V5akBULb8zb4mgWwc4ifWbwoH/24W
+         nvWDEpjHQyG5jDTYEMyyWuj5kBmlsON//QtI31enypFAYNQY3zj+Hxzd0wTpUfSfeNrO
+         EQdg0eN53QKIRxDL8fwPzBKrUyY4EepgKwj5HTfwc8xwcImdAqRSvKJaRX15OKaSxTqb
+         sVPg==
+X-Gm-Message-State: AOAM531o7q5Dh/ROLFVVHzKvhbeINYzJWrCAGLeCB3gWuikES4QNvPAv
+        DAKrrYbTMhuGMYDFb+NkVEZvdg==
+X-Google-Smtp-Source: ABdhPJxXihI1yYaKhkVPQ7va1Hj5IAksrWO7UT5NiYAHDfgKyxbFPkv7dmBYZRn2wvuOJpm3PPmYCQ==
+X-Received: by 2002:adf:e80b:: with SMTP id o11mr4968215wrm.409.1606931064106;
+        Wed, 02 Dec 2020 09:44:24 -0800 (PST)
+Received: from localhost.localdomain ([2a01:e35:2ec0:82b0:15b4:c668:8f06:1b99])
+        by smtp.gmail.com with ESMTPSA id q12sm2842915wrx.86.2020.12.02.09.44.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Dec 2020 09:40:39 -0800 (PST)
-Date:   Wed, 2 Dec 2020 19:40:38 +0200
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Jagan Teki <jagan@amarulasolutions.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Li Yang <leoyang.li@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Matteo Lisi <matteo.lisi@engicam.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-amarula@amarulasolutions.com
-Subject: Re: [PATCH 09/10] dt-bindings: arm: fsl: Add Engicam i.Core MX8M
- Mini C.TOUCH 2.0 10.1" OF
-Message-ID: <20201202174038.GG3490@kozik-lap>
-References: <20201202121241.109952-1-jagan@amarulasolutions.com>
- <20201202121241.109952-10-jagan@amarulasolutions.com>
+        Wed, 02 Dec 2020 09:44:23 -0800 (PST)
+From:   Neil Armstrong <narmstrong@baylibre.com>
+To:     hverkuil@xs4all.nl, devicetree@vger.kernel.org
+Cc:     Neil Armstrong <narmstrong@baylibre.com>,
+        linux-media@vger.kernel.org, linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH v4 1/4] dt-bindings: media: Add bindings for the Amlogic GE2D Accelerator Unit
+Date:   Wed,  2 Dec 2020 18:44:14 +0100
+Message-Id: <20201202174417.3778306-2-narmstrong@baylibre.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20201202174417.3778306-1-narmstrong@baylibre.com>
+References: <20201202174417.3778306-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20201202121241.109952-10-jagan@amarulasolutions.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 02, 2020 at 05:42:40PM +0530, Jagan Teki wrote:
-> i.Core MX8M Mini is an EDIMM SOM based on NXP i.MX8MM from Engicam.
-> 
-> C.TOUCH 2.0 is a general purpose carrier board with capacitive
-> touch interface support.
-> 
-> 10.1" OF is a capacitive touch 10.1" Open Frame panel solutions.
-> 
-> i.Core MX8M Mini needs to mount on top of C.TOUCH 2.0 carrier with
-> pluged 10.1" OF for creating complete i.Core MX8M Mini C.TOUCH 2.0
-> 10.1" Open Frame solution board.
-> 
-> Add bindings for it.
-> 
-> Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+The GE2D is a 2D accelerator with various features like configurable blitter
+with alpha blending, frame rotation, scaling, format conversion and colorspace
+conversion.
 
-Please run the checkpatch - it should complain about order of patches.
+This adds the bindings for the GE2D version found in the AXG SoCs Family.
 
-> ---
->  Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-> index 8c8f7728788d..9e275921112d 100644
-> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
-> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-> @@ -669,6 +669,7 @@ properties:
->                - beacon,imx8mm-beacon-kit  # i.MX8MM Beacon Development Kit
->                - engicam,icore-mx8mm               # i.MX8MM Engicam i.Core MX8M Mini SOM
->                - engicam,icore-mx8mm-ctouch2       # i.MX8MM Engicam i.Core MX8M Mini C.TOUCH 2.0
-> +              - engicam,icore-mx8mm-ctouch2-of10  # i.MX8MM Engicam i.Core MX8M Mini C.TOUCH 2.0 10.1" Open Frame
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+---
+ .../bindings/media/amlogic,axg-ge2d.yaml      | 47 +++++++++++++++++++
+ 1 file changed, 47 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/amlogic,axg-ge2d.yaml
 
-Run dtbs_check before posting.
+diff --git a/Documentation/devicetree/bindings/media/amlogic,axg-ge2d.yaml b/Documentation/devicetree/bindings/media/amlogic,axg-ge2d.yaml
+new file mode 100644
+index 000000000000..bee93bd84771
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/amlogic,axg-ge2d.yaml
+@@ -0,0 +1,47 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++# Copyright 2020 BayLibre, SAS
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/media/amlogic,axg-ge2d.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: Amlogic GE2D Acceleration Unit
++
++maintainers:
++  - Neil Armstrong <narmstrong@baylibre.com>
++
++properties:
++  compatible:
++    enum:
++      - amlogic,axg-ge2d
++
++  interrupts:
++    minItems: 1
++
++  reg:
++    minItems: 1
++
++  resets:
++    maxItems: 1
++
++  clocks:
++    minItems: 1
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++  - resets
++
++additionalProperties: false
++
++examples:
++  - |
++    ge2d: ge2d@ff940000 {
++          compatible = "amlogic,axg-ge2d";
++          reg = <0xff940000 0x10000>;
++          interrupts = <150>;
++          clocks = <&clk_ge2d>;
++          resets = <&reset_ge2d>;
++    };
+-- 
+2.25.1
 
-Best regards,
-Krzysztof
