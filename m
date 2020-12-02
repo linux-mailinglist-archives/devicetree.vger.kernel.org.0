@@ -2,98 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C2FBF2CBA94
-	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 11:29:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D2772CBAE2
+	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 11:46:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388519AbgLBK24 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Dec 2020 05:28:56 -0500
-Received: from esa3.microchip.iphmx.com ([68.232.153.233]:10129 "EHLO
-        esa3.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388076AbgLBK24 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Dec 2020 05:28:56 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1606904935; x=1638440935;
-  h=subject:to:cc:references:from:message-id:date:
-   mime-version:in-reply-to:content-transfer-encoding;
-  bh=ksleKb1avugjW4oKaHVFOB5HE573CXp6zC8n/FP+po4=;
-  b=m4bxf1zvG/1QxGEKKCzE8lYcXjzjfCumvpe60DGW2LW2ZpSCkXHIVtbw
-   tI++LuVtGibXqMuPrTC5itZ/T1zlVCak24sXMv4Hw+2vrLjr/L7BFMnPc
-   oRz0rp5xKp0eqhaa37IKJAZK5j5lhjZXNqVHYWnyw61ct3c89lC3kI06h
-   cQjHUu2zL4RftUqS0haVuLOuJP+/80WEkAa6GbYS+vQ2DF9YZ7Z8zpJqZ
-   NWlvVQCXgXbml2FmsjSkBfocHmEfkQnxZ5M2ogb5V5WTKxHFVYula2vzk
-   Zno+E1L/d8eWKw6eCMHeJ0/IwEx6xmmNGjRRb04NrPlmRFQOD7+fMIs35
-   w==;
-IronPort-SDR: l53MgwORql/xWR6jYqLcu8d/dtPfsPaCpd0bcIWfhP5FaL3KCsLWQczW7Z9BfVpyydrvhrR3FG
- 2PyQLzcN/vikE4k+FU4wpe3s6+H5kq3ratEVnI22IPSl4ak9Pr0Q3SPxhsg6Rzk+aAa4MQTlND
- +lw5pYxZzviPcFMVYqgbFGBOC9AwEe3AvUrw+bHUYIsNDdxU0j9Az9MVrGcoZp0lSaR9jNZfZZ
- LksqNJxiTns3YDgGi8GtIYJJXC+N6EvKgc4Ldb9v0TOvS1sZZzSi/Z9miYmZSI8qm3pRzROG+v
- VXg=
-X-IronPort-AV: E=Sophos;i="5.78,386,1599548400"; 
-   d="scan'208";a="101103057"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 02 Dec 2020 03:27:50 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1979.3; Wed, 2 Dec 2020 03:27:50 -0700
-Received: from [10.171.246.74] (10.10.115.15) by chn-vm-ex04.mchp-main.com
- (10.10.85.152) with Microsoft SMTP Server id 15.1.1979.3 via Frontend
- Transport; Wed, 2 Dec 2020 03:27:47 -0700
-Subject: Re: [PATCH 2/2] ARM: dts: at91: sama5d2: map securam as device
-To:     Claudiu Beznea <claudiu.beznea@microchip.com>,
-        <robh+dt@kernel.org>, <alexandre.belloni@bootlin.com>,
-        <ludovic.desroches@microchip.com>
-CC:     <sandeepsheriker.mallikarjun@microchip.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-References: <1606903025-14197-1-git-send-email-claudiu.beznea@microchip.com>
- <1606903025-14197-3-git-send-email-claudiu.beznea@microchip.com>
-From:   Nicolas Ferre <nicolas.ferre@microchip.com>
-Organization: microchip
-Message-ID: <c27ce6d6-ee64-af8b-7cd7-2f263653b5f9@microchip.com>
-Date:   Wed, 2 Dec 2020 11:27:45 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1729491AbgLBKq3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Dec 2020 05:46:29 -0500
+Received: from mo4-p02-ob.smtp.rzone.de ([85.215.255.81]:17658 "EHLO
+        mo4-p02-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729493AbgLBKq2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Dec 2020 05:46:28 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1606905816;
+        s=strato-dkim-0002; d=gerhold.net;
+        h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:
+        X-RZG-CLASS-ID:X-RZG-AUTH:From:Subject:Sender;
+        bh=mi/tsaIREtbmjW+UpYfbK8JOpgZQV3mq5I5ijHISdak=;
+        b=pbXBLCR+RnEjuQGE64rPa08GcxDQtzzSFszgCka2jhDkeTiY1ycQbe7VtaDMH4Vb3t
+        PV2tQ7LbamcaMX3pIz0noRxnMvkhuHbJI9y8OZFjRpT71Ebl+Zagor2kzQ8ygSQDE//b
+        zpxIDIqf3FM5wWZE19XY4GItBzCOenB96XqWodVHy7Fr1UIy6hUmLPoOJL6bk9wzzgDi
+        S9WgSg+FbUGnq4g6BECk+0eKf1zoJbemRUB9U7K2nfZnNyoNr9KXB6Pozk6+BNzvqJgP
+        h4w/7xyIACLqV8kOGLw5h23qxUBJ3YWKuwA+RikfseKVHzVZeTQkhWPhfti4zA6pjI/v
+        9fTg==
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u26zEodhPgRDZ8jxIc/Daoo="
+X-RZG-CLASS-ID: mo00
+Received: from gerhold.net
+        by smtp.strato.de (RZmta 47.3.4 SBL|AUTH)
+        with ESMTPSA id Z061efwB2AhZWxM
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+        Wed, 2 Dec 2020 11:43:35 +0100 (CET)
+Date:   Wed, 2 Dec 2020 11:43:28 +0100
+From:   Stephan Gerhold <stephan@gerhold.net>
+To:     Jean-Baptiste Maneyrol <JManeyrol@invensense.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH 2/2] iio: imu: inv_mpu6050: Add support for MPU-6880
+Message-ID: <X8dv0Erz8bZOvlH2@gerhold.net>
+References: <20201202101355.87112-1-stephan@gerhold.net>
+ <20201202101355.87112-2-stephan@gerhold.net>
+ <BL0PR12MB5011BDAEB3374151F522B7F2C4F30@BL0PR12MB5011.namprd12.prod.outlook.com>
 MIME-Version: 1.0
-In-Reply-To: <1606903025-14197-3-git-send-email-claudiu.beznea@microchip.com>
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <BL0PR12MB5011BDAEB3374151F522B7F2C4F30@BL0PR12MB5011.namprd12.prod.outlook.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/12/2020 at 10:57, Claudiu Beznea wrote:
-> Due to strobe signal not being propagated from CPU to securam
-> the securam needs to be mapped as device or strongly ordered memory
-> to work properly. Otherwise, updating to one offset may affect
-> the adjacent locations in securam.
+On Wed, Dec 02, 2020 at 10:28:12AM +0000, Jean-Baptiste Maneyrol wrote:
+> Hello Stephan,
 > 
-> Fixes: d4ce5f44d4409 ("ARM: dts: at91: sama5d2: Add securam node")
-> Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
-
-Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
-
-> ---
->   arch/arm/boot/dts/sama5d2.dtsi | 1 +
->   1 file changed, 1 insertion(+)
+> MPU-6880 is similar to MPU-6500. It should share the same registers map as far as I know.
 > 
-> diff --git a/arch/arm/boot/dts/sama5d2.dtsi b/arch/arm/boot/dts/sama5d2.dtsi
-> index 2ddc85dff8ce..6d399ac0385d 100644
-> --- a/arch/arm/boot/dts/sama5d2.dtsi
-> +++ b/arch/arm/boot/dts/sama5d2.dtsi
-> @@ -656,6 +656,7 @@
->   				clocks = <&pmc PMC_TYPE_PERIPHERAL 51>;
->   				#address-cells = <1>;
->   				#size-cells = <1>;
-> +				no-memory-wc;
->   				ranges = <0 0xf8044000 0x1420>;
->   			};
->   
+> Seems good to me. Please also update Kconfig to add MPU6880 in the list for I2C and for SPI.
 > 
 
+Great, thanks! Will send a v2 with the Kconfig change.
 
--- 
-Nicolas Ferre
+Stephan
