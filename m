@@ -2,118 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ED36E2CC4DF
-	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 19:15:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D72A2CC4F9
+	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 19:26:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729086AbgLBSPe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Dec 2020 13:15:34 -0500
-Received: from mx08-00178001.pphosted.com ([91.207.212.93]:6168 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1727193AbgLBSPd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Dec 2020 13:15:33 -0500
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 0B2I6wh6029053;
-        Wed, 2 Dec 2020 19:14:47 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=subject : to : cc :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=STMicroelectronics;
- bh=IHMm0cjK3eOhtNxeby0JUJ/xysp13KMNTZpGx5FB/i4=;
- b=MOIjqtIojG1qXzPtXeep1E4QAsRYcVURS4/JTKn8wpEb7izKb8yvgq3HGGEK3bToJkrJ
- DLPy0u8noBFuBIp37ZY9omsCnC/hZdTUAl3EIeHbXKkZ8hInsGqtXA//atdDlPWw3nNh
- s9YhlVaFhqxsKg66/FM20cFfJEYpJWNk+w6dGtxvrG6+SmltXL3tLVGjjzJNEDHExw81
- DnURP9LoQzP44OCvfqdqFa2Fb5CPheSO8L57CbuFvGdkJuuc8pGDNa5Sfded7hjzWU1C
- zTkRXB6LcNXiy+WzFc7i+vBdPLBGW+g/7WZOIuQpl4IlOKyDi73amJoZColMkS4VwAYj uQ== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 355w3cd384-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 02 Dec 2020 19:14:47 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 4B34110002A;
-        Wed,  2 Dec 2020 19:14:47 +0100 (CET)
-Received: from Webmail-eu.st.com (sfhdag3node1.st.com [10.75.127.7])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 3CFD0225F18;
-        Wed,  2 Dec 2020 19:14:47 +0100 (CET)
-Received: from lmecxl0889.lme.st.com (10.75.127.49) by SFHDAG3NODE1.st.com
- (10.75.127.7) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 2 Dec
- 2020 19:14:46 +0100
-Subject: Re: [PATCH v3 13/15] remoteproc: Properly deal with a start request
- when attached
-To:     Mathieu Poirier <mathieu.poirier@linaro.org>,
-        "ohad@wizery.com" <ohad@wizery.com>,
-        "bjorn.andersson@linaro.org" <bjorn.andersson@linaro.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>
-CC:     "linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20201126210642.897302-1-mathieu.poirier@linaro.org>
- <20201126210642.897302-14-mathieu.poirier@linaro.org>
-From:   Arnaud POULIQUEN <arnaud.pouliquen@st.com>
-Message-ID: <24a902d1-f2e5-2318-16bc-202955fcfe28@st.com>
-Date:   Wed, 2 Dec 2020 19:14:45 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1728659AbgLBSYf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Dec 2020 13:24:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51074 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727454AbgLBSYf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Dec 2020 13:24:35 -0500
+Received: from mail.skyhub.de (mail.skyhub.de [IPv6:2a01:4f8:190:11c2::b:1457])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0853CC0613CF;
+        Wed,  2 Dec 2020 10:23:55 -0800 (PST)
+Received: from zn.tnic (p200300ec2f161b00329c23fffea6a903.dip0.t-ipconnect.de [IPv6:2003:ec:2f16:1b00:329c:23ff:fea6:a903])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 7193B1EC04DB;
+        Wed,  2 Dec 2020 19:23:53 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
+        t=1606933433;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
+        bh=4K5oryCh4lYprceHfJITgYNxkJkNbvO0oAmzKtsMskk=;
+        b=eyF7oJ8jzZXnSjEQtaZrUqi4mwuWKRWOIW9O8LaGm8MqDGJY2ivCpGoIYOt1Z6+twhPWwg
+        BD27rstCZtNJappHLb/XnRJL/bLtkDIm1ccUAtRxsnvNQZrxM7nK48jtE06jmDLK5BhWQv
+        ogqK7rU9rqVC++YIVNJfV+c9klFxF94=
+Date:   Wed, 2 Dec 2020 19:23:49 +0100
+From:   Borislav Petkov <bp@alien8.de>
+To:     Andrew Jeffery <andrew@aj.id.au>
+Cc:     Troy Lee <troy_lee@aspeedtech.com>, Joel Stanley <joel@jms.id.au>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Tony Luck <tony.luck@intel.com>,
+        Ryan Chen <ryan_chen@aspeedtech.com>,
+        James Morse <james.morse@arm.com>,
+        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
+        <linux-aspeed@lists.ozlabs.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        Robert Richter <rrichter@marvell.com>,
+        "leetroy@gmail.com" <leetroy@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stefan M Schaeckeler <sschaeck@cisco.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:EDAC-CORE" <linux-edac@vger.kernel.org>
+Subject: Re: [PATCH v2 3/3] edac: Supporting AST2400 and AST2600 edac driver
+Message-ID: <20201202182349.GJ2951@zn.tnic>
+References: <20201202063612.21241-1-troy_lee@aspeedtech.com>
+ <20201202063612.21241-3-troy_lee@aspeedtech.com>
+ <CACPK8XcBTm8-cAPmtswHbYAf2B+PdBiZ2s1XK1UqKA_NQX_-mw@mail.gmail.com>
+ <PS1PR06MB26008E4BCB805553EDEC45038AF30@PS1PR06MB2600.apcprd06.prod.outlook.com>
+ <b6dd3a91-abe7-4e9d-b801-6e54e4c88827@www.fastmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20201126210642.897302-14-mathieu.poirier@linaro.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.75.127.49]
-X-ClientProxiedBy: SFHDAG2NODE3.st.com (10.75.127.6) To SFHDAG3NODE1.st.com
- (10.75.127.7)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.312,18.0.737
- definitions=2020-12-02_10:2020-11-30,2020-12-02 signatures=0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <b6dd3a91-abe7-4e9d-b801-6e54e4c88827@www.fastmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 11/26/20 10:06 PM, Mathieu Poirier wrote:
-> This patch takes into account scenarios where a remote processor
-> has been attached to when receiving a "start" command from sysfs.
+On Thu, Dec 03, 2020 at 01:32:44AM +1030, Andrew Jeffery wrote:
+> On Wed, 2 Dec 2020, at 19:11, Troy Lee wrote:
+> > Hi Joel,
+> > 
+> > Thanks for the suggestion, I'll fix the review and create an new patch 
+> > against 
+> > latest Linux branch. Those exported function will be referenced in 
+> > other driver yet 
+> > to be upstream, so should I move those exported functions out of this 
+> > patch?
+> > 
 > 
-> As with the "running" case, the command can't be carried out if the
-> remote processor is already in operation.
-> 
-> Signed-off-by: Mathieu Poirier <mathieu.poirier@linaro.org>
+> Yes, let's leave the exports out of this patch, and add them in when you send 
+> the patch that depends on them.
 
+And when you do, almost all new exports are EXPORT_SYMBOL_GPL - not
+EXPORT_SYMBOL.
 
-Reviewed-by: Arnaud Pouliquen <arnaud.pouliquen@st.com>
+Also, I'd like to see how those exports are going to be used. An EDAC
+driver function exported to another driver sounds strange. We have only
+one other case like this in the EDAC tree:
 
-Thanks,
-Arnaud
+drivers/edac/amd64_edac.c:554:EXPORT_SYMBOL_GPL(amd64_get_dram_hole_info);
 
-> ---
->  drivers/remoteproc/remoteproc_cdev.c  | 3 ++-
->  drivers/remoteproc/remoteproc_sysfs.c | 3 ++-
->  2 files changed, 4 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/remoteproc/remoteproc_cdev.c b/drivers/remoteproc/remoteproc_cdev.c
-> index d06f8d4919c7..61541bc7d26c 100644
-> --- a/drivers/remoteproc/remoteproc_cdev.c
-> +++ b/drivers/remoteproc/remoteproc_cdev.c
-> @@ -32,7 +32,8 @@ static ssize_t rproc_cdev_write(struct file *filp, const char __user *buf, size_
->  		return -EFAULT;
->  
->  	if (!strncmp(cmd, "start", len)) {
-> -		if (rproc->state == RPROC_RUNNING)
-> +		if (rproc->state == RPROC_RUNNING ||
-> +		    rproc->state == RPROC_ATTACHED)
->  			return -EBUSY;
->  
->  		ret = rproc_boot(rproc);
-> diff --git a/drivers/remoteproc/remoteproc_sysfs.c b/drivers/remoteproc/remoteproc_sysfs.c
-> index 3696f2ccc785..7d281cfe3e03 100644
-> --- a/drivers/remoteproc/remoteproc_sysfs.c
-> +++ b/drivers/remoteproc/remoteproc_sysfs.c
-> @@ -194,7 +194,8 @@ static ssize_t state_store(struct device *dev,
->  	int ret = 0;
->  
->  	if (sysfs_streq(buf, "start")) {
-> -		if (rproc->state == RPROC_RUNNING)
-> +		if (rproc->state == RPROC_RUNNING ||
-> +		    rproc->state == RPROC_ATTACHED)
->  			return -EBUSY;
->  
->  		ret = rproc_boot(rproc);
-> 
+and even that is not really needed...
+
+Thx.
+
+-- 
+Regards/Gruss,
+    Boris.
+
+https://people.kernel.org/tglx/notes-about-netiquette
