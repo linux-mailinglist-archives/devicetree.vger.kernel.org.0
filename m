@@ -2,126 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 585312CC069
-	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 16:11:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0205B2CC093
+	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 16:19:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730390AbgLBPK3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Dec 2020 10:10:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48932 "EHLO
+        id S1728312AbgLBPSV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Dec 2020 10:18:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50140 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730378AbgLBPK2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Dec 2020 10:10:28 -0500
+        with ESMTP id S1726075AbgLBPSV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Dec 2020 10:18:21 -0500
 Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com [IPv6:2a00:1450:4864:20::344])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4002C0613CF
-        for <devicetree@vger.kernel.org>; Wed,  2 Dec 2020 07:09:47 -0800 (PST)
-Received: by mail-wm1-x344.google.com with SMTP id a3so8944150wmb.5
-        for <devicetree@vger.kernel.org>; Wed, 02 Dec 2020 07:09:47 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8246C0613D4
+        for <devicetree@vger.kernel.org>; Wed,  2 Dec 2020 07:17:40 -0800 (PST)
+Received: by mail-wm1-x344.google.com with SMTP id x22so8103375wmc.5
+        for <devicetree@vger.kernel.org>; Wed, 02 Dec 2020 07:17:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=oOSicCWhNpoN2Xb8hfcdhiDNzylSo2X/NngolxOC8vQ=;
-        b=VDelKcaY4dVlNWOPXMkFf5mSXUkNLpgLiq61inVRo15dob72+uGh1D9f5e4VkqWOzI
-         u0EHXHU0xohcCj4fmAeQeKP3TXa+vjSI8eNdR74HCDe+UHd9U/DGkrpts1l5adsgcqRQ
-         nfawWVLe5huBvNv3/DutS9t31Sr2Xr9Z01YLLlIxupe+KJnOZK9uRi4CROMt46bfcEYk
-         lqZD+9hDlvOIJs67RAEup4JAo8+NuIgARwg97o7VFnRkSVnMbiXA/FV7aVvtTp2ielGk
-         6kScFx954N9zYr98z5jyAfvmvdp4VwaaaudFbytw/6KBilM4p6zn/3BR8b/mdXllr5Sa
-         2png==
+        h=subject:from:to:cc:references:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=/Y0icDYJYLrdu3OvNT2zbeWx1FJTPoSGg3Tnj6XiwU8=;
+        b=VXfZGFFIRGghiRfwkfLU6LjjuaGkoM0dXtgtToMQOQGac7F/THkCEtiQ6ewmDPKzec
+         OhGMo+Tt8mKiI+GoJ4KnA6VvnE5Nk17d21chMbar5bSntCGEJScEE/pCobqA0SUHA8kF
+         ObF2NjaHNDnUXbY68SIlQkHzXdQrwYqG6Sx/NnxfZy2GOryrvLamtNwgvwBfSt+tvuaO
+         uFCtW4tNEzot+PNEunvKCfj/rj+VzPJspWDGi6eG4lI8A86p+5rTBYOuH41hekiij5vD
+         U6QV9DkO1DrOelysBnQAPY4XYQSZL9eKtGnbF2qaaIBum3OUYypLwjybFaoXW3v7WGr7
+         ANnw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=oOSicCWhNpoN2Xb8hfcdhiDNzylSo2X/NngolxOC8vQ=;
-        b=c0h7CsWTwAmfBT5EDmo5TmSsaZC/yCvDoYJATjXXFwvCkTmExPYXcdRepLSLLRHYNK
-         c5J0mVrH6xCFAm/6JzXJSbqQd7spBmln4c1gzOk6UXMsdPOAyl4ofpWpaTZefUaJGVw+
-         5ZgDOHSWYeRFWrK/C57Qjdpi0WdSCkph1s17MrYNOyWb5wR7ZiDJkAWBCiAg1JGuiUq1
-         z1cih7HgT4BMy/m7dzT+gkABxGnjR8QabZHZmTNFrV4tE0dh/IiLe0ON2oxD/PGzyTRH
-         N7HW/gMSMvp/eXG5kwdLGsidx6es8G54KZzr5jbAkwvlVS+F1b/+FRdqdkieyrbLal6d
-         3htg==
-X-Gm-Message-State: AOAM533zrjQeGgr/r4Aj/jqtBVx7HEQRNBa6SPa89qU++L1f8goR9Vhh
-        JmJJzT/xUM9Nis6kUUMFb+/9aQ==
-X-Google-Smtp-Source: ABdhPJyY6iTjOclycbgMdZR1BJM/NQs428i4F9BST8rtkZMQKzAhUor3EpfauPJw0gENxlNhnY3zKw==
-X-Received: by 2002:a7b:c19a:: with SMTP id y26mr2548794wmi.20.1606921786422;
-        Wed, 02 Dec 2020 07:09:46 -0800 (PST)
-Received: from dell ([91.110.221.235])
-        by smtp.gmail.com with ESMTPSA id s4sm2676916wra.91.2020.12.02.07.09.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Dec 2020 07:09:45 -0800 (PST)
-Date:   Wed, 2 Dec 2020 15:09:43 +0000
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Jonathan =?iso-8859-1?Q?Neusch=E4fer?= <j.neuschaefer@gmx.net>
-Cc:     linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Heiko Stuebner <heiko.stuebner@theobroma-systems.com>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Lubomir Rintel <lkundrak@v3.sk>,
-        Mark Brown <broonie@kernel.org>, allen <allen.chen@ite.com.tw>,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org, linux-pwm@vger.kernel.org,
-        linux-rtc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Heiko Stuebner <heiko@sntech.de>,
-        Josua Mayer <josua.mayer@jm0.eu>,
-        Andreas Kemnade <andreas@kemnade.info>,
-        Arnd Bergmann <arnd@arndb.de>, Daniel Palmer <daniel@0x0f.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>
-Subject: Re: [PATCH v4 3/7] mfd: Add base driver for Netronix embedded
- controller
-Message-ID: <20201202150943.GN4801@dell>
-References: <20201122222739.1455132-1-j.neuschaefer@gmx.net>
- <20201122222739.1455132-4-j.neuschaefer@gmx.net>
- <20201202130520.GL4801@dell>
- <X8ed7stMOGhnZ18T@latitude>
+        h=x-gm-message-state:subject:from:to:cc:references:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=/Y0icDYJYLrdu3OvNT2zbeWx1FJTPoSGg3Tnj6XiwU8=;
+        b=ozf+whrL/y7N8bTwF5P7j4W4wJHlky6FxcIAGMcY9Zx2xIG3W7KhNo03+r9jKkMkI0
+         TJAdHQT7JlTiWTbHCduVqN6ypK3LWNmmp/r4Em/gr7vukalCDRDVb1/qWkam+IiYqCEH
+         hrtPOT0FFSkl48BoJ59pA0HrU+OYaLhN988VgiyYiNSvqXXl2yhVTVSzPTA+uRUKD/6z
+         Tki7aYfQF2l0+QTiFEcJkoIeFCsN/oEHcLit8sjZoj5q5Q5MRaHLUDB5GStXzLk7+vlq
+         ThYdG65YIuyDE3Es54zUAU0bVqEtBufqP4iAYgbgQSjA31PU3Xw+dkBiKmhHKkLj0kB/
+         Lt4Q==
+X-Gm-Message-State: AOAM533aE3f9B5W7qow4/a/dvRhSk77+PtjJt8YDK3CbmGriWq6dC8MX
+        xTzUOwf5LoZYf2nNi9Nh2P05tQ==
+X-Google-Smtp-Source: ABdhPJyDm/rnIbajp48WsCqoLs4JXvHjzYC6BKhHYgu8qMCchv5bPI8dTXLQ5qVdhyA6kSiPyXNS/g==
+X-Received: by 2002:a1c:2681:: with SMTP id m123mr3552375wmm.114.1606922259452;
+        Wed, 02 Dec 2020 07:17:39 -0800 (PST)
+Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
+        by smtp.googlemail.com with ESMTPSA id j14sm2473154wrs.49.2020.12.02.07.17.38
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 02 Dec 2020 07:17:38 -0800 (PST)
+Subject: Re: [PATCH v5 2/2] pinctrl: qcom: Add sm8250 lpass lpi pinctrl driver
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     linus.walleij@linaro.org, robh+dt@kernel.org, agross@kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20201201142830.13152-1-srinivas.kandagatla@linaro.org>
+ <20201201142830.13152-3-srinivas.kandagatla@linaro.org>
+ <X8ad9lw73ZKsqXKT@builder.lan>
+ <c7f8e95d-21aa-b723-2b6e-0420cb400025@linaro.org>
+Message-ID: <50411940-ded8-d5cc-c373-f1bbad2c02fe@linaro.org>
+Date:   Wed, 2 Dec 2020 15:17:37 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+In-Reply-To: <c7f8e95d-21aa-b723-2b6e-0420cb400025@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <X8ed7stMOGhnZ18T@latitude>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 02 Dec 2020, Jonathan Neuschäfer wrote:
 
-> On Wed, Dec 02, 2020 at 01:05:20PM +0000, Lee Jones wrote:
-> > On Sun, 22 Nov 2020, Jonathan Neuschäfer wrote:
-> [...]
-> > > +	/* Bail out if we encounter an unknown firmware version */
-> > > +	switch (version) {
-> > > +	case 0xd726: /* found in Kobo Aura */
-> > 
-> > No magic numbers.
-> > 
-> > Please submit a subsequent patch to define this.
+
+On 02/12/2020 09:56, Srinivas Kandagatla wrote:
+>>> +        case PIN_CONFIG_SLEW_RATE:
+>>> +            if (arg > LPI_SLEW_RATE_MAX) {
+>>> +                dev_err(pctldev->dev, "invalid slew rate %u for pin: 
+>>> %d\n",
+>>> +                    arg, group);
+>>> +                return -EINVAL;
+>>> +            }
+>>> +
+>>> +            slew_offset = g->slew_offset;
+>>> +            if (slew_offset == NO_SLEW)
+>>> +                break;
+>>> +
+>>> +            mutex_lock(&pctrl->slew_access_lock);
+>>> +            sval = ioread32(pctrl->slew_base + LPI_SLEW_RATE_CTL_REG);
+>>> +
+>>> +            for (i = 0; i < LPI_SLEW_BITS_SIZE; i++) {
+>>> +                assign_bit(slew_offset, &sval, arg & 0x01);
+>>> +                slew_offset++;
+>>> +                arg = arg >> 1;
+>>> +            }
+>>
+>> Isn't this loop just the same as
+>>
+>>     FIELD_SET(3 << slew_offset, arg & 3, sval)
+
+None of FIELD_* or replace_bits apis will work here, as the mask passed 
+to those macros should be a constant #define. Passing variable to them 
+in mask will result in compile error!
+
+mask in this case is retrieved at runtime.
+
+I think we should live with the existing code unless there is a strong 
+reason for it to change! Or a better alternative.
+
+
+--srini
+
+
 > 
-> Will do.
-> 
-> But I don't think I'll be able to give it a more meaningful name than
-> NTXEC_VERSION_D726. I don't have a good overview of which versions
-> appear in which devices. "0xd726 found in Kobo Aura" only means that;
-> I don't know if it's the only version used in the Kobo Aura, and I don't
-> know if the Kobo Aura is the only device where it is used.
 
-Defines are not set in stone.
-
-They can evolve over time as more is known.
-
-NTXEC_KOBO_AURA would be fine for now.
-
--- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+> This will not work FIELD_SET will not clear any bits wich are already 
+> set! assing_bit will work, but we could do better by adding slew_mask 
+> per pin rather than slew_offset which should allow us to use 
+> replace_bits straight away.
