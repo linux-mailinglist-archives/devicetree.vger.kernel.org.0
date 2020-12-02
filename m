@@ -2,166 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A15402CC136
-	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 16:48:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 73CBA2CC13A
+	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 16:48:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387996AbgLBPqw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Dec 2020 10:46:52 -0500
-Received: from new2-smtp.messagingengine.com ([66.111.4.224]:44481 "EHLO
-        new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S2387985AbgLBPqv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Dec 2020 10:46:51 -0500
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 3DE115802E3;
-        Wed,  2 Dec 2020 10:46:05 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute6.internal (MEProxy); Wed, 02 Dec 2020 10:46:05 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm1; bh=jRoUn1Nixmx8fV7/eiqUN6Tsxsg
-        78St+eJ4PgOBSguI=; b=TQt9wzTEpAomumtEVyYfhBOFAMhYofunpmo1MYB5ub2
-        mygYpWsC8enY2HvcSTrkSd4kho0hsgZbPDmWPkwBNTji/y5p7pGWgXwXoWLCQql6
-        cgS7v/2fedN8fj99I/JEF0BuO4XrMRKCPl86BVk3aPzAzT/CWhTKFK0ZXnWX2jQX
-        8CDdFM7OVTyvvwnS22/bH67qUYbh4efacDPeGvP+5QC6ZLCJINM9WwLLDzYg3zyQ
-        rr9FwWd3Uk0UT3yqzOq1u8CQxFA/PhonDE7b6HM/BAuOPjQkBAhDQzQYEQEF/Fiz
-        vlqPsFvOipJbglqukQLaGUndk9cqsglBAk9G8ipAy6g==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=jRoUn1
-        Nixmx8fV7/eiqUN6Tsxsg78St+eJ4PgOBSguI=; b=S7b+9A+BK+bXFoLMxHcUCK
-        2ml/FqmbCjgSCQ9lUP16UtpeBuFflkv0aVlTfRQANUmf5sQmH9FrwnH2/XYvQGYl
-        j7j/+NwdtpOTU3FjR5rnRSuFTcQxVdrxZ0GtiafXh0XkRK2iLRtN5KgW3fe4fUGL
-        v6ZFrkkQ1aZe7beWfpnxnEb4ir4lvXvq4K9mwkInDtOw75DQ7tgqJ4t4Ly5GBNYP
-        SxEJt9WF/MysoAs+Gtk41hOvThUw82c4zhmTpShEQgqRzwKgEY+VJ5nvCz/Oxote
-        srw0OhNwnN704qXyqf51YnYxMqB2R2ki/77k/+qP/P+FQdlCH9a9GgfVkppWn4PQ
-        ==
-X-ME-Sender: <xms:urbHX7mweWR1qljBr_MExWUkdMRV0tmFycoSy-4iG7shpRNcYcPjkA>
-    <xme:urbHX-2QGL3MuSS6ysrC0KGAkvZclRLfNn08313yojQTwbmq2USutfe5ngPBYww0n
-    6zPMrrDN7J34lD9fqs>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrudeigedgkedvucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
-    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
-    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
-    gedunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
-    frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:urbHXxr7hq23eyK4HjadMXO7LlCY7uZVKhxqtnSUl-C0vBVuO3yI9Q>
-    <xmx:urbHXzmy7XQptpb2dVlgOp4l5d4xu9j9yP6iWT_47cXcDlUhVw4GJw>
-    <xmx:urbHX53cI05xHEVa_C_yRehMj6z3E2UgIWfHhH589jZvxQOIrflKaw>
-    <xmx:vbbHX482dsQIV9UiOVhgqRglb05zjpF5PLwLRAdB2fu23SuK7Wk7Ow>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 69B94240059;
-        Wed,  2 Dec 2020 10:46:02 -0500 (EST)
-Date:   Wed, 2 Dec 2020 16:46:01 +0100
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-doc@vger.kernel.org, devel@driverdev.osuosl.org,
-        linux-sunxi@googlegroups.com, Yong Deng <yong.deng@magewell.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Helen Koike <helen.koike@collabora.com>,
-        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Hans Verkuil <hans.verkuil@cisco.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        kevin.lhopital@hotmail.com
-Subject: Re: [PATCH v2 09/19] ARM: dts: sunxi: h3/h5: Add CSI controller port
- for parallel input
-Message-ID: <20201202154601.ws7wrx6msrp3u4pd@gilmour>
-References: <20201128142839.517949-1-paul.kocialkowski@bootlin.com>
- <20201128142839.517949-10-paul.kocialkowski@bootlin.com>
- <20201201121405.at4pwxon56ecwrx6@gilmour>
- <X8escb4SZXEpiR0n@aptenodytes>
+        id S1728550AbgLBPsY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Dec 2020 10:48:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54804 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728538AbgLBPsX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Dec 2020 10:48:23 -0500
+Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com [IPv6:2a00:1450:4864:20::443])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30318C0613D4
+        for <devicetree@vger.kernel.org>; Wed,  2 Dec 2020 07:47:43 -0800 (PST)
+Received: by mail-wr1-x443.google.com with SMTP id 64so4469365wra.11
+        for <devicetree@vger.kernel.org>; Wed, 02 Dec 2020 07:47:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=hZCo1m8g7QPYnEX3m7SsmQm546vtQp+mN348j0Xkt6I=;
+        b=WozaPSMeOVI9euTVFOarywGpxKAPZvKOXOEWQtvyps7gdpv6liS1NZR50dH857phu2
+         Y1bMq0kgHUwjXNWnESQfr3PxIZEMqAohaQBnW3/nd5DWWL0S8YiX4k2whD+N+KHoeFop
+         17/44eB5Xm0ZftGesDSIUrNQbgxc63hr9WR9P18dHP2Yda+6R4cQEaB0jjNIxAR/g1W8
+         CXSxIStqcYpyTXP8aiLtE9H/hTG0YMbcil0gG63TyDzHxLfKpu8LoaL2NjmbWB8Bx3hS
+         YTce5kYBVLCHvO2X2wSEbN2x3JqL4Li+z851OEp0eKF9dELEArBV1erCImBwUK+G++v5
+         dmcA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=hZCo1m8g7QPYnEX3m7SsmQm546vtQp+mN348j0Xkt6I=;
+        b=TfrzK0Nn8uwcZPFYjkAR3dTRTpZPvLiq/pxbVm6wCCE1WuFsoaKAEPmpnTngWBW/U8
+         1CZktqwBCIipYFzHJCqPlarCDbXOnnzBhOOD2w7Qx6vyXZhXxmf0eFW41SsqciM7aTkq
+         P4oNGXCa0sAEIYKoMrNFf6fZe6yH2ySEFoINxFUK5O2tsV5uUyTmkSWewpVoto5EC1og
+         H8lc6hTXL5LXxJHNnKRIwfbPnTRTS/1SQ3VbakcJavQcUplL9yb7X0zbw7//yLwRZ51Y
+         tCEtnr/3d5hsguCAHY3VVN9t2faGgUFkM0US+ddLEKzpRjRISmNjIMRk5+srbAO7t/h9
+         tnPw==
+X-Gm-Message-State: AOAM533LujnKjw0KsKUQw78XN66TKQ6VGkoKxtLhYspcV3z7V1ZePHCn
+        AyXRhgFyMqY/RcridpG7auWvuQ==
+X-Google-Smtp-Source: ABdhPJzPDRn6F8yI8MQnEqRIUcKoTyE96fFWrfcQlIjRGQGvsOzW1c+R+URB/NtEvglv2Rk0vXYh+w==
+X-Received: by 2002:adf:f102:: with SMTP id r2mr4198893wro.315.1606924061942;
+        Wed, 02 Dec 2020 07:47:41 -0800 (PST)
+Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
+        by smtp.googlemail.com with ESMTPSA id r13sm2444950wrs.6.2020.12.02.07.47.40
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 02 Dec 2020 07:47:41 -0800 (PST)
+Subject: Re: [PATCH 1/6] arm64: dts: qcom: sm8250: add apr and its services
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, agross@kernel.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20201201153706.13450-1-srinivas.kandagatla@linaro.org>
+ <20201201153706.13450-2-srinivas.kandagatla@linaro.org>
+ <X8aYkxFMf+dzNRNt@builder.lan>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Message-ID: <6cbf6754-56bc-c35a-038e-08903c2e09d2@linaro.org>
+Date:   Wed, 2 Dec 2020 15:47:40 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="btrg2f6ei6hzo3fh"
-Content-Disposition: inline
-In-Reply-To: <X8escb4SZXEpiR0n@aptenodytes>
+In-Reply-To: <X8aYkxFMf+dzNRNt@builder.lan>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Many thanks Bjorn for review,
 
---btrg2f6ei6hzo3fh
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 01/12/2020 19:25, Bjorn Andersson wrote:
+> On Tue 01 Dec 09:37 CST 2020, Srinivas Kandagatla wrote:
+> 
+>> Add apr node and its associated services required for audio on RB5.
+>>
+>> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+>> ---
+>>   arch/arm64/boot/dts/qcom/sm8250.dtsi | 56 ++++++++++++++++++++++++++++
+>>   1 file changed, 56 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+>> index 65acd1f381eb..3b4e98b13d36 100644
+>> --- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+>> @@ -11,6 +11,8 @@
+>>   #include <dt-bindings/mailbox/qcom-ipcc.h>
+>>   #include <dt-bindings/power/qcom-aoss-qmp.h>
+>>   #include <dt-bindings/power/qcom-rpmpd.h>
+>> +#include <dt-bindings/soc/qcom,apr.h>
+>> +#include <dt-bindings/sound/qcom,q6afe.h>
+> 
+> Please move this line one step down to maintain the alphabetical sort
+> order.
 
-On Wed, Dec 02, 2020 at 04:02:09PM +0100, Paul Kocialkowski wrote:
-> Hi,
->=20
-> On Tue 01 Dec 20, 13:14, Maxime Ripard wrote:
-> > On Sat, Nov 28, 2020 at 03:28:29PM +0100, Paul Kocialkowski wrote:
-> > > Since the CSI controller binding is getting a bit more complex due
-> > > to the addition of MIPI CSI-2 bridge support, make the ports node
-> > > explicit with the parallel port.
-> > >=20
-> > > This way, it's clear that the controller only supports parallel
-> > > interface input and there's no confusion about the port number.
-> > >=20
-> > > Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-> > > ---
-> > >  arch/arm/boot/dts/sunxi-h3-h5.dtsi | 9 +++++++++
-> > >  1 file changed, 9 insertions(+)
-> > >=20
-> > > diff --git a/arch/arm/boot/dts/sunxi-h3-h5.dtsi b/arch/arm/boot/dts/s=
-unxi-h3-h5.dtsi
-> > > index 9be13378d4df..02b698cace6a 100644
-> > > --- a/arch/arm/boot/dts/sunxi-h3-h5.dtsi
-> > > +++ b/arch/arm/boot/dts/sunxi-h3-h5.dtsi
-> > > @@ -803,6 +803,15 @@ csi: camera@1cb0000 {
-> > >  			pinctrl-names =3D "default";
-> > >  			pinctrl-0 =3D <&csi_pins>;
-> > >  			status =3D "disabled";
-> > > +
-> > > +			ports {
-> > > +				#address-cells =3D <1>;
-> > > +				#size-cells =3D <0>;
-> > > +
-> > > +				csi_in_parallel: port@0 {
-> > > +					reg =3D <0>;
-> > > +				};
-> > > +			};
-> > >  		};
-> >=20
-> > This will create a DTC warning, since port@0 is the only node, and is
-> > equivalent to port
->=20
-> I'm not seeing the warning when running dtbs_check.
+I agree with all the comments on this patch as well as other patches, 
+will send v2 with those fixed!
 
-Some are silenced by the Linux build system. You can pass W=3D1 to your
-make command line enable all of them.
-
-> More generally, why is it a problem that there's only one node defined?
->=20
-> One issue that I did see is that the port node doesn't have an endpoint
-> here, so I will remove the requirement to have an endpoint in the bindings
-> documentation to allow this kind of definition.
-
-We definitely want to have the endpoint required. If the CSI node is
-disabled, the error should be ignored by the dt-validate tool though
-
-Maxime
-
---btrg2f6ei6hzo3fh
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX8e2uQAKCRDj7w1vZxhR
-xYE3AP4u/RvuwgGW7PW013WC31Z7iECgCdFpXbQBo4FZEKym5wEAuygTLOqYLNTZ
-3TelATfMdZXOAbQq9j+JnNSVltFQLAk=
-=/zNa
------END PGP SIGNATURE-----
-
---btrg2f6ei6hzo3fh--
+Thanks,
+srini
+> 
+> Thanks,
+> Bjorn
+> 
+>>   #include <dt-bindings/soc/qcom,rpmh-rsc.h>
+>>   #include <dt-bindings/thermal/thermal.h>
+>>   
+>> @@ -2620,6 +2622,60 @@
+>>   				label = "lpass";
+>>   				qcom,remote-pid = <2>;
+>>   
+>> +				apr {
+>> +					compatible = "qcom,apr-v2";
+>> +					qcom,glink-channels = "apr_audio_svc";
+>> +					qcom,apr-domain = <APR_DOMAIN_ADSP>;
+>> +					#address-cells = <1>;
+>> +					#size-cells = <0>;
+>> +
+>> +					apr-service@3 {
+>> +						reg = <APR_SVC_ADSP_CORE>;
+>> +						compatible = "qcom,q6core";
+>> +						qcom,protection-domain = "avs/audio", "msm/adsp/audio_pd";
+>> +					};
+>> +
+>> +					q6afe: apr-service@4 {
+>> +						compatible = "qcom,q6afe";
+>> +						reg = <APR_SVC_AFE>;
+>> +						qcom,protection-domain = "avs/audio", "msm/adsp/audio_pd";
+>> +						q6afedai: dais {
+>> +							compatible = "qcom,q6afe-dais";
+>> +							#address-cells = <1>;
+>> +							#size-cells = <0>;
+>> +							#sound-dai-cells = <1>;
+>> +						};
+>> +
+>> +						q6afecc: cc {
+>> +							compatible = "qcom,q6afe-clocks";
+>> +							#clock-cells = <2>;
+>> +						};
+>> +					};
+>> +
+>> +					q6asm: apr-service@7 {
+>> +						compatible = "qcom,q6asm";
+>> +						reg = <APR_SVC_ASM>;
+>> +						qcom,protection-domain = "avs/audio", "msm/adsp/audio_pd";
+>> +						q6asmdai: dais {
+>> +							compatible = "qcom,q6asm-dais";
+>> +							#address-cells = <1>;
+>> +							#size-cells = <0>;
+>> +							#sound-dai-cells = <1>;
+>> +							iommus = <&apps_smmu 0x1801 0x0>;
+>> +						};
+>> +					};
+>> +
+>> +					q6adm: apr-service@8 {
+>> +						compatible = "qcom,q6adm";
+>> +						reg = <APR_SVC_ADM>;
+>> +						qcom,protection-domain = "avs/audio", "msm/adsp/audio_pd";
+>> +						q6routing: routing {
+>> +							compatible = "qcom,q6adm-routing";
+>> +							#sound-dai-cells = <0>;
+>> +						};
+>> +					};
+>> +				};
+>> +
+>>   				fastrpc {
+>>   					compatible = "qcom,fastrpc";
+>>   					qcom,glink-channels = "fastrpcglink-apps-dsp";
+>> -- 
+>> 2.21.0
+>>
