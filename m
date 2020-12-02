@@ -2,203 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 82F792CC0AD
-	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 16:21:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E450B2CC0BB
+	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 16:24:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726037AbgLBPVZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Dec 2020 10:21:25 -0500
-Received: from us-smtp-delivery-124.mimecast.com ([63.128.21.124]:48971 "EHLO
-        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726761AbgLBPVX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Dec 2020 10:21:23 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1606922395;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=fFR2t3IjQI80xXgeJr/lLM6Ot3yuaPlWOezeBx0tbPI=;
-        b=EHgBezg4BI+AW+nlYWzogXpTdqbxkir4TNi5eUZKSNYi+NGZ71P0cUz44hlun4AxOhdh6N
-        Qdogz+9ERYqvXU33Ae3bUrslK/mXNgjCilqcgG1nEyoEYmFkbXfVTSwCDXytOd63qm9e9n
-        8ZTYaKi0+dBGnbKjnqpiHbZ9+lnC9f4=
-Received: from mail-pj1-f70.google.com (mail-pj1-f70.google.com
- [209.85.216.70]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-322-iV6JB8vsNyusyQabzvjjng-1; Wed, 02 Dec 2020 10:19:54 -0500
-X-MC-Unique: iV6JB8vsNyusyQabzvjjng-1
-Received: by mail-pj1-f70.google.com with SMTP id s14so1213234pjk.4
-        for <devicetree@vger.kernel.org>; Wed, 02 Dec 2020 07:19:53 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=fFR2t3IjQI80xXgeJr/lLM6Ot3yuaPlWOezeBx0tbPI=;
-        b=qXSFRG0CXjrtrZNReHCPjgs0C5YjF0krDtv9rvi7TkpjVfo9QpylpFDl80I40KFZge
-         z+ltQGzursBgiSy6q3PwwX8yS/o29NduIBqT5wfi3Ems+RqdCh0VV7padbTTRzUoWWXF
-         mychHR02aDOsehiYL/QM1FIqoMxcOlH0yfcDpR3H8En2wXS7Rmupu5YilXbnUrxfVcP0
-         LIH3dpZ/mpWeRYnfPAGdlNyB+xK0sSnXn/exJPhGqbSFjZNeih+02RZsK87Wozxfh4/X
-         qtCAZJ2Csa1KQtpVaGLr/PWDez9zM1Yc9p6t5nKPtnOZ3eqARp+gPfNIaHMar/2lHhsp
-         tzRg==
-X-Gm-Message-State: AOAM531aOPsbEUBNcSJTDbdCmp0kdGWa6cL/6msGfEl0g6kZmVXkzO1i
-        z+ebgp3dsAHSoAi6CwYBDG9S0J/qfI87RTj5zS8Nt9ty8QzTvZPLZz5010amVzEnPP2nCGUu2wi
-        PETl6VPEqNAUZMFtI4u8gwU9xju1lFDR8UT3uaA==
-X-Received: by 2002:a63:1414:: with SMTP id u20mr312491pgl.147.1606922392851;
-        Wed, 02 Dec 2020 07:19:52 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJzx1g9/LllhhTY2kqAX7DReYattvLk+1Zn+n8SVM7MqR/ECZ0g58ckaZi/4ZDUMErdOi5rr0+tT9celGmI9Nto=
-X-Received: by 2002:a63:1414:: with SMTP id u20mr312476pgl.147.1606922392587;
- Wed, 02 Dec 2020 07:19:52 -0800 (PST)
-MIME-Version: 1.0
-References: <20201112004130.17290-1-dianders@chromium.org> <CAD=FV=W122aWPbg7Fo=zg+QmK7DHBcYTQ6CjPawLhucd4Rtw9A@mail.gmail.com>
-In-Reply-To: <CAD=FV=W122aWPbg7Fo=zg+QmK7DHBcYTQ6CjPawLhucd4Rtw9A@mail.gmail.com>
-From:   Benjamin Tissoires <benjamin.tissoires@redhat.com>
-Date:   Wed, 2 Dec 2020 16:19:41 +0100
-Message-ID: <CAO-hwJ+amboty_wKzP3n11mHLfssGz8Npzdfu9QrcipEvu3VHA@mail.gmail.com>
-Subject: Re: [PATCH v6 0/4] HID: i2c-hid: Reorganize to allow supporting goodix,gt7375p
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     Jiri Kosina <jkosina@suse.cz>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Andrea Borgia <andrea@borgia.bo.it>,
-        Rob Herring <robh+dt@kernel.org>,
-        Kai-Heng Feng <kai.heng.feng@canonical.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        "open list:HID CORE LAYER" <linux-input@vger.kernel.org>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Aaron Ma <aaron.ma@canonical.com>,
-        Anson Huang <Anson.Huang@nxp.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Jiri Kosina <jikos@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Li Yang <leoyang.li@nxp.com>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        Michael Walle <michael@walle.cc>,
-        Olof Johansson <olof@lixom.net>, Pavel Balan <admin@kryma.net>,
-        Shawn Guo <shawnguo@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Will Deacon <will@kernel.org>,
-        Xiaofei Tan <tanxiaofei@huawei.com>,
-        You-Sheng Yang <vicamo.yang@canonical.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        LKML <linux-kernel@vger.kernel.org>
+        id S1730429AbgLBPXc convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 2 Dec 2020 10:23:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50964 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729081AbgLBPXc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Dec 2020 10:23:32 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0066FC0617A6
+        for <devicetree@vger.kernel.org>; Wed,  2 Dec 2020 07:22:51 -0800 (PST)
+Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1kkTxq-0008L2-BK; Wed, 02 Dec 2020 16:22:42 +0100
+Received: from pza by lupine with local (Exim 4.92)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1kkTxp-0007sg-Kb; Wed, 02 Dec 2020 16:22:41 +0100
+Message-ID: <880ad9cc8fd0cc1750535ab9481d277de9acf9e1.camel@pengutronix.de>
+Subject: Re: [PATCH v5 09/10] media: Avoid parsing quantization and huffman
+ tables
+From:   Philipp Zabel <p.zabel@pengutronix.de>
+To:     "Mirela Rabulea (OSS)" <mirela.rabulea@oss.nxp.com>,
+        mchehab@kernel.org, hverkuil-cisco@xs4all.nl, shawnguo@kernel.org,
+        robh+dt@kernel.org
+Cc:     paul.kocialkowski@bootlin.com, linux-media@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-imx@nxp.com,
+        s.hauer@pengutronix.de, aisheng.dong@nxp.com,
+        daniel.baluta@nxp.com, robert.chiras@nxp.com,
+        laurentiu.palcu@nxp.com, mark.rutland@arm.com,
+        devicetree@vger.kernel.org, ezequiel@collabora.com,
+        laurent.pinchart+renesas@ideasonboard.com,
+        niklas.soderlund+renesas@ragnatech.se,
+        dafna.hirschfeld@collabora.com,
+        Mirela Rabulea <mirela.rabulea@nxp.com>
+Date:   Wed, 02 Dec 2020 16:22:41 +0100
+In-Reply-To: <20201112030557.8540-10-mirela.rabulea@oss.nxp.com>
+References: <20201112030557.8540-1-mirela.rabulea@oss.nxp.com>
+         <20201112030557.8540-10-mirela.rabulea@oss.nxp.com>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+User-Agent: Evolution 3.30.5-1.1 
+MIME-Version: 1.0
+X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Doug,
+Hi Mirela,
 
-On Tue, Dec 1, 2020 at 10:12 PM Doug Anderson <dianders@chromium.org> wrote:
->
-> Hi,
->
-> On Wed, Nov 11, 2020 at 4:41 PM Douglas Anderson <dianders@chromium.org> wrote:
-> >
-> > The goal of this series is to support the Goodix GT7375P touchscreen.
-> > This touchscreen is special because it has power sequencing
-> > requirements that necessitate driving a reset GPIO.
-> >
-> > To do this, we totally rejigger the way i2c-hid is organized so that
-> > it's easier to jam the Goodix support in there.
-> >
-> > This series was:
-> > - Tested on a device that uses normal i2c-hid.
-> > - Tested on a device that has a Goodix i2c-hid device.
-> > - Tested on an ACPI device, but an earlier version of the series.
-> >
-> > Changes in v6:
-> > - ACPI probe function should have been "static"
-> > - Don't export suspend/resume, just export dev_pm_ops from core.
-> > - Fixed crash in ACPI module (missing init of "client")
-> > - No need for regulator include in the core.
-> > - Removed i2c_device_id table from ACPI module.
-> > - Suspend/resume are no longer exported from the core.
-> >
-> > Changes in v5:
-> > - Add shutdown_tail op and use it in ACPI.
-> > - Added mention of i2c-hid in the yaml itself as per Rob.
-> > - Adjusted subject as per Rob.
-> > - i2chid_subclass_data => i2chid_ops.
-> > - power_up_device => power_up (same with power_down).
-> > - subclass => ops.
-> >
-> > Changes in v4:
-> > - ("arm64: defconfig: Update config names for i2c-hid rejigger") new for v4.
-> > - Fully rejigger so ACPI and OF are full subclasses.
-> > - Totally redid based on the new subclass system.
-> >
-> > Changes in v3:
-> > - Fixed compatible in example.
-> > - Removed Benjamin as a maintainer.
-> > - Rework to use subclassing.
-> > - Updated description.
-> >
-> > Changes in v2:
-> > - ("dt-bindings: HID: i2c-hid: Introduce bindings for the Goodix GT7375P") new in v2.
-> > - Get timings based on the compatible string.
-> > - Use a separate compatible string for this new touchscreen.
-> >
-> > Douglas Anderson (4):
-> >   HID: i2c-hid: Reorganize so ACPI and OF are separate modules
-> >   arm64: defconfig: Update config names for i2c-hid rejigger
-> >   dt-bindings: input: HID: i2c-hid: Introduce bindings for the Goodix
-> >     GT7375P
-> >   HID: i2c-hid: Introduce goodix-i2c-hid using i2c-hid core
-> >
-> >  .../bindings/input/goodix,gt7375p.yaml        |  65 +++++
-> >  arch/arm64/configs/defconfig                  |   3 +-
-> >  drivers/hid/Makefile                          |   2 +-
-> >  drivers/hid/i2c-hid/Kconfig                   |  47 +++-
-> >  drivers/hid/i2c-hid/Makefile                  |   6 +-
-> >  drivers/hid/i2c-hid/i2c-hid-acpi.c            | 159 +++++++++++
-> >  drivers/hid/i2c-hid/i2c-hid-core.c            | 254 +++---------------
-> >  drivers/hid/i2c-hid/i2c-hid-of-goodix.c       | 116 ++++++++
-> >  drivers/hid/i2c-hid/i2c-hid-of.c              | 143 ++++++++++
-> >  drivers/hid/i2c-hid/i2c-hid.h                 |  22 ++
-> >  include/linux/platform_data/i2c-hid.h         |  41 ---
-> >  11 files changed, 596 insertions(+), 262 deletions(-)
-> >  create mode 100644 Documentation/devicetree/bindings/input/goodix,gt7375p.yaml
-> >  create mode 100644 drivers/hid/i2c-hid/i2c-hid-acpi.c
-> >  create mode 100644 drivers/hid/i2c-hid/i2c-hid-of-goodix.c
-> >  create mode 100644 drivers/hid/i2c-hid/i2c-hid-of.c
-> >  delete mode 100644 include/linux/platform_data/i2c-hid.h
->
-> Are there any additional changes that folks would like with this
-> series?  It's not crazy urgent to get it in, but it touches enough
-> lines of code that it'd be nice to get it in before other patches land
-> and it gets merge conflicts.
+On Thu, 2020-11-12 at 05:05 +0200, Mirela Rabulea (OSS) wrote:
+> From: Mirela Rabulea <mirela.rabulea@nxp.com>
+> 
+> These are optional in struct v4l2_jpeg_header, so do not parse if
+> not requested, save some time.
+> 
+> Signed-off-by: Mirela Rabulea <mirela.rabulea@nxp.com>
+> ---
+>  drivers/media/v4l2-core/v4l2-jpeg.c | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
+> diff --git a/drivers/media/v4l2-core/v4l2-jpeg.c b/drivers/media/v4l2-core/v4l2-jpeg.c
+> index d77e04083d57..7576cd0ce6b9 100644
+> --- a/drivers/media/v4l2-core/v4l2-jpeg.c
+> +++ b/drivers/media/v4l2-core/v4l2-jpeg.c
+> @@ -307,6 +307,9 @@ static int jpeg_parse_quantization_tables(struct jpeg_stream *stream,
+>  {
+>  	int len = jpeg_get_word_be(stream);
+>  
+> +	if (!tables)
+> +		return 0;
+> +
+>  	if (len < 0)
+>  		return len;
+>  	/* Lq = 2 + n * 65 (for baseline DCT), n >= 1 */
+> @@ -361,6 +364,9 @@ static int jpeg_parse_huffman_tables(struct jpeg_stream *stream,
+>  	int mt;
+>  	int len = jpeg_get_word_be(stream);
+>  
+> +	if (!tables)
+> +		return 0;
+> +
+>  	if (len < 0)
+>  		return len;
+>  	/* Table B.5 - Huffman table specification parameter sizes and values */
 
-Sorry for the delay. I was having an internal deadline last week. I
-just re-read the code, and I am quite happy with it. I also just
-tested it on the i2c-hid w/ acpi machine I have here, and it seems OK.
+I don't understand this. jpeg_parse_quantization_tables() is only called
+if v4l2_jpeg_parse_header() finds a DQT marker. The entire quantization
+table-specification parameter block is optional, but when a DQT marker
+is present, IIUC the block must contain at least one table (see B.2.4.1,
+specifically figure B.6).
 
-So other than that, do we need to have approvals for patch 2/4
-(arch/arm64/configs/defconfig)? I can easily take that in the HID
-tree, but I prefer having the approval from the maintainers first.
-Catalin, Will?
-
->
-> Hrm, I just checked and there actually is already one merge conflict
-> with commit afdd34c5fa40 ("HID: i2c-hid: show the error when failing
-> to fetch the HID descriptor") but that commit (and thus the
-> resolution) is trivial.  If there are no other comments I can re-post
-> atop that patch.  ...or I'm also happy if a maintainer is OK w/
-> resolving when landing my series.  Just let me know!
-
-If I can quickly get the approval from the arm64/config maintainers, I
-can try to apply it. Though, I wouldn't be against you sending a clean
-and conflict-free series :)
-
->
-> ...or, if you want me to just shut up for a while and wait until your
-> tryptophan hangover wears off, that's fine too--just let me know.
->
-
-Heh. Sorry, I have a tendency to have my inbox flooded, and some time
-gets distracted to do other important work I am paid for (too). I
-don't mind a gentle nudge from time to time, that helps figuring out
-the priorities :)
-
-Cheers,
-Benjamin
-
+regards
+Philipp
