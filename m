@@ -2,70 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5FD8A2CC0E5
-	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 16:34:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 52CAE2CC0DF
+	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 16:31:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730465AbgLBPce (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Dec 2020 10:32:34 -0500
-Received: from m15112.mail.126.com ([220.181.15.112]:41677 "EHLO
-        m15112.mail.126.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726088AbgLBPce (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Dec 2020 10:32:34 -0500
-X-Greylist: delayed 8887 seconds by postgrey-1.27 at vger.kernel.org; Wed, 02 Dec 2020 10:32:24 EST
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=126.com;
-        s=s110527; h=From:Subject:Date:Message-Id:MIME-Version; bh=DCJIk
-        vAsWl32sBJESY7hqaqP/My0N7n20xQa12jevA0=; b=U6Ucp+MtqE/fClO37yUoT
-        IYaLuRoEhlOHjK6cbxEpUSbwehzTlW/plNURAXGwABUFGm80PKOBL9aFbfpn/ypW
-        +0rXZay84LcYz9SUC7ptQJecAMXrLbhL5SWxkFnuRybk8FhcPClvqzr2tlUZZJtI
-        GLSBGrKhaa3/Mjn0kn0udk=
-Received: from localhost (unknown [117.136.120.114])
-        by smtp2 (Coremail) with SMTP id DMmowABX1SGTQcdf_GBDJg--.61443S2;
-        Wed, 02 Dec 2020 15:26:12 +0800 (CST)
-From:   "xiao.ma" <max701@126.com>
-To:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
-        bpf@vger.kernel.org, xiao.mx.ma@deltaww.com,
-        jiajia.feng@deltaww.com
-Cc:     Guenter Roeck <linux@roeck-us.net>
-Subject: [PATCH] dt-bindings:<devicetree/bindings/trivial-devices.yaml>:Add compatible strings
-Date:   Tue,  1 Dec 2020 21:26:10 -1000
-Message-Id: <20201202072610.1666-1-max701@126.com>
-X-Mailer: git-send-email 2.20.1
+        id S1726526AbgLBPb1 convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 2 Dec 2020 10:31:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52186 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726367AbgLBPb0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Dec 2020 10:31:26 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4111FC0617A7
+        for <devicetree@vger.kernel.org>; Wed,  2 Dec 2020 07:30:46 -0800 (PST)
+Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1kkU5U-0000Zf-Vi; Wed, 02 Dec 2020 16:30:36 +0100
+Received: from pza by lupine with local (Exim 4.92)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1kkU5U-0000Ip-Bv; Wed, 02 Dec 2020 16:30:36 +0100
+Message-ID: <d92689dfb92dfa0812f19cc5ed04ec308b9efde3.camel@pengutronix.de>
+Subject: Re: [PATCH v5 09/10] media: Avoid parsing quantization and huffman
+ tables
+From:   Philipp Zabel <p.zabel@pengutronix.de>
+To:     Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        "Mirela Rabulea (OSS)" <mirela.rabulea@oss.nxp.com>,
+        mchehab@kernel.org, shawnguo@kernel.org, robh+dt@kernel.org
+Cc:     paul.kocialkowski@bootlin.com, linux-media@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-imx@nxp.com,
+        s.hauer@pengutronix.de, aisheng.dong@nxp.com,
+        daniel.baluta@nxp.com, robert.chiras@nxp.com,
+        laurentiu.palcu@nxp.com, mark.rutland@arm.com,
+        devicetree@vger.kernel.org, ezequiel@collabora.com,
+        laurent.pinchart+renesas@ideasonboard.com,
+        niklas.soderlund+renesas@ragnatech.se,
+        dafna.hirschfeld@collabora.com,
+        Mirela Rabulea <mirela.rabulea@nxp.com>
+Date:   Wed, 02 Dec 2020 16:30:36 +0100
+In-Reply-To: <48b58168-662c-3e4d-2e5d-1f2a14b239fe@xs4all.nl>
+References: <20201112030557.8540-1-mirela.rabulea@oss.nxp.com>
+         <20201112030557.8540-10-mirela.rabulea@oss.nxp.com>
+         <48b58168-662c-3e4d-2e5d-1f2a14b239fe@xs4all.nl>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+User-Agent: Evolution 3.30.5-1.1 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: DMmowABX1SGTQcdf_GBDJg--.61443S2
-X-Coremail-Antispam: 1Uf129KBjvdXoW7GFWxJFyDWF15ZFyfAr4xJFb_yoWfXrb_X3
-        WxCF1qyrykJFyFkw4qkF1ktr1UA3W29F4ku348J3Wku34a9rW5WFyvqw1avryxWrW7ury5
-        urn3KrZFqrn8GjkaLaAFLSUrUUUUbb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-        9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IU8jNt7UUUUU==
-X-Originating-IP: [117.136.120.114]
-X-CM-SenderInfo: ppd0liar6rjloofrz/1tbi5RXuOFpD6KzEOAAAsH
+X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: "xiao.ma" <xiao.mx.ma@deltaww.com>
+On Wed, 2020-12-02 at 13:12 +0100, Hans Verkuil wrote:
+> On 12/11/2020 04:05, Mirela Rabulea (OSS) wrote:
+> > From: Mirela Rabulea <mirela.rabulea@nxp.com>
+> > 
+> > These are optional in struct v4l2_jpeg_header, so do not parse if
+> > not requested, save some time.
+> > 
+> > Signed-off-by: Mirela Rabulea <mirela.rabulea@nxp.com>
+> > ---
+> >  drivers/media/v4l2-core/v4l2-jpeg.c | 6 ++++++
+> >  1 file changed, 6 insertions(+)
+> > 
+> > diff --git a/drivers/media/v4l2-core/v4l2-jpeg.c b/drivers/media/v4l2-core/v4l2-jpeg.c
+> > index d77e04083d57..7576cd0ce6b9 100644
+> > --- a/drivers/media/v4l2-core/v4l2-jpeg.c
+> > +++ b/drivers/media/v4l2-core/v4l2-jpeg.c
+> > @@ -307,6 +307,9 @@ static int jpeg_parse_quantization_tables(struct jpeg_stream *stream,
+> >  {
+> >  	int len = jpeg_get_word_be(stream);
+> >  
+> > +	if (!tables)
+> > +		return 0;
+> > +
+> 
+> It feels more natural to check for a non-NULL out->quantization_tables
+> or non-NULL out->huffman_tables pointer in v4l2_jpeg_parse_header()
+> rather than in these low-level functions. It's weird to have this check here.
 
-Add delta,q54sj108a2 to trivial-devices.yaml.
+Ah, now I get it.
 
-Signed-off-by: xiao.ma <xiao.mx.ma@deltaww.com>
----
- Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+Yes, if you want to skip the entire DQT for performance reasons, it is
+probably better to just call jpeg_skip_segment() instead of
+jpeg_parse_quantization_table(). Otherwise the next jpeg_next_marker has
+to scan the whole quantization table for segment markers.
 
-diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-index ab623ba930d5..2aad4c86fb29 100644
---- a/Documentation/devicetree/bindings/trivial-devices.yaml
-+++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-@@ -60,6 +60,8 @@ properties:
-           - dallas,ds4510
-             # Digital Thermometer and Thermostat
-           - dallas,ds75
-+            # 1/4 Brick DC/DC Regulated Power Module
-+          - delta,q54sj108a2
-             # Devantech SRF02 ultrasonic ranger in I2C mode
-           - devantech,srf02
-             # Devantech SRF08 ultrasonic ranger
--- 
-2.25.1
-
+regards
+Philipp
