@@ -2,105 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8BC4B2CBB38
-	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 12:08:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 02DE42CBB41
+	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 12:10:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726805AbgLBLIA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Dec 2020 06:08:00 -0500
-Received: from mailgw02.mediatek.com ([1.203.163.81]:45282 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1725885AbgLBLIA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Dec 2020 06:08:00 -0500
-X-UUID: ea2c6cffd1b341a0951db0824db34afc-20201202
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=760UWcQjn2gcgFpRL7UilO2rZNCmADv37JpOgMvIh4Y=;
-        b=rh/upvV2O4pXoF3EAQfOfa23iCqIJa/hWBP+Mf5WIF22nVXhd0ftJaoVGpPlSLdNjlGJNeF2fYGN6ddXIXKrJ46VZ1IFJMJke9taw0MIT9bnOBAqKKaL9byIXnoz3J8AD2SIeryMabdmvIAJa7w3ZjSw3yTIJ9rpHrD4915VECo=;
-X-UUID: ea2c6cffd1b341a0951db0824db34afc-20201202
-Received: from mtkcas36.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
-        (envelope-from <crystal.guo@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1074444903; Wed, 02 Dec 2020 19:07:14 +0800
-Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS31N1.mediatek.inc
- (172.27.4.69) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 2 Dec
- 2020 19:06:41 +0800
-Received: from [10.17.3.153] (10.17.3.153) by MTKCAS36.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 2 Dec 2020 19:06:40 +0800
-Message-ID: <1606907202.14806.65.camel@mhfsdcap03>
-Subject: Re: [v6, 3/3] reset-controller: ti: force the write operation when
- assert or deassert
-From:   Crystal Guo <crystal.guo@mediatek.com>
-To:     Ikjoon Jang <ikjn@chromium.org>
-CC:     "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Yong Liang =?UTF-8?Q?=28=E6=A2=81=E5=8B=87=29?= 
-        <Yong.Liang@mediatek.com>,
-        Stanley Chu =?UTF-8?Q?=28=E6=9C=B1=E5=8E=9F=E9=99=9E=29?= 
-        <stanley.chu@mediatek.com>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        Seiya Wang =?UTF-8?Q?=28=E7=8E=8B=E8=BF=BA=E5=90=9B=29?= 
-        <seiya.wang@mediatek.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Fan Chen =?UTF-8?Q?=28=E9=99=B3=E5=87=A1=29?= 
-        <fan.chen@mediatek.com>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        Yingjoe Chen =?UTF-8?Q?=28=E9=99=B3=E8=8B=B1=E6=B4=B2=29?= 
-        <Yingjoe.Chen@mediatek.com>, "s-anna@ti.com" <s-anna@ti.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Date:   Wed, 2 Dec 2020 19:06:42 +0800
-In-Reply-To: <20201130111340.GA3042402@chromium.org>
-References: <20200930022159.5559-1-crystal.guo@mediatek.com>
-         <20200930022159.5559-4-crystal.guo@mediatek.com>
-         <20201130111340.GA3042402@chromium.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S1729528AbgLBLK3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Dec 2020 06:10:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40036 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729171AbgLBLK2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Dec 2020 06:10:28 -0500
+Received: from mail-ej1-x644.google.com (mail-ej1-x644.google.com [IPv6:2a00:1450:4864:20::644])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 750CEC0613D6
+        for <devicetree@vger.kernel.org>; Wed,  2 Dec 2020 03:09:42 -0800 (PST)
+Received: by mail-ej1-x644.google.com with SMTP id m19so3423815ejj.11
+        for <devicetree@vger.kernel.org>; Wed, 02 Dec 2020 03:09:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=pkjayID1bacGI3D2LpsWO7PkJQbjpWl13AmgYb8xoyM=;
+        b=IUuvPpLBlNblbK5neUzp/EdZt5S1DqLy+A6+TRfqrlJbap/auT1Eey4GqE5BeB1Nin
+         mdt8iX8/lGN6guZPauFwXMOsZ6Lei8azgdSxJ5fGG4ly6GOLwXzYiH/2CbVYJ8aEp7t9
+         Qy0C00XG4WUhdcjYHUnySSO6lZdNylCY4TZKng+kk8N/X+UoDqj0xppe/XoaXWqddaWM
+         eAtx8DXilcoYZmp5otJWJ2dhd+tkxTMW/vJutiwQZcY4YiZ6HGoMEAFFxYl50HxpDvEk
+         c057Am9zcAjT0f8jiDF8rNl/AUr7McIVVO/QRfSBLCQHN9yM71EaNMTGUJuNORgf+XFW
+         VGIg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=pkjayID1bacGI3D2LpsWO7PkJQbjpWl13AmgYb8xoyM=;
+        b=kb0WFX18oXdlut5n/m/Ak80lyc/CsCMv9k3Nj40VGrKVGKKfyAWgmZ1nn0uPXJnW9e
+         XBqfS2hHvFAWlNeHIdIRqZ8WYJ2zt9vrowQXbXxKa+xylSSfpXJfTbqY0Xl3nXv/1IUA
+         D1VPFs2YLzhxPaFdfFptCRz/Wxo7O7ET8BtnoMyFzFN7uExb20ut0ujzgISqhhDs+d8R
+         FZZiU/mhhQOXmOBnIuJp/83o2qotCiJWHLgXWM9gsId77Rven57rZ8s1VqmWC4SMV1wc
+         GEDogzGGnIPgz3c1o+6cpHn+NT0y5+wCJChCt6MrlxmXTegqOYLDXjLXwaq4RZAwsDdn
+         alrg==
+X-Gm-Message-State: AOAM530dnNj3X9sHqh8sxHjPV/jNGCIGkLjHmXOxe6hADACFlsYFjqyD
+        YJW0tg3NptHpMygz8nTYLVqszrDGFnkuEhbStXRFmA==
+X-Google-Smtp-Source: ABdhPJyoW3ukAFLWS2eFHWy5P8lGecQCG3b/+GZaX4VSojbsz7P6Ia+rhxD7iAMnNmfiDHt3omb139v6iYUBQYuQzHI=
+X-Received: by 2002:a17:907:b09:: with SMTP id h9mr1777464ejl.155.1606907380986;
+ Wed, 02 Dec 2020 03:09:40 -0800 (PST)
 MIME-Version: 1.0
-X-TM-SNTS-SMTP: 30A9654AF1CD9EA4FBA4BE9BFA52EA70554F9FC4BBB7FB01E220F307C0ED74462000:8
-X-MTK:  N
-Content-Transfer-Encoding: base64
+References: <cover.1606892239.git.baruch@tkos.co.il>
+In-Reply-To: <cover.1606892239.git.baruch@tkos.co.il>
+From:   Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Date:   Wed, 2 Dec 2020 12:09:30 +0100
+Message-ID: <CAMpxmJV90Or-CHV9bZX9Z=Y5rES4y5BaNdtXq4r91e4p4S4Cjg@mail.gmail.com>
+Subject: Re: [PATCH v3 0/6] gpio: mvebu: Armada 8K/7K PWM support
+To:     Baruch Siach <baruch@tkos.co.il>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Chris Packham <chris.packham@alliedtelesis.co.nz>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Ralph Sennhauser <ralph.sennhauser@gmail.com>,
+        linux-pwm@vger.kernel.org, linux-gpio <linux-gpio@vger.kernel.org>,
+        arm-soc <linux-arm-kernel@lists.infradead.org>,
+        linux-devicetree <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gTW9uLCAyMDIwLTExLTMwIGF0IDE5OjEzICswODAwLCBJa2pvb24gSmFuZyB3cm90ZToNCj4g
-T24gV2VkLCBTZXAgMzAsIDIwMjAgYXQgMTA6MjE6NTlBTSArMDgwMCwgQ3J5c3RhbCBHdW8gd3Jv
-dGU6DQo+ID4gRm9yY2UgdGhlIHdyaXRlIG9wZXJhdGlvbiBpbiBjYXNlIHRoZSByZWFkIGFscmVh
-ZHkgaGFwcGVucw0KPiA+IHRvIHJldHVybiB0aGUgY29ycmVjdCB2YWx1ZS4NCj4gPiANCj4gPiBT
-aWduZWQtb2ZmLWJ5OiBDcnlzdGFsIEd1byA8Y3J5c3RhbC5ndW9AbWVkaWF0ZWsuY29tPg0KPiA+
-IC0tLQ0KPiA+ICBkcml2ZXJzL3Jlc2V0L3Jlc2V0LXRpLXN5c2Nvbi5jIHwgNCArKy0tDQo+ID4g
-IDEgZmlsZSBjaGFuZ2VkLCAyIGluc2VydGlvbnMoKyksIDIgZGVsZXRpb25zKC0pDQo+ID4gDQo+
-ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvcmVzZXQvcmVzZXQtdGktc3lzY29uLmMgYi9kcml2ZXJz
-L3Jlc2V0L3Jlc2V0LXRpLXN5c2Nvbi5jDQo+ID4gaW5kZXggNWQxZjgzMDZjZDRmLi5jMzQzOTRm
-MWU5ZTIgMTAwNjQ0DQo+ID4gLS0tIGEvZHJpdmVycy9yZXNldC9yZXNldC10aS1zeXNjb24uYw0K
-PiA+ICsrKyBiL2RyaXZlcnMvcmVzZXQvcmVzZXQtdGktc3lzY29uLmMNCj4gPiBAQCAtOTcsNyAr
-OTcsNyBAQCBzdGF0aWMgaW50IHRpX3N5c2Nvbl9yZXNldF9hc3NlcnQoc3RydWN0IHJlc2V0X2Nv
-bnRyb2xsZXJfZGV2ICpyY2RldiwNCj4gPiAgCW1hc2sgPSBCSVQoY29udHJvbC0+YXNzZXJ0X2Jp
-dCk7DQo+ID4gIAl2YWx1ZSA9IChjb250cm9sLT5mbGFncyAmIEFTU0VSVF9TRVQpID8gbWFzayA6
-IDB4MDsNCj4gPiAgDQo+ID4gLQlyZXR1cm4gcmVnbWFwX3VwZGF0ZV9iaXRzKGRhdGEtPnJlZ21h
-cCwgY29udHJvbC0+YXNzZXJ0X29mZnNldCwgbWFzaywgdmFsdWUpOw0KPiA+ICsJcmV0dXJuIHJl
-Z21hcF93cml0ZV9iaXRzKGRhdGEtPnJlZ21hcCwgY29udHJvbC0+YXNzZXJ0X29mZnNldCwgbWFz
-aywgdmFsdWUpOw0KPiA+ICB9DQo+IA0KPiBJIGRvbid0IHRoaW5rIHRoZXJlIGFyZSBubyByZXNl
-dCBjb250cm9sbGVycyB3aXRoIGNhY2hlZCByZWdtYXAsDQo+IHRodXMgSSBkb24ndCB0aGluayB0
-aGlzIGlzIG5lZWRlZC4NCj4gQXJlIHRoZXJlIGFueSBzcGVjaWZpYyByZWFzb25zIGJlaGluZCB0
-aGlzLCB3aGF0IEkndmUgbWlzc2VkIGhlcmU/DQo+IA0KPiBXZSBuZWVkIHRvIGJlIHN1cmUgdGhh
-dCBhbGwgb3RoZXIgZGV2aWNlcyB1c2luZyB0aGlzIGRyaXZlcg0KPiBzaG91bGQgaGF2ZSBubyBz
-aWRlIGVmZmVjdHMgb24gd3JpdGUuDQo+IA0KPiBJIGNhbiB0aGluayBvZiBhIHdlaXJkIGNvbnRy
-b2xsZXIgZG9pbmcgdW53YW50ZWQgdGhpbmdzIGludGVybmFsbHkNCj4gb24gZXZlcnkgd3JpdGUg
-ZGlzcmVnYXJkaW5nIHRoZSBjdXJyZW50IHN0YXRlLiAob3IgaXMgdGhpcyBvdmVybHkNCj4gcGFy
-YW5vaWQ/KQ0KPiANClRoZSBzcGVjaWZpYyByZWFzb24gaXMgdGhhdCwgdGhlIGNsZWFyIGJpdCBt
-YXkga2VlcCB0aGUgc2FtZSB2YWx1ZSB3aXRoDQp0aGUgc2V0IGJpdCwgYnV0IHRoZSBjbGVhciBv
-cGVyYXRpb24gY2FuIGJlIG9ubHkgYmUgY29tcGxldGVkIGJ5IHdyaXRpbmcNCjEgdG8gdGhlIGNs
-ZWFyIGJpdCwgbm90IGp1c3Qgd2l0aCB0aGUgY3VycmVudCBmYWtlIHN0YXRlICIxIi4NCg0KPiA+
-ICANCj4gPiAgLyoqDQo+ID4gQEAgLTEyOCw3ICsxMjgsNyBAQCBzdGF0aWMgaW50IHRpX3N5c2Nv
-bl9yZXNldF9kZWFzc2VydChzdHJ1Y3QgcmVzZXRfY29udHJvbGxlcl9kZXYgKnJjZGV2LA0KPiA+
-ICAJbWFzayA9IEJJVChjb250cm9sLT5kZWFzc2VydF9iaXQpOw0KPiA+ICAJdmFsdWUgPSAoY29u
-dHJvbC0+ZmxhZ3MgJiBERUFTU0VSVF9TRVQpID8gbWFzayA6IDB4MDsNCj4gPiAgDQo+ID4gLQly
-ZXR1cm4gcmVnbWFwX3VwZGF0ZV9iaXRzKGRhdGEtPnJlZ21hcCwgY29udHJvbC0+ZGVhc3NlcnRf
-b2Zmc2V0LCBtYXNrLCB2YWx1ZSk7DQo+ID4gKwlyZXR1cm4gcmVnbWFwX3dyaXRlX2JpdHMoZGF0
-YS0+cmVnbWFwLCBjb250cm9sLT5kZWFzc2VydF9vZmZzZXQsIG1hc2ssIHZhbHVlKTsNCj4gPiAg
-fQ0KPiA+ICANCj4gPiAgLyoqDQoNCg==
+On Wed, Dec 2, 2020 at 8:15 AM Baruch Siach <baruch@tkos.co.il> wrote:
+>
+> The gpio-mvebu driver supports the PWM functionality of the GPIO block for
+> earlier Armada variants like XP, 370 and 38x. This series extends support to
+> newer Armada variants that use CP11x and AP80x, like Armada 8K and 7K.
+>
+> This series adds adds the 'pwm-offset' property to DT binding. 'pwm-offset'
+> points to the base of A/B counter registers that determine the PWM period and
+> duty cycle.
+>
+> The existing PWM DT binding reflects an arbitrary decision to allocate the A
+> counter to the first GPIO block, and B counter to the other one. In attempt to
+> provide better future flexibility, the new 'pwm-offset' property always points
+> to the base address of both A/B counters. The driver code still allocates the
+> counters in the same way, but this might change in the future with no change to
+> the DT.
+>
+> Tested AP806 and CP110 (both) on Armada 8040 based system.
+>
+> I marked this series as v3 to avoid confusion about the probe resource leak
+> fix that I posted in a separate patch. The (improved) fix is now patch #1 in
+> this series. That is the only change in v3.
+>
+> Baruch Siach (6):
+>   gpio: mvebu: fix potential user-after-free on probe
+>   gpio: mvebu: update Armada XP per-CPU comment
+>   gpio: mvebu: switch pwm duration registers to regmap
+>   gpio: mvebu: add pwm support for Armada 8K/7K
+>   arm64: dts: armada: add pwm offsets for ap/cp gpios
+>   dt-bindings: ap806: document gpio pwm-offset property
+>
+>  .../arm/marvell/ap80x-system-controller.txt   |   8 +
+>  arch/arm64/boot/dts/marvell/armada-ap80x.dtsi |   3 +
+>  arch/arm64/boot/dts/marvell/armada-cp11x.dtsi |  10 ++
+>  drivers/gpio/gpio-mvebu.c                     | 170 +++++++++++-------
+>  4 files changed, 128 insertions(+), 63 deletions(-)
+>
+> --
+> 2.29.2
+>
 
+I applied the first three patches. For the last three - you'll need to
+resend them with Rob Herring in Cc for an ack on the new property.
+
+Bartosz
