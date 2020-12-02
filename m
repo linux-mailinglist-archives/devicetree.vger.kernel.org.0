@@ -2,84 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D2142CB1D4
-	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 01:56:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9975C2CB1EC
+	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 01:59:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727866AbgLBAzE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Dec 2020 19:55:04 -0500
-Received: from mail.kernel.org ([198.145.29.99]:37180 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727322AbgLBAzE (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 1 Dec 2020 19:55:04 -0500
-Date:   Tue, 1 Dec 2020 16:54:21 -0800
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1606870463;
-        bh=LLiukAIVp7rggPRhAeu/DaAOF681PbLxnZIWJeVXvBs=;
-        h=From:To:Cc:Subject:In-Reply-To:References:From;
-        b=OUyFSjCe1QSfqOXIOcOp7GyQaF7+qTjqSRU0M7SE7NKtVEkQBJRxFqZ17Do/Af334
-         jB7tmFg5iwm6SrOE9Qr5hEuUBKrQIIxNdDZYDcTxGlPOl2vmkr3oJoqmVRaaiuel53
-         fHzj7lp933qlKEcHkh95bVNPg+B1b/1dr8SoUP1U=
-From:   Jakub Kicinski <kuba@kernel.org>
-To:     Vladimir Oltean <olteanv@gmail.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        George McCollister <george.mccollister@gmail.com>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
-        "open list:OPEN FIRMWARE AND..." <devicetree@vger.kernel.org>
-Subject: Re: [PATCH net-next v2 2/3] net: dsa: add Arrow SpeedChips XRS700x
- driver
-Message-ID: <20201201165421.50d4b5a6@kicinski-fedora-pc1c0hjn.DHCP.thefacebook.com>
-In-Reply-To: <20201202002851.z63jdsfqxdkjb46k@skbuf>
-References: <CAFSKS=OY_-Agd6JPoFgm3MS5HE6soexHnDHfq8g9WVrCc82_sA@mail.gmail.com>
-        <20201126132418.zigx6c2iuc4kmlvy@skbuf>
-        <20201126175607.bqmpwbdqbsahtjn2@skbuf>
-        <CAFSKS=Ok1FZhKqourHh-ikaia6eNWtXh6VBOhOypsEJAhwu06g@mail.gmail.com>
-        <20201126220500.av3clcxbbvogvde5@skbuf>
-        <20201127103503.5cda7f24@kicinski-fedora-pc1c0hjn.DHCP.thefacebook.com>
-        <20201127204714.GX2073444@lunn.ch>
-        <20201127131346.3d594c8e@kicinski-fedora-pc1c0hjn.DHCP.thefacebook.com>
-        <20201127212342.qpyp6bcxd7mwgxf2@skbuf>
-        <20201127213642.GZ2073444@lunn.ch>
-        <20201202002851.z63jdsfqxdkjb46k@skbuf>
+        id S1727496AbgLBA6d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Dec 2020 19:58:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58964 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726619AbgLBA6d (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Dec 2020 19:58:33 -0500
+Received: from mail-pj1-x1044.google.com (mail-pj1-x1044.google.com [IPv6:2607:f8b0:4864:20::1044])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39213C0613CF;
+        Tue,  1 Dec 2020 16:57:47 -0800 (PST)
+Received: by mail-pj1-x1044.google.com with SMTP id ms7so157517pjb.4;
+        Tue, 01 Dec 2020 16:57:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=sender:date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=u8Im7pUwrYZIu0XDUm9McsW1+o37J6dtqvcGYr5EvvM=;
+        b=BnMvomIwBI3N+KOtQT5gvAZ/YPOL8nQXrf/ciAdUfG5qC1YcnabTxSnt9cO6TqDkXe
+         IRnzisbugfBMeNR0WQI7AwXJQcZ7jyCWZYxm08Pk9oJhdf3ohxx2I+QY//Cb4VOjGN8J
+         GRSaLptkBC5pFQq+vU0fL07Y3N0F+XJ/+RvwAdNFo8IZj8Dfy9YO3keqmv8USbRf0DOp
+         vDbubF3pCJlM/dC5ieG40aFeYOgv5M8BJbY4MAsBNGo0dJ0S0vjoKe9MDoCHuaKxRE2H
+         N7SeLTWHPOwKsylRr4MRmmL1KqAtMLDWcfluBLALNHXtKGhT90oXL15G73UGqOSbbZUU
+         e3FA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
+         :references:mime-version:content-disposition:in-reply-to;
+        bh=u8Im7pUwrYZIu0XDUm9McsW1+o37J6dtqvcGYr5EvvM=;
+        b=BE0BaZuM0DPqf66UTTDaVqTimvZtD8Qux7PcLNIuOvi//0I4/Oeo4rM42ScNFWsO3G
+         OWBGY0nk/88j4CVh/bfRN1/zeGz5r4JIeP1SP6t5lroZN7bcqpmG+kkkhq1xdwGyYZD2
+         LSGxP3biLS5K0pLvjUo9fRoSJEjwps7eYKXM90qX/40qkH5izpx0SKGXOk9+WAZKDmmR
+         vHsp+JhCax/ayv8VrnIWB+btD78NzRo+yF03XVpClO14knJUo5eg/IB5NeJaHTdUHO1x
+         8NJWWk1qMyePIaBEIfJf8W2D4DEj007i1PlnPgYBXAWg+vhX+xFe6Uo5VzFzelEOEQWR
+         25nA==
+X-Gm-Message-State: AOAM532yI+3Qbejq3zCDxfjw8ePXMdmcuYG45Kz3dGUH3yCxeuNfA2Le
+        UeoyX46z4+nQZnDItobJjgo=
+X-Google-Smtp-Source: ABdhPJxOwt1LLWu0zBZo4zhSX/vym8XXbM9DzbOWO25SHPiEUpnWcuYQuilFfwq2/N2y63yU4bdXqA==
+X-Received: by 2002:a17:90a:ee8c:: with SMTP id i12mr406366pjz.33.1606870666635;
+        Tue, 01 Dec 2020 16:57:46 -0800 (PST)
+Received: from google.com ([2620:15c:211:201:7220:84ff:fe09:5e58])
+        by smtp.gmail.com with ESMTPSA id y25sm119905pfn.44.2020.12.01.16.57.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 01 Dec 2020 16:57:45 -0800 (PST)
+Sender: Minchan Kim <minchan.kim@gmail.com>
+Date:   Tue, 1 Dec 2020 16:57:42 -0800
+From:   Minchan Kim <minchan@kernel.org>
+To:     John Stultz <john.stultz@linaro.org>
+Cc:     Andrew Morton <akpm@linux-foundation.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        linux-mm <linux-mm@kvack.org>, Hyesoo Yu <hyesoo.yu@samsung.com>,
+        Matthew Wilcox <willy@infradead.org>, david@redhat.com,
+        iamjoonsoo.kim@lge.com, vbabka@suse.cz,
+        Suren Baghdasaryan <surenb@google.com>,
+        KyongHo Cho <pullip.cho@samsung.com>,
+        John Dias <joaodias@google.com>,
+        Hridya Valsaraju <hridya@google.com>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        Brian Starkey <Brian.Starkey@arm.com>,
+        linux-media <linux-media@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Rob Herring <robh@kernel.org>,
+        Christian Koenig <christian.koenig@amd.com>,
+        "moderated list:DMA BUFFER SHARING FRAMEWORK" 
+        <linaro-mm-sig@lists.linaro.org>
+Subject: Re: [PATCH v2 4/4] dma-buf: heaps: add chunk heap to dmabuf heaps
+Message-ID: <20201202005742.GC3968963@google.com>
+References: <20201201175144.3996569-1-minchan@kernel.org>
+ <20201201175144.3996569-5-minchan@kernel.org>
+ <CALAqxLXFeUStaJ8Mtm5v3kSxmeqnjzLTsyathkrKF0ke3fYGiQ@mail.gmail.com>
+ <20201201225554.GA3968963@google.com>
+ <CALAqxLW-n4-VSd9dj=KXS4WRDrPmKOShAwP9tCfCZnk+4kxW-w@mail.gmail.com>
+ <20201202001302.GB3968963@google.com>
+ <CALAqxLVBRPOCwLU1iY44Nh1-SpDpsfMz+2c1XRX2WofkpjrhcQ@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CALAqxLVBRPOCwLU1iY44Nh1-SpDpsfMz+2c1XRX2WofkpjrhcQ@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 2 Dec 2020 02:28:51 +0200 Vladimir Oltean wrote:
-> On Fri, Nov 27, 2020 at 10:36:42PM +0100, Andrew Lunn wrote:
-> > > Either way, can we conclude that ndo_get_stats64 is not a replacement
-> > > for ethtool -S, since the latter is blocking and, if implemented correctly,
-> > > can return the counters at the time of the call (therefore making sure
-> > > that anything that happened before the syscall has been accounted into
-> > > the retrieved values), and the former isn't?  
+On Tue, Dec 01, 2020 at 04:33:14PM -0800, John Stultz wrote:
+> On Tue, Dec 1, 2020 at 4:13 PM Minchan Kim <minchan@kernel.org> wrote:
 > >
-> > ethtool -S is the best source of consistent, up to date statistics we
-> > have. It seems silly not to include everything the hardware offers
-> > there.  
+> > On Tue, Dec 01, 2020 at 03:38:14PM -0800, John Stultz wrote:
+> > > On Tue, Dec 1, 2020 at 2:55 PM Minchan Kim <minchan@kernel.org> wrote:
+> > > > On Tue, Dec 01, 2020 at 11:48:15AM -0800, John Stultz wrote:
+> > > > > On Tue, Dec 1, 2020 at 9:51 AM Minchan Kim <minchan@kernel.org> wrote:
+> > > > >
+> > > > > Thanks for reworking and resending this!
+> > > > >
+> > > > > ...
+> > > > > > +static int __init chunk_heap_init(void)
+> > > > > > +{
+> > > > > > +       struct cma *default_cma = dev_get_cma_area(NULL);
+> > > > > > +       struct dma_heap_export_info exp_info;
+> > > > > > +       struct chunk_heap *chunk_heap;
+> > > > > > +
+> > > > > > +       if (!default_cma)
+> > > > > > +               return 0;
+> > > > > > +
+> > > > > > +       chunk_heap = kzalloc(sizeof(*chunk_heap), GFP_KERNEL);
+> > > > > > +       if (!chunk_heap)
+> > > > > > +               return -ENOMEM;
+> > > > > > +
+> > > > > > +       chunk_heap->order = CHUNK_HEAP_ORDER;
+> > > > > > +       chunk_heap->cma = default_cma;
+> > > > > > +
+> > > > > > +       exp_info.name = cma_get_name(default_cma);
+> > > > >
+> > > > > So, this would create a chunk heap name with the default CMA name,
+> > > > > which would be indistinguishable from the heap name used for the plain
+> > > > > CMA heap.
+> > > > >
+> > > > > Probably a good idea to prefix it with "chunk-" so the heap device
+> > > > > names are unique?
+> > > >
+> > > > That will give an impression to user that they are using different CMA
+> > > > area but that's not true. IMHO, let's be honest at this moment.
+> > >
+> > > I disagree.  The dmabuf heaps provide an abstraction for allocating a
+> > > type of memory, and while your heap is pulling from CMA, you aren't
+> > > "just" allocating CMA as the existing CMA heap would suffice for that.
+> > >
+> > > Since you need a slightly different method to allocate high order
+> > > pages in bulk, we really should have a unique way to name the
+> > > allocator interface. That's why I'd suggest the "chunk-" prefix to the
+> > > heap name.
+> >
+> > Got it. How about this?
+> >
+> > diff --git a/drivers/dma-buf/heaps/chunk_heap.c b/drivers/dma-buf/heaps/chunk_heap.c
+> > index 0277707a93a9..36e189d0b73d 100644
+> > --- a/drivers/dma-buf/heaps/chunk_heap.c
+> > +++ b/drivers/dma-buf/heaps/chunk_heap.c
+> > @@ -410,7 +410,7 @@ static int __init chunk_heap_init(void)
+> >         chunk_heap->order = CHUNK_HEAP_ORDER;
+> >         chunk_heap->cma = default_cma;
+> >
+> > -       exp_info.name = cma_get_name(default_cma);
+> > +       exp_info.name = "cma-chunk-heap";
 > 
-> To add to this, it would seem odd to me if we took the decision to not
-> expose MAC-level counters any longer in ethtool. Say the MAC has a counter
-> named rx_dropped. If we are only exposing this counter in ndo_get_stats64,
-> then we could hit the scenario where this counter keeps incrementing,
-> but it is the network stack who increments it, and not the MAC.
+> That's still a bit general for the default cma (which can be named
+> differently). I think including cma name is important, just adding the
+> chunk prefix might be best.
 > 
-> dev_get_stats() currently does:
-> 	storage->rx_dropped += (unsigned long)atomic_long_read(&dev->rx_dropped);
-> 	storage->tx_dropped += (unsigned long)atomic_long_read(&dev->tx_dropped);
-> 	storage->rx_nohandler += (unsigned long)atomic_long_read(&dev->rx_nohandler);
-> 
-> thereby clobbering the MAC-provided counter. We would not know if it is
-> a MAC-level drop or not.
+> So something like
+>   sprintf(buf, "chunk-%s", cma_get_name(default_cma));
+>   exp_info.name = buf;
 
-Fine granularity HW stats are fine, but the aggregate must be reported
-in standard stats first.
-
-The correct stat for MAC drops (AFAIU) is rx_missed.
-
-This should act as a generic "device had to drop valid packets"
-indication and ethtool -S should serve for manual debugging to find 
-out which stage of pipeline / reason caused the drop.
+No problem. Will do that in respoin.
+Other than that, can you give any Acked-by or Reviewed-by to save
+iteration?
