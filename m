@@ -2,69 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 224B42CC347
-	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 18:17:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1401B2CC352
+	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 18:20:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387642AbgLBRRX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Dec 2020 12:17:23 -0500
-Received: from mail-ed1-f68.google.com ([209.85.208.68]:37493 "EHLO
-        mail-ed1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387637AbgLBRRX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Dec 2020 12:17:23 -0500
-Received: by mail-ed1-f68.google.com with SMTP id cm17so4803333edb.4;
-        Wed, 02 Dec 2020 09:17:06 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=+UAanY5PNunboQWAira1n5v88pFyvRSB0kuWX0KJKy8=;
-        b=mIrLAL5wiqgeClY6enko6Hba0NK3BA9N3li98QdBNZNxzG9f9/sIFqEersaEWGoi8Z
-         hwovisYLAiFIW1ti4rsW15RS68BjfaxOt/5pz0IoWTY7zqDOz37k/CXTmVYyzmcfYex/
-         UeHQi1LCm/dZIvBfFmvxT2jAUaB60TsfS2aP8HkI8ECuoLVpiJxWS0TQimKvPBUUL/A6
-         LwB/+IfAycmlepObwwWTbIgZJ9ivvLZVwuhVCRF0iwZWFoHQU8cm6dJPHsYyomz/Ap2N
-         rqsnqVzUEbiDJo4WgVgRhjng2oFzDK3dgPqlG7+Br+EFs9pmhIuciWA0/HpTgZaO4gFH
-         Er4w==
-X-Gm-Message-State: AOAM532xpmzh7hUqqQge4NY4ud6TFs0Ryfy0nXRuPH6Hji7g8G6BxSi4
-        uLCYhslScr65DVbzzTTNKyXDX4+sSNA=
-X-Google-Smtp-Source: ABdhPJw6F9Z2HCezk2gyTIqGZ20AJAmWFUFXLwWo7OZP94BHm5G2cz934XVMG/oAoSjGQJpBMXZ9fw==
-X-Received: by 2002:aa7:dc5a:: with SMTP id g26mr948538edu.35.1606929401213;
-        Wed, 02 Dec 2020 09:16:41 -0800 (PST)
-Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
-        by smtp.googlemail.com with ESMTPSA id n1sm349851ejb.2.2020.12.02.09.16.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Dec 2020 09:16:40 -0800 (PST)
-Date:   Wed, 2 Dec 2020 19:16:38 +0200
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Bongsu Jeon <bongsu.jeon2@gmail.com>
-Cc:     linux-nfc@lists.01.org, netdev@vger.kernel.org,
+        id S2389075AbgLBRTf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Dec 2020 12:19:35 -0500
+Received: from mail.kernel.org ([198.145.29.99]:38520 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2389070AbgLBRTf (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 2 Dec 2020 12:19:35 -0500
+Date:   Wed, 2 Dec 2020 09:18:52 -0800
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1606929534;
+        bh=gdrIoUwM4Jc/bJ/Co4EbSzcZQeThPm4Zexr4TFqA+CM=;
+        h=From:To:Cc:Subject:In-Reply-To:References:From;
+        b=oBN3nitMLZKbd6AWlOeY3V9jesJoJpzC+hiz6NaZY21ZoXjGC+0jhss9M1MNakmaw
+         K0jlcJAPBGJP5evgjM8/V6GCtJ4sAAzwUrsBQ8Fg5lE+nh+jK32xSWsT5ABnAJ2ggl
+         /TvUmkv9rnLcfbTgbcezyUFVU2ZWFxJ6b6z+KM7E=
+From:   Jakub Kicinski <kuba@kernel.org>
+To:     Lukasz Stelmach <l.stelmach@samsung.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>, jim.cromie@gmail.com,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Kukjin Kim <kgene@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Bongsu Jeon <bongsu.jeon@samsung.com>
-Subject: Re: [PATCH v5 net-next 1/4] dt-bindings: net: nfc: s3fwrn5: Support
- a UART interface
-Message-ID: <20201202171638.GA2778@kozik-lap>
-References: <1606909661-3814-1-git-send-email-bongsu.jeon@samsung.com>
- <1606909661-3814-2-git-send-email-bongsu.jeon@samsung.com>
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org,
+        =?UTF-8?B?QmFydMWCb21pZWogxbtvbG5pZXJr?= =?UTF-8?B?aWV3aWN6?= 
+        <b.zolnierkie@samsung.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>
+Subject: Re: [PATCH v7 3/3] net: ax88796c: ASIX AX88796C SPI Ethernet
+ Adapter Driver
+Message-ID: <20201202091852.69a02069@kicinski-fedora-pc1c0hjn.DHCP.thefacebook.com>
+In-Reply-To: <dleftj8sageb97.fsf%l.stelmach@samsung.com>
+References: <20201125132621.628ac98b@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+        <CGME20201202104645eucas1p25335c0b07b106f932006f2a5bce88b6e@eucas1p2.samsung.com>
+        <dleftj8sageb97.fsf%l.stelmach@samsung.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <1606909661-3814-2-git-send-email-bongsu.jeon@samsung.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 02, 2020 at 08:47:38PM +0900, Bongsu Jeon wrote:
-> From: Bongsu Jeon <bongsu.jeon@samsung.com>
+On Wed, 02 Dec 2020 11:46:28 +0100 Lukasz Stelmach wrote:
+> >> +	status = netif_rx(skb);  
+> >
+> > If I'm reading things right this is in process context, so netif_rx_ni()
+> >  
 > 
-> Since S3FWRN82 NFC Chip, The UART interface can be used.
-> S3FWRN82 supports I2C and UART interface.
+> Is it? The stack looks as follows
 > 
-> Signed-off-by: Bongsu Jeon <bongsu.jeon@samsung.com>
-> ---
->  .../bindings/net/nfc/samsung,s3fwrn5.yaml          | 31 +++++++++++++++++++---
->  1 file changed, 28 insertions(+), 3 deletions(-)
+>     ax88796c_skb_return()
+>     ax88796c_rx_fixup()
+>     ax88796c_receive()
+>     ax88796c_process_isr()
+>     ax88796c_work()
 > 
+> and ax88796c_work() is a scheduled in the system_wq.
 
-Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+Are you asking if work queue gets run in process context? It does.
 
-Best regards,
-Krzysztof
+> >> +	if (status != NET_RX_SUCCESS)
+> >> +		netif_info(ax_local, rx_err, ndev,
+> >> +			   "netif_rx status %d\n", status);  
+> >
+> > Again, it's inadvisable to put per packet prints without any rate
+> > limiting in the data path.  
+> 
+> Even if limmited by the msglvl flag, which is off by default?
+
+I'd err on the side of caution, but up to you.
