@@ -2,119 +2,216 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C7CA2CC117
-	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 16:43:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BC7972CC134
+	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 16:48:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728564AbgLBPlw convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 2 Dec 2020 10:41:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53796 "EHLO
+        id S1727966AbgLBPqp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Dec 2020 10:46:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54550 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728308AbgLBPlw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Dec 2020 10:41:52 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1C1AC0613D6
-        for <devicetree@vger.kernel.org>; Wed,  2 Dec 2020 07:41:11 -0800 (PST)
-Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1kkUFa-0001mY-Re; Wed, 02 Dec 2020 16:41:02 +0100
-Received: from pza by lupine with local (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1kkUFZ-0001K4-MD; Wed, 02 Dec 2020 16:41:01 +0100
-Message-ID: <cce30b6ab6b15fe3e82f4ed79371ba4c81730249.camel@pengutronix.de>
-Subject: Re: [PATCH v5 10/10] media: imx-jpeg: Use v4l2 jpeg helpers in
- mxc-jpeg
-From:   Philipp Zabel <p.zabel@pengutronix.de>
-To:     "Mirela Rabulea (OSS)" <mirela.rabulea@oss.nxp.com>,
-        mchehab@kernel.org, hverkuil-cisco@xs4all.nl, shawnguo@kernel.org,
-        robh+dt@kernel.org
-Cc:     paul.kocialkowski@bootlin.com, linux-media@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-imx@nxp.com,
-        s.hauer@pengutronix.de, aisheng.dong@nxp.com,
-        daniel.baluta@nxp.com, robert.chiras@nxp.com,
-        laurentiu.palcu@nxp.com, mark.rutland@arm.com,
-        devicetree@vger.kernel.org, ezequiel@collabora.com,
-        laurent.pinchart+renesas@ideasonboard.com,
-        niklas.soderlund+renesas@ragnatech.se,
-        dafna.hirschfeld@collabora.com,
-        Mirela Rabulea <mirela.rabulea@nxp.com>
-Date:   Wed, 02 Dec 2020 16:41:01 +0100
-In-Reply-To: <20201112030557.8540-11-mirela.rabulea@oss.nxp.com>
-References: <20201112030557.8540-1-mirela.rabulea@oss.nxp.com>
-         <20201112030557.8540-11-mirela.rabulea@oss.nxp.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-User-Agent: Evolution 3.30.5-1.1 
+        with ESMTP id S1726307AbgLBPqo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Dec 2020 10:46:44 -0500
+Received: from mail-lj1-x244.google.com (mail-lj1-x244.google.com [IPv6:2a00:1450:4864:20::244])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63FFAC0613CF;
+        Wed,  2 Dec 2020 07:46:04 -0800 (PST)
+Received: by mail-lj1-x244.google.com with SMTP id y16so4328559ljk.1;
+        Wed, 02 Dec 2020 07:46:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=0qZccW6T6RuJI8Ln1DnE0GJjDxXS9vOlbJ0Zgj3L1EI=;
+        b=dv1TDWvtBCJdUGLNTuqA8mM6Y4IBH76JWIqo+SfveVlcDUwS3YRv1weIVpmyuMJLxl
+         EF4VHQZZvPhdd/WOWGlLosmo0DMOfOl8skIlVx2Hj5nEPmB/EcxpIhiHf7uX3stMtmhi
+         vf2YicWgdNL0VxOcNrhExm6JtIfSnd5V86qEPtxfVRtFQkXWZlbMpg33jSF7TK6WBTTp
+         JfAF5/0l5CnaTymeoVhNDD9G5vjDPHulIwPscNfXnQfoj/2YyvWh9q8wFv5mSXCdxgSe
+         fGz9k6wT0LvOblF5rGn2z9qU27rmOd3VsCvJ7YLnkCY3M7D36c1f4oOO2Dgr4J5GhldH
+         gcaQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=0qZccW6T6RuJI8Ln1DnE0GJjDxXS9vOlbJ0Zgj3L1EI=;
+        b=jQDS8YoFh9wZpXup5qTjj50Rjf5ZPK5lb1IvBZIkR9GJEZk1mmJHqPvms1hAGfI0Da
+         wIVO6Qd9q0yUqn112X4zCpH+NJHkRmDuW2qTjt062AJ/0YHy3g5vYgdbCbv4BJ/yzkue
+         e6LzAlzOO1FunRz3MZcYCJ+xAuVL+7QnK/3Okgmx/8cOg7xw5YOG07OJQFytrUbq7kEy
+         xYHk67uXG14bwUqKTXF0yWrJWMls8M+VXt9Vxt7ZglkGKMihEsbGskeVZeUdZa1sLBtP
+         nVt1y9wWLmmMdwQePN0RN99FO7qvoeP9DOUtONdwCf5jcp+E6t1eu/6CUQgRUWMIfeBM
+         KO7w==
+X-Gm-Message-State: AOAM530ReTO/Nx/5PeRP0Wn8twwdzsvubFTjyZ9e0Y03op9AfJZQeRms
+        YlkqQB8V4W/K33ZyVIApAcgiXIEYYV5RwKNHJDpecMNQ
+X-Google-Smtp-Source: ABdhPJzSiqjwu2NsgZZx/PKcI/qKFtjxlox/dqwxihcJhYlEdF5+SC2i56NuzURCyevi+g5L+GLAhHHvXkaI/YerAzE=
+X-Received: by 2002:a2e:b1c9:: with SMTP id e9mr1450197lja.283.1606923962771;
+ Wed, 02 Dec 2020 07:46:02 -0800 (PST)
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+References: <1604286803-20698-1-git-send-email-u0084500@gmail.com>
+ <20201125164207.GD4716@dell> <CADiBU3_bgx-K_zxzKCSL8w=meZu3cA3uWoC-3QVsBAuNJW1uiw@mail.gmail.com>
+ <20201202084909.GI4801@dell>
+In-Reply-To: <20201202084909.GI4801@dell>
+From:   ChiYuan Huang <u0084500@gmail.com>
+Date:   Wed, 2 Dec 2020 23:45:50 +0800
+Message-ID: <CADiBU3-XYVPjfrVFq_K3GBHviPd-tKuPp6W5EDcUvywsN5ODwA@mail.gmail.com>
+Subject: Re: [PATCH v1 1/2] mfd: rt4831: Adds support for Richtek RT4831 MFD core
+To:     Lee Jones <lee.jones@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, cy_huang <cy_huang@richtek.com>,
+        lkml <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 2020-11-12 at 05:05 +0200, Mirela Rabulea (OSS) wrote:
-> From: Mirela Rabulea <mirela.rabulea@nxp.com>
-> 
-> Use v4l2_jpeg_parse_header in mxc_jpeg_parse, remove the old
-> parsing way, which was duplicated in other jpeg drivers.
-> 
-> Signed-off-by: Mirela Rabulea <mirela.rabulea@nxp.com>
-> ---
-> Changes in v5:
-> This was patch 11 in previous version
-> Change triggered by patch 7 (app14 data change struct -> int)
-> 
->  drivers/media/platform/imx-jpeg/Kconfig    |   1 +
->  drivers/media/platform/imx-jpeg/mxc-jpeg.c | 267 ++++++---------------
->  drivers/media/platform/imx-jpeg/mxc-jpeg.h |  26 +-
->  3 files changed, 80 insertions(+), 214 deletions(-)
-> 
-> diff --git a/drivers/media/platform/imx-jpeg/Kconfig b/drivers/media/platform/imx-jpeg/Kconfig
-> index 7cc89e5eff90..d875f7c88cda 100644
-> --- a/drivers/media/platform/imx-jpeg/Kconfig
-> +++ b/drivers/media/platform/imx-jpeg/Kconfig
-> @@ -4,6 +4,7 @@ config VIDEO_IMX8_JPEG
->  	depends on VIDEO_DEV && VIDEO_V4L2
->  	select VIDEOBUF2_DMA_CONTIG
->  	select V4L2_MEM2MEM_DEV
-> +	select V4L2_JPEG_HELPER
->  	default m
->  	help
->  	  This is a video4linux2 driver for the i.MX8 QXP/QM integrated
-> diff --git a/drivers/media/platform/imx-jpeg/mxc-jpeg.c b/drivers/media/platform/imx-jpeg/mxc-jpeg.c
-> index 8f297803f2c3..d3b7581ce46e 100644
-> --- a/drivers/media/platform/imx-jpeg/mxc-jpeg.c
-> +++ b/drivers/media/platform/imx-jpeg/mxc-jpeg.c
-[...]
-> @@ -1448,12 +1317,11 @@ static int mxc_jpeg_parse(struct mxc_jpeg_ctx *ctx,
->  	 * encoded with 3 components have RGB colorspace, see Recommendation
->  	 * ITU-T T.872 chapter 6.5.3 APP14 marker segment for colour encoding
->  	 */
-> -	if (img_fmt == MXC_JPEG_YUV444 && app14 && app14_transform == 0)
-> -		img_fmt = MXC_JPEG_RGB;
-> -
-> -	if (mxc_jpeg_imgfmt_to_fourcc(img_fmt, &fourcc)) {
-> -		dev_err(dev, "Fourcc not found for %d", img_fmt);
-> -		return -EINVAL;
-> +	if (fourcc == V4L2_PIX_FMT_YUV24 || fourcc == V4L2_PIX_FMT_RGB24) {
-> +		if (header.app14_tf == 0)
+Lee Jones <lee.jones@linaro.org> =E6=96=BC 2020=E5=B9=B412=E6=9C=882=E6=97=
+=A5 =E9=80=B1=E4=B8=89 =E4=B8=8B=E5=8D=884:49=E5=AF=AB=E9=81=93=EF=BC=9A
+>
+> On Wed, 02 Dec 2020, ChiYuan Huang wrote:
+>
+> > Lee Jones <lee.jones@linaro.org> =E6=96=BC 2020=E5=B9=B411=E6=9C=8826=
+=E6=97=A5 =E9=80=B1=E5=9B=9B =E4=B8=8A=E5=8D=8812:42=E5=AF=AB=E9=81=93=EF=
+=BC=9A
+> > >
+> > > On Mon, 02 Nov 2020, cy_huang wrote:
+> > >
+> > > > From: ChiYuan Huang <cy_huang@richtek.com>
+> > > >
+> > > > Adds support Richtek RT4831 MFD core.
+> > > > RT4831 includes backlight and DSV part that can provode display pan=
+el
+> > > > for postive and negative voltage and WLED driving.
+> > > >
+> > > > Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
+> > > > ---
+> > > >  drivers/mfd/Kconfig       |  11 +++++
+> > > >  drivers/mfd/Makefile      |   1 +
+> > > >  drivers/mfd/rt4831-core.c | 119 ++++++++++++++++++++++++++++++++++=
+++++++++++++
+> > > >  3 files changed, 131 insertions(+)
+> > > >  create mode 100644 drivers/mfd/rt4831-core.c
+> > > >
+> > > > diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
+> > > > index 8b99a13..a22f002 100644
+> > > > --- a/drivers/mfd/Kconfig
+> > > > +++ b/drivers/mfd/Kconfig
+> > > > @@ -1088,6 +1088,17 @@ config MFD_RDC321X
+> > > >         southbridge which provides access to GPIOs and Watchdog usi=
+ng the
+> > > >         southbridge PCI device configuration space.
+> > > >
+> > > > +config MFD_RT4831
+> > > > +     tristate "Richtek RT4831 WLED and DSV IC"
+> > >
+> > > Please expand on WLED and DSV.
+> > >
+> > > This is documentation and should leave nothing to the imagination.
+> > >
+> > Rewrite to "Richtek RT4831 four channel WLED and display bias
+> > voltage", is it okay?
+>
+> I had to look-up WLED, but I guess it's okay.
+>
+> "Display Bias Voltage"
+>
+OK, I'll change this line to
+"Richtek RT4831 fource channel WLED and Display Bias Voltage"
+> > > > +     depends on I2C
+> > > > +     select MFD_CORE
+> > > > +     select REGMAP_I2C
+> > > > +     help
+> > > > +       This enables support for the Richtek RT4831.
+> > > > +       RT4831 includes WLED driver and DisplayBias voltage(+/-) re=
+gulator.
+> > > > +       It's common used to provide the display power and to drive =
+the
+> > > > +       display backlight WLED.
+> > >
+> > > Please don't line-wrap unnecessarily.
+> > >
+> > > Please re-work the last sentence, as it doesn't quite make sense.
+> > >
+> > Rewrite the whole sentence like as below
+> > "This enables support for the Richtek RT4831. It includes 4 channel
+> > WLED driving and Display Bias voltage output. It's commonly used to
+> > provide the LCD power and to drive LCD backlight."
+>
+> "Display Bias Voltage"
+>
+> "provide power to the LCD display"
+>
+Thanks. looks better
+> [...]
+>
+> > > > +static int rt4831_probe(struct i2c_client *client)
+> > > > +{
+> > > > +     struct gpio_desc *enable;
+> > > > +     struct regmap *regmap;
+> > > > +     unsigned int val;
+> > > > +     int ret;
+> > > > +
+> > > > +     enable =3D devm_gpiod_get_optional(&client->dev, "enable", GP=
+IOD_OUT_HIGH);
+> > > > +     if (IS_ERR(enable)) {
+> > > > +             dev_err(&client->dev, "Failed to get chip enable gpio=
+\n");
+> > >
+> > > "Failed to get 'enable' GPIO chip"
+> > >
+> > May I remove "chip" word? It seems redundant.
+> > "Failed to get 'enable' GPIO" is better.
+> > Because 'enable' is a physical input pin for RT4831.
+>
+> Sounds good.
+>
+> [...]
+>
+> > > > +static int rt4831_remove(struct i2c_client *client)
+> > > > +{
+> > > > +     struct regmap *regmap =3D dev_get_regmap(&client->dev, NULL);
+> > > > +
+> > > > +     /* Make sure all off before module removal */
+> > >
+> > > "Disable all <thing your disabling> are disabled before ..."
+>
+> This should have said:
+>
+>   "Ensure all <thing your disabling> are disabled before ..."
+>
+> > May I rewrite it to "Configure WLED driving and DSV output all to be
+> > disabled before MFD module removal"?
+>
+> You don't need to mention MFD or modules here since we know how the
+> Device Driver model works and what .remove() does.
+>
+> What about:
+>
+>   "Disable WLED and DSV outputs"
+Do you mean that only keep this comment line is better? NO more
+redundant description like "before ....".
+If yes, I'll only leave  the comment like as you said in remove/shutdown op=
+s.
+> > > > +     return regmap_update_bits(regmap, RT4831_REG_ENABLE, RT4831_R=
+ESET_MASK, RT4831_RESET_MASK);
+> > > > +}
+> > > > +
+> > > > +static void rt4831_shutdown(struct i2c_client *client)
+> > > > +{
+> > > > +     struct regmap *regmap =3D dev_get_regmap(&client->dev, NULL);
+> > > > +
+> > > > +     /* Make sure all off before machine shutdown */
+> > >
+> > > As above.
+> > >
+> > like as above ".... before 'machine shutdown'
+>
+>   "Disable WLED and DSV outputs"
+Same as above.
 
-This is what I meant in patch 7, I think it would be more clear to have
-an enum value that says "RGB color coding" than to rely on the reader to
-know what the value 0 means.
-
-> +			fourcc = V4L2_PIX_FMT_RGB24;
-> +		else
-> +			fourcc = V4L2_PIX_FMT_YUV24;
->  	}
->  
->  	/*
-> 
-
-Otherwise this patch looks fine to me.
-
-regards
-Philipp
+Thanks for all the suggestion.
+If any misunderstanding, please kindly let me know.
+>
+> --
+> Lee Jones [=E6=9D=8E=E7=90=BC=E6=96=AF]
+> Senior Technical Lead - Developer Services
+> Linaro.org =E2=94=82 Open source software for Arm SoCs
+> Follow Linaro: Facebook | Twitter | Blog
