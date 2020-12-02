@@ -2,179 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 88B092CC7A9
-	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 21:25:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2519F2CC7B5
+	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 21:25:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728846AbgLBUX3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Dec 2020 15:23:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41426 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728814AbgLBUX2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Dec 2020 15:23:28 -0500
-Received: from mail-pj1-x1044.google.com (mail-pj1-x1044.google.com [IPv6:2607:f8b0:4864:20::1044])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC43AC0613D6;
-        Wed,  2 Dec 2020 12:22:48 -0800 (PST)
-Received: by mail-pj1-x1044.google.com with SMTP id r9so1661680pjl.5;
-        Wed, 02 Dec 2020 12:22:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=jPXLgrfmPsVossgPwOVXqHGCtH2YsRf8UcPWK89e/XE=;
-        b=c17HjQZoRSkabFcQ4upzoWsYEn2nhGmFpVMHiOWRalYsFPACNwPPlFHfRqr55n1ifW
-         UIbf93b6R4dwdO/1sf1rOV1GFKBOduB4JyTWTYqkpkMr2k22teMqdR4+8cI+A1Xf+D2d
-         yejUZ1H8KRnenqf603ZtkoJrhm+SiFOvH80nPnS+ngZUT0kThG9j9+fH1Qnsr6MlptDf
-         0dZch+3qT+ebRiq3Qkg6r2MonVxgBYEXmxkarId8LsLmhv/3nzTeapzeuZs8ChORAnMZ
-         WwgpkmAUzoNwyLhfvQ/lGRDDKg2sQNFFVAc7apcQrLmjRb2wyHRF7uhh1+K6blqtJYAL
-         8Vuw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=jPXLgrfmPsVossgPwOVXqHGCtH2YsRf8UcPWK89e/XE=;
-        b=YKBp+bTapsE0sCxkuON+ZifWSo/Yab38n0Ow2CrE2020kTz98HgvmVG7DfU66EqoLu
-         gcLaO4cT8DrZI+Mhl9quYGOwJ7cxrB5xaRPZjDsZZl5z4gsREtJzw9OoUxC0TL9AmJQu
-         DB/mtziYUmai+sbzt904inoTmEVT12cDQao+uH0mnc7751l2kqMen3DCh8EjkbqeTwYB
-         C1f31xIVPoHOvMe/tcUVn08NVAsNslEsCZTHrzzcjxLO3SeHVtHw68OF7mw0QnCoCGzt
-         /FP+4W1DbPsZqeBB6gRXrY63d4BX9OKtLNtGtuGgrMN58FSLDSEnlDlQbBBJqS+VKK4Z
-         QLBw==
-X-Gm-Message-State: AOAM532r3hkILeusLqXeYEDoU3IcC3Gbex7lhNIKm5TyTqloVth3Hcbz
-        tti7iiCm2adzCRr+t69HG24=
-X-Google-Smtp-Source: ABdhPJxyoo5uUzNVQaIgO+msO41uuAmT3ThpDEhUjZBbVx2SqAjC19UkpnvYRwGuaCRaSQqQYxOxaQ==
-X-Received: by 2002:a17:902:7c8d:b029:da:625c:8218 with SMTP id y13-20020a1709027c8db02900da625c8218mr4161472pll.26.1606940568169;
-        Wed, 02 Dec 2020 12:22:48 -0800 (PST)
-Received: from Asurada-Nvidia (thunderhill.nvidia.com. [216.228.112.22])
-        by smtp.gmail.com with ESMTPSA id 143sm593457pfc.119.2020.12.02.12.22.46
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Wed, 02 Dec 2020 12:22:47 -0800 (PST)
-Date:   Wed, 2 Dec 2020 12:19:56 -0800
-From:   Nicolin Chen <nicoleotsuka@gmail.com>
-To:     Shengjiu Wang <shengjiu.wang@nxp.com>
-Cc:     timur@kernel.org, Xiubo.Lee@gmail.com, festevam@gmail.com,
-        broonie@kernel.org, perex@perex.cz, tiwai@suse.com,
-        alsa-devel@alsa-project.org, lgirdwood@gmail.com,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] ASoC: fsl: Add imx-hdmi machine driver
-Message-ID: <20201202201955.GB1498@Asurada-Nvidia>
-References: <1606455021-18882-1-git-send-email-shengjiu.wang@nxp.com>
- <1606455021-18882-2-git-send-email-shengjiu.wang@nxp.com>
+        id S1731213AbgLBUYU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Dec 2020 15:24:20 -0500
+Received: from us-smtp-delivery-124.mimecast.com ([63.128.21.124]:53216 "EHLO
+        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1731191AbgLBUYT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Dec 2020 15:24:19 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1606940572;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=VxTO3aciJZ2bU+jhahVsvyDtmGYNE3uq+gQ+8//dVvg=;
+        b=FEkWgtWMc/uscC7LAX5h0yzRtVgFOWpJZs52mWnO1ddmx1b7yh+1mFz4QKha830aznQSCK
+        9kbHxOsO2TpFmy++2x6zVi6935H7tKBtb/cBF69NSJUMDCu9nQTesnWRgmD2wUCPc9Ap77
+        mTg0HLWB5UTm+bmxXYTq1g+xTfP5VoI=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-424-Ixn4TkeAOOycxeVYL8XwNQ-1; Wed, 02 Dec 2020 15:22:48 -0500
+X-MC-Unique: Ixn4TkeAOOycxeVYL8XwNQ-1
+Received: from smtp.corp.redhat.com (int-mx05.intmail.prod.int.phx2.redhat.com [10.5.11.15])
+        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 62C97185E497;
+        Wed,  2 Dec 2020 20:22:45 +0000 (UTC)
+Received: from [10.36.114.61] (ovpn-114-61.ams2.redhat.com [10.36.114.61])
+        by smtp.corp.redhat.com (Postfix) with ESMTP id 7BAEB5D6AC;
+        Wed,  2 Dec 2020 20:22:40 +0000 (UTC)
+Subject: Re: [PATCH v2 2/4] mm: introduce cma_alloc_bulk API
+To:     Minchan Kim <minchan@kernel.org>, Michal Hocko <mhocko@suse.com>
+Cc:     Andrew Morton <akpm@linux-foundation.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        linux-mm <linux-mm@kvack.org>, hyesoo.yu@samsung.com,
+        willy@infradead.org, iamjoonsoo.kim@lge.com, vbabka@suse.cz,
+        surenb@google.com, pullip.cho@samsung.com, joaodias@google.com,
+        hridya@google.com, sumit.semwal@linaro.org, john.stultz@linaro.org,
+        Brian.Starkey@arm.com, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, robh@kernel.org,
+        christian.koenig@amd.com, linaro-mm-sig@lists.linaro.org
+References: <20201201175144.3996569-1-minchan@kernel.org>
+ <20201201175144.3996569-3-minchan@kernel.org>
+ <8f006a4a-c21d-9db3-5493-fb1cc651b0cf@redhat.com>
+ <20201202154915.GU17338@dhcp22.suse.cz> <X8e9tSwcsrEsAv1O@google.com>
+ <20201202164834.GV17338@dhcp22.suse.cz> <X8fU1ddmsSfuV6sD@google.com>
+ <20201202185107.GW17338@dhcp22.suse.cz> <X8fqU82GXmu57f7V@google.com>
+From:   David Hildenbrand <david@redhat.com>
+Organization: Red Hat GmbH
+Message-ID: <f0e980cb-cc74-82e8-6ccf-09030a96103a@redhat.com>
+Date:   Wed, 2 Dec 2020 21:22:36 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.4.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1606455021-18882-2-git-send-email-shengjiu.wang@nxp.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <X8fqU82GXmu57f7V@google.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.15
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 27, 2020 at 01:30:21PM +0800, Shengjiu Wang wrote:
-> The driver is initially designed for sound card using HDMI
-> interface on i.MX platform. There is internal HDMI IP or
-> external HDMI modules connect with SAI or AUD2HTX interface.
-> It supports both transmitter and receiver devices.
+On 02.12.20 20:26, Minchan Kim wrote:
+> On Wed, Dec 02, 2020 at 07:51:07PM +0100, Michal Hocko wrote:
+>> On Wed 02-12-20 09:54:29, Minchan Kim wrote:
+>>> On Wed, Dec 02, 2020 at 05:48:34PM +0100, Michal Hocko wrote:
+>>>> On Wed 02-12-20 08:15:49, Minchan Kim wrote:
+>>>>> On Wed, Dec 02, 2020 at 04:49:15PM +0100, Michal Hocko wrote:
+>>>> [...]
+>>>>>> Well, what I can see is that this new interface is an antipatern to our
+>>>>>> allocation routines. We tend to control allocations by gfp mask yet you
+>>>>>> are introducing a bool parameter to make something faster... What that
+>>>>>> really means is rather arbitrary. Would it make more sense to teach
+>>>>>> cma_alloc resp. alloc_contig_range to recognize GFP_NOWAIT, GFP_NORETRY resp.
+>>>>>> GFP_RETRY_MAYFAIL instead?
+>>>>>
+>>>>> If we use cma_alloc, that interface requires "allocate one big memory
+>>>>> chunk". IOW, return value is just struct page and expected that the page
+>>>>> is a big contiguos memory. That means it couldn't have a hole in the
+>>>>> range.
+>>>>> However the idea here, what we asked is much smaller chunk rather
+>>>>> than a big contiguous memory so we could skip some of pages if they are
+>>>>> randomly pinned(long-term/short-term whatever) and search other pages
+>>>>> in the CMA area to avoid long stall. Thus, it couldn't work with exising
+>>>>> cma_alloc API with simple gfp_mak.
+>>>>
+>>>> I really do not see that as something really alient to the cma_alloc
+>>>> interface. All you should care about, really, is what size of the object
+>>>> you want and how hard the system should try. If you have a problem with
+>>>> an internal implementation of CMA and how it chooses a range and deal
+>>>> with pinned pages then it should be addressed inside the CMA allocator.
+>>>> I suspect that you are effectivelly trying to workaround those problems
+>>>> by a side implementation with a slightly different API. Or maybe I still
+>>>> do not follow the actual problem.
+>>>>  
+>>>>>> I am not deeply familiar with the cma allocator so sorry for a
+>>>>>> potentially stupid question. Why does a bulk interface performs better
+>>>>>> than repeated calls to cma_alloc? Is this because a failure would help
+>>>>>> to move on to the next pfn range while a repeated call would have to
+>>>>>> deal with the same range?
+>>>>>
+>>>>> Yub, true with other overheads(e.g., migration retrial, waiting writeback
+>>>>> PCP/LRU draining IPI)
+>>>>
+>>>> Why cannot this be implemented in the cma_alloc layer? I mean you can
+>>>> cache failed cases and optimize the proper pfn range search.
+>>>
+>>> So do you suggest this?
+>>>
+>>> enum cma_alloc_mode {
+>>> 	CMA_ALLOC_NORMAL,
+>>> 	CMA_ALLOC_FAIL_FAST,
+>>> };
+>>>
+>>> struct page *cma_alloc(struct cma *cma, size_t count, unsigned int
+>>> 	align, enum cma_alloc_mode mode);
+>>>
+>>> >From now on, cma_alloc will keep last failed pfn and then start to
+>>> search from the next pfn for both CMA_ALLOC_NORMAL and
+>>> CMA_ALLOC_FAIL_FAST if requested size from the cached pfn is okay
+>>> within CMA area and then wraparound it couldn't find right pages
+>>> from the cached pfn. Othewise, the cached pfn will reset to the zero
+>>> so that it starts the search from the 0. I like the idea since it's
+>>> general improvement, I think.
+>>
+>> Yes something like that. There are more options to be clever here - e.g.
+>> track ranges etc. but I am not sure this is worth the complexity.
 > 
-> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
-> ---
->  sound/soc/fsl/Kconfig    |  12 ++
->  sound/soc/fsl/Makefile   |   2 +
->  sound/soc/fsl/imx-hdmi.c | 235 +++++++++++++++++++++++++++++++++++++++
->  3 files changed, 249 insertions(+)
->  create mode 100644 sound/soc/fsl/imx-hdmi.c
+> Agree. Just last pfn caching would be good enough as simple start.
+> 
+>>
+>>> Furthemore, With CMA_ALLOC_FAIL_FAST, it could avoid several overheads
+>>> at the cost of sacrificing allocation success ratio like GFP_NORETRY.
+>>
+>> I am still not sure a specific flag is a good interface. Really can this
+>> be gfp_mask instead?
+> 
+> I am not strong(even, I did it with GFP_NORETRY) but David wanted to
+> have special mode and I agreed when he mentioned ALLOC_CONTIG_HARD as
+> one of options in future(it would be hard to indicate that mode with
+> gfp flags).
 
-> diff --git a/sound/soc/fsl/imx-hdmi.c b/sound/soc/fsl/imx-hdmi.c
-> new file mode 100644
-> index 000000000000..ac164514b1b2
-> --- /dev/null
-> +++ b/sound/soc/fsl/imx-hdmi.c
+I can't tell regarding the CMA interface, but for the alloc_contig()
+interface I think modes make sense. Yes, it's different to other
+allocaters, but the contig range allocater is different already. E.g.,
+the CMA allocater mostly hides "which exact PFNs you try to allocate".
 
-> +static int imx_hdmi_hw_params(struct snd_pcm_substream *substream,
-> +			      struct snd_pcm_hw_params *params)
-> +{
-> +	struct snd_soc_pcm_runtime *rtd = substream->private_data;
-> +	struct imx_hdmi_data *data = snd_soc_card_get_drvdata(rtd->card);
-> +	bool tx = substream->stream == SNDRV_PCM_STREAM_PLAYBACK;
-> +	struct snd_soc_dai *cpu_dai = asoc_rtd_to_cpu(rtd, 0);
-> +	struct snd_soc_card *card = rtd->card;
-> +	struct device *dev = card->dev;
-> +	int ret;
-> +
-> +	/* set cpu DAI configuration */
-> +	ret = snd_soc_dai_set_sysclk(cpu_dai, data->cpu_priv.sysclk_id[tx],
-> +				     8 * data->cpu_priv.slot_width * params_rate(params),
+In the contig range allocater, gfp flags are currently used to express
+how to allocate pages used as migration targets. I don't think mangling
+in other gfp flags (or even overloading them) makes things a lot
+clearer. E.g., GFP_NORETRY: don't retry to allocate migration targets?
+don't retry to migrate pages? both?
 
-Looks like fixed 2 slots being used, judging by the set_tdm_slot
-call below. Then...why "8 *"? Probably need a line of comments?
+As I said, other aspects might be harder to model (e.g., don't drain
+LRU) and hiding them behind generic gfp flags (e.g., GFP_NORETRY) feels
+wrong.
 
-> +				     tx ? SND_SOC_CLOCK_OUT : SND_SOC_CLOCK_IN);
-> +	if (ret && ret != -ENOTSUPP) {
-> +		dev_err(dev, "failed to set cpu sysclk: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	ret = snd_soc_dai_set_tdm_slot(cpu_dai, 0, 0, 2, data->cpu_priv.slot_width);
+With the mode, we're expressing details for the necessary page
+migration. Suggestions on how to model that are welcome.
 
-May have a local variable to cache slot_width.
+-- 
+Thanks,
 
-> +static int imx_hdmi_probe(struct platform_device *pdev)
+David / dhildenb
 
-> +	data->dai.name = "i.MX HDMI";
-> +	data->dai.stream_name = "i.MX HDMI";
-> +	data->dai.cpus->dai_name = dev_name(&cpu_pdev->dev);
-> +	data->dai.platforms->of_node = cpu_np;
-> +	data->dai.ops = &imx_hdmi_ops;
-> +	data->dai.playback_only = true;
-> +	data->dai.capture_only = false;
-> +	data->dai.init = imx_hdmi_init;
-> +
-> +
-> +	if (of_property_read_bool(np, "hdmi-out")) {
-> +		data->dai.playback_only = true;
-> +		data->dai.capture_only = false;
-> +		data->dai.codecs->dai_name = "i2s-hifi";
-> +		data->dai.codecs->name = "hdmi-audio-codec.1";
-> +		data->dai.dai_fmt = data->dai_fmt |
-> +				    SND_SOC_DAIFMT_NB_NF |
-> +				    SND_SOC_DAIFMT_CBS_CFS;
-> +	}
-> +
-> +	if (of_property_read_bool(np, "hdmi-in")) {
-> +		data->dai.playback_only = false;
-> +		data->dai.capture_only = true;
-> +		data->dai.codecs->dai_name = "i2s-hifi";
-> +		data->dai.codecs->name = "hdmi-audio-codec.2";
-> +		data->dai.dai_fmt = data->dai_fmt |
-> +				    SND_SOC_DAIFMT_NB_NF |
-> +				    SND_SOC_DAIFMT_CBM_CFM;
-> +	}
-> +
-> +	if ((data->dai.playback_only && data->dai.capture_only) ||
-> +	    (!data->dai.playback_only && !data->dai.capture_only)) {
-> +		dev_err(&pdev->dev, "Wrongly enable HDMI DAI link\n");
-> +		goto fail;
-> +	}
-
-Seems that this condition check can never be true, given that:
-1. By default: playback_only=true && capture_only=false
-2. Conditionally overwritten: playback_only=true && capture_only=false
-3. Conditionally overwritten: playback_only=false && capture_only=true
-
-If I understand it correctly, probably should be something like:
-	bool hdmi_out = of_property_read_bool(np, "hdmi-out");
-	bool hdmi_in = of_property_read_bool(np, "hdmi-in");
-
-	if ((hdmi_out && hdmi_in) || (!hdmi_out || !hdmi_in))
-		// "Invalid HDMI DAI link"; goto fail;
-
-	if (hdmi_out) {
-		// ...
-	} else if (hdmi_in) {
-		// ...
-	} else // No need of this line if two properties are exclusive
-
-> +	data->card.num_links = 1;
-> +	data->card.dai_link = &data->dai;
-> +
-> +	platform_set_drvdata(pdev, &data->card);
-
-Why pass card pointer?
