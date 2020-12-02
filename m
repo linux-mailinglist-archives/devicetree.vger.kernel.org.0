@@ -2,95 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A51E2CBC85
-	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 13:10:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 099122CBC9A
+	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 13:18:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729620AbgLBMJv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Dec 2020 07:09:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49206 "EHLO
+        id S1727366AbgLBMNq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Dec 2020 07:13:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49810 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726852AbgLBMJv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Dec 2020 07:09:51 -0500
-Received: from mail-lf1-x143.google.com (mail-lf1-x143.google.com [IPv6:2a00:1450:4864:20::143])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29265C0613CF
-        for <devicetree@vger.kernel.org>; Wed,  2 Dec 2020 04:09:10 -0800 (PST)
-Received: by mail-lf1-x143.google.com with SMTP id u18so4272708lfd.9
-        for <devicetree@vger.kernel.org>; Wed, 02 Dec 2020 04:09:10 -0800 (PST)
+        with ESMTP id S1729804AbgLBMNq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Dec 2020 07:13:46 -0500
+Received: from mail-pf1-x443.google.com (mail-pf1-x443.google.com [IPv6:2607:f8b0:4864:20::443])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2EC7FC0613D4
+        for <devicetree@vger.kernel.org>; Wed,  2 Dec 2020 04:13:06 -0800 (PST)
+Received: by mail-pf1-x443.google.com with SMTP id s21so1106102pfu.13
+        for <devicetree@vger.kernel.org>; Wed, 02 Dec 2020 04:13:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=8Vw8se40+ZwpHjC4c0VnUFf9R1QwmzeDK7Zkwd9o0xQ=;
-        b=OTpxZpqWl+NMvKw8bWRa6FwBMc3zEPZ3xt39draLB4xHmSwLsT+VFFzl7YD2Z9YWFh
-         wzGvN2SXAuvQHmKK9IeJfBOX1WbbNu28EyNNWzVqynD/a/OmEjAl4zWDm/U3wM+A0k1n
-         PKmuAP85+V3ySN2bT9Tmj3kH6mWBOdTwgoG7WuCjoRWWLzaBGBNoV7IPLGU4ZhbGqGsc
-         qc7n/rNwqIWERHY5urXWjxmyX9zEPohbNDgm3WvuWjrrDkjjmPEyftNPpMR9K+GmmCQF
-         IhNx0HxWitKcwALDcBVSwsT7hRzUzAwx6xJM1BL4mUA4avWTX5ZVjZperNd1xG27hO8w
-         qivQ==
+        d=amarulasolutions.com; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=gp7OBeckObEgqLXot5tReJPINojYUVXrHZXsw2+DdVs=;
+        b=S+x+hrvSq8+FsG0N0ZpBBOp/+ZOEcsOAd4JxmnltPmidpae39le5gXRSI6ii1msQx+
+         irfnV8HBTNsjin69TVgL4F3t+HkCJoSpbjh858itEbjZl4b+7G1HwvqoJ9Ml4+gQI/44
+         JIHwNAcXKSB19C1XVqn6VD54RFJYuCsZNlGcc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=8Vw8se40+ZwpHjC4c0VnUFf9R1QwmzeDK7Zkwd9o0xQ=;
-        b=ils/Z7vtmeJGJDnzJRgvMtsxBdicKgrjR5HsOxbThjY/zXfdMI0J8L1PsaU7KbeQ+V
-         UREy0ck72cGV9c7eX9XG9faP8U6NTh2GK2Bo7KYAGIwskvAnfEn7XZ1LzE2NgPbuwvV2
-         ecCIqzK8iXcC/OccM+1df3WeKuJGt8VlelMF8mfXtneEam6WbzhaU1j5KRWKFymgarIc
-         wC+ujTlx/9AxrBA6kaO/7gZ9ZLoNxSeRxuCsfog2Sq1iUGgeasEw0XOaSkhJBE7wEPmu
-         MBg7z68r3TBYpDxrHoaRgsIoGtwPEQq7osRkC7pYYqhu1eGdQi/BkT3SPdgB7Dz2jjdF
-         Bl4g==
-X-Gm-Message-State: AOAM533OTBA3KRayJPe0ALu2jS9kWjkNYydPIOFSDCO0G5U4nO8f5z5N
-        hkm3kbiHdwC8g5kaUGd1eszzc0OLOu0i2sOKPT7SNg==
-X-Google-Smtp-Source: ABdhPJy98X2zklHyHmNrWzOgs6AnCCZpoEoW+PrQch8G0MCdLsvzyJrcj25SXLwa5HzRRWIZAEkv8tFlyCA2mxfv+gA=
-X-Received: by 2002:a19:8d8:: with SMTP id 207mr1031573lfi.441.1606910948682;
- Wed, 02 Dec 2020 04:09:08 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=gp7OBeckObEgqLXot5tReJPINojYUVXrHZXsw2+DdVs=;
+        b=s8UKz4SFtx3EOVYgQFe2xKRE8vraUCFoxeiSB5ViiCnK4FqAKz46PgiTiG+Aeu6S/A
+         kRsPIglK1bYsykI2VJr6m71vvMAsbP7p9blbxt07iYBVrF0+N/mEtEkup1KSm2PZhcnx
+         tG8kO3X+j+KlN4RCQZfpe4qqyIPRh0eBdV4B/kODGwOVwAk38NNukEFULgjoEPm1zs1l
+         Tgj+TC42NIiS4Db8GNCRVFdJbUqFkNfQSGaCeX+kMyqNtDadtO26M2UVi4DB6PLtSZgR
+         VyN50UubdzYXoSaQdvHNwd6Fs5d36hwtUZhJI7f9eJDVt37GWpbYN8QXkY+IHnQsEl0i
+         twEA==
+X-Gm-Message-State: AOAM531AdMO1Ip2gc1iCQVj7mx1iNldeaazox9PDpTDpyv9FgbHrs19S
+        z1ecaG7P4B21vdcdH6YBnsZJFg==
+X-Google-Smtp-Source: ABdhPJynZGzpV+BlMkL+sP9mtfxTqMKDKQbHTbkuZpxMBVz5mW+Z+7W6LHvV5fbvSa03YyF6aTCRKA==
+X-Received: by 2002:a63:5417:: with SMTP id i23mr2344870pgb.433.1606911185632;
+        Wed, 02 Dec 2020 04:13:05 -0800 (PST)
+Received: from localhost.localdomain ([2405:201:c00a:a884:fd53:e9ba:b313:1b1d])
+        by smtp.gmail.com with ESMTPSA id b37sm1951315pgl.31.2020.12.02.04.13.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 02 Dec 2020 04:13:04 -0800 (PST)
+From:   Jagan Teki <jagan@amarulasolutions.com>
+To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Li Yang <leoyang.li@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>
+Cc:     Matteo Lisi <matteo.lisi@engicam.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-amarula@amarulasolutions.com,
+        Jagan Teki <jagan@amarulasolutions.com>
+Subject: [PATCH 00/10] arm64: dts: imx8mm: Add Engicam i.Core MX8M Mini
+Date:   Wed,  2 Dec 2020 17:42:31 +0530
+Message-Id: <20201202121241.109952-1-jagan@amarulasolutions.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20201202083551.7753-1-stephan@gerhold.net>
-In-Reply-To: <20201202083551.7753-1-stephan@gerhold.net>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Wed, 2 Dec 2020 13:08:57 +0100
-Message-ID: <CACRpkdYu77Tcv9bk8q_BfKmien0S2sRg3Kicd_AeSrzrKD+Ywg@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: iio: accel: bma255: Fix bmc150/bmi055 compatible
-To:     Stephan Gerhold <stephan@gerhold.net>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 2, 2020 at 9:36 AM Stephan Gerhold <stephan@gerhold.net> wrote:
+This is the initial series to support Engicam i.Core MX8M Mini SOM
+and it's associated carrier board dts(i) support.
 
-> The bmc150-accel-i2c.c driver has an "_accel" suffix for the
-> compatibles of BMC150 and BMI055. This is necessary because BMC150
-> contains both accelerometer (bosch,bmc150_accel) and magnetometer
-> (bosch,bmc150_magn) and therefore "bosch,bmc150" would be ambiguous.
->
-> However, the binding documentation suggests using "bosch,bmc150".
-> Add the "_accel" suffix for BMC150 and BMI055 so the binding docs
-> match what is expected by the driver.
->
-> Cc: Linus Walleij <linus.walleij@linaro.org>
-> Fixes: 496a39526fce8 ("iio: accel: bmc150-accel: Add DT bindings")
-> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
+Add minimal changes to access and boot SD, eMMC, and the rest of 
+the changes added in the coming days.
 
-I see this pattern elsewhere so by tradition:
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+i.Core MX8M Mini is an EDIMM SOM based on NXP i.MX8MM from Engicam.
 
-I suppose this is one of those situations where the two parts of the
-component are on the same physical I2C bus, and phsycially inside
-the same package, but accessed at two different I2C addresses?
+i.Core MX8M Mini needs to mount on top of Engicam baseboards for
+creating complete platform boards.
 
-These components are kind of ambiguous by nature. Technically
-both devices could have the same compatible (by the label on the
-package) but then we would need some other property on the node
-to say which compatible is for which part of the component,
-so tagging on "_function" like bmc150_accel and bmc150_magn
-is one way to solve this, and I don't know anything better.
+Possible baseboards are,
+- EDIMM2.2
+- C.TOUCH 2.0
+- C.TOUCH 2.0 10.1" Open Frame
 
-Yours,
-Linus Walleij
+Engicam i.Core MX8MM has PF8X00 PMIC and which is merged in linux-next,
+https://lore.kernel.org/linux-devicetree/20201130112329.104614-2-jagan@amarulasolutions.com
+
+Any inputs?
+Jagan.
+
+Jagan Teki (10):
+  arm64: defconfig: Enable REGULATOR_PF8X00
+  dt-bindings: arm: fsl: Add Engicam i.Core MX8M Mini EDIMM2.2 Starter Kit
+  arm64: dts: imx: Add Engicam EDIMM2.2 Starter Kit
+  arm64: dts: imx8mm: Add Engicam i.Core MX8M Mini SOM
+  arm64: dts: imx8mm: Add Engicam i.Core MX8M Mini EDIMM2.2 Starter Kit
+  arm64: dts: imx: Add Engicam C.TOUCH 2.0
+  dt-bindings: arm: fsl: Add Engicam i.Core MX8M Mini C.TOUCH 2.0
+  arm64: dts: imx8mm: Add Engicam i.Core MX8M Mini C.TOUCH 2.0
+  dt-bindings: arm: fsl: Add Engicam i.Core MX8M Mini C.TOUCH 2.0 10.1" OF
+  arm64: dts: imx8mm: Add Engicam i.Core MX8M Mini C.TOUCH 2.0 10.1" OF
+
+ .../devicetree/bindings/arm/fsl.yaml          |   4 +
+ arch/arm64/boot/dts/freescale/Makefile        |   3 +
+ .../dts/freescale/imx8mm-engicam-common.dtsi  |  24 ++
+ .../dts/freescale/imx8mm-engicam-ctouch2.dtsi |   7 +
+ .../freescale/imx8mm-engicam-edimm2.2.dtsi    |   7 +
+ ...mx8mm-engicam-icore-mx8mm-ctouch2-of10.dts |  21 ++
+ .../imx8mm-engicam-icore-mx8mm-ctouch2.dts    |  21 ++
+ .../imx8mm-engicam-icore-mx8mm-edimm2.2.dts   |  21 ++
+ .../freescale/imx8mm-engicam-icore-mx8mm.dtsi | 209 ++++++++++++++++++
+ arch/arm64/configs/defconfig                  |   1 +
+ 10 files changed, 318 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-engicam-common.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-engicam-ctouch2.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-engicam-edimm2.2.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-engicam-icore-mx8mm-ctouch2-of10.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-engicam-icore-mx8mm-ctouch2.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-engicam-icore-mx8mm-edimm2.2.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-engicam-icore-mx8mm.dtsi
+
+-- 
+2.25.1
+
