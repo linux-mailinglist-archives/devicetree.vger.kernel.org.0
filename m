@@ -2,104 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F3FE2CB817
-	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 10:07:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 100FF2CB83E
+	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 10:12:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387831AbgLBJGX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Dec 2020 04:06:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49060 "EHLO
+        id S2388051AbgLBJLl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Dec 2020 04:11:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49866 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387718AbgLBJGV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Dec 2020 04:06:21 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3DAB6C0613CF
-        for <devicetree@vger.kernel.org>; Wed,  2 Dec 2020 01:05:41 -0800 (PST)
-Received: from [2a0a:edc0:0:1101:1d::39] (helo=dude03.red.stw.pengutronix.de)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mtr@pengutronix.de>)
-        id 1kkO4u-0002XE-Ju; Wed, 02 Dec 2020 10:05:37 +0100
-Received: from mtr by dude03.red.stw.pengutronix.de with local (Exim 4.92)
-        (envelope-from <mtr@dude03.red.stw.pengutronix.de>)
-        id 1kkO4t-0013Ui-MB; Wed, 02 Dec 2020 10:05:35 +0100
-From:   Michael Tretter <m.tretter@pengutronix.de>
-To:     devicetree@vger.kernel.org, michal.simek@xilinx.com
-Cc:     robh+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
-        kernel@pengutronix.de, Michael Tretter <m.tretter@pengutronix.de>
-Date:   Wed,  2 Dec 2020 10:05:22 +0100
-Message-Id: <20201202090522.251607-1-m.tretter@pengutronix.de>
-X-Mailer: git-send-email 2.20.1
+        with ESMTP id S2387961AbgLBJLl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Dec 2020 04:11:41 -0500
+Received: from mail-qv1-xf41.google.com (mail-qv1-xf41.google.com [IPv6:2607:f8b0:4864:20::f41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B802C0613D4
+        for <devicetree@vger.kernel.org>; Wed,  2 Dec 2020 01:10:55 -0800 (PST)
+Received: by mail-qv1-xf41.google.com with SMTP id es6so364820qvb.7
+        for <devicetree@vger.kernel.org>; Wed, 02 Dec 2020 01:10:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=0x0f.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=jHXxAEFihpGexQosJgOwtA1rTxwRBPimbOCJs6PdyiQ=;
+        b=Y5QtHYdkrX6aP/Zfes2Iz6RXNnojW27vyX/5CgTqb+ITygoCCJ2dfDbg2zQfOXAiic
+         PF4gIiC7/Pfg7hZ/9b5KyW8cmfjNRwejA5zB5Pca6v0+vP80S/2MNkkd29UrKFoqUPwY
+         EGUNWFX4S8E1fm9eVVgvgwraAIP7bfzNE460M=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=jHXxAEFihpGexQosJgOwtA1rTxwRBPimbOCJs6PdyiQ=;
+        b=EU/o1dt9DwDmnvS/qZOUWzE/XkXoBrYcTrVeLib+qXFFlmwh/l/EAQlKDYn7ulBZFV
+         nI1zDdh8XSx8gMKyDUf8S7H4/FOdJXGUzPGK/cy7pGzF/va5KjreAINt2RD4BdB3Ur4w
+         dGwLTQM3uHmAcfsA8969jN5Z2Kc41Ga2Ei0JTxhwJFTDgrD/3Rsfqqrwyi26wKb9Gnv/
+         t89h/Fl8EP03DNztBqAv3kNvekoSakfffn9jflPZtuyEBZjVrUTiXiA4ZBj5D/6uJO1Q
+         ceiLK648JZ5y5rXH84br1lK/RaRkVDgdwed2hx4z4thCZryabMHj5ZIcaOxTWivbHmtG
+         RL/w==
+X-Gm-Message-State: AOAM530+WtP3WarWbXpadjkA7506I6M8ZXyX0xKB533AhioYP+bqQOcd
+        0DxLyXzGAGZyDMdGn90eSy96H1MztQWpwNEelzQXfA==
+X-Google-Smtp-Source: ABdhPJytwEIZuRyGn05kO7fcdgPdlwgix3LuGPG61AnTa6cEDH4lUg49k1PEGAjiN9bs36DCjIusI58CiLW25Da9z0Y=
+X-Received: by 2002:a0c:8e47:: with SMTP id w7mr1540726qvb.55.1606900254283;
+ Wed, 02 Dec 2020 01:10:54 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:1101:1d::39
-X-SA-Exim-Mail-From: mtr@pengutronix.de
-X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on
-        metis.ext.pengutronix.de
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=4.0 tests=AWL,BAYES_00,RDNS_NONE,
-        SPF_HELO_NONE,SPF_SOFTFAIL,SUBJ_OBFU_PUNCT_FEW,SUBJ_OBFU_PUNCT_MANY,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.2
-Subject: [PATCH] dt-bindings: xlnx,vcu-settings: fix dt_binding_check warnings
-X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
-X-SA-Exim-Scanned: Yes (on metis.ext.pengutronix.de)
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+References: <20201201134330.3037007-1-daniel@0x0f.com> <20201201134330.3037007-11-daniel@0x0f.com>
+ <20201201150425.GC1551@shell.armlinux.org.uk>
+In-Reply-To: <20201201150425.GC1551@shell.armlinux.org.uk>
+From:   Daniel Palmer <daniel@0x0f.com>
+Date:   Wed, 2 Dec 2020 18:10:43 +0900
+Message-ID: <CAFr9PXnME5UCyOdkRGFO2+=gv27grcq35Adrtio3ex4hq0CWEQ@mail.gmail.com>
+Subject: Re: [PATCH v2 10/10] ARM: mstar: SMP support
+To:     Russell King - ARM Linux admin <linux@armlinux.org.uk>
+Cc:     DTML <devicetree@vger.kernel.org>, SoC Team <soc@kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        olof@lixom.net, Arnd Bergmann <arnd@arndb.de>,
+        Rob Herring <robh@kernel.org>, Willy Tarreau <w@1wt.eu>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-When running make dt_binding_check, the xlnx,vcu-settings binding
-triggers the following two warnings:
+Hi Russell,
 
-	'additionalProperties' is a required property
+On Wed, 2 Dec 2020 at 00:04, Russell King - ARM Linux admin
+<linux@armlinux.org.uk> wrote:
+>
+> On Tue, Dec 01, 2020 at 10:43:30PM +0900, Daniel Palmer wrote:
+> > +     np = of_find_compatible_node(NULL, NULL, "mstar,smpctrl");
+> > +     smpctrl = of_iomap(np, 0);
+> > +
+> > +     if (!smpctrl)
+> > +             return -ENODEV;
+>
+> Wouldn't -ENOMEM be more appropriate here?
 
-	example-0: vcu@a0041000:reg:0: [0, 2684620800, 0, 4096] is too long
+There seems to be examples of both -ENOMEM and -ENODEV in other ARM platforms.
+arch/arm/mach-aspeed/platsmp.c uses -ENODEV for example.
 
-Fix the binding and make the checker happy.
+I went with -ENODEV there as the source of the error is most likely
+the node not being in the device tree.
+I didn't check the result of of_find_compatible_node() because for the
+memory barrier code in the same file I was told it wasn't necessary.
 
-Signed-off-by: Michael Tretter <m.tretter@pengutronix.de>
----
+Thanks,
 
-Hi,
-
-The xlnx,vcu-settings binding was reviewed [0] before the bot started to
-run automated tests on the device tree bindings, but now produces some
-warnings. The original patch that introduces the binding is still in
-Michal's tree and I am not entirely sure how to handle it, but here is a
-patch.
-
-Michael
-
-[0] https://lore.kernel.org/linux-arm-kernel/20200429213659.GA9051@bogus/
----
- .../bindings/soc/xilinx/xlnx,vcu-settings.yaml    | 15 ++++++++++++---
- 1 file changed, 12 insertions(+), 3 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/soc/xilinx/xlnx,vcu-settings.yaml b/Documentation/devicetree/bindings/soc/xilinx/xlnx,vcu-settings.yaml
-index 378d0ced43c8..cb245f400287 100644
---- a/Documentation/devicetree/bindings/soc/xilinx/xlnx,vcu-settings.yaml
-+++ b/Documentation/devicetree/bindings/soc/xilinx/xlnx,vcu-settings.yaml
-@@ -26,9 +26,18 @@ required:
-   - compatible
-   - reg
- 
-+additionalProperties: false
-+
- examples:
-   - |
--    xlnx_vcu: vcu@a0041000 {
--          compatible = "xlnx,vcu-settings", "syscon";
--          reg = <0x0 0xa0041000 0x0 0x1000>;
-+    fpga {
-+        #address-cells = <2>;
-+        #size-cells = <2>;
-+
-+        xlnx_vcu: vcu@a0041000 {
-+            compatible = "xlnx,vcu-settings", "syscon";
-+            reg = <0x0 0xa0041000 0x0 0x1000>;
-+        };
-     };
-+
-+...
--- 
-2.20.1
-
+Daniel
