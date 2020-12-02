@@ -2,124 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 594972CBFD8
-	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 15:37:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 16FAA2CBFEF
+	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 15:43:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730117AbgLBOfu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Dec 2020 09:35:50 -0500
-Received: from lb2-smtp-cloud7.xs4all.net ([194.109.24.28]:57681 "EHLO
-        lb2-smtp-cloud7.xs4all.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726071AbgLBOft (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Dec 2020 09:35:49 -0500
-Received: from cust-b5b5937f ([IPv6:fc0c:c16d:66b8:757f:c639:739b:9d66:799d])
-        by smtp-cloud7.xs4all.net with ESMTPA
-        id kTDhkEkxiN7XgkTDkktWZQ; Wed, 02 Dec 2020 15:35:06 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=xs4all.nl; s=s2;
-        t=1606919706; bh=fh8vXt7wHNbCxu6ykXYAavndPHeJvk9VILjQnHShEFA=;
-        h=Subject:To:From:Message-ID:Date:MIME-Version:Content-Type:From:
-         Subject;
-        b=KgbqiPCRbb4OHX60zqLwum0x/0xSyjmCDHD46BaaZI0hm3+Wv9QNp+oKmkSvyNzSP
-         IaDrHmWP1boiXe1KenIZjH+4KlUHyRHJo4D874h5hyRnapFOlFfI9MM9PIR0Zthwru
-         ndNPsBuUCvP7jdLWMVdrMPYlPqfcIalV3/PtNwikZxG9t+XO9pfC/NbzsfRvJReexm
-         iBddXCKoiTKWATFLJgy+p+jpgUnCziVLQ/KBiIuLyjcl7A1ki/0naJ2bVtTMCsOy3g
-         pLcpJsNIxxq67jakaeZQqdALVHY5v74HHewICefF6CBCnkuyn4qA//fzYKFHGsGAzj
-         yQR3krgjWr0ZQ==
-Subject: Re: [PATCH v3 0/6] ARM: dts: sun8i: v3s: Enable video decoder
-To:     Martin Cerveny <m.cerveny@computer.org>,
-        Maxime Ripard <mripard@kernel.org>
-Cc:     Chen-Yu Tsai <wens@csie.org>, devel@driverdev.osuosl.org,
-        devicetree@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Icenowy Zheng <icenowy@aosc.io>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Lee Jones <lee.jones@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-media@vger.kernel.org, Mark Brown <broonie@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>
-References: <20201116125617.7597-1-m.cerveny@computer.org>
-From:   Hans Verkuil <hverkuil@xs4all.nl>
-Message-ID: <1266873e-fe8f-d021-9d45-0baa38e32d31@xs4all.nl>
-Date:   Wed, 2 Dec 2020 15:35:01 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+        id S1726765AbgLBOmV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Dec 2020 09:42:21 -0500
+Received: from mail-eopbgr700055.outbound.protection.outlook.com ([40.107.70.55]:3424
+        "EHLO NAM04-SN1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726207AbgLBOmV (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 2 Dec 2020 09:42:21 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Aqw/TC471LXBOvRjMcsBqdRllb59agMq90uKN4W5zwRc/bP/1KhT/hIGsE2Urdt2l2TPrvg182kZx54I6FrgDhnwq7Avoe54sgMgHKvtIayLReZQBLVmJZgYB9OEFxu9AiJZuBvNzyKhemO7ZCtsQVYT+FITRXvFU6Wm4IaYk5XKTDDK25d1jWD7seEZwN7opRgI8NA1ltp5dIJWu6VqtahpjpjzQT5Qx/6Va7+OoX20gojqNuOs/uX3ieiGU2LiWfxi2jrk5qHGg+6ZRe8McRMvEHAlcnveg/aneM8/xWGWIDYao+/CdUrsQBZ1gXF3OMUsg7PAluIRwbwHA7OZIQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=EexsPDwBjm7vHcFiu5gpiFBp7jZDB5sGTMyWGkA0GDo=;
+ b=niy3s9FiUSCBw5qhkXes3+DJt0LeWCximwe05wCWCmtQPP3TBK59XatZ4tJIQwq2DSwL3SVaO8tv2t1teud3yyUj0AYYjxczZ0mTYyBz14g59HvGcutUx9gF4Qu+HXsfPu7cl70Ab5Lg24p1353vWFt6Vt4XAo9SyU33XGVjG+FM02rc0eT9kco1AIBVWczXSjFyv0rD/XWPvq1r2a2rHcZ9ooYWcJHSOajMu1sz8f67pNiz76yrzwyybw4OliDEjw4fY/nSr1e8n+HEtyrDOQberTFi6GtWE3rVj8WRHpaY9uPvl81+oLqN6F03M8for9BoFJeMnPBEVBPI1c47dg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 149.199.62.198) smtp.rcpttodomain=kernel.org smtp.mailfrom=xilinx.com;
+ dmarc=bestguesspass action=none header.from=xilinx.com; dkim=none (message
+ not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=EexsPDwBjm7vHcFiu5gpiFBp7jZDB5sGTMyWGkA0GDo=;
+ b=lQJ9BbbE4QQVCnAPLCutYWoerctEtK+IqXFAJA8Oz1RVOvFxOHw01kOXW6xNDptAYQuiRP3gQpHKQqT71g1FfsPO8Q3U60GOHZpiHb+KeJzguoqtjksmk6K1byH7z82Ze7flOWK2CKnBlkMV0fBDq9dAE4FAf4TRa2s8Tjd+8J0=
+Received: from CY4PR21CA0042.namprd21.prod.outlook.com (2603:10b6:903:12b::28)
+ by PH0PR02MB7446.namprd02.prod.outlook.com (2603:10b6:510:15::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3632.17; Wed, 2 Dec
+ 2020 14:41:33 +0000
+Received: from CY1NAM02FT063.eop-nam02.prod.protection.outlook.com
+ (2603:10b6:903:12b:cafe::6f) by CY4PR21CA0042.outlook.office365.com
+ (2603:10b6:903:12b::28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3654.2 via Frontend
+ Transport; Wed, 2 Dec 2020 14:41:33 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
+ smtp.mailfrom=xilinx.com; kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=bestguesspass action=none
+ header.from=xilinx.com;
+Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
+ 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=149.199.62.198; helo=xsj-pvapexch02.xlnx.xilinx.com;
+Received: from xsj-pvapexch02.xlnx.xilinx.com (149.199.62.198) by
+ CY1NAM02FT063.mail.protection.outlook.com (10.152.75.161) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.3611.27 via Frontend Transport; Wed, 2 Dec 2020 14:41:33 +0000
+Received: from xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) by
+ xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1913.5; Wed, 2 Dec 2020 06:41:32 -0800
+Received: from smtp.xilinx.com (172.19.127.96) by
+ xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) with Microsoft SMTP Server id
+ 15.1.1913.5 via Frontend Transport; Wed, 2 Dec 2020 06:41:32 -0800
+Envelope-to: rvisaval@xilinx.com,
+ dshah@xilinx.com,
+ tejasp@xilinx.com,
+ rajanv@xilinx.com,
+ sboyd@kernel.org,
+ mturquette@baylibre.com,
+ robh+dt@kernel.org,
+ kernel@pengutronix.de,
+ devicetree@vger.kernel.org,
+ linux-clk@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org,
+ m.tretter@pengutronix.de
+Received: from [172.30.17.109] (port=38088)
+        by smtp.xilinx.com with esmtp (Exim 4.90)
+        (envelope-from <michal.simek@xilinx.com>)
+        id 1kkTJz-00057i-OF; Wed, 02 Dec 2020 06:41:32 -0800
+Subject: Re: [PATCH 07/12] soc: xilinx: vcu: register PLL as fixed rate clock
+To:     Michael Tretter <m.tretter@pengutronix.de>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>
+CC:     <rajanv@xilinx.com>, <tejasp@xilinx.com>, <dshah@xilinx.com>,
+        <rvisaval@xilinx.com>, <kernel@pengutronix.de>,
+        <robh+dt@kernel.org>, <mturquette@baylibre.com>, <sboyd@kernel.org>
+References: <20201116075532.4019252-1-m.tretter@pengutronix.de>
+ <20201116075532.4019252-8-m.tretter@pengutronix.de>
+From:   Michal Simek <michal.simek@xilinx.com>
+Message-ID: <dd21102b-599a-25d9-433b-9eb38419ffb5@xilinx.com>
+Date:   Wed, 2 Dec 2020 15:41:28 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.5.0
 MIME-Version: 1.0
-In-Reply-To: <20201116125617.7597-1-m.cerveny@computer.org>
-Content-Type: text/plain; charset=utf-8
+In-Reply-To: <20201116075532.4019252-8-m.tretter@pengutronix.de>
+Content-Type: text/plain; charset="utf-8"
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-X-CMAE-Envelope: MS4xfKR+fVSTqZQ9ETYlJsohtz44JkYTfKbMjH4fxpTnpM4lRtLIPUmpUyH43J8Y6tdt4a6CFI9TQe4YqZpf2OvrmjuoH14gdj6mjhFaRn1iyasnjc0vQuXC
- GYJY5etmYjhxjxBl0MIbHFoePwaCbr4gd6f9il5k9DK7D/SregCzz2q+8Sd3jdr3LhoqQ19E5U186vp8kam4zDdErEMxdqG9oyIfu/Q5uoef+knX5ms4Lzpt
- myl14X96sBTogHjL75oPC0XwFYfBa9qD724PSHOHNp2CGggDJYLTscPzPYVuOFLRRYB4lWFIqxLpW7mr34BoE6jMiZWCT1kpLts/z8b44or+1E9Qg0RI/E2m
- k337RuaaKaoB2+fiNtKSc4wsohixuZoRilBJ5NmkITSyWpRB+o73Of2KSgI7XMhD6eXC+IAwn0o+pwrqOhkIH45371j+6GVvdszzIdlhA/Pcs6jDEym1SR/P
- 2aYu1xPiHsap+xvgOc2mKP6O1iT1/6/MW/VqWjEk2P/f+MdZmbjJMYAtdjv98BfJYr++MLXM01HbHKGMGFxiKWwP/gF0p01GZI0hQ/eDmaHQ08udrJLDmiyr
- rB8DKxSE0kyClfHBS9Q+c9XpTNb/m5lZ65waecVEhVWzoDOL2GxeI5EKMgzI4XquqxZY41DXlFUV75/5bY5hkjPttH6HORjDG6bYPhXq9ehTkiTtzSFOe+MH
- bo2h+SVYO9s=
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 98371215-31f8-44e6-980d-08d896d05d52
+X-MS-TrafficTypeDiagnostic: PH0PR02MB7446:
+X-Microsoft-Antispam-PRVS: <PH0PR02MB7446AD6173A66A6CD72032DCC6F30@PH0PR02MB7446.namprd02.prod.outlook.com>
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-Oob-TLC-OOBClassifiers: OLM:3513;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: y09EJusS2U3jjvnJGT+wf2F5JNH9UVMPr53YtqmD7sE0rQ4ZRJc5qC5V47XQFIEDZQjSTi6mz1ov2/oNC6jJekI2pfXYX3LOcYXA2rVNQHpG/rEosYrIAGtOPOSP4sTNZ76n6a1WAjmVpGChhr4m2ol7L1ngcPI6GtWqZB9+6jhg49tT69E81aFNDdu0X28BzCMsRvMDBBXaAN5o6AgUe6zB88j1Q2+VVIjMsoFX7o+HBlYggXOumCrHscgsIw3T8Q48EIPG94wKQUtlhpcNUtiSRSQFkEZmRvtlUlYFqBI95qlWQPZ33gbwfqdKQ14eVQ7Ts4DnKhIK8pTOqsDzqdYbaME8T2+5P+eBe/XSKU6jzrSb1sUeyuHx1UCNgpqFSBhednKpceLGIeOGYXTMo4Wx8aAo782n5h+zUftPomzcZopQtgp4YXZEXW2h0mCsKUoVp+o7tpvRl9ZvrUHSNLisMqb7k0LUwssg/LiAJk4=
+X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch02.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(4636009)(376002)(346002)(39860400002)(396003)(136003)(46966005)(5660300002)(6666004)(82740400003)(7636003)(70206006)(356005)(31686004)(2906002)(47076004)(44832011)(4326008)(2616005)(70586007)(9786002)(83380400001)(31696002)(336012)(36756003)(186003)(8936002)(426003)(8676002)(26005)(110136005)(82310400003)(36906005)(54906003)(478600001)(316002)(50156003)(2101003)(43740500002);DIR:OUT;SFP:1101;
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Dec 2020 14:41:33.5353
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 98371215-31f8-44e6-980d-08d896d05d52
+X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch02.xlnx.xilinx.com]
+X-MS-Exchange-CrossTenant-AuthSource: CY1NAM02FT063.eop-nam02.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR02MB7446
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Martin, Maxime,
 
-On 16/11/2020 13:56, Martin Cerveny wrote:
-> First patch extends cedrus capability to all decoders
-> because V3s missing MPEG2 decoder.
-> 
-> Next two patches add system control node (SRAM C1) and 
-> next three patches add support for Cedrus VPU.
 
-I've picked up patches 1, 4 and 5 for the media subsystem.
-Maxime, can you pick up the other three?
+On 16. 11. 20 8:55, Michael Tretter wrote:
+> Currently, xvcu_pll_set_rate configures the PLL to a clock rate that is
+> pre-calculated when probing the driver. To still make the clock
+> framework aware of the PLL and to allow to configure other clocks based
+> on the PLL rate, register the PLL as a fixed rate clock.
+> 
+> Signed-off-by: Michael Tretter <m.tretter@pengutronix.de>
+> ---
+>  drivers/soc/xilinx/Kconfig    |  2 +-
+>  drivers/soc/xilinx/xlnx_vcu.c | 17 ++++++++++++++++-
+>  2 files changed, 17 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/soc/xilinx/Kconfig b/drivers/soc/xilinx/Kconfig
+> index 0b1708dae361..9fe703772e5a 100644
+> --- a/drivers/soc/xilinx/Kconfig
+> +++ b/drivers/soc/xilinx/Kconfig
+> @@ -3,7 +3,7 @@ menu "Xilinx SoC drivers"
+>  
+>  config XILINX_VCU
+>  	tristate "Xilinx VCU logicoreIP Init"
+> -	depends on HAS_IOMEM
+> +	depends on HAS_IOMEM && COMMON_CLK
+>  	select REGMAP_MMIO
+>  	help
+>  	  Provides the driver to enable and disable the isolation between the
+> diff --git a/drivers/soc/xilinx/xlnx_vcu.c b/drivers/soc/xilinx/xlnx_vcu.c
+> index 34f3299afc0d..725e646aa726 100644
+> --- a/drivers/soc/xilinx/xlnx_vcu.c
+> +++ b/drivers/soc/xilinx/xlnx_vcu.c
+> @@ -7,6 +7,7 @@
+>   * Contacts   Dhaval Shah <dshah@xilinx.com>
+>   */
+>  #include <linux/clk.h>
+> +#include <linux/clk-provider.h>
+>  #include <linux/device.h>
+>  #include <linux/errno.h>
+>  #include <linux/io.h>
+> @@ -80,6 +81,7 @@ struct xvcu_device {
+>  	struct clk *aclk;
+>  	struct regmap *logicore_reg_ba;
+>  	void __iomem *vcu_slcr_ba;
+> +	struct clk_hw *pll;
 
-Thanks!
+this is introducing kernel-doc warning. Please describe it there.
 
-	Hans
-
-> 
-> Tested on "Lichee Zero" V3s platform with testing LCD patch
-> ( https://github.com/mcerveny/linux/tree/media_tree_for-v5.11e )
-> and V4L2 raw API testing utility (updated to v5.10)
-> ( https://github.com/mcerveny/v4l2-request-test ):
-> - enabled LCD (DRM dual VI and sigle UI planes)
-> - added RGB panel
-> - enabled PWM
-> - need additional patch https://git.linuxtv.org/media_tree.git/commit/?h=fixes&id=9ac924b98728c3733c91c6c59fc410827d0da49f
-> 
-> There is low memory on V3s (64MB) and maximum must be available to CMA:
-> - CONFIG_CMA_SIZE_MBYTES=28
-> - add swap to swapout other processes
-> - decrease buffers in v4l2-request-test (.buffers_count from 16 to 8)
-> 
-> Only H.264 decoder working - MPEG and H.265 unsupported by V3s,
-> JPEG/MJPEG still unimplemented, encoder unimplemented
-> 
-> best regards,
-> Martin
-> 
-> Changes since v2:
-> - updated/rebased to https://git.linuxtv.org/hverkuil/media_tree.git/?h=for-v5.11e
-> - some parts of patches implemeted by others
-> - updated R40
-> Changes since v1:
-> - patch 0005 rename
-> - added testing description
-> 
-> Martin Cerveny (6):
->   media: cedrus: Register all codecs as capability
->   dt-bindings: sram: allwinner,sun4i-a10-system-control: Add V3s
->     compatibles
->   ARM: dts: sun8i: v3s: Add node for system control
->   media: cedrus: Add support for V3s
->   dt-bindings: media: cedrus: Add V3s compatible
->   ARM: dts: sun8i: v3s: Add video engine node
-> 
->  .../allwinner,sun4i-a10-video-engine.yaml     |  1 +
->  .../allwinner,sun4i-a10-system-control.yaml   |  3 ++
->  arch/arm/boot/dts/sun8i-v3s.dtsi              | 24 ++++++++++++++
->  drivers/staging/media/sunxi/cedrus/cedrus.c   | 32 +++++++++++++++++--
->  drivers/staging/media/sunxi/cedrus/cedrus.h   |  2 ++
->  .../staging/media/sunxi/cedrus/cedrus_video.c |  2 ++
->  6 files changed, 62 insertions(+), 2 deletions(-)
-> 
-
+M
