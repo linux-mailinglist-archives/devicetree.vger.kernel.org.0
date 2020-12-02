@@ -2,75 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4EDAB2CC6F8
-	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 20:50:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 872312CC75C
+	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 21:04:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387679AbgLBTtG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Dec 2020 14:49:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36074 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387658AbgLBTtG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Dec 2020 14:49:06 -0500
-Received: from mail-pj1-x1043.google.com (mail-pj1-x1043.google.com [IPv6:2607:f8b0:4864:20::1043])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27989C0613CF;
-        Wed,  2 Dec 2020 11:48:26 -0800 (PST)
-Received: by mail-pj1-x1043.google.com with SMTP id p21so968632pjv.0;
-        Wed, 02 Dec 2020 11:48:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=dnQQ0ZO/6p33z1swbZoImrPF097nMjWL47oIMo++/1Y=;
-        b=onJj8ipStbxkxO1WMW4vx6wNj6v6na0K0VYBNmFQ/TgoUyd1X+QuhKWOM9Q2hUY4uH
-         PI37PA+QRy74rDEnFaGWxAzDOBo/WwymM51gZXXQOIeAvykEhSD9kByS6NDbeDQOB0gB
-         dlSeHl0n0tNFnc/5e9QnxMwqAgMeviGwIfyu1tYVbluA5Ss8u/LWXKPoAaERlFD6mzv6
-         y0iRo9mnNUd1x93YRZ/L1vC1OMPIef0qOKvWcNYnRo7seGzgbAUkxIabKOFy7bf+dKKu
-         reBPVovWJfqqzr4y5seDB6W6wi5zyl6DyaNJ9ZUbn3blZQP7AEpNJYLMolGv8hzQiGdQ
-         UItA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=dnQQ0ZO/6p33z1swbZoImrPF097nMjWL47oIMo++/1Y=;
-        b=jTnf/r68TCZsuXXLjP2BMUWTlJypXsZlkkyu0WVPRj0+ayJX2RHVE3mGzAMlZJhL0h
-         Wcayuo3UdezPJe41Ly3GsoqG2WSil/fsjPz8nQCvx+Xk/JLptqVEk3iUlCtfDYzgdpsA
-         6JFB1p5NDXa39CmO7KwUh0P6F0vBXe7wHXv0DDiWK+nryalbtGxmSCH73V60UYgUvkU7
-         jOdT1ejKW/JYYUlhZAqCY1U84E06irRO5MQ/HnOGLo9kkqbUbHaP7GQvzwrmyHB4rtC3
-         fbKs/ST6WF1rc6ogj4lrmZ8p0Cs1dfWBv8gGpVAYWl0SFKRy/6ccDVYi60dw4DvylYLF
-         g59Q==
-X-Gm-Message-State: AOAM530iD5PhC+i8Qeb1Rk/rM0a5RktvaMht6bxqHYyWoOsl0n1Mhkzz
-        oiqiOGVW/bvJt3etI+Xpcfo=
-X-Google-Smtp-Source: ABdhPJynOsl/9mtFMTtbS3krXbaXRE8MqaHaMr7m3r88/8eYsCbneJHJzz+ir6n8gXwRYSd8V2dkSg==
-X-Received: by 2002:a17:902:ee53:b029:da:4c68:2795 with SMTP id 19-20020a170902ee53b02900da4c682795mr4119802plo.7.1606938505659;
-        Wed, 02 Dec 2020 11:48:25 -0800 (PST)
-Received: from Asurada-Nvidia (thunderhill.nvidia.com. [216.228.112.22])
-        by smtp.gmail.com with ESMTPSA id i10sm547720pfk.206.2020.12.02.11.48.24
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Wed, 02 Dec 2020 11:48:25 -0800 (PST)
-Date:   Wed, 2 Dec 2020 11:45:31 -0800
-From:   Nicolin Chen <nicoleotsuka@gmail.com>
-To:     Shengjiu Wang <shengjiu.wang@nxp.com>
-Cc:     timur@kernel.org, Xiubo.Lee@gmail.com, festevam@gmail.com,
-        lgirdwood@gmail.com, broonie@kernel.org, perex@perex.cz,
-        tiwai@suse.com, alsa-devel@alsa-project.org,
-        linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] ASoC: fsl-asoc-card: Add support for si476x codec
-Message-ID: <20201202194530.GA1498@Asurada-Nvidia>
-References: <1606708668-28786-1-git-send-email-shengjiu.wang@nxp.com>
+        id S2387663AbgLBUBi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Dec 2020 15:01:38 -0500
+Received: from mo4-p01-ob.smtp.rzone.de ([85.215.255.54]:19098 "EHLO
+        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2389621AbgLBUBh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Dec 2020 15:01:37 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1606939124;
+        s=strato-dkim-0002; d=fossekall.de;
+        h=Message-Id:Date:Subject:Cc:To:From:X-RZG-CLASS-ID:X-RZG-AUTH:From:
+        Subject:Sender;
+        bh=MiOFrh5z1GYfS5zmDo4vnLbWqldZvc9i8hAPAYbemNM=;
+        b=SfAQsNsKFcIWY1gTPLupt2pMWQlKHVtHdgBk2k1wDyzqrImdlmkF8fcLsbOSebefle
+        s+Mho5v8aQqtymo3TYsytexf8yQ0P8WopNdyEE9yUISwhjIEqQrbfjLLQ2/NcxNJt3u8
+        23DH/xwJVil2UI+ZDdlGNtGCQDJYaEXMJ0vvSfhP7zRENxN3A8TLerI4CBbLwbK1FWLv
+        gErmGOlxNkN+0qvj50pFcCG+DBHvHh7vF1lnXKk/xYu0rZ6DUW6wEP209jaOWOU6X/J7
+        IXhXEBDm1zI0DHO6ogY4HX8dGrgvuup8d0wJIMPCEin5ts0nP1OoegjjeVI7cM+yMWUo
+        ISRQ==
+X-RZG-AUTH: ":O2kGeEG7b/pS1EzgE2y7nF0STYsSLflpbjNKxx7cGrBOdI6BL9pkS3QW19mO7I+/JwRspuzJFZuRzQ=="
+X-RZG-CLASS-ID: mo00
+Received: from aerfugl
+        by smtp.strato.de (RZmta 47.3.4 AUTH)
+        with ESMTPSA id g02087wB2Jwh2CU
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
+        (Client did not present a certificate);
+        Wed, 2 Dec 2020 20:58:43 +0100 (CET)
+Received: from koltrast.a98shuttle.de ([192.168.1.27] helo=a98shuttle.de)
+        by aerfugl with smtp (Exim 4.89)
+        (envelope-from <michael@a98shuttle.de>)
+        id 1kkYGt-0007iD-QL; Wed, 02 Dec 2020 20:58:39 +0100
+Received: (nullmailer pid 2105638 invoked by uid 502);
+        Wed, 02 Dec 2020 19:58:39 -0000
+From:   Michael Klein <michael@fossekall.de>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>
+Cc:     Michael Klein <michael@fossekall.de>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] ARM: dts: sun6i-a31s-sinovoip-bpi-m2: add gpio-line-names
+Date:   Wed,  2 Dec 2020 20:51:47 +0100
+Message-Id: <20201202195144.2105036-1-michael@fossekall.de>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1606708668-28786-1-git-send-email-shengjiu.wang@nxp.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 30, 2020 at 11:57:47AM +0800, Shengjiu Wang wrote:
-> The si476x codec is used for FM radio function on i.MX6
-> auto board, it only supports recording function.
-> 
-> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+Add gpio-line-names as documented on gitbooks [1] and in the
+schematics [2].
 
-Acked-by: Nicolin Chen <nicoleotsuka@gmail.com>
+[1]: https://bananapi.gitbook.io/bpi-m2/en/bpi-m2_gpio_pin_define
+[2]: https://drive.google.com/file/d/0B4PAo2nW2KfnRERWNnJGSGxJbmM/view
+
+Signed-off-by: Michael Klein <michael@fossekall.de>
+---
+ .../boot/dts/sun6i-a31s-sinovoip-bpi-m2.dts   | 71 +++++++++++++++++++
+ 1 file changed, 71 insertions(+)
+
+diff --git a/arch/arm/boot/dts/sun6i-a31s-sinovoip-bpi-m2.dts b/arch/arm/boot/dts/sun6i-a31s-sinovoip-bpi-m2.dts
+index 708caee52425..367006fb280d 100644
+--- a/arch/arm/boot/dts/sun6i-a31s-sinovoip-bpi-m2.dts
++++ b/arch/arm/boot/dts/sun6i-a31s-sinovoip-bpi-m2.dts
+@@ -261,3 +261,74 @@ &uart0 {
+ &usbphy {
+ 	status = "okay";
+ };
++
++&pio {
++	gpio-line-names =
++		/* PA */
++		"ETXD0", "ETXD1", "ETXD2", "ETXD3", "SDC0-DET", "", "",
++		"", "ETXCLK", "ETXEN", "EGTXCLK", "ERXD0", "ERXD1",
++		"ERXD2", "ERXD3", "", "", "", "", "ERXDV", "ERXCK",
++		"ETXERR", "ERXERR", "ECOL", "ECRS", "ECLKIN", "EMDC",
++		"EMDIO", "", "", "", "",
++
++		/* PB */
++		"CN7-P29", "CN7-P31", "CN7-P33", "CN7-P35", "CN7-P37",
++		"CN7-P28", "CN7-P27", "CN7-P32", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "", "", "", "", "", "", "",
++		"", "", "", "",
++
++		/* PC */
++		"", "", "", "", "", "", "WL-SDIO-CMD", "WL-SDIO-CLK",
++		"WL-SDIO-D0", "WL-SDIO-D2", "WL-SDIO-D2", "WL-SDIO-D3",
++		"", "", "", "", "", "", "", "", "", "", "", "", "", "",
++		"", "USB-DRV", "", "", "", "",
++
++		/* PD */
++		"CN9-P09", "CN9-P11", "CN9-P13", "CN9-P15", "CN9-P17",
++		"CN9-P19", "CN9-P21", "CN9-P23", "CN9-P25", "CN9-P27",
++		"CN9-P29", "CN9-P31", "CN9-P33", "CN9-P35", "CN9-P37",
++		"CN9-P39", "CN9-P40", "CN9-P38", "CN9-P36", "CN9-P34",
++		"CN9-P32", "CN9-P30", "CN9-P28", "CN9-P26", "CN9-P22",
++		"CN9-P14", "CN9-P18", "CN9-P16", "", "", "", "",
++
++		/* PE */
++		"CN6-P20", "CN6-P24", "CN6-P30", "CN6-P28", "CN7-P08",
++		"CN7-P10", "CN7-P36", "CN7-P38", "CN6-P17", "CN6-P19",
++		"CN6-P21", "CN6-P23", "CN6-P25", "CN6-P27", "CN6-P29",
++		"CN6-P31", "", "", "", "", "", "", "", "", "", "", "",
++		"", "", "", "", "",
++
++		/* PF */
++		"SDC0-D1", "SDC0-D0", "SDC0-CLK", "SDC0-CMD", "SDC0-D3",
++		"SDC0-D2", "", "", "", "", "", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "", "", "", "", "", "", "",
++		"",
++
++		/* PG */
++		"CN9-P06", "CN9-P08", "CN9-P20", "CN9-P12", "CN9-P07",
++		"LED-PWR", "CN7-P13", "CN7-P11", "CN7-P22", "CN7-P15",
++		"LED-G", "LED-B", "CN7-P26", "CN7-P24", "CN7-P23",
++		"CN7-P19", "CN7-P21", "HCEC", "CN6-P22", "", "", "", "",
++		"", "", "", "", "", "", "", "", "",
++
++		/* PH */
++		"", "", "", "", "", "", "", "", "", "CN7-P07",
++		"CN7-P12", "CN7-P16", "CN7-P18", "CN9-P10", "CN6-P16",
++		"CN6-P14", "CN9-P04", "CN9-P02", "CN7-P05", "CN7-P03",
++		"CN8-P03", "CN8-P02", "", "", "CN6-P34", "CN6-P32",
++		"CN6-P26", "CN6-P18", "", "", "", "";
++};
++
++&r_pio {
++	gpio-line-names =
++		/* PL */
++		"PMU-SCK", "PMU-SDA", "VBAT-EN", "", "IR-RX",
++		"WL-WAKE-HOST", "BT-WAKE_HOST", "BT-ENABLE",
++		"WL-PMU-EN", "", "", "", "", "", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "", "", "", "", "",
++
++		/* PM */
++		"CN6-P12", "CN6-P35", "CN7-P40", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "", "";
++};
+-- 
+2.29.2
+
