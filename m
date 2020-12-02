@@ -2,94 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C0AB2CC988
-	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 23:22:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C84BE2CC9DC
+	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 23:46:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728331AbgLBWWi convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 2 Dec 2020 17:22:38 -0500
-Received: from aposti.net ([89.234.176.197]:37312 "EHLO aposti.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726603AbgLBWWh (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 2 Dec 2020 17:22:37 -0500
-Date:   Wed, 02 Dec 2020 22:21:40 +0000
-From:   Paul Cercueil <paul@crapouillou.net>
-Subject: Re: [PATCH 1/4] clk: JZ4780: Add function for disable the second
- core.
-To:     =?UTF-8?b?5ZGo55Cw5p2w?= <zhouyanjie@wanyeetech.com>
-Cc:     sboyd@kernel.org, robh+dt@kernel.org, mturquette@baylibre.com,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, dongsheng.qiu@ingenic.com,
-        aric.pzqi@ingenic.com, rick.tyliu@ingenic.com,
-        yanfei.li@ingenic.com, sernia.zhou@foxmail.com,
-        zhenwenjin@gmail.com
-Message-Id: <4SGQKQ.DVCN1X7ZWNK81@crapouillou.net>
-In-Reply-To: <20201125172618.112707-2-zhouyanjie@wanyeetech.com>
-References: <20201125172618.112707-1-zhouyanjie@wanyeetech.com>
-        <20201125172618.112707-2-zhouyanjie@wanyeetech.com>
+        id S1726055AbgLBWqQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Dec 2020 17:46:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35334 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726011AbgLBWqQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Dec 2020 17:46:16 -0500
+Received: from mail-oi1-x22f.google.com (mail-oi1-x22f.google.com [IPv6:2607:f8b0:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE3A1C0617A6
+        for <devicetree@vger.kernel.org>; Wed,  2 Dec 2020 14:45:35 -0800 (PST)
+Received: by mail-oi1-x22f.google.com with SMTP id y74so106435oia.11
+        for <devicetree@vger.kernel.org>; Wed, 02 Dec 2020 14:45:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=ob6N6LEmjYzZj1YS2x9ED8vHkOgPZxeW5ccz4MvSEV0=;
+        b=dF3w6dfIHKF8MD8k0cJ1XRIvFiFkIQ8e/154VHbDml3LqMWrDyjGBj91Lt29P3egYq
+         8O5+S4dc0dsCDdyPTNnWRwC8rkWCVLTYbrdKaJCzbBeyQr9yZTxn8BmkqMzGPYEk5f3s
+         oZJhPRiBz32x9F4Zq+yf1Rv0lSssrwrf0uB3FwqPb4hZp44SA/uF2KX4Na76a7AfKksj
+         l3GregQNSfzdYUl9pe0FZ6XUfnL5RJPvjUpuM+YibARE2jEbo2Uxh6sas//vszyLaVOR
+         okLEhnbStXAJU6exRqnr76jCzaPk0XuYt949jfdd3fGAPAh7TIp1rMywM7nP/X1vKd0y
+         G0cQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=ob6N6LEmjYzZj1YS2x9ED8vHkOgPZxeW5ccz4MvSEV0=;
+        b=AjDp8w//Jj2fCLbiV6gcGxmcX3iiO0psJ/OSsRN438BBwGarrjWeP0uURLhpY4fnVH
+         u2mPZOLmyhmqmy+An26s1ER9mX2lS/O4vJ0Q34THNse2JwxHMdWwseijKa0KmKV7KoXG
+         Bxh+jPcDZwlTJ+HevkHTwJFPybe7oG9hlbELl/boI+BGvD8kUrFoe8oeaYMeaiOpF3ii
+         ZXIzA6LMB5TJoqA9imfb4hR19A5313KhmfpXB+GanMheE/vzip/bOtZXRLLU0Q6wZ4zM
+         c0Capxa6I19o8aYJUuh++PhMj15rHFQiMSJIzqDI8EuEHkQQROStzu5Jl7xHnhfHuXgN
+         HhYQ==
+X-Gm-Message-State: AOAM531/8S0PJn0t3klxShvYW0oW2iah3qmDbFo+R6hixE1Leet3Eivk
+        vx7tdMSrcbViUYYal6FCZpVdUpbR/vXFOw==
+X-Google-Smtp-Source: ABdhPJwszFk9KvVPaMkOOp+xCH0oC5FGFddD+gK8E6gCyWvuapaL4xlTbIFgdSzaPaiJ6XYF6VoP5g==
+X-Received: by 2002:a05:6808:2c4:: with SMTP id a4mr6366oid.114.1606948683206;
+        Wed, 02 Dec 2020 14:38:03 -0800 (PST)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id o63sm27841ooa.10.2020.12.02.14.38.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 02 Dec 2020 14:38:02 -0800 (PST)
+Date:   Wed, 2 Dec 2020 16:38:00 -0600
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 3/7] arm64: dts: qcom: qrb5165-rb5: add gpu/zap-shader
+ node
+Message-ID: <X8gXSEeBxFHAPmZe@builder.lan>
+References: <20201127095548.128217-1-dmitry.baryshkov@linaro.org>
+ <20201127095548.128217-3-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201127095548.128217-3-dmitry.baryshkov@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Fri 27 Nov 03:55 CST 2020, Dmitry Baryshkov wrote:
 
-Le jeu. 26 nov. 2020 à 1:26, 周琰杰 (Zhou Yanjie) 
-<zhouyanjie@wanyeetech.com> a écrit :
-> Add "jz4780_core1_disable()" for disable the second core of JZ4780,
-> prepare for later commits.
+> Add firmware configuration for Adreno zap shader on qrb5165-rb5.
 > 
-> Signed-off-by: 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
-
-Reviewed-by: Paul Cercueil <paul@crapouillou.net>
-
-Stephen: this patch can be merged independently of the others.
-
-Cheers,
--Paul
-
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > ---
->  drivers/clk/ingenic/jz4780-cgu.c | 21 +++++++++++++++++++++
->  1 file changed, 21 insertions(+)
+>  arch/arm64/boot/dts/qcom/qrb5165-rb5.dts | 7 +++++++
+>  1 file changed, 7 insertions(+)
 > 
-> diff --git a/drivers/clk/ingenic/jz4780-cgu.c 
-> b/drivers/clk/ingenic/jz4780-cgu.c
-> index 0268d23..dcca74e 100644
-> --- a/drivers/clk/ingenic/jz4780-cgu.c
-> +++ b/drivers/clk/ingenic/jz4780-cgu.c
-> @@ -252,8 +252,29 @@ static int jz4780_core1_enable(struct clk_hw *hw)
->  	return 0;
->  }
-> 
-> +static void jz4780_core1_disable(struct clk_hw *hw)
-> +{
-> +	struct ingenic_clk *ingenic_clk = to_ingenic_clk(hw);
-> +	struct ingenic_cgu *cgu = ingenic_clk->cgu;
-> +	unsigned long flags;
-> +	u32 lcr, clkgr1;
-> +
-> +	spin_lock_irqsave(&cgu->lock, flags);
-> +
-> +	lcr = readl(cgu->base + CGU_REG_LCR);
-> +	lcr |= LCR_PD_SCPU;
-> +	writel(lcr, cgu->base + CGU_REG_LCR);
-> +
-> +	clkgr1 = readl(cgu->base + CGU_REG_CLKGR1);
-> +	clkgr1 |= CLKGR1_CORE1;
-> +	writel(clkgr1, cgu->base + CGU_REG_CLKGR1);
-> +
-> +	spin_unlock_irqrestore(&cgu->lock, flags);
-> +}
-> +
->  static const struct clk_ops jz4780_core1_ops = {
->  	.enable = jz4780_core1_enable,
-> +	.disable = jz4780_core1_disable,
+> diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+> index 9c5135585ec9..d1f6cadca35a 100644
+> --- a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+> +++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+> @@ -423,6 +423,13 @@ &dsi0_phy {
+>  	vdds-supply = <&vreg_l5a_0p88>;
 >  };
-> 
->  static const s8 pll_od_encoding[16] = {
-> --
-> 2.7.4
-> 
+>  
+> +&gpu {
+> +	zap-shader {
+> +		memory-region = <&gpu_mem>;
+> +		firmware-name = "qcom/a650_zap.mdt";
 
+The zap shader is unfortunately signed with a vendor specific key. So
+can we please move the test signed file into qcom/sm8250/?
 
+And to avoid pushing all these scattered files to linux-firmware, can
+you please run pil-squasher [1] on it and use the a650_zap.mbn?
+
+[1] https://github.com/andersson/pil-squasher
+
+Regards,
+Bjorn
+
+> +	};
+> +};
+> +
+>  /* LS-I2C0 */
+>  &i2c4 {
+>  	status = "okay";
+> -- 
+> 2.29.2
+> 
