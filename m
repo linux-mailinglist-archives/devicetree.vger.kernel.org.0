@@ -2,70 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 64FB92CC370
-	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 18:23:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D6462CC376
+	for <lists+devicetree@lfdr.de>; Wed,  2 Dec 2020 18:23:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728704AbgLBRVG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Dec 2020 12:21:06 -0500
-Received: from mail.kernel.org ([198.145.29.99]:39226 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2388140AbgLBRVF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 2 Dec 2020 12:21:05 -0500
-From:   Mark Brown <broonie@kernel.org>
-Authentication-Results: mail.kernel.org; dkim=permerror (bad message/signature format)
-To:     Rob Herring <robh+dt@kernel.org>,
-        Adam Ward <Adam.Ward.opensource@diasemi.com>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>, linux-kernel@vger.kernel.org,
-        Support Opensource <support.opensource@diasemi.com>,
-        Vincent Whitchurch <vincent.whitchurch@axis.com>,
-        devicetree@vger.kernel.org
-In-Reply-To: <cover.1606908582.git.Adam.Ward.opensource@diasemi.com>
-References: <cover.1606908582.git.Adam.Ward.opensource@diasemi.com>
-Subject: Re: [PATCH V2 0/1] regulator: da9121: add IRQ free to release function
-Message-Id: <160692959560.34198.16327737736892832990.b4-ty@kernel.org>
-Date:   Wed, 02 Dec 2020 17:19:55 +0000
+        id S2387620AbgLBRWp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Dec 2020 12:22:45 -0500
+Received: from mail-ej1-f66.google.com ([209.85.218.66]:46281 "EHLO
+        mail-ej1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2387580AbgLBRWp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Dec 2020 12:22:45 -0500
+Received: by mail-ej1-f66.google.com with SMTP id bo9so5471242ejb.13;
+        Wed, 02 Dec 2020 09:22:28 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=Vxdi5t3aRqbauZYdW0k+eTugsOvVm5z/0z7wI7PLSG8=;
+        b=b+AFVRETr4cIJSoc7CbexbljVJaDCk0lly95KLcJhsN4O83sYKUI18+DBgnlNf0cXc
+         OLJ7WCF+2O19FA3WHEMa2yK/pBFrgq8kLSKziu0rX10UL4UZrVYMQDSOXANLsGvS2tvO
+         JwdBRSiDvSrNkDhDn8lpnstd7GMAf3n3SqWz1Dpi02OcYTW6eVMebMpbHZJG5MQpKszm
+         HmJbVGvsUwOiuYOOTduM5Rxhccj+8N3/EeN/2lz1sgBzGLRpvDGgrAwbMSUestV9m3Pi
+         bEBWwyQQU9055XJeCTe9N0Br4XK1oD009mI5Ud444FY5l+H/L8UAGJZv00VHxVrmjlYY
+         ddpw==
+X-Gm-Message-State: AOAM531eBvy0W3gJfW5d+QqWjzYfHODGzxiYtAbPhW9DfCLl+Vneuevq
+        9YOa3YHAwXF+BJrWad7jK0H3vdM4ryw=
+X-Google-Smtp-Source: ABdhPJwMnHiab0zi4zzhNdZiqlRAy8dx1lDMxaZ38uua7ZXbCox6L1iG6ArIb7XciLNpMekHF+Aq5A==
+X-Received: by 2002:a17:906:6606:: with SMTP id b6mr762218ejp.151.1606929722914;
+        Wed, 02 Dec 2020 09:22:02 -0800 (PST)
+Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
+        by smtp.googlemail.com with ESMTPSA id t11sm299077ejx.68.2020.12.02.09.22.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 02 Dec 2020 09:22:01 -0800 (PST)
+Date:   Wed, 2 Dec 2020 19:22:00 +0200
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Jagan Teki <jagan@amarulasolutions.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Li Yang <leoyang.li@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Matteo Lisi <matteo.lisi@engicam.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-amarula@amarulasolutions.com,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>
+Subject: Re: [PATCH 01/10] arm64: defconfig: Enable REGULATOR_PF8X00
+Message-ID: <20201202172200.GA3490@kozik-lap>
+References: <20201202121241.109952-1-jagan@amarulasolutions.com>
+ <20201202121241.109952-2-jagan@amarulasolutions.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20201202121241.109952-2-jagan@amarulasolutions.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 2 Dec 2020 11:32:46 +0000, Adam Ward wrote:
-> This patch fixes the DA9121 driver to disable the IRQ before cancelling
-> the work, to be sure the IRQ doesn't restart it before all IRQs are
-> masked
+On Wed, Dec 02, 2020 at 05:42:32PM +0530, Jagan Teki wrote:
+> Enable PF8X00 regulator driver by default as it used in
+> some of i.MX8MM hardware platforms.
+
+Could you mention names (one is enough) of platforms this could be found
+on? This would be more detailed reason why the option should be enabled.
+
+Best regards,
+Krzysztof
+
 > 
-> V2:
-> 
->  - Fix to release IRQ if regmap error fails probe
-> 
-> [...]
-
-Applied to
-
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
-
-Thanks!
-
-[1/1] regulator: da9121: Request IRQ directly and free in release function to avoid masking race
-      commit: 5e191d2e05a4fe098632006bb3afa5e21c8789db
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+> Cc: Catalin Marinas <catalin.marinas@arm.com>
+> Cc: Will Deacon <will@kernel.org>
+> Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+> ---
+>  arch/arm64/configs/defconfig | 1 +
+>  1 file changed, 1 insertion(+)
