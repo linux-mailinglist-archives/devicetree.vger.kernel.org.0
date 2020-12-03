@@ -2,186 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E634F2CDE5F
-	for <lists+devicetree@lfdr.de>; Thu,  3 Dec 2020 20:04:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E8082CDE78
+	for <lists+devicetree@lfdr.de>; Thu,  3 Dec 2020 20:08:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2502026AbgLCTBe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Dec 2020 14:01:34 -0500
-Received: from hqnvemgate24.nvidia.com ([216.228.121.143]:19213 "EHLO
-        hqnvemgate24.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2502016AbgLCTBd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Dec 2020 14:01:33 -0500
-Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate24.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
-        id <B5fc935c60000>; Thu, 03 Dec 2020 11:00:22 -0800
-Received: from HQMAIL109.nvidia.com (172.20.187.15) by HQMAIL101.nvidia.com
- (172.20.187.10) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 3 Dec
- 2020 19:00:18 +0000
-Received: from skomatineni-linux.nvidia.com (172.20.13.39) by mail.nvidia.com
- (172.20.187.15) with Microsoft SMTP Server id 15.0.1473.3 via Frontend
- Transport; Thu, 3 Dec 2020 19:00:17 +0000
-From:   Sowjanya Komatineni <skomatineni@nvidia.com>
-To:     <skomatineni@nvidia.com>, <thierry.reding@gmail.com>,
-        <jonathanh@nvidia.com>, <hverkuil@xs4all.nl>,
-        <sakari.ailus@iki.fi>, <robh+dt@kernel.org>
-CC:     <bparrot@ti.com>, <mchehab@kernel.org>,
-        <linux-media@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v3 13/13] media: tegra-video: Add custom V4L2 control V4L2_CID_TEGRA_SYNCPT_TIMEOUT_RETRY
-Date:   Thu, 3 Dec 2020 11:00:02 -0800
-Message-ID: <1607022002-26575-14-git-send-email-skomatineni@nvidia.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1607022002-26575-1-git-send-email-skomatineni@nvidia.com>
-References: <1607022002-26575-1-git-send-email-skomatineni@nvidia.com>
-X-NVConfidentiality: public
+        id S1725923AbgLCTGo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Dec 2020 14:06:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54996 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726121AbgLCTGn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Dec 2020 14:06:43 -0500
+Received: from mail-yb1-xb43.google.com (mail-yb1-xb43.google.com [IPv6:2607:f8b0:4864:20::b43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CAF5C061A51
+        for <devicetree@vger.kernel.org>; Thu,  3 Dec 2020 11:06:03 -0800 (PST)
+Received: by mail-yb1-xb43.google.com with SMTP id o71so3054468ybc.2
+        for <devicetree@vger.kernel.org>; Thu, 03 Dec 2020 11:06:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=zY1/UVNK1lpCKgo46pv7M4xtEHqMkdRqZiYe+oaE/HI=;
+        b=kBXK6rf2l4HvR3AS0yI+1werbY73mRV1JLVfNayiYB24G4hZ+mMX9KhAe6rtLui6wT
+         l+lgZE+6rx2soFftZ/7j+GPO2PmOscV4Vbqt0Ff03wqQ5toUTRKCyOAdLNdoDa1pKbjg
+         7j4e4l749WlmL7AXqJPQOVJjPkHPHSs6J2y+ZCElAN/sF033I+N/QZot64Qd+YYYqF+d
+         8RqTgH/KtpaMY9PolKpcFzZMTF/JbjDk/O7PXIUOxQ6Ryo2icN6J5B9PqMJ6eC7uVBTJ
+         DXSm2kocF3znjF9z9rF3V7J2WMpCDm+VePuBTnXeflnecy2J7uOGs4/nlDeDyjlCGIhO
+         fE/g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=zY1/UVNK1lpCKgo46pv7M4xtEHqMkdRqZiYe+oaE/HI=;
+        b=TsqQfXp6NUIc3GbVUNcu7hI/pbyaLUPsCpvteMmLrfWL7sApWtEyVveU9y/fE8N8N3
+         FSdsUjA8UhQxZSp0JUF+ICq+9NNG59ETlMMfz/dqP8Rn+o5/cgIO4Jhn7t1RdHu30PbZ
+         w4VELYGtaBOAJUIBZZOy4l+qApeikG0S9jFl2u28XCAv6R0OixD+NKPZtjAoOJrLVtWv
+         yLYfCfG/51gI23L7ORg9i8lv+I/3u0mo2Dc/NbvHTgx22I4YUFs/9Asom+rAX9P0hDxf
+         uh7LfEjnmMasXzGNwSvHtoz4Roeuw1v1aadLU5DVQ1JCbdW/Km21ll9hDV1sMoUAoohv
+         0QXA==
+X-Gm-Message-State: AOAM533r+mDxOAkj1BRd+s3KY1b1NlOJbfKZCKByZOuj/eVdOJqSiKCl
+        M+vuLgGqnV8AcBfebq2HjyzxmwwraSCcEHGl9krRRg==
+X-Google-Smtp-Source: ABdhPJyByVU3U6UwdjEq6N0aHqjYPPhLQgY+wiLEv+vExlD872m6k9m3aMBysR1FSGFum9W802/y/aH7VgFItnp+7lI=
+X-Received: by 2002:a25:8401:: with SMTP id u1mr969238ybk.96.1607022361930;
+ Thu, 03 Dec 2020 11:06:01 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1607022022; bh=OZJ/8SCNM9zia5Uy6aq+c9fc5V1L/LcrVZqaCjqF0cQ=;
-        h=From:To:CC:Subject:Date:Message-ID:X-Mailer:In-Reply-To:
-         References:X-NVConfidentiality:MIME-Version:Content-Type;
-        b=EkOMKegyV1cnH36jeAfnVHZsOuhtC8seEeDnlD55bTX+pkYBAjSF9i/+aJFMarqx3
-         KVJwLKG9zyu3muZglZ0kUlgF9LiLuojV3n+bJOe8sKEA8tIm1MJ+kdHGwbOcM5q5j5
-         Y+LEzfzSxL6sx9rMXm28HJmwLDV0nnw9sqSH9M37pTqi39Uo9Q+zZSf6Qechc64DwM
-         0CgNWY1OS9RtUfD1yoleBAy0/vqwsueHBjORGPnO/BWiUdx/c/4eZTjhlW1IyGIFNz
-         E9yj7eKofV7enO8EqVdgTJ8T3P68FI5WJyVtt5yC7I7aGU7BBrnSAt4qkRNNCRx5T6
-         XXaI4WP9eP1xg==
+References: <20201121020232.908850-1-saravanak@google.com> <758a1b59-1033-b0ae-2549-84c8eeea4b11@ti.com>
+In-Reply-To: <758a1b59-1033-b0ae-2549-84c8eeea4b11@ti.com>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Thu, 3 Dec 2020 11:05:26 -0800
+Message-ID: <CAGETcx_CzrPDZA_C+8JvCeL-bSPB814jfDLscEEe+TLiHhBxjA@mail.gmail.com>
+Subject: Re: [PATCH v2 00/17] Refactor fw_devlink to significantly improve
+ boot time
+To:     Tomi Valkeinen <tomi.valkeinen@ti.com>
+Cc:     "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Len Brown <lenb@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Ard Biesheuvel <ardb@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        Android Kernel Team <kernel-team@android.com>,
+        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        linux-efi <linux-efi@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds custom V4L2 control for syncpt timeout retry to continue
-capture on error for specified retries count through this control.
+On Tue, Nov 24, 2020 at 12:29 AM 'Tomi Valkeinen' via kernel-team
+<kernel-team@android.com> wrote:
+>
+> Hi,
+>
+> On 21/11/2020 04:02, Saravana Kannan wrote:
+> > The current implementation of fw_devlink is very inefficient because it
+> > tries to get away without creating fwnode links in the name of saving
+> > memory usage. Past attempts to optimize runtime at the cost of memory
+> > usage were blocked with request for data showing that the optimization
+> > made significant improvement for real world scenarios.
+> >
+> > We have those scenarios now. There have been several reports of boot
+> > time increase in the order of seconds in this thread [1]. Several OEMs
+> > and SoC manufacturers have also privately reported significant
+> > (350-400ms) increase in boot time due to all the parsing done by
+> > fw_devlink.
+> >
+> > So this patch series refactors fw_devlink to be more efficient. The key
+> > difference now is the addition of support for fwnode links -- just a few
+> > simple APIs. This also allows most of the code to be moved out of
+> > firmware specific (DT mostly) code into driver core.
+> >
+> > This brings the following benefits:
+> > - Instead of parsing the device tree multiple times (complexity was
+> >   close to O(N^3) where N in the number of properties) during bootup,
+> >   fw_devlink parses each fwnode node/property only once and creates
+> >   fwnode links. The rest of the fw_devlink code then just looks at these
+> >   fwnode links to do rest of the work.
+> >
+> > - Makes it much easier to debug probe issue due to fw_devlink in the
+> >   future. fw_devlink=on blocks the probing of devices if they depend on
+> >   a device that hasn't been added yet. With this refactor, it'll be very
+> >   easy to tell what that device is because we now have a reference to
+> >   the fwnode of the device.
+> >
+> > - Much easier to add fw_devlink support to ACPI and other firmware
+> >   types. A refactor to move the common bits from DT specific code to
+> >   driver core was in my TODO list as a prerequisite to adding ACPI
+> >   support to fw_devlink. This series gets that done.
+> >
+> > Laurent and Grygorii tested the v1 series and they saw boot time
+> > improvment of about 12 seconds and 3 seconds, respectively.
+>
+> Tested v2 on OMAP4 SDP. With my particular config, boot time to starting init went from 18.5 seconds
+> to 12.5 seconds.
+>
+>  Tomi
 
-This is useful for HDMI-to-CSI bridge debug purposes like for hotplug scenarios
-or for ignoring captures till HDMI input is stabilized.
+Rafael,
 
-Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
----
- drivers/staging/media/tegra-video/tegra210.c | 10 +++++++++-
- drivers/staging/media/tegra-video/vi.c       | 26 +++++++++++++++++++++++++-
- drivers/staging/media/tegra-video/vi.h       |  4 ++++
- 3 files changed, 38 insertions(+), 2 deletions(-)
+Friendly reminder for a review.
 
-diff --git a/drivers/staging/media/tegra-video/tegra210.c b/drivers/staging/media/tegra-video/tegra210.c
-index 063d0a3..f10a041 100644
---- a/drivers/staging/media/tegra-video/tegra210.c
-+++ b/drivers/staging/media/tegra-video/tegra210.c
-@@ -454,6 +454,7 @@ static int chan_capture_kthread_start(void *data)
- {
- 	struct tegra_vi_channel *chan = data;
- 	struct tegra_channel_buffer *buf;
-+	unsigned int retries = 0;
- 	int err = 0;
- 
- 	while (1) {
-@@ -483,8 +484,15 @@ static int chan_capture_kthread_start(void *data)
- 		spin_unlock(&chan->start_lock);
- 
- 		err = tegra_channel_capture_frame(chan, buf);
--		if (err)
-+		if (!err) {
-+			retries = 0;
-+			continue;
-+		}
-+
-+		if (retries++ > chan->syncpt_timeout_retry)
- 			vb2_queue_error(&chan->queue);
-+		else
-+			err = 0;
- 	}
- 
- 	return 0;
-diff --git a/drivers/staging/media/tegra-video/vi.c b/drivers/staging/media/tegra-video/vi.c
-index 4773281..70e1e18 100644
---- a/drivers/staging/media/tegra-video/vi.c
-+++ b/drivers/staging/media/tegra-video/vi.c
-@@ -956,7 +956,6 @@ static const struct v4l2_file_operations tegra_channel_fops = {
- /*
-  * V4L2 control operations
-  */
--#if IS_ENABLED(CONFIG_VIDEO_TEGRA_TPG)
- static int vi_s_ctrl(struct v4l2_ctrl *ctrl)
- {
- 	struct tegra_vi_channel *chan = container_of(ctrl->handler,
-@@ -968,6 +967,9 @@ static int vi_s_ctrl(struct v4l2_ctrl *ctrl)
- 		/* pattern change takes effect on next stream */
- 		chan->pg_mode = ctrl->val + 1;
- 		break;
-+	case V4L2_CID_TEGRA_SYNCPT_TIMEOUT_RETRY:
-+		chan->syncpt_timeout_retry = ctrl->val;
-+		break;
- 	default:
- 		return -EINVAL;
- 	}
-@@ -979,10 +981,22 @@ static const struct v4l2_ctrl_ops vi_ctrl_ops = {
- 	.s_ctrl	= vi_s_ctrl,
- };
- 
-+#if IS_ENABLED(CONFIG_VIDEO_TEGRA_TPG)
- static const char *const vi_pattern_strings[] = {
- 	"Black/White Direct Mode",
- 	"Color Patch Mode",
- };
-+#else
-+static const struct v4l2_ctrl_config syncpt_timeout_ctrl = {
-+	.ops = &vi_ctrl_ops,
-+	.id = V4L2_CID_TEGRA_SYNCPT_TIMEOUT_RETRY,
-+	.name = "Syncpt timeout retry",
-+	.type = V4L2_CTRL_TYPE_INTEGER,
-+	.min = 1,
-+	.max = 10000,
-+	.step = 1,
-+	.def = 5,
-+};
- #endif
- 
- static int tegra_channel_setup_ctrl_handler(struct tegra_vi_channel *chan)
-@@ -1004,6 +1018,16 @@ static int tegra_channel_setup_ctrl_handler(struct tegra_vi_channel *chan)
- #else
- 	struct v4l2_subdev *subdev;
- 
-+	/* custom control */
-+	v4l2_ctrl_new_custom(&chan->ctrl_handler, &syncpt_timeout_ctrl, NULL);
-+	if (chan->ctrl_handler.error) {
-+		dev_err(chan->vi->dev, "failed to add %s ctrl handler: %d\n",
-+			syncpt_timeout_ctrl.name,
-+			chan->ctrl_handler.error);
-+		v4l2_ctrl_handler_free(&chan->ctrl_handler);
-+		return chan->ctrl_handler.error;
-+	}
-+
- 	subdev = tegra_channel_get_remote_source_subdev(chan);
- 	if (!subdev)
- 		return -ENODEV;
-diff --git a/drivers/staging/media/tegra-video/vi.h b/drivers/staging/media/tegra-video/vi.h
-index 27061a5..a68e2c0 100644
---- a/drivers/staging/media/tegra-video/vi.h
-+++ b/drivers/staging/media/tegra-video/vi.h
-@@ -23,6 +23,8 @@
- 
- #include "csi.h"
- 
-+#define V4L2_CID_TEGRA_SYNCPT_TIMEOUT_RETRY	(V4L2_CTRL_CLASS_CAMERA | 0x1001)
-+
- #define TEGRA_MIN_WIDTH		32U
- #define TEGRA_MAX_WIDTH		32768U
- #define TEGRA_MIN_HEIGHT	32U
-@@ -160,6 +162,7 @@ struct tegra_vi_graph_entity {
-  * @of_node: device node of VI channel
-  *
-  * @ctrl_handler: V4L2 control handler of this video channel
-+ * @syncpt_timeout_retry: syncpt timeout retry count for the capture
-  * @fmts_bitmap: a bitmap for supported formats matching v4l2 subdev formats
-  * @tpg_fmts_bitmap: a bitmap for supported TPG formats
-  * @pg_mode: test pattern generator mode (disabled/direct/patch)
-@@ -201,6 +204,7 @@ struct tegra_vi_channel {
- 	struct device_node *of_node;
- 
- 	struct v4l2_ctrl_handler ctrl_handler;
-+	unsigned int syncpt_timeout_retry;
- 	DECLARE_BITMAP(fmts_bitmap, MAX_FORMAT_NUM);
- 	DECLARE_BITMAP(tpg_fmts_bitmap, MAX_FORMAT_NUM);
- 	enum tegra_vi_pg_mode pg_mode;
--- 
-2.7.4
-
+-Saravana
