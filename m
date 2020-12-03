@@ -2,127 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 398ED2CD464
-	for <lists+devicetree@lfdr.de>; Thu,  3 Dec 2020 12:15:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 10BC02CD4C3
+	for <lists+devicetree@lfdr.de>; Thu,  3 Dec 2020 12:41:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388857AbgLCLPT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Dec 2020 06:15:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38046 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388734AbgLCLPT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Dec 2020 06:15:19 -0500
-Received: from mail-pj1-x1041.google.com (mail-pj1-x1041.google.com [IPv6:2607:f8b0:4864:20::1041])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B45A2C061A51
-        for <devicetree@vger.kernel.org>; Thu,  3 Dec 2020 03:14:38 -0800 (PST)
-Received: by mail-pj1-x1041.google.com with SMTP id o7so931287pjj.2
-        for <devicetree@vger.kernel.org>; Thu, 03 Dec 2020 03:14:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=Vv+PloNNQCpQeJh5mFlRBld7Nz2wsk2oArN9hYJ1dLo=;
-        b=ruBol5EyD4z5iiIGmPi+XlFOYN1ub6mXaE7F8GUllBzOn6Jhvt4ZuwuKC+13Tg8c4R
-         n+nJ4+x3UdaiG81iS73wCh0IkRkui1qN1RE8ckGX65woLtuFmezqrqVFfTEJ3F1/zA3n
-         xKwq8rVxdvmoiwA7CUHhFDtVrhKjuKiDP8oByQRke7NhjPKnmKO4oleXatMMayIoi2lJ
-         475QXbxrjRPp+T+YYXZG/2xzxPz0PjApfn5VqrCeh+K1XyHvTq+o6YYD5l/Q0I56QKVJ
-         bhQwyTV8MRB2QxH5r+L5Fi+wsJu89dJO3SjLhtGEfTNfBfDF10sAyZYbvR/j8q9gl0Z8
-         7aCQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Vv+PloNNQCpQeJh5mFlRBld7Nz2wsk2oArN9hYJ1dLo=;
-        b=dSPkWnBWXqPMbkfGJ/Y6IYv4IQsJ+Tai3/bpihmRJmXqY73pJlYOofQjprqzsNaue4
-         BaJLdlPLjbesQqeJEzCHVl0jsDy3BY4dNoBICn5VayRddoyGTpbJG5yPHA6Dx0bx2WVg
-         8cKTH2WPwD93LhUIEuwRLVKJOwiXOyfuAdSTTiDTFvk3QwIuQLVgPzKIwAQ0aMCiqH9m
-         H/NlNloVoS0c+2H3NKZ+ghtiDmF2yhs+C0K30d+5uLxHI+yHaaByfLbbf+aF8p1cGhGd
-         vACrA1g3DA9hMgB/4dI/BgFkSrEjjabgDNyEcaTG0lUgJAO+vzrsjwfrSciNdfmFEgiQ
-         NXjw==
-X-Gm-Message-State: AOAM531VYIEKg66lBXWbj4hmiTPsAAF2F16oMAO7DIRiEdOGVdBqensM
-        1xfz9/CxJXMQEVu9czA6EUri
-X-Google-Smtp-Source: ABdhPJz0bSnP8i8XsXIdivewK4frG9Qqo3zypWeyXWVDp7r+odBj7xIPGfrU6DQ/4tiLnL9TQyrTTA==
-X-Received: by 2002:a17:902:820e:b029:d6:e802:75aa with SMTP id x14-20020a170902820eb02900d6e80275aamr2696962pln.51.1606994078204;
-        Thu, 03 Dec 2020 03:14:38 -0800 (PST)
-Received: from thinkpad ([103.59.133.81])
-        by smtp.gmail.com with ESMTPSA id u24sm1696870pfm.81.2020.12.03.03.14.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Dec 2020 03:14:37 -0800 (PST)
-Date:   Thu, 3 Dec 2020 16:44:27 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     angelogioacchino.delregno@somainline.org
-Cc:     viresh.kumar@linaro.org, rjw@rjwysocki.net,
-        jorge.ramirez-ortiz@linaro.org, robh+dt@kernel.org,
-        konrad.dybcio@somainline.org, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, ulf.hansson@linaro.org,
-        nks@flawful.org, lgirdwood@gmail.com, daniel.lezcano@linaro.org,
-        devicetree@vger.kernel.org, bjorn.andersson@linaro.org,
-        phone-devel@vger.kernel.org, broonie@kernel.org,
-        linux-arm-msm@vger.kernel.org, agross@kernel.org,
-        marijn.suijten@somainline.org, martin.botka@somainline.org,
-        robh@kernel.org
-Subject: Re: [PATCH 11/13] dt-bindings: cpufreq: Convert qcom-cpufreq-hw to
- YAML binding
-Message-ID: <20201203111427.GA3937@thinkpad>
-References: <20201126184559.3052375-1-angelogioacchino.delregno@somainline.org>
- <20201126184559.3052375-12-angelogioacchino.delregno@somainline.org>
- <20201130172305.GA2661895@robh.at.kernel.org>
+        id S2388720AbgLCLl3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Dec 2020 06:41:29 -0500
+Received: from jabberwock.ucw.cz ([46.255.230.98]:34472 "EHLO
+        jabberwock.ucw.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388687AbgLCLl2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Dec 2020 06:41:28 -0500
+Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
+        id 65C661C0B9E; Thu,  3 Dec 2020 12:40:44 +0100 (CET)
+Date:   Thu, 3 Dec 2020 12:40:44 +0100
+From:   Pavel Machek <pavel@ucw.cz>
+To:     Gene Chen <gene.chen.richtek@gmail.com>
+Cc:     Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Dan Murphy <dmurphy@ti.com>,
+        Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Gene Chen <gene_chen@richtek.com>, Wilma.Wu@mediatek.com,
+        shufan_lee@richtek.com, cy_huang@richtek.com,
+        benjamin.chao@mediatek.com
+Subject: Re: [PATCH v11 3/5] dt-bindings: leds: Add LED_FUNCTION_MOONLIGHT
+ definitions
+Message-ID: <20201203114044.GA9061@duo.ucw.cz>
+References: <1606906011-25633-1-git-send-email-gene.chen.richtek@gmail.com>
+ <1606906011-25633-4-git-send-email-gene.chen.richtek@gmail.com>
+ <20201202122329.GA30929@duo.ucw.cz>
+ <CAE+NS34D8a6Udt7ZZ0=U7oqm5POtihKvD3WjD_sAADamqQ=1AQ@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha1;
+        protocol="application/pgp-signature"; boundary="liOOAslEiF7prFVr"
 Content-Disposition: inline
-In-Reply-To: <20201130172305.GA2661895@robh.at.kernel.org>
+In-Reply-To: <CAE+NS34D8a6Udt7ZZ0=U7oqm5POtihKvD3WjD_sAADamqQ=1AQ@mail.gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
 
-On Mon, Nov 30, 2020 at 10:23:05AM -0700, Rob Herring wrote:
-> On Thu, 26 Nov 2020 19:45:57 +0100, AngeloGioacchino Del Regno wrote:
-> > Convert the qcom-cpufreq-hw documentation to YAML binding as
-> > qcom,cpufreq-hw.yaml.
-> > 
-> > Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
+--liOOAslEiF7prFVr
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-There is already a patch floating for this. Please see:
-https://lkml.org/lkml/2020/10/20/676
+Hi!
 
-Thanks,
-Mani
+> > > +++ b/include/dt-bindings/leds/common.h
+> > > @@ -78,6 +78,7 @@
+> > >  #define LED_FUNCTION_INDICATOR "indicator"
+> > >  #define LED_FUNCTION_LAN "lan"
+> > >  #define LED_FUNCTION_MAIL "mail"
+> > > +#define LED_FUNCTION_MOONLIGHT "moonlight"
+> >
+> > There's "torch" function that should be used for this. I guess comment
+> > should be added with explanation what exactly that is and how should
+> > the LED be named.
+> >
+>=20
+> According to mail, 11/25 "Re: [PATCH v7 2/5] dt-bindings: leds: Add
+> LED_COLOR_ID_MOONLIGHT definitions",
+> The Moonlight LED is LED which maximum current more than torch, but
+> less than flash. Such as front camera fill light.
+> I think our channel is moonlight, not torch.
+> I will add this description to comment.
+> We can't exactly define moonlight current level, because every vendor
+> has their own specification.
 
-> > ---
-> >  .../bindings/cpufreq/cpufreq-qcom-hw.txt      | 173 +---------------
-> >  .../bindings/cpufreq/qcom,cpufreq-hw.yaml     | 196 ++++++++++++++++++
-> >  2 files changed, 197 insertions(+), 172 deletions(-)
-> >  create mode 100644 Documentation/devicetree/bindings/cpufreq/qcom,cpufreq-hw.yaml
-> > 
-> 
-> 
-> My bot found errors running 'make dt_binding_check' on your patch:
-> 
-> yamllint warnings/errors:
-> 
-> dtschema/dtc warnings/errors:
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/cpufreq/qcom,cpufreq-hw.yaml: properties:clock-names: [{'const': 'xo'}, {'const': 'ref'}] is not of type 'object', 'boolean'
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/cpufreq/qcom,cpufreq-hw.yaml: maintainers:0: 'TBD' is not a 'email'
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/cpufreq/qcom,cpufreq-hw.yaml: ignoring, error in schema: properties: clock-names
-> warning: no schema found in file: ./Documentation/devicetree/bindings/cpufreq/qcom,cpufreq-hw.yaml
-> Error: Documentation/devicetree/bindings/cpufreq/qcom,cpufreq-hw.example.dts:150.3-151.1 syntax error
-> FATAL ERROR: Unable to parse input tree
-> make[1]: *** [scripts/Makefile.lib:342: Documentation/devicetree/bindings/cpufreq/qcom,cpufreq-hw.example.dt.yaml] Error 1
-> make[1]: *** Waiting for unfinished jobs....
-> make: *** [Makefile:1364: dt_binding_check] Error 2
-> 
-> 
-> See https://patchwork.ozlabs.org/patch/1406857
-> 
-> The base for the patch is generally the last rc1. Any dependencies
-> should be noted.
-> 
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
-> 
-> pip3 install dtschema --upgrade
-> 
-> Please check and re-submit.
-> 
+So... what is the timelimit on moonlight?
+
+But if it is used for camera illumination, I believe it should be
+simply called flash.
+
+Best regards,
+
+								Pavel
+--=20
+http://www.livejournal.com/~pavelmachek
+
+--liOOAslEiF7prFVr
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCX8jOvAAKCRAw5/Bqldv6
+8pj3AJ9cRVAbTOCXxcUiV3mbTJXFFTKK3QCgpfgXoggeGNEUdtl5msUvdmWnkSA=
+=gXOZ
+-----END PGP SIGNATURE-----
+
+--liOOAslEiF7prFVr--
