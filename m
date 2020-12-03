@@ -2,23 +2,23 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8113A2CDE28
-	for <lists+devicetree@lfdr.de>; Thu,  3 Dec 2020 20:00:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5277D2CDE2C
+	for <lists+devicetree@lfdr.de>; Thu,  3 Dec 2020 20:00:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727128AbgLCTAo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Dec 2020 14:00:44 -0500
-Received: from hqnvemgate24.nvidia.com ([216.228.121.143]:19125 "EHLO
-        hqnvemgate24.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727010AbgLCTAo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Dec 2020 14:00:44 -0500
-Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate24.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
-        id <B5fc935b30008>; Thu, 03 Dec 2020 11:00:03 -0800
-Received: from HQMAIL109.nvidia.com (172.20.187.15) by HQMAIL105.nvidia.com
- (172.20.187.12) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 3 Dec
- 2020 19:00:00 +0000
+        id S1727855AbgLCTAr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Dec 2020 14:00:47 -0500
+Received: from hqnvemgate25.nvidia.com ([216.228.121.64]:18301 "EHLO
+        hqnvemgate25.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727010AbgLCTAq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Dec 2020 14:00:46 -0500
+Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate25.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
+        id <B5fc935b60002>; Thu, 03 Dec 2020 11:00:06 -0800
+Received: from HQMAIL109.nvidia.com (172.20.187.15) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 3 Dec
+ 2020 19:00:02 +0000
 Received: from skomatineni-linux.nvidia.com (172.20.13.39) by mail.nvidia.com
  (172.20.187.15) with Microsoft SMTP Server id 15.0.1473.3 via Frontend
- Transport; Thu, 3 Dec 2020 18:59:59 +0000
+ Transport; Thu, 3 Dec 2020 19:00:01 +0000
 From:   Sowjanya Komatineni <skomatineni@nvidia.com>
 To:     <skomatineni@nvidia.com>, <thierry.reding@gmail.com>,
         <jonathanh@nvidia.com>, <hverkuil@xs4all.nl>,
@@ -26,84 +26,75 @@ To:     <skomatineni@nvidia.com>, <thierry.reding@gmail.com>,
 CC:     <bparrot@ti.com>, <mchehab@kernel.org>,
         <linux-media@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
         <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v3 00/13] tegra-video: Add support for capturing from HDMI-to-CSI bridge
-Date:   Thu, 3 Dec 2020 10:59:49 -0800
-Message-ID: <1607022002-26575-1-git-send-email-skomatineni@nvidia.com>
+Subject: [PATCH v3 02/13] media: tegra-video: Enable VI pixel transform for YUV and RGB formats
+Date:   Thu, 3 Dec 2020 10:59:51 -0800
+Message-ID: <1607022002-26575-3-git-send-email-skomatineni@nvidia.com>
 X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1607022002-26575-1-git-send-email-skomatineni@nvidia.com>
+References: <1607022002-26575-1-git-send-email-skomatineni@nvidia.com>
 X-NVConfidentiality: public
 MIME-Version: 1.0
 Content-Type: text/plain
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1607022003; bh=jY8Zlq4FoiBPbmHJITN+zE+SOrzIlCzgHph0zo6yb4A=;
-        h=From:To:CC:Subject:Date:Message-ID:X-Mailer:X-NVConfidentiality:
-         MIME-Version:Content-Type;
-        b=nLsr6NYcKctwUlBuM2L0NmRx/gQPsSJeMlUhiUPvpuOBaKJvWSH7cGCR3FtQnh9co
-         lCzusKT4s19M/6gJz/GEu0U0cWA0g5ta70JSH8wTepG4W+lmxIko/0yOBWfO/1vyaj
-         AMsIw1ibEVxH6lItHUBRrvNHYVu8I1BCMI9Uvc5hpwjEcOnQr3KUA8x8V0oCDhxUjK
-         LhRURrIjGTGt9+4mi6hYgUO1J5wuVNL4L7fCGh00liB6GZjkcTfFAoMTtSN+t1d2W6
-         /Vq1XlUWK1umZUGi/sDAyTJeIuJ2/xfl/Dhj0i2yxnSnbXxF++gpOEUsJWCwvyaP4f
-         sX5ooMF6BHs6w==
+        t=1607022006; bh=3KvReLIRXcuW/kRnBsqtVyD+GiWXJeSQRRku54/yeMg=;
+        h=From:To:CC:Subject:Date:Message-ID:X-Mailer:In-Reply-To:
+         References:X-NVConfidentiality:MIME-Version:Content-Type;
+        b=qpY7VaVJB1mUY6k5CwE8i2LCBqJjlP7r0PwhCy4qgEhEBOL4nMvEeBfSDZ9KZeQ15
+         1b+xPZHpTPzK4xBTtAZZXAk+YSjb4FeqbDPsGS4gIYeyO6FJrT1Ql6IG6unlP+uWRq
+         GRM+9rsElqAxnuXzmEsDQnFd73KFZ1sN4sADjGuJWHQSLdC1OFBI1lWGaXTwSDhNtF
+         PW1OFLPhqdluRMv85HAi82IZgQQFvT1UqwZd+/4146Yr4FasBF9CESfUHG+8Q2SNAY
+         s/Lg75xNCIUzeTq6pNLgDSduhkOFrC/T9t5IZiHswec0YZPPQfYsffXnOVb4+/sDCw
+         8pZrJOU6PuX7A==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This series includes below changes to allow capturing from HDMI-to-CSI bridges.
-- Add DV timing, EDID and log status V4L2 IOCTLs
-- Subscribe V4L2_EVENT_SOURCE_CHANGE
-- Implement V4L2 device notify callback to report queue error on source change
-  during active streaming.
-- Add support for NV16 V4L2 Pixel format.
-- Add x8 capture by multiple ports gang up for 4K captures from HDMI-to-CSI
-  bridges.
+VI Pixel transforms converts source pixel data to selected
+destination pixel formats in memory and aligns properly.
 
-Note: These patches are tested with TC358840 HDMI-to-CSI bridge.
+YUV and RGB formats need this pixel transform to be enabled.
 
-This series also include below fixes
-- Allow format change for subdevs that don't have crop support.
-- Correct V4L2 Pixel format for RGB888_1X24
-- Enable VI pixel transform for YUV and RGB formats.
+RAW formats use T_R16_I destination pixel format in memory and
+does not need pixel transform as they support direct write to
+memory.
 
-Delta between patch versions:
-[v3]:	Includes below changes based on v2 feedback
-	- Correct V4L2 pixel formats for RGB and YUV.
-	- Sets V4L2_IN_CAP_DV_TIMINGS capability for v4l2 input.
-	- Updates V4L2_FWNODE_CSI2_MAX_DATA_LANES to 8 and uses
-	  data-lanes property of Tegra CSI device graph endpoint
-	  for 8 lanes.
-	- Added V4L2 custom control V4L2_CID_TEGRA_SYNCPT_TIMEOUT_RETRY
-	  for HDMI-to-CSI bridge debug purposes.
+So, this patch enables pixel transform for YUV and RGB and keeps
+it bypass for RAW formats.
 
-[v2]:	v1 + additional patch for x8 capture support
+Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
+---
+ drivers/staging/media/tegra-video/tegra210.c | 15 ++++++++++++++-
+ 1 file changed, 14 insertions(+), 1 deletion(-)
 
-
-Sowjanya Komatineni (13):
-  media: tegra-video: Use zero crop settings if subdev has no
-    get_selection
-  media: tegra-video: Enable VI pixel transform for YUV and RGB formats
-  media: tegra-video: Fix V4L2 pixel format RGB and YUV
-  media: tegra-video: Add support for V4L2_PIX_FMT_NV16
-  media: tegra-video: Add DV timing support
-  media: tegra-video: Add support for EDID ioctl ops
-  media: tegra-video: Add support for VIDIOC_LOG_STATUS ioctl
-  media: tegra-video: Add support for V4L2_EVENT_SOURCE_CHANGE
-  media: tegra-video: Implement V4L2 device notify callback
-  media: v4l2-fwnode: Update V4L2_FWNODE_CSI2_MAX_DATA_LANES to 8
-  dt-bindings: tegra: Update csi data-lanes to maximum 8 lanes
-  media: tegra-video: Add support for x8 captures with gang ports
-  media: tegra-video: Add custom V4L2 control
-    V4L2_CID_TEGRA_SYNCPT_TIMEOUT_RETRY
-
- .../display/tegra/nvidia,tegra20-host1x.txt        |   4 +-
- drivers/media/platform/ti-vpe/cal-camerarx.c       |   2 +-
- drivers/staging/media/tegra-video/csi.c            |  35 ++-
- drivers/staging/media/tegra-video/csi.h            |  14 +-
- drivers/staging/media/tegra-video/tegra210.c       | 340 ++++++++++++++-------
- drivers/staging/media/tegra-video/vi.c             | 338 +++++++++++++++++---
- drivers/staging/media/tegra-video/vi.h             |  23 +-
- drivers/staging/media/tegra-video/video.c          |  18 ++
- include/media/v4l2-fwnode.h                        |   2 +-
- 9 files changed, 615 insertions(+), 161 deletions(-)
-
+diff --git a/drivers/staging/media/tegra-video/tegra210.c b/drivers/staging/media/tegra-video/tegra210.c
+index ac066c0..6b23aa7 100644
+--- a/drivers/staging/media/tegra-video/tegra210.c
++++ b/drivers/staging/media/tegra-video/tegra210.c
+@@ -178,10 +178,23 @@ static int tegra_channel_capture_setup(struct tegra_vi_channel *chan)
+ 	u32 format = chan->fmtinfo->img_fmt;
+ 	u32 data_type = chan->fmtinfo->img_dt;
+ 	u32 word_count = (width * chan->fmtinfo->bit_width) / 8;
++	u32 bypass_pixel_transform = BIT(BYPASS_PXL_TRANSFORM_OFFSET);
++
++	/*
++	 * VI Pixel transformation unit converts source pixels data format
++	 * into selected destination pixel format and aligns properly while
++	 * interfacing with memory packer.
++	 * This pixel transformation should be enabled for YUV and RGB
++	 * formats and should be bypassed for RAW formats as RAW formats
++	 * only support direct to memory.
++	 */
++	if (chan->pg_mode || data_type == TEGRA_IMAGE_DT_YUV422_8 ||
++	    data_type == TEGRA_IMAGE_DT_RGB888)
++		bypass_pixel_transform = 0;
+ 
+ 	vi_csi_write(chan, TEGRA_VI_CSI_ERROR_STATUS, 0xffffffff);
+ 	vi_csi_write(chan, TEGRA_VI_CSI_IMAGE_DEF,
+-		     ((chan->pg_mode ? 0 : 1) << BYPASS_PXL_TRANSFORM_OFFSET) |
++		     bypass_pixel_transform |
+ 		     (format << IMAGE_DEF_FORMAT_OFFSET) |
+ 		     IMAGE_DEF_DEST_MEM);
+ 	vi_csi_write(chan, TEGRA_VI_CSI_IMAGE_DT, data_type);
 -- 
 2.7.4
 
