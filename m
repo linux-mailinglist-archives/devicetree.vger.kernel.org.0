@@ -2,142 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7FC1D2CE2DD
-	for <lists+devicetree@lfdr.de>; Fri,  4 Dec 2020 00:46:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F56A2CE2E1
+	for <lists+devicetree@lfdr.de>; Fri,  4 Dec 2020 00:46:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727272AbgLCXps (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Dec 2020 18:45:48 -0500
-Received: from mail.kernel.org ([198.145.29.99]:47088 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726063AbgLCXps (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 3 Dec 2020 18:45:48 -0500
-X-Gm-Message-State: AOAM531wNiFmzKNAmhJQL04hJ7NEE/fmRNZ3FV3kniBFewxJjnnt5AQ0
-        Jrc5gU4sw5pXHPhic6NYWqbQpnpVooRkAEbzUQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1607039107;
-        bh=GoCfv6yRa59sMk527Ilw/+P9dXejkhutWIlptCRT1hg=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=SqgvJerutN1qMoH8pYUzEcPSIsJ9sP8VFu+42eVKRdll6974434/9HJgEPzfPc2ut
-         sAcgaFzFWR5QGZqMBZlMUokIlcWqu6qGFNoOn8GBXiVfmB4ROkZ8ZMOIgkxC4d4eCi
-         zKG4bvUiCDa571GtN88AFHeT71Qn4jUlslXTPD2WyEi2FQRLvg5pwccKNT0De1ujaE
-         cTINc0vnHl481EIQ2tAlbTVCvNbdv2Vw+otqvpe3uTy/vZ4J31x9jAezv5V06Xbc+b
-         kg7WFxRP/hFvhp9EbFzqg35iBkhenG+PQAG9fa1OhZtdTjk2441kdV2AsE9Vb+6xoK
-         WwkSGmETCahFA==
-X-Google-Smtp-Source: ABdhPJzncl3GtBbyvGBWlJ5Po1um/61Va2O6Pd4oRqyNsS2Sfx5aBQoaKNXV6nCinRK8wYpb1ruoYB7s3oKHDjkSo6s=
-X-Received: by 2002:a05:620a:148c:: with SMTP id w12mr5439539qkj.311.1607039106330;
- Thu, 03 Dec 2020 15:45:06 -0800 (PST)
+        id S1728226AbgLCXqB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Dec 2020 18:46:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41822 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727911AbgLCXqA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Dec 2020 18:46:00 -0500
+Received: from mail-ot1-x342.google.com (mail-ot1-x342.google.com [IPv6:2607:f8b0:4864:20::342])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 504DEC061A52
+        for <devicetree@vger.kernel.org>; Thu,  3 Dec 2020 15:45:20 -0800 (PST)
+Received: by mail-ot1-x342.google.com with SMTP id f12so3513969oto.10
+        for <devicetree@vger.kernel.org>; Thu, 03 Dec 2020 15:45:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=uS7KQLK0U5gabPQdDiHHbCBP4og7myvp4pgL7QMqsmk=;
+        b=iQYjQ/3Cp+Bagku5Jo6rhYtUkaXeSP1S1/VBJjWvrSGgzBbeqV8ZoRpL6Olgx463EV
+         kUgp+jzxr0e7t57Q63kHX3gFR8TXs8et6vPaNeS4Yvdhxm8UhCx3Mo8DDbgF3Sf6nzuD
+         Yg2/ZecVWm/TEsBRws4neuIBL77pQikTa7MoMZqlCfYehCvUAAJETH+nIKVwRtR1His7
+         LZL43ITgi55guLkJ0iRx5EU9/9IQDKQCJPWtid353PXHYG4ddFqiUVn8Tz6h+mI0e57H
+         zbVezEHXap/vZLrXKBmEnPzmB34hVissh1U+UDNm+pfO/CgPDG3+Dt4KAAeFaPu6afRH
+         Nygg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=uS7KQLK0U5gabPQdDiHHbCBP4og7myvp4pgL7QMqsmk=;
+        b=sSjhQPFn6DU6h9auOJJWpoCzFQ8xifGQ43GJVhOl+JGEliYkmDy+UzvkyIi+zLUX1Y
+         0rlLzyBj9SGdQGn1AWIw6PmIGu1Zt+cLWsFU2hRG2lxtFWKoOs3xy/Rqwe10M0Jbzrtu
+         VKlNVRG3xseGkK67A3jP0EbuyC3ZIFbF2nBMx1xOL7y0OaxkugW7JOlz4Hv64t3HCoY/
+         c5S9XMZV61yMhbY9W0CeX8bznEktKcfFsVWjI13AFu0fIjjkmSXiqy9DI2B6JCc0XuVR
+         fu2VHBiMEIHxdfgCMQyop0+OU11HFHfq0Ckm87S2R5+Lb2HYZbTeqM06CSCzCd8/RE5q
+         DX7Q==
+X-Gm-Message-State: AOAM532/WPAXDrzJzhGm0c5a1OBZuxANMJcyJwJgsAf8Jam3kwJnU3yF
+        6nMBZsfW4F1A/NndFA5jN9AGqg==
+X-Google-Smtp-Source: ABdhPJywp8aHWzZXEymU0Z/dLtlfTIGsbKnetdQeOLD4UqK8xE0zsHXz6HBHWCdx7XcSX6tyfPNCIw==
+X-Received: by 2002:a9d:5388:: with SMTP id w8mr1435765otg.311.1607039119614;
+        Thu, 03 Dec 2020 15:45:19 -0800 (PST)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id t21sm223571otr.77.2020.12.03.15.45.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 03 Dec 2020 15:45:18 -0800 (PST)
+Date:   Thu, 3 Dec 2020 17:45:17 -0600
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     Mark Brown <broonie@kernel.org>, linux-arm-msm@vger.kernel.org,
+        Andy Gross <agross@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/2] regulator: qcom-rpmh: Add support for PM8350/PM8350c
+Message-ID: <X8l4jThf8XlRnyjy@builder.lan>
+References: <20201203071244.2652297-1-vkoul@kernel.org>
+ <20201203071244.2652297-2-vkoul@kernel.org>
 MIME-Version: 1.0
-References: <20201203121018.16432-4-daire.mcnamara@microchip.com> <20201203210748.GA1594918@bjorn-Precision-5520>
-In-Reply-To: <20201203210748.GA1594918@bjorn-Precision-5520>
-From:   Rob Herring <robh@kernel.org>
-Date:   Thu, 3 Dec 2020 16:44:54 -0700
-X-Gmail-Original-Message-ID: <CAL_JsqK-TxRwmmP8qAQdwH__p53VzW4usY4o1z_Ee75QXa91tA@mail.gmail.com>
-Message-ID: <CAL_JsqK-TxRwmmP8qAQdwH__p53VzW4usY4o1z_Ee75QXa91tA@mail.gmail.com>
-Subject: Re: [PATCH v18 3/4] PCI: microchip: Add host driver for Microchip
- PCIe controller
-To:     Bjorn Helgaas <helgaas@kernel.org>
-Cc:     Daire McNamara <daire.mcnamara@microchip.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        PCI <linux-pci@vger.kernel.org>, devicetree@vger.kernel.org,
-        david.abdurachmanov@gmail.com, cyril.jean@microchip.com,
-        Ben Dooks <ben.dooks@codethink.co.uk>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201203071244.2652297-2-vkoul@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 3, 2020 at 2:07 PM Bjorn Helgaas <helgaas@kernel.org> wrote:
->
-> On Thu, Dec 03, 2020 at 12:10:17PM +0000, daire.mcnamara@microchip.com wrote:
-> > From: Daire McNamara <daire.mcnamara@microchip.com>
-> >
-> > Add support for the Microchip PolarFire PCIe controller when
-> > configured in host (Root Complex) mode.
-> >
-> > Signed-off-by: Daire McNamara <daire.mcnamara@microchip.com>
-> > Reviewed-by: Rob Herring <robh@kernel.org>
->
-> > +static void mc_pcie_isr(struct irq_desc *desc)
-> > +{
-> > +     struct irq_chip *chip = irq_desc_get_chip(desc);
-> > +     struct mc_port *port = irq_desc_get_handler_data(desc);
-> > +     struct device *dev = port->dev;
-> > +     struct mc_msi *msi = &port->msi;
-> > +     void __iomem *bridge_base_addr = port->axi_base_addr + MC_PCIE1_BRIDGE_ADDR;
-> > +     void __iomem *ctrl_base_addr = port->axi_base_addr + MC_PCIE1_CTRL_ADDR;
-> > +     u32 status;
-> > +     unsigned long intx_status;
-> > +     unsigned long msi_status;
-> > +     u32 bit;
-> > +     u32 virq;
-> > +
-> > +     /*
-> > +      * The core provides a single interrupt for both INTx/MSI messages.
-> > +      * So we'll read both INTx and MSI status.
-> > +      */
-> > +     chained_irq_enter(chip, desc);
-> > +
-> > +     status = readl_relaxed(ctrl_base_addr + MC_SEC_ERROR_INT);
->
-> Other than a few in mc_setup_window(), it looks like all the accesses
-> in this driver are relaxed.
+On Thu 03 Dec 01:12 CST 2020, Vinod Koul wrote:
 
-I may have asked for that.
+> Add support from RPMH regulators found in PM8350 and PM8350c PMICs
+> 
 
-> readl_relaxed() and writel_relaxed() are only used by a few of the
-> host bridge drivers.  I doubt this is because those devices behave
-> differently than all the rest, so I suspect there's a general rule
-> that they all should use.  I don't know what that rule is, but maybe
-> you do?
+Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 
-Generally, if the access doesn't need to be ordered with respect to
-DMA accesses relaxed can be used. I think relaxed variants should also
-not be used on PCI resources (long ago there was some debate that
-readl/writel was only for PCI). Most of the host bridge accesses
-aren't PCI accesses, but rather host bus accesses so relaxed should be
-correct.
-
-> Per Documentation/memory-barriers.txt, the relaxed versions provide
-> weaker ordering guarantees, so the safest thing would be to use the
-> non-relaxed versions and include a little justification for when/why
-> it is safe to use the relaxed versions.
-
-The relaxed variant is newish, so we have a good mixture in the
-kernel. Usually, it's not performance critical, so it's really only
-new code that use relaxed variants.
-
-> A lot of uses are in non-performance paths where there's really no
-> benefit to using the relaxed versions.
-
-Code size. Minimally, it's a barrier instruction on every access.
-There are cases on arm32 where the barrier also has an mmio access.
-
-> Not asking you to do anything here, but in case you've analyzed this
-> and come to the conclusion that the relaxed versions are safe here,
-> but not in mc_setup_window(), that rationale might be useful to others
-> if you included it in the commit log or a brief comment in the code.
->
-> > +static void mc_setup_window(void __iomem *bridge_base_addr, u32 index, phys_addr_t axi_addr,
-> > +                         phys_addr_t pci_addr, size_t size)
-> > +{
-> > +     u32 atr_sz = ilog2(size) - 1;
-> > +     u32 val;
-> > +
-> > +     if (index == 0)
-> > +             val = PCIE_CONFIG_INTERFACE;
-> > +     else
-> > +             val = PCIE_TX_RX_INTERFACE;
-> > +
-> > +     writel(val, bridge_base_addr + (index * ATR_ENTRY_SIZE) + MC_ATR0_AXI4_SLV0_TRSL_PARAM);
-
-Humm, I could see ordering mattering here, but a writel doesn't
-actually help. You might want an access (not using readl/writel) to
-the region being setup to work immediately after this writel. However,
-the barrier for writel is before the write.
-
-But these regions are also generally one-time, statically configured,
-so I'm not sure it's really worth spending more time analyzing
-theoretical problems.
-
-Rob
+> Signed-off-by: Vinod Koul <vkoul@kernel.org>
+> ---
+>  drivers/regulator/qcom-rpmh-regulator.c | 62 +++++++++++++++++++++++++
+>  1 file changed, 62 insertions(+)
+> 
+> diff --git a/drivers/regulator/qcom-rpmh-regulator.c b/drivers/regulator/qcom-rpmh-regulator.c
+> index d488325499a9..800072b90efd 100644
+> --- a/drivers/regulator/qcom-rpmh-regulator.c
+> +++ b/drivers/regulator/qcom-rpmh-regulator.c
+> @@ -865,6 +865,60 @@ static const struct rpmh_vreg_init_data pm8150l_vreg_data[] = {
+>  	{},
+>  };
+>  
+> +static const struct rpmh_vreg_init_data pm8350_vreg_data[] = {
+> +	RPMH_VREG("smps1",  "smp%s1",  &pmic5_ftsmps510, "vdd-s1"),
+> +	RPMH_VREG("smps2",  "smp%s2",  &pmic5_ftsmps510, "vdd-s2"),
+> +	RPMH_VREG("smps3",  "smp%s3",  &pmic5_ftsmps510, "vdd-s3"),
+> +	RPMH_VREG("smps4",  "smp%s4",  &pmic5_ftsmps510, "vdd-s4"),
+> +	RPMH_VREG("smps5",  "smp%s5",  &pmic5_ftsmps510, "vdd-s5"),
+> +	RPMH_VREG("smps6",  "smp%s6",  &pmic5_ftsmps510, "vdd-s6"),
+> +	RPMH_VREG("smps7",  "smp%s7",  &pmic5_ftsmps510, "vdd-s7"),
+> +	RPMH_VREG("smps8",  "smp%s8",  &pmic5_ftsmps510, "vdd-s8"),
+> +	RPMH_VREG("smps9",  "smp%s9",  &pmic5_ftsmps510, "vdd-s9"),
+> +	RPMH_VREG("smps10", "smp%s10", &pmic5_hfsmps510, "vdd-s10"),
+> +	RPMH_VREG("smps11", "smp%s11", &pmic5_hfsmps510, "vdd-s11"),
+> +	RPMH_VREG("smps12", "smp%s12", &pmic5_hfsmps510, "vdd-s12"),
+> +	RPMH_VREG("ldo1",   "ldo%s1",  &pmic5_nldo,      "vdd-l1-l4"),
+> +	RPMH_VREG("ldo2",   "ldo%s2",  &pmic5_pldo,      "vdd-l2-l7"),
+> +	RPMH_VREG("ldo3",   "ldo%s3",  &pmic5_nldo,      "vdd-l3-l5"),
+> +	RPMH_VREG("ldo4",   "ldo%s4",  &pmic5_nldo,      "vdd-l1-l4"),
+> +	RPMH_VREG("ldo5",   "ldo%s5",  &pmic5_nldo,      "vdd-l3-l5"),
+> +	RPMH_VREG("ldo6",   "ldo%s6",  &pmic5_nldo,      "vdd-l6-l9-l10"),
+> +	RPMH_VREG("ldo7",   "ldo%s7",  &pmic5_pldo,      "vdd-l2-l7"),
+> +	RPMH_VREG("ldo8",   "ldo%s8",  &pmic5_nldo,      "vdd-l8"),
+> +	RPMH_VREG("ldo9",   "ldo%s9",  &pmic5_nldo,      "vdd-l6-l9-l10"),
+> +	RPMH_VREG("ldo10",  "ldo%s10", &pmic5_nldo,      "vdd-l6-l9-l10"),
+> +	{},
+> +};
+> +
+> +static const struct rpmh_vreg_init_data pm8350c_vreg_data[] = {
+> +	RPMH_VREG("smps1",  "smp%s1",  &pmic5_hfsmps510, "vdd-s1"),
+> +	RPMH_VREG("smps2",  "smp%s2",  &pmic5_ftsmps510, "vdd-s2"),
+> +	RPMH_VREG("smps3",  "smp%s3",  &pmic5_ftsmps510, "vdd-s3"),
+> +	RPMH_VREG("smps4",  "smp%s4",  &pmic5_ftsmps510, "vdd-s4"),
+> +	RPMH_VREG("smps5",  "smp%s5",  &pmic5_ftsmps510, "vdd-s5"),
+> +	RPMH_VREG("smps6",  "smp%s6",  &pmic5_ftsmps510, "vdd-s6"),
+> +	RPMH_VREG("smps7",  "smp%s7",  &pmic5_ftsmps510, "vdd-s7"),
+> +	RPMH_VREG("smps8",  "smp%s8",  &pmic5_ftsmps510, "vdd-s8"),
+> +	RPMH_VREG("smps9",  "smp%s9",  &pmic5_ftsmps510, "vdd-s9"),
+> +	RPMH_VREG("smps10", "smp%s10", &pmic5_ftsmps510, "vdd-s10"),
+> +	RPMH_VREG("ldo1",   "ldo%s1",  &pmic5_pldo_lv,   "vdd-l1-l12"),
+> +	RPMH_VREG("ldo2",   "ldo%s2",  &pmic5_pldo_lv,   "vdd-l2-l8"),
+> +	RPMH_VREG("ldo3",   "ldo%s3",  &pmic5_pldo,      "vdd-l3-l4-l5-l7-l13"),
+> +	RPMH_VREG("ldo4",   "ldo%s4",  &pmic5_pldo,      "vdd-l3-l4-l5-l7-l13"),
+> +	RPMH_VREG("ldo5",   "ldo%s5",  &pmic5_pldo,      "vdd-l3-l4-l5-l7-l13"),
+> +	RPMH_VREG("ldo6",   "ldo%s6",  &pmic5_pldo,      "vdd-l6-l9-l11"),
+> +	RPMH_VREG("ldo7",   "ldo%s7",  &pmic5_pldo,      "vdd-l3-l4-l5-l7-l13"),
+> +	RPMH_VREG("ldo8",   "ldo%s8",  &pmic5_pldo_lv,   "vdd-l2-l8"),
+> +	RPMH_VREG("ldo9",   "ldo%s9",  &pmic5_pldo,      "vdd-l6-l9-l11"),
+> +	RPMH_VREG("ldo10",  "ldo%s10", &pmic5_nldo,      "vdd-l10"),
+> +	RPMH_VREG("ldo11",  "ldo%s11", &pmic5_pldo,      "vdd-l6-l9-l11"),
+> +	RPMH_VREG("ldo12",  "ldo%s12", &pmic5_pldo_lv,   "vdd-l1-l12"),
+> +	RPMH_VREG("ldo13",  "ldo%s13", &pmic5_pldo,      "vdd-l3-l4-l5-l7-l13"),
+> +	RPMH_VREG("bob",    "bob%s1",  &pmic5_bob,       "vdd-bob"),
+> +	{},
+> +};
+> +
+>  static const struct rpmh_vreg_init_data pm8009_vreg_data[] = {
+>  	RPMH_VREG("smps1",  "smp%s1",  &pmic5_hfsmps510, "vdd-s1"),
+>  	RPMH_VREG("smps2",  "smp%s2",  &pmic5_hfsmps515, "vdd-s2"),
+> @@ -984,6 +1038,14 @@ static const struct of_device_id __maybe_unused rpmh_regulator_match_table[] = {
+>  		.compatible = "qcom,pm8150l-rpmh-regulators",
+>  		.data = pm8150l_vreg_data,
+>  	},
+> +	{
+> +		.compatible = "qcom,pm8350-rpmh-regulators",
+> +		.data = pm8350_vreg_data,
+> +	},
+> +	{
+> +		.compatible = "qcom,pm8350c-rpmh-regulators",
+> +		.data = pm8350c_vreg_data,
+> +	},
+>  	{
+>  		.compatible = "qcom,pm8998-rpmh-regulators",
+>  		.data = pm8998_vreg_data,
+> -- 
+> 2.26.2
+> 
