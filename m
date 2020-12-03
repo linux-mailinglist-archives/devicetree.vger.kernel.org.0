@@ -2,196 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C3BD2CCD79
-	for <lists+devicetree@lfdr.de>; Thu,  3 Dec 2020 04:52:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6169A2CCDC9
+	for <lists+devicetree@lfdr.de>; Thu,  3 Dec 2020 05:12:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727347AbgLCDwY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Dec 2020 22:52:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54458 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726734AbgLCDwY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Dec 2020 22:52:24 -0500
-Received: from mail-qk1-x744.google.com (mail-qk1-x744.google.com [IPv6:2607:f8b0:4864:20::744])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3005C061A4D;
-        Wed,  2 Dec 2020 19:51:43 -0800 (PST)
-Received: by mail-qk1-x744.google.com with SMTP id n132so1016026qke.1;
-        Wed, 02 Dec 2020 19:51:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=SUzQs/+SoVYKqbh24yWO/KQhjnAXrlDusJdUSTJS5A8=;
-        b=Mhea7zKSrwE8kuWuWy+h9M4qWmkuaGN4aIb747Gar6/nB54tO2IxYzyAY5JGJIBgFD
-         4lNXCYHb96+jK8BAabG5UbTB6v+QvEBfjJ4Bu3NKUQepLKB3saaoGPMzgBSAvvAF2dGK
-         DOTSmr7c4mjAX+j/vsXoRVSKJCKOW3ZsKIdPhkqZ9xqynSGNxavwDYgdOKFnNcxCDIUB
-         Fhr24MF6tv758ybaKhhDZ17K3qDhsPb/0glb7vdNKf0Ihw9JAepVuoGN9K7CJGcgoj/h
-         z1oJa4ibzH3I4wFno7uS5j/qBUnMpq7ogbpp+jR2XJewTmeN2Y9rGeebn7KHR7/ov8Yi
-         hSWA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=SUzQs/+SoVYKqbh24yWO/KQhjnAXrlDusJdUSTJS5A8=;
-        b=EKUvCg4dDgqUOsLx9y6MBFTUGvZcRnUwulwsL63Um0uQ/t226yw7c0AIpQkYpvC4m9
-         LRJL/ISS4HUP6ycFaeNKaGK2ycyPDlVA1FmU4TKo085qE34CZfroVCkTvz6gy5xlAHM4
-         N+OFnbha7vO/PSCs92+GrpHV9EUK8F/SBVRN88UyWQQkLldEGcDTq9vfyBpWDXGnISTm
-         nF1ZYJkz54wzwyh0TT3Y7uAnA9x3Ly0e8vcQN7ku8BUxfDwAd+cnDhB9Z9Ch2/gGpNry
-         E5BDrLPGxrvjOvLP4AyuY+s4Q1IzxSJmPIStcBmLEMp+OQPnjmMnstiJr1cSLXloK1tX
-         WsYA==
-X-Gm-Message-State: AOAM531DIjQgJsQzXQiU8wj24eysrtr921L++wjSyY4H6OQOZbwQQPtV
-        T47ehTgqaehRHhOvTDQttfQQROqWx+iWSjeeR4A=
-X-Google-Smtp-Source: ABdhPJy7VJpgVDqrl8VrmWdiRB1M2O74ruT8AdiwDLEn+Mf13W/ZStOpINVSqcBacLORp6qnYaI9VhZZGC1MC4qMtf8=
-X-Received: by 2002:a37:ad17:: with SMTP id f23mr1146570qkm.121.1606967502905;
- Wed, 02 Dec 2020 19:51:42 -0800 (PST)
-MIME-Version: 1.0
-References: <1606455021-18882-1-git-send-email-shengjiu.wang@nxp.com>
- <1606455021-18882-2-git-send-email-shengjiu.wang@nxp.com> <20201202201955.GB1498@Asurada-Nvidia>
-In-Reply-To: <20201202201955.GB1498@Asurada-Nvidia>
-From:   Shengjiu Wang <shengjiu.wang@gmail.com>
-Date:   Thu, 3 Dec 2020 11:51:32 +0800
-Message-ID: <CAA+D8AOAMV4jyD0uBwER+0KkrBjJcrNPcT4zeYU8Y1WRDRXziQ@mail.gmail.com>
-Subject: Re: [PATCH 2/2] ASoC: fsl: Add imx-hdmi machine driver
-To:     Nicolin Chen <nicoleotsuka@gmail.com>
-Cc:     Shengjiu Wang <shengjiu.wang@nxp.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, alsa-devel@alsa-project.org,
-        Timur Tabi <timur@kernel.org>, Xiubo Li <Xiubo.Lee@gmail.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        linuxppc-dev@lists.ozlabs.org, Takashi Iwai <tiwai@suse.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        id S1726765AbgLCEMb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Dec 2020 23:12:31 -0500
+Received: from mga05.intel.com ([192.55.52.43]:13539 "EHLO mga05.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726071AbgLCEMb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 2 Dec 2020 23:12:31 -0500
+IronPort-SDR: TrfnyXf/k9wf604YwBWGYxwXUmgAvlO3HgiIlhs/j7plmDhloDARXbU4U136ToyqhBN61aGcF0
+ XRw+H+PMtYDw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9823"; a="257844428"
+X-IronPort-AV: E=Sophos;i="5.78,388,1599548400"; 
+   d="scan'208";a="257844428"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Dec 2020 20:10:51 -0800
+IronPort-SDR: SEdTETDoFLpJwifIoxOJO14nDI8vQ7LGwZmz48sqxvA0jLzCvp2iiXXW5UtrDLRMREK0BbUQyP
+ 95xGHBoSl9VA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.78,388,1599548400"; 
+   d="scan'208";a="316329844"
+Received: from sgsxdev004.isng.phoenix.local (HELO localhost) ([10.226.81.179])
+  by fmsmga007.fm.intel.com with ESMTP; 02 Dec 2020 20:10:48 -0800
+From:   Amireddy Mallikarjuna reddy <mallikarjunax.reddy@linux.intel.com>
+To:     dmaengine@vger.kernel.org, vkoul@kernel.org,
+        devicetree@vger.kernel.org, robh+dt@kernel.org
+Cc:     linux-kernel@vger.kernel.org, andriy.shevchenko@intel.com,
+        chuanhua.lei@linux.intel.com, cheol.yong.kim@intel.com,
+        qi-ming.wu@intel.com, mallikarjunax.reddy@linux.intel.com,
+        malliamireddy009@gmail.com, peter.ujfalusi@ti.com
+Subject: [PATCH v10 0/2] Add Intel LGM SoC DMA support
+Date:   Thu,  3 Dec 2020 12:10:42 +0800
+Message-Id: <cover.1606905330.git.mallikarjunax.reddy@linux.intel.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 3, 2020 at 4:23 AM Nicolin Chen <nicoleotsuka@gmail.com> wrote:
->
-> On Fri, Nov 27, 2020 at 01:30:21PM +0800, Shengjiu Wang wrote:
-> > The driver is initially designed for sound card using HDMI
-> > interface on i.MX platform. There is internal HDMI IP or
-> > external HDMI modules connect with SAI or AUD2HTX interface.
-> > It supports both transmitter and receiver devices.
-> >
-> > Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
-> > ---
-> >  sound/soc/fsl/Kconfig    |  12 ++
-> >  sound/soc/fsl/Makefile   |   2 +
-> >  sound/soc/fsl/imx-hdmi.c | 235 +++++++++++++++++++++++++++++++++++++++
-> >  3 files changed, 249 insertions(+)
-> >  create mode 100644 sound/soc/fsl/imx-hdmi.c
->
-> > diff --git a/sound/soc/fsl/imx-hdmi.c b/sound/soc/fsl/imx-hdmi.c
-> > new file mode 100644
-> > index 000000000000..ac164514b1b2
-> > --- /dev/null
-> > +++ b/sound/soc/fsl/imx-hdmi.c
->
-> > +static int imx_hdmi_hw_params(struct snd_pcm_substream *substream,
-> > +                           struct snd_pcm_hw_params *params)
-> > +{
-> > +     struct snd_soc_pcm_runtime *rtd = substream->private_data;
-> > +     struct imx_hdmi_data *data = snd_soc_card_get_drvdata(rtd->card);
-> > +     bool tx = substream->stream == SNDRV_PCM_STREAM_PLAYBACK;
-> > +     struct snd_soc_dai *cpu_dai = asoc_rtd_to_cpu(rtd, 0);
-> > +     struct snd_soc_card *card = rtd->card;
-> > +     struct device *dev = card->dev;
-> > +     int ret;
-> > +
-> > +     /* set cpu DAI configuration */
-> > +     ret = snd_soc_dai_set_sysclk(cpu_dai, data->cpu_priv.sysclk_id[tx],
-> > +                                  8 * data->cpu_priv.slot_width * params_rate(params),
->
-> Looks like fixed 2 slots being used, judging by the set_tdm_slot
-> call below. Then...why "8 *"? Probably need a line of comments?
+Add DMA controller driver for Lightning Mountain (LGM) family of SoCs.
 
-The master clock always 256 * rate, when slot_width=32.  so use
-the 8 * slot_width.  will add comments.
+The main function of the DMA controller is the transfer of data from/to any
+peripheral to/from the memory. A memory to memory copy capability can also
+be configured. This ldma driver is used for configure the device and channnels
+for data and control paths.
 
->
-> > +                                  tx ? SND_SOC_CLOCK_OUT : SND_SOC_CLOCK_IN);
-> > +     if (ret && ret != -ENOTSUPP) {
-> > +             dev_err(dev, "failed to set cpu sysclk: %d\n", ret);
-> > +             return ret;
-> > +     }
-> > +
-> > +     ret = snd_soc_dai_set_tdm_slot(cpu_dai, 0, 0, 2, data->cpu_priv.slot_width);
->
-> May have a local variable to cache slot_width.
+These controllers provide DMA capabilities for a variety of on-chip
+devices such as SSC, HSNAND and GSWIP (Gigabit Switch IP).
 
-ok.
+-------------
+Future Plans:
+-------------
+LGM SOC also supports Hardware Memory Copy engine.
+The role of the HW Memory copy engine is to offload memory copy operations
+from the CPU.
 
->
-> > +static int imx_hdmi_probe(struct platform_device *pdev)
->
-> > +     data->dai.name = "i.MX HDMI";
-> > +     data->dai.stream_name = "i.MX HDMI";
-> > +     data->dai.cpus->dai_name = dev_name(&cpu_pdev->dev);
-> > +     data->dai.platforms->of_node = cpu_np;
-> > +     data->dai.ops = &imx_hdmi_ops;
-> > +     data->dai.playback_only = true;
-> > +     data->dai.capture_only = false;
-> > +     data->dai.init = imx_hdmi_init;
-> > +
-> > +
-> > +     if (of_property_read_bool(np, "hdmi-out")) {
-> > +             data->dai.playback_only = true;
-> > +             data->dai.capture_only = false;
-> > +             data->dai.codecs->dai_name = "i2s-hifi";
-> > +             data->dai.codecs->name = "hdmi-audio-codec.1";
-> > +             data->dai.dai_fmt = data->dai_fmt |
-> > +                                 SND_SOC_DAIFMT_NB_NF |
-> > +                                 SND_SOC_DAIFMT_CBS_CFS;
-> > +     }
-> > +
-> > +     if (of_property_read_bool(np, "hdmi-in")) {
-> > +             data->dai.playback_only = false;
-> > +             data->dai.capture_only = true;
-> > +             data->dai.codecs->dai_name = "i2s-hifi";
-> > +             data->dai.codecs->name = "hdmi-audio-codec.2";
-> > +             data->dai.dai_fmt = data->dai_fmt |
-> > +                                 SND_SOC_DAIFMT_NB_NF |
-> > +                                 SND_SOC_DAIFMT_CBM_CFM;
-> > +     }
-> > +
-> > +     if ((data->dai.playback_only && data->dai.capture_only) ||
-> > +         (!data->dai.playback_only && !data->dai.capture_only)) {
-> > +             dev_err(&pdev->dev, "Wrongly enable HDMI DAI link\n");
-> > +             goto fail;
-> > +     }
->
-> Seems that this condition check can never be true, given that:
-> 1. By default: playback_only=true && capture_only=false
-> 2. Conditionally overwritten: playback_only=true && capture_only=false
-> 3. Conditionally overwritten: playback_only=false && capture_only=true
->
-> If I understand it correctly, probably should be something like:
->         bool hdmi_out = of_property_read_bool(np, "hdmi-out");
->         bool hdmi_in = of_property_read_bool(np, "hdmi-in");
->
->         if ((hdmi_out && hdmi_in) || (!hdmi_out || !hdmi_in))
->                 // "Invalid HDMI DAI link"; goto fail;
->
->         if (hdmi_out) {
->                 // ...
->         } else if (hdmi_in) {
->                 // ...
->         } else // No need of this line if two properties are exclusive
->
+Amireddy Mallikarjuna reddy (2):
+  dt-bindings: dma: Add bindings for Intel LGM SoC
+  Add Intel LGM SoC DMA support.
 
-Good catch, will update it.
+ .../devicetree/bindings/dma/intel,ldma.yaml   |  116 ++
+ drivers/dma/Kconfig                           |    2 +
+ drivers/dma/Makefile                          |    1 +
+ drivers/dma/lgm/Kconfig                       |    9 +
+ drivers/dma/lgm/Makefile                      |    2 +
+ drivers/dma/lgm/lgm-dma.c                     | 1739 +++++++++++++++++
+ 6 files changed, 1869 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/dma/intel,ldma.yaml
+ create mode 100644 drivers/dma/lgm/Kconfig
+ create mode 100644 drivers/dma/lgm/Makefile
+ create mode 100644 drivers/dma/lgm/lgm-dma.c
+--
+v1:
+- Initial version.
 
-> > +     data->card.num_links = 1;
-> > +     data->card.dai_link = &data->dai;
-> > +
-> > +     platform_set_drvdata(pdev, &data->card);
->
-> Why pass card pointer?
+v2:
+- Fix device tree bot issues, correspondign driver changes done.
+- Fix kerntel test robot warnings.
+  --------------------------------------------------------
+  >> drivers/dma/lgm/lgm-dma.c:729:5: warning: no previous prototype for function 'intel_dma_chan_desc_cfg' [-Wmissing-prototypes]
+  int intel_dma_chan_desc_cfg(struct dma_chan *chan, dma_addr_t desc_base,
+  ^
+  drivers/dma/lgm/lgm-dma.c:729:1: note: declare 'static' if the function is not intended to be used outside of this translation unit
+  int intel_dma_chan_desc_cfg(struct dma_chan *chan, dma_addr_t desc_base,
+  ^
+  static
+  1 warning generated.
 
-Seems it duplicates with dev_set_drvdata(card->dev, card);
-in snd_soc_register_card.  will remove it.
+  vim +/intel_dma_chan_desc_cfg +729 drivers/dma/lgm/lgm-dma.c
 
-best regards
-wang shengjiu
+    728
+  > 729 int intel_dma_chan_desc_cfg(struct dma_chan *chan, dma_addr_t desc_base,
+    730                             int desc_num)
+    731 {
+    732         return ldma_chan_desc_cfg(to_ldma_chan(chan), desc_base, desc_num);
+    733 }
+    734 EXPORT_SYMBOL_GPL(intel_dma_chan_desc_cfg);
+    735
+
+   Reported-by: kernel test robot <lkp@intel.com>
+   ---------------------------------------------------------------
+
+v3:
+- Fix smatch warning.
+  ----------------------------------------------------------------
+  smatch warnings:
+  drivers/dma/lgm/lgm-dma.c:1306 ldma_cfg_init() error: uninitialized symbol 'ret'.
+
+  Reported-by: kernel test robot <lkp@intel.com>
+  Reported-by: Dan Carpenter <dan.carpenter@oracle.com>
+  ----------------------------------------------------------------
+
+v4:
+- Address Thomas Langer comments in dtbinding and corresponding driver side changes.
+- Driver side changes to corresponding device tree changes.
+
+v5:
+- Add changes to read 'dmas' properties and update the config properties driver side.
+- Add virt_dma_desc utilizes virt-dma API.
+
+v6:
+- Driver changes corresponding to the device tree changes.
+- Restructure things to have less activity with the spinlock.
+- Save the slave config in dma_slave_config() and used in prepare time.
+- Addressed & fixed issues related to desc_free callback _free_ up the memory.
+- Addressed peter review comments.
+
+v7:
+- Change bool to tristate in Kconfig
+- Explained the _initcall()
+- change of_property*() to device_property_*()
+- split the code to functions at version checks
+- Remove the dma caller capability restrictions
+- used for_each_set_bit()
+- Addressed minor comments and fine tune the code.
+
+v7-resend:
+- rebase to 5.10-rc1
+
+v8:
+- rebase to 5.10-rc3
+- Addressed structural things and fine tune the code.
+
+v9:
+- rebase to 5.10-rc3
+- No change.
+
+v10:
+- rebase to 5.10-rc6
+- Used helpers in bitfield.h (FIELD_PREP ()) instead of bit fields to set the descriptor fields.
+- Removed local copy of dmaengine ops.
+- Removed custom API and used dmaengine callback & remove include/linux/dma/lgm_dma.h file
+- Moved dt properties to driver data.
+- Fine tune the code.
+-- 
+2.17.1
+
