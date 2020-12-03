@@ -2,78 +2,473 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 46D4D2CE099
-	for <lists+devicetree@lfdr.de>; Thu,  3 Dec 2020 22:25:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 780422CE13C
+	for <lists+devicetree@lfdr.de>; Thu,  3 Dec 2020 22:58:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728210AbgLCVZN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Dec 2020 16:25:13 -0500
-Received: from asavdk4.altibox.net ([109.247.116.15]:46988 "EHLO
-        asavdk4.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727213AbgLCVZN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Dec 2020 16:25:13 -0500
-Received: from ravnborg.org (unknown [188.228.123.71])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by asavdk4.altibox.net (Postfix) with ESMTPS id 01527804D9;
-        Thu,  3 Dec 2020 22:24:23 +0100 (CET)
-Date:   Thu, 3 Dec 2020 22:24:22 +0100
-From:   Sam Ravnborg <sam@ravnborg.org>
-To:     Tomi Valkeinen <tomi.valkeinen@ti.com>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Jonas Karlman <jonas@kwiboo.se>, Sekhar Nori <nsekhar@ti.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Swapnil Kashinath Jakhade <sjakhade@cadence.com>,
-        Nikhil Devshatwar <nikhil.nd@ti.com>
-Subject: Re: [PATCH v4 0/2] drm: add DisplayPort connector
-Message-ID: <20201203212422.GA81406@ravnborg.org>
-References: <20201130112919.241054-1-tomi.valkeinen@ti.com>
- <0110944b-f531-1a2c-2263-e5cba86730e4@ti.com>
+        id S2388211AbgLCV52 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Dec 2020 16:57:28 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:40062 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2387794AbgLCV51 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Dec 2020 16:57:27 -0500
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0B3LuIMq126315;
+        Thu, 3 Dec 2020 15:56:18 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1607032578;
+        bh=aM9wPOUilzyryttKhDvnbmWeHHi8jRKqiq5TJtXgpp8=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=YbefeJmSwnuEdQ+Cq6h8RdieNnBQnqbmnK36BP2bYZRwbxS3/Yo/4t17xkd0VDOqL
+         077H0FWSQfa4cn+xK6m9227qWBrBNWOyEmd+cxs77abbV3d8fZSVS1tb1TJVzIJWcS
+         XicsQJEKdJoXervaXRnwVkYD/A6EeUcO1bXW6ATc=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0B3LuIF9110172
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 3 Dec 2020 15:56:18 -0600
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 3 Dec
+ 2020 15:56:17 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Thu, 3 Dec 2020 15:56:18 -0600
+Received: from [10.250.38.244] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0B3LuHF1039250;
+        Thu, 3 Dec 2020 15:56:17 -0600
+Subject: Re: [PATCH 2/3] arm64: dts: ti: Add Support for AM642 SoC
+To:     Dave Gerlach <d-gerlach@ti.com>, Rob Herring <robh+dt@kernel.org>,
+        Nishanth Menon <nm@ti.com>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, Tony Lindgren <tony@atomide.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Peter Ujfalusi <peter.ujfalusi@ti.com>,
+        Sekhar Nori <nsekhar@ti.com>,
+        Kishon Vijay Abraham <kishon@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Aswath Govindraju <a-govindraju@ti.com>
+References: <20201125052004.17823-1-d-gerlach@ti.com>
+ <20201125052004.17823-3-d-gerlach@ti.com>
+From:   Suman Anna <s-anna@ti.com>
+Message-ID: <9ef76d15-46e5-884d-2b00-3228c46a73ac@ti.com>
+Date:   Thu, 3 Dec 2020 15:56:17 -0600
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <0110944b-f531-1a2c-2263-e5cba86730e4@ti.com>
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.3 cv=Itgwjo3g c=1 sm=1 tr=0
-        a=S6zTFyMACwkrwXSdXUNehg==:117 a=S6zTFyMACwkrwXSdXUNehg==:17
-        a=kj9zAlcOel0A:10 a=RvfnRF042-DQDJFLRnMA:9 a=CjuIK1q_8ugA:10
+In-Reply-To: <20201125052004.17823-3-d-gerlach@ti.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Tomi,
-On Thu, Dec 03, 2020 at 01:52:21PM +0200, Tomi Valkeinen wrote:
-> Hi DRM Bridge maintainers,
-> 
-> On 30/11/2020 13:29, Tomi Valkeinen wrote:
-> > Hi,
-> > 
-> > This series adds the DT bindings and a driver for DisplayPort connector.
-> > 
-> > Minor changes since v3:
-> > - Added Laurent's reviewed-bys
-> > - Added $ref to graph schema
-> > - Use 'ret' instead of 'r'
-> > - Add the missing period
-> > 
-> >  Tomi
-> > 
-> > Tomi Valkeinen (2):
-> >   dt-bindings: dp-connector: add binding for DisplayPort connector
-> >   drm/bridge: display-connector: add DP support
-> > 
-> >  .../display/connector/dp-connector.yaml       | 56 +++++++++++++++++++
-> >  drivers/gpu/drm/bridge/display-connector.c    | 46 ++++++++++++++-
-> >  2 files changed, 100 insertions(+), 2 deletions(-)
-> >  create mode 100644 Documentation/devicetree/bindings/display/connector/dp-connector.yaml
-> > 
-> 
-> Is it ok for me to push this to drm-misc-next, or does one of the bridge maintainers want to handle
-> that?
+Hi Dave,
 
-IMO apply them to drm-misc-next.
-But I am not bridge maintainer so...
+On 11/24/20 11:20 PM, Dave Gerlach wrote:
+> The AM642 SoC belongs to the K3 Multicore SoC architecture platform,
+> providing advanced system integration to enable applications such as
+> Motor Drives, PLC, Remote IO and IoT Gateways.
+> 
+> Some highlights of this SoC are:
+> * Dual Cortex-A53s in a single cluster, two clusters of dual Cortex-R5F
+>   MCUs, and a single Cortex-M4F.
+> * Two Gigabit Industrial Communication Subsystems (ICSSG).
+> * Integrated Ethernet switch supporting up to a total of two external
+>   ports.
+> * PCIe-GEN2x1L, USB3/USB2, 2xCAN-FD, eMMC and SD, UFS, OSPI memory
+>   controller, QSPI, I2C, eCAP/eQEP, ePWM, ADC, among other
+>   peripherals.
+> * Centralized System Controller for Security, Power, and Resource
+>   Management (DMSC).
+> 
+> See AM64X Technical Reference Manual (SPRUIM2, Nov 2020)
+> for further details: https://www.ti.com/lit/pdf/spruim2
+> 
+> Introduce basic support for the AM642 SoC to enable minimal
+> ramdisk boot. Introduce a limited set of MAIN domain periperhals
+> under cbass_main and a placeholder cbass_mcu node for future MCU
+> domain usage.
+> 
+> Signed-off-by: Dave Gerlach <d-gerlach@ti.com>
+> ---
+>  arch/arm64/boot/dts/ti/k3-am64-main.dtsi | 178 +++++++++++++++++++++++
+>  arch/arm64/boot/dts/ti/k3-am64.dtsi      |  95 ++++++++++++
+>  arch/arm64/boot/dts/ti/k3-am642.dtsi     |  65 +++++++++
+>  3 files changed, 338 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/ti/k3-am64-main.dtsi
+>  create mode 100644 arch/arm64/boot/dts/ti/k3-am64.dtsi
+>  create mode 100644 arch/arm64/boot/dts/ti/k3-am642.dtsi
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
+> new file mode 100644
+> index 000000000000..4830a8e4d89b
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
+> @@ -0,0 +1,178 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Device Tree Source for AM642 SoC Family Main Domain peripherals
+> + *
+> + * Copyright (C) 2020 Texas Instruments Incorporated - https://www.ti.com/
+> + */
+> +
+> +&cbass_main {
+> +	gic500: interrupt-controller@1800000 {
+> +		compatible = "arm,gic-v3";
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges;
+> +		#interrupt-cells = <3>;
+> +		interrupt-controller;
+> +		reg = <0x00 0x01800000 0x00 0x10000>,	/* GICD */
+> +		      <0x00 0x01840000 0x00 0xC0000>;	/* GICR */
+> +		/*
+> +		 * vcpumntirq:
+> +		 * virtual CPU interface maintenance interrupt
+> +		 */
+> +		interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
+> +
+> +		gic_its: msi-controller@1820000 {
+> +			compatible = "arm,gic-v3-its";
+> +			reg = <0x00 0x01820000 0x00 0x10000>;
+> +			socionext,synquacer-pre-its = <0x1000000 0x400000>;
+> +			msi-controller;
+> +			#msi-cells = <1>;
+> +		};
+> +	};
+> +
+> +	dmss {
+> +		compatible = "simple-mfd";
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		dma-ranges;
+> +		ranges;
+> +
+> +		secure_proxy_main: mailbox@4d000000 {
+> +			compatible = "ti,am654-secure-proxy";
+> +			#mbox-cells = <1>;
+> +			reg-names = "target_data", "rt", "scfg";
+> +			reg = <0x00 0x4d000000 0x00 0x80000>,
+> +			      <0x00 0x4a600000 0x00 0x80000>,
+> +			      <0x00 0x4a400000 0x00 0x80000>;
+> +			interrupt-names = "rx_012";
+> +			interrupts = <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>;
+> +		};
+> +	};
+> +
+> +	dmsc: dmsc {
+> +		compatible = "ti,k2g-sci";
+> +		ti,host-id = <12>;
+> +		mbox-names = "rx", "tx";
+> +		mboxes= <&secure_proxy_main 12>,
+> +			<&secure_proxy_main 13>;
+> +
+> +		k3_pds: power-controller {
+> +			compatible = "ti,sci-pm-domain";
+> +			#power-domain-cells = <2>;
+> +		};
+> +
+> +		k3_clks: clocks {
+> +			compatible = "ti,k2g-sci-clk";
+> +			#clock-cells = <2>;
+> +		};
+> +
+> +		k3_reset: reset-controller {
+> +			compatible = "ti,sci-reset";
+> +			#reset-cells = <2>;
+> +		};
+> +	};
+> +
+> +	main_pmx0: pinctrl@f4000 {
+> +		compatible = "pinctrl-single";
+> +		reg = <0x00 0xf4000 0x00 0x2e4>;
+> +		#pinctrl-cells = <1>;
+> +		pinctrl-single,register-width = <32>;
+> +		pinctrl-single,function-mask = <0xffffffff>;
+> +	};
+> +
+> +	chipid@43000014 {
+> +		compatible = "ti,am654-chipid";
+> +		reg = <0x00 0x43000014 0x00 0x4>;
+> +	};
+> +
+> +	main_uart0: serial@2800000 {
+> +		compatible = "ti,am64-uart", "ti,am654-uart";
+> +		reg = <0x00 0x02800000 0x00 0x100>;
+> +		reg-shift = <2>;
+> +		reg-io-width = <4>;
+> +		interrupts = <GIC_SPI 178 IRQ_TYPE_LEVEL_HIGH>;
+> +		clock-frequency = <48000000>;
+> +		current-speed = <115200>;
+> +		power-domains = <&k3_pds 146 TI_SCI_PD_EXCLUSIVE>;
+> +		clocks = <&k3_clks 146 0>;
+> +		clock-names = "fclk";
+> +	};
+> +
+> +	main_uart1: serial@2810000 {
+> +		compatible = "ti,am64-uart", "ti,am654-uart";
+> +		reg = <0x00 0x02810000 0x00 0x100>;
+> +		reg-shift = <2>;
+> +		reg-io-width = <4>;
+> +		interrupts = <GIC_SPI 179 IRQ_TYPE_LEVEL_HIGH>;
+> +		clock-frequency = <48000000>;
+> +		current-speed = <115200>;
+> +		power-domains = <&k3_pds 152 TI_SCI_PD_EXCLUSIVE>;
+> +		clocks = <&k3_clks 152 0>;
+> +		clock-names = "fclk";
+> +	};
+> +
+> +	main_uart2: serial@2820000 {
+> +		compatible = "ti,am64-uart", "ti,am654-uart";
+> +		reg = <0x00 0x02820000 0x00 0x100>;
+> +		reg-shift = <2>;
+> +		reg-io-width = <4>;
+> +		interrupts = <GIC_SPI 180 IRQ_TYPE_LEVEL_HIGH>;
+> +		clock-frequency = <48000000>;
+> +		current-speed = <115200>;
+> +		power-domains = <&k3_pds 153 TI_SCI_PD_EXCLUSIVE>;
+> +		clocks = <&k3_clks 153 0>;
+> +		clock-names = "fclk";
+> +	};
+> +
+> +	main_uart3: serial@2830000 {
+> +		compatible = "ti,am64-uart", "ti,am654-uart";
+> +		reg = <0x00 0x02830000 0x00 0x100>;
+> +		reg-shift = <2>;
+> +		reg-io-width = <4>;
+> +		interrupts = <GIC_SPI 181 IRQ_TYPE_LEVEL_HIGH>;
+> +		clock-frequency = <48000000>;
+> +		current-speed = <115200>;
+> +		power-domains = <&k3_pds 154 TI_SCI_PD_EXCLUSIVE>;
+> +		clocks = <&k3_clks 154 0>;
+> +		clock-names = "fclk";
+> +	};
+> +
+> +	main_uart4: serial@2840000 {
+> +		compatible = "ti,am64-uart", "ti,am654-uart";
+> +		reg = <0x00 0x02840000 0x00 0x100>;
+> +		reg-shift = <2>;
+> +		reg-io-width = <4>;
+> +		interrupts = <GIC_SPI 182 IRQ_TYPE_LEVEL_HIGH>;
+> +		clock-frequency = <48000000>;
+> +		current-speed = <115200>;
+> +		power-domains = <&k3_pds 155 TI_SCI_PD_EXCLUSIVE>;
+> +		clocks = <&k3_clks 155 0>;
+> +		clock-names = "fclk";
+> +	};
+> +
+> +	main_uart5: serial@2850000 {
+> +		compatible = "ti,am64-uart", "ti,am654-uart";
+> +		reg = <0x00 0x02850000 0x00 0x100>;
+> +		reg-shift = <2>;
+> +		reg-io-width = <4>;
+> +		interrupts = <GIC_SPI 183 IRQ_TYPE_LEVEL_HIGH>;
+> +		clock-frequency = <48000000>;
+> +		current-speed = <115200>;
+> +		power-domains = <&k3_pds 156 TI_SCI_PD_EXCLUSIVE>;
+> +		clocks = <&k3_clks 156 0>;
+> +		clock-names = "fclk";
+> +	};
+> +
+> +	main_uart6: serial@2860000 {
+> +		compatible = "ti,am64-uart", "ti,am654-uart";
+> +		reg = <0x00 0x02860000 0x00 0x100>;
+> +		reg-shift = <2>;
+> +		reg-io-width = <4>;
+> +		interrupts = <GIC_SPI 184 IRQ_TYPE_LEVEL_HIGH>;
+> +		clock-frequency = <48000000>;
+> +		current-speed = <115200>;
+> +		power-domains = <&k3_pds 158 TI_SCI_PD_EXCLUSIVE>;
+> +		clocks = <&k3_clks 158 0>;
+> +		clock-names = "fclk";
+> +	};
+> +};
+> diff --git a/arch/arm64/boot/dts/ti/k3-am64.dtsi b/arch/arm64/boot/dts/ti/k3-am64.dtsi
+> new file mode 100644
+> index 000000000000..0637cf9ede5f
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/ti/k3-am64.dtsi
+> @@ -0,0 +1,95 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Device Tree Source for AM642 SoC Family
+> + *
+> + * Copyright (C) 2020 Texas Instruments Incorporated - https://www.ti.com/
+> + */
+> +
+> +#include <dt-bindings/interrupt-controller/irq.h>
+> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> +#include <dt-bindings/pinctrl/k3.h>
+> +#include <dt-bindings/soc/ti,sci_pm_domain.h>
+> +
+> +/ {
+> +	model = "Texas Instruments K3 AM642 SoC";
+> +	compatible = "ti,am642";
+> +	interrupt-parent = <&gic500>;
+> +	#address-cells = <2>;
+> +	#size-cells = <2>;
+> +
+> +	aliases {
+> +		serial2 = &main_uart0;
+> +		serial3 = &main_uart1;
+> +		serial4 = &main_uart2;
+> +		serial5 = &main_uart3;
+> +		serial6 = &main_uart4;
+> +		serial7 = &main_uart5;
+> +		serial8 = &main_uart6;
+> +	};
+> +
+> +	chosen { };
+> +
+> +	firmware {
+> +		optee {
+> +			compatible = "linaro,optee-tz";
+> +			method = "smc";
+> +		};
+> +
+> +		psci: psci {
+> +			compatible = "arm,psci-1.0";
+> +			method = "smc";
+> +		};
+> +	};
+> +
+> +	a53_timer0: timer-cl0-cpu0 {
+> +		compatible = "arm,armv8-timer";
+> +		interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_LOW>, /* cntpsirq */
+> +			     <GIC_PPI 14 IRQ_TYPE_LEVEL_LOW>, /* cntpnsirq */
+> +			     <GIC_PPI 11 IRQ_TYPE_LEVEL_LOW>, /* cntvirq */
+> +			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>; /* cnthpirq */
+> +	};
+> +
+> +	pmu: pmu {
+> +		compatible = "arm,armv8-pmuv3";
+> +		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_HIGH>;
+> +	};
+> +
+> +	cbass_main: bus@f4000 {
+> +		compatible = "simple-bus";
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges = <0x00 0x00600000 0x00 0x00600000 0x00 0x00001100>, /* GPIO */
+> +			 <0x00 0x00a40000 0x00 0x00a40000 0x00 0x00000800>, /* Timesync router */
+> +			 <0x00 0x01000000 0x00 0x01000000 0x00 0x02330400>, /* First peripheral window */
+> +			 <0x00 0x08000000 0x00 0x08000000 0x00 0x00200000>, /* Main CPSW */
+> +			 <0x00 0x0d000000 0x00 0x0d000000 0x00 0x00800000>, /* PCIE_CORE */
+> +			 <0x00 0x0f000000 0x00 0x0f000000 0x00 0x00c44200>, /* Second peripheral window */
+> +			 <0x00 0x20000000 0x00 0x20000000 0x00 0x0a008000>, /* Third peripheral window */
+> +			 <0x00 0x30000000 0x00 0x30000000 0x00 0x000bc100>, /* ICSSG0/1 */
+> +			 <0x00 0x37000000 0x00 0x37000000 0x00 0x00040000>, /* TIMERMGR0 TIMERS */
+> +			 <0x00 0x39000000 0x00 0x39000000 0x00 0x00000400>, /* CPTS0 */
+> +			 <0x00 0x3b000000 0x00 0x3b000000 0x00 0x00000400>, /* GPMC0_CFG */
+> +			 <0x00 0x3cd00000 0x00 0x3cd00000 0x00 0x00000200>, /* TIMERMGR0_CONFIG */
+> +			 <0x00 0x3f004000 0x00 0x3f004000 0x00 0x00000400>, /* GICSS0_REGS */
+> +			 <0x00 0x43000000 0x00 0x43000000 0x00 0x00020000>, /* CTRL_MMR0 */
+> +			 <0x00 0x48000000 0x00 0x48000000 0x00 0x06400000>, /* DMASS */
+> +			 <0x00 0x50000000 0x00 0x50000000 0x00 0x08000000>, /* GPMC0 DATA */
+> +			 <0x00 0x000f4000 0x00 0x000f4000 0x00 0x000002e4>, /* PINCTRL */
 
-	Sam
+Can you move this to the top, so that all these are in increasing memory order?
+
+> +			 <0x00 0x68000000 0x00 0x68000000 0x00 0x08000000>, /* PCIe DAT0 */
+> +			 <0x06 0x00000000 0x06 0x00000000 0x01 0x00000000>, /* PCIe DAT1 */
+> +			 <0x05 0x00000000 0x05 0x00000000 0x01 0x00000000>, /* FSS0 DAT3 */
+
+This is atleast missing the ranges for On-Chip SRAM and the R5FSS, but those can
+always be added incrementally as well.
+
+Also, is there a reason for using these ranges a bit more granular compared to
+the earlier SoCs?
+
+regards
+Suman
+
+> +
+> +			 /* MCU Domain Range */
+> +			 <0x00 0x04000000 0x00 0x04000000 0x00 0x01ff1400>;
+> +
+> +		cbass_mcu: bus@4000000 {
+> +			compatible = "simple-bus";
+> +			#address-cells = <2>;
+> +			#size-cells = <2>;
+> +			ranges = <0x00 0x04000000 0x00 0x04000000 0x00 0x01ff1400>; /* Peripheral window */
+> +		};
+> +	};
+> +};
+> +
+> +/* Now include the peripherals for each bus segments */
+> +#include "k3-am64-main.dtsi"
+> diff --git a/arch/arm64/boot/dts/ti/k3-am642.dtsi b/arch/arm64/boot/dts/ti/k3-am642.dtsi
+> new file mode 100644
+> index 000000000000..b30f239e84f1
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/ti/k3-am642.dtsi
+> @@ -0,0 +1,65 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Device Tree Source for AM642 SoC family in Dual core configuration
+> + *
+> + * Copyright (C) 2020 Texas Instruments Incorporated - https://www.ti.com/
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "k3-am64.dtsi"
+> +
+> +/ {
+> +	cpus {
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		cpu-map {
+> +			cluster0: cluster0 {
+> +				core0 {
+> +					cpu = <&cpu0>;
+> +				};
+> +
+> +				core1 {
+> +					cpu = <&cpu1>;
+> +				};
+> +			};
+> +		};
+> +
+> +		cpu0: cpu@0 {
+> +			compatible = "arm,cortex-a53";
+> +			reg = <0x000>;
+> +			device_type = "cpu";
+> +			enable-method = "psci";
+> +			i-cache-size = <0x8000>;
+> +			i-cache-line-size = <64>;
+> +			i-cache-sets = <256>;
+> +			d-cache-size = <0x8000>;
+> +			d-cache-line-size = <64>;
+> +			d-cache-sets = <128>;
+> +			next-level-cache = <&L2_0>;
+> +		};
+> +
+> +		cpu1: cpu@1 {
+> +			compatible = "arm,cortex-a53";
+> +			reg = <0x001>;
+> +			device_type = "cpu";
+> +			enable-method = "psci";
+> +			i-cache-size = <0x8000>;
+> +			i-cache-line-size = <64>;
+> +			i-cache-sets = <256>;
+> +			d-cache-size = <0x8000>;
+> +			d-cache-line-size = <64>;
+> +			d-cache-sets = <128>;
+> +			next-level-cache = <&L2_0>;
+> +		};
+> +	};
+> +
+> +	L2_0: l2-cache0 {
+> +		compatible = "cache";
+> +		cache-level = <2>;
+> +		cache-size = <0x40000>;
+> +		cache-line-size = <64>;
+> +		cache-sets = <512>;
+> +	};
+> +};
+> 
+
