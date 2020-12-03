@@ -2,146 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CFEDB2CD9E0
-	for <lists+devicetree@lfdr.de>; Thu,  3 Dec 2020 16:11:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F4F62CD9ED
+	for <lists+devicetree@lfdr.de>; Thu,  3 Dec 2020 16:14:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726735AbgLCPK5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Dec 2020 10:10:57 -0500
-Received: from mail-il1-f194.google.com ([209.85.166.194]:43380 "EHLO
+        id S1727046AbgLCPMl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Dec 2020 10:12:41 -0500
+Received: from mail-il1-f194.google.com ([209.85.166.194]:35053 "EHLO
         mail-il1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727219AbgLCPK5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Dec 2020 10:10:57 -0500
-Received: by mail-il1-f194.google.com with SMTP id z14so2193668ilm.10;
-        Thu, 03 Dec 2020 07:10:41 -0800 (PST)
+        with ESMTP id S1726330AbgLCPMl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Dec 2020 10:12:41 -0500
+Received: by mail-il1-f194.google.com with SMTP id t13so2230071ilp.2;
+        Thu, 03 Dec 2020 07:12:25 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=rmoIvvZjt44tZo4dnN2CE2ltl+BLxh4D62w3wIUKMJ0=;
-        b=O9m6RFneBHcLVmY/7E9Knm6CVOqtq2Bvw3uJUiW2oeL75PCWgh/mDv42dyyidCnNPo
-         zFBtr3II9m74l2ZOBJXSdD/iUW/gawIIiWvn6AgLWNZ2dBdPxOq/MO037vPYFyFQpNeP
-         tBr3rMAzlQfMZTM9jCGPTVPBDAt3UPo41yoT249cjtA3hM0XPT/LpBQTtqxNiMEOctCd
-         JUw98s0+57JJQNMhJJnYuzmaxtXHe/QSJ7+SSG/uc9eRY1DamJD+2inbuXLGlRc4jijC
-         LK4Xxve+TIcwoXac55/2BGlUazHv+kIHZbMFuD3KIDijKtcQqSNLlhK2n2zcULp//hxN
-         DNUg==
-X-Gm-Message-State: AOAM531qUBg6XSEMYB65Uz9u7o8+dCvUyuO2lK4Gvt66FCeAWgb+Y7kF
-        5mE6CPtUsvODDapEN4nIFA==
-X-Google-Smtp-Source: ABdhPJxHX0pCNWkq9TWFihBjIHGLGgIkjEH7fIr8sLn66w16qEQ5IC7RsMBD/cLBHjtQFo9wNqa5qw==
-X-Received: by 2002:a05:6e02:f43:: with SMTP id y3mr3259097ilj.187.1607008215932;
-        Thu, 03 Dec 2020 07:10:15 -0800 (PST)
+        bh=T2NXqCKj/vyKRDvXLPBjyutHi/gmz0N+XyWPmKZhldc=;
+        b=IoBX+in2gvhcDjQ6N/9hRel968T280ddh9jJKfn89qA1EtRlQGswSXSw/rBm5/2AzE
+         tGRGY0jgXcIUV1EDu+U4gAW0cj3q8bI3ZxaeOTyQ7+Jpi8RyPclkLdT3lwpOfwg65r3F
+         Vo0JGZsGPjFih/OlR3bmLEzT8e7G76LcyCADteP3tDOmymHtu+ef0yIiOA3lHNntqAtm
+         kByMRYUhFt5eNDPie+bTjD6erHMiL5/SkgdGcYmXr+Qv3AJ6R0MHAv1liKH6g+pRqSv/
+         gYrZKOip9OMSu8PccvQIZtXDi1g/EbslMXRXcqR/OYJgbY038y7rr9WSed0K1rM/ROUP
+         wlJQ==
+X-Gm-Message-State: AOAM5331fv8ECYQA+fLy9iw5vXxEcprM1/zfYqWovv/UqP4tEyL5pKLS
+        2P3x6GR0uo5b8CQCGcyK8/JbXO0J9Q==
+X-Google-Smtp-Source: ABdhPJwSc+Am97WYw1M1RsUP2sk9x4PlemQ1b5N14TfVMYyWV2HNmruqM7AXd/qrW3AyLSF5jBECkw==
+X-Received: by 2002:a92:cb43:: with SMTP id f3mr3198069ilq.50.1607008320283;
+        Thu, 03 Dec 2020 07:12:00 -0800 (PST)
 Received: from xps15 ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id r15sm1009411ila.69.2020.12.03.07.10.14
+        by smtp.gmail.com with ESMTPSA id p18sm988330ile.27.2020.12.03.07.11.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Dec 2020 07:10:14 -0800 (PST)
-Received: (nullmailer pid 389759 invoked by uid 1000);
-        Thu, 03 Dec 2020 15:10:13 -0000
-Date:   Thu, 3 Dec 2020 08:10:13 -0700
+        Thu, 03 Dec 2020 07:11:59 -0800 (PST)
+Received: (nullmailer pid 392062 invoked by uid 1000);
+        Thu, 03 Dec 2020 15:11:57 -0000
+Date:   Thu, 3 Dec 2020 08:11:57 -0700
 From:   Rob Herring <robh@kernel.org>
 To:     Mauro Carvalho Chehab <mchehab@kernel.org>
-Cc:     devicetree@vger.kernel.org, Philipp Zabel <p.zabel@pengutronix.de>,
+Cc:     devicetree@vger.kernel.org,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Jacopo Mondi <jacopo@jmondi.org>,
+        Ricardo Ribalda <ribalda@kernel.org>,
         linux-media@vger.kernel.org
-Subject: Re: [PATCH v2] media: dt-bindings: coda: Add missing
- 'additionalProperties'
-Message-ID: <20201203151013.GA2644458@robh.at.kernel.org>
-References: <20201117200752.4004368-1-robh@kernel.org>
+Subject: Re: [PATCH] media: dt-bindings: schema indentation fixes
+Message-ID: <20201203151157.GB2644458@robh.at.kernel.org>
+References: <20201112224951.166313-1-robh@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201117200752.4004368-1-robh@kernel.org>
+In-Reply-To: <20201112224951.166313-1-robh@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 17, 2020 at 02:07:52PM -0600, Rob Herring wrote:
-> 'additionalProperties' is now required by the meta-schema. Add it for
-> coda. As a result, 'interrupts', 'interrupt-names' and 'power-domains'
-> need to be reworked to be defined at the top level.
+On Thu, Nov 12, 2020 at 04:49:51PM -0600, Rob Herring wrote:
+> Fix a few new indentation warnings found with yamllint (now integrated
+> into the checks).
 > 
-> Cc: Philipp Zabel <p.zabel@pengutronix.de>
+> Cc: Hans Verkuil <hverkuil-cisco@xs4all.nl>
 > Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
+> Cc: Jacopo Mondi <jacopo@jmondi.org>
+> Cc: Ricardo Ribalda <ribalda@kernel.org>
 > Cc: linux-media@vger.kernel.org
 > Signed-off-by: Rob Herring <robh@kernel.org>
 > ---
 
-Ping! In case it wasn't clear, this should go in via the media tree.
+Ping! This should go via the media tree.
 
->  .../devicetree/bindings/media/coda.yaml       | 42 +++++++++----------
->  1 file changed, 21 insertions(+), 21 deletions(-)
+>  .../devicetree/bindings/media/i2c/adv7604.yaml       |  4 ++--
+>  .../devicetree/bindings/media/i2c/ovti,ov772x.yaml   | 12 ++++++------
+>  .../devicetree/bindings/media/i2c/sony,imx214.yaml   | 12 ++++++------
+>  3 files changed, 14 insertions(+), 14 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/media/coda.yaml b/Documentation/devicetree/bindings/media/coda.yaml
-> index 7bac0057faf7..36781ee4617f 100644
-> --- a/Documentation/devicetree/bindings/media/coda.yaml
-> +++ b/Documentation/devicetree/bindings/media/coda.yaml
-> @@ -44,6 +44,21 @@ properties:
->        - const: per
->        - const: ahb
+> diff --git a/Documentation/devicetree/bindings/media/i2c/adv7604.yaml b/Documentation/devicetree/bindings/media/i2c/adv7604.yaml
+> index 3897af540ddd..407baddfaa1d 100644
+> --- a/Documentation/devicetree/bindings/media/i2c/adv7604.yaml
+> +++ b/Documentation/devicetree/bindings/media/i2c/adv7604.yaml
+> @@ -21,8 +21,8 @@ properties:
+>    compatible:
+>      items:
+>        - enum:
+> -        - adi,adv7611
+> -        - adi,adv7612
+> +          - adi,adv7611
+> +          - adi,adv7612
 >  
-> +  interrupts:
-> +    minItems: 1
-> +    items:
-> +      - description: BIT processor interrupt
-> +      - description: JPEG unit interrupt
-> +
-> +  interrupt-names:
-> +    minItems: 1
-> +    items:
-> +      - const: bit
-> +      - const: jpeg
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
->    resets:
->      maxItems: 1
+>    reg:
+>      minItems: 1
+> diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov772x.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov772x.yaml
+> index 63b3779d7289..6866c2cdac50 100644
+> --- a/Documentation/devicetree/bindings/media/i2c/ovti,ov772x.yaml
+> +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov772x.yaml
+> @@ -75,18 +75,18 @@ properties:
+>                  bus-type:
+>                    const: 6
+>              then:
+> -                properties:
+> -                  hsync-active: false
+> -                  vsync-active: false
+> +              properties:
+> +                hsync-active: false
+> +                vsync-active: false
 >  
-> @@ -59,6 +74,8 @@ required:
->    - clocks
->    - clock-names
+>            - if:
+>                properties:
+>                  bus-width:
+>                    const: 10
+>              then:
+> -                properties:
+> -                  data-shift:
+> -                    const: 0
+> +              properties:
+> +                data-shift:
+> +                  const: 0
 >  
-> +additionalProperties: false
-> +
->  allOf:
->    - if:
->        properties:
-> @@ -68,34 +85,17 @@ allOf:
->      then:
->        properties:
->          interrupts:
-> -          items:
-> -            - description: BIT processor interrupt
-> -            - description: JPEG unit interrupt
-> +          minItems: 2
+>          required:
+>            - bus-type
+> diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx214.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx214.yaml
+> index 0f5e25fa4e9d..1a3590dd0e98 100644
+> --- a/Documentation/devicetree/bindings/media/i2c/sony,imx214.yaml
+> +++ b/Documentation/devicetree/bindings/media/i2c/sony,imx214.yaml
+> @@ -68,13 +68,13 @@ properties:
+>              description: See ../video-interfaces.txt
+>              anyOf:
+>                - items:
+> -                - const: 1
+> -                - const: 2
+> +                  - const: 1
+> +                  - const: 2
+>                - items:
+> -                - const: 1
+> -                - const: 2
+> -                - const: 3
+> -                - const: 4
+> +                  - const: 1
+> +                  - const: 2
+> +                  - const: 3
+> +                  - const: 4
 >  
->          interrupt-names:
-> -          items:
-> -            - const: bit
-> -            - const: jpeg
-> +          minItems: 2
->      else:
->        properties:
->          interrupts:
-> -          items:
-> -            - description: BIT processor interrupt
-> -
-> -  - if:
-> -      properties:
-> -        compatible:
-> -          contains:
-> -            enum:
-> -              - fsl,imx6dl-vpu
-> -              - fsl,imx6q-vpu
-> -    then:
-> -      properties:
-> -        power-domains:
-> -          $ref: /schemas/types.yaml#/definitions/phandle
-> -          description: phandle pointing to the PU power domain
->            maxItems: 1
->  
-> +        power-domains: false
-> +
->  examples:
->    - |
->      vpu: video-codec@63ff4000 {
+>            link-frequencies:
+>              $ref: /schemas/types.yaml#/definitions/uint64-array
 > -- 
 > 2.25.1
 > 
