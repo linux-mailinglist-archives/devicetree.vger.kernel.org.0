@@ -2,139 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 075B32CCD32
-	for <lists+devicetree@lfdr.de>; Thu,  3 Dec 2020 04:18:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A65792CCD10
+	for <lists+devicetree@lfdr.de>; Thu,  3 Dec 2020 04:11:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728013AbgLCDQ0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Dec 2020 22:16:26 -0500
-Received: from mail-db8eur05on2089.outbound.protection.outlook.com ([40.107.20.89]:23489
-        "EHLO EUR05-DB8-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1727748AbgLCDQ0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 2 Dec 2020 22:16:26 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=CGGFoF/aA1s490XQR1TWkWw7xXnSMX7XyxlaPkZjhk28O4RkR1HqqtC8mohDelmew6CrE+cYdCf5YnyqeFtL+P6RVZ290IF+YICliUDDGixE3y3Rden9YkZIhZcF9hfHiB4YKec/XVodiji6f43PegjIFJfH4kduNi2AIJMt6tpVcX+BHZPhoYdCWk9bzAMJGVIO223f399zoe3wi9Ek5iEa5ECLtgIkwCOJeSfCCwXQnpTi1vvD/n2tB1eoqzEhEYnZVXDSQx6W8gGsMpKqSPLNfurys2K227D6phgX1gBsglSxt8OLOWsx6azFsb3aKCl0RFkEJoiARrVOL0HYfg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4BD2f08bXUw/vNHr3oMHVBpMqHKE9P9wOQ+8bdJmpSc=;
- b=QRJ2BfFGNQaczKBDU/fCjrDu9Q9C46lkn6jlIjbK2xaw78dTBWA0uqetLr6ZU1mtCycApIq1yr7daQoEgfEOhU7CnFdQxwxqTqlqFx2Q7aQW4PTnZa5qjOfXdKOFatHakA17i4TCmP/UUZow5GBZrM+fMxkCDTnSGqYXs++D94eg8gEBSLO244gQjx72PP1qK1vj1wErSHcJ6HHyaa72P7HlJg1P3W5xnaIm9bnUP1PcCgTrqlPVzaIH0GZ4cOlRKBhYFOtP4DJYYiZBGHWihhbakk6uRXqUOIwRc7eQ2isVy5EZsZbMlrQ8zZFD9v8VnbEmdYqIQT3SMKYoRG9mKg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4BD2f08bXUw/vNHr3oMHVBpMqHKE9P9wOQ+8bdJmpSc=;
- b=RdBclXryWoNd9e8DI92eY8mnv1Cqrob3ESpaKQO7zfLdG8xuom2OPzmCnq//o4wOkLR1rc1rs5iMZZLwnNV5rxm2H1eG8E1nO2EjkQ8mkGKrcmB0seq1dV/CrGOD4gGAhmvd80PuE1Kg7/IDAznl0se3WOhakiKkkOHJO+g/NsE=
-Authentication-Results: lists.infradead.org; dkim=none (message not signed)
- header.d=none;lists.infradead.org; dmarc=none action=none
- header.from=nxp.com;
-Received: from VI1PR04MB3983.eurprd04.prod.outlook.com (2603:10a6:803:4c::16)
- by VI1PR0402MB2879.eurprd04.prod.outlook.com (2603:10a6:800:b7::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3611.23; Thu, 3 Dec
- 2020 03:14:49 +0000
-Received: from VI1PR04MB3983.eurprd04.prod.outlook.com
- ([fe80::dcb7:6117:3def:2685]) by VI1PR04MB3983.eurprd04.prod.outlook.com
- ([fe80::dcb7:6117:3def:2685%7]) with mapi id 15.20.3611.025; Thu, 3 Dec 2020
- 03:14:49 +0000
-From:   Liu Ying <victor.liu@nxp.com>
-To:     linux-arm-kernel@lists.infradead.org,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     p.zabel@pengutronix.de, airlied@linux.ie, daniel@ffwll.ch,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com, robh+dt@kernel.org,
-        maarten.lankhorst@linux.intel.com, mripard@kernel.org,
-        tzimmermann@suse.de, laurentiu.palcu@oss.nxp.com
-Subject: [PATCH v2 6/6] MAINTAINERS: add maintainer for i.MX8qxp DPU DRM driver
-Date:   Thu,  3 Dec 2020 11:06:31 +0800
-Message-Id: <1606964791-24927-7-git-send-email-victor.liu@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1606964791-24927-1-git-send-email-victor.liu@nxp.com>
-References: <1606964791-24927-1-git-send-email-victor.liu@nxp.com>
-Content-Type: text/plain
-X-Originating-IP: [119.31.174.66]
-X-ClientProxiedBy: SG2PR02CA0028.apcprd02.prod.outlook.com
- (2603:1096:3:18::16) To VI1PR04MB3983.eurprd04.prod.outlook.com
- (2603:10a6:803:4c::16)
+        id S1725955AbgLCDK7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Dec 2020 22:10:59 -0500
+Received: from new4-smtp.messagingengine.com ([66.111.4.230]:53835 "EHLO
+        new4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1727392AbgLCDK7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Dec 2020 22:10:59 -0500
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.42])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 495265802C9;
+        Wed,  2 Dec 2020 22:10:13 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute2.internal (MEProxy); Wed, 02 Dec 2020 22:10:13 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+        subject:to:cc:references:from:message-id:date:mime-version
+        :in-reply-to:content-type:content-transfer-encoding; s=fm1; bh=F
+        SgQvZoglQetGYEJFgiWoedLNRJXBHY71to2V3053SQ=; b=kf+AoImueCgPccNgI
+        qDb4cXuy61xaretU5H7dqYyi6wioypibLjvQX/Smwr97NS2B/EaKJvhAGZsgCoY8
+        OF+QCFZlKT1A/ZUIL++gZVjnACpDzmJ2XIUd5pUz+z7KbRoyxmZuDlkqkiVPnxZd
+        DXlvP5s3bwQZFAw/hCeNp/oq6c98IisPU2CdC2kBfSpUzZnTGcw6jvi8l8b9eyQY
+        JhlmP+aZKSVks1qMsLAPKn6BwOdqTSaJMlrcgNAPpYJWDOUQ/YgK3MmYdJGdpjlV
+        urE+J+VV1IRIcgXmldU/uU6ypvW/P+vjTpKv9mFZhR1RW/JOnR9Hj8TJyGVETK0E
+        A70YA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:content-type
+        :date:from:in-reply-to:message-id:mime-version:references
+        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm1; bh=FSgQvZoglQetGYEJFgiWoedLNRJXBHY71to2V3053
+        SQ=; b=E2GoCYwyl1Ud6jZr+OdCpnxAPy773Z3xcN7UFL/bkHPkmmjatl4Yg//l0
+        +w49uf2tw4NVD9OTfvgYUmVpz6jFeIXIvrszPV4tPZRjGWFlH9q8GLvDaRJRxFn/
+        vvGnxBqhAraH1yZtrZqBr7amCu/OmV2fOnN0KSsJDEpBYp4TrgnvR+gTsA65zk1G
+        VDuzVLbesZ7Pi1g/lHCHs2k3iV0fDT7T0DNA4U+LYbriNtp0JAADncZlF5So8Bn8
+        vWCcjfY6DTsLARluCO36INm6Lrv/2MXzIZ+PGiisZQPYftFhihy/25PmxJW9Hfct
+        bbVvIVTvhGRjXMI/0S5CacVezIwRA==
+X-ME-Sender: <xms:ElfIX80H5W111qkFImCXUtwgGLlwcNZ0K_uzUETQAeisF30MceuOrQ>
+    <xme:ElfIX65UN87bvj7KnEbGoprCThFeYHjGmugK9xv_KHlBqGc0-PxxOLcuMvRUSO7IS
+    8m3K5bFmYQmmXP8Cw>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrudeihedgheegucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepuffvfhfhkffffgggjggtgfesthejredttdefjeenucfhrhhomhepufgrmhhu
+    vghlucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecugg
+    ftrfgrthhtvghrnhepgfevffetleehffejueekvdekvdeitdehveegfeekheeuieeiueet
+    uefgtedtgeegnecukfhppeejtddrudefhedrudegkedrudehudenucevlhhushhtvghruf
+    hiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehsrghmuhgvlhesshhhohhllhgr
+    nhgurdhorhhg
+X-ME-Proxy: <xmx:ElfIX9_BWMq_O6jlD3kJrM06Fy6l5p78kuhHLUGtrtxUvjV-gRoDbA>
+    <xmx:ElfIX5VBZ3WXlcD_ch5wAHV_7Flj4sr-mOJeMKdzm9gUwlm5bHae1A>
+    <xmx:ElfIX4rFp_skJavwk9OxGjaH9Ttt14gY5Tv7CJKAdpJVfO5LSCGsQw>
+    <xmx:FVfIX8-IFRg8R42sUCLJpLJ9fFK3Q6Jztu2loupC139uOjvE_kzz8A>
+Received: from [192.168.50.169] (70-135-148-151.lightspeed.stlsmo.sbcglobal.net [70.135.148.151])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 33343240066;
+        Wed,  2 Dec 2020 22:10:10 -0500 (EST)
+Subject: Re: [PATCH 7/8] arm64: dts: allwinner: Add Allwinner H616 .dtsi file
+To:     Maxime Ripard <maxime@cerno.tech>,
+        Andre Przywara <andre.przywara@arm.com>
+Cc:     devicetree@vger.kernel.org,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-sunxi@googlegroups.com, linux-kernel@vger.kernel.org,
+        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
+        Icenowy Zheng <icenowy@aosc.xyz>,
+        Yangtao Li <frank@allwinnertech.com>,
+        linux-arm-kernel@lists.infradead.org
+References: <20201202135409.13683-1-andre.przywara@arm.com>
+ <20201202135409.13683-8-andre.przywara@arm.com>
+ <20201202160504.klxbpqgagra4uxeh@gilmour>
+From:   Samuel Holland <samuel@sholland.org>
+Message-ID: <07e8d86e-0e1b-03d3-f43e-78e5bcbb53cc@sholland.org>
+Date:   Wed, 2 Dec 2020 21:10:09 -0600
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.6.0
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from localhost.localdomain (119.31.174.66) by SG2PR02CA0028.apcprd02.prod.outlook.com (2603:1096:3:18::16) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.20.3632.17 via Frontend Transport; Thu, 3 Dec 2020 03:14:44 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: ac279901-1536-41b6-47d6-08d8973997f9
-X-MS-TrafficTypeDiagnostic: VI1PR0402MB2879:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <VI1PR0402MB287975F02ECA82949B029D0E98F20@VI1PR0402MB2879.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:901;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: guyn8XjbxDpsTUz7pJBkE7FLfSQgLw7H6ZkvnYwBrpctIDnw0dMm9t9nexsLtrKB5DMsQMl3C+QYQK4fL/gvtG6LUq7uhcaVJ2h4Z7qFtU6IsRAzFQSRLJmd3Q6G5vt5E/8+DUXkyNgB2ec2iMhaYi4S850KV3qATTSKwwi/iurH/KWoiqdWnshfxx499eR40jq/ipeRJ5FzOQExQYa/YlWpelBEUjUwyO7fihvZAMToIqqFfRhSpAImzpXlbcm1Aa/lTPOyb5Qz+EYrhox3U32v7BeQ6b3z5DEGAX/itdlAXv2kemn6SoxDVnp+M1qzW+A+nQ3m4VJzebh2plHNvQpDSBqy95Fsu1eTeyjbJ6CfHTwsPDtBd3XNkK0Baz6T
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB3983.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(39860400002)(376002)(396003)(366004)(346002)(136003)(8936002)(4326008)(186003)(66476007)(6666004)(66556008)(5660300002)(26005)(478600001)(7416002)(6486002)(956004)(2906002)(6512007)(316002)(2616005)(4744005)(66946007)(8676002)(69590400008)(86362001)(6506007)(52116002)(16526019)(36756003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?woLXDZC+BIMzZMf6/Ulns9NaPyuJAVPMlscPmL9xAR9LPjBBWT6hpe4apt/d?=
- =?us-ascii?Q?8Zo33iqqvgHlJ9df7I/Cg6Gub09ZQLqTJMOZNiblm/vnwmSqR2rCrdwLl9pR?=
- =?us-ascii?Q?4Isd4W+TR+BZAd3MhaApMbq3SgTIn2XXAdSzGEbKaLFKghLg/PoyZweu+3+7?=
- =?us-ascii?Q?lS9naSfRBaIIm+4kRI+iE0AgF/KSO8OlOCUDjass9Z9rIDeVnJ4pRxLMhfiG?=
- =?us-ascii?Q?ukeXMACE4yJFyCmv/2x/+mRX07StS2t0DUAXdl66gCG18Ev7F2k7KwIJ2Hhw?=
- =?us-ascii?Q?92c9aBtI+R4kYLjlT2pjRL5NRl2TAwKHOAomk/fMvVBq1VTXaPwNGfnm1xeS?=
- =?us-ascii?Q?4E8Qd9vht8Z9SFW7cIF64Kz9AGtiBfOAQ7vZPTrLmigRBTPnz81Y94wtLM4Y?=
- =?us-ascii?Q?/i51CDTsiEsHWRVcvOzMIVXdu09bTQJkQeolJsmvmwfNVmTzc1VgIyqX/m9y?=
- =?us-ascii?Q?OXUrhtW7tq2bnM88VnbzJvLkpd2VJif7blUyM0x14fg5+ipYm6GGH9Glt3l0?=
- =?us-ascii?Q?ibiRwc1FPlClZ60B85Dq34ysh47dRbM8tDziTPox2WBw3SsygrMXL5B4M95w?=
- =?us-ascii?Q?z2QLdrw4UBKGwJKrkOJ2FelZjicYARztNMPBfdWtrol6kjYSH27ga+saabxn?=
- =?us-ascii?Q?KDvGOhrYuY00ENpHXk9V+5xaF33tY7HYV11h6lOFLc+LceWDRdjhrWCQg+Mn?=
- =?us-ascii?Q?lWtWexptcHyE//v3SC3Ssm8A/mo6WfyGi/MsSaXNRyQW8FCgtl1CB9VJ7cGW?=
- =?us-ascii?Q?5mEfjAMYVIr2rrt/TIL3uGKW53JOsOBWnV441ZU+xBuEfCJXnhsE+ZPUKUdc?=
- =?us-ascii?Q?jEFjoUHdNb9bfujuB3SE3jtFr4fPmA4HYCAHOkXQFxvZISymYwvtgIwSOSTn?=
- =?us-ascii?Q?5wshhX9uHZh6Fmpb+AAoXoYpfkyU2NFxno5APSzVnSsDmViISf4VGe5v4W6f?=
- =?us-ascii?Q?e4KKXsKjrn56+3CqEVG9/1XFJxEDQa6rneCcXf0Ugt/+nal1vhwTGa+gP1xv?=
- =?us-ascii?Q?XHcG?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ac279901-1536-41b6-47d6-08d8973997f9
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB3983.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Dec 2020 03:14:49.4989
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: hScrjsS32Or0lybrMR9iH5TvkNcyggbn7ft6riJ0Q6yjqPVwr7CrjAfnE78M/3TddKgFo/dM3oLLvXiduRSHKQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0402MB2879
+In-Reply-To: <20201202160504.klxbpqgagra4uxeh@gilmour>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add myself as the maintainer of the i.MX8qxp DPU DRM driver.
+On 12/2/20 10:05 AM, Maxime Ripard wrote:
+>> +	timer {
+>> +		compatible = "arm,armv8-timer";
+>> +		arm,no-tick-in-suspend;
+> 
+> This was tested with crust I assume?
 
-Signed-off-by: Liu Ying <victor.liu@nxp.com>
----
-v1->v2:
-* No change.
+No, there is no AR100 and supposedly no SRAM A2, so there is no place for crust
+to run. I assume it was copied from the H6 .dtsi.
 
- MAINTAINERS | 9 +++++++++
- 1 file changed, 9 insertions(+)
+However, regardless of where the PSCI implementation runs, even if it's on CPUX,
+it will likely disable OSC24M to save power. So the counter will stop, and the
+property is appropriate to add.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 970d9ce..dee4586 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -5834,6 +5834,15 @@ F:	Documentation/devicetree/bindings/display/imx/
- F:	drivers/gpu/drm/imx/
- F:	drivers/gpu/ipu-v3/
- 
-+DRM DRIVERS FOR FREESCALE i.MX8QXP
-+M:	Liu Ying <victor.liu@nxp.com>
-+L:	dri-devel@lists.freedesktop.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dprc.yaml
-+F:	Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dpu.yaml
-+F:	Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-prg.yaml
-+F:	drivers/gpu/drm/imx/dpu/
-+
- DRM DRIVERS FOR GMA500 (Poulsbo, Moorestown and derivative chipsets)
- M:	Patrik Jakobsson <patrik.r.jakobsson@gmail.com>
- L:	dri-devel@lists.freedesktop.org
--- 
-2.7.4
-
+Cheers,
+Samuel
