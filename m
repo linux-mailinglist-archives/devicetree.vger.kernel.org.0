@@ -2,183 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CC8C12CD39C
-	for <lists+devicetree@lfdr.de>; Thu,  3 Dec 2020 11:32:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F125B2CD3B5
+	for <lists+devicetree@lfdr.de>; Thu,  3 Dec 2020 11:35:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388885AbgLCKbk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Dec 2020 05:31:40 -0500
-Received: from esa2.microchip.iphmx.com ([68.232.149.84]:54087 "EHLO
-        esa2.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388276AbgLCKbj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Dec 2020 05:31:39 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1606991498; x=1638527498;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=qLOtOxVFdu21NtVXZtuWQ5MPAa73p0vinHUTGyyY9k4=;
-  b=0xyg7coJYLaEgXKG/z/crR6Eoq9sTpHXQLqJmcRvnwuFKm7b/NEc0UQU
-   vBXA7gVPfUMLffT2TqwT0h1Iaqf9tEKbPZYsoDUHNfFLq2CjuhOCwV4Oo
-   YHAEiQzgqfi9Z8uDBVeFZHIbWkmpYOiDFioKh1PMHrN8T+qinc9YvlfLZ
-   2WF1HVpJsenJKRaNJ9KiTbFOyQXjHKVVrJn31vUIUJv42bzz/ZfrUD0Mk
-   3zqIvJvRnQh4r3LuB138h9RiD/y/xNOQw9+zEjRvg/B8AqWRW1gw2r0Kx
-   zKLedIreTPDkK/RROjWhBfbiUayhDuX4XECp5IBpMBZ8QxZO8MiybK/x+
-   g==;
-IronPort-SDR: iDORJP5T4XlcpO5zu97/dp1RezxFvnJ6okUcvedb71Nq9HRR9NiYaAk06AXVfPrelW8mTMNDL6
- ucUKy52PJFedptnfm6SyZs+40C1GO6hI0IWoPri/TF8xiSHLqg1n9jWrg10Xu4sR4f9GprU/Ll
- vDTRv40/4hZoFUkMu64vJAWrujGspIywMZThDuHzH0agrDMEEspQTUUuz+gXiVmLVjsGM/XmrL
- OLIh5MNB5EIK4tPuRUgma1JKF/26aUZnAfM/Fs7KJj/FEOlnwvcOmzuJ1WFXRZoKVo3oLn0+Md
- mDk=
-X-IronPort-AV: E=Sophos;i="5.78,389,1599548400"; 
-   d="scan'208";a="98447724"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 03 Dec 2020 03:30:32 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1979.3; Thu, 3 Dec 2020 03:30:32 -0700
-Received: from mchp-dev-shegelun.microchip.com (10.10.115.15) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
- 15.1.1979.3 via Frontend Transport; Thu, 3 Dec 2020 03:30:29 -0700
-From:   Steen Hegelund <steen.hegelund@microchip.com>
-To:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        Device Tree List <devicetree@vger.kernel.org>
-CC:     Steen Hegelund <steen.hegelund@microchip.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Lars Povlsen <lars.povlsen@microchip.com>,
-        Bjarni Jonasson <bjarni.jonasson@microchip.com>,
-        Microchip UNG Driver List <UNGLinuxDriver@microchip.com>,
-        <netdev@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v8 1/4] dt-bindings: phy: Add sparx5-serdes bindings
-Date:   Thu, 3 Dec 2020 11:30:12 +0100
-Message-ID: <20201203103015.3735373-2-steen.hegelund@microchip.com>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20201203103015.3735373-1-steen.hegelund@microchip.com>
-References: <20201203103015.3735373-1-steen.hegelund@microchip.com>
+        id S2388964AbgLCKdk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Dec 2020 05:33:40 -0500
+Received: from mail.kernel.org ([198.145.29.99]:33886 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2388608AbgLCKdi (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 3 Dec 2020 05:33:38 -0500
+Date:   Thu, 3 Dec 2020 10:32:27 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1606991577;
+        bh=43yNdax6pGHrO0BTp2xJ0YBAHuZmVV9Ah1L6cygJuMU=;
+        h=From:To:Cc:Subject:References:In-Reply-To:From;
+        b=RNUgwCHMYUgjhrvu5Ze9nx9Prvgbl95hJ+4WEeXVeuh9jqHmetJY9lgIg17dQDyFO
+         J3XOiC68vEB9GfEGK8nUzLnbrroIZTiRqc+9tah/cO4DWnXm8wcmaaqjw8kBME2o+V
+         PLQV9D0DSnG+3gAY1fBep5BABJ/Xqt1IYdftBO4/NjonpKhNEhZBq+KWyo5VX8XjeK
+         9qdV2pHC3AJ3CiQtS9ebm+wMPONbSY1r/QQ0DzMB2yPIeumKROIrguVG/njTNK1AOk
+         prOAiZlmlqds7QlSLaj4xO8OhfSB4IidcNklQLwIgmRIbde3e6x0rJKrBQuNKyp6Mc
+         vqaDydV5/4g+w==
+From:   Mark Brown <broonie@kernel.org>
+To:     Joel Stanley <joel@jms.id.au>
+Cc:     Boris Brezillon <bbrezillon@kernel.org>,
+        Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-spi@vger.kernel.org,
+        devicetree <devicetree@vger.kernel.org>,
+        =?iso-8859-1?Q?C=E9dric?= Le Goater <clg@kaod.org>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
+        BMC-SW <BMC-SW@aspeedtech.com>
+Subject: Re: [v2 0/4] Porting ASPEED FMC/SPI memory controller driver
+Message-ID: <20201203103227.GC4700@sirena.org.uk>
+References: <20201103072202.24705-1-chin-ting_kuo@aspeedtech.com>
+ <160683107674.35139.14509237313835347013.b4-ty@kernel.org>
+ <CACPK8Xe4TcRVBnZL7vtqGq1PTe5NEx1k4hvk4FDeYgJQ9HALFg@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="ZmUaFz6apKcXQszQ"
+Content-Disposition: inline
+In-Reply-To: <CACPK8Xe4TcRVBnZL7vtqGq1PTe5NEx1k4hvk4FDeYgJQ9HALFg@mail.gmail.com>
+X-Cookie: Sacred cows make great hamburgers.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document the Sparx5 ethernet serdes phy driver bindings.
 
-Signed-off-by: Lars Povlsen <lars.povlsen@microchip.com>
-Signed-off-by: Steen Hegelund <steen.hegelund@microchip.com>
----
- .../bindings/phy/microchip,sparx5-serdes.yaml | 100 ++++++++++++++++++
- 1 file changed, 100 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/phy/microchip,sparx5-serdes.yaml
+--ZmUaFz6apKcXQszQ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-diff --git a/Documentation/devicetree/bindings/phy/microchip,sparx5-serdes.yaml b/Documentation/devicetree/bindings/phy/microchip,sparx5-serdes.yaml
-new file mode 100644
-index 000000000000..bdbdb3bbddbe
---- /dev/null
-+++ b/Documentation/devicetree/bindings/phy/microchip,sparx5-serdes.yaml
-@@ -0,0 +1,100 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/phy/microchip,sparx5-serdes.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Microchip Sparx5 Serdes controller
-+
-+maintainers:
-+  - Steen Hegelund <steen.hegelund@microchip.com>
-+
-+description: |
-+  The Sparx5 SERDES interfaces share the same basic functionality, but
-+  support different operating modes and line rates.
-+
-+  The following list lists the SERDES features:
-+
-+  * RX Adaptive Decision Feedback Equalizer (DFE)
-+  * Programmable continuous time linear equalizer (CTLE)
-+  * Rx variable gain control
-+  * Rx built-in fault detector (loss-of-lock/loss-of-signal)
-+  * Adjustable tx de-emphasis (FFE)
-+  * Tx output amplitude control
-+  * Supports rx eye monitor
-+  * Multiple loopback modes
-+  * Prbs generator and checker
-+  * Polarity inversion control
-+
-+  SERDES6G:
-+
-+  The SERDES6G is a high-speed SERDES interface, which can operate at
-+  the following data rates:
-+
-+  * 100 Mbps (100BASE-FX)
-+  * 1.25 Gbps (SGMII/1000BASE-X/1000BASE-KX)
-+  * 3.125 Gbps (2.5GBASE-X/2.5GBASE-KX)
-+  * 5.15625 Gbps (5GBASE-KR/5G-USXGMII)
-+
-+  SERDES10G
-+
-+  The SERDES10G is a high-speed SERDES interface, which can operate at
-+  the following data rates:
-+
-+  * 100 Mbps (100BASE-FX)
-+  * 1.25 Gbps (SGMII/1000BASE-X/1000BASE-KX)
-+  * 3.125 Gbps (2.5GBASE-X/2.5GBASE-KX)
-+  * 5 Gbps (QSGMII/USGMII)
-+  * 5.15625 Gbps (5GBASE-KR/5G-USXGMII)
-+  * 10 Gbps (10G-USGMII)
-+  * 10.3125 Gbps (10GBASE-R/10GBASE-KR/USXGMII)
-+
-+  SERDES25G
-+
-+  The SERDES25G is a high-speed SERDES interface, which can operate at
-+  the following data rates:
-+
-+  * 1.25 Gbps (SGMII/1000BASE-X/1000BASE-KX)
-+  * 3.125 Gbps (2.5GBASE-X/2.5GBASE-KX)
-+  * 5 Gbps (QSGMII/USGMII)
-+  * 5.15625 Gbps (5GBASE-KR/5G-USXGMII)
-+  * 10 Gbps (10G-USGMII)
-+  * 10.3125 Gbps (10GBASE-R/10GBASE-KR/USXGMII)
-+  * 25.78125 Gbps (25GBASE-KR/25GBASE-CR/25GBASE-SR/25GBASE-LR/25GBASE-ER)
-+
-+properties:
-+  $nodename:
-+    pattern: "^serdes@[0-9a-f]+$"
-+
-+  compatible:
-+    const: microchip,sparx5-serdes
-+
-+  reg:
-+    minItems: 1
-+
-+  '#phy-cells':
-+    const: 1
-+    description: |
-+      - The main serdes input port
-+
-+  clocks:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - '#phy-cells'
-+  - clocks
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    serdes: serdes@10808000 {
-+      compatible = "microchip,sparx5-serdes";
-+      #phy-cells = <1>;
-+      clocks = <&sys_clk>;
-+      reg = <0x10808000 0x5d0000>;
-+    };
-+
-+...
--- 
-2.29.2
+On Wed, Dec 02, 2020 at 09:19:47PM +0000, Joel Stanley wrote:
+> On Tue, 1 Dec 2020 at 13:58, Mark Brown <broonie@kernel.org> wrote:
 
+> > Applied to
+> >
+> >    https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+
+> Really? Or is there a bug in one of your scripts :)
+
+Not my scripts, b4!
+
+--ZmUaFz6apKcXQszQ
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl/IvrsACgkQJNaLcl1U
+h9CS2wf+JYv7MdfNnO9GFIy0AVuTJlRHvbhFYMX35CrKtG3bCDbrHP/9CgwE3NCP
+dv5bms58wdNxCvRtu180AHxs2pVBIZKYFIgIIiNayARpwxqupKFr6qMTGHtx76bR
+hu4n8ErziSlUzhfnTKsl9eB3DjKoYq5f6hyibKQvElzv72wjyeO21B/ME8x6CBiV
+8UGAYjhXnuuu+ovTvKUCp6cTgPrPJ/PVu2rFB//hTj3BxxAhMgUve9Wye6o3TRpC
+mQETkDnHgCPtrVHl0zqDK8LusqGDLf9hZ6FEM6DHC1HgMGizKlVaH2GceMJHFfd2
+pOFCbLwEik6HfoDBjv3wd8NWY7uhiQ==
+=7doF
+-----END PGP SIGNATURE-----
+
+--ZmUaFz6apKcXQszQ--
