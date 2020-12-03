@@ -2,145 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F4F62CD9ED
-	for <lists+devicetree@lfdr.de>; Thu,  3 Dec 2020 16:14:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 196C32CDA2F
+	for <lists+devicetree@lfdr.de>; Thu,  3 Dec 2020 16:38:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727046AbgLCPMl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Dec 2020 10:12:41 -0500
-Received: from mail-il1-f194.google.com ([209.85.166.194]:35053 "EHLO
-        mail-il1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726330AbgLCPMl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Dec 2020 10:12:41 -0500
-Received: by mail-il1-f194.google.com with SMTP id t13so2230071ilp.2;
-        Thu, 03 Dec 2020 07:12:25 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=T2NXqCKj/vyKRDvXLPBjyutHi/gmz0N+XyWPmKZhldc=;
-        b=IoBX+in2gvhcDjQ6N/9hRel968T280ddh9jJKfn89qA1EtRlQGswSXSw/rBm5/2AzE
-         tGRGY0jgXcIUV1EDu+U4gAW0cj3q8bI3ZxaeOTyQ7+Jpi8RyPclkLdT3lwpOfwg65r3F
-         Vo0JGZsGPjFih/OlR3bmLEzT8e7G76LcyCADteP3tDOmymHtu+ef0yIiOA3lHNntqAtm
-         kByMRYUhFt5eNDPie+bTjD6erHMiL5/SkgdGcYmXr+Qv3AJ6R0MHAv1liKH6g+pRqSv/
-         gYrZKOip9OMSu8PccvQIZtXDi1g/EbslMXRXcqR/OYJgbY038y7rr9WSed0K1rM/ROUP
-         wlJQ==
-X-Gm-Message-State: AOAM5331fv8ECYQA+fLy9iw5vXxEcprM1/zfYqWovv/UqP4tEyL5pKLS
-        2P3x6GR0uo5b8CQCGcyK8/JbXO0J9Q==
-X-Google-Smtp-Source: ABdhPJwSc+Am97WYw1M1RsUP2sk9x4PlemQ1b5N14TfVMYyWV2HNmruqM7AXd/qrW3AyLSF5jBECkw==
-X-Received: by 2002:a92:cb43:: with SMTP id f3mr3198069ilq.50.1607008320283;
-        Thu, 03 Dec 2020 07:12:00 -0800 (PST)
-Received: from xps15 ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id p18sm988330ile.27.2020.12.03.07.11.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Dec 2020 07:11:59 -0800 (PST)
-Received: (nullmailer pid 392062 invoked by uid 1000);
-        Thu, 03 Dec 2020 15:11:57 -0000
-Date:   Thu, 3 Dec 2020 08:11:57 -0700
-From:   Rob Herring <robh@kernel.org>
-To:     Mauro Carvalho Chehab <mchehab@kernel.org>
-Cc:     devicetree@vger.kernel.org,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        Ricardo Ribalda <ribalda@kernel.org>,
-        linux-media@vger.kernel.org
-Subject: Re: [PATCH] media: dt-bindings: schema indentation fixes
-Message-ID: <20201203151157.GB2644458@robh.at.kernel.org>
-References: <20201112224951.166313-1-robh@kernel.org>
+        id S1727977AbgLCPhs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Dec 2020 10:37:48 -0500
+Received: from mailout10.rmx.de ([94.199.88.75]:39212 "EHLO mailout10.rmx.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726111AbgLCPhs (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 3 Dec 2020 10:37:48 -0500
+Received: from kdin02.retarus.com (kdin02.dmz1.retloc [172.19.17.49])
+        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        by mailout10.rmx.de (Postfix) with ESMTPS id 4Cn0M45Zrwz36Dj;
+        Thu,  3 Dec 2020 16:37:04 +0100 (CET)
+Received: from mta.arri.de (unknown [217.111.95.66])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by kdin02.retarus.com (Postfix) with ESMTPS id 4Cn0Lr2Y4cz2TTL1;
+        Thu,  3 Dec 2020 16:36:52 +0100 (CET)
+Received: from n95hx1g2.localnet (192.168.54.174) by mta.arri.de
+ (192.168.100.104) with Microsoft SMTP Server (TLS) id 14.3.487.0; Thu, 3 Dec
+ 2020 16:36:32 +0100
+From:   Christian Eggers <ceggers@arri.de>
+To:     Richard Cochran <richardcochran@gmail.com>
+CC:     Vladimir Oltean <olteanv@gmail.com>,
+        Jakub Kicinski <kuba@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Vivien Didelot" <vivien.didelot@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Kurt Kanzenbach <kurt.kanzenbach@linutronix.de>,
+        George McCollister <george.mccollister@gmail.com>,
+        Marek Vasut <marex@denx.de>,
+        Helmut Grohne <helmut.grohne@intenta.de>,
+        Paul Barker <pbarker@konsulko.com>,
+        "Codrin Ciubotariu" <codrin.ciubotariu@microchip.com>,
+        Tristram Ha <Tristram.Ha@microchip.com>,
+        Woojung Huh <woojung.huh@microchip.com>,
+        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
+        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH net-next v5 9/9] net: dsa: microchip: ksz9477: add periodic output support
+Date:   Thu, 3 Dec 2020 16:36:26 +0100
+Message-ID: <11406377.LS7tM95F4J@n95hx1g2>
+Organization: Arnold & Richter Cine Technik GmbH & Co. Betriebs KG
+In-Reply-To: <20201203141255.GF4734@hoboy.vegasvil.org>
+References: <20201203102117.8995-1-ceggers@arri.de> <20201203102117.8995-10-ceggers@arri.de> <20201203141255.GF4734@hoboy.vegasvil.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201112224951.166313-1-robh@kernel.org>
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Originating-IP: [192.168.54.174]
+X-RMX-ID: 20201203-163652-xZDbsPjsymKS-0@out02.hq
+X-RMX-SOURCE: 217.111.95.66
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 12, 2020 at 04:49:51PM -0600, Rob Herring wrote:
-> Fix a few new indentation warnings found with yamllint (now integrated
-> into the checks).
+On Thursday, 3 December 2020, 15:12:55 CET, Richard Cochran wrote:
+> On Thu, Dec 03, 2020 at 11:21:17AM +0100, Christian Eggers wrote:
+> > The KSZ9563 has a Trigger Output Unit (TOU) which can be used to
+> > generate periodic signals.
+> > 
+> > The pulse length can be altered via a device attribute.
 > 
-> Cc: Hans Verkuil <hverkuil-cisco@xs4all.nl>
-> Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
-> Cc: Jacopo Mondi <jacopo@jmondi.org>
-> Cc: Ricardo Ribalda <ribalda@kernel.org>
-> Cc: linux-media@vger.kernel.org
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
+> Device tree is the wrong place for that.
+I meant a device specfic sysfs attribute.
+/sys/class/ptp/ptp2/device/pulse
 
-Ping! This should go via the media tree.
+But this is not true anymore, as I moved the sysfs attribute to a later 
+patch (not submitted yet).
 
->  .../devicetree/bindings/media/i2c/adv7604.yaml       |  4 ++--
->  .../devicetree/bindings/media/i2c/ovti,ov772x.yaml   | 12 ++++++------
->  .../devicetree/bindings/media/i2c/sony,imx214.yaml   | 12 ++++++------
->  3 files changed, 14 insertions(+), 14 deletions(-)
+> Aren't you using PTP_PEROUT_DUTY_CYCLE anyhow?
+I also use PTP_PEROUT_DUTY_CYCLE. But this cannot be set via a shell
+script. The existing "period" sysfs attribute doesn't allow to set
+the pulse length, so I added a device specific attribute for this.
+
+Should ptp_sysfs be extended with a "pulse" attribute with calls
+enable() with only PTP_PEROUT_DUTY_CYCLE set?
+
 > 
-> diff --git a/Documentation/devicetree/bindings/media/i2c/adv7604.yaml b/Documentation/devicetree/bindings/media/i2c/adv7604.yaml
-> index 3897af540ddd..407baddfaa1d 100644
-> --- a/Documentation/devicetree/bindings/media/i2c/adv7604.yaml
-> +++ b/Documentation/devicetree/bindings/media/i2c/adv7604.yaml
-> @@ -21,8 +21,8 @@ properties:
->    compatible:
->      items:
->        - enum:
-> -        - adi,adv7611
-> -        - adi,adv7612
-> +          - adi,adv7611
-> +          - adi,adv7612
->  
->    reg:
->      minItems: 1
-> diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov772x.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov772x.yaml
-> index 63b3779d7289..6866c2cdac50 100644
-> --- a/Documentation/devicetree/bindings/media/i2c/ovti,ov772x.yaml
-> +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov772x.yaml
-> @@ -75,18 +75,18 @@ properties:
->                  bus-type:
->                    const: 6
->              then:
-> -                properties:
-> -                  hsync-active: false
-> -                  vsync-active: false
-> +              properties:
-> +                hsync-active: false
-> +                vsync-active: false
->  
->            - if:
->                properties:
->                  bus-width:
->                    const: 10
->              then:
-> -                properties:
-> -                  data-shift:
-> -                    const: 0
-> +              properties:
-> +                data-shift:
-> +                  const: 0
->  
->          required:
->            - bus-type
-> diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx214.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx214.yaml
-> index 0f5e25fa4e9d..1a3590dd0e98 100644
-> --- a/Documentation/devicetree/bindings/media/i2c/sony,imx214.yaml
-> +++ b/Documentation/devicetree/bindings/media/i2c/sony,imx214.yaml
-> @@ -68,13 +68,13 @@ properties:
->              description: See ../video-interfaces.txt
->              anyOf:
->                - items:
-> -                - const: 1
-> -                - const: 2
-> +                  - const: 1
-> +                  - const: 2
->                - items:
-> -                - const: 1
-> -                - const: 2
-> -                - const: 3
-> -                - const: 4
-> +                  - const: 1
-> +                  - const: 2
-> +                  - const: 3
-> +                  - const: 4
->  
->            link-frequencies:
->              $ref: /schemas/types.yaml#/definitions/uint64-array
-> -- 
-> 2.25.1
+> Thanks,
+> Richard
 > 
+> 
+regards
+Christian
+
+
+
+
