@@ -2,94 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 511DC2CD897
-	for <lists+devicetree@lfdr.de>; Thu,  3 Dec 2020 15:11:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 06DB62CD8B9
+	for <lists+devicetree@lfdr.de>; Thu,  3 Dec 2020 15:16:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730658AbgLCOJz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Dec 2020 09:09:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37004 "EHLO
+        id S1730862AbgLCONk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Dec 2020 09:13:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37584 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729342AbgLCOJy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Dec 2020 09:09:54 -0500
-Received: from mail-pf1-x444.google.com (mail-pf1-x444.google.com [IPv6:2607:f8b0:4864:20::444])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52990C061A4E;
-        Thu,  3 Dec 2020 06:09:14 -0800 (PST)
-Received: by mail-pf1-x444.google.com with SMTP id b26so1363811pfi.3;
-        Thu, 03 Dec 2020 06:09:14 -0800 (PST)
+        with ESMTP id S1726318AbgLCONk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Dec 2020 09:13:40 -0500
+Received: from mail-pg1-x543.google.com (mail-pg1-x543.google.com [IPv6:2607:f8b0:4864:20::543])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F267FC061A4F;
+        Thu,  3 Dec 2020 06:12:59 -0800 (PST)
+Received: by mail-pg1-x543.google.com with SMTP id e23so1455356pgk.12;
+        Thu, 03 Dec 2020 06:12:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=wJ7u1l2czPx09HJWCSw/GmDg+rkIf9SaGFfB2vz8DE0=;
-        b=MPP+YY48bbGpf4uMpzlQnJ0NsdZyHG5oMLo1ZX9mAuBJGih1zUDyIuwV/QENfZRoOm
-         mLio+3icihdlceE50ysgNBBczvZEfzLI/zukKmRRAKgNKylbUXLAZYQ/A19VIFbbxs6v
-         uhC7kcSOyzdEiAPYdc0NPr7fDE8OcB2+yqmnFM5tau+HzSNTvCI6dBzMjvVn0SMoVLy2
-         L25teH6LUHPkijypP3xIASQqUw/HG+xXB0e35x4A9q5Gmsjxz3KDZH0gz1r8jk+sT5DU
-         j6w4UbjjUxlk4kpQjVIC30uf5FcIyAbDkXpBXgJzRHDmUl20lJrokhNKhRzsgqCXrKJj
-         AZWA==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=xBK8JM0PJHLNoFEOdvQSEqTs4k9kFXjYQessqU1NrAM=;
+        b=gf7QiBRLtEICd9g+cXW6r0YHcWAydR9Y3rXFakDaI1IyODiLtYWulnZ9i5qJ+WhpWs
+         mT4gNRBSf3vwGqxKkfkwcEoAiRrW7FwlCmuQ2UyA22nE5dVmS8rRg+e/IkbN0Gy8jlAe
+         cS4mE7eFTeh86JM2QqM88hW1cCg/evVN+F5R2wSsOmFi1knJkHHYmnycNm9sr7x6vcWu
+         qGOr3zc0b+nP9J9oA4TTDGrvgKpygBGoczsk/ZlPsVSOvLO57kbwQ8HIHb3/0ejgNat/
+         j8j2kdtNmIiYA1mZs9wlyOFnYGsv0MOY14TwzBGTsepBwblHIG22M0epKkF8saGGoU82
+         XV6g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=wJ7u1l2czPx09HJWCSw/GmDg+rkIf9SaGFfB2vz8DE0=;
-        b=Olqp2czTfCAajwLoz5l/6HpNyHYcmyjZFBi7tkHfFOwa4M4uAiPEVzRdW36hPBP0k6
-         LRIK0V19pJBcNNfZJdxGaCdL0zgZ0Wuo/WITajKq38sCWpDyl/PtA21Sdth71bruJKBD
-         BCt5/oAlvZA7hNjemX+hSx3i1xziFv6g1Vu2DMVMMfqNYbjTWT9KlCar9Hz199pdbjnz
-         Ob26CyFcoz5BfEZGpXbFNQH9uj1J5FeCQJYkK5FKnRnZCmNqnwqzhGczsuaUx3ftx+lv
-         W01vaBUBOmVYyi4I/iu+Obp+cK/FifqK9RRYkd+OpD4ysc8dgkhvsxIOCKtthmX7D/cc
-         r7Eg==
-X-Gm-Message-State: AOAM5325sbH0tgf53wDjwLG+/SqmFg67nxehu6TyIbwEa4JoD/JxJ2GX
-        61vHz+CIWHSJFORBmKREuAlCo4UQT/gfrYebgDc=
-X-Google-Smtp-Source: ABdhPJy8gwkOuaOTstt9oMs1cJBUajEsYkOqutZ5s21vSkL0HssiI9Fujv2aRtCbYo+mm3LSggCPb1WAXHXNmWVe/PY=
-X-Received: by 2002:a62:445:0:b029:19c:162b:bbef with SMTP id
- 66-20020a6204450000b029019c162bbbefmr3227328pfe.40.1607004553823; Thu, 03 Dec
- 2020 06:09:13 -0800 (PST)
-MIME-Version: 1.0
-References: <20201203140531.74470-1-alexandru.ardelean@analog.com> <20201203140531.74470-2-alexandru.ardelean@analog.com>
-In-Reply-To: <20201203140531.74470-2-alexandru.ardelean@analog.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Thu, 3 Dec 2020 16:10:02 +0200
-Message-ID: <CAHp75Veh=b0JYOP_gETyqqGGEYhO9JcxFCGXSuzSX27-qioprA@mail.gmail.com>
-Subject: Re: [PATCH v4 2/3] spi: Add SPI_NO_TX/RX support
-To:     Alexandru Ardelean <alexandru.ardelean@analog.com>
-Cc:     linux-spi <linux-spi@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Mark Brown <broonie@kernel.org>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=xBK8JM0PJHLNoFEOdvQSEqTs4k9kFXjYQessqU1NrAM=;
+        b=pzMj7Xd/y92a5fJZ1M3vZ+hm0F8XA4hWhpNXvLzDL3ZP3f4PCfa9ZO98yIA+CtU269
+         BKFbK90825g+dHlZTcTN6PeT9EPeIMrBRnYofSp2fRDYp6MkEnwQi765BI6/nzgZA4cx
+         ZGP+sSCikS6dUJW10rMS09egEVPChl2ZC5wLdg4l+g7dSm5r09aLND/7qDAo1j0oAP/v
+         0b9r2zXivpdXOJOcR1QBhbJoOAJl3LE1WNPSGPDGtdIZvD5/A76xs2TI1vakxYT1a+gB
+         LzvNJnIAS5Uw6uCM3KeFJJkfPJB8u3O84a75K0aXBlJnFTzEGo6vAcUsFj+7uQJnnnU4
+         nlqg==
+X-Gm-Message-State: AOAM533GXREcrMM8bb425U0KFA/a0rjlPNUCDBWTQloQ8yk/ZK38CzO6
+        B65qZh3PolA/XzwYtmBT7Ys=
+X-Google-Smtp-Source: ABdhPJwKxOLeqXkFHFoXRFX52uQvO5gFZGIsvlNheWPwcYAraiy47OFm05xeEw1LBH3sTiLXx17eFQ==
+X-Received: by 2002:a62:80ce:0:b029:19d:b280:5019 with SMTP id j197-20020a6280ce0000b029019db2805019mr530499pfd.43.1607004779577;
+        Thu, 03 Dec 2020 06:12:59 -0800 (PST)
+Received: from hoboy.vegasvil.org (c-73-241-114-122.hsd1.ca.comcast.net. [73.241.114.122])
+        by smtp.gmail.com with ESMTPSA id m18sm1656627pjl.41.2020.12.03.06.12.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 03 Dec 2020 06:12:58 -0800 (PST)
+Date:   Thu, 3 Dec 2020 06:12:55 -0800
+From:   Richard Cochran <richardcochran@gmail.com>
+To:     Christian Eggers <ceggers@arri.de>
+Cc:     Vladimir Oltean <olteanv@gmail.com>,
+        Jakub Kicinski <kuba@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
         Rob Herring <robh+dt@kernel.org>,
-        "Bogdan, Dragos" <dragos.bogdan@analog.com>
-Content-Type: text/plain; charset="UTF-8"
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Kurt Kanzenbach <kurt.kanzenbach@linutronix.de>,
+        George McCollister <george.mccollister@gmail.com>,
+        Marek Vasut <marex@denx.de>,
+        Helmut Grohne <helmut.grohne@intenta.de>,
+        Paul Barker <pbarker@konsulko.com>,
+        Codrin Ciubotariu <codrin.ciubotariu@microchip.com>,
+        Tristram Ha <Tristram.Ha@microchip.com>,
+        Woojung Huh <woojung.huh@microchip.com>,
+        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next v5 9/9] net: dsa: microchip: ksz9477: add
+ periodic output support
+Message-ID: <20201203141255.GF4734@hoboy.vegasvil.org>
+References: <20201203102117.8995-1-ceggers@arri.de>
+ <20201203102117.8995-10-ceggers@arri.de>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201203102117.8995-10-ceggers@arri.de>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 3, 2020 at 4:00 PM Alexandru Ardelean
-<alexandru.ardelean@analog.com> wrote:
-> From: Dragos Bogdan <dragos.bogdan@analog.com>
->
-> Transmit/receive only is a valid SPI mode. For example, the MOSI/TX line
-> might be missing from an ADC while for a DAC the MISO/RX line may be
-> optional. This patch adds these two new modes: SPI_NO_TX and
-> SPI_NO_RX. This way, the drivers will be able to identify if any of
-> these two lines is missing and to adjust the transfers accordingly.
+On Thu, Dec 03, 2020 at 11:21:17AM +0100, Christian Eggers wrote:
+> The KSZ9563 has a Trigger Output Unit (TOU) which can be used to
+> generate periodic signals.
+> 
+> The pulse length can be altered via a device attribute.
 
-...
+Device tree is the wrong place for that.
 
-> +       BUILD_BUG_ON(SPI_MODE_USER_MASK & SPI_MODE_KERNEL_MASK);
+Aren't you using PTP_PEROUT_DUTY_CYCLE anyhow?
 
-Please, use static_assert() as I have been pointed out. It may be
-located outside of a function scope. You may attach it directly to the
-definition of the KERNEL_MASK (I haven't tried yet with header
-though).
+Thanks,
+Richard
 
-...
 
-> +#define SPI_NO_TX      BIT(31)         /* no transmit wire */
-> +#define SPI_NO_RX      BIT(30)         /* no receive wire */
-> +#define SPI_MODE_KERNEL_MASK   (SPI_NO_TX | SPI_NO_RX)
-
-This needs a comment to explain what's going on with the flags (split).
-
--- 
-With Best Regards,
-Andy Shevchenko
