@@ -2,96 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 66C1B2CD2DB
-	for <lists+devicetree@lfdr.de>; Thu,  3 Dec 2020 10:48:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ED86E2CD2EA
+	for <lists+devicetree@lfdr.de>; Thu,  3 Dec 2020 10:51:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730158AbgLCJsv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Dec 2020 04:48:51 -0500
-Received: from mail.kernel.org ([198.145.29.99]:33570 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728900AbgLCJsu (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 3 Dec 2020 04:48:50 -0500
-Date:   Thu, 3 Dec 2020 09:47:39 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1606988889;
-        bh=5X99CjF/w6FuCzH9ST9VSYb0yNBNDgAFDj6aEVF7hRE=;
-        h=From:To:Cc:Subject:References:In-Reply-To:From;
-        b=aROK9D3oy/hXocbzQlxP1a9VxjKCwjp/rA+Azd9Jw16exRpgg5LyekFUUki7Nwy7o
-         Ajlr9geQHGbW0V0AOHJBExkMQnyr2DGGVEnkCSI+tlsy6z79sAz9QRmgaldF9iRxuN
-         JIn/A3HobTBLeGCpiPRcsPjOwp1Q27FV70dlUtx3BfU02hXJflgjnErfNZDu9pncGZ
-         8SzUeszP5AgPLA0U8QCzJpV+jm6V/IFc1YY8RG59R/qlhJ46dZJqdQiLF8/4E2ODB2
-         cbQ2dYorXPvmgcIsSPPujZZWmRYVtU4tvQAd3eMOhHcDInfnLWs9eDbrggoutcN0/k
-         VAjvo2k1EiD9g==
-From:   Mark Brown <broonie@kernel.org>
-To:     "Ardelean, Alexandru" <alexandru.Ardelean@analog.com>
-Cc:     Andy Shevchenko <andy.shevchenko@gmail.com>,
-        linux-spi <linux-spi@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        id S1730122AbgLCJv1 convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 3 Dec 2020 04:51:27 -0500
+Received: from mail-ej1-f65.google.com ([209.85.218.65]:39602 "EHLO
+        mail-ej1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730201AbgLCJv0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Dec 2020 04:51:26 -0500
+Received: by mail-ej1-f65.google.com with SMTP id n26so2514465eju.6;
+        Thu, 03 Dec 2020 01:51:09 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=zIi/0Gk+POPxQXzfzK/flFDHb00Mu6VDDpn3MrPay+U=;
+        b=aWNzq4+85ljJnLKH565CqtDhKRnEpSNx1tA+6Mg1X/tps9i4Eorp6bMy6YTpqRKXwV
+         DvR5YgBqaRSUes24Hq3NxzF/0baDvFxtmFEPbLk13ZXxQvzTlgurzFDNgPKTQCJdA8Om
+         6U0PKM8LGbRkBC4z3cGwEzbgw9xuOvWETQpD6cFOXJiYGITdmTbEWkKRS9lzyANK6HUS
+         NkY9Wlhg9f9YlwV4y3++CoU6p8ZdrV1+YGqseLlvL7Xii4W7HSU/mASOhX4ceTUE9JiY
+         GB2nmMlyzrkGbiGwsWIBnpwkkANvo7RQdjzPd3GgyUNiQBB8GSY2naOsH51Bftyim1iI
+         A7SA==
+X-Gm-Message-State: AOAM532KRSNw3780xZQcYJhX220xBeBQbzU8fWsmeeofjupxl4pqmAKb
+        2dposUiwQMg/nHE8CAxDCqU=
+X-Google-Smtp-Source: ABdhPJxzs5zlrR2KVLdPKT32M/bDkg6bGqfhyrosRE+ocveA3Ul8/IKXaWh6g33OKKEI5YiRRypB8A==
+X-Received: by 2002:a17:907:2131:: with SMTP id qo17mr1742622ejb.546.1606989043852;
+        Thu, 03 Dec 2020 01:50:43 -0800 (PST)
+Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
+        by smtp.googlemail.com with ESMTPSA id b14sm782174edx.0.2020.12.03.01.50.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 03 Dec 2020 01:50:42 -0800 (PST)
+Date:   Thu, 3 Dec 2020 11:50:41 +0200
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Timon =?utf-8?B?QsOkdHo=?= <timon.baetz@protonmail.com>
+Cc:     Sebastian Reichel <sre@kernel.org>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Kukjin Kim <kgene@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        "Bogdan, Dragos" <Dragos.Bogdan@analog.com>
-Subject: Re: [PATCH v3 2/3] spi: Add SPI_NO_TX/RX support
-Message-ID: <20201203094739.GB4700@sirena.org.uk>
-References: <20201127130834.136348-1-alexandru.ardelean@analog.com>
- <20201127130834.136348-2-alexandru.ardelean@analog.com>
- <CAHp75Vcd4t=RqC31S-b1PXMtd=8sypSLhTrSgRD9hbpSqOphoQ@mail.gmail.com>
- <CAHp75VctXhpyBVB7Zw+SB5LiGcj6r850x+ehL7u2H0R4=y5rVw@mail.gmail.com>
- <CY4PR03MB29661063937AD783F6B2A010F9F20@CY4PR03MB2966.namprd03.prod.outlook.com>
+        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-samsung-soc@vger.kernel.org" 
+        <linux-samsung-soc@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "~postmarketos/upstreaming@lists.sr.ht" 
+        <~postmarketos/upstreaming@lists.sr.ht>
+Subject: Re: [PATCH 3/3] ARM: dts: exynos: Fix charging regulator voltage and
+ current for i9100
+Message-ID: <20201203095041.GA14508@kozik-lap>
+References: <20201202203516.43053-1-timon.baetz@protonmail.com>
+ <20201202203516.43053-3-timon.baetz@protonmail.com>
+ <20201202220430.GB135888@kozik-lap>
+ <dDjo3R2SJ6CBCjg0YhsCPdh5JfEGhA--DHNNDqbWjVtTjZC5v7g7_523vqAzu_Ybf1Q-xfKeK47H483YQoVtpO3DI83OaR6c6mbvtC9S1Us=@protonmail.com>
+ <20201203082301.GA3999@kozik-lap>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="hHWLQfXTYDoKhP50"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <CY4PR03MB29661063937AD783F6B2A010F9F20@CY4PR03MB2966.namprd03.prod.outlook.com>
-X-Cookie: Sacred cows make great hamburgers.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8BIT
+In-Reply-To: <20201203082301.GA3999@kozik-lap>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Dec 03, 2020 at 10:23:01AM +0200, Krzysztof Kozlowski wrote:
+> On Thu, Dec 03, 2020 at 05:46:03AM +0000, Timon Bätz wrote:
+> > On Wednesday, December 2, 2020 11:04 PM, Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> > 
+> > > On Wed, Dec 02, 2020 at 09:07:28PM +0000, Timon Baetz wrote:
+> > >
+> > > > Set CHARGER current and CHARGER_CV voltage according to Galaxy S2 kernel
+> > > > fork.
+> > > >
+> > > > Signed-off-by: Timon Baetz timon.baetz@protonmail.com
+> > > >
+> > > > ------------------------------------------------------
+> > > >
+> > > > arch/arm/boot/dts/exynos4210-i9100.dts | 8 ++++----
+> > > > 1 file changed, 4 insertions(+), 4 deletions(-)
+> > > > diff --git a/arch/arm/boot/dts/exynos4210-i9100.dts b/arch/arm/boot/dts/exynos4210-i9100.dts
+> > > > index 9f8d927e0d21..2700d53ea01b 100644
+> > > > --- a/arch/arm/boot/dts/exynos4210-i9100.dts
+> > > > +++ b/arch/arm/boot/dts/exynos4210-i9100.dts
+> > > > @@ -558,14 +558,14 @@ safe2_sreg: ESAFEOUT2 {
+> > > >
+> > > >       	charger_reg: CHARGER {
+> > > >       		regulator-name = "CHARGER";
+> > > >
+> > > >
+> > > > -       		regulator-min-microamp = <60000>;
+> > > >
+> > > >
+> > > > -       		regulator-max-microamp = <2580000>;
+> > > >
+> > > >
+> > > >
+> > > > -       		regulator-min-microamp = <200000>;
+> > > >
+> > > >
+> > > > -       		regulator-max-microamp = <950000>;
+> > > >         	};
+> > > >
+> > > >         	chargercv_reg: CHARGER_CV {
+> > > >         		regulator-name = "CHARGER_CV";
+> > > >
+> > > >
+> > > >
+> > > > -       		regulator-min-microvolt = <3800000>;
+> > > >
+> > > >
+> > > > -       		regulator-max-microvolt = <4100000>;
+> > > >
+> > > >
+> > > >
+> > > > -       		regulator-min-microvolt = <4200000>;
+> > > >
+> > > >
+> > > > -       		regulator-max-microvolt = <4200000>;
+> > > >
+> > > >
+> > >
+> > > I am looking at my sources of Android 3.0 for GT-I9100 but I cannot find
+> > > charger voltages for it. Where did you find it?
+> > >
+> > > Best regards,
+> > > Krzysztof
+> > 
+> > Thanks all the feedback Krzysztof,
+> > 
+> > Voltage is set in the charger probe function of the downstream kernel fork: https://github.com/LineageOS/android_kernel_samsung_smdk4412/blob/lineage-17.0/drivers/power/max8997_charger_u1.c#L390-L391
+> 
+> You need to fix your email client to wrap lines.
+> 
+> The fork cannot be used as a reference because of poor quality of
+> explanations for origins of the code.
+> 
+> The commit which added 4.2 V is described as "samsung update 1" which
+> basically means nothing. If at least it was "drop sources of
+> GT-I9105"... but in this form it is useless.
+> 
+> For the things we are not sure how they should be implemented, we
+> sometimes accept the reason "vendor sources do like this". However Lineage
+> or any other fork are not vendor sources.
+> 
+> Therefore you need to provide a valid explanation for this voltage
+> change.
 
---hHWLQfXTYDoKhP50
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+I checked vendor sources for Samsung Galaxy S2 Epic 4G Touch (SPH-D710)
+and indeed it uses the max8997 charger U1 which sets v4.2 volts.
 
-On Thu, Dec 03, 2020 at 08:20:57AM +0000, Ardelean, Alexandru wrote:
+You can use it to fix up the commit msg.
 
-> > > > @@ -43,5 +43,7 @@
-> > > >  #define        SPI_TX_OCTAL            0x2000          /* transmit with 8 wires */
-> > > >  #define        SPI_RX_OCTAL            0x4000          /* receive with 8 wires */
-> > > >  #define        SPI_3WIRE_HIZ           0x8000          /* high impedance turnaround
-> > */
-> > > > +#define        SPI_NO_TX               0x10000         /* no transmit wire */
-> > > > +#define        SPI_NO_RX               0x20000         /* no receive wire */
+Unfortunately it seems Samsung started to remove most of older
+kernel source code from their OS compliance page. S1, S2 and S3 are
+mostly gone. I was able to find just few remaining sources and I am now
+updating my vendor-dump with them. I'll upload them later to
+https://github.com/krzk/linux-vendor-backup .
 
-> > > Is it really material for uAPI?
-> > > Perhaps we may have something like
-> > > SPI_MODE_USER_MASK in uAPI and
-> > > in internal headers
+Best regards,
+Krzysztof
 
-> Hmm, in a way this could make sense for some SPIDEVs as well, to set these flags and get an error if they try to TX with the NO_TX flag set.
-> Not really sure about this.
-> Initially I mechanically added these here as an inertia to the previous patch which is just unifying the headers.
-
-> Any other opinions? Thoughts?
-> Mark?
-
-spidev is hacky at the best of times...  It *is* probably better to only
-have the usefully mainpulable modes exposed in uapi and then define the
-rest internally though.
-
---hHWLQfXTYDoKhP50
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl/ItDoACgkQJNaLcl1U
-h9Ckwgf/VrYn5fwTeqHxZl9gZCMMNNATL4F7b+ly/CACve6HcvslrstmDsD7tOoV
-+wKtnrhgYWzqwHpNzk1ts5IBZSq37RDXbbvylJ/DfWLQLelRYR5ZLrWyThtXnCHP
-uBqM/YppX3AqWLfIAcwObA+QHzLhoxvVOIeMx2cOJrbYZN/5vg/BwvIucZ5aSAvU
-Tv+0HRVGTKG7Ul4CJKnxthqjjr2R3xu+oscuTymdibWSU0yYslpIicdkn13179ZK
-wDzRNXVmaJUPMn5vBSfgHh/GFe9P7287bhf5FksmN2HMkD8p9ZjCrUNDt4g4oVKg
-GJPCc7X4m35E6fZch0J4YViffIvvAA==
-=SB4J
------END PGP SIGNATURE-----
-
---hHWLQfXTYDoKhP50--
