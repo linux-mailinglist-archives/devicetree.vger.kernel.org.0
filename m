@@ -2,132 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AD7332CCD38
-	for <lists+devicetree@lfdr.de>; Thu,  3 Dec 2020 04:18:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6CD4C2CCD58
+	for <lists+devicetree@lfdr.de>; Thu,  3 Dec 2020 04:34:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727614AbgLCDRi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Dec 2020 22:17:38 -0500
-Received: from new4-smtp.messagingengine.com ([66.111.4.230]:38813 "EHLO
-        new4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726276AbgLCDRi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Dec 2020 22:17:38 -0500
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 0BD92580307;
-        Wed,  2 Dec 2020 22:16:52 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute3.internal (MEProxy); Wed, 02 Dec 2020 22:16:52 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        subject:to:cc:references:from:message-id:date:mime-version
-        :in-reply-to:content-type:content-transfer-encoding; s=fm1; bh=c
-        gJ/TsRJBaRDzx8MdnyAEwfSEaMJToTmA0O7gCafcTg=; b=kWKxhUbIGL1Mh5BP4
-        WUaGxoGqwK0SulgLE89GuS8Gw0hVrZsr/14vky1h5I8O0kBiZTVCTj9pllJE1asb
-        xklBMDuag8IFA0hG+N7fcJROEXnn+ZCBpw18BbTTxmkLzNEZJ8n3o6CC1IwB8Ds5
-        52BFWyzEgvEe4b6kst1W94g8HSBWRbroliwla+1mIQ2RjExwoUKGf+rnB+c1h7WV
-        R3Bi4k22fcr7a/K/UA4zCkt4x4uuMxyrri0at7aeUKp2utaM8NXolgRHXuiLggC3
-        q0n9kjrXS13XKrzvhPkOlMh8LWF1fidI6M07pSFehymonWV96E6UrVgpTMZmciEn
-        CA6Yw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:content-type
-        :date:from:in-reply-to:message-id:mime-version:references
-        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm1; bh=cgJ/TsRJBaRDzx8MdnyAEwfSEaMJToTmA0O7gCafc
-        Tg=; b=ngfYa96K1n1UR+Z8zJr6fAxhSWrVTvLtWDNWNLagIrumaH7iy1cZiRhO6
-        ZxbqLL0AUB1Md9gc+KMyelXn3HoOgZKQIgt6n8/n/UZBwDSiLO6EmDjeehDThgK8
-        exCavdWzSXUfDYliRbRRgDIXWijFwnnM5InSG4uKmZQIhsowFMKVo0AxojUTKPvC
-        8IZop6aqxnttc9GRenKnTByaBZ/mRgVDlYAYNVTb3oLHcqbr47eq16K0/QnpnZ4/
-        p38GmBxM034fG37hpio3th7hTH6RWDgDnj+JQnPp5AzYzPmu60JdLW+m1wTjcf7T
-        GWQOonESiJaL6vgi9tM9V3u375OVw==
-X-ME-Sender: <xms:oljIX8PO3xLbWXMaLJpXW_9RzOFasMpwOvYC2F6oQjUGcigNfg0--A>
-    <xme:oljIX5_7ADb7mPzKkjBzthhTv2THi33KASiqPRxrVNjZkHIFpZYJEp3e17C-N5mY2
-    4dtMpxwnY2Kptn6jw>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrudeihedgheeiucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepuffvfhfhkffffgggjggtgfesthejredttdefjeenucfhrhhomhepufgrmhhu
-    vghlucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecugg
-    ftrfgrthhtvghrnhepgfevffetleehffejueekvdekvdeitdehveegfeekheeuieeiueet
-    uefgtedtgeegnecukfhppeejtddrudefhedrudegkedrudehudenucevlhhushhtvghruf
-    hiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehsrghmuhgvlhesshhhohhllhgr
-    nhgurdhorhhg
-X-ME-Proxy: <xmx:oljIX4QK-ib49kfpTb8WJ3ysmP2yQv6Rl-rARwnqMA9Wa0C8GgHl3A>
-    <xmx:oljIXzkguUDgyX_40cuKIPhlsNJO9pCiM1RKmvD2oQxQ49dBTtVLFQ>
-    <xmx:oljIXwQkk7FV8bNocrcI6AS3jam4cywOv7c61hr6ic7NyI7_n1TRcA>
-    <xmx:pFjIX_MZKWi2lcvvNoktCxeVNeiwoC9iXdHiD4Wydtl8zTJE7IArIg>
-Received: from [192.168.50.169] (70-135-148-151.lightspeed.stlsmo.sbcglobal.net [70.135.148.151])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 4E01E24005E;
-        Wed,  2 Dec 2020 22:16:50 -0500 (EST)
-Subject: Re: [PATCH 7/8] arm64: dts: allwinner: Add Allwinner H616 .dtsi file
-To:     Andre Przywara <andre.przywara@arm.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>
-Cc:     devicetree@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com,
-        Rob Herring <robh+dt@kernel.org>,
-        Icenowy Zheng <icenowy@aosc.xyz>,
-        Yangtao Li <frank@allwinnertech.com>,
-        linux-arm-kernel@lists.infradead.org
-References: <20201202135409.13683-1-andre.przywara@arm.com>
- <20201202135409.13683-8-andre.przywara@arm.com>
-From:   Samuel Holland <samuel@sholland.org>
-Message-ID: <3b4f4bf6-2fba-5d35-bdf5-74b8ced10357@sholland.org>
-Date:   Wed, 2 Dec 2020 21:16:49 -0600
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.6.0
+        id S1727777AbgLCDbG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Dec 2020 22:31:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51164 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726734AbgLCDbG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Dec 2020 22:31:06 -0500
+Received: from mail-pg1-x541.google.com (mail-pg1-x541.google.com [IPv6:2607:f8b0:4864:20::541])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DFABC061A4E
+        for <devicetree@vger.kernel.org>; Wed,  2 Dec 2020 19:30:26 -0800 (PST)
+Received: by mail-pg1-x541.google.com with SMTP id n7so558751pgg.2
+        for <devicetree@vger.kernel.org>; Wed, 02 Dec 2020 19:30:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Ccj6b9pxrqpLMEQV5KpSS6RxrNoGGzMjVrA/qC32hfE=;
+        b=TdmdMAXcbIkcPSaPzbV896gbNaogvjXSo8idr4V3kUarOjDeBV+aB2G9WX3zsoab26
+         OBz5pWCSkCNzOkbDu9TkFxlEG+HNevlIqJ3UQb5YvIXNXpNLTJkJbRLHGnMUz9R8JDYV
+         /KjQtCGGKqgObEyEs6lZGxXwHKmxaJnFFUTOA=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Ccj6b9pxrqpLMEQV5KpSS6RxrNoGGzMjVrA/qC32hfE=;
+        b=RHAsBhhcujn3nwcqUOC+531948rmHn605R7WdgY7PDr09ssKz1Rm9YeSRBVafNJDmj
+         yvMhn0bFNtV1PZaGhe71k23Q/8G7Cm6GmtvTimcPyplKzadAoAMwEMazQfn5ajL8UEhh
+         9Xp+/Dxr+fhvk2s+oFP0BEvFaC0dptb11HkfXm/M6ke9bu3vkiGtLx4eXazEHcRFY/Sz
+         PRoXy4/DUcmwEqbt6djQzjso6KU8c5kKMrxpzSHdcsyiBjLNBcZIP2kuB/vL7Q7279sd
+         Lkz0lBftp/GTrQ/Tj6XWTu/IQ2+QizcZu9GXlsdFQG2vnkwvqehNByKIXfCYeemo581c
+         LJbQ==
+X-Gm-Message-State: AOAM530+/Uk/zVMv6M5iR7dS3lyUfRo7bfm0EeqkZfOR61rffcNMItv/
+        /re1ukQP0+Si4Fbu6K3Zd+IM/wEfulVe/AqreD4Nhw==
+X-Google-Smtp-Source: ABdhPJzoBgT28c7z3yMIzACokhuRY837a+IEnLu4EkS/3QjHToN3HgaQLczFSCGvS7Y1qrTMIBNzmhNgyVK3OJWt/40=
+X-Received: by 2002:aa7:9803:0:b029:198:26c8:51e8 with SMTP id
+ e3-20020aa798030000b029019826c851e8mr1409486pfl.42.1606966225868; Wed, 02 Dec
+ 2020 19:30:25 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20201202135409.13683-8-andre.przywara@arm.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20200930022159.5559-1-crystal.guo@mediatek.com>
+ <20200930022159.5559-4-crystal.guo@mediatek.com> <20201130111340.GA3042402@chromium.org>
+ <1606907202.14806.65.camel@mhfsdcap03>
+In-Reply-To: <1606907202.14806.65.camel@mhfsdcap03>
+From:   Ikjoon Jang <ikjn@chromium.org>
+Date:   Thu, 3 Dec 2020 11:30:15 +0800
+Message-ID: <CAATdQgDXYHMst2TO_ohvaiYF3_SZunrzpKs3MW6tOgez5W2j=Q@mail.gmail.com>
+Subject: Re: [v6, 3/3] reset-controller: ti: force the write operation when
+ assert or deassert
+To:     Crystal Guo <crystal.guo@mediatek.com>
+Cc:     "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        =?UTF-8?B?WW9uZyBMaWFuZyAo5qKB5YuHKQ==?= <Yong.Liang@mediatek.com>,
+        =?UTF-8?B?U3RhbmxleSBDaHUgKOacseWOn+mZnik=?= 
+        <stanley.chu@mediatek.com>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        =?UTF-8?B?U2VpeWEgV2FuZyAo546L6L+65ZCbKQ==?= 
+        <seiya.wang@mediatek.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        =?UTF-8?B?RmFuIENoZW4gKOmZs+WHoSk=?= <fan.chen@mediatek.com>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        =?UTF-8?B?WWluZ2pvZSBDaGVuICjpmbPoi7HmtLIp?= 
+        <Yingjoe.Chen@mediatek.com>, "s-anna@ti.com" <s-anna@ti.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Andre,
+On Wed, Dec 2, 2020 at 7:07 PM Crystal Guo <crystal.guo@mediatek.com> wrote:
+>
+> On Mon, 2020-11-30 at 19:13 +0800, Ikjoon Jang wrote:
+> > On Wed, Sep 30, 2020 at 10:21:59AM +0800, Crystal Guo wrote:
+> > > Force the write operation in case the read already happens
+> > > to return the correct value.
+> > >
+> > > Signed-off-by: Crystal Guo <crystal.guo@mediatek.com>
+> > > ---
+> > >  drivers/reset/reset-ti-syscon.c | 4 ++--
+> > >  1 file changed, 2 insertions(+), 2 deletions(-)
+> > >
+> > > diff --git a/drivers/reset/reset-ti-syscon.c b/drivers/reset/reset-ti-syscon.c
+> > > index 5d1f8306cd4f..c34394f1e9e2 100644
+> > > --- a/drivers/reset/reset-ti-syscon.c
+> > > +++ b/drivers/reset/reset-ti-syscon.c
+> > > @@ -97,7 +97,7 @@ static int ti_syscon_reset_assert(struct reset_controller_dev *rcdev,
+> > >     mask = BIT(control->assert_bit);
+> > >     value = (control->flags & ASSERT_SET) ? mask : 0x0;
+> > >
+> > > -   return regmap_update_bits(data->regmap, control->assert_offset, mask, value);
+> > > +   return regmap_write_bits(data->regmap, control->assert_offset, mask, value);
+> > >  }
+> >
+> > I don't think there are no reset controllers with cached regmap,
+> > thus I don't think this is needed.
+> > Are there any specific reasons behind this, what I've missed here?
+> >
+> > We need to be sure that all other devices using this driver
+> > should have no side effects on write.
+> >
+> > I can think of a weird controller doing unwanted things internally
+> > on every write disregarding the current state. (or is this overly
+> > paranoid?)
+> >
+> The specific reason is that, the clear bit may keep the same value with
+> the set bit, but the clear operation can be only be completed by writing
+> 1 to the clear bit, not just with the current fake state "1".
+>
 
-On 12/2/20 7:54 AM, Andre Przywara wrote:
-...
-> +	soc {
-> +		compatible = "simple-bus";
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		ranges = <0x0 0x0 0x0 0x40000000>;
-> +
-> +		syscon: syscon@3000000 {
-> +			compatible = "allwinner,sun50i-h616-system-control",
-> +				     "allwinner,sun50i-a64-system-control";
-> +			reg = <0x03000000 0x1000>;
-> +			#address-cells = <1>;
-> +			#size-cells = <1>;
-> +			ranges;
-> +
-> +			sram_c: sram@28000 {
-> +				compatible = "mmio-sram";
-> +				reg = <0x00028000 0x30000>;
-> +				#address-cells = <1>;
-> +				#size-cells = <1>;
-> +				ranges = <0 0x00028000 0x30000>;
-> +			};
-> +
-> +			sram_c1: sram@1a00000 {
-> +				compatible = "mmio-sram";
-> +				reg = <0x01a00000 0x200000>;
-> +				#address-cells = <1>;
-> +				#size-cells = <1>;
-> +				ranges = <0 0x01a00000 0x200000>;
-> +
-> +				ve_sram: sram-section@0 {
-> +					compatible = "allwinner,sun50i-h616-sram-c1",
-> +						     "allwinner,sun4i-a10-sram-c1";
-> +					reg = <0x000000 0x200000>;
-> +				};
-> +			};
-> +		};
+sorry. I didn't think of that case,
+then I think this patch must be applied. 8-)
 
-You mentioned that you could not find a SRAM A2. How were these SRAM ranges
-verified? If you can load eGON.BT0 larger than 32 KiB, then presumably NBROM
-uses SRAM C, and it is in the manual, but I see no mention of SRAM C1.
+I've thought that the bit automatically flipped to the current reset state
+after the internal operation is done.
 
-Cheers,
-Samuel
+
+
+> > >
+> > >  /**
+> > > @@ -128,7 +128,7 @@ static int ti_syscon_reset_deassert(struct reset_controller_dev *rcdev,
+> > >     mask = BIT(control->deassert_bit);
+> > >     value = (control->flags & DEASSERT_SET) ? mask : 0x0;
+> > >
+> > > -   return regmap_update_bits(data->regmap, control->deassert_offset, mask, value);
+> > > +   return regmap_write_bits(data->regmap, control->deassert_offset, mask, value);
+> > >  }
+> > >
+> > >  /**
+>
