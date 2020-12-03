@@ -2,15 +2,15 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 669B42CD75F
-	for <lists+devicetree@lfdr.de>; Thu,  3 Dec 2020 14:35:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D6A92CD745
+	for <lists+devicetree@lfdr.de>; Thu,  3 Dec 2020 14:35:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389214AbgLCNdt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Dec 2020 08:33:49 -0500
-Received: from mail.kernel.org ([198.145.29.99]:49064 "EHLO mail.kernel.org"
+        id S2436893AbgLCNcr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Dec 2020 08:32:47 -0500
+Received: from mail.kernel.org ([198.145.29.99]:48006 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2436842AbgLCNbE (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 3 Dec 2020 08:31:04 -0500
+        id S2436922AbgLCNbQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 3 Dec 2020 08:31:16 -0500
 From:   Sasha Levin <sashal@kernel.org>
 Authentication-Results: mail.kernel.org; dkim=permerror (bad message/signature format)
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
@@ -20,12 +20,12 @@ Cc:     Markus Reichl <m.reichl@fivetechno.de>,
         Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
         linux-rockchip@lists.infradead.org
-Subject: [PATCH AUTOSEL 4.19 02/14] arm64: dts: rockchip: Assign a fixed index to mmc devices on rk3399 boards.
-Date:   Thu,  3 Dec 2020 08:29:58 -0500
-Message-Id: <20201203133010.931600-2-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 4.14 2/9] arm64: dts: rockchip: Assign a fixed index to mmc devices on rk3399 boards.
+Date:   Thu,  3 Dec 2020 08:30:24 -0500
+Message-Id: <20201203133031.931763-2-sashal@kernel.org>
 X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20201203133010.931600-1-sashal@kernel.org>
-References: <20201203133010.931600-1-sashal@kernel.org>
+In-Reply-To: <20201203133031.931763-1-sashal@kernel.org>
+References: <20201203133031.931763-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -55,10 +55,10 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 3 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/rockchip/rk3399.dtsi b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-index f14e8c5c41acc..f4ee7c4f83b8b 100644
+index b63d9653ff559..82747048381fa 100644
 --- a/arch/arm64/boot/dts/rockchip/rk3399.dtsi
 +++ b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-@@ -29,6 +29,9 @@ aliases {
+@@ -66,6 +66,9 @@ aliases {
  		i2c6 = &i2c6;
  		i2c7 = &i2c7;
  		i2c8 = &i2c8;
