@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 68DBE2CD8F0
-	for <lists+devicetree@lfdr.de>; Thu,  3 Dec 2020 15:23:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 36E082CD8F4
+	for <lists+devicetree@lfdr.de>; Thu,  3 Dec 2020 15:23:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730623AbgLCOWh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Dec 2020 09:22:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38994 "EHLO
+        id S2388144AbgLCOWn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Dec 2020 09:22:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38996 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727875AbgLCOWh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Dec 2020 09:22:37 -0500
+        with ESMTP id S2388089AbgLCOWm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Dec 2020 09:22:42 -0500
 Received: from mail-lf1-x141.google.com (mail-lf1-x141.google.com [IPv6:2a00:1450:4864:20::141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 580C6C08E862
-        for <devicetree@vger.kernel.org>; Thu,  3 Dec 2020 06:21:19 -0800 (PST)
-Received: by mail-lf1-x141.google.com with SMTP id v14so2963600lfo.3
-        for <devicetree@vger.kernel.org>; Thu, 03 Dec 2020 06:21:19 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9156C08E863
+        for <devicetree@vger.kernel.org>; Thu,  3 Dec 2020 06:21:20 -0800 (PST)
+Received: by mail-lf1-x141.google.com with SMTP id l11so2989807lfg.0
+        for <devicetree@vger.kernel.org>; Thu, 03 Dec 2020 06:21:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=KcRu/X3xJaaLM+ngoS1QVEM2mbS7z453C1cW9cVO+24=;
-        b=jxALDj5S1uasxL4Wa21OAPLGRojIzp1++DhlKZo1tjxUfDKARgB6LaDMzfKm8RJqxJ
-         1g76RY9AvwXMzJLD9peur1eJGxi086RRDTlcmJ7IwFx5h0jBcUwLeHSMBILa9IFiH3Hr
-         8dQUb+hXxoBn6uld5cdwmWrLHh7/spKKHAv1MrrJV9UyfwSRiHI/O7AHpx6170PFUsV6
-         7xXc/eg8i/uKVT78tLqq1Nz3LVsLc+Pw3MiMXPu4eTbbaxRPXYTfgpra4JtpHPtn1a+E
-         MrVoOUnPocPJN1IH0g4MhloFIvD+a4R25zmuLJl2/hCPDWw/pEJY8T2fk+sVMz4MoZ90
-         hbVQ==
+        bh=kW9Z+5MdERH4UOzelJv9hwVH2KR54qJRrBP7D3NwCS0=;
+        b=eKJI8a9D4w0n8SZ0JixosfLCvSMpNfv2p8qIs/R4aeJLnhF8Wb6eSNWFEV8ILtJjiU
+         mBfOUyCIMuAUcry29WGBMYEdXPQivx4n7sQnvGAkEGr98sgLUbErxNLfxNYWEhlmmUAv
+         fCmjpc06rxT8FrrlmHYSQiVxBrymST7mmyKou9Su0pfTV1ueX5FHb56D/CSC101/MYK+
+         SxmMpp7o/WzF+93kquKVzADM3gt74mtKu5IO2BP+xGn+i5daqoMMI3T2D3xG15akXJNY
+         wVXd5+6rYxB03nNZrEMDOhiQrOr7Ptngk8XfykJ6ImzxKOrf21kmYO3xoXoQzFUOyMXN
+         euEA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=KcRu/X3xJaaLM+ngoS1QVEM2mbS7z453C1cW9cVO+24=;
-        b=WcDaQzj2pqW0JP1ml9H8C5eNNgZvLUX+YpJ+dxklbGMiy6GiRdXpEJlrdMdHpab+C3
-         to/IzM9g5+8P23SA/1Q42E3op9VDttx39fSBRTrnhP1JSy3WSSWv1+w8nQLt6Xisf2cR
-         n0PLHhHz3xvEWXLFEE3ZrVcmL6sKs0fWWWbgY/UuxHdOxLpwl+47JfmkCcul43iDstto
-         xeLGMTOB9rubQiCCXYWDS3EzEMSkITdMWCPxQpD4ZRuvHmICaDguF7fflKsgupzXrBEx
-         qnSslqRbXHd9/kPSdD4AygdXsPmZp/mQsS7Zy1iweJ0Rb4FlbkIgO/1dIkRI7CNr1pbt
-         GBAg==
-X-Gm-Message-State: AOAM531f818FTFt2oIrPKRU00TV0VXmfzhdLU28mjmEAOqOjfcLWxH5i
-        7TH+kJI74PRZ+sGc/vNxRjG/N/HUosUAjQ==
-X-Google-Smtp-Source: ABdhPJxMyzirZqfdZOxK5o3S2qn5MzfcDs3ikYYLY17umY4BSyxw+yNj3Y2g9j2XdgIabgoc6JdS+A==
-X-Received: by 2002:a19:c815:: with SMTP id y21mr1372057lff.589.1607005277861;
-        Thu, 03 Dec 2020 06:21:17 -0800 (PST)
+        bh=kW9Z+5MdERH4UOzelJv9hwVH2KR54qJRrBP7D3NwCS0=;
+        b=kcfnz8+GMwquJLunfBkCB29uSXXd/GOQo/xxNp2LZnNpEq/AZ/MijC4fmtOA6xmH+q
+         rQ2A5q5J8UVjbIPRndSbcujmQK2F8S1qVH6IPqgVzECPsT7hYBDJVLS9ze6hyzEcNlOh
+         uhXRI7RtiuUr6Aoj3o2LUDntaWG5yXLrko1QcNw0htSXaexAoWqvbEaCct1cpkeE02y8
+         e4W6lT37wakt6KS68wNVaaIn5TfRQTTI3aYUcLgpRomkjAGmTxHXScGgG/iWPrs7ACVb
+         G/5J1Jd++lCo0ENzMNamnxVvkjAr8PyE0C0GlD7gUY8T62nS8tBaz86u1sROPQyCHHaE
+         afnA==
+X-Gm-Message-State: AOAM533KqsWOXwtZIGNL2KwDIwuEOEcKtnzXAZCwDPeyp6i+fdWzSrYh
+        zLAVexHIz5a3jfzHznGmOOcTxQ==
+X-Google-Smtp-Source: ABdhPJyh/n2Zqwbk2j96o3ojqlKi7LNF7FYUqU4XGk+4t59n7Hn7/E5gojwsZ4nGmqSx2o0dAsNF2A==
+X-Received: by 2002:ac2:5044:: with SMTP id a4mr1348872lfm.583.1607005279289;
+        Thu, 03 Dec 2020 06:21:19 -0800 (PST)
 Received: from eriador.lumag.spb.ru ([188.162.64.117])
-        by smtp.gmail.com with ESMTPSA id k185sm575716lfd.294.2020.12.03.06.21.16
+        by smtp.gmail.com with ESMTPSA id k185sm575716lfd.294.2020.12.03.06.21.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Dec 2020 06:21:17 -0800 (PST)
+        Thu, 03 Dec 2020 06:21:18 -0800 (PST)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Jonathan Marek <jonathan@marek.ca>
 Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH v2 6/7] arm64: dts: qcom: qrb5165-rb5: add lt9611 HDMI bridge
-Date:   Thu,  3 Dec 2020 17:21:04 +0300
-Message-Id: <20201203142105.841666-7-dmitry.baryshkov@linaro.org>
+Subject: [PATCH v2 7/7] arm64: dts: qcom: sm8250: power up dispcc on sm8250 by MMCX regulator
+Date:   Thu,  3 Dec 2020 17:21:05 +0300
+Message-Id: <20201203142105.841666-8-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.29.2
 In-Reply-To: <20201203142105.841666-1-dmitry.baryshkov@linaro.org>
 References: <20201203142105.841666-1-dmitry.baryshkov@linaro.org>
@@ -65,156 +65,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device tree node for the lontium lt9611ux DSI-HDMI bridge.
+Add regulator controlling MMCX power domain to be used by display clock
+controller on SM8250.
 
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/qrb5165-rb5.dts | 97 +++++++++++++++++++++++-
- 1 file changed, 96 insertions(+), 1 deletion(-)
+ arch/arm64/boot/dts/qcom/sm8250.dtsi | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-index 94d95dff48c4..1ade62d98f98 100644
---- a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-+++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-@@ -40,6 +40,17 @@ dc12v: dc12v-regulator {
- 		regulator-always-on;
+diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+index f4cae2b82e2a..0c7986bf60d9 100644
+--- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+@@ -216,6 +216,13 @@ memory@80000000 {
+ 		reg = <0x0 0x80000000 0x0 0x0>;
  	};
  
-+	hdmi-out {
-+		compatible = "hdmi-connector";
-+		type = "a";
-+
-+		port {
-+			hdmi_con: endpoint {
-+				remote-endpoint = <&lt9611_out>;
-+			};
-+		};
++	mmcx_reg: mmcx-reg {
++		compatible = "regulator-fixed-domain";
++		power-domains = <&rpmhpd SM8250_MMCX>;
++		required-opps = <&rpmhpd_opp_low_svs>;
++		regulator-name = "MMCX";
 +	};
 +
- 	leds {
- 		compatible = "gpio-leds";
- 
-@@ -66,6 +77,26 @@ bt {
- 
- 	};
- 
-+	lt9611_1v2: lt9611-vdd12-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "LT9611_1V2";
-+
-+		vin-supply = <&vdc_3v3>;
-+		regulator-min-microvolt = <1200000>;
-+		regulator-max-microvolt = <1200000>;
-+	};
-+
-+	lt9611_3v3: lt9611-3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "LT9611_3V3";
-+
-+		vin-supply = <&vdc_3v3>;
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-boot-on;
-+		regulator-always-on;
-+	};
-+
- 	vbat: vbat-regulator {
- 		compatible = "regulator-fixed";
- 		regulator-name = "VBAT";
-@@ -418,7 +449,7 @@ &dsi0 {
- 	ports {
- 		port@1 {
- 			endpoint {
--				//remote-endpoint = <&lt9611_a>;
-+				remote-endpoint = <&lt9611_a>;
- 				data-lanes = <0 1 2 3>;
- 			};
- 		};
-@@ -444,6 +475,55 @@ &i2c4 {
- 
- &i2c5 {
- 	status = "okay";
-+	clock-frequency = <400000>;
-+
-+	lt9611_codec: hdmi-bridge@2b {
-+		compatible = "lontium,lt9611uxc";
-+		reg = <0x2b>;
-+		#sound-dai-cells = <1>;
-+
-+		interrupts-extended = <&tlmm 63 IRQ_TYPE_EDGE_FALLING>;
-+
-+		reset-gpios = <&pm8150l_gpios 5 GPIO_ACTIVE_HIGH>;
-+
-+		vdd-supply = <&lt9611_1v2>;
-+		vcc-supply = <&lt9611_3v3>;
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&lt9611_irq_pin &lt9611_rst_pin>;
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			port@0 {
-+				reg = <0>;
-+
-+				lt9611_a: endpoint {
-+					remote-endpoint = <&dsi0_out>;
-+				};
-+			};
-+
-+#if 0
-+			port@1 {
-+				reg = <1>;
-+
-+				lt9611_b: endpoint {
-+					remote-endpoint = <&dsi1_out>;
-+				};
-+			};
-+#endif
-+
-+			port@2 {
-+				reg = <2>;
-+
-+				lt9611_out: endpoint {
-+					remote-endpoint = <&hdmi_con>;
-+				};
-+			};
-+
-+		};
-+	};
- };
- 
- /* LS-I2C1 */
-@@ -504,6 +584,15 @@ &pm8150l_gpios {
- 		"PM_GPIO-B",
- 		"NC",
- 		"PM3003A_MODE";
-+
-+	lt9611_rst_pin: lt9611-rst-pin {
-+		pins = "gpio5";
-+		function = "normal";
-+
-+		output-high;
-+		input-disable;
-+		power-source = <0>;
-+	};
- };
- 
- &pm8150_rtc {
-@@ -735,6 +824,12 @@ &tlmm {
- 		"HST_WLAN_UART_TX",
- 		"HST_WLAN_UART_RX";
- 
-+	lt9611_irq_pin: lt9611-irq {
-+		pins = "gpio63";
-+		function = "gpio";
-+		bias-disable;
-+	};
-+
- 	sdc2_default_state: sdc2-default {
- 		clk {
- 			pins = "sdc2_clk";
+ 	pmu {
+ 		compatible = "arm,armv8-pmuv3";
+ 		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_HIGH>;
+@@ -2058,6 +2065,7 @@ opp-358000000 {
+ 		dispcc: clock-controller@af00000 {
+ 			compatible = "qcom,sm8250-dispcc";
+ 			reg = <0 0x0af00000 0 0x20000>;
++			mmcx-supply = <&mmcx_reg>;
+ 			clocks = <&rpmhcc RPMH_CXO_CLK>,
+ 				 <&dsi0_phy 0>,
+ 				 <&dsi0_phy 1>,
 -- 
 2.29.2
 
