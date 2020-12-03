@@ -2,90 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9BC0C2CD04F
-	for <lists+devicetree@lfdr.de>; Thu,  3 Dec 2020 08:21:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B70C2CD07B
+	for <lists+devicetree@lfdr.de>; Thu,  3 Dec 2020 08:43:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728574AbgLCHVS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Dec 2020 02:21:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58198 "EHLO
+        id S1728559AbgLCHl5 convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 3 Dec 2020 02:41:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33146 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728294AbgLCHVS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Dec 2020 02:21:18 -0500
-Received: from mail.skyhub.de (mail.skyhub.de [IPv6:2a01:4f8:190:11c2::b:1457])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF69FC061A4D;
-        Wed,  2 Dec 2020 23:20:37 -0800 (PST)
-Received: from zn.tnic (p200300ec2f0dc500db287c99eb312af4.dip0.t-ipconnect.de [IPv6:2003:ec:2f0d:c500:db28:7c99:eb31:2af4])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 8DC211EC04DD;
-        Thu,  3 Dec 2020 08:20:35 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
-        t=1606980035;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
-        bh=I5tjK7vXmcH6KWOR2osK2BTeMN2+voSuUMYTgYKLvz0=;
-        b=msXBd46puOaaytgd7Vpo+UMF4g38wyPtzFZ9umpdp8RwrpSg80sdCQz5CAXKGOw1n1kVik
-        LG5rNZzvDonZnXLLw/sjDRO+LseOSwsI/ELsDEjxlPRJsHBVDdwEjSBwD821UhfhV1iHQd
-        EdZI6USOuyOb7ZCuwemKgbVnmGPRTiY=
-Date:   Thu, 3 Dec 2020 08:20:36 +0100
-From:   Borislav Petkov <bp@alien8.de>
-To:     Troy Lee <troy_lee@aspeedtech.com>
-Cc:     Andrew Jeffery <andrew@aj.id.au>, Joel Stanley <joel@jms.id.au>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Tony Luck <tony.luck@intel.com>,
-        Ryan Chen <ryan_chen@aspeedtech.com>,
-        James Morse <james.morse@arm.com>,
-        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
-        <linux-aspeed@lists.ozlabs.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        Robert Richter <rrichter@marvell.com>,
-        "leetroy@gmail.com" <leetroy@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stefan M Schaeckeler <sschaeck@cisco.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:EDAC-CORE" <linux-edac@vger.kernel.org>
-Subject: Re: [PATCH v2 3/3] edac: Supporting AST2400 and AST2600 edac driver
-Message-ID: <20201203072036.GB3059@zn.tnic>
-References: <20201202063612.21241-1-troy_lee@aspeedtech.com>
- <20201202063612.21241-3-troy_lee@aspeedtech.com>
- <CACPK8XcBTm8-cAPmtswHbYAf2B+PdBiZ2s1XK1UqKA_NQX_-mw@mail.gmail.com>
- <PS1PR06MB26008E4BCB805553EDEC45038AF30@PS1PR06MB2600.apcprd06.prod.outlook.com>
- <b6dd3a91-abe7-4e9d-b801-6e54e4c88827@www.fastmail.com>
- <20201202182349.GJ2951@zn.tnic>
- <PS1PR06MB2600D6A1E73D89EA0D0D59DC8AF20@PS1PR06MB2600.apcprd06.prod.outlook.com>
+        with ESMTP id S1725912AbgLCHl5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Dec 2020 02:41:57 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00247C061A4E
+        for <devicetree@vger.kernel.org>; Wed,  2 Dec 2020 23:41:16 -0800 (PST)
+Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1kkjEi-00041p-BX; Thu, 03 Dec 2020 08:41:08 +0100
+Received: from pza by lupine with local (Exim 4.92)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1kkjEg-0000zA-GE; Thu, 03 Dec 2020 08:41:06 +0100
+Message-ID: <230c34e8a973140ebb7f155f5527050408f0c438.camel@pengutronix.de>
+Subject: Re: [v6,1/3] dt-binding: reset-controller: mediatek: add YAML
+ schemas
+From:   Philipp Zabel <p.zabel@pengutronix.de>
+To:     Crystal Guo <crystal.guo@mediatek.com>, robh+dt@kernel.org,
+        matthias.bgg@gmail.com
+Cc:     srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, s-anna@ti.com, seiya.wang@mediatek.com,
+        stanley.chu@mediatek.com, yingjoe.chen@mediatek.com,
+        fan.chen@mediatek.com, yong.liang@mediatek.com
+Date:   Thu, 03 Dec 2020 08:41:06 +0100
+In-Reply-To: <20200930022159.5559-2-crystal.guo@mediatek.com>
+References: <20200930022159.5559-1-crystal.guo@mediatek.com>
+         <20200930022159.5559-2-crystal.guo@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+User-Agent: Evolution 3.30.5-1.1 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <PS1PR06MB2600D6A1E73D89EA0D0D59DC8AF20@PS1PR06MB2600.apcprd06.prod.outlook.com>
+X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 03, 2020 at 01:27:27AM +0000, Troy Lee wrote:
-> Hi Broislav and Andrew,
+Hi,
+
+On Wed, 2020-09-30 at 10:21 +0800, Crystal Guo wrote:
+> Add a YAML documentation for Mediatek, which uses ti reset-controller
+> driver directly. The TI reset controller provides a common reset
+> management, and is suitable for Mediatek SoCs.
 > 
-> I removed these exported function and submitted v3 PATCH.
+> Signed-off-by: Crystal Guo <crystal.guo@mediatek.com>
+> ---
+>  .../bindings/reset/mediatek-syscon-reset.yaml | 51 +++++++++++++++++++
+>  1 file changed, 51 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/reset/mediatek-syscon-reset.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/reset/mediatek-syscon-reset.yaml b/Documentation/devicetree/bindings/reset/mediatek-syscon-reset.yaml
+> new file mode 100644
+> index 000000000000..7871550c3c69
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/reset/mediatek-syscon-reset.yaml
+> @@ -0,0 +1,51 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/reset/mediatek-syscon-reset.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Mediatek Reset Controller
+> +
+> +maintainers:
+> +  - Crystal Guo <crystal.guo@mediatek.com>
+> +
+> +description:
+> +  The bindings describe the reset-controller for Mediatek SoCs,
+> +  which is based on TI reset controller. For more detail, please
+> +  visit Documentation/devicetree/bindings/reset/ti-syscon-reset.txt.
+> +
+> +properties:
+> +  compatible:
+> +    const: mediatek,syscon-reset
+> +
+> +  '#reset-cells':
+> +    const: 1
+> +
+> +  mediatek,reset-bits:
+> +    description: >
+> +      Contains the reset control register information, please refer to
+> +      Documentation/devicetree/bindings/reset/ti-syscon-reset.txt.
 
-I saw that. A couple of comments:
+I would really like some input from Rob on this, in v4 he asked not to
+repeat 'ti,reset-bits'.
 
-First of all, please do not top-post on a public mailing list.
-
-Secondly, Joel gave you Reviewed-by: and Acked-by: for your patches 1
-and 2 which are not in your new submission. But they should be, please
-have a look at Documentation/process/ while you're waiting for his
-review of your v3.
-
-You don't have to resend now with those added and I can add them if Joel
-is fine with patch 3 but pls remember to pick up tags reviewers have
-given you, in the future.
-
-Thx.
-
--- 
-Regards/Gruss,
-    Boris.
-
-https://people.kernel.org/tglx/notes-about-netiquette
+regards
+Philipp
