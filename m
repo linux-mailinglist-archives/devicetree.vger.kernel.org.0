@@ -2,116 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2974E2CCFB2
-	for <lists+devicetree@lfdr.de>; Thu,  3 Dec 2020 07:44:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 842552CCFC0
+	for <lists+devicetree@lfdr.de>; Thu,  3 Dec 2020 07:47:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729833AbgLCGnB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Dec 2020 01:43:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52354 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727677AbgLCGnB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Dec 2020 01:43:01 -0500
-Received: from mail-oi1-x242.google.com (mail-oi1-x242.google.com [IPv6:2607:f8b0:4864:20::242])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2482BC061A52;
-        Wed,  2 Dec 2020 22:42:21 -0800 (PST)
-Received: by mail-oi1-x242.google.com with SMTP id f11so1139632oij.6;
-        Wed, 02 Dec 2020 22:42:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=yO4TsI43MuLziGL33Z3oiOkLAP8j5oHC1iNCg4TI+/s=;
-        b=do7maqArbCHRAVqvvu3JPEzYvoePnCjywZhayzI88KuqX/pY/Mk/RUtCE64RPOVfRm
-         TgP1176mObueziXjkJE6hqIistnArhXtSoNRwoR1Ig1yMTgbZdczCOMIHKUvAqyLLjMw
-         NPlTOCb87S9lxfK1SuC9diY1uJYvQrIIYi0+UsUU94ddIKHVdCSeQuiB6RL7dmh7sE1H
-         dvo1pomq2vZEYTPqfk11jw02eHma9nEv6HARLxIGaNyclUPED2HyLEdv5vmHk97OBQ2x
-         FRo70IFI7ym0cY0hujL5T49ryJ5IaMK9wzDKW6Kr9TwXCgY3hah7i2iJYLJb0CjeIPm7
-         5FpA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=yO4TsI43MuLziGL33Z3oiOkLAP8j5oHC1iNCg4TI+/s=;
-        b=fY4/nNibVT+izu2px/u7nOI3zYz/t5kGjXAdQosJGUBAFNGwEzx9EsLYQcQ1ZjetuS
-         69aG/P2S/7aDbjMoo4LCrekIjhubjJbg7DxjKXzZGSAeYJRQR5E+blgfgFmRdMLDD4pk
-         GL5PZ03zwEjJPWdSpXgwuFxF7jSse5RSFg64VdDgd5VXAyV3/541PK0PljZhvxB8+BdP
-         ccv9dSZtWm1DKEi8UrI7Ld7Z8zOmEUh5sq+fDIDMrUlnZ85lqlohuGAWFAarcts8Y37s
-         hzTHcrUFY9ZKQrCIRHEXtqIpKeXV9Sv6onSaKZjax3Sdyy5XpQdX59FRrhRmwP2HQ+Zd
-         hRng==
-X-Gm-Message-State: AOAM532kpzksomXUuW/59D/4jSiw/Lmy9YvPMJbFHdgoGqRe2x+zbYZn
-        e4NWCRtHRxVNNce1hLyPgcDZw5tHEisLaAKUANk=
-X-Google-Smtp-Source: ABdhPJyZxsbM2i/OH6A7N9hQqS+cFLzd3IgXb6p+JDZhAGOqIiZA9i7J/kWZ06MeDUjjRo9n1my70PTRPfSRt+eQDZE=
-X-Received: by 2002:aca:3e84:: with SMTP id l126mr976185oia.55.1606977740583;
- Wed, 02 Dec 2020 22:42:20 -0800 (PST)
-MIME-Version: 1.0
-References: <1606906011-25633-1-git-send-email-gene.chen.richtek@gmail.com>
- <1606906011-25633-4-git-send-email-gene.chen.richtek@gmail.com> <20201202122329.GA30929@duo.ucw.cz>
-In-Reply-To: <20201202122329.GA30929@duo.ucw.cz>
-From:   Gene Chen <gene.chen.richtek@gmail.com>
-Date:   Thu, 3 Dec 2020 14:42:08 +0800
-Message-ID: <CAE+NS34D8a6Udt7ZZ0=U7oqm5POtihKvD3WjD_sAADamqQ=1AQ@mail.gmail.com>
-Subject: Re: [PATCH v11 3/5] dt-bindings: leds: Add LED_FUNCTION_MOONLIGHT definitions
-To:     Pavel Machek <pavel@ucw.cz>
-Cc:     Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        id S1728419AbgLCGqZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Dec 2020 01:46:25 -0500
+Received: from mga02.intel.com ([134.134.136.20]:30235 "EHLO mga02.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728515AbgLCGqY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 3 Dec 2020 01:46:24 -0500
+IronPort-SDR: b/zlEpb9E24EOH6xhr6B0WUBwuxS4Mbs4sqIi0KsNSFKpUQRh3ynujpSNBWP3jcVnTlh6vHV8r
+ gOjxSD6Ag3PA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9823"; a="160200587"
+X-IronPort-AV: E=Sophos;i="5.78,388,1599548400"; 
+   d="scan'208";a="160200587"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Dec 2020 22:45:43 -0800
+IronPort-SDR: r2/8DskmGEjMpXiK/ddrQBRQe+S74yuHkvugcKQGVW6IHsMZwlLFKT6srJ04M6lP2Lrh6js1rY
+ FRSDOerJ701g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.78,388,1599548400"; 
+   d="scan'208";a="330729008"
+Received: from ahunter-desktop.fi.intel.com (HELO [10.237.72.94]) ([10.237.72.94])
+  by orsmga003.jf.intel.com with ESMTP; 02 Dec 2020 22:45:40 -0800
+Subject: Re: [PATCH v2 3/9] mmc: cqhci: initialize upper 64 bits of 128-bit
+ task descriptors
+To:     Eric Biggers <ebiggers@kernel.org>, linux-mmc@vger.kernel.org
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-fscrypt@vger.kernel.org, Satya Tangirala <satyat@google.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Asutosh Das <asutoshd@codeaurora.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Dan Murphy <dmurphy@ti.com>,
-        Linux LED Subsystem <linux-leds@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Gene Chen <gene_chen@richtek.com>, Wilma.Wu@mediatek.com,
-        shufan_lee@richtek.com, cy_huang@richtek.com,
-        benjamin.chao@mediatek.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        Neeraj Soni <neersoni@codeaurora.org>,
+        Barani Muthukumaran <bmuthuku@codeaurora.org>,
+        Peng Zhou <peng.zhou@mediatek.com>,
+        Stanley Chu <stanley.chu@mediatek.com>,
+        Konrad Dybcio <konradybcio@gmail.com>
+References: <20201203020516.225701-1-ebiggers@kernel.org>
+ <20201203020516.225701-4-ebiggers@kernel.org>
+From:   Adrian Hunter <adrian.hunter@intel.com>
+Organization: Intel Finland Oy, Registered Address: PL 281, 00181 Helsinki,
+ Business Identity Code: 0357606 - 4, Domiciled in Helsinki
+Message-ID: <bf74d785-a88e-f621-24a3-4e68aeeee753@intel.com>
+Date:   Thu, 3 Dec 2020 08:45:15 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
+MIME-Version: 1.0
+In-Reply-To: <20201203020516.225701-4-ebiggers@kernel.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Pavel Machek <pavel@ucw.cz> =E6=96=BC 2020=E5=B9=B412=E6=9C=882=E6=97=A5 =
-=E9=80=B1=E4=B8=89 =E4=B8=8B=E5=8D=888:23=E5=AF=AB=E9=81=93=EF=BC=9A
->
-> On Wed 2020-12-02 18:46:49, Gene Chen wrote:
-> > From: Gene Chen <gene_chen@richtek.com>
-> >
-> > Add LED_FUNCTION_MOONLIGHT definitions
-> >
-> > Signed-off-by: Gene Chen <gene_chen@richtek.com>
-> > Acked-by: Jacek Anaszewski <jacek.anaszewski@gmail.com>
-> > Acked-by: Rob Herring <robh@kernel.org>
-> > ---
-> >  include/dt-bindings/leds/common.h | 1 +
-> >  1 file changed, 1 insertion(+)
-> >
-> > diff --git a/include/dt-bindings/leds/common.h b/include/dt-bindings/le=
-ds/common.h
-> > index 52b619d..843e65d 100644
-> > --- a/include/dt-bindings/leds/common.h
-> > +++ b/include/dt-bindings/leds/common.h
-> > @@ -78,6 +78,7 @@
-> >  #define LED_FUNCTION_INDICATOR "indicator"
-> >  #define LED_FUNCTION_LAN "lan"
-> >  #define LED_FUNCTION_MAIL "mail"
-> > +#define LED_FUNCTION_MOONLIGHT "moonlight"
->
-> There's "torch" function that should be used for this. I guess comment
-> should be added with explanation what exactly that is and how should
-> the LED be named.
->
+On 3/12/20 4:05 am, Eric Biggers wrote:
+> From: Eric Biggers <ebiggers@google.com>
+> 
+> Move the task descriptor initialization into cqhci_prep_task_desc(), and
+> make it initialize all 128 bits of the task descriptor if the host
+> controller is using 128-bit task descriptors.
+> 
+> This is needed to prepare for CQHCI inline encryption support, which
+> requires 128-bit task descriptors and uses the upper 64 bits.
+> 
+> Note: since some host controllers already enable 128-bit task
+> descriptors, it's unclear why the previous code worked when it wasn't
+> initializing the upper 64 bits.  One possibility is that the bits are
+> being ignored because the features that use them aren't enabled yet.
+> In any case, setting them to 0 won't hurt.
 
-According to mail, 11/25 "Re: [PATCH v7 2/5] dt-bindings: leds: Add
-LED_COLOR_ID_MOONLIGHT definitions",
-The Moonlight LED is LED which maximum current more than torch, but
-less than flash. Such as front camera fill light.
-I think our channel is moonlight, not torch.
-I will add this description to comment.
-We can't exactly define moonlight current level, because every vendor
-has their own specification.
+Coherent allocations are zero-initialized.  So the upper 64-bits stay zero.
+People set 128-bit anyway because the hardware needs it.
 
-> Best regards,
->                                                                 Pavel
-> --
-> http://www.livejournal.com/~pavelmachek
+> 
+> Signed-off-by: Eric Biggers <ebiggers@google.com>
+
+Acked-by: Adrian Hunter <adrian.hunter@intel.com>
+
+> ---
+>  drivers/mmc/host/cqhci-core.c | 30 ++++++++++++++++++++----------
+>  1 file changed, 20 insertions(+), 10 deletions(-)
+> 
+> diff --git a/drivers/mmc/host/cqhci-core.c b/drivers/mmc/host/cqhci-core.c
+> index 697fe40756bf2..ad7c9acff1728 100644
+> --- a/drivers/mmc/host/cqhci-core.c
+> +++ b/drivers/mmc/host/cqhci-core.c
+> @@ -408,13 +408,15 @@ static void cqhci_disable(struct mmc_host *mmc)
+>  }
+>  
+>  static void cqhci_prep_task_desc(struct mmc_request *mrq,
+> -					u64 *data, bool intr)
+> +				 struct cqhci_host *cq_host, int tag)
+>  {
+> +	__le64 *task_desc = (__le64 __force *)get_desc(cq_host, tag);
+>  	u32 req_flags = mrq->data->flags;
+> +	u64 desc0;
+>  
+> -	*data = CQHCI_VALID(1) |
+> +	desc0 = CQHCI_VALID(1) |
+>  		CQHCI_END(1) |
+> -		CQHCI_INT(intr) |
+> +		CQHCI_INT(1) |
+>  		CQHCI_ACT(0x5) |
+>  		CQHCI_FORCED_PROG(!!(req_flags & MMC_DATA_FORCED_PRG)) |
+>  		CQHCI_DATA_TAG(!!(req_flags & MMC_DATA_DAT_TAG)) |
+> @@ -425,8 +427,19 @@ static void cqhci_prep_task_desc(struct mmc_request *mrq,
+>  		CQHCI_BLK_COUNT(mrq->data->blocks) |
+>  		CQHCI_BLK_ADDR((u64)mrq->data->blk_addr);
+>  
+> -	pr_debug("%s: cqhci: tag %d task descriptor 0x%016llx\n",
+> -		 mmc_hostname(mrq->host), mrq->tag, (unsigned long long)*data);
+> +	task_desc[0] = cpu_to_le64(desc0);
+> +
+> +	if (cq_host->caps & CQHCI_TASK_DESC_SZ_128) {
+> +		u64 desc1 = 0;
+> +
+> +		task_desc[1] = cpu_to_le64(desc1);
+> +
+> +		pr_debug("%s: cqhci: tag %d task descriptor 0x%016llx%016llx\n",
+> +			 mmc_hostname(mrq->host), mrq->tag, desc1, desc0);
+> +	} else {
+> +		pr_debug("%s: cqhci: tag %d task descriptor 0x%016llx\n",
+> +			 mmc_hostname(mrq->host), mrq->tag, desc0);
+> +	}
+>  }
+>  
+>  static int cqhci_dma_map(struct mmc_host *host, struct mmc_request *mrq)
+> @@ -567,8 +580,6 @@ static inline int cqhci_tag(struct mmc_request *mrq)
+>  static int cqhci_request(struct mmc_host *mmc, struct mmc_request *mrq)
+>  {
+>  	int err = 0;
+> -	u64 data = 0;
+> -	u64 *task_desc = NULL;
+>  	int tag = cqhci_tag(mrq);
+>  	struct cqhci_host *cq_host = mmc->cqe_private;
+>  	unsigned long flags;
+> @@ -598,9 +609,8 @@ static int cqhci_request(struct mmc_host *mmc, struct mmc_request *mrq)
+>  	}
+>  
+>  	if (mrq->data) {
+> -		task_desc = (__le64 __force *)get_desc(cq_host, tag);
+> -		cqhci_prep_task_desc(mrq, &data, 1);
+> -		*task_desc = cpu_to_le64(data);
+> +		cqhci_prep_task_desc(mrq, cq_host, tag);
+> +
+>  		err = cqhci_prep_tran_desc(mrq, cq_host, tag);
+>  		if (err) {
+>  			pr_err("%s: cqhci: failed to setup tx desc: %d\n",
+> 
+
