@@ -2,86 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F25772CD99E
-	for <lists+devicetree@lfdr.de>; Thu,  3 Dec 2020 15:53:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 080112CD9C4
+	for <lists+devicetree@lfdr.de>; Thu,  3 Dec 2020 16:05:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727242AbgLCOxg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Dec 2020 09:53:36 -0500
-Received: from mx2.suse.de ([195.135.220.15]:57454 "EHLO mx2.suse.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726452AbgLCOxf (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 3 Dec 2020 09:53:35 -0500
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.221.27])
-        by mx2.suse.de (Postfix) with ESMTP id D6E6DAC6A;
-        Thu,  3 Dec 2020 14:52:53 +0000 (UTC)
-Message-ID: <25466e2a562765be1d67abd2d1bdae1a089a8d33.camel@suse.de>
-Subject: Re: [PATCH v5 08/11] input: raspberrypi-ts: Release firmware handle
- when not needed
-From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc:     u.kleine-koenig@pengutronix.de, linux-kernel@vger.kernel.org,
-        f.fainelli@gmail.com, linux-pwm@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        wahrenst@gmx.net, linux-input@vger.kernel.org,
-        gregkh@linuxfoundation.org, devel@driverdev.osuosl.org,
-        p.zabel@pengutronix.de, linux-gpio@vger.kernel.org,
-        linus.walleij@linaro.org, linux-clk@vger.kernel.org,
-        sboyd@kernel.org, linux-rpi-kernel@lists.infradead.org,
-        bgolaszewski@baylibre.com, andy.shevchenko@gmail.com
-Date:   Thu, 03 Dec 2020 15:52:52 +0100
-In-Reply-To: <20201202060347.GA2034289@dtor-ws>
-References: <20201123183833.18750-1-nsaenzjulienne@suse.de>
-         <20201123183833.18750-9-nsaenzjulienne@suse.de>
-         <20201202060347.GA2034289@dtor-ws>
-Content-Type: multipart/signed; micalg="pgp-sha256";
-        protocol="application/pgp-signature"; boundary="=-ZvftALHIaTsXsRIracDG"
-User-Agent: Evolution 3.38.2 
+        id S1730905AbgLCPDc convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 3 Dec 2020 10:03:32 -0500
+Received: from mail-vs1-f49.google.com ([209.85.217.49]:37594 "EHLO
+        mail-vs1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730838AbgLCPDc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Dec 2020 10:03:32 -0500
+Received: by mail-vs1-f49.google.com with SMTP id j140so1401692vsd.4;
+        Thu, 03 Dec 2020 07:03:16 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=2WaJxAlpW9TnndwUkLLX4Wv0ulKsbd7eJDXS4f4tvpU=;
+        b=h5inxeScKSaoQEr9QHSI2f/iVBuDpQERLbSJbzyhKmYiRNEjAAHiPi46L9vK3DKtR9
+         3TMNd+HUntGy8xWab43qoPMoyymsIwqEWF2pfGdXRxuZkTpL2yGy9f+BPLgP1TU9fm0B
+         pxhhBtn/QXFPFG2K66P6WyghRYrD0iyvLYom/oDRAzQ6PxV2is+TI+xkzmAMMoHGv4Tg
+         2Rx957nUPoT2HAXu7C0s9CZ6ySTvYZkapr+s9SKXVtUbxyQ4H6B5Y6vQcaAkvM02YyFp
+         Wfk7kx+dOtgW4qrujJhep8pJ43rGlZcrCYpks2+9uaRG5IOqRy4G3CBxQ+jgBC8yoIVL
+         iveQ==
+X-Gm-Message-State: AOAM530Z6HmVTiURNJKp7EVU3IbW6Uw/v6c0wzhFa0nVif7OhwhQ+0N0
+        L4/xd1LTxwmA2Bp2meVpOPOY4fODcxwPAA==
+X-Google-Smtp-Source: ABdhPJzyPmY00Zd2q14rGNk3LziYu6A+dp1TwuYCA10/8mSquHywzD5IKZGU92wxRYu70p+zUGyPNQ==
+X-Received: by 2002:a67:2901:: with SMTP id p1mr2500006vsp.43.1607007770083;
+        Thu, 03 Dec 2020 07:02:50 -0800 (PST)
+Received: from mail-vk1-f178.google.com (mail-vk1-f178.google.com. [209.85.221.178])
+        by smtp.gmail.com with ESMTPSA id g194sm172054vkf.48.2020.12.03.07.02.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 03 Dec 2020 07:02:46 -0800 (PST)
+Received: by mail-vk1-f178.google.com with SMTP id e5so459064vkd.4;
+        Thu, 03 Dec 2020 07:02:45 -0800 (PST)
+X-Received: by 2002:ac5:c995:: with SMTP id e21mr2117725vkm.5.1607007764960;
+ Thu, 03 Dec 2020 07:02:44 -0800 (PST)
 MIME-Version: 1.0
+References: <20201202135409.13683-1-andre.przywara@arm.com>
+ <20201202135409.13683-8-andre.przywara@arm.com> <3b4f4bf6-2fba-5d35-bdf5-74b8ced10357@sholland.org>
+ <34e5618e-4a3d-9a46-5077-179c82592fce@arm.com>
+In-Reply-To: <34e5618e-4a3d-9a46-5077-179c82592fce@arm.com>
+From:   Chen-Yu Tsai <wens@csie.org>
+Date:   Thu, 3 Dec 2020 23:02:31 +0800
+X-Gmail-Original-Message-ID: <CAGb2v67+Bfhnw9hFv8vOLTOqmb-hoYxRnk4Q7CQZjzJbzkQxqg@mail.gmail.com>
+Message-ID: <CAGb2v67+Bfhnw9hFv8vOLTOqmb-hoYxRnk4Q7CQZjzJbzkQxqg@mail.gmail.com>
+Subject: Re: [linux-sunxi] Re: [PATCH 7/8] arm64: dts: allwinner: Add
+ Allwinner H616 .dtsi file
+To:     =?UTF-8?Q?Andr=C3=A9_Przywara?= <andre.przywara@arm.com>
+Cc:     Samuel Holland <samuel@sholland.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-sunxi <linux-sunxi@googlegroups.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Icenowy Zheng <icenowy@aosc.xyz>,
+        Yangtao Li <frank@allwinnertech.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Dec 3, 2020 at 6:54 PM André Przywara <andre.przywara@arm.com> wrote:
+>
+> On 03/12/2020 03:16, Samuel Holland wrote:
+>
+> Hi,
+>
+> > On 12/2/20 7:54 AM, Andre Przywara wrote:
+> > ...
+> >> +    soc {
+> >> +            compatible = "simple-bus";
+> >> +            #address-cells = <1>;
+> >> +            #size-cells = <1>;
+> >> +            ranges = <0x0 0x0 0x0 0x40000000>;
+> >> +
+> >> +            syscon: syscon@3000000 {
+> >> +                    compatible = "allwinner,sun50i-h616-system-control",
+> >> +                                 "allwinner,sun50i-a64-system-control";
+> >> +                    reg = <0x03000000 0x1000>;
+> >> +                    #address-cells = <1>;
+> >> +                    #size-cells = <1>;
+> >> +                    ranges;
+> >> +
+> >> +                    sram_c: sram@28000 {
+> >> +                            compatible = "mmio-sram";
+> >> +                            reg = <0x00028000 0x30000>;
+> >> +                            #address-cells = <1>;
+> >> +                            #size-cells = <1>;
+> >> +                            ranges = <0 0x00028000 0x30000>;
+> >> +                    };
+> >> +
+> >> +                    sram_c1: sram@1a00000 {
+> >> +                            compatible = "mmio-sram";
+> >> +                            reg = <0x01a00000 0x200000>;
+> >> +                            #address-cells = <1>;
+> >> +                            #size-cells = <1>;
+> >> +                            ranges = <0 0x01a00000 0x200000>;
+> >> +
+> >> +                            ve_sram: sram-section@0 {
+> >> +                                    compatible = "allwinner,sun50i-h616-sram-c1",
+> >> +                                                 "allwinner,sun4i-a10-sram-c1";
+> >> +                                    reg = <0x000000 0x200000>;
+> >> +                            };
+> >> +                    };
+> >> +            };
+> >
+> > You mentioned that you could not find a SRAM A2. How were these SRAM ranges
+> > verified? If you can load eGON.BT0 larger than 32 KiB, then presumably NBROM
+> > uses SRAM C, and it is in the manual, but I see no mention of SRAM C1.
+>
+> The manual says that SRAM C *can* be used by "the system", at boot time,
+> as long as it's configured correctly. I couldn't find any details on how
+> to switch clock sources for SRAM C, and the manual stanza on this is
+> quite gibberish. I presume it's configured either by BROM or by reset
+> default this way. I think the idea is that the later users (VE, DE) take
+> ownership at some point (which means we can't run any firmware in there).
+> The BSP boot0 is 48KB already, so reaching into SRAM C, and the code
+> itself heavily uses SRAM C (found by hacking boot0 to drop to FEL and
+> inspecting the memory afterwards).
+>
+> For C1: I copied this name from the H6 .dtsi, the manual calls this
+> "VE-SRAM", in both manuals, and the description looks identical there
+> for both SoCs. I think this will be later used by the video engine, so I
+> kept it in. The large size made me suspicious, and from former
+> experiments it looks like being aliased to (parts of) SRAM C.
 
---=-ZvftALHIaTsXsRIracDG
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+I would just call it sram_ve or ve_sram. SRAM C1 would make more sense if
+it were part of SRAM C, not the other way around.
 
-On Tue, 2020-12-01 at 22:03 -0800, Dmitry Torokhov wrote:
-> Hi Nicolas,
->=20
-> On Mon, Nov 23, 2020 at 07:38:29PM +0100, Nicolas Saenz Julienne wrote:
-> > Use devm_rpi_firmware_get() so as to make sure we release RPi's firmwar=
-e
-> > interface when unbinding the device.
->=20
-> I do not believe this comment is correct any longer. Otherwise:
->=20
-> Acked-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Also the sram-section node would make more sense if it were in sram_c, as
+that is the part that gets switched around, not the full region @ 1a00000.
 
-Yes, sorry for that. I'll update it.
+ChenYu
 
-Regards,
-Nicolas
-
-
---=-ZvftALHIaTsXsRIracDG
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCAAdFiEErOkkGDHCg2EbPcGjlfZmHno8x/4FAl/I+8QACgkQlfZmHno8
-x/7NvQf+JfeK0Lnf/15akeGZ/8CgqH3D9RSZKgyFKFIcOAUVnKXWdodRdXxrVu0+
-1VgbGz2N5efgb/8exdYKRQqJine/T/NLCHW1PcrUE/NJPvJZ+JdM8P+JcOndFCv3
-ERWwKGhxK5gboL1Av3jiy9rUGSc/xDfmV5JZVDGnaANaDx7TWE0ZrznAqmwLhxfb
-qWo3bToylX8NAWP5vNs24bzPP7KyQHBwXDNuC3LIg3n9D5aj8s/qq/ZbHK3upjIG
-M/3jrHsvITNvyvy5xVhJhlzywtd2780n2VbwUW4JkfxELPxeCrJRmSyop46k98zX
-qBEeTzyBfM9kHKAcklkuqve2moyBtw==
-=2QiO
------END PGP SIGNATURE-----
-
---=-ZvftALHIaTsXsRIracDG--
-
+> Maybe some guys with more VE knowledge can shine some light on this?
+>
+> Cheers,
+> Andre
+>
+> --
+> You received this message because you are subscribed to the Google Groups "linux-sunxi" group.
+> To unsubscribe from this group and stop receiving emails from it, send an email to linux-sunxi+unsubscribe@googlegroups.com.
+> To view this discussion on the web, visit https://groups.google.com/d/msgid/linux-sunxi/34e5618e-4a3d-9a46-5077-179c82592fce%40arm.com.
