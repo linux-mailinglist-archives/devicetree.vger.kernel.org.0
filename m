@@ -2,149 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 080112CD9C4
-	for <lists+devicetree@lfdr.de>; Thu,  3 Dec 2020 16:05:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CFEDB2CD9E0
+	for <lists+devicetree@lfdr.de>; Thu,  3 Dec 2020 16:11:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730905AbgLCPDc convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 3 Dec 2020 10:03:32 -0500
-Received: from mail-vs1-f49.google.com ([209.85.217.49]:37594 "EHLO
-        mail-vs1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730838AbgLCPDc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Dec 2020 10:03:32 -0500
-Received: by mail-vs1-f49.google.com with SMTP id j140so1401692vsd.4;
-        Thu, 03 Dec 2020 07:03:16 -0800 (PST)
+        id S1726735AbgLCPK5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Dec 2020 10:10:57 -0500
+Received: from mail-il1-f194.google.com ([209.85.166.194]:43380 "EHLO
+        mail-il1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727219AbgLCPK5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Dec 2020 10:10:57 -0500
+Received: by mail-il1-f194.google.com with SMTP id z14so2193668ilm.10;
+        Thu, 03 Dec 2020 07:10:41 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=2WaJxAlpW9TnndwUkLLX4Wv0ulKsbd7eJDXS4f4tvpU=;
-        b=h5inxeScKSaoQEr9QHSI2f/iVBuDpQERLbSJbzyhKmYiRNEjAAHiPi46L9vK3DKtR9
-         3TMNd+HUntGy8xWab43qoPMoyymsIwqEWF2pfGdXRxuZkTpL2yGy9f+BPLgP1TU9fm0B
-         pxhhBtn/QXFPFG2K66P6WyghRYrD0iyvLYom/oDRAzQ6PxV2is+TI+xkzmAMMoHGv4Tg
-         2Rx957nUPoT2HAXu7C0s9CZ6ySTvYZkapr+s9SKXVtUbxyQ4H6B5Y6vQcaAkvM02YyFp
-         Wfk7kx+dOtgW4qrujJhep8pJ43rGlZcrCYpks2+9uaRG5IOqRy4G3CBxQ+jgBC8yoIVL
-         iveQ==
-X-Gm-Message-State: AOAM530Z6HmVTiURNJKp7EVU3IbW6Uw/v6c0wzhFa0nVif7OhwhQ+0N0
-        L4/xd1LTxwmA2Bp2meVpOPOY4fODcxwPAA==
-X-Google-Smtp-Source: ABdhPJzyPmY00Zd2q14rGNk3LziYu6A+dp1TwuYCA10/8mSquHywzD5IKZGU92wxRYu70p+zUGyPNQ==
-X-Received: by 2002:a67:2901:: with SMTP id p1mr2500006vsp.43.1607007770083;
-        Thu, 03 Dec 2020 07:02:50 -0800 (PST)
-Received: from mail-vk1-f178.google.com (mail-vk1-f178.google.com. [209.85.221.178])
-        by smtp.gmail.com with ESMTPSA id g194sm172054vkf.48.2020.12.03.07.02.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 03 Dec 2020 07:02:46 -0800 (PST)
-Received: by mail-vk1-f178.google.com with SMTP id e5so459064vkd.4;
-        Thu, 03 Dec 2020 07:02:45 -0800 (PST)
-X-Received: by 2002:ac5:c995:: with SMTP id e21mr2117725vkm.5.1607007764960;
- Thu, 03 Dec 2020 07:02:44 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=rmoIvvZjt44tZo4dnN2CE2ltl+BLxh4D62w3wIUKMJ0=;
+        b=O9m6RFneBHcLVmY/7E9Knm6CVOqtq2Bvw3uJUiW2oeL75PCWgh/mDv42dyyidCnNPo
+         zFBtr3II9m74l2ZOBJXSdD/iUW/gawIIiWvn6AgLWNZ2dBdPxOq/MO037vPYFyFQpNeP
+         tBr3rMAzlQfMZTM9jCGPTVPBDAt3UPo41yoT249cjtA3hM0XPT/LpBQTtqxNiMEOctCd
+         JUw98s0+57JJQNMhJJnYuzmaxtXHe/QSJ7+SSG/uc9eRY1DamJD+2inbuXLGlRc4jijC
+         LK4Xxve+TIcwoXac55/2BGlUazHv+kIHZbMFuD3KIDijKtcQqSNLlhK2n2zcULp//hxN
+         DNUg==
+X-Gm-Message-State: AOAM531qUBg6XSEMYB65Uz9u7o8+dCvUyuO2lK4Gvt66FCeAWgb+Y7kF
+        5mE6CPtUsvODDapEN4nIFA==
+X-Google-Smtp-Source: ABdhPJxHX0pCNWkq9TWFihBjIHGLGgIkjEH7fIr8sLn66w16qEQ5IC7RsMBD/cLBHjtQFo9wNqa5qw==
+X-Received: by 2002:a05:6e02:f43:: with SMTP id y3mr3259097ilj.187.1607008215932;
+        Thu, 03 Dec 2020 07:10:15 -0800 (PST)
+Received: from xps15 ([64.188.179.253])
+        by smtp.gmail.com with ESMTPSA id r15sm1009411ila.69.2020.12.03.07.10.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 03 Dec 2020 07:10:14 -0800 (PST)
+Received: (nullmailer pid 389759 invoked by uid 1000);
+        Thu, 03 Dec 2020 15:10:13 -0000
+Date:   Thu, 3 Dec 2020 08:10:13 -0700
+From:   Rob Herring <robh@kernel.org>
+To:     Mauro Carvalho Chehab <mchehab@kernel.org>
+Cc:     devicetree@vger.kernel.org, Philipp Zabel <p.zabel@pengutronix.de>,
+        linux-media@vger.kernel.org
+Subject: Re: [PATCH v2] media: dt-bindings: coda: Add missing
+ 'additionalProperties'
+Message-ID: <20201203151013.GA2644458@robh.at.kernel.org>
+References: <20201117200752.4004368-1-robh@kernel.org>
 MIME-Version: 1.0
-References: <20201202135409.13683-1-andre.przywara@arm.com>
- <20201202135409.13683-8-andre.przywara@arm.com> <3b4f4bf6-2fba-5d35-bdf5-74b8ced10357@sholland.org>
- <34e5618e-4a3d-9a46-5077-179c82592fce@arm.com>
-In-Reply-To: <34e5618e-4a3d-9a46-5077-179c82592fce@arm.com>
-From:   Chen-Yu Tsai <wens@csie.org>
-Date:   Thu, 3 Dec 2020 23:02:31 +0800
-X-Gmail-Original-Message-ID: <CAGb2v67+Bfhnw9hFv8vOLTOqmb-hoYxRnk4Q7CQZjzJbzkQxqg@mail.gmail.com>
-Message-ID: <CAGb2v67+Bfhnw9hFv8vOLTOqmb-hoYxRnk4Q7CQZjzJbzkQxqg@mail.gmail.com>
-Subject: Re: [linux-sunxi] Re: [PATCH 7/8] arm64: dts: allwinner: Add
- Allwinner H616 .dtsi file
-To:     =?UTF-8?Q?Andr=C3=A9_Przywara?= <andre.przywara@arm.com>
-Cc:     Samuel Holland <samuel@sholland.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-sunxi <linux-sunxi@googlegroups.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Icenowy Zheng <icenowy@aosc.xyz>,
-        Yangtao Li <frank@allwinnertech.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201117200752.4004368-1-robh@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 3, 2020 at 6:54 PM André Przywara <andre.przywara@arm.com> wrote:
->
-> On 03/12/2020 03:16, Samuel Holland wrote:
->
-> Hi,
->
-> > On 12/2/20 7:54 AM, Andre Przywara wrote:
-> > ...
-> >> +    soc {
-> >> +            compatible = "simple-bus";
-> >> +            #address-cells = <1>;
-> >> +            #size-cells = <1>;
-> >> +            ranges = <0x0 0x0 0x0 0x40000000>;
-> >> +
-> >> +            syscon: syscon@3000000 {
-> >> +                    compatible = "allwinner,sun50i-h616-system-control",
-> >> +                                 "allwinner,sun50i-a64-system-control";
-> >> +                    reg = <0x03000000 0x1000>;
-> >> +                    #address-cells = <1>;
-> >> +                    #size-cells = <1>;
-> >> +                    ranges;
-> >> +
-> >> +                    sram_c: sram@28000 {
-> >> +                            compatible = "mmio-sram";
-> >> +                            reg = <0x00028000 0x30000>;
-> >> +                            #address-cells = <1>;
-> >> +                            #size-cells = <1>;
-> >> +                            ranges = <0 0x00028000 0x30000>;
-> >> +                    };
-> >> +
-> >> +                    sram_c1: sram@1a00000 {
-> >> +                            compatible = "mmio-sram";
-> >> +                            reg = <0x01a00000 0x200000>;
-> >> +                            #address-cells = <1>;
-> >> +                            #size-cells = <1>;
-> >> +                            ranges = <0 0x01a00000 0x200000>;
-> >> +
-> >> +                            ve_sram: sram-section@0 {
-> >> +                                    compatible = "allwinner,sun50i-h616-sram-c1",
-> >> +                                                 "allwinner,sun4i-a10-sram-c1";
-> >> +                                    reg = <0x000000 0x200000>;
-> >> +                            };
-> >> +                    };
-> >> +            };
-> >
-> > You mentioned that you could not find a SRAM A2. How were these SRAM ranges
-> > verified? If you can load eGON.BT0 larger than 32 KiB, then presumably NBROM
-> > uses SRAM C, and it is in the manual, but I see no mention of SRAM C1.
->
-> The manual says that SRAM C *can* be used by "the system", at boot time,
-> as long as it's configured correctly. I couldn't find any details on how
-> to switch clock sources for SRAM C, and the manual stanza on this is
-> quite gibberish. I presume it's configured either by BROM or by reset
-> default this way. I think the idea is that the later users (VE, DE) take
-> ownership at some point (which means we can't run any firmware in there).
-> The BSP boot0 is 48KB already, so reaching into SRAM C, and the code
-> itself heavily uses SRAM C (found by hacking boot0 to drop to FEL and
-> inspecting the memory afterwards).
->
-> For C1: I copied this name from the H6 .dtsi, the manual calls this
-> "VE-SRAM", in both manuals, and the description looks identical there
-> for both SoCs. I think this will be later used by the video engine, so I
-> kept it in. The large size made me suspicious, and from former
-> experiments it looks like being aliased to (parts of) SRAM C.
+On Tue, Nov 17, 2020 at 02:07:52PM -0600, Rob Herring wrote:
+> 'additionalProperties' is now required by the meta-schema. Add it for
+> coda. As a result, 'interrupts', 'interrupt-names' and 'power-domains'
+> need to be reworked to be defined at the top level.
+> 
+> Cc: Philipp Zabel <p.zabel@pengutronix.de>
+> Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
+> Cc: linux-media@vger.kernel.org
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
 
-I would just call it sram_ve or ve_sram. SRAM C1 would make more sense if
-it were part of SRAM C, not the other way around.
+Ping! In case it wasn't clear, this should go in via the media tree.
 
-Also the sram-section node would make more sense if it were in sram_c, as
-that is the part that gets switched around, not the full region @ 1a00000.
-
-ChenYu
-
-> Maybe some guys with more VE knowledge can shine some light on this?
->
-> Cheers,
-> Andre
->
-> --
-> You received this message because you are subscribed to the Google Groups "linux-sunxi" group.
-> To unsubscribe from this group and stop receiving emails from it, send an email to linux-sunxi+unsubscribe@googlegroups.com.
-> To view this discussion on the web, visit https://groups.google.com/d/msgid/linux-sunxi/34e5618e-4a3d-9a46-5077-179c82592fce%40arm.com.
+>  .../devicetree/bindings/media/coda.yaml       | 42 +++++++++----------
+>  1 file changed, 21 insertions(+), 21 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/media/coda.yaml b/Documentation/devicetree/bindings/media/coda.yaml
+> index 7bac0057faf7..36781ee4617f 100644
+> --- a/Documentation/devicetree/bindings/media/coda.yaml
+> +++ b/Documentation/devicetree/bindings/media/coda.yaml
+> @@ -44,6 +44,21 @@ properties:
+>        - const: per
+>        - const: ahb
+>  
+> +  interrupts:
+> +    minItems: 1
+> +    items:
+> +      - description: BIT processor interrupt
+> +      - description: JPEG unit interrupt
+> +
+> +  interrupt-names:
+> +    minItems: 1
+> +    items:
+> +      - const: bit
+> +      - const: jpeg
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+>    resets:
+>      maxItems: 1
+>  
+> @@ -59,6 +74,8 @@ required:
+>    - clocks
+>    - clock-names
+>  
+> +additionalProperties: false
+> +
+>  allOf:
+>    - if:
+>        properties:
+> @@ -68,34 +85,17 @@ allOf:
+>      then:
+>        properties:
+>          interrupts:
+> -          items:
+> -            - description: BIT processor interrupt
+> -            - description: JPEG unit interrupt
+> +          minItems: 2
+>  
+>          interrupt-names:
+> -          items:
+> -            - const: bit
+> -            - const: jpeg
+> +          minItems: 2
+>      else:
+>        properties:
+>          interrupts:
+> -          items:
+> -            - description: BIT processor interrupt
+> -
+> -  - if:
+> -      properties:
+> -        compatible:
+> -          contains:
+> -            enum:
+> -              - fsl,imx6dl-vpu
+> -              - fsl,imx6q-vpu
+> -    then:
+> -      properties:
+> -        power-domains:
+> -          $ref: /schemas/types.yaml#/definitions/phandle
+> -          description: phandle pointing to the PU power domain
+>            maxItems: 1
+>  
+> +        power-domains: false
+> +
+>  examples:
+>    - |
+>      vpu: video-codec@63ff4000 {
+> -- 
+> 2.25.1
+> 
