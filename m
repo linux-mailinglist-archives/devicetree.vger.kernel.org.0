@@ -2,129 +2,219 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E8082CDE78
-	for <lists+devicetree@lfdr.de>; Thu,  3 Dec 2020 20:08:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 465112CDE92
+	for <lists+devicetree@lfdr.de>; Thu,  3 Dec 2020 20:14:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725923AbgLCTGo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Dec 2020 14:06:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54996 "EHLO
+        id S1727366AbgLCTO0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Dec 2020 14:14:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56160 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726121AbgLCTGn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Dec 2020 14:06:43 -0500
-Received: from mail-yb1-xb43.google.com (mail-yb1-xb43.google.com [IPv6:2607:f8b0:4864:20::b43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CAF5C061A51
-        for <devicetree@vger.kernel.org>; Thu,  3 Dec 2020 11:06:03 -0800 (PST)
-Received: by mail-yb1-xb43.google.com with SMTP id o71so3054468ybc.2
-        for <devicetree@vger.kernel.org>; Thu, 03 Dec 2020 11:06:02 -0800 (PST)
+        with ESMTP id S1727331AbgLCTO0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Dec 2020 14:14:26 -0500
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10722C061A4E
+        for <devicetree@vger.kernel.org>; Thu,  3 Dec 2020 11:13:40 -0800 (PST)
+Received: by mail-lj1-x22d.google.com with SMTP id o24so3788677ljj.6
+        for <devicetree@vger.kernel.org>; Thu, 03 Dec 2020 11:13:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=zY1/UVNK1lpCKgo46pv7M4xtEHqMkdRqZiYe+oaE/HI=;
-        b=kBXK6rf2l4HvR3AS0yI+1werbY73mRV1JLVfNayiYB24G4hZ+mMX9KhAe6rtLui6wT
-         l+lgZE+6rx2soFftZ/7j+GPO2PmOscV4Vbqt0Ff03wqQ5toUTRKCyOAdLNdoDa1pKbjg
-         7j4e4l749WlmL7AXqJPQOVJjPkHPHSs6J2y+ZCElAN/sF033I+N/QZot64Qd+YYYqF+d
-         8RqTgH/KtpaMY9PolKpcFzZMTF/JbjDk/O7PXIUOxQ6Ryo2icN6J5B9PqMJ6eC7uVBTJ
-         DXSm2kocF3znjF9z9rF3V7J2WMpCDm+VePuBTnXeflnecy2J7uOGs4/nlDeDyjlCGIhO
-         fE/g==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=OfnUgcdg9AtFNP6j8dPEN24viPfWPPxj5QhQUOX7X+4=;
+        b=xgVJWH/JDVeUwyEnGOmoMtu2OwOGb+vMbVFjDY9clZKS7uXzABNaRxTiR09jsyJ1Ru
+         GjhZaWXm3rgfMM1yi80lk2YXnotigB28CMMu1NvUYeC5wjsd0CeLEUXYJ3mOtBjUUUMg
+         BdD9xFEnJsTGuIlJb1WoZnmtNBLAu/5e3bgOKOWuHrCTRBS5FIQQcj+Zx6u85lIQc3WC
+         HAH4QJ5WKfQMp18XY8804yNi9jxfXWzLF+AMXMgpy/aqP2cwFFQXahPCn9G6fhkEkt22
+         MW7qDpFYNv8pKoXpP2GDTMEqPvcNHgBCnZKU3ByLmB/EGZrsfJhWwg3F1Wqt5Ubsl99t
+         4BJw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=zY1/UVNK1lpCKgo46pv7M4xtEHqMkdRqZiYe+oaE/HI=;
-        b=TsqQfXp6NUIc3GbVUNcu7hI/pbyaLUPsCpvteMmLrfWL7sApWtEyVveU9y/fE8N8N3
-         FSdsUjA8UhQxZSp0JUF+ICq+9NNG59ETlMMfz/dqP8Rn+o5/cgIO4Jhn7t1RdHu30PbZ
-         w4VELYGtaBOAJUIBZZOy4l+qApeikG0S9jFl2u28XCAv6R0OixD+NKPZtjAoOJrLVtWv
-         yLYfCfG/51gI23L7ORg9i8lv+I/3u0mo2Dc/NbvHTgx22I4YUFs/9Asom+rAX9P0hDxf
-         uh7LfEjnmMasXzGNwSvHtoz4Roeuw1v1aadLU5DVQ1JCbdW/Km21ll9hDV1sMoUAoohv
-         0QXA==
-X-Gm-Message-State: AOAM533r+mDxOAkj1BRd+s3KY1b1NlOJbfKZCKByZOuj/eVdOJqSiKCl
-        M+vuLgGqnV8AcBfebq2HjyzxmwwraSCcEHGl9krRRg==
-X-Google-Smtp-Source: ABdhPJyByVU3U6UwdjEq6N0aHqjYPPhLQgY+wiLEv+vExlD872m6k9m3aMBysR1FSGFum9W802/y/aH7VgFItnp+7lI=
-X-Received: by 2002:a25:8401:: with SMTP id u1mr969238ybk.96.1607022361930;
- Thu, 03 Dec 2020 11:06:01 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=OfnUgcdg9AtFNP6j8dPEN24viPfWPPxj5QhQUOX7X+4=;
+        b=FhXFDDkbYqOmYLV47ESi/mXanGT0mu5aK27jMVQBLbR1rEV509PF4ZSCC/gOWjEPI+
+         PHaSXdSSBEqt0WQMfoslGWmiTvWync6POwtvs/Ml2Ge7hGykpz4smzRf9PBAHMisxUNz
+         xbhCsllrjOpYPYvB6fbVrnDZz7lOzupai0bh8sKl0z9pDIfGeu+cbMu6Pf9UDCvS7W+B
+         puyXK+08g3Hx82X5xg+MNpVWuNXxwGwcPzqyVr9NygEQLTlBadHkLedsHDsu4KLivRql
+         wSke5qeKz6jcDptu/VP3R4Zx9anB3h1VdFPfj12WkpQNAyFnRBCKyFhWK4RVraA8O4af
+         lM1Q==
+X-Gm-Message-State: AOAM530JwBF7/JPXgKtDwb1QpY8qNOwanCtHSxm+yC8VE6v/JaY4MH1n
+        aORO1q0NlffX2rq+OlCi3/FaWg==
+X-Google-Smtp-Source: ABdhPJyCfzkpCXPSJ71DnOMvlYOSEj/GcWiu8eSyz1W17/5is9mWStaH0u6dEYmDlOiMjFyv7IKleQ==
+X-Received: by 2002:a05:651c:14d:: with SMTP id c13mr1793980ljd.153.1607022818414;
+        Thu, 03 Dec 2020 11:13:38 -0800 (PST)
+Received: from eriador.lumag.spb.ru ([188.162.64.117])
+        by smtp.gmail.com with ESMTPSA id x10sm102472lfn.307.2020.12.03.11.13.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 03 Dec 2020 11:13:37 -0800 (PST)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH 1/2] dt-bindings: soc: qcom: convert qcom,smem bindings to yaml
+Date:   Thu,  3 Dec 2020 22:13:34 +0300
+Message-Id: <20201203191335.927001-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-References: <20201121020232.908850-1-saravanak@google.com> <758a1b59-1033-b0ae-2549-84c8eeea4b11@ti.com>
-In-Reply-To: <758a1b59-1033-b0ae-2549-84c8eeea4b11@ti.com>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Thu, 3 Dec 2020 11:05:26 -0800
-Message-ID: <CAGETcx_CzrPDZA_C+8JvCeL-bSPB814jfDLscEEe+TLiHhBxjA@mail.gmail.com>
-Subject: Re: [PATCH v2 00/17] Refactor fw_devlink to significantly improve
- boot time
-To:     Tomi Valkeinen <tomi.valkeinen@ti.com>
-Cc:     "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Len Brown <lenb@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Ard Biesheuvel <ardb@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        Android Kernel Team <kernel-team@android.com>,
-        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        linux-efi <linux-efi@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 24, 2020 at 12:29 AM 'Tomi Valkeinen' via kernel-team
-<kernel-team@android.com> wrote:
->
-> Hi,
->
-> On 21/11/2020 04:02, Saravana Kannan wrote:
-> > The current implementation of fw_devlink is very inefficient because it
-> > tries to get away without creating fwnode links in the name of saving
-> > memory usage. Past attempts to optimize runtime at the cost of memory
-> > usage were blocked with request for data showing that the optimization
-> > made significant improvement for real world scenarios.
-> >
-> > We have those scenarios now. There have been several reports of boot
-> > time increase in the order of seconds in this thread [1]. Several OEMs
-> > and SoC manufacturers have also privately reported significant
-> > (350-400ms) increase in boot time due to all the parsing done by
-> > fw_devlink.
-> >
-> > So this patch series refactors fw_devlink to be more efficient. The key
-> > difference now is the addition of support for fwnode links -- just a few
-> > simple APIs. This also allows most of the code to be moved out of
-> > firmware specific (DT mostly) code into driver core.
-> >
-> > This brings the following benefits:
-> > - Instead of parsing the device tree multiple times (complexity was
-> >   close to O(N^3) where N in the number of properties) during bootup,
-> >   fw_devlink parses each fwnode node/property only once and creates
-> >   fwnode links. The rest of the fw_devlink code then just looks at these
-> >   fwnode links to do rest of the work.
-> >
-> > - Makes it much easier to debug probe issue due to fw_devlink in the
-> >   future. fw_devlink=on blocks the probing of devices if they depend on
-> >   a device that hasn't been added yet. With this refactor, it'll be very
-> >   easy to tell what that device is because we now have a reference to
-> >   the fwnode of the device.
-> >
-> > - Much easier to add fw_devlink support to ACPI and other firmware
-> >   types. A refactor to move the common bits from DT specific code to
-> >   driver core was in my TODO list as a prerequisite to adding ACPI
-> >   support to fw_devlink. This series gets that done.
-> >
-> > Laurent and Grygorii tested the v1 series and they saw boot time
-> > improvment of about 12 seconds and 3 seconds, respectively.
->
-> Tested v2 on OMAP4 SDP. With my particular config, boot time to starting init went from 18.5 seconds
-> to 12.5 seconds.
->
->  Tomi
+Convert soc/qcom/qcom,smem.txt bindings to YAML format.
 
-Rafael,
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+---
+ .../bindings/soc/qcom/qcom,smem.txt           | 57 --------------
+ .../bindings/soc/qcom/qcom,smem.yaml          | 74 +++++++++++++++++++
+ 2 files changed, 74 insertions(+), 57 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,smem.txt
+ create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,smem.yaml
 
-Friendly reminder for a review.
+diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,smem.txt b/Documentation/devicetree/bindings/soc/qcom/qcom,smem.txt
+deleted file mode 100644
+index 9326cdf6e1b1..000000000000
+--- a/Documentation/devicetree/bindings/soc/qcom/qcom,smem.txt
++++ /dev/null
+@@ -1,57 +0,0 @@
+-Qualcomm Shared Memory Manager binding
+-
+-This binding describes the Qualcomm Shared Memory Manager, used to share data
+-between various subsystems and OSes in Qualcomm platforms.
+-
+-- compatible:
+-	Usage: required
+-	Value type: <stringlist>
+-	Definition: must be:
+-		    "qcom,smem"
+-
+-- memory-region:
+-	Usage: required
+-	Value type: <prop-encoded-array>
+-	Definition: handle to memory reservation for main SMEM memory region.
+-
+-- qcom,rpm-msg-ram:
+-	Usage: required
+-	Value type: <prop-encoded-array>
+-	Definition: handle to RPM message memory resource
+-
+-- hwlocks:
+-	Usage: required
+-	Value type: <prop-encoded-array>
+-	Definition: reference to a hwspinlock used to protect allocations from
+-		    the shared memory
+-
+-= EXAMPLE
+-The following example shows the SMEM setup for MSM8974, with a main SMEM region
+-at 0xfa00000 and the RPM message ram at 0xfc428000:
+-
+-	reserved-memory {
+-		#address-cells = <1>;
+-		#size-cells = <1>;
+-		ranges;
+-
+-		smem_region: smem@fa00000 {
+-			reg = <0xfa00000 0x200000>;
+-			no-map;
+-		};
+-	};
+-
+-	smem@fa00000 {
+-		compatible = "qcom,smem";
+-
+-		memory-region = <&smem_region>;
+-		qcom,rpm-msg-ram = <&rpm_msg_ram>;
+-
+-		hwlocks = <&tcsr_mutex 3>;
+-	};
+-
+-	soc {
+-		rpm_msg_ram: memory@fc428000 {
+-			compatible = "qcom,rpm-msg-ram";
+-			reg = <0xfc428000 0x4000>;
+-		};
+-	};
+diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,smem.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,smem.yaml
+new file mode 100644
+index 000000000000..1ddeb25cbdc1
+--- /dev/null
++++ b/Documentation/devicetree/bindings/soc/qcom/qcom,smem.yaml
+@@ -0,0 +1,74 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/soc/qcom/qcom,smem.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: Qualcomm Shared Memory Manager binding
++
++maintainers:
++  - Andy Gross <agross@kernel.org>
++  - Bjorn Andersson <bjorn.andersson@linaro.org>
++
++description: |
++  This binding describes the Qualcomm Shared Memory Manager, used to share data
++  between various subsystems and OSes in Qualcomm platforms.
++
++properties:
++  compatible:
++    enum:
++      - "qcom-smem"
++
++  memory-region:
++    maxItems: 1
++    description: handle to memory reservation for main SMEM memory region.
++
++  hwlocks:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description: reference to a hwspinlock used to protect allocations from the shared memory
++
++  qcom,rpm-msg-ram:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description: handle to RPM message memory resource
++
++required:
++  - compatible
++  - memory-region
++  - hwlocks
++
++additionalProperties: false
++
++examples:
++  - |
++    reserved-memory {
++        #address-cells = <1>;
++        #size-cells = <1>;
++        ranges;
++
++        smem_region: smem@fa00000 {
++            reg = <0xfa00000 0x200000>;
++            no-map;
++        };
++    };
++
++    smem {
++        compatible = "qcom,smem";
++
++        memory-region = <&smem_region>;
++        qcom,rpm-msg-ram = <&rpm_msg_ram>;
++
++        hwlocks = <&tcsr_mutex 3>;
++    };
++
++    soc {
++        #address-cells = <1>;
++        #size-cells = <1>;
++        ranges;
++
++        rpm_msg_ram: memory@fc428000 {
++            compatible = "qcom,rpm-msg-ram";
++            reg = <0xfc428000 0x4000>;
++        };
++    };
++
++...
+-- 
+2.29.2
 
--Saravana
