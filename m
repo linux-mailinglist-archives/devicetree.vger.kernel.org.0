@@ -2,420 +2,252 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CDEA22CCC36
-	for <lists+devicetree@lfdr.de>; Thu,  3 Dec 2020 03:09:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2EC812CCD23
+	for <lists+devicetree@lfdr.de>; Thu,  3 Dec 2020 04:15:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387618AbgLCCJ2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Dec 2020 21:09:28 -0500
-Received: from mail.kernel.org ([198.145.29.99]:45658 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2387622AbgLCCJ2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 2 Dec 2020 21:09:28 -0500
-From:   Eric Biggers <ebiggers@kernel.org>
-Authentication-Results: mail.kernel.org; dkim=permerror (bad message/signature format)
-To:     linux-mmc@vger.kernel.org
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-fscrypt@vger.kernel.org, Satya Tangirala <satyat@google.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Asutosh Das <asutoshd@codeaurora.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Neeraj Soni <neersoni@codeaurora.org>,
-        Barani Muthukumaran <bmuthuku@codeaurora.org>,
-        Peng Zhou <peng.zhou@mediatek.com>,
-        Stanley Chu <stanley.chu@mediatek.com>,
-        Konrad Dybcio <konradybcio@gmail.com>
-Subject: [PATCH v2 9/9] mmc: sdhci-msm: add Inline Crypto Engine support
-Date:   Wed,  2 Dec 2020 18:05:16 -0800
-Message-Id: <20201203020516.225701-10-ebiggers@kernel.org>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20201203020516.225701-1-ebiggers@kernel.org>
-References: <20201203020516.225701-1-ebiggers@kernel.org>
+        id S1727392AbgLCDPJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Dec 2020 22:15:09 -0500
+Received: from mail-db8eur05on2082.outbound.protection.outlook.com ([40.107.20.82]:7776
+        "EHLO EUR05-DB8-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726938AbgLCDPJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 2 Dec 2020 22:15:09 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=EKPP9sfZWdStpNGauSTQoTFby3/ChWF2z4Q23FGxQoOWTcIWo/VLQg7D9X/kTgFg21fVm04USS+eg5QJW5NOePs9UtpBtTU4nupDKwxpAWdcRuYItt/L+4ONeFf8GdwETHWGBijFwbijflkSmKvLbcv7sD0hbsiuY+9/wKx6j+BProLXXu4P5ZArSfwBvl+D264JnLi1nlgNZFb5Dzk6/FFR74dcVLCuv7BTQyAaV+z6MZbKZWJS0KWetGa8fzSk/phErzcd1A4sS7ErRYoEQ2bx9SNHnUvY7H4qrPRNFrTu0nuPowSwe7lZXbVgvS9NUBQ7081CU3dHTtJJsqzrjg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=iTRnOmtA2L0I9hqJY9mxEzszA6lBbrtmadAiUMlfRXE=;
+ b=czU0kGwBuWIgEZJ+KBBguxoyUQr5qLYl61ZX88wBPEdBAIo47Yyw9b7R6czQ7l/US5bKRDBStl+TO5oreF2ccYdR7A69Tc6A3s5SgPvIdPKHxXAvLRUgBjnUchq5LMK5oXEhw6CHplieQ7wrEaIFACvwTziRkfZ6OXJBpyKSr3OnojIrbccSjdsh8ZJVchPr8Y5qfqiK++fs3Du4zrY+kfAB+bkHD44wJ6LcLOIp95iqhXGDQhEfixhIidEB7kfu6Cj5GqQx9pBZW3KBkL583T9T2ku+qTPjsSuIopAEGcnoeasZNSWdWsKOzbmujm2dX63ghpmhKOzWK+SxWHrQIg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=iTRnOmtA2L0I9hqJY9mxEzszA6lBbrtmadAiUMlfRXE=;
+ b=AP6lfcXHlC2khmQuvTM1/ojE9GYlDzVnqZolV1M2rj7C5DAMDBLBP1G5cR7fjx4QWEZ9EZvLIMzPVmxWwkb/MsarAJ9rL9EfZ22vGtAWRCHhbWcLMEga+fLysE+kqXmxsolxXxmXmBWrNUhGyq9ndD3yFrSXv7GnY2cIjBIJWGQ=
+Authentication-Results: lists.infradead.org; dkim=none (message not signed)
+ header.d=none;lists.infradead.org; dmarc=none action=none
+ header.from=nxp.com;
+Received: from VI1PR04MB3983.eurprd04.prod.outlook.com (2603:10a6:803:4c::16)
+ by VI1PR0402MB2879.eurprd04.prod.outlook.com (2603:10a6:800:b7::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3611.23; Thu, 3 Dec
+ 2020 03:14:16 +0000
+Received: from VI1PR04MB3983.eurprd04.prod.outlook.com
+ ([fe80::dcb7:6117:3def:2685]) by VI1PR04MB3983.eurprd04.prod.outlook.com
+ ([fe80::dcb7:6117:3def:2685%7]) with mapi id 15.20.3611.025; Thu, 3 Dec 2020
+ 03:14:15 +0000
+From:   Liu Ying <victor.liu@nxp.com>
+To:     linux-arm-kernel@lists.infradead.org,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     p.zabel@pengutronix.de, airlied@linux.ie, daniel@ffwll.ch,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com, robh+dt@kernel.org,
+        maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+        tzimmermann@suse.de, laurentiu.palcu@oss.nxp.com
+Subject: [PATCH v2 0/6] drm/imx: Introduce i.MX8qm/qxp DPU DRM
+Date:   Thu,  3 Dec 2020 11:06:25 +0800
+Message-Id: <1606964791-24927-1-git-send-email-victor.liu@nxp.com>
+X-Mailer: git-send-email 2.7.4
+Content-Type: text/plain
+X-Originating-IP: [119.31.174.66]
+X-ClientProxiedBy: SG2PR02CA0028.apcprd02.prod.outlook.com
+ (2603:1096:3:18::16) To VI1PR04MB3983.eurprd04.prod.outlook.com
+ (2603:10a6:803:4c::16)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from localhost.localdomain (119.31.174.66) by SG2PR02CA0028.apcprd02.prod.outlook.com (2603:1096:3:18::16) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.20.3632.17 via Frontend Transport; Thu, 3 Dec 2020 03:14:10 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: 473057e7-057f-4bae-9745-08d8973983ec
+X-MS-TrafficTypeDiagnostic: VI1PR0402MB2879:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <VI1PR0402MB287924590436584886D62EE198F20@VI1PR0402MB2879.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: hOE6Swx7kMSklLaj4iKeA2HVmDMCtcdceWDdJukqA92ovOpXyg1tA+h5BEMwKJoMUSL7g3Jt4VGoRowVzECgoRbLwdFjDWkUWuB69QdmHQFhTAj6kjYmmX7+ziG5qsTWTewzASPVDHclikch4HVr3kXigUci2gbiMObFcIJ+VCX4UleuDxnndsefscIPcgMo2Uz2cE6r3FXrFYxroZo+XCh5pFgTOKVVHsU3bsnwWVfnacTFdbK5ZWyMsYr88fhPjvkMJ5VVJq17Cq0HFdGNimBaSrk26i3w9G2F3jW7+NcVc+0jgWPZJB1ElMLNZX5jTt6W3Gf8MiIsXSb8dGF7a183dtgqaaXmuD6Hq+KUvtNWeMTaR8GzdqXxdiL8RxZfA4lOUrxBD2Q0ByEoqr2GG47YBfaLEhRWZBNJ0eqBadk1/VNQwKifP5dQ8b3BaGMOyWQiEuiKwc9BzUC9jVGNXw==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB3983.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(39860400002)(376002)(396003)(366004)(346002)(136003)(8936002)(4326008)(186003)(66476007)(6666004)(66556008)(5660300002)(26005)(478600001)(7416002)(6486002)(956004)(2906002)(6512007)(316002)(2616005)(66946007)(8676002)(69590400008)(86362001)(83380400001)(6506007)(52116002)(966005)(16526019)(36756003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?hrnt4v00Z88yfv7O3f9Eca3vJKWJRcZiiGXEbdhqp9Bxdcngwh1qJ0yphJI5?=
+ =?us-ascii?Q?mFplm0DKLjMDt6nhMKPfPhBDffEYOl+wiBu2oinoxm7oTvRBcLcQpWlgynw8?=
+ =?us-ascii?Q?310uUciHwNwBhnk4qfjzyQMZ7sgOXBEvi5L7BmMW06dJTSQ0BT77akRIF4gS?=
+ =?us-ascii?Q?VzY8KzXXB1FI51BSRIM9ogej/GtC1C18FZT15dvZzKa6lMBEEQ2zj2D7iV1o?=
+ =?us-ascii?Q?QnXIvvXdKbpM6kmQ5xeJA7Jh8apstbr5qJg0LZmpZjIS6nt9tgTmmgaeAHBC?=
+ =?us-ascii?Q?10blWKpCsIFCqs3nq4ugifR7wSWNjvoKx81KOu+e3ns55r2fTCqjCzF59egz?=
+ =?us-ascii?Q?F1Nht1Z+Kxw8ywPPMVD1tBcfC4pSPqPJIFSUCLLZK+j82iHNmZYgRwxLuz9N?=
+ =?us-ascii?Q?/nGP/Q1+BFjjIuVNhq7bkQ8REhDBkF8gufE+x/Dm4YZ6fOOF3NoAEjcPkIw2?=
+ =?us-ascii?Q?n5ohmSCBnGBfSkAZU0+5+bIBdnr2nPyLejiI71WRxj7zNeMfeBhOhqrXSnGm?=
+ =?us-ascii?Q?ApyGGjpJ+7C9lANOqgP7kY4uXc7rYWB5wQiC5kZSoY/C7C/kPjyRYq6nsvzr?=
+ =?us-ascii?Q?q8vj7uShMIO02TnAKfv8TX98Nya0PObWJvtDmLgtg/VGLAEeLkv80cmV7IN6?=
+ =?us-ascii?Q?4OxV0mxWTpjrBoIoNhyFqopD7VRgUoLzCwACnR4KVjDj8NnnV9uQxfwyrC9E?=
+ =?us-ascii?Q?v4w4tSqqatP7gSvZIBKxwBCIyiz8PoH/rwDyay9hwHUpxmK1fi/OsWiU6TE7?=
+ =?us-ascii?Q?AXH6gdO9P/bKPXUzFbG9FrkV/DkXtvTduwj/R9Sa9+vayerQu5iAtTsrSwg/?=
+ =?us-ascii?Q?LqVp54NW01J2m2nhfHd3KRMl6oeUBBEQRNoguVG1lk2lP9xmRXDRE2pDi5h1?=
+ =?us-ascii?Q?Ap+AgLwFZ7dnMZ5NTOuawqIEmmRI9jJBjnLtUgF3g/sJeOZTkf9h3uc+JGT4?=
+ =?us-ascii?Q?JVg8C8EnaC0TuAXbqfM+cwvJ5fepmFFNI8rYalCUFIo5hi/nvnRgJkSgVzli?=
+ =?us-ascii?Q?rVZm?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 473057e7-057f-4bae-9745-08d8973983ec
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB3983.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Dec 2020 03:14:15.8843
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: N3vM4oiaswE5CPT1/r8U8GeMiKDuSXvLEuC0HHEZ75ZtqbCR7a9cR8xNHDFIW2cYf7EBudDBhd5hhPF4PP6Shg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0402MB2879
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Eric Biggers <ebiggers@google.com>
+Hi,
 
-Add support for Qualcomm Inline Crypto Engine (ICE) to sdhci-msm.
 
-The standard-compliant parts, such as querying the crypto capabilities
-and enabling crypto for individual MMC requests, are already handled by
-cqhci-crypto.c, which itself is wired into the blk-crypto framework.
-However, ICE requires vendor-specific init, enable, and resume logic,
-and it requires that keys be programmed and evicted by vendor-specific
-SMC calls.  Make the sdhci-msm driver handle these details.
+This patch set introduces i.MX8qm/qxp Display Processing Unit(DPU) DRM support.
 
-This is heavily inspired by the similar changes made for UFS, since the
-UFS and eMMC ICE instances are very similar.  See commit df4ec2fa7a4d
-("scsi: ufs-qcom: Add Inline Crypto Engine support").
+DPU is comprised of a blit engine for 2D graphics, a display controller
+and a command sequencer.  Outside of DPU, optional prefetch engines can
+fetch data from memory prior to some DPU fetchunits of blit engine and
+display controller.  The pre-fetchers support linear formats and Vivante
+GPU tile formats.
 
-I tested this on a Sony Xperia 10, which uses the Snapdragon 630 SoC,
-which has basic upstream support.  Mainly, I used android-xfstests
-(https://github.com/tytso/xfstests-bld/blob/master/Documentation/android-xfstests.md)
-to run the ext4 and f2fs encryption tests in a Debian chroot:
+Reference manual can be found at:
+https://www.nxp.com/webapp/Download?colCode=IMX8DQXPRM
 
-	android-xfstests -c ext4,f2fs -g encrypt -m inlinecrypt
 
-These tests included tests which verify that the on-disk ciphertext is
-identical to that produced by a software implementation.  I also
-verified that ICE was actually being used.
+This patch set adds kernel modesetting support for the display controller part.
+It supports two CRTCs per display controller, several planes, prefetch
+engines and some properties of CRTC and plane.  Currently, the registers of
+the controller is accessed without command sequencer involved, instead just by
+using CPU.  DRM connectors would be created from the DPU KMS driver.
 
-Signed-off-by: Eric Biggers <ebiggers@google.com>
----
- drivers/mmc/host/Kconfig     |   1 +
- drivers/mmc/host/sdhci-msm.c | 265 ++++++++++++++++++++++++++++++++++-
- 2 files changed, 262 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/mmc/host/Kconfig b/drivers/mmc/host/Kconfig
-index 31481c9fcc2ec..4f8ff5a690fba 100644
---- a/drivers/mmc/host/Kconfig
-+++ b/drivers/mmc/host/Kconfig
-@@ -544,6 +544,7 @@ config MMC_SDHCI_MSM
- 	depends on MMC_SDHCI_PLTFM
- 	select MMC_SDHCI_IO_ACCESSORS
- 	select MMC_CQHCI
-+	select QCOM_SCM if MMC_CRYPTO && ARCH_QCOM
- 	help
- 	  This selects the Secure Digital Host Controller Interface (SDHCI)
- 	  support present in Qualcomm SOCs. The controller supports
-diff --git a/drivers/mmc/host/sdhci-msm.c b/drivers/mmc/host/sdhci-msm.c
-index 3451eb3255135..ce6c3edbef530 100644
---- a/drivers/mmc/host/sdhci-msm.c
-+++ b/drivers/mmc/host/sdhci-msm.c
-@@ -13,6 +13,7 @@
- #include <linux/pm_opp.h>
- #include <linux/slab.h>
- #include <linux/iopoll.h>
-+#include <linux/qcom_scm.h>
- #include <linux/regulator/consumer.h>
- #include <linux/interconnect.h>
- #include <linux/pinctrl/consumer.h>
-@@ -256,10 +257,12 @@ struct sdhci_msm_variant_info {
- struct sdhci_msm_host {
- 	struct platform_device *pdev;
- 	void __iomem *core_mem;	/* MSM SDCC mapped address */
-+	void __iomem *ice_mem;	/* MSM ICE mapped address (if available) */
- 	int pwr_irq;		/* power irq */
- 	struct clk *bus_clk;	/* SDHC bus voter clock */
- 	struct clk *xo_clk;	/* TCXO clk needed for FLL feature of cm_dll*/
--	struct clk_bulk_data bulk_clks[4]; /* core, iface, cal, sleep clocks */
-+	/* core, iface, cal, sleep, and ice clocks */
-+	struct clk_bulk_data bulk_clks[5];
- 	unsigned long clk_rate;
- 	struct mmc_host *mmc;
- 	struct opp_table *opp_table;
-@@ -1785,6 +1788,235 @@ static void sdhci_msm_set_clock(struct sdhci_host *host, unsigned int clock)
- 	__sdhci_msm_set_clock(host, clock);
- }
- 
-+/*****************************************************************************\
-+ *                                                                           *
-+ * Inline Crypto Engine (ICE) support                                        *
-+ *                                                                           *
-+\*****************************************************************************/
-+
-+#ifdef CONFIG_MMC_CRYPTO
-+
-+#define AES_256_XTS_KEY_SIZE			64
-+
-+/* QCOM ICE registers */
-+
-+#define QCOM_ICE_REG_VERSION			0x0008
-+
-+#define QCOM_ICE_REG_FUSE_SETTING		0x0010
-+#define QCOM_ICE_FUSE_SETTING_MASK		0x1
-+#define QCOM_ICE_FORCE_HW_KEY0_SETTING_MASK	0x2
-+#define QCOM_ICE_FORCE_HW_KEY1_SETTING_MASK	0x4
-+
-+#define QCOM_ICE_REG_BIST_STATUS		0x0070
-+#define QCOM_ICE_BIST_STATUS_MASK		0xF0000000
-+
-+#define QCOM_ICE_REG_ADVANCED_CONTROL		0x1000
-+
-+#define sdhci_msm_ice_writel(host, val, reg)	\
-+	writel((val), (host)->ice_mem + (reg))
-+#define sdhci_msm_ice_readl(host, reg)	\
-+	readl((host)->ice_mem + (reg))
-+
-+static bool sdhci_msm_ice_supported(struct sdhci_msm_host *msm_host)
-+{
-+	struct device *dev = mmc_dev(msm_host->mmc);
-+	u32 regval = sdhci_msm_ice_readl(msm_host, QCOM_ICE_REG_VERSION);
-+	int major = regval >> 24;
-+	int minor = (regval >> 16) & 0xFF;
-+	int step = regval & 0xFFFF;
-+
-+	/* For now this driver only supports ICE version 3. */
-+	if (major != 3) {
-+		dev_warn(dev, "Unsupported ICE version: v%d.%d.%d\n",
-+			 major, minor, step);
-+		return false;
-+	}
-+
-+	dev_info(dev, "Found QC Inline Crypto Engine (ICE) v%d.%d.%d\n",
-+		 major, minor, step);
-+
-+	/* If fuses are blown, ICE might not work in the standard way. */
-+	regval = sdhci_msm_ice_readl(msm_host, QCOM_ICE_REG_FUSE_SETTING);
-+	if (regval & (QCOM_ICE_FUSE_SETTING_MASK |
-+		      QCOM_ICE_FORCE_HW_KEY0_SETTING_MASK |
-+		      QCOM_ICE_FORCE_HW_KEY1_SETTING_MASK)) {
-+		dev_warn(dev, "Fuses are blown; ICE is unusable!\n");
-+		return false;
-+	}
-+	return true;
-+}
-+
-+static inline struct clk *sdhci_msm_ice_get_clk(struct device *dev)
-+{
-+	return devm_clk_get(dev, "ice");
-+}
-+
-+static int sdhci_msm_ice_init(struct sdhci_msm_host *msm_host,
-+			      struct cqhci_host *cq_host)
-+{
-+	struct mmc_host *mmc = msm_host->mmc;
-+	struct device *dev = mmc_dev(mmc);
-+	struct resource *res;
-+	int err;
-+
-+	if (!(cqhci_readl(cq_host, CQHCI_CAP) & CQHCI_CAP_CS))
-+		return 0;
-+
-+	res = platform_get_resource_byname(msm_host->pdev, IORESOURCE_MEM,
-+					   "ice");
-+	if (!res) {
-+		dev_warn(dev, "ICE registers not found\n");
-+		goto disable;
-+	}
-+
-+	if (!qcom_scm_ice_available()) {
-+		dev_warn(dev, "ICE SCM interface not found\n");
-+		goto disable;
-+	}
-+
-+	msm_host->ice_mem = devm_ioremap_resource(dev, res);
-+	if (IS_ERR(msm_host->ice_mem)) {
-+		err = PTR_ERR(msm_host->ice_mem);
-+		dev_err(dev, "Failed to map ICE registers; err=%d\n", err);
-+		return err;
-+	}
-+
-+	if (!sdhci_msm_ice_supported(msm_host))
-+		goto disable;
-+
-+	mmc->caps2 |= MMC_CAP2_CRYPTO;
-+	return 0;
-+
-+disable:
-+	dev_warn(dev, "Disabling inline encryption support\n");
-+	return 0;
-+}
-+
-+static void sdhci_msm_ice_low_power_mode_enable(struct sdhci_msm_host *msm_host)
-+{
-+	u32 regval;
-+
-+	regval = sdhci_msm_ice_readl(msm_host, QCOM_ICE_REG_ADVANCED_CONTROL);
-+	/*
-+	 * Enable low power mode sequence
-+	 * [0]-0, [1]-0, [2]-0, [3]-E, [4]-0, [5]-0, [6]-0, [7]-0
-+	 */
-+	regval |= 0x7000;
-+	sdhci_msm_ice_writel(msm_host, regval, QCOM_ICE_REG_ADVANCED_CONTROL);
-+}
-+
-+static void sdhci_msm_ice_optimization_enable(struct sdhci_msm_host *msm_host)
-+{
-+	u32 regval;
-+
-+	/* ICE Optimizations Enable Sequence */
-+	regval = sdhci_msm_ice_readl(msm_host, QCOM_ICE_REG_ADVANCED_CONTROL);
-+	regval |= 0xD807100;
-+	/* ICE HPG requires delay before writing */
-+	udelay(5);
-+	sdhci_msm_ice_writel(msm_host, regval, QCOM_ICE_REG_ADVANCED_CONTROL);
-+	udelay(5);
-+}
-+
-+/* Poll until all BIST (built-in self test) bits are reset */
-+static int sdhci_msm_ice_wait_bist_status(struct sdhci_msm_host *msm_host)
-+{
-+	u32 regval;
-+	int err;
-+
-+	err = readl_poll_timeout(msm_host->ice_mem + QCOM_ICE_REG_BIST_STATUS,
-+				 regval, !(regval & QCOM_ICE_BIST_STATUS_MASK),
-+				 50, 5000);
-+	if (err)
-+		dev_err(mmc_dev(msm_host->mmc),
-+			"Timed out waiting for ICE self-test to complete\n");
-+	return err;
-+}
-+
-+static void sdhci_msm_ice_enable(struct sdhci_msm_host *msm_host)
-+{
-+	if (!(msm_host->mmc->caps2 & MMC_CAP2_CRYPTO))
-+		return;
-+	sdhci_msm_ice_low_power_mode_enable(msm_host);
-+	sdhci_msm_ice_optimization_enable(msm_host);
-+	sdhci_msm_ice_wait_bist_status(msm_host);
-+}
-+
-+static int __maybe_unused sdhci_msm_ice_resume(struct sdhci_msm_host *msm_host)
-+{
-+	if (!(msm_host->mmc->caps2 & MMC_CAP2_CRYPTO))
-+		return 0;
-+	return sdhci_msm_ice_wait_bist_status(msm_host);
-+}
-+
-+/*
-+ * Program a key into a QC ICE keyslot, or evict a keyslot.  QC ICE requires
-+ * vendor-specific SCM calls for this; it doesn't support the standard way.
-+ */
-+static int sdhci_msm_program_key(struct cqhci_host *cq_host,
-+				 const union cqhci_crypto_cfg_entry *cfg,
-+				 int slot)
-+{
-+	struct device *dev = mmc_dev(cq_host->mmc);
-+	union cqhci_crypto_cap_entry cap;
-+	union {
-+		u8 bytes[AES_256_XTS_KEY_SIZE];
-+		u32 words[AES_256_XTS_KEY_SIZE / sizeof(u32)];
-+	} key;
-+	int i;
-+	int err;
-+
-+	if (!(cfg->config_enable & CQHCI_CRYPTO_CONFIGURATION_ENABLE))
-+		return qcom_scm_ice_invalidate_key(slot);
-+
-+	/* Only AES-256-XTS has been tested so far. */
-+	cap = cq_host->crypto_cap_array[cfg->crypto_cap_idx];
-+	if (cap.algorithm_id != CQHCI_CRYPTO_ALG_AES_XTS ||
-+	    cap.key_size != CQHCI_CRYPTO_KEY_SIZE_256) {
-+		dev_err_ratelimited(dev,
-+				    "Unhandled crypto capability; algorithm_id=%d, key_size=%d\n",
-+				    cap.algorithm_id, cap.key_size);
-+		return -EINVAL;
-+	}
-+
-+	memcpy(key.bytes, cfg->crypto_key, AES_256_XTS_KEY_SIZE);
-+
-+	/*
-+	 * The SCM call byte-swaps the 32-bit words of the key.  So we have to
-+	 * do the same, in order for the final key be correct.
-+	 */
-+	for (i = 0; i < ARRAY_SIZE(key.words); i++)
-+		__cpu_to_be32s(&key.words[i]);
-+
-+	err = qcom_scm_ice_set_key(slot, key.bytes, AES_256_XTS_KEY_SIZE,
-+				   QCOM_SCM_ICE_CIPHER_AES_256_XTS,
-+				   cfg->data_unit_size);
-+	memzero_explicit(&key, sizeof(key));
-+	return err;
-+}
-+#else /* CONFIG_MMC_CRYPTO */
-+static inline struct clk *sdhci_msm_ice_get_clk(struct device *dev)
-+{
-+	return NULL;
-+}
-+
-+static inline int sdhci_msm_ice_init(struct sdhci_msm_host *msm_host,
-+				     struct cqhci_host *cq_host)
-+{
-+	return 0;
-+}
-+
-+static inline void sdhci_msm_ice_enable(struct sdhci_msm_host *msm_host)
-+{
-+}
-+
-+static inline int __maybe_unused
-+sdhci_msm_ice_resume(struct sdhci_msm_host *msm_host)
-+{
-+	return 0;
-+}
-+#endif /* !CONFIG_MMC_CRYPTO */
-+
- /*****************************************************************************\
-  *                                                                           *
-  * MSM Command Queue Engine (CQE)                                            *
-@@ -1803,6 +2035,16 @@ static u32 sdhci_msm_cqe_irq(struct sdhci_host *host, u32 intmask)
- 	return 0;
- }
- 
-+static void sdhci_msm_cqe_enable(struct mmc_host *mmc)
-+{
-+	struct sdhci_host *host = mmc_priv(mmc);
-+	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
-+	struct sdhci_msm_host *msm_host = sdhci_pltfm_priv(pltfm_host);
-+
-+	sdhci_cqe_enable(mmc);
-+	sdhci_msm_ice_enable(msm_host);
-+}
-+
- static void sdhci_msm_cqe_disable(struct mmc_host *mmc, bool recovery)
- {
- 	struct sdhci_host *host = mmc_priv(mmc);
-@@ -1835,8 +2077,11 @@ static void sdhci_msm_cqe_disable(struct mmc_host *mmc, bool recovery)
- }
- 
- static const struct cqhci_host_ops sdhci_msm_cqhci_ops = {
--	.enable		= sdhci_cqe_enable,
-+	.enable		= sdhci_msm_cqe_enable,
- 	.disable	= sdhci_msm_cqe_disable,
-+#ifdef CONFIG_MMC_CRYPTO
-+	.program_key	= sdhci_msm_program_key,
-+#endif
- };
- 
- static int sdhci_msm_cqe_add_host(struct sdhci_host *host,
-@@ -1872,6 +2117,10 @@ static int sdhci_msm_cqe_add_host(struct sdhci_host *host,
- 
- 	dma64 = host->flags & SDHCI_USE_64_BIT_DMA;
- 
-+	ret = sdhci_msm_ice_init(msm_host, cq_host);
-+	if (ret)
-+		goto cleanup;
-+
- 	ret = cqhci_init(cq_host, host->mmc, dma64);
- 	if (ret) {
- 		dev_err(&pdev->dev, "%s: CQE init: failed (%d)\n",
-@@ -2321,6 +2570,11 @@ static int sdhci_msm_probe(struct platform_device *pdev)
- 		clk = NULL;
- 	msm_host->bulk_clks[3].clk = clk;
- 
-+	clk = sdhci_msm_ice_get_clk(&pdev->dev);
-+	if (IS_ERR(clk))
-+		clk = NULL;
-+	msm_host->bulk_clks[4].clk = clk;
-+
- 	ret = clk_bulk_prepare_enable(ARRAY_SIZE(msm_host->bulk_clks),
- 				      msm_host->bulk_clks);
- 	if (ret)
-@@ -2531,12 +2785,15 @@ static __maybe_unused int sdhci_msm_runtime_resume(struct device *dev)
- 	 * Whenever core-clock is gated dynamically, it's needed to
- 	 * restore the SDR DLL settings when the clock is ungated.
- 	 */
--	if (msm_host->restore_dll_config && msm_host->clk_rate)
-+	if (msm_host->restore_dll_config && msm_host->clk_rate) {
- 		ret = sdhci_msm_restore_sdr_dll_config(host);
-+		if (ret)
-+			return ret;
-+	}
- 
- 	dev_pm_opp_set_rate(dev, msm_host->clk_rate);
- 
--	return ret;
-+	return sdhci_msm_ice_resume(msm_host);
- }
- 
- static const struct dev_pm_ops sdhci_msm_pm_ops = {
+If people want to try this series with i.MX8qxp, clock patches can be found at:
+https://www.spinics.net/lists/arm-kernel/msg859763.html
+
+and, power domain patches have already landed in Shawn's
+i.MX for-next git branch.
+
+This version drops the device tree patches because we'll use new dt binding
+way to support i.MX8qm/qxp clocks.  It depends on the below series to do basic
+conversions for the platforms which has not landed yet:
+https://www.spinics.net/lists/linux-mmc/msg61965.html
+
+
+I will send other patch sets to add downstream bridges(embedded in i.MX8qxp)
+to support LVDS displays.
+
+A brief look at the pipe:
+prefetch eng -> DPU -> pixel combiner -> pixel link -> pixel to DPI(pxl2dpi) ->
+LVDS display bridge(LDB)
+
+Patch 1 ~ 3 add dt-bindings for DPU and prefetch engines.
+Patch 4 is a minor improvement of a macro to suppress warning as the KMS driver
+uses it.
+Patch 5 introduces the DPU DRM support.
+Patch 6 updates MAINTAINERS.
+
+Welcome comments, thanks.
+
+v1->v2:
+* Test this patch set also with i.MX8qm LVDS displays.
+* Drop the device tree patches because we'll use new dt binding way to
+  support i.MX8qm/qxp clocks.  This depends on a not-yet-landed patch set
+  to do basic conversions for the platforms.
+* Fix dt binding yamllint warnings.
+* Require bypass0 and bypass1 clocks for both i.MX8qxp and i.MX8qm in DPU's
+  dt binding documentation.
+* Use new dt binding way to add clocks in the dt binding examples.
+* Address several comments from Laurentiu on the DPU DRM patch.
+
+Liu Ying (6):
+  dt-bindings: display: imx: Add i.MX8qxp/qm DPU binding
+  dt-bindings: display: imx: Add i.MX8qxp/qm PRG binding
+  dt-bindings: display: imx: Add i.MX8qxp/qm DPR channel binding
+  drm/atomic: Avoid unused-but-set-variable warning on
+    for_each_old_plane_in_state
+  drm/imx: Introduce i.MX8qm/qxp DPU DRM
+  MAINTAINERS: add maintainer for i.MX8qxp DPU DRM driver
+
+ .../bindings/display/imx/fsl,imx8qxp-dprc.yaml     |  87 ++
+ .../bindings/display/imx/fsl,imx8qxp-dpu.yaml      | 416 +++++++++
+ .../bindings/display/imx/fsl,imx8qxp-prg.yaml      |  60 ++
+ MAINTAINERS                                        |   9 +
+ drivers/gpu/drm/imx/Kconfig                        |   1 +
+ drivers/gpu/drm/imx/Makefile                       |   1 +
+ drivers/gpu/drm/imx/dpu/Kconfig                    |  10 +
+ drivers/gpu/drm/imx/dpu/Makefile                   |  10 +
+ drivers/gpu/drm/imx/dpu/dpu-constframe.c           | 170 ++++
+ drivers/gpu/drm/imx/dpu/dpu-core.c                 | 881 ++++++++++++++++++++
+ drivers/gpu/drm/imx/dpu/dpu-crtc.c                 | 926 +++++++++++++++++++++
+ drivers/gpu/drm/imx/dpu/dpu-crtc.h                 |  62 ++
+ drivers/gpu/drm/imx/dpu/dpu-disengcfg.c            | 114 +++
+ drivers/gpu/drm/imx/dpu/dpu-dprc.c                 | 721 ++++++++++++++++
+ drivers/gpu/drm/imx/dpu/dpu-dprc.h                 |  40 +
+ drivers/gpu/drm/imx/dpu/dpu-drv.c                  | 297 +++++++
+ drivers/gpu/drm/imx/dpu/dpu-drv.h                  |  28 +
+ drivers/gpu/drm/imx/dpu/dpu-extdst.c               | 296 +++++++
+ drivers/gpu/drm/imx/dpu/dpu-fetchdecode.c          | 291 +++++++
+ drivers/gpu/drm/imx/dpu/dpu-fetcheco.c             | 221 +++++
+ drivers/gpu/drm/imx/dpu/dpu-fetchlayer.c           | 151 ++++
+ drivers/gpu/drm/imx/dpu/dpu-fetchunit.c            | 609 ++++++++++++++
+ drivers/gpu/drm/imx/dpu/dpu-fetchunit.h            | 191 +++++
+ drivers/gpu/drm/imx/dpu/dpu-fetchwarp.c            | 247 ++++++
+ drivers/gpu/drm/imx/dpu/dpu-framegen.c             | 392 +++++++++
+ drivers/gpu/drm/imx/dpu/dpu-gammacor.c             | 220 +++++
+ drivers/gpu/drm/imx/dpu/dpu-hscaler.c              | 272 ++++++
+ drivers/gpu/drm/imx/dpu/dpu-kms.c                  | 543 ++++++++++++
+ drivers/gpu/drm/imx/dpu/dpu-kms.h                  |  23 +
+ drivers/gpu/drm/imx/dpu/dpu-layerblend.c           | 345 ++++++++
+ drivers/gpu/drm/imx/dpu/dpu-plane.c                | 703 ++++++++++++++++
+ drivers/gpu/drm/imx/dpu/dpu-plane.h                |  56 ++
+ drivers/gpu/drm/imx/dpu/dpu-prg.c                  | 433 ++++++++++
+ drivers/gpu/drm/imx/dpu/dpu-prg.h                  |  45 +
+ drivers/gpu/drm/imx/dpu/dpu-prv.h                  | 203 +++++
+ drivers/gpu/drm/imx/dpu/dpu-tcon.c                 | 249 ++++++
+ drivers/gpu/drm/imx/dpu/dpu-vscaler.c              | 305 +++++++
+ drivers/gpu/drm/imx/dpu/dpu.h                      | 389 +++++++++
+ include/drm/drm_atomic.h                           |   4 +-
+ 39 files changed, 10020 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dprc.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dpu.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-prg.yaml
+ create mode 100644 drivers/gpu/drm/imx/dpu/Kconfig
+ create mode 100644 drivers/gpu/drm/imx/dpu/Makefile
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-constframe.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-core.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-crtc.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-crtc.h
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-disengcfg.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-dprc.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-dprc.h
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-drv.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-drv.h
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-extdst.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-fetchdecode.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-fetcheco.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-fetchlayer.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-fetchunit.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-fetchunit.h
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-fetchwarp.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-framegen.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-gammacor.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-hscaler.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-kms.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-kms.h
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-layerblend.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-plane.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-plane.h
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-prg.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-prg.h
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-prv.h
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-tcon.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-vscaler.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu.h
+
 -- 
-2.29.2
+2.7.4
 
