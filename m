@@ -2,119 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D79B12CCAB6
-	for <lists+devicetree@lfdr.de>; Thu,  3 Dec 2020 00:52:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A27F42CCAE7
+	for <lists+devicetree@lfdr.de>; Thu,  3 Dec 2020 01:14:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728143AbgLBXsc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Dec 2020 18:48:32 -0500
-Received: from mail-pg1-f193.google.com ([209.85.215.193]:44080 "EHLO
-        mail-pg1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726958AbgLBXsc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Dec 2020 18:48:32 -0500
-Received: by mail-pg1-f193.google.com with SMTP id t3so241190pgi.11;
-        Wed, 02 Dec 2020 15:48:16 -0800 (PST)
+        id S1727195AbgLCANr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Dec 2020 19:13:47 -0500
+Received: from mail-io1-f52.google.com ([209.85.166.52]:37596 "EHLO
+        mail-io1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725885AbgLCANr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Dec 2020 19:13:47 -0500
+Received: by mail-io1-f52.google.com with SMTP id p187so244529iod.4;
+        Wed, 02 Dec 2020 16:13:31 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=9MCH3F/o+4sEvEJKvPluac3+KmlO3HpjwlsRvnFVoIU=;
-        b=qiasvcn/Xz0t8lYrqjrSw6Wc75Ipb2RVCXkd4CopiMaaokYDCt7ENu3CeidV4bUV0d
-         riqKXvdTM52V/L3bbG+Eq/XqKw0D4Vew5e+U9+6kjxN2wRuH9q0GfJuBLP+ALJ1vI473
-         ymMPZZMS6+6VtMKNwwPs9WjoW2fveI4Q5r9YSiiuBOwaPMz0+l3+Kutu2p9gACwQNvqh
-         nCRxo8RHuYFHuWGljdOoIuq3QGfXABJAGpjifloDt0SxojDElTaajiCwYqbHlovoJ/CK
-         7Aeuzm7SaoMcWsHIY9K37rv9dlB+XkCQU88ElT0KLjKXcrZeVF8z6c3n+hGWS6bjrhAo
-         whNA==
-X-Gm-Message-State: AOAM531TpHAfbdr5QHj25doKXxxAb3vdkTrgPfrxiIseKzAoXhhQ6vZr
-        QVL5ONLdSZnmsIWFLEKkSCA=
-X-Google-Smtp-Source: ABdhPJyx3KArNVsdIOw4tHBfTLGb27SJwLzhjrnOF5thu52tE3FfQmsGN+TJPxEEA3Cx3kmDy2q8WQ==
-X-Received: by 2002:a62:293:0:b029:197:96c2:bef6 with SMTP id 141-20020a6202930000b029019796c2bef6mr465584pfc.62.1606952871392;
-        Wed, 02 Dec 2020 15:47:51 -0800 (PST)
-Received: from localhost ([2601:647:5b00:1162:1ac0:17a6:4cc6:d1ef])
-        by smtp.gmail.com with ESMTPSA id a81sm169015pfd.178.2020.12.02.15.47.50
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=DjdSLtOzBPosggV3jRDhGiSxaYkS7MRdHVLaRRWPza0=;
+        b=Vc/729mjE2DpwE0jldO/8qLXh7OwXO+acC8dElUEim4YbtjhzKlcf8MiHJpx+DoxhO
+         LLT473D/AeEyEQM+/Yh9TV5PYwsOeNhH0oNuIzxNV5ouQNNcPSlXWMt4bFNKpiz20tWE
+         wOVJt1zbxXDGS73iZp9zNCfWoHB85lBw9CkGfbnYhBHzA5oN3RezCmhioHaA91IXjl+k
+         EogKs9aoabzF2r1HGuSxJuRDxLvXiqaiqH6Jw7miYEUP/G0yfQ7mDkrU7Q9FCJREKbzp
+         5hdzNDHmEigeGLqAwK+qSM21+5HC6eHupOHvsdaYvmfJ6az9FurFNLr5XJJ5pxdmftxG
+         OKWQ==
+X-Gm-Message-State: AOAM530neCMse1fptYixlOvGjRboEi4/0I9ZHYm4RXtr73EfriS2vrMo
+        21P26GXo7cbuSyhAjzHbYw==
+X-Google-Smtp-Source: ABdhPJy2RDVShTjGBIAhbo1eYuIMmc4l/8Eoj6HOn0KOlrhRqAOF2Z9VUyFAC3VmjgThA+YUFikqHQ==
+X-Received: by 2002:a6b:ea08:: with SMTP id m8mr977376ioc.140.1606954386186;
+        Wed, 02 Dec 2020 16:13:06 -0800 (PST)
+Received: from xps15.herring.priv ([64.188.179.253])
+        by smtp.googlemail.com with ESMTPSA id n7sm174830ioa.34.2020.12.02.16.13.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Dec 2020 15:47:50 -0800 (PST)
-Date:   Wed, 2 Dec 2020 15:47:49 -0800
-From:   Moritz Fischer <mdf@kernel.org>
-To:     Sonal Santan <sonals@xilinx.com>
-Cc:     Moritz Fischer <mdf@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-fpga@vger.kernel.org" <linux-fpga@vger.kernel.org>,
-        Max Zhen <maxz@xilinx.com>, Lizhi Hou <lizhih@xilinx.com>,
-        Michal Simek <michals@xilinx.com>,
-        Stefano Stabellini <stefanos@xilinx.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH Xilinx Alveo 2/8] fpga: xrt: Add UAPI header files
-Message-ID: <X8gnpRgxTeLhBEXd@archbook>
-References: <20201129000040.24777-1-sonals@xilinx.com>
- <20201129000040.24777-3-sonals@xilinx.com>
- <X8XGI7yRAX+xAeqQ@archbook>
- <BY5PR02MB6260A727613D2D8A447B1D26BBF30@BY5PR02MB6260.namprd02.prod.outlook.com>
+        Wed, 02 Dec 2020 16:13:05 -0800 (PST)
+From:   Rob Herring <robh@kernel.org>
+To:     Guennadi Liakhovetski <g.liakhovetski@gmx.de>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Jacopo Mondi <jacopo@jmondi.org>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+Cc:     devicetree@vger.kernel.org, linux-media@vger.kernel.org
+Subject: [PATCH v2 0/2] dt-bindings: media: Convert video-interfaces.txt to schemas
+Date:   Wed,  2 Dec 2020 17:13:00 -0700
+Message-Id: <20201203001302.3407476-1-robh@kernel.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <BY5PR02MB6260A727613D2D8A447B1D26BBF30@BY5PR02MB6260.namprd02.prod.outlook.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sonal,
+This series converts video-interfaces.txt to DT schema which in turn is
+based on converting the graph binding to a schema. All the media users
+are converted to use the graph and video-interfaces schemas.
 
-On Wed, Dec 02, 2020 at 06:57:11PM +0000, Sonal Santan wrote:
-> Hi Moritz,
-> 
-> > -----Original Message-----
-> > From: Moritz Fischer <mdf@kernel.org>
-> > Sent: Monday, November 30, 2020 8:27 PM
-> > To: Sonal Santan <sonals@xilinx.com>
-> > Cc: linux-kernel@vger.kernel.org; linux-fpga@vger.kernel.org; Max Zhen
-> > <maxz@xilinx.com>; Lizhi Hou <lizhih@xilinx.com>; Michal Simek
-> > <michals@xilinx.com>; Stefano Stabellini <stefanos@xilinx.com>;
-> > devicetree@vger.kernel.org
-> > Subject: Re: [PATCH Xilinx Alveo 2/8] fpga: xrt: Add UAPI header files
-> > 
-> > Hi Sonal,
-> > 
-> > On Sat, Nov 28, 2020 at 04:00:34PM -0800, Sonal Santan wrote:
-> > > From: Sonal Santan <sonal.santan@xilinx.com>
-> > >
-> > > Add XRT UAPI header files which describe flash layout, XRT mailbox
-> > > protocol, xclBin/axlf FPGA image container format and XRT management
-> > > physical function driver ioctl interfaces.
-> > >
-> > > flash_xrt_data.h:
-> > > Layout used by XRT to store private data on flash.
-> > >
-> > > mailbox_proto.h:
-> > > Mailbox opcodes and high level data structures representing various
-> > > kinds of information like sensors, clock, etc.
-> > >
-> > > mailbox_transport.h:
-> > > Transport protocol used by mailbox.
-> > >
-> > > xclbin.h:
-> > > Container format used to store compiled FPGA image which includes
-> > > bitstream and metadata.
-> > 
-> > Can these headers be introduced together with the code that uses them as
-> > logical change?
-> > 
-> > I haven't looked too closely, but it helps reviewing if you can break it into
-> > smaller pieces that can stand by themselves.
-> > 
-> 
-> These UAPI header files are used by multiple source files hence I wanted to get 
-> these reviewed separately. However if this is getting in the way, in the next 
-> version of the patch series I would look into arranging the files differently.
-> 
-> You can browse the changes here as well--
-> https://github.com/Xilinx/linux-xoclv2/tree/xrtv2-A
+Based on media tree commit a3f132df0e5f. This is dependent on dt-schema
+changes not yet committed[1]. Please review those too.
 
-Please submit the code in the form you want the patches to be applied,
-in this case submit the headers with the code that uses them, and split
-it up in smaller chunks please.
+Rob
 
-Submitting them as a series in the correct order should provide the
-proper context for reviewers.
+[1] https://github.com/devicetree-org/dt-schema/tree/of-graph
 
-Cheers,
-Moritz
+Rob Herring (2):
+  media: dt-bindings: Convert video-interfaces.txt properties to schemas
+  dt-bindings: media: Use graph and video-interfaces schemas
+
+ .../media/allwinner,sun4i-a10-csi.yaml        |  11 +-
+ .../media/allwinner,sun6i-a31-csi.yaml        |  12 +-
+ .../bindings/media/i2c/adv7180.yaml           |  35 +-
+ .../bindings/media/i2c/adv7604.yaml           |  37 +-
+ .../bindings/media/i2c/aptina,mt9v111.yaml    |   4 +-
+ .../bindings/media/i2c/imi,rdacm2x-gmsl.yaml  |  30 +-
+ .../devicetree/bindings/media/i2c/imx219.yaml |  21 +-
+ .../bindings/media/i2c/maxim,max9286.yaml     | 101 +--
+ .../devicetree/bindings/media/i2c/ov5647.yaml |  20 +-
+ .../devicetree/bindings/media/i2c/ov8856.yaml |  21 +-
+ .../bindings/media/i2c/ovti,ov2680.yaml       |   6 +-
+ .../bindings/media/i2c/ovti,ov772x.yaml       |   9 +-
+ .../bindings/media/i2c/sony,imx214.yaml       |  25 +-
+ .../bindings/media/i2c/sony,imx274.yaml       |   3 +-
+ .../bindings/media/marvell,mmp2-ccic.yaml     |  15 +-
+ .../bindings/media/nxp,imx7-csi.yaml          |   5 +-
+ .../bindings/media/nxp,imx7-mipi-csi2.yaml    |  32 +-
+ .../bindings/media/renesas,ceu.yaml           |  17 +-
+ .../bindings/media/renesas,csi2.yaml          |  54 +-
+ .../bindings/media/renesas,vin.yaml           | 113 +---
+ .../bindings/media/rockchip-isp1.yaml         |  40 +-
+ .../bindings/media/st,stm32-dcmi.yaml         |  18 +-
+ .../devicetree/bindings/media/ti,cal.yaml     |  55 +-
+ .../media/video-interface-devices.yaml        | 405 +++++++++++
+ .../bindings/media/video-interfaces.txt       | 640 +-----------------
+ .../bindings/media/video-interfaces.yaml      | 344 ++++++++++
+ .../bindings/media/xilinx/xlnx,csi2rxss.yaml  |  39 +-
+ 27 files changed, 901 insertions(+), 1211 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/media/video-interface-devices.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/video-interfaces.yaml
+
+--
+2.25.1
