@@ -2,126 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 624E02CCECA
-	for <lists+devicetree@lfdr.de>; Thu,  3 Dec 2020 06:47:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 53E8B2CCEEA
+	for <lists+devicetree@lfdr.de>; Thu,  3 Dec 2020 07:02:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727966AbgLCFqw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Dec 2020 00:46:52 -0500
-Received: from mail-40131.protonmail.ch ([185.70.40.131]:53491 "EHLO
-        mail-40131.protonmail.ch" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727937AbgLCFqw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Dec 2020 00:46:52 -0500
-Date:   Thu, 03 Dec 2020 05:46:03 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-        s=protonmail; t=1606974369;
-        bh=TGhD9D270psDdoXJ2XkA/M3rk2f0vppeLABuncCXu/E=;
-        h=Date:To:From:Cc:Reply-To:Subject:In-Reply-To:References:From;
-        b=N7WuEgaN/Yv5rTEAyVzl1y547Y8ennIuP7rS7K16+i7c/9yrZvDfOEXBgMpXHqpdz
-         Lu01nEMP878GO2jMOW0f9/fgnhJ4mwMq3Qg+IuEUrkuDvDnCqjLqxtFd9QupOYLwqt
-         JI8Qf3zualaz/p9HkFEp5K4wrlyfaUv7uTAphNF4=
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-From:   =?utf-8?Q?Timon_B=C3=A4tz?= <timon.baetz@protonmail.com>
-Cc:     Sebastian Reichel <sre@kernel.org>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Kukjin Kim <kgene@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-samsung-soc@vger.kernel.org" 
-        <linux-samsung-soc@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "~postmarketos/upstreaming@lists.sr.ht" 
-        <~postmarketos/upstreaming@lists.sr.ht>
-Reply-To: =?utf-8?Q?Timon_B=C3=A4tz?= <timon.baetz@protonmail.com>
-Subject: Re: [PATCH 3/3] ARM: dts: exynos: Fix charging regulator voltage and current for i9100
-Message-ID: <dDjo3R2SJ6CBCjg0YhsCPdh5JfEGhA--DHNNDqbWjVtTjZC5v7g7_523vqAzu_Ybf1Q-xfKeK47H483YQoVtpO3DI83OaR6c6mbvtC9S1Us=@protonmail.com>
-In-Reply-To: <20201202220430.GB135888@kozik-lap>
-References: <20201202203516.43053-1-timon.baetz@protonmail.com> <20201202203516.43053-3-timon.baetz@protonmail.com> <20201202220430.GB135888@kozik-lap>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM shortcircuit=no
-        autolearn=disabled version=3.4.4
-X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
-        mailout.protonmail.ch
+        id S1728767AbgLCGBP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Dec 2020 01:01:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45890 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726178AbgLCGBP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Dec 2020 01:01:15 -0500
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45EB4C061A4D;
+        Wed,  2 Dec 2020 22:00:29 -0800 (PST)
+Received: by mail-wr1-x42e.google.com with SMTP id u12so638262wrt.0;
+        Wed, 02 Dec 2020 22:00:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=FgP7aBE8aKGLuFedysVwA7KL29Dq1oiQSpDqT6u+4VI=;
+        b=h4Lb0tD7YcJ2v1bsPqUsKQ9RPQ2a1WMayCpc0Pt95GMhoEPUs5a4G7VOQpBnNkwWJE
+         Eo5ELadpnQjo2ML7qWxuKTuyVUTHLEztQBKT859ug+MGuGxBDSANnVQ3puvlVAMsBHjM
+         GDcqU9OCjAqGRUvw/MTpzzJ5D5NI9lv79yVGB6Ro00wPCKonxCxSGQJz2yqB0CCp4WCl
+         P4GnlZxVqNe4bjhPLZpv0JpySazPmdM6sm/m1iZn2kXy1cggTJAd70ChA2Effh1gQSKt
+         9cre7qLUWL+PChhZSyL6k/PJ7tVIvK+FjVS0OssJNnTn5sGtR6413MU4NDYsTocPAFM6
+         IDOg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=FgP7aBE8aKGLuFedysVwA7KL29Dq1oiQSpDqT6u+4VI=;
+        b=ji8GKIQpNT2rdEqOKud8efe0H3eUx/yHpXE4rQLoLWsIsV+nCMBula5+wru686l0A0
+         /E3Gz9Q9z/jZOMpZDNLza5Mqh2YJQNSREcWK3PLE/Hz2E8EgPBtvb8shlTXl37dZXEW6
+         W/WYZ9WoYSQmcxIq+eh5lWSfr7LI4Udl+pTdLJezNMdGSqCREuJyg/0Rmphupag+MPjx
+         esCPXJ56uIwpAKVXFRXU+vWuNTD1KSZoBzhjslYFC4Lq+VgarkiuRX2w6rhYEqO65Gp2
+         dn1YWFVuvQ8BwCZ1n4RBW0i8ytx1P2YgsfE7aT1ksOcfy6Lv/u6KFPb4jx7CIjBZNI6q
+         lqew==
+X-Gm-Message-State: AOAM531KZyRdtwAVzj6l1+wnV7YwNouSzsgJwpJw6H7rvim6mlFlk6mJ
+        TTift9CuzgNQJXHtZiRo1MM=
+X-Google-Smtp-Source: ABdhPJzGCGuP5kscbpV5BX+E0FsFhFfbzFF/ey1HKAGsMH6YD4c+lt9NmwX6UPoMLk2rDqA6RcjbVg==
+X-Received: by 2002:adf:bc13:: with SMTP id s19mr1662859wrg.397.1606975227952;
+        Wed, 02 Dec 2020 22:00:27 -0800 (PST)
+Received: from localhost.localdomain ([87.200.95.144])
+        by smtp.gmail.com with ESMTPSA id i11sm218439wro.85.2020.12.02.22.00.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 02 Dec 2020 22:00:27 -0800 (PST)
+From:   Christian Hewitt <christianshewitt@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Christian Hewitt <christianshewitt@gmail.com>
+Subject: [PATCH v4 0/7] arm64: dts: meson: add more GX soundcards
+Date:   Thu,  3 Dec 2020 06:00:16 +0000
+Message-Id: <20201203060023.9454-1-christianshewitt@gmail.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wednesday, December 2, 2020 11:04 PM, Krzysztof Kozlowski <krzk@kernel.o=
-rg> wrote:
+This series adds basic support for LPCM audio over HDMI and S/PDIF
+to GXBB/GXL/GXM devices that I own and have tested with. Audio can
+be extended in the future (some devices have DACs and headphone
+hardware to connect) but this gets the basics working.
 
-> On Wed, Dec 02, 2020 at 09:07:28PM +0000, Timon Baetz wrote:
->
-> > Set CHARGER current and CHARGER_CV voltage according to Galaxy S2 kerne=
-l
-> > fork.
-> >
-> > Signed-off-by: Timon Baetz timon.baetz@protonmail.com
-> >
-> > ------------------------------------------------------
-> >
-> > arch/arm/boot/dts/exynos4210-i9100.dts | 8 ++++----
-> > 1 file changed, 4 insertions(+), 4 deletions(-)
-> > diff --git a/arch/arm/boot/dts/exynos4210-i9100.dts b/arch/arm/boot/dts=
-/exynos4210-i9100.dts
-> > index 9f8d927e0d21..2700d53ea01b 100644
-> > --- a/arch/arm/boot/dts/exynos4210-i9100.dts
-> > +++ b/arch/arm/boot/dts/exynos4210-i9100.dts
-> > @@ -558,14 +558,14 @@ safe2_sreg: ESAFEOUT2 {
-> >
-> >       =09charger_reg: CHARGER {
-> >       =09=09regulator-name =3D "CHARGER";
-> >
-> >
-> > -       =09=09regulator-min-microamp =3D <60000>;
-> >
-> >
-> > -       =09=09regulator-max-microamp =3D <2580000>;
-> >
-> >
-> >
-> > -       =09=09regulator-min-microamp =3D <200000>;
-> >
-> >
-> > -       =09=09regulator-max-microamp =3D <950000>;
-> >         =09};
-> >
-> >         =09chargercv_reg: CHARGER_CV {
-> >         =09=09regulator-name =3D "CHARGER_CV";
-> >
-> >
-> >
-> > -       =09=09regulator-min-microvolt =3D <3800000>;
-> >
-> >
-> > -       =09=09regulator-max-microvolt =3D <4100000>;
-> >
-> >
-> >
-> > -       =09=09regulator-min-microvolt =3D <4200000>;
-> >
-> >
-> > -       =09=09regulator-max-microvolt =3D <4200000>;
-> >
-> >
->
-> I am looking at my sources of Android 3.0 for GT-I9100 but I cannot find
-> charger voltages for it. Where did you find it?
->
-> Best regards,
-> Krzysztof
+Changes from v3
+- Drop includes tidying in patches 2,3
+- Add Jerome's acks
 
-Thanks all the feedback Krzysztof,
+Changes from v2
+- Drop p200/p201/p212-s905x/vega-s95 changes
+- Add khadas-vim(1)
 
-Voltage is set in the charger probe function of the downstream kernel fork:=
- https://github.com/LineageOS/android_kernel_samsung_smdk4412/blob/lineage-=
-17.0/drivers/power/max8997_charger_u1.c#L390-L391
+Changes from v1
+- Drop nexbox-a1 and rbox-pro 
 
-Mainline uses the regulator: https://github.com/torvalds/linux/blob/master/=
-drivers/regulator/max8997-regulator.c#L418-L419
+Christian Hewitt (7):
+  arm64: dts: meson: add audio playback to a95x
+  arm64: dts: meson: add audio playback to khadas-vim
+  arm64: dts: meson: add audio playback to khadas-vim2
+  arm64: dts: meson: add audio playback to nanopi-k2
+  arm64: dts: meson: add audio playback to odroid-c2
+  arm64: dts: meson: add audio playback to wetek-hub
+  arm64: dts: meson: add audio playback to wetek-play2
+
+ .../boot/dts/amlogic/meson-gxbb-nanopi-k2.dts | 40 ++++++++++++
+ .../dts/amlogic/meson-gxbb-nexbox-a95x.dts    | 40 ++++++++++++
+ .../boot/dts/amlogic/meson-gxbb-odroidc2.dts  | 40 ++++++++++++
+ .../boot/dts/amlogic/meson-gxbb-wetek-hub.dts | 40 ++++++++++++
+ .../dts/amlogic/meson-gxbb-wetek-play2.dts    | 61 +++++++++++++++++++
+ .../amlogic/meson-gxl-s905x-khadas-vim.dts    | 43 ++++++++++++-
+ .../dts/amlogic/meson-gxm-khadas-vim2.dts     | 44 ++++++++++++-
+ 7 files changed, 303 insertions(+), 5 deletions(-)
+
+-- 
+2.17.1
 
