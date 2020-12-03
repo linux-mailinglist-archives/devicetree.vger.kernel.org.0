@@ -2,321 +2,243 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 645992CDAD9
-	for <lists+devicetree@lfdr.de>; Thu,  3 Dec 2020 17:09:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F2B282CDACD
+	for <lists+devicetree@lfdr.de>; Thu,  3 Dec 2020 17:08:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731190AbgLCQI6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Dec 2020 11:08:58 -0500
-Received: from so254-31.mailgun.net ([198.61.254.31]:12194 "EHLO
-        so254-31.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729207AbgLCQI6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Dec 2020 11:08:58 -0500
-X-Greylist: delayed 357 seconds by postgrey-1.27 at vger.kernel.org; Thu, 03 Dec 2020 11:08:57 EST
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1607011717; h=Content-Transfer-Encoding: Content-Type:
- In-Reply-To: MIME-Version: Date: Message-ID: From: Cc: References: To:
- Subject: Sender; bh=7ANFtGnf0oNJK5+hIiLtqzococFZCRezjE3zTlu+MFA=; b=pyM1HEVPB2IEO4gf/fzDIitIJ8hyh/J4GXD9dP4dxM3tV4sRYNCOnv08mx7m37wkKZNeDDB6
- YM9ZQQuVU8nRS86tPik1b4uNjbGnXilaXmaxn5/sQWj34egEHNZ4D5sR/yoBvDK3kqnygLfW
- KqPnd2huZK2ET5Xs4gQ5IWPfhK4=
-X-Mailgun-Sending-Ip: 198.61.254.31
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n09.prod.us-east-1.postgun.com with SMTP id
- 5fc90c057e5eb22240a4dcd1 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 03 Dec 2020 16:02:13
- GMT
-Sender: akhilpo=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id C180DC43461; Thu,  3 Dec 2020 16:02:12 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        NICE_REPLY_A,SPF_FAIL,URIBL_BLOCKED autolearn=no autolearn_force=no
-        version=3.4.0
-Received: from [192.168.1.10] (unknown [61.3.236.97])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: akhilpo)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 0BB72C433C6;
-        Thu,  3 Dec 2020 16:02:07 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 0BB72C433C6
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=akhilpo@codeaurora.org
-Subject: Re: [PATCH v2 1/3] drm/msm: adreno: Make speed-bin support generic
-To:     Jordan Crouse <jcrouse@codeaurora.org>
-References: <1606481386-22867-1-git-send-email-akhilpo@codeaurora.org>
- <20201130170231.GF16856@jcrouse1-lnx.qualcomm.com>
- <39ae4584-e935-363e-62af-17558781e913@codeaurora.org>
- <20201202163032.GG16856@jcrouse1-lnx.qualcomm.com>
-Cc:     freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        robh@kernel.org, dri-devel@freedesktop.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        mka@chromium.org, robdclark@gmail.com, dianders@chromium.org
-From:   Akhil P Oommen <akhilpo@codeaurora.org>
-Message-ID: <244772bd-bde1-ebb7-e3f7-e4af870d968c@codeaurora.org>
-Date:   Thu, 3 Dec 2020 21:32:05 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.5.0
-MIME-Version: 1.0
-In-Reply-To: <20201202163032.GG16856@jcrouse1-lnx.qualcomm.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        id S2387606AbgLCQHa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Dec 2020 11:07:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55290 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728018AbgLCQH3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Dec 2020 11:07:29 -0500
+Received: from mail-pl1-x642.google.com (mail-pl1-x642.google.com [IPv6:2607:f8b0:4864:20::642])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DAE43C061A52;
+        Thu,  3 Dec 2020 08:06:43 -0800 (PST)
+Received: by mail-pl1-x642.google.com with SMTP id p6so1388945plo.6;
+        Thu, 03 Dec 2020 08:06:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=XusUUMOcsxyHAHts7eRaEqOJ9Ba5mevgTlGY1m+u6no=;
+        b=DFiej7Rt4Q1riBniDscweT1OzOxLklM91nqD+QbexX28mOEEEQ7cVFuSZItBW0EKCd
+         amgj/bBB62s3FOMn2VoKlJHN+5AcflebE72qIZj+wvJyWwEE5ps7RyQb/3YNiW2bd27Y
+         zbw2x1vFECMayTxbyOUhg+7oGVlYbPqgOf2cPb1M8oculPUjZ37OPHoeXAUCfBoaIZYM
+         hCqlrwodHp0Xuk/urgdXrZjrwpKB/s8bgC5lNppfh0SD8uAw43ts4YEk8L1mYJJBRq3C
+         kzcoCsJ/+6QpCyfbthe/jGfvKjbgxrlZUWJnfDh/kAJzRlfRQ2EjHM6Vdvr4q6AxZ36V
+         Ue+g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=XusUUMOcsxyHAHts7eRaEqOJ9Ba5mevgTlGY1m+u6no=;
+        b=X/f/tuKQKy1IzFi4V7LZ9/5AXP1AtLSILybdGcfzCszuGT6JfTFYy2gzf7TFfppuPa
+         ErjIzAqbawdVDiTb4I+sBeUeT9b3KvY3Fm3TZJpcGYSSSfhs6jnJsCzUUN/VRaqioWd4
+         8qPZewUWmlmzZAs9vQM4slFMAlCJ6B5n5YFW8lhoUF10l0nk+U8sBeEoErdXYPLf/fvM
+         8bzDBZa4fV5ckyaXrmppXIrfumo0CA99AtV6mL1R/qnvNRfOIHwF6eecQZC2H4+7L+i6
+         imBcZlP8ak1XwcJeSN8ZBPTj6Gz1hyGN129/twKxTk7MW02ZcDhA2Y164/1qVqvzME6v
+         jhAg==
+X-Gm-Message-State: AOAM530wydiDCr3xRLPNcQISNpwy5poycBL9fmGwlTE0juZ20kKFNZYC
+        UOsXAtDi6CKNBrPyW6GCddI=
+X-Google-Smtp-Source: ABdhPJxLOo1w/yGlUJzY7chjLIJeKvn/HhnjK/TLHIGD/n8YCrn7D7KB77aBVOOqsaowQQp308eBtQ==
+X-Received: by 2002:a17:902:8a87:b029:d7:cf56:ce1f with SMTP id p7-20020a1709028a87b02900d7cf56ce1fmr1839663plo.22.1607011603214;
+        Thu, 03 Dec 2020 08:06:43 -0800 (PST)
+Received: from localhost.localdomain (1-171-1-217.dynamic-ip.hinet.net. [1.171.1.217])
+        by smtp.gmail.com with ESMTPSA id h6sm92503pgc.15.2020.12.03.08.06.40
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 03 Dec 2020 08:06:42 -0800 (PST)
+From:   cy_huang <u0084500@gmail.com>
+To:     lee.jones@linaro.org, robh+dt@kernel.org
+Cc:     cy_huang@richtek.com, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH v2 1/4] mfd: rt4831: Adds support for Richtek RT4831 MFD core
+Date:   Fri,  4 Dec 2020 00:06:32 +0800
+Message-Id: <1607011595-13603-1-git-send-email-u0084500@gmail.com>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/2/2020 10:00 PM, Jordan Crouse wrote:
-> On Wed, Dec 02, 2020 at 08:53:51PM +0530, Akhil P Oommen wrote:
->> On 11/30/2020 10:32 PM, Jordan Crouse wrote:
->>> On Fri, Nov 27, 2020 at 06:19:44PM +0530, Akhil P Oommen wrote:
->>>> So far a530v2 gpu has support for detecting its supported opps
->>>> based on a fuse value called speed-bin. This patch makes this
->>>> support generic across gpu families. This is in preparation to
->>>> extend speed-bin support to a6x family.
->>>>
->>>> Signed-off-by: Akhil P Oommen <akhilpo@codeaurora.org>
->>>> ---
->>>> Changes from v1:
->>>> 	1. Added the changes to support a618 sku to the series.
->>>> 	2. Avoid failing probe in case of an unsupported sku. (Rob)
->>>>
->>>>   drivers/gpu/drm/msm/adreno/a5xx_gpu.c      | 34 --------------
->>>>   drivers/gpu/drm/msm/adreno/adreno_device.c |  4 ++
->>>>   drivers/gpu/drm/msm/adreno/adreno_gpu.c    | 71 ++++++++++++++++++++++++++++++
->>>>   drivers/gpu/drm/msm/adreno/adreno_gpu.h    |  5 +++
->>>>   4 files changed, 80 insertions(+), 34 deletions(-)
->>>>
->>>> diff --git a/drivers/gpu/drm/msm/adreno/a5xx_gpu.c b/drivers/gpu/drm/msm/adreno/a5xx_gpu.c
->>>> index 8fa5c91..7d42321 100644
->>>> --- a/drivers/gpu/drm/msm/adreno/a5xx_gpu.c
->>>> +++ b/drivers/gpu/drm/msm/adreno/a5xx_gpu.c
->>>> @@ -1531,38 +1531,6 @@ static const struct adreno_gpu_funcs funcs = {
->>>>   	.get_timestamp = a5xx_get_timestamp,
->>>>   };
->>>> -static void check_speed_bin(struct device *dev)
->>>> -{
->>>> -	struct nvmem_cell *cell;
->>>> -	u32 val;
->>>> -
->>>> -	/*
->>>> -	 * If the OPP table specifies a opp-supported-hw property then we have
->>>> -	 * to set something with dev_pm_opp_set_supported_hw() or the table
->>>> -	 * doesn't get populated so pick an arbitrary value that should
->>>> -	 * ensure the default frequencies are selected but not conflict with any
->>>> -	 * actual bins
->>>> -	 */
->>>> -	val = 0x80;
->>>> -
->>>> -	cell = nvmem_cell_get(dev, "speed_bin");
->>>> -
->>>> -	if (!IS_ERR(cell)) {
->>>> -		void *buf = nvmem_cell_read(cell, NULL);
->>>> -
->>>> -		if (!IS_ERR(buf)) {
->>>> -			u8 bin = *((u8 *) buf);
->>>> -
->>>> -			val = (1 << bin);
->>>> -			kfree(buf);
->>>> -		}
->>>> -
->>>> -		nvmem_cell_put(cell);
->>>> -	}
->>>> -
->>>> -	dev_pm_opp_set_supported_hw(dev, &val, 1);
->>>> -}
->>>> -
->>>>   struct msm_gpu *a5xx_gpu_init(struct drm_device *dev)
->>>>   {
->>>>   	struct msm_drm_private *priv = dev->dev_private;
->>>> @@ -1588,8 +1556,6 @@ struct msm_gpu *a5xx_gpu_init(struct drm_device *dev)
->>>>   	a5xx_gpu->lm_leakage = 0x4E001A;
->>>> -	check_speed_bin(&pdev->dev);
->>>> -
->>>>   	ret = adreno_gpu_init(dev, pdev, adreno_gpu, &funcs, 4);
->>>>   	if (ret) {
->>>>   		a5xx_destroy(&(a5xx_gpu->base.base));
->>>> diff --git a/drivers/gpu/drm/msm/adreno/adreno_device.c b/drivers/gpu/drm/msm/adreno/adreno_device.c
->>>> index 87c8b03..e0ff16c 100644
->>>> --- a/drivers/gpu/drm/msm/adreno/adreno_device.c
->>>> +++ b/drivers/gpu/drm/msm/adreno/adreno_device.c
->>>> @@ -18,6 +18,8 @@ bool snapshot_debugbus = false;
->>>>   MODULE_PARM_DESC(snapshot_debugbus, "Include debugbus sections in GPU devcoredump (if not fused off)");
->>>>   module_param_named(snapshot_debugbus, snapshot_debugbus, bool, 0600);
->>>> +const u32 a530v2_speedbins[] = {0, 1, 2, 3, 4, 5, 6, 7};
->>>> +
->>>>   static const struct adreno_info gpulist[] = {
->>>>   	{
->>>>   		.rev   = ADRENO_REV(2, 0, 0, 0),
->>>> @@ -163,6 +165,8 @@ static const struct adreno_info gpulist[] = {
->>>>   			ADRENO_QUIRK_FAULT_DETECT_MASK,
->>>>   		.init = a5xx_gpu_init,
->>>>   		.zapfw = "a530_zap.mdt",
->>>> +		.speedbins = a530v2_speedbins,
->>>> +		.speedbins_count = ARRAY_SIZE(a530v2_speedbins),
->>>>   	}, {
->>>>   		.rev = ADRENO_REV(5, 4, 0, 2),
->>>>   		.revn = 540,
->>>> diff --git a/drivers/gpu/drm/msm/adreno/adreno_gpu.c b/drivers/gpu/drm/msm/adreno/adreno_gpu.c
->>>> index f21561d..b342fa4 100644
->>>> --- a/drivers/gpu/drm/msm/adreno/adreno_gpu.c
->>>> +++ b/drivers/gpu/drm/msm/adreno/adreno_gpu.c
->>>> @@ -14,6 +14,7 @@
->>>>   #include <linux/pm_opp.h>
->>>>   #include <linux/slab.h>
->>>>   #include <linux/soc/qcom/mdt_loader.h>
->>>> +#include <linux/nvmem-consumer.h>
->>>>   #include <soc/qcom/ocmem.h>
->>>>   #include "adreno_gpu.h"
->>>>   #include "msm_gem.h"
->>>> @@ -891,6 +892,69 @@ void adreno_gpu_ocmem_cleanup(struct adreno_ocmem *adreno_ocmem)
->>>>   			   adreno_ocmem->hdl);
->>>>   }
->>>> +static int adreno_set_supported_hw(struct device *dev,
->>>> +		struct adreno_gpu *adreno_gpu)
->>>> +{
->>>> +	u8 speedbins_count = adreno_gpu->info->speedbins_count;
->>>> +	const u32 *speedbins = adreno_gpu->info->speedbins;
->>>> +	struct nvmem_cell *cell;
->>>> +	u32 bin, i;
->>>> +	u32 val = 0;
->>>> +	void *buf, *opp_table;
->>>> +
->>>> +	cell = nvmem_cell_get(dev, "speed_bin");
->>>> +	/*
->>>> +	 * -ENOENT means that the platform doesn't support speedbin which is
->>>> +	 * fine
->>>> +	 */
->>>> +	if (PTR_ERR(cell) == -ENOENT)
->>>> +		return 0;
->>>> +	else if (IS_ERR(cell))
->>>> +		return PTR_ERR(cell);
->>>> +
->>>> +	if (!speedbins)
->>>> +		goto done;
->>>> +
->>>> +	buf = nvmem_cell_read(cell, NULL);
->>>> +	if (IS_ERR(buf)) {
->>>> +		nvmem_cell_put(cell);
->>>> +		return PTR_ERR(buf);
->>>> +	}
->>>> +
->>>> +	bin = *((u32 *) buf);
->>>> +
->>>> +	for (i = 0; i < speedbins_count; i++) {
->>>> +		if (bin == speedbins[i]) {
->>>> +			val = (1 << i);
->>>> +			break;
->>>> +		}
->>>> +	}
->>>> +
->>>> +	kfree(buf);
->>>> +done:
->>>> +	nvmem_cell_put(cell);
->>>> +
->>>> +	if (!val) {
->>>> +		DRM_DEV_ERROR(dev,
->>>> +				"missing support for speed-bin: %u. Some OPPs may not be supported by hardware",
->>>> +				bin);
->>>> +		val = ~0U;
->>>> +	}
->>>> +
->>>> +	opp_table = dev_pm_opp_set_supported_hw(dev, &val, 1);
->>>> +	if (IS_ERR(opp_table))
->>>> +		return PTR_ERR(opp_table);
->>>> +
->>>> +	adreno_gpu->opp_table = opp_table;
->>>> +	return 0;
->>>> +}
->>>> +
->>>> +static void adreno_put_supported_hw(struct opp_table *opp_table)
->>>> +{
->>>> +	if (opp_table)
->>>> +		dev_pm_opp_put_supported_hw(opp_table);
->>>> +}
->>>> +
->>>>   int adreno_gpu_init(struct drm_device *drm, struct platform_device *pdev,
->>>>   		struct adreno_gpu *adreno_gpu,
->>>>   		const struct adreno_gpu_funcs *funcs, int nr_rings)
->>>> @@ -899,6 +963,7 @@ int adreno_gpu_init(struct drm_device *drm, struct platform_device *pdev,
->>>>   	struct adreno_platform_config *config = dev->platform_data;
->>>>   	struct msm_gpu_config adreno_gpu_config  = { 0 };
->>>>   	struct msm_gpu *gpu = &adreno_gpu->base;
->>>> +	int ret;
->>>>   	adreno_gpu->funcs = funcs;
->>>>   	adreno_gpu->info = adreno_info(config->rev);
->>>> @@ -910,6 +975,10 @@ int adreno_gpu_init(struct drm_device *drm, struct platform_device *pdev,
->>>>   	adreno_gpu_config.nr_rings = nr_rings;
->>>> +	ret = adreno_set_supported_hw(dev, adreno_gpu);
->>>> +	if (ret)
->>>> +		return ret;
->>>> +
->>>
->>> I still don't understand why we are doing this here instead of a5xx_gpu.c and
->>> a6xx_gpu.c.
->>>
->>> Jordan
->>
->> Could you please clarify why you prefer so?
-> 
-> Putting this support in the target specific code avoids declaring more global
-> variables and skips a bit of extra code for the vast majority of targets that do
-> not have speed bins. I don't mind sharing the common helper function but a5xx
-> has shown that this can be safely done in the target specific code and I don't
-> see any reason to deviate from that.
-> 
-> Jordan
-Alright. Then it seems better to move everything to target specific 
-code. Will post another patch shortly.
+From: ChiYuan Huang <cy_huang@richtek.com>
 
--Akhil.
->>
->> -Akhil
->>>
->>>>   	adreno_get_pwrlevels(dev, gpu);
->>>>   	pm_runtime_set_autosuspend_delay(dev,
->>>> @@ -936,4 +1005,6 @@ void adreno_gpu_cleanup(struct adreno_gpu *adreno_gpu)
->>>>   	icc_put(gpu->icc_path);
->>>>   	icc_put(gpu->ocmem_icc_path);
->>>> +
->>>> +	adreno_put_supported_hw(adreno_gpu->opp_table);
->>>>   }
->>>> diff --git a/drivers/gpu/drm/msm/adreno/adreno_gpu.h b/drivers/gpu/drm/msm/adreno/adreno_gpu.h
->>>> index c3775f7..a756ad7 100644
->>>> --- a/drivers/gpu/drm/msm/adreno/adreno_gpu.h
->>>> +++ b/drivers/gpu/drm/msm/adreno/adreno_gpu.h
->>>> @@ -55,6 +55,7 @@ struct adreno_reglist {
->>>>   };
->>>>   extern const struct adreno_reglist a630_hwcg[], a640_hwcg[], a650_hwcg[];
->>>> +extern const u32 a618_speedbins[];
->>>>   struct adreno_info {
->>>>   	struct adreno_rev rev;
->>>> @@ -67,6 +68,8 @@ struct adreno_info {
->>>>   	const char *zapfw;
->>>>   	u32 inactive_period;
->>>>   	const struct adreno_reglist *hwcg;
->>>> +	const u32 *speedbins;
->>>> +	const u8 speedbins_count;
->>>>   };
->>>>   const struct adreno_info *adreno_info(struct adreno_rev rev);
->>>> @@ -112,6 +115,8 @@ struct adreno_gpu {
->>>>   	 * code (a3xx_gpu.c) and stored in this common location.
->>>>   	 */
->>>>   	const unsigned int *reg_offsets;
->>>> +
->>>> +	struct opp_table *opp_table;
->>>>   };
->>>>   #define to_adreno_gpu(x) container_of(x, struct adreno_gpu, base)
->>>> -- 
->>>> 2.7.4
->>>>
->>>
->>
->> _______________________________________________
->> dri-devel mailing list
->> dri-devel@lists.freedesktop.org
->> https://lists.freedesktop.org/mailman/listinfo/dri-devel
-> 
+This adds support Richtek RT4831 MFD core. It includes four channel WLED driver
+and Display Bias Voltage outputs.
+
+Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
+---
+Changes since v2
+- Add copyright.
+- Refine error log text in probe.
+- Refine comment lines in remove and shutdown callback.
+- Refine Kconfig descriptions.
+---
+ drivers/mfd/Kconfig       |  10 ++++
+ drivers/mfd/Makefile      |   1 +
+ drivers/mfd/rt4831-core.c | 124 ++++++++++++++++++++++++++++++++++++++++++++++
+ 3 files changed, 135 insertions(+)
+ create mode 100644 drivers/mfd/rt4831-core.c
+
+diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
+index 8b99a13..dfb2640 100644
+--- a/drivers/mfd/Kconfig
++++ b/drivers/mfd/Kconfig
+@@ -1088,6 +1088,16 @@ config MFD_RDC321X
+ 	  southbridge which provides access to GPIOs and Watchdog using the
+ 	  southbridge PCI device configuration space.
+ 
++config MFD_RT4831
++	tristate "Richtek RT4831 four channel WLED and Display Bias Voltage"
++	depends on I2C
++	select MFD_CORE
++	select REGMAP_I2C
++	help
++	  This enables support for the Richtek RT4831 that includes 4 channel
++	  WLED driving and Display Bias Voltage. It's commonly used to provide
++	  power to the LCD display and LCD backlight.
++
+ config MFD_RT5033
+ 	tristate "Richtek RT5033 Power Management IC"
+ 	depends on I2C
+diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
+index 1780019..4108141 100644
+--- a/drivers/mfd/Makefile
++++ b/drivers/mfd/Makefile
+@@ -235,6 +235,7 @@ obj-$(CONFIG_MFD_MENF21BMC)	+= menf21bmc.o
+ obj-$(CONFIG_MFD_HI6421_PMIC)	+= hi6421-pmic-core.o
+ obj-$(CONFIG_MFD_HI655X_PMIC)   += hi655x-pmic.o
+ obj-$(CONFIG_MFD_DLN2)		+= dln2.o
++obj-$(CONFIG_MFD_RT4831)	+= rt4831-core.o
+ obj-$(CONFIG_MFD_RT5033)	+= rt5033.o
+ obj-$(CONFIG_MFD_SKY81452)	+= sky81452.o
+ 
+diff --git a/drivers/mfd/rt4831-core.c b/drivers/mfd/rt4831-core.c
+new file mode 100644
+index 00000000..f837c06
+--- /dev/null
++++ b/drivers/mfd/rt4831-core.c
+@@ -0,0 +1,124 @@
++// SPDX-License-Identifier: GPL-2.0+
++/*
++ * Copyright (c) 2020 Richtek Technology Corp.
++ *
++ * Author: ChiYuan Huang <cy_huang@richtek.com>
++ */
++
++#include <linux/gpio/consumer.h>
++#include <linux/i2c.h>
++#include <linux/kernel.h>
++#include <linux/mfd/core.h>
++#include <linux/module.h>
++#include <linux/regmap.h>
++
++#define RT4831_REG_REVISION	0x01
++#define RT4831_REG_ENABLE	0x08
++#define RT4831_REG_I2CPROT	0x15
++
++#define RICHTEK_VID		0x03
++#define RT4831_VID_MASK		GENMASK(1, 0)
++#define RT4831_RESET_MASK	BIT(7)
++#define RT4831_I2CSAFETMR_MASK	BIT(0)
++
++static const struct mfd_cell rt4831_subdevs[] = {
++	OF_MFD_CELL("rt4831-backlight", NULL, NULL, 0, 0, "richtek,rt4831-backlight"),
++	MFD_CELL_NAME("rt4831-regulator")
++};
++
++static bool rt4831_is_accessible_reg(struct device *dev, unsigned int reg)
++{
++	if (reg >= RT4831_REG_REVISION && reg <= RT4831_REG_I2CPROT)
++		return true;
++	return false;
++}
++
++static const struct regmap_config rt4831_regmap_config = {
++	.reg_bits = 8,
++	.val_bits = 8,
++	.max_register = RT4831_REG_I2CPROT,
++
++	.readable_reg = rt4831_is_accessible_reg,
++	.writeable_reg = rt4831_is_accessible_reg,
++};
++
++static int rt4831_probe(struct i2c_client *client)
++{
++	struct gpio_desc *enable;
++	struct regmap *regmap;
++	unsigned int val;
++	int ret;
++
++	enable = devm_gpiod_get_optional(&client->dev, "enable", GPIOD_OUT_HIGH);
++	if (IS_ERR(enable)) {
++		dev_err(&client->dev, "Failed to get 'enable' GPIO\n");
++		return PTR_ERR(enable);
++	}
++
++	regmap = devm_regmap_init_i2c(client, &rt4831_regmap_config);
++	if (IS_ERR(regmap)) {
++		dev_err(&client->dev, "Failed to initialize regmap\n");
++		return PTR_ERR(regmap);
++	}
++
++	ret = regmap_read(regmap, RT4831_REG_REVISION, &val);
++	if (ret) {
++		dev_err(&client->dev, "Failed to get H/W revision\n");
++		return ret;
++	}
++
++	if ((val & RT4831_VID_MASK) != RICHTEK_VID) {
++		dev_err(&client->dev, "VID not matched, val = 0x%02x\n", val);
++		return -ENODEV;
++	}
++
++	/*
++	 * Used to prevent the abnormal shutdown.
++	 * If SCL/SDA both keep low for one second to reset HW.
++	 */
++	ret = regmap_update_bits(regmap, RT4831_REG_I2CPROT, RT4831_I2CSAFETMR_MASK,
++				 RT4831_I2CSAFETMR_MASK);
++	if (ret) {
++		dev_err(&client->dev, "Failed to enable I2C safety timer\n");
++		return ret;
++	}
++
++	return devm_mfd_add_devices(&client->dev, PLATFORM_DEVID_AUTO, rt4831_subdevs,
++				    ARRAY_SIZE(rt4831_subdevs), NULL, 0, NULL);
++}
++
++static int rt4831_remove(struct i2c_client *client)
++{
++	struct regmap *regmap = dev_get_regmap(&client->dev, NULL);
++
++	/* Disable WLED and DSV outputs */
++	return regmap_update_bits(regmap, RT4831_REG_ENABLE, RT4831_RESET_MASK, RT4831_RESET_MASK);
++}
++
++static void rt4831_shutdown(struct i2c_client *client)
++{
++	struct regmap *regmap = dev_get_regmap(&client->dev, NULL);
++
++	/* Disable WLED and DSV outputs */
++	regmap_update_bits(regmap, RT4831_REG_ENABLE, RT4831_RESET_MASK, RT4831_RESET_MASK);
++}
++
++static const struct of_device_id __maybe_unused rt4831_of_match[] = {
++	{ .compatible = "richtek,rt4831", },
++	{}
++};
++MODULE_DEVICE_TABLE(of, rt4831_of_match);
++
++static struct i2c_driver rt4831_driver = {
++	.driver = {
++		.name = "rt4831",
++		.of_match_table = of_match_ptr(rt4831_of_match),
++	},
++	.probe_new = rt4831_probe,
++	.remove = rt4831_remove,
++	.shutdown = rt4831_shutdown,
++};
++module_i2c_driver(rt4831_driver);
++
++MODULE_AUTHOR("ChiYuan Huang <cy_huang@richtek.com>");
++MODULE_LICENSE("GPL v2");
+-- 
+2.7.4
 
