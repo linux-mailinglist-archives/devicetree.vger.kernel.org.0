@@ -2,112 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 665C52CDE1B
-	for <lists+devicetree@lfdr.de>; Thu,  3 Dec 2020 19:55:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8113A2CDE28
+	for <lists+devicetree@lfdr.de>; Thu,  3 Dec 2020 20:00:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731677AbgLCSyV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Dec 2020 13:54:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53062 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726142AbgLCSyV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Dec 2020 13:54:21 -0500
-Received: from mail-pg1-x544.google.com (mail-pg1-x544.google.com [IPv6:2607:f8b0:4864:20::544])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14477C061A4F
-        for <devicetree@vger.kernel.org>; Thu,  3 Dec 2020 10:53:35 -0800 (PST)
-Received: by mail-pg1-x544.google.com with SMTP id n7so1970435pgg.2
-        for <devicetree@vger.kernel.org>; Thu, 03 Dec 2020 10:53:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=EE5mMvmXrxXfB4VeSZLs7H6jR6pEvdX9Wrji0Qr5SPY=;
-        b=YxGDh8Kyih68g640dh1sCWyrR96R29Pes5pSYET8gCr/BYmJ2n0Ul0U232/U/ZHvOZ
-         T5/ymRdWa54KSSgyFjLr3gShxL3i4BmFXbonKFqW6yD3Qbd+PSTkO2Q0x68SXOL8i3C5
-         1JzNWr8XGWr8W8pz+ZZ2yzV7qyXnZ1V1vanh3dZb9ZAz02Ymae/971r7DnbW/Xfae6R/
-         /xBLexklnQEfz3SDZWdgtjJ+RzjkucE9To0SXRE+TRA5q9jZzoLwmf864VVemeeQEGxm
-         s2/rS34GDB5z+R/fV9aczjw1lW7JMmyF2EZK5ioTzzIK2vwvwWQ+hrySnD4PTFRddNuJ
-         qwjQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=EE5mMvmXrxXfB4VeSZLs7H6jR6pEvdX9Wrji0Qr5SPY=;
-        b=Gx4X/hsnnlbF7a9V9IOU8T6J2UL3uYpLxBBQeSwpCm3Im6pDmFbpstt5kUIbVD7z5y
-         icH3cBrwsXlYcz5zSx7EJ2P+TBMEPfI4h161bbZySW1G7qnuB3QN7UkHm0QVnr/ObOmM
-         rEkLDBgxtE8D9USu977vSEtXD+cJ3ulbHkVYmp7Xl89LyeBAvAELj+ympKDmxNxOiW4V
-         VaY5RzeOQOAGG+mZo5Q4e4YXRJ7EIi5PNnZNJCzNumQcfu0sdTAjYRwdHubWnOBqjE1Q
-         Pn3Icw7r5fmUXBbvgzjFyyxgeltO2A15oatW24kfx6f/Hu/yi+IL0EXb32R9pw5b9oUm
-         +nKw==
-X-Gm-Message-State: AOAM5311HU7K2UoqSH0EG3jxNd3RBiihzb7/0ngwtrvz/75M6qz9U716
-        tTBbsnVWKVdB/icuwQOi6xk3lw==
-X-Google-Smtp-Source: ABdhPJx9xxTOoz62oEKCZ/qgOAVgYq/TOGPogPwYNJwQRwFa3NbTz668JDWHoyyAiOT3mH++W6cCOg==
-X-Received: by 2002:a63:e44:: with SMTP id 4mr4161760pgo.162.1607021614654;
-        Thu, 03 Dec 2020 10:53:34 -0800 (PST)
-Received: from xps15 (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
-        by smtp.gmail.com with ESMTPSA id m77sm2513701pfd.105.2020.12.03.10.53.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Dec 2020 10:53:34 -0800 (PST)
-Date:   Thu, 3 Dec 2020 11:53:32 -0700
-From:   Mathieu Poirier <mathieu.poirier@linaro.org>
-To:     Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
-Cc:     ohad@wizery.com, bjorn.andersson@linaro.org, s-anna@ti.com,
-        linux-remoteproc@vger.kernel.org, robh+dt@kernel.org,
-        lee.jones@linaro.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, praneeth@ti.com,
-        rogerq@ti.com
-Subject: Re: [PATCH v2 6/6] remoteproc/pru: Add support for various PRU cores
- on K3 J721E SoCs
-Message-ID: <20201203185332.GC1392978@xps15>
-References: <20201119140850.12268-1-grzegorz.jaszczyk@linaro.org>
- <20201119140850.12268-7-grzegorz.jaszczyk@linaro.org>
+        id S1727128AbgLCTAo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Dec 2020 14:00:44 -0500
+Received: from hqnvemgate24.nvidia.com ([216.228.121.143]:19125 "EHLO
+        hqnvemgate24.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727010AbgLCTAo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Dec 2020 14:00:44 -0500
+Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate24.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
+        id <B5fc935b30008>; Thu, 03 Dec 2020 11:00:03 -0800
+Received: from HQMAIL109.nvidia.com (172.20.187.15) by HQMAIL105.nvidia.com
+ (172.20.187.12) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 3 Dec
+ 2020 19:00:00 +0000
+Received: from skomatineni-linux.nvidia.com (172.20.13.39) by mail.nvidia.com
+ (172.20.187.15) with Microsoft SMTP Server id 15.0.1473.3 via Frontend
+ Transport; Thu, 3 Dec 2020 18:59:59 +0000
+From:   Sowjanya Komatineni <skomatineni@nvidia.com>
+To:     <skomatineni@nvidia.com>, <thierry.reding@gmail.com>,
+        <jonathanh@nvidia.com>, <hverkuil@xs4all.nl>,
+        <sakari.ailus@iki.fi>, <robh+dt@kernel.org>
+CC:     <bparrot@ti.com>, <mchehab@kernel.org>,
+        <linux-media@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v3 00/13] tegra-video: Add support for capturing from HDMI-to-CSI bridge
+Date:   Thu, 3 Dec 2020 10:59:49 -0800
+Message-ID: <1607022002-26575-1-git-send-email-skomatineni@nvidia.com>
+X-Mailer: git-send-email 2.7.4
+X-NVConfidentiality: public
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201119140850.12268-7-grzegorz.jaszczyk@linaro.org>
+Content-Type: text/plain
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1607022003; bh=jY8Zlq4FoiBPbmHJITN+zE+SOrzIlCzgHph0zo6yb4A=;
+        h=From:To:CC:Subject:Date:Message-ID:X-Mailer:X-NVConfidentiality:
+         MIME-Version:Content-Type;
+        b=nLsr6NYcKctwUlBuM2L0NmRx/gQPsSJeMlUhiUPvpuOBaKJvWSH7cGCR3FtQnh9co
+         lCzusKT4s19M/6gJz/GEu0U0cWA0g5ta70JSH8wTepG4W+lmxIko/0yOBWfO/1vyaj
+         AMsIw1ibEVxH6lItHUBRrvNHYVu8I1BCMI9Uvc5hpwjEcOnQr3KUA8x8V0oCDhxUjK
+         LhRURrIjGTGt9+4mi6hYgUO1J5wuVNL4L7fCGh00liB6GZjkcTfFAoMTtSN+t1d2W6
+         /Vq1XlUWK1umZUGi/sDAyTJeIuJ2/xfl/Dhj0i2yxnSnbXxF++gpOEUsJWCwvyaP4f
+         sX5ooMF6BHs6w==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 19, 2020 at 03:08:50PM +0100, Grzegorz Jaszczyk wrote:
-> From: Suman Anna <s-anna@ti.com>
-> 
-> The K3 J721E family of SoCs have a revised version of the AM65x ICSSG IP
-> and contains two instances of this newer ICSSG IP. Each ICSSG processor
-> subsystem contains 2 primary PRU cores, 2 auxiliary PRU cores called RTUs,
-> and 2 new auxiliary cores called Transmit PRUs (Tx_PRUs).
-> 
-> Enhance the existing PRU remoteproc driver to support these new PRU
-> and RTU cores by using specific compatibles. The cores have the same
-> memory copying limitations as on AM65x, so reuses the custom memcpy
-> function within the driver's ELF loader implementation. The initial
-> names for the firmware images for each PRU core are retrieved from
-> DT nodes, and can be adjusted through sysfs if required.
-> 
-> Signed-off-by: Suman Anna <s-anna@ti.com>
-> Co-developed-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
-> Signed-off-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
+This series includes below changes to allow capturing from HDMI-to-CSI bridges.
+- Add DV timing, EDID and log status V4L2 IOCTLs
+- Subscribe V4L2_EVENT_SOURCE_CHANGE
+- Implement V4L2 device notify callback to report queue error on source change
+  during active streaming.
+- Add support for NV16 V4L2 Pixel format.
+- Add x8 capture by multiple ports gang up for 4K captures from HDMI-to-CSI
+  bridges.
 
-Reviewed-by: Mathieu Poirier <mathieu.poirier@linaro.org>
+Note: These patches are tested with TC358840 HDMI-to-CSI bridge.
 
-> ---
->  drivers/remoteproc/pru_rproc.c | 3 +++
->  1 file changed, 3 insertions(+)
-> 
-> diff --git a/drivers/remoteproc/pru_rproc.c b/drivers/remoteproc/pru_rproc.c
-> index 48c1c51e0d42..96f689283a8b 100644
-> --- a/drivers/remoteproc/pru_rproc.c
-> +++ b/drivers/remoteproc/pru_rproc.c
-> @@ -852,6 +852,9 @@ static const struct of_device_id pru_rproc_match[] = {
->  	{ .compatible = "ti,am654-pru",		.data = &k3_pru_data },
->  	{ .compatible = "ti,am654-rtu",		.data = &k3_rtu_data },
->  	{ .compatible = "ti,am654-tx-pru",	.data = &k3_tx_pru_data },
-> +	{ .compatible = "ti,j721e-pru",		.data = &k3_pru_data },
-> +	{ .compatible = "ti,j721e-rtu",		.data = &k3_rtu_data },
-> +	{ .compatible = "ti,j721e-tx-pru",	.data = &k3_tx_pru_data },
->  	{},
->  };
->  MODULE_DEVICE_TABLE(of, pru_rproc_match);
-> -- 
-> 2.29.0
-> 
+This series also include below fixes
+- Allow format change for subdevs that don't have crop support.
+- Correct V4L2 Pixel format for RGB888_1X24
+- Enable VI pixel transform for YUV and RGB formats.
+
+Delta between patch versions:
+[v3]:	Includes below changes based on v2 feedback
+	- Correct V4L2 pixel formats for RGB and YUV.
+	- Sets V4L2_IN_CAP_DV_TIMINGS capability for v4l2 input.
+	- Updates V4L2_FWNODE_CSI2_MAX_DATA_LANES to 8 and uses
+	  data-lanes property of Tegra CSI device graph endpoint
+	  for 8 lanes.
+	- Added V4L2 custom control V4L2_CID_TEGRA_SYNCPT_TIMEOUT_RETRY
+	  for HDMI-to-CSI bridge debug purposes.
+
+[v2]:	v1 + additional patch for x8 capture support
+
+
+Sowjanya Komatineni (13):
+  media: tegra-video: Use zero crop settings if subdev has no
+    get_selection
+  media: tegra-video: Enable VI pixel transform for YUV and RGB formats
+  media: tegra-video: Fix V4L2 pixel format RGB and YUV
+  media: tegra-video: Add support for V4L2_PIX_FMT_NV16
+  media: tegra-video: Add DV timing support
+  media: tegra-video: Add support for EDID ioctl ops
+  media: tegra-video: Add support for VIDIOC_LOG_STATUS ioctl
+  media: tegra-video: Add support for V4L2_EVENT_SOURCE_CHANGE
+  media: tegra-video: Implement V4L2 device notify callback
+  media: v4l2-fwnode: Update V4L2_FWNODE_CSI2_MAX_DATA_LANES to 8
+  dt-bindings: tegra: Update csi data-lanes to maximum 8 lanes
+  media: tegra-video: Add support for x8 captures with gang ports
+  media: tegra-video: Add custom V4L2 control
+    V4L2_CID_TEGRA_SYNCPT_TIMEOUT_RETRY
+
+ .../display/tegra/nvidia,tegra20-host1x.txt        |   4 +-
+ drivers/media/platform/ti-vpe/cal-camerarx.c       |   2 +-
+ drivers/staging/media/tegra-video/csi.c            |  35 ++-
+ drivers/staging/media/tegra-video/csi.h            |  14 +-
+ drivers/staging/media/tegra-video/tegra210.c       | 340 ++++++++++++++-------
+ drivers/staging/media/tegra-video/vi.c             | 338 +++++++++++++++++---
+ drivers/staging/media/tegra-video/vi.h             |  23 +-
+ drivers/staging/media/tegra-video/video.c          |  18 ++
+ include/media/v4l2-fwnode.h                        |   2 +-
+ 9 files changed, 615 insertions(+), 161 deletions(-)
+
+-- 
+2.7.4
+
