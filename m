@@ -2,124 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7776D2CEA37
-	for <lists+devicetree@lfdr.de>; Fri,  4 Dec 2020 09:52:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 773172CEA5B
+	for <lists+devicetree@lfdr.de>; Fri,  4 Dec 2020 10:00:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729335AbgLDIvy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Dec 2020 03:51:54 -0500
-Received: from m43-15.mailgun.net ([69.72.43.15]:18937 "EHLO
-        m43-15.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729332AbgLDIvy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Dec 2020 03:51:54 -0500
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1607071894; h=Content-Transfer-Encoding: Content-Type:
- In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
- Subject: Sender; bh=KDVVzbG9GvJL/tCyDceYZiD1rBmyxebfv3YnVVi8et4=; b=PT+tWlhtgAQS0TyWEQSM7WeuJIg2Uht2ic/BBYYmHzkdmySqj36Un+ac827o/J7Kty0q1Ydz
- Q3zXRGDtl5PYPm18LS9pM3WMdDBdtOBHj8zniaknnVwD4TJ71MpcLeKZEIyssf7iZjMNjdOp
- DAXQUVji+U1CzhaC+rZfbVAeANA=
-X-Mailgun-Sending-Ip: 69.72.43.15
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n04.prod.us-east-1.postgun.com with SMTP id
- 5fc9f87aaac9455097f0b387 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 04 Dec 2020 08:51:06
- GMT
-Sender: tdas=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 6B5E7C43464; Fri,  4 Dec 2020 08:51:04 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        NICE_REPLY_A,SPF_FAIL autolearn=no autolearn_force=no version=3.4.0
-Received: from [192.168.0.104] (unknown [49.204.182.199])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: tdas)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id A514CC433C6;
-        Fri,  4 Dec 2020 08:50:59 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org A514CC433C6
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=tdas@codeaurora.org
-Subject: Re: [PATCH 5/5] clk: qcom: gcc: Add clock driver for SM8350
-To:     Vinod Koul <vkoul@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Stephen Boyd <sboyd@kernel.org>,
-        Vivek Aknurwar <viveka@codeaurora.org>,
-        Andy Gross <agross@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Jeevan Shriram <jshriram@codeaurora.org>
-References: <20201203070241.2648874-1-vkoul@kernel.org>
- <20201203070241.2648874-6-vkoul@kernel.org> <X8l9dRfo7qdRTAMe@builder.lan>
- <20201204043502.GJ8403@vkoul-mobl>
-From:   Taniya Das <tdas@codeaurora.org>
-Message-ID: <302cf18a-080d-a521-8c7a-39c265fbceb8@codeaurora.org>
-Date:   Fri, 4 Dec 2020 14:20:55 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.5.0
+        id S1729120AbgLDI7p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Dec 2020 03:59:45 -0500
+Received: from esa2.hgst.iphmx.com ([68.232.143.124]:41893 "EHLO
+        esa2.hgst.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728044AbgLDI7o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Dec 2020 03:59:44 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
+  t=1607073581; x=1638609581;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=ri+FugxHPT3MU1bKnCzzrP+ZZtjxordrdt8HgAEL6gc=;
+  b=T5aZjZU22RdFGVEgdII9M3ICO9Wb8cWEqGhqkOjIDKi41Ed8qKtVaGN5
+   meDYGxo+L6U7k0M+aHMKDxDDUojyWrKITluLK0RgqgNl4pJk2CtL8K1tD
+   0pc3HPHnGStMRSYyegIXmBghDpUHrf/HqO4inqRGvD2Obfq++7S5KpZzq
+   h/rMryx58u4i3cwTThvnLPX0rGeacg0ivKkuHCG2J1GZIh2Oa5WbgCyeO
+   bTHM47gOyx/exk0benK8GFK1xZpuzcSg3OaT2rC4H3jN/hxsE83kZ0ygp
+   pS29OXR32vL2sccqbbTiR9RaUK4uIRSgI3QlXsYrnzL1/VXtAHzyo+syl
+   w==;
+IronPort-SDR: TDHXxQlOT2xTlNlWFk2CJ0zlXBzGM3ENVOxFdHT4l9ZY21gZVZpiZGZxJTCzWEWVfREejpizqO
+ FBbSMWWmYwBUeqPxMhro6wgmo3nGVgCozDSVjmuSi+zuCvSuD1jAAwvIHDnHyn61B7CxVFqAC7
+ xT9QhdCepJCNKucRB/xgBQQQ/No7K28wtDQhze60W4Hxc+iB1Vd9KM8pBPBBJg6rq8dnSjpzoQ
+ lHKLGCjP3aa8wXsZABQYcBQaCb2FF5852FQRcWWswFbhdxpK55Bu0GuJFllbL4ckf1OlgB4m3q
+ WHc=
+X-IronPort-AV: E=Sophos;i="5.78,392,1599494400"; 
+   d="scan'208";a="258129842"
+Received: from h199-255-45-14.hgst.com (HELO uls-op-cesaep01.wdc.com) ([199.255.45.14])
+  by ob1.hgst.iphmx.com with ESMTP; 04 Dec 2020 17:18:02 +0800
+IronPort-SDR: gbWdpMovKwWIWTHbC6xhSBZSu+TB0Tt6/sf6JrkDVHU/jRp9KhKIzTli1qkkbcKHW7qEMdTvW8
+ FB5fAnkj7cmOWLpIurrDpRS+PLlihF5rs=
+Received: from uls-op-cesaip01.wdc.com ([10.248.3.36])
+  by uls-op-cesaep01.wdc.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Dec 2020 00:44:11 -0800
+IronPort-SDR: wMWeORjOx1e44CXOWGwWCo0FXrHcpnja4cGMJP9tOytGyrXmo9BVRTO3xMmCnUadpfwslPT4a0
+ oJ8PXjwCJL4g==
+WDCIronportException: Internal
+Received: from cnf010505.ad.shared (HELO jedi-01.hgst.com) ([10.86.61.200])
+  by uls-op-cesaip01.wdc.com with ESMTP; 04 Dec 2020 00:58:38 -0800
+From:   Atish Patra <atish.patra@wdc.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     Atish Patra <atish.patra@wdc.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Alistair Francis <alistair.francis@wdc.com>,
+        Anup Patel <anup.patel@wdc.com>,
+        Bin Meng <bin.meng@windriver.com>, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Rob Herring <robh+dt@kernel.org>, Ivan.Griffin@microchip.com,
+        Cyril.Jean@microchip.com,
+        Daire McNamara <daire.mcnamara@microchip.com>,
+        Conor.Dooley@microchip.com
+Subject: [PATCH v3 0/5] Add Microchip PolarFire Soc Support 
+Date:   Fri,  4 Dec 2020 00:58:30 -0800
+Message-Id: <20201204085835.2406541-1-atish.patra@wdc.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <20201204043502.GJ8403@vkoul-mobl>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Vinod,
+This series adds minimal support for Microchip Polar Fire Soc Icicle kit.
+It is rebased on v5.10-rc6 and depends on clock support. 
+Only MMC and ethernet drivers are enabled via this series.
+The idea here is to add the foundational patches so that other drivers
+can be added to on top of this. The device tree may change based on
+feedback on bindings of individual driver support patches.
 
-On 12/4/2020 10:05 AM, Vinod Koul wrote:
-> Hi Bjorn,
-> 
-> On 03-12-20, 18:06, Bjorn Andersson wrote:
->> On Thu 03 Dec 01:02 CST 2020, Vinod Koul wrote:
->>> diff --git a/drivers/clk/qcom/gcc-sm8350.c b/drivers/clk/qcom/gcc-sm8350.c
->> [..]
->>> +static int gcc_sm8350_probe(struct platform_device *pdev)
->>> +{
->>> +	struct regmap *regmap;
->>> +	int ret;
->>> +
->>> +	regmap = qcom_cc_map(pdev, &gcc_sm8350_desc);
->>> +	if (IS_ERR(regmap)) {
->>> +		dev_err(&pdev->dev, "Failed to map gcc registers\n");
->>> +		return PTR_ERR(regmap);
->>> +	}
->>> +
->>> +	ret = qcom_cc_register_rcg_dfs(regmap, gcc_dfs_clocks, ARRAY_SIZE(gcc_dfs_clocks));
->>> +	if (ret)
->>> +		return ret;
->>> +
->>> +	/* FORCE_MEM_CORE_ON for ufs phy ice core clocks */
->>> +	regmap_update_bits(regmap, gcc_ufs_phy_ice_core_clk.halt_reg, BIT(14), BIT(14));
->>> +
->>> +	/*
->>> +	 * Enable clocks required by the i2c-connected pm8008 regulators. Don't
->>> +	 * register them with the clock framework so that client requests are
->>> +	 * short-circuited before grabbing the enable/prepare locks. This
->>> +	 * prevents deadlocks between the clk/regulator frameworks.
->>> +	 *
->>> +	 *	gcc_qupv3_wrap_1_m_ahb_clk
->>> +	 *	gcc_qupv3_wrap_1_s_ahb_clk
->>> +	 *	gcc_qupv3_wrap1_s5_clk
->>> +	 */
->>
->> Isn't this a workaround inherited from the downstream control of
->> regulators from within the clock core? Does this still apply upstream?
-> 
-> Let me check on this bit...
-> 
-> Thanks
-> 
+This series has been tested on Qemu and Polar Fire Soc Icicle kit.
+The following qemu series is necessary to test it on Qemu.
 
-No it should not apply.
+The series can also be found at.
+https://github.com/atishp04/linux/tree/polarfire_support_upstream_v3
 
--- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
-of Code Aurora Forum, hosted by The Linux Foundation.
+I noticed the latest version of mmc driver[2] hangs on the board with
+the latest clock driver. That's why, I have tested with the old clock
+driver available in the above github repo.
+
+[1] https://lists.nongnu.org/archive/html/qemu-devel/2020-10/msg08582.html
+[2] https://www.spinics.net/lists/devicetree/msg383626.html
+
+Changes from v2->v3:
+1. Fixed a typo in dt binding.
+2. Included MAINTAINERS entry for PolarFire SoC.
+3. Improved the dts file by using lowercase clock names and keeping phy
+   details in board specific dts file.
+
+Changes from v1->v2:
+1. Modified the DT to match the device tree in U-Boot.
+2. Added both eMMC & SDcard entries in DT. However, SD card is only enabled
+   as it allows larger storage option for linux distros.
+
+Atish Patra (4):
+RISC-V: Add Microchip PolarFire SoC kconfig option
+dt-bindings: riscv: microchip: Add YAML documentation for the
+PolarFire SoC
+RISC-V: Initial DTS for Microchip ICICLE board
+RISC-V: Enable Microchip PolarFire ICICLE SoC
+
+Conor Dooley (1):
+MAINTAINERS: add microchip polarfire soc support
+
+.../devicetree/bindings/riscv/microchip.yaml  |  28 ++
+MAINTAINERS                                   |   8 +
+arch/riscv/Kconfig.socs                       |   7 +
+arch/riscv/boot/dts/Makefile                  |   1 +
+arch/riscv/boot/dts/microchip/Makefile        |   2 +
+.../microchip/microchip-mpfs-icicle-kit.dts   |  72 ++++
+.../boot/dts/microchip/microchip-mpfs.dtsi    | 331 ++++++++++++++++++
+arch/riscv/configs/defconfig                  |   4 +
+8 files changed, 453 insertions(+)
+create mode 100644 Documentation/devicetree/bindings/riscv/microchip.yaml
+create mode 100644 arch/riscv/boot/dts/microchip/Makefile
+create mode 100644 arch/riscv/boot/dts/microchip/microchip-mpfs-icicle-kit.dts
+create mode 100644 arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi
 
 --
+2.25.1
+
