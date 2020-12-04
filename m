@@ -2,99 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 18AB52CF345
-	for <lists+devicetree@lfdr.de>; Fri,  4 Dec 2020 18:43:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CE1742CF382
+	for <lists+devicetree@lfdr.de>; Fri,  4 Dec 2020 19:02:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731254AbgLDRmT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Dec 2020 12:42:19 -0500
-Received: from mail.kernel.org ([198.145.29.99]:39994 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731103AbgLDRmT (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 4 Dec 2020 12:42:19 -0500
-Date:   Fri, 4 Dec 2020 17:41:35 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1607103698;
-        bh=WGPvh/m1la/6pEZ0tQ/GOgG68+E+LycRUiq+bD3Iwkk=;
-        h=From:To:Cc:Subject:References:In-Reply-To:From;
-        b=g/TkCIMmBnQxPWxPF2qMZYVzCmn31CDUYt6k0CzRPEhcaQop/372ntwpVszp4hjIE
-         vIVuuPebp/OC1i7cGxGjhjvFCBH+ZOpJXrqSfBUsLkg92qAaqtHe1oRjW2/LiLKRoP
-         uV66KhSBbnh6OLWt+7k76XvCzSFsllU2Y5flxry9vND+O+lxolnf60O50XwwBPh+yq
-         SoPzZkAnY4VxswfQ2GzN2EHfELa7v8aeYr2tU6kH0grOPrleQ/frQmRoOuiQC9upQJ
-         YrsyZgnwacEkiNSykQCi1T9S/rE+RUrXs3/y3O5y2YsUSe/DVXEgxaJHuUZ1ya5ze9
-         iTXQfDZc1wffA==
-From:   Mark Brown <broonie@kernel.org>
-To:     Zhen Lei <thunder.leizhen@huawei.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Ricardo Ribalda <ribalda@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        linux-media <linux-media@vger.kernel.org>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        linux-mediatek <linux-mediatek@lists.infradead.org>,
-        alsa-devel <alsa-devel@alsa-project.org>
-Subject: Re: [PATCH 1/1] dt-bindings: eliminate yamllint warnings
-Message-ID: <20201204174135.GC4558@sirena.org.uk>
-References: <20201204024226.1222-1-thunder.leizhen@huawei.com>
- <20201204024226.1222-2-thunder.leizhen@huawei.com>
+        id S1727730AbgLDSCi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Dec 2020 13:02:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42286 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727178AbgLDSCi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Dec 2020 13:02:38 -0500
+Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com [IPv6:2a00:1450:4864:20::343])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95D0FC0613D1
+        for <devicetree@vger.kernel.org>; Fri,  4 Dec 2020 10:01:57 -0800 (PST)
+Received: by mail-wm1-x343.google.com with SMTP id a3so7810381wmb.5
+        for <devicetree@vger.kernel.org>; Fri, 04 Dec 2020 10:01:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=GunWet4p4NzVbI1r1RYLjYsxsi2RUASEtxkEDiSdayU=;
+        b=Jfc+OXEDeUa9mmISz8ZsnfdTU5azIgUzZSQjepScJvm9Yeu8TYr4EJM80uzI2fPPUb
+         +VHfBX79uMGHB9tHKddRRiKYoDNVPsF81RdvXjX2YfemDOeWnvFmz3ZxiR/7JPAX22f6
+         5tMT6fGr07JcUY7GB6TGOBnJAKFTflWYID7FgrAq2cOxXoeSVAUMIZbgYmETKwvczVHC
+         i2uHt2MIyl9qCZGghiulFP8richVb8xc9cRAfdQic9NmrXZkgiKYKb9exgtCKAG2qi7s
+         +K6FOWmZssDvDm3FjzNmaKJV02LM7JGkf/1TCuPcURVOz8hqELdq/Q7z3jGSEoQGCoBB
+         FD1A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=GunWet4p4NzVbI1r1RYLjYsxsi2RUASEtxkEDiSdayU=;
+        b=NmFN9D3fzmtC1y9FtBwVPTEmtVd8TS3A30a2ZDRLiU+BHXrV+heMdgtim+O8duuIi+
+         XRbsyHhtfi3ZZUCW2wg1e8h6w3tnyz8fYfAGnRl/bbUECNUhd5ri4+PpBT6S+E1dwNfQ
+         nGwuqbNwW3sQief1oWYiZt47LVCzneuQLXcI0/boqVZNa3aMF0UT4bCEhFVR0hB8tzuA
+         5G3j+mXURUXefVBxewlZigxkjzT5FytKn4OJTNJ/qK8S9F4t2hRfhHYIaosz3GgnrVP4
+         Mjx/yhWy8yCH/ycrLPFfHH3dgFTF0d8dNysUYkv0PfO9QE1A7dCTLmVOMpR1Qu3qGbFE
+         4KPg==
+X-Gm-Message-State: AOAM531nftYZ8aEB03aNxZby0W5Rl8GYZThumSrP+qg3897xnrEP7ZCq
+        2U5PvAD1wLuZNB5FsqHNdJbmPQ==
+X-Google-Smtp-Source: ABdhPJxSC8KwxX3qUAPvNVm0RO0ZB//wClhZM8fadV8xFb6AM2n7EFO2SRqrA/auNGP2dVoT3/qMcQ==
+X-Received: by 2002:a7b:c157:: with SMTP id z23mr5577311wmi.35.1607104916154;
+        Fri, 04 Dec 2020 10:01:56 -0800 (PST)
+Received: from google.com ([2a00:79e0:d:210:f693:9fff:fef4:a7ef])
+        by smtp.gmail.com with ESMTPSA id u66sm4104667wmg.30.2020.12.04.10.01.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 04 Dec 2020 10:01:55 -0800 (PST)
+Date:   Fri, 4 Dec 2020 18:01:52 +0000
+From:   Quentin Perret <qperret@google.com>
+To:     Fuad Tabba <tabba@google.com>
+Cc:     Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Marc Zyngier <maz@kernel.org>,
+        James Morse <james.morse@arm.com>,
+        Julien Thierry <julien.thierry.kdev@gmail.com>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        "moderated list:ARM64 PORT (AARCH64 ARCHITECTURE)" 
+        <linux-arm-kernel@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        "open list:KERNEL VIRTUAL MACHINE FOR ARM64 (KVM/arm64)" 
+        <kvmarm@lists.cs.columbia.edu>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE" 
+        <devicetree@vger.kernel.org>, kernel-team@android.com,
+        Android KVM <android-kvm@google.com>
+Subject: Re: [RFC PATCH 16/27] KVM: arm64: Prepare Hyp memory protection
+Message-ID: <X8p5kLSIq2MoQZ24@google.com>
+References: <20201117181607.1761516-1-qperret@google.com>
+ <20201117181607.1761516-17-qperret@google.com>
+ <CA+EHjTyJnZ8e=AN7H_k+oZb0VTWAgMicMY8Rqe2Di_3A87hm0A@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="NU0Ex4SbNnrxsi6C"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201204024226.1222-2-thunder.leizhen@huawei.com>
-X-Cookie: Not a flying toy.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <CA+EHjTyJnZ8e=AN7H_k+oZb0VTWAgMicMY8Rqe2Di_3A87hm0A@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thursday 03 Dec 2020 at 12:57:33 (+0000), Fuad Tabba wrote:
+<snip>
+> > +int hyp_create_idmap(void);
+> > +int hyp_map_vectors(void);
+> > +int hyp_back_vmemmap(phys_addr_t phys, unsigned long size, phys_addr_t back);
+> > +int hyp_cpu_set_vector(enum arm64_hyp_spectre_vector slot);
+> > +int hyp_create_mappings(void *from, void *to, enum kvm_pgtable_prot prot);
+> > +int __hyp_create_mappings(unsigned long start, unsigned long size,
+> > +                         unsigned long phys, unsigned long prot);
+> > +unsigned long __hyp_create_private_mapping(phys_addr_t phys, size_t size,
+> > +                                          unsigned long prot);
+> > +
+> 
+> nit: I also thought that the hyp_create_mappings function names are a
+> bit confusing, since there's the create_hyp_mappings functions which
+> use the aforementioned *hyp_pgtable.
 
---NU0Ex4SbNnrxsi6C
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Sure, happy to re-name those (and hyp_pgtable above). Any suggestions?
 
-On Fri, Dec 04, 2020 at 10:42:26AM +0800, Zhen Lei wrote:
-> All warnings are related only to "wrong indentation", except one:
-> Documentation/devicetree/bindings/media/i2c/mipi-ccs.yaml:4:1: \
-> [error] missing document start "---" (document-start)
 
-It would make life easier (and be more normal practice) to split this up
-by driver/subsystem and send a bunch of separate patches to the relevant
-maintainers, this makes it much easier to review and handle things.
+<snip>
+> > +SYM_FUNC_START(__kvm_init_switch_pgd)
+> > +       /* Turn the MMU off */
+> > +       pre_disable_mmu_workaround
+> > +       mrs     x2, sctlr_el2
+> > +       bic     x3, x2, #SCTLR_ELx_M
+> > +       msr     sctlr_el2, x3
+> > +       isb
+> > +
+> > +       tlbi    alle2
+> > +
+> > +       /* Install the new pgtables */
+> > +       ldr     x3, [x0, #NVHE_INIT_PGD_PA]
+> > +       phys_to_ttbr x4, x3
+> > +alternative_if ARM64_HAS_CNP
+> > +       orr     x4, x4, #TTBR_CNP_BIT
+> > +alternative_else_nop_endif
+> > +       msr     ttbr0_el2, x4
+> > +
+> > +       /* Set the new stack pointer */
+> > +       ldr     x0, [x0, #NVHE_INIT_STACK_HYP_VA]
+> > +       mov     sp, x0
+> > +
+> > +       /* And turn the MMU back on! */
+> > +       dsb     nsh
+> > +       isb
+> > +       msr     sctlr_el2, x2
+> > +       isb
+> > +       ret     x1
+> > +SYM_FUNC_END(__kvm_init_switch_pgd)
+> > +
+> 
+> Should the instruction cache be flushed here (ic iallu), to discard
+> speculatively fetched instructions?
 
---NU0Ex4SbNnrxsi6C
-Content-Type: application/pgp-signature; name="signature.asc"
+Hmm, Will? Thoughts?
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl/KdM4ACgkQJNaLcl1U
-h9BGjQf/UZkJEtI4D/7Y6K4QlL3HTskWfvSDmZF26Ea+sD/TdJ91T1YJulT15TOK
-sKNLzMI5ERHHR+su1GGx0czMqpipoPYLvlULn6wLpL6fMbOx94cA+dc8Akr/JcjX
-EfMthdqAlA+5P1Lz5FivyeWRk/B2YgNQ4+Pa9bbLW4iZogcNL2jZmN55GvBHYlSa
-oyLVbN2YlJwy/t9b+c8mvlCGa5NyPDe5JmpplcFkCbn5DVZ9aFTHrGaQ0Ml1rv5W
-DyyLnw1kpVUck0Phs49+unaEOb88Mh7FY4Jtsqz6SuqZDkHYZuWCwod5VHJG7q53
-cpaFjB5+6e3/mAA/aRnxyzuOxLmoMA==
-=82J7
------END PGP SIGNATURE-----
-
---NU0Ex4SbNnrxsi6C--
+Thanks,
+Quentin
