@@ -2,138 +2,680 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CE1742CF382
-	for <lists+devicetree@lfdr.de>; Fri,  4 Dec 2020 19:02:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 80AFE2CF38C
+	for <lists+devicetree@lfdr.de>; Fri,  4 Dec 2020 19:05:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727730AbgLDSCi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Dec 2020 13:02:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42286 "EHLO
+        id S1728451AbgLDSE4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Dec 2020 13:04:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42674 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727178AbgLDSCi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Dec 2020 13:02:38 -0500
-Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com [IPv6:2a00:1450:4864:20::343])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95D0FC0613D1
-        for <devicetree@vger.kernel.org>; Fri,  4 Dec 2020 10:01:57 -0800 (PST)
-Received: by mail-wm1-x343.google.com with SMTP id a3so7810381wmb.5
-        for <devicetree@vger.kernel.org>; Fri, 04 Dec 2020 10:01:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=GunWet4p4NzVbI1r1RYLjYsxsi2RUASEtxkEDiSdayU=;
-        b=Jfc+OXEDeUa9mmISz8ZsnfdTU5azIgUzZSQjepScJvm9Yeu8TYr4EJM80uzI2fPPUb
-         +VHfBX79uMGHB9tHKddRRiKYoDNVPsF81RdvXjX2YfemDOeWnvFmz3ZxiR/7JPAX22f6
-         5tMT6fGr07JcUY7GB6TGOBnJAKFTflWYID7FgrAq2cOxXoeSVAUMIZbgYmETKwvczVHC
-         i2uHt2MIyl9qCZGghiulFP8richVb8xc9cRAfdQic9NmrXZkgiKYKb9exgtCKAG2qi7s
-         +K6FOWmZssDvDm3FjzNmaKJV02LM7JGkf/1TCuPcURVOz8hqELdq/Q7z3jGSEoQGCoBB
-         FD1A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=GunWet4p4NzVbI1r1RYLjYsxsi2RUASEtxkEDiSdayU=;
-        b=NmFN9D3fzmtC1y9FtBwVPTEmtVd8TS3A30a2ZDRLiU+BHXrV+heMdgtim+O8duuIi+
-         XRbsyHhtfi3ZZUCW2wg1e8h6w3tnyz8fYfAGnRl/bbUECNUhd5ri4+PpBT6S+E1dwNfQ
-         nGwuqbNwW3sQief1oWYiZt47LVCzneuQLXcI0/boqVZNa3aMF0UT4bCEhFVR0hB8tzuA
-         5G3j+mXURUXefVBxewlZigxkjzT5FytKn4OJTNJ/qK8S9F4t2hRfhHYIaosz3GgnrVP4
-         Mjx/yhWy8yCH/ycrLPFfHH3dgFTF0d8dNysUYkv0PfO9QE1A7dCTLmVOMpR1Qu3qGbFE
-         4KPg==
-X-Gm-Message-State: AOAM531nftYZ8aEB03aNxZby0W5Rl8GYZThumSrP+qg3897xnrEP7ZCq
-        2U5PvAD1wLuZNB5FsqHNdJbmPQ==
-X-Google-Smtp-Source: ABdhPJxSC8KwxX3qUAPvNVm0RO0ZB//wClhZM8fadV8xFb6AM2n7EFO2SRqrA/auNGP2dVoT3/qMcQ==
-X-Received: by 2002:a7b:c157:: with SMTP id z23mr5577311wmi.35.1607104916154;
-        Fri, 04 Dec 2020 10:01:56 -0800 (PST)
-Received: from google.com ([2a00:79e0:d:210:f693:9fff:fef4:a7ef])
-        by smtp.gmail.com with ESMTPSA id u66sm4104667wmg.30.2020.12.04.10.01.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Dec 2020 10:01:55 -0800 (PST)
-Date:   Fri, 4 Dec 2020 18:01:52 +0000
-From:   Quentin Perret <qperret@google.com>
-To:     Fuad Tabba <tabba@google.com>
-Cc:     Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, Marc Zyngier <maz@kernel.org>,
-        James Morse <james.morse@arm.com>,
-        Julien Thierry <julien.thierry.kdev@gmail.com>,
-        Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        "moderated list:ARM64 PORT (AARCH64 ARCHITECTURE)" 
-        <linux-arm-kernel@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        "open list:KERNEL VIRTUAL MACHINE FOR ARM64 (KVM/arm64)" 
-        <kvmarm@lists.cs.columbia.edu>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE" 
-        <devicetree@vger.kernel.org>, kernel-team@android.com,
-        Android KVM <android-kvm@google.com>
-Subject: Re: [RFC PATCH 16/27] KVM: arm64: Prepare Hyp memory protection
-Message-ID: <X8p5kLSIq2MoQZ24@google.com>
-References: <20201117181607.1761516-1-qperret@google.com>
- <20201117181607.1761516-17-qperret@google.com>
- <CA+EHjTyJnZ8e=AN7H_k+oZb0VTWAgMicMY8Rqe2Di_3A87hm0A@mail.gmail.com>
+        with ESMTP id S1726606AbgLDSE4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Dec 2020 13:04:56 -0500
+Received: from relay06.th.seeweb.it (relay06.th.seeweb.it [IPv6:2001:4b7a:2000:18::167])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 026AFC0613D1
+        for <devicetree@vger.kernel.org>; Fri,  4 Dec 2020 10:04:16 -0800 (PST)
+Received: from IcarusMOD.eternityproject.eu (unknown [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 3F369404E9;
+        Fri,  4 Dec 2020 19:04:12 +0100 (CET)
+Subject: Re: [PATCH v2 1/5] interconnect: qcom: Consolidate interconnect RPM
+ support
+To:     Jun Nie <jun.nie@linaro.org>, devicetree@vger.kernel.org,
+        georgi.djakov@linaro.org, bjorn.andersson@linaro.org,
+        agross@kernel.org, linux-pm@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        robh@kernel.org
+Cc:     vincent.knecht@mailoo.org, shawn.guo@linaro.org,
+        martin.botka@somainline.org, marijn.suijten@somainline.org,
+        konrad.dybcio@somainline.org
+References: <20201204075345.5161-1-jun.nie@linaro.org>
+ <20201204075345.5161-2-jun.nie@linaro.org>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>
+Message-ID: <022b3f66-ae19-79f5-c59b-0cc703a29f15@somainline.org>
+Date:   Fri, 4 Dec 2020 19:04:11 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.5.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CA+EHjTyJnZ8e=AN7H_k+oZb0VTWAgMicMY8Rqe2Di_3A87hm0A@mail.gmail.com>
+In-Reply-To: <20201204075345.5161-2-jun.nie@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thursday 03 Dec 2020 at 12:57:33 (+0000), Fuad Tabba wrote:
-<snip>
-> > +int hyp_create_idmap(void);
-> > +int hyp_map_vectors(void);
-> > +int hyp_back_vmemmap(phys_addr_t phys, unsigned long size, phys_addr_t back);
-> > +int hyp_cpu_set_vector(enum arm64_hyp_spectre_vector slot);
-> > +int hyp_create_mappings(void *from, void *to, enum kvm_pgtable_prot prot);
-> > +int __hyp_create_mappings(unsigned long start, unsigned long size,
-> > +                         unsigned long phys, unsigned long prot);
-> > +unsigned long __hyp_create_private_mapping(phys_addr_t phys, size_t size,
-> > +                                          unsigned long prot);
-> > +
+Il 04/12/20 08:53, Jun Nie ha scritto:
+> Add RPM based interconnect driver implements the set and aggregate
+> functionalities that translates bandwidth requests into RPM messages.
+> These modules provide a common set of functionalities for all
+> Qualcomm RPM based interconnect providers and should help reduce code
+> duplication when adding new providers.
 > 
-> nit: I also thought that the hyp_create_mappings function names are a
-> bit confusing, since there's the create_hyp_mappings functions which
-> use the aforementioned *hyp_pgtable.
+> Signed-off-by: Jun Nie <jun.nie@linaro.org>
+Hello!
+I agree, the RPM based ICC should be commonized... in any case, I think
+that you should rebase your patch series over mine, where I am adding
+support for SDM660 and also introducing a mechanism to set QoS, which
+can actually be used by most platforms managing the ICC over RPM.
 
-Sure, happy to re-name those (and hyp_pgtable above). Any suggestions?
-
-
-<snip>
-> > +SYM_FUNC_START(__kvm_init_switch_pgd)
-> > +       /* Turn the MMU off */
-> > +       pre_disable_mmu_workaround
-> > +       mrs     x2, sctlr_el2
-> > +       bic     x3, x2, #SCTLR_ELx_M
-> > +       msr     sctlr_el2, x3
-> > +       isb
-> > +
-> > +       tlbi    alle2
-> > +
-> > +       /* Install the new pgtables */
-> > +       ldr     x3, [x0, #NVHE_INIT_PGD_PA]
-> > +       phys_to_ttbr x4, x3
-> > +alternative_if ARM64_HAS_CNP
-> > +       orr     x4, x4, #TTBR_CNP_BIT
-> > +alternative_else_nop_endif
-> > +       msr     ttbr0_el2, x4
-> > +
-> > +       /* Set the new stack pointer */
-> > +       ldr     x0, [x0, #NVHE_INIT_STACK_HYP_VA]
-> > +       mov     sp, x0
-> > +
-> > +       /* And turn the MMU back on! */
-> > +       dsb     nsh
-> > +       isb
-> > +       msr     sctlr_el2, x2
-> > +       isb
-> > +       ret     x1
-> > +SYM_FUNC_END(__kvm_init_switch_pgd)
-> > +
-> 
-> Should the instruction cache be flushed here (ic iallu), to discard
-> speculatively fetched instructions?
-
-Hmm, Will? Thoughts?
+Please, check it out: https://lore.kernel.org/patchwork/patch/1322131/
 
 Thanks,
-Quentin
+Angelo
+
+> ---
+>   drivers/interconnect/qcom/Makefile  |   2 +-
+>   drivers/interconnect/qcom/icc-rpm.c | 191 ++++++++++++++++++++++
+>   drivers/interconnect/qcom/icc-rpm.h |  73 +++++++++
+>   drivers/interconnect/qcom/msm8916.c | 241 ++--------------------------
+>   4 files changed, 275 insertions(+), 232 deletions(-)
+>   create mode 100644 drivers/interconnect/qcom/icc-rpm.c
+>   create mode 100644 drivers/interconnect/qcom/icc-rpm.h
+> 
+> diff --git a/drivers/interconnect/qcom/Makefile b/drivers/interconnect/qcom/Makefile
+> index cf628f7990cd..916d7bbe55b7 100644
+> --- a/drivers/interconnect/qcom/Makefile
+> +++ b/drivers/interconnect/qcom/Makefile
+> @@ -10,7 +10,7 @@ qnoc-sc7180-objs			:= sc7180.o
+>   qnoc-sdm845-objs			:= sdm845.o
+>   qnoc-sm8150-objs			:= sm8150.o
+>   qnoc-sm8250-objs			:= sm8250.o
+> -icc-smd-rpm-objs			:= smd-rpm.o
+> +icc-smd-rpm-objs			:= smd-rpm.o icc-rpm.o
+>   
+>   obj-$(CONFIG_INTERCONNECT_QCOM_BCM_VOTER) += icc-bcm-voter.o
+>   obj-$(CONFIG_INTERCONNECT_QCOM_MSM8916) += qnoc-msm8916.o
+> diff --git a/drivers/interconnect/qcom/icc-rpm.c b/drivers/interconnect/qcom/icc-rpm.c
+> new file mode 100644
+> index 000000000000..cc6095492cbe
+> --- /dev/null
+> +++ b/drivers/interconnect/qcom/icc-rpm.c
+> @@ -0,0 +1,191 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (C) 2020 Linaro Ltd
+> + */
+> +
+> +#include <linux/clk.h>
+> +#include <linux/device.h>
+> +#include <linux/interconnect-provider.h>
+> +#include <linux/io.h>
+> +#include <linux/module.h>
+> +#include <linux/of_device.h>
+> +#include <linux/of_platform.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/slab.h>
+> +
+> +#include "smd-rpm.h"
+> +#include "icc-rpm.h"
+> +
+> +static int qcom_icc_set(struct icc_node *src, struct icc_node *dst)
+> +{
+> +	struct qcom_icc_provider *qp;
+> +	struct qcom_icc_node *qn;
+> +	struct icc_provider *provider;
+> +	struct icc_node *n;
+> +	u64 sum_bw;
+> +	u64 max_peak_bw;
+> +	u64 rate;
+> +	u32 agg_avg = 0;
+> +	u32 agg_peak = 0;
+> +	int ret, i;
+> +
+> +	qn = src->data;
+> +	provider = src->provider;
+> +	qp = to_qcom_provider(provider);
+> +
+> +	list_for_each_entry(n, &provider->nodes, node_list)
+> +		provider->aggregate(n, 0, n->avg_bw, n->peak_bw,
+> +				    &agg_avg, &agg_peak);
+> +
+> +	sum_bw = icc_units_to_bps(agg_avg);
+> +	max_peak_bw = icc_units_to_bps(agg_peak);
+> +
+> +	/* send bandwidth request message to the RPM processor */
+> +	if (qn->mas_rpm_id != -1) {
+> +		ret = qcom_icc_rpm_smd_send(QCOM_SMD_RPM_ACTIVE_STATE,
+> +					    RPM_BUS_MASTER_REQ,
+> +					    qn->mas_rpm_id,
+> +					    sum_bw);
+> +		if (ret) {
+> +			pr_err("qcom_icc_rpm_smd_send mas %d error %d\n",
+> +			       qn->mas_rpm_id, ret);
+> +			return ret;
+> +		}
+> +	}
+> +
+> +	if (qn->slv_rpm_id != -1) {
+> +		ret = qcom_icc_rpm_smd_send(QCOM_SMD_RPM_ACTIVE_STATE,
+> +					    RPM_BUS_SLAVE_REQ,
+> +					    qn->slv_rpm_id,
+> +					    sum_bw);
+> +		if (ret) {
+> +			pr_err("qcom_icc_rpm_smd_send slv error %d\n",
+> +			       ret);
+> +			return ret;
+> +		}
+> +	}
+> +
+> +	rate = max(sum_bw, max_peak_bw);
+> +
+> +	do_div(rate, qn->buswidth);
+> +
+> +	if (qn->rate == rate)
+> +		return 0;
+> +
+> +	for (i = 0; i < qp->num_clks; i++) {
+> +		ret = clk_set_rate(qp->bus_clks[i].clk, rate);
+> +		if (ret) {
+> +			pr_err("%s clk_set_rate error: %d\n",
+> +			       qp->bus_clks[i].id, ret);
+> +			return ret;
+> +		}
+> +	}
+> +
+> +	qn->rate = rate;
+> +
+> +	return 0;
+> +}
+> +
+> +int qnoc_probe(struct platform_device *pdev, size_t cd_size, int cd_num,
+> +	       const struct clk_bulk_data *cd)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	const struct qcom_icc_desc *desc;
+> +	struct icc_onecell_data *data;
+> +	struct icc_provider *provider;
+> +	struct qcom_icc_node **qnodes;
+> +	struct qcom_icc_provider *qp;
+> +	struct icc_node *node;
+> +	size_t num_nodes, i;
+> +	int ret;
+> +
+> +	/* wait for the RPM proxy */
+> +	if (!qcom_icc_rpm_smd_available())
+> +		return -EPROBE_DEFER;
+> +
+> +	desc = of_device_get_match_data(dev);
+> +	if (!desc)
+> +		return -EINVAL;
+> +
+> +	qnodes = desc->nodes;
+> +	num_nodes = desc->num_nodes;
+> +
+> +	qp = devm_kzalloc(dev, sizeof(*qp), GFP_KERNEL);
+> +	if (!qp)
+> +		return -ENOMEM;
+> +
+> +	data = devm_kzalloc(dev, struct_size(data, nodes, num_nodes),
+> +			    GFP_KERNEL);
+> +	if (!data)
+> +		return -ENOMEM;
+> +
+> +	qp->bus_clks = devm_kmemdup(dev, cd, cd_size,
+> +				    GFP_KERNEL);
+> +	if (!qp->bus_clks)
+> +		return -ENOMEM;
+> +
+> +	qp->num_clks = cd_num;
+> +	ret = devm_clk_bulk_get(dev, qp->num_clks, qp->bus_clks);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = clk_bulk_prepare_enable(qp->num_clks, qp->bus_clks);
+> +	if (ret)
+> +		return ret;
+> +
+> +	provider = &qp->provider;
+> +	INIT_LIST_HEAD(&provider->nodes);
+> +	provider->dev = dev;
+> +	provider->set = qcom_icc_set;
+> +	provider->aggregate = icc_std_aggregate;
+> +	provider->xlate = of_icc_xlate_onecell;
+> +	provider->data = data;
+> +
+> +	ret = icc_provider_add(provider);
+> +	if (ret) {
+> +		dev_err(dev, "error adding interconnect provider: %d\n", ret);
+> +		clk_bulk_disable_unprepare(qp->num_clks, qp->bus_clks);
+> +		return ret;
+> +	}
+> +
+> +	for (i = 0; i < num_nodes; i++) {
+> +		size_t j;
+> +
+> +		node = icc_node_create(qnodes[i]->id);
+> +		if (IS_ERR(node)) {
+> +			ret = PTR_ERR(node);
+> +			goto err;
+> +		}
+> +
+> +		node->name = qnodes[i]->name;
+> +		node->data = qnodes[i];
+> +		icc_node_add(node, provider);
+> +
+> +		for (j = 0; j < qnodes[i]->num_links; j++)
+> +			icc_link_create(node, qnodes[i]->links[j]);
+> +
+> +		data->nodes[i] = node;
+> +	}
+> +	data->num_nodes = num_nodes;
+> +
+> +	platform_set_drvdata(pdev, qp);
+> +
+> +	return 0;
+> +err:
+> +	icc_nodes_remove(provider);
+> +	clk_bulk_disable_unprepare(qp->num_clks, qp->bus_clks);
+> +	icc_provider_del(provider);
+> +
+> +	return ret;
+> +}
+> +EXPORT_SYMBOL(qnoc_probe);
+> +
+> +int qnoc_remove(struct platform_device *pdev)
+> +{
+> +	struct qcom_icc_provider *qp = platform_get_drvdata(pdev);
+> +
+> +	icc_nodes_remove(&qp->provider);
+> +	clk_bulk_disable_unprepare(qp->num_clks, qp->bus_clks);
+> +	return icc_provider_del(&qp->provider);
+> +}
+> +EXPORT_SYMBOL(qnoc_remove);
+> diff --git a/drivers/interconnect/qcom/icc-rpm.h b/drivers/interconnect/qcom/icc-rpm.h
+> new file mode 100644
+> index 000000000000..79a6f68249c1
+> --- /dev/null
+> +++ b/drivers/interconnect/qcom/icc-rpm.h
+> @@ -0,0 +1,73 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +/*
+> + * Copyright (C) 2020 Linaro Ltd
+> + */
+> +
+> +#ifndef __DRIVERS_INTERCONNECT_QCOM_ICC_RPM_H
+> +#define __DRIVERS_INTERCONNECT_QCOM_ICC_RPM_H
+> +
+> +#define RPM_BUS_MASTER_REQ	0x73616d62
+> +#define RPM_BUS_SLAVE_REQ	0x766c7362
+> +
+> +#define QCOM_MAX_LINKS 12
+> +
+> +#define to_qcom_provider(_provider) \
+> +	container_of(_provider, struct qcom_icc_provider, provider)
+> +
+> +/**
+> + * struct qcom_icc_provider - Qualcomm specific interconnect provider
+> + * @provider: generic interconnect provider
+> + * @bus_clks: the clk_bulk_data table of bus clocks
+> + * @num_clks: the total number of clk_bulk_data entries
+> + */
+> +struct qcom_icc_provider {
+> +	struct icc_provider provider;
+> +	struct clk_bulk_data *bus_clks;
+> +	int num_clks;
+> +};
+> +
+> +/**
+> + * struct qcom_icc_node - Qualcomm specific interconnect nodes
+> + * @name: the node name used in debugfs
+> + * @id: a unique node identifier
+> + * @links: an array of nodes where we can go next while traversing
+> + * @num_links: the total number of @links
+> + * @buswidth: width of the interconnect between a node and the bus (bytes)
+> + * @mas_rpm_id:	RPM id for devices that are bus masters
+> + * @slv_rpm_id:	RPM id for devices that are bus slaves
+> + * @rate: current bus clock rate in Hz
+> + */
+> +struct qcom_icc_node {
+> +	unsigned char *name;
+> +	u16 id;
+> +	u16 links[QCOM_MAX_LINKS];
+> +	u16 num_links;
+> +	u16 buswidth;
+> +	int mas_rpm_id;
+> +	int slv_rpm_id;
+> +	u64 rate;
+> +};
+> +
+> +struct qcom_icc_desc {
+> +	struct qcom_icc_node **nodes;
+> +	size_t num_nodes;
+> +};
+> +
+> +#define DEFINE_QNODE(_name, _id, _buswidth, _mas_rpm_id, _slv_rpm_id,	\
+> +		     ...)						\
+> +		static struct qcom_icc_node _name = {			\
+> +		.name = #_name,						\
+> +		.id = _id,						\
+> +		.buswidth = _buswidth,					\
+> +		.mas_rpm_id = _mas_rpm_id,				\
+> +		.slv_rpm_id = _slv_rpm_id,				\
+> +		.num_links = ARRAY_SIZE(((int[]){ __VA_ARGS__ })),	\
+> +		.links = { __VA_ARGS__ },				\
+> +	}
+> +
+> +
+> +int qnoc_probe(struct platform_device *pdev, size_t cd_size, int cd_num,
+> +	       const struct clk_bulk_data *cd);
+> +int qnoc_remove(struct platform_device *pdev);
+> +
+> +#endif
+> diff --git a/drivers/interconnect/qcom/msm8916.c b/drivers/interconnect/qcom/msm8916.c
+> index e8371d40ab8d..fc3689c8947a 100644
+> --- a/drivers/interconnect/qcom/msm8916.c
+> +++ b/drivers/interconnect/qcom/msm8916.c
+> @@ -15,9 +15,7 @@
+>   #include <dt-bindings/interconnect/qcom,msm8916.h>
+>   
+>   #include "smd-rpm.h"
+> -
+> -#define RPM_BUS_MASTER_REQ      0x73616d62
+> -#define RPM_BUS_SLAVE_REQ       0x766c7362
+> +#include "icc-rpm.h"
+>   
+>   enum {
+>   	MSM8916_BIMC_SNOC_MAS = 1,
+> @@ -107,67 +105,11 @@ enum {
+>   	MSM8916_SNOC_PNOC_SLV,
+>   };
+>   
+> -#define to_msm8916_provider(_provider) \
+> -	container_of(_provider, struct msm8916_icc_provider, provider)
+> -
+>   static const struct clk_bulk_data msm8916_bus_clocks[] = {
+>   	{ .id = "bus" },
+>   	{ .id = "bus_a" },
+>   };
+>   
+> -/**
+> - * struct msm8916_icc_provider - Qualcomm specific interconnect provider
+> - * @provider: generic interconnect provider
+> - * @bus_clks: the clk_bulk_data table of bus clocks
+> - * @num_clks: the total number of clk_bulk_data entries
+> - */
+> -struct msm8916_icc_provider {
+> -	struct icc_provider provider;
+> -	struct clk_bulk_data *bus_clks;
+> -	int num_clks;
+> -};
+> -
+> -#define MSM8916_MAX_LINKS	8
+> -
+> -/**
+> - * struct msm8916_icc_node - Qualcomm specific interconnect nodes
+> - * @name: the node name used in debugfs
+> - * @id: a unique node identifier
+> - * @links: an array of nodes where we can go next while traversing
+> - * @num_links: the total number of @links
+> - * @buswidth: width of the interconnect between a node and the bus (bytes)
+> - * @mas_rpm_id:	RPM ID for devices that are bus masters
+> - * @slv_rpm_id:	RPM ID for devices that are bus slaves
+> - * @rate: current bus clock rate in Hz
+> - */
+> -struct msm8916_icc_node {
+> -	unsigned char *name;
+> -	u16 id;
+> -	u16 links[MSM8916_MAX_LINKS];
+> -	u16 num_links;
+> -	u16 buswidth;
+> -	int mas_rpm_id;
+> -	int slv_rpm_id;
+> -	u64 rate;
+> -};
+> -
+> -struct msm8916_icc_desc {
+> -	struct msm8916_icc_node **nodes;
+> -	size_t num_nodes;
+> -};
+> -
+> -#define DEFINE_QNODE(_name, _id, _buswidth, _mas_rpm_id, _slv_rpm_id,	\
+> -					...)				\
+> -		static struct msm8916_icc_node _name = {		\
+> -		.name = #_name,						\
+> -		.id = _id,						\
+> -		.buswidth = _buswidth,					\
+> -		.mas_rpm_id = _mas_rpm_id,				\
+> -		.slv_rpm_id = _slv_rpm_id,				\
+> -		.num_links = ARRAY_SIZE(((int[]){ __VA_ARGS__ })),	\
+> -		.links = { __VA_ARGS__ },				\
+> -	}
+> -
+>   DEFINE_QNODE(bimc_snoc_mas, MSM8916_BIMC_SNOC_MAS, 8, -1, -1, MSM8916_BIMC_SNOC_SLV);
+>   DEFINE_QNODE(bimc_snoc_slv, MSM8916_BIMC_SNOC_SLV, 8, -1, -1, MSM8916_SNOC_INT_0, MSM8916_SNOC_INT_1);
+>   DEFINE_QNODE(mas_apss, MSM8916_MASTER_AMPSS_M0, 8, -1, -1, MSM8916_SLAVE_EBI_CH0, MSM8916_BIMC_SNOC_MAS, MSM8916_SLAVE_AMPSS_L2);
+> @@ -254,7 +196,7 @@ DEFINE_QNODE(snoc_int_bimc, MSM8916_SNOC_INT_BIMC, 8, 101, 132, MSM8916_SNOC_BIM
+>   DEFINE_QNODE(snoc_pcnoc_mas, MSM8916_SNOC_PNOC_MAS, 8, -1, -1, MSM8916_SNOC_PNOC_SLV);
+>   DEFINE_QNODE(snoc_pcnoc_slv, MSM8916_SNOC_PNOC_SLV, 8, -1, -1, MSM8916_PNOC_INT_0);
+>   
+> -static struct msm8916_icc_node *msm8916_snoc_nodes[] = {
+> +static struct qcom_icc_node *msm8916_snoc_nodes[] = {
+>   	[BIMC_SNOC_SLV] = &bimc_snoc_slv,
+>   	[MASTER_JPEG] = &mas_jpeg,
+>   	[MASTER_MDP_PORT0] = &mas_mdp,
+> @@ -283,12 +225,12 @@ static struct msm8916_icc_node *msm8916_snoc_nodes[] = {
+>   	[SNOC_QDSS_INT] = &qdss_int,
+>   };
+>   
+> -static struct msm8916_icc_desc msm8916_snoc = {
+> +static struct qcom_icc_desc msm8916_snoc = {
+>   	.nodes = msm8916_snoc_nodes,
+>   	.num_nodes = ARRAY_SIZE(msm8916_snoc_nodes),
+>   };
+>   
+> -static struct msm8916_icc_node *msm8916_bimc_nodes[] = {
+> +static struct qcom_icc_node *msm8916_bimc_nodes[] = {
+>   	[BIMC_SNOC_MAS] = &bimc_snoc_mas,
+>   	[MASTER_AMPSS_M0] = &mas_apss,
+>   	[MASTER_GRAPHICS_3D] = &mas_gfx,
+> @@ -300,12 +242,12 @@ static struct msm8916_icc_node *msm8916_bimc_nodes[] = {
+>   	[SNOC_BIMC_1_SLV] = &snoc_bimc_1_slv,
+>   };
+>   
+> -static struct msm8916_icc_desc msm8916_bimc = {
+> +static struct qcom_icc_desc msm8916_bimc = {
+>   	.nodes = msm8916_bimc_nodes,
+>   	.num_nodes = ARRAY_SIZE(msm8916_bimc_nodes),
+>   };
+>   
+> -static struct msm8916_icc_node *msm8916_pcnoc_nodes[] = {
+> +static struct qcom_icc_node *msm8916_pcnoc_nodes[] = {
+>   	[MASTER_BLSP_1] = &mas_blsp_1,
+>   	[MASTER_DEHR] = &mas_dehr,
+>   	[MASTER_LPASS] = &mas_audio,
+> @@ -358,178 +300,15 @@ static struct msm8916_icc_node *msm8916_pcnoc_nodes[] = {
+>   	[SNOC_PCNOC_SLV] = &snoc_pcnoc_slv,
+>   };
+>   
+> -static struct msm8916_icc_desc msm8916_pcnoc = {
+> +static struct qcom_icc_desc msm8916_pcnoc = {
+>   	.nodes = msm8916_pcnoc_nodes,
+>   	.num_nodes = ARRAY_SIZE(msm8916_pcnoc_nodes),
+>   };
+>   
+> -static int msm8916_icc_set(struct icc_node *src, struct icc_node *dst)
+> -{
+> -	struct msm8916_icc_provider *qp;
+> -	struct msm8916_icc_node *qn;
+> -	u64 sum_bw, max_peak_bw, rate;
+> -	u32 agg_avg = 0, agg_peak = 0;
+> -	struct icc_provider *provider;
+> -	struct icc_node *n;
+> -	int ret, i;
+> -
+> -	qn = src->data;
+> -	provider = src->provider;
+> -	qp = to_msm8916_provider(provider);
+> -
+> -	list_for_each_entry(n, &provider->nodes, node_list)
+> -		provider->aggregate(n, 0, n->avg_bw, n->peak_bw,
+> -				    &agg_avg, &agg_peak);
+> -
+> -	sum_bw = icc_units_to_bps(agg_avg);
+> -	max_peak_bw = icc_units_to_bps(agg_peak);
+> -
+> -	/* send bandwidth request message to the RPM processor */
+> -	if (qn->mas_rpm_id != -1) {
+> -		ret = qcom_icc_rpm_smd_send(QCOM_SMD_RPM_ACTIVE_STATE,
+> -					    RPM_BUS_MASTER_REQ,
+> -					    qn->mas_rpm_id,
+> -					    sum_bw);
+> -		if (ret) {
+> -			pr_err("qcom_icc_rpm_smd_send mas %d error %d\n",
+> -			       qn->mas_rpm_id, ret);
+> -			return ret;
+> -		}
+> -	}
+> -
+> -	if (qn->slv_rpm_id != -1) {
+> -		ret = qcom_icc_rpm_smd_send(QCOM_SMD_RPM_ACTIVE_STATE,
+> -					    RPM_BUS_SLAVE_REQ,
+> -					    qn->slv_rpm_id,
+> -					    sum_bw);
+> -		if (ret) {
+> -			pr_err("qcom_icc_rpm_smd_send slv error %d\n",
+> -			       ret);
+> -			return ret;
+> -		}
+> -	}
+> -
+> -	rate = max(sum_bw, max_peak_bw);
+> -
+> -	do_div(rate, qn->buswidth);
+> -
+> -	if (qn->rate == rate)
+> -		return 0;
+> -
+> -	for (i = 0; i < qp->num_clks; i++) {
+> -		ret = clk_set_rate(qp->bus_clks[i].clk, rate);
+> -		if (ret) {
+> -			pr_err("%s clk_set_rate error: %d\n",
+> -			       qp->bus_clks[i].id, ret);
+> -			return ret;
+> -		}
+> -	}
+> -
+> -	qn->rate = rate;
+> -
+> -	return 0;
+> -}
+> -
+>   static int msm8916_qnoc_probe(struct platform_device *pdev)
+>   {
+> -	const struct msm8916_icc_desc *desc;
+> -	struct msm8916_icc_node **qnodes;
+> -	struct msm8916_icc_provider *qp;
+> -	struct device *dev = &pdev->dev;
+> -	struct icc_onecell_data *data;
+> -	struct icc_provider *provider;
+> -	struct icc_node *node;
+> -	size_t num_nodes, i;
+> -	int ret;
+> -
+> -	/* wait for the RPM proxy */
+> -	if (!qcom_icc_rpm_smd_available())
+> -		return -EPROBE_DEFER;
+> -
+> -	desc = of_device_get_match_data(dev);
+> -	if (!desc)
+> -		return -EINVAL;
+> -
+> -	qnodes = desc->nodes;
+> -	num_nodes = desc->num_nodes;
+> -
+> -	qp = devm_kzalloc(dev, sizeof(*qp), GFP_KERNEL);
+> -	if (!qp)
+> -		return -ENOMEM;
+> -
+> -	data = devm_kzalloc(dev, struct_size(data, nodes, num_nodes),
+> -			    GFP_KERNEL);
+> -	if (!data)
+> -		return -ENOMEM;
+> -
+> -	qp->bus_clks = devm_kmemdup(dev, msm8916_bus_clocks,
+> -				    sizeof(msm8916_bus_clocks), GFP_KERNEL);
+> -	if (!qp->bus_clks)
+> -		return -ENOMEM;
+> -
+> -	qp->num_clks = ARRAY_SIZE(msm8916_bus_clocks);
+> -	ret = devm_clk_bulk_get(dev, qp->num_clks, qp->bus_clks);
+> -	if (ret)
+> -		return ret;
+> -
+> -	ret = clk_bulk_prepare_enable(qp->num_clks, qp->bus_clks);
+> -	if (ret)
+> -		return ret;
+> -
+> -	provider = &qp->provider;
+> -	INIT_LIST_HEAD(&provider->nodes);
+> -	provider->dev = dev;
+> -	provider->set = msm8916_icc_set;
+> -	provider->aggregate = icc_std_aggregate;
+> -	provider->xlate = of_icc_xlate_onecell;
+> -	provider->data = data;
+> -
+> -	ret = icc_provider_add(provider);
+> -	if (ret) {
+> -		dev_err(dev, "error adding interconnect provider: %d\n", ret);
+> -		clk_bulk_disable_unprepare(qp->num_clks, qp->bus_clks);
+> -		return ret;
+> -	}
+> -
+> -	for (i = 0; i < num_nodes; i++) {
+> -		size_t j;
+> -
+> -		node = icc_node_create(qnodes[i]->id);
+> -		if (IS_ERR(node)) {
+> -			ret = PTR_ERR(node);
+> -			goto err;
+> -		}
+> -
+> -		node->name = qnodes[i]->name;
+> -		node->data = qnodes[i];
+> -		icc_node_add(node, provider);
+> -
+> -		for (j = 0; j < qnodes[i]->num_links; j++)
+> -			icc_link_create(node, qnodes[i]->links[j]);
+> -
+> -		data->nodes[i] = node;
+> -	}
+> -	data->num_nodes = num_nodes;
+> -
+> -	platform_set_drvdata(pdev, qp);
+> -
+> -	return 0;
+> -
+> -err:
+> -	icc_nodes_remove(provider);
+> -	icc_provider_del(provider);
+> -	clk_bulk_disable_unprepare(qp->num_clks, qp->bus_clks);
+> -
+> -	return ret;
+> -}
+> -
+> -static int msm8916_qnoc_remove(struct platform_device *pdev)
+> -{
+> -	struct msm8916_icc_provider *qp = platform_get_drvdata(pdev);
+> -
+> -	icc_nodes_remove(&qp->provider);
+> -	clk_bulk_disable_unprepare(qp->num_clks, qp->bus_clks);
+> -	return icc_provider_del(&qp->provider);
+> +	return qnoc_probe(pdev, sizeof(msm8916_bus_clocks),
+> +			  ARRAY_SIZE(msm8916_bus_clocks), msm8916_bus_clocks);
+>   }
+>   
+>   static const struct of_device_id msm8916_noc_of_match[] = {
+> @@ -542,7 +321,7 @@ MODULE_DEVICE_TABLE(of, msm8916_noc_of_match);
+>   
+>   static struct platform_driver msm8916_noc_driver = {
+>   	.probe = msm8916_qnoc_probe,
+> -	.remove = msm8916_qnoc_remove,
+> +	.remove = qnoc_remove,
+>   	.driver = {
+>   		.name = "qnoc-msm8916",
+>   		.of_match_table = msm8916_noc_of_match,
+> 
+
