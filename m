@@ -2,164 +2,473 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 104272CF220
-	for <lists+devicetree@lfdr.de>; Fri,  4 Dec 2020 17:46:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C74172CF33B
+	for <lists+devicetree@lfdr.de>; Fri,  4 Dec 2020 18:41:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730803AbgLDQnj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Dec 2020 11:43:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58232 "EHLO
+        id S1731327AbgLDRlB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Dec 2020 12:41:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38940 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728382AbgLDQni (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Dec 2020 11:43:38 -0500
-Received: from mail-lf1-x141.google.com (mail-lf1-x141.google.com [IPv6:2a00:1450:4864:20::141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53B03C0613D1;
-        Fri,  4 Dec 2020 08:42:58 -0800 (PST)
-Received: by mail-lf1-x141.google.com with SMTP id q13so8504529lfr.10;
-        Fri, 04 Dec 2020 08:42:58 -0800 (PST)
+        with ESMTP id S1731321AbgLDRlA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Dec 2020 12:41:00 -0500
+Received: from mail-pg1-x543.google.com (mail-pg1-x543.google.com [IPv6:2607:f8b0:4864:20::543])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 424E3C061A52
+        for <devicetree@vger.kernel.org>; Fri,  4 Dec 2020 09:40:20 -0800 (PST)
+Received: by mail-pg1-x543.google.com with SMTP id t3so3917743pgi.11
+        for <devicetree@vger.kernel.org>; Fri, 04 Dec 2020 09:40:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=lLL+dDAHV4SbLQrB8XpOfvuGZUyMnHYhCIRfLueZPXU=;
-        b=ReTXzmTM6d0rgzmfhSrxuKhwr1AOz88qkslSx3qYc6bwT5lMUlr4MF8Ymh4y81dtq5
-         bB4Vs/HdWoTFSIgp49BDRTRWJ6eAiIJYzZFlId+EbQQ6pYAOQdNdOEf8Jwmg8OZcIli7
-         Kn5ER08bZJ/FJJjcQYNaPn4IcCe1mGU3hptBKJKIjTV0iE2YjLifr3RmuOl/ap/kAffW
-         W+Q13KaxvYAeQMjQm04rz3SmpXpA9rk23rVwye/nYxI7VZYtBq+6Qn2yrV8kBB5jDFjb
-         6nOkaFxDQF/iCIfwEQ0RUb2f20/WemBZPkgS+XkLYbqvFPUB8K2MtctMpanCWWQK1JWh
-         8wuQ==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=p66dAZ6SLWm01mjV5Tw/VD4DvpdLjI/e51OKNApulLg=;
+        b=WQt67mUdCQgXxlaaA5KFkwfSWC2pY1vFqWFxlUwvodxyeZHKtSfH3KHMDCl8DPomBT
+         8I2KomVzUwq5gPJ+WDysp5kvoxNeS6fljSXRimijcefAh8KhcSGZ0qm9rvQc5Y431qz3
+         BFHLIvDQAnwCS2hpNMQzXksjzYCipKvdVQ7EVs6UeCBpa8MXcOxVyA2juZnm66an4XLS
+         hc2npqg04vwqIje2/jAAyJ5buMoPIXcSqvG8bbCpxFa6SwCi86fOS4UW6YGt7BNlYgWO
+         beCbqwYgJg8kj0l1S/2/e1UTTUtet20ilp3d6cL5JO0u/lBlunVCXzLEuZwOAH5IWiJa
+         Tpaw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=lLL+dDAHV4SbLQrB8XpOfvuGZUyMnHYhCIRfLueZPXU=;
-        b=iX5c2b3NCo2Y4QedGwqBLc53vKa7/OhOa53R0TkYHgB+spS80u8dVirothK5SBSMEX
-         lljS5t7/38qEVErUD6yXXz109WuJBQPO5V50qH2vOGYDCFLFlpDYpPgKl3Cs2OAEyrJi
-         vHhmAupqD10hL2XnmGrMSt7kOp//kQCPOidXh5RKXoLecZbh0oW1TDCE7DcFrg0bMTuf
-         yvJggbc7Gjt8rJlRCW/CfwYI9Xry1VbiPfBgI5XNAiMyMl3oAjgJeN5yb94sd0LCSvpS
-         9AcyTzy8Jr+lUEhuX7A2Ax8kOZFTV9cztVab/EaNPktG8rpCEZUeXylUmZRtqoHzVk7j
-         9dKQ==
-X-Gm-Message-State: AOAM531Jv3iW/y9CujtGkFhv1OUM3qfLvctomMVeXfYGGd48BdKnqCCq
-        4yAsaDfArOxXsQpAkQEoP0o=
-X-Google-Smtp-Source: ABdhPJy1nIHctJae4YId212e/wcyPadYPuygBtCsVJ9d5s3gotTHRhWpjdMWYziKxvdbTDby7Fq8WA==
-X-Received: by 2002:ac2:4c07:: with SMTP id t7mr3738246lfq.458.1607100176853;
-        Fri, 04 Dec 2020 08:42:56 -0800 (PST)
-Received: from elitebook.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.googlemail.com with ESMTPSA id q20sm1904174ljp.90.2020.12.04.08.42.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 04 Dec 2020 08:42:56 -0800 (PST)
-Subject: Re: [PATCH 2/2] reset: bcm4908-usb: add driver for BCM4908 USB reset
- controller
-To:     Florian Fainelli <f.fainelli@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=p66dAZ6SLWm01mjV5Tw/VD4DvpdLjI/e51OKNApulLg=;
+        b=kUxpWgYqduKP7BTmSe7EfUOPuzYufyHNgVFu0axFxMNul6DNz3kZrg/JpHDDFj1W19
+         a5bPdqK9PVqCEXdNoL1hbG9nZ+ptU/IXUVa9YMvb2dgGng76S9Zna5PxR5vV4Ac9t/9D
+         SIAQe+ja1XRrIQW8oY5xb8ILi92uiv1EdrqqeHu+4BaVisp1gYR1DwtToM0Xa/oQ5/Bg
+         Q+E+NAkNGiOL7MUuRrEr2zoQbOeh3VeO3iJKFNLNFBkdPLcTt3V4Tzalg3t6an2LaN7b
+         6btH2/iEL7nR6ET8I0JlZSDEVjB8zTVFQ4AnVZL/Ed5kVSRxyyqry/pooAkCmRsfFER+
+         FssQ==
+X-Gm-Message-State: AOAM5302h1wp+XMcXh5C2Qgq5s8G+tr7DXKrVR5MYCBq9mxhfqbDtQTl
+        UrsiN8UxNbJ+26LiwUSIxV7fxA==
+X-Google-Smtp-Source: ABdhPJwMLaP/LaAcqZQfgOXXqbNn/tj/kn2bvHxVw6phMHfZBeOjxSQ0vU04mvAjY4W0TSe6pFq7Rw==
+X-Received: by 2002:a63:6683:: with SMTP id a125mr8283405pgc.272.1607103619504;
+        Fri, 04 Dec 2020 09:40:19 -0800 (PST)
+Received: from xps15 (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
+        by smtp.gmail.com with ESMTPSA id s70sm3311160pfc.97.2020.12.04.09.40.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 04 Dec 2020 09:40:18 -0800 (PST)
+Date:   Fri, 4 Dec 2020 10:40:16 -0700
+From:   Mathieu Poirier <mathieu.poirier@linaro.org>
+To:     Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
+Cc:     Ohad Ben Cohen <ohad@wizery.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        "Anna, Suman" <s-anna@ti.com>, linux-remoteproc@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>,
-        Al Cooper <al.cooper@broadcom.com>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-References: <20201204093704.11359-1-zajec5@gmail.com>
- <20201204093704.11359-2-zajec5@gmail.com>
- <5abf5ac5-0d4b-cfd2-7ade-dc66fcc5edde@gmail.com>
-From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Message-ID: <c48791de-eef8-2cae-171d-4da2539963fa@gmail.com>
-Date:   Fri, 4 Dec 2020 17:42:55 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.5.1
+        Lee Jones <lee.jones@linaro.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        "Bajjuri, Praneeth" <praneeth@ti.com>,
+        Roger Quadros <rogerq@ti.com>
+Subject: Re: [PATCH v2 3/6] remoteproc/pru: Add support for PRU specific
+ interrupt configuration
+Message-ID: <20201204174016.GD1392978@xps15>
+References: <20201119140850.12268-1-grzegorz.jaszczyk@linaro.org>
+ <20201119140850.12268-4-grzegorz.jaszczyk@linaro.org>
+ <20201202225739.GF1282360@xps15>
+ <CAMxfBF6az3RGRq00qzbLzPidgG3fu9sXrLzDCDURCUtMoMMfNA@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <5abf5ac5-0d4b-cfd2-7ade-dc66fcc5edde@gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAMxfBF6az3RGRq00qzbLzPidgG3fu9sXrLzDCDURCUtMoMMfNA@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04.12.2020 17:38, Florian Fainelli wrote:
-> On 12/4/2020 1:37 AM, Rafał Miłecki wrote:
->> From: Rafał Miłecki <rafal@milecki.pl>
->>
->> This controller is responsible for OHCI, EHCI, XHCI and PHYs setup that
->> has to be handled in the proper order.
->>
->> One unusual thing about this controller is that is provides access to
->> the MDIO bus. There are two registers (in the middle of block space)
->> responsible for that. For that reason this driver initializes regmap so
->> a proper MDIO driver can use them.
->>
->> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
->> ---
+On Fri, Dec 04, 2020 at 03:11:55PM +0100, Grzegorz Jaszczyk wrote:
+> Hi Mathieu,
 > 
-> [snip]
+> On Wed, 2 Dec 2020 at 23:57, Mathieu Poirier <mathieu.poirier@linaro.org> wrote:
+> >
+> > On Thu, Nov 19, 2020 at 03:08:47PM +0100, Grzegorz Jaszczyk wrote:
+> > > The firmware blob can contain optional ELF sections: .resource_table
+> > > section and .pru_irq_map one. The second one contains the PRUSS
+> > > interrupt mapping description, which needs to be setup before powering
+> > > on the PRU core. To avoid RAM wastage this ELF section is not mapped to
+> > > any ELF segment (by the firmware linker) and therefore is not loaded to
+> > > PRU memory.
+> > >
+> > > The PRU interrupt configuration is handled within the PRUSS INTC irqchip
+> > > driver and leverages the system events to interrupt channels and host
+> > > interrupts mapping configuration. Relevant irq routing information is
+> > > passed through a special .pru_irq_map ELF section (for interrupts routed
+> > > to and used by PRU cores) or via the PRU application's device tree node
+> > > (for interrupts routed to and used by the main CPU). The mappings are
+> > > currently programmed during the booting/shutdown of the PRU.
+> > >
+> > > The interrupt configuration passed through .pru_irq_map ELF section is
+> > > optional. It varies on specific firmware functionality and therefore
+> > > have to be unwinded during PRU stop and performed again during
+> > > PRU start.
+> > >
+> > > Co-developed-by: Suman Anna <s-anna@ti.com>
+> > > Signed-off-by: Suman Anna <s-anna@ti.com>
+> > > Signed-off-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
+> > > ---
+> > > v1->v2:
+> > > Address Suman comments:
+> > > - Rework pru_rproc_find_interrupt_map() style: get rid of generic ELF
+> > >   helpers macros usage and stick with elf32_* related structs instead
+> > >   (in order to be consistent with pru_rproc_load_elf_segments() style).
+> > > - Improve comments and dev_err msgs in pru_rproc_find_interrupt_map().
+> > > - Use u8 instead of ssize_t for evt_count.
+> > > ---
+> > >  drivers/remoteproc/pru_rproc.c | 180 +++++++++++++++++++++++++++++++++
+> > >  drivers/remoteproc/pru_rproc.h |  46 +++++++++
+> > >  2 files changed, 226 insertions(+)
+> > >  create mode 100644 drivers/remoteproc/pru_rproc.h
+> > >
+> > > diff --git a/drivers/remoteproc/pru_rproc.c b/drivers/remoteproc/pru_rproc.c
+> > > index b686f19f9b1a..c68c3d6bfddd 100644
+> > > --- a/drivers/remoteproc/pru_rproc.c
+> > > +++ b/drivers/remoteproc/pru_rproc.c
+> > > @@ -11,13 +11,16 @@
+> > >   */
+> > >
+> > >  #include <linux/bitops.h>
+> > > +#include <linux/irqdomain.h>
+> > >  #include <linux/module.h>
+> > >  #include <linux/of_device.h>
+> > > +#include <linux/of_irq.h>
+> > >  #include <linux/pruss_driver.h>
+> > >  #include <linux/remoteproc.h>
+> > >
+> > >  #include "remoteproc_internal.h"
+> > >  #include "remoteproc_elf_helpers.h"
+> > > +#include "pru_rproc.h"
+> > >
+> > >  /* PRU_ICSS_PRU_CTRL registers */
+> > >  #define PRU_CTRL_CTRL                0x0000
+> > > @@ -42,6 +45,8 @@
+> > >  #define PRU_SDRAM_DA 0x2000  /* Secondary Data RAM */
+> > >  #define PRU_SHRDRAM_DA       0x10000 /* Shared Data RAM */
+> > >
+> > > +#define MAX_PRU_SYS_EVENTS 160
+> > > +
+> > >  /**
+> > >   * enum pru_iomem - PRU core memory/register range identifiers
+> > >   *
+> > > @@ -65,6 +70,10 @@ enum pru_iomem {
+> > >   * @rproc: remoteproc pointer for this PRU core
+> > >   * @mem_regions: data for each of the PRU memory regions
+> > >   * @fw_name: name of firmware image used during loading
+> > > + * @mapped_irq: virtual interrupt numbers of created fw specific mapping
+> > > + * @pru_interrupt_map: pointer to interrupt mapping description (firmware)
+> > > + * @pru_interrupt_map_sz: pru_interrupt_map size
+> > > + * @evt_count: number of mapped events
+> > >   */
+> > >  struct pru_rproc {
+> > >       int id;
+> > > @@ -73,6 +82,10 @@ struct pru_rproc {
+> > >       struct rproc *rproc;
+> > >       struct pruss_mem_region mem_regions[PRU_IOMEM_MAX];
+> > >       const char *fw_name;
+> > > +     int *mapped_irq;
+> > > +     struct pru_irq_rsc *pru_interrupt_map;
+> > > +     size_t pru_interrupt_map_sz;
+> > > +     u8 evt_count;
+> > >  };
+> > >
+> > >  static inline u32 pru_control_read_reg(struct pru_rproc *pru, unsigned int reg)
+> > > @@ -86,15 +99,107 @@ void pru_control_write_reg(struct pru_rproc *pru, unsigned int reg, u32 val)
+> > >       writel_relaxed(val, pru->mem_regions[PRU_IOMEM_CTRL].va + reg);
+> > >  }
+> > >
+> >
+> > > +static void pru_dispose_irq_mapping(struct pru_rproc *pru)
+> > > +{
+> > > +     while (pru->evt_count--) {
+> > > +             if (pru->mapped_irq[pru->evt_count] > 0)
+> > > +                     irq_dispose_mapping(pru->mapped_irq[pru->evt_count]);
+> > > +     }
+> > > +
+> > > +     kfree(pru->mapped_irq);
+> > > +}
+> > > +
+> > > +/*
+> > > + * Parse the custom PRU interrupt map resource and configure the INTC
+> > > + * appropriately.
+> > > + */
+> > > +static int pru_handle_intrmap(struct rproc *rproc)
+> > > +{
+> > > +     struct device *dev = rproc->dev.parent;
+> > > +     struct pru_rproc *pru = rproc->priv;
+> > > +     struct pru_irq_rsc *rsc = pru->pru_interrupt_map;
+> > > +     struct irq_fwspec fwspec;
+> > > +     struct device_node *irq_parent;
+> > > +     int i, ret = 0;
+> > > +
+> > > +     /* not having pru_interrupt_map is not an error */
+> > > +     if (!rsc)
+> > > +             return 0;
+> > > +
+> > > +     /* currently supporting only type 0 */
+> > > +     if (rsc->type != 0) {
+> > > +             dev_err(dev, "unsupported rsc type: %d\n", rsc->type);
+> > > +             return -EINVAL;
+> > > +     }
+> > > +
+> > > +     if (rsc->num_evts < 0 || rsc->num_evts > MAX_PRU_SYS_EVENTS)
+> > > +             return -EINVAL;
+> > > +
+> >
+> > pru_irq_rsc::num_evts is a 'u8' and can't be negative.
 > 
->> +
->> +#define BCM4908_USB_RESET_SETUP						0x0000
->> +#define  BCM4908_USBH_IPP						(1<<5)
->> +#define  BCM4908_USBH_IOC						(1<<4)
->> +#define  BCM4908_USB2_OC_DISABLE_PORT0					(1<<28)
->> +#define  BCM4908_USB2_OC_DISABLE_PORT1					(1<<29)
->> +#define  BCM4908_USB3_OC_DISABLE_PORT0					(1<<30)
->> +#define  BCM4908_USB3_OC_DISABLE_PORT1					(1<<31)
->> +#define BCM4908_USB_RESET_PLL_CTL					0x0004
->> +#define BCM4908_USB_RESET_FLADJ_VALUE					0x0008
->> +#define BCM4908_USB_RESET_BRIDGE_CTL					0x000c
->> +#define BCM4908_USB_RESET_SPARE1					0x0010
->> +#define BCM4908_USB_RESET_MDIO						0x0014
->> +#define BCM4908_USB_RESET_MDIO2						0x0018
->> +#define BCM4908_USB_RESET_TEST_PORT_CONTROL				0x001c
->> +#define BCM4908_USB_RESET_USB_SIMCTL					0x0020
->> +#define  BCM4908_USBH_OHCI_MEM_REQ_DIS					(1<<1)
->> +#define BCM4908_USB_RESET_USB_TESTCTL					0x0024
->> +#define BCM4908_USB_RESET_USB_TESTMON					0x0028
->> +#define BCM4908_USB_RESET_UTMI_CTL_1					0x002c
->> +#define BCM4908_USB_RESET_SPARE2					0x0030
->> +#define BCM4908_USB_RESET_USB_PM					0x0034
->> +#define  BCM4908_XHC_SOFT_RESETB					(1<<22)
->> +#define  BCM4908_USB_PWRDWN						(1<<31)
->> +#define BCM4908_USB_RESET_USB_PM_STATUS					0x0038
->> +#define BCM4908_USB_RESET_SPARE3					0x003c
->> +#define BCM4908_USB_RESET_PLL_LDO_CTL					0x0040
->> +#define BCM4908_USB_RESET_PLL_LDO_PLLBIAS				0x0044
->> +#define BCM4908_USB_RESET_PLL_AFE_BG_CNTL				0x0048
->> +#define BCM4908_USB_RESET_AFE_USBIO_TST					0x004c
->> +#define BCM4908_USB_RESET_PLL_NDIV_FRAC					0x0050
->> +#define BCM4908_USB_RESET_TP_DIAG					0x0054
->> +#define BCM4908_USB_RESET_AHB_CAPTURE_FIFO				0x0058
->> +#define BCM4908_USB_RESET_SPARE4					0x005c
->> +#define BCM4908_USB_RESET_USB30_CTL1					0x0060
->> +#define  BCM4908_PHY3_PLL_SEQ_START					(1<<4)
->> +#define BCM4908_USB_RESET_USB30_CTL2					0x0064
->> +#define BCM4908_USB_RESET_USB30_CTL3					0x0068
->> +#define BCM4908_USB_RESET_USB30_CTL4					0x006c
->> +#define BCM4908_USB_RESET_USB30_PCTL					0x0070
->> +#define BCM4908_USB_RESET_USB30_CTL5					0x0074
->> +#define BCM4908_USB_RESET_SPARE5					0x0078
->> +#define BCM4908_USB_RESET_SPARE6					0x007c
->> +#define BCM4908_USB_RESET_SPARE7					0x0080
->> +#define BCM4908_USB_RESET_USB_DEVICE_CTL1				0x0090
->> +#define BCM4908_USB_RESET_USB_DEVICE_CTL2				0x0094
->> +#define BCM4908_USB_RESET_USB20_ID					0x0150
->> +#define BCM4908_USB_RESET_USB30_ID					0x0154
->> +#define BCM4908_USB_RESET_BDC_COREID					0x0158
->> +#define BCM4908_USB_RESET_USB_REVID					0x015c
+> Sure - I will remove the 'rsc->num_evts < 0 ' check.
 > 
-> This register layout is nearly identical to the one described under
-> drivers/phy/broadcom/phy-brcm-usb-init.c and this is because within
-> Broadcom the same design group has been supplying the USB PHY and host
-> controllers to the DSL and STB product lines.
+> >
+> > > +     if (sizeof(*rsc) + rsc->num_evts * sizeof(struct pruss_int_map) !=
+> > > +         pru->pru_interrupt_map_sz)
+> > > +             return -EINVAL;
+> > > +
+> > > +     pru->evt_count = rsc->num_evts;
+> > > +     pru->mapped_irq = kcalloc(pru->evt_count, sizeof(int), GFP_KERNEL);
+> > > +     if (!pru->mapped_irq)
+> > > +             return -ENOMEM;
+> > > +
+> > > +     /*
+> > > +      * parse and fill in system event to interrupt channel and
+> > > +      * channel-to-host mapping
+> > > +      */
+> > > +     irq_parent = of_irq_find_parent(pru->dev->of_node);
+> > > +     if (!irq_parent) {
+> > > +             kfree(pru->mapped_irq);
+> > > +             return -ENODEV;
+> > > +     }
+> > > +
+> > > +     fwspec.fwnode = of_node_to_fwnode(irq_parent);
+> > > +     fwspec.param_count = 3;
+> > > +     for (i = 0; i < pru->evt_count; i++) {
+> > > +             fwspec.param[0] = rsc->pru_intc_map[i].event;
+> > > +             fwspec.param[1] = rsc->pru_intc_map[i].chnl;
+> > > +             fwspec.param[2] = rsc->pru_intc_map[i].host;
+> > > +
+> > > +             dev_dbg(dev, "mapping%d: event %d, chnl %d, host %d\n",
+> > > +                    i, fwspec.param[0], fwspec.param[1], fwspec.param[2]);
+> > > +
+> > > +             pru->mapped_irq[i] = irq_create_fwspec_mapping(&fwspec);
+> > > +             if (pru->mapped_irq[i] < 0) {
+> >
+> > Function irq_create_fwspec_mapping() returns an unsigned int - theoretically the
+> > above check could return a false positive.  I suggest to make
+> > pru_proc::mapped_irq a '*unsigned int" and revise the error condition.
 > 
-> I would model this the same way we have done it for the Broadcom STB HCI
-> drivers and add a separate compatible string along with an optional
-> reset line.
+> You are right - I will do as suggested.
 > 
-> As far as MDIO goes as you can see the USB PHY driver uses a mix of
-> memory mapped and MDIO accesses (eye fix, etc.) so it was deemed cleaner
-> to not use the MDIO subsystem for the very few accesses that are required.
+> >
+> > > +                     dev_err(dev, "failed to get virq\n");
+> > > +                     ret = pru->mapped_irq[i];
+> > > +                     goto map_fail;
+> > > +             }
+> > > +     }
+> > > +
+> > > +     return ret;
+> > > +
+> > > +map_fail:
+> > > +     pru_dispose_irq_mapping(pru);
+> > > +
+> > > +     return ret;
+> > > +}
+> > > +
+> > >  static int pru_rproc_start(struct rproc *rproc)
+> > >  {
+> > >       struct device *dev = &rproc->dev;
+> > >       struct pru_rproc *pru = rproc->priv;
+> > >       u32 val;
+> > > +     int ret;
+> > >
+> > >       dev_dbg(dev, "starting PRU%d: entry-point = 0x%llx\n",
+> > >               pru->id, (rproc->bootaddr >> 2));
+> > >
+> > > +     ret = pru_handle_intrmap(rproc);
+> > > +     /*
+> > > +      * reset references to pru interrupt map - they will stop being valid
+> > > +      * after rproc_start returns
+> > > +      */
+> >
+> > Why is that?  As far as I understand the interrupt map points inside the
+> > firmware image, which won't go away until @rproc is disposed of or users change
+> > it via sysfs.  And the latter can't happen when the remote processor is active.
+> > Can't this go to pru_dispose_irq_mapping()?
 > 
-> This is different from the Northstar platform you have been working on
-> where the USB PHYs are not memory maapped at all and only accessible
-> over MDIO.
-> 
-> Let me know if you think the existing driver would not be extensible to
-> support 4908.
+> Those references are pointing to the fw segments which are released
+> right after rproc_start() due to release_firmware() call. I think that
+> resetting them before pru_rproc_start() returns is proper. If you
+> don't mind I prefer to keep this part as is.
 
-I see some / many similarities in that PHY driver, I'll try to reuse it, thanks!
+You correct - I had rproc::cached_table in mind but that one is kmemdup()'ed.
+
+> 
+> Thank you,
+> Grzegorz
+> 
+> >
+> > More comments to come tomorrow.
+> >
+> > Thanks,
+> > Mathieu
+> >
+> > > +     pru->pru_interrupt_map = NULL;
+> > > +     pru->pru_interrupt_map_sz = 0;
+> > > +     if (ret)
+> > > +             return ret;
+> > > +
+> > >       val = CTRL_CTRL_EN | ((rproc->bootaddr >> 2) << 16);
+> > >       pru_control_write_reg(pru, PRU_CTRL_CTRL, val);
+> > >
+> > > @@ -113,6 +218,10 @@ static int pru_rproc_stop(struct rproc *rproc)
+> > >       val &= ~CTRL_CTRL_EN;
+> > >       pru_control_write_reg(pru, PRU_CTRL_CTRL, val);
+> > >
+> > > +     /* dispose irq mapping - new firmware can provide new mapping */
+> > > +     if (pru->mapped_irq)
+> > > +             pru_dispose_irq_mapping(pru);
+> > > +
+> > >       return 0;
+> > >  }
+> > >
+> > > @@ -275,12 +384,70 @@ pru_rproc_load_elf_segments(struct rproc *rproc, const struct firmware *fw)
+> > >       return ret;
+> > >  }
+> > >
+> > > +static const void *
+> > > +pru_rproc_find_interrupt_map(struct device *dev, const struct firmware *fw)
+> > > +{
+> > > +     struct elf32_shdr *shdr, *name_table_shdr;
+> > > +     const char *name_table;
+> > > +     const u8 *elf_data = fw->data;
+> > > +     struct elf32_hdr *ehdr = (struct elf32_hdr *)elf_data;
+> > > +     u16 shnum = ehdr->e_shnum;
+> > > +     u16 shstrndx = ehdr->e_shstrndx;
+> > > +     int i;
+> > > +
+> > > +     /* first, get the section header */
+> > > +     shdr = (struct elf32_shdr *)(elf_data + ehdr->e_shoff);
+> > > +     /* compute name table section header entry in shdr array */
+> > > +     name_table_shdr = shdr + shstrndx;
+> > > +     /* finally, compute the name table section address in elf */
+> > > +     name_table = elf_data + name_table_shdr->sh_offset;
+> > > +
+> > > +     for (i = 0; i < shnum; i++, shdr++) {
+> > > +             u32 size = shdr->sh_size;
+> > > +             u32 offset = shdr->sh_offset;
+> > > +             u32 name = shdr->sh_name;
+> > > +
+> > > +             if (strcmp(name_table + name, ".pru_irq_map"))
+> > > +                     continue;
+> > > +
+> > > +             /* make sure we have the entire irq map */
+> > > +             if (offset + size > fw->size || offset + size < size) {
+> > > +                     dev_err(dev, ".pru_irq_map section truncated\n");
+> > > +                     return ERR_PTR(-EINVAL);
+> > > +             }
+> > > +
+> > > +             /* make sure irq map has at least the header */
+> > > +             if (sizeof(struct pru_irq_rsc) > size) {
+> > > +                     dev_err(dev, "header-less .pru_irq_map section\n");
+> > > +                     return ERR_PTR(-EINVAL);
+> > > +             }
+> > > +
+> > > +             return shdr;
+> > > +     }
+> > > +
+> > > +     dev_dbg(dev, "no .pru_irq_map section found for this fw\n");
+> > > +
+> > > +     return NULL;
+> > > +}
+> > > +
+> > >  /*
+> > >   * Use a custom parse_fw callback function for dealing with PRU firmware
+> > >   * specific sections.
+> > > + *
+> > > + * The firmware blob can contain optional ELF sections: .resource_table section
+> > > + * and .pru_irq_map one. The second one contains the PRUSS interrupt mapping
+> > > + * description, which needs to be setup before powering on the PRU core. To
+> > > + * avoid RAM wastage this ELF section is not mapped to any ELF segment (by the
+> > > + * firmware linker) and therefore is not loaded to PRU memory.
+> > >   */
+> > >  static int pru_rproc_parse_fw(struct rproc *rproc, const struct firmware *fw)
+> > >  {
+> > > +     struct device *dev = &rproc->dev;
+> > > +     struct pru_rproc *pru = rproc->priv;
+> > > +     const u8 *elf_data = fw->data;
+> > > +     const void *shdr;
+> > > +     u8 class = fw_elf_get_class(fw);
+> > > +     u64 sh_offset;
+> > >       int ret;
+> > >
+> > >       /* load optional rsc table */
+> > > @@ -290,6 +457,19 @@ static int pru_rproc_parse_fw(struct rproc *rproc, const struct firmware *fw)
+> > >       else if (ret)
+> > >               return ret;
+> > >
+> > > +     /* find .pru_interrupt_map section, not having it is not an error */
+> > > +     shdr = pru_rproc_find_interrupt_map(dev, fw);
+> > > +     if (IS_ERR(shdr))
+> > > +             return PTR_ERR(shdr);
+> > > +
+> > > +     if (!shdr)
+> > > +             return 0;
+> > > +
+> > > +     /* preserve pointer to PRU interrupt map together with it size */
+> > > +     sh_offset = elf_shdr_get_sh_offset(class, shdr);
+> > > +     pru->pru_interrupt_map = (struct pru_irq_rsc *)(elf_data + sh_offset);
+> > > +     pru->pru_interrupt_map_sz = elf_shdr_get_sh_size(class, shdr);
+> > > +
+> > >       return 0;
+> > >  }
+> > >
+> > > diff --git a/drivers/remoteproc/pru_rproc.h b/drivers/remoteproc/pru_rproc.h
+> > > new file mode 100644
+> > > index 000000000000..8ee9c3171610
+> > > --- /dev/null
+> > > +++ b/drivers/remoteproc/pru_rproc.h
+> > > @@ -0,0 +1,46 @@
+> > > +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-3-Clause) */
+> > > +/*
+> > > + * PRUSS Remote Processor specific types
+> > > + *
+> > > + * Copyright (C) 2014-2020 Texas Instruments Incorporated - https://www.ti.com/
+> > > + *   Suman Anna <s-anna@ti.com>
+> > > + */
+> > > +
+> > > +#ifndef _PRU_RPROC_H_
+> > > +#define _PRU_RPROC_H_
+> > > +
+> > > +/**
+> > > + * struct pruss_int_map - PRU system events _to_ channel and host mapping
+> > > + * @event: number of the system event
+> > > + * @chnl: channel number assigned to a given @event
+> > > + * @host: host number assigned to a given @chnl
+> > > + *
+> > > + * PRU system events are mapped to channels, and these channels are mapped
+> > > + * to host interrupts. Events can be mapped to channels in a one-to-one or
+> > > + * many-to-one ratio (multiple events per channel), and channels can be
+> > > + * mapped to host interrupts in a one-to-one or many-to-one ratio (multiple
+> > > + * channels per interrupt).
+> > > + */
+> > > +struct pruss_int_map {
+> > > +     u8 event;
+> > > +     u8 chnl;
+> > > +     u8 host;
+> > > +};
+> > > +
+> > > +/**
+> > > + * struct pru_irq_rsc - PRU firmware section header for IRQ data
+> > > + * @type: resource type
+> > > + * @num_evts: number of described events
+> > > + * @pru_intc_map: PRU interrupt routing description
+> > > + *
+> > > + * The PRU firmware blob can contain optional .pru_irq_map ELF section, which
+> > > + * provides the PRUSS interrupt mapping description. The pru_irq_rsc struct
+> > > + * describes resource entry format.
+> > > + */
+> > > +struct pru_irq_rsc {
+> > > +     u8 type;
+> > > +     u8 num_evts;
+> > > +     struct pruss_int_map pru_intc_map[];
+> > > +} __packed;
+> > > +
+> > > +#endif       /* _PRU_RPROC_H_ */
+> > > --
+> > > 2.29.0
+> > >
