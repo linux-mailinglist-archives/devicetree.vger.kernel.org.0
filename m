@@ -2,187 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C37E2CF0AC
-	for <lists+devicetree@lfdr.de>; Fri,  4 Dec 2020 16:23:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D0F652CF0F8
+	for <lists+devicetree@lfdr.de>; Fri,  4 Dec 2020 16:47:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730556AbgLDPXK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Dec 2020 10:23:10 -0500
-Received: from gproxy10-pub.mail.unifiedlayer.com ([69.89.20.226]:37928 "EHLO
-        gproxy10-pub.mail.unifiedlayer.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1730570AbgLDPXK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Dec 2020 10:23:10 -0500
-Received: from cmgw15.unifiedlayer.com (unknown [10.9.0.15])
-        by gproxy10.mail.unifiedlayer.com (Postfix) with ESMTP id B869914043D
-        for <devicetree@vger.kernel.org>; Fri,  4 Dec 2020 08:22:28 -0700 (MST)
-Received: from bh-25.webhostbox.net ([208.91.199.152])
-        by cmsmtp with ESMTP
-        id lCuikhQGih41llCuikjwHh; Fri, 04 Dec 2020 08:22:28 -0700
-X-Authority-Reason: nr=8
-X-Authority-Analysis: v=2.3 cv=U5S889ju c=1 sm=1 tr=0
- a=QNED+QcLUkoL9qulTODnwA==:117 a=2cfIYNtKkjgZNaOwnGXpGw==:17
- a=dLZJa+xiwSxG16/P+YVxDGlgEgI=:19 a=kj9zAlcOel0A:10:nop_charset_1
- a=zTNgK-yGK50A:10:nop_rcvd_month_year
- a=evQFzbml-YQA:10:endurance_base64_authed_username_1 a=gAnH3GRIAAAA:8
- a=gEfo2CItAAAA:8 a=ANbo8Dlv8gLl3pwesY4A:9 a=CjuIK1q_8ugA:10:nop_charset_2
- a=oVHKYsEdi7-vN-J5QA_j:22 a=sptkURWiP4Gy88Gu7hUp:22
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=roeck-us.net; s=default; h=In-Reply-To:Content-Type:MIME-Version:References
-        :Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding
-        :Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-        List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=hHBoM8SHwdBEaWX2iAGcaH4kBm1sUEH4S2Rc86Zg3WE=; b=CNL5T8mAtKFCRlkTXwzfz7p/Ef
-        +gEISxL/rQdU6xkQQPdEwa9auJGzJQLwjant+txLeAu48HsYRgt4wefI0nNpYtSUB57mRmh0Tp6oJ
-        CO4F5tL40Ijn8PT/riFUYaX1j6GcljekODBX8AfWxj0/PRWXXGDtnpmLLAXcSjjxLXwwG2CxUZswM
-        GXtCzsMPt0JQrDRDNWeNNcp341GSTNmT2s4ZaoP9cNavTj+GaFjKdJDIAMSBWyUTtRUC4mUAD82xB
-        7t/8rNC/TVUJl4dv0JRue5WiJbCS4DZsEmdYyh4X/zxkW6tstKIhdcFaLujKnM3d672MCu3ZWpAI8
-        ZyetWoQw==;
-Received: from 108-223-40-66.lightspeed.sntcca.sbcglobal.net ([108.223.40.66]:46528 helo=localhost)
-        by bh-25.webhostbox.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.93)
-        (envelope-from <linux@roeck-us.net>)
-        id 1klCuh-001kRd-Nt; Fri, 04 Dec 2020 15:22:27 +0000
-Date:   Fri, 4 Dec 2020 07:22:26 -0800
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     alexandru.tachici@analog.com
-Cc:     linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Weston.Sapia@analog.com,
-        Brad.Lovell@analog.com, Sal.Afzal@analog.com, robh+dt@kernel.org
-Subject: Re: [PATCH v3 3/3] dt-binding: hwmon: Add documentation for ltc2992
-Message-ID: <20201204152226.GC135107@roeck-us.net>
-References: <20201203071155.68859-1-alexandru.tachici@analog.com>
- <20201203071155.68859-4-alexandru.tachici@analog.com>
+        id S1730574AbgLDPqv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Dec 2020 10:46:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49338 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727476AbgLDPqu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Dec 2020 10:46:50 -0500
+Received: from mail-ej1-x644.google.com (mail-ej1-x644.google.com [IPv6:2a00:1450:4864:20::644])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DD18C061A4F;
+        Fri,  4 Dec 2020 07:46:10 -0800 (PST)
+Received: by mail-ej1-x644.google.com with SMTP id ce23so5541258ejb.8;
+        Fri, 04 Dec 2020 07:46:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=DbuAyN4iS3jE4U8EbiNHXJ2azbl7Kvh289+qu9c177I=;
+        b=qo2LjP/5aSlrSTKxBszJVbRALYQEyunOrGSTat7HnEImAsVNH/dsiqnnc/oSJug0o2
+         CUpls6t4Di/qckyok9rz0J7q1HJzRJZp25u9MUEKDc1UwjZfpOaB/oCUOoQkcTSa0yOd
+         kD98xdt+C5yB2eM+hpCaJh2BhCA6Unikuon6GD9Ro2dY/3KBhXSx63YzuM+SFtVDUurV
+         34CcQI1gQQiW9abg14HoZhCnX+jGW1jtzU829y/BZn4zsnvtL3YvC00TEQfD1KJ0p5B5
+         IAUir0Mr3BW6R63WqaTlBkilwaM/1U/ZujJtKlIgBJSH8ooB0qJcroLVBioT+7JcrvP9
+         sjvw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=DbuAyN4iS3jE4U8EbiNHXJ2azbl7Kvh289+qu9c177I=;
+        b=QOq2jTgalSGbnt8HtlnNUJPFV4UCgNvadG9VWnRR4wlaPLuH7Ij4YvSecP0uVje1vJ
+         0t8RHq04BGbo1wTzan1opecnFUft9jCMs5Gpics8jg+tukaihE+TveQ5PmXgnf8zX4V/
+         Fbu5qzFeBSdUxFWo9H8Cxb8V67tHIWDHiBvdihXsyrdvuvUVlk4w343XAyMGGdJQcylj
+         gIdh3miSmcMusqOksYiODptDtGzuljtpnEhiJ4oD5lAG7FQwR9csXdZuXMZ994F35WuC
+         Gq7M+2RyMJ2cZe9O+mngeQPH0aBaEiAF7oFjD2i2uemxUqJ1mnJEJ04PXGU715e05CR7
+         9wUw==
+X-Gm-Message-State: AOAM531USjGMWUA/2a4TSyKhRAmYwOTh8/Q+7wNNh6E2HfTtAp5M9Rey
+        H5WKCPMEwGlBzRzVJTzU7Y4=
+X-Google-Smtp-Source: ABdhPJzK6eXffhjqFGkcAWdUBfAlJi9OXl7yvUZWgm9NnuvukHyyyS6UAK2lT0tx6lcjkCDWIy/LvA==
+X-Received: by 2002:a17:906:2581:: with SMTP id m1mr7556254ejb.28.1607096769272;
+        Fri, 04 Dec 2020 07:46:09 -0800 (PST)
+Received: from localhost ([62.96.65.119])
+        by smtp.gmail.com with ESMTPSA id mb22sm3310243ejb.35.2020.12.04.07.46.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 04 Dec 2020 07:46:07 -0800 (PST)
+Date:   Fri, 4 Dec 2020 16:46:06 +0100
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Dmitry Osipenko <digetx@gmail.com>
+Cc:     Jonathan Hunter <jonathanh@nvidia.com>,
+        Georgi Djakov <georgi.djakov@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Mikko Perttunen <cyndis@kapsi.fi>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Nicolas Chauvet <kwizart@gmail.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        linux-tegra@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v11 01/10] dt-bindings: memory: tegra20: emc: Document
+ opp-supported-hw property
+Message-ID: <X8pZviQW2BHSMlg6@ulmo>
+References: <20201203192439.16177-1-digetx@gmail.com>
+ <20201203192439.16177-2-digetx@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="6ldeiUs9kZMXTziz"
 Content-Disposition: inline
-In-Reply-To: <20201203071155.68859-4-alexandru.tachici@analog.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - bh-25.webhostbox.net
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - roeck-us.net
-X-BWhitelist: no
-X-Source-IP: 108.223.40.66
-X-Source-L: No
-X-Exim-ID: 1klCuh-001kRd-Nt
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-Source-Sender: 108-223-40-66.lightspeed.sntcca.sbcglobal.net (localhost) [108.223.40.66]:46528
-X-Source-Auth: guenter@roeck-us.net
-X-Email-Count: 21
-X-Source-Cap: cm9lY2s7YWN0aXZzdG07YmgtMjUud2ViaG9zdGJveC5uZXQ=
-X-Local-Domain: yes
+In-Reply-To: <20201203192439.16177-2-digetx@gmail.com>
+User-Agent: Mutt/2.0.2 (d9268908) (2020-11-20)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 03, 2020 at 09:11:55AM +0200, alexandru.tachici@analog.com wrote:
-> From: Alexandru Tachici <alexandru.tachici@analog.com>
-> 
-> Add documentation for ltc2992.
-> 
-> Signed-off-by: Alexandru Tachici <alexandru.tachici@analog.com>
 
-Side note: You are supposed to keep previous Reviewed-by: tags unless
-there was a change.
+--6ldeiUs9kZMXTziz
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Applied, with Rob's Reviewed-by: tag added back.
-
-Guenter
-
+On Thu, Dec 03, 2020 at 10:24:30PM +0300, Dmitry Osipenko wrote:
+> Document opp-supported-hw property, which is not strictly necessary to
+> have on Tegra20, but it's very convenient to have because all other SoC
+> core devices will use hardware versioning, and thus, it's good to maintain
+> the consistency.
+>=20
+> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
 > ---
->  .../bindings/hwmon/adi,ltc2992.yaml           | 80 +++++++++++++++++++
->  1 file changed, 80 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/hwmon/adi,ltc2992.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/hwmon/adi,ltc2992.yaml b/Documentation/devicetree/bindings/hwmon/adi,ltc2992.yaml
-> new file mode 100644
-> index 000000000000..64a8fcb7bc46
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/hwmon/adi,ltc2992.yaml
-> @@ -0,0 +1,80 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/hwmon/adi,ltc2992.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Linear Technology 2992 Power Monitor
-> +
-> +maintainers:
-> +  - Alexandru Tachici <alexandru.tachici@analog.com>
-> +
-> +description: |
-> +  Linear Technology 2992 Dual Wide Range Power Monitor
-> +  https://www.analog.com/media/en/technical-documentation/data-sheets/ltc2992.pdf
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - adi,ltc2992
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  '#address-cells':
-> +    const: 1
-> +
-> +  '#size-cells':
-> +    const: 0
-> +
-> +  avcc-supply: true
-> +
-> +patternProperties:
-> +  "^channel@([0-1])$":
-> +    type: object
-> +    description: |
-> +      Represents the two supplies to be monitored.
-> +
-> +    properties:
-> +      reg:
-> +        description: |
-> +          The channel number. LTC2992 can monitor two supplies.
-> +        items:
-> +          minimum: 0
-> +          maximum: 1
-> +
-> +      shunt-resistor-micro-ohms:
-> +        description:
-> +          The value of curent sense resistor in microohms.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c1 {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        ltc2992@6F {
-> +                #address-cells = <1>;
-> +                #size-cells = <0>;
-> +
-> +                compatible = "adi,ltc2992";
-> +                reg = <0x6F>;
-> +
-> +                channel@0 {
-> +                        reg = <0x0>;
-> +                        shunt-resistor-micro-ohms = <10000>;
-> +                };
-> +
-> +                channel@1 {
-> +                        reg = <0x1>;
-> +                        shunt-resistor-micro-ohms = <10000>;
-> +                };
-> +        };
-> +    };
-> +...
-> -- 
-> 2.20.1
-> 
+>  .../bindings/memory-controllers/nvidia,tegra20-emc.txt      | 6 ++++++
+>  1 file changed, 6 insertions(+)
+
+Acked-by: Thierry Reding <treding@nvidia.com>
+
+--6ldeiUs9kZMXTziz
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl/KWb0ACgkQ3SOs138+
+s6FH1w//dN0K/ARFuRyDWigwOrKReFJQh4EOwjQKryEpjjTg8Uvrc7Y/OWrIo/qB
+yja+Mk9p9mxkYJXxn6IY2mW2Seph8nmzG35zy0JBL+N+eZ/XiPvqt85W518oHxaa
+asyYw335HlTappz23Kdx9IIfeHQXX76H96+gUyUughgMA+7y4G2n2G4xTP916EFd
+fZ53xB5EUYyp37nROQASYoPCmCnIgZBAQchJoOvRPqDeSc2ce+/kdU+faoo0ltGz
+gX5OF6zTkC+6NVVS3aBy1gIZg/wqQMo1Yiz1kslAf2n8Pk4JOgDKobzUDL9NZX7F
+HQhmjBwV9yBsjnWEydVEz+hHf+UG1QRbYHCyURDMnNw4qK6/b1tUpz9paE40l2BP
+RQCNEDMb+AhhOx8gyeqtIQJd6XErNR5vJi/kMZV0bWaxjdzaFKSnvNKTZ92VoZvN
+UCsn0kFSmheUTE6xlOW/k2YXnD3Qcoo7pOc0LWqIuSUizqBAbSJen6VFWyKngZ+4
+hkgZW2w0sHoOE9Fut2HxuGc7mg/2da37r+NxI66fzcR4DU0igQeeDJoMVmC9B7gj
+EIqwOMy2hrRUrK64rDJ1fxKeRplINR7LZL9yBKEGsLwACi5wdFYNZwZr9xcP4TCy
+yiEcJJH8F80dhvV8e/AuZyBPfrVhz4qDeWXr/EcuAenYLZnQ9sg=
+=JFZn
+-----END PGP SIGNATURE-----
+
+--6ldeiUs9kZMXTziz--
