@@ -2,111 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A4E6F2CEFBE
-	for <lists+devicetree@lfdr.de>; Fri,  4 Dec 2020 15:34:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C7EC2CEFD3
+	for <lists+devicetree@lfdr.de>; Fri,  4 Dec 2020 15:40:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729534AbgLDOdY convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 4 Dec 2020 09:33:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37928 "EHLO
+        id S1730343AbgLDOkB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Dec 2020 09:40:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38964 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729521AbgLDOdY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Dec 2020 09:33:24 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34E02C061A51
-        for <devicetree@vger.kernel.org>; Fri,  4 Dec 2020 06:32:44 -0800 (PST)
-Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1klC8R-0002pr-W0; Fri, 04 Dec 2020 15:32:35 +0100
-Received: from pza by lupine with local (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1klC8Q-0003Ke-69; Fri, 04 Dec 2020 15:32:34 +0100
-Message-ID: <ebaf3126dddf686e1ff07e00c61cd43c07ab07cd.camel@pengutronix.de>
-Subject: Re: [EXT] Re: [PATCH v5 07/10] media: Add parsing for APP14 data
- segment in jpeg helpers
-From:   Philipp Zabel <p.zabel@pengutronix.de>
-To:     "Mirela Rabulea (OSS)" <mirela.rabulea@oss.nxp.com>,
-        "mchehab@kernel.org" <mchehab@kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "hverkuil-cisco@xs4all.nl" <hverkuil-cisco@xs4all.nl>
-Cc:     dl-linux-imx <linux-imx@nxp.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "laurent.pinchart+renesas@ideasonboard.com" 
-        <laurent.pinchart+renesas@ideasonboard.com>,
-        Aisheng Dong <aisheng.dong@nxp.com>,
-        Laurentiu Palcu <laurentiu.palcu@nxp.com>,
-        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-        Robert Chiras <robert.chiras@nxp.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "paul.kocialkowski@bootlin.com" <paul.kocialkowski@bootlin.com>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "niklas.soderlund+renesas@ragnatech.se" 
-        <niklas.soderlund+renesas@ragnatech.se>,
-        Daniel Baluta <daniel.baluta@nxp.com>,
-        "dafna.hirschfeld@collabora.com" <dafna.hirschfeld@collabora.com>,
-        "ezequiel@collabora.com" <ezequiel@collabora.com>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>
-Date:   Fri, 04 Dec 2020 15:32:34 +0100
-In-Reply-To: <2bffcb5a2454dfc2188cc11b0f796f965cc7291e.camel@oss.nxp.com>
-References: <20201112030557.8540-1-mirela.rabulea@oss.nxp.com>
-         <20201112030557.8540-8-mirela.rabulea@oss.nxp.com>
-         <6acf2724130aa2e927cd116ecd216bec3e0321a5.camel@pengutronix.de>
-         <2bffcb5a2454dfc2188cc11b0f796f965cc7291e.camel@oss.nxp.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-User-Agent: Evolution 3.30.5-1.1 
+        with ESMTP id S1725920AbgLDOkB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Dec 2020 09:40:01 -0500
+Received: from mail-vk1-xa44.google.com (mail-vk1-xa44.google.com [IPv6:2607:f8b0:4864:20::a44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFDB0C08E85E
+        for <devicetree@vger.kernel.org>; Fri,  4 Dec 2020 06:38:50 -0800 (PST)
+Received: by mail-vk1-xa44.google.com with SMTP id a129so1296485vki.5
+        for <devicetree@vger.kernel.org>; Fri, 04 Dec 2020 06:38:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=n+PnrcoVAdtN8GPBxsVpfIuQzUembcvR9XiK1uQx4OM=;
+        b=cClF9W26HI1jeodnLahFAEF1AOV+L5iFQiL5QKpY/tZv0WYk7CZow4UPGxXcFknKPX
+         wJr3jS/KmrZ9Yel1YiQcJZJ7lxgTCb9Jv4th0tfQlG2tn2AaaOARvtEaYGAinM8kpW12
+         WB7Kr0wqHEuXSGo2qn8m/TeB8/+ck89rVsu6GXf3X2ZIyXoPG1gDA5z7p4zIyxzHVjvD
+         rGciDKMzC5GA05C169RWfnaL9TEDwTYXmOTgUV/udnEVtZ9cTHdyz3DkvYbB0I3NnYW/
+         4wAMVKfsWfguE828RODTsibaGsSZK/l9agfuyC855e6dWP/gTQz10aRDEzxiC+pSAuvj
+         Pnkg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=n+PnrcoVAdtN8GPBxsVpfIuQzUembcvR9XiK1uQx4OM=;
+        b=Guq+2paXntZw7yOVuTfJQ87aBsKOBRFH/fA76QTUw7WXbcm6y6+t6n5AGdt/mnxa7h
+         sA8e+DJvw/yYbzZiHYQ+7/ooaYHuZrRXiHKSj3Lf5e8KE9RdVEdwi7Z431WOSOxBIZPJ
+         CSPBPe6uOctCExuWgi+relQe/Y5HshT9jHYOG6aaDl9NpevrMdgy4zTWznPl3U1JOm+g
+         NlbP0oexzO4RvrAfSsT6AmU6/DRRFHPJEMyP3ydvEObedZjiaU55aQoEYXw5UtJiR2N9
+         AT5kz1qW1o6yaV+mRc/j75hNwT/9k/sLn6N0Ym67LPVdvXBOgnYAbGG5RXbolwLIJtQM
+         2Spw==
+X-Gm-Message-State: AOAM533JaQw518NGZZeU6TWm8+peMpF46EUXcBnUColdVHnxHkrd2ZDQ
+        9MR8wM7/H4nCBBU91VZCoPiSWfeGBlIp2MLg/d8osP2f1pUaZw==
+X-Google-Smtp-Source: ABdhPJyikXHr7pn6pcbkVo8ISm8xKwkpzaeqRFQ5SQp7nae2EYK2Zb4KjBUBCUKi3Vp+0e1Z6ybSvyDvSywx7kp6V1o=
+X-Received: by 2002:a1f:1357:: with SMTP id 84mr3813030vkt.6.1607092730187;
+ Fri, 04 Dec 2020 06:38:50 -0800 (PST)
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+References: <20201126105900.26658-1-aisheng.dong@nxp.com> <20201126105900.26658-2-aisheng.dong@nxp.com>
+In-Reply-To: <20201126105900.26658-2-aisheng.dong@nxp.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Fri, 4 Dec 2020 15:38:11 +0100
+Message-ID: <CAPDyKFqJb4Pj6hwMM_qGQo_DnF2cE_C0u9yQYdMwV0scnsRPPw@mail.gmail.com>
+Subject: Re: [PATCH RESEND v4 01/18] dt-bindings: mmc: imx: fix the wrongly
+ dropped imx8qm compatible string
+To:     Dong Aisheng <aisheng.dong@nxp.com>
+Cc:     DTML <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        Haibo Chen <haibo.chen@nxp.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 2020-12-04 at 14:13 +0000, Mirela Rabulea (OSS) wrote:
-> Hi Phipipp,
+On Thu, 26 Nov 2020 at 12:16, Dong Aisheng <aisheng.dong@nxp.com> wrote:
 >
-> On Wed, 2020-12-02 at 16:18 +0100, Philipp Zabel wrote:
-> > Hi Mirela,
-> > 
-> > On Thu, 2020-11-12 at 05:05 +0200, Mirela Rabulea (OSS) wrote:
-> > > From: Mirela Rabulea <mirela.rabulea@nxp.com>
-> > > 
-> > > According to Rec. ITU-T T.872 (06/2012) 6.5.3
-> > > APP14 segment is for color encoding, it contains a transform flag,
-> > > which
-> > > may have values of 0, 1 and 2 and are interpreted as follows:
-> > > 0 - CMYK for images that are encoded with four components
-> > >   - RGB for images that are encoded with three components
-> > > 1 - An image encoded with three components using YCbCr colour
-> > > encoding.
-> > > 2 - An image encoded with four components using YCCK colour
-> > > encoding.
-> > > 
-> > > This is used in imx-jpeg decoder, to distinguish between
-> > > YUV444 and RGB24.
-> > > 
-> > > Signed-off-by: Mirela Rabulea <mirela.rabulea@nxp.com>
-> > > ---
-> > > Changes in v5:
-> > > This was patch 8 in previous version
-> > > Replaced a struct for app14 data with just an int, since the
-> > > transform flag is the only meaningfull information from this
-> > > segment
-> > 
-> > Could we turn this into an enum for the transform flag, and include
-> > the
-> > above spec reference in its kerneldoc comment? I think this would be
-> > better than checking for (app14_tf == <magic_number>) in the drivers.
-> 
-> Appreciate your feedback, for all patches, I'll address it in v6.
-> Where would be a better place for this enum, v4l2-jpeg.h, or maybe
-> include/uapi/linux/v4l2-controls.h?
+> The compatible string "fsl,imx8qm-usdhc" was wrongly dropped in patch:
+> commit 80fd350b9590 ("dt-bindings: mmc: fsl-imx-esdhc: Fix i.MX 8 compatible matching")
+> Add it back.
+>
+> Cc: Haibo Chen <haibo.chen@nxp.com>
+> Cc: Krzysztof Kozlowski <krzk@kernel.org>
+> Cc: Ulf Hansson <ulf.hansson@linaro.org>
+> Fixes: 80fd350b9590 ("dt-bindings: mmc: fsl-imx-esdhc: Fix i.MX 8 compatible matching")
+> Signed-off-by: Dong Aisheng <aisheng.dong@nxp.com>
 
-v4l2-jpeg.h seems like the right place to me.
+Applied for next and by amending the commit message according to
+Krzysztof's comment, thanks!
 
-regards
-Philipp
+Kind regards
+Uffe
+
+
+> ---
+>  Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml b/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
+> index e71d13c2d109..802c9df23752 100644
+> --- a/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
+> @@ -39,6 +39,7 @@ properties:
+>                - fsl,imx8mn-usdhc
+>                - fsl,imx8mp-usdhc
+>                - fsl,imx8mq-usdhc
+> +              - fsl,imx8qm-usdhc
+>                - fsl,imx8qxp-usdhc
+>            - const: fsl,imx7d-usdhc
+>
+> --
+> 2.23.0
+>
