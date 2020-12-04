@@ -2,111 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AC1572CF541
-	for <lists+devicetree@lfdr.de>; Fri,  4 Dec 2020 21:07:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ED2DC2CF554
+	for <lists+devicetree@lfdr.de>; Fri,  4 Dec 2020 21:10:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726152AbgLDUHC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Dec 2020 15:07:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33406 "EHLO
+        id S1727210AbgLDUJw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Dec 2020 15:09:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33840 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726021AbgLDUHC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Dec 2020 15:07:02 -0500
-Received: from mail-ej1-x643.google.com (mail-ej1-x643.google.com [IPv6:2a00:1450:4864:20::643])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16921C0613D1;
-        Fri,  4 Dec 2020 12:06:22 -0800 (PST)
-Received: by mail-ej1-x643.google.com with SMTP id x16so10429472ejj.7;
-        Fri, 04 Dec 2020 12:06:21 -0800 (PST)
+        with ESMTP id S1726441AbgLDUJw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Dec 2020 15:09:52 -0500
+Received: from mail-ed1-x544.google.com (mail-ed1-x544.google.com [IPv6:2a00:1450:4864:20::544])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54D54C0613D1;
+        Fri,  4 Dec 2020 12:09:12 -0800 (PST)
+Received: by mail-ed1-x544.google.com with SMTP id ck29so7102448edb.8;
+        Fri, 04 Dec 2020 12:09:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc:content-transfer-encoding;
-        bh=Qs8bczzvvcOwQEvENjn4URGTN3wUu8Qwy1O5EPHsTig=;
-        b=ZW/eWHESkxaXaG9FG2ERuWlrJJ2EoQMuQe1ap/t4Zug2xHTKyUvLAe0LSma4Hr4D/2
-         sSMiCQ1AuK2IgAeuycOb5uINCa3XpZunE/MtvasipMDxT4x9h0dBXrW5ZSnsgrea6Quu
-         oE+TKrBVdYlJ60LcYxbjCzHutv1LLN1GYFlPb/guIJxnxiFNKmOEAIGVzc+3dINf0y2U
-         WMvf1vz+bq3a8zx96TxY3YgVrYLl7G3F6xV4fXFq5qaRSGXZ2escXPdnH/c9EEvY/7gt
-         +xxDEd7L/SCwFRzp1bqlM5Pq0vWXHeILgrYhM+zGSha4PEPdAoyyF/YOerl7Dy8QWhmz
-         QOaQ==
+        bh=4t1dy5iRiZB4Z+/OzIHXwSJSK8rY8jRfJx3So3UXm0Q=;
+        b=NZHTcA6d7YsdqBUPEFkSI7fq7cm7J9Fw10khd8L5+/zmv4ZE+yE0bZ3nLcC1OeiL3p
+         Y/MLmZRvjpBGboubpgbdGQRF4yKufCK1/3OJdu78bQjaOnjppmD0bwncrwtacJv84+y+
+         VtiAlzM7uusXvO+BizPMXmpyfYRePpCHw21IOBhfdM6nbZU4/LQI02E2BM3/SivKttOM
+         QNe8snLLbTf3HKeDRBtc7DhaVr3JaJ6seo+B3PVTyk4MzoAIOpsfoKxJpI/7HJEDX/QV
+         vb0NU0GLoenDmYTNN/wym/qb386OXKfFz8t+2+yk1+YewTL5hNMb9mNRLwiBb7QHwquB
+         aUBg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc:content-transfer-encoding;
-        bh=Qs8bczzvvcOwQEvENjn4URGTN3wUu8Qwy1O5EPHsTig=;
-        b=J6EaSr7WxdepE9I4get/d+QbhBrLf2MuLK82tB8c+jGVyI4gDxAgD0uaFltbXQzMaY
-         etDSSM9suNGvZ1MmBbsvfcLiz3gJdrYBIcJwnvoxUE7bUxtdCYLX+sOb2Je62iYdBtK2
-         Vx7wOJfPg44vliz1jkf7OUCEVEBxZ/OXqk844MV6dL/SE/GBuT0IPeQpfxnqntfzPeFi
-         35ozp1Cy9MwWI4GCGk9Q/o6v5ovS2fRhJUp0ymvucnlvR/7lY+ACeOSZDS55FDMFsGFw
-         2sb08d8nQ5qSTu9jHby1BKgsxEiM7eFj0LRxCwC60Gvpv+6Zpul1Nv4WqChVKDbHhvSx
-         3ZJQ==
-X-Gm-Message-State: AOAM532iGOxAX2mUI6An7OgQm2IP6PbUqQa0FjIy06FVFPf6zg8dyJgg
-        wqjn3QSOePLg9fMiI9GKhuHjxasT8TDsFTllGHo0gz/s
-X-Google-Smtp-Source: ABdhPJy8bqY9rTcK9UXixUcvuanWn9pcDguoM2gGjlVFhJsXrNeS0S/ACFdsGzvK97Sho3oM8Zmu3as25niNqcfU0q8=
-X-Received: by 2002:a17:906:2ec3:: with SMTP id s3mr8450543eji.133.1607112380662;
- Fri, 04 Dec 2020 12:06:20 -0800 (PST)
+        bh=4t1dy5iRiZB4Z+/OzIHXwSJSK8rY8jRfJx3So3UXm0Q=;
+        b=Zv6DKYHhvwZqiBuQMivVNQohl9dhFuevMKDHA7XljKCatQbTyFzbTKtcYLu7/oC+42
+         DnmfGiVHIHd2ppSlSDG7G+U03U9/rzAK5jWxOmt/IJSt2egTzD+/pNva49kIOY3cOPxg
+         7lHs2YAxiY3TG8SCXDjMED8EIJ6PbxpGRbg3aJJXqNCzDli4TIHxHAV57NQ1srMw6Rdx
+         ZhyA7y+gr0mp+8d4P7mici4Ax3df8xuY1rtDvE3nSMQYPoFr3BohoeunzCGSX7jJ7SLU
+         4+IM/3KXwslEFzxi7g/FMGpkdIt/P2Cioa3bIHJXX0+Z9YKNarjxMMlIerHw0lY3OADH
+         Hf+g==
+X-Gm-Message-State: AOAM533sdbJguASTrnMF+ECw88lrtkjUlLuJm+T9QBH6QZbyfrx00FsN
+        zvrU7ZmRoipWP/lKi4ZT5W01ti0ZqdhQPziAc8o=
+X-Google-Smtp-Source: ABdhPJw29Ny5tk93CP19n/cXJG3k+SPWXKMugsVKasXMCXVwC8umIy/MOTY0KX2IylR0UdFMPeB5zvNKRAfkntxWNYs=
+X-Received: by 2002:aa7:d9c1:: with SMTP id v1mr9271107eds.115.1607112551102;
+ Fri, 04 Dec 2020 12:09:11 -0800 (PST)
 MIME-Version: 1.0
-References: <20201129203116.11987-1-adrien.grassein@gmail.com> <CAPDyKFp0U5=s_AJh4-QAn=WCodkYUaFE9BuLjpJB80z23J7JkA@mail.gmail.com>
-In-Reply-To: <CAPDyKFp0U5=s_AJh4-QAn=WCodkYUaFE9BuLjpJB80z23J7JkA@mail.gmail.com>
+References: <20201128225425.19300-1-adrien.grassein@gmail.com>
+ <20201129220000.16550-1-adrien.grassein@gmail.com> <20201129224113.GS2234159@lunn.ch>
+ <CABkfQAFcSNMeYEepsx0Z6tuaif-dQhE2YBMK54t1hikAvzdASg@mail.gmail.com>
+ <20201129230416.GT2234159@lunn.ch> <bb81c90c-d79e-d944-e35e-305da23d9e58@gmail.com>
+ <20201130222645.GG2073444@lunn.ch>
+In-Reply-To: <20201130222645.GG2073444@lunn.ch>
 From:   Adrien Grassein <adrien.grassein@gmail.com>
-Date:   Fri, 4 Dec 2020 21:06:09 +0100
-Message-ID: <CABkfQAEnVqOikmEBy2XhzSUM1zzvTSLJvMEP8M_k_EfpRuDw5w@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: mmc: add an option to disable HS400 for fsl
-To:     Ulf Hansson <ulf.hansson@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>
+Date:   Fri, 4 Dec 2020 21:09:00 +0100
+Message-ID: <CABkfQAERoudFeUnmLYgh4WKcJ3sh4aahKk6RjA5VHfnb3swpFQ@mail.gmail.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: net: fsl-fec add mdc/mdio bitbang option
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     Florian Fainelli <f.fainelli@gmail.com>, fugang.duan@nxp.com,
+        davem@davemloft.net, kuba@kernel.org,
+        Rob Herring <robh+dt@kernel.org>, netdev@vger.kernel.org,
+        DTML <devicetree@vger.kernel.org>, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
+Hi all,
 
-Thanks, it's working with your suggestion.
+I'm not a kernel expert, but I try to find why these patches were
+needed in the FSL/Boundary kernel.
 
-You can delete/abandon these patches.
+I found that the pin muxing in the original kernel was not good for FEC.
+It's now working well with the mainline code.
+
+You can delete these patches.
 
 Thanks a lot,
 Regards,
+
 Adrien
 
-Le ven. 4 d=C3=A9c. 2020 =C3=A0 14:18, Ulf Hansson <ulf.hansson@linaro.org>=
- a =C3=A9crit :
+Le lun. 30 nov. 2020 =C3=A0 23:26, Andrew Lunn <andrew@lunn.ch> a =C3=A9cri=
+t :
 >
-> On Sun, 29 Nov 2020 at 21:31, Adrien Grassein <adrien.grassein@gmail.com>=
- wrote:
+> > >> I am currently upstreaming the "Nitrogen 8m Mini board" that seems t=
+o not use a
+> > >> "normal" mdio bus but a "bitbanged" one with the fsl fec driver.
+> > >
+> > > Any idea why?
+> > >
+> > > Anyway, you should not replicate code, don't copy bitbanging code int=
+o
+> > > the FEC. Just use the existing bit-banger MDIO bus master driver.
 > >
-> > Add an option to disable the hs400 support in the fsl esdhc
-> > driver.
-> >
-> > Signed-off-by: Adrien Grassein <adrien.grassein@gmail.com>
-> > ---
-> >  Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml | 4 ++++
-> >  1 file changed, 4 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml b=
-/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
-> > index e71d13c2d109..070b40ae8c44 100644
-> > --- a/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
-> > +++ b/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
-> > @@ -101,6 +101,10 @@ properties:
-> >        If not use this property, driver default set the delay target to=
- value 7.
-> >        Only eMMC HS400 mode need to take care of this property.
-> >      default: 0
-> > +  fsl,no-mmc-hs400:
-> > +    description: |
-> > +      boolean, if present, indicate to disable mmc-hs400 support.
-> > +    type: boolean
+> > Right there should be no need for you to modify the FEC driver at all,
+> > there is an existing generic bitbanged MDIO bus driver here:
 >
-> You need to disable hs400, because the sdhci capability register
-> wrongly claims it to be supported, right?
+> Hi Florian
 >
-> May I suggest using the DT property "sdhci-caps-mask" instead?
+> Speculation on my part, until i hear back on the Why? question, but
+> i'm guessing the board has a wrong pullup on the MDIO line. It takes
+> too long for the PHY/FEC to pull the line low at the default
+> 2.5MHz. bit-banging is much slower, so it works.
 >
-> Kind regards
-> Uffe
+> If i'm right, there is a much simpler fix for this. Use the
+> clock-frequency property for the MDIO bus to slow the clock down.
+>
+>         Andrew
