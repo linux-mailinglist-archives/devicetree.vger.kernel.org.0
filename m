@@ -2,29 +2,28 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 42F022CE86E
-	for <lists+devicetree@lfdr.de>; Fri,  4 Dec 2020 08:11:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 30D952CE870
+	for <lists+devicetree@lfdr.de>; Fri,  4 Dec 2020 08:12:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728363AbgLDHKG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Dec 2020 02:10:06 -0500
-Received: from smtp2207-205.mail.aliyun.com ([121.197.207.205]:49538 "EHLO
+        id S1727983AbgLDHMB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Dec 2020 02:12:01 -0500
+Received: from smtp2207-205.mail.aliyun.com ([121.197.207.205]:53624 "EHLO
         smtp2207-205.mail.aliyun.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1727939AbgLDHKG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Dec 2020 02:10:06 -0500
-X-Alimail-AntiSpam: AC=CONTINUE;BC=0.07436367|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_system_inform|0.0402969-0.00271428-0.956989;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047202;MF=huangshuosheng@allwinnertech.com;NM=1;PH=DS;RN=12;RT=12;SR=0;TI=SMTPD_---.J2qu1x2_1607065747;
-Received: from allwinnertech.com(mailfrom:huangshuosheng@allwinnertech.com fp:SMTPD_---.J2qu1x2_1607065747)
-          by smtp.aliyun-inc.com(10.147.42.253);
-          Fri, 04 Dec 2020 15:09:16 +0800
+        by vger.kernel.org with ESMTP id S1725550AbgLDHMB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Dec 2020 02:12:01 -0500
+X-Alimail-AntiSpam: AC=CONTINUE;BC=0.07448996|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_regular_dialog|0.600806-0.00119886-0.397995;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047190;MF=huangshuosheng@allwinnertech.com;NM=1;PH=DS;RN=9;RT=9;SR=0;TI=SMTPD_---.J2poTyq_1607065868;
+Received: from allwinnertech.com(mailfrom:huangshuosheng@allwinnertech.com fp:SMTPD_---.J2poTyq_1607065868)
+          by smtp.aliyun-inc.com(10.147.41.143);
+          Fri, 04 Dec 2020 15:11:11 +0800
 From:   Shuosheng Huang <huangshuosheng@allwinnertech.com>
 To:     robh+dt@kernel.org, mripard@kernel.org, wens@csie.org,
-        jernej.skrabec@siol.net, rjw@rjwysocki.net,
-        viresh.kumar@linaro.org, tiny.windzz@gmail.com
+        jernej.skrabec@siol.net, tiny.windzz@gmail.com
 Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
         Shuosheng Huang <huangshuosheng@allwinnertech.com>
-Subject: [PATCH 1/2] cpufreq: sun50i: add a100 cpufreq support
-Date:   Fri,  4 Dec 2020 15:09:01 +0800
-Message-Id: <20201204070901.24592-1-huangshuosheng@allwinnertech.com>
+Subject: [PATCH 2/2] arm64: dts: allwinner: a100: Add CPU Operating Performance Points table
+Date:   Fri,  4 Dec 2020 15:11:07 +0800
+Message-Id: <20201204071107.25206-1-huangshuosheng@allwinnertech.com>
 X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -32,172 +31,183 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Let's add cpufreq nvmem based for allwinner a100 soc. It's similar to h6,
-let us use efuse_xlate to extract the differentiated part.
+Add an Operating Performance Points table for the CPU cores to
+enable Dynamic Voltage & Frequency Scaling on the A100.
 
 Signed-off-by: Shuosheng Huang <huangshuosheng@allwinnertech.com>
 ---
- drivers/cpufreq/cpufreq-dt-platdev.c   |  1 +
- drivers/cpufreq/sun50i-cpufreq-nvmem.c | 81 ++++++++++++++++++++------
- 2 files changed, 64 insertions(+), 18 deletions(-)
+ .../allwinner/sun50i-a100-allwinner-perf1.dts |  5 ++
+ .../dts/allwinner/sun50i-a100-cpu-opp.dtsi    | 90 +++++++++++++++++++
+ .../arm64/boot/dts/allwinner/sun50i-a100.dtsi |  8 ++
+ 3 files changed, 103 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-a100-cpu-opp.dtsi
 
-diff --git a/drivers/cpufreq/cpufreq-dt-platdev.c b/drivers/cpufreq/cpufreq-dt-platdev.c
-index 3776d960f405..2ebf5d9cb616 100644
---- a/drivers/cpufreq/cpufreq-dt-platdev.c
-+++ b/drivers/cpufreq/cpufreq-dt-platdev.c
-@@ -102,6 +102,7 @@ static const struct of_device_id whitelist[] __initconst = {
-  */
- static const struct of_device_id blacklist[] __initconst = {
- 	{ .compatible = "allwinner,sun50i-h6", },
-+	{ .compatible = "allwinner,sun50i-a100", },
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a100-allwinner-perf1.dts b/arch/arm64/boot/dts/allwinner/sun50i-a100-allwinner-perf1.dts
+index d34c2bb1079f..7c579923f973 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-a100-allwinner-perf1.dts
++++ b/arch/arm64/boot/dts/allwinner/sun50i-a100-allwinner-perf1.dts
+@@ -6,6 +6,7 @@
+ /dts-v1/;
  
- 	{ .compatible = "calxeda,highbank", },
- 	{ .compatible = "calxeda,ecx-2000", },
-diff --git a/drivers/cpufreq/sun50i-cpufreq-nvmem.c b/drivers/cpufreq/sun50i-cpufreq-nvmem.c
-index 9907a165135b..044e44a763f5 100644
---- a/drivers/cpufreq/sun50i-cpufreq-nvmem.c
-+++ b/drivers/cpufreq/sun50i-cpufreq-nvmem.c
-@@ -21,21 +21,63 @@
+ #include "sun50i-a100.dtsi"
++#include "sun50i-a100-cpu-opp.dtsi"
  
- #define NVMEM_MASK	0x7
- #define NVMEM_SHIFT	5
-+#define SUN50I_A100_NVMEM_MASK		0xf
-+#define SUN50I_A100_NVMEM_SHIFT		12
-+
-+#define SUN50I_H6_NVMEM_MASK		0x7
-+#define SUN50I_H6_NVMEM_SHIFT		5
-+
-+struct sunxi_cpufreq_soc_data {
-+	u32 (*efuse_xlate)(void *efuse);
-+};
- 
- static struct platform_device *cpufreq_dt_pdev, *sun50i_cpufreq_pdev;
- 
-+static u32 sun50i_a100_efuse_xlate(void *efuse)
-+{
-+	u32 efuse_value = (*(u16 *)efuse >> SUN50I_A100_NVMEM_SHIFT) &
-+			  SUN50I_A100_NVMEM_MASK;
-+
-+	switch (efuse_value) {
-+	case 0b100:
-+		return 2;
-+	case 0b010:
-+		return 1;
-+	default:
-+		return 0;
-+	}
-+}
-+
-+static u32 sun50i_h6_efuse_xlate(void *efuse)
-+{
-+	u32 efuse_value = (*(u32 *)efuse >> SUN50I_H6_NVMEM_SHIFT) &
-+			  SUN50I_H6_NVMEM_MASK;
-+
-+	/*
-+	 * We treat unexpected efuse values as if the SoC was from
-+	 * the slowest bin. Expected efuse values are 1-3, slowest
-+	 * to fastest.
-+	 */
-+	if (efuse_value >= 1 && efuse_value <= 3)
-+		return efuse_value - 1;
-+	else
-+		return 0;
-+}
-+
- /**
-  * sun50i_cpufreq_get_efuse() - Determine speed grade from efuse value
-+ * @soc_data: pointer to sunxi_cpufreq_soc_data context
-  * @versions: Set to the value parsed from efuse
-  *
-  * Returns 0 if success.
-  */
--static int sun50i_cpufreq_get_efuse(u32 *versions)
-+static int sun50i_cpufreq_get_efuse(const struct sunxi_cpufreq_soc_data *soc_data,
-+				    u32 *versions)
- {
- 	struct nvmem_cell *speedbin_nvmem;
- 	struct device_node *np;
- 	struct device *cpu_dev;
--	u32 *speedbin, efuse_value;
-+	u32 *speedbin;
- 	size_t len;
- 	int ret;
- 
-@@ -68,17 +110,7 @@ static int sun50i_cpufreq_get_efuse(u32 *versions)
- 	if (IS_ERR(speedbin))
- 		return PTR_ERR(speedbin);
- 
--	efuse_value = (*speedbin >> NVMEM_SHIFT) & NVMEM_MASK;
--
--	/*
--	 * We treat unexpected efuse values as if the SoC was from
--	 * the slowest bin. Expected efuse values are 1-3, slowest
--	 * to fastest.
--	 */
--	if (efuse_value >= 1 && efuse_value <= 3)
--		*versions = efuse_value - 1;
--	else
--		*versions = 0;
-+	*versions = soc_data->efuse_xlate(speedbin);
- 
- 	kfree(speedbin);
- 	return 0;
-@@ -86,18 +118,23 @@ static int sun50i_cpufreq_get_efuse(u32 *versions)
- 
- static int sun50i_cpufreq_nvmem_probe(struct platform_device *pdev)
- {
-+	const struct of_device_id *match;
- 	struct opp_table **opp_tables;
- 	char name[MAX_NAME_LEN];
- 	unsigned int cpu;
- 	u32 speed = 0;
- 	int ret;
- 
-+	match = dev_get_platdata(&pdev->dev);
-+	if (!match)
-+		return -EINVAL;
-+
- 	opp_tables = kcalloc(num_possible_cpus(), sizeof(*opp_tables),
- 			     GFP_KERNEL);
- 	if (!opp_tables)
- 		return -ENOMEM;
- 
--	ret = sun50i_cpufreq_get_efuse(&speed);
-+	ret = sun50i_cpufreq_get_efuse(match->data, &speed);
- 	if (ret)
- 		return ret;
- 
-@@ -163,8 +200,17 @@ static struct platform_driver sun50i_cpufreq_driver = {
- 	},
+ /{
+ 	model = "Allwinner A100 Perf1";
+@@ -20,6 +21,10 @@ chosen {
+ 	};
  };
  
-+static const struct sunxi_cpufreq_soc_data sun50i_a100_data = {
-+	.efuse_xlate = sun50i_a100_efuse_xlate,
++&cpu0 {
++	cpu-supply = <&reg_dcdc2>;
 +};
 +
-+static const struct sunxi_cpufreq_soc_data sun50i_h6_data = {
-+	.efuse_xlate = sun50i_h6_efuse_xlate,
+ &pio {
+ 	vcc-pb-supply = <&reg_dcdc1>;
+ 	vcc-pc-supply = <&reg_eldo1>;
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a100-cpu-opp.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-a100-cpu-opp.dtsi
+new file mode 100644
+index 000000000000..bc8ceaa38392
+--- /dev/null
++++ b/arch/arm64/boot/dts/allwinner/sun50i-a100-cpu-opp.dtsi
+@@ -0,0 +1,90 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++// Copyright (c) 2020 Yangtao Li <frank@allwinnertech.com>
++// Copyright (c) 2020 ShuoSheng Huang <huangshuosheng@allwinnertech.com>
++
++/ {
++	cpu_opp_table: cpu-opp-table {
++		compatible = "allwinner,sun50i-h6-operating-points";
++		nvmem-cells = <&cpu_speed_grade>;
++		opp-shared;
++
++		opp@408000000 {
++			clock-latency-ns = <244144>; /* 8 32k periods */
++			opp-hz = /bits/ 64 <408000000>;
++
++			opp-microvolt-speed0 = <900000 900000 1200000>;
++			opp-microvolt-speed0 = <900000 900000 1200000>;
++			opp-microvolt-speed0 = <900000 900000 1200000>;
++		};
++
++		opp@600000000 {
++			clock-latency-ns = <244144>; /* 8 32k periods */
++			opp-hz = /bits/ 64 <600000000>;
++
++			opp-microvolt-speed0 = <900000 900000 1200000>;
++			opp-microvolt-speed0 = <900000 900000 1200000>;
++			opp-microvolt-speed0 = <900000 900000 1200000>;
++		};
++
++		opp@816000000 {
++			clock-latency-ns = <244144>; /* 8 32k periods */
++			opp-hz = /bits/ 64 <816000000>;
++
++			opp-microvolt-speed0 = <940000 940000 1200000>;
++			opp-microvolt-speed0 = <900000 900000 1200000>;
++			opp-microvolt-speed0 = <900000 900000 1200000>;
++		};
++
++		opp@1080000000 {
++			clock-latency-ns = <244144>; /* 8 32k periods */
++			opp-hz = /bits/ 64 <1080000000>;
++
++			opp-microvolt-speed0 = <1020000 1020000 1200000>;
++			opp-microvolt-speed1 = <980000 980000 1200000>;
++			opp-microvolt-speed2 = <950000 950000 1200000>;
++		};
++
++		opp@1200000000 {
++			clock-latency-ns = <244144>; /* 8 32k periods */
++			opp-hz = /bits/ 64 <1200000000>;
++
++			opp-microvolt-speed0 = <1100000 1100000 1200000>;
++			opp-microvolt-speed1 = <1020000 1020000 1200000>;
++			opp-microvolt-speed2 = <1000000 1000000 1200000>;
++		};
++
++		opp@1320000000 {
++			clock-latency-ns = <244144>; /* 8 32k periods */
++			opp-hz = /bits/ 64 <1320000000>;
++
++			opp-microvolt-speed0 = <1160000 1160000 1200000>;
++			opp-microvolt-speed0 = <1060000 1060000 1200000>;
++			opp-microvolt-speed0 = <1030000 1030000 1200000>;
++		};
++
++		opp@1464000000 {
++			clock-latency-ns = <244144>; /* 8 32k periods */
++			opp-hz = /bits/ 64 <1464000000>;
++
++			opp-microvolt-speed0 = <1180000 1180000 1200000>;
++			opp-microvolt-speed0 = <1180000 1180000 1200000>;
++			opp-microvolt-speed0 = <1130000 1130000 1200000>;
++		};
++	};
 +};
 +
- static const struct of_device_id sun50i_cpufreq_match_list[] = {
--	{ .compatible = "allwinner,sun50i-h6" },
-+	{ .compatible = "allwinner,sun50i-h6", .data = &sun50i_h6_data },
-+	{ .compatible = "allwinner,sun50i-a100", .data = &sun50i_a100_data },
- 	{}
- };
++&cpu0 {
++	operating-points-v2 = <&cpu_opp_table>;
++};
++
++&cpu1 {
++	operating-points-v2 = <&cpu_opp_table>;
++};
++
++&cpu2 {
++	operating-points-v2 = <&cpu_opp_table>;
++};
++
++&cpu3 {
++	operating-points-v2 = <&cpu_opp_table>;
++};
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi
+index cc321c04f121..8f370a175ce6 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi
++++ b/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi
+@@ -23,6 +23,7 @@ cpu0: cpu@0 {
+ 			device_type = "cpu";
+ 			reg = <0x0>;
+ 			enable-method = "psci";
++			clocks = <&ccu CLK_CPUX>;
+ 		};
  
-@@ -198,9 +244,8 @@ static int __init sun50i_cpufreq_init(void)
- 	if (unlikely(ret < 0))
- 		return ret;
+ 		cpu@1 {
+@@ -30,6 +31,7 @@ cpu@1 {
+ 			device_type = "cpu";
+ 			reg = <0x1>;
+ 			enable-method = "psci";
++			clocks = <&ccu CLK_CPUX>;
+ 		};
  
--	sun50i_cpufreq_pdev =
--		platform_device_register_simple("sun50i-cpufreq-nvmem",
--						-1, NULL, 0);
-+	sun50i_cpufreq_pdev = platform_device_register_data(NULL,
-+		"sun50i-cpufreq-nvmem", -1, match, sizeof(*match));
- 	ret = PTR_ERR_OR_ZERO(sun50i_cpufreq_pdev);
- 	if (ret == 0)
- 		return 0;
+ 		cpu@2 {
+@@ -37,6 +39,7 @@ cpu@2 {
+ 			device_type = "cpu";
+ 			reg = <0x2>;
+ 			enable-method = "psci";
++			clocks = <&ccu CLK_CPUX>;
+ 		};
+ 
+ 		cpu@3 {
+@@ -44,6 +47,7 @@ cpu@3 {
+ 			device_type = "cpu";
+ 			reg = <0x3>;
+ 			enable-method = "psci";
++			clocks = <&ccu CLK_CPUX>;
+ 		};
+ 	};
+ 
+@@ -121,6 +125,10 @@ efuse@3006000 {
+ 			ths_calibration: calib@14 {
+ 				reg = <0x14 8>;
+ 			};
++
++			cpu_speed_grade: cpu-speed-grade@1c {
++				reg = <0x1c 0x2>;
++			};
+ 		};
+ 
+ 		pio: pinctrl@300b000 {
 -- 
 2.28.0
 
