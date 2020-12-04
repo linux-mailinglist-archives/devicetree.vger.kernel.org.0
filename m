@@ -2,108 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ED2DC2CF554
-	for <lists+devicetree@lfdr.de>; Fri,  4 Dec 2020 21:10:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A3D62CF564
+	for <lists+devicetree@lfdr.de>; Fri,  4 Dec 2020 21:20:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727210AbgLDUJw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Dec 2020 15:09:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33840 "EHLO
+        id S1728124AbgLDUS6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Dec 2020 15:18:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35250 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726441AbgLDUJw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Dec 2020 15:09:52 -0500
-Received: from mail-ed1-x544.google.com (mail-ed1-x544.google.com [IPv6:2a00:1450:4864:20::544])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54D54C0613D1;
-        Fri,  4 Dec 2020 12:09:12 -0800 (PST)
-Received: by mail-ed1-x544.google.com with SMTP id ck29so7102448edb.8;
-        Fri, 04 Dec 2020 12:09:12 -0800 (PST)
+        with ESMTP id S1728582AbgLDUS6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Dec 2020 15:18:58 -0500
+Received: from mail-lj1-x241.google.com (mail-lj1-x241.google.com [IPv6:2a00:1450:4864:20::241])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E181C061A52
+        for <devicetree@vger.kernel.org>; Fri,  4 Dec 2020 12:18:18 -0800 (PST)
+Received: by mail-lj1-x241.google.com with SMTP id f24so7952374ljk.13
+        for <devicetree@vger.kernel.org>; Fri, 04 Dec 2020 12:18:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=4t1dy5iRiZB4Z+/OzIHXwSJSK8rY8jRfJx3So3UXm0Q=;
-        b=NZHTcA6d7YsdqBUPEFkSI7fq7cm7J9Fw10khd8L5+/zmv4ZE+yE0bZ3nLcC1OeiL3p
-         Y/MLmZRvjpBGboubpgbdGQRF4yKufCK1/3OJdu78bQjaOnjppmD0bwncrwtacJv84+y+
-         VtiAlzM7uusXvO+BizPMXmpyfYRePpCHw21IOBhfdM6nbZU4/LQI02E2BM3/SivKttOM
-         QNe8snLLbTf3HKeDRBtc7DhaVr3JaJ6seo+B3PVTyk4MzoAIOpsfoKxJpI/7HJEDX/QV
-         vb0NU0GLoenDmYTNN/wym/qb386OXKfFz8t+2+yk1+YewTL5hNMb9mNRLwiBb7QHwquB
-         aUBg==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ZiqvOYZnVaPoXdhwyb61UvgWLIkGyPr+IhLVSfqE1SY=;
+        b=fo/9yfBFQD7b9kT8+PNDIWdGD/64qLIJ9v0ZQ9bmbwA6DGaQJAiQ6Q8GUxUeeQA+3N
+         5y1V9d9kuSs6v/uXZD3cOkOfgY7w7gVnm4IDNn0OjcDkllAu0jbtVgfpcCbO793Rwt68
+         JzazfZSEHQOAuMOSYQ6vqdKiI2NMTD8/tASwvLft45loUV7A2p4IfM+sU6F2D14SroDO
+         1Cqgt76RC8m7R3C4iX+gXmEpj0t8hIKsVSNe646jOZZkfZ4UYRg+v709ad8e23Naq0l7
+         rk12iGjQ1JnZf8yioUfmR/wZ1r7sH7gLp9vnTwZdUx5VbLR86qQryp/FVSYe6Qvl4Pf2
+         qdvw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=4t1dy5iRiZB4Z+/OzIHXwSJSK8rY8jRfJx3So3UXm0Q=;
-        b=Zv6DKYHhvwZqiBuQMivVNQohl9dhFuevMKDHA7XljKCatQbTyFzbTKtcYLu7/oC+42
-         DnmfGiVHIHd2ppSlSDG7G+U03U9/rzAK5jWxOmt/IJSt2egTzD+/pNva49kIOY3cOPxg
-         7lHs2YAxiY3TG8SCXDjMED8EIJ6PbxpGRbg3aJJXqNCzDli4TIHxHAV57NQ1srMw6Rdx
-         ZhyA7y+gr0mp+8d4P7mici4Ax3df8xuY1rtDvE3nSMQYPoFr3BohoeunzCGSX7jJ7SLU
-         4+IM/3KXwslEFzxi7g/FMGpkdIt/P2Cioa3bIHJXX0+Z9YKNarjxMMlIerHw0lY3OADH
-         Hf+g==
-X-Gm-Message-State: AOAM533sdbJguASTrnMF+ECw88lrtkjUlLuJm+T9QBH6QZbyfrx00FsN
-        zvrU7ZmRoipWP/lKi4ZT5W01ti0ZqdhQPziAc8o=
-X-Google-Smtp-Source: ABdhPJw29Ny5tk93CP19n/cXJG3k+SPWXKMugsVKasXMCXVwC8umIy/MOTY0KX2IylR0UdFMPeB5zvNKRAfkntxWNYs=
-X-Received: by 2002:aa7:d9c1:: with SMTP id v1mr9271107eds.115.1607112551102;
- Fri, 04 Dec 2020 12:09:11 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ZiqvOYZnVaPoXdhwyb61UvgWLIkGyPr+IhLVSfqE1SY=;
+        b=YxLyMVRGEL9uJxpUv1UgBd9xIET94oV9sxGAgGPjkzCTOW+prqrligGnP7mOQvD5Ug
+         5y30m0pcbCbC2ppytxaeRBi1doZ5hsK047UPGRZ5cyrRmNsfGQNhokxz0wmdZRbNxGOo
+         /HV8iIkG3Ddcn2LJH1Hp6JttXFUF2RRVpX0/JlpLupQtGC9YB70y7r0Wcj56jM2QeZNi
+         jEEmzbrEI+vfdU1/q08+DR1bmoHLEilBQZcMo4+q2ksl+oC52tXool9cOxlGsZkprHJE
+         o+LZ7uMBc2V90aldFnrjNAZYsIapgoebwOeU2O4Ck1ozhF9NW+tvXgYI9UOsOkLp9QWL
+         /IkA==
+X-Gm-Message-State: AOAM532pF3blXjJCW3FG9OH0wDnQuB+48E+K3rLujKPpCZrDit9TvwsP
+        GGLXx6lXR1jx+mLToAOsQy6GqA==
+X-Google-Smtp-Source: ABdhPJxqAwfoWF2r9gEF11hL9VPxMbruCY+BSSSwyrxBMgUFhjwUi65/acmXhl9ZbWLYOX/XFMa2eg==
+X-Received: by 2002:a2e:8e64:: with SMTP id t4mr1039685ljk.141.1607113096464;
+        Fri, 04 Dec 2020 12:18:16 -0800 (PST)
+Received: from gilgamesh.semihalf.com (193-106-246-138.noc.fibertech.net.pl. [193.106.246.138])
+        by smtp.gmail.com with ESMTPSA id w21sm2036918lff.280.2020.12.04.12.18.15
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 04 Dec 2020 12:18:15 -0800 (PST)
+From:   Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
+To:     ohad@wizery.com, bjorn.andersson@linaro.org,
+        mathieu.poirier@linaro.org, s-anna@ti.com
+Cc:     grzegorz.jaszczyk@linaro.org, linux-remoteproc@vger.kernel.org,
+        robh+dt@kernel.org, lee.jones@linaro.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        praneeth@ti.com, rogerq@ti.com
+Subject: [PATCH v3 0/6]  Add a PRU remoteproc driver
+Date:   Fri,  4 Dec 2020 21:18:01 +0100
+Message-Id: <20201204201807.14716-1-grzegorz.jaszczyk@linaro.org>
+X-Mailer: git-send-email 2.29.0
 MIME-Version: 1.0
-References: <20201128225425.19300-1-adrien.grassein@gmail.com>
- <20201129220000.16550-1-adrien.grassein@gmail.com> <20201129224113.GS2234159@lunn.ch>
- <CABkfQAFcSNMeYEepsx0Z6tuaif-dQhE2YBMK54t1hikAvzdASg@mail.gmail.com>
- <20201129230416.GT2234159@lunn.ch> <bb81c90c-d79e-d944-e35e-305da23d9e58@gmail.com>
- <20201130222645.GG2073444@lunn.ch>
-In-Reply-To: <20201130222645.GG2073444@lunn.ch>
-From:   Adrien Grassein <adrien.grassein@gmail.com>
-Date:   Fri, 4 Dec 2020 21:09:00 +0100
-Message-ID: <CABkfQAERoudFeUnmLYgh4WKcJ3sh4aahKk6RjA5VHfnb3swpFQ@mail.gmail.com>
-Subject: Re: [PATCH v2 1/3] dt-bindings: net: fsl-fec add mdc/mdio bitbang option
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     Florian Fainelli <f.fainelli@gmail.com>, fugang.duan@nxp.com,
-        davem@davemloft.net, kuba@kernel.org,
-        Rob Herring <robh+dt@kernel.org>, netdev@vger.kernel.org,
-        DTML <devicetree@vger.kernel.org>, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi all,
+Hi All,
 
-I'm not a kernel expert, but I try to find why these patches were
-needed in the FSL/Boundary kernel.
+The Programmable Real-Time Unit and Industrial Communication Subsystem
+(PRU-ICSS or simply PRUSS) on various TI SoCs consists of dual 32-bit
+RISC cores (Programmable Real-Time Units, or PRUs) for program execution.
 
-I found that the pin muxing in the original kernel was not good for FEC.
-It's now working well with the mainline code.
+The K3 AM65x amd J721E SoCs have the next generation of the PRU-ICSS IP,
+commonly called ICSSG. The ICSSG IP on AM65x SoCs has two PRU cores,
+two auxiliary custom PRU cores called Real Time Units (RTUs). The K3
+AM65x SR2.0 and J721E SoCs have a revised version of the ICSSG IP, and
+include two additional custom auxiliary PRU cores called Transmit PRUs
+(Tx_PRUs).
 
-You can delete these patches.
+This series contains the PRUSS remoteproc driver together with relevant
+dt-binding. This is the 3rd foundation component for PRUSS subsystem, the
+previous two were already merged and can be found under:
+1) drivers/soc/ti/pruss.c
+   Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
+2) drivers/irqchip/irq-pruss-intc.c
+   Documentation/devicetree/bindings/interrupt-controller/ti,pruss-intc.yaml
 
-Thanks a lot,
-Regards,
+The following is a v3 version of the series. Please see the individual patches
+for exact changes in each patch, following are the main changes from v2[1]:
+- Add Reviewed-by: Mathieu Poirier <mathieu.poirier@linaro.org> for 4 patches
+after introducing minor fixes/improvements.
+- Adjust the patch title to latest remoteproc subsystem convention:
+s/remoteproc\/pru:/remoteproc:pru:/ as suggested by Suman.
 
-Adrien
+[1] https://patchwork.kernel.org/project/linux-arm-kernel/cover/20201119140850.12268-1-grzegorz.jaszczyk@linaro.org/
 
-Le lun. 30 nov. 2020 =C3=A0 23:26, Andrew Lunn <andrew@lunn.ch> a =C3=A9cri=
-t :
->
-> > >> I am currently upstreaming the "Nitrogen 8m Mini board" that seems t=
-o not use a
-> > >> "normal" mdio bus but a "bitbanged" one with the fsl fec driver.
-> > >
-> > > Any idea why?
-> > >
-> > > Anyway, you should not replicate code, don't copy bitbanging code int=
-o
-> > > the FEC. Just use the existing bit-banger MDIO bus master driver.
-> >
-> > Right there should be no need for you to modify the FEC driver at all,
-> > there is an existing generic bitbanged MDIO bus driver here:
->
-> Hi Florian
->
-> Speculation on my part, until i hear back on the Why? question, but
-> i'm guessing the board has a wrong pullup on the MDIO line. It takes
-> too long for the PHY/FEC to pull the line low at the default
-> 2.5MHz. bit-banging is much slower, so it works.
->
-> If i'm right, there is a much simpler fix for this. Use the
-> clock-frequency property for the MDIO bus to slow the clock down.
->
->         Andrew
+Best regards,
+Grzegorz
+
+Grzegorz Jaszczyk (1):
+  remoteproc: pru: Add support for PRU specific interrupt configuration
+
+Suman Anna (5):
+  dt-bindings: remoteproc: Add binding doc for PRU cores in the PRU-ICSS
+  remoteproc: pru: Add a PRU remoteproc driver
+  remoteproc: pru: Add pru-specific debugfs support
+  remoteproc: pru: Add support for various PRU cores on K3 AM65x SoCs
+  remoteproc: pru: Add support for various PRU cores on K3 J721E SoCs
+
+ .../bindings/remoteproc/ti,pru-rproc.yaml     | 214 +++++
+ drivers/remoteproc/Kconfig                    |  12 +
+ drivers/remoteproc/Makefile                   |   1 +
+ drivers/remoteproc/pru_rproc.c                | 874 ++++++++++++++++++
+ drivers/remoteproc/pru_rproc.h                |  46 +
+ 5 files changed, 1147 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/remoteproc/ti,pru-rproc.yaml
+ create mode 100644 drivers/remoteproc/pru_rproc.c
+ create mode 100644 drivers/remoteproc/pru_rproc.h
+
+-- 
+2.29.0
+
