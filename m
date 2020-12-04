@@ -2,119 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C92152CE8C8
-	for <lists+devicetree@lfdr.de>; Fri,  4 Dec 2020 08:47:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B3B492CE8CE
+	for <lists+devicetree@lfdr.de>; Fri,  4 Dec 2020 08:49:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728216AbgLDHrb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Dec 2020 02:47:31 -0500
-Received: from bmailout2.hostsharing.net ([83.223.78.240]:35981 "EHLO
-        bmailout2.hostsharing.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728152AbgLDHrb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Dec 2020 02:47:31 -0500
-X-Greylist: delayed 460 seconds by postgrey-1.27 at vger.kernel.org; Fri, 04 Dec 2020 02:47:30 EST
-Received: from h08.hostsharing.net (h08.hostsharing.net [IPv6:2a01:37:1000::53df:5f1c:0])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (Client CN "*.hostsharing.net", Issuer "COMODO RSA Domain Validation Secure Server CA" (not verified))
-        by bmailout2.hostsharing.net (Postfix) with ESMTPS id C8EE42800A27A;
-        Fri,  4 Dec 2020 08:38:54 +0100 (CET)
-Received: by h08.hostsharing.net (Postfix, from userid 100393)
-        id 478004A0D; Fri,  4 Dec 2020 08:39:09 +0100 (CET)
-Date:   Fri, 4 Dec 2020 08:39:09 +0100
-From:   Lukas Wunner <lukas@wunner.de>
-To:     Bjorn Helgaas <helgaas@kernel.org>,
-        Jianjun Wang <jianjun.wang@mediatek.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Ryder Lee <ryder.lee@mediatek.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        linux-pci@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Sj Huang <sj.huang@mediatek.com>, youlin.pei@mediatek.com,
-        chuanjia.liu@mediatek.com, qizhong.cheng@mediatek.com,
-        sin_jieyang@mediatek.com
-Subject: Re: [v4,2/3] PCI: mediatek: Add new generation controller support
-Message-ID: <20201204073909.GA17699@wunner.de>
-References: <1606113913.14736.37.camel@mhfsdcap03>
- <20201130173005.GA1088958@bjorn-Precision-5520>
+        id S1728301AbgLDHta (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Dec 2020 02:49:30 -0500
+Received: from szxga07-in.huawei.com ([45.249.212.35]:9376 "EHLO
+        szxga07-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728110AbgLDHta (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Dec 2020 02:49:30 -0500
+Received: from DGGEMS401-HUB.china.huawei.com (unknown [172.30.72.60])
+        by szxga07-in.huawei.com (SkyGuard) with ESMTP id 4CnPvk0BCgz78QY;
+        Fri,  4 Dec 2020 15:48:18 +0800 (CST)
+Received: from [127.0.0.1] (10.174.177.9) by DGGEMS401-HUB.china.huawei.com
+ (10.3.19.201) with Microsoft SMTP Server id 14.3.487.0; Fri, 4 Dec 2020
+ 15:48:42 +0800
+Subject: Re: [PATCH 5/6] ARM: dts: mmp2-olpc-xo-1-75: explicitly add
+ #address-cells=<0> for slave mode
+To:     Rob Herring <robh+dt@kernel.org>, Pavel Machek <pavel@ucw.cz>,
+        Dan Murphy <dmurphy@ti.com>,
+        linux-leds <linux-leds@vger.kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Benson Leung <bleung@chromium.org>,
+        "Enric Balletbo i Serra" <enric.balletbo@collabora.com>,
+        Guenter Roeck <groeck@chromium.org>,
+        Mark Brown <broonie@kernel.org>,
+        linux-spi <linux-spi@vger.kernel.org>,
+        Lubomir Rintel <lkundrak@v3.sk>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+References: <20201013160845.1772-1-thunder.leizhen@huawei.com>
+ <20201013160845.1772-6-thunder.leizhen@huawei.com>
+From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
+Message-ID: <698a7d6d-eceb-6c27-cca2-517218aec78f@huawei.com>
+Date:   Fri, 4 Dec 2020 15:48:41 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201130173005.GA1088958@bjorn-Precision-5520>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20201013160845.1772-6-thunder.leizhen@huawei.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.174.177.9]
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 30, 2020 at 11:30:05AM -0600, Bjorn Helgaas wrote:
-> On Mon, Nov 23, 2020 at 02:45:13PM +0800, Jianjun Wang wrote:
-> > On Thu, 2020-11-19 at 14:28 -0600, Bjorn Helgaas wrote:
-> > > > +static int mtk_pcie_setup(struct mtk_pcie_port *port)
-> > > > +{
-[...]
-> > > > +	/* Try link up */
-> > > > +	err = mtk_pcie_startup_port(port);
-> > > > +	if (err) {
-> > > > +		dev_notice(dev, "PCIe link down\n");
-> > > > +		goto err_setup;
-> > > 
-> > > Generally it should not be a fatal error if the link is not up at
-> > > probe-time.  You may be able to hot-add a device, or the device may
-> > > have some external power control that will power it up later.
-> > 
-> > This is for the power saving requirement. If there is no device
-> > connected with the PCIe slot, the PCIe MAC and PHY should be powered
-> > off.
-> > 
-> > Is there any standard flow to support power down the hardware at
-> > probe-time if no device is connected and power it up when hot-add a
-> > device?
+Hi everybody:
+  Can somebody apply this patch? When I do any YAML dtbs_check on arm, below Warnings always reported.
+
+arch/arm/boot/dts/mmp2.dtsi:472.23-480.6: Warning (spi_bus_bridge): /soc/apb@d4000000/spi@d4037000: incorrect #address-cells for SPI bus
+  also defined at arch/arm/boot/dts/mmp2-olpc-xo-1-75.dts:225.7-237.3
+arch/arm/boot/dts/mmp2.dtsi:472.23-480.6: Warning (spi_bus_bridge): /soc/apb@d4000000/spi@d4037000: incorrect #size-cells for SPI bus
+  also defined at arch/arm/boot/dts/mmp2-olpc-xo-1-75.dts:225.7-237.3
+arch/arm/boot/dts/mmp2-olpc-xo-1-75.dt.yaml: Warning (spi_bus_reg): Failed prerequisite 'spi_bus_bridge'
+
+
+On 2020/10/14 0:08, Zhen Lei wrote:
+> Delete the old property "#address-cells" and then explicitly add it with
+> zero value. The value of "#size-cells" is already zero, so keep it no
+> change.
 > 
-> That's a good question.  I assume this looks like a standard PCIe
-> hot-add event?
+> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
+> ---
+>  arch/arm/boot/dts/mmp2-olpc-xo-1-75.dts | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> When you hot-add a device, does the Root Port generate a Presence
-> Detect Changed interrupt?  The pciehp driver should field that
-> interrupt and turn on power to the slot via the Power Controller
-> Control bit in the Slot Control register.
+> diff --git a/arch/arm/boot/dts/mmp2-olpc-xo-1-75.dts b/arch/arm/boot/dts/mmp2-olpc-xo-1-75.dts
+> index f1a41152e9dd70d..be88b6e551d58e9 100644
+> --- a/arch/arm/boot/dts/mmp2-olpc-xo-1-75.dts
+> +++ b/arch/arm/boot/dts/mmp2-olpc-xo-1-75.dts
+> @@ -224,7 +224,7 @@
+>  
+>  &ssp3 {
+>  	/delete-property/ #address-cells;
+> -	/delete-property/ #size-cells;
+> +	#address-cells = <0>;
+>  	spi-slave;
+>  	status = "okay";
+>  	ready-gpio = <&gpio 125 GPIO_ACTIVE_HIGH>;
 > 
-> Does your hardware require something more than that to control the MAC
-> and PHY power?
 
-Power saving of unused PCIe ports is generally achieved through the
-runtime PM framework.  When a PCIe port runtime suspends, the PCIe
-core will transition it to D3hot.  On top of that, the platform
-may be able to transition the port to D3cold.  Currently only the
-ACPI platform supports that.  Conceivably, devicetree-based systems
-may want to disable certain clocks or regulators when a PCIe port
-runtime suspends.  I think we do not support that yet but it could
-be added to drivers/pci/pcie/portdrv*.
-
-A hotplug port is expected to signal PDC and DLLSC interrupts even
-when in D3hot.  At least that's our experience with Thunderbolt.
-To support hotplug interrupts in D3cold, some external mechanism
-(such as a PME) is necessary to wake up the port on hotplug.
-This is also supported with recent Thunderbolt systems.
-
-Because we've seen various incompatibilities when runtime suspending
-PCIe ports, certain conditions must be satisfied for runtime PM
-to be enabled.  They're encoded in pci_bridge_d3_possible().
-Generally, hotplug ports only runtime suspend if they belong to
-a Thunderbolt controller or if the ACPI platform explicitly allows
-runtime PM (through presence of a _PR3 method or a device property).
-Non-hotplug ports runtime suspend if the BIOS is newer than 2015
-(as specified by DMI).
-
-Obviously, this policy is very x86-focussed because both Thunderbolt
-and DMI are only really a thing on x86.  That's about to change though
-because Apple's new arm64-based Macs have Thunderbolt integrated into
-the SoC and arm64 SoCs are making inroads in the datacenter, which is
-an important use case for PCIe hotplug (hot-swappable NVMe drives).
-So we may have to amend pci_bridge_d3_possible() to whitelist
-PCIe ports for runtime PM on specific arches or systems.
-
-Thanks,
-
-Lukas
