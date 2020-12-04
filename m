@@ -2,353 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D9BB22CE5E4
-	for <lists+devicetree@lfdr.de>; Fri,  4 Dec 2020 03:46:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 16C052CE5FC
+	for <lists+devicetree@lfdr.de>; Fri,  4 Dec 2020 03:56:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727102AbgLDCo3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Dec 2020 21:44:29 -0500
-Received: from szxga04-in.huawei.com ([45.249.212.190]:8247 "EHLO
-        szxga04-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726112AbgLDCo0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Dec 2020 21:44:26 -0500
-Received: from DGGEMS411-HUB.china.huawei.com (unknown [172.30.72.59])
-        by szxga04-in.huawei.com (SkyGuard) with ESMTP id 4CnH7b2Y2tzkkxZ;
-        Fri,  4 Dec 2020 10:43:07 +0800 (CST)
-Received: from thunder-town.china.huawei.com (10.174.177.9) by
- DGGEMS411-HUB.china.huawei.com (10.3.19.211) with Microsoft SMTP Server id
- 14.3.487.0; Fri, 4 Dec 2020 10:43:34 +0800
-From:   Zhen Lei <thunder.leizhen@huawei.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        "Pengutronix Kernel Team" <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        "NXP Linux Team" <linux-imx@nxp.com>,
-        David Airlie <airlied@linux.ie>,
-        "Daniel Vetter" <daniel@ffwll.ch>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        "Thierry Reding" <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        "Hans Verkuil" <hverkuil-cisco@xs4all.nl>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        "Ricardo Ribalda" <ribalda@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        "Matthias Brugger" <matthias.bgg@gmail.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        "Mark Brown" <broonie@kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        linux-media <linux-media@vger.kernel.org>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        linux-mediatek <linux-mediatek@lists.infradead.org>,
-        alsa-devel <alsa-devel@alsa-project.org>
-CC:     Zhen Lei <thunder.leizhen@huawei.com>
-Subject: [PATCH 1/1] dt-bindings: eliminate yamllint warnings
-Date:   Fri, 4 Dec 2020 10:42:26 +0800
-Message-ID: <20201204024226.1222-2-thunder.leizhen@huawei.com>
-X-Mailer: git-send-email 2.26.0.windows.1
-In-Reply-To: <20201204024226.1222-1-thunder.leizhen@huawei.com>
-References: <20201204024226.1222-1-thunder.leizhen@huawei.com>
+        id S1726626AbgLDC4E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Dec 2020 21:56:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43250 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726198AbgLDC4E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Dec 2020 21:56:04 -0500
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58FEDC061A51
+        for <devicetree@vger.kernel.org>; Thu,  3 Dec 2020 18:55:18 -0800 (PST)
+Received: by mail-lj1-x22a.google.com with SMTP id y7so4910232lji.8
+        for <devicetree@vger.kernel.org>; Thu, 03 Dec 2020 18:55:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=36w/Kq59tNMZ1rcX0N78zne707RUAoZsetdEALnoH4s=;
+        b=XV38rAwzypOp9F8eGayqPKGp+geDnf9zK6chD2lZAZz2ANpFM3JIri7kX10Jk2k9f/
+         ftVU6gCtzlx0198/FTTUqXexLs+mlfhJoaZY5tk8GFKk1RB5srMCkG7Lnf2SLm5Ww4fm
+         UTfd5dyw/1iRq1HZfHOu9c0Ylx/ky8m2non8pOHNnBYKR8nlQyBWxRV2ZjedbP8nSDwk
+         MNWPyYHI+EDCNQTxT/z9YT8MHgBHweg6KYiwuhXQtO20QRBVYfKWZp8bQ+jmypPWHmEc
+         qvT4LaIJgfXycATQEct5tpSxMge8T2XCmF5kK5ry5mwxrTSD/+b+D6HO4/VRc6zu1g2j
+         ipzw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=36w/Kq59tNMZ1rcX0N78zne707RUAoZsetdEALnoH4s=;
+        b=lupeLim7zTqIWC/2w+T6fVSwxFHNIoiLF9Xx6FHF8UviIc03WA5e6EW6s5T7OFFqzp
+         rAuaBxI8FcGOk5N1JRDAGIdfppx27tzDLLXN2GRcmYtR53rN0TEIo4PbS38VVZn5ItoW
+         SFqFZblbPz0wCoE/ySvuQ39UBDfcK96mRNdcK74Az4WxKbavZ6FHbvuEvggu1pKshq8Q
+         nxi0jGFbnSwVOiy6lnzmqstkaYiGj2TXOW2Fz16MVXJZfJVmEu6V+hIoUCq9sVrkVKrS
+         8MMoNrBWW8sq3czNJwoenAmI2O0mrrIhXUJ28pnkLeYJ4WaFSP0j1PpM57lML75DNB8s
+         6qAw==
+X-Gm-Message-State: AOAM533cyn9H7RC8kdKbEpZ37RCf5arQbgNkzSkCOukRj8PM6R6tLQ2z
+        hfVkUNLUaaFpQQTkYMGUUrulJQ==
+X-Google-Smtp-Source: ABdhPJx4KZFj3sxAnYsGWQ7t8aaUxTJG92bb/YpkZ6g+HR6pSwex9LWAoa9hA3zGUBM4jpbUZfaZ1g==
+X-Received: by 2002:a2e:9244:: with SMTP id v4mr2278438ljg.438.1607050516852;
+        Thu, 03 Dec 2020 18:55:16 -0800 (PST)
+Received: from eriador.lumag.spb.ru ([188.162.64.117])
+        by smtp.gmail.com with ESMTPSA id b8sm1131667ljo.68.2020.12.03.18.55.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 03 Dec 2020 18:55:15 -0800 (PST)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>
+Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Jishnu Prakash <jprakash@qti.qualcomm.com>
+Subject: [PATCH v10 00/15] qcom: pm8150: add support for thermal monitoring
+Date:   Fri,  4 Dec 2020 05:54:54 +0300
+Message-Id: <20201204025509.1075506-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [10.174.177.9]
-X-CFilter-Loop: Reflected
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-All warnings are related only to "wrong indentation", except one:
-Documentation/devicetree/bindings/media/i2c/mipi-ccs.yaml:4:1: \
-[error] missing document start "---" (document-start)
+This patch serie adds support for thermal monitoring block on Qualcomm's
+PMIC5 chips. PM8150{,b,l} and sm8250-mtp board device trees are extended
+to support thermal zones provided by this thermal monitoring block.
+Unlike the rest of PMIC thermal senses, these thermal zones describe
+particular thermistors, which differ between from board to board.
 
-Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Michael Turquette <mturquette@baylibre.com>
-Cc: Stephen Boyd <sboyd@kernel.org>
-Cc: Shawn Guo <shawnguo@kernel.org>
-Cc: Sascha Hauer <s.hauer@pengutronix.de>
-Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-Cc: Fabio Estevam <festevam@gmail.com>
-Cc: NXP Linux Team <linux-imx@nxp.com>
-Cc: David Airlie <airlied@linux.ie>
-Cc: Daniel Vetter <daniel@ffwll.ch>
-Cc: Sumit Semwal <sumit.semwal@linaro.org>
-Cc: Thierry Reding <thierry.reding@gmail.com>
-Cc: Sam Ravnborg <sam@ravnborg.org>
-Cc: Hans Verkuil <hverkuil-cisco@xs4all.nl>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
-Cc: Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc: Ricardo Ribalda <ribalda@kernel.org>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>
-Cc: Matthias Brugger <matthias.bgg@gmail.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>
-Cc: Mark Brown <broonie@kernel.org>
----
- .../devicetree/bindings/clock/imx8qxp-lpcg.yaml    | 20 ++++++++---------
- .../bindings/display/bridge/analogix,anx7625.yaml  |  4 ++--
- .../bindings/display/bridge/intel,keembay-dsi.yaml |  4 ++--
- .../bindings/display/intel,keembay-msscam.yaml     |  4 ++--
- .../bindings/display/panel/novatek,nt36672a.yaml   |  2 +-
- .../devicetree/bindings/media/i2c/adv7604.yaml     |  4 ++--
- .../devicetree/bindings/media/i2c/mipi-ccs.yaml    | 11 ++++-----
- .../devicetree/bindings/media/i2c/ovti,ov772x.yaml | 12 +++++-----
- .../devicetree/bindings/media/i2c/sony,imx214.yaml | 12 +++++-----
- Documentation/devicetree/bindings/mmc/mtk-sd.yaml  | 26 +++++++++++-----------
- .../sound/mt8192-mt6359-rt1015-rt5682.yaml         |  4 ++--
- 11 files changed, 52 insertions(+), 51 deletions(-)
+Changes since v9:
+ - In patch 12 add comments to the code as requested by Daniel Lezcano.
+ - Change copyright comment in qcom-spmi-adc-tm5.c to clearly note
+   driver history.
 
-diff --git a/Documentation/devicetree/bindings/clock/imx8qxp-lpcg.yaml b/Documentation/devicetree/bindings/clock/imx8qxp-lpcg.yaml
-index e709e530e17a27a..940486ef1051d10 100644
---- a/Documentation/devicetree/bindings/clock/imx8qxp-lpcg.yaml
-+++ b/Documentation/devicetree/bindings/clock/imx8qxp-lpcg.yaml
-@@ -29,18 +29,18 @@ properties:
-       - const: fsl,imx8qxp-lpcg
-       - items:
-           - enum:
--            - fsl,imx8qm-lpcg
-+              - fsl,imx8qm-lpcg
-           - const: fsl,imx8qxp-lpcg
-       - enum:
--        - fsl,imx8qxp-lpcg-adma
--        - fsl,imx8qxp-lpcg-conn
--        - fsl,imx8qxp-lpcg-dc
--        - fsl,imx8qxp-lpcg-dsp
--        - fsl,imx8qxp-lpcg-gpu
--        - fsl,imx8qxp-lpcg-hsio
--        - fsl,imx8qxp-lpcg-img
--        - fsl,imx8qxp-lpcg-lsio
--        - fsl,imx8qxp-lpcg-vpu
-+          - fsl,imx8qxp-lpcg-adma
-+          - fsl,imx8qxp-lpcg-conn
-+          - fsl,imx8qxp-lpcg-dc
-+          - fsl,imx8qxp-lpcg-dsp
-+          - fsl,imx8qxp-lpcg-gpu
-+          - fsl,imx8qxp-lpcg-hsio
-+          - fsl,imx8qxp-lpcg-img
-+          - fsl,imx8qxp-lpcg-lsio
-+          - fsl,imx8qxp-lpcg-vpu
-         deprecated: true
-   reg:
-     maxItems: 1
-diff --git a/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
-index 60585a4fc22bc9f..9392b5502a3293c 100644
---- a/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
-+++ b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
-@@ -49,8 +49,8 @@ properties:
-           Video port for panel or connector.
- 
-     required:
--        - port@0
--        - port@1
-+      - port@0
-+      - port@1
- 
- required:
-   - compatible
-diff --git a/Documentation/devicetree/bindings/display/bridge/intel,keembay-dsi.yaml b/Documentation/devicetree/bindings/display/bridge/intel,keembay-dsi.yaml
-index ab5be26252240ea..35c9dfd866501a0 100644
---- a/Documentation/devicetree/bindings/display/bridge/intel,keembay-dsi.yaml
-+++ b/Documentation/devicetree/bindings/display/bridge/intel,keembay-dsi.yaml
-@@ -39,10 +39,10 @@ properties:
- 
-     properties:
-       '#address-cells':
--       const: 1
-+        const: 1
- 
-       '#size-cells':
--       const: 0
-+        const: 0
- 
-       port@0:
-         type: object
-diff --git a/Documentation/devicetree/bindings/display/intel,keembay-msscam.yaml b/Documentation/devicetree/bindings/display/intel,keembay-msscam.yaml
-index 40caa61188098c2..a222b52d8b8ff6b 100644
---- a/Documentation/devicetree/bindings/display/intel,keembay-msscam.yaml
-+++ b/Documentation/devicetree/bindings/display/intel,keembay-msscam.yaml
-@@ -18,8 +18,8 @@ description: |
- properties:
-   compatible:
-     items:
--     - const: intel,keembay-msscam
--     - const: syscon
-+      - const: intel,keembay-msscam
-+      - const: syscon
- 
-   reg:
-     maxItems: 1
-diff --git a/Documentation/devicetree/bindings/display/panel/novatek,nt36672a.yaml b/Documentation/devicetree/bindings/display/panel/novatek,nt36672a.yaml
-index d2170de6b72302f..2f5df1d235aea8a 100644
---- a/Documentation/devicetree/bindings/display/panel/novatek,nt36672a.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/novatek,nt36672a.yaml
-@@ -22,7 +22,7 @@ properties:
-   compatible:
-     items:
-       - enum:
--         - tianma,fhd-video
-+          - tianma,fhd-video
-       - const: novatek,nt36672a
-     description: This indicates the panel manufacturer of the panel that is
-       in turn using the NT36672A panel driver. This compatible string
-diff --git a/Documentation/devicetree/bindings/media/i2c/adv7604.yaml b/Documentation/devicetree/bindings/media/i2c/adv7604.yaml
-index 81f17e719d87da5..693f31daf5aa699 100644
---- a/Documentation/devicetree/bindings/media/i2c/adv7604.yaml
-+++ b/Documentation/devicetree/bindings/media/i2c/adv7604.yaml
-@@ -21,8 +21,8 @@ properties:
-   compatible:
-     items:
-       - enum:
--        - adi,adv7611
--        - adi,adv7612
-+          - adi,adv7611
-+          - adi,adv7612
- 
-   reg:
-     minItems: 1
-diff --git a/Documentation/devicetree/bindings/media/i2c/mipi-ccs.yaml b/Documentation/devicetree/bindings/media/i2c/mipi-ccs.yaml
-index 1d90767a61962b3..41400ecbbb35eac 100644
---- a/Documentation/devicetree/bindings/media/i2c/mipi-ccs.yaml
-+++ b/Documentation/devicetree/bindings/media/i2c/mipi-ccs.yaml
-@@ -1,6 +1,7 @@
- # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
- # Copyright (C) 2014--2020 Intel Corporation
--
-+%YAML 1.2
-+---
- $id: http://devicetree.org/schemas/media/i2c/mipi-ccs.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
- 
-@@ -26,11 +27,11 @@ properties:
-   compatible:
-     oneOf:
-       - items:
--        - const: mipi-ccs-1.1
--        - const: mipi-ccs
-+          - const: mipi-ccs-1.1
-+          - const: mipi-ccs
-       - items:
--        - const: mipi-ccs-1.0
--        - const: mipi-ccs
-+          - const: mipi-ccs-1.0
-+          - const: mipi-ccs
-       - const: nokia,smia
- 
-   reg:
-diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov772x.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov772x.yaml
-index 450e5bd64312ddf..eedc560837d2c80 100644
---- a/Documentation/devicetree/bindings/media/i2c/ovti,ov772x.yaml
-+++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov772x.yaml
-@@ -76,18 +76,18 @@ properties:
-                 bus-type:
-                   const: 6
-             then:
--                properties:
--                  hsync-active: false
--                  vsync-active: false
-+              properties:
-+                hsync-active: false
-+                vsync-active: false
- 
-           - if:
-               properties:
-                 bus-width:
-                   const: 10
-             then:
--                properties:
--                  data-shift:
--                    const: 0
-+              properties:
-+                data-shift:
-+                  const: 0
- 
-         required:
-           - bus-type
-diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx214.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx214.yaml
-index 884bd3527e0a430..0599df605a4f8a6 100644
---- a/Documentation/devicetree/bindings/media/i2c/sony,imx214.yaml
-+++ b/Documentation/devicetree/bindings/media/i2c/sony,imx214.yaml
-@@ -69,13 +69,13 @@ properties:
-             description: See ../video-interfaces.txt
-             anyOf:
-               - items:
--                - const: 1
--                - const: 2
-+                  - const: 1
-+                  - const: 2
-               - items:
--                - const: 1
--                - const: 2
--                - const: 3
--                - const: 4
-+                  - const: 1
-+                  - const: 2
-+                  - const: 3
-+                  - const: 4
- 
-           link-frequencies:
-             $ref: /schemas/types.yaml#/definitions/uint64-array
-diff --git a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
-index 030e3fdce49293a..01630b0ecea773e 100644
---- a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
-+++ b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
-@@ -17,21 +17,21 @@ properties:
-   compatible:
-     oneOf:
-       - enum:
--        - mediatek,mt2701-mmc
--        - mediatek,mt2712-mmc
--        - mediatek,mt6779-mmc
--        - mediatek,mt7620-mmc
--        - mediatek,mt7622-mmc
--        - mediatek,mt8135-mmc
--        - mediatek,mt8173-mmc
--        - mediatek,mt8183-mmc
--        - mediatek,mt8516-mmc
-+          - mediatek,mt2701-mmc
-+          - mediatek,mt2712-mmc
-+          - mediatek,mt6779-mmc
-+          - mediatek,mt7620-mmc
-+          - mediatek,mt7622-mmc
-+          - mediatek,mt8135-mmc
-+          - mediatek,mt8173-mmc
-+          - mediatek,mt8183-mmc
-+          - mediatek,mt8516-mmc
-       - items:
--        - const: mediatek,mt7623-mmc
--        - const: mediatek,mt2701-mmc
-+          - const: mediatek,mt7623-mmc
-+          - const: mediatek,mt2701-mmc
-       - items:
--        - const: mediatek,mt8192-mmc
--        - const: mediatek,mt8183-mmc
-+          - const: mediatek,mt8192-mmc
-+          - const: mediatek,mt8183-mmc
- 
-   clocks:
-     description:
-diff --git a/Documentation/devicetree/bindings/sound/mt8192-mt6359-rt1015-rt5682.yaml b/Documentation/devicetree/bindings/sound/mt8192-mt6359-rt1015-rt5682.yaml
-index bf8c8ba25009dcc..54650823b29a41d 100644
---- a/Documentation/devicetree/bindings/sound/mt8192-mt6359-rt1015-rt5682.yaml
-+++ b/Documentation/devicetree/bindings/sound/mt8192-mt6359-rt1015-rt5682.yaml
-@@ -7,8 +7,8 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
- title: Mediatek MT8192 with MT6359, RT1015 and RT5682 ASoC sound card driver
- 
- maintainers:
--   - Jiaxin Yu <jiaxin.yu@mediatek.com>
--   - Shane Chien <shane.chien@mediatek.com>
-+  - Jiaxin Yu <jiaxin.yu@mediatek.com>
-+  - Shane Chien <shane.chien@mediatek.com>
- 
- description:
-   This binding describes the MT8192 sound card.
--- 
-1.8.3
+Changes since v8:
+ - Simplified qcom_vadc_map_voltage_temp() code by removing ascending
+   tables support
+ - Simplified qcom-vadc-common volt/temp mapping code
+ - Implement suggestions by Matthias Kaehlcke: message formatting,
+   rewrite comments, remove unused variable initialization.
+
+Changes since v7:
+ - Move qcom-vadc-common.h header to include/linux/iio/adc/ dir.
+ - Use explicit sizeof(var) instead of hand-coding 1 when accessing
+   adc-tm registers.
+ - Remove buffer read from adc_tm5_init().
+ - Remove extra on-stack var from adc_tm5_get_temp().
+ - Minor formatting changes as suggested Daniel.
+
+Changes since v6:
+ - Added include <linux/bitfield.h> as noted by Jishnu Prakash.
+
+Changes since v5:
+ - Reworked DT bindings:
+   * Removed qcom,adc-channel, instead it is parsed from io-channels
+   * Renamed qcom,hw-settle-time to include -us suffix
+ - Re-added monitor enabling which got lost during refactored. Noted by
+   Jishnu Prakash.
+ - Use threaded IRQ handler as susggested by Jishnu.
+
+Changes since v4:
+ - Added kernel-doc comments to ADC-TM structures
+ - Used several sizeof(buf) instead of hand-conding register size
+
+Changes since v3:
+ - Fix DT description to spell "thermal monitoring" instead of just TM
+ - Fix warnings in DT example
+ - Add EXPORT_SYMBOL_GPL(of_iio_channel_get_by_name)
+ - Fixed whitespace chanes in qcom-vadc-common.c
+ - Removed error message if IIO chanel get returns -EPROBE_DEFER
+
+Changes since v2:
+ - IIO: export of_iio_channel_get_by_name() function
+ - dt-bindings: move individual io-channels to each thermal monitoring
+   channel rather than listing them all in device node
+ - added fallback defaults to of_device_get_match_data calls in
+   qcom-spmi-adc5 and qcom-spmi-adc-tm5 drivers
+ - minor typo fixes
+
+Changes since v1:
+ - Introduce fixp_linear_interpolate() by Craig Tatlor
+ - Lots of syntax/whitespace changes
+ - Cleaned up register definitions per Jonathan's suggestion
+ - Implemented most of the suggestions from Bjorn's and Jonathan's
+   review
 
 
