@@ -2,102 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C7EC2CEFD3
-	for <lists+devicetree@lfdr.de>; Fri,  4 Dec 2020 15:40:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CF4692CEFDB
+	for <lists+devicetree@lfdr.de>; Fri,  4 Dec 2020 15:40:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730343AbgLDOkB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Dec 2020 09:40:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38964 "EHLO
+        id S2387851AbgLDOkU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Dec 2020 09:40:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38948 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725920AbgLDOkB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Dec 2020 09:40:01 -0500
-Received: from mail-vk1-xa44.google.com (mail-vk1-xa44.google.com [IPv6:2607:f8b0:4864:20::a44])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFDB0C08E85E
-        for <devicetree@vger.kernel.org>; Fri,  4 Dec 2020 06:38:50 -0800 (PST)
-Received: by mail-vk1-xa44.google.com with SMTP id a129so1296485vki.5
-        for <devicetree@vger.kernel.org>; Fri, 04 Dec 2020 06:38:50 -0800 (PST)
+        with ESMTP id S2387597AbgLDOkR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Dec 2020 09:40:17 -0500
+Received: from mail-lf1-x144.google.com (mail-lf1-x144.google.com [IPv6:2a00:1450:4864:20::144])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D998DC08E864
+        for <devicetree@vger.kernel.org>; Fri,  4 Dec 2020 06:39:06 -0800 (PST)
+Received: by mail-lf1-x144.google.com with SMTP id u9so2400026lfm.1
+        for <devicetree@vger.kernel.org>; Fri, 04 Dec 2020 06:39:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=n+PnrcoVAdtN8GPBxsVpfIuQzUembcvR9XiK1uQx4OM=;
-        b=cClF9W26HI1jeodnLahFAEF1AOV+L5iFQiL5QKpY/tZv0WYk7CZow4UPGxXcFknKPX
-         wJr3jS/KmrZ9Yel1YiQcJZJ7lxgTCb9Jv4th0tfQlG2tn2AaaOARvtEaYGAinM8kpW12
-         WB7Kr0wqHEuXSGo2qn8m/TeB8/+ck89rVsu6GXf3X2ZIyXoPG1gDA5z7p4zIyxzHVjvD
-         rGciDKMzC5GA05C169RWfnaL9TEDwTYXmOTgUV/udnEVtZ9cTHdyz3DkvYbB0I3NnYW/
-         4wAMVKfsWfguE828RODTsibaGsSZK/l9agfuyC855e6dWP/gTQz10aRDEzxiC+pSAuvj
-         Pnkg==
+        bh=gCvgf9SsePfgxYMuD1WNMKjq/viyendYVg7MdniZolA=;
+        b=VeTyCc9cXxNLbp1W4GPY73r1xI0NKKLDr84XjBcpHqLokqbvULGt9MwbbkPly0tSu6
+         29+65aa8KGh0MGS5C+EZdKq33GMRLQKua8u3yLZAKNEUGogjVYeHaaSfAfWN6h1aRUqh
+         lG6q4IIMR//hI1DZKGIvDJXWtYDBhq5fAxvENZVaFRFzWpuHGK7ce6beir0KJuXcEJ90
+         YwSI4aZJpkdQ41QXopHfLQGWz1c3Il9UrRXfmaPSbfsizkF9AxPz7dEPHon37TaJ4K2v
+         dnLkWZpWyLGYC4OhbPg5YfQ7SvGXZxL3dhbd5IfoW3LbjOAnwoQWv+UmcTcJu+RnrprB
+         m5Cw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=n+PnrcoVAdtN8GPBxsVpfIuQzUembcvR9XiK1uQx4OM=;
-        b=Guq+2paXntZw7yOVuTfJQ87aBsKOBRFH/fA76QTUw7WXbcm6y6+t6n5AGdt/mnxa7h
-         sA8e+DJvw/yYbzZiHYQ+7/ooaYHuZrRXiHKSj3Lf5e8KE9RdVEdwi7Z431WOSOxBIZPJ
-         CSPBPe6uOctCExuWgi+relQe/Y5HshT9jHYOG6aaDl9NpevrMdgy4zTWznPl3U1JOm+g
-         NlbP0oexzO4RvrAfSsT6AmU6/DRRFHPJEMyP3ydvEObedZjiaU55aQoEYXw5UtJiR2N9
-         AT5kz1qW1o6yaV+mRc/j75hNwT/9k/sLn6N0Ym67LPVdvXBOgnYAbGG5RXbolwLIJtQM
-         2Spw==
-X-Gm-Message-State: AOAM533JaQw518NGZZeU6TWm8+peMpF46EUXcBnUColdVHnxHkrd2ZDQ
-        9MR8wM7/H4nCBBU91VZCoPiSWfeGBlIp2MLg/d8osP2f1pUaZw==
-X-Google-Smtp-Source: ABdhPJyikXHr7pn6pcbkVo8ISm8xKwkpzaeqRFQ5SQp7nae2EYK2Zb4KjBUBCUKi3Vp+0e1Z6ybSvyDvSywx7kp6V1o=
-X-Received: by 2002:a1f:1357:: with SMTP id 84mr3813030vkt.6.1607092730187;
- Fri, 04 Dec 2020 06:38:50 -0800 (PST)
+        bh=gCvgf9SsePfgxYMuD1WNMKjq/viyendYVg7MdniZolA=;
+        b=nMg6w9Z/t2bUGblNyxUgpmlEplsM0pzVguHDrFjsqCvjpSYfHl6Xomswy8GAnmpbxO
+         KAsIuc+f4z2TfOdCu1T7mA66DR+7QNRHHVR/5hTYzW/fcdz8sU/9z76M30CZd+6ElcI+
+         lUers6JI9b+2V5JxBYCrYuBCV9pg74krdIOL537OMN9jAjhrp5V75qsjj5sZLkpWPoW0
+         yzeLtyaLMq5tSppSLGmdO0dEa7yBiYOGHCpKVDv1K65YsEqsR2tV5YCAq3//Eb1c6oVh
+         EhgejS8Mny2T0LnoXwi3sNqKsR//QoD6Eiaqnj/0/hUpyojx+UjAqHBQrwWEZcFge0RZ
+         YEIw==
+X-Gm-Message-State: AOAM532aaeRWjEpfmZ+A5ZerF/RYruD+GIk56d/5mbb6TegOO2Kcefa2
+        DNpD8Qz1BE6cw3wLObEqUxVqO4kVogXoZD/J6sAj5g==
+X-Google-Smtp-Source: ABdhPJyXme2sn852/oSVQ2LSWRFUTlW9YLFL6WModQ4nu/BipCDYdbPjNCrjJI2L4cpLI/5sXGDNK7CadH2SUm1+x7I=
+X-Received: by 2002:ac2:498e:: with SMTP id f14mr3229359lfl.59.1607092745405;
+ Fri, 04 Dec 2020 06:39:05 -0800 (PST)
 MIME-Version: 1.0
-References: <20201126105900.26658-1-aisheng.dong@nxp.com> <20201126105900.26658-2-aisheng.dong@nxp.com>
-In-Reply-To: <20201126105900.26658-2-aisheng.dong@nxp.com>
+References: <5fa17dfe4b42abefd84b4cbb7b8bcd4d31398f40.1606914986.git.michal.simek@xilinx.com>
+In-Reply-To: <5fa17dfe4b42abefd84b4cbb7b8bcd4d31398f40.1606914986.git.michal.simek@xilinx.com>
 From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Fri, 4 Dec 2020 15:38:11 +0100
-Message-ID: <CAPDyKFqJb4Pj6hwMM_qGQo_DnF2cE_C0u9yQYdMwV0scnsRPPw@mail.gmail.com>
-Subject: Re: [PATCH RESEND v4 01/18] dt-bindings: mmc: imx: fix the wrongly
- dropped imx8qm compatible string
-To:     Dong Aisheng <aisheng.dong@nxp.com>
-Cc:     DTML <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        Haibo Chen <haibo.chen@nxp.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>
+Date:   Fri, 4 Dec 2020 15:38:17 +0100
+Message-ID: <CAPDyKFqTqKeV0kjqddQVQkdJg4iu04Yq+aT=4A6_bVxMZzwYeg@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: mmc: Fix xlnx,mio-bank property values for
+ arasan driver
+To:     Michal Simek <michal.simek@xilinx.com>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Michal Simek <monstr@monstr.eu>, git@xilinx.com,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 26 Nov 2020 at 12:16, Dong Aisheng <aisheng.dong@nxp.com> wrote:
+On Wed, 2 Dec 2020 at 14:16, Michal Simek <michal.simek@xilinx.com> wrote:
 >
-> The compatible string "fsl,imx8qm-usdhc" was wrongly dropped in patch:
-> commit 80fd350b9590 ("dt-bindings: mmc: fsl-imx-esdhc: Fix i.MX 8 compatible matching")
-> Add it back.
+> Xilinx ZynqMP has 3 mio banks and all of them are valid. That's why also
+> list the first one which is missing. Property is enumeration not range.
 >
-> Cc: Haibo Chen <haibo.chen@nxp.com>
-> Cc: Krzysztof Kozlowski <krzk@kernel.org>
-> Cc: Ulf Hansson <ulf.hansson@linaro.org>
-> Fixes: 80fd350b9590 ("dt-bindings: mmc: fsl-imx-esdhc: Fix i.MX 8 compatible matching")
-> Signed-off-by: Dong Aisheng <aisheng.dong@nxp.com>
+> Signed-off-by: Michal Simek <michal.simek@xilinx.com>
 
-Applied for next and by amending the commit message according to
-Krzysztof's comment, thanks!
+Applied for next, thanks!
 
 Kind regards
 Uffe
 
 
 > ---
->  Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml | 1 +
->  1 file changed, 1 insertion(+)
 >
-> diff --git a/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml b/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
-> index e71d13c2d109..802c9df23752 100644
-> --- a/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
-> @@ -39,6 +39,7 @@ properties:
->                - fsl,imx8mn-usdhc
->                - fsl,imx8mp-usdhc
->                - fsl,imx8mq-usdhc
-> +              - fsl,imx8qm-usdhc
->                - fsl,imx8qxp-usdhc
->            - const: fsl,imx7d-usdhc
+>  Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 >
+> diff --git a/Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml b/Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml
+> index 58fe9d02a781..8958e54e522d 100644
+> --- a/Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml
+> @@ -147,7 +147,7 @@ properties:
+>
+>    xlnx,mio-bank:
+>      $ref: /schemas/types.yaml#/definitions/uint32
+> -    enum: [0, 2]
+> +    enum: [0, 1, 2]
+>      default: 0
+>      description:
+>        The MIO bank number in which the command and data lines are configured.
 > --
-> 2.23.0
+> 2.29.2
 >
