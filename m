@@ -2,90 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0CB672CE96B
-	for <lists+devicetree@lfdr.de>; Fri,  4 Dec 2020 09:22:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B4842CEA10
+	for <lists+devicetree@lfdr.de>; Fri,  4 Dec 2020 09:44:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728977AbgLDIUr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Dec 2020 03:20:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36848 "EHLO
+        id S1729071AbgLDIoj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Dec 2020 03:44:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40568 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727783AbgLDIUr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Dec 2020 03:20:47 -0500
-Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com [IPv6:2a00:1450:4864:20::344])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4548CC061A52
-        for <devicetree@vger.kernel.org>; Fri,  4 Dec 2020 00:20:01 -0800 (PST)
-Received: by mail-wm1-x344.google.com with SMTP id c198so4835016wmd.0
-        for <devicetree@vger.kernel.org>; Fri, 04 Dec 2020 00:20:01 -0800 (PST)
+        with ESMTP id S1729055AbgLDIoj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Dec 2020 03:44:39 -0500
+Received: from mail-lf1-x143.google.com (mail-lf1-x143.google.com [IPv6:2a00:1450:4864:20::143])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9866C061A54
+        for <devicetree@vger.kernel.org>; Fri,  4 Dec 2020 00:43:58 -0800 (PST)
+Received: by mail-lf1-x143.google.com with SMTP id j205so6597425lfj.6
+        for <devicetree@vger.kernel.org>; Fri, 04 Dec 2020 00:43:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=qB2SYCS1v55sYBnoh6a9A5+nyB8wI9x+IMkUjRVdEyU=;
-        b=ccMmR3vntuVwCLyqCesY4T0znkXgfHiXTnq0Gfqpmm9HTwG6ct0MAfHZMb2oDeCArn
-         1nLK4Eu61t+NF96Gt0GPU7KyEBcyHU1FZ0ifBWS90HGCpl3nED5ZKBYU5kQOAlk7oNDZ
-         uR9o1QAz+c6cPiNc26TuGW7uoCI6+fgmbwmB536uos4WiP9CvNQ3lMgaK7xiLyvhPNtB
-         FnJXjPSSlKTYFmrhXPob9KQhIdISIvf3nam868Q9yq0UBc4aFgDcv2UUGLCCUxn4NEyW
-         E0o/6e6uxmZziWhlajv4l6fH8jplyKEMp7BwBcnF/HKLVvlMux6bCwt620d2m2mM+kTd
-         RB1g==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=KET1E+zuak3FlCY4zF7z/1ILHVvC2UNzSxg2qMKY1c0=;
+        b=HxSx5uVAmmhLrfNvxVpDEfIm79FjWwE+/pIOwU9OCK4itu6RvC3I29vkt6XN+XnlQO
+         35qbSosF0096esxtPaOnQPzrtaaFB7ldlWwSM8k6l7VOnau3V36cTZM947r6Yy5jxp6j
+         V/UltUuV1NUcCDh14YfCLi2AQKk8jemX3ddOis+X+igZvQK39fa643oOfJrBRyI7Cdbb
+         paw/zZAVesnY5ei4at4uYjHLTYCaHAvyWaqAf0sGcjOPfNlnYoyO7Pn8kbXazuKA3Z28
+         OYVHXUhRguDKlf0ec/j9CbVkRgRlnWXbPEL1PlzphOt8/IImroG9s1ne8Axif63KivuQ
+         WtEA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=qB2SYCS1v55sYBnoh6a9A5+nyB8wI9x+IMkUjRVdEyU=;
-        b=Imi1Q385AqaQp804mTxUNACnzqDUXsxEotyiM/TLYBvL5mhkACEG9JZcmHRYr1VVhd
-         vtyu0V+p6bXUxq0JaeEiJgBgDFFT6Dz+3Z1CVdUdob1IKEH+rcxTAgCRD61YwqFEJam0
-         B6JEqnTxLq5Er28j9Fsl3u33LKHTIglQLJUrZ5I2lhNw6d71uhrueHvC4v9icarTATgF
-         KQNVy3dy3KfMU/GOGjPLjLp50hYHwwzaXGO3BZhS8Oy8LM/1sWoKEx9dfWeeJ4XwtF+0
-         La6rXHq0GilD0GY/eHwiryavbrYM9sM5bj56fj8eJtm0khAa8OuTw5QstLsbb7/M8x3t
-         8MaQ==
-X-Gm-Message-State: AOAM531TiPyTYv1vY+yqzW+IvplNOo8qYz44c7LMTOxlQ08X+LFYwHiS
-        p1KK99xAjBxpyERWJ6ms21PWuQ==
-X-Google-Smtp-Source: ABdhPJzrpFgeI141caO0N8Tzp+D9LOCP9wb+YCgmPCkrvEZHVVVGvZXPcNLDcIUBBkFD7Rirz4jVww==
-X-Received: by 2002:a1c:9949:: with SMTP id b70mr2852681wme.85.1607069999842;
-        Fri, 04 Dec 2020 00:19:59 -0800 (PST)
-Received: from localhost.localdomain ([2a01:e35:2ec0:82b0:296a:40d9:d5a0:bbc5])
-        by smtp.gmail.com with ESMTPSA id b17sm1691156wrv.10.2020.12.04.00.19.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Dec 2020 00:19:59 -0800 (PST)
-From:   Neil Armstrong <narmstrong@baylibre.com>
-To:     sam@ravnborg.org, devicetree@vger.kernel.org
-Cc:     dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-        Neil Armstrong <narmstrong@baylibre.com>
-Subject: [PATCH v2 1/2] dt-bindings: panel-simple-dsi: add Khadas TS050 panel bindings
-Date:   Fri,  4 Dec 2020 09:19:48 +0100
-Message-Id: <20201204081949.38418-2-narmstrong@baylibre.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20201204081949.38418-1-narmstrong@baylibre.com>
-References: <20201204081949.38418-1-narmstrong@baylibre.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=KET1E+zuak3FlCY4zF7z/1ILHVvC2UNzSxg2qMKY1c0=;
+        b=Q21y9+Df+akM7C1KuS3zcj746PtL/e/PJ0t8WPr02za5y7sFql1uiI9kCeZpdyFxA4
+         QtkM+DMnQgdBN13vw/nq6LrR2Kap/XekgGYVxXUdPPHbe2L/MMlHHPaDqKh5ae0rVaCH
+         qqjvlA3cw9HUSsgpelIIBVmKrKm/DsF0gWlb8wKntrKH1f950KkzrhzJxRUPwc9HoUNm
+         yIDE2Vvc31WKAj8iw/PiYfPFMvmr7q3JdECwLFNBLIaSBU1Yr3xHuG0KJwJDoq7NLnep
+         gSU6ben4+muBNTQbOIHEJpH1gX4MHqPPVLWejWdmFUrtDMcn4IFCW+en4z/cir3k969B
+         YFWA==
+X-Gm-Message-State: AOAM5338wrV9DFv+iCPkCvUwVVeF6YY0Bplscaj9Mo5kqeoTKQ0x7HMW
+        SmyIKWzhXB34MKCaXdsG1ESyuLbWksVh16pQMlq6Qg==
+X-Google-Smtp-Source: ABdhPJxSmtAp/6oFP6JQUcOPafIUSq25E/Xy3Sy4VeE2x4VQ+ZmXA8JyQPwmPHVM/WpFq9Ryq05QtDCFXaeHkuFJhTs=
+X-Received: by 2002:ac2:4308:: with SMTP id l8mr2768677lfh.260.1607071437123;
+ Fri, 04 Dec 2020 00:43:57 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20201120093058.7248-1-zhiyong.tao@mediatek.com> <20201120093058.7248-2-zhiyong.tao@mediatek.com>
+In-Reply-To: <20201120093058.7248-2-zhiyong.tao@mediatek.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Fri, 4 Dec 2020 09:43:46 +0100
+Message-ID: <CACRpkdYbVbgUEvGk4t2YHieUaFvMMg1EOR8opuCqm-w4wCYCOg@mail.gmail.com>
+Subject: Re: [PATCH] pinctrl: fix low level output voltage issue
+To:     Zhiyong Tao <zhiyong.tao@mediatek.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sean Wang <sean.wang@kernel.org>, srv_heupstream@mediatek.com,
+        hui.liu@mediatek.com, huang eddie <eddie.huang@mediatek.com>,
+        jg_poxu@mediatek.com, Biao Huang <biao.huang@mediatek.com>,
+        Hongzhou Yang <hongzhou.yang@mediatek.com>,
+        Erin Lo <erin.lo@mediatek.com>,
+        Sean Wang <sean.wang@mediatek.com>, seiya.wang@mediatek.com,
+        sj.huang@mediatek.com,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This add the bindings for the Khadas TS050 1080x1920 5" LCD DSI panel designed to work
-with the Khadas Edge-V, Captain, VIM3 and VIM3L Single Board Computers.
+On Fri, Nov 20, 2020 at 10:31 AM Zhiyong Tao <zhiyong.tao@mediatek.com> wrote:
 
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-Reviewed-by: Sam Ravnborg <sam@ravnborg.org>
----
- .../devicetree/bindings/display/panel/panel-simple-dsi.yaml     | 2 ++
- 1 file changed, 2 insertions(+)
+> This patch is used to fix low level output voltage issue.
+> A pin is changed from input pull-up to output high.
+> The Dout value of the pin is default as 0.
+> If we change the direction of the pin before the dout value of the pin,
+> It maybe produce a low level output voltage between "input pull-up" and
+> "output high".
+>
+> Signed-off-by: Zhiyong Tao <zhiyong.tao@mediatek.com>
 
-diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple-dsi.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple-dsi.yaml
-index 72e4b6d4d5e1..fbd71669248f 100644
---- a/Documentation/devicetree/bindings/display/panel/panel-simple-dsi.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/panel-simple-dsi.yaml
-@@ -35,6 +35,8 @@ properties:
-       - boe,tv080wum-nl0
-         # Innolux P079ZCA 7.85" 768x1024 TFT LCD panel
-       - innolux,p079zca
-+        # Khadas TS050 5" 1080x1920 LCD panel
-+      - khadas,ts050
-         # Kingdisplay KD097D04 9.7" 1536x2048 TFT LCD panel
-       - kingdisplay,kd097d04
-         # LG ACX467AKM-7 4.95" 1080×1920 LCD Panel
--- 
-2.25.1
+Patch applied!
 
+Yours,
+Linus Walleij
