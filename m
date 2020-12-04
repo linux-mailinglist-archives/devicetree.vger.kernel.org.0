@@ -2,130 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C9022CE5C8
-	for <lists+devicetree@lfdr.de>; Fri,  4 Dec 2020 03:41:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0ECDF2CE5E0
+	for <lists+devicetree@lfdr.de>; Fri,  4 Dec 2020 03:46:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726055AbgLDCk6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Dec 2020 21:40:58 -0500
-Received: from mail-lj1-f193.google.com ([209.85.208.193]:33046 "EHLO
-        mail-lj1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725986AbgLDCk5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Dec 2020 21:40:57 -0500
-Received: by mail-lj1-f193.google.com with SMTP id t22so4929499ljk.0;
-        Thu, 03 Dec 2020 18:40:35 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=NUIaE3HrpMZoU5b6Uamr3FqDYfPfXMVixD+//IxLNmo=;
-        b=gu9+9N6pDWCQZy1hE3kjqa7G6VIHlvnmyOxO/RkHxbcVEVMbwN0ns0sJRD8SA3v7D1
-         9F97ycxDuVFz7wx+59H3DJSqf7VtGlN3TXAlz4xYBPlXWhbnYPGfcwj/tYfhOqgaKiSM
-         o1kdh7RbOlqTIATEBqhl4jVuoavPrtuBooRg3Gl6X2XRdYR6bg7Y1So59nxEFurS0oSA
-         G9Js5ga2st25357ohJjm1oFNTEwZMWYeakSlf2o9+t/93wztRkbIU3as/tI79YvEUj1D
-         1GsuEEaV4Jqe17ZPbOPV7h1olNIt7KJULhE+CixVNPseJ6a0EIIw5A5vSjsYTqray+3I
-         0FuA==
-X-Gm-Message-State: AOAM530tDyyeRBdAtZA9V43+YK3mW2Dq4WW6Pjg4MU3QcC0XCAVC4iG5
-        mDIWHYyuwwGYSyyHleIPAz/IBtzZucib4A==
-X-Google-Smtp-Source: ABdhPJxTZzbWk4rei5jpb/+fB2l2tUwUuI97GjTm0F8/LsDu6Sp1BnqMZeayNLb1F47avQo/QIl7wA==
-X-Received: by 2002:a2e:8909:: with SMTP id d9mr2544291lji.399.1607049609717;
-        Thu, 03 Dec 2020 18:40:09 -0800 (PST)
-Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com. [209.85.167.43])
-        by smtp.gmail.com with ESMTPSA id a30sm1089048ljd.91.2020.12.03.18.40.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 03 Dec 2020 18:40:09 -0800 (PST)
-Received: by mail-lf1-f43.google.com with SMTP id r24so5667692lfm.8;
-        Thu, 03 Dec 2020 18:40:09 -0800 (PST)
-X-Received: by 2002:ac2:483b:: with SMTP id 27mr2659205lft.551.1607049609342;
- Thu, 03 Dec 2020 18:40:09 -0800 (PST)
-MIME-Version: 1.0
-References: <20201203181454.13389-1-m.cerveny@computer.org>
-In-Reply-To: <20201203181454.13389-1-m.cerveny@computer.org>
-From:   Chen-Yu Tsai <wens@csie.org>
-Date:   Fri, 4 Dec 2020 10:39:58 +0800
-X-Gmail-Original-Message-ID: <CAGb2v67-QwUpy5ca6CPBgzAYcEVRPT6O1f6+XrgOQyEeF+B1aQ@mail.gmail.com>
-Message-ID: <CAGb2v67-QwUpy5ca6CPBgzAYcEVRPT6O1f6+XrgOQyEeF+B1aQ@mail.gmail.com>
-Subject: Re: [PATCH v2] ARM: dts: sun8i: v3s: SRAM_C real mapping
-To:     Martin Cerveny <m.cerveny@computer.org>
-Cc:     devicetree <devicetree@vger.kernel.org>,
+        id S1726995AbgLDCo0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Dec 2020 21:44:26 -0500
+Received: from szxga04-in.huawei.com ([45.249.212.190]:8246 "EHLO
+        szxga04-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726993AbgLDCoZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Dec 2020 21:44:25 -0500
+Received: from DGGEMS411-HUB.china.huawei.com (unknown [172.30.72.59])
+        by szxga04-in.huawei.com (SkyGuard) with ESMTP id 4CnH7b3FMKzkl4x;
+        Fri,  4 Dec 2020 10:43:07 +0800 (CST)
+Received: from thunder-town.china.huawei.com (10.174.177.9) by
+ DGGEMS411-HUB.china.huawei.com (10.3.19.211) with Microsoft SMTP Server id
+ 14.3.487.0; Fri, 4 Dec 2020 10:43:33 +0800
+From:   Zhen Lei <thunder.leizhen@huawei.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        "Pengutronix Kernel Team" <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        "NXP Linux Team" <linux-imx@nxp.com>,
+        David Airlie <airlied@linux.ie>,
+        "Daniel Vetter" <daniel@ffwll.ch>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        "Thierry Reding" <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        "Hans Verkuil" <hverkuil-cisco@xs4all.nl>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        "Ricardo Ribalda" <ribalda@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        "Matthias Brugger" <matthias.bgg@gmail.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        "Mark Brown" <broonie@kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
         linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
         linux-kernel <linux-kernel@vger.kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        linux-media <linux-media@vger.kernel.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        linux-mediatek <linux-mediatek@lists.infradead.org>,
+        alsa-devel <alsa-devel@alsa-project.org>
+CC:     Zhen Lei <thunder.leizhen@huawei.com>
+Subject: [PATCH 0/1] dt-bindings: eliminate yamllint warnings
+Date:   Fri, 4 Dec 2020 10:42:25 +0800
+Message-ID: <20201204024226.1222-1-thunder.leizhen@huawei.com>
+X-Mailer: git-send-email 2.26.0.windows.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [10.174.177.9]
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 4, 2020 at 2:15 AM Martin Cerveny <m.cerveny@computer.org> wrote:
->
-> VideoEngine (cedrus) needs assign dedicated SRAM for decoding.
-> SRAM_C1 is usually used for Allwinner platforms.
-> Allwinner V3s scale down chip has not SRAM_C1 but only small SRAM_C (44kB).
->
-> Result of additional testing:
->
-> SRAM_C is mapped in two regions 0x0000_4000 (primary location,
-> by Datasheet) (size is 0xb000, probably exact size is 0xb0c0
-> and it is mapped to 4k boundary (to 0x0000_ffff))
-> and to 0x01d0_4000 (traditional SRAM_C1 region from 0x01d0_0000).
->
-> Rest of 0x01d0_0000 are discontinuously filled with R/W register sets
-> (probably some internals registers from VE) that I thought to be SRAM too.
->
-> Programming register SRAM_CTRL_REG0 (0x01c00_0000) with value 0x7fff_ffff
-> switch out whole region 0x01d0_0000-0x01df_ffff and 0x0000_4000-0x0000_ffff
-> (dedicate access to VE).
->
-> VE/cedrus code use this SRAM region indirectly
-> (VE_AVC_SRAM_PORT_OFFSET/VE_AVC_SRAM_PORT_DATA...)
-> and it is not influenced by "real" SRAM mapping or size
-> so it is working even without this patch.
->
-> Signed-off-by: Martin Cerveny <m.cerveny@computer.org>
-> ---
->  arch/arm/boot/dts/sun8i-v3s.dtsi | 8 ++++----
->  1 file changed, 4 insertions(+), 4 deletions(-)
->
-> diff --git a/arch/arm/boot/dts/sun8i-v3s.dtsi b/arch/arm/boot/dts/sun8i-v3s.dtsi
-> index e8f304125e2d..bc4b4a0200cb 100644
-> --- a/arch/arm/boot/dts/sun8i-v3s.dtsi
-> +++ b/arch/arm/boot/dts/sun8i-v3s.dtsi
-> @@ -162,17 +162,17 @@ syscon: system-control@1c00000 {
->                         #size-cells = <1>;
->                         ranges;
->
-> -                       sram_c: sram@1d00000 {
-> +                       sram_c: sram@4000 {
->                                 compatible = "mmio-sram";
-> -                               reg = <0x01d00000 0x80000>;
-> +                               reg = <0x4000 0xb000>;
->                                 #address-cells = <1>;
->                                 #size-cells = <1>;
-> -                               ranges = <0 0x01d00000 0x80000>;
-> +                               ranges = <0 0x4000 0xb000>;
->
->                                 ve_sram: sram-section@0 {
->                                         compatible = "allwinner,sun8i-v3s-sram-c1",
+There're too many people, I just send to the maintainer, reviewer, supporter.
 
-Using C1 in the compatible string is confusing at this point, as the
-name is never mentioned in the manual.
-
-Please change it to sram-ve instead. Please also update the binding.
-
-Since the DT patches this depends on haven't been merged yet, please
-just do another version of the remaining patches with the changes
-included.
+Eliminate below warnings:
+./Documentation/devicetree/bindings/clock/imx8qxp-lpcg.yaml:32:13: [warning] wrong indentation: expected 14 but found 12 (indentation)
+./Documentation/devicetree/bindings/clock/imx8qxp-lpcg.yaml:35:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
+./Documentation/devicetree/bindings/display/intel,keembay-msscam.yaml:21:6: [warning] wrong indentation: expected 6 but found 5 (indentation)
+./Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml:52:9: [warning] wrong indentation: expected 6 but found 8 (indentation)
+./Documentation/devicetree/bindings/display/bridge/intel,keembay-dsi.yaml:42:8: [warning] wrong indentation: expected 8 but found 7 (indentation)
+./Documentation/devicetree/bindings/display/bridge/intel,keembay-dsi.yaml:45:8: [warning] wrong indentation: expected 8 but found 7 (indentation)
+./Documentation/devicetree/bindings/display/panel/novatek,nt36672a.yaml:25:10: [warning] wrong indentation: expected 10 but found 9 (indentation)
+./Documentation/devicetree/bindings/media/i2c/adv7604.yaml:24:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
+./Documentation/devicetree/bindings/media/i2c/mipi-ccs.yaml:4:1: [error] missing document start "---" (document-start)
+./Documentation/devicetree/bindings/media/i2c/mipi-ccs.yaml:29:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
+./Documentation/devicetree/bindings/media/i2c/mipi-ccs.yaml:32:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
+./Documentation/devicetree/bindings/media/i2c/ovti,ov772x.yaml:79:17: [warning] wrong indentation: expected 14 but found 16 (indentation)
+./Documentation/devicetree/bindings/media/i2c/ovti,ov772x.yaml:88:17: [warning] wrong indentation: expected 14 but found 16 (indentation)
+./Documentation/devicetree/bindings/media/i2c/sony,imx214.yaml:72:17: [warning] wrong indentation: expected 18 but found 16 (indentation)
+./Documentation/devicetree/bindings/media/i2c/sony,imx214.yaml:75:17: [warning] wrong indentation: expected 18 but found 16 (indentation)
+./Documentation/devicetree/bindings/mmc/mtk-sd.yaml:20:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
+./Documentation/devicetree/bindings/mmc/mtk-sd.yaml:30:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
+./Documentation/devicetree/bindings/mmc/mtk-sd.yaml:33:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
+./Documentation/devicetree/bindings/sound/mt8192-mt6359-rt1015-rt5682.yaml:10:4: [warning] wrong indentation: expected 2 but found 3 (indentation)
 
 
-ChenYu
+Zhen Lei (1):
+  dt-bindings: eliminate yamllint warnings
+
+ .../devicetree/bindings/clock/imx8qxp-lpcg.yaml    | 20 ++++++++---------
+ .../bindings/display/bridge/analogix,anx7625.yaml  |  4 ++--
+ .../bindings/display/bridge/intel,keembay-dsi.yaml |  4 ++--
+ .../bindings/display/intel,keembay-msscam.yaml     |  4 ++--
+ .../bindings/display/panel/novatek,nt36672a.yaml   |  2 +-
+ .../devicetree/bindings/media/i2c/adv7604.yaml     |  4 ++--
+ .../devicetree/bindings/media/i2c/mipi-ccs.yaml    | 11 ++++-----
+ .../devicetree/bindings/media/i2c/ovti,ov772x.yaml | 12 +++++-----
+ .../devicetree/bindings/media/i2c/sony,imx214.yaml | 12 +++++-----
+ Documentation/devicetree/bindings/mmc/mtk-sd.yaml  | 26 +++++++++++-----------
+ .../sound/mt8192-mt6359-rt1015-rt5682.yaml         |  4 ++--
+ 11 files changed, 52 insertions(+), 51 deletions(-)
+
+-- 
+1.8.3
 
 
->                                                      "allwinner,sun4i-a10-sram-c1";
-> -                                       reg = <0x000000 0x80000>;
-> +                                       reg = <0x0 0xb000>;
->                                 };
->                         };
->                 };
-> --
-> 2.25.1
->
