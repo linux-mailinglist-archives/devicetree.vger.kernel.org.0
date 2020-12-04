@@ -2,180 +2,307 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9BB3F2CF45F
-	for <lists+devicetree@lfdr.de>; Fri,  4 Dec 2020 19:53:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A3AD82CF4D8
+	for <lists+devicetree@lfdr.de>; Fri,  4 Dec 2020 20:37:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727990AbgLDSxJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Dec 2020 13:53:09 -0500
-Received: from mail.kernel.org ([198.145.29.99]:51228 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726958AbgLDSxI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 4 Dec 2020 13:53:08 -0500
-Date:   Fri, 4 Dec 2020 18:52:23 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1607107947;
-        bh=FKobiGwv/Vz9ya9A/LUGe7+OJ9lr7WNxazXGbvRffMk=;
-        h=From:To:Cc:Subject:References:In-Reply-To:From;
-        b=M9ATD/Ychqh4F1JCdDnqas8MlT0T2vDcB1M9ICdA9Kc9i4lY9iaV7hTn2tL2Wlcuh
-         +lrOP3rFso5F9D5vNWL+zIKtIMvA34qu4Tz6QZG/+77t07H7Uv8FLG3S/ULmTCSGY/
-         g5650Bhf4EtPBGj7XWHjYlnotFQSUhXp7kZbRsmKUyYsZqc+JSS0ms7wLyfScRijBb
-         PmWYLnxoGrBpx++/0LLFNmV1+y9/e4m89SJ6q/W7iNWM7SnkLtAwxGUhuowQtFFkxq
-         X+kdy5A6amtE6IpdOKWMyzd+icjt6gTqBgEY5OtwjOILiNyT+/+86pFhfW46Sz9GWJ
-         yAl6CPxsGlHrw==
-From:   Mark Brown <broonie@kernel.org>
-To:     Sowjanya Komatineni <skomatineni@nvidia.com>
-Cc:     thierry.reding@gmail.com, jonathanh@nvidia.com, robh+dt@kernel.org,
-        linux-spi@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v1 3/7] spi: qspi-tegra: Add support for Tegra210 QSPI
- controller
-Message-ID: <20201204185223.GF4558@sirena.org.uk>
-References: <1606857168-5839-1-git-send-email-skomatineni@nvidia.com>
- <1606857168-5839-4-git-send-email-skomatineni@nvidia.com>
- <20201202172721.GL5560@sirena.org.uk>
- <2257bc33-80ef-a6d8-8542-480defa32937@nvidia.com>
- <be8291fc-8e69-b577-d8f4-20aeca0b45cc@nvidia.com>
+        id S1728605AbgLDTgU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Dec 2020 14:36:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56906 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725923AbgLDTgU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Dec 2020 14:36:20 -0500
+Received: from mail-pf1-x442.google.com (mail-pf1-x442.google.com [IPv6:2607:f8b0:4864:20::442])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48D07C0613D1;
+        Fri,  4 Dec 2020 11:35:40 -0800 (PST)
+Received: by mail-pf1-x442.google.com with SMTP id c79so4453360pfc.2;
+        Fri, 04 Dec 2020 11:35:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=cQEOGFYSu5gjZsZIFeFaQQwURzAW5gco/80H8pDScYI=;
+        b=eL680N7zTc3Kw+uUKHH5IwSFqsVQ+aYCV4gega01LckzYQzxIg6eK6TUov4Y1qtG4G
+         HSBYywuNLX+fEunc2O6DMfNg0Sorr/twQDeVwczvCr3Ohlv03eqmlZdUIuU5z1GWKYS9
+         AnFOFpdXn/dIG29NnV+b1HhZT5CI+jxMfjG2cuNXVPkDeSdXtDGIg34e6wfqZG/7wGaO
+         gC5V09FyIc9VGaqRgYRS+XHTNYH3cSyqUoJTwyrhhCymjCT9s2AZDPFKQMg1KkEhGiQF
+         bqE3YsDEjfKdEBPwI5aOHvcjTzYus3SAQS++84Jitj5Tof/BUe2UxRFBwY4+p6jS9LLe
+         yvfg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=cQEOGFYSu5gjZsZIFeFaQQwURzAW5gco/80H8pDScYI=;
+        b=teBQY4eA7uT2vxyPnAYRQQHmOx5qM6dBdNJ3kKsW01jsSR9yNlj9KJnn8EyC8L+uhh
+         WR/PolWW/YV9DA/G/jXTgn8JFoMSibP0UasBvNWlYeN7CGi7lwADcyPia8zl8xlB293g
+         gyeEc/CYLEPX/8aQpFvJm+NdXsQ1HDe4CSgRT+XHxGkvTvLS8lqQIlPrOYliBIiEPQ15
+         NLxjzy8Hjd5OA+HA8AGHPdiK3hOdE5BlOjEkWcbhGOQPB0GXKzqqJEuSoQkhhmVw9xvM
+         uopbftgCz3EAvH2wtCwBzjqO1IlIM7F45YpA+b1nK9lcpe7eZ+v6sXZrSiWSA3KNyaUE
+         olnQ==
+X-Gm-Message-State: AOAM5310kTNzgfZ2zDQWILSxvco/xES/65rmdkUxtC0Yz4cRu8yDiRY4
+        LLbB5L68dGbJPEzgeZgwhfSMm77pQFQ=
+X-Google-Smtp-Source: ABdhPJxOqw1l9gRm2+pgTXbV8DBas+qjV687u0mtSWY6ZaM+UJOcLdGrdnQjeNvM2fWrxKK44FOdTw==
+X-Received: by 2002:aa7:9341:0:b029:18b:b43:6c7 with SMTP id 1-20020aa793410000b029018b0b4306c7mr5355827pfn.7.1607110539136;
+        Fri, 04 Dec 2020 11:35:39 -0800 (PST)
+Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id j9sm5425942pfi.116.2020.12.04.11.35.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 04 Dec 2020 11:35:38 -0800 (PST)
+From:   Florian Fainelli <f.fainelli@gmail.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     bcm-kernel-feedback-list@broadcom.com,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS)
+Subject: [PATCH v2] dt-bindings: phy: Convert Broadcom SATA PHY to YAML
+Date:   Fri,  4 Dec 2020 11:35:31 -0800
+Message-Id: <20201204193532.1934108-1-f.fainelli@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="/aVve/J9H4Wl5yVO"
-Content-Disposition: inline
-In-Reply-To: <be8291fc-8e69-b577-d8f4-20aeca0b45cc@nvidia.com>
-X-Cookie: Not a flying toy.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Update the Broadcom SATA PHY Device Tree binding to a YAML format.
 
---/aVve/J9H4Wl5yVO
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Suggested-by: Vinod Koul <vkoul@kernel.org>
+Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
+---
+Changes in v2:
 
-On Thu, Dec 03, 2020 at 04:22:54PM -0800, Sowjanya Komatineni wrote:
-> On 12/2/20 11:17 AM, Sowjanya Komatineni wrote:
+- fixed #phy-cells warning
+- fixed yamlling warnings
 
-> > > It seems weird that this device needs us to do a memcpy() to do DMA,
-> > > most devices are able to DMA directly from the buffers provided by the
-> > > SPI API (and let the SPI core sync things).=A0 What is going on here?
+ .../bindings/phy/brcm,sata-phy.yaml           | 148 ++++++++++++++++++
+ .../devicetree/bindings/phy/brcm-sata-phy.txt |  61 --------
+ 2 files changed, 148 insertions(+), 61 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/phy/brcm,sata-phy.yaml
+ delete mode 100644 Documentation/devicetree/bindings/phy/brcm-sata-phy.txt
 
-> > For transfers of size more than max DMA transfer limit, data transfer
-> > happens in multiple iterations with each iteration transferring up to
-> > max DMA transfer limit.
+diff --git a/Documentation/devicetree/bindings/phy/brcm,sata-phy.yaml b/Documentation/devicetree/bindings/phy/brcm,sata-phy.yaml
+new file mode 100644
+index 000000000000..58c3ef8004ad
+--- /dev/null
++++ b/Documentation/devicetree/bindings/phy/brcm,sata-phy.yaml
+@@ -0,0 +1,148 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/phy/brcm,sata-phy.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: Broadcom SATA3 PHY
++
++maintainers:
++  - Florian Fainelli <f.fainelli@gmail.com>
++
++properties:
++  $nodename:
++    pattern: "^sata[-|_]phy(@.*)?$"
++
++  compatible:
++    oneOf:
++      - items:
++          - enum:
++              - brcm,bcm7216-sata-phy
++              - brcm,bcm7425-sata-phy
++              - brcm,bcm7445-sata-phy
++              - brcm,bcm63138-sata-phy
++          - const: brcm,phy-sata3
++      - items:
++          - const: brcm,iproc-nsp-sata-phy
++      - items:
++          - const: brcm,iproc-ns2-sata-phy
++      - items:
++          - const: brcm,iproc-sr-sata-phy
++
++  reg:
++    minItems: 1
++    maxItems: 2
++
++  reg-names:
++    minItems: 1
++    maxItems: 2
++    items:
++      - const: phy
++      - const: phy-ctrl
++
++  "#address-cells":
++    const: 1
++
++  "#size-cells":
++    const: 0
++
++patternProperties:
++  "^sata-phy@[0-9]+$":
++    type: object
++    description: |
++      Each port's PHY should be represented as a sub-node.
++
++    properties:
++      reg:
++        description: The SATA PHY port number
++        maxItems: 1
++
++      "#phy-cells":
++        const: 0
++
++      "brcm,enable-ssc":
++        $ref: /schemas/types.yaml#/definitions/flag
++        description: |
++          Use spread spectrum clocking (SSC) on this port
++          This property is not applicable for "brcm,iproc-ns2-sata-phy",
++          "brcm,iproc-nsp-sata-phy" and "brcm,iproc-sr-sata-phy".
++
++      "brcm,rxaeq-mode":
++        $ref: /schemas/types.yaml#/definitions/string
++        description:
++          String that indicates the desired RX equalizer mode.
++        enum:
++          - off
++          - auto
++          - manual
++
++      "brcm,rxaeq-value":
++        $ref: /schemas/types.yaml#/definitions/uint32
++        description: |
++            When 'brcm,rxaeq-mode' is set to "manual", provides the RX
++            equalizer value that should be used.
++        minimum: 0
++        maximum: 63
++
++      "brcm,tx-amplitude-millivolt":
++        description: |
++            Transmit amplitude voltage in millivolt.
++        $ref: /schemas/types.yaml#/definitions/uint32
++        enum: [400, 500, 600, 800]
++
++    required:
++      - reg
++      - "#phy-cells"
++
++    additionalProperties: false
++
++if:
++  properties:
++    compatible:
++      items:
++        const: brcm,iproc-ns2-sata-phy
++then:
++  properties:
++    reg:
++      maxItems: 2
++    reg-names:
++      items:
++        - const: "phy"
++        - const: "phy-ctrl"
++else:
++  properties:
++    reg:
++      maxItems: 1
++    reg-names:
++      maxItems: 1
++      items:
++        - const: "phy"
++
++required:
++  - compatible
++  - "#address-cells"
++  - "#size-cells"
++  - reg
++  - reg-names
++
++additionalProperties: false
++
++examples:
++  - |
++    sata_phy@f0458100 {
++        compatible = "brcm,bcm7445-sata-phy", "brcm,phy-sata3";
++        reg = <0xf0458100 0x1e00>;
++        reg-names = "phy";
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        sata-phy@0 {
++                reg = <0>;
++                #phy-cells = <0>;
++        };
++
++        sata-phy@1 {
++                reg = <1>;
++                #phy-cells = <0>;
++        };
++    };
+diff --git a/Documentation/devicetree/bindings/phy/brcm-sata-phy.txt b/Documentation/devicetree/bindings/phy/brcm-sata-phy.txt
+deleted file mode 100644
+index e5abbace93a3..000000000000
+--- a/Documentation/devicetree/bindings/phy/brcm-sata-phy.txt
++++ /dev/null
+@@ -1,61 +0,0 @@
+-* Broadcom SATA3 PHY
+-
+-Required properties:
+-- compatible: should be one or more of
+-     "brcm,bcm7216-sata-phy"
+-     "brcm,bcm7425-sata-phy"
+-     "brcm,bcm7445-sata-phy"
+-     "brcm,iproc-ns2-sata-phy"
+-     "brcm,iproc-nsp-sata-phy"
+-     "brcm,phy-sata3"
+-     "brcm,iproc-sr-sata-phy"
+-     "brcm,bcm63138-sata-phy"
+-- address-cells: should be 1
+-- size-cells: should be 0
+-- reg: register ranges for the PHY PCB interface
+-- reg-names: should be "phy" and "phy-ctrl"
+-     The "phy-ctrl" registers are only required for
+-     "brcm,iproc-ns2-sata-phy" and "brcm,iproc-sr-sata-phy".
+-
+-Sub-nodes:
+-  Each port's PHY should be represented as a sub-node.
+-
+-Sub-nodes required properties:
+-- reg: the PHY number
+-- phy-cells: generic PHY binding; must be 0
+-
+-Sub-nodes optional properties:
+-- brcm,enable-ssc: use spread spectrum clocking (SSC) on this port
+-     This property is not applicable for "brcm,iproc-ns2-sata-phy",
+-     "brcm,iproc-nsp-sata-phy" and "brcm,iproc-sr-sata-phy".
+-
+-- brcm,rxaeq-mode: string that indicates the desired RX equalizer
+-  mode, possible values are:
+-	"off" (equivalent to not specifying the property)
+-	"auto"
+-	"manual" (brcm,rxaeq-value is used in that case)
+-
+-- brcm,rxaeq-value: when 'rxaeq-mode' is set to "manual", provides the RX
+-  equalizer value that should be used. Allowed range is 0..63.
+-
+-- brcm,tx-amplitude-millivolt: transmit amplitude voltage in millivolt.
+-  Possible values are 400, 500, 600 or 800 mV.
+-
+-Example
+-	sata-phy@f0458100 {
+-		compatible = "brcm,bcm7445-sata-phy", "brcm,phy-sata3";
+-		reg = <0xf0458100 0x1e00>, <0xf045804c 0x10>;
+-		reg-names = "phy";
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+-
+-		sata-phy@0 {
+-			reg = <0>;
+-			#phy-cells = <0>;
+-		};
+-
+-		sata-phy@1 {
+-			reg = <1>;
+-			#phy-cells = <0>;
+-		};
+-	};
+-- 
+2.25.1
 
-> > So using separate dma buffers and on every iteration copying them to SPI
-> > core provided tx/rx buffers.
-
-I don't understand this - there's no restriction on where DMA transfers
-can be done from within a DMA mapped region, the driver can do multiple
-transfers from different chunks of the source buffer without having to
-copy anything.  That's a very common scenario.
-
-> Also unpack mode needs to manually put the bytes together from read data =
-to
-> SPI core rx buffer.
-
-Could you be more explicit here, I don't know what "unpack mode" is?
-
-> > > This is worrying, the client device might be confused if /CS is doing
-> > > things outside of the standard handling.
-
-> > Do you mean to honor spi_transfer cs_change flag?
-
-At least, yes - more generally just if there's any feature to with chip
-select then the driver will need to open code it.  The driver should at
-least be double checking that what it's doing matches what it was told
-to do, though just letting this be handled by the generic code if
-there's no limitation on the hardware tends to be easier all round.
-
-> > Tegra QSPI is master and is used only with QSPI flash devices. Looking
-> > at SPI NOR driver, I see QSPI Flash commands are executed with one flash
-> > command per spi_message and I dont see cs_change flag usage w.r.t QSPI
-> > flash. So, using SW based CS control for QSPI.
-
-> > Please correct me if I miss something to understand here.
-
-Someone might build a system that does something different, they may see
-a spare SPI controller and decide they can use it for something else or
-there may be some future change with the flash code which does something
-different.
-
-> > > > +=A0=A0=A0 tegra_qspi_writel(tqspi, tqspi->def_command2_reg, QSPI_C=
-OMMAND2);
-
-> > > The setup for one device shouldn't be able to affect the operation of
-> > > another, already running, device so either these need to be configured
-> > > as part of the controller probe or these configurations need to be
-> > > deferred until we're actually doing a transfer.
-
-> > We will only have 1 device on QSPI as we only support single chip selec=
-t.
-
-It's quite common for people to do things like add additional devices
-with GPIO chip selects.
-
-> > > > +=A0=A0=A0 /*
-> > > > +=A0=A0=A0=A0 * Tegra QSPI hardware support dummy bytes transfer ba=
-sed on the
-> > > > +=A0=A0=A0=A0 * programmed dummy clock cyles in QSPI register.
-> > > > +=A0=A0=A0=A0 * So, get the total dummy bytes from the dummy bytes =
-transfer in
-> > > > +=A0=A0=A0=A0 * spi_messages and convert to dummy clock cyles.
-> > > > +=A0=A0=A0=A0 */
-> > > > +=A0=A0=A0 list_for_each_entry(xfer, &msg->transfers, transfer_list=
-) {
-> > > > +=A0=A0=A0=A0=A0=A0=A0 if (ntransfers =3D=3D DUMMY_BYTES_XFER &&
-> > > > +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 !(list_is_last(&xfer->transfer_l=
-ist, &msg->transfers)))
-> > > > +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 dummy_cycles =3D xfer->len * 8 /=
- xfer->tx_nbits;
-> > > > +=A0=A0=A0=A0=A0=A0=A0 ntransfers++;
-> > > > +=A0=A0=A0 }
-
-> > > This seems weird, there's some hard coded assumption about particular
-> > > patterns that the client device is going to send.=A0 What's going on =
-here?
-> > > I don't really understand what this is trying to do.
-
-> > QSPI flash needs dummy cycles for data read operation which is actually
-> > the initial read latency and no. of dummy cycles required are vendor
-> > specific.
-
-> > SPI NOR driver gets required dummy cycles based on mode clock cycles and
-> > wait state clock cycles.
-
-> > During read operations, spi_nor_spimem_read_data() converts dummy cycles
-> > to number of dummy bytes.
-
-> > Tegra QSPI controller supports dummy clock cycles register and when
-> > programmed QSPI controller sends dummy bytes rather than SW handling
-> > extra cycles for transferring dummy bytes.
-
-> > Above equation converts this dummy bytes back to dummy clock cycles to
-> > program into QSPI register and avoid manual SW transfer of dummy bytes.
-
-This is not a good idea, attempting to reverse engineer the message and
-guess at the contents isn't going to be robust and if it's useful it
-will if nothing else lead to a bunch of duplicated code in drivers as
-every device that has this feature will need to reimplment it.  Instead
-we should extend the framework so there's explicit support for
-specifying transfers that are padding bytes, then there's no guesswork
-that can go wrong and no duplicated code between drivers.  A flag in the
-transfer struct might work?
-
---/aVve/J9H4Wl5yVO
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl/KhWYACgkQJNaLcl1U
-h9D5rAf/UXH5pXjHwsAegxtnMvM+8cgWCzvs2PM6GsIOb6SgfLOliNoXC64Zia28
-+/7YK1aRuk53w1rIx1I+b2yUG5WSXSAKwIPtz4QUYdzN4VJvIBC4fxCCjR8f4RIR
-RrPpLD9bMMmuVhM84aIF3xjQmNz3z5/qS8+BXwhtIrTP7SMnDAfU62adJmONMPp3
-72T2xGpME00bIZ5NczxHE0Wo3jc42H/KstjifMAjBSW5u0dYjaIsV4IFSShA2SY3
-YhhSv+j6v6ock1AZ9AFUV4brvhciKpLs2GpfM8bXOVnAun2BJsy0AxmFOuoZeIP9
-vI5zle2CVDMsXzFySUwaY3OWc00Ptg==
-=HKIs
------END PGP SIGNATURE-----
-
---/aVve/J9H4Wl5yVO--
