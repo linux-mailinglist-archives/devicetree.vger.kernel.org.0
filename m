@@ -2,105 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 565582CE47D
-	for <lists+devicetree@lfdr.de>; Fri,  4 Dec 2020 01:35:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B29372CE480
+	for <lists+devicetree@lfdr.de>; Fri,  4 Dec 2020 01:35:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388341AbgLDAdk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Dec 2020 19:33:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49254 "EHLO
+        id S1730048AbgLDAeA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Dec 2020 19:34:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49332 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388323AbgLDAdj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Dec 2020 19:33:39 -0500
-Received: from mail-ot1-x342.google.com (mail-ot1-x342.google.com [IPv6:2607:f8b0:4864:20::342])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BA5CC061A4F
-        for <devicetree@vger.kernel.org>; Thu,  3 Dec 2020 16:32:53 -0800 (PST)
-Received: by mail-ot1-x342.google.com with SMTP id f12so3609951oto.10
-        for <devicetree@vger.kernel.org>; Thu, 03 Dec 2020 16:32:53 -0800 (PST)
+        with ESMTP id S1730003AbgLDAeA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Dec 2020 19:34:00 -0500
+Received: from mail-oi1-x241.google.com (mail-oi1-x241.google.com [IPv6:2607:f8b0:4864:20::241])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 222C9C061A55
+        for <devicetree@vger.kernel.org>; Thu,  3 Dec 2020 16:33:20 -0800 (PST)
+Received: by mail-oi1-x241.google.com with SMTP id k2so4265848oic.13
+        for <devicetree@vger.kernel.org>; Thu, 03 Dec 2020 16:33:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=7MdXndgzjeVMMTv3QiHrAis+Wy+JgdC97pj6GXzTuEs=;
-        b=rrhPz0aCBHNoFZGNmmMN3G68Ufo3m06XULdXNz0dtmB8Jcu8E5Dc8VYiNS84HgzrWx
-         nnx7pFHXNx4BaalHJ4+yfLf6g7KIXwb3D+9vQiK+4j13LDYKThsMmRXOixoOv5o47XGt
-         r/Esykp8I56KiF6twfSNhmjCida5oA5rx5yU/nUJHFm0rvX6MNebmH/MmmxBssy/wXn5
-         eLwSnqZH7LDxGi7QPqaVpepi2cjlvW5l6EihIqrdMsL9gjVC2j9WWRDS1P0DOK1BzZ0o
-         fvv+ZMVlKMdN8u3Zi6LnVBH8DiEeZpf0SQj0WE8+u/hdIKvoQLLEyoZkrV/IYICnelZE
-         3Z2Q==
+        bh=F4qSAvqclwaBrwtj+D4WYT0ed0FtCTiqB7wP+jGTvzs=;
+        b=Knkst9NAJKJlG81HZrnkT61iPj7pbone3xLt1QMLq6jgnl/Zml13orYQLooU83/6EO
+         qTNUIiH8cDxz/UYePN+LNjtTpIeFtiOgaAmbykS+IMxPN1gA4S6O0AupZjlO5bmZ8oBo
+         ZzSToqQeT/FblPepO9Qz0afjNe48SrMIGHwWR9bVdq3zNnR9+6X4kV7ls7sDneuozHFn
+         kXPJVhhOkf2Ps3V2/A5B69kEfQFAKQnZA3F0xnR0pRJKrJeZiYSuSY3YJNNlCZK7ifOH
+         +xZjsWcB6A5KFqI2iIsgzzUhF4rtyQTk7279v7JDCpGwsmRkZhxKBMUKlxg19IGfUmKo
+         zhnw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=7MdXndgzjeVMMTv3QiHrAis+Wy+JgdC97pj6GXzTuEs=;
-        b=Ul732GnBg1kD2dmh9I3MDcXnPSx0c50avEtJtW/ZKgT5arVg81Nf8mDiA1toHNFk7J
-         7qWobSayfJxG7Xo0JFULFOTU6YYXetIlpMhrWRaZZU29oWfg8NreGmGzpY5mtTJneoWG
-         BmvRnRYqhueA1xEQZ2YbY7phTA5+4NWsfgp3rqM7xjSDb7C73UzGxAoj6t/Ya8Xed0Ho
-         ocxkkdxtmx51Kg8gmj0eYF9557a9StWuabjIjOw5ArBSkz2sEzwZLeJQytb466oGIquw
-         8/TwQzKVdpalfD6LPo2eFUjl0meycHuHUuIuE0UQO1qeA9MfKTX380cRS16iAJbYshJr
-         pvgQ==
-X-Gm-Message-State: AOAM533Rufv8DuASaUDkN/SMizfyJtSv1MHS1cCaphXf6WS9du4RyrJq
-        PxsBUo7NRRCbX1de+uHV0HCGCw==
-X-Google-Smtp-Source: ABdhPJyUhH50Y0gRXUDj8pE+7NFyx2hkbRV6Bio/hg9jUyiQX8C6fqc1MmeIZtnWE9ZZg5d7jPxfIQ==
-X-Received: by 2002:a9d:d4a:: with SMTP id 68mr1603458oti.101.1607041972646;
-        Thu, 03 Dec 2020 16:32:52 -0800 (PST)
+        bh=F4qSAvqclwaBrwtj+D4WYT0ed0FtCTiqB7wP+jGTvzs=;
+        b=hrdS6i3eRXLsmiLe78dYQ+pFtFNm+gwAS0inbSPLIYbfotb0Ro8BSQeRdQNK7diwXu
+         s/TiE0v+p1Y2iqDy3oeC+Sh9yTFKp/w6eqqI1X/WQV/zu72jDHTStOQECxYqgeP71DIX
+         MzBk2CNuCdrDqnaBYhiAWV4UXT/rWNLgPFbEruD8JUGsTXYribZ+/x6lOY04FUyzumRm
+         impo44TEXmb5MXz3HoFqWQJ9OOypMKnyQ22AhwQDqmeb0/DJH4yLjIG1uNwezJKYCchN
+         isEu3ii2OinmIqtF3bDhThdym1o9bW0zQvyEL+NC4iMdZ1t5Uw3cZN3/M0NIrHGELjqi
+         JbvA==
+X-Gm-Message-State: AOAM532YGHuhJjKsWl93E0ocS7MhrzY+wqn8zty0ssowTozXtQyn5vs3
+        AYkpSgbA2BtDCzi+/3ZC9BaMGA==
+X-Google-Smtp-Source: ABdhPJziJks2wT35CJcxJ1e9G8XvcOcmk+m6fxcIbh3JFDPiW6HO059tWwShgKtA6S3Y75WsrzgWKg==
+X-Received: by 2002:aca:3c3:: with SMTP id 186mr1339087oid.22.1607041999440;
+        Thu, 03 Dec 2020 16:33:19 -0800 (PST)
 Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id e3sm293633oot.14.2020.12.03.16.32.51
+        by smtp.gmail.com with ESMTPSA id d62sm263751oia.6.2020.12.03.16.33.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Dec 2020 16:32:51 -0800 (PST)
-Date:   Thu, 3 Dec 2020 18:32:50 -0600
+        Thu, 03 Dec 2020 16:33:18 -0800 (PST)
+Date:   Thu, 3 Dec 2020 18:33:17 -0600
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
 To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: soc: qcom: convert qcom,smem bindings
- to yaml
-Message-ID: <X8mDsrkG7cY2nPC8@builder.lan>
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: sm8250: rename smem device node to
+ follow schema
+Message-ID: <X8mDzc77sk+fAFit@builder.lan>
 References: <20201203191335.927001-1-dmitry.baryshkov@linaro.org>
+ <20201203191335.927001-2-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201203191335.927001-1-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20201203191335.927001-2-dmitry.baryshkov@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On Thu 03 Dec 13:13 CST 2020, Dmitry Baryshkov wrote:
-[..]
-> diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,smem.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,smem.yaml
-> new file mode 100644
-> index 000000000000..1ddeb25cbdc1
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/soc/qcom/qcom,smem.yaml
-> @@ -0,0 +1,74 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/soc/qcom/qcom,smem.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +
-> +title: Qualcomm Shared Memory Manager binding
-> +
-> +maintainers:
-> +  - Andy Gross <agross@kernel.org>
-> +  - Bjorn Andersson <bjorn.andersson@linaro.org>
-> +
-> +description: |
-> +  This binding describes the Qualcomm Shared Memory Manager, used to share data
-> +  between various subsystems and OSes in Qualcomm platforms.
-> +
-> +properties:
-> +  compatible:
 
-y/-/,/ in that compatible, and we only have one. So I think you should
-instead do:
+> Rename 'qcom,smem' to just 'smem' to follow the rest of SoC (and device
+> schema).
+> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-    const: "qcom,smem"
+Applied, no need to include in v2.
 
-Apart from that I think the binding looks good.
-
-Regards,
+Thanks,
 Bjorn
 
-> +    enum:
-> +      - "qcom-smem"
-> +
+> ---
+>  arch/arm64/boot/dts/qcom/sm8250.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> index 4c472db2738e..bdd9bd303415 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> @@ -334,7 +334,7 @@ cdsp_secure_heap: memory@8bf00000 {
+>  		};
+>  	};
+>  
+> -	smem: qcom,smem {
+> +	smem {
+>  		compatible = "qcom,smem";
+>  		memory-region = <&smem_mem>;
+>  		hwlocks = <&tcsr_mutex 3>;
+> -- 
+> 2.29.2
+> 
