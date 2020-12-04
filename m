@@ -2,89 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B4842CEA10
-	for <lists+devicetree@lfdr.de>; Fri,  4 Dec 2020 09:44:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7776D2CEA37
+	for <lists+devicetree@lfdr.de>; Fri,  4 Dec 2020 09:52:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729071AbgLDIoj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Dec 2020 03:44:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40568 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729055AbgLDIoj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Dec 2020 03:44:39 -0500
-Received: from mail-lf1-x143.google.com (mail-lf1-x143.google.com [IPv6:2a00:1450:4864:20::143])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9866C061A54
-        for <devicetree@vger.kernel.org>; Fri,  4 Dec 2020 00:43:58 -0800 (PST)
-Received: by mail-lf1-x143.google.com with SMTP id j205so6597425lfj.6
-        for <devicetree@vger.kernel.org>; Fri, 04 Dec 2020 00:43:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=KET1E+zuak3FlCY4zF7z/1ILHVvC2UNzSxg2qMKY1c0=;
-        b=HxSx5uVAmmhLrfNvxVpDEfIm79FjWwE+/pIOwU9OCK4itu6RvC3I29vkt6XN+XnlQO
-         35qbSosF0096esxtPaOnQPzrtaaFB7ldlWwSM8k6l7VOnau3V36cTZM947r6Yy5jxp6j
-         V/UltUuV1NUcCDh14YfCLi2AQKk8jemX3ddOis+X+igZvQK39fa643oOfJrBRyI7Cdbb
-         paw/zZAVesnY5ei4at4uYjHLTYCaHAvyWaqAf0sGcjOPfNlnYoyO7Pn8kbXazuKA3Z28
-         OYVHXUhRguDKlf0ec/j9CbVkRgRlnWXbPEL1PlzphOt8/IImroG9s1ne8Axif63KivuQ
-         WtEA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=KET1E+zuak3FlCY4zF7z/1ILHVvC2UNzSxg2qMKY1c0=;
-        b=Q21y9+Df+akM7C1KuS3zcj746PtL/e/PJ0t8WPr02za5y7sFql1uiI9kCeZpdyFxA4
-         QtkM+DMnQgdBN13vw/nq6LrR2Kap/XekgGYVxXUdPPHbe2L/MMlHHPaDqKh5ae0rVaCH
-         qqjvlA3cw9HUSsgpelIIBVmKrKm/DsF0gWlb8wKntrKH1f950KkzrhzJxRUPwc9HoUNm
-         yIDE2Vvc31WKAj8iw/PiYfPFMvmr7q3JdECwLFNBLIaSBU1Yr3xHuG0KJwJDoq7NLnep
-         gSU6ben4+muBNTQbOIHEJpH1gX4MHqPPVLWejWdmFUrtDMcn4IFCW+en4z/cir3k969B
-         YFWA==
-X-Gm-Message-State: AOAM5338wrV9DFv+iCPkCvUwVVeF6YY0Bplscaj9Mo5kqeoTKQ0x7HMW
-        SmyIKWzhXB34MKCaXdsG1ESyuLbWksVh16pQMlq6Qg==
-X-Google-Smtp-Source: ABdhPJxSmtAp/6oFP6JQUcOPafIUSq25E/Xy3Sy4VeE2x4VQ+ZmXA8JyQPwmPHVM/WpFq9Ryq05QtDCFXaeHkuFJhTs=
-X-Received: by 2002:ac2:4308:: with SMTP id l8mr2768677lfh.260.1607071437123;
- Fri, 04 Dec 2020 00:43:57 -0800 (PST)
+        id S1729335AbgLDIvy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Dec 2020 03:51:54 -0500
+Received: from m43-15.mailgun.net ([69.72.43.15]:18937 "EHLO
+        m43-15.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729332AbgLDIvy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Dec 2020 03:51:54 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1607071894; h=Content-Transfer-Encoding: Content-Type:
+ In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
+ Subject: Sender; bh=KDVVzbG9GvJL/tCyDceYZiD1rBmyxebfv3YnVVi8et4=; b=PT+tWlhtgAQS0TyWEQSM7WeuJIg2Uht2ic/BBYYmHzkdmySqj36Un+ac827o/J7Kty0q1Ydz
+ Q3zXRGDtl5PYPm18LS9pM3WMdDBdtOBHj8zniaknnVwD4TJ71MpcLeKZEIyssf7iZjMNjdOp
+ DAXQUVji+U1CzhaC+rZfbVAeANA=
+X-Mailgun-Sending-Ip: 69.72.43.15
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n04.prod.us-east-1.postgun.com with SMTP id
+ 5fc9f87aaac9455097f0b387 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 04 Dec 2020 08:51:06
+ GMT
+Sender: tdas=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 6B5E7C43464; Fri,  4 Dec 2020 08:51:04 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        NICE_REPLY_A,SPF_FAIL autolearn=no autolearn_force=no version=3.4.0
+Received: from [192.168.0.104] (unknown [49.204.182.199])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: tdas)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id A514CC433C6;
+        Fri,  4 Dec 2020 08:50:59 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org A514CC433C6
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=tdas@codeaurora.org
+Subject: Re: [PATCH 5/5] clk: qcom: gcc: Add clock driver for SM8350
+To:     Vinod Koul <vkoul@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Stephen Boyd <sboyd@kernel.org>,
+        Vivek Aknurwar <viveka@codeaurora.org>,
+        Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Jeevan Shriram <jshriram@codeaurora.org>
+References: <20201203070241.2648874-1-vkoul@kernel.org>
+ <20201203070241.2648874-6-vkoul@kernel.org> <X8l9dRfo7qdRTAMe@builder.lan>
+ <20201204043502.GJ8403@vkoul-mobl>
+From:   Taniya Das <tdas@codeaurora.org>
+Message-ID: <302cf18a-080d-a521-8c7a-39c265fbceb8@codeaurora.org>
+Date:   Fri, 4 Dec 2020 14:20:55 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.5.0
 MIME-Version: 1.0
-References: <20201120093058.7248-1-zhiyong.tao@mediatek.com> <20201120093058.7248-2-zhiyong.tao@mediatek.com>
-In-Reply-To: <20201120093058.7248-2-zhiyong.tao@mediatek.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 4 Dec 2020 09:43:46 +0100
-Message-ID: <CACRpkdYbVbgUEvGk4t2YHieUaFvMMg1EOR8opuCqm-w4wCYCOg@mail.gmail.com>
-Subject: Re: [PATCH] pinctrl: fix low level output voltage issue
-To:     Zhiyong Tao <zhiyong.tao@mediatek.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sean Wang <sean.wang@kernel.org>, srv_heupstream@mediatek.com,
-        hui.liu@mediatek.com, huang eddie <eddie.huang@mediatek.com>,
-        jg_poxu@mediatek.com, Biao Huang <biao.huang@mediatek.com>,
-        Hongzhou Yang <hongzhou.yang@mediatek.com>,
-        Erin Lo <erin.lo@mediatek.com>,
-        Sean Wang <sean.wang@mediatek.com>, seiya.wang@mediatek.com,
-        sj.huang@mediatek.com,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20201204043502.GJ8403@vkoul-mobl>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 20, 2020 at 10:31 AM Zhiyong Tao <zhiyong.tao@mediatek.com> wrote:
+Hi Vinod,
 
-> This patch is used to fix low level output voltage issue.
-> A pin is changed from input pull-up to output high.
-> The Dout value of the pin is default as 0.
-> If we change the direction of the pin before the dout value of the pin,
-> It maybe produce a low level output voltage between "input pull-up" and
-> "output high".
->
-> Signed-off-by: Zhiyong Tao <zhiyong.tao@mediatek.com>
+On 12/4/2020 10:05 AM, Vinod Koul wrote:
+> Hi Bjorn,
+> 
+> On 03-12-20, 18:06, Bjorn Andersson wrote:
+>> On Thu 03 Dec 01:02 CST 2020, Vinod Koul wrote:
+>>> diff --git a/drivers/clk/qcom/gcc-sm8350.c b/drivers/clk/qcom/gcc-sm8350.c
+>> [..]
+>>> +static int gcc_sm8350_probe(struct platform_device *pdev)
+>>> +{
+>>> +	struct regmap *regmap;
+>>> +	int ret;
+>>> +
+>>> +	regmap = qcom_cc_map(pdev, &gcc_sm8350_desc);
+>>> +	if (IS_ERR(regmap)) {
+>>> +		dev_err(&pdev->dev, "Failed to map gcc registers\n");
+>>> +		return PTR_ERR(regmap);
+>>> +	}
+>>> +
+>>> +	ret = qcom_cc_register_rcg_dfs(regmap, gcc_dfs_clocks, ARRAY_SIZE(gcc_dfs_clocks));
+>>> +	if (ret)
+>>> +		return ret;
+>>> +
+>>> +	/* FORCE_MEM_CORE_ON for ufs phy ice core clocks */
+>>> +	regmap_update_bits(regmap, gcc_ufs_phy_ice_core_clk.halt_reg, BIT(14), BIT(14));
+>>> +
+>>> +	/*
+>>> +	 * Enable clocks required by the i2c-connected pm8008 regulators. Don't
+>>> +	 * register them with the clock framework so that client requests are
+>>> +	 * short-circuited before grabbing the enable/prepare locks. This
+>>> +	 * prevents deadlocks between the clk/regulator frameworks.
+>>> +	 *
+>>> +	 *	gcc_qupv3_wrap_1_m_ahb_clk
+>>> +	 *	gcc_qupv3_wrap_1_s_ahb_clk
+>>> +	 *	gcc_qupv3_wrap1_s5_clk
+>>> +	 */
+>>
+>> Isn't this a workaround inherited from the downstream control of
+>> regulators from within the clock core? Does this still apply upstream?
+> 
+> Let me check on this bit...
+> 
+> Thanks
+> 
 
-Patch applied!
+No it should not apply.
 
-Yours,
-Linus Walleij
+-- 
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+of Code Aurora Forum, hosted by The Linux Foundation.
+
+--
