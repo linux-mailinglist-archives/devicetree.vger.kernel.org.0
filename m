@@ -2,163 +2,307 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AB7B02CF209
-	for <lists+devicetree@lfdr.de>; Fri,  4 Dec 2020 17:41:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 07E8D2CF214
+	for <lists+devicetree@lfdr.de>; Fri,  4 Dec 2020 17:42:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727617AbgLDQkG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Dec 2020 11:40:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57646 "EHLO
+        id S1730763AbgLDQmA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Dec 2020 11:42:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57954 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726526AbgLDQkG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Dec 2020 11:40:06 -0500
-Received: from mail-lj1-x243.google.com (mail-lj1-x243.google.com [IPv6:2a00:1450:4864:20::243])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5E00C0613D1;
-        Fri,  4 Dec 2020 08:39:19 -0800 (PST)
-Received: by mail-lj1-x243.google.com with SMTP id a1so5977158ljq.3;
-        Fri, 04 Dec 2020 08:39:19 -0800 (PST)
+        with ESMTP id S1730124AbgLDQl5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Dec 2020 11:41:57 -0500
+Received: from mail-ej1-x641.google.com (mail-ej1-x641.google.com [IPv6:2a00:1450:4864:20::641])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DD87C061A52;
+        Fri,  4 Dec 2020 08:41:17 -0800 (PST)
+Received: by mail-ej1-x641.google.com with SMTP id ga15so9602572ejb.4;
+        Fri, 04 Dec 2020 08:41:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=/HbZT1w/sDNXpdEmMytXf00NzZZfpE4/Ymz4KLprk90=;
-        b=Jrqhg14JWpc+uPF6bVpjbC7w9Dv46K6kTGMipKeKq0++Atw9xsquYUfEb657MuwYUP
-         6H1Twd0ov4dhgVuEBa0YFNwq2z2mgOm4piiilKmOACiPfBNN+H4+Y9rUsHIS4mPBNfiX
-         0tG+vKV0VtOrNJsPDTxV/or+WysQsGOID44MY/0xA5qUqOQHgYkxvQhXStxcXBbg9SV3
-         NwBQXYPwMgnqg6eUYtkuo1mWpeED+uns6GF80VBmxD2RVJsAFf8NOfmLR/BYrcLnAZfB
-         RNJCg3+HGhY2J35cD0Jm6GprRXgvTRnUZ1CvnZ6gG67nMOfRQn6+w+KgospC9+AWo8MI
-         CYvA==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=M2XVxGZie5HRmCpQJUQTf3bEwLp0iblbGzUxF8xa7lU=;
+        b=UI1nEYav51Hn4ujG5p/AvlH9PcGDcmgXdkxVBrOPGpXUraxv1g6jI9rBwl1kVC14fE
+         ndHVmroDYjK2j5L0d67aLmi58bFJ9TqzJ5X85/hruKQHN6iYOUWzYvUNdignkEts48YZ
+         36ythFzocoYRx4Zaq0Xoc5g2mLvhcf4UxDbhirw5AaAHqSV8wvzOzi7qN2gJY67rmgKZ
+         avjUvA4lEVT0LnacUMCwlpPA9mBJ6vbXIWISxi3sCmSU5n8Wi0Y2E3RznQxjcV8TnVDz
+         adZlp5cmwWZegiAzyCGaeHETF+GcFbt9euui60VbYrS78PwuUUk/kfY/fw2HV5MkIqm+
+         KSYQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=/HbZT1w/sDNXpdEmMytXf00NzZZfpE4/Ymz4KLprk90=;
-        b=EmPF2f64xjdtHFhZhzBLUVfLg4o/KVOV0Fl+18YODjqLcqhKerAT3HGmfFUKERRJK5
-         UxE5imCQL5L0IyxHLM7A3zzxzth4pLQJgRNxDlWWH+k7XQvTbm/nWSxzAjeXdd1N3EGW
-         hX5pga3pDOYR1dZkfEoKwpUVQkMgKG3R4WUsiQUmgoFzLSluTJDvratjZlMGOd4ti288
-         3K/U77VVgpXs68EtlPt+CZDrH8hV1lye9/nGKHePGrK0tnS9NgfnircvDsaI2iDyOTRl
-         wPRvyFnyU4LOUnsqDol3bj8LyA2QtuSSTGDMZDbKSeqJUz9vULKymg3beTqbwDkfbzuC
-         FT1g==
-X-Gm-Message-State: AOAM531tibtb2F9i6id+4FYQljyN+4Lg2j9slCV0aHCFVBDjkKpAi9xf
-        CdfYyIepMbwgXUJu28aiW+s=
-X-Google-Smtp-Source: ABdhPJxx3o78HDWNrX4NRveR8CA3ggHGlOY6OVMN9hM6mRleZSTWgiZMVRrM2mpvjjmYd1izBwfOOQ==
-X-Received: by 2002:a2e:87cb:: with SMTP id v11mr189605ljj.218.1607099958228;
-        Fri, 04 Dec 2020 08:39:18 -0800 (PST)
-Received: from elitebook.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.googlemail.com with ESMTPSA id w11sm1904811lji.135.2020.12.04.08.39.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 04 Dec 2020 08:39:17 -0800 (PST)
-Subject: Re: [PATCH 1/2] dt-bindings: reset: document Broadcom's BCM4908 USB
- reset binding
-To:     Florian Fainelli <f.fainelli@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-References: <20201204093704.11359-1-zajec5@gmail.com>
- <0cc54a35-7d70-8a2f-0c1f-da124136a66d@gmail.com>
-From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Message-ID: <cb2c0545-a1f6-4b85-6f9f-15813f74e323@gmail.com>
-Date:   Fri, 4 Dec 2020 17:39:14 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.5.1
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=M2XVxGZie5HRmCpQJUQTf3bEwLp0iblbGzUxF8xa7lU=;
+        b=fthdCtgcwniDAMz/zCcoWJqVm6S83PodQ580jfYKaOoEsQN2EYVlNKgTM0NFPDXaBq
+         rK6R/Up/vGG3pPB5rfZNCG82GrqReviWQN/EqoTlyOzdVVvB98xH6BQJfKiu7xjsFWYY
+         3+tv0r5v3CwCYMD8dasNjkvAMYlGvYGbJOCi36Il+3szRiUJ5SqZ2rkMCLixsYvdTRkD
+         iI969wqDjucDfkadqzj1kxLVMSRotyHYZcg3YT2bFG+z+d6dl8Xomih0hptzS8yVgVXg
+         Ciu7ABNe+RqFGCg1No4CsXfwzZq+cbXOUNQWeDZrX7Al29qalH/fKezXttU7DZQyetCl
+         b2Yw==
+X-Gm-Message-State: AOAM530eP/i0Aif0VF7eXSTYH/hT61AZ+Xmv5Rg8vxFjZliXv6TIKv87
+        9804GHXy8JlaXvKhavyNZTQ=
+X-Google-Smtp-Source: ABdhPJwOnDJdbYWgwHxG5698l0sPVH2yKo3jp0OGs5+eySbQWjwKIcydWjSDms7c8XbT0X1kIhTiPw==
+X-Received: by 2002:a17:906:33c4:: with SMTP id w4mr7579886eja.380.1607100076059;
+        Fri, 04 Dec 2020 08:41:16 -0800 (PST)
+Received: from localhost ([62.96.65.119])
+        by smtp.gmail.com with ESMTPSA id u1sm3797220edf.65.2020.12.04.08.41.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 04 Dec 2020 08:41:14 -0800 (PST)
+Date:   Fri, 4 Dec 2020 17:41:13 +0100
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Dmitry Osipenko <digetx@gmail.com>
+Cc:     Jonathan Hunter <jonathanh@nvidia.com>,
+        Georgi Djakov <georgi.djakov@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Mikko Perttunen <cyndis@kapsi.fi>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Nicolas Chauvet <kwizart@gmail.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        linux-tegra@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v11 04/10] memory: tegra124-emc: Make driver modular
+Message-ID: <X8pmqVRFaBtkwDtr@ulmo>
+References: <20201203192439.16177-1-digetx@gmail.com>
+ <20201203192439.16177-5-digetx@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <0cc54a35-7d70-8a2f-0c1f-da124136a66d@gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="61ef+ZSvTD4BRcPI"
+Content-Disposition: inline
+In-Reply-To: <20201203192439.16177-5-digetx@gmail.com>
+User-Agent: Mutt/2.0.2 (d9268908) (2020-11-20)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04.12.2020 17:32, Florian Fainelli wrote:
-> On 12/4/2020 1:37 AM, Rafał Miłecki wrote:
->> From: Rafał Miłecki <rafal@milecki.pl>
->>
->> Document binding of block responsible for initializing USB controllers
->> (OHCI, EHCI, XHCI).
->>
->> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
->> ---
->>   .../reset/brcm,bcm4908-usb-reset.yaml         | 60 +++++++++++++++++++
->>   1 file changed, 60 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/reset/brcm,bcm4908-usb-reset.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/reset/brcm,bcm4908-usb-reset.yaml b/Documentation/devicetree/bindings/reset/brcm,bcm4908-usb-reset.yaml
->> new file mode 100644
->> index 000000000000..31beb1c8f3cd
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/reset/brcm,bcm4908-usb-reset.yaml
->> @@ -0,0 +1,60 @@
->> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/reset/brcm,bcm4908-usb-reset.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Broadcom BCM4908 USB host controller reset
->> +
->> +description: >
->> +  BCM4908 has a separated block controlling all USB controllers. It handles the
->> +  whole setup process and takes care of initializing PHYs at the right time
->> +  (state).
->> +
->> +maintainers:
->> +  - Rafał Miłecki <rafal@milecki.pl>
->> +
->> +properties:
->> +  compatible:
->> +    enum:
->> +      - brcm,bcm4908-usb-reset
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  resets:
->> +    $ref: /schemas/types.yaml#/definitions/phandle
->> +
->> +  phys:
->> +    minItems: 2
->> +    maxItems: 2
->> +    $ref: /schemas/types.yaml#/definitions/phandle-array
->> +
->> +  phy-names:
->> +    items:
->> +      - const: usb2
->> +      - const: usb3
->> +
->> +  "#reset-cells":
->> +    const: 0
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - phys
->> +  - phy-names
->> +  - "#reset-cells"
->> +
->> +additionalProperties: true
->> +
->> +examples:
->> +  - |
->> +    reset-controller@8000c200 {
->> +        compatible = "brcm,bcm4908-usb-reset";
->> +        reg = <0x8000c200 0x100>;
->> +
->> +        phys = <&usb2_phy>, <&usb3_phy>;
->> +        phy-names = "usb2", "usb3";
-> 
-> This looks quite unusual, usually the *HCI controllers would be
-> consumers of the PHY and the PHY may be a consumer of the reset controller.
-> 
-> (still going through my emails have not fully read your separate email
-> on the topic, so pardon me if this is being discussed twice).
 
-I agree, it's the the best solution I found for this specific design.
+--61ef+ZSvTD4BRcPI
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-This specific hw block perform various operations before, in the middle and
-after PHY initialization. That made me make reset controlller initialize PHYs.
+On Thu, Dec 03, 2020 at 10:24:33PM +0300, Dmitry Osipenko wrote:
+> Add modularization support to the Tegra124 EMC driver, which now can be
+> compiled as a loadable kernel module.
+>=20
+> Note that EMC clock must be registered at clk-init time, otherwise PLLM
+> will be disabled as unused clock at boot time if EMC driver is compiled
+> as a module. Hence add a prepare/complete callbacks. similarly to what is
+> done for the Tegra20/30 EMC drivers.
+>=20
+> Tested-by: Nicolas Chauvet <kwizart@gmail.com>
+> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+> ---
+>  drivers/clk/tegra/Kconfig            |  3 ++
+>  drivers/clk/tegra/Makefile           |  2 +-
+>  drivers/clk/tegra/clk-tegra124-emc.c | 41 ++++++++++++++++++++++++----
+>  drivers/clk/tegra/clk-tegra124.c     | 26 ++++++++++++++++--
+>  drivers/clk/tegra/clk.h              | 18 ++++++++----
+>  drivers/memory/tegra/Kconfig         |  3 +-
+>  drivers/memory/tegra/tegra124-emc.c  | 31 ++++++++++++++-------
+>  include/linux/clk/tegra.h            |  8 ++++++
+>  include/soc/tegra/emc.h              | 16 -----------
+>  9 files changed, 106 insertions(+), 42 deletions(-)
+>  delete mode 100644 include/soc/tegra/emc.h
+>=20
+> diff --git a/drivers/clk/tegra/Kconfig b/drivers/clk/tegra/Kconfig
+> index deaa4605824c..90df619dc087 100644
+> --- a/drivers/clk/tegra/Kconfig
+> +++ b/drivers/clk/tegra/Kconfig
+> @@ -7,3 +7,6 @@ config TEGRA_CLK_DFLL
+>  	depends on ARCH_TEGRA_124_SOC || ARCH_TEGRA_210_SOC
+>  	select PM_OPP
+>  	def_bool y
+> +
+> +config TEGRA124_CLK_EMC
+> +	bool
+> diff --git a/drivers/clk/tegra/Makefile b/drivers/clk/tegra/Makefile
+> index eec2313fd37e..7b1816856eb5 100644
+> --- a/drivers/clk/tegra/Makefile
+> +++ b/drivers/clk/tegra/Makefile
+> @@ -22,7 +22,7 @@ obj-$(CONFIG_ARCH_TEGRA_3x_SOC)		+=3D clk-tegra20-emc.o
+>  obj-$(CONFIG_ARCH_TEGRA_114_SOC)	+=3D clk-tegra114.o
+>  obj-$(CONFIG_ARCH_TEGRA_124_SOC)	+=3D clk-tegra124.o
+>  obj-$(CONFIG_TEGRA_CLK_DFLL)		+=3D clk-tegra124-dfll-fcpu.o
+> -obj-$(CONFIG_TEGRA124_EMC)		+=3D clk-tegra124-emc.o
+> +obj-$(CONFIG_TEGRA124_CLK_EMC)		+=3D clk-tegra124-emc.o
+>  obj-$(CONFIG_ARCH_TEGRA_132_SOC)	+=3D clk-tegra124.o
+>  obj-y					+=3D cvb.o
+>  obj-$(CONFIG_ARCH_TEGRA_210_SOC)	+=3D clk-tegra210.o
+> diff --git a/drivers/clk/tegra/clk-tegra124-emc.c b/drivers/clk/tegra/clk=
+-tegra124-emc.c
+> index 745f9faa98d8..bdf6f4a51617 100644
+> --- a/drivers/clk/tegra/clk-tegra124-emc.c
+> +++ b/drivers/clk/tegra/clk-tegra124-emc.c
+> @@ -11,7 +11,9 @@
+>  #include <linux/clk-provider.h>
+>  #include <linux/clk.h>
+>  #include <linux/clkdev.h>
+> +#include <linux/clk/tegra.h>
+>  #include <linux/delay.h>
+> +#include <linux/export.h>
+>  #include <linux/io.h>
+>  #include <linux/module.h>
+>  #include <linux/of_address.h>
+> @@ -21,7 +23,6 @@
+>  #include <linux/string.h>
+> =20
+>  #include <soc/tegra/fuse.h>
+> -#include <soc/tegra/emc.h>
+> =20
+>  #include "clk.h"
+> =20
+> @@ -80,6 +81,9 @@ struct tegra_clk_emc {
+>  	int num_timings;
+>  	struct emc_timing *timings;
+>  	spinlock_t *lock;
+> +
+> +	tegra124_emc_prepare_timing_change_cb *prepare_timing_change;
+> +	tegra124_emc_complete_timing_change_cb *complete_timing_change;
+>  };
+> =20
+>  /* Common clock framework callback implementations */
+> @@ -176,6 +180,9 @@ static struct tegra_emc *emc_ensure_emc_driver(struct=
+ tegra_clk_emc *tegra)
+>  	if (tegra->emc)
+>  		return tegra->emc;
+> =20
+> +	if (!tegra->prepare_timing_change || !tegra->complete_timing_change)
+> +		return NULL;
+> +
+>  	if (!tegra->emc_node)
+>  		return NULL;
+> =20
+> @@ -241,7 +248,7 @@ static int emc_set_timing(struct tegra_clk_emc *tegra,
+> =20
+>  	div =3D timing->parent_rate / (timing->rate / 2) - 2;
+> =20
+> -	err =3D tegra_emc_prepare_timing_change(emc, timing->rate);
+> +	err =3D tegra->prepare_timing_change(emc, timing->rate);
+>  	if (err)
+>  		return err;
+> =20
+> @@ -259,7 +266,7 @@ static int emc_set_timing(struct tegra_clk_emc *tegra,
+> =20
+>  	spin_unlock_irqrestore(tegra->lock, flags);
+> =20
+> -	tegra_emc_complete_timing_change(emc, timing->rate);
+> +	tegra->complete_timing_change(emc, timing->rate);
+> =20
+>  	clk_hw_reparent(&tegra->hw, __clk_get_hw(timing->parent));
+>  	clk_disable_unprepare(tegra->prev_parent);
+> @@ -473,8 +480,8 @@ static const struct clk_ops tegra_clk_emc_ops =3D {
+>  	.get_parent =3D emc_get_parent,
+>  };
+> =20
+> -struct clk *tegra_clk_register_emc(void __iomem *base, struct device_nod=
+e *np,
+> -				   spinlock_t *lock)
+> +struct clk *tegra124_clk_register_emc(void __iomem *base, struct device_=
+node *np,
+> +				      spinlock_t *lock)
+>  {
+>  	struct tegra_clk_emc *tegra;
+>  	struct clk_init_data init;
+> @@ -538,3 +545,27 @@ struct clk *tegra_clk_register_emc(void __iomem *bas=
+e, struct device_node *np,
+> =20
+>  	return clk;
+>  };
+> +
+> +void tegra124_clk_set_emc_callbacks(tegra124_emc_prepare_timing_change_c=
+b *prep_cb,
+> +				    tegra124_emc_complete_timing_change_cb *complete_cb)
+> +{
+> +	struct clk *clk =3D __clk_lookup("emc");
+> +	struct tegra_clk_emc *tegra;
+> +	struct clk_hw *hw;
+> +
+> +	if (clk) {
+> +		hw =3D __clk_get_hw(clk);
+> +		tegra =3D container_of(hw, struct tegra_clk_emc, hw);
+> +
+> +		tegra->prepare_timing_change =3D prep_cb;
+> +		tegra->complete_timing_change =3D complete_cb;
+> +	}
+> +}
+> +EXPORT_SYMBOL_GPL(tegra124_clk_set_emc_callbacks);
+> +
+> +bool tegra124_clk_emc_driver_available(struct clk_hw *hw)
+> +{
+> +	struct tegra_clk_emc *tegra =3D container_of(hw, struct tegra_clk_emc, =
+hw);
+> +
+> +	return tegra->prepare_timing_change && tegra->complete_timing_change;
+> +}
 
-I'm happy to implement a more proper design if someone can just suggest how.
-I don't have any better idea :(
+This looks a bit hackish and I prefer the way this was done for
+Tegra210. But that's mostly an implementation detail and we can always
+restructure this if we want to.
+
+> diff --git a/drivers/clk/tegra/clk-tegra124.c b/drivers/clk/tegra/clk-teg=
+ra124.c
+> index e931319dcc9d..934520aab6e3 100644
+> --- a/drivers/clk/tegra/clk-tegra124.c
+> +++ b/drivers/clk/tegra/clk-tegra124.c
+> @@ -1500,6 +1500,26 @@ static void __init tegra124_132_clock_init_pre(str=
+uct device_node *np)
+>  	writel(plld_base, clk_base + PLLD_BASE);
+>  }
+> =20
+> +static struct clk *tegra124_clk_src_onecell_get(struct of_phandle_args *=
+clkspec,
+> +						void *data)
+> +{
+> +	struct clk_hw *hw;
+> +	struct clk *clk;
+> +
+> +	clk =3D of_clk_src_onecell_get(clkspec, data);
+> +	if (IS_ERR(clk))
+> +		return clk;
+> +
+> +	hw =3D __clk_get_hw(clk);
+> +
+> +	if (clkspec->args[0] =3D=3D TEGRA124_CLK_EMC) {
+> +		if (!tegra124_clk_emc_driver_available(hw))
+> +			return ERR_PTR(-EPROBE_DEFER);
+> +	}
+> +
+> +	return clk;
+> +}
+
+Hm... why exactly do we need this? On Tegra210 and later, the EMC driver
+is the only consumer of the EMC clock and since it also provides some of
+the necessary parts to scale the EMC clock, that's a chicken and egg
+problem. I'm not sure I fully understand how this is supposed to work
+here and why we can't do this in a similar way than Tegra210.
+
+Thierry
+
+--61ef+ZSvTD4BRcPI
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl/KZqYACgkQ3SOs138+
+s6HElBAAmI+dncsQH9d1DsySeHPXmETkxQmW8BLKfmxK+RawFP7AsCRJrUARdZ4e
+mcaGDF7v4uNfYPcYbB7214yifQCRkgaADjWNR+aA3w5IBKndPzgqhKWtgLRGo2c3
+o7oQIM5BY4TFrdQKGTbIRcFgSOxqdyEDqNDgyeNM63TtcF3C1JDLge/7crd7VAQo
+6bSQsP7dwuwBd17FZRbYA6xzXatAT4PwQEtoOXf58VMEsBu5Oxxdp7HnrEIiuJ84
+OjpyfLQWUjRuGNpzDW5uDDhZ24cGeDquoT3bQrAc8r3o2gg0jMxufAQZqyXXT55N
+4TO02x4XwG95NMA0wt/EQlkG5gld82EpKTTq0ORYK6cqXaPI3ZvmyOhDn2wDsfTN
+Fai2/OxLCb2yLDA6Ays82+gdpB0sg/+NAZQJYlZB1SgD9wq/67DoXflM440cWs/N
+OGGsSw9/xwtheZp54LcjWNpEkVVicWKZL25XtiQsN99P+hy9gw0amzRoZjdb+yG/
+hoTaevLWYMh6oOGXI/gQs/OHWXdclSpR2kaX+K2u6mB7BOKt994OqEgsbvV7Ogfs
+tcbraFsN9rcANLcmnM/DEKwJ58KjFxYRKLbbnljNoXhY/aMeIPdHAhbI/AClCn/x
+hcrqsYc5dN+k7/08AdA9d0va8DZ+MS41VVlhGltcR9IgxMnkquo=
+=M/bm
+-----END PGP SIGNATURE-----
+
+--61ef+ZSvTD4BRcPI--
