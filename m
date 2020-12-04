@@ -2,118 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C9D92CEF97
-	for <lists+devicetree@lfdr.de>; Fri,  4 Dec 2020 15:16:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A4E6F2CEFBE
+	for <lists+devicetree@lfdr.de>; Fri,  4 Dec 2020 15:34:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729390AbgLDOP2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Dec 2020 09:15:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35184 "EHLO
+        id S1729534AbgLDOdY convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 4 Dec 2020 09:33:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37928 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727552AbgLDOP1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Dec 2020 09:15:27 -0500
-Received: from mail-qt1-x844.google.com (mail-qt1-x844.google.com [IPv6:2607:f8b0:4864:20::844])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47B91C061A51
-        for <devicetree@vger.kernel.org>; Fri,  4 Dec 2020 06:14:47 -0800 (PST)
-Received: by mail-qt1-x844.google.com with SMTP id z3so3944667qtw.9
-        for <devicetree@vger.kernel.org>; Fri, 04 Dec 2020 06:14:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=S84fLM5R0eFjhFKwNgg6t4YhV/zLIcH5ndZplGJKCzk=;
-        b=FP5hEdFsRSIYWxa3GBQxUIGiNfZW+RsNpvHY7m/q1DyyPbkND79VQBJWckEaVPjjZX
-         sjVd87SJ9MmGox3RADjhpP0A/HOIdjZx5PlqGuF/leZGa8Bw/hx86RIAxlUTGGNwb27a
-         +D1UO8CRuCEHwqrUcs06O+mIP/Kl1f80FHBxnrnHZSHst9PPcCCW59+3D2WWaRDpvh7q
-         dZcTkLPX5qwzBiYsuGZ/FQZBVeSfSHPNXckqXqUBtVGXF1hLAeYjzKbam9vXszZKt3Mi
-         WFbamiWmqxuepukArl5+g2yCh1igyXRSe/T9bOtldmrgSxp+/gqwTn231YA/o7PBoBCl
-         5cPw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=S84fLM5R0eFjhFKwNgg6t4YhV/zLIcH5ndZplGJKCzk=;
-        b=t5/79i48GBUzmCXG4pv29FAixUPwhCr2Xu7Cj9GdAUf5UZ+zKteLJ9YLULaqxNp7Ht
-         W2QUeDDOA9bZ4pCBjCU8rm3OnkvlsQMr4Vx//xbcA8ZYhv33nH0G0zuU47Y2iFgVOn5R
-         dVL5TkCvm6zhZ7V//ws9WS67qUE35v4okMtrubI8+x/9Jv4dMelE3Bw4qD270OzF7YFL
-         coro+cDY1yYvjiYc7rT0IpJ/ng2/PIayYmAZuE+ufaU8cKOJz3kZOVist0+YONcR3LTz
-         oTfktmFkoaud+NwyEe7xwfKxYHH0mSF4R88dzfr19l22owIEcjn9UlSdhBZPzduAhbSc
-         9Kow==
-X-Gm-Message-State: AOAM531D2N7T778ifOGZiIe9DaOee+OxPobYv4B8fHRvQTaQd8/ow8PT
-        KOE/Ub9wcUfRpHGSTINRiN7zF1FfOa26oM+0d5oW0w==
-X-Google-Smtp-Source: ABdhPJwdyeC4GEux7iJupu+IbCVt8JIddUtBx9AF0hehts+m24vl3ICE698dbMxZN1MoyOrNL7phD3GbsGer4ueulyg=
-X-Received: by 2002:ac8:6b9a:: with SMTP id z26mr9626192qts.200.1607091286490;
- Fri, 04 Dec 2020 06:14:46 -0800 (PST)
-MIME-Version: 1.0
-References: <20201119140850.12268-1-grzegorz.jaszczyk@linaro.org>
- <20201119140850.12268-7-grzegorz.jaszczyk@linaro.org> <20201203185332.GC1392978@xps15>
-In-Reply-To: <20201203185332.GC1392978@xps15>
-From:   Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
-Date:   Fri, 4 Dec 2020 15:14:35 +0100
-Message-ID: <CAMxfBF5xaBd2Dm9fpJD+eS_x2Q9-5Ub6iHTRetgt9Ce8vZChqQ@mail.gmail.com>
-Subject: Re: [PATCH v2 6/6] remoteproc/pru: Add support for various PRU cores
- on K3 J721E SoCs
-To:     Mathieu Poirier <mathieu.poirier@linaro.org>
-Cc:     Ohad Ben Cohen <ohad@wizery.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        "Anna, Suman" <s-anna@ti.com>, linux-remoteproc@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        "Bajjuri, Praneeth" <praneeth@ti.com>,
-        Roger Quadros <rogerq@ti.com>
+        with ESMTP id S1729521AbgLDOdY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Dec 2020 09:33:24 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34E02C061A51
+        for <devicetree@vger.kernel.org>; Fri,  4 Dec 2020 06:32:44 -0800 (PST)
+Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1klC8R-0002pr-W0; Fri, 04 Dec 2020 15:32:35 +0100
+Received: from pza by lupine with local (Exim 4.92)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1klC8Q-0003Ke-69; Fri, 04 Dec 2020 15:32:34 +0100
+Message-ID: <ebaf3126dddf686e1ff07e00c61cd43c07ab07cd.camel@pengutronix.de>
+Subject: Re: [EXT] Re: [PATCH v5 07/10] media: Add parsing for APP14 data
+ segment in jpeg helpers
+From:   Philipp Zabel <p.zabel@pengutronix.de>
+To:     "Mirela Rabulea (OSS)" <mirela.rabulea@oss.nxp.com>,
+        "mchehab@kernel.org" <mchehab@kernel.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "hverkuil-cisco@xs4all.nl" <hverkuil-cisco@xs4all.nl>
+Cc:     dl-linux-imx <linux-imx@nxp.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "laurent.pinchart+renesas@ideasonboard.com" 
+        <laurent.pinchart+renesas@ideasonboard.com>,
+        Aisheng Dong <aisheng.dong@nxp.com>,
+        Laurentiu Palcu <laurentiu.palcu@nxp.com>,
+        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+        Robert Chiras <robert.chiras@nxp.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "paul.kocialkowski@bootlin.com" <paul.kocialkowski@bootlin.com>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "niklas.soderlund+renesas@ragnatech.se" 
+        <niklas.soderlund+renesas@ragnatech.se>,
+        Daniel Baluta <daniel.baluta@nxp.com>,
+        "dafna.hirschfeld@collabora.com" <dafna.hirschfeld@collabora.com>,
+        "ezequiel@collabora.com" <ezequiel@collabora.com>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>
+Date:   Fri, 04 Dec 2020 15:32:34 +0100
+In-Reply-To: <2bffcb5a2454dfc2188cc11b0f796f965cc7291e.camel@oss.nxp.com>
+References: <20201112030557.8540-1-mirela.rabulea@oss.nxp.com>
+         <20201112030557.8540-8-mirela.rabulea@oss.nxp.com>
+         <6acf2724130aa2e927cd116ecd216bec3e0321a5.camel@pengutronix.de>
+         <2bffcb5a2454dfc2188cc11b0f796f965cc7291e.camel@oss.nxp.com>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+User-Agent: Evolution 3.30.5-1.1 
+MIME-Version: 1.0
+X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Mathieu,
-
-On Thu, 3 Dec 2020 at 19:53, Mathieu Poirier <mathieu.poirier@linaro.org> wrote:
+On Fri, 2020-12-04 at 14:13 +0000, Mirela Rabulea (OSS) wrote:
+> Hi Phipipp,
 >
-> On Thu, Nov 19, 2020 at 03:08:50PM +0100, Grzegorz Jaszczyk wrote:
-> > From: Suman Anna <s-anna@ti.com>
-> >
-> > The K3 J721E family of SoCs have a revised version of the AM65x ICSSG IP
-> > and contains two instances of this newer ICSSG IP. Each ICSSG processor
-> > subsystem contains 2 primary PRU cores, 2 auxiliary PRU cores called RTUs,
-> > and 2 new auxiliary cores called Transmit PRUs (Tx_PRUs).
-> >
-> > Enhance the existing PRU remoteproc driver to support these new PRU
-> > and RTU cores by using specific compatibles. The cores have the same
-> > memory copying limitations as on AM65x, so reuses the custom memcpy
-> > function within the driver's ELF loader implementation. The initial
-> > names for the firmware images for each PRU core are retrieved from
-> > DT nodes, and can be adjusted through sysfs if required.
-> >
-> > Signed-off-by: Suman Anna <s-anna@ti.com>
-> > Co-developed-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
-> > Signed-off-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
->
-> Reviewed-by: Mathieu Poirier <mathieu.poirier@linaro.org>
+> On Wed, 2020-12-02 at 16:18 +0100, Philipp Zabel wrote:
+> > Hi Mirela,
+> > 
+> > On Thu, 2020-11-12 at 05:05 +0200, Mirela Rabulea (OSS) wrote:
+> > > From: Mirela Rabulea <mirela.rabulea@nxp.com>
+> > > 
+> > > According to Rec. ITU-T T.872 (06/2012) 6.5.3
+> > > APP14 segment is for color encoding, it contains a transform flag,
+> > > which
+> > > may have values of 0, 1 and 2 and are interpreted as follows:
+> > > 0 - CMYK for images that are encoded with four components
+> > >   - RGB for images that are encoded with three components
+> > > 1 - An image encoded with three components using YCbCr colour
+> > > encoding.
+> > > 2 - An image encoded with four components using YCCK colour
+> > > encoding.
+> > > 
+> > > This is used in imx-jpeg decoder, to distinguish between
+> > > YUV444 and RGB24.
+> > > 
+> > > Signed-off-by: Mirela Rabulea <mirela.rabulea@nxp.com>
+> > > ---
+> > > Changes in v5:
+> > > This was patch 8 in previous version
+> > > Replaced a struct for app14 data with just an int, since the
+> > > transform flag is the only meaningfull information from this
+> > > segment
+> > 
+> > Could we turn this into an enum for the transform flag, and include
+> > the
+> > above spec reference in its kerneldoc comment? I think this would be
+> > better than checking for (app14_tf == <magic_number>) in the drivers.
+> 
+> Appreciate your feedback, for all patches, I'll address it in v6.
+> Where would be a better place for this enum, v4l2-jpeg.h, or maybe
+> include/uapi/linux/v4l2-controls.h?
 
-Thank you for all your review,
-Grzegorz
+v4l2-jpeg.h seems like the right place to me.
 
->
-> > ---
-> >  drivers/remoteproc/pru_rproc.c | 3 +++
-> >  1 file changed, 3 insertions(+)
-> >
-> > diff --git a/drivers/remoteproc/pru_rproc.c b/drivers/remoteproc/pru_rproc.c
-> > index 48c1c51e0d42..96f689283a8b 100644
-> > --- a/drivers/remoteproc/pru_rproc.c
-> > +++ b/drivers/remoteproc/pru_rproc.c
-> > @@ -852,6 +852,9 @@ static const struct of_device_id pru_rproc_match[] = {
-> >       { .compatible = "ti,am654-pru",         .data = &k3_pru_data },
-> >       { .compatible = "ti,am654-rtu",         .data = &k3_rtu_data },
-> >       { .compatible = "ti,am654-tx-pru",      .data = &k3_tx_pru_data },
-> > +     { .compatible = "ti,j721e-pru",         .data = &k3_pru_data },
-> > +     { .compatible = "ti,j721e-rtu",         .data = &k3_rtu_data },
-> > +     { .compatible = "ti,j721e-tx-pru",      .data = &k3_tx_pru_data },
-> >       {},
-> >  };
-> >  MODULE_DEVICE_TABLE(of, pru_rproc_match);
-> > --
-> > 2.29.0
-> >
+regards
+Philipp
