@@ -2,257 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 89B7E2CE63B
-	for <lists+devicetree@lfdr.de>; Fri,  4 Dec 2020 03:58:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3465A2CE667
+	for <lists+devicetree@lfdr.de>; Fri,  4 Dec 2020 04:21:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727459AbgLDC5v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Dec 2020 21:57:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43380 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727434AbgLDC5v (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Dec 2020 21:57:51 -0500
-Received: from mail-lj1-x244.google.com (mail-lj1-x244.google.com [IPv6:2a00:1450:4864:20::244])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA76FC094272
-        for <devicetree@vger.kernel.org>; Thu,  3 Dec 2020 18:55:48 -0800 (PST)
-Received: by mail-lj1-x244.google.com with SMTP id z1so4934015ljn.4
-        for <devicetree@vger.kernel.org>; Thu, 03 Dec 2020 18:55:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=npsFFsjWmPcNQLpFgdF7vTEr/fbtzWSA2WvHK+VX9Y8=;
-        b=y6oI6KNiv5i2nOCS/ZDnUrSDdzRzW4B59lG4xHN0AIp20CVPSsAMgZdPWIURR+l0v1
-         LXMm1JIBnd0SnaszpyFdKxFdhFAs+55BGR0fWES1tLNeQ4gOsdLB4KcMXAEfPprSVzAh
-         GhOIEDxicarbWYg9FmYmYrMd8q9JhmzdgBOwmYpaWwfl9QbJBZiV294dud9m+qzIU3xt
-         T02P4voCfQ5KpuTU1Cm8LCKFN7R4bb6mW9J+qtKJxUnO/8NdyzGWbOV6LU2HZq48B0RR
-         Lymt9vHQQWdKh6Q1bxpfw19GjR19PhkXLR94FBmz+PKZnQKlo/ubbdiPwqDx1NW5Mq0U
-         cHog==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=npsFFsjWmPcNQLpFgdF7vTEr/fbtzWSA2WvHK+VX9Y8=;
-        b=A+EpUFfBv+eAG/uUZYfcINDFkl2599Lrm1ueAgaiS8/+vehZowNTID7n4CRYS4zMTd
-         fOLNa7bhjAGYSTjVjmYKLZYuFSaNzycuEUdU28TyuH3TiGQZmx5IDGxBo1FES2EAyxT+
-         xNPycJbkf2Eqo09jR4PWZvFYgIpZTaKWzCacTySJhWuy7x0iv+CBSzndihnWuzPHiQP4
-         fvr4qLDxTgi8j4czz60NEG9ZsnvxfHEO1v8ne7tuL+38itwZD7N17xBUK1a70mi2L+y7
-         f/WsqEuSeQzaVTxyNGGFtEJF75uE7JaE08MwKTb58bRIpAP4BcpzA2PT9Cdk9NakL442
-         9eHA==
-X-Gm-Message-State: AOAM533f5zehZkMW8lW9NBJamlEa54c/tH2a4eaRr8Gg3+G5xczbxq6P
-        556+TENliCLAD+t+AToP9hbbsA==
-X-Google-Smtp-Source: ABdhPJyN+Xzigra6XFVJWNEbJJIBS6A+N0yjQUv2woGcqjUazKcfA9sGLDx6WaQsqFSZ+S9OjFZjRw==
-X-Received: by 2002:a05:651c:315:: with SMTP id a21mr2256590ljp.229.1607050547298;
-        Thu, 03 Dec 2020 18:55:47 -0800 (PST)
-Received: from eriador.lumag.spb.ru ([188.162.64.117])
-        by smtp.gmail.com with ESMTPSA id b8sm1131667ljo.68.2020.12.03.18.55.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Dec 2020 18:55:46 -0800 (PST)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Hartmut Knaack <knaack.h@gmx.de>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>
-Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Jishnu Prakash <jprakash@qti.qualcomm.com>
-Subject: [PATCH v10 15/15] arm64: dts: qrb5165-rb5: port thermal zone definitions
-Date:   Fri,  4 Dec 2020 05:55:09 +0300
-Message-Id: <20201204025509.1075506-16-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20201204025509.1075506-1-dmitry.baryshkov@linaro.org>
-References: <20201204025509.1075506-1-dmitry.baryshkov@linaro.org>
+        id S1726158AbgLDDUp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Dec 2020 22:20:45 -0500
+Received: from szxga04-in.huawei.com ([45.249.212.190]:8642 "EHLO
+        szxga04-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725847AbgLDDUo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Dec 2020 22:20:44 -0500
+Received: from DGGEMS404-HUB.china.huawei.com (unknown [172.30.72.60])
+        by szxga04-in.huawei.com (SkyGuard) with ESMTP id 4CnHxZ59R5z15XCk;
+        Fri,  4 Dec 2020 11:19:30 +0800 (CST)
+Received: from [127.0.0.1] (10.174.177.9) by DGGEMS404-HUB.china.huawei.com
+ (10.3.19.204) with Microsoft SMTP Server id 14.3.487.0; Fri, 4 Dec 2020
+ 11:19:54 +0800
+Subject: Re: [PATCH 0/1] dt-bindings: eliminate yamllint warnings
+To:     Rob Herring <robh+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        "Pengutronix Kernel Team" <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        "NXP Linux Team" <linux-imx@nxp.com>,
+        David Airlie <airlied@linux.ie>,
+        "Daniel Vetter" <daniel@ffwll.ch>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        "Thierry Reding" <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        "Hans Verkuil" <hverkuil-cisco@xs4all.nl>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        "Ricardo Ribalda" <ribalda@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        "Matthias Brugger" <matthias.bgg@gmail.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        "Mark Brown" <broonie@kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        linux-media <linux-media@vger.kernel.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        linux-mediatek <linux-mediatek@lists.infradead.org>,
+        alsa-devel <alsa-devel@alsa-project.org>
+References: <20201204024226.1222-1-thunder.leizhen@huawei.com>
+From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
+Message-ID: <5dba4db6-dc66-44a8-ac4c-c5fe288c3430@huawei.com>
+Date:   Fri, 4 Dec 2020 11:19:52 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20201204024226.1222-1-thunder.leizhen@huawei.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.174.177.9]
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add thermal zones definitions basing on the downstream kernel.
+Sorry, Forgot to say: This patch is based on the latest linux-next code.
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- arch/arm64/boot/dts/qcom/qrb5165-rb5.dts | 154 +++++++++++++++++++++++
- 1 file changed, 154 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-index 1528a865f1f8..6cb8688910a2 100644
---- a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-+++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-@@ -58,6 +58,77 @@ bt {
- 
- 	};
- 
-+	thermal-zones {
-+		xo-therm {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&pm8150_adc_tm 0>;
-+			trips {
-+				active-config0 {
-+					temperature = <50000>;
-+					hysteresis = <4000>;
-+					type = "passive";
-+				};
-+			};
-+		};
-+
-+		wifi-therm {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&pm8150_adc_tm 1>;
-+			trips {
-+				active-config0 {
-+					temperature = <52000>;
-+					hysteresis = <4000>;
-+					type = "passive";
-+				};
-+			};
-+		};
-+
-+		conn-therm {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&pm8150b_adc_tm 0>;
-+
-+			trips {
-+				active-config0 {
-+					temperature = <125000>;
-+					hysteresis = <1000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		skin-msm-therm {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&pm8150l_adc_tm 0>;
-+
-+			trips {
-+				active-config0 {
-+					temperature = <50000>;
-+					hysteresis = <4000>;
-+					type = "passive";
-+				};
-+			};
-+		};
-+
-+		pm8150l-therm {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&pm8150l_adc_tm 1>;
-+
-+			trips {
-+				active-config0 {
-+					temperature = <50000>;
-+					hysteresis = <4000>;
-+					type = "passive";
-+				};
-+			};
-+		};
-+
-+	};
-+
- 	vbat: vbat-regulator {
- 		compatible = "regulator-fixed";
- 		regulator-name = "VBAT";
-@@ -412,6 +483,89 @@ &i2c15 {
- 	status = "okay";
- };
- 
-+&pm8150_adc {
-+	xo-therm@4c {
-+		reg = <ADC5_XO_THERM_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time = <200>;
-+	};
-+
-+	wifi-therm@4e {
-+		reg = <ADC5_AMUX_THM2_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time = <200>;
-+	};
-+};
-+
-+&pm8150b_adc {
-+	conn-therm@4f {
-+		reg = <ADC5_AMUX_THM3_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time = <200>;
-+	};
-+};
-+
-+&pm8150l_adc {
-+	skin-msm-therm@4e {
-+		reg = <ADC5_AMUX_THM2_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time = <200>;
-+	};
-+
-+	pm8150l-therm@4f {
-+		reg = <ADC5_AMUX_THM3_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time = <200>;
-+	};
-+};
-+
-+&pm8150_adc_tm {
-+	status = "okay";
-+
-+	xo-therm@0 {
-+		reg = <0>;
-+		io-channels = <&pm8150_adc ADC5_XO_THERM_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time-us = <200>;
-+	};
-+
-+	wifi-therm@1 {
-+		reg = <1>;
-+		io-channels = <&pm8150_adc ADC5_AMUX_THM2_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time-us = <200>;
-+	};
-+};
-+
-+&pm8150b_adc_tm {
-+	status = "okay";
-+
-+	conn-therm@0 {
-+		reg = <0>;
-+		io-channels = <&pm8150b_adc ADC5_AMUX_THM3_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time-us = <200>;
-+	};
-+};
-+
-+&pm8150l_adc_tm {
-+	status = "okay";
-+
-+	skin-msm-therm@0 {
-+		reg = <0>;
-+		io-channels = <&pm8150l_adc ADC5_AMUX_THM2_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time-us = <200>;
-+	};
-+
-+	pm8150l-therm@1 {
-+		reg = <1>;
-+		io-channels = <&pm8150l_adc ADC5_AMUX_THM3_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time-us = <200>;
-+	};
-+};
-+
- &pm8150_gpios {
- 	gpio-reserved-ranges = <1 1>, <3 2>, <7 1>;
- 	gpio-line-names =
--- 
-2.29.2
+On 2020/12/4 10:42, Zhen Lei wrote:
+> There're too many people, I just send to the maintainer, reviewer, supporter.
+> 
+> Eliminate below warnings:
+> ./Documentation/devicetree/bindings/clock/imx8qxp-lpcg.yaml:32:13: [warning] wrong indentation: expected 14 but found 12 (indentation)
+> ./Documentation/devicetree/bindings/clock/imx8qxp-lpcg.yaml:35:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
+> ./Documentation/devicetree/bindings/display/intel,keembay-msscam.yaml:21:6: [warning] wrong indentation: expected 6 but found 5 (indentation)
+> ./Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml:52:9: [warning] wrong indentation: expected 6 but found 8 (indentation)
+> ./Documentation/devicetree/bindings/display/bridge/intel,keembay-dsi.yaml:42:8: [warning] wrong indentation: expected 8 but found 7 (indentation)
+> ./Documentation/devicetree/bindings/display/bridge/intel,keembay-dsi.yaml:45:8: [warning] wrong indentation: expected 8 but found 7 (indentation)
+> ./Documentation/devicetree/bindings/display/panel/novatek,nt36672a.yaml:25:10: [warning] wrong indentation: expected 10 but found 9 (indentation)
+> ./Documentation/devicetree/bindings/media/i2c/adv7604.yaml:24:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
+> ./Documentation/devicetree/bindings/media/i2c/mipi-ccs.yaml:4:1: [error] missing document start "---" (document-start)
+> ./Documentation/devicetree/bindings/media/i2c/mipi-ccs.yaml:29:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
+> ./Documentation/devicetree/bindings/media/i2c/mipi-ccs.yaml:32:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
+> ./Documentation/devicetree/bindings/media/i2c/ovti,ov772x.yaml:79:17: [warning] wrong indentation: expected 14 but found 16 (indentation)
+> ./Documentation/devicetree/bindings/media/i2c/ovti,ov772x.yaml:88:17: [warning] wrong indentation: expected 14 but found 16 (indentation)
+> ./Documentation/devicetree/bindings/media/i2c/sony,imx214.yaml:72:17: [warning] wrong indentation: expected 18 but found 16 (indentation)
+> ./Documentation/devicetree/bindings/media/i2c/sony,imx214.yaml:75:17: [warning] wrong indentation: expected 18 but found 16 (indentation)
+> ./Documentation/devicetree/bindings/mmc/mtk-sd.yaml:20:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
+> ./Documentation/devicetree/bindings/mmc/mtk-sd.yaml:30:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
+> ./Documentation/devicetree/bindings/mmc/mtk-sd.yaml:33:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
+> ./Documentation/devicetree/bindings/sound/mt8192-mt6359-rt1015-rt5682.yaml:10:4: [warning] wrong indentation: expected 2 but found 3 (indentation)
+> 
+> 
+> Zhen Lei (1):
+>   dt-bindings: eliminate yamllint warnings
+> 
+>  .../devicetree/bindings/clock/imx8qxp-lpcg.yaml    | 20 ++++++++---------
+>  .../bindings/display/bridge/analogix,anx7625.yaml  |  4 ++--
+>  .../bindings/display/bridge/intel,keembay-dsi.yaml |  4 ++--
+>  .../bindings/display/intel,keembay-msscam.yaml     |  4 ++--
+>  .../bindings/display/panel/novatek,nt36672a.yaml   |  2 +-
+>  .../devicetree/bindings/media/i2c/adv7604.yaml     |  4 ++--
+>  .../devicetree/bindings/media/i2c/mipi-ccs.yaml    | 11 ++++-----
+>  .../devicetree/bindings/media/i2c/ovti,ov772x.yaml | 12 +++++-----
+>  .../devicetree/bindings/media/i2c/sony,imx214.yaml | 12 +++++-----
+>  Documentation/devicetree/bindings/mmc/mtk-sd.yaml  | 26 +++++++++++-----------
+>  .../sound/mt8192-mt6359-rt1015-rt5682.yaml         |  4 ++--
+>  11 files changed, 52 insertions(+), 51 deletions(-)
+> 
 
