@@ -2,218 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 86CBF2CE5AA
-	for <lists+devicetree@lfdr.de>; Fri,  4 Dec 2020 03:25:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DCB712CE5C3
+	for <lists+devicetree@lfdr.de>; Fri,  4 Dec 2020 03:35:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727023AbgLDCYq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Dec 2020 21:24:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38310 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726740AbgLDCYq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Dec 2020 21:24:46 -0500
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CE20C061A51
-        for <devicetree@vger.kernel.org>; Thu,  3 Dec 2020 18:24:05 -0800 (PST)
-Received: by mail-lf1-x12f.google.com with SMTP id t6so5617108lfl.13
-        for <devicetree@vger.kernel.org>; Thu, 03 Dec 2020 18:24:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=s4u4b45a8ETNbHAbxtaaDiyY6Pkn4TPDLXT1pEb3qYw=;
-        b=WBm42TQzCuibOmA79Uc0/Bn6AJUtpOgB7hKkz835mW8u6304nBbfXYnSF27Zz2AqFi
-         Xk9D2C+CKu3OJ9LSCgp0HvxaDyM2g5wmZsfrYfWUo44b8QeLR+xx29irk2L+k+gprikd
-         B8S435lj6Kg6DbILI9lfWozClyZbgj6Wa55tvNtyzWU9z/MFpHOELq1fN94pNgfIy2Ox
-         JeWulLfw0mMgcudf1EcZUzNNuzLrZ4X8dgbp8R16mEdDmjd+CVFnuT5ohLdRp6EC9XVv
-         xe7G7wRhS3mgtE7LwOGU9JhXoJ6ZMGWuIJh7iMij8iI7L7o93j58V90jthP2WFeaD+/g
-         0roQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=s4u4b45a8ETNbHAbxtaaDiyY6Pkn4TPDLXT1pEb3qYw=;
-        b=dM1MhU4GgozxxIUbhzUNQqchVETHd+pGEX/jywr2+1MfT6UCl8kAeNHfgBZRWP8LrH
-         V8ZzgI5MczyWWPqjd3jytZbtsShFDNjf1vPjcUcaVtphj4/4T4CN06LjaUJyS5WwS34S
-         tz75admXZFDgfOlGMXuum33Ish3T23me4MXn7/w2IQ1QRqNq2pFHt2tIMKKUFlunazbf
-         rJcntZofwnyxB6DLWqfcN8FOA+pHlV9MUlvyegSP46+3f0LVGNz83S+AsI/H7tF9gj12
-         vtoUeVjtoHu/iBz9fIiDzwu2vkwM3elRynUzXPlj0MY7zal8thjAK0/61lhGMcvDjjBX
-         ASQA==
-X-Gm-Message-State: AOAM530p2FADM3yEmbdA9c8Hv24VR2VPliqd5bR9VyGZAnLbFLOFODnA
-        fCavLqJVuszlzC7EtETBYAMaPg==
-X-Google-Smtp-Source: ABdhPJwv3Ghgdzxbv2YOauXTWvW0fSmH/eSiGTyZ9eAoedSXNILNPJHOyTRLG3gbrzc8dBX2knyfcQ==
-X-Received: by 2002:a19:c21a:: with SMTP id l26mr2657579lfc.590.1607048643764;
-        Thu, 03 Dec 2020 18:24:03 -0800 (PST)
-Received: from eriador.lumag.spb.ru ([188.162.64.117])
-        by smtp.gmail.com with ESMTPSA id u13sm145569lji.12.2020.12.03.18.24.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Dec 2020 18:24:03 -0800 (PST)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH v2] dt-bindings: soc: qcom: convert qcom,smem bindings to yaml
-Date:   Fri,  4 Dec 2020 05:24:01 +0300
-Message-Id: <20201204022401.1054122-1-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.29.2
+        id S1726567AbgLDCfX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Dec 2020 21:35:23 -0500
+Received: from mailgw02.mediatek.com ([1.203.163.81]:8034 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1725986AbgLDCfX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Dec 2020 21:35:23 -0500
+X-UUID: 34378544bbb3419f9d5c6405f4f73293-20201204
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=Ks0giwSuTJtBdXjdEkWwvc1tFrljUySYf/NOC1MuX90=;
+        b=f1Gjgy+XFNvSTsfTww8P93GO6oaRbccsxZEQ8nXHtPyUirAn0JmFE8MAK1f6BmMnpamhB66qq2slCEqZRjJrk+UipuXpEB+AjT5Nw5Gie526VQdOGI7ovHRFHCZi29lgu5ntpNMTAFPd+iFepT+nWJu/qUwDtX1aaLHLCa4hlTc=;
+X-UUID: 34378544bbb3419f9d5c6405f4f73293-20201204
+Received: from mtkcas34.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
+        (envelope-from <crystal.guo@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1974338625; Fri, 04 Dec 2020 10:34:25 +0800
+Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS31N2.mediatek.inc
+ (172.27.4.87) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Fri, 4 Dec
+ 2020 10:34:23 +0800
+Received: from [10.17.3.153] (10.17.3.153) by MTKCAS36.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 4 Dec 2020 10:34:23 +0800
+Message-ID: <1607049263.14806.69.camel@mhfsdcap03>
+Subject: Re: [v6,2/3] reset-controller: ti: introduce a new reset handler
+From:   Crystal Guo <crystal.guo@mediatek.com>
+To:     Ikjoon Jang <ikjn@chromium.org>
+CC:     "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Yong Liang =?UTF-8?Q?=28=E6=A2=81=E5=8B=87=29?= 
+        <Yong.Liang@mediatek.com>,
+        Stanley Chu =?UTF-8?Q?=28=E6=9C=B1=E5=8E=9F=E9=99=9E=29?= 
+        <stanley.chu@mediatek.com>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        Seiya Wang =?UTF-8?Q?=28=E7=8E=8B=E8=BF=BA=E5=90=9B=29?= 
+        <seiya.wang@mediatek.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Fan Chen =?UTF-8?Q?=28=E9=99=B3=E5=87=A1=29?= 
+        <fan.chen@mediatek.com>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        Yingjoe Chen =?UTF-8?Q?=28=E9=99=B3=E8=8B=B1=E6=B4=B2=29?= 
+        <Yingjoe.Chen@mediatek.com>, "s-anna@ti.com" <s-anna@ti.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Date:   Fri, 4 Dec 2020 10:34:23 +0800
+In-Reply-To: <20201130103505.GA3019533@chromium.org>
+References: <20200930022159.5559-1-crystal.guo@mediatek.com>
+         <20200930022159.5559-3-crystal.guo@mediatek.com>
+         <20201130103505.GA3019533@chromium.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-TM-SNTS-SMTP: 25E45A4316C76E3EED103E9DBA28B3BC44ABD9990A4FFD7D374985132BAF0C842000:8
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert soc/qcom/qcom,smem.txt bindings to YAML format.
-
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- .../bindings/soc/qcom/qcom,smem.txt           | 57 ---------------
- .../bindings/soc/qcom/qcom,smem.yaml          | 73 +++++++++++++++++++
- 2 files changed, 73 insertions(+), 57 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,smem.txt
- create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,smem.yaml
-
-diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,smem.txt b/Documentation/devicetree/bindings/soc/qcom/qcom,smem.txt
-deleted file mode 100644
-index 9326cdf6e1b1..000000000000
---- a/Documentation/devicetree/bindings/soc/qcom/qcom,smem.txt
-+++ /dev/null
-@@ -1,57 +0,0 @@
--Qualcomm Shared Memory Manager binding
--
--This binding describes the Qualcomm Shared Memory Manager, used to share data
--between various subsystems and OSes in Qualcomm platforms.
--
--- compatible:
--	Usage: required
--	Value type: <stringlist>
--	Definition: must be:
--		    "qcom,smem"
--
--- memory-region:
--	Usage: required
--	Value type: <prop-encoded-array>
--	Definition: handle to memory reservation for main SMEM memory region.
--
--- qcom,rpm-msg-ram:
--	Usage: required
--	Value type: <prop-encoded-array>
--	Definition: handle to RPM message memory resource
--
--- hwlocks:
--	Usage: required
--	Value type: <prop-encoded-array>
--	Definition: reference to a hwspinlock used to protect allocations from
--		    the shared memory
--
--= EXAMPLE
--The following example shows the SMEM setup for MSM8974, with a main SMEM region
--at 0xfa00000 and the RPM message ram at 0xfc428000:
--
--	reserved-memory {
--		#address-cells = <1>;
--		#size-cells = <1>;
--		ranges;
--
--		smem_region: smem@fa00000 {
--			reg = <0xfa00000 0x200000>;
--			no-map;
--		};
--	};
--
--	smem@fa00000 {
--		compatible = "qcom,smem";
--
--		memory-region = <&smem_region>;
--		qcom,rpm-msg-ram = <&rpm_msg_ram>;
--
--		hwlocks = <&tcsr_mutex 3>;
--	};
--
--	soc {
--		rpm_msg_ram: memory@fc428000 {
--			compatible = "qcom,rpm-msg-ram";
--			reg = <0xfc428000 0x4000>;
--		};
--	};
-diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,smem.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,smem.yaml
-new file mode 100644
-index 000000000000..867640c09932
---- /dev/null
-+++ b/Documentation/devicetree/bindings/soc/qcom/qcom,smem.yaml
-@@ -0,0 +1,73 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/soc/qcom/qcom,smem.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+
-+title: Qualcomm Shared Memory Manager binding
-+
-+maintainers:
-+  - Andy Gross <agross@kernel.org>
-+  - Bjorn Andersson <bjorn.andersson@linaro.org>
-+
-+description: |
-+  This binding describes the Qualcomm Shared Memory Manager, used to share data
-+  between various subsystems and OSes in Qualcomm platforms.
-+
-+properties:
-+  compatible:
-+    const: "qcom-smem"
-+
-+  memory-region:
-+    maxItems: 1
-+    description: handle to memory reservation for main SMEM memory region.
-+
-+  hwlocks:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description: reference to a hwspinlock used to protect allocations from the shared memory
-+
-+  qcom,rpm-msg-ram:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description: handle to RPM message memory resource
-+
-+required:
-+  - compatible
-+  - memory-region
-+  - hwlocks
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    reserved-memory {
-+        #address-cells = <1>;
-+        #size-cells = <1>;
-+        ranges;
-+
-+        smem_region: smem@fa00000 {
-+            reg = <0xfa00000 0x200000>;
-+            no-map;
-+        };
-+    };
-+
-+    smem {
-+        compatible = "qcom,smem";
-+
-+        memory-region = <&smem_region>;
-+        qcom,rpm-msg-ram = <&rpm_msg_ram>;
-+
-+        hwlocks = <&tcsr_mutex 3>;
-+    };
-+
-+    soc {
-+        #address-cells = <1>;
-+        #size-cells = <1>;
-+        ranges;
-+
-+        rpm_msg_ram: memory@fc428000 {
-+            compatible = "qcom,rpm-msg-ram";
-+            reg = <0xfc428000 0x4000>;
-+        };
-+    };
-+
-+...
--- 
-2.29.2
+T24gTW9uLCAyMDIwLTExLTMwIGF0IDE4OjM1ICswODAwLCBJa2pvb24gSmFuZyB3cm90ZToNCj4g
+T24gV2VkLCBTZXAgMzAsIDIwMjAgYXQgMTA6MjE6NThBTSArMDgwMCwgQ3J5c3RhbCBHdW8gd3Jv
+dGU6DQo+ID4gSW50cm9kdWNlIHRpX3N5c2Nvbl9yZXNldCgpIHRvIGludGVncmF0ZSBhc3NlcnQg
+YW5kIGRlYXNzZXJ0IHRvZ2V0aGVyLg0KPiA+IElmIHNvbWUgbW9kdWxlcyBuZWVkIGRvIHNlcmlh
+bGl6ZWQgYXNzZXJ0IGFuZCBkZWFzc2VydCBvcGVyYXRpb25zDQo+ID4gdG8gcmVzZXQgaXRzZWxm
+LCByZXNldF9jb250cm9sX3Jlc2V0IGNhbiBiZSBjYWxsZWQgZm9yIGNvbnZlbmllbmNlLg0KPiA+
+IA0KPiA+IFN1Y2ggYXMgcmVzZXQtcWNvbS1hb3NzLmMsIGl0IGludGVncmF0ZXMgYXNzZXJ0IGFu
+ZCBkZWFzc2VydCB0b2dldGhlcg0KPiA+IGJ5ICdyZXNldCcgbWV0aG9kLiBNVEsgU29jcyBhbHNv
+IG5lZWQgdGhpcyBtZXRob2QgdG8gcGVyZm9ybSByZXNldC4NCj4gPiANCj4gPiBTaWduZWQtb2Zm
+LWJ5OiBDcnlzdGFsIEd1byA8Y3J5c3RhbC5ndW9AbWVkaWF0ZWsuY29tPg0KPiANCj4gUmV2aWV3
+ZWQtYnk6IElram9vbiBKYW5nIDxpa2puQGNocm9taXVtLm9yZz4NCj4gDQo+ID4gLS0tDQo+ID4g
+IGRyaXZlcnMvcmVzZXQvcmVzZXQtdGktc3lzY29uLmMgfCA0MCArKysrKysrKysrKysrKysrKysr
+KysrKysrKysrKysrKy0NCj4gPiAgMSBmaWxlIGNoYW5nZWQsIDM5IGluc2VydGlvbnMoKyksIDEg
+ZGVsZXRpb24oLSkNCj4gPiANCj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9yZXNldC9yZXNldC10
+aS1zeXNjb24uYyBiL2RyaXZlcnMvcmVzZXQvcmVzZXQtdGktc3lzY29uLmMNCj4gPiBpbmRleCBh
+MjYzNWMyMWRiN2YuLjVkMWY4MzA2Y2Q0ZiAxMDA2NDQNCj4gPiAtLS0gYS9kcml2ZXJzL3Jlc2V0
+L3Jlc2V0LXRpLXN5c2Nvbi5jDQo+ID4gKysrIGIvZHJpdmVycy9yZXNldC9yZXNldC10aS1zeXNj
+b24uYw0KPiA+IEBAIC0xNSwxNSArMTUsMjIgQEANCj4gPiAgICogR05VIEdlbmVyYWwgUHVibGlj
+IExpY2Vuc2UgZm9yIG1vcmUgZGV0YWlscy4NCj4gPiAgICovDQo+ID4gIA0KPiA+ICsjaW5jbHVk
+ZSA8bGludXgvZGVsYXkuaD4NCj4gPiAgI2luY2x1ZGUgPGxpbnV4L21mZC9zeXNjb24uaD4NCj4g
+PiAgI2luY2x1ZGUgPGxpbnV4L21vZHVsZS5oPg0KPiA+ICAjaW5jbHVkZSA8bGludXgvb2YuaD4N
+Cj4gPiArI2luY2x1ZGUgPGxpbnV4L29mX2RldmljZS5oPg0KPiA+ICAjaW5jbHVkZSA8bGludXgv
+cGxhdGZvcm1fZGV2aWNlLmg+DQo+ID4gICNpbmNsdWRlIDxsaW51eC9yZWdtYXAuaD4NCj4gPiAg
+I2luY2x1ZGUgPGxpbnV4L3Jlc2V0LWNvbnRyb2xsZXIuaD4NCj4gPiAgDQo+ID4gICNpbmNsdWRl
+IDxkdC1iaW5kaW5ncy9yZXNldC90aS1zeXNjb24uaD4NCj4gPiAgDQo+ID4gK3N0cnVjdCBtZWRp
+YXRla19yZXNldF9kYXRhIHsNCj4gPiArCXVuc2lnbmVkIGNoYXIgKnJlc2V0X2JpdHM7DQo+ID4g
+Kwl1bnNpZ25lZCBpbnQgcmVzZXRfZHVyYXRpb25fdXM7DQo+ID4gK307DQo+ID4gKw0KPiA+ICAv
+KioNCj4gPiAgICogc3RydWN0IHRpX3N5c2Nvbl9yZXNldF9jb250cm9sIC0gcmVzZXQgY29udHJv
+bCBzdHJ1Y3R1cmUNCj4gPiAgICogQGFzc2VydF9vZmZzZXQ6IHJlc2V0IGFzc2VydCBjb250cm9s
+IHJlZ2lzdGVyIG9mZnNldCBmcm9tIHN5c2NvbiBiYXNlDQo+ID4gQEAgLTU2LDYgKzYzLDcgQEAg
+c3RydWN0IHRpX3N5c2Nvbl9yZXNldF9kYXRhIHsNCj4gPiAgCXN0cnVjdCByZWdtYXAgKnJlZ21h
+cDsNCj4gPiAgCXN0cnVjdCB0aV9zeXNjb25fcmVzZXRfY29udHJvbCAqY29udHJvbHM7DQo+ID4g
+IAl1bnNpZ25lZCBpbnQgbnJfY29udHJvbHM7DQo+ID4gKwljb25zdCBzdHJ1Y3QgbWVkaWF0ZWtf
+cmVzZXRfZGF0YSAqcmVzZXRfZGF0YTsNCj4gPiAgfTsNCj4gPiAgDQo+ID4gICNkZWZpbmUgdG9f
+dGlfc3lzY29uX3Jlc2V0X2RhdGEocmNkZXYpCVwNCj4gPiBAQCAtMTU4LDkgKzE2NiwyOSBAQCBz
+dGF0aWMgaW50IHRpX3N5c2Nvbl9yZXNldF9zdGF0dXMoc3RydWN0IHJlc2V0X2NvbnRyb2xsZXJf
+ZGV2ICpyY2RldiwNCj4gPiAgCQkhKGNvbnRyb2wtPmZsYWdzICYgU1RBVFVTX1NFVCk7DQo+ID4g
+IH0NCj4gPiAgDQo+ID4gK3N0YXRpYyBpbnQgdGlfc3lzY29uX3Jlc2V0KHN0cnVjdCByZXNldF9j
+b250cm9sbGVyX2RldiAqcmNkZXYsDQo+ID4gKwkJCQkgIHVuc2lnbmVkIGxvbmcgaWQpDQo+ID4g
+K3sNCj4gPiArCXN0cnVjdCB0aV9zeXNjb25fcmVzZXRfZGF0YSAqZGF0YSA9IHRvX3RpX3N5c2Nv
+bl9yZXNldF9kYXRhKHJjZGV2KTsNCj4gPiArCWludCByZXQ7DQo+ID4gKw0KPiA+ICsJaWYgKGRh
+dGEtPnJlc2V0X2RhdGEpIHsNCj4gPiArCQlyZXQgPSB0aV9zeXNjb25fcmVzZXRfYXNzZXJ0KHJj
+ZGV2LCBpZCk7DQo+ID4gKwkJaWYgKHJldCkNCj4gPiArCQkJcmV0dXJuIHJldDsNCj4gPiArCQl1
+c2xlZXBfcmFuZ2UoZGF0YS0+cmVzZXRfZGF0YS0+cmVzZXRfZHVyYXRpb25fdXMsDQo+ID4gKwkJ
+CWRhdGEtPnJlc2V0X2RhdGEtPnJlc2V0X2R1cmF0aW9uX3VzICogMik7DQo+ID4gKw0KPiANCj4g
+VGhlcmUgYXJlIG1hbnkgdXNlcnMgdXNpbmcgYXNzZXJ0KCkgYW5kIGRlYXNzZXJ0KCkgc2VwZXJh
+dGVseQ0KPiB3aXRob3V0IGFueSBkZWxheSBiZXR3ZWVuIHRoZW0uDQo+IA0KPiBJZiB0aGVyZSdz
+IGEgdGltaW5nIHJlcXVpcmVtZW50IGJldHdlZW4gYXNzZXJ0aW9uIGFuZCBkZWFzc2VydGlvbiwN
+Cj4gc2hvdWxkbid0IHRoZXJlIGJlIGEgc2FtZSBhbW91bnQgb2YgZGVsYXkgaW4gYXNzZXJ0Pw0K
+DQpUaGUgInJlc2V0X2R1cmF0aW9uX3VzIiBpcyBhbiBvcHRpb25hbCBjb25maWd1cmF0aW9uIHRv
+IG1ha2UgdGhlIHJlc2V0DQpvcGVyYXRpb24gbW9yZSBnZW5lcmljLCB3aGljaCB3YXMgYWRkZWQg
+YmFzZWQgb24gUGhpbGlwcCdzIGNvbW1lbnQgaW4NClt2Miw0LzZdLg0KDQpUaGFua3MsDQpDcnlz
+dGFsDQo+IA0KPiA+ICsJCXJldHVybiB0aV9zeXNjb25fcmVzZXRfZGVhc3NlcnQocmNkZXYsIGlk
+KTsNCj4gPiArCX0gZWxzZSB7DQo+ID4gKwkJcmV0dXJuIC1FTk9UU1VQUDsNCj4gPiArCX0NCj4g
+PiArfQ0KPiA+ICsNCj4gPiAgc3RhdGljIGNvbnN0IHN0cnVjdCByZXNldF9jb250cm9sX29wcyB0
+aV9zeXNjb25fcmVzZXRfb3BzID0gew0KPiA+ICAJLmFzc2VydAkJPSB0aV9zeXNjb25fcmVzZXRf
+YXNzZXJ0LA0KPiA+ICAJLmRlYXNzZXJ0CT0gdGlfc3lzY29uX3Jlc2V0X2RlYXNzZXJ0LA0KPiA+
+ICsJLnJlc2V0CQk9IHRpX3N5c2Nvbl9yZXNldCwNCj4gPiAgCS5zdGF0dXMJCT0gdGlfc3lzY29u
+X3Jlc2V0X3N0YXR1cywNCj4gPiAgfTsNCj4gPiAgDQo+ID4gQEAgLTE4Miw3ICsyMTAsMTEgQEAg
+c3RhdGljIGludCB0aV9zeXNjb25fcmVzZXRfcHJvYmUoc3RydWN0IHBsYXRmb3JtX2RldmljZSAq
+cGRldikNCj4gPiAgCWlmIChJU19FUlIocmVnbWFwKSkNCj4gPiAgCQlyZXR1cm4gUFRSX0VSUihy
+ZWdtYXApOw0KPiA+ICANCj4gPiAtCWxpc3QgPSBvZl9nZXRfcHJvcGVydHkobnAsICJ0aSxyZXNl
+dC1iaXRzIiwgJnNpemUpOw0KPiA+ICsJZGF0YS0+cmVzZXRfZGF0YSA9IG9mX2RldmljZV9nZXRf
+bWF0Y2hfZGF0YSgmcGRldi0+ZGV2KTsNCj4gPiArCWlmIChkYXRhLT5yZXNldF9kYXRhKQ0KPiA+
+ICsJCWxpc3QgPSBvZl9nZXRfcHJvcGVydHkobnAsIGRhdGEtPnJlc2V0X2RhdGEtPnJlc2V0X2Jp
+dHMsICZzaXplKTsNCj4gPiArCWVsc2UNCj4gPiArCQlsaXN0ID0gb2ZfZ2V0X3Byb3BlcnR5KG5w
+LCAidGkscmVzZXQtYml0cyIsICZzaXplKTsNCj4gPiAgCWlmICghbGlzdCB8fCAoc2l6ZSAvIHNp
+emVvZigqbGlzdCkpICUgNyAhPSAwKSB7DQo+ID4gIAkJZGV2X2VycihkZXYsICJpbnZhbGlkIERU
+IHJlc2V0IGRlc2NyaXB0aW9uXG4iKTsNCj4gPiAgCQlyZXR1cm4gLUVJTlZBTDsNCj4gPiBAQCAt
+MjE3LDggKzI0OSwxNCBAQCBzdGF0aWMgaW50IHRpX3N5c2Nvbl9yZXNldF9wcm9iZShzdHJ1Y3Qg
+cGxhdGZvcm1fZGV2aWNlICpwZGV2KQ0KPiA+ICAJcmV0dXJuIGRldm1fcmVzZXRfY29udHJvbGxl
+cl9yZWdpc3RlcihkZXYsICZkYXRhLT5yY2Rldik7DQo+ID4gIH0NCj4gPiAgDQo+ID4gK3N0YXRp
+YyBjb25zdCBzdHJ1Y3QgbWVkaWF0ZWtfcmVzZXRfZGF0YSBtdGtfcmVzZXRfZGF0YSA9IHsNCj4g
+PiArCS5yZXNldF9iaXRzID0gIm1lZGlhdGVrLHJlc2V0LWJpdHMiLA0KPiA+ICsJLnJlc2V0X2R1
+cmF0aW9uX3VzID0gMTAsDQo+ID4gK307DQo+ID4gKw0KPiA+ICBzdGF0aWMgY29uc3Qgc3RydWN0
+IG9mX2RldmljZV9pZCB0aV9zeXNjb25fcmVzZXRfb2ZfbWF0Y2hbXSA9IHsNCj4gPiAgCXsgLmNv
+bXBhdGlibGUgPSAidGksc3lzY29uLXJlc2V0IiwgfSwNCj4gPiArCXsgLmNvbXBhdGlibGUgPSAi
+bWVkaWF0ZWssc3lzY29uLXJlc2V0IiwgLmRhdGEgPSAmbXRrX3Jlc2V0X2RhdGF9LA0KPiA+ICAJ
+eyAvKiBzZW50aW5lbCAqLyB9LA0KPiA+ICB9Ow0KPiA+ICBNT0RVTEVfREVWSUNFX1RBQkxFKG9m
+LCB0aV9zeXNjb25fcmVzZXRfb2ZfbWF0Y2gpOw0KDQo=
 
