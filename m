@@ -2,607 +2,193 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9BA9F2CF5DB
-	for <lists+devicetree@lfdr.de>; Fri,  4 Dec 2020 21:51:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 472992CF5F6
+	for <lists+devicetree@lfdr.de>; Fri,  4 Dec 2020 22:06:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388023AbgLDUue (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Dec 2020 15:50:34 -0500
-Received: from mickerik.phytec.de ([195.145.39.210]:56224 "EHLO
-        mickerik.phytec.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387781AbgLDUue (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Dec 2020 15:50:34 -0500
-X-Greylist: delayed 941 seconds by postgrey-1.27 at vger.kernel.org; Fri, 04 Dec 2020 15:49:25 EST
-DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a1; c=relaxed/simple;
-        q=dns/txt; i=@phytec.de; t=1607113983; x=1609705983;
-        h=From:Sender:Reply-To:Subject:Date:Message-Id:To:Cc:MIME-Version:Content-Type:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=ieqoD5+0S5L1S016fJVbHNsskgDWKBYlt8VW0lha8dk=;
-        b=kUBEhEbvNJxwsVFV2GJx1jZ6GBOgxWcKzRQ2mQZGOGRpoHxjlUn0nS6PzDYVIUZn
-        23PQq0Rx36tgBWS6FAWiQEpaNCtVYH1IsEyl+DbN5ncHcfzR48gOWPxR5I8yGx2V
-        vFOroJknup3s1CRvJDkWBljxlGKV47riEFlU3Q+x//Q=;
-X-AuditID: c39127d2-96bff70000006435-74-5fca9cff99a7
-Received: from idefix.phytec.de (Unknown_Domain [172.16.0.10])
-        by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id E4.74.25653.FFC9ACF5; Fri,  4 Dec 2020 21:33:03 +0100 (CET)
-Received: from augenblix2.phytec.de ([172.16.0.56])
-          by idefix.phytec.de (IBM Domino Release 9.0.1FP7)
-          with ESMTP id 2020120421330371-920469 ;
-          Fri, 4 Dec 2020 21:33:03 +0100 
-From:   Teresa Remmet <t.remmet@phytec.de>
-To:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Cc:     Catalin Marinas <catalin.marinas@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>
-Subject: [PATCH 4/4] arm64: dts: freescale: Add support for phyBOARD-Pollux-i.MX8MP
-Date:   Fri, 4 Dec 2020 21:33:02 +0100
-Message-Id: <1607113982-109524-5-git-send-email-t.remmet@phytec.de>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1607113982-109524-1-git-send-email-t.remmet@phytec.de>
-References: <1607113982-109524-1-git-send-email-t.remmet@phytec.de>
-X-MIMETrack: Itemize by SMTP Server on Idefix/Phytec(Release 9.0.1FP7|August  17, 2016) at
- 04.12.2020 21:33:03,
-        Serialize by Router on Idefix/Phytec(Release 9.0.1FP7|August  17, 2016) at
- 04.12.2020 21:33:03,
-        Serialize complete at 04.12.2020 21:33:03
-X-TNEFEvaluated: 1
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprILMWRmVeSWpSXmKPExsWyRoCBS/f/nFPxBq/nGVu8X9bDaDH/yDlW
-        i4dX/S02Pb7GatG69wi7xd/tm1gsXmwRd2D3WDNvDaPHzll32T02repk89i8pN6j/6+Bx+dN
-        cgFsUVw2Kak5mWWpRfp2CVwZe693shS8Lq7YMqWJtYHxYFwXIweHhICJxJFXjl2MXBxCAlsZ
-        Jbbf3c0C4ZxjlGj4s4Wpi5GTg01AQ+LpitNgtoiAi0Tng3VgRcwCuxkl9nxexwqSEBYIltjU
-        9ZUNxGYRUJF4te0LM4jNK+AsseXFKhYQW0JATuLmuU6wOCfQoOP3vjGC2EJANf9XfwcbKiHQ
-        yCRxYtNeNogGIYnTi88yT2DkW8DIsIpRKDczOTu1KDNbryCjsiQ1WS8ldRMjMNgOT1S/tIOx
-        b47HIUYmDsZDjBIczEoivLGqJ+OFeFMSK6tSi/Lji0pzUosPMUpzsCiJ827gLQkTEkhPLEnN
-        Tk0tSC2CyTJxcEo1MHo6Wn1tEP4jsSttT/bjtQ9iFn6oXnVbRXCbrmX32nuKFr53XT68qJdp
-        ljv7oS1g2hKNbwt7l/ZsmOqwWfPXYvmT8Y+u3ZRhCtMqWDKb55LoylSfbx4PZjx5c33fkcKw
-        csPbXk/Wr8q4UCCq7eZQy6+9QeZhQ1ruf0Mbv7yd2QHWbDdl2z1XHlJiKc5INNRiLipOBADl
-        lj7QJAIAAA==
+        id S1729897AbgLDVFV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Dec 2020 16:05:21 -0500
+Received: from hqnvemgate25.nvidia.com ([216.228.121.64]:17507 "EHLO
+        hqnvemgate25.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726524AbgLDVFV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Dec 2020 16:05:21 -0500
+Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate25.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
+        id <B5fcaa4680000>; Fri, 04 Dec 2020 13:04:40 -0800
+Received: from [10.2.90.244] (172.20.13.39) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 4 Dec
+ 2020 21:04:40 +0000
+Subject: Re: [PATCH v1 3/7] spi: qspi-tegra: Add support for Tegra210 QSPI
+ controller
+To:     Mark Brown <broonie@kernel.org>
+CC:     <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
+        <robh+dt@kernel.org>, <linux-spi@vger.kernel.org>,
+        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+References: <1606857168-5839-1-git-send-email-skomatineni@nvidia.com>
+ <1606857168-5839-4-git-send-email-skomatineni@nvidia.com>
+ <20201202172721.GL5560@sirena.org.uk>
+ <2257bc33-80ef-a6d8-8542-480defa32937@nvidia.com>
+ <be8291fc-8e69-b577-d8f4-20aeca0b45cc@nvidia.com>
+ <20201204185223.GF4558@sirena.org.uk>
+From:   Sowjanya Komatineni <skomatineni@nvidia.com>
+Message-ID: <df8d6f25-c8cc-3b41-e4df-8e26c9b93475@nvidia.com>
+Date:   Fri, 4 Dec 2020 13:04:46 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
+MIME-Version: 1.0
+In-Reply-To: <20201204185223.GF4558@sirena.org.uk>
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Transfer-Encoding: quoted-printable
+Content-Language: en-US
+X-Originating-IP: [172.20.13.39]
+X-ClientProxiedBy: HQMAIL107.nvidia.com (172.20.187.13) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1607115881; bh=G/lGwc5ryxROjh3OEPWNBFPMDo/r/Skiiy7Ingk24xk=;
+        h=Subject:To:CC:References:From:Message-ID:Date:User-Agent:
+         MIME-Version:In-Reply-To:Content-Type:Content-Transfer-Encoding:
+         Content-Language:X-Originating-IP:X-ClientProxiedBy;
+        b=QZMQcjHu4eHmnbZ+Fi3wPk1mhZv+PTn+ss0act9NW2+TTkZd117utTk5MyLB/FmP9
+         B7HQE3V8sSkEYNy0RkJygXX1fzZoV7qk7lh5rjWuqTDzSTZD5h5TY/EdOOedtvaeFE
+         6cPUSAB5kh5LgFYyqq4XLn4GbDxdOdmOWOcuP2V+UwGmX7xTanvnFSP3cAjgxr3gxI
+         Asiygn8R+iUEwUzaNFEKrotPF8/Yv8Fm0qmcxXlJUjPOljZS5Ime2yXfqX2brmT1ZL
+         CktrxCSYpZ7i1CibtqvpUTmmv0rMKIks39EqP37MRxtEOn7TuDy8+Wn5Fhvy+G2/Ow
+         DRFaWpWk7EtKA==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add initial support for phyBOARD-Pollux-i.MX8MP.
-Supported basic features:
-	* eMMC
-	* i2c EEPROM
-	* i2c RTC
-	* i2c LED
-	* PMIC
-	* debug UART
-	* SD card
-	* 1Gbit Ethernet (fec)
-	* watchdog
 
-Signed-off-by: Teresa Remmet <t.remmet@phytec.de>
----
- arch/arm64/boot/dts/freescale/Makefile             |   1 +
- .../dts/freescale/imx8mp-phyboard-pollux-rdk.dts   |  16 ++
- .../boot/dts/freescale/imx8mp-phyboard-pollux.dtsi | 152 ++++++++++
- .../boot/dts/freescale/imx8mp-phycore-som.dtsi     | 319 +++++++++++++++++++++
- 4 files changed, 488 insertions(+)
- create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dts
- create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux.dtsi
- create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-phycore-som.dtsi
+On 12/4/20 10:52 AM, Mark Brown wrote:
+> On Thu, Dec 03, 2020 at 04:22:54PM -0800, Sowjanya Komatineni wrote:
+>> On 12/2/20 11:17 AM, Sowjanya Komatineni wrote:
+>>>> It seems weird that this device needs us to do a memcpy() to do DMA,
+>>>> most devices are able to DMA directly from the buffers provided by the
+>>>> SPI API (and let the SPI core sync things).=A0 What is going on here?
+>>> For transfers of size more than max DMA transfer limit, data transfer
+>>> happens in multiple iterations with each iteration transferring up to
+>>> max DMA transfer limit.
+>>> So using separate dma buffers and on every iteration copying them to SP=
+I
+>>> core provided tx/rx buffers.
+> I don't understand this - there's no restriction on where DMA transfers
+> can be done from within a DMA mapped region, the driver can do multiple
+> transfers from different chunks of the source buffer without having to
+> copy anything.  That's a very common scenario.
+>
+>> Also unpack mode needs to manually put the bytes together from read data=
+ to
+>> SPI core rx buffer.
+> Could you be more explicit here, I don't know what "unpack mode" is?
 
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index acfb8af45912..a43b496678be 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -37,6 +37,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mn-evk.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mn-ddr4-evk.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mn-var-som-symphony.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-evk.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx8mp-phyboard-pollux-rdk.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mq-evk.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mq-hummingboard-pulse.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mq-librem5-devkit.dtb
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dts b/arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dts
-new file mode 100644
-index 000000000000..dd64be32c99d
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dts
-@@ -0,0 +1,16 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (C) 2020 PHYTEC Messtechnik GmbH
-+ * Author: Teresa Remmet <t.remmet@phytec.de>
-+ */
-+
-+/dts-v1/;
-+
-+#include "imx8mp-phycore-som.dtsi"
-+#include "imx8mp-phyboard-pollux.dtsi"
-+
-+/ {
-+	model = "PHYTEC phyBOARD-Pollux i.MX8MP";
-+	compatible = "phytec,imx8mp-phyboard-pollux-rdk",
-+		     "phytec,imx8mp-phycore-som", "fsl,imx8mp";
-+};
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux.dtsi
-new file mode 100644
-index 000000000000..dbeaa27eb043
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux.dtsi
-@@ -0,0 +1,152 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (C) 2020 PHYTEC Messtechnik GmbH
-+ * Author: Teresa Remmet <t.remmet@phytec.de>
-+ */
-+
-+#include <dt-bindings/leds/leds-pca9532.h>
-+#include <dt-bindings/pwm/pwm.h>
-+
-+/ {
-+	chosen {
-+		stdout-path = &uart2;
-+	};
-+
-+	reg_usdhc2_vmmc: regulator-usdhc2 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VSD_3V3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		gpio = <&gpio2 19 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+		startup-delay-us = <100>;
-+		off-on-delay-us = <12000>;
-+	};
-+};
-+
-+&i2c2 {
-+	clock-frequency = <400000>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_i2c2>;
-+	pinctrl-1 = <&pinctrl_i2c2_gpio>;
-+	sda-gpios = <&gpio5 17 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+	scl-gpios = <&gpio5 16 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+	status = "okay";
-+
-+	eeprom@51 {
-+		compatible = "atmel,24c02";
-+		reg = <0x51>;
-+		pagesize = <16>;
-+		status = "okay";
-+	};
-+
-+	leddimmer@62 {
-+		compatible = "nxp,pca9533";
-+		reg = <0x62>;
-+		status = "okay";
-+
-+		led1 {
-+			label = "red:user1";
-+			type = <PCA9532_TYPE_LED>;
-+		};
-+
-+		led2 {
-+			label = "green:user2";
-+			type = <PCA9532_TYPE_LED>;
-+		};
-+
-+		led3 {
-+			label = "blue:user3";
-+			type = <PCA9532_TYPE_LED>;
-+		};
-+	};
-+};
-+
-+&snvs_pwrkey {
-+	status = "okay";
-+};
-+
-+/* debug console */
-+&uart2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart2>;
-+	status = "okay";
-+};
-+
-+/* SD-Card */
-+&usdhc2 {
-+	pinctrl-names = "default", "state_100mhz", "state_200mhz";
-+	pinctrl-0 = <&pinctrl_usdhc2>, <&pinctrl_usdhc2_pins>;
-+	pinctrl-1 = <&pinctrl_usdhc2_100mhz>, <&pinctrl_usdhc2_pins>;
-+	pinctrl-2 = <&pinctrl_usdhc2_200mhz>, <&pinctrl_usdhc2_pins>;
-+	cd-gpios = <&gpio2 12 GPIO_ACTIVE_LOW>;
-+	vmmc-supply = <&reg_usdhc2_vmmc>;
-+	bus-width = <4>;
-+	status = "okay";
-+};
-+
-+&iomuxc {
-+	pinctrl_i2c2: i2c2grp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_I2C2_SCL__I2C2_SCL		0x400001c3
-+			MX8MP_IOMUXC_I2C2_SDA__I2C2_SDA		0x400001c3
-+		>;
-+	};
-+
-+	pinctrl_i2c2_gpio: i2c2gpiogrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_I2C2_SCL__GPIO5_IO16	0x1e3
-+			MX8MP_IOMUXC_I2C2_SDA__GPIO5_IO17	0x1e3
-+		>;
-+	};
-+
-+	pinctrl_uart2: uart2grp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_UART2_RXD__UART2_DCE_RX	0x49
-+			MX8MP_IOMUXC_UART2_TXD__UART2_DCE_TX	0x49
-+		>;
-+	};
-+
-+	pinctrl_usdhc2_pins: usdhc2-gpiogrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_SD2_CD_B__GPIO2_IO12	0x1c4
-+			MX8MP_IOMUXC_SD2_RESET_B__GPIO2_IO19	0x41
-+		>;
-+	};
-+
-+	pinctrl_usdhc2: usdhc2grp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_SD2_CLK__USDHC2_CLK	0x190
-+			MX8MP_IOMUXC_SD2_CMD__USDHC2_CMD	0x1d0
-+			MX8MP_IOMUXC_SD2_DATA0__USDHC2_DATA0	0x1d0
-+			MX8MP_IOMUXC_SD2_DATA1__USDHC2_DATA1	0x1d0
-+			MX8MP_IOMUXC_SD2_DATA2__USDHC2_DATA2	0x1d0
-+			MX8MP_IOMUXC_SD2_DATA3__USDHC2_DATA3	0x1d0
-+			MX8MP_IOMUXC_GPIO1_IO04__USDHC2_VSELECT	0xc1
-+		>;
-+	};
-+
-+	pinctrl_usdhc2_100mhz: usdhc2-100mhzgrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_SD2_CLK__USDHC2_CLK	0x194
-+			MX8MP_IOMUXC_SD2_CMD__USDHC2_CMD	0x1d4
-+			MX8MP_IOMUXC_SD2_DATA0__USDHC2_DATA0	0x1d4
-+			MX8MP_IOMUXC_SD2_DATA1__USDHC2_DATA1	0x1d4
-+			MX8MP_IOMUXC_SD2_DATA2__USDHC2_DATA2	0x1d4
-+			MX8MP_IOMUXC_SD2_DATA3__USDHC2_DATA3	0x1d4
-+			MX8MP_IOMUXC_GPIO1_IO04__USDHC2_VSELECT	0xc1
-+		>;
-+	};
-+
-+	pinctrl_usdhc2_200mhz: usdhc2-200mhzgrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_SD2_CLK__USDHC2_CLK	0x196
-+			MX8MP_IOMUXC_SD2_CMD__USDHC2_CMD	0x1d6
-+			MX8MP_IOMUXC_SD2_DATA0__USDHC2_DATA0	0x1d6
-+			MX8MP_IOMUXC_SD2_DATA1__USDHC2_DATA1	0x1d6
-+			MX8MP_IOMUXC_SD2_DATA2__USDHC2_DATA2	0x1d6
-+			MX8MP_IOMUXC_SD2_DATA3__USDHC2_DATA3	0x1d6
-+			MX8MP_IOMUXC_GPIO1_IO04__USDHC2_VSELECT	0xc1
-+		>;
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-phycore-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-phycore-som.dtsi
-new file mode 100644
-index 000000000000..e1fdfebd8142
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-phycore-som.dtsi
-@@ -0,0 +1,319 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (C) 2020 PHYTEC Messtechnik GmbH
-+ * Author: Teresa Remmet <t.remmet@phytec.de>
-+ */
-+
-+#include <dt-bindings/net/ti-dp83867.h>
-+#include "imx8mp.dtsi"
-+
-+/ {
-+	model = "PHYTEC phyCORE-i.MX8MP";
-+	compatible = "phytec,imx8mp-phycore-som", "fsl,imx8mp";
-+
-+	aliases {
-+		rtc0 = &rv3028;
-+		rtc1 = &snvs_rtc;
-+	};
-+
-+	memory@40000000 {
-+		device_type = "memory";
-+		reg = <0x0 0x40000000 0 0x80000000>;
-+	};
-+
-+	rtcclkout: rv3028-clkout {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <32768>;
-+		clock-output-names = "rv3028-clkout";
-+		status = "disabled";
-+	};
-+};
-+
-+&A53_0 {
-+	cpu-supply = <&buck2>;
-+};
-+
-+&A53_1 {
-+	cpu-supply = <&buck2>;
-+};
-+
-+&A53_2 {
-+	cpu-supply = <&buck2>;
-+};
-+
-+&A53_3 {
-+	cpu-supply = <&buck2>;
-+};
-+
-+/* ethernet 1 */
-+&fec {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_fec>;
-+	phy-mode = "rgmii-id";
-+	phy-handle = <&ethphy1>;
-+	fsl,magic-packet;
-+	status = "okay";
-+
-+	mdio {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		ethphy1: ethernet-phy@0 {
-+			compatible = "ethernet-phy-ieee802.3-c22";
-+			reg = <0>;
-+			interrupt-parent = <&gpio1>;
-+			interrupts = <15 IRQ_TYPE_EDGE_FALLING>;
-+			ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
-+			ti,tx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
-+			ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
-+			ti,clk-output-sel = <DP83867_CLK_O_SEL_OFF>;
-+			enet-phy-lane-no-swap;
-+		};
-+	};
-+};
-+
-+&i2c1 {
-+	clock-frequency = <400000>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_i2c1>;
-+	pinctrl-1 = <&pinctrl_i2c1_gpio>;
-+	sda-gpios = <&gpio5 15 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+	scl-gpios = <&gpio5 14 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+	status = "okay";
-+
-+	pmic: pca9450@25 {
-+		reg = <0x25>;
-+		compatible = "nxp,pca9450c";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_pmic>;
-+		interrupt-parent = <&gpio4>;
-+		interrupts = <18 IRQ_TYPE_LEVEL_LOW>;
-+
-+		regulators {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			buck1: BUCK1 {
-+				reg = <0>;
-+				regulator-compatible = "BUCK1";
-+				regulator-min-microvolt = <600000>;
-+				regulator-max-microvolt = <2187500>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+				regulator-ramp-delay = <3125>;
-+			};
-+
-+			buck2: BUCK2 {
-+				reg = <1>;
-+				regulator-compatible = "BUCK2";
-+				regulator-min-microvolt = <600000>;
-+				regulator-max-microvolt = <2187500>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+				regulator-ramp-delay = <3125>;
-+			};
-+
-+			buck4: BUCK4 {
-+				reg = <3>;
-+				regulator-compatible = "BUCK4";
-+				regulator-min-microvolt = <600000>;
-+				regulator-max-microvolt = <3400000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			buck5: BUCK5 {
-+				reg = <4>;
-+				regulator-compatible = "BUCK5";
-+				regulator-min-microvolt = <600000>;
-+				regulator-max-microvolt = <3400000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			buck6: BUCK6 {
-+				reg = <5>;
-+				regulator-compatible = "BUCK6";
-+				regulator-min-microvolt = <600000>;
-+				regulator-max-microvolt = <3400000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			ldo1: LDO1 {
-+				reg = <6>;
-+				regulator-compatible = "LDO1";
-+				regulator-min-microvolt = <1600000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			ldo2: LDO2 {
-+				reg = <7>;
-+				regulator-compatible = "LDO2";
-+				regulator-min-microvolt = <800000>;
-+				regulator-max-microvolt = <1150000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			ldo3: LDO3 {
-+				reg = <8>;
-+				regulator-compatible = "LDO3";
-+				regulator-min-microvolt = <800000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			ldo4: LDO4 {
-+				reg = <9>;
-+				regulator-compatible = "LDO4";
-+				regulator-min-microvolt = <800000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			ldo5: LDO5 {
-+				reg = <10>;
-+				regulator-compatible = "LDO5";
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <3300000>;
-+			};
-+		};
-+	};
-+
-+	eeprom@51 {
-+		compatible = "atmel,24c32";
-+		reg = <0x51>;
-+		pagesize = <32>;
-+		status = "okay";
-+	};
-+
-+	rv3028: rtc@52 {
-+		compatible = "microcrystal,rv3028";
-+		reg = <0x52>;
-+		trickle-resistor-ohms = <1000>;
-+		enable-level-switching-mode;
-+		clocks = <&rtcclkout>;
-+		status = "okay";
-+	};
-+};
-+
-+/* eMMC */
-+&usdhc3 {
-+	pinctrl-names = "default", "state_100mhz", "state_200mhz";
-+	pinctrl-0 = <&pinctrl_usdhc3>;
-+	pinctrl-1 = <&pinctrl_usdhc3_100mhz>;
-+	pinctrl-2 = <&pinctrl_usdhc3_200mhz>;
-+	bus-width = <8>;
-+	non-removable;
-+	status = "okay";
-+};
-+
-+&wdog1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_wdog>;
-+	fsl,ext-reset-output;
-+	status = "okay";
-+};
-+
-+&iomuxc {
-+	pinctrl_fec: fecgrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_SAI1_RXD2__ENET1_MDC		0x3
-+			MX8MP_IOMUXC_SAI1_RXD3__ENET1_MDIO		0x3
-+			MX8MP_IOMUXC_SAI1_RXD4__ENET1_RGMII_RD0		0x91
-+			MX8MP_IOMUXC_SAI1_RXD5__ENET1_RGMII_RD1		0x91
-+			MX8MP_IOMUXC_SAI1_RXD6__ENET1_RGMII_RD2		0x91
-+			MX8MP_IOMUXC_SAI1_RXD7__ENET1_RGMII_RD3		0x91
-+			MX8MP_IOMUXC_SAI1_TXC__ENET1_RGMII_RXC		0x91
-+			MX8MP_IOMUXC_SAI1_TXFS__ENET1_RGMII_RX_CTL	0x91
-+			MX8MP_IOMUXC_SAI1_TXD0__ENET1_RGMII_TD0		0x1f
-+			MX8MP_IOMUXC_SAI1_TXD1__ENET1_RGMII_TD1		0x1f
-+			MX8MP_IOMUXC_SAI1_TXD2__ENET1_RGMII_TD2		0x1f
-+			MX8MP_IOMUXC_SAI1_TXD3__ENET1_RGMII_TD3		0x1f
-+			MX8MP_IOMUXC_SAI1_TXD4__ENET1_RGMII_TX_CTL	0x1f
-+			MX8MP_IOMUXC_SAI1_TXD5__ENET1_RGMII_TXC		0x1f
-+			MX8MP_IOMUXC_GPIO1_IO15__GPIO1_IO15		0x11
-+		>;
-+	};
-+
-+	pinctrl_i2c1: i2c1grp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_I2C1_SCL__I2C1_SCL		0x400001c3
-+			MX8MP_IOMUXC_I2C1_SDA__I2C1_SDA		0x400001c3
-+		>;
-+	};
-+
-+	pinctrl_i2c1_gpio: i2c1gpiogrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_I2C1_SCL__GPIO5_IO14	0x1e3
-+			MX8MP_IOMUXC_I2C1_SDA__GPIO5_IO15	0x1e3
-+		>;
-+	};
-+
-+
-+	pinctrl_pmic: pmicirqgrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_SAI1_TXD6__GPIO4_IO18	0x141
-+		>;
-+	};
-+
-+	pinctrl_usdhc3: usdhc3grp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_NAND_WE_B__USDHC3_CLK	0x190
-+			MX8MP_IOMUXC_NAND_WP_B__USDHC3_CMD	0x1d0
-+			MX8MP_IOMUXC_NAND_DATA04__USDHC3_DATA0	0x1d0
-+			MX8MP_IOMUXC_NAND_DATA05__USDHC3_DATA1	0x1d0
-+			MX8MP_IOMUXC_NAND_DATA06__USDHC3_DATA2	0x1d0
-+			MX8MP_IOMUXC_NAND_DATA07__USDHC3_DATA3	0x1d0
-+			MX8MP_IOMUXC_NAND_RE_B__USDHC3_DATA4	0x1d0
-+			MX8MP_IOMUXC_NAND_CE2_B__USDHC3_DATA5	0x1d0
-+			MX8MP_IOMUXC_NAND_CE3_B__USDHC3_DATA6	0x1d0
-+			MX8MP_IOMUXC_NAND_CLE__USDHC3_DATA7	0x1d0
-+			MX8MP_IOMUXC_NAND_CE1_B__USDHC3_STROBE	0x190
-+		>;
-+	};
-+
-+	pinctrl_usdhc3_100mhz: usdhc3-100mhzgrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_NAND_WE_B__USDHC3_CLK	0x194
-+			MX8MP_IOMUXC_NAND_WP_B__USDHC3_CMD	0x1d4
-+			MX8MP_IOMUXC_NAND_DATA04__USDHC3_DATA0	0x1d4
-+			MX8MP_IOMUXC_NAND_DATA05__USDHC3_DATA1	0x1d4
-+			MX8MP_IOMUXC_NAND_DATA06__USDHC3_DATA2	0x1d4
-+			MX8MP_IOMUXC_NAND_DATA07__USDHC3_DATA3	0x1d4
-+			MX8MP_IOMUXC_NAND_RE_B__USDHC3_DATA4	0x1d4
-+			MX8MP_IOMUXC_NAND_CE2_B__USDHC3_DATA5	0x1d4
-+			MX8MP_IOMUXC_NAND_CE3_B__USDHC3_DATA6	0x1d4
-+			MX8MP_IOMUXC_NAND_CLE__USDHC3_DATA7	0x1d4
-+			MX8MP_IOMUXC_NAND_CE1_B__USDHC3_STROBE	0x194
-+		>;
-+	};
-+
-+	pinctrl_usdhc3_200mhz: usdhc3-200mhzgrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_NAND_WE_B__USDHC3_CLK	0x196
-+			MX8MP_IOMUXC_NAND_WP_B__USDHC3_CMD	0x1d6
-+			MX8MP_IOMUXC_NAND_DATA04__USDHC3_DATA0	0x1d6
-+			MX8MP_IOMUXC_NAND_DATA05__USDHC3_DATA1	0x1d6
-+			MX8MP_IOMUXC_NAND_DATA06__USDHC3_DATA2	0x1d6
-+			MX8MP_IOMUXC_NAND_DATA07__USDHC3_DATA3	0x1d6
-+			MX8MP_IOMUXC_NAND_RE_B__USDHC3_DATA4	0x1d6
-+			MX8MP_IOMUXC_NAND_CE2_B__USDHC3_DATA5	0x1d6
-+			MX8MP_IOMUXC_NAND_CE3_B__USDHC3_DATA6	0x1d6
-+			MX8MP_IOMUXC_NAND_CLE__USDHC3_DATA7	0x1d6
-+			MX8MP_IOMUXC_NAND_CE1_B__USDHC3_STROBE	0x196
-+		>;
-+	};
-+
-+	pinctrl_wdog: wdoggrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_GPIO1_IO02__WDOG1_WDOG_B	0xc6
-+		>;
-+	};
-+};
--- 
-2.7.4
+Tegra SPI/QSPI controller support packed mode and unpacked mode based on=20
+bits per word in a transfer.
+
+Packed Mode: When enabled, all 32-bits of data in FIFO contains valid=20
+data packets of 8-bit/16-bit/32-bit length.
+
+Non packed mode: For transfers like 24-bit data for example we disable=20
+packed mode and only 24-bits of FIFO data are valid and other bits are 0's.
+So during TX for FIFO filling and during receive when FIFO data is read,=20
+SW need to skip invalid bits and should align order from/to SPI core=20
+tx/rx buffers.
+
+>
+>>>> This is worrying, the client device might be confused if /CS is doing
+>>>> things outside of the standard handling.
+>>> Do you mean to honor spi_transfer cs_change flag?
+> At least, yes - more generally just if there's any feature to with chip
+> select then the driver will need to open code it.  The driver should at
+> least be double checking that what it's doing matches what it was told
+> to do, though just letting this be handled by the generic code if
+> there's no limitation on the hardware tends to be easier all round.
+OK Will honor cs_change flag at end of transfer and will program CS=20
+state based on that.
+>
+>>> Tegra QSPI is master and is used only with QSPI flash devices. Looking
+>>> at SPI NOR driver, I see QSPI Flash commands are executed with one flas=
+h
+>>> command per spi_message and I dont see cs_change flag usage w.r.t QSPI
+>>> flash. So, using SW based CS control for QSPI.
+>>> Please correct me if I miss something to understand here.
+> Someone might build a system that does something different, they may see
+> a spare SPI controller and decide they can use it for something else or
+> there may be some future change with the flash code which does something
+> different.
+>
+>>>>> +=A0=A0=A0 tegra_qspi_writel(tqspi, tqspi->def_command2_reg, QSPI_COM=
+MAND2);
+>>>> The setup for one device shouldn't be able to affect the operation of
+>>>> another, already running, device so either these need to be configured
+>>>> as part of the controller probe or these configurations need to be
+>>>> deferred until we're actually doing a transfer.
+>>> We will only have 1 device on QSPI as we only support single chip selec=
+t.
+> It's quite common for people to do things like add additional devices
+> with GPIO chip selects.
+Will move tap delay programming to happen during spi transfer..
+>
+>>>>> +=A0=A0=A0 /*
+>>>>> +=A0=A0=A0=A0 * Tegra QSPI hardware support dummy bytes transfer base=
+d on the
+>>>>> +=A0=A0=A0=A0 * programmed dummy clock cyles in QSPI register.
+>>>>> +=A0=A0=A0=A0 * So, get the total dummy bytes from the dummy bytes tr=
+ansfer in
+>>>>> +=A0=A0=A0=A0 * spi_messages and convert to dummy clock cyles.
+>>>>> +=A0=A0=A0=A0 */
+>>>>> +=A0=A0=A0 list_for_each_entry(xfer, &msg->transfers, transfer_list) =
+{
+>>>>> +=A0=A0=A0=A0=A0=A0=A0 if (ntransfers =3D=3D DUMMY_BYTES_XFER &&
+>>>>> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 !(list_is_last(&xfer->transfer_lis=
+t, &msg->transfers)))
+>>>>> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 dummy_cycles =3D xfer->len * 8 / x=
+fer->tx_nbits;
+>>>>> +=A0=A0=A0=A0=A0=A0=A0 ntransfers++;
+>>>>> +=A0=A0=A0 }
+>>>> This seems weird, there's some hard coded assumption about particular
+>>>> patterns that the client device is going to send.=A0 What's going on h=
+ere?
+>>>> I don't really understand what this is trying to do.
+>>> QSPI flash needs dummy cycles for data read operation which is actually
+>>> the initial read latency and no. of dummy cycles required are vendor
+>>> specific.
+>>> SPI NOR driver gets required dummy cycles based on mode clock cycles an=
+d
+>>> wait state clock cycles.
+>>> During read operations, spi_nor_spimem_read_data() converts dummy cycle=
+s
+>>> to number of dummy bytes.
+>>> Tegra QSPI controller supports dummy clock cycles register and when
+>>> programmed QSPI controller sends dummy bytes rather than SW handling
+>>> extra cycles for transferring dummy bytes.
+>>> Above equation converts this dummy bytes back to dummy clock cycles to
+>>> program into QSPI register and avoid manual SW transfer of dummy bytes.
+> This is not a good idea, attempting to reverse engineer the message and
+> guess at the contents isn't going to be robust and if it's useful it
+> will if nothing else lead to a bunch of duplicated code in drivers as
+> every device that has this feature will need to reimplment it.  Instead
+> we should extend the framework so there's explicit support for
+> specifying transfers that are padding bytes, then there's no guesswork
+> that can go wrong and no duplicated code between drivers.  A flag in the
+> transfer struct might work?
+
+As per QSPI spec, Dummy bytes for initial read latency are always FF's.=20
+So its not like guessing the contents.
+
+Tegra QSPI controller HW supports transferring dummy bytes (sending FF's=20
+after address) based on dummy clock cycles programmed.
+
+To allow Tegra QSPI HW transfer dummy bytes directly, controller driver=20
+need number of dummy bytes / actual dummy clock cycles which core driver=20
+gets from flash sfdp read data.
+
+So, we can add flag to transfer and based on this flag if controller HW=20
+supports then we can ignore filling dummy bytes in spi_mem_exec_op but=20
+controller driver still needs dummy_cycles value. So probably along with=20
+flag, do you agree to have dummy_cycle as part of transfer struct which=20
+can be set to nor->read_dummy value?
+
+
+Thanks
+
+Sowjanya
 
