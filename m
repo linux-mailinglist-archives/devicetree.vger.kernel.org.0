@@ -2,65 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7798E2CEAE4
-	for <lists+devicetree@lfdr.de>; Fri,  4 Dec 2020 10:29:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9FAD22CEB08
+	for <lists+devicetree@lfdr.de>; Fri,  4 Dec 2020 10:38:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387593AbgLDJ2g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Dec 2020 04:28:36 -0500
-Received: from relay12.mail.gandi.net ([217.70.178.232]:53195 "EHLO
-        relay12.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725866AbgLDJ2g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Dec 2020 04:28:36 -0500
-Received: from localhost (lfbn-lyo-1-997-19.w86-194.abo.wanadoo.fr [86.194.74.19])
-        (Authenticated sender: alexandre.belloni@bootlin.com)
-        by relay12.mail.gandi.net (Postfix) with ESMTPSA id 2209F200007;
-        Fri,  4 Dec 2020 09:27:53 +0000 (UTC)
-Date:   Fri, 4 Dec 2020 10:27:52 +0100
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Rasmus Villemoes <rasmus.villemoes@prevas.dk>
-Cc:     Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Qiang Zhao <qiang.zhao@nxp.com>,
-        Bruno Thomsen <bruno.thomsen@gmail.com>,
-        linux-rtc@vger.kernel.org, a.zummo@towertech.it,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        kernel@pengutronix.de, Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>
-Subject: Re: [PATCH 0/2] rtc: pcf2127: only use watchdog when explicitly
- available
-Message-ID: <20201204092752.GE74177@piout.net>
-References: <20200924074715.GT9675@piout.net>
- <20200924105256.18162-1-u.kleine-koenig@pengutronix.de>
- <c82fe7a9-0a5a-fd70-ae3d-6fdc5fca5a9a@prevas.dk>
+        id S1728966AbgLDJh5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Dec 2020 04:37:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48798 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727233AbgLDJh5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Dec 2020 04:37:57 -0500
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C812FC061A4F;
+        Fri,  4 Dec 2020 01:37:16 -0800 (PST)
+Received: by mail-lf1-x12c.google.com with SMTP id s30so6794694lfc.4;
+        Fri, 04 Dec 2020 01:37:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ZeHBNDBBt/4BBIZDmJJje1cPJ35YMQi7b/VOWZGP8D0=;
+        b=D4CekTyNKSzBZnS7JG8eaejft2Zd29w9Ffnv/GBMzxTnSABVEjuCwTcINDM0E8GUIr
+         YoTIMduBMNtxyXwQYIHlVArY9XXDGKNkU+t+BfGrAVzYdSCZ3wV6v/t41jj7O/aCPScP
+         iWUCTPDfRhcxfkmkzF8HGCGQaF6jJFrNDMHQyUQ8LNGZrN2t1fs6UO0d8eAOYMEmZFxC
+         b9hpqSOvgKEksV2pU1CtyyzGCC9FozzveuKMQyxFqFQpfy1stosbmgLS6iLfbLk/50sX
+         64AHl+1RDpPJpxVW2tc+oearmeMguu01ufSHlIY2himhip4kjeMKGR2uu+rz6N9NvnzT
+         jzhg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ZeHBNDBBt/4BBIZDmJJje1cPJ35YMQi7b/VOWZGP8D0=;
+        b=DnuM7MP2nHlVQAbHcKqk/OSY2r2MMS1TE8Q8PNijGFDGtBwxcHPS9iDpzrl7AUIf93
+         Cv7iigWrMtX6xEI5YWLqd8vy3hMQ2a/SL7ZZdR2PTfwm3Hk9eEawxkTZlZqgMwDl/cpm
+         ORViXGwp1pVtIUsvhf80GwRROD36Z7R5kajNR947T/i/rgj0t5v4XgEqrp2KAO5Hg2cf
+         aeVS0y9+gxveVE9EnuuDwpjPISX6rxJjDKX42BXanIZH0jmihdm/df2StnPPPnWth+C8
+         2EcpqtqZjK+8TpW3BghBUSu/0MBQVXI8UbrbTWP6TmW77JfDNu5h0lLUuBqXIe71pu0r
+         T9Yg==
+X-Gm-Message-State: AOAM531MyjsGk26VlVzmOaiTPt+kiLT86fulnUU2yrCqhgoTk4UolQsY
+        T7fo7Ci8xoz13Eh5AQR8qQTq+zM9St4=
+X-Google-Smtp-Source: ABdhPJzs7ThFvJs1avHRQPKi+dlDvgb/Nn7/TtRy/5rEMmEcO6b34gS6dPN1B64xqehoTYx4Y40NpQ==
+X-Received: by 2002:a19:745:: with SMTP id 66mr3111293lfh.343.1607074635228;
+        Fri, 04 Dec 2020 01:37:15 -0800 (PST)
+Received: from elitebook.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.gmail.com with ESMTPSA id p196sm1467657lfa.68.2020.12.04.01.37.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 04 Dec 2020 01:37:14 -0800 (PST)
+From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To:     Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH 1/2] dt-bindings: reset: document Broadcom's BCM4908 USB reset binding
+Date:   Fri,  4 Dec 2020 10:37:03 +0100
+Message-Id: <20201204093704.11359-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <c82fe7a9-0a5a-fd70-ae3d-6fdc5fca5a9a@prevas.dk>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/11/2020 10:51:41+0100, Rasmus Villemoes wrote:
-> On 24/09/2020 12.52, Uwe Kleine-K�nig wrote:
-> > Hello,
-> > 
-> > now that there are two people stumbling over the pcf2127 driver
-> > providing a non-functional watchdog device, here comes an RFC patch to
-> > address this.
-> 
-> I just want to add a "me too" here, as I'm also now affected by the
-> pcf2127 exposing a watchdog device (1) it didn't use to (affecting what
-> /dev/watchdog0 means) and (2) is not actually hooked up in hardware.
-> 
-> So can we please move forward with adding the has-watchdog opt-in DT
-> property so existing boards will not be affected?
-> 
+From: Rafał Miłecki <rafal@milecki.pl>
 
-Well, someone has to get that property reviewed by Rob. Maybe this could
-be reset-source as we have wakeup-source.
+Document binding of block responsible for initializing USB controllers
+(OHCI, EHCI, XHCI).
 
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+ .../reset/brcm,bcm4908-usb-reset.yaml         | 60 +++++++++++++++++++
+ 1 file changed, 60 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/reset/brcm,bcm4908-usb-reset.yaml
+
+diff --git a/Documentation/devicetree/bindings/reset/brcm,bcm4908-usb-reset.yaml b/Documentation/devicetree/bindings/reset/brcm,bcm4908-usb-reset.yaml
+new file mode 100644
+index 000000000000..31beb1c8f3cd
+--- /dev/null
++++ b/Documentation/devicetree/bindings/reset/brcm,bcm4908-usb-reset.yaml
+@@ -0,0 +1,60 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/reset/brcm,bcm4908-usb-reset.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Broadcom BCM4908 USB host controller reset
++
++description: >
++  BCM4908 has a separated block controlling all USB controllers. It handles the
++  whole setup process and takes care of initializing PHYs at the right time
++  (state).
++
++maintainers:
++  - Rafał Miłecki <rafal@milecki.pl>
++
++properties:
++  compatible:
++    enum:
++      - brcm,bcm4908-usb-reset
++
++  reg:
++    maxItems: 1
++
++  resets:
++    $ref: /schemas/types.yaml#/definitions/phandle
++
++  phys:
++    minItems: 2
++    maxItems: 2
++    $ref: /schemas/types.yaml#/definitions/phandle-array
++
++  phy-names:
++    items:
++      - const: usb2
++      - const: usb3
++
++  "#reset-cells":
++    const: 0
++
++required:
++  - compatible
++  - reg
++  - phys
++  - phy-names
++  - "#reset-cells"
++
++additionalProperties: true
++
++examples:
++  - |
++    reset-controller@8000c200 {
++        compatible = "brcm,bcm4908-usb-reset";
++        reg = <0x8000c200 0x100>;
++
++        phys = <&usb2_phy>, <&usb3_phy>;
++        phy-names = "usb2", "usb3";
++
++        #reset-cells = <0>;
++    };
 -- 
-Alexandre Belloni, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+2.26.2
+
