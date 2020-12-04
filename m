@@ -2,174 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E4A62CE6F3
-	for <lists+devicetree@lfdr.de>; Fri,  4 Dec 2020 05:10:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A70B22CE6FC
+	for <lists+devicetree@lfdr.de>; Fri,  4 Dec 2020 05:20:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726360AbgLDEKb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Dec 2020 23:10:31 -0500
-Received: from mga11.intel.com ([192.55.52.93]:25884 "EHLO mga11.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726038AbgLDEKb (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 3 Dec 2020 23:10:31 -0500
-IronPort-SDR: 7JXuduQQCk7hUfMcT53JVoVDxmeF6+uHI1xf7VWGutPzock87f1m7kU7xR7KB4khk5X4sS9eYK
- g1lAJffqNnfA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9824"; a="169819356"
-X-IronPort-AV: E=Sophos;i="5.78,391,1599548400"; 
-   d="scan'208";a="169819356"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Dec 2020 20:09:48 -0800
-IronPort-SDR: PVFtRrtS7k9yRaMJEXEAY9KnGmqBUADfs/gs8Blu4eJRiLWPIyHY/945TmXW6paOXw3V65KvBP
- OfDTIhHdOx2w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.78,391,1599548400"; 
-   d="scan'208";a="368688011"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
-  by fmsmga002.fm.intel.com with ESMTP; 03 Dec 2020 20:09:48 -0800
-Received: from fmsmsx607.amr.corp.intel.com (10.18.126.87) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Thu, 3 Dec 2020 20:09:48 -0800
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx607.amr.corp.intel.com (10.18.126.87) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5
- via Frontend Transport; Thu, 3 Dec 2020 20:09:48 -0800
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.172)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.1713.5; Thu, 3 Dec 2020 20:09:48 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=RP5cuRkkrxr/jZfMNs9XkmPpnzoTjQ61p8cXnd68RYCKHw0OPa9K4esMLroVAtgjNkyx8tMc6PF910Id6yC/eqqWWsWPXc4OBjTp8z1rcN8v0CyxzZX6+D9QMaUzMGgM89Kvgl+krqJ8jfdsB0YfTdU6YdkPl/TgQREVi6tMkOQe3PU+jMiC331Xj80hA31niNBKUDS+s4u9UQZceABO7LJVKnmTWhU1I9t+KaEIQSAJ373Ba25vh5Qy0utJCNKXutrG7M2cGWs3CcrNh0N/vUhRTGOT8Ij9H117Y0f46QkX6ZS48b+Do/FsjEwx8NakF6LtzX0WwmQL1xQNhzMdsw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=E8OiMD8Dhm90dwKfjUCXHuoTCEZJtW9ssiluv5QEUjw=;
- b=AVpfvEz0/HyFx592Vh61oo1l+H9F+G81d9kBHmBRJMVexLbOLKeDTEIrOPcg9OJfCVuaXEeCWPIXXT22VgMmlX8wtFf2ylYzuEG7PQnuS+wZDjBohnUSX46JDS+Tz8XGhZhxw2hazoOOy2bw/zwtlcmGW5qUAuqNST1lQMSQhv+1l3S+4JqDXZPmdvtdkriuI79rcqdl9d+TiS5Lk2mYD97tgWZtjCjYZX7AksiYXWBkkwzSS0LG2+RVF7p7xA93/CtL0M5zHuNz1JQQ2Mb2P03WkUV/vzGfW0ffO17jt531ekUBgnN9ZVIBBNmx6ab0TPXmXahlDcTuU/iQlGan+A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com;
- s=selector2-intel-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=E8OiMD8Dhm90dwKfjUCXHuoTCEZJtW9ssiluv5QEUjw=;
- b=OTji0SrJ4iXzUTyJIBbkz8hfqSi/tf4WJaoVhjrbCYYY9fDzAbjDSieckAIM2x8Nr3xpitrCyYxJIhVFO4FXkCyVc5hw5frhMjUQTWSc299tyedmH7fiFyaPbxA7sQ32sWFZIgAkQyvuJUURhMp0TC3WtMw2gtUxXI8M4n9IDk4=
-Received: from DM6PR11MB4250.namprd11.prod.outlook.com (2603:10b6:5:1df::18)
- by DM6PR11MB2635.namprd11.prod.outlook.com (2603:10b6:5:c5::29) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3632.18; Fri, 4 Dec
- 2020 04:09:47 +0000
-Received: from DM6PR11MB4250.namprd11.prod.outlook.com
- ([fe80::b90d:d053:9de6:e5ef]) by DM6PR11MB4250.namprd11.prod.outlook.com
- ([fe80::b90d:d053:9de6:e5ef%4]) with mapi id 15.20.3632.021; Fri, 4 Dec 2020
- 04:09:47 +0000
-From:   "Ayyathurai, Vijayakannan" <vijayakannan.ayyathurai@intel.com>
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        "tglx@linutronix.de" <tglx@linutronix.de>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>
-CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "andriy.shevchenko@linux.intel.com" 
-        <andriy.shevchenko@linux.intel.com>,
-        "mgross@linux.intel.com" <mgross@linux.intel.com>,
-        "Wan Mohamad, Wan Ahmad Zainie" 
-        <wan.ahmad.zainie.wan.mohamad@intel.com>,
-        "Raja Subramanian, Lakshmi Bai" 
-        <lakshmi.bai.raja.subramanian@intel.com>
-Subject: RE: [PATCH v1 2/2] clocksource: Add Intel Keem Bay Timer Support
-Thread-Topic: [PATCH v1 2/2] clocksource: Add Intel Keem Bay Timer Support
-Thread-Index: AQHWw8trFNda2NFazkOPZscVb3Q9mqnlt2YAgACmBpA=
-Date:   Fri, 4 Dec 2020 04:09:47 +0000
-Message-ID: <DM6PR11MB42509AD34ADD26A867A88849FBF10@DM6PR11MB4250.namprd11.prod.outlook.com>
-References: <cover.1606377035.git.vijayakannan.ayyathurai@intel.com>
- <cf19c720505c5388ae1b73398a65ee8a5f447c38.1606377035.git.vijayakannan.ayyathurai@intel.com>
- <9b271b05-963e-57bb-af9d-1b7910514c16@linaro.org>
-In-Reply-To: <9b271b05-963e-57bb-af9d-1b7910514c16@linaro.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.5.1.3
-authentication-results: linaro.org; dkim=none (message not signed)
- header.d=none;linaro.org; dmarc=none action=none header.from=intel.com;
-x-originating-ip: [42.106.176.240]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 7aad4872-8ad0-4758-625c-08d8980a7075
-x-ms-traffictypediagnostic: DM6PR11MB2635:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <DM6PR11MB263515BF74CE2A0D42335EA5FBF10@DM6PR11MB2635.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8882;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: amf6QkiEay7s4KDj4Poah/lrkuHNTuHbo2AwmnqHHY9/Vw618EGOx3+4B5GTmMy2nNhnJDQRyHC2KNpyo/LqZyGXMFeyH8Ehc8rBepDq+qByy1GU3oM1/YQ0swbQwxoHetkPXDpkxFLtSq1hwTB013bw2r1ASBz45SLvHZPNigxn5Q0+LdvKJZhG8LVEI7GiaJ2T6mkrwrQh/I9lfTxY/TZg5bnsNiQolocfpaS1uq8QnQWgFRC+DP7l87rxeDG22Mim3OiBy+swFIFhtwwmOmu7txb0CJUAs6zOS6aWvfWM1N5ocIYJc++UJatNjmyX
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR11MB4250.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(39860400002)(396003)(136003)(346002)(366004)(376002)(66556008)(64756008)(478600001)(110136005)(66446008)(8676002)(66946007)(66476007)(54906003)(7696005)(2906002)(52536014)(4326008)(33656002)(26005)(55016002)(6506007)(5660300002)(9686003)(316002)(8936002)(186003)(86362001)(76116006)(71200400001)(83380400001);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata: =?utf-8?B?aktwK1A4cHVaNzlpclJqLytrdkdjWEg0WEs5TW1obkcyUVRHYWpCak9scm8y?=
- =?utf-8?B?U2JESExJS3BDQ0t2bllleExMQ1RPSFg4aDRKdkZpZUE0NTlZa1FhOTg0QSt1?=
- =?utf-8?B?T0JNS0dzSE9xRklNMjdNbGx5TmF6dE1rOUhtcUNCNnpQTVNWdlA5N2tJaTgz?=
- =?utf-8?B?c2FDOTRSOTZnTlBPNEM5RkxxbExsOUJrZkVXRzN2SHVwNEE2SjNFQWFHVGNE?=
- =?utf-8?B?bHFqSzVXQisrRjlramxiUGlYNzlwZ1dRMmhLSVc1TmU4Qnkrbk01V2MvYS91?=
- =?utf-8?B?eDZSd20rSStGWmhSR0pOc0NadWlRampJZEFsUTBEUHNJdC8yeE5QZHBDM2hE?=
- =?utf-8?B?MDlnMk1aMVNBK3FkUGJTd01EMlNGcnMzL012ZStnaGZpK3RmZDY1OWo2ZjNv?=
- =?utf-8?B?NVBHRVp5L2RzSVdXeFpoL05FdWxwUzhwcG5jUzhMV05sZndQS0h1dFlRK1c2?=
- =?utf-8?B?MnBRTERBZGpBSHJNRlBFUDFuUVRHQ3FwUFlGdTY4YzFwK01HMGZZK2pLQ2tn?=
- =?utf-8?B?WUtNck90ejk2TnB4WnRydVAxVDBQVHltc0dNNEphRWFLWHh2Y3o3V1p2eTJv?=
- =?utf-8?B?MjVYVGV1OW4yYVJDS3ovZUhzcHY1ZlBzUllhQUk1MVlXTndVVDBKU3R5dW8x?=
- =?utf-8?B?QWwxZ3BaMFZNVngxU3pydlhkSWlJNFgzQU9SbmFVZEJKSVZ5RWZtNE5BdFd4?=
- =?utf-8?B?bVVnejhvb2dsYjZISmVUWExWaktBbHBEakRPMlVsaVRwVElNb25Xd2VSTDRF?=
- =?utf-8?B?TE15UEJGVnUwQVRGR3dVYWtoY1l3TnZGTHV6eTNTU2x1TGVVRmZ5RXdBRldy?=
- =?utf-8?B?VWJjUU9YazZGRzJaTGMvYkM5QURpK2luSzUvai9MSGJodm9ic0Z3UlFFa3Ni?=
- =?utf-8?B?bUo2T3lBWTBCYkZ5bnh4V001WkI4MVNmV0FTV1grcEdSYVlBL3dpMndHc2w5?=
- =?utf-8?B?T1REMFZITC8rUEdCTTIyV2xYVHZzRXdYWnpwQ20rMDdERmhHd1huNmRkbmVX?=
- =?utf-8?B?RXVQUXBvamFWMGx0QkswazRzU1VUSmYrR3BpUDArMWVIOTB3SWFGZE5MVXR4?=
- =?utf-8?B?YytkZlI5a29QKzdMSzBpTlV0OU5VaUdBNTlac3VqYWhHTGZiUUNqMWVXMGFN?=
- =?utf-8?B?dTlaUmhxcjVqWG1zV0FMNEdqb0dVMzQ4aHpGQW9KOG96K2d1NXpJZVZDK2w4?=
- =?utf-8?B?MDdrdUVGVm10Z3NQVnpabkRtcVp5S3J6dEZabktKZ0Y4cGhmWitPV2F1K1E4?=
- =?utf-8?B?Q3ZmMWdWUmhaYkgzTnlIdkpJeEVHZS9sUzA5TnFTNG1RYkVwOGYyZFl1azkv?=
- =?utf-8?Q?XwMdqOeVC2HIg=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        id S1727686AbgLDES4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Dec 2020 23:18:56 -0500
+Received: from mail-pl1-f182.google.com ([209.85.214.182]:33353 "EHLO
+        mail-pl1-f182.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727641AbgLDES4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Dec 2020 23:18:56 -0500
+Received: by mail-pl1-f182.google.com with SMTP id t18so2419686plo.0;
+        Thu, 03 Dec 2020 20:18:35 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=zhmN6zrAZzEBUb+ZCNqtex/5sUlkT9917N2lCZNXu5k=;
+        b=jxZqb9/MOqouyxCbLXpb1qU7OfSjdUBFDYQDwo5+uwJ1eHhw8+eY2P3w17gY9rHj8Z
+         wfiSycz82I0u70DYk/aIuuPV1XKzkcsamoScxbaxDx4uIQSV79KOdCgnPDuFOKdtwDD3
+         Y0qoUxu89mYs1Hd4SW3rJh1/Nj1geg4NNA8wudcc25mo7ooGL9jVPVPCt3NTKmJ1mCVZ
+         hcLlA4XWCOmLGtAVMyO5bmj7Tcq8pDZBEUJCSyNbqAPHdLb4qiEomUH19L8ReSmhBp5w
+         52OWQwb4NleAiMVWCso+IuFlo3hfLUotHLbbzF1bVzypamFDcWb/utgmiBvyu9igfBHl
+         1koA==
+X-Gm-Message-State: AOAM530TKFjiEDecC5wpke9dB1SMJrxIWVCDsbDG3+rC2ZNfqkbgixXK
+        7Nn62cfFHdYRSPXU6mX6IhQ=
+X-Google-Smtp-Source: ABdhPJzJNXgxjvCRE1MZNBD+7RePnQag0q4IJ7hsIBTqdUHkbyzbTaii+PRbSqdWDN7X1jNAJx6TXw==
+X-Received: by 2002:a17:902:bb94:b029:d6:edb2:4f41 with SMTP id m20-20020a170902bb94b02900d6edb24f41mr2386748pls.3.1607055489437;
+        Thu, 03 Dec 2020 20:18:09 -0800 (PST)
+Received: from localhost ([2601:647:5b00:1162:1ac0:17a6:4cc6:d1ef])
+        by smtp.gmail.com with ESMTPSA id c134sm3156406pfc.200.2020.12.03.20.18.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 03 Dec 2020 20:18:08 -0800 (PST)
+Date:   Thu, 3 Dec 2020 20:18:07 -0800
+From:   Moritz Fischer <mdf@kernel.org>
+To:     Max Zhen <maxz@xilinx.com>
+Cc:     Moritz Fischer <mdf@kernel.org>, Sonal Santan <sonals@xilinx.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-fpga@vger.kernel.org" <linux-fpga@vger.kernel.org>,
+        Lizhi Hou <lizhih@xilinx.com>,
+        Michal Simek <michals@xilinx.com>,
+        Stefano Stabellini <stefanos@xilinx.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH Xilinx Alveo 1/8] Documentation: fpga: Add a document
+ describing Alveo XRT drivers
+Message-ID: <X8m4f2OzrE86vnQz@archbook>
+References: <20201129000040.24777-1-sonals@xilinx.com>
+ <20201129000040.24777-2-sonals@xilinx.com>
+ <X8XMicDtVL5mk9Bp@archbook>
+ <BY5PR02MB6068571C3BA40EF6F594D6D1B9F30@BY5PR02MB6068.namprd02.prod.outlook.com>
+ <X8ge2gIwY/YCWUrT@archbook>
+ <BY5PR02MB60682C1D722CEECF20D457E0B9F20@BY5PR02MB6068.namprd02.prod.outlook.com>
+ <X8hrZ+JRZjmrF6rZ@archbook>
+ <BY5PR02MB60688E2891D648599B360BC1B9F10@BY5PR02MB6068.namprd02.prod.outlook.com>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB4250.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7aad4872-8ad0-4758-625c-08d8980a7075
-X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Dec 2020 04:09:47.5911
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: UjYs0Jn9eHD+sA4Uo8lzdKQr/05/uGQF1cgZjKsrLweBRoHaBnS7v6p1rEhVMAzC4HImlAghfkPVm5hTh33C/eGr0Km3G815cXnsClngV1vHMVNi8QUPe5a19ozKIHvS
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB2635
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <BY5PR02MB60688E2891D648599B360BC1B9F10@BY5PR02MB6068.namprd02.prod.outlook.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgRGFuaWVsLA0KVGhhbmtzIGZvciByZXZpZXdpbmcgdGhpcyBwYXRjaC4NCg0KPiBGcm9tOiBE
-YW5pZWwgTGV6Y2FubyA8ZGFuaWVsLmxlemNhbm9AbGluYXJvLm9yZz4NCj4gPg0KPiA+ICsrKyBi
-L2RyaXZlcnMvY2xvY2tzb3VyY2UvS2NvbmZpZw0KPiA+IEBAIC03MzgsNCArNzM4LDE0IEBAIGNv
-bmZpZyBNSUNST0NISVBfUElUNjRCDQo+ID4gIAkgIG1vZGVzIGFuZCBoaWdoIHJlc29sdXRpb24u
-IEl0IGlzIHVzZWQgYXMgYSBjbG9ja3NvdXJjZQ0KPiA+ICAJICBhbmQgYSBjbG9ja2V2ZW50Lg0K
-PiA+DQo+ID4gK2NvbmZpZyBLRUVNQkFZX1RJTUVSDQo+ID4gKwlib29sICJJbnRlbCBLZWVtIEJh
-eSB0aW1lciBkcml2ZXIiDQo+ID4gKwlkZXBlbmRzIG9uIEFSQ0hfS0VFTUJBWSB8fCAoQVJNNjQg
-JiYgQ09NUElMRV9URVNUKQ0KPiANCj4gVGhlIHRpbWVyIGRyaXZlcnMgc3Vic3lzdGVtIHdhbnRz
-IHNpbGVudCBvcHRpb25zIGFuZCBsZXQgdGhlIHBsYXRmb3JtIHRvDQo+IHNlbGVjdCB0aGUgdGlt
-ZXIuDQo+IA0KPiBQbGVhc2Ugc2VsZWN0IHRoZSB0aW1lciBpbiBhcmNoL2FybTY0L0tjb25maWcu
-cGxhdGZvcm1zIGluIHRoZQ0KPiBBUkNIX0tFRU1CQVkgc2VjdGlvbi4NCj4gDQo+IFNvIGl0IHdv
-dWxkIGNvbWU6DQo+IA0KPiBjb25maWcgS0VFTUJBWV9USU1FUg0KPiAJYm9vbCAiYmxhIGJsYSIg
-aWYgQ09NUElMRV9URVNUDQo+IA0KDQpPay4gSSB3aWxsIGNoZWNrIHRoYXQgYW5kIHVwZGF0ZSBp
-biBuZXh0IHZlcnNpb24uDQoNCj4gDQo+IA0KPiA+ICsJc2VsZWN0IFRJTUVSX09GDQo+ID4gKwlo
-ZWxwDQo+ID4gKwkgIFRoaXMgb3B0aW9uIGVuYWJsZXMgdGhlIHN1cHBvcnQgZm9yIHRoZSBJbnRl
-bCBLZWVtIEJheSBnZW5lcmFsDQo+ID4gKwkgIHB1cnBvc2UgdGltZXIgYW5kIGZyZWUgcnVubmlu
-ZyBjb3VudGVyIGRyaXZlci4gRWFjaCB0aW1lciBjYW4NCj4gPiArCSAgZ2VuZXJhdGUgYW4gaW5k
-aXZpZHVhbCBpbnRlcnJ1cHQgYW5kIHRoZSA2NCBiaXQgY291bnRlciBjYW4gYWxzbw0KPiA+ICsJ
-ICBiZSB1c2VkIGFzIG9uZSBvZiB0aGUgY2xvY2sgc291cmNlLg0KPiA+ICsNCj4gDQo+IFsgLi4u
-IF0NCj4gDQo+ID4gK3N0YXRpYyBzdHJ1Y3QgdGltZXJfb2Yga2VlbWJheV9jZV90byA9IHsNCj4g
-PiArCS5mbGFncwk9IFRJTUVSX09GX0lSUSB8IFRJTUVSX09GX0JBU0UgfCBUSU1FUl9PRl9DTE9D
-SywNCj4gPiArCS5jbGtldnQgPSB7DQo+ID4gKwkJLm5hbWUJCQk9ICJrZWVtYmF5X3RpbWVyIiwN
-Cj4gPiArCQkuZmVhdHVyZXMJCT0gQ0xPQ0tfRVZUX0ZFQVRfUEVSSU9ESUMgfA0KPiA+ICsJCQkJ
-CSAgQ0xPQ0tfRVZUX0ZFQVRfT05FU0hPVCwNCj4gDQo+IE1heSBiZSBjb25zaWRlciBDTE9DS19F
-VlRfRkVBVF9EWU5JUlEgPw0KPiANCj4gc2VlIGNvbW1pdCBkMjM0OGZiNmZkYzZkNjcNCj4gDQoN
-ClN1cmUuIEkgd2lsbCBhZGQgaXQgaW4gdGhlIG5leHQgdmVyc2lvbi4NCg0KPiBPdGhlciB0aGFu
-IHRoYXQsIExHVE0NCj4gDQo+IFRoYW5rcw0KPiANCj4gICAtLSBEYW5pZWwNCj4gDQoNClRoYW5r
-cywNClZpamF5DQo=
+On Fri, Dec 04, 2020 at 01:17:37AM +0000, Max Zhen wrote:
+> Hi Moritz,
+> 
+> I manually fixed some line breaks. Not sure why outlook is not doing it properly.
+> Let me know if it still looks bad to you.
+
+That might just be outlook :)
+> 
+> Please see my reply below.
+> 
+> > 
+> > 
+> > Max,
+> > 
+> > On Thu, Dec 03, 2020 at 03:38:26AM +0000, Max Zhen wrote:
+> > > [...cut...]
+> > >
+> > > > > > > +xclbin over the User partition as part of DFX. When a user
+> > > > > > > +requests loading of a specific xclbin the xmgmt management
+> > > > > > > +driver reads the parent interface UUID specified in the xclbin
+> > > > > > > +and matches it with child interface UUID exported by Shell to
+> > > > > > > +determine if xclbin is compatible with the Shell. If match fails loading of xclbin is denied.
+> > > > > > > +
+> > > > > > > +xclbin loading is requested using ICAP_DOWNLOAD_AXLF ioctl command.
+> > > > > > > +When loading xclbin xmgmt driver performs the following operations:
+> > > > > > > +
+> > > > > > > +1. Sanity check the xclbin contents 2. Isolate the User
+> > > > > > > +partition 3. Download the bitstream using the FPGA config engine (ICAP) 4.
+> > > > > > > +De-isolate the User partition
+> > > > > > Is this modelled as bridges and regions?
+> > > > >
+> > > > > Alveo drivers as written today do not use fpga bridge and region
+> > > > > framework. It seems that if we add support for that framework, it’s
+> > > > > possible to receive PR program request from kernel outside of xmgmt driver?
+> > > > > Currently, we can’t support this and PR program can only be initiated
+> > > > > using XRT’s runtime API in user space.
+> > > >
+> > > > I'm not 100% sure I understand the concern here, let me reply to what
+> > > > I think I understand:
+> > > >
+> > > > You're worried that if you use FPGA region as interface to accept PR
+> > > > requests something else could attempt to reconfigure the region from
+> > > > within the kernel using the FPGA Region API?
+> > > >
+> > > > Assuming I got this right, I don't think this is a big deal. When you
+> > > > create the regions you control who gets the references to it.
+> > >
+> > > Thanks for explaining. Yes, I think you got my point :-).
+> > 
+> > We can add code to make a region 'static' or 'one-time' or 'fixed'.
+> > >
+> > > >
+> > > > From what I've seen so far Regions seem to be roughly equivalent to
+> > > > Partitions, hence my surprise to see a new structure bypassing them.
+> > >
+> > > I see where the gap is.
+> > >
+> > > Regions in Linux is very different than "partitions" we have defined in xmgmt. Regions seem to be a software data structure
+> > > representing an area on the FPGA that can be reprogrammed. This area is protected by the concept of "bridge" which can be disabled
+> > > before program and reenabled after it. And you go through region when you need to reprogram this area.
+> > 
+> > Your central management driver can create / destroy regions at will. It
+> > can keep them in a list, array or tree.
+> > 
+> > Regions can but don't have to have bridges.
+> > 
+> > If you need to go through the central driver to reprogram a region,
+> > you can use that to figure out which region to program.
+> 
+> That sounds fine. I can create a region and call into it from xmgmt for
+> PR programing. The region will, then, call the xmgmt's fpga manager
+> to program it.
+
+It sounds closer than what I'd expect.
+> 
+> > >
+> > > The "partition" is part of the main infrastructure of xmgmt driver, which represents a group of subdev drivers for each individual IP
+> > > (HW subcomponents). Basically, xmgmt root driver is parent of several partitions who is, in turn, the parent of several subdev drivers.
+> > > The parent manages the life cycle of its children here.
+> > 
+> > I don't see how this is conceptually different from what DFL does, and
+> > they managed to use Regions and Bridges.
+> > 
+> > If things are missing in the framework, please add them instead of
+> > rewriting an entire parallel framework.
+> > 
+> > >
+> > > We do have a partition to represent the group of subdevs/IPs in the reprogrammable area. And we also have partitions
+> > > representing other areas which cannot be reprogrammed. So, it is difficult to use "Region" to implement "partition".
+> > 
+> > You implement your regions callbacks, you can return -EINVAL / -ENOTTY
+> > if you want to fail a reprogramming request to a static partion /
+> > region.
+> > 
+> > > From what you have explained, it seems that even if I use region / bridge in xmgmt, we can still keep it private to xmgmt instead of
+> > > exposing the interface to outside world, which we can't support anyway? This means that region will be used as an internal data
+> > > structure for xmgmt. Since we can't simply replace partition with region, we might as well just use partition throughout the driver,
+> > > instead of introducing two data structures and use them both in different places.
+> > 
+> > Think about your partition as an extension to a region that implements
+> > what you need to do for your case of enumerating and reprogramming that
+> > particular piece of your chip.
+> 
+> Yes, we can add region / bridges to represent the PR area and use it in our
+> code path for reprogramming the PR area. I think what we will do is to
+> instantiate a region instance for the PR area and associate it with the
+> FPGA manager in xmgmt for reprogramming it. We can also instantiate
+> bridges and map the "ULP gate" subdev driver to it in xmgmt. Thus, we
+> could incorporate region and bridge data structures in xmgmt for PR
+> reprogramming.
+
+I'd need to take another look, but the ULP gate sounds like a bridge (or
+close to it).
+ 
+> This will be a non-trivial change for us. I'd like to confirm that this is what
+> you are looking for before we start working on the change. Let us know :-).
+
+I understand. It looks like the right direction. Let's discuss code when
+we have code to look at.
+
+It may take a couple of iterations to get it all sorted.
+
+That's normal when you show show up with that much code all at once :)
+
+Cheers,
+Moritz
