@@ -2,124 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6BFB62CEB44
-	for <lists+devicetree@lfdr.de>; Fri,  4 Dec 2020 10:45:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 02C772CEC0B
+	for <lists+devicetree@lfdr.de>; Fri,  4 Dec 2020 11:21:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387558AbgLDJor (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Dec 2020 04:44:47 -0500
-Received: from relay10.mail.gandi.net ([217.70.178.230]:44747 "EHLO
-        relay10.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387556AbgLDJoq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Dec 2020 04:44:46 -0500
-Received: from uno.localdomain (93-34-118-233.ip49.fastwebnet.it [93.34.118.233])
-        (Authenticated sender: jacopo@jmondi.org)
-        by relay10.mail.gandi.net (Postfix) with ESMTPSA id 2B521240022;
-        Fri,  4 Dec 2020 09:44:01 +0000 (UTC)
-Date:   Fri, 4 Dec 2020 10:44:08 +0100
-From:   Jacopo Mondi <jacopo@jmondi.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Guennadi Liakhovetski <g.liakhovetski@gmx.de>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        devicetree@vger.kernel.org, linux-media@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] media: dt-bindings: Convert video-interfaces.txt
- properties to schemas
-Message-ID: <20201204094408.liaenlxqk3v22n6v@uno.localdomain>
-References: <20201203001302.3407476-1-robh@kernel.org>
- <20201203001302.3407476-2-robh@kernel.org>
- <20201203175040.ml7fo4xp3ofauojq@uno.localdomain>
- <20201203230751.GC2644458@robh.at.kernel.org>
+        id S2387621AbgLDKUA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Dec 2020 05:20:00 -0500
+Received: from mail.kernel.org ([198.145.29.99]:39020 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729282AbgLDKUA (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 4 Dec 2020 05:20:00 -0500
+Date:   Fri, 4 Dec 2020 15:49:14 +0530
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1607077159;
+        bh=hNPxyUmSTItskXGbatM3qf8oZU1dgUwfiUVEC5qpV9c=;
+        h=From:To:Cc:Subject:References:In-Reply-To:From;
+        b=l5D36wcebTAZH7I+6HRLCp809Uqqs1+EVpWXwjwvHBwYu6HYG2vzsMvi2kAjSQXBJ
+         6e8u3ZP/Gvt5+s+pnMFlyNALEmx4ZLApMKlAtPQ6L73DWGlzZpe28wqfajovYbhJiZ
+         dJBuzxBIsqFf1LsD0uurRFbaQCWVrVIxif8DU2Qwlm5mP8YNwdfcn/9kaqoiQmtkiD
+         9SpmjMu7XEnPI0ZrhWWMLdjMXnRGge3PEPNEFzwRC32BCgJAZEQzathkRE4Df3n0iY
+         0tcRdNFGM0ZxnZ0bEghZagPLkw7xjgzRAR9OX4jhmHNyiNz1UE/uP2il9qQnTFH11u
+         ljqESjB6VSiew==
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Taniya Das <tdas@codeaurora.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Vivek Aknurwar <viveka@codeaurora.org>,
+        Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Jeevan Shriram <jshriram@codeaurora.org>
+Subject: Re: [PATCH 5/5] clk: qcom: gcc: Add clock driver for SM8350
+Message-ID: <20201204101914.GO8403@vkoul-mobl>
+References: <20201203070241.2648874-1-vkoul@kernel.org>
+ <20201203070241.2648874-6-vkoul@kernel.org>
+ <X8l9dRfo7qdRTAMe@builder.lan>
+ <20201204043502.GJ8403@vkoul-mobl>
+ <302cf18a-080d-a521-8c7a-39c265fbceb8@codeaurora.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201203230751.GC2644458@robh.at.kernel.org>
+In-Reply-To: <302cf18a-080d-a521-8c7a-39c265fbceb8@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Hi Taniya,
 
-[snip]
+On 04-12-20, 14:20, Taniya Das wrote:
+> On 12/4/2020 10:05 AM, Vinod Koul wrote:
+> > On 03-12-20, 18:06, Bjorn Andersson wrote:
+> > > On Thu 03 Dec 01:02 CST 2020, Vinod Koul wrote:
+> > > > diff --git a/drivers/clk/qcom/gcc-sm8350.c b/drivers/clk/qcom/gcc-sm8350.c
+> > > [..]
+> > > > +static int gcc_sm8350_probe(struct platform_device *pdev)
+> > > > +{
+> > > > +	struct regmap *regmap;
+> > > > +	int ret;
+> > > > +
+> > > > +	regmap = qcom_cc_map(pdev, &gcc_sm8350_desc);
+> > > > +	if (IS_ERR(regmap)) {
+> > > > +		dev_err(&pdev->dev, "Failed to map gcc registers\n");
+> > > > +		return PTR_ERR(regmap);
+> > > > +	}
+> > > > +
+> > > > +	ret = qcom_cc_register_rcg_dfs(regmap, gcc_dfs_clocks, ARRAY_SIZE(gcc_dfs_clocks));
+> > > > +	if (ret)
+> > > > +		return ret;
+> > > > +
+> > > > +	/* FORCE_MEM_CORE_ON for ufs phy ice core clocks */
+> > > > +	regmap_update_bits(regmap, gcc_ufs_phy_ice_core_clk.halt_reg, BIT(14), BIT(14));
+> > > > +
+> > > > +	/*
+> > > > +	 * Enable clocks required by the i2c-connected pm8008 regulators. Don't
+> > > > +	 * register them with the clock framework so that client requests are
+> > > > +	 * short-circuited before grabbing the enable/prepare locks. This
+> > > > +	 * prevents deadlocks between the clk/regulator frameworks.
+> > > > +	 *
+> > > > +	 *	gcc_qupv3_wrap_1_m_ahb_clk
+> > > > +	 *	gcc_qupv3_wrap_1_s_ahb_clk
+> > > > +	 *	gcc_qupv3_wrap1_s5_clk
+> > > > +	 */
+> > > 
+> > > Isn't this a workaround inherited from the downstream control of
+> > > regulators from within the clock core? Does this still apply upstream?
+> > 
+> > Let me check on this bit...
+> > 
+> > Thanks
+> > 
+> 
+> No it should not apply.
 
-> > > +  data-lanes:
-> > > +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> > > +    minItems: 1
-> > > +    maxItems: 4
-> > > +    items:
-> > > +      # Assume up to 4 data and 1 clock lane
-> > > +      maximum: 4
-> > > +    description:
-> > > +      An array of physical data lane indexes. Position of an entry determines
-> > > +      the logical lane number, while the value of an entry indicates physical
-> > > +      lane, e.g. for 2-lane MIPI CSI-2 bus we could have "data-lanes = <1 2>;",
-> > > +      assuming the clock lane is on hardware lane 0. If the hardware does not
-> > > +      support lane reordering, monotonically incremented values shall be used
-> > > +      from 0 or 1 onwards, depending on whether or not there is also a clock
-> > > +      lane. This property is valid for serial busses only (e.g. MIPI CSI-2).
-> >
-> > This won't flag [1, 3] as wrong, right ?
->
-> Right. In theory you could have hardware that does this, right? You
-> could pick and choose which lanes to use.
+Thanks for confirmation, removed now. Will send v2
 
-You could if your platform supports lane re-ordering (iirc there's a
-single device that supports that in mainline)
-
-My (badly worded) question is: do we expect users to define the valid
-values as here below reported ? Or are we happy with 'maximum: 2' ?
-
-If we ask users to provide the valid arrays, we get an ugly DTS and,
-more problematically, this has be noticed and suggested during
-reviews likely for every submission, this is all but intuitive and
-most platforms don't support lane re-ordering, most if not all will
-have to limit the property supported values. We get DTS validation in
-exchange.
-
-If we're fine with just having the maximum value specified, we lose
-dts validation but it really gets less clunky for DTS. Run-time handling
-for drivers won't change much, as devices that don't support lane
-re-ordering mostly care about the number of active lanes.
-
-It's more a policy question than a technical one...
-
->
-> > I guess the only alternative is the ugly:
-> >
-> >             anyOf:
-> >               - items:
-> >                 - const: 1
-> >               - items:
-> >                 - const: 1
-> >                 - const: 2
-> >               - items:
-> >                 - const: 1
-> >                 - const: 2
-> >                 - const: 3
-> >               - items:
-> >                 - const: 1
-> >                 - const: 2
-> >                 - const: 3
-> >                 - const: 4
-> >
-> > As we express "monotonically incremented" I think it's fine, even if
-> > validation won't catch it.
-> >
-> > Also, sakari just pointed me to the just merged
-> > Documentation/devicetree/bindings/media/i2c/mipi-ccs.yaml:
-> >
-> >           data-lanes:
-> >             minItems: 1
-> >             maxItems: 8
-> >
-> > sakari, where does 8 come from ? Afaik D-PHY supports 4 differential
-> > data lanes, and C-PHY 3 'trios'
->
-> Okay, let me know what values to put here.
->
-
-I'll defer this to Sakari :)
-
-Thanks
-   j
+-- 
+~Vinod
