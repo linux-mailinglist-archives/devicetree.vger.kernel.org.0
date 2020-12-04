@@ -2,129 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A2ADD2CEE0F
-	for <lists+devicetree@lfdr.de>; Fri,  4 Dec 2020 13:27:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C70EA2CEE1D
+	for <lists+devicetree@lfdr.de>; Fri,  4 Dec 2020 13:36:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728896AbgLDM07 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Dec 2020 07:26:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46590 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725999AbgLDM07 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Dec 2020 07:26:59 -0500
-Received: from mail-ej1-x643.google.com (mail-ej1-x643.google.com [IPv6:2a00:1450:4864:20::643])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E678C0613D1;
-        Fri,  4 Dec 2020 04:26:18 -0800 (PST)
-Received: by mail-ej1-x643.google.com with SMTP id ga15so8425680ejb.4;
-        Fri, 04 Dec 2020 04:26:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=Do3oqdTH7dveVVzcLf/9LFZKZhHi0k7C7i3j07nGhQ8=;
-        b=OJKLJ5CF7IFSOrgs4oKmQdpr+n4H0yOrjsgmMTQpqzyVk9V6sEOr9krgIR2CqI/eg2
-         Olo2mJ373LWDKVEs4Zvxs6xOat5nXq3f8jPu1NeSZvHt09Q8+YN5xls41wKGDSMpJX/K
-         4HgneLa13KR/eb5Yzw0NBIYdXx4L4NkQqFvMAY0EY8sNpCrlrI8cDLlBGrmQMxEvE+XE
-         xoyMVCPLeAYJru9kb0QbkzbjNA+mwtfIvvY526ZkQB2Vnz7QmArTzmUAh1PY0N0PPZVW
-         1Oj6Y5T1ofLG3dEdL8w9l51AFDIWfZZnZEZU3NtxU28cQFubQiSHelxZKhjzivtXmsxf
-         tGpg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=Do3oqdTH7dveVVzcLf/9LFZKZhHi0k7C7i3j07nGhQ8=;
-        b=EGL0nft7BOkvEVlvfjYXTRViLnP7t8wLsTX8+zOreO87UASnq6BuTAx5uhgcNiT6X6
-         abezLJUOt1dhx17k2ikXPWpWWvagu0Rp5w4H6yN2yr1gT+ezKKwKNExzTEHhiZxDJOfC
-         b5K/lvIxl+Z2EGfpHD3WZOyelAtZGT8xCQB+/spGGYTjyZY/9kjUv5+vhVuDdh61TEBz
-         uvStP06gZyaTSKlUFx7n8d1W9XnptkA+Ch2BvL2qnNzgj5KBQwgxgezKUnG29z1BHuiW
-         AEp0kuEeESOsn5eEsHqpZhMMVmEuJXGkh8MzDJBofcK1ef0GcqYEoiN1a3KUq5KDz12Y
-         xJNg==
-X-Gm-Message-State: AOAM531Sw80kYTQwS+UKdOxlCHJG7aaYdpg5gQfgT2HpIG4u3ZFpHqXJ
-        5m2efzvacVWffILUk3qpCdM=
-X-Google-Smtp-Source: ABdhPJwyOdmo/tJVMsSbtt3KeXnx37toRK0rO7Y5EgRhnsY2ZjlH90vCVdnqHBzTke2oBWNZyceV/g==
-X-Received: by 2002:a17:906:a51:: with SMTP id x17mr6924333ejf.97.1607084777415;
-        Fri, 04 Dec 2020 04:26:17 -0800 (PST)
-Received: from localhost ([62.96.65.119])
-        by smtp.gmail.com with ESMTPSA id 65sm3375145edj.83.2020.12.04.04.26.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Dec 2020 04:26:15 -0800 (PST)
-Date:   Fri, 4 Dec 2020 13:26:14 +0100
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Sowjanya Komatineni <skomatineni@nvidia.com>
-Cc:     Mark Brown <broonie@kernel.org>, jonathanh@nvidia.com,
-        robh+dt@kernel.org, linux-spi@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v1 3/7] spi: qspi-tegra: Add support for Tegra210 QSPI
- controller
-Message-ID: <X8oq5vZRD600IFwd@ulmo>
-References: <1606857168-5839-1-git-send-email-skomatineni@nvidia.com>
- <1606857168-5839-4-git-send-email-skomatineni@nvidia.com>
- <20201202172721.GL5560@sirena.org.uk>
- <2257bc33-80ef-a6d8-8542-480defa32937@nvidia.com>
+        id S1728006AbgLDMfl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Dec 2020 07:35:41 -0500
+Received: from esa6.microchip.iphmx.com ([216.71.154.253]:5291 "EHLO
+        esa6.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726090AbgLDMfl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Dec 2020 07:35:41 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1607085341; x=1638621341;
+  h=from:to:cc:subject:date:message-id:mime-version;
+  bh=ooxPzxrzwJw3JgGledQM6x16vHXhUYhY2vlKUJL6gCk=;
+  b=n2tVazx27HzeiqKlRf3sM0HkabNGKGM0kTSXALNy5W7WYqTbJO613lL6
+   8RqYyzKdDaf7MEtmdU52TOjyZ9MgwvE94UpQyslHzswRBbJLbPupsKqji
+   iHneUNC7YQ6yitYBNIHx3N/tDX6/sThsg4/wfOt415ji38fbpu1UJpxnF
+   SYCZKmEW0th8LH1im1W+l82Bwj1MsHMd7k6MzrXRdWkqKFvMtHWdax+yY
+   2wvDpLn3kVxFZ0d7M61CvUxhVerFziznVZl+14m0oLx4cp5Aen8Y0ypzA
+   nEQCJINbTv9Q506+VUvJGTpUc6mY5JQwMFn1xdyVY6MddHgLrF/rJbNLb
+   Q==;
+IronPort-SDR: 57QSs6qZ726gYyaXo9KxbpR4x9GrQ93MizO4GCVFjdkN6YFGjOZ4V8dDigRo/cf1Zw6ZslNPix
+ iS0usEXSoGLVIFq9KgdE1lI+Cza+W8TRoXqMEtl8VcKg6JYo7C3HFUg2NOPyhcFsrH6KdAdL/f
+ 6EN4nqCoMjFFRQsksbi0r8MuPkPwrOSaKL0i72titbTwGxxgQKU5nZBol+18O6keRcvJZqC0Fa
+ rTKa4fxlAJBT7btlnk3JVBWx7P9lAWBK7Sxn+zR1Moxu9uFP3pryS2SwzxfmV2Mk6EZlLOEmoU
+ zzI=
+X-IronPort-AV: E=Sophos;i="5.78,392,1599548400"; 
+   d="scan'208";a="36119956"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 04 Dec 2020 05:34:35 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1979.3; Fri, 4 Dec 2020 05:34:35 -0700
+Received: from m18063-ThinkPad-T460p.microchip.com (10.10.115.15) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
+ 15.1.1979.3 via Frontend Transport; Fri, 4 Dec 2020 05:34:29 -0700
+From:   Claudiu Beznea <claudiu.beznea@microchip.com>
+To:     <davem@davemloft.net>, <kuba@kernel.org>, <robh+dt@kernel.org>,
+        <nicolas.ferre@microchip.com>, <linux@armlinux.org.uk>,
+        <paul.walmsley@sifive.com>, <palmer@dabbelt.com>
+CC:     <yash.shah@sifive.com>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-riscv@lists.infradead.org>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>
+Subject: [PATCH 0/7] net: macb: add support for sama7g5
+Date:   Fri, 4 Dec 2020 14:34:14 +0200
+Message-ID: <1607085261-25255-1-git-send-email-claudiu.beznea@microchip.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="dMt5SDLPoOEwNGde"
-Content-Disposition: inline
-In-Reply-To: <2257bc33-80ef-a6d8-8542-480defa32937@nvidia.com>
-User-Agent: Mutt/2.0.2 (d9268908) (2020-11-20)
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
---dMt5SDLPoOEwNGde
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+This series adds support for SAMA7G5 Ethernet interfaces: one 10/100Mbps
+and one 1Gbps interfaces.
 
-On Wed, Dec 02, 2020 at 11:17:18AM -0800, Sowjanya Komatineni wrote:
-> On 12/2/20 9:27 AM, Mark Brown wrote:
-> > On Tue, Dec 01, 2020 at 01:12:44PM -0800, Sowjanya Komatineni wrote:
-[...]
-> > > +static int tegra_qspi_setup(struct spi_device *spi)
-> > > +{
-> > > +	if (cdata && cdata->tx_clk_tap_delay)
-> > > +		tx_tap = cdata->tx_clk_tap_delay;
-> > > +	if (cdata && cdata->rx_clk_tap_delay)
-> > > +		rx_tap = cdata->rx_clk_tap_delay;
-> > > +	tqspi->def_command2_reg = QSPI_TX_TAP_DELAY(tx_tap) |
-> > > +				  QSPI_RX_TAP_DELAY(rx_tap);
-> > > +	tegra_qspi_writel(tqspi, tqspi->def_command2_reg, QSPI_COMMAND2);
-> > The setup for one device shouldn't be able to affect the operation of
-> > another, already running, device so either these need to be configured
-> > as part of the controller probe or these configurations need to be
-> > deferred until we're actually doing a transfer.
-> We will only have 1 device on QSPI as we only support single chip select.
+Along with it I also included a fix to disable clocks for SiFive FU540-C000
+on failure path of fu540_c000_clk_init().
 
-Even so we could make the driver operate as if there were multiple
-devices. This has the advantage of setting a better example for someone
-who might be reading this code as reference, and it might come in handy
-if for whatever reason we ever end up with a QSPI controller that does
-support multiple chip selects.
+Thank you,
+Claudiu Beznea
 
-If that's overly complicated, maybe a compromise would be to document
-very explicitly that this only works because Tegra QSPI supports a
-single chip select?
+Claudiu Beznea (7):
+  net: macb: add userio bits as platform configuration
+  net: macb: add capability to not set the clock rate
+  net: macb: unprepare clocks in case of failure
+  dt-bindings: add documentation for sama7g5 ethernet interface
+  dt-bindings: add documentation for sama7g5 gigabit ethernet interface
+  net: macb: add support for sama7g5 gem interface
+  net: macb: add support for sama7g5 emac interface
 
-Thierry
+ Documentation/devicetree/bindings/net/macb.txt |  2 +
+ drivers/net/ethernet/cadence/macb.h            | 11 +++
+ drivers/net/ethernet/cadence/macb_main.c       | 99 +++++++++++++++++++++-----
+ 3 files changed, 93 insertions(+), 19 deletions(-)
 
---dMt5SDLPoOEwNGde
-Content-Type: application/pgp-signature; name="signature.asc"
+-- 
+2.7.4
 
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl/KKuYACgkQ3SOs138+
-s6FFpBAAjwrCChoV/mRCl1qXNIhjHrIrX80SlHghztIcd2MELmlTh9T7eQfFQpwl
-XXHldwrXRyUNLvHs4GoKdRqigimgf/BbtaWFrQtKT+7y26WRLoQD7LLAC6i2gRoy
-58ugbuGeo4klocB82RLxS/zBgGcB32tb9dwkssOvxnqnKXkKgsKa6d7VBvnwKSnI
-u3NlS8YbEchDG13XmyFjbh18t4wQiu7yFrq6XqGHVatJ3Tf9FUfry9RHUqcagaTp
-qDyI70Zqk0xWoZi6LU16MulJtVThFCQq+LP6cPjZcqQbhba1XNwF/vl9j71wDEpx
-BvWWNmmvU5q0a0v0lDIcSpUVV5ZySOIwM1zniQhRosoknwApG4ckoqasj/Wa8H+Y
-xYBecR8Y8er9XQfRX+4XAY82Y5TKAirIyYkjibfc3+20O8Fjrx/BpWFMDlb+DF7K
-tVsaJzDeE1hqdl0DvALYZELLl47qjk+fybujvnsg1y5Dc48RujyNAtAPAIF0VKg2
-x/bo1A+zRe7gS54fCjoZ3GXl8MG9dsFLOD4A8Ei2L1ai20+Ip0N1CIs2SkTungkL
-YuUld3ETG5Zp3ropWjJMORQppGnZk9fSiYdLsfsZbyMUPmOPn2qVtZfGTZ4CLLdt
-6TaqE3zh0Sf3XygAUcNLNMLyrbB5YSKZ9sW4WSneQu/96lPmMgk=
-=TdSe
------END PGP SIGNATURE-----
-
---dMt5SDLPoOEwNGde--
