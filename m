@@ -2,104 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A1B0C2CE4E1
-	for <lists+devicetree@lfdr.de>; Fri,  4 Dec 2020 02:20:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E9C3A2CE522
+	for <lists+devicetree@lfdr.de>; Fri,  4 Dec 2020 02:30:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730279AbgLDBTd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Dec 2020 20:19:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56336 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729951AbgLDBTd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Dec 2020 20:19:33 -0500
-Received: from mail-pj1-x1043.google.com (mail-pj1-x1043.google.com [IPv6:2607:f8b0:4864:20::1043])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5AC3C061A4F;
-        Thu,  3 Dec 2020 17:18:47 -0800 (PST)
-Received: by mail-pj1-x1043.google.com with SMTP id j13so2204368pjz.3;
-        Thu, 03 Dec 2020 17:18:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=6oVOCTQj6wif00H/TIxJjYDbEodmzk+M7JjYVfDH9xI=;
-        b=vbA2vwoApuEQ6P+uaoP8LaakQHKo85Dr9FFsVcDqNv2dSYSqK3hYFwTN9kYoE/HCft
-         /8yG6CcDRez5Bb2qJpDmE1bB0UyLGUKDWcG1idWrQgztkZ5dDqW/XBFcSeh9P3Xb779/
-         H3sUCIEdWJouy1VyjuFoniv2fzEwW99odJ75aZQvjGmIFZRn+9hpFkG0/j//xCwi0v+S
-         9r3oQhtroijV9FtYaQjhHlioDKDGJs6+ZEaKrf22GLt5dtcpGkK7lufPKMT6vNZo/CS9
-         BUBCi0UfCSC7Cal0ALrMrBXgDlRYdTytQBwN7ZW1Xph9bNygGyjzXAFDa9q2RCm0kpv3
-         2LWg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=6oVOCTQj6wif00H/TIxJjYDbEodmzk+M7JjYVfDH9xI=;
-        b=GYYutN0P51bvq5jyQAxRZLSpyKo90KucjPf195qB/KtHk4+SNAUmwYMsdMkpQyVdbK
-         PwAVpY5sCLGiqo8nD5W11Bn0YmI+eYBrGTFruoiQkLYVcKWwqMjAak5emg8LFOrq4VVV
-         +eeb7FErMitw+AhvTsl+NbC3ZnSIjRaqj4DvtejQ+CT/Men6AfGt8LIpKfEAhi07hfu1
-         J078pp0bQ3tiOG8mSbWTx7FIhLfEIrS+VsqgRBkwcIkzz0U+APOmG+qq+EJoIKF9p4Zz
-         Jz+JvxVzx8RDPgQeNP1ka2O4IIICnFae4xsYzlCsEgFzVMwWd4Sid59IFuBcsQLxdox/
-         pNQg==
-X-Gm-Message-State: AOAM532IJrcgGj7Y+WLohyHZYXM8Pju6Hh7x2Dw9u+0S//RyU73AGnmK
-        spBLSW9tY7gPJYAaiEMLJMU=
-X-Google-Smtp-Source: ABdhPJxwf6hIUm5KzqFPA105RskiJdVBdi8zhheRfUX3Haxeb7AM8lcXcL9RA5AiJ4HozPLSnm0Trw==
-X-Received: by 2002:a17:90b:a53:: with SMTP id gw19mr1771780pjb.216.1607044727326;
-        Thu, 03 Dec 2020 17:18:47 -0800 (PST)
-Received: from hoboy.vegasvil.org (c-73-241-114-122.hsd1.ca.comcast.net. [73.241.114.122])
-        by smtp.gmail.com with ESMTPSA id z11sm496022pjn.5.2020.12.03.17.18.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Dec 2020 17:18:46 -0800 (PST)
-Date:   Thu, 3 Dec 2020 17:18:43 -0800
-From:   Richard Cochran <richardcochran@gmail.com>
-To:     Vladimir Oltean <olteanv@gmail.com>
-Cc:     Christian Eggers <ceggers@arri.de>,
-        Jakub Kicinski <kuba@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Kurt Kanzenbach <kurt.kanzenbach@linutronix.de>,
-        George McCollister <george.mccollister@gmail.com>,
-        Marek Vasut <marex@denx.de>,
-        Helmut Grohne <helmut.grohne@intenta.de>,
-        Paul Barker <pbarker@konsulko.com>,
-        Codrin Ciubotariu <codrin.ciubotariu@microchip.com>,
-        Tristram Ha <Tristram.Ha@microchip.com>,
-        Woojung Huh <woojung.huh@microchip.com>,
-        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next v5 9/9] net: dsa: microchip: ksz9477: add
- periodic output support
-Message-ID: <20201204011843.GD18560@hoboy.vegasvil.org>
-References: <20201203102117.8995-1-ceggers@arri.de>
- <20201203102117.8995-10-ceggers@arri.de>
- <20201203141255.GF4734@hoboy.vegasvil.org>
- <11406377.LS7tM95F4J@n95hx1g2>
- <20201204004556.GB18560@hoboy.vegasvil.org>
- <20201204010050.xbu23yynlwt7jskg@skbuf>
+        id S1727945AbgLDB2w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Dec 2020 20:28:52 -0500
+Received: from szxga05-in.huawei.com ([45.249.212.191]:9006 "EHLO
+        szxga05-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726158AbgLDB2w (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Dec 2020 20:28:52 -0500
+Received: from DGGEMS405-HUB.china.huawei.com (unknown [172.30.72.59])
+        by szxga05-in.huawei.com (SkyGuard) with ESMTP id 4CnFSZ5vXMzhkTw;
+        Fri,  4 Dec 2020 09:27:42 +0800 (CST)
+Received: from [127.0.0.1] (10.174.177.9) by DGGEMS405-HUB.china.huawei.com
+ (10.3.19.205) with Microsoft SMTP Server id 14.3.487.0; Fri, 4 Dec 2020
+ 09:28:04 +0800
+Subject: Re: [PATCH 1/4] reset: hisilicon: correct vendor prefix
+To:     Philipp Zabel <p.zabel@pengutronix.de>,
+        Wei Xu <xuwei5@hisilicon.com>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+CC:     Zhangfei Gao <zhangfei.gao@linaro.org>,
+        Chen Feng <puck.chen@hisilicon.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+References: <20201203120212.1105-1-thunder.leizhen@huawei.com>
+ <20201203120212.1105-2-thunder.leizhen@huawei.com>
+ <9277bc82766d26d840dbd0a7b4041cd267862a39.camel@pengutronix.de>
+From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
+Message-ID: <15efa527-0dc3-10a5-9ace-79ccc76a0689@huawei.com>
+Date:   Fri, 4 Dec 2020 09:28:03 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201204010050.xbu23yynlwt7jskg@skbuf>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <9277bc82766d26d840dbd0a7b4041cd267862a39.camel@pengutronix.de>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.174.177.9]
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 04, 2020 at 03:00:50AM +0200, Vladimir Oltean wrote:
-> On Thu, Dec 03, 2020 at 04:45:56PM -0800, Richard Cochran wrote:
-> > Yes, that would make sense.  It would bring sysfs back to feature
-> > parity with the ioctls.
+
+
+On 2020/12/3 20:54, Philipp Zabel wrote:
+> On Thu, 2020-12-03 at 20:02 +0800, Zhen Lei wrote:
+>> The vendor prefix of "Hisilicon Limited" is "hisilicon", it is clearly
+>> stated in "vendor-prefixes.yaml".
+>>
+>> Fixes: 1527058736fa ("reset: hisilicon: add reset-hi3660")
+>> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
+>> Cc: Zhangfei Gao <zhangfei.gao@linaro.org>
+>> ---
+>>  drivers/reset/hisilicon/reset-hi3660.c | 2 +-
+>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/reset/hisilicon/reset-hi3660.c b/drivers/reset/hisilicon/reset-hi3660.c
+>> index a7d4445924e558c..8f1953159a65b31 100644
+>> --- a/drivers/reset/hisilicon/reset-hi3660.c
+>> +++ b/drivers/reset/hisilicon/reset-hi3660.c
+>> @@ -83,7 +83,7 @@ static int hi3660_reset_probe(struct platform_device *pdev)
+>>  	if (!rc)
+>>  		return -ENOMEM;
+>>  
+>> -	rc->map = syscon_regmap_lookup_by_phandle(np, "hisi,rst-syscon");
+>> +	rc->map = syscon_regmap_lookup_by_phandle(np, "hisilicon,rst-syscon");
 > 
-> Which is a good thing?
+> What about those that don't upgrade kernel and DT in lock-step?
+> It would be easy to fall back to the old compatible if the new one
+> fails.
 
-Yes, of course it is.  I'm sorry I didn't insist on it in the first place!
- 
-> Anyway, Christian, if you do decide to do that, here's some context why
-> I didn't do it when I added the additional knobs for periodic output:
-> https://www.mail-archive.com/linuxptp-devel@lists.sourceforge.net/msg04150.html
+All right, I'll combine them. I thought they belonged to different maintainers,
+and I had to break them apart.
 
-I think Christian is proposing a different sysfs file, not a flag in
-the existing ones.  That makes sense to me.
-
-Thanks,
-Richard
+> 
+> regards
+> Philipp
+> 
+> .
+> 
 
