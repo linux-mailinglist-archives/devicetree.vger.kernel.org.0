@@ -2,307 +2,200 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A3AD82CF4D8
-	for <lists+devicetree@lfdr.de>; Fri,  4 Dec 2020 20:37:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D4FE2CF511
+	for <lists+devicetree@lfdr.de>; Fri,  4 Dec 2020 20:53:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728605AbgLDTgU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Dec 2020 14:36:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56906 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725923AbgLDTgU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Dec 2020 14:36:20 -0500
-Received: from mail-pf1-x442.google.com (mail-pf1-x442.google.com [IPv6:2607:f8b0:4864:20::442])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48D07C0613D1;
-        Fri,  4 Dec 2020 11:35:40 -0800 (PST)
-Received: by mail-pf1-x442.google.com with SMTP id c79so4453360pfc.2;
-        Fri, 04 Dec 2020 11:35:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=cQEOGFYSu5gjZsZIFeFaQQwURzAW5gco/80H8pDScYI=;
-        b=eL680N7zTc3Kw+uUKHH5IwSFqsVQ+aYCV4gega01LckzYQzxIg6eK6TUov4Y1qtG4G
-         HSBYywuNLX+fEunc2O6DMfNg0Sorr/twQDeVwczvCr3Ohlv03eqmlZdUIuU5z1GWKYS9
-         AnFOFpdXn/dIG29NnV+b1HhZT5CI+jxMfjG2cuNXVPkDeSdXtDGIg34e6wfqZG/7wGaO
-         gC5V09FyIc9VGaqRgYRS+XHTNYH3cSyqUoJTwyrhhCymjCT9s2AZDPFKQMg1KkEhGiQF
-         bqE3YsDEjfKdEBPwI5aOHvcjTzYus3SAQS++84Jitj5Tof/BUe2UxRFBwY4+p6jS9LLe
-         yvfg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=cQEOGFYSu5gjZsZIFeFaQQwURzAW5gco/80H8pDScYI=;
-        b=teBQY4eA7uT2vxyPnAYRQQHmOx5qM6dBdNJ3kKsW01jsSR9yNlj9KJnn8EyC8L+uhh
-         WR/PolWW/YV9DA/G/jXTgn8JFoMSibP0UasBvNWlYeN7CGi7lwADcyPia8zl8xlB293g
-         gyeEc/CYLEPX/8aQpFvJm+NdXsQ1HDe4CSgRT+XHxGkvTvLS8lqQIlPrOYliBIiEPQ15
-         NLxjzy8Hjd5OA+HA8AGHPdiK3hOdE5BlOjEkWcbhGOQPB0GXKzqqJEuSoQkhhmVw9xvM
-         uopbftgCz3EAvH2wtCwBzjqO1IlIM7F45YpA+b1nK9lcpe7eZ+v6sXZrSiWSA3KNyaUE
-         olnQ==
-X-Gm-Message-State: AOAM5310kTNzgfZ2zDQWILSxvco/xES/65rmdkUxtC0Yz4cRu8yDiRY4
-        LLbB5L68dGbJPEzgeZgwhfSMm77pQFQ=
-X-Google-Smtp-Source: ABdhPJxOqw1l9gRm2+pgTXbV8DBas+qjV687u0mtSWY6ZaM+UJOcLdGrdnQjeNvM2fWrxKK44FOdTw==
-X-Received: by 2002:aa7:9341:0:b029:18b:b43:6c7 with SMTP id 1-20020aa793410000b029018b0b4306c7mr5355827pfn.7.1607110539136;
-        Fri, 04 Dec 2020 11:35:39 -0800 (PST)
-Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id j9sm5425942pfi.116.2020.12.04.11.35.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Dec 2020 11:35:38 -0800 (PST)
-From:   Florian Fainelli <f.fainelli@gmail.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     bcm-kernel-feedback-list@broadcom.com,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS)
-Subject: [PATCH v2] dt-bindings: phy: Convert Broadcom SATA PHY to YAML
-Date:   Fri,  4 Dec 2020 11:35:31 -0800
-Message-Id: <20201204193532.1934108-1-f.fainelli@gmail.com>
-X-Mailer: git-send-email 2.25.1
+        id S1727924AbgLDTwg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Dec 2020 14:52:36 -0500
+Received: from linux.microsoft.com ([13.77.154.182]:52540 "EHLO
+        linux.microsoft.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726021AbgLDTwg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Dec 2020 14:52:36 -0500
+Received: from localhost.localdomain (c-73-42-176-67.hsd1.wa.comcast.net [73.42.176.67])
+        by linux.microsoft.com (Postfix) with ESMTPSA id 007FD20B717A;
+        Fri,  4 Dec 2020 11:51:54 -0800 (PST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 007FD20B717A
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+        s=default; t=1607111515;
+        bh=G7z6+eqDNF88d0VTVTX4OeovJgnVfaV5qPN1UBMIJ7M=;
+        h=From:To:Cc:Subject:Date:From;
+        b=kbCB6zo2z3xvPOxVLURj0ipkYlhRyOdxeysqSKmLf+5m6n8Kl1djUwTIu8yPHTjR0
+         R0zrK+N7m6NPkFPoFjdEI3+Gyct1/vyqw5sl0ZG9hoec8MJgYNt3Ov+dAu9ugd5FLU
+         IeRR2NSbAMNU09t/kVasj/egUvkIoWyE+sf+brQc=
+From:   Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
+To:     zohar@linux.ibm.com, bauerman@linux.ibm.com, robh@kernel.org,
+        gregkh@linuxfoundation.org, james.morse@arm.com,
+        catalin.marinas@arm.com, sashal@kernel.org, will@kernel.org,
+        mpe@ellerman.id.au, benh@kernel.crashing.org, paulus@samba.org,
+        robh+dt@kernel.org, frowand.list@gmail.com,
+        vincenzo.frascino@arm.com, mark.rutland@arm.com,
+        dmitry.kasatkin@gmail.com, jmorris@namei.org, serge@hallyn.com,
+        pasha.tatashin@soleen.com, allison@lohutok.net,
+        kstewart@linuxfoundation.org, takahiro.akashi@linaro.org,
+        tglx@linutronix.de, masahiroy@kernel.org, bhsharma@redhat.com,
+        mbrugger@suse.com, hsinyi@chromium.org, tao.li@vivo.com,
+        christophe.leroy@c-s.fr
+Cc:     linux-integrity@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, prsriva@linux.microsoft.com,
+        balajib@linux.microsoft.com
+Subject: [PATCH v10 0/8] Carry forward IMA measurement log on kexec on ARM64
+Date:   Fri,  4 Dec 2020 11:51:41 -0800
+Message-Id: <20201204195149.611-1-nramas@linux.microsoft.com>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update the Broadcom SATA PHY Device Tree binding to a YAML format.
+On kexec file load Integrity Measurement Architecture (IMA) subsystem
+may verify the IMA signature of the kernel and initramfs, and measure
+it. The command line parameters passed to the kernel in the kexec call
+may also be measured by IMA. A remote attestation service can verify
+a TPM quote based on the TPM event log, the IMA measurement list, and
+the TPM PCR data. This can be achieved only if the IMA measurement log
+is carried over from the current kernel to the next kernel across
+the kexec call.
 
-Suggested-by: Vinod Koul <vkoul@kernel.org>
-Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
----
-Changes in v2:
+powerpc already supports carrying forward the IMA measurement log on
+kexec. This patch set adds support for carrying forward the IMA
+measurement log on kexec on ARM64. 
 
-- fixed #phy-cells warning
-- fixed yamlling warnings
+This patch set moves the platform independent code defined for powerpc
+such that it can be reused for other platforms as well. A chosen node
+"linux,ima-kexec-buffer" is added to the DTB for ARM64 to hold
+the address and the size of the memory reserved to carry
+the IMA measurement log.
 
- .../bindings/phy/brcm,sata-phy.yaml           | 148 ++++++++++++++++++
- .../devicetree/bindings/phy/brcm-sata-phy.txt |  61 --------
- 2 files changed, 148 insertions(+), 61 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/phy/brcm,sata-phy.yaml
- delete mode 100644 Documentation/devicetree/bindings/phy/brcm-sata-phy.txt
+This patch set has been tested for ARM64 platform using QEMU.
+I would like help from the community for testing this change on powerpc.
+Thanks.  
 
-diff --git a/Documentation/devicetree/bindings/phy/brcm,sata-phy.yaml b/Documentation/devicetree/bindings/phy/brcm,sata-phy.yaml
-new file mode 100644
-index 000000000000..58c3ef8004ad
---- /dev/null
-+++ b/Documentation/devicetree/bindings/phy/brcm,sata-phy.yaml
-@@ -0,0 +1,148 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/phy/brcm,sata-phy.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+
-+title: Broadcom SATA3 PHY
-+
-+maintainers:
-+  - Florian Fainelli <f.fainelli@gmail.com>
-+
-+properties:
-+  $nodename:
-+    pattern: "^sata[-|_]phy(@.*)?$"
-+
-+  compatible:
-+    oneOf:
-+      - items:
-+          - enum:
-+              - brcm,bcm7216-sata-phy
-+              - brcm,bcm7425-sata-phy
-+              - brcm,bcm7445-sata-phy
-+              - brcm,bcm63138-sata-phy
-+          - const: brcm,phy-sata3
-+      - items:
-+          - const: brcm,iproc-nsp-sata-phy
-+      - items:
-+          - const: brcm,iproc-ns2-sata-phy
-+      - items:
-+          - const: brcm,iproc-sr-sata-phy
-+
-+  reg:
-+    minItems: 1
-+    maxItems: 2
-+
-+  reg-names:
-+    minItems: 1
-+    maxItems: 2
-+    items:
-+      - const: phy
-+      - const: phy-ctrl
-+
-+  "#address-cells":
-+    const: 1
-+
-+  "#size-cells":
-+    const: 0
-+
-+patternProperties:
-+  "^sata-phy@[0-9]+$":
-+    type: object
-+    description: |
-+      Each port's PHY should be represented as a sub-node.
-+
-+    properties:
-+      reg:
-+        description: The SATA PHY port number
-+        maxItems: 1
-+
-+      "#phy-cells":
-+        const: 0
-+
-+      "brcm,enable-ssc":
-+        $ref: /schemas/types.yaml#/definitions/flag
-+        description: |
-+          Use spread spectrum clocking (SSC) on this port
-+          This property is not applicable for "brcm,iproc-ns2-sata-phy",
-+          "brcm,iproc-nsp-sata-phy" and "brcm,iproc-sr-sata-phy".
-+
-+      "brcm,rxaeq-mode":
-+        $ref: /schemas/types.yaml#/definitions/string
-+        description:
-+          String that indicates the desired RX equalizer mode.
-+        enum:
-+          - off
-+          - auto
-+          - manual
-+
-+      "brcm,rxaeq-value":
-+        $ref: /schemas/types.yaml#/definitions/uint32
-+        description: |
-+            When 'brcm,rxaeq-mode' is set to "manual", provides the RX
-+            equalizer value that should be used.
-+        minimum: 0
-+        maximum: 63
-+
-+      "brcm,tx-amplitude-millivolt":
-+        description: |
-+            Transmit amplitude voltage in millivolt.
-+        $ref: /schemas/types.yaml#/definitions/uint32
-+        enum: [400, 500, 600, 800]
-+
-+    required:
-+      - reg
-+      - "#phy-cells"
-+
-+    additionalProperties: false
-+
-+if:
-+  properties:
-+    compatible:
-+      items:
-+        const: brcm,iproc-ns2-sata-phy
-+then:
-+  properties:
-+    reg:
-+      maxItems: 2
-+    reg-names:
-+      items:
-+        - const: "phy"
-+        - const: "phy-ctrl"
-+else:
-+  properties:
-+    reg:
-+      maxItems: 1
-+    reg-names:
-+      maxItems: 1
-+      items:
-+        - const: "phy"
-+
-+required:
-+  - compatible
-+  - "#address-cells"
-+  - "#size-cells"
-+  - reg
-+  - reg-names
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    sata_phy@f0458100 {
-+        compatible = "brcm,bcm7445-sata-phy", "brcm,phy-sata3";
-+        reg = <0xf0458100 0x1e00>;
-+        reg-names = "phy";
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        sata-phy@0 {
-+                reg = <0>;
-+                #phy-cells = <0>;
-+        };
-+
-+        sata-phy@1 {
-+                reg = <1>;
-+                #phy-cells = <0>;
-+        };
-+    };
-diff --git a/Documentation/devicetree/bindings/phy/brcm-sata-phy.txt b/Documentation/devicetree/bindings/phy/brcm-sata-phy.txt
-deleted file mode 100644
-index e5abbace93a3..000000000000
---- a/Documentation/devicetree/bindings/phy/brcm-sata-phy.txt
-+++ /dev/null
-@@ -1,61 +0,0 @@
--* Broadcom SATA3 PHY
--
--Required properties:
--- compatible: should be one or more of
--     "brcm,bcm7216-sata-phy"
--     "brcm,bcm7425-sata-phy"
--     "brcm,bcm7445-sata-phy"
--     "brcm,iproc-ns2-sata-phy"
--     "brcm,iproc-nsp-sata-phy"
--     "brcm,phy-sata3"
--     "brcm,iproc-sr-sata-phy"
--     "brcm,bcm63138-sata-phy"
--- address-cells: should be 1
--- size-cells: should be 0
--- reg: register ranges for the PHY PCB interface
--- reg-names: should be "phy" and "phy-ctrl"
--     The "phy-ctrl" registers are only required for
--     "brcm,iproc-ns2-sata-phy" and "brcm,iproc-sr-sata-phy".
--
--Sub-nodes:
--  Each port's PHY should be represented as a sub-node.
--
--Sub-nodes required properties:
--- reg: the PHY number
--- phy-cells: generic PHY binding; must be 0
--
--Sub-nodes optional properties:
--- brcm,enable-ssc: use spread spectrum clocking (SSC) on this port
--     This property is not applicable for "brcm,iproc-ns2-sata-phy",
--     "brcm,iproc-nsp-sata-phy" and "brcm,iproc-sr-sata-phy".
--
--- brcm,rxaeq-mode: string that indicates the desired RX equalizer
--  mode, possible values are:
--	"off" (equivalent to not specifying the property)
--	"auto"
--	"manual" (brcm,rxaeq-value is used in that case)
--
--- brcm,rxaeq-value: when 'rxaeq-mode' is set to "manual", provides the RX
--  equalizer value that should be used. Allowed range is 0..63.
--
--- brcm,tx-amplitude-millivolt: transmit amplitude voltage in millivolt.
--  Possible values are 400, 500, 600 or 800 mV.
--
--Example
--	sata-phy@f0458100 {
--		compatible = "brcm,bcm7445-sata-phy", "brcm,phy-sata3";
--		reg = <0xf0458100 0x1e00>, <0xf045804c 0x10>;
--		reg-names = "phy";
--		#address-cells = <1>;
--		#size-cells = <0>;
--
--		sata-phy@0 {
--			reg = <0>;
--			#phy-cells = <0>;
--		};
--
--		sata-phy@1 {
--			reg = <1>;
--			#phy-cells = <0>;
--		};
--	};
+This patch set is based on
+commit e87297fa080a ("Merge tag 'drm-fixes-2020-12-04' of git://anongit.freedesktop.org/drm/drm")
+in https://github.com/torvalds/linux "master" branch.
+
+Changelog:
+
+v10
+  - Moved delete_fdt_mem_rsv(), remove_ima_buffer(),
+    get_ima_kexec_buffer, and get_root_addr_size_cells()
+    to drivers/of/kexec.c
+  - Moved arch_ima_add_kexec_buffer() to
+    security/integrity/ima/ima_kexec.c
+  - Conditionally define IMA buffer fields in struct kimage_arch
+
+v9
+  - Moved delete_fdt_mem_rsv() to drivers/of/kexec_fdt.c
+  - Defined a new function get_ima_kexec_buffer() in
+    drivers/of/ima_kexec.c to replace do_get_kexec_buffer()
+  - Changed remove_ima_kexec_buffer() to the original function name
+    remove_ima_buffer()
+  - Moved remove_ima_buffer() to drivers/of/ima_kexec.c
+  - Moved ima_get_kexec_buffer() and ima_free_kexec_buffer()
+    to security/integrity/ima/ima_kexec.c
+
+v8:
+  - Moved remove_ima_kexec_buffer(), do_get_kexec_buffer(), and
+    delete_fdt_mem_rsv() to drivers/of/fdt.c
+  - Moved ima_dump_measurement_list() and ima_add_kexec_buffer()
+    back to security/integrity/ima/ima_kexec.c
+
+v7:
+  - Renamed remove_ima_buffer() to remove_ima_kexec_buffer() and moved
+    this function definition to kernel.
+  - Moved delete_fdt_mem_rsv() definition to kernel
+  - Moved ima_dump_measurement_list() and ima_add_kexec_buffer() to
+    a new file namely ima_kexec_fdt.c in IMA
+
+v6:
+  - Remove any existing FDT_PROP_IMA_KEXEC_BUFFER property in the device
+    tree and also its corresponding memory reservation in the currently
+    running kernel.
+  - Moved the function remove_ima_buffer() defined for powerpc to IMA
+    and renamed the function to ima_remove_kexec_buffer(). Also, moved
+    delete_fdt_mem_rsv() from powerpc to IMA.
+
+v5:
+  - Merged get_addr_size_cells() and do_get_kexec_buffer() into a single
+    function when moving the arch independent code from powerpc to IMA
+  - Reverted the change to use FDT functions in powerpc code and added
+    back the original code in get_addr_size_cells() and
+    do_get_kexec_buffer() for powerpc.
+  - Added fdt_add_mem_rsv() for ARM64 to reserve the memory for
+    the IMA log buffer during kexec.
+  - Fixed the warning reported by kernel test bot for ARM64
+    arch_ima_add_kexec_buffer() - moved this function to a new file
+    namely arch/arm64/kernel/ima_kexec.c
+
+v4:
+  - Submitting the patch series on behalf of the original author
+    Prakhar Srivastava <prsriva@linux.microsoft.com>
+  - Moved FDT_PROP_IMA_KEXEC_BUFFER ("linux,ima-kexec-buffer") to
+    libfdt.h so that it can be shared by multiple platforms.
+
+v3:
+Breakup patches further into separate patches.
+  - Refactoring non architecture specific code out of powerpc
+  - Update powerpc related code to use fdt functions
+  - Update IMA buffer read related code to use of functions
+  - Add support to store the memory information of the IMA
+    measurement logs to be carried forward.
+  - Update the property strings to align with documented nodes
+    https://github.com/devicetree-org/dt-schema/pull/46
+
+v2:
+  Break patches into separate patches.
+  - Powerpc related Refactoring
+  - Updating the docuemntation for chosen node
+  - Updating arm64 to support IMA buffer pass
+
+v1:
+  Refactoring carrying over IMA measuremnet logs over Kexec. This patch
+    moves the non-architecture specific code out of powerpc and adds to
+    security/ima.(Suggested by Thiago)
+  Add Documentation regarding the ima-kexec-buffer node in the chosen
+    node documentation
+
+v0:
+  Add a layer of abstraction to use the memory reserved by device tree
+    for ima buffer pass.
+  Add support for ima buffer pass using reserved memory for arm64 kexec.
+    Update the arch sepcific code path in kexec file load to store the
+    ima buffer in the reserved memory. The same reserved memory is read
+    on kexec or cold boot.
+
+Lakshmi Ramasubramanian (8):
+  powerpc: fix compiler warnings and errors
+  powerpc: Move delete_fdt_mem_rsv() to drivers/of/kexec.c
+  powerpc: Move ima buffer functions to drivers/of/kexec.c
+  powerpc: Use ima kexec node functions
+  powerpc: Move remove_ima_buffer() to drivers/of/kexec.c
+  powerpc: Move ima_get_kexec_buffer() and ima_free_kexec_buffer() to
+    ima
+  powerpc: Move arch_ima_add_kexec_buffer to ima
+  arm64: Add IMA log information in kimage used for kexec
+
+ arch/arm64/Kconfig                     |   1 +
+ arch/arm64/include/asm/ima.h           |  22 ++++
+ arch/arm64/include/asm/kexec.h         |   5 +
+ arch/arm64/kernel/Makefile             |   1 +
+ arch/arm64/kernel/ima.c                |  41 +++++++
+ arch/arm64/kernel/machine_kexec_file.c |   8 ++
+ arch/powerpc/include/asm/ima.h         |  14 +--
+ arch/powerpc/include/asm/kexec.h       |   1 -
+ arch/powerpc/kexec/Makefile            |   7 +-
+ arch/powerpc/kexec/file_load.c         |  32 -----
+ arch/powerpc/kexec/ima.c               | 137 +--------------------
+ drivers/of/Makefile                    |   1 +
+ drivers/of/kexec.c                     | 160 +++++++++++++++++++++++++
+ include/linux/kexec.h                  |   9 ++
+ security/integrity/ima/ima_kexec.c     |  73 +++++++++++
+ 15 files changed, 326 insertions(+), 186 deletions(-)
+ create mode 100644 arch/arm64/include/asm/ima.h
+ create mode 100644 arch/arm64/kernel/ima.c
+ create mode 100644 drivers/of/kexec.c
+
 -- 
-2.25.1
+2.29.2
 
