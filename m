@@ -2,465 +2,215 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C2432CFC35
-	for <lists+devicetree@lfdr.de>; Sat,  5 Dec 2020 18:00:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E802F2CFC37
+	for <lists+devicetree@lfdr.de>; Sat,  5 Dec 2020 18:07:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727213AbgLEQ44 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Dec 2020 11:56:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55306 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727153AbgLEQy2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Dec 2020 11:54:28 -0500
-Received: from mail-pg1-x541.google.com (mail-pg1-x541.google.com [IPv6:2607:f8b0:4864:20::541])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7334C08E85E
-        for <devicetree@vger.kernel.org>; Sat,  5 Dec 2020 04:09:21 -0800 (PST)
-Received: by mail-pg1-x541.google.com with SMTP id f17so5257942pge.6
-        for <devicetree@vger.kernel.org>; Sat, 05 Dec 2020 04:09:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=qUf34clt4kRZfLVV9fx2beA7pX/lG5z58DvTGVZQC+s=;
-        b=n90BL6T9qVelhGSkL/VGAQxFaWqKIgSX7WWf4G2ca/XEDuTpj2Fs2AbkG1S/qWQ+Gf
-         63UlYfDCCjQUz47TnacOJRLGHuZAg8Jx+4oOXcdfQNtGcMAlcS9++wStCgFEODl2DON6
-         m0QJWHdxI2Ys+g5PxuP7Mvnw0I8uDsZKX8dNJUg5V/zjWkI8D900MLWqTtnGfhTP3XIz
-         iE+w3JCyB0s8VoGjWSHWLTAGRf/tqHnX5cznLw3RCZWd7SgkDLrEbXqSQP6QYdhOsklJ
-         ao+ZEqXP5dl0axmHHnL34awIFvwyFWMyW/8/+hSiGJj30nmNmQZmNhPSlzHqowXRoEnh
-         tzTg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=qUf34clt4kRZfLVV9fx2beA7pX/lG5z58DvTGVZQC+s=;
-        b=JmhM/q2B7qQe358zPA6tpjMhLpc1Q+R8Ckw+xKQT7r+a9sUnyko6h/Xb+4GyJi64In
-         N3KCQW+CSQ+Dy8zA/f48l8oz9lfiiy2nRPdE6owYjbKEuWjLcSE4WkwtjDnIgDLPauPm
-         qsQfe80gF3ILILVf+Qxp0WlZhNVtenAPD9nxC0h+UCcOBnBKhgKnn+YLuRIr9bjGAcJa
-         uHrgVRH8tFWbEYjD3hDN1lSiYhdt13/fEtnpAg80/+LciO9CdJI7xuMVQcMl69YAm9WW
-         Oc5/Rm7eIsuv3xvmPAVcK7qmGmd/4byDoCCZ65aSOqNdK9soYnoq/CVlEo+Cgc9ArwIV
-         8HNQ==
-X-Gm-Message-State: AOAM5323Gubeggwk2OcZqRjhPBRr46UQRZ3fDH02qakDqRRDUrZTsfDI
-        fPZf1wbL7CGOyXFZL6NA1R0gag==
-X-Google-Smtp-Source: ABdhPJy0r6rKrdQyrMeGsV++UhO9l08plUNel1e9MrbwYXwmnQ+ZNp+rVYcLTpGROlfIhPKHDOKdEQ==
-X-Received: by 2002:a63:5550:: with SMTP id f16mr11250293pgm.151.1607170160892;
-        Sat, 05 Dec 2020 04:09:20 -0800 (PST)
-Received: from google.com (154.137.233.35.bc.googleusercontent.com. [35.233.137.154])
-        by smtp.gmail.com with ESMTPSA id b83sm8212775pfb.220.2020.12.05.04.09.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 05 Dec 2020 04:09:20 -0800 (PST)
-Date:   Sat, 5 Dec 2020 12:09:16 +0000
-From:   Satya Tangirala <satyat@google.com>
-To:     Eric Biggers <ebiggers@kernel.org>
-Cc:     linux-mmc@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-fscrypt@vger.kernel.org,
-        Ulf Hansson <ulf.hansson@linaro.org>,
+        id S1727658AbgLERAQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 5 Dec 2020 12:00:16 -0500
+Received: from ns2.chip.baikal.ru ([94.125.187.42]:53194 "EHLO
+        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1726755AbgLEQzy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Dec 2020 11:55:54 -0500
+From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
+To:     Mathias Nyman <mathias.nyman@intel.com>,
+        Felipe Balbi <balbi@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>
+CC:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Asutosh Das <asutoshd@codeaurora.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Neeraj Soni <neersoni@codeaurora.org>,
-        Barani Muthukumaran <bmuthuku@codeaurora.org>,
-        Peng Zhou <peng.zhou@mediatek.com>,
-        Stanley Chu <stanley.chu@mediatek.com>,
-        Konrad Dybcio <konradybcio@gmail.com>
-Subject: Re: [PATCH v2 9/9] mmc: sdhci-msm: add Inline Crypto Engine support
-Message-ID: <X8t4bLOc3vRbDSo5@google.com>
-References: <20201203020516.225701-1-ebiggers@kernel.org>
- <20201203020516.225701-10-ebiggers@kernel.org>
+        Manu Gautam <mgautam@codeaurora.org>,
+        Roger Quadros <rogerq@ti.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Ahmad Zainie <wan.ahmad.zainie.wan.mohamad@intel.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-snps-arc@lists.infradead.org>, <linux-mips@vger.kernel.org>,
+        <linuxppc-dev@lists.ozlabs.org>, <linux-usb@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v5 00/19] dt-bindings: usb: Add generic USB HCD, xHCI, DWC USB3 DT schema
+Date:   Sat, 5 Dec 2020 18:24:07 +0300
+Message-ID: <20201205152427.29537-1-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201203020516.225701-10-ebiggers@kernel.org>
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 02, 2020 at 06:05:16PM -0800, Eric Biggers wrote:
-> From: Eric Biggers <ebiggers@google.com>
-> 
-> Add support for Qualcomm Inline Crypto Engine (ICE) to sdhci-msm.
-> 
-> The standard-compliant parts, such as querying the crypto capabilities
-> and enabling crypto for individual MMC requests, are already handled by
-> cqhci-crypto.c, which itself is wired into the blk-crypto framework.
-> However, ICE requires vendor-specific init, enable, and resume logic,
-> and it requires that keys be programmed and evicted by vendor-specific
-> SMC calls.  Make the sdhci-msm driver handle these details.
-> 
-> This is heavily inspired by the similar changes made for UFS, since the
-> UFS and eMMC ICE instances are very similar.  See commit df4ec2fa7a4d
-> ("scsi: ufs-qcom: Add Inline Crypto Engine support").
-> 
-> I tested this on a Sony Xperia 10, which uses the Snapdragon 630 SoC,
-> which has basic upstream support.  Mainly, I used android-xfstests
-> (https://github.com/tytso/xfstests-bld/blob/master/Documentation/android-xfstests.md)
-> to run the ext4 and f2fs encryption tests in a Debian chroot:
-> 
-> 	android-xfstests -c ext4,f2fs -g encrypt -m inlinecrypt
-> 
-> These tests included tests which verify that the on-disk ciphertext is
-> identical to that produced by a software implementation.  I also
-> verified that ICE was actually being used.
-> 
-> Signed-off-by: Eric Biggers <ebiggers@google.com>
-> ---
->  drivers/mmc/host/Kconfig     |   1 +
->  drivers/mmc/host/sdhci-msm.c | 265 ++++++++++++++++++++++++++++++++++-
->  2 files changed, 262 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/mmc/host/Kconfig b/drivers/mmc/host/Kconfig
-> index 31481c9fcc2ec..4f8ff5a690fba 100644
-> --- a/drivers/mmc/host/Kconfig
-> +++ b/drivers/mmc/host/Kconfig
-> @@ -544,6 +544,7 @@ config MMC_SDHCI_MSM
->  	depends on MMC_SDHCI_PLTFM
->  	select MMC_SDHCI_IO_ACCESSORS
->  	select MMC_CQHCI
-> +	select QCOM_SCM if MMC_CRYPTO && ARCH_QCOM
->  	help
->  	  This selects the Secure Digital Host Controller Interface (SDHCI)
->  	  support present in Qualcomm SOCs. The controller supports
-> diff --git a/drivers/mmc/host/sdhci-msm.c b/drivers/mmc/host/sdhci-msm.c
-> index 3451eb3255135..ce6c3edbef530 100644
-> --- a/drivers/mmc/host/sdhci-msm.c
-> +++ b/drivers/mmc/host/sdhci-msm.c
-> @@ -13,6 +13,7 @@
->  #include <linux/pm_opp.h>
->  #include <linux/slab.h>
->  #include <linux/iopoll.h>
-> +#include <linux/qcom_scm.h>
->  #include <linux/regulator/consumer.h>
->  #include <linux/interconnect.h>
->  #include <linux/pinctrl/consumer.h>
-> @@ -256,10 +257,12 @@ struct sdhci_msm_variant_info {
->  struct sdhci_msm_host {
->  	struct platform_device *pdev;
->  	void __iomem *core_mem;	/* MSM SDCC mapped address */
-> +	void __iomem *ice_mem;	/* MSM ICE mapped address (if available) */
->  	int pwr_irq;		/* power irq */
->  	struct clk *bus_clk;	/* SDHC bus voter clock */
->  	struct clk *xo_clk;	/* TCXO clk needed for FLL feature of cm_dll*/
-> -	struct clk_bulk_data bulk_clks[4]; /* core, iface, cal, sleep clocks */
-> +	/* core, iface, cal, sleep, and ice clocks */
-> +	struct clk_bulk_data bulk_clks[5];
->  	unsigned long clk_rate;
->  	struct mmc_host *mmc;
->  	struct opp_table *opp_table;
-> @@ -1785,6 +1788,235 @@ static void sdhci_msm_set_clock(struct sdhci_host *host, unsigned int clock)
->  	__sdhci_msm_set_clock(host, clock);
->  }
->  
-> +/*****************************************************************************\
-> + *                                                                           *
-> + * Inline Crypto Engine (ICE) support                                        *
-> + *                                                                           *
-> +\*****************************************************************************/
-> +
-> +#ifdef CONFIG_MMC_CRYPTO
-> +
-> +#define AES_256_XTS_KEY_SIZE			64
-> +
-> +/* QCOM ICE registers */
-> +
-> +#define QCOM_ICE_REG_VERSION			0x0008
-> +
-> +#define QCOM_ICE_REG_FUSE_SETTING		0x0010
-> +#define QCOM_ICE_FUSE_SETTING_MASK		0x1
-> +#define QCOM_ICE_FORCE_HW_KEY0_SETTING_MASK	0x2
-> +#define QCOM_ICE_FORCE_HW_KEY1_SETTING_MASK	0x4
-> +
-> +#define QCOM_ICE_REG_BIST_STATUS		0x0070
-> +#define QCOM_ICE_BIST_STATUS_MASK		0xF0000000
-> +
-> +#define QCOM_ICE_REG_ADVANCED_CONTROL		0x1000
-> +
-> +#define sdhci_msm_ice_writel(host, val, reg)	\
-> +	writel((val), (host)->ice_mem + (reg))
-> +#define sdhci_msm_ice_readl(host, reg)	\
-> +	readl((host)->ice_mem + (reg))
-> +
-> +static bool sdhci_msm_ice_supported(struct sdhci_msm_host *msm_host)
-> +{
-> +	struct device *dev = mmc_dev(msm_host->mmc);
-> +	u32 regval = sdhci_msm_ice_readl(msm_host, QCOM_ICE_REG_VERSION);
-> +	int major = regval >> 24;
-> +	int minor = (regval >> 16) & 0xFF;
-> +	int step = regval & 0xFFFF;
-> +
-> +	/* For now this driver only supports ICE version 3. */
-> +	if (major != 3) {
-> +		dev_warn(dev, "Unsupported ICE version: v%d.%d.%d\n",
-> +			 major, minor, step);
-> +		return false;
-> +	}
-> +
-> +	dev_info(dev, "Found QC Inline Crypto Engine (ICE) v%d.%d.%d\n",
-> +		 major, minor, step);
-> +
-> +	/* If fuses are blown, ICE might not work in the standard way. */
-> +	regval = sdhci_msm_ice_readl(msm_host, QCOM_ICE_REG_FUSE_SETTING);
-> +	if (regval & (QCOM_ICE_FUSE_SETTING_MASK |
-> +		      QCOM_ICE_FORCE_HW_KEY0_SETTING_MASK |
-> +		      QCOM_ICE_FORCE_HW_KEY1_SETTING_MASK)) {
-> +		dev_warn(dev, "Fuses are blown; ICE is unusable!\n");
-> +		return false;
-> +	}
-> +	return true;
-> +}
-> +
-> +static inline struct clk *sdhci_msm_ice_get_clk(struct device *dev)
-> +{
-> +	return devm_clk_get(dev, "ice");
-> +}
-> +
-> +static int sdhci_msm_ice_init(struct sdhci_msm_host *msm_host,
-> +			      struct cqhci_host *cq_host)
-> +{
-> +	struct mmc_host *mmc = msm_host->mmc;
-> +	struct device *dev = mmc_dev(mmc);
-> +	struct resource *res;
-> +	int err;
-> +
-> +	if (!(cqhci_readl(cq_host, CQHCI_CAP) & CQHCI_CAP_CS))
-> +		return 0;
-> +
-> +	res = platform_get_resource_byname(msm_host->pdev, IORESOURCE_MEM,
-> +					   "ice");
-> +	if (!res) {
-> +		dev_warn(dev, "ICE registers not found\n");
-> +		goto disable;
-> +	}
-> +
-> +	if (!qcom_scm_ice_available()) {
-> +		dev_warn(dev, "ICE SCM interface not found\n");
-> +		goto disable;
-> +	}
-> +
-> +	msm_host->ice_mem = devm_ioremap_resource(dev, res);
-> +	if (IS_ERR(msm_host->ice_mem)) {
-> +		err = PTR_ERR(msm_host->ice_mem);
-> +		dev_err(dev, "Failed to map ICE registers; err=%d\n", err);
-> +		return err;
-> +	}
-> +
-> +	if (!sdhci_msm_ice_supported(msm_host))
-> +		goto disable;
-> +
-> +	mmc->caps2 |= MMC_CAP2_CRYPTO;
-> +	return 0;
-> +
-> +disable:
-> +	dev_warn(dev, "Disabling inline encryption support\n");
-> +	return 0;
-> +}
-> +
-> +static void sdhci_msm_ice_low_power_mode_enable(struct sdhci_msm_host *msm_host)
-> +{
-> +	u32 regval;
-> +
-> +	regval = sdhci_msm_ice_readl(msm_host, QCOM_ICE_REG_ADVANCED_CONTROL);
-> +	/*
-> +	 * Enable low power mode sequence
-> +	 * [0]-0, [1]-0, [2]-0, [3]-E, [4]-0, [5]-0, [6]-0, [7]-0
-> +	 */
-> +	regval |= 0x7000;
-> +	sdhci_msm_ice_writel(msm_host, regval, QCOM_ICE_REG_ADVANCED_CONTROL);
-> +}
-> +
-> +static void sdhci_msm_ice_optimization_enable(struct sdhci_msm_host *msm_host)
-> +{
-> +	u32 regval;
-> +
-> +	/* ICE Optimizations Enable Sequence */
-> +	regval = sdhci_msm_ice_readl(msm_host, QCOM_ICE_REG_ADVANCED_CONTROL);
-> +	regval |= 0xD807100;
-> +	/* ICE HPG requires delay before writing */
-> +	udelay(5);
-> +	sdhci_msm_ice_writel(msm_host, regval, QCOM_ICE_REG_ADVANCED_CONTROL);
-> +	udelay(5);
-> +}
-> +
-> +/* Poll until all BIST (built-in self test) bits are reset */
-> +static int sdhci_msm_ice_wait_bist_status(struct sdhci_msm_host *msm_host)
-> +{
-> +	u32 regval;
-> +	int err;
-> +
-> +	err = readl_poll_timeout(msm_host->ice_mem + QCOM_ICE_REG_BIST_STATUS,
-> +				 regval, !(regval & QCOM_ICE_BIST_STATUS_MASK),
-> +				 50, 5000);
-> +	if (err)
-> +		dev_err(mmc_dev(msm_host->mmc),
-> +			"Timed out waiting for ICE self-test to complete\n");
-> +	return err;
-> +}
-> +
-> +static void sdhci_msm_ice_enable(struct sdhci_msm_host *msm_host)
-> +{
-> +	if (!(msm_host->mmc->caps2 & MMC_CAP2_CRYPTO))
-> +		return;
-> +	sdhci_msm_ice_low_power_mode_enable(msm_host);
-> +	sdhci_msm_ice_optimization_enable(msm_host);
-> +	sdhci_msm_ice_wait_bist_status(msm_host);
-If sdhci_msm_ice_wait_bist_status() fails, should we really ignore the
-error and continue en/decrypting with ICE? I'm not sure what the BIST
-failing might really mean, but if it means it's possible that the ICE
-en/decrypts incorrectly it would be bad to continue to use it.....
-> +}
-> +
-> +static int __maybe_unused sdhci_msm_ice_resume(struct sdhci_msm_host *msm_host)
-> +{
-> +	if (!(msm_host->mmc->caps2 & MMC_CAP2_CRYPTO))
-> +		return 0;
-> +	return sdhci_msm_ice_wait_bist_status(msm_host);
-> +}
-> +
-> +/*
-> + * Program a key into a QC ICE keyslot, or evict a keyslot.  QC ICE requires
-> + * vendor-specific SCM calls for this; it doesn't support the standard way.
-> + */
-> +static int sdhci_msm_program_key(struct cqhci_host *cq_host,
-> +				 const union cqhci_crypto_cfg_entry *cfg,
-> +				 int slot)
-> +{
-> +	struct device *dev = mmc_dev(cq_host->mmc);
-> +	union cqhci_crypto_cap_entry cap;
-> +	union {
-> +		u8 bytes[AES_256_XTS_KEY_SIZE];
-> +		u32 words[AES_256_XTS_KEY_SIZE / sizeof(u32)];
-> +	} key;
-> +	int i;
-> +	int err;
-> +
-> +	if (!(cfg->config_enable & CQHCI_CRYPTO_CONFIGURATION_ENABLE))
-> +		return qcom_scm_ice_invalidate_key(slot);
-> +
-> +	/* Only AES-256-XTS has been tested so far. */
-> +	cap = cq_host->crypto_cap_array[cfg->crypto_cap_idx];
-> +	if (cap.algorithm_id != CQHCI_CRYPTO_ALG_AES_XTS ||
-> +	    cap.key_size != CQHCI_CRYPTO_KEY_SIZE_256) {
-> +		dev_err_ratelimited(dev,
-> +				    "Unhandled crypto capability; algorithm_id=%d, key_size=%d\n",
-> +				    cap.algorithm_id, cap.key_size);
-> +		return -EINVAL;
-> +	}
-> +
-> +	memcpy(key.bytes, cfg->crypto_key, AES_256_XTS_KEY_SIZE);
-> +
-> +	/*
-> +	 * The SCM call byte-swaps the 32-bit words of the key.  So we have to
-> +	 * do the same, in order for the final key be correct.
-> +	 */
-> +	for (i = 0; i < ARRAY_SIZE(key.words); i++)
-> +		__cpu_to_be32s(&key.words[i]);
-> +
-> +	err = qcom_scm_ice_set_key(slot, key.bytes, AES_256_XTS_KEY_SIZE,
-> +				   QCOM_SCM_ICE_CIPHER_AES_256_XTS,
-> +				   cfg->data_unit_size);
-> +	memzero_explicit(&key, sizeof(key));
-> +	return err;
-> +}
-> +#else /* CONFIG_MMC_CRYPTO */
-> +static inline struct clk *sdhci_msm_ice_get_clk(struct device *dev)
-> +{
-> +	return NULL;
-> +}
-> +
-> +static inline int sdhci_msm_ice_init(struct sdhci_msm_host *msm_host,
-> +				     struct cqhci_host *cq_host)
-> +{
-> +	return 0;
-> +}
-> +
-> +static inline void sdhci_msm_ice_enable(struct sdhci_msm_host *msm_host)
-> +{
-> +}
-> +
-> +static inline int __maybe_unused
-> +sdhci_msm_ice_resume(struct sdhci_msm_host *msm_host)
-> +{
-> +	return 0;
-> +}
-> +#endif /* !CONFIG_MMC_CRYPTO */
-> +
->  /*****************************************************************************\
->   *                                                                           *
->   * MSM Command Queue Engine (CQE)                                            *
-> @@ -1803,6 +2035,16 @@ static u32 sdhci_msm_cqe_irq(struct sdhci_host *host, u32 intmask)
->  	return 0;
->  }
->  
-> +static void sdhci_msm_cqe_enable(struct mmc_host *mmc)
-> +{
-> +	struct sdhci_host *host = mmc_priv(mmc);
-> +	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
-> +	struct sdhci_msm_host *msm_host = sdhci_pltfm_priv(pltfm_host);
-> +
-> +	sdhci_cqe_enable(mmc);
-> +	sdhci_msm_ice_enable(msm_host);
-> +}
-> +
->  static void sdhci_msm_cqe_disable(struct mmc_host *mmc, bool recovery)
->  {
->  	struct sdhci_host *host = mmc_priv(mmc);
-> @@ -1835,8 +2077,11 @@ static void sdhci_msm_cqe_disable(struct mmc_host *mmc, bool recovery)
->  }
->  
->  static const struct cqhci_host_ops sdhci_msm_cqhci_ops = {
-> -	.enable		= sdhci_cqe_enable,
-> +	.enable		= sdhci_msm_cqe_enable,
->  	.disable	= sdhci_msm_cqe_disable,
-> +#ifdef CONFIG_MMC_CRYPTO
-> +	.program_key	= sdhci_msm_program_key,
-> +#endif
->  };
->  
->  static int sdhci_msm_cqe_add_host(struct sdhci_host *host,
-> @@ -1872,6 +2117,10 @@ static int sdhci_msm_cqe_add_host(struct sdhci_host *host,
->  
->  	dma64 = host->flags & SDHCI_USE_64_BIT_DMA;
->  
-> +	ret = sdhci_msm_ice_init(msm_host, cq_host);
-> +	if (ret)
-> +		goto cleanup;
-> +
->  	ret = cqhci_init(cq_host, host->mmc, dma64);
->  	if (ret) {
->  		dev_err(&pdev->dev, "%s: CQE init: failed (%d)\n",
-> @@ -2321,6 +2570,11 @@ static int sdhci_msm_probe(struct platform_device *pdev)
->  		clk = NULL;
->  	msm_host->bulk_clks[3].clk = clk;
->  
-> +	clk = sdhci_msm_ice_get_clk(&pdev->dev);
-> +	if (IS_ERR(clk))
-> +		clk = NULL;
-> +	msm_host->bulk_clks[4].clk = clk;
-> +
->  	ret = clk_bulk_prepare_enable(ARRAY_SIZE(msm_host->bulk_clks),
->  				      msm_host->bulk_clks);
->  	if (ret)
-> @@ -2531,12 +2785,15 @@ static __maybe_unused int sdhci_msm_runtime_resume(struct device *dev)
->  	 * Whenever core-clock is gated dynamically, it's needed to
->  	 * restore the SDR DLL settings when the clock is ungated.
->  	 */
-> -	if (msm_host->restore_dll_config && msm_host->clk_rate)
-> +	if (msm_host->restore_dll_config && msm_host->clk_rate) {
->  		ret = sdhci_msm_restore_sdr_dll_config(host);
-> +		if (ret)
-> +			return ret;
-> +	}
->  
->  	dev_pm_opp_set_rate(dev, msm_host->clk_rate);
->  
-> -	return ret;
-> +	return sdhci_msm_ice_resume(msm_host);
->  }
-Doesn't this modify existing behaviour if
-sdhci_msm_restore_sdr_dll_config() returns a non-zero value? Previously,
-dev_pm_opp_set_rate() would always be called regardless of ret, but now
-it's not called on non-zero ret value.
->  
->  static const struct dev_pm_ops sdhci_msm_pm_ops = {
-> -- 
-> 2.29.2
-> 
+We've performed some work on the Generic USB HCD, xHCI and DWC USB3 DT
+bindings in the framework of the Baikal-T1 SoC support integration into
+the kernel. This patchset is a result of that work.
+
+First of all we moved the generic USB properties from the legacy text
+bindings to the USB DT schema. The properties have been distributed
+between three DT schemas dedicated for particular types of USB
+controllers: Generic USB controller properties (like node-naming, phys,
+maximum-speed, etc), Generic USB Host Controller bindings (companion and
+TPL support), Dual-Role USB Controller (OTG revision, DR mode,
+HNP/SRP/ADP protocols, etc). So the USB controllers DT bindings from now
+can validate the nodes against a generic USB-controller schema suitable
+for the controller functionality.
+
+Secondly we converted generic USB xHCI text bindings file into the DT
+schema. It had to be split up into two bindings: DT schema with generic
+xHCI properties and a generic xHCI device DT schema. The later will be
+used to validate the pure xHCI-based nodes, while the former can be
+utilized by some vendor-specific versions of xHCI.
+
+Thirdly, what was primarily intended to be done for Baikal-T1 SoC USB we
+converted the legacy text-based DWC USB3 bindings to DT schema and altered
+the result a bit so it would be more coherent with what actually
+controller and its driver support. Since we've now got the DWC USB3 DT
+schema, we made it used to validate the sub-nodes of the Qualcom, TI and
+Amlogic DWC3 DT nodes.
+
+Link: https://lore.kernel.org/linux-usb/20201010224121.12672-1-Sergey.Semin@baikalelectronics.ru/
+Changelog v2:
+- Thanks to Sergei Shtylyov for suggesting the commit logs grammar fixes:
+  [PATCH 04/18] dt-bindings: usb: usb-hcd: Add "ulpi/serial/hsic" PHY types
+  [PATCH 05/18] dt-bindings: usb: usb-hcd: Add "tpl-support" property
+  [PATCH 11/18] dt-bindings: usb: dwc3: Add interrupt-names property support
+  [PATCH 13/18] dt-bindings: usb: dwc3: Add Tx De-emphasis restrictions
+  [PATCH 17/18] dt-bindings: usb: keystone-dwc3: Validate DWC3 sub-node
+- Set FL-adj of the amlogiv,meson-g12a-usb controller with value 0x20 instead
+  of completely removing the property.
+- Drop the patch:
+  [PATCH 02/18] dt-bindings: usb: usb-hcd: Add "wireless" maximum-speed
+                property value
+  since "wireless" speed type is depracated due to lack of the device
+  supporting it.
+- Drop quotes from around the compat string constant.
+- Discard '|' from the property descriptions, since we don't need to preserve
+  the text formatting.
+- Convert abbreviated form of the "maximum-speed" enum constraint into
+  the multi-lined version of the list.
+- Fix the DW USB3 "clock-names" prop description to be refererring to the
+  enumerated clock-names instead of the ones from the Databook.
+- Add explicit "additionalProperties: true" to the usb-xhci.yaml schema,
+  since additionalProperties/unevaluatedProperties are going to be mandary
+  for each binding.
+- Use "oneOf: [dwc2.yaml#, snps,dwc3.yaml#]" instead of the bulky "if:
+  properties: compatibe: ..." statement.
+- Discard the "^dwc3@[0-9a-f]+$" nodes from being acceptable as sub-nodes
+  of the Qualcomm DWC3 DT nodes.
+- Add new patches:
+  [PATCH 18/20] arch: dts: Fix EHCI/OHCI DT nodes name
+  [PATCH 19/20] arch: dts: Fix xHCI DT nodes name
+  [PATCH 20/20] arch: dts: Fix DWC USB3 DT nodes name
+
+Link: https://lore.kernel.org/linux-usb/20201014101402.18271-1-Sergey.Semin@baikalelectronics.ru
+Changelog v3:
+- Drop the patches:
+  [PATCH 18/20] arch: dts: Fix EHCI/OHCI DT nodes name
+  [PATCH 19/20] arch: dts: Fix xHCI DT nodes name
+  [PATCH 20/20] arch: dts: Fix DWC USB3 DT nodes name
+  as they are going to be submitted in the framework of a dedicated patchset.
+- Drop the patch:
+  [PATCH 11/20] dt-bindings: usb: dwc3: Add synopsys,dwc3 compatible string
+  since it's going to be replaced with the driver/dts fixup and moved to a
+  dedicated patchset.
+- Apply usb-xhci.yaml# schema for the DWC USB3 node only if the controller is
+  supposed to work as either host or otg.
+
+Link: https://lore.kernel.org/linux-usb/20201020112101.19077-1-Sergey.Semin@baikalelectronics.ru
+Changelog v4:
+- Get the patch
+  [PATCH 11/17] dt-bindings: usb: dwc3: Add synopsys,dwc3 compatible string
+  back, since we can't discard the deprecated prefix from the driver.
+- Discard the block scalar style modifier "|" from the interrupts property
+  description.
+- Split the generic USB controller properties into three schemas: Generic USB
+  controllers, USB Host controllers and USB OTG controllers.
+
+Link: https://lore.kernel.org/linux-usb/20201111090853.14112-1-Sergey.Semin@baikalelectronics.ru
+Changelog v5:
+- Add "snps,dis-split-quirk" property to the DWC USB3 DT schema.
+- Add a text to the
+  [PATCH v4 10/18] dt-bindings: usb: Convert DWC USB3 bindings to DT schema
+  patch log about the small change in the clock-related properties bindings
+  with respect to the original binding file.
+- Discard duplicated "additionalProperties" from the usb-hcd.yaml schema.
+- Make sure dr_mode exist in DW USB3 node to apply the USB-gadget-only schema.
+- Add a new patch:
+  [PATCH v5 19/19] dt-bindings: usb: intel,keembay-dwc3: Validate DWC3 sub-node
+  since the Intel Keem Bay DWC3 bindings has been just added.
+
+Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Cc: Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>
+Cc: Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>
+Cc: Andy Gross <agross@kernel.org>
+Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc: Manu Gautam <mgautam@codeaurora.org>
+Cc: Roger Quadros <rogerq@ti.com>
+Cc: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc: Neil Armstrong <narmstrong@baylibre.com>
+Cc: Kevin Hilman <khilman@baylibre.com>
+Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: Ahmad Zainie <wan.ahmad.zainie.wan.mohamad@intel.com>
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-snps-arc@lists.infradead.org
+Cc: linux-mips@vger.kernel.org
+Cc: linuxppc-dev@lists.ozlabs.org
+Cc: linux-usb@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+
+Serge Semin (19):
+  dt-bindings: usb: usb-hcd: Detach generic USB controller properties
+  dt-bindings: usb: Convert generic USB properties to DT schemas
+  dt-bindings: usb: usb-drd: Add "otg-rev" property constraints
+  dt-bindings: usb: Add "ulpi/serial/hsic" PHY types
+  dt-bindings: usb: usb-hcd: Add "tpl-support" property
+  dt-bindings: usb: Add generic "usb-phy" property
+  dt-bindings: usb: Convert xHCI bindings to DT schema
+  dt-bindings: usb: xhci: Add Broadcom STB v2 compatible device
+  dt-bindings: usb: renesas-xhci: Refer to the usb-xhci.yaml file
+  dt-bindings: usb: Convert DWC USB3 bindings to DT schema
+  dt-bindings: usb: dwc3: Add interrupt-names property support
+  dt-bindings: usb: dwc3: Add synopsys,dwc3 compatible string
+  dt-bindings: usb: dwc3: Add Tx De-emphasis constraints
+  dt-bindings: usb: dwc3: Add Frame Length Adj constraints
+  dt-bindings: usb: meson-g12a-usb: Fix FL-adj property value
+  dt-bindings: usb: meson-g12a-usb: Validate DWC2/DWC3 sub-nodes
+  dt-bindings: usb: keystone-dwc3: Validate DWC3 sub-node
+  dt-bindings: usb: qcom,dwc3: Validate DWC3 sub-node
+  dt-bindings: usb: intel,keembay-dwc3: Validate DWC3 sub-node
+
+ .../usb/amlogic,meson-g12a-usb-ctrl.yaml      |   6 +-
+ .../devicetree/bindings/usb/dwc3.txt          | 128 -------
+ .../devicetree/bindings/usb/generic-xhci.yaml |  65 ++++
+ .../devicetree/bindings/usb/generic.txt       |  57 ---
+ .../bindings/usb/intel,keembay-dwc3.yaml      |   9 +-
+ .../devicetree/bindings/usb/qcom,dwc3.yaml    |   9 +-
+ .../bindings/usb/renesas,usb-xhci.yaml        |   4 +-
+ .../devicetree/bindings/usb/snps,dwc3.yaml    | 332 ++++++++++++++++++
+ .../bindings/usb/ti,keystone-dwc3.yaml        |   4 +-
+ .../devicetree/bindings/usb/usb-drd.yaml      |  78 ++++
+ .../devicetree/bindings/usb/usb-hcd.yaml      |  19 +-
+ .../devicetree/bindings/usb/usb-xhci.txt      |  41 ---
+ .../devicetree/bindings/usb/usb-xhci.yaml     |  42 +++
+ .../devicetree/bindings/usb/usb.yaml          |  60 ++++
+ 14 files changed, 600 insertions(+), 254 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/usb/dwc3.txt
+ create mode 100644 Documentation/devicetree/bindings/usb/generic-xhci.yaml
+ delete mode 100644 Documentation/devicetree/bindings/usb/generic.txt
+ create mode 100644 Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+ create mode 100644 Documentation/devicetree/bindings/usb/usb-drd.yaml
+ delete mode 100644 Documentation/devicetree/bindings/usb/usb-xhci.txt
+ create mode 100644 Documentation/devicetree/bindings/usb/usb-xhci.yaml
+ create mode 100644 Documentation/devicetree/bindings/usb/usb.yaml
+
+-- 
+2.29.2
+
