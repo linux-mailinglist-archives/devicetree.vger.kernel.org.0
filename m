@@ -2,373 +2,284 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B53922CFBCD
-	for <lists+devicetree@lfdr.de>; Sat,  5 Dec 2020 16:49:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 762632CFBD2
+	for <lists+devicetree@lfdr.de>; Sat,  5 Dec 2020 16:51:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727105AbgLEPkE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Dec 2020 10:40:04 -0500
-Received: from out28-1.mail.aliyun.com ([115.124.28.1]:54254 "EHLO
-        out28-1.mail.aliyun.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726595AbgLEOzC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Dec 2020 09:55:02 -0500
-X-Alimail-AntiSpam: AC=CONTINUE;BC=0.07436282|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_regular_dialog|0.213823-0.000738247-0.785439;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047199;MF=zhouyanjie@wanyeetech.com;NM=1;PH=DS;RN=13;RT=13;SR=0;TI=SMTPD_---.J3IvIXs_1607180006;
-Received: from 192.168.10.153(mailfrom:zhouyanjie@wanyeetech.com fp:SMTPD_---.J3IvIXs_1607180006)
-          by smtp.aliyun-inc.com(10.147.41.178);
-          Sat, 05 Dec 2020 22:53:27 +0800
-Subject: Re: [PATCH 4/4] clk: Ingenic: Fill unused bits in parents and
- reformat code.
-To:     Paul Cercueil <paul@crapouillou.net>
-Cc:     sboyd@kernel.org, robh+dt@kernel.org, mturquette@baylibre.com,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, dongsheng.qiu@ingenic.com,
-        aric.pzqi@ingenic.com, rick.tyliu@ingenic.com,
-        yanfei.li@ingenic.com, sernia.zhou@foxmail.com,
-        zhenwenjin@gmail.com
-References: <20201125172618.112707-1-zhouyanjie@wanyeetech.com>
- <20201125172618.112707-5-zhouyanjie@wanyeetech.com>
- <38GQKQ.Q3V9QMBZFBRU3@crapouillou.net>
-From:   Zhou Yanjie <zhouyanjie@wanyeetech.com>
-Message-ID: <23ff39d5-7763-afe7-7732-6c104103f6dd@wanyeetech.com>
-Date:   Sat, 5 Dec 2020 22:53:26 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+        id S1727022AbgLEPnq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 5 Dec 2020 10:43:46 -0500
+Received: from mx.baikalelectronics.ru ([94.125.187.42]:52336 "EHLO
+        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1726893AbgLEP31 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Dec 2020 10:29:27 -0500
+From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
+To:     Mathias Nyman <mathias.nyman@intel.com>,
+        Felipe Balbi <balbi@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>
+CC:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Manu Gautam <mgautam@codeaurora.org>,
+        Roger Quadros <rogerq@ti.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Ahmad Zainie <wan.ahmad.zainie.wan.mohamad@intel.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-snps-arc@lists.infradead.org>, <linux-mips@vger.kernel.org>,
+        <linuxppc-dev@lists.ozlabs.org>, <linux-usb@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH v5 02/19] dt-bindings: usb: Convert generic USB properties to DT schemas
+Date:   Sat, 5 Dec 2020 18:24:09 +0300
+Message-ID: <20201205152427.29537-3-Sergey.Semin@baikalelectronics.ru>
+In-Reply-To: <20201205152427.29537-1-Sergey.Semin@baikalelectronics.ru>
+References: <20201205152427.29537-1-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
-In-Reply-To: <38GQKQ.Q3V9QMBZFBRU3@crapouillou.net>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Paul,
+The generic USB properties have been described in the legacy bindings
+text file: Documentation/devicetree/bindings/usb/generic.txt . Let's
+convert its content into the generic USB, USB HCD and USB DRD DT
+schemas. So the Generic USB schema will be applicable to all USB
+controllers, USB HCD - for the generic USB Host controllers and the USB
+DRD - for the USB Dual-role controllers.
 
-On 2020/12/3 上午6:09, Paul Cercueil wrote:
-> Hi Zhou,
->
-> Le jeu. 26 nov. 2020 à 1:26, 周琰杰 (Zhou Yanjie) 
-> <zhouyanjie@wanyeetech.com> a écrit :
->> 1.Fill unused bits in parents in jz4780-cgu.c, x1000-cgu.c,
->>   and x1830-cgu.c, these bits should be filled with -1.
->> 2.Reformat code, add missing blank lines, remove unnecessary
->>   tabs, and align code.
->>
->> Signed-off-by: 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
->> ---
->>  drivers/clk/ingenic/jz4780-cgu.c | 12 +++---
->>  drivers/clk/ingenic/x1000-cgu.c  | 20 +++++-----
->>  drivers/clk/ingenic/x1830-cgu.c  | 83 
->> ++++++++++++++++++++--------------------
->>  3 files changed, 60 insertions(+), 55 deletions(-)
->>
->> diff --git a/drivers/clk/ingenic/jz4780-cgu.c 
->> b/drivers/clk/ingenic/jz4780-cgu.c
->> index dcca74e..1b61eaa 100644
->> --- a/drivers/clk/ingenic/jz4780-cgu.c
->> +++ b/drivers/clk/ingenic/jz4780-cgu.c
->> @@ -178,6 +178,7 @@ static int jz4780_otg_phy_set_rate(struct clk_hw 
->> *hw, unsigned long req_rate,
->>      writel(usbpcr1, cgu->base + CGU_REG_USBPCR1);
->>
->>      spin_unlock_irqrestore(&cgu->lock, flags);
->> +
->>      return 0;
->>  }
->>
->> @@ -188,6 +189,7 @@ static int jz4780_otg_phy_enable(struct clk_hw *hw)
->>
->>      writel(readl(reg_opcr) | OPCR_SPENDN0, reg_opcr);
->>      writel(readl(reg_usbpcr) & ~USBPCR_OTG_DISABLE & ~USBPCR_SIDDQ, 
->> reg_usbpcr);
->> +
->>      return 0;
->>  }
->>
->> @@ -215,9 +217,9 @@ static const struct clk_ops jz4780_otg_phy_ops = {
->>      .round_rate = jz4780_otg_phy_round_rate,
->>      .set_rate = jz4780_otg_phy_set_rate,
->>
->> -    .enable        = jz4780_otg_phy_enable,
->> -    .disable    = jz4780_otg_phy_disable,
->> -    .is_enabled    = jz4780_otg_phy_is_enabled,
->> +    .enable = jz4780_otg_phy_enable,
->> +    .disable = jz4780_otg_phy_disable,
->> +    .is_enabled = jz4780_otg_phy_is_enabled,
->>  };
->>
->>  static int jz4780_core1_enable(struct clk_hw *hw)
->> @@ -544,13 +546,13 @@ static const struct ingenic_cgu_clk_info 
->> jz4780_cgu_clocks[] = {
->>
->>      [JZ4780_CLK_EXCLK_DIV512] = {
->>          "exclk_div512", CGU_CLK_FIXDIV,
->> -        .parents = { JZ4780_CLK_EXCLK },
->> +        .parents = { JZ4780_CLK_EXCLK, -1, -1, -1 },
->
-> These -1 are not really needed since the clock doesn't have CGU_CLK_MUX.
->
->>          .fixdiv = { 512 },
->>      },
->>
->>      [JZ4780_CLK_RTC] = {
->>          "rtc_ercs", CGU_CLK_MUX | CGU_CLK_GATE,
->> -        .parents = { JZ4780_CLK_EXCLK_DIV512, JZ4780_CLK_RTCLK },
->> +        .parents = { JZ4780_CLK_EXCLK_DIV512, JZ4780_CLK_RTCLK, -1, 
->> -1 },
->>          .mux = { CGU_REG_OPCR, 2, 1},
->
-> This clock has CGU_CLK_MUX, but only one bit to change the setting, so 
-> only two parents possible; so again these -1 are not really needed.
->
+Note the USB DRD schema is supposed to work in conjunction with
+the USB peripheral/gadget and USB host controllers DT schemas.
 
-Sorry, I was misled by the writing in jz4740-cgu.c and jz4780-cgu.c, I 
-will fix it in the next version.
+Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Reviewed-by: Rob Herring <robh@kernel.org>
 
+---
 
-Thanks and best regards!
+Changelog v2:
+- Discard '|' in all the new properties, since we don't need to preserve
+  the text formatting.
+- Convert abbreviated form of the "maximum-speed" enum restriction into
+  the multi-lined version of the list.
+- Drop quotes from around the string constants.
 
+Changelog v4:
+- Redistribute the properties between generic ones, USB HCD-specific and
+  USB DRD-specific.
+- Discard the Rob'es Reviewed-by tag. Please review the patch one more time.
+---
+ .../devicetree/bindings/usb/generic.txt       | 57 --------------
+ .../devicetree/bindings/usb/usb-drd.yaml      | 77 +++++++++++++++++++
+ .../devicetree/bindings/usb/usb-hcd.yaml      |  5 ++
+ .../devicetree/bindings/usb/usb.yaml          | 22 ++++++
+ 4 files changed, 104 insertions(+), 57 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/usb/generic.txt
+ create mode 100644 Documentation/devicetree/bindings/usb/usb-drd.yaml
 
-> Cheers,
-> -Paul
->
->>      },
->>
->> diff --git a/drivers/clk/ingenic/x1000-cgu.c 
->> b/drivers/clk/ingenic/x1000-cgu.c
->> index d340bcd..fe2e274 100644
->> --- a/drivers/clk/ingenic/x1000-cgu.c
->> +++ b/drivers/clk/ingenic/x1000-cgu.c
->> @@ -126,6 +126,7 @@ static int x1000_otg_phy_set_rate(struct clk_hw 
->> *hw, unsigned long req_rate,
->>      writel(usbpcr1, cgu->base + CGU_REG_USBPCR1);
->>
->>      spin_unlock_irqrestore(&cgu->lock, flags);
->> +
->>      return 0;
->>  }
->>
->> @@ -136,6 +137,7 @@ static int x1000_usb_phy_enable(struct clk_hw *hw)
->>
->>      writel(readl(reg_opcr) | OPCR_SPENDN0, reg_opcr);
->>      writel(readl(reg_usbpcr) & ~USBPCR_OTG_DISABLE & ~USBPCR_SIDDQ, 
->> reg_usbpcr);
->> +
->>      return 0;
->>  }
->>
->> @@ -163,9 +165,9 @@ static const struct clk_ops x1000_otg_phy_ops = {
->>      .round_rate = x1000_otg_phy_round_rate,
->>      .set_rate = x1000_otg_phy_set_rate,
->>
->> -    .enable        = x1000_usb_phy_enable,
->> -    .disable    = x1000_usb_phy_disable,
->> -    .is_enabled    = x1000_usb_phy_is_enabled,
->> +    .enable = x1000_usb_phy_enable,
->> +    .disable = x1000_usb_phy_disable,
->> +    .is_enabled = x1000_usb_phy_is_enabled,
->>  };
->>
->>  static const s8 pll_od_encoding[8] = {
->> @@ -298,7 +300,7 @@ static const struct ingenic_cgu_clk_info 
->> x1000_cgu_clocks[] = {
->>
->>      [X1000_CLK_MAC] = {
->>          "mac", CGU_CLK_MUX | CGU_CLK_DIV | CGU_CLK_GATE,
->> -        .parents = { X1000_CLK_SCLKA, X1000_CLK_MPLL },
->> +        .parents = { X1000_CLK_SCLKA, X1000_CLK_MPLL, -1, -1 },
->>          .mux = { CGU_REG_MACCDR, 31, 1 },
->>          .div = { CGU_REG_MACCDR, 0, 1, 8, 29, 28, 27 },
->>          .gate = { CGU_REG_CLKGR, 25 },
->> @@ -306,7 +308,7 @@ static const struct ingenic_cgu_clk_info 
->> x1000_cgu_clocks[] = {
->>
->>      [X1000_CLK_LCD] = {
->>          "lcd", CGU_CLK_MUX | CGU_CLK_DIV | CGU_CLK_GATE,
->> -        .parents = { X1000_CLK_SCLKA, X1000_CLK_MPLL },
->> +        .parents = { X1000_CLK_SCLKA, X1000_CLK_MPLL, -1, -1 },
->>          .mux = { CGU_REG_LPCDR, 31, 1 },
->>          .div = { CGU_REG_LPCDR, 0, 1, 8, 28, 27, 26 },
->>          .gate = { CGU_REG_CLKGR, 23 },
->> @@ -314,7 +316,7 @@ static const struct ingenic_cgu_clk_info 
->> x1000_cgu_clocks[] = {
->>
->>      [X1000_CLK_MSCMUX] = {
->>          "msc_mux", CGU_CLK_MUX,
->> -        .parents = { X1000_CLK_SCLKA, X1000_CLK_MPLL},
->> +        .parents = { X1000_CLK_SCLKA, X1000_CLK_MPLL, -1, -1 },
->>          .mux = { CGU_REG_MSC0CDR, 31, 1 },
->>      },
->>
->> @@ -350,7 +352,7 @@ static const struct ingenic_cgu_clk_info 
->> x1000_cgu_clocks[] = {
->>
->>      [X1000_CLK_SSIPLL_DIV2] = {
->>          "ssi_pll_div2", CGU_CLK_FIXDIV,
->> -        .parents = { X1000_CLK_SSIPLL },
->> +        .parents = { X1000_CLK_SSIPLL, -1, -1, -1 },
->>          .fixdiv = { 2 },
->>      },
->>
->> @@ -369,13 +371,13 @@ static const struct ingenic_cgu_clk_info 
->> x1000_cgu_clocks[] = {
->>
->>      [X1000_CLK_EXCLK_DIV512] = {
->>          "exclk_div512", CGU_CLK_FIXDIV,
->> -        .parents = { X1000_CLK_EXCLK },
->> +        .parents = { X1000_CLK_EXCLK, -1, -1, -1 },
->>          .fixdiv = { 512 },
->>      },
->>
->>      [X1000_CLK_RTC] = {
->>          "rtc_ercs", CGU_CLK_MUX | CGU_CLK_GATE,
->> -        .parents = { X1000_CLK_EXCLK_DIV512, X1000_CLK_RTCLK },
->> +        .parents = { X1000_CLK_EXCLK_DIV512, X1000_CLK_RTCLK, -1, -1 },
->>          .mux = { CGU_REG_OPCR, 2, 1},
->>          .gate = { CGU_REG_CLKGR, 27 },
->>      },
->> diff --git a/drivers/clk/ingenic/x1830-cgu.c 
->> b/drivers/clk/ingenic/x1830-cgu.c
->> index e76e82c..4d6cca5 100644
->> --- a/drivers/clk/ingenic/x1830-cgu.c
->> +++ b/drivers/clk/ingenic/x1830-cgu.c
->> @@ -15,51 +15,51 @@
->>  #include "pm.h"
->>
->>  /* CGU register offsets */
->> -#define CGU_REG_CPCCR        0x00
->> -#define CGU_REG_CPPCR        0x0c
->> -#define CGU_REG_APLL        0x10
->> -#define CGU_REG_MPLL        0x14
->> -#define CGU_REG_CLKGR0        0x20
->> -#define CGU_REG_OPCR        0x24
->> -#define CGU_REG_CLKGR1        0x28
->> -#define CGU_REG_DDRCDR        0x2c
->> -#define CGU_REG_USBPCR        0x3c
->> -#define CGU_REG_USBRDT        0x40
->> -#define CGU_REG_USBVBFIL    0x44
->> -#define CGU_REG_USBPCR1        0x48
->> -#define CGU_REG_MACCDR        0x54
->> -#define CGU_REG_EPLL        0x58
->> -#define CGU_REG_I2SCDR        0x60
->> -#define CGU_REG_LPCDR        0x64
->> -#define CGU_REG_MSC0CDR        0x68
->> -#define CGU_REG_I2SCDR1        0x70
->> -#define CGU_REG_SSICDR        0x74
->> -#define CGU_REG_CIMCDR        0x7c
->> -#define CGU_REG_MSC1CDR        0xa4
->> -#define CGU_REG_CMP_INTR    0xb0
->> -#define CGU_REG_CMP_INTRE    0xb4
->> -#define CGU_REG_DRCG        0xd0
->> -#define CGU_REG_CPCSR        0xd4
->> -#define CGU_REG_VPLL        0xe0
->> -#define CGU_REG_MACPHYC        0xe8
->> +#define CGU_REG_CPCCR            0x00
->> +#define CGU_REG_CPPCR            0x0c
->> +#define CGU_REG_APLL            0x10
->> +#define CGU_REG_MPLL            0x14
->> +#define CGU_REG_CLKGR0            0x20
->> +#define CGU_REG_OPCR            0x24
->> +#define CGU_REG_CLKGR1            0x28
->> +#define CGU_REG_DDRCDR            0x2c
->> +#define CGU_REG_USBPCR            0x3c
->> +#define CGU_REG_USBRDT            0x40
->> +#define CGU_REG_USBVBFIL        0x44
->> +#define CGU_REG_USBPCR1            0x48
->> +#define CGU_REG_MACCDR            0x54
->> +#define CGU_REG_EPLL            0x58
->> +#define CGU_REG_I2SCDR            0x60
->> +#define CGU_REG_LPCDR            0x64
->> +#define CGU_REG_MSC0CDR            0x68
->> +#define CGU_REG_I2SCDR1            0x70
->> +#define CGU_REG_SSICDR            0x74
->> +#define CGU_REG_CIMCDR            0x7c
->> +#define CGU_REG_MSC1CDR            0xa4
->> +#define CGU_REG_CMP_INTR        0xb0
->> +#define CGU_REG_CMP_INTRE        0xb4
->> +#define CGU_REG_DRCG            0xd0
->> +#define CGU_REG_CPCSR            0xd4
->> +#define CGU_REG_VPLL            0xe0
->> +#define CGU_REG_MACPHYC            0xe8
->>
->>  /* bits within the OPCR register */
->> -#define OPCR_GATE_USBPHYCLK    BIT(23)
->> -#define OPCR_SPENDN0        BIT(7)
->> -#define OPCR_SPENDN1        BIT(6)
->> +#define OPCR_GATE_USBPHYCLK        BIT(23)
->> +#define OPCR_SPENDN0            BIT(7)
->> +#define OPCR_SPENDN1            BIT(6)
->>
->>  /* bits within the USBPCR register */
->> -#define USBPCR_SIDDQ        BIT(21)
->> -#define USBPCR_OTG_DISABLE    BIT(20)
->> +#define USBPCR_SIDDQ            BIT(21)
->> +#define USBPCR_OTG_DISABLE        BIT(20)
->>
->>  /* bits within the I2SCDR register */
->> -#define I2SCDR_I2PCS_SHIFT    30
->> -#define I2SCDR_I2PCS_MASK    (0x3 << I2SCDR_I2PCS_SHIFT)
->> +#define I2SCDR_I2PCS_SHIFT        30
->> +#define I2SCDR_I2PCS_MASK        (0x3 << I2SCDR_I2PCS_SHIFT)
->>  #define I2SCDR_I2SDIV_M_SHIFT    20
->>  #define I2SCDR_I2SDIV_M_MASK    (0x1ff << I2SCDR_I2SDIV_M_SHIFT)
->>  #define I2SCDR_I2SDIV_N_SHIFT    0
->>  #define I2SCDR_I2SDIV_N_MASK    (0xfffff << I2SCDR_I2SDIV_N_SHIFT)
->> -#define I2SCDR_CE_I2S        BIT(29)
->> +#define I2SCDR_CE_I2S            BIT(29)
->>
->>  static struct ingenic_cgu *cgu;
->>
->> @@ -70,6 +70,7 @@ static int x1830_usb_phy_enable(struct clk_hw *hw)
->>
->>      writel((readl(reg_opcr) | OPCR_SPENDN0) & ~OPCR_GATE_USBPHYCLK, 
->> reg_opcr);
->>      writel(readl(reg_usbpcr) & ~USBPCR_OTG_DISABLE & ~USBPCR_SIDDQ, 
->> reg_usbpcr);
->> +
->>      return 0;
->>  }
->>
->> @@ -93,9 +94,9 @@ static int x1830_usb_phy_is_enabled(struct clk_hw *hw)
->>  }
->>
->>  static const struct clk_ops x1830_otg_phy_ops = {
->> -    .enable        = x1830_usb_phy_enable,
->> -    .disable    = x1830_usb_phy_disable,
->> -    .is_enabled    = x1830_usb_phy_is_enabled,
->> +    .enable = x1830_usb_phy_enable,
->> +    .disable = x1830_usb_phy_disable,
->> +    .is_enabled = x1830_usb_phy_is_enabled,
->>  };
->>
->>  static u8 x1830_i2s_get_parent(struct clk_hw *hw)
->> @@ -486,7 +487,7 @@ static const struct ingenic_cgu_clk_info 
->> x1830_cgu_clocks[] = {
->>
->>      [X1830_CLK_SSIPLL_DIV2] = {
->>          "ssi_pll_div2", CGU_CLK_FIXDIV,
->> -        .parents = { X1830_CLK_SSIPLL },
->> +        .parents = { X1830_CLK_SSIPLL, -1, -1, -1 },
->>          .fixdiv = { 2 },
->>      },
->>
->> @@ -506,13 +507,13 @@ static const struct ingenic_cgu_clk_info 
->> x1830_cgu_clocks[] = {
->>
->>      [X1830_CLK_EXCLK_DIV512] = {
->>          "exclk_div512", CGU_CLK_FIXDIV,
->> -        .parents = { X1830_CLK_EXCLK },
->> +        .parents = { X1830_CLK_EXCLK, -1, -1, -1 },
->>          .fixdiv = { 512 },
->>      },
->>
->>      [X1830_CLK_RTC] = {
->>          "rtc_ercs", CGU_CLK_MUX | CGU_CLK_GATE,
->> -        .parents = { X1830_CLK_EXCLK_DIV512, X1830_CLK_RTCLK },
->> +        .parents = { X1830_CLK_EXCLK_DIV512, X1830_CLK_RTCLK, -1, -1 },
->>          .mux = { CGU_REG_OPCR, 2, 1},
->>          .gate = { CGU_REG_CLKGR0, 29 },
->>      },
->> -- 
->> 2.7.4
->>
->
+diff --git a/Documentation/devicetree/bindings/usb/generic.txt b/Documentation/devicetree/bindings/usb/generic.txt
+deleted file mode 100644
+index ba472e7aefc9..000000000000
+--- a/Documentation/devicetree/bindings/usb/generic.txt
++++ /dev/null
+@@ -1,57 +0,0 @@
+-Generic USB Properties
+-
+-Optional properties:
+- - maximum-speed: tells USB controllers we want to work up to a certain
+-			speed. Valid arguments are "super-speed-plus",
+-			"super-speed", "high-speed", "full-speed" and
+-			"low-speed". In case this isn't passed via DT, USB
+-			controllers should default to their maximum HW
+-			capability.
+- - dr_mode: tells Dual-Role USB controllers that we want to work on a
+-			particular mode. Valid arguments are "host",
+-			"peripheral" and "otg". In case this attribute isn't
+-			passed via DT, USB DRD controllers should default to
+-			OTG.
+- - phy_type: tells USB controllers that we want to configure the core to support
+-			a UTMI+ PHY with an 8- or 16-bit interface if UTMI+ is
+-			selected. Valid arguments are "utmi" and "utmi_wide".
+-			In case this isn't passed via DT, USB controllers should
+-			default to HW capability.
+- - otg-rev: tells usb driver the release number of the OTG and EH supplement
+-			with which the device and its descriptors are compliant,
+-			in binary-coded decimal (i.e. 2.0 is 0200H). This
+-			property is used if any real OTG features(HNP/SRP/ADP)
+-			is enabled, if ADP is required, otg-rev should be
+-			0x0200 or above.
+- - companion: phandle of a companion
+- - hnp-disable: tells OTG controllers we want to disable OTG HNP, normally HNP
+-			is the basic function of real OTG except you want it
+-			to be a srp-capable only B device.
+- - srp-disable: tells OTG controllers we want to disable OTG SRP, SRP is
+-			optional for OTG device.
+- - adp-disable: tells OTG controllers we want to disable OTG ADP, ADP is
+-			optional for OTG device.
+- - usb-role-switch: boolean, indicates that the device is capable of assigning
+-			the USB data role (USB host or USB device) for a given
+-			USB connector, such as Type-C, Type-B(micro).
+-			see connector/usb-connector.yaml.
+- - role-switch-default-mode: indicating if usb-role-switch is enabled, the
+-			device default operation mode of controller while usb
+-			role is USB_ROLE_NONE. Valid arguments are "host" and
+-			"peripheral". Defaults to "peripheral" if not
+-			specified.
+-
+-
+-This is an attribute to a USB controller such as:
+-
+-dwc3@4a030000 {
+-	compatible = "synopsys,dwc3";
+-	reg = <0x4a030000 0xcfff>;
+-	interrupts = <0 92 4>
+-	usb-phy = <&usb2_phy>, <&usb3,phy>;
+-	maximum-speed = "super-speed";
+-	dr_mode = "otg";
+-	phy_type = "utmi_wide";
+-	otg-rev = <0x0200>;
+-	adp-disable;
+-};
+diff --git a/Documentation/devicetree/bindings/usb/usb-drd.yaml b/Documentation/devicetree/bindings/usb/usb-drd.yaml
+new file mode 100644
+index 000000000000..f3a64c46dcd0
+--- /dev/null
++++ b/Documentation/devicetree/bindings/usb/usb-drd.yaml
+@@ -0,0 +1,77 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/usb/usb-drd.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Generic USB OTG Controller Device Tree Bindings
++
++maintainers:
++  - Greg Kroah-Hartman <gregkh@linuxfoundation.org>
++
++properties:
++  otg-rev:
++    description:
++      Tells usb driver the release number of the OTG and EH supplement with
++      which the device and its descriptors are compliant, in binary-coded
++      decimal (i.e. 2.0 is 0200H). This property is used if any real OTG
++      features (HNP/SRP/ADP) is enabled. If ADP is required, otg-rev should be
++      0x0200 or above.
++    $ref: /schemas/types.yaml#/definitions/uint32
++
++  dr_mode:
++    description:
++      Tells Dual-Role USB controllers that we want to work on a particular
++      mode. In case this attribute isn't passed via DT, USB DRD controllers
++      should default to OTG.
++    $ref: /schemas/types.yaml#/definitions/string
++    enum: [host, peripheral, otg]
++
++  hnp-disable:
++    description:
++      Tells OTG controllers we want to disable OTG HNP. Normally HNP is the
++      basic function of real OTG except you want it to be a srp-capable only B
++      device.
++    type: boolean
++
++  srp-disable:
++    description:
++      Tells OTG controllers we want to disable OTG SRP. SRP is optional for OTG
++      device.
++    type: boolean
++
++  adp-disable:
++    description:
++      Tells OTG controllers we want to disable OTG ADP. ADP is optional for OTG
++      device.
++    type: boolean
++
++  usb-role-switch:
++    description:
++      Indicates that the device is capable of assigning the USB data role
++      (USB host or USB device) for a given USB connector, such as Type-C,
++      Type-B(micro). See connector/usb-connector.yaml.
++
++  role-switch-default-mode:
++    description:
++      Indicates if usb-role-switch is enabled, the device default operation
++      mode of controller while usb role is USB_ROLE_NONE.
++    $ref: /schemas/types.yaml#/definitions/string
++    enum: [host, peripheral]
++    default: peripheral
++
++additionalProperties: true
++
++examples:
++  - |
++    usb@4a030000 {
++        compatible = "snps,dwc3";
++        reg = <0x4a030000 0xcfff>;
++        interrupts = <0 92 4>;
++        usb-phy = <&usb2_phy>, <&usb3_phy>;
++        maximum-speed = "super-speed";
++        dr_mode = "otg";
++        phy_type = "utmi_wide";
++        otg-rev = <0x0200>;
++        adp-disable;
++    };
+diff --git a/Documentation/devicetree/bindings/usb/usb-hcd.yaml b/Documentation/devicetree/bindings/usb/usb-hcd.yaml
+index 81f3ad1419d8..52cc84c400c0 100644
+--- a/Documentation/devicetree/bindings/usb/usb-hcd.yaml
++++ b/Documentation/devicetree/bindings/usb/usb-hcd.yaml
+@@ -12,6 +12,11 @@ maintainers:
+ allOf:
+   - $ref: usb.yaml#
+ 
++properties:
++  companion:
++    description: Phandle of a companion device
++    $ref: /schemas/types.yaml#/definitions/phandle
++
+ additionalProperties: true
+ 
+ examples:
+diff --git a/Documentation/devicetree/bindings/usb/usb.yaml b/Documentation/devicetree/bindings/usb/usb.yaml
+index 941ad59fbac5..991c02725e2b 100644
+--- a/Documentation/devicetree/bindings/usb/usb.yaml
++++ b/Documentation/devicetree/bindings/usb/usb.yaml
+@@ -24,6 +24,28 @@ properties:
+     description:
+       Name specifier for the USB PHY
+ 
++  phy_type:
++    description:
++      Tells USB controllers that we want to configure the core to support a
++      UTMI+ PHY with an 8- or 16-bit interface if UTMI+ is selected. In case
++      this isn't passed via DT, USB controllers should default to HW
++      capability.
++    $ref: /schemas/types.yaml#/definitions/string
++    enum: [utmi, utmi_wide]
++
++  maximum-speed:
++   description:
++     Tells USB controllers we want to work up to a certain speed. In case this
++     isn't passed via DT, USB controllers should default to their maximum HW
++     capability.
++   $ref: /schemas/types.yaml#/definitions/string
++   enum:
++     - low-speed
++     - full-speed
++     - high-speed
++     - super-speed
++     - super-speed-plus
++
+ additionalProperties: true
+ 
+ ...
+-- 
+2.29.2
+
