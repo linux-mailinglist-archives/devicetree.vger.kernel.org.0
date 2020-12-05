@@ -2,220 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 60AAD2CF7E6
-	for <lists+devicetree@lfdr.de>; Sat,  5 Dec 2020 01:18:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 20F212CF88F
+	for <lists+devicetree@lfdr.de>; Sat,  5 Dec 2020 02:22:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729490AbgLEARU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Dec 2020 19:17:20 -0500
-Received: from relay9-d.mail.gandi.net ([217.70.183.199]:49085 "EHLO
-        relay9-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727686AbgLEART (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Dec 2020 19:17:19 -0500
-X-Originating-IP: 86.194.74.19
-Received: from localhost (lfbn-lyo-1-997-19.w86-194.abo.wanadoo.fr [86.194.74.19])
-        (Authenticated sender: alexandre.belloni@bootlin.com)
-        by relay9-d.mail.gandi.net (Postfix) with ESMTPSA id 1C725FF804;
-        Sat,  5 Dec 2020 00:16:37 +0000 (UTC)
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>
-Subject: [PATCH 2/2] ASoC: add simple-mux
-Date:   Sat,  5 Dec 2020 01:15:08 +0100
-Message-Id: <20201205001508.346439-2-alexandre.belloni@bootlin.com>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20201205001508.346439-1-alexandre.belloni@bootlin.com>
-References: <20201205001508.346439-1-alexandre.belloni@bootlin.com>
+        id S1726133AbgLEBWP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Dec 2020 20:22:15 -0500
+Received: from mx0a-001b2d01.pphosted.com ([148.163.156.1]:64866 "EHLO
+        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1725300AbgLEBWP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Dec 2020 20:22:15 -0500
+Received: from pps.filterd (m0098393.ppops.net [127.0.0.1])
+        by mx0a-001b2d01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 0B50XVas000872;
+        Fri, 4 Dec 2020 20:20:40 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=references : from : to :
+ cc : subject : in-reply-to : date : message-id : mime-version :
+ content-type; s=pp1; bh=xNnZ/ZkntbjED8A3awgVAApqgSCj5zVZ3LoHd65+kEA=;
+ b=dlx58ryIncl/0bicYIpwkY7DRs1Uzoy5EGOn1XQtEigrPlfG5vFICpnicIRhQPoYKNro
+ LFueyisOnXsD6g2KYYCyi5YLyzenpCHWkqYFej5SGYfPCLApriMoaSCcgesARkWdeGn9
+ WY8QckvLz+ZhZOgq0futsGVj5R4Y0MCN2dnnfaUENY25xTDEzObqC7yVrG6TYg2T3Y7l
+ bIkjyB0tL4AZDnXjS3zqrSUKkSx3xGdumZE82Z1VcXL7PkuakcVGLE1IFFrndbjIjiJn
+ eQau1ec/Wmci2x27P1IHKLWeWbzWffHRAQbd9ALpPkq8UTDEiTPSFhXCVVtFYzNOHzLn Dw== 
+Received: from pps.reinject (localhost [127.0.0.1])
+        by mx0a-001b2d01.pphosted.com with ESMTP id 357yjc914v-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 04 Dec 2020 20:20:40 -0500
+Received: from m0098393.ppops.net (m0098393.ppops.net [127.0.0.1])
+        by pps.reinject (8.16.0.36/8.16.0.36) with SMTP id 0B50oe75061768;
+        Fri, 4 Dec 2020 20:20:40 -0500
+Received: from ppma02wdc.us.ibm.com (aa.5b.37a9.ip4.static.sl-reverse.com [169.55.91.170])
+        by mx0a-001b2d01.pphosted.com with ESMTP id 357yjc914a-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 04 Dec 2020 20:20:39 -0500
+Received: from pps.filterd (ppma02wdc.us.ibm.com [127.0.0.1])
+        by ppma02wdc.us.ibm.com (8.16.0.42/8.16.0.42) with SMTP id 0B51Fa1Q030816;
+        Sat, 5 Dec 2020 01:20:38 GMT
+Received: from b03cxnp08026.gho.boulder.ibm.com (b03cxnp08026.gho.boulder.ibm.com [9.17.130.18])
+        by ppma02wdc.us.ibm.com with ESMTP id 356cbf44j4-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Sat, 05 Dec 2020 01:20:38 +0000
+Received: from b03ledav005.gho.boulder.ibm.com (b03ledav005.gho.boulder.ibm.com [9.17.130.236])
+        by b03cxnp08026.gho.boulder.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 0B51Kb7C18547190
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Sat, 5 Dec 2020 01:20:37 GMT
+Received: from b03ledav005.gho.boulder.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 7A675BE054;
+        Sat,  5 Dec 2020 01:20:37 +0000 (GMT)
+Received: from b03ledav005.gho.boulder.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id D4125BE04F;
+        Sat,  5 Dec 2020 01:20:27 +0000 (GMT)
+Received: from manicouagan.localdomain (unknown [9.80.203.141])
+        by b03ledav005.gho.boulder.ibm.com (Postfix) with ESMTPS;
+        Sat,  5 Dec 2020 01:20:27 +0000 (GMT)
+References: <20201204195149.611-1-nramas@linux.microsoft.com>
+ <20201204195149.611-2-nramas@linux.microsoft.com>
+User-agent: mu4e 1.4.10; emacs 27.1
+From:   Thiago Jung Bauermann <bauerman@linux.ibm.com>
+To:     Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
+Cc:     zohar@linux.ibm.com, robh@kernel.org, gregkh@linuxfoundation.org,
+        james.morse@arm.com, catalin.marinas@arm.com, sashal@kernel.org,
+        will@kernel.org, mpe@ellerman.id.au, benh@kernel.crashing.org,
+        paulus@samba.org, robh+dt@kernel.org, frowand.list@gmail.com,
+        vincenzo.frascino@arm.com, mark.rutland@arm.com,
+        dmitry.kasatkin@gmail.com, jmorris@namei.org, serge@hallyn.com,
+        pasha.tatashin@soleen.com, allison@lohutok.net,
+        kstewart@linuxfoundation.org, takahiro.akashi@linaro.org,
+        tglx@linutronix.de, masahiroy@kernel.org, bhsharma@redhat.com,
+        mbrugger@suse.com, hsinyi@chromium.org, tao.li@vivo.com,
+        christophe.leroy@c-s.fr, linux-integrity@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        prsriva@linux.microsoft.com, balajib@linux.microsoft.com
+Subject: Re: [PATCH v10 1/8] powerpc: fix compiler warnings and errors
+In-reply-to: <20201204195149.611-2-nramas@linux.microsoft.com>
+Date:   Fri, 04 Dec 2020 22:20:24 -0300
+Message-ID: <87mtytoxpj.fsf@manicouagan.localdomain>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-TM-AS-GCONF: 00
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.312,18.0.737
+ definitions=2020-12-04_13:2020-12-04,2020-12-04 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 clxscore=1011
+ mlxscore=0 impostorscore=0 priorityscore=1501 suspectscore=0
+ mlxlogscore=776 lowpriorityscore=0 spamscore=0 bulkscore=0 adultscore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2009150000 definitions=main-2012050000
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a driver for simple mux driven by gpios. It currently only supports one
-gpio, muxing one of two inputs to a single output.
 
-Signed-off-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
----
- sound/soc/codecs/Kconfig      |   5 ++
- sound/soc/codecs/Makefile     |   4 ++
- sound/soc/codecs/simple-mux.c | 124 ++++++++++++++++++++++++++++++++++
- 3 files changed, 133 insertions(+)
- create mode 100644 sound/soc/codecs/simple-mux.c
+Lakshmi Ramasubramanian <nramas@linux.microsoft.com> writes:
 
-diff --git a/sound/soc/codecs/Kconfig b/sound/soc/codecs/Kconfig
-index 34c6dd04b85a..3847e490f795 100644
---- a/sound/soc/codecs/Kconfig
-+++ b/sound/soc/codecs/Kconfig
-@@ -181,6 +181,7 @@ config SND_SOC_ALL_CODECS
- 	imply SND_SOC_SGTL5000
- 	imply SND_SOC_SI476X
- 	imply SND_SOC_SIMPLE_AMPLIFIER
-+	imply SND_SOC_SIMPLE_MUX
- 	imply SND_SOC_SIRF_AUDIO_CODEC
- 	imply SND_SOC_SPDIF
- 	imply SND_SOC_SSM2305
-@@ -1240,6 +1241,10 @@ config SND_SOC_SIMPLE_AMPLIFIER
- 	tristate "Simple Audio Amplifier"
- 	select GPIOLIB
- 
-+config SND_SOC_SIMPLE_MUX
-+	tristate "Simple Audio Mux"
-+	select GPIOLIB
-+
- config SND_SOC_SIRF_AUDIO_CODEC
- 	tristate "SiRF SoC internal audio codec"
- 	select REGMAP_MMIO
-diff --git a/sound/soc/codecs/Makefile b/sound/soc/codecs/Makefile
-index 11ce98c25d6c..90f1a2b7ade0 100644
---- a/sound/soc/codecs/Makefile
-+++ b/sound/soc/codecs/Makefile
-@@ -305,6 +305,8 @@ snd-soc-tpa6130a2-objs := tpa6130a2.o
- snd-soc-tas2552-objs := tas2552.o
- snd-soc-tas2562-objs := tas2562.o
- snd-soc-tas2764-objs := tas2764.o
-+# Mux
-+snd-soc-simple-mux-objs := simple-mux.o
- 
- obj-$(CONFIG_SND_SOC_88PM860X)	+= snd-soc-88pm860x.o
- obj-$(CONFIG_SND_SOC_AB8500_CODEC)	+= snd-soc-ab8500-codec.o
-@@ -613,3 +615,5 @@ obj-$(CONFIG_SND_SOC_MAX9877)	+= snd-soc-max9877.o
- obj-$(CONFIG_SND_SOC_MAX98504)	+= snd-soc-max98504.o
- obj-$(CONFIG_SND_SOC_SIMPLE_AMPLIFIER)	+= snd-soc-simple-amplifier.o
- obj-$(CONFIG_SND_SOC_TPA6130A2)	+= snd-soc-tpa6130a2.o
-+# Mux
-+obj-$(CONFIG_SND_SOC_SIMPLE_MUX)	+= snd-soc-simple-mux.o
-diff --git a/sound/soc/codecs/simple-mux.c b/sound/soc/codecs/simple-mux.c
-new file mode 100644
-index 000000000000..e0a09dadfa7c
---- /dev/null
-+++ b/sound/soc/codecs/simple-mux.c
-@@ -0,0 +1,124 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (c) 2020 Bootlin SA
-+ * Author: Alexandre Belloni <alexandre.belloni@bootlin.com>
-+ */
-+
-+#include <linux/gpio/consumer.h>
-+#include <linux/module.h>
-+#include <linux/regulator/consumer.h>
-+#include <sound/soc.h>
-+
-+struct simple_mux {
-+	struct gpio_desc *gpiod_mux;
-+	unsigned int mux;
-+};
-+
-+static const char * const simple_mux_texts[] = {
-+	"Input 1", "Input 2"
-+};
-+
-+static SOC_ENUM_SINGLE_EXT_DECL(simple_mux_enum, simple_mux_texts);
-+
-+static int simple_mux_control_get(struct snd_kcontrol *kcontrol,
-+				  struct snd_ctl_elem_value *ucontrol)
-+{
-+	struct snd_soc_dapm_context *dapm = snd_soc_dapm_kcontrol_dapm(kcontrol);
-+	struct snd_soc_component *c = snd_soc_dapm_to_component(dapm);
-+	struct simple_mux *priv = snd_soc_component_get_drvdata(c);
-+
-+	ucontrol->value.enumerated.item[0] = priv->mux;
-+
-+	return 0;
-+}
-+
-+static int simple_mux_control_put(struct snd_kcontrol *kcontrol,
-+				  struct snd_ctl_elem_value *ucontrol)
-+{
-+	struct snd_soc_dapm_context *dapm = snd_soc_dapm_kcontrol_dapm(kcontrol);
-+	struct soc_enum *e = (struct soc_enum *)kcontrol->private_value;
-+	struct snd_soc_component *c = snd_soc_dapm_to_component(dapm);
-+	struct simple_mux *priv = snd_soc_component_get_drvdata(c);
-+
-+	if (ucontrol->value.enumerated.item[0] > e->items)
-+		return -EINVAL;
-+
-+	if (priv->mux == ucontrol->value.enumerated.item[0])
-+		return 0;
-+
-+	priv->mux = ucontrol->value.enumerated.item[0];
-+
-+	gpiod_set_value_cansleep(priv->gpiod_mux, priv->mux);
-+
-+	return snd_soc_dapm_mux_update_power(dapm, kcontrol,
-+					     ucontrol->value.enumerated.item[0],
-+					     e, NULL);
-+}
-+
-+static const struct snd_kcontrol_new simple_mux_mux =
-+	SOC_DAPM_ENUM_EXT("Muxer", simple_mux_enum, simple_mux_control_get, simple_mux_control_put);
-+
-+static const struct snd_soc_dapm_widget simple_mux_dapm_widgets[] = {
-+	SND_SOC_DAPM_INPUT("IN1"),
-+	SND_SOC_DAPM_INPUT("IN2"),
-+	SND_SOC_DAPM_MUX("MUX", SND_SOC_NOPM, 0, 0, &simple_mux_mux),
-+	SND_SOC_DAPM_OUTPUT("OUT"),
-+};
-+
-+static const struct snd_soc_dapm_route simple_mux_dapm_routes[] = {
-+	{ "OUT", NULL, "MUX" },
-+	{ "MUX", "Input 1", "IN1" },
-+	{ "MUX", "Input 2", "IN2" },
-+};
-+
-+static const struct snd_soc_component_driver simple_mux_component_driver = {
-+	.dapm_widgets		= simple_mux_dapm_widgets,
-+	.num_dapm_widgets	= ARRAY_SIZE(simple_mux_dapm_widgets),
-+	.dapm_routes		= simple_mux_dapm_routes,
-+	.num_dapm_routes	= ARRAY_SIZE(simple_mux_dapm_routes),
-+};
-+
-+static int simple_mux_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct simple_mux *priv;
-+	int err;
-+
-+	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	dev_set_drvdata(dev, priv);
-+
-+	priv->gpiod_mux = devm_gpiod_get(dev, "mux", GPIOD_OUT_LOW);
-+	if (IS_ERR(priv->gpiod_mux)) {
-+		err = PTR_ERR(priv->gpiod_mux);
-+		if (err != -EPROBE_DEFER)
-+			dev_err(dev, "Failed to get 'mux' gpio: %d", err);
-+		return err;
-+	}
-+
-+	return devm_snd_soc_register_component(dev, &simple_mux_component_driver, NULL, 0);
-+}
-+
-+#ifdef CONFIG_OF
-+static const struct of_device_id simple_mux_ids[] = {
-+	{ .compatible = "simple-audio-mux", },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, simple_mux_ids);
-+#endif
-+
-+static struct platform_driver simple_mux_driver = {
-+	.driver = {
-+		.name = "simple-mux",
-+		.of_match_table = of_match_ptr(simple_mux_ids),
-+	},
-+	.probe = simple_mux_probe,
-+};
-+
-+module_platform_driver(simple_mux_driver);
-+
-+MODULE_DESCRIPTION("ASoC Simple Audio Mux driver");
-+MODULE_AUTHOR("Alexandre Belloni <alexandre.belloni@bootlin.com>");
-+MODULE_LICENSE("GPL");
+> The function prototype for the functions defined in ima.c for powerpc
+> are given in the header file ima.h. But this header file is not
+> included in ima.c resulting in compilation errors such as given below.
+>
+> arch/powerpc/kexec/ima.c:56:5: error: no previous prototype for 'ima_get_kexec_buffer' [-Werror=missing-prototypes]
+>    56 | int ima_get_kexec_buffer(void **addr, size_t *size)
+>       |     ^~~~~~~~~~~~~~~~~~~~
+>
+> The function parameters for remove_ima_buffer() and
+> arch_ima_add_kexec_buffer() are not described in the function header
+> resulting in warnings such as given below.
+>
+> arch/powerpc/kexec/ima.c:111: warning: Function parameter or member 'fdt' not described in 'remove_ima_buffer'
+>
+> Include ima.h in ima.c for powerpc. Describe the function parameters for
+> remove_ima_buffer() and arch_ima_add_kexec_buffer().
+>
+> Co-developed-by: Prakhar Srivastava <prsriva@linux.microsoft.com>
+> Signed-off-by: Prakhar Srivastava <prsriva@linux.microsoft.com>
+> Signed-off-by: Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
+> Reviewed-by: Mimi Zohar <zohar@linux.ibm.com>
+
+These warnings showed up when using `make W=1`, and this patch fixes
+them. Thanks!
+
+Reviewed-by: Thiago Jung Bauermann <bauerman@linux.ibm.com>
+
+
 -- 
-2.28.0
-
+Thiago Jung Bauermann
+IBM Linux Technology Center
