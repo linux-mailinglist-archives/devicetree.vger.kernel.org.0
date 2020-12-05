@@ -2,96 +2,253 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C19262CFD97
-	for <lists+devicetree@lfdr.de>; Sat,  5 Dec 2020 19:53:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 758DA2CFE06
+	for <lists+devicetree@lfdr.de>; Sat,  5 Dec 2020 20:12:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726602AbgLESjk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Dec 2020 13:39:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43666 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726241AbgLESja (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Dec 2020 13:39:30 -0500
-X-Greylist: delayed 117 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sat, 05 Dec 2020 10:38:43 PST
-Received: from mxf2.seznam.cz (mxf2.seznam.cz [IPv6:2a02:598:2::123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52E54C061A4F;
-        Sat,  5 Dec 2020 10:38:43 -0800 (PST)
-Received: from email.seznam.cz
-        by email-smtpc27a.ng.seznam.cz (email-smtpc27a.ng.seznam.cz [10.23.18.38])
-        id 7f888d572486d93e7e214109;
-        Sat, 05 Dec 2020 19:38:39 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=seznam.cz; s=beta;
-        t=1607193519; bh=ovobX8sOi5Y+dScdZ8OoMIVuBxTsi+gvOe2YjIqDOH0=;
-        h=Received:From:To:Cc:Subject:Date:Message-Id:X-Mailer:In-Reply-To:
-         References:MIME-Version:Content-Transfer-Encoding;
-        b=NHRElxwC6s4DBWOAcMfgaQkOlNaYcI+9kfE084S0YxabwEmZys3EArXkNn4X0ZIJ/
-         ZpMeo1ge540Yl84Y/DMJhHoQZsodsScVDX9a6/Y+vyiGZ1AteN491+2pQ64gR+oyyI
-         35/wzBP+LEkhZwIDBtZJZu2+qDBwlB3+cJm3hnpg=
-Received: from localhost.localdomain (ip-228-128.dynamic.ccinternet.cz [212.69.128.228])
-        by email-relay3.ng.seznam.cz (Seznam SMTPD 1.3.122) with ESMTP;
-        Sat, 05 Dec 2020 19:36:23 +0100 (CET)  
-From:   michael.srba@seznam.cz
-To:     Dave Stevenson <dave.stevenson@raspberrypi.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        id S1726171AbgLES7e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 5 Dec 2020 13:59:34 -0500
+Received: from ns2.baikalelectronics.com ([94.125.187.42]:53426 "EHLO
+        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1725969AbgLES7d (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Dec 2020 13:59:33 -0500
+From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
+To:     Mathias Nyman <mathias.nyman@intel.com>,
+        Felipe Balbi <balbi@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>
-Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-renesas-soc@vger.kernel.org,
-        Michael Srba <Michael.Srba@seznam.cz>
-Subject: [PATCH 3/3] arm64: dts: update device trees to specify clock-frequency in imx219 node
-Date:   Sat,  5 Dec 2020 19:33:55 +0100
-Message-Id: <20201205183355.6488-3-michael.srba@seznam.cz>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20201205183355.6488-1-michael.srba@seznam.cz>
-References: <20201205183355.6488-1-michael.srba@seznam.cz>
+        Chunfeng Yun <chunfeng.yun@mediatek.com>
+CC:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Manu Gautam <mgautam@codeaurora.org>,
+        Roger Quadros <rogerq@ti.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Ahmad Zainie <wan.ahmad.zainie.wan.mohamad@intel.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-snps-arc@lists.infradead.org>, <linux-mips@vger.kernel.org>,
+        <linuxppc-dev@lists.ozlabs.org>, <linux-usb@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH v5 07/19] dt-bindings: usb: Convert xHCI bindings to DT schema
+Date:   Sat, 5 Dec 2020 18:24:14 +0300
+Message-ID: <20201205152427.29537-8-Sergey.Semin@baikalelectronics.ru>
+In-Reply-To: <20201205152427.29537-1-Sergey.Semin@baikalelectronics.ru>
+References: <20201205152427.29537-1-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Michael Srba <Michael.Srba@seznam.cz>
+Currently the DT bindings of Generic xHCI Controllers are described by
+means of the legacy text file. Since such format is deprecated in favor of
+the DT schema, let's convert the Generic xHCI Controllers bindings file to
+the corresponding yaml files. There will be two of them: a DT schema for
+the xHCI controllers on a generic platform and a DT schema validating a
+generic xHCI controllers properties. The later will be used to validate
+the xHCI controllers, which aside from some vendor-specific features
+support the basic xHCI functionality.
 
-This patch adds the clock-frequency property to all device trees that use
-the imx219 binding, with the value of exactly 24Mhz which was previously
-implicitly assumed.
+An xHCI-compatible DT node shall support the standard USB HCD properties
+and custom ones like: usb2-lpm-disable, usb3-lpm-capable,
+quirk-broken-port-ped and imod-interval-ns. In addition if a generic xHCI
+controller is being validated against the DT schema it is also supposed to
+be equipped with mandatory compatible string, single registers range,
+single interrupts source, and is supposed to optionally contain up to two
+reference clocks for the controller core and CSRs.
 
-Signed-off-by: Michael Srba <Michael.Srba@seznam.cz>
+Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Reviewed-by: Rob Herring <robh@kernel.org>
+
 ---
- arch/arm64/boot/dts/renesas/aistarvision-mipi-adapter-2.1.dtsi | 1 +
- arch/arm64/boot/dts/renesas/r8a774c0-ek874-mipi-2.1.dts        | 1 +
- 2 files changed, 2 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/renesas/aistarvision-mipi-adapter-2.1.dtsi b/arch/arm64/boot/dts/renesas/aistarvision-mipi-adapter-2.1.dtsi
-index dac6ff49020f..986c6c1f7312 100644
---- a/arch/arm64/boot/dts/renesas/aistarvision-mipi-adapter-2.1.dtsi
-+++ b/arch/arm64/boot/dts/renesas/aistarvision-mipi-adapter-2.1.dtsi
-@@ -82,6 +82,7 @@ imx219: imx219@10 {
- 		compatible = "sony,imx219";
- 		reg = <0x10>;
- 		clocks = <&osc25250_clk>;
-+		clock-frequency = <24000000>;
- 		VANA-supply = <&imx219_vana_2v8>;
- 		VDIG-supply = <&imx219_vdig_1v8>;
- 		VDDL-supply = <&imx219_vddl_1v2>;
-diff --git a/arch/arm64/boot/dts/renesas/r8a774c0-ek874-mipi-2.1.dts b/arch/arm64/boot/dts/renesas/r8a774c0-ek874-mipi-2.1.dts
-index f0829e905506..db4b801b17b5 100644
---- a/arch/arm64/boot/dts/renesas/r8a774c0-ek874-mipi-2.1.dts
-+++ b/arch/arm64/boot/dts/renesas/r8a774c0-ek874-mipi-2.1.dts
-@@ -59,6 +59,7 @@ &imx219 {
- 	port {
- 		imx219_ep: endpoint {
- 			clock-lanes = <0>;
-+			clock-frequency = <24000000>;
- 			data-lanes = <1 2>;
- 			link-frequencies = /bits/ 64 <456000000>;
- 			/* uncomment remote-endpoint property to tie imx219 to
+Changelog v2:
+- Add explicit "additionalProperties: true" to the usb-xhci.yaml schema,
+  since additionalProperties/unevaluatedProperties are going to be mandary
+  for each binding.
+---
+ .../devicetree/bindings/usb/generic-xhci.yaml | 63 +++++++++++++++++++
+ .../devicetree/bindings/usb/usb-xhci.txt      | 41 ------------
+ .../devicetree/bindings/usb/usb-xhci.yaml     | 42 +++++++++++++
+ 3 files changed, 105 insertions(+), 41 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/usb/generic-xhci.yaml
+ delete mode 100644 Documentation/devicetree/bindings/usb/usb-xhci.txt
+ create mode 100644 Documentation/devicetree/bindings/usb/usb-xhci.yaml
+
+diff --git a/Documentation/devicetree/bindings/usb/generic-xhci.yaml b/Documentation/devicetree/bindings/usb/generic-xhci.yaml
+new file mode 100644
+index 000000000000..1ea1d49a8175
+--- /dev/null
++++ b/Documentation/devicetree/bindings/usb/generic-xhci.yaml
+@@ -0,0 +1,63 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/usb/generic-xhci.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: USB xHCI Controller Device Tree Bindings
++
++maintainers:
++  - Mathias Nyman <mathias.nyman@intel.com>
++
++allOf:
++  - $ref: "usb-xhci.yaml#"
++
++properties:
++  compatible:
++    oneOf:
++      - description: Generic xHCI device
++        const: generic-xhci
++      - description: Armada 37xx/375/38x/8k SoCs
++        items:
++          - enum:
++              - marvell,armada3700-xhci
++              - marvell,armada-375-xhci
++              - marvell,armada-380-xhci
++              - marvell,armada-8k-xhci
++          - const: generic-xhci
++      - description: Broadcom STB SoCs with xHCI
++        const: brcm,bcm7445-xhci
++      - description: Generic xHCI device
++        const: xhci-platform
++        deprecated: true
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    minItems: 1
++    maxItems: 2
++
++  clock-names:
++    minItems: 1
++    items:
++      - const: core
++      - const: reg
++
++unevaluatedProperties: false
++
++required:
++  - compatible
++  - reg
++  - interrupts
++
++examples:
++  - |
++    usb@f0931000 {
++      compatible = "generic-xhci";
++      reg = <0xf0931000 0x8c8>;
++      interrupts = <0x0 0x4e 0x0>;
++    };
+diff --git a/Documentation/devicetree/bindings/usb/usb-xhci.txt b/Documentation/devicetree/bindings/usb/usb-xhci.txt
+deleted file mode 100644
+index 0c5cff84a969..000000000000
+--- a/Documentation/devicetree/bindings/usb/usb-xhci.txt
++++ /dev/null
+@@ -1,41 +0,0 @@
+-USB xHCI controllers
+-
+-Required properties:
+-  - compatible: should be one or more of
+-
+-    - "generic-xhci" for generic XHCI device
+-    - "marvell,armada3700-xhci" for Armada 37xx SoCs
+-    - "marvell,armada-375-xhci" for Armada 375 SoCs
+-    - "marvell,armada-380-xhci" for Armada 38x SoCs
+-    - "brcm,bcm7445-xhci" for Broadcom STB SoCs with XHCI
+-    - "xhci-platform" (deprecated)
+-
+-    When compatible with the generic version, nodes must list the
+-    SoC-specific version corresponding to the platform first
+-    followed by the generic version.
+-
+-  - reg: should contain address and length of the standard XHCI
+-    register set for the device.
+-  - interrupts: one XHCI interrupt should be described here.
+-
+-Optional properties:
+-  - clocks: reference to the clocks
+-  - clock-names: mandatory if there is a second clock, in this case
+-    the name must be "core" for the first clock and "reg" for the
+-    second one
+-  - usb2-lpm-disable: indicate if we don't want to enable USB2 HW LPM
+-  - usb3-lpm-capable: determines if platform is USB3 LPM capable
+-  - quirk-broken-port-ped: set if the controller has broken port disable mechanism
+-  - imod-interval-ns: default interrupt moderation interval is 5000ns
+-  - phys : see usb-hcd.yaml in the current directory
+-
+-additionally the properties from usb-hcd.yaml (in the current directory) are
+-supported.
+-
+-
+-Example:
+-	usb@f0931000 {
+-		compatible = "generic-xhci";
+-		reg = <0xf0931000 0x8c8>;
+-		interrupts = <0x0 0x4e 0x0>;
+-	};
+diff --git a/Documentation/devicetree/bindings/usb/usb-xhci.yaml b/Documentation/devicetree/bindings/usb/usb-xhci.yaml
+new file mode 100644
+index 000000000000..965f87fef702
+--- /dev/null
++++ b/Documentation/devicetree/bindings/usb/usb-xhci.yaml
+@@ -0,0 +1,42 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/usb/usb-xhci.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Generic USB xHCI Controller Device Tree Bindings
++
++maintainers:
++  - Mathias Nyman <mathias.nyman@intel.com>
++
++allOf:
++  - $ref: "usb-hcd.yaml#"
++
++properties:
++  usb2-lpm-disable:
++    description: Indicates if we don't want to enable USB2 HW LPM
++    type: boolean
++
++  usb3-lpm-capable:
++    description: Determines if platform is USB3 LPM capable
++    type: boolean
++
++  quirk-broken-port-ped:
++    description: Set if the controller has broken port disable mechanism
++    type: boolean
++
++  imod-interval-ns:
++    description: Interrupt moderation interval
++    default: 5000
++
++additionalProperties: true
++
++examples:
++  - |
++    usb@f0930000 {
++      compatible = "generic-xhci";
++      reg = <0xf0930000 0x8c8>;
++      interrupts = <0x0 0x4e 0x0>;
++      usb2-lpm-disable;
++      usb3-lpm-capable;
++    };
 -- 
 2.29.2
 
