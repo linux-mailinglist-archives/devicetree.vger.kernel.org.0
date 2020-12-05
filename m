@@ -2,172 +2,209 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 634E22CFF0F
-	for <lists+devicetree@lfdr.de>; Sat,  5 Dec 2020 22:06:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A854B2CFF4D
+	for <lists+devicetree@lfdr.de>; Sat,  5 Dec 2020 22:40:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725601AbgLEVGQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Dec 2020 16:06:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37930 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725270AbgLEVGP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Dec 2020 16:06:15 -0500
-Received: from mail-lj1-x242.google.com (mail-lj1-x242.google.com [IPv6:2a00:1450:4864:20::242])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B327CC0613D1
-        for <devicetree@vger.kernel.org>; Sat,  5 Dec 2020 13:05:34 -0800 (PST)
-Received: by mail-lj1-x242.google.com with SMTP id o24so10683077ljj.6
-        for <devicetree@vger.kernel.org>; Sat, 05 Dec 2020 13:05:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=l7PcuRvH2lvNTCeViNhB8nA3QkFXJkV9Gl2IRDNWkAw=;
-        b=VKbz9r/11ppxewhAL3MRcb/GtaNpPtPYglYTdQDNmV0TCXIFdrgcgMtkArIqGTjpK7
-         UejGaSzbAOJ2VsO+HniC52RRbh3zRcocpAwHidbbQL+lV4MhGXb21C5vgNi7NbjWhihv
-         RKpFyCje/tVLzFokQhPrO3m7BfSWIMANQusS6nsfGqZkdfo5fF5ruIq5Yv8a4TDAJmx3
-         L9d1POmHfSKtCXYfWHc8XBxvBoLAJ+lvUQOVFOlYDR4146NiO5CIFUUI3FU/jTjV8AIF
-         k5pBy0Z+4wbfCFxYZXA30GpXUXDLRZzyQ8kiqdL4kW9dfMHcc0gf9wvq7mEuMlxkjLN9
-         kSfg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=l7PcuRvH2lvNTCeViNhB8nA3QkFXJkV9Gl2IRDNWkAw=;
-        b=nsWY8YwFhMiLHXJshCH5zezsxznxvbaVaX8DlRwiy3LKFzsCmFhgDMzt2q0n9Jatpk
-         cgL7fVn6Zbj28k0pUCsbmIKzigvxjgJkTK2Jcb4B+gBhH9aHWdfl0ml49ORso/Aje7rC
-         fgnxWxuO/c7qSxgbfOG7NWf5+LLQM0/VBJ65zQ1u8n4RtGxtpv0dPkn5Q2OEEsVXkqWm
-         BiovhxhrT33BC/ejm0VscFa3/lQcXDYMuls/MHog7tzwH4U/H+LYYyUBgPMo0wEcFtnh
-         izDXVAxIbqR0iWtQcz0RZAChzmGjy9re8CUwcZll1CUeL+9F3dH/G39/ZWgRI8kCF8+6
-         D4gQ==
-X-Gm-Message-State: AOAM530MAPz53SX/wisvOmaK4SkZEGdAwA9bW3US10CysOyE40Xrwt4z
-        9gisS7d0erHp/H/vXlKXwuCPHQ==
-X-Google-Smtp-Source: ABdhPJxUfR3PGDS+RKxcbacmYSpIPDJpurEtbRQcNlhGoXkpPQ40eJomWsVIVOXgu0j4y+sfskWZFw==
-X-Received: by 2002:a2e:720c:: with SMTP id n12mr6257982ljc.424.1607202333043;
-        Sat, 05 Dec 2020 13:05:33 -0800 (PST)
-Received: from [192.168.0.150] ([94.25.229.141])
-        by smtp.gmail.com with ESMTPSA id j27sm146451lfm.178.2020.12.05.13.05.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 05 Dec 2020 13:05:32 -0800 (PST)
-Subject: Re: [PATCH v10 00/15] qcom: pm8150: add support for thermal
- monitoring
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Hartmut Knaack <knaack.h@gmx.de>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Jishnu Prakash <jprakash@qti.qualcomm.com>
-References: <20201204025509.1075506-1-dmitry.baryshkov@linaro.org>
- <20201205170830.4d56ecb7@archlinux>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Message-ID: <4de94396-54c7-e741-b288-3a3868515f7b@linaro.org>
-Date:   Sun, 6 Dec 2020 00:05:29 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.5.0
+        id S1726166AbgLEViR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 5 Dec 2020 16:38:17 -0500
+Received: from mx0b-001b2d01.pphosted.com ([148.163.158.5]:3166 "EHLO
+        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1725933AbgLEViR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Dec 2020 16:38:17 -0500
+Received: from pps.filterd (m0098414.ppops.net [127.0.0.1])
+        by mx0b-001b2d01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 0B5LWPjg021605;
+        Sat, 5 Dec 2020 16:36:58 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=references : from : to :
+ cc : subject : in-reply-to : date : message-id : mime-version :
+ content-type; s=pp1; bh=vXk0Ry8r0udMrQMw9qlr3RrPhTQPkuTMBd5GSYiIIhA=;
+ b=W1MV6cpLZMHOXBiJJI1o7Vld82fJFn4u4tg8sa9F+5v6mkPk6BeDjB4KgO7dNIGpt1K2
+ 8F2HGrG+77XMhw/R4+Zj73MEvbhbf2qG21VPeLMo2U1myTzVt5u2WpsHVbPy2FTN2eJC
+ hpiUT4LuYjXwtl3XHi+i9HzJPtWGCeLZqEDdfplLSV31+dnANTW7SA6xOmGPIODHv9b0
+ nU7TPtTMW1mCBzgW9CVqT/lRxo37P6E0MYhQkm42u/S9u7Esl8DNzjKW75A2lkyAEVn6
+ p8YbJBccr9PsRkftxPcadOkb6B6opbBqyJOQG9RHylCO6xw/B548fGf5OxaJXaXSNP3R pg== 
+Received: from pps.reinject (localhost [127.0.0.1])
+        by mx0b-001b2d01.pphosted.com with ESMTP id 35877j30ue-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Sat, 05 Dec 2020 16:36:57 -0500
+Received: from m0098414.ppops.net (m0098414.ppops.net [127.0.0.1])
+        by pps.reinject (8.16.0.36/8.16.0.36) with SMTP id 0B5LYoku028911;
+        Sat, 5 Dec 2020 16:36:57 -0500
+Received: from ppma02wdc.us.ibm.com (aa.5b.37a9.ip4.static.sl-reverse.com [169.55.91.170])
+        by mx0b-001b2d01.pphosted.com with ESMTP id 35877j30u5-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Sat, 05 Dec 2020 16:36:57 -0500
+Received: from pps.filterd (ppma02wdc.us.ibm.com [127.0.0.1])
+        by ppma02wdc.us.ibm.com (8.16.0.42/8.16.0.42) with SMTP id 0B5Latw5031067;
+        Sat, 5 Dec 2020 21:36:56 GMT
+Received: from b01cxnp22036.gho.pok.ibm.com (b01cxnp22036.gho.pok.ibm.com [9.57.198.26])
+        by ppma02wdc.us.ibm.com with ESMTP id 3581u8mqsf-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Sat, 05 Dec 2020 21:36:56 +0000
+Received: from b01ledav006.gho.pok.ibm.com (b01ledav006.gho.pok.ibm.com [9.57.199.111])
+        by b01cxnp22036.gho.pok.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 0B5Late039387620
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Sat, 5 Dec 2020 21:36:55 GMT
+Received: from b01ledav006.gho.pok.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 953FEAC05B;
+        Sat,  5 Dec 2020 21:36:55 +0000 (GMT)
+Received: from b01ledav006.gho.pok.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 8B8EDAC059;
+        Sat,  5 Dec 2020 21:36:48 +0000 (GMT)
+Received: from manicouagan.localdomain (unknown [9.85.177.236])
+        by b01ledav006.gho.pok.ibm.com (Postfix) with ESMTPS;
+        Sat,  5 Dec 2020 21:36:48 +0000 (GMT)
+References: <20201204195149.611-1-nramas@linux.microsoft.com>
+ <20201204195149.611-8-nramas@linux.microsoft.com>
+User-agent: mu4e 1.4.10; emacs 27.1
+From:   Thiago Jung Bauermann <bauerman@linux.ibm.com>
+To:     Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
+Cc:     zohar@linux.ibm.com, robh@kernel.org, gregkh@linuxfoundation.org,
+        james.morse@arm.com, catalin.marinas@arm.com, sashal@kernel.org,
+        will@kernel.org, mpe@ellerman.id.au, benh@kernel.crashing.org,
+        paulus@samba.org, robh+dt@kernel.org, frowand.list@gmail.com,
+        vincenzo.frascino@arm.com, mark.rutland@arm.com,
+        dmitry.kasatkin@gmail.com, jmorris@namei.org, serge@hallyn.com,
+        pasha.tatashin@soleen.com, allison@lohutok.net,
+        kstewart@linuxfoundation.org, takahiro.akashi@linaro.org,
+        tglx@linutronix.de, masahiroy@kernel.org, bhsharma@redhat.com,
+        mbrugger@suse.com, hsinyi@chromium.org, tao.li@vivo.com,
+        christophe.leroy@c-s.fr, linux-integrity@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        prsriva@linux.microsoft.com, balajib@linux.microsoft.com
+Subject: Re: [PATCH v10 7/8] powerpc: Move arch_ima_add_kexec_buffer to ima
+In-reply-to: <20201204195149.611-8-nramas@linux.microsoft.com>
+Date:   Sat, 05 Dec 2020 18:36:46 -0300
+Message-ID: <87k0twlytt.fsf@manicouagan.localdomain>
 MIME-Version: 1.0
-In-Reply-To: <20201205170830.4d56ecb7@archlinux>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
+X-TM-AS-GCONF: 00
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.312,18.0.737
+ definitions=2020-12-05_19:2020-12-04,2020-12-05 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 malwarescore=0
+ impostorscore=0 phishscore=0 adultscore=0 priorityscore=1501 clxscore=1015
+ spamscore=0 lowpriorityscore=0 bulkscore=0 suspectscore=0 mlxlogscore=999
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2009150000
+ definitions=main-2012050142
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/12/2020 20:08, Jonathan Cameron wrote:
-> On Fri,  4 Dec 2020 05:54:54 +0300
-> Dmitry Baryshkov <dmitry.baryshkov@linaro.org> wrote:
-> 
->> This patch serie adds support for thermal monitoring block on Qualcomm's
->> PMIC5 chips. PM8150{,b,l} and sm8250-mtp board device trees are extended
->> to support thermal zones provided by this thermal monitoring block.
->> Unlike the rest of PMIC thermal senses, these thermal zones describe
->> particular thermistors, which differ between from board to board.
-> 
-> I've just taken another look through the various IIO parts in here and
-> I think they are fine.
-> 
-> My assumption is that given the timing this isn't going to make the merge
-> window now.  Hence I'll be looking to do an immutable branch based on rc1
-> once it's available (assuming everyone else is fine with this version).
 
-Thank you! Another option might be to merge all iio changes this cycle 
-(if it's fine with you) and have all the rest go via respective trees in 
-the next merge window. I'm fine with either of the options.
+Lakshmi Ramasubramanian <nramas@linux.microsoft.com> writes:
 
-> 
-> Thanks,
-> 
-> Jonathan
-> 
->>
->> Changes since v9:
->>   - In patch 12 add comments to the code as requested by Daniel Lezcano.
->>   - Change copyright comment in qcom-spmi-adc-tm5.c to clearly note
->>     driver history.
->>
->> Changes since v8:
->>   - Simplified qcom_vadc_map_voltage_temp() code by removing ascending
->>     tables support
->>   - Simplified qcom-vadc-common volt/temp mapping code
->>   - Implement suggestions by Matthias Kaehlcke: message formatting,
->>     rewrite comments, remove unused variable initialization.
->>
->> Changes since v7:
->>   - Move qcom-vadc-common.h header to include/linux/iio/adc/ dir.
->>   - Use explicit sizeof(var) instead of hand-coding 1 when accessing
->>     adc-tm registers.
->>   - Remove buffer read from adc_tm5_init().
->>   - Remove extra on-stack var from adc_tm5_get_temp().
->>   - Minor formatting changes as suggested Daniel.
->>
->> Changes since v6:
->>   - Added include <linux/bitfield.h> as noted by Jishnu Prakash.
->>
->> Changes since v5:
->>   - Reworked DT bindings:
->>     * Removed qcom,adc-channel, instead it is parsed from io-channels
->>     * Renamed qcom,hw-settle-time to include -us suffix
->>   - Re-added monitor enabling which got lost during refactored. Noted by
->>     Jishnu Prakash.
->>   - Use threaded IRQ handler as susggested by Jishnu.
->>
->> Changes since v4:
->>   - Added kernel-doc comments to ADC-TM structures
->>   - Used several sizeof(buf) instead of hand-conding register size
->>
->> Changes since v3:
->>   - Fix DT description to spell "thermal monitoring" instead of just TM
->>   - Fix warnings in DT example
->>   - Add EXPORT_SYMBOL_GPL(of_iio_channel_get_by_name)
->>   - Fixed whitespace chanes in qcom-vadc-common.c
->>   - Removed error message if IIO chanel get returns -EPROBE_DEFER
->>
->> Changes since v2:
->>   - IIO: export of_iio_channel_get_by_name() function
->>   - dt-bindings: move individual io-channels to each thermal monitoring
->>     channel rather than listing them all in device node
->>   - added fallback defaults to of_device_get_match_data calls in
->>     qcom-spmi-adc5 and qcom-spmi-adc-tm5 drivers
->>   - minor typo fixes
->>
->> Changes since v1:
->>   - Introduce fixp_linear_interpolate() by Craig Tatlor
->>   - Lots of syntax/whitespace changes
->>   - Cleaned up register definitions per Jonathan's suggestion
->>   - Implemented most of the suggestions from Bjorn's and Jonathan's
->>     review
->>
->>
-> 
+> arch_ima_add_kexec_buffer() sets the address and size of the IMA
+> measurement log in the architecture specific field in struct kimage.
+> This function does not have architecture specific code, but is
+> currently limited to powerpc.
+>
+> Move arch_ima_add_kexec_buffer() to
+> security/integrity/ima/ima_kexec.c so that it is accessible for
+> other architectures as well.
+>
+> Signed-off-by: Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
 
+Not sure if the maintainers will agree with me (see below), but FWIW:
+
+Reviewed-by: Thiago Jung Bauermann <bauerman@linux.ibm.com>
+
+> ---
+>  arch/powerpc/include/asm/ima.h     |  3 ---
+>  arch/powerpc/kexec/ima.c           | 21 ---------------------
+>  security/integrity/ima/ima_kexec.c | 22 ++++++++++++++++++++++
+>  3 files changed, 22 insertions(+), 24 deletions(-)
+>
+> diff --git a/arch/powerpc/include/asm/ima.h b/arch/powerpc/include/asm/ima.h
+> index d8444d27f0d8..d6ab5d944dcd 100644
+> --- a/arch/powerpc/include/asm/ima.h
+> +++ b/arch/powerpc/include/asm/ima.h
+> @@ -7,9 +7,6 @@
+>  struct kimage;
+>  
+>  #ifdef CONFIG_IMA_KEXEC
+> -int arch_ima_add_kexec_buffer(struct kimage *image, unsigned long load_addr,
+> -			      size_t size);
+> -
+>  int setup_ima_buffer(const struct kimage *image, void *fdt, int chosen_node);
+>  #else
+>  static inline int setup_ima_buffer(const struct kimage *image, void *fdt,
+> diff --git a/arch/powerpc/kexec/ima.c b/arch/powerpc/kexec/ima.c
+> index bf7084c0c4da..b2793be353a9 100644
+> --- a/arch/powerpc/kexec/ima.c
+> +++ b/arch/powerpc/kexec/ima.c
+> @@ -13,27 +13,6 @@
+>  #include <linux/libfdt.h>
+>  #include <asm/ima.h>
+>  
+> -/**
+> - * arch_ima_add_kexec_buffer - do arch-specific steps to add the IMA buffer
+> - *
+> - * @image: kimage struct to set IMA buffer data
+> - * @load_addr: Starting address where IMA buffer is loaded at
+> - * @size: Number of bytes in the IMA buffer
+> - *
+> - * Architectures should use this function to pass on the IMA buffer
+> - * information to the next kernel.
+> - *
+> - * Return: 0 on success, negative errno on error.
+> - */
+> -int arch_ima_add_kexec_buffer(struct kimage *image, unsigned long load_addr,
+> -			      size_t size)
+> -{
+> -	image->arch.ima_buffer_addr = load_addr;
+> -	image->arch.ima_buffer_size = size;
+> -
+> -	return 0;
+> -}
+> -
+>  static int write_number(void *p, u64 value, int cells)
+>  {
+>  	if (cells == 1) {
+> diff --git a/security/integrity/ima/ima_kexec.c b/security/integrity/ima/ima_kexec.c
+> index 4d354593aecf..5263dafe8f4d 100644
+> --- a/security/integrity/ima/ima_kexec.c
+> +++ b/security/integrity/ima/ima_kexec.c
+> @@ -74,6 +74,28 @@ static int ima_dump_measurement_list(unsigned long *buffer_size, void **buffer,
+>  	return ret;
+>  }
+>  
+> +/**
+> + * arch_ima_add_kexec_buffer - do arch-specific steps to add the IMA buffer
+> + *
+> + * @image: kimage struct to set IMA buffer data
+> + * @load_addr: Starting address where IMA buffer is loaded at
+> + * @size: Number of bytes in the IMA buffer
+> + *
+> + * Architectures should use this function to pass on the IMA buffer
+> + * information to the next kernel.
+> + *
+> + * Return: 0 on success, negative errno on error.
+> + */
+> +static int arch_ima_add_kexec_buffer(struct kimage *image,
+> +				     unsigned long load_addr,
+> +				     size_t size)
+> +{
+> +	image->arch.ima_buffer_addr = load_addr;
+> +	image->arch.ima_buffer_size = size;
+> +
+> +	return 0;
+> +}
+> +
+
+Both powerpc and arm64 use the definition above for
+arch_ima_add_kexec_buffer(), so it makes sense to share them as you do
+in this patch. This file isn't the best one to put arch-specific code
+which happens to be identical among architectures, but I can't think of
+somewhere else to put it.
+
+For now this isn't an issue since powerpc and arm64 are the only arches
+implementing tihs feature. If a third arch implemented it and also used
+the same function definition as above, it wouldn't be an issue either so
+perhaps this is good enough for the time being? :-)
+
+With this patch, the `#include <asm/ima.h>` in
+security/integrity/ima/ima.h can be removed. It was there just to
+provide a declaration of arch_ima_add_kexec_buffer().
 
 -- 
-With best wishes
-Dmitry
+Thiago Jung Bauermann
+IBM Linux Technology Center
