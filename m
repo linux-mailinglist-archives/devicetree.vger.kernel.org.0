@@ -2,94 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 18CED2CF9D7
-	for <lists+devicetree@lfdr.de>; Sat,  5 Dec 2020 06:47:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A6EED2CF9E2
+	for <lists+devicetree@lfdr.de>; Sat,  5 Dec 2020 06:49:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727861AbgLEFr2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Dec 2020 00:47:28 -0500
-Received: from mail.kernel.org ([198.145.29.99]:59130 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726247AbgLEFr2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 5 Dec 2020 00:47:28 -0500
-Content-Type: text/plain; charset="utf-8"
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1607147207;
-        bh=N9944AoUzOF/flZHzHrrl01FA35Tkc7qrcy9VwvBa84=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=EjQZW4pQHa+WwewOqtB4/JLvvH2kll+61Eynml0eR3moC2QcR9IgwB0ChVGSv2UZI
-         cyHMcn5X8P76u87HjP+r9oMYJUTVQhcznOa6vKzqO5nJN4X9RLD2tgQmLCDe48sjeU
-         0TLWt2HyBWar1nLu5yNoyjb3snc26/T3/mosIEFc7zyULFzTMu12+uXInYPNLLQho3
-         cE8K5UucVEc52demwnAmZKOodffzEzajr3iLZOBYt23smAv6DY9kEtMQ6wEtRYVCDq
-         xrUQtsYPpnIWBiA3NzVbt8Ins9KgT2cuSg5lgByo55h8ia8FQqKwtnBwlL+zWnw9hx
-         WVL7f3SrDCodA==
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20201202032500.206346-8-damien.lemoal@wdc.com>
-References: <20201202032500.206346-1-damien.lemoal@wdc.com> <20201202032500.206346-8-damien.lemoal@wdc.com>
-Subject: Re: [PATCH v4 07/21] dt-binding: clock: Document canaan,k210-clk bindings
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     Sean Anderson <seanga2@gmail.com>
-To:     Damien Le Moal <damien.lemoal@wdc.com>,
+        id S1728966AbgLEFst (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 5 Dec 2020 00:48:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37746 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728779AbgLEFss (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Dec 2020 00:48:48 -0500
+Received: from mail-lf1-x143.google.com (mail-lf1-x143.google.com [IPv6:2a00:1450:4864:20::143])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4DA2C0613D1;
+        Fri,  4 Dec 2020 21:48:01 -0800 (PST)
+Received: by mail-lf1-x143.google.com with SMTP id b4so3050491lfo.6;
+        Fri, 04 Dec 2020 21:48:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=5++2croPNd/0hpgvNFTve6N+aJVcX7l0nkuMAfD5rIU=;
+        b=pj+nZMel3sOc4wy4AFiHY+OPzj0MY/S+/jw+dprE3y+Kw2PvQ765iN31VxOfif2+7N
+         oJ3RRT3fBM3Lo9BboclgZT/SVI8suGbIG7aA2xAJkyudwX4q2SU4tIkZBM7fbJ5sVgUy
+         s4hUP5SUJ+jVzWio29KPk9ocBwVw/5p1HgjU/ZhET3FIDK5dt1HzWHiuxDDmucI9nEuh
+         BHBe+VbJ+w+EB4nGS8K297rjCEnCNHMFIY/ea38W7Sh1R3/30zWxEk6ITz2bTqX2mSCu
+         rom3ANjb47exAOKG14hV0DSsHkXnokXkhi+Nzeu7gcwcGoLpmNDbcp3toyUXXPT059sW
+         sWKw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=5++2croPNd/0hpgvNFTve6N+aJVcX7l0nkuMAfD5rIU=;
+        b=cur8BVI4mXK3poWD6lZKXqLbcGQzgG7Rycy7JULrF70cVlOqrYj+aM07tTnFm3XFvM
+         SsYi3KEwlwDvFoFiVvNgec38E4HyaXJ3khfqt5Qq7zT9fTgXRfAI4Vt/Zg4dxq6SZZcE
+         mxYwZrwW+twYGsgxR0Vj5tOiPb8FZE26HbvWmcVQ4hS1aWpiVaTPAJBl4ZSboqJyd/uc
+         7vWN5VkFv+SvV5gHA7oyMbvIu6hGY+hdAjcAS2MQlhvoZ/kzFMy3bjbLS9jqqxn/fieQ
+         E0HhX5VgqIukm1AMoAxMsnFtzrEc3/JIh41B9oeCsuKXvg34bOONfQIbRNkB/N61y64e
+         aCEw==
+X-Gm-Message-State: AOAM530VvxHwRre9NRVcs+JLS2AVQIvRqnYOY4MgockZbF90v23LlPwT
+        pTWDcUGPfKPMLHvP9fq1/8E=
+X-Google-Smtp-Source: ABdhPJyP3ILU+Ha+0vcWH3qObB1wxbd7+pGVAk6JPrQMA6Bf1V7zFOknz/ZnJb9hM42i/fi7LqTZYA==
+X-Received: by 2002:ac2:4a79:: with SMTP id q25mr4408504lfp.495.1607147280227;
+        Fri, 04 Dec 2020 21:48:00 -0800 (PST)
+Received: from localhost.localdomain (109-252-192-53.dynamic.spd-mgts.ru. [109.252.192.53])
+        by smtp.gmail.com with ESMTPSA id w28sm2231490ljd.48.2020.12.04.21.47.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 04 Dec 2020 21:47:59 -0800 (PST)
+From:   Dmitry Osipenko <digetx@gmail.com>
+To:     Nick Dyer <nick@shmanahar.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
         Linus Walleij <linus.walleij@linaro.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-riscv@lists.infradead.org
-Date:   Fri, 04 Dec 2020 21:46:46 -0800
-Message-ID: <160714720649.1580929.10979600141579296560@swboyd.mtv.corp.google.com>
-User-Agent: alot/0.9.1
+        Jiada Wang <jiada_wang@mentor.com>
+Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/3] Support wakeup methods of Atmel maXTouch controllers
+Date:   Sat,  5 Dec 2020 08:47:46 +0300
+Message-Id: <20201205054749.26487-1-digetx@gmail.com>
+X-Mailer: git-send-email 2.29.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Damien Le Moal (2020-12-01 19:24:46)
-> diff --git a/Documentation/devicetree/bindings/clock/canaan,k210-clk.yaml=
- b/Documentation/devicetree/bindings/clock/canaan,k210-clk.yaml
-> new file mode 100644
-> index 000000000000..3547916a2421
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/canaan,k210-clk.yaml
-> @@ -0,0 +1,55 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/canaan,k210-clk.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Canaan Kendryte K210 Clock Device Tree Bindings
-> +
-> +maintainers:
-> +  - Damien Le Moal <damien.lemoal@wdc.com>
-> +
-> +description: |
-> +  Canaan Kendryte K210 SoC clocks driver bindings. The clock
-> +  controller node must be defined as a child node of the K210
-> +  system controller node.
-> +
-> +  See also:
-> +  - dt-bindings/clock/k210-clk.h
-> +
-> +properties:
-> +  compatible:
-> +    const: canaan,k210-clk
-> +
-> +  clocks:
-> +    maxItems: 1
-> +    description:
-> +      System fixed rate oscillator clock.
+Some Atmel maXTouch controllers, like mXT1386 and mXT3432S1 for example,
+have a WAKE line that needs to be asserted in order to wake controller
+from a deep sleep, otherwise it will be unusable. This series implements
+support for the wakeup methods in accordance to the mXT1386 datasheet [1],
+see page 29 (chapter "5.8 WAKE Line").
 
-Is it optional? I suspect not and it can always be specified, so drop
-maxItems.
+The mXT1386 is a widely used controller found on many older Android tablet
+devices. Touchscreen on Acer A500 tablet now works properly after this
+series.
 
-> +
-> +  '#clock-cells':
-> +    const: 1
-> +
-> +required:
-> +  - compatible
-> +  - '#clock-cells'
-> +  - clocks
+This patchset is a continuation of the work originally started by
+Jiada Wang [2].
 
-Maybe also add clock-names as an optional property, but doesn't really
-matter if there's only one clk.
+[1] https://ww1.microchip.com/downloads/en/DeviceDoc/mXT1386_1vx_Datasheet_LX.pdf
+[2] https://patchwork.kernel.org/project/linux-input/list/?series=357875
+
+Changelog:
+
+v2: - Fixed copy-paste bug in the code.
+
+Dmitry Osipenko (3):
+  dt-bindings: input: atmel_mxt_ts: Document atmel,wakeup-method and
+    wake-GPIO
+  Input: atmel_mxt_ts - support wakeup methods
+  ARM: tegra: acer-a500: Add atmel,wakeup-method property
+
+ .../bindings/input/atmel,maxtouch.yaml        | 26 +++++++++
+ .../boot/dts/tegra20-acer-a500-picasso.dts    |  3 +
+ drivers/input/touchscreen/atmel_mxt_ts.c      | 55 +++++++++++++++++++
+ include/dt-bindings/input/atmel-maxtouch.h    | 10 ++++
+ 4 files changed, 94 insertions(+)
+ create mode 100644 include/dt-bindings/input/atmel-maxtouch.h
+
+-- 
+2.29.2
+
