@@ -2,64 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 07CFB2CFC76
-	for <lists+devicetree@lfdr.de>; Sat,  5 Dec 2020 19:22:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A35B12CFD3C
+	for <lists+devicetree@lfdr.de>; Sat,  5 Dec 2020 19:52:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728215AbgLESU3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Dec 2020 13:20:29 -0500
-Received: from ns2.chip.baikal.ru ([94.125.187.42]:53372 "EHLO
-        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1727065AbgLESUY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Dec 2020 13:20:24 -0500
-From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
-To:     Felipe Balbi <balbi@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Patrice Chotard <patrice.chotard@st.com>
-CC:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v3 07/10] arm: dts: stih407-family: Harmonize DWC USB3 DT nodes name
-Date:   Sat, 5 Dec 2020 18:56:18 +0300
-Message-ID: <20201205155621.3045-8-Sergey.Semin@baikalelectronics.ru>
-In-Reply-To: <20201205155621.3045-1-Sergey.Semin@baikalelectronics.ru>
-References: <20201205155621.3045-1-Sergey.Semin@baikalelectronics.ru>
+        id S1728693AbgLES3L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 5 Dec 2020 13:29:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42008 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727495AbgLES3J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Dec 2020 13:29:09 -0500
+Received: from mail-ed1-x544.google.com (mail-ed1-x544.google.com [IPv6:2a00:1450:4864:20::544])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7033AC061A51;
+        Sat,  5 Dec 2020 03:51:45 -0800 (PST)
+Received: by mail-ed1-x544.google.com with SMTP id c7so8622119edv.6;
+        Sat, 05 Dec 2020 03:51:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=9hd3HS1nRGiOdMm5T7QTs9bBnrJ+T0eTd0OHKFt9TJM=;
+        b=OQYNEf2uJdfHMQnh+CsubPaAu5uKQx4mJCqeL4MCG4CUH8i1yrmV0z6Be7aYVqBOHT
+         63m+s4TsGqrrLl0xK0yoOmLqIzkrubm22Lj2NxzlpB+WrY6uXT9d/frREYJX8ZdMrDPC
+         zWQ3dbYiLDoOnKkHh3DvLHteJEhV+PP6s7qSS8mGAImzxqchIEuwE7cmxEXEiINZdQDx
+         sCZXMoivvH0VqZKWWgU5C8neJ09AU3ICwf/y2mXGe31fsI1KKCzDqrrxdMTRYQwfoHb0
+         U1saovH2q/Zinm5jumRt10HNk7zj40nPWYhyi14EStWuQy+PCyusQZzkMSb3QWth9uAO
+         UJHA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=9hd3HS1nRGiOdMm5T7QTs9bBnrJ+T0eTd0OHKFt9TJM=;
+        b=oQUbGXFoXdw+s6dNgFBboISAFWv1GTV2UcL9LjfqALZBNp0eAbf+vUPwMR7tLdoPvD
+         lciLZjeQiFvou4GjgINTgOodui+TS4fmN3WAAqnj64eLP08fAIAgp5bhtL0g9BEXx/gt
+         x6TsILpf4wnFGx+yCYQzsoAoOcxl8mNpGepNfjxWAvBncsY7xBZLkLvQsrh/Wmz8a2hU
+         G+lRyjMSQAJQsyW69Ew1AneiclbDJRhQC62TmmkL7FayG9GpXvrBuNpe+QwOvxBq6O7T
+         xYS6qmy295N3MXw6/E/Yeiyg7AhYwlEWMbiEFsyflACsQY/1QCSTHUDe/3IoABbic5hT
+         nK2Q==
+X-Gm-Message-State: AOAM532loyJKDSMb/066+EdI4jHjE0zaMC8+O8vAOtlbEgrPbMWGJlU5
+        MY3jn4930cGR0THzSPOpeK4Ll6J3BxHbmPa6vHM=
+X-Google-Smtp-Source: ABdhPJyTmxH/J6AxpvkQV8Zl0g2e2O5aFVksrEY/jFlL2+JuuumDaJabPFMHoTqSD0/L1it3ad9vJWHnKSwlWMxNXGs=
+X-Received: by 2002:a05:6402:949:: with SMTP id h9mr11596537edz.301.1607169103997;
+ Sat, 05 Dec 2020 03:51:43 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
+References: <20201126050440.6273-1-christianshewitt@gmail.com>
+In-Reply-To: <20201126050440.6273-1-christianshewitt@gmail.com>
+From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date:   Sat, 5 Dec 2020 12:51:33 +0100
+Message-ID: <CAFBinCAUede5uaqnkSHqmwmMuTnZpdhbJAUE11q32y60SW0D2Q@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: meson: add KHAMSIN IR remote node to SML5442TW
+To:     Christian Hewitt <christianshewitt@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In accordance with the DWC USB3 bindings the corresponding node
-name is suppose to comply with the Generic USB HCD DT schema, which
-requires the USB nodes to have the name acceptable by the regexp:
-"^usb(@.*)?" . Make sure the "snps,dwc3"-compatible nodes are correctly
-named.
-
-Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
----
- arch/arm/boot/dts/stih407-family.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/arm/boot/dts/stih407-family.dtsi b/arch/arm/boot/dts/stih407-family.dtsi
-index 23a1746f3baa..2352f76b5a69 100644
---- a/arch/arm/boot/dts/stih407-family.dtsi
-+++ b/arch/arm/boot/dts/stih407-family.dtsi
-@@ -681,7 +681,7 @@ st_dwc3: dwc3@8f94000 {
- 
- 			status = "disabled";
- 
--			dwc3: dwc3@9900000 {
-+			dwc3: usb@9900000 {
- 				compatible	= "snps,dwc3";
- 				reg		= <0x09900000 0x100000>;
- 				interrupts	= <GIC_SPI 155 IRQ_TYPE_LEVEL_HIGH>;
--- 
-2.29.2
-
+On Thu, Nov 26, 2020 at 6:05 AM Christian Hewitt
+<christianshewitt@gmail.com> wrote:
+>
+> Set the IR keymap to the KHAMSIN remote shipped with the SML5442TW.
+>
+> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
