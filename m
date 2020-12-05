@@ -2,223 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9DFAE2CFD83
-	for <lists+devicetree@lfdr.de>; Sat,  5 Dec 2020 19:53:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 17E092CFCD7
+	for <lists+devicetree@lfdr.de>; Sat,  5 Dec 2020 19:51:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726149AbgLESfZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Dec 2020 13:35:25 -0500
-Received: from ns2.baikalelectronics.ru ([94.125.187.42]:53352 "EHLO
-        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1729599AbgLESTk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Dec 2020 13:19:40 -0500
-From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
-To:     Felipe Balbi <balbi@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-CC:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH v3 10/10] arm64: dts: qcom: Harmonize DWC USB3 DT nodes name
-Date:   Sat, 5 Dec 2020 18:56:21 +0300
-Message-ID: <20201205155621.3045-11-Sergey.Semin@baikalelectronics.ru>
-In-Reply-To: <20201205155621.3045-1-Sergey.Semin@baikalelectronics.ru>
-References: <20201205155621.3045-1-Sergey.Semin@baikalelectronics.ru>
+        id S1728776AbgLESTX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 5 Dec 2020 13:19:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35722 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727897AbgLERsl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Dec 2020 12:48:41 -0500
+Received: from mail-ed1-x543.google.com (mail-ed1-x543.google.com [IPv6:2a00:1450:4864:20::543])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B168C02A180;
+        Sat,  5 Dec 2020 08:29:35 -0800 (PST)
+Received: by mail-ed1-x543.google.com with SMTP id cm17so9151843edb.4;
+        Sat, 05 Dec 2020 08:29:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=WQqtIew8z+9SUipnxpDKUsTvv38hqnp7W7iU0a6e5Fs=;
+        b=GV4VZYw1USsEYDmt5Ru/pQcKr7T1UdSSpOCBRlAbP8QAhwwu0CCMLyCzFJ18XKNPgm
+         r9M7/ySC7rbc3yLT9G2f74xyA5WKGxwwtn7UdHmYHS76B03NBCVaKuYWAWtROMHc2KG1
+         txGa81sd1BgTrMOYlJN+gM95NaHFz5+lz5cvr65mR4BiXh496tEM3I6rRbZsTGNBK5JP
+         fApOzjOMkYrZExucX0Cbrap3P8wVXINi7foxYpM4EZTh1trCPDs9sQ7NLjLOYMKcrhg7
+         m0XBIWLuxQnsqyHIElyT5I8gCk9b+p4Jmz2FS4OgqlazTrXVmskWhY361EyiRqiUiJkj
+         PuEA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=WQqtIew8z+9SUipnxpDKUsTvv38hqnp7W7iU0a6e5Fs=;
+        b=nhEQI0Eb1Dh1exdHxlw2WnrHI9ZcaQV0kiUHV4sgNQ8Kk1nbSOduY4qGVQhFhRDtZ+
+         L/ZMC2Cszi/kUoLAQE/TBtMANSixotQPFpyw8sM0EBZrnSKz5DVZUfKVFjQx33LbY2Qh
+         S3ZacZ0dQtLj77r2SqquZjbXm4eFh3EFy1y4eCjIIR6XN3fdKJYLSj1obl7PTwLqvOyJ
+         V7YuATxBVpIUDe3RmLHTAGHhIAzP/Rgp4LX4SQUFjVoyJli/aD688av+V5hvvPjPP8c7
+         JINvynoqWIg2ZVCwjAiRmwoSgAyU4eWVTrJ/0l2R9dE+3kh18XuQpTeX7LzN+tclT48i
+         VUcw==
+X-Gm-Message-State: AOAM531ENOTwSmMc7hlcXTmgx1GY4o84trTUn+AlHBEBIp+CQEBsw7jg
+        0EQZBWl8QILbkII/i1E+2tE=
+X-Google-Smtp-Source: ABdhPJxHhxyTbkf8AeKc304pFq3fBp8Q+sg3EtAFKXfOlBuOEWGoJ+qCdATY9KOgo5nUYvxo7zkm1g==
+X-Received: by 2002:aa7:c403:: with SMTP id j3mr12538643edq.217.1607185774251;
+        Sat, 05 Dec 2020 08:29:34 -0800 (PST)
+Received: from ubuntu2004 ([188.24.159.61])
+        by smtp.gmail.com with ESMTPSA id v9sm5438858ejk.48.2020.12.05.08.29.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 05 Dec 2020 08:29:33 -0800 (PST)
+Date:   Sat, 5 Dec 2020 18:29:33 +0200
+From:   Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
+        Vinod Koul <vkoul@kernel.org>, Wolfram Sang <wsa@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Dan Williams <dan.j.williams@intel.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-actions@lists.infradead.org, linux-kernel@vger.kernel.org,
+        dmaengine@vger.kernel.org, linux-i2c@vger.kernel.org,
+        linux-mmc@vger.kernel.org
+Subject: Re: [PATCH v2 00/18] Add CMU/RMU/DMA/MMC/I2C support for Actions
+ Semi S500 SoCs
+Message-ID: <20201205162933.GA187065@ubuntu2004>
+References: <cover.1605823502.git.cristian.ciocaltea@gmail.com>
+ <20201205061115.GB4068@thinkpad>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201205061115.GB4068@thinkpad>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In accordance with the DWC USB3 bindings the corresponding node
-name is suppose to comply with the Generic USB HCD DT schema, which
-requires the USB nodes to have the name acceptable by the regexp:
-"^usb(@.*)?" . Make sure the "snps,dwc3"-compatible nodes are correctly
-named.
+Hi Mani,
 
-Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
-Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
----
- arch/arm64/boot/dts/qcom/apq8096-db820c.dtsi | 4 ++--
- arch/arm64/boot/dts/qcom/ipq8074.dtsi        | 4 ++--
- arch/arm64/boot/dts/qcom/msm8996.dtsi        | 4 ++--
- arch/arm64/boot/dts/qcom/msm8998.dtsi        | 2 +-
- arch/arm64/boot/dts/qcom/qcs404-evb.dtsi     | 2 +-
- arch/arm64/boot/dts/qcom/qcs404.dtsi         | 4 ++--
- arch/arm64/boot/dts/qcom/sc7180.dtsi         | 2 +-
- arch/arm64/boot/dts/qcom/sdm845.dtsi         | 4 ++--
- arch/arm64/boot/dts/qcom/sm8150.dtsi         | 2 +-
- 9 files changed, 14 insertions(+), 14 deletions(-)
+On Sat, Dec 05, 2020 at 11:41:15AM +0530, Manivannan Sadhasivam wrote:
+> Hi Cristi,
+> 
+> On Fri, Nov 20, 2020 at 01:55:54AM +0200, Cristian Ciocaltea wrote:
+> > Hi,
+> > 
+> > This patchset brings a series of improvements for the Actions Semi S500
+> > SoCs family, by adding support for Clock & Reset Management Units, DMA,
+> > MMC, I2C & SIRQ controllers.
+> > 
+> > Please note the patches consist mostly of DTS and bindings/compatibles
+> > changes, since all the work they depend on has been already merged,
+> > i.e. clock fixes/additions, pinctrl driver, sirq driver.
+> > 
+> > For the moment, I have only enabled the features I could test on
+> > RoseapplePi SBC.
+> > 
+> 
+> I was hoping to apply this series for v5.11 but we ran out of time. So expect
+> this series to be in v5.12.
 
-diff --git a/arch/arm64/boot/dts/qcom/apq8096-db820c.dtsi b/arch/arm64/boot/dts/qcom/apq8096-db820c.dtsi
-index defcbd15edf9..34e97da98270 100644
---- a/arch/arm64/boot/dts/qcom/apq8096-db820c.dtsi
-+++ b/arch/arm64/boot/dts/qcom/apq8096-db820c.dtsi
-@@ -1064,7 +1064,7 @@ &usb2 {
- 	status = "okay";
- 	extcon = <&usb2_id>;
- 
--	dwc3@7600000 {
-+	usb@7600000 {
- 		extcon = <&usb2_id>;
- 		dr_mode = "otg";
- 		maximum-speed = "high-speed";
-@@ -1075,7 +1075,7 @@ &usb3 {
- 	status = "okay";
- 	extcon = <&usb3_id>;
- 
--	dwc3@6a00000 {
-+	usb@6a00000 {
- 		extcon = <&usb3_id>;
- 		dr_mode = "otg";
- 	};
-diff --git a/arch/arm64/boot/dts/qcom/ipq8074.dtsi b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-index 829e37ac82f6..984e855bd8fd 100644
---- a/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-@@ -427,7 +427,7 @@ usb_0: usb@8af8800 {
- 			resets = <&gcc GCC_USB0_BCR>;
- 			status = "disabled";
- 
--			dwc_0: dwc3@8a00000 {
-+			dwc_0: usb@8a00000 {
- 				compatible = "snps,dwc3";
- 				reg = <0x8a00000 0xcd00>;
- 				interrupts = <GIC_SPI 140 IRQ_TYPE_LEVEL_HIGH>;
-@@ -468,7 +468,7 @@ usb_1: usb@8cf8800 {
- 			resets = <&gcc GCC_USB1_BCR>;
- 			status = "disabled";
- 
--			dwc_1: dwc3@8c00000 {
-+			dwc_1: usb@8c00000 {
- 				compatible = "snps,dwc3";
- 				reg = <0x8c00000 0xcd00>;
- 				interrupts = <GIC_SPI 99 IRQ_TYPE_LEVEL_HIGH>;
-diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-index fd6ae5464dea..4b073b8584de 100644
---- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-@@ -1768,7 +1768,7 @@ usb3: usb@6af8800 {
- 			power-domains = <&gcc USB30_GDSC>;
- 			status = "disabled";
- 
--			dwc3@6a00000 {
-+			usb@6a00000 {
- 				compatible = "snps,dwc3";
- 				reg = <0x06a00000 0xcc00>;
- 				interrupts = <0 131 IRQ_TYPE_LEVEL_HIGH>;
-@@ -1979,7 +1979,7 @@ usb2: usb@76f8800 {
- 			power-domains = <&gcc USB30_GDSC>;
- 			status = "disabled";
- 
--			dwc3@7600000 {
-+			usb@7600000 {
- 				compatible = "snps,dwc3";
- 				reg = <0x07600000 0xcc00>;
- 				interrupts = <0 138 IRQ_TYPE_LEVEL_HIGH>;
-diff --git a/arch/arm64/boot/dts/qcom/msm8998.dtsi b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-index c45870600909..7cc7897e7b83 100644
---- a/arch/arm64/boot/dts/qcom/msm8998.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-@@ -1678,7 +1678,7 @@ usb3: usb@a8f8800 {
- 
- 			resets = <&gcc GCC_USB_30_BCR>;
- 
--			usb3_dwc3: dwc3@a800000 {
-+			usb3_dwc3: usb@a800000 {
- 				compatible = "snps,dwc3";
- 				reg = <0x0a800000 0xcd00>;
- 				interrupts = <GIC_SPI 131 IRQ_TYPE_LEVEL_HIGH>;
-diff --git a/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi b/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
-index a80c578484ba..f8a55307b855 100644
---- a/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
-+++ b/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
-@@ -337,7 +337,7 @@ &usb2_phy_sec {
- &usb3 {
- 	status = "okay";
- 
--	dwc3@7580000 {
-+	usb@7580000 {
- 		dr_mode = "host";
- 	};
- };
-diff --git a/arch/arm64/boot/dts/qcom/qcs404.dtsi b/arch/arm64/boot/dts/qcom/qcs404.dtsi
-index b654b802e95c..f6ef17553064 100644
---- a/arch/arm64/boot/dts/qcom/qcs404.dtsi
-+++ b/arch/arm64/boot/dts/qcom/qcs404.dtsi
-@@ -544,7 +544,7 @@ usb3: usb@7678800 {
- 			assigned-clock-rates = <19200000>, <200000000>;
- 			status = "disabled";
- 
--			dwc3@7580000 {
-+			usb@7580000 {
- 				compatible = "snps,dwc3";
- 				reg = <0x07580000 0xcd00>;
- 				interrupts = <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>;
-@@ -573,7 +573,7 @@ usb2: usb@79b8800 {
- 			assigned-clock-rates = <19200000>, <133333333>;
- 			status = "disabled";
- 
--			dwc3@78c0000 {
-+			usb@78c0000 {
- 				compatible = "snps,dwc3";
- 				reg = <0x078c0000 0xcc00>;
- 				interrupts = <GIC_SPI 44 IRQ_TYPE_LEVEL_HIGH>;
-diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-index 6678f1e8e395..6af40e0c5423 100644
---- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-@@ -2702,7 +2702,7 @@ usb_1: usb@a6f8800 {
- 					<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_USB3 0>;
- 			interconnect-names = "usb-ddr", "apps-usb";
- 
--			usb_1_dwc3: dwc3@a600000 {
-+			usb_1_dwc3: usb@a600000 {
- 				compatible = "snps,dwc3";
- 				reg = <0 0x0a600000 0 0xe000>;
- 				interrupts = <GIC_SPI 133 IRQ_TYPE_LEVEL_HIGH>;
-diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-index 40e8c11f23ab..5d2376a60950 100644
---- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-@@ -3578,7 +3578,7 @@ usb_1: usb@a6f8800 {
- 					<&gladiator_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_USB3_0 0>;
- 			interconnect-names = "usb-ddr", "apps-usb";
- 
--			usb_1_dwc3: dwc3@a600000 {
-+			usb_1_dwc3: usb@a600000 {
- 				compatible = "snps,dwc3";
- 				reg = <0 0x0a600000 0 0xcd00>;
- 				interrupts = <GIC_SPI 133 IRQ_TYPE_LEVEL_HIGH>;
-@@ -3626,7 +3626,7 @@ usb_2: usb@a8f8800 {
- 					<&gladiator_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_USB3_1 0>;
- 			interconnect-names = "usb-ddr", "apps-usb";
- 
--			usb_2_dwc3: dwc3@a800000 {
-+			usb_2_dwc3: usb@a800000 {
- 				compatible = "snps,dwc3";
- 				reg = <0 0x0a800000 0 0xcd00>;
- 				interrupts = <GIC_SPI 138 IRQ_TYPE_LEVEL_HIGH>;
-diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-index f0a872e02686..638199f57708 100644
---- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-@@ -918,7 +918,7 @@ usb_1: usb@a6f8800 {
- 
- 			resets = <&gcc GCC_USB30_PRIM_BCR>;
- 
--			usb_1_dwc3: dwc3@a600000 {
-+			usb_1_dwc3: usb@a600000 {
- 				compatible = "snps,dwc3";
- 				reg = <0 0x0a600000 0 0xcd00>;
- 				interrupts = <GIC_SPI 133 IRQ_TYPE_LEVEL_HIGH>;
--- 
-2.29.2
+No problem, thanks a lot for taking care of this!
 
+Kind regards,
+Cristi
+
+> Thanks,
+> Mani
+> 
+> > Thanks,
+> > Cristi
+> > 
+> > Changes in v2:
+> > - Added new bindings/compatibles for S500 DMA, MMC & I2C controllers
+> > - Added support for the SIRQ controller
+> > - Added new entries in MAINTAINERS
+> > - Updated naming of some patches in v1
+> > 
+> > Cristian Ciocaltea (18):
+> >   arm: dts: owl-s500: Add Clock Management Unit
+> >   arm: dts: owl-s500: Set CMU clocks for UARTs
+> >   arm: dts: owl-s500: Add Reset controller
+> >   dt-bindings: dma: owl: Add compatible string for Actions Semi S500 SoC
+> >   dmaengine: owl: Add compatible for the Actions Semi S500 DMA
+> >     controller
+> >   arm: dts: owl-s500: Add DMA controller
+> >   arm: dts: owl-s500: Add pinctrl & GPIO support
+> >   dt-bindings: mmc: owl: Add compatible string for Actions Semi S500 SoC
+> >   arm: dts: owl-s500: Add MMC support
+> >   dt-bindings: i2c: owl: Convert Actions Semi Owl binding to a schema
+> >   MAINTAINERS: Update entry for Actions Semi Owl I2C binding
+> >   i2c: owl: Add compatible for the Actions Semi S500 I2C controller
+> >   arm: dts: owl-s500: Add I2C support
+> >   arm: dts: owl-s500: Add SIRQ controller
+> >   arm: dts: owl-s500-roseapplepi: Use UART clock from CMU
+> >   arm: dts: owl-s500-roseapplepi: Add uSD support
+> >   arm: dts: owl-s500-roseapplepi: Add I2C pinctrl configuration
+> >   MAINTAINERS: Add linux-actions ML for Actions Semi Arch
+> > 
+> >  .../devicetree/bindings/dma/owl-dma.yaml      |   5 +-
+> >  .../devicetree/bindings/i2c/i2c-owl.txt       |  29 ----
+> >  .../devicetree/bindings/i2c/i2c-owl.yaml      |  62 ++++++++
+> >  .../devicetree/bindings/mmc/owl-mmc.yaml      |   4 +-
+> >  MAINTAINERS                                   |   3 +-
+> >  arch/arm/boot/dts/owl-s500-roseapplepi.dts    |  97 +++++++++++-
+> >  arch/arm/boot/dts/owl-s500.dtsi               | 140 ++++++++++++++++++
+> >  drivers/dma/owl-dma.c                         |   1 +
+> >  drivers/i2c/busses/i2c-owl.c                  |   1 +
+> >  9 files changed, 304 insertions(+), 38 deletions(-)
+> >  delete mode 100644 Documentation/devicetree/bindings/i2c/i2c-owl.txt
+> >  create mode 100644 Documentation/devicetree/bindings/i2c/i2c-owl.yaml
+> > 
+> > -- 
+> > 2.29.2
+> > 
