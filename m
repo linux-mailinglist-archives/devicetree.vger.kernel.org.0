@@ -2,278 +2,330 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D33262CFD70
-	for <lists+devicetree@lfdr.de>; Sat,  5 Dec 2020 19:52:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C718F2CFCCC
+	for <lists+devicetree@lfdr.de>; Sat,  5 Dec 2020 19:51:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727522AbgLESde (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Dec 2020 13:33:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41872 "EHLO
+        id S1728771AbgLESTW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 5 Dec 2020 13:19:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35718 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728533AbgLES2L (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Dec 2020 13:28:11 -0500
-Received: from mail-lf1-x143.google.com (mail-lf1-x143.google.com [IPv6:2a00:1450:4864:20::143])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02BE2C02B8DC;
-        Sat,  5 Dec 2020 05:42:31 -0800 (PST)
-Received: by mail-lf1-x143.google.com with SMTP id u18so11582542lfd.9;
-        Sat, 05 Dec 2020 05:42:31 -0800 (PST)
+        with ESMTP id S1727891AbgLERsl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Dec 2020 12:48:41 -0500
+Received: from mail-qv1-xf42.google.com (mail-qv1-xf42.google.com [IPv6:2607:f8b0:4864:20::f42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A8C1C02B8E4;
+        Sat,  5 Dec 2020 05:43:39 -0800 (PST)
+Received: by mail-qv1-xf42.google.com with SMTP id ec16so4260719qvb.0;
+        Sat, 05 Dec 2020 05:43:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=PDCzWdLZZA1axQreot7zsOdbyWCaWe7wBryFmM/ZFaM=;
-        b=qwbFubC9WoZvusbf1097U5V7gpHzlauouM2r19t42FKNyUglkvN3Ua+mY5QpeyIymJ
-         uFg6V1Cq9QuHRJrrhCwuslXO2UEy1ZWNf1VakqPO92WUr1E8BRlUxkOkNsVTwxkmJp/S
-         SMls9Nvf7PF0ctJcjBTOg9lrnOx29SUm1WrHomNXk6WVroEJs6D6dvliLkQdorSKOyIA
-         7hgRULwPQyGCm9yxdBENAdsvv4QSAPQqpHNKKHbDio9EC66uxeHVG+9UnQ+NQ4NMC/4z
-         20fpLJnc9vb5K/ioghAVE7l1H3GJ3eJMGolzBmGcE9I0wEuLfPCisjcUmwa3vhjw2VWc
-         3sXg==
+        h=subject:to:references:from:message-id:date:user-agent:mime-version
+         :in-reply-to:content-language:content-transfer-encoding;
+        bh=7V54Z/5Mr/xxZxoJa6ftBYvRndPF7BKH8GwvUe0W1jo=;
+        b=nNe87USGiI5TXREYkoGvoEOqxnFeogR6rh+mcbxhir4ObpT9e7AokThh+c+w3ffXD6
+         M49MBBrH2tTaQ2B/XzKpMt9KTTSaWxmb5ZGL5W4WSayvK8E92czfLckqGCPG81DwNuBV
+         vlpGa6vdxIN7dknt76sod5Nri8oNnv8shGqoJgWBDwH1SsceR6gQtGELM3riabxWfkDX
+         vvyMrOODthd0vjj0WUbvvD88Kqy2NFYFklWJiKzblUosrHQooLXmPnsbMrbCkulvxHu/
+         PzM7Hx3ApImG7JG2GmPH65JrpMVzw0IpNiE3pL10QOZ30z2B38+92ZOSNGxjslJFE/cH
+         /Phw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=PDCzWdLZZA1axQreot7zsOdbyWCaWe7wBryFmM/ZFaM=;
-        b=HWGYXAyUEe7+NVo3batw11P6vbuU8w6yctpJHFQQoP17Zpw39Fm7Ip3zK2zJL2d6tn
-         WA0Z7Avq9gisQNwwZP4WYCy5Doe1KejCBxY3xek+3O+6tZvnGTX3o7rZo6GzIqdnMNsx
-         7WFt+1N64CNVRewc26poX0zv+MZEMHBjjqeW4gsY3Apa7lMODxYn71UWXUXX2gGduyPi
-         srJ+7hIW6MJugHhnRxF6UieNzZSJVZX2jHN2PtBqFDjVemmtJ1nphIJ+LwdqWaQ5t8nK
-         Sv4tDgl445nhUgCHmrpuFX2RYjfGhFlVXQgfD/uFGmbGMjlvrXR68GnLS/QzGiNNUNgZ
-         uYyw==
-X-Gm-Message-State: AOAM533oZwZ/thZjWuYmE/8T0HrgbY1ETjsNhImNU05FiewkTD5fz64O
-        e8GOrlzJ+ZxPanWmVSDYPHc=
-X-Google-Smtp-Source: ABdhPJw2VRWID2gxQggjnyOheoxl1knRVcWmmUWrGxpCB4cHD3xNFhcMV2dPNs4qA2N61NowSiL1ng==
-X-Received: by 2002:a05:6512:6d0:: with SMTP id u16mr4847355lff.497.1607175750317;
-        Sat, 05 Dec 2020 05:42:30 -0800 (PST)
-Received: from mobilestation ([95.79.141.114])
-        by smtp.gmail.com with ESMTPSA id t3sm139634lfe.263.2020.12.05.05.42.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 05 Dec 2020 05:42:29 -0800 (PST)
-Date:   Sat, 5 Dec 2020 16:42:27 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Damien Le Moal <damien.lemoal@wdc.com>
-Cc:     Mark Brown <broonie@kernel.org>, linux-spi@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Sean Anderson <seanga2@gmail.com>
-Subject: Re: [PATCH v2 1/3] spi: dw: Add support for 32-bits max xfer size
-Message-ID: <20201205134227.cuhjofkjm6k6k27d@mobilestation>
-References: <20201126020049.35712-1-damien.lemoal@wdc.com>
- <20201126020049.35712-2-damien.lemoal@wdc.com>
+        h=x-gm-message-state:subject:to:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=7V54Z/5Mr/xxZxoJa6ftBYvRndPF7BKH8GwvUe0W1jo=;
+        b=nyJctCFI9pAYc8IU9scnLGzrkcfsNydrkivdQXt3t47AbdnOun0czlJLrAyPczDl21
+         W8pF7CXEliv8L5Q/UnCl5EVcL4fIwZSslRaSp0S+fLqnuJTYK2tXn+/rBb/2P3B0kz/4
+         O7uRFcL50QQnbiD2lB+eO3pFea2h9dmq18xjLoGIaTs+yH+a9Wgl2WNrHr/Kh9i9Imsr
+         eE6DRyvcJ0lUAbbgYl70fyElSQ+80W7We0sXK2E/CQXBQyGVAOUk4JXLnqF2cJ9ohXHx
+         SqZsQ32/GmpXDVuVLfgZvQB+A2X21dFyYlb6H+dLETI8sw8LQwW/0/KKGd4yJJ3EJc9s
+         0zeg==
+X-Gm-Message-State: AOAM530MNNs1YrSyYGDesg623TKoy5YGw8nGpjuPdoBNPfA/Gk+bruTX
+        YlbEz8zOQn3v2lHjD6uJa4cTIQejJG5gsA==
+X-Google-Smtp-Source: ABdhPJwyIeonJaI/FDnQ3n3MDma2rUmE/Kfsw0jOlKbN/08tEtNoFDPIVd613z6xf+DOoONjAZjHvA==
+X-Received: by 2002:a0c:fa4f:: with SMTP id k15mr11346192qvo.62.1607175818286;
+        Sat, 05 Dec 2020 05:43:38 -0800 (PST)
+Received: from [192.168.1.201] (pool-108-51-35-162.washdc.fios.verizon.net. [108.51.35.162])
+        by smtp.googlemail.com with ESMTPSA id r14sm8098427qtu.25.2020.12.05.05.43.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 05 Dec 2020 05:43:37 -0800 (PST)
+Subject: Re: [PATCH v4 11/21] riscv: Add Canaan Kendryte K210 clock driver
+To:     Damien Le Moal <Damien.LeMoal@wdc.com>,
+        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+        "palmer@dabbelt.com" <palmer@dabbelt.com>,
+        "sboyd@kernel.org" <sboyd@kernel.org>,
+        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>
+References: <20201202032500.206346-1-damien.lemoal@wdc.com>
+ <20201202032500.206346-12-damien.lemoal@wdc.com>
+ <160714919628.1580929.1456162330322523777@swboyd.mtv.corp.google.com>
+ <d9aec92299e5f427aaf5c5e892194e27006f8bbc.camel@wdc.com>
+From:   Sean Anderson <seanga2@gmail.com>
+Message-ID: <3ef543a8-5709-d653-e347-78faa08f81d2@gmail.com>
+Date:   Sat, 5 Dec 2020 08:43:36 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201126020049.35712-2-damien.lemoal@wdc.com>
+In-Reply-To: <d9aec92299e5f427aaf5c5e892194e27006f8bbc.camel@wdc.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Damien,
-Sorry for a delay with response. Just a few nitpick below.
-
-On Thu, Nov 26, 2020 at 11:00:47AM +0900, Damien Le Moal wrote:
-> The Synopsis DesignWare DW_apb_ssi specifications version 3.23 onward
-> define a 32-bits maximum transfer size synthesis parameter
-> (SSI_MAX_XFER_SIZE=32) in addition to the legacy 16-bits configuration
-> (SSI_MAX_XFER_SIZE=16) for SPI controllers. When SSI_MAX_XFER_SIZE=32,
-> the layout of the ctrlr0 register changes, moving the data frame format
-> field from bits [3..0] to bits [16..20], and the RX/TX FIFO word size
-> can be up to 32-bits.
+On 12/5/20 2:43 AM, Damien Le Moal wrote:
+> Hi Stephen,
 > 
-> To support this new format, introduce the DW SPI capability flag
-> DW_SPI_CAP_DFS32 to indicate that a controller is configured with
-> SSI_MAX_XFER_SIZE=32. Since SSI_MAX_XFER_SIZE is a controller synthesis
-> parameter not accessible through a register, the detection of this
-> parameter value is done in spi_hw_init() by writing and reading the
-> ctrlr0 register and testing the value of bits [3..0]. These bits are
-> ignored (unchanged) for SSI_MAX_XFER_SIZE=16, allowing the detection.
-> If a DFS32 capable SPI controller is detected, the new field dfs_offset
-> in struct dw_spi is set to SPI_DFS32_OFFSET (16).
+> Thank you for the review. I will address all your comments.
+> I just have a few questions below.
 > 
-> dw_spi_update_config() is modified to set the data frame size field at
-> the correct position is the CTRLR0 register, as indicated by the
-> dfs_offset field of the dw_spi structure.
+> On Fri, 2020-12-04 at 22:19 -0800, Stephen Boyd wrote:
+>> Quoting Damien Le Moal (2020-12-01 19:24:50)
+>>> diff --git a/MAINTAINERS b/MAINTAINERS
+>>> index 2daa6ee673f7..3da9a7a02f61 100644
+>>> --- a/MAINTAINERS
+>>> +++ b/MAINTAINERS
+>>> @@ -3822,6 +3822,22 @@ W:       https://github.com/Cascoda/ca8210-linux.git
+>>>   F:     Documentation/devicetree/bindings/net/ieee802154/ca8210.txt
+>>>   F:     drivers/net/ieee802154/ca8210.c
+>>>   
+>>>
+>>>
+>>>
+>>> +CANAAN/KENDRYTE K210 SOC CLOCK DRIVER
+>>> +M:     Damien Le Moal <damien.lemoal@wdc.com>
+>>> +L:     linux-riscv@lists.infradead.org
+>>> +L:     linux-clk@vger.kernel.org (clock driver)
+>>
+>> Is this needed? I think we cover all of drivers/clk/ and bindings/clock
+>> already.
+> 
+> I was not sure about that so I added the entry. Will remove it.
+> 
+>>
+>>> +S:     Maintained
+>>> +F:     Documentation/devicetree/bindings/clock/canaan,k210-clk.yaml
+>>> +F:     drivers/clk/clk-k210.c
+>>> diff --git a/arch/riscv/Kconfig.socs b/arch/riscv/Kconfig.socs
+>>> index 88ac0d1a5da4..f2f9633087d1 100644
+>>> --- a/arch/riscv/Kconfig.socs
+>>> +++ b/arch/riscv/Kconfig.socs
+>>> @@ -29,6 +29,8 @@ config SOC_CANAAN
+>>>          select SERIAL_SIFIVE if TTY
+>>>          select SERIAL_SIFIVE_CONSOLE if TTY
+>>>          select SIFIVE_PLIC
+>>> +       select SOC_K210_SYSCTL
+>>> +       select CLK_K210
+>>
+>> Any reason to do this vs. just make it the default?
+> 
+> I do not understand here... Just selecting the drivers needed for the SoC here.
+> Is there any other way of doing this ?
+> 
+> [...]
+>>> +
+>>> +       while (true) {
+>>> +               reg = readl(pll->lock);
+>>> +               if ((reg & mask) == mask)
+>>> +                       break;
+>>> +
+>>> +               reg |= BIT(pll->lock_shift + K210_PLL_CLEAR_SLIP);
+>>> +               writel(reg, pll->lock);
+>>
+>> Is this readl_poll_timeout?
+> 
+> Oh. Yes, it is. I did not know about this function. Will change the code to use
+> it.
+
+FWIW the timeout could be incorrect since we might be configuring a
+parent of ACLK. And realistically the only way this fails is if a user
+has edited this file and put in invalid PLL parameters. I don't think
+you gain much by adding a timeout.
+
+>>
+>>> +       }
+>>> +}
+>>> +
+>>> +static bool k210_pll_hw_is_enabled(struct k210_pll *pll)
+>>> +{
+>>> +       u32 reg = readl(pll->reg);
+>>> +       u32 mask = K210_PLL_PWRD | K210_PLL_EN;
+>>> +
+>>> +       if (reg & K210_PLL_RESET)
+>>> +               return false;
+>>> +
+>>> +       return (reg & mask) == mask;
+>>> +}
+>>> +
+>>> +static void k210_pll_enable_hw(struct k210_pll *pll)
+>>> +{
+>>> +       struct k210_pll_cfg *pll_cfg = &k210_plls_cfg[pll->id];
+>>> +       unsigned long flags;
+>>> +       u32 reg;
+>>> +
+>>> +       spin_lock_irqsave(&kcl->clk_lock, flags);
+>>> +
+>>> +       if (k210_pll_hw_is_enabled(pll))
+>>> +               goto unlock;
+>>> +
+>>> +       if (pll->id == K210_PLL0) {
+>>> +               /* Re-parent aclk to IN0 to keep the CPUs running */
+>>> +               k210_aclk_set_selector(0);
+>>> +       }
+>>> +
+>>> +       /* Set factors */
+>>> +       reg = readl(pll->reg);
+>>> +       reg &= ~GENMASK(19, 0);
+>>> +       reg |= FIELD_PREP(K210_PLL_CLKR, pll_cfg->r);
+>>> +       reg |= FIELD_PREP(K210_PLL_CLKF, pll_cfg->f);
+>>> +       reg |= FIELD_PREP(K210_PLL_CLKOD, pll_cfg->od);
+>>> +       reg |= FIELD_PREP(K210_PLL_BWADJ, pll_cfg->bwadj);
+>>> +       reg |= K210_PLL_PWRD;
+>>> +       writel(reg, pll->reg);
+>>> +
+>>> +       /* Ensure reset is low before asserting it */
+>>> +       reg &= ~K210_PLL_RESET;
+>>> +       writel(reg, pll->reg);
+>>> +       reg |= K210_PLL_RESET;
+>>> +       writel(reg, pll->reg);
+>>> +       nop();
+>>> +       nop();
+>>
+>> Are these nops needed for some reason? Any comment to add here? It's
+>> basically non-portable code and hopefully nothing is inserted into that
+>> writel function that shouldn't be there.
+> 
+> No clue... They are "magic" nops that are present in the K210 SDK from
+> Kendryte. I copied that, but do not actually know if they are really needed. I
+> am working without any specs for the hardware: the Kendryte SDK is my main
+> source of information here. I will try to remove them or just replace this with
+> a delay() call a nd see what happens.
+
+Basically any delay should work as long as it takes more than 2
+instructions ;) Of course, anything longer than that just delays startup
+for no reason.
+
+--Sean
+
+> 
+> [...]
+>>> +static int k210_aclk_set_parent(struct clk_hw *hw, u8 index)
+>>> +{
+>>> +       if (WARN_ON(index > 1))
+>>
+>> Is this possible? What am I going to do as a user if this happens?
+> 
+> No, it is not possible. Will remove this. I could put a BUG_ON(), but I am not
+> a fan this extreme.
+> 
+> [...]
+>>> +       /*
+>>> +        * in0 is the system base fixed-rate 26MHz oscillator which
+>>> +        * should already be defined by the device tree. If it is not,
+>>> +        * create it here.
+>>
+>> Are there old DTBs that don't have this? Sadface.
+> 
+> No, not any old DTB. Will remove that.
+> 
+>>
+>>> +        */
+>>> +       in0_clk = of_clk_get(np, 0);
+>>> +       if (IS_ERR(in0_clk)) {
+>>> +               pr_warn("%pOFP: in0 oscillator not found\n", np);
+>>> +               hws[K210_CLK_IN0] =
+>>> +                       clk_hw_register_fixed_rate(NULL, "in0", NULL,
+>>> +                                                  0, K210_IN0_RATE);
+>>> +       } else {
+>>> +               hws[K210_CLK_IN0] = __clk_get_hw(in0_clk);
+>>> +       }
+>>> +       if (IS_ERR(hws[K210_CLK_IN0])) {
+>>> +               pr_err("%pOFP: failed to get base oscillator\n", np);
+>>> +               goto err;
+>>> +       }
+>>> +
+>>> +       in0 = clk_hw_get_name(hws[K210_CLK_IN0]);
+>>> +       aclk_parents[0] = in0;
+>>> +       pll_parents[0] = in0;
+>>> +       mux_parents[0] = in0;
+>>
+>> Can we use the new way of specifying clk parents so that we don't have
+>> to use __clk_get_hw(), of_clk_get(), and clk_hw_get_name()? Hopefully
+>> the core can handl that all instead of this driver.
+> 
+> Not sure what new way of specifying the parent you are referring to here.
+> clk_hw_set_parent() ?
+> 
+>>
+>>> +
+>>> +       /* PLLs */
+>>> +       hws[K210_CLK_PLL0] =
+>>> +               k210_register_pll(K210_PLL0, "pll0", pll_parents, 1, 0);
+>>> +       hws[K210_CLK_PLL1] =
+>>> +               k210_register_pll(K210_PLL1, "pll1", pll_parents, 1, 0);
+>>> +       hws[K210_CLK_PLL2] =
+>>> +               k210_register_pll(K210_PLL2, "pll2", pll_parents, 3, 0);
+>>> +
+>>> +       /* aclk: muxed of in0 and pll0_d, no gate */
+>>> +       hws[K210_CLK_ACLK] = k210_register_aclk();
+>>> +
+>>> +       /*
+>>> +        * Clocks with aclk as source: the CPU clock is obviously critical.
+>>> +        * So is the CLINT clock as the scheduler clocksource.
+>>> +        */
+>>> +       hws[K210_CLK_CPU] =
+>>> +               k210_register_clk(K210_CLK_CPU, "cpu", "aclk", CLK_IS_CRITICAL);
+>>> +       hws[K210_CLK_CLINT] =
+>>> +               clk_hw_register_fixed_factor(NULL, "clint", "aclk",
+>>> +                                            CLK_IS_CRITICAL, 1, 50);
+>>
+>> Is anyone getting these clks? It's nice and all to model things in the
+>> clk framework but if they never have a consumer then it is sort of
+>> useless and just wastes memory and causes more overhead.
+> 
+> The CPU and SRAM clocks do not have any consumer, so I could remove them (just
+> enable the HW but not represent them as clocks in the driver). There is no
+> direct consumer of ACLK but it is the parent of multiple clocks, including the
+> SRAM clocks. So it needs to be represented as a clock and kept alive even if
+> all the peripheral drivers needing it are disabled. Otherwise, the system just
+> stops (SRAM accesses hang).
+> 
+> [...]
+>>> +       ret = of_clk_add_hw_provider(np, of_clk_hw_onecell_get, kcl->clk_data);
+>>> +       if (ret)
+>>> +               pr_err("%pOFP: add clock provider failed %d\n", np, ret);
+>>> +       else
+>>> +               pr_info("%pOFP: CPU running at %lu MHz\n",
+>>
+>> Is this important? Is there a CPUfreq driver that runs and tells us the
+>> boot CPU frequency instead? Doesn't feel like we care in the clk driver
+>> about this.
+> 
+> There is no CPU freq driver that gives this frequency that I know of. That is
+> why I added the message since the driver basically just comes up using the
+> default HW settings for the SoC. CPU freq speed can be changed though by
+> increasing the PLL freq. Just not supporting this for now as it is tricky to
+> do: the SRAM clocks depend on aclk and PLL1 and if these are not the same
+> value, the system hangs (most likely because we end up with the sram banks
+> running at different speeds, which the SoC cache does not like).
+> 
+> [...]
+>>> +CLK_OF_DECLARE_DRIVER(k210_clk, "canaan,k210-clk", k210_clk_init);
+>>
+>> Is this needed or can this just be a plain platform driver? If something
+>> is needed early for a clocksource or clockevent then the driver can be
+>> split to register those few clks early from this hook and then register
+>> the rest later when the platform device probes. That's what
+>> CLK_OF_DECLARE_DRIVER is for. A DECLARE_DRIVER without a platform driver
+>> is incorrect.
+> 
+> I think I can clean this up: aclk and clint clocks are needed early but others
+> can likely be deferred. Will fix this up.
+> 
+> Thanks !
 > 
 
-> The DW_SPI_CAP_DFS32 flag is also unconditionally set for SPI slave
-> controllers, e.g. controllers that have the DW_SPI_CAP_DWC_SSI
-> capability flag set. However, for these ssi controllers, the dfs_offset
-> field is set to 0 as before (as per specifications).
-
-DW_SPI_CAP_DWC_SSI is set for an enhanced version of the Synopsys DW
-APB SPI controller called just DWC SSI. Please see the patch log for
-details:
-https://patchwork.kernel.org/project/spi-devel-general/patch/1575907443-26377-7-git-send-email-wan.ahmad.zainie.wan.mohamad@intel.com/
-
-Since we indeed set the DW_SPI_CAP_DFS32 flag for the DWC SSI
-controllers unconditionally then the code should have a corresponding
-commented about it. Please see my next comment.
-
-> 
-> Finally, for any controller with the DW_SPI_CAP_DFS32 capability flag
-> set, dw_spi_add_host() extends the value of bits_per_word_mask from
-> 16-bits to 32-bits. dw_reader() and dw_writer() are also modified to
-> handle 32-bits iTX/RX FIFO words.
-> 
-> Suggested-by: Sean Anderson <seanga2@gmail.com>
-> Signed-off-by: Damien Le Moal <damien.lemoal@wdc.com>
-> ---
->  drivers/spi/spi-dw-core.c | 44 ++++++++++++++++++++++++++++++++-------
->  drivers/spi/spi-dw.h      |  5 +++++
->  2 files changed, 42 insertions(+), 7 deletions(-)
-> 
-> diff --git a/drivers/spi/spi-dw-core.c b/drivers/spi/spi-dw-core.c
-> index 0b2236ade412..54166fcb2e5b 100644
-> --- a/drivers/spi/spi-dw-core.c
-> +++ b/drivers/spi/spi-dw-core.c
-> @@ -137,14 +137,16 @@ static inline u32 rx_max(struct dw_spi *dws)
->  static void dw_writer(struct dw_spi *dws)
->  {
->  	u32 max = tx_max(dws);
-> -	u16 txw = 0;
-> +	u32 txw = 0;
->  
->  	while (max--) {
->  		if (dws->tx) {
->  			if (dws->n_bytes == 1)
->  				txw = *(u8 *)(dws->tx);
-> -			else
-> +			else if (dws->n_bytes == 2)
->  				txw = *(u16 *)(dws->tx);
-> +			else
-> +				txw = *(u32 *)(dws->tx);
->  
->  			dws->tx += dws->n_bytes;
->  		}
-> @@ -156,15 +158,17 @@ static void dw_writer(struct dw_spi *dws)
->  static void dw_reader(struct dw_spi *dws)
->  {
->  	u32 max = rx_max(dws);
-> -	u16 rxw;
-> +	u32 rxw;
->  
->  	while (max--) {
->  		rxw = dw_read_io_reg(dws, DW_SPI_DR);
->  		if (dws->rx) {
->  			if (dws->n_bytes == 1)
->  				*(u8 *)(dws->rx) = rxw;
-> -			else
-> +			else if (dws->n_bytes == 2)
->  				*(u16 *)(dws->rx) = rxw;
-> +			else
-> +				*(u32 *)(dws->rx) = rxw;
->  
->  			dws->rx += dws->n_bytes;
->  		}
-> @@ -311,8 +315,8 @@ void dw_spi_update_config(struct dw_spi *dws, struct spi_device *spi,
->  	u32 speed_hz;
->  	u16 clk_div;
->  
-> -	/* CTRLR0[ 4/3: 0] Data Frame Size */
-> -	cr0 |= (cfg->dfs - 1);
-> +	/* CTRLR0[ 4/3: 0] or CTRLR0[ 20: 16] Data Frame Size */
-> +	cr0 |= (cfg->dfs - 1) << dws->dfs_offset;
->  
->  	if (!(dws->caps & DW_SPI_CAP_DWC_SSI))
->  		/* CTRLR0[ 9:8] Transfer Mode */
-> @@ -828,6 +832,29 @@ static void spi_hw_init(struct device *dev, struct dw_spi *dws)
->  		dev_dbg(dev, "Detected FIFO size: %u bytes\n", dws->fifo_len);
->  	}
->  
-
-+       /*
-+        * Detect CTRLR0.DFS field size and offset by testing the lowest bits
-+        * writability. Note DWC SSI controller also has the extended DFS, but
-+        * with zero offset.
-+        */
-> +	if (!(dws->caps & DW_SPI_CAP_DWC_SSI)) {
-> +		u32 cr0, tmp = dw_readl(dws, DW_SPI_CTRLR0);
-> +
-> +		/*
-> +		 * Detect APB SSI CTRLR0 DFS offset by looking at the data
-> +		 * frame size field: for 32-bits data frame size, bits [3..0]
-> +		 * (SPI_DFS_MASK) are ignored.
-> +		 */
-
-Please replace the comment you placed here with the comment above,
-which aside of the DFS field usage for the maximum frame size
-detection also states that the DWC SSI controller has the
-extended frame size capability. After that feel free to add:
-
-Acked-by: Serge Semin <fancer.lancer@gmail.com>
-
-Please also note, that normally all the DTB-related patches should
-come before the actual changes in patchset [1]. So the patch 3 in this
-series should be at least first.
-
-[1] Documentation/devicetree/bindings/submitting-patches.rst, line 40.
-
--Sergey
-
-> +		spi_enable_chip(dws, 0);
-> +		dw_writel(dws, DW_SPI_CTRLR0, 0xffffffff);
-> +		cr0 = dw_readl(dws, DW_SPI_CTRLR0);
-> +		dw_writel(dws, DW_SPI_CTRLR0, tmp);
-> +		spi_enable_chip(dws, 1);
-> +
-> +		if (!(cr0 & SPI_DFS_MASK)) {
-> +			dws->caps |= DW_SPI_CAP_DFS32;
-> +			dws->dfs_offset = SPI_DFS32_OFFSET;
-> +			dev_dbg(dev, "Detected 32-bits max data frame size\n");
-> +		}
-> +	} else {
-> +		dws->caps |= DW_SPI_CAP_DFS32;
-> +	}
-> +
->  	/* enable HW fixup for explicit CS deselect for Amazon's alpine chip */
->  	if (dws->caps & DW_SPI_CAP_CS_OVERRIDE)
->  		dw_writel(dws, DW_SPI_CS_OVERRIDE, 0xF);
-> @@ -864,7 +891,10 @@ int dw_spi_add_host(struct device *dev, struct dw_spi *dws)
->  
->  	master->use_gpio_descriptors = true;
->  	master->mode_bits = SPI_CPOL | SPI_CPHA | SPI_LOOP;
-> -	master->bits_per_word_mask =  SPI_BPW_RANGE_MASK(4, 16);
-> +	if (dws->caps & DW_SPI_CAP_DFS32)
-> +		master->bits_per_word_mask = SPI_BPW_RANGE_MASK(4, 32);
-> +	else
-> +		master->bits_per_word_mask = SPI_BPW_RANGE_MASK(4, 16);
->  	master->bus_num = dws->bus_num;
->  	master->num_chipselect = dws->num_cs;
->  	master->setup = dw_spi_setup;
-> diff --git a/drivers/spi/spi-dw.h b/drivers/spi/spi-dw.h
-> index faf40cb66498..b665e040862c 100644
-> --- a/drivers/spi/spi-dw.h
-> +++ b/drivers/spi/spi-dw.h
-> @@ -9,6 +9,7 @@
->  #include <linux/io.h>
->  #include <linux/scatterlist.h>
->  #include <linux/spi/spi-mem.h>
-> +#include <linux/bitfield.h>
->  
->  /* Register offsets */
->  #define DW_SPI_CTRLR0			0x00
-> @@ -41,6 +42,8 @@
->  
->  /* Bit fields in CTRLR0 */
->  #define SPI_DFS_OFFSET			0
-> +#define SPI_DFS_MASK			GENMASK(3, 0)
-> +#define SPI_DFS32_OFFSET		16
->  
->  #define SPI_FRF_OFFSET			4
->  #define SPI_FRF_SPI			0x0
-> @@ -121,6 +124,7 @@ enum dw_ssi_type {
->  #define DW_SPI_CAP_CS_OVERRIDE		BIT(0)
->  #define DW_SPI_CAP_KEEMBAY_MST		BIT(1)
->  #define DW_SPI_CAP_DWC_SSI		BIT(2)
-> +#define DW_SPI_CAP_DFS32		BIT(3)
->  
->  /* Slave spi_transfer/spi_mem_op related */
->  struct dw_spi_cfg {
-> @@ -148,6 +152,7 @@ struct dw_spi {
->  	unsigned long		paddr;
->  	int			irq;
->  	u32			fifo_len;	/* depth of the FIFO buffer */
-> +	unsigned int		dfs_offset;     /* CTRLR0 DFS field offset */
->  	u32			max_mem_freq;	/* max mem-ops bus freq */
->  	u32			max_freq;	/* max bus freq supported */
->  
-> -- 
-> 2.28.0
-> 
