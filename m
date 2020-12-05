@@ -2,54 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EEF7D2CFFA2
-	for <lists+devicetree@lfdr.de>; Sun,  6 Dec 2020 00:09:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2885B2CFFA3
+	for <lists+devicetree@lfdr.de>; Sun,  6 Dec 2020 00:10:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725933AbgLEXJD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Dec 2020 18:09:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56746 "EHLO
+        id S1726023AbgLEXKn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 5 Dec 2020 18:10:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57016 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725270AbgLEXJC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Dec 2020 18:09:02 -0500
+        with ESMTP id S1725973AbgLEXKn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Dec 2020 18:10:43 -0500
 Received: from mail-lf1-x141.google.com (mail-lf1-x141.google.com [IPv6:2a00:1450:4864:20::141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7E1AC0613D1
-        for <devicetree@vger.kernel.org>; Sat,  5 Dec 2020 15:08:16 -0800 (PST)
-Received: by mail-lf1-x141.google.com with SMTP id u18so12747958lfd.9
-        for <devicetree@vger.kernel.org>; Sat, 05 Dec 2020 15:08:16 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C22B7C0613CF
+        for <devicetree@vger.kernel.org>; Sat,  5 Dec 2020 15:10:02 -0800 (PST)
+Received: by mail-lf1-x141.google.com with SMTP id u9so7240330lfm.1
+        for <devicetree@vger.kernel.org>; Sat, 05 Dec 2020 15:10:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=vwb2HdHtdDZZDHnperwU4T/43GW8HXiYw6+fTYALHZ4=;
-        b=SU9Mzn3kxhuqqKEDyZufnK7Jl5GgyAGR9GIYFHUx1XMFG2dsRuvATzgzMS5or8jGoq
-         GKpKXyiLgp2N/icq5y6VTiGSgXjgABGy+TP5fYyjJ0Lp35u899seb57zkNzG7xvU7DpY
-         MjKoPffW5FbBwPxkXy/5yx4HjPXQBeL15aFY8zEe0wMI0UpjdyUXMTL5AERuEX3qD7LG
-         7qq0fcrJaTa6HlYtM8xyptVG3WIrKZ0fV53l/FbgiTBCbpYVPZ9Qw5xhge4F/0ur2SqS
-         nj/UMaT20vcuXoNMSlm0bdGoS4yVN6aFYkJO3uqNzw+p8jFZjDUwXUmsJeZDJfEUQuds
-         OZUw==
+        bh=L4dh8REGOcY3mSsdjWtW61gFhpeRq7e/rh4UNS/HtWs=;
+        b=kWFaTEtG7vzSIUnVscs0yrMiGM74TzDtNz5KZB8Zp8eMiW38SCyLlPXQC0Yz/Mn8DJ
+         YwLmcUu2VRDStp5VnkBJQFfO3+hgJkzJc3LBxV49djXdfPPvXAcbtUfl8kYNd4UK1Zs6
+         P4x2bIuLbYrAEQ/1rSeAPVa5qHwVDqIiuo1FBET6sIU53NEisWFOlSdzDIWESRlKjkg0
+         eFcj3RiDttwq/oqovE0VH6EJ7zVDEgjZDAhx63oD6GSe8KBDYrYndVWy3eUQ+omCXqSl
+         9kd9/XeyxCYbw2TQ3yi2PiR5WYbie5eE43LqaeduKWitriLH0FSeWF0rxEwM+l3V+08K
+         P6Xg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=vwb2HdHtdDZZDHnperwU4T/43GW8HXiYw6+fTYALHZ4=;
-        b=UdawpWS1qBOGmFNLpyFGe333CT/5sBGSe0ubQqx1f88hHC0rynS/HTFdNEG+3ZyoNx
-         llz8VElVYc/WCtjJpd9plJXzqwekK8X4n/E+DWB/rvcaZFfn7XDlQ6SnPGFUO//NkVDa
-         kk3GyWs/640VJ2Pqkep0Nfnwi7Lr5jcNHw/HJZ0lpjWdF8aDUHnGbBaQjIqJKIQxAlA4
-         BkKrTAPSQt2AldNfRloKJZjo+MturlZD1wsOY0dVoTbdu3QMVURNwV/1nbkBXVzywooe
-         BwCIN6wiz4cwUwWjzAHNXVU9KkFdvVWHa8C80tjCSC6nxwWz9dnXbK1p2AcJ5xU/V7Ki
-         FtqQ==
-X-Gm-Message-State: AOAM532RuO+Y/fMEoMquqZAn7hv7vcZnXPII9DQpjd7oNoItlKG4J/g0
-        uctoq3Ffz8TjfQu3vEdkktDCB8oDC/GYeSakBfrsXA==
-X-Google-Smtp-Source: ABdhPJwdF479XZ7ajZEMYz/xc/9Bf8EKg6vkYwWis2eIiU1zHQw8oaYyfgNfyCcFk3hweLjiIOpUj79cCisirDSYA8M=
-X-Received: by 2002:ac2:4578:: with SMTP id k24mr5761952lfm.502.1607209695139;
- Sat, 05 Dec 2020 15:08:15 -0800 (PST)
+        bh=L4dh8REGOcY3mSsdjWtW61gFhpeRq7e/rh4UNS/HtWs=;
+        b=YRhSfdGRUZMQvzC4grmtI9CGYXtf4S9W9ygVTvun2cbAeRNL867WwF6hknZZTaJwZc
+         wXQdeKfKOyuoaqoG6/pmtvTDDMwGCPPiwtl8NSQumFkVGy3nQjCyH02tYxRZ4rTlzgMA
+         YJQWFWpk3AbyleMCJgg+kJO+dVCWch3rxhFc/XSdRM8AKj7Q+0IoYemzJLSA0hHhqTga
+         75AGPYjn17qfeHNVZSoSHKyCX3JYUVQ94zwGNVfkKHEXZEDtrFeiMrsncmotYB0XKi36
+         z8PMIgD0BSeOO7ocICHySE7jajJqxWEPVHOwSmM8mvBQklQguU4CLzpGI0BqG2kerKiS
+         qXaQ==
+X-Gm-Message-State: AOAM530d2XzxZ05eBwghRO7caYbMWUTU4GdLC1SpFo5M5wK4OCqPkdQY
+        JF5a1+8AI7GEqgFn4B0VX7tEHri+YDlT0WJ8wuW6WA==
+X-Google-Smtp-Source: ABdhPJy233SEVPqebAfOtTTGE/Erqfl6WucP3n7epmMvF3mdGMv8xEZT98JCM2Pf4IlavisqYdqQ5QYbqRr47p+yhB8=
+X-Received: by 2002:a05:6512:3e7:: with SMTP id n7mr5417111lfq.585.1607209801250;
+ Sat, 05 Dec 2020 15:10:01 -0800 (PST)
 MIME-Version: 1.0
-References: <20201203131242.44397-1-stephan@gerhold.net>
-In-Reply-To: <20201203131242.44397-1-stephan@gerhold.net>
+References: <20201203131242.44397-1-stephan@gerhold.net> <20201203131242.44397-2-stephan@gerhold.net>
+In-Reply-To: <20201203131242.44397-2-stephan@gerhold.net>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Sun, 6 Dec 2020 00:08:04 +0100
-Message-ID: <CACRpkdY+SUkOZCoPgEOZ005T26hop=Tn-NjG3BwwyVFfWbZOpA@mail.gmail.com>
-Subject: Re: [PATCH 1/3] dt-bindings: Input: tm2-touchkey - convert to yaml
+Date:   Sun, 6 Dec 2020 00:09:50 +0100
+Message-ID: <CACRpkdadiyYK5i8+TaLqxjmp4mUJ8eTiyZkgPXp-Qa2+CD8DrA@mail.gmail.com>
+Subject: Re: [PATCH 2/3] dt-bindings: Input: tm2-touchkey - document vddio-supply
 To:     Stephan Gerhold <stephan@gerhold.net>
 Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
         Linux Input <linux-input@vger.kernel.org>,
@@ -63,19 +63,26 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 On Thu, Dec 3, 2020 at 2:13 PM Stephan Gerhold <stephan@gerhold.net> wrote:
 
-> Convert the device tree bindings for tm2-touchkey to the YAML format.
+> The Samsung touchkey controllers are often used with external pull-up
+> for the interrupt line and the I2C lines, so we might need to enable
+> a regulator to bring the lines into usable state. Otherwise, this might
+> cause spurious interrupts and reading from I2C will fail.
 >
-> While we're at it, clarify the descriptions a bit to make it clear that
-> this driver can be used for many different MCUs that all implement
-> a similar I2C protocol. Depending on the MCU the voltage requirements
-> may be different, on some devices the controller uses 2.2V, 2.8V or
-> even 3.3V for vcc-supply instead of 1.8V.
+> Document support for a "vddio-supply" that is enabled by the tm2-touchkey
+> driver so that the regulator gets enabled when needed.
 >
 > Cc: Linus Walleij <linus.walleij@linaro.org>
 > Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
 
-LGTM
 Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+
+> +  vddio-supply:
+> +    description: |
+> +      Optional regulator that provides digital I/O voltage,
+> +      e.g. for pulling up the interrupt line or the I2C pins.
+
+I think the funny pipe | us only needed when you want something to be
+fixed-width like ASCII art or ASCII tables. But no big deal I suppose.
 
 Yours,
 Linus Walleij
