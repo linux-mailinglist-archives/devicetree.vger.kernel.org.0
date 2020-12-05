@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 845F32CFCD8
-	for <lists+devicetree@lfdr.de>; Sat,  5 Dec 2020 19:51:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E35062CFDA2
+	for <lists+devicetree@lfdr.de>; Sat,  5 Dec 2020 19:53:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728832AbgLESTX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Dec 2020 13:19:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38810 "EHLO
+        id S1726133AbgLESmK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 5 Dec 2020 13:42:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34122 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727995AbgLESKP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Dec 2020 13:10:15 -0500
-Received: from mail-ed1-x544.google.com (mail-ed1-x544.google.com [IPv6:2a00:1450:4864:20::544])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE9CAC094264;
-        Sat,  5 Dec 2020 05:04:25 -0800 (PST)
-Received: by mail-ed1-x544.google.com with SMTP id v22so8745126edt.9;
-        Sat, 05 Dec 2020 05:04:25 -0800 (PST)
+        with ESMTP id S1726629AbgLERic (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Dec 2020 12:38:32 -0500
+Received: from mail-ed1-x541.google.com (mail-ed1-x541.google.com [IPv6:2a00:1450:4864:20::541])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D954C094267;
+        Sat,  5 Dec 2020 05:14:24 -0800 (PST)
+Received: by mail-ed1-x541.google.com with SMTP id i24so920821edj.8;
+        Sat, 05 Dec 2020 05:14:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlemail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=C0+StnkqPn0FaAVFCZ/bxC2Ra36MF1dYPlwQRpPH+bg=;
-        b=CLthCZ+pBvNWkqEvKMCfFA5VvP7eqiRCZ/KPvbXYyk5Z8sqHZ1gvoybUnysll0JMkE
-         upGyKe5ML91Y9fIgQliof/bk6nwo2H3Z8Z6B8iI2i0LhENGog3W6IJ0mxoAJMHEYOFWx
-         8XNgrTTIPebZD8RRBeh4dRvd/+YOaHzXRt3Q5OdpZ1+4rri/XegtkeDjZG04BSk0TMJ8
-         kPOtfYiibQxG5E3M2bI6UV4v+p5StlEWUxr9QEquuX0rw05znX+u7pIICqrLIrqNLJIC
-         +P2rbBV4WEWEFE0fBrq0/QYPU2qkooWR5dJptaYoC1W4jhoTwvpOiluteQ02s/xBtz/s
-         tOYg==
+        bh=PSWuLaWp7kbS1P3O0848/H0adnOKzlmdgp1RQ+ybx9E=;
+        b=DfuNWu0nvI/vVGwzISzLSSGehEluoo+f6F2w8cnNEFZ6a5Yg2UrKW+I9A+SOR4/Y9R
+         12c1zdDfc88FUXJ67ZddR7xaLyOd5DnO9WKZYsgYatjFSXOY7moPGweTQCCC7p80LKyc
+         UL+ri58kmYox4rh31GYuaGdK7VI0dfTzYbM09MSxZf4YRJ2wlrzXi/e6bmt2IpQ4zy75
+         X8oOVyrKZkkYE7JVDH39hOY8EZt21JZT8E7i//I1ME5t6VPD6EyHXZ0EIYo3X7YzG3V5
+         ol/hHsJ/T9Jen4j89EYlphWclFthOV+h4p65gd0BgAiuDi6Mis8/o3fhJeqyecOtS966
+         G5nw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=C0+StnkqPn0FaAVFCZ/bxC2Ra36MF1dYPlwQRpPH+bg=;
-        b=YvMKaYAeTN1X0Wgy5g4+HGR/1htAUXcGjhuI8kSgrBok+KXVd1Bap6rGkJiAxwA7L4
-         FSt5AxyvmBss9dV4mfxxmPoyaOqiFVHL7i6nozZeESUsAZMsWEsaTrwHBNZZUTw9OXt9
-         VPY1pX2LoED4IRSa8N1N2iAaEzDnwlk4ooguIqRuBfZMNZJfNuAbAEcrEFiJ+G1nDmAk
-         np/6x2zqr5onw3Ia3sxsFsY53lYJlsMDT9zBSsc7q/t6LP6Ep3WxLAUPjpn4toA4S/ZM
-         inGgiDU2eyzm7/cP1WTyxJXuNuMGA+Nf4Pcz1KhN/IHX1ndI7VUjr5kTPUq8cnZQrq2F
-         6Lcg==
-X-Gm-Message-State: AOAM533HzY9QbFvuK0We6AMcid7A3+WbK3KXiinSueW2DtDUvcYKHRq4
-        qFzm6X/iyy+6T75YgDVkwsoG9Wx76aB9TieGxPo=
-X-Google-Smtp-Source: ABdhPJwg/aVelRzEkx8ct1h8p95ANrqs0EaGaYdA0P0CRPct189vE0MddExzvw8TCa/hBR2COLD3V7MnfUUo7l13fuA=
-X-Received: by 2002:aa7:cdc3:: with SMTP id h3mr5747824edw.52.1607173464726;
- Sat, 05 Dec 2020 05:04:24 -0800 (PST)
+        bh=PSWuLaWp7kbS1P3O0848/H0adnOKzlmdgp1RQ+ybx9E=;
+        b=i5rF2LOA+FkTAZ6Rs2rqdZyD3HHTREv+GXKkcS7NwW7Wp/wC+F4hJf0GTTV5Bcs7kl
+         Z+t3ewwdND7YfiGHR2h5/7FluWhZ3FY8lu6BVZxovKv5cw/5RLuU6pMJippaMbdij//5
+         Qw5qSp9CWF5T7/3Xt+cFnA7Thc6r0WP2OGtbAZnTut8YdFoXML+PfyEI9vyXt8FhGMWI
+         C6k4U1DJlBy4GuXQvQJoV8x5ooVgWw8vx2i3f05UL+lhTQxFTDum8Vyza79T6jk5sm09
+         3iXpQpy1ZasbrmLJP3+iZCjqgc6RrpzgKA/3XFEP13es4V8zkVFnWUvVAnWij7MeylTC
+         8ZHA==
+X-Gm-Message-State: AOAM531kSyT4o8GzimPk0fkzBW7VHKMJaSwXdcEZoXnbUA8eLYiQr8p/
+        0OMOWgc6Y8V30FEc0XnXXRxDJhFP0JFRjONW0bgHoc3j458=
+X-Google-Smtp-Source: ABdhPJzRPCNK8jPVIDmwevaTpwC/Fk3APx2o2HatJoY6Xlb9UvfG2YB3rpdT+mX5GocDIz0W4p7xxZX31yeO4wv3RmI=
+X-Received: by 2002:a50:fd18:: with SMTP id i24mr12318534eds.146.1607174062920;
+ Sat, 05 Dec 2020 05:14:22 -0800 (PST)
 MIME-Version: 1.0
 References: <14754fd95378b78eb9a0a3f8b6bab13f7263c7f1.1606828668.git.stefan@agner.ch>
- <6bfe17d86ead62c20d236e2ebbc7b7fe3354829d.1606828668.git.stefan@agner.ch>
-In-Reply-To: <6bfe17d86ead62c20d236e2ebbc7b7fe3354829d.1606828668.git.stefan@agner.ch>
+In-Reply-To: <14754fd95378b78eb9a0a3f8b6bab13f7263c7f1.1606828668.git.stefan@agner.ch>
 From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Sat, 5 Dec 2020 14:04:13 +0100
-Message-ID: <CAFBinCA_eaJHv7e+8ZM=z=zUZ9uQY_JZ=618=LwJYM-Gi+OO+g@mail.gmail.com>
-Subject: Re: [PATCH v2 3/5] ARM: dts: meson: fix PHY deassert timing requirements
+Date:   Sat, 5 Dec 2020 14:14:12 +0100
+Message-ID: <CAFBinCCBQupdpm0CmxZo_VeRyk_Kqwqsf+Q66aaxqcNv3hsA9g@mail.gmail.com>
+Subject: Re: [PATCH v2 1/5] arm64: dts: meson: g12b: odroid-n2: fix PHY
+ deassert timing requirements
 To:     Stefan Agner <stefan@agner.ch>
 Cc:     khilman@baylibre.com, robh+dt@kernel.org,
         Neil Armstrong <narmstrong@baylibre.com>, jbrunet@baylibre.com,
@@ -62,34 +62,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Stefan,
-
 On Tue, Dec 1, 2020 at 2:21 PM Stefan Agner <stefan@agner.ch> wrote:
 >
 > According to the datasheet (Rev. 1.9) the RTL8211F requires at least
 > 72ms "for internal circuits settling time" before accessing the PHY
-> egisters. On similar boards with the same PHY this fixes an issue where
-there's a typo here: it should be "registers"
-this is the same for the other four patches also
-
-> Ethernet link would not come up when using ip link set down/up.
-I have never experienced that myself but gotten a few reports about this.
-thank you very much for coming up with info from the datasheet!
-
-the following stmmac patch [0] has been added recently which may - or
-may not - have any impact also.
-
-> Fixes: a2c6e82e5341 ("ARM: dts: meson: switch to the generic Ethernet PHY reset bindings")
+> egisters. This fixes an issue where the Ethernet link doesn't come up
+> when using ip link set down/up:
+>   [   29.360965] meson8b-dwmac ff3f0000.ethernet eth0: Link is Down
+>   [   34.569012] meson8b-dwmac ff3f0000.ethernet eth0: PHY [0.0:00] driver [RTL8211F Gigabit Ethernet] (irq=31)
+>   [   34.676732] meson8b-dwmac ff3f0000.ethernet: Failed to reset the dma
+>   [   34.678874] meson8b-dwmac ff3f0000.ethernet eth0: stmmac_hw_setup: DMA engine initialization failed
+>   [   34.687850] meson8b-dwmac ff3f0000.ethernet eth0: stmmac_open: Hw setup failed
+>
+> Fixes: 658e4129bb81 ("arm64: dts: meson: g12b: odroid-n2: add the Ethernet PHY reset line")
 > Signed-off-by: Stefan Agner <stefan@agner.ch>
-with above typo fixed:
+with the "registers" typo above fixed:
 Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-and also:
-Tested-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com> #
-on Odroid-C1+
-
-
-Best regards,
-Martin
-
-
-[0] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/drivers/net/ethernet/stmicro/stmmac?id=56311a315da7ebc668dbcc2f1c99689cc10796c4
