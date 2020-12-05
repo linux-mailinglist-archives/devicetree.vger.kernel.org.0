@@ -2,45 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B5EA92CFA9B
-	for <lists+devicetree@lfdr.de>; Sat,  5 Dec 2020 09:28:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B48C2CFA90
+	for <lists+devicetree@lfdr.de>; Sat,  5 Dec 2020 09:21:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727385AbgLEI2A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Dec 2020 03:28:00 -0500
-Received: from mail.kernel.org ([198.145.29.99]:48162 "EHLO mail.kernel.org"
+        id S1726031AbgLEISB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 5 Dec 2020 03:18:01 -0500
+Received: from mail.kernel.org ([198.145.29.99]:49678 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728798AbgLEIL2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 5 Dec 2020 03:11:28 -0500
-Date:   Sat, 5 Dec 2020 13:40:58 +0530
+        id S1728975AbgLEIRU (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 5 Dec 2020 03:17:20 -0500
+Date:   Sat, 5 Dec 2020 13:46:44 +0530
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1607155863;
-        bh=mGO4D/CrxcgVNF2XS6aa7J5jfeliiJlvfRPD2/JDX2Q=;
+        s=k20201202; t=1607156208;
+        bh=+d2SAkMSduylIv/svczlhrewKcbHqCZU+34VdL9PsGc=;
         h=From:To:Cc:Subject:References:In-Reply-To:From;
-        b=FytETiNBT8lwOtSUknHqUWOsZvEFo0GDLHUrl2+V7imaRlt/mcRQV+R2x0oEfM5V5
-         nPM8x6j3kzVAA+s9tjj0x7tpq6kQ7nK0nV2TLccNC+oan2fVm8kHHyzkrC5QNui3sn
-         PcPYCdHKpSoo/4aGHAIagjSxfCZ0iFMnLs5i4f/iacOaCywbSNgnuZQSEJN/i0RSyp
-         GQCdtM/MlhZrqkX1keBBVqJIEvd5gv3C/vN++Jg/VNL15pgFvYTK/QujunF5NKLiEh
-         pRh0luQlWvKQVqA9Ig/l2IbCljiCsJiy7OqO1A2gfhylNihh527fq2YPIo6Vg8rGNp
-         zE6CauPE5OgSQ==
+        b=GMSYoXI6B76YwxcPEkt4Uvo3TuM/CdZ6fuwK8+wFdm/Jau5FPlsCsW2+eHAOlFGfU
+         KdoZEuwWt7CXZ8GeOvPBSg25SDyurbXABBusZLpF12u+FkDQKfl+0j5uHn64APy9Rj
+         eFFiOPz3pyReP+lxG/yw+eu/3akbWzoy72zVlwWElTvtfvv/S8XwG2eaeJ3dut86H3
+         hgIF78Px9nF2+wJAO497x1CwucQWJl3cWdtsYIXDwhgqsl2IjemX+r5wQO/SZVXgAe
+         sUtDq1nk5CLlFOEz6DqyBpddrlEEsKCPA3Ka7ApULNfpkayy7OdVsL/8d2hLoC9I+6
+         g8HVjgas6/6oA==
 From:   Vinod Koul <vkoul@kernel.org>
-To:     Chris Ruehl <chris.ruehl@gtsys.com.hk>
-Cc:     devicetree@vger.kernel.org, Kishon Vijay Abraham I <kishon@ti.com>,
-        Heiko Stuebner <heiko@sntech.de>, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH 0/2] phy: rockchip: set otapdlysec for in dts
-Message-ID: <20201205081058.GY8403@vkoul-mobl>
-References: <20201202082507.3536-1-chris.ruehl@gtsys.com.hk>
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     linux-kernel@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v2] dt-bindings: phy: Convert Broadcom SATA PHY to YAML
+Message-ID: <20201205081644.GZ8403@vkoul-mobl>
+References: <20201204193532.1934108-1-f.fainelli@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201202082507.3536-1-chris.ruehl@gtsys.com.hk>
+In-Reply-To: <20201204193532.1934108-1-f.fainelli@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02-12-20, 16:25, Chris Ruehl wrote:
-> This patchset add support to set output-tapdelay-selec via dt property
+On 04-12-20, 11:35, Florian Fainelli wrote:
+> Update the Broadcom SATA PHY Device Tree binding to a YAML format.
+> 
 
 Applied, thanks
 
