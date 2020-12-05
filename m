@@ -2,337 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F6E62CFCDE
-	for <lists+devicetree@lfdr.de>; Sat,  5 Dec 2020 19:51:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B80762CFCD4
+	for <lists+devicetree@lfdr.de>; Sat,  5 Dec 2020 19:51:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728809AbgLESTX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S1728861AbgLESTX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Sat, 5 Dec 2020 13:19:23 -0500
-Received: from mail.kernel.org ([198.145.29.99]:46282 "EHLO mail.kernel.org"
+Received: from mail.kernel.org ([198.145.29.99]:47926 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726591AbgLESCG (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 5 Dec 2020 13:02:06 -0500
-Received: from archlinux (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 2367B22D6D;
-        Sat,  5 Dec 2020 18:01:23 +0000 (UTC)
-Date:   Sat, 5 Dec 2020 18:01:20 +0000
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Cristian Pop <cristian.pop@analog.com>
-Cc:     <linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <robh+dt@kernel.org>
-Subject: Re: [PATCH v2 2/2] iio: dac: ad5766: add driver support for AD5766
-Message-ID: <20201205180120.70125969@archlinux>
-In-Reply-To: <20201204182043.86899-2-cristian.pop@analog.com>
-References: <20201204182043.86899-1-cristian.pop@analog.com>
-        <20201204182043.86899-2-cristian.pop@analog.com>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S1727832AbgLESLA (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 5 Dec 2020 13:11:00 -0500
+Date:   Sat, 5 Dec 2020 10:07:32 -0800
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1607191654;
+        bh=JSA57+wXVj3H6++cCmUu4KQ3n2g1dHCJ+HE2fOPCu7k=;
+        h=From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Ate+WiDGkniHDrd4oMP+wlyQRLsHcNcrjsCTSY4NyGAkh0BtMKxzACsMMFDEi1IBz
+         ONc/ZdIiSFS1hInll8vjr0iR53fB56WaqPzTZWTGzQ8Z4M04nDzjYcQLn/klyapKRG
+         X9tQk107SKfswxa6sVVQ2oP+BQfG3TqoU1WZEVeQn6I5lDnWHa7XkKf+hY0mOEbMiZ
+         ZBGxbHtMq5OAygyCBBzfuPy3oBbsizI1rTVm1AMVCp594Svj2VUitx/XkO4Ftfz1Qg
+         3qzxIZf7yELgBbq3mszSLFltYBNTJlBdLWRxHCw7Yo54TAicatAsbb5quwbQd5D+1e
+         hsFKjcH6s736g==
+From:   Eric Biggers <ebiggers@kernel.org>
+To:     Satya Tangirala <satyat@google.com>
+Cc:     linux-mmc@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-fscrypt@vger.kernel.org,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Asutosh Das <asutoshd@codeaurora.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Neeraj Soni <neersoni@codeaurora.org>,
+        Barani Muthukumaran <bmuthuku@codeaurora.org>,
+        Peng Zhou <peng.zhou@mediatek.com>,
+        Stanley Chu <stanley.chu@mediatek.com>,
+        Konrad Dybcio <konradybcio@gmail.com>
+Subject: Re: [PATCH v2 4/9] mmc: cqhci: add support for inline encryption
+Message-ID: <X8vMZBSP0hQSOqlA@sol.localdomain>
+References: <20201203020516.225701-1-ebiggers@kernel.org>
+ <20201203020516.225701-5-ebiggers@kernel.org>
+ <X8t82HijJtbHVyLM@google.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <X8t82HijJtbHVyLM@google.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 4 Dec 2020 20:20:43 +0200
-Cristian Pop <cristian.pop@analog.com> wrote:
+On Sat, Dec 05, 2020 at 12:28:08PM +0000, Satya Tangirala wrote:
+> > +#define CQHCI_CRYPTO_CONFIGURATION_ENABLE (1 << 7)
+> > +#define CQHCI_CRYPTO_KEY_MAX_SIZE 64
+> > +/* x-CRYPTOCFG - Crypto Configuration X */
+> > +union cqhci_crypto_cfg_entry {
+> > +	__le32 reg_val[32];
+> > +	struct {
+> > +		u8 crypto_key[CQHCI_CRYPTO_KEY_MAX_SIZE];
+> > +		/* 4KB/512 = 8 */
+> I'm not sure what this comment is for (admittedly, it seems I introduced
+> this line into AOSP, and that seems to have made it here haha) - I think
+> we should just remove it.
+> > +		u8 data_unit_size;
+> > +		u8 crypto_cap_idx;
+> > +		u8 reserved_1;
+> > +		u8 config_enable;
+> > +		u8 reserved_multi_host;
+> > +		u8 reserved_2;
+> > +		u8 vsb[2];
+> > +		u8 reserved_3[56];
+> > +	};
+> > +};
 
-> The AD5766/AD5767 are 16-channel, 16-bit/12-bit, voltage output dense DACs
-> Digital-to-Analog converters.
-> 
-> This change adds support for these DACs.
-> 
-> Link: https://www.analog.com/media/en/technical-documentation/data-sheets/ad5766-5767.pdf
-> 
-> Signed-off-by: Cristian Pop <cristian.pop@analog.com>
+(Please quote just the part that you're actually replying to -- thanks!)
 
-Missing build files + docs for the new ABI.
-Note it doesn't build so a few things to fix on that front!
+The comment gives the typical value that is stored in data_unit_size,
+but yeah it's a bad comment.  I'll just remove it.
 
-Docs in appropriate file under Documentation/ABI/testing/sysfs-bus-iio-*
-
-I'm a bit curious about the range being entirely controllable from userspace
-as well. Seems like something that might be dangerous in some systems.
-Perhaps we need some sort of dt binding restriction mechanism?
-
-
-> ---
->  Changes in v2:
-> 	-Remove forward declarations, arrange code
-> 	-New ABI docs
-> 	-Move "max_val" scope in case
-> 	-Remove blank line
-> 	-Use bitfield operations, where posible
-> 	-Change declaration type to int of:
-> 		int		scale_avail[AD5766_VOLTAGE_RANGE_MAX][2];
-> 		int		offset_avail[AD5766_VOLTAGE_RANGE_MAX][2];
-> 	-Move initialization down to just above where it is used: 
-> 		"type = spi_get_device_id(spi)->driver_data;"
-> 
->  drivers/iio/dac/ad5766.c | 758 +++++++++++++++++++++++++++++++++++++++
->  1 file changed, 758 insertions(+)
->  create mode 100644 drivers/iio/dac/ad5766.c
-> 
-> diff --git a/drivers/iio/dac/ad5766.c b/drivers/iio/dac/ad5766.c
-> new file mode 100644
-> index 000000000000..e6d24a41bd4e
-> --- /dev/null
-> +++ b/drivers/iio/dac/ad5766.c
-> @@ -0,0 +1,758 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Analog Devices AD5766, AD5767
-> + * Digital to Analog Converters driver
-> + *
-> + * Copyright 2019-2020 Analog Devices Inc.
-> + */
-> +
-> +#include <linux/delay.h>
-> +#include <linux/device.h>
-> +#include <linux/gpio/consumer.h>
-> +#include <linux/module.h>
-> +#include <linux/spi/spi.h>
-> +#include <linux/iio/iio.h>
-> +#include <linux/bitfield.h>
-> +
-> +#define AD5766_UPPER_WORD_SPI_MASK		GENMASK(31, 16)
-> +#define AD5766_LOWER_WORD_SPI_MASK		GENMASK(15, 0)
-> +#define AD5766_DITHER_SOURCE_MASK(x)		GENMASK(((2 * x) + 1), (2 * x))
-> +#define AD5766_DITHER_SCALE_MASK(x)		AD5766_DITHER_SOURCE_MASK(x)
-> +
-> +#define AD5766_CMD_NOP_MUX_OUT			0x00
-> +#define AD5766_CMD_SDO_CNTRL			0x01
-> +#define AD5766_CMD_WR_IN_REG(x)			(0x10 | ((x) & 0xF))
-> +#define AD5766_CMD_WR_DAC_REG(x)		(0x20 | ((x) & 0xF))
-> +#define AD5766_CMD_SW_LDAC			0x30
-> +#define AD5766_CMD_SPAN_REG			0x40
-> +#define AD5766_CMD_WR_PWR_DITHER		0x51
-> +#define AD5766_CMD_WR_DAC_REG_ALL		0x60
-> +#define AD5766_CMD_SW_FULL_RESET		0x70
-> +#define AD5766_CMD_READBACK_REG(x)		(0x80 | ((x) & 0xF))
-> +#define AD5766_CMD_DITHER_SIG_1			0x90
-> +#define AD5766_CMD_DITHER_SIG_2			0xA0
-> +#define AD5766_CMD_INV_DITHER			0xB0
-> +#define AD5766_CMD_DITHER_SCALE_1		0xC0
-> +#define AD5766_CMD_DITHER_SCALE_2		0xD0
-> +
-> +#define AD5766_FULL_RESET_CODE			0x1234
-> +
-> +enum ad5766_type {
-> +	ID_AD5766,
-> +	ID_AD5767,
-> +};
-> +
-> +enum ad5766_voltage_range {
-> +	AD5766_VOLTAGE_RANGE_M20V_0V,
-> +	AD5766_VOLTAGE_RANGE_M16V_to_0V,
-> +	AD5766_VOLTAGE_RANGE_M10V_to_0V,
-> +	AD5766_VOLTAGE_RANGE_M12V_to_14V,
-> +	AD5766_VOLTAGE_RANGE_M16V_to_10V,
-> +	AD5766_VOLTAGE_RANGE_M10V_to_6V,
-> +	AD5766_VOLTAGE_RANGE_M5V_to_5V,
-> +	AD5766_VOLTAGE_RANGE_M10V_to_10V,
-> +	AD5766_VOLTAGE_RANGE_MAX,
-> +};
-> +
-> +/**
-> + * struct ad5766_chip_info - chip specific information
-> + * @num_channels:	number of channels
-> + * @channel:	        channel specification
-> + */
-> +struct ad5766_chip_info {
-> +	unsigned int			num_channels;
-> +	const struct iio_chan_spec	*channels;
-> +};
-> +
-> +enum {
-> +	AD5766_DITHER_PWR,
-> +	AD5766_DITHER_INVERT
-> +};
-> +
-> +/*
-> + * External dither signal can be composed with the DAC output, if activated.
-> + * The dither signals are applied to the N0 and N1 input pins.
-> + * Dither source for each of the channel can be selected by writing to
-> + * "dither_source",a 32 bit variable and two bits are used for each of the 16
-> + * channels: 0: NO_DITHER, 1: N0, 2: N1.
-> + * This variable holds available dither source strings.
-> + */
-> +static const char * const ad5766_dither_sources[] = {
-> +	"NO_DITHER",
-> +	"N0",
-> +	"N1",
-> +};
-> +
-> +/*
-> + * Dither signal can also be scaled.
-> + * Available dither scale strings coresponding to "dither_scale" field in
-> + * "struct ad5766_state".
-> + * "dither_scale" is a 32 bit variable and two bits are used for each of the 16
-> + * channels: 0: NO_SCALING, 1: 75%_SCALING, 2: 50%_SCALING, 3: 25%_SCALING.
-
-Needs explicit ABI docs for a proper discussion.  My gut feeling is it should
-be two controls. On/off + a scaling control that takes integer values.
-
-> + */
-> +static const char * const ad5766_dither_scales[] = {
-> +	"NO_SCALING",
-> +	"75%_SCALING",
-> +	"50%_SCALING",
-> +	"25%_SCALING",
-> +};
-> +
-> +/**
-> + * struct ad5766_state - driver instance specific data
-> + * @spi:		SPI device
-> + * @lock:		Mutex lock
-
-Say what exactly the scope of the lock is.  No interest at all to tell
-us what is clear from the type of the structure element.
-
-> + * @chip_info:		Chip model specific constants
-> + * @gpio_reset:		Reset GPIO, used to reset the device
-> + * @crt_range:		Current selected output range
-> + * @cached_offset:	Cached range coresponding to the selected offset
-> + * @dither_power_ctrl:	Power-down bit for each channel dither block (for
-> + *			example, D15 = DAC 15,D8 = DAC 8, and D0 = DAC 0)
-> + *			0 - Normal operation, 1 - Power down
-> + * @dither_invert:	Inverts the dither signal applied to the selected DAC
-> + *			outputs
-> + * @dither_source:	Selects between 3 possible sources:
-> + *			0: No dither, 1: N0, 2: N1
-> + *			Two bits are used for each channel
-> + * @dither_scale:	Selects between 4 possible scales:
-> + *			0: No scale, 1: 75%, 2: 50%, 3: 25%
-> + *			Two bits are used for each channel
-> + * @scale_avail:	Scale available table
-> + * @offset_avail:	Offest available table
-> + * @data:		SPI transfer buffers
-> + */
-> +struct ad5766_state {
-> +	struct spi_device		*spi;
-> +	struct mutex			lock;
-> +	const struct ad5766_chip_info	*chip_info;
-> +	struct gpio_desc		*gpio_reset;
-> +	enum ad5766_voltage_range	crt_range;
-> +	enum ad5766_voltage_range	cached_offset;
-> +	u16		dither_power_ctrl;
-> +	u16		dither_invert;
-> +	u32		dither_source;
-> +	u32		dither_scale;
-> +	int		scale_avail[AD5766_VOLTAGE_RANGE_MAX][2];
-> +	int		offset_avail[AD5766_VOLTAGE_RANGE_MAX][2];
-> +	union {
-> +		u32	d32;
-> +		u16	w16[2];
-> +		u8	b8[4];
-> +	} data[3] ____cacheline_aligned;
-> +};
-> +
-...
-> +
-> +static int _ad5766_spi_read(struct ad5766_state *st, u8 dac, int *val)
-> +{
-> +	int ret;
-> +	struct spi_transfer xfers[] = {
-> +		{
-> +			.tx_buf = &st->data[0].d32,
-> +			.bits_per_word = 8,
-> +			.len = 3,
-> +			.cs_change = 1,
-> +		}, {
-> +			.tx_buf = &st->data[1].d32,
-> +			.rx_buf = &st->data[2].d32,
-> +			.bits_per_word = 8,
-> +			.len = 3,
-> +		},
-> +	};
-> +
-> +	st->data[0].d32 = AD5766_CMD_READBACK_REG(dac);
-> +	st->data[1].d32 = AD5766_CMD_NOP_MUX_OUT;
-> +
-> +	ret = spi_sync_transfer(st->spi, xfers, ARRAY_SIZE(xfers));
-> +	if (ret)
-> +		return ret;
-> +
-> +	*val = st->data[2].w16[1];
-> +
-> +	return ret;
-> +}
-> +
-> +static int _ad5766_spi_write(struct ad5766_state *st, u8 command, u16 data)
-> +{
-> +	st->data[0].b8[0] = command;
-> +	st->data[0].b8[1] = (data & 0xFF00) >> 8;
-> +	st->data[0].b8[2] = (data & 0x00FF) >> 0;
-
-That's an unaligned put so ideally use put_unaligned_xx16 and friends
-to make that clear.
-
-> +
-> +	return spi_write(st->spi, &st->data[0].b8[0], 3);
-> +}
-> +
-> +static int ad5766_read(struct iio_dev *indio_dev, u8 dac, int *val)
-> +{
-> +	struct ad5766_state *st = iio_priv(indio_dev);
-> +	int ret;
-> +
-> +	mutex_lock(&st->lock);
-> +	ret = _ad5766_spi_read(st, dac, val);
-> +	mutex_unlock(&st->lock);
-> +
-> +	return ret;
-> +}
-> +
-> +static int ad5766_write(struct iio_dev *indio_dev, u8 dac, u16 data)
-> +{
-> +	struct ad5766_state *st = iio_priv(indio_dev);
-> +	int ret;
-> +
-> +	mutex_lock(&st->lock);
-> +	ret = _ad5766_spi_write(st, AD5766_CMD_WR_DAC_REG(dac), data);
-
-Normal convention for this sort of function would be __ rather than _
-Looks more deliberate.
-
-> +	mutex_unlock(&st->lock);
-> +
-> +	return ret;
-> +}
-> +
-
-...
-
-> +
-> +#define _AD5766_CHAN_EXT_INFO(_name, _what, _shared) { \
-> +	.name = _name, \
-> +	.read = ad5766_read_ext, \
-> +	.write = ad5766_write_ext, \
-> +	.private = _what, \
-> +	.shared = _shared, \
-> +}
-> +
-> +static const struct iio_chan_spec_ext_info ad5766_ext_info[] = {
-> +
-> +	_AD5766_CHAN_EXT_INFO("dither_pwr", AD5766_DITHER_PWR, IIO_SEPARATE),
-> +	_AD5766_CHAN_EXT_INFO("dither_invert", AD5766_DITHER_INVERT,
-> +			      IIO_SEPARATE),
-> +	IIO_ENUM("dither_source", IIO_SEPARATE, &ad5766_dither_source_enum),
-> +	IIO_ENUM_AVAILABLE_SHARED("dither_source",
-> +				  IIO_SEPARATE,
-> +				  &ad5766_dither_source_enum),
-> +	IIO_ENUM("dither_scale", IIO_SEPARATE, &ad5766_dither_scale_enum),
-> +	IIO_ENUM_AVAILABLE_SHARED("dither_scale",
-
-That macro doesn't exist in mainline.
-
-> +				  IIO_SEPARATE,
-> +				  &ad5766_dither_scale_enum),
-> +	{}
-> +};
-
-All the above need ABI docs so we can talk about them without having
-to read data sheets.
-
-...
+- Eric
