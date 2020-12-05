@@ -2,54 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2885B2CFFA3
-	for <lists+devicetree@lfdr.de>; Sun,  6 Dec 2020 00:10:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 347782CFFA7
+	for <lists+devicetree@lfdr.de>; Sun,  6 Dec 2020 00:12:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726023AbgLEXKn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Dec 2020 18:10:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57016 "EHLO
+        id S1726929AbgLEXLf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 5 Dec 2020 18:11:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57138 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725973AbgLEXKn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Dec 2020 18:10:43 -0500
-Received: from mail-lf1-x141.google.com (mail-lf1-x141.google.com [IPv6:2a00:1450:4864:20::141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C22B7C0613CF
-        for <devicetree@vger.kernel.org>; Sat,  5 Dec 2020 15:10:02 -0800 (PST)
-Received: by mail-lf1-x141.google.com with SMTP id u9so7240330lfm.1
-        for <devicetree@vger.kernel.org>; Sat, 05 Dec 2020 15:10:02 -0800 (PST)
+        with ESMTP id S1726734AbgLEXLe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Dec 2020 18:11:34 -0500
+Received: from mail-lf1-x143.google.com (mail-lf1-x143.google.com [IPv6:2a00:1450:4864:20::143])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C08DC0613CF
+        for <devicetree@vger.kernel.org>; Sat,  5 Dec 2020 15:10:48 -0800 (PST)
+Received: by mail-lf1-x143.google.com with SMTP id w13so74277lfd.5
+        for <devicetree@vger.kernel.org>; Sat, 05 Dec 2020 15:10:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=L4dh8REGOcY3mSsdjWtW61gFhpeRq7e/rh4UNS/HtWs=;
-        b=kWFaTEtG7vzSIUnVscs0yrMiGM74TzDtNz5KZB8Zp8eMiW38SCyLlPXQC0Yz/Mn8DJ
-         YwLmcUu2VRDStp5VnkBJQFfO3+hgJkzJc3LBxV49djXdfPPvXAcbtUfl8kYNd4UK1Zs6
-         P4x2bIuLbYrAEQ/1rSeAPVa5qHwVDqIiuo1FBET6sIU53NEisWFOlSdzDIWESRlKjkg0
-         eFcj3RiDttwq/oqovE0VH6EJ7zVDEgjZDAhx63oD6GSe8KBDYrYndVWy3eUQ+omCXqSl
-         9kd9/XeyxCYbw2TQ3yi2PiR5WYbie5eE43LqaeduKWitriLH0FSeWF0rxEwM+l3V+08K
-         P6Xg==
+        bh=m1UEZz6HGFFmSdASHfwbCskijV7GUrzT+a+Yt9fsFZU=;
+        b=QxPctIMns7UAHl7Ywu+Oy9o2xkI2GRvggQ/tyMeKeOu6xKfFq3kz1Vqes/lt7DLO28
+         75DJL3qYF1l2spY1c3NOw/DE4aeCnzH0tF/TsWY0m+9DGHVoCxtmgrWqbrfyvQvoA0Cp
+         nICq/9VFHmU3pbgV77Rbikto/FeaOy3238t8+ECriapWRS5d5oVNEBuPdmVaxuSUq0QG
+         UpA5BoAn6ZNsfyd6H0gPIUei4a8Aq0K4DZ1XTtF2AP7BN/1OZL10qZE3hUWTTDHvwnuz
+         2ISh7oLE/arJe3ZMldQB5CoUP1RcziZs1QMRzZR2NMmFjNDo2h4cp2T5e4TgkmrIbhCf
+         pHpQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=L4dh8REGOcY3mSsdjWtW61gFhpeRq7e/rh4UNS/HtWs=;
-        b=YRhSfdGRUZMQvzC4grmtI9CGYXtf4S9W9ygVTvun2cbAeRNL867WwF6hknZZTaJwZc
-         wXQdeKfKOyuoaqoG6/pmtvTDDMwGCPPiwtl8NSQumFkVGy3nQjCyH02tYxRZ4rTlzgMA
-         YJQWFWpk3AbyleMCJgg+kJO+dVCWch3rxhFc/XSdRM8AKj7Q+0IoYemzJLSA0hHhqTga
-         75AGPYjn17qfeHNVZSoSHKyCX3JYUVQ94zwGNVfkKHEXZEDtrFeiMrsncmotYB0XKi36
-         z8PMIgD0BSeOO7ocICHySE7jajJqxWEPVHOwSmM8mvBQklQguU4CLzpGI0BqG2kerKiS
-         qXaQ==
-X-Gm-Message-State: AOAM530d2XzxZ05eBwghRO7caYbMWUTU4GdLC1SpFo5M5wK4OCqPkdQY
-        JF5a1+8AI7GEqgFn4B0VX7tEHri+YDlT0WJ8wuW6WA==
-X-Google-Smtp-Source: ABdhPJy233SEVPqebAfOtTTGE/Erqfl6WucP3n7epmMvF3mdGMv8xEZT98JCM2Pf4IlavisqYdqQ5QYbqRr47p+yhB8=
-X-Received: by 2002:a05:6512:3e7:: with SMTP id n7mr5417111lfq.585.1607209801250;
- Sat, 05 Dec 2020 15:10:01 -0800 (PST)
+        bh=m1UEZz6HGFFmSdASHfwbCskijV7GUrzT+a+Yt9fsFZU=;
+        b=Igdoxo5Ue3dTCnbo1UOnCl1cCUOntwszZJrO+9tKEumzVt0ZBmpl6/soaQCMfwJRdK
+         GSH5TiOeATTnjAJasUl9+nj6atmnPSKVEmHaX0MSKFuaetPtruN1suNsBFBqZt13ROS3
+         DOT/Fodzd2sckOhh3hZmBdeNy6iwd7kbaQ5PyK/NcsaFsvOFMoS5WfEzniJOTtMzcPa0
+         JOXcRT0x2Y3gmCzzi4XdKh5nxJ2HpIXtOSo+KUlTgO7Y1Aw7wPGLtiw5bmJcXY+061mN
+         dfIyEx5cl9+2ZhlKscSXGGiarzAOX0vnBgI9MY95Fr5HwHxcvvxkjmcPa6UUV8Vwhvyf
+         mHdw==
+X-Gm-Message-State: AOAM532+5hSaDDCTInydv9nB/CWpV7lvhcFlldG71MnJU3lg+Ec1+oL4
+        oavpnEUjr3MbAXqGVtAxqFd1TjOFKKluQAAQKSNCeg==
+X-Google-Smtp-Source: ABdhPJx6u5+LNHuD3eb5jh0scGEPapSyihps7xV7WYYMjWESuWf1iWHgbe3YuYsMsR1Wy+M4DYrGQC2NB28GRB/Sbf4=
+X-Received: by 2002:a19:8d8:: with SMTP id 207mr5324591lfi.441.1607209846988;
+ Sat, 05 Dec 2020 15:10:46 -0800 (PST)
 MIME-Version: 1.0
-References: <20201203131242.44397-1-stephan@gerhold.net> <20201203131242.44397-2-stephan@gerhold.net>
-In-Reply-To: <20201203131242.44397-2-stephan@gerhold.net>
+References: <20201203131242.44397-1-stephan@gerhold.net> <20201203131242.44397-3-stephan@gerhold.net>
+In-Reply-To: <20201203131242.44397-3-stephan@gerhold.net>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Sun, 6 Dec 2020 00:09:50 +0100
-Message-ID: <CACRpkdadiyYK5i8+TaLqxjmp4mUJ8eTiyZkgPXp-Qa2+CD8DrA@mail.gmail.com>
-Subject: Re: [PATCH 2/3] dt-bindings: Input: tm2-touchkey - document vddio-supply
+Date:   Sun, 6 Dec 2020 00:10:36 +0100
+Message-ID: <CACRpkdb9ZMJCPF9nGSX2jzkuj4g-3rCb4m0nHuBfrSFT-rPF_Q@mail.gmail.com>
+Subject: Re: [PATCH 3/3] Input: tm2-touchkey - add vddio regulator
 To:     Stephan Gerhold <stephan@gerhold.net>
 Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
         Linux Input <linux-input@vger.kernel.org>,
@@ -68,21 +68,13 @@ On Thu, Dec 3, 2020 at 2:13 PM Stephan Gerhold <stephan@gerhold.net> wrote:
 > a regulator to bring the lines into usable state. Otherwise, this might
 > cause spurious interrupts and reading from I2C will fail.
 >
-> Document support for a "vddio-supply" that is enabled by the tm2-touchkey
-> driver so that the regulator gets enabled when needed.
+> Implement support for a "vddio-supply" that is enabled by the
+> tm2-touchkey driver so that the regulator gets enabled when needed.
 >
 > Cc: Linus Walleij <linus.walleij@linaro.org>
 > Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
 
 Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-
-> +  vddio-supply:
-> +    description: |
-> +      Optional regulator that provides digital I/O voltage,
-> +      e.g. for pulling up the interrupt line or the I2C pins.
-
-I think the funny pipe | us only needed when you want something to be
-fixed-width like ASCII art or ASCII tables. But no big deal I suppose.
 
 Yours,
 Linus Walleij
