@@ -2,64 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B64052CF78D
-	for <lists+devicetree@lfdr.de>; Sat,  5 Dec 2020 00:34:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E79682CF7E3
+	for <lists+devicetree@lfdr.de>; Sat,  5 Dec 2020 01:18:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730949AbgLDXbq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Dec 2020 18:31:46 -0500
-Received: from mail.kernel.org ([198.145.29.99]:42192 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726061AbgLDXbp (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 4 Dec 2020 18:31:45 -0500
-From:   Mark Brown <broonie@kernel.org>
-Authentication-Results: mail.kernel.org; dkim=permerror (bad message/signature format)
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, Liam Girdwood <lgirdwood@gmail.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
-In-Reply-To: <20201203071244.2652297-1-vkoul@kernel.org>
-References: <20201203071244.2652297-1-vkoul@kernel.org>
-Subject: Re: [PATCH 1/2] regulator: dt-bindings: Add PM8350x compatibles
-Message-Id: <160712467174.7793.4605968041488999857.b4-ty@kernel.org>
-Date:   Fri, 04 Dec 2020 23:31:11 +0000
+        id S1728062AbgLEARS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Dec 2020 19:17:18 -0500
+Received: from relay6-d.mail.gandi.net ([217.70.183.198]:42281 "EHLO
+        relay6-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726151AbgLEARS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Dec 2020 19:17:18 -0500
+X-Originating-IP: 86.194.74.19
+Received: from localhost (lfbn-lyo-1-997-19.w86-194.abo.wanadoo.fr [86.194.74.19])
+        (Authenticated sender: alexandre.belloni@bootlin.com)
+        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id 5CC9DC0006;
+        Sat,  5 Dec 2020 00:16:36 +0000 (UTC)
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: [PATCH 1/2] dt-bindings: add simple-audio-mux binding
+Date:   Sat,  5 Dec 2020 01:15:07 +0100
+Message-Id: <20201205001508.346439-1-alexandre.belloni@bootlin.com>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 3 Dec 2020 12:42:43 +0530, Vinod Koul wrote:
-> Add PM8350 and PM8350C compatibles for these PMICs found in some
-> Qualcomm platforms.
+Add devicetree documentation for simple audio multiplexers
 
-Applied to
+Signed-off-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
+---
+Cc: Rob Herring <robh+dt@kernel.org>
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
+ .../bindings/sound/simple-audio-mux.yaml      | 41 +++++++++++++++++++
+ 1 file changed, 41 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/simple-audio-mux.yaml
 
-Thanks!
+diff --git a/Documentation/devicetree/bindings/sound/simple-audio-mux.yaml b/Documentation/devicetree/bindings/sound/simple-audio-mux.yaml
+new file mode 100644
+index 000000000000..5986d1fcbb54
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/simple-audio-mux.yaml
+@@ -0,0 +1,41 @@
++# SPDX-License-Identifier: (GPL-2.0+ OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/simple-audio-mux.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Simple Audio Multiplexer
++
++maintainers:
++  - Alexandre Belloni <aleandre.belloni@bootlin.com>
++
++description: |
++  Simple audio multiplexers are driven using gpios, allowing to select which of
++  their input line is connected to the output line.
++
++properties:
++  compatible:
++    const: simple-audio-mux
++
++  mux-gpios:
++    description: |
++      GPIOs used to select the input line.
++
++  sound-name-prefix:
++    $ref: /schemas/types.yaml#/definitions/string
++    description:
++      Used as prefix for sink/source names of the component. Must be a
++      unique string among multiple instances of the same component.
++
++required:
++  - compatible
++  - mux-gpios
++
++additionalProperties: false
++
++examples:
++  - |
++    mux {
++        compatible = "simple-audio-mux";
++        mux-gpios = <&gpio 3 0>;
++    };
+-- 
+2.28.0
 
-[1/2] regulator: dt-bindings: Add PM8350x compatibles
-      commit: ff7f380d21d0e530c3501a007cec68da6dd4d650
-[2/2] regulator: qcom-rpmh: Add support for PM8350/PM8350c
-      commit: bebb2c6d5ca23d6b7556d39564212b619e068562
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
