@@ -2,666 +2,251 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 48C762CFB77
-	for <lists+devicetree@lfdr.de>; Sat,  5 Dec 2020 14:51:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CDA482CFB9C
+	for <lists+devicetree@lfdr.de>; Sat,  5 Dec 2020 15:56:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726302AbgLENuS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Dec 2020 08:50:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47350 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726745AbgLENA4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Dec 2020 08:00:56 -0500
-Received: from mail-pj1-x1041.google.com (mail-pj1-x1041.google.com [IPv6:2607:f8b0:4864:20::1041])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE066C094243
-        for <devicetree@vger.kernel.org>; Sat,  5 Dec 2020 04:33:45 -0800 (PST)
-Received: by mail-pj1-x1041.google.com with SMTP id b5so869908pjl.0
-        for <devicetree@vger.kernel.org>; Sat, 05 Dec 2020 04:33:45 -0800 (PST)
+        id S1726250AbgLEOx0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 5 Dec 2020 09:53:26 -0500
+Received: from esa6.hgst.iphmx.com ([216.71.154.45]:2299 "EHLO
+        esa6.hgst.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726438AbgLEOvp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Dec 2020 09:51:45 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
+  t=1607179904; x=1638715904;
+  h=from:to:subject:date:message-id:references:in-reply-to:
+   content-id:content-transfer-encoding:mime-version;
+  bh=IYPrbp93Ya9N90fBRUGWyJZDDqgx1ua59ZPWtztiRV0=;
+  b=LFh/IjBrhj0Ba0p9qdsrqHJEWJTWgsO+dr17xkhBQUuRDrRY5B4VCyHO
+   6y/lAo6WbxurO2lyhNSBjw76k14Hzljo+QEZYPJ2yD9SJWzlIgSSUupA2
+   Nf6plf9si4KJesmTJ35or6Sy/9drtfCsgWyK3FOQJ4GdHlKITYb77DwMb
+   qGysyXD2F0jxCeRa4/aCrt0hGvbiS90cvph74FOWIhhN6imGdV+pSYjFB
+   sS6VPoGtSi7UktWiXxJfw34YKh8QmPXIuWkU5i/zI7nLXthDg0CXQvZQU
+   19jJzESNpjvLW/n7pDTbVC8/BZIF64yNZ81TPEDzEM1MtpjK3HaTOwEWF
+   A==;
+IronPort-SDR: O6aXluQniOdJ/5xoKw5b0fcvGVrDce1Si/8GiHXtm2KhfKeKrFSjHsKO22+rCjIXWAvxV3wQ+F
+ W9nCSWntz7XcOUSI07CvVyz1tC+mXJDp0YKtw6j7/cfJoXyt8yyvTHVHODsj4kr2gFbNJZ2rzX
+ Wv1DTCh5KQl4LqWZqklLV6CxxKUAUYhajEfJWEPquuZh/qswFcP1ymfTk0yrRTnkjVF8Cqwxax
+ ff8Of7awTO1ww1/V9bi/GlYgNaJwXOCYzs258r/DlK9U91yyIm4TU2yHzciWQw1RWXmZvphzkp
+ R3M=
+X-IronPort-AV: E=Sophos;i="5.78,395,1599494400"; 
+   d="scan'208";a="155710338"
+Received: from mail-dm6nam11lp2170.outbound.protection.outlook.com (HELO NAM11-DM6-obe.outbound.protection.outlook.com) ([104.47.57.170])
+  by ob1.hgst.iphmx.com with ESMTP; 05 Dec 2020 22:13:13 +0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=eyMwomFN8TfrChcvlU8he2tYhwnWVpEPthUEiRhOSKNBdz8o79YtcVWLNUKgtRBK52rnMKfpE+NYB0Yf2Xqf6qe1p+/8LYEkRm/rIiaOYpyAgIsutkRJ6+QdmUmL5Mp2q0XzNNDbcKSDQb0VZpbAiTAd7AcCC1jKpYsB475MpJdcaRwNEqMvieeM0s1cDZzZybdPEe/YCzssWCq5+RaPKbLlA8Xf71ETTWVgYRhyTjsJ5JV0G8TFWGQGGy9iYvgK0LIYmMCKY153xLsKc0m2uaTAdeoxT0eNEcF5ZccxnCYDPUTvqWfIviidqAeHoT4ESEhHUqc2GTlAkpYUNaXuiw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=IYPrbp93Ya9N90fBRUGWyJZDDqgx1ua59ZPWtztiRV0=;
+ b=MMXDGufj4MtLxSA2ME9YUh6zFw/moB6Nqc5d337XE4MchygZU+cz+aIQDEvP40MPPmPby1orpCEMIbOou872soDGLNZ7fJIN/4uZ21Y7tXvNrnwm3gMRdEYD1pqLXLSgv+Oi/P2m8yOBmS7TF8nQe7XwQUh4r3J+DdQIKzsR5lPd7o8q5uIetkrBvoY2CkoEcxEE5+XiercXoulYvadKPiWsBFX4p9MW94KLXiiOlQNZ4H5gpkqwh6Yo6E70r6TJHZnelb2I/uw5rAJkjAXGGf7c/AARdMwcyswPAdEVVkbh4mcGnBBnQib7zxybs+gsfJUDdCxnmWNf4nCBPhCWcQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=wdc.com; dmarc=pass action=none header.from=wdc.com; dkim=pass
+ header.d=wdc.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=INUDog8caPtO/CCIJ2aDUohKDpDTvUyH7Yy6tbnc0jI=;
-        b=C4xGY/VX3nqlWtPkdGVD4qOXkp+/+pUCFcCt3oQL3sXsufmOina+JShOQvRUNlMEd0
-         D7NqF9YkK41TZbItOPCZNyxc1FTLQH9sTlL1rLeOXEOtRrq9WrbWs9B0XcJsTWxjCO1u
-         jhQqc+YVS4OiBYmPd3AOml4tYgiYjbn2X013KAzpOsNya7vZ9hlOMsw/sASTQTzAXpfJ
-         b2UwFr0thsR4LN24+a4jpbsNVnuZtYvSchJqsinF5KT+683dV4uqZ+b7whsa3qc/pyil
-         IM5TQLiDve5Xqie/O9r43EE5ZkN8A6pXTwyJ5AMQ+SIZBjY1dhbbM6jxn2RPdeRCgoFS
-         buDQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=INUDog8caPtO/CCIJ2aDUohKDpDTvUyH7Yy6tbnc0jI=;
-        b=mKwuvU1OMN/k+0coNZesqw5sa94Zbz7LB4tk69n8/7hj9ufvkAObeUPSlLR3gJI8gV
-         ST0Zuuy1U655Qwu66wVbyKYP8pMxNW/uOVda5FJg42QJSO53Gn3rtpwUpKzjGvVWrfyJ
-         uopyvL7ItQgeybb7PT91nEkWFH7qGreu/J1veYvkejdVakJEXsM7T2XVYSuqkBh1m/zz
-         inC+7fFHQaYL/88FgnDn+HDbo1WeEDVE9ngFy2xykmR3u/Tr/rji/fVVXnPUCoLckWCG
-         aO3qYxJJB8y3yyAiBLBYY2Ji3qtBGq4CsWcLi8s66mbuX0BM2NVsuctQLFKYjeEXY6KR
-         k4Sg==
-X-Gm-Message-State: AOAM530F+TyKIEs04pDv1ITuixdbMrpNus0iRU1IH7EaJEJEtTQM8pIm
-        olMYs0TSyjW0Ga4j2u4vbME/Tw==
-X-Google-Smtp-Source: ABdhPJwB62Zs5VhhjX8czRLEkLFkgtdwhIkQo9L8LLc2R8GP+xC7xCZAWochFBmPuBKx8RnnPTxMZg==
-X-Received: by 2002:a17:90a:520e:: with SMTP id v14mr8481764pjh.9.1607171624790;
-        Sat, 05 Dec 2020 04:33:44 -0800 (PST)
-Received: from google.com (154.137.233.35.bc.googleusercontent.com. [35.233.137.154])
-        by smtp.gmail.com with ESMTPSA id 126sm6942778pgg.46.2020.12.05.04.33.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 05 Dec 2020 04:33:44 -0800 (PST)
-Date:   Sat, 5 Dec 2020 12:33:40 +0000
-From:   Satya Tangirala <satyat@google.com>
-To:     Eric Biggers <ebiggers@kernel.org>
-Cc:     linux-mmc@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-fscrypt@vger.kernel.org,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Asutosh Das <asutoshd@codeaurora.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Neeraj Soni <neersoni@codeaurora.org>,
-        Barani Muthukumaran <bmuthuku@codeaurora.org>,
-        Peng Zhou <peng.zhou@mediatek.com>,
-        Stanley Chu <stanley.chu@mediatek.com>,
-        Konrad Dybcio <konradybcio@gmail.com>
-Subject: Re: [PATCH v2 4/9] mmc: cqhci: add support for inline encryption
-Message-ID: <X8t+JLxNSYFCdpXR@google.com>
-References: <20201203020516.225701-1-ebiggers@kernel.org>
- <20201203020516.225701-5-ebiggers@kernel.org>
- <X8toD7QtwCnzK5Ly@google.com>
+ d=sharedspace.onmicrosoft.com; s=selector2-sharedspace-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=IYPrbp93Ya9N90fBRUGWyJZDDqgx1ua59ZPWtztiRV0=;
+ b=HVCmh/cSrw2vTs93x4XhsvqGzTKZQEbQfkS3m0Tbffo8Qm8gFqux75qperKy0yrwHN7H9+zNmn5CsX9Z1RirnEqZA1fzi7O1doTl8/PU3ogUWY++xFIQE1wPsDJgV38o+QdF1BmyQCuun+SzZ8dOkHeClqZFUKQU8JMlnpZdmVU=
+Received: from CH2PR04MB6522.namprd04.prod.outlook.com (2603:10b6:610:34::19)
+ by CH2PR04MB6539.namprd04.prod.outlook.com (2603:10b6:610:6e::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3632.18; Sat, 5 Dec
+ 2020 14:13:11 +0000
+Received: from CH2PR04MB6522.namprd04.prod.outlook.com
+ ([fe80::897c:a04b:4eb0:640a]) by CH2PR04MB6522.namprd04.prod.outlook.com
+ ([fe80::897c:a04b:4eb0:640a%7]) with mapi id 15.20.3589.038; Sat, 5 Dec 2020
+ 14:13:05 +0000
+From:   Damien Le Moal <Damien.LeMoal@wdc.com>
+To:     "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
+        "palmer@dabbelt.com" <palmer@dabbelt.com>,
+        "seanga2@gmail.com" <seanga2@gmail.com>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "sboyd@kernel.org" <sboyd@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>
+Subject: Re: [PATCH v4 11/21] riscv: Add Canaan Kendryte K210 clock driver
+Thread-Topic: [PATCH v4 11/21] riscv: Add Canaan Kendryte K210 clock driver
+Thread-Index: AQHWyFrJ31Bqsdz07kaNo2YIn/vMLanoDJcAgAAXRYCAAGSxAIAACDsA
+Date:   Sat, 5 Dec 2020 14:13:05 +0000
+Message-ID: <7ec3c4888d24abd3029920fdd01a5f5837ca299c.camel@wdc.com>
+References: <20201202032500.206346-1-damien.lemoal@wdc.com>
+         <20201202032500.206346-12-damien.lemoal@wdc.com>
+         <160714919628.1580929.1456162330322523777@swboyd.mtv.corp.google.com>
+         <d9aec92299e5f427aaf5c5e892194e27006f8bbc.camel@wdc.com>
+         <3ef543a8-5709-d653-e347-78faa08f81d2@gmail.com>
+In-Reply-To: <3ef543a8-5709-d653-e347-78faa08f81d2@gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Evolution 3.38.1 (3.38.1-1.fc33) 
+authentication-results: lists.infradead.org; dkim=none (message not signed)
+ header.d=none;lists.infradead.org; dmarc=none action=none
+ header.from=wdc.com;
+x-originating-ip: [2400:2411:43c0:6000:8d3e:27aa:85c2:44b5]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: 5a844e90-2040-4dac-1913-08d89927e268
+x-ms-traffictypediagnostic: CH2PR04MB6539:
+x-microsoft-antispam-prvs: <CH2PR04MB65397CA3F07EF2975908ED22E7F00@CH2PR04MB6539.namprd04.prod.outlook.com>
+wdcipoutbound: EOP-TRUE
+x-ms-oob-tlc-oobclassifiers: OLM:8882;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 4LON6lYYLXKN3YmewBncjDuk2NRHlFDTrXB7Npf0yqfaiiGvqJgnQrdOSDJePJaKb7D241ze2qf3L6Z84tWRr4wkykkmF74lc37QKHccqemWz83d0c8gacVMp8ThhpmrDM1VSQddZxVzz8YoCEUNS2oINjXKgMzENsrJocmCQ05yFYQVHAEIE17BB+df0cvA9tp/M9PBfkzwpV8aep/1jlUgqFlFqdoGPS6mcvtFBAErudk5JHuvuUlMv5LdcWlQcKENeObKyn8+JIfGiATdHSCUY5cutyS2aIol9BMdXUk4dSflZvqEiKR8BYNCD2XkCkzS9lIt5GznkV4IaHQoW+I4UFw3KlsnIDErb5KnOjDqhNhHH3TaDDh5SM6ylcvVhmmlSrAP6Q7baN3tGlTkY3deasrgm3c3atRFSv+qKaDdCmtCMOZdkPdATynCJpv7
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CH2PR04MB6522.namprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(346002)(136003)(396003)(376002)(39860400002)(366004)(8936002)(91956017)(110136005)(316002)(186003)(8676002)(6506007)(83380400001)(6512007)(53546011)(2616005)(71200400001)(7416002)(2906002)(921005)(966005)(6486002)(66556008)(86362001)(36756003)(66946007)(66476007)(66446008)(5660300002)(76116006)(64756008)(478600001);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata: =?utf-8?B?UUd4ZHM1ZkxmVXRwaGRaNFY0V2Y2Z2x4RS9KU2Q3TFBOdDVlWmVWRmMveWNO?=
+ =?utf-8?B?MnpIQ2ZBeU50bkdRK3YrMFNvRlF1Ui9mVitFcGlsZnQ5aGxaMXZEbUtXd1pa?=
+ =?utf-8?B?Y0tBbWVjem10R0NLaWNZclJzWGhzazR0am9aWFVEZFVkMTNkTkVtZEY0MXha?=
+ =?utf-8?B?Rm93RCtDYVAwQjgybUNLc3ZWWS9oakN3WWhvNzdzN3ZhRGNpUzhIbGVrYmRK?=
+ =?utf-8?B?L0NwS3VkSlFoRk1LVFNqYXozdWc1aUhFSnppVTZUa2lxZStPajRXS3BWQmlH?=
+ =?utf-8?B?WGczeHdlYUllb3NSOFREOUdIOU9RbXBPc3d0SXA0Y3RlUUVLQzNPa3JKZG5L?=
+ =?utf-8?B?Zk5VMmJtcDFVd0VQa0Y2QndKeGFsZUZ3bU11R3dUM0hUK2o5VXVtYUNwejhJ?=
+ =?utf-8?B?VkVCakc4UWgvNVdQak1yUTI0YUJrL2srZlhFRm1veDgvTzcyUHlZbXBxTFdj?=
+ =?utf-8?B?UWlLNDFJcS9aNTZJN2hyL0VydzRUVkxsOEFEdXNZZGFDKzEyLzVPSHFJRFk3?=
+ =?utf-8?B?Q0tHNGw3dGJiQU1MNGpLaDA0YXR1dEp0N2NsSGkwaGxNLzhWRUZJL1NNZmxj?=
+ =?utf-8?B?SXl3bTlsYzRSek11anB3K1BydEJMR3dqZHpaWnlhY0Exbkp0SEE1SS9MRnpo?=
+ =?utf-8?B?QUVxTWdEWjluYXJtdWlSQk1MVllRcGFsaFVBMXJPZ0NTRHZOTUVNbVgxN1dh?=
+ =?utf-8?B?UXEzUGR4aVZKeW1UWDNiSXJ0b3hSV0hyOE1ac3QyR29Na3JYN0kwaDkrYkNC?=
+ =?utf-8?B?ZW91Y21hTVJoRCtaNWVFWlVqL2pHOUlDUEx0TTRPUWVYVEN3V3czZCt0c29q?=
+ =?utf-8?B?bW5teHA3c0w4Nm14bXZsK3FYZEJnTWpmZUFnWkZJZnYzNU1RNnZlbW00bDhn?=
+ =?utf-8?B?ZUJ1MnRCV1ZuUGdXSHYzYy9kcUd2ZkJ1REJJRHZnVWpKdHdmVW9NZm1RM2ps?=
+ =?utf-8?B?VCtnbDhoajBTd09HWk9ubXE2QmFPSXhBemFOd3g5U0NPMlY1RTFlVnhSeEY1?=
+ =?utf-8?B?eXJOaDZTbjVZS01ObVhjQitkeVFCM1hpVDZpeTNsUVhkaCthUTRqbjVTWDRD?=
+ =?utf-8?B?Z3UzZlhjdXpQSUNEUEJyQnpuQnduTzNHSFc4OE04eDRhd21GTkJlV2lLMlRk?=
+ =?utf-8?B?SElYMXp0NjNPNnp0U2FoaytPZzRZRzN0cCtCOGY2STJsVUlnZ1UwQjlkMHBW?=
+ =?utf-8?B?RjZnYUQ4OTlaNkdvUmEvTW9MdHYzSzlyWWg4RFJkeGxkQTJvR0FnVmx2OTFs?=
+ =?utf-8?B?Z2dCb2tRbGFWTzJzVm0zTzdLOFNDRk5sS0NDZFplTndlWVlsRU04WjNOcVZq?=
+ =?utf-8?B?VFZqeVR6eGUwRE0vejZlM0hmYlRaTXAzeHhub2xaTzZ6U0JmNUtDeWZVNEVK?=
+ =?utf-8?B?d0d6YWV0V2VkUG95RWJTcDJ1aklYQUhSV2dzQjRVOS9VRlF2Vi9hc25RV1la?=
+ =?utf-8?Q?g6xJL/zQ?=
+x-ms-exchange-transport-forked: True
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <AC7DA47E0B907742A255920C775E345A@namprd04.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <X8toD7QtwCnzK5Ly@google.com>
+X-OriginatorOrg: wdc.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: CH2PR04MB6522.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5a844e90-2040-4dac-1913-08d89927e268
+X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Dec 2020 14:13:05.2529
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: b61c8803-16f3-4c35-9b17-6f65f441df86
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: eAYo8rZbNcxj3yx+qyj90Enl3Rjbf1UnHgzIj/KnElHPSe8LA0mSY9p/4ewygS6FuWKuZP/qnn4ZYCuRKQzL2w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR04MB6539
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Dec 05, 2020 at 10:59:27AM +0000, Satya Tangirala wrote:
-> On Wed, Dec 02, 2020 at 06:05:11PM -0800, Eric Biggers wrote:
-> > From: Eric Biggers <ebiggers@google.com>
-> > 
-> > Add support for eMMC inline encryption using the blk-crypto framework
-> > (Documentation/block/inline-encryption.rst).
-> > 
-> > eMMC inline encryption support is specified by the upcoming JEDEC eMMC
-> > v5.2 specification.  It is only specified for the CQ interface, not the
-> > non-CQ interface.  Although the eMMC v5.2 specification hasn't been
-> > officially released yet, the crypto support was already agreed on
-> > several years ago, and it was already implemented by at least two major
-> > hardware vendors.  Lots of hardware in the field already supports and
-> > uses it, e.g. Snapdragon 630 to give one example.
-> > 
-> > eMMC inline encryption support is very similar to the UFS inline
-> > encryption support which was standardized in the UFS v2.1 specification
-> > and was already upstreamed.  The only major difference is that eMMC
-> > limits data unit numbers to 32 bits, unlike UFS's 64 bits.
-> > 
-> > Like we did with UFS, make the crypto support opt-in by individual
-> > drivers; don't enable it automatically whenever the hardware declares
-> > crypto support.  This is necessary because in every case we've seen,
-> > some extra vendor-specific logic is needed to use the crypto support.
-> > 
-> > Co-developed-by: Satya Tangirala <satyat@google.com>
-> > Signed-off-by: Satya Tangirala <satyat@google.com>
-> > Signed-off-by: Eric Biggers <ebiggers@google.com>
-> > ---
-> >  drivers/mmc/host/Makefile       |   1 +
-> >  drivers/mmc/host/cqhci-core.c   |  41 +++++-
-> >  drivers/mmc/host/cqhci-crypto.c | 241 ++++++++++++++++++++++++++++++++
-> >  drivers/mmc/host/cqhci-crypto.h |  47 +++++++
-> >  drivers/mmc/host/cqhci.h        |  81 ++++++++++-
-> >  5 files changed, 408 insertions(+), 3 deletions(-)
-> >  create mode 100644 drivers/mmc/host/cqhci-crypto.c
-> >  create mode 100644 drivers/mmc/host/cqhci-crypto.h
-> > 
-> > diff --git a/drivers/mmc/host/Makefile b/drivers/mmc/host/Makefile
-> > index 20c2f9463d0dc..35158508ab63d 100644
-> > --- a/drivers/mmc/host/Makefile
-> > +++ b/drivers/mmc/host/Makefile
-> > @@ -105,6 +105,7 @@ obj-$(CONFIG_MMC_SDHCI_OMAP)		+= sdhci-omap.o
-> >  obj-$(CONFIG_MMC_SDHCI_SPRD)		+= sdhci-sprd.o
-> >  obj-$(CONFIG_MMC_CQHCI)			+= cqhci.o
-> >  cqhci-y					+= cqhci-core.o
-> > +cqhci-$(CONFIG_MMC_CRYPTO)		+= cqhci-crypto.o
-> >  obj-$(CONFIG_MMC_HSQ)			+= mmc_hsq.o
-> >  
-> >  ifeq ($(CONFIG_CB710_DEBUG),y)
-> > diff --git a/drivers/mmc/host/cqhci-core.c b/drivers/mmc/host/cqhci-core.c
-> > index ad7c9acff1728..93b0432bb6011 100644
-> > --- a/drivers/mmc/host/cqhci-core.c
-> > +++ b/drivers/mmc/host/cqhci-core.c
-> > @@ -18,6 +18,7 @@
-> >  #include <linux/mmc/card.h>
-> >  
-> >  #include "cqhci.h"
-> > +#include "cqhci-crypto.h"
-> >  
-> >  #define DCMD_SLOT 31
-> >  #define NUM_SLOTS 32
-> > @@ -258,6 +259,9 @@ static void __cqhci_enable(struct cqhci_host *cq_host)
-> >  	if (cq_host->caps & CQHCI_TASK_DESC_SZ_128)
-> >  		cqcfg |= CQHCI_TASK_DESC_SZ;
-> >  
-> > +	if (mmc->caps2 & MMC_CAP2_CRYPTO)
-> > +		cqcfg |= CQHCI_CRYPTO_GENERAL_ENABLE;
-> > +
-> >  	cqhci_writel(cq_host, cqcfg, CQHCI_CFG);
-> >  
-> >  	cqhci_writel(cq_host, lower_32_bits(cq_host->desc_dma_base),
-> > @@ -430,7 +434,7 @@ static void cqhci_prep_task_desc(struct mmc_request *mrq,
-> >  	task_desc[0] = cpu_to_le64(desc0);
-> >  
-> >  	if (cq_host->caps & CQHCI_TASK_DESC_SZ_128) {
-> > -		u64 desc1 = 0;
-> > +		u64 desc1 = cqhci_crypto_prep_task_desc(mrq);
-> >  
-> >  		task_desc[1] = cpu_to_le64(desc1);
-> >  
-> > @@ -681,6 +685,7 @@ static void cqhci_error_irq(struct mmc_host *mmc, u32 status, int cmd_error,
-> >  	struct cqhci_host *cq_host = mmc->cqe_private;
-> >  	struct cqhci_slot *slot;
-> >  	u32 terri;
-> > +	u32 tdpe;
-> >  	int tag;
-> >  
-> >  	spin_lock(&cq_host->lock);
-> > @@ -719,6 +724,30 @@ static void cqhci_error_irq(struct mmc_host *mmc, u32 status, int cmd_error,
-> >  		}
-> >  	}
-> >  
-> > +	/*
-> > +	 * Handle ICCE ("Invalid Crypto Configuration Error").  This should
-> > +	 * never happen, since the block layer ensures that all crypto-enabled
-> > +	 * I/O requests have a valid keyslot before they reach the driver.
-> > +	 *
-> > +	 * Note that GCE ("General Crypto Error") is different; it already got
-> > +	 * handled above by checking TERRI.
-> > +	 */
-> > +	if (status & CQHCI_IS_ICCE) {
-> > +		tdpe = cqhci_readl(cq_host, CQHCI_TDPE);
-> > +		WARN_ONCE(1,
-> > +			  "%s: cqhci: invalid crypto configuration error. IRQ status: 0x%08x TDPE: 0x%08x\n",
-> > +			  mmc_hostname(mmc), status, tdpe);
-> > +		while (tdpe != 0) {
-> > +			tag = __ffs(tdpe);
-> > +			tdpe &= ~(1 << tag);
-> > +			slot = &cq_host->slot[tag];
-> > +			if (!slot->mrq)
-> > +				continue;
-> > +			slot->flags = cqhci_error_flags(data_error, cmd_error);
-> > +			cqhci_recovery_needed(mmc, slot->mrq, true);
-> > +		}
-> > +	}
-> > +
-> >  	if (!cq_host->recovery_halt) {
-> >  		/*
-> >  		 * The only way to guarantee forward progress is to mark at
-> > @@ -784,7 +813,8 @@ irqreturn_t cqhci_irq(struct mmc_host *mmc, u32 intmask, int cmd_error,
-> >  
-> >  	pr_debug("%s: cqhci: IRQ status: 0x%08x\n", mmc_hostname(mmc), status);
-> >  
-> > -	if ((status & CQHCI_IS_RED) || cmd_error || data_error)
-> > +	if ((status & (CQHCI_IS_RED | CQHCI_IS_GCE | CQHCI_IS_ICCE)) ||
-> > +	    cmd_error || data_error)
-> >  		cqhci_error_irq(mmc, status, cmd_error, data_error);
-> >  
-> >  	if (status & CQHCI_IS_TCC) {
-> > @@ -1151,6 +1181,13 @@ int cqhci_init(struct cqhci_host *cq_host, struct mmc_host *mmc,
-> >  		goto out_err;
-> >  	}
-> >  
-> > +	err = cqhci_crypto_init(cq_host);
-> > +	if (err) {
-> > +		pr_err("%s: CQHCI crypto initialization failed\n",
-> > +		       mmc_hostname(mmc));
-> > +		goto out_err;
-> > +	}
-> > +
-> >  	spin_lock_init(&cq_host->lock);
-> >  
-> >  	init_completion(&cq_host->halt_comp);
-> > diff --git a/drivers/mmc/host/cqhci-crypto.c b/drivers/mmc/host/cqhci-crypto.c
-> > new file mode 100644
-> > index 0000000000000..98f141c8480ce
-> > --- /dev/null
-> > +++ b/drivers/mmc/host/cqhci-crypto.c
-> > @@ -0,0 +1,241 @@
-> > +// SPDX-License-Identifier: GPL-2.0-only
-> > +/*
-> > + * CQHCI crypto engine (inline encryption) support
-> > + *
-> > + * Copyright 2020 Google LLC
-> > + */
-> > +
-> > +#include <linux/blk-crypto.h>
-> > +#include <linux/keyslot-manager.h>
-> > +#include <linux/mmc/host.h>
-> > +
-> > +#include "cqhci-crypto.h"
-> > +
-> > +/* Map from blk-crypto modes to CQHCI crypto algorithm IDs and key sizes */
-> > +static const struct cqhci_crypto_alg_entry {
-> > +	enum cqhci_crypto_alg alg;
-> > +	enum cqhci_crypto_key_size key_size;
-> > +} cqhci_crypto_algs[BLK_ENCRYPTION_MODE_MAX] = {
-> > +	[BLK_ENCRYPTION_MODE_AES_256_XTS] = {
-> > +		.alg = CQHCI_CRYPTO_ALG_AES_XTS,
-> > +		.key_size = CQHCI_CRYPTO_KEY_SIZE_256,
-> > +	},
-> > +};
-> > +
-> > +static inline struct cqhci_host *
-> > +cqhci_host_from_ksm(struct blk_keyslot_manager *ksm)
-> > +{
-> > +	struct mmc_host *mmc = container_of(ksm, struct mmc_host, ksm);
-> > +
-> > +	return mmc->cqe_private;
-> > +}
-> > +
-> > +static void cqhci_crypto_program_key(struct cqhci_host *cq_host,
-> > +				     const union cqhci_crypto_cfg_entry *cfg,
-> > +				     int slot)
-> > +{
-> > +	u32 slot_offset = cq_host->crypto_cfg_register + slot * sizeof(*cfg);
-> > +	int i;
-> > +
-> > +	/* Clear CFGE */
-> > +	cqhci_writel(cq_host, 0, slot_offset + 16 * sizeof(cfg->reg_val[0]));
-> > +
-> > +	/* Write the key */
-> > +	for (i = 0; i < 16; i++) {
-> > +		cqhci_writel(cq_host, le32_to_cpu(cfg->reg_val[i]),
-> > +			     slot_offset + i * sizeof(cfg->reg_val[0]));
-> > +	}
-> > +	/* Write dword 17 */
-> > +	cqhci_writel(cq_host, le32_to_cpu(cfg->reg_val[17]),
-> > +		     slot_offset + 17 * sizeof(cfg->reg_val[0]));
-> > +	/* Write dword 16, which includes the new value of CFGE */
-> > +	cqhci_writel(cq_host, le32_to_cpu(cfg->reg_val[16]),
-> > +		     slot_offset + 16 * sizeof(cfg->reg_val[0]));
-> > +}
-> > +
-> > +static int cqhci_crypto_keyslot_program(struct blk_keyslot_manager *ksm,
-> > +					const struct blk_crypto_key *key,
-> > +					unsigned int slot)
-> > +
-> > +{
-> > +	struct cqhci_host *cq_host = cqhci_host_from_ksm(ksm);
-> > +	const union cqhci_crypto_cap_entry *ccap_array =
-> > +		cq_host->crypto_cap_array;
-> > +	const struct cqhci_crypto_alg_entry *alg =
-> > +			&cqhci_crypto_algs[key->crypto_cfg.crypto_mode];
-> > +	u8 data_unit_mask = key->crypto_cfg.data_unit_size / 512;
-> > +	int i;
-> > +	int cap_idx = -1;
-> > +	union cqhci_crypto_cfg_entry cfg = {};
-> > +
-> > +	BUILD_BUG_ON(CQHCI_CRYPTO_KEY_SIZE_INVALID != 0);
-> > +	for (i = 0; i < cq_host->crypto_capabilities.num_crypto_cap; i++) {
-> > +		if (ccap_array[i].algorithm_id == alg->alg &&
-> > +		    ccap_array[i].key_size == alg->key_size &&
-> > +		    (ccap_array[i].sdus_mask & data_unit_mask)) {
-> > +			cap_idx = i;
-> > +			break;
-> > +		}
-> > +	}
-> > +	if (WARN_ON(cap_idx < 0))
-> > +		return -EOPNOTSUPP;
-> > +
-> > +	cfg.data_unit_size = data_unit_mask;
-> > +	cfg.crypto_cap_idx = cap_idx;
-> > +	cfg.config_enable = CQHCI_CRYPTO_CONFIGURATION_ENABLE;
-> > +
-> > +	if (ccap_array[cap_idx].algorithm_id == CQHCI_CRYPTO_ALG_AES_XTS) {
-> > +		/* In XTS mode, the blk_crypto_key's size is already doubled */
-> > +		memcpy(cfg.crypto_key, key->raw, key->size/2);
-> > +		memcpy(cfg.crypto_key + CQHCI_CRYPTO_KEY_MAX_SIZE/2,
-> > +		       key->raw + key->size/2, key->size/2);
-> > +	} else {
-> > +		memcpy(cfg.crypto_key, key->raw, key->size);
-> > +	}
-> > +
-> > +	cqhci_crypto_program_key(cq_host, &cfg, slot);
-> > +
-> > +	memzero_explicit(&cfg, sizeof(cfg));
-> > +	return 0;
-> > +}
-> > +
-> > +static void cqhci_crypto_clear_keyslot(struct cqhci_host *cq_host, int slot)
-> > +{
-> > +	/*
-> > +	 * Clear the crypto cfg on the device. Clearing CFGE
-> > +	 * might not be sufficient, so just clear the entire cfg.
-> > +	 */
-> > +	union cqhci_crypto_cfg_entry cfg = {};
-> > +
-> > +	cqhci_crypto_program_key(cq_host, &cfg, slot);
-> > +}
-> > +
-> > +static int cqhci_crypto_keyslot_evict(struct blk_keyslot_manager *ksm,
-> > +				      const struct blk_crypto_key *key,
-> > +				      unsigned int slot)
-> > +{
-> > +	struct cqhci_host *cq_host = cqhci_host_from_ksm(ksm);
-> > +
-> > +	cqhci_crypto_clear_keyslot(cq_host, slot);
-> > +	return 0;
-> > +}
-> > +
-> > +/*
-> > + * The keyslot management operations for CQHCI crypto.
-> > + *
-> > + * Note that the block layer ensures that these are never called while the host
-> > + * controller is runtime-suspended.  However, the CQE won't necessarily be
-> > + * "enabled" when these are called, i.e. CQHCI_ENABLE might not be set in the
-> > + * CQHCI_CFG register.  But the hardware allows that.
-> > + */
-> > +static const struct blk_ksm_ll_ops cqhci_ksm_ops = {
-> > +	.keyslot_program	= cqhci_crypto_keyslot_program,
-> > +	.keyslot_evict		= cqhci_crypto_keyslot_evict,
-> > +};
-> > +
-> > +static enum blk_crypto_mode_num
-> > +cqhci_find_blk_crypto_mode(union cqhci_crypto_cap_entry cap)
-> > +{
-> > +	int i;
-> > +
-> > +	for (i = 0; i < ARRAY_SIZE(cqhci_crypto_algs); i++) {
-> > +		BUILD_BUG_ON(CQHCI_CRYPTO_KEY_SIZE_INVALID != 0);
-> > +		if (cqhci_crypto_algs[i].alg == cap.algorithm_id &&
-> > +		    cqhci_crypto_algs[i].key_size == cap.key_size)
-> > +			return i;
-> > +	}
-> > +	return BLK_ENCRYPTION_MODE_INVALID;
-> > +}
-> > +
-> > +/**
-> > + * cqhci_crypto_init - initialize CQHCI crypto support
-> > + * @cq_host: a cqhci host
-> > + *
-> > + * If the driver previously set MMC_CAP2_CRYPTO and the CQE declares
-> > + * CQHCI_CAP_CS, initialize the crypto support.  This involves reading the
-> > + * crypto capability registers, initializing the keyslot manager, clearing all
-> > + * keyslots, and enabling 128-bit task descriptors.
-> > + *
-> > + * Return: 0 if crypto was initialized or isn't supported; whether
-> > + *	   MMC_CAP2_CRYPTO remains set indicates which one of those cases it is.
-> > + *	   Also can return a negative errno value on unexpected error.
-> > + */
-> > +int cqhci_crypto_init(struct cqhci_host *cq_host)
-> > +{
-> > +	struct mmc_host *mmc = cq_host->mmc;
-> > +	struct device *dev = mmc_dev(mmc);
-> > +	struct blk_keyslot_manager *ksm = &mmc->ksm;
-> > +	unsigned int num_keyslots;
-> > +	unsigned int cap_idx;
-> > +	enum blk_crypto_mode_num blk_mode_num;
-> > +	unsigned int slot;
-> > +	int err = 0;
-> > +
-> > +	if (!(mmc->caps2 & MMC_CAP2_CRYPTO) ||
-> > +	    !(cqhci_readl(cq_host, CQHCI_CAP) & CQHCI_CAP_CS))
-> > +		goto out;
-> > +
-> > +	cq_host->crypto_capabilities.reg_val =
-> > +			cpu_to_le32(cqhci_readl(cq_host, CQHCI_CCAP));
-> > +
-> > +	cq_host->crypto_cfg_register =
-> > +		(u32)cq_host->crypto_capabilities.config_array_ptr * 0x100;
-> > +
-> > +	cq_host->crypto_cap_array =
-> > +		devm_kcalloc(dev, cq_host->crypto_capabilities.num_crypto_cap,
-> > +			     sizeof(cq_host->crypto_cap_array[0]), GFP_KERNEL);
-> > +	if (!cq_host->crypto_cap_array) {
-> > +		err = -ENOMEM;
-> > +		goto out;
-> > +	}
-> > +
-> > +	/*
-> > +	 * CCAP.CFGC is off by one, so the actual number of crypto
-> > +	 * configurations (a.k.a. keyslots) is CCAP.CFGC + 1.
-> > +	 */
-> > +	num_keyslots = cq_host->crypto_capabilities.config_count + 1;
-> > +
-> > +	err = blk_ksm_init(ksm, num_keyslots);
-> > +	if (err)
-> > +		goto out_free_caps;
-> > +
-> > +	ksm->ksm_ll_ops = cqhci_ksm_ops;
-> > +	ksm->dev = dev;
-> > +
-> > +	/* Unfortunately, CQHCI crypto only supports 32 DUN bits. */
-> > +	ksm->max_dun_bytes_supported = 4;
-> > +
-> > +	/*
-> > +	 * Cache all the crypto capabilities and advertise the supported crypto
-> > +	 * modes and data unit sizes to the block layer.
-> > +	 */
-> > +	for (cap_idx = 0; cap_idx < cq_host->crypto_capabilities.num_crypto_cap;
-> > +	     cap_idx++) {
-> > +		cq_host->crypto_cap_array[cap_idx].reg_val =
-> > +			cpu_to_le32(cqhci_readl(cq_host,
-> > +						CQHCI_CRYPTOCAP +
-> > +						cap_idx * sizeof(__le32)));
-> > +		blk_mode_num = cqhci_find_blk_crypto_mode(
-> > +					cq_host->crypto_cap_array[cap_idx]);
-> > +		if (blk_mode_num == BLK_ENCRYPTION_MODE_INVALID)
-> > +			continue;
-> > +		ksm->crypto_modes_supported[blk_mode_num] |=
-> > +			cq_host->crypto_cap_array[cap_idx].sdus_mask * 512;
-> > +	}
-> > +
-> > +	/* Clear all the keyslots so that we start in a known state. */
-> > +	for (slot = 0; slot < num_keyslots; slot++)
-> > +		cqhci_crypto_clear_keyslot(cq_host, slot);
-> > +
-> > +	/* CQHCI crypto requires the use of 128-bit task descriptors. */
-> > +	cq_host->caps |= CQHCI_TASK_DESC_SZ_128;
-> > +
-> > +	return 0;
-> > +
-> > +out_free_caps:
-> > +	devm_kfree(dev, cq_host->crypto_cap_array);
-> > +	cq_host->crypto_cap_array = NULL;
-> > +out:
-> > +	mmc->caps2 &= ~MMC_CAP2_CRYPTO;
-> > +	return err;
-> > +}
-> > diff --git a/drivers/mmc/host/cqhci-crypto.h b/drivers/mmc/host/cqhci-crypto.h
-> > new file mode 100644
-> > index 0000000000000..60b58ee0e6256
-> > --- /dev/null
-> > +++ b/drivers/mmc/host/cqhci-crypto.h
-> > @@ -0,0 +1,47 @@
-> > +/* SPDX-License-Identifier: GPL-2.0-only */
-> > +/*
-> > + * CQHCI crypto engine (inline encryption) support
-> > + *
-> > + * Copyright 2020 Google LLC
-> > + */
-> > +
-> > +#ifndef LINUX_MMC_CQHCI_CRYPTO_H
-> > +#define LINUX_MMC_CQHCI_CRYPTO_H
-> > +
-> > +#include <linux/mmc/host.h>
-> > +
-> > +#include "cqhci.h"
-> > +
-> > +#ifdef CONFIG_MMC_CRYPTO
-> > +
-> > +int cqhci_crypto_init(struct cqhci_host *host);
-> > +
-> > +/*
-> > + * Returns the crypto bits that should be set in bits 64-127 of the
-> > + * task descriptor.
-> > + */
-> > +static inline u64 cqhci_crypto_prep_task_desc(struct mmc_request *mrq)
-> > +{
-> > +	if (!mrq->crypto_enabled)
-> > +		return 0;
-> > +
-> > +	return CQHCI_CRYPTO_ENABLE_BIT |
-> > +	       CQHCI_CRYPTO_KEYSLOT(mrq->crypto_key_slot) |
-> > +	       mrq->data_unit_num;
-> > +}
-> > +
-> > +#else /* CONFIG_MMC_CRYPTO */
-> > +
-> > +static inline int cqhci_crypto_init(struct cqhci_host *host)
-> > +{
-> > +	return 0;
-> > +}
-> > +
-> > +static inline u64 cqhci_crypto_prep_task_desc(struct mmc_request *mrq)
-> > +{
-> > +	return 0;
-> > +}
-> > +
-> > +#endif /* !CONFIG_MMC_CRYPTO */
-> > +
-> > +#endif /* LINUX_MMC_CQHCI_CRYPTO_H */
-> > diff --git a/drivers/mmc/host/cqhci.h b/drivers/mmc/host/cqhci.h
-> > index 89bf6adbce8ca..5c18734624fea 100644
-> > --- a/drivers/mmc/host/cqhci.h
-> > +++ b/drivers/mmc/host/cqhci.h
-> > @@ -22,10 +22,13 @@
-> >  
-> >  /* capabilities */
-> >  #define CQHCI_CAP			0x04
-> > +#define CQHCI_CAP_CS			0x10000000 /* Crypto Support */
-> > +
-> >  /* configuration */
-> >  #define CQHCI_CFG			0x08
-> >  #define CQHCI_DCMD			0x00001000
-> >  #define CQHCI_TASK_DESC_SZ		0x00000100
-> > +#define CQHCI_CRYPTO_GENERAL_ENABLE	0x00000002
-> >  #define CQHCI_ENABLE			0x00000001
-> >  
-> >  /* control */
-> > @@ -39,8 +42,11 @@
-> >  #define CQHCI_IS_TCC			BIT(1)
-> >  #define CQHCI_IS_RED			BIT(2)
-> >  #define CQHCI_IS_TCL			BIT(3)
-> > +#define CQHCI_IS_GCE			BIT(4) /* General Crypto Error */
-> > +#define CQHCI_IS_ICCE			BIT(5) /* Invalid Crypto Config Error */
-> >  
-> > -#define CQHCI_IS_MASK (CQHCI_IS_TCC | CQHCI_IS_RED)
-> > +#define CQHCI_IS_MASK (CQHCI_IS_TCC | CQHCI_IS_RED | \
-> > +		       CQHCI_IS_GCE | CQHCI_IS_ICCE)
-> >  
-> >  /* interrupt status enable */
-> >  #define CQHCI_ISTE			0x14
-> > @@ -78,6 +84,9 @@
-> >  /* task clear */
-> >  #define CQHCI_TCLR			0x38
-> >  
-> > +/* task descriptor processing error */
-> > +#define CQHCI_TDPE			0x3c
-> > +
-> >  /* send status config 1 */
-> >  #define CQHCI_SSC1			0x40
-> >  #define CQHCI_SSC1_CBC_MASK		GENMASK(19, 16)
-> > @@ -107,6 +116,10 @@
-> >  /* command response argument */
-> >  #define CQHCI_CRA			0x5C
-> >  
-> > +/* crypto capabilities */
-> > +#define CQHCI_CCAP			0x100
-> > +#define CQHCI_CRYPTOCAP			0x104
-> > +
-> >  #define CQHCI_INT_ALL			0xF
-> >  #define CQHCI_IC_DEFAULT_ICCTH		31
-> >  #define CQHCI_IC_DEFAULT_ICTOVAL	1
-> > @@ -133,11 +146,71 @@
-> >  #define CQHCI_CMD_TIMING(x)		(((x) & 1) << 22)
-> >  #define CQHCI_RESP_TYPE(x)		(((x) & 0x3) << 23)
-> >  
-> > +/* crypto task descriptor fields (for bits 64-127 of task descriptor) */
-> > +#define CQHCI_CRYPTO_ENABLE_BIT		(1ULL << 47)
-> > +#define CQHCI_CRYPTO_KEYSLOT(x)		((u64)(x) << 32)
-> > +
-> >  /* transfer descriptor fields */
-> >  #define CQHCI_DAT_LENGTH(x)		(((x) & 0xFFFF) << 16)
-> >  #define CQHCI_DAT_ADDR_LO(x)		(((x) & 0xFFFFFFFF) << 32)
-> >  #define CQHCI_DAT_ADDR_HI(x)		(((x) & 0xFFFFFFFF) << 0)
-> >  
-> > +/* CCAP - Crypto Capability 100h */
-> > +union cqhci_crypto_capabilities {
-> > +	__le32 reg_val;
-> > +	struct {
-> > +		u8 num_crypto_cap;
-> > +		u8 config_count;
-> > +		u8 reserved;
-> > +		u8 config_array_ptr;
-> > +	};
-> > +};
-> > +
-> > +enum cqhci_crypto_key_size {
-> > +	CQHCI_CRYPTO_KEY_SIZE_INVALID	= 0,
-> > +	CQHCI_CRYPTO_KEY_SIZE_128	= 1,
-> > +	CQHCI_CRYPTO_KEY_SIZE_192	= 2,
-> > +	CQHCI_CRYPTO_KEY_SIZE_256	= 3,
-> > +	CQHCI_CRYPTO_KEY_SIZE_512	= 4,
-> > +};
-> > +
-> > +enum cqhci_crypto_alg {
-> > +	CQHCI_CRYPTO_ALG_AES_XTS		= 0,
-> > +	CQHCI_CRYPTO_ALG_BITLOCKER_AES_CBC	= 1,
-> > +	CQHCI_CRYPTO_ALG_AES_ECB		= 2,
-> > +	CQHCI_CRYPTO_ALG_ESSIV_AES_CBC		= 3,
-> > +};
-> > +
-> > +/* x-CRYPTOCAP - Crypto Capability X */
-> > +union cqhci_crypto_cap_entry {
-> > +	__le32 reg_val;
-> > +	struct {
-> > +		u8 algorithm_id;
-> > +		u8 sdus_mask; /* Supported data unit size mask */
-> > +		u8 key_size;
-> > +		u8 reserved;
-> > +	};
-> > +};
-> > +
-> > +#define CQHCI_CRYPTO_CONFIGURATION_ENABLE (1 << 7)
-> > +#define CQHCI_CRYPTO_KEY_MAX_SIZE 64
-> > +/* x-CRYPTOCFG - Crypto Configuration X */
-> > +union cqhci_crypto_cfg_entry {
-> > +	__le32 reg_val[32];
-> > +	struct {
-> > +		u8 crypto_key[CQHCI_CRYPTO_KEY_MAX_SIZE];
-> > +		/* 4KB/512 = 8 */
-> > +		u8 data_unit_size;
-> > +		u8 crypto_cap_idx;
-> > +		u8 reserved_1;
-> > +		u8 config_enable;
-> > +		u8 reserved_multi_host;
-> > +		u8 reserved_2;
-> > +		u8 vsb[2];
-> > +		u8 reserved_3[56];
-> > +	};
-> > +};
-> > +
-> >  struct cqhci_host_ops;
-> >  struct mmc_host;
-> >  struct mmc_request;
-> > @@ -196,6 +269,12 @@ struct cqhci_host {
-> >  	struct completion halt_comp;
-> >  	wait_queue_head_t wait_queue;
-> >  	struct cqhci_slot *slot;
-> > +
-> > +#ifdef CONFIG_MMC_CRYPTO
-> > +	union cqhci_crypto_capabilities crypto_capabilities;
-> > +	union cqhci_crypto_cap_entry *crypto_cap_array;
-> > +	u32 crypto_cfg_register;
-> > +#endif
-> >  };
-> >  
-> >  struct cqhci_host_ops {
-> > -- 
-> > 2.29.2
-> > 
-> The version of code from Qualcomm on AOSP reprogrammed all keyslots from
-> cqhci_recovery_finish(). I notice that this patch drops that - I'm guessing
-> that was intentional? Other than that, this patch looks good to me :).
-For reference, the code I'm referring to is at
-https://android-review.googlesource.com/c/kernel/common/+/1269702/9
+T24gU2F0LCAyMDIwLTEyLTA1IGF0IDA4OjQzIC0wNTAwLCBTZWFuIEFuZGVyc29uIHdyb3RlOg0K
+PiBPbiAxMi81LzIwIDI6NDMgQU0sIERhbWllbiBMZSBNb2FsIHdyb3RlOg0KPiA+IEhpIFN0ZXBo
+ZW4sDQo+ID4gDQo+ID4gVGhhbmsgeW91IGZvciB0aGUgcmV2aWV3LiBJIHdpbGwgYWRkcmVzcyBh
+bGwgeW91ciBjb21tZW50cy4NCj4gPiBJIGp1c3QgaGF2ZSBhIGZldyBxdWVzdGlvbnMgYmVsb3cu
+DQo+ID4gDQo+ID4gT24gRnJpLCAyMDIwLTEyLTA0IGF0IDIyOjE5IC0wODAwLCBTdGVwaGVuIEJv
+eWQgd3JvdGU6DQo+ID4gPiBRdW90aW5nIERhbWllbiBMZSBNb2FsICgyMDIwLTEyLTAxIDE5OjI0
+OjUwKQ0KPiA+ID4gPiBkaWZmIC0tZ2l0IGEvTUFJTlRBSU5FUlMgYi9NQUlOVEFJTkVSUw0KPiA+
+ID4gPiBpbmRleCAyZGFhNmVlNjczZjcuLjNkYTlhN2EwMmY2MSAxMDA2NDQNCj4gPiA+ID4gLS0t
+IGEvTUFJTlRBSU5FUlMNCj4gPiA+ID4gKysrIGIvTUFJTlRBSU5FUlMNCj4gPiA+ID4gQEAgLTM4
+MjIsNiArMzgyMiwyMiBAQCBXOiAgICAgICBodHRwczovL2dpdGh1Yi5jb20vQ2FzY29kYS9jYTgy
+MTAtbGludXguZ2l0DQo+ID4gPiA+IMKgwqBGOiAgICAgRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVl
+L2JpbmRpbmdzL25ldC9pZWVlODAyMTU0L2NhODIxMC50eHQNCj4gPiA+ID4gwqDCoEY6ICAgICBk
+cml2ZXJzL25ldC9pZWVlODAyMTU0L2NhODIxMC5jDQo+ID4gPiA+IMKgwqANCj4gPiA+ID4gDQo+
+ID4gPiA+IA0KPiA+ID4gPiANCj4gPiA+ID4gDQo+ID4gPiA+IA0KPiA+ID4gPiANCj4gPiA+ID4g
+K0NBTkFBTi9LRU5EUllURSBLMjEwIFNPQyBDTE9DSyBEUklWRVINCj4gPiA+ID4gK006ICAgICBE
+YW1pZW4gTGUgTW9hbCA8ZGFtaWVuLmxlbW9hbEB3ZGMuY29tPg0KPiA+ID4gPiArTDogICAgIGxp
+bnV4LXJpc2N2QGxpc3RzLmluZnJhZGVhZC5vcmcNCj4gPiA+ID4gK0w6ICAgICBsaW51eC1jbGtA
+dmdlci5rZXJuZWwub3JnIChjbG9jayBkcml2ZXIpDQo+ID4gPiANCj4gPiA+IElzIHRoaXMgbmVl
+ZGVkPyBJIHRoaW5rIHdlIGNvdmVyIGFsbCBvZiBkcml2ZXJzL2Nsay8gYW5kIGJpbmRpbmdzL2Ns
+b2NrDQo+ID4gPiBhbHJlYWR5Lg0KPiA+IA0KPiA+IEkgd2FzIG5vdCBzdXJlIGFib3V0IHRoYXQg
+c28gSSBhZGRlZCB0aGUgZW50cnkuIFdpbGwgcmVtb3ZlIGl0Lg0KPiA+IA0KPiA+ID4gDQo+ID4g
+PiA+ICtTOiAgICAgTWFpbnRhaW5lZA0KPiA+ID4gPiArRjogICAgIERvY3VtZW50YXRpb24vZGV2
+aWNldHJlZS9iaW5kaW5ncy9jbG9jay9jYW5hYW4sazIxMC1jbGsueWFtbA0KPiA+ID4gPiArRjog
+ICAgIGRyaXZlcnMvY2xrL2Nsay1rMjEwLmMNCj4gPiA+ID4gZGlmZiAtLWdpdCBhL2FyY2gvcmlz
+Y3YvS2NvbmZpZy5zb2NzIGIvYXJjaC9yaXNjdi9LY29uZmlnLnNvY3MNCj4gPiA+ID4gaW5kZXgg
+ODhhYzBkMWE1ZGE0Li5mMmY5NjMzMDg3ZDEgMTAwNjQ0DQo+ID4gPiA+IC0tLSBhL2FyY2gvcmlz
+Y3YvS2NvbmZpZy5zb2NzDQo+ID4gPiA+ICsrKyBiL2FyY2gvcmlzY3YvS2NvbmZpZy5zb2NzDQo+
+ID4gPiA+IEBAIC0yOSw2ICsyOSw4IEBAIGNvbmZpZyBTT0NfQ0FOQUFODQo+ID4gPiA+IMKgwqDC
+oMKgwqDCoMKgwqDCoHNlbGVjdCBTRVJJQUxfU0lGSVZFIGlmIFRUWQ0KPiA+ID4gPiDCoMKgwqDC
+oMKgwqDCoMKgwqBzZWxlY3QgU0VSSUFMX1NJRklWRV9DT05TT0xFIGlmIFRUWQ0KPiA+ID4gPiDC
+oMKgwqDCoMKgwqDCoMKgwqBzZWxlY3QgU0lGSVZFX1BMSUMNCj4gPiA+ID4gKyAgICAgICBzZWxl
+Y3QgU09DX0syMTBfU1lTQ1RMDQo+ID4gPiA+ICsgICAgICAgc2VsZWN0IENMS19LMjEwDQo+ID4g
+PiANCj4gPiA+IEFueSByZWFzb24gdG8gZG8gdGhpcyB2cy4ganVzdCBtYWtlIGl0IHRoZSBkZWZh
+dWx0Pw0KPiA+IA0KPiA+IEkgZG8gbm90IHVuZGVyc3RhbmQgaGVyZS4uLiBKdXN0IHNlbGVjdGlu
+ZyB0aGUgZHJpdmVycyBuZWVkZWQgZm9yIHRoZSBTb0MgaGVyZS4NCj4gPiBJcyB0aGVyZSBhbnkg
+b3RoZXIgd2F5IG9mIGRvaW5nIHRoaXMgPw0KPiA+IA0KPiA+IFsuLi5dDQo+ID4gPiA+ICsNCj4g
+PiA+ID4gKyAgICAgICB3aGlsZSAodHJ1ZSkgew0KPiA+ID4gPiArICAgICAgICAgICAgICAgcmVn
+ID0gcmVhZGwocGxsLT5sb2NrKTsNCj4gPiA+ID4gKyAgICAgICAgICAgICAgIGlmICgocmVnICYg
+bWFzaykgPT0gbWFzaykNCj4gPiA+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgYnJlYWs7DQo+
+ID4gPiA+ICsNCj4gPiA+ID4gKyAgICAgICAgICAgICAgIHJlZyB8PSBCSVQocGxsLT5sb2NrX3No
+aWZ0ICsgSzIxMF9QTExfQ0xFQVJfU0xJUCk7DQo+ID4gPiA+ICsgICAgICAgICAgICAgICB3cml0
+ZWwocmVnLCBwbGwtPmxvY2spOw0KPiA+ID4gDQo+ID4gPiBJcyB0aGlzIHJlYWRsX3BvbGxfdGlt
+ZW91dD8NCj4gPiANCj4gPiBPaC4gWWVzLCBpdCBpcy4gSSBkaWQgbm90IGtub3cgYWJvdXQgdGhp
+cyBmdW5jdGlvbi4gV2lsbCBjaGFuZ2UgdGhlIGNvZGUgdG8gdXNlDQo+ID4gaXQuDQo+IA0KPiBG
+V0lXIHRoZSB0aW1lb3V0IGNvdWxkIGJlIGluY29ycmVjdCBzaW5jZSB3ZSBtaWdodCBiZSBjb25m
+aWd1cmluZyBhDQo+IHBhcmVudCBvZiBBQ0xLLiBBbmQgcmVhbGlzdGljYWxseSB0aGUgb25seSB3
+YXkgdGhpcyBmYWlscyBpcyBpZiBhIHVzZXINCj4gaGFzIGVkaXRlZCB0aGlzIGZpbGUgYW5kIHB1
+dCBpbiBpbnZhbGlkIFBMTCBwYXJhbWV0ZXJzLiBJIGRvbid0IHRoaW5rDQo+IHlvdSBnYWluIG11
+Y2ggYnkgYWRkaW5nIGEgdGltZW91dC4NCg0KcmVhZGxfcG9sbF90aW1lb3V0KCkgYWxsb3dzIGEg
+dGltZW91dCBvZiAwIGZvciAibm8gdGltZW91dCIuIEl0IGlzIG5vdCBlYXN5IHRvDQp1c2UgdGhp
+cyBtYWNybyBkdWUgdG8gdGhlIHN0b3AgY29uZGl0aW9uIGludGVyZmFjZSwgd2hpY2ggaXMgbm90
+IHRocm91Z2ggYQ0KY2FsbGJhY2suIFRoaXMgbWFrZXMgdGhlIGNvZGUgdmVyeSB1Z2x5IHRvIGdl
+dCB0aGUgd3JpdGVsKCkgY2FsbCBhZGRlZCBpbiB0aGUNCnN0b3AgY29uZGl0aW9uIGZvciBlYWNo
+IGl0ZXJhdGlvbiBvZiB0aGUgcG9sbCBsb29wLiBTbyBJIGxlZnQgdGhlIGNvZGUgYXMgaXMuDQoN
+Cj4gDQo+ID4gPiANCj4gPiA+ID4gKyAgICAgICB9DQo+ID4gPiA+ICt9DQo+ID4gPiA+ICsNCj4g
+PiA+ID4gK3N0YXRpYyBib29sIGsyMTBfcGxsX2h3X2lzX2VuYWJsZWQoc3RydWN0IGsyMTBfcGxs
+ICpwbGwpDQo+ID4gPiA+ICt7DQo+ID4gPiA+ICsgICAgICAgdTMyIHJlZyA9IHJlYWRsKHBsbC0+
+cmVnKTsNCj4gPiA+ID4gKyAgICAgICB1MzIgbWFzayA9IEsyMTBfUExMX1BXUkQgfCBLMjEwX1BM
+TF9FTjsNCj4gPiA+ID4gKw0KPiA+ID4gPiArICAgICAgIGlmIChyZWcgJiBLMjEwX1BMTF9SRVNF
+VCkNCj4gPiA+ID4gKyAgICAgICAgICAgICAgIHJldHVybiBmYWxzZTsNCj4gPiA+ID4gKw0KPiA+
+ID4gPiArICAgICAgIHJldHVybiAocmVnICYgbWFzaykgPT0gbWFzazsNCj4gPiA+ID4gK30NCj4g
+PiA+ID4gKw0KPiA+ID4gPiArc3RhdGljIHZvaWQgazIxMF9wbGxfZW5hYmxlX2h3KHN0cnVjdCBr
+MjEwX3BsbCAqcGxsKQ0KPiA+ID4gPiArew0KPiA+ID4gPiArICAgICAgIHN0cnVjdCBrMjEwX3Bs
+bF9jZmcgKnBsbF9jZmcgPSAmazIxMF9wbGxzX2NmZ1twbGwtPmlkXTsNCj4gPiA+ID4gKyAgICAg
+ICB1bnNpZ25lZCBsb25nIGZsYWdzOw0KPiA+ID4gPiArICAgICAgIHUzMiByZWc7DQo+ID4gPiA+
+ICsNCj4gPiA+ID4gKyAgICAgICBzcGluX2xvY2tfaXJxc2F2ZSgma2NsLT5jbGtfbG9jaywgZmxh
+Z3MpOw0KPiA+ID4gPiArDQo+ID4gPiA+ICsgICAgICAgaWYgKGsyMTBfcGxsX2h3X2lzX2VuYWJs
+ZWQocGxsKSkNCj4gPiA+ID4gKyAgICAgICAgICAgICAgIGdvdG8gdW5sb2NrOw0KPiA+ID4gPiAr
+DQo+ID4gPiA+ICsgICAgICAgaWYgKHBsbC0+aWQgPT0gSzIxMF9QTEwwKSB7DQo+ID4gPiA+ICsg
+ICAgICAgICAgICAgICAvKiBSZS1wYXJlbnQgYWNsayB0byBJTjAgdG8ga2VlcCB0aGUgQ1BVcyBy
+dW5uaW5nICovDQo+ID4gPiA+ICsgICAgICAgICAgICAgICBrMjEwX2FjbGtfc2V0X3NlbGVjdG9y
+KDApOw0KPiA+ID4gPiArICAgICAgIH0NCj4gPiA+ID4gKw0KPiA+ID4gPiArICAgICAgIC8qIFNl
+dCBmYWN0b3JzICovDQo+ID4gPiA+ICsgICAgICAgcmVnID0gcmVhZGwocGxsLT5yZWcpOw0KPiA+
+ID4gPiArICAgICAgIHJlZyAmPSB+R0VOTUFTSygxOSwgMCk7DQo+ID4gPiA+ICsgICAgICAgcmVn
+IHw9IEZJRUxEX1BSRVAoSzIxMF9QTExfQ0xLUiwgcGxsX2NmZy0+cik7DQo+ID4gPiA+ICsgICAg
+ICAgcmVnIHw9IEZJRUxEX1BSRVAoSzIxMF9QTExfQ0xLRiwgcGxsX2NmZy0+Zik7DQo+ID4gPiA+
+ICsgICAgICAgcmVnIHw9IEZJRUxEX1BSRVAoSzIxMF9QTExfQ0xLT0QsIHBsbF9jZmctPm9kKTsN
+Cj4gPiA+ID4gKyAgICAgICByZWcgfD0gRklFTERfUFJFUChLMjEwX1BMTF9CV0FESiwgcGxsX2Nm
+Zy0+YndhZGopOw0KPiA+ID4gPiArICAgICAgIHJlZyB8PSBLMjEwX1BMTF9QV1JEOw0KPiA+ID4g
+PiArICAgICAgIHdyaXRlbChyZWcsIHBsbC0+cmVnKTsNCj4gPiA+ID4gKw0KPiA+ID4gPiArICAg
+ICAgIC8qIEVuc3VyZSByZXNldCBpcyBsb3cgYmVmb3JlIGFzc2VydGluZyBpdCAqLw0KPiA+ID4g
+PiArICAgICAgIHJlZyAmPSB+SzIxMF9QTExfUkVTRVQ7DQo+ID4gPiA+ICsgICAgICAgd3JpdGVs
+KHJlZywgcGxsLT5yZWcpOw0KPiA+ID4gPiArICAgICAgIHJlZyB8PSBLMjEwX1BMTF9SRVNFVDsN
+Cj4gPiA+ID4gKyAgICAgICB3cml0ZWwocmVnLCBwbGwtPnJlZyk7DQo+ID4gPiA+ICsgICAgICAg
+bm9wKCk7DQo+ID4gPiA+ICsgICAgICAgbm9wKCk7DQo+ID4gPiANCj4gPiA+IEFyZSB0aGVzZSBu
+b3BzIG5lZWRlZCBmb3Igc29tZSByZWFzb24/IEFueSBjb21tZW50IHRvIGFkZCBoZXJlPyBJdCdz
+DQo+ID4gPiBiYXNpY2FsbHkgbm9uLXBvcnRhYmxlIGNvZGUgYW5kIGhvcGVmdWxseSBub3RoaW5n
+IGlzIGluc2VydGVkIGludG8gdGhhdA0KPiA+ID4gd3JpdGVsIGZ1bmN0aW9uIHRoYXQgc2hvdWxk
+bid0IGJlIHRoZXJlLg0KPiA+IA0KPiA+IE5vIGNsdWUuLi4gVGhleSBhcmUgIm1hZ2ljIiBub3Bz
+IHRoYXQgYXJlIHByZXNlbnQgaW4gdGhlIEsyMTAgU0RLIGZyb20NCj4gPiBLZW5kcnl0ZS4gSSBj
+b3BpZWQgdGhhdCwgYnV0IGRvIG5vdCBhY3R1YWxseSBrbm93IGlmIHRoZXkgYXJlIHJlYWxseSBu
+ZWVkZWQuIEkNCj4gPiBhbSB3b3JraW5nIHdpdGhvdXQgYW55IHNwZWNzIGZvciB0aGUgaGFyZHdh
+cmU6IHRoZSBLZW5kcnl0ZSBTREsgaXMgbXkgbWFpbg0KPiA+IHNvdXJjZSBvZiBpbmZvcm1hdGlv
+biBoZXJlLiBJIHdpbGwgdHJ5IHRvIHJlbW92ZSB0aGVtIG9yIGp1c3QgcmVwbGFjZSB0aGlzIHdp
+dGgNCj4gPiBhIGRlbGF5KCkgY2FsbCBhIG5kIHNlZSB3aGF0IGhhcHBlbnMuDQo+IA0KPiBCYXNp
+Y2FsbHkgYW55IGRlbGF5IHNob3VsZCB3b3JrIGFzIGxvbmcgYXMgaXQgdGFrZXMgbW9yZSB0aGFu
+IDINCj4gaW5zdHJ1Y3Rpb25zIDspIE9mIGNvdXJzZSwgYW55dGhpbmcgbG9uZ2VyIHRoYW4gdGhh
+dCBqdXN0IGRlbGF5cyBzdGFydHVwDQo+IGZvciBubyByZWFzb24uDQoNClJlbW92aW5nIHRoZSBu
+b3AoKSBkb2VzIHdvcmsuIE5vdCBzdXJlIGlmIHRoYXQgaXMgc29saWQgdGhvdWdoLg0KQW55IG90
+aGVyIHh4ZGVsYXkoKSBjYWxsIGZhaWxzLCBpbmNsdWRpbmcgX19kZWxheSgpIChDUFUgY3ljbGVz
+KS4gSSBndWVzcw0KYmVjYXVzZSBhdCB0aGlzIGVhcmx5IHN0YWdlLCB0aGVyZSBpcyBubyBpbmZv
+cm1hdGlvbiB5ZXQgb24gdGhlIENQVQ0KZnJlcXVlbmN5L3RpbWVycyBhbmQgazIxMF9jbGtfZWFy
+bHlfaW5pdCgpIGhhbmdzLiBTbyBJIHRoaW5rIEkgd2lsbCBrZWVwIHRoZQ0Kbm9wKCkuIFRoaXMg
+ZHJpdmVyIGJlaW5nIG9ubHkgZm9yIHRoaXMgU29DLCBJIGRvIG5vdCB0aGluayBpdCBpcyBhIGJp
+ZyBpc3N1ZSBpbg0KdGVybXMgb2YgcG9ydGFiaWxpdHksIGZvciBub3cgYXQgbGVhc3QuDQoNCg0K
+LS0gDQpEYW1pZW4gTGUgTW9hbA0KV2VzdGVybiBEaWdpdGFsDQo=
