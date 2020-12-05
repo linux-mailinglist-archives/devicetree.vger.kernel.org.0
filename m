@@ -2,90 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C77CF2CFF8E
-	for <lists+devicetree@lfdr.de>; Sat,  5 Dec 2020 23:37:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EEF7D2CFFA2
+	for <lists+devicetree@lfdr.de>; Sun,  6 Dec 2020 00:09:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726798AbgLEWg7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Dec 2020 17:36:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51826 "EHLO
+        id S1725933AbgLEXJD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 5 Dec 2020 18:09:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56746 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726152AbgLEWg6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Dec 2020 17:36:58 -0500
-Received: from mail-lf1-x143.google.com (mail-lf1-x143.google.com [IPv6:2a00:1450:4864:20::143])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0EF3C0613D4
-        for <devicetree@vger.kernel.org>; Sat,  5 Dec 2020 14:36:12 -0800 (PST)
-Received: by mail-lf1-x143.google.com with SMTP id b4so5101819lfo.6
-        for <devicetree@vger.kernel.org>; Sat, 05 Dec 2020 14:36:12 -0800 (PST)
+        with ESMTP id S1725270AbgLEXJC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Dec 2020 18:09:02 -0500
+Received: from mail-lf1-x141.google.com (mail-lf1-x141.google.com [IPv6:2a00:1450:4864:20::141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7E1AC0613D1
+        for <devicetree@vger.kernel.org>; Sat,  5 Dec 2020 15:08:16 -0800 (PST)
+Received: by mail-lf1-x141.google.com with SMTP id u18so12747958lfd.9
+        for <devicetree@vger.kernel.org>; Sat, 05 Dec 2020 15:08:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=98/MstnJqZxw65t8jmHQ0ippOkTKpuxcEvb3zk0y3Z4=;
-        b=jy6szEVCLds/Yg9OxwGE13hDrjf22xHnP5ig2343dm0XsQwN0nUxcRCpCs0r9DNIbS
-         W3lY9qkUBv7tInfZyAkkZO5VKRys4CWgAqZvWOhG8gAn0d9KEY6qfDTcuAWiF7gTYaeC
-         /ltv7ueALdD2HWoLQ8Q+KgaCyjXrp+z4BoGH2Yp8JBYfv9P0HayeYWoZB95LhaFfqFFQ
-         lKrplAt55pfQ+b5Dl4p0fSzAVyWQEt0m1kvLDZj79LsNyLxKBlWYiomP57suz/myH/P7
-         MWcPURUlumDheFJhSDnQG7N0WKPt2G4TKFbUWhhNiLN3Ryqn+k4M1Nsq6KrR1ZKGAOUQ
-         xN6A==
+        bh=vwb2HdHtdDZZDHnperwU4T/43GW8HXiYw6+fTYALHZ4=;
+        b=SU9Mzn3kxhuqqKEDyZufnK7Jl5GgyAGR9GIYFHUx1XMFG2dsRuvATzgzMS5or8jGoq
+         GKpKXyiLgp2N/icq5y6VTiGSgXjgABGy+TP5fYyjJ0Lp35u899seb57zkNzG7xvU7DpY
+         MjKoPffW5FbBwPxkXy/5yx4HjPXQBeL15aFY8zEe0wMI0UpjdyUXMTL5AERuEX3qD7LG
+         7qq0fcrJaTa6HlYtM8xyptVG3WIrKZ0fV53l/FbgiTBCbpYVPZ9Qw5xhge4F/0ur2SqS
+         nj/UMaT20vcuXoNMSlm0bdGoS4yVN6aFYkJO3uqNzw+p8jFZjDUwXUmsJeZDJfEUQuds
+         OZUw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=98/MstnJqZxw65t8jmHQ0ippOkTKpuxcEvb3zk0y3Z4=;
-        b=ojPreQdbddLsGjdBzZ6z9neCVc8xtE4SGudyeEh7LfAsq6o6xMrUkoC50TtYbLtVYc
-         CgCAOMGf6L0SibbIw4eWkKi2ADNcPl73pxipmAzF8NNSyS3Tm44wzPR9Swdpr3xwTN9Y
-         KZ94nx2erx8TUaJxKUY6eA1YkFRPJ0bbUltjXjHGMXdxY1jIYv5lN7mKXPTzKBHtESvs
-         dOPGEi/YiXaCb97bQjeUVdqJhXvZzDkM/Hob1YCGjSds6I6nMNlQJwGUthZPtZRZeDW7
-         PYk0QYWAobSjXxFd7GL7Wn8XcGZ/dsnXxDWezcFVaeHlZYjVXWfeSzjq6Gv9yK2qU2S6
-         M9PA==
-X-Gm-Message-State: AOAM531tp5S0coffkFXMSaaHjR/yGndrxMaJGj6RT1ypeLyxD3CFPUlB
-        AIpbd5GtXFeNrMzltki6UiI+mGyqEalF3MaSGfkAwA==
-X-Google-Smtp-Source: ABdhPJzzsCc4rL9lN6ah8nXKuIds8BCeYVyLpkhHW9HL1ismhbC9zdOlB0A/w+xFWb4xfQqxpguiH2gfF+LS+frM7s0=
-X-Received: by 2002:a19:5f11:: with SMTP id t17mr5388052lfb.572.1607207771145;
- Sat, 05 Dec 2020 14:36:11 -0800 (PST)
+        bh=vwb2HdHtdDZZDHnperwU4T/43GW8HXiYw6+fTYALHZ4=;
+        b=UdawpWS1qBOGmFNLpyFGe333CT/5sBGSe0ubQqx1f88hHC0rynS/HTFdNEG+3ZyoNx
+         llz8VElVYc/WCtjJpd9plJXzqwekK8X4n/E+DWB/rvcaZFfn7XDlQ6SnPGFUO//NkVDa
+         kk3GyWs/640VJ2Pqkep0Nfnwi7Lr5jcNHw/HJZ0lpjWdF8aDUHnGbBaQjIqJKIQxAlA4
+         BkKrTAPSQt2AldNfRloKJZjo+MturlZD1wsOY0dVoTbdu3QMVURNwV/1nbkBXVzywooe
+         BwCIN6wiz4cwUwWjzAHNXVU9KkFdvVWHa8C80tjCSC6nxwWz9dnXbK1p2AcJ5xU/V7Ki
+         FtqQ==
+X-Gm-Message-State: AOAM532RuO+Y/fMEoMquqZAn7hv7vcZnXPII9DQpjd7oNoItlKG4J/g0
+        uctoq3Ffz8TjfQu3vEdkktDCB8oDC/GYeSakBfrsXA==
+X-Google-Smtp-Source: ABdhPJwdF479XZ7ajZEMYz/xc/9Bf8EKg6vkYwWis2eIiU1zHQw8oaYyfgNfyCcFk3hweLjiIOpUj79cCisirDSYA8M=
+X-Received: by 2002:ac2:4578:: with SMTP id k24mr5761952lfm.502.1607209695139;
+ Sat, 05 Dec 2020 15:08:15 -0800 (PST)
 MIME-Version: 1.0
-References: <20201202163443.26499-1-srinivas.kandagatla@linaro.org> <20201202163443.26499-3-srinivas.kandagatla@linaro.org>
-In-Reply-To: <20201202163443.26499-3-srinivas.kandagatla@linaro.org>
+References: <20201203131242.44397-1-stephan@gerhold.net>
+In-Reply-To: <20201203131242.44397-1-stephan@gerhold.net>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Sat, 5 Dec 2020 23:36:00 +0100
-Message-ID: <CACRpkdabPygUmZXT6FMT4fEU6D638Y3XRwvODy8ucUAbuQ4kvg@mail.gmail.com>
-Subject: Re: [RESEND PATCH v6 2/2] pinctrl: qcom: Add sm8250 lpass lpi pinctrl driver
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+Date:   Sun, 6 Dec 2020 00:08:04 +0100
+Message-ID: <CACRpkdY+SUkOZCoPgEOZ005T26hop=Tn-NjG3BwwyVFfWbZOpA@mail.gmail.com>
+Subject: Re: [PATCH 1/3] dt-bindings: Input: tm2-touchkey - convert to yaml
+To:     Stephan Gerhold <stephan@gerhold.net>
+Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Linux Input <linux-input@vger.kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        MSM <linux-arm-msm@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+        <devicetree@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 2, 2020 at 5:35 PM Srinivas Kandagatla
-<srinivas.kandagatla@linaro.org> wrote:
+On Thu, Dec 3, 2020 at 2:13 PM Stephan Gerhold <stephan@gerhold.net> wrote:
 
-> Add initial pinctrl driver to support pin configuration for
-> LPASS (Low Power Audio SubSystem) LPI (Low Power Island) pinctrl
-> on SM8250.
+> Convert the device tree bindings for tm2-touchkey to the YAML format.
+>
+> While we're at it, clarify the descriptions a bit to make it clear that
+> this driver can be used for many different MCUs that all implement
+> a similar I2C protocol. Depending on the MCU the voltage requirements
+> may be different, on some devices the controller uses 2.2V, 2.8V or
+> even 3.3V for vcc-supply instead of 1.8V.
+>
+> Cc: Linus Walleij <linus.walleij@linaro.org>
+> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
 
-Patch applied!
-
-> +config PINCTRL_LPASS_LPI
-> +       tristate "Qualcomm Technologies Inc LPASS LPI pin controller driver"
-> +       depends on GPIOLIB
-
-I added:
-
-    select PINMUX
-    select PINCONF
-    select GENERIC_PINCONF
-
-When applying. You need these I think, your code is working because
-other drivers are selecting these for you, right? The build robot would
-hack this to pieces though.
+LGTM
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
 Yours,
 Linus Walleij
