@@ -2,250 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 938CC2D0620
-	for <lists+devicetree@lfdr.de>; Sun,  6 Dec 2020 17:55:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7EB5C2D063F
+	for <lists+devicetree@lfdr.de>; Sun,  6 Dec 2020 18:19:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726043AbgLFQyt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 6 Dec 2020 11:54:49 -0500
-Received: from leonov.paulk.fr ([185.233.101.22]:38276 "EHLO leonov.paulk.fr"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726186AbgLFQx6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 6 Dec 2020 11:53:58 -0500
-Received: from gagarine.paulk.fr (gagarine [192.168.1.127])
-        by leonov.paulk.fr (Postfix) with ESMTPS id 374D3C013D;
-        Sun,  6 Dec 2020 17:53:17 +0100 (CET)
-Received: by gagarine.paulk.fr (Postfix, from userid 114)
-        id 9AD35C1D42; Sun,  6 Dec 2020 17:53:16 +0100 (CET)
-X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on gagarine.paulk.fr
-X-Spam-Level: 
-X-Spam-Status: No, score=0.0 required=5.0 tests=none autolearn=unavailable
-        autolearn_force=no version=3.4.2
-Received: from localhost.localdomain (collins [192.168.1.129])
-        by gagarine.paulk.fr (Postfix) with ESMTP id F405BC1D4A;
-        Sun,  6 Dec 2020 17:51:33 +0100 (CET)
-From:   Paul Kocialkowski <contact@paulk.fr>
-To:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Icenowy Zheng <icenowy@aosc.io>,
-        Paul Kocialkowski <contact@paulk.fr>
-Subject: [PATCH v3 5/5] ARM: dts: sun8i-v3: Add support for the SL631 Action Camera with IMX179
-Date:   Sun,  6 Dec 2020 17:51:31 +0100
-Message-Id: <20201206165131.1041983-6-contact@paulk.fr>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20201206165131.1041983-1-contact@paulk.fr>
-References: <20201206165131.1041983-1-contact@paulk.fr>
+        id S1727038AbgLFRTZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 6 Dec 2020 12:19:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42714 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726410AbgLFRTZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Dec 2020 12:19:25 -0500
+Received: from mxf2.seznam.cz (mxf2.seznam.cz [IPv6:2a02:598:2::123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE7DCC0613D1;
+        Sun,  6 Dec 2020 09:18:39 -0800 (PST)
+Received: from email.seznam.cz
+        by email-smtpc25a.ng.seznam.cz (email-smtpc25a.ng.seznam.cz [10.23.18.34])
+        id 1bebbfac40e5ebc51a4273f2;
+        Sun, 06 Dec 2020 18:18:21 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=seznam.cz; s=beta;
+        t=1607275101; bh=hNpVWi7xybD7pNQIgL7OSBGGIcO5ZoO5YUxC5+BpAJI=;
+        h=Received:Subject:To:Cc:References:From:Message-ID:Date:User-Agent:
+         MIME-Version:In-Reply-To:Content-Type:Content-Transfer-Encoding:
+         Content-Language;
+        b=hpMWLqdXJzPpUjwhhevquRpuYvrPROGViISXrFVSBFfZF3x24MJJSbXmA1qQah/Ks
+         SuzX9o1zvMwC0y6HG3jCYqbfbVX0qoutn22pGhEOWeUz2bnMn7UI1aHYfuA2ydsAjg
+         /v5yMtWcFH22wZVUiaSXIZnq2Agwr6n7I3HKV6Ag=
+Received: from [192.168.1.213] (ip-228-128.dynamic.ccinternet.cz [212.69.128.228])
+        by email-relay2.ng.seznam.cz (Seznam SMTPD 1.3.122) with ESMTP;
+        Sun, 06 Dec 2020 18:18:19 +0100 (CET)  
+Subject: Re: [PATCH 1/3] media: i2c: imx219: add support for specifying
+ clock-frequencies
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Dave Stevenson <dave.stevenson@raspberrypi.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Linux Media Mailing List <linux-media@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+References: <20201205183355.6488-1-michael.srba@seznam.cz>
+ <CAMuHMdXLQeTWGmAk9a3uE0VgPmTUsjbNn36q9-228eZufuYZ6w@mail.gmail.com>
+From:   Michael Srba <Michael.Srba@seznam.cz>
+Message-ID: <e87727ea-8cb4-9d68-22de-cb9aea080c34@seznam.cz>
+Date:   Sun, 6 Dec 2020 18:18:17 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.5.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAMuHMdXLQeTWGmAk9a3uE0VgPmTUsjbNn36q9-228eZufuYZ6w@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The SL631 is a family of Allwinner V3 action cameras sold under
-various names, such as SJCAM SJ4000 Air or F60 Action Camera.
+On 05. 12. 20 19:54, Geert Uytterhoeven wrote:
+> Hi Michael,
+>
+> On Sat, Dec 5, 2020 at 7:36 PM <michael.srba@seznam.cz> wrote:
+>> From: Michael Srba <Michael.Srba@seznam.cz>
+>>
+>> This patch adds 1% tolerance on input clock, similar to other camera sensor
+>> drivers. It also allows for specifying the actual clock in the device tree,
+>> instead of relying on it being already set to the right frequency (which is
+>> often not the case).
+>>
+>> Signed-off-by: Michael Srba <Michael.Srba@seznam.cz>
+> Thanks for your patch!
+>
+>> --- a/drivers/media/i2c/imx219.c
+>> +++ b/drivers/media/i2c/imx219.c
+>> @@ -1443,13 +1443,26 @@ static int imx219_probe(struct i2c_client *client)
+>>                 return PTR_ERR(imx219->xclk);
+>>         }
+>>
+>> -       imx219->xclk_freq = clk_get_rate(imx219->xclk);
+>> -       if (imx219->xclk_freq != IMX219_XCLK_FREQ) {
+>> +       ret = fwnode_property_read_u32(dev_fwnode(dev), "clock-frequency", &imx219->xclk_freq);
+>> +       if (ret) {
+>> +               dev_err(dev, "could not get xclk frequency\n");
+>> +               return ret;
+> This breaks compatibility with existing DTBs, which do not have the
+> clock-frequency property.
+> For backwards compatibility, you should assume the default 24 MHz
+> instead of returning an error.
+Good point, will do.
 
-Devices in this family share a common board design but can be found
-with different image sensors, including the IMX179 and the OV4689.
+>> +       }
+>> +
+>> +       /* this driver currently expects 24MHz; allow 1% tolerance */
+>> +       if (imx219->xclk_freq < 23760000 || imx219->xclk_freq > 24240000) {
+>>                 dev_err(dev, "xclk frequency not supported: %d Hz\n",
+>>                         imx219->xclk_freq);
+>>                 return -EINVAL;
+>>         }
+>>
+>> +       ret = clk_set_rate(imx219->xclk, imx219->xclk_freq);
+>> +       if (ret) {
+>> +               dev_err(dev, "could not set xclk frequency\n");
+>> +               return ret;
+>> +       }
+>> +
+>> +
+>>         ret = imx219_get_regulators(imx219);
+>>         if (ret) {
+>>                 dev_err(dev, "failed to get regulators\n");
+> Gr{oetje,eeting}s,
+>
+>                         Geert
+>
 
-This adds support for a common dtsi for the SL631 family as well as
-a specific dts for the IMX179 fashion, which will later be populated
-with an IMX179 node when a driver is available.
-
-Features that were tested on the device include:
-- UART debug
-- MMC
-- USB peripheral (e.g. g_ether)
-- Buttons
-- SPI NOR flash
-
-Note that the exact designer/vendor of these boards is unknown.
-
-Signed-off-by: Paul Kocialkowski <contact@paulk.fr>
----
- arch/arm/boot/dts/Makefile                  |   1 +
- arch/arm/boot/dts/sun8i-v3-sl631-imx179.dts |  12 ++
- arch/arm/boot/dts/sun8i-v3-sl631.dtsi       | 138 ++++++++++++++++++++
- 3 files changed, 151 insertions(+)
- create mode 100644 arch/arm/boot/dts/sun8i-v3-sl631-imx179.dts
- create mode 100644 arch/arm/boot/dts/sun8i-v3-sl631.dtsi
-
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index ad41489e591d..44cbfb2fa79c 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -1213,6 +1213,7 @@ dtb-$(CONFIG_MACH_SUN8I) += \
- 	sun8i-s3-lichee-zero-plus.dtb \
- 	sun8i-s3-pinecube.dtb \
- 	sun8i-t3-cqa3t-bv3.dtb \
-+	sun8i-v3-sl631-imx179.dtb \
- 	sun8i-v3s-licheepi-zero.dtb \
- 	sun8i-v3s-licheepi-zero-dock.dtb \
- 	sun8i-v40-bananapi-m2-berry.dtb
-diff --git a/arch/arm/boot/dts/sun8i-v3-sl631-imx179.dts b/arch/arm/boot/dts/sun8i-v3-sl631-imx179.dts
-new file mode 100644
-index 000000000000..117aeece4e55
---- /dev/null
-+++ b/arch/arm/boot/dts/sun8i-v3-sl631-imx179.dts
-@@ -0,0 +1,12 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR X11)
-+/*
-+ * Copyright 2020 Paul Kocialkowski <contact@paulk.fr>
-+ */
-+
-+#include "sun8i-v3-sl631.dtsi"
-+
-+/ {
-+	model = "SL631 Action Camera with IMX179";
-+	compatible = "allwinner,sl631-imx179", "allwinner,sl631",
-+		     "allwinner,sun8i-v3";
-+};
-diff --git a/arch/arm/boot/dts/sun8i-v3-sl631.dtsi b/arch/arm/boot/dts/sun8i-v3-sl631.dtsi
-new file mode 100644
-index 000000000000..e0d2a31efc7f
---- /dev/null
-+++ b/arch/arm/boot/dts/sun8i-v3-sl631.dtsi
-@@ -0,0 +1,138 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR X11)
-+/*
-+ * Copyright 2020 Paul Kocialkowski <contact@paulk.fr>
-+ */
-+
-+/dts-v1/;
-+
-+#include "sun8i-v3.dtsi"
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/input.h>
-+
-+/ {
-+	model = "SL631 Action Camera";
-+	compatible = "allwinner,sl631", "allwinner,sun8i-v3";
-+
-+	aliases {
-+		serial0 = &uart1;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+};
-+
-+&i2c0 {
-+	status = "okay";
-+
-+	axp209: pmic@34 {
-+		reg = <0x34>;
-+		interrupt-parent = <&nmi_intc>;
-+		interrupts = <0 IRQ_TYPE_LEVEL_LOW>;
-+	};
-+};
-+
-+&i2c1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c1_pb_pins>;
-+	status = "okay";
-+};
-+
-+&lradc {
-+	vref-supply = <&reg_ldo2>;
-+	status = "okay";
-+
-+	button-174 {
-+		label = "Down";
-+		linux,code = <KEY_DOWN>;
-+		channel = <0>;
-+		voltage = <174603>;
-+	};
-+
-+	button-384 {
-+		label = "Up";
-+		linux,code = <KEY_UP>;
-+		channel = <0>;
-+		voltage = <384126>;
-+	};
-+
-+	button-593 {
-+		label = "OK";
-+		linux,code = <KEY_OK>;
-+		channel = <0>;
-+		voltage = <593650>;
-+	};
-+};
-+
-+&mmc0 {
-+	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>; /* PF6 */
-+	bus-width = <4>;
-+	vmmc-supply = <&reg_dcdc3>;
-+	status = "okay";
-+};
-+
-+&pio {
-+	vcc-pd-supply = <&reg_dcdc3>;
-+	vcc-pe-supply = <&reg_dcdc3>;
-+};
-+
-+#include "axp209.dtsi"
-+
-+&ac_power_supply {
-+	status = "okay";
-+};
-+
-+&battery_power_supply {
-+	status = "okay";
-+};
-+
-+&reg_dcdc2 {
-+	regulator-always-on;
-+	regulator-min-microvolt = <1250000>;
-+	regulator-max-microvolt = <1250000>;
-+	regulator-name = "vdd-sys-cpu";
-+};
-+
-+&reg_dcdc3 {
-+	regulator-always-on;
-+	regulator-min-microvolt = <3300000>;
-+	regulator-max-microvolt = <3300000>;
-+	regulator-name = "vdd-3v3";
-+};
-+
-+&reg_ldo1 {
-+	regulator-name = "vdd-rtc";
-+};
-+
-+&reg_ldo2 {
-+	regulator-always-on;
-+	regulator-min-microvolt = <3000000>;
-+	regulator-max-microvolt = <3000000>;
-+	regulator-name = "avcc";
-+};
-+
-+&spi0 {
-+	status = "okay";
-+
-+	spi-flash@0 {
-+		reg = <0>;
-+		compatible = "jedec,spi-nor";
-+		spi-max-frequency = <50000000>;
-+	};
-+};
-+
-+&uart1 {
-+	pinctrl-0 = <&uart1_pg_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
-+
-+&usb_otg {
-+	dr_mode = "peripheral";
-+	status = "okay";
-+};
-+
-+&usbphy {
-+	status = "okay";
-+};
--- 
-2.29.2
-
+Michael
