@@ -2,208 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B3FB92D079D
-	for <lists+devicetree@lfdr.de>; Sun,  6 Dec 2020 23:11:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3FF902D07B4
+	for <lists+devicetree@lfdr.de>; Sun,  6 Dec 2020 23:39:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727427AbgLFWKc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 6 Dec 2020 17:10:32 -0500
-Received: from mail-eopbgr1410103.outbound.protection.outlook.com ([40.107.141.103]:39945
-        "EHLO JPN01-OS2-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726400AbgLFWKb (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 6 Dec 2020 17:10:31 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=gmQwSLuvhWHC1QGCby1ezicfsFt6bnW7RhgvacPJEG16r6IXDsnWFaBV2IfREx063XP8jUoirA3A4LL1dUzQvn4AqfMWzjngPl6t/DsS76sEvLMXzEftKNmgCFH0GkbttxC4duDoQvPblfljMx/krRTnXpsrDgcaPvVs1sWHwgSlnbJq7odM1fo9CrL2S/k+dhl8uxq4CKSi7+WBIXE7N//pxh6Bh5/OkxxbWt/fiEeV/OSeUKMcAxx9G7EqScVgF6lpM85Qt2QAPazG18VBZcKlmsBW4Cmp0eMvQCiD1Sfok1q/R6/U9z0SZ2oTU5gM2Xkyq5C9zBp2bh/rqPDqwg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=mBCWCA8liMG4RrAS8XeHFIqKmlnmRbMj4R1QgaThGhc=;
- b=XiEA1OZwDJZLs53isfDasaHt+qsueMXoWJPAlul3+qTvkL3YpWL+SxJr2QnzEp81JjZTuaFJp/LPyVDJYPL0y9DVp781v2wudDHFe+Hp4aljZ4+RJ0G/pYak7dXsbK/2UyypuRpd7C+vvEdtpWGLza+z3Z+y2PlHjHD/H7gFcLjunuJzY7ccROXri8guw0S7dK0HWlBRKP+LrA3ZQmDBHiC4zTGEGGkQFHC/Mq4JMA2Dr9BEa5bKAERKl3oMIvM24MgsLyvxWrjP/3LneXt9cLGW89KAtqxtJw7wDuQbSn1wC3W89h8KUQOB9qHjmFJvpEHujjI2dCBSF423uDpWvQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
- header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=renesasgroup.onmicrosoft.com; s=selector2-renesasgroup-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=mBCWCA8liMG4RrAS8XeHFIqKmlnmRbMj4R1QgaThGhc=;
- b=hma4eloNKLn2YQV/35HUsxd8JE1SUCV/djwO2ZP7itW2shihvwy2PJJUZ2wKK81G+BNFU+sjdEJKLedpgqMsfWgNPfP0x6t/H/p3Ko/2/C7VkMaXCn7mtubI8EPpsbz9JjRtyR2EC/g6oYE/1WC+AsFK1x4+5EPgr69d+2eGzNA=
-Received: from OSBPR01MB5048.jpnprd01.prod.outlook.com (2603:1096:604:38::10)
- by OSBPR01MB3207.jpnprd01.prod.outlook.com (2603:1096:604:22::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3632.17; Sun, 6 Dec
- 2020 22:09:41 +0000
-Received: from OSBPR01MB5048.jpnprd01.prod.outlook.com
- ([fe80::18f:c7ea:e9e4:db70]) by OSBPR01MB5048.jpnprd01.prod.outlook.com
- ([fe80::18f:c7ea:e9e4:db70%3]) with mapi id 15.20.3632.019; Sun, 6 Dec 2020
- 22:09:41 +0000
-From:   Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Mathias Nyman <mathias.nyman@intel.com>,
-        Felipe Balbi <balbi@kernel.org>,
+        id S1726400AbgLFWjI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 6 Dec 2020 17:39:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35004 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726046AbgLFWjI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Dec 2020 17:39:08 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BBCFC0613D0;
+        Sun,  6 Dec 2020 14:38:27 -0800 (PST)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 0BC878D;
+        Sun,  6 Dec 2020 23:38:23 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1607294304;
+        bh=1wx/bpAq1sVWUhiUMz+GMMhPtjFkX7zepuboWLVNUj4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=U9OReHadtVPn4VA99AVGXswMtfibJLXuJ4bubdePZGNeg+A+ZMGaxf/eWo2r6F6vR
+         Z+3PEioIfI9A0pTmWgzDVmzWPtkke/81vPZimW5P3qNsN9ng7d4zCbdLi22nGFAuQq
+         ITxN8CON5sxERUUwW9DTPSGLRIL/iC3C6M5Gfp6U=
+Date:   Mon, 7 Dec 2020 00:38:21 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Michal Simek <michal.simek@xilinx.com>
+Cc:     linux-kernel@vger.kernel.org, monstr@monstr.eu, git@xilinx.com,
+        Kalyani Akula <kalyani.akula@xilinx.com>,
         Krzysztof Kozlowski <krzk@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-CC:     Serge Semin <fancer.lancer@gmail.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Manu Gautam <mgautam@codeaurora.org>,
-        Roger Quadros <rogerq@ti.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Ahmad Zainie <wan.ahmad.zainie.wan.mohamad@intel.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-snps-arc@lists.infradead.org" 
-        <linux-snps-arc@lists.infradead.org>,
-        "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
-        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh@kernel.org>
-Subject: RE: [PATCH v5 09/19] dt-bindings: usb: renesas-xhci: Refer to the
- usb-xhci.yaml file
-Thread-Topic: [PATCH v5 09/19] dt-bindings: usb: renesas-xhci: Refer to the
- usb-xhci.yaml file
-Thread-Index: AQHWyxresVcuPKjuRkaonyGzMr8w1Knqohuw
-Date:   Sun, 6 Dec 2020 22:09:41 +0000
-Message-ID: <OSBPR01MB50483D3B3FFA24BFDA10B80CAACF0@OSBPR01MB5048.jpnprd01.prod.outlook.com>
-References: <20201205152427.29537-1-Sergey.Semin@baikalelectronics.ru>
- <20201205152427.29537-10-Sergey.Semin@baikalelectronics.ru>
-In-Reply-To: <20201205152427.29537-10-Sergey.Semin@baikalelectronics.ru>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: baikalelectronics.ru; dkim=none (message not signed)
- header.d=none;baikalelectronics.ru; dmarc=none action=none
- header.from=bp.renesas.com;
-x-originating-ip: [193.141.220.21]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: 3aa26450-ff0b-48da-1088-08d89a33a17a
-x-ms-traffictypediagnostic: OSBPR01MB3207:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <OSBPR01MB3207FAAAAB793BBD5F70ADC3AACF0@OSBPR01MB3207.jpnprd01.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:6108;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: WEFD35+EuyipVwwTNg/5nyXpCpriBgslUjyuDHNdCI96zcTedmAbbRfDOQbG9jtivtGDkD0RsDyS+rdDfRHeIHUtRCdn3T9I3nyp4YKdWlp416mi7ie09xWwCL4WXm8YPzgepf05tpjLzsc7u6tCTT8W9wr4ejXDC9mzY2g3GuqqVpYFq0iDsBG8Nzeqr3cKN08M9p1/mr6ZoVKxveAHnrcdRn6yVad/63SOx9t3jNdQHK2h2XVw5e9v5j8/Zayo93aacC90TZP4a/A44hJUFEpKYVILCOuCKvpVwEmsFC6hcN09NJc32FkExgSWI0CsR2WojVJIcnFgi6FS1LDxOg==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OSBPR01MB5048.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(39850400004)(396003)(346002)(376002)(366004)(136003)(66476007)(9686003)(316002)(110136005)(83380400001)(71200400001)(2906002)(66946007)(55016002)(8676002)(5660300002)(4326008)(6506007)(66556008)(54906003)(66446008)(64756008)(33656002)(76116006)(86362001)(26005)(52536014)(53546011)(7416002)(478600001)(186003)(8936002)(7696005);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata: =?us-ascii?Q?F7PzEAXNglcbAHhFqXdiak+iyCDVGiuIZo7NKBSnphHRkkaIKHZC9LTe4CUR?=
- =?us-ascii?Q?w5a6SP7y3UrPxuOWM6mSwY6qhsjmgq9A1OMG1ub9JPPtOi+cbZMIV9IvtWwC?=
- =?us-ascii?Q?yIIG3cHJEN0Wyi8gnWLw8T9ys3VMi+3cq0Zrb8KJYrt1fFT4iRNxQ2pf5rdV?=
- =?us-ascii?Q?3Hl/Jxw+4EUdKECS8OZIzg51sgbaA+AYD5kPDVzZgf4Fqcfa00fbD6UBq6p3?=
- =?us-ascii?Q?XhtnpblLbxL0Dw9tnkBI2j0T5M0x0eznhFWGgFVRp3nZbK34XRACMp56sUK5?=
- =?us-ascii?Q?nU/C7hZQwCNuicsO3rvyDpQ5kspOZusXUAhaY0NBVvoaIPcwhFaTjN94OAI8?=
- =?us-ascii?Q?ML6XE+WRyktwOvFORDBW0u1LMrjsmSqAeMX4s/D/Qj6DEsXLuSHZertP6sy5?=
- =?us-ascii?Q?hW0mdPmSSim2399RKQkOojwT63AyCzFnkrZkjUKKaYqSgHVkqOHSwBh2pxXk?=
- =?us-ascii?Q?+YruyLqcb3RE4pia7xZRdA+FX/xDnRyjMZmLlzqnpLFKAtaymdFtOpUSZZZl?=
- =?us-ascii?Q?bT8LXA+hhUJXM9SX94r0KtSk+OnvhrEkKK+FMLqHFETWTw6PwO5QajA9Xwlr?=
- =?us-ascii?Q?sqUSH7Gwe5DJ32yjrHstAZtMNk8fxivjeaywXfBgCJeUT4yuMNEVIbHkA6Nl?=
- =?us-ascii?Q?Gifs12ZR9fcjdQ0mTBluDqx+v/KiTvtMXBulAoX//WH6PagHxr/BMJ62TdLt?=
- =?us-ascii?Q?C+GVoeU1Na3xZVVk1x3DGteIie31dN6tWLL1ZQi28ek3Zmy5ATqQC/jAtQvw?=
- =?us-ascii?Q?7FGepiq20srvS7t1uSvdlUdIRooP+5tjrgcogdemzqbQRn5xPvYRzUioZW25?=
- =?us-ascii?Q?DtwsSrGQCp4Y29OIExbgAOxVQTLhc8yFitydeF7QhMDOgJ2wngwJytu1l/ne?=
- =?us-ascii?Q?B28yDD+RMEcI7Bba/LuhxOz2i1ekg8jxIZJ0/sW3zWM56bjkXF1b4kMrzE2Z?=
- =?us-ascii?Q?v8nnqWC3hZoYNTUBTscr3Szhpyx2wpW7zKTJ18kbiYs=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        Manish Narani <manish.narani@xilinx.com>,
+        Rajan Vaja <rajan.vaja@xilinx.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 04/12] arm64: dts: zynqmp: Enable and wire reset
+ controller
+Message-ID: <X81dXV0uCccZ3360@pendragon.ideasonboard.com>
+References: <cover.1606917949.git.michal.simek@xilinx.com>
+ <c0a99c5b0438e34073429624d99a2c3f16532016.1606917949.git.michal.simek@xilinx.com>
 MIME-Version: 1.0
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: OSBPR01MB5048.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3aa26450-ff0b-48da-1088-08d89a33a17a
-X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Dec 2020 22:09:41.3337
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: oxUmbn6Gx1Yijr2w1dIzJugdsblbey6avxMFR5E0a7cIgsUqHfETo+jWnmniczv4UqPzfn55WfI0oiCvVyQV56eRazOxpg+r5SzO2A93oAz9hVcMFq8eZ3lAtakEEOuI
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSBPR01MB3207
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <c0a99c5b0438e34073429624d99a2c3f16532016.1606917949.git.michal.simek@xilinx.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Serge,
+Hi Michal,
 
 Thank you for the patch.
 
-> -----Original Message-----
-> From: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> Sent: 05 December 2020 15:24
-> To: Mathias Nyman <mathias.nyman@intel.com>; Felipe Balbi <balbi@kernel.o=
-rg>; Krzysztof Kozlowski
-> <krzk@kernel.org>; Greg Kroah-Hartman <gregkh@linuxfoundation.org>; Rob H=
-erring <robh+dt@kernel.org>;
-> Chunfeng Yun <chunfeng.yun@mediatek.com>; Prabhakar Mahadev Lad <prabhaka=
-r.mahadev-
-> lad.rj@bp.renesas.com>; Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.c=
-om>
-> Cc: Serge Semin <Sergey.Semin@baikalelectronics.ru>; Serge Semin <fancer.=
-lancer@gmail.com>; Alexey
-> Malahov <Alexey.Malahov@baikalelectronics.ru>; Pavel Parkhomenko
-> <Pavel.Parkhomenko@baikalelectronics.ru>; Andy Gross <agross@kernel.org>;=
- Bjorn Andersson
-> <bjorn.andersson@linaro.org>; Manu Gautam <mgautam@codeaurora.org>; Roger=
- Quadros <rogerq@ti.com>;
-> Neil Armstrong <narmstrong@baylibre.com>; Kevin Hilman <khilman@baylibre.=
-com>; Martin Blumenstingl
-> <martin.blumenstingl@googlemail.com>; Ahmad Zainie <wan.ahmad.zainie.wan.=
-mohamad@intel.com>; linux-
-> arm-kernel@lists.infradead.org; linux-snps-arc@lists.infradead.org; linux=
--mips@vger.kernel.org;
-> linuxppc-dev@lists.ozlabs.org; linux-usb@vger.kernel.org; devicetree@vger=
-.kernel.org; linux-
-> kernel@vger.kernel.org; Rob Herring <robh@kernel.org>
-> Subject: [PATCH v5 09/19] dt-bindings: usb: renesas-xhci: Refer to the us=
-b-xhci.yaml file
->=20
-> With minor peculiarities (like uploading some vendor-specific firmware)
-> these are just Generic xHCI controllers fully compatible with its
-> properties. Make sure the Renesas USB xHCI DT nodes are also validated
-> against the Generic xHCI DT schema.
->=20
-> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Reviewed-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+On Wed, Dec 02, 2020 at 03:06:03PM +0100, Michal Simek wrote:
+> Enable reset controller for several IPs.
+> 
+> Signed-off-by: Michal Simek <michal.simek@xilinx.com>
 > ---
->  Documentation/devicetree/bindings/usb/renesas,usb-xhci.yaml | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
->=20
-Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> 
+>  arch/arm64/boot/dts/xilinx/zynqmp.dtsi | 29 ++++++++++++++++++++++++++
+>  1 file changed, 29 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+> index 68923fbd0e89..4fa820f78d76 100644
+> --- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+> +++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+> @@ -187,6 +187,11 @@ zynqmp_pcap: pcap {
+>  			xlnx_aes: zynqmp-aes {
+>  				compatible = "xlnx,zynqmp-aes";
+>  			};
+> +
+> +			zynqmp_reset: reset-controller {
+> +				compatible = "xlnx,zynqmp-reset";
+> +				#reset-cells = <1>;
+> +			};
+>  		};
+>  	};
+>  
+> @@ -466,6 +471,8 @@ gem0: ethernet@ff0b0000 {
+>  			#address-cells = <1>;
+>  			#size-cells = <0>;
+>  			power-domains = <&zynqmp_firmware PD_ETH_0>;
+> +			resets = <&zynqmp_reset ZYNQMP_RESET_GEM0>;
+> +			reset-names = "gem0_rst";
 
-Cheers,
-Prabhakar
+I don't see any of the reset-names used in this patch defined in DT
+bindings (or used in drivers). For all devices but the USB controllers
+it seems they can be dropped. For the USB controllers, the bindings need
+to be updated first.
 
-> diff --git a/Documentation/devicetree/bindings/usb/renesas,usb-xhci.yaml
-> b/Documentation/devicetree/bindings/usb/renesas,usb-xhci.yaml
-> index 0f078bd0a3e5..7e5ed196b52c 100644
-> --- a/Documentation/devicetree/bindings/usb/renesas,usb-xhci.yaml
-> +++ b/Documentation/devicetree/bindings/usb/renesas,usb-xhci.yaml
-> @@ -11,7 +11,7 @@ maintainers:
->    - Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
->=20
->  allOf:
-> -  - $ref: "usb-hcd.yaml"
-> +  - $ref: "usb-xhci.yaml"
->=20
->  properties:
->    compatible:
-> @@ -69,7 +69,7 @@ required:
->    - power-domains
->    - resets
->=20
-> -additionalProperties: false
-> +unevaluatedProperties: false
->=20
->  examples:
->    - |
-> --
-> 2.29.2
+>  		};
+>  
+>  		gem1: ethernet@ff0c0000 {
+> @@ -478,6 +485,8 @@ gem1: ethernet@ff0c0000 {
+>  			#address-cells = <1>;
+>  			#size-cells = <0>;
+>  			power-domains = <&zynqmp_firmware PD_ETH_1>;
+> +			resets = <&zynqmp_reset ZYNQMP_RESET_GEM1>;
+> +			reset-names = "gem1_rst";
+>  		};
+>  
+>  		gem2: ethernet@ff0d0000 {
+> @@ -490,6 +499,8 @@ gem2: ethernet@ff0d0000 {
+>  			#address-cells = <1>;
+>  			#size-cells = <0>;
+>  			power-domains = <&zynqmp_firmware PD_ETH_2>;
+> +			resets = <&zynqmp_reset ZYNQMP_RESET_GEM2>;
+> +			reset-names = "gem2_rst";
+>  		};
+>  
+>  		gem3: ethernet@ff0e0000 {
+> @@ -502,6 +513,8 @@ gem3: ethernet@ff0e0000 {
+>  			#address-cells = <1>;
+>  			#size-cells = <0>;
+>  			power-domains = <&zynqmp_firmware PD_ETH_3>;
+> +			resets = <&zynqmp_reset ZYNQMP_RESET_GEM3>;
+> +			reset-names = "gem3_rst";
+>  		};
+>  
+>  		gpio: gpio@ff0a0000 {
+> @@ -515,6 +528,8 @@ gpio: gpio@ff0a0000 {
+>  			#interrupt-cells = <2>;
+>  			reg = <0x0 0xff0a0000 0x0 0x1000>;
+>  			power-domains = <&zynqmp_firmware PD_GPIO>;
+> +			resets = <&zynqmp_reset ZYNQMP_RESET_GPIO>;
+> +			reset-names = "gpio_rst";
+>  		};
+>  
+>  		i2c0: i2c@ff020000 {
+> @@ -526,6 +541,8 @@ i2c0: i2c@ff020000 {
+>  			#address-cells = <1>;
+>  			#size-cells = <0>;
+>  			power-domains = <&zynqmp_firmware PD_I2C_0>;
+> +			resets = <&zynqmp_reset ZYNQMP_RESET_I2C0>;
+> +			reset-names = "i2c0_rst";
+>  		};
+>  
+>  		i2c1: i2c@ff030000 {
+> @@ -537,6 +554,8 @@ i2c1: i2c@ff030000 {
+>  			#address-cells = <1>;
+>  			#size-cells = <0>;
+>  			power-domains = <&zynqmp_firmware PD_I2C_1>;
+> +			resets = <&zynqmp_reset ZYNQMP_RESET_I2C1>;
+> +			reset-names = "i2c1_rst";
+>  		};
+>  
+>  		pcie: pcie@fd0e0000 {
+> @@ -602,6 +621,8 @@ sata: ahci@fd0c0000 {
+>  			interrupt-parent = <&gic>;
+>  			interrupts = <0 133 4>;
+>  			power-domains = <&zynqmp_firmware PD_SATA>;
+> +			resets = <&zynqmp_reset ZYNQMP_RESET_SATA>;
+> +			reset-names = "sata_rst";
+>  		};
+>  
+>  		sdhci0: mmc@ff160000 {
+> @@ -733,6 +754,10 @@ usb0: usb@fe200000 {
+>  			reg = <0x0 0xfe200000 0x0 0x40000>;
+>  			clock-names = "clk_xin", "clk_ahb";
+>  			power-domains = <&zynqmp_firmware PD_USB_0>;
+> +			resets = <&zynqmp_reset ZYNQMP_RESET_USB0_CORERESET>,
+> +				 <&zynqmp_reset ZYNQMP_RESET_USB0_HIBERRESET>,
+> +				 <&zynqmp_reset ZYNQMP_RESET_USB0_APB>;
+> +			reset-names = "usb0_crst", "usb0_hibrst", "usb0_apbrst";
+>  		};
+>  
+>  		usb1: usb@fe300000 {
+> @@ -743,6 +768,10 @@ usb1: usb@fe300000 {
+>  			reg = <0x0 0xfe300000 0x0 0x40000>;
+>  			clock-names = "clk_xin", "clk_ahb";
+>  			power-domains = <&zynqmp_firmware PD_USB_1>;
+> +			resets = <&zynqmp_reset ZYNQMP_RESET_USB1_CORERESET>,
+> +				 <&zynqmp_reset ZYNQMP_RESET_USB1_HIBERRESET>,
+> +				 <&zynqmp_reset ZYNQMP_RESET_USB1_APB>;
+> +			reset-names = "usb1_crst", "usb1_hibrst", "usb1_apbrst";
+>  		};
+>  
+>  		watchdog0: watchdog@fd4d0000 {
 
+-- 
+Regards,
+
+Laurent Pinchart
