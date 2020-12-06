@@ -2,108 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 529B12D0568
-	for <lists+devicetree@lfdr.de>; Sun,  6 Dec 2020 15:13:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0CFEA2D0595
+	for <lists+devicetree@lfdr.de>; Sun,  6 Dec 2020 16:11:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728188AbgLFOLm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 6 Dec 2020 09:11:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42254 "EHLO
+        id S1726000AbgLFPLf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 6 Dec 2020 10:11:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51400 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728184AbgLFOLl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Dec 2020 09:11:41 -0500
-Received: from mail-ej1-x643.google.com (mail-ej1-x643.google.com [IPv6:2a00:1450:4864:20::643])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5ACACC0613D0;
-        Sun,  6 Dec 2020 06:11:01 -0800 (PST)
-Received: by mail-ej1-x643.google.com with SMTP id m19so15625372ejj.11;
-        Sun, 06 Dec 2020 06:11:01 -0800 (PST)
+        with ESMTP id S1725879AbgLFPLf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Dec 2020 10:11:35 -0500
+Received: from mail-lf1-x142.google.com (mail-lf1-x142.google.com [IPv6:2a00:1450:4864:20::142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBACEC0613D0
+        for <devicetree@vger.kernel.org>; Sun,  6 Dec 2020 07:10:48 -0800 (PST)
+Received: by mail-lf1-x142.google.com with SMTP id z21so14331014lfe.12
+        for <devicetree@vger.kernel.org>; Sun, 06 Dec 2020 07:10:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:from:to:cc:references:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=/RgJjBEQoVIkABw7Jb2fNf8DyaI9+NUyzNSN0w5nfXA=;
-        b=WdjNSYh1Sto3FtBPYgC78hlN7/WclPuHaq+F5OqhcbFQrGfFrDCcWHl8mg5+K18yZz
-         LSxia3ycSp6Fg71qiBfk2SBf9IKrN265yG+GDXrkag8nzNa9AZIGIOUm1WnrGr5eYX9Y
-         8OziztcV0yVcdwKBSehcGyql82aDhRAt+mfsuf9ia7zuQNzX5YKPHkddMAqwXTQPK8Q6
-         zu82QhPozfh0cMP82GQxtusibLUtpoAgBoPuesN9H01igztfXWDDuRkEI5df0WgYYf+v
-         Ri+MIAwCeF7OCQbovDLCc9ZB+ymsHjfpwOHESeQbZa882ZJSSjbHi7Mwf3hlBXPNCvj+
-         N7Mg==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=+kqirm9K0MEr3yFdBpwzTjT54V81bqRttzYS3cfgP6Q=;
+        b=S//yT18at+GueB/VS+gOQXdYQwbob+wGz5e49M7fmUGlPYASGbNCeArGjqzHBdkobW
+         ap46Ns6Ean+lBCQHt8v3FcPRDdSDQ8R8nYtY5DAEVKiB+1okzs429sXDKnCuVCWSHOIU
+         Ju/j39yrmaZ0q6x1J/AAxkf2M0XgzK28jZpErPeCAojw4A7xGXTFXBHR9S2ABlNmsZAO
+         okLPWP1rIAc1sih4ljWolKbfSltVma/mv1/SrGdvyTZz33lrAc/zENRUftMQxfAVU33Q
+         nZhWWLZ0h/jwDc5DesQDykZMmJbB7fkQg8oTGTrF4zhV9vk1XYwp8vXGV/OMbcNluIyF
+         u87A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:from:to:cc:references:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=/RgJjBEQoVIkABw7Jb2fNf8DyaI9+NUyzNSN0w5nfXA=;
-        b=gfByL1sBNb7L6NNptQ4XkG8jlQrwoh/GbParBUdSjtDDsVgI063O2XXdhkP/nHopTQ
-         e1Nc00wg22AHDlkWVuHUfukmdyYk6Mv9wOdzuOzWdcy+fS2dzDQJrOwzOiEGAuKHkDkO
-         K0ZI/1URigMDxbRgZdyv8YPEZbG+lF5dky8Sjg5Gq/UnOQ7Fc2B1TSWYUyV9V3FHLUqd
-         gqKWlF7e3UQRKKPqkWZzTr4m6ZYH5Zr5Xn5jQTqUfWBtyHzts7LuMm1lI2YrNfOiQsOa
-         rHOarMC/mV2eeBLCXPBlsFETCbSuFgUuknOAgef94+JnSnFHmYwvRTIfKIXMZQ4cofZJ
-         F27w==
-X-Gm-Message-State: AOAM531DDw/YsJMO3Yf3+zLfkrGCRWi0qqTgdMLDbl42oOjwnTeGIlKm
-        Cbl5ovbvuEzhCOSfyqLRoaI=
-X-Google-Smtp-Source: ABdhPJyU1tPKn/+7HnquyPAOFSe0G2xWs6loGWNz+59Qh9fmZk1mbrCYZGzF+/ILnh9Sw0CxJRLw0Q==
-X-Received: by 2002:a17:906:e212:: with SMTP id gf18mr15408859ejb.551.1607263859782;
-        Sun, 06 Dec 2020 06:10:59 -0800 (PST)
-Received: from [192.168.2.1] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id q25sm3871452eds.85.2020.12.06.06.10.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 06 Dec 2020 06:10:59 -0800 (PST)
-Subject: Re: [PATCH v15 2/8] mtd: rawnand: rockchip: NFC drivers for RK3308,
- RK2928 and others
-From:   Johan Jonker <jbx6244@gmail.com>
-To:     Yifeng Zhao <yifeng.zhao@rock-chips.com>,
-        miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
-        robh+dt@kernel.org
-Cc:     devicetree@vger.kernel.org, heiko@sntech.de,
-        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        linux-mtd@lists.infradead.org, linux-arm-kernel@lists.infradead.org
-References: <20201130100031.22083-1-yifeng.zhao@rock-chips.com>
- <20201130100031.22083-3-yifeng.zhao@rock-chips.com>
- <0abf1dbd-13bb-cd92-907c-849f05ea887c@gmail.com>
-Message-ID: <259fe1ce-6bcb-3a26-493d-87bbd2eaff5e@gmail.com>
-Date:   Sun, 6 Dec 2020 15:10:57 +0100
-User-Agent: Mozilla/5.0 (X11; Linux i686; rv:68.0) Gecko/20100101
- Thunderbird/68.11.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=+kqirm9K0MEr3yFdBpwzTjT54V81bqRttzYS3cfgP6Q=;
+        b=BvS7nUaz5npUgNonhFP4qE/0rTBCue2V53CXCwxIWaGQ9YXxIuD6pIs98FN1CCnto6
+         HNveVdYKQfWTX3u6Wd/Dk1UR20+gKUYdhI7bkA7ArALE+72a0tyj+nTSrVif4DYma8PU
+         gSuHmIZwPV3O5PuLi5XYX3oFZza097UQErKIw4WWMqy8GrPoLzpFRJMfLDa+rAFiGYGt
+         +r+16Vcndz5Usy4XgUjNuFGbacCSL/azioUKAY/F2ajjcEGFfAKZoMooZbnfe3tDg9mh
+         9YEBSYulW0wnF8UYFIq8lByXYws8k14kprp1V2+RmxMaPv4lOaCRJxwlU4u/baDho8MD
+         jBrA==
+X-Gm-Message-State: AOAM533yVZt/oqy1Ucuu+Nlj7fGretvgXUuICmt4pZuw78uF7+HW0Gzp
+        rKj2pivY8NECEiwVeZvrg8aT72PosUOGRGTTxUoa0Q==
+X-Google-Smtp-Source: ABdhPJykQzWJfnZ14AtasRjARtDWDmsirWXDlKu/iI7igC0Ukl/KASZxncmC3Hr0eQxQ4x2RwTGmnGpTyWGCCNwHnss=
+X-Received: by 2002:a19:5f11:: with SMTP id t17mr6296440lfb.572.1607267447148;
+ Sun, 06 Dec 2020 07:10:47 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <0abf1dbd-13bb-cd92-907c-849f05ea887c@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20201203131242.44397-1-stephan@gerhold.net> <20201203131242.44397-2-stephan@gerhold.net>
+ <CACRpkdadiyYK5i8+TaLqxjmp4mUJ8eTiyZkgPXp-Qa2+CD8DrA@mail.gmail.com> <X8zOXpJ7fjIlgtnP@gerhold.net>
+In-Reply-To: <X8zOXpJ7fjIlgtnP@gerhold.net>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Sun, 6 Dec 2020 16:10:35 +0100
+Message-ID: <CACRpkdakVk42kXqSXoCsxpW3-PvFn7ZRd5DbSj5Ck_QZEb0P3w@mail.gmail.com>
+Subject: Re: [PATCH 2/3] dt-bindings: Input: tm2-touchkey - document vddio-supply
+To:     Stephan Gerhold <stephan@gerhold.net>
+Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Linux Input <linux-input@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Yifeng,
+On Sun, Dec 6, 2020 at 1:32 PM Stephan Gerhold <stephan@gerhold.net> wrote:
 
-Meanwhile, could you post a RFC version for Uboot based on this version
-plus comments, so people can test the whole process from programming,
-booting and kernel?
+> Actually, the pipe | effectively means that new lines \n will be
+> preserved in the parsed output, i.e.
+>
+>   something:
+>     Hello
+>     World
+>
+> means "Hello World", while
+>
+>   something: |
+>     Hello
+>     World
+>
+> means "Hello\nWorld\n".
 
-On 11/30/20 1:49 PM, Johan Jonker wrote:
-> Hi,
-> 
-> Looks good to me.
-> Do the maintainers or someone else have any major issues?
-> Could Miquel indicate if a version 16 must be send for that 'ret'
-> variable alone or is it OK now?
-> 
-> 
-> On 11/30/20 11:00 AM, Yifeng Zhao wrote:
->> This driver supports Rockchip NFC (NAND Flash Controller) found on RK3308,
->> RK2928, RKPX30, RV1108 and other SOCs. The driver has been tested using
->> 8-bit NAND interface on the ARM based RK3308 platform.
+Oh that's nice, I learned something new today :D
 
-[..]
+Combined with fixed-width font it will indeed preserve ASCII gfx too.
+But I don't know of a way to guarantee fixed-width :/
 
->> +/**
->> + * struct rk_ecc_cnt_status: represent a ecc status data.
+https://yaml-multiline.info/ explained even more. Nice!
 
-represent the ECC status data.
-
->> + * @err_flag_bit: error flag bit index at register.
->> + * @low: ECC count low bit index at register.
->> + * @low_mask: mask bit.
->> + * @low_bn: ECC count low bit number.
->> + * @high: ECC count high bit index at register.
->> + * @high_mask: mask bit
->> + */
+Yours,
+Linus Walleij
