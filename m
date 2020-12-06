@@ -2,85 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 897872D00DE
-	for <lists+devicetree@lfdr.de>; Sun,  6 Dec 2020 06:33:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B103B2D0167
+	for <lists+devicetree@lfdr.de>; Sun,  6 Dec 2020 08:27:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725747AbgLFFdG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 6 Dec 2020 00:33:06 -0500
-Received: from szxga04-in.huawei.com ([45.249.212.190]:9120 "EHLO
-        szxga04-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725355AbgLFFdF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Dec 2020 00:33:05 -0500
-Received: from DGGEMS407-HUB.china.huawei.com (unknown [172.30.72.60])
-        by szxga04-in.huawei.com (SkyGuard) with ESMTP id 4CpZnN2gFCz15XHT;
-        Sun,  6 Dec 2020 13:31:52 +0800 (CST)
-Received: from [127.0.0.1] (10.174.177.9) by DGGEMS407-HUB.china.huawei.com
- (10.3.19.207) with Microsoft SMTP Server id 14.3.487.0; Sun, 6 Dec 2020
- 13:32:17 +0800
-Subject: Re: [PATCH 1/5] media: dt-bindings: add the required property
- 'additionalProperties'
-To:     Philipp Zabel <p.zabel@pengutronix.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        id S1725772AbgLFH1G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 6 Dec 2020 02:27:06 -0500
+Received: from mail.kernel.org ([198.145.29.99]:48768 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725613AbgLFH1G (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 6 Dec 2020 02:27:06 -0500
+Date:   Sun, 6 Dec 2020 09:26:21 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1607239585;
+        bh=eqcGbi+bzpXI+QxMqZZmEGfj/8nMkdEv1Sz6YIfWTX0=;
+        h=From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Dqi8PZxuE3DuSBRJy+QYqnmWJGwfvbEWdldxNTJna4+fd9CKaUf6QwE4h6xH4GTh0
+         uQ8K0D0XjXbuXFapkkOVDyYVsnbsv1oO76HuuGEoudu2Apza+PkdUK01saQoNmq3bp
+         3XezgK2+Y8ytR1Rl11xPvBMAIUYkNETSBLB9vsELQqIWjFpG70/2Bfkl48POSPXR1L
+         myAsiVn5001r972jLLI43fvGQb2zIASjqWMONBJZR869g1YftSB5aQNoPAsi6+uJsX
+         PgjmV7fGBlsQ7Ma2kO9vetJrHAGc8WEw3u2svv4P8XcqSR70P68d7SVihjs5UhQpbf
+         HmDsxgUsmZHbQ==
+From:   Leon Romanovsky <leon@kernel.org>
+To:     Saravana Kannan <saravanak@google.com>
+Cc:     "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Len Brown <lenb@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Ard Biesheuvel <ardb@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Karol Gugala <kgugala@antmicro.com>,
-        Mateusz Holenko <mholenko@antmicro.com>,
-        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
-        Pawel Czarnecki <pczarnecki@internships.antmicro.com>,
-        Stafford Horne <shorne@gmail.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        linux-media <linux-media@vger.kernel.org>,
-        linux-serial <linux-serial@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-mediatek <linux-mediatek@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-References: <20201204093813.1275-1-thunder.leizhen@huawei.com>
- <20201204093813.1275-2-thunder.leizhen@huawei.com>
- <2c36ef4c2d022f6f83ec5c78a951d5e76f95378e.camel@pengutronix.de>
-From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
-Message-ID: <c2be6704-e3f8-ec52-9114-c3fa3c235a3c@huawei.com>
-Date:   Sun, 6 Dec 2020 13:32:16 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        Frank Rowand <frowand.list@gmail.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Tomi Valkeinen <tomi.valkeinen@ti.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        kernel-team@android.com, linux-acpi@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-efi@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 07/17] driver core: Add fwnode_init()
+Message-ID: <20201206072621.GA687065@unreal>
+References: <20201121020232.908850-1-saravanak@google.com>
+ <20201121020232.908850-8-saravanak@google.com>
 MIME-Version: 1.0
-In-Reply-To: <2c36ef4c2d022f6f83ec5c78a951d5e76f95378e.camel@pengutronix.de>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.174.177.9]
-X-CFilter-Loop: Reflected
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201121020232.908850-8-saravanak@google.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, Nov 20, 2020 at 06:02:22PM -0800, Saravana Kannan wrote:
+> There are multiple locations in the kernel where a struct fwnode_handle
+> is initialized. Add fwnode_init() so that we have one way of
+> initializing a fwnode_handle.
+>
+> Signed-off-by: Saravana Kannan <saravanak@google.com>
+> ---
+>  drivers/acpi/property.c         | 2 +-
+>  drivers/acpi/scan.c             | 2 +-
+>  drivers/base/swnode.c           | 2 +-
+>  drivers/firmware/efi/efi-init.c | 8 ++++----
+>  include/linux/fwnode.h          | 6 ++++++
+>  include/linux/of.h              | 2 +-
+>  kernel/irq/irqdomain.c          | 2 +-
+>  7 files changed, 15 insertions(+), 9 deletions(-)
 
+In this series, I didn't find any extension of fwnode_init() to be it more
+than simple assignment. This change looks to me like unnecessary churn and
+obfuscation rather than improvement.
 
-On 2020/12/4 18:56, Philipp Zabel wrote:
-> On Fri, 2020-12-04 at 17:38 +0800, Zhen Lei wrote:
->> When I do dt_binding_check for any YAML file, below wanring is always
->> reported:
->>
->> xxx/media/coda.yaml: 'additionalProperties' is a required property
->> xxx/media/coda.yaml: ignoring, error in schema:
->> warning: no schema found in file: xxx/media/coda.yaml
->>
->> There are three properties defined in allOf, they should be explicitly
->> declared. Otherwise, "additionalProperties: false" will prohibit them.
->>
->> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
-> 
-> Thank you, there already is a patch to fix this:
-> 
-> https://lore.kernel.org/linux-media/20201117200752.4004368-1-robh@kernel.org/
+"...ops = &...;" is pretty standard in the kernel to initialize ops
+structures.
 
-OK. I found it temporarily during do a JSON conversion，I have not subscribed the
-dt-binding maillist.
-
-> 
-> regards
-> Philipp
-> 
-> .
-> 
-
+Thanks
