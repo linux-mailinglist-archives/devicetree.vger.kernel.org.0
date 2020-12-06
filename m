@@ -2,112 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BDE172D05A4
-	for <lists+devicetree@lfdr.de>; Sun,  6 Dec 2020 16:22:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 68DC62D05FB
+	for <lists+devicetree@lfdr.de>; Sun,  6 Dec 2020 17:33:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726584AbgLFPVW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 6 Dec 2020 10:21:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52910 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726524AbgLFPVV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Dec 2020 10:21:21 -0500
-Received: from mail-lj1-x242.google.com (mail-lj1-x242.google.com [IPv6:2a00:1450:4864:20::242])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15EFAC0613D4
-        for <devicetree@vger.kernel.org>; Sun,  6 Dec 2020 07:20:41 -0800 (PST)
-Received: by mail-lj1-x242.google.com with SMTP id q8so12225062ljc.12
-        for <devicetree@vger.kernel.org>; Sun, 06 Dec 2020 07:20:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=P2jMJwesYEXerkWw0MU6aVmUBHRRKSZdzK4M16yygf0=;
-        b=trqlRO+RUgL6oM2i+qz8n57YuG8b3zo5dQODxU9+BWmqK2K3YjygtCfmMfCcO1nlmt
-         ZnZ2qSg1VGt3u6UZLGy56VJmIxubCYh39sN6LFx6j4FlmCFBC1KTWLu2SLb/AMrm5Waq
-         5vfMkMw7+08PCfqsfCdO9rbW6LcBD63qZroCTGQa4c4p3/UBYfYZxoutMrbIdPcDTO/g
-         peS3elfKb6M7QiHk1OZcJ+HQ7MFdS8+9wim4R/S5i7PiOtplFKZA7FyiYjwQcQUvoHqm
-         86qJ537/dlxHZ0u2rJgEE9iQoWr0ICFhsWcv5ueA2b4XAHYWvQCDMXNSIY8ozmJHalLD
-         XwVQ==
+        id S1727356AbgLFQcw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 6 Dec 2020 11:32:52 -0500
+Received: from us-smtp-delivery-124.mimecast.com ([63.128.21.124]:49911 "EHLO
+        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726981AbgLFQcw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Dec 2020 11:32:52 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1607272285;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=CMF+CoVSS643Fc17KXhh3rGOJ/yHoZk4DoSGgm33ivA=;
+        b=bxhG7CFMs5KdaS6D9qhnwD5Zv8nlND6o3W9XDMqgnoVyfkkPMJY7qXH2/MO9551nhdLetn
+        z+LFBx3p8PXnFhhQN8TYT39//Ejb0yRzSkTXJSxLKkpqSNv0kPrEjNypsPHqUrNTXR8KiJ
+        mBRi9LToYztnxskIaOc87EW+/52IKTo=
+Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com
+ [209.85.222.198]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-48-XU_lz2eGO7ShZmJgsLKOLQ-1; Sun, 06 Dec 2020 11:31:23 -0500
+X-MC-Unique: XU_lz2eGO7ShZmJgsLKOLQ-1
+Received: by mail-qk1-f198.google.com with SMTP id n190so884137qkf.18
+        for <devicetree@vger.kernel.org>; Sun, 06 Dec 2020 08:31:23 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=P2jMJwesYEXerkWw0MU6aVmUBHRRKSZdzK4M16yygf0=;
-        b=qXWYkGhOiMhSyR4IRx11pPDJiwIdkmlWfA5w4eBk8TXDs3KKqpZDC/c80ohcCrC+Rv
-         a52OOgFZnhnrGXpFYuTb9ULffxD98El9jqG0frmcfjw13p2tRzmAOW79cE8zIJij++h7
-         nLfHoDKqHvVnvWTqFwY7vuqHM0NivkmPS56oD4+Je42CVIJ/kFwZhnqEnCYg8ZZGbKHc
-         Hj3Nek6N3Q4TeGdL9RQqkQ0A35aMEQ78S8uvUoGgo9AmxsrEL3iLMTzpkD4nTGG1IRst
-         9rI39Nq2pDeD7HBm319//cCplChr81h+COTIbQ3fDrsfvAZcSfRgaaRCzMdD/QrKccPP
-         OaPg==
-X-Gm-Message-State: AOAM533RE3FVANA0TkVGqPPe2NiM8trVYVgzmUgj8e6W1MQvq5JMgi6B
-        47idXf0kSQ87Hh+/sAwe6SzS0aGTMEW8XYLzAl29Ig==
-X-Google-Smtp-Source: ABdhPJyzUPomIjJYXfFaqoDPfewszugEjgkBqy17YgWyc6uo0N691jeA252Ulgf8kt7Ye3tK0ZNQijAby1yx6tBHGK4=
-X-Received: by 2002:a2e:780d:: with SMTP id t13mr3229946ljc.144.1607268039459;
- Sun, 06 Dec 2020 07:20:39 -0800 (PST)
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-transfer-encoding
+         :content-language;
+        bh=CMF+CoVSS643Fc17KXhh3rGOJ/yHoZk4DoSGgm33ivA=;
+        b=uByUNNV09EKiPa2xiWmevcQONCE3/8R1uT3X5GKbizi3vTI0HoioLEuykWs94HLdIZ
+         rk9YNaE2+huoVcPrmVOLuGDYFNyLSHFQbMC4+goNlOujBW9+rTMemsQsd+DejIUu27st
+         TcSx4jUK0azI/PtOWQJ0juf/cewsI0sT4jB2fNawbWYhRBYQAx2ryc5lk9/bqnqZFlH3
+         biHfdcBaWCAJoaOmykMSyVfUZcPUOHEG/du8UcoWUe1LhuyQuZlWU3NpyTgX4A0Cv+y9
+         okpN6+Jbykk0zmtqn8MazTse/5004MenA07d6MKxuByvhKcW1ApZcNptw/CKjQ0MuCAZ
+         pxLA==
+X-Gm-Message-State: AOAM533WRrQJN916IJhvc/tUpATEz2m0Vs9fSoluMgzj+oMtNuRbuVxS
+        g+sIXhU2BpOpuAXQguk7EZeLSaQV+kuylZaoVI97B35xlhlEgQ/FPmS1zQAnjTHo4ICB1ou+eVz
+        mCmtXndSJUdyHnZwu6CnKJ9evxOoHL906xx+RgFgWf0ceAcQxaIFULw7mLuQggIz5SsHN
+X-Received: by 2002:ac8:bc7:: with SMTP id p7mr19756357qti.91.1607272282369;
+        Sun, 06 Dec 2020 08:31:22 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJwRjzb3ETLrTBxkdDegvZLQf2Fn3hwR6fns803HxOqkK73W88fwCB9NZ01f3lD4Rew17E3XSQ==
+X-Received: by 2002:ac8:bc7:: with SMTP id p7mr19756331qti.91.1607272282050;
+        Sun, 06 Dec 2020 08:31:22 -0800 (PST)
+Received: from trix.remote.csb (075-142-250-213.res.spectrum.com. [75.142.250.213])
+        by smtp.gmail.com with ESMTPSA id l10sm10618585qti.37.2020.12.06.08.31.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 06 Dec 2020 08:31:21 -0800 (PST)
+Subject: Re: [PATCH Xilinx Alveo 0/8] Xilinx Alveo/XRT patch overview
+To:     Sonal Santan <sonal.santan@xilinx.com>,
+        linux-kernel@vger.kernel.org
+Cc:     Sonal Santan <sonals@xilinx.com>, linux-fpga@vger.kernel.org,
+        maxz@xilinx.com, lizhih@xilinx.com, michal.simek@xilinx.com,
+        stefanos@xilinx.com, devicetree@vger.kernel.org
+References: <20201129000040.24777-1-sonals@xilinx.com>
+From:   Tom Rix <trix@redhat.com>
+Message-ID: <457f9fad-f108-26de-3cdb-b367a4782ef2@redhat.com>
+Date:   Sun, 6 Dec 2020 08:31:19 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.3.1
 MIME-Version: 1.0
-References: <20201205054749.26487-1-digetx@gmail.com> <20201205054749.26487-3-digetx@gmail.com>
-In-Reply-To: <20201205054749.26487-3-digetx@gmail.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Sun, 6 Dec 2020 16:20:28 +0100
-Message-ID: <CACRpkdZoxsamwCpckeMOVSkK_DQOqakmZ3fHzYb8CeSGZ1V_NA@mail.gmail.com>
-Subject: Re: [PATCH v2 2/3] Input: atmel_mxt_ts - support wakeup methods
-To:     Dmitry Osipenko <digetx@gmail.com>
-Cc:     Nick Dyer <nick@shmanahar.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Jiada Wang <jiada_wang@mentor.com>,
-        Linux Input <linux-input@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-tegra <linux-tegra@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20201129000040.24777-1-sonals@xilinx.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Dec 5, 2020 at 6:48 AM Dmitry Osipenko <digetx@gmail.com> wrote:
-
-> According to datasheets, chips like mXT1386 have a WAKE line, it is used
-> to wake the chip up from deep sleep mode before communicating with it via
-> the I2C-compatible interface.
+On 11/28/20 4:00 PM, Sonal Santan wrote:
+> Hello,
 >
-> If the WAKE line is connected to a GPIO line, the line must be asserted
-> 25 ms before the host attempts to communicate with the controller. If the
-> WAKE line is connected to the SCL pin, the controller will send a NACK on
-> the first attempt to address it, the host must then retry 25 ms later.
->
-> Implement the wake-up methods in the driver. Touchscreen now works
-> properly on devices like Acer A500 tablet, fixing problems like this:
->
->  atmel_mxt_ts 0-004c: __mxt_read_reg: i2c transfer failed (-121)
->  atmel_mxt_ts 0-004c: mxt_bootloader_read: i2c recv failed (-121)
->  atmel_mxt_ts 0-004c: Trying alternate bootloader address
->  atmel_mxt_ts 0-004c: mxt_bootloader_read: i2c recv failed (-121)
->  atmel_mxt_ts: probe of 0-004c failed with error -121
->
-> Signed-off-by: Jiada Wang <jiada_wang@mentor.com>
-> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+> This patch series adds management physical function driver for Xilinx Alveo PCIe
+> accelerator cards, https://www.xilinx.com/products/boards-and-kits/alveo.html
+> This driver is part of Xilinx Runtime (XRT) open source stack.
 
-OK looks interesting!
+A few general things.
 
-> +       /* Request the WAKE line as asserted so controller won't sleep */
-> +       data->wake_gpio = devm_gpiod_get_optional(&client->dev,
-> +                                                 "wake", GPIOD_OUT_HIGH);
-> +       if (IS_ERR(data->wake_gpio)) {
-> +               error = PTR_ERR(data->wake_gpio);
-> +               dev_err(&client->dev, "Failed to get wake gpio: %d\n", error);
-> +               return error;
-> +       }
+Use scripts/get_maintainer.pl to find who a patch should go to, i should have been on the cc line.
 
-That is a bit brutal, don't you think? Now you force the controller
-to be on at all times. Even across suspend/resume.
+Each patch should at a minimum pass scripts/checkpatch.pl, none do.
 
-Shouldn't the same patch drive this low in mxt_suspend()
-and driver it high + wait 25 ms in mxt_resume()?
-Waiting 25ms in mxt_resume() is chill, it is anyway on the
-slowpath.
+Looking broadly at the files, there are competing names xrt or alveo.
 
-Yours,
-Linus Walleij
+It seems like xrt is the dfl equivalent, so maybe
+
+drivers/fpga/alveo should be drivers/fpga/xrt
+
+There are a lot of files with unnecessary prefixes
+
+ex/
+
+fpga/alveo/include/xrt-ucs.h could just be fpga/alveo/include/ucs.h
+
+individual subdev's may not belong in the fpga subsystem.
+
+I think it would be better to submit these one at a time as is done for dfl.
+
+So this will not block getting the basics done, in the next revision, can you leave the subdev's out ?
+
+ 
+
+Because of the checkpatch.pl failures, I will wait for the next revision.
+
+Tom
+
+
