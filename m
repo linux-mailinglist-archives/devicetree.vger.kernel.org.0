@@ -2,107 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 726CA2D054B
-	for <lists+devicetree@lfdr.de>; Sun,  6 Dec 2020 14:44:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 529B12D0568
+	for <lists+devicetree@lfdr.de>; Sun,  6 Dec 2020 15:13:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727748AbgLFNol (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 6 Dec 2020 08:44:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38138 "EHLO
+        id S1728188AbgLFOLm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 6 Dec 2020 09:11:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42254 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725767AbgLFNok (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Dec 2020 08:44:40 -0500
-Received: from mail-ed1-x543.google.com (mail-ed1-x543.google.com [IPv6:2a00:1450:4864:20::543])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67DBAC0613D1;
-        Sun,  6 Dec 2020 05:44:00 -0800 (PST)
-Received: by mail-ed1-x543.google.com with SMTP id b73so10784397edf.13;
-        Sun, 06 Dec 2020 05:44:00 -0800 (PST)
+        with ESMTP id S1728184AbgLFOLl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Dec 2020 09:11:41 -0500
+Received: from mail-ej1-x643.google.com (mail-ej1-x643.google.com [IPv6:2a00:1450:4864:20::643])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5ACACC0613D0;
+        Sun,  6 Dec 2020 06:11:01 -0800 (PST)
+Received: by mail-ej1-x643.google.com with SMTP id m19so15625372ejj.11;
+        Sun, 06 Dec 2020 06:11:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=K3LhEesmWv5BmeOieMFYtK0OjNdZwovFc4Fkys5J8eY=;
-        b=TBvCtZExc2F4bqx0+RmEfpihQd4j2OvwXLIkCn1+OFfJDl6fxUtfbz7rh1VgxjRYhX
-         M2tWwxX4MMCGPW3sSJllp67bweNps04xkRtoYSNGZQE5oy6RKn08HKs6sgDQX+NKXh2r
-         QlfpXn9+UgHePMOkVU2oXztiTfBtpYIKHii714jwzFLJEFcpCYLTHEZ/Yd/2tJVn1l90
-         V86RKa9+vb+ub+e5nbYSEdH1HUDS9u/dM2DD2GS7xYRaFTB7SJ9HzbQLdm7tMhg5dS/z
-         42CJ71+UH1GjSgEfKKFElZAFoawM8TsR/bbPd6Xo1fQIbjCcjy1b6HDc5MrOqnG/+ehT
-         60OA==
+        h=subject:from:to:cc:references:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=/RgJjBEQoVIkABw7Jb2fNf8DyaI9+NUyzNSN0w5nfXA=;
+        b=WdjNSYh1Sto3FtBPYgC78hlN7/WclPuHaq+F5OqhcbFQrGfFrDCcWHl8mg5+K18yZz
+         LSxia3ycSp6Fg71qiBfk2SBf9IKrN265yG+GDXrkag8nzNa9AZIGIOUm1WnrGr5eYX9Y
+         8OziztcV0yVcdwKBSehcGyql82aDhRAt+mfsuf9ia7zuQNzX5YKPHkddMAqwXTQPK8Q6
+         zu82QhPozfh0cMP82GQxtusibLUtpoAgBoPuesN9H01igztfXWDDuRkEI5df0WgYYf+v
+         Ri+MIAwCeF7OCQbovDLCc9ZB+ymsHjfpwOHESeQbZa882ZJSSjbHi7Mwf3hlBXPNCvj+
+         N7Mg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=K3LhEesmWv5BmeOieMFYtK0OjNdZwovFc4Fkys5J8eY=;
-        b=sPdhN8Wm37JFWMWUOPS7yEexAaUTLMqR1+xbqWlrtJcG94Faf9XereZreMaMPpaotN
-         //EBXbdaAYI8bW/tprK5bFVUKKSzOgIUnFSnSUlarbwEYzXLr5zBQUaGceMn8B04Lclq
-         9ESbmkIpR+eS15Fc477pZPlri5Pu53eKfM733BB0jJQkbt3uHnsUG7hxozefK8dZZ657
-         bod/yLcgzdrsu8IDcawXrZIPnuwRgbnR3QRVqbO+0px9//hJK4UAm1CQJ7eTpaopfxOn
-         QVf6OMrY1L2P+ajB6DenMv5LrbkwzuotAcxedpjduFZPVdwD4ZdtrLJ+1PvuNtsqSxe/
-         ML+A==
-X-Gm-Message-State: AOAM533SFtv06LV2HTLkc4HOKeGfMaiSDPykLCTa/cu5xhs3mptJyr4i
-        MzYEQRgs5NX/4g64vxv88jAUy7mIjQU4xw==
-X-Google-Smtp-Source: ABdhPJzJchVLZzukVDULqSwbn/ZttMrtqlgFoo20F2MG5PcA08+ds/HNj4nzW6aw5jb+n9SzacQGqw==
-X-Received: by 2002:aa7:c1c6:: with SMTP id d6mr16024798edp.275.1607262239156;
-        Sun, 06 Dec 2020 05:43:59 -0800 (PST)
-Received: from ubuntu2004 ([188.24.159.61])
-        by smtp.gmail.com with ESMTPSA id c23sm8927929eds.88.2020.12.06.05.43.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 06 Dec 2020 05:43:58 -0800 (PST)
-Date:   Sun, 6 Dec 2020 15:44:00 +0200
-From:   Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
-        linux-actions@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
-        linux-pm@vger.kernel.org
-Subject: Re: [PATCH v3 6/7] input: atc260x: Add onkey driver for ATC260x PMICs
-Message-ID: <20201206134400.GA201906@ubuntu2004>
-References: <cover.1607216141.git.cristian.ciocaltea@gmail.com>
- <fb61c36b7a8449d76767f148f2d43447294d5038.1607216141.git.cristian.ciocaltea@gmail.com>
- <X8xMTwaUYx+s1BG7@google.com>
+        h=x-gm-message-state:subject:from:to:cc:references:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=/RgJjBEQoVIkABw7Jb2fNf8DyaI9+NUyzNSN0w5nfXA=;
+        b=gfByL1sBNb7L6NNptQ4XkG8jlQrwoh/GbParBUdSjtDDsVgI063O2XXdhkP/nHopTQ
+         e1Nc00wg22AHDlkWVuHUfukmdyYk6Mv9wOdzuOzWdcy+fS2dzDQJrOwzOiEGAuKHkDkO
+         K0ZI/1URigMDxbRgZdyv8YPEZbG+lF5dky8Sjg5Gq/UnOQ7Fc2B1TSWYUyV9V3FHLUqd
+         gqKWlF7e3UQRKKPqkWZzTr4m6ZYH5Zr5Xn5jQTqUfWBtyHzts7LuMm1lI2YrNfOiQsOa
+         rHOarMC/mV2eeBLCXPBlsFETCbSuFgUuknOAgef94+JnSnFHmYwvRTIfKIXMZQ4cofZJ
+         F27w==
+X-Gm-Message-State: AOAM531DDw/YsJMO3Yf3+zLfkrGCRWi0qqTgdMLDbl42oOjwnTeGIlKm
+        Cbl5ovbvuEzhCOSfyqLRoaI=
+X-Google-Smtp-Source: ABdhPJyU1tPKn/+7HnquyPAOFSe0G2xWs6loGWNz+59Qh9fmZk1mbrCYZGzF+/ILnh9Sw0CxJRLw0Q==
+X-Received: by 2002:a17:906:e212:: with SMTP id gf18mr15408859ejb.551.1607263859782;
+        Sun, 06 Dec 2020 06:10:59 -0800 (PST)
+Received: from [192.168.2.1] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id q25sm3871452eds.85.2020.12.06.06.10.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 06 Dec 2020 06:10:59 -0800 (PST)
+Subject: Re: [PATCH v15 2/8] mtd: rawnand: rockchip: NFC drivers for RK3308,
+ RK2928 and others
+From:   Johan Jonker <jbx6244@gmail.com>
+To:     Yifeng Zhao <yifeng.zhao@rock-chips.com>,
+        miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
+        robh+dt@kernel.org
+Cc:     devicetree@vger.kernel.org, heiko@sntech.de,
+        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        linux-mtd@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+References: <20201130100031.22083-1-yifeng.zhao@rock-chips.com>
+ <20201130100031.22083-3-yifeng.zhao@rock-chips.com>
+ <0abf1dbd-13bb-cd92-907c-849f05ea887c@gmail.com>
+Message-ID: <259fe1ce-6bcb-3a26-493d-87bbd2eaff5e@gmail.com>
+Date:   Sun, 6 Dec 2020 15:10:57 +0100
+User-Agent: Mozilla/5.0 (X11; Linux i686; rv:68.0) Gecko/20100101
+ Thunderbird/68.11.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <X8xMTwaUYx+s1BG7@google.com>
+In-Reply-To: <0abf1dbd-13bb-cd92-907c-849f05ea887c@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Dec 05, 2020 at 07:13:19PM -0800, Dmitry Torokhov wrote:
-> On Sun, Dec 06, 2020 at 03:27:06AM +0200, Cristian Ciocaltea wrote:
-> > The Actions Semi ATC260x PMICs are able to manage an onkey button.
-> > This driver exposes the ATC260x onkey as an input device. It can also
-> > be configured to force a system reset on a long key-press with an
-> > adjustable duration.
-> > 
-> > The currently supported chip variants are ATC2603C and ATC2609A.
-> > 
-> > Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
-> > ---
-> > Changes in v3: 
-> >  - Integrated Dmitry's review:
-> >    * Dropped the logic around the check for 'pdev->dev.of_node'
-> >    * Renamed 'ret' variable in 'atc260x_onkey_probe()' to 'error'
-> >    * Used 'dev_dbg' instead of 'dev_info' on status KEY_RESET_DISABLED
-> >    * Dropped 'input_dev->evbit[0] = BIT_MASK(EV_KEY);'
-> >    * Removed IRQF_TRIGGER_HIGH flag on 'devm_request_threaded_irq()'
-> >    * Implemented open/close to mitigate the racing issue in
-> >      'atc260x_onkey_remove()' which has been dropped now
-> >  - Removed the unnecessary driver compatibles
-> >  - Used 'reset-time-sec' property of the parent device instead of
-> >    'actions,reset-time-sec' of now obsolete and removed 'onkey' DT node
-> 
-> Acked-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-> 
-> Please merge with the rest through MFD I suppose.
-> 
-> Thanks.
-> 
-> -- 
-> Dmitry
+Hi Yifeng,
 
-Thank you, Dmitry!
+Meanwhile, could you post a RFC version for Uboot based on this version
+plus comments, so people can test the whole process from programming,
+booting and kernel?
+
+On 11/30/20 1:49 PM, Johan Jonker wrote:
+> Hi,
+> 
+> Looks good to me.
+> Do the maintainers or someone else have any major issues?
+> Could Miquel indicate if a version 16 must be send for that 'ret'
+> variable alone or is it OK now?
+> 
+> 
+> On 11/30/20 11:00 AM, Yifeng Zhao wrote:
+>> This driver supports Rockchip NFC (NAND Flash Controller) found on RK3308,
+>> RK2928, RKPX30, RV1108 and other SOCs. The driver has been tested using
+>> 8-bit NAND interface on the ARM based RK3308 platform.
+
+[..]
+
+>> +/**
+>> + * struct rk_ecc_cnt_status: represent a ecc status data.
+
+represent the ECC status data.
+
+>> + * @err_flag_bit: error flag bit index at register.
+>> + * @low: ECC count low bit index at register.
+>> + * @low_mask: mask bit.
+>> + * @low_bn: ECC count low bit number.
+>> + * @high: ECC count high bit index at register.
+>> + * @high_mask: mask bit
+>> + */
