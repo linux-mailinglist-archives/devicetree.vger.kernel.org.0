@@ -2,89 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0CFEA2D0595
-	for <lists+devicetree@lfdr.de>; Sun,  6 Dec 2020 16:11:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EFB882D0598
+	for <lists+devicetree@lfdr.de>; Sun,  6 Dec 2020 16:14:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726000AbgLFPLf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 6 Dec 2020 10:11:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51400 "EHLO
+        id S1725730AbgLFPOy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 6 Dec 2020 10:14:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51920 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725879AbgLFPLf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Dec 2020 10:11:35 -0500
-Received: from mail-lf1-x142.google.com (mail-lf1-x142.google.com [IPv6:2a00:1450:4864:20::142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBACEC0613D0
-        for <devicetree@vger.kernel.org>; Sun,  6 Dec 2020 07:10:48 -0800 (PST)
-Received: by mail-lf1-x142.google.com with SMTP id z21so14331014lfe.12
-        for <devicetree@vger.kernel.org>; Sun, 06 Dec 2020 07:10:48 -0800 (PST)
+        with ESMTP id S1726000AbgLFPOx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Dec 2020 10:14:53 -0500
+Received: from mail-lj1-x243.google.com (mail-lj1-x243.google.com [IPv6:2a00:1450:4864:20::243])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9377C0613D2
+        for <devicetree@vger.kernel.org>; Sun,  6 Dec 2020 07:14:12 -0800 (PST)
+Received: by mail-lj1-x243.google.com with SMTP id s9so12222014ljo.11
+        for <devicetree@vger.kernel.org>; Sun, 06 Dec 2020 07:14:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=+kqirm9K0MEr3yFdBpwzTjT54V81bqRttzYS3cfgP6Q=;
-        b=S//yT18at+GueB/VS+gOQXdYQwbob+wGz5e49M7fmUGlPYASGbNCeArGjqzHBdkobW
-         ap46Ns6Ean+lBCQHt8v3FcPRDdSDQ8R8nYtY5DAEVKiB+1okzs429sXDKnCuVCWSHOIU
-         Ju/j39yrmaZ0q6x1J/AAxkf2M0XgzK28jZpErPeCAojw4A7xGXTFXBHR9S2ABlNmsZAO
-         okLPWP1rIAc1sih4ljWolKbfSltVma/mv1/SrGdvyTZz33lrAc/zENRUftMQxfAVU33Q
-         nZhWWLZ0h/jwDc5DesQDykZMmJbB7fkQg8oTGTrF4zhV9vk1XYwp8vXGV/OMbcNluIyF
-         u87A==
+        bh=ewLQDP/8tzLVIjOAB6Z6yBX/hdvnuw9WqxClNkbxi5c=;
+        b=ebMvmXZOn+SFPjj7tRKJ1Hg0BIRHg5+xookwP/W5cirHmg6iPhktYlp+2gAc/z1Igl
+         MCoTL162aPOs/YSVqaV0dJrwuDgHM5bdjWcAIzUXlE6Pk+3LhVuueQ6wQwomppL7QwjO
+         ROSha5rWv1unSTc2Pc5V1ZB98hP4dbvBbKEnXWxo71XL3t0qAzPPG6KuQuy7DBnql3Tb
+         k7b2HPg1EQ1z5e44YOZl4aHSugKhI8bnOi4ndXsp8b6R3M/IaCS71yF6cRzAzsHm8ief
+         25QVaE93St2D3e04vPrWiBVZlJskrseHCpXsx1k9oLI3L5QFsHtCKJPy3zrZmtY1ITS0
+         4cWQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=+kqirm9K0MEr3yFdBpwzTjT54V81bqRttzYS3cfgP6Q=;
-        b=BvS7nUaz5npUgNonhFP4qE/0rTBCue2V53CXCwxIWaGQ9YXxIuD6pIs98FN1CCnto6
-         HNveVdYKQfWTX3u6Wd/Dk1UR20+gKUYdhI7bkA7ArALE+72a0tyj+nTSrVif4DYma8PU
-         gSuHmIZwPV3O5PuLi5XYX3oFZza097UQErKIw4WWMqy8GrPoLzpFRJMfLDa+rAFiGYGt
-         +r+16Vcndz5Usy4XgUjNuFGbacCSL/azioUKAY/F2ajjcEGFfAKZoMooZbnfe3tDg9mh
-         9YEBSYulW0wnF8UYFIq8lByXYws8k14kprp1V2+RmxMaPv4lOaCRJxwlU4u/baDho8MD
-         jBrA==
-X-Gm-Message-State: AOAM533yVZt/oqy1Ucuu+Nlj7fGretvgXUuICmt4pZuw78uF7+HW0Gzp
-        rKj2pivY8NECEiwVeZvrg8aT72PosUOGRGTTxUoa0Q==
-X-Google-Smtp-Source: ABdhPJykQzWJfnZ14AtasRjARtDWDmsirWXDlKu/iI7igC0Ukl/KASZxncmC3Hr0eQxQ4x2RwTGmnGpTyWGCCNwHnss=
-X-Received: by 2002:a19:5f11:: with SMTP id t17mr6296440lfb.572.1607267447148;
- Sun, 06 Dec 2020 07:10:47 -0800 (PST)
+        bh=ewLQDP/8tzLVIjOAB6Z6yBX/hdvnuw9WqxClNkbxi5c=;
+        b=mNUqnr0tYEDnx7D4PTH8GCmJ93GC4qUFKLGdwn/kritsmAZEtbS9j7eMDowxGNRyYc
+         bu2sbA3bcevmfFldzzPL67Y1nOI9aVGTUCfL4WnypLhqixKPuK1p7024C4vXzBhFgncG
+         GdfiBLxJQ+uAD9m64M0tethB6+jr9c66e43j84ib5AfOZd+GGIgKAY4uN3FYoWEjjqn3
+         +ZV1q9s+eu+8ZtGpzdgPwnnO2i3xe2ZWrw0wh+nxulJUNlhxbuo+GF0OkbmCYnnE3Hly
+         YdIHmBQeQjKC9MLsgWUUHAqXgqDaiguNUWtOz4YBwqoRUh5HXvT4QXXfxf+hXujwFQ32
+         u/vA==
+X-Gm-Message-State: AOAM531oiDRMqGK9DNu6OKoaJR1ZvYeUuDijhER8Ifkx/UwbQKDMz7Y2
+        9HI8nQ80isJyFlTqx6ot18drZhy/BhoZnECKHuZXvw==
+X-Google-Smtp-Source: ABdhPJy7Rh18d+1pv9wJ41IJ+1/SLO4A2I29ybUTEusEbi5vnUDxLdouW9sCljOvQyHl/r6VEcE/XS780edAEcMoGYo=
+X-Received: by 2002:a05:651c:c2:: with SMTP id 2mr6851536ljr.104.1607267651173;
+ Sun, 06 Dec 2020 07:14:11 -0800 (PST)
 MIME-Version: 1.0
-References: <20201203131242.44397-1-stephan@gerhold.net> <20201203131242.44397-2-stephan@gerhold.net>
- <CACRpkdadiyYK5i8+TaLqxjmp4mUJ8eTiyZkgPXp-Qa2+CD8DrA@mail.gmail.com> <X8zOXpJ7fjIlgtnP@gerhold.net>
-In-Reply-To: <X8zOXpJ7fjIlgtnP@gerhold.net>
+References: <20201205053328.9535-1-digetx@gmail.com> <20201205053328.9535-2-digetx@gmail.com>
+In-Reply-To: <20201205053328.9535-2-digetx@gmail.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Sun, 6 Dec 2020 16:10:35 +0100
-Message-ID: <CACRpkdakVk42kXqSXoCsxpW3-PvFn7ZRd5DbSj5Ck_QZEb0P3w@mail.gmail.com>
-Subject: Re: [PATCH 2/3] dt-bindings: Input: tm2-touchkey - document vddio-supply
-To:     Stephan Gerhold <stephan@gerhold.net>
-Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Linux Input <linux-input@vger.kernel.org>,
+Date:   Sun, 6 Dec 2020 16:13:59 +0100
+Message-ID: <CACRpkdY+fLhUD4cpM7X96Z7XjtXBkoVDRN6pDBUk+PjrQjTxcA@mail.gmail.com>
+Subject: Re: [PATCH v1 1/3] dt-bindings: input: atmel_mxt_ts: Document
+ atmel,wakeup-method and wake-GPIO
+To:     Dmitry Osipenko <digetx@gmail.com>
+Cc:     Nick Dyer <nick@shmanahar.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Jiada Wang <jiada_wang@mentor.com>,
+        Linux Input <linux-input@vger.kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
+        <devicetree@vger.kernel.org>,
+        linux-tegra <linux-tegra@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Dec 6, 2020 at 1:32 PM Stephan Gerhold <stephan@gerhold.net> wrote:
+On Sat, Dec 5, 2020 at 6:34 AM Dmitry Osipenko <digetx@gmail.com> wrote:
 
-> Actually, the pipe | effectively means that new lines \n will be
-> preserved in the parsed output, i.e.
+> Some Atmel touchscreen controllers have a WAKE line that needs to be
+> asserted low in order to wake up controller from a deep sleep. Document
+> the wakeup methods and the wake-GPIO properties.
 >
->   something:
->     Hello
->     World
->
-> means "Hello World", while
->
->   something: |
->     Hello
->     World
->
-> means "Hello\nWorld\n".
+> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
 
-Oh that's nice, I learned something new today :D
+Looks really useful!
 
-Combined with fixed-width font it will indeed preserve ASCII gfx too.
-But I don't know of a way to guarantee fixed-width :/
+> +  atmel,wakeup-method:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: |
+> +      The WAKE line is an active-low input that is used to wake up the touch
+> +      controller from deep-sleep mode before communication with the controller
+> +      could be started. This feature used to minimize current consumption
+> +      when the controller is in deep sleep mode.
+> +
+> +      The WAKE pin can be connected in one of the following ways:
+> +       1) left permanently low
+> +       2) connected to the I2C-compatible SCL pin
+> +       3) connected to a GPIO pin on the host
+> +    enum:
+> +      - 0 # ATMEL_MXT_WAKEUP_NONE
+> +      - 1 # ATMEL_MXT_WAKEUP_I2C_SCL
+> +      - 2 # ATMEL_MXT_WAKEUP_GPIO
 
-https://yaml-multiline.info/ explained even more. Nice!
+So you can add:
+minimum: 0
+maximum: 2
+
+I suppose?
+
+With that:
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
 Yours,
 Linus Walleij
