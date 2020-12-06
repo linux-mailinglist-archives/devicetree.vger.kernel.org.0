@@ -2,95 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 00D772D053F
-	for <lists+devicetree@lfdr.de>; Sun,  6 Dec 2020 14:35:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 726CA2D054B
+	for <lists+devicetree@lfdr.de>; Sun,  6 Dec 2020 14:44:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728467AbgLFNfM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 6 Dec 2020 08:35:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36666 "EHLO
+        id S1727748AbgLFNol (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 6 Dec 2020 08:44:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38138 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728240AbgLFNfM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Dec 2020 08:35:12 -0500
-Received: from mail-ej1-x644.google.com (mail-ej1-x644.google.com [IPv6:2a00:1450:4864:20::644])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57B05C061A51;
-        Sun,  6 Dec 2020 05:34:12 -0800 (PST)
-Received: by mail-ej1-x644.google.com with SMTP id jx16so15550350ejb.10;
-        Sun, 06 Dec 2020 05:34:12 -0800 (PST)
+        with ESMTP id S1725767AbgLFNok (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Dec 2020 08:44:40 -0500
+Received: from mail-ed1-x543.google.com (mail-ed1-x543.google.com [IPv6:2a00:1450:4864:20::543])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67DBAC0613D1;
+        Sun,  6 Dec 2020 05:44:00 -0800 (PST)
+Received: by mail-ed1-x543.google.com with SMTP id b73so10784397edf.13;
+        Sun, 06 Dec 2020 05:44:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=MNzWsDtU39BR4iFEfSJQ9mnoYu92ToJLMEGgLWUUrPw=;
-        b=JOVXuy3e6JymxKOPEoHBdkzfQUhgnoR1msgkoaiMxH70fRYib/t+qYr+VQpo7JKMln
-         F91whwe0wS6E4TTblt2ayRevdquO+k5v8NBiIGfJfJ6kCo75D+I0zR/Vp3M9iOTClr+y
-         RCD4WdS3002o8Co4VHrBS/SLNuFuYVhfulYpaFxC/YwFdKNT4An0K8Wd/1+AdipNSVDq
-         DmHl6hIzKsAopuPY3pE8J0vQW+3Q5+kXiYphccbg7W1ZVI6bX+A6IWPSUqr82lBEhjME
-         zxPxH0zFGmboVpKVBFPb3LvGF83sSP9eqfPZsKkrNaa7ufXKT5erD+NMFSrNFe0jGx/r
-         fRdA==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=K3LhEesmWv5BmeOieMFYtK0OjNdZwovFc4Fkys5J8eY=;
+        b=TBvCtZExc2F4bqx0+RmEfpihQd4j2OvwXLIkCn1+OFfJDl6fxUtfbz7rh1VgxjRYhX
+         M2tWwxX4MMCGPW3sSJllp67bweNps04xkRtoYSNGZQE5oy6RKn08HKs6sgDQX+NKXh2r
+         QlfpXn9+UgHePMOkVU2oXztiTfBtpYIKHii714jwzFLJEFcpCYLTHEZ/Yd/2tJVn1l90
+         V86RKa9+vb+ub+e5nbYSEdH1HUDS9u/dM2DD2GS7xYRaFTB7SJ9HzbQLdm7tMhg5dS/z
+         42CJ71+UH1GjSgEfKKFElZAFoawM8TsR/bbPd6Xo1fQIbjCcjy1b6HDc5MrOqnG/+ehT
+         60OA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=MNzWsDtU39BR4iFEfSJQ9mnoYu92ToJLMEGgLWUUrPw=;
-        b=q0FlCsPRfidfdGSxeSC8N7dtdlCr974g8WjLO4/BOYXYdSh2+127MhbgJAKz7eLyU1
-         G/m5WqMwsKl1tQy+WQ1ZO0sqJXEZxUQ/ca09uHrfnURLg4roo9U3Fbq95WUtr3AhKJMX
-         HthPYX0ki3eW1Er61jq5dS8jft83O8QbMM8pvDIYqcjNhLpydXhAYvG7EDmQc+g1JJCj
-         /E04k0Kh4fOPqEhK3GchcAcH3N8I6I7trQCGtH6xVRujjYBFqTkGopRDodKTQVRllRAU
-         HMh7OUwP/FC8ZdAoXHEBq46LS2fwkXDLXZQNJfnA27zD1sKMWDzAEFSOTVCTXIiv2s0w
-         lRlw==
-X-Gm-Message-State: AOAM533naJC/E145vW9ZIbxu9hz9j0KzlpFGGCjkSUg/V1OFUd3tvUpx
-        7EFkQ1pCRqC6S5vPF3MU3Xo=
-X-Google-Smtp-Source: ABdhPJztME1AEa+6AzKHTpyb9Y+omIXYUc5Z2Uz2KCJGA5tPM3cmuLgOt76RoEEmj6mHLL05lTnjBQ==
-X-Received: by 2002:a17:906:f05:: with SMTP id z5mr15442015eji.8.1607261651143;
-        Sun, 06 Dec 2020 05:34:11 -0800 (PST)
-Received: from debian.home (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id qh23sm7770129ejb.71.2020.12.06.05.34.10
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Sun, 06 Dec 2020 05:34:10 -0800 (PST)
-From:   Johan Jonker <jbx6244@gmail.com>
-To:     heiko@sntech.de
-Cc:     hjc@rock-chips.com, airlied@linux.ie, daniel@ffwll.ch,
-        lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
-        dri-devel@lists.freedesktop.org, alsa-devel@alsa-project.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v6 5/5] ARM: dts: rockchip: enable hdmi_sound and i2s0 for rk3066a-mk808
-Date:   Sun,  6 Dec 2020 14:33:55 +0100
-Message-Id: <20201206133355.16007-6-jbx6244@gmail.com>
-X-Mailer: git-send-email 2.11.0
-In-Reply-To: <20201206133355.16007-1-jbx6244@gmail.com>
-References: <20201206133355.16007-1-jbx6244@gmail.com>
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=K3LhEesmWv5BmeOieMFYtK0OjNdZwovFc4Fkys5J8eY=;
+        b=sPdhN8Wm37JFWMWUOPS7yEexAaUTLMqR1+xbqWlrtJcG94Faf9XereZreMaMPpaotN
+         //EBXbdaAYI8bW/tprK5bFVUKKSzOgIUnFSnSUlarbwEYzXLr5zBQUaGceMn8B04Lclq
+         9ESbmkIpR+eS15Fc477pZPlri5Pu53eKfM733BB0jJQkbt3uHnsUG7hxozefK8dZZ657
+         bod/yLcgzdrsu8IDcawXrZIPnuwRgbnR3QRVqbO+0px9//hJK4UAm1CQJ7eTpaopfxOn
+         QVf6OMrY1L2P+ajB6DenMv5LrbkwzuotAcxedpjduFZPVdwD4ZdtrLJ+1PvuNtsqSxe/
+         ML+A==
+X-Gm-Message-State: AOAM533SFtv06LV2HTLkc4HOKeGfMaiSDPykLCTa/cu5xhs3mptJyr4i
+        MzYEQRgs5NX/4g64vxv88jAUy7mIjQU4xw==
+X-Google-Smtp-Source: ABdhPJzJchVLZzukVDULqSwbn/ZttMrtqlgFoo20F2MG5PcA08+ds/HNj4nzW6aw5jb+n9SzacQGqw==
+X-Received: by 2002:aa7:c1c6:: with SMTP id d6mr16024798edp.275.1607262239156;
+        Sun, 06 Dec 2020 05:43:59 -0800 (PST)
+Received: from ubuntu2004 ([188.24.159.61])
+        by smtp.gmail.com with ESMTPSA id c23sm8927929eds.88.2020.12.06.05.43.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 06 Dec 2020 05:43:58 -0800 (PST)
+Date:   Sun, 6 Dec 2020 15:44:00 +0200
+From:   Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
+        linux-actions@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
+        linux-pm@vger.kernel.org
+Subject: Re: [PATCH v3 6/7] input: atc260x: Add onkey driver for ATC260x PMICs
+Message-ID: <20201206134400.GA201906@ubuntu2004>
+References: <cover.1607216141.git.cristian.ciocaltea@gmail.com>
+ <fb61c36b7a8449d76767f148f2d43447294d5038.1607216141.git.cristian.ciocaltea@gmail.com>
+ <X8xMTwaUYx+s1BG7@google.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <X8xMTwaUYx+s1BG7@google.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Make some noise with mk808. Enable the hdmi_sound node and
-add i2s0 as sound source for hdmi.
+On Sat, Dec 05, 2020 at 07:13:19PM -0800, Dmitry Torokhov wrote:
+> On Sun, Dec 06, 2020 at 03:27:06AM +0200, Cristian Ciocaltea wrote:
+> > The Actions Semi ATC260x PMICs are able to manage an onkey button.
+> > This driver exposes the ATC260x onkey as an input device. It can also
+> > be configured to force a system reset on a long key-press with an
+> > adjustable duration.
+> > 
+> > The currently supported chip variants are ATC2603C and ATC2609A.
+> > 
+> > Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
+> > ---
+> > Changes in v3: 
+> >  - Integrated Dmitry's review:
+> >    * Dropped the logic around the check for 'pdev->dev.of_node'
+> >    * Renamed 'ret' variable in 'atc260x_onkey_probe()' to 'error'
+> >    * Used 'dev_dbg' instead of 'dev_info' on status KEY_RESET_DISABLED
+> >    * Dropped 'input_dev->evbit[0] = BIT_MASK(EV_KEY);'
+> >    * Removed IRQF_TRIGGER_HIGH flag on 'devm_request_threaded_irq()'
+> >    * Implemented open/close to mitigate the racing issue in
+> >      'atc260x_onkey_remove()' which has been dropped now
+> >  - Removed the unnecessary driver compatibles
+> >  - Used 'reset-time-sec' property of the parent device instead of
+> >    'actions,reset-time-sec' of now obsolete and removed 'onkey' DT node
+> 
+> Acked-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+> 
+> Please merge with the rest through MFD I suppose.
+> 
+> Thanks.
+> 
+> -- 
+> Dmitry
 
-Signed-off-by: Johan Jonker <jbx6244@gmail.com>
----
- arch/arm/boot/dts/rk3066a-mk808.dts | 8 ++++++++
- 1 file changed, 8 insertions(+)
-
-diff --git a/arch/arm/boot/dts/rk3066a-mk808.dts b/arch/arm/boot/dts/rk3066a-mk808.dts
-index eed9e60cf..5fe74c097 100644
---- a/arch/arm/boot/dts/rk3066a-mk808.dts
-+++ b/arch/arm/boot/dts/rk3066a-mk808.dts
-@@ -116,6 +116,14 @@
- 	};
- };
- 
-+&hdmi_sound {
-+	status = "okay";
-+};
-+
-+&i2s0 {
-+	status = "okay";
-+};
-+
- &mmc0 {
- 	bus-width = <4>;
- 	cap-mmc-highspeed;
--- 
-2.11.0
-
+Thank you, Dmitry!
