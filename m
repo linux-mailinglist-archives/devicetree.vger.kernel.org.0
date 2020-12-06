@@ -2,114 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AB7FB2D0015
-	for <lists+devicetree@lfdr.de>; Sun,  6 Dec 2020 02:20:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 016D52D0028
+	for <lists+devicetree@lfdr.de>; Sun,  6 Dec 2020 02:28:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726518AbgLFBUt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Dec 2020 20:20:49 -0500
-Received: from esa2.hgst.iphmx.com ([68.232.143.124]:35643 "EHLO
-        esa2.hgst.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726037AbgLFBUt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Dec 2020 20:20:49 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
-  t=1607218820; x=1638754820;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=FUFns0ZQm6ox08bIyStAPeZebNJokqWZzdgTWJBkH6w=;
-  b=T1GrqXZ0ttokYT5b0iLgGAzY1dLYVaYNvwlK3LR8mGh5jIk6mebQpmG2
-   REkKpk+RQWR3Zaar9J575tYj7oCW6LYADXs+++cbTEupoi4aroyktnWrG
-   xB2aNNQJvWMb7tSoBJIpOJEOPAL3cC2nEH5Rr2ri7Jlg00jh1+yLEp8Jc
-   hLko4vjqFbWVGkby/CsJFp6thL8twd/uD3ns0Ue1SJ/jISg1kQoyqozOw
-   bSZuzgd5LjQIpqvB14Suaf5UiSu1RRI7gxCkUeTF9aQBAVFNgrd0u2e+5
-   PgRfduJDOqNgvWXdmhaVHKp7rtH26JOuf1cak/h+3UzLmBhnyGOv+pPtB
-   g==;
-IronPort-SDR: Xvl+jzFNmQ1BhSDjoBxWZdYhWOrIO0Y5leckQskfZYiA4+7LIGLOihX6Y86Xrljbs2X7q4ytPo
- R+qudSrtd0lrrCg+ff2BOODx+D8zQVA5RfszzXkIcweXh5j8G4wS1Xn6EGM2/Ecq8VUScIa73O
- YAIMfdTCByNzp5BNt+AkiUSfnZHw8Y4dT52tsVuusbu2+rd61m/dVQngU5CxLjx1dlrPmXLljE
- E/V2smkT9EJExcX/Vdh6MGpZwcevu1SAThCkpAYZBck3zYOUCQ1pGFfTE883hlFgPIb4ru5WlG
- QME=
-X-IronPort-AV: E=Sophos;i="5.78,396,1599494400"; 
-   d="scan'208";a="258231905"
-Received: from uls-op-cesaip02.wdc.com (HELO uls-op-cesaep02.wdc.com) ([199.255.45.15])
-  by ob1.hgst.iphmx.com with ESMTP; 06 Dec 2020 09:36:44 +0800
-IronPort-SDR: VHqc6V4J5mKOzVaT0nfeV62jmeRMy/S6E8Rw2cjh48KsVili7ATpBALB5tfKRZq7QuPgkfZzHa
- 2y728DYB5KwstQ8+TZNJDQ5d2sizwvfOc=
-Received: from uls-op-cesaip02.wdc.com ([10.248.3.37])
-  by uls-op-cesaep02.wdc.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Dec 2020 17:02:29 -0800
-IronPort-SDR: iuWzoU0omr+w0WQH3pDr3M7C60JKNycOEC1/dNQb4ANbT3xn8NsPY451TXb5NdMjeCwodITQkg
- 3VMgVaMMzETw==
-WDCIronportException: Internal
-Received: from cnf005296.ad.shared (HELO twashi.fujisawa.hgst.com) ([10.84.71.167])
-  by uls-op-cesaip02.wdc.com with ESMTP; 05 Dec 2020 17:18:24 -0800
-From:   Damien Le Moal <damien.lemoal@wdc.com>
-To:     Serge Semin <fancer.lancer@gmail.com>,
-        Mark Brown <broonie@kernel.org>, linux-spi@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Cc:     Sean Anderson <seanga2@gmail.com>
-Subject: [PATCH v3 3/3] spi: dw: Add support for the Canaan K210 SoC SPI
-Date:   Sun,  6 Dec 2020 10:18:17 +0900
-Message-Id: <20201206011817.11700-4-damien.lemoal@wdc.com>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20201206011817.11700-1-damien.lemoal@wdc.com>
-References: <20201206011817.11700-1-damien.lemoal@wdc.com>
+        id S1726023AbgLFB1x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 5 Dec 2020 20:27:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49696 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725920AbgLFB1w (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Dec 2020 20:27:52 -0500
+Received: from mail-ej1-x643.google.com (mail-ej1-x643.google.com [IPv6:2a00:1450:4864:20::643])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BEDAC0613CF;
+        Sat,  5 Dec 2020 17:27:12 -0800 (PST)
+Received: by mail-ej1-x643.google.com with SMTP id bo9so14218187ejb.13;
+        Sat, 05 Dec 2020 17:27:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=aLebgEqoATmMI8bfoDj70EDkjqNo0VIOaUKoftRAHHk=;
+        b=elgJN9tOJwJjq5/wlZFk20P7bu9DBHKT7O6zdm2SPg5nJVESH8YHVZmNov161dgK4t
+         /OHAdRY/56KLiCFhOatSzEa8w8qTbYc6+kiaCDpyeCrI/Zakkf5OqotXkeQlu3CUFxv5
+         HOynJbE2F1qkxhZ76FAtQG3FNRXfZCDblz71FAc97Bz6psuEjeOgLA4v91dERGJ0KdCl
+         9KV2wZIwSQ5nhR/JViNSOVoTkkw4Db+zXUaDIQYFEnBBeB8x/Z7M547h4rh0izE13u7W
+         5RXhyydOYgDBKeOaO5jMU5cN01xrHIZEQz6XogrKs4y3Vqai/XMXYDexRmQ3ZPvyFEE6
+         K3qw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=aLebgEqoATmMI8bfoDj70EDkjqNo0VIOaUKoftRAHHk=;
+        b=Jn4xIbvr9ylHeqX22F+78LapuuzOPCjke/gQhGQvRen3eFwypxW7ap97HPVbaGfTJS
+         v4K6JZk+pGwTNBnHYRUdyC3uIXhtzlM9GUe9yaxr3uiAYdaFtcCex/J8BZxLgU8rLOw3
+         Ms7M/elEAs3eS7tWDJgeoKSV5TR7ZNwNZXek8OlUYfKXh2h9qIyfD0Txscqqj/lqoU6R
+         Uzfpr6pg4XOYDLz+lzrNdiPm5K4JB8U1MdnADKjzNpciYQJQUv1xLngI0nSGFpVmmNIJ
+         ELHYZcrWJq5SKRomZcEPnrYwE/0sxTR/k2Vx9zm0/2MM6iXmItBdr41vZ6uhpQXTzsjy
+         4GOA==
+X-Gm-Message-State: AOAM533xDvCWnbgUc6pCZOqOM9HOebqM+7I4JW/Olnlj6lxX679DghVS
+        2w50GxKNEISnQOVQgvg9AMs=
+X-Google-Smtp-Source: ABdhPJz8X19bk3xopW1YmBt8KuvFurQipwJTwLtH4iihFosS9I1XWwAUarf9scl8qLpQ5LYGkVoNrQ==
+X-Received: by 2002:a17:906:ceca:: with SMTP id si10mr13029820ejb.547.1607218030898;
+        Sat, 05 Dec 2020 17:27:10 -0800 (PST)
+Received: from localhost.localdomain ([188.24.159.61])
+        by smtp.gmail.com with ESMTPSA id a10sm6157023ejk.92.2020.12.05.17.27.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 05 Dec 2020 17:27:09 -0800 (PST)
+From:   Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
+To:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        =?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>
+Cc:     linux-actions@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
+        linux-pm@vger.kernel.org
+Subject: [PATCH v3 0/7] Add initial support for ATC260x PMICs
+Date:   Sun,  6 Dec 2020 03:27:00 +0200
+Message-Id: <cover.1607216141.git.cristian.ciocaltea@gmail.com>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Canaan Kendryte K210 RISC-V SoC includes a DW apb_ssi v4 controller
-which is documented to have a 32 words deep TX and RX FIFO. The FIFO
-length detection in spi_hw_init() correctly detects this value.
-However, when the controller RX FIFO is filled up to 32 entries
-(RXFLR = 32), an RX FIFO overrun error occurs. This likely due to a
-hardware bug which can be avoided by force setting the fifo_len field of
-struct dw_spi to 31.
+The ATC260x family of PMICs integrates Audio Codec, Power management,
+Clock generation and GPIO controller blocks. There are currently 3
+variants: ATC2603A, ATC2603C and ATC2609A.
 
-Define the dw_spi_canaan_k210_init() function to force set fifo_len to
-31 when the device node compatible string is "canaan,k210-spi".
+This is re-spin of the v1 patch series submitted some time ago by
+Mani, who provided the MFD and regulator drivers for ATC2609A:
+https://lore.kernel.org/lkml/20190617155011.15376-1-manivannan.sadhasivam@linaro.org/
 
-Signed-off-by: Damien Le Moal <damien.lemoal@wdc.com>
-Acked-by: Serge Semin <fancer.lancer@gmail.com>
----
- drivers/spi/spi-dw-mmio.c | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+Since v2, I added support for ATC2603C, together with some new
+functionalities for both chips: power controller and onkey input.
+The ATC2603A chip type remains unsupported for the moment.
 
-diff --git a/drivers/spi/spi-dw-mmio.c b/drivers/spi/spi-dw-mmio.c
-index d0cc5bf4fa4e..17c06039a74d 100644
---- a/drivers/spi/spi-dw-mmio.c
-+++ b/drivers/spi/spi-dw-mmio.c
-@@ -222,6 +222,21 @@ static int dw_spi_keembay_init(struct platform_device *pdev,
- 	return 0;
- }
- 
-+static int dw_spi_canaan_k210_init(struct platform_device *pdev,
-+				   struct dw_spi_mmio *dwsmmio)
-+{
-+	/*
-+	 * The Canaan Kendryte K210 SoC DW apb_ssi v4 spi controller is
-+	 * documented to have a 32 word deep TX and RX FIFO, which
-+	 * spi_hw_init() detects. However, when the RX FIFO is filled up to
-+	 * 32 entries (RXFLR = 32), an RX FIFO overrun error occurs. Avoid this
-+	 * problem by force setting fifo_len to 31.
-+	 */
-+	dwsmmio->dws.fifo_len = 31;
-+
-+	return 0;
-+}
-+
- static int dw_spi_mmio_probe(struct platform_device *pdev)
- {
- 	int (*init_func)(struct platform_device *pdev,
-@@ -335,6 +350,7 @@ static const struct of_device_id dw_spi_mmio_of_match[] = {
- 	{ .compatible = "snps,dwc-ssi-1.01a", .data = dw_spi_dwc_ssi_init},
- 	{ .compatible = "intel,keembay-ssi", .data = dw_spi_keembay_init},
- 	{ .compatible = "microchip,sparx5-spi", dw_spi_mscc_sparx5_init},
-+	{ .compatible = "canaan,k210-spi", dw_spi_canaan_k210_init},
- 	{ /* end of table */}
- };
- MODULE_DEVICE_TABLE(of, dw_spi_mmio_of_match);
+This has been tested on RoseapplePi, a SBC based on the Action Semi S500
+SoC, which integrates the ATC2603C variant of the PMIC.
+
+Note that enabling the ATC260x PMICs on compatible Actions Semi Owl SoC
+based boards depends on:
+
+* the Actions Semi SIRQ driver (for PMIC DTS setup), merged in v5.10:
+  https://lore.kernel.org/lkml/cover.1600114378.git.cristian.ciocaltea@gmail.com/
+
+* the atomic transfers in Owl I2C driver (for power controller), queued for v5.11:
+  https://lore.kernel.org/lkml/cover.1602190168.git.cristian.ciocaltea@gmail.com/
+
+Additionally, please note that I have taken the authorship for the MFD
+and regulator drivers patches, considering the original code has been
+modified to a large extent.
+
+Thanks,
+Cristi
+
+Changes in v3:
+- Integrated feedback from Mani, Rob, Mark, Sebastian, Dmitry
+- Fixed issues reported by Lee's kernel test robot
+- Added new patch for 'reset-time-sec' DT binding property
+- Rebased patchset on v5.10-rc6
+
+Changes in v2:
+- Reworked MFD core & I2C driver
+  * Integrated Lee's feedback
+  * Added support for using the regmap within atomic contexts
+  * Added support for ATC2603C chip variant
+  * Reorganized KConfig entries
+- Improved regulator driver
+  * Added support for ATC2603C variant
+  * Used helper macros for more compact specification of regulator_desc items
+  * Added more regulator capabilities
+- Added power controller driver
+  * Provides system poweroff/reboot functionalities
+  * Depends on atomic transfers in the Owl I2C driver
+- Added onkey driver: exposes the power button as an input device
+- Added yaml binding doc
+- Rebased patchset on kernel v5.9-rc1
+
+Cristian Ciocaltea (6):
+  dt-bindings: input: Add reset-time-sec common property
+  dt-bindings: mfd: Add Actions Semi ATC260x PMIC binding
+  mfd: Add MFD driver for ATC260x PMICs
+  regulator: Add regulator driver for ATC260x PMICs
+  power: reset: Add poweroff driver for ATC260x PMICs
+  input: atc260x: Add onkey driver for ATC260x PMICs
+
+Manivannan Sadhasivam (1):
+  MAINTAINERS: Add entry for ATC260x PMIC
+
+ .../devicetree/bindings/input/input.yaml      |   7 +
+ .../bindings/mfd/actions,atc260x.yaml         | 181 ++++++
+ MAINTAINERS                                   |  12 +
+ drivers/input/misc/Kconfig                    |  11 +
+ drivers/input/misc/Makefile                   |   2 +-
+ drivers/input/misc/atc260x-onkey.c            | 305 ++++++++++
+ drivers/mfd/Kconfig                           |  18 +
+ drivers/mfd/Makefile                          |   3 +
+ drivers/mfd/atc260x-core.c                    | 290 ++++++++++
+ drivers/mfd/atc260x-i2c.c                     |  73 +++
+ drivers/power/reset/Kconfig                   |   8 +-
+ drivers/power/reset/Makefile                  |   1 +
+ drivers/power/reset/atc260x-poweroff.c        | 263 +++++++++
+ drivers/regulator/Kconfig                     |   8 +
+ drivers/regulator/Makefile                    |   1 +
+ drivers/regulator/atc260x-regulator.c         | 524 ++++++++++++++++++
+ include/linux/mfd/atc260x/atc2603c.h          | 281 ++++++++++
+ include/linux/mfd/atc260x/atc2609a.h          | 308 ++++++++++
+ include/linux/mfd/atc260x/core.h              |  86 +++
+ 19 files changed, 2380 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mfd/actions,atc260x.yaml
+ create mode 100644 drivers/input/misc/atc260x-onkey.c
+ create mode 100644 drivers/mfd/atc260x-core.c
+ create mode 100644 drivers/mfd/atc260x-i2c.c
+ create mode 100644 drivers/power/reset/atc260x-poweroff.c
+ create mode 100644 drivers/regulator/atc260x-regulator.c
+ create mode 100644 include/linux/mfd/atc260x/atc2603c.h
+ create mode 100644 include/linux/mfd/atc260x/atc2609a.h
+ create mode 100644 include/linux/mfd/atc260x/core.h
+
 -- 
-2.28.0
+2.29.2
 
