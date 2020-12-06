@@ -2,180 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 555082D052B
-	for <lists+devicetree@lfdr.de>; Sun,  6 Dec 2020 14:31:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 612722D0533
+	for <lists+devicetree@lfdr.de>; Sun,  6 Dec 2020 14:35:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728281AbgLFN31 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 6 Dec 2020 08:29:27 -0500
-Received: from mx3.wp.pl ([212.77.101.10]:10306 "EHLO mx3.wp.pl"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728177AbgLFN3X (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 6 Dec 2020 08:29:23 -0500
-Received: (wp-smtpd smtp.wp.pl 31589 invoked from network); 6 Dec 2020 14:28:30 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wp.pl; s=1024a;
-          t=1607261310; bh=1v7Ikvo5U6Dc6D8OwUMg28BDg5V8SVqWfPaZSgUddhQ=;
-          h=From:To:Cc:Subject;
-          b=Y843vYs710uQiIQuWLq3xLRw7amrx+cQJHL/iVkrejyQEJL6dXLTKuZJCw52NS38G
-           sx0fpX+6FQpHV0Var0xCny3xR0NL9Yw/q9VR+dfznMJehlXkV9ka68EDc1ILdhZnG9
-           KKzK7wOP5rKOuVY6gWfKhXuPzVcqQ3PPU1x6X1kw=
-Received: from riviera.nat.student.pw.edu.pl (HELO LAPTOP-OLEK.lan) (olek2@wp.pl@[194.29.137.1])
-          (envelope-sender <olek2@wp.pl>)
-          by smtp.wp.pl (WP-SMTPD) with ECDHE-RSA-AES256-GCM-SHA384 encrypted SMTP
-          for <hauke@hauke-m.de>; 6 Dec 2020 14:28:30 +0100
-From:   Aleksander Jan Bajkowski <olek2@wp.pl>
-To:     hauke@hauke-m.de, andrew@lunn.ch, vivien.didelot@gmail.com,
-        f.fainelli@gmail.com, olteanv@gmail.com, davem@davemloft.net,
-        kuba@kernel.org, robh+dt@kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Aleksander Jan Bajkowski <olek2@wp.pl>
-Subject: [PATCH v2 2/2] dt-bindings: net: dsa: lantiq, lantiq-gswip: add example for xRX330
-Date:   Sun,  6 Dec 2020 14:27:13 +0100
-Message-Id: <20201206132713.13452-3-olek2@wp.pl>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20201206132713.13452-1-olek2@wp.pl>
-References: <20201206132713.13452-1-olek2@wp.pl>
+        id S1727845AbgLFNe0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 6 Dec 2020 08:34:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36552 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725767AbgLFNeY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Dec 2020 08:34:24 -0500
+Received: from mail-ot1-x342.google.com (mail-ot1-x342.google.com [IPv6:2607:f8b0:4864:20::342])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 689F0C0613D0
+        for <devicetree@vger.kernel.org>; Sun,  6 Dec 2020 05:33:44 -0800 (PST)
+Received: by mail-ot1-x342.google.com with SMTP id b18so10027376ots.0
+        for <devicetree@vger.kernel.org>; Sun, 06 Dec 2020 05:33:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:sender:from:date:message-id:subject:to;
+        bh=PjKGW5A+XIB36y8GWYLuCoQyQd3zK4HpTSQ/WYdYOsg=;
+        b=UstmGclQv2EnNe/rO3pg7WzaVnEZ1jYZuaOxVJicpwusupKB7yjs57ChXDbm++S+LF
+         5tuM930S5fZ69xhiA9xYb2E/ZroXkoNp6nF14xAdMYT/RpNB61jairAP6Vs3vLRYqlKc
+         7yr3M70NpR61mCOJG3N25NidsC13svZ4hUWAhzGBd1Rm2kimP5GbmpMyp94utNh9ENL9
+         gZivi0n0x+Qr866EubYObOw1vOmZ8QvcyAh6ZoF09dWvyAWCQIptqAw+46/Mitzs6S6X
+         6+ndBqYiS+Dg4HelNRl8IUkkNFQCITch9NsNBjpKrLrHlJ7hhOgpLDAc8cG26nZHPaXq
+         +V6A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:sender:from:date:message-id:subject
+         :to;
+        bh=PjKGW5A+XIB36y8GWYLuCoQyQd3zK4HpTSQ/WYdYOsg=;
+        b=DztkziT8V+yxPS1QcYy9byfwO2VP08Y1qlCpOnuQD38Ngu2oh4R2uo8mAgMqcP7iQo
+         D5ILRJfPIrfttI4C+nFEZqiUi5HwjwbFEwAnOlaTtp94+Rm7jmICJIZ5ZP9Ptyo86mFn
+         rKW7ZlOWIsolFN689YI2h8xuH+xaa26BUXp1l1saaCn7wWWSB+mctsA/HN7oRr9Dwizt
+         3HhZ7qfrJp+Tp3H+z+5TXpNNPws8wCB22KR9QLpxkveClHqSrpuG6IO55lMIRB4FBgmD
+         moYcjURKvO3IoPLZ2rNCIO7VBoK24FMIfxz70+7C+0tu0yNO+KiAl9snm0vcPLwQF0Xk
+         FDsw==
+X-Gm-Message-State: AOAM530MSQGMocXIHCMdrSmzmhuuZbrJLm4RBNB5snz2Vnz2kSv7W+re
+        aLZyaLe1wkP5E0zfbhX5/QxxpYM6iOVSRuDxy+w=
+X-Google-Smtp-Source: ABdhPJznhPSTK6+TpDKvRlTg38K/Ef1lKUwJVZVd7nkKKPI41zP8We/x9HBNb+JSgm3rJAVjvT4RynXIniRAYkhbliI=
+X-Received: by 2002:a05:6830:114e:: with SMTP id x14mr9605579otq.253.1607261623799;
+ Sun, 06 Dec 2020 05:33:43 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-WP-DKIM-Status: good (id: wp.pl)                                      
-X-WP-MailID: d071ba2a14f55086f348850311d986d1
-X-WP-AV: skaner antywirusowy Poczty Wirtualnej Polski
-X-WP-SPAM: NO 0000002 [ERHV]                               
+Sender: sp157995@gmail.com
+Received: by 2002:a4a:8dd7:0:0:0:0:0 with HTTP; Sun, 6 Dec 2020 05:33:43 -0800 (PST)
+From:   Mohamed ouedrago <muhamedouedrog10@gmail.com>
+Date:   Sun, 6 Dec 2020 13:33:43 +0000
+X-Google-Sender-Auth: VNqCbcQIDnSw_0-OcWKnFTXD9Bk
+Message-ID: <CAC8h_6pLKpa3Hq+92iCsbZ2hpoZat2aJ9RB6Rgy98DEmZqy4Mw@mail.gmail.com>
+Subject: Greetings
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add compatible string and example for xRX300 and xRX330.
+I AM MR.MOHAMMD OUEDRAGO.I WORK WITH THE BILL & EXCHANGE ( Bank of Africa (BOA)
+OUAGADOUGOU ANNEX OFFICE, BURKINA FASO.I HAVE A BUSINESS
+WHICH WILL BE BENEFICIAL TO BOTH OF US. THE AMOUNT OF MONEY INVOLVED IS ($11.2
+MILLION US DOLLARS) WHICH I WANT TO TRANSFER OUT OF THE COUNTRY TO YOUR BANK
+ACCOUNT. THIS MONEY IS OWNED BY A MAN CALLED KURT KAHLE A GERMAN BUSINESS MAN .
+ HE DIED ON MONDAY, THE 31 OF
+JULY 2001 IN A PLANE CRASH BUT NO CLAIM HAS BEEN MADE AS HE LEFT NO ONE BEHIND
+TO PLACE A CLAIM ON HIS BANK ACCOUNT BALANCE AS HIS NEXT OF KIN. THESE FUNDS
+CANNOT BE TRANSFERRED WITHOUT A NEXT OF KIN BEEN INTRODUCED OFFICIALLY.
 
-Signed-off-by: Aleksander Jan Bajkowski <olek2@wp.pl>
----
- .../bindings/net/dsa/lantiq-gswip.txt         | 110 +++++++++++++++++-
- 1 file changed, 109 insertions(+), 1 deletion(-)
+THE PROCESSING STARTS BY PRESENTING YOURSELF AS THE NEXT OF KIN TO LATE [KURT
+KAHLE]. I SHALL SEND TO YOU A TEXT OF APPLICATION FORM WITH WHICH YOU CAN APPLY
+TO THE BANK AS HIS NEXT OF KIN. I WILL MAKE AVAILABLE TO YOU ALL USEFUL
+INFORMATIONS WITH WHICH A SUCCESSFUL CLAIM SHALL BE PLACED ON THESE FUNDS. I
+WILL BE GUIDING YOU THROUGHOUT THE DURATION OF THIS TRANSACTION SO AS TO ENSURE
+A SMOOTH AND RISK FREE TRANSFER OF THESE FUNDS INTO YOUR BANK ACCOUNT, LIKE
+PROVIDING YOU WITH THE ANSWERS TO THE QUESTIONAIRE YOU WILL RECIEVE FROM THE
+BANK WHEN YOUR APPLICATION IS RECIEVED BY THE BANK. YOU SHALL BE ENTITLED TO 40%
+OF THESE FUNDS FOR YOUR CO-OPERATION AND ACCEPTANCE WHILE 10% WILL ACT AS
+COMPENSATION FOR THE SOFT EXPENSES YOU WILL INCURE IN THE PROCESS OF CONSUMATING
+THIS TRANSACTION. SEND ME A REPLY ON RECIEPT OF THIS EMAIL THROUGH
+(mohammedoudrago15@gmail.com)
+ URGENCY HAS TO BE IMPLIED AND DO PROMISE ME OF KEEPING
+EVERYTHING CONCERNING THIS TRANSACTION STRICTLY CONFIDENTIAL AND AS A TOP SECRET
+FOR TWO WORKING WEEKS NEEDED TO CONCLUDE WITH EVERYTHING.
 
-diff --git a/Documentation/devicetree/bindings/net/dsa/lantiq-gswip.txt b/Documentation/devicetree/bindings/net/dsa/lantiq-gswip.txt
-index 886cbe8ffb38..7a90a6a1b065 100644
---- a/Documentation/devicetree/bindings/net/dsa/lantiq-gswip.txt
-+++ b/Documentation/devicetree/bindings/net/dsa/lantiq-gswip.txt
-@@ -3,7 +3,8 @@ Lantiq GSWIP Ethernet switches
- 
- Required properties for GSWIP core:
- 
--- compatible	: "lantiq,xrx200-gswip" for the embedded GSWIP in the
-+- compatible	: "lantiq,xrx200-gswip", "lantiq,xrx300-gswip" or
-+		  "lantiq,xrx330-gswip" for the embedded GSWIP in the
- 		  xRX200 SoC
- - reg		: memory range of the GSWIP core registers
- 		: memory range of the GSWIP MDIO registers
-@@ -141,3 +142,110 @@ switch@e108000 {
- 		};
- 	};
- };
-+
-+Ethernet switch on the GRX330 SoC:
-+
-+switch@e108000 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	compatible = "lantiq,xrx300-gswip";
-+	reg = <	0xe108000 0x3100	/* switch */
-+		0xe10b100 0xd8		/* mdio */
-+		0xe10b1d8 0x130		/* mii */
-+		>;
-+	dsa,member = <0 0>;
-+
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		port@1 {
-+			reg = <1>;
-+			label = "lan1";
-+			phy-mode = "internal";
-+			phy-handle = <&phy1>;
-+		};
-+
-+		port@2 {
-+			reg = <2>;
-+			label = "lan2";
-+			phy-mode = "internal";
-+			phy-handle = <&phy2>;
-+		};
-+
-+		port@3 {
-+			reg = <3>;
-+			label = "lan3";
-+			phy-mode = "internal";
-+			phy-handle = <&phy3>;
-+		};
-+
-+		port@4 {
-+			reg = <4>;
-+			label = "lan4";
-+			phy-mode = "internal";
-+			phy-handle = <&phy4>;
-+		};
-+
-+		port@6 {
-+			reg = <0x6>;
-+			label = "cpu";
-+			ethernet = <&eth0>;
-+		};
-+	};
-+
-+	mdio {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		compatible = "lantiq,xrx200-mdio";
-+		reg = <0>;
-+
-+		phy1: ethernet-phy@1 {
-+			reg = <0x1>;
-+		};
-+		phy2: ethernet-phy@2 {
-+			reg = <0x2>;
-+		};
-+		phy3: ethernet-phy@3 {
-+			reg = <0x3>;
-+		};
-+		phy4: ethernet-phy@4 {
-+			reg = <0x4>;
-+		};
-+	};
-+
-+	gphy-fw {
-+		compatible = "lantiq,xrx330-gphy-fw", "lantiq,gphy-fw";
-+		lantiq,rcu = <&rcu0>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		gphy@20 {
-+			reg = <0x20>;
-+
-+			resets = <&reset0 31 30>;
-+			reset-names = "gphy";
-+		};
-+
-+		gphy@68 {
-+			reg = <0x68>;
-+
-+			resets = <&reset0 29 28>;
-+			reset-names = "gphy";
-+		};
-+
-+		gphy@ac {
-+			reg = <0xac>;
-+
-+			resets = <&reset0 28 13>;
-+			reset-names = "gphy";
-+		};
-+
-+		gphy@264 {
-+			reg = <0x264>;
-+
-+			resets = <&reset0 10 10>;
-+			reset-names = "gphy";
-+		};
-+	};
-+};
--- 
-2.20.1
+BEST REGARDS,
 
+
+Mr Mohammed ouedrago
