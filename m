@@ -2,99 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EFFF22D11B8
-	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 14:22:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E974E2D1214
+	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 14:31:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725772AbgLGNWZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Dec 2020 08:22:25 -0500
-Received: from mail-wm1-f66.google.com ([209.85.128.66]:53205 "EHLO
-        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725774AbgLGNWZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 08:22:25 -0500
-Received: by mail-wm1-f66.google.com with SMTP id a6so11451489wmc.2;
-        Mon, 07 Dec 2020 05:22:09 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=MJwMrUj3WNQ0Z6JF3rMMT8PRx7qig2o2mEv5ta9FJhk=;
-        b=iPJwYcwjjFrBn3UILT6Ut20S2nzO+hxf+Kk52/R5f5e0smBaU1Z/PeyVMDiL7t+1kg
-         eg27v6L2dOZ0bHO085FQxYAg7YiZi5AF4Juy6ergY6vTWUj9RGQpVkTYExcghp1u+V+e
-         rSGaCgGQ+HYeDk8P4sfxJ2+mTsx8mmXeM1Xae+ukHaP53SFa0zssqyWA7JEC+zW9wjIc
-         SOtan1b+JH0SmCREKHap6795F9FDJ/++gmkKfRgu0BVAtpviNrnRyMRbLcNQ5SQ82g5E
-         hjxl2UFhX9vKMeQ1leAu5pwrx58rqgE44lcUy72zUV9nFart5We8lg9qMuDZl7aluXwI
-         YHtg==
-X-Gm-Message-State: AOAM533KQJE+Hs+2z0s4iB5Ja83FrQLa/0cTfDCPY3x3sGKSy/HKAXCl
-        U4ZfAdjTMHF6BI1xkziDVgA=
-X-Google-Smtp-Source: ABdhPJyO70ZClWQf3G0rlUyq9BYbIJl9dRorKgaLYiVZ7ua/tO2HTRt3sifgwB+7CESnraCvF7RTjg==
-X-Received: by 2002:a7b:c2e8:: with SMTP id e8mr18172792wmk.103.1607347303289;
-        Mon, 07 Dec 2020 05:21:43 -0800 (PST)
-Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
-        by smtp.googlemail.com with ESMTPSA id y6sm15005491wmg.39.2020.12.07.05.21.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Dec 2020 05:21:41 -0800 (PST)
-Date:   Mon, 7 Dec 2020 14:21:40 +0100
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Shengjiu Wang <shengjiu.wang@nxp.com>
-Cc:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: imx8mn: Fix duplicate node name
-Message-ID: <20201207132140.GA31982@kozik-lap>
-References: <1607324004-12960-1-git-send-email-shengjiu.wang@nxp.com>
+        id S1726083AbgLGNau (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Dec 2020 08:30:50 -0500
+Received: from mail.kernel.org ([198.145.29.99]:45070 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726076AbgLGNau (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 7 Dec 2020 08:30:50 -0500
+Date:   Mon, 7 Dec 2020 13:30:03 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1607347809;
+        bh=k2URTkzxeMwoISkkN5bsau+WynBK8IIMYqLAxO5uPHo=;
+        h=From:To:Cc:Subject:References:In-Reply-To:From;
+        b=EkiSBGDGIUXUBAsl7n0jcDNZQKUWTkQvfstxJ+jZf/uj5r5ILwZ5MF/FZhSJGFVMR
+         6hXL/BvhfSFTFphlMUf4b5JgAy/0+mNbxivH757hLWsEIztFfoev1iDE8d9NrvP1l8
+         MPdInRyMdID5NYfRYnvLAjogzzhLcf4Ji95p0c005MTvM6/u8agd69ffHFeZC3icxn
+         tq+4hjL/amgUD/5YJdBAvdiMZX6ovbb7Tbo6z5k3x57gaJX/XbggoCo6CZkvP1/MJ8
+         BvgdWNbinjiVMeT9buffxbIfdPC1/e6fY+179RJPXvGhj7flpzLSu5/25eS6YN2Rrv
+         jVhiefA4XYQVQ==
+From:   Mark Brown <broonie@kernel.org>
+To:     Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
+Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
+        linux-actions@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
+        linux-pm@vger.kernel.org
+Subject: Re: [PATCH v3 4/7] regulator: Add regulator driver for ATC260x PMICs
+Message-ID: <20201207133003.GC5694@sirena.org.uk>
+References: <cover.1607216141.git.cristian.ciocaltea@gmail.com>
+ <f001986493a51fe591cb09a544770651bf589d35.1607216141.git.cristian.ciocaltea@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="3siQDZowHQqNOShm"
 Content-Disposition: inline
-In-Reply-To: <1607324004-12960-1-git-send-email-shengjiu.wang@nxp.com>
+In-Reply-To: <f001986493a51fe591cb09a544770651bf589d35.1607216141.git.cristian.ciocaltea@gmail.com>
+X-Cookie: Absinthe makes the tart grow fonder.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 07, 2020 at 02:53:24PM +0800, Shengjiu Wang wrote:
-> Error log:
-> sysfs: cannot create duplicate filename '/bus/platform/devices/30000000.bus'
-> 
-> The spba bus name is duplicate with aips bus name.
-> Refine spba bus name to fix this issue.
-> 
-> Fixes: 970406eaef3a ("arm64: dts: imx8mn: Enable Asynchronous Sample Rate Converter")
-> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
-> ---
->  arch/arm64/boot/dts/freescale/imx8mn.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mn.dtsi b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-> index fd669c0f3fe5..30762eb4f0a7 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-> @@ -246,7 +246,7 @@ aips1: bus@30000000 {
->  			#size-cells = <1>;
->  			ranges;
->  
-> -			spba: bus@30000000 {
-> +			spba: spba-bus@30000000 {
 
-The proper node name is "bus" so basically you introduce wrong name to
-other problem.  Introducing wrong names at least requires a comment.
+--3siQDZowHQqNOShm
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-However the actual problem here is not in node names but in addresses:
+On Sun, Dec 06, 2020 at 03:27:04AM +0200, Cristian Ciocaltea wrote:
 
-	aips1: bus@30000000 {
-		spba: bus@30000000 {
+> +/*
+> + * ATC2603C notes:
+> + * - LDO8 is not documented in datasheet (v2.4), but supported
+> + *   in the vendor's driver implementation (xapp-le-kernel).
+> + * - LDO12 mentioned in datasheet is not programmable, hence not
+> + *   handled in this driver.
+> + */
 
-You have to devices with the same unit address. How do you share the
-address space?
+No reason not to include LDO12 here, the framework supports fixed
+regulators fine and the bindings should reflect the physical structure
+of the hardware - if something is being supplied by LDO12 on the PMIC
+then you'd expect the binding showing a connection from LDO12.
 
-I think this should be rather fixed.
+--3siQDZowHQqNOShm
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Best regards,
-Krzysztof
+-----BEGIN PGP SIGNATURE-----
 
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl/OLloACgkQJNaLcl1U
+h9DGdQf5AayPz6I++uKbGeHYLcff0IAmsUsjS4QBP72ZGYTA28F3UvsIbL1ACLco
+prlBF8LC5X/qWiTRWfVd5yEs5/0kHS+L3lp/HXCw665aoJz13Q4jBO6seyWC76Bd
+xNKlouA2lDrKUJ4f/Nxmi4q0F9m+b6h3AgT/kMtvrnLAp+s+3Y7WR6GGUnHBN6V+
+lQT+OjUn9DE3rqjIzZVqB6MLxBSjX/Oy0mZKz1Xn5PS2C9PY2tHY8wx07ytPE3xA
+zqNiMelOGIbE7mYKEB4Pl0b9qDXFe6OIkRgFTRdbpJyr6hiLC+XmhJojcDyUf7Zh
+y6q5jlwVCos1QC1zB8M6z4fEUm57SA==
+=yD4E
+-----END PGP SIGNATURE-----
 
->  				compatible = "fsl,spba-bus", "simple-bus";
->  				#address-cells = <1>;
->  				#size-cells = <1>;
-> -- 
-> 2.27.0
-> 
+--3siQDZowHQqNOShm--
