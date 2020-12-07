@@ -2,111 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A6D832D1248
-	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 14:39:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 75DC42D124F
+	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 14:41:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726089AbgLGNje (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Dec 2020 08:39:34 -0500
-Received: from mickerik.phytec.de ([195.145.39.210]:54616 "EHLO
-        mickerik.phytec.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726122AbgLGNjd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 08:39:33 -0500
-DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a1; c=relaxed/simple;
-        q=dns/txt; i=@phytec.de; t=1607348332; x=1609940332;
-        h=From:Sender:Reply-To:Subject:Date:Message-ID:To:Cc:Mime-Version:Content-Type:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=Fr5ZRVHJ1Y/U2brd+6Sj48jYwNqb5UMz1h9z6qULkWU=;
-        b=CSzGFhH8M5HJ+CZ6U+glHOB2DrytbDBEN3ytwhV12dyXIakPxvZc5Rs965nV4DWv
-        Wh5/WEGiIi7s5rBHgJMDo3lBGNBS4fCwO4ImqQ4L6uwYg1j7k9J+YTofEwa+vXik
-        /6ZAb75cyn9CwgZTgC15LQ7AWIdrmVcJY1+Sycfd20I=;
-X-AuditID: c39127d2-96bff70000006435-80-5fce306cf47b
-Received: from idefix.phytec.de (Unknown_Domain [172.16.0.10])
-        by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id FC.5B.25653.C603ECF5; Mon,  7 Dec 2020 14:38:52 +0100 (CET)
-Received: from llp-tremmet ([172.16.5.100])
-          by idefix.phytec.de (IBM Domino Release 9.0.1FP7)
-          with ESMTP id 2020120714385184-929747 ;
-          Mon, 7 Dec 2020 14:38:51 +0100 
-Message-ID: <5b8617e4b6abe19750cec17f4d6e501fe957f193.camel@phytec.de>
-Subject: Re: [PATCH 1/4] arm64: defconfig: Enable rv3028 i2c rtc driver
-From:   Teresa Remmet <t.remmet@phytec.de>
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Catalin Marinas <catalin.marinas@arm.com>,
+        id S1726196AbgLGNlj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Dec 2020 08:41:39 -0500
+Received: from mail.kernel.org ([198.145.29.99]:48608 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726187AbgLGNlj (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 7 Dec 2020 08:41:39 -0500
+Date:   Mon, 7 Dec 2020 13:40:52 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1607348458;
+        bh=Wi5SMyGM9uyVoSdAy74aJh2UMPtwUKtUU8CMK6gezcY=;
+        h=From:To:Cc:Subject:References:In-Reply-To:From;
+        b=n1w8OR/NmXAqtAa8TG0UjI7ivuFVDdh99zrbuXxuXdjaJj31CB7VBLOirM/bAJS89
+         xZI/TZofhOEFLT6hz7Bk9ZaQRideoWzX2+ceTsmxQgkWdvi87rbOTrMpCMx+kCBXu8
+         ohFnUg0gTLdgsT+hsR7Ld4Udy3oVEjXZQIZ8gydCMrLFbfTOkd6pZuZkfxQay6joup
+         itjjEC/PMT5kDwTSX3fvlmV8E+DjjuptXAA/gVhFZu/ndKJH5USQFbUN5ZC6zMNDVw
+         KG3BYjdAXn9UQ7OyFx2gj1KuApgM81+6T38W6F5JY/+flBam8HAwROhu0ndJP40J/d
+         PX1/VsdBJSkug==
+From:   Will Deacon <will@kernel.org>
+To:     Quentin Perret <qperret@google.com>
+Cc:     Catalin Marinas <catalin.marinas@arm.com>,
+        Marc Zyngier <maz@kernel.org>,
+        James Morse <james.morse@arm.com>,
+        Julien Thierry <julien.thierry.kdev@gmail.com>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>
-Date:   Mon, 07 Dec 2020 14:38:51 +0100
-In-Reply-To: <20201207121029.GC27266@kozik-lap>
-References: <1607113982-109524-1-git-send-email-t.remmet@phytec.de>
-         <1607113982-109524-2-git-send-email-t.remmet@phytec.de>
-         <20201207121029.GC27266@kozik-lap>
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
-Mime-Version: 1.0
-X-MIMETrack: Itemize by SMTP Server on Idefix/Phytec(Release 9.0.1FP7|August  17, 2016) at
- 07.12.2020 14:38:51,
-        Serialize by Router on Idefix/Phytec(Release 9.0.1FP7|August  17, 2016) at
- 07.12.2020 14:38:52,
-        Serialize complete at 07.12.2020 14:38:52
-X-TNEFEvaluated: 1
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="UTF-8"
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrHLMWRmVeSWpSXmKPExsWyRoCBSzfH4Fy8wdQ2Fov3y3oYLeYfOcdq
-        8fCqv8X58xvYLTY9vsZq0br3CLvF3+2bWCxebBF34PBYM28No8fOWXfZPTat6mTz2Lyk3qP/
-        r4HH501yAWxRXDYpqTmZZalF+nYJXBmPV99hKdjGWdHaOpu9gfEgexcjJ4eEgInEu2nLmboY
-        uTiEBLYySrw7e4AdwjnGKDHx+Ho2kCpeATeJxS+/s4DYwgLuEivabrKC2GwCGhJPV5xmArFF
-        BDQlrv/9zgrSzCzwl1Fi+eJ3YA0sAqoSj6/8ACviFNCXmHbzCNS6JYwSS5ZsZIG4Q0fiw/1P
-        jF2MHEDbBCX+7hAGqZEQaGSSWLnhCyNEjZDE6cVnmUFsZgF5ie1v50DZmhKt23+zT2AUnIXQ
-        PgtJ1SwkVQsYmVcxCuVmJmenFmVm6xVkVJakJuulpG5iBMbB4Ynql3Yw9s3xOMTIxMF4iFGC
-        g1lJhFdN6my8EG9KYmVValF+fFFpTmrxIUZpDhYlcd4NvCVhQgLpiSWp2ampBalFMFkmDk6p
-        BkZ7JkkdJfH1T4tCagKOPZsyndlxYb3i0olN8XxhxzdfPSOsqmO09Ox/J6fkp7datKKPTvo1
-        40eFZbqAwbSZB19JfXM66CUpcXaV2JwFRr98fr58+G2npZeK96ztL9jyX3SwNR39tDfrf92a
-        BQXnDXbPWFNWeKzmsrU1s9KZ+nfMbaWKM+9fZdZTYinOSDTUYi4qTgQAin/uLnECAAA=
+        Frank Rowand <frowand.list@gmail.com>,
+        "moderated list:ARM64 PORT (AARCH64 ARCHITECTURE)" 
+        <linux-arm-kernel@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        "open list:KERNEL VIRTUAL MACHINE FOR ARM64 (KVM/arm64)" 
+        <kvmarm@lists.cs.columbia.edu>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE" 
+        <devicetree@vger.kernel.org>, kernel-team@android.com,
+        android-kvm@google.com
+Subject: Re: [RFC PATCH 16/27] KVM: arm64: Prepare Hyp memory protection
+Message-ID: <20201207134052.GA4563@willie-the-truck>
+References: <20201117181607.1761516-1-qperret@google.com>
+ <20201117181607.1761516-17-qperret@google.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201117181607.1761516-17-qperret@google.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Montag, den 07.12.2020, 13:10 +0100 schrieb Krzysztof Kozlowski:
-> On Fri, Dec 04, 2020 at 09:32:59PM +0100, Teresa Remmet wrote:
-> > Enable rv3028 i2c rtc driver populated on phyBOARD-Pollux-i.MX8M
-> > Plus.
-> > 
-> > Signed-off-by: Teresa Remmet <t.remmet@phytec.de>
-> > ---
-> >  arch/arm64/configs/defconfig | 1 +
-> >  1 file changed, 1 insertion(+)
-> > 
-> > diff --git a/arch/arm64/configs/defconfig
-> > b/arch/arm64/configs/defconfig
-> > index 5cfe3cf6f2ac..2034fefb3f44 100644
-> > --- a/arch/arm64/configs/defconfig
-> > +++ b/arch/arm64/configs/defconfig
-> > @@ -818,6 +818,7 @@ CONFIG_RTC_DRV_MAX77686=y
-> >  CONFIG_RTC_DRV_RK808=m
-> >  CONFIG_RTC_DRV_PCF85363=m
-> >  CONFIG_RTC_DRV_RX8581=m
-> > +CONFIG_RTC_DRV_RV3028=y
-> 
-> This should be a module.
+Hi Quentin,
 
-with having this build in the clock out of this rtc will be disabled as
-not using during boot up. The clock out is enabled as default and has
-to be disabled explicit. But I guess the correct way would be to find a
-solution in the rtc driver itself?
-
-Teresa
-
+On Tue, Nov 17, 2020 at 06:15:56PM +0000, Quentin Perret wrote:
+> When memory protection is enabled, the Hyp code needs the ability to
+> create and manage its own page-table. To do so, introduce a new set of
+> hypercalls to initialize Hyp memory protection.
 > 
-> Best regards,
-> Krzysztof
+> During the init hcall, the hypervisor runs with the host-provided
+> page-table and uses the trivial early page allocator to create its own
+> set of page-tables, using a memory pool that was donated by the host.
+> Specifically, the hypervisor creates its own mappings for __hyp_text,
+> the Hyp memory pool, the __hyp_bss, the portion of hyp_vmemmap
+> corresponding to the Hyp pool, among other things. It then jumps back in
+> the idmap page, switches to use the newly-created pgd (instead of the
+> temporary one provided by the host) and then installs the full-fledged
+> buddy allocator which will then be the only one in used from then on.
 > 
-> 
-> >  CONFIG_RTC_DRV_RV8803=m
-> >  CONFIG_RTC_DRV_S5M=y
-> >  CONFIG_RTC_DRV_DS3232=y
-> > -- 
-> > 2.7.4
-> > 
+> Note that for the sake of symplifying the review, this only introduces
+> the code doing this operation, without actually being called by anyhing
+> yet. This will be done in a subsequent patch, which will introduce the
+> necessary host kernel changes.
 
+[...]
+
+> diff --git a/arch/arm64/kvm/hyp/reserved_mem.c b/arch/arm64/kvm/hyp/reserved_mem.c
+> new file mode 100644
+> index 000000000000..02b0b18006f5
+> --- /dev/null
+> +++ b/arch/arm64/kvm/hyp/reserved_mem.c
+
+[...]
+
+> +extern bool enable_protected_kvm;
+> +void __init reserve_kvm_hyp(void)
+> +{
+> +	u64 nr_pages, prev;
+> +
+> +	if (!enable_protected_kvm)
+> +		return;
+> +
+> +	if (!is_hyp_mode_available() || is_kernel_in_hyp_mode())
+> +		return;
+> +
+> +	if (kvm_nvhe_sym(hyp_memblock_nr) <= 0)
+> +		return;
+> +
+> +	hyp_mem_size += num_possible_cpus() << PAGE_SHIFT;
+> +	hyp_mem_size += hyp_s1_pgtable_size();
+> +
+> +	/*
+> +	 * The hyp_vmemmap needs to be backed by pages, but these pages
+> +	 * themselves need to be present in the vmemmap, so compute the number
+> +	 * of pages needed by looking for a fixed point.
+> +	 */
+> +	nr_pages = 0;
+> +	do {
+> +		prev = nr_pages;
+> +		nr_pages = (hyp_mem_size >> PAGE_SHIFT) + prev;
+> +		nr_pages = DIV_ROUND_UP(nr_pages * sizeof(struct hyp_page), PAGE_SIZE);
+> +		nr_pages += __hyp_pgtable_max_pages(nr_pages);
+> +	} while (nr_pages != prev);
+> +	hyp_mem_size += nr_pages << PAGE_SHIFT;
+> +
+> +	hyp_mem_base = memblock_find_in_range(0, memblock_end_of_DRAM(),
+> +					      hyp_mem_size, SZ_2M);
+> +	if (!hyp_mem_base) {
+> +		kvm_err("Failed to reserve hyp memory\n");
+> +		return;
+> +	}
+> +	memblock_reserve(hyp_mem_base, hyp_mem_size);
+
+Why not use the RESERVEDMEM_OF_DECLARE() interface for the hypervisor
+memory? That way, the hypervisor memory can either be statically partitioned
+as a carveout or allocated dynamically for us -- we wouldn't need to care.
+
+Will
