@@ -2,133 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E3FB2D1D96
-	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 23:44:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 920CE2D1D99
+	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 23:44:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727908AbgLGWmQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Dec 2020 17:42:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60790 "EHLO
+        id S1727985AbgLGWnK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Dec 2020 17:43:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60930 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725917AbgLGWmQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 17:42:16 -0500
-Received: from mail-ej1-x643.google.com (mail-ej1-x643.google.com [IPv6:2a00:1450:4864:20::643])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0878BC061749;
-        Mon,  7 Dec 2020 14:41:36 -0800 (PST)
-Received: by mail-ej1-x643.google.com with SMTP id d17so21845270ejy.9;
-        Mon, 07 Dec 2020 14:41:35 -0800 (PST)
+        with ESMTP id S1726519AbgLGWnK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 17:43:10 -0500
+Received: from mail-lj1-x244.google.com (mail-lj1-x244.google.com [IPv6:2a00:1450:4864:20::244])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23C2CC061749
+        for <devicetree@vger.kernel.org>; Mon,  7 Dec 2020 14:42:30 -0800 (PST)
+Received: by mail-lj1-x244.google.com with SMTP id j10so16855650lja.5
+        for <devicetree@vger.kernel.org>; Mon, 07 Dec 2020 14:42:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=wLc/SHjSNl6PUkflh89RJh4GKASpYHLMHjFPMsm7Ir4=;
-        b=oLNPdAyktN/AyJU9ucNs0RUmdRsTYHODuIKyDjrn+eB5MJk2V85yso+j5/Z5d2VMSk
-         JcKjxzBQ3TAThYirpQ6fAeHv0O8FlkTr8+je3NIIAkd3Z6TEJ2utdJWHHxNnw+f85V9a
-         nzesyoR34EatevttyoCnh1KxenHYaSZVvKrXSORuSwU5gmaeXbmx044kLEAdhWcX3hTn
-         5ooGtSChEMcB/TIG75q3s1iuClVZqydQogf7+qQx+zBg/3DcKFYHdAlXezRG+gU7Yryk
-         0ta4c9OdNmNaB8YCJLRD8XSG78MuK8rTgoq0QX98QlSexBFajlkU7I2wziF3D2eei+oo
-         YqCw==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=cImNfTxV3yatbn+FwY8M9bZp9qMjG8D8HnYsrobPKBM=;
+        b=l/3wAoeuSBrTZ5kzXGqkOaoPHawgUXp/mHZNKiEgADA645+ISC1YZ5iqJSJE4+v7XZ
+         xITpXU1sinnNXZW40rT7HZ9HShZ2VXfN0X+Aub2v/zs7L1Z9Rpi5mG56cCwHWGDM7EfC
+         TYf097m6CnVspCAAUT7WedGTeh+kjr78Ck97MfE4ZiBDJSdNjadXF8AF0c3WKqiv5gQy
+         1K3PB9Gu3LhF7EApfg/b+njaSxfT7CJBuj0f6/eB6HvN3aeATU7Ogpo0xxmALvGEUhrK
+         UmnvAGyBnC3OfhTcxyd1TAzTPNXz9tUs239JVEq2mS0RhykttT9WUZEjnT9zoW+1x9QF
+         W4Jw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=wLc/SHjSNl6PUkflh89RJh4GKASpYHLMHjFPMsm7Ir4=;
-        b=BJnyGt0SDuV5hiklOD1XAZsDXj6MVvY7I3EC8SCHvCBB3QbdQpuOSUugq0gohWoudf
-         n5JChOf/+BY+9bwVC3tkVacqYDuy5UgnJWwN/AwUDWOeFK3zAPMSIfMw9kfSJD4n9eZa
-         fvwvC32szEnKrhIqJYTFIxnWE8x3nFcfS0GzKtd54IGX0aE4gi4+n+0fiGpSFeWoKtkm
-         15nkNU4sF4bEP5dM6yB14oiAjtHmL0AsRyTFIyPBWqmc5rf36tiPj5c7DIL+9iI9+dfZ
-         R/HKIhgzxXtWSAvVWMmIFrL2uMiUMa6OxNkSwd5iSHkCanPRWayxOXmYj/UTKT5JenFD
-         UXyg==
-X-Gm-Message-State: AOAM5332z07bF3jd+WVbqDGfFdvVatkYO0UDPFtwIcrUUW0yAXFF57GP
-        TnPE8RxZU1FSCytEKASaHto=
-X-Google-Smtp-Source: ABdhPJxal3rSx9a6EBkQv1k36LBnhXorShuXZdFJqSyschKJf+sUHwOzPeQ1TSdJZuh4toPHDz0e3w==
-X-Received: by 2002:a17:906:4d8d:: with SMTP id s13mr21048772eju.305.1607380894694;
-        Mon, 07 Dec 2020 14:41:34 -0800 (PST)
-Received: from ubuntu2004 ([188.24.159.61])
-        by smtp.gmail.com with ESMTPSA id c25sm13994082ejx.39.2020.12.07.14.41.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Dec 2020 14:41:33 -0800 (PST)
-Date:   Tue, 8 Dec 2020 00:41:37 +0200
-From:   Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/1] dt-bindings: Fix error in 'make dtbs_check' when
- using DT_SCHEMA_FILES
-Message-ID: <20201207224137.GA250758@ubuntu2004>
-References: <2519b8bde507ca6ccea9765ea197adaaa69a66d5.1605712328.git.cristian.ciocaltea@gmail.com>
- <20201207214831.GA865971@robh.at.kernel.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=cImNfTxV3yatbn+FwY8M9bZp9qMjG8D8HnYsrobPKBM=;
+        b=Z7hR9rS8iMzW9brteIPBBlENEBVdwTU+ed/cVnI+c2wtWYyB6azpC9MR+JV2QUUPxF
+         /xBMtPoftEygwgworcigOthbpbVvDk/tXv9R2S+GZYYn2bKppP3ACso4p+Itr1rm2DKz
+         9fFy3PHPFkfR0egLtT3/3SyI/XXvWG9CjCIJBqdTIWTtoozo5tOzzw0nOl8zTVbMOwi6
+         S/R/HdHT5b4w2NzY0X4gxpO8CKKOXuHI38ifDAk3tbRyFJI2b/+4LinbyJywJWAgvLgM
+         MiIOlSLjtogsChehGIwsGBJcLrKyQAmG3A6SwtbrRYYA3EHUzGo7uZt/Y6vPAE2zLaNT
+         /wrg==
+X-Gm-Message-State: AOAM533K6l9VFyu6BGSQW8kHxk9JryPGUcp4jalHpnLoYl+hSD3iA8xp
+        a2OhHs+2YhJwrQckjMs2hIVdtnldWRYvNXfSBNUKrw==
+X-Google-Smtp-Source: ABdhPJy8Ot+W5f80Fu6BvEpJfkPnwWQJWnUoywlXCUa7zl1OOM6UIV8Ecm6vA/ioB3u0PzOzFPstmhe2dwDhcTnSjz8=
+X-Received: by 2002:a2e:9ad3:: with SMTP id p19mr4433350ljj.286.1607380948588;
+ Mon, 07 Dec 2020 14:42:28 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201207214831.GA865971@robh.at.kernel.org>
+References: <20201207192104.6046-1-sergio.paracuellos@gmail.com> <20201207192104.6046-2-sergio.paracuellos@gmail.com>
+In-Reply-To: <20201207192104.6046-2-sergio.paracuellos@gmail.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Mon, 7 Dec 2020 23:42:16 +0100
+Message-ID: <CACRpkdavpQ+QP56MVQ5E0oxNKWb0tR9g8vHay6-LAc+Bj7tAQQ@mail.gmail.com>
+Subject: Re: [PATCH 1/3] dt-bindings: pinctrl: rt2880: add binding document
+To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Jason Yan <yanaijie@huawei.com>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:STAGING SUBSYSTEM" <devel@driverdev.osuosl.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 07, 2020 at 03:48:31PM -0600, Rob Herring wrote:
-> On Wed, Nov 18, 2020 at 05:20:50PM +0200, Cristian Ciocaltea wrote:
-> > If DT_SCHEMA_FILES is specified and contains more than one file paths,
-> 
-> If that worked before, it was by chance. :) Yes, it's called '_FILES', 
-> but more than one was on my todo list.
+Hi Sergio,
 
-I've been using it for a while, but I didn't know this was not
-officially supported..
+thanks for driving this!
 
-> Anyways, I'll apply it.
+On Mon, Dec 7, 2020 at 8:21 PM Sergio Paracuellos
+<sergio.paracuellos@gmail.com> wrote:
 
-Great, thanks!
+> The commit adds rt2880 compatible node in binding document.
+>
+> Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+(...)
+> +description:
+> +  The rt2880 pinmux can only set the muxing of pin groups. muxing indiviual pins
+> +  is not supported. There is no pinconf support.
 
-> > 'make dtbs_check' fails with the following message:
-> > 
-> >   $ make dtbs_check DT_SCHEMA_FILES="path/to/schema1.yaml path/to/schema2.yaml"
-> >   SCHEMA  Documentation/devicetree/bindings/processed-schema.json
-> >   Documentation/devicetree/bindings/Makefile:77: recipe for target 'Documentation/devicetree/bindings/processed-schema.json' failed
-> >   make[1]: *** [Documentation/devicetree/bindings/processed-schema.json] Error 255
-> >   make[1]: *** Deleting file 'Documentation/devicetree/bindings/processed-schema.json'
-> >   Makefile:1364: recipe for target 'dt_binding_check' failed
-> >   make: *** [dt_binding_check] Error 2
-> > 
-> > The error code 255 is returned by 'dt-mk-schema' when invoked as
-> > 'dt-mk-schema -j -u @<tmp-file>', where '<tmp-file>' is a temporary
-> > file that is generated to contain a list of SPACE delimited schema
-> > file paths, as indicated via DT_SCHEMA_FILES.
-> > 
-> > However, it seems the file format has been recently changed in
-> > 'dt-mk-schema', which now expects each schema path to be provided on
-> > a separate line:
-> > 
-> >  $ dt-mk-schema --version
-> >  2020.12.dev4+g6de1c45
-> > 
-> > Therefore, let's change '<tmp-file>' content format from
-> > 
-> >  path/to/schema1.yaml path/to/schema2.yaml ... path/to/schemaN.yaml
-> > 
-> > to
-> > 
-> >  path/to/schema1.yaml
-> >  path/to/schema2.yaml
-> >  ...
-> >  path/to/schemaN.yaml
-> > 
-> > Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
-> > ---
-> >  Documentation/devicetree/bindings/Makefile | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/Makefile b/Documentation/devicetree/bindings/Makefile
-> > index f50420099a55..643eb873fd51 100644
-> > --- a/Documentation/devicetree/bindings/Makefile
-> > +++ b/Documentation/devicetree/bindings/Makefile
-> > @@ -37,7 +37,7 @@ quiet_cmd_chk_bindings = CHKDT   $@
-> >  quiet_cmd_mk_schema = SCHEMA  $@
-> >        cmd_mk_schema = f=$$(mktemp) ; \
-> >                        $(if $(DT_MK_SCHEMA_FLAGS), \
-> > -                           echo $(real-prereqs), \
-> > +                           printf '%s\n' $(real-prereqs), \
-> >                             $(find_cmd)) > $$f ; \
-> >                        $(DT_MK_SCHEMA) -j $(DT_MK_SCHEMA_FLAGS) @$$f > $@ ; \
-> >  		      rm -f $$f
-> > -- 
-> > 2.29.2
-> > 
+OK!
+
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - ralink,rt2880-pinmux
+> +
+> +  pinctrl-0:
+> +    description:
+> +      A phandle to the node containing the subnodes containing default
+> +      configurations.
+
+As it is a node on the pin controller itself, this is a hog so write something
+about that this is for pinctrl hogs.
+
+> +  pinctrl-names:
+> +    description:
+> +      A pinctrl state named "default" must be defined.
+> +    const: default
+
+Is it really compulsory?
+
+> +required:
+> +  - compatible
+> +  - pinctrl-names
+> +  - pinctrl-0
+
+I wonder if the hogs are really compulsory.
+
+> +patternProperties:
+> +  '^.*$':
+
+That's liberal node naming!
+What about [a-z0-9_-]+ or something?
+
+> +    if:
+> +      type: object
+> +      description: |
+> +        A pinctrl node should contain at least one subnodes representing the
+> +        pinctrl groups available on the machine.
+> +      $ref: "pinmux-node.yaml"
+> +      required:
+> +        - groups
+> +        - function
+> +      additionalProperties: false
+> +    then:
+> +      properties:
+> +        groups:
+> +          description:
+> +            Name of the pin group to use for the functions.
+> +          $ref: "/schemas/types.yaml#/definitions/string"
+> +          enum: [i2c, spi, uart1, uart2, uart3, rgmii1, rgmii2, mdio,
+> +                 pcie, sdhci]
+> +        function:
+> +          description:
+> +            The mux function to select
+> +          $ref: "/schemas/types.yaml#/definitions/string"
+> +          enum: [gpio, i2c, spi, uart1, uart2, uart3, rgmii1, rgmii2,
+> +                 mdio, nand1, nand2, sdhci]
+
+Why do we have this complex if: clause?
+$ref: "pinmux-node.yaml" should bring in the groups and
+function properties. Then you can add some further restrictions
+on top of that, right?
+
+I would just do:
+
+patternProperties:
+  '^[a-z0-9_]+$':
+    type: object
+      description: node for pinctrl
+      $ref "pinmux-node.yaml"
+
+      properties:
+        groups:
+          description: groups...
+          enum: [i2c, spi, uart1, uart2, uart3, rgmii1, rgmii2, mdio,
+pcie, sdhci]
+        function:
+          description: function...
+          enum: [gpio, i2c, spi, uart1, uart2, uart3, rgmii1, rgmii2,
+mdio, nand1, nand2, sdhci]
+
+Note: the function names are fine but the group names are a bit
+confusion since often a group can be used for more than one
+function, and e.g.
+
+function = "i2c";
+group = "uart1";
+
+to use the uart1 pins for an i2c is gonna look mildly confusing.
+
+But if this is what the hardware calls it I suppose it is
+fine.
+
+Yours,
+Linus Walleij
