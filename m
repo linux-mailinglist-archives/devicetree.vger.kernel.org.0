@@ -2,114 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C6E92D18B4
-	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 19:46:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A29EA2D18BF
+	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 19:52:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725852AbgLGSop (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Dec 2020 13:44:45 -0500
-Received: from mga03.intel.com ([134.134.136.65]:37546 "EHLO mga03.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725877AbgLGSop (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 7 Dec 2020 13:44:45 -0500
-IronPort-SDR: SwaZvXZNEYOk3pefD7QmzkHbjfYTFiuokP+wxKC8/fjnDihqYMbfA6k81JisqcAg+/nDM+NN4R
- k5UdyJRtwALQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9828"; a="173863024"
-X-IronPort-AV: E=Sophos;i="5.78,400,1599548400"; 
-   d="scan'208";a="173863024"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Dec 2020 10:42:59 -0800
-IronPort-SDR: 4q1QkbrDFOWczQuFKzjAG/3IvadRyFdoq4xHVYdsBZ0wa4Fy4EcTzijJ0AeL0/IDnvlrcoqNsG
- JjtoFZDcJ9Xg==
-X-IronPort-AV: E=Sophos;i="5.78,400,1599548400"; 
-   d="scan'208";a="363259943"
-Received: from slenno2-mobl1.ger.corp.intel.com ([10.252.9.227])
-  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Dec 2020 10:42:54 -0800
-Message-ID: <ca099c0833dc79f0a88edecd9fb949157eacbf46.camel@linux.intel.com>
-Subject: Re: [PATCH 02/22] dt-bindings: Add bindings for Keem Bay IPC driver
-From:   Daniele Alessandrelli <daniele.alessandrelli@linux.intel.com>
-To:     Rob Herring <robh@kernel.org>, mgross@linux.intel.com,
-        daniele.alessandrelli@intel.com
-Cc:     markgross@kernel.org, arnd@arndb.de, bp@suse.de,
-        damien.lemoal@wdc.com, gregkh@linuxfoundation.org, corbet@lwn.net,
-        leonard.crestez@nxp.com, palmerdabbelt@google.com,
-        paul.walmsley@sifive.com, peng.fan@nxp.com, shawnguo@kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Jassi Brar <jassisinghbrar@gmail.com>
-Date:   Mon, 07 Dec 2020 18:42:07 +0000
-In-Reply-To: <20201207160152.GB351233@robh.at.kernel.org>
-References: <20201201223511.65542-1-mgross@linux.intel.com>
-         <20201201223511.65542-3-mgross@linux.intel.com>
-         <20201207160152.GB351233@robh.at.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.36.5 (3.36.5-1.fc32) 
+        id S1726207AbgLGSvX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Dec 2020 13:51:23 -0500
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:45949 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725822AbgLGSvX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 13:51:23 -0500
+Received: by mail-ot1-f68.google.com with SMTP id h18so9489542otq.12;
+        Mon, 07 Dec 2020 10:51:07 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=G3qQx9rj3Y0jkw8xAvThQpwnEPjDqjhVsbJkOLpjJJc=;
+        b=J5sAs0iPnwduXtt8gVqoQGnpS1GJc60xfLpqQt/ujR51KumjpeMwT/mMBR5NE7Bwew
+         Qv1Im85nl0qUC+IqeOXnV0D00ig8+hRax53trJ3N843U23mhMpyNu1XOhgDE2mIej0Vx
+         Ag6FySiD3iirsSmW4YXOhLPhJpIryLFK29b4KUp5AAwmpVyt3oyvYh7Ce1bE5VivWv0E
+         +ax1FXjyvheQZm/+l5+txHoe+1r8oJtS1NlU33FiOsFy9HDLRSObgfysDF0t7YrtMaZC
+         qq8JBPKBYlVK4Ach+easC5Ih6ZRYFEJ4+flFh/Jj4JaYOgdVGT6i055n5yRZDdxPfIcP
+         18bw==
+X-Gm-Message-State: AOAM530jvgvHr69r0SnzvG2Nq6EebzB1FMj/5HWGju4jdqEvvId7TMGX
+        I8mYjvFh7rMbAHxJnDuWyA==
+X-Google-Smtp-Source: ABdhPJy7fUQkjZ27/+CvPE6JMuQeGK4TS6bKhx4NonPnb1Xi7LrsTBLGZE1a9ODMufitoxPUeLcTuQ==
+X-Received: by 2002:a9d:774a:: with SMTP id t10mr3132445otl.190.1607367041980;
+        Mon, 07 Dec 2020 10:50:41 -0800 (PST)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id p1sm2840721oto.4.2020.12.07.10.50.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Dec 2020 10:50:41 -0800 (PST)
+Received: (nullmailer pid 608789 invoked by uid 1000);
+        Mon, 07 Dec 2020 18:50:40 -0000
+Date:   Mon, 7 Dec 2020 12:50:40 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Clemens Gruber <clemens.gruber@pqgruber.com>
+Cc:     linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        u.kleine-koenig@pengutronix.de, Lee Jones <lee.jones@linaro.org>,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: pwm: pca9685: add staggered-outputs property
+Message-ID: <20201207185040.GA608113@robh.at.kernel.org>
+References: <20201112163931.204243-1-clemens.gruber@pqgruber.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201112163931.204243-1-clemens.gruber@pqgruber.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
-
-Thanks for the feedback.
-
-On Mon, 2020-12-07 at 10:01 -0600, Rob Herring wrote:
-> On Tue, Dec 01, 2020 at 02:34:51PM -0800, mgross@linux.intel.com wrote:
-> > From: Daniele Alessandrelli <daniele.alessandrelli@intel.com>
-> > 
-> > Add DT binding documentation for the Intel Keem Bay IPC driver, which
-> > enables communication between the Computing Sub-System (CSS) and the
-> > Multimedia Sub-System (MSS) of the Intel Movidius SoC code named Keem
-> > Bay.
-> > 
-
-[cut]
-
-> > +
-> > +description:
-> > +  The Keem Bay IPC driver enables Inter-Processor Communication (IPC) with the
-> > +  Visual Processor Unit (VPU) embedded in the Intel Movidius SoC code named
-> > +  Keem Bay.
+On Thu, Nov 12, 2020 at 05:39:31PM +0100, Clemens Gruber wrote:
+> The pca9685 driver supports a new staggered-outputs property for reduced
+> current surges and EMI. This adds documentation for the new DT property.
 > 
-> Sounds like a mailbox.
+> Signed-off-by: Clemens Gruber <clemens.gruber@pqgruber.com>
+> ---
+>  Documentation/devicetree/bindings/pwm/nxp,pca9685-pwm.txt | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/pwm/nxp,pca9685-pwm.txt b/Documentation/devicetree/bindings/pwm/nxp,pca9685-pwm.txt
+> index f21b55c95738..911bbb65984e 100644
+> --- a/Documentation/devicetree/bindings/pwm/nxp,pca9685-pwm.txt
+> +++ b/Documentation/devicetree/bindings/pwm/nxp,pca9685-pwm.txt
+> @@ -12,6 +12,8 @@ Optional properties:
+>    - invert (bool): boolean to enable inverted logic
+>    - open-drain (bool): boolean to configure outputs with open-drain structure;
+>  		       if omitted use totem-pole structure
+> +  - staggered-outputs (bool): boolean to enable staggered output ON times to
+> +			      minimize current surges and EMI
 
-We did consider using the mailbox framework, but eventually decided
-against it; mainly because of the following two reasons:
-
-1. The channel concept in the Mailbox framework is different than the
-   channel concept in Keem Bay IPC:
-
-   a. My understanding is that Mailbox channels are meant to be SW
-      representation of physical HW channels, while in Keem Bay IPC
-      channels are software abstractions to achieve communication
-      multiplexing over a single HW link
-
-   b. Additionally, Keem Bay IPC has two different classes of channels 
-      (high-speed channels and general-purpose channels) that need to
-      access the same HW link with different priorities.
-
-2. The blocking / non-blocking TX behavior of mailbox channels is
-   defined at channel creation time (by the tx_block value of the
-   mailbox client passed to mbox_request_channel(); my understanding 
-   is that the tx_block value cannot be modified after the channel is
-   created), while in Keem Bay IPC the same channel can be used for
-   both blocking and non-blocking TX (behavior is controlled by the
-   timeout argument passed to keembay_ipc_send()).
-
-Having said that, I guess that it could be possible to create a Mailbox
-driver implementing the core communication mechanism used by the Keem
-Bay IPC and then build our API around it (basically having two
-drivers). But I'm not sure that would make the code simpler or easier
-to maintain. Any thoughts on this?
-
+Needs a vendor prefix.
 
 >  
+>  Example:
+>  
+> -- 
+> 2.29.2
 > 
-> What's the relationship between this and the xlink thing?
-> 
-
-xLink internally uses Keem Bay IPC to communicate with the VPU.
-Basically, Keem Bay IPC is the lowest layer of the xLink stack.
-
-
-
-
