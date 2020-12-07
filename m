@@ -2,92 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 315052D1550
-	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 16:58:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 578A32D155D
+	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 17:02:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726447AbgLGP6J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Dec 2020 10:58:09 -0500
-Received: from mail-oi1-f193.google.com ([209.85.167.193]:43322 "EHLO
-        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726141AbgLGP6J (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 10:58:09 -0500
-Received: by mail-oi1-f193.google.com with SMTP id q25so7786734oij.10;
-        Mon, 07 Dec 2020 07:57:53 -0800 (PST)
+        id S1727413AbgLGP64 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Dec 2020 10:58:56 -0500
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:43295 "EHLO
+        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726137AbgLGP64 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 10:58:56 -0500
+Received: by mail-ot1-f67.google.com with SMTP id q25so1082550otn.10;
+        Mon, 07 Dec 2020 07:58:41 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=onaHdKCsWOlOQVTdXMBF53sCUCt5ldvhTQu+6oWqXis=;
-        b=oBsNx7CpHs8HRg/ndzaz5hFXL0QW4ofnMpKX8KIG0/YsFcLFzrMHZoLRAFDJL2raHh
-         h78IdfmMHEFd3iQ/9DDS8WVCfFverh/bRI4BAdliT0seTZv+m1ENiL5+yLrfdvCU3n8y
-         LeBylyl6zjFIVRXVAjeu/8HZtNMDSEAKOnojegB/DFIClDp/+brBhhRBWvECb4Tpfec1
-         kN9sC7FFa2psq+Hzs6ri1B9XVeElN6sB2rO4Ev7oiYnVQ7OPgAr4xOXfZ+hpCGA6bTd1
-         ifGPiS5J9W3rop4fvu87exswMdWmiochMp8AsxfpaEhAwbTVmAzS1BwJn57ymalUpRGE
-         WRsA==
-X-Gm-Message-State: AOAM532q3he5XuI56X3l0yaHZ7fZDlkKIvlD6f8a3fjlEP9jCU158hxu
-        Zd9efIeyjLyafHqfGGRVhw==
-X-Google-Smtp-Source: ABdhPJzHrPlpTNna15h5lC5ZlV/dy/hBQ4EaoEEKLS3bq6lqRgplSDkr7Cmkzg5p0kMn53yibQu6Tg==
-X-Received: by 2002:aca:cc17:: with SMTP id c23mr2969517oig.80.1607356648343;
-        Mon, 07 Dec 2020 07:57:28 -0800 (PST)
+        bh=voI/5OCID9h7T7s4ztgsU/7R03t2LV7/eDN1pq5mjMQ=;
+        b=XSBFJMjbsSmliZVSkGK4Ywujqn17HurPnbOLr7Xn3O2gVEZ/oC9d6CFqr/LEVNAoSj
+         BZMo/GZsOSzpXFjzpORVxK0HIUlBs0/lcJFoA3f75TIAcq+vk81BTHE8M1+SDNUtJKVz
+         ujcR4OTJzJCAhFq+F/wL051R9dGuc8Bz4Az3FvP+wS/bBaTuQ5NEPjiQmUCpjnnTaVr0
+         DH+nfEgr6+vTBMvxRZwJvzP7knJwvnskw40xY/rgGZLM7556Sq1xetvzWOnqbI/NcndL
+         RdlpcOD+FZRHsldP4jPntH/A+QO7OPweDqTxVVVM2evDXUi99RkAQRAE/Y/oYAi3QBFF
+         wPkA==
+X-Gm-Message-State: AOAM533iFYobSJP41yzLifzNrnTORTJtIsyjmwAtEdSVgooyYFWq6FU/
+        g9dJRs95UxRS/4BNaFJfHg==
+X-Google-Smtp-Source: ABdhPJwsTYZ1hdmjDHYLEIVeZZNqxdDUzmiscVda2Gg1Hc1oYsqolaJGXGJG8/9tOVN80FxnOK9w+g==
+X-Received: by 2002:a9d:5381:: with SMTP id w1mr13279853otg.7.1607356696000;
+        Mon, 07 Dec 2020 07:58:16 -0800 (PST)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id m47sm2637696ooi.12.2020.12.07.07.57.26
+        by smtp.gmail.com with ESMTPSA id v5sm2672942oob.40.2020.12.07.07.58.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Dec 2020 07:57:27 -0800 (PST)
-Received: (nullmailer pid 350816 invoked by uid 1000);
-        Mon, 07 Dec 2020 15:57:26 -0000
-Date:   Mon, 7 Dec 2020 09:57:26 -0600
+        Mon, 07 Dec 2020 07:58:15 -0800 (PST)
+Received: (nullmailer pid 351998 invoked by uid 1000);
+        Mon, 07 Dec 2020 15:58:14 -0000
+Date:   Mon, 7 Dec 2020 09:58:14 -0600
 From:   Rob Herring <robh@kernel.org>
 To:     mgross@linux.intel.com
-Cc:     damien.lemoal@wdc.com, leonard.crestez@nxp.com,
-        Paul Murphy <paul.j.murphy@intel.com>,
-        dragan.cvetic@xilinx.com, markgross@kernel.org, robh+dt@kernel.org,
-        corbet@lwn.net, devicetree@vger.kernel.org,
-        Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
-        arnd@arndb.de, palmerdabbelt@google.com, bp@suse.de,
-        shawnguo@kernel.org, peng.fan@nxp.com, gregkh@linuxfoundation.org,
-        paul.walmsley@sifive.com, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 04/22] dt-bindings: Add bindings for Keem Bay VPU IPC
- driver
-Message-ID: <20201207155726.GA350430@robh.at.kernel.org>
+Cc:     robh+dt@kernel.org, leonard.crestez@nxp.com,
+        gregkh@linuxfoundation.org, palmerdabbelt@google.com,
+        devicetree@vger.kernel.org,
+        Ryan Carnaghi <ryan.r.carnaghi@intel.com>,
+        Seamus Kelly <seamus.kelly@intel.com>, arnd@arndb.de,
+        damien.lemoal@wdc.com, markgross@kernel.org, corbet@lwn.net,
+        linux-kernel@vger.kernel.org, dragan.cvetic@xilinx.com,
+        shawnguo@kernel.org, paul.walmsley@sifive.com, bp@suse.de,
+        peng.fan@nxp.com
+Subject: Re: [PATCH 15/22] xlink-ipc: Add xlink ipc device tree bindings
+Message-ID: <20201207155814.GA351233@robh.at.kernel.org>
 References: <20201201223511.65542-1-mgross@linux.intel.com>
- <20201201223511.65542-5-mgross@linux.intel.com>
+ <20201201223511.65542-16-mgross@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201201223511.65542-5-mgross@linux.intel.com>
+In-Reply-To: <20201201223511.65542-16-mgross@linux.intel.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 01 Dec 2020 14:34:53 -0800, mgross@linux.intel.com wrote:
-> From: Paul Murphy <paul.j.murphy@intel.com>
+On Tue, 01 Dec 2020 14:35:04 -0800, mgross@linux.intel.com wrote:
+> From: Seamus Kelly <seamus.kelly@intel.com>
 > 
-> Add DT bindings documentation for the Keem Bay VPU IPC driver.
+> Add device tree bindings for the xLink IPC driver which enables xLink to
+> control and communicate with the VPU IP present on the Intel Keem Bay
+> SoC.
 > 
 > Cc: devicetree@vger.kernel.org
 > Reviewed-by: Mark Gross <mgross@linux.intel.com>
-> Signed-off-by: Paul Murphy <paul.j.murphy@intel.com>
-> Co-developed-by: Daniele Alessandrelli <daniele.alessandrelli@intel.com>
-> Signed-off-by: Daniele Alessandrelli <daniele.alessandrelli@intel.com>
+> Signed-off-by: Seamus Kelly <seamus.kelly@intel.com>
+> Signed-off-by: Ryan Carnaghi <ryan.r.carnaghi@intel.com>
 > ---
->  .../soc/intel/intel,keembay-vpu-ipc.yaml      | 151 ++++++++++++++++++
->  1 file changed, 151 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/soc/intel/intel,keembay-vpu-ipc.yaml
+>  .../misc/intel,keembay-xlink-ipc.yaml         | 49 +++++++++++++++++++
+>  1 file changed, 49 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/misc/intel,keembay-xlink-ipc.yaml
 > 
 
 
 My bot found errors running 'make dt_binding_check' on your patch:
 
 yamllint warnings/errors:
-./Documentation/devicetree/bindings/soc/intel/intel,keembay-vpu-ipc.yaml:21:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
+./Documentation/devicetree/bindings/misc/intel,keembay-xlink-ipc.yaml:21:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
 
 dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/soc/intel/intel,keembay-vpu-ipc.yaml: 'additionalProperties' is a required property
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/soc/intel/intel,keembay-vpu-ipc.yaml: ignoring, error in schema: 
-warning: no schema found in file: ./Documentation/devicetree/bindings/soc/intel/intel,keembay-vpu-ipc.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/misc/intel,keembay-xlink-ipc.yaml: 'additionalProperties' is a required property
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/misc/intel,keembay-xlink-ipc.yaml: ignoring, error in schema: 
+warning: no schema found in file: ./Documentation/devicetree/bindings/misc/intel,keembay-xlink-ipc.yaml
 
 
-See https://patchwork.ozlabs.org/patch/1409183
+See https://patchwork.ozlabs.org/patch/1409186
 
 The base for the patch is generally the last rc1. Any dependencies
 should be noted.
