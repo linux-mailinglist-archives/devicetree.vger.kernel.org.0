@@ -2,96 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8EFAD2D18EA
-	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 20:02:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 58BE42D18F9
+	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 20:03:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726359AbgLGTCL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Dec 2020 14:02:11 -0500
-Received: from mail-oi1-f195.google.com ([209.85.167.195]:40259 "EHLO
-        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725877AbgLGTCL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 14:02:11 -0500
-Received: by mail-oi1-f195.google.com with SMTP id p126so16575400oif.7;
-        Mon, 07 Dec 2020 11:01:55 -0800 (PST)
+        id S1726571AbgLGTC7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Dec 2020 14:02:59 -0500
+Received: from mail-oi1-f194.google.com ([209.85.167.194]:35201 "EHLO
+        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726515AbgLGTC7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 14:02:59 -0500
+Received: by mail-oi1-f194.google.com with SMTP id s2so7101893oij.2;
+        Mon, 07 Dec 2020 11:02:38 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=oq0uf3/fLWDZlMwGpgKAvvZ5GOhPZy/p7Susns2+2mQ=;
-        b=UOW83FjCl4dTxTILhHahCvhaIjBhhgCpnwXViUPlVrpLmP09JMfZJaEWlAoTpSEpd6
-         vBN7XEqWoJ53E8sWopMV3pbvCpolJXr2oNM6HSMq75bbwQxSO2twlUObsUcp+9JIcAi5
-         WnrWQ1QiApCFQG5ffhZ1DLCkEsA2sKyTO3QcYv6H2s1nhvWfPY5K3JFnXb5hJVTOK4dv
-         AWuLer+DtXp7Kd7PC+1vRB3yTbRzsmDpWUNGWaYo45CTJ5aSsL67LSdqDe1XE0Fqgm3K
-         mXgwEAxekbeUGIbSEQxRQMqkjkmU2J9DINfAPFkHHxq0OYkyPgI0wX10ibqdZRdApQju
-         TIdQ==
-X-Gm-Message-State: AOAM531uJFt/M5NtSXDDtM7Xh+PoZGz+XMSmfR5rMC4R1Fd2oTDmVgG2
-        6GNpqpmKkYyk/pklHc1xhIuZOTJZbw==
-X-Google-Smtp-Source: ABdhPJzmZ9pkhVdNrTwfLlvsUMHpnMAi4vUiamjBYoNrKM48G/OKOQeZN8CjkCxZYMagcxrYGCTVjw==
-X-Received: by 2002:aca:dc56:: with SMTP id t83mr224368oig.110.1607367689832;
-        Mon, 07 Dec 2020 11:01:29 -0800 (PST)
+        bh=HY0hN7EFmwAeOpekASH1D+eW1UviLPnBJxGZclXefu0=;
+        b=jhs7ja41n/gDXd8s+PFaKKnCRAhQHH9Zyy9oIyDLk61qmXVXp++RnqMi7wi86m7QN7
+         r3m0350AeQHhkBVbm02BPc2zuSDj1zVLjFbkHdPM/dtVYavUD7On+7bKnDrUjrHV5p3M
+         6VD5Ao9DUFpPWRhaqJYILkSSZbblJTmcSmrQIWuXL1bgHQFxB2PHOAyaOMnegJ1g02Ec
+         2GaAYno8ryRXNTELn1t3KaKr4LU6XuWqJx2bcq0RisyVGVfW2GfdLIj9esMjqjPnhmel
+         KVTVPT2vAeY9xePMITOS6oB3gYaKTSZlHvxQikaBVZ2Rc60Om+fLK+IyhXZIqfOh7kWR
+         XANQ==
+X-Gm-Message-State: AOAM532/vXXUDWL/bW7hh3Ng+nTmPrX08YcJf/6n738eRehoQRRQlGrh
+        R0BincuPXV34CF+id/phqyz2fF0lFw==
+X-Google-Smtp-Source: ABdhPJzwSPMRrQKLv11ZINQGdwR6C69RDQ4j3GgSogCMZ11o/iijHddVfVmozpAzu46Xr3kRdgGsEw==
+X-Received: by 2002:aca:fc96:: with SMTP id a144mr217689oii.146.1607367732978;
+        Mon, 07 Dec 2020 11:02:12 -0800 (PST)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id j4sm1533684ota.8.2020.12.07.11.01.28
+        by smtp.gmail.com with ESMTPSA id 73sm2822461otv.26.2020.12.07.11.02.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Dec 2020 11:01:28 -0800 (PST)
-Received: (nullmailer pid 625746 invoked by uid 1000);
-        Mon, 07 Dec 2020 19:01:27 -0000
-Date:   Mon, 7 Dec 2020 13:01:27 -0600
+        Mon, 07 Dec 2020 11:02:11 -0800 (PST)
+Received: (nullmailer pid 626990 invoked by uid 1000);
+        Mon, 07 Dec 2020 19:02:10 -0000
+Date:   Mon, 7 Dec 2020 13:02:10 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Jim Quinlan <james.quinlan@broadcom.com>
-Cc:     Sudeep Holla <sudeep.holla@arm.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 1/2] dt-bindings: arm: Add optional interrupt to
- smc/hvc SCMI transport
-Message-ID: <20201207190127.GA617336@robh.at.kernel.org>
-References: <20201112175632.42234-1-james.quinlan@broadcom.com>
- <20201112175632.42234-2-james.quinlan@broadcom.com>
+To:     Daniel Palmer <daniel@0x0f.com>
+Cc:     linux-kernel@vger.kernel.org, w@1wt.eu,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org
+Subject: Re: [PATCH 1/6] dt-bindings: clk: mstar msc313 mpll binding header
+Message-ID: <20201207190210.GA626827@robh.at.kernel.org>
+References: <20201114135044.724385-1-daniel@0x0f.com>
+ <20201114135044.724385-2-daniel@0x0f.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201112175632.42234-2-james.quinlan@broadcom.com>
+In-Reply-To: <20201114135044.724385-2-daniel@0x0f.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 12, 2020 at 12:56:26PM -0500, Jim Quinlan wrote:
-> In normal use of smc/hvc transport in SCMI the message completion is
-> indicated by the return of the SMC call.  This commit provides for an
-> optional interrupt named "message-serviced" which is used instead to
-> indicate the completion of a message.
+On Sat, 14 Nov 2020 22:50:39 +0900, Daniel Palmer wrote:
+> Simple header to document the relationship between the MPLL outputs
+> and which divider they come from.
 > 
-> Signed-off-by: Jim Quinlan <james.quinlan@broadcom.com>
+> Output 0 is missing because it should not be consumed.
+> 
+> Signed-off-by: Daniel Palmer <daniel@0x0f.com>
 > ---
->  Documentation/devicetree/bindings/arm/arm,scmi.txt | 8 ++++++++
->  1 file changed, 8 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/arm,scmi.txt b/Documentation/devicetree/bindings/arm/arm,scmi.txt
-> index 55deb68230eb..7cdad11f40b1 100644
-> --- a/Documentation/devicetree/bindings/arm/arm,scmi.txt
-> +++ b/Documentation/devicetree/bindings/arm/arm,scmi.txt
-> @@ -31,6 +31,14 @@ Optional properties:
->  
->  - mbox-names: shall be "tx" or "rx" depending on mboxes entries.
->  
-> +- interrupts : when using smc or hvc transports, this optional
-> +	 property indicates that msg completion by the platform is indicated
-> +	 by an interrupt rather than by the return of the smc call. This
-> +	 should not be used except when the platform requires such behavior.
-> +
-> +- interrupt-names : if "interrupts" is present, interrupt-names must also
-> +	 be present and have the value "message-serviced".
-
-Don't really need names when only one, but wouldn't 'a2p' be more 
-concise and based on SCMI spec (just guessing...).
-
-> +
->  See Documentation/devicetree/bindings/mailbox/mailbox.txt for more details
->  about the generic mailbox controller and client driver bindings.
->  
-> -- 
-> 2.17.1
+>  MAINTAINERS                                   |  1 +
+>  include/dt-bindings/clock/mstar-msc313-mpll.h | 19 +++++++++++++++++++
+>  2 files changed, 20 insertions(+)
+>  create mode 100644 include/dt-bindings/clock/mstar-msc313-mpll.h
 > 
 
-
+Acked-by: Rob Herring <robh@kernel.org>
