@@ -2,111 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 83FD62D0D31
-	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 10:39:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A4D072D0D34
+	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 10:40:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726338AbgLGJjV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Dec 2020 04:39:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51266 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726290AbgLGJjU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 04:39:20 -0500
-Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com [IPv6:2a00:1450:4864:20::342])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74403C0613D0
-        for <devicetree@vger.kernel.org>; Mon,  7 Dec 2020 01:38:34 -0800 (PST)
-Received: by mail-wm1-x342.google.com with SMTP id a6so10881756wmc.2
-        for <devicetree@vger.kernel.org>; Mon, 07 Dec 2020 01:38:34 -0800 (PST)
+        id S1726133AbgLGJk1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Dec 2020 04:40:27 -0500
+Received: from mail-dm6nam12on2045.outbound.protection.outlook.com ([40.107.243.45]:9719
+        "EHLO NAM12-DM6-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726011AbgLGJk0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 7 Dec 2020 04:40:26 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=IzJ+m7T8DUhoCaxvDs8CAwMAKI0POr8NfsTgKnKHEyaxaYfNsqUhM3CyOR28e54n5B5k2pDH05aifxx4HXF6q/5XC4fP/1R5XrMaQ8aBggb32FqWiDCuJs+w8OzT/l8zkCU+iEXnK3/Ehh1cqxFc75BnGV7ahnTC/tJkFY338kLl+XTYQ49IT/hnn3vUOkmklLYYV5sydeJvdkcMhHISnS//iwl1jsQIrwxOj7ucf+3VUQMwD4CeBbfRsQV5roWiu5oM3qjHSSq8KVJtobAZQ18vIy+VB7002o2Ldf3y4I9u+LxUfwKHxicy3UjJ9OmkjNIyYvtguRyz0SekZZ/IPw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=c+o6OKeeRuU69AHg01oe8fAxWhN/psz1ReNFd7cpcrk=;
+ b=TXnTZb+XF8w63PwNBXwWTETFaEct+owU8CvN2AJ+cHg+eViSEbRqY2xHGbf2qpItJ9lvV6OFejxDWMQmIDxyJNqr0O4X1YAlk2iFuBiizkHd3RfxDYGPBnkncNAzTQAa5nB5MXQGaqY3cL+9Q4UImqIacPNa+sDUu0FFdqGMJsJSM9D2/IKlhzG4swoC9E+DnCvecn9cIxBbikL/HSRXb8jPd6tj/TzI/TujQyYHFJcbN/pFuFQWQZOnZVWluZeE7bYitO0R/HzAY72t0axB2yQfRXIXENFkTdq11SlgXck58bxnY2bgwLzHxCqU6M9bdwIlNCVitXzgqFDVsHQxoA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 149.199.62.198) smtp.rcpttodomain=lists.infradead.org
+ smtp.mailfrom=xilinx.com; dmarc=bestguesspass action=none
+ header.from=xilinx.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=XpZ628O5xaXa4RdOKN7MsGWRWJi7+t1IcOBgJgwxavs=;
-        b=sfF17KBm2xoH141r0pfHE47pI1OemoN9EybfIO3Ncd9nZlNuvMJj8l+4ARZJMO4FvT
-         iW8eTCDgYZFqyxaCPdVDBID3vQFjxEVX9a7ufst4amolQGqi2keHfkRhzvyt1jhf7hEw
-         1de/iabQBbAjgqGX3NeGFXk7UWMh2Ke2mHj9BUN2iGQ0JGYaoskfyp7KCVbAVE43xIwi
-         Kjqw6xZ+LhKxAellDgvDuGw552lhrdpU4+X/cGHQaHPwGepodWmsBQ2qOz2hJ0dzWQKT
-         zg3k/G3Yp8y7XG9LovsnFJ5IKhKXWaDpjenONKVgn/URho/cNUIrjzNlEX/werJ0Bq30
-         Tjuw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=XpZ628O5xaXa4RdOKN7MsGWRWJi7+t1IcOBgJgwxavs=;
-        b=Q9YwTLbVlPYrk0kMmk4ITjQQXwBHADbLDH3Nafpt/AstnNuW2YzQNQaU98S+f9Zu6z
-         eD/C0vnQGIMuvf3XmKMgLVp8JtAeIEFp9flf7rNSLIIm9+zqh5dblxWb1NHycp6Z+d5o
-         SQKr+XPkIB+EnOiw2f88DSqib0tt7N/q+SaghvsnYVTUN/FtloJC4pZ6AtDTrOCgmX/G
-         FLRbKywQow1U3wYX+UFZOeQEniJ5NINmJEIr2/x/7pbN2eVgYHF/w4rKSTJLmnoC6oFX
-         G3nz1oeDwrIxgPQbTgItnGoHnlPL+h3N4LBXLWZI0mebtyp3zYfbsRJwvBggZ4yOirUF
-         qXXw==
-X-Gm-Message-State: AOAM531dLTQXmy3BFR5dwZkfvZmYBz9iCALgSOgSPFNU3umpEzCaIkRF
-        qID9fL72UT9xtwi/z7PZagfriQ==
-X-Google-Smtp-Source: ABdhPJxGvianTv9DEmfI3MU5uIAXw/ZzSnzw9NA0pWoTLejhJd+h21+1YtLVTZFvErdVAlqf4iLZpg==
-X-Received: by 2002:a1c:9ecf:: with SMTP id h198mr17284160wme.104.1607333913196;
-        Mon, 07 Dec 2020 01:38:33 -0800 (PST)
-Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.googlemail.com with ESMTPSA id h15sm14315088wrw.15.2020.12.07.01.38.32
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 07 Dec 2020 01:38:32 -0800 (PST)
-Subject: Re: [RESEND PATCH v6 2/2] pinctrl: qcom: Add sm8250 lpass lpi pinctrl
- driver
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        MSM <linux-arm-msm@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20201202163443.26499-1-srinivas.kandagatla@linaro.org>
- <20201202163443.26499-3-srinivas.kandagatla@linaro.org>
- <CACRpkdabPygUmZXT6FMT4fEU6D638Y3XRwvODy8ucUAbuQ4kvg@mail.gmail.com>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <4073d9ec-e959-7216-79fa-ee210fbfff17@linaro.org>
-Date:   Mon, 7 Dec 2020 09:38:31 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=c+o6OKeeRuU69AHg01oe8fAxWhN/psz1ReNFd7cpcrk=;
+ b=p6+vNPd81qYHKzBuO2hdN9j29dhsPI4NDllts4wxKOd+pOnqgkvZIUhNkyqCLt/NiDivV3P4IKDcK/o9VYAUHzxKxKXUYHZzPQMJsGqgwSQZIaQP2T3vXVt8DiyuGy6DTtI3CWnFXbin5PD7IObJ1KvWtlYyNQcvPFMiFziobc4=
+Received: from SN4PR0501CA0061.namprd05.prod.outlook.com
+ (2603:10b6:803:41::38) by SN6PR02MB5341.namprd02.prod.outlook.com
+ (2603:10b6:805:67::32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3632.17; Mon, 7 Dec
+ 2020 09:39:33 +0000
+Received: from SN1NAM02FT047.eop-nam02.prod.protection.outlook.com
+ (2603:10b6:803:41:cafe::3) by SN4PR0501CA0061.outlook.office365.com
+ (2603:10b6:803:41::38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3654.7 via Frontend
+ Transport; Mon, 7 Dec 2020 09:39:33 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
+ smtp.mailfrom=xilinx.com; lists.infradead.org; dkim=none (message not signed)
+ header.d=none;lists.infradead.org; dmarc=bestguesspass action=none
+ header.from=xilinx.com;
+Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
+ 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=149.199.62.198; helo=xsj-pvapexch01.xlnx.xilinx.com;
+Received: from xsj-pvapexch01.xlnx.xilinx.com (149.199.62.198) by
+ SN1NAM02FT047.mail.protection.outlook.com (10.152.72.201) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.3632.21 via Frontend Transport; Mon, 7 Dec 2020 09:39:32 +0000
+Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
+ xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1913.5; Mon, 7 Dec 2020 01:39:30 -0800
+Received: from smtp.xilinx.com (172.19.127.95) by
+ xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
+ 15.1.1913.5 via Frontend Transport; Mon, 7 Dec 2020 01:39:30 -0800
+Envelope-to: git@xilinx.com,
+ michal.simek@xilinx.com,
+ rajan.vaja@xilinx.com,
+ linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org,
+ robh+dt@kernel.org,
+ krzk@kernel.org,
+ monstr@monstr.eu,
+ linux-kernel@vger.kernel.org,
+ laurent.pinchart@ideasonboard.com
+Received: from [172.30.17.109] (port=44180)
+        by smtp.xilinx.com with esmtp (Exim 4.90)
+        (envelope-from <michal.simek@xilinx.com>)
+        id 1kmCzR-0002vY-HO; Mon, 07 Dec 2020 01:39:29 -0800
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Michal Simek <michal.simek@xilinx.com>
+CC:     <linux-kernel@vger.kernel.org>, <monstr@monstr.eu>,
+        <git@xilinx.com>, Kalyani Akula <kalyani.akula@xilinx.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Manish Narani <manish.narani@xilinx.com>,
+        Rajan Vaja <rajan.vaja@xilinx.com>,
+        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <cover.1606917949.git.michal.simek@xilinx.com>
+ <272e23e0123f02c559bfa4ada9de73eb197aced8.1606917949.git.michal.simek@xilinx.com>
+ <X81fXtxvsc7KE7cK@pendragon.ideasonboard.com>
+From:   Michal Simek <michal.simek@xilinx.com>
+Subject: Re: [PATCH 06/12] arm64: dts: zynqmp: Add label for zynqmp_ipi
+Message-ID: <99008851-6c12-3acc-6530-25af08429ff5@xilinx.com>
+Date:   Mon, 7 Dec 2020 10:39:25 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.5.1
 MIME-Version: 1.0
-In-Reply-To: <CACRpkdabPygUmZXT6FMT4fEU6D638Y3XRwvODy8ucUAbuQ4kvg@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
+In-Reply-To: <X81fXtxvsc7KE7cK@pendragon.ideasonboard.com>
+Content-Type: text/plain; charset="utf-8"
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 52027ca8-6a5d-4cf2-52c0-08d89a9400b2
+X-MS-TrafficTypeDiagnostic: SN6PR02MB5341:
+X-LD-Processed: 657af505-d5df-48d0-8300-c31994686c5c,ExtAddr
+X-Microsoft-Antispam-PRVS: <SN6PR02MB53416FAD3EBE7577E84C093FC6CE0@SN6PR02MB5341.namprd02.prod.outlook.com>
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 2qeQaUxlXBXAAs8yfJFEJEUBcUK/+/GyIw4+3HRlOTPXZJDpZmnNbrpFughvh6fzzXOiQYG4XCTweCxVAhfyUY1MhXWqJm+xHMirxehIVX6QaH2pRjT4IwQrgDFqy2ajIOWsC2pCNfc0QTmjWyXTA7MCXjn+MRWmYtAxmFki0NAAeRbrwEaoDf9O7ABX8GELTQe6ah1JGtKFq6osVe7j2WHHE1kLxkk7xFSV33FoWJQzH0MBg/SbY1DDRDLxJgtBlU+hH13JNWufQbAIsEBAAh9a2qeOyLt74AdED0Ai2XGVN+2bgrhTJSBJS41qBzlWJk+D7668qeP/MjcTJmXsoJ4YT4/PifLRRurGNpTiqmkF6oUHVjP71YqqAmAH9T32VwdNFCV3hUZa2DLALyVDw14EKsXsU/jshqxbbD/ow6BTbp/HlWgK7i7l0xI+O98ecJPd28XJ0iM0zsOlZTLNcQ==
+X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch01.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(4636009)(39850400004)(346002)(376002)(136003)(396003)(46966005)(186003)(2616005)(478600001)(356005)(9786002)(7636003)(110136005)(82740400003)(70206006)(26005)(8936002)(47076004)(70586007)(54906003)(6666004)(8676002)(2906002)(31686004)(4326008)(316002)(336012)(36906005)(83380400001)(5660300002)(82310400003)(36756003)(31696002)(44832011)(426003)(50156003)(43740500002);DIR:OUT;SFP:1101;
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Dec 2020 09:39:32.9645
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 52027ca8-6a5d-4cf2-52c0-08d89a9400b2
+X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch01.xlnx.xilinx.com]
+X-MS-Exchange-CrossTenant-AuthSource: SN1NAM02FT047.eop-nam02.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR02MB5341
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
+On 06. 12. 20 23:46, Laurent Pinchart wrote:
+> Hi Michal,
+> 
+> Thank you for the patch.
+> 
+> On Wed, Dec 02, 2020 at 03:06:05PM +0100, Michal Simek wrote:
+>> Add label which is used by bootloader for adding bootloader specific flag.
+>>
+>> Signed-off-by: Michal Simek <michal.simek@xilinx.com>
+>> ---
+>>
+>> U-Boot needs to add u-boot,dm-pre-reloc; property
+> 
+> I'm not entirely sure what best practice rules are in this area, but
+> shouldn't U-Boot locate the node by name instead of label ?
 
-On 05/12/2020 22:36, Linus Walleij wrote:
-> On Wed, Dec 2, 2020 at 5:35 PM Srinivas Kandagatla
-> <srinivas.kandagatla@linaro.org> wrote:
-> 
->> Add initial pinctrl driver to support pin configuration for
->> LPASS (Low Power Audio SubSystem) LPI (Low Power Island) pinctrl
->> on SM8250.
-> 
-> Patch applied!
-> 
->> +config PINCTRL_LPASS_LPI
->> +       tristate "Qualcomm Technologies Inc LPASS LPI pin controller driver"
->> +       depends on GPIOLIB
-> 
-> I added:
-> 
->      select PINMUX
->      select PINCONF
->      select GENERIC_PINCONF
-> 
-> When applying. You need these I think, your code is working because
-> other drivers are selecting these for you, right? The build robot would
-> hack this to pieces though.
+Labels are not listed in dt binding and there are two approaches how to
+reference nodes. Via full path with node name or via labels.
+I do normally use labels which are much simple.
+And also if you take a look how dtb looks like (convert back to dts) you
+can see that for example aliases are using full path (just &label) but
+clocks/gic which is the part of <> is handled via phandles as numbers.
 
-Many thanks for doing this!
+And labels names can vary and shouldn't be the part of binding doc as
+far as I know. But I can be wrong of course.
 
---srini
-
-> 
-> Yours,
-> Linus Walleij
-> 
+Thanks,
+Michal
