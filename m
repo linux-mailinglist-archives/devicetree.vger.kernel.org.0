@@ -2,70 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EE8102D1CFA
-	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 23:15:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 85A412D1D18
+	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 23:20:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726402AbgLGWNo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Dec 2020 17:13:44 -0500
-Received: from mail-oo1-f67.google.com ([209.85.161.67]:32992 "EHLO
-        mail-oo1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726231AbgLGWNn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 17:13:43 -0500
-Received: by mail-oo1-f67.google.com with SMTP id f8so3592213oou.0;
-        Mon, 07 Dec 2020 14:13:28 -0800 (PST)
+        id S1727932AbgLGWQK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Dec 2020 17:16:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56724 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726603AbgLGWQK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 17:16:10 -0500
+Received: from mail-ua1-x929.google.com (mail-ua1-x929.google.com [IPv6:2607:f8b0:4864:20::929])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 046B1C061794
+        for <devicetree@vger.kernel.org>; Mon,  7 Dec 2020 14:15:29 -0800 (PST)
+Received: by mail-ua1-x929.google.com with SMTP id f16so5010446uav.12
+        for <devicetree@vger.kernel.org>; Mon, 07 Dec 2020 14:15:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=zba0muHnPBIN4bYfIYdIe1tLp1gTKybFphRm3inPByQ=;
+        b=Zsvt8tU15EATRR7AKIJauxr8QEVxEngkzOadeW/cbN4n9/N90HtGVaq+XnpsCLmI1Z
+         pmn7ElCa48hfbaohINYuFiwl5MbpaIUumSbS61WsFxjxTvIPqp8ca1zo75WkzJvmWwhX
+         QT5ZssyLUem0TcgNsrlSGsa17X9INYF0SvvxU=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=48t+bOSWWAxhp/tegsOE6F95FDw1uWSdhgQF+J+swBg=;
-        b=eAaO4V2dNKoOtLf8N71OoNSc2EUoWpiKalNMLK86rvrXIdxGesij+P4Y9VauQlBgCq
-         pGW3uNQ15MxuW+WMDnu5omIykGcAsHLCuCEMw/ZWR2ON4U/XyWTd6kgZK2Mtg8K6V4yq
-         4CXOJDTJrq/+/NgmpnU16J9in7tgUUR48/nyHeYkOJRbxRiw7uH+GTAp3n1hlsYB/Ja/
-         VQY5ukv+kv5GOtwCk4jD5WGPXQvQPE4kIZ3Sr5xNMdwuvfdkn7kh0dqXPT5ljIbbs7Mo
-         c9HTKfSFEeHEol0WNyfhAlrDtvY6p+FeQLqoyNWqXsWPSfXfRkZyjwTCy+/an96V3Rol
-         XCog==
-X-Gm-Message-State: AOAM532iR+Nhxyu1WMirDFdsz2HjQa04acQrM7P3JpU+Srs2XxHG36gj
-        de+XOrfe8uqUw2npCnnTuA==
-X-Google-Smtp-Source: ABdhPJzUUSjy0quOPbp/g8awC+ferlhaMKmZw7lCZs26C/Jnpj7fIIhyckPClhkzRPismucgeUD8lQ==
-X-Received: by 2002:a4a:d043:: with SMTP id x3mr14268036oor.19.1607379183035;
-        Mon, 07 Dec 2020 14:13:03 -0800 (PST)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id v4sm1366519otk.50.2020.12.07.14.13.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Dec 2020 14:13:02 -0800 (PST)
-Received: (nullmailer pid 930521 invoked by uid 1000);
-        Mon, 07 Dec 2020 22:13:01 -0000
-Date:   Mon, 7 Dec 2020 16:13:01 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Joel Stanley <joel@jms.id.au>
-Cc:     Guenter Roeck <linux@roeck-us.net>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Rob Herring <robh+dt@kernel.org>, linux-fsi@lists.ozlabs.org,
-        linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Eddie James <eajames@linux.ibm.com>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/3] dt-bindings: fsi: Add P10 OCC device documentation
-Message-ID: <20201207221301.GA930468@robh.at.kernel.org>
-References: <20201120010315.190737-1-joel@jms.id.au>
- <20201120010315.190737-2-joel@jms.id.au>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=zba0muHnPBIN4bYfIYdIe1tLp1gTKybFphRm3inPByQ=;
+        b=Yjmhp7NDPmp8a+Ds42fefSLu6s1pRPYsVqhz7KRtCrcTAVxLofp3ARuCi1Ef8JXFfL
+         xeRG/Zfz8oyIYOLGnr/TgqQoj/kDHMvUIpIpXTXMHzS5YXc3eg0U/xGdbeT7FVBwxBJg
+         bPVXlJV4Gs4isHsJrLZuGftertAD1MPT6Tl7QuDZVY+9p+TUtEuQPU9GmS2DILuaoQAr
+         GHXA72ZZW1SH+83uYOt80nSP3D32i7Ds/q9GvFbTLmCzyrhzcqYVhZEerP+JSqdxjT9Y
+         /q/Cxq+EH1gqqaYHzZYVp/02ey3D3vFQ3WIG7HR1zFDmoXQPNrlye5J2NR5lJxaosWcH
+         EsKQ==
+X-Gm-Message-State: AOAM532n/wH1b6BfPV3KO0F2YtgGbnbI1TFpmVuggnou6B+mt331UyED
+        odKRVy+otGUME9a+cQwQquRn+eHrzu3npA==
+X-Google-Smtp-Source: ABdhPJzQWuuINlZsk8C214zX6MnQNDdDHC3hM3LbbMYr68XGyjQq6Ifk7RmgNT+57ZM5oBQrc51mvA==
+X-Received: by 2002:ab0:6456:: with SMTP id j22mr13392509uap.57.1607379328672;
+        Mon, 07 Dec 2020 14:15:28 -0800 (PST)
+Received: from mail-ua1-f51.google.com (mail-ua1-f51.google.com. [209.85.222.51])
+        by smtp.gmail.com with ESMTPSA id j12sm1304263vke.52.2020.12.07.14.15.27
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 07 Dec 2020 14:15:27 -0800 (PST)
+Received: by mail-ua1-f51.google.com with SMTP id s42so1111224uad.11
+        for <devicetree@vger.kernel.org>; Mon, 07 Dec 2020 14:15:27 -0800 (PST)
+X-Received: by 2002:ab0:227:: with SMTP id 36mr458027uas.64.1607379327280;
+ Mon, 07 Dec 2020 14:15:27 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201120010315.190737-2-joel@jms.id.au>
+References: <CAK8P3a2Habmz95y+J+-4NiT5SGYhO_Fia-SHhapX-3NYRbEMmw@mail.gmail.com>
+ <CAHk-=wjA2Der39e_SWZ6S-DoVCJTu-Zwf6jn2wxmGTKzNPV1Dw@mail.gmail.com>
+ <CAD=FV=Vow5_jv=-O=f2v4_5Nb4DiOUB1sQUx6r=-y5A-6rP4hw@mail.gmail.com>
+ <CAHk-=whtySEgkH+VFy9oW8Q-+iuivGBo0hOUcee3DvrsBAQUrA@mail.gmail.com>
+ <CAD=FV=Up-JW8RtMLQ_pAG3e0d8NnpT+rDiguxcz3DnVUz_7Jbw@mail.gmail.com>
+ <CAHk-=wi2CQwAnKucLwE8vNZgXxyRy6L+DcgjGqxKHwbacKgaMQ@mail.gmail.com>
+ <CAPDyKFp9L+L9VeUD038G3mBTLBuPJsMtv7JhxCcSGb3iY=eq5A@mail.gmail.com>
+ <CAK8P3a1Va_xJzk8qqJM1VBWfSKpomKbQh_NpPO20aoORoe0SWQ@mail.gmail.com>
+ <CAMuHMdUT83EkE-phUX2Z431AtGPfZvXeKwQriDKEHJKfr2R40A@mail.gmail.com> <CAK8P3a3xqqT7mcroY+-fg4T39msw72SB0NbbVKfBghmOFTNZqw@mail.gmail.com>
+In-Reply-To: <CAK8P3a3xqqT7mcroY+-fg4T39msw72SB0NbbVKfBghmOFTNZqw@mail.gmail.com>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Mon, 7 Dec 2020 14:15:15 -0800
+X-Gmail-Original-Message-ID: <CAD=FV=WXcSBkN2y97xNma0P9C6DEPfwkprZe=+0+0iuKYNwwZA@mail.gmail.com>
+Message-ID: <CAD=FV=WXcSBkN2y97xNma0P9C6DEPfwkprZe=+0+0iuKYNwwZA@mail.gmail.com>
+Subject: Re: [GIT PULL] ARM: SoC fixes for v5.10, part 3
+To:     Arnd Bergmann <arnd@kernel.org>
+Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        SoC Team <soc@kernel.org>,
+        Linus Torvalds <torvalds@linux-foundation.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 20 Nov 2020 11:33:13 +1030, Joel Stanley wrote:
-> From: Eddie James <eajames@linux.ibm.com>
-> 
-> Add the P10 compatible string.
-> 
-> Signed-off-by: Eddie James <eajames@linux.ibm.com>
-> Reviewed-by: Joel Stanley <joel@jms.id.au>
-> Signed-off-by: Joel Stanley <joel@jms.id.au>
-> ---
->  Documentation/devicetree/bindings/fsi/ibm,p9-occ.txt | 12 ++++++------
->  1 file changed, 6 insertions(+), 6 deletions(-)
-> 
+Hi,
 
-Acked-by: Rob Herring <robh@kernel.org>
+On Mon, Dec 7, 2020 at 1:55 PM Arnd Bergmann <arnd@kernel.org> wrote:
+>
+> On Mon, Dec 7, 2020 at 9:23 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> > On Tue, Dec 1, 2020 at 3:06 PM Arnd Bergmann <arnd@kernel.org> wrote:
+> > > On Tue, Dec 1, 2020 at 12:39 PM Ulf Hansson <ulf.hansson@linaro.org> wrote:
+> > > > So, I think we have two options. If people are willing to move to
+> > > > "disk labels" or to patch their DTBs with mmc aliases, things can stay
+> > > > as is. Otherwise, we can revert the async probe parts of the mmc host
+> > > > drivers, but that would still leave us in a fragile situation.
+> > >
+> > > Can you reliably detect whether the mmc aliases in the dt exist?
+> > > If that's possible, maybe the async flag could be masked out to only have
+> > > an effect when the device number is known.
+> >
+> > IMHO DT aliases are not a proper solution for this.
+> >
+> > Yes, you can detect reliably if an alias exists in the DT.
+> > The problems start when having multiple devices, some with aliases,
+> > some without.  And when devices can appear dynamically (without
+> > aliases, as there is no support for dynamically updating the aliases
+> > list).
+>
+> Actually you hit a problem earlier than that: the async probe is a
+> property of the host controller driver, which may be a pci_driver,
+> platform_driver, usb_driver, or anything else really. To figure out
+> whether to probe it asynchronously, it would have to be the driver
+> core, or each bus type that can host these to understand which
+> device driver is responsible for probing an eMMC device attached
+> to the host.
+
+From what I've seen so far, my current thought on this issue is that
+it's up to Ulf as the MMC maintainer what the next steps are.  For me,
+at least, his argument that MMC block numbers have already shuffled
+around several times in the last several years is at least some
+evidence that they weren't exactly stable to begin with.  While we
+could go back to the numbers that happened to be chosen as of kernel
+v5.9, if someone was updating from a much older kernel then they may
+have different expectations of what numbers are good / bad I think.
+
+I will also offer one possible suggestion: what about a KConfig option
+here?  In theory we could add a KConfig option like
+"CONFIG_MMC_LEGACY_PROBE" or something that.  One can argue about what
+the default ought to be, but maybe that would satisfy folks?  If you
+were happy giving up a little bit of boot speed to get the v5.9 block
+numbers then you could set this.
+
+
+-Doug
