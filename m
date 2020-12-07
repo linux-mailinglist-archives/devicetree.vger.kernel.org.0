@@ -2,72 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CD4AC2D1878
-	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 19:24:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EA4762D187C
+	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 19:27:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725960AbgLGSXx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Dec 2020 13:23:53 -0500
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:33691 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725852AbgLGSXx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 13:23:53 -0500
-Received: by mail-ot1-f65.google.com with SMTP id b18so13414069ots.0;
-        Mon, 07 Dec 2020 10:23:32 -0800 (PST)
+        id S1726069AbgLGSYm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Dec 2020 13:24:42 -0500
+Received: from mail-oi1-f196.google.com ([209.85.167.196]:34568 "EHLO
+        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725816AbgLGSYm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 13:24:42 -0500
+Received: by mail-oi1-f196.google.com with SMTP id s75so13369267oih.1;
+        Mon, 07 Dec 2020 10:24:26 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=r8iujiXMsHVfC0xZaPOn5hqafsuzyJCL4bLhyC5L5cc=;
-        b=bVRnYVFpecAonvg819Zesp6AizJhLI192tOAsth/FjX1zPr2sJmBoTeSyPkJuBGmvb
-         kRUgrNHmukcOKwVu3MPbbe2e5QT1Mc2+GGXujobdthcggsLg/KFx133oiMNH8y4Da2Df
-         k9jQvisvlbKnJ8Rqm3D0Cqp1YTgmXt/UyTdXJmD40gbh8H/9Q2XlwesnZ4i4DzhEtMyw
-         uirzmgEpFva17fqMVSOyC7oxYmkVbXfbROykFFhLsIrY2fvDUty+odHPFsKN/NVobkby
-         shNMjldaUD+ZsNi9QXYMU7rsaAIZgScWo4WbsCDtFGDIZQjWvvdelmLkkf+vtAq3clvo
-         CHeA==
-X-Gm-Message-State: AOAM532TJ8/TKjRckDkbeUvMbOL3KXx05NvRoh0rWrlQ2Q1dWvyJZCUb
-        OISUyY6DPXU12jlEBSvH1Q==
-X-Google-Smtp-Source: ABdhPJzCsVsxge4o+Meu07a/RWftrL8x0qdsqoSysO/4jD5LUHZRJ36KYdAzRFDw/cQvbWUozg+AuA==
-X-Received: by 2002:a9d:2203:: with SMTP id o3mr14124765ota.107.1607365386725;
-        Mon, 07 Dec 2020 10:23:06 -0800 (PST)
+        bh=uhGGwifVcUwyCm7WVKGoiGf+4psGN+/N4Ysq2EKKe64=;
+        b=Hn1VikQLlh3iYDfj2NBP8E8e4Z1EeVX25UGXNcIn73XwdfrzIx6vPB/KyrXz+2SxDs
+         LckJt/8Fs6KL1DiYfedffA0AcQYDTB4IBMnkRmXVn/ezbAB8QLkzkt/JxSjZiOLGLW+B
+         UFHQekHWmloRGi3Jf6Wcey4mx6a8f0+/iWQym1C5nDOEWfyQj/1wYZW4k/+SXva+4AmE
+         a1kT822m3HySeXSixu42iGRvgE7T94zL8VyDiqSlrqvNPCcheKcBZeJsmLt3IU+RX9DH
+         NSp/rr0OUVqcLWHj1JqS4NnjpVF8Cor5mjrfZCEsXOiVBe+QGvJJQQyN5Tgn/hMywrvG
+         SV8w==
+X-Gm-Message-State: AOAM531WtShH3/JvMgBq71aq81hRNmCxmjk8Segfk98BncVdKsi9kzxL
+        ACAqaabx4ghEUy/crnQz8w==
+X-Google-Smtp-Source: ABdhPJxoc9Tw7cfX5haN5Kiflo15YdVSaXGkm9Nwgrotk8GgVy/dp4rL8kkPjiAY8D/LBNmK2ZfAxw==
+X-Received: by 2002:aca:db06:: with SMTP id s6mr114603oig.52.1607365441384;
+        Mon, 07 Dec 2020 10:24:01 -0800 (PST)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id t13sm3090572oic.4.2020.12.07.10.23.05
+        by smtp.gmail.com with ESMTPSA id v12sm2719149ooi.46.2020.12.07.10.23.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Dec 2020 10:23:05 -0800 (PST)
-Received: (nullmailer pid 563512 invoked by uid 1000);
-        Mon, 07 Dec 2020 18:23:04 -0000
-Date:   Mon, 7 Dec 2020 12:23:04 -0600
+        Mon, 07 Dec 2020 10:24:00 -0800 (PST)
+Received: (nullmailer pid 565992 invoked by uid 1000);
+        Mon, 07 Dec 2020 18:23:59 -0000
+Date:   Mon, 7 Dec 2020 12:23:59 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     vijayakannan.ayyathurai@intel.com
-Cc:     wan.ahmad.zainie.wan.mohamad@intel.com, devicetree@vger.kernel.org,
-        andriy.shevchenko@linux.intel.com,
-        lakshmi.bai.raja.subramanian@intel.com,
-        linux-watchdog@vger.kernel.org, linux@roeck-us.net,
-        mgross@linux.intel.com, wim@linux-watchdog.org, robh+dt@kernel.org
-Subject: Re: [PATCH v3 2/2] dt-bindings: watchdog: Add bindings for Intel
- Keem Bay SoC
-Message-ID: <20201207182304.GA563366@robh.at.kernel.org>
-References: <cover.1606833303.git.vijayakannan.ayyathurai@intel.com>
- <c3ffd4c2becada82c631ca035a3a1a8f0bd38dc8.1606833303.git.vijayakannan.ayyathurai@intel.com>
+To:     Paul Kocialkowski <contact@paulk.fr>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Icenowy Zheng <icenowy@aosc.io>,
+        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Maxime Ripard <mripard@kernel.org>
+Subject: Re: [PATCH v3 1/5] dt-bindings: irq: sun7i-nmi: Add binding
+ documentation for the V3s NMI
+Message-ID: <20201207182359.GA565631@robh.at.kernel.org>
+References: <20201206165131.1041983-1-contact@paulk.fr>
+ <20201206165131.1041983-2-contact@paulk.fr>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <c3ffd4c2becada82c631ca035a3a1a8f0bd38dc8.1606833303.git.vijayakannan.ayyathurai@intel.com>
+In-Reply-To: <20201206165131.1041983-2-contact@paulk.fr>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 01 Dec 2020 23:10:34 +0800, vijayakannan.ayyathurai@intel.com wrote:
-> From: Vijayakannan Ayyathurai <vijayakannan.ayyathurai@intel.com>
+On Sun, 06 Dec 2020 17:51:27 +0100, Paul Kocialkowski wrote:
+> The V3s NMI controller seems register-compatible with the A80 (sun9i).
+> Add new items for the compatible string, with an entry specific to the V3s
+> and the A80 entry.
 > 
-> Add Device Tree binding document for Watchdog IP in the Intel Keem Bay SoC.
-> 
-> Signed-off-by: Vijayakannan Ayyathurai <vijayakannan.ayyathurai@intel.com>
-> Acked-by: Mark Gross <mgross@linux.intel.com>
-> Acked-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> Signed-off-by: Paul Kocialkowski <contact@paulk.fr>
 > ---
->  .../bindings/watchdog/intel,keembay-wdt.yaml  | 57 +++++++++++++++++++
->  1 file changed, 57 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/watchdog/intel,keembay-wdt.yaml
+>  .../interrupt-controller/allwinner,sun7i-a20-sc-nmi.yaml       | 3 +++
+>  1 file changed, 3 insertions(+)
 > 
 
 
