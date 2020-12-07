@@ -2,117 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 602162D1A1A
-	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 20:58:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1FB952D1A69
+	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 21:20:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726077AbgLGT4y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Dec 2020 14:56:54 -0500
-Received: from mail.kernel.org ([198.145.29.99]:35770 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725774AbgLGT4y (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 7 Dec 2020 14:56:54 -0500
-Date:   Mon, 7 Dec 2020 21:56:07 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1607370973;
-        bh=yPs9QDsuXZBj0AnHJQPLKk5uozke+DFy1FCuNPHFJoo=;
-        h=From:To:Cc:Subject:References:In-Reply-To:From;
-        b=CJywbZ6F2J2n4eSInxwY89uD9zCi+tJPVViTO3691+MbLs7gpFDUgsHVlISgnxaB7
-         c6Q6Gc5kLSk58ing3N17b3+fDpNAMQNcEZ0S6sBLEcJL1qggNTKcDJAaVRHUZJ7vsn
-         IHEfwaOhAARTvu3xTRQhd3uK9sEWHcVC9XY5ot+uwbbn5OfWMOHrZGpShI+dseMtFb
-         uhdRD/+roWdSMfEkiKVnPn4Zy4BvB1jRTFcgHWd8Ncx9goUulpxSHxOczempw61nn7
-         MBvtpw3qDK0eSJ7jesv6ALXVKqqjoiF3kFJ04FAQZaTwKNjNtYaJG/+9sV46cHkFZQ
-         vSDpsnS4WsP/A==
-From:   Leon Romanovsky <leon@kernel.org>
-To:     Saravana Kannan <saravanak@google.com>
-Cc:     "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Len Brown <lenb@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Ard Biesheuvel <ardb@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Tomi Valkeinen <tomi.valkeinen@ti.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        Android Kernel Team <kernel-team@android.com>,
-        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        linux-efi <linux-efi@vger.kernel.org>,
+        id S1726077AbgLGUUo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Dec 2020 15:20:44 -0500
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:33258 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725877AbgLGUUo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 15:20:44 -0500
+Received: by mail-ot1-f68.google.com with SMTP id b18so13775552ots.0;
+        Mon, 07 Dec 2020 12:20:28 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=+8fj10nDje2x93+KcCvXW7CIv2lqtiTGkIsq3PGAkpQ=;
+        b=QmWP6UUvEWOLWv8TLrh9DFiSAHMmF2KIfYfdt1772iEs32YcEfZquSi1tPhho5cUgu
+         +P17fJGWsgGOF7LRUUBGakSETmkvkEmtn38UsfXZ4QLYGvnLOCLugminfokPrlPuCX2f
+         Gj8PbY/URhtjhyMWkR8My+ROLvT7jesf/jSgi7MrgDeM2LHetq5a1Bc+dfEz7S13fdNf
+         h4XCbL/nvv9EYXMzdUvMorHByNKVQw4Eymsw7CiWucxoGrBnZuoH8YBkpOTJsG+sIlsT
+         ndj0NKMCafdxqirnxifWzf4ro4f6pgNLIwdR5vCCtYZ15wVrOdDeMeBgfwvOr7+GNtUZ
+         g2wQ==
+X-Gm-Message-State: AOAM532OQm2Waypd04pkUhUMTH/zvlin4Gqk8kHXq4mo7OHB/UVKLDu5
+        2O3EAqO11cw9DJTsb4coyZVfwPebCsnqPOxx4iO3yklJ
+X-Google-Smtp-Source: ABdhPJy2xXJ31q/f+prT+1t1V3CRJwLEpaT1rJWaISAdMh4ZqnS5NVqYeodB/wICppPMsAb4jFStHycuOjYZ7aK37g8=
+X-Received: by 2002:a05:6830:1f5a:: with SMTP id u26mr14394879oth.250.1607372403410;
+ Mon, 07 Dec 2020 12:20:03 -0800 (PST)
+MIME-Version: 1.0
+References: <CAK8P3a2Habmz95y+J+-4NiT5SGYhO_Fia-SHhapX-3NYRbEMmw@mail.gmail.com>
+ <CAHk-=wjA2Der39e_SWZ6S-DoVCJTu-Zwf6jn2wxmGTKzNPV1Dw@mail.gmail.com>
+ <CAD=FV=Vow5_jv=-O=f2v4_5Nb4DiOUB1sQUx6r=-y5A-6rP4hw@mail.gmail.com>
+ <CAHk-=whtySEgkH+VFy9oW8Q-+iuivGBo0hOUcee3DvrsBAQUrA@mail.gmail.com>
+ <CAD=FV=Up-JW8RtMLQ_pAG3e0d8NnpT+rDiguxcz3DnVUz_7Jbw@mail.gmail.com>
+ <CAHk-=wi2CQwAnKucLwE8vNZgXxyRy6L+DcgjGqxKHwbacKgaMQ@mail.gmail.com>
+ <CAPDyKFp9L+L9VeUD038G3mBTLBuPJsMtv7JhxCcSGb3iY=eq5A@mail.gmail.com> <CAK8P3a1Va_xJzk8qqJM1VBWfSKpomKbQh_NpPO20aoORoe0SWQ@mail.gmail.com>
+In-Reply-To: <CAK8P3a1Va_xJzk8qqJM1VBWfSKpomKbQh_NpPO20aoORoe0SWQ@mail.gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 7 Dec 2020 21:19:52 +0100
+Message-ID: <CAMuHMdUT83EkE-phUX2Z431AtGPfZvXeKwQriDKEHJKfr2R40A@mail.gmail.com>
+Subject: Re: [GIT PULL] ARM: SoC fixes for v5.10, part 3
+To:     Arnd Bergmann <arnd@kernel.org>
+Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Doug Anderson <dianders@chromium.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        SoC Team <soc@kernel.org>,
+        Linus Torvalds <torvalds@linux-foundation.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v2 08/17] driver core: Add fwnode link support
-Message-ID: <20201207195607.GG693271@unreal>
-References: <20201121020232.908850-1-saravanak@google.com>
- <20201121020232.908850-9-saravanak@google.com>
- <20201206074840.GB687065@unreal>
- <CAGETcx8296K_v1p2-KAW7ABQjB02P63sBzz2aZoRW3E3WHb4Dg@mail.gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAGETcx8296K_v1p2-KAW7ABQjB02P63sBzz2aZoRW3E3WHb4Dg@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 07, 2020 at 11:25:03AM -0800, Saravana Kannan wrote:
-> On Sat, Dec 5, 2020 at 11:48 PM Leon Romanovsky <leon@kernel.org> wrote:
-> >
-> > On Fri, Nov 20, 2020 at 06:02:23PM -0800, Saravana Kannan wrote:
-> > > Add support for creating supplier-consumer links between fwnodes.  It is
-> > > intended for internal use the driver core and generic firmware support
-> > > code (eg. Device Tree, ACPI), so it is simple by design and the API
-> > > provided is limited.
-> > >
-> > > Signed-off-by: Saravana Kannan <saravanak@google.com>
-> > > ---
-> > >  drivers/base/core.c    | 98 ++++++++++++++++++++++++++++++++++++++++++
-> > >  drivers/of/dynamic.c   |  1 +
-> > >  include/linux/fwnode.h | 14 ++++++
-> > >  3 files changed, 113 insertions(+)
-> > >
-> > > diff --git a/drivers/base/core.c b/drivers/base/core.c
-> > > index 401fa7e3505c..e2b246a44d1a 100644
-> > > --- a/drivers/base/core.c
-> > > +++ b/drivers/base/core.c
-> > > @@ -50,6 +50,104 @@ static LIST_HEAD(wait_for_suppliers);
-> > >  static DEFINE_MUTEX(wfs_lock);
-> > >  static LIST_HEAD(deferred_sync);
-> > >  static unsigned int defer_sync_state_count = 1;
-> > > +static DEFINE_MUTEX(fwnode_link_lock);
-> > > +
-> > > +/**
-> > > + * fwnode_link_add - Create a link between two fwnode_handles.
-> > > + * @con: Consumer end of the link.
-> > > + * @sup: Supplier end of the link.
-> > > + *
-> > > + * Create a fwnode link between fwnode handles @con and @sup. The fwnode link
-> > > + * represents the detail that the firmware lists @sup fwnode as supplying a
-> > > + * resource to @con.
-> > > + *
-> > > + * The driver core will use the fwnode link to create a device link between the
-> > > + * two device objects corresponding to @con and @sup when they are created. The
-> > > + * driver core will automatically delete the fwnode link between @con and @sup
-> > > + * after doing that.
-> > > + *
-> > > + * Attempts to create duplicate links between the same pair of fwnode handles
-> > > + * are ignored and there is no reference counting.
-> >
-> > Sorry to ask, but why is that?
-> > Isn't this a programmer error?
->
-> No, not a programmer error.
->
-> One firmware node can point to the same supplier many times. For
-> example, the consumer can be using multiple clocks from the same
-> supplier clock controller. In the context of fw_devlink, there's no
-> reason to keep track of each clock dependency separately because we'll
-> be creating only one device link from fwnode link. So multiple fwnode
-> link attempts between the same two devices are just treated as one
-> instance of dependency. I hope that clarifies things.
+CC devicetree
 
-Yes, thanks.
-
+On Tue, Dec 1, 2020 at 3:06 PM Arnd Bergmann <arnd@kernel.org> wrote:
+> On Tue, Dec 1, 2020 at 12:39 PM Ulf Hansson <ulf.hansson@linaro.org> wrote:
+> > So, I think we have two options. If people are willing to move to
+> > "disk labels" or to patch their DTBs with mmc aliases, things can stay
+> > as is. Otherwise, we can revert the async probe parts of the mmc host
+> > drivers, but that would still leave us in a fragile situation.
 >
-> -Saravana
+> Can you reliably detect whether the mmc aliases in the dt exist?
+> If that's possible, maybe the async flag could be masked out to only have
+> an effect when the device number is known.
+
+IMHO DT aliases are not a proper solution for this.
+
+Yes, you can detect reliably if an alias exists in the DT.
+The problems start when having multiple devices, some with aliases,
+some without.  And when devices can appear dynamically (without
+aliases, as there is no support for dynamically updating the aliases
+list).
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
