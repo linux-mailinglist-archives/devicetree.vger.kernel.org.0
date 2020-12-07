@@ -2,176 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 920CE2D1D99
-	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 23:44:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B4E92D1D9A
+	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 23:44:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727985AbgLGWnK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Dec 2020 17:43:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60930 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726519AbgLGWnK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 17:43:10 -0500
-Received: from mail-lj1-x244.google.com (mail-lj1-x244.google.com [IPv6:2a00:1450:4864:20::244])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23C2CC061749
-        for <devicetree@vger.kernel.org>; Mon,  7 Dec 2020 14:42:30 -0800 (PST)
-Received: by mail-lj1-x244.google.com with SMTP id j10so16855650lja.5
-        for <devicetree@vger.kernel.org>; Mon, 07 Dec 2020 14:42:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=cImNfTxV3yatbn+FwY8M9bZp9qMjG8D8HnYsrobPKBM=;
-        b=l/3wAoeuSBrTZ5kzXGqkOaoPHawgUXp/mHZNKiEgADA645+ISC1YZ5iqJSJE4+v7XZ
-         xITpXU1sinnNXZW40rT7HZ9HShZ2VXfN0X+Aub2v/zs7L1Z9Rpi5mG56cCwHWGDM7EfC
-         TYf097m6CnVspCAAUT7WedGTeh+kjr78Ck97MfE4ZiBDJSdNjadXF8AF0c3WKqiv5gQy
-         1K3PB9Gu3LhF7EApfg/b+njaSxfT7CJBuj0f6/eB6HvN3aeATU7Ogpo0xxmALvGEUhrK
-         UmnvAGyBnC3OfhTcxyd1TAzTPNXz9tUs239JVEq2mS0RhykttT9WUZEjnT9zoW+1x9QF
-         W4Jw==
+        id S1726519AbgLGWnZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Dec 2020 17:43:25 -0500
+Received: from mail-oi1-f194.google.com ([209.85.167.194]:37513 "EHLO
+        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726508AbgLGWnZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 17:43:25 -0500
+Received: by mail-oi1-f194.google.com with SMTP id l207so14421210oib.4;
+        Mon, 07 Dec 2020 14:43:03 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=cImNfTxV3yatbn+FwY8M9bZp9qMjG8D8HnYsrobPKBM=;
-        b=Z7hR9rS8iMzW9brteIPBBlENEBVdwTU+ed/cVnI+c2wtWYyB6azpC9MR+JV2QUUPxF
-         /xBMtPoftEygwgworcigOthbpbVvDk/tXv9R2S+GZYYn2bKppP3ACso4p+Itr1rm2DKz
-         9fFy3PHPFkfR0egLtT3/3SyI/XXvWG9CjCIJBqdTIWTtoozo5tOzzw0nOl8zTVbMOwi6
-         S/R/HdHT5b4w2NzY0X4gxpO8CKKOXuHI38ifDAk3tbRyFJI2b/+4LinbyJywJWAgvLgM
-         MiIOlSLjtogsChehGIwsGBJcLrKyQAmG3A6SwtbrRYYA3EHUzGo7uZt/Y6vPAE2zLaNT
-         /wrg==
-X-Gm-Message-State: AOAM533K6l9VFyu6BGSQW8kHxk9JryPGUcp4jalHpnLoYl+hSD3iA8xp
-        a2OhHs+2YhJwrQckjMs2hIVdtnldWRYvNXfSBNUKrw==
-X-Google-Smtp-Source: ABdhPJy8Ot+W5f80Fu6BvEpJfkPnwWQJWnUoywlXCUa7zl1OOM6UIV8Ecm6vA/ioB3u0PzOzFPstmhe2dwDhcTnSjz8=
-X-Received: by 2002:a2e:9ad3:: with SMTP id p19mr4433350ljj.286.1607380948588;
- Mon, 07 Dec 2020 14:42:28 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=YiGMY24NvG+qDD2dLzercR68pk9jWvYpHiZ4hoYrapc=;
+        b=kmUbt6vCrEYrzKDJ+m2KgB9s9IJOAoGVc6yRAQM0AH48j9f7AApP5LYQ2lH66IJEEg
+         eH0GF0+9KdO60Wzg+pGnYksO3Ga9oTxG3v/A2i8EG1CAq3KU5kheXQH2HZ096o3guqmr
+         cXhzytIjEG6xBTqBKCkh0TBSSZW7ogQivd2twvU12agjE6VSjzq88GrcW4tJy+erQJoc
+         IiQMB5eppKv792jwe8g8W7OAAK8yg81eocQ0b1HWvGICk1A1sIUxDrr95q+KmiPdym7F
+         Z9bpHQZABpx1xakhGhn5tJZ4YK+E6hCw+ZTDS+KjxvOM3cQ3WYvuR66zNuwoK+lSVjyZ
+         r+aA==
+X-Gm-Message-State: AOAM531EChxs2B5kZeCUpu4XP2tQa2aSK0vVXqACzx/t8Ni2y6B+8SvZ
+        XJlsH4N4PqBVCGNmxFxzVQ==
+X-Google-Smtp-Source: ABdhPJyEh6obLo3kkPcOpFXkhowNTZBEANUOz5IaapchbwUFJKb2tWBZruUtSCktbtkr34ZI8dJpqQ==
+X-Received: by 2002:a54:4e95:: with SMTP id c21mr788580oiy.84.1607380958531;
+        Mon, 07 Dec 2020 14:42:38 -0800 (PST)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id m21sm1357720oos.28.2020.12.07.14.42.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Dec 2020 14:42:37 -0800 (PST)
+Received: (nullmailer pid 978070 invoked by uid 1000);
+        Mon, 07 Dec 2020 22:42:36 -0000
+Date:   Mon, 7 Dec 2020 16:42:36 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Hsin-Yi Wang <hsinyi@chromium.org>
+Cc:     devicetree@vger.kernel.org,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        linux-kernel@vger.kernel.org, David Airlie <airlied@linux.ie>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Jonas Karlman <jonas@kwiboo.se>, Xin Ji <xji@analogixsemi.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        dri-devel@lists.freedesktop.org,
+        Jernej Skrabec <jernej.skrabec@siol.net>
+Subject: Re: [PATCH v2 1/2] dt-bindings: drm/bridge: anx7625: Add power
+ supplies
+Message-ID: <20201207224236.GA978011@robh.at.kernel.org>
+References: <20201123034652.3660584-1-hsinyi@chromium.org>
 MIME-Version: 1.0
-References: <20201207192104.6046-1-sergio.paracuellos@gmail.com> <20201207192104.6046-2-sergio.paracuellos@gmail.com>
-In-Reply-To: <20201207192104.6046-2-sergio.paracuellos@gmail.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Mon, 7 Dec 2020 23:42:16 +0100
-Message-ID: <CACRpkdavpQ+QP56MVQ5E0oxNKWb0tR9g8vHay6-LAc+Bj7tAQQ@mail.gmail.com>
-Subject: Re: [PATCH 1/3] dt-bindings: pinctrl: rt2880: add binding document
-To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Jason Yan <yanaijie@huawei.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:STAGING SUBSYSTEM" <devel@driverdev.osuosl.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201123034652.3660584-1-hsinyi@chromium.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sergio,
+On Mon, 23 Nov 2020 11:46:52 +0800, Hsin-Yi Wang wrote:
+> anx7625 requires 3 power supply regulators.
+> 
+> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+> ---
+> Change:
+> v2: remove maxItems for supplies
+> ---
+>  .../bindings/display/bridge/analogix,anx7625.yaml | 15 +++++++++++++++
+>  1 file changed, 15 insertions(+)
+> 
 
-thanks for driving this!
-
-On Mon, Dec 7, 2020 at 8:21 PM Sergio Paracuellos
-<sergio.paracuellos@gmail.com> wrote:
-
-> The commit adds rt2880 compatible node in binding document.
->
-> Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
-(...)
-> +description:
-> +  The rt2880 pinmux can only set the muxing of pin groups. muxing indiviual pins
-> +  is not supported. There is no pinconf support.
-
-OK!
-
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - ralink,rt2880-pinmux
-> +
-> +  pinctrl-0:
-> +    description:
-> +      A phandle to the node containing the subnodes containing default
-> +      configurations.
-
-As it is a node on the pin controller itself, this is a hog so write something
-about that this is for pinctrl hogs.
-
-> +  pinctrl-names:
-> +    description:
-> +      A pinctrl state named "default" must be defined.
-> +    const: default
-
-Is it really compulsory?
-
-> +required:
-> +  - compatible
-> +  - pinctrl-names
-> +  - pinctrl-0
-
-I wonder if the hogs are really compulsory.
-
-> +patternProperties:
-> +  '^.*$':
-
-That's liberal node naming!
-What about [a-z0-9_-]+ or something?
-
-> +    if:
-> +      type: object
-> +      description: |
-> +        A pinctrl node should contain at least one subnodes representing the
-> +        pinctrl groups available on the machine.
-> +      $ref: "pinmux-node.yaml"
-> +      required:
-> +        - groups
-> +        - function
-> +      additionalProperties: false
-> +    then:
-> +      properties:
-> +        groups:
-> +          description:
-> +            Name of the pin group to use for the functions.
-> +          $ref: "/schemas/types.yaml#/definitions/string"
-> +          enum: [i2c, spi, uart1, uart2, uart3, rgmii1, rgmii2, mdio,
-> +                 pcie, sdhci]
-> +        function:
-> +          description:
-> +            The mux function to select
-> +          $ref: "/schemas/types.yaml#/definitions/string"
-> +          enum: [gpio, i2c, spi, uart1, uart2, uart3, rgmii1, rgmii2,
-> +                 mdio, nand1, nand2, sdhci]
-
-Why do we have this complex if: clause?
-$ref: "pinmux-node.yaml" should bring in the groups and
-function properties. Then you can add some further restrictions
-on top of that, right?
-
-I would just do:
-
-patternProperties:
-  '^[a-z0-9_]+$':
-    type: object
-      description: node for pinctrl
-      $ref "pinmux-node.yaml"
-
-      properties:
-        groups:
-          description: groups...
-          enum: [i2c, spi, uart1, uart2, uart3, rgmii1, rgmii2, mdio,
-pcie, sdhci]
-        function:
-          description: function...
-          enum: [gpio, i2c, spi, uart1, uart2, uart3, rgmii1, rgmii2,
-mdio, nand1, nand2, sdhci]
-
-Note: the function names are fine but the group names are a bit
-confusion since often a group can be used for more than one
-function, and e.g.
-
-function = "i2c";
-group = "uart1";
-
-to use the uart1 pins for an i2c is gonna look mildly confusing.
-
-But if this is what the hardware calls it I suppose it is
-fine.
-
-Yours,
-Linus Walleij
+Reviewed-by: Rob Herring <robh@kernel.org>
