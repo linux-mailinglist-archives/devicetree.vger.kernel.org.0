@@ -2,70 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 11A4D2D1C5A
-	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 22:53:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D39BF2D1C5E
+	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 22:53:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727281AbgLGVvb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Dec 2020 16:51:31 -0500
-Received: from mail-oo1-f68.google.com ([209.85.161.68]:43987 "EHLO
-        mail-oo1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726182AbgLGVvb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 16:51:31 -0500
-Received: by mail-oo1-f68.google.com with SMTP id h10so3553580ooi.10;
-        Mon, 07 Dec 2020 13:51:16 -0800 (PST)
+        id S1725969AbgLGVxY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Dec 2020 16:53:24 -0500
+Received: from mail-oi1-f193.google.com ([209.85.167.193]:44478 "EHLO
+        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725799AbgLGVxY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 16:53:24 -0500
+Received: by mail-oi1-f193.google.com with SMTP id y74so17136989oia.11;
+        Mon, 07 Dec 2020 13:53:03 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=y00t2oYRElieWgTY/6XuDjnfPbdFMkmUpnhoZk4N8+A=;
-        b=uGUEH/paCVJYlUZ00TOnTZMhyc3UM6IFaiMMr98BfhCdoaX0gQ9819OfezC6NEGn7a
-         bm8LvuX+pkWJh0CA9e0Eo3EPV2gjf2lT5N2JYYX6GluFoHrjywNR8Bmr+IRTOMbsOQND
-         5LIozUbmpnNN+vWKPuZLGDNrgME7reMTHqAQRJriG5yhLFYiMmCy43+zbOeDLP5AKOEa
-         +0JBly2DDrf6nZmKe7BQCYdyiyhQBqPHZCv5V4Bsgsrv5Vhy5KNc2HDFFzpZ/mYyWte1
-         oi7e+91C8GiqpSNgq2J8UCH9i5CcItLHUDQzQPxEvzQMeKN2wkXYGfl2tn3DoAqxlLR2
-         v6Xg==
-X-Gm-Message-State: AOAM530yyk0cGc4NTGx9IpiqxsXrl/Kd500hVNGsXz87mSqPb/K/KRuQ
-        nc1G6VyMZnJN74cdZKeQPmqEFXBM1Q==
-X-Google-Smtp-Source: ABdhPJwb2IaEXWi3OMiPgjPWwqgmaaPWBuvmoqhndlGB30/d4e3V6/PtzxNQIRJlhdZ6dIPrh/Z4nw==
-X-Received: by 2002:a4a:c4c7:: with SMTP id g7mr14071462ooq.50.1607377850811;
-        Mon, 07 Dec 2020 13:50:50 -0800 (PST)
+        bh=BF1tW52ALryUZKid8lBVkGB4okYZtkPfb/JX9FH4Smo=;
+        b=Q82z6j07Ap3V8mDNV2I8nawvK4cZ5PGiZtanhuYYv1yVnF4h1SecqP2a9JBh/9N5ou
+         7ldFuLO++LPc7y1YUZ1ZLDeFLQeMrirdOOnzzYwXvK2vyHKKiuGUkDU3469vYaVJqkaB
+         4NNWW10GpdAwAdfb3oqBsYXsbThYo4iMYkPt9bYR3jFSSxyG7iHEAdzRtFMWyDNTTEpY
+         rX9zOD4QBJTEkm9uFHibBq4umYquzR9AZbNiYyrPo+qqiT/SQJSBIlnQ2/RA5NMQ8FcR
+         NBOcmH0sfdOTT68FgbJqu6zpOcU5ugtZ8g1C+CMbyNZ5gk6gZBNht6m3+gzfeM6M8JgU
+         A27w==
+X-Gm-Message-State: AOAM533a6aZqsU2flQ3mevKb4hVU4tQzrwBq8JGF68pZ2sGxUk8O/qtp
+        p4YJEiArbSwNSQsWakpwZg==
+X-Google-Smtp-Source: ABdhPJzBabPROxUsAAgxBwNPRqzXMt8tXAiikj8ao9VyU4y4TZD60k59EMloR0FVVTnixBGqZFonog==
+X-Received: by 2002:aca:cf4a:: with SMTP id f71mr627363oig.157.1607377957848;
+        Mon, 07 Dec 2020 13:52:37 -0800 (PST)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id q3sm2504232ota.53.2020.12.07.13.50.49
+        by smtp.gmail.com with ESMTPSA id f10sm2605122oti.11.2020.12.07.13.52.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Dec 2020 13:50:49 -0800 (PST)
-Received: (nullmailer pid 894193 invoked by uid 1000);
-        Mon, 07 Dec 2020 21:50:49 -0000
-Date:   Mon, 7 Dec 2020 15:50:48 -0600
+        Mon, 07 Dec 2020 13:52:37 -0800 (PST)
+Received: (nullmailer pid 896927 invoked by uid 1000);
+        Mon, 07 Dec 2020 21:52:36 -0000
+Date:   Mon, 7 Dec 2020 15:52:36 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Gustavo Pimentel <Gustavo.Pimentel@synopsys.com>
-Cc:     devicetree@vger.kernel.org, Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        Joao Pinto <Joao.Pinto@synopsys.com>
-Subject: Re: [PATCH] dt-bindings: Fix typo on the DesignWare IP reset
- bindings documentation
-Message-ID: <20201207215048.GA892840@robh.at.kernel.org>
-References: <89719d8d40048e9b7baa0cd984b5bb108d056de4.1605741519.git.gustavo.pimentel@synopsys.com>
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
+        bjorn.andersson@linaro.org, linux-mtd@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/4] dt-bindings: mtd: partitions: Add binding for
+ Qcom SMEM parser
+Message-ID: <20201207215236.GB892840@robh.at.kernel.org>
+References: <20201119071308.9292-1-manivannan.sadhasivam@linaro.org>
+ <20201119071308.9292-2-manivannan.sadhasivam@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <89719d8d40048e9b7baa0cd984b5bb108d056de4.1605741519.git.gustavo.pimentel@synopsys.com>
+In-Reply-To: <20201119071308.9292-2-manivannan.sadhasivam@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 19 Nov 2020 00:18:39 +0100, Gustavo Pimentel wrote:
-> This patch removes a loose "i" character is present on the current
-> documentation.
+On Thu, Nov 19, 2020 at 12:43:05PM +0530, Manivannan Sadhasivam wrote:
+> Add YAML binding for Qualcomm Shared Memory (SMEM) Flash partition
+> parser.
 > 
-> Signed-off-by: Gustavo Pimentel <gustavo.pimentel@synopsys.com>
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 > ---
->  Documentation/devicetree/bindings/reset/snps,dw-reset.txt | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  .../mtd/partitions/qcom,smem-part.yaml        | 33 +++++++++++++++++++
+>  1 file changed, 33 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mtd/partitions/qcom,smem-part.yaml
 > 
+> diff --git a/Documentation/devicetree/bindings/mtd/partitions/qcom,smem-part.yaml b/Documentation/devicetree/bindings/mtd/partitions/qcom,smem-part.yaml
+> new file mode 100644
+> index 000000000000..cf3f8c1e035d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mtd/partitions/qcom,smem-part.yaml
+> @@ -0,0 +1,33 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mtd/partitions/qcom,smem-part.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm SMEM NAND flash partition parser binding
+> +
+> +maintainers:
+> +  - Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> +
+> +description: |
+> +  The Qualcomm SoCs supporting the NAND controller interface features a Shared
+> +  Memory (SMEM) based partition table scheme. The maximum partitions supported
+> +  varies between partition table revisions. V3 supports maximum 16 partitions
+> +  and V4 supports 48 partitions.
 
-Applied, thanks!
+V3 vs. V4 (and any other version for that matter) is discoverable?
 
-But really, rather than trivial fixes to txt bindings, convert them to 
-schema instead.
-
-Rob
+> +
+> +properties:
+> +  compatible:
+> +    const: qcom,smem-part
+> +
+> +required:
+> +  - compatible
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    flash {
+> +        partitions {
+> +            compatible = "qcom,smem-part";
+> +        };
+> +    };
+> -- 
+> 2.17.1
+> 
