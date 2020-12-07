@@ -2,84 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5613D2D195A
-	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 20:22:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B9C3C2D195D
+	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 20:22:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725799AbgLGTVW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Dec 2020 14:21:22 -0500
-Received: from mail-oi1-f195.google.com ([209.85.167.195]:38989 "EHLO
-        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725816AbgLGTVW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 14:21:22 -0500
-Received: by mail-oi1-f195.google.com with SMTP id v85so6076195oia.6;
-        Mon, 07 Dec 2020 11:21:06 -0800 (PST)
+        id S1726247AbgLGTVt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Dec 2020 14:21:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57564 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725804AbgLGTVt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 14:21:49 -0500
+Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com [IPv6:2a00:1450:4864:20::344])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E64E6C061793;
+        Mon,  7 Dec 2020 11:21:08 -0800 (PST)
+Received: by mail-wm1-x344.google.com with SMTP id y23so297571wmi.1;
+        Mon, 07 Dec 2020 11:21:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=SegjRzTuCbPvQSuQPy/hbkcOF68wPXwUglzmO1J5ED8=;
+        b=gT4gTiaQT/pW4/YyaleDJqypVqNfEx9POtEipKeN5tp9BlXkP7P7Y3oFNBQxMQaCHF
+         6oJaFBUPFInYFaVvkKUjsiH6hzhUXtCUQRNfILL5Lt+f5wZLCj6q/ILxik0As0B2kmOU
+         kE53n29xzy1zHVb9r0o0YNvRxtiGWUQLY8nlrtLGWqOxb6+0YSeAeEo/9hC9MDIlXSSl
+         3X14FIzUXCSLvmZcjEVO3BYxA5hSXLSdlXODyzJG7CPi8vKLWKySLZxnzGxwk7qgJDtD
+         nVZCo7vnILefxW5U9yVMar98Rs/DaklUcm/Qsxu07s9Y+CqGzbhZYeKwGv2lA0B3AxKR
+         kx8w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=JSsF2fMn6gn09wqsZvVS/trYqwZ/I/Qd8YAVDUbBcNE=;
-        b=RDymnVUcej2tGnin61A5vy3QHaeQg3Lzc/UfHLgnZF2/+2X8x6ehFkJtb3MYoWjp8j
-         v2ZSFhGQiSN0TuVZAJlxc3qBp/m9RvAEUXt2+Uf8Hf6xoy9f7qC45FlUcAHbPrqwChyU
-         u7XVZtFVUUJoZRtZz/HHpoQkU3TcbjINhScMiQTJHO2eACqHnJkmqYU7PSXh8tX10DL+
-         hf+j+Cta83KYSm4mXIu7KWISiUfEhdgwqoiyNnMIrvPrmw2BAy+1uV1VwO43iK1I/vBp
-         23j5/TIVOIzKWGPFHO0MYk79/OuWrypjA7DYmsoDQbNt4k2zt1qDjLxkHaCoJgZ1CfXA
-         hqmg==
-X-Gm-Message-State: AOAM532sPaJ/v3KtlVkoba72Q/C5mo/8KXUQdTYnlozjP/RwaNFKZcR0
-        UW0yt48iHu4a1/D2knZ7mDfZ0JM4xw==
-X-Google-Smtp-Source: ABdhPJxtGn1GTYrqSbd6F1ZwM1v5EHysU70rmtwWsFbcCL1ba54BQcwubDafDwpgaQunlLQXPRXirw==
-X-Received: by 2002:aca:518c:: with SMTP id f134mr288203oib.108.1607368841091;
-        Mon, 07 Dec 2020 11:20:41 -0800 (PST)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id j2sm112031otq.78.2020.12.07.11.20.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Dec 2020 11:20:40 -0800 (PST)
-Received: (nullmailer pid 656175 invoked by uid 1000);
-        Mon, 07 Dec 2020 19:20:39 -0000
-Date:   Mon, 7 Dec 2020 13:20:39 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc:     devicetree@vger.kernel.org, Kishon Vijay Abraham I <kishon@ti.com>,
-        linux-kernel@vger.kernel.org, Hauke Mehrtens <hauke@hauke-m.de>,
-        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-        Vinod Koul <vkoul@kernel.org>,
-        bcm-kernel-feedback-list@broadcom.com
-Subject: Re: [PATCH] dt-bindings: phy: bcm-ns-usb3-phy: convert to yaml
-Message-ID: <20201207192039.GA656120@robh.at.kernel.org>
-References: <20201116074650.16070-1-zajec5@gmail.com>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=SegjRzTuCbPvQSuQPy/hbkcOF68wPXwUglzmO1J5ED8=;
+        b=Mc5fpmMj9m/492Vp2Tc+Nb2B1ufTOyvly8FCecvu7zXxBoLOXSkEdbhQlwFhvZ9Qv/
+         u1fn/4qLRbfVsnv4yfweUVqBNg17q1GhsRBC6qF/OymbUmSvkO6WU/DQtRbE9nhOaydz
+         A47o2p9GWx1MATdJeRZVOuhJ4OOL55Ho1L2a9VtFyGHhJyrCHPVBPNaKtZov9/SqLdo1
+         iU959EXasgPHQnggcQwDKUPPe42h4idGGwgB/d1C3YwUuUl6kRCkS7tH/E8jqPRpIb6b
+         9JDDpmHtNbApD5Cnm/hOt1DqjPxy9LSR622QVfL0UZr0ck1/5pRpBIlsT1NMN/MHowQw
+         9LQQ==
+X-Gm-Message-State: AOAM532sUWbsEowaDAjmcnJ0FL4AH4eH9ha3WjTQftLgZR1PGfkH4bsb
+        hRvKMKDmvn5PrdJku5Enlwc=
+X-Google-Smtp-Source: ABdhPJyC7QeC7BrqBhKfRoq2ZF3wmNzjD34rBcGtrwA/imEzIdwPuxBhyyXZdXU48yjXVpMnmtM44A==
+X-Received: by 2002:a1c:7e0b:: with SMTP id z11mr376185wmc.16.1607368867696;
+        Mon, 07 Dec 2020 11:21:07 -0800 (PST)
+Received: from localhost.localdomain (188.red-81-44-87.dynamicip.rima-tde.net. [81.44.87.188])
+        by smtp.gmail.com with ESMTPSA id 20sm276978wmk.16.2020.12.07.11.21.06
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 07 Dec 2020 11:21:06 -0800 (PST)
+From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
+To:     linus.walleij@linaro.org
+Cc:     robh+dt@kernel.org, gregkh@linuxfoundation.org,
+        yanaijie@huawei.com, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, devel@driverdev.osuosl.org
+Subject: [PATCH 0/3] pinctrl: ralink: pinctrl driver for the rt2880 family
+Date:   Mon,  7 Dec 2020 20:21:01 +0100
+Message-Id: <20201207192104.6046-1-sergio.paracuellos@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20201116074650.16070-1-zajec5@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 16 Nov 2020 08:46:49 +0100, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
-> 
-> 1. Change syntax from txt to yaml
-> 2. Drop "Driver for" from the title
-> 3. Drop "reg = <0x0>;" from example (noticed by dt_binding_check)
-> 4. Specify license
-> 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
-> ---
-> I think this should go through linux-phy tree. Kishon, Vinod, can you
-> take this patch?
-> 
-> This patch generates a false positive checkpatch.pl warning [0].
-> Please ignore:
-> WARNING: DT binding docs and includes should be a separate patch. See: Documentation/devicetree/bindings/submitting-patches.rst
-> 
-> [0] https://lkml.org/lkml/2020/2/18/1084
-> ---
->  .../bindings/phy/bcm-ns-usb3-phy.txt          | 34 ----------
->  .../bindings/phy/bcm-ns-usb3-phy.yaml         | 62 +++++++++++++++++++
->  2 files changed, 62 insertions(+), 34 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/phy/bcm-ns-usb3-phy.txt
->  create mode 100644 Documentation/devicetree/bindings/phy/bcm-ns-usb3-phy.yaml
-> 
+This series adds a pinctrl driver for ralink rt2880 SoC.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+After last cleanup in staging I was told [0] this driver is ready to be
+promoted from staging.
+
+This series are rebased on the top of staging-testing.
+
+Thanks in advance for your time.
+
+Best regards,
+    Sergio Paracuellos
+
+[0]: http://driverdev.linuxdriverproject.org/pipermail/driverdev-devel/2020-December/149178.html
+Sergio Paracuellos (3):
+  dt-bindings: pinctrl: rt2880: add binding document
+  pinctrl: ralink: add a pinctrl driver for the rt2880 family
+  staging: mt7621-pinctrl: remove driver from staging
+
+ .../pinctrl/ralink,rt2880-pinmux.yaml         | 82 +++++++++++++++++++
+ drivers/pinctrl/Kconfig                       |  6 ++
+ drivers/pinctrl/Makefile                      |  1 +
+ .../pinctrl-rt2880.c                          |  0
+ drivers/staging/Kconfig                       |  2 -
+ drivers/staging/Makefile                      |  1 -
+ drivers/staging/mt7621-pinctrl/Kconfig        |  6 --
+ drivers/staging/mt7621-pinctrl/Makefile       |  4 -
+ drivers/staging/mt7621-pinctrl/TODO           |  6 --
+ 9 files changed, 89 insertions(+), 19 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/ralink,rt2880-pinmux.yaml
+ rename drivers/{staging/mt7621-pinctrl => pinctrl}/pinctrl-rt2880.c (100%)
+ delete mode 100644 drivers/staging/mt7621-pinctrl/Kconfig
+ delete mode 100644 drivers/staging/mt7621-pinctrl/Makefile
+ delete mode 100644 drivers/staging/mt7621-pinctrl/TODO
+
+-- 
+2.25.1
+
