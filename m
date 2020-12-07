@@ -2,147 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C10DA2D1CB0
-	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 23:04:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A85002D1CBA
+	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 23:07:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726220AbgLGWEO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Dec 2020 17:04:14 -0500
-Received: from mail-ot1-f68.google.com ([209.85.210.68]:33277 "EHLO
-        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725799AbgLGWEN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 17:04:13 -0500
-Received: by mail-ot1-f68.google.com with SMTP id b18so14062791ots.0;
-        Mon, 07 Dec 2020 14:03:58 -0800 (PST)
+        id S1727366AbgLGWF0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Dec 2020 17:05:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55010 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726492AbgLGWF0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 17:05:26 -0500
+Received: from mail-oi1-x242.google.com (mail-oi1-x242.google.com [IPv6:2607:f8b0:4864:20::242])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C163C061749;
+        Mon,  7 Dec 2020 14:04:46 -0800 (PST)
+Received: by mail-oi1-x242.google.com with SMTP id o25so17219633oie.5;
+        Mon, 07 Dec 2020 14:04:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=C3N3paf93HavLvwzDFDFeKUOun8/j//DcO2lRDULPik=;
+        b=loy0br6Xjh587Iqzl8Y+AlQP159ArLJt2gBSbEo7SZftOhERDV4Bx6kPlQtKkgQeIS
+         MVFA/7UmzDzEcdpFQxz2+yGOVdEBa1fSDo/M1DoN1p6dQGz5Tw50UFoM79KyRZjvby+q
+         y+bs0A6PqKVPrn6cD1xdHNsvep2SaUKPGvrGgFaakDNNBt5pAQy97WTS7EFbSp2aXb6r
+         fPqlvFlrqSr0xs/T7IYfaZNz6vpmv+27aCM1sdPVlmgHuR2liz3pz4WA6F5kD9xHRyoX
+         denZZSbslylLcRfM/NzNxqgxRLPjRwSilbH3cnOtx66eTxPUTrkeT3UD8XYg4Lmq+lKJ
+         3feA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=V0mqqJ3OVz05oRFoQsrS34BgAVCpwooVqqVYDSSkUB4=;
-        b=YB3Ev4+dlK5q4Yqvp4xc9yCvdfsShFIS5nm+WUQWFSGGhYhfjKRBMXIqrzzUmb71M4
-         vcQp602RNh1SKZZOTBvfeC/uD1CbYO6V0w4tMbtIyde7AT6GOlbqTRwsP1LOjGgZuRKA
-         TI4K1m/ROS3sH5lrJzYRoU6KBHx4GikBSmyEKmQ0xV0Xl0eoXXFgtIs0w0FoAykRBS0U
-         OtAxXcqPKWV3xOBHLzN95avNv4JbHX7y2+PnYBFf7bkuTdGOYom2bF/arpC0GL5ZiNFy
-         D0MVkUQMowyFrvjG/Hj0GSV8cxEfFFa4PCQehW3zFBbvoKn7khayrIIW7+xRwLEQ1I5S
-         nv1A==
-X-Gm-Message-State: AOAM532IyupB0A3vsstVSA7uwrI7WjJUvwIlr+0wAu1KqX5Ro/InktFp
-        yBudLtrNqf+Njy6Je5y8lA==
-X-Google-Smtp-Source: ABdhPJxvs7gWBxPfFYmdpp+KLCZOJ56/weNtINy+k/GhWmKg9zXiQytUIvcrMCgK+B7oirCquuCAeg==
-X-Received: by 2002:a9d:3e85:: with SMTP id b5mr14410618otc.354.1607378612639;
-        Mon, 07 Dec 2020 14:03:32 -0800 (PST)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id z12sm3131592oti.45.2020.12.07.14.03.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Dec 2020 14:03:31 -0800 (PST)
-Received: (nullmailer pid 914711 invoked by uid 1000);
-        Mon, 07 Dec 2020 22:03:30 -0000
-Date:   Mon, 7 Dec 2020 16:03:30 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Alexandru Ardelean <alexandru.ardelean@analog.com>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-iio@vger.kernel.org, jic23@kernel.org,
-        andy.shevchenko@gmail.com
-Subject: Re: [PATCH v2 4/4] dt-bindings: adc: ad7887: add binding doc for
- AD7887
-Message-ID: <20201207220330.GB912645@robh.at.kernel.org>
-References: <20201119100748.57689-1-alexandru.ardelean@analog.com>
- <20201119100748.57689-4-alexandru.ardelean@analog.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201119100748.57689-4-alexandru.ardelean@analog.com>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=C3N3paf93HavLvwzDFDFeKUOun8/j//DcO2lRDULPik=;
+        b=fkN+a9JU7IVYGhlDuSatF3Onk0h48Q+FzCgfzDnv7v0tCmBrirxBeFE0DaTkBDwyqp
+         yfvXyMzTGTlL97yMVit6HKQadO1+fAcLNfn2pBoVTuKT9C7EBD3bI0g3uTguSbJQPEAq
+         KZz9ydbHl356IMSK1qX4Y9QfSai2s56UygRJKnUPOYaC5CiZIJtnjJRNMwbgz+M8S2e7
+         XppwIR6jfHYtX/eBv5RmD0PJ8FpsQoRVn74yeBx/XdcIu2pD+rdlTSiwa0hCLQOJwr18
+         vb2DMpZ53AnuLd+yS4s4d71KsbzfeVN+XfJKAQt3wtMIJUlE0/y1QN8xeIpXzL6V+9xV
+         s61A==
+X-Gm-Message-State: AOAM533FbKSQK5wkMHHSm+HOLt9EDcbIAvAggctQ7uyF2/Z/Z/HQePWX
+        Nxgly8EOFC/9zacvg68XjTczYCiXZJP0
+X-Google-Smtp-Source: ABdhPJyuxhWTKn2phKXfRbHuKOgy9n9dqPqZywkLDnB8ejQWC2wkJa+x2i3+a21xrBy9+Kx9++mTHA==
+X-Received: by 2002:aca:42d7:: with SMTP id p206mr651378oia.133.1607378685472;
+        Mon, 07 Dec 2020 14:04:45 -0800 (PST)
+Received: from threadripper.novatech-llc.local ([216.21.169.52])
+        by smtp.gmail.com with ESMTPSA id g5sm2940472otq.43.2020.12.07.14.04.44
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 07 Dec 2020 14:04:44 -0800 (PST)
+From:   George McCollister <george.mccollister@gmail.com>
+To:     Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>
+Cc:     "David S . Miller " <davem@davemloft.net>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        George McCollister <george.mccollister@gmail.com>
+Subject: [PATCH net-next v3 0/3] Arrow SpeedChips XRS700x DSA Driver
+Date:   Mon,  7 Dec 2020 16:03:52 -0600
+Message-Id: <20201207220355.8707-1-george.mccollister@gmail.com>
+X-Mailer: git-send-email 2.11.0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 19, 2020 at 12:07:48PM +0200, Alexandru Ardelean wrote:
-> This change adds a simple device-tree binding for thhe Analog Devices
-> AD7887 ADC.
-> 
-> Signed-off-by: Alexandru Ardelean <alexandru.ardelean@analog.com>
-> ---
->  .../bindings/iio/adc/adi,ad7887.yaml          | 70 +++++++++++++++++++
->  1 file changed, 70 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad7887.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7887.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7887.yaml
-> new file mode 100644
-> index 000000000000..9b30f4569b4e
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7887.yaml
-> @@ -0,0 +1,70 @@
-> +# SPDX-License-Identifier: GPL-2.0
+This series adds a DSA driver for the Arrow SpeedChips XRS 7000 series
+of HSR/PRP gigabit switch chips.
 
-Dual license new bindings. checkpatch.pl will tell you this.
+The chips use Flexibilis IP.
+More information can be found here:
+ https://www.flexibilis.com/products/speedchips-xrs7000/
 
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/adc/adi,ad7887.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Analog Devices AD7887 low power, 12-bit ADC
-> +
-> +maintainers:
-> +  - Michael Hennerich <michael.hennerich@analog.com>
-> +
-> +description: |
-> +  Analog Devices AD7887 low power, 12-bit analog-to-digital converter (ADC)
-> +  that operates from a single 2.7 V to 5.25 V power supply.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - adi,ad7887
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  spi-cpha: true
-> +
-> +  spi-cpol: true
-> +
-> +  avcc-supply: true
-> +
-> +  spi-max-frequency: true
-> +
-> +  vref-supply:
-> +    description:
-> +      ADC reference voltage supply
-> +
-> +  adi,dual-channel-mode:
-> +    description:
-> +      Configures dual-channel mode for the ADC. In dual-channel operation,
-> +      the AIN1/VREF pin assumes its AIN1 function, providing a second analog
-> +      input channel. In this case, he reference voltage for the part is provided
-> +      via the VDD pin. As a result, the input voltage range on both the AIN0 and
-> +      AIN1 inputs is 0 to VDD.
-> +    type: boolean
-> +
-> +additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - spi-cpha
-> +  - spi-cpol
-> +
-> +examples:
-> +  - |
-> +    spi0 {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        adc@0 {
-> +                compatible = "adi,ad7887";
-> +                reg = <0>;
-> +                spi-max-frequency = <1000000>;
-> +                spi-cpol;
-> +                spi-cpha;
-> +
-> +                avcc-supply = <&adc_supply>;
-> +                vref-supply = <&adc_vref>;
-> +        };
-> +    };
-> +...
-> -- 
-> 2.17.1
-> 
+The switches have up to three RGMII ports and one MII port and are
+managed via mdio or i2c. They use a one byte trailing tag to identify
+the switch port when in managed mode so I've added a tag driver which
+implements this.
+
+This series contains minimal DSA functionality which may be built upon
+in future patches. The ultimate goal is to add HSR and PRP
+(IEC 62439-3 Clause 5 & 4) offloading with integration into net/hsr.
+
+"net: dsa: add Arrow SpeedChips XRS700x driver" depends on:
+"net: dsa: add optional stats64 support" being merged first.
+https://lore.kernel.org/netdev/20201204145624.11713-2-o.rempel@pengutronix.de/
+
+Changes since v1:
+ * Use central TX reallocation in tag driver. (Andrew Lunn)
+ * Code style fixes. (Andrew Lunn, Vladimir Oltean)
+ * Code simplifications. (Andrew Lunn, Vladimir Oltean)
+ * Verify detected switch matches compatible. (Andrew Lunn)
+ * Add inbound policy to allow BPDUs. (Andrew Lunn)
+ * Move files into their own subdir. (Vladimir Oltean)
+ * Automate regmap field allocation. (Vladimir Oltean)
+ * Move setting link speed to .mac_link_up. (Vladimir Oltean)
+ * Use different compatible strings for e/f variants.
+
+Changes since v2:
+ * Export constant xrs700x_info symbols. (Jakub Kicinski)
+ * Report stats via .get_stats64. (Jakub Kicinski, Vladimir Oltean)
+ * Use a 3 second polling rate for counters.
+
+George McCollister (3):
+  dsa: add support for Arrow XRS700x tag trailer
+  net: dsa: add Arrow SpeedChips XRS700x driver
+  dt-bindings: net: dsa: add bindings for xrs700x switches
+
+ .../devicetree/bindings/net/dsa/arrow,xrs700x.yaml |  74 +++
+ drivers/net/dsa/Kconfig                            |   2 +
+ drivers/net/dsa/Makefile                           |   1 +
+ drivers/net/dsa/xrs700x/Kconfig                    |  26 +
+ drivers/net/dsa/xrs700x/Makefile                   |   4 +
+ drivers/net/dsa/xrs700x/xrs700x.c                  | 629 +++++++++++++++++++++
+ drivers/net/dsa/xrs700x/xrs700x.h                  |  42 ++
+ drivers/net/dsa/xrs700x/xrs700x_i2c.c              | 150 +++++
+ drivers/net/dsa/xrs700x/xrs700x_mdio.c             | 162 ++++++
+ drivers/net/dsa/xrs700x/xrs700x_reg.h              | 205 +++++++
+ include/net/dsa.h                                  |   2 +
+ net/dsa/Kconfig                                    |   6 +
+ net/dsa/Makefile                                   |   1 +
+ net/dsa/tag_xrs700x.c                              |  67 +++
+ 14 files changed, 1371 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/dsa/arrow,xrs700x.yaml
+ create mode 100644 drivers/net/dsa/xrs700x/Kconfig
+ create mode 100644 drivers/net/dsa/xrs700x/Makefile
+ create mode 100644 drivers/net/dsa/xrs700x/xrs700x.c
+ create mode 100644 drivers/net/dsa/xrs700x/xrs700x.h
+ create mode 100644 drivers/net/dsa/xrs700x/xrs700x_i2c.c
+ create mode 100644 drivers/net/dsa/xrs700x/xrs700x_mdio.c
+ create mode 100644 drivers/net/dsa/xrs700x/xrs700x_reg.h
+ create mode 100644 net/dsa/tag_xrs700x.c
+
+-- 
+2.11.0
+
