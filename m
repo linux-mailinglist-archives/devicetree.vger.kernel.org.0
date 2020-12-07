@@ -2,135 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 45AEC2D0A7F
-	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 07:01:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 185312D0AAE
+	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 07:32:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725881AbgLGGAp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Dec 2020 01:00:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45934 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725773AbgLGGAp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 01:00:45 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 480D9C0613D3
-        for <devicetree@vger.kernel.org>; Sun,  6 Dec 2020 22:00:05 -0800 (PST)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1km9Yx-0003Dh-4W; Mon, 07 Dec 2020 06:59:55 +0100
-Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1km9Yu-00024l-PM; Mon, 07 Dec 2020 06:59:52 +0100
-Date:   Mon, 7 Dec 2020 06:59:52 +0100
-From:   Sascha Hauer <s.hauer@pengutronix.de>
-To:     michael.srba@seznam.cz
-Cc:     Dave Stevenson <dave.stevenson@raspberrypi.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        id S1725877AbgLGGcP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Dec 2020 01:32:15 -0500
+Received: from mailgw02.mediatek.com ([210.61.82.184]:58721 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1725853AbgLGGcO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 01:32:14 -0500
+X-UUID: e61621a38d034822a5fe688d5d26d22f-20201207
+X-UUID: e61621a38d034822a5fe688d5d26d22f-20201207
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
+        (envelope-from <michael.kao@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1939597967; Mon, 07 Dec 2020 14:31:28 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs06n1.mediatek.inc (172.21.101.129) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Mon, 7 Dec 2020 14:31:27 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 7 Dec 2020 14:31:26 +0800
+From:   Michael Kao <michael.kao@mediatek.com>
+To:     <michael.kao@mediatek.com>, <ethan.chang@mediatek.com>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        <linux-pm@vger.kernel.org>, <srv_heupstream@mediatek.com>
+CC:     Eduardo Valentin <edubezval@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v2 1/3] media: i2c: imx219: add support for specifying
- clock-frequencies
-Message-ID: <20201207055952.GB14307@pengutronix.de>
-References: <20201206172720.9406-1-michael.srba@seznam.cz>
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        <hsinyi@chromium.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>
+Subject: [PATCH 0/3] Add LVTS architecture thermal controller
+Date:   Mon, 7 Dec 2020 14:31:24 +0800
+Message-ID: <20201207063127.28051-1-michael.kao@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201206172720.9406-1-michael.srba@seznam.cz>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 06:33:53 up 4 days, 18:00, 39 users,  load average: 0.07, 0.11, 0.14
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Michael,
+This patch move thermal files related to Mediatek to the mediatek folder.
+And introduce the new architecture LVTS (low pressure thermal sensor) driver to report
+the highest temperature in the SoC and record the highest temperature sensor,
+each sensor as a hot zone.
+The LVTS body is divided into two parts, the LVTS controller and the LVTS device.
+The LVTS controller can connect up to 4 LVTS devices, and each LVTS device
+can connect up to 7 TSMCUs.
 
-On Sun, Dec 06, 2020 at 06:27:18PM +0100, michael.srba@seznam.cz wrote:
-> From: Michael Srba <Michael.Srba@seznam.cz>
-> 
-> This patch adds 1% tolerance on input clock, similar to other camera sensor
-> drivers. It also allows for specifying the actual clock in the device tree,
-> instead of relying on it being already set to the right frequency (which is
-> often not the case).
-> 
-> Signed-off-by: Michael Srba <Michael.Srba@seznam.cz>
-> 
-> ---
-> 
-> changes since v1: default to exactly 24MHz when `clock-frequency` is not present
-> 
-> ---
->  drivers/media/i2c/imx219.c | 19 +++++++++++++++++--
->  1 file changed, 17 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/media/i2c/imx219.c b/drivers/media/i2c/imx219.c
-> index f64c0ef7a897..b6500e2ab19e 100644
-> --- a/drivers/media/i2c/imx219.c
-> +++ b/drivers/media/i2c/imx219.c
-> @@ -1443,13 +1443,28 @@ static int imx219_probe(struct i2c_client *client)
->  		return PTR_ERR(imx219->xclk);
->  	}
->  
-> -	imx219->xclk_freq = clk_get_rate(imx219->xclk);
-> -	if (imx219->xclk_freq != IMX219_XCLK_FREQ) {
-> +	ret = fwnode_property_read_u32(dev_fwnode(dev), "clock-frequency", &imx219->xclk_freq);
-> +	if (ret) {
-> +		dev_warn(dev, "could not get xclk frequency\n");
-> +
-> +		/* default to 24MHz */
-> +		imx219->xclk_freq = 24000000;
-> +	}
-> +
-> +	/* this driver currently expects 24MHz; allow 1% tolerance */
-> +	if (imx219->xclk_freq < 23760000 || imx219->xclk_freq > 24240000) {
->  		dev_err(dev, "xclk frequency not supported: %d Hz\n",
->  			imx219->xclk_freq);
->  		return -EINVAL;
->  	}
->  
-> +	ret = clk_set_rate(imx219->xclk, imx219->xclk_freq);
-> +	if (ret) {
-> +		dev_err(dev, "could not set xclk frequency\n");
-> +		return ret;
-> +	}
+The architecture will be the first to be used on mt6873 and mt8192.
 
-clk_set_rate() returns successfully when the rate change has succeeded.
-It tells you nothing about the actual rate that has been set. The rate
-could be very different from what you want to get, depending on what the
-hardware is able to archieve. There's clk_round_rate() that tells you
-which rate you'll get when you call clk_set_rate() with that value.
-You would have to call clk_round_rate() first and see if you are happy
-with the result, afterwards set the rate. From that view it doesn't make
-much sense to check the device tree if a number between 23760000 and
-24240000 is specified there, the clk api will do rounding anyway.
+Michael Kao (3):
+  thermal: mediatek: Relocate driver to mediatek folder
+  thermal: mediatek: Add LVTS drivers for SoC theraml zones
+  dt-bindings: thermal: Add binding document for mt6873 thermal
+    controller
 
-Also there's the assigned-clocks device tree binding, see
-Documentation/devicetree/bindings/clock/clock-bindings.txt. This allows
-you to set the desired clock rate directly in the device tree. All
-that's left to do in the driver is to replace the check for the exact
-rate with a check which allows a certain tolerance.
-
-Sascha
+ .../thermal/mediatek-thermal-lvts.yaml        |   80 +
+ drivers/thermal/Kconfig                       |   14 +-
+ drivers/thermal/Makefile                      |    2 +-
+ drivers/thermal/mediatek/Kconfig              |   33 +
+ drivers/thermal/mediatek/Makefile             |    2 +
+ .../{mtk_thermal.c => mediatek/soc_temp.c}    |    0
+ drivers/thermal/mediatek/soc_temp_lvts.c      | 1293 +++++++++++++++++
+ drivers/thermal/mediatek/soc_temp_lvts.h      |  312 ++++
+ 8 files changed, 1725 insertions(+), 11 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/thermal/mediatek-thermal-lvts.yaml
+ create mode 100644 drivers/thermal/mediatek/Kconfig
+ create mode 100644 drivers/thermal/mediatek/Makefile
+ rename drivers/thermal/{mtk_thermal.c => mediatek/soc_temp.c} (100%)
+ create mode 100644 drivers/thermal/mediatek/soc_temp_lvts.c
+ create mode 100644 drivers/thermal/mediatek/soc_temp_lvts.h
 
 -- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+2.18.0
+
