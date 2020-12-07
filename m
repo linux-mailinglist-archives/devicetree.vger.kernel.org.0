@@ -2,86 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CCDF32D1E17
-	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 00:08:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 19D4E2D1E1B
+	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 00:10:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728279AbgLGXEr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Dec 2020 18:04:47 -0500
-Received: from mail-oi1-f193.google.com ([209.85.167.193]:45468 "EHLO
-        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728191AbgLGXEr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 18:04:47 -0500
-Received: by mail-oi1-f193.google.com with SMTP id f132so2916472oib.12;
-        Mon, 07 Dec 2020 15:04:31 -0800 (PST)
+        id S1726055AbgLGXJF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Dec 2020 18:09:05 -0500
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:41992 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725917AbgLGXJF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 18:09:05 -0500
+Received: by mail-ot1-f68.google.com with SMTP id 11so14176774oty.9;
+        Mon, 07 Dec 2020 15:08:49 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=FKVOi81QuTxtmvRA/1QQ/i5ym4BvFRsKDGyyquA2QGo=;
-        b=eNBC3eewy9RFGjNbS2oh3m/WrMPSAB2U9aaSe1KIyA0tcsyFsQu6EPjdBPvY015++F
-         UpeS5wtzFGePypwV3LBg61X3S3YYUfHakEInzzUsDwAG5LiNirK0PROcL7GJbhd4paGa
-         81GTx8Joo5Ycje6Icb0ZdrGw+lWFqkSqXr+L2hu3vWqHxIaYpguB8VbYbA7m95zvAuVP
-         qfuuut4CATzgEmEE/V6N6DyQxn507zzmuEjt2Wtuel+Q2k0jG7rbO1mRuHFtQYYTYdHe
-         rRSLvvielgaVOYyKPZ5tQocFaOU6O+uwUWFLukp9v267ZtTacqhi/0M0xEFLl3yYndMm
-         XP3g==
-X-Gm-Message-State: AOAM532mkFbk43pSG1fV4Bg2RFqD3TzzfEd7dYZVznGmh7dhAGptQoj3
-        k5tYOmkAxVbjehW2QLaw+KOqAIVZHw==
-X-Google-Smtp-Source: ABdhPJwPrbY2Mjm4riXSridU15duWihLNezTrBEYDRujhThLF7Qyb60cdAnrlpGQs50eGq37s+lzoA==
-X-Received: by 2002:aca:5548:: with SMTP id j69mr856075oib.32.1607382246438;
-        Mon, 07 Dec 2020 15:04:06 -0800 (PST)
+        bh=zsVLjp+2xVraSwpotdRQfpDFqATYYtM1FS0Mr8BrZ+c=;
+        b=ZFps8B8N2eu9j4Sbl91kBD5HDxYQ/rlCreJV1ak3WBs/T8yNICMYZHLE+QMS3sr8/M
+         2PFmWJ0nFcvxtD9aEwGZYXtQWfCz8I9ZjW3IwZF8QrHTQea0/IKrZU/e/Q5DJd6zIiws
+         NNCnloQGi0jIyHOS7BomCuQgSj25+bm24+p7Q8tliDv1SlFvVxriDRD0tJBZ17+/cXgf
+         ITCqBhSHDbban9l0r1G+VHoVA0kng3jPyGRxmjV4bPQe73PBLum/OFtHlFo5pwHuyQ+W
+         Q7TjAqa7101JDtqrOI1GkRV0cX7DeQIxfYLA54+8oMzWI3A2D0BIt3D1tV2cepoxLIsc
+         DKHA==
+X-Gm-Message-State: AOAM533ufCDJV4FIPp+f+mYE0NxfRUGsYBvrJEVp3KvmwuAi5arb6PcQ
+        O+W8ArOfxKTi3sltVq07BQ==
+X-Google-Smtp-Source: ABdhPJz4Ez45qvDjUXcFbK2D9LsN06TUB99Be4VmINejvsIBhqWEOY1+GGCCp/E8ICedi7w4b/lemw==
+X-Received: by 2002:a05:6830:3151:: with SMTP id c17mr14831740ots.336.1607382504412;
+        Mon, 07 Dec 2020 15:08:24 -0800 (PST)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id j204sm952836oih.15.2020.12.07.15.04.05
+        by smtp.gmail.com with ESMTPSA id x72sm3289675oia.16.2020.12.07.15.08.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Dec 2020 15:04:05 -0800 (PST)
-Received: (nullmailer pid 1014048 invoked by uid 1000);
-        Mon, 07 Dec 2020 23:04:04 -0000
-Date:   Mon, 7 Dec 2020 17:04:04 -0600
+        Mon, 07 Dec 2020 15:08:22 -0800 (PST)
+Received: (nullmailer pid 1021070 invoked by uid 1000);
+        Mon, 07 Dec 2020 23:08:21 -0000
+Date:   Mon, 7 Dec 2020 17:08:21 -0600
 From:   Rob Herring <robh@kernel.org>
 To:     Zhen Lei <thunder.leizhen@huawei.com>
-Cc:     David Airlie <airlied@linux.ie>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
+Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
+        Wei Xu <xuwei5@hisilicon.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
         devicetree <devicetree@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Sam Ravnborg <sam@ravnborg.org>
-Subject: Re: [PATCH v2 1/1] dt-bindings: display: eliminate yamllint warnings
-Message-ID: <20201207230404.GA1013997@robh.at.kernel.org>
-References: <20201207044830.1551-1-thunder.leizhen@huawei.com>
- <20201207044830.1551-2-thunder.leizhen@huawei.com>
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Zhangfei Gao <zhangfei.gao@linaro.org>,
+        Chen Feng <puck.chen@hisilicon.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Subject: Re: [PATCH v2 1/3] reset: hisilicon: correct vendor prefix
+Message-ID: <20201207230821.GA1015860@robh.at.kernel.org>
+References: <20201204014236.1158-1-thunder.leizhen@huawei.com>
+ <20201204014236.1158-2-thunder.leizhen@huawei.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201207044830.1551-2-thunder.leizhen@huawei.com>
+In-Reply-To: <20201204014236.1158-2-thunder.leizhen@huawei.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 07 Dec 2020 12:48:30 +0800, Zhen Lei wrote:
-> Eliminate the following yamllint warnings:
-> ./Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
-> :52:9: [warning] wrong indentation: expected 6 but found 8 (indentation)
-> 
-> ./Documentation/devicetree/bindings/display/bridge/intel,keembay-dsi.yaml
-> :42:8: [warning] wrong indentation: expected 8 but found 7 (indentation)
-> :45:8: [warning] wrong indentation: expected 8 but found 7 (indentation)
-> 
-> ./Documentation/devicetree/bindings/display/intel,keembay-msscam.yaml
-> :21:6: [warning] wrong indentation: expected 6 but found 5 (indentation)
-> 
-> ./Documentation/devicetree/bindings/display/panel/novatek,nt36672a.yaml
-> :25:10: [warning] wrong indentation: expected 10 but found 9 (indentation)
-> 
-> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
-> Acked-by: Sam Ravnborg <sam@ravnborg.org>
-> ---
->  .../devicetree/bindings/display/bridge/analogix,anx7625.yaml          | 4 ++--
->  .../devicetree/bindings/display/bridge/intel,keembay-dsi.yaml         | 4 ++--
->  Documentation/devicetree/bindings/display/intel,keembay-msscam.yaml   | 4 ++--
->  Documentation/devicetree/bindings/display/panel/novatek,nt36672a.yaml | 2 +-
->  4 files changed, 7 insertions(+), 7 deletions(-)
-> 
+On Fri, Dec 04, 2020 at 09:42:34AM +0800, Zhen Lei wrote:
+> The vendor prefix of "Hisilicon Limited" is "hisilicon", it is clearly
+> stated in "vendor-prefixes.yaml".
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Yes, but you can't fix this as changing it breaks compability between 
+DTBs and kernels.
+
+hisi has to be documented and marked 'deprecated'.
+
+> 
+> Fixes: 1527058736fa ("reset: hisilicon: add reset-hi3660")
+> Fixes: 35ca8168133c ("arm64: dts: Add dts files for Hisilicon Hi3660 SoC")
+> Fixes: dd8c7b78c11b ("arm64: dts: Add devicetree for Hisilicon Hi3670 SoC")
+> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
+> Cc: Zhangfei Gao <zhangfei.gao@linaro.org>
+> Cc: Chen Feng <puck.chen@hisilicon.com>
+> Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> ---
+>  arch/arm64/boot/dts/hisilicon/hi3660.dtsi | 4 ++--
+>  arch/arm64/boot/dts/hisilicon/hi3670.dtsi | 2 +-
+>  drivers/reset/hisilicon/reset-hi3660.c    | 2 +-
+>  3 files changed, 4 insertions(+), 4 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/hisilicon/hi3660.dtsi b/arch/arm64/boot/dts/hisilicon/hi3660.dtsi
+> index 49c19c6879f95ce..bfb1375426d2b58 100644
+> --- a/arch/arm64/boot/dts/hisilicon/hi3660.dtsi
+> +++ b/arch/arm64/boot/dts/hisilicon/hi3660.dtsi
+> @@ -345,7 +345,7 @@
+>  		crg_rst: crg_rst_controller {
+>  			compatible = "hisilicon,hi3660-reset";
+>  			#reset-cells = <2>;
+> -			hisi,rst-syscon = <&crg_ctrl>;
+> +			hisilicon,rst-syscon = <&crg_ctrl>;
+>  		};
+>  
+>  
+> @@ -376,7 +376,7 @@
+>  
+>  		iomcu_rst: reset {
+>  			compatible = "hisilicon,hi3660-reset";
+> -			hisi,rst-syscon = <&iomcu>;
+> +			hisilicon,rst-syscon = <&iomcu>;
+>  			#reset-cells = <2>;
+>  		};
+>  
+> diff --git a/arch/arm64/boot/dts/hisilicon/hi3670.dtsi b/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
+> index 85b0dfb35d6d396..5c5a5dc964ea848 100644
+> --- a/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
+> +++ b/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
+> @@ -155,7 +155,7 @@
+>  			compatible = "hisilicon,hi3670-reset",
+>  				     "hisilicon,hi3660-reset";
+>  			#reset-cells = <2>;
+> -			hisi,rst-syscon = <&crg_ctrl>;
+> +			hisilicon,rst-syscon = <&crg_ctrl>;
+>  		};
+>  
+>  		pctrl: pctrl@e8a09000 {
+> diff --git a/drivers/reset/hisilicon/reset-hi3660.c b/drivers/reset/hisilicon/reset-hi3660.c
+> index a7d4445924e558c..8f1953159a65b31 100644
+> --- a/drivers/reset/hisilicon/reset-hi3660.c
+> +++ b/drivers/reset/hisilicon/reset-hi3660.c
+> @@ -83,7 +83,7 @@ static int hi3660_reset_probe(struct platform_device *pdev)
+>  	if (!rc)
+>  		return -ENOMEM;
+>  
+> -	rc->map = syscon_regmap_lookup_by_phandle(np, "hisi,rst-syscon");
+> +	rc->map = syscon_regmap_lookup_by_phandle(np, "hisilicon,rst-syscon");
+>  	if (IS_ERR(rc->map)) {
+>  		dev_err(dev, "failed to get hi3660,rst-syscon\n");
+>  		return PTR_ERR(rc->map);
+> -- 
+> 1.8.3
+> 
+> 
