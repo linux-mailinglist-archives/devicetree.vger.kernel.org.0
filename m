@@ -2,102 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 578A32D155D
-	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 17:02:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DE3482D1567
+	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 17:02:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727413AbgLGP64 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Dec 2020 10:58:56 -0500
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:43295 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726137AbgLGP64 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 10:58:56 -0500
-Received: by mail-ot1-f67.google.com with SMTP id q25so1082550otn.10;
-        Mon, 07 Dec 2020 07:58:41 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=voI/5OCID9h7T7s4ztgsU/7R03t2LV7/eDN1pq5mjMQ=;
-        b=XSBFJMjbsSmliZVSkGK4Ywujqn17HurPnbOLr7Xn3O2gVEZ/oC9d6CFqr/LEVNAoSj
-         BZMo/GZsOSzpXFjzpORVxK0HIUlBs0/lcJFoA3f75TIAcq+vk81BTHE8M1+SDNUtJKVz
-         ujcR4OTJzJCAhFq+F/wL051R9dGuc8Bz4Az3FvP+wS/bBaTuQ5NEPjiQmUCpjnnTaVr0
-         DH+nfEgr6+vTBMvxRZwJvzP7knJwvnskw40xY/rgGZLM7556Sq1xetvzWOnqbI/NcndL
-         RdlpcOD+FZRHsldP4jPntH/A+QO7OPweDqTxVVVM2evDXUi99RkAQRAE/Y/oYAi3QBFF
-         wPkA==
-X-Gm-Message-State: AOAM533iFYobSJP41yzLifzNrnTORTJtIsyjmwAtEdSVgooyYFWq6FU/
-        g9dJRs95UxRS/4BNaFJfHg==
-X-Google-Smtp-Source: ABdhPJwsTYZ1hdmjDHYLEIVeZZNqxdDUzmiscVda2Gg1Hc1oYsqolaJGXGJG8/9tOVN80FxnOK9w+g==
-X-Received: by 2002:a9d:5381:: with SMTP id w1mr13279853otg.7.1607356696000;
-        Mon, 07 Dec 2020 07:58:16 -0800 (PST)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id v5sm2672942oob.40.2020.12.07.07.58.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Dec 2020 07:58:15 -0800 (PST)
-Received: (nullmailer pid 351998 invoked by uid 1000);
-        Mon, 07 Dec 2020 15:58:14 -0000
-Date:   Mon, 7 Dec 2020 09:58:14 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     mgross@linux.intel.com
-Cc:     robh+dt@kernel.org, leonard.crestez@nxp.com,
-        gregkh@linuxfoundation.org, palmerdabbelt@google.com,
-        devicetree@vger.kernel.org,
-        Ryan Carnaghi <ryan.r.carnaghi@intel.com>,
-        Seamus Kelly <seamus.kelly@intel.com>, arnd@arndb.de,
-        damien.lemoal@wdc.com, markgross@kernel.org, corbet@lwn.net,
-        linux-kernel@vger.kernel.org, dragan.cvetic@xilinx.com,
-        shawnguo@kernel.org, paul.walmsley@sifive.com, bp@suse.de,
-        peng.fan@nxp.com
-Subject: Re: [PATCH 15/22] xlink-ipc: Add xlink ipc device tree bindings
-Message-ID: <20201207155814.GA351233@robh.at.kernel.org>
-References: <20201201223511.65542-1-mgross@linux.intel.com>
- <20201201223511.65542-16-mgross@linux.intel.com>
+        id S1725866AbgLGQAx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Dec 2020 11:00:53 -0500
+Received: from userp2130.oracle.com ([156.151.31.86]:36826 "EHLO
+        userp2130.oracle.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725781AbgLGQAx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 11:00:53 -0500
+Received: from pps.filterd (userp2130.oracle.com [127.0.0.1])
+        by userp2130.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 0B7FxvtU093883;
+        Mon, 7 Dec 2020 15:59:57 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=corp-2020-01-29;
+ bh=QmE5XGfNVDaXSVhroX5djONqdwv6Tyi1JDRvHNNex3w=;
+ b=Yia5WQj0S7TbqPriIuRPI0r9m4Vt6szO5adGMLngXA1Ufs3GPEO9R2/7qU1sS7WQ85tB
+ c/odCmBOtH0fNTGi6E11SYi6KigSC4JcquTrjVmfVTIF0o5tfQKiESxutGUmjE2DWC/k
+ VIK3KjSKvbdd98TOfcm5RTgPi12O/y/Gv3GRQgRJstBCqTLPyIdrpeDPJvnRZAyhLsvT
+ l+UOvrh8fdxdkiYFLweqU1l77aUbdRq/Ep+tclp224jdkBme+74yETrRQiiHkSjf2Anl
+ eJ4uCwA2PsHUTtHP2kIKFXDV73YoYVyE8BPVDOSuiKmpoX2fcEv0uyBbl3GhQjlx6Qza kw== 
+Received: from userp3020.oracle.com (userp3020.oracle.com [156.151.31.79])
+        by userp2130.oracle.com with ESMTP id 3581mqp1b9-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 07 Dec 2020 15:59:57 +0000
+Received: from pps.filterd (userp3020.oracle.com [127.0.0.1])
+        by userp3020.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 0B7FoaQ6078928;
+        Mon, 7 Dec 2020 15:59:57 GMT
+Received: from aserv0121.oracle.com (aserv0121.oracle.com [141.146.126.235])
+        by userp3020.oracle.com with ESMTP id 358kyrdpca-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Mon, 07 Dec 2020 15:59:57 +0000
+Received: from abhmp0001.oracle.com (abhmp0001.oracle.com [141.146.116.7])
+        by aserv0121.oracle.com (8.14.4/8.13.8) with ESMTP id 0B7FxtKi020363;
+        Mon, 7 Dec 2020 15:59:55 GMT
+Received: from [10.74.109.38] (/10.74.109.38)
+        by default (Oracle Beehive Gateway v4.0)
+        with ESMTP ; Mon, 07 Dec 2020 07:59:55 -0800
+Subject: Re: [PATCH v2 00/19] dmaengine/soc: k3-udma: Add support for BCDMA
+ and PKTDMA
+To:     Peter Ujfalusi <peter.ujfalusi@ti.com>,
+        Vinod Koul <vkoul@kernel.org>, ssantosh@kernel.org
+Cc:     nm@ti.com, robh+dt@kernel.org, dan.j.williams@intel.com,
+        t-kristo@ti.com, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        dmaengine@vger.kernel.org, vigneshr@ti.com,
+        grygorii.strashko@ti.com
+References: <20201117105656.5236-1-peter.ujfalusi@ti.com>
+ <20201124170856.GR8403@vkoul-mobl>
+ <54416232-31b4-e866-82e9-0e9314528a81@ti.com>
+From:   santosh.shilimkar@oracle.com
+Organization: Oracle Corporation
+Message-ID: <a1c9189e-0fd1-80b8-8038-cfe556702e60@oracle.com>
+Date:   Mon, 7 Dec 2020 07:59:52 -0800
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:68.0)
+ Gecko/20100101 Thunderbird/68.12.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201201223511.65542-16-mgross@linux.intel.com>
+In-Reply-To: <54416232-31b4-e866-82e9-0e9314528a81@ti.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9827 signatures=668682
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 adultscore=0 spamscore=0 mlxscore=0
+ malwarescore=0 suspectscore=0 mlxlogscore=999 bulkscore=0 phishscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2009150000
+ definitions=main-2012070101
+X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9827 signatures=668682
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0 mlxlogscore=999
+ clxscore=1011 malwarescore=0 priorityscore=1501 adultscore=0
+ lowpriorityscore=0 phishscore=0 spamscore=0 impostorscore=0 mlxscore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2009150000 definitions=main-2012070102
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 01 Dec 2020 14:35:04 -0800, mgross@linux.intel.com wrote:
-> From: Seamus Kelly <seamus.kelly@intel.com>
+On 12/6/20 11:29 PM, Peter Ujfalusi wrote:
+> Hi Santosh,
 > 
-> Add device tree bindings for the xLink IPC driver which enables xLink to
-> control and communicate with the VPU IP present on the Intel Keem Bay
-> SoC.
+> On 24/11/2020 19.08, Vinod Koul wrote:
+>> On 17-11-20, 12:56, Peter Ujfalusi wrote:
+>>> Hi,
+>>>
+>>> The series have build dependency on ti_sci/soc series (v2):
+>>> https://urldefense.com/v3/__https://lore.kernel.org/lkml/20201008115224.1591-1-peter.ujfalusi@ti.com/__;!!GqivPVa7Brio!Pr9DZN6u38NBvBa7_OpAJ8CB00wAw4SW4_hXgqWzeI54kvwXsDfntprA-AK9ItxFmM7BaA$
+>>>
+>>> Santosh kindly created immutable branch holdinf the series:
+>>> git://git.kernel.org/pub/scm/linux/kernel/git/ssantosh/linux-keystone.git for_5.11/drivers-soc
+>>
+>> Santosh, Can I have a signed tag for this please?
 > 
-> Cc: devicetree@vger.kernel.org
-> Reviewed-by: Mark Gross <mgross@linux.intel.com>
-> Signed-off-by: Seamus Kelly <seamus.kelly@intel.com>
-> Signed-off-by: Ryan Carnaghi <ryan.r.carnaghi@intel.com>
-> ---
->  .../misc/intel,keembay-xlink-ipc.yaml         | 49 +++++++++++++++++++
->  1 file changed, 49 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/misc/intel,keembay-xlink-ipc.yaml
+> Can you please provide a tag for Vinod?
 > 
+I already sent out pull request with tag.
 
-
-My bot found errors running 'make dt_binding_check' on your patch:
-
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/misc/intel,keembay-xlink-ipc.yaml:21:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
-
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/misc/intel,keembay-xlink-ipc.yaml: 'additionalProperties' is a required property
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/misc/intel,keembay-xlink-ipc.yaml: ignoring, error in schema: 
-warning: no schema found in file: ./Documentation/devicetree/bindings/misc/intel,keembay-xlink-ipc.yaml
-
-
-See https://patchwork.ozlabs.org/patch/1409186
-
-The base for the patch is generally the last rc1. Any dependencies
-should be noted.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+git://git.kernel.org/pub/scm/linux/kernel/git/ssantosh/linux-keystone.git 
+tags/drivers_soc_for_5.11
