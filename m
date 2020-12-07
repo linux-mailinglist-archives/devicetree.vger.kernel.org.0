@@ -2,44 +2,35 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A7E12D09AE
-	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 05:28:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A2192D09D6
+	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 05:50:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728765AbgLGE1g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 6 Dec 2020 23:27:36 -0500
-Received: from szxga04-in.huawei.com ([45.249.212.190]:8705 "EHLO
-        szxga04-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726484AbgLGE1f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Dec 2020 23:27:35 -0500
-Received: from DGGEMS401-HUB.china.huawei.com (unknown [172.30.72.60])
-        by szxga04-in.huawei.com (SkyGuard) with ESMTP id 4Cq9H94WdwzkmHl;
-        Mon,  7 Dec 2020 12:26:13 +0800 (CST)
+        id S1728859AbgLGEtp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 6 Dec 2020 23:49:45 -0500
+Received: from szxga06-in.huawei.com ([45.249.212.32]:8956 "EHLO
+        szxga06-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728854AbgLGEtp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Dec 2020 23:49:45 -0500
+Received: from DGGEMS406-HUB.china.huawei.com (unknown [172.30.72.60])
+        by szxga06-in.huawei.com (SkyGuard) with ESMTP id 4Cq9n15Kw1zhnZ0;
+        Mon,  7 Dec 2020 12:48:37 +0800 (CST)
 Received: from thunder-town.china.huawei.com (10.174.177.9) by
- DGGEMS401-HUB.china.huawei.com (10.3.19.201) with Microsoft SMTP Server id
- 14.3.487.0; Mon, 7 Dec 2020 12:26:44 +0800
+ DGGEMS406-HUB.china.huawei.com (10.3.19.206) with Microsoft SMTP Server id
+ 14.3.487.0; Mon, 7 Dec 2020 12:48:55 +0800
 From:   Zhen Lei <thunder.leizhen@huawei.com>
-To:     Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        "Ricardo Ribalda" <ribalda@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-media <linux-media@vger.kernel.org>,
+To:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        "Thierry Reding" <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
         devicetree <devicetree@vger.kernel.org>,
         linux-kernel <linux-kernel@vger.kernel.org>
 CC:     Zhen Lei <thunder.leizhen@huawei.com>
-Subject: [PATCH 4/4] dt-bindings: media: imx214: eliminate yamllint warnings
-Date:   Mon, 7 Dec 2020 12:24:00 +0800
-Message-ID: <20201207042400.1498-5-thunder.leizhen@huawei.com>
+Subject: [PATCH v2 0/1] dt-bindings: display: eliminate yamllint warnings
+Date:   Mon, 7 Dec 2020 12:48:29 +0800
+Message-ID: <20201207044830.1551-1-thunder.leizhen@huawei.com>
 X-Mailer: git-send-email 2.26.0.windows.1
-In-Reply-To: <20201207042400.1498-1-thunder.leizhen@huawei.com>
-References: <20201207042400.1498-1-thunder.leizhen@huawei.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7BIT
 Content-Type:   text/plain; charset=US-ASCII
@@ -49,40 +40,48 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Eliminate the following yamllint warnings:
-./Documentation/devicetree/bindings/media/i2c/sony,imx214.yaml
-:72:17: [warning] wrong indentation: expected 18 but found 16 (indentation)
-:75:17: [warning] wrong indentation: expected 18 but found 16 (indentation)
+This patch is based on the latest linux-next code.
 
-Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
----
- Documentation/devicetree/bindings/media/i2c/sony,imx214.yaml | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+v1 --> v2:
+Extract the modification of the Documentation/devicetree/bindings/display/
+parts and send the patch separately.
 
-diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx214.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx214.yaml
-index 884bd3527e0a430..0599df605a4f8a6 100644
---- a/Documentation/devicetree/bindings/media/i2c/sony,imx214.yaml
-+++ b/Documentation/devicetree/bindings/media/i2c/sony,imx214.yaml
-@@ -69,13 +69,13 @@ properties:
-             description: See ../video-interfaces.txt
-             anyOf:
-               - items:
--                - const: 1
--                - const: 2
-+                  - const: 1
-+                  - const: 2
-               - items:
--                - const: 1
--                - const: 2
--                - const: 3
--                - const: 4
-+                  - const: 1
-+                  - const: 2
-+                  - const: 3
-+                  - const: 4
- 
-           link-frequencies:
-             $ref: /schemas/types.yaml#/definitions/uint64-array
+https://www.spinics.net/lists/arm-kernel/msg860713.html
+
+
+v1:
+There're too many people, I just send to the maintainer, reviewer, supporter.
+
+Eliminate below warnings:
+./Documentation/devicetree/bindings/clock/imx8qxp-lpcg.yaml:32:13: [warning] wrong indentation: expected 14 but found 12 (indentation)
+./Documentation/devicetree/bindings/clock/imx8qxp-lpcg.yaml:35:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
+./Documentation/devicetree/bindings/display/intel,keembay-msscam.yaml:21:6: [warning] wrong indentation: expected 6 but found 5 (indentation)
+./Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml:52:9: [warning] wrong indentation: expected 6 but found 8 (indentation)
+./Documentation/devicetree/bindings/display/bridge/intel,keembay-dsi.yaml:42:8: [warning] wrong indentation: expected 8 but found 7 (indentation)
+./Documentation/devicetree/bindings/display/bridge/intel,keembay-dsi.yaml:45:8: [warning] wrong indentation: expected 8 but found 7 (indentation)
+./Documentation/devicetree/bindings/display/panel/novatek,nt36672a.yaml:25:10: [warning] wrong indentation: expected 10 but found 9 (indentation)
+./Documentation/devicetree/bindings/media/i2c/adv7604.yaml:24:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
+./Documentation/devicetree/bindings/media/i2c/mipi-ccs.yaml:4:1: [error] missing document start "---" (document-start)
+./Documentation/devicetree/bindings/media/i2c/mipi-ccs.yaml:29:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
+./Documentation/devicetree/bindings/media/i2c/mipi-ccs.yaml:32:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
+./Documentation/devicetree/bindings/media/i2c/ovti,ov772x.yaml:79:17: [warning] wrong indentation: expected 14 but found 16 (indentation)
+./Documentation/devicetree/bindings/media/i2c/ovti,ov772x.yaml:88:17: [warning] wrong indentation: expected 14 but found 16 (indentation)
+./Documentation/devicetree/bindings/media/i2c/sony,imx214.yaml:72:17: [warning] wrong indentation: expected 18 but found 16 (indentation)
+./Documentation/devicetree/bindings/media/i2c/sony,imx214.yaml:75:17: [warning] wrong indentation: expected 18 but found 16 (indentation)
+./Documentation/devicetree/bindings/mmc/mtk-sd.yaml:20:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
+./Documentation/devicetree/bindings/mmc/mtk-sd.yaml:30:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
+./Documentation/devicetree/bindings/mmc/mtk-sd.yaml:33:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
+./Documentation/devicetree/bindings/sound/mt8192-mt6359-rt1015-rt5682.yaml:10:4: [warning] wrong indentation: expected 2 but found 3 (indentation)
+
+Zhen Lei (1):
+  dt-bindings: display: eliminate yamllint warnings
+
+ .../devicetree/bindings/display/bridge/analogix,anx7625.yaml          | 4 ++--
+ .../devicetree/bindings/display/bridge/intel,keembay-dsi.yaml         | 4 ++--
+ Documentation/devicetree/bindings/display/intel,keembay-msscam.yaml   | 4 ++--
+ Documentation/devicetree/bindings/display/panel/novatek,nt36672a.yaml | 2 +-
+ 4 files changed, 7 insertions(+), 7 deletions(-)
+
 -- 
 1.8.3
 
