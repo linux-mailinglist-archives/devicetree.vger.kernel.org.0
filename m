@@ -2,162 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 250142D0D45
-	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 10:45:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A3A3D2D0D48
+	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 10:45:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726044AbgLGJow (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Dec 2020 04:44:52 -0500
-Received: from mail-bn8nam11on2051.outbound.protection.outlook.com ([40.107.236.51]:11040
-        "EHLO NAM11-BN8-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1725770AbgLGJow (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 7 Dec 2020 04:44:52 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=lkL/HVRiNdVktu7svvCURwyfPWPG0/QjOepqfH/jqmbMqz24+M01+DF9AaFbPuawrz3Z2LPI3obathbFVQRlvj4IIdmwW6nd4ZJpV8UuoAGBC1KBMVIhlh/qGCLCbRK5J5jw3bdkrYmo8VdUF3ajYiRoM5FnJaqHbq2cvtAam5JwBMZ13hoEfCa3AHYCPX8mM63SVTCIuwsZP4krVCp9oyWqG3f4TTF0uNEE6Qc6Ibgr8gVRMX8LludCL1HsWesaVGDHybuywiiRabti3gYEN+Tu2xYZtiG1Fa13ozgK8yeWS7XBtoXH9qYh/z/Y+mmZEnxkgPR1hc2mQy4LboM3UA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=x/Yy1WOLNI7WGFe6bTMWyBcgy56mDktoCKquvexUJ8g=;
- b=Ji1LyPUgsZUZY7RTFnq5tE3iLo+8KRf9fIVmnRFlnv7lEYWsjtt4Mu9TIHqBI2s7sKzVyL9jTjiljFrRZY/aQE7cRhovlSmy2ccJ9FBhxmdCK9+3LujjSorHJEYvH8UYd3Uykg+zGs0+UUJ2EbDozMFU8vgdmEP53oYUjbV8nj1HBW/64buzSC0jRJ4c1FYq8fzhGkPx9a9aAS87Q7639zwmpBkqYEmT72jpk7KD1UHHM09m6Ilf3glVkwIDC45Bsda306bIctJRNCuo884Tc2bO35bjSxvaFaP+nx/VLQ8KsnwpYY4551BrZe5hfxDthcmxs/Z033+LsI5CBBamEw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 149.199.62.198) smtp.rcpttodomain=lists.infradead.org
- smtp.mailfrom=xilinx.com; dmarc=bestguesspass action=none
- header.from=xilinx.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=x/Yy1WOLNI7WGFe6bTMWyBcgy56mDktoCKquvexUJ8g=;
- b=LePS8ZAg+NkkQ78Ll0JtfUYBg4NnxNw/MtB66Ww76+KMvEk5tLobYYbI5I/b7Td/Vh06UVxaeCumUOu4rKYfbNzO7sqLmCKZTogB3LVmt7QP0NPQu89pMNuHTCB61SGeJJoOk+fhVM/oeggWqLy1p7ii06S/6L02HccAzPv7U4Y=
-Received: from BL1PR13CA0481.namprd13.prod.outlook.com (2603:10b6:208:2c7::6)
- by MWHPR02MB2799.namprd02.prod.outlook.com (2603:10b6:300:107::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3632.21; Mon, 7 Dec
- 2020 09:43:59 +0000
-Received: from BL2NAM02FT009.eop-nam02.prod.protection.outlook.com
- (2603:10b6:208:2c7:cafe::a5) by BL1PR13CA0481.outlook.office365.com
- (2603:10b6:208:2c7::6) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3654.10 via Frontend
- Transport; Mon, 7 Dec 2020 09:43:58 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
- smtp.mailfrom=xilinx.com; lists.infradead.org; dkim=none (message not signed)
- header.d=none;lists.infradead.org; dmarc=bestguesspass action=none
- header.from=xilinx.com;
-Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
- 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=149.199.62.198; helo=xsj-pvapexch02.xlnx.xilinx.com;
-Received: from xsj-pvapexch02.xlnx.xilinx.com (149.199.62.198) by
- BL2NAM02FT009.mail.protection.outlook.com (10.152.77.68) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.3632.21 via Frontend Transport; Mon, 7 Dec 2020 09:43:58 +0000
-Received: from xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) by
- xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1913.5; Mon, 7 Dec 2020 01:43:43 -0800
-Received: from smtp.xilinx.com (172.19.127.95) by
- xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) with Microsoft SMTP Server id
- 15.1.1913.5 via Frontend Transport; Mon, 7 Dec 2020 01:43:43 -0800
-Envelope-to: git@xilinx.com,
- michal.simek@xilinx.com,
- rajan.vaja@xilinx.com,
- linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org,
- robh+dt@kernel.org,
- krzk@kernel.org,
- monstr@monstr.eu,
- linux-kernel@vger.kernel.org,
- laurent.pinchart@ideasonboard.com
-Received: from [172.30.17.109] (port=44528)
-        by smtp.xilinx.com with esmtp (Exim 4.90)
-        (envelope-from <michal.simek@xilinx.com>)
-        id 1kmD3W-0003T2-S1; Mon, 07 Dec 2020 01:43:43 -0800
-Subject: Re: [PATCH 06/12] arm64: dts: zynqmp: Add label for zynqmp_ipi
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Michal Simek <michal.simek@xilinx.com>
-CC:     <linux-kernel@vger.kernel.org>, <monstr@monstr.eu>,
-        <git@xilinx.com>, Kalyani Akula <kalyani.akula@xilinx.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Manish Narani <manish.narani@xilinx.com>,
-        Rajan Vaja <rajan.vaja@xilinx.com>,
-        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <cover.1606917949.git.michal.simek@xilinx.com>
- <272e23e0123f02c559bfa4ada9de73eb197aced8.1606917949.git.michal.simek@xilinx.com>
- <X81fXtxvsc7KE7cK@pendragon.ideasonboard.com>
- <X81forerb/QuXB2U@pendragon.ideasonboard.com>
-From:   Michal Simek <michal.simek@xilinx.com>
-Message-ID: <0c35fcf0-145e-b3a9-9af9-a5f60ede10c2@xilinx.com>
-Date:   Mon, 7 Dec 2020 10:43:39 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.5.1
+        id S1726089AbgLGJpY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Dec 2020 04:45:24 -0500
+Received: from mail-wr1-f65.google.com ([209.85.221.65]:39173 "EHLO
+        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725987AbgLGJpX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 04:45:23 -0500
+Received: by mail-wr1-f65.google.com with SMTP id c1so128065wrq.6;
+        Mon, 07 Dec 2020 01:45:06 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=VDaELBJNAHnJCXBlzzeKHCr2UreS9lliSm76y6uffoQ=;
+        b=gy59ZTWN6ENG7kU1yOoJnRr/OAmnMjmu+9sruDAOlz/B/7PsqyWdOZw+pJy7NvfPXE
+         1EoFT06PVwCF+C8RonZmNu+J46krGGsOapkmdZ2Zm/I9wntlWIYL6aNjacPefbxBxgY5
+         wqvMtVTsxV4+RRIefudjuJYLsyuZtStISfjCsoTHx0WwVwavqZUbyLBmcfzY3wuXhqdV
+         roL+3kiPrGXTgO601C0yFCfpD3E3jbDk+cDh37iZmPlg3Ic6/XtJqbIrQCPhE17C711H
+         92KpQUZOlmx0OnRMkzrGD/xDCKeZFbzZl8g3489mKkdQaXP1xWUV3KtiIQq6lH+peK8n
+         GDHg==
+X-Gm-Message-State: AOAM531cEoE62yjfzncfGJkXUQzdkj+t7MTOTNDMvOCdaCpZ0/5Rv/jp
+        WxIQqZtWaZ+m0uzDC3q+C70=
+X-Google-Smtp-Source: ABdhPJwfT27kvUX1kkV3sfhoA2umu107YomTUVjpfX0vBm8TaA9H5pQnBuJGrMYFT9xoqapaV/Ri3w==
+X-Received: by 2002:a5d:414e:: with SMTP id c14mr18452293wrq.256.1607334281147;
+        Mon, 07 Dec 2020 01:44:41 -0800 (PST)
+Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
+        by smtp.googlemail.com with ESMTPSA id y7sm13652154wmb.37.2020.12.07.01.44.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Dec 2020 01:44:39 -0800 (PST)
+Date:   Mon, 7 Dec 2020 10:44:38 +0100
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     michael.srba@seznam.cz
+Cc:     Dave Stevenson <dave.stevenson@raspberrypi.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH 1/3] media: i2c: imx219: add support for specifying
+ clock-frequencies
+Message-ID: <20201207094438.GA17448@kozik-lap>
+References: <20201205183355.6488-1-michael.srba@seznam.cz>
 MIME-Version: 1.0
-In-Reply-To: <X81forerb/QuXB2U@pendragon.ideasonboard.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EOPAttributedMessage: 0
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 4659a6d8-e9c2-4380-33ec-08d89a949f25
-X-MS-TrafficTypeDiagnostic: MWHPR02MB2799:
-X-LD-Processed: 657af505-d5df-48d0-8300-c31994686c5c,ExtAddr
-X-Microsoft-Antispam-PRVS: <MWHPR02MB27995F94016BDF404AF6EEE4C6CE0@MWHPR02MB2799.namprd02.prod.outlook.com>
-X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
-X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: AandRqEsTWom7sbyi9PQ4dgf/Xi8DPaKi/j8oqfPjnEMpHcSWD/LD9DKZDalinXHKkn1vL/DzI52KUGPgtv2X1e2ZeblfzbVoepOlVozq1sBrhV5PJy7IcjEkWTKvT2Q2S0Em+5ZnAK+EiGxmKUojetvp29lGPJmMjZKttF9ZSu8SKNJAbQFAG4dOZkkJS4KQ1ew7W/azn+6tv7aINCxuu6O4mhLKBQhHum9ORT78yAkW8FSUo0GMPahZLDhaLFowk6Q2y6QKzwLelAOhYGkmfpoQWugRvXEkq2qaSsSI+lM8MUydegxCj4oZ8QL0fCXvAX7Q4Zrjturms6UUWai6iwHG5mv1iT0D2rgoUOgroJ5IRl7MD0mIfHGtuDtwM7cYJ9BGOHr99alzy7QkQdB3jYa48BgW9eDxdFldRzVtd0PdNC7puGCv9IXf2PFBtzxFqS2AZR409vMLg1UuXQlEw==
-X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch02.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(4636009)(39850400004)(136003)(376002)(396003)(346002)(46966005)(36756003)(26005)(8936002)(186003)(9786002)(44832011)(31686004)(316002)(36906005)(426003)(6666004)(478600001)(82310400003)(5660300002)(2906002)(336012)(82740400003)(110136005)(2616005)(70586007)(54906003)(4326008)(70206006)(47076004)(8676002)(356005)(7636003)(31696002)(50156003)(43740500002);DIR:OUT;SFP:1101;
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Dec 2020 09:43:58.7358
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4659a6d8-e9c2-4380-33ec-08d89a949f25
-X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch02.xlnx.xilinx.com]
-X-MS-Exchange-CrossTenant-AuthSource: BL2NAM02FT009.eop-nam02.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR02MB2799
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20201205183355.6488-1-michael.srba@seznam.cz>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 06. 12. 20 23:48, Laurent Pinchart wrote:
-> On Mon, Dec 07, 2020 at 12:46:56AM +0200, Laurent Pinchart wrote:
->> Hi Michal,
->>
->> Thank you for the patch.
->>
->> On Wed, Dec 02, 2020 at 03:06:05PM +0100, Michal Simek wrote:
->>> Add label which is used by bootloader for adding bootloader specific flag.
->>>
->>> Signed-off-by: Michal Simek <michal.simek@xilinx.com>
->>> ---
->>>
->>> U-Boot needs to add u-boot,dm-pre-reloc; property
->>
->> I'm not entirely sure what best practice rules are in this area, but
->> shouldn't U-Boot locate the node by name instead of label ?
+On Sat, Dec 05, 2020 at 07:33:53PM +0100, michael.srba@seznam.cz wrote:
+> From: Michael Srba <Michael.Srba@seznam.cz>
 > 
-> And regardless of what mechanism is used, it should be documented in the
-> bindings.
+> This patch adds 1% tolerance on input clock, similar to other camera sensor
+> drivers. It also allows for specifying the actual clock in the device tree,
+> instead of relying on it being already set to the right frequency (which is
+> often not the case).
 
-I don't think we should be documenting labels because names can be
-whatever. DT binding spec is just talking about name rules.
+All this can be achieved with assigned-clocks-rate and basically you do
+not add here value. At least not for DT-based systems. The supported
+clock rates will be the same. The method of choosing frequency is
+over-complicated comparing to simple assigned-clocks.
 
-6.2 chapter.
+If this is for ACPI systems, please document in commit msg why you
+cannot used assigned-clocks and choose this solution.
 
-A label shall be between - 1 to 31 characters in length, be composed
-only of the characters in the set Table 6.1, and must not start with a
-number.
+> 
+> Signed-off-by: Michael Srba <Michael.Srba@seznam.cz>
+> ---
+>  drivers/media/i2c/imx219.c | 17 +++++++++++++++--
+>  1 file changed, 15 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/media/i2c/imx219.c b/drivers/media/i2c/imx219.c
+> index f64c0ef7a897..a8f05562d0af 100644
+> --- a/drivers/media/i2c/imx219.c
+> +++ b/drivers/media/i2c/imx219.c
+> @@ -1443,13 +1443,26 @@ static int imx219_probe(struct i2c_client *client)
+>  		return PTR_ERR(imx219->xclk);
+>  	}
+>  
+> -	imx219->xclk_freq = clk_get_rate(imx219->xclk);
+> -	if (imx219->xclk_freq != IMX219_XCLK_FREQ) {
+> +	ret = fwnode_property_read_u32(dev_fwnode(dev), "clock-frequency", &imx219->xclk_freq);
+> +	if (ret) {
+> +		dev_err(dev, "could not get xclk frequency\n");
+> +		return ret;
+> +	}
+> +
+> +	/* this driver currently expects 24MHz; allow 1% tolerance */
+> +	if (imx219->xclk_freq < 23760000 || imx219->xclk_freq > 24240000) {
+>  		dev_err(dev, "xclk frequency not supported: %d Hz\n",
+>  			imx219->xclk_freq);
+>  		return -EINVAL;
+>  	}
+>  
+> +	ret = clk_set_rate(imx219->xclk, imx219->xclk_freq);
+> +	if (ret) {
+> +		dev_err(dev, "could not set xclk frequency\n");
+> +		return ret;
+> +	}
+> +
+> +
 
-- Table 6.1: Valid characters for DTS labels
-Character	Description
-0-9		digit
-a-z		lowercase letter
-A-Z		uppercase letter
-_		underscore
+No need for double line break.
 
-Thanks,
-Michal
+Best regards,
+Krzysztof
