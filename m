@@ -2,106 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 763132D1875
-	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 19:24:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CD4AC2D1878
+	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 19:24:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726120AbgLGSXv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Dec 2020 13:23:51 -0500
-Received: from mga02.intel.com ([134.134.136.20]:5050 "EHLO mga02.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725852AbgLGSXv (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 7 Dec 2020 13:23:51 -0500
-IronPort-SDR: 7U+6VjvvlgE29G6zdeQlgp2yrYz4sFJQD0aN/QzsFGaAIr0jPvvNjO9eZByGKisiBOOJmXbGXJ
- qH5dvWR7JvWA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9828"; a="160792547"
-X-IronPort-AV: E=Sophos;i="5.78,400,1599548400"; 
-   d="scan'208";a="160792547"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Dec 2020 10:22:05 -0800
-IronPort-SDR: LJpIOl5qR3FbYUO6GpoIFjBgNfoBKfI9nILXpkiVbNmPIE2cwe4CBMx+aKHMiSLNbd9lF6n3GV
- MEf4AfTulbig==
-X-IronPort-AV: E=Sophos;i="5.78,400,1599548400"; 
-   d="scan'208";a="551915231"
-Received: from smtp.ostc.intel.com ([10.54.29.231])
-  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Dec 2020 10:22:04 -0800
-Received: from localhost (mtg-dev.jf.intel.com [10.54.74.10])
-        by smtp.ostc.intel.com (Postfix) with ESMTP id D3A0A6363;
-        Mon,  7 Dec 2020 10:22:04 -0800 (PST)
-Date:   Mon, 7 Dec 2020 10:22:04 -0800
-From:   mark gross <mgross@linux.intel.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     mgross@linux.intel.com, markgross@kernel.org, arnd@arndb.de,
-        bp@suse.de, damien.lemoal@wdc.com, dragan.cvetic@xilinx.com,
-        gregkh@linuxfoundation.org, corbet@lwn.net,
-        leonard.crestez@nxp.com, palmerdabbelt@google.com,
-        paul.walmsley@sifive.com, peng.fan@nxp.com, shawnguo@kernel.org,
-        linux-kernel@vger.kernel.org,
-        Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 02/22] dt-bindings: Add bindings for Keem Bay IPC driver
-Message-ID: <20201207182204.GC49179@linux.intel.com>
-Reply-To: mgross@linux.intel.com
-References: <20201201223511.65542-1-mgross@linux.intel.com>
- <20201201223511.65542-3-mgross@linux.intel.com>
- <20201207160152.GB351233@robh.at.kernel.org>
+        id S1725960AbgLGSXx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Dec 2020 13:23:53 -0500
+Received: from mail-ot1-f65.google.com ([209.85.210.65]:33691 "EHLO
+        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725852AbgLGSXx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 13:23:53 -0500
+Received: by mail-ot1-f65.google.com with SMTP id b18so13414069ots.0;
+        Mon, 07 Dec 2020 10:23:32 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=r8iujiXMsHVfC0xZaPOn5hqafsuzyJCL4bLhyC5L5cc=;
+        b=bVRnYVFpecAonvg819Zesp6AizJhLI192tOAsth/FjX1zPr2sJmBoTeSyPkJuBGmvb
+         kRUgrNHmukcOKwVu3MPbbe2e5QT1Mc2+GGXujobdthcggsLg/KFx133oiMNH8y4Da2Df
+         k9jQvisvlbKnJ8Rqm3D0Cqp1YTgmXt/UyTdXJmD40gbh8H/9Q2XlwesnZ4i4DzhEtMyw
+         uirzmgEpFva17fqMVSOyC7oxYmkVbXfbROykFFhLsIrY2fvDUty+odHPFsKN/NVobkby
+         shNMjldaUD+ZsNi9QXYMU7rsaAIZgScWo4WbsCDtFGDIZQjWvvdelmLkkf+vtAq3clvo
+         CHeA==
+X-Gm-Message-State: AOAM532TJ8/TKjRckDkbeUvMbOL3KXx05NvRoh0rWrlQ2Q1dWvyJZCUb
+        OISUyY6DPXU12jlEBSvH1Q==
+X-Google-Smtp-Source: ABdhPJzCsVsxge4o+Meu07a/RWftrL8x0qdsqoSysO/4jD5LUHZRJ36KYdAzRFDw/cQvbWUozg+AuA==
+X-Received: by 2002:a9d:2203:: with SMTP id o3mr14124765ota.107.1607365386725;
+        Mon, 07 Dec 2020 10:23:06 -0800 (PST)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id t13sm3090572oic.4.2020.12.07.10.23.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Dec 2020 10:23:05 -0800 (PST)
+Received: (nullmailer pid 563512 invoked by uid 1000);
+        Mon, 07 Dec 2020 18:23:04 -0000
+Date:   Mon, 7 Dec 2020 12:23:04 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     vijayakannan.ayyathurai@intel.com
+Cc:     wan.ahmad.zainie.wan.mohamad@intel.com, devicetree@vger.kernel.org,
+        andriy.shevchenko@linux.intel.com,
+        lakshmi.bai.raja.subramanian@intel.com,
+        linux-watchdog@vger.kernel.org, linux@roeck-us.net,
+        mgross@linux.intel.com, wim@linux-watchdog.org, robh+dt@kernel.org
+Subject: Re: [PATCH v3 2/2] dt-bindings: watchdog: Add bindings for Intel
+ Keem Bay SoC
+Message-ID: <20201207182304.GA563366@robh.at.kernel.org>
+References: <cover.1606833303.git.vijayakannan.ayyathurai@intel.com>
+ <c3ffd4c2becada82c631ca035a3a1a8f0bd38dc8.1606833303.git.vijayakannan.ayyathurai@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201207160152.GB351233@robh.at.kernel.org>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <c3ffd4c2becada82c631ca035a3a1a8f0bd38dc8.1606833303.git.vijayakannan.ayyathurai@intel.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 07, 2020 at 10:01:52AM -0600, Rob Herring wrote:
-> On Tue, Dec 01, 2020 at 02:34:51PM -0800, mgross@linux.intel.com wrote:
-> > From: Daniele Alessandrelli <daniele.alessandrelli@intel.com>
-> > 
-> > Add DT binding documentation for the Intel Keem Bay IPC driver, which
-> > enables communication between the Computing Sub-System (CSS) and the
-> > Multimedia Sub-System (MSS) of the Intel Movidius SoC code named Keem
-> > Bay.
-> > 
-> > Cc: devicetree@vger.kernel.org
-> > Reviewed-by: Mark Gross <mgross@linux.intel.com>
-> > Signed-off-by: Daniele Alessandrelli <daniele.alessandrelli@intel.com>
-> > ---
-> >  .../bindings/soc/intel/intel,keembay-ipc.yaml | 63 +++++++++++++++++++
-> >  1 file changed, 63 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/soc/intel/intel,keembay-ipc.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/soc/intel/intel,keembay-ipc.yaml b/Documentation/devicetree/bindings/soc/intel/intel,keembay-ipc.yaml
-> > new file mode 100644
-> > index 000000000000..6e21c54d8f34
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/soc/intel/intel,keembay-ipc.yaml
-> > @@ -0,0 +1,63 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +# Copyright (C) 2020 Intel Corporation
-> > +%YAML 1.2
-> > +---
-> > +$id: "http://devicetree.org/schemas/soc/intel/intel,keembay-ipc.yaml#"
-> > +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> > +
-> > +title: Keem Bay IPC
-> > +
-> > +maintainers:
-> > +  - Daniele Alessandrelli <daniele.alessandrelli@intel.com>
-> > +
-> > +description:
-> > +  The Keem Bay IPC driver enables Inter-Processor Communication (IPC) with the
-> > +  Visual Processor Unit (VPU) embedded in the Intel Movidius SoC code named
-> > +  Keem Bay.
+On Tue, 01 Dec 2020 23:10:34 +0800, vijayakannan.ayyathurai@intel.com wrote:
+> From: Vijayakannan Ayyathurai <vijayakannan.ayyathurai@intel.com>
 > 
-> Sounds like a mailbox. 
-Its a multi-channel mailbox like thing with priority channel support.
-
+> Add Device Tree binding document for Watchdog IP in the Intel Keem Bay SoC.
 > 
-> What's the relationship between this and the xlink thing?
-Xlink is a SW abstraction to allow multiple user access to the VPU as well as
-enabling use cases where a Keem Bay is used as an accelerator add in card as
-well as a simple SBC type of design.  The xlink stuff sits on top of the IPC
-stuff.
+> Signed-off-by: Vijayakannan Ayyathurai <vijayakannan.ayyathurai@intel.com>
+> Acked-by: Mark Gross <mgross@linux.intel.com>
+> Acked-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> ---
+>  .../bindings/watchdog/intel,keembay-wdt.yaml  | 57 +++++++++++++++++++
+>  1 file changed, 57 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/watchdog/intel,keembay-wdt.yaml
+> 
 
---mark
+
+Please add Acked-by/Reviewed-by tags when posting new versions. However,
+there's no need to repost patches *only* to add the tags. The upstream
+maintainer will do that for acks received on the version they apply.
+
+If a tag was not added on purpose, please state why and what changed.
 
