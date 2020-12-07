@@ -2,302 +2,281 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 51E402D08C5
-	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 02:19:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D498E2D08ED
+	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 02:51:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728585AbgLGBTE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 6 Dec 2020 20:19:04 -0500
-Received: from mailout4.samsung.com ([203.254.224.34]:18915 "EHLO
-        mailout4.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726489AbgLGBTE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Dec 2020 20:19:04 -0500
-Received: from epcas1p4.samsung.com (unknown [182.195.41.48])
-        by mailout4.samsung.com (KnoxPortal) with ESMTP id 20201207011821epoutp04ae7c131eb7d6a630b5bf420f7d6f78c1~OSmH17LQR2488824888epoutp04t
-        for <devicetree@vger.kernel.org>; Mon,  7 Dec 2020 01:18:21 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20201207011821epoutp04ae7c131eb7d6a630b5bf420f7d6f78c1~OSmH17LQR2488824888epoutp04t
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1607303901;
-        bh=7TfmjyBFgY4gjttvRWrYSs8USIfhnAid8/rgKdYtyDg=;
-        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
-        b=YE3Ivck3wshTTTeYXVSiXoomipJDZm/R/hGge/VqzcA8c7//bVv3jwi7fB8+qcedM
-         V4cNcy+fbNhLG5fpMNpjHEazW/G1YMgmf4tkzWNdhLIb1KjgU2lw0RE9O8VResCSII
-         QgXK4a8zYAVBT5v0GmQuXIM8bMXF9UEbvp/HruJo=
-Received: from epsnrtp4.localdomain (unknown [182.195.42.165]) by
-        epcas1p1.samsung.com (KnoxPortal) with ESMTP id
-        20201207011821epcas1p1dccd83976be412bbf79f5c64ac2a0eb6~OSmHU-Yf-3249132491epcas1p1W;
-        Mon,  7 Dec 2020 01:18:21 +0000 (GMT)
-Received: from epsmges1p5.samsung.com (unknown [182.195.40.157]) by
-        epsnrtp4.localdomain (Postfix) with ESMTP id 4Cq56L04wdzMqYkl; Mon,  7 Dec
-        2020 01:18:18 +0000 (GMT)
-Received: from epcas1p3.samsung.com ( [182.195.41.47]) by
-        epsmges1p5.samsung.com (Symantec Messaging Gateway) with SMTP id
-        F6.DE.09577.9D28DCF5; Mon,  7 Dec 2020 10:18:17 +0900 (KST)
-Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
-        epcas1p2.samsung.com (KnoxPortal) with ESMTPA id
-        20201207011817epcas1p294a176e9b21c1536b54c26b38ca8ba30~OSmD-HOBz2471324713epcas1p2F;
-        Mon,  7 Dec 2020 01:18:17 +0000 (GMT)
-Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
-        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20201207011817epsmtrp28c08e29263a94ebbe6cec7968e5ee1a0~OSmD_DjLb0055400554epsmtrp2f;
-        Mon,  7 Dec 2020 01:18:17 +0000 (GMT)
-X-AuditID: b6c32a39-bfdff70000002569-5a-5fcd82d9a43c
-Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
-        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        AE.02.13470.9D28DCF5; Mon,  7 Dec 2020 10:18:17 +0900 (KST)
-Received: from [10.113.221.102] (unknown [10.113.221.102]) by
-        epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
-        20201207011817epsmtip27d4c4edb43284ecee29be7d2bdafb10b~OSmDmdWiE0365303653epsmtip2Q;
-        Mon,  7 Dec 2020 01:18:17 +0000 (GMT)
-Subject: Re: [PATCH v11 10/10] PM / devfreq: tegra30: Separate
- configurations per-SoC generation
-To:     Dmitry Osipenko <digetx@gmail.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Georgi Djakov <georgi.djakov@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Peter De Schrijver <pdeschrijver@nvidia.com>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        Mikko Perttunen <cyndis@kapsi.fi>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Nicolas Chauvet <kwizart@gmail.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     linux-tegra@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org
-From:   Chanwoo Choi <cw00.choi@samsung.com>
-Organization: Samsung Electronics
-Message-ID: <1c4f7c6f-7fff-60c1-a7b1-a099a88df1c6@samsung.com>
-Date:   Mon, 7 Dec 2020 10:33:06 +0900
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:59.0) Gecko/20100101
-        Thunderbird/59.0
+        id S1727393AbgLGBvY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 6 Dec 2020 20:51:24 -0500
+Received: from linux.microsoft.com ([13.77.154.182]:49282 "EHLO
+        linux.microsoft.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727040AbgLGBvY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Dec 2020 20:51:24 -0500
+Received: from [192.168.0.104] (c-73-42-176-67.hsd1.wa.comcast.net [73.42.176.67])
+        by linux.microsoft.com (Postfix) with ESMTPSA id 73EE020B717A;
+        Sun,  6 Dec 2020 17:50:41 -0800 (PST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 73EE020B717A
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+        s=default; t=1607305842;
+        bh=vtq8CyQBySYNuts4DDchsgC3KgHAe6Af4KocNaAPQZw=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=LtRQZg+2FE0F3ZEro0HxgFb8Pb+6iJetwOA0BneYeF5Eoen9J+voUIfOUSV3N1MHj
+         CGHdsDIzs9J6/zsAxGtOeTqBj2S34LHl/L4d3DWv15UwNk35LTXbLoZB8fon4tPM9e
+         4H/TLv4OSL4EA5GJnMUkrk//mHAUyOxsk3GGXsn4=
+Subject: Re: [PATCH v10 2/8] powerpc: Move delete_fdt_mem_rsv() to
+ drivers/of/kexec.c
+To:     Thiago Jung Bauermann <bauerman@linux.ibm.com>
+Cc:     zohar@linux.ibm.com, robh@kernel.org, gregkh@linuxfoundation.org,
+        james.morse@arm.com, catalin.marinas@arm.com, sashal@kernel.org,
+        will@kernel.org, mpe@ellerman.id.au, benh@kernel.crashing.org,
+        paulus@samba.org, robh+dt@kernel.org, frowand.list@gmail.com,
+        vincenzo.frascino@arm.com, mark.rutland@arm.com,
+        dmitry.kasatkin@gmail.com, jmorris@namei.org, serge@hallyn.com,
+        pasha.tatashin@soleen.com, allison@lohutok.net,
+        kstewart@linuxfoundation.org, takahiro.akashi@linaro.org,
+        tglx@linutronix.de, masahiroy@kernel.org, bhsharma@redhat.com,
+        mbrugger@suse.com, hsinyi@chromium.org, tao.li@vivo.com,
+        christophe.leroy@c-s.fr, linux-integrity@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        prsriva@linux.microsoft.com, balajib@linux.microsoft.com
+References: <20201204195149.611-1-nramas@linux.microsoft.com>
+ <20201204195149.611-3-nramas@linux.microsoft.com>
+ <87ft4louto.fsf@manicouagan.localdomain>
+From:   Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
+Message-ID: <40f8c03a-f08f-d49e-b404-9a6d79873dd1@linux.microsoft.com>
+Date:   Sun, 6 Dec 2020 17:50:40 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20201203192439.16177-11-digetx@gmail.com>
+In-Reply-To: <87ft4louto.fsf@manicouagan.localdomain>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA01Te0xTVxz29F5uW0L1rgIea6J4mYggjwLVgxNiAsNGjSMjOrOHtZS7llHa
-        2gtmk2WhIhvlYeaDoaXIZGNUBlM6HsLkEew04EorDkQHDqYypqNokcUHmlGuy/jv+33n953v
-        950HDxP+RYh46ZosWq+RqynCG2++tC4i7OYhuyzSaYtCLvc9L1Rp6/NC3z+6A9CvM1MEKmu3
-        EuiwqQpHDsd5Lmq6V8dB9kN/c9H1NjOBpktsABkfmwh0rfdN9JvBQqBj9aUA2ce3o/x2Gxe9
-        HGzA0dO20zj6cfQyscVXOjWUz5W2mka40v6+WUxqrTUS0uHBi4T096IrHGlJnouQHmmsBdJp
-        68pk/rsZm1W0PI3WB9AahTYtXaOMo7anyBJkkg2R4jBxLNpIBWjkmXQclbgjOSwpXT2XjAo4
-        IFdnz1HJcoahIuI367XZWXSASstkxVG0Lk2ti9WFM/JMJlujDFdoMzeJIyOjJHON+zJUR/Ie
-        Y7rb4R/biobwXFC/phDweZCMgf2OCaIQePOE5AUAK17UvCrcAD5zm7zY4h8Aneeu4YWANy/J
-        Ox3N8u0A3sirB2wxBaDbfAx4mpaSqfC4VeHhfcmbOKyxvCQ8fhh5EsDhi4EeTJAhsHNiaJ5f
-        Qq6GA0/uzGsFZDx87trroXHydThwtJfjwX7kbtjTfBh4sIB8Dfacujs/D5/cCE0PROzuy+Ct
-        u5UcFq+CLZNmzDMCJCv5sL//W8BGToS33J0cFi+F9680clksgtOudoLFOfBsj41gxQUANnY6
-        vdiFaNhZfZzjMcbIdfBcWwRLr4atzysAa7wYumaKvdizEsCCz4VsSyC8PjryynY5/OYLI/El
-        oEwL0pgWRDAtiGD63+xrgNcCf1rHZCppRqyTLLxrK5h/8yGxF0DZ5MPwbsDhgW4AeRjlKwgS
-        2WVCQZr8k4O0XivTZ6tpphtI5s73KCbyU2jnPo0mSyaWREVHR6MY8QaJWEwtE8yGFsiEpFKe
-        RWfQtI7W/6fj8PiiXM75IPL+rM94XdWnBW9/tyhouLxa+WFwYfGl0VRnfJXD0NzyojqpXjk+
-        ae5R0uO5w++5GJVPiGUkIqEiZttg0Ngv/pI3rhoNm/6sCmzZlVAS9kC/4v13muxtVxuGSqmu
-        gt5t+Qbujb71avuBjsyuCdBiKefldlWfka1NLU16FpeSetmmtZQczJF81XvSMbb/9hKfGmGZ
-        UYRjZ3dt7Qhds9hZ1JyD7S3a7f5gEdEUbLRG9s5ErRyzrJ/dF/FZX6JhT+UPK07Fmbf+0XNi
-        v87vqXX5o2I1rO/Q+O/8KeVheY1OUVdMD7y1dtWJYmNo18zPPsozii390r6Pnhip4D0NVdVm
-        71YKZ1RycQimZ+T/AhF2dn98BAAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrCIsWRmVeSWpSXmKPExsWy7bCSvO7NprPxBlfWClm8+/SU1WL+kXOs
-        Fqs/Pma0uPL1PZvF9L2b2CxaZi1isTh/fgO7xdana5gszja9Ybe4vGsOm8Xn3iOMFp1fZrFZ
-        XDzlanG7cQWbxaS1Uxktzj7ztmjde4Td4t+1jSwWP3fNY7HY/OAYm4OIx/sbreweO2fdZfe4
-        dO4Ps8emVZ1sHneu7WHzuN99nMmjt/kdm0ffllWMHp83yQVwRnHZpKTmZJalFunbJXBl9DV/
-        YS64p1dxpPsGSwPjWtUuRg4OCQETieZ5xl2MXBxCArsZJR58u8HaxcgJFJeUmHbxKDNEjbDE
-        4cPFIGEhgbeMEs3HPEFsYYEkiX2/l7CA9IoI3GWRmPTjFhuIwywwg1Hiz4aN7BBTtwF1TG5n
-        B2lhE9CS2P/iBhuIzS+gKHH1x2NGkA28AnYSv9/FgYRZBFQkrk48xQRiiwqESexc8hjM5hUQ
-        lDg58wkLSDmngLnErNdSIGFmAXWJP/MuMUPY4hK3nsxngrDlJba/ncM8gVF4FpLuWUhaZiFp
-        mYWkZQEjyypGydSC4tz03GLDAsO81HK94sTc4tK8dL3k/NxNjOCI19Lcwbh91Qe9Q4xMHIyH
-        GCU4mJVEeNWkzsYL8aYkVlalFuXHF5XmpBYfYpTmYFES573QdTJeSCA9sSQ1OzW1ILUIJsvE
-        wSnVwNQY/m+hj5TPjYQT9Yq6LL0uZza9unr6huIyy0M+d/bO5NwSnZ92I1t/yzJnxtbTR1w9
-        e74sYyuI/h+vYmzO7+Ya8SfrtVbUeuuUzX/FKqcpzO5/lr+rrvO/e4pCmkLrksOqBYdlPeVd
-        cq/M1nnJPO97TmTPpN1hZ5IELG/ecfmeHjdv+rRZ+8UZGRbzPRH4H1l8d80NQeOjQXkz5zz8
-        yW2X6Bmo8PrzoWf6HVnlDH/W8ZTFXZJMOhbi9YdPJr5ILeDv9Rqp4OhH92cUb7ead/fXa64C
-        iwsPzmw0T7oknV+4J+0i/+eim4ffMFxQ/BT8lqMqJ+9V/mdB1R0ml6p23Yz/+8XuSO7Rp3vT
-        Vt/NVlBiKc5INNRiLipOBAArhXXnZwMAAA==
-X-CMS-MailID: 20201207011817epcas1p294a176e9b21c1536b54c26b38ca8ba30
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: SVC_REQ_APPROVE
-CMS-TYPE: 101P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20201203192730epcas1p1005aa9bcd60748dd9ecc0374349aac8b
-References: <20201203192439.16177-1-digetx@gmail.com>
-        <CGME20201203192730epcas1p1005aa9bcd60748dd9ecc0374349aac8b@epcas1p1.samsung.com>
-        <20201203192439.16177-11-digetx@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/4/20 4:24 AM, Dmitry Osipenko wrote:
-> Previously we were using count-weight of the T124 for T30 in order to
-> get EMC clock rate that was reasonable for T30. In fact the count-weight
-> should be x2 times smaller on T30, but then devfreq was producing a bit
-> too low EMC clock rate for ISO memory clients, like display controller
-> for example.
+On 12/4/20 6:22 PM, Thiago Jung Bauermann wrote:
 > 
-> Now both Tegra ACTMON and Tegra DRM display drivers support interconnect
-> framework and display driver tells to ICC what a minimum memory bandwidth
-> is needed, preventing FIFO underflows. Thus, now we can use a proper
-> count-weight value for Tegra30 and MC_ALL device config needs a bit more
-> aggressive boosting.
+> Hello Lakshmi,
 > 
-> Add a separate ACTMON driver configuration that is specific to Tegra30.
+> Lakshmi Ramasubramanian <nramas@linux.microsoft.com> writes:
 > 
-> Tested-by: Peter Geis <pgwipeout@gmail.com>
-> Tested-by: Nicolas Chauvet <kwizart@gmail.com>
-> Acked-by: Chanwoo Choi <cw00.choi@samsung.com>
-> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
-> ---
->  drivers/devfreq/tegra30-devfreq.c | 68 ++++++++++++++++++++++++-------
->  1 file changed, 54 insertions(+), 14 deletions(-)
+>> delete_fdt_mem_rsv() retrieves the memory reserve map entry, for
+>> the given starting address and size, from the device tree blob, and
+>> removes the entry from the device tree blob. This function is called
+>> to free the resources reserved for the buffer used for carrying forward
+>> the IMA measurement logs on kexec. This function does not have
+>> architecture specific code, but is currently limited to powerpc.
+>>
+>> Move delete_fdt_mem_rsv() to "drivers/of/kexec_fdt.c" so that it is
 > 
-> diff --git a/drivers/devfreq/tegra30-devfreq.c b/drivers/devfreq/tegra30-devfreq.c
-> index 145ef91ae092..117cad7968ab 100644
-> --- a/drivers/devfreq/tegra30-devfreq.c
-> +++ b/drivers/devfreq/tegra30-devfreq.c
-> @@ -57,13 +57,6 @@
->  #define ACTMON_BELOW_WMARK_WINDOW				3
->  #define ACTMON_BOOST_FREQ_STEP					16000
->  
-> -/*
-> - * Activity counter is incremented every 256 memory transactions, and each
-> - * transaction takes 4 EMC clocks for Tegra124; So the COUNT_WEIGHT is
-> - * 4 * 256 = 1024.
-> - */
-> -#define ACTMON_COUNT_WEIGHT					0x400
-> -
->  /*
->   * ACTMON_AVERAGE_WINDOW_LOG2: default value for @DEV_CTRL_K_VAL, which
->   * translates to 2 ^ (K_VAL + 1). ex: 2 ^ (6 + 1) = 128
-> @@ -111,7 +104,7 @@ enum tegra_actmon_device {
->  	MCCPU,
->  };
->  
-> -static const struct tegra_devfreq_device_config actmon_device_configs[] = {
-> +static const struct tegra_devfreq_device_config tegra124_device_configs[] = {
->  	{
->  		/* MCALL: All memory accesses (including from the CPUs) */
->  		.offset = 0x1c0,
-> @@ -133,6 +126,28 @@ static const struct tegra_devfreq_device_config actmon_device_configs[] = {
->  	},
->  };
->  
-> +static const struct tegra_devfreq_device_config tegra30_device_configs[] = {
-> +	{
-> +		/* MCALL: All memory accesses (including from the CPUs) */
-> +		.offset = 0x1c0,
-> +		.irq_mask = 1 << 26,
-> +		.boost_up_coeff = 200,
-> +		.boost_down_coeff = 50,
-> +		.boost_up_threshold = 20,
-> +		.boost_down_threshold = 10,
-> +	},
-> +	{
-> +		/* MCCPU: memory accesses from the CPUs */
-> +		.offset = 0x200,
-> +		.irq_mask = 1 << 25,
-> +		.boost_up_coeff = 800,
-> +		.boost_down_coeff = 40,
-> +		.boost_up_threshold = 27,
-> +		.boost_down_threshold = 10,
-> +		.avg_dependency_threshold = 16000, /* 16MHz in kHz units */
-> +	},
-> +};
-> +
->  /**
->   * struct tegra_devfreq_device - state specific to an ACTMON device
->   *
-> @@ -155,6 +170,12 @@ struct tegra_devfreq_device {
->  	unsigned long target_freq;
->  };
->  
-> +struct tegra_devfreq_soc_data {
-> +	const struct tegra_devfreq_device_config *configs;
-> +	/* Weight value for count measurements */
-> +	unsigned int count_weight;
-> +};
-> +
->  struct tegra_devfreq {
->  	struct devfreq		*devfreq;
->  	struct opp_table	*opp_table;
-> @@ -171,11 +192,13 @@ struct tegra_devfreq {
->  	struct delayed_work	cpufreq_update_work;
->  	struct notifier_block	cpu_rate_change_nb;
->  
-> -	struct tegra_devfreq_device devices[ARRAY_SIZE(actmon_device_configs)];
-> +	struct tegra_devfreq_device devices[2];
->  
->  	unsigned int		irq;
->  
->  	bool			started;
-> +
-> +	const struct tegra_devfreq_soc_data *soc;
->  };
->  
->  struct tegra_actmon_emc_ratio {
-> @@ -488,7 +511,7 @@ static void tegra_actmon_configure_device(struct tegra_devfreq *tegra,
->  	tegra_devfreq_update_avg_wmark(tegra, dev);
->  	tegra_devfreq_update_wmark(tegra, dev);
->  
-> -	device_writel(dev, ACTMON_COUNT_WEIGHT, ACTMON_DEV_COUNT_WEIGHT);
-> +	device_writel(dev, tegra->soc->count_weight, ACTMON_DEV_COUNT_WEIGHT);
->  	device_writel(dev, ACTMON_INTR_STATUS_CLEAR, ACTMON_DEV_INTR_STATUS);
->  
->  	val |= ACTMON_DEV_CTRL_ENB_PERIODIC;
-> @@ -779,6 +802,8 @@ static int tegra_devfreq_probe(struct platform_device *pdev)
->  	if (!tegra)
->  		return -ENOMEM;
->  
-> +	tegra->soc = of_device_get_match_data(&pdev->dev);
-> +
->  	tegra->regs = devm_platform_ioremap_resource(pdev, 0);
->  	if (IS_ERR(tegra->regs))
->  		return PTR_ERR(tegra->regs);
-> @@ -852,9 +877,9 @@ static int tegra_devfreq_probe(struct platform_device *pdev)
->  
->  	tegra->max_freq = rate / KHZ;
->  
-> -	for (i = 0; i < ARRAY_SIZE(actmon_device_configs); i++) {
-> +	for (i = 0; i < ARRAY_SIZE(tegra->devices); i++) {
->  		dev = tegra->devices + i;
-> -		dev->config = actmon_device_configs + i;
-> +		dev->config = tegra->soc->configs + i;
->  		dev->regs = tegra->regs + dev->config->offset;
->  	}
->  
-> @@ -916,9 +941,24 @@ static int tegra_devfreq_remove(struct platform_device *pdev)
->  	return 0;
->  }
->  
-> +static const struct tegra_devfreq_soc_data tegra124_soc = {
-> +	.configs = tegra124_device_configs,
-> +
-> +	/*
-> +	 * Activity counter is incremented every 256 memory transactions,
-> +	 * and each transaction takes 4 EMC clocks.
-> +	 */
-> +	.count_weight = 4 * 256,
-> +};
-> +
-> +static const struct tegra_devfreq_soc_data tegra30_soc = {
-> +	.configs = tegra30_device_configs,
-> +	.count_weight = 2 * 256,
-> +};
-> +
->  static const struct of_device_id tegra_devfreq_of_match[] = {
-> -	{ .compatible = "nvidia,tegra30-actmon" },
-> -	{ .compatible = "nvidia,tegra124-actmon" },
-> +	{ .compatible = "nvidia,tegra30-actmon",  .data = &tegra30_soc, },
-> +	{ .compatible = "nvidia,tegra124-actmon", .data = &tegra124_soc, },
->  	{ },
->  };
->  
+> s/kexec_fdt.c/kexec.c/
+
+Missed that in the patch description. Will fix it. Thanks.
+
+>> accessible for other architectures as well.
+>>
+>> Co-developed-by: Prakhar Srivastava <prsriva@linux.microsoft.com>
+>> Signed-off-by: Prakhar Srivastava <prsriva@linux.microsoft.com>
+>> Signed-off-by: Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
+>> ---
+>>   arch/powerpc/include/asm/kexec.h |  1 -
+>>   arch/powerpc/kexec/file_load.c   | 32 -----------------
+>>   drivers/of/Makefile              |  1 +
+>>   drivers/of/kexec.c               | 61 ++++++++++++++++++++++++++++++++
+>>   include/linux/kexec.h            |  5 +++
+>>   5 files changed, 67 insertions(+), 33 deletions(-)
+>>   create mode 100644 drivers/of/kexec.c
+>>
+>> diff --git a/arch/powerpc/include/asm/kexec.h b/arch/powerpc/include/asm/kexec.h
+>> index 55d6ede30c19..7c223031ecdd 100644
+>> --- a/arch/powerpc/include/asm/kexec.h
+>> +++ b/arch/powerpc/include/asm/kexec.h
+>> @@ -126,7 +126,6 @@ int setup_purgatory(struct kimage *image, const void *slave_code,
+>>   int setup_new_fdt(const struct kimage *image, void *fdt,
+>>   		  unsigned long initrd_load_addr, unsigned long initrd_len,
+>>   		  const char *cmdline);
+>> -int delete_fdt_mem_rsv(void *fdt, unsigned long start, unsigned long size);
+>>   
+>>   #ifdef CONFIG_PPC64
+>>   struct kexec_buf;
+>> diff --git a/arch/powerpc/kexec/file_load.c b/arch/powerpc/kexec/file_load.c
+>> index 9a232bc36c8f..9efc98b1e2ae 100644
+>> --- a/arch/powerpc/kexec/file_load.c
+>> +++ b/arch/powerpc/kexec/file_load.c
+>> @@ -109,38 +109,6 @@ int setup_purgatory(struct kimage *image, const void *slave_code,
+>>   	return 0;
+>>   }
+>>   
+>> -/**
+>> - * delete_fdt_mem_rsv - delete memory reservation with given address and size
+>> - *
+>> - * Return: 0 on success, or negative errno on error.
+>> - */
+>> -int delete_fdt_mem_rsv(void *fdt, unsigned long start, unsigned long size)
+>> -{
+>> -	int i, ret, num_rsvs = fdt_num_mem_rsv(fdt);
+>> -
+>> -	for (i = 0; i < num_rsvs; i++) {
+>> -		uint64_t rsv_start, rsv_size;
+>> -
+>> -		ret = fdt_get_mem_rsv(fdt, i, &rsv_start, &rsv_size);
+>> -		if (ret) {
+>> -			pr_err("Malformed device tree.\n");
+>> -			return -EINVAL;
+>> -		}
+>> -
+>> -		if (rsv_start == start && rsv_size == size) {
+>> -			ret = fdt_del_mem_rsv(fdt, i);
+>> -			if (ret) {
+>> -				pr_err("Error deleting device tree reservation.\n");
+>> -				return -EINVAL;
+>> -			}
+>> -
+>> -			return 0;
+>> -		}
+>> -	}
+>> -
+>> -	return -ENOENT;
+>> -}
+>> -
+>>   /*
+>>    * setup_new_fdt - modify /chosen and memory reservation for the next kernel
+>>    * @image:		kexec image being loaded.
+>> diff --git a/drivers/of/Makefile b/drivers/of/Makefile
+>> index 6e1e5212f058..77d24712c0c8 100644
+>> --- a/drivers/of/Makefile
+>> +++ b/drivers/of/Makefile
+>> @@ -13,5 +13,6 @@ obj-$(CONFIG_OF_RESERVED_MEM) += of_reserved_mem.o
+>>   obj-$(CONFIG_OF_RESOLVE)  += resolver.o
+>>   obj-$(CONFIG_OF_OVERLAY) += overlay.o
+>>   obj-$(CONFIG_OF_NUMA) += of_numa.o
+>> +obj-$(CONFIG_OF_FLATTREE) += kexec.o
+> 
+> Isn't this too broad? kexec.o will only be useful to kernel configs
+> which enable CONFIG_KEXEC_FILE, so perhaps do:
+> 
+> ifdef CONFIG_OF_FLATTREE
+> ifdef CONFIG_KEXEC_FILE
+> obj-y += kexec.o
+> endif
+> endif
+> 
+> What do you think?
+
+Per Rob's feedback on v9 patch set, I have moved all the architecture 
+independent ima kexec functions to a single file "drivers/of/kexec.c"
+
+Since these functions are enabled on different kernel CONFIGs, I have 
+used IS_ENABLED(CONFIG_XYZ) macro instead of "#ifdef" in the C file to 
+conditionally compile.
+
+> 
+>>   obj-$(CONFIG_OF_UNITTEST) += unittest-data/
+>> diff --git a/drivers/of/kexec.c b/drivers/of/kexec.c
+>> new file mode 100644
+>> index 000000000000..b7d59105fcb8
+>> --- /dev/null
+>> +++ b/drivers/of/kexec.c
+>> @@ -0,0 +1,61 @@
+>> +// SPDX-License-Identifier: GPL-2.0+
+>> +/*
+>> + * Copyright (C) 2020 Microsoft Corporation
+>> + *
+>> + * Author: Lakshmi Ramasubramanian (nramas@linux.microsoft.com)
+>> + *
+>> + * File: kexec.c
+>> + *	Defines kexec related functions.
+>> + */
+>> +
+>> +#define pr_fmt(fmt)	"OF: kexec: " fmt
+>> +
+>> +#include <linux/kernel.h>
+>> +#include <linux/slab.h>
+>> +#include <linux/memblock.h>
+>> +#include <linux/kexec.h>
+>> +#include <linux/of.h>
+>> +#include <linux/of_fdt.h>
+>> +#include <linux/libfdt.h>
+>> +
+>> +/**
+>> + * delete_fdt_mem_rsv - delete memory reservation with given address and size
+>> + *
+>> + * @fdt: Flattened Device Tree to update
+>> + * @start: Starting address of the reservation to delete
+>> + * @size: Size of the reservation to delete
+>> + *
+>> + * Return: 0 on success, or negative errno on error.
+>> + */
+>> +int delete_fdt_mem_rsv(void *fdt, unsigned long start, unsigned long size)
+>> +{
+>> +	int i, ret, num_rsvs;
+>> +
+>> +	if (!IS_ENABLED(CONFIG_KEXEC_FILE))
+>> +		return 0;
+> 
+> If you agree with my suggestion, then this IS_ENABLED() wouldn't be
+> needed.
 > 
 
-Applied it. Thanks.
+Please see my response above.
 
--- 
-Best Regards,
-Chanwoo Choi
-Samsung Electronics
+If there is a way to keep all the ima kexec functions in a single file 
+and yet not use "#ifdef" in C file to conditionally compile, please let 
+me know. I'll update.
+
+thanks,
+  -lakshmi
+
+>> +
+>> +	num_rsvs = fdt_num_mem_rsv(fdt);
+>> +	for (i = 0; i < num_rsvs; i++) {
+>> +		uint64_t rsv_start, rsv_size;
+>> +
+>> +		ret = fdt_get_mem_rsv(fdt, i, &rsv_start, &rsv_size);
+>> +		if (ret) {
+>> +			pr_err("Malformed device tree.\n");
+>> +			return -EINVAL;
+>> +		}
+>> +
+>> +		if (rsv_start == start && rsv_size == size) {
+>> +			ret = fdt_del_mem_rsv(fdt, i);
+>> +			if (ret) {
+>> +				pr_err("Error deleting device tree reservation.\n");
+>> +				return -EINVAL;
+>> +			}
+>> +
+>> +			pr_debug("Freed reserved memory at %lu of size %lu\n",
+>> +				 start, size);
+>> +			return 0;
+>> +		}
+>> +	}
+>> +
+>> +	return -ENOENT;
+>> +}
+> 
+> The function code is unchanged apart from the addition of the
+> IS_ENABLED() and the pr_debug(), so that is good.
+> 
+>> diff --git a/include/linux/kexec.h b/include/linux/kexec.h
+>> index 9e93bef52968..d0234c4815da 100644
+>> --- a/include/linux/kexec.h
+>> +++ b/include/linux/kexec.h
+>> @@ -407,6 +407,11 @@ static inline int kexec_crash_loaded(void) { return 0; }
+>>   #define kexec_in_progress false
+>>   #endif /* CONFIG_KEXEC_CORE */
+>>   
+>> +#if defined(CONFIG_OF_FLATTREE)
+> 
+> This would also change to require CONFIG_KEXEC_FILE.
+> 
+>> +extern int delete_fdt_mem_rsv(void *fdt, unsigned long start,
+>> +			      unsigned long size);
+>> +#endif /* CONFIG_OF_FLATTREE */
+>> +
+>>   #endif /* !defined(__ASSEBMLY__) */
+>>   
+>>   #endif /* LINUX_KEXEC_H */
+> 
+> 
+
