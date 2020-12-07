@@ -2,106 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ABC8E2D0D05
-	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 10:30:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 146792D0D35
+	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 10:41:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725772AbgLGJaX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Dec 2020 04:30:23 -0500
-Received: from wout4-smtp.messagingengine.com ([64.147.123.20]:37267 "EHLO
-        wout4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725550AbgLGJaX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 04:30:23 -0500
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailout.west.internal (Postfix) with ESMTP id 00603DF3;
-        Mon,  7 Dec 2020 04:29:16 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute6.internal (MEProxy); Mon, 07 Dec 2020 04:29:17 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm1; bh=vbF8WW7CyrcnZrNWHTuh2+g4Y8D
-        NKb3GWebWG/hH5AQ=; b=RY6+FWXVA1YNnwVsl6Zg6wDacS7/4O0ZNfEuBpzQ2Q6
-        L+TJyqZRGoA5wW0cUWvxCPmsnujZvfIApX7G7UDPePCLDhhpWUKV6Rq2zNwfky32
-        QzSZCJUBLChNJj4YQEPsKskEwQNEKII60gtK5A7FycGpnqc0ZLOUGV0Rp8DcLH2v
-        KF5UkUHTfOq6TrzgKw5w74uHRn4MIyZf/t6GaYSPwU5vF76VqRqs6n9CtWeH1ZSC
-        y4iiIyIy4rOIRBJv3hWqIpF+RnUqlhQV7RWmfbM/2R9yDga+Z2LzROK9XhDfl791
-        wBrdgN5ZWKXClWAyejFxqsoSe1wF28EAnjvbBuSsARA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=vbF8WW
-        7CyrcnZrNWHTuh2+g4Y8DNKb3GWebWG/hH5AQ=; b=DH7X4j4XG1ULQLJ/Kx5QXz
-        9PZCcSBq+TVAKsJhBelY7v0XzIwMofk0thaQgMz2+PuQwwT7e9aYjpm1RbhoeAdb
-        jJM3eshs6E//vJl/0lDGAiEDykFY8b3hoX551bOuJg86hGBNMpzRy3mP1dr1Z1tu
-        u5WlQDiD87xnpOEPq1Pj/82m6g8Qsm1S1tjfr13/wiD8ohKSRYPufLVwkt3SmEuN
-        TkmWteWpnuJb5uPxRDu/XyfF4xDJppsZ0BdzJ5/lktLQZw3xXGmlVHq4BBcpBbqJ
-        xVW2Q7Qz6d70R+CYe976wdz2PaDX7GrSzEgwBUfm1IoBYxRS3ba239d/apk23vJw
-        ==
-X-ME-Sender: <xms:6_XNXxZfKcVDx2yOrxSBXJ2HcFW2rvt5vKF_HAlnuooTqE3T44KJuA>
-    <xme:6_XNX8sr63fiE07A1jC9RlvSmxnYxwpAQIDPggwllpUN2AISxiNsniQStHjoX655Q
-    w5aUP_c7KSBbvnmriI>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrudejgedgtdefucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    goufhushhpvggtthffohhmrghinhculdegledmnecujfgurhepfffhvffukfhfgggtuggj
-    sehgtderredttddvnecuhfhrohhmpeforgigihhmvgcutfhiphgrrhguuceomhgrgihimh
-    gvsegtvghrnhhordhtvggthheqnecuggftrfgrthhtvghrnheptdeugeelfffhveehjeel
-    udeugeeuiedvudevfeehhfegtdffheegiedvgfettdetnecuffhomhgrihhnpehgihhtsg
-    hoohhkrdhiohdpghhoohhglhgvrdgtohhmnecukfhppeeltddrkeelrdeikedrjeeinecu
-    vehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmhgrgihimh
-    gvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:6_XNXzG6Mp2RSU5CFGnbQ7EYSwKtW2edWipqdXftdZeX9r4IyqiQFg>
-    <xmx:6_XNX3xE31bx39IbkGY4Ls4ognxKHrMjNgNgw0qMk6BirZy2xYVeMg>
-    <xmx:6_XNXyiZZXNvFr76YxulH-6TbzwwnkW9u4bvlWGIPqN_A3gmsJvcRw>
-    <xmx:7PXNX3R7Swobb_uuPPdVfmUlKTmB0BxFScTfmuj5-jxASB2SMXePtA>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 43A051080064;
-        Mon,  7 Dec 2020 04:29:15 -0500 (EST)
-Date:   Mon, 7 Dec 2020 10:29:14 +0100
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Michael Klein <michael@fossekall.de>
-Cc:     Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] ARM: dts: sun6i-a31s-sinovoip-bpi-m2: add gpio-line-names
-Message-ID: <20201207092914.3ampg2vyd7a53ku4@gilmour>
-References: <20201202195144.2105036-1-michael@fossekall.de>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="l7jfbuasin4xcqjn"
-Content-Disposition: inline
-In-Reply-To: <20201202195144.2105036-1-michael@fossekall.de>
+        id S1726119AbgLGJla (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Dec 2020 04:41:30 -0500
+Received: from mx1.tq-group.com ([93.104.207.81]:49452 "EHLO mx1.tq-group.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726011AbgLGJl3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 7 Dec 2020 04:41:29 -0500
+X-Greylist: delayed 549 seconds by postgrey-1.27 at vger.kernel.org; Mon, 07 Dec 2020 04:41:28 EST
+IronPort-SDR: /GNf1k3r6g7zoHSmda2y1LZxQcHJt6cExAwV83bn+BKevUYrwKA10mUYYcqWLDpk/fDuAsEi1s
+ EPreFuhzTL5kM4Hk+SnLdVlRS+ZikwK0OB52dFThTdhRiFUHENna46ma8NSTrJxYOeVEB5U/b0
+ 5QKQvL7WzImc0BgG4Q0RRJq8OkE1iLNKkdUdRg4e0H0ouqu8LIbmJXN+iI2u4veUtDnew79Bw3
+ urSwvx8aPQo0yDG7g03DhDlcbfWDXuGe9ZplSlnSC3q1TVVbEi/33/BdGL5kRmjGDxFI8LvVEo
+ d70=
+X-IronPort-AV: E=Sophos;i="5.78,399,1599516000"; 
+   d="scan'208";a="15063546"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 07 Dec 2020 10:31:38 +0100
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Mon, 07 Dec 2020 10:31:38 +0100
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Mon, 07 Dec 2020 10:31:38 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1607333498; x=1638869498;
+  h=from:to:cc:subject:date:message-id;
+  bh=UOXhKhew792DWKPSXP/HOL6B6naG2LvvyuBO86TcfZ0=;
+  b=XrcG6Z+NcqbRETfHmZjiIdN0c4S18UKNWAtY+uU1zOyHdU9dTintlcHb
+   cZ/+dmRUxynV434l0Vl3yH49a0tiIjLUHvlpnzoglK3ISQLYGOHk85szp
+   JDRX2wnBOd2ngoCfbcox7ti8/Iq7Ze5SviZC+SN11Fd+qAg979tSSrFFs
+   JrF/S4PTFRsTpfYQhJTfJhyphRp+ZZNMzhh4myfrxNlzR3fuBmdyDMIxj
+   b6OFHLIVcP/WwUipwkbyn2mOdO1Wn4VEKKTutJbhiCiYVUonD30+f+Ew4
+   LrVe2xyZwX/uLrgdvx3C0vDqQivMg4kqEm3UhHlRb7DhoRvcl8gH8jGc7
+   Q==;
+IronPort-SDR: +KrO04IhMcntlV/SorEtNQjgbqKO7kerxS37C3XzN4K8lfM8o7Yohvvxn76AUIFagbzd+yK0Gw
+ C/UxVVFC3EQlCjyxPAjbhF7KZDXCfmoWs2N9J7QAPAFdCPI8n3iBEsTndFzD5vjNjxd5Iq+E9S
+ 2z1JAll47sxNvyovCseIJ/tki4SB1/ygpWUPOuj+NXAEy0ZIuH00KT5tdUhlCkBKqNiqkFpvyU
+ SxNB8wbrutwOOUYtRfwGOBAxKEs3SR6f3dGOSVG8oNkrhXCF/kT6BTvEu3VBXvfQHla5J/i6rX
+ 4e4=
+X-IronPort-AV: E=Sophos;i="5.78,399,1599516000"; 
+   d="scan'208";a="15063545"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 07 Dec 2020 10:31:38 +0100
+Received: from schifferm-ubuntu4.tq-net.de (schifferm-ubuntu4.tq-net.de [10.117.48.12])
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPA id 98E69280070;
+        Mon,  7 Dec 2020 10:31:38 +0100 (CET)
+From:   Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: vendor-prefixes: correct the spelling of TQ-Systems GmbH
+Date:   Mon,  7 Dec 2020 10:30:36 +0100
+Message-Id: <20201207093036.29824-1-matthias.schiffer@ew.tq-group.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Max Merchel <Max.Merchel@tq-group.com>
 
---l7jfbuasin4xcqjn
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+"TQ-Systems" is written with a dash, as can be seen on
+https://www.tq-group.com/en/imprint/
 
-On Wed, Dec 02, 2020 at 08:51:47PM +0100, Michael Klein wrote:
-> Add gpio-line-names as documented on gitbooks [1] and in the
-> schematics [2].
->=20
-> [1]: https://bananapi.gitbook.io/bpi-m2/en/bpi-m2_gpio_pin_define
-> [2]: https://drive.google.com/file/d/0B4PAo2nW2KfnRERWNnJGSGxJbmM/view
->=20
-> Signed-off-by: Michael Klein <michael@fossekall.de>
+Signed-off-by: Max Merchel <Max.Merchel@tq-group.com>
+Signed-off-by: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
+---
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-QUeued for 5.12, thanks
-Maxime
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 3a76c226771b..5b7ee0e059a2 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -1125,7 +1125,7 @@ patternProperties:
+   "^tpo,.*":
+     description: TPO
+   "^tq,.*":
+-    description: TQ Systems GmbH
++    description: TQ-Systems GmbH
+   "^tronfy,.*":
+     description: Tronfy
+   "^tronsmart,.*":
+-- 
+2.17.1
 
---l7jfbuasin4xcqjn
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX8316gAKCRDj7w1vZxhR
-xUo1AP9bBUPPL4p2wFCMNaLSyyY+dZhSjdDwj09cLOi31qnjWQEA/DijqVO2aCuL
-Y0leVWiODEjzD3hZ/ZQv5XZTkRB6FwE=
-=77M9
------END PGP SIGNATURE-----
-
---l7jfbuasin4xcqjn--
