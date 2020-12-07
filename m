@@ -2,94 +2,222 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A0B592D1582
-	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 17:07:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B82B82D16A3
+	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 17:45:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725814AbgLGQE5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Dec 2020 11:04:57 -0500
-Received: from mail-oi1-f193.google.com ([209.85.167.193]:39819 "EHLO
-        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725804AbgLGQE5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 11:04:57 -0500
-Received: by mail-oi1-f193.google.com with SMTP id v85so5335093oia.6;
-        Mon, 07 Dec 2020 08:04:41 -0800 (PST)
+        id S1727073AbgLGQm1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Dec 2020 11:42:27 -0500
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:42741 "EHLO
+        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726101AbgLGQm1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 11:42:27 -0500
+Received: by mail-ot1-f66.google.com with SMTP id 11so13021644oty.9;
+        Mon, 07 Dec 2020 08:42:11 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=4ZmZoFkAfZf3KY5TWqHDY4LCl+TVFFSeX7ZglQlEtdU=;
-        b=DrCw5PUoyXGY5SqlpgXxiNAR0J+F21Hb+QrHsQQjeuP5sWVm62kvWsLV8AWLmy72hf
-         WxCxu2AqrxhUZu2lYq1gdGXCQ0EGY1Du3duwfkfPnVDCes8egvH/0aP8qUJUHpro7dU4
-         94LOYjUxg/FHkSvutD0+Q7OdynXt9Nhqi4xoPm6w82lVMXtlCIRhJs69zR28dvZ+Zq6q
-         OCRFZJXW9wMq6/pJy+glpEx2Bit/UVT3jfYfSqhoforCd1xIQp01s6G06Qfqr55G+CqQ
-         zBVRyIoroTPUuLu9+fTL8/5eQJdrPQko9k7VDiGNXGI6JePrdju+jONjH9mVdPmA/SMs
-         EUXA==
-X-Gm-Message-State: AOAM530VVsOgpj0DI3DNOTyVSbVyXiRbbkZ+h38lMIhwrYwgDyxXUkW2
-        ApG7EO2Xtj69rX8vEiu8qg==
-X-Google-Smtp-Source: ABdhPJy40Pfu17wwKQOmtAzROlJeDuPwjzee6mv+7UV9tOWgfzkd1fdia3mhHPSAx+ucB5koirIviQ==
-X-Received: by 2002:aca:d955:: with SMTP id q82mr12823202oig.116.1607357056416;
-        Mon, 07 Dec 2020 08:04:16 -0800 (PST)
+        bh=K6bF1FaDZgAy7/ZWg1y1G3uqHa1w8BX8au5vZBaRRY4=;
+        b=HgXJX+umJMfPzieoaDwP3SsQevdG6e05MXDKDVNLsFNpkwkL44hIk7Re9R15IPn5TI
+         o8Rsw00Y3mvFhExA6RlVn9EpKYSlLqXCh7oCyRxQseicQV2a7ErcZ1/L81Fz4VTaUQaY
+         O0UMOJGOd2HHPYGNbX/TzjeHlUvqzBNdH3hWBD8JOa385lX4WYujTfhBe1lGYNcsAHVs
+         TSEqyo2wWWg4Hfb3inl+b546nR5XUsE2hLoUP+aY977b2r4beZXY8UsXLs9X4bbkcSUz
+         iwBsa7is0XL5dvCh5hBOUUZQ9uLUnu5mAnHenMsDjXz0NPEVGVGa+k/4f1pZ+GR+91Hn
+         tRFA==
+X-Gm-Message-State: AOAM5320alS/JGrZEKEEZEoxe6VLj5Dyjx96BEDf6MimAdrGVkenDsxo
+        lQozGkIb3s5VBNIEiJKlbg==
+X-Google-Smtp-Source: ABdhPJwZCARGwwYDP6mzbqlj6ZfdfIZO95tfx53NZh7qmOuWmCN5pXCjW7eakQOGZ0P5pX1eDf5jlA==
+X-Received: by 2002:a9d:be1:: with SMTP id 88mr13823281oth.210.1607359305966;
+        Mon, 07 Dec 2020 08:41:45 -0800 (PST)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id n13sm1009209otk.58.2020.12.07.08.04.14
+        by smtp.gmail.com with ESMTPSA id y15sm2736476otq.79.2020.12.07.08.41.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Dec 2020 08:04:15 -0800 (PST)
-Received: (nullmailer pid 360356 invoked by uid 1000);
-        Mon, 07 Dec 2020 16:04:13 -0000
-Date:   Mon, 7 Dec 2020 10:04:13 -0600
+        Mon, 07 Dec 2020 08:41:45 -0800 (PST)
+Received: (nullmailer pid 409772 invoked by uid 1000);
+        Mon, 07 Dec 2020 16:41:44 -0000
+Date:   Mon, 7 Dec 2020 10:41:44 -0600
 From:   Rob Herring <robh@kernel.org>
 To:     cy_huang <u0084500@gmail.com>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        lee.jones@linaro.org, cy_huang@richtek.com, robh+dt@kernel.org
-Subject: Re: [PATCH v2 2/4] backlight: rt4831: Adds DT binding document for
- Richtek RT4831 backlight
-Message-ID: <20201207160413.GA359560@robh.at.kernel.org>
+Cc:     lee.jones@linaro.org, cy_huang@richtek.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 4/4] mfd: rt4831: Adds DT binding document for Richtek
+ RT4831 MFD core
+Message-ID: <20201207164144.GA398093@robh.at.kernel.org>
 References: <1607011595-13603-1-git-send-email-u0084500@gmail.com>
- <1607011595-13603-2-git-send-email-u0084500@gmail.com>
+ <1607011595-13603-4-git-send-email-u0084500@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1607011595-13603-2-git-send-email-u0084500@gmail.com>
+In-Reply-To: <1607011595-13603-4-git-send-email-u0084500@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 04 Dec 2020 00:06:33 +0800, cy_huang wrote:
+On Fri, Dec 04, 2020 at 12:06:35AM +0800, cy_huang wrote:
 > From: ChiYuan Huang <cy_huang@richtek.com>
 > 
-> Adds DT binding document for Richtek RT4831 backlight.
+> Adds DT binding document for Richtek RT4831 MFD core.
+> 
+> This patch depends on
+> 
+> "backlight: rt4831: Adds DT binding document for Richtek RT4831 backlight".
+> "regulator: rt4831: Adds DT binding document for Richtek RT4831 DSV regulator".
+
+You generally don't need to state dependencies on other patches in the 
+series. You need to state dependencies that are either pending in a 
+maintainers tree or patches not yet applied. IOW, anything not in Linus' 
+tree. And that information goes below the '---'.
+
 > 
 > Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
 > ---
->  .../leds/backlight/richtek,rt4831-backlight.yaml   | 86 ++++++++++++++++++++++
->  1 file changed, 86 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/leds/backlight/richtek,rt4831-backlight.yaml
+> Changes since v2
+> - Add "patch depends on" in commit description.
+> - Adds regulator-allow-bypass flag in DSVLCM.
+> ---
+>  .../devicetree/bindings/mfd/richtek,rt4831.yaml    | 90 ++++++++++++++++++++++
+>  include/dt-bindings/leds/rt4831-backlight.h        | 23 ++++++
+
+This goes in the backlight binding patch.
+
+>  2 files changed, 113 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/richtek,rt4831.yaml
+>  create mode 100644 include/dt-bindings/leds/rt4831-backlight.h
 > 
+> diff --git a/Documentation/devicetree/bindings/mfd/richtek,rt4831.yaml b/Documentation/devicetree/bindings/mfd/richtek,rt4831.yaml
+> new file mode 100644
+> index 00000000..c6ca953
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mfd/richtek,rt4831.yaml
+> @@ -0,0 +1,90 @@
+> +# SPDX-License-Identifier: GPL-2.0
 
+For new bindings:
 
-My bot found errors running 'make dt_binding_check' on your patch:
+(GPL-2.0-only OR BSD-2-Clause)
 
-yamllint warnings/errors:
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mfd/richtek,rt4831.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Richtek RT4831 DSV and Backlight Integrated IC
+> +
+> +maintainers:
+> +  - ChiYuan Huang <cy_huang@richtek.com>
+> +
+> +description: |
+> +  RT4831 is a multifunctional device that can provide power to the LCD display
+> +  and LCD backlight.
+> +
+> +  For Display Bias Voltage DSVP and DSVN, the output range is about 4V to 6.5V.
+> +  It's sufficient to meet the current LCD power requirement.
+> +
+> +  For the LCD backlight, it can provide four channel WLED driving capability.
+> +  Each channel driving current is up to 30mA
+> +
+> +  Datasheet is available at
+> +  https://www.richtek.com/assets/product_file/RT4831A/DS4831A-05.pdf
+> +
+> +properties:
+> +  compatible:
+> +    const: richtek,rt4831
+> +
+> +  reg:
+> +    description: I2C device address.
+> +    maxItems: 1
+> +
+> +  enable-gpios:
+> +    description: |
+> +      GPIO to enable/disable the chip. It is optional.
+> +      Some usage directly tied this pin to follow VIO 1.8V power on sequence.
+> +    maxItems: 1
+> +
+> +  regulators:
+> +    $ref: ../regulator/richtek,rt4831-regulator.yaml
+> +
+> +  backlight:
+> +    $ref: ../leds/backlight/richtek,rt4831-backlight.yaml
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/leds/rt4831-backlight.h>
+> +    i2c {
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +
+> +      rt4831@11 {
+> +        compatible = "richtek,rt4831";
+> +        reg = <0x11>;
+> +
+> +        regulators {
+> +          DSVLCM {
+> +            regulator-min-microvolt = <4000000>;
+> +            regulator-max-microvolt = <7150000>;
+> +            regulator-allow-bypass;
+> +          };
+> +          DSVP {
+> +            regulator-name = "rt4831-dsvp";
+> +            regulator-min-microvolt = <4000000>;
+> +            regulator-max-microvolt = <6500000>;
+> +            regulator-boot-on;
+> +          };
+> +          DSVN {
+> +            regulator-name = "rt4831-dsvn";
+> +            regulator-min-microvolt = <4000000>;
+> +            regulator-max-microvolt = <6500000>;
+> +            regulator-boot-on;
+> +          };
+> +        };
+> +
+> +        backlight {
+> +          compatible = "richtek,rt4831-backlight";
+> +          default-brightness = <1024>;
+> +          max-brightness = <2048>;
+> +          richtek,bled-ovp-sel = /bits/ 8 <RT4831_BLOVPLVL_21V>;
+> +          richtek,channel-use = /bits/ 8 <RT4831_BLED_ALLCHEN>;
+> +        };
+> +      };
+> +    };
+> diff --git a/include/dt-bindings/leds/rt4831-backlight.h b/include/dt-bindings/leds/rt4831-backlight.h
+> new file mode 100644
+> index 00000000..7084906
+> --- /dev/null
+> +++ b/include/dt-bindings/leds/rt4831-backlight.h
+> @@ -0,0 +1,23 @@
+> +/*
+> + * This header provides constants for rt4831 backlight bindings.
+> + *
+> + * This file is licensed under the terms of the GNU General Public
+> + * License version 2.  This program is licensed "as is" without any
+> + * warranty of any kind, whether express or implied.
 
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/leds/backlight/richtek,rt4831-backlight.example.dts:19:18: fatal error: dt-bindings/leds/rt4831-backlight.h: No such file or directory
-   19 |         #include <dt-bindings/leds/rt4831-backlight.h>
-      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-compilation terminated.
-make[1]: *** [scripts/Makefile.lib:342: Documentation/devicetree/bindings/leds/backlight/richtek,rt4831-backlight.example.dt.yaml] Error 1
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1364: dt_binding_check] Error 2
+Use SPDX tag. Also, probably should be dual licensed too if you want to 
+use your DTs with non-GPL OS.
 
-
-See https://patchwork.ozlabs.org/patch/1410481
-
-The base for the patch is generally the last rc1. Any dependencies
-should be noted.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+> + */
+> +
+> +#ifndef _DT_BINDINGS_RT4831_BACKLIGHT_H
+> +#define _DT_BINDINGS_RT4831_BACKLIGHT_H
+> +
+> +#define RT4831_BLOVPLVL_17V	0
+> +#define RT4831_BLOVPLVL_21V	1
+> +#define RT4831_BLOVPLVL_25V	2
+> +#define RT4831_BLOVPLVL_29V	3
+> +
+> +#define RT4831_BLED_CH1EN	(1 << 0)
+> +#define RT4831_BLED_CH2EN	(1 << 1)
+> +#define RT4831_BLED_CH3EN	(1 << 2)
+> +#define RT4831_BLED_CH4EN	(1 << 3)
+> +#define RT4831_BLED_ALLCHEN	((1 << 4) - 1)
+> +
+> +#endif /* _DT_BINDINGS_RT4831_BACKLIGHT_H */
+> -- 
+> 2.7.4
+> 
