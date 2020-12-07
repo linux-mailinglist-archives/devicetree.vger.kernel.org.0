@@ -2,79 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C7EA12D1D83
-	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 23:40:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E3FB2D1D96
+	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 23:44:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728065AbgLGWiy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Dec 2020 17:38:54 -0500
-Received: from mail-ot1-f68.google.com ([209.85.210.68]:34720 "EHLO
-        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728063AbgLGWiy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 17:38:54 -0500
-Received: by mail-ot1-f68.google.com with SMTP id h19so14151051otr.1;
-        Mon, 07 Dec 2020 14:38:32 -0800 (PST)
+        id S1727908AbgLGWmQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Dec 2020 17:42:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60790 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725917AbgLGWmQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 17:42:16 -0500
+Received: from mail-ej1-x643.google.com (mail-ej1-x643.google.com [IPv6:2a00:1450:4864:20::643])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0878BC061749;
+        Mon,  7 Dec 2020 14:41:36 -0800 (PST)
+Received: by mail-ej1-x643.google.com with SMTP id d17so21845270ejy.9;
+        Mon, 07 Dec 2020 14:41:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=wLc/SHjSNl6PUkflh89RJh4GKASpYHLMHjFPMsm7Ir4=;
+        b=oLNPdAyktN/AyJU9ucNs0RUmdRsTYHODuIKyDjrn+eB5MJk2V85yso+j5/Z5d2VMSk
+         JcKjxzBQ3TAThYirpQ6fAeHv0O8FlkTr8+je3NIIAkd3Z6TEJ2utdJWHHxNnw+f85V9a
+         nzesyoR34EatevttyoCnh1KxenHYaSZVvKrXSORuSwU5gmaeXbmx044kLEAdhWcX3hTn
+         5ooGtSChEMcB/TIG75q3s1iuClVZqydQogf7+qQx+zBg/3DcKFYHdAlXezRG+gU7Yryk
+         0ta4c9OdNmNaB8YCJLRD8XSG78MuK8rTgoq0QX98QlSexBFajlkU7I2wziF3D2eei+oo
+         YqCw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=180dC8MA8XhmHcl6LPa/ct6qoxmSvA8KJAYrKrg4o6o=;
-        b=SqvgMqT1wjCy68nnpjvEimD7S++5yVJTnF9Qp0YZaHdUyPp6jcGrxS20AYs8xTEm2O
-         vbYB1X97Z1V/FLEcvio2E8xjpgNjWidGZBRzKAkfqtMk2Z9mNbBJOeN8MKD/WxUWu/1l
-         CHTaBQBgpF2fPKBQTU7ZhNzaTlfi15ZwSEBt7I1yGWOQLZHs8gstq0zU+TKyoRH9gJ01
-         tARhmbn5yHGlWG3xRyvTq0hgbRn0F4pQfNSvofKjn6JdlCn916ckf+SNXDEGXWBu0ZPk
-         FsQwii0eVRMQKOqmIokfMTyX1w8NjNnarANr9L/qxx8TFVNS2fSNR/kezMoWVWau+qPs
-         TMtw==
-X-Gm-Message-State: AOAM533TQuL+N2uwH6qs8HP7F6DyN/z9ooHylyA3Gd8gl/w+G/Qe7xyg
-        xPhtbGfV8wUAN6HlkZeK0g==
-X-Google-Smtp-Source: ABdhPJykcrsL0D8IMYg2/kYkb9R3Pr72ZsKMdicn2VFLYguiO6t9u8bdpFJw1rAzmwlMshEwJPQFhA==
-X-Received: by 2002:a05:6830:1501:: with SMTP id k1mr9591213otp.12.1607380687344;
-        Mon, 07 Dec 2020 14:38:07 -0800 (PST)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id g88sm2667237otg.64.2020.12.07.14.38.05
+        bh=wLc/SHjSNl6PUkflh89RJh4GKASpYHLMHjFPMsm7Ir4=;
+        b=BJnyGt0SDuV5hiklOD1XAZsDXj6MVvY7I3EC8SCHvCBB3QbdQpuOSUugq0gohWoudf
+         n5JChOf/+BY+9bwVC3tkVacqYDuy5UgnJWwN/AwUDWOeFK3zAPMSIfMw9kfSJD4n9eZa
+         fvwvC32szEnKrhIqJYTFIxnWE8x3nFcfS0GzKtd54IGX0aE4gi4+n+0fiGpSFeWoKtkm
+         15nkNU4sF4bEP5dM6yB14oiAjtHmL0AsRyTFIyPBWqmc5rf36tiPj5c7DIL+9iI9+dfZ
+         R/HKIhgzxXtWSAvVWMmIFrL2uMiUMa6OxNkSwd5iSHkCanPRWayxOXmYj/UTKT5JenFD
+         UXyg==
+X-Gm-Message-State: AOAM5332z07bF3jd+WVbqDGfFdvVatkYO0UDPFtwIcrUUW0yAXFF57GP
+        TnPE8RxZU1FSCytEKASaHto=
+X-Google-Smtp-Source: ABdhPJxal3rSx9a6EBkQv1k36LBnhXorShuXZdFJqSyschKJf+sUHwOzPeQ1TSdJZuh4toPHDz0e3w==
+X-Received: by 2002:a17:906:4d8d:: with SMTP id s13mr21048772eju.305.1607380894694;
+        Mon, 07 Dec 2020 14:41:34 -0800 (PST)
+Received: from ubuntu2004 ([188.24.159.61])
+        by smtp.gmail.com with ESMTPSA id c25sm13994082ejx.39.2020.12.07.14.41.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Dec 2020 14:38:06 -0800 (PST)
-Received: (nullmailer pid 971001 invoked by uid 1000);
-        Mon, 07 Dec 2020 22:38:05 -0000
-Date:   Mon, 7 Dec 2020 16:38:05 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Saravana Kannan <saravanak@google.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Tomi Valkeinen <tomi.valkeinen@ti.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Ard Biesheuvel <ardb@kernel.org>, Len Brown <lenb@kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        linux-acpi@vger.kernel.org, kernel-team@android.com,
-        Rob Herring <robh+dt@kernel.org>, linux-efi@vger.kernel.org,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Subject: Re: [PATCH v2 17/17] driver core: Delete pointless parameter in
- fwnode_operations.add_links
-Message-ID: <20201207223805.GA970925@robh.at.kernel.org>
-References: <20201121020232.908850-1-saravanak@google.com>
- <20201121020232.908850-18-saravanak@google.com>
+        Mon, 07 Dec 2020 14:41:33 -0800 (PST)
+Date:   Tue, 8 Dec 2020 00:41:37 +0200
+From:   Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/1] dt-bindings: Fix error in 'make dtbs_check' when
+ using DT_SCHEMA_FILES
+Message-ID: <20201207224137.GA250758@ubuntu2004>
+References: <2519b8bde507ca6ccea9765ea197adaaa69a66d5.1605712328.git.cristian.ciocaltea@gmail.com>
+ <20201207214831.GA865971@robh.at.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201121020232.908850-18-saravanak@google.com>
+In-Reply-To: <20201207214831.GA865971@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 20 Nov 2020 18:02:32 -0800, Saravana Kannan wrote:
-> The struct device input to add_links() is not used for anything. So
-> delete it.
+On Mon, Dec 07, 2020 at 03:48:31PM -0600, Rob Herring wrote:
+> On Wed, Nov 18, 2020 at 05:20:50PM +0200, Cristian Ciocaltea wrote:
+> > If DT_SCHEMA_FILES is specified and contains more than one file paths,
 > 
-> Signed-off-by: Saravana Kannan <saravanak@google.com>
-> ---
->  drivers/base/core.c             | 2 +-
->  drivers/firmware/efi/efi-init.c | 3 +--
->  drivers/of/property.c           | 3 +--
->  include/linux/fwnode.h          | 3 +--
->  4 files changed, 4 insertions(+), 7 deletions(-)
-> 
+> If that worked before, it was by chance. :) Yes, it's called '_FILES', 
+> but more than one was on my todo list.
 
-Acked-by: Rob Herring <robh@kernel.org>
+I've been using it for a while, but I didn't know this was not
+officially supported..
+
+> Anyways, I'll apply it.
+
+Great, thanks!
+
+> > 'make dtbs_check' fails with the following message:
+> > 
+> >   $ make dtbs_check DT_SCHEMA_FILES="path/to/schema1.yaml path/to/schema2.yaml"
+> >   SCHEMA  Documentation/devicetree/bindings/processed-schema.json
+> >   Documentation/devicetree/bindings/Makefile:77: recipe for target 'Documentation/devicetree/bindings/processed-schema.json' failed
+> >   make[1]: *** [Documentation/devicetree/bindings/processed-schema.json] Error 255
+> >   make[1]: *** Deleting file 'Documentation/devicetree/bindings/processed-schema.json'
+> >   Makefile:1364: recipe for target 'dt_binding_check' failed
+> >   make: *** [dt_binding_check] Error 2
+> > 
+> > The error code 255 is returned by 'dt-mk-schema' when invoked as
+> > 'dt-mk-schema -j -u @<tmp-file>', where '<tmp-file>' is a temporary
+> > file that is generated to contain a list of SPACE delimited schema
+> > file paths, as indicated via DT_SCHEMA_FILES.
+> > 
+> > However, it seems the file format has been recently changed in
+> > 'dt-mk-schema', which now expects each schema path to be provided on
+> > a separate line:
+> > 
+> >  $ dt-mk-schema --version
+> >  2020.12.dev4+g6de1c45
+> > 
+> > Therefore, let's change '<tmp-file>' content format from
+> > 
+> >  path/to/schema1.yaml path/to/schema2.yaml ... path/to/schemaN.yaml
+> > 
+> > to
+> > 
+> >  path/to/schema1.yaml
+> >  path/to/schema2.yaml
+> >  ...
+> >  path/to/schemaN.yaml
+> > 
+> > Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
+> > ---
+> >  Documentation/devicetree/bindings/Makefile | 2 +-
+> >  1 file changed, 1 insertion(+), 1 deletion(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/Makefile b/Documentation/devicetree/bindings/Makefile
+> > index f50420099a55..643eb873fd51 100644
+> > --- a/Documentation/devicetree/bindings/Makefile
+> > +++ b/Documentation/devicetree/bindings/Makefile
+> > @@ -37,7 +37,7 @@ quiet_cmd_chk_bindings = CHKDT   $@
+> >  quiet_cmd_mk_schema = SCHEMA  $@
+> >        cmd_mk_schema = f=$$(mktemp) ; \
+> >                        $(if $(DT_MK_SCHEMA_FLAGS), \
+> > -                           echo $(real-prereqs), \
+> > +                           printf '%s\n' $(real-prereqs), \
+> >                             $(find_cmd)) > $$f ; \
+> >                        $(DT_MK_SCHEMA) -j $(DT_MK_SCHEMA_FLAGS) @$$f > $@ ; \
+> >  		      rm -f $$f
+> > -- 
+> > 2.29.2
+> > 
