@@ -2,142 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1FE782D096E
-	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 04:31:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D56C2D0973
+	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 04:31:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728471AbgLGDao (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 6 Dec 2020 22:30:44 -0500
-Received: from mail-db8eur05on2069.outbound.protection.outlook.com ([40.107.20.69]:54323
-        "EHLO EUR05-DB8-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1728053AbgLGDan (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 6 Dec 2020 22:30:43 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=bMpQ0OmCmci3zoLuEk0FsLlrkG2pjUYhU7g3osDIfU0tYh0Q/jx256Z4Rx1ud6DRbMT/z3xe/Vutx1S3xdh4QZWzEU+RRO/MJsbqGC/pHJl5NpdTh3uDmMQqzTbDtrBd7Tvn6HTDtL9H1Q8NiUUKruNRLFLn+o2NonDd8ah971WB8EYoFETFjhjYEHGPTmoPUK7o8m9vWb5tgaD3B9Nsc6Q1yfpo1RM6P9tjfirv8vPTVWAFwpJPiwW7QUUknRX+Px/Lwf+XgyAe8dea23rirXA9QdquQvJeN4oLlFIj+NYFmNkltbyoMvqF/Xw3ZrFAFp+YA/wRozmrIyaOE+ozSA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=9JSeJ4BfHUTWIkNllgctdEGRJjyABC52MC+dm/mcAfs=;
- b=kCNSfv195JjlWZ5QmjIqObwBdWo3eLTPgp7bCSJR9SUo43wOE6HXsgE5kD0wVMC5enYvN7O6oYGm30BarNuo4z6mMVKVLTFb3MrwGYsuYHUfuvh7qOm9F8UR2BiDfOxrao7f867hW9jmRM2FUu+NIhWMNIQiPKPL7ZNgBTvHPysL+KHIoWcKfXLJP8mqdrXFiO4/k6t5VoOGxCIjyHSGUVBOeVaiOmd/bwakmL0T6xYwOAjclkEsjbD22/WfRpnXg/N9ApaOn12Zj0K3LsSPrpoPQmrx1mRR2R2kdTW7+eVkw+tXxr6bOeD3TtkYdd/bK3JsvYGyCvAJDlExWOJIjQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=9JSeJ4BfHUTWIkNllgctdEGRJjyABC52MC+dm/mcAfs=;
- b=bco3VsWqsIAKkN+uevREvXMGDhQHQxtnq6uz7z6Ky9RkILF41wy9j6t14bCedxY+lK6xfwioonIfji/3GIRpfeePeB4JX1rQ6+4VO6mD5vORMaGsQyY97o/kVQmvCZCfpPf8UVfusKcFjCwbzleyv9YHtTbmLwTSB2EQlM1jaBQ=
-Authentication-Results: lists.infradead.org; dkim=none (message not signed)
- header.d=none;lists.infradead.org; dmarc=none action=none
- header.from=nxp.com;
-Received: from VI1PR04MB3983.eurprd04.prod.outlook.com (2603:10a6:803:4c::16)
- by VE1PR04MB6349.eurprd04.prod.outlook.com (2603:10a6:803:126::26) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3632.17; Mon, 7 Dec
- 2020 03:29:39 +0000
-Received: from VI1PR04MB3983.eurprd04.prod.outlook.com
- ([fe80::dcb7:6117:3def:2685]) by VI1PR04MB3983.eurprd04.prod.outlook.com
- ([fe80::dcb7:6117:3def:2685%7]) with mapi id 15.20.3611.038; Mon, 7 Dec 2020
- 03:29:39 +0000
-From:   Liu Ying <victor.liu@nxp.com>
-To:     linux-arm-kernel@lists.infradead.org,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     p.zabel@pengutronix.de, airlied@linux.ie, daniel@ffwll.ch,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com, robh+dt@kernel.org,
-        maarten.lankhorst@linux.intel.com, mripard@kernel.org,
-        tzimmermann@suse.de, laurentiu.palcu@oss.nxp.com
-Subject: [PATCH v3 6/6] MAINTAINERS: add maintainer for i.MX8qxp DPU DRM driver
-Date:   Mon,  7 Dec 2020 11:21:00 +0800
-Message-Id: <1607311260-13983-7-git-send-email-victor.liu@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1607311260-13983-1-git-send-email-victor.liu@nxp.com>
-References: <1607311260-13983-1-git-send-email-victor.liu@nxp.com>
-Content-Type: text/plain
-X-Originating-IP: [119.31.174.66]
-X-ClientProxiedBy: SG2PR01CA0085.apcprd01.prod.exchangelabs.com
- (2603:1096:3:15::11) To VI1PR04MB3983.eurprd04.prod.outlook.com
- (2603:10a6:803:4c::16)
+        id S1728876AbgLGDbR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 6 Dec 2020 22:31:17 -0500
+Received: from mail.kernel.org ([198.145.29.99]:51682 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728561AbgLGDbQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 6 Dec 2020 22:31:16 -0500
+X-Gm-Message-State: AOAM531fmYpUdSB0X9LzVcnLceUz7cLGxg2nb19F6VgI1CpHZyfmgCFj
+        LUa+dsyU1BYR4OjqNd5a4IJf93YIRvWyj0V886U=
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1607311835;
+        bh=eUFEhztFtJTOa9eLt/B7ip1iRdwwveiI7Iz0zAA+e4w=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=MHCFBPPGIBbBzQoTfSE+6TXG+czMkoFtneP7hOKgWTB9get5ooKKySHHq4wSSSHuu
+         jnwpdLNM5HQPCKsNzuikeUfH+oTnYsw+JtnarFq1XxpoIVh4dA5bOjXNNz1hXmnzEg
+         8D7JGBu2XBvUgnAAyZrJYedpgLVmPjy1DZq5h6VH7CQCMkkBDbVSgf9GYiYwvPVJ0S
+         R4BMQguCVtuSekDaOCc9Q0v6AC0sq+9T/IhRwyvTH/Fh8b6J+/rJXhtcv9GzNVickx
+         kRx17yyvDMEWnwuWeiZbdloL2KSo2n3w7GLWAGCMod1qHa9Ei94otUbLbqVPJRml0+
+         PDuXmAcN/SqdQ==
+X-Google-Smtp-Source: ABdhPJxayhJDe6prQ4cG6ZHdLlgm9hAqKWp2IyvGfr9ZYkzgsb8dlwZ9TK86GpKKZ0XyJ+ub6j9+Vpgs/sZy8RdPdas=
+X-Received: by 2002:a9f:21f8:: with SMTP id 111mr10681980uac.115.1607311834678;
+ Sun, 06 Dec 2020 19:30:34 -0800 (PST)
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from localhost.localdomain (119.31.174.66) by SG2PR01CA0085.apcprd01.prod.exchangelabs.com (2603:1096:3:15::11) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.20.3632.18 via Frontend Transport; Mon, 7 Dec 2020 03:29:34 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 850444b1-da72-4e25-d00e-08d89a605407
-X-MS-TrafficTypeDiagnostic: VE1PR04MB6349:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <VE1PR04MB6349420C7CB177EF956FB8E598CE0@VE1PR04MB6349.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:901;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: BfUP86UJ7/v0trpJIE45kkpSZBjx+K2rs2J/345uu5crqyZHyn3KEvOUzPSnp6yR5a2NaLlQj4D15alshDv6PY4F+hciN3S7NR92u++6znFDzJGaW3M0pc4qTmiN+t42qHGIOiRFncutYCJQwke7k0QPsJpDtUevFNjacOZu6Qc9IRV2wOg8OjGQCzye/+H9KBSYKO9JH6M+FDrOZaZPqow9DJLorNsLMRyEZuCJ1wCxSFIoF745iYg3QsUXmkZl6vefK9wT6S2WxrkHPBb0e6J7kxZb4Y0UV4eCUpnKVWQXaOYqgMCkhXHOZerQZZ1HB8eUkxVkpMuuDEMVRpGtlTQybhF+mQ82wYyiRooxMPuCf8MXes/evgVpWbiiaKCM
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB3983.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(39860400002)(136003)(366004)(376002)(396003)(346002)(8936002)(6506007)(6512007)(2616005)(316002)(52116002)(26005)(478600001)(69590400008)(16526019)(186003)(6486002)(6666004)(4326008)(2906002)(4744005)(7416002)(956004)(86362001)(36756003)(66946007)(66476007)(8676002)(66556008)(5660300002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?2lDi/cvu5syncVGyGmdSL3K2kvKhPTQHf8KiSN7pp3GhKUq62oykNX74l+QY?=
- =?us-ascii?Q?OtXlJIv/8rcZs8pKUkjJnT8WOIvF6vobLLnmvQodB3Qp7fKOp1D6lSrCUHR3?=
- =?us-ascii?Q?JR6O1RMyfPrfXCyHO+IoLHNQNVFL3+IFpACnRiQkaOExwnO4mHeHcHT63nA/?=
- =?us-ascii?Q?S2hmA7iYsiJQdhdzldyM47EMlLGnxKWHid/3mxLxORTLwWsAdEYueNTnCMoA?=
- =?us-ascii?Q?1jyxDy3U9d4H0SukjJ00QQ1CozEhqEsn4qppmERgNlnmvU+RLfpd9lLrm1cB?=
- =?us-ascii?Q?kKRWSjoRQsQrVs6M9r7nMF+xYu0juTg6N1knks2VwtNjvJ6rki4jizQ6d2dD?=
- =?us-ascii?Q?x+P0Yz/pLRZ73pb7JNjaXWeAcOyAX0HjDWmLR+X15pVuLdKSc1dW+psUUJwt?=
- =?us-ascii?Q?bEn300tQCWSGYwIf/5hnqSay27dm1opLxaw4u0bASocHAe0L1CPitQE/Kj/F?=
- =?us-ascii?Q?Se3rOHqNT6zL9J0EUkC35Z6ZgW61wgXlQBsaJBagYQpbF3ej2EY3+Swv20VU?=
- =?us-ascii?Q?v8GZAxZSiEmVPoF3X2dF70/dqYaBj5lg+3MnIuRDy8HbAHRj4yd7tggiypIf?=
- =?us-ascii?Q?1GcinXjRTccTWPHup72ffTLBIaPr/r4F7K94YqVSt2RSzrKTKD1PCJag2nW7?=
- =?us-ascii?Q?hHKazC57ddJ6mrrySM176bE/aIuBpO9nj0ordsQH/tDyCJ3qWGbB0HjbH3DF?=
- =?us-ascii?Q?uRAinZu2aBa4vkvv2IfQvsCL+DaMBkTqwQefiSTabns+exKReIqv3+1PVTMG?=
- =?us-ascii?Q?0QlNXa81XcZuffadsH794YvZG0Lov+J6/eGvuxDlK4BGeHXkWcCRsER4KMBG?=
- =?us-ascii?Q?RA1JpASyvwyu5SUlHftqRPmgul2rzluuKtqu+fwJn0G/tmR4bRF8TUvYua5K?=
- =?us-ascii?Q?sijiHG8jAP8CIXKGv3ZvVQ1LRa7zSHM6W7gqky157GLJ+SlE+GH1dPQd00fJ?=
- =?us-ascii?Q?HAeP2715fMfoAqXlLhAwSDnVG+btEXJFiZiGMIQ8QIGhg3jfOzqR3/pwOueO?=
- =?us-ascii?Q?/bPL?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 850444b1-da72-4e25-d00e-08d89a605407
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB3983.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Dec 2020 03:29:39.6337
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: zt9c2ZDdLzDHUKP6mQgQtGPz614oWXF+ZlBSv9gIGRdga+I5OayqGszxetFcKsJrjM/flBq9rMKDE7BnG/Rb0g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1PR04MB6349
+References: <20201118071724.4866-1-wens@kernel.org> <20201118071724.4866-2-wens@kernel.org>
+ <1737702.WCGJIqnLLh@diego>
+In-Reply-To: <1737702.WCGJIqnLLh@diego>
+From:   Chen-Yu Tsai <wens@kernel.org>
+Date:   Mon, 7 Dec 2020 11:30:23 +0800
+X-Gmail-Original-Message-ID: <CAGb2v65119yabRi1EE1KSjJ0ehBqd-SoLD-PT-9su3Z+QSVwdg@mail.gmail.com>
+Message-ID: <CAGb2v65119yabRi1EE1KSjJ0ehBqd-SoLD-PT-9su3Z+QSVwdg@mail.gmail.com>
+Subject: Re: [PATCH v2 1/4] PCI: rockchip: Make 'ep-gpios' DT property optional
+To:     Shawn Lin <shawn.lin@rock-chips.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+Cc:     =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+        Rob Herring <robh@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Chen-Yu Tsai <wens@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Johan Jonker <jbx6244@gmail.com>, linux-pci@vger.kernel.org,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add myself as the maintainer of the i.MX8qxp DPU DRM driver.
+Ping
 
-Signed-off-by: Liu Ying <victor.liu@nxp.com>
----
-v2->v3:
-* No change.
+On Wed, Nov 18, 2020 at 4:49 PM Heiko St=C3=BCbner <heiko@sntech.de> wrote:
+>
+> Am Mittwoch, 18. November 2020, 08:17:21 CET schrieb Chen-Yu Tsai:
+> > From: Chen-Yu Tsai <wens@csie.org>
+> >
+> > The Rockchip PCIe controller DT binding clearly states that 'ep-gpios' =
+is
+> > an optional property. And indeed there are boards that don't require it=
+.
+> >
+> > Make the driver follow the binding by using devm_gpiod_get_optional()
+> > instead of devm_gpiod_get().
+> >
+> > Fixes: e77f847df54c ("PCI: rockchip: Add Rockchip PCIe controller suppo=
+rt")
+> > Fixes: 956cd99b35a8 ("PCI: rockchip: Separate common code from RC drive=
+r")
+> > Fixes: 964bac9455be ("PCI: rockchip: Split out rockchip_pcie_parse_dt()=
+ to parse DT")
+> > Signed-off-by: Chen-Yu Tsai <wens@csie.org>
+>
+> Reviewed-by: Heiko Stuebner <heiko@sntech.de
 
-v1->v2:
-* No change.
+It's been close to three weeks since this was sent.
+Any chance we can get this into v5.10 or v5.11?
 
- MAINTAINERS | 9 +++++++++
- 1 file changed, 9 insertions(+)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 970d9ce..dee4586 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -5834,6 +5834,15 @@ F:	Documentation/devicetree/bindings/display/imx/
- F:	drivers/gpu/drm/imx/
- F:	drivers/gpu/ipu-v3/
- 
-+DRM DRIVERS FOR FREESCALE i.MX8QXP
-+M:	Liu Ying <victor.liu@nxp.com>
-+L:	dri-devel@lists.freedesktop.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dprc.yaml
-+F:	Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dpu.yaml
-+F:	Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-prg.yaml
-+F:	drivers/gpu/drm/imx/dpu/
-+
- DRM DRIVERS FOR GMA500 (Poulsbo, Moorestown and derivative chipsets)
- M:	Patrik Jakobsson <patrik.r.jakobsson@gmail.com>
- L:	dri-devel@lists.freedesktop.org
--- 
-2.7.4
+Regards
+ChenYu
 
+> I'll pick up patches 2-4 separately, after giving Rob a chance to look at
+> the simple binding.
+>
+>
+> Heiko
+>
+> > ---
+> > Changes since v1:
+> >
+> >   - Rewrite subject to match existing convention and reference
+> >     'ep-gpios' DT property instead of the 'ep_gpio' field
+> > ---
+> >  drivers/pci/controller/pcie-rockchip.c | 2 +-
+> >  1 file changed, 1 insertion(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/pci/controller/pcie-rockchip.c b/drivers/pci/contr=
+oller/pcie-rockchip.c
+> > index 904dec0d3a88..c95950e9004f 100644
+> > --- a/drivers/pci/controller/pcie-rockchip.c
+> > +++ b/drivers/pci/controller/pcie-rockchip.c
+> > @@ -118,7 +118,7 @@ int rockchip_pcie_parse_dt(struct rockchip_pcie *ro=
+ckchip)
+> >       }
+> >
+> >       if (rockchip->is_rc) {
+> > -             rockchip->ep_gpio =3D devm_gpiod_get(dev, "ep", GPIOD_OUT=
+_HIGH);
+> > +             rockchip->ep_gpio =3D devm_gpiod_get_optional(dev, "ep", =
+GPIOD_OUT_HIGH);
+> >               if (IS_ERR(rockchip->ep_gpio)) {
+> >                       dev_err(dev, "missing ep-gpios property in node\n=
+");
+> >                       return PTR_ERR(rockchip->ep_gpio);
+> >
+>
+>
+>
+>
