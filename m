@@ -2,69 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EA4762D187C
-	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 19:27:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CA4422D1880
+	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 19:27:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726069AbgLGSYm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Dec 2020 13:24:42 -0500
-Received: from mail-oi1-f196.google.com ([209.85.167.196]:34568 "EHLO
-        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725816AbgLGSYm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 13:24:42 -0500
-Received: by mail-oi1-f196.google.com with SMTP id s75so13369267oih.1;
-        Mon, 07 Dec 2020 10:24:26 -0800 (PST)
+        id S1725816AbgLGSZN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Dec 2020 13:25:13 -0500
+Received: from mail-ot1-f65.google.com ([209.85.210.65]:34674 "EHLO
+        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726479AbgLGSZN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 13:25:13 -0500
+Received: by mail-ot1-f65.google.com with SMTP id h19so13416858otr.1;
+        Mon, 07 Dec 2020 10:24:57 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=uhGGwifVcUwyCm7WVKGoiGf+4psGN+/N4Ysq2EKKe64=;
-        b=Hn1VikQLlh3iYDfj2NBP8E8e4Z1EeVX25UGXNcIn73XwdfrzIx6vPB/KyrXz+2SxDs
-         LckJt/8Fs6KL1DiYfedffA0AcQYDTB4IBMnkRmXVn/ezbAB8QLkzkt/JxSjZiOLGLW+B
-         UFHQekHWmloRGi3Jf6Wcey4mx6a8f0+/iWQym1C5nDOEWfyQj/1wYZW4k/+SXva+4AmE
-         a1kT822m3HySeXSixu42iGRvgE7T94zL8VyDiqSlrqvNPCcheKcBZeJsmLt3IU+RX9DH
-         NSp/rr0OUVqcLWHj1JqS4NnjpVF8Cor5mjrfZCEsXOiVBe+QGvJJQQyN5Tgn/hMywrvG
-         SV8w==
-X-Gm-Message-State: AOAM531WtShH3/JvMgBq71aq81hRNmCxmjk8Segfk98BncVdKsi9kzxL
-        ACAqaabx4ghEUy/crnQz8w==
-X-Google-Smtp-Source: ABdhPJxoc9Tw7cfX5haN5Kiflo15YdVSaXGkm9Nwgrotk8GgVy/dp4rL8kkPjiAY8D/LBNmK2ZfAxw==
-X-Received: by 2002:aca:db06:: with SMTP id s6mr114603oig.52.1607365441384;
-        Mon, 07 Dec 2020 10:24:01 -0800 (PST)
+        bh=m1O1G+zV2kO4jk3UbACjeCYJhnQE4kkHKnxZUsOPyjY=;
+        b=mr0o34oRBfSeXLdU2RoWQ4MF38NSLlRafowY4qK2CLf+5GQ+4qtjU0NQsEKI3cAGPD
+         hSi6tsqGimrz2XVoJHly4PQJUvIbYhBzKxqB0sV9PNy1R+osia1WxD74kP05ITi2CtoA
+         pwFX4Ese4z21imbrKIxEEFqF9Pct8azXig4ZSjT2PHbQRx6Xy9MEQdQ3XzcUeW3hhCtZ
+         9/KfKMR6VfxzSZoWUs6v9JslK32MddX8bYYdf94SLXu0iK+xjdMZqE7kY+HaXmavArYa
+         YBw++IiY3dRjOg/C/iRO7ibQD4qmltz+7LxJyILoNY6BvpgQbSqMLnGF+UVd/eLBlyJC
+         zQqg==
+X-Gm-Message-State: AOAM530K0d2vdj0BAJjbnfi3bsQPrMfbpu+WXLOLKgZLxaSnvvAAM7t0
+        POYmvRYuXRlCuhl+XC38Nvqep0OGWg==
+X-Google-Smtp-Source: ABdhPJxz8l5V6AoslKS7WfaMbptPHMhc+UKpkt9mGl2UWR9QoeurNfGZkTa6je/yL6Zl+ljC/+/udw==
+X-Received: by 2002:a05:6830:90f:: with SMTP id v15mr10195901ott.223.1607365471542;
+        Mon, 07 Dec 2020 10:24:31 -0800 (PST)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id v12sm2719149ooi.46.2020.12.07.10.23.59
+        by smtp.gmail.com with ESMTPSA id k63sm3091682oia.14.2020.12.07.10.24.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Dec 2020 10:24:00 -0800 (PST)
-Received: (nullmailer pid 565992 invoked by uid 1000);
-        Mon, 07 Dec 2020 18:23:59 -0000
-Date:   Mon, 7 Dec 2020 12:23:59 -0600
+        Mon, 07 Dec 2020 10:24:30 -0800 (PST)
+Received: (nullmailer pid 567087 invoked by uid 1000);
+        Mon, 07 Dec 2020 18:24:29 -0000
+Date:   Mon, 7 Dec 2020 12:24:29 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Paul Kocialkowski <contact@paulk.fr>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Icenowy Zheng <icenowy@aosc.io>,
-        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Maxime Ripard <mripard@kernel.org>
-Subject: Re: [PATCH v3 1/5] dt-bindings: irq: sun7i-nmi: Add binding
- documentation for the V3s NMI
-Message-ID: <20201207182359.GA565631@robh.at.kernel.org>
-References: <20201206165131.1041983-1-contact@paulk.fr>
- <20201206165131.1041983-2-contact@paulk.fr>
+To:     Steen Hegelund <steen.hegelund@microchip.com>
+Cc:     netdev@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        linux-kernel@vger.kernel.org,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Microchip UNG Driver List <UNGLinuxDriver@microchip.com>,
+        Lars Povlsen <lars.povlsen@microchip.com>,
+        Bjarni Jonasson <bjarni.jonasson@microchip.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Device Tree List <devicetree@vger.kernel.org>,
+        Vinod Koul <vkoul@kernel.org>
+Subject: Re: [PATCH v9 1/4] dt-bindings: phy: Add sparx5-serdes bindings
+Message-ID: <20201207182429.GA566994@robh.at.kernel.org>
+References: <20201207121345.3818234-1-steen.hegelund@microchip.com>
+ <20201207121345.3818234-2-steen.hegelund@microchip.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201206165131.1041983-2-contact@paulk.fr>
+In-Reply-To: <20201207121345.3818234-2-steen.hegelund@microchip.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 06 Dec 2020 17:51:27 +0100, Paul Kocialkowski wrote:
-> The V3s NMI controller seems register-compatible with the A80 (sun9i).
-> Add new items for the compatible string, with an entry specific to the V3s
-> and the A80 entry.
+On Mon, 07 Dec 2020 13:13:42 +0100, Steen Hegelund wrote:
+> Document the Sparx5 ethernet serdes phy driver bindings.
 > 
-> Signed-off-by: Paul Kocialkowski <contact@paulk.fr>
+> Signed-off-by: Lars Povlsen <lars.povlsen@microchip.com>
+> Signed-off-by: Steen Hegelund <steen.hegelund@microchip.com>
 > ---
->  .../interrupt-controller/allwinner,sun7i-a20-sc-nmi.yaml       | 3 +++
->  1 file changed, 3 insertions(+)
+>  .../bindings/phy/microchip,sparx5-serdes.yaml | 100 ++++++++++++++++++
+>  1 file changed, 100 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/phy/microchip,sparx5-serdes.yaml
 > 
 
 
