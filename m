@@ -2,100 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ADC9B2D128A
-	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 14:52:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BCA102D12AB
+	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 14:56:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725867AbgLGNu7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Dec 2020 08:50:59 -0500
-Received: from mail-wm1-f67.google.com ([209.85.128.67]:52920 "EHLO
-        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726164AbgLGNu7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 08:50:59 -0500
-Received: by mail-wm1-f67.google.com with SMTP id a6so11523529wmc.2
-        for <devicetree@vger.kernel.org>; Mon, 07 Dec 2020 05:50:37 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=FftH6af/C4ijp9qZAXmpaXm/xsA7yaDpXA+L76ZmNPw=;
-        b=IbgOKxTZms7hgZbw04l6L4VWfea1MoUUE+UHpLe2NMixzU+5KjGpT6YYYpGbIqp1C2
-         FkdfIpy6dMGgkmKunRB6SHRW2R91ZhGXmABXJjpNsvBtozztpKlaG8tNLoan0DxHxVaq
-         2M7hptWPRaeUZC4KO6d1/JJPVdOZ9GBIcpA3cAuUDkEh5uTx9nJwV1wkcJQqd2bHfB7d
-         IGjTWXLOVdfqBkGyBk8cWhNne8btiAoCmV/nX7BLZj71nvmdNzS/x/vs/egdhTjtz2iq
-         jDO+j9rwbDdk9++oO914CbeeBoeWyU4cnDRzhwVzDjACxyT0xPFdWchdFSMgV08Kv/MT
-         f2xg==
-X-Gm-Message-State: AOAM5324YgzwwUVd7mVqoxW27YOE6HBNJC59galT1QGITbL2cmYMJys5
-        E7Tx37zLQhTzW+ArfVpPuoU=
-X-Google-Smtp-Source: ABdhPJy9WMUqw/xMWQUbnpndvxbL6i1Xb8vqxJB03XdFnfPtyCvXw4Vg8Nhx5udPvmfl6jK5WbYKQQ==
-X-Received: by 2002:a05:600c:258:: with SMTP id 24mr18886051wmj.16.1607349011527;
-        Mon, 07 Dec 2020 05:50:11 -0800 (PST)
-Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
-        by smtp.googlemail.com with ESMTPSA id r128sm15082189wma.5.2020.12.07.05.50.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Dec 2020 05:50:10 -0800 (PST)
-Date:   Mon, 7 Dec 2020 14:50:04 +0100
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Teresa Remmet <t.remmet@phytec.de>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>
-Subject: Re: [PATCH 1/4] arm64: defconfig: Enable rv3028 i2c rtc driver
-Message-ID: <20201207135004.GA34599@kozik-lap>
-References: <1607113982-109524-1-git-send-email-t.remmet@phytec.de>
- <1607113982-109524-2-git-send-email-t.remmet@phytec.de>
- <20201207121029.GC27266@kozik-lap>
- <5b8617e4b6abe19750cec17f4d6e501fe957f193.camel@phytec.de>
+        id S1726712AbgLGNzc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Dec 2020 08:55:32 -0500
+Received: from mail.kernel.org ([198.145.29.99]:54838 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726685AbgLGNzb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 7 Dec 2020 08:55:31 -0500
+Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 33FD4235DD;
+        Mon,  7 Dec 2020 13:54:51 +0000 (UTC)
+Received: from disco-boy.misterjones.org ([51.254.78.96] helo=www.loen.fr)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        (Exim 4.94)
+        (envelope-from <maz@kernel.org>)
+        id 1kmGyW-00Gm6K-SB; Mon, 07 Dec 2020 13:54:49 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <5b8617e4b6abe19750cec17f4d6e501fe957f193.camel@phytec.de>
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Mon, 07 Dec 2020 13:54:48 +0000
+From:   Marc Zyngier <maz@kernel.org>
+To:     Quentin Perret <qperret@google.com>
+Cc:     Fuad Tabba <tabba@google.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        James Morse <james.morse@arm.com>,
+        Julien Thierry <julien.thierry.kdev@gmail.com>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        "moderated list:ARM64 PORT (AARCH64 ARCHITECTURE)" 
+        <linux-arm-kernel@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        "open list:KERNEL VIRTUAL MACHINE FOR ARM64 (KVM/arm64)" 
+        <kvmarm@lists.cs.columbia.edu>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE" 
+        <devicetree@vger.kernel.org>, kernel-team@android.com,
+        Android KVM <android-kvm@google.com>
+Subject: Re: [RFC PATCH 16/27] KVM: arm64: Prepare Hyp memory protection
+In-Reply-To: <X84Y07kbeSL4xcNJ@google.com>
+References: <20201117181607.1761516-1-qperret@google.com>
+ <20201117181607.1761516-17-qperret@google.com>
+ <CA+EHjTyJnZ8e=AN7H_k+oZb0VTWAgMicMY8Rqe2Di_3A87hm0A@mail.gmail.com>
+ <X8p5kLSIq2MoQZ24@google.com>
+ <CA+EHjTxW_z-P8bK7gCjGv2eBCAHFsvE873Gr2KyVq5-+_Mdv=g@mail.gmail.com>
+ <X84Y07kbeSL4xcNJ@google.com>
+User-Agent: Roundcube Webmail/1.4.9
+Message-ID: <d6a674a0e8e259161ab741d78924c756@kernel.org>
+X-Sender: maz@kernel.org
+X-SA-Exim-Connect-IP: 51.254.78.96
+X-SA-Exim-Rcpt-To: qperret@google.com, tabba@google.com, catalin.marinas@arm.com, will@kernel.org, james.morse@arm.com, julien.thierry.kdev@gmail.com, suzuki.poulose@arm.com, robh+dt@kernel.org, frowand.list@gmail.com, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, kvmarm@lists.cs.columbia.edu, devicetree@vger.kernel.org, kernel-team@android.com, android-kvm@google.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 07, 2020 at 02:38:51PM +0100, Teresa Remmet wrote:
-> Am Montag, den 07.12.2020, 13:10 +0100 schrieb Krzysztof Kozlowski:
-> > On Fri, Dec 04, 2020 at 09:32:59PM +0100, Teresa Remmet wrote:
-> > > Enable rv3028 i2c rtc driver populated on phyBOARD-Pollux-i.MX8M
-> > > Plus.
-> > > 
-> > > Signed-off-by: Teresa Remmet <t.remmet@phytec.de>
-> > > ---
-> > >  arch/arm64/configs/defconfig | 1 +
-> > >  1 file changed, 1 insertion(+)
-> > > 
-> > > diff --git a/arch/arm64/configs/defconfig
-> > > b/arch/arm64/configs/defconfig
-> > > index 5cfe3cf6f2ac..2034fefb3f44 100644
-> > > --- a/arch/arm64/configs/defconfig
-> > > +++ b/arch/arm64/configs/defconfig
-> > > @@ -818,6 +818,7 @@ CONFIG_RTC_DRV_MAX77686=y
-> > >  CONFIG_RTC_DRV_RK808=m
-> > >  CONFIG_RTC_DRV_PCF85363=m
-> > >  CONFIG_RTC_DRV_RX8581=m
-> > > +CONFIG_RTC_DRV_RV3028=y
-> > 
-> > This should be a module.
+On 2020-12-07 11:58, Quentin Perret wrote:
+> On Monday 07 Dec 2020 at 11:16:05 (+0000), Fuad Tabba wrote:
+>> On Fri, Dec 4, 2020 at 6:01 PM Quentin Perret <qperret@google.com> 
+>> wrote:
+>> >
+>> > On Thursday 03 Dec 2020 at 12:57:33 (+0000), Fuad Tabba wrote:
+>> > <snip>
+>> > > > +int hyp_create_idmap(void);
+>> > > > +int hyp_map_vectors(void);
+>> > > > +int hyp_back_vmemmap(phys_addr_t phys, unsigned long size, phys_addr_t back);
+>> > > > +int hyp_cpu_set_vector(enum arm64_hyp_spectre_vector slot);
+>> > > > +int hyp_create_mappings(void *from, void *to, enum kvm_pgtable_prot prot);
+>> > > > +int __hyp_create_mappings(unsigned long start, unsigned long size,
+>> > > > +                         unsigned long phys, unsigned long prot);
+>> > > > +unsigned long __hyp_create_private_mapping(phys_addr_t phys, size_t size,
+>> > > > +                                          unsigned long prot);
+>> > > > +
+>> > >
+>> > > nit: I also thought that the hyp_create_mappings function names are a
+>> > > bit confusing, since there's the create_hyp_mappings functions which
+>> > > use the aforementioned *hyp_pgtable.
+>> >
+>> > Sure, happy to re-name those (and hyp_pgtable above). Any suggestions?
+>> 
+>> Perhaps something to indicate that these are temporary, tmp_ or
+>> bootstrap_ maybe?
 > 
-> with having this build in the clock out of this rtc will be disabled as
-> not using during boot up. The clock out is enabled as default and has
-> to be disabled explicit. But I guess the correct way would be to find a
-> solution in the rtc driver itself?
+> Hmm, the thing is these are temporary only in protected mode, they're
+> permanent otherwise :/
+> 
+> Perhaps I could prefix the protected pgtable (and associated functions)
+> with 'pkvm_' or so? Marc, any preferences?
 
-Regardless whether it is built-in or module, the driver will behave the
-same. So either the driver disables the clock, or not. The only
-difference will be *when* the action happens.
+None. Whichever name you pick, someone will ask you to change it.
+Just call it Bob.
 
-Choosing it as built-in for the purpose of disabling some clock is not a
-proper approach.
+What I really *don't* want is see a blanket rename of existing symbols
+or concepts.
 
-The defconfig here serves only a development/debugging/reference purpose.
-It's not for production so anyway the effect on disabling some parts is
-not that important.
+Thanks,
 
-Best regards,
-Krzysztof
-
+         M.
+-- 
+Jazz is not dead. It just smells funny...
