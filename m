@@ -2,172 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F9F22D0D0E
-	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 10:34:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D98D2D0D1E
+	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 10:36:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725816AbgLGJdg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Dec 2020 04:33:36 -0500
-Received: from mail-bn8nam12on2066.outbound.protection.outlook.com ([40.107.237.66]:6895
-        "EHLO NAM12-BN8-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1725770AbgLGJdg (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 7 Dec 2020 04:33:36 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=oB9ebYEm8qK5xaZ8A+c9AWFfTytS4CSbWsYMLXXtU9Wk2uFteksl6tXNl49rcyCfNU/XtuZzZ0rzOoPaBSiRnEZSAtjM6K4Qdgf5QsI84xgV9W/1ZA0iGNtXS4SPG+sVFbXiwpWXbbd66bmWa+QrZftgOf7e8/MmYcj7IQ4KRQCBOh4tJtvjfHAB01Nn9LNrNx4xwIyxJyX7I3/5Uw3uHxmqluI72mat/kv4TzWWo0IOIJi3DWwBgUCuljDroYh+9beU11e+YyYqSKluYeyWHFIsrsa92KTgvT1NBXCHPQ84KT3XxUR5INqMY+CcuLfdS5fbpwFxVUgSuxbCgv+Tew==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=SM36ayQcHCaLFFqu0SM9P3j/1YmZvVapXgc/9q2MCUY=;
- b=c0LHR9BgNj69w6MadR5gGCeiSyiBmTx41HzMUtO7at7c3+/h/5rG3G+ZWtA9WQfB/qSzQoQdzyMBXto7bNo2UwMSVlFwCweFiVsP9Tcg75dzuFHKV+ZBU+BVc4xlKyhpNBh1CmAiDe2oe7Aoqj/i0ohWkOVdahhDp4l0xuAac5WJ3FGUyWKGl/3T6pImrhg1x1dnVW9sf/kgy58OFSF9X7Utby9w4bXSha2W2KRwAwbVzhAcCCtp8ewSkQu+MKH1xtUTDoNrpxzq8veWLIYMMOjK63zbwlgFWy+pWvChCsFNO+BIxvR/2TT22GSW2GFXr7uPBKjAsGMj0Cwc1y0yyA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 149.199.62.198) smtp.rcpttodomain=lists.infradead.org
- smtp.mailfrom=xilinx.com; dmarc=bestguesspass action=none
- header.from=xilinx.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=SM36ayQcHCaLFFqu0SM9P3j/1YmZvVapXgc/9q2MCUY=;
- b=WtkPtfjnNVKCA5Zn/IoWPKaagREE1pbc6kDfvUDhNJlPEVY7JYVfIf6lTOj/6VRobJauJ2kelzd/d2aajNEOHAds8oxI/yWVYLxo+kf+kwJ3WLX0v4ORZwp55fxWlg51gQHJ/6ZM2TOWaXj83L7tQneyYuRUhqdDRN8Z80kykYU=
-Received: from CY4PR18CA0048.namprd18.prod.outlook.com (2603:10b6:903:9a::34)
- by MWHPR02MB2702.namprd02.prod.outlook.com (2603:10b6:300:107::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3632.17; Mon, 7 Dec
- 2020 09:32:42 +0000
-Received: from CY1NAM02FT012.eop-nam02.prod.protection.outlook.com
- (2603:10b6:903:9a:cafe::b7) by CY4PR18CA0048.outlook.office365.com
- (2603:10b6:903:9a::34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3632.17 via Frontend
- Transport; Mon, 7 Dec 2020 09:32:42 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
- smtp.mailfrom=xilinx.com; lists.infradead.org; dkim=none (message not signed)
- header.d=none;lists.infradead.org; dmarc=bestguesspass action=none
- header.from=xilinx.com;
-Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
- 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=149.199.62.198; helo=xsj-pvapexch01.xlnx.xilinx.com;
-Received: from xsj-pvapexch01.xlnx.xilinx.com (149.199.62.198) by
- CY1NAM02FT012.mail.protection.outlook.com (10.152.75.158) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.3632.21 via Frontend Transport; Mon, 7 Dec 2020 09:32:41 +0000
-Received: from xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) by
- xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1913.5; Mon, 7 Dec 2020 01:32:38 -0800
-Received: from smtp.xilinx.com (172.19.127.96) by
- xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) with Microsoft SMTP Server id
- 15.1.1913.5 via Frontend Transport; Mon, 7 Dec 2020 01:32:38 -0800
-Envelope-to: git@xilinx.com,
- michal.simek@xilinx.com,
- rajan.vaja@xilinx.com,
- linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org,
- robh+dt@kernel.org,
- krzk@kernel.org,
- monstr@monstr.eu,
- linux-kernel@vger.kernel.org,
- laurent.pinchart@ideasonboard.com
-Received: from [172.30.17.109] (port=43550)
-        by smtp.xilinx.com with esmtp (Exim 4.90)
-        (envelope-from <michal.simek@xilinx.com>)
-        id 1kmCsn-0005A1-PJ; Mon, 07 Dec 2020 01:32:38 -0800
-Subject: Re: [PATCH 04/12] arm64: dts: zynqmp: Enable and wire reset
- controller
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Michal Simek <michal.simek@xilinx.com>
-CC:     <linux-kernel@vger.kernel.org>, <monstr@monstr.eu>,
-        <git@xilinx.com>, Kalyani Akula <kalyani.akula@xilinx.com>,
+        id S1726569AbgLGJgC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Dec 2020 04:36:02 -0500
+Received: from mailgw02.mediatek.com ([1.203.163.81]:43645 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726552AbgLGJgC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 04:36:02 -0500
+X-UUID: 348010998e2e43548394d21504c14202-20201207
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=PzXAt74ogdSVvHGMlNFXOX2qEwkVCLrOs16Lzlq64es=;
+        b=k+X/1rFfwFpZMAEkah4MgD2ZeqokyvLAqLUlDsnktgKdMIFqmyWKKApTNu1IkqPaLWkLsNc4f0fKD8WblYkfaMXzMOTj/ZcnDNYcI11UhYC3jSPH91n/jrYR8nekYgyYlcfm182nv7PpIhXgPUisc2iSYsZLJRu82iIyxXGXF4o=;
+X-UUID: 348010998e2e43548394d21504c14202-20201207
+Received: from mtkcas32.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
+        (envelope-from <chunfeng.yun@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1053587091; Mon, 07 Dec 2020 17:35:09 +0800
+Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS32N2.mediatek.inc
+ (172.27.4.72) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 7 Dec
+ 2020 17:35:08 +0800
+Received: from [10.17.3.153] (10.17.3.153) by MTKCAS36.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 7 Dec 2020 17:35:05 +0800
+Message-ID: <1607333707.18575.4.camel@mhfsdcap03>
+Subject: Re: [PATCH v5 10/19] dt-bindings: usb: Convert DWC USB3 bindings to
+ DT schema
+From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
+To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
+CC:     Mathias Nyman <mathias.nyman@intel.com>,
+        Felipe Balbi <balbi@kernel.org>,
         Krzysztof Kozlowski <krzk@kernel.org>,
-        Manish Narani <manish.narani@xilinx.com>,
-        Rajan Vaja <rajan.vaja@xilinx.com>,
-        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <cover.1606917949.git.michal.simek@xilinx.com>
- <c0a99c5b0438e34073429624d99a2c3f16532016.1606917949.git.michal.simek@xilinx.com>
- <X81dXV0uCccZ3360@pendragon.ideasonboard.com>
-From:   Michal Simek <michal.simek@xilinx.com>
-Message-ID: <dd199853-71b1-aeef-fe17-57a4110d2da9@xilinx.com>
-Date:   Mon, 7 Dec 2020 10:32:34 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.5.1
+        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Manu Gautam <mgautam@codeaurora.org>,
+        Roger Quadros <rogerq@ti.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        "Martin Blumenstingl" <martin.blumenstingl@googlemail.com>,
+        Ahmad Zainie <wan.ahmad.zainie.wan.mohamad@intel.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-snps-arc@lists.infradead.org>, <linux-mips@vger.kernel.org>,
+        <linuxppc-dev@lists.ozlabs.org>, <linux-usb@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Date:   Mon, 7 Dec 2020 17:35:07 +0800
+In-Reply-To: <20201205152427.29537-11-Sergey.Semin@baikalelectronics.ru>
+References: <20201205152427.29537-1-Sergey.Semin@baikalelectronics.ru>
+         <20201205152427.29537-11-Sergey.Semin@baikalelectronics.ru>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-In-Reply-To: <X81dXV0uCccZ3360@pendragon.ideasonboard.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EOPAttributedMessage: 0
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: dc693d36-b507-4d4b-cb31-08d89a930b43
-X-MS-TrafficTypeDiagnostic: MWHPR02MB2702:
-X-LD-Processed: 657af505-d5df-48d0-8300-c31994686c5c,ExtAddr
-X-Microsoft-Antispam-PRVS: <MWHPR02MB270288E9BD85C541112EFF04C6CE0@MWHPR02MB2702.namprd02.prod.outlook.com>
-X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
-X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: cItUJR/3T88lBe7D4dOQSR+UDdhbxnIkMCeKEaBoWrSfHhK2RcqvJ2DyW0IFBYFgB7efi1hLbxwiQ4iPggPAI/iKzy2tQMyTEmEweduqVdNUFR4IlV1GG7s1shwYafNHa6kXNBunkOi67ZGdedJrf3C9WWgPPsqnnrQYjPKNSpJY3wJLXXhjAFNVm07/W6N81GNWUqsFkpaVSMzglWvQSkaL1nUniRegqeVrHXl6EQu7bXejAysI0ywWKspzguWoO6tHH9TPP/T5y5CbCx4IDYIyKVc9TUFrH4CjsNenR3Iiag+/gKlZ4TEKgGK7K+U2Nx60SYqnZl6MeJ5mBqva5DQICJvH5vZS1nFQOdlk/SKjiAEeeCV8CPkm0tUPapeXWSMus7tTtlWJnHAzLCgFKCkVDQQd2JHPzbNO4bIUUSlmx6fiBjS6TII6pfnQGVh/
-X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch01.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(4636009)(376002)(396003)(346002)(136003)(39850400004)(46966005)(44832011)(36756003)(31686004)(82310400003)(6666004)(478600001)(36906005)(2616005)(83380400001)(316002)(54906003)(2906002)(4326008)(426003)(70206006)(82740400003)(9786002)(47076004)(110136005)(31696002)(356005)(5660300002)(26005)(8676002)(70586007)(8936002)(7636003)(186003)(336012)(50156003)(43740500002);DIR:OUT;SFP:1101;
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Dec 2020 09:32:41.2157
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: dc693d36-b507-4d4b-cb31-08d89a930b43
-X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch01.xlnx.xilinx.com]
-X-MS-Exchange-CrossTenant-AuthSource: CY1NAM02FT012.eop-nam02.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR02MB2702
+X-TM-SNTS-SMTP: AEB5FF3D303205152315F12801E2B2247DEE288D20E6EED68AE982586109AE1D2000:8
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+T24gU2F0LCAyMDIwLTEyLTA1IGF0IDE4OjI0ICswMzAwLCBTZXJnZSBTZW1pbiB3cm90ZToNCj4g
+RFdDIFVTQjMgRFQgbm9kZSBpcyBzdXBwb3NlZCB0byBiZSBjb21wbGlhbnQgd2l0aCB0aGUgR2Vu
+ZXJpYyB4SENJDQo+IENvbnRyb2xsZXIgc2NoZW1hLCBidXQgd2l0aCBhZGRpdGlvbmFsIHZlbmRv
+ci1zcGVjaWZpYyBwcm9wZXJ0aWVzLCB0aGUNCj4gY29udHJvbGxlci1zcGVjaWZpYyByZWZlcmVu
+Y2UgY2xvY2tzIGFuZCBQSFlzLiBTbyBsZXQncyBjb252ZXJ0IHRoZQ0KPiBjdXJyZW50bHkgYXZh
+aWxhYmxlIGxlZ2FjeSB0ZXh0LWJhc2VkIERXQyBVU0IzIGJpbmRpbmdzIHRvIHRoZSBEVCBzY2hl
+bWENCj4gYW5kIG1ha2Ugc3VyZSB0aGUgRFdDIFVTQjMgbm9kZXMgYXJlIGFsc28gdmFsaWRhdGVk
+IGFnYWluc3QgdGhlDQo+IHVzYi14aGNpLnlhbWwgc2NoZW1hLg0KPiANCj4gTm90ZSAxLiB3ZSBo
+YXZlIHRvIGRpc2NhcmQgdGhlIG5vZGVuYW1lIHJlc3RyaWN0aW9uIG9mIGJlaW5nIHByZWZpeGVk
+IHdpdGgNCj4gImR3YzNAIiBzdHJpbmcsIHNpbmNlIGluIGFjY29yZGFuY2Ugd2l0aCB0aGUgdXNi
+LWhjZC55YW1sIHNjaGVtYSBVU0Igbm9kZXMNCj4gYXJlIHN1cHBvc2VkIHRvIGJlIG5hbWVkIGFz
+ICJedXNiKEAuKikiLg0KPiANCj4gTm90ZSAyLiBUaGUgY2xvY2stcmVsYXRlZCBwcm9wZXJ0aWVz
+IGFyZSBtYXJrZWQgYXMgb3B0aW9uYWwgdG8gbWF0Y2ggdGhlDQo+IERXQyBVU0IzIGRyaXZlciBl
+eHBlY3RhdGlvbiBhbmQgdG8gaW1wcm92ZSB0aGUgYmluZGluZ3MgbWFpbmFpbmFiaWxpdHkNCj4g
+c28gaW4gY2FzZSBpZiB0aGVyZSBpcyBhIGdsdWUtbm9kZSBpdCB3b3VsZCB0aGUgcmVzcG9uc2li
+bGUgZm9yIHRoZQ0KPiBjbG9ja3MgaW5pdGlhbGl6YXRpb24uDQo+IA0KPiBTaWduZWQtb2ZmLWJ5
+OiBTZXJnZSBTZW1pbiA8U2VyZ2V5LlNlbWluQGJhaWthbGVsZWN0cm9uaWNzLnJ1Pg0KPiANCj4g
+LS0tDQo+IA0KPiBDaGFuZ2Vsb2cgdjI6DQo+IC0gRGlzY2FyZCAnfCcgZnJvbSB0aGUgZGVzY3Jp
+cHRpb25zLCBzaW5jZSB3ZSBkb24ndCBuZWVkIHRvIHByZXNlcnZlDQo+ICAgdGhlIHRleHQgZm9y
+bWF0dGluZyBpbiBhbnkgb2YgdGhlbS4NCj4gLSBEcm9wIHF1b3RlcyBmcm9tIGFyb3VuZCB0aGUg
+c3RyaW5nIGNvbnN0YW50cy4NCj4gLSBGaXggdGhlICJjbG9jay1uYW1lcyIgcHJvcCBkZXNjcmlw
+dGlvbiB0byBiZSByZWZlcnJpbmcgdGhlIGVudW1lcmF0ZWQNCj4gICBjbG9jay1uYW1lcyBpbnN0
+ZWFkIG9mIHRoZSBvbmVzIGZyb20gdGhlIERhdGFib29rLg0KPiANCj4gQ2hhbmdlbG9nIHYzOg0K
+PiAtIEFwcGx5IHVzYi14aGNpLnlhbWwjIHNjaGVtYSBvbmx5IGlmIHRoZSBjb250cm9sbGVyIGlz
+IHN1cHBvc2VkIHRvIHdvcmsNCj4gICBhcyBlaXRoZXIgaG9zdCBvciBvdGcuDQo+IA0KPiBDaGFu
+Z2Vsb2cgdjQ6DQo+IC0gQXBwbHkgdXNiLWRyZC55YW1sIHNjaGVtYSBmaXJzdC4gSWYgdGhlIGNv
+bnRyb2xsZXIgaXMgY29uZmlndXJlZA0KPiAgIHRvIHdvcmsgaW4gYSBnYWRnZXQgbW9kZSBvbmx5
+LCB0aGVuIGFwcGx5IHRoZSB1c2IueWFtbCBzY2hlbWEgdG9vLA0KPiAgIG90aGVyd2lzZSBhcHBs
+eSB0aGUgdXNiLXhoY2kueWFtbCBzY2hlbWEuDQo+IC0gRGlzY2FyZCB0aGUgUm9iJ2VzIFJldmll
+d2VkLWJ5IHRhZy4gUGxlYXNlIHJldmlldyB0aGUgcGF0Y2ggb25lIG1vcmUNCj4gICB0aW1lLg0K
+PiANCj4gQ2hhbmdlbG9nIHY1Og0KPiAtIEFkZCAic25wcyxkaXMtc3BsaXQtcXVpcmsiIHByb3Bl
+cnR5IHRvIHRoZSBEV0MgVVNCMyBEVCBzY2hlbWEuDQo+IC0gQWRkIGEgY29tbWl0IGxvZyB0ZXh0
+IGFib3V0IHRoZSBjbG9jay1yZWxhdGVkIHByb3BlcnR5IGNoYW5nZXMuDQo+IC0gTWFrZSBzdXJl
+IGRyX21vZGUgZXhpc3QgdG8gYXBwbHkgdGhlIFVTQi1nYWRnZXQtb25seSBzY2hlbWEuDQo+IC0t
+LQ0KPiAgLi4uL2RldmljZXRyZWUvYmluZGluZ3MvdXNiL2R3YzMudHh0ICAgICAgICAgIHwgMTI4
+IC0tLS0tLS0NCj4gIC4uLi9kZXZpY2V0cmVlL2JpbmRpbmdzL3VzYi9zbnBzLGR3YzMueWFtbCAg
+ICB8IDMxMiArKysrKysrKysrKysrKysrKysNCj4gIDIgZmlsZXMgY2hhbmdlZCwgMzEyIGluc2Vy
+dGlvbnMoKyksIDEyOCBkZWxldGlvbnMoLSkNCj4gIGRlbGV0ZSBtb2RlIDEwMDY0NCBEb2N1bWVu
+dGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvdXNiL2R3YzMudHh0DQo+ICBjcmVhdGUgbW9kZSAx
+MDA2NDQgRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3VzYi9zbnBzLGR3YzMueWFt
+bA0KPiANCj4gZGlmZiAtLWdpdCBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy91
+c2IvZHdjMy50eHQgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvdXNiL2R3YzMu
+dHh0DQo+IGRlbGV0ZWQgZmlsZSBtb2RlIDEwMDY0NA0KPiBpbmRleCAxYWFlMmI2MTYwYzEuLjAw
+MDAwMDAwMDAwMA0KPiAtLS0gYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvdXNi
+L2R3YzMudHh0DQo+ICsrKyAvZGV2L251bGwNCj4gQEAgLTEsMTI4ICswLDAgQEANCj4gLXN5bm9w
+c3lzIERXQzMgQ09SRQ0KPiAtDQpbLi4uXQ0KPiArDQo+ICsgIGNsb2NrLW5hbWVzOg0KPiArICAg
+IGNvbnRhaW5zOg0KPiArICAgICAgYW55T2Y6DQo+ICsgICAgICAgIC0gZW51bTogW2J1c19lYXJs
+eSwgcmVmLCBzdXNwZW5kXQ0KPiArICAgICAgICAtIHRydWUNCj4gKw0KPiArICB1c2ItcGh5Og0K
+PiArICAgbWluSXRlbXM6IDENCmluZGVudGF0aW9uOiBleHBlY3RlZCA0DQo+ICsgICBpdGVtczoN
+Cj4gKyAgICAgLSBkZXNjcmlwdGlvbjogVVNCMi9IUyBQSFkNCj4gKyAgICAgLSBkZXNjcmlwdGlv
+bjogVVNCMy9TUyBQSFkNCj4gKw0KPiArICBwaHlzOg0KPiArICAgIG1pbkl0ZW1zOiAxDQo+ICsg
+ICAgaXRlbXM6DQo+ICsgICAgICAtIGRlc2NyaXB0aW9uOiBVU0IyL0hTIFBIWQ0KPiArICAgICAg
+LSBkZXNjcmlwdGlvbjogVVNCMy9TUyBQSFkNCj4gKw0KPiArICBwaHktbmFtZXM6DQo+ICsgICAg
+bWluSXRlbXM6IDENCj4gKyAgICBpdGVtczoNCj4gKyAgICAgIC0gY29uc3Q6IHVzYjItcGh5DQo+
+ICsgICAgICAtIGNvbnN0OiB1c2IzLXBoeQ0KWy4uLl0NCg0K
 
-
-On 06. 12. 20 23:38, Laurent Pinchart wrote:
-> Hi Michal,
-> 
-> Thank you for the patch.
-> 
-> On Wed, Dec 02, 2020 at 03:06:03PM +0100, Michal Simek wrote:
->> Enable reset controller for several IPs.
->>
->> Signed-off-by: Michal Simek <michal.simek@xilinx.com>
->> ---
->>
->>  arch/arm64/boot/dts/xilinx/zynqmp.dtsi | 29 ++++++++++++++++++++++++++
->>  1 file changed, 29 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
->> index 68923fbd0e89..4fa820f78d76 100644
->> --- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
->> +++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
->> @@ -187,6 +187,11 @@ zynqmp_pcap: pcap {
->>  			xlnx_aes: zynqmp-aes {
->>  				compatible = "xlnx,zynqmp-aes";
->>  			};
->> +
->> +			zynqmp_reset: reset-controller {
->> +				compatible = "xlnx,zynqmp-reset";
->> +				#reset-cells = <1>;
->> +			};
->>  		};
->>  	};
->>  
->> @@ -466,6 +471,8 @@ gem0: ethernet@ff0b0000 {
->>  			#address-cells = <1>;
->>  			#size-cells = <0>;
->>  			power-domains = <&zynqmp_firmware PD_ETH_0>;
->> +			resets = <&zynqmp_reset ZYNQMP_RESET_GEM0>;
->> +			reset-names = "gem0_rst";
-> 
-> I don't see any of the reset-names used in this patch defined in DT
-> bindings (or used in drivers). For all devices but the USB controllers
-> it seems they can be dropped. For the USB controllers, the bindings need
-> to be updated first.
-
-Let me double check it. IIRC if there is just one there is likely no
-need to list the name but if there are more then one names should be
-also there. But you are right it should be the part of dt binding.
-
-Thanks,
-Michal
