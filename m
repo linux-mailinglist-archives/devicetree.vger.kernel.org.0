@@ -2,81 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A90B2D1096
-	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 13:32:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2CBEC2D10AF
+	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 13:38:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726969AbgLGMcS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Dec 2020 07:32:18 -0500
-Received: from mail.kernel.org ([198.145.29.99]:47524 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726851AbgLGMcS (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 7 Dec 2020 07:32:18 -0500
-Date:   Mon, 7 Dec 2020 12:31:31 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1607344298;
-        bh=ulIWSf4fu0+15UAYDWnox9feOF++im/0KyFh/WPgyL8=;
-        h=From:To:Cc:Subject:References:In-Reply-To:From;
-        b=WGKKjDz4bvE/H1goWqMdH74Vdm9C+N+78Q8HLgaCX+L91VkwYRKARNpCtSkM4H74M
-         jh/DtsrNfJXeZUF/RUbvq+/GQdVFD7QaqjP2zUSS2DOJkweCqBbXw8WlBtZVMKmewn
-         F5p4h6Vs0Bi6qhRvxOeOHjwWMvdR7R5mWiWI7r/T4dKqMOzVQS6NIEbdAC4mbwEqHs
-         4afPuls5Efdf/ngfEa2IZKA3v8MKCHHVo42X7+9INGwtzvirwsJ0KM8o5q7LK9A1yC
-         cvMwvje+8xslOTIhZ1C9WuPwggAPp596Szi2RWi6g5QVts/R1pqQTZhKVjU3UgN/q2
-         eIgGqsCrdkEJA==
-From:   Mark Brown <broonie@kernel.org>
-To:     Sameer Pujar <spujar@nvidia.com>
-Cc:     thierry.reding@gmail.com, robh+dt@kernel.org, sharadg@nvidia.com,
-        jonathanh@nvidia.com, kuninori.morimoto.gx@renesas.com,
-        linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org
-Subject: Re: [PATCH v6 0/6] Tegra210 audio graph card
-Message-ID: <20201207123131.GB5694@sirena.org.uk>
-References: <1606413823-19885-1-git-send-email-spujar@nvidia.com>
- <160683107678.35139.14772386553150233276.b4-ty@kernel.org>
- <a3541d83-1f2e-c60f-05f8-4fdd8c8f4175@nvidia.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="/NkBOFFp2J2Af1nK"
-Content-Disposition: inline
-In-Reply-To: <a3541d83-1f2e-c60f-05f8-4fdd8c8f4175@nvidia.com>
-X-Cookie: Absinthe makes the tart grow fonder.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        id S1725772AbgLGMiZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Dec 2020 07:38:25 -0500
+Received: from mickerik.phytec.de ([195.145.39.210]:53030 "EHLO
+        mickerik.phytec.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725972AbgLGMiZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 07:38:25 -0500
+DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a1; c=relaxed/simple;
+        q=dns/txt; i=@phytec.de; t=1607344662; x=1609936662;
+        h=From:Sender:Reply-To:Subject:Date:Message-ID:To:Cc:Mime-Version:Content-Type:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=ejlGt20c6QsD7RyttJQJ22vTkgGsnxE/NXQwD1EPp5c=;
+        b=qyyLFQC0w+K3C8ZHwfRL2+tay9XKH9BkMxzsqnOR7O8+5uAOpje0JN3Uw3xSaQS5
+        2UdvCuI0Sv8jjARrECND0ertVFohpgLK1h1BHyl8MDZqaTo7d38Guc/9BdiODbVh
+        2VrbcfZ8xSRLpAm1KzZvamiGvQFkH/bZrJLXAd5rgYQ=;
+X-AuditID: c39127d2-96bff70000006435-0e-5fce2216da73
+Received: from idefix.phytec.de (Unknown_Domain [172.16.0.10])
+        by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id 99.0B.25653.6122ECF5; Mon,  7 Dec 2020 13:37:42 +0100 (CET)
+Received: from llp-tremmet ([172.16.5.100])
+          by idefix.phytec.de (IBM Domino Release 9.0.1FP7)
+          with ESMTP id 2020120713374275-929346 ;
+          Mon, 7 Dec 2020 13:37:42 +0100 
+Message-ID: <821f7f841b1636aedfdd67a8e7f4da131d2e7745.camel@phytec.de>
+Subject: Re: [PATCH 3/4] bindings: arm: fsl: Add PHYTEC i.MX8MP devicetree
+ bindings
+From:   Teresa Remmet <t.remmet@phytec.de>
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>
+Date:   Mon, 07 Dec 2020 13:37:42 +0100
+In-Reply-To: <20201207115958.GA27266@kozik-lap>
+References: <1607113982-109524-1-git-send-email-t.remmet@phytec.de>
+         <1607113982-109524-4-git-send-email-t.remmet@phytec.de>
+         <20201207115958.GA27266@kozik-lap>
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+Mime-Version: 1.0
+X-MIMETrack: Itemize by SMTP Server on Idefix/Phytec(Release 9.0.1FP7|August  17, 2016) at
+ 07.12.2020 13:37:42,
+        Serialize by Router on Idefix/Phytec(Release 9.0.1FP7|August  17, 2016) at
+ 07.12.2020 13:37:42,
+        Serialize complete at 07.12.2020 13:37:42
+X-TNEFEvaluated: 1
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="UTF-8"
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrJLMWRmVeSWpSXmKPExsWyRoCBS1dM6Vy8wc1Fphbvl/UwWsw/co7V
+        4uFVf4vz5zewW2x6fI3VonXvEXaLv9s3sVi82CLuwOGxZt4aRo+ds+6ye2xa1cnmsXlJvUf/
+        XwOPz5vkAtiiuGxSUnMyy1KL9O0SuDK65uQWdHNXnPt+mLGBcTFHFyMnh4SAicTcHefYQGwh
+        ga2MEseOuHUxcgHZxxglWnfcYAdJ8Aq4SSw5dwKoiINDWCBUornbHCTMJqAh8XTFaSYQW0RA
+        U+L63++sIL3MAn8ZJZYvfscCkmARUJVY1v2XFaSXU0BfYvfeTIhdSxglJn0Og7hBR+LD/U+M
+        ICW8AoISf3cIg4yREGhkkpi05yUbRI2QxOnFZ5lBbGYBeYntb+dA2ZoSrdt/s09gFJyF0D4L
+        SdUsJFULGJlXMQrlZiZnpxZlZusVZFSWpCbrpaRuYgQG/+GJ6pd2MPbN8TjEyMTBeIhRgoNZ
+        SYRXTepsvBBvSmJlVWpRfnxRaU5q8SFGaQ4WJXHeDbwlYUIC6YklqdmpqQWpRTBZJg5OqQbG
+        1gOqu49mbdi58slyC1mRjj3bRQO/hEzdes8qW2lmEfesoxscGL9x3f618MVtb7F7hrPE1wTe
+        a1j2UVB7/u9fAc61MZdeXcpQ3eDCVf6iSMdyzaqO6nU5Qjq3WhQv3XK3aLGKYetOzpq56E16
+        kq7S4cL6hdZN88VCq0IlAm0n1nDz7/PjaG5RYinOSDTUYi4qTgQAooyOm2wCAAA=
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Am Montag, den 07.12.2020, 12:59 +0100 schrieb Krzysztof Kozlowski:
+> On Fri, Dec 04, 2020 at 09:33:01PM +0100, Teresa Remmet wrote:
+> > Add devicetree bindings for i.MX8MP based phyCORE-i.MX8MP
+> > and phyBOARD-Pollux RDK.
+> > 
+> > Signed-off-by: Teresa Remmet <t.remmet@phytec.de>
+> > ---
+> >  Documentation/devicetree/bindings/arm/fsl.yaml | 7 +++++++
+> >  1 file changed, 7 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml
+> > b/Documentation/devicetree/bindings/arm/fsl.yaml
+> > index 934289446abb..880d93092f37 100644
+> > --- a/Documentation/devicetree/bindings/arm/fsl.yaml
+> > +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+> > @@ -433,6 +433,13 @@ properties:
+> >                - fsl,imx8mp-evk            # i.MX8MP EVK Board
+> >            - const: fsl,imx8mp
+> >  
+> > +      - description: PHYTEC phyCORE-i.MX8MP SoM based boards
+> > +        items:
+> > +          - enum:
+> > +              - phytec,imx8mp-phycore-som         # phyCORE-
+> > i.MX8MP SoM
+> > +              - phytec,imx8mp-phyboard-pollux-rdk # phyBOARD-
+> > Pollux RDK
+> 
+> These do not look correct. In this way, you should include them in
+> "i.MX8MP based Boards" entry. Probably you wanted all "const"
+> instead.
 
---/NkBOFFp2J2Af1nK
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+I will change them to "const" in v2. 
 
-On Mon, Dec 07, 2020 at 10:22:38AM +0530, Sameer Pujar wrote:
+Thank you,
+Teresa
 
-> > [1/3] ASoC: dt-bindings: tegra: Add graph bindings
-> >        (no commit info)
-> > [2/3] ASoC: dt-bindings: tegra: Add json-schema for Tegra audio graph card
-> >        (no commit info)
-> > [3/3] ASoC: tegra: Add audio graph based card driver
-> >        (no commit info)
+> 
+> Best regards,
+> Krzysztof
+> 
+> 
+> > +          - const: fsl,imx8mp
+> > +
 
-> I don't see above patches in linux-next yet. Should I wait some more time
-> for this to appear?
-
-No, this was sent by a b4 bug - notice the "no commit info" there, they
-weren't applied.
-
---/NkBOFFp2J2Af1nK
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl/OIKMACgkQJNaLcl1U
-h9Bergf/R2n7B5AV+c3qA138O8l+XMSdm7bZ8noJM7ZoaPj/A1jX9Br56e38tOjq
-QfofOwv/rAGQG82FVgB9rPGHZRFzz3kvQwb35JO1eQV+TLbSOnGkYFpC28buXymj
-SGYm9ncc7OeN30WV4e3NymMTcOFe8ggwR05zMzc6amXV2163NQl1sN64tlkKbFSA
-yAcctZJeDD5B3TlcILu+yZp5SidHHV7gdk57QDd+A3Ut6sggbj9EBcQamZsKUmkJ
-LwQPdeqesq/WJqs33a3sFL1xDXMLwISR7isCX/6CRO1cd6evcivRf+Wmcgr7k0MJ
-6yR+VP1OIr+ecpxbGAm4CMYD++Cntw==
-=r0dO
------END PGP SIGNATURE-----
-
---/NkBOFFp2J2Af1nK--
