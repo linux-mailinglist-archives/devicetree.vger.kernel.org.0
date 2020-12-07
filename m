@@ -2,108 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EFCBA2D18D8
-	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 19:58:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8EFAD2D18EA
+	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 20:02:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726459AbgLGS4o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Dec 2020 13:56:44 -0500
-Received: from mail-ot1-f66.google.com ([209.85.210.66]:43667 "EHLO
-        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726355AbgLGS4o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 13:56:44 -0500
-Received: by mail-ot1-f66.google.com with SMTP id q25so1692643otn.10;
-        Mon, 07 Dec 2020 10:56:28 -0800 (PST)
+        id S1726359AbgLGTCL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Dec 2020 14:02:11 -0500
+Received: from mail-oi1-f195.google.com ([209.85.167.195]:40259 "EHLO
+        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725877AbgLGTCL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 14:02:11 -0500
+Received: by mail-oi1-f195.google.com with SMTP id p126so16575400oif.7;
+        Mon, 07 Dec 2020 11:01:55 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=jYKdPSvZjpIiPbVZhXmqc2j76RFh4wXSWnm0PlBYAnE=;
-        b=Z39OpqLW8DFiyjS998uYGx7yV9CaoJ6CB3vqIhUR7AoKj4b94CowyDILTxij5oy+FD
-         dtUjSBjWIrNiqQUrBAmTd+uFYhm67Ukb3yRymUn/x8+8/wVA0LQusZzmA9HDixnR0Xyi
-         3Piapd4vLNiSNtKQofK9rJ3vHdOv/+Hct0dJYLn9rnTGaRNL+dlunk2d4XQWeBMqmB7D
-         LiIdUPhqxnsw1HkGcbEsAV973nFhqA3CO0zYnBDKjl0eTlSn6MPo6S/Px43lVUm2ewE6
-         o17v6elkCNWIm/vl/iE25do+AyvSob1yEOR1OZPSyeHAPcvv2lG4Bhhc3Rxi4RGCE11o
-         4lcQ==
-X-Gm-Message-State: AOAM533otl+9OCHicf0q08pMd/6D0HRkJ0tHop0CMUjqoPLHEwpQQglg
-        q5N8COSX8iZo+pHVpnge4XW7CsWb+g==
-X-Google-Smtp-Source: ABdhPJz/ljYtKFGmvSgmn4Lys4Ug3P+P2nQy5R4djRcCMl2NVsn0vyrFdDgT0CIZTb6Yp59q9uNiOw==
-X-Received: by 2002:a9d:7a97:: with SMTP id l23mr13992794otn.232.1607367363221;
-        Mon, 07 Dec 2020 10:56:03 -0800 (PST)
+        bh=oq0uf3/fLWDZlMwGpgKAvvZ5GOhPZy/p7Susns2+2mQ=;
+        b=UOW83FjCl4dTxTILhHahCvhaIjBhhgCpnwXViUPlVrpLmP09JMfZJaEWlAoTpSEpd6
+         vBN7XEqWoJ53E8sWopMV3pbvCpolJXr2oNM6HSMq75bbwQxSO2twlUObsUcp+9JIcAi5
+         WnrWQ1QiApCFQG5ffhZ1DLCkEsA2sKyTO3QcYv6H2s1nhvWfPY5K3JFnXb5hJVTOK4dv
+         AWuLer+DtXp7Kd7PC+1vRB3yTbRzsmDpWUNGWaYo45CTJ5aSsL67LSdqDe1XE0Fqgm3K
+         mXgwEAxekbeUGIbSEQxRQMqkjkmU2J9DINfAPFkHHxq0OYkyPgI0wX10ibqdZRdApQju
+         TIdQ==
+X-Gm-Message-State: AOAM531uJFt/M5NtSXDDtM7Xh+PoZGz+XMSmfR5rMC4R1Fd2oTDmVgG2
+        6GNpqpmKkYyk/pklHc1xhIuZOTJZbw==
+X-Google-Smtp-Source: ABdhPJzmZ9pkhVdNrTwfLlvsUMHpnMAi4vUiamjBYoNrKM48G/OKOQeZN8CjkCxZYMagcxrYGCTVjw==
+X-Received: by 2002:aca:dc56:: with SMTP id t83mr224368oig.110.1607367689832;
+        Mon, 07 Dec 2020 11:01:29 -0800 (PST)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id i4sm2780609oos.31.2020.12.07.10.56.00
+        by smtp.gmail.com with ESMTPSA id j4sm1533684ota.8.2020.12.07.11.01.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Dec 2020 10:56:01 -0800 (PST)
-Received: (nullmailer pid 617149 invoked by uid 1000);
-        Mon, 07 Dec 2020 18:56:00 -0000
-Date:   Mon, 7 Dec 2020 12:56:00 -0600
+        Mon, 07 Dec 2020 11:01:28 -0800 (PST)
+Received: (nullmailer pid 625746 invoked by uid 1000);
+        Mon, 07 Dec 2020 19:01:27 -0000
+Date:   Mon, 7 Dec 2020 13:01:27 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Kishon Vijay Abraham I <kishon@ti.com>
-Cc:     Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Tom Joseph <tjoseph@cadence.com>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Marek Vasut <marek.vasut+renesas@gmail.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Shawn Lin <shawn.lin@rock-chips.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        linux-rockchip@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 1/6] dt-bindings: PCI: pci-ep: Add binding to specify
- virtual function
-Message-ID: <20201207185600.GA609331@robh.at.kernel.org>
-References: <20201112175358.2653-1-kishon@ti.com>
- <20201112175358.2653-2-kishon@ti.com>
+To:     Jim Quinlan <james.quinlan@broadcom.com>
+Cc:     Sudeep Holla <sudeep.holla@arm.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: arm: Add optional interrupt to
+ smc/hvc SCMI transport
+Message-ID: <20201207190127.GA617336@robh.at.kernel.org>
+References: <20201112175632.42234-1-james.quinlan@broadcom.com>
+ <20201112175632.42234-2-james.quinlan@broadcom.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201112175358.2653-2-kishon@ti.com>
+In-Reply-To: <20201112175632.42234-2-james.quinlan@broadcom.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 12, 2020 at 11:23:53PM +0530, Kishon Vijay Abraham I wrote:
-> Add binding to specify virtual function (associated with each physical
-> function) in endpoint mode.
+On Thu, Nov 12, 2020 at 12:56:26PM -0500, Jim Quinlan wrote:
+> In normal use of smc/hvc transport in SCMI the message completion is
+> indicated by the return of the SMC call.  This commit provides for an
+> optional interrupt named "message-serviced" which is used instead to
+> indicate the completion of a message.
 > 
-> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
+> Signed-off-by: Jim Quinlan <james.quinlan@broadcom.com>
 > ---
->  Documentation/devicetree/bindings/pci/pci-ep.yaml | 9 +++++++++
->  1 file changed, 9 insertions(+)
+>  Documentation/devicetree/bindings/arm/arm,scmi.txt | 8 ++++++++
+>  1 file changed, 8 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/pci/pci-ep.yaml b/Documentation/devicetree/bindings/pci/pci-ep.yaml
-> index 7847bbcd4a03..90c85a0c44a1 100644
-> --- a/Documentation/devicetree/bindings/pci/pci-ep.yaml
-> +++ b/Documentation/devicetree/bindings/pci/pci-ep.yaml
-> @@ -23,6 +23,15 @@ properties:
->      default: 1
->      maximum: 255
+> diff --git a/Documentation/devicetree/bindings/arm/arm,scmi.txt b/Documentation/devicetree/bindings/arm/arm,scmi.txt
+> index 55deb68230eb..7cdad11f40b1 100644
+> --- a/Documentation/devicetree/bindings/arm/arm,scmi.txt
+> +++ b/Documentation/devicetree/bindings/arm/arm,scmi.txt
+> @@ -31,6 +31,14 @@ Optional properties:
 >  
-> +  max-virtual-functions:
-> +    description: Maximum number of virtual functions that can be configured
-
-Need to say what each element of the array corresponds to.
-
-> +    allOf:
-
-Can drop 'allOf' here.
-
-> +      - $ref: /schemas/types.yaml#/definitions/uint8-array
-> +    minItems: 0
-
-minItems should never be 0. That's no property present.
-
-> +    maxItems: 255
-> +    items:
-> +      maximum: 255
+>  - mbox-names: shall be "tx" or "rx" depending on mboxes entries.
+>  
+> +- interrupts : when using smc or hvc transports, this optional
+> +	 property indicates that msg completion by the platform is indicated
+> +	 by an interrupt rather than by the return of the smc call. This
+> +	 should not be used except when the platform requires such behavior.
 > +
->    max-link-speed:
->      $ref: /schemas/types.yaml#/definitions/uint32
->      enum: [ 1, 2, 3, 4 ]
+> +- interrupt-names : if "interrupts" is present, interrupt-names must also
+> +	 be present and have the value "message-serviced".
+
+Don't really need names when only one, but wouldn't 'a2p' be more 
+concise and based on SCMI spec (just guessing...).
+
+> +
+>  See Documentation/devicetree/bindings/mailbox/mailbox.txt for more details
+>  about the generic mailbox controller and client driver bindings.
+>  
 > -- 
 > 2.17.1
 > 
+
+
