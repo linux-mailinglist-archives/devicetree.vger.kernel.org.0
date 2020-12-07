@@ -2,93 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B790D2D17EA
-	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 18:55:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D23992D1801
+	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 19:02:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725852AbgLGRy1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Dec 2020 12:54:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43866 "EHLO
+        id S1726035AbgLGR6z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Dec 2020 12:58:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44582 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725804AbgLGRy1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 12:54:27 -0500
+        with ESMTP id S1725852AbgLGR6z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 12:58:55 -0500
 Received: from mail.kmu-office.ch (mail.kmu-office.ch [IPv6:2a02:418:6a02::a2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0BE1C061749;
-        Mon,  7 Dec 2020 09:53:46 -0800 (PST)
-Received: from webmail.kmu-office.ch (unknown [IPv6:2a02:418:6a02::a3])
-        by mail.kmu-office.ch (Postfix) with ESMTPSA id 6CB545C0054;
-        Mon,  7 Dec 2020 18:53:43 +0100 (CET)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4798EC061749;
+        Mon,  7 Dec 2020 09:58:15 -0800 (PST)
+Received: from allenwind.lan (unknown [IPv6:2a02:169:3df5:0:6d9:f5ff:fe22:28bf])
+        by mail.kmu-office.ch (Postfix) with ESMTPSA id D10A55C26E3;
+        Mon,  7 Dec 2020 18:58:13 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=agner.ch; s=dkim;
-        t=1607363623;
+        t=1607363893;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=MkGJj4xRtLjLHi9uk2lHu+eJLiMO4r8tHRe6lcpmSbI=;
-        b=raPdImDDTIiegSJWjc9kp0oB2+0DxMTvr7V45zgBlwAyRvQvZJYeV65YXexfMT6YySjMio
-        MGhyV6XVgfS3gjot5iY7Kan2RfqSx8D5JVuEZYvwkQiluiOdbExVol7zVEQkdAw6hGsPfm
-        IP1eU/sZ3VORqVBeqt08uRn3tapwSQ0=
-MIME-Version: 1.0
-Date:   Mon, 07 Dec 2020 18:53:43 +0100
+         to:to:cc:cc:mime-version:mime-version:content-type:
+         content-transfer-encoding:content-transfer-encoding:in-reply-to:
+         references; bh=QgiXC+yQQL2nekfa8OvfrMNMROrqRj4G+Xqa0/Q1Jrc=;
+        b=SdSk54xoBtJt2wA7D+FyMl1gy8j99vqSlTwDnx/ptWFpLwzh5Jjsdjf1AXe7NW4YxbCA1h
+        +9GcjZoy3ymlImYNAmwFphfZ3q5pCsFvFsH5xpL4AuJ/fLyRuuWCddfz/hpLT4W71eTs7/
+        dzGIiznrZ2e3LRQnRMCNcVDFLxjw2Fg=
 From:   Stefan Agner <stefan@agner.ch>
-To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     khilman@baylibre.com, robh+dt@kernel.org,
-        Neil Armstrong <narmstrong@baylibre.com>, jbrunet@baylibre.com,
-        christianshewitt@gmail.com, jian.hu@amlogic.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 3/5] ARM: dts: meson: fix PHY deassert timing
- requirements
-In-Reply-To: <CAFBinCA_eaJHv7e+8ZM=z=zUZ9uQY_JZ=618=LwJYM-Gi+OO+g@mail.gmail.com>
-References: <14754fd95378b78eb9a0a3f8b6bab13f7263c7f1.1606828668.git.stefan@agner.ch>
- <6bfe17d86ead62c20d236e2ebbc7b7fe3354829d.1606828668.git.stefan@agner.ch>
- <CAFBinCA_eaJHv7e+8ZM=z=zUZ9uQY_JZ=618=LwJYM-Gi+OO+g@mail.gmail.com>
-User-Agent: Roundcube Webmail/1.4.9
-Message-ID: <1275fb519490b00a079ac832277585f1@agner.ch>
-X-Sender: stefan@agner.ch
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+To:     khilman@baylibre.com
+Cc:     robh+dt@kernel.org, narmstrong@baylibre.com, jbrunet@baylibre.com,
+        martin.blumenstingl@googlemail.com, christianshewitt@gmail.com,
+        jian.hu@amlogic.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Stefan Agner <stefan@agner.ch>
+Subject: [PATCH v3 1/5] arm64: dts: meson: g12b: odroid-n2: fix PHY deassert timing requirements
+Date:   Mon,  7 Dec 2020 18:57:59 +0100
+Message-Id: <df3f5c4fc6e43c55429fd3662a636036a21eed49.1607363522.git.stefan@agner.ch>
+X-Mailer: git-send-email 2.29.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2020-12-05 14:04, Martin Blumenstingl wrote:
-> Hi Stefan,
-> 
-> On Tue, Dec 1, 2020 at 2:21 PM Stefan Agner <stefan@agner.ch> wrote:
->>
->> According to the datasheet (Rev. 1.9) the RTL8211F requires at least
->> 72ms "for internal circuits settling time" before accessing the PHY
->> egisters. On similar boards with the same PHY this fixes an issue where
-> there's a typo here: it should be "registers"
-> this is the same for the other four patches also
+According to the datasheet (Rev. 1.9) the RTL8211F requires at least
+72ms "for internal circuits settling time" before accessing the PHY
+registers. This fixes an issue where the Ethernet link doesn't come up
+when using ip link set down/up:
+  [   29.360965] meson8b-dwmac ff3f0000.ethernet eth0: Link is Down
+  [   34.569012] meson8b-dwmac ff3f0000.ethernet eth0: PHY [0.0:00] driver [RTL8211F Gigabit Ethernet] (irq=31)
+  [   34.676732] meson8b-dwmac ff3f0000.ethernet: Failed to reset the dma
+  [   34.678874] meson8b-dwmac ff3f0000.ethernet eth0: stmmac_hw_setup: DMA engine initialization failed
+  [   34.687850] meson8b-dwmac ff3f0000.ethernet eth0: stmmac_open: Hw setup failed
 
-Whoops, will send v3 shortly.
+Fixes: 658e4129bb81 ("arm64: dts: meson: g12b: odroid-n2: add the Ethernet PHY reset line")
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Signed-off-by: Stefan Agner <stefan@agner.ch>
+---
+ arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-> 
->> Ethernet link would not come up when using ip link set down/up.
-> I have never experienced that myself but gotten a few reports about this.
-> thank you very much for coming up with info from the datasheet!
-> 
-> the following stmmac patch [0] has been added recently which may - or
-> may not - have any impact also.
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
+index 6982632ae646..39a09661c5f6 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
+@@ -413,7 +413,7 @@ external_phy: ethernet-phy@0 {
+ 		max-speed = <1000>;
+ 
+ 		reset-assert-us = <10000>;
+-		reset-deassert-us = <30000>;
++		reset-deassert-us = <80000>;
+ 		reset-gpios = <&gpio GPIOZ_15 (GPIO_ACTIVE_LOW | GPIO_OPEN_DRAIN)>;
+ 
+ 		interrupt-parent = <&gpio_intc>;
+-- 
+2.29.2
 
-Thanks for the hint, wasn't aware of that.
-
---
-Stefan
-
-> 
->> Fixes: a2c6e82e5341 ("ARM: dts: meson: switch to the generic Ethernet PHY reset bindings")
->> Signed-off-by: Stefan Agner <stefan@agner.ch>
-> with above typo fixed:
-> Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> and also:
-> Tested-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com> #
-> on Odroid-C1+
-> 
-> 
-> Best regards,
-> Martin
-> 
-> 
-> [0] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/drivers/net/ethernet/stmicro/stmmac?id=56311a315da7ebc668dbcc2f1c99689cc10796c4
