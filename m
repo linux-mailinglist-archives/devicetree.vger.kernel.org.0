@@ -2,80 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0BB2D2D1DFA
-	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 00:02:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 84B022D1E01
+	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 00:02:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728173AbgLGXBD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Dec 2020 18:01:03 -0500
-Received: from mail-oo1-f67.google.com ([209.85.161.67]:42653 "EHLO
-        mail-oo1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726474AbgLGXBD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 18:01:03 -0500
-Received: by mail-oo1-f67.google.com with SMTP id g20so1733349oos.9;
-        Mon, 07 Dec 2020 15:00:47 -0800 (PST)
+        id S1728206AbgLGXB1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Dec 2020 18:01:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35522 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728199AbgLGXB1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 18:01:27 -0500
+Received: from mail-lf1-x142.google.com (mail-lf1-x142.google.com [IPv6:2a00:1450:4864:20::142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1AB20C061794
+        for <devicetree@vger.kernel.org>; Mon,  7 Dec 2020 15:00:47 -0800 (PST)
+Received: by mail-lf1-x142.google.com with SMTP id l11so20510022lfg.0
+        for <devicetree@vger.kernel.org>; Mon, 07 Dec 2020 15:00:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=MRIaz/QqwQXKXSXb3nYPYT/g6KDa16uGLes5GkMKucw=;
+        b=I3Yudz7nX7p+tWeGi5ph2E0TAva8TL/UBIq0ubmfa3xumuDzsXpp/l8ed6YuW6hNac
+         eRz3/aE2Z/qMBQivOjEKOmfa467OY6IEMa4mxTbxHNLjAj3deqCdAfHCcttajzl3B7RT
+         IzieTMJEE3NdR6H3itBuhVmVdROVBej5UIN/aPAoEJONTo+lgNjMQgee7f3PWy/6aWvg
+         NmOQHSmXAnnjdz93N4lWIxa7Veb2oHKwMJKoud+BhGEHX4fH6VswVWWXsRhhmkLTeXAU
+         i5xD/t+14ys1OE2nwpSKhnGXsfnOciVSbamtMQxvIFyoTkcXy7lF5msRj19DT+gt0e6t
+         pXqw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=CFy+nG4iS5p2yYyKX/b5kvW6hcT/gqROUK6GrSdahRU=;
-        b=Y3RsbRbEEsyUaQJFowhv2rA2/Cd+vbJNuOoMj9BI+wYBS9SD3HGqSvPJuGSZ8fHW9T
-         CkQf/vc9xKvqd/NRY3+8AKni7UJLMU+R1oeL5zsQv4WBN1M3mBUUNZ9Cqmlyg+4U/+O+
-         q3XIURZqzHe3M7cTkQEsKlk9/SeE2YSHxxEvWhf8bWo2hplg9n1IZN6x1wbRpn6Oeidc
-         P4fkcLksuzDHBYxPM4FNmQxjPjrRBRCbcvj1XgHp/nikVcaF4qGUjaEZ7bAawzBKnSYw
-         1p3ElGuj1lec9s0/eOHnbGX00IjxYVWxLG2YjAaBUdjT6Hoq+TMFgVXSdxEIIk0uGjf7
-         donw==
-X-Gm-Message-State: AOAM530JAyZJ86fSfirIxtLV5b+Yj/y9lBpA0G7Adl/GUGkLkKhRnyAX
-        HxaTXxyhsTvhAz3jUYJ3TA==
-X-Google-Smtp-Source: ABdhPJzE//ECqTKe9WJx+3uBk86ScLYklU5dwJEKbOkkShMp6z+xNxpE+bs9r/ycNubVmOVXfDg91Q==
-X-Received: by 2002:a4a:a3cb:: with SMTP id t11mr8596364ool.30.1607382021970;
-        Mon, 07 Dec 2020 15:00:21 -0800 (PST)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id o63sm2978041ooa.10.2020.12.07.15.00.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Dec 2020 15:00:20 -0800 (PST)
-Received: (nullmailer pid 1006890 invoked by uid 1000);
-        Mon, 07 Dec 2020 23:00:18 -0000
-Date:   Mon, 7 Dec 2020 17:00:18 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Zhen Lei <thunder.leizhen@huawei.com>
-Cc:     linux-kernel <linux-kernel@vger.kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Stafford Horne <shorne@gmail.com>,
-        Karol Gugala <kgugala@antmicro.com>,
-        linux-media <linux-media@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-mediatek <linux-mediatek@lists.infradead.org>,
-        Pawel Czarnecki <pczarnecki@internships.antmicro.com>,
-        linux-serial <linux-serial@vger.kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Mateusz Holenko <mholenko@antmicro.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-Subject: Re: [PATCH 5/5] dt-bindings: mfd: correct the node name of the panel
- led
-Message-ID: <20201207230018.GA1006838@robh.at.kernel.org>
-References: <20201204093813.1275-1-thunder.leizhen@huawei.com>
- <20201204093813.1275-6-thunder.leizhen@huawei.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=MRIaz/QqwQXKXSXb3nYPYT/g6KDa16uGLes5GkMKucw=;
+        b=H7ZMW8pkHYhSB5ikvbjiK08r/9LTM7kJHDlpiTWOwSrRL4GPbc5e4A4+MXwHG8hBdr
+         no7M/F85QOL5XOZ7cUhncBW+AzQszDLpEeZPqYh/Mki4yWxByNz0GW3TNiDhoM/eFkjF
+         nJDBQfWz8YEZt85G+rgxBD3V2QukkFo2MJMPZsxv/9WxXI8+Dq1pSnNcKgzoCeHdcTu3
+         XSKWLfP7j6+4uMAzdPxOtfN+zbnky30nDdBtHw6e+hG5MoW6JkI4PGkv/FA6mVxEFwGr
+         oTxHTH5p30NH3OTOTEP+gOXPPlFhTXLVwd3sWYpNtfVHDjuJHr3exWvDXh/fs6LekcMu
+         IeTw==
+X-Gm-Message-State: AOAM533R/2accUUgFWhMPjeeZKeTuE8CG6Mf6pFp6/AW9j6iZ6AYWkOZ
+        exGinmy+pM8S41xfYGRw5a/sS/VnzMjOl1xucMldqA==
+X-Google-Smtp-Source: ABdhPJy2sUGuSdRe+WHjDjkACjfv4ZbpS4pEOJB0KAz1DrrDHq1eFB3zVzh2Pu7z8R1AeVPsyMxOi0snYGph3Deuutk=
+X-Received: by 2002:a19:cb45:: with SMTP id b66mr2646521lfg.441.1607382045497;
+ Mon, 07 Dec 2020 15:00:45 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201204093813.1275-6-thunder.leizhen@huawei.com>
+References: <20201207192104.6046-1-sergio.paracuellos@gmail.com> <20201207192104.6046-3-sergio.paracuellos@gmail.com>
+In-Reply-To: <20201207192104.6046-3-sergio.paracuellos@gmail.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Tue, 8 Dec 2020 00:00:34 +0100
+Message-ID: <CACRpkdagTdkMbg=nw-N9KQhsWXqLxofzpD_9YLgpKPBxo0vyhQ@mail.gmail.com>
+Subject: Re: [PATCH 2/3] pinctrl: ralink: add a pinctrl driver for the rt2880 family
+To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Jason Yan <yanaijie@huawei.com>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:STAGING SUBSYSTEM" <devel@driverdev.osuosl.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 04 Dec 2020 17:38:13 +0800, Zhen Lei wrote:
-> According to the definition in leds-pwm.yaml, the node name of each led
-> must match the regular expression "^led(-[0-9a-f]+)?$". "led" or "led-"
-> followed by a decimal or hexadecimal ID number.
-> 
-> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
-> ---
->  Documentation/devicetree/bindings/mfd/iqs62x.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
+Hi Serigio,
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+I dug around some to try to understand the patch I think I get
+it now :)
+
+Squash this with the third patch so it becomes a
+"move" of this file, preserving history. With that:
+Acked-by: Linus Walleij <linus.walleij@linaro.org>
+
+I have ideas, but it is better to move the driver out
+of staging and improve it in pinctrl.
+
+Since there might be many sub-SoCs for this pin
+controller, what about creating
+drivers/pinctrl/ralink/* for this at the same time?
+
+On Mon, Dec 7, 2020 at 8:21 PM Sergio Paracuellos
+<sergio.paracuellos@gmail.com> wrote:
+>
+> These Socs have 1-3 banks of 8-32 gpios. Rather then setting the muxing of each
+> pin individually, these socs have mux groups that when set will effect 1-N pins.
+> Pin groups have a 2, 4 or 8 different muxes.
+>
+> Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+(...)
+> +#include <asm/mach-ralink/ralink_regs.h>
+> +#include <asm/mach-ralink/pinmux.h>
+> +#include <asm/mach-ralink/mt7620.h>
+
+I think in the next step we should move the contents of
+rt2880_pinmux_data into this driver, then we can drop these
+mach-headers and show the way for the rest of the ralink
+chips to push their data down into this driver (or subdrivers)
+and depopulate mach-ralink a bit.
+
+> +       p->groups = rt2880_pinmux_data;
+
+So this is where the driver actually gets a pointer to all
+groups and functions, and these groups and functions all
+come from arch/mips/ralink/mt7621.c right?
+
+I think after this first step we should move mt7621.c
+to pinctrl and become a subdriver for this pin controller
+and then we can hopefully move the rest as well once
+you set the pattern for how we do this.
+
+Yours,
+Linus Walleij
