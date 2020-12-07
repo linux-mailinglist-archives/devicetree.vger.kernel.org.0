@@ -2,116 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 218892D0BED
-	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 09:45:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E03B72D0BFE
+	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 09:49:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726290AbgLGIol (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Dec 2020 03:44:41 -0500
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:42849 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726087AbgLGIol (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 03:44:41 -0500
-Received: by mail-ot1-f65.google.com with SMTP id 11so11772698oty.9;
-        Mon, 07 Dec 2020 00:44:25 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=lDfLeyiGUVNCa3NdIdBr2x/jMgSf/H+Z78nqjlzXWBM=;
-        b=J2hN4u6U2gJWQOGdej5Ts8hltZ7/Yed0y5CkrmGWGgZySvpV4zRyutPF+I/BwGLDRi
-         3C9Gj+IkYGVgQI4VjI+eSZIe1EpfT7i1lBPVKHjJ1OBq7nfW9WhNfvLq1+6jJLMqdyAc
-         NCbYMiiEkAVHbfOMNHebmbJu05RwT7qZGITkTgQiSRd8rSt3GJcaVtDYIraKHqQVtbBG
-         pO5teyB5OtPd0jRzHWa9C6CGHBXxdIApR0XL5rQWA4mWNl3IdKSec2p/lq2bT2vJLvni
-         JANxYRYLrWiKn3Xe1wIzvtSA+mzokZJVUBB9r+VMjslp6wIDF+CCIWqzjCB7oRWocIYa
-         kXEw==
-X-Gm-Message-State: AOAM53210mGBeNx8L/R0E85yWFD2fHxqWa61IjXL7XoORJ8ilN2laFl8
-        ayPb8IOdHgDZ048NUygE9xE0daIgM5s6+d5OgKY=
-X-Google-Smtp-Source: ABdhPJz3F618tGQ+G8xttqsIo3X7QtPrBpfqy0tddGagSvKa3lbHtQAsUEeeyRDDYw11Hf5ZojwaoyzWHaAY0bkCXD0=
-X-Received: by 2002:a05:6830:1f5a:: with SMTP id u26mr12384022oth.250.1607330640141;
- Mon, 07 Dec 2020 00:44:00 -0800 (PST)
-MIME-Version: 1.0
-References: <20201202032500.206346-1-damien.lemoal@wdc.com>
- <20201202032500.206346-12-damien.lemoal@wdc.com> <160714919628.1580929.1456162330322523777@swboyd.mtv.corp.google.com>
- <b5eb9c289fe58119185550bff7228501d95b730e.camel@wdc.com>
-In-Reply-To: <b5eb9c289fe58119185550bff7228501d95b730e.camel@wdc.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 7 Dec 2020 09:43:49 +0100
-Message-ID: <CAMuHMdX+grQf=naU76Edvhbjap3BEayjDs_Rhkoy4FFfOZcTZw@mail.gmail.com>
-Subject: Re: [PATCH v4 11/21] riscv: Add Canaan Kendryte K210 clock driver
-To:     Damien Le Moal <Damien.LeMoal@wdc.com>
-Cc:     "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-        "palmer@dabbelt.com" <palmer@dabbelt.com>,
-        "sboyd@kernel.org" <sboyd@kernel.org>,
-        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        "seanga2@gmail.com" <seanga2@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+        id S1726343AbgLGIsh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Dec 2020 03:48:37 -0500
+Received: from so254-31.mailgun.net ([198.61.254.31]:52618 "EHLO
+        so254-31.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726041AbgLGIsh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 03:48:37 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1607330893; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=PTpMIA6cwoiCGN4K27xmRsY3lufcC0CDTr+pIgDPv6Y=; b=GaMndxRS39CqCvUYpyzMCiVs64zjGK4AmZFCNwtuKFE7s2sZaR/o/JCTjx8UoUZqS0FbmpCi
+ NMMbXtgHMaGD4FsVLTw4xrbCIkPGg4EUpvtLx1e/jlHxMyVRG+Xizb9NyQdRsz0JVJ6k2FTk
+ pktTnjdw/7YLKUDL9FuASV4WOBc=
+X-Mailgun-Sending-Ip: 198.61.254.31
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n10.prod.us-west-2.postgun.com with SMTP id
+ 5fcdec2fdc0fd8a317a7f076 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 07 Dec 2020 08:47:43
+ GMT
+Sender: akashast=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 92F8DC43463; Mon,  7 Dec 2020 08:47:43 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
+        autolearn=no autolearn_force=no version=3.4.0
+Received: from akashast-linux.qualcomm.com (unknown [202.46.22.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: akashast)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id BFCF3C433ED;
+        Mon,  7 Dec 2020 08:47:39 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org BFCF3C433ED
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=akashast@codeaurora.org
+From:   Akash Asthana <akashast@codeaurora.org>
+To:     gregkh@linuxfoundation.org, bjorn.andersson@linaro.org
+Cc:     devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-serial@vger.kernel.org, mka@chromium.org,
+        dianders@chromium.org, linux-kernel@vger.kernel.org,
+        saravanak@google.com, Akash Asthana <akashast@codeaurora.org>
+Subject: [PATCH  0/3] Separate out earlycon
+Date:   Mon,  7 Dec 2020 14:17:24 +0530
+Message-Id: <1607330847-15522-1-git-send-email-akashast@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Damien,
+Patch 3/3 depends on patch 1/3, Greg would it be possible to
+ack patch 3/3. So it could land via QCOM tree.
 
-On Mon, Dec 7, 2020 at 4:52 AM Damien Le Moal <Damien.LeMoal@wdc.com> wrote:
-> I prepared a v5 series addressing your comments (and other comments).
-> I will post that later today after some more tests.
+Akash Asthana (3):
+  soc: qcom-geni-se: Cleanup the code to remove proxy votes
+  arm64: dts: qcom: sc7180: Remove QUP-CORE ICC path
+  Serial: Separate out earlycon support
 
-Thanks, already looking at k210-sysctl-v18...
-
-> On Fri, 2020-12-04 at 22:19 -0800, Stephen Boyd wrote:
-> > > --- /dev/null
-> > > +++ b/drivers/clk/clk-k210.c
-
-> > > +       in0_clk = of_clk_get(np, 0);
-> > > +       if (IS_ERR(in0_clk)) {
-> > > +               pr_warn("%pOFP: in0 oscillator not found\n", np);
-> > > +               hws[K210_CLK_IN0] =
-> > > +                       clk_hw_register_fixed_rate(NULL, "in0", NULL,
-> > > +                                                  0, K210_IN0_RATE);
-> > > +       } else {
-> > > +               hws[K210_CLK_IN0] = __clk_get_hw(in0_clk);
-> > > +       }
-> > > +       if (IS_ERR(hws[K210_CLK_IN0])) {
-> > > +               pr_err("%pOFP: failed to get base oscillator\n", np);
-> > > +               goto err;
-> > > +       }
-> > > +
-> > > +       in0 = clk_hw_get_name(hws[K210_CLK_IN0]);
-> > > +       aclk_parents[0] = in0;
-> > > +       pll_parents[0] = in0;
-> > > +       mux_parents[0] = in0;
-> >
-> > Can we use the new way of specifying clk parents so that we don't have
-> > to use __clk_get_hw(), of_clk_get(), and clk_hw_get_name()? Hopefully
-> > the core can handl that all instead of this driver.
->
-> I removed all this by adding:
->
-> clock-output-names = "in0";
->
-> to the DT fixed-rate oscillator clock node (and documented that too). Doing so,
-> clk_hw_get_name(), __clk_get_hw() and of_clk_get() are not needed anymore and
-> the parents clock names arrays do not need run-time update.
-
-"clock-output-names" is deprecated for clocks with a single output:
-the clock name will be taken from the node name.
-However, relying on a clock name like this is fragile.
-Instead, your driver should use the phandle from the clocks property,
-using of_clk_get_by_name() or of_clk_get().
-
-Stephen: I'm a bit puzzled, as you suggest _not_ using of_clk_get()?
-
-Gr{oetje,eeting}s,
-
-                        Geert
+ arch/arm64/boot/dts/qcom/sc7180.dtsi    |   4 -
+ drivers/soc/qcom/qcom-geni-se.c         |  74 ----
+ drivers/tty/serial/Kconfig              |   9 +
+ drivers/tty/serial/Makefile             |   1 +
+ drivers/tty/serial/qcom_geni_earlycon.c | 649 ++++++++++++++++++++++++++++++++
+ drivers/tty/serial/qcom_geni_serial.c   | 104 -----
+ include/linux/qcom-geni-se.h            |   2 -
+ 7 files changed, 659 insertions(+), 184 deletions(-)
+ create mode 100644 drivers/tty/serial/qcom_geni_earlycon.c
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,\na Linux Foundation Collaborative Project
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
