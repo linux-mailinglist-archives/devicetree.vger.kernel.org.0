@@ -2,79 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 12F582D1991
-	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 20:32:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D6E42D19AD
+	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 20:37:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726405AbgLGTbg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Dec 2020 14:31:36 -0500
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:36745 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725947AbgLGTbf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 14:31:35 -0500
-Received: by mail-ot1-f67.google.com with SMTP id y24so13623407otk.3;
-        Mon, 07 Dec 2020 11:31:20 -0800 (PST)
+        id S1726526AbgLGTfu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Dec 2020 14:35:50 -0500
+Received: from mail-oi1-f194.google.com ([209.85.167.194]:41234 "EHLO
+        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725814AbgLGTfu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 14:35:50 -0500
+Received: by mail-oi1-f194.google.com with SMTP id 15so5510012oix.8;
+        Mon, 07 Dec 2020 11:35:28 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=qSvS8Ee1wuNKfsrbfYX/ii4mmEZIAWZ9Jce3aen8hjE=;
-        b=sIFQgATaEuX7r0Xi/j6XeiKr9Z9W+2ddkc0CkAXnbe7a7PXkhmPO6+qkS+uq9A3E0h
-         Gg6bHhYzz/QtYoW4AAy/YSrPS8Mat+EKSVYGQQKhtyBMWhN7t7+diLH64tHeyghWo4Cp
-         WkeTjoEHWb68SW3HOroag/OX2O0DpEwvPF6OjFG2kpOasr/wXnCnZaZc314LRHA1OU0s
-         TFeJTrmVU1aVo49zFsle9EoZUd/j6v0qk38h08ZpNJHSy4ndctTbMWtR0HMoC8IBBSXQ
-         Ss9hZ/eDrgcuje+GRLRbbh3G+XtfpDdeXaY98kt/yKDOCmdGwJcnOVdQf1KP8qWKJe+x
-         jiQA==
-X-Gm-Message-State: AOAM532mMc6LSA3W5NK9sJxxnePsrtSS3rP+OehV2IXoXs29H++1sW3d
-        sMXtmGT+P7/akaksW2rgmg==
-X-Google-Smtp-Source: ABdhPJzHitdh//srQXFXNXFhwKtiauLvAaU55joyn4ufC6poP/o/TLOP8OCvBzH8Pzq0M0kYer9D/g==
-X-Received: by 2002:a9d:6b0a:: with SMTP id g10mr655604otp.20.1607369454709;
-        Mon, 07 Dec 2020 11:30:54 -0800 (PST)
+        bh=/+fQcCWdXugKxwJU7ISQBHOa/TSruKBMJOC0TWO9h64=;
+        b=p+Brfa16kAgEDk8s1k+sn+vvDku3uD182/bfl79zE7SIXFQPOu7c+r7QYKRCIW46fz
+         5zKvqIda9KA6fJbcrfrShPKdgslU6VO23OOwgPq4y++NMxJeQe16N5CNdylr7JON/1Wq
+         PyRyqQzEl05URMnwlw9BHyrr41B/+a42iErh/xWcnSEgPM/SZYr9EexatELe4f5SP7t2
+         uy08t44806gjgbErIaP69cfqaODoWZ0kpd5v6lGMLi8x+S5nf5aEiwO3+UM9SS77pYEq
+         414xpfJee4m/A6OdKGzvD1Y3UrV9+JlKt81osXU2V4PUtTOvHfIYqt5jKFvPM1w7fMiw
+         CQGg==
+X-Gm-Message-State: AOAM5322lHmLvblHTJiO3e9E4dZ5SSQPA4rDqQnp/l8TXQC7R7+bNiuE
+        XyLImHSUbe+65qNvNVDDLA==
+X-Google-Smtp-Source: ABdhPJzr+YAshb71S96cNLAvLimBLklCBnzH+63xgY0/6FocJfgE1XrD4Z5QQx0XzNr/RxBOLdZIhg==
+X-Received: by 2002:aca:b4c2:: with SMTP id d185mr313873oif.124.1607369703359;
+        Mon, 07 Dec 2020 11:35:03 -0800 (PST)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id r25sm832117otp.23.2020.12.07.11.30.53
+        by smtp.gmail.com with ESMTPSA id d15sm2708014otk.62.2020.12.07.11.35.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Dec 2020 11:30:53 -0800 (PST)
-Received: (nullmailer pid 672557 invoked by uid 1000);
-        Mon, 07 Dec 2020 19:30:52 -0000
-Date:   Mon, 7 Dec 2020 13:30:52 -0600
+        Mon, 07 Dec 2020 11:35:02 -0800 (PST)
+Received: (nullmailer pid 679274 invoked by uid 1000);
+        Mon, 07 Dec 2020 19:35:01 -0000
+Date:   Mon, 7 Dec 2020 13:35:01 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Johan Jonker <jbx6244@gmail.com>
-Cc:     robh+dt@kernel.org, heiko@sntech.de, jamie@jamieiles.com,
-        linux-arm-kernel@lists.infradead.org,
-        linux-watchdog@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        linux@roeck-us.net, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, wim@linux-watchdog.org
-Subject: Re: [PATCH] dt-binding: watchdog: add Rockchip compatibles to snps,
- dw-wdt.yaml
-Message-ID: <20201207193052.GA672527@robh.at.kernel.org>
-References: <20201116142539.12377-1-jbx6244@gmail.com>
+To:     Chunyan Zhang <zhang.lyra@gmail.com>
+Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        Orson Zhai <orsonzhai@gmail.com>,
+        Baolin Wang <baolin.wang7@gmail.com>,
+        Chunyan Zhang <chunyan.zhang@unisoc.com>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        linux-kernel@vger.kernel.org, Nemo Han <nemo.han@unisoc.com>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v2 2/3] dt-bindings: input: Convert sc27xx-vibra.txt to
+ json-schema
+Message-ID: <20201207193501.GA679219@robh.at.kernel.org>
+References: <20201117034949.47877-1-zhang.lyra@gmail.com>
+ <20201117034949.47877-3-zhang.lyra@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201116142539.12377-1-jbx6244@gmail.com>
+In-Reply-To: <20201117034949.47877-3-zhang.lyra@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 16 Nov 2020 15:25:39 +0100, Johan Jonker wrote:
-> The Rockchip watchdog compatibles below are already in use,
-> but somehow never added to a document,
-> so add them to the snps,dw-wdt.yaml file.
+On Tue, 17 Nov 2020 11:49:48 +0800, Chunyan Zhang wrote:
+> From: Chunyan Zhang <chunyan.zhang@unisoc.com>
 > 
-> "rockchip,rk3066-wdt", "snps,dw-wdt"
-> "rockchip,rk3188-wdt", "snps,dw-wdt"
-> "rockchip,rk3288-wdt", "snps,dw-wdt"
-> "rockchip,rk3368-wdt", "snps,dw-wdt"
+> Convert the sprd sc27xx vibrator binding to DT schema using json-schema.
 > 
-> make ARCH=arm dtbs_check
-> DT_SCHEMA_FILES=Documentation/devicetree/bindings/watchdog/snps,dw-wdt.yaml
-> 
-> make ARCH=arm64 dtbs_check
-> DT_SCHEMA_FILES=Documentation/devicetree/bindings/watchdog/snps,dw-wdt.yaml
-> 
-> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+> Signed-off-by: Chunyan Zhang <chunyan.zhang@unisoc.com>
 > ---
->  Documentation/devicetree/bindings/watchdog/snps,dw-wdt.yaml | 10 +++++++++-
->  1 file changed, 9 insertions(+), 1 deletion(-)
+>  .../bindings/input/sprd,sc27xx-vibra.txt      | 23 ----------
+>  .../bindings/input/sprd,sc27xx-vibrator.yaml  | 46 +++++++++++++++++++
+>  2 files changed, 46 insertions(+), 23 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/input/sprd,sc27xx-vibra.txt
+>  create mode 100644 Documentation/devicetree/bindings/input/sprd,sc27xx-vibrator.yaml
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
