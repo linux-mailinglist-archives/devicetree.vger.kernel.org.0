@@ -2,79 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C8802D1139
-	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 13:57:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EFFF22D11B8
+	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 14:22:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725885AbgLGM5x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Dec 2020 07:57:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53962 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725863AbgLGM5x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 07:57:53 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA0B7C061A53
-        for <devicetree@vger.kernel.org>; Mon,  7 Dec 2020 04:56:39 -0800 (PST)
-Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mgr@pengutronix.de>)
-        id 1kmG47-0002of-85; Mon, 07 Dec 2020 13:56:31 +0100
-Received: from mgr by dude.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <mgr@pengutronix.de>)
-        id 1kmG45-0008OG-3b; Mon, 07 Dec 2020 13:56:29 +0100
-From:   Michael Grzeschik <m.grzeschik@pengutronix.de>
-To:     netdev@vger.kernel.org
-Cc:     andrew@lunn.ch, f.fainelli@gmail.com, davem@davemloft.net,
-        kernel@pengutronix.de, matthias.schiffer@ew.tq-group.com,
-        woojung.huh@microchip.com, UNGLinuxDriver@microchip.com,
-        devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>
-Subject: [PATCH v5 6/6] dt-bindings: net: dsa: document additional Microchip KSZ8863/8873 switch
-Date:   Mon,  7 Dec 2020 13:56:27 +0100
-Message-Id: <20201207125627.30843-7-m.grzeschik@pengutronix.de>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20201207125627.30843-1-m.grzeschik@pengutronix.de>
-References: <20201207125627.30843-1-m.grzeschik@pengutronix.de>
+        id S1725772AbgLGNWZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Dec 2020 08:22:25 -0500
+Received: from mail-wm1-f66.google.com ([209.85.128.66]:53205 "EHLO
+        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725774AbgLGNWZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 08:22:25 -0500
+Received: by mail-wm1-f66.google.com with SMTP id a6so11451489wmc.2;
+        Mon, 07 Dec 2020 05:22:09 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=MJwMrUj3WNQ0Z6JF3rMMT8PRx7qig2o2mEv5ta9FJhk=;
+        b=iPJwYcwjjFrBn3UILT6Ut20S2nzO+hxf+Kk52/R5f5e0smBaU1Z/PeyVMDiL7t+1kg
+         eg27v6L2dOZ0bHO085FQxYAg7YiZi5AF4Juy6ergY6vTWUj9RGQpVkTYExcghp1u+V+e
+         rSGaCgGQ+HYeDk8P4sfxJ2+mTsx8mmXeM1Xae+ukHaP53SFa0zssqyWA7JEC+zW9wjIc
+         SOtan1b+JH0SmCREKHap6795F9FDJ/++gmkKfRgu0BVAtpviNrnRyMRbLcNQ5SQ82g5E
+         hjxl2UFhX9vKMeQ1leAu5pwrx58rqgE44lcUy72zUV9nFart5We8lg9qMuDZl7aluXwI
+         YHtg==
+X-Gm-Message-State: AOAM533KQJE+Hs+2z0s4iB5Ja83FrQLa/0cTfDCPY3x3sGKSy/HKAXCl
+        U4ZfAdjTMHF6BI1xkziDVgA=
+X-Google-Smtp-Source: ABdhPJyO70ZClWQf3G0rlUyq9BYbIJl9dRorKgaLYiVZ7ua/tO2HTRt3sifgwB+7CESnraCvF7RTjg==
+X-Received: by 2002:a7b:c2e8:: with SMTP id e8mr18172792wmk.103.1607347303289;
+        Mon, 07 Dec 2020 05:21:43 -0800 (PST)
+Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
+        by smtp.googlemail.com with ESMTPSA id y6sm15005491wmg.39.2020.12.07.05.21.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Dec 2020 05:21:41 -0800 (PST)
+Date:   Mon, 7 Dec 2020 14:21:40 +0100
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Shengjiu Wang <shengjiu.wang@nxp.com>
+Cc:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: imx8mn: Fix duplicate node name
+Message-ID: <20201207132140.GA31982@kozik-lap>
+References: <1607324004-12960-1-git-send-email-shengjiu.wang@nxp.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::7
-X-SA-Exim-Mail-From: mgr@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <1607324004-12960-1-git-send-email-shengjiu.wang@nxp.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-It is a 3-Port 10/100 Ethernet Switch. One CPU-Port and two
-Switch-Ports.
+On Mon, Dec 07, 2020 at 02:53:24PM +0800, Shengjiu Wang wrote:
+> Error log:
+> sysfs: cannot create duplicate filename '/bus/platform/devices/30000000.bus'
+> 
+> The spba bus name is duplicate with aips bus name.
+> Refine spba bus name to fix this issue.
+> 
+> Fixes: 970406eaef3a ("arm64: dts: imx8mn: Enable Asynchronous Sample Rate Converter")
+> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+> ---
+>  arch/arm64/boot/dts/freescale/imx8mn.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mn.dtsi b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
+> index fd669c0f3fe5..30762eb4f0a7 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mn.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
+> @@ -246,7 +246,7 @@ aips1: bus@30000000 {
+>  			#size-cells = <1>;
+>  			ranges;
+>  
+> -			spba: bus@30000000 {
+> +			spba: spba-bus@30000000 {
 
-Cc: devicetree@vger.kernel.org
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
-Acked-by: Rob Herring <robh@kernel.org>
-Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
-Signed-off-by: Michael Grzeschik <m.grzeschik@pengutronix.de>
+The proper node name is "bus" so basically you introduce wrong name to
+other problem.  Introducing wrong names at least requires a comment.
 
----
-v1 -> v3: - nothing changes
-          - already Acked-by Rob Herring
-v1 -> v4: - nothing changes
-v4 -> v5: - nothing changes
----
- Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+However the actual problem here is not in node names but in addresses:
 
-diff --git a/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml b/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
-index 9f7d131bbcef0..84985f53bffd4 100644
---- a/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
-+++ b/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
-@@ -21,6 +21,8 @@ properties:
-       - microchip,ksz8765
-       - microchip,ksz8794
-       - microchip,ksz8795
-+      - microchip,ksz8863
-+      - microchip,ksz8873
-       - microchip,ksz9477
-       - microchip,ksz9897
-       - microchip,ksz9896
--- 
-2.29.2
+	aips1: bus@30000000 {
+		spba: bus@30000000 {
 
+You have to devices with the same unit address. How do you share the
+address space?
+
+I think this should be rather fixed.
+
+Best regards,
+Krzysztof
+
+
+>  				compatible = "fsl,spba-bus", "simple-bus";
+>  				#address-cells = <1>;
+>  				#size-cells = <1>;
+> -- 
+> 2.27.0
+> 
