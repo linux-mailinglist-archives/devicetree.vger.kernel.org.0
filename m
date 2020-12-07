@@ -2,93 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F64B2D1DD3
-	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 23:57:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 15AAC2D1DD7
+	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 23:58:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726359AbgLGWzR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Dec 2020 17:55:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34560 "EHLO
+        id S1726491AbgLGW5b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Dec 2020 17:57:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34890 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725931AbgLGWzQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 17:55:16 -0500
-Received: from mail-ej1-x642.google.com (mail-ej1-x642.google.com [IPv6:2a00:1450:4864:20::642])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8033DC061749;
-        Mon,  7 Dec 2020 14:54:36 -0800 (PST)
-Received: by mail-ej1-x642.google.com with SMTP id ce23so18129309ejb.8;
-        Mon, 07 Dec 2020 14:54:36 -0800 (PST)
+        with ESMTP id S1726474AbgLGW5b (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 17:57:31 -0500
+Received: from mail-ej1-x644.google.com (mail-ej1-x644.google.com [IPv6:2a00:1450:4864:20::644])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 400CCC061749;
+        Mon,  7 Dec 2020 14:56:45 -0800 (PST)
+Received: by mail-ej1-x644.google.com with SMTP id x16so21890442ejj.7;
+        Mon, 07 Dec 2020 14:56:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=ikuMuHs5sNrFUz6htSqwiN7XutHKhUqKTs5+seLKDDA=;
-        b=r4XXVvTtW8qVgdH+lr2X9o/eRIuTnkCt6Rp0UoXKX1NE7nHP6zvVXglUtB/hDsqMdP
-         keR9QtEzzz3D57O8YTD2FlsKga3f8PXU0FauTx3jIDiLXTLl7efVTVJqFsseqKkQ+7x2
-         q9mVXgVaNcxg86oZp/cuTjfwHyf/WaKmfsh7QPRzvPYZp+MMkBdFf02eeJK1xp3UdObq
-         eyZDdW8aET630dobxC9DGrlACletOgaDmmubGilIqTYT8uzKfnBwtb4+fyVB1ukY1/i9
-         HSxh7uwe961T3IQ+4798UaGssMrbV/OYajzqd8IW3286+mmNdIDTpRUQxCnjH6iNaSSi
-         DSeQ==
+        bh=zU+qQFKdWZjfJ+RDJwbypYwf59sZH0V4V5cKayroUxc=;
+        b=GxaNnbN1FkZTq/Z/73I9lRXWVFnW+6/gYBwPv2syEcdn6WlBBHVR+AoBOIqSLbeYPT
+         +3n43Y0mYeHstt4QuLC17iH5/nAo1GLGnZHD4+kG06HCKc8jdhIJ3dW4i1J3IzUq3Hx0
+         H5z6Iz9fOwFuuqdePTZfasYetoplTN8ewySisDAHccgaIQJF01ewkzMboZkOjswUrM+U
+         vMyoXve7MHdZ11Zk+tVhTwkgNPLbFt+Bi4xm4uEcuKppvmL/xxlgNbVWB5k8Aj1lGtBz
+         rCp5rdSTqXI3ZZuNExxDccnQgyTBP8+w51niWEsrdbQiqg7Mv5iH/c0RmvQPxVa2vvAy
+         b8gg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=ikuMuHs5sNrFUz6htSqwiN7XutHKhUqKTs5+seLKDDA=;
-        b=ahiTcMngWypZcz/Lv5VbjOWM8i6xcnsikfAsPZJbBv6gBYe7iMWfunJDCeGhE8KYr+
-         MEhoSMFK+/lPYeDq+BHJogWMTl4RQUYZy+zqvK/2VO0fsbqfLGjZgLtAnvP7QdxuvKJj
-         +BBc3KIzR5bnni1v18H+3gwt/yeVF1rC4Z98/0SPwgduBLtGhfWviqtPMtSCI5PM2NUo
-         oGD+u1UgGpQktLSFwr5jwXSvHgjISXD/3xRf3+dKeSeVBp2nWEzE1qLpIIZxQ35yslb5
-         p836PICRKCilM5BgyfYaFdgLu2w5WonSsixK7eMSTD1wjsM/rN1hPa5ZF9B5ex2m6gFh
-         kYAA==
-X-Gm-Message-State: AOAM5305ecA8GZwudgJvkS3XXcLJT/xOm0RHLdqIOhvo6cjhClHyLJvt
-        FekbFFPl6ThiWK1XRt6QiEU=
-X-Google-Smtp-Source: ABdhPJwKktBwILNOPx2MY3e6qTpMPX89oQ4E9201+o8jMaTceW9TCfOW/PzMI0qbLyYCwJ15zqcrTQ==
-X-Received: by 2002:a17:906:d8a1:: with SMTP id qc1mr20361704ejb.294.1607381675127;
-        Mon, 07 Dec 2020 14:54:35 -0800 (PST)
+        bh=zU+qQFKdWZjfJ+RDJwbypYwf59sZH0V4V5cKayroUxc=;
+        b=lHMp6I2htYDU+FRlmlb+S+ollIySY4rU9F7N7oiNvRP4WolOCU07uGzp+HbNawUVNI
+         HeBb9xxstB3MhFgLqTOkEtPtIQDT8YGbCdcZHylfhhjbwMPou/rMX/CjphrY4JYd6Pjh
+         QamOeywnKcA+5DXAeYD2Pgrt2ShTojmqw0+WSqx6/t7aDz6lqHVcYg8BbPLKvR0wFpaO
+         Uqd4ch0xpKk9q039ONFf3uRn5zB6ouDNfwqLqMnhCcx4z0FGNDRCvNRokTj0EOA4SE9z
+         kd2Ygd5he331A6WY+dvMwYE/KfXrPWt3xst4qZY+QZJWnQWId8/8PMU1oph6jmPF9x3b
+         P4mQ==
+X-Gm-Message-State: AOAM531zxuUDriOUmc+8/2APCdMZswNZLUVU9gYQxLyiixxv31CSaNMZ
+        /5xCfuuAT69mBziL7qn4xKE=
+X-Google-Smtp-Source: ABdhPJyU2elBWQBkZCA9xFi5xpiulFFA1qg9UPLdyBp0aoKvHW1JQnwNR7C0cdx3gNqJgZBYGnBRBg==
+X-Received: by 2002:a17:906:c007:: with SMTP id e7mr20495234ejz.511.1607381804031;
+        Mon, 07 Dec 2020 14:56:44 -0800 (PST)
 Received: from ubuntu2004 ([188.24.159.61])
-        by smtp.gmail.com with ESMTPSA id t26sm15197371edt.69.2020.12.07.14.54.33
+        by smtp.gmail.com with ESMTPSA id ca4sm9115038edb.80.2020.12.07.14.56.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Dec 2020 14:54:34 -0800 (PST)
-Date:   Tue, 8 Dec 2020 00:54:38 +0200
+        Mon, 07 Dec 2020 14:56:43 -0800 (PST)
+Date:   Tue, 8 Dec 2020 00:56:47 +0200
 From:   Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Sebastian Reichel <sre@kernel.org>,
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux-actions@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Vinod Koul <vkoul@kernel.org>,
         Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
+        dmaengine@vger.kernel.org, linux-kernel@vger.kernel.org,
         Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
-        linux-actions@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
-        linux-pm@vger.kernel.org
-Subject: Re: [PATCH v3 4/7] regulator: Add regulator driver for ATC260x PMICs
-Message-ID: <20201207225438.GB250758@ubuntu2004>
-References: <cover.1607216141.git.cristian.ciocaltea@gmail.com>
- <f001986493a51fe591cb09a544770651bf589d35.1607216141.git.cristian.ciocaltea@gmail.com>
- <20201207133003.GC5694@sirena.org.uk>
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v2 04/18] dt-bindings: dma: owl: Add compatible string
+ for Actions Semi S500 SoC
+Message-ID: <20201207225647.GC250758@ubuntu2004>
+References: <cover.1605823502.git.cristian.ciocaltea@gmail.com>
+ <0e79dffdf105ded2bb336ab38dc39b4986667683.1605823502.git.cristian.ciocaltea@gmail.com>
+ <20201207221107.GA927276@robh.at.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201207133003.GC5694@sirena.org.uk>
+In-Reply-To: <20201207221107.GA927276@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 07, 2020 at 01:30:03PM +0000, Mark Brown wrote:
-> On Sun, Dec 06, 2020 at 03:27:04AM +0200, Cristian Ciocaltea wrote:
+On Mon, Dec 07, 2020 at 04:11:07PM -0600, Rob Herring wrote:
+> On Fri, 20 Nov 2020 01:55:58 +0200, Cristian Ciocaltea wrote:
+> > Add a new compatible string corresponding to the DMA controller found
+> > in the S500 variant of the Actions Semi Owl SoCs family.
+> > 
+> > Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
+> > ---
+> >  Documentation/devicetree/bindings/dma/owl-dma.yaml | 5 +++--
+> >  1 file changed, 3 insertions(+), 2 deletions(-)
+> > 
 > 
-> > +/*
-> > + * ATC2603C notes:
-> > + * - LDO8 is not documented in datasheet (v2.4), but supported
-> > + *   in the vendor's driver implementation (xapp-le-kernel).
-> > + * - LDO12 mentioned in datasheet is not programmable, hence not
-> > + *   handled in this driver.
-> > + */
-> 
-> No reason not to include LDO12 here, the framework supports fixed
-> regulators fine and the bindings should reflect the physical structure
-> of the hardware - if something is being supplied by LDO12 on the PMIC
-> then you'd expect the binding showing a connection from LDO12.
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-Totally agree, I will handle this in the next revision.
-
-Thanks,
+Thanks for reviewing,
 Cristi
