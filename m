@@ -2,100 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DE3482D1567
-	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 17:02:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8AC3B2D1579
+	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 17:07:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725866AbgLGQAx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Dec 2020 11:00:53 -0500
-Received: from userp2130.oracle.com ([156.151.31.86]:36826 "EHLO
-        userp2130.oracle.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725781AbgLGQAx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 11:00:53 -0500
-Received: from pps.filterd (userp2130.oracle.com [127.0.0.1])
-        by userp2130.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 0B7FxvtU093883;
-        Mon, 7 Dec 2020 15:59:57 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=subject : to : cc :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=corp-2020-01-29;
- bh=QmE5XGfNVDaXSVhroX5djONqdwv6Tyi1JDRvHNNex3w=;
- b=Yia5WQj0S7TbqPriIuRPI0r9m4Vt6szO5adGMLngXA1Ufs3GPEO9R2/7qU1sS7WQ85tB
- c/odCmBOtH0fNTGi6E11SYi6KigSC4JcquTrjVmfVTIF0o5tfQKiESxutGUmjE2DWC/k
- VIK3KjSKvbdd98TOfcm5RTgPi12O/y/Gv3GRQgRJstBCqTLPyIdrpeDPJvnRZAyhLsvT
- l+UOvrh8fdxdkiYFLweqU1l77aUbdRq/Ep+tclp224jdkBme+74yETrRQiiHkSjf2Anl
- eJ4uCwA2PsHUTtHP2kIKFXDV73YoYVyE8BPVDOSuiKmpoX2fcEv0uyBbl3GhQjlx6Qza kw== 
-Received: from userp3020.oracle.com (userp3020.oracle.com [156.151.31.79])
-        by userp2130.oracle.com with ESMTP id 3581mqp1b9-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 07 Dec 2020 15:59:57 +0000
-Received: from pps.filterd (userp3020.oracle.com [127.0.0.1])
-        by userp3020.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 0B7FoaQ6078928;
-        Mon, 7 Dec 2020 15:59:57 GMT
-Received: from aserv0121.oracle.com (aserv0121.oracle.com [141.146.126.235])
-        by userp3020.oracle.com with ESMTP id 358kyrdpca-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Mon, 07 Dec 2020 15:59:57 +0000
-Received: from abhmp0001.oracle.com (abhmp0001.oracle.com [141.146.116.7])
-        by aserv0121.oracle.com (8.14.4/8.13.8) with ESMTP id 0B7FxtKi020363;
-        Mon, 7 Dec 2020 15:59:55 GMT
-Received: from [10.74.109.38] (/10.74.109.38)
-        by default (Oracle Beehive Gateway v4.0)
-        with ESMTP ; Mon, 07 Dec 2020 07:59:55 -0800
-Subject: Re: [PATCH v2 00/19] dmaengine/soc: k3-udma: Add support for BCDMA
- and PKTDMA
-To:     Peter Ujfalusi <peter.ujfalusi@ti.com>,
-        Vinod Koul <vkoul@kernel.org>, ssantosh@kernel.org
-Cc:     nm@ti.com, robh+dt@kernel.org, dan.j.williams@intel.com,
-        t-kristo@ti.com, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        dmaengine@vger.kernel.org, vigneshr@ti.com,
-        grygorii.strashko@ti.com
-References: <20201117105656.5236-1-peter.ujfalusi@ti.com>
- <20201124170856.GR8403@vkoul-mobl>
- <54416232-31b4-e866-82e9-0e9314528a81@ti.com>
-From:   santosh.shilimkar@oracle.com
-Organization: Oracle Corporation
-Message-ID: <a1c9189e-0fd1-80b8-8038-cfe556702e60@oracle.com>
-Date:   Mon, 7 Dec 2020 07:59:52 -0800
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:68.0)
- Gecko/20100101 Thunderbird/68.12.1
-MIME-Version: 1.0
-In-Reply-To: <54416232-31b4-e866-82e9-0e9314528a81@ti.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9827 signatures=668682
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 adultscore=0 spamscore=0 mlxscore=0
- malwarescore=0 suspectscore=0 mlxlogscore=999 bulkscore=0 phishscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2009150000
- definitions=main-2012070101
-X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9827 signatures=668682
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0 mlxlogscore=999
- clxscore=1011 malwarescore=0 priorityscore=1501 adultscore=0
- lowpriorityscore=0 phishscore=0 spamscore=0 impostorscore=0 mlxscore=0
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2009150000 definitions=main-2012070102
+        id S1725887AbgLGQDB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Dec 2020 11:03:01 -0500
+Received: from mga17.intel.com ([192.55.52.151]:46186 "EHLO mga17.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725877AbgLGQDB (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 7 Dec 2020 11:03:01 -0500
+IronPort-SDR: 0aKc6r9M4vwOM7pki2gTwSR21Eabop+QfBv8PWQuZUdoKGzSwixdgqKm8lTWhxpn1yk3+8v+l+
+ p6M97zgCn9Iw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9827"; a="153535662"
+X-IronPort-AV: E=Sophos;i="5.78,400,1599548400"; 
+   d="scan'208";a="153535662"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Dec 2020 08:01:15 -0800
+IronPort-SDR: qBjnZHpN5qkvWn0IbKE8KH1ACk2sZjpUDJcx4eSSZmyoVXQN8Jtt9Yc5ZhQQDZhu6ITOqk73uf
+ aQYfkmoXfyXA==
+X-IronPort-AV: E=Sophos;i="5.78,400,1599548400"; 
+   d="scan'208";a="317228450"
+Received: from mkrastex-mobl.ger.corp.intel.com ([10.104.88.5])
+  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Dec 2020 08:01:12 -0800
+From:   Martina Krasteva <martinax.krasteva@linux.intel.com>
+To:     linux-media@vger.kernel.org
+Cc:     mchehab@kernel.org, robh+dt@kernel.org, devicetree@vger.kernel.org,
+        sakari.ailus@linux.intel.com,
+        daniele.alessandrelli@linux.intel.com,
+        paul.j.murphy@linux.intel.com,
+        gjorgjix.rosikopulos@linux.intel.com,
+        martinax.krasteva@linux.intel.com
+Subject: [PATCH v3 0/2] IMX334 Camera Sensor Driver
+Date:   Mon,  7 Dec 2020 16:01:06 +0000
+Message-Id: <20201207160109.490-1-martinax.krasteva@linux.intel.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/6/20 11:29 PM, Peter Ujfalusi wrote:
-> Hi Santosh,
-> 
-> On 24/11/2020 19.08, Vinod Koul wrote:
->> On 17-11-20, 12:56, Peter Ujfalusi wrote:
->>> Hi,
->>>
->>> The series have build dependency on ti_sci/soc series (v2):
->>> https://urldefense.com/v3/__https://lore.kernel.org/lkml/20201008115224.1591-1-peter.ujfalusi@ti.com/__;!!GqivPVa7Brio!Pr9DZN6u38NBvBa7_OpAJ8CB00wAw4SW4_hXgqWzeI54kvwXsDfntprA-AK9ItxFmM7BaA$
->>>
->>> Santosh kindly created immutable branch holdinf the series:
->>> git://git.kernel.org/pub/scm/linux/kernel/git/ssantosh/linux-keystone.git for_5.11/drivers-soc
->>
->> Santosh, Can I have a signed tag for this please?
-> 
-> Can you please provide a tag for Vinod?
-> 
-I already sent out pull request with tag.
+From: Martina Krasteva <martinax.krasteva@intel.com>
 
-git://git.kernel.org/pub/scm/linux/kernel/git/ssantosh/linux-keystone.git 
-tags/drivers_soc_for_5.11
+Hello,
+
+This patch series contains Sony imx334 sensor driver and device tree binding document.
+
+A v4l2 sub-device driver for the Sony imx334 image sensor is added.
+This is a camera sensor using the i2c bus for control and the
+csi-2 bus for data.
+
+The following features are supported:
+- manual exposure and analog gain control support
+- vblank/hblank/pixel rate control support
+- supported resolution:
+    - 3840x2160 @ 60fps
+- supported bayer order output:
+    - SRGGB12
+
+v1: https://patchwork.kernel.org/project/linux-media/list/?series=388393
+
+v1->v2:
+- dt-bindings doc fixes
+- minor cosmetic changes
+- improvement in write_reg()
+- set all media bus format fields to pass v4l2-compliance test
+- remove link_validate from source entity
+
+v2: https://patchwork.kernel.org/project/linux-media/list/?series=396393
+
+v2->v3:
+- small cosmetic changes
+
+Best Regards,
+Martina
+
+Martina Krasteva (2):
+  dt-bindings: media: Add bindings for imx334
+  media: i2c: Add imx334 camera sensor driver
+
+ .../devicetree/bindings/media/i2c/sony,imx334.yaml |   62 ++
+ MAINTAINERS                                        |    9 +
+ drivers/media/i2c/Kconfig                          |   14 +
+ drivers/media/i2c/Makefile                         |    1 +
+ drivers/media/i2c/imx334.c                         | 1036 ++++++++++++++++++++
+ 5 files changed, 1122 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/sony,imx334.yaml
+ create mode 100644 drivers/media/i2c/imx334.c
+
+-- 
+2.11.0
+
