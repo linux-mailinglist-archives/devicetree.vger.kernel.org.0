@@ -2,120 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7AFD32D0EB6
-	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 12:11:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E91FF2D0EBC
+	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 12:14:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726684AbgLGLLB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Dec 2020 06:11:01 -0500
-Received: from mail.kernel.org ([198.145.29.99]:46794 "EHLO mail.kernel.org"
+        id S1726299AbgLGLON (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Dec 2020 06:14:13 -0500
+Received: from mail.skyhub.de ([5.9.137.197]:59852 "EHLO mail.skyhub.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726667AbgLGLLB (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 7 Dec 2020 06:11:01 -0500
-Date:   Mon, 7 Dec 2020 11:10:14 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1607339420;
-        bh=G9EsmmXSsnROa35VPjXLwGmctcwNCJzvlkxZBxdE0ik=;
-        h=From:To:Cc:Subject:References:In-Reply-To:From;
-        b=fKXZWTLvBHBgphzv4ZC46t36HsgceZS7konE/taGhYyjKdKxYOPMG9ZjMC1oooYZv
-         27gZ8nJP4+WS+B22v4HGz8S4t77abN5hDNNW6Zo2WsXr2oGAWGLaG3/kEQtco3NMgl
-         s+v8NRs5QTH0P4tw53Z2c3gg/cLOTGFL3Azb/AeBZKUWW83/OEseCryb4FXvnaPJo7
-         8OrRSgADA82mbbZvtOG02lJucVBxQIqhFBV4xKOA2EAZdrP6ZXzBdC22mvWix1TZkW
-         2FtE9gp8W6gezN54iQPMKVsm+ZDworf/e04EFIfvVjBNnd5zR2JXrp+a3siCvKrPsb
-         uTa0r+K4UO4Eg==
-From:   Will Deacon <will@kernel.org>
-To:     Mark Rutland <mark.rutland@arm.com>
-Cc:     Quentin Perret <qperret@google.com>,
-        "moderated list:ARM64 PORT (AARCH64 ARCHITECTURE)" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE" 
-        <devicetree@vger.kernel.org>, kernel-team@android.com,
-        Android KVM <android-kvm@google.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        open list <linux-kernel@vger.kernel.org>,
+        id S1726214AbgLGLOM (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 7 Dec 2020 06:14:12 -0500
+Received: from zn.tnic (p4fed31e1.dip0.t-ipconnect.de [79.237.49.225])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 212061EC0426;
+        Mon,  7 Dec 2020 12:13:31 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
+        t=1607339611;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
+        bh=d35eddzbqWSHez2jV9H7wuGFlrtTbqPqKgMe7Hcvtnc=;
+        b=CAUu9mk3JaA3qk7MqKyddXKQhrJ0kjxe5kOQDGbt/vFyrLr0Xett2zUdSvjpixpr3/YOsP
+        xHuoiokXsZJGU8uAaCut/tTDDdSoYMw2kFDpoefZffe4EPBRwW3WfizC48NMlcsl0podl/
+        AZnNtY/FsUmyCuB5/HCJc5tB7G5e+cE=
+Date:   Mon, 7 Dec 2020 12:11:16 +0100
+From:   Borislav Petkov <bp@alien8.de>
+To:     Troy Lee <troy_lee@aspeedtech.com>
+Cc:     Stefan Schaeckeler <sschaeck@cisco.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Fuad Tabba <tabba@google.com>, Marc Zyngier <maz@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        "open list:KERNEL VIRTUAL MACHINE FOR ARM64 (KVM/arm64)" 
-        <kvmarm@lists.cs.columbia.edu>
-Subject: Re: [RFC PATCH 16/27] KVM: arm64: Prepare Hyp memory protection
-Message-ID: <20201207111013.GA4379@willie-the-truck>
-References: <20201117181607.1761516-1-qperret@google.com>
- <20201117181607.1761516-17-qperret@google.com>
- <CA+EHjTyJnZ8e=AN7H_k+oZb0VTWAgMicMY8Rqe2Di_3A87hm0A@mail.gmail.com>
- <X8p5kLSIq2MoQZ24@google.com>
- <20201207102002.GA3825@willie-the-truck>
- <20201207110528.GA18365@C02TD0UTHF1T.local>
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Tony Luck <tony.luck@intel.com>,
+        James Morse <james.morse@arm.com>,
+        Robert Richter <rric@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
+        <linux-aspeed@lists.ozlabs.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        "open list:EDAC-CORE" <linux-edac@vger.kernel.org>,
+        leetroy@gmail.com, ryan_chen@aspeedtech.com
+Subject: Re: [PATCH v4 1/3] dt-bindings: edac: aspeed-sdram-edac: Add
+ ast2400/ast2600 support
+Message-ID: <20201207111116.GB20489@zn.tnic>
+References: <20201207090013.14145-1-troy_lee@aspeedtech.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20201207110528.GA18365@C02TD0UTHF1T.local>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20201207090013.14145-1-troy_lee@aspeedtech.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 07, 2020 at 11:05:45AM +0000, Mark Rutland wrote:
-> On Mon, Dec 07, 2020 at 10:20:03AM +0000, Will Deacon wrote:
-> > On Fri, Dec 04, 2020 at 06:01:52PM +0000, Quentin Perret wrote:
-> > > On Thursday 03 Dec 2020 at 12:57:33 (+0000), Fuad Tabba wrote:
-> > > <snip>
-> > > > > +SYM_FUNC_START(__kvm_init_switch_pgd)
-> > > > > +       /* Turn the MMU off */
-> > > > > +       pre_disable_mmu_workaround
-> > > > > +       mrs     x2, sctlr_el2
-> > > > > +       bic     x3, x2, #SCTLR_ELx_M
-> > > > > +       msr     sctlr_el2, x3
-> > > > > +       isb
-> > > > > +
-> > > > > +       tlbi    alle2
-> > > > > +
-> > > > > +       /* Install the new pgtables */
-> > > > > +       ldr     x3, [x0, #NVHE_INIT_PGD_PA]
-> > > > > +       phys_to_ttbr x4, x3
-> > > > > +alternative_if ARM64_HAS_CNP
-> > > > > +       orr     x4, x4, #TTBR_CNP_BIT
-> > > > > +alternative_else_nop_endif
-> > > > > +       msr     ttbr0_el2, x4
-> > > > > +
-> > > > > +       /* Set the new stack pointer */
-> > > > > +       ldr     x0, [x0, #NVHE_INIT_STACK_HYP_VA]
-> > > > > +       mov     sp, x0
-> > > > > +
-> > > > > +       /* And turn the MMU back on! */
-> > > > > +       dsb     nsh
-> > > > > +       isb
-> > > > > +       msr     sctlr_el2, x2
-> > > > > +       isb
-> > > > > +       ret     x1
-> > > > > +SYM_FUNC_END(__kvm_init_switch_pgd)
-> > > > > +
-> > > > 
-> > > > Should the instruction cache be flushed here (ic iallu), to discard
-> > > > speculatively fetched instructions?
-> > > 
-> > > Hmm, Will? Thoughts?
-> > 
-> > The I-cache is physically tagged, so not sure what invalidation would
-> > achieve here. Fuad -- what do you think could go wrong specifically?
+On Mon, Dec 07, 2020 at 05:00:11PM +0800, Troy Lee wrote:
+> Adding Aspeed AST2400 and AST2600 binding for edac driver.
 > 
-> While the MMU is off, instruction fetches can be made from the PoC
-> rather than the PoU, so where instructions have been modified/copied and
-> not cleaned to the PoC, it's possible to fetch stale copies into the
-> I-caches. The physical tag doesn't prevent that.
+> Signed-off-by: Troy Lee <troy_lee@aspeedtech.com>
+> Acked-by: Joel Stanley <joel@jms.id.au>
+> ---
+>  .../devicetree/bindings/edac/aspeed-sdram-edac.txt       | 9 ++++++---
+>  1 file changed, 6 insertions(+), 3 deletions(-)
 
-Oh yeah, we even have a comment about that in
-idmap_kpti_install_ng_mappings(). Maybe we should wrap disable_mmu and
-enable_mmu in some macros so we don't have to trip over this every time (and
-this would mean we could get rid of pre_disable_mmu_workaround too).
+All 3 applied, thanks.
 
-> In the regular CPU boot paths, __enabble_mmu() has an IC IALLU after
-> enabling the MMU to ensure that we get rid of anything stale (e.g. so
-> secondaries don't miss ftrace patching, which is only cleaned to the
-> PoU).
-> 
-> That might not be a problem here, if things are suitably padded and
-> never dynamically patched, but if so it's probably worth a comment.
+-- 
+Regards/Gruss,
+    Boris.
 
-It's fragile enough that we should just do the invalidation.
-
-Will
+https://people.kernel.org/tglx/notes-about-netiquette
