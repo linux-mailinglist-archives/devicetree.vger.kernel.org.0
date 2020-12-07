@@ -2,98 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7333D2D1366
-	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 15:19:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 09D072D1398
+	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 15:28:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727147AbgLGORv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Dec 2020 09:17:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38246 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725822AbgLGORv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 09:17:51 -0500
-Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com [IPv6:2a00:1450:4864:20::342])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D80AAC0613D0
-        for <devicetree@vger.kernel.org>; Mon,  7 Dec 2020 06:17:10 -0800 (PST)
-Received: by mail-wm1-x342.google.com with SMTP id y23so2210200wmi.1
-        for <devicetree@vger.kernel.org>; Mon, 07 Dec 2020 06:17:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=kpILaO0BvUDEaamvD3auxRaFopgV8/tde37CbHQBxLo=;
-        b=V3KQF6vAE2qBEq0iO2Z1ORNELzls6FWH3ugS+2WBuDcDgLaAKTSFcwgtqaorc4ajKH
-         hUHkGlRE61kQLwKfV/ahdjDCJ7ypio6hIYUB56dv+mAkLUSVmUzXr8omti53YG0uzOCE
-         4t3ImOSvgcIJNzqhhO/loymajzZm3ySqXjwjQYDSP7FE6XqNtDFckzrf5CQbSp367zOQ
-         00eBHCu4uNZTxd6pm+8ucfsNaHCjVwofHvKaVhm6Owr2NM2eQsw+syFF75ZXXjkBg/zQ
-         prHdzvGKPqauKwmgNZ/gTPas2eIBgel+ZlSsg3jY3cVHjeyWr610CR5eBDnwgYB5SFix
-         SS+A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=kpILaO0BvUDEaamvD3auxRaFopgV8/tde37CbHQBxLo=;
-        b=U1SzX37lAjZHWTpmSXf8jEPalE5CfoTCfu5Ye4cPWfe+JS4/z/o+HMP0TJAQdtstkE
-         CCdXPHG9BskiJ4tjPzN0eFPFp5KlKwjdtEo1yuve4RPKs7dPrKllDa/hrEZCUU2T2n8q
-         SirHty9Is5iDHyhthRmoU3u0GkWlZt/9Epi1BK8nJd9SxilCwWmBm1hqwaw06WiaWIef
-         1hNQnz4MBSJqTJbTjyt5GqURVOk0gUkersCdTAgOxQ4XOKZWhKTMO6caPg1aJtvpGhY9
-         YYsegJnbZuL07/cZLp6iAman1VKWpHP/HytGmtUcGihxaFyUUajzagwpcE0P9y5xYERO
-         /TKQ==
-X-Gm-Message-State: AOAM532cTMd6SnrxmEYJcBU/WYeO29MLqQxbFUpAczFw2tKa3QKftjKw
-        wX38566Imd/Zj0JwJsOuy1AnOg==
-X-Google-Smtp-Source: ABdhPJzJBMkWIAniHhwGekiItn1n3GcOUh0z1Qlh+dQe+IC2XxS+ZCQILeol3+1m4x7UDQHqENdlmg==
-X-Received: by 2002:a7b:ca47:: with SMTP id m7mr18529183wml.33.1607350629505;
-        Mon, 07 Dec 2020 06:17:09 -0800 (PST)
-Received: from google.com ([2a00:79e0:d:210:f693:9fff:fef4:a7ef])
-        by smtp.gmail.com with ESMTPSA id d187sm11690076wmd.8.2020.12.07.06.17.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Dec 2020 06:17:08 -0800 (PST)
-Date:   Mon, 7 Dec 2020 14:17:02 +0000
-From:   Quentin Perret <qperret@google.com>
-To:     Marc Zyngier <maz@kernel.org>
-Cc:     Fuad Tabba <tabba@google.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        James Morse <james.morse@arm.com>,
-        Julien Thierry <julien.thierry.kdev@gmail.com>,
-        Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        "moderated list:ARM64 PORT (AARCH64 ARCHITECTURE)" 
-        <linux-arm-kernel@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        "open list:KERNEL VIRTUAL MACHINE FOR ARM64 (KVM/arm64)" 
-        <kvmarm@lists.cs.columbia.edu>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE" 
-        <devicetree@vger.kernel.org>, kernel-team@android.com,
-        Android KVM <android-kvm@google.com>
-Subject: Re: [RFC PATCH 16/27] KVM: arm64: Prepare Hyp memory protection
-Message-ID: <X845XjjQ+s/NB7A9@google.com>
-References: <20201117181607.1761516-1-qperret@google.com>
- <20201117181607.1761516-17-qperret@google.com>
- <CA+EHjTyJnZ8e=AN7H_k+oZb0VTWAgMicMY8Rqe2Di_3A87hm0A@mail.gmail.com>
- <X8p5kLSIq2MoQZ24@google.com>
- <CA+EHjTxW_z-P8bK7gCjGv2eBCAHFsvE873Gr2KyVq5-+_Mdv=g@mail.gmail.com>
- <X84Y07kbeSL4xcNJ@google.com>
- <d6a674a0e8e259161ab741d78924c756@kernel.org>
+        id S1726788AbgLGO1Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Dec 2020 09:27:16 -0500
+Received: from out5-smtp.messagingengine.com ([66.111.4.29]:60027 "EHLO
+        out5-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1725931AbgLGO1Q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 09:27:16 -0500
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailout.nyi.internal (Postfix) with ESMTP id DD37A5C012B;
+        Mon,  7 Dec 2020 09:26:09 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute3.internal (MEProxy); Mon, 07 Dec 2020 09:26:09 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=from
+        :to:cc:subject:date:message-id:mime-version
+        :content-transfer-encoding; s=fm1; bh=+JKVbKtQK/Yw154DgEA/vvstAw
+        x3uCRVJdxZ6QvqULE=; b=JUrEe5rgN8zH1Gmmo6hJ2FQYyIHiNWbOrl6cSMUAYe
+        yb04A2Q5FMHTVgW0FEeBGRWY4R4TOV7ib003/DvCLWE3bkww6T4Sn2a+iih+iJc8
+        7hzbcc3mzWrBRi66cb8K3DrQ5td1I4iek72W0o4DifgnFbVVFpfbYhZgEMeOIknk
+        Hxf/8RYik0vUZQ2L89ii5gTP0GZnR2U7HXMbxjvrl9+tycZDraNLiTl8pzaS5FzQ
+        zLeqthDxFJ0dYL0Fuih/beAfDTEoqQB+NsxNDhwYwJFlU3ECGiiBgwFISfzW90fF
+        7sjoZ1ymXREtS09RlntLidFbbVsZVIP6tiP57ac1NG0w==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:date:from
+        :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=+JKVbKtQK/Yw154Dg
+        EA/vvstAwx3uCRVJdxZ6QvqULE=; b=MoAPougRjMheTLjHEFak2mfQSVuIZ9W0H
+        FE/h/v9xUnEdYQhDKOu0N0CRoxnhGd+yqUO7NdaI6/FAcocIkOKCsX6oc4oY3ea9
+        PvvBSU4uwcosOm/O42NoSNWW78uzW6g93tuIV3QchA6rxLV/fqiIWGFw1k8lbQlR
+        vaC27o343cPi92Dd3nJM4FCoI/TJFiQKLOATnbbeZtdfQ5FlhhnBkDLTPz5Gxmt+
+        7e/f/1HE1upltKSTJ0JwENGIP754/D1sNCywC5cmPWNBDLlslUEFsAyf09f/u8du
+        zBurpEFPwua5RNtPEHcOkm9hRMTxPXif1VRUGL3TZjyyp9xzP9tFw==
+X-ME-Sender: <xms:gDvOX8SGkvS_-dJAM6G_d1sOMruJdqdqELNp3_axlIspQL7B_S-3cA>
+    <xme:gDvOX5yVHUSAGRPvzSD4P_0s3N3ajw2wH-uIv_QhIwEg43StZ2PMhs3V3JHeS-nGD
+    HiUkLV6yWr-PlMzhQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrudejgedgieefucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucenucfjughrpefhvffufffkofgggfestdekredtre
+    dttdenucfhrhhomheptehnughrvgifucflvghffhgvrhihuceorghnughrvgifsegrjhdr
+    ihgurdgruheqnecuggftrfgrthhtvghrnhepieetheduveelhfdvvdejleeuhfelteevhe
+    ffgfeitdefgeekjeefieevgfehhefgnecuffhomhgrihhnpehkvghrnhgvlhdrohhrghen
+    ucfkphepvddtfedrheejrddvtdekrddugeeinecuvehluhhsthgvrhfuihiivgeptdenuc
+    frrghrrghmpehmrghilhhfrhhomheprghnughrvgifsegrjhdrihgurdgruh
+X-ME-Proxy: <xmx:gDvOX50zM8CzP5QFD-Usr8TVjQNwVWH8uRRfWgsU3Oxymvsgk7vi6w>
+    <xmx:gDvOXwB0y9XoSPnuqQG32pZ4Oeb69yoHBzrtE0AF_m1gXgdWxulopw>
+    <xmx:gDvOX1goHP47OvHA6UKXG0x3PzNPrTGkemotiu4fXBWG2zBaoGoCkg>
+    <xmx:gTvOX9i-x8PWX7Mkq12OZVHeJ3fqWLcXPMamDq5Av_lpFTPXfCa2Tg>
+Received: from localhost.localdomain (203-57-208-146.dyn.iinet.net.au [203.57.208.146])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 38BDC108006B;
+        Mon,  7 Dec 2020 09:26:03 -0500 (EST)
+From:   Andrew Jeffery <andrew@aj.id.au>
+To:     linux-mmc@vger.kernel.org
+Cc:     ulf.hansson@linaro.org, robh+dt@kernel.org, joel@jms.id.au,
+        adrian.hunter@intel.com, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, ryan_chen@aspeedtech.com
+Subject: [PATCH v4 0/6] mmc: sdhci-of-aspeed: Expose phase delay tuning
+Date:   Tue,  8 Dec 2020 00:55:50 +1030
+Message-Id: <20201207142556.2045481-1-andrew@aj.id.au>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <d6a674a0e8e259161ab741d78924c756@kernel.org>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Monday 07 Dec 2020 at 13:54:48 (+0000), Marc Zyngier wrote:
-> None. Whichever name you pick, someone will ask you to change it.
-> Just call it Bob.
+Hello,
 
-:-)
+This series implements support for the MMC core clk-phase-* devicetree bindings
+in the Aspeed SD/eMMC driver. The relevant register was exposed on the AST2600
+and is present for both the SD/MMC controller and the dedicated eMMC
+controller.
 
-> What I really *don't* want is see a blanket rename of existing symbols
-> or concepts.
+There are a couple of prominent changes from v3 in v4 of the series:
 
-Understood. I'll go with pkvm_create_mappings() and friends for all the
-new functions unless someone comes up with a better name in the meantime.
+1. The devicetree phase parsing helper has been moved to the MMC core
+2. KUnit tests have been added for the phase calculations in the ASPEED driver
 
-Thanks,
-Quentin
+Other than that I've updated MAINTAINERS to add myself as the maintainer of the
+driver.
+
+v3 can be found here:
+
+https://lore.kernel.org/linux-mmc/20201123063004.337345-1-andrew@aj.id.au/
+
+The series has had light testing on an AST2600-based platform which requires
+180deg of input and output clock phase correction at HS200, as well as some
+synthetic testing under qemu and KUnit.
+
+Please review!
+
+Cheers,
+
+Andrew
+
+Andrew Jeffery (6):
+  mmc: core: Add helper for parsing clock phase properties
+  mmc: sdhci-of-aspeed: Expose clock phase controls
+  mmc: sdhci-of-aspeed: Add AST2600 bus clock support
+  mmc: sdhci-of-aspeed: Add KUnit tests for phase calculations
+  MAINTAINERS: Add entry for the ASPEED SD/MMC driver
+  ARM: dts: rainier: Add eMMC clock phase compensation
+
+ MAINTAINERS                                  |   9 +
+ arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts |   1 +
+ drivers/mmc/core/host.c                      |  43 ++++
+ drivers/mmc/host/Kconfig                     |  14 ++
+ drivers/mmc/host/Makefile                    |   1 +
+ drivers/mmc/host/sdhci-of-aspeed-test.c      | 100 ++++++++
+ drivers/mmc/host/sdhci-of-aspeed.c           | 251 ++++++++++++++++++-
+ include/linux/mmc/host.h                     |  17 ++
+ 8 files changed, 425 insertions(+), 11 deletions(-)
+ create mode 100644 drivers/mmc/host/sdhci-of-aspeed-test.c
+
+-- 
+2.27.0
+
