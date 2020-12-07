@@ -2,79 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AC8532D1C30
-	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 22:33:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ACD4A2D1C40
+	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 22:46:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727744AbgLGVcu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Dec 2020 16:32:50 -0500
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:35374 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727742AbgLGVct (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 16:32:49 -0500
-Received: by mail-ot1-f67.google.com with SMTP id i6so7861130otr.2;
-        Mon, 07 Dec 2020 13:32:34 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=0ynb8iLyUqADhkwHS9Qnd7e5/0N0ngWwVvaQV6B/88U=;
-        b=eJ3gZmsavRxrWygZv5xdcQeE3KKpVQUTmwhTvLDxcO0ghAgcd9Up803xYSyomjgC95
-         vtpDRJuaJHWGehB8TiVvrbsdXpyzDNGrcFro9ApTEONepD0gx3cWXPeQhmxm+1bcnb+O
-         SnIaVTVyZZaI5UXpldjtIG99Tp/NIalCXE2oCIHWU27pO9rKQmZMYuejAFa27oxBjAPZ
-         ERLjWMmQ+n5QjtxsN3TnWM8y5ujA/3dEV69nvKGNYZHc7emBBIX29YT8tTXwZy5N5JGH
-         1MMIvFUiaTx+BiZHMJ4yTFq0hbOHi9Y9mNifsAGds+BSjffqlvsm27Wz9VicbmsDnoXQ
-         ZQjg==
-X-Gm-Message-State: AOAM533PWHBqUbidqi5cGmoXL+uLRgHRZmcESs9zTDFQKk3ILfzAo02C
-        PM+RUX6IGS/XeCwGP3zn8VcmL93NUA==
-X-Google-Smtp-Source: ABdhPJwGilcs+3zsB2f6/w9E6wHpMwawQixZFs99uC0mM+0NRsxaeavmnh/Lh9H+XbLxDmBuHdErVA==
-X-Received: by 2002:a9d:4d8b:: with SMTP id u11mr4261161otk.13.1607376728681;
-        Mon, 07 Dec 2020 13:32:08 -0800 (PST)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id o82sm3074342oih.5.2020.12.07.13.32.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Dec 2020 13:32:07 -0800 (PST)
-Received: (nullmailer pid 864264 invoked by uid 1000);
-        Mon, 07 Dec 2020 21:32:06 -0000
-Date:   Mon, 7 Dec 2020 15:32:06 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Guido =?iso-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>
-Cc:     Daniel Vetter <daniel@ffwll.ch>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        David Airlie <airlied@linux.ie>, Arnd Bergmann <arnd@arndb.de>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        allen <allen.chen@ite.com.tw>, Mark Brown <broonie@kernel.org>,
-        devicetree@vger.kernel.org, Ondrej Jirman <megous@megous.com>,
-        Lubomir Rintel <lkundrak@v3.sk>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v2 6/6] dt-binding: display: mantix: Add compatible for
- panel from YS
-Message-ID: <20201207213206.GA864202@robh.at.kernel.org>
-References: <cover.1605688147.git.agx@sigxcpu.org>
- <eb2a0e50cbb8cfebc27d259607e543fedb8c6b27.1605688147.git.agx@sigxcpu.org>
+        id S1726661AbgLGVno (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Dec 2020 16:43:44 -0500
+Received: from mga14.intel.com ([192.55.52.115]:59588 "EHLO mga14.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726102AbgLGVno (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 7 Dec 2020 16:43:44 -0500
+IronPort-SDR: GM97ON1f7qR829G8jJysfq3eUwf48EdHqzY25d7EC66E3kr7Z4OVCz26w5PNzI1yX4kb+NsVgq
+ hugaQ68eZPuw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9828"; a="173016582"
+X-IronPort-AV: E=Sophos;i="5.78,400,1599548400"; 
+   d="scan'208";a="173016582"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Dec 2020 13:41:58 -0800
+IronPort-SDR: WAsOIRj0ZsDA1mT74hKiBxohvhchBP+HVpBHvdqWxqwQE19S0BVDTPTrJ0OfJfSv5Wqi+3HVWL
+ UsIY2ql2olew==
+X-IronPort-AV: E=Sophos;i="5.78,400,1599548400"; 
+   d="scan'208";a="483368686"
+Received: from smtp.ostc.intel.com ([10.54.29.231])
+  by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Dec 2020 13:41:58 -0800
+Received: from localhost (mtg-dev.jf.intel.com [10.54.74.10])
+        by smtp.ostc.intel.com (Postfix) with ESMTP id A9BB66363;
+        Mon,  7 Dec 2020 13:41:58 -0800 (PST)
+Date:   Mon, 7 Dec 2020 13:41:58 -0800
+From:   mark gross <mgross@linux.intel.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     mgross@linux.intel.com, robh+dt@kernel.org,
+        leonard.crestez@nxp.com, gregkh@linuxfoundation.org,
+        palmerdabbelt@google.com, devicetree@vger.kernel.org,
+        Ryan Carnaghi <ryan.r.carnaghi@intel.com>,
+        Seamus Kelly <seamus.kelly@intel.com>, arnd@arndb.de,
+        damien.lemoal@wdc.com, markgross@kernel.org, corbet@lwn.net,
+        linux-kernel@vger.kernel.org, dragan.cvetic@xilinx.com,
+        shawnguo@kernel.org, paul.walmsley@sifive.com, bp@suse.de,
+        peng.fan@nxp.com
+Subject: Re: [PATCH 15/22] xlink-ipc: Add xlink ipc device tree bindings
+Message-ID: <20201207214158.GE49179@linux.intel.com>
+Reply-To: mgross@linux.intel.com
+References: <20201201223511.65542-1-mgross@linux.intel.com>
+ <20201201223511.65542-16-mgross@linux.intel.com>
+ <20201207155814.GA351233@robh.at.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <eb2a0e50cbb8cfebc27d259607e543fedb8c6b27.1605688147.git.agx@sigxcpu.org>
+In-Reply-To: <20201207155814.GA351233@robh.at.kernel.org>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 18 Nov 2020 09:29:53 +0100, Guido Günther wrote:
-> This panel from Shenzhen Yashi Changhua Intelligent Technology Co
-> uses the same driver IC but a different LCD.
+On Mon, Dec 07, 2020 at 09:58:14AM -0600, Rob Herring wrote:
+> On Tue, 01 Dec 2020 14:35:04 -0800, mgross@linux.intel.com wrote:
+> > From: Seamus Kelly <seamus.kelly@intel.com>
+> > 
+> > Add device tree bindings for the xLink IPC driver which enables xLink to
+> > control and communicate with the VPU IP present on the Intel Keem Bay
+> > SoC.
+> > 
+> > Cc: devicetree@vger.kernel.org
+> > Reviewed-by: Mark Gross <mgross@linux.intel.com>
+> > Signed-off-by: Seamus Kelly <seamus.kelly@intel.com>
+> > Signed-off-by: Ryan Carnaghi <ryan.r.carnaghi@intel.com>
+> > ---
+> >  .../misc/intel,keembay-xlink-ipc.yaml         | 49 +++++++++++++++++++
+> >  1 file changed, 49 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/misc/intel,keembay-xlink-ipc.yaml
+> > 
 > 
-> Signed-off-by: Guido Günther <agx@sigxcpu.org>
-> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-> ---
->  .../devicetree/bindings/display/panel/mantix,mlaf057we51-x.yaml  | 1 +
->  1 file changed, 1 insertion(+)
 > 
+> My bot found errors running 'make dt_binding_check' on your patch:
+> 
+> yamllint warnings/errors:
+> ./Documentation/devicetree/bindings/misc/intel,keembay-xlink-ipc.yaml:21:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
+> 
+> dtschema/dtc warnings/errors:
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/misc/intel,keembay-xlink-ipc.yaml: 'additionalProperties' is a required property
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/misc/intel,keembay-xlink-ipc.yaml: ignoring, error in schema: 
+> warning: no schema found in file: ./Documentation/devicetree/bindings/misc/intel,keembay-xlink-ipc.yaml
+> 
+> 
+> See https://patchwork.ozlabs.org/patch/1409186
+> 
+> The base for the patch is generally the last rc1. Any dependencies
+> should be noted.
+> 
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date:
+> 
+> pip3 install dtschema --upgrade
+> 
+> Please check and re-submit.
+Thank you!  will do.
 
-Acked-by: Rob Herring <robh@kernel.org>
+--mark
