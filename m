@@ -2,78 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DB10F2D0E81
-	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 11:57:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3EA5F2D0EA3
+	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 12:07:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726361AbgLGK4m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Dec 2020 05:56:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34926 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726332AbgLGK4l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 05:56:41 -0500
-Received: from mail-qk1-x741.google.com (mail-qk1-x741.google.com [IPv6:2607:f8b0:4864:20::741])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8127C0613D1
-        for <devicetree@vger.kernel.org>; Mon,  7 Dec 2020 02:55:55 -0800 (PST)
-Received: by mail-qk1-x741.google.com with SMTP id n142so1894853qkn.2
-        for <devicetree@vger.kernel.org>; Mon, 07 Dec 2020 02:55:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=0x0f.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=5ia12m9uDX+0LNlAEFwkrOarHwftjJKLgewl2oTIgrE=;
-        b=lzzmt0CZmK2Jmd7kyroYw+RWFtJX3ikmVxwIpkx+vZ/gCDKMah0PBZ3pRvKxqo8lN4
-         eStRjgjM4ibwnew31RMzb0hOwrT6uiFAFmqPXGWbPGnLbol0VBIpkeSQGAMsmcvQpOll
-         n6xniOcxXcDXSYxpEDnLx9saK/zqAazjt5HMY=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=5ia12m9uDX+0LNlAEFwkrOarHwftjJKLgewl2oTIgrE=;
-        b=GIETjkVqOHKk5RTojPfnCrYkyZCrGQyFpr54NNLU5NStinHc6S+nKNPcmeH88f76tE
-         pQ/5FiBqiuLrxZgoOQCwo0+TBkynBrDg3U/MEBRSwsCSvP3RhNgs4XfsQ86LexzoBN6b
-         j6LZFso7ZrPtLzKVK9v6JIpidPuRcgmRunmJM5yJnZqg8klgc6c+Va3L8/GaCLJ04YGA
-         VgEqoOAFF2AO6PBu+5w0NbmxJoHKB8kimtRHibEUbuXbtXpOUgR14EBdD4C3Di+3J40Q
-         +qnjDRAAsTLXhsGvZFrBduprVy+ASf4EVmCBMlgLIr2kLh3t95DhAilqhPpEGErj59V2
-         perA==
-X-Gm-Message-State: AOAM530///AOaYkhjL4uVCKmsvQUqxgcsQ944Ethsd5TP9iI+v0NCVTr
-        Ko+EAC8dsAF9LCz1EEc0MrXuSajEEKEjaRWG/2Zimg==
-X-Google-Smtp-Source: ABdhPJz5LN12jxi1tLmMe+C2qEWEij3QetZAtETxe63ezdGfiuGGd8prNeyfZ8+OZ//s1SFdN8nthpHV6T5ni1agtns=
-X-Received: by 2002:a37:8681:: with SMTP id i123mr22759135qkd.54.1607338554890;
- Mon, 07 Dec 2020 02:55:54 -0800 (PST)
+        id S1726492AbgLGLGn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Dec 2020 06:06:43 -0500
+Received: from foss.arm.com ([217.140.110.172]:47258 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726244AbgLGLGn (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 7 Dec 2020 06:06:43 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 861F21042;
+        Mon,  7 Dec 2020 03:05:57 -0800 (PST)
+Received: from C02TD0UTHF1T.local (unknown [10.57.27.106])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id A111C3F66B;
+        Mon,  7 Dec 2020 03:05:54 -0800 (PST)
+Date:   Mon, 7 Dec 2020 11:05:45 +0000
+From:   Mark Rutland <mark.rutland@arm.com>
+To:     Will Deacon <will@kernel.org>
+Cc:     Quentin Perret <qperret@google.com>,
+        "moderated list:ARM64 PORT (AARCH64 ARCHITECTURE)" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE" 
+        <devicetree@vger.kernel.org>, kernel-team@android.com,
+        Android KVM <android-kvm@google.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        open list <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Fuad Tabba <tabba@google.com>, Marc Zyngier <maz@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        "open list:KERNEL VIRTUAL MACHINE FOR ARM64 (KVM/arm64)" 
+        <kvmarm@lists.cs.columbia.edu>
+Subject: Re: [RFC PATCH 16/27] KVM: arm64: Prepare Hyp memory protection
+Message-ID: <20201207110528.GA18365@C02TD0UTHF1T.local>
+References: <20201117181607.1761516-1-qperret@google.com>
+ <20201117181607.1761516-17-qperret@google.com>
+ <CA+EHjTyJnZ8e=AN7H_k+oZb0VTWAgMicMY8Rqe2Di_3A87hm0A@mail.gmail.com>
+ <X8p5kLSIq2MoQZ24@google.com>
+ <20201207102002.GA3825@willie-the-truck>
 MIME-Version: 1.0
-References: <20201129110803.2461700-1-daniel@0x0f.com> <CACRpkdYEzFYw=CbBFCs9=DfarsCQKD0zA2WvE95nF8ehA_2i1g@mail.gmail.com>
-In-Reply-To: <CACRpkdYEzFYw=CbBFCs9=DfarsCQKD0zA2WvE95nF8ehA_2i1g@mail.gmail.com>
-From:   Daniel Palmer <daniel@0x0f.com>
-Date:   Mon, 7 Dec 2020 19:55:44 +0900
-Message-ID: <CAFr9PXmx1XZmVOp8mLygnDUfEKPpo6=ZQPMKSCnZf0i23mNqVw@mail.gmail.com>
-Subject: Re: [PATCH v4 0/5] Add GPIO support for MStar/SigmaStar ARMv7
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Arnd Bergmann <arnd@kernel.org>, olof@lixom.net
-Cc:     SoC Team <soc@kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh@kernel.org>, Willy Tarreau <w@1wt.eu>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201207102002.GA3825@willie-the-truck>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Linus,
+On Mon, Dec 07, 2020 at 10:20:03AM +0000, Will Deacon wrote:
+> On Fri, Dec 04, 2020 at 06:01:52PM +0000, Quentin Perret wrote:
+> > On Thursday 03 Dec 2020 at 12:57:33 (+0000), Fuad Tabba wrote:
+> > <snip>
+> > > > +SYM_FUNC_START(__kvm_init_switch_pgd)
+> > > > +       /* Turn the MMU off */
+> > > > +       pre_disable_mmu_workaround
+> > > > +       mrs     x2, sctlr_el2
+> > > > +       bic     x3, x2, #SCTLR_ELx_M
+> > > > +       msr     sctlr_el2, x3
+> > > > +       isb
+> > > > +
+> > > > +       tlbi    alle2
+> > > > +
+> > > > +       /* Install the new pgtables */
+> > > > +       ldr     x3, [x0, #NVHE_INIT_PGD_PA]
+> > > > +       phys_to_ttbr x4, x3
+> > > > +alternative_if ARM64_HAS_CNP
+> > > > +       orr     x4, x4, #TTBR_CNP_BIT
+> > > > +alternative_else_nop_endif
+> > > > +       msr     ttbr0_el2, x4
+> > > > +
+> > > > +       /* Set the new stack pointer */
+> > > > +       ldr     x0, [x0, #NVHE_INIT_STACK_HYP_VA]
+> > > > +       mov     sp, x0
+> > > > +
+> > > > +       /* And turn the MMU back on! */
+> > > > +       dsb     nsh
+> > > > +       isb
+> > > > +       msr     sctlr_el2, x2
+> > > > +       isb
+> > > > +       ret     x1
+> > > > +SYM_FUNC_END(__kvm_init_switch_pgd)
+> > > > +
+> > > 
+> > > Should the instruction cache be flushed here (ic iallu), to discard
+> > > speculatively fetched instructions?
+> > 
+> > Hmm, Will? Thoughts?
+> 
+> The I-cache is physically tagged, so not sure what invalidation would
+> achieve here. Fuad -- what do you think could go wrong specifically?
 
-On Sun, 6 Dec 2020 at 06:43, Linus Walleij <linus.walleij@linaro.org> wrote:
+While the MMU is off, instruction fetches can be made from the PoC
+rather than the PoU, so where instructions have been modified/copied and
+not cleaned to the PoC, it's possible to fetch stale copies into the
+I-caches. The physical tag doesn't prevent that.
 
-> OK finished!
-> Patches 1, 2 & 3 applied to the GPIO tree for v5.11.
+In the regular CPU boot paths, __enabble_mmu() has an IC IALLU after
+enabling the MMU to ensure that we get rid of anything stale (e.g. so
+secondaries don't miss ftrace patching, which is only cleaned to the
+PoU).
 
-Awesome! Thank you Linus. :)
+That might not be a problem here, if things are suitably padded and
+never dynamically patched, but if so it's probably worth a comment.
 
-Arnd and Olof: Sorry for being a noob.. Is there anything I need to do
-for patches 4 and 5 (device tree bits)?
-They are in the Linux SoC patchwork.
+Fuad, is that the sort of thing you were considering, or did you have
+additional concerns?
 
 Thanks,
-
-Daniel
+Mark.
