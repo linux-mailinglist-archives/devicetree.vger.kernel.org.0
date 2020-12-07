@@ -2,111 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A6A32D0E61
-	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 11:48:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DB10F2D0E81
+	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 11:57:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726269AbgLGKsZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Dec 2020 05:48:25 -0500
-Received: from lb3-smtp-cloud9.xs4all.net ([194.109.24.30]:46271 "EHLO
-        lb3-smtp-cloud9.xs4all.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726214AbgLGKsZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 05:48:25 -0500
-Received: from cust-b5b5937f ([IPv6:fc0c:c16d:66b8:757f:c639:739b:9d66:799d])
-        by smtp-cloud9.xs4all.net with ESMTPA
-        id mE3OkFNsIarN7mE3SkzDir; Mon, 07 Dec 2020 11:47:42 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=xs4all.nl; s=s2;
-        t=1607338062; bh=gWVo8YX1VQxSsOSI04pPBsnfOvUw7NtMunA1qyzkVps=;
-        h=Subject:To:From:Message-ID:Date:MIME-Version:Content-Type:From:
-         Subject;
-        b=jKT/DwFs1uxnlPjVbuxcBc5m36tgdSbbBheMmi5rQbE/2Nlq/zWY4tTjVlvcf5Dyz
-         oCr3qxpIELZgr6ldAsAloZ2oU1vnHrpTd5pkVUE7CQhocWJPqJuBC41kWSjhaOnO+H
-         0ZjJ3GJHq0XiHdoiojc8thNUGtjROedHn1s18kAY2k2iKsle5rgDfuG9D3cIyiZ1sl
-         6K+OpjgG8+rnJUk/qzXN5E20ax0F+tVO4OpMKanuUMMqgPj5GtFc8codZ8Z6ynxKDp
-         rzsdp7+WoDml73Y7EzIh3WZpXK+UDL5OBkgGHXxeryJ2vrXFG/4jiGlvcIZQj+16zi
-         e3SVhAVoaW4uw==
-Subject: Re: [PATCH v3 10/13] media: v4l2-fwnode: Update
- V4L2_FWNODE_CSI2_MAX_DATA_LANES to 8
-To:     Sowjanya Komatineni <skomatineni@nvidia.com>,
-        thierry.reding@gmail.com, jonathanh@nvidia.com,
-        sakari.ailus@iki.fi, robh+dt@kernel.org
-Cc:     bparrot@ti.com, mchehab@kernel.org, linux-media@vger.kernel.org,
-        linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-References: <1607022002-26575-1-git-send-email-skomatineni@nvidia.com>
- <1607022002-26575-11-git-send-email-skomatineni@nvidia.com>
-From:   Hans Verkuil <hverkuil@xs4all.nl>
-Message-ID: <845dfd4a-fa11-625c-78a3-cc8adc68bfc7@xs4all.nl>
-Date:   Mon, 7 Dec 2020 11:47:38 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+        id S1726361AbgLGK4m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Dec 2020 05:56:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34926 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726332AbgLGK4l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 05:56:41 -0500
+Received: from mail-qk1-x741.google.com (mail-qk1-x741.google.com [IPv6:2607:f8b0:4864:20::741])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8127C0613D1
+        for <devicetree@vger.kernel.org>; Mon,  7 Dec 2020 02:55:55 -0800 (PST)
+Received: by mail-qk1-x741.google.com with SMTP id n142so1894853qkn.2
+        for <devicetree@vger.kernel.org>; Mon, 07 Dec 2020 02:55:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=0x0f.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=5ia12m9uDX+0LNlAEFwkrOarHwftjJKLgewl2oTIgrE=;
+        b=lzzmt0CZmK2Jmd7kyroYw+RWFtJX3ikmVxwIpkx+vZ/gCDKMah0PBZ3pRvKxqo8lN4
+         eStRjgjM4ibwnew31RMzb0hOwrT6uiFAFmqPXGWbPGnLbol0VBIpkeSQGAMsmcvQpOll
+         n6xniOcxXcDXSYxpEDnLx9saK/zqAazjt5HMY=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=5ia12m9uDX+0LNlAEFwkrOarHwftjJKLgewl2oTIgrE=;
+        b=GIETjkVqOHKk5RTojPfnCrYkyZCrGQyFpr54NNLU5NStinHc6S+nKNPcmeH88f76tE
+         pQ/5FiBqiuLrxZgoOQCwo0+TBkynBrDg3U/MEBRSwsCSvP3RhNgs4XfsQ86LexzoBN6b
+         j6LZFso7ZrPtLzKVK9v6JIpidPuRcgmRunmJM5yJnZqg8klgc6c+Va3L8/GaCLJ04YGA
+         VgEqoOAFF2AO6PBu+5w0NbmxJoHKB8kimtRHibEUbuXbtXpOUgR14EBdD4C3Di+3J40Q
+         +qnjDRAAsTLXhsGvZFrBduprVy+ASf4EVmCBMlgLIr2kLh3t95DhAilqhPpEGErj59V2
+         perA==
+X-Gm-Message-State: AOAM530///AOaYkhjL4uVCKmsvQUqxgcsQ944Ethsd5TP9iI+v0NCVTr
+        Ko+EAC8dsAF9LCz1EEc0MrXuSajEEKEjaRWG/2Zimg==
+X-Google-Smtp-Source: ABdhPJz5LN12jxi1tLmMe+C2qEWEij3QetZAtETxe63ezdGfiuGGd8prNeyfZ8+OZ//s1SFdN8nthpHV6T5ni1agtns=
+X-Received: by 2002:a37:8681:: with SMTP id i123mr22759135qkd.54.1607338554890;
+ Mon, 07 Dec 2020 02:55:54 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <1607022002-26575-11-git-send-email-skomatineni@nvidia.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-CMAE-Envelope: MS4xfKlT91V/9qHoNEbQguLdjtrxEusCqooMka1R1Z25DwFG17wT85odnqoeRsm++0Zzch7a8bH+1di0wpastSoZvVELgKJHd/ZJy5CDBZfTD4bwan22gYMV
- C7KxBboHLhb1Yptt6u1/jkYzVOvNlqcQQRybr6eFb39d5eGgLihAdmflsBBbDI/pCvtlypxfrRcaEUW8TO+2TXec3MfbNPqzxlYDnOJ1ouBYRK53ergZUGEb
- 97/E/JWkam3FjIZhszOQPO8hYKAm7GN3JUc2ofaYgv/d4rjS8bYFAB4ADiFkt8kt++1yW3sVIzwHdyNOogRa8Ynr9KKXEWQt4N9VgH3zjhWbZdMR8TZwEdTX
- aMOtQwlkHub9zJxCo/HQDifMk5m+tep8yWzezayO24YeCUnqtlYlYIKvwtuWZP5PBJR4EXTIcF/GYhAGcjYFP7qZCLb7itRjYKMDmYYrzzLryFSPwYPREY6U
- oyFjX8XMBNMidSuLoqqaj6wM8cJb5gEfzaze1MzYRaLj2LSzdDXPb61Grf0PBun3ntGl/2OGXTS/58LXblSEQmlH8Mem3aBwPagSPERyztfL6JT9pGiViHJE
- C8E=
+References: <20201129110803.2461700-1-daniel@0x0f.com> <CACRpkdYEzFYw=CbBFCs9=DfarsCQKD0zA2WvE95nF8ehA_2i1g@mail.gmail.com>
+In-Reply-To: <CACRpkdYEzFYw=CbBFCs9=DfarsCQKD0zA2WvE95nF8ehA_2i1g@mail.gmail.com>
+From:   Daniel Palmer <daniel@0x0f.com>
+Date:   Mon, 7 Dec 2020 19:55:44 +0900
+Message-ID: <CAFr9PXmx1XZmVOp8mLygnDUfEKPpo6=ZQPMKSCnZf0i23mNqVw@mail.gmail.com>
+Subject: Re: [PATCH v4 0/5] Add GPIO support for MStar/SigmaStar ARMv7
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Arnd Bergmann <arnd@kernel.org>, olof@lixom.net
+Cc:     SoC Team <soc@kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh@kernel.org>, Willy Tarreau <w@1wt.eu>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/12/2020 19:59, Sowjanya Komatineni wrote:
-> Some CSI2 receivers support 8 data lanes.
-> 
-> So, this patch updates CSI2 maximum data lanes to be 8.
-> 
-> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
-> ---
->  drivers/media/platform/ti-vpe/cal-camerarx.c | 2 +-
->  include/media/v4l2-fwnode.h                  | 2 +-
->  2 files changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/media/platform/ti-vpe/cal-camerarx.c b/drivers/media/platform/ti-vpe/cal-camerarx.c
-> index 806cbf1..47e2143 100644
-> --- a/drivers/media/platform/ti-vpe/cal-camerarx.c
-> +++ b/drivers/media/platform/ti-vpe/cal-camerarx.c
-> @@ -534,7 +534,7 @@ static int cal_camerarx_parse_dt(struct cal_camerarx *phy)
->  {
->  	struct v4l2_fwnode_endpoint *endpoint = &phy->endpoint;
->  	struct device_node *ep_node;
-> -	char data_lanes[V4L2_FWNODE_CSI2_MAX_DATA_LANES * 2];
-> +	char data_lanes[V4L2_FWNODE_CSI2_MAX_DATA_LANES];
->  	unsigned int i;
->  	int ret;
->  
+Hi Linus,
 
-I'm not so sure about this change: it relies on the implicit knowledge that
-this cal driver can handle only 4 lanes max, so that doubling
-V4L2_FWNODE_CSI2_MAX_DATA_LANES is the same as the old 'V4L2_FWNODE_CSI2_MAX_DATA_LANES * 2'.
+On Sun, 6 Dec 2020 at 06:43, Linus Walleij <linus.walleij@linaro.org> wrote:
 
-I think we should either keep the existing code (which means data_lanes
-is now larger than needed, so stack usage increases by 8 bytes), or perhaps
-create a new define for this driver like CAL_MAX_DATA_LANES and use that.
+> OK finished!
+> Patches 1, 2 & 3 applied to the GPIO tree for v5.11.
 
-In my opinion the original code should just be kept, but I've CC-ed Laurent
-on this to hear what he thinks.
+Awesome! Thank you Linus. :)
 
-Regards,
+Arnd and Olof: Sorry for being a noob.. Is there anything I need to do
+for patches 4 and 5 (device tree bits)?
+They are in the Linux SoC patchwork.
 
-	Hans
+Thanks,
 
-> diff --git a/include/media/v4l2-fwnode.h b/include/media/v4l2-fwnode.h
-> index 4e1f6e1d..92401c1 100644
-> --- a/include/media/v4l2-fwnode.h
-> +++ b/include/media/v4l2-fwnode.h
-> @@ -25,7 +25,7 @@ struct fwnode_handle;
->  struct v4l2_async_notifier;
->  struct v4l2_async_subdev;
->  
-> -#define V4L2_FWNODE_CSI2_MAX_DATA_LANES	4
-> +#define V4L2_FWNODE_CSI2_MAX_DATA_LANES	8
->  
->  /**
->   * struct v4l2_fwnode_bus_mipi_csi2 - MIPI CSI-2 bus data structure
-> 
-
+Daniel
