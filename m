@@ -2,74 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B4E92D1D9A
-	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 23:44:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F5C52D1DA6
+	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 23:47:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726519AbgLGWnZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Dec 2020 17:43:25 -0500
-Received: from mail-oi1-f194.google.com ([209.85.167.194]:37513 "EHLO
-        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726508AbgLGWnZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 17:43:25 -0500
-Received: by mail-oi1-f194.google.com with SMTP id l207so14421210oib.4;
-        Mon, 07 Dec 2020 14:43:03 -0800 (PST)
+        id S1726231AbgLGWpf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Dec 2020 17:45:35 -0500
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:33962 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726055AbgLGWpe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 17:45:34 -0500
+Received: by mail-ot1-f68.google.com with SMTP id h19so14166106otr.1;
+        Mon, 07 Dec 2020 14:45:13 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=YiGMY24NvG+qDD2dLzercR68pk9jWvYpHiZ4hoYrapc=;
-        b=kmUbt6vCrEYrzKDJ+m2KgB9s9IJOAoGVc6yRAQM0AH48j9f7AApP5LYQ2lH66IJEEg
-         eH0GF0+9KdO60Wzg+pGnYksO3Ga9oTxG3v/A2i8EG1CAq3KU5kheXQH2HZ096o3guqmr
-         cXhzytIjEG6xBTqBKCkh0TBSSZW7ogQivd2twvU12agjE6VSjzq88GrcW4tJy+erQJoc
-         IiQMB5eppKv792jwe8g8W7OAAK8yg81eocQ0b1HWvGICk1A1sIUxDrr95q+KmiPdym7F
-         Z9bpHQZABpx1xakhGhn5tJZ4YK+E6hCw+ZTDS+KjxvOM3cQ3WYvuR66zNuwoK+lSVjyZ
-         r+aA==
-X-Gm-Message-State: AOAM531EChxs2B5kZeCUpu4XP2tQa2aSK0vVXqACzx/t8Ni2y6B+8SvZ
-        XJlsH4N4PqBVCGNmxFxzVQ==
-X-Google-Smtp-Source: ABdhPJyEh6obLo3kkPcOpFXkhowNTZBEANUOz5IaapchbwUFJKb2tWBZruUtSCktbtkr34ZI8dJpqQ==
-X-Received: by 2002:a54:4e95:: with SMTP id c21mr788580oiy.84.1607380958531;
-        Mon, 07 Dec 2020 14:42:38 -0800 (PST)
+        bh=MZJn2pgTt1kUD8to1t5Dt8cuRrsBFqiHtGixw10QU3M=;
+        b=GofZVaGUwuzPQCSYH6tJCo6UbFtbgveswLD+SQHuL7Y9vN8glklesztNGxiQpMp3GB
+         hTys7Lcg2VHDiB7RdNQywhM71nooC94mcThm0di105zS6crNR9nSDoR0Mb62QFyUMoaB
+         1A7Vz3zewzt0GJhIXieadpuZsDQQ9eUIGjqj/TM10xYi2SOW4cyQNJYkxyrKpSGw9EA6
+         ofhE1gSUZcA7nLgcA8yiNCir5Wl1gQadVlfJ0YsY7vG0IyvqpcMBqh5/VXbZDf8M16K8
+         CPaVWyKI5d/Hf2EcKWt2f3VTKu0khLBiVOOZ5D/TK6TSm9+xyY4lF8tqZ4MMaAdOzjOF
+         y7GA==
+X-Gm-Message-State: AOAM532eSkXMOWTmHL9z8muZAm6d7KIhGZxShJ+hVqgpuzGCapEVCrgE
+        hasRsfm3eMLJ/MOeFXRRCQ==
+X-Google-Smtp-Source: ABdhPJzRshPJNj+/0MGBhONump6skmEbNXhtOQcFjYdv8QT/xYUy2jDOLoIYu8rYALbDzGcCowO47g==
+X-Received: by 2002:a9d:1d64:: with SMTP id m91mr5592660otm.290.1607381088018;
+        Mon, 07 Dec 2020 14:44:48 -0800 (PST)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id m21sm1357720oos.28.2020.12.07.14.42.37
+        by smtp.gmail.com with ESMTPSA id t19sm1041039otp.36.2020.12.07.14.44.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Dec 2020 14:42:37 -0800 (PST)
-Received: (nullmailer pid 978070 invoked by uid 1000);
-        Mon, 07 Dec 2020 22:42:36 -0000
-Date:   Mon, 7 Dec 2020 16:42:36 -0600
+        Mon, 07 Dec 2020 14:44:47 -0800 (PST)
+Received: (nullmailer pid 981516 invoked by uid 1000);
+        Mon, 07 Dec 2020 22:44:46 -0000
+Date:   Mon, 7 Dec 2020 16:44:46 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Hsin-Yi Wang <hsinyi@chromium.org>
-Cc:     devicetree@vger.kernel.org,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        linux-kernel@vger.kernel.org, David Airlie <airlied@linux.ie>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Jonas Karlman <jonas@kwiboo.se>, Xin Ji <xji@analogixsemi.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        dri-devel@lists.freedesktop.org,
-        Jernej Skrabec <jernej.skrabec@siol.net>
-Subject: Re: [PATCH v2 1/2] dt-bindings: drm/bridge: anx7625: Add power
- supplies
-Message-ID: <20201207224236.GA978011@robh.at.kernel.org>
-References: <20201123034652.3660584-1-hsinyi@chromium.org>
+To:     Neil Armstrong <narmstrong@baylibre.com>
+Cc:     vkoul@kernel.org, kishon@ti.com, linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: phy: add Amlogic G12A Analog MIPI D-PHY
+ bindings
+Message-ID: <20201207224446.GA978231@robh.at.kernel.org>
+References: <20201123145157.300456-1-narmstrong@baylibre.com>
+ <20201123145157.300456-2-narmstrong@baylibre.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201123034652.3660584-1-hsinyi@chromium.org>
+In-Reply-To: <20201123145157.300456-2-narmstrong@baylibre.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 23 Nov 2020 11:46:52 +0800, Hsin-Yi Wang wrote:
-> anx7625 requires 3 power supply regulators.
+On Mon, Nov 23, 2020 at 03:51:56PM +0100, Neil Armstrong wrote:
+> The Amlogic G12A SoCs embeds an Analog MIPI D-PHY to communicate with DSI
+> panels, this adds the bindings.
 > 
-> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
-> ---
-> Change:
-> v2: remove maxItems for supplies
-> ---
->  .../bindings/display/bridge/analogix,anx7625.yaml | 15 +++++++++++++++
->  1 file changed, 15 insertions(+)
+> This Analog D-PHY works with a separate Digital MIPI D-PHY.
 > 
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> ---
+>  .../phy/amlogic,g12a-mipi-dphy-analog.yaml    | 40 +++++++++++++++++++
+>  1 file changed, 40 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/phy/amlogic,g12a-mipi-dphy-analog.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/phy/amlogic,g12a-mipi-dphy-analog.yaml b/Documentation/devicetree/bindings/phy/amlogic,g12a-mipi-dphy-analog.yaml
+> new file mode 100644
+> index 000000000000..28663552f05b
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/phy/amlogic,g12a-mipi-dphy-analog.yaml
+> @@ -0,0 +1,40 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/phy/amlogic,g12a-mipi-dphy-analog.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +
+> +title: Amlogic G12A MIPI analog PHY
+> +
+> +maintainers:
+> +  - Neil Armstrong <narmstrong@baylibre.com>
+> +
+> +description: |+
+> +  The Everything-Else Power Domains node should be the child of a syscon
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Everything-Else Power Domains node??
+
+> +  node with the required property:
+> +
+> +  - compatible: Should be the following:
+> +                "amlogic,meson-gx-hhi-sysctrl", "simple-mfd", "syscon"
+> +
+> +  Refer to the the bindings described in
+> +  Documentation/devicetree/bindings/mfd/syscon.yaml
+> +
+> +properties:
+> +  compatible:
+> +    const: amlogic,g12a-mipi-dphy-analog
+> +
+> +  "#phy-cells":
+> +    const: 0
+> +
+> +required:
+> +  - compatible
+> +  - "#phy-cells"
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    mpphy: phy {
+> +          compatible = "amlogic,g12a-mipi-dphy-analog";
+> +          #phy-cells = <0>;
+> +    };
+> -- 
+> 2.25.1
+> 
