@@ -2,89 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1FB952D1A69
-	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 21:20:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BAA512D1A8C
+	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 21:32:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726077AbgLGUUo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Dec 2020 15:20:44 -0500
-Received: from mail-ot1-f68.google.com ([209.85.210.68]:33258 "EHLO
-        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725877AbgLGUUo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 15:20:44 -0500
-Received: by mail-ot1-f68.google.com with SMTP id b18so13775552ots.0;
-        Mon, 07 Dec 2020 12:20:28 -0800 (PST)
+        id S1725799AbgLGUc3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Dec 2020 15:32:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40404 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725972AbgLGUc3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 15:32:29 -0500
+Received: from mail-pf1-x436.google.com (mail-pf1-x436.google.com [IPv6:2607:f8b0:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2058C061794;
+        Mon,  7 Dec 2020 12:31:48 -0800 (PST)
+Received: by mail-pf1-x436.google.com with SMTP id p4so5433480pfg.0;
+        Mon, 07 Dec 2020 12:31:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=lHTBeyJXjU66O9BxCGUEf5eFmr0sgja/xlc/Cb4+iy8=;
+        b=tacYSP7BVuuSfX80iPkfDyg4hs61ja+/uzt1ddXpR00npfn+83F9JQY8TzVYoLr51T
+         wXmo9/XBbAaeSoKVjRi2ArbkF8q0Y9bU+lpfQjg2xY4j1I8ep5F8RfNVvEzomWzx5p/1
+         PAZfbYuH9Y3CLqFLQcLJilZm6173h18/GZV4jepPMdwbzgsAJc5mnH18bwllxVzoijai
+         6r0QL5rZJJZ3rhVFl0XANIF0uhtfo+fhCRJBCX9FPyNEDuWcPuDSrCjYx0JPAzO2WqxP
+         wECxDb1WJxwgIwkloJ47KGmbCNLjffx0nm6qbblW7L00LmPvlJf0pTD0RRJNb8HExZ/0
+         B5nA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=+8fj10nDje2x93+KcCvXW7CIv2lqtiTGkIsq3PGAkpQ=;
-        b=QmWP6UUvEWOLWv8TLrh9DFiSAHMmF2KIfYfdt1772iEs32YcEfZquSi1tPhho5cUgu
-         +P17fJGWsgGOF7LRUUBGakSETmkvkEmtn38UsfXZ4QLYGvnLOCLugminfokPrlPuCX2f
-         Gj8PbY/URhtjhyMWkR8My+ROLvT7jesf/jSgi7MrgDeM2LHetq5a1Bc+dfEz7S13fdNf
-         h4XCbL/nvv9EYXMzdUvMorHByNKVQw4Eymsw7CiWucxoGrBnZuoH8YBkpOTJsG+sIlsT
-         ndj0NKMCafdxqirnxifWzf4ro4f6pgNLIwdR5vCCtYZ15wVrOdDeMeBgfwvOr7+GNtUZ
-         g2wQ==
-X-Gm-Message-State: AOAM532OQm2Waypd04pkUhUMTH/zvlin4Gqk8kHXq4mo7OHB/UVKLDu5
-        2O3EAqO11cw9DJTsb4coyZVfwPebCsnqPOxx4iO3yklJ
-X-Google-Smtp-Source: ABdhPJy2xXJ31q/f+prT+1t1V3CRJwLEpaT1rJWaISAdMh4ZqnS5NVqYeodB/wICppPMsAb4jFStHycuOjYZ7aK37g8=
-X-Received: by 2002:a05:6830:1f5a:: with SMTP id u26mr14394879oth.250.1607372403410;
- Mon, 07 Dec 2020 12:20:03 -0800 (PST)
+        bh=lHTBeyJXjU66O9BxCGUEf5eFmr0sgja/xlc/Cb4+iy8=;
+        b=XqNLJ/RTyw29BhShaDniS8HgOj8ce03BRmSeoKzxf2h1fVZ9fblqfPzEQPcJe6yWMt
+         Jk4QFLY45BTxYegpp4SBe17Hm9kjG3LaRwstUJYmTB5ETzWbyBWl4ZRtk9dRSLeuhFwR
+         HovGXKkAYZacCOw/9sXOf42Pb70YALqnlxj5J5Kyzf5qEnw6M6NmzN/78yShBySKMYM5
+         OG5Ls1RHM+I4eEJOMUBovyLbVwAjJLzDWd29uHWEQhbZgzr0nVMY21qArk/r7lIIl6eH
+         barv7NrsM2kzNntOUd7TlMMdZ/8npIpOQed+qO6JOiCkb2AV9MkXjz4PnVjMz9w+XWjU
+         omDA==
+X-Gm-Message-State: AOAM533Gvl+df1mj+hLUFM3+JOY06eP4c1MncNvTc4+zV0oh3oLMmPbK
+        tykXBf12YXQEjYdtrjWGkkSSXAmyiTLoiBTqgdM=
+X-Google-Smtp-Source: ABdhPJwLxmI3TVd7HIanQLDPx2X9O3XmK51OmJIZ0N4KJ4x3WSz1f4ojz8VWULiuiT2mJJHKkWGtoSRHwAUinaa7pt8=
+X-Received: by 2002:a17:90a:a090:: with SMTP id r16mr521302pjp.179.1607373108365;
+ Mon, 07 Dec 2020 12:31:48 -0800 (PST)
 MIME-Version: 1.0
-References: <CAK8P3a2Habmz95y+J+-4NiT5SGYhO_Fia-SHhapX-3NYRbEMmw@mail.gmail.com>
- <CAHk-=wjA2Der39e_SWZ6S-DoVCJTu-Zwf6jn2wxmGTKzNPV1Dw@mail.gmail.com>
- <CAD=FV=Vow5_jv=-O=f2v4_5Nb4DiOUB1sQUx6r=-y5A-6rP4hw@mail.gmail.com>
- <CAHk-=whtySEgkH+VFy9oW8Q-+iuivGBo0hOUcee3DvrsBAQUrA@mail.gmail.com>
- <CAD=FV=Up-JW8RtMLQ_pAG3e0d8NnpT+rDiguxcz3DnVUz_7Jbw@mail.gmail.com>
- <CAHk-=wi2CQwAnKucLwE8vNZgXxyRy6L+DcgjGqxKHwbacKgaMQ@mail.gmail.com>
- <CAPDyKFp9L+L9VeUD038G3mBTLBuPJsMtv7JhxCcSGb3iY=eq5A@mail.gmail.com> <CAK8P3a1Va_xJzk8qqJM1VBWfSKpomKbQh_NpPO20aoORoe0SWQ@mail.gmail.com>
-In-Reply-To: <CAK8P3a1Va_xJzk8qqJM1VBWfSKpomKbQh_NpPO20aoORoe0SWQ@mail.gmail.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 7 Dec 2020 21:19:52 +0100
-Message-ID: <CAMuHMdUT83EkE-phUX2Z431AtGPfZvXeKwQriDKEHJKfr2R40A@mail.gmail.com>
-Subject: Re: [GIT PULL] ARM: SoC fixes for v5.10, part 3
-To:     Arnd Bergmann <arnd@kernel.org>
-Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Doug Anderson <dianders@chromium.org>,
+References: <20201201223511.65542-1-mgross@linux.intel.com>
+ <20201201223511.65542-3-mgross@linux.intel.com> <20201207160152.GB351233@robh.at.kernel.org>
+ <ca099c0833dc79f0a88edecd9fb949157eacbf46.camel@linux.intel.com>
+In-Reply-To: <ca099c0833dc79f0a88edecd9fb949157eacbf46.camel@linux.intel.com>
+From:   Jassi Brar <jassisinghbrar@gmail.com>
+Date:   Mon, 7 Dec 2020 14:31:37 -0600
+Message-ID: <CABb+yY1Qm4G5rHmRbt8Pyno8h4X6EqesLv1=ybup0fHJ+rnPww@mail.gmail.com>
+Subject: Re: [PATCH 02/22] dt-bindings: Add bindings for Keem Bay IPC driver
+To:     Daniele Alessandrelli <daniele.alessandrelli@linux.intel.com>
+Cc:     Rob Herring <robh@kernel.org>, mgross@linux.intel.com,
+        Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
+        markgross@kernel.org, "arnd@arndb.de" <arnd@arndb.de>, bp@suse.de,
+        damien.lemoal@wdc.com, Greg KH <gregkh@linuxfoundation.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Leonard Crestez <leonard.crestez@nxp.com>,
+        palmerdabbelt@google.com, paul.walmsley@sifive.com,
+        Peng Fan <peng.fan@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
         Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        SoC Team <soc@kernel.org>,
-        Linus Torvalds <torvalds@linux-foundation.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
+        Devicetree List <devicetree@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-CC devicetree
-
-On Tue, Dec 1, 2020 at 3:06 PM Arnd Bergmann <arnd@kernel.org> wrote:
-> On Tue, Dec 1, 2020 at 12:39 PM Ulf Hansson <ulf.hansson@linaro.org> wrote:
-> > So, I think we have two options. If people are willing to move to
-> > "disk labels" or to patch their DTBs with mmc aliases, things can stay
-> > as is. Otherwise, we can revert the async probe parts of the mmc host
-> > drivers, but that would still leave us in a fragile situation.
+On Mon, Dec 7, 2020 at 12:43 PM Daniele Alessandrelli
+<daniele.alessandrelli@linux.intel.com> wrote:
 >
-> Can you reliably detect whether the mmc aliases in the dt exist?
-> If that's possible, maybe the async flag could be masked out to only have
-> an effect when the device number is known.
+> Hi Rob,
+>
+> Thanks for the feedback.
+>
+> On Mon, 2020-12-07 at 10:01 -0600, Rob Herring wrote:
+> > On Tue, Dec 01, 2020 at 02:34:51PM -0800, mgross@linux.intel.com wrote:
+> > > From: Daniele Alessandrelli <daniele.alessandrelli@intel.com>
+> > >
+> > > Add DT binding documentation for the Intel Keem Bay IPC driver, which
+> > > enables communication between the Computing Sub-System (CSS) and the
+> > > Multimedia Sub-System (MSS) of the Intel Movidius SoC code named Keem
+> > > Bay.
+> > >
+>
+> [cut]
+>
+> > > +
+> > > +description:
+> > > +  The Keem Bay IPC driver enables Inter-Processor Communication (IPC) with the
+> > > +  Visual Processor Unit (VPU) embedded in the Intel Movidius SoC code named
+> > > +  Keem Bay.
+> >
+> > Sounds like a mailbox.
+>
+> We did consider using the mailbox framework, but eventually decided
+> against it; mainly because of the following two reasons:
+>
+> 1. The channel concept in the Mailbox framework is different than the
+>    channel concept in Keem Bay IPC:
+>
+>    a. My understanding is that Mailbox channels are meant to be SW
+>       representation of physical HW channels, while in Keem Bay IPC
+>       channels are software abstractions to achieve communication
+>       multiplexing over a single HW link
+>
+In mailbox api, that would be a physical channel shared between various clients.
 
-IMHO DT aliases are not a proper solution for this.
+>    b. Additionally, Keem Bay IPC has two different classes of channels
+>       (high-speed channels and general-purpose channels) that need to
+>       access the same HW link with different priorities.
+>
+If the priorities are hard (programmed into some register), you could
+do that via dt during channel population.
+If they are soft, that would be handled in the shared channel implementation.
 
-Yes, you can detect reliably if an alias exists in the DT.
-The problems start when having multiple devices, some with aliases,
-some without.  And when devices can appear dynamically (without
-aliases, as there is no support for dynamically updating the aliases
-list).
+> 2. The blocking / non-blocking TX behavior of mailbox channels is
+>    defined at channel creation time (by the tx_block value of the
+>    mailbox client passed to mbox_request_channel();
+>
+No, that is checked at mbox_send_message()
 
-Gr{oetje,eeting}s,
+> my understanding
+>    is that the tx_block value cannot be modified after the channel is
+>    created),
+>
+Again no. If you don't queue more than one message at any time you can
+change it between transfers. To be safe you can always change it
+between channel release - request calls.
 
-                        Geert
+>  while in Keem Bay IPC the same channel can be used for
+>    both blocking and non-blocking TX (behavior is controlled by the
+>    timeout argument passed to keembay_ipc_send()).
+>
+> Having said that, I guess that it could be possible to create a Mailbox
+> driver implementing the core communication mechanism used by the Keem
+> Bay IPC and then build our API around it (basically having two
+> drivers). But I'm not sure that would make the code simpler or easier
+> to maintain. Any thoughts on this?
+>
+I think so. Most of KeemBay specific behaviour would be implemented in
+the shared channel above the mailbox api.
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+cheers!
