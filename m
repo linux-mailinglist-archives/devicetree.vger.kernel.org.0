@@ -2,148 +2,199 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D99672D0AB3
-	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 07:32:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 911B92D0AC2
+	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 07:36:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725979AbgLGGcQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Dec 2020 01:32:16 -0500
-Received: from mailgw01.mediatek.com ([210.61.82.183]:37253 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1725681AbgLGGcP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 01:32:15 -0500
-X-UUID: 2f8c4c6776a342a895538f455e7b92bc-20201207
-X-UUID: 2f8c4c6776a342a895538f455e7b92bc-20201207
-Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw01.mediatek.com
-        (envelope-from <michael.kao@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 2145606300; Mon, 07 Dec 2020 14:31:29 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs06n2.mediatek.inc (172.21.101.130) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Mon, 7 Dec 2020 14:31:28 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 7 Dec 2020 14:31:26 +0800
-From:   Michael Kao <michael.kao@mediatek.com>
-To:     <michael.kao@mediatek.com>, <ethan.chang@mediatek.com>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        <linux-pm@vger.kernel.org>, <srv_heupstream@mediatek.com>
-CC:     Eduardo Valentin <edubezval@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        <hsinyi@chromium.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>
-Subject: [PATCH 3/3] dt-bindings: thermal: Add binding document for mt6873 thermal controller
-Date:   Mon, 7 Dec 2020 14:31:27 +0800
-Message-ID: <20201207063127.28051-4-michael.kao@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20201207063127.28051-1-michael.kao@mediatek.com>
-References: <20201207063127.28051-1-michael.kao@mediatek.com>
+        id S1725877AbgLGGgJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Dec 2020 01:36:09 -0500
+Received: from mail.kernel.org ([198.145.29.99]:33522 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725783AbgLGGgJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 7 Dec 2020 01:36:09 -0500
+From:   Vinod Koul <vkoul@kernel.org>
+Authentication-Results: mail.kernel.org; dkim=permerror (bad message/signature format)
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>, Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2 1/2] dt-bindings: pinctrl: qcom: Add SM8350 pinctrl bindings
+Date:   Mon,  7 Dec 2020 12:05:18 +0530
+Message-Id: <20201207063519.3413720-1-vkoul@kernel.org>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Type: text/plain
-X-TM-SNTS-SMTP: BDFB04AF83F3D3AE5D4ECA50903366B5660A0E752440651CC100E62B1E9D710A2000:8
-X-MTK:  N
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds binding document for mt6873 thermal controller.
+Add device tree binding Documentation details for Qualcomm SM8350
+pinctrl driver.
 
-Signed-off-by: Michael Kao <michael.kao@mediatek.com>
+Signed-off-by: Vinod Koul <vkoul@kernel.org>
 ---
- .../thermal/mediatek-thermal-lvts.yaml        | 80 +++++++++++++++++++
- 1 file changed, 80 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/thermal/mediatek-thermal-lvts.yaml
+ .../bindings/pinctrl/qcom,sm8350-pinctrl.yaml | 151 ++++++++++++++++++
+ 1 file changed, 151 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,sm8350-pinctrl.yaml
 
-diff --git a/Documentation/devicetree/bindings/thermal/mediatek-thermal-lvts.yaml b/Documentation/devicetree/bindings/thermal/mediatek-thermal-lvts.yaml
+diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sm8350-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sm8350-pinctrl.yaml
 new file mode 100644
-index 000000000000..745611718c0a
+index 000000000000..8ddb347c43da
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/thermal/mediatek-thermal-lvts.yaml
-@@ -0,0 +1,80 @@
++++ b/Documentation/devicetree/bindings/pinctrl/qcom,sm8350-pinctrl.yaml
+@@ -0,0 +1,151 @@
 +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/thermal/mediatek-thermal-lvts.yaml#
++$id: http://devicetree.org/schemas/pinctrl/qcom,sm8350-pinctrl.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Mediatek SoC LVTS thermal controller (DTS) binding
++title: Qualcomm Technologies, Inc. SM8350 TLMM block
 +
 +maintainers:
-+  - Yu-Chia Chang <ethan.chang@mediatek.com>, Michael Kao <michael.kao@mediatek.com>
++  - Vinod Koul <vkoul@kernel.org>
++
++description: |
++  This binding describes the Top Level Mode Multiplexer block found in the
++  SM8350 platform.
 +
 +properties:
 +  compatible:
-+    const: mediatek,mt6873-lvts
++    const: qcom,sm8350-pinctrl
 +
 +  reg:
++    description: Specifies the base address and size of the TLMM register space
 +    maxItems: 1
 +
 +  interrupts:
++    description: Specifies the TLMM summary IRQ
 +    maxItems: 1
 +
-+  clocks:
++  interrupt-controller: true
++
++  '#interrupt-cells':
++    description: Specifies the PIN numbers and Flags, as defined in
++      include/dt-bindings/interrupt-controller/irq.h
++    const: 2
++
++  gpio-controller: true
++
++  '#gpio-cells':
++    description: Specifying the pin number and flags, as defined in
++      include/dt-bindings/gpio/gpio.h
++    const: 2
++
++  gpio-ranges:
 +    maxItems: 1
 +
-+  clock-names:
-+    items:
-+      - const: lvts_clk
++  gpio-reserved-ranges:
++    maxItems: 1
 +
-+  "#thermal-sensor-cells":
-+    const: 0
++#PIN CONFIGURATION NODES
++patternProperties:
++  '-pins$':
++    type: object
++    description:
++      Pinctrl node's client devices use subnodes for desired pin configuration.
++      Client device subnodes use below standard properties.
++    $ref: "/schemas/pinctrl/pincfg-node.yaml"
++
++    properties:
++      pins:
++        description:
++          List of gpio pins affected by the properties specified in this subnode.
++        items:
++          oneOf:
++            - pattern: "^gpio([0-9]|[1-9][0-9]|1[0-9][0-9]|20[0-3])$"
++            - enum: [ sdc1_clk, sdc1_cmd, sdc1_data, sdc2_clk, sdc2_cmd, sdc2_data ]
++        minItems: 1
++        maxItems: 36
++
++      function:
++        description:
++          Specify the alternative function to be configured for the specified
++          pins. Functions are only valid for gpio pins.
++        enum: [ atest_char, atest_usb, audio_ref, cam_mclk, cci_async,
++                cci_i2c, cci_timer, cmu_rng, coex_uart1, coex_uart2, cri_trng,
++                cri_trng0, cri_trng1, dbg_out, ddr_bist, ddr_pxi0, ddr_pxi1,
++                ddr_pxi2, ddr_pxi3, dp_hot, dp_lcd, gcc_gp1, gcc_gp2, gcc_gp3,
++                gpio, ibi_i3c, jitter_bist, lpass_slimbus, mdp_vsync, mdp_vsync0,
++                mdp_vsync1, mdp_vsync2, mdp_vsync3, mi2s0_data0, mi2s0_data1,
++                mi2s0_sck, mi2s0_ws, mi2s1_data0, mi2s1_data1, mi2s1_sck,
++                mi2s1_ws, mi2s2_data0, mi2s2_data1, mi2s2_sck, mi2s2_ws,
++                mss_grfc0, mss_grfc1, mss_grfc10, mss_grfc11, mss_grfc12,
++                mss_grfc2, mss_grfc3, mss_grfc4, mss_grfc5, mss_grfc6,
++                mss_grfc7, mss_grfc8, mss_grfc9, nav_gpio, pa_indicator,
++                pcie0_clkreqn, pcie1_clkreqn, phase_flag, pll_bist, pll_clk,
++                pri_mi2s, prng_rosc, qdss_cti, qdss_gpio, qlink0_enable,
++                qlink0_request, qlink0_wmss, qlink1_enable, qlink1_request,
++                qlink1_wmss, qlink2_enable, qlink2_request, qlink2_wmss, qspi0,
++                qspi1, qspi2, qspi3, qspi_clk, qspi_cs, qup0, qup1, qup10,
++                qup11, qup12, qup13, qup14, qup15, qup16, qup17, qup18, qup19,
++                qup2, qup3, qup4, qup5, qup6, qup7, qup8, qup9, qup_l4, qup_l5,
++                qup_l6, sd_write, sdc40, sdc41, sdc42, sdc43, sdc4_clk,
++                sdc4_cmd, sec_mi2s, tb_trig, tgu_ch0, tgu_ch1, tgu_ch2,
++                tgu_ch3, tsense_pwm1, tsense_pwm2, uim0_clk, uim0_data,
++                uim0_present, uim0_reset, uim1_clk, uim1_data, uim1_present,
++                uim1_reset, usb2phy_ac, usb_phy, vfr_0, vfr_1, vsense_trigger ]
++
++
++      drive-strength:
++        enum: [2, 4, 6, 8, 10, 12, 14, 16]
++        default: 2
++        description:
++          Selects the drive strength for the specified pins, in mA.
++
++      bias-pull-down: true
++
++      bias-pull-up: true
++
++      bias-disable: true
++
++      output-high: true
++
++      output-low: true
++
++    required:
++      - pins
++      - function
++
++    additionalProperties: false
 +
 +required:
-+  - "#thermal-sensor-cells"
 +  - compatible
 +  - reg
 +  - interrupts
-+  - clocks
-+  - clock-names
++  - interrupt-controller
++  - '#interrupt-cells'
++  - gpio-controller
++  - '#gpio-cells'
++  - gpio-ranges
 +
 +additionalProperties: false
 +
 +examples:
 +  - |
-+    #include <dt-bindings/thermal/thermal.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/clock/mt8192-clk.h>
-+    dts: lvts@1100b000 {
-+        compatible = "mediatek,mt6873-lvts";
-+        reg = <0x1100b000 0x1000>;
-+        clocks = <&infracfg CLK_INFRA_THERM>;
-+        clock-names = "lvts_clk";
-+        #thermal-sensor-cells = <0>;
-+        interrupts = <GIC_SPI 147 IRQ_TYPE_LEVEL_HIGH>;
-+    };
-+
-+    thermal-zones {
-+        cpu_thermal: cpu-thermal {
-+            polling-delay-passive = <0>;
-+            polling-delay = <0>;
-+
-+            thermal-sensors = <&dts>;
-+            trips {
-+                cpu_alert1: cpu-alert1 {
-+                    temperature = <85000>;
-+                    hysteresis = <0>;
-+                    type = "passive";
-+                };
-+
-+                cpu_crit: cpu-crit {
-+                    temperature = <120000>;
-+                    hysteresis = <0>;
-+                    type = "critical";
-+                };
-+            };
-+
-+            cooling-maps {
-+            };
++        #include <dt-bindings/interrupt-controller/arm-gic.h>
++        tlmm: pinctrl@f000000 {
++          compatible = "qcom,sm8350-pinctrl";
++          reg = <0x0f100000 0x300000>;
++          interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
++          gpio-controller;
++          #gpio-cells = <2>;
++          interrupt-controller;
++          #interrupt-cells = <2>;
++          gpio-ranges = <&tlmm 0 0 203>;
++          serial-pins {
++            pins = "gpio18", "gpio19";
++            function = "qup3";
++            drive-strength = <8>;
++            bias-disable;
++          };
 +        };
-+    };
++
 +...
 -- 
-2.18.0
+2.26.2
 
