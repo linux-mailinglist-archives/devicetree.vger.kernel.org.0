@@ -2,182 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6AF592D1715
-	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 18:05:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B055B2D171A
+	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 18:05:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727059AbgLGRCt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Dec 2020 12:02:49 -0500
-Received: from mail-oi1-f194.google.com ([209.85.167.194]:38604 "EHLO
+        id S1725863AbgLGREg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Dec 2020 12:04:36 -0500
+Received: from mail-oi1-f194.google.com ([209.85.167.194]:35842 "EHLO
         mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725863AbgLGRCt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 12:02:49 -0500
-Received: by mail-oi1-f194.google.com with SMTP id o25so16137094oie.5;
-        Mon, 07 Dec 2020 09:02:33 -0800 (PST)
+        with ESMTP id S1725774AbgLGREg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 12:04:36 -0500
+Received: by mail-oi1-f194.google.com with SMTP id x16so16168591oic.3;
+        Mon, 07 Dec 2020 09:04:20 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=WhUIrDtbx95VVaLpPCnUUxF3hbxbXkZibqs0hBKgFBI=;
-        b=eZevYyfy8KW8VoIUfstmAgw4/0QpfXVEz8digP+rTxhu6gmx+NqpQRl71KGdojmkFz
-         GUhxvMwrpyV7ijMGI3qZjwtjaYXcwuoSzSh1aM5c9OXpRW2VSzoACy81EK/2bu+GqzVa
-         Hf5JYzJ4iPRSocbWoKmsxkopvyQULuxJdaqqyAE9t5TNIODqsre0npJ33Athh89WSxkA
-         ioYnTvqzySxrwgAYRDg2AkzAit+qVha+JDKQrhGJbroTsyOFsr8mkpZttI1aQa53q6Qu
-         8rNcLC30nuDo6Pja3PJQDwE3LslUu9c2HdYH8EPXOejxQBTVC2pS/6D7vJTtagUszp2q
-         OAuw==
-X-Gm-Message-State: AOAM530Edd8xi2jbLJH5sY4G4VBpLqC2RDoaH+vLb+nlS2plHttn49HR
-        5YGZFYXQwn3SLDtCa1ZPkg==
-X-Google-Smtp-Source: ABdhPJwoMHlcpltnFQNrr+DMIIKPVZojsPWQGzZZCZM4H/mZ7zsCV2lm7aLdzZNGLecptEp8zSgcjQ==
-X-Received: by 2002:aca:f289:: with SMTP id q131mr12905613oih.159.1607360528354;
-        Mon, 07 Dec 2020 09:02:08 -0800 (PST)
+        bh=19119qT55jo1E4qrWnIhabF5L38EkieKkqJe7d3pVh4=;
+        b=h6XDpKm0p1bCQ89j4bVamFTzcD2zQoq332clhIM+R8wHIA9GNodsalF/wgOUBzhjJS
+         k2mLONLUCBCvgy7WaWrCWQ++gHmFqBmyGNKtsDpZx9V8axx76fLCKUc65r1QLC1QKB/q
+         RO9eIXH0zXfAvMNDP7RSQnRjnEuntt1zjNUwS3xKKvloNsY5sPO+9KmIq2EqLbQ0sVZa
+         9UkTdg8n5/A4AQfs5g3+QnmMj0cIvcKLJnKFdGGMWMTaKF6jxPg3G4m67AOnY3XUZ7NC
+         wQU1ZENAI7UJoJnggKbiqtaImp/ISYsSsarVsq2cFBp18j0LW4aZBd26QPEbYjmx4skd
+         aQ4A==
+X-Gm-Message-State: AOAM532FfXhn7msFSK0JnEgTRHbxHnNN3UcD2kvOYq0s95/0QxQxCrnf
+        b4aeTH2M+U8oRSJ8ugvKfQ==
+X-Google-Smtp-Source: ABdhPJyBNmiiAD7WrCmET03nS+b6iaipwxbjuAnKKBQf6mUm+C30OUOrc++vnzrLL/+G5RhWs05D6Q==
+X-Received: by 2002:aca:5711:: with SMTP id l17mr6127842oib.53.1607360635005;
+        Mon, 07 Dec 2020 09:03:55 -0800 (PST)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id j126sm3045161oib.13.2020.12.07.09.02.06
+        by smtp.gmail.com with ESMTPSA id m81sm3037226oib.37.2020.12.07.09.03.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Dec 2020 09:02:07 -0800 (PST)
-Received: (nullmailer pid 437794 invoked by uid 1000);
-        Mon, 07 Dec 2020 17:02:06 -0000
-Date:   Mon, 7 Dec 2020 11:02:06 -0600
+        Mon, 07 Dec 2020 09:03:54 -0800 (PST)
+Received: (nullmailer pid 439974 invoked by uid 1000);
+        Mon, 07 Dec 2020 17:03:52 -0000
+Date:   Mon, 7 Dec 2020 11:03:52 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Liu Ying <victor.liu@nxp.com>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, p.zabel@pengutronix.de,
-        airlied@linux.ie, daniel@ffwll.ch, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, maarten.lankhorst@linux.intel.com,
-        mripard@kernel.org, tzimmermann@suse.de,
-        laurentiu.palcu@oss.nxp.com
-Subject: Re: [PATCH v3 3/6] dt-bindings: display: imx: Add i.MX8qxp/qm DPR
- channel binding
-Message-ID: <20201207170206.GA434964@robh.at.kernel.org>
-References: <1607311260-13983-1-git-send-email-victor.liu@nxp.com>
- <1607311260-13983-4-git-send-email-victor.liu@nxp.com>
+To:     Michael Kao <michael.kao@mediatek.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        linux-mediatek@lists.infradead.org,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Eduardo Valentin <edubezval@gmail.com>,
+        linux-arm-kernel@lists.infradead.org, srv_heupstream@mediatek.com,
+        hsinyi@chromium.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Mark Rutland <mark.rutland@arm.com>,
+        ethan.chang@mediatek.com, Zhang Rui <rui.zhang@intel.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-pm@vger.kernel.org
+Subject: Re: [PATCH 3/3] dt-bindings: thermal: Add binding document for
+ mt6873 thermal controller
+Message-ID: <20201207170352.GA439416@robh.at.kernel.org>
+References: <20201207063127.28051-1-michael.kao@mediatek.com>
+ <20201207063127.28051-4-michael.kao@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1607311260-13983-4-git-send-email-victor.liu@nxp.com>
+In-Reply-To: <20201207063127.28051-4-michael.kao@mediatek.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 07, 2020 at 11:20:57AM +0800, Liu Ying wrote:
-> This patch adds bindings for i.MX8qxp/qm Display Prefetch Resolve Channel.
+On Mon, 07 Dec 2020 14:31:27 +0800, Michael Kao wrote:
+> This patch adds binding document for mt6873 thermal controller.
 > 
-> Signed-off-by: Liu Ying <victor.liu@nxp.com>
+> Signed-off-by: Michael Kao <michael.kao@mediatek.com>
 > ---
-> Note that this depends on the 'two cell binding' clock patch set which has
-> already landed in Shawn's i.MX clk/imx git branch.  Otherwise, imx8-lpcg.h
-> won't be found.
+>  .../thermal/mediatek-thermal-lvts.yaml        | 80 +++++++++++++++++++
+>  1 file changed, 80 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/thermal/mediatek-thermal-lvts.yaml
 > 
-> v2->v3:
-> * No change.
-> 
-> v1->v2:
-> * Use new dt binding way to add clocks in the example.
-> 
->  .../bindings/display/imx/fsl,imx8qxp-dprc.yaml     | 87 ++++++++++++++++++++++
->  1 file changed, 87 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dprc.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dprc.yaml b/Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dprc.yaml
-> new file mode 100644
-> index 00000000..91e9472
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dprc.yaml
-> @@ -0,0 +1,87 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/imx/fsl,imx8qxp-dprc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Freescale i.MX8qm/qxp Display Prefetch Resolve Channel
-> +
-> +maintainers:
-> +  - Liu Ying <victor.liu@nxp.com>
-> +
-> +description: |
-> +  The i.MX8qm/qxp Display Prefetch Resolve Channel(DPRC) is an engine which
-> +  fetches display data before the display pipeline needs the data to drive
-> +  pixels in the active display region.  This data is transformed, or resolved,
-> +  from a variety of tiled buffer formats into linear format, if needed.
-> +  The DPR works with a double bank memory structure.  This memory structure is
-> +  implemented in the Resolve Tile Memory(RTRAM) and the banks are referred to
-> +  as A and B.  Each bank is either 4 or 8 lines high depending on the source
-> +  frame buffer format.
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - const: fsl,imx8qxp-dpr-channel
-> +      - const: fsl,imx8qm-dpr-channel
 
-enum instead of oneOf+const.
 
-With that,
+My bot found errors running 'make dt_binding_check' on your patch:
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+yamllint warnings/errors:
 
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: apb clock
-> +      - description: b clock
-> +      - description: rtram clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: apb
-> +      - const: b
-> +      - const: rtram
-> +
-> +  fsl,sc-resource:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: The SCU resource ID associated with this DPRC instance.
-> +
-> +  fsl,prgs:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    description: |
-> +      List of phandle which points to Prefetch Resolve Gaskets(PRGs)
-> +      associated with this DPRC instance.
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
-> +  - fsl,sc-resource
-> +  - fsl,prgs
-> +  - power-domains
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/imx8-lpcg.h>
-> +    #include <dt-bindings/firmware/imx/rsrc.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    dpr-channel@56100000 {
-> +        compatible = "fsl,imx8qxp-dpr-channel";
-> +        reg = <0x56100000 0x10000>;
-> +        interrupts = <GIC_SPI 51 IRQ_TYPE_LEVEL_HIGH>;
-> +        clocks = <&dc0_dpr1_lpcg IMX_LPCG_CLK_4>,
-> +                 <&dc0_dpr1_lpcg IMX_LPCG_CLK_5>,
-> +                 <&dc0_rtram1_lpcg IMX_LPCG_CLK_0>;
-> +        clock-names = "apb", "b", "rtram";
-> +        fsl,sc-resource = <IMX_SC_R_DC_0_VIDEO0>;
-> +        fsl,prgs = <&dc0_prg4>, <&dc0_prg5>;
-> +        power-domains = <&pd IMX_SC_R_DC_0>;
-> +    };
-> -- 
-> 2.7.4
-> 
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/thermal/mediatek-thermal-lvts.example.dts:21:18: fatal error: dt-bindings/clock/mt8192-clk.h: No such file or directory
+   21 |         #include <dt-bindings/clock/mt8192-clk.h>
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+make[1]: *** [scripts/Makefile.lib:342: Documentation/devicetree/bindings/thermal/mediatek-thermal-lvts.example.dt.yaml] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1364: dt_binding_check] Error 2
+
+
+See https://patchwork.ozlabs.org/patch/1411898
+
+The base for the patch is generally the last rc1. Any dependencies
+should be noted.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
