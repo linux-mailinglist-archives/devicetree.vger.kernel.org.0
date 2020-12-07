@@ -2,168 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ABC162D0D43
-	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 10:44:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 250142D0D45
+	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 10:45:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726184AbgLGJoV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Dec 2020 04:44:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52058 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725770AbgLGJoV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 04:44:21 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B21F1C0613D0
-        for <devicetree@vger.kernel.org>; Mon,  7 Dec 2020 01:43:40 -0800 (PST)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <l.stach@pengutronix.de>)
-        id 1kmD3T-0004Da-43; Mon, 07 Dec 2020 10:43:39 +0100
-Message-ID: <747017147843bbb1652c6bb67e1f4c04319b032d.camel@pengutronix.de>
-Subject: Re: [PATCH] arm64: dts imx8mm: Add power domains
-From:   Lucas Stach <l.stach@pengutronix.de>
-To:     Adrien Grassein <adrien.grassein@gmail.com>
-Cc:     devicetree@vger.kernel.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, robh+dt@kernel.org, linux-imx@nxp.com,
-        kernel@pengutronix.de, festevam@gmail.com
-Date:   Mon, 07 Dec 2020 10:43:38 +0100
-In-Reply-To: <20201206174304.28106-1-adrien.grassein@gmail.com>
-References: <20201206174304.28106-1-adrien.grassein@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.38.1 (3.38.1-1.fc33) 
+        id S1726044AbgLGJow (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Dec 2020 04:44:52 -0500
+Received: from mail-bn8nam11on2051.outbound.protection.outlook.com ([40.107.236.51]:11040
+        "EHLO NAM11-BN8-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1725770AbgLGJow (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 7 Dec 2020 04:44:52 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=lkL/HVRiNdVktu7svvCURwyfPWPG0/QjOepqfH/jqmbMqz24+M01+DF9AaFbPuawrz3Z2LPI3obathbFVQRlvj4IIdmwW6nd4ZJpV8UuoAGBC1KBMVIhlh/qGCLCbRK5J5jw3bdkrYmo8VdUF3ajYiRoM5FnJaqHbq2cvtAam5JwBMZ13hoEfCa3AHYCPX8mM63SVTCIuwsZP4krVCp9oyWqG3f4TTF0uNEE6Qc6Ibgr8gVRMX8LludCL1HsWesaVGDHybuywiiRabti3gYEN+Tu2xYZtiG1Fa13ozgK8yeWS7XBtoXH9qYh/z/Y+mmZEnxkgPR1hc2mQy4LboM3UA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=x/Yy1WOLNI7WGFe6bTMWyBcgy56mDktoCKquvexUJ8g=;
+ b=Ji1LyPUgsZUZY7RTFnq5tE3iLo+8KRf9fIVmnRFlnv7lEYWsjtt4Mu9TIHqBI2s7sKzVyL9jTjiljFrRZY/aQE7cRhovlSmy2ccJ9FBhxmdCK9+3LujjSorHJEYvH8UYd3Uykg+zGs0+UUJ2EbDozMFU8vgdmEP53oYUjbV8nj1HBW/64buzSC0jRJ4c1FYq8fzhGkPx9a9aAS87Q7639zwmpBkqYEmT72jpk7KD1UHHM09m6Ilf3glVkwIDC45Bsda306bIctJRNCuo884Tc2bO35bjSxvaFaP+nx/VLQ8KsnwpYY4551BrZe5hfxDthcmxs/Z033+LsI5CBBamEw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 149.199.62.198) smtp.rcpttodomain=lists.infradead.org
+ smtp.mailfrom=xilinx.com; dmarc=bestguesspass action=none
+ header.from=xilinx.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=x/Yy1WOLNI7WGFe6bTMWyBcgy56mDktoCKquvexUJ8g=;
+ b=LePS8ZAg+NkkQ78Ll0JtfUYBg4NnxNw/MtB66Ww76+KMvEk5tLobYYbI5I/b7Td/Vh06UVxaeCumUOu4rKYfbNzO7sqLmCKZTogB3LVmt7QP0NPQu89pMNuHTCB61SGeJJoOk+fhVM/oeggWqLy1p7ii06S/6L02HccAzPv7U4Y=
+Received: from BL1PR13CA0481.namprd13.prod.outlook.com (2603:10b6:208:2c7::6)
+ by MWHPR02MB2799.namprd02.prod.outlook.com (2603:10b6:300:107::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3632.21; Mon, 7 Dec
+ 2020 09:43:59 +0000
+Received: from BL2NAM02FT009.eop-nam02.prod.protection.outlook.com
+ (2603:10b6:208:2c7:cafe::a5) by BL1PR13CA0481.outlook.office365.com
+ (2603:10b6:208:2c7::6) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3654.10 via Frontend
+ Transport; Mon, 7 Dec 2020 09:43:58 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
+ smtp.mailfrom=xilinx.com; lists.infradead.org; dkim=none (message not signed)
+ header.d=none;lists.infradead.org; dmarc=bestguesspass action=none
+ header.from=xilinx.com;
+Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
+ 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=149.199.62.198; helo=xsj-pvapexch02.xlnx.xilinx.com;
+Received: from xsj-pvapexch02.xlnx.xilinx.com (149.199.62.198) by
+ BL2NAM02FT009.mail.protection.outlook.com (10.152.77.68) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.3632.21 via Frontend Transport; Mon, 7 Dec 2020 09:43:58 +0000
+Received: from xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) by
+ xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1913.5; Mon, 7 Dec 2020 01:43:43 -0800
+Received: from smtp.xilinx.com (172.19.127.95) by
+ xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) with Microsoft SMTP Server id
+ 15.1.1913.5 via Frontend Transport; Mon, 7 Dec 2020 01:43:43 -0800
+Envelope-to: git@xilinx.com,
+ michal.simek@xilinx.com,
+ rajan.vaja@xilinx.com,
+ linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org,
+ robh+dt@kernel.org,
+ krzk@kernel.org,
+ monstr@monstr.eu,
+ linux-kernel@vger.kernel.org,
+ laurent.pinchart@ideasonboard.com
+Received: from [172.30.17.109] (port=44528)
+        by smtp.xilinx.com with esmtp (Exim 4.90)
+        (envelope-from <michal.simek@xilinx.com>)
+        id 1kmD3W-0003T2-S1; Mon, 07 Dec 2020 01:43:43 -0800
+Subject: Re: [PATCH 06/12] arm64: dts: zynqmp: Add label for zynqmp_ipi
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Michal Simek <michal.simek@xilinx.com>
+CC:     <linux-kernel@vger.kernel.org>, <monstr@monstr.eu>,
+        <git@xilinx.com>, Kalyani Akula <kalyani.akula@xilinx.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Manish Narani <manish.narani@xilinx.com>,
+        Rajan Vaja <rajan.vaja@xilinx.com>,
+        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <cover.1606917949.git.michal.simek@xilinx.com>
+ <272e23e0123f02c559bfa4ada9de73eb197aced8.1606917949.git.michal.simek@xilinx.com>
+ <X81fXtxvsc7KE7cK@pendragon.ideasonboard.com>
+ <X81forerb/QuXB2U@pendragon.ideasonboard.com>
+From:   Michal Simek <michal.simek@xilinx.com>
+Message-ID: <0c35fcf0-145e-b3a9-9af9-a5f60ede10c2@xilinx.com>
+Date:   Mon, 7 Dec 2020 10:43:39 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.5.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <X81forerb/QuXB2U@pendragon.ideasonboard.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 4659a6d8-e9c2-4380-33ec-08d89a949f25
+X-MS-TrafficTypeDiagnostic: MWHPR02MB2799:
+X-LD-Processed: 657af505-d5df-48d0-8300-c31994686c5c,ExtAddr
+X-Microsoft-Antispam-PRVS: <MWHPR02MB27995F94016BDF404AF6EEE4C6CE0@MWHPR02MB2799.namprd02.prod.outlook.com>
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: AandRqEsTWom7sbyi9PQ4dgf/Xi8DPaKi/j8oqfPjnEMpHcSWD/LD9DKZDalinXHKkn1vL/DzI52KUGPgtv2X1e2ZeblfzbVoepOlVozq1sBrhV5PJy7IcjEkWTKvT2Q2S0Em+5ZnAK+EiGxmKUojetvp29lGPJmMjZKttF9ZSu8SKNJAbQFAG4dOZkkJS4KQ1ew7W/azn+6tv7aINCxuu6O4mhLKBQhHum9ORT78yAkW8FSUo0GMPahZLDhaLFowk6Q2y6QKzwLelAOhYGkmfpoQWugRvXEkq2qaSsSI+lM8MUydegxCj4oZ8QL0fCXvAX7Q4Zrjturms6UUWai6iwHG5mv1iT0D2rgoUOgroJ5IRl7MD0mIfHGtuDtwM7cYJ9BGOHr99alzy7QkQdB3jYa48BgW9eDxdFldRzVtd0PdNC7puGCv9IXf2PFBtzxFqS2AZR409vMLg1UuXQlEw==
+X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch02.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(4636009)(39850400004)(136003)(376002)(396003)(346002)(46966005)(36756003)(26005)(8936002)(186003)(9786002)(44832011)(31686004)(316002)(36906005)(426003)(6666004)(478600001)(82310400003)(5660300002)(2906002)(336012)(82740400003)(110136005)(2616005)(70586007)(54906003)(4326008)(70206006)(47076004)(8676002)(356005)(7636003)(31696002)(50156003)(43740500002);DIR:OUT;SFP:1101;
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Dec 2020 09:43:58.7358
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4659a6d8-e9c2-4380-33ec-08d89a949f25
+X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch02.xlnx.xilinx.com]
+X-MS-Exchange-CrossTenant-AuthSource: BL2NAM02FT009.eop-nam02.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR02MB2799
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Adrien,
-
-Am Sonntag, den 06.12.2020, 18:43 +0100 schrieb Adrien Grassein:
-Power domains were not defined for imx8mm
-but, according to spec, they are the same as on
-the imx8mq SoC.
-
-This patch is wrong. The power domains on the i.MX8MM are significantly
-different from i.MX8MQ.
-
-There is already a basic implementation of the power domains for
-i.MX8MM on the list (for now without VPU and display domains):
-[PATCH v2 00/13] i.MX8MM power domain support
-
-Tested on a Boundary Nitrogen 8M Mini board.
-
-Please help test the above series.
-
-Regards,
-Lucas
 
 
-Signed-off-by: Adrien Grassein <adrien.grassein@gmail.com>
----
- arch/arm64/boot/dts/freescale/imx8mm.dtsi | 76 +++++++++++++++++++++++
- 1 file changed, 76 insertions(+)
+On 06. 12. 20 23:48, Laurent Pinchart wrote:
+> On Mon, Dec 07, 2020 at 12:46:56AM +0200, Laurent Pinchart wrote:
+>> Hi Michal,
+>>
+>> Thank you for the patch.
+>>
+>> On Wed, Dec 02, 2020 at 03:06:05PM +0100, Michal Simek wrote:
+>>> Add label which is used by bootloader for adding bootloader specific flag.
+>>>
+>>> Signed-off-by: Michal Simek <michal.simek@xilinx.com>
+>>> ---
+>>>
+>>> U-Boot needs to add u-boot,dm-pre-reloc; property
+>>
+>> I'm not entirely sure what best practice rules are in this area, but
+>> shouldn't U-Boot locate the node by name instead of label ?
+> 
+> And regardless of what mechanism is used, it should be documented in the
+> bindings.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-index 05ee062548e4..72f69a6da5c3 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-@@ -8,6 +8,7 @@
- #include <dt-bindings/input/input.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/thermal/thermal.h>
-+#include <dt-bindings/power/imx8mq-power.h>
- 
+I don't think we should be documenting labels because names can be
+whatever. DT binding spec is just talking about name rules.
 
- #include "imx8mm-pinfunc.h"
- 
+6.2 chapter.
 
-@@ -549,6 +550,81 @@
- 			};
- 		};
- 
+A label shall be between - 1 to 31 characters in length, be composed
+only of the characters in the set Table 6.1, and must not start with a
+number.
 
-+		gpc: gpc@303a0000 {
-+			compatible = "fsl,imx8mq-gpc";
-+			reg = <0x303a0000 0x10000>;
-+			interrupts = <GIC_SPI 87 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-parent = <&gic>;
-+			interrupt-controller;
-+			#interrupt-cells = <3>;
-+
-+			pgc {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				pgc_mipi: power-domain@0 {
-+					#power-domain-cells = <0>;
-+					reg = <IMX8M_POWER_DOMAIN_MIPI>;
-+				};
-+
-+				/*
-+				 * As per comment in ATF source code:
-+				 *
-+				 * PCIE1 and PCIE2 share the
-+				 * same reset signal, if we
-+				 * power down PCIE2, PCIE1
-+				 * will be held in reset too.
-+				 *
-+				 * So instead of creating two
-+				 * separate power domains for
-+				 * PCIE1 and PCIE2 we create a
-+				 * link between both and use
-+				 * it as a shared PCIE power
-+				 * domain.
-+				 */
-+				pgc_pcie: power-domain@1 {
-+					#power-domain-cells = <0>;
-+					reg = <IMX8M_POWER_DOMAIN_PCIE1>;
-+					power-domains = <&pgc_pcie2>;
-+				};
-+
-+				pgc_otg1: power-domain@2 {
-+					#power-domain-cells = <0>;
-+					reg = <IMX8M_POWER_DOMAIN_USB_OTG1>;
-+				};
-+
-+				pgc_otg2: power-domain@3 {
-+					#power-domain-cells = <0>;
-+					reg = <IMX8M_POWER_DOMAIN_USB_OTG2>;
-+				};
-+
-+				pgc_ddr1: power-domain@4 {
-+					#power-domain-cells = <0>;
-+					reg = <IMX8M_POWER_DOMAIN_DDR1>;
-+				};
-+
-+				pgc_disp: power-domain@7 {
-+					#power-domain-cells = <0>;
-+					reg = <IMX8M_POWER_DOMAIN_DISP>;
-+				};
-+
-+				pgc_mipi_csi1: power-domain@8 {
-+					#power-domain-cells = <0>;
-+					reg = <IMX8M_POWER_DOMAIN_MIPI_CSI1>;
-+				};
-+
-+				pgc_mipi_csi2: power-domain@9 {
-+					#power-domain-cells = <0>;
-+					reg = <IMX8M_POWER_DOMAIN_MIPI_CSI2>;
-+				};
-+
-+				pgc_pcie2: power-domain@a {
-+					#power-domain-cells = <0>;
-+					reg = <IMX8M_POWER_DOMAIN_PCIE2>;
-+				};
-+			};
-+		};
-+
- 		aips2: bus@30400000 {
- 			compatible = "fsl,aips-bus", "simple-bus";
- 			reg = <0x30400000 0x400000>;
+- Table 6.1: Valid characters for DTS labels
+Character	Description
+0-9		digit
+a-z		lowercase letter
+A-Z		uppercase letter
+_		underscore
 
-
+Thanks,
+Michal
