@@ -2,162 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DA6F42D1722
-	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 18:10:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D4C782D176A
+	for <lists+devicetree@lfdr.de>; Mon,  7 Dec 2020 18:23:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726778AbgLGRIq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Dec 2020 12:08:46 -0500
-Received: from mail-oo1-f65.google.com ([209.85.161.65]:40904 "EHLO
-        mail-oo1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725822AbgLGRIp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 12:08:45 -0500
-Received: by mail-oo1-f65.google.com with SMTP id 9so678784ooy.7;
-        Mon, 07 Dec 2020 09:08:24 -0800 (PST)
+        id S1726035AbgLGRVy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Dec 2020 12:21:54 -0500
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:44491 "EHLO
+        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725814AbgLGRVy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 12:21:54 -0500
+Received: by mail-ot1-f67.google.com with SMTP id f16so13146652otl.11;
+        Mon, 07 Dec 2020 09:21:38 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=SogwgdPzZLs7UQaCL9uSzW/XvOBxKSbmidKt0mKHBqM=;
-        b=aJx5WW/j4od1ZI/UXgIQFLm2qASM/Zs+X/uY5MhumaD91MFNDqkvd9MiesjSNeEj5I
-         Er2DBOTLVDQFtoC36B9IoK4T8E36XK8GGhpLAAOq//BwwysjF+1D0JqBhwc/uk8/STb+
-         EEJUP2CwqOjmG5k4qPBlK0RMUCmWMbQqUocW9FVZg2qEvBliE7TorbiLeNb6U1rH5Tos
-         3EU7+o5LuZFwroRVHLAQeo9z8ris+/bD0yjALGk+v6YcZ8kB/8PRPFMfmj9/bNtupvEO
-         y+CQdxduM94PgLednxPbYnQWEOxFYPtCMZRUXfavaSpp/RIEWnNGSfdHAF7s0ACNq7et
-         dmDQ==
-X-Gm-Message-State: AOAM530Y9xFUfMaI9LVU0z/oICLsfxZwpLme+2w/5dK/RZ8ft77zAjEr
-        Yo8E1vCjagBPbTxA0Igl7A==
-X-Google-Smtp-Source: ABdhPJzmdnrsrHxYVXf/qeAQGbpnlZ7/zYKbrxltqs4VunJ1rWtUE6YSlqOlmfjWhHbswR7eYMS+4w==
-X-Received: by 2002:a4a:3e42:: with SMTP id t63mr1568149oot.32.1607360878900;
-        Mon, 07 Dec 2020 09:07:58 -0800 (PST)
+        bh=itlqPicSMRd57nRY/PX69XHL3uisVndeLcgR+EO03z4=;
+        b=mbvqKxDGbBhv+7vVRklEWVJc0/MEjniQLTVFMV/+TFtv1CZke5yEP9a8BjP81LBamG
+         LYtJ0Y+GexfcKwZX1kLRJO0EsWRfjaOtom5WA5cEo1dy1FAwB+TTd+4RjLmhkPwf6fxn
+         ZpC6yhQInj7Abhzc88lw4B9BfIeDcfZb6ffg6lDuay05UqbvMGO31XNa4N/nQ1jeZzFP
+         vr0rsr+RsyVmMuarAWehQyXHqqlNlM57f8SIFNLl0Sayt3UvYUvgejDXQPFHsOOPLLwN
+         +6ZYiqOH1+Fn2oI1X3GctpNAdq9s5Hx8dRlsy4n9U8eejw3QFPc6psHbkh1/EEnxr1ps
+         MfgA==
+X-Gm-Message-State: AOAM533Y9ht3CN+XRiFUBMpKQrLBoIpFQUb5FQzjYnN7+K+PJ39tAZ3T
+        8O4F3R6iSgY5nH85qHDOMg==
+X-Google-Smtp-Source: ABdhPJxN3RwybzAnbl8yifcm/Ew7Kpeu2mQ+OZpWky+VxeYPzAn337QI8AxN98X31l6hvUYFcHYR4A==
+X-Received: by 2002:a05:6830:1349:: with SMTP id r9mr6019026otq.256.1607361673016;
+        Mon, 07 Dec 2020 09:21:13 -0800 (PST)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id k13sm2929820otl.72.2020.12.07.09.07.57
+        by smtp.gmail.com with ESMTPSA id t13sm3050904oic.4.2020.12.07.09.21.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Dec 2020 09:07:58 -0800 (PST)
-Received: (nullmailer pid 445307 invoked by uid 1000);
-        Mon, 07 Dec 2020 17:07:56 -0000
-Date:   Mon, 7 Dec 2020 11:07:56 -0600
+        Mon, 07 Dec 2020 09:21:12 -0800 (PST)
+Received: (nullmailer pid 465658 invoked by uid 1000);
+        Mon, 07 Dec 2020 17:21:11 -0000
+Date:   Mon, 7 Dec 2020 11:21:11 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Michael Kao <michael.kao@mediatek.com>
-Cc:     ethan.chang@mediatek.com, Zhang Rui <rui.zhang@intel.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        linux-pm@vger.kernel.org, srv_heupstream@mediatek.com,
-        Eduardo Valentin <edubezval@gmail.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>, hsinyi@chromium.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+To:     Chris Ruehl <chris.ruehl@gtsys.com.hk>
+Cc:     devicetree@vger.kernel.org, Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>, linux-kernel@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH 3/3] dt-bindings: thermal: Add binding document for
- mt6873 thermal controller
-Message-ID: <20201207170756.GB439416@robh.at.kernel.org>
-References: <20201207063127.28051-1-michael.kao@mediatek.com>
- <20201207063127.28051-4-michael.kao@mediatek.com>
+        linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH 2/2] devicetree: phy: rockchip-emmc add
+ output-tapdelay-select
+Message-ID: <20201207172039.GA463809@robh.at.kernel.org>
+References: <20201202082507.3536-1-chris.ruehl@gtsys.com.hk>
+ <20201202082507.3536-3-chris.ruehl@gtsys.com.hk>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201207063127.28051-4-michael.kao@mediatek.com>
+In-Reply-To: <20201202082507.3536-3-chris.ruehl@gtsys.com.hk>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 07, 2020 at 02:31:27PM +0800, Michael Kao wrote:
-> This patch adds binding document for mt6873 thermal controller.
+On Wed, Dec 02, 2020 at 04:25:07PM +0800, Chris Ruehl wrote:
+> Update the rockchip-emmc-phy.txt and add the u32 property
+> 'output-tapdelay-select'. This allow to set the otapdlysec register.
 > 
-> Signed-off-by: Michael Kao <michael.kao@mediatek.com>
+> Tested with our customized rk3399 board to tune eMMC.
+> 
+> Signed-off-by: Chris Ruehl <chris.ruehl@gtsys.com.hk>
 > ---
->  .../thermal/mediatek-thermal-lvts.yaml        | 80 +++++++++++++++++++
->  1 file changed, 80 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/thermal/mediatek-thermal-lvts.yaml
+>  Documentation/devicetree/bindings/phy/rockchip-emmc-phy.txt | 3 +++
+>  1 file changed, 3 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/thermal/mediatek-thermal-lvts.yaml b/Documentation/devicetree/bindings/thermal/mediatek-thermal-lvts.yaml
-> new file mode 100644
-> index 000000000000..745611718c0a
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/thermal/mediatek-thermal-lvts.yaml
-> @@ -0,0 +1,80 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/thermal/mediatek-thermal-lvts.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Mediatek SoC LVTS thermal controller (DTS) binding
-> +
-> +maintainers:
-> +  - Yu-Chia Chang <ethan.chang@mediatek.com>, Michael Kao <michael.kao@mediatek.com>
+> diff --git a/Documentation/devicetree/bindings/phy/rockchip-emmc-phy.txt b/Documentation/devicetree/bindings/phy/rockchip-emmc-phy.txt
+> index 3e4d2d79a65d..00aa2d349e55 100644
+> --- a/Documentation/devicetree/bindings/phy/rockchip-emmc-phy.txt
+> +++ b/Documentation/devicetree/bindings/phy/rockchip-emmc-phy.txt
+> @@ -18,6 +18,9 @@ Optional properties:
+>                          If not set, the default value of 50 will be applied.
+>   - enable-strobe-pulldown: Enable internal pull-down for the strobe line.
+>                             If not set, pull-down is not used.
+> + - output-tapdelay-select: Specifies the phyctrl_otapdlysec register.
+> +                           If not set, the register defaults to 0x4.
+> +                           Maximum value 0xf.
 
-Not the right format. 1 email per entry.
+Needs a vendor prefix.
 
-> +
-> +properties:
-> +  compatible:
-> +    const: mediatek,mt6873-lvts
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    items:
-> +      - const: lvts_clk
-> +
-> +  "#thermal-sensor-cells":
-> +    const: 0
-> +
-> +required:
-> +  - "#thermal-sensor-cells"
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/thermal/thermal.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/clock/mt8192-clk.h>
-> +    dts: lvts@1100b000 {
-> +        compatible = "mediatek,mt6873-lvts";
-> +        reg = <0x1100b000 0x1000>;
-> +        clocks = <&infracfg CLK_INFRA_THERM>;
-> +        clock-names = "lvts_clk";
-> +        #thermal-sensor-cells = <0>;
-> +        interrupts = <GIC_SPI 147 IRQ_TYPE_LEVEL_HIGH>;
-> +    };
-> +
-> +    thermal-zones {
-> +        cpu_thermal: cpu-thermal {
-> +            polling-delay-passive = <0>;
-> +            polling-delay = <0>;
-> +
-> +            thermal-sensors = <&dts>;
-> +            trips {
-> +                cpu_alert1: cpu-alert1 {
-> +                    temperature = <85000>;
-> +                    hysteresis = <0>;
-> +                    type = "passive";
-> +                };
-> +
-> +                cpu_crit: cpu-crit {
-> +                    temperature = <120000>;
-> +                    hysteresis = <0>;
-> +                    type = "critical";
-> +                };
-> +            };
-> +
-> +            cooling-maps {
-> +            };
-> +        };
-> +    };
-> +...
+>  
+>  Example:
+>  
 > -- 
-> 2.18.0
+> 2.20.1
 > 
