@@ -2,81 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BAA942D2E19
-	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 16:23:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E04C2D2E73
+	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 16:41:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730068AbgLHPWy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Dec 2020 10:22:54 -0500
-Received: from mail.kernel.org ([198.145.29.99]:38052 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729929AbgLHPWy (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 8 Dec 2020 10:22:54 -0500
-Date:   Tue, 8 Dec 2020 15:22:06 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1607440933;
-        bh=agNWNjQCc77UMknNZ+hqc7G36GIX7edrBXKF11O9ZzM=;
-        h=From:To:Cc:Subject:References:In-Reply-To:From;
-        b=fnRyKhdbPBeKAFCf3aXCoNV3ZIWToIpoE64c032G+yHtSUTK/S/HHMXgTahu4fMDY
-         Oikm0kgBkpY7GOIBCGVvuqjpmHM7bALrYyG4ByqCRwx6Fj5ItyCf0MbKIzoobdCisI
-         5pHp7ueSgRLzLMnvCEd2xK8IBmJkAWaznEAf8Qf82AmbgDEgT+Iz9UBKav0UIB2Wk+
-         i1XOjmIXHhf6943Fl5PD0O54ALLJlQ7ywXsj9pBfHNbJoh+sfja/WeSJI6i8eu1O7z
-         64yPbnTC/SC86928VoZobnbBuCICyrjLXSFQz46fGfx8Wfsjvb3G8AhTQNpzGBySax
-         z9cR+1M8b1z6w==
-From:   Mark Brown <broonie@kernel.org>
-To:     Sameer Pujar <spujar@nvidia.com>
-Cc:     thierry.reding@gmail.com, robh+dt@kernel.org, sharadg@nvidia.com,
-        jonathanh@nvidia.com, kuninori.morimoto.gx@renesas.com,
-        linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org
-Subject: Re: Re: Re: [PATCH v6 0/6] Tegra210 audio graph card
-Message-ID: <20201208152206.GF6686@sirena.org.uk>
-References: <1606413823-19885-1-git-send-email-spujar@nvidia.com>
- <160683107678.35139.14772386553150233276.b4-ty@kernel.org>
- <a3541d83-1f2e-c60f-05f8-4fdd8c8f4175@nvidia.com>
- <20201207123131.GB5694@sirena.org.uk>
- <14d2a6cc-9ca6-f6dd-ae83-6fc75d5361eb@nvidia.com>
- <20201208121312.GB6686@sirena.org.uk>
- <a6ecb66e-db25-dcfa-4a70-d9b2fad75cd9@nvidia.com>
+        id S1729909AbgLHPkD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Dec 2020 10:40:03 -0500
+Received: from mail-oi1-f193.google.com ([209.85.167.193]:43498 "EHLO
+        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729558AbgLHPkD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Dec 2020 10:40:03 -0500
+Received: by mail-oi1-f193.google.com with SMTP id q25so11708746oij.10;
+        Tue, 08 Dec 2020 07:39:47 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=r4At2JRTffPDhNlHKCVUhQQs+9lnibYf2nVgEDOu8xg=;
+        b=q4NWxmBf5Guvi2CJOdvbPR6DY5dCm1ApGuDmwcR5MbFCo88m9w8MwjVX+Pu/vwjoD9
+         5UptPQ7/P7MA8AgfdT551I92G3skLA9l4za5lJ+Hvw9hWBb1UQsFzSt/LlbELUMIeSYB
+         +7GVYuqBEtKyx4tsmBoi9ZxtT1JqZ0mUNFUJx2gsudGQusGUfXtDRXFPwbjiH2RZN8tz
+         UW9ifby6Lf8NX0ipwrq8bzxFcUWl9vHLyyRWknJ2HTGpRu7KuIL9ln32oHPxFRewSTN/
+         dLzLIxtycZgRjd74fko8hFW4yfbIOvRzkIhaRjCBlhdffK1fQMDm4oUKJVc6KdI2GJeh
+         PrGA==
+X-Gm-Message-State: AOAM532rZRT0nGMWBj6UeJ91cOLxnscGeMSP7YK0gHkdzQiZRobGhVWV
+        0FRsoHGr09sEQudYnwg6lA==
+X-Google-Smtp-Source: ABdhPJyKnbmKSDVPybWvTW80k+sHigOw9XIDTe2qJfgfN84Dh9l8C8fNgU9Lngc/r258HaY/1gYj1Q==
+X-Received: by 2002:aca:d706:: with SMTP id o6mr3184121oig.28.1607441961968;
+        Tue, 08 Dec 2020 07:39:21 -0800 (PST)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id l5sm2727665ooo.2.2020.12.08.07.39.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 08 Dec 2020 07:39:20 -0800 (PST)
+Received: (nullmailer pid 2567594 invoked by uid 1000);
+        Tue, 08 Dec 2020 15:39:19 -0000
+Date:   Tue, 8 Dec 2020 09:39:19 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Michael Klein <michael@fossekall.de>
+Cc:     Sebastian Reichel <sre@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3 2/3] Documentation: DT: binding documentation for
+ regulator-poweroff
+Message-ID: <20201208153919.GB2539955@robh.at.kernel.org>
+References: <20201128103958.q6glewhhch7vtczr@gilmour>
+ <20201207142756.17819-1-michael@fossekall.de>
+ <20201207142756.17819-3-michael@fossekall.de>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="lIrNkN/7tmsD/ALM"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <a6ecb66e-db25-dcfa-4a70-d9b2fad75cd9@nvidia.com>
-X-Cookie: Do not dry clean.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20201207142756.17819-3-michael@fossekall.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Dec 07, 2020 at 03:27:55PM +0100, Michael Klein wrote:
+> Add devicetree binding documentation for regulator-poweroff driver.
+> 
+> Signed-off-by: Michael Klein <michael@fossekall.de>
+> ---
+>  .../power/reset/regulator-poweroff.yaml       | 53 +++++++++++++++++++
+>  1 file changed, 53 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/power/reset/regulator-poweroff.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/power/reset/regulator-poweroff.yaml b/Documentation/devicetree/bindings/power/reset/regulator-poweroff.yaml
+> new file mode 100644
+> index 000000000000..8c8ce6bb031a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/power/reset/regulator-poweroff.yaml
+> @@ -0,0 +1,53 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/power/reset/regulator-poweroff.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Force-disable power regulators to turn the power off.
+> +
+> +maintainers:
+> +  - Michael Klein <michael@fossekall.de>
+> +
+> +description: |
+> +  When the power-off handler is called, one more regulators are disabled
+> +  by calling regulator_force_disable(). If the power is still on and the
+> +  CPU still running after a 3000ms delay, a WARN_ON(1) is emitted.
 
---lIrNkN/7tmsD/ALM
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+WARN_ON is a Linux thing. Bindings are independent from Linux.
 
-On Tue, Dec 08, 2020 at 08:18:21PM +0530, Sameer Pujar wrote:
+> +
+> +properties:
+> +  compatible:
+> +    const: "regulator-poweroff"
+> +
+> +  regulator-names:
 
-> > I don't seem to have them in my backlog so either there was feedback
-> > from someone else I was expecting to see addressed or some other issue.
+We already have 'regulator-name' which is something different, and 
+*-names already has a defined usage as a companion to other properties 
+('foo-names' goes with 'foos'). More on this below...
 
-> I am pretty sure that it is not because of any outstanding comments, because
-> I got none on v6 and previous v5 feedback was taken care. May be this is
-> because of the doc dependency I listed in the cover letter?
+> +    description:
+> +      Array of regulator names
+> +    $ref: /schemas/types.yaml#/definitions/string-array
+> +
+> +  REGULATOR-supply:
+> +    description:
+> +      For any REGULATOR listed in regulator-names, a phandle
+> +      to the corresponding regulator node
+> +    $ref: /schemas/types.yaml#/definitions/phandle
 
-Ah, yes - Rob said the dependency needed some rework.
+*-supply already has a type.
 
---lIrNkN/7tmsD/ALM
-Content-Type: application/pgp-signature; name="signature.asc"
+> +
+> +  timeout-ms:
+> +    description:
+> +      Time to wait before asserting a WARN_ON(1). If nothing is
+> +      specified, 3000 ms is used.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
 
------BEGIN PGP SIGNATURE-----
+Do we really need to tune the timeout just for an error message?
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl/Pmh0ACgkQJNaLcl1U
-h9B7Zwf9GGi3vqDul7G6TFq9/yQzz54/ViItyV8CHg0CuGmqI+LRO8c0kCH7q1J1
-JqIf1OJiTxZrmKJJntJls8toh5GEJyuHnp9dUgv13wmRzgBduecr96Xzk3epHjTM
-fs6k3x9+IvGuCCAZ5gL2znrPE/QSR48jSjJczOz5WFyxC35dKU85Nl6Tb4/80npN
-3qYKZ6WuXnge3/ckBH0s9Wvmj4EN77cGAbkOvJxbG5QgAYlHzK6FEM+RzbbUtMbv
-SugMrZ4yKT8a74dv+jXNKztE7vephHPcZNSBM3G4E2bJ6uurnUJQdBrRgkGNKc3S
-UiXFEjmtP6XMmBiEcaVJQIFTYGY9bA==
-=QfyK
------END PGP SIGNATURE-----
+> +
+> +required:
+> +  - compatible
+> +  - regulator-names
+> +  - REGULATOR-supply
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    regulator-poweroff {
+> +        compatible = "regulator-poweroff";
+> +        regulator-names = "vcc1v2", "vcc-dram";
+> +        vcc1v2-supply = <&reg_vcc1v2>;
+> +        vcc-dram-supply = <&reg_vcc_dram>;
 
---lIrNkN/7tmsD/ALM--
+-supply names are supposed to be named based on the consumer names (e.g. 
+LDO1 regulator supplies vcc-supply). To avoid 'regulator-names' and 
+simplifier the driver, I'd just define fixed, known names. Something 
+like:
+
+power1-supply
+power2-supply
+...
+
+Rob
