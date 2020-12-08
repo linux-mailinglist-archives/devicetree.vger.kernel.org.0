@@ -2,123 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C10C02D3051
-	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 17:57:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BCE4E2D309A
+	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 18:11:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730469AbgLHQ4p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Dec 2020 11:56:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60452 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729608AbgLHQ4p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Dec 2020 11:56:45 -0500
-Received: from mail-qt1-x841.google.com (mail-qt1-x841.google.com [IPv6:2607:f8b0:4864:20::841])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E51E5C0613D6
-        for <devicetree@vger.kernel.org>; Tue,  8 Dec 2020 08:56:04 -0800 (PST)
-Received: by mail-qt1-x841.google.com with SMTP id p12so12368045qtp.7
-        for <devicetree@vger.kernel.org>; Tue, 08 Dec 2020 08:56:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ndufresne-ca.20150623.gappssmtp.com; s=20150623;
-        h=message-id:subject:from:to:cc:date:in-reply-to:references
-         :user-agent:mime-version:content-transfer-encoding;
-        bh=zJCFBWmnrCjIsCfIXtOANynWilFtdxBgWzL9qsHoBgk=;
-        b=p+scvweiVtiWtaEakkIVG6rtVNVZdKC4xEMfsVUAkGkAs5h511JtSfYxxQKM14TDDZ
-         fEfsaNp/p3BIDs6/X5JkgItrkLy28f8w/iXwVs8TOXGvhPzn4yLR4EEZGuAWgZpf7hxm
-         oICvzMJUysvE4HibNIZDkAAh0EB5bEH7gm97HngzdHKm0EqEdUZC3jJJlDhbSGP+jrlQ
-         i6flmV7bIH7Uj9jADLa2clZybJ4fkdv64UEfyWf+pYG3D/kAh+qY8Li8uChCQAf6Mi78
-         64m49oUhL9tAhdmz2zf54q2cz/TMbc7BXuA5mmIQNaBFG1KQeFg56u1CVDBfyUkSVxA2
-         DWTQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-         :references:user-agent:mime-version:content-transfer-encoding;
-        bh=zJCFBWmnrCjIsCfIXtOANynWilFtdxBgWzL9qsHoBgk=;
-        b=cCqbqnXrY1TjGYvxFjeT0BbY8YSBzlTUE3w1GVdGeIvOlw+Ki0kfwGSn4d4zQ1Jfm+
-         TO+AwYvuD5YeLOy7XdwWsydzXxElDY/dJhGbO4ScogrFFNHP/ch6UPQlbJP2jXChpcTQ
-         cl2L7rDnf2AaiTfU7ejr48WwAADRlTibWzu+luqoJo23Tr0leVID7zECLH9ctVcADi4H
-         9MwC+18YdBwkVnQFMOA0WoatdBDfVxCK7mQx1N+Yw1XTAdKtj5oYP9dqKxPN34tve5F9
-         e/CJiIil0KDyiHyBwjBAPH83KJwIFRbTnwu4Oa6TQKXp1qIrnMYR0P9QDZeRClewyPZe
-         EWBg==
-X-Gm-Message-State: AOAM530srAy3aoEeBwfOsajZhSek2G9Prp0gmo8bJkKDHrV7EdYwoo07
-        Lkt1CSTASKyOq10YAAD7jx8vLw==
-X-Google-Smtp-Source: ABdhPJz6DEGfHZWtsRRNwbE8f3Jk7xHwzlJ8lJRqvWgr85V2qI9546FeZHjPEkuxohNdKuvO79ZOpw==
-X-Received: by 2002:ac8:76c7:: with SMTP id q7mr30486415qtr.317.1607446564196;
-        Tue, 08 Dec 2020 08:56:04 -0800 (PST)
-Received: from nicolas-tpx395.lan (173-246-12-168.qc.cable.ebox.net. [173.246.12.168])
-        by smtp.gmail.com with ESMTPSA id y22sm4953552qkj.129.2020.12.08.08.56.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Dec 2020 08:56:03 -0800 (PST)
-Message-ID: <13e1fbc75080aada90fd92954ad1fea39f4c1c7a.camel@ndufresne.ca>
-Subject: Re: [PATCH 0/4] Chunk Heap Support on DMA-HEAP
-From:   Nicolas Dufresne <nicolas@ndufresne.ca>
-To:     Minchan Kim <minchan@kernel.org>,
-        Andrew Morton <akpm@linux-foundation.org>
-Cc:     LKML <linux-kernel@vger.kernel.org>, linux-mm <linux-mm@kvack.org>,
-        hyesoo.yu@samsung.com, willy@infradead.org, david@redhat.com,
-        iamjoonsoo.kim@lge.com, vbabka@suse.cz, surenb@google.com,
-        pullip.cho@samsung.com, joaodias@google.com, hridya@google.com,
-        sumit.semwal@linaro.org, john.stultz@linaro.org,
-        Brian.Starkey@arm.com, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, robh@kernel.org,
-        christian.koenig@amd.com, linaro-mm-sig@lists.linaro.org
-Date:   Tue, 08 Dec 2020 11:56:01 -0500
-In-Reply-To: <20201117181935.3613581-1-minchan@kernel.org>
-References: <20201117181935.3613581-1-minchan@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.38.1 (3.38.1-1.fc33) 
+        id S1730249AbgLHRKt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Dec 2020 12:10:49 -0500
+Received: from mail.kernel.org ([198.145.29.99]:51034 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726987AbgLHRKt (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 8 Dec 2020 12:10:49 -0500
+From:   Mark Brown <broonie@kernel.org>
+Authentication-Results: mail.kernel.org; dkim=permerror (bad message/signature format)
+To:     Shengjiu Wang <shengjiu.wang@nxp.com>, timur@kernel.org,
+        festevam@gmail.com, linux-kernel@vger.kernel.org,
+        alsa-devel@alsa-project.org, linuxppc-dev@lists.ozlabs.org,
+        devicetree@vger.kernel.org, perex@perex.cz, robh+dt@kernel.org,
+        nicoleotsuka@gmail.com, Xiubo.Lee@gmail.com, lgirdwood@gmail.com,
+        tiwai@suse.com
+In-Reply-To: <1607251319-5821-1-git-send-email-shengjiu.wang@nxp.com>
+References: <1607251319-5821-1-git-send-email-shengjiu.wang@nxp.com>
+Subject: Re: [PATCH v2 1/2] ASoC: dt-bindings: imx-hdmi: Add binding doc for hdmi machine driver
+Message-Id: <160744738921.29839.15317690694275693705.b4-ty@kernel.org>
+Date:   Tue, 08 Dec 2020 17:09:49 +0000
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le mardi 17 novembre 2020 à 10:19 -0800, Minchan Kim a écrit :
-> This patchset introduces a new dma heap, chunk heap that makes it
-> easy to perform the bulk allocation of high order pages.
-> It has been created to help optimize the 4K/8K HDR video playback
-> with secure DRM HW to protect contents on memory. The HW needs
-> physically contiguous memory chunks up to several hundred MB memory.
-> 
-> The chunk heap is registered by device tree with alignment and memory
-> node of Contiguous Memory Allocator(CMA). Alignment defines chunk page size.
-> For example, alignment 0x1_0000 means chunk page size is 64KB.
-> The phandle to memory node indicates contiguous memory allocator(CMA).
-> If device node doesn't have cma, the registration of chunk heap fails.
-> 
-> This patchset is against on next-20201110.
+On Sun, 6 Dec 2020 18:41:58 +0800, Shengjiu Wang wrote:
+> Imx-hdmi is a new added machine driver for supporting hdmi devices
+> on i.MX platforms. There is HDMI IP or external HDMI modules connect
+> with SAI or AUD2HTX interface.
 
-I believe you have forgot to reference Open Source / Upstream code using this.
+Applied to
 
-regards,
-Nicolas
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-> 
-> The patchset includes the following:
->  - cma_alloc_bulk API
->  - export dma-heap API to register kernel module dma heap.
->  - add chunk heap implementation.
->  - devicetree
-> 
-> Hyesoo Yu (3):
->   dma-buf: add export symbol for dma-heap
->   dma-buf: heaps: add chunk heap to dmabuf heaps
->   dma-heap: Devicetree binding for chunk heap
-> 
-> Minchan Kim (1):
->   mm: introduce cma_alloc_bulk API
-> 
->  .../bindings/dma-buf/chunk_heap.yaml          |  52 ++
->  drivers/dma-buf/dma-heap.c                    |   2 +
->  drivers/dma-buf/heaps/Kconfig                 |   9 +
->  drivers/dma-buf/heaps/Makefile                |   1 +
->  drivers/dma-buf/heaps/chunk_heap.c            | 458 ++++++++++++++++++
->  include/linux/cma.h                           |   5 +
->  include/linux/page-isolation.h                |   1 +
->  mm/cma.c                                      | 129 ++++-
->  mm/page_alloc.c                               |  19 +-
->  mm/page_isolation.c                           |   3 +-
->  10 files changed, 666 insertions(+), 13 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/dma-buf/chunk_heap.yaml
->  create mode 100644 drivers/dma-buf/heaps/chunk_heap.c
-> 
+Thanks!
 
+[1/2] ASoC: dt-bindings: imx-hdmi: Add binding doc for hdmi machine driver
+      commit: e344cf5e4871f99495396f78d4401b8ac4c92465
+[2/2] ASoC: fsl: Add imx-hdmi machine driver
+      commit: 6a5f850aa83a1d844d27e3e53ca2f247e55d438b
 
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
