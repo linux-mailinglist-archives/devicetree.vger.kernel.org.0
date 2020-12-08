@@ -2,116 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 473652D30C6
-	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 18:15:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E35E2D314E
+	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 18:42:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730696AbgLHRO7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Dec 2020 12:14:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35056 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730009AbgLHRO7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Dec 2020 12:14:59 -0500
-Received: from mail-oi1-x243.google.com (mail-oi1-x243.google.com [IPv6:2607:f8b0:4864:20::243])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33645C061794
-        for <devicetree@vger.kernel.org>; Tue,  8 Dec 2020 09:14:13 -0800 (PST)
-Received: by mail-oi1-x243.google.com with SMTP id l207so17242633oib.4
-        for <devicetree@vger.kernel.org>; Tue, 08 Dec 2020 09:14:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=OrTk1JTf0Tk8H0Dkw70rR48Y70ZzNOZd9pRYyN3l7qc=;
-        b=tIQ2524GlK0nHCX0ZYY0xdFCCrAMuJvFo2H0VIs9BGVY4NsN35gc+MsKDaPkEq1dN6
-         lYhMbk+hQ0saLb8M6/C5CMmksatLa1RBH1jo471y79kwSJ4rLffV4IS8Pagtp06Cbunu
-         H8NRsJxFvr0mRaGl1iXvuBE+5dlYOVyU0EbNbdeBI9LJ5MzVCozNUqoTCm4o4rQkoDjo
-         bLonRVugPYPsPdq1yb0HnL3MXaTy47jnb71Q/OuiX78f9Ab0ReLpPtDp8JUn9BngD7Qs
-         ZEsfkjH37qA+CftGSdOllMWOlKBDqe9i8QsKzeg5kR2eQq0R8ciOQkp0xGWgTCoYlA/B
-         NFCQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=OrTk1JTf0Tk8H0Dkw70rR48Y70ZzNOZd9pRYyN3l7qc=;
-        b=OX2V0tZkNTcCjQE1IqkbC92bSXOV0PAL2nYlQbEqnMQG7cQEHgzE0WLxR1ykuMND7W
-         Mdd5XoZDVVPB7B3Gug7lYG8f7CcaMgzA46Ltpr+TRffa/g/j1k+yRJ1wEqk/60OkYqb7
-         3Btz0UAUHRtlpGRjbm67FmiuMQxbM+bkpbF4h8kYDMFd6+hYJ7znHHeXndkunLMCFHA3
-         6j11vIkqAaKT27OniEm9y3AKD80y7Q+FQICgbJtQopoRnspaD5pHDNVvqdbe6iT1tffu
-         zKEBcWz0wRoT8x3KRQHlzIV6ezsWDYkqZZ56bJzVGYngyQHJTGmjYPa1Ld/yIGfI2WyC
-         xFaQ==
-X-Gm-Message-State: AOAM531IpnIMrrcQav47hj3YqjgQXfAikn+5OXLDMzasiLTBAfv/IKtg
-        dJGIRtuRdNCnGnSpxK/7x1NOq2cBy1XPGEHpgAIPtw==
-X-Google-Smtp-Source: ABdhPJyTkuAAJ9aQVeM1oHOof95mLBcg/6CIM2sK7D91vZhxK+467RxQ2PT2rU6DtPBiIt1uiUZ+osvJh/KOHqtISAo=
-X-Received: by 2002:aca:b605:: with SMTP id g5mr3525309oif.177.1607447652630;
- Tue, 08 Dec 2020 09:14:12 -0800 (PST)
+        id S1730642AbgLHRmK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Dec 2020 12:42:10 -0500
+Received: from foss.arm.com ([217.140.110.172]:52378 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727998AbgLHRmK (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 8 Dec 2020 12:42:10 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 378C21FB;
+        Tue,  8 Dec 2020 09:41:24 -0800 (PST)
+Received: from ubuntu.cambridge.arm.com (unknown [172.31.20.19])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 04A0A3F68F;
+        Tue,  8 Dec 2020 09:41:21 -0800 (PST)
+From:   Nicola Mazzucato <nicola.mazzucato@arm.com>
+To:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        sudeep.holla@arm.com, rjw@rjwysocki.net, vireshk@kernel.org,
+        robh+dt@kernel.org, sboyd@kernel.org, nm@ti.com
+Cc:     daniel.lezcano@linaro.org, morten.rasmussen@arm.com,
+        chris.redpath@arm.com, nicola.mazzucato@arm.com
+Subject: [PATCH v5 0/4] CPUFreq: Add support for opp-sharing cpus
+Date:   Tue,  8 Dec 2020 17:42:25 +0000
+Message-Id: <20201208174229.24323-1-nicola.mazzucato@arm.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-References: <20201204025509.1075506-1-dmitry.baryshkov@linaro.org>
- <20201205170830.4d56ecb7@archlinux> <4de94396-54c7-e741-b288-3a3868515f7b@linaro.org>
- <20201208103951.00003b3a@Huawei.com>
-In-Reply-To: <20201208103951.00003b3a@Huawei.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Tue, 8 Dec 2020 20:14:01 +0300
-Message-ID: <CAA8EJprS_Oa08xsGepeowqmrpmRH8pOYRd9yX2KEqZRsnetkzw@mail.gmail.com>
-Subject: Re: [PATCH v10 00/15] qcom: pm8150: add support for thermal monitoring
-To:     Jonathan Cameron <Jonathan.Cameron@huawei.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Hartmut Knaack <knaack.h@gmx.de>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
-        <linux-arm-msm@vger.kernel.org>, linux-pm@vger.kernel.org,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, linux-iio@vger.kernel.org,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Jishnu Prakash <jprakash@qti.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 8 Dec 2020 at 13:40, Jonathan Cameron
-<Jonathan.Cameron@huawei.com> wrote:
->
-> On Sun, 6 Dec 2020 00:05:29 +0300
-> Dmitry Baryshkov <dmitry.baryshkov@linaro.org> wrote:
->
-> > On 05/12/2020 20:08, Jonathan Cameron wrote:
-> > > On Fri,  4 Dec 2020 05:54:54 +0300
-> > > Dmitry Baryshkov <dmitry.baryshkov@linaro.org> wrote:
-> > >
-> > >> This patch serie adds support for thermal monitoring block on Qualcomm's
-> > >> PMIC5 chips. PM8150{,b,l} and sm8250-mtp board device trees are extended
-> > >> to support thermal zones provided by this thermal monitoring block.
-> > >> Unlike the rest of PMIC thermal senses, these thermal zones describe
-> > >> particular thermistors, which differ between from board to board.
-> > >
-> > > I've just taken another look through the various IIO parts in here and
-> > > I think they are fine.
-> > >
-> > > My assumption is that given the timing this isn't going to make the merge
-> > > window now.  Hence I'll be looking to do an immutable branch based on rc1
-> > > once it's available (assuming everyone else is fine with this version).
-> >
-> > Thank you! Another option might be to merge all iio changes this cycle
-> > (if it's fine with you) and have all the rest go via respective trees in
-> > the next merge window. I'm fine with either of the options.
->
-> Too late unfortunately. IIO routes through staging for historical reasons
-> (plus we still have about 15 drivers to move out of there - it's only been
-> about 10 years :)  Staging closes a week before merge window so IIO closes a few
-> days before staging.
->
-> So lets stick to the immutable branch method.  Tends to make more sense in
-> the git history anyway as brings relevant code together (even if it travels
-> via multiple routes :)
+Hi All,
 
-Thank you for the explanation, the immutable branch approach works for me.
+In this V5 posting I have addressed suggestions on opp/of and scmi-cpufreq
+driver.
+
+This is to support systems where exposed cpu performance controls are more
+fine-grained that the platform's ability to scale cpus independently.
+
+Many thanks,
+Nicola
+
+[v5]
+  * Rework documentation of opp-shared within OPP node
+  * Register EM only for the first CPU within cpumask in driver
+  * Add check for nr_opp in driver before registering EM
+  * Add comments on both dev_pm_opp_get_opp_count in driver
+  * Remove redundant ret=0 in driver
+
+This v5 is rebased on top of:
+next-20201208 + Lukasz Luba's patches [1]
+
+[v4]
+  * Remove unconditional set of opp_table->shared_opp to exclusive
+  * Add implementation for scmi-cpufreq
+  * Change subject
+
+These patches are on top of:
+next-20201201 + Lukasz Luba's patches (waiting for Rafael) [1]
+
+[v3]
+  * Remove proposal for new 'cpu-performance-dependencies' as we instead
+    can reuse the opp table.
+  * Update documentation for devicetree/bindings/opp
+  * Minor changes within opp to support empty opp table
+  * Rework the RFC by adding a second proposal
+
+[v2]
+  * Fix errors when running make dt_binding_check
+  * Improve commit message description for the dt-binding
+  * Add RFC for implementation in cpufreq-core and one of its
+    drivers.
+
+Nicola Mazzucato (3):
+  dt-bindings: opp: Allow empty OPP tables
+  opp/of: Allow empty opp-table with opp-shared
+  scmi-cpufreq: get opp_shared_cpus from opp-v2 for EM
+
+Sudeep Holla (1):
+  cpufreq: blacklist Arm Vexpress platforms in cpufreq-dt-platdev
+
+ Documentation/devicetree/bindings/opp/opp.txt | 54 ++++++++++++++-
+ drivers/cpufreq/cpufreq-dt-platdev.c          |  2 +
+ drivers/cpufreq/scmi-cpufreq.c                | 69 ++++++++++++++-----
+ drivers/opp/of.c                              |  7 +-
+ 4 files changed, 110 insertions(+), 22 deletions(-)
+
+[1] https://lore.kernel.org/linux-pm/20201124104346.27167-1-lukasz.luba@arm.com/
 
 -- 
-With best wishes
-Dmitry
+2.27.0
+
