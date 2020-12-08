@@ -2,95 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DAAA32D2936
-	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 11:50:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F5912D294C
+	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 11:57:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726755AbgLHKul (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Dec 2020 05:50:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60190 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726226AbgLHKul (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Dec 2020 05:50:41 -0500
-Received: from mail-lj1-x243.google.com (mail-lj1-x243.google.com [IPv6:2a00:1450:4864:20::243])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1ED17C061749
-        for <devicetree@vger.kernel.org>; Tue,  8 Dec 2020 02:50:01 -0800 (PST)
-Received: by mail-lj1-x243.google.com with SMTP id y16so18601318ljk.1
-        for <devicetree@vger.kernel.org>; Tue, 08 Dec 2020 02:50:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=p/R8Cmud8S9mk3fnYgEJ54qyfkkw76nlV01IMW2pKqQ=;
-        b=Pon6yxPsPxw5ZKW18ScD0beFlawqXlzEZiFxujXtFKFFGWz2zoXCW54F0Oz3DNNMPm
-         GZLHNXhWW1Fb8F5rhGB3fWtkO44ElCsMn45UPEqzOUbtcUOYo8FhkNSxh1lIktJ+pZ6/
-         Uz8nxGTrEbKKmX+bJcUcFKZu1Mp3OLXyPTBWk3s5LMGb4yKOBe+/XWxHLJ+9Rp4gFyPz
-         3K/pa7IiVjiRl2cBPM4rPiX9kriESrMC37mtYy68ZUu7/ZIMOQj7caUgWJHgWaJG1cQb
-         3US5Umxc2aYqJxMtua6UiD2xNxFBDJHYbVCGf2lYUwYjAQaA8la5xs21pqqRlyfx05ez
-         NWoQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=p/R8Cmud8S9mk3fnYgEJ54qyfkkw76nlV01IMW2pKqQ=;
-        b=prP+TIaYy/MJgsb4urKtW97RlC9LyUOgvpk0tiOnj+MT+jUKcjCWCOi8CfwbZXEcV9
-         SFuDqaJpo92PB155SQ/IM4Ah1GrkrniaLf0KrYShibCt/05JWvIsrpIXarbw3WKVvNWd
-         Qk+yGVxthdNJAVvIDqwxuVIUoa1xaTBbmts8tZgFERc1zIB1JYdGBKYnY2eb4smU1iv4
-         5r63+JZMmc10uGL9WpFYAKQErmeKUWvq2Z4vEbr26WyPWxk+COp4sVWQ6oMUrToK2W5T
-         A916HOuSa+aozvreOo6BS8yRoSx0cMdzgODBsjadl9kXDvN3v5LOFp3OwZ+Nq7XkxHWf
-         ivtA==
-X-Gm-Message-State: AOAM532xqv1+iQ7zx2XOohTA9aA3IBe6C0k68r9pyzShmDIY7UoMrI5E
-        XvUq1cPyjCo5pvv+uH96vZY=
-X-Google-Smtp-Source: ABdhPJyrvcpCMpB0wEZASIFSl4PPtxOSYQacbj0CJlJdOOW2diZg6c91ZKWy7Or8+39TIwq4K8/joQ==
-X-Received: by 2002:a2e:6a04:: with SMTP id f4mr7594561ljc.255.1607424599665;
-        Tue, 08 Dec 2020 02:49:59 -0800 (PST)
-Received: from elitebook.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.gmail.com with ESMTPSA id u8sm3185943lfb.133.2020.12.08.02.49.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Dec 2020 02:49:59 -0800 (PST)
-From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH] arm64: dts: broadcom: bcm4908: use proper NAND binding
-Date:   Tue,  8 Dec 2020 11:49:50 +0100
-Message-Id: <20201208104950.14977-1-zajec5@gmail.com>
-X-Mailer: git-send-email 2.26.2
+        id S1726993AbgLHK53 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Dec 2020 05:57:29 -0500
+Received: from foss.arm.com ([217.140.110.172]:47276 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726226AbgLHK53 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 8 Dec 2020 05:57:29 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 6BF891FB;
+        Tue,  8 Dec 2020 02:56:43 -0800 (PST)
+Received: from [10.57.34.152] (unknown [10.57.34.152])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 4C6CA3F68F;
+        Tue,  8 Dec 2020 02:56:41 -0800 (PST)
+Subject: Re: [PATCH v4 3/4] scmi-cpufreq: get opp_shared_cpus from opp-v2 for
+ EM
+To:     Viresh Kumar <viresh.kumar@linaro.org>
+Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        sudeep.holla@arm.com, rjw@rjwysocki.net, vireshk@kernel.org,
+        robh+dt@kernel.org, sboyd@kernel.org, nm@ti.com,
+        daniel.lezcano@linaro.org, morten.rasmussen@arm.com,
+        chris.redpath@arm.com
+References: <20201202172356.10508-1-nicola.mazzucato@arm.com>
+ <20201202172356.10508-4-nicola.mazzucato@arm.com>
+ <20201208055053.kggxw26kxtnpneua@vireshk-i7>
+ <0e4d3134-f9b2-31fa-b454-fb30265a80b5@arm.com>
+ <20201208072611.ptsqupv4y2wybs6p@vireshk-i7>
+From:   Nicola Mazzucato <nicola.mazzucato@arm.com>
+Message-ID: <83b8400f-8dc4-000e-d790-0bf584a75f48@arm.com>
+Date:   Tue, 8 Dec 2020 10:58:44 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.8.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20201208072611.ptsqupv4y2wybs6p@vireshk-i7>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rafał Miłecki <rafal@milecki.pl>
 
-BCM4908 has controller that needs different IRQ handling just like the
-BCM63138. Describe it properly.
 
-On Linux this change fixes:
-brcmstb_nand ff801800.nand: timeout waiting for command 0x9
-brcmstb_nand ff801800.nand: intfc status d0000000
+On 12/8/20 7:26 AM, Viresh Kumar wrote:
+> On 08-12-20, 07:22, Nicola Mazzucato wrote:
+>> On 12/8/20 5:50 AM, Viresh Kumar wrote:
+>>> On 02-12-20, 17:23, Nicola Mazzucato wrote:
+>>>>  	nr_opp = dev_pm_opp_get_opp_count(cpu_dev);
+>>>>  	if (nr_opp <= 0) {
+>>>> -		dev_dbg(cpu_dev, "OPP table is not ready, deferring probe\n");
+>>>> -		ret = -EPROBE_DEFER;
+>>>> -		goto out_free_opp;
+>>>> +		ret = handle->perf_ops->device_opps_add(handle, cpu_dev);
+>>>> +		if (ret) {
+>>>> +			dev_warn(cpu_dev, "failed to add opps to the device\n");
+>>>> +			goto out_free_cpumask;
+>>>> +		}
+>>>> +
+>>>> +		ret = dev_pm_opp_set_sharing_cpus(cpu_dev, opp_shared_cpus);
+>>>> +		if (ret) {
+>>>> +			dev_err(cpu_dev, "%s: failed to mark OPPs as shared: %d\n",
+>>>> +				__func__, ret);
+>>>> +			goto out_free_cpumask;
+>>>> +		}
+>>>> +
+>>>
+>>> Why do we need to call above two after calling
+>>> dev_pm_opp_get_opp_count() ?
+>>
+>> Sorry, I am not sure to understand your question here. If there are no opps for
+>> a device we want to add them to it
+> 
+> Earlier we used to call handle->perf_ops->device_opps_add() and
+> dev_pm_opp_set_sharing_cpus() before calling dev_pm_opp_get_opp_count(), why is
+> the order changed now ?
 
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
----
- arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+True. The order has changed to take into account the fact that when we have
+per-cpu + opp-shared, we don't need to add opps for devices which already have them.
 
-diff --git a/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi
-index f873dc44ce9c..55d9b56ac749 100644
---- a/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi
-+++ b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi
-@@ -164,7 +164,7 @@ uart0: serial@640 {
- 		nand@1800 {
- 			#address-cells = <1>;
- 			#size-cells = <0>;
--			compatible = "brcm,brcmnand-v7.1", "brcm,brcmnand";
-+			compatible = "brcm,nand-bcm63138", "brcm,brcmnand-v7.1", "brcm,brcmnand";
- 			reg = <0x1800 0x600>, <0x2000 0x10>;
- 			reg-names = "nand", "nand-int-base";
- 			interrupts = <GIC_SPI 37 IRQ_TYPE_LEVEL_HIGH>;
--- 
-2.26.2
+> 
+>> otherwise no need as they would be duplicated.
+> 
+> I am not sure why they would be duplicated in your case. I though
+> device_opps_add() is responsible for dynamically adding the OPPs here.
 
+In case of per-cpu + opp-shared, with the "previous order" we would try to add
+opps to a device which already has them, in fact attempting to add duplicates.
+Nothing wrong with it, but a lot of warnings are thrown.
+
+> 
+>>> And we don't check the return value of
+>>> the below call anymore, moreover we have to call it twice now.
+>>
+>> This second get_opp_count is required such that we register em with the correct
+>> opp number after having added them. Without this the opp_count would not be correct.
+> 
+> What if the count is still 0 ? What about deferred probe we were doing earlier ?
+
+My assumption is to rely on the two above to fail if there was something wrong.
+For the deferred probe, I am not sure it is still a useful case to have, but I
+will let Sudeep have his view also on this.
+
+> 
+
+Thanks Viresh, hope it's a bit more clear now.
+Nicola
