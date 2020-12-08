@@ -2,87 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 862572D34BD
-	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 22:04:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D1A22D3548
+	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 22:33:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728996AbgLHU71 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Dec 2020 15:59:27 -0500
-Received: from mail.kernel.org ([198.145.29.99]:52246 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729051AbgLHU71 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 8 Dec 2020 15:59:27 -0500
-X-Gm-Message-State: AOAM530sPkMBdNCcpIJPj2O6Z3V8n8cCiN+AM66lA+9KF7QkgQLVyI8b
-        8Y2A26sCCqqEDs/VLHxe5D1OIy3wQM20Y7+nVg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1607455849;
-        bh=NKy6afdZEVgJGG/GB+10Y6JTt4w4Kh5aoJvfE2Rm6e0=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=n7QeeXzcYATfAdNqiaMtYKV3FpjFPuwNvHk1giftnK56sCrYXKMo8Xm+KZ58zIUVX
-         H4xz3RO8kZTI3nJizUW2Op264bZMOr522nPLqaj9+Bmp73jlXI1RIfc0upbIdnVbv/
-         h4T0QDV56Nf/1D1Pzelfs8/0NRFcpcM5Ub35BrOk1Kl94WWxAnRlvfj2a6+AvA/0LX
-         vAXCwnv59D9wgMIm2xeAgNYR2i5laRzSgKa2H3LpAxRe5NY9AiFs/kRKQzIAFI41tv
-         e9KbDHCpsDURHBCHBtSCXzMtlxKh42xTsXElcMeny7nwyYnq7F23+8IM6YUitQRln1
-         GA69rnmeACxrw==
-X-Google-Smtp-Source: ABdhPJz+SNhGurakI+ORTatAif+hmJDgPm2BLhUSt0EUUqtnt7Z26I96XfKcNuPZILAHE+FIY1iWqGq/SnetUKd8xSg=
-X-Received: by 2002:a17:906:c20f:: with SMTP id d15mr24389649ejz.341.1607455847799;
- Tue, 08 Dec 2020 11:30:47 -0800 (PST)
-MIME-Version: 1.0
-References: <20201204014236.1158-1-thunder.leizhen@huawei.com>
- <20201204014236.1158-2-thunder.leizhen@huawei.com> <20201207230821.GA1015860@robh.at.kernel.org>
- <9a9b01e5-6bf2-1ec5-871c-1391bd48f7a1@huawei.com>
-In-Reply-To: <9a9b01e5-6bf2-1ec5-871c-1391bd48f7a1@huawei.com>
+        id S1726396AbgLHVcB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Dec 2020 16:32:01 -0500
+Received: from mail-oi1-f194.google.com ([209.85.167.194]:33591 "EHLO
+        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726104AbgLHVcB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Dec 2020 16:32:01 -0500
+Received: by mail-oi1-f194.google.com with SMTP id d27so143932oic.0;
+        Tue, 08 Dec 2020 13:31:39 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=u03Topls0zW/uVZgC37K+AcGmsOpUHVuGbi5r//ml4o=;
+        b=CWDGK+Nt8R4KQaSGqw7WiYvei7xXxSpGaGo1gzMUfZGA77Acn0GhOF7kDXtIswsG/2
+         zHzvp4QUIVfWwa5/WRql5Kx7F47uaIK+L/gVQmZvHMcQWjgnXNJpcfX4s9YP4hVA4qm7
+         z5jEZHTvGSdCpiINlkAaO0fw0s0bAN/z6oOGBbFvXkJaD4jajuMywu8YyL7BloULlZbu
+         ktYIXcY4gD5X7+bGOdWQnOb0o5HjArl7NQO3bs9ftRYwIC9ybWCXqU2NT3IxI/YiinZE
+         lsrjCAUV/JxXZhe3EGGgVRdkzLZpwBf6s4L7YKvRaUmrZORDQB9RqOT6GHaAPt8BiwYv
+         w1oA==
+X-Gm-Message-State: AOAM531wndNXS1yIp06kSRcQ79bl6PRBeK15wXAnCNIpHZnFj4lrdEvq
+        jNBkgIePDXHOAiLkpUjINH5B0yFlMg==
+X-Google-Smtp-Source: ABdhPJz/997NimFkJCTieLclIT3u8rANzktbGG42mN/Bq1vuucHVPziqlah56gDwwtn5OaKB6U+5ag==
+X-Received: by 2002:aca:1b1a:: with SMTP id b26mr1493339oib.43.1607463074367;
+        Tue, 08 Dec 2020 13:31:14 -0800 (PST)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id t3sm44228oon.14.2020.12.08.13.31.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 08 Dec 2020 13:31:12 -0800 (PST)
+Received: (nullmailer pid 3129959 invoked by uid 1000);
+        Tue, 08 Dec 2020 21:31:11 -0000
+Date:   Tue, 8 Dec 2020 15:31:11 -0600
 From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 8 Dec 2020 13:30:35 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLxYmu7OYvDDMjL1RXnu8rApJDeNODrMHkw7LHbNXiYww@mail.gmail.com>
-Message-ID: <CAL_JsqLxYmu7OYvDDMjL1RXnu8rApJDeNODrMHkw7LHbNXiYww@mail.gmail.com>
-Subject: Re: [PATCH v2 1/3] reset: hisilicon: correct vendor prefix
-To:     "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
-Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
-        Wei Xu <xuwei5@hisilicon.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Zhangfei Gao <zhangfei.gao@linaro.org>,
-        Chen Feng <puck.chen@hisilicon.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     linux-iio@vger.kernel.org,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        devicetree@vger.kernel.org, Peter Rosin <peda@axentia.se>,
+        Wolfram Sang <wsa@kernel.org>,
+        Wolfram Sang <wsa@the-dreams.de>, linux-i2c@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v2 1/3] dt-bindings:i2c:i2c-gate: txt to yaml conversion
+Message-ID: <20201208213111.GA3126927@robh.at.kernel.org>
+References: <20201128173343.390165-1-jic23@kernel.org>
+ <20201128173343.390165-2-jic23@kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201128173343.390165-2-jic23@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 7, 2020 at 8:16 PM Leizhen (ThunderTown)
-<thunder.leizhen@huawei.com> wrote:
->
->
->
-> On 2020/12/8 7:08, Rob Herring wrote:
-> > On Fri, Dec 04, 2020 at 09:42:34AM +0800, Zhen Lei wrote:
-> >> The vendor prefix of "Hisilicon Limited" is "hisilicon", it is clearly
-> >> stated in "vendor-prefixes.yaml".
-> >
-> > Yes, but you can't fix this as changing it breaks compability between
-> > DTBs and kernels.
-> >
-> > hisi has to be documented and marked 'deprecated'.
->
-> I searched, and this is the only place that uses the hisi prefix. Currently,
-> YAML check will report warnings due to mismatch any of the regexes defined
-> in Documentation/devicetree/bindings/vendor-prefixes.yaml
->
-> Is it not good to add hisi prefix to clear warnings?
-> "^hisi,.*":
->   description: Hisilicon Limited, deprecated.
->
->
-> By the way, Hi Rob:
-> The license information in some YAML files is incorrect. Can you correct it in v5.11?
-> For example:
-> WARNING: DT binding documents should be licensed (GPL-2.0-only OR BSD-2-Clause)
-> #26: FILE: Documentation/devicetree/bindings/thermal/allwinner,sun8i-a83t-ths.yaml:1:
-> +# SPDX-License-Identifier: GPL-2.0
+On Sat, 28 Nov 2020 17:33:41 +0000, Jonathan Cameron wrote:
+> From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> 
+> This file provides very little in the way of actual schema but
+> does provide a convenient intro to what an i2c-gate node actually
+> represents.
+> 
+> Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> Cc: Peter Rosin <peda@axentia.se>
+> Cc: Wolfram Sang <wsa@the-dreams.de>
+> Link: https://lore.kernel.org/r/20201031181801.742585-2-jic23@kernel.org
+> ---
+>  .../devicetree/bindings/i2c/i2c-gate.txt      | 41 -------------------
+>  .../devicetree/bindings/i2c/i2c-gate.yaml     | 39 ++++++++++++++++++
+>  2 files changed, 39 insertions(+), 41 deletions(-)
+> 
 
-No, I can't change them. I'm not the copyright holder. The ones that
-are not dual licensed are most likely converted from the old text
-bindings which were default GPL2.
-
-Rob
+Applied, thanks!
