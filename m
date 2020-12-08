@@ -2,92 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D8532D27BF
-	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 10:34:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DEE902D27ED
+	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 10:42:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727728AbgLHJeS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Dec 2020 04:34:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48250 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727665AbgLHJeS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Dec 2020 04:34:18 -0500
-Received: from mail-oi1-x244.google.com (mail-oi1-x244.google.com [IPv6:2607:f8b0:4864:20::244])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E500EC061749;
-        Tue,  8 Dec 2020 01:33:37 -0800 (PST)
-Received: by mail-oi1-x244.google.com with SMTP id s2so9295544oij.2;
-        Tue, 08 Dec 2020 01:33:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Sn6Mvm7ZmrJkPQrGVxcpQJZVeyCsWajsVTNwPKt74sU=;
-        b=aC0F/6iu9EwuGc8jmPYxCi2CB5N/zPLlA4IB0bhhlvYRvNoe0YzEs13jDF0aPVdqFE
-         OuRjz6q/9B+WfSd9Aez7oDv+kRYaNvAKJAc/2dAkbH93J7M9j+hWCdPqL1SsfOojkaf0
-         cLvtXn5Rd/l11BhYJa07xEo5dHYyKm8jP9dEIaziTdGutEs+gCdp6NqwHK39krD/M4CY
-         OP84yHsLzf1Ed7mkL9KYpu0GpkE3okt9FO/W8urjNBw+oCrpoUWdz/UjffBBWL/e5QWQ
-         DJiyCgcZ4qnHt/hBoqFY8quQhdccqHmV+Y312gXxG3eEuKYIgtMIpLYKz532Ao8+cmxv
-         bJ/Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Sn6Mvm7ZmrJkPQrGVxcpQJZVeyCsWajsVTNwPKt74sU=;
-        b=fxbryvbuBTuLabXwkDmkgdeU0JWVQYP6vxxo35+Fc46NI4TWibF12zjHJlAxZg177j
-         udkOGrYol9tC0rUYlyyOUZhcnl3r1NuegqqLy16UYGkhfAPPlAhQI0PcxT8FInTwuTL9
-         ynfmAXJbCa+mUel9tlL9iOe79sCzrfHjXhq5ZHl76fj8NoBQUrTcNI6TW4ZJhx2nwzXL
-         lNSiG48YXISmP9DuffJAaGLvKDdcI+HirsmuPaLmpG9oPatOX0MhSvuEluBBPXwmHD5T
-         NWfvnxCqpc3LzeJA+XIEnrQvhYkuy/1fKO39tzjh0RXUdUiJdGLP/lVt/9LM+DsNcZiF
-         iCww==
-X-Gm-Message-State: AOAM530Wkvj+RLHZBpYIcHTqXPW10GImb32a4m8B3OsifwLxRieO6QOn
-        /27Qf6UjRN+zpe5wjGIH5NDJbEEfwut4aA00PcI=
-X-Google-Smtp-Source: ABdhPJxnkpUAZAlkDDdw3nw8s6hL//yyR64F45aERlZd75YSXFrAA4SqLcC0/0BsSQcjU7uTwP2w/+dX2MZVoTS/7n4=
-X-Received: by 2002:aca:5a86:: with SMTP id o128mr1978305oib.23.1607420017349;
- Tue, 08 Dec 2020 01:33:37 -0800 (PST)
+        id S1728803AbgLHJlO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Dec 2020 04:41:14 -0500
+Received: from mail.kernel.org ([198.145.29.99]:46464 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727543AbgLHJlN (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 8 Dec 2020 04:41:13 -0500
+Date:   Tue, 8 Dec 2020 09:40:27 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1607420432;
+        bh=l03X9b1AwR7eEYo3VLDO+AWbKPeOsT8lUlLG3XUEGcc=;
+        h=From:To:Cc:Subject:References:In-Reply-To:From;
+        b=B9yFCJVPeCmI8cxF0hHxdebit6cTtoLiw93kazgl0x+BJCfUJJXOZNfRGlYKaygXI
+         S/N+40Uwu0X5uWaRwpuCZ2jc8AlyUfdZpE/NM3RSP3QSz+o8XgD35WRRD2+xDNbXGZ
+         VGH+IiMIgdJj74Kd/2A2KesH+nrjgb9PcdGfaCUAdXvQdli5MpnnWsUwzJHKiwEvDd
+         SmjfzgawHzDoD/40UPolbneGtEDobrxNbSh5oHZO3KfAdI+flFHiVg9esS9VGe/Oxr
+         Rh5SfXP/9IDR+s7jMOFYBEKEwxZ8kOghkhqxHHdsyKIbnhjx4/wuZXbaNwKKQBF7mu
+         GXiLXL8rGbQ2w==
+From:   Will Deacon <will@kernel.org>
+To:     Quentin Perret <qperret@google.com>
+Cc:     Catalin Marinas <catalin.marinas@arm.com>,
+        Marc Zyngier <maz@kernel.org>,
+        James Morse <james.morse@arm.com>,
+        Julien Thierry <julien.thierry.kdev@gmail.com>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        "moderated list:ARM64 PORT (AARCH64 ARCHITECTURE)" 
+        <linux-arm-kernel@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        "open list:KERNEL VIRTUAL MACHINE FOR ARM64 (KVM/arm64)" 
+        <kvmarm@lists.cs.columbia.edu>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE" 
+        <devicetree@vger.kernel.org>, kernel-team@android.com,
+        android-kvm@google.com
+Subject: Re: [RFC PATCH 16/27] KVM: arm64: Prepare Hyp memory protection
+Message-ID: <20201208094026.GA5562@willie-the-truck>
+References: <20201117181607.1761516-1-qperret@google.com>
+ <20201117181607.1761516-17-qperret@google.com>
+ <20201207134052.GA4563@willie-the-truck>
+ <X844CBNCTL4XT3iq@google.com>
 MIME-Version: 1.0
-References: <20201208075523.7060-1-sergio.paracuellos@gmail.com>
- <20201208075523.7060-3-sergio.paracuellos@gmail.com> <CACRpkdY_Me8kO-Fa-vUspJNv+2vy0fswTM-RaUoaZJ5rCfuynA@mail.gmail.com>
- <X89BiDacLNQ7ZQOH@kroah.com>
-In-Reply-To: <X89BiDacLNQ7ZQOH@kroah.com>
-From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Date:   Tue, 8 Dec 2020 10:33:26 +0100
-Message-ID: <CAMhs-H9ZW0f9wvjk9OeiZpiHQT+qFFEbvHsH4jxwEa6xYXVy0g@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] pinctrl: ralink: add a pinctrl driver for the
- rt2880 family
-To:     Greg KH <gregkh@linuxfoundation.org>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        "open list:STAGING SUBSYSTEM" <devel@driverdev.osuosl.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Jason Yan <yanaijie@huawei.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <X844CBNCTL4XT3iq@google.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 8, 2020 at 10:03 AM Greg KH <gregkh@linuxfoundation.org> wrote:
->
-> On Tue, Dec 08, 2020 at 09:21:31AM +0100, Linus Walleij wrote:
-> > On Tue, Dec 8, 2020 at 8:55 AM Sergio Paracuellos
-> > <sergio.paracuellos@gmail.com> wrote:
-> >
-> > > These Socs have 1-3 banks of 8-32 gpios. Rather then setting the muxing of each
-> > > pin individually, these socs have mux groups that when set will effect 1-N pins.
-> > > Pin groups have a 2, 4 or 8 different muxes.
-> > >
-> > > Acked-by: Linus Walleij <linus.walleij@linaro.org>
-> > > Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
-> >
-> > Greg I'm happy if you just apply this right now for v5.11, as Sergio
-> > is obviously on top of things and the DT bindings will get there
-> > eventually so I don't see any need to hold back the de-staging just
-> > waiting for patch 1 (which I will eventually apply directly anyway).
->
-> Now merged into my tree, thanks!
->
-> greg k-h
+On Mon, Dec 07, 2020 at 02:11:20PM +0000, Quentin Perret wrote:
+> On Monday 07 Dec 2020 at 13:40:52 (+0000), Will Deacon wrote:
+> > Why not use the RESERVEDMEM_OF_DECLARE() interface for the hypervisor
+> > memory? That way, the hypervisor memory can either be statically partitioned
+> > as a carveout or allocated dynamically for us -- we wouldn't need to care.
+> 
+> Yup, I did consider that, but the actual amount of memory we need to
+> reserve for the hypervisor depends on things such as the size of struct
+> hyp_page, which depends on the kernel you're running (that is, it might
+> change over time). So, that really felt like something the kernel should
+> be doing, to keep the DT backward compatible, ... Or did you have
+> something more elaborate in mind?
 
-Thanks!
+No, that's fair. Just wanted to make sure we had a good reason not to use
+the existing memory reservation code.
 
-Best regards,
-    Sergio Paracuellos
+Will
