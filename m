@@ -2,83 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D84A2D344B
-	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 21:51:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 33F3E2D3433
+	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 21:51:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731450AbgLHUf6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Dec 2020 15:35:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40254 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726758AbgLHUf5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Dec 2020 15:35:57 -0500
-Received: from mail-pf1-x444.google.com (mail-pf1-x444.google.com [IPv6:2607:f8b0:4864:20::444])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69B70C0613CF
-        for <devicetree@vger.kernel.org>; Tue,  8 Dec 2020 12:35:17 -0800 (PST)
-Received: by mail-pf1-x444.google.com with SMTP id f9so14418212pfc.11
-        for <devicetree@vger.kernel.org>; Tue, 08 Dec 2020 12:35:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
-         :content-transfer-encoding;
-        bh=cOsptZpbaXZdyHeq1KoGUWDMF3slisUiT0yak+RYvVg=;
-        b=V1HJf+WKm8xtLqwvNnhsLkSQVipGbGBajM1F2ZUQcrOTQ2iu39pW4KdaTgszCgwjnq
-         tGzWVJdaHcBvZzl5aaqYttQ5TUOZCZZeqIs09s44Q9oB+hsnPkOAZotzWpI8i00QVucJ
-         ZkqvlVBVZSwtlbZua/brIaYJZ/+yexmmd5LKCv3G/Ku5t2DBPxqLPlTYem2pm7/BQHwc
-         Y2739VDQ3AMdHUYiNTI4cIVwWH1a3RA/iMrBvYTFlKq7M7ehhFBWisKxwf1Ty4u4bQp6
-         Q+maaFLNMOJu0B6hXcWTKH/5A8HPZ32RGxpfIbbSJvjpSfD8VZYPzolUFR9zjcbs0rIx
-         4beQ==
+        id S1730188AbgLHUcT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Dec 2020 15:32:19 -0500
+Received: from mail-ua1-f68.google.com ([209.85.222.68]:38452 "EHLO
+        mail-ua1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726697AbgLHUcT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Dec 2020 15:32:19 -0500
+Received: by mail-ua1-f68.google.com with SMTP id y26so6039804uan.5;
+        Tue, 08 Dec 2020 12:32:03 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=cOsptZpbaXZdyHeq1KoGUWDMF3slisUiT0yak+RYvVg=;
-        b=cn+5M9rl5c7NsRTw41PzYKUcKkeyFNRtYs+dYxrvBYmUkhwrK5vKSOuGLLacB4WZvH
-         ijxMVjMJ8+B5MpPiB8/TSDsjFzedNVRrK/3k3ifoFKya+d5UY2GiL35kuivoNhdXs29/
-         f0h8+am9wXgpgCrrBV4LU/GRiMrK0d5D2P/qJpUB4QXovwQ+Ef2ALwZRBwixrGV9fuvp
-         ez9Cs1xcmcapL+978bCdvShgWH3sf/R7xTq834OY35DZCe3lctFu+1ERUSxQp/2ldgOE
-         76C8JW8ZAmqAYwrMTQdMFiG+DgQYfjARTylJumsDcgHpesp408u/7e6E80fpIh2o+9Sn
-         SclQ==
-X-Gm-Message-State: AOAM531Q6mI/R/NAiIqD1rxFBF6LKsVweA0BdFvwd+iwPXQIyeGOmYWb
-        MLnGwzUWPlHoP2z+d33gJNbB6XjdfJlzGGtq
-X-Google-Smtp-Source: ABdhPJxyhjHPDKKo2JqsB/7HDITrAO23pyfmgSy+gat1GDFvuRxWeDGk6joJ5fCWRlKZVFhCYSjLzQ==
-X-Received: by 2002:a62:7693:0:b029:19d:92fb:4ec1 with SMTP id r141-20020a6276930000b029019d92fb4ec1mr21819903pfc.4.1607455203885;
-        Tue, 08 Dec 2020 11:20:03 -0800 (PST)
-Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net. [71.197.186.152])
-        by smtp.gmail.com with ESMTPSA id i4sm16499994pgg.67.2020.12.08.11.20.03
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=cNHSp0D/J2N3eQe2/F62j75KmvD1PhSAJf5wH19lqxQ=;
+        b=rnzsmpBCUu0pzhuxS7hgfoEbi4SuC51s4/jCisUM6/zP5fJdoQMjONMqlv2gHWwvMr
+         ThpUl28RqS/I2QYTTPKv7uTWRlxXgradHx81r4ZXm4OMacn182gvuveSe0yCI2byuWf/
+         wLqqzeJqQZxRB2mbQI87cRqpzMSijG+sMD1IuHv6bfSWogVch1UKtOWrxNl7NGb/9HuW
+         xMxefTAAxM7gBJFzL4U7iD6xn5FcPPl4Jyt3bzN6dQoOKwKVlF8M7pOanA0J8p2p38GK
+         KM70Y3szjKvWreDhDaBxspGCuyDBEqxTbvuGZvFoRsg8+/tgCXSPcJVOntIHNVHifxxf
+         kikw==
+X-Gm-Message-State: AOAM532cwoOOOvSn0/yReNfDIa9CQpkAls+sUv1z6p5sZAFecj5Mn+Er
+        6oogxlFU4ArUhwuI4clNsjZprH8oYA==
+X-Google-Smtp-Source: ABdhPJwqzkWqp7NG8pv3hYLzFGCV5M4/HK+Rdc7I43X1WJ+it5ihK+cV87nmhrLL5tXoLhppZo73pw==
+X-Received: by 2002:a05:6820:54c:: with SMTP id n12mr17807858ooj.79.1607455383095;
+        Tue, 08 Dec 2020 11:23:03 -0800 (PST)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id 30sm2980770oth.7.2020.12.08.11.23.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Dec 2020 11:20:03 -0800 (PST)
-From:   Kevin Hilman <khilman@baylibre.com>
-To:     Rob Herring <robh+dt@kernel.org>,
+        Tue, 08 Dec 2020 11:23:01 -0800 (PST)
+Received: (nullmailer pid 2923083 invoked by uid 1000);
+        Tue, 08 Dec 2020 19:23:00 -0000
+Date:   Tue, 8 Dec 2020 13:23:00 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Maxime Chevallier <maxime.chevallier@bootlin.com>
+Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        linux-kernel@vger.kernel.org,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
         Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Christian Hewitt <christianshewitt@gmail.com>
-Subject: Re: [PATCH] arm64: dts: meson: add i2c3/rtc nodes and vrtc alias to GT-King/GT-King-Pro
-Date:   Tue,  8 Dec 2020 11:20:02 -0800
-Message-Id: <160745519765.13209.7401462503756984105.b4-ty@baylibre.com>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20201201062135.18241-1-christianshewitt@gmail.com>
-References: <20201201062135.18241-1-christianshewitt@gmail.com>
+        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+        devicetree@vger.kernel.org, Heiko Stuebner <heiko@sntech.de>,
+        Rob Herring <robh+dt@kernel.org>, linux-media@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+Subject: Re: [PATCH v4 1/3] media: dt-bindings: media: Document Rockchip VIP
+ bindings
+Message-ID: <20201208192300.GA2922694@robh.at.kernel.org>
+References: <20201208161509.655862-1-maxime.chevallier@bootlin.com>
+ <20201208161509.655862-2-maxime.chevallier@bootlin.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201208161509.655862-2-maxime.chevallier@bootlin.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 1 Dec 2020 06:21:35 +0000, Christian Hewitt wrote:
-> The GT-King and GT-King-Pro boxes have an RTC chip and power cell, so enable it.
+On Tue, 08 Dec 2020 17:15:07 +0100, Maxime Chevallier wrote:
+> Add a documentation for the Rockchip Camera Interface controller
+> binding.
 > 
-> GTKING:~ # dmesg | grep rtc
-> [    5.237245] meson-vrtc ff8000a8.rtc: registered as rtc1
-> [    5.261869] rtc-hym8563 0-0051: registered as rtc0
-> [    5.265016] rtc-hym8563 0-0051: setting system clock to 2020-11-30T09:16:54 UTC (1606727814)
+> This controller can be found on platforms such as the PX30 or the
+> RK3288, the PX30 being the only platform supported so far.
+> 
+> Signed-off-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
+> ---
+> v3: Renmed the controller to "vip"
+> 
+> v4: fixed the binding to get a compiling example
+> 
+>  .../bindings/media/rockchip-vip.yaml          | 94 +++++++++++++++++++
+>  1 file changed, 94 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/rockchip-vip.yaml
+> 
 
-Applied, thanks!
 
-[1/1] arm64: dts: meson: add i2c3/rtc nodes and vrtc alias to GT-King/GT-King-Pro
-      commit: 7704b100719cf0fead976a1bc839c60ee552d045
+My bot found errors running 'make dt_binding_check' on your patch:
 
-Best regards,
--- 
-Kevin Hilman <khilman@baylibre.com>
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/media/rockchip-vip.yaml:59:9: [warning] wrong indentation: expected 6 but found 8 (indentation)
+
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/media/rockchip-vip.yaml: properties:port:properties:required: ['remote-endpoint'] is not of type 'object', 'boolean'
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/media/rockchip-vip.yaml: properties:port:properties: {'enum': ['$ref', 'additionalItems', 'additionalProperties', 'allOf', 'anyOf', 'const', 'contains', 'default', 'dependencies', 'deprecated', 'description', 'else', 'enum', 'if', 'items', 'maxItems', 'maximum', 'minItems', 'minimum', 'multipleOf', 'not', 'oneOf', 'pattern', 'patternProperties', 'properties', 'propertyNames', 'required', 'then', 'unevaluatedProperties']} is not allowed for 'required'
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/media/rockchip-vip.yaml: ignoring, error in schema: properties: port: properties: required
+warning: no schema found in file: ./Documentation/devicetree/bindings/media/rockchip-vip.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/media/rockchip-vip.example.dt.yaml: example-0: vip@ff490000:reg:0: [0, 4282974208, 0, 512] is too long
+	From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/reg.yaml
+
+
+See https://patchwork.ozlabs.org/patch/1412765
+
+The base for the patch is generally the last rc1. Any dependencies
+should be noted.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
