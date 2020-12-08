@@ -2,181 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B878C2D2EC9
-	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 16:55:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C16C82D2EF1
+	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 17:01:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730002AbgLHPzq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Dec 2020 10:55:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50898 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729679AbgLHPzq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Dec 2020 10:55:46 -0500
-Received: from mail-pg1-x541.google.com (mail-pg1-x541.google.com [IPv6:2607:f8b0:4864:20::541])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1EA34C061794;
-        Tue,  8 Dec 2020 07:55:06 -0800 (PST)
-Received: by mail-pg1-x541.google.com with SMTP id w4so12498470pgg.13;
-        Tue, 08 Dec 2020 07:55:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=v4mKs5tFyRcSvuMMjNgZiEEAHEkdSYJjuCntwnlpFXk=;
-        b=ejPfFD8ipXJBShbHw4spY9uezm7jdpfDf3fEEhYRrS90wCx1STmlMH5q+ckv6Xd1h7
-         kwOt6Ik2YFoyqkVQFFa/E8bklf9XVob1wRpwcOOVS7ZkUkgQPQcKnRLq9zzFbYZ0j9BS
-         JRqnwEtGv8jSyy719lj/LEagEwGqc8cvdB25zKbo38dfqyl2qV4GC8iQv4M72vIb3WZJ
-         vpm2zFt080PNjJUIIdvwhKcFrh254JUJzozlfTo+moQXbBdXFGPSRo9P5xYFfS6RSr3y
-         warXfWvl276NvwWlpvmIBZpTyObvrCSGnsqgGHAvgErK2uNSn0JLNiyLes3cdPfOqMLx
-         /B4g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=v4mKs5tFyRcSvuMMjNgZiEEAHEkdSYJjuCntwnlpFXk=;
-        b=ruPxgbn20rDMdvB4Vnu6nTnyxNfyorylpLHhF6ki327IlvaIuR0sXE+QbtyPyanUc6
-         HPTwAExA69syGdgvpNgZ4gCrYWExnVRb4VjXvhjv8mUnbaecvoYfmfUzp2UmzM2+j8z7
-         WIFq4cYFtxQMHXCErDB9OoUKQWHVtuco2dU+tm20G5stNraPjqcwC/wBDnrR7bvJS7yn
-         tBenFZ9HnYAT8Hmz0K4fyzMftCijzulUO8FEXZUoAmXqyhg6RfNVaoMPCYpEqTWzJ8RW
-         DCKslAExZtc6nbY+E7ZkDMC5ucgk97jU/pAjDX7yiwhlqIlTIjt4m9sb0BSxiC3cxdMb
-         sELw==
-X-Gm-Message-State: AOAM530gXzughfMYZ5zHV5xsVJIjtsAEGwAsUdaNah9JFh/t1+q5/sFw
-        Ff8lyBT5kZenPrz7ctCUd6c=
-X-Google-Smtp-Source: ABdhPJyJzvS5Z7MyKEuSLYEhire5zQP+BWhdeDklf1FUI7jlZqX1mJkX87EAZItP5nBU0W0B7SYNmQ==
-X-Received: by 2002:a17:90a:510e:: with SMTP id t14mr4908437pjh.159.1607442905547;
-        Tue, 08 Dec 2020 07:55:05 -0800 (PST)
-Received: from localhost.localdomain (1-171-4-151.dynamic-ip.hinet.net. [1.171.4.151])
-        by smtp.gmail.com with ESMTPSA id a17sm6700725pgw.80.2020.12.08.07.55.03
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 08 Dec 2020 07:55:04 -0800 (PST)
-From:   cy_huang <u0084500@gmail.com>
-To:     lee.jones@linaro.org, robh+dt@kernel.org
-Cc:     cy_huang@richtek.com, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH v3 4/4] mfd: rt4831: Adds DT binding document for Richtek RT4831 MFD core
-Date:   Tue,  8 Dec 2020 23:54:46 +0800
-Message-Id: <1607442886-13046-4-git-send-email-u0084500@gmail.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1607442886-13046-1-git-send-email-u0084500@gmail.com>
-References: <1607442886-13046-1-git-send-email-u0084500@gmail.com>
+        id S1730048AbgLHQBS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Dec 2020 11:01:18 -0500
+Received: from mail.kernel.org ([198.145.29.99]:51714 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729929AbgLHQBS (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 8 Dec 2020 11:01:18 -0500
+Date:   Tue, 8 Dec 2020 16:00:29 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1607443237;
+        bh=rgEunstMpibfhWp7GUnqRGdLLMgBZwXcZaxMILL0EII=;
+        h=From:To:Cc:Subject:References:In-Reply-To:From;
+        b=pIKqcHzTM1UvXwH8uSjPdHgySB79HwWsQFruel6Dt5/oB4Bnmx0SZwzHcM57S8WNr
+         YvNeQC0ScX+PX2j6S4DxYz06eZJEyydRDkvGrcAo2LEl7QdHB7X17Src/kmQw3znzn
+         5CTSkV/aXTZYsuq9mMp/Cxqopzb1mKQWNgb8ILrwCNDFhqMiWDbx/5bDpC1wapl81u
+         YvYQ7gg8jS/SBwwsfND4MrUA6+2P0Lbp2yN79dn5kXzj+yOqeAG9V+6fekSbQgJq6I
+         cu661oYFIZ5qbqy/GTQUOtM5vBipbHFHiSF01AfN9T+U4JWTlQZyIRKbrqmtSUbCiU
+         tirCf7gj/WmOQ==
+From:   Will Deacon <will@kernel.org>
+To:     Doug Anderson <dianders@chromium.org>
+Cc:     Benjamin Tissoires <benjamin.tissoires@redhat.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Jiri Kosina <jkosina@suse.cz>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Andrea Borgia <andrea@borgia.bo.it>,
+        Rob Herring <robh+dt@kernel.org>,
+        Kai-Heng Feng <kai.heng.feng@canonical.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        "open list:HID CORE LAYER" <linux-input@vger.kernel.org>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Aaron Ma <aaron.ma@canonical.com>,
+        Anson Huang <Anson.Huang@nxp.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Jiri Kosina <jikos@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Li Yang <leoyang.li@nxp.com>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Michael Walle <michael@walle.cc>,
+        Olof Johansson <olof@lixom.net>, Pavel Balan <admin@kryma.net>,
+        Shawn Guo <shawnguo@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        Xiaofei Tan <tanxiaofei@huawei.com>,
+        You-Sheng Yang <vicamo.yang@canonical.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        LKML <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v6 0/4] HID: i2c-hid: Reorganize to allow supporting
+ goodix,gt7375p
+Message-ID: <20201208160029.GA6461@willie-the-truck>
+References: <20201112004130.17290-1-dianders@chromium.org>
+ <CAD=FV=W122aWPbg7Fo=zg+QmK7DHBcYTQ6CjPawLhucd4Rtw9A@mail.gmail.com>
+ <CAO-hwJ+amboty_wKzP3n11mHLfssGz8Npzdfu9QrcipEvu3VHA@mail.gmail.com>
+ <CAD=FV=VkyF8B9stozXv_Xt7a-Od4-1f2h6QS5DDekiZCQhXjgw@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAD=FV=VkyF8B9stozXv_Xt7a-Od4-1f2h6QS5DDekiZCQhXjgw@mail.gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: ChiYuan Huang <cy_huang@richtek.com>
+On Wed, Dec 02, 2020 at 07:54:40AM -0800, Doug Anderson wrote:
+> On Wed, Dec 2, 2020 at 7:20 AM Benjamin Tissoires
+> <benjamin.tissoires@redhat.com> wrote:
+> > On Tue, Dec 1, 2020 at 10:12 PM Doug Anderson <dianders@chromium.org> wrote:
+> > > On Wed, Nov 11, 2020 at 4:41 PM Douglas Anderson <dianders@chromium.org> wrote:
+> > > >  .../bindings/input/goodix,gt7375p.yaml        |  65 +++++
+> > > >  arch/arm64/configs/defconfig                  |   3 +-
+> > > >  drivers/hid/Makefile                          |   2 +-
+> > > >  drivers/hid/i2c-hid/Kconfig                   |  47 +++-
+> > > >  drivers/hid/i2c-hid/Makefile                  |   6 +-
+> > > >  drivers/hid/i2c-hid/i2c-hid-acpi.c            | 159 +++++++++++
+> > > >  drivers/hid/i2c-hid/i2c-hid-core.c            | 254 +++---------------
+> > > >  drivers/hid/i2c-hid/i2c-hid-of-goodix.c       | 116 ++++++++
+> > > >  drivers/hid/i2c-hid/i2c-hid-of.c              | 143 ++++++++++
+> > > >  drivers/hid/i2c-hid/i2c-hid.h                 |  22 ++
+> > > >  include/linux/platform_data/i2c-hid.h         |  41 ---
+> > > >  11 files changed, 596 insertions(+), 262 deletions(-)
+> > > >  create mode 100644 Documentation/devicetree/bindings/input/goodix,gt7375p.yaml
+> > > >  create mode 100644 drivers/hid/i2c-hid/i2c-hid-acpi.c
+> > > >  create mode 100644 drivers/hid/i2c-hid/i2c-hid-of-goodix.c
+> > > >  create mode 100644 drivers/hid/i2c-hid/i2c-hid-of.c
+> > > >  delete mode 100644 include/linux/platform_data/i2c-hid.h
+> > >
+> > > Are there any additional changes that folks would like with this
+> > > series?  It's not crazy urgent to get it in, but it touches enough
+> > > lines of code that it'd be nice to get it in before other patches land
+> > > and it gets merge conflicts.
+> >
+> > Sorry for the delay. I was having an internal deadline last week. I
+> > just re-read the code, and I am quite happy with it. I also just
+> > tested it on the i2c-hid w/ acpi machine I have here, and it seems OK.
+> >
+> > So other than that, do we need to have approvals for patch 2/4
+> > (arch/arm64/configs/defconfig)? I can easily take that in the HID
+> > tree, but I prefer having the approval from the maintainers first.
+> > Catalin, Will?
+> 
+> From my past knowledge of the arm64 defconfig, I think it's a bit of a
+> free-for-all, sort of like updates to the "MAINTAINERS" file.  Doing a
+> "git log" on it I see commits happen from every corner and very few of
+> them have Acks.  I think many (but not all) of the commits to this
+> file go through trees that feed into the SoC tree (Arnd and Olof)
+> because those maintainers care about enabling drivers for boards that
+> they're supporting, but changes come from elsewhere too.
+> 
+> Obviously an Ack wouldn't hurt, though.  Since get_maintainer points
+> at Will and Catalin I wouldn't say no if one of them wanted to Ack
+> patch #2 in the series.  ;-)
 
-Adds DT binding document for Richtek RT4831 MFD core.
+For the avoidance of doubt:
 
-Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
----
-This patch depends on
- "backlight: rt4831: Adds DT binding document for Richtek RT4831 backlight".
- "regulator: rt4831: Adds DT binding document for Richtek RT4831 DSV regulator".
+Acked-by: Will Deacon <will@kernel.org>
 
-since v3
-- Move include/dt-bindings/leds/rt4831-backlight.h to patch 0002.
-- Add dual license tag in mfd binding document.
+on patch 2. But yes, although there are a few things I really care about
+in defconfig (e.g. things like page size!), generally speaking we don't
+need to Ack everything that changes in there.
 
-since v2
-- Add regulator-allow-bypass flag in DSVLCM.
----
- .../devicetree/bindings/mfd/richtek,rt4831.yaml    | 90 ++++++++++++++++++++++
- 1 file changed, 90 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/mfd/richtek,rt4831.yaml
+That said, might be worth checking whether arm-soc have any defconfig
+changes queued in -next so you don't end up with conflicts.
 
-diff --git a/Documentation/devicetree/bindings/mfd/richtek,rt4831.yaml b/Documentation/devicetree/bindings/mfd/richtek,rt4831.yaml
-new file mode 100644
-index 00000000..4762eb1
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mfd/richtek,rt4831.yaml
-@@ -0,0 +1,90 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mfd/richtek,rt4831.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Richtek RT4831 DSV and Backlight Integrated IC
-+
-+maintainers:
-+  - ChiYuan Huang <cy_huang@richtek.com>
-+
-+description: |
-+  RT4831 is a multifunctional device that can provide power to the LCD display
-+  and LCD backlight.
-+
-+  For Display Bias Voltage DSVP and DSVN, the output range is about 4V to 6.5V.
-+  It's sufficient to meet the current LCD power requirement.
-+
-+  For the LCD backlight, it can provide four channel WLED driving capability.
-+  Each channel driving current is up to 30mA
-+
-+  Datasheet is available at
-+  https://www.richtek.com/assets/product_file/RT4831A/DS4831A-05.pdf
-+
-+properties:
-+  compatible:
-+    const: richtek,rt4831
-+
-+  reg:
-+    description: I2C device address.
-+    maxItems: 1
-+
-+  enable-gpios:
-+    description: |
-+      GPIO to enable/disable the chip. It is optional.
-+      Some usage directly tied this pin to follow VIO 1.8V power on sequence.
-+    maxItems: 1
-+
-+  regulators:
-+    $ref: ../regulator/richtek,rt4831-regulator.yaml
-+
-+  backlight:
-+    $ref: ../leds/backlight/richtek,rt4831-backlight.yaml
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/leds/rt4831-backlight.h>
-+    i2c {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+
-+      rt4831@11 {
-+        compatible = "richtek,rt4831";
-+        reg = <0x11>;
-+
-+        regulators {
-+          DSVLCM {
-+            regulator-min-microvolt = <4000000>;
-+            regulator-max-microvolt = <7150000>;
-+            regulator-allow-bypass;
-+          };
-+          DSVP {
-+            regulator-name = "rt4831-dsvp";
-+            regulator-min-microvolt = <4000000>;
-+            regulator-max-microvolt = <6500000>;
-+            regulator-boot-on;
-+          };
-+          DSVN {
-+            regulator-name = "rt4831-dsvn";
-+            regulator-min-microvolt = <4000000>;
-+            regulator-max-microvolt = <6500000>;
-+            regulator-boot-on;
-+          };
-+        };
-+
-+        backlight {
-+          compatible = "richtek,rt4831-backlight";
-+          default-brightness = <1024>;
-+          max-brightness = <2048>;
-+          richtek,bled-ovp-sel = /bits/ 8 <RT4831_BLOVPLVL_21V>;
-+          richtek,channel-use = /bits/ 8 <RT4831_BLED_ALLCHEN>;
-+        };
-+      };
-+    };
--- 
-2.7.4
-
+Will
