@@ -2,69 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C218F2D2114
-	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 03:46:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 678BF2D20F0
+	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 03:41:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727554AbgLHCph (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Dec 2020 21:45:37 -0500
-Received: from free.global-mail.cn ([58.221.79.76]:54263 "HELO
-        free.global-mail.cn" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with SMTP id S1728181AbgLHCpg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 21:45:36 -0500
-X-Greylist: delayed 449 seconds by postgrey-1.27 at vger.kernel.org; Mon, 07 Dec 2020 21:45:35 EST
-X-UUID: ae56c92597d14678ad2699a67a9f2132-20201208
-X-CPASD-INFO: 43a2e7065b7d4c3481741009f32a6fb4@fYObUpJpXmZhgnmwg6Z-
-        blhibGldUH97oFNqkWSWjlSVhH9sTWJqYFN9gHJSYWFdXll-
-        d21QZmdgYFB5i3-XanZsYXthYFOkeLR5alZtkmWU
-X-CLOUD-ID: 43a2e7065b7d4c3481741009f32a6fb4
-X-CPASD-SUMMARY: SIP:-1,APTIP:-2.0,KEY:0.0,FROMBLOCK:1,OB:80.0,URL:-5,TVAL:188
-        .0,ESV:1.0,ECOM:-5.0,ML:0.0,FD:5.0,CUTS:90.0,IP:-2.0,PHF:-5.0,PHC:-5.0,SPF:4.
-        0,EDMS:-5,IPLABEL:-2.0,FROMTO:0,AD:0,FFOB:80.0,CFOB:80.0,SPC:0,SIG:-5,AUF:6,D
-        UF:26,ACD:179,DCD:179,SL:0,EISP:0,AG:0,CFC:0.888,CFSR:2.806,UAT:0,RAF:0,IMG:-
-        5.0,DFA:0,IBL:-5,ADI:-5,SBL:0,VERSION:2.3.6
-X-CPASD-ID: ae56c92597d14678ad2699a67a9f2132-20201208
-X-CPASD-BLOCK: 155
-X-CPASD-STAGE: 1
-X-UUID: ae56c92597d14678ad2699a67a9f2132-20201208
-X-User: DMQQLB3@WUHANBORE.COM
-Received: from desktop-uei8949 [(171.113.7.184)] by mailgw-79-239.global-mail.cn
-        (envelope-from <dmqqlb3@wuhanbore.com>)
-        (ESMTP)
-        with ESMTP id 1507917286; Tue, 08 Dec 2020 10:35:39 +0800
-From:   DMQQLB3 <DMQQLB3@WUHANBORE.COM>
-To:     devicetree@vger.kernel.org
-Subject: =?gb2312?B?TTjQvsasUHJlY2lzaW9uIHRlbXBlcmF0dQ==?=
- =?gb2312?B?cmUgY29udHJvbCBjaGlwIGZyb20gQ2hpbmE=?=
-Date:   Tue, 08 Dec 2020 10:35:39 +0800
+        id S1727992AbgLHCjG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Dec 2020 21:39:06 -0500
+Received: from smtp2207-205.mail.aliyun.com ([121.197.207.205]:54282 "EHLO
+        smtp2207-205.mail.aliyun.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1727816AbgLHCjF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 21:39:05 -0500
+X-Alimail-AntiSpam: AC=CONTINUE;BC=0.1253207|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_system_inform|0.123485-0.00280262-0.873712;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047204;MF=huangshuosheng@allwinnertech.com;NM=1;PH=DS;RN=9;RT=9;SR=0;TI=SMTPD_---.J4N61uS_1607395099;
+Received: from allwinnertech.com(mailfrom:huangshuosheng@allwinnertech.com fp:SMTPD_---.J4N61uS_1607395099)
+          by smtp.aliyun-inc.com(10.147.41.158);
+          Tue, 08 Dec 2020 10:38:21 +0800
+From:   Shuosheng Huang <huangshuosheng@allwinnertech.com>
+To:     robh+dt@kernel.org, mripard@kernel.org, wens@csie.org,
+        jernej.skrabec@siol.net, tiny.windzz@gmail.com
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org,
+        Shuosheng Huang <huangshuosheng@allwinnertech.com>
+Subject: [PATCH v3 3/6] arm64: dts: allwinner: a100: Add clocks to CPU cores
+Date:   Tue,  8 Dec 2020 10:38:18 +0800
+Message-Id: <20201208023818.22951-1-huangshuosheng@allwinnertech.com>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-Content-type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: base64
-Message-ID: <CTKRWFBPMWQEQZGNTMZJDDWJJLRF.test@test>
-X-UMAIL-TODTOD: 0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-ICAgRGVhciBTaXIvTWFkYW0sV2UgYXJlIHBsZWFzZWQgdG8gZ2V0IHlvdXIgaW5mb3JtYXRpb24g
-cG9zdGVkIG9uIEdvb2dsZSB0aGF0IHlvdSBhcmUgaW4gdGhlIG1hcmtldCBmb3IgdGVtcGVyYXR1
-cmUtY29udHJvbGxlZCBjaGlwIHByb2R1Y3RzLldlIHdvdWxkIGxpa2UgdG8gdGFrZSB0aGlzIG9w
-cG9ydHVuaXR5IHRvIGludHJvZHVjZSBvdXIgY29tcGFueSBhbmQgcHJvZHVjdHMuIEkgaG9wZSB3
-ZSBjYW4gd29yayB0b2dldGhlciBpbiB0aGUgZnV0dXJlLk91ciBjb21wYW55IHNwZWNpYWxpemVz
-IGluIHRlbXBlcmF0dXJlIGNvbnRyb2wgY2hpcCBwcm9kdWN0cyByZXNlYXJjaCBhbmQgZGV2ZWxv
-cG1lbnQgZm9yIG1hbnkgeWVhcnMuQWNjb3JkaW5nIHRvIHRoZSB0ZW1wZXJhdHVyZSBjb250cm9s
-IGNoaXAgeW91IHJlbGVhc2VkIGluIEdvb2dsZSBidXNpbmVzcywgd2Ugd291bGQgbGlrZSB0byBp
-bnRyb2R1Y2UgdGhpcyBwcm9qZWN0IGZvciB5b3UgKG1hY2hpbmUgdG9vbCBlbGVjdHJpY2FsIGNh
-YmluZXQsIHNwaW5kbGUsIGJlYXJpbmcsIHNjcmV3IG51dCBhbmQgb3RoZXIgY29yZSBjb21wb25l
-bnRzIG9mIGFjY3VyYXRlIHRlbXBlcmF0dXJlIGNvbnRyb2wuTGFzZXIgZXF1aXBtZW50IGVsZWN0
-cmljYWwgY2FiaW5ldCwgbGFzZXIgaGVhZCwgZmliZXIgYW1wbGlmaWVyIGFuZCBvdGhlciBjb3Jl
-IGNvbXBvbmVudHMgaGlnaCBwcmVjaXNpb24gdGVtcGVyYXR1cmUgY29udHJvbClJZiB5b3Ugd291
-bGQgbGlrZSB0byBzZWUgbW9yZSBwcm9qZWN0cywgcGxlYXNlIGxldCB1cyBrbm93LldlIHNoYWxs
-IGJlIGdsYWQgdG8gbWFrZSB5b3UgYW4gb2ZmZXIgdXBvbiByZWNlaXB0IG9mIHlvdXIgZGV0YWls
-ZWQgcmVxdWVzdC5XZSBsb29rIGZvcndhcmQgdG8geW91ciByZXBseS5CZXN0IHJlZ2FyZHMsQ29t
-cGFueSBuYW1lOiBXdWhhbiBQcmFqbmEgSW50ZWxsaWdlbnQgRXF1aXBtZW50IENvLiwgTFREVGVs
-ZXBob25lOiArODYgMDI3ODEyOTMxNDZNU046ZG1xcWxiMTg2MTNAMTYzLmNvbVJvb20gMjcyMCwg
-QmxvY2sgQiwgSGVsZW4gU3F1YXJlLCBpbnRlcnNlY3Rpb24gb2YgV2VuaHVhIERhZGFvIGFuZCBI
-b25ncWkgU3RyZWV0LCBXdWhhbiBDaXR5LCBIdWJlaSBQcm92aW5jZSwgQ2hpbmEgIA==
+Add clocks to CPU cores for a100.
 
+Signed-off-by: Shuosheng Huang <huangshuosheng@allwinnertech.com>
+---
+ arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi | 4 ++++
+ 1 file changed, 4 insertions(+)
 
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi
+index cc321c04f121..a669eb1fc965 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi
++++ b/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi
+@@ -23,6 +23,7 @@ cpu0: cpu@0 {
+ 			device_type = "cpu";
+ 			reg = <0x0>;
+ 			enable-method = "psci";
++			clocks = <&ccu CLK_CPUX>;
+ 		};
+ 
+ 		cpu@1 {
+@@ -30,6 +31,7 @@ cpu@1 {
+ 			device_type = "cpu";
+ 			reg = <0x1>;
+ 			enable-method = "psci";
++			clocks = <&ccu CLK_CPUX>;
+ 		};
+ 
+ 		cpu@2 {
+@@ -37,6 +39,7 @@ cpu@2 {
+ 			device_type = "cpu";
+ 			reg = <0x2>;
+ 			enable-method = "psci";
++			clocks = <&ccu CLK_CPUX>;
+ 		};
+ 
+ 		cpu@3 {
+@@ -44,6 +47,7 @@ cpu@3 {
+ 			device_type = "cpu";
+ 			reg = <0x3>;
+ 			enable-method = "psci";
++			clocks = <&ccu CLK_CPUX>;
+ 		};
+ 	};
+ 
+-- 
+2.28.0
 
