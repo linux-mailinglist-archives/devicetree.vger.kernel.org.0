@@ -2,142 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C0CA32D29CD
-	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 12:31:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AF47A2D29D1
+	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 12:34:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729150AbgLHLan (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Dec 2020 06:30:43 -0500
-Received: from szxga05-in.huawei.com ([45.249.212.191]:9035 "EHLO
-        szxga05-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726890AbgLHLam (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Dec 2020 06:30:42 -0500
-Received: from DGGEMS408-HUB.china.huawei.com (unknown [172.30.72.60])
-        by szxga05-in.huawei.com (SkyGuard) with ESMTP id 4Cqyd41XvCzhnJb;
-        Tue,  8 Dec 2020 19:29:28 +0800 (CST)
-Received: from [127.0.0.1] (10.174.177.9) by DGGEMS408-HUB.china.huawei.com
- (10.3.19.208) with Microsoft SMTP Server id 14.3.487.0; Tue, 8 Dec 2020
- 19:29:48 +0800
-Subject: Re: [PATCH v2 1/3] reset: hisilicon: correct vendor prefix
-To:     Philipp Zabel <p.zabel@pengutronix.de>,
-        Wei Xu <xuwei5@hisilicon.com>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-CC:     Zhangfei Gao <zhangfei.gao@linaro.org>,
-        Chen Feng <puck.chen@hisilicon.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-References: <20201204014236.1158-1-thunder.leizhen@huawei.com>
- <20201204014236.1158-2-thunder.leizhen@huawei.com>
- <07c0b7a0caf47ddef27e55e6d6887fa55305d9d5.camel@pengutronix.de>
-From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
-Message-ID: <abdb7179-5187-b515-7a9d-5a4d13608e40@huawei.com>
-Date:   Tue, 8 Dec 2020 19:29:47 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
-MIME-Version: 1.0
-In-Reply-To: <07c0b7a0caf47ddef27e55e6d6887fa55305d9d5.camel@pengutronix.de>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
+        id S1727844AbgLHLee (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Dec 2020 06:34:34 -0500
+Received: from mickerik.phytec.de ([195.145.39.210]:60364 "EHLO
+        mickerik.phytec.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727839AbgLHLee (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Dec 2020 06:34:34 -0500
+DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a1; c=relaxed/simple;
+        q=dns/txt; i=@phytec.de; t=1607427232; x=1610019232;
+        h=From:Sender:Reply-To:Subject:Date:Message-ID:To:Cc:Mime-Version:Content-Type:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=n2q2WN/q5U0vHCnHfjkUQQapiMbVThBBS6QprCE76wI=;
+        b=tboJAwj1eH5FxkMjhEvxAejTfupGy/8OZYYfTH6ADmPi3TfYOpm61QlqHuYXjr0v
+        9RZLZ+UJFpQgKmSx4JUvMQIVyYtlOti6SmXhjPAuHu/AmEXyXxS7J1tT3bEJnxet
+        cJcmfxV6NkQPWvKmohEYjyjJ1Lq4GldoBnJFeg1IQXI=;
+X-AuditID: c39127d2-981ff70000006435-84-5fcf64a07097
+Received: from idefix.phytec.de (Unknown_Domain [172.16.0.10])
+        by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id D0.21.25653.0A46FCF5; Tue,  8 Dec 2020 12:33:52 +0100 (CET)
+Received: from llp-tremmet ([172.16.5.100])
+          by idefix.phytec.de (IBM Domino Release 9.0.1FP7)
+          with ESMTP id 2020120812335195-937735 ;
+          Tue, 8 Dec 2020 12:33:51 +0100 
+Message-ID: <39ab8e317628de07b0ddc6129ceefda935eb5b5a.camel@phytec.de>
+Subject: Re: [PATCH 1/4] arm64: defconfig: Enable rv3028 i2c rtc driver
+From:   Teresa Remmet <t.remmet@phytec.de>
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>
+Date:   Tue, 08 Dec 2020 12:33:51 +0100
+In-Reply-To: <20201207135004.GA34599@kozik-lap>
+References: <1607113982-109524-1-git-send-email-t.remmet@phytec.de>
+         <1607113982-109524-2-git-send-email-t.remmet@phytec.de>
+         <20201207121029.GC27266@kozik-lap>
+         <5b8617e4b6abe19750cec17f4d6e501fe957f193.camel@phytec.de>
+         <20201207135004.GA34599@kozik-lap>
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+Mime-Version: 1.0
+X-MIMETrack: Itemize by SMTP Server on Idefix/Phytec(Release 9.0.1FP7|August  17, 2016) at
+ 08.12.2020 12:33:52,
+        Serialize by Router on Idefix/Phytec(Release 9.0.1FP7|August  17, 2016) at
+ 08.12.2020 12:33:52,
+        Serialize complete at 08.12.2020 12:33:52
+X-TNEFEvaluated: 1
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.174.177.9]
-X-CFilter-Loop: Reflected
+Content-Type: text/plain; charset="UTF-8"
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrLLMWRmVeSWpSXmKPExsWyRoCBS3dByvl4g0U7OC3eL+thtJh/5Byr
+        xcOr/hbnz29gt9j0+BqrReveI+wWf7dvYrF4sUXcgcNjzbw1jB47Z91l99i0qpPNY/OSeo/+
+        vwYenzfJBbBFcdmkpOZklqUW6dslcGVc2nSVseAHX8Wl6ceYGhjPcHcxcnJICJhItBx6xNTF
+        yMUhJLCVUaL93kk2COcYo8TB5ulAGQ4OXgE3iRV9UiANwgLuEivabrKC2GwCGhJPV5xmArFF
+        BDQlrv/9zgrSyyzwl1Fi+eJ3LCAJFgFViTXnGtlAbE4BfYnvq+axQyzoYJJonb2bHeIMHYkP
+        9z8xQiwTlPi7QxikRkKgkUmib8VCqBohidOLzzKD2MwC8hLb386BsjUlWrf/Zp/AKDgLoX0W
+        kqpZSKoWMDKvYhTKzUzOTi3KzNYryKgsSU3WS0ndxAiMgsMT1S/tYOyb43GIkYmD8RCjBAez
+        kgivmtTZeCHelMTKqtSi/Pii0pzU4kOM0hwsSuK8G3hLwoQE0hNLUrNTUwtSi2CyTBycUg2M
+        ZXWqgkJbr+/2Xtfulx6n8MKGU9z7uvjM3Z3GZTw9Lp414ScZb6pb/H7/TH22v/6/xRqT+YKO
+        T2z97mTLxFertjk9nzMuUTvEuqvXtk1te1OFpcCP3XInm5eYy5tdW9o5ozhrypajtySMfB6G
+        ptcdzvwYznPN6m3FzOX3ddbMPb1xh86XH0JKLMUZiYZazEXFiQC6zcIccAIAAA==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hello Krzysztof,
 
+Am Montag, den 07.12.2020, 14:50 +0100 schrieb Krzysztof Kozlowski:
+> On Mon, Dec 07, 2020 at 02:38:51PM +0100, Teresa Remmet wrote:
+> > Am Montag, den 07.12.2020, 13:10 +0100 schrieb Krzysztof Kozlowski:
+> > > On Fri, Dec 04, 2020 at 09:32:59PM +0100, Teresa Remmet wrote:
+> > > > Enable rv3028 i2c rtc driver populated on phyBOARD-Pollux-
+> > > > i.MX8M
+> > > > Plus.
+> > > > 
+> > > > Signed-off-by: Teresa Remmet <t.remmet@phytec.de>
+> > > > ---
+> > > >  arch/arm64/configs/defconfig | 1 +
+> > > >  1 file changed, 1 insertion(+)
+> > > > 
+> > > > diff --git a/arch/arm64/configs/defconfig
+> > > > b/arch/arm64/configs/defconfig
+> > > > index 5cfe3cf6f2ac..2034fefb3f44 100644
+> > > > --- a/arch/arm64/configs/defconfig
+> > > > +++ b/arch/arm64/configs/defconfig
+> > > > @@ -818,6 +818,7 @@ CONFIG_RTC_DRV_MAX77686=y
+> > > >  CONFIG_RTC_DRV_RK808=m
+> > > >  CONFIG_RTC_DRV_PCF85363=m
+> > > >  CONFIG_RTC_DRV_RX8581=m
+> > > > +CONFIG_RTC_DRV_RV3028=y
+> > > 
+> > > This should be a module.
+> > 
+> > with having this build in the clock out of this rtc will be
+> > disabled as
+> > not using during boot up. The clock out is enabled as default and
+> > has
+> > to be disabled explicit. But I guess the correct way would be to
+> > find a
+> > solution in the rtc driver itself?
+> 
+> Regardless whether it is built-in or module, the driver will behave
+> the
+> same. So either the driver disables the clock, or not. The only
+> difference will be *when* the action happens.
+> 
+> Choosing it as built-in for the purpose of disabling some clock is
+> not a
+> proper approach.
+> 
+> The defconfig here serves only a development/debugging/reference
+> purpose.
+> It's not for production so anyway the effect on disabling some parts
+> is
+> not that important.
 
-On 2020/12/8 17:25, Philipp Zabel wrote:
-> Hi Zhen,
-> 
-> On Fri, 2020-12-04 at 09:42 +0800, Zhen Lei wrote:
->> The vendor prefix of "Hisilicon Limited" is "hisilicon", it is clearly
->> stated in "vendor-prefixes.yaml".
->>
->> Fixes: 1527058736fa ("reset: hisilicon: add reset-hi3660")
->> Fixes: 35ca8168133c ("arm64: dts: Add dts files for Hisilicon Hi3660 SoC")
->> Fixes: dd8c7b78c11b ("arm64: dts: Add devicetree for Hisilicon Hi3670 SoC")
->> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
->> Cc: Zhangfei Gao <zhangfei.gao@linaro.org>
->> Cc: Chen Feng <puck.chen@hisilicon.com>
->> Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
->> ---
->>  arch/arm64/boot/dts/hisilicon/hi3660.dtsi | 4 ++--
->>  arch/arm64/boot/dts/hisilicon/hi3670.dtsi | 2 +-
->>  drivers/reset/hisilicon/reset-hi3660.c    | 2 +-
-> 
-> Please keep device tree patches and reset driver patch separate, as they
-> were in v1.
+I will include this as module in v2.
 
-OK
-
-> 
->>  3 files changed, 4 insertions(+), 4 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/hisilicon/hi3660.dtsi b/arch/arm64/boot/dts/hisilicon/hi3660.dtsi
->> index 49c19c6879f95ce..bfb1375426d2b58 100644
->> --- a/arch/arm64/boot/dts/hisilicon/hi3660.dtsi
->> +++ b/arch/arm64/boot/dts/hisilicon/hi3660.dtsi
->> @@ -345,7 +345,7 @@
->>  		crg_rst: crg_rst_controller {
->>  			compatible = "hisilicon,hi3660-reset";
->>  			#reset-cells = <2>;
->> -			hisi,rst-syscon = <&crg_ctrl>;
->> +			hisilicon,rst-syscon = <&crg_ctrl>;
->>  		};
->>  
->>  
->> @@ -376,7 +376,7 @@
->>  
->>  		iomcu_rst: reset {
->>  			compatible = "hisilicon,hi3660-reset";
->> -			hisi,rst-syscon = <&iomcu>;
->> +			hisilicon,rst-syscon = <&iomcu>;
->>  			#reset-cells = <2>;
->>  		};
->>  
->> diff --git a/arch/arm64/boot/dts/hisilicon/hi3670.dtsi b/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
->> index 85b0dfb35d6d396..5c5a5dc964ea848 100644
->> --- a/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
->> +++ b/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
->> @@ -155,7 +155,7 @@
->>  			compatible = "hisilicon,hi3670-reset",
->>  				     "hisilicon,hi3660-reset";
->>  			#reset-cells = <2>;
->> -			hisi,rst-syscon = <&crg_ctrl>;
->> +			hisilicon,rst-syscon = <&crg_ctrl>;
->>  		};
->>  
->>  		pctrl: pctrl@e8a09000 {
->> diff --git a/drivers/reset/hisilicon/reset-hi3660.c b/drivers/reset/hisilicon/reset-hi3660.c
->> index a7d4445924e558c..8f1953159a65b31 100644
->> --- a/drivers/reset/hisilicon/reset-hi3660.c
->> +++ b/drivers/reset/hisilicon/reset-hi3660.c
->> @@ -83,7 +83,7 @@ static int hi3660_reset_probe(struct platform_device *pdev)
->>  	if (!rc)
->>  		return -ENOMEM;
->>  
->> -	rc->map = syscon_regmap_lookup_by_phandle(np, "hisi,rst-syscon");
->> +	rc->map = syscon_regmap_lookup_by_phandle(np, "hisilicon,rst-syscon");
-> 
-> This should fall back to the deprecated compatible, for example:
-> 
-> 	rc->map = syscon_regmap_lookup_by_phandle(np, "hisilicon,rst-syscon");
-> 	if (PTR_ERR(rc->map) == -ENODEV)
-> 		rc->map = syscon_regmap_lookup_by_phandle(np, "hisi,rst-
-> syscon");
-
-Oh, thanks. I misunderstood your suggestion the other day. I'll fix it right away.
+Thanks,
+Teresa
 
 > 
->>  	if (IS_ERR(rc->map)) {
->>  		dev_err(dev, "failed to get hi3660,rst-syscon\n");
->>  		return PTR_ERR(rc->map);
-> 
-> regards
-> Philipp
-> 
-> .
+> Best regards,
+> Krzysztof
 > 
 
