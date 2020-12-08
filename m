@@ -2,75 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 569F52D256B
-	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 09:10:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 419182D2575
+	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 09:14:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727270AbgLHIJj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Dec 2020 03:09:39 -0500
-Received: from mail.kernel.org ([198.145.29.99]:34092 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725927AbgLHIJj (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 8 Dec 2020 03:09:39 -0500
-X-Gm-Message-State: AOAM531KqWTf1bliUheTV+JFQbgQKCdg9zvsnyFRXkQPt0688OgOdZNo
-        wh2znYJwOKLssJfFfmAAm+AND7yN0hWYf5pgYz0=
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1607414938;
-        bh=LhPpJxC4F5Q3Y/fX73/+10L00v+eOApqEJLmH8dkajo=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=cpzu6RDtnB0yEkEvK7aYyfX1tX24iW65gKao2x8SM/84+WA1x0BAwUXuqCcnVbv+e
-         PeUt37/U84dLpYuRmZNeWe6ZwPEDOygOGBiWyHexzkBOu8QK+YdC4kuFyP9Hlo+B0c
-         N3hqLr1B8i3Pe1K3CGNcOSf75SsflNb9SRY79KVhR2BX6kPR5QRP5ynOGZ8Qh/O7xX
-         qhqsqNu2wXsuHr5CskyKAcQbUiRx35S5KDc/z83jqdoiDPAq1kbyU9IO9uE5RQqImf
-         Hp2jvkBe+9Mt0gVlmb7NKwtlX3kJCbYsZlwMi1VOkTord1YXXvTbh4GV+skabNq9zR
-         fZYZKwLJdw+Bw==
-X-Google-Smtp-Source: ABdhPJwe1x41l8I7WarLwBmKZ2PsxA0cxVWQLgoGcW+CucDX3vRQbuP0kctQJUR/b8oR9+p75TThDyXXV7jUAio3k2g=
-X-Received: by 2002:aa7:d593:: with SMTP id r19mr24099686edq.246.1607414937105;
- Tue, 08 Dec 2020 00:08:57 -0800 (PST)
-MIME-Version: 1.0
-References: <20201208043700.23098-1-quan@os.amperecomputing.com>
- <20201208043700.23098-3-quan@os.amperecomputing.com> <CACPK8XdsbgKKr=icLxV=PZB9U03ZGWXQwCWgFvoqgCj9K_fbVg@mail.gmail.com>
-In-Reply-To: <CACPK8XdsbgKKr=icLxV=PZB9U03ZGWXQwCWgFvoqgCj9K_fbVg@mail.gmail.com>
+        id S1727943AbgLHIOf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Dec 2020 03:14:35 -0500
+Received: from mail-wm1-f65.google.com ([209.85.128.65]:53597 "EHLO
+        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725927AbgLHIOf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Dec 2020 03:14:35 -0500
+Received: by mail-wm1-f65.google.com with SMTP id k10so1356787wmi.3;
+        Tue, 08 Dec 2020 00:14:18 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=yve/ZADh457qg7/+Dy6j2VWCsLzLDQxW7IculdMabgw=;
+        b=iudvjKp0Hse5eTwK6AbgVcZTPmjckXRnu63DjMMwHkE4vjiKmLDLFeFRP8u5OXr8OF
+         7h+fIxpC3jS1AWDk1DGFaS9ssOJr60dQlsP6Y25npypaO01WuY4QmkP+ZLpMzI/UwnCb
+         VGJzB/LokT/DSsYUai7aQk1yUYvCDAkh9pYuPd8GW65Mkroin8RaT1IEyn5PeVhy+tS9
+         7J+uHw5IxR7NqOuTACaiFJUWCPxY3UQvPF4aC+ks3kR4QyY18H0ROTcZYq69PNq2eaOp
+         WUuC8JnUPsh1M1BxRFcv/33GqrZsvfCucjhLQGPSMzb5MqE9tKcL915kwezW5Z0smgDY
+         sGgg==
+X-Gm-Message-State: AOAM532EaeSFgjyiL/s99wnpqXAzTiKGD2P4VQnfClFd4X8MqI+qhE4J
+        XZoe6pLXo5R5y8JrccJeCPY=
+X-Google-Smtp-Source: ABdhPJzct0mSavW2Re8RCZYEbB9nX5jsRfbK4x1GZ/R7YI+2oplEjfaegPoKXVXSZoIbTskLyPV1SQ==
+X-Received: by 2002:a1c:e3c4:: with SMTP id a187mr2645626wmh.58.1607415232866;
+        Tue, 08 Dec 2020 00:13:52 -0800 (PST)
+Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
+        by smtp.googlemail.com with ESMTPSA id z8sm2158130wmg.17.2020.12.08.00.13.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 08 Dec 2020 00:13:51 -0800 (PST)
+Date:   Tue, 8 Dec 2020 09:13:50 +0100
 From:   Krzysztof Kozlowski <krzk@kernel.org>
-Date:   Tue, 8 Dec 2020 09:08:45 +0100
-X-Gmail-Original-Message-ID: <CAJKOXPc2wY+tcXpZRkdKodr+SgQSbW=+qWYU6E1t8CXE0D9iNA@mail.gmail.com>
-Message-ID: <CAJKOXPc2wY+tcXpZRkdKodr+SgQSbW=+qWYU6E1t8CXE0D9iNA@mail.gmail.com>
-Subject: Re: [PATCH 2/2] ARM: dts: aspeed: Add device tree for Ampere's Mt.
- Jade BMC
-To:     Joel Stanley <joel@jms.id.au>
-Cc:     Quan Nguyen <quan@os.amperecomputing.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Sam Ravnborg <sam@ravnborg.org>,
+To:     Guenter Roeck <linux@roeck-us.net>
+Cc:     Rob Herring <robh@kernel.org>, Jean Delvare <jdelvare@suse.com>,
+        Jonathan Corbet <corbet@lwn.net>, linux-hwmon@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-doc@vger.kernel.org,
         Linus Walleij <linus.walleij@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>, Mark Brown <broonie@kernel.org>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        allen <allen.chen@ite.com.tw>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>
-Content-Type: text/plain; charset="UTF-8"
+        Kun Yi <kunyi@google.com>
+Subject: Re: [PATCH 4/4] dt-bindings: hwmon: convert AD ADM1275 bindings to
+ dt-schema
+Message-ID: <20201208081350.GA5088@kozik-lap>
+References: <20201117220807.208747-1-krzk@kernel.org>
+ <20201117220807.208747-4-krzk@kernel.org>
+ <20201207211259.GA832269@robh.at.kernel.org>
+ <20201208001916.GA59429@roeck-us.net>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20201208001916.GA59429@roeck-us.net>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 8 Dec 2020 at 05:42, Joel Stanley <joel@jms.id.au> wrote:
->
-> On Tue, 8 Dec 2020 at 04:37, Quan Nguyen <quan@os.amperecomputing.com> wrote:
-> >
-> > The Mt. Jade BMC is an ASPEED AST2500-based BMC for the Mt. Jade
-> > hardware reference platform with Ampere's Altra Processor Family.
-> >
-> > Reviewed-by: Andrew Jeffery <andrew@aj.id.au>
-> > Reviewed-by: Joel Stanley <joel@jms.id.au>
-> > Signed-off-by: Quan Nguyen <quan@os.amperecomputing.com>
-> > Signed-off-by: Phong Vo <phong@os.amperecomputing.com>
-> > Signed-off-by: Thang Q. Nguyen <thang@os.amperecomputing.com>
->
-> Thanks, I've applied this to the aspeed tree.
+On Mon, Dec 07, 2020 at 04:19:16PM -0800, Guenter Roeck wrote:
+> On Mon, Dec 07, 2020 at 03:12:59PM -0600, Rob Herring wrote:
+> > On Tue, Nov 17, 2020 at 11:08:07PM +0100, Krzysztof Kozlowski wrote:
+> > > Convert the Analog Devices ADM1275 bindings to dt-schema.
+> > > 
+> > > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> > > ---
+> > >  .../bindings/hwmon/adi,adm1275.yaml           | 58 +++++++++++++++++++
+> > >  .../devicetree/bindings/hwmon/adm1275.txt     | 25 --------
+> > >  Documentation/hwmon/adm1275.rst               |  2 +-
+> > >  3 files changed, 59 insertions(+), 26 deletions(-)
+> > >  create mode 100644 Documentation/devicetree/bindings/hwmon/adi,adm1275.yaml
+> > >  delete mode 100644 Documentation/devicetree/bindings/hwmon/adm1275.txt
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/hwmon/adi,adm1275.yaml b/Documentation/devicetree/bindings/hwmon/adi,adm1275.yaml
+> > > new file mode 100644
+> > > index 000000000000..2cad28c499dc
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/hwmon/adi,adm1275.yaml
+> > > @@ -0,0 +1,58 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +
+> > > +$id: http://devicetree.org/schemas/hwmon/adi,adm1275.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Analog Devices ADM1075/ADM127x/ADM129x digital power monitors
+> > > +
+> > > +maintainers:
+> > > +  - Krzysztof Kozlowski <krzk@kernel.org>
+> > > +
+> > > +description: |
+> > > +  The ADM1293 and ADM1294 are high accuracy integrated digital power monitors
+> > > +  that offer digital current, voltage, and power monitoring using an on-chip,
+> > > +  12-bit analog-to-digital converter (ADC), communicated through a PMBus
+> > > +  compliant I2C interface.
+> > > +
+> > > +  Datasheets:
+> > > +    https://www.analog.com/en/products/adm1294.html
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    enum:
+> > > +      - adi,adm1075
+> > > +      - adi,adm1272
+> > > +      - adi,adm1275
+> > > +      - adi,adm1276
+> > > +      - adi,adm1278
+> > > +      - adi,adm1293
+> > > +      - adi,adm1294
+> > > +
+> > > +  reg:
+> > > +    maxItems: 1
+> > > +
+> > > +  shunt-resistor-micro-ohms:
+> > > +    description:
+> > > +      Shunt resistor value in micro-Ohm.
+> > > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > 
+> > Don't need a type if you have units. With that dropped,
+> > 
+> 
+> Sorry, I am not familiar with the terminology. Does that refer to
+> the '$ref' line ?
 
-Did you review it already before (which would explain tags being there)?
+Yes, it's the $ref line which can be safely removed. The core dt-schema
+applies such $ref if the property name ends with '-micro-ohms'.
 
 Best regards,
 Krzysztof
+
