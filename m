@@ -2,156 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 656D62D2BBB
-	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 14:16:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D54342D2BC5
+	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 14:16:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727258AbgLHNQD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Dec 2020 08:16:03 -0500
-Received: from foss.arm.com ([217.140.110.172]:48696 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727135AbgLHNQD (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 8 Dec 2020 08:16:03 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 7181B30E;
-        Tue,  8 Dec 2020 05:15:17 -0800 (PST)
-Received: from [10.57.61.26] (unknown [10.57.61.26])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 295BB3F718;
-        Tue,  8 Dec 2020 05:15:15 -0800 (PST)
-Subject: Re: [PATCH v4 3/4] scmi-cpufreq: get opp_shared_cpus from opp-v2 for
- EM
-To:     Sudeep Holla <sudeep.holla@arm.com>,
-        Lukasz Luba <lukasz.luba@arm.com>,
-        Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        rjw@rjwysocki.net, vireshk@kernel.org, robh+dt@kernel.org,
-        sboyd@kernel.org, nm@ti.com, daniel.lezcano@linaro.org,
-        morten.rasmussen@arm.com, chris.redpath@arm.com
-References: <20201202172356.10508-1-nicola.mazzucato@arm.com>
- <20201202172356.10508-4-nicola.mazzucato@arm.com>
- <20201208055053.kggxw26kxtnpneua@vireshk-i7>
- <0e4d3134-f9b2-31fa-b454-fb30265a80b5@arm.com>
- <20201208072611.ptsqupv4y2wybs6p@vireshk-i7>
- <20201208112008.niesjrunxq2jz3kt@bogus>
- <1f9daaf8-e850-7c1b-7a32-71367982beaf@arm.com>
- <20201208122222.bp3o6y3xsxo642wd@bogus>
-From:   Nicola Mazzucato <nicola.mazzucato@arm.com>
-Message-ID: <508c46a8-bf5a-bf29-a1df-c9a96b3de5f6@arm.com>
-Date:   Tue, 8 Dec 2020 13:17:19 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.8.0
+        id S1728723AbgLHNQG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Dec 2020 08:16:06 -0500
+Received: from mx0a-00128a01.pphosted.com ([148.163.135.77]:20610 "EHLO
+        mx0a-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1727135AbgLHNQF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Dec 2020 08:16:05 -0500
+Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
+        by mx0a-00128a01.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 0B8DBPLn015651;
+        Tue, 8 Dec 2020 08:15:24 -0500
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+        by mx0a-00128a01.pphosted.com with ESMTP id 3588090xrk-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 08 Dec 2020 08:15:24 -0500
+Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
+        by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 0B8DFNcG049670
+        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=FAIL);
+        Tue, 8 Dec 2020 08:15:23 -0500
+Received: from ASHBCASHYB4.ad.analog.com (10.64.17.132) by
+ ASHBMBX9.ad.analog.com (10.64.17.10) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1779.2; Tue, 8 Dec 2020 08:15:22 -0500
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by
+ ASHBCASHYB4.ad.analog.com (10.64.17.132) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.2.721.2;
+ Tue, 8 Dec 2020 08:15:22 -0500
+Received: from zeus.spd.analog.com (10.66.68.11) by ASHBMBX9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.1.1779.2 via Frontend
+ Transport; Tue, 8 Dec 2020 08:15:22 -0500
+Received: from localhost.localdomain ([10.48.65.12])
+        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 0B8DFKdS000595;
+        Tue, 8 Dec 2020 08:15:20 -0500
+From:   Cristian Pop <cristian.pop@analog.com>
+To:     <linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC:     <jic23@kernel.org>, <devicetree@vger.kernel.org>,
+        <robh+dt@kernel.org>, Cristian Pop <cristian.pop@analog.com>
+Subject: [PATCH v3 1/3] dt-bindings: iio: dac: AD5766 yaml documentation
+Date:   Tue, 8 Dec 2020 15:19:55 +0200
+Message-ID: <20201208131957.34381-1-cristian.pop@analog.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-In-Reply-To: <20201208122222.bp3o6y3xsxo642wd@bogus>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.343,18.0.737
+ definitions=2020-12-08_09:2020-12-08,2020-12-08 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 spamscore=0
+ bulkscore=0 impostorscore=0 mlxscore=0 phishscore=0 lowpriorityscore=0
+ mlxlogscore=999 clxscore=1015 priorityscore=1501 malwarescore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2009150000 definitions=main-2012080081
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi All, thanks for your feedback, please see below
+This adds device tree bindings for the AD5766 DAC.
 
-On 12/8/20 12:22 PM, Sudeep Holla wrote:
-> On Tue, Dec 08, 2020 at 11:34:36AM +0000, Lukasz Luba wrote:
->>
->>
->> On 12/8/20 11:20 AM, Sudeep Holla wrote:
->>> On Tue, Dec 08, 2020 at 12:56:11PM +0530, Viresh Kumar wrote:
->>>> On 08-12-20, 07:22, Nicola Mazzucato wrote:
->>>>> On 12/8/20 5:50 AM, Viresh Kumar wrote:
->>>>>> On 02-12-20, 17:23, Nicola Mazzucato wrote:
->>>>>>>   	nr_opp = dev_pm_opp_get_opp_count(cpu_dev);
->>>>>>>   	if (nr_opp <= 0) {
->>>>>>> -		dev_dbg(cpu_dev, "OPP table is not ready, deferring probe\n");
->>>>>>> -		ret = -EPROBE_DEFER;
->>>>>>> -		goto out_free_opp;
->>>>>>> +		ret = handle->perf_ops->device_opps_add(handle, cpu_dev);
->>>>>>> +		if (ret) {
->>>>>>> +			dev_warn(cpu_dev, "failed to add opps to the device\n");
->>>>>>> +			goto out_free_cpumask;
->>>>>>> +		}
->>>>>>> +
->>>>>>> +		ret = dev_pm_opp_set_sharing_cpus(cpu_dev, opp_shared_cpus);
->>>>>>> +		if (ret) {
->>>>>>> +			dev_err(cpu_dev, "%s: failed to mark OPPs as shared: %d\n",
->>>>>>> +				__func__, ret);
->>>>>>> +			goto out_free_cpumask;
->>>>>>> +		}
->>>>>>> +
->>>>>>
->>>>>> Why do we need to call above two after calling
->>>>>> dev_pm_opp_get_opp_count() ?
->>>>>
->>>>> Sorry, I am not sure to understand your question here. If there are no opps for
->>>>> a device we want to add them to it
->>>>
->>>> Earlier we used to call handle->perf_ops->device_opps_add() and
->>>> dev_pm_opp_set_sharing_cpus() before calling dev_pm_opp_get_opp_count(), why is
->>>> the order changed now ?
->>>>
->>>>
->>>> I am not sure why they would be duplicated in your case. I though
->>>> device_opps_add() is responsible for dynamically adding the OPPs here.
->>>>
->>>
->>> It is because of per-CPU vs per domain drama here. Imagine a system with
->>> 4 CPUs which the firmware puts in individual domains while they all are
->>> in the same perf domain and hence OPP is marked shared in DT.
->>>
->>> Since this probe gets called for all the cpus, we need to skip adding
->>> OPPs for the last 3(add only for 1st one and mark others as shared).
->>> If we attempt to add OPPs on second cpu probe, it *will* shout as duplicate
->>> OPP as we would have already marked it as shared table with the first cpu.
->>> Am I missing anything ? I suggested this as Nicola saw OPP duplicate
->>> warnings when he was hacking up this patch.
->>>
->>>>> otherwise no need as they would be duplicated.
->>>>>> And we don't check the return value of
->>>>>> the below call anymore, moreover we have to call it twice now.
->>>
->>> Yes, that looks wrong, we need to add the check for non zero values, but ....
+Signed-off-by: Cristian Pop <cristian.pop@analog.com>
+---
+ Changes in v3:
+	- Fix errors
+ .../bindings/iio/dac/adi,ad5766.yaml          | 58 +++++++++++++++++++
+ 1 file changed, 58 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/dac/adi,ad5766.yaml
 
-will add the check, thanks
+diff --git a/Documentation/devicetree/bindings/iio/dac/adi,ad5766.yaml b/Documentation/devicetree/bindings/iio/dac/adi,ad5766.yaml
+new file mode 100644
+index 000000000000..25ec5bc0a6c6
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iio/dac/adi,ad5766.yaml
+@@ -0,0 +1,58 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++# Copyright 2020 Analog Devices Inc.
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iio/dac/adi,ad5766.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Analog Devices AD5766 DAC device driver
++
++maintainers:
++  - Cristian Pop <cristian.pop@analog.com>
++
++description: |
++  Bindings for the Analog Devices AD5766 current DAC device. Datasheet can be
++  found here:
++    https://www.analog.com/media/en/technical-documentation/data-sheets/ad5766-5767.pdf
++
++properties:
++  compatible:
++    enum:
++      - adi,ad5766
++      - adi,ad5767
++
++  reg:
++    maxItems: 1
++
++  spi-max-frequency:
++    maximum: 1000000
++
++  spi-cpol: true
++
++  reset-gpios:
++    description: GPIO spec for the RESET pin. If specified, it will be
++      asserted during driver probe.
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - spi-max-frequency
++  - spi-cpol
++
++additionalProperties: false
++
++examples:
++  - |
++    spi {
++          #address-cells = <1>;
++          #size-cells = <0>;
++          
++          ad5766@0 {
++              compatible = "adi,ad5766";
++              reg = <0>;
++              spi-cpol;
++              spi-max-frequency = <1000000>;
++              reset-gpios = <&gpio 22 0>;
++            };
++      };
+-- 
+2.17.1
 
->>>
->>>>>
->>>>> This second get_opp_count is required such that we register em with the correct
->>>>> opp number after having added them. Without this the opp_count would not be correct.
->>>>
->>>
->>> ... I have a question here. Why do you need to call
->>>
->>> em_dev_register_perf_domain(cpu_dev, nr_opp, &em_cb, opp_shared_cpus..)
->>>
->>> on each CPU ? Why can't that be done once for unique opp_shared_cpus ?
-
-I left it untouched to reduce changes, but I see your point.
-
->>
->> It just have to be called once, for one CPU from the mask. Otherwise for
->> the next CPUs you should see error:
->> "EM: exists for CPU%d"
-> 
-> OK cool, at least it is designed and expected to be used like I thought.
-> Ah, I might have seen those, but never thought it was error message 😄 
-> 
->> It can happen that this print is not seen when the get_cpu_device(cpu)
->> failed, but that would lead to investigation why CPU devices are not
->> there yet.
->>
->> Nicola: have you seen that print?
->>
-> 
-> I assume you must see that and you need to pull this inside if condition
-> to do this once for each performance domain.
-
-I don't see that error, and that's also why I left it there. If there's already
-and em_pd for a device, EM just returns with an error that we don't check.
-
-I agree that it makes more sense to register em for opp_shared_cpus.
-
-> 
-> --
-> Regards,
-> Sudeep
-> 
