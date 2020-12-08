@@ -2,158 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D44092D2B39
-	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 13:40:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D90FD2D2B6F
+	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 13:51:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726080AbgLHMjk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Dec 2020 07:39:40 -0500
-Received: from perceval.ideasonboard.com ([213.167.242.64]:53122 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725931AbgLHMjj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Dec 2020 07:39:39 -0500
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 5126CDD;
-        Tue,  8 Dec 2020 13:38:56 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1607431136;
-        bh=v/1gJ9S8/WL7ZCOyvN/j+6KzE11E1+D7ZujUrs8lthI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=gUnh33RpWU/mAZ93S3wX/T6Ghd/YrHXmOCK2uw0qO9dPPMw5iy66Dl4YQpH2ILLpa
-         qa3jBE3z39ofvUW7eeXdffHMk6o6HevMQT1dKUtF54nRU6rwXxxTMDmKTaqvJs2FIY
-         rSmDAGO6Qir86/d0PhCEhA/iFhiw3kTPVlw/j1kA=
-Date:   Tue, 8 Dec 2020 14:38:53 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Liu Ying <victor.liu@nxp.com>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org, kishon@ti.com,
-        vkoul@kernel.org, robh+dt@kernel.org, a.hajda@samsung.com,
-        narmstrong@baylibre.com, jonas@kwiboo.se, jernej.skrabec@siol.net,
-        airlied@linux.ie, daniel@ffwll.ch, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, agx@sigxcpu.org, robert.chiras@nxp.com,
-        martin.kepplinger@puri.sm
-Subject: Re: [PATCH 2/4] phy: Add LVDS configuration options
-Message-ID: <X89z3czlY1yxgsX3@pendragon.ideasonboard.com>
-References: <1607067224-15616-1-git-send-email-victor.liu@nxp.com>
- <1607067224-15616-3-git-send-email-victor.liu@nxp.com>
+        id S1729372AbgLHMvh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Dec 2020 07:51:37 -0500
+Received: from szxga04-in.huawei.com ([45.249.212.190]:9129 "EHLO
+        szxga04-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729266AbgLHMvg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Dec 2020 07:51:36 -0500
+Received: from DGGEMS403-HUB.china.huawei.com (unknown [172.30.72.59])
+        by szxga04-in.huawei.com (SkyGuard) with ESMTP id 4Cr0QD05fpz15YQC;
+        Tue,  8 Dec 2020 20:50:12 +0800 (CST)
+Received: from thunder-town.china.huawei.com (10.174.177.9) by
+ DGGEMS403-HUB.china.huawei.com (10.3.19.203) with Microsoft SMTP Server id
+ 14.3.487.0; Tue, 8 Dec 2020 20:50:32 +0800
+From:   Zhen Lei <thunder.leizhen@huawei.com>
+To:     Philipp Zabel <p.zabel@pengutronix.de>,
+        Wei Xu <xuwei5@hisilicon.com>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+CC:     Zhen Lei <thunder.leizhen@huawei.com>,
+        Zhangfei Gao <zhangfei.gao@linaro.org>,
+        Chen Feng <puck.chen@hisilicon.com>,
+        "Manivannan Sadhasivam" <manivannan.sadhasivam@linaro.org>
+Subject: [PATCH v3 0/4] dt-bindings: reset: convert Hisilicon reset controller bindings to json-schema
+Date:   Tue, 8 Dec 2020 20:46:37 +0800
+Message-ID: <20201208124641.1787-1-thunder.leizhen@huawei.com>
+X-Mailer: git-send-email 2.26.0.windows.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <1607067224-15616-3-git-send-email-victor.liu@nxp.com>
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [10.174.177.9]
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Liu,
+v2 --> v3:
+1. Keep device tree patches and reset driver patch separate, as they were in v1.
+   That is, revert v2.
+2. When the new compatible match failed, fall back to the deprecated compatible.
+3. Fix a typo, correct "hi3660,rst-syscon" to "hisilicon,rst-syscon".
 
-Thank you for the patch.
+v1 --> v2:
+Merge the driver and DT modification(correct vendor prefix hisi to hisilicon) into one patch.
 
-On Fri, Dec 04, 2020 at 03:33:42PM +0800, Liu Ying wrote:
-> This patch allows LVDS PHYs to be configured through
-> the generic functions and through a custom structure
-> added to the generic union.
-> 
-> The parameters added here are based on common LVDS PHY
-> implementation practices.  The set of parameters
-> should cover all potential users.
-> 
-> Cc: Kishon Vijay Abraham I <kishon@ti.com>
-> Cc: Vinod Koul <vkoul@kernel.org>
-> Cc: NXP Linux Team <linux-imx@nxp.com>
-> Signed-off-by: Liu Ying <victor.liu@nxp.com>
-> ---
->  include/linux/phy/phy-lvds.h | 48 ++++++++++++++++++++++++++++++++++++++++++++
->  include/linux/phy/phy.h      |  4 ++++
->  2 files changed, 52 insertions(+)
->  create mode 100644 include/linux/phy/phy-lvds.h
-> 
-> diff --git a/include/linux/phy/phy-lvds.h b/include/linux/phy/phy-lvds.h
-> new file mode 100644
-> index 00000000..1b5b9d6
-> --- /dev/null
-> +++ b/include/linux/phy/phy-lvds.h
-> @@ -0,0 +1,48 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +/*
-> + * Copyright 2020 NXP
-> + */
-> +
-> +#ifndef __PHY_LVDS_H_
-> +#define __PHY_LVDS_H_
-> +
-> +/**
-> + * struct phy_configure_opts_lvds - LVDS configuration set
-> + *
-> + * This structure is used to represent the configuration state of a
-> + * LVDS phy.
-> + */
-> +struct phy_configure_opts_lvds {
-> +	/**
-> +	 * @bits_per_lane_and_dclk_cycle:
-> +	 *
-> +	 * Number of bits per data lane and differential clock cycle.
-> +	 */
-> +	unsigned int bits_per_lane_and_dclk_cycle;
+v1:
+Patch 1-3 change the vendor prefix from "hisi" to "hisilicon", to eliminate below warnings:
+  crg_rst_controller: 'hisi,rst-syscon' does not match any of the regexes: '^#.*', ... , '^hisilicon,.*', ...
+  From schema: /root/leizhen/linux-next/Documentation/devicetree/bindings/vendor-prefixes.yaml
 
-I see in patch 4/4 that you only support 7, can the value be any
-different ?
+Patch 4 does the json-schema conversion.
 
-> +
-> +	/**
-> +	 * @differential_clk_rate:
-> +	 *
-> +	 * Clock rate, in Hertz, of the LVDS differential clock.
-> +	 */
-> +	unsigned long differential_clk_rate;
-> +
-> +	/**
-> +	 * @lanes:
-> +	 *
-> +	 * Number of active, consecutive, data lanes, starting from
-> +	 * lane 0, used for the transmissions.
-> +	 */
-> +	unsigned int lanes;
-> +
-> +	/**
-> +	 * @is_slave:
-> +	 *
-> +	 * Boolean, true if the phy is a slave which works together
-> +	 * with a master phy to support dual link transmission,
-> +	 * otherwise a regular phy or a master phy.
-> +	 */
-> +	bool is_slave;
-> +};
-> +
-> +#endif /* __PHY_LVDS_H_ */
-> diff --git a/include/linux/phy/phy.h b/include/linux/phy/phy.h
-> index e435bdb..d450b44 100644
-> --- a/include/linux/phy/phy.h
-> +++ b/include/linux/phy/phy.h
-> @@ -17,6 +17,7 @@
->  #include <linux/regulator/consumer.h>
->  
->  #include <linux/phy/phy-dp.h>
-> +#include <linux/phy/phy-lvds.h>
->  #include <linux/phy/phy-mipi-dphy.h>
->  
->  struct phy;
-> @@ -51,10 +52,13 @@ enum phy_mode {
->   *		the MIPI_DPHY phy mode.
->   * @dp:		Configuration set applicable for phys supporting
->   *		the DisplayPort protocol.
-> + * @lvds:	Configuration set applicable for phys supporting
-> + *		the LVDS phy mode.
->   */
->  union phy_configure_opts {
->  	struct phy_configure_opts_mipi_dphy	mipi_dphy;
->  	struct phy_configure_opts_dp		dp;
-> +	struct phy_configure_opts_lvds		lvds;
->  };
->  
->  /**
+
+Zhen Lei (4):
+  reset: hisilicon: correct vendor prefix
+  arm64: dts: correct vendor prefix hisi to hisilicon
+  dt-bindings: reset: correct vendor prefix hisi to hisilicon
+  dt-bindings: reset: convert Hisilicon reset controller bindings to
+    json-schema
+
+ .../bindings/reset/hisilicon,hi3660-reset.txt      | 44 -------------
+ .../bindings/reset/hisilicon,hi3660-reset.yaml     | 77 ++++++++++++++++++++++
+ arch/arm64/boot/dts/hisilicon/hi3660.dtsi          |  4 +-
+ arch/arm64/boot/dts/hisilicon/hi3670.dtsi          |  2 +-
+ drivers/reset/hisilicon/reset-hi3660.c             |  9 ++-
+ 5 files changed, 87 insertions(+), 49 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/reset/hisilicon,hi3660-reset.txt
+ create mode 100644 Documentation/devicetree/bindings/reset/hisilicon,hi3660-reset.yaml
 
 -- 
-Regards,
+1.8.3
 
-Laurent Pinchart
+
