@@ -2,188 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EC5162D2DA8
-	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 15:58:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0FDA32D2E13
+	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 16:23:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729955AbgLHO6Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Dec 2020 09:58:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41954 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729441AbgLHO6Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Dec 2020 09:58:16 -0500
-Received: from mail-lj1-x241.google.com (mail-lj1-x241.google.com [IPv6:2a00:1450:4864:20::241])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28DF9C061794;
-        Tue,  8 Dec 2020 06:57:30 -0800 (PST)
-Received: by mail-lj1-x241.google.com with SMTP id q8so19811369ljc.12;
-        Tue, 08 Dec 2020 06:57:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=W77ZHSjcC07+ncgEX9oe8j59pCWg7z2sENxFcfkBStg=;
-        b=Fygaz4oqGa+a+NhDoQ8SamecGfNZ1oVDdtouE+1xOrZbXrfLU52J3cAVxI4dQVhp+H
-         1Y9xRZopYNvvoKW/QRvyelPzt4+YblzJKMIvzFZsQ8FjtaUen+fxeedTrnBvhIDkrqL5
-         y4Rf+Ty/QjmV6ttD0uRX3oX/p5OuhpcDlzHHzCFZsCh6/nwGPX/6Gi6CMexo4MFE+UX8
-         qwhqnnJ4pIyVKm6oyI54CjmP2lBstvFuPJ3DtDN36POvmqPIbb2S0ArLSo1NLrJbWJ24
-         w97plpEJV8bEWQVBsVNpqwUF8GI/dexQ+sHR64nb/rsLg2UKV9At8rfg9FvwR9zCEUg+
-         buGw==
+        id S1730013AbgLHPWJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Dec 2020 10:22:09 -0500
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:34519 "EHLO
+        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729334AbgLHPWI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Dec 2020 10:22:08 -0500
+Received: by mail-ot1-f66.google.com with SMTP id a109so491728otc.1;
+        Tue, 08 Dec 2020 07:21:52 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=W77ZHSjcC07+ncgEX9oe8j59pCWg7z2sENxFcfkBStg=;
-        b=ep1adgjr6R9Uahd/8EHfVNrrLyw4w2Zw0QySCLvsAvuD/pfKQDBlhRsmCDFUIZOwzD
-         shfCv7D0UO4PxXulGNl8wyFJd/eDqSuzrm1G32IEFX5Cqf5TFXgl6nuSsfenjXACo/Rn
-         sDqLSAwHPhZjNYsYN2rDsCirkrAGV/DYT/HcTAf+3A6FHAm1JJZseXXb5uVLXWrrh+4/
-         BxkAmuFmf4KrqO92DuNBocyQt2+5ENOO8jsJzFm+zHu2XA7Dvwj6U3ZXQSXtt/q3CPux
-         AxwvvQdkGBM00P311EZ6CHZY3ndw8mwtpO6tCat6XnlPROOVdm4MOo32jDRxruComTpk
-         jwCg==
-X-Gm-Message-State: AOAM533YUYz5dypsDix9BxgeE/nMvXb66pSigHjwUwqJIWUoTEADmHpO
-        egZV3JxfA1+XHYAkcM3eFgIg9sPAC88od35bmt13FHsH
-X-Google-Smtp-Source: ABdhPJxmOiEwTy3F/12ct7dtwFip8ZHWt2BKMQMbRSbbR+rMAWc51tX8HxlziLqS3Dv2o9M34+HB4ErL3vZeXyk9X8U=
-X-Received: by 2002:a2e:7607:: with SMTP id r7mr3783025ljc.168.1607439448625;
- Tue, 08 Dec 2020 06:57:28 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=IQ3hrRr5CR/EHc+P2sk3O7yO90fJ2PV9jiKrnTl/JOE=;
+        b=Gb/FuTyn+nNaXeU7lOwcaB4pBKAMoV/igr3nasJEYZdNFWb4VNztcBDxS42qpT45ji
+         RhXa5veknPwRYxAFDQZxvgswRvvFas7YF2dLATvpEV//3r/KSLiOk3wAktB8wxFJPegd
+         /jGZOZGT7Q3rn7aHuVMYNZdAiqf5xLK1tJ4ZRj+vMGSlRylfsr7SV7LUdHS2auc+iajp
+         7CiKeCt0/odUuFgDc1wpQSWKWFb5MNdA3ccp32A9b9R7mo8DtNCjkgZAGiCn0EbdqW7C
+         zTcAHO0dIuj/7yeT0X9Ho+CMsK6XgiVoa5oARzblssGqv+fmDFGWSQOS5YGRa0LZHnO+
+         PGcw==
+X-Gm-Message-State: AOAM531LXgfZsZR5UI9BRKC49e6Cm29pXjjhFpz8cHQbhJHS94/fX+Lp
+        y9Kbn3QjGtjakytnWM9hVw==
+X-Google-Smtp-Source: ABdhPJzmCHNnVAHVBS3T6eGsSQKp+szBNnE+KgDyZOtKt+lyLKF1btlAQoWaO2PnCHLoZUrZlxBiKg==
+X-Received: by 2002:a05:6830:1352:: with SMTP id r18mr16663484otq.73.1607440887454;
+        Tue, 08 Dec 2020 07:21:27 -0800 (PST)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id u130sm3717886oib.53.2020.12.08.07.21.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 08 Dec 2020 07:21:25 -0800 (PST)
+Received: (nullmailer pid 2539592 invoked by uid 1000);
+        Tue, 08 Dec 2020 15:21:23 -0000
+Date:   Tue, 8 Dec 2020 09:21:23 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Cc:     Ahmad Zainie <wan.ahmad.zainie.wan.mohamad@intel.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        devicetree@vger.kernel.org,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Manu Gautam <mgautam@codeaurora.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-kernel@vger.kernel.org,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        linux-arm-kernel@lists.infradead.org,
+        Kevin Hilman <khilman@baylibre.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        linux-snps-arc@lists.infradead.org,
+        Serge Semin <fancer.lancer@gmail.com>,
+        linux-usb@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        linuxppc-dev@lists.ozlabs.org, Felipe Balbi <balbi@kernel.org>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Andy Gross <agross@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Mathias Nyman <mathias.nyman@intel.com>,
+        Roger Quadros <rogerq@ti.com>, linux-mips@vger.kernel.org
+Subject: Re: [PATCH v5 10/19] dt-bindings: usb: Convert DWC USB3 bindings to
+ DT schema
+Message-ID: <20201208152123.GA2539227@robh.at.kernel.org>
+References: <20201205152427.29537-1-Sergey.Semin@baikalelectronics.ru>
+ <20201205152427.29537-11-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
-References: <1607011595-13603-1-git-send-email-u0084500@gmail.com>
- <1607011595-13603-2-git-send-email-u0084500@gmail.com> <20201207164247.GB398093@robh.at.kernel.org>
-In-Reply-To: <20201207164247.GB398093@robh.at.kernel.org>
-From:   ChiYuan Huang <u0084500@gmail.com>
-Date:   Tue, 8 Dec 2020 22:57:17 +0800
-Message-ID: <CADiBU3-fKrGEUDD90nnLqeUP9wUth6_oOnn4THw2iZC4=yF7Zw@mail.gmail.com>
-Subject: Re: [PATCH v2 2/4] backlight: rt4831: Adds DT binding document for
- Richtek RT4831 backlight
-To:     Rob Herring <robh@kernel.org>
-Cc:     Lee Jones <lee.jones@linaro.org>, cy_huang <cy_huang@richtek.com>,
-        lkml <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201205152427.29537-11-Sergey.Semin@baikalelectronics.ru>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Rob Herring <robh@kernel.org> =E6=96=BC 2020=E5=B9=B412=E6=9C=888=E6=97=A5 =
-=E9=80=B1=E4=BA=8C =E4=B8=8A=E5=8D=8812:42=E5=AF=AB=E9=81=93=EF=BC=9A
->
-> On Fri, Dec 04, 2020 at 12:06:33AM +0800, cy_huang wrote:
-> > From: ChiYuan Huang <cy_huang@richtek.com>
-> >
-> > Adds DT binding document for Richtek RT4831 backlight.
-> >
-> > Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
-> > ---
-> >  .../leds/backlight/richtek,rt4831-backlight.yaml   | 86 ++++++++++++++=
-++++++++
-> >  1 file changed, 86 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/leds/backlight/ri=
-chtek,rt4831-backlight.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/leds/backlight/richtek,r=
-t4831-backlight.yaml b/Documentation/devicetree/bindings/leds/backlight/ric=
-htek,rt4831-backlight.yaml
-> > new file mode 100644
-> > index 00000000..df1439a
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/leds/backlight/richtek,rt4831-b=
-acklight.yaml
-> > @@ -0,0 +1,86 @@
-> > +# SPDX-License-Identifier: GPL-2.0
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/leds/backlight/richtek,rt4831-backl=
-ight.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Richtek RT4831 Backlight
-> > +
-> > +maintainers:
-> > +  - ChiYuan Huang <cy_huang@richtek.com>
-> > +
-> > +description: |
-> > +  RT4831 is a mutifunctional device that can provide power to the LCD =
-display
-> > +  and LCD backlight.
-> > +
-> > +  For the LCD backlight, it can provide four channel WLED driving capa=
-bility.
-> > +  Each channel driving current is up to 30mA
-> > +
-> > +  Datasheet is available at
-> > +  https://www.richtek.com/assets/product_file/RT4831A/DS4831A-05.pdf
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: richtek,rt4831-backlight
-> > +
-> > +  default-brightness:
-> > +    description: |
-> > +      The default brightness that applied to the system on start-up.
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    minimum: 0
-> > +    maximum: 2048
-> > +
-> > +  max-brightness:
-> > +    description: |
-> > +      The max brightness for the H/W limit
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    minimum: 0
-> > +    maximum: 2048
-> > +
-> > +  richtek,pwm-enable:
-> > +    description: |
-> > +      Specify the backlight dimming following by PWM duty or by SW con=
-trol.
-> > +    type: boolean
-> > +
-> > +  richtek,bled-ovp-sel:
-> > +    description: |
-> > +      Backlight OVP level selection, currently support 17V/21V/25V/29V=
-.
-> > +    $ref: /schemas/types.yaml#/definitions/uint8
-> > +    default: 1
-> > +    minimum: 0
-> > +    maximum: 3
-> > +
-> > +  richtek,channel-use:
-> > +    description: |
-> > +      Backlight LED channel to be used.
-> > +      BIT 0/1/2/3 is used to indicate led channel 1/2/3/4 enable or di=
-sable.
-> > +    $ref: /schemas/types.yaml#/definitions/uint8
-> > +    minimum: 1
-> > +    maximum: 15
-> > +
-> > +required:
-> > +  - compatible
-> > +  - richtek,channel-use
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/leds/rt4831-backlight.h>
-> > +    i2c {
-> > +      #address-cells =3D <1>;
-> > +      #size-cells =3D <0>;
-> > +
-> > +      rt4831@11 {
-> > +        compatible =3D "richtek,rt4831";
-> > +        reg =3D <0x11>;
-> > +
-> > +        backlight {
-> > +          compatible =3D "richtek,rt4831-backlight";
-> > +          default-brightness =3D <1024>;
-> > +          max-brightness =3D <2048>;
-> > +          richtek,bled-ovp-sel =3D /bits/ 8 <RT4831_BLOVPLVL_21V>;
-> > +          richtek,channel-use =3D /bits/ 8 <RT4831_BLED_ALLCHEN>;
-> > +        };
-> > +      };
->
-> Just do 1 complete example in the mfd binding.
->
-Ack.
-> > +    };
-> > --
-> > 2.7.4
-> >
+On Sat, 05 Dec 2020 18:24:17 +0300, Serge Semin wrote:
+> DWC USB3 DT node is supposed to be compliant with the Generic xHCI
+> Controller schema, but with additional vendor-specific properties, the
+> controller-specific reference clocks and PHYs. So let's convert the
+> currently available legacy text-based DWC USB3 bindings to the DT schema
+> and make sure the DWC USB3 nodes are also validated against the
+> usb-xhci.yaml schema.
+> 
+> Note 1. we have to discard the nodename restriction of being prefixed with
+> "dwc3@" string, since in accordance with the usb-hcd.yaml schema USB nodes
+> are supposed to be named as "^usb(@.*)".
+> 
+> Note 2. The clock-related properties are marked as optional to match the
+> DWC USB3 driver expectation and to improve the bindings mainainability
+> so in case if there is a glue-node it would the responsible for the
+> clocks initialization.
+> 
+> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> 
+> ---
+> 
+> Changelog v2:
+> - Discard '|' from the descriptions, since we don't need to preserve
+>   the text formatting in any of them.
+> - Drop quotes from around the string constants.
+> - Fix the "clock-names" prop description to be referring the enumerated
+>   clock-names instead of the ones from the Databook.
+> 
+> Changelog v3:
+> - Apply usb-xhci.yaml# schema only if the controller is supposed to work
+>   as either host or otg.
+> 
+> Changelog v4:
+> - Apply usb-drd.yaml schema first. If the controller is configured
+>   to work in a gadget mode only, then apply the usb.yaml schema too,
+>   otherwise apply the usb-xhci.yaml schema.
+> - Discard the Rob'es Reviewed-by tag. Please review the patch one more
+>   time.
+> 
+> Changelog v5:
+> - Add "snps,dis-split-quirk" property to the DWC USB3 DT schema.
+> - Add a commit log text about the clock-related property changes.
+> - Make sure dr_mode exist to apply the USB-gadget-only schema.
+> ---
+>  .../devicetree/bindings/usb/dwc3.txt          | 128 -------
+>  .../devicetree/bindings/usb/snps,dwc3.yaml    | 312 ++++++++++++++++++
+>  2 files changed, 312 insertions(+), 128 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/usb/dwc3.txt
+>  create mode 100644 Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+> 
+
+Reviewed-by: Rob Herring <robh@kernel.org>
