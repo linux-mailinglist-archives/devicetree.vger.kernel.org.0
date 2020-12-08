@@ -2,130 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C16C82D2EF1
-	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 17:01:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D37382D2F01
+	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 17:05:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730048AbgLHQBS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Dec 2020 11:01:18 -0500
-Received: from mail.kernel.org ([198.145.29.99]:51714 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729929AbgLHQBS (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 8 Dec 2020 11:01:18 -0500
-Date:   Tue, 8 Dec 2020 16:00:29 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1607443237;
-        bh=rgEunstMpibfhWp7GUnqRGdLLMgBZwXcZaxMILL0EII=;
-        h=From:To:Cc:Subject:References:In-Reply-To:From;
-        b=pIKqcHzTM1UvXwH8uSjPdHgySB79HwWsQFruel6Dt5/oB4Bnmx0SZwzHcM57S8WNr
-         YvNeQC0ScX+PX2j6S4DxYz06eZJEyydRDkvGrcAo2LEl7QdHB7X17Src/kmQw3znzn
-         5CTSkV/aXTZYsuq9mMp/Cxqopzb1mKQWNgb8ILrwCNDFhqMiWDbx/5bDpC1wapl81u
-         YvYQ7gg8jS/SBwwsfND4MrUA6+2P0Lbp2yN79dn5kXzj+yOqeAG9V+6fekSbQgJq6I
-         cu661oYFIZ5qbqy/GTQUOtM5vBipbHFHiSF01AfN9T+U4JWTlQZyIRKbrqmtSUbCiU
-         tirCf7gj/WmOQ==
-From:   Will Deacon <will@kernel.org>
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     Benjamin Tissoires <benjamin.tissoires@redhat.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Jiri Kosina <jkosina@suse.cz>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Andrea Borgia <andrea@borgia.bo.it>,
-        Rob Herring <robh+dt@kernel.org>,
-        Kai-Heng Feng <kai.heng.feng@canonical.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        "open list:HID CORE LAYER" <linux-input@vger.kernel.org>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Aaron Ma <aaron.ma@canonical.com>,
-        Anson Huang <Anson.Huang@nxp.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Jiri Kosina <jikos@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Li Yang <leoyang.li@nxp.com>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        Michael Walle <michael@walle.cc>,
-        Olof Johansson <olof@lixom.net>, Pavel Balan <admin@kryma.net>,
-        Shawn Guo <shawnguo@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Xiaofei Tan <tanxiaofei@huawei.com>,
-        You-Sheng Yang <vicamo.yang@canonical.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        LKML <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v6 0/4] HID: i2c-hid: Reorganize to allow supporting
- goodix,gt7375p
-Message-ID: <20201208160029.GA6461@willie-the-truck>
-References: <20201112004130.17290-1-dianders@chromium.org>
- <CAD=FV=W122aWPbg7Fo=zg+QmK7DHBcYTQ6CjPawLhucd4Rtw9A@mail.gmail.com>
- <CAO-hwJ+amboty_wKzP3n11mHLfssGz8Npzdfu9QrcipEvu3VHA@mail.gmail.com>
- <CAD=FV=VkyF8B9stozXv_Xt7a-Od4-1f2h6QS5DDekiZCQhXjgw@mail.gmail.com>
+        id S1729938AbgLHQEP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Dec 2020 11:04:15 -0500
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:41470 "EHLO
+        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729998AbgLHQEP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Dec 2020 11:04:15 -0500
+Received: by mail-ot1-f66.google.com with SMTP id x13so8714662oto.8
+        for <devicetree@vger.kernel.org>; Tue, 08 Dec 2020 08:03:59 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=87WguhbQXyz7kpCj449vkC4bNW+PjIa6SLvX4wLndSU=;
+        b=HnpU+95XDOEnEeWDwj2iIdEzugPr2J4+7GakXGEjOa8nrhuH/ZjESbdhhEq6Bvwd9Y
+         zqh4NsGWOb+nv37k+U7eHOVYp7ImfnlmEX/fJ9bmlG6rwbwLoaIFNitpgbZiw+oQIRr/
+         +Lb57XSEf7arWhmTBfH1Iv1wnZPMh1L89ZULu+W44vXmsT/7/38/fyJlPJjWBnN2Ynwa
+         /xb7z0A+29IDssxp0WsSw8Ba7wWcg8Z3lsG891qy0es9oaAoXytt9HUsQQz/B0oWozW+
+         gX/fYm0Y0AJciWkAJo82Ug4S7RINiKk2Fzg2n9jRgTDNlbaDhbdIoqL2xaaxMhWBkwqg
+         xDNw==
+X-Gm-Message-State: AOAM530p1UpAijajDbGAJPXBIFmWGyOd8FzmB/GOaJcISGOvVSPEDXeJ
+        b/OL8xMVhvsg8JeGhCYVow==
+X-Google-Smtp-Source: ABdhPJwf2y1U5KcNNjc/RKc6n+6NCO6xXVMjz789cfBT9U3B2I5X9EwlA4rKtU1Q9A9A7Fk0qjitOA==
+X-Received: by 2002:a9d:d01:: with SMTP id 1mr16935763oti.295.1607443414420;
+        Tue, 08 Dec 2020 08:03:34 -0800 (PST)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id g2sm3381321ooh.39.2020.12.08.08.03.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 08 Dec 2020 08:03:23 -0800 (PST)
+Received: (nullmailer pid 2610625 invoked by uid 1000);
+        Tue, 08 Dec 2020 16:03:11 -0000
+Date:   Tue, 8 Dec 2020 10:03:11 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Dave Gerlach <d-gerlach@ti.com>
+Cc:     Peter Ujfalusi <peter.ujfalusi@ti.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Kishon Vijay Abraham <kishon@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>, Nishanth Menon <nm@ti.com>,
+        devicetree@vger.kernel.org, Sekhar Nori <nsekhar@ti.com>,
+        Aswath Govindraju <a-govindraju@ti.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>, Suman Anna <s-anna@ti.com>
+Subject: Re: [PATCH 1/3] dt-bindings: arm: ti: Add bindings for AM642 SoC
+Message-ID: <20201208160311.GA2610574@robh.at.kernel.org>
+References: <20201125052004.17823-1-d-gerlach@ti.com>
+ <20201125052004.17823-2-d-gerlach@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAD=FV=VkyF8B9stozXv_Xt7a-Od4-1f2h6QS5DDekiZCQhXjgw@mail.gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20201125052004.17823-2-d-gerlach@ti.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 02, 2020 at 07:54:40AM -0800, Doug Anderson wrote:
-> On Wed, Dec 2, 2020 at 7:20 AM Benjamin Tissoires
-> <benjamin.tissoires@redhat.com> wrote:
-> > On Tue, Dec 1, 2020 at 10:12 PM Doug Anderson <dianders@chromium.org> wrote:
-> > > On Wed, Nov 11, 2020 at 4:41 PM Douglas Anderson <dianders@chromium.org> wrote:
-> > > >  .../bindings/input/goodix,gt7375p.yaml        |  65 +++++
-> > > >  arch/arm64/configs/defconfig                  |   3 +-
-> > > >  drivers/hid/Makefile                          |   2 +-
-> > > >  drivers/hid/i2c-hid/Kconfig                   |  47 +++-
-> > > >  drivers/hid/i2c-hid/Makefile                  |   6 +-
-> > > >  drivers/hid/i2c-hid/i2c-hid-acpi.c            | 159 +++++++++++
-> > > >  drivers/hid/i2c-hid/i2c-hid-core.c            | 254 +++---------------
-> > > >  drivers/hid/i2c-hid/i2c-hid-of-goodix.c       | 116 ++++++++
-> > > >  drivers/hid/i2c-hid/i2c-hid-of.c              | 143 ++++++++++
-> > > >  drivers/hid/i2c-hid/i2c-hid.h                 |  22 ++
-> > > >  include/linux/platform_data/i2c-hid.h         |  41 ---
-> > > >  11 files changed, 596 insertions(+), 262 deletions(-)
-> > > >  create mode 100644 Documentation/devicetree/bindings/input/goodix,gt7375p.yaml
-> > > >  create mode 100644 drivers/hid/i2c-hid/i2c-hid-acpi.c
-> > > >  create mode 100644 drivers/hid/i2c-hid/i2c-hid-of-goodix.c
-> > > >  create mode 100644 drivers/hid/i2c-hid/i2c-hid-of.c
-> > > >  delete mode 100644 include/linux/platform_data/i2c-hid.h
-> > >
-> > > Are there any additional changes that folks would like with this
-> > > series?  It's not crazy urgent to get it in, but it touches enough
-> > > lines of code that it'd be nice to get it in before other patches land
-> > > and it gets merge conflicts.
-> >
-> > Sorry for the delay. I was having an internal deadline last week. I
-> > just re-read the code, and I am quite happy with it. I also just
-> > tested it on the i2c-hid w/ acpi machine I have here, and it seems OK.
-> >
-> > So other than that, do we need to have approvals for patch 2/4
-> > (arch/arm64/configs/defconfig)? I can easily take that in the HID
-> > tree, but I prefer having the approval from the maintainers first.
-> > Catalin, Will?
+On Tue, 24 Nov 2020 23:20:02 -0600, Dave Gerlach wrote:
+> The AM642 SoC belongs to the K3 Multicore SoC architecture platform,
+> providing advanced system integration to enable applications such as
+> Motor Drives, PLC, Remote IO and IoT Gateways.
 > 
-> From my past knowledge of the arm64 defconfig, I think it's a bit of a
-> free-for-all, sort of like updates to the "MAINTAINERS" file.  Doing a
-> "git log" on it I see commits happen from every corner and very few of
-> them have Acks.  I think many (but not all) of the commits to this
-> file go through trees that feed into the SoC tree (Arnd and Olof)
-> because those maintainers care about enabling drivers for boards that
-> they're supporting, but changes come from elsewhere too.
+> Some highlights of this SoC are:
+> * Dual Cortex-A53s in a single cluster, two clusters of dual Cortex-R5F
+>   MCUs, and a single Cortex-M4F.
+> * Two Gigabit Industrial Communication Subsystems (ICSSG).
+> * Integrated Ethernet switch supporting up to a total of two external
+>   ports.
+> * PCIe-GEN2x1L, USB3/USB2, 2xCAN-FD, eMMC and SD, UFS, OSPI memory
+>   controller, QSPI, I2C, eCAP/eQEP, ePWM, ADC, among other
+>   peripherals.
+> * Centralized System Controller for Security, Power, and Resource
+>   Management (DMSC).
 > 
-> Obviously an Ack wouldn't hurt, though.  Since get_maintainer points
-> at Will and Catalin I wouldn't say no if one of them wanted to Ack
-> patch #2 in the series.  ;-)
+> See AM64X Technical Reference Manual (SPRUIM2, Nov 2020)
+> for further details: https://www.ti.com/lit/pdf/spruim2
+> 
+> Signed-off-by: Dave Gerlach <d-gerlach@ti.com>
+> ---
+>  Documentation/devicetree/bindings/arm/ti/k3.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
 
-For the avoidance of doubt:
-
-Acked-by: Will Deacon <will@kernel.org>
-
-on patch 2. But yes, although there are a few things I really care about
-in defconfig (e.g. things like page size!), generally speaking we don't
-need to Ack everything that changes in there.
-
-That said, might be worth checking whether arm-soc have any defconfig
-changes queued in -next so you don't end up with conflicts.
-
-Will
+Reviewed-by: Rob Herring <robh@kernel.org>
