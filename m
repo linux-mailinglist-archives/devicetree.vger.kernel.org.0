@@ -2,83 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5234F2D2F64
-	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 17:23:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 953982D2F3F
+	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 17:16:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730243AbgLHQXI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Dec 2020 11:23:08 -0500
-Received: from mslow2.mail.gandi.net ([217.70.178.242]:43448 "EHLO
-        mslow2.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730237AbgLHQXI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Dec 2020 11:23:08 -0500
-Received: from relay9-d.mail.gandi.net (unknown [217.70.183.199])
-        by mslow2.mail.gandi.net (Postfix) with ESMTP id AC1AB3A1D0B;
-        Tue,  8 Dec 2020 16:16:27 +0000 (UTC)
-X-Originating-IP: 90.76.70.27
-Received: from pc-2.home (lfbn-tou-1-1249-27.w90-76.abo.wanadoo.fr [90.76.70.27])
-        (Authenticated sender: maxime.chevallier@bootlin.com)
-        by relay9-d.mail.gandi.net (Postfix) with ESMTPSA id 7DE2CFF81B;
-        Tue,  8 Dec 2020 16:15:24 +0000 (UTC)
-From:   Maxime Chevallier <maxime.chevallier@bootlin.com>
-To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        id S1730001AbgLHQQE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Dec 2020 11:16:04 -0500
+Received: from mail-oi1-f196.google.com ([209.85.167.196]:45948 "EHLO
+        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726810AbgLHQQE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Dec 2020 11:16:04 -0500
+Received: by mail-oi1-f196.google.com with SMTP id f132so5461253oib.12;
+        Tue, 08 Dec 2020 08:15:48 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=/A5RkYY4853LJ83SNcwGrd9pzrqICpgZ4WV/ppEDVw0=;
+        b=oFUpt/yymq/cDRWk54sA89/BLjCbfyDZpdTiQV8K5LqSW3PkqLqQT9mgxvamOG9r+V
+         86zf/bDo+jpn/s4l/I93VSomc/FC+uTDNJ9ollZxwrS3Asei4n8R8T1YKwDYfPJOcK35
+         uGu+Bau/3VtLNegpbwWSrDsDNot57UkS37m6KIoV2yAbpdi70lgM0kPk8ekgl9RPHMFT
+         UUJwk0mgVUQHypJes6t/XkgWMOGo1LAlSjg3xassTefXdVdebR7ZtoaEA/KxIZskoiHM
+         OeLemdv2uFhPFQPnYt9DKdaagGG+LwkYH8ybCSdszstVAUn4tGIjaBkd5//kf96xeOUu
+         sS5A==
+X-Gm-Message-State: AOAM533/hRuYwYX5FV55lTq1va0gK0xDhJpDpbmWt7/EAEVlBkqTE13A
+        9Sv1ivXiGX1EGYt3ktuxGA==
+X-Google-Smtp-Source: ABdhPJyBhn7yunGObn+5VAHECgHK18a7z4JWaQwAkAVty8iu2yN6sKxNqznL6eWk+z748LSe/WbHow==
+X-Received: by 2002:aca:4d8b:: with SMTP id a133mr3333273oib.79.1607444123100;
+        Tue, 08 Dec 2020 08:15:23 -0800 (PST)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id m109sm3465698otc.30.2020.12.08.08.15.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 08 Dec 2020 08:15:21 -0800 (PST)
+Received: (nullmailer pid 2630366 invoked by uid 1000);
+        Tue, 08 Dec 2020 16:15:19 -0000
+Date:   Tue, 8 Dec 2020 10:15:19 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Daniele Alessandrelli <daniele.alessandrelli@linux.intel.com>
+Cc:     Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
+        Mark Gross <mgross@linux.intel.com>,
+        devicetree@vger.kernel.org,
+        "David S. Miller" <davem@davemloft.net>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
-Cc:     Maxime Chevallier <maxime.chevallier@bootlin.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-Subject: [PATCH v4 3/3] arm64: dts: rockchip: Add the camera interface description of the PX30
-Date:   Tue,  8 Dec 2020 17:15:09 +0100
-Message-Id: <20201208161509.655862-4-maxime.chevallier@bootlin.com>
-X-Mailer: git-send-email 2.25.4
-In-Reply-To: <20201208161509.655862-1-maxime.chevallier@bootlin.com>
-References: <20201208161509.655862-1-maxime.chevallier@bootlin.com>
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        linux-crypto@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: Add Keem Bay OCS AES bindings
+Message-ID: <20201208161519.GA2630335@robh.at.kernel.org>
+References: <20201126115148.68039-1-daniele.alessandrelli@linux.intel.com>
+ <20201126115148.68039-2-daniele.alessandrelli@linux.intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201126115148.68039-2-daniele.alessandrelli@linux.intel.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The PX30 has a camera interface, supporting CSI2 and BT656
-modes. Add a DT description for this interface.
+On Thu, 26 Nov 2020 11:51:47 +0000, Daniele Alessandrelli wrote:
+> From: Daniele Alessandrelli <daniele.alessandrelli@intel.com>
+> 
+> Add device-tree bindings for Intel Keem Bay Offload and Crypto Subsystem
+> (OCS) AES crypto driver.
+> 
+> Signed-off-by: Daniele Alessandrelli <daniele.alessandrelli@intel.com>
+> Acked-by: Mark Gross <mgross@linux.intel.com>
+> ---
+>  .../crypto/intel,keembay-ocs-aes.yaml         | 45 +++++++++++++++++++
+>  1 file changed, 45 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/crypto/intel,keembay-ocs-aes.yaml
+> 
 
-Signed-off-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
----
-V3 : Renamed the controlled
-
-V4: Fixed the clock names
-
- arch/arm64/boot/dts/rockchip/px30.dtsi | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/rockchip/px30.dtsi b/arch/arm64/boot/dts/rockchip/px30.dtsi
-index 2695ea8cda14..39987afe5ed5 100644
---- a/arch/arm64/boot/dts/rockchip/px30.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/px30.dtsi
-@@ -1106,6 +1106,18 @@ vopl_mmu: iommu@ff470f00 {
- 		status = "disabled";
- 	};
- 
-+	vip: vip@ff490000 {
-+		compatible = "rockchip,px30-vip";
-+		reg = <0x0 0xff490000 0x0 0x200>;
-+		interrupts = <GIC_SPI 69 IRQ_TYPE_LEVEL_HIGH>;
-+		clocks = <&cru ACLK_CIF>, <&cru HCLK_CIF>, <&cru PCLK_CIF>, <&cru SCLK_CIF_OUT>;
-+		clock-names = "aclk", "hclk", "pclk";
-+		power-domains = <&power PX30_PD_VI>;
-+		resets = <&cru SRST_CIF_A>, <&cru SRST_CIF_H>, <&cru SRST_CIF_PCLKIN>;
-+		reset-names = "axi", "ahb", "pclkin";
-+		status = "disabled";
-+	};
-+
- 	qos_gmac: qos@ff518000 {
- 		compatible = "syscon";
- 		reg = <0x0 0xff518000 0x0 0x20>;
--- 
-2.25.4
-
+Reviewed-by: Rob Herring <robh@kernel.org>
