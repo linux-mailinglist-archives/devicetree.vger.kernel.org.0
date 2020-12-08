@@ -2,167 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B00FA2D2246
-	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 05:51:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 32EF22D228C
+	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 06:03:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726843AbgLHEux (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Dec 2020 23:50:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33026 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726828AbgLHEux (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 23:50:53 -0500
-Received: from mail-oi1-x244.google.com (mail-oi1-x244.google.com [IPv6:2607:f8b0:4864:20::244])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1375EC061749;
-        Mon,  7 Dec 2020 20:50:13 -0800 (PST)
-Received: by mail-oi1-x244.google.com with SMTP id 15so6972875oix.8;
-        Mon, 07 Dec 2020 20:50:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=sender:subject:to:cc:references:from:autocrypt:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=jHkOHufgfPix7XJnCEL5dkvF/7Fypmy2uLtYXWhqwes=;
-        b=EEzbqjYcjazN0cXwdMDcfLJmNNCY56rjfD4ovOHQWoIq0PjSl2+DZt4tpssS+lf6uN
-         4KcG/updZ2pSSwNA7isAgug3R5F2zcKEN51CvqMFcvSiMWl0E1DKInY61Vrj0X6SUXqP
-         9h8Cu97E5J3wL96zoGau0O0J3WTn/be0xdq6GJLSPuCaAaGK23Fck1Psj8+8bJMVU/Tt
-         +rhkyhK4tr0Xt1wVD2l+WkrJLS8qiXl3mrVJcWKNPykDQirzpXBvZVjY1OoWi08bHj4t
-         Mdrh3Ee6hEQl8m9quYNSTQwpYhOktchVLUxJXRMZAlMcw9h1l9V6umiw4VbyQqzTYocf
-         V1HA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:subject:to:cc:references:from:autocrypt
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=jHkOHufgfPix7XJnCEL5dkvF/7Fypmy2uLtYXWhqwes=;
-        b=oWZ0kiqRkeLSf1/Hmti3JnTnhEUL1ZpZohW4W+bEEavyQh2xaQRs4uxIjpdKdkLBfh
-         9ZJCJVGmQA1R02Ito973EzmkpnjWG4k65cBuAizTmkaZMKomD7J4TG/Pbsd8Nh/LV889
-         ts1ib3Q5E1R0bI/AsyJH2wCU0W3wdS+hGU15UbPHfvfjwnmagJZNsjRtiDMI+JwG+XOg
-         ioJ+1A1anNMjq5rqfpq7I2DxVFz4tCTez5ZyYMR7n4GzIQtw/+aykHrKjs7CWSyBBARY
-         MtkhWr0N0FmqdrAd3sIPtLReXrTgTewHT6n4HwYP9WFBx/81cDIqvK1pSUGOTJdilHRe
-         fNTw==
-X-Gm-Message-State: AOAM532j2nMbmNUOjqFvRo5bxps6wroXS3pLrVnvwmbj8aAKKpBGnnN+
-        yg7lJNS1wY5GOl6jlNNsv1sZXCZXCAQ=
-X-Google-Smtp-Source: ABdhPJzsIwBuv4H4rkF21YxZVwyw5ietTe5Qq9IgEmpv5eSLf7lfeyOZCkot/YI+Hhs6+6nt4+MuQg==
-X-Received: by 2002:aca:5c07:: with SMTP id q7mr1448521oib.178.1607403012526;
-        Mon, 07 Dec 2020 20:50:12 -0800 (PST)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id a15sm2360269oii.50.2020.12.07.20.50.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 07 Dec 2020 20:50:11 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Subject: Re: [PATCH v2 0/3] occ: Add support for P10
-To:     Joel Stanley <joel@jms.id.au>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Eddie James <eajames@linux.ibm.com>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-hwmon@vger.kernel.org, linux-fsi@lists.ozlabs.org
-References: <20201120010315.190737-1-joel@jms.id.au>
- <20201121185150.GD114144@roeck-us.net>
- <CACPK8Xcf1xhPZNqpxuZE22uqDFR7rb1Wv-RW802bx2S-nphpzA@mail.gmail.com>
-From:   Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-Message-ID: <892cbf6d-b209-13e3-645e-082e2ce5c68c@roeck-us.net>
-Date:   Mon, 7 Dec 2020 20:50:10 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1726484AbgLHE44 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Dec 2020 23:56:56 -0500
+Received: from mail-mw2nam10on2078.outbound.protection.outlook.com ([40.107.94.78]:21740
+        "EHLO NAM10-MW2-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726114AbgLHE4z (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 7 Dec 2020 23:56:55 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=RxPwpTVaMqS/v7fMDI2dTInfju8Uto6HwqfpsoNGhJZkuhlz6jW5tzFltsy29SBzjqu1fW/Gx66d7l+7jIJbouHGZoq8pwmt/zGtXBz11ms+B+Fqd1a2H1nhq3kTL7ccymYatUEdmthMZYKjrGFFCND1SpRYR+I45eYZK+4a3nG4778EVpSsHY1KGSl48r8gzuhxOard8sLs9+lB6l9RslH7NObPvGjMHnhHv/wKh4SaRGFAxro0k4eRdfnBI+OKktkhMz/ruQcFt9NFDBGpLtMTUNkbbBxi2I3+Y8kID1s7vPfUimN2D5DFcz2WZCKWN1GEtfcpune4gd0l6M+bWg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=+QqCawIH1tQAsebiOI4W+2X3Gc1gvOvGEbCMiSoVpjU=;
+ b=TW6ESCmQxXOLRNTg55mmFsxRZt3zNiSXX9PxswSnPE+1BgwXDv9SGyYRwcMfvxAJqZovjxztuoVVMNy+4Ea/jQNqhKP4hMX1miwSNX3k42mzVFXVztSrwWOkzMcx3Rls8+6SMapOpFBvIjL15YjNUW8YMHVwYAK8waKGoOfnFt6oN5i5NY41nvHh6u2T8jQX96FutykmIRZ5cv9E1TZKQhv1xlUY+IV/tDlaf0XoQIgTd7VPwl0JL9kflRZGi/tNVaXNPNvCW5aUZWXe6rKBKiLhJ/FW3t9cccJ8pMpX/q8Whn73OgAhuZOHMPVgHRyOaBSfiaGL3ZQwhnUeisbYBg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=openfive.com; dmarc=pass action=none header.from=sifive.com;
+ dkim=pass header.d=sifive.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sifive.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=+QqCawIH1tQAsebiOI4W+2X3Gc1gvOvGEbCMiSoVpjU=;
+ b=B94iJsaN4CPqnQ/ScYY0tfYpKexk4fFHXFAWZ83o41rzQztMhs7CBiRDwK824iLgUVWSWXMQ4Rmo2h1L9QZwzBiTnhR84XZhhAqIjHG1vsgFdV0bnxDcN0akVGTIbvyq4d/BvvRyz/MtbMqZJgxajOK5LyY+Qfn5+6UEuGw1EyY=
+Authentication-Results: vger.kernel.org; dkim=none (message not signed)
+ header.d=none;vger.kernel.org; dmarc=none action=none header.from=sifive.com;
+Received: from BY5PR13MB4453.namprd13.prod.outlook.com (2603:10b6:a03:1d1::19)
+ by BY5PR13MB3745.namprd13.prod.outlook.com (2603:10b6:a03:22e::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3654.7; Tue, 8 Dec
+ 2020 04:56:02 +0000
+Received: from BY5PR13MB4453.namprd13.prod.outlook.com
+ ([fe80::7c13:1ac6:9f2a:5eae]) by BY5PR13MB4453.namprd13.prod.outlook.com
+ ([fe80::7c13:1ac6:9f2a:5eae%8]) with mapi id 15.20.3654.012; Tue, 8 Dec 2020
+ 04:56:02 +0000
+From:   Yash Shah <yash.shah@sifive.com>
+To:     linux-spi@vger.kernel.org, linux-serial@vger.kernel.org,
+        linux-pwm@vger.kernel.org, linux-i2c@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-gpio@vger.kernel.org
+Cc:     broonie@kernel.org, gregkh@linuxfoundation.org,
+        aou@eecs.berkeley.edu, lee.jones@linaro.org,
+        u.kleine-koenig@pengutronix.de, thierry.reding@gmail.com,
+        andrew@lunn.ch, peter@korsgaard.com, paul.walmsley@sifive.com,
+        palmer@dabbelt.com, robh+dt@kernel.org, bgolaszewski@baylibre.com,
+        linus.walleij@linaro.org, Yash Shah <yash.shah@sifive.com>
+Subject: [PATCH v2 0/9] arch: riscv: add board and SoC DT file support
+Date:   Tue,  8 Dec 2020 10:25:32 +0530
+Message-Id: <1607403341-57214-1-git-send-email-yash.shah@sifive.com>
+X-Mailer: git-send-email 2.7.4
+Content-Type: text/plain
+X-Originating-IP: [159.117.144.156]
+X-ClientProxiedBy: PN1PR0101CA0041.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c00:c::27) To BY5PR13MB4453.namprd13.prod.outlook.com
+ (2603:10b6:a03:1d1::19)
 MIME-Version: 1.0
-In-Reply-To: <CACPK8Xcf1xhPZNqpxuZE22uqDFR7rb1Wv-RW802bx2S-nphpzA@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from osubuntu003.open-silicon.com (159.117.144.156) by PN1PR0101CA0041.INDPRD01.PROD.OUTLOOK.COM (2603:1096:c00:c::27) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3632.17 via Frontend Transport; Tue, 8 Dec 2020 04:55:55 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 1b369ea3-592b-45ca-fb76-08d89b35900c
+X-MS-TrafficTypeDiagnostic: BY5PR13MB3745:
+X-LD-Processed: 22f88e9d-ae0d-4ed9-b984-cdc9be1529f1,ExtAddr
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <BY5PR13MB3745C377B120698A9601C03082CD0@BY5PR13MB3745.namprd13.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:4502;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: z76oZ6PsuMZ+IGHQ3TuP6vK1L+E/Ut95/ufsZqCq+eyi786js4hL5CD7I84VAttogSl4yzNgayGkhi3ZaGAoYYYls+/DhchcnOSsTC1jJ4QWIivRzu/YhpsCJo1xUjD1aroxATRY+RzlTlApqXE6CXhZ6n6BIz9cv3bTIjKb3oEk/wE5zrYw+pSepll4gVnIpSLxaBvpkLjpq5IsOSNV7YCKVNH9md6DUkOntXIasGRyGbSMXqe42cTv9sENPHRS0+pERLDNZNKsv7XCjgigQwnvOvPRuOAQjjjHF+ZdXqHUSmS+3bIjOj6rUcfWpgWKF5P5SVuMDK8ETzben4bJ139+4N0QlFOffj9NRJORGCLCTSXm7bFB19BH7o2gWG4gVrBv3dqiNBDe7wQoHVPRvg==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY5PR13MB4453.namprd13.prod.outlook.com;PTR:;CAT:NONE;SFS:(366004)(376002)(396003)(39840400004)(136003)(346002)(4326008)(6666004)(6506007)(956004)(16526019)(66556008)(66476007)(966005)(7416002)(42882007)(2616005)(6486002)(26005)(478600001)(186003)(316002)(44832011)(36756003)(8936002)(83380400001)(66946007)(6512007)(107886003)(5660300002)(83170400001)(2906002)(52116002)(8676002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?6yIeZ8VHREi9fPekgPO4DeH4MJKOMBD5WZZce1L4kZ7ce+ZkwUa+EdFJfajp?=
+ =?us-ascii?Q?GKK4LvaKo7WI0AKfCrngek310uWA9u00ONm61wOWuuCSltWwi+Hy2QEXgYrF?=
+ =?us-ascii?Q?aZAMPpeMkwq6OyxSfmbtOt9j1TYjy1A5TQW4YCBNpz6x1BtXpRME6zLHHzyV?=
+ =?us-ascii?Q?G7maRXW6fMFn7AGwFzshVG5CnTwKXz+xpaRyKKPp41yZuOWKUQRb+cDiM/Yz?=
+ =?us-ascii?Q?z3gHLU7YQBlXNz/EKv8B+E+UiFlVT0QVRlYaammePoW8mpah3bGlbT0X6Ujk?=
+ =?us-ascii?Q?pxS0U1tvHvkTNbcc3ce+nmNqvizIRZ97U1CYG85L1GPyBzNLj+U69N+sbCyd?=
+ =?us-ascii?Q?lU65R+A9aEGTRfaMOYfWst9n1x3M+Gsi1pE54ACNkqw+BrjQQW4ra3PWFCS8?=
+ =?us-ascii?Q?lk7tN5osROcfxTuff+jG6MCgBxKH6SUKGazi7/z+WgTGO/b89vrZzb2HB9Vq?=
+ =?us-ascii?Q?sqURpZqqkJLF3SreOeGTJpAVqbr+yzuwz0Msn+n+RmyxpSXuqVuOg82Et7D2?=
+ =?us-ascii?Q?AZpAafito69NBVkIaYWpdA98AR69UBdoUhFkbuzZGc0SAPg7hCyI47F9GezO?=
+ =?us-ascii?Q?BmWLgLqfoi1lm6rmUYDYfTtoyS/YI9c9+bPvf3XFpUyOAxXoQryIfNElx/tg?=
+ =?us-ascii?Q?fKw2a/BTmhIBWGAZtx0VkrfWu5dEo1szn/rsErzodpq1CW4YaNwGvwbf0Ra1?=
+ =?us-ascii?Q?i9quv5Kzx3BEylbwXp7jO/gQPhzXE4Iejr8Fb/PP5wYCNN+gtQRlgjuZhIap?=
+ =?us-ascii?Q?s9ynD3pVdhP1Gxcm9lzwFnpb7XZdbQpYOPYwIBf8BYsH+81X656tT6O4ypkn?=
+ =?us-ascii?Q?EM0F8rmmttwFTyH+2Ud49NXHLFmxlQHOs05gx1hTTIMmNaUl+mIKG0vIUCkl?=
+ =?us-ascii?Q?xqKJIKUynA9n11AeoVEEMuIUt/FC4PQv9oj8Fqb809qMhMIFOOcbs/yRdEtq?=
+ =?us-ascii?Q?OWipm4vm/uDkmQ5VS4VCItWb3HDvLM9LtMu2g5iEJcqQ9YdGK4of74kt/q7v?=
+ =?us-ascii?Q?0uY2?=
+X-OriginatorOrg: sifive.com
+X-MS-Exchange-CrossTenant-AuthSource: BY5PR13MB4453.namprd13.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Dec 2020 04:56:02.3026
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 22f88e9d-ae0d-4ed9-b984-cdc9be1529f1
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1b369ea3-592b-45ca-fb76-08d89b35900c
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: etpVPxyT7plKRc11wjRLugfVw1D1MuO8ahXxlYrv9pTSvR0Kid8rmup+F6QOJOH+VqBN3nBF8xNYkbtp1gmdag==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR13MB3745
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Joel,
+Start board support by adding initial support for the SiFive FU740 SoC
+and the first development board that uses it, the SiFive HiFive
+Unmatched A00.
 
-On 12/7/20 6:41 PM, Joel Stanley wrote:
-> On Sat, 21 Nov 2020 at 18:55, Guenter Roeck <linux@roeck-us.net> wrote:
->>
->> On Fri, Nov 20, 2020 at 11:33:12AM +1030, Joel Stanley wrote:
->>> Hi Guenter, here's v2 of this series on behalf of Eddie. I made the
->>> change to the compatible string that we spoke about in v2, and I'm happy
->>> for these to go through the hwmon tree.
->>>
->>
->> I'll be happy to do that, as soon as we get a Reviewed-by: tag for the DT
->> change.
-> 
-> Rob has sent that through now, so this should be good to go in.
-> 
+Boot-tested on Linux 5.10-rc4 on a HiFive Unmatched A00 board using the
+U-boot and OpenSBI.
 
-Thanks for the reminder. Series applied to hwmon-next.
+This patch series is dependent on Zong's Patchset[0]. The patchset also
+adds two new nodes in dtsi file. The binding documentation patch
+for these nodes are already posted on the mailing list[1][2].
 
-Thanks,
-Genter
+[0]: https://lore.kernel.org/linux-riscv/20201130082330.77268-4-zong.li@sifive.com/T/#u
+[1]: https://lore.kernel.org/linux-riscv/1606714984-16593-1-git-send-email-yash.shah@sifive.com/T/#t
+[2]: https://lore.kernel.org/linux-riscv/20201126030043.67390-1-zong.li@sifive.com/T/#u
 
-> Thank you.
-> 
->>
->> Thanks,
->> Guenter
->>
->>> v1: https://lore.kernel.org/linux-hwmon/20200501150833.5251-1-eajames@linux.ibm.com/
->>>
->>> The OCC in the P10 has a number of differences from the P9. Add some logic to
->>> handle the differences in accessing the OCC from the service processor, and
->>> support the new temperature sensor type.
->>>
->>> Eddie James (3):
->>>   dt-bindings: fsi: Add P10 OCC device documentation
->>>   fsi: occ: Add support for P10
->>>   hwmon: (occ) Add new temperature sensor type
->>>
->>>  .../devicetree/bindings/fsi/ibm,p9-occ.txt    |  12 +-
->>>  drivers/fsi/fsi-occ.c                         | 125 +++++++++++++-----
->>>  drivers/hwmon/occ/common.c                    |  75 +++++++++++
->>>  3 files changed, 172 insertions(+), 40 deletions(-)
->>>
->>> --
->>> 2.29.2
->>>
+Changes in v2:
+- The dt bindings patch is split into several individual patches.
+- Expand the full list for compatible strings in i2c-ocores.txt
+
+Yash Shah (9):
+  dt-bindings: riscv: Update DT binding docs to support SiFive FU740 SoC
+  dt-bindings: spi: Update DT binding docs to support SiFive FU740 SoC
+  dt-bindings: pwm: Update DT binding docs to support SiFive FU740 SoC
+  dt-bindings: serial: Update DT binding docs to support SiFive FU740
+    SoC
+  dt-bindings: gpio: Update DT binding docs to support SiFive FU740 SoC
+  dt-bindings: i2c: Update DT binding docs to support SiFive FU740 SoC
+  riscv: dts: add initial support for the SiFive FU740-C000 SoC
+  dt-bindings: riscv: Update YAML doc to support SiFive HiFive Unmatched
+    board
+  riscv: dts: add initial board data for the SiFive HiFive Unmatched
+
+ .../devicetree/bindings/gpio/sifive,gpio.yaml      |   4 +-
+ .../devicetree/bindings/i2c/i2c-ocores.txt         |   8 +-
+ .../devicetree/bindings/pwm/pwm-sifive.yaml        |   9 +-
+ Documentation/devicetree/bindings/riscv/cpus.yaml  |   6 +
+ .../devicetree/bindings/riscv/sifive.yaml          |  17 +-
+ .../devicetree/bindings/serial/sifive-serial.yaml  |   4 +-
+ .../devicetree/bindings/spi/spi-sifive.yaml        |  10 +-
+ arch/riscv/boot/dts/sifive/Makefile                |   3 +-
+ arch/riscv/boot/dts/sifive/fu740-c000.dtsi         | 293 +++++++++++++++++++++
+ .../riscv/boot/dts/sifive/hifive-unmatched-a00.dts | 253 ++++++++++++++++++
+ 10 files changed, 590 insertions(+), 17 deletions(-)
+ create mode 100644 arch/riscv/boot/dts/sifive/fu740-c000.dtsi
+ create mode 100644 arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
+
+-- 
+2.7.4
 
