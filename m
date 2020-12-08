@@ -2,153 +2,269 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CAAF72D3388
-	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 21:27:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E58642D33E9
+	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 21:28:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726066AbgLHUVD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Dec 2020 15:21:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37804 "EHLO
+        id S1729308AbgLHU1l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Dec 2020 15:27:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38618 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725948AbgLHUVD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Dec 2020 15:21:03 -0500
-Received: from mail-pf1-x443.google.com (mail-pf1-x443.google.com [IPv6:2607:f8b0:4864:20::443])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 096ABC0613CF
-        for <devicetree@vger.kernel.org>; Tue,  8 Dec 2020 12:20:17 -0800 (PST)
-Received: by mail-pf1-x443.google.com with SMTP id s21so14966137pfu.13
-        for <devicetree@vger.kernel.org>; Tue, 08 Dec 2020 12:20:17 -0800 (PST)
+        with ESMTP id S1729552AbgLHUZo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Dec 2020 15:25:44 -0500
+Received: from mail-pg1-x542.google.com (mail-pg1-x542.google.com [IPv6:2607:f8b0:4864:20::542])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DAC3EC0617A6
+        for <devicetree@vger.kernel.org>; Tue,  8 Dec 2020 12:25:03 -0800 (PST)
+Received: by mail-pg1-x542.google.com with SMTP id t3so13202120pgi.11
+        for <devicetree@vger.kernel.org>; Tue, 08 Dec 2020 12:25:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:autocrypt:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=6Nxofo6VaU+dR8W8CKwQhwDDDVYbecmyOZS+s2KeTh4=;
-        b=MiT4Shd1ntXvbdpUAEGEdmEl6WC0A7owAUnRW/fY14JJf9jLWlJa7CUI5wNdVjgryk
-         dQXn3XedGZqXXJC3K6Y48ELMivz2YutzbZl4ld5yC+9x1gzBAALyyaEwoA/K9BDTCbWe
-         DZInaFxTUaFoHin5fKLpw3WtLCZWZIowgtcSB7RlUeTdUwHzeRhN6uW/UDBC3pj5It1d
-         gWExeFDx3n54mslyK401PNRXfDCa0dOOZZiUcZzePGAjL861+VNKiXinh2zmICQkg2rF
-         DBPq0Umq8tPwo8RSiyR3MxEcy7o5edHyBb2n04oMqXduyeqr+x3sO3iYBLqXJ+w1xmQG
-         T3PA==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=5dRT8uVlJwjIaHGkFNwsvEp2IYayT9YK4fkX5+XH1So=;
+        b=VMOukCZmENMM8B9bRDfq9MiBErortJqoBFgQ3+s/mRR1bKSYJJT0eTpMc1AJYZ9cKE
+         Pil9jDg2oU3SmxTy4KeE7OC7LEWwsS5Qv6cRQBVxBggYcT7A4LMgBX4QcRz/6vs1/WRf
+         sJjlUk/iuVbk6s70oLrKPewQrYBcdLQJSObuMyEKgsS0GkyiBZTN28qUD98lnPq1avGV
+         kKdAHDTRGnmE3EpvFT6SxCE4tiPVpUoMNATdI+PfcfdBuxItsvpi+ylJpHXOSTQrxQ6G
+         aNHY2QYaHmG0wt/4rRYginYT2Hh5zy6mjtAsGWl1QMkvraN4g64dQNuVDjlntzbRSQxE
+         H93A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:autocrypt
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=6Nxofo6VaU+dR8W8CKwQhwDDDVYbecmyOZS+s2KeTh4=;
-        b=HLtfF0kJLbxg1AtlqTQNSOEf1RtT/2XJZanBbHKv2H9N57mUet4PAlCKGcMDp3ls79
-         FIEQcKTBa/eN3WmgccQTgGhJJy4srqoxa5NFeCR3kFZdAH73jLz//9itwUM3RY3v+Z82
-         fu2xEp6AuA3JxORJIshfdm4KV+41czQb+zBQAvArNAg/mK0saqL3ldRBmrxIrqSlnfgN
-         2a8GuTC5bkB15vxywIOeC7KALL2zTrj4XqUWxbJJJVCKmGv+93/gmW7f8kWnUP/GZYOF
-         WOoVUm2m9XdxUEqwh2BkNxZrO/mtbaDZuyugjxoD4LsSx/gmEdXEcCc9uaAV5x/Y4/QY
-         3vNw==
-X-Gm-Message-State: AOAM533ql47oOhAFh9mSeOyxvy2xuPeet1tz2lbAAsvKnlUbCKYqoZmV
-        PlqikxtKdBVRbE+aWXcicQQ=
-X-Google-Smtp-Source: ABdhPJyyySMMoGbXfPbtt8hlVtgu4cFOwwEbATK0UHKPErK8oVzQPY4GwKmKeabQ/U9TUs/2BU9VMg==
-X-Received: by 2002:aa7:8297:0:b029:198:15b2:ed0a with SMTP id s23-20020aa782970000b029019815b2ed0amr21572846pfm.47.1607458816479;
-        Tue, 08 Dec 2020 12:20:16 -0800 (PST)
-Received: from [10.67.48.230] ([192.19.223.252])
-        by smtp.googlemail.com with ESMTPSA id js9sm5628190pjb.2.2020.12.08.12.20.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 08 Dec 2020 12:20:15 -0800 (PST)
-Subject: Re: [PATCH V2 2/2] reset: brcm-pmb: add driver for Broadcom's PMB
-To:     Philipp Zabel <p.zabel@pengutronix.de>,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-References: <20201119125600.8559-1-zajec5@gmail.com>
- <20201119125600.8559-3-zajec5@gmail.com>
- <d5162eae806f21f583c6dbdf7bb79384a3d9d5cf.camel@pengutronix.de>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-Autocrypt: addr=f.fainelli@gmail.com; prefer-encrypt=mutual; keydata=
- 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
- M5kY0ACeNhCZJvZ5g4C2Lc9fcTHu8jxmEkI=
-Message-ID: <4eeb0a1c-75e4-94ad-8fbb-aeb347aea5d0@gmail.com>
-Date:   Tue, 8 Dec 2020 12:20:14 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=5dRT8uVlJwjIaHGkFNwsvEp2IYayT9YK4fkX5+XH1So=;
+        b=SQFoTIucZbEZeSlEPT9oaEUw+o4EZEwqj/WaeOxVtbwXjgP38yTSSsjm7NvcDykeIF
+         ERKwRYzU4XcUvOSVURPTO6c3ue/STohMPn25+RLWtTvKW9cmDuN8SorLXUbN9IPZgVmg
+         ysTVJNKv4VQiQ3tslRqs9IbOTSMuoJO2dmvFD1yAeFUzUm40e3QTg8/kU07CpraknneO
+         /eQ9gGfaDsjsbqiyTiWWl5T5EeP/xIgkGwJONx3SyOLW8VQhuRrT42UnpJKJrjDfABTh
+         6iLTh+437Ui/TqRIKebzu7UnPpAEFdUqfI4+H8Lm5N3v3EJ53Ne/XMzBhtklbMzORr3e
+         B8zw==
+X-Gm-Message-State: AOAM530+jI+JfyFeNVWX1j/LkYcI6hgyutB4v4kAWBDRFQk03Xp9yY9n
+        5lYat9b/guJdYVwT5hRNt+D9KQ==
+X-Google-Smtp-Source: ABdhPJz2n2OIUCzO99uSjxuKeCmXgf3cmmJrqW2FVAj5z2b1z3WzLhUwBv5PxeBy019F9m0VnHvaDA==
+X-Received: by 2002:a63:c60a:: with SMTP id w10mr24027846pgg.211.1607459103338;
+        Tue, 08 Dec 2020 12:25:03 -0800 (PST)
+Received: from xps15 (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
+        by smtp.gmail.com with ESMTPSA id y15sm4296190pju.13.2020.12.08.12.25.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 08 Dec 2020 12:25:02 -0800 (PST)
+Date:   Tue, 8 Dec 2020 13:25:00 -0700
+From:   Mathieu Poirier <mathieu.poirier@linaro.org>
+To:     Arnaud POULIQUEN <arnaud.pouliquen@st.com>
+Cc:     "ohad@wizery.com" <ohad@wizery.com>,
+        "bjorn.andersson@linaro.org" <bjorn.andersson@linaro.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v3 09/15] remoteproc: Introduce function rproc_detach()
+Message-ID: <20201208202500.GA1601690@xps15>
+References: <20201126210642.897302-1-mathieu.poirier@linaro.org>
+ <20201126210642.897302-10-mathieu.poirier@linaro.org>
+ <0e705760-b69a-d872-9770-c03dde85ab1c@st.com>
 MIME-Version: 1.0
-In-Reply-To: <d5162eae806f21f583c6dbdf7bb79384a3d9d5cf.camel@pengutronix.de>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <0e705760-b69a-d872-9770-c03dde85ab1c@st.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/8/20 3:02 AM, Philipp Zabel wrote:
-> Hi Rafał,
+On Tue, Dec 08, 2020 at 07:35:18PM +0100, Arnaud POULIQUEN wrote:
+> Hi Mathieu,
 > 
-> On Thu, 2020-11-19 at 13:56 +0100, Rafał Miłecki wrote:
->> From: Rafał Miłecki <rafal@milecki.pl>
->>
->> PMB can be found on BCM4908 and many other chipsets (e.g. BCM63138).
->> It's needed to power on and off SoC blocks like PCIe, SATA, USB.
 > 
-> This sentence, the register names, and
-> the brcm_pmb_power_on/off_device/zone functions below make me worry that
-> this should be a power domain controller (pm_genpd in drivers/soc)
-> instead.
-> Does PM in PMB stand for power management by chance?
+> On 11/26/20 10:06 PM, Mathieu Poirier wrote:
+> > Introduce function rproc_detach() to enable the remoteproc
+> > core to release the resources associated with a remote processor
+> > without stopping its operation.
+> > 
+> > Signed-off-by: Mathieu Poirier <mathieu.poirier@linaro.org>
+> > Reviewed-by: Peng Fan <peng.fan@nxp.com>
+> > ---
+> >  drivers/remoteproc/remoteproc_core.c | 65 +++++++++++++++++++++++++++-
+> >  include/linux/remoteproc.h           |  1 +
+> >  2 files changed, 65 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/drivers/remoteproc/remoteproc_core.c b/drivers/remoteproc/remoteproc_core.c
+> > index 928b3f975798..f5adf05762e9 100644
+> > --- a/drivers/remoteproc/remoteproc_core.c
+> > +++ b/drivers/remoteproc/remoteproc_core.c
+> > @@ -1667,7 +1667,7 @@ static int rproc_stop(struct rproc *rproc, bool crashed)
+> >  /*
+> >   * __rproc_detach(): Does the opposite of rproc_attach()
+> >   */
+> > -static int __maybe_unused __rproc_detach(struct rproc *rproc)
+> > +static int __rproc_detach(struct rproc *rproc)
+> >  {
+> >  	struct device *dev = &rproc->dev;
+> >  	int ret;
+> > @@ -1910,6 +1910,69 @@ void rproc_shutdown(struct rproc *rproc)
+> >  }
+> >  EXPORT_SYMBOL(rproc_shutdown);
+> >  
+> > +/**
+> > + * rproc_detach() - Detach the remote processor from the
+> > + * remoteproc core
+> > + *
+> > + * @rproc: the remote processor
+> > + *
+> > + * Detach a remote processor (previously attached to with rproc_actuate()).
+> > + *
+> > + * In case @rproc is still being used by an additional user(s), then
+> > + * this function will just decrement the power refcount and exit,
+> > + * without disconnecting the device.
+> > + *
+> > + * Function rproc_detach() calls __rproc_detach() in order to let a remote
+> > + * processor know that services provided by the application processor are
+> > + * no longer available.  From there it should be possible to remove the
+> > + * platform driver and even power cycle the application processor (if the HW
+> > + * supports it) without needing to switch off the remote processor.
+> > + */
+> > +int rproc_detach(struct rproc *rproc)
+> > +{
+> > +	struct device *dev = &rproc->dev;
+> > +	int ret;
+> > +
+> > +	ret = mutex_lock_interruptible(&rproc->lock);
+> > +	if (ret) {
+> > +		dev_err(dev, "can't lock rproc %s: %d\n", rproc->name, ret);
+> > +		return ret;
+> > +	}
+> > +
+> > +	if (rproc->state != RPROC_RUNNING && rproc->state != RPROC_ATTACHED) {
+> > +		ret = -EPERM;
+> > +		goto out;
+> > +	}
+> > +
+> > +	/* if the remote proc is still needed, bail out */
+> > +	if (!atomic_dec_and_test(&rproc->power)) {
+> > +		ret = -EBUSY;
+> > +		goto out;
+> > +	}
+> > +
+> > +	ret = __rproc_detach(rproc);
+> > +	if (ret) {
+> > +		atomic_inc(&rproc->power);
+> > +		goto out;
+> > +	}
+> > +
+> > +	/* clean up all acquired resources */
+> > +	rproc_resource_cleanup(rproc);
+> 
+> I started to test the series, I found 2 problems testing in STM32P1 board.
+> 
+> 1) the resource_table pointer is unmapped if the firmware has been booted by the
+> Linux, generating a crash in rproc_free_vring.
+> I attached a fix at the end of the mail.
+> 
+> 2) After the detach, the rproc state is "detached"
+> but it is no longer possible to re-attach to it correctly.
+> Neither if the firmware is standalone, nor if it has been booted
+> by the Linux.
 
-It does, PMB stands for Power Management Bus.
+Thanks for the report - I thought both problems had been fixed...
 
 > 
-> If this actually cuts power to the USB and PCIe cores instead of just
-> controlling reset lines, it would be better to implement this
-> differently.
+> I did not investigate, but the issue is probably linked to the resource
+> table address which is set to NULL.
+> 
+> So we either have to fix the problem in order to attach or forbid the transition.
+> 
 
-What is tricky is this is a combined reset/clock/power zones controller.
-You rarely turn off/assert one of those without also turning
-off/asserting the others.
--- 
-Florian
+Perfect timing on your side as I was contemplating sending another revision.
+Let me look at things and I will get back to you.
+
+> 
+> Regards,
+> Arnaud
+> 
+> > +
+> > +	rproc_disable_iommu(rproc);
+> > +
+> > +	/*
+> > +	 * Set the remote processor's table pointer to NULL.  Since mapping
+> > +	 * of the resource table to a virtual address is done in the platform
+> > +	 * driver, unmapping should also be done there.
+> > +	 */
+> > +	rproc->table_ptr = NULL;
+> > +out:
+> > +	mutex_unlock(&rproc->lock);
+> > +	return ret;
+> > +}
+> > +EXPORT_SYMBOL(rproc_detach);
+> > +
+> >  /**
+> >   * rproc_get_by_phandle() - find a remote processor by phandle
+> >   * @phandle: phandle to the rproc
+> > diff --git a/include/linux/remoteproc.h b/include/linux/remoteproc.h
+> > index da15b77583d3..329c1c071dcf 100644
+> > --- a/include/linux/remoteproc.h
+> > +++ b/include/linux/remoteproc.h
+> > @@ -656,6 +656,7 @@ rproc_of_resm_mem_entry_init(struct device *dev, u32 of_resm_idx, size_t len,
+> >  
+> >  int rproc_boot(struct rproc *rproc);
+> >  void rproc_shutdown(struct rproc *rproc);
+> > +int rproc_detach(struct rproc *rproc);
+> >  int rproc_set_firmware(struct rproc *rproc, const char *fw_name);
+> >  void rproc_report_crash(struct rproc *rproc, enum rproc_crash_type type);
+> >  int rproc_coredump_add_segment(struct rproc *rproc, dma_addr_t da, size_t size);
+> > 
+> 
+> From: Arnaud Pouliquen <arnaud.pouliquen@foss-st.com>
+> Date: Tue, 8 Dec 2020 18:54:51 +0100
+> Subject: [PATCH] remoteproc: core: fix detach for unmapped table_ptr
+> 
+> If the firmware has been loaded and started by the kernel, the
+> resource table has probably been mapped by the carveout allocation
+> (see rproc_elf_find_loaded_rsc_table).
+> In this case the memory can have been unmapped before the vrings are free.
+> The result is a crash that occurs in rproc_free_vring while try to use the
+> unmapped pointer.
+> 
+> Signed-off-by: Arnaud Pouliquen <arnaud.pouliquen@foss-st.com>
+> ---
+>  drivers/remoteproc/remoteproc_core.c | 17 ++++++++++++++---
+>  1 file changed, 14 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/remoteproc/remoteproc_core.c
+> b/drivers/remoteproc/remoteproc_core.c
+> index 2b0a52fb3398..3508ffba4a2a 100644
+> --- a/drivers/remoteproc/remoteproc_core.c
+> +++ b/drivers/remoteproc/remoteproc_core.c
+> @@ -1964,6 +1964,13 @@ int rproc_detach(struct rproc *rproc)
+>  		goto out;
+>  	}
+> 
+> +	/*
+> +	 * Prevent case that the installed resource table is no longer
+> +	 * accessible (e.g. memory unmapped), use the cache if available
+> +	 */
+> +	if (rproc->cached_table)
+> +		rproc->table_ptr = rproc->cached_table;
+> +
+>  	ret = __rproc_detach(rproc);
+>  	if (ret) {
+>  		atomic_inc(&rproc->power);
+> @@ -1975,10 +1982,14 @@ int rproc_detach(struct rproc *rproc)
+> 
+>  	rproc_disable_iommu(rproc);
+> 
+> +	/* Free the chached table memory that can has been allocated*/
+> +	kfree(rproc->cached_table);
+> +	rproc->cached_table = NULL;
+>  	/*
+> -	 * Set the remote processor's table pointer to NULL.  Since mapping
+> -	 * of the resource table to a virtual address is done in the platform
+> -	 * driver, unmapping should also be done there.
+> +	 * Set the remote processor's table pointer to NULL. If mapping
+> +	 * of the resource table to a virtual address has been done in the
+> +	 * platform driver(attachment to an existing firmware),
+> +	 * unmapping should also be done there.
+>  	 */
+>  	rproc->table_ptr = NULL;
+>  out:
+> -- 
+> 2.17.1
+> 
+> 
+> 
