@@ -2,146 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7720D2D3713
-	for <lists+devicetree@lfdr.de>; Wed,  9 Dec 2020 00:45:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 73BBA2D371C
+	for <lists+devicetree@lfdr.de>; Wed,  9 Dec 2020 00:47:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728889AbgLHXpV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Dec 2020 18:45:21 -0500
-Received: from mail-oo1-f68.google.com ([209.85.161.68]:43277 "EHLO
-        mail-oo1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725906AbgLHXpV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Dec 2020 18:45:21 -0500
-Received: by mail-oo1-f68.google.com with SMTP id h10so27296ooi.10;
-        Tue, 08 Dec 2020 15:45:05 -0800 (PST)
+        id S1730366AbgLHXqn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Dec 2020 18:46:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41804 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730312AbgLHXqn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Dec 2020 18:46:43 -0500
+Received: from mail-pf1-x443.google.com (mail-pf1-x443.google.com [IPv6:2607:f8b0:4864:20::443])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41637C0613CF
+        for <devicetree@vger.kernel.org>; Tue,  8 Dec 2020 15:46:03 -0800 (PST)
+Received: by mail-pf1-x443.google.com with SMTP id t7so190741pfh.7
+        for <devicetree@vger.kernel.org>; Tue, 08 Dec 2020 15:46:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=4yKNxCl+vQDHfatyg/GcsY0hnIkoBzf+/9KfiXssTbk=;
+        b=j3cf3covSKiEEgqlptY0VhDHLRYGHGX9Rccbg6vafc+TS1yoTZDylFNBgVeGm5CpEq
+         QA1vi/34q9BSpQrH+Vy2eP/Dqse2qrDAd7HxQ7GsdDYxPPFCYH9HYesNAaVsawl9Fk2s
+         OBWYBDDPBWKTqvL64Wlz2AaWL//qdrpUq+sFSQpTWtBzDvhqw4hhtizgvGXd0WOtiYlx
+         Mjd93cLFHgt8ILpIY20BdoA1LTDGQm8/WYdPvXxl92lgL64EyDwM7Va32QKArcaWIxZY
+         HrAob+eVigI2Uz3yGRCe6NjbcH7oWvRes+TIKhfwbIkB4ZDJ3ZGK5gP2VDhi5vS15ORr
+         F6QQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=2KQe3ieI4VGx3q64G5WEEcvcuIvQWP0JOsj4euuGCD4=;
-        b=OrX9GHZvCfHAknB9P2X54ECdmKgSGpFoTcORlCVnCS23nW4ulRdLJgNSKmKAPCF6Or
-         5v5fZaoWNGKtKQIemtgLsSVm1qZ+ikbWtNIaehq+j9n+06cBg60J2cnBGV/kWZfhEx/L
-         bYzI6R+RU/gxho/Y0ulweO8L7dMYt3+WZB74NqNZjI8+YLhg/7UxEnbcusLXGHoaCsZp
-         hTrWo94vNTBItCLC4B0YqBLKn5aeGE0IgRDzUF56f4piBWWvj7BwyGuU5VQBw2t3Wyuy
-         JsFjOF0xeC2+zFk7yxYZudwq6m2eG1Jb0KghqeQziv/8Zm4CSxr+5BP2j8PUB5E9Kyyh
-         dd+g==
-X-Gm-Message-State: AOAM531zIxo6IxMD6HGYh9d4/MblUTrEWZpmF+H0iI5qkGKravAF+F+r
-        Vikj5mnbeA1UiYmgnI+XQy+OdKqGYw==
-X-Google-Smtp-Source: ABdhPJyAVXhvxZdVU1wfFlHBFF7RuBp3jz769lshkAFJpz5/IO3/3ARnwahnkYM01JE3/w3Me5Gluw==
-X-Received: by 2002:a4a:8606:: with SMTP id v6mr367244ooh.37.1607471080259;
-        Tue, 08 Dec 2020 15:44:40 -0800 (PST)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id y35sm81148otb.5.2020.12.08.15.44.38
+         :mime-version:content-disposition:in-reply-to;
+        bh=4yKNxCl+vQDHfatyg/GcsY0hnIkoBzf+/9KfiXssTbk=;
+        b=AADrnkXiwquG17EbipRm3keUhV1A9xmF/A9GNrLZsAjjrUVWoStp9FlTmCHYPNIVQf
+         pehxfDZ2g+DRaCRG1n2krr03uCDgIwSM0wPYmHlq5QdyzaGrxEMjPUPWApj2B5PtrCn+
+         b5l5oQClGtCWDSfhccPnDLX8Y86Ih8wwwMDCOI2bXIUQPB0t7A56cmVT7pivD+O1Zjgk
+         uktNiwz5v7/NSiflZhLgjgn/ErVVKLX37lvJvt/vCoNGxcnzK+GsjpkWUUg8nziq8LOQ
+         NWYYmdln5mH/nympUny275aDZU9Q0SA/EGENhwHLOxDw1pqE4SNhZBy3bYYwHrGXogWp
+         vMJg==
+X-Gm-Message-State: AOAM532cGWij2opiaXnHwuXUIMG2ZZnU4Y0eGJkklDF/3Z9DLQg9/jXX
+        ZQeE/aL3ouqTLGpZ44YUA2E3bQ==
+X-Google-Smtp-Source: ABdhPJyI/vseLuf6fqn0RbssnJqSnhSx2Zt0Y1bE1VF6+Ho9YPaIoTKi8qTqmMHsuVmheP/0V9yFcQ==
+X-Received: by 2002:a17:90a:e386:: with SMTP id b6mr164919pjz.134.1607471162567;
+        Tue, 08 Dec 2020 15:46:02 -0800 (PST)
+Received: from google.com (154.137.233.35.bc.googleusercontent.com. [35.233.137.154])
+        by smtp.gmail.com with ESMTPSA id x6sm82407pgr.20.2020.12.08.15.46.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Dec 2020 15:44:39 -0800 (PST)
-Received: (nullmailer pid 3339100 invoked by uid 1000);
-        Tue, 08 Dec 2020 23:44:37 -0000
-Date:   Tue, 8 Dec 2020 17:44:37 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        linux-rpi-kernel@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-Subject: Re: [PATCH V2 1/2] dt-bindings: PCI: brcmstb: add BCM4908 binding
-Message-ID: <20201208234437.GA3334335@robh.at.kernel.org>
-References: <20201130083223.32594-1-zajec5@gmail.com>
- <20201130083223.32594-2-zajec5@gmail.com>
+        Tue, 08 Dec 2020 15:46:01 -0800 (PST)
+Date:   Tue, 8 Dec 2020 23:45:58 +0000
+From:   Satya Tangirala <satyat@google.com>
+To:     Eric Biggers <ebiggers@kernel.org>
+Cc:     linux-mmc@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-fscrypt@vger.kernel.org,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Asutosh Das <asutoshd@codeaurora.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Neeraj Soni <neersoni@codeaurora.org>,
+        Barani Muthukumaran <bmuthuku@codeaurora.org>,
+        Peng Zhou <peng.zhou@mediatek.com>,
+        Stanley Chu <stanley.chu@mediatek.com>,
+        Konrad Dybcio <konradybcio@gmail.com>
+Subject: Re: [PATCH v2 3/9] mmc: cqhci: initialize upper 64 bits of 128-bit
+ task descriptors
+Message-ID: <X9AQNsePlMQK7a0i@google.com>
+References: <20201203020516.225701-1-ebiggers@kernel.org>
+ <20201203020516.225701-4-ebiggers@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20201130083223.32594-2-zajec5@gmail.com>
+In-Reply-To: <20201203020516.225701-4-ebiggers@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 30, 2020 at 09:32:22AM +0100, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
+On Wed, Dec 02, 2020 at 06:05:10PM -0800, Eric Biggers wrote:
+> From: Eric Biggers <ebiggers@google.com>
 > 
-> BCM4908 is a SoC family with PCIe controller sharing design with the one
-> for STB. BCM4908 has different power management and memory controller so
-> few tweaks are required.
+> Move the task descriptor initialization into cqhci_prep_task_desc(), and
+> make it initialize all 128 bits of the task descriptor if the host
+> controller is using 128-bit task descriptors.
 > 
-> PERST# signal on BCM4908 is handled by an external MISC block so it
-> needs specifying a reset phandle.
+> This is needed to prepare for CQHCI inline encryption support, which
+> requires 128-bit task descriptors and uses the upper 64 bits.
 > 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
-> Acked-by: Florian Fainelli <f.fainelli@gmail.com>
+> Note: since some host controllers already enable 128-bit task
+> descriptors, it's unclear why the previous code worked when it wasn't
+> initializing the upper 64 bits.  One possibility is that the bits are
+> being ignored because the features that use them aren't enabled yet.
+> In any case, setting them to 0 won't hurt.
+> 
+> Signed-off-by: Eric Biggers <ebiggers@google.com>
 > ---
->  .../bindings/pci/brcm,stb-pcie.yaml           | 30 +++++++++++++++++--
->  1 file changed, 28 insertions(+), 2 deletions(-)
+>  drivers/mmc/host/cqhci-core.c | 30 ++++++++++++++++++++----------
+>  1 file changed, 20 insertions(+), 10 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-> index 807694b4f41f..d3ab9e22f97c 100644
-> --- a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-> +++ b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-> @@ -14,6 +14,7 @@ properties:
->      items:
->        - enum:
->            - brcm,bcm2711-pcie # The Raspberry Pi 4
-> +          - brcm,bcm4908-pcie
->            - brcm,bcm7211-pcie # Broadcom STB version of RPi4
->            - brcm,bcm7278-pcie # Broadcom 7278 Arm
->            - brcm,bcm7216-pcie # Broadcom 7216 Arm
-> @@ -64,8 +65,6 @@ properties:
->    aspm-no-l0s: true
+> diff --git a/drivers/mmc/host/cqhci-core.c b/drivers/mmc/host/cqhci-core.c
+> index 697fe40756bf2..ad7c9acff1728 100644
+> --- a/drivers/mmc/host/cqhci-core.c
+> +++ b/drivers/mmc/host/cqhci-core.c
+> @@ -408,13 +408,15 @@ static void cqhci_disable(struct mmc_host *mmc)
+>  }
 >  
->    resets:
-> -    description: for "brcm,bcm7216-pcie", must be a valid reset
-> -      phandle pointing to the RESCAL reset controller provider node.
->      $ref: "/schemas/types.yaml#/definitions/phandle"
-
-This should really just be 'maxItems: 1'. 'resets' already has a type.
-
+>  static void cqhci_prep_task_desc(struct mmc_request *mrq,
+> -					u64 *data, bool intr)
+> +				 struct cqhci_host *cq_host, int tag)
+>  {
+> +	__le64 *task_desc = (__le64 __force *)get_desc(cq_host, tag);
+>  	u32 req_flags = mrq->data->flags;
+> +	u64 desc0;
 >  
->    reset-names:
-> @@ -98,12 +97,39 @@ required:
+> -	*data = CQHCI_VALID(1) |
+> +	desc0 = CQHCI_VALID(1) |
+>  		CQHCI_END(1) |
+> -		CQHCI_INT(intr) |
+> +		CQHCI_INT(1) |
+>  		CQHCI_ACT(0x5) |
+>  		CQHCI_FORCED_PROG(!!(req_flags & MMC_DATA_FORCED_PRG)) |
+>  		CQHCI_DATA_TAG(!!(req_flags & MMC_DATA_DAT_TAG)) |
+> @@ -425,8 +427,19 @@ static void cqhci_prep_task_desc(struct mmc_request *mrq,
+>  		CQHCI_BLK_COUNT(mrq->data->blocks) |
+>  		CQHCI_BLK_ADDR((u64)mrq->data->blk_addr);
 >  
->  allOf:
->    - $ref: /schemas/pci/pci-bus.yaml#
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: brcm,bcm4908-pcie
-> +    then:
-> +      properties:
-> +        resets:
-> +          items:
-> +            - description: reset controller handling the PERST# signal
+> -	pr_debug("%s: cqhci: tag %d task descriptor 0x%016llx\n",
+> -		 mmc_hostname(mrq->host), mrq->tag, (unsigned long long)*data);
+> +	task_desc[0] = cpu_to_le64(desc0);
 > +
-> +        reset-names:
-> +          items:
-> +            - const: perst
+> +	if (cq_host->caps & CQHCI_TASK_DESC_SZ_128) {
+> +		u64 desc1 = 0;
 > +
-> +      required:
-> +        - resets
-> +        - reset-names
->    - if:
->        properties:
->          compatible:
->            contains:
->              const: brcm,bcm7216-pcie
->      then:
-> +      properties:
-> +        resets:
-> +          items:
-> +            - description: phandle pointing to the RESCAL reset controller
+> +		task_desc[1] = cpu_to_le64(desc1);
 > +
-> +        reset-names:
-> +          items:
-> +            - const: rescal
+> +		pr_debug("%s: cqhci: tag %d task descriptor 0x%016llx%016llx\n",
+> +			 mmc_hostname(mrq->host), mrq->tag, desc1, desc0);
+> +	} else {
+> +		pr_debug("%s: cqhci: tag %d task descriptor 0x%016llx\n",
+> +			 mmc_hostname(mrq->host), mrq->tag, desc0);
+> +	}
+>  }
+>  
+>  static int cqhci_dma_map(struct mmc_host *host, struct mmc_request *mrq)
+> @@ -567,8 +580,6 @@ static inline int cqhci_tag(struct mmc_request *mrq)
+>  static int cqhci_request(struct mmc_host *mmc, struct mmc_request *mrq)
+>  {
+>  	int err = 0;
+> -	u64 data = 0;
+> -	u64 *task_desc = NULL;
+>  	int tag = cqhci_tag(mrq);
+>  	struct cqhci_host *cq_host = mmc->cqe_private;
+>  	unsigned long flags;
+> @@ -598,9 +609,8 @@ static int cqhci_request(struct mmc_host *mmc, struct mmc_request *mrq)
+>  	}
+>  
+>  	if (mrq->data) {
+> -		task_desc = (__le64 __force *)get_desc(cq_host, tag);
+> -		cqhci_prep_task_desc(mrq, &data, 1);
+> -		*task_desc = cpu_to_le64(data);
+> +		cqhci_prep_task_desc(mrq, cq_host, tag);
 > +
->        required:
->          - resets
->          - reset-names
+>  		err = cqhci_prep_tran_desc(mrq, cq_host, tag);
+>  		if (err) {
+>  			pr_err("%s: cqhci: failed to setup tx desc: %d\n",
 > -- 
-> 2.26.2
+> 2.29.2
 > 
+Looks good to me. Please feel free to add
+Reviewed-by: Satya Tangirala <satyat@google.com>
