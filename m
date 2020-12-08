@@ -2,185 +2,286 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D36462D289C
-	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 11:15:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 107B92D28A8
+	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 11:18:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728619AbgLHKOs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Dec 2020 05:14:48 -0500
-Received: from wout2-smtp.messagingengine.com ([64.147.123.25]:38951 "EHLO
-        wout2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1728266AbgLHKOr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Dec 2020 05:14:47 -0500
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailout.west.internal (Postfix) with ESMTP id F1EA99EB;
-        Tue,  8 Dec 2020 05:14:00 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute6.internal (MEProxy); Tue, 08 Dec 2020 05:14:01 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm1; bh=vdUkDeRfsoAEQzQPdIe5/Kd/oo5
-        eFAZbliCK9MyCNhY=; b=HzV4Wtfi0k4C3NNil1BxlpYUUdxjDxDBROO4WwQX75j
-        v1phXzc/yI4iB7R4R45MuKWxbrRwx9OwKKTr2uuH/Ho/XdD4q3paEn05pPdnvuxv
-        wIE1Acf2eZMhklOK8RbzZ9rUCvkZGhux8D8KAEj9vuiYEwStNwATXxB5I3PVKjDT
-        SG4HZheTBRmlAwaJBHd3K5dJavl6wQvoPS8kx0qqPtM7hfs0/VL8KeVOqEGxbwm4
-        154cJBHqygimlD5cJuDxHRVv43kZXp3m0yBFYcFATbbXxXsOECt35vdqDht5rlTb
-        J7zqMg9Ipg0HFCBXa87kXuOhPTJrPYXO3frZg6B7akw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=vdUkDe
-        RfsoAEQzQPdIe5/Kd/oo5eFAZbliCK9MyCNhY=; b=MMfUmaSL1G49rnbMzkS3xV
-        zAhklP197AgCPAz7bQfGPuc0Qs196Dkc/E5sd10aQubt0N5DQ0Kk/cGqixukiNI3
-        7+wVFst1XgKmhk7LWGuSyrhm22QPDN51xl+f2mtab0o5UX5IJ6tepQaOsekeichk
-        t33A7+nJ85XHsz7eKwUmoZYOBGMN6ywfTcv/jzH5rKfoJ8O7jtL0FREKnVCj7TPj
-        RVGf7L1nSV96/7900YKTohhfzUKzJnJkO8D+IWy/yA9UQ4GtFCpCWZ3my9E/HbEw
-        b9Ldkrv8ibUDPLd4FBLwr8rg9mHITcYddu21+C8A01adYgAzH4XZEwtgtkK8khMg
-        ==
-X-ME-Sender: <xms:51HPX9rsW-v8v3rHIZMWXpaDc9nJFj8vgKtmSSVo8WMq1MRELByolQ>
-    <xme:51HPX_rQ3Xn8CPPfYTPxXU_5Tj3cs04dFryvqt8tPpd0CVqW482E3FumAz0VPlr1U
-    eeT4wUS5nMRoDPNDTk>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrudejiedguddvucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
-    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
-    htvghrnhepffetteevieejteeuhfffgeektefghfeileehhedtuddutefhhfejtddvtddu
-    ledvnecuffhomhgrihhnpeguvghvihgtvghtrhgvvgdrohhrghenucfkphepledtrdekle
-    drieekrdejieenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhr
-    ohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:51HPX6PuCpfoo6SO5Xp_cTsGGR3Ja97L8YGGpNlV_Teaoe0aM2JKUQ>
-    <xmx:51HPX455Nb98olm_oWTYQ_rkFumY7O9AkHUswb4z3xxGu-y6uyzExw>
-    <xmx:51HPX84ZJuSh3qlpHufRj_a2Hig_2w4sjGhGW7WDygjnvQBsgwSGMQ>
-    <xmx:6FHPX5s8ZjgARzCBB4VO7l8favsZPYy6XLBBSCUlisJE_Ipk98PzYw>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 52E901080059;
-        Tue,  8 Dec 2020 05:13:59 -0500 (EST)
-Date:   Tue, 8 Dec 2020 11:13:58 +0100
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Michael Klein <michael@fossekall.de>
-Cc:     Sebastian Reichel <sre@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v3 2/3] Documentation: DT: binding documentation for
- regulator-poweroff
-Message-ID: <20201208101358.mwxmlgqonmunb2m2@gilmour>
-References: <20201128103958.q6glewhhch7vtczr@gilmour>
- <20201207142756.17819-1-michael@fossekall.de>
- <20201207142756.17819-3-michael@fossekall.de>
+        id S1726226AbgLHKSe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Dec 2020 05:18:34 -0500
+Received: from userp2130.oracle.com ([156.151.31.86]:40768 "EHLO
+        userp2130.oracle.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727628AbgLHKSc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Dec 2020 05:18:32 -0500
+Received: from pps.filterd (userp2130.oracle.com [127.0.0.1])
+        by userp2130.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 0B8A9wAU017871;
+        Tue, 8 Dec 2020 10:17:39 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=date : from : to : cc
+ : subject : message-id : references : mime-version : content-type :
+ in-reply-to; s=corp-2020-01-29;
+ bh=CrNk+1mbj+kIOENVQanyHPlDiySaYqaUJlvtN/mqJ54=;
+ b=vH9zLyUQXSpNv8ogNouX7eZ876ou09jPSekcXcJaoXTJnQCMFXUqeq4ug5ramzgicGAw
+ nbx3BfSpwt2gjMU/dVy8wHrPMiETatOOcXknF/aCG6zbt97aVoiwJG2fIGi/7Q7Hgpz+
+ a4G+TvWZHKFk0jfLJiR4nEC6a+RadP2pHaiRb0fs4r9JBHaAAMWSw1ewBaOP9FaobPw/
+ rse8ITOE3KOwufN4m2fq24OuzS1ekihXWsWFo8MluUxl8j9P/k75YERvvFdbjF00g9fe
+ i78M9GMP3XM3ucAIJ4J0rjcBxhfW8RdH8oN99FHiDrBmH4gX3PNXWNBg+AQ3uMknKDAI bQ== 
+Received: from userp3020.oracle.com (userp3020.oracle.com [156.151.31.79])
+        by userp2130.oracle.com with ESMTP id 3581mqt1vd-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 08 Dec 2020 10:17:39 +0000
+Received: from pps.filterd (userp3020.oracle.com [127.0.0.1])
+        by userp3020.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 0B8AAe7i068001;
+        Tue, 8 Dec 2020 10:17:39 GMT
+Received: from aserv0121.oracle.com (aserv0121.oracle.com [141.146.126.235])
+        by userp3020.oracle.com with ESMTP id 358kysnbj4-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Tue, 08 Dec 2020 10:17:38 +0000
+Received: from abhmp0018.oracle.com (abhmp0018.oracle.com [141.146.116.24])
+        by aserv0121.oracle.com (8.14.4/8.13.8) with ESMTP id 0B8AHbPC024867;
+        Tue, 8 Dec 2020 10:17:37 GMT
+Received: from kadam (/102.36.221.92)
+        by default (Oracle Beehive Gateway v4.0)
+        with ESMTP ; Tue, 08 Dec 2020 02:17:36 -0800
+Date:   Tue, 8 Dec 2020 13:17:28 +0300
+From:   Dan Carpenter <dan.carpenter@oracle.com>
+To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Cc:     linus.walleij@linaro.org, devel@driverdev.osuosl.org,
+        devicetree@vger.kernel.org, yanaijie@huawei.com,
+        gregkh@linuxfoundation.org, linux-gpio@vger.kernel.org,
+        robh+dt@kernel.org
+Subject: Re: [PATCH 2/3] pinctrl: ralink: add a pinctrl driver for the rt2880
+ family
+Message-ID: <20201208101728.GZ2767@kadam>
+References: <20201207192104.6046-1-sergio.paracuellos@gmail.com>
+ <20201207192104.6046-3-sergio.paracuellos@gmail.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="wwouytazosfvho63"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201207142756.17819-3-michael@fossekall.de>
+In-Reply-To: <20201207192104.6046-3-sergio.paracuellos@gmail.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9828 signatures=668682
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 adultscore=0 spamscore=0 mlxscore=0
+ malwarescore=0 suspectscore=0 mlxlogscore=999 bulkscore=0 phishscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2009150000
+ definitions=main-2012080063
+X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9828 signatures=668682
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0 mlxlogscore=999
+ clxscore=1011 malwarescore=0 priorityscore=1501 adultscore=0
+ lowpriorityscore=0 phishscore=0 spamscore=0 impostorscore=0 mlxscore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2009150000 definitions=main-2012080063
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---wwouytazosfvho63
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Mon, Dec 07, 2020 at 03:27:55PM +0100, Michael Klein wrote:
-> Add devicetree binding documentation for regulator-poweroff driver.
->=20
-> Signed-off-by: Michael Klein <michael@fossekall.de>
-> ---
->  .../power/reset/regulator-poweroff.yaml       | 53 +++++++++++++++++++
->  1 file changed, 53 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/power/reset/regulat=
-or-poweroff.yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/power/reset/regulator-powe=
-roff.yaml b/Documentation/devicetree/bindings/power/reset/regulator-powerof=
-f.yaml
-> new file mode 100644
-> index 000000000000..8c8ce6bb031a
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/power/reset/regulator-poweroff.ya=
-ml
-> @@ -0,0 +1,53 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/power/reset/regulator-poweroff.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+On Mon, Dec 07, 2020 at 08:21:03PM +0100, Sergio Paracuellos wrote:
+> +static struct pinctrl_desc rt2880_pctrl_desc = {
+> +	.owner		= THIS_MODULE,
+> +	.name		= "rt2880-pinmux",
+> +	.pctlops	= &rt2880_pctrl_ops,
+> +	.pmxops		= &rt2880_pmx_group_ops,
+> +};
 > +
-> +title: Force-disable power regulators to turn the power off.
+> +static struct rt2880_pmx_func gpio_func = {
+> +	.name = "gpio",
+> +};
 > +
-> +maintainers:
-> +  - Michael Klein <michael@fossekall.de>
+> +static int rt2880_pinmux_index(struct rt2880_priv *p)
+
+
+This function name is not great.  I assumed that it would return the
+index.
+
+> +{
+> +	struct rt2880_pmx_func **f;
+
+Get rid of this "f" variable and use "p->func" instead.
+
+> +	struct rt2880_pmx_group *mux = p->groups;
+> +	int i, j, c = 0;
 > +
-> +description: |
-> +  When the power-off handler is called, one more regulators are disabled
-> +  by calling regulator_force_disable(). If the power is still on and the
-> +  CPU still running after a 3000ms delay, a WARN_ON(1) is emitted.
+> +	/* count the mux functions */
+> +	while (mux->name) {
+> +		p->group_count++;
+> +		mux++;
+> +	}
 > +
-> +properties:
-> +  compatible:
-> +    const: "regulator-poweroff"
+> +	/* allocate the group names array needed by the gpio function */
+> +	p->group_names = devm_kcalloc(p->dev, p->group_count,
+> +				      sizeof(char *), GFP_KERNEL);
+> +	if (!p->group_names)
+> +		return -1;
+
+Return proper error codes in this function.  s/-1/-ENOMEM/
+
 > +
-> +  regulator-names:
-> +    description:
-> +      Array of regulator names
-> +    $ref: /schemas/types.yaml#/definitions/string-array
+> +	for (i = 0; i < p->group_count; i++) {
+> +		p->group_names[i] = p->groups[i].name;
+> +		p->func_count += p->groups[i].func_count;
+> +	}
 > +
-> +  REGULATOR-supply:
-
-This should be a patternProperties
-
-> +    description:
-> +      For any REGULATOR listed in regulator-names, a phandle
-> +      to the corresponding regulator node
-> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +	/* we have a dummy function[0] for gpio */
+> +	p->func_count++;
 > +
-> +  timeout-ms:
-> +    description:
-> +      Time to wait before asserting a WARN_ON(1). If nothing is
-> +      specified, 3000 ms is used.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +	/* allocate our function and group mapping index buffers */
+> +	f = p->func = devm_kcalloc(p->dev,
+> +				   p->func_count,
+> +				   sizeof(*p->func),
+> +				   GFP_KERNEL);
+> +	gpio_func.groups = devm_kcalloc(p->dev, p->group_count, sizeof(int),
+> +					GFP_KERNEL);
+> +	if (!f || !gpio_func.groups)
+> +		return -1;
 > +
-> +required:
-> +  - compatible
-> +  - regulator-names
-> +  - REGULATOR-supply
+> +	/* add a backpointer to the function so it knows its group */
+> +	gpio_func.group_count = p->group_count;
+> +	for (i = 0; i < gpio_func.group_count; i++)
+> +		gpio_func.groups[i] = i;
 > +
-> +additionalProperties: false
+> +	f[c] = &gpio_func;
+> +	c++;
 > +
-> +examples:
-> +  - |
-> +    regulator-poweroff {
-> +        compatible =3D "regulator-poweroff";
-> +        regulator-names =3D "vcc1v2", "vcc-dram";
-> +        vcc1v2-supply =3D <&reg_vcc1v2>;
-> +        vcc-dram-supply =3D <&reg_vcc_dram>;
-> +    };
+> +	/* add remaining functions */
+> +	for (i = 0; i < p->group_count; i++) {
+> +		for (j = 0; j < p->groups[i].func_count; j++) {
+> +			f[c] = &p->groups[i].func[j];
+> +			f[c]->groups = devm_kzalloc(p->dev, sizeof(int),
+> +						    GFP_KERNEL);
 
-I'm not entirely sure how multiple regulators would work here. I guess
-the ordering is board/purpose sensitive. In this particular case, I
-assume that vcc1v2 would be shut down before vcc-dram?
+Add a NULL check.
 
-If so, I would expect that one regulator_force_disable is run, the CPU
-is disabled and you never get the chance to cut vcc-dram.
+> +			f[c]->groups[0] = i;
+> +			f[c]->group_count = 1;
+> +			c++;
+> +		}
+> +	}
+> +	return 0;
+> +}
+> +
+> +static int rt2880_pinmux_pins(struct rt2880_priv *p)
+> +{
+> +	int i, j;
+> +
+> +	/*
+> +	 * loop over the functions and initialize the pins array.
+> +	 * also work out the highest pin used.
+> +	 */
+> +	for (i = 0; i < p->func_count; i++) {
+> +		int pin;
+> +
+> +		if (!p->func[i]->pin_count)
+> +			continue;
+> +
+> +		p->func[i]->pins = devm_kcalloc(p->dev,
+> +						p->func[i]->pin_count,
+> +						sizeof(int),
+> +						GFP_KERNEL);
 
-Similarly, cutting the RAM regulator first would probably be fine if
-you're running code from the cache / SRAM, but I don't see anything
-making sure it's the case in the driver?
+This can fit on two lines.
 
-Maxime
+		p->func[i]->pins = devm_kcalloc(p->dev, p->func[i]->pin_count,
+						sizeof(int), GFP_KERNEL);
 
---wwouytazosfvho63
-Content-Type: application/pgp-signature; name="signature.asc"
+> +		for (j = 0; j < p->func[i]->pin_count; j++)
+> +			p->func[i]->pins[j] = p->func[i]->pin_first + j;
+> +
+> +		pin = p->func[i]->pin_first + p->func[i]->pin_count;
+> +		if (pin > p->max_pins)
+> +			p->max_pins = pin;
+> +	}
+> +
+> +	/* the buffer that tells us which pins are gpio */
+> +	p->gpio = devm_kcalloc(p->dev, p->max_pins, sizeof(u8), GFP_KERNEL);
+> +	/* the pads needed to tell pinctrl about our pins */
+> +	p->pads = devm_kcalloc(p->dev, p->max_pins,
+> +			       sizeof(struct pinctrl_pin_desc), GFP_KERNEL);
+> +	if (!p->pads || !p->gpio) {
+> +		dev_err(p->dev, "Failed to allocate gpio data\n");
 
------BEGIN PGP SIGNATURE-----
+Delete this error message.  #checkpatch.pl
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX89R5gAKCRDj7w1vZxhR
-xeFUAQDcZZeVgm//dGhbQWPMt1dKcu+sWEouturNNHIfo+ZdkAD/TB5Mov4SPoOn
-EnbhRNPpksqxyhx4WIXOTW4t5RX9jwA=
-=VCjk
------END PGP SIGNATURE-----
+> +		return -ENOMEM;
+> +	}
+> +
+> +	memset(p->gpio, 1, sizeof(u8) * p->max_pins);
+> +	for (i = 0; i < p->func_count; i++) {
+> +		if (!p->func[i]->pin_count)
+> +			continue;
+> +
+> +		for (j = 0; j < p->func[i]->pin_count; j++)
+> +			p->gpio[p->func[i]->pins[j]] = 0;
+> +	}
+> +
+> +	/* pin 0 is always a gpio */
+> +	p->gpio[0] = 1;
+> +
+> +	/* set the pads */
+> +	for (i = 0; i < p->max_pins; i++) {
+> +		/* strlen("ioXY") + 1 = 5 */
+> +		char *name = devm_kzalloc(p->dev, 5, GFP_KERNEL);
+> +
 
---wwouytazosfvho63--
+		char *name;
+
+		name = kasprintf(GFP_KERNEL, "io%d", i);
+
+
+> +		if (!name)
+> +			return -ENOMEM;
+> +		snprintf(name, 5, "io%d", i);
+> +		p->pads[i].number = i;
+> +		p->pads[i].name = name;
+> +	}
+> +	p->desc->pins = p->pads;
+> +	p->desc->npins = p->max_pins;
+> +
+> +	return 0;
+> +}
+> +
+> +static int rt2880_pinmux_probe(struct platform_device *pdev)
+> +{
+> +	struct rt2880_priv *p;
+> +	struct pinctrl_dev *dev;
+> +
+> +	if (!rt2880_pinmux_data)
+> +		return -ENOTSUPP;
+> +
+> +	/* setup the private data */
+> +	p = devm_kzalloc(&pdev->dev, sizeof(struct rt2880_priv), GFP_KERNEL);
+> +	if (!p)
+> +		return -ENOMEM;
+> +
+> +	p->dev = &pdev->dev;
+> +	p->desc = &rt2880_pctrl_desc;
+> +	p->groups = rt2880_pinmux_data;
+> +	platform_set_drvdata(pdev, p);
+> +
+> +	/* init the device */
+> +	if (rt2880_pinmux_index(p)) {
+> +		dev_err(&pdev->dev, "failed to load index\n");
+> +		return -EINVAL;
+
+Preserve the error code:
+
+	err = rt2880_pinmux_index(p);
+	if (err) {
+		dev_err(&pdev->dev, "failed to load index\n");
+		return err;
+	}
+
+
+> +	}
+> +	if (rt2880_pinmux_pins(p)) {
+> +		dev_err(&pdev->dev, "failed to load pins\n");
+> +		return -EINVAL;
+
+Same.
+
+> +	}
+> +	dev = pinctrl_register(p->desc, &pdev->dev, p);
+> +	if (IS_ERR(dev))
+> +		return PTR_ERR(dev);
+> +
+> +	return 0;
+> +}
+
+regards,
+dan carpenter
