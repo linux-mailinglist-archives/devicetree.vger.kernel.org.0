@@ -2,164 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8CE8A2D2919
-	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 11:41:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A0F372D2920
+	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 11:42:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726226AbgLHKk7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Dec 2020 05:40:59 -0500
-Received: from frasgout.his.huawei.com ([185.176.79.56]:2220 "EHLO
-        frasgout.his.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728884AbgLHKk6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Dec 2020 05:40:58 -0500
-Received: from fraeml737-chm.china.huawei.com (unknown [172.18.147.226])
-        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4CqxTv6ZD2z67DLr;
-        Tue,  8 Dec 2020 18:38:11 +0800 (CST)
-Received: from lhreml710-chm.china.huawei.com (10.201.108.61) by
- fraeml737-chm.china.huawei.com (10.206.15.218) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2106.2; Tue, 8 Dec 2020 11:40:16 +0100
-Received: from localhost (10.47.68.59) by lhreml710-chm.china.huawei.com
- (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2106.2; Tue, 8 Dec 2020
- 10:40:15 +0000
-Date:   Tue, 8 Dec 2020 10:39:51 +0000
-From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC:     Jonathan Cameron <jic23@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        "Bjorn Andersson" <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Hartmut Knaack <knaack.h@gmx.de>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        <linux-arm-msm@vger.kernel.org>, <linux-pm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-iio@vger.kernel.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Jishnu Prakash <jprakash@qti.qualcomm.com>
-Subject: Re: [PATCH v10 00/15] qcom: pm8150: add support for thermal
- monitoring
-Message-ID: <20201208103951.00003b3a@Huawei.com>
-In-Reply-To: <4de94396-54c7-e741-b288-3a3868515f7b@linaro.org>
-References: <20201204025509.1075506-1-dmitry.baryshkov@linaro.org>
-        <20201205170830.4d56ecb7@archlinux>
-        <4de94396-54c7-e741-b288-3a3868515f7b@linaro.org>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; i686-w64-mingw32)
+        id S1728874AbgLHKms (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Dec 2020 05:42:48 -0500
+Received: from mail-eopbgr60044.outbound.protection.outlook.com ([40.107.6.44]:32737
+        "EHLO EUR04-DB3-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1727754AbgLHKms (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 8 Dec 2020 05:42:48 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=DfX/MixtUoF1/EuaZOi70nF+aNFXJ2Wb/zW/UWxtySkerBt/27YfoUpfyL4BvXE444QXN+nndH4BZz1+JGjSzXXklopJ+kMU2CuqPTy8mZLaWyRHwEI2DZyKVUo8DQw/hD8cFKK2yHuoJIAnu/M/8K66ECHTN8ukF0/PShJBlus0/iGG4dK/4UPtG9gTq5E6nATzxuV9EYAkGOM0Xzi3a6e1GGa8N1BYJwDQLsMAB09s80WBa/cork69K8FPcFs09arq+LuviWERdRwRsuaORWyMtwj9U3RpTiTGP0Vl6GFuCXiFAMlNHXSRrNInwoAt0szb+/h7iTbNC2aT5TrkuQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Snw2YEy+pwInDvkiBLQlduDOACkn2viXYFWAgunYsnM=;
+ b=gIEwE6WC0wDWEt2g4osjpTfM6kEDXxEQtYBD5rFfwhT+9Rubp6jF5iQbt2nGgyuhJdL4N6On/VdGaPySvYMXWNaNZXVXKIzr/ROaH/VIl/1AUemghnWwnC55UEnb4v5LRj+x1qpHWMbOGEPcGk/5x54tuHsRZuZBBy1YJpfymeuVcU5MWIZWeWQChOcMtjje7rlyFvl41+fJPVURHk8oVWsIsxSDG6ka6n3w8VjrlIR+ricr61sVVIMg3RdD3vb/FojwsY4QpYmRjZxrdp1nhUjfgkdupBE1V5DpkNxzGaYdXSdsCT5JhxkPPjpsGh14dZ78KcK0Z/40XaJANftprw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=diasemi.com; dmarc=pass action=none header.from=diasemi.com;
+ dkim=pass header.d=diasemi.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=dialogsemiconductor.onmicrosoft.com;
+ s=selector1-dialogsemiconductor-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Snw2YEy+pwInDvkiBLQlduDOACkn2viXYFWAgunYsnM=;
+ b=VORCTIm9pP75iiUbKKR5OqMzmhKqyEMlqknPQFWPYP2wDrMUTgE9pdpSrufbz18FOXS5/vrUR93TnguWabrWuwcLjNFWC/ku4gOywj7Ao1TV+i9Ze+4iGbbeJ+1NWqYq/FUO6aGUiFiSGCFN1nY4r8mLygD673sMZZc8YeBm5zM=
+Received: from AM6PR10MB2807.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:aa::16)
+ by AM7PR10MB3221.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:109::24) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3654.12; Tue, 8 Dec
+ 2020 10:41:57 +0000
+Received: from AM6PR10MB2807.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::5438:1932:b075:be6c]) by AM6PR10MB2807.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::5438:1932:b075:be6c%6]) with mapi id 15.20.3632.021; Tue, 8 Dec 2020
+ 10:41:57 +0000
+From:   Adam Ward <Adam.Ward.opensource@diasemi.com>
+To:     Rob Herring <robh@kernel.org>,
+        Adam Ward <Adam.Ward.opensource@diasemi.com>
+CC:     Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Vincent Whitchurch <vincent.whitchurch@axis.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Support Opensource <Support.Opensource@diasemi.com>
+Subject: RE: [PATCH V4 01/10] regulator: Update DA9121 dt-bindings
+Thread-Topic: [PATCH V4 01/10] regulator: Update DA9121 dt-bindings
+Thread-Index: AQHWx+k2nPrYkNpltUGZPYQaTY+Kt6nr9TiAgAEQJQA=
+Date:   Tue, 8 Dec 2020 10:41:57 +0000
+Message-ID: <AM6PR10MB280786E90152D183C8B52454ECCD0@AM6PR10MB2807.EURPRD10.PROD.OUTLOOK.COM>
+References: <cover.1606830377.git.Adam.Ward.opensource@diasemi.com>
+ <0606d3ded5fef4c38760246146f197db4ce3a374.1606830377.git.Adam.Ward.opensource@diasemi.com>
+ <20201207175809.GA503826@robh.at.kernel.org>
+In-Reply-To: <20201207175809.GA503826@robh.at.kernel.org>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=diasemi.com;
+x-ms-exchange-messagesentrepresentingtype: 1
+x-originating-ip: [165.225.80.51]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: c00d89e8-9b9c-4052-f199-08d89b65e325
+x-ms-traffictypediagnostic: AM7PR10MB3221:
+x-ms-exchange-sharedmailbox-routingagent-processed: True
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <AM7PR10MB3221E5D66D02A45AB8878D2ECBCD0@AM7PR10MB3221.EURPRD10.PROD.OUTLOOK.COM>
+x-ms-oob-tlc-oobclassifiers: OLM:8882;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: LZgoOoNF1IR0Lo6l13yKtOdpD0HtR3mmYD23T1fVQatTi1teZe4jjWSZe/tRxL500II85VkA1T5SCU9C8BXobSRzqipdK238CZzY+pqd//auUqGbGVZQrmgqe65FKANxY174FQLjOoxJR8kFs+Xa6UJH5vsRrOqdIH99UapvQz3Hp996Msglj+P6+lkWUTA3I6F+3P6XQGl+WJ/9BQaTkjezMLmlV8i3XlRbiSk1UiP4xYTznflYDt1pmLc8N7p86VO2/MpW36gy7bqJOD+h4IYcHCcmDe4UgxjUbAK1LeFa98L3qVw7lVuEX0m1sHsfvaFH614X/ylqrIid6QJlVg==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR10MB2807.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(4636009)(366004)(5660300002)(71200400001)(186003)(7696005)(55016002)(66946007)(33656002)(66476007)(66556008)(66446008)(2906002)(9686003)(4326008)(26005)(64756008)(8936002)(86362001)(8676002)(54906003)(107886003)(55236004)(76116006)(498600001)(52536014)(6506007)(110136005);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: =?us-ascii?Q?CRWetWOYiqaxCbtL+QrsgrKxK9yPPZg5aCp9bxr8LC7aH4nUwo1joSZVlp1B?=
+ =?us-ascii?Q?/1sPrQQZeveOnNul3mRWUNzrUhDQTvg5gTidDXnK5ZXqQ+u1bplBfDH8WTqu?=
+ =?us-ascii?Q?KaILpeAS9hyjO/xOjP7m0lYJ732lcsf9DcHvp75xBI2kxSLAX7X1g0EAbf6b?=
+ =?us-ascii?Q?HHnqKMq87aO2pW/R8YnqSk8cKNV3rNp92a2get2y6I9HRpx71zjVjAfwW9CN?=
+ =?us-ascii?Q?tLISauxNmKzr7gWHTximw3be/fkmDhB1MyGlnrs0BZFQyGLMR3rI1tLGydej?=
+ =?us-ascii?Q?c5u6dVxMDptXkCu2/InMBcxHm6wA6whYd134muAUcs5fTr2iewC/87bsSJME?=
+ =?us-ascii?Q?DoHlO2nFJkMNz1/r8QvhbazW9apq7GwyRSsw24B5mWBmES6sVHqwRMGBBOde?=
+ =?us-ascii?Q?AwDeD/jQfPMOwEq1WsACGAHF/O2imNjncEU3oIbrSct/jqZ9GLW+zm2MkK8U?=
+ =?us-ascii?Q?/WV+4QlIFCS8eGmCkt4ZudWMsja0rmhSoTjG4NbIy8piVImFI5TWbmf+dhIk?=
+ =?us-ascii?Q?3/KMs+hYJbHQLsma4W/zfD1YXc+4ilgKy5PpN7Pc9uW67ue/echuzVeZRlAX?=
+ =?us-ascii?Q?Qh7Jdn+XlVpdbJL6zsRrYAjR60mjw9lp14gCoYT1Fg6Zuf2JYWWw/lZO7PLr?=
+ =?us-ascii?Q?mtu1+2rmdsT7HMgk6Xgt3it/xGF2ZCqTYJb0NOcIiesrkkxy2XFrly/ITBgL?=
+ =?us-ascii?Q?s6Sp/EqMKfytvzPK+11fOvYMnRWXUvMzsUIgcZki+IjGXTovXLy4PnduAguq?=
+ =?us-ascii?Q?QCvZvckdQDvWgDD5tEvqsMQqizGppsp0EON1LPHlVlxUppXDCbz89SAmMf3y?=
+ =?us-ascii?Q?bVv9tK3P2sdnk8Uk3mvi59dS9X6pLgqa8DxH/1bcVuT40oQHySe4HhL3zdRe?=
+ =?us-ascii?Q?Z8Hu9fTsOE6Xju2Hp86IgR7M7Gyo0d1cNHWB+zSAvahgYr8HJs0JD3Hl8jI2?=
+ =?us-ascii?Q?iJNcud8L5jMpLqMyTfC0rCihwxmk2JbEwclrX69LEGg=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.47.68.59]
-X-ClientProxiedBy: lhreml705-chm.china.huawei.com (10.201.108.54) To
- lhreml710-chm.china.huawei.com (10.201.108.61)
-X-CFilter-Loop: Reflected
+X-OriginatorOrg: diasemi.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AM6PR10MB2807.EURPRD10.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: c00d89e8-9b9c-4052-f199-08d89b65e325
+X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Dec 2020 10:41:57.6882
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 511e3c0e-ee96-486e-a2ec-e272ffa37b7c
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: qwrhhnQyEsO/li+X5xX0d/WUURndXjs0Htae2vg27exKAxV+T7Z9V5h5fKOUJGuG1QmfOb4y63EcESx9i+oe/w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM7PR10MB3221
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 6 Dec 2020 00:05:29 +0300
-Dmitry Baryshkov <dmitry.baryshkov@linaro.org> wrote:
+On Mon, Dec 07, 2020 at 17:58PM, Rob Herring wrote:
+> > +        properties:
+> > +          regulator-mode:
+> > +            maxItems: 1
+> > +            description: Defined in include/dt-bindings/regulator/dlg,=
+da9121-
+> regulator.h
+>=20
+> 'regulator-mode' is defined as a property of a
+> 'regulator-state-(standby|mem|disk)' child node. I don't see how you
+> would use this with 'regulator-initial-mode' either.
+>=20
+> > +
+> > +          regulator-initial-mode:
+> > +            maxItems: 1
+>=20
+> 'maxItems' applies to arrays and this is not an array. What you should
+> have is constraints on the values:
+>=20
+> enum: [ 0, 1, 2, 3 ]
 
-> On 05/12/2020 20:08, Jonathan Cameron wrote:
-> > On Fri,  4 Dec 2020 05:54:54 +0300
-> > Dmitry Baryshkov <dmitry.baryshkov@linaro.org> wrote:
-> >   
-> >> This patch serie adds support for thermal monitoring block on Qualcomm's
-> >> PMIC5 chips. PM8150{,b,l} and sm8250-mtp board device trees are extended
-> >> to support thermal zones provided by this thermal monitoring block.
-> >> Unlike the rest of PMIC thermal senses, these thermal zones describe
-> >> particular thermistors, which differ between from board to board.  
-> > 
-> > I've just taken another look through the various IIO parts in here and
-> > I think they are fine.
-> > 
-> > My assumption is that given the timing this isn't going to make the merge
-> > window now.  Hence I'll be looking to do an immutable branch based on rc1
-> > once it's available (assuming everyone else is fine with this version).  
-> 
-> Thank you! Another option might be to merge all iio changes this cycle 
-> (if it's fine with you) and have all the rest go via respective trees in 
-> the next merge window. I'm fine with either of the options.
+OK, I see better now - would this be the valid way to scope them both?
 
-Too late unfortunately. IIO routes through staging for historical reasons
-(plus we still have about 15 drivers to move out of there - it's only been
-about 10 years :)  Staging closes a week before merge window so IIO closes a few
-days before staging.
+        properties:
+          regulator-state-(standby|mem|disk):
+          type: object
 
-So lets stick to the immutable branch method.  Tends to make more sense in
-the git history anyway as brings relevant code together (even if it travels
-via multiple routes :)
+            properties:
+              regulator-mode:
+              enum: [ 0, 1, 2, 3 ]
+              description: Defined in include/dt-bindings/regulator/dlg,da9=
+121-regulator.h
 
-Jonathan
+          regulator-initial-mode:
+            enum: [ 0, 1, 2, 3 ]
+            description: Defined in include/dt-bindings/regulator/dlg,da912=
+1-regulator.h
 
-> 
-> > 
-> > Thanks,
-> > 
-> > Jonathan
-> >   
-> >>
-> >> Changes since v9:
-> >>   - In patch 12 add comments to the code as requested by Daniel Lezcano.
-> >>   - Change copyright comment in qcom-spmi-adc-tm5.c to clearly note
-> >>     driver history.
-> >>
-> >> Changes since v8:
-> >>   - Simplified qcom_vadc_map_voltage_temp() code by removing ascending
-> >>     tables support
-> >>   - Simplified qcom-vadc-common volt/temp mapping code
-> >>   - Implement suggestions by Matthias Kaehlcke: message formatting,
-> >>     rewrite comments, remove unused variable initialization.
-> >>
-> >> Changes since v7:
-> >>   - Move qcom-vadc-common.h header to include/linux/iio/adc/ dir.
-> >>   - Use explicit sizeof(var) instead of hand-coding 1 when accessing
-> >>     adc-tm registers.
-> >>   - Remove buffer read from adc_tm5_init().
-> >>   - Remove extra on-stack var from adc_tm5_get_temp().
-> >>   - Minor formatting changes as suggested Daniel.
-> >>
-> >> Changes since v6:
-> >>   - Added include <linux/bitfield.h> as noted by Jishnu Prakash.
-> >>
-> >> Changes since v5:
-> >>   - Reworked DT bindings:
-> >>     * Removed qcom,adc-channel, instead it is parsed from io-channels
-> >>     * Renamed qcom,hw-settle-time to include -us suffix
-> >>   - Re-added monitor enabling which got lost during refactored. Noted by
-> >>     Jishnu Prakash.
-> >>   - Use threaded IRQ handler as susggested by Jishnu.
-> >>
-> >> Changes since v4:
-> >>   - Added kernel-doc comments to ADC-TM structures
-> >>   - Used several sizeof(buf) instead of hand-conding register size
-> >>
-> >> Changes since v3:
-> >>   - Fix DT description to spell "thermal monitoring" instead of just TM
-> >>   - Fix warnings in DT example
-> >>   - Add EXPORT_SYMBOL_GPL(of_iio_channel_get_by_name)
-> >>   - Fixed whitespace chanes in qcom-vadc-common.c
-> >>   - Removed error message if IIO chanel get returns -EPROBE_DEFER
-> >>
-> >> Changes since v2:
-> >>   - IIO: export of_iio_channel_get_by_name() function
-> >>   - dt-bindings: move individual io-channels to each thermal monitoring
-> >>     channel rather than listing them all in device node
-> >>   - added fallback defaults to of_device_get_match_data calls in
-> >>     qcom-spmi-adc5 and qcom-spmi-adc-tm5 drivers
-> >>   - minor typo fixes
-> >>
-> >> Changes since v1:
-> >>   - Introduce fixp_linear_interpolate() by Craig Tatlor
-> >>   - Lots of syntax/whitespace changes
-> >>   - Cleaned up register definitions per Jonathan's suggestion
-> >>   - Implemented most of the suggestions from Bjorn's and Jonathan's
-> >>     review
-> >>
-> >>  
-> >   
-> 
-> 
+I couldn't find a precedent in regulator yaml, and it's far removed enough =
+from what
+I see in the abstract JSON-schema documentation to make relating them trick=
+y, even
+if I had sufficient familiarity with the terminology to believe I'd properl=
+y understood that!
+
+Perhaps I'd be better off abandoning this attempt, and just having the regu=
+lator
+description mention these properties/file, like the texts for act8865 and m=
+ax77802 do?
 
