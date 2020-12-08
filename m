@@ -2,172 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D0E0F2D25B8
-	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 09:20:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 453002D25BE
+	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 09:22:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728078AbgLHITR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Dec 2020 03:19:17 -0500
-Received: from relay-us1.mymailcheap.com ([51.81.35.219]:42070 "EHLO
-        relay-us1.mymailcheap.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727679AbgLHITR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Dec 2020 03:19:17 -0500
-Received: from relay5.mymailcheap.com (relay5.mymailcheap.com [159.100.248.207])
-        by relay-us1.mymailcheap.com (Postfix) with ESMTPS id 1123820F13;
-        Tue,  8 Dec 2020 08:18:36 +0000 (UTC)
-Received: from relay4.mymailcheap.com (relay4.mymailcheap.com [137.74.199.117])
-        by relay5.mymailcheap.com (Postfix) with ESMTPS id 963FD260EB;
-        Tue,  8 Dec 2020 08:17:41 +0000 (UTC)
-Received: from filter1.mymailcheap.com (filter1.mymailcheap.com [149.56.130.247])
-        by relay4.mymailcheap.com (Postfix) with ESMTPS id 9722B3F1CF;
-        Tue,  8 Dec 2020 09:16:09 +0100 (CET)
-Received: from localhost (localhost [127.0.0.1])
-        by filter1.mymailcheap.com (Postfix) with ESMTP id C54C42A368;
-        Tue,  8 Dec 2020 03:16:08 -0500 (EST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mymailcheap.com;
-        s=default; t=1607415368;
-        bh=Y3s1E8KKlNUWMouLDe3abdz9vmn2MrdVzMacGK09aJI=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=rMEZKA3t+4B3pBvBvcc1ab6zrQh0Nfp/4YQqLkJhIsbxz6FV0I1NxiuD0Amcm4wu7
-         8aZzxiF4/m2s4vcrB6p8ZEQYtNSgfcsgkbDvG6kKd73FMGq6yhLlJLsE6nhj8qBfKK
-         T69GSbM0Fu2+VU2gg2SWm4yp4mNSi+zwdHvVBFkg=
-X-Virus-Scanned: Debian amavisd-new at filter1.mymailcheap.com
-Received: from filter1.mymailcheap.com ([127.0.0.1])
-        by localhost (filter1.mymailcheap.com [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id fH9kEM8P7S0X; Tue,  8 Dec 2020 03:16:06 -0500 (EST)
-Received: from mail20.mymailcheap.com (mail20.mymailcheap.com [51.83.111.147])
-        (using TLSv1.2 with cipher ADH-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by filter1.mymailcheap.com (Postfix) with ESMTPS;
-        Tue,  8 Dec 2020 03:16:06 -0500 (EST)
-Received: from [213.133.102.83] (ml.mymailcheap.com [213.133.102.83])
-        by mail20.mymailcheap.com (Postfix) with ESMTP id 5B13D42374;
-        Tue,  8 Dec 2020 08:16:04 +0000 (UTC)
-Authentication-Results: mail20.mymailcheap.com;
-        dkim=pass (1024-bit key; unprotected) header.d=flygoat.com header.i=@flygoat.com header.b="acaYppbY";
-        dkim-atps=neutral
-AI-Spam-Status: Not processed
-Received: from [192.168.43.15] (unknown [101.84.78.3])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mail20.mymailcheap.com (Postfix) with ESMTPSA id C861F40FB8;
-        Tue,  8 Dec 2020 08:15:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=flygoat.com;
-        s=default; t=1607415356;
-        bh=Y3s1E8KKlNUWMouLDe3abdz9vmn2MrdVzMacGK09aJI=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=acaYppbYTeEcSChxX1H57jhJz4jsBU3QTHoLr8c4NPAxCDZgbnxe0ZW5wpIp7lqyJ
-         pQDsENQm88FzaJ0WO1WshG/hRbhOnvRxZTy5S+OLTQrSE4DmOaYs2P4gOo8UOk/GLW
-         YHuwmp6HeTZUq60XGf+QQSfa9ojgslK3NwYRgdFo=
-Subject: Re: [PATCH v2 3/4] MIPS: Loongson64: DTS: Add SPI support to LS7A
-To:     Qing Zhang <zhangqing@loongson.cn>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-Cc:     linux-spi@vger.kernel.org, Huacai Chen <chenhc@lemote.com>,
-        devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
-        linux-kernel@vger.kernel.org, gaojuxin@loongson.cn,
-        yangtiezhu@loongson.cn
-References: <1607413467-17698-1-git-send-email-zhangqing@loongson.cn>
- <1607413467-17698-3-git-send-email-zhangqing@loongson.cn>
-From:   Jiaxun Yang <jiaxun.yang@flygoat.com>
-Message-ID: <c5a15af9-3eae-6141-2087-4f4394fae08b@flygoat.com>
-Date:   Tue, 8 Dec 2020 16:15:43 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.5.1
+        id S1726830AbgLHIWa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Dec 2020 03:22:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37174 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725208AbgLHIWa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Dec 2020 03:22:30 -0500
+Received: from mail-lj1-x242.google.com (mail-lj1-x242.google.com [IPv6:2a00:1450:4864:20::242])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBBBDC061749
+        for <devicetree@vger.kernel.org>; Tue,  8 Dec 2020 00:21:43 -0800 (PST)
+Received: by mail-lj1-x242.google.com with SMTP id y22so3296205ljn.9
+        for <devicetree@vger.kernel.org>; Tue, 08 Dec 2020 00:21:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=/L9ij+xi4aU+RA5FHQP+6+0fS+qsQ1KICkMdHJmFYFc=;
+        b=bYPvkZyzHphpd2LIG29zK/pI8TNd8M64LXuz04KBFAzCVM2tn6HgtLC4y0krAVsJGv
+         HmZ6aUEcKYzXhARN1OGrWuBrOKpnEmmtqa7ywUSjV2r3A/jB2vpbQwNsgZOlxEJUcsl8
+         QPPgKvurbDc295hFdI/W3mWEddd+hjtVyjNxtB0fT1BAi4cCrNQVH6032xcs8asD7CgZ
+         EjanTiW0Fb3w7kLQrHr//TwXgV/cX7v7abUMsryIbh+Zh3qx0UasUnD0LEuYbhxqaqX1
+         Y8uQ6gjPAkp/qoxxPhEYKuWcbegGalJQIMuDoMvXI7pe3d8Y1O/e8XVdhZAy05EJc7mH
+         8j8Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=/L9ij+xi4aU+RA5FHQP+6+0fS+qsQ1KICkMdHJmFYFc=;
+        b=W8xRUazR4AJBBEUUzZ5BPXUpZ1orao1R1v3xMaU4xUA4V89KK25nWFK8U35MksJtBE
+         huiWSvSTdrTD2oTqfKjegjfE8Cw5LFPPlUZeCMTIK9StGICZ6g1WyLolrdQstgrAXRY4
+         E7kJxWPMgKa4c02Fpqa7s1Lpz/9Ph8ZB6DEtTgSX3r74ekfYWebf3VMVEgUtjYk1QUOK
+         5FQfFN4rDrm97ZRS07rcneWfQfzzTgEosEr1Q1Yf/7RtAIsBMm3A7oX2K6PRLIxMkuXC
+         VPBF5NiOHoTINQqjVdGpJ6ov6b0BjAf5HYfZH2t3OTR59vHqTOkxnOblWCj+K9+Ge0+r
+         GPuA==
+X-Gm-Message-State: AOAM532dLzpbPjSqRLNsHB82EN9zLjsNDr2JP+l16YZ021Pgy0LdY7Rp
+        j4jUcOJ5PC/2hpbjzD4p+zoMXGYRBysGawRjLrgIFkxjOaxMWg==
+X-Google-Smtp-Source: ABdhPJz3QSFZPxGv2N/pnXp+VezSxPYZ2V9M6+O2npQftKaRSLMZh4qMKQdxMJx/Ncz13H34GLneBICqZoSBqKisFV4=
+X-Received: by 2002:a2e:b1c9:: with SMTP id e9mr10482058lja.283.1607415702493;
+ Tue, 08 Dec 2020 00:21:42 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <1607413467-17698-3-git-send-email-zhangqing@loongson.cn>
-Content-Type: text/plain; charset=gbk; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 5B13D42374
-X-Spamd-Result: default: False [1.40 / 10.00];
-         RCVD_VIA_SMTP_AUTH(0.00)[];
-         ARC_NA(0.00)[];
-         R_DKIM_ALLOW(0.00)[flygoat.com:s=default];
-         MID_RHS_MATCH_FROM(0.00)[];
-         FROM_HAS_DN(0.00)[];
-         TO_DN_SOME(0.00)[];
-         TO_MATCH_ENVRCPT_ALL(0.00)[];
-         TAGGED_RCPT(0.00)[dt];
-         MIME_GOOD(-0.10)[text/plain];
-         R_SPF_SOFTFAIL(0.00)[~all];
-         RECEIVED_SPAMHAUS_PBL(0.00)[101.84.78.3:received];
-         ML_SERVERS(-3.10)[213.133.102.83];
-         DKIM_TRACE(0.00)[flygoat.com:+];
-         DMARC_POLICY_ALLOW(0.00)[flygoat.com,none];
-         RCPT_COUNT_SEVEN(0.00)[11];
-         DMARC_POLICY_ALLOW_WITH_FAILURES(0.00)[];
-         DBL_PROHIBIT(0.00)[0.0.0.0:email,0.0.0.16:email];
-         RCVD_NO_TLS_LAST(0.10)[];
-         FROM_EQ_ENVFROM(0.00)[];
-         MIME_TRACE(0.00)[0:+];
-         ASN(0.00)[asn:24940, ipnet:213.133.96.0/19, country:DE];
-         RCVD_COUNT_TWO(0.00)[2];
-         SUSPICIOUS_RECIPS(1.50)[];
-         HFILTER_HELO_BAREIP(3.00)[213.133.102.83,1]
-X-Rspamd-Server: mail20.mymailcheap.com
+References: <20201208075523.7060-1-sergio.paracuellos@gmail.com> <20201208075523.7060-3-sergio.paracuellos@gmail.com>
+In-Reply-To: <20201208075523.7060-3-sergio.paracuellos@gmail.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Tue, 8 Dec 2020 09:21:31 +0100
+Message-ID: <CACRpkdY_Me8kO-Fa-vUspJNv+2vy0fswTM-RaUoaZJ5rCfuynA@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] pinctrl: ralink: add a pinctrl driver for the
+ rt2880 family
+To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+        Greg KH <gregkh@linuxfoundation.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, Jason Yan <yanaijie@huawei.com>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:STAGING SUBSYSTEM" <devel@driverdev.osuosl.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Dec 8, 2020 at 8:55 AM Sergio Paracuellos
+<sergio.paracuellos@gmail.com> wrote:
 
-ÔÚ 2020/12/8 15:44, Qing Zhang Ð´µÀ:
-> add spi and amd node support.
-
-Hi Qing,
-
-
-Thanks for your patch.
-
-What is AMD node?
-
-Also given that different boards may have different flash, is it a wise
-
-idea to hardcode here?
-
-Thanks.
-
-- Jiaxun
-
-
+> These Socs have 1-3 banks of 8-32 gpios. Rather then setting the muxing of each
+> pin individually, these socs have mux groups that when set will effect 1-N pins.
+> Pin groups have a 2, 4 or 8 different muxes.
 >
-> Signed-off-by: Qing Zhang <zhangqing@loongson.cn>
-> ---
->
-> v2:
-> - Add spi about pci device DT
-> ---
->   arch/mips/boot/dts/loongson/ls7a-pch.dtsi | 20 ++++++++++++++++++++
->   1 file changed, 20 insertions(+)
->
-> diff --git a/arch/mips/boot/dts/loongson/ls7a-pch.dtsi b/arch/mips/boot/dts/loongson/ls7a-pch.dtsi
-> index f99a7a1..ab8836b 100644
-> --- a/arch/mips/boot/dts/loongson/ls7a-pch.dtsi
-> +++ b/arch/mips/boot/dts/loongson/ls7a-pch.dtsi
-> @@ -405,6 +405,26 @@
->   				interrupt-map-mask = <0 0 0 0>;
->   				interrupt-map = <0 0 0 0 &pic 39 IRQ_TYPE_LEVEL_HIGH>;
->   			};
-> +
-> +			spi@16,0 {
-> +				compatible = "pci0014,7a0b.0",
-> +						"pci0014,7a0b",
-> +						"pciclass088000",
-> +						"pciclass0880";
-> +
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +
-> +				reg = <0xb000 0x0 0x0 0x0 0x0>;
-> +				num-chipselects = <0>;
-> +				spiflash: s25fl016k@0 {
-> +				#address-cells = <1>;
-> +				#size-cells = <1>;
-> +				compatible ="spansion,s25fl016k","jedec,spi-nor";
-> +				spi-max-frequency=<50000000>;
-> +				reg=<0>;
-> +				};
-> +			};
->   		};
->   
->   		isa {
+> Acked-by: Linus Walleij <linus.walleij@linaro.org>
+> Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+
+Greg I'm happy if you just apply this right now for v5.11, as Sergio
+is obviously on top of things and the DT bindings will get there
+eventually so I don't see any need to hold back the de-staging just
+waiting for patch 1 (which I will eventually apply directly anyway).
+
+Yours,
+Linus Walleij
