@@ -2,180 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B0F1A2D2456
-	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 08:28:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DB70E2D2460
+	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 08:33:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727227AbgLHH14 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Dec 2020 02:27:56 -0500
-Received: from mail-dm6nam12on2078.outbound.protection.outlook.com ([40.107.243.78]:54855
-        "EHLO NAM12-DM6-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1725927AbgLHH14 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 8 Dec 2020 02:27:56 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Mu9fSHd1QW1vU5KZui2XtpTF8BPR+oMO2dFdcixIASAB9hYEXVOniRNRHLlM1zp4UVP2I7AZaK6rizNZTEOiQHvsk4l7adKHCV86xu1DWPHrnzDFiGGQrXxZ2zd8GDhbV9+eNuyHx6SS/jV5tfsmoKAxqPvBgxgfN7HvI6ogXUB6MiK+7cNLbMhCrEZRZJrE34Pk87KJ1jObRlG4Yhs2TF+1xVasblMdNqsmsWE/VBMmNIx1AXQzk0Il3wzDe8KzL31GH9sdp9eF922TO/Dzpo7Wo9rKmFvv/NB+WLKFEcvoLHYdzAKp31UM66cicvlq78pEzRX0LBCflAQZz2BV/g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xIwotGCQQjejC7YTj4qfHU3GmsNZ0GSFnsEvSnJyup0=;
- b=AZYm9XWOqvPMTFgHYdLEaPwrj3VCWhWUU6fNgZLkXafVSeQqa9j5iusLRZ0MLkP9mPj4IYnjTZiEWD/ckZL0mZUuq/MonyVLJSu5CU/UQYiMk4UiTG1tjGaMMvXV0KR4FQ7Ng6vJo4YwJvpVFbIqDeWaReRnUnpnn4g8BkP1lk8nKZIV4PFBPtunDUuo+55o+KOs+M0sB4jVQKklcWSXMZjb6YXUHJdb5OvtmvneHLO2zAe8SRwnz3KoPs4vL2yO3uY9MFy//h+RfbR6Y5To/QZoTn8l1pNqHv2DwUAvfOCReWbwWPHBjkC/J5IzlC3C+sNiqC7owNCwdBKolcvKJA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 149.199.62.198) smtp.rcpttodomain=lists.infradead.org
- smtp.mailfrom=xilinx.com; dmarc=bestguesspass action=none
- header.from=xilinx.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xIwotGCQQjejC7YTj4qfHU3GmsNZ0GSFnsEvSnJyup0=;
- b=Tuc/xTZ9J1xZSCpxyqZtrq+YKWFfBAo3LDgHkDu6tgpFv2ug/kTiaHhEJChPNi0H47Ib/dkJld7jpTr9t5QpMmWBYp1NXO5mLSTL9p7mqUsTOpvrR1Kw5OhdvV+WopJnK4Z5RiZci1TKo+zf7GIUemdzgyuWE1Ju00SJF1d2cK8=
-Received: from SN6PR08CA0028.namprd08.prod.outlook.com (2603:10b6:805:66::41)
- by SN6PR02MB4781.namprd02.prod.outlook.com (2603:10b6:805:9b::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3632.17; Tue, 8 Dec
- 2020 07:27:02 +0000
-Received: from SN1NAM02FT062.eop-nam02.prod.protection.outlook.com
- (2603:10b6:805:66:cafe::37) by SN6PR08CA0028.outlook.office365.com
- (2603:10b6:805:66::41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3632.17 via Frontend
- Transport; Tue, 8 Dec 2020 07:27:02 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
- smtp.mailfrom=xilinx.com; lists.infradead.org; dkim=none (message not signed)
- header.d=none;lists.infradead.org; dmarc=bestguesspass action=none
- header.from=xilinx.com;
-Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
- 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=149.199.62.198; helo=xsj-pvapexch01.xlnx.xilinx.com;
-Received: from xsj-pvapexch01.xlnx.xilinx.com (149.199.62.198) by
- SN1NAM02FT062.mail.protection.outlook.com (10.152.72.208) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.3632.21 via Frontend Transport; Tue, 8 Dec 2020 07:27:02 +0000
-Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
- xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1913.5; Mon, 7 Dec 2020 23:26:46 -0800
-Received: from smtp.xilinx.com (172.19.127.96) by
- xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
- 15.1.1913.5 via Frontend Transport; Mon, 7 Dec 2020 23:26:46 -0800
-Envelope-to: git@xilinx.com,
- michal.simek@xilinx.com,
- rajan.vaja@xilinx.com,
- linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org,
- robh+dt@kernel.org,
- krzk@kernel.org,
- monstr@monstr.eu,
- linux-kernel@vger.kernel.org,
- laurent.pinchart@ideasonboard.com
-Received: from [172.30.17.109] (port=42068)
-        by smtp.xilinx.com with esmtp (Exim 4.90)
-        (envelope-from <michal.simek@xilinx.com>)
-        id 1kmXOX-00032f-OU; Mon, 07 Dec 2020 23:26:45 -0800
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Michal Simek <michal.simek@xilinx.com>
-CC:     <linux-kernel@vger.kernel.org>, <monstr@monstr.eu>,
-        <git@xilinx.com>, Kalyani Akula <kalyani.akula@xilinx.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Manish Narani <manish.narani@xilinx.com>,
-        Rajan Vaja <rajan.vaja@xilinx.com>,
-        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <cover.1606917949.git.michal.simek@xilinx.com>
- <272e23e0123f02c559bfa4ada9de73eb197aced8.1606917949.git.michal.simek@xilinx.com>
- <X81fXtxvsc7KE7cK@pendragon.ideasonboard.com>
- <99008851-6c12-3acc-6530-25af08429ff5@xilinx.com>
- <X86poiQSzv5Uva1r@pendragon.ideasonboard.com>
-From:   Michal Simek <michal.simek@xilinx.com>
-Subject: Re: [PATCH 06/12] arm64: dts: zynqmp: Add label for zynqmp_ipi
-Message-ID: <4010c2d4-bee1-827b-1079-1f1bbf1f10d1@xilinx.com>
-Date:   Tue, 8 Dec 2020 08:26:41 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.5.1
+        id S1726340AbgLHHcu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Dec 2020 02:32:50 -0500
+Received: from mail-ot1-f65.google.com ([209.85.210.65]:33959 "EHLO
+        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726299AbgLHHcu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Dec 2020 02:32:50 -0500
+Received: by mail-ot1-f65.google.com with SMTP id h19so15075539otr.1;
+        Mon, 07 Dec 2020 23:32:34 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=/ntm5kX2/68W+Rb853G9+JOfMY9ZEj0sbIzeYrRjxZk=;
+        b=hCsda1bBwteVeeauBruDUFoBH9WKguL8J3D+VHU2wJk8+YiQDvzNXocIzMI1dy40/d
+         d4G2USPZmJM8FJmxGYkJU7SUY0jW3IsgnzHYtOAFdK6Qms9gSTdhcHaDHiGSBNBWdGyh
+         XE/Fx97vJrTYvoaCS6yTQKcE+wTFC26zDfSXmuQpefAwl5e3xdFxe/1BzXkjmL+s42lt
+         xMBkERKDZT7O+nU1Uf5NjRXj4rwMIOQ5xmXt99SCOe37Ap65UMBuJvqgqk4rhXPHwttj
+         KrbRa4wuUG8K7f4sC+eibfy8RKq8+jJWNHe+h9onVVX9OYcrQAG1xlA9z06euTwwjmp4
+         w4Wg==
+X-Gm-Message-State: AOAM531s4dTf56Thk0Ex5+CHum+zySOpK3VjdGJg06rAO55mrkmHWCiO
+        kyUw/5AHPsvF5hR+5nLUDKU9zuyFEorMiuXhGG4=
+X-Google-Smtp-Source: ABdhPJzP3zsmCeQZJGI7WUQZGhFTcbnh1RiZSiteZgaVGYQqSLbzhPDTO9A8RxzKoxXx6hYzxTPBjTUhJJRQIgbFnHI=
+X-Received: by 2002:a05:6830:1f5a:: with SMTP id u26mr15841607oth.250.1607412729258;
+ Mon, 07 Dec 2020 23:32:09 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <X86poiQSzv5Uva1r@pendragon.ideasonboard.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-EOPAttributedMessage: 0
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: f3e62111-2264-4241-960f-08d89b4aa832
-X-MS-TrafficTypeDiagnostic: SN6PR02MB4781:
-X-LD-Processed: 657af505-d5df-48d0-8300-c31994686c5c,ExtAddr
-X-Microsoft-Antispam-PRVS: <SN6PR02MB4781C08AEABD7B62F16F443FC6CD0@SN6PR02MB4781.namprd02.prod.outlook.com>
-X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
-X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: a8xncvd4SEDzVesXCYyIFaqHX8m6mQDARQA51XGddo4NwSKxPEOZfdNqxTR8cMdLBYieCRUD+0gj5XFH9S4Ff9KwQ3eJc7pWn27TqLQ6Q1rMc/MN2afT0XoXr/L9eiIgVAeBxXAJM9DbBKMl7QzYKwE/foEhq5dncicxRvnKz5lKy+P2iZ461jH+tgZNoZOSofkTvzzWc9G5XHHFLy5ABnN6BxJkeg7bkvWpbWcVjYCeYlE2+eUf/iI/5WTJQ0SccCk/REvvz2kOOK+/RhCVaC6YnQDD1FF0ZVMy8wIzFRdSeFfcJha4qhevO6Fl3FUFXu4UF0prb6vSm96bWTCiMmuYwzbjRzmah4xQX3NosaCq72uuoPWH4JbToBArXKXkolk7j4TvsDC+lBa6jMwZpC+Fgl3vLRmQrtLRHTnoU/5ArUuVXUxWyKKTslOVROz8VTmYD6SYm3noW/zBYYUijQ==
-X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch01.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(4636009)(39860400002)(346002)(136003)(376002)(396003)(46966005)(70206006)(36756003)(83380400001)(8936002)(6666004)(70586007)(4326008)(26005)(31686004)(5660300002)(82740400003)(426003)(44832011)(8676002)(478600001)(2616005)(336012)(7636003)(36906005)(9786002)(2906002)(47076004)(356005)(316002)(110136005)(31696002)(186003)(82310400003)(54906003)(50156003)(43740500002);DIR:OUT;SFP:1101;
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Dec 2020 07:27:02.3888
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: f3e62111-2264-4241-960f-08d89b4aa832
-X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch01.xlnx.xilinx.com]
-X-MS-Exchange-CrossTenant-AuthSource: SN1NAM02FT062.eop-nam02.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR02MB4781
+References: <CAK8P3a2Habmz95y+J+-4NiT5SGYhO_Fia-SHhapX-3NYRbEMmw@mail.gmail.com>
+ <CAHk-=wjA2Der39e_SWZ6S-DoVCJTu-Zwf6jn2wxmGTKzNPV1Dw@mail.gmail.com>
+ <CAD=FV=Vow5_jv=-O=f2v4_5Nb4DiOUB1sQUx6r=-y5A-6rP4hw@mail.gmail.com>
+ <CAHk-=whtySEgkH+VFy9oW8Q-+iuivGBo0hOUcee3DvrsBAQUrA@mail.gmail.com>
+ <CAD=FV=Up-JW8RtMLQ_pAG3e0d8NnpT+rDiguxcz3DnVUz_7Jbw@mail.gmail.com>
+ <CAHk-=wi2CQwAnKucLwE8vNZgXxyRy6L+DcgjGqxKHwbacKgaMQ@mail.gmail.com>
+ <CAPDyKFp9L+L9VeUD038G3mBTLBuPJsMtv7JhxCcSGb3iY=eq5A@mail.gmail.com>
+ <CAK8P3a1Va_xJzk8qqJM1VBWfSKpomKbQh_NpPO20aoORoe0SWQ@mail.gmail.com>
+ <CAMuHMdUT83EkE-phUX2Z431AtGPfZvXeKwQriDKEHJKfr2R40A@mail.gmail.com>
+ <CAK8P3a3xqqT7mcroY+-fg4T39msw72SB0NbbVKfBghmOFTNZqw@mail.gmail.com> <CAD=FV=WXcSBkN2y97xNma0P9C6DEPfwkprZe=+0+0iuKYNwwZA@mail.gmail.com>
+In-Reply-To: <CAD=FV=WXcSBkN2y97xNma0P9C6DEPfwkprZe=+0+0iuKYNwwZA@mail.gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 8 Dec 2020 08:31:57 +0100
+Message-ID: <CAMuHMdWEuzUTg+f_SBqvT1zFYVFL=odgMLz68DjcvaTrbtd94g@mail.gmail.com>
+Subject: Re: [GIT PULL] ARM: SoC fixes for v5.10, part 3
+To:     Doug Anderson <dianders@chromium.org>
+Cc:     Arnd Bergmann <arnd@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        SoC Team <soc@kernel.org>,
+        Linus Torvalds <torvalds@linux-foundation.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Laurent,
+Hi Doug,
 
-On 07. 12. 20 23:16, Laurent Pinchart wrote:
-> Hi Michal,
-> 
-> On Mon, Dec 07, 2020 at 10:39:25AM +0100, Michal Simek wrote:
->> On 06. 12. 20 23:46, Laurent Pinchart wrote:
->>> On Wed, Dec 02, 2020 at 03:06:05PM +0100, Michal Simek wrote:
->>>> Add label which is used by bootloader for adding bootloader specific flag.
->>>>
->>>> Signed-off-by: Michal Simek <michal.simek@xilinx.com>
->>>> ---
->>>>
->>>> U-Boot needs to add u-boot,dm-pre-reloc; property
->>>
->>> I'm not entirely sure what best practice rules are in this area, but
->>> shouldn't U-Boot locate the node by name instead of label ?
->>
->> Labels are not listed in dt binding and there are two approaches how to
->> reference nodes. Via full path with node name or via labels.
->> I do normally use labels which are much simple.
-> 
-> Note that labels require the DTB to be compiled with the -@ option,
-> otherwise they're not present in the binary.
+On Mon, Dec 7, 2020 at 11:15 PM Doug Anderson <dianders@chromium.org> wrote:
+> On Mon, Dec 7, 2020 at 1:55 PM Arnd Bergmann <arnd@kernel.org> wrote:
+> > On Mon, Dec 7, 2020 at 9:23 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> > > On Tue, Dec 1, 2020 at 3:06 PM Arnd Bergmann <arnd@kernel.org> wrote:
+> > > > On Tue, Dec 1, 2020 at 12:39 PM Ulf Hansson <ulf.hansson@linaro.org> wrote:
+> > > > > So, I think we have two options. If people are willing to move to
+> > > > > "disk labels" or to patch their DTBs with mmc aliases, things can stay
+> > > > > as is. Otherwise, we can revert the async probe parts of the mmc host
+> > > > > drivers, but that would still leave us in a fragile situation.
+> > > >
+> > > > Can you reliably detect whether the mmc aliases in the dt exist?
+> > > > If that's possible, maybe the async flag could be masked out to only have
+> > > > an effect when the device number is known.
+> > >
+> > > IMHO DT aliases are not a proper solution for this.
+> > >
+> > > Yes, you can detect reliably if an alias exists in the DT.
+> > > The problems start when having multiple devices, some with aliases,
+> > > some without.  And when devices can appear dynamically (without
+> > > aliases, as there is no support for dynamically updating the aliases
+> > > list).
+> >
+> > Actually you hit a problem earlier than that: the async probe is a
+> > property of the host controller driver, which may be a pci_driver,
+> > platform_driver, usb_driver, or anything else really. To figure out
+> > whether to probe it asynchronously, it would have to be the driver
+> > core, or each bus type that can host these to understand which
+> > device driver is responsible for probing an eMMC device attached
+> > to the host.
+>
+> From what I've seen so far, my current thought on this issue is that
+> it's up to Ulf as the MMC maintainer what the next steps are.  For me,
+> at least, his argument that MMC block numbers have already shuffled
+> around several times in the last several years is at least some
+> evidence that they weren't exactly stable to begin with.  While we
+> could go back to the numbers that happened to be chosen as of kernel
+> v5.9, if someone was updating from a much older kernel then they may
+> have different expectations of what numbers are good / bad I think.
+>
+> I will also offer one possible suggestion: what about a KConfig option
+> here?  In theory we could add a KConfig option like
+> "CONFIG_MMC_LEGACY_PROBE" or something that.  One can argue about what
+> the default ought to be, but maybe that would satisfy folks?  If you
+> were happy giving up a little bit of boot speed to get the v5.9 block
+> numbers then you could set this.
 
-U-Boot is using different concept. You can see that there are a lot of
--u-boot.dtsi files in dts folders. These are automatically included to
-DTS before DTC is called. It means you don't need to build overlay to
-get merged.
+This is not limited to MMC.
+The same is true for sdX, ethX (e* these days), ttyS*, i2cX, spiX, ...
+The rule has always been to handle it by udev, disklabels, ...
 
+Gr{oetje,eeting}s,
 
-> 
->> And also if you take a look how dtb looks like (convert back to dts) you
->> can see that for example aliases are using full path (just &label) but
->> clocks/gic which is the part of <> is handled via phandles as numbers.
->>
->> And labels names can vary and shouldn't be the part of binding doc as
->> far as I know. But I can be wrong of course.
-> 
-> The DT bindings should document the interface with the operating system,
-> and if applicable, the boot loader. If the boot loader requires a
-> particular label, then it becomes part of the ABI, and I think it should
-> be documented in the bindings.
+                        Geert
 
-We have been discussing with Rob some month ago but didn't have a time
-to do step further. Just keep it short Rob was ok to keep bootloader
-binding inside Linux repo.
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-There is no hardcoding for a particular name. There is just a need to
-have any label. U-Boot needs to have one property(e.g.
-u-boot,dm-pre-reloc;) just to do early allocation.
-The name is just reference and none is really looking for it. It is just
-a way how to include it in much easier way.
-
-Thanks,
-Michal
-
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
