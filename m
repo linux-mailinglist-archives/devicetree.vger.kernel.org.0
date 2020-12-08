@@ -2,192 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BFA682D2B66
-	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 13:51:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 47ABB2D2B8F
+	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 14:01:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729339AbgLHMv0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Dec 2020 07:51:26 -0500
-Received: from szxga04-in.huawei.com ([45.249.212.190]:9131 "EHLO
-        szxga04-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729268AbgLHMvZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Dec 2020 07:51:25 -0500
-Received: from DGGEMS403-HUB.china.huawei.com (unknown [172.30.72.59])
-        by szxga04-in.huawei.com (SkyGuard) with ESMTP id 4Cr0QD0b00z15Ymv;
-        Tue,  8 Dec 2020 20:50:12 +0800 (CST)
-Received: from thunder-town.china.huawei.com (10.174.177.9) by
- DGGEMS403-HUB.china.huawei.com (10.3.19.203) with Microsoft SMTP Server id
- 14.3.487.0; Tue, 8 Dec 2020 20:50:35 +0800
-From:   Zhen Lei <thunder.leizhen@huawei.com>
-To:     Philipp Zabel <p.zabel@pengutronix.de>,
-        Wei Xu <xuwei5@hisilicon.com>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-CC:     Zhen Lei <thunder.leizhen@huawei.com>,
-        Zhangfei Gao <zhangfei.gao@linaro.org>,
-        Chen Feng <puck.chen@hisilicon.com>,
-        "Manivannan Sadhasivam" <manivannan.sadhasivam@linaro.org>
-Subject: [PATCH v3 4/4] dt-bindings: reset: convert Hisilicon reset controller bindings to json-schema
-Date:   Tue, 8 Dec 2020 20:46:41 +0800
-Message-ID: <20201208124641.1787-5-thunder.leizhen@huawei.com>
-X-Mailer: git-send-email 2.26.0.windows.1
-In-Reply-To: <20201208124641.1787-1-thunder.leizhen@huawei.com>
-References: <20201208124641.1787-1-thunder.leizhen@huawei.com>
+        id S1728169AbgLHNBO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Dec 2020 08:01:14 -0500
+Received: from mo4-p01-ob.smtp.rzone.de ([85.215.255.54]:12657 "EHLO
+        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727554AbgLHNBO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Dec 2020 08:01:14 -0500
+X-RZG-AUTH: ":O2kGeEG7b/pS1EzgE2y7nF0STYsSLflpbjNKxx7cGrBOdI6BL9pkS3QW19mO7I+/JwRspuzJFZuRzQ=="
+X-RZG-CLASS-ID: mo00
+Received: from aerfugl
+        by smtp.strato.de (RZmta 47.6.2 AUTH)
+        with ESMTPSA id e07b38wB8CqG20m
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
+        (Client did not present a certificate);
+        Tue, 8 Dec 2020 13:52:16 +0100 (CET)
+Received: from koltrast.a98shuttle.de ([192.168.1.27] helo=a98shuttle.de)
+        by aerfugl with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <michael@fossekall.de>)
+        id 1kmcTX-0006UW-Jg; Tue, 08 Dec 2020 13:52:15 +0100
+Date:   Tue, 8 Dec 2020 13:52:14 +0100
+From:   Michael Klein <michael@fossekall.de>
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     Sebastian Reichel <sre@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3 2/3] Documentation: DT: binding documentation for
+ regulator-poweroff
+Message-ID: <20201208125214.GA2785@a98shuttle.de>
+References: <20201128103958.q6glewhhch7vtczr@gilmour>
+ <20201207142756.17819-1-michael@fossekall.de>
+ <20201207142756.17819-3-michael@fossekall.de>
+ <20201208101358.mwxmlgqonmunb2m2@gilmour>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [10.174.177.9]
-X-CFilter-Loop: Reflected
+Content-Type: text/plain; charset=iso-8859-1; format=flowed
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20201208101358.mwxmlgqonmunb2m2@gilmour>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the Hisilicon reset controller binding to DT schema format using
-json-schema.
+Thanks for reviewing!
 
-Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
----
- .../bindings/reset/hisilicon,hi3660-reset.txt      | 44 -------------
- .../bindings/reset/hisilicon,hi3660-reset.yaml     | 77 ++++++++++++++++++++++
- 2 files changed, 77 insertions(+), 44 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/reset/hisilicon,hi3660-reset.txt
- create mode 100644 Documentation/devicetree/bindings/reset/hisilicon,hi3660-reset.yaml
+On Tue, Dec 08, 2020 at 11:13:58AM +0100, Maxime Ripard wrote:
+>On Mon, Dec 07, 2020 at 03:27:55PM +0100, Michael Klein wrote:
+>> Add devicetree binding documentation for regulator-poweroff driver.
+>>
+>> Signed-off-by: Michael Klein <michael@fossekall.de>
+>> ---
+>>  .../power/reset/regulator-poweroff.yaml       | 53 +++++++++++++++++++
+>>  1 file changed, 53 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/power/reset/regulator-poweroff.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/power/reset/regulator-poweroff.yaml b/Documentation/devicetree/bindings/power/reset/regulator-poweroff.yaml
+>> new file mode 100644
+>> index 000000000000..8c8ce6bb031a
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/power/reset/regulator-poweroff.yaml
+>> @@ -0,0 +1,53 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/power/reset/regulator-poweroff.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Force-disable power regulators to turn the power off.
+>> +
+>> +maintainers:
+>> +  - Michael Klein <michael@fossekall.de>
+>> +
+>> +description: |
+>> +  When the power-off handler is called, one more regulators are disabled
+>> +  by calling regulator_force_disable(). If the power is still on and the
+>> +  CPU still running after a 3000ms delay, a WARN_ON(1) is emitted.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: "regulator-poweroff"
+>> +
+>> +  regulator-names:
+>> +    description:
+>> +      Array of regulator names
+>> +    $ref: /schemas/types.yaml#/definitions/string-array
+>> +
+>> +  REGULATOR-supply:
+>
+>This should be a patternProperties
+>
+>> +    description:
+>> +      For any REGULATOR listed in regulator-names, a phandle
+>> +      to the corresponding regulator node
+>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>> +
+>> +  timeout-ms:
+>> +    description:
+>> +      Time to wait before asserting a WARN_ON(1). If nothing is
+>> +      specified, 3000 ms is used.
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +
+>> +required:
+>> +  - compatible
+>> +  - regulator-names
+>> +  - REGULATOR-supply
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    regulator-poweroff {
+>> +        compatible = "regulator-poweroff";
+>> +        regulator-names = "vcc1v2", "vcc-dram";
+>> +        vcc1v2-supply = <&reg_vcc1v2>;
+>> +        vcc-dram-supply = <&reg_vcc_dram>;
+>> +    };
+>
+>I'm not entirely sure how multiple regulators would work here. I guess
+>the ordering is board/purpose sensitive. In this particular case, I
+>assume that vcc1v2 would be shut down before vcc-dram?
 
-diff --git a/Documentation/devicetree/bindings/reset/hisilicon,hi3660-reset.txt b/Documentation/devicetree/bindings/reset/hisilicon,hi3660-reset.txt
-deleted file mode 100644
-index aefd26710f9e87d..000000000000000
---- a/Documentation/devicetree/bindings/reset/hisilicon,hi3660-reset.txt
-+++ /dev/null
-@@ -1,44 +0,0 @@
--Hisilicon System Reset Controller
--======================================
--
--Please also refer to reset.txt in this directory for common reset
--controller binding usage.
--
--The reset controller registers are part of the system-ctl block on
--hi3660 and hi3670 SoCs.
--
--Required properties:
--- compatible: should be one of the following:
--		 "hisilicon,hi3660-reset" for HI3660
--		 "hisilicon,hi3670-reset", "hisilicon,hi3660-reset" for HI3670
--- hisilicon,rst-syscon: phandle of the reset's syscon.
--- #reset-cells : Specifies the number of cells needed to encode a
--  reset source.  The type shall be a <u32> and the value shall be 2.
--
--	 Cell #1 : offset of the reset assert control
--	           register from the syscon register base
--		   offset + 4: deassert control register
--		   offset + 8: status control register
--	 Cell #2 : bit position of the reset in the reset control register
--
--Example:
--	iomcu: iomcu@ffd7e000 {
--		compatible = "hisilicon,hi3660-iomcu", "syscon";
--		reg = <0x0 0xffd7e000 0x0 0x1000>;
--	};
--
--	iomcu_rst: iomcu_rst_controller {
--		compatible = "hisilicon,hi3660-reset";
--		hisilicon,rst-syscon = <&iomcu>;
--		#reset-cells = <2>;
--	};
--
--Specifying reset lines connected to IP modules
--==============================================
--example:
--
--        i2c0: i2c@..... {
--                ...
--		resets = <&iomcu_rst 0x20 3>; /* offset: 0x20; bit: 3 */
--                ...
--        };
-diff --git a/Documentation/devicetree/bindings/reset/hisilicon,hi3660-reset.yaml b/Documentation/devicetree/bindings/reset/hisilicon,hi3660-reset.yaml
-new file mode 100644
-index 000000000000000..9bf40952e5b7d28
---- /dev/null
-+++ b/Documentation/devicetree/bindings/reset/hisilicon,hi3660-reset.yaml
-@@ -0,0 +1,77 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/reset/hisilicon,hi3660-reset.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Hisilicon System Reset Controller
-+
-+maintainers:
-+  - Wei Xu <xuwei5@hisilicon.com>
-+
-+description: |
-+  Please also refer to reset.txt in this directory for common reset
-+  controller binding usage.
-+  The reset controller registers are part of the system-ctl block on
-+  hi3660 and hi3670 SoCs.
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - items:
-+          - const: hisilicon,hi3660-reset
-+      - items:
-+          - const: hisilicon,hi3670-reset
-+          - const: hisilicon,hi3660-reset
-+
-+  hisilicon,rst-syscon:
-+    description: phandle of the reset's syscon.
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+
-+  '#reset-cells':
-+    description: |
-+      Specifies the number of cells needed to encode a reset source.
-+      Cell #1 : offset of the reset assert control register from the syscon
-+                register base
-+                offset + 4: deassert control register
-+                offset + 8: status control register
-+      Cell #2 : bit position of the reset in the reset control register
-+    const: 2
-+
-+required:
-+  - compatible
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/clock/hi3660-clock.h>
-+
-+    iomcu: iomcu@ffd7e000 {
-+        compatible = "hisilicon,hi3660-iomcu", "syscon";
-+        reg = <0xffd7e000 0x1000>;
-+    };
-+
-+    iomcu_rst: iomcu_rst_controller {
-+        compatible = "hisilicon,hi3660-reset";
-+        hisilicon,rst-syscon = <&iomcu>;
-+        #reset-cells = <2>;
-+    };
-+
-+    /* Specifying reset lines connected to IP modules */
-+    i2c@ffd71000 {
-+        compatible = "snps,designware-i2c";
-+        reg = <0xffd71000 0x1000>;
-+        interrupts = <GIC_SPI 118 IRQ_TYPE_LEVEL_HIGH>;
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        clock-frequency = <400000>;
-+        clocks = <&crg_ctrl HI3660_CLK_GATE_I2C0>;
-+        resets = <&iomcu_rst 0x20 3>;
-+        pinctrl-names = "default";
-+        pinctrl-0 = <&i2c0_pmx_func &i2c0_cfg_func>;
-+        status = "disabled";
-+    };
-+...
+yes, the regulators are shut down from left to right.
+
+>If so, I would expect that one regulator_force_disable is run, the CPU
+>is disabled and you never get the chance to cut vcc-dram.
+
+I assume that any relevant regulator here has enough capacitance on the 
+output that provides enough charge to disable any remaining regulators 
+(my board has 3*10µF for vcc1v2 and 1*10µF for vcc-dram). But there is 
+of course no guarantee, so I'm shutting down the most relevant (in terms 
+of current consumption) regulator first.
+
+In any case, if it's deemed unnecessary to allow more than one regulator 
+in the driver I could remove the regulator-names property altogether and 
+reduce the DT node to:
+
+   regulator-poweroff {
+       compatible = "regulator-poweroff";
+       poweroff-supply = <&reg_vcc1v2>;
+   };
+
 -- 
-1.8.3
-
-
+Michael
