@@ -2,138 +2,263 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9112D2D2A9E
-	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 13:23:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E6E42D2AAB
+	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 13:24:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729424AbgLHMXO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Dec 2020 07:23:14 -0500
-Received: from foss.arm.com ([217.140.110.172]:48154 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729469AbgLHMXO (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 8 Dec 2020 07:23:14 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 233F91FB;
-        Tue,  8 Dec 2020 04:22:28 -0800 (PST)
-Received: from bogus (unknown [10.57.33.181])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 5B4B13F68F;
-        Tue,  8 Dec 2020 04:22:25 -0800 (PST)
-Date:   Tue, 8 Dec 2020 12:22:22 +0000
-From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     Lukasz Luba <lukasz.luba@arm.com>
-Cc:     Viresh Kumar <viresh.kumar@linaro.org>,
-        Nicola Mazzucato <nicola.mazzucato@arm.com>,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        rjw@rjwysocki.net, vireshk@kernel.org, robh+dt@kernel.org,
-        sboyd@kernel.org, nm@ti.com, daniel.lezcano@linaro.org,
-        morten.rasmussen@arm.com, chris.redpath@arm.com
-Subject: Re: [PATCH v4 3/4] scmi-cpufreq: get opp_shared_cpus from opp-v2 for
- EM
-Message-ID: <20201208122222.bp3o6y3xsxo642wd@bogus>
-References: <20201202172356.10508-1-nicola.mazzucato@arm.com>
- <20201202172356.10508-4-nicola.mazzucato@arm.com>
- <20201208055053.kggxw26kxtnpneua@vireshk-i7>
- <0e4d3134-f9b2-31fa-b454-fb30265a80b5@arm.com>
- <20201208072611.ptsqupv4y2wybs6p@vireshk-i7>
- <20201208112008.niesjrunxq2jz3kt@bogus>
- <1f9daaf8-e850-7c1b-7a32-71367982beaf@arm.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <1f9daaf8-e850-7c1b-7a32-71367982beaf@arm.com>
-User-Agent: NeoMutt/20171215
+        id S1729408AbgLHMYg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Dec 2020 07:24:36 -0500
+Received: from mickerik.phytec.de ([195.145.39.210]:61876 "EHLO
+        mickerik.phytec.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729388AbgLHMYg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Dec 2020 07:24:36 -0500
+DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a1; c=relaxed/simple;
+        q=dns/txt; i=@phytec.de; t=1607430234; x=1610022234;
+        h=From:Sender:Reply-To:Subject:Date:Message-ID:To:Cc:Mime-Version:Content-Type:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=h9IQGh+L6cHwYixe7NnYFJLpyGhG/3pDIgJxoOv8i8E=;
+        b=O7hYtuF04/C8Iapc0jIz5J03d5UUrjle0mNkT+1IOVdfLPicMEo1TNGAIzh6b1z4
+        Vj19kWRhqGLLbCwKQ+2OoW+lddYSTtFl5GVFlSJWLuN6OEw4ZBm6PWl9h1q4VFmw
+        0xB5Q0mzHIBKOCNY2QTVZ+mGm4TTMU0GaFJ+7Re51Ks=;
+X-AuditID: c39127d2-981ff70000006435-1c-5fcf705aee02
+Received: from idefix.phytec.de (Unknown_Domain [172.16.0.10])
+        by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id C3.81.25653.A507FCF5; Tue,  8 Dec 2020 13:23:54 +0100 (CET)
+Received: from llp-tremmet ([172.16.5.100])
+          by idefix.phytec.de (IBM Domino Release 9.0.1FP7)
+          with ESMTP id 2020120813235432-938279 ;
+          Tue, 8 Dec 2020 13:23:54 +0100 
+Message-ID: <0fb695df67a33f25bb47cf050ac026be4a021832.camel@phytec.de>
+Subject: Re: [PATCH 4/4] arm64: dts: freescale: Add support for
+ phyBOARD-Pollux-i.MX8MP
+From:   Teresa Remmet <t.remmet@phytec.de>
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>
+Date:   Tue, 08 Dec 2020 13:23:54 +0100
+In-Reply-To: <20201208120056.GA26280@kozik-lap>
+References: <1607113982-109524-1-git-send-email-t.remmet@phytec.de>
+         <1607113982-109524-5-git-send-email-t.remmet@phytec.de>
+         <20201207120951.GB27266@kozik-lap>
+         <fcc57a9546bbd34f1e787d19c86f3ff8d1cadce2.camel@phytec.de>
+         <20201207134618.GA33960@kozik-lap>
+         <ba6299a58ffd841c045a75d544a04b3d55c65cad.camel@phytec.de>
+         <20201208120056.GA26280@kozik-lap>
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+Mime-Version: 1.0
+X-MIMETrack: Itemize by SMTP Server on Idefix/Phytec(Release 9.0.1FP7|August  17, 2016) at
+ 08.12.2020 13:23:54,
+        Serialize by Router on Idefix/Phytec(Release 9.0.1FP7|August  17, 2016) at
+ 08.12.2020 13:23:54,
+        Serialize complete at 08.12.2020 13:23:54
+X-TNEFEvaluated: 1
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="UTF-8"
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrLLMWRmVeSWpSXmKPExsWyRoCBSzeq4Hy8QfsORYv3y3oYLeYfOcdq
+        8fCqv8X58xvYLTY9vsZq0br3CLvF3+2bWCxebBF34PBYM28No8fOWXfZPTat6mTz2Lyk3qP/
+        r4HH501yAWxRXDYpqTmZZalF+nYJXBkfV85nKnhrVrHsYVYDY6dmFyMnh4SAicSdWUcYuxi5
+        OIQEtjJK7PqwhAXCOcYoseJOOxtIFa+Am8TcHxOZQGxhgUiJ2TsPgcXZBDQknq44DRYXEdCU
+        uP73OytIM7PAX0aJ5YvfsYAkWARUJZ6cagAr4hTQl7i+cAc7xIY3TBK7r69nhbhDR+LD/U9A
+        d3AAbROU+LtDGKRGQqCRSWLClvNMEDVCEqcXn2UGsZkF5CW2v50DZWtKtG7/zT6BUXAWQvss
+        JFWzkFQtYGRexSiUm5mcnVqUma1XkFFZkpqsl5K6iREYBYcnql/awdg3x+MQIxMH4yFGCQ5m
+        JRFeNamz8UK8KYmVValF+fFFpTmpxYcYpTlYlMR5N/CWhAkJpCeWpGanphakFsFkmTg4pRoY
+        WT3k5xpPPvfr0Dqx/X9+MhQLq624sUjx3HPFEydarj2P5y+fIjohPmlhzr9VQud5tcQ1NHXt
+        norNe7T3wee0h8phzw//fHba3cyfTdDoO6vfAYstz951t7yW3Xl5ws44ZZkX20q4rlZV6clJ
+        a1oExW3KPSt7fodWjCD7zlUOXkkyR9q+N68LVGIpzkg01GIuKk4EAP6N8m1wAgAA
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 08, 2020 at 11:34:36AM +0000, Lukasz Luba wrote:
-> 
-> 
-> On 12/8/20 11:20 AM, Sudeep Holla wrote:
-> > On Tue, Dec 08, 2020 at 12:56:11PM +0530, Viresh Kumar wrote:
-> > > On 08-12-20, 07:22, Nicola Mazzucato wrote:
-> > > > On 12/8/20 5:50 AM, Viresh Kumar wrote:
-> > > > > On 02-12-20, 17:23, Nicola Mazzucato wrote:
-> > > > > >   	nr_opp = dev_pm_opp_get_opp_count(cpu_dev);
-> > > > > >   	if (nr_opp <= 0) {
-> > > > > > -		dev_dbg(cpu_dev, "OPP table is not ready, deferring probe\n");
-> > > > > > -		ret = -EPROBE_DEFER;
-> > > > > > -		goto out_free_opp;
-> > > > > > +		ret = handle->perf_ops->device_opps_add(handle, cpu_dev);
-> > > > > > +		if (ret) {
-> > > > > > +			dev_warn(cpu_dev, "failed to add opps to the device\n");
-> > > > > > +			goto out_free_cpumask;
-> > > > > > +		}
+Hello Krzysztof,
+
+Am Dienstag, den 08.12.2020, 13:00 +0100 schrieb Krzysztof Kozlowski:
+> On Tue, Dec 08, 2020 at 12:53:22PM +0100, Teresa Remmet wrote:
+> > Hello Krzysztof,
+> > 
+> > Am Montag, den 07.12.2020, 14:46 +0100 schrieb Krzysztof Kozlowski:
+> > > On Mon, Dec 07, 2020 at 02:35:33PM +0100, Teresa Remmet wrote:
+> > > > Hello Krzysztof,
+> > > > 
+> > > > Am Montag, den 07.12.2020, 13:09 +0100 schrieb Krzysztof
+> > > > Kozlowski:
+> > > > > On Fri, Dec 04, 2020 at 09:33:02PM +0100, Teresa Remmet
+> > > > > wrote:
+> > > > > > Add initial support for phyBOARD-Pollux-i.MX8MP.
+> > > > > > Supported basic features:
+> > > > > > 	* eMMC
+> > > > > > 	* i2c EEPROM
+> > > > > > 	* i2c RTC
+> > > > > > 	* i2c LED
+> > > > > > 	* PMIC
+> > > > > > 	* debug UART
+> > > > > > 	* SD card
+> > > > > > 	* 1Gbit Ethernet (fec)
+> > > > > > 	* watchdog
+> > > > > > 
+> > > > > > Signed-off-by: Teresa Remmet <t.remmet@phytec.de>
+> > > > > > ---
+> > > > > >  arch/arm64/boot/dts/freescale/Makefile             |   1 +
+> > > > > >  .../dts/freescale/imx8mp-phyboard-pollux-rdk.dts   |  16
+> > > > > > ++
+> > > > > >  .../boot/dts/freescale/imx8mp-phyboard-pollux.dtsi | 152
+> > > > > > ++++++++++
+> > > > > >  .../boot/dts/freescale/imx8mp-phycore-som.dtsi     | 319
+> > > > > > +++++++++++++++++++++
+> > > > > >  4 files changed, 488 insertions(+)
+> > > > > >  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-
+> > > > > > phyboard-
+> > > > > > pollux-rdk.dts
+> > > > > >  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-
+> > > > > > phyboard-
+> > > > > > pollux.dtsi
+> > > > > >  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-
+> > > > > > phycore-
+> > > > > > som.dtsi
+> > > > > > 
+> > > > > > diff --git a/arch/arm64/boot/dts/freescale/Makefile
+> > > > > > b/arch/arm64/boot/dts/freescale/Makefile
+> > > > > > index acfb8af45912..a43b496678be 100644
+> > > > > > --- a/arch/arm64/boot/dts/freescale/Makefile
+> > > > > > +++ b/arch/arm64/boot/dts/freescale/Makefile
+> > > > > > @@ -37,6 +37,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mn-evk.dtb
+> > > > > >  dtb-$(CONFIG_ARCH_MXC) += imx8mn-ddr4-evk.dtb
+> > > > > >  dtb-$(CONFIG_ARCH_MXC) += imx8mn-var-som-symphony.dtb
+> > > > > >  dtb-$(CONFIG_ARCH_MXC) += imx8mp-evk.dtb
+> > > > > > +dtb-$(CONFIG_ARCH_MXC) += imx8mp-phyboard-pollux-rdk.dtb
+> > > > > >  dtb-$(CONFIG_ARCH_MXC) += imx8mq-evk.dtb
+> > > > > >  dtb-$(CONFIG_ARCH_MXC) += imx8mq-hummingboard-pulse.dtb
+> > > > > >  dtb-$(CONFIG_ARCH_MXC) += imx8mq-librem5-devkit.dtb
+> > > > > > diff --git a/arch/arm64/boot/dts/freescale/imx8mp-phyboard-
+> > > > > > pollux-
+> > > > > > rdk.dts b/arch/arm64/boot/dts/freescale/imx8mp-phyboard-
+> > > > > > pollux-
+> > > > > > rdk.dts
+> > > > > > new file mode 100644
+> > > > > > index 000000000000..dd64be32c99d
+> > > > > > --- /dev/null
+> > > > > > +++ b/arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-
+> > > > > > rdk.dts
+> > > > > > @@ -0,0 +1,16 @@
+> > > > > > +// SPDX-License-Identifier: GPL-2.0
+> > > > > > +/*
+> > > > > > + * Copyright (C) 2020 PHYTEC Messtechnik GmbH
+> > > > > > + * Author: Teresa Remmet <t.remmet@phytec.de>
+> > > > > > + */
 > > > > > > +
-> > > > > > +		ret = dev_pm_opp_set_sharing_cpus(cpu_dev, opp_shared_cpus);
-> > > > > > +		if (ret) {
-> > > > > > +			dev_err(cpu_dev, "%s: failed to mark OPPs as shared: %d\n",
-> > > > > > +				__func__, ret);
-> > > > > > +			goto out_free_cpumask;
-> > > > > > +		}
+> > > > > > +/dts-v1/;
 > > > > > > +
+> > > > > > +#include "imx8mp-phycore-som.dtsi"
+> > > > > > +#include "imx8mp-phyboard-pollux.dtsi"
+> > > > > > +
+> > > > > > +/ {
+> > > > > > +	model = "PHYTEC phyBOARD-Pollux i.MX8MP";
+> > > > > > +	compatible = "phytec,imx8mp-phyboard-pollux-rdk",
+> > > > > > +		     "phytec,imx8mp-phycore-som", "fsl,imx8mp";
 > > > > > 
-> > > > > Why do we need to call above two after calling
-> > > > > dev_pm_opp_get_opp_count() ?
+> > > > > This is the purpose of this file? Why having a DTS to include
+> > > > > DTSI
+> > > > > only?
+> > > > > Usually there is just DTSI for SOM and DTS fot the board.
 > > > > 
-> > > > Sorry, I am not sure to understand your question here. If there are no opps for
-> > > > a device we want to add them to it
-> > > 
-> > > Earlier we used to call handle->perf_ops->device_opps_add() and
-> > > dev_pm_opp_set_sharing_cpus() before calling dev_pm_opp_get_opp_count(), why is
-> > > the order changed now ?
-> > > 
-> > > 
-> > > I am not sure why they would be duplicated in your case. I though
-> > > device_opps_add() is responsible for dynamically adding the OPPs here.
-> > > 
-> > 
-> > It is because of per-CPU vs per domain drama here. Imagine a system with
-> > 4 CPUs which the firmware puts in individual domains while they all are
-> > in the same perf domain and hence OPP is marked shared in DT.
-> > 
-> > Since this probe gets called for all the cpus, we need to skip adding
-> > OPPs for the last 3(add only for 1st one and mark others as shared).
-> > If we attempt to add OPPs on second cpu probe, it *will* shout as duplicate
-> > OPP as we would have already marked it as shared table with the first cpu.
-> > Am I missing anything ? I suggested this as Nicola saw OPP duplicate
-> > warnings when he was hacking up this patch.
-> > 
-> > > > otherwise no need as they would be duplicated.
-> > > > > And we don't check the return value of
-> > > > > the below call anymore, moreover we have to call it twice now.
-> > 
-> > Yes, that looks wrong, we need to add the check for non zero values, but ....
-> > 
+> > > > we have different options for the SoMs. Like SPI-NOR flash
+> > > > mounted
+> > > > or
+> > > > not. We usually add this to the SoM include, but disable it. We
+> > > > enable
+> > > > this in the dts if mounted. This makes it easy to generate
+> > > > different
+> > > > device trees for different SoM options. So far upstream is not
+> > > > every
+> > > > feature supported. So we don't do anything in the dts yet. But
+> > > > I
+> > > > want
+> > > > to setup the layout already.
 > > > > 
-> > > > This second get_opp_count is required such that we register em with the correct
-> > > > opp number after having added them. Without this the opp_count would not be correct.
+> > > > I hope this makes it clear.
 > > > 
+> > > You make the upstream DTSes more complicated to make it easier
+> > > for
+> > > downstream. No, this does not work this way. You can either
+> > > upstream
+> > > other DTSes so such split will make sense, or this contribution
+> > > should
+> > > make sense in the upstreamed state.
+> > > 
+> > > In the second case, by "matching upstreamed state" I mean that
+> > > you
+> > > organize your DTSes in a way they make sense for upstream, for
+> > > example
+> > > one DTSI for the SOM and one DTS for the board using it.
 > > 
-> > ... I have a question here. Why do you need to call
-> > 
-> > em_dev_register_perf_domain(cpu_dev, nr_opp, &em_cb, opp_shared_cpus..)
-> > 
-> > on each CPU ? Why can't that be done once for unique opp_shared_cpus ?
+> > Ok, then i will change it now like you suggested and rework it
+> > later
+> > after more features are available.
 > 
-> It just have to be called once, for one CPU from the mask. Otherwise for
-> the next CPUs you should see error:
-> "EM: exists for CPU%d"
+> If you submit two DTSes using the phyboard DTSI, it will be enough to
+> justify that split.
 
-OK cool, at least it is designed and expected to be used like I thought.
-Ah, I might have seen those, but never thought it was error message 😄 
+Yes, but I don't have any features yet where the DTS files would differ
+. So this would not make sense now.
 
-> It can happen that this print is not seen when the get_cpu_device(cpu)
-> failed, but that would lead to investigation why CPU devices are not
-> there yet.
->
-> Nicola: have you seen that print?
->
+> 
+> [...]
+> 
+> > > > > > +	rtcclkout: rv3028-clkout {
+> > > > > 
+> > > > > Is it really a separate oscillator giving 32 kHz? Or maybe
+> > > > > this
+> > > > > is
+> > > > > actually part of PMIC?
+> > > > 
+> > > > It is a clock out of the used i2c rtc. Which I actually trying
+> > > > to
+> > > > disable. As it is not connected. But it is enabled as default.
+> > > 
+> > > This does not make sense at all:
+> > > 1. This is a node without any reference to hardware,
+> > > 2. It is being disabled in DTS so it will not have any effect in
+> > > kernel
+> > >    therefore will not have any impact on real hardware,
+> > 
+> > I measured it. I could see that the clock was being disabled. But
+> > yes
+> > it does not feel like correct solution and needs more
+> > investigation.
+> > I was not able to find the correct property modification.
+> > Will remove this for now and find a proper solution afterwards. It
+> > does
+> > not have impact on the functionality if it is enabled or not.
+> > So I will remove the clock part in v2.
+> 
+> Mhmm... I assume you also measured it without this clock-dance in DTS
+> and the clock was on in such case?
 
-I assume you must see that and you need to pull this inside if condition
-to do this once for each performance domain.
+Yes, the clock was on. 
 
---
-Regards,
-Sudeep
+> 
+> It is pretty confusing... The RV3028 registers a clock provider and
+> its
+> clock will be disabled by the core because it is not used. Adding a
+> clock consumer to RV3028 should not change here anything because
+> RV3028
+> does not use this clock. Adding a fixed clock without reference to HW
+> also should not change here anything.
+
+True. I will need to investigate here more why it is not being disabled
+as it is not used.
+
+Teresa
+
+> 
+> Anyway, your RV3028 node with a clock phandle would not pass dtschema
+> check so it's a hint you are doing something not correct for Linux
+> kernel.
+> 
+> Best regards,
+> Krzysztof
+> 
+
