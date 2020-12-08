@@ -2,160 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D4E3E2D2989
-	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 12:06:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EC6F82D29AC
+	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 12:21:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728907AbgLHLFV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Dec 2020 06:05:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34240 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728752AbgLHLFU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Dec 2020 06:05:20 -0500
-Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com [IPv6:2a00:1450:4864:20::441])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7822BC061794
-        for <devicetree@vger.kernel.org>; Tue,  8 Dec 2020 03:04:34 -0800 (PST)
-Received: by mail-wr1-x441.google.com with SMTP id r3so15803824wrt.2
-        for <devicetree@vger.kernel.org>; Tue, 08 Dec 2020 03:04:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=oVdto4l/iQFOE/jcGLfjaxzoGzq2Ps5a3Ie3KVUxu1I=;
-        b=qb024noJnAcaD4FrKPkd4Ne8IhxPQM8AlFz92r4A6tTwucH6MQXOpPuRiJdwTukbJK
-         J+1ZPm8YX5jCZaEvyjJ6vpn4lAMa7UFXjLoCTOLFc501Hrx1cNiVd+Z8WluLCJc96MuN
-         lG3zsMPbMQ7hm6N6VfWocnn+bbRnLm+Gti9iZ1XUFKkrwPa52L+7FuO98JnyIATsKAvJ
-         zhHBZaGpGCQf8SOU7RWmdoMsg25XwH8LXk3+VNnowPQbs0YR6Fbl8kFUTCijvApbHnRT
-         x/2pY4XAtfUyMd/mC2HSFBNTO0FPeKDCdLVM3JnPGjoXBVpvqs5FD3afdifAdwB7tAmT
-         gSLg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=oVdto4l/iQFOE/jcGLfjaxzoGzq2Ps5a3Ie3KVUxu1I=;
-        b=g8dadrd0ODE0NZfY5mN810fwfAhTxA5iposEhGH9CE08jg3/Dm9ScAe6cgiRHYjNU9
-         8035IBFfcJHtHX2WXgWwc19lFuN2VGGKRS6kDoErMbAGeUyDN0KhPv55PZsJVFFx/OcC
-         uGccNCdbF2QURcYmVPJRtBU6m1luvY1do2y/5KaT2ApzMahUpD6h4/8HXS4s8hU2Pfs8
-         u3vqeDBwzT/EXwIjFumVCj0sPXB1u4Pu5qU/xU07OmZ/7mwzPofWzQArSE16NTIC3Fk3
-         np5zfvr6UemtjPrJ1O8jILrOhqb1jW4SoiaXMoOKGVZWcfNOIwdv3h454WtvuAfaCLnB
-         NMzw==
-X-Gm-Message-State: AOAM531wGfm3H9SwUnQgoSzhp5aJYw+xAQAU+O8HadlBVfFTdFzLttSO
-        nZrzgvJcA95HsDpvZGbCM2c/4w==
-X-Google-Smtp-Source: ABdhPJxArhPoyEic163xkIJznknOhIaG8ofGldEM/e3Q9Bok2a5xIQOzLIt+OejlKTMEWByALsMqsw==
-X-Received: by 2002:adf:f7c2:: with SMTP id a2mr24125501wrq.11.1607425473108;
-        Tue, 08 Dec 2020 03:04:33 -0800 (PST)
-Received: from dell ([91.110.221.209])
-        by smtp.gmail.com with ESMTPSA id h20sm2925583wmb.29.2020.12.08.03.04.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Dec 2020 03:04:32 -0800 (PST)
-Date:   Tue, 8 Dec 2020 11:04:30 +0000
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Mathieu Poirier <mathieu.poirier@linaro.org>
-Cc:     Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>, ohad@wizery.com,
-        bjorn.andersson@linaro.org, s-anna@ti.com,
-        linux-remoteproc@vger.kernel.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        praneeth@ti.com, rogerq@ti.com
-Subject: Re: [PATCH v3 3/6] remoteproc: pru: Add support for PRU specific
- interrupt configuration
-Message-ID: <20201208110430.GS4801@dell>
-References: <20201204201807.14716-1-grzegorz.jaszczyk@linaro.org>
- <20201204201807.14716-4-grzegorz.jaszczyk@linaro.org>
- <20201207173731.GA1509079@xps15>
+        id S1728935AbgLHLU7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Dec 2020 06:20:59 -0500
+Received: from foss.arm.com ([217.140.110.172]:47532 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726755AbgLHLU7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 8 Dec 2020 06:20:59 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 0261A1FB;
+        Tue,  8 Dec 2020 03:20:14 -0800 (PST)
+Received: from bogus (unknown [10.57.33.181])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 3410E3F68F;
+        Tue,  8 Dec 2020 03:20:11 -0800 (PST)
+Date:   Tue, 8 Dec 2020 11:20:08 +0000
+From:   Sudeep Holla <sudeep.holla@arm.com>
+To:     Viresh Kumar <viresh.kumar@linaro.org>
+Cc:     Nicola Mazzucato <nicola.mazzucato@arm.com>,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        rjw@rjwysocki.net, vireshk@kernel.org, robh+dt@kernel.org,
+        sboyd@kernel.org, nm@ti.com, daniel.lezcano@linaro.org,
+        morten.rasmussen@arm.com, chris.redpath@arm.com
+Subject: Re: [PATCH v4 3/4] scmi-cpufreq: get opp_shared_cpus from opp-v2 for
+ EM
+Message-ID: <20201208112008.niesjrunxq2jz3kt@bogus>
+References: <20201202172356.10508-1-nicola.mazzucato@arm.com>
+ <20201202172356.10508-4-nicola.mazzucato@arm.com>
+ <20201208055053.kggxw26kxtnpneua@vireshk-i7>
+ <0e4d3134-f9b2-31fa-b454-fb30265a80b5@arm.com>
+ <20201208072611.ptsqupv4y2wybs6p@vireshk-i7>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20201207173731.GA1509079@xps15>
+In-Reply-To: <20201208072611.ptsqupv4y2wybs6p@vireshk-i7>
+User-Agent: NeoMutt/20171215
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 07 Dec 2020, Mathieu Poirier wrote:
-
-> On Fri, Dec 04, 2020 at 09:18:04PM +0100, Grzegorz Jaszczyk wrote:
-> > The firmware blob can contain optional ELF sections: .resource_table
-> > section and .pru_irq_map one. The second one contains the PRUSS
-> > interrupt mapping description, which needs to be setup before powering
-> > on the PRU core. To avoid RAM wastage this ELF section is not mapped to
-> > any ELF segment (by the firmware linker) and therefore is not loaded to
-> > PRU memory.
-> > 
-> > The PRU interrupt configuration is handled within the PRUSS INTC irqchip
-> > driver and leverages the system events to interrupt channels and host
-> > interrupts mapping configuration. Relevant irq routing information is
-> > passed through a special .pru_irq_map ELF section (for interrupts routed
-> > to and used by PRU cores) or via the PRU application's device tree node
-> > (for interrupts routed to and used by the main CPU). The mappings are
-> > currently programmed during the booting/shutdown of the PRU.
-> > 
-> > The interrupt configuration passed through .pru_irq_map ELF section is
-> > optional. It varies on specific firmware functionality and therefore
-> > have to be unwinded during PRU stop and performed again during
-> > PRU start.
-> > 
-> > Co-developed-by: Suman Anna <s-anna@ti.com>
-> > Signed-off-by: Suman Anna <s-anna@ti.com>
-> > Signed-off-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
-> > ---
-
-[...]
-
-> >  drivers/remoteproc/pru_rproc.c | 180 +++++++++++++++++++++++++++++++++
-> >  drivers/remoteproc/pru_rproc.h |  46 +++++++++
-> >  2 files changed, 226 insertions(+)
-> >  create mode 100644 drivers/remoteproc/pru_rproc.h
-> > 
-> > diff --git a/drivers/remoteproc/pru_rproc.c b/drivers/remoteproc/pru_rproc.c
-> > index d33392bbd8af..4ef59d15d888 100644
-> > --- a/drivers/remoteproc/pru_rproc.c
-> > +++ b/drivers/remoteproc/pru_rproc.c
-> > @@ -11,13 +11,16 @@
-> >   */
-
-[...]
-
-> > +static int pru_handle_intrmap(struct rproc *rproc)
-> > +{
-> > +	struct device *dev = rproc->dev.parent;
-> > +	struct pru_rproc *pru = rproc->priv;
-> > +	struct pru_irq_rsc *rsc = pru->pru_interrupt_map;
-> > +	struct irq_fwspec fwspec;
-> > +	struct device_node *irq_parent;
-> > +	int i, ret = 0;
-> > +
-> > +	/* not having pru_interrupt_map is not an error */
-> > +	if (!rsc)
-> > +		return 0;
-> > +
-> > +	/* currently supporting only type 0 */
-> > +	if (rsc->type != 0) {
-> > +		dev_err(dev, "unsupported rsc type: %d\n", rsc->type);
-> > +		return -EINVAL;
-> > +	}
-> > +
-> > +	if (rsc->num_evts > MAX_PRU_SYS_EVENTS)
-> > +		return -EINVAL;
-> > +
-> > +	if (sizeof(*rsc) + rsc->num_evts * sizeof(struct pruss_int_map) !=
-> > +	    pru->pru_interrupt_map_sz)
-> > +		return -EINVAL;
-> > +
-> > +	pru->evt_count = rsc->num_evts;
-> > +	pru->mapped_irq = kcalloc(pru->evt_count, sizeof(int), GFP_KERNEL);
+On Tue, Dec 08, 2020 at 12:56:11PM +0530, Viresh Kumar wrote:
+> On 08-12-20, 07:22, Nicola Mazzucato wrote:
+> > On 12/8/20 5:50 AM, Viresh Kumar wrote:
+> > > On 02-12-20, 17:23, Nicola Mazzucato wrote:
+> > >>  	nr_opp = dev_pm_opp_get_opp_count(cpu_dev);
+> > >>  	if (nr_opp <= 0) {
+> > >> -		dev_dbg(cpu_dev, "OPP table is not ready, deferring probe\n");
+> > >> -		ret = -EPROBE_DEFER;
+> > >> -		goto out_free_opp;
+> > >> +		ret = handle->perf_ops->device_opps_add(handle, cpu_dev);
+> > >> +		if (ret) {
+> > >> +			dev_warn(cpu_dev, "failed to add opps to the device\n");
+> > >> +			goto out_free_cpumask;
+> > >> +		}
+> > >> +
+> > >> +		ret = dev_pm_opp_set_sharing_cpus(cpu_dev, opp_shared_cpus);
+> > >> +		if (ret) {
+> > >> +			dev_err(cpu_dev, "%s: failed to mark OPPs as shared: %d\n",
+> > >> +				__func__, ret);
+> > >> +			goto out_free_cpumask;
+> > >> +		}
+> > >> +
+> > >
+> > > Why do we need to call above two after calling
+> > > dev_pm_opp_get_opp_count() ?
+> >
+> > Sorry, I am not sure to understand your question here. If there are no opps for
+> > a device we want to add them to it
+>
+> Earlier we used to call handle->perf_ops->device_opps_add() and
+> dev_pm_opp_set_sharing_cpus() before calling dev_pm_opp_get_opp_count(), why is
+> the order changed now ?
+>
 > 
-> sizeof(unsigned int)
+> I am not sure why they would be duplicated in your case. I though
+> device_opps_add() is responsible for dynamically adding the OPPs here.
+> 
 
-Would you mind trimming your replies please?
+It is because of per-CPU vs per domain drama here. Imagine a system with
+4 CPUs which the firmware puts in individual domains while they all are
+in the same perf domain and hence OPP is marked shared in DT.
 
-Brain grepping through 200+ lines of quote for a one line review
-comment is a little frustrating.
+Since this probe gets called for all the cpus, we need to skip adding
+OPPs for the last 3(add only for 1st one and mark others as shared).
+If we attempt to add OPPs on second cpu probe, it *will* shout as duplicate
+OPP as we would have already marked it as shared table with the first cpu.
+Am I missing anything ? I suggested this as Nicola saw OPP duplicate
+warnings when he was hacking up this patch.
 
-TIA.
+> > otherwise no need as they would be duplicated.
+> > > And we don't check the return value of
+> > > the below call anymore, moreover we have to call it twice now.
+
+Yes, that looks wrong, we need to add the check for non zero values, but ....
+
+> > 
+> > This second get_opp_count is required such that we register em with the correct
+> > opp number after having added them. Without this the opp_count would not be correct.
+>
+
+... I have a question here. Why do you need to call
+
+em_dev_register_perf_domain(cpu_dev, nr_opp, &em_cb, opp_shared_cpus..)
+
+on each CPU ? Why can't that be done once for unique opp_shared_cpus ?
+
+The whole drama of per-CPU vs perf domain is to have energy model and
+if feeding it opp_shared_cpus once is not sufficient, then something is
+wrong or simply duplicated or just not necessary IMO.
+
+> What if the count is still 0 ? What about deferred probe we were doing earlier ?
+
+OK, you made me think with that question. I think the check was original
+added for deferred probe but then scmi core was changed to add the cpufreq
+device only after everything needed is ready. So the condition must never
+occur now.
 
 -- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+Regards,
+Sudeep
