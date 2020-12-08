@@ -2,98 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EA1262D2105
-	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 03:43:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CCBE92D214D
+	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 04:10:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727945AbgLHCmQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Dec 2020 21:42:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41492 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726896AbgLHCmP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 21:42:15 -0500
-Received: from mail-qv1-xf42.google.com (mail-qv1-xf42.google.com [IPv6:2607:f8b0:4864:20::f42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69625C061794;
-        Mon,  7 Dec 2020 18:41:35 -0800 (PST)
-Received: by mail-qv1-xf42.google.com with SMTP id p12so7621010qvj.13;
-        Mon, 07 Dec 2020 18:41:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jms.id.au; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=0XjVgTEL8rQFOCFz+jo+PbV3JFHakTiNHErSrpfLt1A=;
-        b=R78Hyn5Hm0zClT4oLPvwmmGHJ/NZnYOq6YvJ3dok83R6lub3MTs9UuYFq7rJKd39OT
-         Th4OFMSuZKTpC0cqaqwmpfV2DS7shAM4jCyZWVRxKpGLd1fV13sLnIe5xLw9Id19UCZt
-         nQ0hD2CxSht8NDoK/cVvJ+4NFojkfU6qVWK8U=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=0XjVgTEL8rQFOCFz+jo+PbV3JFHakTiNHErSrpfLt1A=;
-        b=Hx/rWQMj8zA4OZ/08bUaxcLSeFBDe+WES7vQeDMvVXgGh698oqx+JZuKnmSOCVoRyH
-         ibqEtCzPkBL2T7FKzIROTbgd/ttHIIEO5sh22FyHoPKMpUdA4nt0wjbdg0u3Hek92pjj
-         0HCGxpnghr1TiEN88a+DlxG9CawleQ7UeQ5JPE9aX3RNkCCmiUWL3kPSUavrFv6EeI1u
-         esk/413Zg8l4LRKI676QG3ZstJaC5AGeeHssyhJ904S1fUfE/PTQH9Pea0IarOw/Qbb1
-         Okv9DDnhv9/yzblKoS+4mG9Tj5dsH4A7kM61uuFwnnknWl6hOuY1n20tuJrJtmEr0siq
-         Kfjw==
-X-Gm-Message-State: AOAM530bXklNzm4/i075mlncOuIbTkRrLH5lnPzWQupphOQAf550OZoW
-        p+d76IaZZCwB+5VRf/ZebT1bsmSQv8QoFP2+6FE=
-X-Google-Smtp-Source: ABdhPJxLCLgZLW9LLx4nvn+gh95HaohAb8GesxEGpkQOEjwV4hpPMVrOR5UZf+E5QY+yePtIaXRVmkkT9IVqdA05/aA=
-X-Received: by 2002:a05:6214:c66:: with SMTP id t6mr19789047qvj.43.1607395294632;
- Mon, 07 Dec 2020 18:41:34 -0800 (PST)
-MIME-Version: 1.0
-References: <20201120010315.190737-1-joel@jms.id.au> <20201121185150.GD114144@roeck-us.net>
-In-Reply-To: <20201121185150.GD114144@roeck-us.net>
-From:   Joel Stanley <joel@jms.id.au>
-Date:   Tue, 8 Dec 2020 02:41:22 +0000
-Message-ID: <CACPK8Xcf1xhPZNqpxuZE22uqDFR7rb1Wv-RW802bx2S-nphpzA@mail.gmail.com>
-Subject: Re: [PATCH v2 0/3] occ: Add support for P10
-To:     Guenter Roeck <linux@roeck-us.net>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Eddie James <eajames@linux.ibm.com>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-hwmon@vger.kernel.org, linux-fsi@lists.ozlabs.org
+        id S1726441AbgLHDJ7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Dec 2020 22:09:59 -0500
+Received: from mail-eopbgr150049.outbound.protection.outlook.com ([40.107.15.49]:52529
+        "EHLO EUR01-DB5-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726168AbgLHDJ6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 7 Dec 2020 22:09:58 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=CyPemiPEWuZNMOpmVUb5s9OssoTGYMICB/TLwR5ZENsDvy/KxffYMF4zmxwuCLTbu4XWf4+wvzhTMe/1yN5mWVWDosxY16dTp5zyFDMZtSKMrilVSQ++/tEbxWndHz1957HF14duWScKr6UHx3GXk3WgPG17+xTXJJJdrggacDidbHua8YI4eiS4NIbjTW0m2UdT22fV++KEhUF26r7nWs2rFtXm6AfxR5muj8TYypfSV/qXcNkoh0xg3uqVPAnauiIUyHEJcR6J1e5V5Wv1uu8vypCwVZ58Y1q1emn5RYbZY4taNBajVvoNbs2NNMIKIlj/FukWTR0eNE6pbGi/pA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=v2vpuQamVqr9hWJlt1AwV6i9vetJreOc/tOwxBykfjs=;
+ b=R4v0RFGxai6Zc45zpfIm3aEB3CJNRZpVoeVdampigJTXCCkKDtq7btJ6zGy/L/axY5OX/K7d4+KKsSwrf1IcrkqpkyU3PFCN0Nc7eQ2swt/a97yIpV+xC2N45WPEzPjSDDRGemnZaOwuJ7O78er5PVUp9nzrQRIEWlctQhyK6Kpv9PVwwC53bjjvezV6jVi5XgJ4hMo0ZqIYmtGYfC7rnUKXPHt90fiyBfZc9o0ag5Q2MynL3TM2S9etW0hGnvklrEdZEI0B8me/kFuS3C2Q1JyVMtsbc329NS4zdXDtpfQptwFQ74Pr3Yb3UF1ouyc0JfbXsCXzD8ZQv9bHXM31vw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=v2vpuQamVqr9hWJlt1AwV6i9vetJreOc/tOwxBykfjs=;
+ b=Bh6vXFVipEHVw0QHRaIxKb98NI5B8RChh+Q++41K+NY+iwlCxm4EAtZ0tmQjR0IpsQEuC9C5+FHw+YRcsMUtaopdPTmAjeYF8IhkNUqqRxQX3Zzk1lr12ipyAJPvzUotx09awFM3pB4ca6a1KwB2xhuF0lqYtcCKV+Vd3vO3ypo=
+Authentication-Results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
+Received: from VI1PR04MB3983.eurprd04.prod.outlook.com (10.171.182.16) by
+ VI1PR0402MB3424.eurprd04.prod.outlook.com (52.134.7.30) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3632.21; Tue, 8 Dec 2020 03:09:07 +0000
+Received: from VI1PR04MB3983.eurprd04.prod.outlook.com
+ ([fe80::dcb7:6117:3def:2685]) by VI1PR04MB3983.eurprd04.prod.outlook.com
+ ([fe80::dcb7:6117:3def:2685%7]) with mapi id 15.20.3632.023; Tue, 8 Dec 2020
+ 03:09:07 +0000
+Message-ID: <cd19cc3a260ff5b98e5f49d66fbb601668d618a4.camel@nxp.com>
+Subject: Re: [PATCH v3 1/6] dt-bindings: display: imx: Add i.MX8qxp/qm DPU
+ binding
+From:   Liu Ying <victor.liu@nxp.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, laurentiu.palcu@oss.nxp.com,
+        linux-arm-kernel@lists.infradead.org, kernel@pengutronix.de,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        s.hauer@pengutronix.de, linux-imx@nxp.com, shawnguo@kernel.org,
+        dri-devel@lists.freedesktop.org, airlied@linux.ie,
+        tzimmermann@suse.de
+Date:   Tue, 08 Dec 2020 11:07:19 +0800
+In-Reply-To: <20201207165610.GA429808@robh.at.kernel.org>
+References: <1607311260-13983-1-git-send-email-victor.liu@nxp.com>
+         <1607311260-13983-2-git-send-email-victor.liu@nxp.com>
+         <20201207165610.GA429808@robh.at.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.36.4-0ubuntu1 
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [119.31.174.66]
+X-ClientProxiedBy: SG2PR06CA0207.apcprd06.prod.outlook.com
+ (2603:1096:4:68::15) To VI1PR04MB3983.eurprd04.prod.outlook.com
+ (2603:10a6:803:4c::16)
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from blueberry.ap.freescale.net (119.31.174.66) by SG2PR06CA0207.apcprd06.prod.outlook.com (2603:1096:4:68::15) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3632.17 via Frontend Transport; Tue, 8 Dec 2020 03:09:03 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: 9d48b5c5-2dad-45c4-5c9e-08d89b26a06b
+X-MS-TrafficTypeDiagnostic: VI1PR0402MB3424:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <VI1PR0402MB34241AB240C22E2F06953F5398CD0@VI1PR0402MB3424.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8273;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: rAOf0m2DbMaFjFUYsVaHh8L+1v3qX1IhwSl/8gvO50j+mammdp1OnyW08tAS+kmgtnQwGVugMPP2Lf9GfN39V2KT2DxVQn2NnMpM+2gFMQAN8RwtalbC+k0r5MitbkJKUgjAT9FVOL5Ipc5GBorLq9Soudviudq1cgPBuZ8PMm+NPITs5u9zIYxJTNwUiC99N3qRdbP3giemW7kX7tVUpVOQDmkuQSm1URjo/sXFXyupTFcrLoNp9sLqZhDajbL+f2Y70pqhIqkoMYIHEAuQNjQ/qRImJl39SiFG8yZz3ueNoZK8gA58oF0gl9J60XOpc7Bil794+vuN7ANtrZ9vwaa8O3KXq7RPoNIesWLO23+KVpKLKyBiZZ7q5WSQAyBZ
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB3983.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(376002)(366004)(136003)(346002)(26005)(4326008)(34490700003)(2616005)(86362001)(956004)(6506007)(36756003)(7416002)(8676002)(5660300002)(6916009)(8936002)(52116002)(83380400001)(508600001)(6486002)(66556008)(66476007)(6666004)(2906002)(186003)(16526019)(66946007)(6512007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: =?utf-8?B?czZEWWtRSnZMVWkrVnBoS24yNTc5VlZUYkw2eUZMa2t1bU5zM01Ga3ZZZmk5?=
+ =?utf-8?B?Umk4Tk05b1dIekpOeEphL1dvMzFzQ1FWWWtJOVJrVUY2WFVFVUkvWVJ3Sm43?=
+ =?utf-8?B?TUM2akx0WmFnbjUzd3JTVlRhdkpqczNSZUtJWGIwQmM4emR5Rkt1QndHc0My?=
+ =?utf-8?B?YzRMWTVud0FON0RsdGhWellFeW9LY1lmdlZsZVlUN1BNa1ZZVE13UEZiRm5O?=
+ =?utf-8?B?cUtxU05vSjdjUVBWK0dPSHRrVXVaa2dKdGFzTE5XQit1QXczR3ZhbkZ2NGt6?=
+ =?utf-8?B?K1BjM1ZDckpJbkY4N2U2MUVaQWFDSVp2WVRRMFdQT0RVU1NRdU5McVVLaDZZ?=
+ =?utf-8?B?ck4xRys0d0FrTG1xTDRXWTVzSTJFSlF0aEZtR3Fwa0pPUTEyREY4VG5tQWNH?=
+ =?utf-8?B?UUphdlk0Q1p4OXBRa3JKMVVBc2F3VlFQL3YwYUJPZXJ3R0xXZTFscFpaL290?=
+ =?utf-8?B?NGZ6ZXY1SEJmZkxYT3hWNHJZcXR0d1cwUUQvZzQ2RTA5Zk8xMkM3b3o1dzRF?=
+ =?utf-8?B?NmgwdDJNcWMrTnpocDFNOGp3UTBTZW43cFR6N3U1dVljaDRIeS9tc3k3RmJP?=
+ =?utf-8?B?bTkxQUF0OEd3ZlNRMlFWRDh2M3RCL2dDemdaVFBLVkpZRzQvMnpNMXozK2V5?=
+ =?utf-8?B?WDEzNFJkUkp1cmZtaitPelRhTmNHNFQ4cGRHK2E2SmNHZmhGZ1FMY0p5NTZi?=
+ =?utf-8?B?dGdnR2I2N3Zadnhwbnd1ZmtQYjZsRkQ1My9haFRkUlFTQzJFcnlLdjV1RnYz?=
+ =?utf-8?B?T2hlZXlWQS9YMS9lRXFjb0lhbll3VHd5TjlJWXhkVjBaTHk1TVdCK0hXbHFL?=
+ =?utf-8?B?NGxjbHRuU2toVU90bm9zckc0RTcxUmJoMno2eVFnYWh1WUNGR1Nmdk1aRGpm?=
+ =?utf-8?B?RTZ5cU5tU2ZXTXArMEV0bjZBcys1aEVEajlWdEpVb2EyZVpvUUtkMERQbUdZ?=
+ =?utf-8?B?ZHk5dzFTUTdabWc5Tm1YeHE2OFNtOU5Sam9KVE9kYUk4YnpyWkl2S3c3dWhh?=
+ =?utf-8?B?eStIWjArS2MxbnB6YkxybHNUL3lNUTh3SnhWVncwVDV4TUZNcEZQNlhuNjU5?=
+ =?utf-8?B?SDN3eXQ5VTE3aWZBaHlHaW9uMyttY3BzZElGbXpqb1ArTE9ObStiZ0pETkpa?=
+ =?utf-8?B?dUM1RnozVWcyczFhcG5laStqQXhxdWEwMFNocm04K2FUb21GQXRoczZQVEd6?=
+ =?utf-8?B?YnVNaWtTc2sxZ0p5UDlqREtWUHFuZ1RuWWFQLzJobm40R0poY25VcjNvMFhG?=
+ =?utf-8?B?VUpUdkVVTmdCai9NWENPTnJtSUpnRE1yWERxeDE5cEIzMm1LdTROSXFqSDVP?=
+ =?utf-8?Q?d/lSmOUvB3nPRCR/eEAyWY7Kx1IrvT0Bwd?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9d48b5c5-2dad-45c4-5c9e-08d89b26a06b
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB3983.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Dec 2020 03:09:07.8046
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Svp6jROuGsTqNge8tkniwrUb8K3dsJcccCaK4RM06KosZiPRrWVA3TCLocbAEWtDq573lIvyOvj980BuUUW2hQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0402MB3424
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 21 Nov 2020 at 18:55, Guenter Roeck <linux@roeck-us.net> wrote:
->
-> On Fri, Nov 20, 2020 at 11:33:12AM +1030, Joel Stanley wrote:
-> > Hi Guenter, here's v2 of this series on behalf of Eddie. I made the
-> > change to the compatible string that we spoke about in v2, and I'm happy
-> > for these to go through the hwmon tree.
-> >
->
-> I'll be happy to do that, as soon as we get a Reviewed-by: tag for the DT
-> change.
+On Mon, 2020-12-07 at 10:56 -0600, Rob Herring wrote:
+> On Mon, 07 Dec 2020 11:20:55 +0800, Liu Ying wrote:
+> > This patch adds bindings for i.MX8qxp/qm Display Processing Unit.
+> > 
+> > Signed-off-by: Liu Ying <victor.liu@nxp.com>
+> > ---
+> > Note that this depends on the 'two cell binding' clock patch set which has
+> > already landed in Shawn's i.MX clk/imx git branch.  Otherwise, imx8-lpcg.h
+> > won't be found.
+> > 
+> > v2->v3:
+> > * No change.
+> > 
+> > v1->v2:
+> > * Fix yamllint warnings.
+> > * Require bypass0 and bypass1 clocks for both i.MX8qxp and i.MX8qm, as the
+> >   display controller subsystem spec does say that they exist.
+> > * Use new dt binding way to add clocks in the example.
+> > * Trivial tweaks for the example.
+> > 
+> >  .../bindings/display/imx/fsl,imx8qxp-dpu.yaml      | 416 +++++++++++++++++++++
+> >  1 file changed, 416 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dpu.yaml
+> > 
+> 
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-Rob has sent that through now, so this should be good to go in.
+Same to 2/6 and 3/6, will also use enum instead of oneOf+const for this
+one in the next version, if no objections.
 
-Thank you.
+Thanks,
+Liu Ying
 
->
-> Thanks,
-> Guenter
->
-> > v1: https://lore.kernel.org/linux-hwmon/20200501150833.5251-1-eajames@linux.ibm.com/
-> >
-> > The OCC in the P10 has a number of differences from the P9. Add some logic to
-> > handle the differences in accessing the OCC from the service processor, and
-> > support the new temperature sensor type.
-> >
-> > Eddie James (3):
-> >   dt-bindings: fsi: Add P10 OCC device documentation
-> >   fsi: occ: Add support for P10
-> >   hwmon: (occ) Add new temperature sensor type
-> >
-> >  .../devicetree/bindings/fsi/ibm,p9-occ.txt    |  12 +-
-> >  drivers/fsi/fsi-occ.c                         | 125 +++++++++++++-----
-> >  drivers/hwmon/occ/common.c                    |  75 +++++++++++
-> >  3 files changed, 172 insertions(+), 40 deletions(-)
-> >
-> > --
-> > 2.29.2
-> >
