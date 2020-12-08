@@ -2,28 +2,32 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BCE4E2D309A
-	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 18:11:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EED2D2D30AC
+	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 18:12:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730249AbgLHRKt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Dec 2020 12:10:49 -0500
-Received: from mail.kernel.org ([198.145.29.99]:51034 "EHLO mail.kernel.org"
+        id S1730630AbgLHRMZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Dec 2020 12:12:25 -0500
+Received: from mail.kernel.org ([198.145.29.99]:53112 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726987AbgLHRKt (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 8 Dec 2020 12:10:49 -0500
+        id S1730330AbgLHRMY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 8 Dec 2020 12:12:24 -0500
 From:   Mark Brown <broonie@kernel.org>
 Authentication-Results: mail.kernel.org; dkim=permerror (bad message/signature format)
-To:     Shengjiu Wang <shengjiu.wang@nxp.com>, timur@kernel.org,
-        festevam@gmail.com, linux-kernel@vger.kernel.org,
-        alsa-devel@alsa-project.org, linuxppc-dev@lists.ozlabs.org,
-        devicetree@vger.kernel.org, perex@perex.cz, robh+dt@kernel.org,
-        nicoleotsuka@gmail.com, Xiubo.Lee@gmail.com, lgirdwood@gmail.com,
-        tiwai@suse.com
-In-Reply-To: <1607251319-5821-1-git-send-email-shengjiu.wang@nxp.com>
-References: <1607251319-5821-1-git-send-email-shengjiu.wang@nxp.com>
-Subject: Re: [PATCH v2 1/2] ASoC: dt-bindings: imx-hdmi: Add binding doc for hdmi machine driver
-Message-Id: <160744738921.29839.15317690694275693705.b4-ty@kernel.org>
-Date:   Tue, 08 Dec 2020 17:09:49 +0000
+To:     linux-i2c@vger.kernel.org, linux-serial@vger.kernel.org,
+        linux-spi@vger.kernel.org, linux-pwm@vger.kernel.org,
+        linux-riscv@lists.infradead.org, Yash Shah <yash.shah@sifive.com>,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     aou@eecs.berkeley.edu, peter@korsgaard.com,
+        paul.walmsley@sifive.com, u.kleine-koenig@pengutronix.de,
+        linus.walleij@linaro.org, bgolaszewski@baylibre.com,
+        gregkh@linuxfoundation.org, palmer@dabbelt.com, andrew@lunn.ch,
+        thierry.reding@gmail.com, lee.jones@linaro.org, robh+dt@kernel.org
+In-Reply-To: <1607403341-57214-1-git-send-email-yash.shah@sifive.com>
+References: <1607403341-57214-1-git-send-email-yash.shah@sifive.com>
+Subject: Re: (subset) [PATCH v2 0/9] arch: riscv: add board and SoC DT file support
+Message-Id: <160744749760.30021.12384107049854621023.b4-ty@kernel.org>
+Date:   Tue, 08 Dec 2020 17:11:37 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -31,21 +35,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 6 Dec 2020 18:41:58 +0800, Shengjiu Wang wrote:
-> Imx-hdmi is a new added machine driver for supporting hdmi devices
-> on i.MX platforms. There is HDMI IP or external HDMI modules connect
-> with SAI or AUD2HTX interface.
+On Tue, 8 Dec 2020 10:25:32 +0530, Yash Shah wrote:
+> Start board support by adding initial support for the SiFive FU740 SoC
+> and the first development board that uses it, the SiFive HiFive
+> Unmatched A00.
+> 
+> Boot-tested on Linux 5.10-rc4 on a HiFive Unmatched A00 board using the
+> U-boot and OpenSBI.
+> 
+> [...]
 
 Applied to
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
 
 Thanks!
 
-[1/2] ASoC: dt-bindings: imx-hdmi: Add binding doc for hdmi machine driver
-      commit: e344cf5e4871f99495396f78d4401b8ac4c92465
-[2/2] ASoC: fsl: Add imx-hdmi machine driver
-      commit: 6a5f850aa83a1d844d27e3e53ca2f247e55d438b
+[2/9] dt-bindings: spi: Update DT binding docs to support SiFive FU740 SoC
+      commit: 76347344c522da78be29403dda81463ffae2bc99
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
