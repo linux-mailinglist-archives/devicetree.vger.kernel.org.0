@@ -2,70 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ECD1E2D31D2
-	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 19:13:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BA2F62D31D6
+	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 19:13:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730885AbgLHSMi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Dec 2020 13:12:38 -0500
-Received: from mail-oi1-f193.google.com ([209.85.167.193]:40380 "EHLO
-        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730495AbgLHSMi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Dec 2020 13:12:38 -0500
-Received: by mail-oi1-f193.google.com with SMTP id p126so20344958oif.7;
-        Tue, 08 Dec 2020 10:12:22 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=cwCLzsE/tJgmmJNunjALWP2lRl/HDWi24Jsjga6oelY=;
-        b=Ql95cxZLVPOJU0qIAMxf2pkjiovtATHP3WRgHi72KSgQ+bbiDRCHnv4JA8CKNJcWzx
-         SittnHu/XTlqpt29zL+1jo7oGptT8KkxfppaxnXcY8JlonuzcHFNkB+8Tf1WQ+pPgG5h
-         YjDlAn0Nyve6Ve5/EYSoPcCnzlnIeSvSsB+NNr3jgJ2p7UhorqApjQHAQHbsfTrcu0LP
-         7fvL/lwmy6lLBdxlG2Ksl0PAWVOgjHb/Jalwb0XcvdHcC22sNUv2iKMwJ79E6+V2UIeT
-         ZFOwV+xqnhHn+2B64HoEe24uLBs52PsDTzd8+37LkmivNQRmlLUA9kIHZIGvZVa2ibaA
-         vo/w==
-X-Gm-Message-State: AOAM533zS46ber84Hx/rbLJ5w4kLurRlryBZAxm0YlMYKWBTrh+IdMhG
-        We2JycEu905JWvAntJ7fvO+c76tUGw==
-X-Google-Smtp-Source: ABdhPJw0UcN/EVGDjTeY2qx4MN2AFeGn9GVguBwbcsYpNcu4JsevRGimwUvxTt+sfw31yQq1chcZTg==
-X-Received: by 2002:aca:58d7:: with SMTP id m206mr3778694oib.0.1607451117420;
-        Tue, 08 Dec 2020 10:11:57 -0800 (PST)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id l5sm2813820ooo.2.2020.12.08.10.11.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Dec 2020 10:11:55 -0800 (PST)
-Received: (nullmailer pid 2811959 invoked by uid 1000);
-        Tue, 08 Dec 2020 18:11:54 -0000
-Date:   Tue, 8 Dec 2020 12:11:54 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Niklas =?iso-8859-1?Q?S=F6derlund?= 
-        <niklas.soderlund+renesas@ragnatech.se>
-Cc:     devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: Re: [PATCH 1/3] dt-bindings: thermal: rcar-gen3-thermal: Add
- r8a779a0 support
-Message-ID: <20201208181154.GA2811929@robh.at.kernel.org>
-References: <20201126223028.3119044-1-niklas.soderlund+renesas@ragnatech.se>
- <20201126223028.3119044-2-niklas.soderlund+renesas@ragnatech.se>
+        id S1730953AbgLHSNK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Dec 2020 13:13:10 -0500
+Received: from mga02.intel.com ([134.134.136.20]:27995 "EHLO mga02.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1730495AbgLHSNK (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 8 Dec 2020 13:13:10 -0500
+IronPort-SDR: xdE8xuk9x4B79DJHW8VXOuDHi04ebZkd7eq0CsDykPa3IvRDu/ckHY5e2ikTKBJfZ0hjC1oW1c
+ 2iDhO5skBB5g==
+X-IronPort-AV: E=McAfee;i="6000,8403,9829"; a="160993317"
+X-IronPort-AV: E=Sophos;i="5.78,403,1599548400"; 
+   d="scan'208";a="160993317"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Dec 2020 10:11:24 -0800
+IronPort-SDR: /N7eHvVhIB2XWVuiGk32sRuWgu7ap1B1nX/UPdJmXK3+HP2qq1+d8fROUnqO50TNO0V//cEWH2
+ TL1oABWSQZqg==
+X-IronPort-AV: E=Sophos;i="5.78,403,1599548400"; 
+   d="scan'208";a="370477310"
+Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
+  by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Dec 2020 10:11:22 -0800
+Received: from andy by smile with local (Exim 4.94)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1kmhTM-00Cso6-6l; Tue, 08 Dec 2020 20:12:24 +0200
+Date:   Tue, 8 Dec 2020 20:12:24 +0200
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     vijayakannan.ayyathurai@intel.com, daniel.lezcano@linaro.org,
+        tglx@linutronix.de, devicetree@vger.kernel.org,
+        mgross@linux.intel.com, wan.ahmad.zainie.wan.mohamad@intel.com,
+        lakshmi.bai.raja.subramanian@intel.com
+Subject: Re: [PATCH v1 1/2] dt-bindings: timer: Add bindings for Intel Keem
+ Bay SoC timer
+Message-ID: <20201208181224.GM4077@smile.fi.intel.com>
+References: <cover.1606377035.git.vijayakannan.ayyathurai@intel.com>
+ <2938028520edbd0140805a22bdacd0b30c45b2df.1606377035.git.vijayakannan.ayyathurai@intel.com>
+ <20201208161247.GA2620425@robh.at.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20201126223028.3119044-2-niklas.soderlund+renesas@ragnatech.se>
+In-Reply-To: <20201208161247.GA2620425@robh.at.kernel.org>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 26 Nov 2020 23:30:26 +0100, Niklas Söderlund wrote:
-> Add support for R-Car V3U. The V3U IP differs a bit from its siblings in
-> such way that it have 4 TSC nodes and the interrupts are not routed to
-> the INTC-AP but to the ECM.
-> 
-> Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
-> ---
->  .../bindings/thermal/rcar-gen3-thermal.yaml     | 17 +++++++++++++++--
->  1 file changed, 15 insertions(+), 2 deletions(-)
-> 
+On Tue, Dec 08, 2020 at 10:12:47AM -0600, Rob Herring wrote:
+> On Thu, Nov 26, 2020 at 06:34:08PM +0800, vijayakannan.ayyathurai@intel.com wrote:
+> > From: Vijayakannan Ayyathurai <vijayakannan.ayyathurai@intel.com>
+> > 
+> > Add Device Tree bindings for the Timer IP, which used as clocksource and
+> > clockevent in the Intel Keem Bay SoC.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+...
+
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > +    #include <dt-bindings/interrupt-controller/irq.h>
+> > +    #define KEEM_BAY_A53_TIM
+> > +
+> > +    timer@20330010 {
+> > +        compatible = "intel,keembay-timer";
+> > +        reg = <0x20330010 0xc>,
+> > +              <0x20331000 0xc>;
+> > +        interrupts = <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>;
+> > +        clocks = <&scmi_clk KEEM_BAY_A53_TIM>;
+> > +    };
+> > +
+> > +    counter@203300e8 {
+> > +        compatible = "intel,keembay-counter";
+> > +        reg = <0x203300e8 0xc>,
+> > +              <0x20331000 0xc>;
+> 
+> You have overlapping reg regions here. Don't do that. Define the DT 
+> in terms of the h/w, not how you want to split things for Linux.
+> 
+> It looks like a single h/w block providing multiple functions.
+
+Actually a good catch.
+
+Perhaps it needs to have a parent device that provides three resources (one
+common and one per each of two functions) and in the driver it should consume
+them accordingly. Though I'm not an expert in DT, does it sound correct from
+your perspective?
+
+> > +        clocks = <&scmi_clk KEEM_BAY_A53_TIM>;
+> > +    };
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
