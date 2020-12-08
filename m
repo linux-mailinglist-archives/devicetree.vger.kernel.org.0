@@ -2,68 +2,206 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AD6742D1E2D
-	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 00:15:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 917B52D1EDC
+	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 01:17:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726855AbgLGXOf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Dec 2020 18:14:35 -0500
-Received: from mail-ot1-f66.google.com ([209.85.210.66]:37348 "EHLO
-        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726563AbgLGXOf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 18:14:35 -0500
-Received: by mail-ot1-f66.google.com with SMTP id o11so11520459ote.4;
-        Mon, 07 Dec 2020 15:14:19 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=FMfWfHv2wzoNIwcVOZya215y7ocesZYjo3SfGqRpwhM=;
-        b=fUeKn9opqLxqzvzwAQv1fyA1ibK1RA/AkWXsrAGUskeOjl4OGuJMO/ycSgBAt4DeSi
-         Pt7pSsZPDWDUMUu8hMZt1MrclX12oti/LtBuEVdttPRxY8RyVgImLRcwe61jBj80TXgD
-         FXJfG2OvuAe2l3z/mAmirPJk1n6elDNHa+Mk2YmgWBaI2YxwjdQQjGkaPfDOVGiXIWab
-         CDN88ISQbKw29o0BMqGFrn4o79qHqazRaEux9qbh8iYPq44nhKuWcJo88nlUmqfc1UVo
-         7IKozqhjJrD98yIzAYQ/2i6lTOclWr9Uve4luiBIHV3kid4/9QPxEUUBoaYckPwg/vfl
-         x3zA==
-X-Gm-Message-State: AOAM532ltOAZwRzmA85VglTwrEP/ua1w8Wrq39mGpCxh3KsprPTSv+c8
-        pMTzpoKAimQ3iRJruR5/FA==
-X-Google-Smtp-Source: ABdhPJwY8L2lCOxVcrhiOYdR2CS5sbwBdDa2uQTR8kVPaHm8lSOS/OSL2o6wOI2e5/FfSmcKyMQdCQ==
-X-Received: by 2002:a9d:3982:: with SMTP id y2mr14597036otb.260.1607382834342;
-        Mon, 07 Dec 2020 15:13:54 -0800 (PST)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id k20sm3315179oig.35.2020.12.07.15.13.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Dec 2020 15:13:53 -0800 (PST)
-Received: (nullmailer pid 1030164 invoked by uid 1000);
-        Mon, 07 Dec 2020 23:13:52 -0000
-Date:   Mon, 7 Dec 2020 17:13:52 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Jon Hunter <jonathanh@nvidia.com>
-Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linux-kernel@vger.kernel.org, Thierry Reding <treding@nvidia.com>
-Subject: Re: [PATCH] dt-bindings: Correct GV11B GPU register sizes
-Message-ID: <20201207231352.GA1028809@robh.at.kernel.org>
-References: <20201124121842.1037035-1-jonathanh@nvidia.com>
+        id S1728020AbgLHAQQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Dec 2020 19:16:16 -0500
+Received: from gproxy10-pub.mail.unifiedlayer.com ([69.89.20.226]:39367 "EHLO
+        gproxy10-pub.mail.unifiedlayer.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1727330AbgLHAQQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 19:16:16 -0500
+Received: from cmgw15.unifiedlayer.com (unknown [10.9.0.15])
+        by gproxy10.mail.unifiedlayer.com (Postfix) with ESMTP id 63C36140759
+        for <devicetree@vger.kernel.org>; Mon,  7 Dec 2020 17:15:34 -0700 (MST)
+Received: from bh-25.webhostbox.net ([208.91.199.152])
+        by cmsmtp with ESMTP
+        id mQfFk6jjjh41lmQfGk8kb4; Mon, 07 Dec 2020 17:15:34 -0700
+X-Authority-Reason: nr=8
+X-Authority-Analysis: v=2.3 cv=O5cXQi1W c=1 sm=1 tr=0
+ a=QNED+QcLUkoL9qulTODnwA==:117 a=2cfIYNtKkjgZNaOwnGXpGw==:17
+ a=dLZJa+xiwSxG16/P+YVxDGlgEgI=:19 a=kj9zAlcOel0A:10:nop_charset_1
+ a=zTNgK-yGK50A:10:nop_rcvd_month_year
+ a=evQFzbml-YQA:10:endurance_base64_authed_username_1 a=VwQbUJbxAAAA:8
+ a=gEfo2CItAAAA:8 a=sozttTNsAAAA:8 a=_jlGtV7tAAAA:8 a=wkPXI5Rq_EWXVTfHbnkA:9
+ a=CjuIK1q_8ugA:10:nop_charset_2 a=AjGcO6oz07-iQ99wixmX:22
+ a=sptkURWiP4Gy88Gu7hUp:22 a=aeg5Gbbo78KNqacMgKqU:22 a=nlm17XC03S6CtCLSeiRr:22
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=roeck-us.net; s=default; h=In-Reply-To:Content-Type:MIME-Version:References
+        :Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding
+        :Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=ncp9CpIxDmtSPeBusVYnYvkP37GO1Y0RnBZMGD5zCRU=; b=ABEQCIcaebv5FWBrXLeGAaii/A
+        5+zy3psNbMCq88Iu1L95JjnRyr5Rqo8YwNegpYiSaCHwg73xSfba9n/aztUIRseAPoYTocHCYTuU+
+        SRZgapo63xacABwuFNb37Tq6Yp4th5BUBsKZ5m8k/Pkh2lxeIVH5kxyNScUAolvJRuyuBkrGVtVrc
+        ms1uuAUW2wrGhhX4m02X0ZhTJ+u53svMW1fflKOC0CouXGI5ElONFeP920qLPWq6yFFKlEPl5jbtW
+        fN3jDuLy8255w467B7PkZI0vLqQpX/se3uHI7p0Jb5nhF1CXn4hIuEUybxWLP2KtM6ncvSZTg8F7S
+        2I95eVXg==;
+Received: from 108-223-40-66.lightspeed.sntcca.sbcglobal.net ([108.223.40.66]:33510 helo=localhost)
+        by bh-25.webhostbox.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.93)
+        (envelope-from <linux@roeck-us.net>)
+        id 1kmQfF-001tGq-6q; Tue, 08 Dec 2020 00:15:33 +0000
+Date:   Mon, 7 Dec 2020 16:15:32 -0800
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     Jean Delvare <jdelvare@suse.com>, Rob Herring <robh+dt@kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>, linux-hwmon@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-doc@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Kun Yi <kunyi@google.com>
+Subject: Re: [PATCH 1/4] dt-bindings: hwmon: convert TI INA2xx bindings to
+ dt-schema
+Message-ID: <20201208001532.GA59098@roeck-us.net>
+References: <20201117220807.208747-1-krzk@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201124121842.1037035-1-jonathanh@nvidia.com>
+In-Reply-To: <20201117220807.208747-1-krzk@kernel.org>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - bh-25.webhostbox.net
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - roeck-us.net
+X-BWhitelist: no
+X-Source-IP: 108.223.40.66
+X-Source-L: No
+X-Exim-ID: 1kmQfF-001tGq-6q
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-Source-Sender: 108-223-40-66.lightspeed.sntcca.sbcglobal.net (localhost) [108.223.40.66]:33510
+X-Source-Auth: guenter@roeck-us.net
+X-Email-Count: 5
+X-Source-Cap: cm9lY2s7YWN0aXZzdG07YmgtMjUud2ViaG9zdGJveC5uZXQ=
+X-Local-Domain: yes
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 24 Nov 2020 12:18:42 +0000, Jon Hunter wrote:
-> Commit 90a09178f309 ("dt-bindings: Add documentation for GV11B GPU")
-> added the GV11B GPU device-tree bindings information but incorrectly
-> added an additional 0 to the size of the addresses in the example.
+On Tue, Nov 17, 2020 at 11:08:04PM +0100, Krzysztof Kozlowski wrote:
+> Convert the TI INA2xx bindings to dt-schema.
 > 
-> Fixes: 90a09178f309 ("dt-bindings: Add documentation for GV11B GPU")
-> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+
+Applied.
+
+Thanks,
+Guenter
+
 > ---
->  Documentation/devicetree/bindings/gpu/nvidia,gk20a.txt | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+>  .../devicetree/bindings/hwmon/ina2xx.txt      | 24 --------
+>  .../devicetree/bindings/hwmon/ti,ina2xx.yaml  | 55 +++++++++++++++++++
+>  MAINTAINERS                                   |  2 +-
+>  3 files changed, 56 insertions(+), 25 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/hwmon/ina2xx.txt
+>  create mode 100644 Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
 > 
-
-Applied, thanks!
-
-But really, it's just an example and rather than fix trivial things in 
-txt bindings, convert them to schema please.
+> diff --git a/Documentation/devicetree/bindings/hwmon/ina2xx.txt b/Documentation/devicetree/bindings/hwmon/ina2xx.txt
+> deleted file mode 100644
+> index 02af0d94e921..000000000000
+> --- a/Documentation/devicetree/bindings/hwmon/ina2xx.txt
+> +++ /dev/null
+> @@ -1,24 +0,0 @@
+> -ina2xx properties
+> -
+> -Required properties:
+> -- compatible: Must be one of the following:
+> -	- "ti,ina209" for ina209
+> -	- "ti,ina219" for ina219
+> -	- "ti,ina220" for ina220
+> -	- "ti,ina226" for ina226
+> -	- "ti,ina230" for ina230
+> -	- "ti,ina231" for ina231
+> -- reg: I2C address
+> -
+> -Optional properties:
+> -
+> -- shunt-resistor
+> -	Shunt resistor value in micro-Ohm
+> -
+> -Example:
+> -
+> -ina220@44 {
+> -	compatible = "ti,ina220";
+> -	reg = <0x44>;
+> -	shunt-resistor = <1000>;
+> -};
+> diff --git a/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml b/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
+> new file mode 100644
+> index 000000000000..6f0443322a36
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
+> @@ -0,0 +1,55 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +
+> +$id: http://devicetree.org/schemas/hwmon/ti,ina2xx.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Texas Instruments INA209 family of power/voltage monitors
+> +
+> +maintainers:
+> +  - Krzysztof Kozlowski <krzk@kernel.org>
+> +
+> +description: |
+> +  The INA209 is a high-side current shunt and power monitor with
+> +  an I2C interface.
+> +
+> +  Datasheets:
+> +    https://www.ti.com/product/INA209
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - ti,ina209
+> +      - ti,ina219
+> +      - ti,ina220
+> +      - ti,ina226
+> +      - ti,ina230
+> +      - ti,ina231
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  shunt-resistor:
+> +    description:
+> +      Shunt resistor value in micro-Ohm.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        power-sensor@44 {
+> +            compatible = "ti,ina220";
+> +            reg = <0x44>;
+> +            shunt-resistor = <1000>;
+> +        };
+> +    };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 0818a5b03832..e9ba2e555679 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -8669,7 +8669,7 @@ INA209 HARDWARE MONITOR DRIVER
+>  M:	Guenter Roeck <linux@roeck-us.net>
+>  L:	linux-hwmon@vger.kernel.org
+>  S:	Maintained
+> -F:	Documentation/devicetree/bindings/hwmon/ina2xx.txt
+> +F:	Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
+>  F:	Documentation/hwmon/ina209.rst
+>  F:	drivers/hwmon/ina209.c
+>  
