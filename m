@@ -2,78 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D5162D2016
-	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 02:30:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C191A2D2002
+	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 02:27:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725972AbgLHB27 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Dec 2020 20:28:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58520 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726826AbgLHB27 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 20:28:59 -0500
-Received: from mail-pl1-x643.google.com (mail-pl1-x643.google.com [IPv6:2607:f8b0:4864:20::643])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA871C061749;
-        Mon,  7 Dec 2020 17:28:17 -0800 (PST)
-Received: by mail-pl1-x643.google.com with SMTP id v3so6095833plz.13;
-        Mon, 07 Dec 2020 17:28:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=g6R21sa3bkOjEnwqhAVxyM+kWVKk9KN5CJ8WQiyRzKg=;
-        b=c+bi86iXy/pSBac/0D9EHuYLqSgzndqvSEaxFibcNpweMKyQygRkZzQDEMO+Qw0UxT
-         /33sCLHGIDMYobzNYwvDSi74tyY8ITvbbDU0Sk258GTxreVez+owDIlHjtcFzsZa3xix
-         ndvhJ1d6ZErYf3EfuNA0LAXY706OqaLr54H27c48TPfhCf0qaS4L6PqOmMCtN1HN3dO1
-         QEJZ6vbRb6gjEs93MG4zMFETc25vJntRNgVRpY1n02Py/AK4BmQHWQK+H8sSTwpOHpWn
-         XXq5k8unAN/YWq7bTwYRW4BFivBs+VzBJ60omZmbh14WbOjmjjO7/mdsrXwe3+w0Qdr2
-         OW+A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=g6R21sa3bkOjEnwqhAVxyM+kWVKk9KN5CJ8WQiyRzKg=;
-        b=FtNouGG++ajaGcmkXtV6uQMuw3t0t1OnxLxOp0Gx9kPAmYjfZ8Im9dnc7+Bd0KgF9R
-         cLi1FmelndDMsjWnnHJBh3BW1WzuFhlBbf5S5I+yTbPdgAyMkVXz317dC5Ry1ydI3txt
-         X/t1OkPbtzna1dCHuW8uvXncX7cPwz52fym1Tv+5vmqlMySluCSRKgY++JFcDP0ZN3+Y
-         dXxw220srwWFMjbYIeS1BbtVRwT/89ZKaZksSouuYGdu24qOcZYQc+5EqrToAzoz/XQ7
-         EmDRYGubfJcDOBunp8pxM0St85X2W3zLHUpYcJy7PRstdYBUOai7C4KkGPM1ukgJMe9h
-         AK2Q==
-X-Gm-Message-State: AOAM532oLQqZA7JEDiaEI3eP4cncbN0L8Txw1BgfoSI3jTx6XhYjq8zN
-        DXQbxItG1QyX70Cvd/+rWWwp9CiTHUpHMw==
-X-Google-Smtp-Source: ABdhPJxpxLxNICfqOJ5BiNFYHNzVKl0q1JwFffvvXbpF0tW9FuLkpPPBA+bELyA/XOq2JtoKBTRo5w==
-X-Received: by 2002:a17:902:6ac8:b029:da:d645:ab58 with SMTP id i8-20020a1709026ac8b02900dad645ab58mr16864544plt.25.1607390896709;
-        Mon, 07 Dec 2020 17:28:16 -0800 (PST)
-Received: from Asurada-Nvidia (thunderhill.nvidia.com. [216.228.112.22])
-        by smtp.gmail.com with ESMTPSA id a22sm12495382pfa.215.2020.12.07.17.28.15
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Mon, 07 Dec 2020 17:28:16 -0800 (PST)
-Date:   Mon, 7 Dec 2020 17:25:26 -0800
-From:   Nicolin Chen <nicoleotsuka@gmail.com>
-To:     Shengjiu Wang <shengjiu.wang@nxp.com>
-Cc:     timur@kernel.org, Xiubo.Lee@gmail.com, festevam@gmail.com,
-        lgirdwood@gmail.com, broonie@kernel.org, perex@perex.cz,
-        tiwai@suse.com, alsa-devel@alsa-project.org,
-        linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] ASoC: fsl: Add imx-hdmi machine driver
-Message-ID: <20201208012526.GA21510@Asurada-Nvidia>
-References: <1607251319-5821-1-git-send-email-shengjiu.wang@nxp.com>
- <1607251319-5821-2-git-send-email-shengjiu.wang@nxp.com>
+        id S1727006AbgLHB1g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Dec 2020 20:27:36 -0500
+Received: from out3-smtp.messagingengine.com ([66.111.4.27]:39139 "EHLO
+        out3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1725995AbgLHB1f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 20:27:35 -0500
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailout.nyi.internal (Postfix) with ESMTP id 5467D5C0163;
+        Mon,  7 Dec 2020 20:26:29 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute3.internal (MEProxy); Mon, 07 Dec 2020 20:26:29 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=from
+        :to:cc:subject:date:message-id:mime-version
+        :content-transfer-encoding; s=fm1; bh=hZfUYNzWks7sMD7swrLWpVN+8Y
+        yq1wkFBcKSEXJGg+A=; b=cE2ZfwXblWVIgt3yUG94/+D/hn/KKfNN8KkkzEVuvr
+        tJl84lq8j9ErBzN/Bje/ROJjDD7FfKc90s/NIa4RJBWLWa5M6yXSslMpxu/Ak3BM
+        uEPtsA1aC+1R6CA1EOU0e0S1FsnnNeeM/3Ji0V/O1Qz65oStTLaxUgFg9qgBMVYW
+        sW08JNmblYciAJndgggF1jW2ZV39WU7fKy/EhPe7vfCWm8ZkVqa0qM+z3XgDqFrN
+        hCin4xJCfkFYc5LZ5iPxGHqfQV/EKOViASUqSqYf96ORzd1yhDe2FFj8HKz/d/RL
+        iEtoJiDwSRmwzEs3COQxQeQM3e7kdP/1ju8o9H7Vu2Jw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:date:from
+        :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=hZfUYNzWks7sMD7sw
+        rLWpVN+8Yyq1wkFBcKSEXJGg+A=; b=i9zSxN7TlwzVy5DKhln78ONxGUsbHUz4A
+        2Ae8fyadFUPUrXUF08kSQ3G1iPAZXfpEkukTKZeKYfjwDDa04d5NeHcDCGMnYRmu
+        jud1fQ6V9xgEGHCwAZ7aV67rRFMD/f07mR13uNszuMSb4BHQ3a8ztAvnVvXO95uR
+        hhXfIkhTAsU8biPWESvPVN6cGEygXv8lkAUqPPHnv+cZMF9pzuO3hHmwrXOz36MS
+        1OQwdPHHDJxFmDqot/5Op2vM6FO6eAE2EG8Bmh1FLq/9WDCskXvaPlccGhi5mFSF
+        q3qE0G/O/BayQn6BmKRlOGyQR4oOzMNDkxecRu3j07K4FRggjVc1Q==
+X-ME-Sender: <xms:Q9bOXx9OTp6eTR1UMQlHjpLjfU2UHZKiwWIwf3QhLEIV87J05mUquw>
+    <xme:Q9bOX1s5EfDKnWdrY_L4HQSNxaQSqmHwIlxJ7j8mFee8cD8_N8aEmatqan7FSXtat
+    DMhMh7faEySP1R-AA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrudejhedgfeehucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucenucfjughrpefhvffufffkofgggfestdekredtre
+    dttdenucfhrhhomheptehnughrvgifucflvghffhgvrhihuceorghnughrvgifsegrjhdr
+    ihgurdgruheqnecuggftrfgrthhtvghrnhepieetheduveelhfdvvdejleeuhfelteevhe
+    ffgfeitdefgeekjeefieevgfehhefgnecuffhomhgrihhnpehkvghrnhgvlhdrohhrghen
+    ucfkphepvddtfedrheejrddvtdekrddugeeinecuvehluhhsthgvrhfuihiivgeptdenuc
+    frrghrrghmpehmrghilhhfrhhomheprghnughrvgifsegrjhdrihgurdgruh
+X-ME-Proxy: <xmx:Q9bOX_CFIXK3xNU27Y63aco7jJbHQ6n4YxM17T_MJn8f1xgWjbmdng>
+    <xmx:Q9bOX1cTv5SnvLVjO-BaqvuQURAOWFrwD7-Jad2amJa6NZWwId5AUw>
+    <xmx:Q9bOX2MqM4OYnQ0mp49qUqX0IbAjMZY-goRoFWcMQDAD4r8OCs_U5g>
+    <xmx:RdbOX1fQdyb2V83SLxnNd5XgoQkZ5Kk8AqdrXBAW6FAPE_0vPZhlPw>
+Received: from localhost.localdomain (203-57-208-146.dyn.iinet.net.au [203.57.208.146])
+        by mail.messagingengine.com (Postfix) with ESMTPA id A7CDF108005C;
+        Mon,  7 Dec 2020 20:26:23 -0500 (EST)
+From:   Andrew Jeffery <andrew@aj.id.au>
+To:     linux-mmc@vger.kernel.org
+Cc:     ulf.hansson@linaro.org, robh+dt@kernel.org, joel@jms.id.au,
+        adrian.hunter@intel.com, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, ryan_chen@aspeedtech.com
+Subject: [PATCH v5 0/6] mmc: sdhci-of-aspeed: Expose phase delay tuning
+Date:   Tue,  8 Dec 2020 11:56:09 +1030
+Message-Id: <20201208012615.2717412-1-andrew@aj.id.au>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1607251319-5821-2-git-send-email-shengjiu.wang@nxp.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Dec 06, 2020 at 06:41:59PM +0800, Shengjiu Wang wrote:
-> The driver is initially designed for sound card using HDMI
-> interface on i.MX platform. There is internal HDMI IP or
-> external HDMI modules connect with SAI or AUD2HTX interface.
-> It supports both transmitter and receiver devices.
-> 
-> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+Hello,
 
-Acked-by: Nicolin Chen <nicoleotsuka@gmail.com>
+This series implements support for the MMC core clk-phase-* devicetree bindings
+in the Aspeed SD/eMMC driver. The relevant register was exposed on the AST2600
+and is present for both the SD/MMC controller and the dedicated eMMC
+controller.
+
+v5 fixes some build issues identified by the kernel test robot.
+
+v4 can be found here:
+
+https://lore.kernel.org/linux-mmc/20201207142556.2045481-1-andrew@aj.id.au/
+
+The series has had light testing on an AST2600-based platform which requires
+180deg of input and output clock phase correction at HS200, as well as some
+synthetic testing under qemu and KUnit.
+
+Please review!
+
+Cheers,
+
+Andrew
+
+Andrew Jeffery (6):
+  mmc: core: Add helper for parsing clock phase properties
+  mmc: sdhci-of-aspeed: Expose clock phase controls
+  mmc: sdhci-of-aspeed: Add AST2600 bus clock support
+  mmc: sdhci-of-aspeed: Add KUnit tests for phase calculations
+  MAINTAINERS: Add entry for the ASPEED SD/MMC driver
+  ARM: dts: rainier: Add eMMC clock phase compensation
+
+ MAINTAINERS                                  |   9 +
+ arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts |   1 +
+ drivers/mmc/core/host.c                      |  44 ++++
+ drivers/mmc/host/Kconfig                     |  14 ++
+ drivers/mmc/host/Makefile                    |   1 +
+ drivers/mmc/host/sdhci-of-aspeed-test.c      | 100 ++++++++
+ drivers/mmc/host/sdhci-of-aspeed.c           | 251 ++++++++++++++++++-
+ include/linux/mmc/host.h                     |  17 ++
+ 8 files changed, 426 insertions(+), 11 deletions(-)
+ create mode 100644 drivers/mmc/host/sdhci-of-aspeed-test.c
+
+-- 
+2.27.0
+
