@@ -2,93 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 860482D2E14
-	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 16:23:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BAA942D2E19
+	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 16:23:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730027AbgLHPWf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Dec 2020 10:22:35 -0500
-Received: from mail-oo1-f67.google.com ([209.85.161.67]:35716 "EHLO
-        mail-oo1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729334AbgLHPWf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Dec 2020 10:22:35 -0500
-Received: by mail-oo1-f67.google.com with SMTP id s1so856704oon.2;
-        Tue, 08 Dec 2020 07:22:19 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=C5Acc0ICokF2oxfe/fuyTY8R9eWUIjutjVKsOg+au2o=;
-        b=HdgtGPkBHwKnoSPaQCEJu1VYFfv0DGga8UGoqNXuucqyaqbIttMsdp0IpyvwFApCNB
-         hwLxce6yaYxQQyu73Tck0znCJCPlhrktZLu8iCyNlCOuRXsOH5+H5kdxGSTsUBA90NBG
-         mWVmLIi7gPv8Gz/njrQIXfHEdzyt29bQnaMhc2UbLPJn/1H0nNw6Zchrko/4N/RlS8HJ
-         0P6x9eFzkRl25w6LVF82ZibDNJzGux/rs+kKDeCKn8ZvHvoSSiLVe9+QTpwcSFm5BjG4
-         acDGk+qQ8X4JowGmSoNL1tX4KzQzaiSYi3qX02l7K98xBk2F5qQ1DiIl25GUl8Qw3na5
-         mwfQ==
-X-Gm-Message-State: AOAM530RIPhcGrIC4XDuX0es8z+mJ++2/SrMv5Rr4VMhPdlulPioRvr3
-        bxcglKSDkQBaHiw7KgkI4lnPJZKesg==
-X-Google-Smtp-Source: ABdhPJzkmdNmqS+dh2m97q/lOIeF2VXeYq7Y+mxyU9jm4DamaV4w8FaJVykv1l78z5kmmyM5ayvK5A==
-X-Received: by 2002:a4a:751a:: with SMTP id j26mr9483573ooc.68.1607440914338;
-        Tue, 08 Dec 2020 07:21:54 -0800 (PST)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id x12sm454432oic.51.2020.12.08.07.21.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Dec 2020 07:21:53 -0800 (PST)
-Received: (nullmailer pid 2540461 invoked by uid 1000);
-        Tue, 08 Dec 2020 15:21:52 -0000
-Date:   Tue, 8 Dec 2020 09:21:52 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Michael Klein <michael@fossekall.de>
-Cc:     Jernej Skrabec <jernej.skrabec@siol.net>, linux-pm@vger.kernel.org,
-        Maxime Ripard <mripard@kernel.org>,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Sebastian Reichel <sre@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 2/3] Documentation: DT: binding documentation for
- regulator-poweroff
-Message-ID: <20201208152152.GA2539955@robh.at.kernel.org>
-References: <20201128103958.q6glewhhch7vtczr@gilmour>
- <20201207142756.17819-1-michael@fossekall.de>
- <20201207142756.17819-3-michael@fossekall.de>
+        id S1730068AbgLHPWy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Dec 2020 10:22:54 -0500
+Received: from mail.kernel.org ([198.145.29.99]:38052 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729929AbgLHPWy (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 8 Dec 2020 10:22:54 -0500
+Date:   Tue, 8 Dec 2020 15:22:06 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1607440933;
+        bh=agNWNjQCc77UMknNZ+hqc7G36GIX7edrBXKF11O9ZzM=;
+        h=From:To:Cc:Subject:References:In-Reply-To:From;
+        b=fnRyKhdbPBeKAFCf3aXCoNV3ZIWToIpoE64c032G+yHtSUTK/S/HHMXgTahu4fMDY
+         Oikm0kgBkpY7GOIBCGVvuqjpmHM7bALrYyG4ByqCRwx6Fj5ItyCf0MbKIzoobdCisI
+         5pHp7ueSgRLzLMnvCEd2xK8IBmJkAWaznEAf8Qf82AmbgDEgT+Iz9UBKav0UIB2Wk+
+         i1XOjmIXHhf6943Fl5PD0O54ALLJlQ7ywXsj9pBfHNbJoh+sfja/WeSJI6i8eu1O7z
+         64yPbnTC/SC86928VoZobnbBuCICyrjLXSFQz46fGfx8Wfsjvb3G8AhTQNpzGBySax
+         z9cR+1M8b1z6w==
+From:   Mark Brown <broonie@kernel.org>
+To:     Sameer Pujar <spujar@nvidia.com>
+Cc:     thierry.reding@gmail.com, robh+dt@kernel.org, sharadg@nvidia.com,
+        jonathanh@nvidia.com, kuninori.morimoto.gx@renesas.com,
+        linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org
+Subject: Re: Re: Re: [PATCH v6 0/6] Tegra210 audio graph card
+Message-ID: <20201208152206.GF6686@sirena.org.uk>
+References: <1606413823-19885-1-git-send-email-spujar@nvidia.com>
+ <160683107678.35139.14772386553150233276.b4-ty@kernel.org>
+ <a3541d83-1f2e-c60f-05f8-4fdd8c8f4175@nvidia.com>
+ <20201207123131.GB5694@sirena.org.uk>
+ <14d2a6cc-9ca6-f6dd-ae83-6fc75d5361eb@nvidia.com>
+ <20201208121312.GB6686@sirena.org.uk>
+ <a6ecb66e-db25-dcfa-4a70-d9b2fad75cd9@nvidia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="lIrNkN/7tmsD/ALM"
 Content-Disposition: inline
-In-Reply-To: <20201207142756.17819-3-michael@fossekall.de>
+In-Reply-To: <a6ecb66e-db25-dcfa-4a70-d9b2fad75cd9@nvidia.com>
+X-Cookie: Do not dry clean.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 07 Dec 2020 15:27:55 +0100, Michael Klein wrote:
-> Add devicetree binding documentation for regulator-poweroff driver.
-> 
-> Signed-off-by: Michael Klein <michael@fossekall.de>
-> ---
->  .../power/reset/regulator-poweroff.yaml       | 53 +++++++++++++++++++
->  1 file changed, 53 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/power/reset/regulator-poweroff.yaml
-> 
 
+--lIrNkN/7tmsD/ALM
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-My bot found errors running 'make dt_binding_check' on your patch:
+On Tue, Dec 08, 2020 at 08:18:21PM +0530, Sameer Pujar wrote:
 
-yamllint warnings/errors:
+> > I don't seem to have them in my backlog so either there was feedback
+> > from someone else I was expecting to see addressed or some other issue.
 
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/power/reset/regulator-poweroff.example.dt.yaml: regulator-poweroff: 'REGULATOR-supply' is a required property
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/power/reset/regulator-poweroff.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/power/reset/regulator-poweroff.example.dt.yaml: regulator-poweroff: 'vcc-dram-supply', 'vcc1v2-supply' do not match any of the regexes: 'pinctrl-[0-9]+'
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/power/reset/regulator-poweroff.yaml
+> I am pretty sure that it is not because of any outstanding comments, because
+> I got none on v6 and previous v5 feedback was taken care. May be this is
+> because of the doc dependency I listed in the cover letter?
 
+Ah, yes - Rob said the dependency needed some rework.
 
-See https://patchwork.ozlabs.org/patch/1412084
+--lIrNkN/7tmsD/ALM
+Content-Type: application/pgp-signature; name="signature.asc"
 
-The base for the patch is generally the last rc1. Any dependencies
-should be noted.
+-----BEGIN PGP SIGNATURE-----
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl/Pmh0ACgkQJNaLcl1U
+h9B7Zwf9GGi3vqDul7G6TFq9/yQzz54/ViItyV8CHg0CuGmqI+LRO8c0kCH7q1J1
+JqIf1OJiTxZrmKJJntJls8toh5GEJyuHnp9dUgv13wmRzgBduecr96Xzk3epHjTM
+fs6k3x9+IvGuCCAZ5gL2znrPE/QSR48jSjJczOz5WFyxC35dKU85Nl6Tb4/80npN
+3qYKZ6WuXnge3/ckBH0s9Wvmj4EN77cGAbkOvJxbG5QgAYlHzK6FEM+RzbbUtMbv
+SugMrZ4yKT8a74dv+jXNKztE7vephHPcZNSBM3G4E2bJ6uurnUJQdBrRgkGNKc3S
+UiXFEjmtP6XMmBiEcaVJQIFTYGY9bA==
+=QfyK
+-----END PGP SIGNATURE-----
 
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+--lIrNkN/7tmsD/ALM--
