@@ -2,113 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E94F32D2CC9
-	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 15:13:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C4D0C2D2CAD
+	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 15:11:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729749AbgLHOMV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Dec 2020 09:12:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34754 "EHLO
+        id S1729469AbgLHOLB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Dec 2020 09:11:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34626 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729752AbgLHOMQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Dec 2020 09:12:16 -0500
-Received: from mail-lj1-x242.google.com (mail-lj1-x242.google.com [IPv6:2a00:1450:4864:20::242])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07AB7C0619D9
-        for <devicetree@vger.kernel.org>; Tue,  8 Dec 2020 06:10:49 -0800 (PST)
-Received: by mail-lj1-x242.google.com with SMTP id x23so12569370lji.7
-        for <devicetree@vger.kernel.org>; Tue, 08 Dec 2020 06:10:48 -0800 (PST)
+        with ESMTP id S1729366AbgLHOLB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Dec 2020 09:11:01 -0500
+Received: from mail-pf1-x441.google.com (mail-pf1-x441.google.com [IPv6:2607:f8b0:4864:20::441])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 449AFC061749;
+        Tue,  8 Dec 2020 06:10:36 -0800 (PST)
+Received: by mail-pf1-x441.google.com with SMTP id b26so14001341pfi.3;
+        Tue, 08 Dec 2020 06:10:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=2ColZvFMxeBX2F8jNmrJL1c8E3SYpy08jyj4gqYNN2Q=;
-        b=F/qSEHHimCf8rH5UvNdUHXdgEwBU/rlqYccUOT2bxodbri/gk8Sqdibs2NMzsEAzcO
-         4fhuiTBh6X4oPFv+D/gcuFPlTIPxOnCo4aG7Ug774m46ZqCtdh/SpQLhZupl49F9snVP
-         NmCHLqUJtiVHRKBdHRKM+2zhZjQq/e0bc+w9x2tYgEAQzp6jMn+B34IavMEOChJn8xIS
-         fcJsg60GI2pDYzfwYtgm15jMZ5Bx1KqMBii7Wc6NPAY/c3x6+WED5RWHnluhJ277kGvd
-         fI17OZy2hTIKsgJk915wEy8Cm5yboxfD7X3jvKgO+whSRnemVeNclz5Cyb13d6StDetT
-         XF5g==
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=y+TsitjoIH7JH9XtdYcvo6WGHGk7yTErwwqWOT90yJs=;
+        b=LH/JS4D0m7XlgPj3AwO9UpQ1nBJ/6Y0MA41PnlSZPWYKJ+j1uaoXlRkPA9CA9YHTUn
+         wRe3Bff37TfY2yeNz8U7FtlmjKhLsJYIlbU6o/lTo4aqYAoIVT/pXOQDz5QwtgsJmg9M
+         HxFVv4Elma9ml2rgvM5SSSo0wj8CQ5dZH86Hg7UUKqldAbxXrmDSlHYJltie83X3Bimc
+         MpZ0c3dqqKtsYIm9AV6i68iGtrY1IxT3cwUhMNWFmfpyTVso3Ttto/WoBdEvwBDm6JiA
+         RHIRuoFvQStBC0dlGbzk63MDjUbRc2Lyv6IdC7ljcW/9e732f+LgnXr7grkoFxy2faeo
+         9QIg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=2ColZvFMxeBX2F8jNmrJL1c8E3SYpy08jyj4gqYNN2Q=;
-        b=dHRwTpIXZGkedU+naBdhoYczpobr8l5+aby8T14Az/s4W+8bgOHm1lyLoBB3x5EpDU
-         PukrKmxn6TlV/213USjuH0mRsTQ1lm8s2+Az/G4ai+oyB2kLSHSA7faaA/KBTz9jqIgb
-         Xr5stfxDM3HCb35DB/xhjjLSWd5wAd0ZeWfEtEY9GwqiT3ZCBUdJMczt/bIMYwAbdzJ7
-         eFrRnQkQ3hQcnZAahe68m6w0XYxvrSV3f2Of6DJVtWmduHvCWBmWDK/F1j2O0rYDHTVV
-         KZ8bA4Mpw/C3mPL7xqZpAS9u7Qs7ZYjUIvzlzQflkPdPcHIAxXFTheCrv07jJPE37FZ9
-         F5yA==
-X-Gm-Message-State: AOAM530Gf8wRCP07Tl94s8ze3hD/0DFxipQlWNEHhIBT5MpR6zQ0IExM
-        ty9HiU465BqHEQrJ+UNuvk0XkA==
-X-Google-Smtp-Source: ABdhPJwqXbavh17S7UTzCBV4act1/virkJITv41YRbvHOFx1U7eHC/c5oyg1pfML1LrsGvfd8ErFug==
-X-Received: by 2002:a05:651c:113c:: with SMTP id e28mr2820609ljo.252.1607436647436;
-        Tue, 08 Dec 2020 06:10:47 -0800 (PST)
-Received: from gilgamesh.semihalf.com (193-106-246-138.noc.fibertech.net.pl. [193.106.246.138])
-        by smtp.gmail.com with ESMTPSA id h23sm417017ljh.115.2020.12.08.06.10.46
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 08 Dec 2020 06:10:46 -0800 (PST)
-From:   Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
-To:     ohad@wizery.com, bjorn.andersson@linaro.org,
-        mathieu.poirier@linaro.org, robh+dt@kernel.org, s-anna@ti.com
-Cc:     grzegorz.jaszczyk@linaro.org, linux-remoteproc@vger.kernel.org,
-        lee.jones@linaro.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, praneeth@ti.com,
-        rogerq@ti.com
-Subject: [PATCH v4 6/6] remoteproc: pru: Add support for various PRU cores on K3 J721E SoCs
-Date:   Tue,  8 Dec 2020 15:10:02 +0100
-Message-Id: <20201208141002.17777-7-grzegorz.jaszczyk@linaro.org>
-X-Mailer: git-send-email 2.29.0
-In-Reply-To: <20201208141002.17777-1-grzegorz.jaszczyk@linaro.org>
-References: <20201208141002.17777-1-grzegorz.jaszczyk@linaro.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=y+TsitjoIH7JH9XtdYcvo6WGHGk7yTErwwqWOT90yJs=;
+        b=ZYMkD8WgjXbmoYXY+2XXtym251AGR+sz5TqPfScO+CJzUoTBPP/c7dOnmyoMegKK9Y
+         ggW90vlUJ1N8l89mKH/b07q3u8FhCgMP/bFJH9If+Urz103HDoVTM7elUAIyfSicHp1g
+         SydPutVIei9OfPnMI5I55ZILrHV+Alz/hpkkz+HF4ji/kPj6Dy8j86FxNc9OZlyjSrIQ
+         crazW9dWwHTrqYz6OJ1Y7CDienXbhjVpV1Px/r+U3BBemVLJ/CPutc01PsoaqvI2bizk
+         JasrzJVnxE/7l0r7vgFQ6f8pxC3uyKqEE0AXlpfgC9q5g5szR6twFFoI/mtjVId2tBck
+         QM0g==
+X-Gm-Message-State: AOAM533K4bgV3GCYmJkG7ojTy3rKgUcP4rtZxr9p9eYJvNqI2VzblrYA
+        m2+I6WYNRwHmdm4bm+COaAI=
+X-Google-Smtp-Source: ABdhPJzxMAj44XvY1JnbcrdV2ne9K3OSDAYvDMV0QTQMPNVlGHzRrlDWcsvhB82njiBXQIZKz6NAAg==
+X-Received: by 2002:a65:594b:: with SMTP id g11mr22767467pgu.424.1607436635756;
+        Tue, 08 Dec 2020 06:10:35 -0800 (PST)
+Received: from localhost.localdomain ([182.226.226.37])
+        by smtp.googlemail.com with ESMTPSA id m15sm9071951pfa.72.2020.12.08.06.10.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 08 Dec 2020 06:10:34 -0800 (PST)
+From:   Bongsu Jeon <bongsu.jeon2@gmail.com>
+X-Google-Original-From: Bongsu Jeon
+To:     krzk@kernel.org
+Cc:     linux-nfc@lists.01.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Bongsu Jeon <bongsu.jeon@samsung.com>
+Subject: [PATCH v2 net-next 0/2] nfc: s3fwrn5: Change I2C interrupt trigger to EDGE_RISING
+Date:   Tue,  8 Dec 2020 23:10:10 +0900
+Message-Id: <20201208141012.6033-1-bongsu.jeon@samsung.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Suman Anna <s-anna@ti.com>
+From: Bongsu Jeon <bongsu.jeon@samsung.com>
 
-The K3 J721E family of SoCs have a revised version of the AM65x ICSSG IP
-and contains two instances of this newer ICSSG IP. Each ICSSG processor
-subsystem contains 2 primary PRU cores, 2 auxiliary PRU cores called RTUs,
-and 2 new auxiliary cores called Transmit PRUs (Tx_PRUs).
+For stable Samsung's I2C interrupt handling, I changed the interrupt 
+trigger from IRQ_TYPE_LEVEL_HIGH to IRQ_TYPE_EDGE_RISING and removed 
+the hard coded interrupt trigger type in the i2c module for the flexible 
+control.
 
-Enhance the existing PRU remoteproc driver to support these new PRU
-and RTU cores by using specific compatibles. The cores have the same
-memory copying limitations as on AM65x, so reuses the custom memcpy
-function within the driver's ELF loader implementation. The initial
-names for the firmware images for each PRU core are retrieved from
-DT nodes, and can be adjusted through sysfs if required.
+1/2 is the changed dt binding for the edge rising trigger.
+2/2 is to remove the hard coded interrupt trigger type in the i2c module.
 
-Signed-off-by: Suman Anna <s-anna@ti.com>
-Co-developed-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
-Signed-off-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
-Reviewed-by: Mathieu Poirier <mathieu.poirier@linaro.org>
----
-v3->v4:
-- No changes.
+ChangeLog:
+ v2:
+  2/2
+   - remove the hard coded interrupt trigger type.
 
-v2->v3:
-- Add Reviewed-by: tag
----
- drivers/remoteproc/pru_rproc.c | 3 +++
- 1 file changed, 3 insertions(+)
+Bongsu Jeon (2):
+  dt-bindings: net: nfc: s3fwrn5: Change I2C interrupt trigger to
+    EDGE_RISING
+  nfc: s3fwrn5: Remove hard coded interrupt trigger type from the i2c
+    module
 
-diff --git a/drivers/remoteproc/pru_rproc.c b/drivers/remoteproc/pru_rproc.c
-index 421ebbc1c02d..2667919d76b3 100644
---- a/drivers/remoteproc/pru_rproc.c
-+++ b/drivers/remoteproc/pru_rproc.c
-@@ -850,6 +850,9 @@ static const struct of_device_id pru_rproc_match[] = {
- 	{ .compatible = "ti,am654-pru",		.data = &k3_pru_data },
- 	{ .compatible = "ti,am654-rtu",		.data = &k3_rtu_data },
- 	{ .compatible = "ti,am654-tx-pru",	.data = &k3_tx_pru_data },
-+	{ .compatible = "ti,j721e-pru",		.data = &k3_pru_data },
-+	{ .compatible = "ti,j721e-rtu",		.data = &k3_rtu_data },
-+	{ .compatible = "ti,j721e-tx-pru",	.data = &k3_tx_pru_data },
- 	{},
- };
- MODULE_DEVICE_TABLE(of, pru_rproc_match);
+ .../devicetree/bindings/net/nfc/samsung,s3fwrn5.yaml      | 2 +-
+ drivers/nfc/s3fwrn5/i2c.c                                 | 8 +++++++-
+ 2 files changed, 8 insertions(+), 2 deletions(-)
+
 -- 
-2.29.0
+2.17.1
 
