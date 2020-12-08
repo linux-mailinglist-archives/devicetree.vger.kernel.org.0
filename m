@@ -2,212 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 74F392D23CF
-	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 07:47:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6BB872D23D2
+	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 07:48:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726104AbgLHGrh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Dec 2020 01:47:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50810 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725910AbgLHGrh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Dec 2020 01:47:37 -0500
-Received: from mail-ot1-x335.google.com (mail-ot1-x335.google.com [IPv6:2607:f8b0:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA324C061749;
-        Mon,  7 Dec 2020 22:46:56 -0800 (PST)
-Received: by mail-ot1-x335.google.com with SMTP id q25so3179394otn.10;
-        Mon, 07 Dec 2020 22:46:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=FHeqGcpUq0K/LfMy6iWPf10Yt7dCiT+hVL7+V0mFEG4=;
-        b=ZbufPNenq+pVtfYd22sI3tBeluvAD8zx/IiJrcTWvRq860NWC0mMJJHhbKqPS5+NgE
-         8upDHajGqUXVsdHjBST0+zFB8YJ6XajUAxvMLj20nUp/hyUCmPW1oMcr7M6XymwcjmPR
-         kYhQCbjFAjoRe4PcglK8ifIY0sdoa+5kjQN+WhWtjctcnQtsEdqu1BudMB46JMRKp82J
-         0enoOHiIZkJo4+dTATwDHgroskEV4f5EhMVHJIiX91xDJL0GF4wyxw6qZ+pE2/qAvgHy
-         DP7RX0Fb8l634zbgR/py2EBOqcGbEJqAonYYWTCQ2Y7NTQ/GFbGC1XlYH+obVoBsLZn7
-         4jKg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=FHeqGcpUq0K/LfMy6iWPf10Yt7dCiT+hVL7+V0mFEG4=;
-        b=AauOHelPJLhorD03FJffEj4+mnjlxtgxyCT0dxvGsJiaNFYpb0QTMg9GVdIntfJQBx
-         fRvHTbbU0wXcd4UBI5/E/2zICmXyxv59WtQieNRzSLmTVNA/bjzipqjFecVGaWgolKqp
-         utTiUgz+omt6KZwb2frd4ucZ9rZ5M2PVwyU65oCCKtJNKAWGg9M18DN6Ma3jA4JkJSlx
-         Bt+wYxYs/KIYfL5zZPGATovcDVB9Cxkw3S08uSaCVtlBs0NNA5u0Pb+gzfmvT718rv9z
-         SXbiJvg9Nz7PVww4uS6L96njd6PdHKHHiBxugL6eqTIlfnMA9+6zU/faoC7oBwghUNjI
-         5IVg==
-X-Gm-Message-State: AOAM5322UkgAnMsgewzcwYUke5wGnMq3JzN8Xvv3q6cire+Inbe9wkEz
-        hw3stQE2xdV82wpOTeh6PevQp2U7/TkF1gVT3y8=
-X-Google-Smtp-Source: ABdhPJzCAaa7yN+Wk5sFAvAe9YX5TxXG43cpkSCDjtkK9c8g7PvLcNOUJnzq9Y0HW6a+IRBMoNzYb6/AZ+oHIaDen3I=
-X-Received: by 2002:a9d:589:: with SMTP id 9mr15977543otd.72.1607410016335;
- Mon, 07 Dec 2020 22:46:56 -0800 (PST)
+        id S1726697AbgLHGrz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Dec 2020 01:47:55 -0500
+Received: from mail.kernel.org ([198.145.29.99]:57438 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726255AbgLHGrz (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 8 Dec 2020 01:47:55 -0500
+From:   Vinod Koul <vkoul@kernel.org>
+Authentication-Results: mail.kernel.org; dkim=permerror (bad message/signature format)
+To:     Stephen Boyd <sboyd@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>, Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Taniya Das <tdas@codeaurora.org>, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/5] Add clock drivers for SM8350
+Date:   Tue,  8 Dec 2020 12:16:57 +0530
+Message-Id: <20201208064702.3654324-1-vkoul@kernel.org>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-References: <20201207192104.6046-1-sergio.paracuellos@gmail.com>
- <20201207192104.6046-2-sergio.paracuellos@gmail.com> <CACRpkdavpQ+QP56MVQ5E0oxNKWb0tR9g8vHay6-LAc+Bj7tAQQ@mail.gmail.com>
-In-Reply-To: <CACRpkdavpQ+QP56MVQ5E0oxNKWb0tR9g8vHay6-LAc+Bj7tAQQ@mail.gmail.com>
-From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Date:   Tue, 8 Dec 2020 07:46:45 +0100
-Message-ID: <CAMhs-H8rT7ofTsBn7mkp5rWhGfSrMCUHtbn1KLeEUKEeH20=1Q@mail.gmail.com>
-Subject: Re: [PATCH 1/3] dt-bindings: pinctrl: rt2880: add binding document
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Jason Yan <yanaijie@huawei.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:STAGING SUBSYSTEM" <devel@driverdev.osuosl.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Linus,
+This adds rpmhcc and gcc clock controller drivers for the controllers found
+in SM8350 SoC
 
-Thanks for the review. There weren't too many yaml samples for this so
-as you had seen this was a bit messy and I really needed this review,
-especially in the 'if' clause part :).
+Changes in v2:
+ - Add r-b from Bjorn
+ - Add the gcc_qupv3_wrap_1_{m|s}_ahb_clk and gcc_qupv3_wrap1_s5_clk
 
-On Mon, Dec 7, 2020 at 11:42 PM Linus Walleij <linus.walleij@linaro.org> wrote:
->
-> Hi Sergio,
->
-> thanks for driving this!
->
-> On Mon, Dec 7, 2020 at 8:21 PM Sergio Paracuellos
-> <sergio.paracuellos@gmail.com> wrote:
->
-> > The commit adds rt2880 compatible node in binding document.
-> >
-> > Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
-> (...)
-> > +description:
-> > +  The rt2880 pinmux can only set the muxing of pin groups. muxing indiviual pins
-> > +  is not supported. There is no pinconf support.
->
-> OK!
->
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - ralink,rt2880-pinmux
-> > +
-> > +  pinctrl-0:
-> > +    description:
-> > +      A phandle to the node containing the subnodes containing default
-> > +      configurations.
->
-> As it is a node on the pin controller itself, this is a hog so write something
-> about that this is for pinctrl hogs.
+Vinod Koul (3):
+  dt-bindings: clock: Add RPMHCC bindings for SM8350
+  clk: qcom: rpmh: add support for SM8350 rpmh clocks
+  dt-bindings: clock: Add SM8350 GCC clock bindings
 
-Ok, will do.
+Vivek Aknurwar (2):
+  clk: qcom: clk-alpha-pll: Add support for Lucid 5LPE PLL
+  clk: qcom: gcc: Add clock driver for SM8350
 
->
-> > +  pinctrl-names:
-> > +    description:
-> > +      A pinctrl state named "default" must be defined.
-> > +    const: default
->
-> Is it really compulsory?
+ .../bindings/clock/qcom,gcc-sm8350.yaml       |   68 +
+ .../bindings/clock/qcom,rpmhcc.yaml           |    1 +
+ drivers/clk/qcom/Kconfig                      |    9 +
+ drivers/clk/qcom/Makefile                     |    1 +
+ drivers/clk/qcom/clk-alpha-pll.c              |  223 +
+ drivers/clk/qcom/clk-alpha-pll.h              |    4 +
+ drivers/clk/qcom/clk-rpmh.c                   |   34 +
+ drivers/clk/qcom/gcc-sm8350.c                 | 3996 +++++++++++++++++
+ include/dt-bindings/clock/qcom,gcc-sm8350.h   |  261 ++
+ include/dt-bindings/clock/qcom,rpmh.h         |    8 +
+ 10 files changed, 4605 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,gcc-sm8350.yaml
+ create mode 100644 drivers/clk/qcom/gcc-sm8350.c
+ create mode 100644 include/dt-bindings/clock/qcom,gcc-sm8350.h
 
-Not really, I guess. The current device tree contains one so I added
-here because of this.
->
-> > +required:
-> > +  - compatible
-> > +  - pinctrl-names
-> > +  - pinctrl-0
->
-> I wonder if the hogs are really compulsory.
+-- 
+2.26.2
 
-Ok, so I guess I should remove both 'pinctrl-names' and ' pinctrl-0'
-from the required but maintain its desciption.
-
->
-> > +patternProperties:
-> > +  '^.*$':
->
-> That's liberal node naming!
-> What about [a-z0-9_-]+ or something?
-
-hahaha. Yeah, I like freedom :), but yes, you are right, I will change
-the pattern using the one proposed here.
-
->
-> > +    if:
-> > +      type: object
-> > +      description: |
-> > +        A pinctrl node should contain at least one subnodes representing the
-> > +        pinctrl groups available on the machine.
-> > +      $ref: "pinmux-node.yaml"
-> > +      required:
-> > +        - groups
-> > +        - function
-> > +      additionalProperties: false
-> > +    then:
-> > +      properties:
-> > +        groups:
-> > +          description:
-> > +            Name of the pin group to use for the functions.
-> > +          $ref: "/schemas/types.yaml#/definitions/string"
-> > +          enum: [i2c, spi, uart1, uart2, uart3, rgmii1, rgmii2, mdio,
-> > +                 pcie, sdhci]
-> > +        function:
-> > +          description:
-> > +            The mux function to select
-> > +          $ref: "/schemas/types.yaml#/definitions/string"
-> > +          enum: [gpio, i2c, spi, uart1, uart2, uart3, rgmii1, rgmii2,
-> > +                 mdio, nand1, nand2, sdhci]
->
-> Why do we have this complex if: clause?
-
-To be honest to avoid problems with other pinctrl root nodes because
-they are not type 'object' and not having real idea in what way this
-should be achieved :).
-
-> $ref: "pinmux-node.yaml" should bring in the groups and
-> function properties. Then you can add some further restrictions
-> on top of that, right?
->
-> I would just do:
->
-> patternProperties:
->   '^[a-z0-9_]+$':
->     type: object
->       description: node for pinctrl
->       $ref "pinmux-node.yaml"
->
->       properties:
->         groups:
->           description: groups...
->           enum: [i2c, spi, uart1, uart2, uart3, rgmii1, rgmii2, mdio,
-> pcie, sdhci]
->         function:
->           description: function...
->           enum: [gpio, i2c, spi, uart1, uart2, uart3, rgmii1, rgmii2,
-> mdio, nand1, nand2, sdhci]
->
-> Note: the function names are fine but the group names are a bit
-> confusion since often a group can be used for more than one
-> function, and e.g.
->
-> function = "i2c";
-> group = "uart1";
->
-> to use the uart1 pins for an i2c is gonna look mildly confusing.
->
-> But if this is what the hardware calls it I suppose it is
-> fine.
-
-This is the way is currently being used in the device tree.
-
->
-> Yours,
-> Linus Walleij
-
-Thanks again. I will change this and send v2.
-
-Best regards,
-     Sergio Paracuellos
