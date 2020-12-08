@@ -2,100 +2,220 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1400B2D280D
-	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 10:48:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F5642D2829
+	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 10:52:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726584AbgLHJsG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Dec 2020 04:48:06 -0500
-Received: from foss.arm.com ([217.140.110.172]:46448 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726334AbgLHJsF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 8 Dec 2020 04:48:05 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id AEEDC30E;
-        Tue,  8 Dec 2020 01:47:19 -0800 (PST)
-Received: from e121166-lin.cambridge.arm.com (e121166-lin.cambridge.arm.com [10.1.196.255])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E88A03F68F;
-        Tue,  8 Dec 2020 01:47:17 -0800 (PST)
-Date:   Tue, 8 Dec 2020 09:47:12 +0000
-From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org, kishon@ti.com,
-        vkoul@kernel.org, robh@kernel.org, svarbanov@mm-sol.com,
-        bhelgaas@google.com, linux-arm-msm@vger.kernel.org,
-        linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
-        mgautam@codeaurora.org, devicetree@vger.kernel.org,
-        truong@codeaurora.org
-Subject: Re: [PATCH v5 0/5] Add PCIe support for SM8250 SoC
-Message-ID: <20201208094712.GA30430@e121166-lin.cambridge.arm.com>
-References: <20201027170033.8475-1-manivannan.sadhasivam@linaro.org>
+        id S1727796AbgLHJwO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Dec 2020 04:52:14 -0500
+Received: from wout2-smtp.messagingengine.com ([64.147.123.25]:49571 "EHLO
+        wout2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726338AbgLHJwO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Dec 2020 04:52:14 -0500
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailout.west.internal (Postfix) with ESMTP id C82839F3;
+        Tue,  8 Dec 2020 04:51:27 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute6.internal (MEProxy); Tue, 08 Dec 2020 04:51:28 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm1; bh=2Gak1qiZW0dpp2vMBPgxczXXbri
+        NORxQyc2JXCqhMqg=; b=nwP/WvDTQ3TdtdsPKHa9It+54p+uyj4L6coAwv8b1N4
+        YY3j7h1KhxQy8oqSXvnFkoanHGmOZTX1Mp7zIpSInGOAc5NDjfHbZUWVhtn1g2az
+        l5lxK1SmCCG1BNYooXouoD0bO9PJCRHioDdZj5Vq4f7TTz1ezuQeFaXWrJo0UpN3
+        MD53y846B+5wz+9kCFqTYQ+3N5xZrjjn1xUjvb8jSw79307dNsO36bmifCJRna7C
+        NwdFR6uLo8U16fxQ+lYepjrYqUJGC20IEt6ukCORnx6XEYGpYMzG/2WcVTTobc10
+        gmkwwOHXOGR7nyPEQaPtgRS3jkgJMaYYWO4Q945uGaQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=2Gak1q
+        iZW0dpp2vMBPgxczXXbriNORxQyc2JXCqhMqg=; b=Q0xUPpQiJPSlGfr3Mgfh2y
+        X9fGUT+y3h1MYcG+69TA6WRjTbSv/1ecvi0fG0DCjJPdmmAy5NyjEmrmQ+P6ktjn
+        G2yw/bneVr9dQzN8Ud3HwAiMbjskTj9mK7uEZxF27UPF7b3oqjSKb7GzU5mx/tLd
+        ohtRrZ4ewUM88MdsywSh8pgAF+R6tLmSPTwgQIAX8aF26E1Bv/B8Ps7dacd44Fqv
+        Z1wZ3WbTAAX+oKTTT83ChioXXjbndTbjI/xzFQ6ACWkMVrtzrqOHiY8+z/hahfkG
+        wc1RKxrO8UsLx8KnluYL3+vqfwHlAUYXF7+uvCHlmMIK3st3Gk18e3lDd+65ebBQ
+        ==
+X-ME-Sender: <xms:nkzPX1z55BP5Myd-ofWmsGO8wWr7FQXSw2YQALbNYWIC0XieCKT4mA>
+    <xme:nkzPX1TwTCH9OPTIP_0JlAdsT6YcgE20M0HZ1hxTn0B0AWbzZgpcezlut3u0EHwFu
+    L-wZgYqPu8XBTWJRu0>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrudejiedgtdekucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
+    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+    htvghrnhepveegudetkeethfetgffgtdekkefghefhffefgeduleehgeehieeuveefgedv
+    ieegnecuffhomhgrihhnpehgihhthhhusgdrtghomhenucfkphepledtrdekledrieekrd
+    ejieenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehm
+    rgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:nkzPX_Ujfqpu6opVa4ZMM20sgLvqhYwHcDtYly4_3ZCYAJxD4DQr3Q>
+    <xmx:nkzPX3jZwsxQuyZDvvdO5CXIaeWyVH8HaOfjlxh3RJ5wxAIXBGYtQw>
+    <xmx:nkzPX3AsPAVlynP8KMlK97dAOjNbUE8oovLf8OZSc2RFdgvya0yQ-A>
+    <xmx:n0zPXy6R1E2SRnQ6FAHJuy3BYeRzS-UnMkYMJend3ujpO4bD40EdGA>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 3C75524005C;
+        Tue,  8 Dec 2020 04:51:26 -0500 (EST)
+Date:   Tue, 8 Dec 2020 10:51:23 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Shuosheng Huang <huangshuosheng@allwinnertech.com>
+Cc:     robh+dt@kernel.org, wens@csie.org, jernej.skrabec@siol.net,
+        tiny.windzz@gmail.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 5/6] arm64: dts: allwinner: a100: Add Add CPU
+ Operating Performance Points table
+Message-ID: <20201208095123.guu7zqskxckd5vsc@gilmour>
+References: <20201208072046.14186-1-huangshuosheng@allwinnertech.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="gq44mz5gfrr6gubq"
 Content-Disposition: inline
-In-Reply-To: <20201027170033.8475-1-manivannan.sadhasivam@linaro.org>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <20201208072046.14186-1-huangshuosheng@allwinnertech.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 27, 2020 at 10:30:28PM +0530, Manivannan Sadhasivam wrote:
-> Hello,
-> 
-> This series adds PCIe support for Qualcomm SM8250 SoC with relevant PHYs.
-> There are 3 PCIe instances on this SoC each with different PHYs. The PCIe
-> controller and PHYs are mostly comaptible with the ones found on SDM845
-> SoC, hence the old drivers are modified to add the support.
-> 
-> This series has been tested on RB5 board with QCA6391 chipset connected
-> onboard.
 
-Hi,
+--gq44mz5gfrr6gubq
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-I would be merging this series, I understand patch {2) was already
-taken by Vinod - should I take {1,3,4,5} via the pci tree ?
+On Tue, Dec 08, 2020 at 03:20:46PM +0800, Shuosheng Huang wrote:
+> Add an Operating Performance Points table for the CPU cores to
+> enable Dynamic Voltage & Frequency Scaling on the A100.
+>=20
+> Signed-off-by: Shuosheng Huang <huangshuosheng@allwinnertech.com>
+> ---
+>  .../allwinner/sun50i-a100-allwinner-perf1.dts |  1 +
+>  .../dts/allwinner/sun50i-a100-cpu-opp.dtsi    | 90 +++++++++++++++++++
+>  2 files changed, 91 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-a100-cpu-opp.dtsi
+>=20
+> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a100-allwinner-perf1.dt=
+s b/arch/arm64/boot/dts/allwinner/sun50i-a100-allwinner-perf1.dts
+> index d34c2bb1079f..301793c72cb7 100644
+> --- a/arch/arm64/boot/dts/allwinner/sun50i-a100-allwinner-perf1.dts
+> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a100-allwinner-perf1.dts
+> @@ -6,6 +6,7 @@
+>  /dts-v1/;
+> =20
+>  #include "sun50i-a100.dtsi"
+> +#include "sun50i-a100-cpu-opp.dtsi"
 
-Thanks,
-Lorenzo
+This should be on the next patch
 
-> Thanks,
-> Mani
-> 
-> Changes in v5:
-> 
-> * Added Review tags from Rob
-> * Cleaned up the bdf to sid patch after discussing with Tony
-> 
-> Changes in v4:
-> 
-> * Fixed an issue with tx_tbl_sec in PHY driver
-> 
-> Changes in v3:
-> 
-> * Rebased on top of phy/next
-> * Renamed ops_sm8250 to ops_1_9_0 to maintain uniformity
-> 
-> Changes in v2:
-> 
-> * Fixed the PHY and PCIe bindings
-> * Introduced secondary table in PHY driver to abstract out the common configs.
-> * Used a more generic way of configuring BDF to SID mapping
-> * Dropped ATU change in favor of a patch spotted by Rob
-> 
-> Manivannan Sadhasivam (5):
->   dt-bindings: phy: qcom,qmp: Add SM8250 PCIe PHY bindings
->   phy: qcom-qmp: Add SM8250 PCIe QMP PHYs
->   dt-bindings: pci: qcom: Document PCIe bindings for SM8250 SoC
->   PCI: qcom: Add SM8250 SoC support
->   PCI: qcom: Add support for configuring BDF to SID mapping for SM8250
-> 
->  .../devicetree/bindings/pci/qcom,pcie.txt     |   6 +-
->  .../devicetree/bindings/phy/qcom,qmp-phy.yaml |   6 +
->  drivers/pci/controller/dwc/Kconfig            |   1 +
->  drivers/pci/controller/dwc/pcie-qcom.c        |  92 ++++++
->  drivers/phy/qualcomm/phy-qcom-qmp.c           | 281 +++++++++++++++++-
->  drivers/phy/qualcomm/phy-qcom-qmp.h           |  18 ++
->  6 files changed, 398 insertions(+), 6 deletions(-)
-> 
-> -- 
-> 2.17.1
-> 
+>  /{
+>  	model =3D "Allwinner A100 Perf1";
+> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a100-cpu-opp.dtsi b/arc=
+h/arm64/boot/dts/allwinner/sun50i-a100-cpu-opp.dtsi
+> new file mode 100644
+> index 000000000000..e245823d70e8
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a100-cpu-opp.dtsi
+> @@ -0,0 +1,90 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +// Copyright (c) 2020 Yangtao Li <frank@allwinnertech.com>
+> +// Copyright (c) 2020 ShuoSheng Huang <huangshuosheng@allwinnertech.com>
+> +
+> +/ {
+> +	cpu_opp_table: cpu-opp-table {
+> +		compatible =3D "allwinner,sun50i-h6-operating-points";
+> +		nvmem-cells =3D <&cpu_speed_grade>;
+> +		opp-shared;
+> +
+> +		opp@408000000 {
+
+This node name will create a DTC warning if compiled with W=3D1, since the
+unit-address doesn't match the reg property (there's none), and it's
+supposed to.
+
+> +			clock-latency-ns =3D <244144>; /* 8 32k periods */
+> +			opp-hz =3D /bits/ 64 <408000000>;
+> +
+> +			opp-microvolt-speed0 =3D <900000 900000 1200000>;
+> +			opp-microvolt-speed1 =3D <900000 900000 1200000>;
+> +			opp-microvolt-speed2 =3D <900000 900000 1200000>;
+> +		};
+> +
+> +		opp@600000000 {
+> +			clock-latency-ns =3D <244144>; /* 8 32k periods */
+> +			opp-hz =3D /bits/ 64 <600000000>;
+> +
+> +			opp-microvolt-speed0 =3D <900000 900000 1200000>;
+> +			opp-microvolt-speed1 =3D <900000 900000 1200000>;
+> +			opp-microvolt-speed2 =3D <900000 900000 1200000>;
+> +		};
+> +
+> +		opp@816000000 {
+> +			clock-latency-ns =3D <244144>; /* 8 32k periods */
+> +			opp-hz =3D /bits/ 64 <816000000>;
+> +
+> +			opp-microvolt-speed0 =3D <940000 940000 1200000>;
+> +			opp-microvolt-speed1 =3D <900000 900000 1200000>;
+> +			opp-microvolt-speed2 =3D <900000 900000 1200000>;
+> +		};
+> +
+> +		opp@1080000000 {
+> +			clock-latency-ns =3D <244144>; /* 8 32k periods */
+> +			opp-hz =3D /bits/ 64 <1080000000>;
+> +
+> +			opp-microvolt-speed0 =3D <1020000 1020000 1200000>;
+> +			opp-microvolt-speed1 =3D <980000 980000 1200000>;
+> +			opp-microvolt-speed2 =3D <950000 950000 1200000>;
+> +		};
+> +
+> +		opp@1200000000 {
+> +			clock-latency-ns =3D <244144>; /* 8 32k periods */
+> +			opp-hz =3D /bits/ 64 <1200000000>;
+> +
+> +			opp-microvolt-speed0 =3D <1100000 1100000 1200000>;
+> +			opp-microvolt-speed1 =3D <1020000 1020000 1200000>;
+> +			opp-microvolt-speed2 =3D <1000000 1000000 1200000>;
+> +		};
+> +
+> +		opp@1320000000 {
+> +			clock-latency-ns =3D <244144>; /* 8 32k periods */
+> +			opp-hz =3D /bits/ 64 <1320000000>;
+> +
+> +			opp-microvolt-speed0 =3D <1160000 1160000 1200000>;
+> +			opp-microvolt-speed1 =3D <1060000 1060000 1200000>;
+> +			opp-microvolt-speed2 =3D <1030000 1030000 1200000>;
+> +		};
+> +
+> +		opp@1464000000 {
+> +			clock-latency-ns =3D <244144>; /* 8 32k periods */
+> +			opp-hz =3D /bits/ 64 <1464000000>;
+> +
+> +			opp-microvolt-speed0 =3D <1180000 1180000 1200000>;
+> +			opp-microvolt-speed1 =3D <1180000 1180000 1200000>;
+> +			opp-microvolt-speed2 =3D <1130000 1130000 1200000>;
+> +		};
+> +	};
+> +};
+
+Can you run cpufreq-ljt-stress-test from
+https://github.com/ssvb/cpuburn-arm and paste the result in the cover
+letter to make sure all the OPPs are working fine?
+
+Also, at what frequency is the bootloader expected to set the CPU when
+booting? If it's anything lower than 1464MHz, we should separate the
+OPPs higher than the initial frequency.
+
+A board without the regulator set would try to use those OPPs without
+raising the voltage of the CPU, resulting in fairly hard to debug
+crashes.
+
+Maxime
+
+--gq44mz5gfrr6gubq
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX89MlwAKCRDj7w1vZxhR
+xaeyAP9GN0sGhqg4JuuYlpeuXRIyO8epgKKhxD+AQxx0P2cmEwD/UNmIlBryIwrG
+iibJaHv5wMmH8r+2x8r/y+nVQQbD7wY=
+=6V2S
+-----END PGP SIGNATURE-----
+
+--gq44mz5gfrr6gubq--
