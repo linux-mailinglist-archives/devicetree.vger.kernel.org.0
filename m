@@ -2,98 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BA2F62D31D6
-	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 19:13:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1661F2D31E0
+	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 19:15:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730953AbgLHSNK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Dec 2020 13:13:10 -0500
-Received: from mga02.intel.com ([134.134.136.20]:27995 "EHLO mga02.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730495AbgLHSNK (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 8 Dec 2020 13:13:10 -0500
-IronPort-SDR: xdE8xuk9x4B79DJHW8VXOuDHi04ebZkd7eq0CsDykPa3IvRDu/ckHY5e2ikTKBJfZ0hjC1oW1c
- 2iDhO5skBB5g==
-X-IronPort-AV: E=McAfee;i="6000,8403,9829"; a="160993317"
-X-IronPort-AV: E=Sophos;i="5.78,403,1599548400"; 
-   d="scan'208";a="160993317"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Dec 2020 10:11:24 -0800
-IronPort-SDR: /N7eHvVhIB2XWVuiGk32sRuWgu7ap1B1nX/UPdJmXK3+HP2qq1+d8fROUnqO50TNO0V//cEWH2
- TL1oABWSQZqg==
-X-IronPort-AV: E=Sophos;i="5.78,403,1599548400"; 
-   d="scan'208";a="370477310"
-Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
-  by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Dec 2020 10:11:22 -0800
-Received: from andy by smile with local (Exim 4.94)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1kmhTM-00Cso6-6l; Tue, 08 Dec 2020 20:12:24 +0200
-Date:   Tue, 8 Dec 2020 20:12:24 +0200
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     vijayakannan.ayyathurai@intel.com, daniel.lezcano@linaro.org,
-        tglx@linutronix.de, devicetree@vger.kernel.org,
-        mgross@linux.intel.com, wan.ahmad.zainie.wan.mohamad@intel.com,
-        lakshmi.bai.raja.subramanian@intel.com
-Subject: Re: [PATCH v1 1/2] dt-bindings: timer: Add bindings for Intel Keem
- Bay SoC timer
-Message-ID: <20201208181224.GM4077@smile.fi.intel.com>
-References: <cover.1606377035.git.vijayakannan.ayyathurai@intel.com>
- <2938028520edbd0140805a22bdacd0b30c45b2df.1606377035.git.vijayakannan.ayyathurai@intel.com>
- <20201208161247.GA2620425@robh.at.kernel.org>
+        id S1730963AbgLHSOI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Dec 2020 13:14:08 -0500
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:33350 "EHLO
+        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730964AbgLHSOI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Dec 2020 13:14:08 -0500
+Received: by mail-ot1-f67.google.com with SMTP id b18so16687193ots.0;
+        Tue, 08 Dec 2020 10:13:46 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=wh9jnHQilX25aULdurAa38tQjEpUFH5bf92wn1kDkV8=;
+        b=OwkN4dibKBgZpkzhbxAGCRyW/Xl2MS0W1rX51y5rt4ZW+L+RNE1QABRU+PR4ZJnOJM
+         t36o5mO8CyDGdp9F5H4qGv24i2yM0AxuJsRjvbI4MLlxRo0K7X9MStJheOiBpgieisha
+         SpEVVphTasH3JXzBu07pEGRBWi76lj9tRmX8crvhDv/c1SUHvXPYSMD+Cy5JWI93TR3/
+         rqEb61YP5OL8Yb2vBbHAnP2qmq1+Z1HpXpMMhnWPw46UxJmv3O5gKyNeb10g/wvQMnU7
+         jSC3VL2/eU3pBEO7mvf/7HyNZtRDL2K7N0P6aGID3yM7bNzuzw7vylbLFxCsierfLOND
+         g6Ig==
+X-Gm-Message-State: AOAM5331+F7zHlL256RU0jHC+kK/vG1RyBDLMHlg1LjiDlFduwz7/5rd
+        HPkyWeGSfcPOI06oSYrwHKP6DcxGaA==
+X-Google-Smtp-Source: ABdhPJwZ5y52wb+PR4oET30Dmr/zuMyrdN//jT7ed3cWNfcEWlJ0YwR/XNow1Rub7kvrkr99kH9H9A==
+X-Received: by 2002:a9d:5f03:: with SMTP id f3mr17786964oti.91.1607451201547;
+        Tue, 08 Dec 2020 10:13:21 -0800 (PST)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id y204sm2448491oiy.38.2020.12.08.10.13.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 08 Dec 2020 10:13:19 -0800 (PST)
+Received: (nullmailer pid 2814302 invoked by uid 1000);
+        Tue, 08 Dec 2020 18:13:18 -0000
+Date:   Tue, 8 Dec 2020 12:13:18 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Alexandru Ardelean <alexandru.ardelean@analog.com>
+Cc:     dmitry.torokhov@gmail.com, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org, linux-input@vger.kernel.org,
+        devicetree@vger.kernel.org, lars@metafoo.de
+Subject: Re: [PATCH v3 4/4] dt-bindings: add ADP5585/ADP5589 entries to
+ trivial-devices
+Message-ID: <20201208181318.GA2814147@robh.at.kernel.org>
+References: <20201127111420.96500-1-alexandru.ardelean@analog.com>
+ <20201127111420.96500-4-alexandru.ardelean@analog.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201208161247.GA2620425@robh.at.kernel.org>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+In-Reply-To: <20201127111420.96500-4-alexandru.ardelean@analog.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 08, 2020 at 10:12:47AM -0600, Rob Herring wrote:
-> On Thu, Nov 26, 2020 at 06:34:08PM +0800, vijayakannan.ayyathurai@intel.com wrote:
-> > From: Vijayakannan Ayyathurai <vijayakannan.ayyathurai@intel.com>
-> > 
-> > Add Device Tree bindings for the Timer IP, which used as clocksource and
-> > clockevent in the Intel Keem Bay SoC.
-
-...
-
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > +    #include <dt-bindings/interrupt-controller/irq.h>
-> > +    #define KEEM_BAY_A53_TIM
-> > +
-> > +    timer@20330010 {
-> > +        compatible = "intel,keembay-timer";
-> > +        reg = <0x20330010 0xc>,
-> > +              <0x20331000 0xc>;
-> > +        interrupts = <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>;
-> > +        clocks = <&scmi_clk KEEM_BAY_A53_TIM>;
-> > +    };
-> > +
-> > +    counter@203300e8 {
-> > +        compatible = "intel,keembay-counter";
-> > +        reg = <0x203300e8 0xc>,
-> > +              <0x20331000 0xc>;
+On Fri, 27 Nov 2020 13:14:20 +0200, Alexandru Ardelean wrote:
+> This change adds the device-tree entries for the Analog Devices ADP5585 and
+> ADP5589 devices to the trivial devices list.
 > 
-> You have overlapping reg regions here. Don't do that. Define the DT 
-> in terms of the h/w, not how you want to split things for Linux.
+> Signed-off-by: Alexandru Ardelean <alexandru.ardelean@analog.com>
+> ---
+>  Documentation/devicetree/bindings/trivial-devices.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
 > 
-> It looks like a single h/w block providing multiple functions.
 
-Actually a good catch.
-
-Perhaps it needs to have a parent device that provides three resources (one
-common and one per each of two functions) and in the driver it should consume
-them accordingly. Though I'm not an expert in DT, does it sound correct from
-your perspective?
-
-> > +        clocks = <&scmi_clk KEEM_BAY_A53_TIM>;
-> > +    };
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+Applied, thanks!
