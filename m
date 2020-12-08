@@ -2,79 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A31F02D2A71
-	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 13:15:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D03A2D2A75
+	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 13:15:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729327AbgLHMN7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Dec 2020 07:13:59 -0500
-Received: from mail.kernel.org ([198.145.29.99]:50552 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726361AbgLHMN7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 8 Dec 2020 07:13:59 -0500
-Date:   Tue, 8 Dec 2020 12:13:12 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1607429599;
-        bh=mLvA4FB9gzMsXJ8QIezTtXurSP32ina1dgLS7P/tnCs=;
-        h=From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ZMVHeQyHNSPwCQMbCqYhkTXnoF9Z0QSIOtBEpu8fRMHacmE3u67zGCIb5ThVu1RDq
-         vx9/bw7vyu4AOMfQfGcw0JJbrvDtOMBSxVvumIhLuvhrkd0mGhlby6plAJp2GVYPh1
-         RrJ2fW2vF0y5dvorTHyn4QwahvD3EH/FikvL63w7v7dnQxaNgw1irKUt4MyUJ5GBhq
-         9r3bJfmuDklX/Gu7uAJmWcceeN9m6IOquI/OZ/ex3N7kNjdXBaAMhC8otrZlzCtoQM
-         znyHuaX31VvvRQO4Znt/z/ZzBRAsyfnfuEmyxh2BxpVHCKDS0x10yO1x0qxCYzij+y
-         QqTB79P6JCkkQ==
-From:   Mark Brown <broonie@kernel.org>
-To:     Sameer Pujar <spujar@nvidia.com>
-Cc:     thierry.reding@gmail.com, robh+dt@kernel.org, sharadg@nvidia.com,
-        jonathanh@nvidia.com, kuninori.morimoto.gx@renesas.com,
-        linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org
-Subject: Re: Re: [PATCH v6 0/6] Tegra210 audio graph card
-Message-ID: <20201208121312.GB6686@sirena.org.uk>
-References: <1606413823-19885-1-git-send-email-spujar@nvidia.com>
- <160683107678.35139.14772386553150233276.b4-ty@kernel.org>
- <a3541d83-1f2e-c60f-05f8-4fdd8c8f4175@nvidia.com>
- <20201207123131.GB5694@sirena.org.uk>
- <14d2a6cc-9ca6-f6dd-ae83-6fc75d5361eb@nvidia.com>
+        id S1729419AbgLHMO5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Dec 2020 07:14:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44930 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729342AbgLHMO5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Dec 2020 07:14:57 -0500
+Received: from mail-pf1-x442.google.com (mail-pf1-x442.google.com [IPv6:2607:f8b0:4864:20::442])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB8E3C061793
+        for <devicetree@vger.kernel.org>; Tue,  8 Dec 2020 04:14:16 -0800 (PST)
+Received: by mail-pf1-x442.google.com with SMTP id w6so13743063pfu.1
+        for <devicetree@vger.kernel.org>; Tue, 08 Dec 2020 04:14:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=fXCEVGsIRfU3fvhpZQTmT+oIgD4SahenV2U/sWf5U20=;
+        b=Xi09IcSDA1msKP7AAF7eX00q2D6OwK6gSBuUGpA2wuYwcJlM9NUbRRx7MdK3LWlVe1
+         am4ut+xc79MskNZWxHte1/VTzVh4mvZvLfpCjfwMTu7IYDzPyPIWWo9WV6OnUmNOYDFC
+         4IuhYwBaDIumRMtGV5QsUNXyuYO4ltqk8Odtk44VrEHDJMpttLRzeYOYzpIXbO1T+cs0
+         alyC22DY/WF+LswKNkyqRxrBHP3cI7PI3I0K64CwXpVwSQo5OAa2Cwbj3/YX8eCNi6pj
+         wqztEifvFqaWUfIQz03Jr7h7PvZyjqXv+OFtGkqGnZSXdqvA3LxocB3QuT5+23h+zYUf
+         ORow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=fXCEVGsIRfU3fvhpZQTmT+oIgD4SahenV2U/sWf5U20=;
+        b=EjN/NfPc1idPjFC+XbGFMtZK0CNskGGxA69kTPhW/H+2g0TloKFZcFd2NZArpZ9D/k
+         am9dL0fcILP9lH4J5I+gmkAfYUHUQBjymFI4cHpdIyUP0GS8zd1Z4/6tmILAUqbrtzo6
+         Zu3np2E1lxE9CYXOvuaXaXulSxDdPGOVH7c91WOL/PRnIu5x4aCVn75LnD6hTwTCqWX6
+         8L6baTfpQwG6+b9kAQUXgGEgG5GDBPZTke01svC00OYre1YCq6IxcjEj1m3FmE+iIG59
+         F9kbjYbQFtsAK4w4CJn1Ifbc2l1ekNiuDf+18TLlz6q+vfyw26Xbg4XCPWUG4OKkjEN5
+         sq1w==
+X-Gm-Message-State: AOAM531WEDrULozgY3cPhpt+RCHB6zUGYcLwx0XsKtgJZQ1oPhcnLH8C
+        LKVz816hYQLmwV0rj59irddn
+X-Google-Smtp-Source: ABdhPJxnuneQiA43hK45ihID2ydEYhPdh54oYY+0SUSzUCDDyEkIakdavTKKdkMzHJd14OwJrOSf4A==
+X-Received: by 2002:a05:6a00:2302:b029:198:4459:e6c9 with SMTP id h2-20020a056a002302b02901984459e6c9mr20125297pfh.33.1607429655887;
+        Tue, 08 Dec 2020 04:14:15 -0800 (PST)
+Received: from localhost.localdomain ([103.59.133.81])
+        by smtp.gmail.com with ESMTPSA id v3sm3489889pjn.7.2020.12.08.04.14.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 08 Dec 2020 04:14:15 -0800 (PST)
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+X-Google-Original-From: Manivannan Sadhasivam <mani@kernel.org>
+To:     lorenzo.pieralisi@arm.com
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org,
+        svarbanov@mm-sol.com, bhelgaas@google.com,
+        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+        linux-kernel@vger.kernel.org, mgautam@codeaurora.org,
+        devicetree@vger.kernel.org, truong@codeaurora.org,
+        Manivannan Sadhasivam <mani@kernel.org>
+Subject: [PATCH v6 0/3] Add PCIe support for SM8250 SoC
+Date:   Tue,  8 Dec 2020 17:43:59 +0530
+Message-Id: <20201208121402.178011-1-mani@kernel.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="bCsyhTFzCvuiizWE"
-Content-Disposition: inline
-In-Reply-To: <14d2a6cc-9ca6-f6dd-ae83-6fc75d5361eb@nvidia.com>
-X-Cookie: Do not dry clean.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hello,
 
---bCsyhTFzCvuiizWE
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This series adds PCIe support for Qualcomm SM8250 SoC with relevant PHYs.
+There are 3 PCIe instances on this SoC each with different PHYs. The PCIe
+controller and PHYs are mostly comaptible with the ones found on SDM845
+SoC, hence the old drivers are modified to add the support.
 
-On Tue, Dec 08, 2020 at 09:24:47AM +0530, Sameer Pujar wrote:
+This series has been tested on RB5 board with QCA6391 chipset connected
+onboard.
 
-> > No, this was sent by a b4 bug - notice the "no commit info" there, they
-> > weren't applied.
+Thanks,
+Mani
 
-> Oh I see! I guess review would be still pending then.
+Changes in v6:
 
-I don't seem to have them in my backlog so either there was feedback
-=66rom someone else I was expecting to see addressed or some other issue.
+* Dropped phy patches and rebased on top of pci/dwc branch
+* Collected reviews from Bjorn
 
---bCsyhTFzCvuiizWE
-Content-Type: application/pgp-signature; name="signature.asc"
+Changes in v5:
 
------BEGIN PGP SIGNATURE-----
+* Added Review tags from Rob
+* Cleaned up the bdf to sid patch after discussing with Tony
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl/PbdcACgkQJNaLcl1U
-h9CqnQf/eMYjgDWfCNyswXGemvr7kIq6mU3xUpEyqfZR+q62DDj64lzHbDh+56qf
-IQR1LbQUCVgzig4dhU3+Sz6/mjZx7kxCac+Gp//Px7tcGoG0h5vaCHszxguqF/7Y
-TnHTOm76s06tVl8eS9eZf4sN0xbWQWNaq7wk1KYxorUAqpAjQU0giDPhXHDwRJWw
-ogelYbCNvEVqxHTKRn8ZoMQsdatgxiyUiUu+ZXHKbUUHhAAqUhxs0cAbSdI5KDOy
-Ijqlx7oYx1m6IRQpEJDonQPe4K3EYbZz5umZKB9S8zOYDmd0cGFWpbVhjZfQ/nYx
-1uf+VdF8gSYdWzAYO6jkUKPEXF+eVA==
-=ZNIG
------END PGP SIGNATURE-----
+Changes in v4:
 
---bCsyhTFzCvuiizWE--
+* Fixed an issue with tx_tbl_sec in PHY driver
+
+Changes in v3:
+
+* Rebased on top of phy/next
+* Renamed ops_sm8250 to ops_1_9_0 to maintain uniformity
+
+Changes in v2:
+
+* Fixed the PHY and PCIe bindings
+* Introduced secondary table in PHY driver to abstract out the common configs.
+* Used a more generic way of configuring BDF to SID mapping
+* Dropped ATU change in favor of a patch spotted by Rob
+
+Manivannan Sadhasivam (3):
+  dt-bindings: pci: qcom: Document PCIe bindings for SM8250 SoC
+  PCI: qcom: Add SM8250 SoC support
+  PCI: qcom: Add support for configuring BDF to SID mapping for SM8250
+
+ .../devicetree/bindings/pci/qcom,pcie.txt     |  6 +-
+ drivers/pci/controller/dwc/Kconfig            |  1 +
+ drivers/pci/controller/dwc/pcie-qcom.c        | 96 +++++++++++++++++++
+ 3 files changed, 101 insertions(+), 2 deletions(-)
+
+-- 
+2.25.1
+
