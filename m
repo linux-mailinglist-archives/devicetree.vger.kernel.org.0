@@ -2,81 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 453002D25BE
-	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 09:22:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 788912D2643
+	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 09:35:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726830AbgLHIWa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Dec 2020 03:22:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37174 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725208AbgLHIWa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Dec 2020 03:22:30 -0500
-Received: from mail-lj1-x242.google.com (mail-lj1-x242.google.com [IPv6:2a00:1450:4864:20::242])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBBBDC061749
-        for <devicetree@vger.kernel.org>; Tue,  8 Dec 2020 00:21:43 -0800 (PST)
-Received: by mail-lj1-x242.google.com with SMTP id y22so3296205ljn.9
-        for <devicetree@vger.kernel.org>; Tue, 08 Dec 2020 00:21:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=/L9ij+xi4aU+RA5FHQP+6+0fS+qsQ1KICkMdHJmFYFc=;
-        b=bYPvkZyzHphpd2LIG29zK/pI8TNd8M64LXuz04KBFAzCVM2tn6HgtLC4y0krAVsJGv
-         HmZ6aUEcKYzXhARN1OGrWuBrOKpnEmmtqa7ywUSjV2r3A/jB2vpbQwNsgZOlxEJUcsl8
-         QPPgKvurbDc295hFdI/W3mWEddd+hjtVyjNxtB0fT1BAi4cCrNQVH6032xcs8asD7CgZ
-         EjanTiW0Fb3w7kLQrHr//TwXgV/cX7v7abUMsryIbh+Zh3qx0UasUnD0LEuYbhxqaqX1
-         Y8uQ6gjPAkp/qoxxPhEYKuWcbegGalJQIMuDoMvXI7pe3d8Y1O/e8XVdhZAy05EJc7mH
-         8j8Q==
+        id S1728053AbgLHIfP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Dec 2020 03:35:15 -0500
+Received: from mail-wm1-f65.google.com ([209.85.128.65]:52157 "EHLO
+        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727943AbgLHIfP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Dec 2020 03:35:15 -0500
+Received: by mail-wm1-f65.google.com with SMTP id v14so1408393wml.1;
+        Tue, 08 Dec 2020 00:34:58 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=/L9ij+xi4aU+RA5FHQP+6+0fS+qsQ1KICkMdHJmFYFc=;
-        b=W8xRUazR4AJBBEUUzZ5BPXUpZ1orao1R1v3xMaU4xUA4V89KK25nWFK8U35MksJtBE
-         huiWSvSTdrTD2oTqfKjegjfE8Cw5LFPPlUZeCMTIK9StGICZ6g1WyLolrdQstgrAXRY4
-         E7kJxWPMgKa4c02Fpqa7s1Lpz/9Ph8ZB6DEtTgSX3r74ekfYWebf3VMVEgUtjYk1QUOK
-         5FQfFN4rDrm97ZRS07rcneWfQfzzTgEosEr1Q1Yf/7RtAIsBMm3A7oX2K6PRLIxMkuXC
-         VPBF5NiOHoTINQqjVdGpJ6ov6b0BjAf5HYfZH2t3OTR59vHqTOkxnOblWCj+K9+Ge0+r
-         GPuA==
-X-Gm-Message-State: AOAM532dLzpbPjSqRLNsHB82EN9zLjsNDr2JP+l16YZ021Pgy0LdY7Rp
-        j4jUcOJ5PC/2hpbjzD4p+zoMXGYRBysGawRjLrgIFkxjOaxMWg==
-X-Google-Smtp-Source: ABdhPJz3QSFZPxGv2N/pnXp+VezSxPYZ2V9M6+O2npQftKaRSLMZh4qMKQdxMJx/Ncz13H34GLneBICqZoSBqKisFV4=
-X-Received: by 2002:a2e:b1c9:: with SMTP id e9mr10482058lja.283.1607415702493;
- Tue, 08 Dec 2020 00:21:42 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=enzNCtuTXUERAqWNP2FRX/lOAT01YdeUK6MfKS4566M=;
+        b=Tlgm/H0r8g5Isq+IM4hd8x9wy7G6eeRJtwzBQGO0mkc22dG8Hm6uXLex11LM5naswG
+         FAzZMWGCzb+N76xBr9YEDL2xthgDqkm+uvAIAfEinV2dH0Mq6Mem8T+946gPLvqlyPUN
+         yjBJ4g/tsIlqrYzeumLV3CdzGdGF5x9HPkaYq4ES6P4+20LyTAcYEbq1yHlT5gfpHRSC
+         v4YmYHTDRn7Nn6nVPZJkt6iSHY+qojY+6qMtnV3dksMpBhU4iUbxa/BbdhOAmoyX0rOM
+         rm5ff/NuaQr3PG3IDxz/9F6WbLEmfjN2qdUbEJ1ALdeS/5yxpvw74QjAyhXcl+0USQAM
+         jRbA==
+X-Gm-Message-State: AOAM532giyKWvCd39hMQPQjje8bOu1fKFjoL52Rh7beY51pi76n2YEd8
+        2l93adIq7nw9yqAPuJbfk+k=
+X-Google-Smtp-Source: ABdhPJw0Mp1LsP6U5nxNFa04aLqcuBFIZBUL+jpmp7S2mHB+yDHjdCGoTz2fovWlyYRF8UOMWsXG1w==
+X-Received: by 2002:a1c:81d5:: with SMTP id c204mr2748186wmd.156.1607416472636;
+        Tue, 08 Dec 2020 00:34:32 -0800 (PST)
+Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
+        by smtp.googlemail.com with ESMTPSA id u12sm2329147wmu.28.2020.12.08.00.34.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 08 Dec 2020 00:34:31 -0800 (PST)
+Date:   Tue, 8 Dec 2020 09:34:30 +0100
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     "S.j. Wang" <shengjiu.wang@nxp.com>
+Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] arm64: dts: imx8mn: Fix duplicate node name
+Message-ID: <20201208083430.GA6481@kozik-lap>
+References: <VI1PR0402MB334290B621E8C02EA852A6E9E3CD0@VI1PR0402MB3342.eurprd04.prod.outlook.com>
+ <20201208080334.GA4026@kozik-lap>
 MIME-Version: 1.0
-References: <20201208075523.7060-1-sergio.paracuellos@gmail.com> <20201208075523.7060-3-sergio.paracuellos@gmail.com>
-In-Reply-To: <20201208075523.7060-3-sergio.paracuellos@gmail.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 8 Dec 2020 09:21:31 +0100
-Message-ID: <CACRpkdY_Me8kO-Fa-vUspJNv+2vy0fswTM-RaUoaZJ5rCfuynA@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] pinctrl: ralink: add a pinctrl driver for the
- rt2880 family
-To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>,
-        Greg KH <gregkh@linuxfoundation.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, Jason Yan <yanaijie@huawei.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:STAGING SUBSYSTEM" <devel@driverdev.osuosl.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20201208080334.GA4026@kozik-lap>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 8, 2020 at 8:55 AM Sergio Paracuellos
-<sergio.paracuellos@gmail.com> wrote:
+On Tue, Dec 08, 2020 at 09:03:34AM +0100, Krzysztof Kozlowski wrote:
+> On Tue, Dec 08, 2020 at 03:16:35AM +0000, S.j. Wang wrote:
+> > Hi
+> > 
+> > > 
+> > > On Mon, Dec 07, 2020 at 02:21:40PM +0100, Krzysztof Kozlowski wrote:
+> > > > On Mon, Dec 07, 2020 at 02:53:24PM +0800, Shengjiu Wang wrote:
+> > > > > Error log:
+> > > > > sysfs: cannot create duplicate filename
+> > > '/bus/platform/devices/30000000.bus'
+> > > > >
+> > > > > The spba bus name is duplicate with aips bus name.
+> > > > > Refine spba bus name to fix this issue.
+> > > > >
+> > > > > Fixes: 970406eaef3a ("arm64: dts: imx8mn: Enable Asynchronous Sample
+> > > > > Rate Converter")
+> > > > > Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+> > > > > ---
+> > > > >  arch/arm64/boot/dts/freescale/imx8mn.dtsi | 2 +-
+> > > > >  1 file changed, 1 insertion(+), 1 deletion(-)
+> > > > >
+> > > > > diff --git a/arch/arm64/boot/dts/freescale/imx8mn.dtsi
+> > > > > b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
+> > > > > index fd669c0f3fe5..30762eb4f0a7 100644
+> > > > > --- a/arch/arm64/boot/dts/freescale/imx8mn.dtsi
+> > > > > +++ b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
+> > > > > @@ -246,7 +246,7 @@ aips1: bus@30000000 {
+> > > > >                     #size-cells = <1>;
+> > > > >                     ranges;
+> > > > >
+> > > > > -                   spba: bus@30000000 {
+> > > > > +                   spba: spba-bus@30000000 {
+> > > >
+> > > > The proper node name is "bus" so basically you introduce wrong name to
+> > > > other problem.  Introducing wrong names at least requires a comment.
+> > > 
+> > > I just noticed that my message was barely understandable... so let me fix it:
+> > > 
+> > > The proper node name is "bus" so basically you introduce wrong name to
+> > > _fix_ other problem.  Introducing wrong names at least requires a comment.
+> > > 
+> > > > However the actual problem here is not in node names but in addresses:
+> > > >
+> > > >       aips1: bus@30000000 {
+> > > >               spba: bus@30000000 {
+> > > >
+> > > > You have to devices with the same unit address. How do you share the
+> > > > address space?
+> > > >
+> > > > I think this should be rather fixed.
+> > > 
+> > > And again, hungry keyboard ate a letter, so:
+> > > 
+> > > You have _two_ devices with the same unit address. How do you share the
+> > > address space?
+> > > I think this should be rather fixed.
+> > > 
+> > 
+> > spba is the first block of aips1 space, so it has same start address as
+> > aips1.
+> 
+> The reference manual describes it "Reserved for SDMA2 internal memory",
+> so indeed it is first address but does it have to be mapped?
+> Anyway, why don't you use ranges to remove the conflict?
 
-> These Socs have 1-3 banks of 8-32 gpios. Rather then setting the muxing of each
-> pin individually, these socs have mux groups that when set will effect 1-N pins.
-> Pin groups have a 2, 4 or 8 different muxes.
->
-> Acked-by: Linus Walleij <linus.walleij@linaro.org>
-> Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+The IO address space remapping could be a solution but there is another
+problem - the hardware representation in DT does not match what
+reference manual is saying.
 
-Greg I'm happy if you just apply this right now for v5.11, as Sergio
-is obviously on top of things and the DT bindings will get there
-eventually so I don't see any need to hold back the de-staging just
-waiting for patch 1 (which I will eventually apply directly anyway).
+The AIPS bus @30000000 has several IPs:
+ - SAI2@30020000
+ - ...
+ - GPIO1@30200000
 
-Yours,
-Linus Walleij
+However in DTS you will find additional SPBA bus for 30000000 -
+300c0000. It's not really the SDMA, as SDMA is at different address. It
+is rather an address space which SDMA should map... but it is not a bus
+with children. Adding spba-bus@30000000 with its children does not look
+like correct representation of HW in DTS.
+
+Best regards,
+Krzysztof
+
