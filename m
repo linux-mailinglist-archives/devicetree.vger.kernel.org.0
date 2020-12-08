@@ -2,151 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F4A12D36D7
-	for <lists+devicetree@lfdr.de>; Wed,  9 Dec 2020 00:23:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 555D32D36F7
+	for <lists+devicetree@lfdr.de>; Wed,  9 Dec 2020 00:36:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728147AbgLHXWY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Dec 2020 18:22:24 -0500
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:43030 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725906AbgLHXWY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Dec 2020 18:22:24 -0500
-Received: by mail-ot1-f67.google.com with SMTP id q25so403283otn.10;
-        Tue, 08 Dec 2020 15:22:08 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=eMniSFV4+130ZIEZpjALAeT/RpGcoF1J+lgVhHbcJ28=;
-        b=tpkCaRC88OUGp2Fh8pCwWtRn39rYzWqbcgWof+JPUvg5wE6a5gB22G9z6LeTH/yOMK
-         Rj4qtFm5Dg8sBzR+dqlthB4W+bke8qFd/McQC6tcgl5lIy1bx4EhJRWkdeHOXyT7rRtD
-         4c8glQmdBVQ79yqrJhlBR12i0hTS78lwnM0nNALCK2NccHv1+gofQZbMA9nsQOXjkRiN
-         Fpgwp9tq+SnuLVk32w+CP6H+ZTn02PbDBTMsa2uKd7eonrK2Ft3m+CE5SS/DaRAIQGwR
-         taUr8MIaQlt+pKh8XRf/MXaJ4z1jrAfJM32AlFBN9PwTSzLM7aC4mV59Tl9JCDb6a/Mq
-         tOgw==
-X-Gm-Message-State: AOAM530NXnm5SQvwjTjZSIbqHNY5xIRv107x7sEUkUeaAS0j/6FuI09P
-        6LBq8rFwJSnIAKHOe8O1ZQ==
-X-Google-Smtp-Source: ABdhPJyaxdlSzuLG5UOTM6JMcax7tOhiEjrsX/dso/hyIBUnZNj6th3HeOaiCH4QiM8P2Vpy0BckUg==
-X-Received: by 2002:a9d:7e8c:: with SMTP id m12mr427098otp.38.1607469703203;
-        Tue, 08 Dec 2020 15:21:43 -0800 (PST)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id p4sm67432oib.24.2020.12.08.15.21.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Dec 2020 15:21:42 -0800 (PST)
-Received: (nullmailer pid 3303386 invoked by uid 1000);
-        Tue, 08 Dec 2020 23:21:41 -0000
-Date:   Tue, 8 Dec 2020 17:21:41 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Yash Shah <yash.shah@sifive.com>
-Cc:     linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-        devicetree@vger.kernel.org, bp@suse.de, anup@brainfault.org,
-        Jonathan.Cameron@huawei.com, wsa@kernel.org, sam@ravnborg.org,
-        aou@eecs.berkeley.edu, palmer@dabbelt.com,
-        paul.walmsley@sifive.com, sagar.kadam@sifive.com,
-        sachin.ghadi@sifive.com
-Subject: Re: [PATCH v2 1/2] RISC-V: Update l2 cache DT documentation to add
- support for SiFive FU740
-Message-ID: <20201208232141.GA3292265@robh.at.kernel.org>
-References: <1606714984-16593-1-git-send-email-yash.shah@sifive.com>
+        id S1731735AbgLHXg1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Dec 2020 18:36:27 -0500
+Received: from mga06.intel.com ([134.134.136.31]:64449 "EHLO mga06.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1731719AbgLHXg0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 8 Dec 2020 18:36:26 -0500
+IronPort-SDR: nMJuteYfHNTv3V8A6wnKsLCJLceyuIC6Ss0yJVlGm7twjFYE4uVfXog7LIYmkBf3GEPlazdfnl
+ JpWeuK7/bUsg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9829"; a="235587088"
+X-IronPort-AV: E=Sophos;i="5.78,404,1599548400"; 
+   d="scan'208";a="235587088"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Dec 2020 15:34:41 -0800
+IronPort-SDR: h5bnpUi2zZitS92VDr0+o5KfWLNrRGYdOOddyybbuHgxD3WgHCqDTVmAgcvboXHf2j8tX/q13w
+ EoufAQvO/V2A==
+X-IronPort-AV: E=Sophos;i="5.78,404,1599548400"; 
+   d="scan'208";a="375334145"
+Received: from paasikivi.fi.intel.com ([10.237.72.42])
+  by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Dec 2020 15:34:38 -0800
+Received: by paasikivi.fi.intel.com (Postfix, from userid 1000)
+        id 81FF520867; Wed,  9 Dec 2020 01:34:36 +0200 (EET)
+Date:   Wed, 9 Dec 2020 01:34:36 +0200
+From:   Sakari Ailus <sakari.ailus@linux.intel.com>
+To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v4 2/2] media: i2c: Add support for the OV5648 image
+ sensor
+Message-ID: <20201208233436.GF25763@paasikivi.fi.intel.com>
+References: <20201128143350.531460-1-paul.kocialkowski@bootlin.com>
+ <20201128143350.531460-3-paul.kocialkowski@bootlin.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1606714984-16593-1-git-send-email-yash.shah@sifive.com>
+In-Reply-To: <20201128143350.531460-3-paul.kocialkowski@bootlin.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 30, 2020 at 11:13:03AM +0530, Yash Shah wrote:
-> The L2 cache controller in SiFive FU740 has 4 ECC interrupt sources as
-> compared to 3 in FU540. Update the DT documentation accordingly with
-> "compatible" and "interrupt" property changes.
+Hi Paul,
 
-'dt-bindings: riscv: ...' for the subject.
-
-> 
-> Signed-off-by: Yash Shah <yash.shah@sifive.com>
-> ---
-> Changes in v2:
-> - Changes as per Rob Herring's request on v1
-> ---
->  .../devicetree/bindings/riscv/sifive-l2-cache.yaml | 35 ++++++++++++++++++++--
->  1 file changed, 32 insertions(+), 3 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/riscv/sifive-l2-cache.yaml b/Documentation/devicetree/bindings/riscv/sifive-l2-cache.yaml
-> index efc0198..749265c 100644
-> --- a/Documentation/devicetree/bindings/riscv/sifive-l2-cache.yaml
-> +++ b/Documentation/devicetree/bindings/riscv/sifive-l2-cache.yaml
-> @@ -27,6 +27,7 @@ select:
->        items:
->          - enum:
->              - sifive,fu540-c000-ccache
-> +            - sifive,fu740-c000-ccache
->  
->    required:
->      - compatible
-> @@ -34,7 +35,9 @@ select:
->  properties:
->    compatible:
->      items:
-> -      - const: sifive,fu540-c000-ccache
-> +      - enum:
-> +          - sifive,fu540-c000-ccache
-> +          - sifive,fu740-c000-ccache
->        - const: cache
->  
->    cache-block-size:
-> @@ -53,9 +56,15 @@ properties:
->  
->    interrupts:
->      description: |
-> -      Must contain entries for DirError, DataError and DataFail signals.
-> +      Must contain 3 entries for FU540 (DirError, DataError and DataFail) or 4
-> +      entries for other chips (DirError, DirFail, DataError, DataFail signals)
-
-While below is wrong, don't give descriptions that just repeat what the 
-schema says.
-
->      minItems: 3
-> -    maxItems: 3
-> +    maxItems: 4
-> +    items:
-> +      - description: DirError interrupt
-> +      - description: DirFail interrupt
-> +      - description: DataError interrupt
-> +      - description: DataFail interrupt
-
-This says DataFail is optional.
-
->  
->    reg:
->      maxItems: 1
-> @@ -67,6 +76,26 @@ properties:
->        The reference to the reserved-memory for the L2 Loosely Integrated Memory region.
->        The reserved memory node should be defined as per the bindings in reserved-memory.txt.
->  
-> +if:
-> +  properties:
-> +    compatible:
-> +      contains:
-> +        const: sifive,fu540-c000-ccache
+On Sat, Nov 28, 2020 at 03:33:50PM +0100, Paul Kocialkowski wrote:
+...
+> +	if (ret)
+> +		goto error_ctrls;
 > +
-> +then:
-> +  properties:
-> +    interrupts:
-> +      description: |
-> +        Must contain entries for DirError, DataError and DataFail signals.
-> +      maxItems: 3
+> +	/* V4L2 subdev register */
 > +
-> +else:
-> +  properties:
-> +    interrupts:
-> +      description: |
-> +        Must contain entries for DirError, DirFail, DataError, DataFail signals.
-> +      minItems: 4
+> +	ret = v4l2_async_register_subdev_sensor_common(subdev);
+
+The driver's device node may be already available to the user here...
+
+> +	if (ret)
+> +		goto error_ctrls;
 > +
->  additionalProperties: false
->  
->  required:
-> -- 
-> 2.7.4
-> 
+> +	/* Runtime PM */
+> +
+> +	pm_runtime_enable(sensor->dev);
+> +	pm_runtime_set_suspended(sensor->dev);
+
+but runtime PM is enabled here.
+
+This needs to be done in a different order. Otherwise chances are that the
+device node is accessed before the device is powered on.
+
+> +
+> +	return 0;
+> +
+> +error_ctrls:
+> +	v4l2_ctrl_handler_free(&sensor->ctrls.handler);
+> +
+> +error_mutex:
+> +	mutex_destroy(&sensor->mutex);
+> +
+> +error_entity:
+> +	media_entity_cleanup(&sensor->subdev.entity);
+> +
+> +error_endpoint:
+> +	v4l2_fwnode_endpoint_free(&sensor->endpoint);
+> +
+> +	return ret;
+> +}
+> +
+> +static int ov5648_remove(struct i2c_client *client)
+> +{
+> +	struct v4l2_subdev *subdev = i2c_get_clientdata(client);
+> +	struct ov5648_sensor *sensor = ov5648_subdev_sensor(subdev);
+> +
+> +	clk_rate_exclusive_put(sensor->xvclk);
+> +
+> +	v4l2_async_unregister_subdev(subdev);
+> +	mutex_destroy(&sensor->mutex);
+> +	media_entity_cleanup(&subdev->entity);
+> +	v4l2_device_unregister_subdev(subdev);
+> +	pm_runtime_disable(sensor->dev);
+> +
+> +	ov5648_sensor_power(sensor, false);
+
+This needs to go, too, as there's no corresponding operation that powered
+on the device.
+
+Also don't forget to release the control handler.
+
+I believe these apply to both of the two drivers.
+
+-- 
+Kind regards,
+
+Sakari Ailus
