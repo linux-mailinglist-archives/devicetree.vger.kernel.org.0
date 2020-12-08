@@ -2,129 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EF3922D2218
-	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 05:30:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AC23A2D2220
+	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 05:38:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726055AbgLHEaH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Dec 2020 23:30:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58048 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725917AbgLHEaH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 23:30:07 -0500
-Received: from mail-pf1-x444.google.com (mail-pf1-x444.google.com [IPv6:2607:f8b0:4864:20::444])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9911CC0613D6
-        for <devicetree@vger.kernel.org>; Mon,  7 Dec 2020 20:29:27 -0800 (PST)
-Received: by mail-pf1-x444.google.com with SMTP id q22so12627504pfk.12
-        for <devicetree@vger.kernel.org>; Mon, 07 Dec 2020 20:29:27 -0800 (PST)
+        id S1725874AbgLHEi3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Dec 2020 23:38:29 -0500
+Received: from mail-bn8nam11on2093.outbound.protection.outlook.com ([40.107.236.93]:37217
+        "EHLO NAM11-BN8-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726063AbgLHEi3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 7 Dec 2020 23:38:29 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=M1wE1L7YkY+YVOLmvVZ0QjlxL9TzfAKXHJI+cuLODGMglsDgIZapaEdJLW2tzpP8IIYtORaPp7e/dXQBA+4VjTFCJGVpwrlCyrDEGB0JKDJUx0JykO7i708kJcLgPXX9zg2uxEkfjIAnDJPwa8nPVjJU9xXQxOTipSzz+KdF8gM6qB4TQGBLMEuJlhxEAIwVl43iM0zbSNnhkZivKG+XknGK9U71h1RrkvmUlL5j1WR8VJtINTARtGi+z9y3pmg7o+eMjksGHXojXJhgVGoQj0X0lZLb8ywb8h+ls2jsqtfynfQlQwXJMCy4VbuQ24/q2SpaaICqyK+eS4swROrmBw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=4znkgQyKhXp6p3mWiEGxsIHPbUWlM3JOTrkqaRUE8aA=;
+ b=fO2qhCK6OgrLvNgYQevPBTZTIAGEXoIJxeSruGS2oGszl/sY6Ai+upl2RmEzy0SpYxdJjGoiFI8Eq2TPYCaOV0DR4PqWfM9bqRSMIUjaPNZbjMjXzvsrprpX1Q+sUfKwmsQAmdrm6lb7EvSD7yQzCtbvrkFW6GWPk205iena7q73PE5NIY33uZddyf4PrHUJqq3FkAhW3b2MklMFRfHQT1ZuO+F7CeXDODRlcjz/PlLPdTAe/EVklo/wjYWAWlryoALdh3SbJpOMsaGXtvh3P4zuclyANwf2gQ5MDYIFy7CdHMxOUyengLF1eHRlvlcnfh7VXbOVrvozkGBvxLWj3g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=os.amperecomputing.com; dmarc=pass action=none
+ header.from=os.amperecomputing.com; dkim=pass
+ header.d=os.amperecomputing.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=nwo+BCJKm7wcb2h7JzOrNJu8zdED7/Pq3+KQEiGYNC4=;
-        b=ftPp1aze2+o1I5P7qeC+WWQnUhOXYDB6WysEgSHwPTEqehGwSZ1nTTjWQTyLkuFyq2
-         Bqd0dTz41+LZYiJ7059Wn/BGrqkvGUnKyzrigWLghh9z8SlrznCkiWM8k9HbSV9MWNu3
-         FMT1LBU3JeswHBwQr539iJXFeULVSS9jodJCVFvx0zHOJjxcDNJrBXZchUj0n0SU6Dy7
-         XMD3oZKlEULVQWlzWbneoJzhTWVNRA01G8muy6btZWGXiIqvoigvYoFgmCXCs7c33y28
-         GACPaCMyvhJNKxqqpI535T8gXObq8RjiMJCTnb3TV+KH29hpkmuLyM/HUiAUZRaBOuTF
-         gDlA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=nwo+BCJKm7wcb2h7JzOrNJu8zdED7/Pq3+KQEiGYNC4=;
-        b=VOrvkvQWeb835giuD2rwGkOK/oeKAC592UAIl5s6pPiAkIcXzB4LdJ60ncMxjKS2lE
-         MUQltzuz70GbylIr/5PyXKJvNiy2zx5LohZe8JgXExGJPAej4EnoFVWRoRv+T+gLkjam
-         xOA7QpEOxNo81xAFmUKZkYPTd36JOlkHyDXWwREbJurztO/bnjnHBfCgDtoOtp9xbAvE
-         yC10o+IpcG6tD2FdeNgol1chzz3iy5NtvMvXx/sNKExCkpr+0boTUq6E6zvzlIwwhejS
-         VnsfsGe9pRNTSDni20cjHXgheTwUt8pxHRzwn5YyNi54I1HKvyghrgKvrTgCVUBfczAW
-         aHNg==
-X-Gm-Message-State: AOAM533wyobQ3C7L0RT76yD9EBqtycs3wdr0rJsWy1bud9E3Vyeslkk7
-        YnD0gkcwsn6HlXy6jONxIKWYtQ==
-X-Google-Smtp-Source: ABdhPJw6cKmfJYM3CskGrGwpcWIdE9+O9nGA+xXmZktoCuvueP8ol/A7L8M41d+n06uF2Ug544ZyAA==
-X-Received: by 2002:a17:90b:187:: with SMTP id t7mr1333182pjs.191.1607401767151;
-        Mon, 07 Dec 2020 20:29:27 -0800 (PST)
-Received: from localhost ([122.172.136.109])
-        by smtp.gmail.com with ESMTPSA id 193sm3853148pfz.36.2020.12.07.20.29.26
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 07 Dec 2020 20:29:26 -0800 (PST)
-Date:   Tue, 8 Dec 2020 09:59:24 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Nicola Mazzucato <nicola.mazzucato@arm.com>
-Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        sudeep.holla@arm.com, rjw@rjwysocki.net, vireshk@kernel.org,
-        robh+dt@kernel.org, sboyd@kernel.org, nm@ti.com,
-        daniel.lezcano@linaro.org, morten.rasmussen@arm.com,
-        chris.redpath@arm.com
-Subject: Re: [PATCH v4 1/4] dt-bindings/opp: Update documentation for
- opp-shared
-Message-ID: <20201208042924.kv7tqsbstoanqham@vireshk-i7>
-References: <20201202172356.10508-1-nicola.mazzucato@arm.com>
- <20201202172356.10508-2-nicola.mazzucato@arm.com>
+ d=os.amperecomputing.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=4znkgQyKhXp6p3mWiEGxsIHPbUWlM3JOTrkqaRUE8aA=;
+ b=tJtSy6osQ6MJM3O9zFVhgtafhNKUIvNevfYcTYBIDET6z/tRE21DDwVjGXsFKXsyscAbshgiQaCRXem6dEbwaruycc/jse0RyUDAXprmD71ktmgHj7snObYx3PYfWB7cg+zI03rrG/sXGPythLI3yeKYoBICbBzNQbIkvOJtUYM=
+Authentication-Results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none
+ header.from=os.amperecomputing.com;
+Received: from MW2PR0102MB3482.prod.exchangelabs.com (2603:10b6:302:c::32) by
+ MWHPR01MB2383.prod.exchangelabs.com (2603:10b6:300:3c::17) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3632.21; Tue, 8 Dec 2020 04:37:35 +0000
+Received: from MW2PR0102MB3482.prod.exchangelabs.com
+ ([fe80::e903:700a:f17:7a17]) by MW2PR0102MB3482.prod.exchangelabs.com
+ ([fe80::e903:700a:f17:7a17%7]) with mapi id 15.20.3632.021; Tue, 8 Dec 2020
+ 04:37:34 +0000
+From:   Quan Nguyen <quan@os.amperecomputing.com>
+To:     Rob Herring <robh+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>, Mark Brown <broonie@kernel.org>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        allen <allen.chen@ite.com.tw>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org
+Subject: [PATCH 0/2] ARM: dts: aspeed: Add Ampere Mt. Jade BMC device
+Date:   Tue,  8 Dec 2020 11:36:58 +0700
+Message-Id: <20201208043700.23098-1-quan@os.amperecomputing.com>
+X-Mailer: git-send-email 2.28.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [118.69.219.201]
+X-ClientProxiedBy: SG2PR06CA0247.apcprd06.prod.outlook.com
+ (2603:1096:4:ac::31) To MW2PR0102MB3482.prod.exchangelabs.com
+ (2603:10b6:302:c::32)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201202172356.10508-2-nicola.mazzucato@arm.com>
-User-Agent: NeoMutt/20180716-391-311a52
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from hcm-sw-17.amperecomputing.com (118.69.219.201) by SG2PR06CA0247.apcprd06.prod.outlook.com (2603:1096:4:ac::31) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3632.17 via Frontend Transport; Tue, 8 Dec 2020 04:37:29 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 00788ddb-b7b3-4fa3-d9e4-08d89b32fbd0
+X-MS-TrafficTypeDiagnostic: MWHPR01MB2383:
+X-Microsoft-Antispam-PRVS: <MWHPR01MB2383138D2C3761C3648E0443F2CD0@MWHPR01MB2383.prod.exchangelabs.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:4502;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: v4jlkHDsINEWIvuMAvBXOqp5T9RXGxwp9CT4vqcficDAH52CccZNIHWWneraPAWy+Qt2yUP0rckSbIcoGt6OqDwXhdIT3P1rjTGtQQ+5+uw0eOMmodkFtUgRmmCNg9bMl4ymkoBPinnUvL2mkzjurRtFIrjTEqOszm3t6Hz4d/rOfaI2yF9hRyc9CZ9AvHKj8KpbTKK+xbGwnXgSE9GwxKf9/smPgiK248pU+W0fQCBnBn8n8/EPNrbrtx6PDLEKT0whqtiVv1UpmTdac4NGnZOmCc1TKwO82DHEXJlUHGjSEfwV+SxPEFfT27+lXMZHrPMbOb4UGA3Inv8hmm1mYcGzHKYjx5RlxHG9RoQcdKvYz0HC47ZFCbpLUANt7g5T
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MW2PR0102MB3482.prod.exchangelabs.com;PTR:;CAT:NONE;SFS:(4636009)(136003)(376002)(396003)(39850400004)(346002)(366004)(6506007)(316002)(66556008)(478600001)(2616005)(52116002)(2906002)(921005)(66476007)(4744005)(6666004)(5660300002)(86362001)(66946007)(8676002)(16526019)(110136005)(26005)(6486002)(8936002)(1076003)(7416002)(186003)(6512007)(956004);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?d1GHG+MA453MjPo6bjCiTPWSRoj7s3r8LStmHWBmCJkLEFtyPT8NrO7yrjOP?=
+ =?us-ascii?Q?p7ZGR28ESiYmXGymFOzCNdqIEY1sbj+pvsv5BzohAb5rGT1H4nzFDIcW3kad?=
+ =?us-ascii?Q?KskENhnuI80/04DZlTFccCraIsqTWCM4XDjFPGOctJ9+HCnRqFbRXM7mAfmw?=
+ =?us-ascii?Q?xBedGmaWzXJsFWeC6T9eee2gvl4EJqGXbmgPG0LmfcrYAG/ToYgTA9qIb5mA?=
+ =?us-ascii?Q?n6pEmh3+GezIOWpsrNHJQlFW2lO+eLRUqi70mprPdqXBpSyxqZKWhaPqR7D0?=
+ =?us-ascii?Q?/Se9ycmVhEDFfJ/zdQnhZeGtDeCJPlfbaEJQQPoEFhaUufRxKRItxz5nHkaI?=
+ =?us-ascii?Q?JckOaw1U6mDwXTHgZdCdRp6gz1dW15Swkp+5fVRhitCEPcBuTynO9jnNsOvU?=
+ =?us-ascii?Q?wqSTT8r5Ndqilcr2xXU9Sz5GxglKRSui0BC10c5CWdyNGoahhNxxnxCMeRS1?=
+ =?us-ascii?Q?Vwdzsr0HGHv6yBMpufvdCCK5PXDaV17oRRTcMndFCRhDOraawL+4lAEQ/5Wa?=
+ =?us-ascii?Q?sqBUUQPmyUBUV61GNrEMicBStHLT/iItSSzb8tBbJne5eQ/ynAZx1ffCWcOq?=
+ =?us-ascii?Q?natJ59le62t/9O5C4jZV3vqFoAkRpKv5GqNO5Mg+9L1qmx1dTVPuCaN0lfsS?=
+ =?us-ascii?Q?uIu36hJCZkGxVe+tU2awQDoYIqQ+GHb3AmIOD7ADy9QJpY38+mPo4s2EhYfF?=
+ =?us-ascii?Q?sIwbFmv4FsaN8fVfT+jiegreFEBn3/Yf1v2odNJl1IV1kEq+T6RrsaMGyAtq?=
+ =?us-ascii?Q?8iGmonXzYuv1es6waJKm8Y5877EWZFR8tLQeCO6kqPYvT3zXMjQ4oQmfcFMH?=
+ =?us-ascii?Q?t/YrEogweVKvkusH6TiUPq18mD5g1JevzdIpi4ZSc5vWtP8MFKHgfWr9LHpt?=
+ =?us-ascii?Q?T1Aw3Hm0gPSI4PfQOg2IDfR6M5JwfyjmOXz6PS2qhd56HXxqfyNZji4cTUfD?=
+ =?us-ascii?Q?N17CaTO1MtvAC7+ne8YsE1GZGRvkEX+ynpUv6VlIp/T0ZOdjjVcc8bus5Qij?=
+ =?us-ascii?Q?VjGr?=
+X-OriginatorOrg: os.amperecomputing.com
+X-MS-Exchange-CrossTenant-AuthSource: MW2PR0102MB3482.prod.exchangelabs.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Dec 2020 04:37:34.7204
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3bc2b170-fd94-476d-b0ce-4229bdc904a7
+X-MS-Exchange-CrossTenant-Network-Message-Id: 00788ddb-b7b3-4fa3-d9e4-08d89b32fbd0
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: iSgnoKM+PRDLPqyJdXGGAI6ph1/Ws1EyquELHdghGqg3TAo4cvALAeGqfqSZg5d+sy6wkd1JDfWZlIrz2KqCeGCc+Xb/GE7Ph5HWvlnCTJY=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR01MB2383
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Subject should rather be:
+The Mt. Jade BMC is an ASPEED AST2500-based BMC for the Mt. Jade
+hardware reference platform with Ampere's Altra Processor Family.
 
-dt-bindings: opp: Allow empty OPP tables
+Quan Nguyen (2):
+  dt-bindings: vendor-prefixes: Add an entry for AmpereComputing.com
+  ARM: dts: aspeed: Add device tree for Ampere's Mt. Jade BMC
 
-On 02-12-20, 17:23, Nicola Mazzucato wrote:
-> Currently the optional property opp-shared is used within an opp table
-> to tell that a set of devices share their clock/voltage lines (and the
-> opp points).
-> It is therefore possible to use an empty opp table to convey only that
-> information, useful in situations where the opp points are provided via
-> other means (hardware. firmware, etc).
-> 
-> Update the documentation to remark this additional case and provide an
-> example.
-> 
-> Signed-off-by: Nicola Mazzucato <nicola.mazzucato@arm.com>
-> ---
->  Documentation/devicetree/bindings/opp/opp.txt | 53 +++++++++++++++++++
->  1 file changed, 53 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/opp/opp.txt b/Documentation/devicetree/bindings/opp/opp.txt
-> index 9847dfeeffcb..a5f1f993eab9 100644
-> --- a/Documentation/devicetree/bindings/opp/opp.txt
-> +++ b/Documentation/devicetree/bindings/opp/opp.txt
-> @@ -72,6 +72,9 @@ Optional properties:
->    switch their DVFS state together, i.e. they share clock/voltage/current lines.
->    Missing property means devices have independent clock/voltage/current lines,
->    but they share OPP tables.
-> +  This optional property can be used without any OPP nodes when its only purpose
-> +  is to describe a dependency of clock/voltage/current lines among a set of
-> +  devices.
-
-And instead of this, we should rather update "OPP nodes:" section like
-this:
-
-diff --git a/Documentation/devicetree/bindings/opp/opp.txt b/Documentation/devicetree/bindings/opp/opp.txt
-index 9847dfeeffcb..28077ce3a845 100644
---- a/Documentation/devicetree/bindings/opp/opp.txt
-+++ b/Documentation/devicetree/bindings/opp/opp.txt
-@@ -63,11 +63,13 @@ This describes the OPPs belonging to a device. This node can have following
- - compatible: Allow OPPs to express their compatibility. It should be:
-   "operating-points-v2".
- 
-+Optional properties:
- - OPP nodes: One or more OPP nodes describing voltage-current-frequency
-   combinations. Their name isn't significant but their phandle can be used to
--  reference an OPP.
-+  reference an OPP. These are mandatory except for the case where the OPP table
-+  is present only to indicate dependency between devices using the opp-shared
-+  property.
- 
--Optional properties:
- - opp-shared: Indicates that device nodes using this OPP Table Node's phandle
-   switch their DVFS state together, i.e. they share clock/voltage/current lines.
-   Missing property means devices have independent clock/voltage/current lines,
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ arch/arm/boot/dts/Makefile                    |   1 +
+ .../arm/boot/dts/aspeed-bmc-ampere-mtjade.dts | 558 ++++++++++++++++++
+ 3 files changed, 561 insertions(+)
+ create mode 100644 arch/arm/boot/dts/aspeed-bmc-ampere-mtjade.dts
 
 -- 
-viresh
+2.28.0
+
