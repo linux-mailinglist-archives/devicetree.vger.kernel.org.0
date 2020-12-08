@@ -2,105 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B7972D33E0
-	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 21:28:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D84A2D344B
+	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 21:51:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728022AbgLHU12 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Dec 2020 15:27:28 -0500
-Received: from hqnvemgate25.nvidia.com ([216.228.121.64]:11790 "EHLO
-        hqnvemgate25.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726703AbgLHU11 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Dec 2020 15:27:27 -0500
-Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate25.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
-        id <B5fcfe1860001>; Tue, 08 Dec 2020 12:26:46 -0800
-Received: from [10.2.90.244] (172.20.13.39) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 8 Dec
- 2020 20:26:43 +0000
-Subject: Re: [PATCH v3 10/13] media: v4l2-fwnode: Update
- V4L2_FWNODE_CSI2_MAX_DATA_LANES to 8
-To:     Sakari Ailus <sakari.ailus@iki.fi>,
-        Hans Verkuil <hverkuil@xs4all.nl>
-CC:     <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
-        <robh+dt@kernel.org>, <bparrot@ti.com>, <mchehab@kernel.org>,
-        <linux-media@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-References: <1607022002-26575-1-git-send-email-skomatineni@nvidia.com>
- <1607022002-26575-11-git-send-email-skomatineni@nvidia.com>
- <845dfd4a-fa11-625c-78a3-cc8adc68bfc7@xs4all.nl>
- <20201208195949.GB1167@valkosipuli.retiisi.org.uk>
-From:   Sowjanya Komatineni <skomatineni@nvidia.com>
-Message-ID: <23de1994-0a3e-179b-2c2f-b41917d02585@nvidia.com>
-Date:   Tue, 8 Dec 2020 12:27:22 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1731450AbgLHUf6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Dec 2020 15:35:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40254 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726758AbgLHUf5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Dec 2020 15:35:57 -0500
+Received: from mail-pf1-x444.google.com (mail-pf1-x444.google.com [IPv6:2607:f8b0:4864:20::444])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69B70C0613CF
+        for <devicetree@vger.kernel.org>; Tue,  8 Dec 2020 12:35:17 -0800 (PST)
+Received: by mail-pf1-x444.google.com with SMTP id f9so14418212pfc.11
+        for <devicetree@vger.kernel.org>; Tue, 08 Dec 2020 12:35:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
+         :content-transfer-encoding;
+        bh=cOsptZpbaXZdyHeq1KoGUWDMF3slisUiT0yak+RYvVg=;
+        b=V1HJf+WKm8xtLqwvNnhsLkSQVipGbGBajM1F2ZUQcrOTQ2iu39pW4KdaTgszCgwjnq
+         tGzWVJdaHcBvZzl5aaqYttQ5TUOZCZZeqIs09s44Q9oB+hsnPkOAZotzWpI8i00QVucJ
+         ZkqvlVBVZSwtlbZua/brIaYJZ/+yexmmd5LKCv3G/Ku5t2DBPxqLPlTYem2pm7/BQHwc
+         Y2739VDQ3AMdHUYiNTI4cIVwWH1a3RA/iMrBvYTFlKq7M7ehhFBWisKxwf1Ty4u4bQp6
+         Q+maaFLNMOJu0B6hXcWTKH/5A8HPZ32RGxpfIbbSJvjpSfD8VZYPzolUFR9zjcbs0rIx
+         4beQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=cOsptZpbaXZdyHeq1KoGUWDMF3slisUiT0yak+RYvVg=;
+        b=cn+5M9rl5c7NsRTw41PzYKUcKkeyFNRtYs+dYxrvBYmUkhwrK5vKSOuGLLacB4WZvH
+         ijxMVjMJ8+B5MpPiB8/TSDsjFzedNVRrK/3k3ifoFKya+d5UY2GiL35kuivoNhdXs29/
+         f0h8+am9wXgpgCrrBV4LU/GRiMrK0d5D2P/qJpUB4QXovwQ+Ef2ALwZRBwixrGV9fuvp
+         ez9Cs1xcmcapL+978bCdvShgWH3sf/R7xTq834OY35DZCe3lctFu+1ERUSxQp/2ldgOE
+         76C8JW8ZAmqAYwrMTQdMFiG+DgQYfjARTylJumsDcgHpesp408u/7e6E80fpIh2o+9Sn
+         SclQ==
+X-Gm-Message-State: AOAM531Q6mI/R/NAiIqD1rxFBF6LKsVweA0BdFvwd+iwPXQIyeGOmYWb
+        MLnGwzUWPlHoP2z+d33gJNbB6XjdfJlzGGtq
+X-Google-Smtp-Source: ABdhPJxyhjHPDKKo2JqsB/7HDITrAO23pyfmgSy+gat1GDFvuRxWeDGk6joJ5fCWRlKZVFhCYSjLzQ==
+X-Received: by 2002:a62:7693:0:b029:19d:92fb:4ec1 with SMTP id r141-20020a6276930000b029019d92fb4ec1mr21819903pfc.4.1607455203885;
+        Tue, 08 Dec 2020 11:20:03 -0800 (PST)
+Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net. [71.197.186.152])
+        by smtp.gmail.com with ESMTPSA id i4sm16499994pgg.67.2020.12.08.11.20.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 08 Dec 2020 11:20:03 -0800 (PST)
+From:   Kevin Hilman <khilman@baylibre.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Christian Hewitt <christianshewitt@gmail.com>
+Subject: Re: [PATCH] arm64: dts: meson: add i2c3/rtc nodes and vrtc alias to GT-King/GT-King-Pro
+Date:   Tue,  8 Dec 2020 11:20:02 -0800
+Message-Id: <160745519765.13209.7401462503756984105.b4-ty@baylibre.com>
+X-Mailer: git-send-email 2.28.0
+In-Reply-To: <20201201062135.18241-1-christianshewitt@gmail.com>
+References: <20201201062135.18241-1-christianshewitt@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20201208195949.GB1167@valkosipuli.retiisi.org.uk>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-X-Originating-IP: [172.20.13.39]
-X-ClientProxiedBy: HQMAIL107.nvidia.com (172.20.187.13) To
- HQMAIL107.nvidia.com (172.20.187.13)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1607459206; bh=V/0+9h7ehwpCJcCPaTuvyhF/G9hja/cZk0UPNoDHO74=;
-        h=Subject:To:CC:References:From:Message-ID:Date:User-Agent:
-         MIME-Version:In-Reply-To:Content-Type:Content-Transfer-Encoding:
-         Content-Language:X-Originating-IP:X-ClientProxiedBy;
-        b=S0ie0J1A5wC4XOAnEIdC/0Wl9YyUACghu0oMAax8zmeSgIDXjz049Fe24Bfch1hNF
-         orRW/tsyQvlYk0IzXdsuQRtEWLwCrwyrNc/8MiCjcuomKAC0O+RfQZ/vHvvrswkM8n
-         r2dngjrq9/oRiPcWa/maCNq6AFLwiVI9ImxSITsX75TYYuC95rw0PKjuWDF1OI9gIx
-         Rri4K+0EqF2oFfCkBp4Bzv+TZmLagA8jZ9b2kuCcMIB5u6kXT+JD53ApZew5T5m98A
-         ov3WjKl0tXYJVT/u4koi74kO8Qyzt8qRl3MagBR12ga5Fjyh3qP44PRoURp9pkTMWM
-         5PmCqZt6t+n+A==
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, 1 Dec 2020 06:21:35 +0000, Christian Hewitt wrote:
+> The GT-King and GT-King-Pro boxes have an RTC chip and power cell, so enable it.
+> 
+> GTKING:~ # dmesg | grep rtc
+> [    5.237245] meson-vrtc ff8000a8.rtc: registered as rtc1
+> [    5.261869] rtc-hym8563 0-0051: registered as rtc0
+> [    5.265016] rtc-hym8563 0-0051: setting system clock to 2020-11-30T09:16:54 UTC (1606727814)
 
-On 12/8/20 11:59 AM, Sakari Ailus wrote:
-> Hi Hans,
->
-> On Mon, Dec 07, 2020 at 11:47:38AM +0100, Hans Verkuil wrote:
->> On 03/12/2020 19:59, Sowjanya Komatineni wrote:
->>> Some CSI2 receivers support 8 data lanes.
->>>
->>> So, this patch updates CSI2 maximum data lanes to be 8.
->>>
->>> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
->>> ---
->>>   drivers/media/platform/ti-vpe/cal-camerarx.c | 2 +-
->>>   include/media/v4l2-fwnode.h                  | 2 +-
->>>   2 files changed, 2 insertions(+), 2 deletions(-)
->>>
->>> diff --git a/drivers/media/platform/ti-vpe/cal-camerarx.c b/drivers/media/platform/ti-vpe/cal-camerarx.c
->>> index 806cbf1..47e2143 100644
->>> --- a/drivers/media/platform/ti-vpe/cal-camerarx.c
->>> +++ b/drivers/media/platform/ti-vpe/cal-camerarx.c
->>> @@ -534,7 +534,7 @@ static int cal_camerarx_parse_dt(struct cal_camerarx *phy)
->>>   {
->>>   	struct v4l2_fwnode_endpoint *endpoint = &phy->endpoint;
->>>   	struct device_node *ep_node;
->>> -	char data_lanes[V4L2_FWNODE_CSI2_MAX_DATA_LANES * 2];
->>> +	char data_lanes[V4L2_FWNODE_CSI2_MAX_DATA_LANES];
->>>   	unsigned int i;
->>>   	int ret;
->>>   
->> I'm not so sure about this change: it relies on the implicit knowledge that
->> this cal driver can handle only 4 lanes max, so that doubling
->> V4L2_FWNODE_CSI2_MAX_DATA_LANES is the same as the old 'V4L2_FWNODE_CSI2_MAX_DATA_LANES * 2'.
->>
->> I think we should either keep the existing code (which means data_lanes
->> is now larger than needed, so stack usage increases by 8 bytes), or perhaps
->> create a new define for this driver like CAL_MAX_DATA_LANES and use that.
->>
->> In my opinion the original code should just be kept, but I've CC-ed Laurent
->> on this to hear what he thinks.
-> I further looked at the code there and it does *depend* on a particular
-> value of V4L2_FWNODE_CSI2_MAX_DATA_LANES. That needs to be fixed. This part
-> can (or should) be dropped from the patch though.
->
-Thanks Sakari and Hans.
+Applied, thanks!
 
-OK. Will drop updating cal-camerarx.c from this patch in next version.
+[1/1] arm64: dts: meson: add i2c3/rtc nodes and vrtc alias to GT-King/GT-King-Pro
+      commit: 7704b100719cf0fead976a1bc839c60ee552d045
 
+Best regards,
+-- 
+Kevin Hilman <khilman@baylibre.com>
