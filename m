@@ -2,69 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B76692D219A
-	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 04:55:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EF3922D2218
+	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 05:30:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726042AbgLHDzf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Dec 2020 22:55:35 -0500
-Received: from hqnvemgate25.nvidia.com ([216.228.121.64]:6817 "EHLO
-        hqnvemgate25.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725853AbgLHDzf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 22:55:35 -0500
-Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate25.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
-        id <B5fcef90e0004>; Mon, 07 Dec 2020 19:54:54 -0800
-Received: from [10.25.96.159] (10.124.1.5) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 8 Dec
- 2020 03:54:51 +0000
-Subject: Re: Re: [PATCH v6 0/6] Tegra210 audio graph card
-To:     Mark Brown <broonie@kernel.org>
-CC:     <thierry.reding@gmail.com>, <robh+dt@kernel.org>,
-        <sharadg@nvidia.com>, <jonathanh@nvidia.com>,
-        <kuninori.morimoto.gx@renesas.com>, <linux-tegra@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <alsa-devel@alsa-project.org>
-References: <1606413823-19885-1-git-send-email-spujar@nvidia.com>
- <160683107678.35139.14772386553150233276.b4-ty@kernel.org>
- <a3541d83-1f2e-c60f-05f8-4fdd8c8f4175@nvidia.com>
- <20201207123131.GB5694@sirena.org.uk>
-From:   Sameer Pujar <spujar@nvidia.com>
-Message-ID: <14d2a6cc-9ca6-f6dd-ae83-6fc75d5361eb@nvidia.com>
-Date:   Tue, 8 Dec 2020 09:24:47 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1726055AbgLHEaH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Dec 2020 23:30:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58048 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725917AbgLHEaH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Dec 2020 23:30:07 -0500
+Received: from mail-pf1-x444.google.com (mail-pf1-x444.google.com [IPv6:2607:f8b0:4864:20::444])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9911CC0613D6
+        for <devicetree@vger.kernel.org>; Mon,  7 Dec 2020 20:29:27 -0800 (PST)
+Received: by mail-pf1-x444.google.com with SMTP id q22so12627504pfk.12
+        for <devicetree@vger.kernel.org>; Mon, 07 Dec 2020 20:29:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=nwo+BCJKm7wcb2h7JzOrNJu8zdED7/Pq3+KQEiGYNC4=;
+        b=ftPp1aze2+o1I5P7qeC+WWQnUhOXYDB6WysEgSHwPTEqehGwSZ1nTTjWQTyLkuFyq2
+         Bqd0dTz41+LZYiJ7059Wn/BGrqkvGUnKyzrigWLghh9z8SlrznCkiWM8k9HbSV9MWNu3
+         FMT1LBU3JeswHBwQr539iJXFeULVSS9jodJCVFvx0zHOJjxcDNJrBXZchUj0n0SU6Dy7
+         XMD3oZKlEULVQWlzWbneoJzhTWVNRA01G8muy6btZWGXiIqvoigvYoFgmCXCs7c33y28
+         GACPaCMyvhJNKxqqpI535T8gXObq8RjiMJCTnb3TV+KH29hpkmuLyM/HUiAUZRaBOuTF
+         gDlA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=nwo+BCJKm7wcb2h7JzOrNJu8zdED7/Pq3+KQEiGYNC4=;
+        b=VOrvkvQWeb835giuD2rwGkOK/oeKAC592UAIl5s6pPiAkIcXzB4LdJ60ncMxjKS2lE
+         MUQltzuz70GbylIr/5PyXKJvNiy2zx5LohZe8JgXExGJPAej4EnoFVWRoRv+T+gLkjam
+         xOA7QpEOxNo81xAFmUKZkYPTd36JOlkHyDXWwREbJurztO/bnjnHBfCgDtoOtp9xbAvE
+         yC10o+IpcG6tD2FdeNgol1chzz3iy5NtvMvXx/sNKExCkpr+0boTUq6E6zvzlIwwhejS
+         VnsfsGe9pRNTSDni20cjHXgheTwUt8pxHRzwn5YyNi54I1HKvyghrgKvrTgCVUBfczAW
+         aHNg==
+X-Gm-Message-State: AOAM533wyobQ3C7L0RT76yD9EBqtycs3wdr0rJsWy1bud9E3Vyeslkk7
+        YnD0gkcwsn6HlXy6jONxIKWYtQ==
+X-Google-Smtp-Source: ABdhPJw6cKmfJYM3CskGrGwpcWIdE9+O9nGA+xXmZktoCuvueP8ol/A7L8M41d+n06uF2Ug544ZyAA==
+X-Received: by 2002:a17:90b:187:: with SMTP id t7mr1333182pjs.191.1607401767151;
+        Mon, 07 Dec 2020 20:29:27 -0800 (PST)
+Received: from localhost ([122.172.136.109])
+        by smtp.gmail.com with ESMTPSA id 193sm3853148pfz.36.2020.12.07.20.29.26
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 07 Dec 2020 20:29:26 -0800 (PST)
+Date:   Tue, 8 Dec 2020 09:59:24 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Nicola Mazzucato <nicola.mazzucato@arm.com>
+Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        sudeep.holla@arm.com, rjw@rjwysocki.net, vireshk@kernel.org,
+        robh+dt@kernel.org, sboyd@kernel.org, nm@ti.com,
+        daniel.lezcano@linaro.org, morten.rasmussen@arm.com,
+        chris.redpath@arm.com
+Subject: Re: [PATCH v4 1/4] dt-bindings/opp: Update documentation for
+ opp-shared
+Message-ID: <20201208042924.kv7tqsbstoanqham@vireshk-i7>
+References: <20201202172356.10508-1-nicola.mazzucato@arm.com>
+ <20201202172356.10508-2-nicola.mazzucato@arm.com>
 MIME-Version: 1.0
-In-Reply-To: <20201207123131.GB5694@sirena.org.uk>
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-GB
-X-Originating-IP: [10.124.1.5]
-X-ClientProxiedBy: HQMAIL105.nvidia.com (172.20.187.12) To
- HQMAIL107.nvidia.com (172.20.187.13)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1607399694; bh=57K2arrOkrJycwF/NemnQ2nVOm/DzL8o8jMnlSRtwvI=;
-        h=Subject:To:CC:References:From:Message-ID:Date:User-Agent:
-         MIME-Version:In-Reply-To:Content-Type:Content-Transfer-Encoding:
-         Content-Language:X-Originating-IP:X-ClientProxiedBy;
-        b=SqDXS5tEn21GY7pYzotCi6w+Aay3/ODcWDWFr9ajMXtspjiBxj905ymiwC6mZrh07
-         U0PAJio4KsGhKpaiSAqSJ1A4M6dTRq2Oo02szHGWVkXWfm/pY1V31R/vWic5h+mayT
-         07v/9KAx1px26e3tLqMYdRkHWwbrsnDPHXzLV9HR50dB8hLFOz2cif/2F+HDZpsIyH
-         R4WjVNtpBnusnLuIXG9K0GufcDjVph3MrOwy3L950iysmgvu53VtHxH3tQpjpHO5YZ
-         pmrc8tGM9N98rtARkuHAa8Dd0f9vec7Gks10E8QYs6HKpc5sRiwnR6zpiwomm4Wdn8
-         3Oc2KaL66t1LA==
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201202172356.10508-2-nicola.mazzucato@arm.com>
+User-Agent: NeoMutt/20180716-391-311a52
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Subject should rather be:
 
->>> [1/3] ASoC: dt-bindings: tegra: Add graph bindings
->>>         (no commit info)
->>> [2/3] ASoC: dt-bindings: tegra: Add json-schema for Tegra audio graph card
->>>         (no commit info)
->>> [3/3] ASoC: tegra: Add audio graph based card driver
->>>         (no commit info)
->> I don't see above patches in linux-next yet. Should I wait some more time
->> for this to appear?
-> No, this was sent by a b4 bug - notice the "no commit info" there, they
-> weren't applied.
+dt-bindings: opp: Allow empty OPP tables
 
-Oh I see! I guess review would be still pending then.
+On 02-12-20, 17:23, Nicola Mazzucato wrote:
+> Currently the optional property opp-shared is used within an opp table
+> to tell that a set of devices share their clock/voltage lines (and the
+> opp points).
+> It is therefore possible to use an empty opp table to convey only that
+> information, useful in situations where the opp points are provided via
+> other means (hardware. firmware, etc).
+> 
+> Update the documentation to remark this additional case and provide an
+> example.
+> 
+> Signed-off-by: Nicola Mazzucato <nicola.mazzucato@arm.com>
+> ---
+>  Documentation/devicetree/bindings/opp/opp.txt | 53 +++++++++++++++++++
+>  1 file changed, 53 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/opp/opp.txt b/Documentation/devicetree/bindings/opp/opp.txt
+> index 9847dfeeffcb..a5f1f993eab9 100644
+> --- a/Documentation/devicetree/bindings/opp/opp.txt
+> +++ b/Documentation/devicetree/bindings/opp/opp.txt
+> @@ -72,6 +72,9 @@ Optional properties:
+>    switch their DVFS state together, i.e. they share clock/voltage/current lines.
+>    Missing property means devices have independent clock/voltage/current lines,
+>    but they share OPP tables.
+> +  This optional property can be used without any OPP nodes when its only purpose
+> +  is to describe a dependency of clock/voltage/current lines among a set of
+> +  devices.
+
+And instead of this, we should rather update "OPP nodes:" section like
+this:
+
+diff --git a/Documentation/devicetree/bindings/opp/opp.txt b/Documentation/devicetree/bindings/opp/opp.txt
+index 9847dfeeffcb..28077ce3a845 100644
+--- a/Documentation/devicetree/bindings/opp/opp.txt
++++ b/Documentation/devicetree/bindings/opp/opp.txt
+@@ -63,11 +63,13 @@ This describes the OPPs belonging to a device. This node can have following
+ - compatible: Allow OPPs to express their compatibility. It should be:
+   "operating-points-v2".
+ 
++Optional properties:
+ - OPP nodes: One or more OPP nodes describing voltage-current-frequency
+   combinations. Their name isn't significant but their phandle can be used to
+-  reference an OPP.
++  reference an OPP. These are mandatory except for the case where the OPP table
++  is present only to indicate dependency between devices using the opp-shared
++  property.
+ 
+-Optional properties:
+ - opp-shared: Indicates that device nodes using this OPP Table Node's phandle
+   switch their DVFS state together, i.e. they share clock/voltage/current lines.
+   Missing property means devices have independent clock/voltage/current lines,
+
+-- 
+viresh
