@@ -2,279 +2,212 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1EAFD2D23B7
-	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 07:40:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 74F392D23CF
+	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 07:47:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725871AbgLHGkW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Dec 2020 01:40:22 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:44392 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725777AbgLHGkV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Dec 2020 01:40:21 -0500
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0B86dNWS078398;
-        Tue, 8 Dec 2020 00:39:23 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1607409563;
-        bh=fMmCqJRwhs4bIWwJI7KnWGQ9VZ3xD70RmS1sgZEkN7Q=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=dsS4aHRIVqg3eA4qAK//vYdKYC999s1H+OwueCOFyWj4frKQsq+AhLExXLTtKSgGi
-         mUpNuTbFLtow58OF6r08UY5ZAx4ye72WbBD7Bi/cn92a/ToXYG7AB72C8nxlWM8p0x
-         ZlWGHF3mLj1xCWbE49/rFgsNx+SQvQseMdrn8p7Q=
-Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0B86dNad026563
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 8 Dec 2020 00:39:23 -0600
-Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 8 Dec
- 2020 00:39:23 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Tue, 8 Dec 2020 00:39:23 -0600
-Received: from [192.168.2.6] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0B86dKVZ127732;
-        Tue, 8 Dec 2020 00:39:20 -0600
-Subject: Re: [PATCH v2 10/19] dt-bindings: dma: ti: Add document for K3 BCDMA
-To:     Rob Herring <robh@kernel.org>
-CC:     <vkoul@kernel.org>, <nm@ti.com>, <ssantosh@kernel.org>,
-        <dan.j.williams@intel.com>, <t-kristo@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <dmaengine@vger.kernel.org>, <vigneshr@ti.com>,
-        <grygorii.strashko@ti.com>
-References: <20201117105656.5236-1-peter.ujfalusi@ti.com>
- <20201117105656.5236-11-peter.ujfalusi@ti.com>
- <20201207194201.GA680126@robh.at.kernel.org>
-From:   Peter Ujfalusi <peter.ujfalusi@ti.com>
-Message-ID: <9681053b-c67b-be08-3fab-bc293ca5a21a@ti.com>
-Date:   Tue, 8 Dec 2020 08:40:21 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.5.1
+        id S1726104AbgLHGrh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Dec 2020 01:47:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50810 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725910AbgLHGrh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Dec 2020 01:47:37 -0500
+Received: from mail-ot1-x335.google.com (mail-ot1-x335.google.com [IPv6:2607:f8b0:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA324C061749;
+        Mon,  7 Dec 2020 22:46:56 -0800 (PST)
+Received: by mail-ot1-x335.google.com with SMTP id q25so3179394otn.10;
+        Mon, 07 Dec 2020 22:46:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=FHeqGcpUq0K/LfMy6iWPf10Yt7dCiT+hVL7+V0mFEG4=;
+        b=ZbufPNenq+pVtfYd22sI3tBeluvAD8zx/IiJrcTWvRq860NWC0mMJJHhbKqPS5+NgE
+         8upDHajGqUXVsdHjBST0+zFB8YJ6XajUAxvMLj20nUp/hyUCmPW1oMcr7M6XymwcjmPR
+         kYhQCbjFAjoRe4PcglK8ifIY0sdoa+5kjQN+WhWtjctcnQtsEdqu1BudMB46JMRKp82J
+         0enoOHiIZkJo4+dTATwDHgroskEV4f5EhMVHJIiX91xDJL0GF4wyxw6qZ+pE2/qAvgHy
+         DP7RX0Fb8l634zbgR/py2EBOqcGbEJqAonYYWTCQ2Y7NTQ/GFbGC1XlYH+obVoBsLZn7
+         4jKg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=FHeqGcpUq0K/LfMy6iWPf10Yt7dCiT+hVL7+V0mFEG4=;
+        b=AauOHelPJLhorD03FJffEj4+mnjlxtgxyCT0dxvGsJiaNFYpb0QTMg9GVdIntfJQBx
+         fRvHTbbU0wXcd4UBI5/E/2zICmXyxv59WtQieNRzSLmTVNA/bjzipqjFecVGaWgolKqp
+         utTiUgz+omt6KZwb2frd4ucZ9rZ5M2PVwyU65oCCKtJNKAWGg9M18DN6Ma3jA4JkJSlx
+         Bt+wYxYs/KIYfL5zZPGATovcDVB9Cxkw3S08uSaCVtlBs0NNA5u0Pb+gzfmvT718rv9z
+         SXbiJvg9Nz7PVww4uS6L96njd6PdHKHHiBxugL6eqTIlfnMA9+6zU/faoC7oBwghUNjI
+         5IVg==
+X-Gm-Message-State: AOAM5322UkgAnMsgewzcwYUke5wGnMq3JzN8Xvv3q6cire+Inbe9wkEz
+        hw3stQE2xdV82wpOTeh6PevQp2U7/TkF1gVT3y8=
+X-Google-Smtp-Source: ABdhPJzCAaa7yN+Wk5sFAvAe9YX5TxXG43cpkSCDjtkK9c8g7PvLcNOUJnzq9Y0HW6a+IRBMoNzYb6/AZ+oHIaDen3I=
+X-Received: by 2002:a9d:589:: with SMTP id 9mr15977543otd.72.1607410016335;
+ Mon, 07 Dec 2020 22:46:56 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20201207194201.GA680126@robh.at.kernel.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <20201207192104.6046-1-sergio.paracuellos@gmail.com>
+ <20201207192104.6046-2-sergio.paracuellos@gmail.com> <CACRpkdavpQ+QP56MVQ5E0oxNKWb0tR9g8vHay6-LAc+Bj7tAQQ@mail.gmail.com>
+In-Reply-To: <CACRpkdavpQ+QP56MVQ5E0oxNKWb0tR9g8vHay6-LAc+Bj7tAQQ@mail.gmail.com>
+From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Date:   Tue, 8 Dec 2020 07:46:45 +0100
+Message-ID: <CAMhs-H8rT7ofTsBn7mkp5rWhGfSrMCUHtbn1KLeEUKEeH20=1Q@mail.gmail.com>
+Subject: Re: [PATCH 1/3] dt-bindings: pinctrl: rt2880: add binding document
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Jason Yan <yanaijie@huawei.com>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:STAGING SUBSYSTEM" <devel@driverdev.osuosl.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Hi Linus,
 
-On 07/12/2020 21.42, Rob Herring wrote:
-> On Tue, Nov 17, 2020 at 12:56:47PM +0200, Peter Ujfalusi wrote:
->> New binding document for
->> Texas Instruments K3 Block Copy DMA (BCDMA).
->>
->> BCDMA is introduced as part of AM64.
->>
->> Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
->> ---
->>  .../devicetree/bindings/dma/ti/k3-bcdma.yaml  | 175 ++++++++++++++++++
->>  1 file changed, 175 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/dma/ti/k3-bcdma.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/dma/ti/k3-bcdma.yaml b/Documentation/devicetree/bindings/dma/ti/k3-bcdma.yaml
->> new file mode 100644
->> index 000000000000..c6d76641ebec
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/dma/ti/k3-bcdma.yaml
->> @@ -0,0 +1,175 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/dma/ti/k3-bcdma.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Texas Instruments K3 DMSS BCDMA Device Tree Bindings
->> +
->> +maintainers:
->> +  - Peter Ujfalusi <peter.ujfalusi@ti.com>
->> +
->> +description: |
->> +  The Block Copy DMA (BCDMA) is intended to perform similar functions as the TR
->> +  mode channels of K3 UDMA-P.
->> +  BCDMA includes block copy channels and Split channels.
->> +
->> +  Block copy channels mainly used for memory to memory transfers, but with
->> +  optional triggers a block copy channel can service peripherals by accessing
->> +  directly to memory mapped registers or area.
->> +
->> +  Split channels can be used to service PSI-L based peripherals.
->> +  The peripherals can be PSI-L native or legacy, non PSI-L native peripherals
->> +  with PDMAs. PDMA is tasked to act as a bridge between the PSI-L fabric and the
->> +  legacy peripheral.
->> +
->> +  PDMAs can be configured via BCDMA split channel's peer registers to match with
->> +  the configuration of the legacy peripheral.
->> +
->> +allOf:
->> +  - $ref: /schemas/dma/dma-controller.yaml#
->> +
->> +properties:
->> +  "#dma-cells":
->> +    const: 3
->> +    description: |
->> +      cell 1: type of the BCDMA channel to be used to service the peripheral:
->> +        0 - split channel
->> +        1 - block copy channel using global trigger 1
->> +        2 - block copy channel using global trigger 2
->> +        3 - block copy channel using local trigger
->> +
->> +      cell 2: parameter for the channel:
->> +        if cell 1 is 0 (split channel):
->> +          PSI-L thread ID of the remote (to BCDMA) end.
->> +          Valid ranges for thread ID depends on the data movement direction:
->> +          for source thread IDs (rx): 0 - 0x7fff
->> +          for destination thread IDs (tx): 0x8000 - 0xffff
->> +
->> +          Please refer to the device documentation for the PSI-L thread map and
->> +          also the PSI-L peripheral chapter for the correct thread ID.
->> +        if cell 1 is 1 or 2 (block copy channel using global trigger):
->> +          Unused, ignored
->> +
->> +          The trigger must be configured for the channel externally to BCDMA,
->> +          channels using global triggers should not be requested directly, but
->> +          via DMA event router.
->> +        if cell 1 is 3 (block copy channel using local trigger):
->> +          bchan number of the locally triggered channel
->> +
->> +      cell 3: ASEL value for the channel
->> +
->> +  compatible:
->> +    enum:
->> +      - ti,am64-dmss-bcdma
-> 
-> Typically, we put 'compatible' first.
+Thanks for the review. There weren't too many yaml samples for this so
+as you had seen this was a bit messy and I really needed this review,
+especially in the 'if' clause part :).
 
-OK.
+On Mon, Dec 7, 2020 at 11:42 PM Linus Walleij <linus.walleij@linaro.org> wrote:
+>
+> Hi Sergio,
+>
+> thanks for driving this!
+>
+> On Mon, Dec 7, 2020 at 8:21 PM Sergio Paracuellos
+> <sergio.paracuellos@gmail.com> wrote:
+>
+> > The commit adds rt2880 compatible node in binding document.
+> >
+> > Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+> (...)
+> > +description:
+> > +  The rt2880 pinmux can only set the muxing of pin groups. muxing indiviual pins
+> > +  is not supported. There is no pinconf support.
+>
+> OK!
+>
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - ralink,rt2880-pinmux
+> > +
+> > +  pinctrl-0:
+> > +    description:
+> > +      A phandle to the node containing the subnodes containing default
+> > +      configurations.
+>
+> As it is a node on the pin controller itself, this is a hog so write something
+> about that this is for pinctrl hogs.
 
->> +  "#address-cells":
->> +    const: 2
->> +
->> +  "#size-cells":
->> +    const: 2
-> 
-> These apply to child nodes, but you don't have any.
+Ok, will do.
 
-True, I forgot to remove these.
+>
+> > +  pinctrl-names:
+> > +    description:
+> > +      A pinctrl state named "default" must be defined.
+> > +    const: default
+>
+> Is it really compulsory?
 
->> +
->> +  reg:
->> +    maxItems: 5
->> +
->> +  reg-names:
->> +    items:
->> +      - const: gcfg
->> +      - const: bchanrt
->> +      - const: rchanrt
->> +      - const: tchanrt
->> +      - const: ringrt
->> +
->> +  msi-parent: true
->> +
->> +  ti,asel:
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    description: ASEL value for non slave channels
->> +
->> +  ti,sci-rm-range-bchan:
->> +    $ref: /schemas/types.yaml#/definitions/uint32-array
->> +    description: |
->> +      Array of BCDMA block-copy channel resource subtypes for resource
->> +      allocation for this host
->> +    minItems: 1
->> +    # Should be enough
->> +    maxItems: 255
->> +    items:
->> +      maximum: 0x3f
->> +
->> +  ti,sci-rm-range-tchan:
->> +    $ref: /schemas/types.yaml#/definitions/uint32-array
->> +    description: |
->> +      Array of BCDMA split tx channel resource subtypes for resource allocation
->> +      for this host
->> +    minItems: 1
->> +    # Should be enough
->> +    maxItems: 255
->> +    items:
->> +      maximum: 0x3f
->> +
->> +  ti,sci-rm-range-rchan:
->> +    $ref: /schemas/types.yaml#/definitions/uint32-array
->> +    description: |
->> +      Array of BCDMA split rx channel resource subtypes for resource allocation
->> +      for this host
->> +    minItems: 1
->> +    # Should be enough
->> +    maxItems: 255
->> +    items:
->> +      maximum: 0x3f
->> +
->> +required:
->> +  - compatible
->> +  - "#address-cells"
->> +  - "#size-cells"
->> +  - "#dma-cells"
->> +  - reg
->> +  - reg-names
->> +  - msi-parent
->> +  - ti,sci
->> +  - ti,sci-dev-id
->> +  - ti,sci-rm-range-bchan
->> +  - ti,sci-rm-range-tchan
->> +  - ti,sci-rm-range-rchan
->> +
->> +unevaluatedProperties: false
->> +
->> +examples:
->> +  - |+
->> +    cbass_main {
->> +        #address-cells = <2>;
->> +        #size-cells = <2>;
->> +
->> +        main_dmss {
->> +            compatible = "simple-mfd";
->> +            #address-cells = <2>;
->> +            #size-cells = <2>;
->> +            dma-ranges;
->> +            ranges;
->> +
->> +            ti,sci-dev-id = <25>;
->> +
->> +            main_bcdma: dma-controller@485c0100 {
->> +                compatible = "ti,am64-dmss-bcdma";
->> +                #address-cells = <2>;
->> +                #size-cells = <2>;
->> +
->> +                reg = <0x0 0x485c0100 0x0 0x100>,
->> +                      <0x0 0x4c000000 0x0 0x20000>,
->> +                      <0x0 0x4a820000 0x0 0x20000>,
->> +                      <0x0 0x4aa40000 0x0 0x20000>,
->> +                      <0x0 0x4bc00000 0x0 0x100000>;
->> +                reg-names = "gcfg", "bchanrt", "rchanrt", "tchanrt", "ringrt";
->> +                msi-parent = <&inta_main_dmss>;
->> +                #dma-cells = <3>;
->> +
->> +                ti,sci = <&dmsc>;
->> +                ti,sci-dev-id = <26>;
->> +
->> +                ti,sci-rm-range-bchan = <0x20>; /* BLOCK_COPY_CHAN */
->> +                ti,sci-rm-range-rchan = <0x21>; /* SPLIT_TR_RX_CHAN */
->> +                ti,sci-rm-range-tchan = <0x22>; /* SPLIT_TR_TX_CHAN */
->> +            };
->> +        };
->> +    };
->> -- 
->> Peter
->>
->> Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
->> Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
->>
+Not really, I guess. The current device tree contains one so I added
+here because of this.
+>
+> > +required:
+> > +  - compatible
+> > +  - pinctrl-names
+> > +  - pinctrl-0
+>
+> I wonder if the hogs are really compulsory.
 
-- Péter
+Ok, so I guess I should remove both 'pinctrl-names' and ' pinctrl-0'
+from the required but maintain its desciption.
 
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+>
+> > +patternProperties:
+> > +  '^.*$':
+>
+> That's liberal node naming!
+> What about [a-z0-9_-]+ or something?
+
+hahaha. Yeah, I like freedom :), but yes, you are right, I will change
+the pattern using the one proposed here.
+
+>
+> > +    if:
+> > +      type: object
+> > +      description: |
+> > +        A pinctrl node should contain at least one subnodes representing the
+> > +        pinctrl groups available on the machine.
+> > +      $ref: "pinmux-node.yaml"
+> > +      required:
+> > +        - groups
+> > +        - function
+> > +      additionalProperties: false
+> > +    then:
+> > +      properties:
+> > +        groups:
+> > +          description:
+> > +            Name of the pin group to use for the functions.
+> > +          $ref: "/schemas/types.yaml#/definitions/string"
+> > +          enum: [i2c, spi, uart1, uart2, uart3, rgmii1, rgmii2, mdio,
+> > +                 pcie, sdhci]
+> > +        function:
+> > +          description:
+> > +            The mux function to select
+> > +          $ref: "/schemas/types.yaml#/definitions/string"
+> > +          enum: [gpio, i2c, spi, uart1, uart2, uart3, rgmii1, rgmii2,
+> > +                 mdio, nand1, nand2, sdhci]
+>
+> Why do we have this complex if: clause?
+
+To be honest to avoid problems with other pinctrl root nodes because
+they are not type 'object' and not having real idea in what way this
+should be achieved :).
+
+> $ref: "pinmux-node.yaml" should bring in the groups and
+> function properties. Then you can add some further restrictions
+> on top of that, right?
+>
+> I would just do:
+>
+> patternProperties:
+>   '^[a-z0-9_]+$':
+>     type: object
+>       description: node for pinctrl
+>       $ref "pinmux-node.yaml"
+>
+>       properties:
+>         groups:
+>           description: groups...
+>           enum: [i2c, spi, uart1, uart2, uart3, rgmii1, rgmii2, mdio,
+> pcie, sdhci]
+>         function:
+>           description: function...
+>           enum: [gpio, i2c, spi, uart1, uart2, uart3, rgmii1, rgmii2,
+> mdio, nand1, nand2, sdhci]
+>
+> Note: the function names are fine but the group names are a bit
+> confusion since often a group can be used for more than one
+> function, and e.g.
+>
+> function = "i2c";
+> group = "uart1";
+>
+> to use the uart1 pins for an i2c is gonna look mildly confusing.
+>
+> But if this is what the hardware calls it I suppose it is
+> fine.
+
+This is the way is currently being used in the device tree.
+
+>
+> Yours,
+> Linus Walleij
+
+Thanks again. I will change this and send v2.
+
+Best regards,
+     Sergio Paracuellos
