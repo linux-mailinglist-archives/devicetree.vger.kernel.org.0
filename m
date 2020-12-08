@@ -2,169 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 33D702D2727
-	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 10:08:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AA6562D272A
+	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 10:08:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728612AbgLHJGy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Dec 2020 04:06:54 -0500
-Received: from mail-wm1-f67.google.com ([209.85.128.67]:52325 "EHLO
-        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728544AbgLHJGx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Dec 2020 04:06:53 -0500
-Received: by mail-wm1-f67.google.com with SMTP id a6so1478365wmc.2;
-        Tue, 08 Dec 2020 01:06:30 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Yp6QbU20dThiZX55YMgwP3N0UblwKDOB7By25gccL7c=;
-        b=sAkl74s0WB5ZfNOAbD2UvPb6wQvtsATgZcXpAWIvJPYyO9Gnj82zefH+j+mA6scCBa
-         C2u0UJFnaTTz+PjGtSPqHgRvh43B+xJvF0L5m3B47G6QGs9o9fY8FybnBq7MULJ7Qw0H
-         6XXGE15XlCZ+kWjWQV7xP/Tjn5xD4MmOHdaLYVkIKo6ffAfbc8mVff4b/CoMQg7Un5Tf
-         w35MXK5YqacT9+gxhjVae4DiMM8obQSCjqNzIn7sQzxEL0hkJunqclnqKnLRG5bYhKV9
-         CcDVdfKY7D1imMptnU4FW5RfWcFzgGcHzp2mvt8/0iCCvDdnEjNS08bpL6xWttlRY9Mg
-         aXDg==
-X-Gm-Message-State: AOAM5310pkQ1y6XOuCuJPxvkP5F0B1NhzRtON7EHLTW9bh3RTQSjG1aK
-        Oy+SopdJjlk/UKGsYdL4n5s=
-X-Google-Smtp-Source: ABdhPJy9qWTsAHTIyarbSwMqk6HSg5nF0G3ha8z2BhOwMciZ8zVRzeZ0zOwuEFo3aEIZXSVCkNduYg==
-X-Received: by 2002:a1c:4843:: with SMTP id v64mr2900420wma.186.1607418364268;
-        Tue, 08 Dec 2020 01:06:04 -0800 (PST)
-Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
-        by smtp.googlemail.com with ESMTPSA id i11sm19196228wrm.1.2020.12.08.01.06.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Dec 2020 01:06:03 -0800 (PST)
-Date:   Tue, 8 Dec 2020 10:06:01 +0100
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     "S.j. Wang" <shengjiu.wang@nxp.com>
-Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] arm64: dts: imx8mn: Fix duplicate node name
-Message-ID: <20201208090601.GA8347@kozik-lap>
-References: <VI1PR0402MB334257A91BBAFE48C7AACD56E3CD0@VI1PR0402MB3342.eurprd04.prod.outlook.com>
+        id S1728959AbgLHJH4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Dec 2020 04:07:56 -0500
+Received: from honk.sigxcpu.org ([24.134.29.49]:60552 "EHLO honk.sigxcpu.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728948AbgLHJH4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 8 Dec 2020 04:07:56 -0500
+Received: from localhost (localhost [127.0.0.1])
+        by honk.sigxcpu.org (Postfix) with ESMTP id 6A30FFB03;
+        Tue,  8 Dec 2020 10:07:12 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at honk.sigxcpu.org
+Received: from honk.sigxcpu.org ([127.0.0.1])
+        by localhost (honk.sigxcpu.org [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id oKdTZMLSUwOv; Tue,  8 Dec 2020 10:07:11 +0100 (CET)
+Received: by bogon.sigxcpu.org (Postfix, from userid 1000)
+        id BBC234068D; Tue,  8 Dec 2020 10:07:10 +0100 (CET)
+Date:   Tue, 8 Dec 2020 10:07:10 +0100
+From:   Guido =?iso-8859-1?Q?G=FCnther?= <guido.gunther@puri.sm>
+To:     Liu Ying <victor.liu@nxp.com>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org, kishon@ti.com,
+        vkoul@kernel.org, robh+dt@kernel.org, a.hajda@samsung.com,
+        narmstrong@baylibre.com, Laurent.pinchart@ideasonboard.com,
+        jonas@kwiboo.se, jernej.skrabec@siol.net, airlied@linux.ie,
+        daniel@ffwll.ch, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        robert.chiras@nxp.com, martin.kepplinger@puri.sm
+Subject: Re: [PATCH 3/4] dt-bindings: phy: mixel: mipi-dsi-phy: Add Mixel
+ combo PHY support for i.MX8qxp
+Message-ID: <20201208090710.GC20575@bogon.m.sigxcpu.org>
+References: <1607067224-15616-1-git-send-email-victor.liu@nxp.com>
+ <1607067224-15616-4-git-send-email-victor.liu@nxp.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <VI1PR0402MB334257A91BBAFE48C7AACD56E3CD0@VI1PR0402MB3342.eurprd04.prod.outlook.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <1607067224-15616-4-git-send-email-victor.liu@nxp.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 08, 2020 at 08:57:49AM +0000, S.j. Wang wrote:
-> > On Tue, Dec 08, 2020 at 08:44:51AM +0000, S.j. Wang wrote:
-> > > > > > >
-> > > > > > > On Mon, Dec 07, 2020 at 02:21:40PM +0100, Krzysztof Kozlowski
-> > wrote:
-> > > > > > > > On Mon, Dec 07, 2020 at 02:53:24PM +0800, Shengjiu Wang wrote:
-> > > > > > > > > Error log:
-> > > > > > > > > sysfs: cannot create duplicate filename
-> > > > > > > '/bus/platform/devices/30000000.bus'
-> > > > > > > > >
-> > > > > > > > > The spba bus name is duplicate with aips bus name.
-> > > > > > > > > Refine spba bus name to fix this issue.
-> > > > > > > > >
-> > > > > > > > > Fixes: 970406eaef3a ("arm64: dts: imx8mn: Enable
-> > > > > > > > > Asynchronous Sample Rate Converter")
-> > > > > > > > > Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
-> > > > > > > > > ---
-> > > > > > > > >  arch/arm64/boot/dts/freescale/imx8mn.dtsi | 2 +-
-> > > > > > > > >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > > > > > > > >
-> > > > > > > > > diff --git a/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-> > > > > > > > > b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-> > > > > > > > > index fd669c0f3fe5..30762eb4f0a7 100644
-> > > > > > > > > --- a/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-> > > > > > > > > +++ b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-> > > > > > > > > @@ -246,7 +246,7 @@ aips1: bus@30000000 {
-> > > > > > > > >                     #size-cells = <1>;
-> > > > > > > > >                     ranges;
-> > > > > > > > >
-> > > > > > > > > -                   spba: bus@30000000 {
-> > > > > > > > > +                   spba: spba-bus@30000000 {
-> > > > > > > >
-> > > > > > > > The proper node name is "bus" so basically you introduce
-> > > > > > > > wrong name to other problem.  Introducing wrong names at
-> > > > > > > > least requires a
-> > > > comment.
-> > > > > > >
-> > > > > > > I just noticed that my message was barely understandable... so
-> > > > > > > let me
-> > > > fix it:
-> > > > > > >
-> > > > > > > The proper node name is "bus" so basically you introduce wrong
-> > > > > > > name to _fix_ other problem.  Introducing wrong names at least
-> > > > requires a comment.
-> > > > > > >
-> > > > > > > > However the actual problem here is not in node names but in
-> > > > addresses:
-> > > > > > > >
-> > > > > > > >       aips1: bus@30000000 {
-> > > > > > > >               spba: bus@30000000 {
-> > > > > > > >
-> > > > > > > > You have to devices with the same unit address. How do you
-> > > > > > > > share the address space?
-> > > > > > > >
-> > > > > > > > I think this should be rather fixed.
-> > > > > > >
-> > > > > > > And again, hungry keyboard ate a letter, so:
-> > > > > > >
-> > > > > > > You have _two_ devices with the same unit address. How do you
-> > > > > > > share the address space?
-> > > > > > > I think this should be rather fixed.
-> > > > > > >
-> > > > > >
-> > > > > > spba is the first block of aips1 space, so it has same start
-> > > > > > address as aips1.
-> > > > >
-> > > > > The reference manual describes it "Reserved for SDMA2 internal
-> > > > > memory", so indeed it is first address but does it have to be mapped?
-> > > > > Anyway, why don't you use ranges to remove the conflict?
-> > > >
-> > > > The IO address space remapping could be a solution but there is
-> > > > another problem - the hardware representation in DT does not match
-> > > > what reference manual is saying.
-> > > >
-> > > > The AIPS bus @30000000 has several IPs:
-> > > >  - SAI2@30020000
-> > > >  - ...
-> > > >  - GPIO1@30200000
-> > > >
-> > > > However in DTS you will find additional SPBA bus for 30000000 -
-> > 300c0000.
-> > > > It's not really the SDMA, as SDMA is at different address. It is
-> > > > rather an address space which SDMA should map... but it is not a bus
-> > with children.
-> > > > Adding spba-bus@30000000 with its children does not look like
-> > > > correct representation of HW in DTS.
-> > > >
-> > >
-> > > In the RM, it says AIPS-1 (s_b_1, via SPBA) Glob. Module Enable.
-> > > Range is (30000000 - 300FFFFF)
-> > 
-> > No, AIPS-1 is till 303F_FFFF.
+Hi Liu,
+Since we now gain optional properties validation would become even more
+useful. Could you look into converting to YAML before adding more
+values?
+Cheers,
+ -- Guido
+
+On Fri, Dec 04, 2020 at 03:33:43PM +0800, Liu Ying wrote:
+> Add support for Mixel MIPI DPHY + LVDS PHY combo IP
+> as found on Freescale i.MX8qxp SoC.
 > 
-> Yes,  AIPSA-1 is till 303F_FFFF,  but it is divided to 2 parts.
-> (30000000 - 300FFFFF) is the first part. 
+> Cc: Guido Günther <agx@sigxcpu.org>
+> Cc: Kishon Vijay Abraham I <kishon@ti.com>
+> Cc: Vinod Koul <vkoul@kernel.org>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: NXP Linux Team <linux-imx@nxp.com>
+> Signed-off-by: Liu Ying <victor.liu@nxp.com>
+> ---
+>  Documentation/devicetree/bindings/phy/mixel,mipi-dsi-phy.txt | 8 +++++++-
+>  1 file changed, 7 insertions(+), 1 deletion(-)
 > 
-> Please go to table 2-3 AIPS1 memory map in RM.  In the "region" column,
-> There is " AIPS-1 (s_b_1, via SPBA) Glob. Module Enable". It means
-> This part is connect to SPBA bus.
-
-Thanks, I see it now. Indeed you have two buses which start at the same
-address space. You can:
-1. Remap addresses,
-2. Rename APIS and SPBA to bus-1 and bus-2,
-3. Add specific (non-generic) name to spba-bus which you did initially.
-
-All of these are rather workarounds so I don't mind your approach (3).
-
-Best regards,
-Krzysztof
-
+> diff --git a/Documentation/devicetree/bindings/phy/mixel,mipi-dsi-phy.txt b/Documentation/devicetree/bindings/phy/mixel,mipi-dsi-phy.txt
+> index 9b23407..0afce99 100644
+> --- a/Documentation/devicetree/bindings/phy/mixel,mipi-dsi-phy.txt
+> +++ b/Documentation/devicetree/bindings/phy/mixel,mipi-dsi-phy.txt
+> @@ -4,9 +4,13 @@ The Mixel MIPI-DSI PHY IP block is e.g. found on i.MX8 platforms (along the
+>  MIPI-DSI IP from Northwest Logic). It represents the physical layer for the
+>  electrical signals for DSI.
+>  
+> +The Mixel PHY IP block found on i.MX8qxp is a combo PHY that can work
+> +in either MIPI-DSI PHY mode or LVDS PHY mode.
+> +
+>  Required properties:
+> -- compatible: Must be:
+> +- compatible: Should be one of:
+>    - "fsl,imx8mq-mipi-dphy"
+> +  - "fsl,imx8qxp-mipi-dphy"
+>  - clocks: Must contain an entry for each entry in clock-names.
+>  - clock-names: Must contain the following entries:
+>    - "phy_ref": phandle and specifier referring to the DPHY ref clock
+> @@ -14,6 +18,8 @@ Required properties:
+>  - #phy-cells: number of cells in PHY, as defined in
+>    Documentation/devicetree/bindings/phy/phy-bindings.txt
+>    this must be <0>
+> +- fsl,syscon: Phandle to a system controller, as required by the PHY
+> +  in i.MX8qxp SoC.
+>  
+>  Optional properties:
+>  - power-domains: phandle to power domain
+> -- 
+> 2.7.4
+> 
