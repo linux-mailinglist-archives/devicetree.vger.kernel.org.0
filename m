@@ -2,392 +2,246 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 981D52D3702
-	for <lists+devicetree@lfdr.de>; Wed,  9 Dec 2020 00:41:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 05DC32D370F
+	for <lists+devicetree@lfdr.de>; Wed,  9 Dec 2020 00:43:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731800AbgLHXkt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Dec 2020 18:40:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40884 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731780AbgLHXkt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Dec 2020 18:40:49 -0500
-Received: from mail-pf1-x441.google.com (mail-pf1-x441.google.com [IPv6:2607:f8b0:4864:20::441])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4700AC061793
-        for <devicetree@vger.kernel.org>; Tue,  8 Dec 2020 15:40:09 -0800 (PST)
-Received: by mail-pf1-x441.google.com with SMTP id d2so189279pfq.5
-        for <devicetree@vger.kernel.org>; Tue, 08 Dec 2020 15:40:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=f2Rw+12cZC2KSwMyweXqKWzxEzMTuwN2X3XRonxyDdA=;
-        b=Mz0jCmzBsRIsp6HP7rMkXmC1oAS36LfYs+kRAsDygVnppOCLwWPX8MoRymHuRZNfkH
-         ScZb8P92S4iqLty1mCDmarNyP459J1Wub5rvM5f0mkh44nbbZ/RNtPCT28DE4VL8v+i/
-         4j/1wTvGoV/rXDAiWm2HHWNolbvmIF3hB1Mwmda5xumQk9PFu8WsAQaz+g66Ln/86BS1
-         qPPD0WS7g+OtrfTmXXWjPyl1zFOJNWnA2i+AiyNDbXMHsXlR2VRC+Z0XfXKuoeuzjLK4
-         /5/IRpRMbY1x5tnucGzrbbQYcg7IjpQtav10fk9czuwx3kSDH2zf2v4tFMsJdLyR51Vz
-         02qQ==
+        id S1731805AbgLHXmR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Dec 2020 18:42:17 -0500
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:46824 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725906AbgLHXmL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Dec 2020 18:42:11 -0500
+Received: by mail-ot1-f68.google.com with SMTP id w3so431307otp.13;
+        Tue, 08 Dec 2020 15:41:55 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=f2Rw+12cZC2KSwMyweXqKWzxEzMTuwN2X3XRonxyDdA=;
-        b=G7fPDBxHxj4aG6F3Q4pgjn8zXdVDKR8v+MZTuMxvGe070hX2XG9Um1te2TxqkdOpMP
-         GpBJBFp8o+KnRAYsbQZ3NzIVKZRZa8Sdm5Du9oZalXnoYs4OeulY7ZzPiLm3Vv9Kph2M
-         SPqLKehEYBBOSnnZ4hH0B/f+dwYFzxLFR9JltDB8Ha75nA1D+RrwNCS8B2+dAy3IGdbk
-         c4IpJlPTR2mu9pENY8P66/Se82TIscPQHHcge3ioYinlinqCM6Bpvb/PGZdEKzGmQAw4
-         v7lPodmffE0bVXk73yegzr/w0RR9pn0b1HWvQmLVEkQOA2eIO2HFEXSPyo0WuwqCXG/K
-         h5Cg==
-X-Gm-Message-State: AOAM5302Ua4q3dksv33/WzbCOQecm1hGSzMaPNgIRNJ3c3qG9Hg0d/kG
-        5ii54CX91GASkmB3UPJwCW99Mg==
-X-Google-Smtp-Source: ABdhPJwJSPIK2+J8m6zel41LGCYs14ViXvidllaMUKjG9MhQuooGx+n8TJqn7++xeEVbbG6dQ/YtSw==
-X-Received: by 2002:a63:5f49:: with SMTP id t70mr422693pgb.288.1607470808422;
-        Tue, 08 Dec 2020 15:40:08 -0800 (PST)
-Received: from google.com (154.137.233.35.bc.googleusercontent.com. [35.233.137.154])
-        by smtp.gmail.com with ESMTPSA id e13sm72326pgh.54.2020.12.08.15.40.07
+        bh=mCzrahJfQzjNGyApJxp330Y639Yd1mbxLODK6PjseoQ=;
+        b=Wrpj1V1N3Vx0P6AMGEWIVjhs3g7Aq8QQXAvfnpPScUH5A8Dm5TQDcEgBxD4JWgpQ/6
+         zgidSaxXnfpHUW0sAHQ5gTzHdv2XnII0Ncdju1x3IOFoIM0FOT1SGbfl8Sgk9z9Mzsaz
+         Vj3BnkycNioaD+Ol4LOqIRMLAACzmuewoR53m25iofGncksVFqzO+cGn2R/oDHGKT5Ce
+         pHtx06JJvLbpdrq33TBRbP/LOEjumG1nzoCeaGkLuLckNJv+vi9pKBSUi/sQX8xblDJs
+         fg/OSJZI4GJ2ULPfKVXArFRQmd25iMdt9NZaJW56xmL08XzQ6ZWX6oncRArXFPChJgDc
+         w+zg==
+X-Gm-Message-State: AOAM533oGeAo4MDTFk7jqoBcRD85Mc7C0uvR8DtVPfcIM4OhLJt2uL6N
+        VgcNCm4cOuML0oS6yfj2xQ==
+X-Google-Smtp-Source: ABdhPJyWhVNI/C53Lkge1VqK7cYq8nLg5rgXAvJRTD/JdewfYLumeU4nJgeCLYUAEw0d3qtY0FuK2g==
+X-Received: by 2002:a9d:73d1:: with SMTP id m17mr420711otk.187.1607470889716;
+        Tue, 08 Dec 2020 15:41:29 -0800 (PST)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id p4sm79330oib.24.2020.12.08.15.41.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Dec 2020 15:40:07 -0800 (PST)
-Date:   Tue, 8 Dec 2020 23:40:04 +0000
-From:   Satya Tangirala <satyat@google.com>
-To:     Eric Biggers <ebiggers@kernel.org>
-Cc:     linux-mmc@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-fscrypt@vger.kernel.org,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Asutosh Das <asutoshd@codeaurora.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Neeraj Soni <neersoni@codeaurora.org>,
-        Barani Muthukumaran <bmuthuku@codeaurora.org>,
-        Peng Zhou <peng.zhou@mediatek.com>,
-        Stanley Chu <stanley.chu@mediatek.com>,
-        Konrad Dybcio <konradybcio@gmail.com>
-Subject: Re: [PATCH v2 1/9] mmc: add basic support for inline encryption
-Message-ID: <X9AO1Azlf4SSNuxR@google.com>
-References: <20201203020516.225701-1-ebiggers@kernel.org>
- <20201203020516.225701-2-ebiggers@kernel.org>
+        Tue, 08 Dec 2020 15:41:28 -0800 (PST)
+Received: (nullmailer pid 3334104 invoked by uid 1000);
+        Tue, 08 Dec 2020 23:41:27 -0000
+Date:   Tue, 8 Dec 2020 17:41:27 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Wendy Liang <wendy.liang@xilinx.com>
+Cc:     michal.simek@xilinx.com, arnd@arndb.de, gregkh@linuxfoundation.org,
+        sumit.semwal@linaro.org, christian.koenig@amd.com,
+        derek.kiernan@xilinx.com, dragan.cvetic@xilinx.com,
+        rajan.vaja@xilinx.com, tejas.patel@xilinx.com,
+        manish.narani@xilinx.com, ravi.patel@xilinx.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+        dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH v3 1/9] dt-binding: soc: xilinx: ai-engine: Add AI engine
+ binding
+Message-ID: <20201208234127.GA3303888@robh.at.kernel.org>
+References: <1606722505-16194-1-git-send-email-wendy.liang@xilinx.com>
+ <1606722505-16194-2-git-send-email-wendy.liang@xilinx.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201203020516.225701-2-ebiggers@kernel.org>
+In-Reply-To: <1606722505-16194-2-git-send-email-wendy.liang@xilinx.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 02, 2020 at 06:05:08PM -0800, Eric Biggers wrote:
-> From: Eric Biggers <ebiggers@google.com>
-> 
-> In preparation for adding CQHCI crypto engine (inline encryption)
-> support, add the code required to make mmc_core and mmc_block aware of
-> inline encryption.  Specifically:
-> 
-> - Add a capability flag MMC_CAP2_CRYPTO to struct mmc_host.  Drivers
->   will set this if the host and driver support inline encryption.
-> 
-> - Embed a blk_keyslot_manager in struct mmc_host.  Drivers will
->   initialize this if the host and driver support inline encryption.
->   mmc_block registers this keyslot manager with the request_queue of any
->   MMC card attached to the host.  mmc_core destroys this keyslot manager
->   when freeing the mmc_host.
-> 
-> - Make mmc_block copy the crypto keyslot and crypto data unit number
->   from struct request to struct mmc_request, so that drivers will have
->   access to them.
-> 
-> - If the MMC host is reset, reprogram all the keyslots to ensure that
->   the software state stays in sync with the hardware state.
-> 
-> Co-developed-by: Satya Tangirala <satyat@google.com>
-> Signed-off-by: Satya Tangirala <satyat@google.com>
-> Acked-by: Adrian Hunter <adrian.hunter@intel.com>
-> Signed-off-by: Eric Biggers <ebiggers@google.com>
+On Sun, Nov 29, 2020 at 11:48:17PM -0800, Wendy Liang wrote:
+> Xilinx AI engine array can be partitioned statically for different
+> applications. In the device tree, there will be device node for the AI
+> engine device, and device nodes for the statically configured AI engine
+> partitions. Each of the statically configured partition has a partition
+> ID in the system.
+>
+> Signed-off-by: Wendy Liang <wendy.liang@xilinx.com>
 > ---
->  drivers/mmc/core/Kconfig  |  8 ++++++
->  drivers/mmc/core/Makefile |  1 +
->  drivers/mmc/core/block.c  |  3 +++
->  drivers/mmc/core/core.c   |  3 +++
->  drivers/mmc/core/crypto.c | 54 +++++++++++++++++++++++++++++++++++++++
->  drivers/mmc/core/crypto.h | 46 +++++++++++++++++++++++++++++++++
->  drivers/mmc/core/host.c   |  2 ++
->  drivers/mmc/core/queue.c  |  3 +++
->  include/linux/mmc/core.h  |  6 +++++
->  include/linux/mmc/host.h  |  7 +++++
->  10 files changed, 133 insertions(+)
->  create mode 100644 drivers/mmc/core/crypto.c
->  create mode 100644 drivers/mmc/core/crypto.h
+>  .../bindings/soc/xilinx/xlnx,ai-engine.yaml        | 126 +++++++++++++++++++++
+>  1 file changed, 126 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/soc/xilinx/xlnx,ai-engine.yaml
 > 
-> diff --git a/drivers/mmc/core/Kconfig b/drivers/mmc/core/Kconfig
-> index c12fe13e4b147..ae8b69aee6190 100644
-> --- a/drivers/mmc/core/Kconfig
-> +++ b/drivers/mmc/core/Kconfig
-> @@ -81,3 +81,11 @@ config MMC_TEST
->  	  This driver is only of interest to those developing or
->  	  testing a host driver. Most people should say N here.
->  
-> +config MMC_CRYPTO
-> +	bool "MMC Crypto Engine Support"
-> +	depends on BLK_INLINE_ENCRYPTION
-> +	help
-> +	  Enable Crypto Engine Support in MMC.
-> +	  Enabling this makes it possible for the kernel to use the crypto
-> +	  capabilities of the MMC device (if present) to perform crypto
-> +	  operations on data being transferred to/from the device.
-> diff --git a/drivers/mmc/core/Makefile b/drivers/mmc/core/Makefile
-> index 95ffe008ebdf8..6a907736cd7a5 100644
-> --- a/drivers/mmc/core/Makefile
-> +++ b/drivers/mmc/core/Makefile
-> @@ -18,3 +18,4 @@ obj-$(CONFIG_MMC_BLOCK)		+= mmc_block.o
->  mmc_block-objs			:= block.o queue.o
->  obj-$(CONFIG_MMC_TEST)		+= mmc_test.o
->  obj-$(CONFIG_SDIO_UART)		+= sdio_uart.o
-> +mmc_core-$(CONFIG_MMC_CRYPTO)	+= crypto.o
-> diff --git a/drivers/mmc/core/block.c b/drivers/mmc/core/block.c
-> index 8d3df0be0355c..eaf2f10743260 100644
-> --- a/drivers/mmc/core/block.c
-> +++ b/drivers/mmc/core/block.c
-> @@ -51,6 +51,7 @@
->  #include "block.h"
->  #include "core.h"
->  #include "card.h"
-> +#include "crypto.h"
->  #include "host.h"
->  #include "bus.h"
->  #include "mmc_ops.h"
-> @@ -1247,6 +1248,8 @@ static void mmc_blk_data_prep(struct mmc_queue *mq, struct mmc_queue_req *mqrq,
->  
->  	memset(brq, 0, sizeof(struct mmc_blk_request));
->  
-> +	mmc_crypto_prepare_req(mqrq);
-> +
->  	brq->mrq.data = &brq->data;
->  	brq->mrq.tag = req->tag;
->  
-> diff --git a/drivers/mmc/core/core.c b/drivers/mmc/core/core.c
-> index d42037f0f10d7..275de270232b3 100644
-> --- a/drivers/mmc/core/core.c
-> +++ b/drivers/mmc/core/core.c
-> @@ -37,6 +37,7 @@
->  
->  #include "core.h"
->  #include "card.h"
-> +#include "crypto.h"
->  #include "bus.h"
->  #include "host.h"
->  #include "sdio_bus.h"
-> @@ -992,6 +993,8 @@ void mmc_set_initial_state(struct mmc_host *host)
->  		host->ops->hs400_enhanced_strobe(host, &host->ios);
->  
->  	mmc_set_ios(host);
-> +
-> +	mmc_crypto_set_initial_state(host);
->  }
->  
->  /**
-> diff --git a/drivers/mmc/core/crypto.c b/drivers/mmc/core/crypto.c
+> diff --git a/Documentation/devicetree/bindings/soc/xilinx/xlnx,ai-engine.yaml b/Documentation/devicetree/bindings/soc/xilinx/xlnx,ai-engine.yaml
 > new file mode 100644
-> index 0000000000000..4f47eb4740db0
+> index 0000000..1de5623
 > --- /dev/null
-> +++ b/drivers/mmc/core/crypto.c
-> @@ -0,0 +1,54 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * MMC crypto engine (inline encryption) support
-> + *
-> + * Copyright 2020 Google LLC
-> + */
+> +++ b/Documentation/devicetree/bindings/soc/xilinx/xlnx,ai-engine.yaml
+> @@ -0,0 +1,126 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/soc/xilinx/xlnx,ai-engine.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +#include <linux/blk-crypto.h>
-> +#include <linux/mmc/host.h>
+> +title: Xilinx AI Engine
 > +
-> +#include "core.h"
-> +#include "crypto.h"
-> +#include "queue.h"
+> +maintainers:
+> +  - Wendy Liang <wendy.liang@xilinx.com>
 > +
-> +void mmc_crypto_set_initial_state(struct mmc_host *host)
-> +{
-> +	/* Reset might clear all keys, so reprogram all the keys. */
-> +	if (host->caps2 & MMC_CAP2_CRYPTO)
-> +		blk_ksm_reprogram_all_keys(&host->ksm);
-> +}
+> +description: |+
+
+You don't need '|' unless there's formatting to preserve.
+
+> +  The Xilinx AI Engine is a tile processor with many cores (up to 400) that
+> +  can run in parallel. The data routing between cores is configured through
+> +  internal switches, and shim tiles interface with external interconnect, such
+> +  as memory or PL.
 > +
-> +void mmc_crypto_free_host(struct mmc_host *host)
-> +{
-> +	if (host->caps2 & MMC_CAP2_CRYPTO)
-> +		blk_ksm_destroy(&host->ksm);
-> +}
+> +properties:
+> +  compatible:
+> +    const: xlnx,ai-engine-v1.0
+
+This is soft logic? If not, don't use version numbers.
+
 > +
-> +void mmc_crypto_setup_queue(struct request_queue *q, struct mmc_host *host)
-> +{
-> +	if (host->caps2 & MMC_CAP2_CRYPTO)
-> +		blk_ksm_register(&host->ksm, q);
-> +}
-> +EXPORT_SYMBOL_GPL(mmc_crypto_setup_queue);
+> +  reg:
+> +    description: |
+> +      Physical base address and length of the device registers.
+
+That's every 'reg' property. Drop.
+
+> +      The AI engine address space assigned to Linux is defined by Xilinx
+> +      platform design tool.
 > +
-> +void mmc_crypto_prepare_req(struct mmc_queue_req *mqrq)
-> +{
-> +	struct request *req = mmc_queue_req_to_req(mqrq);
-> +	struct mmc_request *mrq = &mqrq->brq.mrq;
+> +  '#address-cells':
+> +    enum: [2]
+
+const: 2
+
+> +    description: |
+> +      size of cell to describe AI engine range of tiles address.
+> +      It is the location of the starting tile of the range.
+> +      As the AI engine tiles are 2D array, the location of a tile
+> +      is presented as (column, row), the address cell is 2.
 > +
-> +	if (!req->crypt_keyslot)
-> +		return;
+> +  '#size-cells':
+> +    enum: [2]
+> +    description: |
+> +      size of cell to describe AI engine range of tiles size.
+> +      As the AI engine tiles are 2D array, the size cell is 2.
 > +
-> +	mrq->crypto_enabled = true;
-> +	mrq->crypto_key_slot = blk_ksm_get_slot_idx(req->crypt_keyslot);
+> +  power-domains:
+> +    maxItems: 1
+> +    description: phandle to the associated power domain
 > +
-> +	/*
-> +	 * For now we assume that all MMC drivers set max_dun_bytes_supported=4,
-> +	 * which is the limit for CQHCI crypto.  So all DUNs should be 32-bit.
-> +	 */
-> +	WARN_ON_ONCE(req->crypt_ctx->bc_dun[0] > U32_MAX);
+> +  interrupts:
+> +    maxItems: 3
 > +
-> +	mrq->data_unit_num = req->crypt_ctx->bc_dun[0];
-> +}
-> +EXPORT_SYMBOL_GPL(mmc_crypto_prepare_req);
-> diff --git a/drivers/mmc/core/crypto.h b/drivers/mmc/core/crypto.h
-> new file mode 100644
-> index 0000000000000..4780639b832f4
-> --- /dev/null
-> +++ b/drivers/mmc/core/crypto.h
-> @@ -0,0 +1,46 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
-> +/*
-> + * MMC crypto engine (inline encryption) support
-> + *
-> + * Copyright 2020 Google LLC
-> + */
+> +  interrupt-names:
+> +    description: |
+> +      Should be "interrupt1", "interrupt2" or "interrupt3".
+
+Really, not useful names. If you do have names, they should be a schema, 
+not freeform text.
+
 > +
-> +#ifndef _MMC_CORE_CRYPTO_H
-> +#define _MMC_CORE_CRYPTO_H
+> +required:
+> +  - compatible
+> +  - reg
+> +  - '#address-cells'
+> +  - '#size-cells'
+> +  - power-domains
+> +  - interrupt-parent
+
+Generally, never required because it could be in the parent node.
+
+> +  - interrupts
+> +  - interrupt-names
 > +
-> +struct mmc_host;
-> +struct mmc_queue_req;
-> +struct request_queue;
+> +patternProperties:
+> +  "^aie_partition@[0-9]+$":
+
+aie-partition@
+
+The unit-address is just the 1st cell of reg (the row)? Or needs to be 
+row and column, in which case you'd want something like '@0,0'. Also, 
+unit-address values are typically hex, not decimal.
+
+> +    type: object
+> +    description: |
+> +      AI engine partition which is a group of column based tiles of the AI
+> +      engine device. Each AI engine partition is isolated from the other
+> +      AI engine partitions. An AI engine partition is defined by Xilinx
+> +      platform design tools. Each partition has a SHIM row and core tiles rows.
+> +      A SHIM row contains SHIM tiles which are the interface to external
+> +      components. AXI master can access AI engine registers, push data to and
+> +      fetch data from AI engine through the SHIM tiles. Core tiles are the
+> +      compute tiles.
 > +
-> +#ifdef CONFIG_MMC_CRYPTO
+> +    properties:
+> +      reg:
+> +        description: |
+> +          It describes the group of tiles of the AI engine partition. It needs
+> +          to include the SHIM row. The format is defined by the parent AI engine
+> +          device node's '#address-cells' and '#size-cells' properties. e.g. a v1
+> +          AI engine device has 2D tiles array, the first row is SHIM row. A
+> +          partition which has 50 columns and 8 rows of core tiles and 1 row of
+> +          SHIM tiles will be presented as <0 0 50 9>.
+
+You should be able to write some constraints like max row and column 
+values?
+
 > +
-> +void mmc_crypto_set_initial_state(struct mmc_host *host);
+> +      label:
+> +        maxItems: 1
+
+'label' is not an array. Why do you need label?
+
 > +
-> +void mmc_crypto_free_host(struct mmc_host *host);
+> +      xlnx,partition-id:
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        description: |
+> +          AI engine partition ID, which is defined by Xilinx platform design
+> +          tool to identify the AI engine partition in the system.
+
+I find the use of 'reg' a bit odd here. Maybe using 'reg' for partition 
+would make more sense? Which is more closely associated with how you 
+address the partition?
+
 > +
-> +void mmc_crypto_setup_queue(struct request_queue *q, struct mmc_host *host);
+> +    required:
+> +      - reg
+> +      - xlnx,partition-id
+> +    additionalProperties: false
 > +
-> +void mmc_crypto_prepare_req(struct mmc_queue_req *mqrq);
+> +additionalProperties: false
 > +
-> +#else /* CONFIG_MMC_CRYPTO */
+> +examples:
+> +  - |
+> +    bus {
+> +      #address-cells = <2>;
+> +      #size-cells = <2>;
 > +
-> +static inline void mmc_crypto_set_initial_state(struct mmc_host *host)
-> +{
-> +}
+> +      ai_engine: ai-engine@20000000000 {
+> +        compatible = "xlnx,ai-engine-v1.0";
+> +        reg = <0x200 0x0 0x1 0x0>;
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +        power-domains = <&versal_firmware 0x18224072>;
+> +        interrupt-parent = <&gic>;
+> +        interrupts = <0x0 0x94 0x4>,
+> +                     <0x0 0x95 0x4>,
+> +                     <0x0 0x96 0x4>;
+> +        interrupt-names = "interrupt1", "interrupt2", "interrupt3";
 > +
-> +static inline void mmc_crypto_free_host(struct mmc_host *host)
-> +{
-> +}
-> +
-> +static inline void mmc_crypto_setup_queue(struct request_queue *q,
-> +					  struct mmc_host *host)
-> +{
-> +}
-> +
-> +static inline void mmc_crypto_prepare_req(struct mmc_queue_req *mqrq)
-> +{
-> +}
-> +
-> +#endif /* !CONFIG_MMC_CRYPTO */
-> +
-> +#endif /* _MMC_CORE_CRYPTO_H */
-> diff --git a/drivers/mmc/core/host.c b/drivers/mmc/core/host.c
-> index 96b2ca1f1b06d..d962b9ca0e37a 100644
-> --- a/drivers/mmc/core/host.c
-> +++ b/drivers/mmc/core/host.c
-> @@ -25,6 +25,7 @@
->  #include <linux/mmc/slot-gpio.h>
->  
->  #include "core.h"
-> +#include "crypto.h"
->  #include "host.h"
->  #include "slot-gpio.h"
->  #include "pwrseq.h"
-> @@ -532,6 +533,7 @@ EXPORT_SYMBOL(mmc_remove_host);
->   */
->  void mmc_free_host(struct mmc_host *host)
->  {
-> +	mmc_crypto_free_host(host);
->  	mmc_pwrseq_free(host);
->  	put_device(&host->class_dev);
->  }
-> diff --git a/drivers/mmc/core/queue.c b/drivers/mmc/core/queue.c
-> index de7cb0369c308..d96db852bb91a 100644
-> --- a/drivers/mmc/core/queue.c
-> +++ b/drivers/mmc/core/queue.c
-> @@ -19,6 +19,7 @@
->  #include "block.h"
->  #include "core.h"
->  #include "card.h"
-> +#include "crypto.h"
->  #include "host.h"
->  
->  #define MMC_DMA_MAP_MERGE_SEGMENTS	512
-> @@ -405,6 +406,8 @@ static void mmc_setup_queue(struct mmc_queue *mq, struct mmc_card *card)
->  	mutex_init(&mq->complete_lock);
->  
->  	init_waitqueue_head(&mq->wait);
-> +
-> +	mmc_crypto_setup_queue(mq->queue, host);
->  }
->  
->  static inline bool mmc_merge_capable(struct mmc_host *host)
-> diff --git a/include/linux/mmc/core.h b/include/linux/mmc/core.h
-> index 29aa507116261..ab19245e99451 100644
-> --- a/include/linux/mmc/core.h
-> +++ b/include/linux/mmc/core.h
-> @@ -162,6 +162,12 @@ struct mmc_request {
->  	bool			cap_cmd_during_tfr;
->  
->  	int			tag;
-> +
-> +#ifdef CONFIG_MMC_CRYPTO
-> +	bool			crypto_enabled;
-> +	int			crypto_key_slot;
-> +	u32			data_unit_num;
-> +#endif
->  };
->  
->  struct mmc_card;
-> diff --git a/include/linux/mmc/host.h b/include/linux/mmc/host.h
-> index c079b932330f2..550460bf1b37c 100644
-> --- a/include/linux/mmc/host.h
-> +++ b/include/linux/mmc/host.h
-> @@ -15,6 +15,7 @@
->  #include <linux/mmc/card.h>
->  #include <linux/mmc/pm.h>
->  #include <linux/dma-direction.h>
-> +#include <linux/keyslot-manager.h>
->  
->  struct mmc_ios {
->  	unsigned int	clock;			/* clock rate */
-> @@ -377,6 +378,7 @@ struct mmc_host {
->  #define MMC_CAP2_CQE_DCMD	(1 << 24)	/* CQE can issue a direct command */
->  #define MMC_CAP2_AVOID_3_3V	(1 << 25)	/* Host must negotiate down from 3.3V */
->  #define MMC_CAP2_MERGE_CAPABLE	(1 << 26)	/* Host can merge a segment over the segment size */
-> +#define MMC_CAP2_CRYPTO		(1 << 27)	/* Host supports inline encryption */
->  
->  	int			fixed_drv_type;	/* fixed driver type for non-removable media */
->  
-> @@ -471,6 +473,11 @@ struct mmc_host {
->  	bool			cqe_enabled;
->  	bool			cqe_on;
->  
-> +	/* Inline encryption support */
-> +#ifdef CONFIG_MMC_CRYPTO
-> +	struct blk_keyslot_manager ksm;
-> +#endif
-> +
->  	/* Host Software Queue support */
->  	bool			hsq_enabled;
->  
+> +        aie_partition0: aie_partition@0 {
+> +                /* 50 columns and 8 core tile rows + 1 SHIM row */
+> +                reg = <0 0 50 9>;
+> +                xlnx,partition-id = <1>;
+> +        };
+> +      };
+> +    };
 > -- 
-> 2.29.2
+> 2.7.4
 > 
-Looks good to me. Please feel free to add
-Reviewed-by: Satya Tangirala <satyat@google.com>
