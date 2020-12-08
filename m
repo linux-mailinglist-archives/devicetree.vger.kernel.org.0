@@ -2,187 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F3ED2D243A
-	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 08:22:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B94942D2459
+	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 08:30:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726483AbgLHHVc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Dec 2020 02:21:32 -0500
-Received: from foss.arm.com ([217.140.110.172]:43324 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726456AbgLHHVb (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 8 Dec 2020 02:21:31 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id EB0D130E;
-        Mon,  7 Dec 2020 23:20:45 -0800 (PST)
-Received: from [10.57.34.152] (unknown [10.57.34.152])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 9AB3B3F718;
-        Mon,  7 Dec 2020 23:20:43 -0800 (PST)
-Subject: Re: [PATCH v4 3/4] scmi-cpufreq: get opp_shared_cpus from opp-v2 for
- EM
-To:     Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        sudeep.holla@arm.com, rjw@rjwysocki.net, vireshk@kernel.org,
-        robh+dt@kernel.org, sboyd@kernel.org, nm@ti.com,
-        daniel.lezcano@linaro.org, morten.rasmussen@arm.com,
-        chris.redpath@arm.com
-References: <20201202172356.10508-1-nicola.mazzucato@arm.com>
- <20201202172356.10508-4-nicola.mazzucato@arm.com>
- <20201208055053.kggxw26kxtnpneua@vireshk-i7>
-From:   Nicola Mazzucato <nicola.mazzucato@arm.com>
-Message-ID: <0e4d3134-f9b2-31fa-b454-fb30265a80b5@arm.com>
-Date:   Tue, 8 Dec 2020 07:22:52 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.8.0
-MIME-Version: 1.0
-In-Reply-To: <20201208055053.kggxw26kxtnpneua@vireshk-i7>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        id S1726250AbgLHH3v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Dec 2020 02:29:51 -0500
+Received: from regular1.263xmail.com ([211.150.70.202]:60842 "EHLO
+        regular1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726218AbgLHH3v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Dec 2020 02:29:51 -0500
+Received: from localhost (unknown [192.168.167.13])
+        by regular1.263xmail.com (Postfix) with ESMTP id 7DBE8757;
+        Tue,  8 Dec 2020 15:23:55 +0800 (CST)
+X-MAIL-GRAY: 0
+X-MAIL-DELIVERY: 1
+X-ADDR-CHECKED4: 1
+X-ANTISPAM-LEVEL: 2
+X-SKE-CHECKED: 1
+X-ABS-CHECKED: 1
+Received: from hp1216 (unknown [58.22.7.114])
+        by smtp.263.net (postfix) whith ESMTP id P20464T140378982311680S1607412234718334_;
+        Tue, 08 Dec 2020 15:23:55 +0800 (CST)
+X-IP-DOMAINF: 1
+X-UNIQUE-TAG: <bf1563341e3518cf21c038c9a99d4d63>
+X-RL-SENDER: zyf@rock-chips.com
+X-SENDER: zyf@rock-chips.com
+X-LOGIN-NAME: zyf@rock-chips.com
+X-FST-TO: jbx6244@gmail.com
+X-SENDER-IP: 58.22.7.114
+X-ATTACHMENT-NUM: 0
+X-System-Flag: 0
+Date:   Tue, 8 Dec 2020 15:23:54 +0800
+Organization: =?utf-8?B?55Ge6Iqv5b6u55S15a2Q?=
+From:   =?utf-8?B?6LW15Luq5bOw?= <yifeng.zhao@rock-chips.com>
+To:     "Johan Jonker" <jbx6244@gmail.com>,
+        "Miquel Raynal" <miquel.raynal@bootlin.com>,
+        richard <richard@nod.at>, vigneshr <vigneshr@ti.com>,
+        robh+dt <robh+dt@kernel.org>
+Cc:     devicetree <devicetree@vger.kernel.org>,
+        =?utf-8?B?SGVpa29TdMO8Ym5lcg==?= <heiko@sntech.de>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-rockchip <linux-rockchip@lists.infradead.org>,
+        linux-mtd <linux-mtd@lists.infradead.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+Subject: Re: Re: [PATCH v15 2/8] mtd: rawnand: rockchip: NFC drivers for RK3308, RK2928 and others
+References: <20201130100031.22083-1-yifeng.zhao@rock-chips.com>, 
+        <20201130100031.22083-3-yifeng.zhao@rock-chips.com>, 
+        <0abf1dbd-13bb-cd92-907c-849f05ea887c@gmail.com>, 
+        <259fe1ce-6bcb-3a26-493d-87bbd2eaff5e@gmail.com>
+X-Priority: 3
+X-Has-Attach: no
+X-Mailer: Foxmail 7.2.18.111[cn]
+Mime-Version: 1.0
+Message-ID: <2020120815225461228793@rock-chips.com>
+Content-Type: text/plain;
+        charset="utf-8"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Viresh,
+SGkgSm9oYW4sCgpZZXMsIEkgd2lsbCBwb3N0IE5GQyBjb2RlIHRvIFVib29077yMYnV0IGl0IG1h
+eSB0YWtlIGEgd2hpbGUgdG8gbW9kaWZ5IHRoZSBjb2RlIGZvciBVYm9vdC4KCi0tLS0tLS0tLS0t
+LS0tCnlpZmVuZwo+SGkgWWlmZW5nLAo+Cj5NZWFud2hpbGUsIGNvdWxkIHlvdSBwb3N0IGEgUkZD
+IHZlcnNpb24gZm9yIFVib290IGJhc2VkIG9uIHRoaXMgdmVyc2lvbgo+cGx1cyBjb21tZW50cywg
+c28gcGVvcGxlIGNhbiB0ZXN0IHRoZSB3aG9sZSBwcm9jZXNzIGZyb20gcHJvZ3JhbW1pbmcsCj5i
+b290aW5nIGFuZCBrZXJuZWw/Cj4KPk9uIDExLzMwLzIwIDE6NDkgUE0sIEpvaGFuIEpvbmtlciB3
+cm90ZToKPj4gSGksCj4+Cj4+IExvb2tzIGdvb2QgdG8gbWUuCj4+IERvIHRoZSBtYWludGFpbmVy
+cyBvciBzb21lb25lIGVsc2UgaGF2ZSBhbnkgbWFqb3IgaXNzdWVzPwo+PiBDb3VsZCBNaXF1ZWwg
+aW5kaWNhdGUgaWYgYSB2ZXJzaW9uIDE2IG11c3QgYmUgc2VuZCBmb3IgdGhhdCAncmV0Jwo+PiB2
+YXJpYWJsZSBhbG9uZSBvciBpcyBpdCBPSyBub3c/Cj4+Cj4+Cj4+IE9uIDExLzMwLzIwIDExOjAw
+IEFNLCBZaWZlbmcgWmhhbyB3cm90ZToKPj4+IFRoaXMgZHJpdmVyIHN1cHBvcnRzIFJvY2tjaGlw
+IE5GQyAoTkFORCBGbGFzaCBDb250cm9sbGVyKSBmb3VuZCBvbiBSSzMzMDgsCj4+PiBSSzI5Mjgs
+IFJLUFgzMCwgUlYxMTA4IGFuZCBvdGhlciBTT0NzLiBUaGUgZHJpdmVyIGhhcyBiZWVuIHRlc3Rl
+ZCB1c2luZwo+Pj4gOC1iaXQgTkFORCBpbnRlcmZhY2Ugb24gdGhlIEFSTSBiYXNlZCBSSzMzMDgg
+cGxhdGZvcm0uCj4KPlsuLl0KPgo+Pj4gKy8qKgo+Pj4gKyAqIHN0cnVjdCBya19lY2NfY250X3N0
+YXR1czogcmVwcmVzZW50IGEgZWNjIHN0YXR1cyBkYXRhLgo+Cj5yZXByZXNlbnQgdGhlIEVDQyBz
+dGF0dXMgZGF0YS4KPgo+Pj4gKyAqIEBlcnJfZmxhZ19iaXQ6IGVycm9yIGZsYWcgYml0IGluZGV4
+IGF0IHJlZ2lzdGVyLgo+Pj4gKyAqIEBsb3c6IEVDQyBjb3VudCBsb3cgYml0IGluZGV4IGF0IHJl
+Z2lzdGVyLgo+Pj4gKyAqIEBsb3dfbWFzazogbWFzayBiaXQuCj4+PiArICogQGxvd19ibjogRUND
+IGNvdW50IGxvdyBiaXQgbnVtYmVyLgo+Pj4gKyAqIEBoaWdoOiBFQ0MgY291bnQgaGlnaCBiaXQg
+aW5kZXggYXQgcmVnaXN0ZXIuCj4+PiArICogQGhpZ2hfbWFzazogbWFzayBiaXQKPj4+ICsgKi8K
+Pgo+Cj4=
 
-thanks for looking into this. Please find below
 
-On 12/8/20 5:50 AM, Viresh Kumar wrote:
-> On 02-12-20, 17:23, Nicola Mazzucato wrote:
->> By design, SCMI performance domains define the granularity of
->> performance controls, they do not describe any underlying hardware
->> dependencies (although they may match in many cases).
->>
->> It is therefore possible to have some platforms where hardware may have
->> the ability to control CPU performance at different granularity and choose
->> to describe fine-grained performance control through SCMI.
->>
->> In such situations, the energy model would be provided with inaccurate
->> information based on controls, while it still needs to know the
->> performance boundaries.
->>
->> To restore correct functionality, retrieve information of CPUs under the
->> same v/f domain from operating-points-v2 in DT, and pass it on to EM.
->>
->> Signed-off-by: Nicola Mazzucato <nicola.mazzucato@arm.com>
->> ---
->>  drivers/cpufreq/scmi-cpufreq.c | 51 +++++++++++++++++++++++-----------
->>  1 file changed, 35 insertions(+), 16 deletions(-)
->>
->> diff --git a/drivers/cpufreq/scmi-cpufreq.c b/drivers/cpufreq/scmi-cpufreq.c
->> index 491a0a24fb1e..f505efcc62b1 100644
->> --- a/drivers/cpufreq/scmi-cpufreq.c
->> +++ b/drivers/cpufreq/scmi-cpufreq.c
->> @@ -127,6 +127,7 @@ static int scmi_cpufreq_init(struct cpufreq_policy *policy)
->>  	struct cpufreq_frequency_table *freq_table;
->>  	struct em_data_callback em_cb = EM_DATA_CB(scmi_get_cpu_power);
->>  	bool power_scale_mw;
->> +	cpumask_var_t opp_shared_cpus;
->>  
->>  	cpu_dev = get_cpu_device(policy->cpu);
->>  	if (!cpu_dev) {
->> @@ -134,30 +135,45 @@ static int scmi_cpufreq_init(struct cpufreq_policy *policy)
->>  		return -ENODEV;
->>  	}
->>  
->> -	ret = handle->perf_ops->device_opps_add(handle, cpu_dev);
->> -	if (ret) {
->> -		dev_warn(cpu_dev, "failed to add opps to the device\n");
->> -		return ret;
->> -	}
->> +	if (!zalloc_cpumask_var(&opp_shared_cpus, GFP_KERNEL))
->> +		return -ENOMEM;
->>  
->>  	ret = scmi_get_sharing_cpus(cpu_dev, policy->cpus);
->>  	if (ret) {
->>  		dev_warn(cpu_dev, "failed to get sharing cpumask\n");
->> -		return ret;
->> +		goto out_free_cpumask;
->>  	}
->>  
->> -	ret = dev_pm_opp_set_sharing_cpus(cpu_dev, policy->cpus);
->> -	if (ret) {
->> -		dev_err(cpu_dev, "%s: failed to mark OPPs as shared: %d\n",
->> -			__func__, ret);
->> -		return ret;
->> +	/*
->> +	 * The OPP 'sharing cpus' info may come from dt through an empty opp
->> +	 * table and opp-shared. If found, it takes precedence over the SCMI
->> +	 * domain IDs info.
->> +	 */
->> +	ret = dev_pm_opp_of_get_sharing_cpus(cpu_dev, opp_shared_cpus);
->> +	if (ret || !cpumask_weight(opp_shared_cpus)) {
->> +		/*
->> +		 * Either opp-table is not set or no opp-shared was found,
->> +		 * use the information from SCMI domain IDs.
->> +		 */
->> +		cpumask_copy(opp_shared_cpus, policy->cpus);
->>  	}
->>  
->>  	nr_opp = dev_pm_opp_get_opp_count(cpu_dev);
->>  	if (nr_opp <= 0) {
->> -		dev_dbg(cpu_dev, "OPP table is not ready, deferring probe\n");
->> -		ret = -EPROBE_DEFER;
->> -		goto out_free_opp;
->> +		ret = handle->perf_ops->device_opps_add(handle, cpu_dev);
->> +		if (ret) {
->> +			dev_warn(cpu_dev, "failed to add opps to the device\n");
->> +			goto out_free_cpumask;
->> +		}
->> +
->> +		ret = dev_pm_opp_set_sharing_cpus(cpu_dev, opp_shared_cpus);
->> +		if (ret) {
->> +			dev_err(cpu_dev, "%s: failed to mark OPPs as shared: %d\n",
->> +				__func__, ret);
->> +			goto out_free_cpumask;
->> +		}
->> +
-> 
-> Why do we need to call above two after calling
-> dev_pm_opp_get_opp_count() ?
 
-Sorry, I am not sure to understand your question here. If there are no opps for
-a device we want to add them to it, otherwise no need as they would be duplicated.
-
-And we don't check the return value of
-> the below call anymore, moreover we have to call it twice now.
-
-This second get_opp_count is required such that we register em with the correct
-opp number after having added them. Without this the opp_count would not be correct.
-
-Hope I have answered your questions.
-> 
->> +		nr_opp = dev_pm_opp_get_opp_count(cpu_dev);
->>  	}
->>  
->>  	priv = kzalloc(sizeof(*priv), GFP_KERNEL);
->> @@ -191,15 +207,18 @@ static int scmi_cpufreq_init(struct cpufreq_policy *policy)
->>  		handle->perf_ops->fast_switch_possible(handle, cpu_dev);
->>  
->>  	power_scale_mw = handle->perf_ops->power_scale_mw_get(handle);
->> -	em_dev_register_perf_domain(cpu_dev, nr_opp, &em_cb, policy->cpus,
->> +	em_dev_register_perf_domain(cpu_dev, nr_opp, &em_cb, opp_shared_cpus,
->>  				    power_scale_mw);
->>  
->> -	return 0;
->> +	ret = 0;
-> 
-> ret is already 0 here.
-
-true, nice spot, thanks
-
-> 
->> +	goto out_free_cpumask;
->>  
->>  out_free_priv:
->>  	kfree(priv);
->>  out_free_opp:
->>  	dev_pm_opp_remove_all_dynamic(cpu_dev);
->> +out_free_cpumask:
->> +	free_cpumask_var(opp_shared_cpus);
->>  
->>  	return ret;
->>  }
->> -- 
->> 2.27.0
-> 
