@@ -2,104 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F2DE2D26DD
-	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 10:06:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E3A8A2D26DC
+	for <lists+devicetree@lfdr.de>; Tue,  8 Dec 2020 10:06:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728657AbgLHJDq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Dec 2020 04:03:46 -0500
-Received: from honk.sigxcpu.org ([24.134.29.49]:60302 "EHLO honk.sigxcpu.org"
+        id S1728650AbgLHJDn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Dec 2020 04:03:43 -0500
+Received: from mail.kernel.org ([198.145.29.99]:58040 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728587AbgLHJDb (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 8 Dec 2020 04:03:31 -0500
-Received: from localhost (localhost [127.0.0.1])
-        by honk.sigxcpu.org (Postfix) with ESMTP id 32A11FB03;
-        Tue,  8 Dec 2020 10:02:46 +0100 (CET)
-X-Virus-Scanned: Debian amavisd-new at honk.sigxcpu.org
-Received: from honk.sigxcpu.org ([127.0.0.1])
-        by localhost (honk.sigxcpu.org [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id RGlDGe6CXV_f; Tue,  8 Dec 2020 10:02:44 +0100 (CET)
-Received: by bogon.sigxcpu.org (Postfix, from userid 1000)
-        id 5EA9D4068D; Tue,  8 Dec 2020 10:02:44 +0100 (CET)
-Date:   Tue, 8 Dec 2020 10:02:44 +0100
-From:   Guido =?iso-8859-1?Q?G=FCnther?= <guido.gunther@puri.sm>
-To:     Liu Ying <victor.liu@nxp.com>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org, kishon@ti.com,
-        vkoul@kernel.org, robh+dt@kernel.org, a.hajda@samsung.com,
-        narmstrong@baylibre.com, Laurent.pinchart@ideasonboard.com,
-        jonas@kwiboo.se, jernej.skrabec@siol.net, airlied@linux.ie,
-        daniel@ffwll.ch, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        robert.chiras@nxp.com, martin.kepplinger@puri.sm
-Subject: Re: [PATCH 0/4] phy: phy-fsl-imx8-mipi-dphy: Add i.MX8qxp LVDS PHY
- mode support
-Message-ID: <20201208090244.GA20575@bogon.m.sigxcpu.org>
-References: <1607067224-15616-1-git-send-email-victor.liu@nxp.com>
+        id S1728647AbgLHJDk (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 8 Dec 2020 04:03:40 -0500
+Date:   Tue, 8 Dec 2020 10:04:08 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1607418180;
+        bh=3d/Fkn9H5Rqs73iZAbPEejt4Yj7ve3ULsCzHc7JQQWw=;
+        h=From:To:Cc:Subject:References:In-Reply-To:From;
+        b=cuvRUmogdGcCJ/CivpcOegXqLAtH/YfWt6nOpXr7y71sYCPPeVKZ32UT8A+DSKiWW
+         x/Wa8ormQofW9NwuO6CWi8Ipf0uJZuNtlCRiXX1u1YklBJMUgYgyzvQsQ1h26xkEMB
+         VP9zMeEvTCkOrSYue775OsmlRmqiHdc06jyfHH+8=
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+        "open list:STAGING SUBSYSTEM" <devel@driverdev.osuosl.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Jason Yan <yanaijie@huawei.com>
+Subject: Re: [PATCH v2 2/2] pinctrl: ralink: add a pinctrl driver for the
+ rt2880 family
+Message-ID: <X89BiDacLNQ7ZQOH@kroah.com>
+References: <20201208075523.7060-1-sergio.paracuellos@gmail.com>
+ <20201208075523.7060-3-sergio.paracuellos@gmail.com>
+ <CACRpkdY_Me8kO-Fa-vUspJNv+2vy0fswTM-RaUoaZJ5rCfuynA@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1607067224-15616-1-git-send-email-victor.liu@nxp.com>
+In-Reply-To: <CACRpkdY_Me8kO-Fa-vUspJNv+2vy0fswTM-RaUoaZJ5rCfuynA@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Liu,
-On Fri, Dec 04, 2020 at 03:33:40PM +0800, Liu Ying wrote:
-> Hi,
+On Tue, Dec 08, 2020 at 09:21:31AM +0100, Linus Walleij wrote:
+> On Tue, Dec 8, 2020 at 8:55 AM Sergio Paracuellos
+> <sergio.paracuellos@gmail.com> wrote:
 > 
-> This series adds i.MX8qxp LVDS PHY mode support for the Mixel PHY in the
-> Freescale i.MX8qxp SoC.
+> > These Socs have 1-3 banks of 8-32 gpios. Rather then setting the muxing of each
+> > pin individually, these socs have mux groups that when set will effect 1-N pins.
+> > Pin groups have a 2, 4 or 8 different muxes.
+> >
+> > Acked-by: Linus Walleij <linus.walleij@linaro.org>
+> > Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+> 
+> Greg I'm happy if you just apply this right now for v5.11, as Sergio
+> is obviously on top of things and the DT bindings will get there
+> eventually so I don't see any need to hold back the de-staging just
+> waiting for patch 1 (which I will eventually apply directly anyway).
 
-This looks good to me from the NWL and actual phy driver part. I'll
-comment in the individual patches but leave comments on the extension
-of the generic phy struct to someone knowledgeable with that part.
+Now merged into my tree, thanks!
 
-What display controllers do you intend to drive that with?
-Cheers,
- -- Guido
-
-> 
-> The Mixel PHY is MIPI DPHY + LVDS PHY combo, which can works in either
-> MIPI DPHY mode or LVDS PHY mode.  The PHY mode is controlled by i.MX8qxp
-> SCU firmware.  The PHY driver would call a SCU function to configure the
-> mode.
-> 
-> The PHY driver is already supporting the Mixel MIPI DPHY in i.MX8mq SoC,
-> where it appears to be a single MIPI DPHY.
-> 
-> 
-> Patch 1/4 sets PHY mode in the Northwest Logic MIPI DSI host controller
-> bridge driver, since i.MX8qxp SoC embeds this controller IP to support
-> MIPI DSI displays together with the Mixel PHY.
-> 
-> Patch 2/4 allows LVDS PHYs to be configured through the generic PHY functions
-> and through a custom structure added to the generic PHY configuration union.
-> 
-> Patch 3/4 adds dt binding support for the Mixel combo PHY in i.MX8qxp SoC.
-> 
-> Patch 4/4 adds the i.MX8qxp LVDS PHY mode support in the Mixel PHY driver.
-> 
-> 
-> Welcome comments, thanks.
-> 
-> 
-> Liu Ying (4):
->   drm/bridge: nwl-dsi: Set PHY mode in nwl_dsi_enable()
->   phy: Add LVDS configuration options
->   dt-bindings: phy: mixel: mipi-dsi-phy: Add Mixel combo PHY support for
->     i.MX8qxp
->   phy: freescale: phy-fsl-imx8-mipi-dphy: Add i.MX8qxp LVDS PHY mode
->     support
-> 
->  .../devicetree/bindings/phy/mixel,mipi-dsi-phy.txt |   8 +-
->  drivers/gpu/drm/bridge/nwl-dsi.c                   |   6 +
->  drivers/phy/freescale/phy-fsl-imx8-mipi-dphy.c     | 266 ++++++++++++++++++++-
->  include/linux/phy/phy-lvds.h                       |  48 ++++
->  include/linux/phy/phy.h                            |   4 +
->  5 files changed, 320 insertions(+), 12 deletions(-)
->  create mode 100644 include/linux/phy/phy-lvds.h
-> 
-> -- 
-> 2.7.4
-> 
+greg k-h
