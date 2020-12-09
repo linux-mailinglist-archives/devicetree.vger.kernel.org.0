@@ -2,313 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B59792D4CBA
-	for <lists+devicetree@lfdr.de>; Wed,  9 Dec 2020 22:19:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0786D2D4CD8
+	for <lists+devicetree@lfdr.de>; Wed,  9 Dec 2020 22:30:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387842AbgLIVSw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Dec 2020 16:18:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43364 "EHLO
+        id S2388017AbgLIV3F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Dec 2020 16:29:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44922 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388183AbgLIVSw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Dec 2020 16:18:52 -0500
-Received: from mail-pf1-x441.google.com (mail-pf1-x441.google.com [IPv6:2607:f8b0:4864:20::441])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F04D2C061794
-        for <devicetree@vger.kernel.org>; Wed,  9 Dec 2020 13:18:11 -0800 (PST)
-Received: by mail-pf1-x441.google.com with SMTP id s21so1935119pfu.13
-        for <devicetree@vger.kernel.org>; Wed, 09 Dec 2020 13:18:11 -0800 (PST)
+        with ESMTP id S1727369AbgLIV3F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Dec 2020 16:29:05 -0500
+Received: from mail-vk1-xa44.google.com (mail-vk1-xa44.google.com [IPv6:2607:f8b0:4864:20::a44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED522C0613D6;
+        Wed,  9 Dec 2020 13:28:24 -0800 (PST)
+Received: by mail-vk1-xa44.google.com with SMTP id i62so701268vkb.7;
+        Wed, 09 Dec 2020 13:28:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=w/DYax7thFnuwm2FQ5QUjbL4cH5hF8rW9xsPTe7EeuI=;
-        b=chTQi2gTSyTpjwnqFlxgpp6TGvcWmisae66yaqpOfmqP5BhPneH4UNeu73s7zC76J0
-         kQ0PROsVMFM+6Ef6QqC05LrnNjgRrqdx8Wj0eOXcwqj/QxtsBCa00ta8p7OLS5taaPMQ
-         R50UNp92SoaeWwYNGcDc2Yan+b5sJ6852NEKD1flLrK0qd5FqOiRJdvdpygtx3I3aKjz
-         KUbOfOv5c17m89EvsYkQo0/lOCZfB+7M1+Si4AMgx3EvomEAoB3vTaIq2qOn5uQBXelz
-         p5+Kw33Mk1B+OSj1Y2E9IHxMoAh6G5foAfuRFMBCUVcGDIC55gBylZ2Ec1NwOw5LpA5h
-         GxNg==
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=/Y8EdRxn8dSpFUJIAxU90D9R+cEmBFpkuR2dcS1QMOQ=;
+        b=uBH77reQ5WSxZogdoGv9vsLQcBmmvl9zfLpdFq5vGV10KH1T1L6oKowHBtOm3Y/pgL
+         7Yi2n+U8wcL4iUqmlFLAseOwQK9XJjsIQD75uYiT88bfq33rvY46LYdrSbvC/N0GsKO7
+         TbnSe/qJUteYvvy1yP6mGWiI1QUfkobGgrwmDQ3oPGWvg6j94ke6hn5q29xdXLZJcV7U
+         w9Hf1RsJ1OOvBy54iPPp5ffksrmebhADRdhrvZoOGjMcTSUvktgleCUHVjCDiNgpwpFf
+         6Mf5QxS5oUFVqHwfjRtSU92E4qwe9o2wJ67PARiK+NWjeeyFJFYBsG6Jy4M1JlxjiNUS
+         Q0aw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=w/DYax7thFnuwm2FQ5QUjbL4cH5hF8rW9xsPTe7EeuI=;
-        b=XR9JDhwwLJyngFN3oRtyzfydA9uHoTzqLyPxqI3Mwc+ddVzCLkQkbrGa6kKvJ6jd9Y
-         xHzm5bl0kkd8pySzLqEJ7BV5LdZaAVM4YMTp/SMSFa4od2fjQS83K3DayzpIRXRFdhNW
-         4tTE3Wi50phH7T29eiiZ5m5Lf6xqtgCPEopnzPakoX0FPLpLtvf006jVmU/PzdweIpOF
-         tbsMdLRTONZiho7keA27Ize0rY7Oocf8Z+zPLmEguEjHycDAB+fqY9zd4T1PFop3sYFu
-         9z5eeP8UtU98yFfkP/WDK30qthEFRoorYYr7Z3ShZ1KRQmUUQ52nOACP2vkzaprP5nJE
-         FHxA==
-X-Gm-Message-State: AOAM533WTddftx8Pws7D7+3/yPainYBI2hjFLjfOqXgOFU4ACMFGUEnw
-        s4T2y9DKJENCAJE4pQG/8C1Saw==
-X-Google-Smtp-Source: ABdhPJxEmArGBR2jk+kwM3ndMfrjBTEDFLYLc5UMaLVZvZ+euDzrQXu/i73LgNyKsS0pGTA4zvO6Sw==
-X-Received: by 2002:a63:1a13:: with SMTP id a19mr3651086pga.146.1607548691344;
-        Wed, 09 Dec 2020 13:18:11 -0800 (PST)
-Received: from xps15 (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
-        by smtp.gmail.com with ESMTPSA id e4sm3607376pfh.206.2020.12.09.13.18.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Dec 2020 13:18:10 -0800 (PST)
-Date:   Wed, 9 Dec 2020 14:18:08 -0700
-From:   Mathieu Poirier <mathieu.poirier@linaro.org>
-To:     Arnaud POULIQUEN <arnaud.pouliquen@st.com>
-Cc:     "ohad@wizery.com" <ohad@wizery.com>,
-        "bjorn.andersson@linaro.org" <bjorn.andersson@linaro.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v3 09/15] remoteproc: Introduce function rproc_detach()
-Message-ID: <20201209211808.GA1814981@xps15>
-References: <20201126210642.897302-1-mathieu.poirier@linaro.org>
- <20201126210642.897302-10-mathieu.poirier@linaro.org>
- <0e705760-b69a-d872-9770-c03dde85ab1c@st.com>
- <20201209005311.GB1601690@xps15>
- <cb959e29-65eb-ae89-0c53-cdbc4c7bc77a@st.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=/Y8EdRxn8dSpFUJIAxU90D9R+cEmBFpkuR2dcS1QMOQ=;
+        b=MBPNAPXAOnGo+KKhqQyALi3fISIAP8XcgS7R0QjKhd8J0osSrRIdGZBkEqtEoiy9ed
+         4IzrSiBuQasORioH9/u4SB2ZblePq4mttw5tTxpTLCvrpv2frUcn7F5cwkpi5GK3EARo
+         0KuwFeljFapBOSAMMCQUvfQWY2xPhJMn/bWq+DK2l0RgibCxwsaqHiTOUzZ0xDYMAYXX
+         +bOdxeABIhPyRkIT0WNSMx3tsLUXQJ6VxjN5u6l6u+/kLkILuhQqXWdG9qNwdZjNjLVZ
+         aVs+6j2kg/VEYoJ2hCUEjOexlyBXo9mzgHS9FnMImeiXib7zeM0Bh5yOY/zghC2W2RrC
+         m7aQ==
+X-Gm-Message-State: AOAM532EC1uhV6K8cGIFemhWl+PDYwcdyi5T8y5zcAs9Bo3WT/3qrxXh
+        o4c3T0I0LZrEEWFmL1jVuLIdi2rigzgz98XEjPI=
+X-Google-Smtp-Source: ABdhPJxrniZdXByb0gLOCGHbVq+71ilItd9cTm3O5PBX588zWLWH/Ww7xnDvuAabQ5vtA4PQcLOab+DyuE6G8CDHVMA=
+X-Received: by 2002:a1f:3a12:: with SMTP id h18mr4641949vka.23.1607549304008;
+ Wed, 09 Dec 2020 13:28:24 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cb959e29-65eb-ae89-0c53-cdbc4c7bc77a@st.com>
+References: <3bed61807fff6268789e7d411412fbc5cd6ffe2a.1607507863.git.hns@goldelico.com>
+ <CAGngYiVKHoXPGxmScCnb-R6xoo9GNw5pG8V8Cpyk3meoJbskiw@mail.gmail.com>
+ <3FA1D050-3BD5-4A97-9D83-520CCF75D147@goldelico.com> <CAGngYiVL9M72hFRWnmT_8RRX9pUTSLsNuYz6mUo0Be4Vivk7Xw@mail.gmail.com>
+ <20201209210133.44ab9c97@aktux> <09D41BD9-F6BA-4566-8151-ACB3B2274B52@goldelico.com>
+In-Reply-To: <09D41BD9-F6BA-4566-8151-ACB3B2274B52@goldelico.com>
+From:   Sven Van Asbroeck <thesven73@gmail.com>
+Date:   Wed, 9 Dec 2020 16:28:12 -0500
+Message-ID: <CAGngYiU3DptnURBH=xf0eO4ZtKMH1sd2qWQqfBNbDkXDpzwGeg@mail.gmail.com>
+Subject: Re: [PATCH] spi: dt-bindings: clarify CS behavior for spi-cs-high and
+ gpio descriptors
+To:     "H. Nikolaus Schaller" <hns@goldelico.com>
+Cc:     Andreas Kemnade <andreas@kemnade.info>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-spi <linux-spi@vger.kernel.org>,
+        linux-gpio@vger.kernel.org,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Discussions about the Letux Kernel 
+        <letux-kernel@openphoenux.org>, kernel@pyra-handheld.com,
+        Lukas Wunner <lukas@wunner.de>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Maxime Ripard <maxime@cerno.tech>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 09, 2020 at 09:45:32AM +0100, Arnaud POULIQUEN wrote:
-> 
-> 
-> On 12/9/20 1:53 AM, Mathieu Poirier wrote:
-> > On Tue, Dec 08, 2020 at 07:35:18PM +0100, Arnaud POULIQUEN wrote:
-> >> Hi Mathieu,
-> >>
-> >>
-> >> On 11/26/20 10:06 PM, Mathieu Poirier wrote:
-> >>> Introduce function rproc_detach() to enable the remoteproc
-> >>> core to release the resources associated with a remote processor
-> >>> without stopping its operation.
-> >>>
-> >>> Signed-off-by: Mathieu Poirier <mathieu.poirier@linaro.org>
-> >>> Reviewed-by: Peng Fan <peng.fan@nxp.com>
-> >>> ---
-> >>>  drivers/remoteproc/remoteproc_core.c | 65 +++++++++++++++++++++++++++-
-> >>>  include/linux/remoteproc.h           |  1 +
-> >>>  2 files changed, 65 insertions(+), 1 deletion(-)
-> >>>
-> >>> diff --git a/drivers/remoteproc/remoteproc_core.c b/drivers/remoteproc/remoteproc_core.c
-> >>> index 928b3f975798..f5adf05762e9 100644
-> >>> --- a/drivers/remoteproc/remoteproc_core.c
-> >>> +++ b/drivers/remoteproc/remoteproc_core.c
-> >>> @@ -1667,7 +1667,7 @@ static int rproc_stop(struct rproc *rproc, bool crashed)
-> >>>  /*
-> >>>   * __rproc_detach(): Does the opposite of rproc_attach()
-> >>>   */
-> >>> -static int __maybe_unused __rproc_detach(struct rproc *rproc)
-> >>> +static int __rproc_detach(struct rproc *rproc)
-> >>>  {
-> >>>  	struct device *dev = &rproc->dev;
-> >>>  	int ret;
-> >>> @@ -1910,6 +1910,69 @@ void rproc_shutdown(struct rproc *rproc)
-> >>>  }
-> >>>  EXPORT_SYMBOL(rproc_shutdown);
-> >>>  
-> >>> +/**
-> >>> + * rproc_detach() - Detach the remote processor from the
-> >>> + * remoteproc core
-> >>> + *
-> >>> + * @rproc: the remote processor
-> >>> + *
-> >>> + * Detach a remote processor (previously attached to with rproc_actuate()).
-> >>> + *
-> >>> + * In case @rproc is still being used by an additional user(s), then
-> >>> + * this function will just decrement the power refcount and exit,
-> >>> + * without disconnecting the device.
-> >>> + *
-> >>> + * Function rproc_detach() calls __rproc_detach() in order to let a remote
-> >>> + * processor know that services provided by the application processor are
-> >>> + * no longer available.  From there it should be possible to remove the
-> >>> + * platform driver and even power cycle the application processor (if the HW
-> >>> + * supports it) without needing to switch off the remote processor.
-> >>> + */
-> >>> +int rproc_detach(struct rproc *rproc)
-> >>> +{
-> >>> +	struct device *dev = &rproc->dev;
-> >>> +	int ret;
-> >>> +
-> >>> +	ret = mutex_lock_interruptible(&rproc->lock);
-> >>> +	if (ret) {
-> >>> +		dev_err(dev, "can't lock rproc %s: %d\n", rproc->name, ret);
-> >>> +		return ret;
-> >>> +	}
-> >>> +
-> >>> +	if (rproc->state != RPROC_RUNNING && rproc->state != RPROC_ATTACHED) {
-> >>> +		ret = -EPERM;
-> >>> +		goto out;
-> >>> +	}
-> >>> +
-> >>> +	/* if the remote proc is still needed, bail out */
-> >>> +	if (!atomic_dec_and_test(&rproc->power)) {
-> >>> +		ret = -EBUSY;
-> >>> +		goto out;
-> >>> +	}
-> >>> +
-> >>> +	ret = __rproc_detach(rproc);
-> >>> +	if (ret) {
-> >>> +		atomic_inc(&rproc->power);
-> >>> +		goto out;
-> >>> +	}
-> >>> +
-> >>> +	/* clean up all acquired resources */
-> >>> +	rproc_resource_cleanup(rproc);
-> >>
-> >> I started to test the series, I found 2 problems testing in STM32P1 board.
-> >>
-> >> 1) the resource_table pointer is unmapped if the firmware has been booted by the
-> >> Linux, generating a crash in rproc_free_vring.
-> >> I attached a fix at the end of the mail.
-> >>
-> > 
-> > I have reproduced the condition on my side and confirm that your solution is
-> > correct.  See below for a minor comment. 
-> > 
-> >> 2) After the detach, the rproc state is "detached"
-> >> but it is no longer possible to re-attach to it correctly.
-> >> Neither if the firmware is standalone, nor if it has been booted
-> >> by the Linux.
-> >>
-> > 
-> > Did you update your FW image?  If so, I need to run the same one.
-> > 
-> >> I did not investigate, but the issue is probably linked to the resource
-> >> table address which is set to NULL.
-> >>
-> >> So we either have to fix the problem in order to attach or forbid the transition.
-> >>
-> >>
-> >> Regards,
-> >> Arnaud
-> >>
-> >>> +
-> >>> +	rproc_disable_iommu(rproc);
-> >>> +
-> >>> +	/*
-> >>> +	 * Set the remote processor's table pointer to NULL.  Since mapping
-> >>> +	 * of the resource table to a virtual address is done in the platform
-> >>> +	 * driver, unmapping should also be done there.
-> >>> +	 */
-> >>> +	rproc->table_ptr = NULL;
-> >>> +out:
-> >>> +	mutex_unlock(&rproc->lock);
-> >>> +	return ret;
-> >>> +}
-> >>> +EXPORT_SYMBOL(rproc_detach);
-> >>> +
-> >>>  /**
-> >>>   * rproc_get_by_phandle() - find a remote processor by phandle
-> >>>   * @phandle: phandle to the rproc
-> >>> diff --git a/include/linux/remoteproc.h b/include/linux/remoteproc.h
-> >>> index da15b77583d3..329c1c071dcf 100644
-> >>> --- a/include/linux/remoteproc.h
-> >>> +++ b/include/linux/remoteproc.h
-> >>> @@ -656,6 +656,7 @@ rproc_of_resm_mem_entry_init(struct device *dev, u32 of_resm_idx, size_t len,
-> >>>  
-> >>>  int rproc_boot(struct rproc *rproc);
-> >>>  void rproc_shutdown(struct rproc *rproc);
-> >>> +int rproc_detach(struct rproc *rproc);
-> >>>  int rproc_set_firmware(struct rproc *rproc, const char *fw_name);
-> >>>  void rproc_report_crash(struct rproc *rproc, enum rproc_crash_type type);
-> >>>  int rproc_coredump_add_segment(struct rproc *rproc, dma_addr_t da, size_t size);
-> >>>
-> >>
-> >> From: Arnaud Pouliquen <arnaud.pouliquen@foss-st.com>
-> >> Date: Tue, 8 Dec 2020 18:54:51 +0100
-> >> Subject: [PATCH] remoteproc: core: fix detach for unmapped table_ptr
-> >>
-> >> If the firmware has been loaded and started by the kernel, the
-> >> resource table has probably been mapped by the carveout allocation
-> >> (see rproc_elf_find_loaded_rsc_table).
-> >> In this case the memory can have been unmapped before the vrings are free.
-> >> The result is a crash that occurs in rproc_free_vring while try to use the
-> >> unmapped pointer.
-> >>
-> >> Signed-off-by: Arnaud Pouliquen <arnaud.pouliquen@foss-st.com>
-> >> ---
-> >>  drivers/remoteproc/remoteproc_core.c | 17 ++++++++++++++---
-> >>  1 file changed, 14 insertions(+), 3 deletions(-)
-> >>
-> >> diff --git a/drivers/remoteproc/remoteproc_core.c
-> >> b/drivers/remoteproc/remoteproc_core.c
-> >> index 2b0a52fb3398..3508ffba4a2a 100644
-> >> --- a/drivers/remoteproc/remoteproc_core.c
-> >> +++ b/drivers/remoteproc/remoteproc_core.c
-> >> @@ -1964,6 +1964,13 @@ int rproc_detach(struct rproc *rproc)
-> >>  		goto out;
-> >>  	}
-> >>
-> >> +	/*
-> >> +	 * Prevent case that the installed resource table is no longer
-> >> +	 * accessible (e.g. memory unmapped), use the cache if available
-> >> +	 */
-> >> +	if (rproc->cached_table)
-> >> +		rproc->table_ptr = rproc->cached_table;
-> > 
-> > I don't think there is an explicit need to check ->cached_table.  If the remote
-> > processor has been started by the remoteproc core it is valid anyway.  And below
-> > kfree() is called invariably. 
-> 
-> The condition is needed, the  rproc->cached_table is null if the firmware as
-> been preloaded and the Linux remote proc just attaches to it.
-> The cached is used only when Linux loads the firmware, as the resource table is
-> extracted from the elf file to parse resource before the load of the firmware.
+On Wed, Dec 9, 2020 at 3:08 PM H. Nikolaus Schaller <hns@goldelico.com> wrote:
+>
+> But I have tested with
+>
+> > spi->mode |= SPI_MODE_3;
+>
+> which should keep the mode intact. Right? That did not work either.
+>
 
-I have taken another look at this and you are correct. The if() condition is
-needed because ->table_ptr is set only once when the platform driver is
-probed.  See further down...
+- make sure ("spi: fix client driver breakages when using GPIO descriptors")
+  is in your tree
+- your panel's CS is active-low, so 'spi-cs-high' should be removed from its
+  devicetree entry. In accordance with the rules as explained in commit
+  message of 6953c57ab172. Also in accordance with the table you posted
+  in this patch.
 
-> 
-> > 
-> > So that problem is fixed.  Let me know about your FW image and we'll pick it up
-> > from there.
-> 
-> I use the following example available on the stm32mp1 image:
-> /usr/local/Cube-M4-examples/STM32MP157C-DK2/Applications/OpenAMP/OpenAMP_TTY_echo_wakeup/lib/firmware/
-> This exemple use the RPMsg and also blink a LED when while running.
-> 
-> Don't hesitate if you need me to send it to you by mail.
-> 
-> Thank,
-> Arnaud
-> 
-> > 
-> > Mathieu
-> > 
-> >> +
-> >>  	ret = __rproc_detach(rproc);
-> >>  	if (ret) {
-> >>  		atomic_inc(&rproc->power);
-> >> @@ -1975,10 +1982,14 @@ int rproc_detach(struct rproc *rproc)
-> >>
-> >>  	rproc_disable_iommu(rproc);
-> >>
-> >> +	/* Free the chached table memory that can has been allocated*/
-> >> +	kfree(rproc->cached_table);
-> >> +	rproc->cached_table = NULL;
-> >>  	/*
-> >> -	 * Set the remote processor's table pointer to NULL.  Since mapping
-> >> -	 * of the resource table to a virtual address is done in the platform
-> >> -	 * driver, unmapping should also be done there.
-> >> +	 * Set the remote processor's table pointer to NULL. If mapping
-> >> +	 * of the resource table to a virtual address has been done in the
-> >> +	 * platform driver(attachment to an existing firmware),
-> >> +	 * unmapping should also be done there.
-> >>  	 */
-> >>  	rproc->table_ptr = NULL;
+When these two changes in place, your panel should work. I have tested this
+by mirroring your setup on my board:
 
-With the above in mind we can't to that, otherwise trying to re-attach with
-rproc_attach() won't work because ->table_ptr will be NULL.
+spi5-gpio {
+       compatible = "spi-gpio";
+       #address-cells = <0x1>;
+       #size-cells = <0x0>;
+       pinctrl-names = "default";
+       pinctrl-0 = <&...>;
 
-I wasn't able to test that code path because I didn't have the FW that supported
-detaching.  Now that the feature is maturing it needs to be done.  
+       sck-gpios = <&gpio... GPIO_ACTIVE_HIGH>;
+       miso-gpios = <&gpio... GPIO_ACTIVE_HIGH>;
+       mosi-gpios = <&gpio... GPIO_ACTIVE_HIGH>;
+       cs-gpios = <&gpio... GPIO_ACTIVE_HIGH>;
+       num-chipselects = <1>;
 
-> >>  out:
-> >> -- 
-> >> 2.17.1
-> >>
-> >>
-> >>
+       ethernet-switch@0 { /* active low cs */
+               compatible = "micrel,ksz8795";
+               spi-max-frequency = <1000000>;
+               reg = <0>;
+       };
+};
+
+If this does not work for you, then what are we missing?
