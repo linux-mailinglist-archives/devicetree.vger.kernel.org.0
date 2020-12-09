@@ -2,146 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B6B782D43E7
-	for <lists+devicetree@lfdr.de>; Wed,  9 Dec 2020 15:08:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AFA9E2D43FA
+	for <lists+devicetree@lfdr.de>; Wed,  9 Dec 2020 15:11:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727162AbgLIOGP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Dec 2020 09:06:15 -0500
-Received: from relay2-d.mail.gandi.net ([217.70.183.194]:55527 "EHLO
-        relay2-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727090AbgLIOGP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Dec 2020 09:06:15 -0500
-X-Originating-IP: 93.29.109.196
-Received: from aptenodytes (196.109.29.93.rev.sfr.net [93.29.109.196])
-        (Authenticated sender: paul.kocialkowski@bootlin.com)
-        by relay2-d.mail.gandi.net (Postfix) with ESMTPSA id B2C974000A;
-        Wed,  9 Dec 2020 14:05:29 +0000 (UTC)
-Date:   Wed, 9 Dec 2020 15:05:28 +0100
-From:   Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-To:     Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v4 2/2] media: i2c: Add support for the OV5648 image
- sensor
-Message-ID: <X9DZqMdTfJLKNI5L@aptenodytes>
-References: <20201128143350.531460-1-paul.kocialkowski@bootlin.com>
- <20201128143350.531460-3-paul.kocialkowski@bootlin.com>
- <20201208233436.GF25763@paasikivi.fi.intel.com>
+        id S1728739AbgLIOLh convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 9 Dec 2020 09:11:37 -0500
+Received: from leonov.paulk.fr ([185.233.101.22]:39046 "EHLO leonov.paulk.fr"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726354AbgLIOLg (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 9 Dec 2020 09:11:36 -0500
+Received: from gagarine.paulk.fr (gagarine [192.168.1.127])
+        by leonov.paulk.fr (Postfix) with ESMTPS id 215F4C013D;
+        Wed,  9 Dec 2020 15:10:55 +0100 (CET)
+Received: by gagarine.paulk.fr (Postfix, from userid 114)
+        id 7F905C0888; Wed,  9 Dec 2020 15:10:54 +0100 (CET)
+X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on gagarine.paulk.fr
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.0 required=5.0 tests=ALL_TRUSTED,SHORTCIRCUIT
+        autolearn=disabled version=3.4.2
+Received: from aptenodytes (unknown [192.168.1.1])
+        by gagarine.paulk.fr (Postfix) with ESMTPSA id 8CD35BFDEB;
+        Wed,  9 Dec 2020 15:10:48 +0100 (CET)
+Date:   Wed, 9 Dec 2020 15:10:47 +0100
+From:   Paul Kocialkowski <contact@paulk.fr>
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Icenowy Zheng <icenowy@aosc.io>,
+        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Maxime Ripard <mripard@kernel.org>
+Subject: Re: [PATCH v3 1/5] dt-bindings: irq: sun7i-nmi: Add binding
+ documentation for the V3s NMI
+Message-ID: <X9Da5xdKlqekPPkz@aptenodytes>
+References: <20201206165131.1041983-1-contact@paulk.fr>
+ <20201206165131.1041983-2-contact@paulk.fr>
+ <20201207182359.GA565631@robh.at.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="x/BLB4o4zfTOQ4w3"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20201208233436.GF25763@paasikivi.fi.intel.com>
+Content-Transfer-Encoding: 8BIT
+In-Reply-To: <20201207182359.GA565631@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
---x/BLB4o4zfTOQ4w3
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Mon 07 Dec 20, 12:23, Rob Herring wrote:
+> On Sun, 06 Dec 2020 17:51:27 +0100, Paul Kocialkowski wrote:
+> > The V3s NMI controller seems register-compatible with the A80 (sun9i).
+> > Add new items for the compatible string, with an entry specific to the V3s
+> > and the A80 entry.
+> > 
+> > Signed-off-by: Paul Kocialkowski <contact@paulk.fr>
+> > ---
+> >  .../interrupt-controller/allwinner,sun7i-a20-sc-nmi.yaml       | 3 +++
+> >  1 file changed, 3 insertions(+)
+> 
+> Please add Acked-by/Reviewed-by tags when posting new versions. However,
+> there's no need to repost patches *only* to add the tags. The upstream
+> maintainer will do that for acks received on the version they apply.
+> 
+> If a tag was not added on purpose, please state why and what changed.
 
-Hi Sakari,
+Ah sorry, it was indeed intentional as there was a change since this version
+uses sun9i-a80 as a base and I also renamed the compatible.
 
-On Wed 09 Dec 20, 01:34, Sakari Ailus wrote:
-> Hi Paul,
->=20
-> On Sat, Nov 28, 2020 at 03:33:50PM +0100, Paul Kocialkowski wrote:
-> ...
-> > +	if (ret)
-> > +		goto error_ctrls;
-> > +
-> > +	/* V4L2 subdev register */
-> > +
-> > +	ret =3D v4l2_async_register_subdev_sensor_common(subdev);
->=20
-> The driver's device node may be already available to the user here...
->=20
-> > +	if (ret)
-> > +		goto error_ctrls;
-> > +
-> > +	/* Runtime PM */
-> > +
-> > +	pm_runtime_enable(sensor->dev);
-> > +	pm_runtime_set_suspended(sensor->dev);
->=20
-> but runtime PM is enabled here.
->=20
-> This needs to be done in a different order. Otherwise chances are that the
-> device node is accessed before the device is powered on.
-
-Oh that makes sense yes. Good catch :)
-
-> > +
-> > +	return 0;
-> > +
-> > +error_ctrls:
-> > +	v4l2_ctrl_handler_free(&sensor->ctrls.handler);
-> > +
-> > +error_mutex:
-> > +	mutex_destroy(&sensor->mutex);
-> > +
-> > +error_entity:
-> > +	media_entity_cleanup(&sensor->subdev.entity);
-> > +
-> > +error_endpoint:
-> > +	v4l2_fwnode_endpoint_free(&sensor->endpoint);
-> > +
-> > +	return ret;
-> > +}
-> > +
-> > +static int ov5648_remove(struct i2c_client *client)
-> > +{
-> > +	struct v4l2_subdev *subdev =3D i2c_get_clientdata(client);
-> > +	struct ov5648_sensor *sensor =3D ov5648_subdev_sensor(subdev);
-> > +
-> > +	clk_rate_exclusive_put(sensor->xvclk);
-> > +
-> > +	v4l2_async_unregister_subdev(subdev);
-> > +	mutex_destroy(&sensor->mutex);
-> > +	media_entity_cleanup(&subdev->entity);
-> > +	v4l2_device_unregister_subdev(subdev);
-> > +	pm_runtime_disable(sensor->dev);
-> > +
-> > +	ov5648_sensor_power(sensor, false);
->=20
-> This needs to go, too, as there's no corresponding operation that powered
-> on the device.
->=20
-> Also don't forget to release the control handler.
->=20
-> I believe these apply to both of the two drivers.
-
-Fair enough and I think runtime PM will have called that already anyways.
+I put that in the cover letter's changelog but maybe it wasn't very explicit.
 
 Cheers,
 
 Paul
 
---=20
-Paul Kocialkowski, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
+-- 
+Developer of free digital technology and hardware support.
 
---x/BLB4o4zfTOQ4w3
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEJZpWjZeIetVBefti3cLmz3+fv9EFAl/Q2agACgkQ3cLmz3+f
-v9EddAf/V6dLv0Ik+tbj8DRMf4Je1cUsBspVDmOWLY2JcKkYf3TIZLl6oN82BL7C
-JufH3T6zQ9OXK7AaFCks7Q6dO3Do5V1/JbrKBa+rYXc7otmY/j5sg5J4nRSjNRqg
-e+dCVge2qH9wPv0TIDaxVi34QhT7qPm4BsazJHOGVQXK6JFvw0qU3IBsfxL9QXkl
-N1Knq7sP7/2SnwATahb1lcD2C1zPgndO0YGiBlE4Z3K298Pwk9JWRBZETucnKjod
-payiCyV5QV9miDjobSTtQEMgtnLZlfhrQkGmK7Q4/c9vWhwJ10kGB1b4W9sV5geu
-+p5lnS302RllgZTjjB1AGRXsht6OrQ==
-=Ecq2
------END PGP SIGNATURE-----
-
---x/BLB4o4zfTOQ4w3--
+Website: https://www.paulk.fr/
+Coding blog: https://code.paulk.fr/
+Git repositories: https://git.paulk.fr/ https://git.code.paulk.fr/
