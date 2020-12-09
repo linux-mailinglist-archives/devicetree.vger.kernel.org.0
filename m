@@ -2,59 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 32EBF2D443D
-	for <lists+devicetree@lfdr.de>; Wed,  9 Dec 2020 15:26:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 259632D445A
+	for <lists+devicetree@lfdr.de>; Wed,  9 Dec 2020 15:32:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732953AbgLIO01 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Dec 2020 09:26:27 -0500
-Received: from mail.kernel.org ([198.145.29.99]:37062 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1732439AbgLIO0W (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 9 Dec 2020 09:26:22 -0500
-From:   Will Deacon <will@kernel.org>
-Authentication-Results: mail.kernel.org; dkim=permerror (bad message/signature format)
-To:     Joakim Zhang <qiangqing.zhang@nxp.com>, john.garry@huawei.com,
-        robh+dt@kernel.org
-Cc:     catalin.marinas@arm.com, kernel-team@android.com,
-        Will Deacon <will@kernel.org>, frank.li@nxp.com,
-        devicetree@vger.kernel.org, linux-imx@nxp.com
-Subject: Re: [PATCH V2 0/2] perf/imx_ddr: Add sysfs identifier file
-Date:   Wed,  9 Dec 2020 14:25:35 +0000
-Message-Id: <160752324312.2133676.14450835352331888728.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20201130114202.26057-1-qiangqing.zhang@nxp.com>
-References: <20201130114202.26057-1-qiangqing.zhang@nxp.com>
+        id S1730256AbgLIO3Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Dec 2020 09:29:24 -0500
+Received: from esa.microchip.iphmx.com ([68.232.153.233]:47473 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729964AbgLIO3X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Dec 2020 09:29:23 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1607524163; x=1639060163;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=JPDjl84lGyybXsZSCN2fvCdtp/fq4P9uRhBCDvzowAY=;
+  b=I0Fliu7Y8/zCaNRLeYBjtUBD7YUpGLeNGlhvyEYxl9DbaQT+fBmPp/47
+   GCEi1PWaoE0vENDcv0tmEe//wFVOtb4O4icdiu57Wayl3dce7AUSNlpT/
+   ukgAzZVQFsOuEtlbQ90N8wCTDs9t4q+4wPadv8dHKwjY0qql5HmCd/3A/
+   DTRR6DBddctQf7gvnmLKCt/UjMSi/ayQ0pTy9AecR3/dh3otqbncNPnkD
+   35kwHbtS4AEwaySpclZ8BXWVlqO+AKRZSylVkCsjJ47F/bZRx2ptec0xn
+   u1aM9cyphksqfDJuKYodimw4yHoE/oYROsbaPTVSYWfOc9iR1mo9gi2qO
+   Q==;
+IronPort-SDR: Sz9OElXtAnSvqfP6fpc8xp4U+Cyz7BlaC5/zkdYJsgADEdxgfRSzJsvd4uHMnBKPSCeDSaqrBO
+ s64JJfsIgeeJZlW1Mgmh8Th9X34inGJzNG+fwsdTLCEBkJZlq/sA8eIx65KkZJ6NVynFGgV2uU
+ GAOWFJMcv/Y3F+JqcXnLeuH8vnPQUt/lpTLln4kkTHPiXftohfPo8shgEWGfbEmeas6FUHbUZT
+ u7XooX40jZCgiIm+gg7pttN5rHFrjQ3qPj4cqiZbUoXvu8NipLFVwH8/KZHbfVP41SNq2UyRtr
+ oOk=
+X-IronPort-AV: E=Sophos;i="5.78,405,1599548400"; 
+   d="scan'208";a="102111868"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 09 Dec 2020 07:28:07 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1979.3; Wed, 9 Dec 2020 07:28:07 -0700
+Received: from soft-dev10.microsemi.net (10.10.115.15) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
+ 15.1.1979.3 via Frontend Transport; Wed, 9 Dec 2020 07:28:05 -0700
+From:   Lars Povlsen <lars.povlsen@microchip.com>
+To:     Linus Walleij <linus.walleij@linaro.org>
+CC:     Lars Povlsen <lars.povlsen@microchip.com>,
+        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
+        <devicetree@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>
+Subject: [PATCH -next 0/3] pinctrl: pinctrl-microchip-sgpio: Add interrupt controller support
+Date:   Wed, 9 Dec 2020 15:27:50 +0100
+Message-ID: <20201209142753.683208-1-lars.povlsen@microchip.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 30 Nov 2020 19:42:00 +0800, Joakim Zhang wrote:
-> Add sysfs identifier file for imx ddr perf.
-> 
-> ChangeLogs:
-> V1->V2:
-> 	* don't show identifier file if not set.
-> 
-> Joakim Zhang (2):
->   bindings: perf: imx-ddr: add compatible string
->   perf/imx_ddr: Add system PMU identifier for userspace
-> 
-> [...]
+This adds 'interrupt-controller' features for the signals available on
+the Microchip SGPIO controller.
 
-Applied to will (for-next/perf), thanks!
+Due to hardware limitations this feature is limited to Sparx5 platform
+(or later).
 
-[1/2] bindings: perf: imx-ddr: add compatible string
-      https://git.kernel.org/will/c/d0c00977a16a
-[2/2] perf/imx_ddr: Add system PMU identifier for userspace
-      https://git.kernel.org/will/c/881b0520504a
+Lars Povlsen (3):
+  pinctrl: pinctrl-microchip-sgpio: Add irq support (for sparx5)
+  dt-bindings: pinctrl: pinctrl-microchip-sgpio: Add irq support
+  arm64: dts: sparx5: Add SGPIO irq support
 
-Cheers,
+ .../pinctrl/microchip,sparx5-sgpio.yaml       |  16 ++
+ arch/arm64/boot/dts/microchip/sparx5.dtsi     |  11 +-
+ drivers/pinctrl/pinctrl-microchip-sgpio.c     | 187 +++++++++++++++++-
+ 3 files changed, 211 insertions(+), 3 deletions(-)
+
 -- 
-Will
+2.25.1
 
-https://fixes.arm64.dev
-https://next.arm64.dev
-https://will.arm64.dev
