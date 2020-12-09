@@ -2,91 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 71BBB2D4EDC
-	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 00:41:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B23732D4EFC
+	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 00:50:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727880AbgLIXlN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Dec 2020 18:41:13 -0500
-Received: from vps0.lunn.ch ([185.16.172.187]:47518 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727028AbgLIXlN (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 9 Dec 2020 18:41:13 -0500
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94)
-        (envelope-from <andrew@lunn.ch>)
-        id 1kn94G-00B8S3-JC; Thu, 10 Dec 2020 00:40:20 +0100
-Date:   Thu, 10 Dec 2020 00:40:20 +0100
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Pavana Sharma <pavana.sharma@digi.com>
-Cc:     ashkan.boldaji@digi.com, clang-built-linux@googlegroups.com,
-        davem@davemloft.net, devicetree@vger.kernel.org,
-        f.fainelli@gmail.com, gregkh@linuxfoundation.org,
-        kbuild-all@lists.01.org, kuba@kernel.org,
-        linux-kernel@vger.kernel.org, lkp@intel.com, marek.behun@nic.cz,
-        netdev@vger.kernel.org, robh+dt@kernel.org,
-        vivien.didelot@gmail.com
-Subject: Re: [PATCH v11 4/4] net: dsa: mv88e6xxx: Add support for mv88e6393x
- family of Marvell
-Message-ID: <20201209234020.GI2649111@lunn.ch>
-References: <cover.1607488953.git.pavana.sharma@digi.com>
- <9db13ff47826f8bf9d08ec7cdc194c2187868a40.1607488953.git.pavana.sharma@digi.com>
+        id S1726860AbgLIXtq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Dec 2020 18:49:46 -0500
+Received: from relay3-d.mail.gandi.net ([217.70.183.195]:50809 "EHLO
+        relay3-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726840AbgLIXtq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Dec 2020 18:49:46 -0500
+X-Originating-IP: 86.194.74.19
+Received: from localhost (lfbn-lyo-1-997-19.w86-194.abo.wanadoo.fr [86.194.74.19])
+        (Authenticated sender: alexandre.belloni@bootlin.com)
+        by relay3-d.mail.gandi.net (Postfix) with ESMTPSA id AF16260004;
+        Wed,  9 Dec 2020 23:49:02 +0000 (UTC)
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>
+Subject: [PATCH 0/6] iio:pressure:ms5637: add ms5803 support
+Date:   Thu, 10 Dec 2020 00:48:51 +0100
+Message-Id: <20201209234857.1521453-1-alexandre.belloni@bootlin.com>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <9db13ff47826f8bf9d08ec7cdc194c2187868a40.1607488953.git.pavana.sharma@digi.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> +/* Support 10, 100, 200, 1000, 2500, 5000, 10000 Mbps (e.g. 88E6393X)
-> + * This function adds new speed 5000 supported by Amethyst family.
-> + * Function mv88e6xxx_port_set_speed_duplex() can't be used as the register
-> + * values for speeds 2500 & 5000 conflict.
-> + */
+Hello,
 
-Thanks, that should stop my or somebody else trying to wrong combine
-them.
+This series adds support for the Measurement Specialities ms5803. It is
+very similar to the ms5805 but has a different PROM layout (which I
+suspect predates the ms5805 PROM layout). Also it supports less
+frequency sampling options.
 
-> +/* Offset 0x10 & 0x11: EPC */
-> +
-> +static int mv88e6393x_epc_wait_ready(struct mv88e6xxx_chip *chip, int port)
-> +{
-> +	int bit = __bf_shf(MV88E6393X_PORT_EPC_CMD_BUSY);
-> +
-> +	return mv88e6xxx_port_wait_bit(chip, port, MV88E6393X_PORT_EPC_CMD, bit, 0);
-> +}
+After a bit of preparatory work in the ms5637 driver and its common
+library, mainly to handle the PROM layou and sample frequencies, adding
+support is trivial.
 
-To follow the naming convention, this should really be called mv88e6393x_port_epc_wait_ready
+Alexandre Belloni (6):
+  iio:pressure:ms5637: switch to probe_new
+  iio:pressure:ms5637: introduce hardware differentiation
+  iio:pressure:ms5637: limit available sample frequencies
+  iio:common:ms_sensors:ms_sensors_i2c: rework CRC calculation helper
+  iio:common:ms_sensors:ms_sensors_i2c: add support for alternative PROM
+    layout
+  iio:pressure:ms5637: add ms5803 support
 
+ .../devicetree/bindings/trivial-devices.yaml  |  2 +
+ .../iio/common/ms_sensors/ms_sensors_i2c.c    | 76 +++++++++++++++----
+ .../iio/common/ms_sensors/ms_sensors_i2c.h    | 15 +++-
+ drivers/iio/pressure/ms5637.c                 | 73 +++++++++++++-----
+ 4 files changed, 128 insertions(+), 38 deletions(-)
 
-> +int mv88e6393x_serdes_irq_enable(struct mv88e6xxx_chip *chip, int port,
-> +	    int lane, bool enable)
+-- 
+2.28.0
 
-It can be hard to tell in a diff, but the indentation looks wrong
-here. 'int lane' should line up with 'struct'.
-
-> +{
-> +	u8 cmode = chip->ports[port].cmode;
-> +	int err = 0;
-> +
-> +	switch (cmode) {
-> +	case MV88E6XXX_PORT_STS_CMODE_SGMII:
-> +	case MV88E6XXX_PORT_STS_CMODE_1000BASEX:
-> +	case MV88E6XXX_PORT_STS_CMODE_2500BASEX:
-> +	case MV88E6XXX_PORT_STS_CMODE_5GBASER:
-> +	case MV88E6XXX_PORT_STS_CMODE_10GBASER:
-> +		err = mv88e6390_serdes_irq_enable_sgmii(chip, lane, enable);
-> +	}
-> +
-> +	return err;
-> +}
-> +
-> +irqreturn_t mv88e6393x_serdes_irq_status(struct mv88e6xxx_chip *chip, int port,
-> +				 int lane)
-
-Maybe here as well?
-
-> +int mv88e6393x_setup_errata(struct mv88e6xxx_chip *chip)
-
-It should have _serdes_ in the name to follow the naming convention.
-
-   Andrew
