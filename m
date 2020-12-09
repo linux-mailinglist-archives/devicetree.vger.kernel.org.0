@@ -2,119 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 76CE52D4803
-	for <lists+devicetree@lfdr.de>; Wed,  9 Dec 2020 18:35:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9CA772D480C
+	for <lists+devicetree@lfdr.de>; Wed,  9 Dec 2020 18:37:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730721AbgLIReV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Dec 2020 12:34:21 -0500
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:36068 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729833AbgLIReU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Dec 2020 12:34:20 -0500
-Received: by mail-ot1-f67.google.com with SMTP id y24so2150650otk.3;
-        Wed, 09 Dec 2020 09:34:04 -0800 (PST)
+        id S1732704AbgLIRhM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Dec 2020 12:37:12 -0500
+Received: from mail-oi1-f196.google.com ([209.85.167.196]:33291 "EHLO
+        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732511AbgLIRhJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Dec 2020 12:37:09 -0500
+Received: by mail-oi1-f196.google.com with SMTP id d27so2582363oic.0;
+        Wed, 09 Dec 2020 09:36:53 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=lwd8/l7feZCwoHFobcRWjKb7ZJVB2/QEsYxX7pRhBns=;
-        b=Qie8maX/syVTDsD44v+8C/vK2e40+KreAlcjgsgGum0PJ3yHi8I3wCc9omss9Upcpi
-         kVZcHotWWHTfRpLYFakWgLuepJRM1IutHbtSxdnE878quJ2mjOGM0qvzBF51g/iRv3xd
-         B7CrlaIZPcMOY/0FW//RyS7dMqw5vLexppF66IMswSAPkU1Z7P5SScdJIiD0MxZhAg6R
-         ZtiVXdHBDQa9mUIa/enPNNOMnFKUFaCwryeZqK1fh3ygs+ebZ5lq8tbX40bGN1Re57CI
-         +uJyH6dbq0Ntcx5vgE396LIG9dPu3EqWizxcH3H3TcVhRGJ29zELXSMdV1tYuksSwY3U
-         PqAQ==
-X-Gm-Message-State: AOAM531UgtUcw1crR48b+W+BlgH5iFLOKLN1ZuvdlkqSfv88mQR10pci
-        3RYdsMcZ8M4lBRO7rmTQ/g==
-X-Google-Smtp-Source: ABdhPJz7fUonVxT0gZyV3veQWVtgfz40eGN12mJ23xkoOpk54Vde7VP/YSHxQb4AU/l2IfWl57cL9g==
-X-Received: by 2002:a9d:be1:: with SMTP id 88mr2739822oth.210.1607535218842;
-        Wed, 09 Dec 2020 09:33:38 -0800 (PST)
+        bh=bka+gIe2PYYq4ePeK5SsKTLs6SwK5O5OVnbyEVbKVvc=;
+        b=Fi0zad0gvqWQcDbCcoWqlU8bqCFJa7rnby+wvMXC7+L3yQB2gdoQdZjyOaNx61AKWh
+         3DWG92Sj7V+g+IAyZmLxCrpL9GcLfFF65yY8Os10DpysGZneGvaYiUbQ36WAghvP8aX3
+         EIeFw1F29q+DmpBpXJ8izsyC4pi/FFMVk0tj1UZnE8nUCfhzkYYE5D3iWrPiBcdnoo3G
+         VjrR/zlrXTi1WhWZl2lMfA6QOxtncJsXYGYJXYguQ+2x2H0i5N+5PYMD1kn1hQiBtPVs
+         ftdHkLiTlbkSGS+nWigMsKScVmCj/Q+VZdR58GrYZYLsKczjYQrkFVoc0v0uzbbuNovc
+         8yqQ==
+X-Gm-Message-State: AOAM533iwS8g37L+wb5qi2LNm30ZlO1quG3PO+SaU3/fnRlJp2plLN9N
+        m9UXcd2SgIdYouDTM4Q17Q==
+X-Google-Smtp-Source: ABdhPJwfX4MV4Pd4gkJYdfqaNpb5JzpyOTvPjdxnCE/rfTZkEEStMybE/u7/b04DDpwcwNS7MNIHRQ==
+X-Received: by 2002:aca:b686:: with SMTP id g128mr2565481oif.82.1607535388097;
+        Wed, 09 Dec 2020 09:36:28 -0800 (PST)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id o63sm452791ooa.10.2020.12.09.09.33.36
+        by smtp.gmail.com with ESMTPSA id 8sm455253oii.45.2020.12.09.09.36.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Dec 2020 09:33:37 -0800 (PST)
-Received: (nullmailer pid 650380 invoked by uid 1000);
-        Wed, 09 Dec 2020 17:33:35 -0000
-Date:   Wed, 9 Dec 2020 11:33:35 -0600
+        Wed, 09 Dec 2020 09:36:27 -0800 (PST)
+Received: (nullmailer pid 654142 invoked by uid 1000);
+        Wed, 09 Dec 2020 17:36:25 -0000
+Date:   Wed, 9 Dec 2020 11:36:25 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Daniele Alessandrelli <daniele.alessandrelli@linux.intel.com>
-Cc:     mgross@linux.intel.com, daniele.alessandrelli@intel.com,
-        markgross@kernel.org, arnd@arndb.de, bp@suse.de,
-        damien.lemoal@wdc.com, gregkh@linuxfoundation.org, corbet@lwn.net,
-        leonard.crestez@nxp.com, palmerdabbelt@google.com,
-        paul.walmsley@sifive.com, peng.fan@nxp.com, shawnguo@kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Jassi Brar <jassisinghbrar@gmail.com>
-Subject: Re: [PATCH 02/22] dt-bindings: Add bindings for Keem Bay IPC driver
-Message-ID: <20201209173335.GA644399@robh.at.kernel.org>
-References: <20201201223511.65542-1-mgross@linux.intel.com>
- <20201201223511.65542-3-mgross@linux.intel.com>
- <20201207160152.GB351233@robh.at.kernel.org>
- <ca099c0833dc79f0a88edecd9fb949157eacbf46.camel@linux.intel.com>
+To:     Baruch Siach <baruch@tkos.co.il>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Chris Packham <chris.packham@alliedtelesis.co.nz>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Ralph Sennhauser <ralph.sennhauser@gmail.com>,
+        linux-pwm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 6/6] dt-bindings: ap806: document gpio pwm-offset
+ property
+Message-ID: <20201209173625.GA652178@robh.at.kernel.org>
+References: <cover.1606892239.git.baruch@tkos.co.il>
+ <ba17da5dfea6128a2502e5ebd38ed35bcd797deb.1606892239.git.baruch@tkos.co.il>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <ca099c0833dc79f0a88edecd9fb949157eacbf46.camel@linux.intel.com>
+In-Reply-To: <ba17da5dfea6128a2502e5ebd38ed35bcd797deb.1606892239.git.baruch@tkos.co.il>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 07, 2020 at 06:42:07PM +0000, Daniele Alessandrelli wrote:
-> Hi Rob,
+On Wed, Dec 02, 2020 at 09:15:37AM +0200, Baruch Siach wrote:
+> Update the example as well. Add the '#pwm-cells' and 'clocks' properties
+> for a complete working example.
 > 
-> Thanks for the feedback.
+> Signed-off-by: Baruch Siach <baruch@tkos.co.il>
+> ---
+>  .../bindings/arm/marvell/ap80x-system-controller.txt      | 8 ++++++++
+>  1 file changed, 8 insertions(+)
 > 
-> On Mon, 2020-12-07 at 10:01 -0600, Rob Herring wrote:
-> > On Tue, Dec 01, 2020 at 02:34:51PM -0800, mgross@linux.intel.com wrote:
-> > > From: Daniele Alessandrelli <daniele.alessandrelli@intel.com>
-> > > 
-> > > Add DT binding documentation for the Intel Keem Bay IPC driver, which
-> > > enables communication between the Computing Sub-System (CSS) and the
-> > > Multimedia Sub-System (MSS) of the Intel Movidius SoC code named Keem
-> > > Bay.
-> > > 
-> 
-> [cut]
-> 
-> > > +
-> > > +description:
-> > > +  The Keem Bay IPC driver enables Inter-Processor Communication (IPC) with the
-> > > +  Visual Processor Unit (VPU) embedded in the Intel Movidius SoC code named
-> > > +  Keem Bay.
-> > 
-> > Sounds like a mailbox.
-> 
-> We did consider using the mailbox framework, but eventually decided
-> against it; mainly because of the following two reasons:
-> 
-> 1. The channel concept in the Mailbox framework is different than the
->    channel concept in Keem Bay IPC:
-> 
->    a. My understanding is that Mailbox channels are meant to be SW
->       representation of physical HW channels, while in Keem Bay IPC
->       channels are software abstractions to achieve communication
->       multiplexing over a single HW link
-> 
->    b. Additionally, Keem Bay IPC has two different classes of channels 
->       (high-speed channels and general-purpose channels) that need to
->       access the same HW link with different priorities.
-> 
-> 2. The blocking / non-blocking TX behavior of mailbox channels is
->    defined at channel creation time (by the tx_block value of the
->    mailbox client passed to mbox_request_channel(); my understanding 
->    is that the tx_block value cannot be modified after the channel is
->    created), while in Keem Bay IPC the same channel can be used for
->    both blocking and non-blocking TX (behavior is controlled by the
->    timeout argument passed to keembay_ipc_send()).
-> 
-> Having said that, I guess that it could be possible to create a Mailbox
-> driver implementing the core communication mechanism used by the Keem
-> Bay IPC and then build our API around it (basically having two
-> drivers). But I'm not sure that would make the code simpler or easier
-> to maintain. Any thoughts on this?
+> diff --git a/Documentation/devicetree/bindings/arm/marvell/ap80x-system-controller.txt b/Documentation/devicetree/bindings/arm/marvell/ap80x-system-controller.txt
+> index e31511255d8e..a754e8992450 100644
+> --- a/Documentation/devicetree/bindings/arm/marvell/ap80x-system-controller.txt
+> +++ b/Documentation/devicetree/bindings/arm/marvell/ap80x-system-controller.txt
+> @@ -80,6 +80,11 @@ Required properties:
+>  
+>  - offset: offset address inside the syscon block
+>  
+> +Optional properties:
+> +
+> +- pwm-offset: offset address of PWM duration control registers inside the
+> +  syscon block
 
-The use of the mailbox binding and the kernel's mailbox framework are 
-independent questions. I'm only concerned with the former (for purposes 
-of this review).
+marvell,pwm-offset
 
-Rob
+> +
+>  Example:
+>  ap_syscon: system-controller@6f4000 {
+>  	compatible = "syscon", "simple-mfd";
+> @@ -101,6 +106,9 @@ ap_syscon: system-controller@6f4000 {
+>  		gpio-controller;
+>  		#gpio-cells = <2>;
+>  		gpio-ranges = <&ap_pinctrl 0 0 19>;
+> +		pwm-offset = <0x10c0>;
+> +		#pwm-cells = <2>;
+> +		clocks = <&ap_clk 3>;
+>  	};
+>  };
+>  
+> -- 
+> 2.29.2
+> 
