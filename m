@@ -2,75 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F0B62D48CB
-	for <lists+devicetree@lfdr.de>; Wed,  9 Dec 2020 19:19:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F3962D491D
+	for <lists+devicetree@lfdr.de>; Wed,  9 Dec 2020 19:36:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729882AbgLISSW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Dec 2020 13:18:22 -0500
-Received: from mail-oi1-f196.google.com ([209.85.167.196]:39825 "EHLO
-        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726449AbgLISSW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Dec 2020 13:18:22 -0500
-Received: by mail-oi1-f196.google.com with SMTP id v85so2706919oia.6;
-        Wed, 09 Dec 2020 10:18:06 -0800 (PST)
+        id S1732223AbgLISfj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Dec 2020 13:35:39 -0500
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:35085 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729345AbgLISfj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Dec 2020 13:35:39 -0500
+Received: by mail-ot1-f68.google.com with SMTP id i6so2362142otr.2
+        for <devicetree@vger.kernel.org>; Wed, 09 Dec 2020 10:35:23 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=t0IEJ9Kjkjr6WBfSG3+TpVJkzpjFITDdJoH/Uozbldk=;
-        b=kwj4GfkiI4F74d7l9N0sFkZbHuVOLKcVlOwQgRAsuXsuPWW6sGolj5CLiP1uCDjWbY
-         aNJ+ggq6TxWD01qyfwPyVXpZvOhH1LXT5lLfVJp6/v+88EboXMBKCqGIHEiJ1e/tmbpI
-         zO0UkrdBakm9GH/Qpy2JtT7C+0wGf53q0JEsGSpOVieCiCbyDoZHHT1NOK//OMcXya/M
-         1yz1rkuFH4Wjz9kDHMgD55mr6bNCYaE577LO5O76mR5nODEn2q0r8slR7BpxV6HHixem
-         LXyv+53d74BvaxUsakM6N6umpenb9OmbVVCe0W8jtnQJfygFOBD7opfzMMJ+4sBbnQ5+
-         0k0g==
-X-Gm-Message-State: AOAM530IP6mdLmXFul+KzJgkkGwnV6Sfuue0Erp/kA4oRsejZZGmDLk6
-        SLlW9njjmS0jwXRsui/z9w==
-X-Google-Smtp-Source: ABdhPJxugqkrL7F4hfvf+E6P2ob2gJ/QKFOkVn9KHpzkM7jSWsKeI0C3NueoVWpO1P/KGk1kN+r9iA==
-X-Received: by 2002:aca:f3d6:: with SMTP id r205mr2727621oih.152.1607537861591;
-        Wed, 09 Dec 2020 10:17:41 -0800 (PST)
+        bh=efZa01/tAQYkdx/QvooE/mFFxl9GZnfpgF8LlHbbmjI=;
+        b=EA46ZJI+mWLjlvOvJwWHNcoZFwBmhaDF9ur8GcvMP+HSYQF5+Py/4/mwSKThIpuXrB
+         VwDXQ/EMsP89CmFwklNgI5q6X+L6g4p48TPftAaTMHXvVkonW3z1zstnjVh0KDKkSi39
+         vZLoYW3uH/5uSP2vRiBboaW7AsT86Fi3KfTWys4tKy8kd2F5ABmR6Xn8lv8qjMpy2oK9
+         vYPhXz/04DRyQ2NzkgT4dc1q7dg7TMI55TYJ9pYutnj3F1O8nYlZq3nb/IhQlOwWFCgN
+         /kiv4R5EIOLBv13LEgQYs8NqRD0b7PF+Dj4TfcZ9IfqL5b3uv4dpXeUmIGZDMfkdzRag
+         7yaw==
+X-Gm-Message-State: AOAM533/CosBAKlYDDNCi7kASHXHZPwyHIDrRPYA+HY5AColxV2v+ojw
+        S/+PqRKNwGxrFXgdvSJQF+ZhAqCiTg==
+X-Google-Smtp-Source: ABdhPJwna/Boycl+ZoZ95oUf20XLAOVU8rmHFRPvUyabgqNQ/ccVNcHezR1fI4Mhq5JiT30D8HVWSw==
+X-Received: by 2002:a9d:4e8f:: with SMTP id v15mr2827451otk.121.1607538897983;
+        Wed, 09 Dec 2020 10:34:57 -0800 (PST)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id k5sm455334oot.30.2020.12.09.10.17.40
+        by smtp.gmail.com with ESMTPSA id g6sm541230otk.40.2020.12.09.10.34.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Dec 2020 10:17:40 -0800 (PST)
-Received: (nullmailer pid 708174 invoked by uid 1000);
-        Wed, 09 Dec 2020 18:17:39 -0000
-Date:   Wed, 9 Dec 2020 12:17:39 -0600
+        Wed, 09 Dec 2020 10:34:56 -0800 (PST)
+Received: (nullmailer pid 730369 invoked by uid 1000);
+        Wed, 09 Dec 2020 18:34:55 -0000
+Date:   Wed, 9 Dec 2020 12:34:55 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Stephan Gerhold <stephan@gerhold.net>
-Cc:     Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH] dt-bindings: iio: accel: bma255: Fix bmc150/bmi055
- compatible
-Message-ID: <20201209181739.GA708144@robh.at.kernel.org>
-References: <20201202083551.7753-1-stephan@gerhold.net>
+To:     Michael Tretter <m.tretter@pengutronix.de>
+Cc:     Michal Simek <michal.simek@xilinx.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, kernel@pengutronix.de
+Subject: Re: [PATCH] dt-bindings: xlnx,vcu-settings: fix dt_binding_check
+ warnings
+Message-ID: <20201209183455.GA708305@robh.at.kernel.org>
+References: <20201202090522.251607-1-m.tretter@pengutronix.de>
+ <6029fb9a-bacb-1db0-294f-096323374535@xilinx.com>
+ <20201203084804.GA21858@pengutronix.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201202083551.7753-1-stephan@gerhold.net>
+In-Reply-To: <20201203084804.GA21858@pengutronix.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 02 Dec 2020 09:35:51 +0100, Stephan Gerhold wrote:
-> The bmc150-accel-i2c.c driver has an "_accel" suffix for the
-> compatibles of BMC150 and BMI055. This is necessary because BMC150
-> contains both accelerometer (bosch,bmc150_accel) and magnetometer
-> (bosch,bmc150_magn) and therefore "bosch,bmc150" would be ambiguous.
+On Thu, Dec 03, 2020 at 09:48:04AM +0100, Michael Tretter wrote:
+> On Thu, 03 Dec 2020 08:49:01 +0100, Michal Simek wrote:
+> > On 02. 12. 20 10:05, Michael Tretter wrote:
+> > > When running make dt_binding_check, the xlnx,vcu-settings binding
+> > > triggers the following two warnings:
+> > > 
+> > > 	'additionalProperties' is a required property
+> > > 
+> > > 	example-0: vcu@a0041000:reg:0: [0, 2684620800, 0, 4096] is too long
+> > > 
+> > > Fix the binding and make the checker happy.
+> > > 
+> > > Signed-off-by: Michael Tretter <m.tretter@pengutronix.de>
+> > > ---
+> > > 
+> > > Hi,
+> > > 
+> > > The xlnx,vcu-settings binding was reviewed [0] before the bot started to
+> > > run automated tests on the device tree bindings, but now produces some
+> > > warnings. The original patch that introduces the binding is still in
+> > > Michal's tree and I am not entirely sure how to handle it, but here is a
+> > > patch.
+> > > 
+> > > Michael
+> > > 
+> > > [0] https://lore.kernel.org/linux-arm-kernel/20200429213659.GA9051@bogus/
+> > > ---
+> > >  .../bindings/soc/xilinx/xlnx,vcu-settings.yaml    | 15 ++++++++++++---
+> > >  1 file changed, 12 insertions(+), 3 deletions(-)
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/soc/xilinx/xlnx,vcu-settings.yaml b/Documentation/devicetree/bindings/soc/xilinx/xlnx,vcu-settings.yaml
+> > > index 378d0ced43c8..cb245f400287 100644
+> > > --- a/Documentation/devicetree/bindings/soc/xilinx/xlnx,vcu-settings.yaml
+> > > +++ b/Documentation/devicetree/bindings/soc/xilinx/xlnx,vcu-settings.yaml
+> > > @@ -26,9 +26,18 @@ required:
+> > >    - compatible
+> > >    - reg
+> > >  
+> > > +additionalProperties: false
+> > > +
+> > >  examples:
+> > >    - |
+> > > -    xlnx_vcu: vcu@a0041000 {
+> > > -          compatible = "xlnx,vcu-settings", "syscon";
+> > > -          reg = <0x0 0xa0041000 0x0 0x1000>;
+> > > +    fpga {
+> > > +        #address-cells = <2>;
+> > > +        #size-cells = <2>;
+> > > +
+> > > +        xlnx_vcu: vcu@a0041000 {
+> > > +            compatible = "xlnx,vcu-settings", "syscon";
+> > > +            reg = <0x0 0xa0041000 0x0 0x1000>;
+> > > +        };
+> > 
+> > IIRC we had been discussing this recently and Rob wanted to have just
+> > 1/1 mapping here.
+> > 
+> > Take a look at 0db958b689ca9.
 > 
-> However, the binding documentation suggests using "bosch,bmc150".
-> Add the "_accel" suffix for BMC150 and BMI055 so the binding docs
-> match what is expected by the driver.
+> Thanks for the pointer.
 > 
-> Cc: Linus Walleij <linus.walleij@linaro.org>
-> Fixes: 496a39526fce8 ("iio: accel: bmc150-accel: Add DT bindings")
-> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
-> ---
->  Documentation/devicetree/bindings/iio/accel/bosch,bma255.yaml | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+> Rob: Is there some kind of rule, when to use a 1/1 mapping and when to add a
+> bus with more cells? I still see several examples that add a bus with 2 cells.
+> I assume that they more or less legacy, but I didn't find any discussion going
+> beyond the commit description of 0db958b689ca9, which "just" fixes the
+> warnings.
 > 
+> I will send a v2, but I'd like to understand the rationale for having the 1/1
+> mapping first.
+
+Simplifies the example is all.
+
+This one is fine as-is.
 
 Reviewed-by: Rob Herring <robh@kernel.org>
