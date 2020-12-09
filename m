@@ -2,122 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D2F82D3C33
-	for <lists+devicetree@lfdr.de>; Wed,  9 Dec 2020 08:31:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 531CC2D3C71
+	for <lists+devicetree@lfdr.de>; Wed,  9 Dec 2020 08:44:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726200AbgLIHab (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Dec 2020 02:30:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56360 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725826AbgLIHab (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Dec 2020 02:30:31 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 220E8C0613D6
-        for <devicetree@vger.kernel.org>; Tue,  8 Dec 2020 23:29:51 -0800 (PST)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1kmtv3-0001Wg-PL; Wed, 09 Dec 2020 08:29:49 +0100
-Received: from ukl by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1kmtv3-0006m4-CI; Wed, 09 Dec 2020 08:29:49 +0100
-Date:   Wed, 9 Dec 2020 08:29:49 +0100
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Nicola Di Lieto <nicola.dilieto@gmail.com>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH 2/2] pwm: pwm-gpio: Add DT bindings
-Message-ID: <20201209072949.2ovbtwv64bitosve@pengutronix.de>
-References: <20201205214616.e4one25o3oz5dhrp@einstein.dilieto.eu>
+        id S1726200AbgLIHn7 convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 9 Dec 2020 02:43:59 -0500
+Received: from mail-wr1-f66.google.com ([209.85.221.66]:34776 "EHLO
+        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725968AbgLIHn7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Dec 2020 02:43:59 -0500
+Received: by mail-wr1-f66.google.com with SMTP id k14so619416wrn.1;
+        Tue, 08 Dec 2020 23:43:42 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=34PovGutJhKqA8edy4i8ZDODYpc+dmVnh/VwPkNy4iI=;
+        b=QpUN53NGuegDC732CdihFuf82yTZOcjt/frO0Qp1X0f7qKQjnCVCXTqPrYJFBNTORJ
+         rw0CtDZNFDutBiGG3CrUxJBrK7Bz/Gp4Gj76ytAJvP0s0NnQVNjS/KLNysAOgK2IjwZc
+         SCNgpR3xg/IGd5+smXnAIJA2h9Ic7ZR1X+DS8VNUSEgMZbbXgEgz6BTX+t5kvybfjwiZ
+         CFapAZ0DA7FFdgrrUS77CXbWPBImrIJ3Uhj1F6duxAQ8tfRYrQ4utasXB3fcqwqMHKH3
+         jSeEHqFUTfXBRC8JtaPVwbAe8glyf+uhRwAgUCofq5GAwMY4uo5tukC+Ozg1UaAvavva
+         0Mzg==
+X-Gm-Message-State: AOAM530sotXawTA7GF8XkUXNKpYU7Mnt/TkhNb/B94bZMDB+bWzWByRe
+        wLS5/K7xVIBgzqEMnSCihkrFhe8a8aOyRQ==
+X-Google-Smtp-Source: ABdhPJzwFb6usuIWCN5d087TCGX4jWsqxiGj1IqqE3KKpLORqnMDiNHuwOVVM22deIPFriqzZLh2Fw==
+X-Received: by 2002:adf:b343:: with SMTP id k3mr1110838wrd.202.1607499797105;
+        Tue, 08 Dec 2020 23:43:17 -0800 (PST)
+Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
+        by smtp.googlemail.com with ESMTPSA id d191sm1701263wmd.24.2020.12.08.23.43.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 08 Dec 2020 23:43:15 -0800 (PST)
+Date:   Wed, 9 Dec 2020 08:43:14 +0100
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     "Alice Guo (OSS)" <alice.guo@oss.nxp.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Peng Fan <peng.fan@nxp.com>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v6 1/4] dt-bindings: soc: imx8m: add DT Binding doc for
+ soc unique ID
+Message-ID: <20201209074314.GA3013@kozik-lap>
+References: <20201124015949.29262-1-alice.guo@nxp.com>
+ <20201130215721.GA3090303@robh.at.kernel.org>
+ <AM6PR04MB60533A06C19AA37213C93F54E2F40@AM6PR04MB6053.eurprd04.prod.outlook.com>
+ <AM6PR04MB6053C8339E1894687C911E72E2CC0@AM6PR04MB6053.eurprd04.prod.outlook.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="uzurj4fglhtue42y"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20201205214616.e4one25o3oz5dhrp@einstein.dilieto.eu>
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 8BIT
+In-Reply-To: <AM6PR04MB6053C8339E1894687C911E72E2CC0@AM6PR04MB6053.eurprd04.prod.outlook.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Dec 09, 2020 at 02:30:22AM +0000, Alice Guo (OSS) wrote:
+> Gentle ping..  and Krzysztof Kozlowski, do you agree?
 
---uzurj4fglhtue42y
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I did not know that you wait for something from my side.
 
-On Sat, Dec 05, 2020 at 10:46:16PM +0100, Nicola Di Lieto wrote:
-> Added Documentation/devicetree/bindings/pwm/pwm-gpio.yaml
->=20
-> Signed-off-by: Nicola Di Lieto <nicola.dilieto@gmail.com>
-> ---
-> .../devicetree/bindings/pwm/pwm-gpio.yaml          | 42 +++++++++++++++++=
-+++++
-> 1 file changed, 42 insertions(+)
-> create mode 100644 Documentation/devicetree/bindings/pwm/pwm-gpio.yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/pwm/pwm-gpio.yaml b/Docume=
-ntation/devicetree/bindings/pwm/pwm-gpio.yaml
-> new file mode 100644
-> index 000000000000..2e021ac6ff4a
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pwm/pwm-gpio.yaml
-> @@ -0,0 +1,42 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pwm/pwm-gpio.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Generic software PWM for modulating GPIOs
-> +
-> +maintainers:
-> +  - Nicola Di Lieto <nicola.dilieto@gmail.com>
-> +
-> +properties:
-> +  "#pwm-cells":
-> +    description: |
-> +      It must be 2. See pwm.yaml in this directory for a
-> +      description of the cells format.
+> 
+> Best Regards,
+> Alice Guo
+> 
+> > -----Original Message-----
+> > From: linux-arm-kernel <linux-arm-kernel-bounces@lists.infradead.org> On
+> > Behalf Of Alice Guo (OSS)
+> > Sent: 2020年12月1日 11:31
+> > To: Rob Herring <robh@kernel.org>; Krzysztof Kozlowski <krzk@kernel.org>;
+> > shawnguo@kernel.org
+> > Cc: devicetree@vger.kernel.org; Peng Fan <peng.fan@nxp.com>;
+> > s.hauer@pengutronix.de; linux-kernel@vger.kernel.org; krzk@kernel.org;
+> > dl-linux-imx <linux-imx@nxp.com>; linux-arm-kernel@lists.infradead.org
+> > Subject: RE: [PATCH v6 1/4] dt-bindings: soc: imx8m: add DT Binding doc for soc
+> > unique ID
+> > 
+> > 
+> > 
+> > > -----Original Message-----
+> > > From: linux-arm-kernel <linux-arm-kernel-bounces@lists.infradead.org>
+> > > On Behalf Of Rob Herring
+> > > Sent: 2020年12月1日 5:57
+> > > To: Alice Guo <alice.guo@nxp.com>
+> > > Cc: devicetree@vger.kernel.org; Peng Fan <peng.fan@nxp.com>;
+> > > s.hauer@pengutronix.de; linux-kernel@vger.kernel.org; krzk@kernel.org;
+> > > dl-linux-imx <linux-imx@nxp.com>; shawnguo@kernel.org;
+> > > linux-arm-kernel@lists.infradead.org
+> > > Subject: Re: [PATCH v6 1/4] dt-bindings: soc: imx8m: add DT Binding
+> > > doc for soc unique ID
+> > >
+> > > On Tue, Nov 24, 2020 at 09:59:46AM +0800, Alice Guo wrote:
+> > > > Add DT Binding doc for the Unique ID of i.MX 8M series.
+> > > >
+> > > > Signed-off-by: Alice Guo <alice.guo@nxp.com>
+> > > > ---
+> > > >
+> > > > v2: remove the subject prefix "LF-2571-1"
+> > > > v3: put it into Documentation/devicetree/bindings/arm/fsl.yaml
+> > >
+> > > No, I prefer this be a separate schema file and not clutter board/soc
+> > > schemas with child nodes.
+> > 
+> > Hi,
+> > Thank you for your comments. I read
+> > "Documentation/devicetree/bindings/arm/arm,realview.yaml"
+> > in which there is a "soc". So I added my "soc" to this current file. Can I keep it in
+> > Documentation/devicetree/bindings/arm/fsl.yaml?
 
-I think nowadays we prefer 3 here.
+Please go with Rob's suggestion.
 
-> +    const: 2
-> +
-> +  compatible:
-> +    const: pwm-gpio
-> +
-> +  gpios:
-> +    description:
-> +      GPIO to be modulated
-> +    maxItems: 1
-> +
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---uzurj4fglhtue42y
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAl/QfOoACgkQwfwUeK3K
-7Al7xAf+KSy4Lb92gzGHro1rVxHq+lT8RccgvH+n5TT/3qgBzjBVL+BDm+W0Vvq0
-owUwM7StJug3oyr7WKkQQJjEQS08GJGtjPGofb6wZQK8dw8vXker5jPnEy1WSqBy
-ThZ9BEBDkh8mlSQ+KaGN33sCoIz7jbgIIlEc/Vtf9lIRK3IjIDsLVotGXl5j1FOX
-3c+JQEB/M1RiQeZA9CyYMNXXZcKZJc9d4HYPqhb5GS8CiQXAlJXzxGgHvaZEhXDK
-UV09SqL0hPbalm0LLwsywnlxtVi5fjBMwXa773GVlonzVVmJBNRutR4summqwkMg
-gdrhLd45BY97wXNZppPSzMIFUIP04w==
-=R2pM
------END PGP SIGNATURE-----
-
---uzurj4fglhtue42y--
+Best regards,
+Krzysztof
