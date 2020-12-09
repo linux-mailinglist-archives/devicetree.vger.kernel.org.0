@@ -2,144 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F5752D4164
-	for <lists+devicetree@lfdr.de>; Wed,  9 Dec 2020 12:52:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D09DA2D416E
+	for <lists+devicetree@lfdr.de>; Wed,  9 Dec 2020 12:53:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730950AbgLILtk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Dec 2020 06:49:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39956 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730949AbgLILte (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Dec 2020 06:49:34 -0500
-Received: from mail-io1-xd42.google.com (mail-io1-xd42.google.com [IPv6:2607:f8b0:4864:20::d42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2560C0617A7
-        for <devicetree@vger.kernel.org>; Wed,  9 Dec 2020 03:48:53 -0800 (PST)
-Received: by mail-io1-xd42.google.com with SMTP id d9so1337324iob.6
-        for <devicetree@vger.kernel.org>; Wed, 09 Dec 2020 03:48:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=2HvHOHaWkWz9f5uu3P40vdNt+6mzTeQgyoxLze+Dl0g=;
-        b=I1eki8GcBzKwc6xYmgWPjUTM/SWL2w2UhFFkCM1ywq45hiSOF27YK1Ttq2UCWWlLep
-         WRiFmxJ7zST0ftQ+RvwBCKJr3+2kGLcCqq/lUtKokZ4wtM7hXm0kZze+MnsOEHvSPRaY
-         sCrSFQ24hoHl0uVoCY+9dL+jB5aamzpjmWOdcE//9+6iVXt3rndDMtB+ppknznc9pCK5
-         NAn0kgH1hLrm+h/aElA7Tc/co6LaYTiBSqO3zAZdFZXofejG/GjjFNWUjDDK00Q//m0k
-         yBHxuH2/vFrcU637DPm7wjocdhyLrINFue9373MoeDs2rcfCryJSZJQ8jcluQxsFR6OU
-         cAgg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=2HvHOHaWkWz9f5uu3P40vdNt+6mzTeQgyoxLze+Dl0g=;
-        b=OxyEH5dmb2/0i4KkY/9Ot7hx0MdNJZ0Q2y3f5Ip4Pwk1Fg0viuusbihw7VOBoiAS2J
-         a9FrvAQyuF4jPOWKkElmkPA2ezzN0/oqaK9cew0zqvB2JK7YIx16qFjeFgZAf8MiMx4F
-         4bpNfCoWFQnh4tvH2jCmNg276R/OslTI76FT3HzMDQ2zqFTnPGR73X5XlCkUwLF6IW37
-         s4MIPlwSqbbQANSeFc1+LnTCN8N74WCkUMKnfQ1G6AF94qnZAv+h8pgTHnw+WCDl63hm
-         /SjGC7WZdyHR+0JCscPvxSazxrhBMLb1w/6EPH8sWGBrKiIei1oesONKAj91O0VpinGN
-         2+dA==
-X-Gm-Message-State: AOAM53004msg+nx6tERetuvvFKvCqdfYj7vkyCrKjj4hI2x1oSI7pusg
-        PqJ6WSr2CqJWTBRhPjITTskI2NN3kmvD1ApXYkFFzA==
-X-Google-Smtp-Source: ABdhPJzDuGvTStBIZ/1Plqa1/cjaQJaRQHy1Es4XzEExZpLWTqkchkuQiCQdQ3DGAuzdUI1gqcAhktveSbV1z55+Bs0=
-X-Received: by 2002:a05:6602:13c5:: with SMTP id o5mr2294111iov.46.1607514533155;
- Wed, 09 Dec 2020 03:48:53 -0800 (PST)
-MIME-Version: 1.0
-References: <20201209114440.62950-1-fparent@baylibre.com> <20201209114440.62950-2-fparent@baylibre.com>
-In-Reply-To: <20201209114440.62950-2-fparent@baylibre.com>
-From:   Fabien Parent <fparent@baylibre.com>
-Date:   Wed, 9 Dec 2020 12:48:42 +0100
-Message-ID: <CAOwMV_yFukOeH9k3DDWJv3RWYV3-VEgQR=xS7art2VR421Ynjw@mail.gmail.com>
-Subject: =?UTF-8?Q?Re=3A_=5BPATCH_v2_2=2F2=5D_=F0=9F=93=A4_arm64=3A_dts=3A_mediatek=3A_mt8516?=
-        =?UTF-8?Q?=3A_add_support_for_APDMA?=
-To:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     DTML <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        id S1730684AbgLILwp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Dec 2020 06:52:45 -0500
+Received: from foss.arm.com ([217.140.110.172]:33448 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729988AbgLILwp (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 9 Dec 2020 06:52:45 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 36DE231B;
+        Wed,  9 Dec 2020 03:52:00 -0800 (PST)
+Received: from e123648.arm.com (unknown [10.57.24.55])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 2918A3F718;
+        Wed,  9 Dec 2020 03:51:57 -0800 (PST)
+From:   Lukasz Luba <lukasz.luba@arm.com>
+To:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org
+Cc:     lukasz.luba@arm.com, robh@kernel.org, airlied@linux.ie,
+        daniel@ffwll.ch
+Subject: [PATCH 0/2] Add DT bindings with dynamic-power-coefficient for Mali GPUs 
+Date:   Wed,  9 Dec 2020 11:51:41 +0000
+Message-Id: <20201209115143.15321-1-lukasz.luba@arm.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Sorry, resending without the unicode symbol in the title
+Hi all,
 
-On Wed, Dec 9, 2020 at 12:44 PM Fabien Parent <fparent@baylibre.com> wrote:
->
-> Add support the APDMA IP on MT8516. APDMA is a DMA controller
-> for UARTs.
->
-> Signed-off-by: Fabien Parent <fparent@baylibre.com>
-> ---
->
-> V2: Add missing dma-names properties on uart nodes
->
->  arch/arm64/boot/dts/mediatek/mt8516.dtsi | 30 ++++++++++++++++++++++++
->  1 file changed, 30 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8516.dtsi b/arch/arm64/boot/dts/mediatek/mt8516.dtsi
-> index e6e4d9d60094..b80e95574bef 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8516.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8516.dtsi
-> @@ -276,6 +276,27 @@ gic: interrupt-controller@10310000 {
->                                 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>;
->                 };
->
-> +               apdma: dma-controller@11000480 {
-> +                       compatible = "mediatek,mt8516-uart-dma",
-> +                                    "mediatek,mt6577-uart-dma";
-> +                       reg = <0 0x11000480 0 0x80>,
-> +                             <0 0x11000500 0 0x80>,
-> +                             <0 0x11000580 0 0x80>,
-> +                             <0 0x11000600 0 0x80>,
-> +                             <0 0x11000980 0 0x80>,
-> +                             <0 0x11000a00 0 0x80>;
-> +                       interrupts = <GIC_SPI 96 IRQ_TYPE_LEVEL_LOW>,
-> +                                    <GIC_SPI 97 IRQ_TYPE_LEVEL_LOW>,
-> +                                    <GIC_SPI 98 IRQ_TYPE_LEVEL_LOW>,
-> +                                    <GIC_SPI 99 IRQ_TYPE_LEVEL_LOW>,
-> +                                    <GIC_SPI 100 IRQ_TYPE_LEVEL_LOW>,
-> +                                    <GIC_SPI 101 IRQ_TYPE_LEVEL_LOW>;
-> +                       dma-requests = <6>;
-> +                       clocks = <&topckgen CLK_TOP_APDMA>;
-> +                       clock-names = "apdma";
-> +                       #dma-cells = <1>;
-> +               };
-> +
->                 uart0: serial@11005000 {
->                         compatible = "mediatek,mt8516-uart",
->                                      "mediatek,mt6577-uart";
-> @@ -284,6 +305,9 @@ uart0: serial@11005000 {
->                         clocks = <&topckgen CLK_TOP_UART0_SEL>,
->                                  <&topckgen CLK_TOP_UART0>;
->                         clock-names = "baud", "bus";
-> +                       dmas = <&apdma 0
-> +                               &apdma 1>;
-> +                       dma-names = "tx", "rx";
->                         status = "disabled";
->                 };
->
-> @@ -295,6 +319,9 @@ uart1: serial@11006000 {
->                         clocks = <&topckgen CLK_TOP_UART1_SEL>,
->                                  <&topckgen CLK_TOP_UART1>;
->                         clock-names = "baud", "bus";
-> +                       dmas = <&apdma 2
-> +                               &apdma 3>;
-> +                       dma-names = "tx", "rx";
->                         status = "disabled";
->                 };
->
-> @@ -306,6 +333,9 @@ uart2: serial@11007000 {
->                         clocks = <&topckgen CLK_TOP_UART2_SEL>,
->                                  <&topckgen CLK_TOP_UART2>;
->                         clock-names = "baud", "bus";
-> +                       dmas = <&apdma 4
-> +                               &apdma 5>;
-> +                       dma-names = "tx", "rx";
->                         status = "disabled";
->                 };
->
-> --
-> 2.29.2
->
+The patch set aims to add a new property dynamic-power-coefficient to Mali GPU
+DT bindings. This property is known from CPUs and they are both aligned. It
+is used for Energy Model registration.
+
+Regards,
+Lukasz Luba
+
+Lukasz Luba (2):
+  dt-bindings: mali-midgard: Add dynamic-power-coefficient
+  dt-bindings: mali-bifrost: Add dynamic-power-coefficient
+
+ .../bindings/gpu/arm,mali-bifrost.yaml          | 17 +++++++++++++++++
+ .../bindings/gpu/arm,mali-midgard.yaml          | 17 +++++++++++++++++
+ 2 files changed, 34 insertions(+)
+
+-- 
+2.17.1
+
