@@ -2,334 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D4A442D4E9E
-	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 00:17:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 62A382D4EAA
+	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 00:20:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729348AbgLIXRL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Dec 2020 18:17:11 -0500
-Received: from mail-oi1-f194.google.com ([209.85.167.194]:46309 "EHLO
-        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728541AbgLIXRL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Dec 2020 18:17:11 -0500
-Received: by mail-oi1-f194.google.com with SMTP id k2so3613133oic.13;
-        Wed, 09 Dec 2020 15:16:54 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=N/2xsxFfQ+Ilf7cwB3nPH6ptlpewBAhxOfqNmniGrZk=;
-        b=ZKrUQjWWCM2q1y82OUxx1tfP5vAIoc5wtgZdU8jIo4ZmbIeTBO+HS3RYFh1LYxYUGx
-         kGkhQYthYDw/njNz/1v+Ux2GdyXLMz+FetVGp9R0jf06B0jfafUYaWUW6zz2vZZZQrPU
-         qNm7b401XdXDh6MsiFgiLxL7Mly+RbP3V85tGWALqSs7EqYda4C1uoPBpgiqbqO9RgY4
-         smJ6GQcRlIj78vK1TtzsD8XseVfG5FFgmsdjqKeNh8iVfLsEWinqAEfeTfFggjRoGLFw
-         rhqDMqH7uejCSLy2ZZ49nsvRYYnXtx3cv6DLxKtY7V+Yp6JYC0ZdHOce+nE3G6zEMMrY
-         jnrg==
-X-Gm-Message-State: AOAM530wwwtUkVMxEhWRgFymKWbJxYC6HTtI61HgOLaJPpSiWOBPuAGf
-        sVjtoav0HnzHj5N7WUYqsSThvQNo+g==
-X-Google-Smtp-Source: ABdhPJyl7qvZkLXrf/OJTwcL2KWpIwkRGGvAuU2dtB0+To6FdG7VRIlcvw8XuIa2thDl6G4HoxZ74A==
-X-Received: by 2002:aca:b686:: with SMTP id g128mr3566116oif.82.1607555789523;
-        Wed, 09 Dec 2020 15:16:29 -0800 (PST)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id t3sm623328oon.14.2020.12.09.15.16.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Dec 2020 15:16:28 -0800 (PST)
-Received: (nullmailer pid 1263068 invoked by uid 1000);
-        Wed, 09 Dec 2020 23:16:27 -0000
-Date:   Wed, 9 Dec 2020 17:16:27 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 4/4] arm64: dts: qcom: Add basic devicetree support for
- SM8350-MTP board
-Message-ID: <20201209231627.GA1258791@robh.at.kernel.org>
-References: <20201204054347.2877857-1-vkoul@kernel.org>
- <20201204054347.2877857-5-vkoul@kernel.org>
+        id S1728577AbgLIXTB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Dec 2020 18:19:01 -0500
+Received: from vps0.lunn.ch ([185.16.172.187]:47464 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728504AbgLIXTB (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 9 Dec 2020 18:19:01 -0500
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94)
+        (envelope-from <andrew@lunn.ch>)
+        id 1kn8iq-00B8MX-Mf; Thu, 10 Dec 2020 00:18:12 +0100
+Date:   Thu, 10 Dec 2020 00:18:12 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Pavana Sharma <pavana.sharma@digi.com>
+Cc:     ashkan.boldaji@digi.com, clang-built-linux@googlegroups.com,
+        davem@davemloft.net, devicetree@vger.kernel.org,
+        f.fainelli@gmail.com, gregkh@linuxfoundation.org,
+        kbuild-all@lists.01.org, kuba@kernel.org,
+        linux-kernel@vger.kernel.org, lkp@intel.com, marek.behun@nic.cz,
+        netdev@vger.kernel.org, robh+dt@kernel.org,
+        vivien.didelot@gmail.com
+Subject: Re: [PATCH v11 2/4] net: phy: Add 5GBASER interface mode
+Message-ID: <20201209231812.GG2649111@lunn.ch>
+References: <cover.1607488953.git.pavana.sharma@digi.com>
+ <7d0e7609149c4e9c3295eff3323fdea92a4abc89.1607488953.git.pavana.sharma@digi.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201204054347.2877857-5-vkoul@kernel.org>
+In-Reply-To: <7d0e7609149c4e9c3295eff3323fdea92a4abc89.1607488953.git.pavana.sharma@digi.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 04, 2020 at 11:13:47AM +0530, Vinod Koul wrote:
-> Add basic devicetree support for Qualcomm Technologies, Inc SM8350 SoC
-> MTP board. This enabled uart node and adds rpmh-regulators present for
-> this board.
-
-Please make sure this is warning free with dtbs_check.
-
+On Wed, Dec 09, 2020 at 03:04:23PM +1000, Pavana Sharma wrote:
+> Add 5GBASE-R phy interface mode
 > 
-> Signed-off-by: Vinod Koul <vkoul@kernel.org>
+> Signed-off-by: Pavana Sharma <pavana.sharma@digi.com>
 > ---
->  arch/arm64/boot/dts/qcom/Makefile       |   1 +
->  arch/arm64/boot/dts/qcom/sm8350-mtp.dts | 246 ++++++++++++++++++++++++
->  2 files changed, 247 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/sm8350-mtp.dts
+>  include/linux/phy.h | 5 +++++
+>  1 file changed, 5 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index fb4631f898fd..cad6a1413c8b 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -43,3 +43,4 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-xiaomi-beryllium.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sdm850-lenovo-yoga-c630.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sm8150-mtp.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sm8250-mtp.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= sm8350-mtp.dtb
-> diff --git a/arch/arm64/boot/dts/qcom/sm8350-mtp.dts b/arch/arm64/boot/dts/qcom/sm8350-mtp.dts
-> new file mode 100644
-> index 000000000000..d7b2448530ff
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/sm8350-mtp.dts
-> @@ -0,0 +1,246 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
-> +/*
-> + * Copyright (c) 2020, Linaro Limited
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
-> +#include "sm8350.dtsi"
-> +
-> +/ {
-> +	model = "Qualcomm Technologies, Inc. sm8350 MTP";
-> +	compatible = "qcom,sm8350-mtp";
-> +
-> +	aliases {
-> +		serial0 = &uart2;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial0:115200n8";
-> +	};
-> +
-> +	vph_pwr: vph-pwr-regulator {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vph_pwr";
-> +		regulator-min-microvolt = <3700000>;
-> +		regulator-max-microvolt = <3700000>;
-> +
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +	};
-> +};
-> +
-> +&apps_rsc {
-> +	pm8350-rpmh-regulators {
-> +		compatible = "qcom,pm8350-rpmh-regulators";
-> +		qcom,pmic-id = "b";
-> +
-> +		vdd-s1-supply = <&vph_pwr>;
-> +		vdd-s2-supply = <&vph_pwr>;
-> +		vdd-s3-supply = <&vph_pwr>;
-> +		vdd-s4-supply = <&vph_pwr>;
-> +		vdd-s5-supply = <&vph_pwr>;
-> +		vdd-s6-supply = <&vph_pwr>;
-> +		vdd-s7-supply = <&vph_pwr>;
-> +		vdd-s8-supply = <&vph_pwr>;
-> +		vdd-s9-supply = <&vph_pwr>;
-> +		vdd-s10-supply = <&vph_pwr>;
-> +		vdd-s11-supply = <&vph_pwr>;
-> +		vdd-s12-supply = <&vph_pwr>;
-> +
-> +		vdd-l1-l4-supply = <&vreg_s11b_0p95>;
-> +		vdd-l2-l7-supply = <&vreg_bob>;
-> +		vdd-l3-l5-supply = <&vreg_bob>;
-> +		vdd-l6-l9-l10-supply = <&vreg_s11b_0p95>;
-> +		vdd-l8-supply = <&vreg_s2c_0p8>;
-> +
-> +		vreg_s10b_1p8: smps10 {
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <1800000>;
-> +		};
-> +
-> +		vreg_s11b_0p95: smps11 {
-> +			regulator-min-microvolt = <752000>;
-> +			regulator-max-microvolt = <1000000>;
-> +		};
-> +
-> +		vreg_s12b_1p25: smps12 {
-> +			regulator-min-microvolt = <1224000>;
-> +			regulator-max-microvolt = <1360000>;
-> +		};
-> +
-> +		vreg_l1b_0p88: ldo1 {
-> +			regulator-min-microvolt = <912000>;
-> +			regulator-max-microvolt = <920000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l2b_3p07: ldo2 {
-> +			regulator-min-microvolt = <3072000>;
-> +			regulator-max-microvolt = <3072000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l3b_0p9: ldo3 {
-> +			regulator-min-microvolt = <904000>;
-> +			regulator-max-microvolt = <904000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l5b_0p88: ldo5 {
-> +			regulator-min-microvolt = <880000>;
-> +			regulator-max-microvolt = <888000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l6b_1p2: ldo6 {
-> +			regulator-min-microvolt = <1200000>;
-> +			regulator-max-microvolt = <1208000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l7b_2p96: ldo7 {
-> +			regulator-min-microvolt = <2400000>;
-> +			regulator-max-microvolt = <3008000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l9b_1p2: ldo9 {
-> +			regulator-min-microvolt = <1200000>;
-> +			regulator-max-microvolt = <1200000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +	};
-> +
-> +	pm8350c-rpmh-regulators {
-> +		compatible = "qcom,pm8350c-rpmh-regulators";
-> +		qcom,pmic-id = "c";
-> +
-> +		vdd-s1-supply = <&vph_pwr>;
-> +		vdd-s2-supply = <&vph_pwr>;
-> +		vdd-s3-supply = <&vph_pwr>;
-> +		vdd-s4-supply = <&vph_pwr>;
-> +		vdd-s5-supply = <&vph_pwr>;
-> +		vdd-s6-supply = <&vph_pwr>;
-> +		vdd-s7-supply = <&vph_pwr>;
-> +		vdd-s8-supply = <&vph_pwr>;
-> +		vdd-s9-supply = <&vph_pwr>;
-> +		vdd-s10-supply = <&vph_pwr>;
-> +
-> +		vdd-l1-l12-supply = <&vreg_s1c_1p86>;
-> +		vdd-l2-l8-supply = <&vreg_s1c_1p86>;
-> +		vdd-l3-l4-l5-l7-l13-supply = <&vreg_bob>;
-> +		vdd-l6-l9-l11-supply = <&vreg_bob>;
-> +		vdd-l10-supply = <&vreg_s12b_1p25>;
-> +
-> +		vdd-bob-supply = <&vph_pwr>;
-> +
-> +		vreg_s1c_1p86: smps1 {
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <1952000>;
-> +		};
-> +
-> +		vreg_s2c_0p8: smps2 {
-> +			regulator-min-microvolt = <640000>;
-> +			regulator-max-microvolt = <1000000>;
-> +		};
-> +
-> +		vreg_s10c_1p05: smps10 {
-> +			regulator-min-microvolt = <1048000>;
-> +			regulator-max-microvolt = <1128000>;
-> +		};
-> +
-> +		vreg_bob: bob {
-> +			regulator-min-microvolt = <3008000>;
-> +			regulator-max-microvolt = <3960000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_AUTO>;
-> +		};
-> +
-> +		vreg_l1c_1p8: ldo1 {
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <1800000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l2c_1p8: ldo2 {
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <1800000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l3c_3p0: ldo3 {
-> +			regulator-min-microvolt = <3008000>;
-> +			regulator-max-microvolt = <3008000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l4c_uim1: ldo4 {
-> +			regulator-min-microvolt = <1704000>;
-> +			regulator-max-microvolt = <3000000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l5c_uim2: ldo5 {
-> +			regulator-min-microvolt = <1704000>;
-> +			regulator-max-microvolt = <3000000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l6c_1p8: ldo6 {
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <2960000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l7c_3p0: ldo7 {
-> +			regulator-min-microvolt = <3008000>;
-> +			regulator-max-microvolt = <3008000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l8c_1p8: ldo8 {
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <1800000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l9c_2p96: ldo9 {
-> +			regulator-min-microvolt = <2960000>;
-> +			regulator-max-microvolt = <3008000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l10c_1p2: ldo10 {
-> +			regulator-min-microvolt = <1200000>;
-> +			regulator-max-microvolt = <1200000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l11c_2p96: ldo11 {
-> +			regulator-min-microvolt = <2400000>;
-> +			regulator-max-microvolt = <3008000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l12c_1p8: ldo12 {
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <2000000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l13c_3p0: ldo13 {
-> +			regulator-min-microvolt = <3000000>;
-> +			regulator-max-microvolt = <3000000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +	};
-> +};
-> +
-> +&qupv3_id_1 {
-> +	status = "okay";
-> +};
-> +
-> +&uart2 {
-> +	status = "okay";
-> +};
-> -- 
-> 2.26.2
-> 
+> diff --git a/include/linux/phy.h b/include/linux/phy.h
+> index 56563e5e0dc7..8151e6ecf1b9 100644
+> --- a/include/linux/phy.h
+> +++ b/include/linux/phy.h
+> @@ -106,6 +106,7 @@ extern const int phy_10gbit_features_array[1];
+>   * @PHY_INTERFACE_MODE_TRGMII: Turbo RGMII
+>   * @PHY_INTERFACE_MODE_1000BASEX: 1000 BaseX
+>   * @PHY_INTERFACE_MODE_2500BASEX: 2500 BaseX
+> + * @PHY_INTERFACE_MODE_5GBASER: 5G BaseR
+>   * @PHY_INTERFACE_MODE_RXAUI: Reduced XAUI
+>   * @PHY_INTERFACE_MODE_XAUI: 10 Gigabit Attachment Unit Interface
+>   * @PHY_INTERFACE_MODE_10GBASER: 10G BaseR
+> @@ -137,6 +138,8 @@ typedef enum {
+>  	PHY_INTERFACE_MODE_TRGMII,
+>  	PHY_INTERFACE_MODE_1000BASEX,
+>  	PHY_INTERFACE_MODE_2500BASEX,
+> +	/* 5GBASE-R mode */
+> +	PHY_INTERFACE_MODE_5GBASER,
+>  	PHY_INTERFACE_MODE_RXAUI,
+>  	PHY_INTERFACE_MODE_XAUI,
+
+For v10 i said:
+
+> Again, what is the value of the comment? 10GBASE-R has a comment
+> because it is different from the rest, XFI and SFI caused a of
+> discussion, and it was used wrong. But there does not seem to be
+> anything special for 5GBASE-R.
+
+Please don't ignore comments. If you don't understand, please ask. If
+you think the comments are wrong, please explain why, so we can
+discuss it.
+
+	Andrew
