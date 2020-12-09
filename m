@@ -2,19 +2,19 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 62A382D4EAA
-	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 00:20:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3432F2D4EB8
+	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 00:26:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728577AbgLIXTB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Dec 2020 18:19:01 -0500
-Received: from vps0.lunn.ch ([185.16.172.187]:47464 "EHLO vps0.lunn.ch"
+        id S1730578AbgLIXY5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Dec 2020 18:24:57 -0500
+Received: from vps0.lunn.ch ([185.16.172.187]:47492 "EHLO vps0.lunn.ch"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728504AbgLIXTB (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 9 Dec 2020 18:19:01 -0500
+        id S1725885AbgLIXY5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 9 Dec 2020 18:24:57 -0500
 Received: from andrew by vps0.lunn.ch with local (Exim 4.94)
         (envelope-from <andrew@lunn.ch>)
-        id 1kn8iq-00B8MX-Mf; Thu, 10 Dec 2020 00:18:12 +0100
-Date:   Thu, 10 Dec 2020 00:18:12 +0100
+        id 1kn8oZ-00B8Oc-0L; Thu, 10 Dec 2020 00:24:07 +0100
+Date:   Thu, 10 Dec 2020 00:24:06 +0100
 From:   Andrew Lunn <andrew@lunn.ch>
 To:     Pavana Sharma <pavana.sharma@digi.com>
 Cc:     ashkan.boldaji@digi.com, clang-built-linux@googlegroups.com,
@@ -24,56 +24,38 @@ Cc:     ashkan.boldaji@digi.com, clang-built-linux@googlegroups.com,
         linux-kernel@vger.kernel.org, lkp@intel.com, marek.behun@nic.cz,
         netdev@vger.kernel.org, robh+dt@kernel.org,
         vivien.didelot@gmail.com
-Subject: Re: [PATCH v11 2/4] net: phy: Add 5GBASER interface mode
-Message-ID: <20201209231812.GG2649111@lunn.ch>
+Subject: Re: [PATCH v11 3/4] net: dsa: mv88e6xxx: Change serdes lane
+ parameter type  from u8 type to int
+Message-ID: <20201209232406.GH2649111@lunn.ch>
 References: <cover.1607488953.git.pavana.sharma@digi.com>
- <7d0e7609149c4e9c3295eff3323fdea92a4abc89.1607488953.git.pavana.sharma@digi.com>
+ <cc16a07f381973b0f4c987090bc307c8f854181d.1607488953.git.pavana.sharma@digi.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <7d0e7609149c4e9c3295eff3323fdea92a4abc89.1607488953.git.pavana.sharma@digi.com>
+In-Reply-To: <cc16a07f381973b0f4c987090bc307c8f854181d.1607488953.git.pavana.sharma@digi.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 09, 2020 at 03:04:23PM +1000, Pavana Sharma wrote:
-> Add 5GBASE-R phy interface mode
+>On Wed, Dec 09, 2020 at 03:05:17PM +1000, Pavana Sharma wrote:
+> Returning 0 is no more an error case with MV88E6393 family
+> which has serdes lane numbers 0, 9 or 10.
+> So with this change .serdes_get_lane will return lane number
+> or -errno (-ENODEV or -EOPNOTSUPP).
 > 
 > Signed-off-by: Pavana Sharma <pavana.sharma@digi.com>
-> ---
->  include/linux/phy.h | 5 +++++
->  1 file changed, 5 insertions(+)
+
+I see here you did actually act on my comment. Thanks.
+
+But i also said:
+
+> Other than that:
 > 
-> diff --git a/include/linux/phy.h b/include/linux/phy.h
-> index 56563e5e0dc7..8151e6ecf1b9 100644
-> --- a/include/linux/phy.h
-> +++ b/include/linux/phy.h
-> @@ -106,6 +106,7 @@ extern const int phy_10gbit_features_array[1];
->   * @PHY_INTERFACE_MODE_TRGMII: Turbo RGMII
->   * @PHY_INTERFACE_MODE_1000BASEX: 1000 BaseX
->   * @PHY_INTERFACE_MODE_2500BASEX: 2500 BaseX
-> + * @PHY_INTERFACE_MODE_5GBASER: 5G BaseR
->   * @PHY_INTERFACE_MODE_RXAUI: Reduced XAUI
->   * @PHY_INTERFACE_MODE_XAUI: 10 Gigabit Attachment Unit Interface
->   * @PHY_INTERFACE_MODE_10GBASER: 10G BaseR
-> @@ -137,6 +138,8 @@ typedef enum {
->  	PHY_INTERFACE_MODE_TRGMII,
->  	PHY_INTERFACE_MODE_1000BASEX,
->  	PHY_INTERFACE_MODE_2500BASEX,
-> +	/* 5GBASE-R mode */
-> +	PHY_INTERFACE_MODE_5GBASER,
->  	PHY_INTERFACE_MODE_RXAUI,
->  	PHY_INTERFACE_MODE_XAUI,
+> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 
-For v10 i said:
+Please add such tags to new versions of the patches. It then makes it
+easier for everybody to know the review state of the patches, which
+have been reviewed and deemed O.K, and which need more review.
 
-> Again, what is the value of the comment? 10GBASE-R has a comment
-> because it is different from the rest, XFI and SFI caused a of
-> discussion, and it was used wrong. But there does not seem to be
-> anything special for 5GBASE-R.
-
-Please don't ignore comments. If you don't understand, please ask. If
-you think the comments are wrong, please explain why, so we can
-discuss it.
-
+     Thanks
 	Andrew
