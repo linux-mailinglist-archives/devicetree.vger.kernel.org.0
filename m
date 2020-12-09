@@ -2,225 +2,394 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B3B132D38D7
-	for <lists+devicetree@lfdr.de>; Wed,  9 Dec 2020 03:31:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7896C2D3933
+	for <lists+devicetree@lfdr.de>; Wed,  9 Dec 2020 04:22:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726483AbgLICbP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Dec 2020 21:31:15 -0500
-Received: from mail-eopbgr80043.outbound.protection.outlook.com ([40.107.8.43]:30727
-        "EHLO EUR04-VI1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1725283AbgLICbP (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 8 Dec 2020 21:31:15 -0500
+        id S1727012AbgLIDWM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Dec 2020 22:22:12 -0500
+Received: from mga11.intel.com ([192.55.52.93]:52693 "EHLO mga11.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725789AbgLIDWL (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 8 Dec 2020 22:22:11 -0500
+IronPort-SDR: y4mIc8hzQmgekU83paqxMqKkSP0wlzkKq6Z3v4tVNhqtgHgXsrIMyM2WfSiJsFbsPQvZ08XbD/
+ pPJ4ve8sv3lg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9829"; a="170501112"
+X-IronPort-AV: E=Sophos;i="5.78,404,1599548400"; 
+   d="scan'208";a="170501112"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Dec 2020 19:21:30 -0800
+IronPort-SDR: odtRbVqNRajcnRrphupOd02Kr1gXhZRcFVsJpacrP4mcRhYBNQFHuHCaEi2IVeIpFCm2sCxDLh
+ ZskE2UEe9NPw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.78,404,1599548400"; 
+   d="scan'208";a="318098388"
+Received: from orsmsx605.amr.corp.intel.com ([10.22.229.18])
+  by fmsmga008.fm.intel.com with ESMTP; 08 Dec 2020 19:21:30 -0800
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX605.amr.corp.intel.com (10.22.229.18) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Tue, 8 Dec 2020 19:21:29 -0800
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5
+ via Frontend Transport; Tue, 8 Dec 2020 19:21:29 -0800
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.170)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.1713.5; Tue, 8 Dec 2020 19:21:11 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=b9ovcqAHYEI0+CN6MAZMrufj8kQeTkLIpmBL52dT9LBiDVs1R3+3W4TLvAi7hCydA0LJpyh9j1JOdb+KHHq6UI85uH1FbHihROG8GgRfRwoPITwWOyA+jBpyS5bdN+kNDKtDvmw49ik3Pt+tNA59PKSIqurptFy8fWymXPrWA/8qmOAv7lLea7CCkuJCHIYaq5WK6SyPO+reU2GUMlsjX+V2NLbi8ekKOOQ8KKwXkxLjapq1i6Bh7FjYZmASG+YpEabS/qdtNwazFaxLR9b96QJgkP4HUCzXteUhsPkHJPnIp8qg5yI+nX9Adl7F0Ile8SWazB+Ic7RMHnDN0Zb+VA==
+ b=RyOmXM65fqDj0sxSAjHkUJ1rLTvOnQkj5MyYE98ffoWftPypWs2fI5+M/AvgAdZuYKGObgpb03l3vuqTeMaQr0QUVEdFdDT/iZiv7UGRDUcQGfqubXiX2rvvMEtln/HKZ4Ds7gazLuvaZ+5g2oOwwiAN3Z4TFTvXxt4Sm5wMwvxkEOWsWHPcFhnjJa0klAHgN8o5nd1cCpK5fDMOfxlXeBo85jEJHekLnWNf6oOKtAgPTRxR/LDTWuT5juN+rGN00WXamdvvLr0O/XL8Ss27t1PeJmyTxi60TBp+n5r+EnB7o128o0FaXtouRwMA9c3Dz0p5g8NyyuqdvDGKypYo5w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=WWbbEjfKskQu3A8AC1rB2wDCF6zvHZqaJfxAGiLuvbs=;
- b=cp32AkLI199+dcv2mIpqvwUyNEWUcGnDoMrbJLut66h7LByzRloBxiTOaE5piJONwr+sr2dJmLxJ90toUA41PZYpjGiQXSLXr1wId5xT+uiyvwcM0gtA4Rv+mcXY78qDX4dh/tSQP4orMM+gQrjNOloyqlB8SIcFqZIVJDlFOFCzzMIqFJ+kKXwn5I0Xgu5Db2LarlrwuoS3if/N9ZkgMRkIJRsm3yqI1zk/zQoS8BgmMVQDN0rkrsAQ8M40DUlJhUJ3naUmZB1c0R7lf1GieMBFFY0PjR1LN+Ptevav7eZaaLHHtP5tDHlRJgMw29fTQenb8gWBXysU3Cj0PUJwCQ==
+ bh=fZgMrDHaBSXbMYYOYxYHLe5Km4MjFjxkTh6uJFkFOts=;
+ b=ViSUhj2C3DW4Sjm6FQNWI1+ZnEJ7rypBYMmg41PKYvW1gb/lBWF5G2WcUGvjUzdAjwMJqTEPyFvQHZVaZTd0teGZIS8xZqTbgiXCdB9oJHyzBR1HhrWVS+VPPAiEP7qavARen0aZVA7AkGAAy0gA4kfke/5nkZHuqgEvzk9WQ4zvkXwQY4BQUwkVKT7ftO4dd6XK8XXqhqamZZvyMwsLBcVYMmDFFOgZjhzFNHUUNvqS1U4v+qiNqdQwNOXcEHYW6lku6PZlmCdOTxXk4fQ3k4lbFC1/mt5TGN64KwJ89//xmxRF9Sp8pq+h9WXYDiWerkiaSKtARZxuHHfcUu4qDA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector2-NXP1-onmicrosoft-com;
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com;
+ s=selector2-intel-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=WWbbEjfKskQu3A8AC1rB2wDCF6zvHZqaJfxAGiLuvbs=;
- b=Rsr4CWsXKO9hzjB8cqQvTlVqdBLi0MSuZF3fIOSNu4ZTvwduOkE8Y2j90MQGq03nWU1ogkDjFZLl+lN+NwbTyRwaOcYvKslyQQUMdyIkFEwC/6t6FvZ9uqJhriO09wsaiLS8WgqVBkffE02ONgtp7TnwrWXg3Nyj8jJBkdBeFGw=
-Received: from AM6PR04MB6053.eurprd04.prod.outlook.com (2603:10a6:20b:b9::10)
- by AM5PR0402MB2756.eurprd04.prod.outlook.com (2603:10a6:203:99::22) with
+ bh=fZgMrDHaBSXbMYYOYxYHLe5Km4MjFjxkTh6uJFkFOts=;
+ b=hVqJlI3i1I4G6RWyvbWxK/74Zuh9kopekzPzMNNxPSNHMbAAAMyAWah0xYCtw5LxTQsDX5+DuK2AwsrXlFgJKjmuH06MBS6PO/A+4uYBkbm2vLGZnBjx+1leyw9Jbybk/5rpiRxs0c5MpdmfAyy/TBaj6hC46n3bI7sKHFM1GYg=
+Received: from CO1PR11MB5026.namprd11.prod.outlook.com (2603:10b6:303:9c::13)
+ by CO1PR11MB5187.namprd11.prod.outlook.com (2603:10b6:303:95::15) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3632.21; Wed, 9 Dec
- 2020 02:30:23 +0000
-Received: from AM6PR04MB6053.eurprd04.prod.outlook.com
- ([fe80::78fe:9b7a:a2ac:9631]) by AM6PR04MB6053.eurprd04.prod.outlook.com
- ([fe80::78fe:9b7a:a2ac:9631%7]) with mapi id 15.20.3632.023; Wed, 9 Dec 2020
- 02:30:22 +0000
-From:   "Alice Guo (OSS)" <alice.guo@oss.nxp.com>
-To:     Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>
-CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Peng Fan <peng.fan@nxp.com>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3654.12; Wed, 9 Dec
+ 2020 03:21:11 +0000
+Received: from CO1PR11MB5026.namprd11.prod.outlook.com
+ ([fe80::4820:6e90:3d0e:3b5f]) by CO1PR11MB5026.namprd11.prod.outlook.com
+ ([fe80::4820:6e90:3d0e:3b5f%4]) with mapi id 15.20.3632.018; Wed, 9 Dec 2020
+ 03:21:11 +0000
+From:   "Sia, Jee Heng" <jee.heng.sia@intel.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     "vkoul@kernel.org" <vkoul@kernel.org>,
+        "Eugeniy.Paltsev@synopsys.com" <Eugeniy.Paltsev@synopsys.com>,
+        "andriy.shevchenko@linux.intel.com" 
+        <andriy.shevchenko@linux.intel.com>,
+        "dmaengine@vger.kernel.org" <dmaengine@vger.kernel.org>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "krzk@kernel.org" <krzk@kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Subject: RE: [PATCH v6 1/4] dt-bindings: soc: imx8m: add DT Binding doc for
- soc unique ID
-Thread-Topic: [PATCH v6 1/4] dt-bindings: soc: imx8m: add DT Binding doc for
- soc unique ID
-Thread-Index: AQHWx5JthbwT/+cj4kS58mclaLP9FqnuF1QQ
-Date:   Wed, 9 Dec 2020 02:30:22 +0000
-Message-ID: <AM6PR04MB6053C8339E1894687C911E72E2CC0@AM6PR04MB6053.eurprd04.prod.outlook.com>
-References: <20201124015949.29262-1-alice.guo@nxp.com>
- <20201130215721.GA3090303@robh.at.kernel.org>
- <AM6PR04MB60533A06C19AA37213C93F54E2F40@AM6PR04MB6053.eurprd04.prod.outlook.com>
-In-Reply-To: <AM6PR04MB60533A06C19AA37213C93F54E2F40@AM6PR04MB6053.eurprd04.prod.outlook.com>
-Accept-Language: zh-CN, en-US
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: RE: [PATCH v5 01/16] dt-bindings: dma: Add YAML schemas for
+ dw-axi-dmac
+Thread-Topic: [PATCH v5 01/16] dt-bindings: dma: Add YAML schemas for
+ dw-axi-dmac
+Thread-Index: AQHWx2fKbqfRLAl8MEqd0Cuha40uEqnuI3UQ
+Date:   Wed, 9 Dec 2020 03:21:11 +0000
+Message-ID: <CO1PR11MB5026A74BFCC2C4896C0294B0DACC0@CO1PR11MB5026.namprd11.prod.outlook.com>
+References: <20201123023452.7894-1-jee.heng.sia@intel.com>
+ <20201123023452.7894-2-jee.heng.sia@intel.com>
+ <20201130222547.GA3123716@robh.at.kernel.org>
+In-Reply-To: <20201130222547.GA3123716@robh.at.kernel.org>
+Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+dlp-version: 11.5.1.3
 authentication-results: kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=none action=none header.from=oss.nxp.com;
-x-ms-exchange-messagesentrepresentingtype: 1
-x-originating-ip: [119.31.174.71]
+ header.d=none;kernel.org; dmarc=none action=none header.from=intel.com;
+x-originating-ip: [218.111.111.46]
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: f47eff7a-e568-4518-8db8-08d89bea6146
-x-ms-traffictypediagnostic: AM5PR0402MB2756:
-x-ms-exchange-sharedmailbox-routingagent-processed: True
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <AM5PR0402MB275685F13576B74ED23306CEA3CC0@AM5PR0402MB2756.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:569;
+x-ms-office365-filtering-correlation-id: 50b6fe97-1d63-478d-95f7-08d89bf17a3e
+x-ms-traffictypediagnostic: CO1PR11MB5187:
+x-microsoft-antispam-prvs: <CO1PR11MB5187F80D9EAE7DE31C3E2EDDDACC0@CO1PR11MB5187.namprd11.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:1247;
 x-ms-exchange-senderadcheck: 1
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: dGWiHbgn/aNSuFWfKZ5aQMj7/+zJH2sczTct3uiNLLHv6rKm2wgt1WBw7LAk5xBC1vcqaIGUbT05qbcHJOIrSUeutlhgQ1Fh/YlJ2cHXYnb+FrBtoCTYuuNiF4AFCENwTCglJZW4hqcJkcA4jJlLYDQuGfjWiQJUwMwVCMYLiM4WcX4uGBD5i1KbGXfpPt4Rw7QwTvoJsr8BdX+zkJP9XeaSIC2u3gZfhrOSUmvXjtuJkrFQOff2V+RN2oXEas9gLcKcTWFpmgg7r3yvMKlhG/2hUKySqb64XAHl6PZirt7seXMHdHteUCeA4UHnFvsWivJTpK/q/JIN7mdRuxfPHx617NyCnkkvcBj5hg7Oq5hImMoMFa+/P8EgUYvgzl5yf0LUAE6v+S0RbjTjwnStJbzqQ9TUDPmL5J9cPNFg0bheoMQAEmTBE6PoFRZakjdcH3ZNCGFBWnq51b0ix7vG/A==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB6053.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(136003)(346002)(376002)(366004)(66446008)(7696005)(9686003)(53546011)(186003)(64756008)(26005)(66556008)(66946007)(8936002)(66476007)(2906002)(86362001)(83380400001)(54906003)(966005)(52536014)(8676002)(4326008)(110136005)(508600001)(33656002)(71200400001)(55016002)(76116006)(5660300002)(6506007)(32563001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: =?gb2312?B?UFhOZ0lzYVBEdHNnSEgwNk84ZUNQL3dWZVhjaVNxT2RVYTFBdWZTNXgrL01R?=
- =?gb2312?B?VDB5K1lTZ1lROU9adFVWQjBrMUUxL0hacTg2QUMzdU5ZQXNIK3R1TFhCNkNo?=
- =?gb2312?B?d1h3Q0ozQVRuZStCeWM4dTM2U3NVVnlLR0NWRUxBZGYrSU4rSUhyY3djSXRS?=
- =?gb2312?B?eWtqcjQxbWdhaVhMUHhHNWVWR3RyMFJpT2d1OG5UK2YrdEdBUkxNQnpVb0h0?=
- =?gb2312?B?YmtCVHpoSTF6SC9uVTJOeGZxdTJXRGdSRlQ0cTlieUZHTG5JWlBBMXovODZG?=
- =?gb2312?B?UlNkOHVWazVGQ21pbUpYNUxvUm0xTk8rS1ZQdFNKK1pKQUhwM3djZDU4YVYr?=
- =?gb2312?B?UnMyVk1iWU0rNVhKakFHKzhqV0hPVTBQeHlUOUlvSHl0b1ZZM3hXQnJHcjlP?=
- =?gb2312?B?UytMcHFwOVZyK2ZnZUZSZU5acUlaR2hzd3E1S2RLQ0JPTXpscDRhL0xjOUx5?=
- =?gb2312?B?T3AxbkcxdDNZS3R5am9ZVEVoNGYvYUUyK1hFMlJpaTFtVEpvY2U2OG9RMEQy?=
- =?gb2312?B?OFN5SVZjWVd1VUgyYnY0TEh0cmwzTjhpWllzN1RzOU4xc3ZiejNhRDM3bmpr?=
- =?gb2312?B?VGMxcXlZcHQ5ako3aEk5Yy9XUXVIS0lTa3VEc0VDR2h4MXh6T2JYeXR2cmIx?=
- =?gb2312?B?aVg4TnUwcjJkTHVJSzNieEdvbXJaVFJXaHZtWnV3TVdBVlkzZTEyd0tRU0ll?=
- =?gb2312?B?SWpZZTFwLzNVcktOeEltWVBLd3lCc0RiM1RaZ0Nyay9KYUNxZ3dDY1ptU2Fj?=
- =?gb2312?B?eXpDMzlhUnp2ZG1OVmR3dlBRMWdYVzNKZ2NUT0VtVHZMLzk4eXpJMkw3MFpp?=
- =?gb2312?B?RVI1em1SdEQ5N3RhY1RuelJaa1VCUXZ1ZjFWNVdsNjFBclhLR3U0Ykw5c3RZ?=
- =?gb2312?B?OGMvVVJmN2lFSFh2aVNrc1dNS0NUUFgyUFlReWhYV1lUZUp2cUFTQVlpK2x2?=
- =?gb2312?B?SWF5TWl2dHVoTzk5RGxSOUtlaVVRMlNmN2dSMjRKaXlpSTlCMElxZFRrZDVk?=
- =?gb2312?B?N0JydnByVEVPWjliWFhLQlJmUzlRc1hCdHY0VUVxY3VPVEY1TkEwTEdqR0Vo?=
- =?gb2312?B?Zm9hd2ZoK0xQQVRmaC9rbFBPQTRXVkttdHg0NksvRWZKem1FTHV1U2JkWWFz?=
- =?gb2312?B?Q0lneGtERHk3Mkcwam5td2poczl4TGZJbUN4N1MwclBVTkczRVFJVHJpVWkr?=
- =?gb2312?B?SngxdEVDcWJiaThvQzBoMkxnYUFvT1ZidlI3bXZlRDR2ZXk5Ym1yUFlYMnJu?=
- =?gb2312?B?TGFRM2dMV2tseUlpQnlPTHY3ZkZzSVl0UXE5SDZwa0VmQVovZUorbmxJQVFC?=
- =?gb2312?Q?TNeBQ/UtuBIf4=3D?=
-Content-Type: text/plain; charset="gb2312"
-Content-Transfer-Encoding: base64
+x-microsoft-antispam-message-info: RWpiNwLHWOxQ4ggeX/tSYrgfhnrw2vefC5qjGURd6jKJwp4ChYFCJNUQPu35zSwJheYTPXAQH6lbceLKMcWbG1QkbFDaHSKo17gTkUg38Zx3R7E9ddj2u9pAjp/sDoD2DWqL41VvzcxiJbgH2VkKylKvpOS3LJUqQUMRG8rr/2Aer9DLbFLvYyCNam2drDxtGhI2v6aJRsO1p8Zusr0ZbUy84VsSeC3jlMgSjFDBqnsAo5YxThhAwPWTlsSSK4DWUXjF74e7nx9gEBWynGNpJvldfFWeuHrAAJHFaExzGoVz0r7IIOX89gosOo3NvLZuOYsVSnzevzu6K8vIHQpSSc/AKoZBpmx/6iAcNu0pyV/d3GAWC5z2R+tAWt552FVk5npJooxwSHjC3uaVU29ZGA==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO1PR11MB5026.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(136003)(366004)(346002)(376002)(7696005)(186003)(71200400001)(66446008)(4326008)(2906002)(5660300002)(83380400001)(55016002)(6506007)(8936002)(54906003)(66476007)(86362001)(33656002)(53546011)(76116006)(508600001)(6916009)(66556008)(52536014)(64756008)(66946007)(966005)(8676002)(9686003)(26005);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata: =?us-ascii?Q?Sqv93hbyevnmuG8HYe72MUNIEDji28J8YMV5b/P7T7bE3w9B5E/8pjluswDA?=
+ =?us-ascii?Q?iU/3Vv4GWv89pm2MdQzM6rCaW0XAgGiwDAW7ddzDMzmeTj9rlTVOym/wzSpU?=
+ =?us-ascii?Q?Qmq93M1vXJCjIkSnvF4d5pbismcGtc0Bd9UrpXk1ZB/LZsWw78MUxW+zszbz?=
+ =?us-ascii?Q?agaqvQXKXZvLYuwVkxAwcegdMo80kH1H4GQn110XNShBMHZ19Rr4gbz4HV/W?=
+ =?us-ascii?Q?fJk1qI9K5va/kUsA/zm+GGoR/8F+zyZyH6eSUjvoznV75xxH4CN4AR5vxNHM?=
+ =?us-ascii?Q?HX89GEP8RXFh0QufhDQd0LaGpxbjLTxyv3BB4U0Za+MquNscUc837RqijsOW?=
+ =?us-ascii?Q?g5aOft1xm3sEfILReSFehVEBE7ipIFupyWIQ/7ZJpRrkTzd9eF1fYMcb5ah/?=
+ =?us-ascii?Q?MJ0hIhk7DcL3/dF77rbzvpk0wIkzrwKmiugTBQfmp0LSuTWyiloV7JmpkPIf?=
+ =?us-ascii?Q?3HmKwwE641Sdz2KjmjB19AD9VGxHReRX9OVBwZRLywYqDejpBfchhf3lwjYv?=
+ =?us-ascii?Q?dy9ftsdFmdDBCD6rlDFQ/S6oYyo4dapowLiI5/JL9S6/g8N/7QDx5y30yuBJ?=
+ =?us-ascii?Q?6omROC5Qb3wXQJtM7yL7efB+1Q2h5SY1gzsAoh6WYeS8RMp1U7TyM2Qzr869?=
+ =?us-ascii?Q?I1Tqgxjco4LnAndUfodTmL/GxMTk9ibUJ57ODQ3LOounhxXKdds5/7cfvmmB?=
+ =?us-ascii?Q?PfZ46kCin4qWPboE/LgTQ/39fBbdClkO8YLAl77ox2ea8El3d42NyBUD2wbK?=
+ =?us-ascii?Q?igC8iE3T5OCqluLCS2kn7IfRax6xgjHr2IVlupLDg/nENJDpe2zp0VKt8ktc?=
+ =?us-ascii?Q?qRH/m0oPTliuxxD3P52R8OB51N7cb2I+OER20ZJT8BYtJEFHnw8jIPD/0PIh?=
+ =?us-ascii?Q?Fkk4plmM5Oruc8P4YTMpZg8/RlkgNjewsN5U/kDlhH+/Czi/v0R7enOTDg3/?=
+ =?us-ascii?Q?Ez5BPNzDWeBuEqcqK1MF7PR5DjaDlXsee3KXe+ClGlM=3D?=
+x-ms-exchange-transport-forked: True
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-OriginatorOrg: oss.nxp.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB6053.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f47eff7a-e568-4518-8db8-08d89bea6146
-X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Dec 2020 02:30:22.8372
+X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB5026.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 50b6fe97-1d63-478d-95f7-08d89bf17a3e
+X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Dec 2020 03:21:11.2066
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: nos6uu1NsJs1uZ4pj4wW3+BtRqvmdmVOAKyVNKCeZshp8hvXVMnWnFODP25HpaBNbxXhk9gb7zNkwCyGzX0tKQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM5PR0402MB2756
+X-MS-Exchange-CrossTenant-userprincipalname: cPG4ym56OjLCoXQi53kGwbwFsyb/QustxP6eVob5xE2ISSoX0n3PSBNzf3zVGJT6VuYMjSpJty7xDl0xRMtt0g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB5187
+X-OriginatorOrg: intel.com
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-R2VudGxlIHBpbmcuLiAgYW5kIEtyenlzenRvZiBLb3psb3dza2ksIGRvIHlvdSBhZ3JlZT8NCg0K
-QmVzdCBSZWdhcmRzLA0KQWxpY2UgR3VvDQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0N
-Cj4gRnJvbTogbGludXgtYXJtLWtlcm5lbCA8bGludXgtYXJtLWtlcm5lbC1ib3VuY2VzQGxpc3Rz
-LmluZnJhZGVhZC5vcmc+IE9uDQo+IEJlaGFsZiBPZiBBbGljZSBHdW8gKE9TUykNCj4gU2VudDog
-MjAyMMTqMTLUwjHI1SAxMTozMQ0KPiBUbzogUm9iIEhlcnJpbmcgPHJvYmhAa2VybmVsLm9yZz47
-IEtyenlzenRvZiBLb3psb3dza2kgPGtyemtAa2VybmVsLm9yZz47DQo+IHNoYXduZ3VvQGtlcm5l
-bC5vcmcNCj4gQ2M6IGRldmljZXRyZWVAdmdlci5rZXJuZWwub3JnOyBQZW5nIEZhbiA8cGVuZy5m
-YW5AbnhwLmNvbT47DQo+IHMuaGF1ZXJAcGVuZ3V0cm9uaXguZGU7IGxpbnV4LWtlcm5lbEB2Z2Vy
-Lmtlcm5lbC5vcmc7IGtyemtAa2VybmVsLm9yZzsNCj4gZGwtbGludXgtaW14IDxsaW51eC1pbXhA
-bnhwLmNvbT47IGxpbnV4LWFybS1rZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZw0KPiBTdWJqZWN0
-OiBSRTogW1BBVENIIHY2IDEvNF0gZHQtYmluZGluZ3M6IHNvYzogaW14OG06IGFkZCBEVCBCaW5k
-aW5nIGRvYyBmb3Igc29jDQo+IHVuaXF1ZSBJRA0KPiANCj4gDQo+IA0KPiA+IC0tLS0tT3JpZ2lu
-YWwgTWVzc2FnZS0tLS0tDQo+ID4gRnJvbTogbGludXgtYXJtLWtlcm5lbCA8bGludXgtYXJtLWtl
-cm5lbC1ib3VuY2VzQGxpc3RzLmluZnJhZGVhZC5vcmc+DQo+ID4gT24gQmVoYWxmIE9mIFJvYiBI
-ZXJyaW5nDQo+ID4gU2VudDogMjAyMMTqMTLUwjHI1SA1OjU3DQo+ID4gVG86IEFsaWNlIEd1byA8
-YWxpY2UuZ3VvQG54cC5jb20+DQo+ID4gQ2M6IGRldmljZXRyZWVAdmdlci5rZXJuZWwub3JnOyBQ
-ZW5nIEZhbiA8cGVuZy5mYW5AbnhwLmNvbT47DQo+ID4gcy5oYXVlckBwZW5ndXRyb25peC5kZTsg
-bGludXgta2VybmVsQHZnZXIua2VybmVsLm9yZzsga3J6a0BrZXJuZWwub3JnOw0KPiA+IGRsLWxp
-bnV4LWlteCA8bGludXgtaW14QG54cC5jb20+OyBzaGF3bmd1b0BrZXJuZWwub3JnOw0KPiA+IGxp
-bnV4LWFybS1rZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZw0KPiA+IFN1YmplY3Q6IFJlOiBbUEFU
-Q0ggdjYgMS80XSBkdC1iaW5kaW5nczogc29jOiBpbXg4bTogYWRkIERUIEJpbmRpbmcNCj4gPiBk
-b2MgZm9yIHNvYyB1bmlxdWUgSUQNCj4gPg0KPiA+IE9uIFR1ZSwgTm92IDI0LCAyMDIwIGF0IDA5
-OjU5OjQ2QU0gKzA4MDAsIEFsaWNlIEd1byB3cm90ZToNCj4gPiA+IEFkZCBEVCBCaW5kaW5nIGRv
-YyBmb3IgdGhlIFVuaXF1ZSBJRCBvZiBpLk1YIDhNIHNlcmllcy4NCj4gPiA+DQo+ID4gPiBTaWdu
-ZWQtb2ZmLWJ5OiBBbGljZSBHdW8gPGFsaWNlLmd1b0BueHAuY29tPg0KPiA+ID4gLS0tDQo+ID4g
-Pg0KPiA+ID4gdjI6IHJlbW92ZSB0aGUgc3ViamVjdCBwcmVmaXggIkxGLTI1NzEtMSINCj4gPiA+
-IHYzOiBwdXQgaXQgaW50byBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvYXJtL2Zz
-bC55YW1sDQo+ID4NCj4gPiBObywgSSBwcmVmZXIgdGhpcyBiZSBhIHNlcGFyYXRlIHNjaGVtYSBm
-aWxlIGFuZCBub3QgY2x1dHRlciBib2FyZC9zb2MNCj4gPiBzY2hlbWFzIHdpdGggY2hpbGQgbm9k
-ZXMuDQo+IA0KPiBIaSwNCj4gVGhhbmsgeW91IGZvciB5b3VyIGNvbW1lbnRzLiBJIHJlYWQNCj4g
-IkRvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9hcm0vYXJtLHJlYWx2aWV3LnlhbWwi
-DQo+IGluIHdoaWNoIHRoZXJlIGlzIGEgInNvYyIuIFNvIEkgYWRkZWQgbXkgInNvYyIgdG8gdGhp
-cyBjdXJyZW50IGZpbGUuIENhbiBJIGtlZXAgaXQgaW4NCj4gRG9jdW1lbnRhdGlvbi9kZXZpY2V0
-cmVlL2JpbmRpbmdzL2FybS9mc2wueWFtbD8NCj4gDQo+ID4gPiAgICAgbW9kaWZ5IHRoZSBkZXNj
-cmlwdGlvbiBvZiBudm1lbS1jZWxscw0KPiA+ID4gICAgIHVzZSAibWFrZSBBUkNIPWFybTY0IGR0
-YnNfY2hlY2siIHRvIHRlc3QgaXQgYW5kIGZpeCBlcnJvcnMNCj4gPiA+IHY0OiB1c2UgYWxsT2Yg
-dG8gbGltaXQgbmV3IHZlcnNpb24gRFRTIGZpbGVzIGZvciBpLk1YOE0gdG8gaW5jbHVkZQ0KPiA+
-ID4gICAgICJmc2wsaW14OG1tL24vcC9xLXNvYyIsIG52bWVtLWNlbGxzIGFuZCBudm1lbS1jZWxs
-cy1uYW1lcw0KPiA+ID4gdjU6IGNvcnJlY3QgdGhlIGVycm9yIG9mIHVzaW5nIGFsbE9mDQo+ID4g
-PiB2Njogbm9uZQ0KPiA+ID4NCj4gPiA+ICAuLi4vZGV2aWNldHJlZS9iaW5kaW5ncy9hcm0vZnNs
-LnlhbWwgICAgICAgICAgfCA0Nw0KPiA+ICsrKysrKysrKysrKysrKysrKysNCj4gPiA+ICAxIGZp
-bGUgY2hhbmdlZCwgNDcgaW5zZXJ0aW9ucygrKQ0KPiA+ID4NCj4gPiA+IGRpZmYgLS1naXQgYS9E
-b2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvYXJtL2ZzbC55YW1sDQo+ID4gPiBiL0Rv
-Y3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9hcm0vZnNsLnlhbWwNCj4gPiA+IGluZGV4
-IDY3OTgwZGNlZjY2ZC4uNzEzMmZmZDQxYWJiIDEwMDY0NA0KPiA+ID4gLS0tIGEvRG9jdW1lbnRh
-dGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2FybS9mc2wueWFtbA0KPiA+ID4gKysrIGIvRG9jdW1l
-bnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2FybS9mc2wueWFtbA0KPiA+ID4gQEAgLTkxOCw2
-ICs5MTgsNTMgQEAgcHJvcGVydGllczoNCj4gPiA+ICAgICAgICAgICAgICAgIC0gZnNsLHMzMnYy
-MzQtZXZiICAgICAgICAgICAjIFMzMlYyMzQtRVZCMiBDdXN0b21lcg0KPiA+IEV2YWx1YXRpb24g
-Qm9hcmQNCj4gPiA+ICAgICAgICAgICAgLSBjb25zdDogZnNsLHMzMnYyMzQNCj4gPiA+DQo+ID4g
-PiArICBzb2M6DQo+ID4gPiArICAgIHR5cGU6IG9iamVjdA0KPiA+ID4gKyAgICBwcm9wZXJ0aWVz
-Og0KPiA+ID4gKyAgICAgIGNvbXBhdGlibGU6DQo+ID4gPiArICAgICAgICBvbmVPZjoNCj4gPiA+
-ICsgICAgICAgICAgLSBkZXNjcmlwdGlvbjogbmV3IHZlcnNpb24gY29tcGF0aWJsZSBmb3IgaS5N
-WDhNIFNvQ3MNCj4gPiA+ICsgICAgICAgICAgICBpdGVtczoNCj4gPiA+ICsgICAgICAgICAgICAg
-IC0gZW51bToNCj4gPiA+ICsgICAgICAgICAgICAgICAgICAtIGZzbCxpbXg4bW0tc29jDQo+ID4g
-PiArICAgICAgICAgICAgICAgICAgLSBmc2wsaW14OG1uLXNvYw0KPiA+ID4gKyAgICAgICAgICAg
-ICAgICAgIC0gZnNsLGlteDhtcC1zb2MNCj4gPiA+ICsgICAgICAgICAgICAgICAgICAtIGZzbCxp
-bXg4bXEtc29jDQo+ID4gPiArICAgICAgICAgICAgICAtIGNvbnN0OiBzaW1wbGUtYnVzDQo+ID4g
-PiArDQo+ID4gPiArICAgICAgICAgIC0gZGVzY3JpcHRpb246IG9sZCB2ZXJzaW9uIGNvbXBhdGli
-bGUgZm9yIGkuTVg4TSBTb0NzDQo+ID4gPiArICAgICAgICAgICAgaXRlbXM6DQo+ID4gPiArICAg
-ICAgICAgICAgICAtIGNvbnN0OiBzaW1wbGUtYnVzDQo+ID4NCj4gPiBGaXggeW91ciBkdHMgZmls
-ZXMgYW5kIGRyb3AgdGhpcy4NCj4gDQo+IE15IGNoYW5nZXMgYXJlIGJlbG93Lg0KPiANCj4gPg0K
-PiA+ID4gKw0KPiA+ID4gK2FsbE9mOg0KPiA+ID4gKyAgLSBpZjoNCj4gPiA+ICsgICAgICBwcm9w
-ZXJ0aWVzOg0KPiA+ID4gKyAgICAgICAgY29tcGF0aWJsZToNCj4gPiA+ICsgICAgICAgICAgY29u
-dGFpbnM6DQo+ID4gPiArICAgICAgICAgICAgZW51bToNCj4gPiA+ICsgICAgICAgICAgICAgIC0g
-ZnNsLGlteDhtbQ0KPiA+ID4gKyAgICAgICAgICAgICAgLSBmc2wsaW14OG1uDQo+ID4gPiArICAg
-ICAgICAgICAgICAtIGZzbCxpbXg4bXANCj4gPiA+ICsgICAgICAgICAgICAgIC0gZnNsLGlteDht
-cQ0KPiA+ID4gKw0KPiA+ID4gKyAgICB0aGVuOg0KPiA+ID4gKyAgICAgIHBhdHRlcm5Qcm9wZXJ0
-aWVzOg0KPiA+ID4gKyAgICAgICAgIl5zb2NAWzAtOWEtZl0rJCI6DQo+ID4NCj4gPiBBbmQgdGhp
-cyBpcyBqdXN0IHdyb25nLiBGaXJzdCB5b3Ugc2F5IHRoZSBub2RlIGlzICdzb2MnIGFuZCB0aGVu
-IGhlcmUNCj4gPiBpdCBoYXMgYSB1bml0IGFkZHJlc3MuDQo+IA0KPiBIZXJlIGFyZSBteSBjaGFu
-Z2VzLiBJIGRlbGV0ZWQgdGhlIHNlY3Rpb24gZnJvbSAic29jOiIgdG8gIi0gY29uc3Q6IHNpbXBs
-ZSBidXMiLg0KPiBQbGVhc2UgaGVscCBtZSB0byBzZWUgaWYgdGhleSBhcmUgY29ycmVjdCBhbmQg
-d29ya2FibGUuIFRoYW5rIHlvdS4NCj4gYWxsT2Y6DQo+ICAgLSBpZjoNCj4gICAgICAgcHJvcGVy
-dGllczoNCj4gICAgICAgICBjb21wYXRpYmxlOg0KPiAgICAgICAgICAgY29udGFpbnM6DQo+ICAg
-ICAgICAgICAgIGVudW06DQo+ICAgICAgICAgICAgICAgLSBmc2wsaW14OG1tDQo+ICAgICAgICAg
-ICAgICAgLSBmc2wsaW14OG1uDQo+ICAgICAgICAgICAgICAgLSBmc2wsaW14OG1wDQo+ICAgICAg
-ICAgICAgICAgLSBmc2wsaW14OG1xDQo+IA0KPiAgICAgdGhlbjoNCj4gICAgICAgcGF0dGVyblBy
-b3BlcnRpZXM6DQo+ICAgICAgICAgIl5zb2NAWzAtOWEtZl0rJCI6DQo+ICAgICAgICAgICBwcm9w
-ZXJ0aWVzOg0KPiAgICAgICAgICAgICBjb21wYXRpYmxlOg0KPiAgICAgICAgICAgICAgIGl0ZW1z
-Og0KPiAgICAgICAgICAgICAgICAgLSBlbnVtOg0KPiAgICAgICAgICAgICAgICAgICAgIC0gZnNs
-LGlteDhtbS1zb2MNCj4gICAgICAgICAgICAgICAgICAgICAtIGZzbCxpbXg4bW4tc29jDQo+ICAg
-ICAgICAgICAgICAgICAgICAgLSBmc2wsaW14OG1wLXNvYw0KPiAgICAgICAgICAgICAgICAgICAg
-IC0gZnNsLGlteDhtcS1zb2MNCj4gICAgICAgICAgICAgICAgIC0gY29uc3Q6IHNpbXBsZS1idXMN
-Cj4gDQo+ICAgICAgICAgICByZXF1aXJlZDoNCj4gICAgICAgICAgICAgLSBjb21wYXRpYmxlDQo+
-ICAgICAgICAgICAgIC0gbnZtZW0tY2VsbHMNCj4gICAgICAgICAgICAgLSBudm1lbS1jZWxsLW5h
-bWVzDQo+IA0KPiBCZXN0IFJlZ2FyZHMsDQo+IEFsaWNlIEd1bw0KPiANCj4gDQo+ID4NCj4gPiA+
-ICsgICAgICAgICAgcHJvcGVydGllczoNCj4gPiA+ICsgICAgICAgICAgICBjb21wYXRpYmxlOg0K
-PiA+ID4gKyAgICAgICAgICAgICAgaXRlbXM6DQo+ID4gPiArICAgICAgICAgICAgICAgIC0gZW51
-bToNCj4gPiA+ICsgICAgICAgICAgICAgICAgICAgIC0gZnNsLGlteDhtbS1zb2MNCj4gPiA+ICsg
-ICAgICAgICAgICAgICAgICAgIC0gZnNsLGlteDhtbi1zb2MNCj4gPiA+ICsgICAgICAgICAgICAg
-ICAgICAgIC0gZnNsLGlteDhtcC1zb2MNCj4gPiA+ICsgICAgICAgICAgICAgICAgICAgIC0gZnNs
-LGlteDhtcS1zb2MNCj4gPiA+ICsgICAgICAgICAgICAgICAgLSBjb25zdDogc2ltcGxlLWJ1cw0K
-PiA+ID4gKw0KPiA+ID4gKyAgICAgICAgICByZXF1aXJlZDoNCj4gPiA+ICsgICAgICAgICAgICAt
-IGNvbXBhdGlibGUNCj4gPiA+ICsgICAgICAgICAgICAtIG52bWVtLWNlbGxzDQo+ID4gPiArICAg
-ICAgICAgICAgLSBudm1lbS1jZWxsLW5hbWVzDQo+ID4gPiArDQo+ID4gPiAgYWRkaXRpb25hbFBy
-b3BlcnRpZXM6IHRydWUNCj4gPiA+DQo+ID4gPiAgLi4uDQo+ID4gPiAtLQ0KPiA+ID4gMi4xNy4x
-DQo+ID4gPg0KPiA+DQo+ID4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX18NCj4gPiBsaW51eC1hcm0ta2VybmVsIG1haWxpbmcgbGlzdA0KPiA+IGxpbnV4LWFy
-bS1rZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZw0KPiA+IGh0dHA6Ly9saXN0cy5pbmZyYWRlYWQu
-b3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYXJtLWtlcm5lbA0KPiBfX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KPiBsaW51eC1hcm0ta2VybmVsIG1haWxp
-bmcgbGlzdA0KPiBsaW51eC1hcm0ta2VybmVsQGxpc3RzLmluZnJhZGVhZC5vcmcNCj4gaHR0cDov
-L2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hcm0ta2VybmVsDQo=
+Hi Rob,
+
+Regarding the comment " You don't need to use allOf with a $ref anymore."
+I get dt compile error after remove the allOf and $ref. Error message shown=
+ below:
+                '$ref' is a required property
+                'allOf' is a required property
+
+  snps,dma-masters:
+    description: |
+      Number of AXI masters supported by the hardware.
+    enum: [1, 2]
+    default: 2
+
+Thanks
+Regards
+Jee Heng
+
+> -----Original Message-----
+> From: Rob Herring <robh@kernel.org>
+> Sent: 01 December 2020 6:26 AM
+> To: Sia, Jee Heng <jee.heng.sia@intel.com>
+> Cc: vkoul@kernel.org; Eugeniy.Paltsev@synopsys.com;
+> andriy.shevchenko@linux.intel.com; dmaengine@vger.kernel.org;
+> linux-kernel@vger.kernel.org; devicetree@vger.kernel.org
+> Subject: Re: [PATCH v5 01/16] dt-bindings: dma: Add YAML schemas
+> for dw-axi-dmac
+>=20
+> On Mon, Nov 23, 2020 at 10:34:37AM +0800, Sia Jee Heng wrote:
+> > YAML schemas Device Tree (DT) binding is the new format for DT to
+> > replace the old format. Introduce YAML schemas DT binding for
+> > dw-axi-dmac and remove the old version.
+> >
+> > Signed-off-by: Sia Jee Heng <jee.heng.sia@intel.com>
+> > ---
+> >  .../bindings/dma/snps,dw-axi-dmac.txt         |  39 ------
+> >  .../bindings/dma/snps,dw-axi-dmac.yaml        | 126
+> ++++++++++++++++++
+> >  2 files changed, 126 insertions(+), 39 deletions(-)  delete mode
+> > 100644 Documentation/devicetree/bindings/dma/snps,dw-axi-
+> dmac.txt
+> >  create mode 100644
+> > Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
+> >
+> > diff --git
+> > a/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.txt
+> > b/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.txt
+> > deleted file mode 100644
+> > index dbe160400adc..000000000000
+> > --- a/Documentation/devicetree/bindings/dma/snps,dw-axi-
+> dmac.txt
+> > +++ /dev/null
+> > @@ -1,39 +0,0 @@
+> > -Synopsys DesignWare AXI DMA Controller
+> > -
+> > -Required properties:
+> > -- compatible: "snps,axi-dma-1.01a"
+> > -- reg: Address range of the DMAC registers. This should include
+> > -  all of the per-channel registers.
+> > -- interrupt: Should contain the DMAC interrupt number.
+> > -- dma-channels: Number of channels supported by hardware.
+> > -- snps,dma-masters: Number of AXI masters supported by the
+> hardware.
+> > -- snps,data-width: Maximum AXI data width supported by hardware.
+> > -  (0 - 8bits, 1 - 16bits, 2 - 32bits, ..., 6 - 512bits)
+> > -- snps,priority: Priority of channel. Array size is equal to the
+> > number of
+> > -  dma-channels. Priority value must be programmed within
+> > [0:dma-channels-1]
+> > -  range. (0 - minimum priority)
+> > -- snps,block-size: Maximum block size supported by the controller
+> channel.
+> > -  Array size is equal to the number of dma-channels.
+> > -
+> > -Optional properties:
+> > -- snps,axi-max-burst-len: Restrict master AXI burst length by value
+> > specified
+> > -  in this property. If this property is missing the maximum AXI burst
+> > length
+> > -  supported by DMAC is used. [1:256]
+> > -
+> > -Example:
+> > -
+> > -dmac: dma-controller@80000 {
+> > -	compatible =3D "snps,axi-dma-1.01a";
+> > -	reg =3D <0x80000 0x400>;
+> > -	clocks =3D <&core_clk>, <&cfgr_clk>;
+> > -	clock-names =3D "core-clk", "cfgr-clk";
+> > -	interrupt-parent =3D <&intc>;
+> > -	interrupts =3D <27>;
+> > -
+> > -	dma-channels =3D <4>;
+> > -	snps,dma-masters =3D <2>;
+> > -	snps,data-width =3D <3>;
+> > -	snps,block-size =3D <4096 4096 4096 4096>;
+> > -	snps,priority =3D <0 1 2 3>;
+> > -	snps,axi-max-burst-len =3D <16>;
+> > -};
+> > diff --git
+> > a/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
+> > b/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
+> > new file mode 100644
+> > index 000000000000..6c2e8e612af5
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/dma/snps,dw-axi-
+> dmac.yaml
+> > @@ -0,0 +1,126 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) %YAML
+> 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/dma/snps,dw-axi-dmac.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Synopsys DesignWare AXI DMA Controller
+> > +
+> > +maintainers:
+> > +  - Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com
+> > +
+> > +description: |
+>=20
+> Don't need '|' unless there's formatting to preserve.
+>=20
+> > + Synopsys DesignWare AXI DMA Controller DT Binding
+>=20
+> And should be 2 space indent.
+>=20
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - snps,axi-dma-1.01a
+> > +
+> > +  reg:
+> > +    items:
+> > +      - description: Address range of the DMAC registers
+>=20
+> Just 'maxItems: 1'
+>=20
+> > +
+> > +  reg-names:
+> > +    items:
+> > +      - const: axidma_ctrl_regs
+> > +
+> > +  interrupts:
+> > +    maxItems: 1
+> > +
+> > +  clocks:
+> > +    items:
+> > +      - description: Bus Clock
+> > +      - description: Module Clock
+> > +
+> > +  clock-names:
+> > +    items:
+> > +      - const: core-clk
+> > +      - const: cfgr-clk
+> > +
+> > +  '#dma-cells':
+> > +    const: 1
+> > +
+> > +  dma-channels:
+> > +    description: |
+> > +      Number of channels supported by hardware.
+>=20
+> No need to describe a common property. You do need to provide
+> some constraints. I'd assume there's less than 2^32 channels.
+>=20
+> > +
+> > +  snps,dma-masters:
+> > +    description: |
+> > +      Number of AXI masters supported by the hardware.
+> > +    allOf:
+>=20
+> You don't need to use allOf with a $ref anymore.
+>=20
+> > +      - $ref: /schemas/types.yaml#/definitions/uint32
+> > +      - enum: [1, 2]
+> > +        default: 2
+> > +
+> > +  snps,data-width:
+> > +    description: |
+> > +      AXI data width supported by hardware.
+> > +      (0 - 8bits, 1 - 16bits, 2 - 32bits, ..., 6 - 512bits)
+> > +    allOf:
+> > +      - $ref: /schemas/types.yaml#/definitions/uint32
+> > +      - enum: [0, 1, 2, 3, 4, 5, 6]
+> > +        default: 4
+> > +
+> > +  snps,priority:
+> > +    description: |
+> > +      Channel priority specifier associated with the DMA channels.
+> > +    allOf:
+> > +      - $ref: /schemas/types.yaml#/definitions/uint32-array
+> > +      - minItems: 1
+> > +        maxItems: 8
+> > +        default: [0, 1, 2, 3]
+> > +
+> > +  snps,block-size:
+> > +    description: |
+> > +      Channel block size specifier associated with the DMA channels.
+> > +    allOf:
+> > +      - $ref: /schemas/types.yaml#/definitions/uint32-array
+> > +      - minItems: 1
+> > +        maxItems: 8
+> > +        default: [4096, 4096, 4096, 4096]
+> > +
+> > +  snps,axi-max-burst-len:
+> > +    description: |
+> > +      Restrict master AXI burst length by value specified in this
+> property.
+> > +      If this property is missing the maximum AXI burst length
+> supported by
+> > +      DMAC is used. [1:256]
+>=20
+> Looks like some constraints.
+>=20
+> > +    allOf:
+> > +      - $ref: /schemas/types.yaml#/definitions/uint32
+> > +        default: 16
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - clocks
+> > +  - clock-names
+> > +  - interrupts
+> > +  - '#dma-cells'
+> > +  - dma-channels
+> > +  - snps,dma-masters
+> > +  - snps,data-width
+> > +  - snps,priority
+> > +  - snps,block-size
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +     #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > +     #include <dt-bindings/interrupt-controller/irq.h>
+> > +     /* example with snps,dw-axi-dmac */
+> > +     dmac: dma-controller@80000 {
+> > +         compatible =3D "snps,axi-dma-1.01a";
+> > +         reg =3D <0x80000 0x400>;
+> > +         clocks =3D <&core_clk>, <&cfgr_clk>;
+> > +         clock-names =3D "core-clk", "cfgr-clk";
+> > +         interrupt-parent =3D <&intc>;
+> > +         interrupts =3D <27>;
+> > +         #dma-cells =3D <1>;
+> > +         dma-channels =3D <4>;
+> > +         snps,dma-masters =3D <2>;
+> > +         snps,data-width =3D <3>;
+> > +         snps,block-size =3D <4096 4096 4096 4096>;
+> > +         snps,priority =3D <0 1 2 3>;
+> > +         snps,axi-max-burst-len =3D <16>;
+> > +     };
+> > --
+> > 2.18.0
+> >
