@@ -2,31 +2,35 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7296F2D4D59
-	for <lists+devicetree@lfdr.de>; Wed,  9 Dec 2020 23:12:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1CEA92D4D61
+	for <lists+devicetree@lfdr.de>; Wed,  9 Dec 2020 23:14:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388363AbgLIWLH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Dec 2020 17:11:07 -0500
-Received: from mail-out.m-online.net ([212.18.0.9]:49506 "EHLO
-        mail-out.m-online.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388338AbgLIWLH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Dec 2020 17:11:07 -0500
+        id S2388523AbgLIWOF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Dec 2020 17:14:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51800 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388267AbgLIWOE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Dec 2020 17:14:04 -0500
+Received: from mail-out.m-online.net (mail-out.m-online.net [IPv6:2001:a60:0:28:0:1:25:1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6EDD3C0613CF
+        for <devicetree@vger.kernel.org>; Wed,  9 Dec 2020 14:13:09 -0800 (PST)
 Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
-        by mail-out.m-online.net (Postfix) with ESMTP id 4Crrnh14rGz1qs0j;
-        Wed,  9 Dec 2020 23:10:00 +0100 (CET)
+        by mail-out.m-online.net (Postfix) with ESMTP id 4Crrqy309Sz1rvmJ;
+        Wed,  9 Dec 2020 23:11:58 +0100 (CET)
 Received: from localhost (dynscan1.mnet-online.de [192.168.6.70])
-        by mail.m-online.net (Postfix) with ESMTP id 4Crrnh014pz1qy6P;
-        Wed,  9 Dec 2020 23:09:59 +0100 (CET)
+        by mail.m-online.net (Postfix) with ESMTP id 4Crrqy2g4wz1qy6P;
+        Wed,  9 Dec 2020 23:11:58 +0100 (CET)
 X-Virus-Scanned: amavisd-new at mnet-online.de
 Received: from mail.mnet-online.de ([192.168.8.182])
         by localhost (dynscan1.mail.m-online.net [192.168.6.70]) (amavisd-new, port 10024)
-        with ESMTP id 71vQKepPl3AN; Wed,  9 Dec 2020 23:09:58 +0100 (CET)
-X-Auth-Info: R4odLXJlFmOWfIxE8bkmUpJu6bfcjzVB0W9OybxRqrY=
-Received: from localhost.localdomain (89-64-25-12.dynamic.chello.pl [89.64.25.12])
+        with ESMTP id P4tnd8YDrXZr; Wed,  9 Dec 2020 23:11:56 +0100 (CET)
+X-Auth-Info: 6ZyaVV4+iteM/o8rKuHO3oBl0sZLI3dyIld6DEs7Y20=
+Received: from jawa (89-64-25-12.dynamic.chello.pl [89.64.25.12])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
         by mail.mnet-online.de (Postfix) with ESMTPSA;
-        Wed,  9 Dec 2020 23:09:58 +0100 (CET)
+        Wed,  9 Dec 2020 23:11:56 +0100 (CET)
+Date:   Wed, 9 Dec 2020 23:11:41 +0100
 From:   Lukasz Majewski <lukma@denx.de>
 To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
         Fabio Estevam <festevam@gmail.com>
@@ -34,52 +38,378 @@ Cc:     Sascha Hauer <s.hauer@pengutronix.de>,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
         NXP Linux Team <linux-imx@nxp.com>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Mans Rullgard <mans@mansr.com>,
-        Lukasz Majewski <lukma@denx.de>
-Subject: [PATCH v2] ARM: dts: imx28: add pinmux for USB1 overcurrent on pwm2
-Date:   Wed,  9 Dec 2020 23:09:03 +0100
-Message-Id: <20201209220903.27058-1-lukma@denx.de>
-X-Mailer: git-send-email 2.20.1
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 3/3] ARM: dts: imx28: Add DTS description of imx28 based
+ XEA board
+Message-ID: <20201209231141.377af967@jawa>
+In-Reply-To: <20201125161815.2361-3-lukma@denx.de>
+References: <20201125161815.2361-1-lukma@denx.de>
+        <20201125161815.2361-3-lukma@denx.de>
+Organization: denx.de
+X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ boundary="Sig_/wGh62ngx4Pm6qkbsFLfqVps"; protocol="application/pgp-signature"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Mans Rullgard <mans@mansr.com>
+--Sig_/wGh62ngx4Pm6qkbsFLfqVps
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-Add pinmux setting for USB1 overcurrent on pwm2 pad.
+Dear Community,
 
-Signed-off-by: Mans Rullgard <mans@mansr.com>
-Signed-off-by: Lukasz Majewski <lukma@denx.de>
----
-Changes for v2:
-- Add S-o-B
----
- arch/arm/boot/dts/imx28.dtsi | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+> This patch adds DTS definition of the imx278 based XEA board.
+>=20
+> Signed-off-by: Lukasz Majewski <lukma@denx.de>
+> ---
+>  arch/arm/boot/dts/Makefile       |   3 +-
+>  arch/arm/boot/dts/imx28-lwe.dtsi | 185
+> +++++++++++++++++++++++++++++++ arch/arm/boot/dts/imx28-xea.dts  |
+> 99 +++++++++++++++++ 3 files changed, 286 insertions(+), 1 deletion(-)
+>  create mode 100644 arch/arm/boot/dts/imx28-lwe.dtsi
+>  create mode 100644 arch/arm/boot/dts/imx28-xea.dts
+>=20
+> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+> index 4572db3fa5ae..c7c95ddc648b 100644
+> --- a/arch/arm/boot/dts/Makefile
+> +++ b/arch/arm/boot/dts/Makefile
+> @@ -702,7 +702,8 @@ dtb-$(CONFIG_ARCH_MXS) +=3D \
+>  	imx28-m28evk.dtb \
+>  	imx28-sps1.dtb \
+>  	imx28-ts4600.dtb \
+> -	imx28-tx28.dtb
+> +	imx28-tx28.dtb \
+> +	imx28-xea.dtb
+>  dtb-$(CONFIG_ARCH_NOMADIK) +=3D \
+>  	ste-nomadik-s8815.dtb \
+>  	ste-nomadik-nhk15.dtb
+> diff --git a/arch/arm/boot/dts/imx28-lwe.dtsi
+> b/arch/arm/boot/dts/imx28-lwe.dtsi new file mode 100644
+> index 000000000000..cb2eb4377d9c
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/imx28-lwe.dtsi
+> @@ -0,0 +1,185 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
+> +/*
+> + * Copyright 2020
+> + * Lukasz Majewski, DENX Software Engineering, lukma@denx.de
+> + */
+> +
+> +/dts-v1/;
+> +#include "imx28.dtsi"
+> +
+> +/ {
+> +	compatible =3D "fsl,imx28";
+> +
+> +	aliases {
+> +		spi2 =3D &ssp3;
+> +	};
+> +
+> +	chosen {
+> +		bootargs =3D "root=3D/dev/mmcblk0p2 rootfstype=3Dext4 ro
+> rootwait console=3DttyAMA0,115200 panic=3D1";
+> +	};
+> +
+> +	memory {
+> +		reg =3D <0x40000000 0x08000000>;
+> +	};
+> +
+> +	regulators {
+> +		compatible =3D "simple-bus";
+> +		#address-cells =3D <1>;
+> +		#size-cells =3D <0>;
+> +
+> +		reg_3v3: regulator@0 {
+> +			compatible =3D "regulator-fixed";
+> +			reg =3D <0>;
+> +			regulator-name =3D "3V3";
+> +			regulator-min-microvolt =3D <3300000>;
+> +			regulator-max-microvolt =3D <3300000>;
+> +			regulator-always-on;
+> +		};
+> +
+> +		reg_usb_5v: regulator@1 {
+> +			compatible =3D "regulator-fixed";
+> +			reg =3D <1>;
+> +			regulator-name =3D "usb_vbus";
+> +			regulator-min-microvolt =3D <5000000>;
+> +			regulator-max-microvolt =3D <5000000>;
+> +			enable-active-high;
+> +		};
+> +
+> +		reg_fec_3v3: regulator@2 {
+> +			compatible =3D "regulator-fixed";
+> +			reg =3D <2>;
+> +			regulator-name =3D "fec-phy";
+> +			regulator-min-microvolt =3D <3300000>;
+> +			regulator-max-microvolt =3D <3300000>;
+> +			enable-active-high;
+> +			regulator-boot-on;
+> +		};
+> +	};
+> +};
+> +
+> +&duart {
+> +	pinctrl-names =3D "default";
+> +	pinctrl-0 =3D <&duart_pins_a>;
+> +	status =3D "okay";
+> +};
+> +
+> +&i2c0 {
+> +	pinctrl-names =3D "default";
+> +	pinctrl-0 =3D <&i2c0_pins_a>;
+> +	status =3D "okay";
+> +};
+> +
+> +&saif0 {
+> +	pinctrl-names =3D "default";
+> +	pinctrl-0 =3D <&saif0_pins_a>;
+> +	#sound-dai-cells =3D <0>;
+> +	assigned-clocks =3D <&clks 53>;
+> +	assigned-clock-rates =3D <12000000>;
+> +	status =3D "okay";
+> +};
+> +
+> +&saif1 {
+> +	pinctrl-names =3D "default";
+> +	pinctrl-0 =3D <&saif1_pins_a>;
+> +	fsl,saif-master =3D <&saif0>;
+> +	#sound-dai-cells =3D <0>;
+> +	status =3D "okay";
+> +};
+> +
+> +&spi3_pins_a {
+> +	fsl,pinmux-ids =3D <
+> +		MX28_PAD_AUART2_RX__SSP3_D4
+> +		MX28_PAD_AUART2_TX__SSP3_D5
+> +		MX28_PAD_SSP3_SCK__SSP3_SCK
+> +		MX28_PAD_SSP3_MOSI__SSP3_CMD
+> +		MX28_PAD_SSP3_MISO__SSP3_D0
+> +		MX28_PAD_SSP3_SS0__SSP3_D3
+> +		MX28_PAD_AUART2_TX__GPIO_3_9
+> +	>;
+> +};
+> +
+> +&ssp3 {
+> +	compatible =3D "fsl,imx28-spi";
+> +	pinctrl-names =3D "default";
+> +	pinctrl-0 =3D <&spi3_pins_a>;
+> +	status =3D "okay";
+> +
+> +	flash0: s25fl256s0@0 {
+> +		compatible =3D "s25fl256s1", "jedec,spi-nor";
+> +		spi-max-frequency =3D <40000000>;
+> +		reg =3D <0>;
+> +
+> +		partitions {
+> +			compatible =3D "fixed-partitions";
+> +			#address-cells =3D <1>;
+> +			#size-cells =3D <1>;
+> +
+> +			partition@0 {
+> +				label =3D "u-boot";
+> +				reg =3D <0 0x80000>;
+> +				read-only;
+> +			};
+> +
+> +			partition@80000 {
+> +				label =3D "env0";
+> +				reg =3D <0x80000 0x10000>;
+> +			};
+> +
+> +			partition@90000 {
+> +				label =3D "env1";
+> +				reg =3D <0x90000 0x10000>;
+> +			};
+> +
+> +			partition@100000 {
+> +				label =3D "kernel";
+> +				reg =3D <0x100000 0x400000>;
+> +			};
+> +
+> +			partition@500000 {
+> +				label =3D "swupdate";
+> +				reg =3D <0x500000 0x800000>;
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&ssp2 {
+> +	compatible =3D "fsl,imx28-spi";
+> +	pinctrl-names =3D "default";
+> +	pinctrl-0 =3D <&spi2_pins_a>;
+> +	status =3D "okay";
+> +};
+> +
+> +&ssp0 {
+> +	compatible =3D "fsl,imx28-mmc";
+> +	pinctrl-names =3D "default";
+> +	pinctrl-0 =3D <&mmc0_8bit_pins_a>;
+> +	bus-width =3D <8>;
+> +	vmmc-supply =3D <&reg_3v3>;
+> +	non-removable;
+> +	status =3D "okay";
+> +};
+> +
+> +&usb0 {
+> +	vbus-supply =3D <&reg_usb_5v>;
+> +	pinctrl-names =3D "default";
+> +	pinctrl-0 =3D <&usb0_pins_b>, <&usb0_id_pins_a>;
+> +	dr_mode =3D "host";
+> +	status =3D "okay";
+> +};
+> +
+> +&usbphy0 {
+> +	status =3D "okay";
+> +};
+> +
+> +&usb1 {
+> +	vbus-supply =3D <&reg_usb_5v>;
+> +	pinctrl-names =3D "default";
+> +	pinctrl-0 =3D <&usb1_pins_b>;
+> +	dr_mode =3D "host";
+> +	status =3D "okay";
+> +};
+> +
+> +&usbphy1 {
+> +	status =3D "okay";
+> +};
+> diff --git a/arch/arm/boot/dts/imx28-xea.dts
+> b/arch/arm/boot/dts/imx28-xea.dts new file mode 100644
+> index 000000000000..672080485b78
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/imx28-xea.dts
+> @@ -0,0 +1,99 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
+> +/*
+> + * Copyright 2020
+> + * Lukasz Majewski, DENX Software Engineering, lukma@denx.de
+> + */
+> +
+> +/dts-v1/;
+> +#include "imx28-lwe.dtsi"
+> +
+> +/ {
+> +	model =3D "XEA";
+> +};
+> +
+> +&can0 {
+> +	pinctrl-names =3D "default";
+> +	pinctrl-0 =3D <&can1_pins_a>;
+> +	status =3D "okay";
+> +};
+> +
+> +&i2c1 {
+> +	pinctrl-names =3D "default";
+> +	pinctrl-0 =3D <&i2c1_pins_b>;
+> +	status =3D "okay";
+> +};
+> +
+> +&pinctrl {
+> +	pinctrl-names =3D "default";
+> +	pinctrl-0 =3D <&hog_pins_a &hog_pins_tiva>;
+> +
+> +	hog_pins_a: hog@0 {
+> +		reg =3D <0>;
+> +		fsl,pinmux-ids =3D <
+> +			MX28_PAD_GPMI_D00__GPIO_0_0
+> +			MX28_PAD_GPMI_D02__GPIO_0_2
+> +			MX28_PAD_GPMI_D05__GPIO_0_5
+> +			MX28_PAD_GPMI_CE1N__GPIO_0_17
+> +			MX28_PAD_GPMI_RDY0__GPIO_0_20
+> +			MX28_PAD_GPMI_RDY1__GPIO_0_21
+> +			MX28_PAD_GPMI_RDY2__GPIO_0_22
+> +			MX28_PAD_GPMI_RDN__GPIO_0_24
+> +			MX28_PAD_GPMI_CLE__GPIO_0_27
+> +			MX28_PAD_LCD_VSYNC__GPIO_1_28
+> +			MX28_PAD_SSP1_SCK__GPIO_2_12
+> +			MX28_PAD_SSP1_CMD__GPIO_2_13
+> +			MX28_PAD_SSP2_SS1__GPIO_2_20
+> +			MX28_PAD_SSP2_SS2__GPIO_2_21
+> +			MX28_PAD_LCD_D00__GPIO_1_0
+> +			MX28_PAD_LCD_D01__GPIO_1_1
+> +			MX28_PAD_LCD_D02__GPIO_1_2
+> +			MX28_PAD_LCD_D03__GPIO_1_3
+> +			MX28_PAD_LCD_D04__GPIO_1_4
+> +			MX28_PAD_LCD_D05__GPIO_1_5
+> +			MX28_PAD_LCD_D06__GPIO_1_6
+> +		>;
+> +		fsl,drive-strength =3D <MXS_DRIVE_4mA>;
+> +		fsl,voltage =3D <MXS_VOLTAGE_HIGH>;
+> +		fsl,pull-up =3D <MXS_PULL_DISABLE>;
+> +	};
+> +
+> +	hog_pins_tiva: hog@1 {
+> +		reg =3D <1>;
+> +		fsl,pinmux-ids =3D <
+> +			MX28_PAD_GPMI_RDY3__GPIO_0_23
+> +			MX28_PAD_GPMI_WRN__GPIO_0_25
+> +		>;
+> +		fsl,voltage =3D <MXS_VOLTAGE_HIGH>;
+> +		fsl,pull-up =3D <MXS_PULL_DISABLE>;
+> +	};
+> +
+> +	hog_pins_coding: hog@2 {
+> +		reg =3D <2>;
+> +		fsl,pinmux-ids =3D <
+> +			MX28_PAD_GPMI_D01__GPIO_0_1
+> +			MX28_PAD_GPMI_D03__GPIO_0_3
+> +			MX28_PAD_GPMI_D04__GPIO_0_4
+> +			MX28_PAD_GPMI_D06__GPIO_0_6
+> +			MX28_PAD_GPMI_D07__GPIO_0_7
+> +		>;
+> +		fsl,voltage =3D <MXS_VOLTAGE_HIGH>;
+> +		fsl,pull-up =3D <MXS_PULL_DISABLE>;
+> +	};
+> +};
+> +
+> +&reg_fec_3v3 {
+> +	gpio =3D <&gpio0 0 0>;
+> +};
+> +
+> +&reg_usb_5v {
+> +	gpio =3D <&gpio0 2 0>;
+> +};
+> +
+> +&spi2_pins_a {
+> +	fsl,pinmux-ids =3D <
+> +		MX28_PAD_SSP2_SCK__SSP2_SCK
+> +		MX28_PAD_SSP2_MOSI__SSP2_CMD
+> +		MX28_PAD_SSP2_MISO__SSP2_D0
+> +		MX28_PAD_SSP2_SS0__GPIO_2_19
+> +	>;
+> +};
 
-diff --git a/arch/arm/boot/dts/imx28.dtsi b/arch/arm/boot/dts/imx28.dtsi
-index bbe52150b165..84d0176d5193 100644
---- a/arch/arm/boot/dts/imx28.dtsi
-+++ b/arch/arm/boot/dts/imx28.dtsi
-@@ -948,6 +948,16 @@
- 					fsl,pull-up = <MXS_PULL_DISABLE>;
- 				};
- 
-+				usb1_pins_b: usb1@1 {
-+					reg = <1>;
-+					fsl,pinmux-ids = <
-+						MX28_PAD_PWM2__USB1_OVERCURRENT
-+					>;
-+					fsl,drive-strength = <MXS_DRIVE_12mA>;
-+					fsl,voltage = <MXS_VOLTAGE_HIGH>;
-+					fsl,pull-up = <MXS_PULL_DISABLE>;
-+				};
-+
- 				usb0_id_pins_a: usb0id@0 {
- 					reg = <0>;
- 					fsl,pinmux-ids = <
--- 
-2.20.1
+Gentle ping on this patch.
 
+
+Best regards,
+
+Lukasz Majewski
+
+--
+
+DENX Software Engineering GmbH,      Managing Director: Wolfgang Denk
+HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
+Phone: (+49)-8142-66989-59 Fax: (+49)-8142-66989-80 Email: lukma@denx.de
+
+--Sig_/wGh62ngx4Pm6qkbsFLfqVps
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCgAdFiEEgAyFJ+N6uu6+XupJAR8vZIA0zr0FAl/RS54ACgkQAR8vZIA0
+zr0TTgf+NYg+kbK6xfYBiXdU4+OELxmBdgX7RQZy2scyDkdbvwd9Nrd1SIcKNIgj
+uWG61SNjFyhoQVy3e0W38c7QOurr9oyNAfdJ98O6poelnAN9zl9WkXt67G5EyLVi
+lH9z5wpbrKkqIHgRd5r+ozFqNjtY3JC3ieJ5tTPw8vJJf1z0sLlJoktZJOWwBsQg
+e4Gb/dtF1GEiatNb2JZYaOS7HSGySDTBpnyraC7mz4UFclJles6TVXlH74ji9Y8+
+89YFTfME8OA+CAm9iQLXjM6KZ1T9BnpXwCYRcvzQFteTttooHsbFPxtfPmouF0I6
+8tFqOgmbkBeMFp5EUbG+n8njPnmoiA==
+=6j1b
+-----END PGP SIGNATURE-----
+
+--Sig_/wGh62ngx4Pm6qkbsFLfqVps--
