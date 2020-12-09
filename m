@@ -2,279 +2,265 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 919EA2D37FD
-	for <lists+devicetree@lfdr.de>; Wed,  9 Dec 2020 01:54:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DB0832D381A
+	for <lists+devicetree@lfdr.de>; Wed,  9 Dec 2020 02:09:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729029AbgLIAxy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Dec 2020 19:53:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52300 "EHLO
+        id S1726379AbgLIBJM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Dec 2020 20:09:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54656 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727844AbgLIAxy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Dec 2020 19:53:54 -0500
-Received: from mail-pf1-x441.google.com (mail-pf1-x441.google.com [IPv6:2607:f8b0:4864:20::441])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4CD39C0613D6
-        for <devicetree@vger.kernel.org>; Tue,  8 Dec 2020 16:53:14 -0800 (PST)
-Received: by mail-pf1-x441.google.com with SMTP id c79so355003pfc.2
-        for <devicetree@vger.kernel.org>; Tue, 08 Dec 2020 16:53:14 -0800 (PST)
+        with ESMTP id S1726370AbgLIBJM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Dec 2020 20:09:12 -0500
+Received: from mail-ej1-x644.google.com (mail-ej1-x644.google.com [IPv6:2a00:1450:4864:20::644])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E505AC061794
+        for <devicetree@vger.kernel.org>; Tue,  8 Dec 2020 17:08:31 -0800 (PST)
+Received: by mail-ej1-x644.google.com with SMTP id jx16so550931ejb.10
+        for <devicetree@vger.kernel.org>; Tue, 08 Dec 2020 17:08:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=0tqcFPccNMLLaQVclVsBzh5ComBfmMvUjCh7GoU46XE=;
-        b=MQGPxtMq6+Uvnppng+806OGiuXQXDo5YtUMcUE4HlsGiDT3a2ucJZDTll8h2c94eM0
-         HBggA55nqJ3cdyery7+utx5o6xMzDAzTdbW2e8L61eHCSYBc0T/lOGthZ4b7yf8jFPdZ
-         etq6a9RHK8ZXSbhC30IFpFt0pjrYdrSbaNccbS9Zd2O0+xWipMG27gkzYKhjOe71F4jn
-         VWlunhUwRLIDllZRptNEaK453jY/7eZ3MHOcVCA6xepHkl++HqqY98WGZS4JwvWHNMDJ
-         H/q14fdyAyW76jJJtpcBr4Adlwyt9x96X61A8iel07OQ8qSd1FJz3aNmkJNkxcHpA9Vr
-         qMYQ==
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=ruGd4q6KZWpDS78RJXrsrDqLWluPTOTGxDVaHIvkab0=;
+        b=ELpsixt222Vh6on/xzaMrMmCvM0mHYZmtUKJkTcHWLdV9vedreDoKtyOarP46BodW7
+         0ZfxImwRCmIIqyrx88p/RTINm/JUTaqCdm4FTpQsT+UXA49s0jJWwnMQvkL8EppzbohB
+         ZVOUagGdN9Ehk3H8UrYPpznh+OLwT6tjnCqEw=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=0tqcFPccNMLLaQVclVsBzh5ComBfmMvUjCh7GoU46XE=;
-        b=GmoyAxDXEKpqNhdSxJomw7yo9vBJa+cIxe+Q9OG3wOIbIWB2utW5RR+lEr8TvUaKZn
-         ErsQ/XQZA5uqxjbfLwIM61bzWD06UaglV5vdiEukTM3nhAfCBtLlDggP3e3lEQSc62LC
-         Uq5KI2CAR2AXmcjT9SW110bu/qfnPE4Hh7cfawCUHDHZ0V8AXdNoqr54rDUM40IyeYB9
-         APQQMuWG+ytSKNzBbKx3mMgswP9nD6cHd3eCX0aI0R67aCQcsBKioGqKWn4y4EjvSL18
-         ILmNZ8M+VbX6HFyLJZrr/mdhRy9VoinoCgYJEk5oWtwzLi8h8Bvh50Ar8DfcA974ZaMu
-         r3/A==
-X-Gm-Message-State: AOAM533qZT0pTATWE1rc6nPgasDS2QcPE8j42qOZcJ7ga9MWB+Pnw7yV
-        TmFlXDVgO7pa9RtDFgnd8I2dOg==
-X-Google-Smtp-Source: ABdhPJwcAoO7brvPWVKwewkAgFJCxhDF7yornHFLfdjKRuSsgNp/i4WF+4b8F3PtImYIG6dOTXpQfA==
-X-Received: by 2002:aa7:8105:0:b029:18e:c8d9:2c24 with SMTP id b5-20020aa781050000b029018ec8d92c24mr44332pfi.49.1607475193594;
-        Tue, 08 Dec 2020 16:53:13 -0800 (PST)
-Received: from xps15 (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
-        by smtp.gmail.com with ESMTPSA id nm6sm83279pjb.25.2020.12.08.16.53.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Dec 2020 16:53:12 -0800 (PST)
-Date:   Tue, 8 Dec 2020 17:53:11 -0700
-From:   Mathieu Poirier <mathieu.poirier@linaro.org>
-To:     Arnaud POULIQUEN <arnaud.pouliquen@st.com>
-Cc:     "ohad@wizery.com" <ohad@wizery.com>,
-        "bjorn.andersson@linaro.org" <bjorn.andersson@linaro.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v3 09/15] remoteproc: Introduce function rproc_detach()
-Message-ID: <20201209005311.GB1601690@xps15>
-References: <20201126210642.897302-1-mathieu.poirier@linaro.org>
- <20201126210642.897302-10-mathieu.poirier@linaro.org>
- <0e705760-b69a-d872-9770-c03dde85ab1c@st.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ruGd4q6KZWpDS78RJXrsrDqLWluPTOTGxDVaHIvkab0=;
+        b=o5t6TSgED6uL0ITOFCfZvv8C3k3C98gmY/pGvPDf3JIFXul0sRIIS2/u/6Z0A8KITm
+         LGLR2icK34zRDCSIw5wLoh3uLKTi04XEa6DAl/cpe5FocQPhxi0EjcNXPu4NU14mSDfr
+         edB3wC47y+yON/AByYyGfcAsTXxQZGB3XH6dnV/BRhzXfJPWP5C35FDWL1Es3Ajfx5H+
+         Tv6s8pkF8iFf7xJ1bSGd/wBXRG2Gm018rHLH/+2oTpm3sR79vKWUl2oeIgWO13zs4P1H
+         vhHIDb+40PFi/XFuUuho2pS+ji6v53/ZOzHcYhdbh4/EOi8/JSKcE80+n41WJa60DdU9
+         onUQ==
+X-Gm-Message-State: AOAM531G56lleu4+yw24Dg+k8eVVW7YWqgjV/La7uPu+AV2s83voTjo6
+        Nnb/sAl4zKRo9jaJ15dpW0l4rkGS8hpe3A==
+X-Google-Smtp-Source: ABdhPJxHbadbIZnNk6FuYvCajz+yj7jSZ08Zh4L1hv//KFLbkxDiMOz3AAMXB3qtc4eOrbrylu4ERA==
+X-Received: by 2002:a17:906:f0d0:: with SMTP id dk16mr68248ejb.144.1607476109773;
+        Tue, 08 Dec 2020 17:08:29 -0800 (PST)
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com. [209.85.218.52])
+        by smtp.gmail.com with ESMTPSA id o33sm491498edd.50.2020.12.08.17.08.28
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 08 Dec 2020 17:08:28 -0800 (PST)
+Received: by mail-ej1-f52.google.com with SMTP id qw4so533313ejb.12
+        for <devicetree@vger.kernel.org>; Tue, 08 Dec 2020 17:08:28 -0800 (PST)
+X-Received: by 2002:a17:906:4304:: with SMTP id j4mr60872ejm.304.1607476108105;
+ Tue, 08 Dec 2020 17:08:28 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <0e705760-b69a-d872-9770-c03dde85ab1c@st.com>
+References: <20201207143255.1.Ib92ec35163682dec4b2fbb4bde0785cb6e6dde27@changeid>
+In-Reply-To: <20201207143255.1.Ib92ec35163682dec4b2fbb4bde0785cb6e6dde27@changeid>
+From:   Alexandru M Stan <amstan@chromium.org>
+Date:   Tue, 8 Dec 2020 17:07:51 -0800
+X-Gmail-Original-Message-ID: <CAHNYxRxNHtRL9XjHu=cyrn75YvMH5-BYWR6CLPKa1X+azFckeQ@mail.gmail.com>
+Message-ID: <CAHNYxRxNHtRL9XjHu=cyrn75YvMH5-BYWR6CLPKa1X+azFckeQ@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: qcom: Clean up sc7180-trogdor voltage rails
+To:     Douglas Anderson <dianders@chromium.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Matthias Kaehlcke <mka@chromium.org>, kgunda@codeaurora.org,
+        Stephen Boyd <swboyd@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 08, 2020 at 07:35:18PM +0100, Arnaud POULIQUEN wrote:
-> Hi Mathieu,
-> 
-> 
-> On 11/26/20 10:06 PM, Mathieu Poirier wrote:
-> > Introduce function rproc_detach() to enable the remoteproc
-> > core to release the resources associated with a remote processor
-> > without stopping its operation.
-> > 
-> > Signed-off-by: Mathieu Poirier <mathieu.poirier@linaro.org>
-> > Reviewed-by: Peng Fan <peng.fan@nxp.com>
-> > ---
-> >  drivers/remoteproc/remoteproc_core.c | 65 +++++++++++++++++++++++++++-
-> >  include/linux/remoteproc.h           |  1 +
-> >  2 files changed, 65 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/drivers/remoteproc/remoteproc_core.c b/drivers/remoteproc/remoteproc_core.c
-> > index 928b3f975798..f5adf05762e9 100644
-> > --- a/drivers/remoteproc/remoteproc_core.c
-> > +++ b/drivers/remoteproc/remoteproc_core.c
-> > @@ -1667,7 +1667,7 @@ static int rproc_stop(struct rproc *rproc, bool crashed)
-> >  /*
-> >   * __rproc_detach(): Does the opposite of rproc_attach()
-> >   */
-> > -static int __maybe_unused __rproc_detach(struct rproc *rproc)
-> > +static int __rproc_detach(struct rproc *rproc)
-> >  {
-> >  	struct device *dev = &rproc->dev;
-> >  	int ret;
-> > @@ -1910,6 +1910,69 @@ void rproc_shutdown(struct rproc *rproc)
-> >  }
-> >  EXPORT_SYMBOL(rproc_shutdown);
-> >  
-> > +/**
-> > + * rproc_detach() - Detach the remote processor from the
-> > + * remoteproc core
-> > + *
-> > + * @rproc: the remote processor
-> > + *
-> > + * Detach a remote processor (previously attached to with rproc_actuate()).
-> > + *
-> > + * In case @rproc is still being used by an additional user(s), then
-> > + * this function will just decrement the power refcount and exit,
-> > + * without disconnecting the device.
-> > + *
-> > + * Function rproc_detach() calls __rproc_detach() in order to let a remote
-> > + * processor know that services provided by the application processor are
-> > + * no longer available.  From there it should be possible to remove the
-> > + * platform driver and even power cycle the application processor (if the HW
-> > + * supports it) without needing to switch off the remote processor.
-> > + */
-> > +int rproc_detach(struct rproc *rproc)
-> > +{
-> > +	struct device *dev = &rproc->dev;
-> > +	int ret;
-> > +
-> > +	ret = mutex_lock_interruptible(&rproc->lock);
-> > +	if (ret) {
-> > +		dev_err(dev, "can't lock rproc %s: %d\n", rproc->name, ret);
-> > +		return ret;
-> > +	}
-> > +
-> > +	if (rproc->state != RPROC_RUNNING && rproc->state != RPROC_ATTACHED) {
-> > +		ret = -EPERM;
-> > +		goto out;
-> > +	}
-> > +
-> > +	/* if the remote proc is still needed, bail out */
-> > +	if (!atomic_dec_and_test(&rproc->power)) {
-> > +		ret = -EBUSY;
-> > +		goto out;
-> > +	}
-> > +
-> > +	ret = __rproc_detach(rproc);
-> > +	if (ret) {
-> > +		atomic_inc(&rproc->power);
-> > +		goto out;
-> > +	}
-> > +
-> > +	/* clean up all acquired resources */
-> > +	rproc_resource_cleanup(rproc);
-> 
-> I started to test the series, I found 2 problems testing in STM32P1 board.
-> 
-> 1) the resource_table pointer is unmapped if the firmware has been booted by the
-> Linux, generating a crash in rproc_free_vring.
-> I attached a fix at the end of the mail.
-> 
-
-I have reproduced the condition on my side and confirm that your solution is
-correct.  See below for a minor comment. 
-
-> 2) After the detach, the rproc state is "detached"
-> but it is no longer possible to re-attach to it correctly.
-> Neither if the firmware is standalone, nor if it has been booted
-> by the Linux.
-> 
-
-Did you update your FW image?  If so, I need to run the same one.
-
-> I did not investigate, but the issue is probably linked to the resource
-> table address which is set to NULL.
-> 
-> So we either have to fix the problem in order to attach or forbid the transition.
-> 
-> 
-> Regards,
-> Arnaud
-> 
-> > +
-> > +	rproc_disable_iommu(rproc);
-> > +
-> > +	/*
-> > +	 * Set the remote processor's table pointer to NULL.  Since mapping
-> > +	 * of the resource table to a virtual address is done in the platform
-> > +	 * driver, unmapping should also be done there.
-> > +	 */
-> > +	rproc->table_ptr = NULL;
-> > +out:
-> > +	mutex_unlock(&rproc->lock);
-> > +	return ret;
-> > +}
-> > +EXPORT_SYMBOL(rproc_detach);
-> > +
-> >  /**
-> >   * rproc_get_by_phandle() - find a remote processor by phandle
-> >   * @phandle: phandle to the rproc
-> > diff --git a/include/linux/remoteproc.h b/include/linux/remoteproc.h
-> > index da15b77583d3..329c1c071dcf 100644
-> > --- a/include/linux/remoteproc.h
-> > +++ b/include/linux/remoteproc.h
-> > @@ -656,6 +656,7 @@ rproc_of_resm_mem_entry_init(struct device *dev, u32 of_resm_idx, size_t len,
-> >  
-> >  int rproc_boot(struct rproc *rproc);
-> >  void rproc_shutdown(struct rproc *rproc);
-> > +int rproc_detach(struct rproc *rproc);
-> >  int rproc_set_firmware(struct rproc *rproc, const char *fw_name);
-> >  void rproc_report_crash(struct rproc *rproc, enum rproc_crash_type type);
-> >  int rproc_coredump_add_segment(struct rproc *rproc, dma_addr_t da, size_t size);
-> > 
-> 
-> From: Arnaud Pouliquen <arnaud.pouliquen@foss-st.com>
-> Date: Tue, 8 Dec 2020 18:54:51 +0100
-> Subject: [PATCH] remoteproc: core: fix detach for unmapped table_ptr
-> 
-> If the firmware has been loaded and started by the kernel, the
-> resource table has probably been mapped by the carveout allocation
-> (see rproc_elf_find_loaded_rsc_table).
-> In this case the memory can have been unmapped before the vrings are free.
-> The result is a crash that occurs in rproc_free_vring while try to use the
-> unmapped pointer.
-> 
-> Signed-off-by: Arnaud Pouliquen <arnaud.pouliquen@foss-st.com>
+On Mon, Dec 7, 2020 at 2:33 PM Douglas Anderson <dianders@chromium.org> wrote:
+>
+> For a bunch of rails we really don't do anything with them in Linux.
+> These are things like modem voltage rails that the modem manages these
+> itself and core rails (like IO rails) that are setup to just
+> automagically do the right thing by the firmware.
+>
+> Let's stop even listing those rails in our device tree.
+>
+> The net result of this is that some of these rails might be able to go
+> down to a lower voltage or perhaps transition to LPM (low power mode)
+> sometimes.
+>
+> Here's a list of what we're doing and why:
+>
+> * L1A - only goes to SoC and doesn't seem associated with any
+>   particular peripheral. Kernel isn't doing anything with
+>   this. Removing from dts. NET IMPACT: rail might drop from 1.2V to
+>   1.178V and switch to LPM in some cases depending on firmware.
+> * L2A - only goes to SoC and doesn't seem associated with any
+>   particular peripheral. Kernel isn't doing anything with
+>   this. Removing from dts. NET IMPACT: rail might switch to LPM in
+>   some cases depending on firmware.
+> * L3A - only goes to SoC and doesn't seem associated with any
+>   particular peripheral. Kernel isn't doing anything with
+>   this. Removing from dts. NET IMPACT: rail might switch to LPM in
+>   some cases depending on firmware.
+> * L5A - seems to be totally unused as far as I can tell and doesn't
+>   even come off QSIP. Removing from dts.
+> * L6A - only goes to SoC and doesn't seem associated with any
+>   particular peripheral (I think?). Kernel isn't doing anything with
+>   this. Removing from dts. NET IMPACT: rail might switch to LPM in
+>   some cases depending on firmware.
+> * L16A - Looks like this is only used for internal RF stuff. Removing
+>   from dts. NET IMPACT: rail might switch to LPM in some cases
+>   depending on firmware.
+> * L1C - Just goes to WiFi / Bluetooth. Trust how IDP has this set and
+>   put this back at 1.616V min.
+> * L4C - This goes out to the eSIM among other places. This looks like
+>   it's intended to be for SIM card and modem manages. NET IMPACT:
+>   rail might switch to LPM in some cases depending on firmware.
+> * L5C - This goes to the physical SIM.  This looks like it's intended
+>   to be for SIM card and modem manages. NET IMPACT: rail might drop
+>   from 1.8V to 1.648V and switch to LPM in some cases depending on
+>   firmware.
+>
+> NOTE: in general for anything which is supposed to be managed by Linux
+> I still left it all forced to HPM since I'm not 100% sure that all the
+> needed calls to regulator_set_load() are in place and HPM is safer.
+> Switching more things to LPM can happen in a future patch.
+>
+> ALSO NOTE: Power measurements showed no measurable difference after
+> applying this patch, so perhaps it should be viewed more as a cleanup
+> than any power savings.
+>
+> Signed-off-by: Douglas Anderson <dianders@chromium.org>
 > ---
->  drivers/remoteproc/remoteproc_core.c | 17 ++++++++++++++---
->  1 file changed, 14 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/remoteproc/remoteproc_core.c
-> b/drivers/remoteproc/remoteproc_core.c
-> index 2b0a52fb3398..3508ffba4a2a 100644
-> --- a/drivers/remoteproc/remoteproc_core.c
-> +++ b/drivers/remoteproc/remoteproc_core.c
-> @@ -1964,6 +1964,13 @@ int rproc_detach(struct rproc *rproc)
->  		goto out;
->  	}
-> 
-> +	/*
-> +	 * Prevent case that the installed resource table is no longer
-> +	 * accessible (e.g. memory unmapped), use the cache if available
-> +	 */
-> +	if (rproc->cached_table)
-> +		rproc->table_ptr = rproc->cached_table;
+>
+>  arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi | 82 ++------------------
+>  1 file changed, 7 insertions(+), 75 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> index 8ed7dd39f6e3..43dfe7833ad9 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> @@ -298,40 +298,6 @@ pp1125_s1a: smps1 {
+>                         regulator-max-microvolt = <1128000>;
+>                 };
+>
+> -               /*
+> -                * pp2040_s5a (smps5) and pp1056_s4a (smps4) are just
+> -                * inputs to other rails on AOP-managed PMICs on trogdor.
+> -                * The system is already configured to manage these rails
+> -                * automatically (enable when needed, adjust voltage for
+> -                * headroom) so we won't specify anything here.
+> -                *
+> -                * NOTE: though the rails have a voltage implied by their
+> -                * name, the automatic headroom calculation might not result
+> -                * in them being that voltage.  ...and that's OK.
+> -                * Specifically the only point of these rails is to provide
+> -                * an input source for other rails and if we can satisify the
+> -                * needs of those other rails with a lower source voltage then
+> -                * we save power.
+> -                */
+> -
+> -               pp1200_l1a: ldo1 {
+> -                       regulator-min-microvolt = <1200000>;
+> -                       regulator-max-microvolt = <1200000>;
+> -                       regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> -               };
+> -
+> -               pp1000_l2a: ldo2 {
+> -                       regulator-min-microvolt = <944000>;
+> -                       regulator-max-microvolt = <1056000>;
+> -                       regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> -               };
+> -
+> -               pp1000_l3a: ldo3 {
+> -                       regulator-min-microvolt = <968000>;
+> -                       regulator-max-microvolt = <1064000>;
+> -                       regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> -               };
+> -
+>                 vdd_qlink_lv:
+>                 vdd_qlink_lv_ck:
+>                 vdd_qusb_hs0_core:
+> @@ -350,24 +316,6 @@ pp900_l4a: ldo4 {
+>                         regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>                 };
+>
+> -               pp2700_l5a: ldo5 {
+> -                       regulator-min-microvolt = <2704000>;
+> -                       regulator-max-microvolt = <2704000>;
+> -                       regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> -               };
+> -
+> -               ebi0_cal:
+> -               ebi1_cal:
+> -               vddio_ck_ebi0:
+> -               vddio_ck_ebi1:
+> -               vddio_ebi0:
+> -               vddq:
+> -               pp600_l6a: ldo6 {
+> -                       regulator-min-microvolt = <568000>;
+> -                       regulator-max-microvolt = <648000>;
+> -                       regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> -               };
+> -
+>                 vdd_cx_wlan:
+>                 pp800_l9a: ldo9 {
+>                         regulator-min-microvolt = <488000>;
+> @@ -404,6 +352,11 @@ pp1800_l12a_r: ldo12 {
+>                         regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>                 };
+>
+> +               /*
+> +                * On trogdor this needs to match l10a since we use it to
+> +                * give power to things like SPI flash which communicate back
+> +                * on lines powered by l10a.  Thus we force to 1.8V.
+> +                */
+>                 pp1800_l13a: ldo13 {
+>                         regulator-min-microvolt = <1800000>;
+>                         regulator-max-microvolt = <1800000>;
+> @@ -424,12 +377,6 @@ pp1800_l15a: ldo15 {
+>                         regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>                 };
+>
+> -               pp2700_l16a: ldo16 {
+> -                       regulator-min-microvolt = <2496000>;
+> -                       regulator-max-microvolt = <3304000>;
+> -                       regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> -               };
+> -
+>                 vdda_qusb_hs0_3p1:
+>                 vdd_pdphy:
+>                 pp3100_l17a: ldo17 {
+> @@ -463,8 +410,8 @@ pp1300_s8c: smps8 {
+>                 };
+>
+>                 pp1800_l1c: ldo1 {
+> -                       regulator-min-microvolt = <1800000>;
+> -                       regulator-max-microvolt = <1800000>;
+> +                       regulator-min-microvolt = <1616000>;
+> +                       regulator-max-microvolt = <1984000>;
+>                         regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>                 };
+>
+> @@ -491,21 +438,6 @@ pp1200_l3c: ldo3 {
+>                         regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>                 };
+>
+> -               ld_pp1800_esim_l4c:
+> -               vddpx_5:
+> -               pp1800_l4c: ldo4 {
+> -                       regulator-min-microvolt = <1648000>;
+> -                       regulator-max-microvolt = <3304000>;
+> -                       regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> -               };
+> -
+> -               vddpx_6:
+> -               pp1800_l5c: ldo5 {
+> -                       regulator-min-microvolt = <1800000>;
+> -                       regulator-max-microvolt = <1800000>;
+> -                       regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> -               };
+> -
+>                 vddpx_2:
+>                 ppvar_l6c: ldo6 {
+>                         regulator-min-microvolt = <1800000>;
+> --
+> 2.29.2.576.ga3fc446d84-goog
+>
 
-I don't think there is an explicit need to check ->cached_table.  If the remote
-processor has been started by the remoteproc core it is valid anyway.  And below
-kfree() is called invariably. 
-
-So that problem is fixed.  Let me know about your FW image and we'll pick it up
-from there.
-
-Mathieu
-
-> +
->  	ret = __rproc_detach(rproc);
->  	if (ret) {
->  		atomic_inc(&rproc->power);
-> @@ -1975,10 +1982,14 @@ int rproc_detach(struct rproc *rproc)
-> 
->  	rproc_disable_iommu(rproc);
-> 
-> +	/* Free the chached table memory that can has been allocated*/
-> +	kfree(rproc->cached_table);
-> +	rproc->cached_table = NULL;
->  	/*
-> -	 * Set the remote processor's table pointer to NULL.  Since mapping
-> -	 * of the resource table to a virtual address is done in the platform
-> -	 * driver, unmapping should also be done there.
-> +	 * Set the remote processor's table pointer to NULL. If mapping
-> +	 * of the resource table to a virtual address has been done in the
-> +	 * platform driver(attachment to an existing firmware),
-> +	 * unmapping should also be done there.
->  	 */
->  	rproc->table_ptr = NULL;
->  out:
-> -- 
-> 2.17.1
-> 
-> 
-> 
+Reviewed-by: Alexandru M Stan <amstan@google.com>
