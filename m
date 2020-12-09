@@ -2,109 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D1E32D43CD
-	for <lists+devicetree@lfdr.de>; Wed,  9 Dec 2020 15:05:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A7692D43C4
+	for <lists+devicetree@lfdr.de>; Wed,  9 Dec 2020 15:05:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732779AbgLIOCM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Dec 2020 09:02:12 -0500
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:36407 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728647AbgLIOCH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Dec 2020 09:02:07 -0500
-Received: by mail-ot1-f67.google.com with SMTP id y24so1422817otk.3;
-        Wed, 09 Dec 2020 06:01:51 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Sd8fD1HP0AJEeyA8TsTzLacJZWO7kg+ENpBmK4/xaNo=;
-        b=Sluj24ioysUnqXOmhaqb1/A4DoBeNm+3DrIY1mjXdjWzk6ii7cIVqGR5GI/Pt4csa4
-         ZtIYuB2hJLGCrGJuj9zYxdphrHLtU/K3PafYafD99V8xd7auSspXdY+EXIbM9Rd/Zz23
-         ephZv6faNmh4cF4cnUBxMXnSQA755hotKN4H/+fAPpnYqkPlmG+amk4419+VNBZ2fNUJ
-         bdK3jY9F7aNAA2ew/GB1/mR0xtSpHBlIs7RSqZqcUFcC5q2xLvwA9BY8n4//hZndjliv
-         C8KHW/DFAstkyXEBCWzz63phq6+26xIftQ96U2XFms+svo4XTSxUsNra8jwU8pvbR4rt
-         dOIg==
-X-Gm-Message-State: AOAM533m34pqtBaLR7N7MPE299sCw/0GJxDTVNAoQUbzqYMl916KBp/t
-        Fwc54gQs0mhtGn7q4R/qdQ==
-X-Google-Smtp-Source: ABdhPJxxByan/XxZfDBvM7WtqrrDz3cgG+EGv1aSP5GqQ6pLfOTSPfezLRRpIurHDrQAWtJS5RHxkQ==
-X-Received: by 2002:a9d:10d:: with SMTP id 13mr1861699otu.8.1607522484611;
-        Wed, 09 Dec 2020 06:01:24 -0800 (PST)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id m10sm348276oig.27.2020.12.09.06.01.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Dec 2020 06:01:23 -0800 (PST)
-Received: (nullmailer pid 360450 invoked by uid 1000);
-        Wed, 09 Dec 2020 14:01:22 -0000
-Date:   Wed, 9 Dec 2020 08:01:22 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Jim Quinlan <james.quinlan@broadcom.com>
-Cc:     linux-pci@vger.kernel.org,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        broonie@kernel.org, bcm-kernel-feedback-list@broadcom.com,
+        id S1732702AbgLIOAf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Dec 2020 09:00:35 -0500
+Received: from mta-02.yadro.com ([89.207.88.252]:54180 "EHLO mta-01.yadro.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1728541AbgLIOAb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 9 Dec 2020 09:00:31 -0500
+Received: from localhost (unknown [127.0.0.1])
+        by mta-01.yadro.com (Postfix) with ESMTP id 84595412D0;
+        Wed,  9 Dec 2020 13:59:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=yadro.com; h=
+        content-type:content-type:content-transfer-encoding:mime-version
+        :x-mailer:message-id:date:date:subject:subject:from:from
+        :received:received:received; s=mta-01; t=1607522385; x=
+        1609336786; bh=LtEwQr607pb2Yng6ZB5puQAfklphP2HMsQC9LGAQ5ak=; b=b
+        rbS8joU0P2khd8vLyglphVBDGyjJuo2wlPtbQJx73NtWwUCcBVxuTQo37tca7vAQ
+        YhdSsKcKu5apjiwZmv7HIcBqqfywOjiC0DN2aUtkKCrJYg2IIyDtZr5MFyF4Wnqv
+        ahgOv0n/FZXd+81wbJwkZPM09t6lKBVbiUMA3MQZ8A=
+X-Virus-Scanned: amavisd-new at yadro.com
+Received: from mta-01.yadro.com ([127.0.0.1])
+        by localhost (mta-01.yadro.com [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id OJXlTB2a5lsQ; Wed,  9 Dec 2020 16:59:45 +0300 (MSK)
+Received: from T-EXCH-03.corp.yadro.com (t-exch-03.corp.yadro.com [172.17.100.103])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mta-01.yadro.com (Postfix) with ESMTPS id 498BE41203;
+        Wed,  9 Dec 2020 16:59:43 +0300 (MSK)
+Received: from localhost.dev.yadro.com (10.199.0.125) by
+ T-EXCH-03.corp.yadro.com (172.17.100.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id
+ 15.1.669.32; Wed, 9 Dec 2020 16:59:42 +0300
+From:   Ivan Mikhaylov <i.mikhaylov@yadro.com>
+To:     "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
         Florian Fainelli <f.fainelli@gmail.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
-        <linux-rpi-kernel@lists.infradead.org>,
-        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 1/6] dt-bindings: PCI: Add bindings for Brcmstb EP
- voltage regulators
-Message-ID: <20201209140122.GA331678@robh.at.kernel.org>
-References: <20201130211145.3012-1-james.quinlan@broadcom.com>
- <20201130211145.3012-2-james.quinlan@broadcom.com>
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>
+CC:     Ivan Mikhaylov <i.mikhaylov@yadro.com>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH 0/2] Add LED mode behavior/select properties and handle
+Date:   Wed, 9 Dec 2020 17:04:59 +0300
+Message-ID: <20201209140501.17415-1-i.mikhaylov@yadro.com>
+X-Mailer: git-send-email 2.21.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201130211145.3012-2-james.quinlan@broadcom.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.199.0.125]
+X-ClientProxiedBy: T-EXCH-01.corp.yadro.com (172.17.10.101) To
+ T-EXCH-03.corp.yadro.com (172.17.100.103)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 30, 2020 at 04:11:38PM -0500, Jim Quinlan wrote:
-> Quite similar to the regulator bindings found in "rockchip-pcie-host.txt",
-> this allows optional regulators to be attached and controlled by the
-> PCIe RC driver.
-> 
-> Signed-off-by: Jim Quinlan <james.quinlan@broadcom.com>
-> ---
->  .../devicetree/bindings/pci/brcm,stb-pcie.yaml       | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-> index 807694b4f41f..baacc3d7ec87 100644
-> --- a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-> +++ b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-> @@ -85,6 +85,18 @@ properties:
->        minItems: 1
->        maxItems: 3
->  
-> +  vpcie12v-supply:
-> +    description: 12v regulator phandle for the endpoint device
-> +
-> +  vpcie3v3-supply:
-> +    description: 3.3v regulator phandle for the endpoint device
+In KSZ9131 PHY it is possible to control LEDs blink behavior via
+LED mode behavior and select registers. Add DTS properties plus handles
+of them inside micrel PHY driver.
 
-12V and 3.3V are standard slot supplies, can you add them to 
-pci-bus.yaml. Then some day maybe we can have common slot handling code.
- 
-With that, here you just need:
+I've some concerns about passing raw register values into LED mode
+select and behavior. It can be passed via array like in microchip
+driver(Documentation/devicetree/bindings/net/microchip,lan78xx.txt).
+There is the problem in this particular driver - there is a lot of other PHYs
+and led mode behavior/select states may intersect, that's the reason why
+I did it this way. Is there any good ways to make it look more properly?
 
-vpcie3v3-supply: true
+Ivan Mikhaylov (2):
+  net: phy: micrel: add LED control on KSZ9131
+  dt-bindings: net: phy: micrel: add LED mode behavior and select
+    properties
 
-> +
-> +  vpcie1v8-supply:
-> +    description: 1.8v regulator phandle for the endpoint device
-> +
-> +  vpcie0v9-supply:
-> +    description: 0.9v regulator phandle for the endpoint device
+ .../devicetree/bindings/net/micrel.txt        |  7 ++
+ drivers/net/phy/micrel.c                      | 69 ++++++++++++++++++-
+ 2 files changed, 75 insertions(+), 1 deletion(-)
 
-These are not standard. They go to a soldered down device or 
-non-standard connector? For the former, the device should really be 
-described in DT and the supplies added there.
+-- 
+2.21.1
 
-Mini PCIe connector also has 1.5V supply.
-
-Rob
