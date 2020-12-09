@@ -2,1205 +2,296 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BEB912D3DBA
-	for <lists+devicetree@lfdr.de>; Wed,  9 Dec 2020 09:43:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ED2B82D3DE1
+	for <lists+devicetree@lfdr.de>; Wed,  9 Dec 2020 09:47:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728038AbgLIImS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Dec 2020 03:42:18 -0500
-Received: from mail-dm6nam12on2085.outbound.protection.outlook.com ([40.107.243.85]:57921
-        "EHLO NAM12-DM6-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1727698AbgLIImQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 9 Dec 2020 03:42:16 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=WFZDT8m+VX5mnG9nuTY1HEqM+5GJvnpH1gIyz0st9RZANHncj5I8OLSQB3GRJAA+EgfXOLD+UMJgLcVq67rqqJxMrbP2KTs2gJvDYdw8Z5YXqf3QbznZ8rH1ihbbx/3Dns60dZV2vbTf5Ahsi1A2D2raeSpmgSuYDH+RryVeeUE01mkV5I9muHOb+rLySBK2IeM9EfeY0s8R6blRZYzpQK3ULcUrbZe8YgQF6NTBiBg2pfV/sYGUjaaH9/kywzgzWsfUis1EK7cIFLIDsg8d1IwZjFRUhmUP8aZtOJ8NsyGQ4V8WMXlwA633M2oNn3mH9e4CaW26U7Za1qgfvY9SFg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=CnM2BcMWNQYrJUCSiE/kN9oHHr9xQwQsEaKfmqXxgwM=;
- b=mAYjMnbzOywZHGzAYJu9n0+ermxlK5vvwFWy1BvmoFYuprUvUiY0ND6+tVZ7pqvG3xUwNaW1f8l6sr1aoZ7THfaXq402BOKvfKlGhXJ2OumIslSqHqqWMNtkwW0+dyazGK2zxXRUMCrTHK51cec9wfooD/jc1HimZx+ptAaScf4zMKb7zMW8+i0bmixw7MpJhSLM10BAjSfhhzU57kfs68mZKg085GiG868wDnjUiq9CSwkTZf2wQA1CP50pRQFQZKSP7r6xAFjaJ8QT/ZcfjzOHsKplSPDKSk7rscrasMpHmkKOJnCRPG12IGT1J+ECbDb9PUJGWAaZrNlvq5NjgA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 149.199.62.198) smtp.rcpttodomain=gmail.com smtp.mailfrom=xilinx.com;
- dmarc=bestguesspass action=none header.from=xilinx.com; dkim=none (message
- not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=CnM2BcMWNQYrJUCSiE/kN9oHHr9xQwQsEaKfmqXxgwM=;
- b=QQNDhSxlccLlN+vxwUb1zNDznSh5XagXAWoPazfNIxt9fk+H0Bsilsw2Bja8ADODk9Oe+QgZjqvD3ajtw0c+GpMUzkd5lxEN0rKe5QNEuAtolY0nLWXT+5hl2vEgIVCY9obZmLli+xxrLl7rDmgL37Y29M+uAGu6WCYxcIBl6Qk=
-Received: from SN4PR0401CA0016.namprd04.prod.outlook.com
- (2603:10b6:803:21::26) by BN6PR02MB2340.namprd02.prod.outlook.com
- (2603:10b6:404:36::19) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3654.12; Wed, 9 Dec
- 2020 08:41:17 +0000
-Received: from SN1NAM02FT063.eop-nam02.prod.protection.outlook.com
- (2603:10b6:803:21:cafe::98) by SN4PR0401CA0016.outlook.office365.com
- (2603:10b6:803:21::26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3654.12 via Frontend
- Transport; Wed, 9 Dec 2020 08:41:17 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
- smtp.mailfrom=xilinx.com; gmail.com; dkim=none (message not signed)
- header.d=none;gmail.com; dmarc=bestguesspass action=none
- header.from=xilinx.com;
-Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
- 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=149.199.62.198; helo=xsj-pvapexch02.xlnx.xilinx.com;
-Received: from xsj-pvapexch02.xlnx.xilinx.com (149.199.62.198) by
- SN1NAM02FT063.mail.protection.outlook.com (10.152.72.213) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.3632.21 via Frontend Transport; Wed, 9 Dec 2020 08:41:17 +0000
-Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
- xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1913.5; Wed, 9 Dec 2020 00:41:06 -0800
-Received: from smtp.xilinx.com (172.19.127.96) by
- xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
- 15.1.1913.5 via Frontend Transport; Wed, 9 Dec 2020 00:41:06 -0800
-Envelope-to: git@xilinx.com,
- michal.simek@xilinx.com,
- saikrishna12468@gmail.com,
- robh+dt@kernel.org,
- linus.walleij@linaro.org,
- gregkh@linuxfoundation.org,
- linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org,
- linux-gpio@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Received: from [10.140.6.35] (port=50862 helo=xhdsaipava40.xilinx.com)
-        by smtp.xilinx.com with esmtp (Exim 4.90)
-        (envelope-from <lakshmi.sai.krishna.potthuri@xilinx.com>)
-        id 1kmv21-0004Mx-2n; Wed, 09 Dec 2020 00:41:05 -0800
-Received: by xhdsaipava40.xilinx.com (Postfix, from userid 14964)
-        id D01CA13C0610; Wed,  9 Dec 2020 14:15:20 +0530 (IST)
-From:   Sai Krishna Potthuri <lakshmi.sai.krishna.potthuri@xilinx.com>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michal Simek <michal.simek@xilinx.com>,
-        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-gpio@vger.kernel.org>, <git@xilinx.com>,
-        <saikrishna12468@gmail.com>,
-        Sai Krishna Potthuri <lakshmi.sai.krishna.potthuri@xilinx.com>
-Subject: [PATCH 3/3] pinctrl: Added Xilinx ZynqMP pinctrl driver support
-Date:   Wed, 9 Dec 2020 14:14:14 +0530
-Message-ID: <1607503454-26503-4-git-send-email-lakshmi.sai.krishna.potthuri@xilinx.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1607503454-26503-1-git-send-email-lakshmi.sai.krishna.potthuri@xilinx.com>
-References: <1607503454-26503-1-git-send-email-lakshmi.sai.krishna.potthuri@xilinx.com>
+        id S1728152AbgLIIqW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Dec 2020 03:46:22 -0500
+Received: from mx07-00178001.pphosted.com ([185.132.182.106]:55527 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1727912AbgLIIqW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Dec 2020 03:46:22 -0500
+Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 0B98bvOv001634;
+        Wed, 9 Dec 2020 09:45:35 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=STMicroelectronics;
+ bh=9EEVClr+EFgzRMxXN4B+OAMLZR5QI6+mHz2ibkR2IN8=;
+ b=at9cFhatZeHOCZiaF6zprhTVKkFeHCKvV3NIDFX7bI6tv6amSmWoie3cV0s/jQjp3xoq
+ v+Wt+WYGeo8NaTsOGc2FaPlmIb4XsUaov7oqHK4I4G1IctQwOCg6r3BuUOfbB3yg8WSs
+ MoM/fgEaN/QqWfFgamsjOXJAWZAOvwTahGlTwz+UsrvbZ3ShLpwx6UsjQbZotaR/TG2u
+ BIqq0NEHd/bxVuLoApYHLZLjgtU+s9c7swqqprSAJdLl7EBOE5A7epRLsi3a+aZ92+Lk
+ Ih8D5bu4n6EGguY6PjRgdkDXkebEkXXp+Pwmg9oqRdMqwp45p6LEmPfNSwHXGwrrVl4/ pQ== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 35agq630r0-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 09 Dec 2020 09:45:34 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 2062710002A;
+        Wed,  9 Dec 2020 09:45:34 +0100 (CET)
+Received: from Webmail-eu.st.com (sfhdag3node1.st.com [10.75.127.7])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 07EBF231FAC;
+        Wed,  9 Dec 2020 09:45:34 +0100 (CET)
+Received: from lmecxl0889.lme.st.com (10.75.127.45) by SFHDAG3NODE1.st.com
+ (10.75.127.7) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 9 Dec
+ 2020 09:45:33 +0100
+Subject: Re: [PATCH v3 09/15] remoteproc: Introduce function rproc_detach()
+To:     Mathieu Poirier <mathieu.poirier@linaro.org>
+CC:     "ohad@wizery.com" <ohad@wizery.com>,
+        "bjorn.andersson@linaro.org" <bjorn.andersson@linaro.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20201126210642.897302-1-mathieu.poirier@linaro.org>
+ <20201126210642.897302-10-mathieu.poirier@linaro.org>
+ <0e705760-b69a-d872-9770-c03dde85ab1c@st.com>
+ <20201209005311.GB1601690@xps15>
+From:   Arnaud POULIQUEN <arnaud.pouliquen@st.com>
+Message-ID: <cb959e29-65eb-ae89-0c53-cdbc4c7bc77a@st.com>
+Date:   Wed, 9 Dec 2020 09:45:32 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 51ed5216-2ba8-48a2-781b-08d89c1e31db
-X-MS-TrafficTypeDiagnostic: BN6PR02MB2340:
-X-Microsoft-Antispam-PRVS: <BN6PR02MB23408A87B870CCB10F1A0BA4BDCC0@BN6PR02MB2340.namprd02.prod.outlook.com>
-X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
-X-MS-Oob-TLC-OOBClassifiers: OLM:222;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: SeSdVCPIClF+6qXWak1um4q68nPpykxOmSZzlaOJFSwTeCeBIkmc8BQEB81tUAbIZ7NxzLJ8mBcUxnpWK8uVWs1EJ3R/XHrjeDy4foY82k88z0ivxCV1GXH5v7bg221Tq4AkxcL/6Ire2Ga/kmd4x/7ruXjZPpNih8hu26ab/EvldyKrcVLh+CyMJOKzkTywqtNylrTyjL/glD5iMS2qOTrBcQlZtf1WgsdeVVQmCuQjGIlpwzi+SjfwXtxAFqBj+kU1omZLvluWhr2bE2O7zVbdtv5/IN4ZWZvVnZbL7IwhyDMC5jAfZbNwbx/kSsCds58P7e7ofY6pq9JtMg7IxvIelCR7SYrugK4EnOpTBzciFcEfUfXCagNMSm8EA8457nIw8RiDFj2o7GKtaGb4hXbdMj0R1iqHyG1HLNKho+0=
-X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch02.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(4636009)(136003)(376002)(346002)(46966005)(5660300002)(30864003)(186003)(36906005)(8676002)(2906002)(8936002)(70586007)(70206006)(426003)(2616005)(4326008)(26005)(54906003)(6266002)(7636003)(36756003)(356005)(336012)(47076004)(82310400003)(107886003)(508600001)(83380400001)(110136005)(42186006)(6666004)(102446001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Dec 2020 08:41:17.1524
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 51ed5216-2ba8-48a2-781b-08d89c1e31db
-X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch02.xlnx.xilinx.com]
-X-MS-Exchange-CrossTenant-AuthSource: SN1NAM02FT063.eop-nam02.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR02MB2340
+In-Reply-To: <20201209005311.GB1601690@xps15>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.75.127.45]
+X-ClientProxiedBy: SFHDAG2NODE2.st.com (10.75.127.5) To SFHDAG3NODE1.st.com
+ (10.75.127.7)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.343,18.0.737
+ definitions=2020-12-09_07:2020-12-08,2020-12-09 signatures=0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Added pinctrl driver for Xilinx ZynqMP platform.
-This driver queries pin information from firmware and registers
-pin control accordingly.
 
-Signed-off-by: Sai Krishna Potthuri <lakshmi.sai.krishna.potthuri@xilinx.com>
----
- drivers/pinctrl/Kconfig          |   13 +
- drivers/pinctrl/Makefile         |    1 +
- drivers/pinctrl/pinctrl-zynqmp.c | 1031 ++++++++++++++++++++++++++++++
- 3 files changed, 1045 insertions(+)
- create mode 100644 drivers/pinctrl/pinctrl-zynqmp.c
 
-diff --git a/drivers/pinctrl/Kconfig b/drivers/pinctrl/Kconfig
-index 815095326e2d..25d3c7208975 100644
---- a/drivers/pinctrl/Kconfig
-+++ b/drivers/pinctrl/Kconfig
-@@ -341,6 +341,19 @@ config PINCTRL_ZYNQ
- 	help
- 	  This selects the pinctrl driver for Xilinx Zynq.
- 
-+config PINCTRL_ZYNQMP
-+	bool "Pinctrl driver for Xilinx ZynqMP"
-+	depends on ARCH_ZYNQMP
-+	select PINMUX
-+	select GENERIC_PINCONF
-+	help
-+	  This selects the pinctrl driver for Xilinx ZynqMP platform.
-+	  This driver will query the pin information from the firmware
-+	  and allow configuring the pins.
-+	  Configuration can include the mux function to select on those
-+	  pin(s)/group(s), and various pin configuration parameters
-+	  such as pull-up, slew rate, etc.
-+
- config PINCTRL_INGENIC
- 	bool "Pinctrl driver for the Ingenic JZ47xx SoCs"
- 	default MACH_INGENIC
-diff --git a/drivers/pinctrl/Makefile b/drivers/pinctrl/Makefile
-index f53933b2ff02..7e058739f0d5 100644
---- a/drivers/pinctrl/Makefile
-+++ b/drivers/pinctrl/Makefile
-@@ -43,6 +43,7 @@ obj-$(CONFIG_PINCTRL_TB10X)	+= pinctrl-tb10x.o
- obj-$(CONFIG_PINCTRL_ST) 	+= pinctrl-st.o
- obj-$(CONFIG_PINCTRL_STMFX) 	+= pinctrl-stmfx.o
- obj-$(CONFIG_PINCTRL_ZYNQ)	+= pinctrl-zynq.o
-+obj-$(CONFIG_PINCTRL_ZYNQMP)    += pinctrl-zynqmp.o
- obj-$(CONFIG_PINCTRL_INGENIC)	+= pinctrl-ingenic.o
- obj-$(CONFIG_PINCTRL_RK805)	+= pinctrl-rk805.o
- obj-$(CONFIG_PINCTRL_OCELOT)	+= pinctrl-ocelot.o
-diff --git a/drivers/pinctrl/pinctrl-zynqmp.c b/drivers/pinctrl/pinctrl-zynqmp.c
-new file mode 100644
-index 000000000000..0694cd6fc753
---- /dev/null
-+++ b/drivers/pinctrl/pinctrl-zynqmp.c
-@@ -0,0 +1,1031 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * ZynqMP pin controller
-+ *
-+ *  Copyright (C) 2020 Xilinx, Inc.
-+ *
-+ *  Sai Krishna Potthuri <lakshmi.sai.krishna.potthuri@xilinx.com>
-+ *  Rajan Vaja <rajanv@xilinx.com>
-+ */
-+
-+#include <linux/init.h>
-+#include <linux/of_address.h>
-+#include <linux/pinctrl/pinmux.h>
-+#include <linux/pinctrl/pinconf-generic.h>
-+#include <dt-bindings/pinctrl/pinctrl-zynqmp.h>
-+#include <linux/platform_device.h>
-+#include <linux/firmware/xlnx-zynqmp.h>
-+#include "core.h"
-+#include "pinctrl-utils.h"
-+
-+#define ZYNQMP_PIN_PREFIX			"MIO"
-+#define PINCTRL_GET_FUNC_NAME_RESP_LEN		16
-+#define MAX_FUNC_NAME_LEN			16
-+#define MAX_GROUP_PIN				50
-+#define END_OF_FUNCTIONS			"END_OF_FUNCTIONS"
-+#define NUM_GROUPS_PER_RESP			6
-+
-+#define PINCTRL_GET_FUNC_GROUPS_RESP_LEN	12
-+#define PINCTRL_GET_PIN_GROUPS_RESP_LEN		12
-+#define NA_GROUP				-1
-+#define RESERVED_GROUP				-2
-+
-+/**
-+ * struct zynqmp_pmux_function - a pinmux function
-+ * @name:	Name of the pinmux function
-+ * @groups:	List of pingroups for this function
-+ * @ngroups:	Number of entries in @groups
-+ * @node:`	Firmware node matching with for function
-+ *
-+ * This structure holds information about pin control function
-+ * and function group names supporting that function.
-+ */
-+struct zynqmp_pmux_function {
-+	char name[MAX_FUNC_NAME_LEN];
-+	const char * const *groups;
-+	unsigned int ngroups;
-+};
-+
-+/**
-+ * struct zynqmp_pinctrl - driver data
-+ * @pctrl:	Pinctrl device
-+ * @groups:	Pingroups
-+ * @ngroups:	Number of @groups
-+ * @funcs:	Pinmux functions
-+ * @nfuncs:	Number of @funcs
-+ *
-+ * This struct is stored as driver data and used to retrieve
-+ * information regarding pin control functions, groups and
-+ * group pins.
-+ */
-+struct zynqmp_pinctrl {
-+	struct pinctrl_dev *pctrl;
-+	const struct zynqmp_pctrl_group *groups;
-+	unsigned int ngroups;
-+	const struct zynqmp_pmux_function *funcs;
-+	unsigned int nfuncs;
-+};
-+
-+/**
-+ * struct zynqmp_pctrl_group - Pin control group info
-+ * @name:	Group name
-+ * @pins:	Group pin numbers
-+ * @npins:	Number of pins in group
-+ */
-+struct zynqmp_pctrl_group {
-+	const char *name;
-+	unsigned int pins[MAX_GROUP_PIN];
-+	unsigned int npins;
-+};
-+
-+/**
-+ * enum zynqmp_pin_config_param - possible pin configuration parameters
-+ * @PIN_CONFIG_IOSTANDARD:	if the pin can select an IO standard,
-+ *				the argument to this parameter (on a
-+ *				custom format) tells the driver which
-+ *				alternative IO standard to use
-+ * @PIN_CONFIG_SCHMITTCMOS:	this parameter (on a custom format) allows
-+ *				to select schmitt or cmos input for MIO pins
-+ */
-+enum zynqmp_pin_config_param {
-+	PIN_CONFIG_IOSTANDARD = PIN_CONFIG_END + 1,
-+	PIN_CONFIG_SCHMITTCMOS,
-+};
-+
-+static const struct pinconf_generic_params zynqmp_dt_params[] = {
-+	{"io-standard", PIN_CONFIG_IOSTANDARD, IO_STANDARD_LVCMOS18},
-+	{"schmitt-cmos", PIN_CONFIG_SCHMITTCMOS, PIN_INPUT_TYPE_SCHMITT},
-+};
-+
-+#ifdef CONFIG_DEBUG_FS
-+static const struct
-+pin_config_item zynqmp_conf_items[ARRAY_SIZE(zynqmp_dt_params)] = {
-+	PCONFDUMP(PIN_CONFIG_IOSTANDARD, "IO-standard", NULL, true),
-+	PCONFDUMP(PIN_CONFIG_SCHMITTCMOS, "schmitt-cmos", NULL, true),
-+};
-+#endif
-+
-+static struct pinctrl_desc zynqmp_desc;
-+
-+/**
-+ * zynqmp_pctrl_get_groups_count() - get group count
-+ * @pctldev:	Pincontrol device pointer.
-+ *
-+ * Get total groups count.
-+ *
-+ * Return: group count.
-+ */
-+static int zynqmp_pctrl_get_groups_count(struct pinctrl_dev *pctldev)
-+{
-+	struct zynqmp_pinctrl *pctrl = pinctrl_dev_get_drvdata(pctldev);
-+
-+	return pctrl->ngroups;
-+}
-+
-+/**
-+ * zynqmp_pctrl_get_group_name() - get group name
-+ * @pctldev:	Pincontrol device pointer.
-+ * @selector:	Group ID.
-+ *
-+ * Get gorup's name.
-+ *
-+ * Return: group name.
-+ */
-+static const char *zynqmp_pctrl_get_group_name(struct pinctrl_dev *pctldev,
-+					       unsigned int selector)
-+{
-+	struct zynqmp_pinctrl *pctrl = pinctrl_dev_get_drvdata(pctldev);
-+
-+	return pctrl->groups[selector].name;
-+}
-+
-+/**
-+ * zynqmp_pctrl_get_group_pins() - get group pins
-+ * @pctldev:	Pincontrol device pointer.
-+ * @selector:	Group ID.
-+ * @pins:	Pin numbers.
-+ * @npins:	Number of pins in group.
-+ *
-+ * Get gorup's pin count and pin number.
-+ *
-+ * Return: Success.
-+ */
-+static int zynqmp_pctrl_get_group_pins(struct pinctrl_dev *pctldev,
-+				       unsigned int selector,
-+				       const unsigned int **pins,
-+				       unsigned int *npins)
-+{
-+	struct zynqmp_pinctrl *pctrl = pinctrl_dev_get_drvdata(pctldev);
-+
-+	*pins = pctrl->groups[selector].pins;
-+	*npins = pctrl->groups[selector].npins;
-+
-+	return 0;
-+}
-+
-+static const struct pinctrl_ops zynqmp_pctrl_ops = {
-+	.get_groups_count = zynqmp_pctrl_get_groups_count,
-+	.get_group_name = zynqmp_pctrl_get_group_name,
-+	.get_group_pins = zynqmp_pctrl_get_group_pins,
-+	.dt_node_to_map = pinconf_generic_dt_node_to_map_all,
-+	.dt_free_map = pinctrl_utils_free_map,
-+};
-+
-+/**
-+ * zynqmp_pinmux_request_pin() - Request a pin for muxing
-+ * @pctldev:	Pincontrol device pointer.
-+ * @pin:	Pin number.
-+ *
-+ * Request a pin from firmware for muxing.
-+ *
-+ * Return: 0 on success else error code.
-+ */
-+static int zynqmp_pinmux_request_pin(struct pinctrl_dev *pctldev,
-+				     unsigned int pin)
-+{
-+	int ret;
-+
-+	ret = zynqmp_pm_pinctrl_request(pin);
-+	if (ret) {
-+		dev_err(pctldev->dev, "request failed for pin %u\n", pin);
-+		return -EIO;
-+	}
-+
-+	return 0;
-+}
-+
-+/**
-+ * zynqmp_pmux_get_functions_count() - get number of functions
-+ * @pctldev:	Pincontrol device pointer.
-+ *
-+ * Get total function count.
-+ *
-+ * Return: function count.
-+ */
-+static int zynqmp_pmux_get_functions_count(struct pinctrl_dev *pctldev)
-+{
-+	struct zynqmp_pinctrl *pctrl = pinctrl_dev_get_drvdata(pctldev);
-+
-+	return pctrl->nfuncs;
-+}
-+
-+/**
-+ * zynqmp_pmux_get_function_name() - get function name
-+ * @pctldev:	Pincontrol device pointer.
-+ * @selector:	Function ID.
-+ *
-+ * Get function's name.
-+ *
-+ * Return: function name.
-+ */
-+static const char *zynqmp_pmux_get_function_name(struct pinctrl_dev *pctldev,
-+						 unsigned int selector)
-+{
-+	struct zynqmp_pinctrl *pctrl = pinctrl_dev_get_drvdata(pctldev);
-+
-+	return pctrl->funcs[selector].name;
-+}
-+
-+/**
-+ * zynqmp_pmux_get_function_groups() - Get groups for the function
-+ * @pctldev:	Pincontrol device pointer.
-+ * @selector:	Function ID
-+ * @groups:	Group names.
-+ * @num_groups:	Number of function groups.
-+ *
-+ * Get function's group count and group names.
-+ *
-+ * Return: Success.
-+ */
-+static int zynqmp_pmux_get_function_groups(struct pinctrl_dev *pctldev,
-+					   unsigned int selector,
-+					   const char * const **groups,
-+					   unsigned * const num_groups)
-+{
-+	struct zynqmp_pinctrl *pctrl = pinctrl_dev_get_drvdata(pctldev);
-+
-+	*groups = pctrl->funcs[selector].groups;
-+	*num_groups = pctrl->funcs[selector].ngroups;
-+
-+	return 0;
-+}
-+
-+/**
-+ * zynqmp_pinmux_set_mux() - Set requested function for the group
-+ * @pctldev:	Pincontrol device pointer.
-+ * @function:	Function ID.
-+ * @group:	Group ID.
-+ *
-+ * Loop though all pins of group and call firmware API
-+ * to set requested function for all pins in group.
-+ *
-+ * Return: 0 on success else error code.
-+ */
-+static int zynqmp_pinmux_set_mux(struct pinctrl_dev *pctldev,
-+				 unsigned int function,
-+				 unsigned int group)
-+{
-+	struct zynqmp_pinctrl *pctrl = pinctrl_dev_get_drvdata(pctldev);
-+	const struct zynqmp_pctrl_group *pgrp = &pctrl->groups[group];
-+	int ret, i;
-+
-+	for (i = 0; i < pgrp->npins; i++) {
-+		unsigned int pin = pgrp->pins[i];
-+
-+		ret = zynqmp_pm_pinctrl_set_function(pin, function);
-+		if (ret) {
-+			dev_err(pctldev->dev, "set mux failed for pin %u\n",
-+				pin);
-+			return -EIO;
-+		}
-+	}
-+
-+	return 0;
-+}
-+
-+/**
-+ * zynqmp_pinmux_release_pin() - Release a pin
-+ * @pctldev:	Pincontrol device pointer.
-+ * @pin:	Pin number.
-+ *
-+ * Release a pin from firmware.
-+ *
-+ * Return: 0 on success else error code.
-+ */
-+static int zynqmp_pinmux_release_pin(struct pinctrl_dev *pctldev,
-+				     unsigned int pin)
-+{
-+	int ret;
-+
-+	ret = zynqmp_pm_pinctrl_release(pin);
-+	if (ret) {
-+		dev_err(pctldev->dev, "free pin failed for pin %u\n",
-+			pin);
-+		return -EIO;
-+	}
-+
-+	return 0;
-+}
-+
-+static const struct pinmux_ops zynqmp_pinmux_ops = {
-+	.request = zynqmp_pinmux_request_pin,
-+	.get_functions_count = zynqmp_pmux_get_functions_count,
-+	.get_function_name = zynqmp_pmux_get_function_name,
-+	.get_function_groups = zynqmp_pmux_get_function_groups,
-+	.set_mux = zynqmp_pinmux_set_mux,
-+	.free = zynqmp_pinmux_release_pin,
-+};
-+
-+/**
-+ * zynqmp_pinconf_cfg_get() - get config value for the pin
-+ * @pctldev:	Pin control device pointer.
-+ * @pin:	Pin number.
-+ * @config:	Value of config param.
-+ *
-+ * Get value of the requested configuration parameter for the
-+ * given pin.
-+ *
-+ * Return: 0 on success else error code.
-+ */
-+static int zynqmp_pinconf_cfg_get(struct pinctrl_dev *pctldev,
-+				  unsigned int pin,
-+				  unsigned long *config)
-+{
-+	int ret;
-+	unsigned int arg = 0, param = pinconf_to_config_param(*config);
-+
-+	if (pin >= zynqmp_desc.npins)
-+		return -EOPNOTSUPP;
-+
-+	switch (param) {
-+	case PIN_CONFIG_SLEW_RATE:
-+		param = PM_PINCTRL_CONFIG_SLEW_RATE;
-+		ret = zynqmp_pm_pinctrl_get_config(pin, param, &arg);
-+		break;
-+	case PIN_CONFIG_BIAS_PULL_UP:
-+		param = PM_PINCTRL_CONFIG_PULL_CTRL;
-+		ret = zynqmp_pm_pinctrl_get_config(pin, param, &arg);
-+		if (arg != PM_PINCTRL_BIAS_PULL_UP)
-+			return -EINVAL;
-+
-+		arg = 1;
-+		break;
-+	case PIN_CONFIG_BIAS_PULL_DOWN:
-+		param = PM_PINCTRL_CONFIG_PULL_CTRL;
-+		ret = zynqmp_pm_pinctrl_get_config(pin, param, &arg);
-+		if (arg != PM_PINCTRL_BIAS_PULL_DOWN)
-+			return -EINVAL;
-+
-+		arg = 1;
-+		break;
-+	case PIN_CONFIG_BIAS_DISABLE:
-+		param = PM_PINCTRL_CONFIG_BIAS_STATUS;
-+		ret = zynqmp_pm_pinctrl_get_config(pin, param, &arg);
-+		if (arg != PM_PINCTRL_BIAS_DISABLE)
-+			return -EINVAL;
-+
-+		arg = 1;
-+		break;
-+	case PIN_CONFIG_IOSTANDARD:
-+		param = PM_PINCTRL_CONFIG_VOLTAGE_STATUS;
-+		ret = zynqmp_pm_pinctrl_get_config(pin, param, &arg);
-+		break;
-+	case PIN_CONFIG_SCHMITTCMOS:
-+		param = PM_PINCTRL_CONFIG_SCHMITT_CMOS;
-+		ret = zynqmp_pm_pinctrl_get_config(pin, param, &arg);
-+		break;
-+	case PIN_CONFIG_DRIVE_STRENGTH:
-+		param = PM_PINCTRL_CONFIG_DRIVE_STRENGTH;
-+		ret = zynqmp_pm_pinctrl_get_config(pin, param, &arg);
-+		switch (arg) {
-+		case PM_PINCTRL_DRIVE_STRENGTH_2MA:
-+			arg = DRIVE_STRENGTH_2MA;
-+			break;
-+		case PM_PINCTRL_DRIVE_STRENGTH_4MA:
-+			arg = DRIVE_STRENGTH_4MA;
-+			break;
-+		case PM_PINCTRL_DRIVE_STRENGTH_8MA:
-+			arg = DRIVE_STRENGTH_8MA;
-+			break;
-+		case PM_PINCTRL_DRIVE_STRENGTH_12MA:
-+			arg = DRIVE_STRENGTH_12MA;
-+			break;
-+		default:
-+			/* Invalid drive strength */
-+			dev_warn(pctldev->dev,
-+				 "Invalid drive strength for pin %d\n",
-+				 pin);
-+			return -EINVAL;
-+		}
-+		break;
-+	default:
-+		ret = -EOPNOTSUPP;
-+		break;
-+	}
-+
-+	param = pinconf_to_config_param(*config);
-+	*config = pinconf_to_config_packed(param, arg);
-+
-+	return ret;
-+}
-+
-+/**
-+ * zynqmp_pinconf_cfg_set() - Set requested config for the pin
-+ * @pctldev:		Pincontrol device pointer.
-+ * @pin:		Pin number.
-+ * @configs:		Configuration to set.
-+ * @num_configs:	Number of configurations.
-+ *
-+ * Loop though all configurations and call firmware API
-+ * to set requested configurations for the pin.
-+ *
-+ * Return: 0 on success else error code.
-+ */
-+static int zynqmp_pinconf_cfg_set(struct pinctrl_dev *pctldev,
-+				  unsigned int pin, unsigned long *configs,
-+				  unsigned int num_configs)
-+{
-+	int i, ret;
-+
-+	if (pin >= zynqmp_desc.npins)
-+		return -EOPNOTSUPP;
-+
-+	for (i = 0; i < num_configs; i++) {
-+		unsigned int param = pinconf_to_config_param(configs[i]);
-+		unsigned int arg = pinconf_to_config_argument(configs[i]);
-+		unsigned int value;
-+
-+		switch (param) {
-+		case PIN_CONFIG_SLEW_RATE:
-+			param = PM_PINCTRL_CONFIG_SLEW_RATE;
-+			ret = zynqmp_pm_pinctrl_set_config(pin, param, arg);
-+			break;
-+		case PIN_CONFIG_BIAS_PULL_UP:
-+			param = PM_PINCTRL_CONFIG_PULL_CTRL;
-+			arg = PM_PINCTRL_BIAS_PULL_UP;
-+			ret = zynqmp_pm_pinctrl_set_config(pin, param, arg);
-+			break;
-+		case PIN_CONFIG_BIAS_PULL_DOWN:
-+			param = PM_PINCTRL_CONFIG_PULL_CTRL;
-+			arg = PM_PINCTRL_BIAS_PULL_DOWN;
-+			ret = zynqmp_pm_pinctrl_set_config(pin, param, arg);
-+			break;
-+		case PIN_CONFIG_BIAS_DISABLE:
-+			param = PM_PINCTRL_CONFIG_BIAS_STATUS;
-+			arg = PM_PINCTRL_BIAS_DISABLE;
-+			ret = zynqmp_pm_pinctrl_set_config(pin, param, arg);
-+			break;
-+		case PIN_CONFIG_SCHMITTCMOS:
-+			param = PM_PINCTRL_CONFIG_SCHMITT_CMOS;
-+			ret = zynqmp_pm_pinctrl_set_config(pin, param, arg);
-+			break;
-+		case PIN_CONFIG_DRIVE_STRENGTH:
-+			switch (arg) {
-+			case DRIVE_STRENGTH_2MA:
-+				value = PM_PINCTRL_DRIVE_STRENGTH_2MA;
-+				break;
-+			case DRIVE_STRENGTH_4MA:
-+				value = PM_PINCTRL_DRIVE_STRENGTH_4MA;
-+				break;
-+			case DRIVE_STRENGTH_8MA:
-+				value = PM_PINCTRL_DRIVE_STRENGTH_8MA;
-+				break;
-+			case DRIVE_STRENGTH_12MA:
-+				value = PM_PINCTRL_DRIVE_STRENGTH_12MA;
-+				break;
-+			default:
-+				/* Invalid drive strength */
-+				dev_warn(pctldev->dev,
-+					 "Invalid drive strength for pin %d\n",
-+					 pin);
-+				return -EINVAL;
-+			}
-+
-+			param = PM_PINCTRL_CONFIG_DRIVE_STRENGTH;
-+			ret = zynqmp_pm_pinctrl_set_config(pin, param, value);
-+			break;
-+		case PIN_CONFIG_IOSTANDARD:
-+			param = PM_PINCTRL_CONFIG_VOLTAGE_STATUS;
-+			ret = zynqmp_pm_pinctrl_get_config(pin, param, &value);
-+
-+			if (arg != value)
-+				dev_warn(pctldev->dev,
-+					 "Invalid IO Standard requested for pin %d\n",
-+					 pin);
-+
-+			break;
-+		case PIN_CONFIG_BIAS_HIGH_IMPEDANCE:
-+		case PIN_CONFIG_LOW_POWER_MODE:
-+			/*
-+			 * This cases are mentioned in dts but configurable
-+			 * registers are unknown. So falling through to ignore
-+			 * boot time warnings as of now.
-+			 */
-+			ret = 0;
-+			break;
-+		default:
-+			dev_warn(pctldev->dev,
-+				 "unsupported configuration parameter '%u'\n",
-+				 param);
-+			ret = -EOPNOTSUPP;
-+			break;
-+		}
-+
-+		param = pinconf_to_config_param(configs[i]);
-+		arg = pinconf_to_config_argument(configs[i]);
-+		if (ret)
-+			dev_warn(pctldev->dev,
-+				 "%s failed: pin %u param %u value %u\n",
-+				 __func__, pin, param, arg);
-+	}
-+
-+	return 0;
-+}
-+
-+/**
-+ * zynqmp_pinconf_group_set() - Set requested config for the group
-+ * @pctldev:		Pincontrol device pointer.
-+ * @selector:		Group ID.
-+ * @configs:		Configuration to set.
-+ * @num_configs:	Number of configurations.
-+ *
-+ * Call function to set configs for each pin in group.
-+ *
-+ * Return: 0 on success else error code.
-+ */
-+static int zynqmp_pinconf_group_set(struct pinctrl_dev *pctldev,
-+				    unsigned int selector,
-+				    unsigned long *configs,
-+				    unsigned int num_configs)
-+{
-+	int i, ret;
-+	struct zynqmp_pinctrl *pctrl = pinctrl_dev_get_drvdata(pctldev);
-+	const struct zynqmp_pctrl_group *pgrp = &pctrl->groups[selector];
-+
-+	for (i = 0; i < pgrp->npins; i++) {
-+		ret = zynqmp_pinconf_cfg_set(pctldev, pgrp->pins[i], configs,
-+					     num_configs);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	return 0;
-+}
-+
-+static const struct pinconf_ops zynqmp_pinconf_ops = {
-+	.is_generic = true,
-+	.pin_config_get = zynqmp_pinconf_cfg_get,
-+	.pin_config_set = zynqmp_pinconf_cfg_set,
-+	.pin_config_group_set = zynqmp_pinconf_group_set,
-+};
-+
-+static struct pinctrl_desc zynqmp_desc = {
-+	.name = "zynqmp_pinctrl",
-+	.owner = THIS_MODULE,
-+	.pctlops = &zynqmp_pctrl_ops,
-+	.pmxops = &zynqmp_pinmux_ops,
-+	.confops = &zynqmp_pinconf_ops,
-+#ifdef CONFIG_DEBUG_FS
-+	.custom_conf_items = zynqmp_conf_items,
-+#endif
-+};
-+
-+/**
-+ * zynqmp_pinctrl_get_function_groups() - get groups for the function
-+ * @fid:	Function ID.
-+ * @index:	Group index.
-+ * @groups:	Groups data.
-+ *
-+ * Call firmware API to get groups for the given function.
-+ *
-+ * Return: 0 on success else error code.
-+ */
-+static int zynqmp_pinctrl_get_function_groups(u32 fid, u32 index, u16 *groups)
-+{
-+	struct zynqmp_pm_query_data qdata = {0};
-+	u32 ret_payload[PAYLOAD_ARG_CNT];
-+	int ret;
-+
-+	qdata.qid = PM_QID_PINCTRL_GET_FUNCTION_GROUPS;
-+	qdata.arg1 = fid;
-+	qdata.arg2 = index;
-+
-+	ret = zynqmp_pm_query_data(qdata, ret_payload);
-+	if (ret)
-+		return ret;
-+
-+	memcpy(groups, &ret_payload[1], PINCTRL_GET_FUNC_GROUPS_RESP_LEN);
-+
-+	return ret;
-+}
-+
-+/**
-+ * zynqmp_pinctrl_get_func_num_groups() - get number of groups in function
-+ * @fid:	Function ID.
-+ * @ngroups:	Number of groups in function.
-+ *
-+ * Call firmware API to get number of group in function.
-+ *
-+ * Return: 0 on success else error code.
-+ */
-+static int zynqmp_pinctrl_get_func_num_groups(u32 fid, unsigned int *ngroups)
-+{
-+	struct zynqmp_pm_query_data qdata = {0};
-+	u32 ret_payload[PAYLOAD_ARG_CNT];
-+	int ret;
-+
-+	qdata.qid = PM_QID_PINCTRL_GET_NUM_FUNCTION_GROUPS;
-+	qdata.arg1 = fid;
-+
-+	ret = zynqmp_pm_query_data(qdata, ret_payload);
-+	if (ret)
-+		return ret;
-+
-+	*ngroups = ret_payload[1];
-+
-+	return ret;
-+}
-+
-+/**
-+ * zynqmp_pinctrl_prepare_func_groups() - prepare function and groups data
-+ * @dev:	Device pointer.
-+ * @fid:	Function ID.
-+ * @func:	Function data.
-+ * @groups:	Groups data.
-+ *
-+ * Query firmware to get group IDs for each function. Firmware returns
-+ * group IDs. Based on gorup index for the function, group names in
-+ * function are stored. For example, first gorup in "eth0" function
-+ * is named as "eth0_0", second as "eth0_1" and so on.
-+ *
-+ * Based on group ID received from firmware, function stores name of
-+ * group for that group ID. For an example, if "eth0" first group ID
-+ * is x, groups[x] name will be stored as "eth0_0".
-+ *
-+ * Once done for each function, each function would have its group names,
-+ * and each groups would also have their names.
-+ *
-+ * Return: 0 on success else error code.
-+ */
-+static int zynqmp_pinctrl_prepare_func_groups(struct device *dev, u32 fid,
-+					      struct zynqmp_pmux_function *func,
-+					      struct zynqmp_pctrl_group *groups)
-+{
-+	u16 resp[NUM_GROUPS_PER_RESP] = {0};
-+	const char **fgroups;
-+	int ret = 0, index, i;
-+
-+	fgroups = devm_kzalloc(dev, sizeof(*fgroups) * func->ngroups,
-+			       GFP_KERNEL);
-+	if (!fgroups)
-+		return -ENOMEM;
-+
-+	for (index = 0; index < func->ngroups; index += NUM_GROUPS_PER_RESP) {
-+		ret = zynqmp_pinctrl_get_function_groups(fid, index, resp);
-+		if (ret)
-+			return ret;
-+
-+		for (i = 0; i < NUM_GROUPS_PER_RESP; i++) {
-+			if (resp[i] == (u16)NA_GROUP)
-+				goto done;
-+
-+			if (resp[i] == (u16)RESERVED_GROUP)
-+				continue;
-+
-+			fgroups[index + i] = devm_kasprintf(dev, GFP_KERNEL,
-+							    "%s_%d_grp",
-+							    func->name,
-+							    index + i);
-+			groups[resp[i]].name = devm_kasprintf(dev, GFP_KERNEL,
-+							      "%s_%d_grp",
-+							      func->name,
-+							      index + i);
-+		}
-+	}
-+done:
-+	func->groups = fgroups;
-+
-+	return ret;
-+}
-+
-+/**
-+ * zynqmp_pinctrl_get_function_name() - get function name
-+ * @fid:	Function ID.
-+ * @name:	Function name
-+ *
-+ * Call firmware API to get name of given function.
-+ *
-+ * Return: 0 on success else error code.
-+ */
-+static int zynqmp_pinctrl_get_function_name(u32 fid, char *name)
-+{
-+	struct zynqmp_pm_query_data qdata = {0};
-+	u32 ret_payload[PAYLOAD_ARG_CNT];
-+
-+	qdata.qid = PM_QID_PINCTRL_GET_FUNCTION_NAME;
-+	qdata.arg1 = fid;
-+
-+	zynqmp_pm_query_data(qdata, ret_payload);
-+	memcpy(name, ret_payload, PINCTRL_GET_FUNC_NAME_RESP_LEN);
-+
-+	return 0;
-+}
-+
-+/**
-+ * zynqmp_pinctrl_get_num_functions() - get number of supported functions
-+ * @nfuncs:	Number of functions.
-+ *
-+ * Call firmware API to get number of functions supported by system/board.
-+ *
-+ * Return: 0 on success else error code.
-+ */
-+static int zynqmp_pinctrl_get_num_functions(unsigned int *nfuncs)
-+{
-+	struct zynqmp_pm_query_data qdata = {0};
-+	u32 ret_payload[PAYLOAD_ARG_CNT];
-+	int ret;
-+
-+	qdata.qid = PM_QID_PINCTRL_GET_NUM_FUNCTIONS;
-+
-+	ret = zynqmp_pm_query_data(qdata, ret_payload);
-+	if (ret)
-+		return ret;
-+
-+	*nfuncs = ret_payload[1];
-+
-+	return ret;
-+}
-+
-+/**
-+ * zynqmp_pinctrl_get_pin_groups() - get groups for the pin
-+ * @pin:	Pin number.
-+ * @index:	Group index.
-+ * @groups:	Groups data.
-+ *
-+ * Call firmware API to get groups for the given pin.
-+ *
-+ * Return: 0 on success else error code.
-+ */
-+static int zynqmp_pinctrl_get_pin_groups(u32 pin, u32 index, u16 *groups)
-+{
-+	struct zynqmp_pm_query_data qdata = {0};
-+	u32 ret_payload[PAYLOAD_ARG_CNT];
-+	int ret;
-+
-+	qdata.qid = PM_QID_PINCTRL_GET_PIN_GROUPS;
-+	qdata.arg1 = pin;
-+	qdata.arg2 = index;
-+
-+	ret = zynqmp_pm_query_data(qdata, ret_payload);
-+	if (ret)
-+		return ret;
-+
-+	memcpy(groups, &ret_payload[1], PINCTRL_GET_PIN_GROUPS_RESP_LEN);
-+
-+	return ret;
-+}
-+
-+/**
-+ * zynqmp_pinctrl_group_add_pin() - add pin to given group
-+ * @group:	Group data.
-+ * @pin:	Pin number.
-+ *
-+ * Add pin number to respective group's pin array at end and
-+ * increment pin count for the group.
-+ *
-+ * Return: 0 on success else error code.
-+ */
-+static void zynqmp_pinctrl_group_add_pin(struct zynqmp_pctrl_group *group,
-+					 unsigned int pin)
-+{
-+	group->pins[group->npins++] = pin;
-+}
-+
-+/**
-+ * zynqmp_pinctrl_create_pin_groups() - assign pins to respective groups
-+ * @dev:	Device pointer.
-+ * @groups:	Groups data.
-+ * @pin:	Pin number.
-+ *
-+ * Query firmware to get groups available for the given pin.
-+ * Based on firmware response(group IDs for the pin), add
-+ * pin number to respective group's pin array.
-+ *
-+ * Once all pins are queries, each groups would have its number
-+ * of pins and pin numbers data.
-+ *
-+ * Return: 0 on success else error code.
-+ */
-+static int zynqmp_pinctrl_create_pin_groups(struct device *dev,
-+					    struct zynqmp_pctrl_group *groups,
-+					    unsigned int pin)
-+{
-+	int ret, i, index = 0;
-+	u16 resp[NUM_GROUPS_PER_RESP] = {0};
-+
-+	do {
-+		ret = zynqmp_pinctrl_get_pin_groups(pin, index, resp);
-+		if (ret)
-+			return ret;
-+
-+		for (i = 0; i < NUM_GROUPS_PER_RESP; i++) {
-+			if (resp[i] == (u16)NA_GROUP)
-+				return ret;
-+
-+			if (resp[i] == (u16)RESERVED_GROUP)
-+				continue;
-+
-+			zynqmp_pinctrl_group_add_pin(&groups[resp[i]], pin);
-+		}
-+		index += NUM_GROUPS_PER_RESP;
-+	} while (1);
-+
-+	return ret;
-+}
-+
-+/**
-+ * zynqmp_pinctrl_prepare_group_pins() - prepare each group's pin data
-+ * @dev:	Device pointer.
-+ * @groups:	Groups data.
-+ * @ngroups:	Number of groups.
-+ *
-+ * Prepare pin number and number of pins data for each pins.
-+ *
-+ * Return: 0 on success else error code.
-+ */
-+static int zynqmp_pinctrl_prepare_group_pins(struct device *dev,
-+					     struct zynqmp_pctrl_group *groups,
-+					     unsigned int ngroups)
-+{
-+	unsigned int pin;
-+	int ret = 0;
-+
-+	for (pin = 0; pin < zynqmp_desc.npins; pin++) {
-+		ret = zynqmp_pinctrl_create_pin_groups(dev, groups, pin);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	return ret;
-+}
-+
-+/**
-+ * zynqmp_pinctrl_prepare_function_info() - prepare function info
-+ * @dev:	Device pointer.
-+ * @pctrl:	Pin control driver data.
-+ *
-+ * Query firmware for functions, groups and pin information and
-+ * prepare pin control driver data.
-+ *
-+ * Query number of functions and number of function groups (number
-+ * of groups in given function) to allocate required memory buffers
-+ * for functions and groups. Once buffers are allocated to store
-+ * functions and groups data, query and store required information
-+ * (numbe of groups and group names for each function, number of
-+ * pins and pin numbers for each group).
-+ *
-+ * Return: 0 on success else error code.
-+ */
-+static int zynqmp_pinctrl_prepare_function_info(struct device *dev,
-+						struct zynqmp_pinctrl *pctrl)
-+{
-+	struct zynqmp_pmux_function *funcs;
-+	struct zynqmp_pctrl_group *groups;
-+	int ret, i;
-+
-+	ret = zynqmp_pinctrl_get_num_functions(&pctrl->nfuncs);
-+	if (ret)
-+		return ret;
-+
-+	funcs = devm_kzalloc(dev, sizeof(*funcs) * pctrl->nfuncs, GFP_KERNEL);
-+	if (!funcs)
-+		return -ENOMEM;
-+
-+	for (i = 0; i < pctrl->nfuncs; i++) {
-+		zynqmp_pinctrl_get_function_name(i, funcs[i].name);
-+
-+		ret = zynqmp_pinctrl_get_func_num_groups(i, &funcs[i].ngroups);
-+		if (ret)
-+			return ret;
-+
-+		pctrl->ngroups += funcs[i].ngroups;
-+	}
-+
-+	groups = devm_kzalloc(dev, sizeof(*groups) * pctrl->ngroups,
-+			      GFP_KERNEL);
-+	if (!groups)
-+		return -ENOMEM;
-+
-+	for (i = 0; i < pctrl->nfuncs; i++) {
-+		ret = zynqmp_pinctrl_prepare_func_groups(dev, i, &funcs[i],
-+							 groups);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	ret = zynqmp_pinctrl_prepare_group_pins(dev, groups, pctrl->ngroups);
-+	if (ret)
-+		return ret;
-+
-+	pctrl->funcs = funcs;
-+	pctrl->groups = groups;
-+
-+	return ret;
-+}
-+
-+/**
-+ * zynqmp_pinctrl_get_num_pins() - get number of pins in system
-+ * @npins:	Number of pins in system/board.
-+ *
-+ * Call firmware API to get number of pins.
-+ *
-+ * Return: 0 on success else error code.
-+ */
-+static int zynqmp_pinctrl_get_num_pins(unsigned int *npins)
-+{
-+	struct zynqmp_pm_query_data qdata = {0};
-+	u32 ret_payload[PAYLOAD_ARG_CNT];
-+	int ret;
-+
-+	qdata.qid = PM_QID_PINCTRL_GET_NUM_PINS;
-+
-+	ret = zynqmp_pm_query_data(qdata, ret_payload);
-+	if (ret)
-+		return ret;
-+
-+	*npins = ret_payload[1];
-+
-+	return ret;
-+}
-+
-+/**
-+ * zynqmp_pinctrl_prepare_pin_desc() - prepare pin description info
-+ * @dev:		Device pointer.
-+ * @zynqmp_pins:	Pin information.
-+ * @npins:		Number of pins.
-+ *
-+ * Query number of pins information from firmware and prepare pin
-+ * description containing pin number and pin name.
-+ *
-+ * Return: 0 on success else error code.
-+ */
-+static int zynqmp_pinctrl_prepare_pin_desc(struct device *dev,
-+					   const struct pinctrl_pin_desc
-+					   **zynqmp_pins,
-+					   unsigned int *npins)
-+{
-+	struct pinctrl_pin_desc *pins, *pin;
-+	int ret;
-+	int i;
-+
-+	ret = zynqmp_pinctrl_get_num_pins(npins);
-+	if (ret)
-+		return ret;
-+
-+	pins = devm_kzalloc(dev, sizeof(*pins) * *npins, GFP_KERNEL);
-+	if (!pins)
-+		return -ENOMEM;
-+
-+	for (i = 0; i < *npins; i++) {
-+		pin = &pins[i];
-+		pin->number = i;
-+		pin->name = devm_kasprintf(dev, GFP_KERNEL, "%s%d",
-+					   ZYNQMP_PIN_PREFIX, i);
-+	}
-+
-+	*zynqmp_pins = pins;
-+
-+	return 0;
-+}
-+
-+static int zynqmp_pinctrl_probe(struct platform_device *pdev)
-+{
-+	struct zynqmp_pinctrl *pctrl;
-+	int ret;
-+
-+	pctrl = devm_kzalloc(&pdev->dev, sizeof(*pctrl), GFP_KERNEL);
-+	if (!pctrl)
-+		return -ENOMEM;
-+
-+	ret = zynqmp_pinctrl_prepare_pin_desc(&pdev->dev,
-+					      &zynqmp_desc.pins,
-+					      &zynqmp_desc.npins);
-+	if (ret) {
-+		dev_err(&pdev->dev, "%s() pin desc prepare fail with %d\n",
-+			__func__, ret);
-+		return ret;
-+	}
-+
-+	ret = zynqmp_pinctrl_prepare_function_info(&pdev->dev, pctrl);
-+	if (ret) {
-+		dev_err(&pdev->dev, "%s() function info prepare fail with %d\n",
-+			__func__, ret);
-+		return ret;
-+	}
-+
-+	pctrl->pctrl = pinctrl_register(&zynqmp_desc, &pdev->dev, pctrl);
-+	if (IS_ERR(pctrl->pctrl)) {
-+		ret = PTR_ERR(pctrl->pctrl);
-+		return ret;
-+	}
-+
-+	platform_set_drvdata(pdev, pctrl);
-+
-+	dev_info(&pdev->dev, "zynqmp pinctrl initialized\n");
-+
-+	return ret;
-+}
-+
-+static const struct of_device_id zynqmp_pinctrl_of_match[] = {
-+	{ .compatible = "xlnx,zynqmp-pinctrl" },
-+	{ }
-+};
-+
-+static struct platform_driver zynqmp_pinctrl_driver = {
-+	.driver = {
-+		.name = "zynqmp-pinctrl",
-+		.of_match_table = zynqmp_pinctrl_of_match,
-+	},
-+	.probe = zynqmp_pinctrl_probe,
-+};
-+builtin_platform_driver(zynqmp_pinctrl_driver);
--- 
-2.17.1
+On 12/9/20 1:53 AM, Mathieu Poirier wrote:
+> On Tue, Dec 08, 2020 at 07:35:18PM +0100, Arnaud POULIQUEN wrote:
+>> Hi Mathieu,
+>>
+>>
+>> On 11/26/20 10:06 PM, Mathieu Poirier wrote:
+>>> Introduce function rproc_detach() to enable the remoteproc
+>>> core to release the resources associated with a remote processor
+>>> without stopping its operation.
+>>>
+>>> Signed-off-by: Mathieu Poirier <mathieu.poirier@linaro.org>
+>>> Reviewed-by: Peng Fan <peng.fan@nxp.com>
+>>> ---
+>>>  drivers/remoteproc/remoteproc_core.c | 65 +++++++++++++++++++++++++++-
+>>>  include/linux/remoteproc.h           |  1 +
+>>>  2 files changed, 65 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git a/drivers/remoteproc/remoteproc_core.c b/drivers/remoteproc/remoteproc_core.c
+>>> index 928b3f975798..f5adf05762e9 100644
+>>> --- a/drivers/remoteproc/remoteproc_core.c
+>>> +++ b/drivers/remoteproc/remoteproc_core.c
+>>> @@ -1667,7 +1667,7 @@ static int rproc_stop(struct rproc *rproc, bool crashed)
+>>>  /*
+>>>   * __rproc_detach(): Does the opposite of rproc_attach()
+>>>   */
+>>> -static int __maybe_unused __rproc_detach(struct rproc *rproc)
+>>> +static int __rproc_detach(struct rproc *rproc)
+>>>  {
+>>>  	struct device *dev = &rproc->dev;
+>>>  	int ret;
+>>> @@ -1910,6 +1910,69 @@ void rproc_shutdown(struct rproc *rproc)
+>>>  }
+>>>  EXPORT_SYMBOL(rproc_shutdown);
+>>>  
+>>> +/**
+>>> + * rproc_detach() - Detach the remote processor from the
+>>> + * remoteproc core
+>>> + *
+>>> + * @rproc: the remote processor
+>>> + *
+>>> + * Detach a remote processor (previously attached to with rproc_actuate()).
+>>> + *
+>>> + * In case @rproc is still being used by an additional user(s), then
+>>> + * this function will just decrement the power refcount and exit,
+>>> + * without disconnecting the device.
+>>> + *
+>>> + * Function rproc_detach() calls __rproc_detach() in order to let a remote
+>>> + * processor know that services provided by the application processor are
+>>> + * no longer available.  From there it should be possible to remove the
+>>> + * platform driver and even power cycle the application processor (if the HW
+>>> + * supports it) without needing to switch off the remote processor.
+>>> + */
+>>> +int rproc_detach(struct rproc *rproc)
+>>> +{
+>>> +	struct device *dev = &rproc->dev;
+>>> +	int ret;
+>>> +
+>>> +	ret = mutex_lock_interruptible(&rproc->lock);
+>>> +	if (ret) {
+>>> +		dev_err(dev, "can't lock rproc %s: %d\n", rproc->name, ret);
+>>> +		return ret;
+>>> +	}
+>>> +
+>>> +	if (rproc->state != RPROC_RUNNING && rproc->state != RPROC_ATTACHED) {
+>>> +		ret = -EPERM;
+>>> +		goto out;
+>>> +	}
+>>> +
+>>> +	/* if the remote proc is still needed, bail out */
+>>> +	if (!atomic_dec_and_test(&rproc->power)) {
+>>> +		ret = -EBUSY;
+>>> +		goto out;
+>>> +	}
+>>> +
+>>> +	ret = __rproc_detach(rproc);
+>>> +	if (ret) {
+>>> +		atomic_inc(&rproc->power);
+>>> +		goto out;
+>>> +	}
+>>> +
+>>> +	/* clean up all acquired resources */
+>>> +	rproc_resource_cleanup(rproc);
+>>
+>> I started to test the series, I found 2 problems testing in STM32P1 board.
+>>
+>> 1) the resource_table pointer is unmapped if the firmware has been booted by the
+>> Linux, generating a crash in rproc_free_vring.
+>> I attached a fix at the end of the mail.
+>>
+> 
+> I have reproduced the condition on my side and confirm that your solution is
+> correct.  See below for a minor comment. 
+> 
+>> 2) After the detach, the rproc state is "detached"
+>> but it is no longer possible to re-attach to it correctly.
+>> Neither if the firmware is standalone, nor if it has been booted
+>> by the Linux.
+>>
+> 
+> Did you update your FW image?  If so, I need to run the same one.
+> 
+>> I did not investigate, but the issue is probably linked to the resource
+>> table address which is set to NULL.
+>>
+>> So we either have to fix the problem in order to attach or forbid the transition.
+>>
+>>
+>> Regards,
+>> Arnaud
+>>
+>>> +
+>>> +	rproc_disable_iommu(rproc);
+>>> +
+>>> +	/*
+>>> +	 * Set the remote processor's table pointer to NULL.  Since mapping
+>>> +	 * of the resource table to a virtual address is done in the platform
+>>> +	 * driver, unmapping should also be done there.
+>>> +	 */
+>>> +	rproc->table_ptr = NULL;
+>>> +out:
+>>> +	mutex_unlock(&rproc->lock);
+>>> +	return ret;
+>>> +}
+>>> +EXPORT_SYMBOL(rproc_detach);
+>>> +
+>>>  /**
+>>>   * rproc_get_by_phandle() - find a remote processor by phandle
+>>>   * @phandle: phandle to the rproc
+>>> diff --git a/include/linux/remoteproc.h b/include/linux/remoteproc.h
+>>> index da15b77583d3..329c1c071dcf 100644
+>>> --- a/include/linux/remoteproc.h
+>>> +++ b/include/linux/remoteproc.h
+>>> @@ -656,6 +656,7 @@ rproc_of_resm_mem_entry_init(struct device *dev, u32 of_resm_idx, size_t len,
+>>>  
+>>>  int rproc_boot(struct rproc *rproc);
+>>>  void rproc_shutdown(struct rproc *rproc);
+>>> +int rproc_detach(struct rproc *rproc);
+>>>  int rproc_set_firmware(struct rproc *rproc, const char *fw_name);
+>>>  void rproc_report_crash(struct rproc *rproc, enum rproc_crash_type type);
+>>>  int rproc_coredump_add_segment(struct rproc *rproc, dma_addr_t da, size_t size);
+>>>
+>>
+>> From: Arnaud Pouliquen <arnaud.pouliquen@foss-st.com>
+>> Date: Tue, 8 Dec 2020 18:54:51 +0100
+>> Subject: [PATCH] remoteproc: core: fix detach for unmapped table_ptr
+>>
+>> If the firmware has been loaded and started by the kernel, the
+>> resource table has probably been mapped by the carveout allocation
+>> (see rproc_elf_find_loaded_rsc_table).
+>> In this case the memory can have been unmapped before the vrings are free.
+>> The result is a crash that occurs in rproc_free_vring while try to use the
+>> unmapped pointer.
+>>
+>> Signed-off-by: Arnaud Pouliquen <arnaud.pouliquen@foss-st.com>
+>> ---
+>>  drivers/remoteproc/remoteproc_core.c | 17 ++++++++++++++---
+>>  1 file changed, 14 insertions(+), 3 deletions(-)
+>>
+>> diff --git a/drivers/remoteproc/remoteproc_core.c
+>> b/drivers/remoteproc/remoteproc_core.c
+>> index 2b0a52fb3398..3508ffba4a2a 100644
+>> --- a/drivers/remoteproc/remoteproc_core.c
+>> +++ b/drivers/remoteproc/remoteproc_core.c
+>> @@ -1964,6 +1964,13 @@ int rproc_detach(struct rproc *rproc)
+>>  		goto out;
+>>  	}
+>>
+>> +	/*
+>> +	 * Prevent case that the installed resource table is no longer
+>> +	 * accessible (e.g. memory unmapped), use the cache if available
+>> +	 */
+>> +	if (rproc->cached_table)
+>> +		rproc->table_ptr = rproc->cached_table;
+> 
+> I don't think there is an explicit need to check ->cached_table.  If the remote
+> processor has been started by the remoteproc core it is valid anyway.  And below
+> kfree() is called invariably. 
 
+The condition is needed, the  rproc->cached_table is null if the firmware as
+been preloaded and the Linux remote proc just attaches to it.
+The cached is used only when Linux loads the firmware, as the resource table is
+extracted from the elf file to parse resource before the load of the firmware.
+
+> 
+> So that problem is fixed.  Let me know about your FW image and we'll pick it up
+> from there.
+
+I use the following example available on the stm32mp1 image:
+/usr/local/Cube-M4-examples/STM32MP157C-DK2/Applications/OpenAMP/OpenAMP_TTY_echo_wakeup/lib/firmware/
+This exemple use the RPMsg and also blink a LED when while running.
+
+Don't hesitate if you need me to send it to you by mail.
+
+Thank,
+Arnaud
+
+> 
+> Mathieu
+> 
+>> +
+>>  	ret = __rproc_detach(rproc);
+>>  	if (ret) {
+>>  		atomic_inc(&rproc->power);
+>> @@ -1975,10 +1982,14 @@ int rproc_detach(struct rproc *rproc)
+>>
+>>  	rproc_disable_iommu(rproc);
+>>
+>> +	/* Free the chached table memory that can has been allocated*/
+>> +	kfree(rproc->cached_table);
+>> +	rproc->cached_table = NULL;
+>>  	/*
+>> -	 * Set the remote processor's table pointer to NULL.  Since mapping
+>> -	 * of the resource table to a virtual address is done in the platform
+>> -	 * driver, unmapping should also be done there.
+>> +	 * Set the remote processor's table pointer to NULL. If mapping
+>> +	 * of the resource table to a virtual address has been done in the
+>> +	 * platform driver(attachment to an existing firmware),
+>> +	 * unmapping should also be done there.
+>>  	 */
+>>  	rproc->table_ptr = NULL;
+>>  out:
+>> -- 
+>> 2.17.1
+>>
+>>
+>>
