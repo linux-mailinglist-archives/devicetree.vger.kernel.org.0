@@ -2,95 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A59282D48B5
-	for <lists+devicetree@lfdr.de>; Wed,  9 Dec 2020 19:16:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F0B62D48CB
+	for <lists+devicetree@lfdr.de>; Wed,  9 Dec 2020 19:19:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732349AbgLISPj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Dec 2020 13:15:39 -0500
-Received: from mail.kernel.org ([198.145.29.99]:58714 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731866AbgLISPj (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 9 Dec 2020 13:15:39 -0500
-Date:   Wed, 9 Dec 2020 19:16:14 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1607537698;
-        bh=Awgb97eqMBhLF2z692oQRlyuDrGF+9hPTYxSsdle5bA=;
-        h=From:To:Cc:Subject:References:In-Reply-To:From;
-        b=b0PaQLP6use6Dz/Xo4q+WevXeigi0daf/C/knM3UQ5XhYuOFNjPo8xFgM2DSu3cZx
-         GCMLSFEf1C/ASc63Chak8CwVO/V80jSRzdqDe2wZUWf1EXG17XlAx87NKAchGuL/20
-         XWG80R7mN+rWEbVOJytVmM5Khg4lTm2Vb/LYAt7Q=
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Saravana Kannan <saravanak@google.com>
-Cc:     "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Len Brown <lenb@kernel.org>, Ard Biesheuvel <ardb@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Tomi Valkeinen <tomi.valkeinen@ti.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        kernel-team@android.com, linux-acpi@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-efi@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 00/17] Refactor fw_devlink to significantly improve
- boot time
-Message-ID: <X9EUbji0tILG6PvX@kroah.com>
-References: <20201121020232.908850-1-saravanak@google.com>
+        id S1729882AbgLISSW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Dec 2020 13:18:22 -0500
+Received: from mail-oi1-f196.google.com ([209.85.167.196]:39825 "EHLO
+        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726449AbgLISSW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Dec 2020 13:18:22 -0500
+Received: by mail-oi1-f196.google.com with SMTP id v85so2706919oia.6;
+        Wed, 09 Dec 2020 10:18:06 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=t0IEJ9Kjkjr6WBfSG3+TpVJkzpjFITDdJoH/Uozbldk=;
+        b=kwj4GfkiI4F74d7l9N0sFkZbHuVOLKcVlOwQgRAsuXsuPWW6sGolj5CLiP1uCDjWbY
+         aNJ+ggq6TxWD01qyfwPyVXpZvOhH1LXT5lLfVJp6/v+88EboXMBKCqGIHEiJ1e/tmbpI
+         zO0UkrdBakm9GH/Qpy2JtT7C+0wGf53q0JEsGSpOVieCiCbyDoZHHT1NOK//OMcXya/M
+         1yz1rkuFH4Wjz9kDHMgD55mr6bNCYaE577LO5O76mR5nODEn2q0r8slR7BpxV6HHixem
+         LXyv+53d74BvaxUsakM6N6umpenb9OmbVVCe0W8jtnQJfygFOBD7opfzMMJ+4sBbnQ5+
+         0k0g==
+X-Gm-Message-State: AOAM530IP6mdLmXFul+KzJgkkGwnV6Sfuue0Erp/kA4oRsejZZGmDLk6
+        SLlW9njjmS0jwXRsui/z9w==
+X-Google-Smtp-Source: ABdhPJxugqkrL7F4hfvf+E6P2ob2gJ/QKFOkVn9KHpzkM7jSWsKeI0C3NueoVWpO1P/KGk1kN+r9iA==
+X-Received: by 2002:aca:f3d6:: with SMTP id r205mr2727621oih.152.1607537861591;
+        Wed, 09 Dec 2020 10:17:41 -0800 (PST)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id k5sm455334oot.30.2020.12.09.10.17.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 09 Dec 2020 10:17:40 -0800 (PST)
+Received: (nullmailer pid 708174 invoked by uid 1000);
+        Wed, 09 Dec 2020 18:17:39 -0000
+Date:   Wed, 9 Dec 2020 12:17:39 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Stephan Gerhold <stephan@gerhold.net>
+Cc:     Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH] dt-bindings: iio: accel: bma255: Fix bmc150/bmi055
+ compatible
+Message-ID: <20201209181739.GA708144@robh.at.kernel.org>
+References: <20201202083551.7753-1-stephan@gerhold.net>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201121020232.908850-1-saravanak@google.com>
+In-Reply-To: <20201202083551.7753-1-stephan@gerhold.net>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 20, 2020 at 06:02:15PM -0800, Saravana Kannan wrote:
-> The current implementation of fw_devlink is very inefficient because it
-> tries to get away without creating fwnode links in the name of saving
-> memory usage. Past attempts to optimize runtime at the cost of memory
-> usage were blocked with request for data showing that the optimization
-> made significant improvement for real world scenarios.
+On Wed, 02 Dec 2020 09:35:51 +0100, Stephan Gerhold wrote:
+> The bmc150-accel-i2c.c driver has an "_accel" suffix for the
+> compatibles of BMC150 and BMI055. This is necessary because BMC150
+> contains both accelerometer (bosch,bmc150_accel) and magnetometer
+> (bosch,bmc150_magn) and therefore "bosch,bmc150" would be ambiguous.
 > 
-> We have those scenarios now. There have been several reports of boot
-> time increase in the order of seconds in this thread [1]. Several OEMs
-> and SoC manufacturers have also privately reported significant
-> (350-400ms) increase in boot time due to all the parsing done by
-> fw_devlink.
+> However, the binding documentation suggests using "bosch,bmc150".
+> Add the "_accel" suffix for BMC150 and BMI055 so the binding docs
+> match what is expected by the driver.
 > 
-> So this patch series refactors fw_devlink to be more efficient. The key
-> difference now is the addition of support for fwnode links -- just a few
-> simple APIs. This also allows most of the code to be moved out of
-> firmware specific (DT mostly) code into driver core.
+> Cc: Linus Walleij <linus.walleij@linaro.org>
+> Fixes: 496a39526fce8 ("iio: accel: bmc150-accel: Add DT bindings")
+> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
+> ---
+>  Documentation/devicetree/bindings/iio/accel/bosch,bma255.yaml | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 > 
-> This brings the following benefits:
-> - Instead of parsing the device tree multiple times (complexity was
->   close to O(N^3) where N in the number of properties) during bootup,
->   fw_devlink parses each fwnode node/property only once and creates
->   fwnode links. The rest of the fw_devlink code then just looks at these
->   fwnode links to do rest of the work.
-> 
-> - Makes it much easier to debug probe issue due to fw_devlink in the
->   future. fw_devlink=on blocks the probing of devices if they depend on
->   a device that hasn't been added yet. With this refactor, it'll be very
->   easy to tell what that device is because we now have a reference to
->   the fwnode of the device.
-> 
-> - Much easier to add fw_devlink support to ACPI and other firmware
->   types. A refactor to move the common bits from DT specific code to
->   driver core was in my TODO list as a prerequisite to adding ACPI
->   support to fw_devlink. This series gets that done.
-> 
-> Laurent and Grygorii tested the v1 series and they saw boot time
-> improvment of about 12 seconds and 3 seconds, respectively.
 
-Now queued up to my tree.  Note, I had to hand-apply patches 13 and 16
-due to some reason (for 13, I have no idea, for 16 it was due to a
-previous patch applied to my tree that I cc:ed you on.)
-
-Verifying I got it all correct would be great :)
-
-thanks,
-
-greg k-h
+Reviewed-by: Rob Herring <robh@kernel.org>
