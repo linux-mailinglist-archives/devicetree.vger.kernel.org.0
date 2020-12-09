@@ -2,89 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EB7C22D4A6C
-	for <lists+devicetree@lfdr.de>; Wed,  9 Dec 2020 20:37:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B7542D4A8C
+	for <lists+devicetree@lfdr.de>; Wed,  9 Dec 2020 20:39:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729309AbgLITfi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Dec 2020 14:35:38 -0500
-Received: from mail-oi1-f195.google.com ([209.85.167.195]:44314 "EHLO
-        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728311AbgLITfg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Dec 2020 14:35:36 -0500
-Received: by mail-oi1-f195.google.com with SMTP id d189so2945756oig.11;
-        Wed, 09 Dec 2020 11:35:20 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=RU5yctnzYeNVxzZwWCnH+ltBDI3DWm+U/FWQam3xCNA=;
-        b=ZkHpm+7rUNQrNLF68bqYeFVBz2aY3wGgND9HB59/9Gm38eDwoil19/KrXtvLGlNePH
-         aOBt3uls/BKletg8IvaTttwEmwexL6KU+c1nEvClasZr1Dspsk6RDctBuDnf3gr63/Lg
-         KLeGFukv+U3Kt3JgW4xLfDIL02QQRIpuVG+nD8WUfoM3asAF2GmfsPd921A9tcUQd8W3
-         JfmcSStRrTzUyBwcfYLUzmccnQvDAYD7a/VZkWRJqfqFzB/icCPh+Erw2+C2eNr/UWF4
-         sNzvl8CK10NUq/hRPlBv6zOdOFcUy+OHf+bE9D6khdgvltntz4d/blKqTb2bnpjxPMXF
-         rijA==
-X-Gm-Message-State: AOAM533JX6WbZ33CbBYzdxCO1cVkrGwSs72AJ3r4u9FOWaS2wrLS0k9q
-        jrT1CviMiXg1xQdTJn/EEg==
-X-Google-Smtp-Source: ABdhPJz0Jyha2RK/z+ELIcnxxEQ3d0izZ2dHAsyKzikNSYaFJ6BFQsOI5ZtHAe4cdW6u/9EMAxOVUA==
-X-Received: by 2002:aca:d06:: with SMTP id 6mr3024679oin.13.1607542495212;
-        Wed, 09 Dec 2020 11:34:55 -0800 (PST)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id t19sm618802otp.36.2020.12.09.11.34.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Dec 2020 11:34:54 -0800 (PST)
-Received: (nullmailer pid 810040 invoked by uid 1000);
-        Wed, 09 Dec 2020 19:34:53 -0000
-Date:   Wed, 9 Dec 2020 13:34:53 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Aswath Govindraju <a-govindraju@ti.com>
-Cc:     Sekhar Nori <nsekhar@ti.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Roger Quadros <rogerq@ti.com>, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: usb: Add new compatible string for AM64 SoC
-Message-ID: <20201209193417.GB807821@robh.at.kernel.org>
-References: <20201209165733.8204-1-a-govindraju@ti.com>
- <20201209165733.8204-2-a-govindraju@ti.com>
+        id S2387805AbgLITiN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Dec 2020 14:38:13 -0500
+Received: from mail.kernel.org ([198.145.29.99]:40912 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2387803AbgLITiK (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 9 Dec 2020 14:38:10 -0500
+Date:   Wed, 9 Dec 2020 11:37:27 -0800
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1607542649;
+        bh=6Us6fY/6rkYgkZHdQt/DFMvdhHWAXIdbJPZtbrUcdjU=;
+        h=From:To:Cc:Subject:In-Reply-To:References:From;
+        b=PhJMBnLltgKtJSzXrachkqadwU9+zvyq4Vpgai8lqsTNnn2OcjTP5liuyMnfBLd0A
+         lsqW03huClsWzfjOKDvG1LHRxlnDyybblLkhgycOLCyADiowk/Reoi8oJ/brH6NqG6
+         tGUjwAxZ41+k4M6BIkUwXw/7B7Rltgn4/ylAFUiI6WrxMRt5A+mCqYhJUpY74ts6L8
+         GhWbKoGuS4d98gvIzgGJN17pO3yNbEs7zDd3vs/f9dt3rJ9t3DLnmIDVww6f/ci7fu
+         WZYa30f5y6oS20as4ict2OEECGMXNOICBCzUeAfFrWfZW2v/zjqHs40CYLKCpfF1uh
+         7e/1DA4LutTvA==
+From:   Jakub Kicinski <kuba@kernel.org>
+To:     Pavana Sharma <pavana.sharma@digi.com>
+Cc:     andrew@lunn.ch, ashkan.boldaji@digi.com,
+        clang-built-linux@googlegroups.com, davem@davemloft.net,
+        devicetree@vger.kernel.org, f.fainelli@gmail.com,
+        gregkh@linuxfoundation.org, kbuild-all@lists.01.org,
+        linux-kernel@vger.kernel.org, lkp@intel.com, marek.behun@nic.cz,
+        netdev@vger.kernel.org, robh+dt@kernel.org,
+        vivien.didelot@gmail.com
+Subject: Re: [PATCH v11 0/4] Add support for mv88e6393x family of Marvell
+Message-ID: <20201209113727.1b4bd319@kicinski-fedora-pc1c0hjn.DHCP.thefacebook.com>
+In-Reply-To: <cover.1607488953.git.pavana.sharma@digi.com>
+References: <20201120015436.GC1804098@lunn.ch>
+        <cover.1607488953.git.pavana.sharma@digi.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201209165733.8204-2-a-govindraju@ti.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 09, 2020 at 10:27:32PM +0530, Aswath Govindraju wrote:
-> Add compatible string in j721e-usb binding file as similar USB subsystem
-> is present in AM64.
-> 
-> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
-> Acked-by: Roger Quadros <rogerq@ti.com>
-> ---
->  Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml | 7 +++++--
->  1 file changed, 5 insertions(+), 2 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml b/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml
-> index 388245b91a55..05d976bb06d0 100644
-> --- a/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml
-> +++ b/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml
-> @@ -11,8 +11,11 @@ maintainers:
->  
->  properties:
->    compatible:
-> -    items:
-> -      - const: ti,j721e-usb
-> +    anyOf:
-> +      - items:
-> +	  - const: ti,j721e-usb
-> +      - items:
-> +	  - const: ti,am64-usb
+On Wed,  9 Dec 2020 15:02:54 +1000 Pavana Sharma wrote:
+> Updated patchset after incorporating feedback.
 
-Use 'enum'.
-
->  
->    reg:
->      description: module registers
-> -- 
-> 2.17.1
-> 
+This set does not apply to net-next. Please rebase.
