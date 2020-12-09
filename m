@@ -2,131 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 257BE2D3E6D
-	for <lists+devicetree@lfdr.de>; Wed,  9 Dec 2020 10:20:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 94FAB2D3EDF
+	for <lists+devicetree@lfdr.de>; Wed,  9 Dec 2020 10:35:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728446AbgLIJTU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Dec 2020 04:19:20 -0500
-Received: from foss.arm.com ([217.140.110.172]:59866 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728916AbgLIJTS (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 9 Dec 2020 04:19:18 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id EE5AF1FB;
-        Wed,  9 Dec 2020 01:18:31 -0800 (PST)
-Received: from [10.57.54.135] (unknown [10.57.54.135])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id CF69D3F718;
-        Wed,  9 Dec 2020 01:18:29 -0800 (PST)
-Subject: Re: [PATCH v4 3/4] scmi-cpufreq: get opp_shared_cpus from opp-v2 for
- EM
-To:     Viresh Kumar <viresh.kumar@linaro.org>,
-        Sudeep Holla <sudeep.holla@arm.com>
-Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        rjw@rjwysocki.net, vireshk@kernel.org, robh+dt@kernel.org,
-        sboyd@kernel.org, nm@ti.com, daniel.lezcano@linaro.org,
-        morten.rasmussen@arm.com, chris.redpath@arm.com
-References: <20201202172356.10508-1-nicola.mazzucato@arm.com>
- <20201202172356.10508-4-nicola.mazzucato@arm.com>
- <20201208055053.kggxw26kxtnpneua@vireshk-i7>
- <0e4d3134-f9b2-31fa-b454-fb30265a80b5@arm.com>
- <20201208072611.ptsqupv4y2wybs6p@vireshk-i7>
- <20201208112008.niesjrunxq2jz3kt@bogus>
- <20201209054502.ajomw6glcxx5hue2@vireshk-i7>
-From:   Nicola Mazzucato <nicola.mazzucato@arm.com>
-Message-ID: <a70cfb32-1a5f-d12f-f466-321d60e58204@arm.com>
-Date:   Wed, 9 Dec 2020 09:20:33 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.8.0
+        id S1729351AbgLIJdu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Dec 2020 04:33:50 -0500
+Received: from mailgw01.mediatek.com ([210.61.82.183]:35099 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1729348AbgLIJdu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Dec 2020 04:33:50 -0500
+X-UUID: 4e3b990a58da426da76354978a0be1ae-20201209
+X-UUID: 4e3b990a58da426da76354978a0be1ae-20201209
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
+        (envelope-from <yongqiang.niu@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1973133973; Wed, 09 Dec 2020 17:33:03 +0800
+Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
+ mtkmbs05n2.mediatek.inc (172.21.101.140) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Wed, 9 Dec 2020 17:33:02 +0800
+Received: from localhost.localdomain (10.17.3.153) by MTKCAS06.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 9 Dec 2020 17:33:02 +0800
+From:   Yongqiang Niu <yongqiang.niu@mediatek.com>
+To:     CK Hu <ck.hu@mediatek.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+CC:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Mark Rutland <mark.rutland@arm.com>,
+        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        Yongqiang Niu <yongqiang.niu@mediatek.com>
+Subject: [PATCH v2, 0/2] soc: mediatek: Prepare MMSYS for DDP routing using function call
+Date:   Wed, 9 Dec 2020 17:32:57 +0800
+Message-ID: <1607506379-10998-1-git-send-email-yongqiang.niu@mediatek.com>
+X-Mailer: git-send-email 1.8.1.1.dirty
 MIME-Version: 1.0
-In-Reply-To: <20201209054502.ajomw6glcxx5hue2@vireshk-i7>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi both,
+The following series are intended to prepare the mtk-mmsys driver to
+allow different DDP (Data Display Path) function call per SoC.
 
-thanks for looking into this.
+base change:
+https://patchwork.kernel.org/project/linux-mediatek/patch/20201006193320.405529-4-enric.balletbo@collabora.com/
 
-On 12/9/20 5:45 AM, Viresh Kumar wrote:
-> On 08-12-20, 11:20, Sudeep Holla wrote:
->> It is because of per-CPU vs per domain drama here. Imagine a system with
->> 4 CPUs which the firmware puts in individual domains while they all are
->> in the same perf domain and hence OPP is marked shared in DT.
->>
->> Since this probe gets called for all the cpus, we need to skip adding
->> OPPs for the last 3(add only for 1st one and mark others as shared).
-> 
-> Okay and this wasn't happening before this series because the firmware
-> was only returning the current CPU from scmi_get_sharing_cpus() ?
 
-yes
+Yongqiang Niu (2):
+  soc: mediatek: mmsys: create mmsys folder
+  soc: mediatek: mmsys: Use function call for setting the routing
+    registers
 
-> 
-> Is this driver also used for the cases where we have multiple CPUs in
-> a policy ? Otherwise we won't be required to call
-> dev_pm_opp_set_sharing_cpus().
-> 
-> So I assume that we want to support both the cases here ?
+ drivers/soc/mediatek/Makefile             |   2 +-
+ drivers/soc/mediatek/mmsys/Makefile       |   3 +
+ drivers/soc/mediatek/mmsys/mt2701-mmsys.c | 233 ++++++++++++++++++
+ drivers/soc/mediatek/mmsys/mtk-mmsys.c    | 177 ++++++++++++++
+ drivers/soc/mediatek/mtk-mmsys.c          | 380 ------------------------------
+ include/linux/soc/mediatek/mtk-mmsys.h    |  14 ++
+ 6 files changed, 428 insertions(+), 381 deletions(-)
+ create mode 100644 drivers/soc/mediatek/mmsys/Makefile
+ create mode 100644 drivers/soc/mediatek/mmsys/mt2701-mmsys.c
+ create mode 100644 drivers/soc/mediatek/mmsys/mtk-mmsys.c
+ delete mode 100644 drivers/soc/mediatek/mtk-mmsys.c
 
-yes, we want to support existing platforms (n cpus in a policy) + the per-cpu case.
+-- 
+1.8.1.1.dirty
 
-> 
->> If we attempt to add OPPs on second cpu probe, it *will* shout as duplicate
->> OPP as we would have already marked it as shared table with the first cpu.
->> Am I missing anything ? I suggested this as Nicola saw OPP duplicate
->> warnings when he was hacking up this patch.
-> 
-> The common stuff (for all the CPUs) is better moved to probe() in this
-> case, instead of the ->init() callback. Otherwise it will always be
-> messy. You can initialize the OPP and cpufreq tables in probe()
-> itself, save the pointer somewhere and then just use it here in
-> ->init().
-> 
-> Also do EM registration from there.
->
-
-ok, will rework
-
->>>> otherwise no need as they would be duplicated.
->>>>> And we don't check the return value of
->>>>> the below call anymore, moreover we have to call it twice now.
->>
->> Yes, that looks wrong, we need to add the check for non zero values, but ....
->>
->>>>
->>>> This second get_opp_count is required such that we register em with the correct
->>>> opp number after having added them. Without this the opp_count would not be correct.
->>>
->>
->> ... I have a question here. Why do you need to call
->>
->> em_dev_register_perf_domain(cpu_dev, nr_opp, &em_cb, opp_shared_cpus..)
->>
->> on each CPU ? Why can't that be done once for unique opp_shared_cpus ?
->>
->> The whole drama of per-CPU vs perf domain is to have energy model and
->> if feeding it opp_shared_cpus once is not sufficient, then something is
->> wrong or simply duplicated or just not necessary IMO.
->>
->>> What if the count is still 0 ? What about deferred probe we were doing earlier ?
->>
->> OK, you made me think with that question. I think the check was original
->> added for deferred probe but then scmi core was changed to add the cpufreq
->> device only after everything needed is ready. So the condition must never
->> occur now.
-> 
-> The deferred probe shall be handled in a different patch in that case.
-> 
-> Nicola, please break the patch into multiple patches, with one patch
-> dealing only with one task.
-
-Sure, I had the doubt and thanks for confirming. will do, thanks
-
-> 
-
-Cheers,
-Nicola
