@@ -2,112 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 586962D4ECB
-	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 00:30:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F09FA2D4ED6
+	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 00:36:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1733213AbgLIXaz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Dec 2020 18:30:55 -0500
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:43498 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730320AbgLIXaz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Dec 2020 18:30:55 -0500
-Received: by mail-ot1-f67.google.com with SMTP id q25so3148975otn.10;
-        Wed, 09 Dec 2020 15:30:40 -0800 (PST)
+        id S1730255AbgLIXgR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Dec 2020 18:36:17 -0500
+Received: from mail-oi1-f193.google.com ([209.85.167.193]:39617 "EHLO
+        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730221AbgLIXgQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Dec 2020 18:36:16 -0500
+Received: by mail-oi1-f193.google.com with SMTP id w124so576251oia.6;
+        Wed, 09 Dec 2020 15:36:01 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=B0Asjv3XbyAFTbDKBsljyKhv/NpTZ/vtxsoSKiwLJis=;
-        b=fGnoPUdonFAEfqh3NQnR94TGoLYvSapGKAu/xYLms7qVN+s1xBBCy8Hf93f7sRVtA7
-         sv+zQWX9EfuIkaXXez1McZD3guubMUxM65uv7effelVI4MZtXQMOkf0EDP0F7Eq/3+Ev
-         YwKiqaOVaGUv94rWbpuyNbnojQNdIhkBNvZ4Z7dt/rinl2Vf4xHo5kJtNS5PMDMZiu4q
-         is7Pb6vcYCA0VwZwt1hVuXqJL24lOroVCQXnRrpbiJPCqn1DE0yxXCwoHOphguxrBj8K
-         phq1CTvYj2kN6jqE6AAEaafkxChpYSTADOusfn7Hd6BgYYLyhsb9cuPVM9XZnOF8Dkuu
-         /GSQ==
-X-Gm-Message-State: AOAM530bMjPqP1sF1JW5q0SGTmN26xSdHjrGDs/AaLBH/VHpjXA+aeux
-        WzOcJUY5Un+iHL7LWwkMug==
-X-Google-Smtp-Source: ABdhPJyebnMDO1idYvlHeSFT8mQf086CjkENt81nzyUnEjEz9CGaSHhlfhM4muLZ79s59u3SrEfCxQ==
-X-Received: by 2002:a9d:479a:: with SMTP id b26mr3786121otf.297.1607556614465;
-        Wed, 09 Dec 2020 15:30:14 -0800 (PST)
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=PVgIBz0dC5zSxbL7VjWdsB6I3qlutAYuDDq6KKlLILs=;
+        b=ruCMxGm6+hzRjbYAAZYan8utT0HFIt2XoSSHZ8aOY+ufQYgGybVxKGhgIeLARaawUM
+         9jKl8ygPn/a3VWqzPMoOPMvSu31MlL301H2ModabaNTOUwSm9RjFr+w+lzxNIVDWm6ET
+         HA2W509X460ABOFOzmAQhMqZhspidK0ybUWxC/5vCJbi2P1m6cjZ63HoOrd3kaKaoUyv
+         IIBm7Wndi0j2vKBHv4sCSsCpWahpl/19zm+StIskL5LFWXMqAX+GSU8PIZWI1WB4fesm
+         +T0UC74LA79katDMLduTWLvmd3PdSEs6EI0T8jksYYpFd54ZJ34VGmtoFd0B4rUz8Psz
+         G61A==
+X-Gm-Message-State: AOAM531eyvkW5gwKcF6/aDsR4umzbB0fm6m38eQQUUt4WpdsAWsNZ7D0
+        rm1ZGpjFXrIqGJbvvsKiiw==
+X-Google-Smtp-Source: ABdhPJxpmlPVdUWC7PEVdHagBWoWCcgT/SANJgWU6jfY7UBGWfDADp5TYHLGMjAUdTx6KOUFJZmmvg==
+X-Received: by 2002:aca:2301:: with SMTP id e1mr3567890oie.8.1607556935621;
+        Wed, 09 Dec 2020 15:35:35 -0800 (PST)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id t19sm753901otp.36.2020.12.09.15.30.12
+        by smtp.gmail.com with ESMTPSA id y84sm657027oig.36.2020.12.09.15.35.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Dec 2020 15:30:13 -0800 (PST)
-Received: (nullmailer pid 1281044 invoked by uid 1000);
-        Wed, 09 Dec 2020 23:30:11 -0000
-Date:   Wed, 9 Dec 2020 17:30:11 -0600
+        Wed, 09 Dec 2020 15:35:34 -0800 (PST)
+Received: (nullmailer pid 1288138 invoked by uid 1000);
+        Wed, 09 Dec 2020 23:35:33 -0000
+Date:   Wed, 9 Dec 2020 17:35:33 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Atish Patra <atish.patra@wdc.com>
-Cc:     linux-kernel@vger.kernel.org, Albert Ou <aou@eecs.berkeley.edu>,
-        Alistair Francis <alistair.francis@wdc.com>,
-        Anup Patel <anup.patel@wdc.com>,
-        Bin Meng <bin.meng@windriver.com>, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Ivan.Griffin@microchip.com, Cyril.Jean@microchip.com,
-        Daire McNamara <daire.mcnamara@microchip.com>,
-        Conor.Dooley@microchip.com
-Subject: Re: [PATCH v3 2/5] dt-bindings: riscv: microchip: Add YAML
- documentation for the PolarFire SoC
-Message-ID: <20201209233011.GA1276461@robh.at.kernel.org>
-References: <20201204085835.2406541-1-atish.patra@wdc.com>
- <20201204085835.2406541-3-atish.patra@wdc.com>
+To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Subject: Re: [PATCH 1/2] dt-bindings: reset: document Broadcom's BCM4908 USB
+ reset binding
+Message-ID: <20201209233533.GA1281321@robh.at.kernel.org>
+References: <20201204093704.11359-1-zajec5@gmail.com>
+ <0cc54a35-7d70-8a2f-0c1f-da124136a66d@gmail.com>
+ <cb2c0545-a1f6-4b85-6f9f-15813f74e323@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20201204085835.2406541-3-atish.patra@wdc.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <cb2c0545-a1f6-4b85-6f9f-15813f74e323@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 04, 2020 at 12:58:32AM -0800, Atish Patra wrote:
-> Add YAML DT binding documentation for the Microchip PolarFire SoC.
-> It is documented at:
+On Fri, Dec 04, 2020 at 05:39:14PM +0100, Rafał Miłecki wrote:
+> On 04.12.2020 17:32, Florian Fainelli wrote:
+> > On 12/4/2020 1:37 AM, Rafał Miłecki wrote:
+> > > From: Rafał Miłecki <rafal@milecki.pl>
+> > > 
+> > > Document binding of block responsible for initializing USB controllers
+> > > (OHCI, EHCI, XHCI).
+> > > 
+> > > Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> > > ---
+> > >   .../reset/brcm,bcm4908-usb-reset.yaml         | 60 +++++++++++++++++++
+> > >   1 file changed, 60 insertions(+)
+> > >   create mode 100644 Documentation/devicetree/bindings/reset/brcm,bcm4908-usb-reset.yaml
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/reset/brcm,bcm4908-usb-reset.yaml b/Documentation/devicetree/bindings/reset/brcm,bcm4908-usb-reset.yaml
+> > > new file mode 100644
+> > > index 000000000000..31beb1c8f3cd
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/reset/brcm,bcm4908-usb-reset.yaml
+> > > @@ -0,0 +1,60 @@
+> > > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/reset/brcm,bcm4908-usb-reset.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Broadcom BCM4908 USB host controller reset
+> > > +
+> > > +description: >
+> > > +  BCM4908 has a separated block controlling all USB controllers. It handles the
+> > > +  whole setup process and takes care of initializing PHYs at the right time
+> > > +  (state).
+> > > +
+> > > +maintainers:
+> > > +  - Rafał Miłecki <rafal@milecki.pl>
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    enum:
+> > > +      - brcm,bcm4908-usb-reset
+> > > +
+> > > +  reg:
+> > > +    maxItems: 1
+> > > +
+> > > +  resets:
+> > > +    $ref: /schemas/types.yaml#/definitions/phandle
+> > > +
+> > > +  phys:
+> > > +    minItems: 2
+> > > +    maxItems: 2
+> > > +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> > > +
+> > > +  phy-names:
+> > > +    items:
+> > > +      - const: usb2
+> > > +      - const: usb3
+> > > +
+> > > +  "#reset-cells":
+> > > +    const: 0
+> > > +
+> > > +required:
+> > > +  - compatible
+> > > +  - reg
+> > > +  - phys
+> > > +  - phy-names
+> > > +  - "#reset-cells"
+> > > +
+> > > +additionalProperties: true
+> > > +
+> > > +examples:
+> > > +  - |
+> > > +    reset-controller@8000c200 {
+> > > +        compatible = "brcm,bcm4908-usb-reset";
+> > > +        reg = <0x8000c200 0x100>;
+> > > +
+> > > +        phys = <&usb2_phy>, <&usb3_phy>;
+> > > +        phy-names = "usb2", "usb3";
+> > 
+> > This looks quite unusual, usually the *HCI controllers would be
+> > consumers of the PHY and the PHY may be a consumer of the reset controller.
+> > 
+> > (still going through my emails have not fully read your separate email
+> > on the topic, so pardon me if this is being discussed twice).
 > 
-> https://www.microsemi.com/products/fpga-soc/polarfire-soc-icicle-quick-start-guide
+> I agree, it's the the best solution I found for this specific design.
 > 
-> Signed-off-by: Atish Patra <atish.patra@wdc.com>
-> ---
->  .../devicetree/bindings/riscv/microchip.yaml  | 28 +++++++++++++++++++
->  1 file changed, 28 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/riscv/microchip.yaml
+> This specific hw block perform various operations before, in the middle and
+> after PHY initialization. That made me make reset controlller initialize PHYs.
 > 
-> diff --git a/Documentation/devicetree/bindings/riscv/microchip.yaml b/Documentation/devicetree/bindings/riscv/microchip.yaml
-> new file mode 100644
-> index 000000000000..66e63c2bf359
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/riscv/microchip.yaml
-> @@ -0,0 +1,28 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> I'm happy to implement a more proper design if someone can just suggest how.
+> I don't have any better idea :(
 
-See what checkpatch.pl says.
-
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/riscv/microchip.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Microchip PolarFire SoC-based boards device tree bindings
-> +
-> +maintainers:
-> +  - Cyril Jean <Cyril.Jean@microchip.com>
-> +  - Lewis Hanly <lewis.hanly@microchip.com>
-> +
-> +description:
-> +  Microchip PolarFire SoC-based boards
-> +
-> +properties:
-> +  $nodename:
-> +    const: '/'
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - microchip,mpfs-icicle-kit
-> +      - const: microchip,polarfire-soc
-> +      - const: microchip,mpfs
-
-Is this last compatible really useful? Usually better to just have SoC 
-and board (or SoM plus baseboard) compatibles.
+So the reset controller block has more than just resets? I'd hide all 
+this in the phy driver rather than hide the phy in the reset driver. So 
+for DT provide the phy a phandle to the reset block to poke the 
+registers directly.
 
 Rob
