@@ -2,196 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 23C4E2D4CF0
-	for <lists+devicetree@lfdr.de>; Wed,  9 Dec 2020 22:36:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A8F62D4D51
+	for <lists+devicetree@lfdr.de>; Wed,  9 Dec 2020 23:08:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388178AbgLIVe5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Dec 2020 16:34:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45814 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388032AbgLIVe5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Dec 2020 16:34:57 -0500
-Received: from mail-pl1-x642.google.com (mail-pl1-x642.google.com [IPv6:2607:f8b0:4864:20::642])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6649CC0613D6
-        for <devicetree@vger.kernel.org>; Wed,  9 Dec 2020 13:34:17 -0800 (PST)
-Received: by mail-pl1-x642.google.com with SMTP id s2so1646045plr.9
-        for <devicetree@vger.kernel.org>; Wed, 09 Dec 2020 13:34:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=/CP4s6SojSgYG10MkCPVL6HnkSBBBlayu1v2Y56FpY0=;
-        b=Nvilxii2ih8HpVvwYvc725FHmv7+nzj/P5QoRc7regGsPHJGY6XiwBaLLzPwpsG7xJ
-         vpNxXrIf3hxbPoXtpxOi6c3Pzak7AX0vsELLFHDGjdTH4voAumEDfQ3vyDYUBMrlNpj2
-         Ot4EKJT292mVQ/r/YHBNFVlngeEmHl8uLFsKgk8uz/rh7ubf8JGxlfFvkb+Pu7pLCPDP
-         6XQeCOMKG4xZZEsg3ZU2aInj4He4v9Iky6+ofHfpJLkQYKQjuHfO3AegKTiqcnIb4cjY
-         8DPtz2hcUJ1QwIPVCztIl19IImFLbyC2k+nyvKfgaGhcoh4p3KL5BD6DIUMMY952IH7P
-         Vs2w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=/CP4s6SojSgYG10MkCPVL6HnkSBBBlayu1v2Y56FpY0=;
-        b=gdNzPnoCDitsDuG8XVOvZ7GGGoZY6Fgi/if2/fCozz6w9818xfYSst4kZYO++4DCOz
-         CCGsQmLCZYE9sbB5pa6S1m8pq1w4xTw0nkTZETnUkpRagrsAPYl+DNff9OI3pwMV3V7/
-         zrYm3+53NaNZ/VsJNn3Q33dhJMWwKSowi4P1ZVtcgu4msTdq/zyU5iKHhNaL3VsJK7MM
-         qBpiBcg2pVB5mj8WeelzhKqNY8D/tMUviXE+kj04zvrcmAH/FAapd/3ZFEUpkgkCpOs5
-         HwCx09uabDw//QguBo+XwCbkHOZPWGwKbrnkgoGKSbTX0NQIywdzU8kmqvc0Oziy7Eer
-         CqWQ==
-X-Gm-Message-State: AOAM530Gvhi7OB+Ww7tToGJLcF6MvksfnuYrNNrqyWXpESv9vRmTEkJy
-        fslSKC7ZFPX2EDB8yiVJUlA7jg==
-X-Google-Smtp-Source: ABdhPJyGx811k4FRsxwZkIRLkksTiPKB/X7yArWMjw3PV5M2e9Xf/AM8UB0gUVNeYFqtiWA1xs4knA==
-X-Received: by 2002:a17:902:c395:b029:da:9aca:c972 with SMTP id g21-20020a170902c395b02900da9acac972mr4032095plg.32.1607549656808;
-        Wed, 09 Dec 2020 13:34:16 -0800 (PST)
-Received: from xps15 (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
-        by smtp.gmail.com with ESMTPSA id p6sm3160715pjt.13.2020.12.09.13.34.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Dec 2020 13:34:16 -0800 (PST)
-Date:   Wed, 9 Dec 2020 14:34:14 -0700
-From:   Mathieu Poirier <mathieu.poirier@linaro.org>
-To:     Arnaud POULIQUEN <arnaud.pouliquen@st.com>
-Cc:     "ohad@wizery.com" <ohad@wizery.com>,
-        "bjorn.andersson@linaro.org" <bjorn.andersson@linaro.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v3 15/15] remoteproc: Refactor rproc delete and cdev
- release path
-Message-ID: <20201209213414.GB1814981@xps15>
-References: <20201126210642.897302-1-mathieu.poirier@linaro.org>
- <20201126210642.897302-16-mathieu.poirier@linaro.org>
- <00422e08-3acc-1e5e-3d1d-f9c332256a1f@st.com>
-MIME-Version: 1.0
+        id S2388393AbgLIWHm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Dec 2020 17:07:42 -0500
+Received: from mo4-p01-ob.smtp.rzone.de ([85.215.255.53]:30939 "EHLO
+        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388326AbgLIWHm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Dec 2020 17:07:42 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1607551487;
+        s=strato-dkim-0002; d=goldelico.com;
+        h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:From:
+        Subject:Sender;
+        bh=gqm/9MTwR8OFWYxZA+wFt1gJnEsBRn4X7ntuVOAfVyw=;
+        b=HJICz6E8ejwopvkqMVHVVQwUVfNgiEG/u0wR0I6b6dgOdEDrlXNXzbBlgWmB9kUjgI
+        BOcQvSIGuEneqCfJhRrhoJbqcIr00CTAe/IpQdFuAOXW48VPI6TKglKh8dOTjQnU1YRk
+        ZbnWuB3HNn2ejg/bVtoHto2QlPDxDBvsJRG+/5XaEFQXl59CXVnz7bpTXchOSqH0B20h
+        j+t7zq1QWUCd89C0wBIEiuibFGmE2IxYIfVlTwhSNf+kGHs9BtDpzrNmgzfbbb2svXRZ
+        oPDiiSnNJyNBiO8/QZOWU1mqghj4qwFu50jctUBX6pRypcyI2Qf/FjK9tA4wZeN3BDhU
+        s2FA==
+X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMgPgp8VKxflSZ1P34KBj5Qpw97WFDlafXAoNHQ=="
+X-RZG-CLASS-ID: mo00
+Received: from imac.fritz.box
+        by smtp.strato.de (RZmta 47.6.2 DYNA|AUTH)
+        with ESMTPSA id 908871wB9M4a8bd
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
+        (Client did not present a certificate);
+        Wed, 9 Dec 2020 23:04:36 +0100 (CET)
+Subject: Re: [PATCH] spi: dt-bindings: clarify CS behavior for spi-cs-high and gpio descriptors
+Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
 Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <00422e08-3acc-1e5e-3d1d-f9c332256a1f@st.com>
+From:   "H. Nikolaus Schaller" <hns@goldelico.com>
+In-Reply-To: <CAGngYiU3DptnURBH=xf0eO4ZtKMH1sd2qWQqfBNbDkXDpzwGeg@mail.gmail.com>
+Date:   Wed, 9 Dec 2020 23:04:36 +0100
+Cc:     Andreas Kemnade <andreas@kemnade.info>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-spi <linux-spi@vger.kernel.org>,
+        linux-gpio@vger.kernel.org,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Discussions about the Letux Kernel 
+        <letux-kernel@openphoenux.org>, kernel@pyra-handheld.com,
+        Lukas Wunner <lukas@wunner.de>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Maxime Ripard <maxime@cerno.tech>
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <BC1AFCEC-DE7D-4135-81DC-1B20CC662917@goldelico.com>
+References: <3bed61807fff6268789e7d411412fbc5cd6ffe2a.1607507863.git.hns@goldelico.com> <CAGngYiVKHoXPGxmScCnb-R6xoo9GNw5pG8V8Cpyk3meoJbskiw@mail.gmail.com> <3FA1D050-3BD5-4A97-9D83-520CCF75D147@goldelico.com> <CAGngYiVL9M72hFRWnmT_8RRX9pUTSLsNuYz6mUo0Be4Vivk7Xw@mail.gmail.com> <20201209210133.44ab9c97@aktux> <09D41BD9-F6BA-4566-8151-ACB3B2274B52@goldelico.com> <CAGngYiU3DptnURBH=xf0eO4ZtKMH1sd2qWQqfBNbDkXDpzwGeg@mail.gmail.com>
+To:     Sven Van Asbroeck <thesven73@gmail.com>
+X-Mailer: Apple Mail (2.3124)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 09, 2020 at 11:13:07AM +0100, Arnaud POULIQUEN wrote:
-> 
-> 
-> On 11/26/20 10:06 PM, Mathieu Poirier wrote:
-> > Refactor function rproc_del() and rproc_cdev_release() to take
-> > into account the policy specified in the device tree.
-> > 
-> > Signed-off-by: Mathieu Poirier <mathieu.poirier@linaro.org>
-> > ---
-> >  drivers/remoteproc/remoteproc_cdev.c | 13 +++++++++++-
-> >  drivers/remoteproc/remoteproc_core.c | 30 ++++++++++++++++++++++++++--
-> >  include/linux/remoteproc.h           |  4 ++++
-> >  3 files changed, 44 insertions(+), 3 deletions(-)
-> > 
-> > diff --git a/drivers/remoteproc/remoteproc_cdev.c b/drivers/remoteproc/remoteproc_cdev.c
-> > index f7645f289563..3dfe555dfc07 100644
-> > --- a/drivers/remoteproc/remoteproc_cdev.c
-> > +++ b/drivers/remoteproc/remoteproc_cdev.c
-> > @@ -88,7 +88,18 @@ static int rproc_cdev_release(struct inode *inode, struct file *filp)
-> >  {
-> >  	struct rproc *rproc = container_of(inode->i_cdev, struct rproc, cdev);
-> >  
-> > -	if (rproc->cdev_put_on_release && rproc->state == RPROC_RUNNING)
-> > +	if (!rproc->cdev_put_on_release)
-> > +		return 0;
-> > +
-> > +	/*
-> > +	 * The application has crashed or is releasing its file handle.  Detach
-> > +	 * or shutdown the remote processor based on the policy specified in the
-> > +	 * DT.  No need to check rproc->state right away, it will be done
-> > +	 * in either rproc_detach() or rproc_shutdown().
-> > +	 */
-> > +	if (rproc->autonomous_on_core_shutdown)
-> > +		rproc_detach(rproc);
-> > +	else
-> >  		rproc_shutdown(rproc);
-> 
-> A reason to not propagate the return of functions?
 
-A valid observation...  I'll fix it.
+> Am 09.12.2020 um 22:28 schrieb Sven Van Asbroeck =
+<thesven73@gmail.com>:
+>=20
+> On Wed, Dec 9, 2020 at 3:08 PM H. Nikolaus Schaller =
+<hns@goldelico.com> wrote:
+>>=20
+>> But I have tested with
+>>=20
+>>> spi->mode |=3D SPI_MODE_3;
+>>=20
+>> which should keep the mode intact. Right? That did not work either.
+>>=20
+>=20
+> - make sure ("spi: fix client driver breakages when using GPIO =
+descriptors")
+>  is in your tree
 
-> 
-> >  
-> >  	return 0;
-> > diff --git a/drivers/remoteproc/remoteproc_core.c b/drivers/remoteproc/remoteproc_core.c
-> > index 3d7d245edc4e..1a170103bf27 100644
-> > --- a/drivers/remoteproc/remoteproc_core.c
-> > +++ b/drivers/remoteproc/remoteproc_core.c
-> > @@ -2294,6 +2294,22 @@ static int rproc_alloc_ops(struct rproc *rproc, const struct rproc_ops *ops)
-> >  	return 0;
-> >  }
-> >  
-> > +static void rproc_set_automation_flags(struct rproc *rproc)
-> > +{
-> > +	struct device *dev = rproc->dev.parent;
-> > +	struct device_node *np = dev->of_node;
-> > +	bool core_shutdown;
-> > +
-> > +	/*
-> > +	 * When function rproc_cdev_release() or rproc_del() are called and
-> > +	 * the remote processor has been attached to, it will be detached from
-> > +	 * (rather than turned off) if "autonomous-on-core-shutdown is specified
-> > +	 * in the DT.
-> > +	 */
-> > +	core_shutdown = of_property_read_bool(np, "autonomous-on-core-shutdown");
-> > +	rproc->autonomous_on_core_shutdown = core_shutdown;
-> > +}
-> > +
-> >  /**
-> >   * rproc_alloc() - allocate a remote processor handle
-> >   * @dev: the underlying device
-> > @@ -2352,6 +2368,8 @@ struct rproc *rproc_alloc(struct device *dev, const char *name,
-> >  	if (rproc_alloc_ops(rproc, ops))
-> >  		goto put_device;
-> >  
-> > +	rproc_set_automation_flags(rproc);
-> > +
-> >  	/* Assign a unique device index and name */
-> >  	rproc->index = ida_simple_get(&rproc_dev_index, 0, 0, GFP_KERNEL);
-> >  	if (rproc->index < 0) {
-> > @@ -2435,8 +2453,16 @@ int rproc_del(struct rproc *rproc)
-> >  	if (!rproc)
-> >  		return -EINVAL;
-> >  
-> > -	/* TODO: make sure this works with rproc->power > 1 */
-> > -	rproc_shutdown(rproc);
-> > +	/*
-> > +	 * TODO: make sure this works with rproc->power > 1
-> > +	 *
-> > +	 * No need to check rproc->state right away, it will be done in either
-> > +	 * rproc_detach() or rproc_shutdown().
-> > +	 */
-> > +	if (rproc->autonomous_on_core_shutdown)
-> > +		rproc_detach(rproc);
-> > +	else
-> > +		rproc_shutdown(rproc);
-> 
-> same here
-> 
-> >  
-> >  	mutex_lock(&rproc->lock);
-> >  	rproc->state = RPROC_DELETED;
-> > diff --git a/include/linux/remoteproc.h b/include/linux/remoteproc.h
-> > index 02312096d59f..5702f630d810 100644
-> > --- a/include/linux/remoteproc.h
-> > +++ b/include/linux/remoteproc.h
-> > @@ -516,6 +516,9 @@ struct rproc_dump_segment {
-> >   * @nb_vdev: number of vdev currently handled by rproc
-> >   * @char_dev: character device of the rproc
-> >   * @cdev_put_on_release: flag to indicate if remoteproc should be shutdown on @char_dev release
-> > + * @autonomous_on_core_shutdown: true if the remote processor should be detached
-> > + *				 from (rather than turned off) when the remoteproc
-> > + *				 core goes away.
-> >   */
-> >  struct rproc {
-> >  	struct list_head node;
-> > @@ -554,6 +557,7 @@ struct rproc {
-> >  	u16 elf_machine;
-> >  	struct cdev cdev;
-> >  	bool cdev_put_on_release;
-> > +	bool autonomous_on_core_shutdown;
-> >  };
-> >  
-> >  /**
-> > 
+Well, if you remember, the panel did work *before* this patch was in my =
+tree
+and I found this patch as the reason of the break...
+
+> - your panel's CS is active-low, so 'spi-cs-high' should be removed =
+from its
+>  devicetree entry. In accordance with the rules as explained in commit
+>  message of 6953c57ab172. Also in accordance with the table you posted
+>  in this patch.
+
+It could not have been different because the table was the result of
+experimentally checking all possible combinations...
+
+>=20
+> When these two changes in place, your panel should work. I have tested =
+this
+> by mirroring your setup on my board:
+>=20
+> spi5-gpio {
+>       compatible =3D "spi-gpio";
+>       #address-cells =3D <0x1>;
+>       #size-cells =3D <0x0>;
+>       pinctrl-names =3D "default";
+>       pinctrl-0 =3D <&...>;
+>=20
+>       sck-gpios =3D <&gpio... GPIO_ACTIVE_HIGH>;
+>       miso-gpios =3D <&gpio... GPIO_ACTIVE_HIGH>;
+>       mosi-gpios =3D <&gpio... GPIO_ACTIVE_HIGH>;
+>       cs-gpios =3D <&gpio... GPIO_ACTIVE_HIGH>;
+
+BTW: exactly this choice is questionable ^^^ if you have an active low =
+CS
+and it needs an explanation.
+
+>       num-chipselects =3D <1>;
+>=20
+>       ethernet-switch@0 { /* active low cs */
+>               compatible =3D "micrel,ksz8795";
+>               spi-max-frequency =3D <1000000>;
+>               reg =3D <0>;
+>       };
+> };
+>=20
+> If this does not work for you, then what are we missing?
+
+I am missing that you notice that we are not discussing what I should
+do with the panel driver or my device tree. I have these patches laying =
+around
+for a while (which exactly do what you try to convince me about - except =
+that
+I would apply an GPIO_ACTIVE_LOW). Just not submitted because I want to
+have a clear definition agreed on first. For a simple reason: reviewers
+of my patch should know what to check for.
+
+In this thread we discuss a patch for the SPI bindings documentation =
+which
+is something different. See subject and the file the patch affects.
+
+And I am looking for an ack and merge by maintainers of the affected =
+subsystems
+that the table is ok. Nothing else.
+
+Please let's stay on topic and please cooperate.
+
