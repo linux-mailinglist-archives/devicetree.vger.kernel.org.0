@@ -2,85 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D75502D4034
-	for <lists+devicetree@lfdr.de>; Wed,  9 Dec 2020 11:47:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 868CE2D40B1
+	for <lists+devicetree@lfdr.de>; Wed,  9 Dec 2020 12:09:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726885AbgLIKmx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Dec 2020 05:42:53 -0500
-Received: from mx2.suse.de ([195.135.220.15]:34822 "EHLO mx2.suse.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726335AbgLIKmx (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 9 Dec 2020 05:42:53 -0500
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.221.27])
-        by mx2.suse.de (Postfix) with ESMTP id 08849AB63;
-        Wed,  9 Dec 2020 10:42:11 +0000 (UTC)
-Message-ID: <fcc97ca28c3aaa3ab69b4de4818c1dc89b85b430.camel@suse.de>
-Subject: Re: [PATCH v5 11/11] pwm: Add Raspberry Pi Firmware based PWM bus
-From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-To:     u.kleine-koenig@pengutronix.de, linux-kernel@vger.kernel.org,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Lee Jones <lee.jones@linaro.org>
-Cc:     f.fainelli@gmail.com, linux-pwm@vger.kernel.org,
+        id S1730471AbgLILHx convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 9 Dec 2020 06:07:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33538 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730261AbgLILHn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Dec 2020 06:07:43 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2430C061793
+        for <devicetree@vger.kernel.org>; Wed,  9 Dec 2020 03:07:02 -0800 (PST)
+Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1kmxJC-0001oa-8Z; Wed, 09 Dec 2020 12:06:58 +0100
+Received: from pza by lupine with local (Exim 4.92)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1kmxJ9-0007SO-UW; Wed, 09 Dec 2020 12:06:55 +0100
+Message-ID: <bee260570c3afbc3d4c49b0a9cd07077ae7b5f2a.camel@pengutronix.de>
+Subject: Re: [PATCH 1/2] dt-bindings: reset: document Broadcom's BCM4908
+ PCIe reset binding
+From:   Philipp Zabel <p.zabel@pengutronix.de>
+To:     =?UTF-8?Q?Rafa=C5=82_Mi=C5=82ecki?= <zajec5@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
         bcm-kernel-feedback-list@broadcom.com,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        wahrenst@gmx.net, linux-input@vger.kernel.org,
-        dmitry.torokhov@gmail.com, gregkh@linuxfoundation.org,
-        devel@driverdev.osuosl.org, p.zabel@pengutronix.de,
-        linux-gpio@vger.kernel.org, linus.walleij@linaro.org,
-        linux-clk@vger.kernel.org, sboyd@kernel.org,
-        linux-rpi-kernel@lists.infradead.org, bgolaszewski@baylibre.com,
-        andy.shevchenko@gmail.com
-Date:   Wed, 09 Dec 2020 11:42:09 +0100
-In-Reply-To: <20201123183833.18750-12-nsaenzjulienne@suse.de>
-References: <20201123183833.18750-1-nsaenzjulienne@suse.de>
-         <20201123183833.18750-12-nsaenzjulienne@suse.de>
-Content-Type: multipart/signed; micalg="pgp-sha256";
-        protocol="application/pgp-signature"; boundary="=-DYDWHGJjHHu30M9SeI+k"
-User-Agent: Evolution 3.38.2 
+        =?UTF-8?Q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>
+Date:   Wed, 09 Dec 2020 12:06:55 +0100
+In-Reply-To: <20201127111442.1096-1-zajec5@gmail.com>
+References: <20201127111442.1096-1-zajec5@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+User-Agent: Evolution 3.30.5-1.1 
 MIME-Version: 1.0
+X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, 2020-11-27 at 12:14 +0100, Rafał Miłecki wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
+> 
+> BCM4908 was built using older PCIe hardware block that requires using
+> external reset block controlling PERST# signals.
+> 
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 
---=-DYDWHGJjHHu30M9SeI+k
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Thank you, both applied to reset/next.
 
-Hi All,
-
-On Mon, 2020-11-23 at 19:38 +0100, Nicolas Saenz Julienne wrote:
-> Adds support to control the PWM bus available in official Raspberry Pi
-> PoE HAT. Only RPi's co-processor has access to it, so commands have to
-> be sent through RPi's firmware mailbox interface.
->=20
-> Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
->=20
-
-I'll soon send a v6 of this series and was wondering if there is any more
-feedback for this patch.
-
-Regards,
-Nicolas
-
-
---=-DYDWHGJjHHu30M9SeI+k
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCAAdFiEErOkkGDHCg2EbPcGjlfZmHno8x/4FAl/QqgEACgkQlfZmHno8
-x/4KCgf/atII/Noi91247tu9b99CnitDBaC5oT2VJlArRSWUNcHEEJPbZ1seDvpF
-wmsApHQ7yKkAnDJdCzSRj7K+/Pp8PhETFK/vmD5TWAxaBtjbvvdHDQT+2RvLSthv
-x4AJ/aAdpPsHuGzde7JViJAuogdoPuqVWExVPdjBbA2+SoWmuHxsaCBtnlD+HYhL
-jP+22+d6ea9OTvtVHgWrgeRjfWXPaNSvQ6GCWASLBpbsfssUWlSWWAURk4NP/lXA
-XhGFaDg+yzd1scAtX8T74lseUd7EP0sMpGmL4G3YWx1eg1oLSChdPx4hdupyIA6G
-ZUcTKvwbLhTkXiSJYnXeAUDjSgbJag==
-=FbnN
------END PGP SIGNATURE-----
-
---=-DYDWHGJjHHu30M9SeI+k--
-
+regards
+Philipp
