@@ -2,89 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E5FE02D3EFD
-	for <lists+devicetree@lfdr.de>; Wed,  9 Dec 2020 10:42:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 074472D3F53
+	for <lists+devicetree@lfdr.de>; Wed,  9 Dec 2020 10:59:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726247AbgLIJmP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Dec 2020 04:42:15 -0500
-Received: from foss.arm.com ([217.140.110.172]:60134 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726044AbgLIJmP (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 9 Dec 2020 04:42:15 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 2C3F21FB;
-        Wed,  9 Dec 2020 01:41:29 -0800 (PST)
-Received: from bogus (unknown [10.57.54.168])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 2B1E13F718;
-        Wed,  9 Dec 2020 01:41:26 -0800 (PST)
-Date:   Wed, 9 Dec 2020 09:41:21 +0000
-From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     Nicola Mazzucato <nicola.mazzucato@arm.com>,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        rjw@rjwysocki.net, vireshk@kernel.org, robh+dt@kernel.org,
-        sboyd@kernel.org, nm@ti.com, daniel.lezcano@linaro.org,
-        morten.rasmussen@arm.com, chris.redpath@arm.com
-Subject: Re: [PATCH v4 3/4] scmi-cpufreq: get opp_shared_cpus from opp-v2 for
- EM
-Message-ID: <20201209094121.b6jloegdzpmcphqz@bogus>
-References: <20201202172356.10508-1-nicola.mazzucato@arm.com>
- <20201202172356.10508-4-nicola.mazzucato@arm.com>
- <20201208055053.kggxw26kxtnpneua@vireshk-i7>
- <0e4d3134-f9b2-31fa-b454-fb30265a80b5@arm.com>
- <20201208072611.ptsqupv4y2wybs6p@vireshk-i7>
- <20201208112008.niesjrunxq2jz3kt@bogus>
- <20201209054502.ajomw6glcxx5hue2@vireshk-i7>
+        id S1729331AbgLIJ6z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Dec 2020 04:58:55 -0500
+Received: from relay1-d.mail.gandi.net ([217.70.183.193]:16281 "EHLO
+        relay1-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729007AbgLIJ6z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Dec 2020 04:58:55 -0500
+X-Originating-IP: 93.34.118.233
+Received: from uno.localdomain (93-34-118-233.ip49.fastwebnet.it [93.34.118.233])
+        (Authenticated sender: jacopo@jmondi.org)
+        by relay1-d.mail.gandi.net (Postfix) with ESMTPSA id DA8FB240004;
+        Wed,  9 Dec 2020 09:58:09 +0000 (UTC)
+Date:   Wed, 9 Dec 2020 10:58:19 +0100
+From:   Jacopo Mondi <jacopo@jmondi.org>
+To:     kholk11@gmail.com
+Cc:     mchehab@kernel.org, robh+dt@kernel.org,
+        marijn.suijten@somainline.org, konrad.dybcio@somainline.org,
+        martin.botka@somainline.org, devicetree@vger.kernel.org,
+        linux-media@vger.kernel.org, phone-devel@vger.kernel.org,
+        linux-kernel@vger.kernel.org, sakari.ailus@iki.fi,
+        andrey.konovalov@linaro.org,
+        angelogioacchino.delregno@somainline.org
+Subject: Re: [PATCH v3 1/2] media: i2c: Add driver for the Sony Exmor-RS
+ IMX300 camera sensor
+Message-ID: <20201209095819.w6lfpga2gqvu2ujn@uno.localdomain>
+References: <20201127223047.2764643-1-kholk11@gmail.com>
+ <20201127223047.2764643-2-kholk11@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20201209054502.ajomw6glcxx5hue2@vireshk-i7>
-User-Agent: NeoMutt/20171215
+In-Reply-To: <20201127223047.2764643-2-kholk11@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 09, 2020 at 11:15:02AM +0530, Viresh Kumar wrote:
-> On 08-12-20, 11:20, Sudeep Holla wrote:
-> > It is because of per-CPU vs per domain drama here. Imagine a system with
-> > 4 CPUs which the firmware puts in individual domains while they all are
-> > in the same perf domain and hence OPP is marked shared in DT.
-> >
-> > Since this probe gets called for all the cpus, we need to skip adding
-> > OPPs for the last 3(add only for 1st one and mark others as shared).
+Hello,
+
+On Fri, Nov 27, 2020 at 11:30:46PM +0100, kholk11@gmail.com wrote:
+> From: AngeloGioacchino Del Regno <kholk11@gmail.com>
 >
-> Okay and this wasn't happening before this series because the firmware
-> was only returning the current CPU from scmi_get_sharing_cpus() ?
+> This is a custom multi-aspect 25MegaPixels sensor from Sony,
+> found in many Sony Xperia smartphones from various eras.
 >
-> Is this driver also used for the cases where we have multiple CPUs in
-> a policy ? Otherwise we won't be required to call
-> dev_pm_opp_set_sharing_cpus().
+> The camera assembly for this sensor usually (at least in Xperia
+> phones) has a lens that does not cover the entire sensor area,
+> which means that the real corners are blind and that, in many
+> lighting conditions, some more pixels in the corners are very
+> getting obscured (as no decent amount of light can get in)...
+> so, the maximum resolution that can produce a good image is:
+> - In 4:3 aspect ratio, 5520x4160 (23.0MP)
+> - In 16:9 aspect ratio, 5984x3392 (20.3MP).
 >
-> So I assume that we want to support both the cases here ?
+> This sensor supports high frame rates (>=60FPS) when in binning
+> mode and both RAW8 and RAW10 output modes.
+> In this version of the driver, support has been provided for the
+> following resolutions:
+>     W x H     SZ   MAX_FPS  BINNING
+> - 5520x4160 23.0MP   23       No
+> - 5984x3392 20.3MP   26       No
+> - 2992x1696  3.8MP   60       Yes
+> - 1424x800   1.2MP   120      Yes
+>
+> Note 1: The "standard" camera assy for IMX300 also contains an
+> actuator (to focus the image), but this driver only manages the
+> actual image sensor.
+>
+> Note 2: The command tables for this sensor were reverse
+> engineered from a downstream "userspace driver" that has been
+> released in various versions on various Xperia smartphones.
+> Register layout seems to be only vaguely similar to IMX219,
+> which has a public datasheet from where some names for the
+> figured out registers were taken and added to the driver:
+> these names are probably not the right ones, but they surely
+> represent the intended thing.
+>
+> Signed-off-by: AngeloGioacchino Del Regno <kholk11@gmail.com>
+
+Just a few drive-by comments, as I'm looking at selection targets for
+other imx sensors and I've noticed this one on the list
+
+> ---
+>  drivers/media/i2c/Kconfig  |   13 +
+>  drivers/media/i2c/Makefile |    1 +
+>  drivers/media/i2c/imx300.c | 3081 ++++++++++++++++++++++++++++++++++++
+>  3 files changed, 3095 insertions(+)
+>  create mode 100644 drivers/media/i2c/imx300.c
 >
 
-Yes indeed, completely depends on what granularity firmware provides the
-performance control. It could be individual CPUs, could be pair of CPUs
-(or all the threads in the core) or subset of CPUs in the performance
-domain. The subset could be full set.
+[snip]
 
-> > If we attempt to add OPPs on second cpu probe, it *will* shout as duplicate
-> > OPP as we would have already marked it as shared table with the first cpu.
-> > Am I missing anything ? I suggested this as Nicola saw OPP duplicate
-> > warnings when he was hacking up this patch.
->
-> The common stuff (for all the CPUs) is better moved to probe() in this
-> case, instead of the ->init() callback. Otherwise it will always be
-> messy. You can initialize the OPP and cpufreq tables in probe()
-> itself, save the pointer somewhere and then just use it here in
-> ->init().
->
-> Also do EM registration from there.
->
+> +/*
+> + * ** IMX300 native and active pixel array size **
+> + *
+> + * Being this a multi-aspect sensor, the following native W/H apply, but
+> + * beware: the module assembly usually has a (round) lens that is shadowing
+> + * or covering the corners of the (square) image sensor, so the maximum
+> + * output resolution must be lower than the maximum sensor resolution
+> + * otherwise we get something like a view from a porthole... :)
+> + *
+> + * For 4:3  aspect ratio, max is: 5984x4140 (25MP)
+> + * For 16:9 aspect ratio, max is: 5984x3392 (20.3MP)
+> + */
 
-Makes sense.
+These are the sizes
 
---
-Regards,
-Sudeep
+> +#define IMX300_NATIVE_WIDTH		5980U
+> +#define IMX300_NATIVE_HEIGHT		4140U
+> +#define IMX300_PIXEL_ARRAY_LEFT		0U
+> +#define IMX300_PIXEL_ARRAY_TOP		0U
+> +#define IMX300_PIXEL_ARRAY_WIDTH	5520U
+> +#define IMX300_PIXEL_ARRAY_HEIGHT	4160U
+
+And here is how they are applied to selection targets
+
+> +	case V4L2_SEL_TGT_CROP: {
+> +		struct imx300 *imx300 = to_imx300(sd);
+> +
+> +		mutex_lock(&imx300->mutex);
+> +		sel->r = *__imx300_get_pad_crop(imx300, cfg, sel->pad,
+> +						sel->which);
+> +		mutex_unlock(&imx300->mutex);
+> +
+> +		return 0;
+> +	}
+> +
+> +	case V4L2_SEL_TGT_NATIVE_SIZE:
+> +		sel->r.top = 0;
+> +		sel->r.left = 0;
+> +		sel->r.width = IMX300_NATIVE_WIDTH;
+> +		sel->r.height = IMX300_NATIVE_HEIGHT;
+> +
+> +		return 0;
+> +
+> +	case V4L2_SEL_TGT_CROP_DEFAULT:
+> +		sel->r.top = IMX300_PIXEL_ARRAY_TOP;
+> +		sel->r.left = IMX300_PIXEL_ARRAY_LEFT;
+> +		sel->r.width = IMX300_PIXEL_ARRAY_WIDTH;
+> +		sel->r.height = IMX300_PIXEL_ARRAY_HEIGHT;
+> +
+> +		return 0;
+> +	}
+> +
+
+1) CROP_DEFAULT should be contained in NATIVE_SIZE (actually all
+targets are contained in NATIVE_SIZE, and are defined relatively to
+it). This means that IMX300_PIXEL_ARRAY_HEIGHT > IMX300_NATIVE_HEIGHT
+is probably wrong.
+
+2) You need to specify CROP_BOUNDS too. If the driver does not support
+reading optically black pixels using the selection API, it should be
+identical to CROP_DEFAULT (v4l2-compliance should report that, see
+https://git.linuxtv.org/media_tree.git/commit/?id=1ed36ecd1459b653cced8929bfb37dba94b64c5d
+
+3) CROP_DEFAULT (and BOUNDS) should report the sensor readable active
+area. You have one mode where the TGT_CROP rectangle width is bigger
+than the CROP_DEFAULT (and BOUNDS) rectangle width (5984 > 5520). I
+think 5984 should probably be made the CROP_DEFAULT (and BOUNDS) width
+then, as the 5984 mode's width implies the 464 pixels exceeding 5520
+are readable and valid for image capture.
+
+It's not easy to get these right with a datasheet sometimes, without
+one it quickly becomes a matter of guessing. But even if the values are
+computed as 'best effort' we should try to respect the relationships
+between the different selection targets.
+
+Thanks
+  j
