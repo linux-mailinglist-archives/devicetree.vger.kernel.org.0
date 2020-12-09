@@ -2,265 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DB0832D381A
-	for <lists+devicetree@lfdr.de>; Wed,  9 Dec 2020 02:09:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CB3152D382F
+	for <lists+devicetree@lfdr.de>; Wed,  9 Dec 2020 02:18:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726379AbgLIBJM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Dec 2020 20:09:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54656 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726370AbgLIBJM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Dec 2020 20:09:12 -0500
-Received: from mail-ej1-x644.google.com (mail-ej1-x644.google.com [IPv6:2a00:1450:4864:20::644])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E505AC061794
-        for <devicetree@vger.kernel.org>; Tue,  8 Dec 2020 17:08:31 -0800 (PST)
-Received: by mail-ej1-x644.google.com with SMTP id jx16so550931ejb.10
-        for <devicetree@vger.kernel.org>; Tue, 08 Dec 2020 17:08:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=ruGd4q6KZWpDS78RJXrsrDqLWluPTOTGxDVaHIvkab0=;
-        b=ELpsixt222Vh6on/xzaMrMmCvM0mHYZmtUKJkTcHWLdV9vedreDoKtyOarP46BodW7
-         0ZfxImwRCmIIqyrx88p/RTINm/JUTaqCdm4FTpQsT+UXA49s0jJWwnMQvkL8EppzbohB
-         ZVOUagGdN9Ehk3H8UrYPpznh+OLwT6tjnCqEw=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=ruGd4q6KZWpDS78RJXrsrDqLWluPTOTGxDVaHIvkab0=;
-        b=o5t6TSgED6uL0ITOFCfZvv8C3k3C98gmY/pGvPDf3JIFXul0sRIIS2/u/6Z0A8KITm
-         LGLR2icK34zRDCSIw5wLoh3uLKTi04XEa6DAl/cpe5FocQPhxi0EjcNXPu4NU14mSDfr
-         edB3wC47y+yON/AByYyGfcAsTXxQZGB3XH6dnV/BRhzXfJPWP5C35FDWL1Es3Ajfx5H+
-         Tv6s8pkF8iFf7xJ1bSGd/wBXRG2Gm018rHLH/+2oTpm3sR79vKWUl2oeIgWO13zs4P1H
-         vhHIDb+40PFi/XFuUuho2pS+ji6v53/ZOzHcYhdbh4/EOi8/JSKcE80+n41WJa60DdU9
-         onUQ==
-X-Gm-Message-State: AOAM531G56lleu4+yw24Dg+k8eVVW7YWqgjV/La7uPu+AV2s83voTjo6
-        Nnb/sAl4zKRo9jaJ15dpW0l4rkGS8hpe3A==
-X-Google-Smtp-Source: ABdhPJxHbadbIZnNk6FuYvCajz+yj7jSZ08Zh4L1hv//KFLbkxDiMOz3AAMXB3qtc4eOrbrylu4ERA==
-X-Received: by 2002:a17:906:f0d0:: with SMTP id dk16mr68248ejb.144.1607476109773;
-        Tue, 08 Dec 2020 17:08:29 -0800 (PST)
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com. [209.85.218.52])
-        by smtp.gmail.com with ESMTPSA id o33sm491498edd.50.2020.12.08.17.08.28
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 08 Dec 2020 17:08:28 -0800 (PST)
-Received: by mail-ej1-f52.google.com with SMTP id qw4so533313ejb.12
-        for <devicetree@vger.kernel.org>; Tue, 08 Dec 2020 17:08:28 -0800 (PST)
-X-Received: by 2002:a17:906:4304:: with SMTP id j4mr60872ejm.304.1607476108105;
- Tue, 08 Dec 2020 17:08:28 -0800 (PST)
+        id S1726046AbgLIBRU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Dec 2020 20:17:20 -0500
+Received: from mail.loongson.cn ([114.242.206.163]:37516 "EHLO loongson.cn"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1725995AbgLIBRU (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 8 Dec 2020 20:17:20 -0500
+Received: from [10.130.0.52] (unknown [113.200.148.30])
+        by mail.loongson.cn (Coremail) with SMTP id AQAAf9AxitBrJdBfB90aAA--.43975S3;
+        Wed, 09 Dec 2020 09:16:29 +0800 (CST)
+Subject: Re: [PATCH v2 2/4] spi: Add devicetree bindings documentation for
+ Loongson SPI
+To:     Sergei Shtylyov <sergei.shtylyov@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+References: <1607413467-17698-1-git-send-email-zhangqing@loongson.cn>
+ <1607413467-17698-2-git-send-email-zhangqing@loongson.cn>
+ <b97c4d59-3279-f67d-d951-1e9436faa640@gmail.com>
+ <20e7dafc-8c67-79e4-e64a-a08e21101678@loongson.cn>
+ <3f5a7d26-e78a-b02e-5fc2-c241547c683d@gmail.com>
+Cc:     linux-spi@vger.kernel.org, Huacai Chen <chenhc@lemote.com>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
+        linux-kernel@vger.kernel.org, gaojuxin@loongson.cn,
+        yangtiezhu@loongson.cn
+From:   zhangqing <zhangqing@loongson.cn>
+Message-ID: <0732b18d-cff4-6556-cf80-395ff8e9b15b@loongson.cn>
+Date:   Wed, 9 Dec 2020 09:16:27 +0800
+User-Agent: Mozilla/5.0 (X11; Linux mips64; rv:45.0) Gecko/20100101
+ Thunderbird/45.4.0
 MIME-Version: 1.0
-References: <20201207143255.1.Ib92ec35163682dec4b2fbb4bde0785cb6e6dde27@changeid>
-In-Reply-To: <20201207143255.1.Ib92ec35163682dec4b2fbb4bde0785cb6e6dde27@changeid>
-From:   Alexandru M Stan <amstan@chromium.org>
-Date:   Tue, 8 Dec 2020 17:07:51 -0800
-X-Gmail-Original-Message-ID: <CAHNYxRxNHtRL9XjHu=cyrn75YvMH5-BYWR6CLPKa1X+azFckeQ@mail.gmail.com>
-Message-ID: <CAHNYxRxNHtRL9XjHu=cyrn75YvMH5-BYWR6CLPKa1X+azFckeQ@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: qcom: Clean up sc7180-trogdor voltage rails
-To:     Douglas Anderson <dianders@chromium.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Matthias Kaehlcke <mka@chromium.org>, kgunda@codeaurora.org,
-        Stephen Boyd <swboyd@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <3f5a7d26-e78a-b02e-5fc2-c241547c683d@gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-CM-TRANSID: AQAAf9AxitBrJdBfB90aAA--.43975S3
+X-Coremail-Antispam: 1UD129KBjvJXoW7Kr48Aw1DuF4xGF48CF17Wrg_yoW8Kr1kpF
+        1UCF45tF4kJw17Ca1aq3WxCwnxtr95uF4UWFn2qryUAryDK3Zxt3W5trWUury8WF48AFW0
+        vrZ7GFWfKry5J3DanT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+        9KBjDU0xBIdaVrnRJUUUBY14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+        rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+        1l84ACjcxK6xIIjxv20xvE14v26ryj6F1UM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4U
+        JVWxJr1l84ACjcxK6I8E87Iv67AKxVWxJVW8Jr1l84ACjcxK6I8E87Iv6xkF7I0E14v26r
+        4UJVWxJr1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2Wl
+        Yx0E2Ix0cI8IcVAFwI0_Jr0_Jr4lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbV
+        WUJVW8JwACjcxG0xvEwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2
+        Y2ka0xkIwI1lc7I2V7IY0VAS07AlzVAYIcxG8wCY02Avz4vE14v_KwCF04k20xvY0x0EwI
+        xGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480
+        Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVC0I7
+        IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcVCF04k2
+        6cxKx2IYs7xG6rW3Jr0E3s1lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x
+        0267AKxVW8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7VUbLiSPUUUUU==
+X-CM-SenderInfo: x2kd0wptlqwqxorr0wxvrqhubq/
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 7, 2020 at 2:33 PM Douglas Anderson <dianders@chromium.org> wrote:
->
-> For a bunch of rails we really don't do anything with them in Linux.
-> These are things like modem voltage rails that the modem manages these
-> itself and core rails (like IO rails) that are setup to just
-> automagically do the right thing by the firmware.
->
-> Let's stop even listing those rails in our device tree.
->
-> The net result of this is that some of these rails might be able to go
-> down to a lower voltage or perhaps transition to LPM (low power mode)
-> sometimes.
->
-> Here's a list of what we're doing and why:
->
-> * L1A - only goes to SoC and doesn't seem associated with any
->   particular peripheral. Kernel isn't doing anything with
->   this. Removing from dts. NET IMPACT: rail might drop from 1.2V to
->   1.178V and switch to LPM in some cases depending on firmware.
-> * L2A - only goes to SoC and doesn't seem associated with any
->   particular peripheral. Kernel isn't doing anything with
->   this. Removing from dts. NET IMPACT: rail might switch to LPM in
->   some cases depending on firmware.
-> * L3A - only goes to SoC and doesn't seem associated with any
->   particular peripheral. Kernel isn't doing anything with
->   this. Removing from dts. NET IMPACT: rail might switch to LPM in
->   some cases depending on firmware.
-> * L5A - seems to be totally unused as far as I can tell and doesn't
->   even come off QSIP. Removing from dts.
-> * L6A - only goes to SoC and doesn't seem associated with any
->   particular peripheral (I think?). Kernel isn't doing anything with
->   this. Removing from dts. NET IMPACT: rail might switch to LPM in
->   some cases depending on firmware.
-> * L16A - Looks like this is only used for internal RF stuff. Removing
->   from dts. NET IMPACT: rail might switch to LPM in some cases
->   depending on firmware.
-> * L1C - Just goes to WiFi / Bluetooth. Trust how IDP has this set and
->   put this back at 1.616V min.
-> * L4C - This goes out to the eSIM among other places. This looks like
->   it's intended to be for SIM card and modem manages. NET IMPACT:
->   rail might switch to LPM in some cases depending on firmware.
-> * L5C - This goes to the physical SIM.  This looks like it's intended
->   to be for SIM card and modem manages. NET IMPACT: rail might drop
->   from 1.8V to 1.648V and switch to LPM in some cases depending on
->   firmware.
->
-> NOTE: in general for anything which is supposed to be managed by Linux
-> I still left it all forced to HPM since I'm not 100% sure that all the
-> needed calls to regulator_set_load() are in place and HPM is safer.
-> Switching more things to LPM can happen in a future patch.
->
-> ALSO NOTE: Power measurements showed no measurable difference after
-> applying this patch, so perhaps it should be viewed more as a cleanup
-> than any power savings.
->
-> Signed-off-by: Douglas Anderson <dianders@chromium.org>
-> ---
->
->  arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi | 82 ++------------------
->  1 file changed, 7 insertions(+), 75 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-> index 8ed7dd39f6e3..43dfe7833ad9 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-> @@ -298,40 +298,6 @@ pp1125_s1a: smps1 {
->                         regulator-max-microvolt = <1128000>;
->                 };
->
-> -               /*
-> -                * pp2040_s5a (smps5) and pp1056_s4a (smps4) are just
-> -                * inputs to other rails on AOP-managed PMICs on trogdor.
-> -                * The system is already configured to manage these rails
-> -                * automatically (enable when needed, adjust voltage for
-> -                * headroom) so we won't specify anything here.
-> -                *
-> -                * NOTE: though the rails have a voltage implied by their
-> -                * name, the automatic headroom calculation might not result
-> -                * in them being that voltage.  ...and that's OK.
-> -                * Specifically the only point of these rails is to provide
-> -                * an input source for other rails and if we can satisify the
-> -                * needs of those other rails with a lower source voltage then
-> -                * we save power.
-> -                */
-> -
-> -               pp1200_l1a: ldo1 {
-> -                       regulator-min-microvolt = <1200000>;
-> -                       regulator-max-microvolt = <1200000>;
-> -                       regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> -               };
-> -
-> -               pp1000_l2a: ldo2 {
-> -                       regulator-min-microvolt = <944000>;
-> -                       regulator-max-microvolt = <1056000>;
-> -                       regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> -               };
-> -
-> -               pp1000_l3a: ldo3 {
-> -                       regulator-min-microvolt = <968000>;
-> -                       regulator-max-microvolt = <1064000>;
-> -                       regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> -               };
-> -
->                 vdd_qlink_lv:
->                 vdd_qlink_lv_ck:
->                 vdd_qusb_hs0_core:
-> @@ -350,24 +316,6 @@ pp900_l4a: ldo4 {
->                         regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
->                 };
->
-> -               pp2700_l5a: ldo5 {
-> -                       regulator-min-microvolt = <2704000>;
-> -                       regulator-max-microvolt = <2704000>;
-> -                       regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> -               };
-> -
-> -               ebi0_cal:
-> -               ebi1_cal:
-> -               vddio_ck_ebi0:
-> -               vddio_ck_ebi1:
-> -               vddio_ebi0:
-> -               vddq:
-> -               pp600_l6a: ldo6 {
-> -                       regulator-min-microvolt = <568000>;
-> -                       regulator-max-microvolt = <648000>;
-> -                       regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> -               };
-> -
->                 vdd_cx_wlan:
->                 pp800_l9a: ldo9 {
->                         regulator-min-microvolt = <488000>;
-> @@ -404,6 +352,11 @@ pp1800_l12a_r: ldo12 {
->                         regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
->                 };
->
-> +               /*
-> +                * On trogdor this needs to match l10a since we use it to
-> +                * give power to things like SPI flash which communicate back
-> +                * on lines powered by l10a.  Thus we force to 1.8V.
-> +                */
->                 pp1800_l13a: ldo13 {
->                         regulator-min-microvolt = <1800000>;
->                         regulator-max-microvolt = <1800000>;
-> @@ -424,12 +377,6 @@ pp1800_l15a: ldo15 {
->                         regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
->                 };
->
-> -               pp2700_l16a: ldo16 {
-> -                       regulator-min-microvolt = <2496000>;
-> -                       regulator-max-microvolt = <3304000>;
-> -                       regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> -               };
-> -
->                 vdda_qusb_hs0_3p1:
->                 vdd_pdphy:
->                 pp3100_l17a: ldo17 {
-> @@ -463,8 +410,8 @@ pp1300_s8c: smps8 {
->                 };
->
->                 pp1800_l1c: ldo1 {
-> -                       regulator-min-microvolt = <1800000>;
-> -                       regulator-max-microvolt = <1800000>;
-> +                       regulator-min-microvolt = <1616000>;
-> +                       regulator-max-microvolt = <1984000>;
->                         regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
->                 };
->
-> @@ -491,21 +438,6 @@ pp1200_l3c: ldo3 {
->                         regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
->                 };
->
-> -               ld_pp1800_esim_l4c:
-> -               vddpx_5:
-> -               pp1800_l4c: ldo4 {
-> -                       regulator-min-microvolt = <1648000>;
-> -                       regulator-max-microvolt = <3304000>;
-> -                       regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> -               };
-> -
-> -               vddpx_6:
-> -               pp1800_l5c: ldo5 {
-> -                       regulator-min-microvolt = <1800000>;
-> -                       regulator-max-microvolt = <1800000>;
-> -                       regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> -               };
-> -
->                 vddpx_2:
->                 ppvar_l6c: ldo6 {
->                         regulator-min-microvolt = <1800000>;
-> --
-> 2.29.2.576.ga3fc446d84-goog
->
 
-Reviewed-by: Alexandru M Stan <amstan@google.com>
+
+On 12/08/2020 10:48 PM, Sergei Shtylyov wrote:
+> On 12/8/20 1:47 PM, zhangqing wrote:
+>
+>>>> Add spi-ls7a binding documentation.
+>>>>
+>>>> Signed-off-by: Qing Zhang <zhangqing@loongson.cn>
+>>>> ---
+>>>>    Documentation/devicetree/bindings/spi/spi-ls7a.txt | 31 ++++++++++++++++++++++
+>>>>    1 file changed, 31 insertions(+)
+>>>>    create mode 100644 Documentation/devicetree/bindings/spi/spi-ls7a.txt
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/spi/spi-ls7a.txt b/Documentation/devicetree/bindings/spi/spi-ls7a.txt
+>>>> new file mode 100644
+>>>> index 0000000..56247b5
+>>>> --- /dev/null
+>>>> +++ b/Documentation/devicetree/bindings/spi/spi-ls7a.txt
+>>>> @@ -0,0 +1,31 @@
+>>>> +Binding for LOONGSON LS7A SPI controller
+>>>> +
+>>>> +Required properties:
+>>>> +- compatible: should be "pci0014,7a0b.0","pci0014,7a0b","pciclass088000","pciclass0880".
+>>>> +- reg: reference IEEE Std 1275-1994.
+>>>> +- #address-cells: <1>, as required by generic SPI binding.
+>>>> +- #size-cells: <0>, also as required by generic SPI binding.
+>>>> +- #interrupts: No hardware interrupt.
+>>>     You say it's a required prop, yet yuoe example doesn't have it...
+>>          I want to emphasize here that LS7A SPI has no hardware interrupts, and DT is not actually used.
+>     The why document the property at all?
+           Thank you for your reply again,
+
+           I will remove the #interrupt attribute in the third edition.
+>
+>>>> +
+>>>> +Child nodes as per the generic SPI binding.
+>>>> +
+>>>> +Example:
+>>>> +
+>>>> +            spi@16,0 {
+>>>> +                compatible = "pci0014,7a0b.0",
+>>>> +                        "pci0014,7a0b",
+>>>> +                        "pciclass088000",
+>>>> +                        "pciclass0880";
+>>>> +
+>>>> +                #address-cells = <1>;
+>>>> +                #size-cells = <0>;
+>>>> +                reg = <0xb000 0x0 0x0 0x0 0x0>;
+>>>> +                num-chipselects = <0>;
+>>>> +                spiflash: s25fl016k@0 {
+>>>> +                #address-cells = <1>;
+>>>> +                #size-cells = <1>;
+>>>     Once more?
+>>>
+>>>> +                compatible ="spansion,s25fl016k","jedec,spi-nor";
+>>>     Once more?
+>>>
+>>>> + spi-max-frequency=<50000000>;
+>>>> +                reg=<0>;
+>>>     Once more? Did you mean this for a child node?
+>>         Yes, these are child node attributes, the child node splash is not necessary.
+>     You should indent the child nodes with 1 more tab...
+         I will do it and send the v3 in the soon.
+>
+>>>> +                };
+>>>> +            };
+>>       Thanks
+>>
+>>       -Qing
+> MBR, Sergei
+
