@@ -2,48 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B7542D4A8C
-	for <lists+devicetree@lfdr.de>; Wed,  9 Dec 2020 20:39:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E54C2D4AA6
+	for <lists+devicetree@lfdr.de>; Wed,  9 Dec 2020 20:41:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387805AbgLITiN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Dec 2020 14:38:13 -0500
-Received: from mail.kernel.org ([198.145.29.99]:40912 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2387803AbgLITiK (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 9 Dec 2020 14:38:10 -0500
-Date:   Wed, 9 Dec 2020 11:37:27 -0800
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1607542649;
-        bh=6Us6fY/6rkYgkZHdQt/DFMvdhHWAXIdbJPZtbrUcdjU=;
-        h=From:To:Cc:Subject:In-Reply-To:References:From;
-        b=PhJMBnLltgKtJSzXrachkqadwU9+zvyq4Vpgai8lqsTNnn2OcjTP5liuyMnfBLd0A
-         lsqW03huClsWzfjOKDvG1LHRxlnDyybblLkhgycOLCyADiowk/Reoi8oJ/brH6NqG6
-         tGUjwAxZ41+k4M6BIkUwXw/7B7Rltgn4/ylAFUiI6WrxMRt5A+mCqYhJUpY74ts6L8
-         GhWbKoGuS4d98gvIzgGJN17pO3yNbEs7zDd3vs/f9dt3rJ9t3DLnmIDVww6f/ci7fu
-         WZYa30f5y6oS20as4ict2OEECGMXNOICBCzUeAfFrWfZW2v/zjqHs40CYLKCpfF1uh
-         7e/1DA4LutTvA==
-From:   Jakub Kicinski <kuba@kernel.org>
-To:     Pavana Sharma <pavana.sharma@digi.com>
-Cc:     andrew@lunn.ch, ashkan.boldaji@digi.com,
-        clang-built-linux@googlegroups.com, davem@davemloft.net,
-        devicetree@vger.kernel.org, f.fainelli@gmail.com,
-        gregkh@linuxfoundation.org, kbuild-all@lists.01.org,
-        linux-kernel@vger.kernel.org, lkp@intel.com, marek.behun@nic.cz,
-        netdev@vger.kernel.org, robh+dt@kernel.org,
-        vivien.didelot@gmail.com
-Subject: Re: [PATCH v11 0/4] Add support for mv88e6393x family of Marvell
-Message-ID: <20201209113727.1b4bd319@kicinski-fedora-pc1c0hjn.DHCP.thefacebook.com>
-In-Reply-To: <cover.1607488953.git.pavana.sharma@digi.com>
-References: <20201120015436.GC1804098@lunn.ch>
-        <cover.1607488953.git.pavana.sharma@digi.com>
+        id S1732095AbgLITk7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Dec 2020 14:40:59 -0500
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:42358 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731708AbgLITk6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Dec 2020 14:40:58 -0500
+Received: by mail-ot1-f68.google.com with SMTP id 11so2546524oty.9;
+        Wed, 09 Dec 2020 11:40:42 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=mYc9vJv1oqW+FwOLyX+uGrv6wMqWwT4kKtZYcKQrg8Q=;
+        b=kADTVhCvv8B+8Ffwrjv4XBqg9sQw7Rq9V6JYFswAjuNOlBamqZkKBn8q/Ol/Snm3F9
+         vOq5flNhMxCbg1EW9Ku7PlqONtgk/sb+nD2t3HDKtu7076pf55zIH232F4PnKGFjBik3
+         3AG55aw7F6HH+HoNrD0EbjWVfAloU7dWizCix3NQjuF0H36tdxQ3vwrGXrlP6VpGAxK/
+         B7n8RG4oR+swOl0kPrPB4AtCx8l9fGAxvrzBLdZuKIQSLeJumfMUb+h7OFRs0i92/kzT
+         McEwaCgV1PaHSHtN/ei8YY7/wnSUAVsBdRE21C/FxFTDNtZ4yFb48JwkFBdWgtfLRQVE
+         zsEg==
+X-Gm-Message-State: AOAM5319bmiBFmmuSLcjOcxog0/H7G/xx7HTWL1rT04zJDOU/Jz3G356
+        6w9g1vobf8gvnMoTsSV2YcEvCDwQbw==
+X-Google-Smtp-Source: ABdhPJyNNdo/5u5IPwkbkYV2b1LxUEF/CZtgvSfiSj7Pw00VMP2aGu0GRdCSD7lmCzvGJMuL0ncDog==
+X-Received: by 2002:a9d:7851:: with SMTP id c17mr3221347otm.255.1607542817478;
+        Wed, 09 Dec 2020 11:40:17 -0800 (PST)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id h62sm531290oia.9.2020.12.09.11.40.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 09 Dec 2020 11:40:16 -0800 (PST)
+Received: (nullmailer pid 820157 invoked by uid 1000);
+        Wed, 09 Dec 2020 19:40:14 -0000
+Date:   Wed, 9 Dec 2020 13:40:14 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Stephan Gerhold <stephan@gerhold.net>
+Cc:     Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        "H . Nikolaus Schaller" <hns@goldelico.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        devicetree@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-iio@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH 1/4] dt-bindings: iio: magnetometer: bmc150: Document
+ regulator supplies
+Message-ID: <20201209194014.GA820110@robh.at.kernel.org>
+References: <20201202093322.77114-1-stephan@gerhold.net>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201202093322.77114-1-stephan@gerhold.net>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed,  9 Dec 2020 15:02:54 +1000 Pavana Sharma wrote:
-> Updated patchset after incorporating feedback.
+On Wed, 02 Dec 2020 10:33:19 +0100, Stephan Gerhold wrote:
+> BMC150 needs VDD and VDDIO regulators that might need to be explicitly
+> enabled. Document support for vdd/vddio-supply to implement this.
+> 
+> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
+> ---
+>  .../bindings/iio/magnetometer/bosch,bmc150_magn.yaml           | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
 
-This set does not apply to net-next. Please rebase.
+Reviewed-by: Rob Herring <robh@kernel.org>
