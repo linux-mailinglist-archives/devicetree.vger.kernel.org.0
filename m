@@ -2,573 +2,240 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9FF8D2D451D
-	for <lists+devicetree@lfdr.de>; Wed,  9 Dec 2020 16:10:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4975C2D455E
+	for <lists+devicetree@lfdr.de>; Wed,  9 Dec 2020 16:28:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729503AbgLIPJe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Dec 2020 10:09:34 -0500
-Received: from mail.thorsis.com ([92.198.35.195]:47782 "EHLO mail.thorsis.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726660AbgLIPJd (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 9 Dec 2020 10:09:33 -0500
-X-Greylist: delayed 430 seconds by postgrey-1.27 at vger.kernel.org; Wed, 09 Dec 2020 10:09:32 EST
-Received: from localhost (localhost [127.0.0.1])
-        by mail.thorsis.com (Postfix) with ESMTP id 99B6BD8A
-        for <devicetree@vger.kernel.org>; Wed,  9 Dec 2020 16:01:35 +0100 (CET)
-X-Virus-Scanned: Debian amavisd-new at mail.thorsis.com
-Received: from mail.thorsis.com ([127.0.0.1])
-        by localhost (mail.thorsis.com [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id iVrsMWJ7Z9my for <devicetree@vger.kernel.org>;
-        Wed,  9 Dec 2020 16:01:35 +0100 (CET)
-Received: by mail.thorsis.com (Postfix, from userid 109)
-        id 768A4358B; Wed,  9 Dec 2020 16:01:33 +0100 (CET)
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NO_RECEIVED,
-        NO_RELAYS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
-        version=3.4.2
-From:   Alexander Dahl <ada@thorsis.com>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     Teresa Remmet <t.remmet@phytec.de>, devicetree@vger.kernel.org,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Shawn Guo <shawnguo@kernel.org>
-Subject: Re: [PATCH v2 4/4] arm64: dts: freescale: Add support for phyBOARD-Pollux-i.MX8MP
-Date:   Wed, 09 Dec 2020 16:01:25 +0100
-Message-ID: <5772451.vJfJuro9ls@ada>
-In-Reply-To: <1607445491-208271-5-git-send-email-t.remmet@phytec.de>
-References: <1607445491-208271-1-git-send-email-t.remmet@phytec.de> <1607445491-208271-5-git-send-email-t.remmet@phytec.de>
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+        id S1728580AbgLIP1B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Dec 2020 10:27:01 -0500
+Received: from mail-vi1eur05on2094.outbound.protection.outlook.com ([40.107.21.94]:21664
+        "EHLO EUR05-VI1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726431AbgLIP1A (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 9 Dec 2020 10:27:00 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=GBNAYL1tPgXAlJeZxgUCxO8oMSJ/RIFsYX20KmZ2qNmyAmLfXRxltROCP9AoNqUevFsMJZCA6SwUB7PNNuMok5QPxYm3UuPGewBu2ZYm8rYsF/6P0ncltdmoXFlLMSEwIZe6zA8Niuz9DwhRTYNxAcjWU+DKk6ZlPMCNUyTuJH+KVjhrbM58/YdozNgf4s5IU0jG7OJ9KJDpwkMpDOufygut4AJPoc+rvuA9UuneoFU5Fyo7ugrUzZVFOEHYUMSGvq93gn91IJCOkGWYWMEzASMnndOdjq/9CfHg3LZId96SC8BH7/yb+cIFBrbNu4nUOG7s3WveOgvwSknlOzbu1A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=1O9wUs8RR/zkAmCoNpI6Pc3FycNtLtIOMh5HSL+/hbo=;
+ b=i9xWlKZULees1mEOlF8rgO7+qy8dB1EJ3/tkYEJDJp/np8irXzF90+vn+kVjGcCGGLWdwXZM9Gx/p10HsAq8f9s+bZwlJQ0s++iNm4PDFUJUwEjAxn5dHcI9FEfskypdPsYP6BHxKs4Cy/+JvzQ1bPndCP57KVPVaEOjhnEkNTXWawZf6irU8DNRDzWkUyrFWfuZ5viGCcJfBxAvKx97qTLvRzjmx5QyS9dNvzxkL/pCHhpYSYwu4QHIthLk7blNbPYSBD8hYT6hfEkT0SqgH91i/+UEXSBMmiwccReRDzKTkDxlZKI5JOTECiMrqSIKKB1AGG/qvvoSOANmuUt0Nw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=kontron.de; dmarc=pass action=none header.from=kontron.de;
+ dkim=pass header.d=kontron.de; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mysnt.onmicrosoft.com;
+ s=selector2-mysnt-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=1O9wUs8RR/zkAmCoNpI6Pc3FycNtLtIOMh5HSL+/hbo=;
+ b=Z36XxTd/3AwUHtj+8cHj/cfhG05fXAMkkV9Cu4Hga7BXpag0eKtyzRvwi2CAvTeVqHFPwzxn2YWJDZwlswtoJyD/yog7TuGX7cI0LtN4KMeY6mUT3Jls7c2odv4xQXaoJnG0B0zETJpLLVJ2GIiuD0f8Awb8K/dThiUi5kX9KZU=
+Authentication-Results: lists.infradead.org; dkim=none (message not signed)
+ header.d=none;lists.infradead.org; dmarc=none action=none
+ header.from=kontron.de;
+Received: from AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:208:157::14)
+ by AM0PR10MB2913.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:208:155::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3632.17; Wed, 9 Dec
+ 2020 15:26:11 +0000
+Received: from AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::9d5:953d:42a3:f862]) by AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::9d5:953d:42a3:f862%7]) with mapi id 15.20.3654.012; Wed, 9 Dec 2020
+ 15:26:10 +0000
+Subject: Re: [PATCH v2 12/13] arm64: dts: imx8mm: add GPC node and power
+ domains
+To:     Lucas Stach <l.stach@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Fabio Estevam <festevam@gmail.com>, Marek Vasut <marex@denx.de>,
+        Adam Ford <aford173@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>, kernel@pengutronix.de,
+        patchwork-lst@pengutronix.de, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20201105174434.1817539-1-l.stach@pengutronix.de>
+ <20201105174434.1817539-13-l.stach@pengutronix.de>
+From:   Frieder Schrempf <frieder.schrempf@kontron.de>
+Message-ID: <35f1fdad-580c-9b90-9536-98246e31250b@kontron.de>
+Date:   Wed, 9 Dec 2020 16:26:09 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
+In-Reply-To: <20201105174434.1817539-13-l.stach@pengutronix.de>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [88.130.77.13]
+X-ClientProxiedBy: AM8P189CA0022.EURP189.PROD.OUTLOOK.COM
+ (2603:10a6:20b:218::27) To AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM
+ (2603:10a6:208:157::14)
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [192.168.10.17] (88.130.77.13) by AM8P189CA0022.EURP189.PROD.OUTLOOK.COM (2603:10a6:20b:218::27) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3654.12 via Frontend Transport; Wed, 9 Dec 2020 15:26:10 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 4c674fd5-1499-431b-738d-08d89c56c20f
+X-MS-TrafficTypeDiagnostic: AM0PR10MB2913:
+X-Microsoft-Antispam-PRVS: <AM0PR10MB291337363270D72272749E2CE9CC0@AM0PR10MB2913.EURPRD10.PROD.OUTLOOK.COM>
+X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: nsCI6OrxjAjSxjxISGDk86tjexUo299hFiUhIdH5i2Wyw/xjONuxNgeVmfP0lVX034rUuN3sBSGxpektv2VPeLe09+ZZ339XKL0WHUx5zPB3BImdYU34Nnj6oSTSYIvjwbP5970QUHsmLDcoYQnlWkAqMVgC46Xgri613RpIy7fIMqm1wwT5nUOHFQMQGhOmTw/p1Of6IRKlvJ6Zy/HGS3H565gOrI/suJSH/b7pPsd5yMFjbx+IhJC/0JMJrP8PB3c8WGeDQH5O1MWwgkfTRyvPOkWl2GRzN7T8rqRKLCTG9t1WyXXGJ1Pdf1KXvGdNQWuBBIrrxXFeyYszZkJ9G8bjwb0k/kNLckanBZbo+xXMOzf92XzkBSQchZ/wMNbrn2YNS3A5scgvGAhrg/eRH3yJPhXc35iXwIH/V3k/cgfUTFEW8cgFauPIiWfHR2ZzqS1gwiKCdkMD9m0noAtF7Q==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(4636009)(346002)(366004)(376002)(136003)(83380400001)(36756003)(31696002)(8936002)(31686004)(26005)(7416002)(34490700003)(86362001)(956004)(44832011)(5660300002)(66946007)(66476007)(66556008)(8676002)(110136005)(6486002)(2616005)(186003)(54906003)(16526019)(4326008)(2906002)(16576012)(53546011)(508600001)(52116002)(32563001)(43740500002)(45980500001);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData: =?utf-8?B?VDQwTC9FT1ByY1FlU1hwVmloN2IrOGY5N0xEZ25wTzN6UFUxcUJMOWp6RHdt?=
+ =?utf-8?B?b08ycHk3ZXVpZUVsQnEzSEVPWWp6VEZhVVRrZU52UXNQRzdYbkdzbk1tSmIz?=
+ =?utf-8?B?a3owQnhSMWkyWFZGNmpxaWFGWUVSSGJ6UjJtdUVEbDZmYUpzUTIxdVB3bnlQ?=
+ =?utf-8?B?UC91OVVCSlFjbUxRQ3c2dHFUS1U2b1ZISFVQUlh4VHNrR2lOSnFyTUUyRjNp?=
+ =?utf-8?B?azAxSXlTdnJwSmVLcHVlcTRxZjBBYklYS1hNbGVtYzRvRkZBVmtIS1RuYXJ6?=
+ =?utf-8?B?ci9PdWlBNHl6cmZ2VE55ZmVwYmMxeTVKNGl3NW9UeVRiUnI2VGtDb0IxdStF?=
+ =?utf-8?B?WGt4WkZyN1Zha1l2OWM1NWdzN3c3dVB0NjhTZllDOC92bUk0R2E2T3NzNEM5?=
+ =?utf-8?B?bnRvNytVb3diTW8rMHpwNWVvWnJuR0FDY1Z6MVpMWVIvbVNOQlJXTk5Jb25Y?=
+ =?utf-8?B?REZxbWZiaXhhS3pIZnJXVzB5R2RyejEwN2F4am54VDRTbSs2VkthVHVuRks1?=
+ =?utf-8?B?dnhpQitEK0ZiZy9jSU5LaDZlSEN4ZXNMZTJKTzBZaStLeDFnM0hJR1Q0R2ZZ?=
+ =?utf-8?B?ZHFCNnlBbFRzUzhraWI1aGhhWEhVZTB5b2NZbThkVGJhcGxQVnJxSmlwVzQ4?=
+ =?utf-8?B?aVhseTZnWHY3UVJ6UHY4WUk4QXhDRFJKSXZVTlQ4VUdmRGF5QU5PVGs0RnVi?=
+ =?utf-8?B?VVdsSlp1L3V6bU5ydVJ1MStVMHIrNVF5YVRWTUIyYVhTOEVXQVlVNFo4NDNs?=
+ =?utf-8?B?SFB0QSt3cGg2RkR1R2cremJEQzdReVhRWGNTMzMwaWVhV3M5S0FycmpDTlVY?=
+ =?utf-8?B?M3UzUlVPWTQ3WnBjWEFlcU0yUDQweGRSYlFSeTlnVDNDdllXZVgrZGdYV2w4?=
+ =?utf-8?B?QnZNZ0JhRWtzUmlqSXFDTVNudXdIY1FzOXAvWXFyaGJDVHgzUXBpakNKZ3pF?=
+ =?utf-8?B?c3E0TWdFZGp0dDhFMTN5QjRod0M1WU9sd1JOL3I2K3QxRmhxdnMrSVZWNWFa?=
+ =?utf-8?B?U3ZETndnbEEyREpTVVdDT1E3ZzVHYk5WbEx3UFlJZzZqUHZXMVRMQjdLU3Fn?=
+ =?utf-8?B?VDFDTHpERHQ3K2RZcjZCa3htTE1zRGNtUlZFeGQzaUJ6NmorZ3lnSzU1SWJP?=
+ =?utf-8?B?bDhGNmprbWJFbFFxaFJZRzc3SmRrRkFKbUVvYS9kVHFhczJYVS9DdHhIb1dK?=
+ =?utf-8?B?a2pyV29RMCtUbkRaK2tONkxsWVlSUUNtUkFWZ0NmZE5jZWZSZVppWlZ1YW9a?=
+ =?utf-8?B?ZkVYclFScks5RFlRSDRMTUxhb1dBc0YvOGhIcTJRUU4rcTYzc2tNeWpoSUNX?=
+ =?utf-8?Q?gvywFkTVR1/W8=3D?=
+X-OriginatorOrg: kontron.de
+X-MS-Exchange-CrossTenant-AuthSource: AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Dec 2020 15:26:10.8828
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 8c9d3c97-3fd9-41c8-a2b1-646f3942daf1
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4c674fd5-1499-431b-738d-08d89c56c20f
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: wl7ieWajE3JAoy6EmujWehE1UXnWiE7YRqDa+lGmDrOIU/EZeDYNHR1OqBUIkbkwg9RdnHaMitgozhlTsX9nCWjpz6bpyi6LMExhkUkjG9c=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR10MB2913
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hei hei,
+Hi Lucas,
 
-Am Dienstag, 8. Dezember 2020, 17:38:11 CET schrieb Teresa Remmet:
-> Add initial support for phyBOARD-Pollux-i.MX8MP.
-> Supported basic features:
-> 	* eMMC
-> 	* i2c EEPROM
-> 	* i2c RTC
-> 	* i2c LED
-> 	* PMIC
-> 	* debug UART
-> 	* SD card
-> 	* 1Gbit Ethernet (fec)
-> 	* watchdog
+On 05.11.20 18:44, Lucas Stach wrote:
+> This adds the DT nodes to describe the power domains available on the
+> i.MX8MM. Things are a bit more complex compared to other GPCv2 power
+> domain setups, as there is now a hierarchy of domains where complete
+> subsystems (HSIO, GPU, DISPLAY) can be gated as a whole, but also
+> fine granular gating within those subsystems is possible.
 > 
-> Signed-off-by: Teresa Remmet <t.remmet@phytec.de>
+> Note that this is still incomplete, as both VPU and DISP domains are
+> missing their reset clocks. Those aren't directly sourced from the CCM,
+> but have another level of clock gating in the BLKCTL of those domains,
+> which needs a separate driver.
+> 
+> Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
 > ---
->  arch/arm64/boot/dts/freescale/Makefile             |   1 +
->  .../dts/freescale/imx8mp-phyboard-pollux-rdk.dts   | 166 ++++++++++++
->  .../boot/dts/freescale/imx8mp-phycore-som.dtsi     | 296
-> +++++++++++++++++++++ 3 files changed, 463 insertions(+)
->  create mode 100644
-> arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dts create mode
-> 100644 arch/arm64/boot/dts/freescale/imx8mp-phycore-som.dtsi
+>   arch/arm64/boot/dts/freescale/imx8mm.dtsi | 58 +++++++++++++++++++++++
+>   1 file changed, 58 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/freescale/Makefile
-> b/arch/arm64/boot/dts/freescale/Makefile index acfb8af45912..a43b496678be
-> 100644
-> --- a/arch/arm64/boot/dts/freescale/Makefile
-> +++ b/arch/arm64/boot/dts/freescale/Makefile
-> @@ -37,6 +37,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mn-evk.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mn-ddr4-evk.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mn-var-som-symphony.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mp-evk.dtb
-> +dtb-$(CONFIG_ARCH_MXC) += imx8mp-phyboard-pollux-rdk.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mq-evk.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mq-hummingboard-pulse.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mq-librem5-devkit.dtb
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dts
-> b/arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dts new file
-> mode 100644
-> index 000000000000..9a3d73f08429
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dts
-> @@ -0,0 +1,166 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (C) 2020 PHYTEC Messtechnik GmbH
-> + * Author: Teresa Remmet <t.remmet@phytec.de>
-> + */
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+> index b83f400def8b..c21901a8aea9 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+> @@ -4,6 +4,8 @@
+>    */
+>   
+>   #include <dt-bindings/clock/imx8mm-clock.h>
+> +#include <dt-bindings/power/imx8mm-power.h>
+> +#include <dt-bindings/reset/imx8mq-reset.h>
+>   #include <dt-bindings/gpio/gpio.h>
+>   #include <dt-bindings/input/input.h>
+>   #include <dt-bindings/interrupt-controller/arm-gic.h>
+> @@ -547,6 +549,62 @@
+>   				interrupts = <GIC_SPI 89 IRQ_TYPE_LEVEL_HIGH>;
+>   				#reset-cells = <1>;
+>   			};
 > +
-> +/dts-v1/;
+> +			gpc: gpc@303a0000 {
+> +				compatible = "fsl,imx8mm-gpc";
+> +				reg = <0x303a0000 0x10000>;
+> +				interrupts = <GIC_SPI 87 IRQ_TYPE_LEVEL_HIGH>;
+> +				interrupt-parent = <&gic>;
+> +				interrupt-controller;
+> +				#interrupt-cells = <3>;
 > +
-> +#include <dt-bindings/leds/leds-pca9532.h>
-> +#include <dt-bindings/pwm/pwm.h>
-> +#include "imx8mp-phycore-som.dtsi"
+> +				pgc {
+> +					#address-cells = <1>;
+> +					#size-cells = <0>;
 > +
-> +/ {
-> +	model = "PHYTEC phyBOARD-Pollux i.MX8MP";
-> +	compatible = "phytec,imx8mp-phyboard-pollux-rdk",
-> +		     "phytec,imx8mp-phycore-som", "fsl,imx8mp";
+> +					pgc_hsiomix: power-domain@0 {
+> +						#power-domain-cells = <0>;
+> +						reg = <IMX8MM_POWER_DOMAIN_HSIOMIX>;
+> +						clocks = <&clk IMX8MM_CLK_USB_BUS>;
+> +					};
 > +
-> +	chosen {
-> +		stdout-path = &uart2;
-> +	};
+> +					pgc_pcie: power-domain@1 {
+> +						#power-domain-cells = <0>;
+> +						reg = <IMX8MM_POWER_DOMAIN_PCIE>;
+> +						power-domains = <&pgc_hsiomix>;
+> +					};
 > +
-> +	reg_usdhc2_vmmc: regulator-usdhc2 {
-> +		compatible = "regulator-fixed";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_reg_usdhc2_vmmc>;
-> +		regulator-name = "VSD_3V3";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		gpio = <&gpio2 19 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +		startup-delay-us = <100>;
-> +		off-on-delay-us = <12000>;
-> +	};
-> +};
+> +					pgc_otg1: power-domain@2 {
+> +						#power-domain-cells = <0>;
+> +						reg = <IMX8MM_POWER_DOMAIN_OTG1>;
+> +						power-domains = <&pgc_hsiomix>;
+> +					};
 > +
-> +&i2c2 {
-> +	clock-frequency = <400000>;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_i2c2>;
-> +	pinctrl-1 = <&pinctrl_i2c2_gpio>;
-> +	sda-gpios = <&gpio5 17 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-> +	scl-gpios = <&gpio5 16 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-> +	status = "okay";
-> +
-> +	eeprom@51 {
-> +		compatible = "atmel,24c02";
-> +		reg = <0x51>;
-> +		pagesize = <16>;
-> +		status = "okay";
-> +	};
-> +
-> +	leds@62 {
-> +		compatible = "nxp,pca9533";
-> +		reg = <0x62>;
-> +		status = "okay";
-> +
-> +		led1 {
-> +			label = "red:user1";
-> +			type = <PCA9532_TYPE_LED>;
-> +		};
-> +
-> +		led2 {
-> +			label = "green:user2";
-> +			type = <PCA9532_TYPE_LED>;
-> +		};
-> +
-> +		led3 {
-> +			label = "blue:user3";
-> +			type = <PCA9532_TYPE_LED>;
-> +		};
-> +	};
+> +					pgc_otg2: power-domain@3 {
+> +						#power-domain-cells = <0>;
+> +						reg = <IMX8MM_POWER_DOMAIN_OTG2>;
+> +						power-domains = <&pgc_hsiomix>;
+> +					};
 
-The property 'label' is deprecated, see 
-Documentation/devicetree/bindings/leds/common.yaml 
-for details.
+I'm currently doing some testing on top of v5.10-rc with GPC, BLK-CTL, 
+DSIM, etc. I noticed that as soon as I add the nodes above for HSIO/OTG 
+(even without referencing them elsewhere) my system freezes on 
+suspend/resume.
 
-Greets
-Alex
+The same problem exists when I remove the power domains for HSIO/USB and 
+add the ones for DISPMIX and DSI to test Marek's work on BLK-CTL.
 
-> +};
-> +
-> +&snvs_pwrkey {
-> +	status = "okay";
-> +};
-> +
-> +/* debug console */
-> +&uart2 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_uart2>;
-> +	status = "okay";
-> +};
-> +
-> +/* SD-Card */
-> +&usdhc2 {
-> +	pinctrl-names = "default", "state_100mhz", "state_200mhz";
-> +	pinctrl-0 = <&pinctrl_usdhc2>, <&pinctrl_usdhc2_pins>;
-> +	pinctrl-1 = <&pinctrl_usdhc2_100mhz>, <&pinctrl_usdhc2_pins>;
-> +	pinctrl-2 = <&pinctrl_usdhc2_200mhz>, <&pinctrl_usdhc2_pins>;
-> +	cd-gpios = <&gpio2 12 GPIO_ACTIVE_LOW>;
-> +	vmmc-supply = <&reg_usdhc2_vmmc>;
-> +	bus-width = <4>;
-> +	status = "okay";
-> +};
-> +
-> +&iomuxc {
-> +	pinctrl_i2c2: i2c2grp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_I2C2_SCL__I2C2_SCL		0x400001c3
-> +			MX8MP_IOMUXC_I2C2_SDA__I2C2_SDA		0x400001c3
-> +		>;
-> +	};
-> +
-> +	pinctrl_i2c2_gpio: i2c2gpiogrp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_I2C2_SCL__GPIO5_IO16	0x1e3
-> +			MX8MP_IOMUXC_I2C2_SDA__GPIO5_IO17	0x1e3
-> +		>;
-> +	};
-> +
-> +	pinctrl_reg_usdhc2_vmmc: regusdhc2vmmcgrp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_SD2_RESET_B__GPIO2_IO19	0x41
-> +		>;
-> +	};
-> +
-> +	pinctrl_uart2: uart2grp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_UART2_RXD__UART2_DCE_RX	0x49
-> +			MX8MP_IOMUXC_UART2_TXD__UART2_DCE_TX	0x49
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc2_pins: usdhc2-gpiogrp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_SD2_CD_B__GPIO2_IO12	0x1c4
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc2: usdhc2grp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_SD2_CLK__USDHC2_CLK	0x190
-> +			MX8MP_IOMUXC_SD2_CMD__USDHC2_CMD	0x1d0
-> +			MX8MP_IOMUXC_SD2_DATA0__USDHC2_DATA0	0x1d0
-> +			MX8MP_IOMUXC_SD2_DATA1__USDHC2_DATA1	0x1d0
-> +			MX8MP_IOMUXC_SD2_DATA2__USDHC2_DATA2	0x1d0
-> +			MX8MP_IOMUXC_SD2_DATA3__USDHC2_DATA3	0x1d0
-> +			MX8MP_IOMUXC_GPIO1_IO04__USDHC2_VSELECT	0xc1
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc2_100mhz: usdhc2-100mhzgrp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_SD2_CLK__USDHC2_CLK	0x194
-> +			MX8MP_IOMUXC_SD2_CMD__USDHC2_CMD	0x1d4
-> +			MX8MP_IOMUXC_SD2_DATA0__USDHC2_DATA0	0x1d4
-> +			MX8MP_IOMUXC_SD2_DATA1__USDHC2_DATA1	0x1d4
-> +			MX8MP_IOMUXC_SD2_DATA2__USDHC2_DATA2	0x1d4
-> +			MX8MP_IOMUXC_SD2_DATA3__USDHC2_DATA3	0x1d4
-> +			MX8MP_IOMUXC_GPIO1_IO04__USDHC2_VSELECT	0xc1
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc2_200mhz: usdhc2-200mhzgrp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_SD2_CLK__USDHC2_CLK	0x196
-> +			MX8MP_IOMUXC_SD2_CMD__USDHC2_CMD	0x1d6
-> +			MX8MP_IOMUXC_SD2_DATA0__USDHC2_DATA0	0x1d6
-> +			MX8MP_IOMUXC_SD2_DATA1__USDHC2_DATA1	0x1d6
-> +			MX8MP_IOMUXC_SD2_DATA2__USDHC2_DATA2	0x1d6
-> +			MX8MP_IOMUXC_SD2_DATA3__USDHC2_DATA3	0x1d6
-> +			MX8MP_IOMUXC_GPIO1_IO04__USDHC2_VSELECT	0xc1
-> +		>;
-> +	};
-> +};
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-phycore-som.dtsi
-> b/arch/arm64/boot/dts/freescale/imx8mp-phycore-som.dtsi new file mode
-> 100644
-> index 000000000000..8618df68b1e5
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp-phycore-som.dtsi
-> @@ -0,0 +1,296 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (C) 2020 PHYTEC Messtechnik GmbH
-> + * Author: Teresa Remmet <t.remmet@phytec.de>
-> + */
-> +
-> +#include <dt-bindings/net/ti-dp83867.h>
-> +#include "imx8mp.dtsi"
-> +
-> +/ {
-> +	model = "PHYTEC phyCORE-i.MX8MP";
-> +	compatible = "phytec,imx8mp-phycore-som", "fsl,imx8mp";
-> +
-> +	aliases {
-> +		rtc0 = &rv3028;
-> +		rtc1 = &snvs_rtc;
-> +	};
-> +
-> +	memory@40000000 {
-> +		device_type = "memory";
-> +		reg = <0x0 0x40000000 0 0x80000000>;
-> +	};
-> +};
-> +
-> +&A53_0 {
-> +	cpu-supply = <&buck2>;
-> +};
-> +
-> +&A53_1 {
-> +	cpu-supply = <&buck2>;
-> +};
-> +
-> +&A53_2 {
-> +	cpu-supply = <&buck2>;
-> +};
-> +
-> +&A53_3 {
-> +	cpu-supply = <&buck2>;
-> +};
-> +
-> +/* ethernet 1 */
-> +&fec {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_fec>;
-> +	phy-mode = "rgmii-id";
-> +	phy-handle = <&ethphy1>;
-> +	fsl,magic-packet;
-> +	status = "okay";
-> +
-> +	mdio {
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		ethphy1: ethernet-phy@0 {
-> +			compatible = "ethernet-phy-ieee802.3-c22";
-> +			reg = <0>;
-> +			interrupt-parent = <&gpio1>;
-> +			interrupts = <15 IRQ_TYPE_EDGE_FALLING>;
-> +			ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
-> +			ti,tx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
-> +			ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
-> +			ti,clk-output-sel = <DP83867_CLK_O_SEL_OFF>;
-> +			enet-phy-lane-no-swap;
-> +		};
-> +	};
-> +};
-> +
-> +&i2c1 {
-> +	clock-frequency = <400000>;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_i2c1>;
-> +	pinctrl-1 = <&pinctrl_i2c1_gpio>;
-> +	sda-gpios = <&gpio5 15 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-> +	scl-gpios = <&gpio5 14 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-> +	status = "okay";
-> +
-> +	pmic: pmic@25 {
-> +		reg = <0x25>;
-> +		compatible = "nxp,pca9450c";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_pmic>;
-> +		interrupt-parent = <&gpio4>;
-> +		interrupts = <18 IRQ_TYPE_LEVEL_LOW>;
-> +
-> +		regulators {
-> +			buck1: BUCK1 {
-> +				regulator-compatible = "BUCK1";
-> +				regulator-min-microvolt = <600000>;
-> +				regulator-max-microvolt = <2187500>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +				regulator-ramp-delay = <3125>;
-> +			};
-> +
-> +			buck2: BUCK2 {
-> +				regulator-compatible = "BUCK2";
-> +				regulator-min-microvolt = <600000>;
-> +				regulator-max-microvolt = <2187500>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +				regulator-ramp-delay = <3125>;
-> +			};
-> +
-> +			buck4: BUCK4 {
-> +				regulator-compatible = "BUCK4";
-> +				regulator-min-microvolt = <600000>;
-> +				regulator-max-microvolt = <3400000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			buck5: BUCK5 {
-> +				regulator-compatible = "BUCK5";
-> +				regulator-min-microvolt = <600000>;
-> +				regulator-max-microvolt = <3400000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			buck6: BUCK6 {
-> +				regulator-compatible = "BUCK6";
-> +				regulator-min-microvolt = <600000>;
-> +				regulator-max-microvolt = <3400000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			ldo1: LDO1 {
-> +				regulator-compatible = "LDO1";
-> +				regulator-min-microvolt = <1600000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			ldo2: LDO2 {
-> +				regulator-compatible = "LDO2";
-> +				regulator-min-microvolt = <800000>;
-> +				regulator-max-microvolt = <1150000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			ldo3: LDO3 {
-> +				regulator-compatible = "LDO3";
-> +				regulator-min-microvolt = <800000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			ldo4: LDO4 {
-> +				regulator-compatible = "LDO4";
-> +				regulator-min-microvolt = <800000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			ldo5: LDO5 {
-> +				regulator-compatible = "LDO5";
-> +				regulator-min-microvolt = <1800000>;
-> +				regulator-max-microvolt = <3300000>;
-> +			};
-> +		};
-> +	};
-> +
-> +	eeprom@51 {
-> +		compatible = "atmel,24c32";
-> +		reg = <0x51>;
-> +		pagesize = <32>;
-> +		status = "okay";
-> +	};
-> +
-> +	rv3028: rtc@52 {
-> +		compatible = "microcrystal,rv3028";
-> +		reg = <0x52>;
-> +		trickle-resistor-ohms = <1000>;
-> +		enable-level-switching-mode;
-> +		status = "okay";
-> +	};
-> +};
-> +
-> +/* eMMC */
-> +&usdhc3 {
-> +	pinctrl-names = "default", "state_100mhz", "state_200mhz";
-> +	pinctrl-0 = <&pinctrl_usdhc3>;
-> +	pinctrl-1 = <&pinctrl_usdhc3_100mhz>;
-> +	pinctrl-2 = <&pinctrl_usdhc3_200mhz>;
-> +	bus-width = <8>;
-> +	non-removable;
-> +	status = "okay";
-> +};
-> +
-> +&wdog1 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_wdog>;
-> +	fsl,ext-reset-output;
-> +	status = "okay";
-> +};
-> +
-> +&iomuxc {
-> +	pinctrl_fec: fecgrp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_SAI1_RXD2__ENET1_MDC		0x3
-> +			MX8MP_IOMUXC_SAI1_RXD3__ENET1_MDIO		0x3
-> +			MX8MP_IOMUXC_SAI1_RXD4__ENET1_RGMII_RD0		0x91
-> +			MX8MP_IOMUXC_SAI1_RXD5__ENET1_RGMII_RD1		0x91
-> +			MX8MP_IOMUXC_SAI1_RXD6__ENET1_RGMII_RD2		0x91
-> +			MX8MP_IOMUXC_SAI1_RXD7__ENET1_RGMII_RD3		0x91
-> +			MX8MP_IOMUXC_SAI1_TXC__ENET1_RGMII_RXC		0x91
-> +			MX8MP_IOMUXC_SAI1_TXFS__ENET1_RGMII_RX_CTL	0x91
-> +			MX8MP_IOMUXC_SAI1_TXD0__ENET1_RGMII_TD0		0x1f
-> +			MX8MP_IOMUXC_SAI1_TXD1__ENET1_RGMII_TD1		0x1f
-> +			MX8MP_IOMUXC_SAI1_TXD2__ENET1_RGMII_TD2		0x1f
-> +			MX8MP_IOMUXC_SAI1_TXD3__ENET1_RGMII_TD3		0x1f
-> +			MX8MP_IOMUXC_SAI1_TXD4__ENET1_RGMII_TX_CTL	0x1f
-> +			MX8MP_IOMUXC_SAI1_TXD5__ENET1_RGMII_TXC		0x1f
-> +			MX8MP_IOMUXC_GPIO1_IO15__GPIO1_IO15		0x11
-> +		>;
-> +	};
-> +
-> +	pinctrl_i2c1: i2c1grp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_I2C1_SCL__I2C1_SCL		0x400001c3
-> +			MX8MP_IOMUXC_I2C1_SDA__I2C1_SDA		0x400001c3
-> +		>;
-> +	};
-> +
-> +	pinctrl_i2c1_gpio: i2c1gpiogrp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_I2C1_SCL__GPIO5_IO14	0x1e3
-> +			MX8MP_IOMUXC_I2C1_SDA__GPIO5_IO15	0x1e3
-> +		>;
-> +	};
-> +
-> +	pinctrl_pmic: pmicirqgrp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_SAI1_TXD6__GPIO4_IO18	0x141
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc3: usdhc3grp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_NAND_WE_B__USDHC3_CLK	0x190
-> +			MX8MP_IOMUXC_NAND_WP_B__USDHC3_CMD	0x1d0
-> +			MX8MP_IOMUXC_NAND_DATA04__USDHC3_DATA0	0x1d0
-> +			MX8MP_IOMUXC_NAND_DATA05__USDHC3_DATA1	0x1d0
-> +			MX8MP_IOMUXC_NAND_DATA06__USDHC3_DATA2	0x1d0
-> +			MX8MP_IOMUXC_NAND_DATA07__USDHC3_DATA3	0x1d0
-> +			MX8MP_IOMUXC_NAND_RE_B__USDHC3_DATA4	0x1d0
-> +			MX8MP_IOMUXC_NAND_CE2_B__USDHC3_DATA5	0x1d0
-> +			MX8MP_IOMUXC_NAND_CE3_B__USDHC3_DATA6	0x1d0
-> +			MX8MP_IOMUXC_NAND_CLE__USDHC3_DATA7	0x1d0
-> +			MX8MP_IOMUXC_NAND_CE1_B__USDHC3_STROBE	0x190
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc3_100mhz: usdhc3-100mhzgrp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_NAND_WE_B__USDHC3_CLK	0x194
-> +			MX8MP_IOMUXC_NAND_WP_B__USDHC3_CMD	0x1d4
-> +			MX8MP_IOMUXC_NAND_DATA04__USDHC3_DATA0	0x1d4
-> +			MX8MP_IOMUXC_NAND_DATA05__USDHC3_DATA1	0x1d4
-> +			MX8MP_IOMUXC_NAND_DATA06__USDHC3_DATA2	0x1d4
-> +			MX8MP_IOMUXC_NAND_DATA07__USDHC3_DATA3	0x1d4
-> +			MX8MP_IOMUXC_NAND_RE_B__USDHC3_DATA4	0x1d4
-> +			MX8MP_IOMUXC_NAND_CE2_B__USDHC3_DATA5	0x1d4
-> +			MX8MP_IOMUXC_NAND_CE3_B__USDHC3_DATA6	0x1d4
-> +			MX8MP_IOMUXC_NAND_CLE__USDHC3_DATA7	0x1d4
-> +			MX8MP_IOMUXC_NAND_CE1_B__USDHC3_STROBE	0x194
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc3_200mhz: usdhc3-200mhzgrp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_NAND_WE_B__USDHC3_CLK	0x196
-> +			MX8MP_IOMUXC_NAND_WP_B__USDHC3_CMD	0x1d6
-> +			MX8MP_IOMUXC_NAND_DATA04__USDHC3_DATA0	0x1d6
-> +			MX8MP_IOMUXC_NAND_DATA05__USDHC3_DATA1	0x1d6
-> +			MX8MP_IOMUXC_NAND_DATA06__USDHC3_DATA2	0x1d6
-> +			MX8MP_IOMUXC_NAND_DATA07__USDHC3_DATA3	0x1d6
-> +			MX8MP_IOMUXC_NAND_RE_B__USDHC3_DATA4	0x1d6
-> +			MX8MP_IOMUXC_NAND_CE2_B__USDHC3_DATA5	0x1d6
-> +			MX8MP_IOMUXC_NAND_CE3_B__USDHC3_DATA6	0x1d6
-> +			MX8MP_IOMUXC_NAND_CLE__USDHC3_DATA7	0x1d6
-> +			MX8MP_IOMUXC_NAND_CE1_B__USDHC3_STROBE	0x196
-> +		>;
-> +	};
-> +
-> +	pinctrl_wdog: wdoggrp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_GPIO1_IO02__WDOG1_WDOG_B	0xc6
-> +		>;
-> +	};
-> +};
+I'm not really sure at what point exactly the system freezes but this is 
+what I see (no_console_suspend is set) and the system does not wake up 
+anymore:
 
+echo mem > /sys/power/state
+[   13.888711] PM: suspend entry (deep)
+[   13.892429] Filesystems sync: 0.000 seconds
+[   13.907231] Freezing user space processes ... (elapsed 0.031 seconds) 
+done.
+[   13.945407] OOM killer disabled.
+[   13.948642] Freezing remaining freezable tasks ... (elapsed 0.001 
+seconds) done.
+[   13.957216] printk: Suspending console(s) (use no_console_suspend to 
+debug)
 
+Any ideas?
 
+Thanks
+Frieder
 
+> +
+> +					pgc_gpumix: power-domain@4 {
+> +						#power-domain-cells = <0>;
+> +						reg = <IMX8MM_POWER_DOMAIN_GPUMIX>;
+> +						clocks = <&clk IMX8MM_CLK_GPU_BUS_ROOT>,
+> +						         <&clk IMX8MM_CLK_GPU_AHB>;
+> +					};
+> +
+> +					pgc_gpu: power-domain@5 {
+> +						#power-domain-cells = <0>;
+> +						reg = <IMX8MM_POWER_DOMAIN_GPU>;
+> +						clocks = <&clk IMX8MM_CLK_GPU_AHB>,
+> +						         <&clk IMX8MM_CLK_GPU_BUS_ROOT>,
+> +						         <&clk IMX8MM_CLK_GPU2D_ROOT>,
+> +						         <&clk IMX8MM_CLK_GPU3D_ROOT>;
+> +						resets = <&src IMX8MQ_RESET_GPU_RESET>;
+> +						power-domains = <&pgc_gpumix>;
+> +					};
+> +				};
+> +			};
+>   		};
+>   
+>   		aips2: bus@30400000 {
+> 
