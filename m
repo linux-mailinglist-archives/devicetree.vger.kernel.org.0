@@ -2,142 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A2B182D414C
-	for <lists+devicetree@lfdr.de>; Wed,  9 Dec 2020 12:46:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AD8AF2D4154
+	for <lists+devicetree@lfdr.de>; Wed,  9 Dec 2020 12:49:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730836AbgLILpc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Dec 2020 06:45:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39322 "EHLO
+        id S1730882AbgLILs2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Dec 2020 06:48:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39754 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730833AbgLILpc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Dec 2020 06:45:32 -0500
-Received: from mail-ed1-x543.google.com (mail-ed1-x543.google.com [IPv6:2a00:1450:4864:20::543])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED8F4C06179C
-        for <devicetree@vger.kernel.org>; Wed,  9 Dec 2020 03:44:51 -0800 (PST)
-Received: by mail-ed1-x543.google.com with SMTP id h16so1198506edt.7
-        for <devicetree@vger.kernel.org>; Wed, 09 Dec 2020 03:44:51 -0800 (PST)
+        with ESMTP id S1730856AbgLILsW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Dec 2020 06:48:22 -0500
+Received: from mail-ej1-x643.google.com (mail-ej1-x643.google.com [IPv6:2a00:1450:4864:20::643])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC6DDC0613D6
+        for <devicetree@vger.kernel.org>; Wed,  9 Dec 2020 03:47:41 -0800 (PST)
+Received: by mail-ej1-x643.google.com with SMTP id qw4so1656039ejb.12
+        for <devicetree@vger.kernel.org>; Wed, 09 Dec 2020 03:47:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=AZ7wYcWUmWH+uVrdi5m11ZubeY2Wy0/H7RjJZGg6xE4=;
-        b=aqX9kip9J67BsY4pqUSEZXQ/TMIQwaOOP0xcefZgGlThWPS+VU2sNeN/oEbCEBTZ2u
-         6FYJ01oNYSo2AkF28wg60tISmWxKpcue92Fu8mM6H1IGfK6JLvYhO8quWwWQKaNkbmmd
-         /KTJvFBabmHv8hSXWU0zUOQxUcJDrBrUHfs4GC+3yc+K8WqpmGxPZYAlz6lzGX4AC+qq
-         0NZgu5NPxUKcBP6d6gu8L584maZrmI+4NK5v2KTvQ2ACTr49cRzWHFrIc+rDsxYtErJi
-         g/HXOjMqRtZPb4gnt3V3bSLJEV+1aSXGkDE0ofPfIavp338fZD3OZME6nNg6dJEb8urB
-         pckA==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=rs3z5HiZz52Q+PqaHhfTF1Q+uRexoKTRYXUuslD9bJA=;
+        b=d3T36ZkNR/AUgVDsWMcv+epjmknEjkr1S4/hA5BmOBbmMp3QPmqbQ5+T5urLbZsaZm
+         yddM22Ca/MjmaZ65L9Ziy8Eis/rNNRh6ZWV33tysfBDK99xgKIFsPiG/pLxOIGV2msux
+         3VZ4X/R76YQSx/b/gtQiCbkElRc8FjmqEJZ9snzxdIWHO32LjhfnKFPVl2brKq/cbdPl
+         zpDqtSxW6OC+2JHBCUwRoKYHHWYHCx4jqiOhBquIjUJ4tNKpJzn/IlzziXa4/3PKi8pE
+         aTb57hm0IUn94GQTHu2NhsmG7apvTb2fEUQ2K5isvTgowQlyZ+eEA7pRISQ75ZxcifFr
+         j0UQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=AZ7wYcWUmWH+uVrdi5m11ZubeY2Wy0/H7RjJZGg6xE4=;
-        b=pkUKnnSfgnQbxtEoRGmLKGkHPbqaA22WBc5suMx2gldQJamSVTF5QRZYjvgZToarX7
-         OU6hggWIfWA8Bo5feR51pKBSgcpNCjtzZZW36Lk1uqeL1vn6ISg8dognuXIuBH7QGBVT
-         qq5KjvY9ev38sD4siY8q/3SaMDol7Ew5+zroMM20AQLBp1/axF6dAnVmovu8hMSOw5fm
-         kCZSHcJe2sxFXHxhqTKKrTinBPhLy8uWScSlxwYmXgVRFBwzN4Qr2Qdhoxy1sb76VBI7
-         7LXgyJ4u3YlZaVV+yx3RajOpfdmooIgT8ikUugA96c0y04lBpEMzN6KVye7qFmxMTs1n
-         c7pw==
-X-Gm-Message-State: AOAM5314LskB3MWrfNo5Bp2hyilq8IoiJgnIsOX3vFqJryF8JNQy426A
-        tsDXWk4CZFdEwtNdaNofY+NSjQ==
-X-Google-Smtp-Source: ABdhPJxNqsA7hfko0K/oKynB9g7B5UaxABjUkJLiTKKQ1Ka5HzerQx5TREnQtWCg7kQ3RyD6ytVHTQ==
-X-Received: by 2002:a50:8b61:: with SMTP id l88mr1629668edl.250.1607514290713;
-        Wed, 09 Dec 2020 03:44:50 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=rs3z5HiZz52Q+PqaHhfTF1Q+uRexoKTRYXUuslD9bJA=;
+        b=e62mFOoVVp49xvztryYGM2zTCg49shrKzLxCUSLfSgO5MIcLhKRrqKJSy2ct+dZz8k
+         Udz9SApIggbMugdY+XnmRw1NhQT+kWhnU3Ba8srIeu4jVUnjlzoMx9CU9ASucb05PNNu
+         Avz0dG6y7O4yjszUgJDvkU9yF+xGmz6O57h6Clg6b+Yy70dUvLsZFh1wzxhoKlh4s6fD
+         0HQQwb4e73yS3Gq/ujyUDD9aHV29aKNO2SpRVyK5M4RwgAyqMqD50lcDGILy8jQ/QICA
+         ByYq90oh9q+YmsrwGR2fzzUkmCxLaqbBVTMtNpVWSpyjaZBm01wClVxz2g3y6Qn7sJIP
+         pQsg==
+X-Gm-Message-State: AOAM530JO/6HxomqKUSD0Z8SZLfnl8Z/FHu12+RBcnq/7zYOA40u8bdr
+        lIkslynojCAXmNQaqMVqjKiyYw==
+X-Google-Smtp-Source: ABdhPJz4K0kLaWeuPBop0IAkjqejJVnYvx1By/KhxM6pBUYlU2Hn4uST4po7Bl+o5xWrlrVSPgRe1g==
+X-Received: by 2002:a17:906:98d4:: with SMTP id zd20mr1710918ejb.532.1607514460504;
+        Wed, 09 Dec 2020 03:47:40 -0800 (PST)
 Received: from localhost.localdomain ([88.160.162.107])
-        by smtp.gmail.com with ESMTPSA id c25sm1260327ejx.39.2020.12.09.03.44.49
+        by smtp.gmail.com with ESMTPSA id k23sm1244877ejs.100.2020.12.09.03.47.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Dec 2020 03:44:50 -0800 (PST)
+        Wed, 09 Dec 2020 03:47:39 -0800 (PST)
 From:   Fabien Parent <fparent@baylibre.com>
-To:     Rob Herring <robh+dt@kernel.org>,
+To:     Sean Wang <sean.wang@mediatek.com>, Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     Fabien Parent <fparent@baylibre.com>, devicetree@vger.kernel.org,
+Cc:     Fabien Parent <fparent@baylibre.com>,
+        Rob Herring <robh@kernel.org>, dmaengine@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 2/2] =?UTF-8?q?=F0=9F=93=A4=20arm64:=20dts:=20mediatek:?= =?UTF-8?q?=20mt8516:=20add=20support=20for=20APDMA?=
-Date:   Wed,  9 Dec 2020 12:44:40 +0100
-Message-Id: <20201209114440.62950-2-fparent@baylibre.com>
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v3 1/2] dt-bindings: dma: mtk-apdma: add bindings for MT8516 SOC
+Date:   Wed,  9 Dec 2020 12:47:35 +0100
+Message-Id: <20201209114736.70625-1-fparent@baylibre.com>
 X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20201209114440.62950-1-fparent@baylibre.com>
-References: <20201209114440.62950-1-fparent@baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support the APDMA IP on MT8516. APDMA is a DMA controller
-for UARTs.
+Add bindings to APDMA for MT8516 SoC. MT8516 is compatible with MT6577.
 
 Signed-off-by: Fabien Parent <fparent@baylibre.com>
+Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
+Acked-by: Rob Herring <robh@kernel.org>
 ---
 
-V2: Add missing dma-names properties on uart nodes
+V3: remove unicode symbol that slips into patch summary
+V2: no change
 
- arch/arm64/boot/dts/mediatek/mt8516.dtsi | 30 ++++++++++++++++++++++++
- 1 file changed, 30 insertions(+)
+ Documentation/devicetree/bindings/dma/mtk-uart-apdma.txt | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8516.dtsi b/arch/arm64/boot/dts/mediatek/mt8516.dtsi
-index e6e4d9d60094..b80e95574bef 100644
---- a/arch/arm64/boot/dts/mediatek/mt8516.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8516.dtsi
-@@ -276,6 +276,27 @@ gic: interrupt-controller@10310000 {
- 				(GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>;
- 		};
+diff --git a/Documentation/devicetree/bindings/dma/mtk-uart-apdma.txt b/Documentation/devicetree/bindings/dma/mtk-uart-apdma.txt
+index 2117db0ce4f2..fef9c1eeb264 100644
+--- a/Documentation/devicetree/bindings/dma/mtk-uart-apdma.txt
++++ b/Documentation/devicetree/bindings/dma/mtk-uart-apdma.txt
+@@ -4,6 +4,7 @@ Required properties:
+ - compatible should contain:
+   * "mediatek,mt2712-uart-dma" for MT2712 compatible APDMA
+   * "mediatek,mt6577-uart-dma" for MT6577 and all of the above
++  * "mediatek,mt8516-uart-dma", "mediatek,mt6577" for MT8516 SoC
  
-+		apdma: dma-controller@11000480 {
-+			compatible = "mediatek,mt8516-uart-dma",
-+				     "mediatek,mt6577-uart-dma";
-+			reg = <0 0x11000480 0 0x80>,
-+			      <0 0x11000500 0 0x80>,
-+			      <0 0x11000580 0 0x80>,
-+			      <0 0x11000600 0 0x80>,
-+			      <0 0x11000980 0 0x80>,
-+			      <0 0x11000a00 0 0x80>;
-+			interrupts = <GIC_SPI 96 IRQ_TYPE_LEVEL_LOW>,
-+				     <GIC_SPI 97 IRQ_TYPE_LEVEL_LOW>,
-+				     <GIC_SPI 98 IRQ_TYPE_LEVEL_LOW>,
-+				     <GIC_SPI 99 IRQ_TYPE_LEVEL_LOW>,
-+				     <GIC_SPI 100 IRQ_TYPE_LEVEL_LOW>,
-+				     <GIC_SPI 101 IRQ_TYPE_LEVEL_LOW>;
-+			dma-requests = <6>;
-+			clocks = <&topckgen CLK_TOP_APDMA>;
-+			clock-names = "apdma";
-+			#dma-cells = <1>;
-+		};
-+
- 		uart0: serial@11005000 {
- 			compatible = "mediatek,mt8516-uart",
- 				     "mediatek,mt6577-uart";
-@@ -284,6 +305,9 @@ uart0: serial@11005000 {
- 			clocks = <&topckgen CLK_TOP_UART0_SEL>,
- 				 <&topckgen CLK_TOP_UART0>;
- 			clock-names = "baud", "bus";
-+			dmas = <&apdma 0
-+				&apdma 1>;
-+			dma-names = "tx", "rx";
- 			status = "disabled";
- 		};
- 
-@@ -295,6 +319,9 @@ uart1: serial@11006000 {
- 			clocks = <&topckgen CLK_TOP_UART1_SEL>,
- 				 <&topckgen CLK_TOP_UART1>;
- 			clock-names = "baud", "bus";
-+			dmas = <&apdma 2
-+				&apdma 3>;
-+			dma-names = "tx", "rx";
- 			status = "disabled";
- 		};
- 
-@@ -306,6 +333,9 @@ uart2: serial@11007000 {
- 			clocks = <&topckgen CLK_TOP_UART2_SEL>,
- 				 <&topckgen CLK_TOP_UART2>;
- 			clock-names = "baud", "bus";
-+			dmas = <&apdma 4
-+				&apdma 5>;
-+			dma-names = "tx", "rx";
- 			status = "disabled";
- 		};
+ - reg: The base address of the APDMA register bank.
  
 -- 
 2.29.2
