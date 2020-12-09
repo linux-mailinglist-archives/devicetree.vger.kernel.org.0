@@ -2,334 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0211A2D37CA
-	for <lists+devicetree@lfdr.de>; Wed,  9 Dec 2020 01:30:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D2B22D37D3
+	for <lists+devicetree@lfdr.de>; Wed,  9 Dec 2020 01:30:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731045AbgLIA2y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Dec 2020 19:28:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48352 "EHLO
+        id S1731080AbgLIAaQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Dec 2020 19:30:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48580 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730815AbgLIA2u (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Dec 2020 19:28:50 -0500
-Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com [IPv6:2a00:1450:4864:20::344])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C2AFC0613D6
-        for <devicetree@vger.kernel.org>; Tue,  8 Dec 2020 16:28:04 -0800 (PST)
-Received: by mail-wm1-x344.google.com with SMTP id y23so3271wmi.1
-        for <devicetree@vger.kernel.org>; Tue, 08 Dec 2020 16:28:04 -0800 (PST)
+        with ESMTP id S1731032AbgLIAaO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Dec 2020 19:30:14 -0500
+Received: from mail-pg1-x544.google.com (mail-pg1-x544.google.com [IPv6:2607:f8b0:4864:20::544])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F151C0613D6;
+        Tue,  8 Dec 2020 16:29:34 -0800 (PST)
+Received: by mail-pg1-x544.google.com with SMTP id g18so40680pgk.1;
+        Tue, 08 Dec 2020 16:29:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ffwll.ch; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=bDyHyRcQlk9KBAG5ZAuNjIGs5SUAqYhYe3CqVjRl+bM=;
-        b=ZoYP7fZ9j5o9mFjf4f2WG4Zcw4ze2E1JwCt+zMwsdp0+L8m/3xy9WsIvBowGhQh1lb
-         KSWMVhULLKiBMK/0yZOfpBjR92I8U5rQbCwPzSYO6qnCQuoT4dxZe8XdCTPGbW+nFXwJ
-         AvXNVemQm8y6Gox6sDlqC3JmCeCTptG54ZXdQ=
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:autocrypt:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=GbpsjewlRxITtY3sR9uiPWEMfm6IQxjx3JP1ZlFQH9I=;
+        b=Brt3EU3kQW5J1sQQ6St7GfpphwUSj0rYnwQPPYYfahGFEL3Ci//ru1wBWZkVfABbYo
+         9IHQ+pAkdKf/MIGnKPIBFxM5GEXH+NxLiR1nvSkfwuraeE2mUkxwiPpwmEebj9CpTtyz
+         wdIKzYfuDUYPPLBGbgY00+JWBwW1g4mzi3BU9fgI6jbqx7qeW7swOE0cFDLa1BTEalxX
+         raezDgdBjeamKjuyoUYeZuJr3JBwPpEAaeWxzZz5FxA72aJ3h4ie0RgLzIksy0pFrBoT
+         +1KJ1hNHQew/+uiRl4AnBaJsliAra7LPv/JPF87I39w/n3gEHWYZUEwGyyObBy74ErSp
+         xb+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=bDyHyRcQlk9KBAG5ZAuNjIGs5SUAqYhYe3CqVjRl+bM=;
-        b=ZaEeQjD5/TedgZxTcicWEoKEmuFB7w6kss1tWMw5JafQN/pavL0peU7sczGeMfMOVc
-         DOZjx2WaznqX8Na53uRmNvKnNDp8cUqN3Rary3hP5/Yr3eomQ5HReZCDg9SkWqQvxDuh
-         yVzHfyGqcg1ZVoDmkK6U3Y0lRoqmv5e9jOVjbw2DyZyMwuYOZsktwkQJ2drd8n0S3mTw
-         H0WXYRSd1RI24PGSDVQAyTod8oOGPjRd8ZnhrWtimfSzDOW3qgn6Maf8WbBGtxnr49fk
-         m8XEximoS7vlczLFs/wOIippGDvJUIAJ35E9PdbtPm3j8uQcThbcMHpGR1Q5hhsVUoP5
-         IZsw==
-X-Gm-Message-State: AOAM533uRt5tnENunh3+nycABi95WM54Wr1Wm6nTADbvG+Bu0S2usHRz
-        WaYxoX2JqgzuLxE+EojqjI8i2A==
-X-Google-Smtp-Source: ABdhPJyWnJD+71j6PerYSoRsSEKr4/lvD59D1BfIC5fKjEvdGmdxL9GtZEAmypPMcREd7PaVUh1GZA==
-X-Received: by 2002:a1c:7c09:: with SMTP id x9mr4301wmc.98.1607473682962;
-        Tue, 08 Dec 2020 16:28:02 -0800 (PST)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
-        by smtp.gmail.com with ESMTPSA id 35sm1111052wrf.9.2020.12.08.16.28.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Dec 2020 16:28:02 -0800 (PST)
-Date:   Wed, 9 Dec 2020 01:28:00 +0100
-From:   Daniel Vetter <daniel@ffwll.ch>
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     Daniel Vetter <daniel.vetter@intel.com>,
-        David Airlie <airlied@linux.ie>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Eric Anholt <eric@anholt.net>, devicetree@vger.kernel.org,
-        Tim Gover <tim.gover@raspberrypi.com>,
-        Dave Stevenson <dave.stevenson@raspberrypi.com>,
-        dri-devel@lists.freedesktop.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        linux-rpi-kernel@lists.infradead.org,
-        Phil Elwell <phil@raspberrypi.com>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 4/7] drm/vc4: kms: Wait on previous FIFO users before
- a commit
-Message-ID: <20201209002800.GI401619@phenom.ffwll.local>
-References: <20201204151138.1739736-1-maxime@cerno.tech>
- <20201204151138.1739736-5-maxime@cerno.tech>
+        h=x-gm-message-state:subject:to:cc:references:from:autocrypt
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=GbpsjewlRxITtY3sR9uiPWEMfm6IQxjx3JP1ZlFQH9I=;
+        b=uhFmkdWZLi4YL267apEWRFHO6uOFE9arDzGLmCJqIMghlxPpglBY4tjHpoKIWOoq27
+         PZbNe3iqaBSZ75RzXrM0u/g2PoKzsrrJzpTRiDHJpaYLM3KbJrI1gYQBjJYcoQOh65HZ
+         SABh8R+i8GFQBiHU1zZeZzdyfqN4sMSejdb9UtvdRzFiz0iw07pjkpVGWzo2FfN11Az7
+         JmFbW0l4NOx4SvWoTaIWNGK+9xnmALetopt6q1zE6EUH2l2y4XSkYOiVNY64FuGNZXN1
+         k9fdG5GH8ksk7XfgLwBNnj1JGApiKTc6+pbHYIkVlNqI89zXkPcrn74/Nal5I0NiII6C
+         dlMA==
+X-Gm-Message-State: AOAM533hp/he5herP1GJ94vpbUvK0fh5NSahhjbRoz/TdXi4OFph+Vnn
+        fbZG/f3ytajMD1rw9n928kM=
+X-Google-Smtp-Source: ABdhPJxW6ryPy12e5WmsZhYvg8ft9aKmNP3AwcoVQ6s50j/1OvYxhYgdgI/CVFt0HSskHuVmx30CLQ==
+X-Received: by 2002:a17:90b:8d3:: with SMTP id ds19mr98766pjb.186.1607473773968;
+        Tue, 08 Dec 2020 16:29:33 -0800 (PST)
+Received: from [10.67.48.230] ([192.19.223.252])
+        by smtp.googlemail.com with ESMTPSA id bf3sm29899pjb.45.2020.12.08.16.29.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 08 Dec 2020 16:29:33 -0800 (PST)
+Subject: Re: [PATCH v2 3/8] net: macb: add function to disable all macb clocks
+To:     Claudiu Beznea <claudiu.beznea@microchip.com>, davem@davemloft.net,
+        kuba@kernel.org, robh+dt@kernel.org, nicolas.ferre@microchip.com,
+        linux@armlinux.org.uk, paul.walmsley@sifive.com, palmer@dabbelt.com
+Cc:     yash.shah@sifive.com, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-riscv@lists.infradead.org
+References: <1607343333-26552-1-git-send-email-claudiu.beznea@microchip.com>
+ <1607343333-26552-4-git-send-email-claudiu.beznea@microchip.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Autocrypt: addr=f.fainelli@gmail.com; prefer-encrypt=mutual; keydata=
+ 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
+ M5kY0ACeNhCZJvZ5g4C2Lc9fcTHu8jxmEkI=
+Message-ID: <aceb90c7-ee7a-43e8-05c7-fe6917b9d688@gmail.com>
+Date:   Tue, 8 Dec 2020 16:29:30 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201204151138.1739736-5-maxime@cerno.tech>
-X-Operating-System: Linux phenom 5.7.0-1-amd64 
+In-Reply-To: <1607343333-26552-4-git-send-email-claudiu.beznea@microchip.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 04, 2020 at 04:11:35PM +0100, Maxime Ripard wrote:
-> If we're having two subsequent, non-blocking, commits on two different
-> CRTCs that share no resources, there's no guarantee on the order of
-> execution of both commits.
+On 12/7/20 4:15 AM, Claudiu Beznea wrote:
+> Add function to disable all macb clocks.
 > 
-> However, the second one will consider the first one as the old state,
-> and will be in charge of freeing it once that second commit is done.
-> 
-> If the first commit happens after that second commit, it might access
-> some resources related to its state that has been freed, resulting in a
-> use-after-free bug.
-> 
-> The standard DRM objects are protected against this, but our HVS private
-> state isn't so let's make sure we wait for all the previous FIFO users
-> to finish their commit before going with our own.
-> 
-> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+> Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
+> Suggested-by: Andrew Lunn <andrew@lunn.ch>
 > ---
->  drivers/gpu/drm/vc4/vc4_kms.c | 123 +++++++++++++++++++++++++++++++++-
->  1 file changed, 122 insertions(+), 1 deletion(-)
+>  drivers/net/ethernet/cadence/macb_main.c | 62 ++++++++++++++++----------------
+>  1 file changed, 32 insertions(+), 30 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/vc4/vc4_kms.c b/drivers/gpu/drm/vc4/vc4_kms.c
-> index 8937eb0b751d..fdd698df5fbe 100644
-> --- a/drivers/gpu/drm/vc4/vc4_kms.c
-> +++ b/drivers/gpu/drm/vc4/vc4_kms.c
-> @@ -40,6 +40,11 @@ static struct vc4_ctm_state *to_vc4_ctm_state(struct drm_private_state *priv)
->  struct vc4_hvs_state {
->  	struct drm_private_state base;
->  	unsigned int unassigned_channels;
-> +
-> +	struct {
-> +		unsigned in_use: 1;
-> +		struct drm_crtc_commit *pending_commit;
-> +	} fifo_state[HVS_NUM_CHANNELS];
->  };
->  
->  static struct vc4_hvs_state *
-> @@ -182,6 +187,32 @@ vc4_ctm_commit(struct vc4_dev *vc4, struct drm_atomic_state *state)
->  		  VC4_SET_FIELD(ctm_state->fifo, SCALER_OLEDOFFS_DISPFIFO));
+> diff --git a/drivers/net/ethernet/cadence/macb_main.c b/drivers/net/ethernet/cadence/macb_main.c
+> index b23e986ac6dc..6b8e1109dfd3 100644
+> --- a/drivers/net/ethernet/cadence/macb_main.c
+> +++ b/drivers/net/ethernet/cadence/macb_main.c
+> @@ -3694,6 +3694,16 @@ static void macb_probe_queues(void __iomem *mem,
+>  	*num_queues = hweight32(*queue_mask);
 >  }
 >  
-> +static struct vc4_hvs_state *
-> +vc4_hvs_get_new_global_state(struct drm_atomic_state *state)
+> +static void macb_clks_disable(struct clk *pclk, struct clk *hclk, struct clk *tx_clk,
+> +			      struct clk *rx_clk, struct clk *tsu_clk)
 > +{
-> +	struct vc4_dev *vc4 = to_vc4_dev(state->dev);
-> +	struct drm_private_state *priv_state;
-> +
-> +	priv_state = drm_atomic_get_new_private_obj_state(state, &vc4->hvs_channels);
-> +	if (IS_ERR(priv_state))
-> +		return ERR_CAST(priv_state);
-> +
-> +	return to_vc4_hvs_state(priv_state);
-> +}
-> +
-> +static struct vc4_hvs_state *
-> +vc4_hvs_get_old_global_state(struct drm_atomic_state *state)
-> +{
-> +	struct vc4_dev *vc4 = to_vc4_dev(state->dev);
-> +	struct drm_private_state *priv_state;
-> +
-> +	priv_state = drm_atomic_get_old_private_obj_state(state, &vc4->hvs_channels);
-> +	if (IS_ERR(priv_state))
-> +		return ERR_CAST(priv_state);
-> +
-> +	return to_vc4_hvs_state(priv_state);
-> +}
-> +
->  static struct vc4_hvs_state *
->  vc4_hvs_get_global_state(struct drm_atomic_state *state)
->  {
-> @@ -308,8 +339,10 @@ vc4_atomic_complete_commit(struct drm_atomic_state *state)
->  	struct drm_device *dev = state->dev;
->  	struct vc4_dev *vc4 = to_vc4_dev(dev);
->  	struct vc4_hvs *hvs = vc4->hvs;
-> +	struct drm_crtc_state *old_crtc_state;
->  	struct drm_crtc_state *new_crtc_state;
->  	struct drm_crtc *crtc;
-> +	struct vc4_hvs_state *old_hvs_state;
->  	int i;
->  
->  	for_each_new_crtc_in_state(state, crtc, new_crtc_state, i) {
-> @@ -329,6 +362,36 @@ vc4_atomic_complete_commit(struct drm_atomic_state *state)
->  
->  	drm_atomic_helper_wait_for_dependencies(state);
->  
-> +	old_hvs_state = vc4_hvs_get_old_global_state(state);
-> +	if (!old_hvs_state)
-> +		return;
-> +
-> +	for_each_old_crtc_in_state(state, crtc, old_crtc_state, i) {
-> +		struct vc4_crtc_state *vc4_crtc_state =
-> +			to_vc4_crtc_state(old_crtc_state);
-> +		struct drm_crtc_commit *commit;
-> +		unsigned int channel = vc4_crtc_state->assigned_channel;
-> +		unsigned long done;
-> +
-> +		if (channel == VC4_HVS_CHANNEL_DISABLED)
-> +			continue;
-> +
-> +		if (!old_hvs_state->fifo_state[channel].in_use)
-> +			continue;
-> +
-> +		commit = old_hvs_state->fifo_state[i].pending_commit;
-> +		if (!commit)
-> +			continue;
-> +
-> +		done = wait_for_completion_timeout(&commit->hw_done, 10 * HZ);
-> +		if (!done)
-> +			drm_err(dev, "Timed out waiting for hw_done\n");
-> +
-> +		done = wait_for_completion_timeout(&commit->flip_done, 10 * HZ);
-> +		if (!done)
-> +			drm_err(dev, "Timed out waiting for flip_done\n");
+> +	clk_disable_unprepare(tx_clk);
+> +	clk_disable_unprepare(hclk);
+> +	clk_disable_unprepare(pclk);
+> +	clk_disable_unprepare(rx_clk);
+> +	clk_disable_unprepare(tsu_clk);
 
-Idea for a follow-up patch: Add something like drm_crtc_commit_wait which
-skips on a NULL commit and does the two waits here. And use it here and in
-drm_atomic_helper_wait_for_dependencies, we have four copies of the same
-code by now :-)
-
-> +	}
-> +
->  	drm_atomic_helper_commit_modeset_disables(dev, state);
->  
->  	vc4_ctm_commit(vc4, state);
-> @@ -368,6 +431,36 @@ static void commit_work(struct work_struct *work)
->  	vc4_atomic_complete_commit(state);
->  }
->  
-> +static int vc4_atomic_commit_setup(struct drm_atomic_state *state)
-> +{
-> +	struct drm_crtc_state *crtc_state;
-> +	struct vc4_hvs_state *hvs_state;
-> +	struct drm_crtc *crtc;
-> +	unsigned int i;
-> +
-> +	hvs_state = vc4_hvs_get_new_global_state(state);
-> +	if (!hvs_state)
-> +		return -EINVAL;
-> +
-> +	for_each_new_crtc_in_state(state, crtc, crtc_state, i) {
-> +		struct vc4_crtc_state *vc4_crtc_state =
-> +			to_vc4_crtc_state(crtc_state);
-> +		unsigned int channel =
-> +			vc4_crtc_state->assigned_channel;
-> +
-> +		if (channel == VC4_HVS_CHANNEL_DISABLED)
-> +			continue;
-> +
-> +		if (!hvs_state->fifo_state[channel].in_use)
-> +			continue;
-> +
-> +		hvs_state->fifo_state[channel].pending_commit =
-> +			drm_crtc_commit_get(crtc_state->commit);
-> +	}
-> +
-> +	return 0;
-> +}
-> +
->  /**
->   * vc4_atomic_commit - commit validated state object
->   * @dev: DRM device
-> @@ -697,6 +790,7 @@ vc4_hvs_channels_duplicate_state(struct drm_private_obj *obj)
->  {
->  	struct vc4_hvs_state *old_state = to_vc4_hvs_state(obj->state);
->  	struct vc4_hvs_state *state;
-> +	unsigned int i;
->  
->  	state = kzalloc(sizeof(*state), GFP_KERNEL);
->  	if (!state)
-> @@ -706,6 +800,16 @@ vc4_hvs_channels_duplicate_state(struct drm_private_obj *obj)
->  
->  	state->unassigned_channels = old_state->unassigned_channels;
->  
-> +	for (i = 0; i < HVS_NUM_CHANNELS; i++) {
-> +		state->fifo_state[i].in_use = old_state->fifo_state[i].in_use;
-> +
-> +		if (!old_state->fifo_state[i].pending_commit)
-> +			continue;
-> +
-> +		state->fifo_state[i].pending_commit =
-> +			drm_crtc_commit_get(old_state->fifo_state[i].pending_commit);
-> +	}
-> +
->  	return &state->base;
->  }
->  
-> @@ -713,6 +817,14 @@ static void vc4_hvs_channels_destroy_state(struct drm_private_obj *obj,
->  					   struct drm_private_state *state)
->  {
->  	struct vc4_hvs_state *hvs_state = to_vc4_hvs_state(state);
-> +	unsigned int i;
-> +
-> +	for (i = 0; i < HVS_NUM_CHANNELS; i++) {
-> +		if (!hvs_state->fifo_state[i].pending_commit)
-> +			continue;
-> +
-> +		drm_crtc_commit_put(hvs_state->fifo_state[i].pending_commit);
-> +	}
->  
->  	kfree(hvs_state);
->  }
-> @@ -805,7 +917,10 @@ static int vc4_pv_muxing_atomic_check(struct drm_device *dev,
->  
->  		/* If we're disabling our CRTC, we put back our channel */
->  		if (!new_crtc_state->enable) {
-> -			hvs_new_state->unassigned_channels |= BIT(old_vc4_crtc_state->assigned_channel);
-> +			channel = old_vc4_crtc_state->assigned_channel;
-> +
-> +			hvs_new_state->unassigned_channels |= BIT(channel);
-> +			hvs_new_state->fifo_state[channel].in_use = false;
->  			new_vc4_crtc_state->assigned_channel = VC4_HVS_CHANNEL_DISABLED;
->  			continue;
->  		}
-> @@ -841,6 +956,7 @@ static int vc4_pv_muxing_atomic_check(struct drm_device *dev,
->  		channel = ffs(matching_channels) - 1;
->  		new_vc4_crtc_state->assigned_channel = channel;
->  		hvs_new_state->unassigned_channels &= ~BIT(channel);
-> +		hvs_new_state->fifo_state[channel].in_use = true;
->  	}
->  
->  	return 0;
-> @@ -866,6 +982,10 @@ vc4_atomic_check(struct drm_device *dev, struct drm_atomic_state *state)
->  	return vc4_load_tracker_atomic_check(state);
->  }
->  
-> +static struct drm_mode_config_helper_funcs vc4_mode_config_helpers = {
-> +	.atomic_commit_setup	= vc4_atomic_commit_setup,
-> +};
-> +
->  static const struct drm_mode_config_funcs vc4_mode_funcs = {
->  	.atomic_check = vc4_atomic_check,
->  	.atomic_commit = vc4_atomic_commit,
-> @@ -909,6 +1029,7 @@ int vc4_kms_load(struct drm_device *dev)
->  	}
->  
->  	dev->mode_config.funcs = &vc4_mode_funcs;
-> +	dev->mode_config.helper_private = &vc4_mode_config_helpers;
->  	dev->mode_config.preferred_depth = 24;
->  	dev->mode_config.async_page_flip = true;
->  	dev->mode_config.allow_fb_modifiers = true;
-
-Since I suggested this entire thing kinda:
-
-Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
-
-> -- 
-> 2.28.0
-> 
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
-
+Looks like you should consider using the CLK bulk API:
+clk_bulk_disable_unprepare() and friends.
 -- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+Florian
