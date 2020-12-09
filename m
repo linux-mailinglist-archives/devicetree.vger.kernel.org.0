@@ -2,110 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 306CA2D4166
-	for <lists+devicetree@lfdr.de>; Wed,  9 Dec 2020 12:53:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 09D892D411D
+	for <lists+devicetree@lfdr.de>; Wed,  9 Dec 2020 12:31:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730981AbgLILvW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Dec 2020 06:51:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40240 "EHLO
+        id S1730026AbgLILak convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 9 Dec 2020 06:30:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37026 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730977AbgLILvW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Dec 2020 06:51:22 -0500
-Received: from michel.telenet-ops.be (michel.telenet-ops.be [IPv6:2a02:1800:110:4::f00:18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E926C06179C
-        for <devicetree@vger.kernel.org>; Wed,  9 Dec 2020 03:50:41 -0800 (PST)
-Received: from ramsan.of.borg ([84.195.186.194])
-        by michel.telenet-ops.be with bizsmtp
-        id 2Bqd2400R4C55Sk06BqdnB; Wed, 09 Dec 2020 12:50:38 +0100
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1kmxzR-009AiG-EF; Wed, 09 Dec 2020 12:50:37 +0100
-Received: from geert by rox.of.borg with local (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1kmwSW-009G18-93; Wed, 09 Dec 2020 11:12:32 +0100
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Marek Vasut <marek.vasut+renesas@gmail.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc:     linux-pci@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH v2] dt-bindings: pci: rcar-pci-ep: Document missing interrupts property
-Date:   Wed,  9 Dec 2020 11:12:31 +0100
-Message-Id: <20201209101231.2206479-1-geert+renesas@glider.be>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S1730761AbgLILaf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Dec 2020 06:30:35 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40A79C0613CF
+        for <devicetree@vger.kernel.org>; Wed,  9 Dec 2020 03:29:55 -0800 (PST)
+Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1kmxfG-0004Pq-QY; Wed, 09 Dec 2020 12:29:46 +0100
+Received: from pza by lupine with local (Exim 4.92)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1kmxfF-0001N1-Jx; Wed, 09 Dec 2020 12:29:45 +0100
+Message-ID: <a168ae4fdf17e2f9e422354f5dadc62bcad3e4d8.camel@pengutronix.de>
+Subject: Re: [PATCH v5 12/21] riscv: Add Canaan Kendryte K210 reset
+ controller
+From:   Philipp Zabel <p.zabel@pengutronix.de>
+To:     Damien Le Moal <Damien.LeMoal@wdc.com>,
+        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
+        "palmer@dabbelt.com" <palmer@dabbelt.com>,
+        "sboyd@kernel.org" <sboyd@kernel.org>,
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>
+Cc:     "seanga2@gmail.com" <seanga2@gmail.com>
+Date:   Wed, 09 Dec 2020 12:29:45 +0100
+In-Reply-To: <57d4ae6e06551a56e41a4d50078ef51cbad67083.camel@wdc.com>
+References: <20201208073355.40828-1-damien.lemoal@wdc.com>
+         <20201208073355.40828-13-damien.lemoal@wdc.com>
+         <4d0a0c80e57b156b7d86dfca250285048ab30825.camel@pengutronix.de>
+         <57d4ae6e06551a56e41a4d50078ef51cbad67083.camel@wdc.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+User-Agent: Evolution 3.30.5-1.1 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The R-Car PCIe controller does not use interrupts when configured
-for endpoint mode, hence the bindings do not document the interrupts
-property.  However, all DTS files provide interrupts properties, and
-thus fail to validate.
+Hi Damien,
 
-Fix this by documenting the interrupts property.
+On Wed, 2020-12-09 at 05:26 +0000, Damien Le Moal wrote:
+[...]
+> I added COMPILE_TEST. I also removed the RISCV dependency since SOC_CANAAN
+> already depend on it (due to the SOC_EARLY_INIT_DECLARE() use in the sysctl
+> driver). Stricktly speaking, I think we could also remove the SOC_CANAAN
+> dependency for the reset driver, but I do not really see the point since it is
+> cannot be used for any other SoC.
 
-Fixes: 4c0f80920923f103 ("dt-bindings: PCI: rcar: Add bindings for R-Car PCIe endpoint controller")
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
----
-v2:
-  - Fix authorship,
-  - Add Reviewed-by,
-  - Drop RFC state,
-  - Fix name of interrupts property in patch description,
-  - Drop inappropriate Fixes tag,
----
- Documentation/devicetree/bindings/pci/rcar-pci-ep.yaml | 9 +++++++++
- 1 file changed, 9 insertions(+)
+Thank you, this is fine. Depending on SOC_CANAAN is nice for users of
+other SoCs, as they aren't shown this option to enable a kernel driver
+that we know they don't need.
 
-diff --git a/Documentation/devicetree/bindings/pci/rcar-pci-ep.yaml b/Documentation/devicetree/bindings/pci/rcar-pci-ep.yaml
-index fb97f4ea0e63682b..32a3b7665ff5473c 100644
---- a/Documentation/devicetree/bindings/pci/rcar-pci-ep.yaml
-+++ b/Documentation/devicetree/bindings/pci/rcar-pci-ep.yaml
-@@ -33,6 +33,10 @@ properties:
-       - const: memory2
-       - const: memory3
- 
-+  interrupts:
-+    minItems: 3
-+    maxItems: 3
-+
-   power-domains:
-     maxItems: 1
- 
-@@ -54,6 +58,7 @@ required:
-   - compatible
-   - reg
-   - reg-names
-+  - interrupts
-   - resets
-   - power-domains
-   - clocks
-@@ -65,6 +70,7 @@ additionalProperties: false
- examples:
-   - |
-     #include <dt-bindings/clock/r8a774c0-cpg-mssr.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-     #include <dt-bindings/power/r8a774c0-sysc.h>
- 
-      pcie0_ep: pcie-ep@fe000000 {
-@@ -76,6 +82,9 @@ examples:
-                   <0x30000000 0x8000000>,
-                   <0x38000000 0x8000000>;
-             reg-names = "apb-base", "memory0", "memory1", "memory2", "memory3";
-+            interrupts = <GIC_SPI 116 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 117 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 118 IRQ_TYPE_LEVEL_HIGH>;
-             resets = <&cpg 319>;
-             power-domains = <&sysc R8A774C0_PD_ALWAYS_ON>;
-             clocks = <&cpg CPG_MOD 319>;
--- 
-2.25.1
-
+regards
+Philipp
