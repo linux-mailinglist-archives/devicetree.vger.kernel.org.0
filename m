@@ -2,160 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 936D12D47E7
-	for <lists+devicetree@lfdr.de>; Wed,  9 Dec 2020 18:28:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 76CE52D4803
+	for <lists+devicetree@lfdr.de>; Wed,  9 Dec 2020 18:35:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732768AbgLIR1h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Dec 2020 12:27:37 -0500
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:44237 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732758AbgLIR11 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Dec 2020 12:27:27 -0500
-Received: by mail-ot1-f65.google.com with SMTP id f16so2106026otl.11;
-        Wed, 09 Dec 2020 09:27:11 -0800 (PST)
+        id S1730721AbgLIReV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Dec 2020 12:34:21 -0500
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:36068 "EHLO
+        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729833AbgLIReU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Dec 2020 12:34:20 -0500
+Received: by mail-ot1-f67.google.com with SMTP id y24so2150650otk.3;
+        Wed, 09 Dec 2020 09:34:04 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=dJcplb3slY1dsoFAl6yxoDTBG+DHfog6F6dFhpVHk9A=;
-        b=JKBBhpm/xGYFLyIaJpMhYhdXoKaVBh2nhVS18ayRiDMmzVB6oSfZdOyGdKyvJLgKvm
-         5is3EIYQr8SOSy85+1Y2QabXlmlYjEwtJFgh85o5yZcO0NhKQ5P/6wmvsgZT56n/VRIs
-         JUb/z49cW0Y+5zVbG1HgCtulagzykvZqjDvUU2oiFAdUeW1t5HilLD+9RBSKyFM9sYpf
-         13B6MCsD/XcFJwy02lw7v8jGrbc79tLxThvWoMr39PDhyTxoyMlcKy1JK918MX1+vc4M
-         JneoQAuLhW9TcWfMeQJAgdkieAGcIhl4M95SQFwTTRKmLa0o051BWseRxCFAJxEfXQ7k
-         uvGg==
-X-Gm-Message-State: AOAM531V1XdB+YMbsMJQBUHDo+hlyEY2EuVJrPAzMmaYdo1qkwWz3P6f
-        AZuA8vXkv6aRG7/KfmBjJ3LpHGILvQ==
-X-Google-Smtp-Source: ABdhPJwINWASDIcbnAlPGTqU1d+qKbxekVgnOt54abWpI7enCFjTH9b++DgZI0VBTn7SapNG6EEqVw==
-X-Received: by 2002:a9d:63c6:: with SMTP id e6mr2657288otl.326.1607534805803;
-        Wed, 09 Dec 2020 09:26:45 -0800 (PST)
+        bh=lwd8/l7feZCwoHFobcRWjKb7ZJVB2/QEsYxX7pRhBns=;
+        b=Qie8maX/syVTDsD44v+8C/vK2e40+KreAlcjgsgGum0PJ3yHi8I3wCc9omss9Upcpi
+         kVZcHotWWHTfRpLYFakWgLuepJRM1IutHbtSxdnE878quJ2mjOGM0qvzBF51g/iRv3xd
+         B7CrlaIZPcMOY/0FW//RyS7dMqw5vLexppF66IMswSAPkU1Z7P5SScdJIiD0MxZhAg6R
+         ZtiVXdHBDQa9mUIa/enPNNOMnFKUFaCwryeZqK1fh3ygs+ebZ5lq8tbX40bGN1Re57CI
+         +uJyH6dbq0Ntcx5vgE396LIG9dPu3EqWizxcH3H3TcVhRGJ29zELXSMdV1tYuksSwY3U
+         PqAQ==
+X-Gm-Message-State: AOAM531UgtUcw1crR48b+W+BlgH5iFLOKLN1ZuvdlkqSfv88mQR10pci
+        3RYdsMcZ8M4lBRO7rmTQ/g==
+X-Google-Smtp-Source: ABdhPJz7fUonVxT0gZyV3veQWVtgfz40eGN12mJ23xkoOpk54Vde7VP/YSHxQb4AU/l2IfWl57cL9g==
+X-Received: by 2002:a9d:be1:: with SMTP id 88mr2739822oth.210.1607535218842;
+        Wed, 09 Dec 2020 09:33:38 -0800 (PST)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id k13sm537363otl.72.2020.12.09.09.26.44
+        by smtp.gmail.com with ESMTPSA id o63sm452791ooa.10.2020.12.09.09.33.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Dec 2020 09:26:45 -0800 (PST)
-Received: (nullmailer pid 641351 invoked by uid 1000);
-        Wed, 09 Dec 2020 17:26:43 -0000
-Date:   Wed, 9 Dec 2020 11:26:43 -0600
+        Wed, 09 Dec 2020 09:33:37 -0800 (PST)
+Received: (nullmailer pid 650380 invoked by uid 1000);
+        Wed, 09 Dec 2020 17:33:35 -0000
+Date:   Wed, 9 Dec 2020 11:33:35 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Sowjanya Komatineni <skomatineni@nvidia.com>
-Cc:     thierry.reding@gmail.com, jonathanh@nvidia.com, broonie@kernel.org,
-        linux-spi@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v1 2/7] dt-bindings: spi: Add Tegra QSPI device tree
- binding
-Message-ID: <20201209172643.GA638607@robh.at.kernel.org>
-References: <1606857168-5839-1-git-send-email-skomatineni@nvidia.com>
- <1606857168-5839-3-git-send-email-skomatineni@nvidia.com>
+To:     Daniele Alessandrelli <daniele.alessandrelli@linux.intel.com>
+Cc:     mgross@linux.intel.com, daniele.alessandrelli@intel.com,
+        markgross@kernel.org, arnd@arndb.de, bp@suse.de,
+        damien.lemoal@wdc.com, gregkh@linuxfoundation.org, corbet@lwn.net,
+        leonard.crestez@nxp.com, palmerdabbelt@google.com,
+        paul.walmsley@sifive.com, peng.fan@nxp.com, shawnguo@kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Jassi Brar <jassisinghbrar@gmail.com>
+Subject: Re: [PATCH 02/22] dt-bindings: Add bindings for Keem Bay IPC driver
+Message-ID: <20201209173335.GA644399@robh.at.kernel.org>
+References: <20201201223511.65542-1-mgross@linux.intel.com>
+ <20201201223511.65542-3-mgross@linux.intel.com>
+ <20201207160152.GB351233@robh.at.kernel.org>
+ <ca099c0833dc79f0a88edecd9fb949157eacbf46.camel@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1606857168-5839-3-git-send-email-skomatineni@nvidia.com>
+In-Reply-To: <ca099c0833dc79f0a88edecd9fb949157eacbf46.camel@linux.intel.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 01, 2020 at 01:12:43PM -0800, Sowjanya Komatineni wrote:
-> This patch adds YAML based device tree binding document for Tegra
-> QSPI driver.
+On Mon, Dec 07, 2020 at 06:42:07PM +0000, Daniele Alessandrelli wrote:
+> Hi Rob,
 > 
-> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
-> ---
->  .../devicetree/bindings/spi/nvidia,tegra-qspi.yaml | 77 ++++++++++++++++++++++
->  1 file changed, 77 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/spi/nvidia,tegra-qspi.yaml
+> Thanks for the feedback.
 > 
-> diff --git a/Documentation/devicetree/bindings/spi/nvidia,tegra-qspi.yaml b/Documentation/devicetree/bindings/spi/nvidia,tegra-qspi.yaml
-> new file mode 100644
-> index 0000000..038a085
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/spi/nvidia,tegra-qspi.yaml
-> @@ -0,0 +1,77 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/spi/nvidia,tegra-qspi.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Tegra Quad SPI Controller
-> +
-> +maintainers:
-> +  - Thierry Reding <thierry.reding@gmail.com>
-> +  - Jonathan Hunter <jonathanh@nvidia.com>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - nvidia,tegra210-qspi
-> +      - nvidia,tegra186-qspi
-> +      - nvidia,tegra194-qspi
-> +
-> +  reg:
-> +    items:
-> +      - description: QSPI registers
-
-Just 'maxItems: 1'
-
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    items:
-> +      - const: qspi
-
-Kind of a pointless name. 
-
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  reset-names:
-> +    minItems: 1
-> +    items:
-> +      - const: qspi
-
-Same here.
-
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +  dmas:
-> +    maxItems: 2
-> +
-> +  dma-names:
-> +    items:
-> +      - const: rx
-> +      - const: tx
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clock-names
-> +  - clocks
-> +  - reset-names
-> +  - resets
-> +
-> +additionalProperties: true
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/tegra210-car.h>
-> +    #include <dt-bindings/reset/tegra210-car.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +    spi@70410000 {
-> +            compatible = "nvidia,tegra210-qspi";
-> +            reg = <0x70410000 0x1000>;
-> +            interrupts = <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>;
-> +            clocks = <&tegra_car TEGRA210_CLK_QSPI>;
-> +            clock-names = "qspi";
-> +            resets = <&tegra_car 211>;
-> +            reset-names = "qspi";
-> +            dmas = <&apbdma 5>, <&apbdma 5>;
-> +            dma-names = "rx", "tx";
-> +    };
-> -- 
-> 2.7.4
+> On Mon, 2020-12-07 at 10:01 -0600, Rob Herring wrote:
+> > On Tue, Dec 01, 2020 at 02:34:51PM -0800, mgross@linux.intel.com wrote:
+> > > From: Daniele Alessandrelli <daniele.alessandrelli@intel.com>
+> > > 
+> > > Add DT binding documentation for the Intel Keem Bay IPC driver, which
+> > > enables communication between the Computing Sub-System (CSS) and the
+> > > Multimedia Sub-System (MSS) of the Intel Movidius SoC code named Keem
+> > > Bay.
+> > > 
 > 
+> [cut]
+> 
+> > > +
+> > > +description:
+> > > +  The Keem Bay IPC driver enables Inter-Processor Communication (IPC) with the
+> > > +  Visual Processor Unit (VPU) embedded in the Intel Movidius SoC code named
+> > > +  Keem Bay.
+> > 
+> > Sounds like a mailbox.
+> 
+> We did consider using the mailbox framework, but eventually decided
+> against it; mainly because of the following two reasons:
+> 
+> 1. The channel concept in the Mailbox framework is different than the
+>    channel concept in Keem Bay IPC:
+> 
+>    a. My understanding is that Mailbox channels are meant to be SW
+>       representation of physical HW channels, while in Keem Bay IPC
+>       channels are software abstractions to achieve communication
+>       multiplexing over a single HW link
+> 
+>    b. Additionally, Keem Bay IPC has two different classes of channels 
+>       (high-speed channels and general-purpose channels) that need to
+>       access the same HW link with different priorities.
+> 
+> 2. The blocking / non-blocking TX behavior of mailbox channels is
+>    defined at channel creation time (by the tx_block value of the
+>    mailbox client passed to mbox_request_channel(); my understanding 
+>    is that the tx_block value cannot be modified after the channel is
+>    created), while in Keem Bay IPC the same channel can be used for
+>    both blocking and non-blocking TX (behavior is controlled by the
+>    timeout argument passed to keembay_ipc_send()).
+> 
+> Having said that, I guess that it could be possible to create a Mailbox
+> driver implementing the core communication mechanism used by the Keem
+> Bay IPC and then build our API around it (basically having two
+> drivers). But I'm not sure that would make the code simpler or easier
+> to maintain. Any thoughts on this?
+
+The use of the mailbox binding and the kernel's mailbox framework are 
+independent questions. I'm only concerned with the former (for purposes 
+of this review).
+
+Rob
