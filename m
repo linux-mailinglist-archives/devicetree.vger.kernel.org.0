@@ -2,108 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A1892D41AA
-	for <lists+devicetree@lfdr.de>; Wed,  9 Dec 2020 13:04:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 41C852D41D6
+	for <lists+devicetree@lfdr.de>; Wed,  9 Dec 2020 13:13:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730970AbgLIMEU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Dec 2020 07:04:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42218 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731060AbgLIMEJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Dec 2020 07:04:09 -0500
-Received: from mail-ed1-x541.google.com (mail-ed1-x541.google.com [IPv6:2a00:1450:4864:20::541])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9F17C061794
-        for <devicetree@vger.kernel.org>; Wed,  9 Dec 2020 04:03:28 -0800 (PST)
-Received: by mail-ed1-x541.google.com with SMTP id p22so1244722edu.11
-        for <devicetree@vger.kernel.org>; Wed, 09 Dec 2020 04:03:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=jhTebHHB1yKIF7cssKlkVjUKOAUnXogHo6Up4bbqoQg=;
-        b=0hyznWuWZqKpynL5fX4S7bsgyztK44TwnE8qPYF8Memni4zOyv2rFO2SNKtLh7V15T
-         PcUw5jQKJ1/acoYMnFM8pwd9K6M0M7DjeoRp9beNN953P2wKibwzg/jPuljhmk+zUY4P
-         RiP0w78x9veBsdW1Ppfz1Zg7hu3EDKZ83OYZvXBjVANwOVdcWpF5Uqwy/44qSx32wr1+
-         2cXhJ2LnjHoRwq52o2FLe2TzbAkuhha+3EVhi1x8zg9S9i90k5oDoyc3BH3zlRiv67Bp
-         wYy/kZfSRKYpGNbssaWSY1ch6WVVRhf7AcP5GvmcqhXtjZB4XVd2RP42roXYatZPdCr6
-         +9lQ==
+        id S1731065AbgLIMNC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Dec 2020 07:13:02 -0500
+Received: from mail-wr1-f65.google.com ([209.85.221.65]:33532 "EHLO
+        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730195AbgLIMNC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Dec 2020 07:13:02 -0500
+Received: by mail-wr1-f65.google.com with SMTP id r14so1501295wrn.0;
+        Wed, 09 Dec 2020 04:12:46 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=jhTebHHB1yKIF7cssKlkVjUKOAUnXogHo6Up4bbqoQg=;
-        b=f3BmP0y0VSBhIHHuHXhEZ+j2LTHkIqUoMzmEtmenfusRDmGlnmABJdeS5CDnphDJO3
-         LGy6Ror4yG4WaE5/+IrvB72tRuCZpUgId0pjm0B5WpiEguZ1eyHkED2G0BjnFlqMnLfl
-         k8F/Lul6vfNIO9ebdXKwZ6CPRh0LHuew/QnI8n1xnsquvgIpc/IBOLysLDZOpEXz0WUj
-         3uBur2omdmcP4EEVm5nDhidMb3SvwfyAHRDa1qDzzc1ZkpF5e404HIImdjQaln6o42J0
-         Q0welKZuSDj4xHZV+/S/RV5lmnxqds+sfIEM/ikGKNBrfozQJ9tFJrHw4aseSKe55cC9
-         SwSw==
-X-Gm-Message-State: AOAM530mJ7KWkKWk/PJpvsdgRKmPpnnx2WZDuUwMOBqro6tUtNsYgeD3
-        F2DtKkVrYkx4UYZuupYt+pDaAg==
-X-Google-Smtp-Source: ABdhPJwRn7OBn73W+KHDERa+We/tGcp650qVwbLdX3kts9uoyWDBr0xqdxk8aNcWE436bWZmB40b0Q==
-X-Received: by 2002:a50:9ee6:: with SMTP id a93mr1692284edf.174.1607515407524;
-        Wed, 09 Dec 2020 04:03:27 -0800 (PST)
-Received: from localhost.localdomain ([88.160.162.107])
-        by smtp.gmail.com with ESMTPSA id c23sm1426548eds.88.2020.12.09.04.03.26
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=YzNq/OrRULxzTzwcpqVhoNHAyvtCdZCJ/sWJN5KPKoY=;
+        b=Xa8Umo3CErCL8QD3CCKhtlngjyUDKshJHqnQqBi4d99TASkSOdL19ml5MFKO0pqrz+
+         ZhWof1mpeUcwiB6Zm0YKGe3MISrENsK7wvEaUz0Z4ANV91waIr1MnKCwUKKYIVDWke+a
+         ggFKV6LJAFV86HoLj81sB4HLjM1LbCMSHG5xH7QTaZzcmukhiufm/lcqakvQhE8hh5HR
+         h/5DLMoU7+tjWCNFmeEsKKCseEpN1kvum4JNpGxtiFjbUlMvv8bdjY54l1plVRyGkM3t
+         YL5N9+E/6OjlVdcr1ce8e3davENsB9XSskswdPAfEg/g8Rlt8mwIsDDJpdBzNccTzgsj
+         TOPw==
+X-Gm-Message-State: AOAM530+5g0vEHc69Wo3L7QkFVplVt+jtEbA52FNhLYEABKep4ytrj84
+        arPihdEgXYx8NoArpSm+aV0=
+X-Google-Smtp-Source: ABdhPJyzVn9lT40VQ7tMQlRCoD8HI7BETLODhLoHSG3uMDmE6uPI+MIyct0aSvhiEK8h7LXVs1QvpQ==
+X-Received: by 2002:adf:eac7:: with SMTP id o7mr2414611wrn.23.1607515940605;
+        Wed, 09 Dec 2020 04:12:20 -0800 (PST)
+Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
+        by smtp.googlemail.com with ESMTPSA id 90sm3087627wrl.60.2020.12.09.04.12.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Dec 2020 04:03:26 -0800 (PST)
-From:   Fabien Parent <fparent@baylibre.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     Fabien Parent <fparent@baylibre.com>, devicetree@vger.kernel.org,
+        Wed, 09 Dec 2020 04:12:18 -0800 (PST)
+Date:   Wed, 9 Dec 2020 13:12:17 +0100
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Yong Wu <yong.wu@mediatek.com>
+Cc:     Joerg Roedel <joro@8bytes.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Evan Green <evgreen@chromium.org>,
+        Tomasz Figa <tfiga@google.com>,
+        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 2/2] arm64: dts: mediatek: mt8183-evb: add PWM support
-Date:   Wed,  9 Dec 2020 13:03:21 +0100
-Message-Id: <20201209120322.137610-2-fparent@baylibre.com>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20201209120322.137610-1-fparent@baylibre.com>
-References: <20201209120322.137610-1-fparent@baylibre.com>
+        iommu@lists.linux-foundation.org, youlin.pei@mediatek.com,
+        Nicolas Boichat <drinkcat@chromium.org>, anan.sun@mediatek.com,
+        chao.hao@mediatek.com
+Subject: Re: [PATCH v5 05/27] dt-bindings: memory: mediatek: Rename header
+ guard for SMI header file
+Message-ID: <20201209121217.GA25951@kozik-lap>
+References: <20201209080102.26626-1-yong.wu@mediatek.com>
+ <20201209080102.26626-6-yong.wu@mediatek.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20201209080102.26626-6-yong.wu@mediatek.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable the pwm driver and set the pinctrl for PWM A line.
+On Wed, Dec 09, 2020 at 04:00:40PM +0800, Yong Wu wrote:
+> Only rename the header guard for all the SoC larb port header file.
+> No funtional change.
+> 
+> Suggested-by: Krzysztof Kozlowski <krzk@kernel.org>
+> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
+> ---
 
-Signed-off-by: Fabien Parent <fparent@baylibre.com>
----
+Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
 
-V2:
-	* rename pwm0 to pwm1 since disp-pwm has been merged in v5.11 as pwm0
-	* rename the pio node and labels to match the coding standard of this dts
-
- arch/arm64/boot/dts/mediatek/mt8183-evb.dts | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183-evb.dts b/arch/arm64/boot/dts/mediatek/mt8183-evb.dts
-index cba2d8933e79..3249c959f76f 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183-evb.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt8183-evb.dts
-@@ -344,6 +344,12 @@ pins_spi{
- 			bias-disable;
- 		};
- 	};
-+
-+	pwm_pins_1: pwm1 {
-+		pins_pwm {
-+			pinmux = <PINMUX_GPIO90__FUNC_PWM_A>;
-+		};
-+	};
- };
- 
- &spi0 {
-@@ -392,3 +398,9 @@ &spi5 {
- &uart0 {
- 	status = "okay";
- };
-+
-+&pwm1 {
-+	status = "okay";
-+	pinctrl-0 = <&pwm_pins_1>;
-+	pinctrl-names = "default";
-+};
--- 
-2.29.2
-
+Best regards,
+Krzysztof
