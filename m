@@ -2,140 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 608A62D3B0A
-	for <lists+devicetree@lfdr.de>; Wed,  9 Dec 2020 06:46:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5CF072D3B18
+	for <lists+devicetree@lfdr.de>; Wed,  9 Dec 2020 06:56:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727755AbgLIFpr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Dec 2020 00:45:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40360 "EHLO
+        id S1727794AbgLIF4U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Dec 2020 00:56:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41944 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727325AbgLIFpr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Dec 2020 00:45:47 -0500
-Received: from mail-pf1-x444.google.com (mail-pf1-x444.google.com [IPv6:2607:f8b0:4864:20::444])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8683C0613D6
-        for <devicetree@vger.kernel.org>; Tue,  8 Dec 2020 21:45:06 -0800 (PST)
-Received: by mail-pf1-x444.google.com with SMTP id b26so301746pfi.3
-        for <devicetree@vger.kernel.org>; Tue, 08 Dec 2020 21:45:06 -0800 (PST)
+        with ESMTP id S1727277AbgLIF4T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Dec 2020 00:56:19 -0500
+Received: from mail-pl1-x644.google.com (mail-pl1-x644.google.com [IPv6:2607:f8b0:4864:20::644])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2989C0613CF
+        for <devicetree@vger.kernel.org>; Tue,  8 Dec 2020 21:55:33 -0800 (PST)
+Received: by mail-pl1-x644.google.com with SMTP id p6so367341plo.6
+        for <devicetree@vger.kernel.org>; Tue, 08 Dec 2020 21:55:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to:user-agent;
-        bh=gkAVVTUigtx9djSLmC0VmKkWujGnySrPDSmbQuF+oss=;
-        b=YDdKWGk4U83JFSsIfm8j7A6mUPCnx0lHl1appmGPhh6RVSCTo9RYy14ORXwdG3gq/7
-         Q4suKpSuGUXXW2m8rW/cmSgQSCJDOPw05/AHxk15yaaIK8s0BlNhd6a4AMe+MgBH8/OL
-         OmUbnqE4bWJ+fTWChBnbhkAGbywOa6EDqKkd75mfd/xpODvkiVF69x4cIpH9Px2bzZCt
-         cjwPZukzbPi26EprAAGzndbaW3ptNSTgCwWw2QtwqK1B/4/nTnD9ReQ3JTbM1DdoJLPc
-         9+0y1O631QwzqdlCl8wFi6nHS85CXn8cUrdUm8B8PVDYpUpzPAzi6tFmpkadMOBMO7ct
-         i5kA==
+        bh=e+/KQo/7uYAtbWbl+7BBpmpDWpKdkf167C04AOH3Dok=;
+        b=JX1CgT0rcU5I83EAMxlQQlIn2P+TZTwzT8eH1WZazen5EDzUw+Qypzs2cPZSnP5Zgo
+         bQ68RYrm2IrLIekpTJJYqgg4cRU1jJKExl0lfDXeEBFhc8pK8RmfSZqx/bWjwOGlxMwE
+         isiZakFhiscmIhH3DMi9tYMwpcUGMn84frNV1t/BZem5k0zmESMocz3Q3tgUWvsYF35L
+         C5ngT03ykjA1NLBnvPAss2j/2tMT5JdLoznFzCG9xaU8eYGKQXv4AUmxcxgt2NWAlHuO
+         McIPYcgetMPGoOBgD79WqB3h1mzsQQEgrVdASSblYbUAn6cWFtV5lO1oJCI7DxIe2MM2
+         Dwnw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=gkAVVTUigtx9djSLmC0VmKkWujGnySrPDSmbQuF+oss=;
-        b=cTy/GcDEd03xGU4zs9SJhITLjwGFV7fHzWvBBGddHPaAjoazNTRVt4ZDb6HP1jbYAt
-         03mIw//1XHyMVQQDaa2ebTWtJ1qpeEgJJWnuTYHE4CNTyZpxuIxfoAAvaKj5gFBqxNen
-         d7ywR4Io8QUfgzpEkhj1UQLjtmsBZgkJESe0myA2Ki9HtwgK4yjPIGx1Xeh7+HZSn5cS
-         EgmZM79P+grojZtPfkU2gj/himrvUGT+Sp1NZUinmcwYoP0Qm+vAepTThTMPuwPOK055
-         bTKoN9qgOxLghoIGp52OIf9MZUgQdL5MvkUMD5wrccrjI3zlsZtGGEfMH4LgCq2zLCmt
-         v1Ww==
-X-Gm-Message-State: AOAM532dHT+SYmk6MpmW2W6M6n3Z1U2w9jvpy6iaI9rG5ISY2zAYFk5/
-        xQnhVlbH/hncCLf5nHlTTimcSQ==
-X-Google-Smtp-Source: ABdhPJxWx86juiJTf/9quW+T1YcP6CcrdYE27gVJoN8CrFUTzwsrytwDX48IHtIBjqHn0cJAEEDbfw==
-X-Received: by 2002:a62:445:0:b029:19c:162b:bbef with SMTP id 66-20020a6204450000b029019c162bbbefmr893855pfe.40.1607492706206;
-        Tue, 08 Dec 2020 21:45:06 -0800 (PST)
+        bh=e+/KQo/7uYAtbWbl+7BBpmpDWpKdkf167C04AOH3Dok=;
+        b=m9hQL1K5CrCB4BhvtYZmI7X0j5JhZ9lewoLt51WGDFyHwadH8FsMWZq4hOtQfv97l8
+         Ztcc8V41ZDIUCLqDnXO1RpkFNQTo/qFI0CfCSTN949wID/YaZo7gCOaMLjZ5LK7uBlex
+         oK1wl5roPoEf0LUI6rcbofHTn+h1Dwny6iCCWlk1rZqaJ+qZDgqVv4tFxP8DNeukEZ2V
+         xX0bKGpsZCoVCZoanNHg9YNq64NFjOUWR7gEQWuxxf8K27g06k3H54eGTWO+LDtvV5xo
+         opCp43petZgsbcy/CdSdw39uVj/+CnhuRBP4YkUGqsrTT4m+xZMNRIxvqYZcm51Hmijt
+         bOYw==
+X-Gm-Message-State: AOAM533DVnVLDCutcyIAK9ElF4HQOsFMBPFMENQcsb9l+YE2tPfrVrgK
+        i2bqSp83uiX2197pEIRjhhMzrQ==
+X-Google-Smtp-Source: ABdhPJw/8dukRiEihHvoiCsLY5JEfe36xkD1kg7KpFx5zfiiMEXG33LbbGxomBfMnr+8CmGdVnoZWw==
+X-Received: by 2002:a17:90a:474c:: with SMTP id y12mr595152pjg.175.1607493333244;
+        Tue, 08 Dec 2020 21:55:33 -0800 (PST)
 Received: from localhost ([122.172.136.109])
-        by smtp.gmail.com with ESMTPSA id fv22sm662181pjb.14.2020.12.08.21.45.04
+        by smtp.gmail.com with ESMTPSA id u24sm827666pfm.51.2020.12.08.21.55.31
         (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 08 Dec 2020 21:45:05 -0800 (PST)
-Date:   Wed, 9 Dec 2020 11:15:02 +0530
+        Tue, 08 Dec 2020 21:55:32 -0800 (PST)
+Date:   Wed, 9 Dec 2020 11:25:30 +0530
 From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Sudeep Holla <sudeep.holla@arm.com>
-Cc:     Nicola Mazzucato <nicola.mazzucato@arm.com>,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+To:     Nicola Mazzucato <nicola.mazzucato@arm.com>
+Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        rjw@rjwysocki.net, vireshk@kernel.org, robh+dt@kernel.org,
-        sboyd@kernel.org, nm@ti.com, daniel.lezcano@linaro.org,
-        morten.rasmussen@arm.com, chris.redpath@arm.com
-Subject: Re: [PATCH v4 3/4] scmi-cpufreq: get opp_shared_cpus from opp-v2 for
- EM
-Message-ID: <20201209054502.ajomw6glcxx5hue2@vireshk-i7>
-References: <20201202172356.10508-1-nicola.mazzucato@arm.com>
- <20201202172356.10508-4-nicola.mazzucato@arm.com>
- <20201208055053.kggxw26kxtnpneua@vireshk-i7>
- <0e4d3134-f9b2-31fa-b454-fb30265a80b5@arm.com>
- <20201208072611.ptsqupv4y2wybs6p@vireshk-i7>
- <20201208112008.niesjrunxq2jz3kt@bogus>
+        sudeep.holla@arm.com, rjw@rjwysocki.net, vireshk@kernel.org,
+        robh+dt@kernel.org, sboyd@kernel.org, nm@ti.com,
+        daniel.lezcano@linaro.org, morten.rasmussen@arm.com,
+        chris.redpath@arm.com
+Subject: Re: [PATCH v5 0/4] CPUFreq: Add support for opp-sharing cpus
+Message-ID: <20201209055530.gadaie5lttpdprc6@vireshk-i7>
+References: <20201208174229.24323-1-nicola.mazzucato@arm.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201208112008.niesjrunxq2jz3kt@bogus>
+In-Reply-To: <20201208174229.24323-1-nicola.mazzucato@arm.com>
 User-Agent: NeoMutt/20180716-391-311a52
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08-12-20, 11:20, Sudeep Holla wrote:
-> It is because of per-CPU vs per domain drama here. Imagine a system with
-> 4 CPUs which the firmware puts in individual domains while they all are
-> in the same perf domain and hence OPP is marked shared in DT.
+On 08-12-20, 17:42, Nicola Mazzucato wrote:
+> Hi All,
 > 
-> Since this probe gets called for all the cpus, we need to skip adding
-> OPPs for the last 3(add only for 1st one and mark others as shared).
-
-Okay and this wasn't happening before this series because the firmware
-was only returning the current CPU from scmi_get_sharing_cpus() ?
-
-Is this driver also used for the cases where we have multiple CPUs in
-a policy ? Otherwise we won't be required to call
-dev_pm_opp_set_sharing_cpus().
-
-So I assume that we want to support both the cases here ?
-
-> If we attempt to add OPPs on second cpu probe, it *will* shout as duplicate
-> OPP as we would have already marked it as shared table with the first cpu.
-> Am I missing anything ? I suggested this as Nicola saw OPP duplicate
-> warnings when he was hacking up this patch.
-
-The common stuff (for all the CPUs) is better moved to probe() in this
-case, instead of the ->init() callback. Otherwise it will always be
-messy. You can initialize the OPP and cpufreq tables in probe()
-itself, save the pointer somewhere and then just use it here in
-->init().
-
-Also do EM registration from there.
-
-> > > otherwise no need as they would be duplicated.
-> > > > And we don't check the return value of
-> > > > the below call anymore, moreover we have to call it twice now.
+> In this V5 posting I have addressed suggestions on opp/of and scmi-cpufreq
+> driver.
 > 
-> Yes, that looks wrong, we need to add the check for non zero values, but ....
+> This is to support systems where exposed cpu performance controls are more
+> fine-grained that the platform's ability to scale cpus independently.
 > 
-> > > 
-> > > This second get_opp_count is required such that we register em with the correct
-> > > opp number after having added them. Without this the opp_count would not be correct.
-> >
-> 
-> ... I have a question here. Why do you need to call
-> 
-> em_dev_register_perf_domain(cpu_dev, nr_opp, &em_cb, opp_shared_cpus..)
-> 
-> on each CPU ? Why can't that be done once for unique opp_shared_cpus ?
-> 
-> The whole drama of per-CPU vs perf domain is to have energy model and
-> if feeding it opp_shared_cpus once is not sufficient, then something is
-> wrong or simply duplicated or just not necessary IMO.
-> 
-> > What if the count is still 0 ? What about deferred probe we were doing earlier ?
-> 
-> OK, you made me think with that question. I think the check was original
-> added for deferred probe but then scmi core was changed to add the cpufreq
-> device only after everything needed is ready. So the condition must never
-> occur now.
+> Nicola Mazzucato (3):
+>   dt-bindings: opp: Allow empty OPP tables
+>   opp/of: Allow empty opp-table with opp-shared
 
-The deferred probe shall be handled in a different patch in that case.
-
-Nicola, please break the patch into multiple patches, with one patch
-dealing only with one task.
+Applied these two for now. Please rework the other patches based on
+the feedback given on the other thread. Thanks.
 
 -- 
 viresh
