@@ -2,92 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4722C2D4BBA
-	for <lists+devicetree@lfdr.de>; Wed,  9 Dec 2020 21:27:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AD6392D4BC2
+	for <lists+devicetree@lfdr.de>; Wed,  9 Dec 2020 21:28:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388443AbgLIUZ4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Dec 2020 15:25:56 -0500
-Received: from mail.kernel.org ([198.145.29.99]:37294 "EHLO mail.kernel.org"
+        id S2388465AbgLIU2J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Dec 2020 15:28:09 -0500
+Received: from mail.kernel.org ([198.145.29.99]:38414 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2388444AbgLIUZu (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 9 Dec 2020 15:25:50 -0500
-Date:   Wed, 9 Dec 2020 21:25:06 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1607545510;
-        bh=m3LxZH9XcfS3CgURbBcXuC07Vw+hs+QvtYswn73EEcI=;
-        h=From:To:Cc:Subject:References:In-Reply-To:From;
-        b=vOSxtVbI0PR95veLEF8t2bpNEGM2ymuYIbAWHficC6/8TlB2D72/cz28ZcvdVTxjd
-         Z+3SCke+JnGs5kGl7It7NkYfausQtcX8ZGigmusrgqx34uS8K6OTGQIARv+87RTjMQ
-         vJvuS9L3TQiBcBpbscUFER9TBFJH2i3PdB4m4pRD5pWG9aEPhkap0CFFrIAD/xvLNS
-         2gZUkrKOWX7JVrhcp96yzUeDNzb2k5TptDiRCFan4nsPbRosSB8sz7NoL/fkLQPbde
-         QtoCPLjQkrWU78RvQhQkFWysZ9M+3P2Jdeba0736kIbmdgn28rW4QS9wMHU+SXCc61
-         S1JbP1f9LAUxw==
-From:   Wolfram Sang <wsa@kernel.org>
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     Cristian Ciocaltea <cristian.ciocaltea@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andreas =?utf-8?Q?F=C3=A4rber?= <afaerber@suse.de>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-actions@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-i2c@vger.kernel.org
-Subject: Re: [PATCH v2 13/18] arm: dts: owl-s500: Add I2C support
-Message-ID: <20201209202506.GD3499@kunai>
-Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Cristian Ciocaltea <cristian.ciocaltea@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andreas =?utf-8?Q?F=C3=A4rber?= <afaerber@suse.de>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-actions@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-i2c@vger.kernel.org
-References: <cover.1605823502.git.cristian.ciocaltea@gmail.com>
- <99e81f582b19d0e13abf506c1d7dda0f0a857fd5.1605823502.git.cristian.ciocaltea@gmail.com>
- <20201128073516.GZ3077@thinkpad>
+        id S1728648AbgLIU2J (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 9 Dec 2020 15:28:09 -0500
+From:   Mark Brown <broonie@kernel.org>
+Authentication-Results: mail.kernel.org; dkim=permerror (bad message/signature format)
+To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc:     linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+In-Reply-To: <20201205001508.346439-1-alexandre.belloni@bootlin.com>
+References: <20201205001508.346439-1-alexandre.belloni@bootlin.com>
+Subject: Re: [PATCH 1/2] dt-bindings: add simple-audio-mux binding
+Message-Id: <160754563667.43974.695690086980158511.b4-ty@kernel.org>
+Date:   Wed, 09 Dec 2020 20:27:16 +0000
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="P+33d92oIH25kiaB"
-Content-Disposition: inline
-In-Reply-To: <20201128073516.GZ3077@thinkpad>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Sat, 5 Dec 2020 01:15:07 +0100, Alexandre Belloni wrote:
+> Add devicetree documentation for simple audio multiplexers
 
---P+33d92oIH25kiaB
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Applied to
 
-On Sat, Nov 28, 2020 at 01:05:16PM +0530, Manivannan Sadhasivam wrote:
-> On Fri, Nov 20, 2020 at 01:56:07AM +0200, Cristian Ciocaltea wrote:
-> > Add I2C controller nodes for Actions Semi S500 SoC.
-> >=20
-> > Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
->=20
-> Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-DTS changes usually go in via arm-soc, so I am not picking this unless
-there is a reason to do so.
+Thanks!
 
+[1/2] dt-bindings: add simple-audio-mux binding
+      commit: f17a7db22b8ff1688f30bb66aeeaa8cc088e5230
+[2/2] ASoC: add simple-mux
+      commit: 342fbb7578d1741ff646d7b08e14e8753267b9fa
 
---P+33d92oIH25kiaB
-Content-Type: application/pgp-signature; name="signature.asc"
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
------BEGIN PGP SIGNATURE-----
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAl/RMqIACgkQFA3kzBSg
-KbaoPxAAnyZm/hMYK8JaK77JkGWwkak3rGWt1eJBUq+W+f+tDh3NzK2ksearCm2+
-Cj4EtYWHR7qi+h7YtiEvEkpxe/8z1wZ/F+x2xkHAeunahRq9aCiVypLLxPIwPiO+
-xRugddMf+AmY9G7HOhhOeHoZ+0enRVPHIdteTsewVJEZEg4aqtYoIOBZLcl/3gds
-j5WjMEer4rt0whAl0wjLb07Q18c00ug3oNAkq8l2SR14SzD0GspksXDIJOOUcuFz
-5tGjGDb5ZT+OGBZoSm84ykUwHsNwASnyThFbo5zBYe7/RotpcyimbL6QuIiS201R
-aiOpYk7HkHmCpBaHsFufzkvqfN/w6nyJ1D4j0kvg7KLL0b5G6w8D741o04G1ydWI
-CdgsOHobFZTb1Pkb0nzkWoKdQublmHUQtSNiCJ1vxDZbq1rWgWsAKHRTLXu2P376
-1JbnKpvVPvjif5efAb1hpL7xmnCI3XmK9SiLjwsRRbE914ABMF/zi9T5ZDV71LS1
-c06/OVBOh6KLd5nk/HKV4qjOqvDLlWaqIQC811Ffi1kYUFrZ4z+hCP5TZANRqaa+
-MqbJz/aMJ02hGUqqadaaBp1Y2cOx4csFa1BMsaartC/NjhHUHuSxtyBDRkaGXe4T
-YjtfhGHKX6fCMCsJnS0RpdFD812dadwjEkT8t4uKgHn86UeGMTQ=
-=GUP5
------END PGP SIGNATURE-----
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
 
---P+33d92oIH25kiaB--
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
