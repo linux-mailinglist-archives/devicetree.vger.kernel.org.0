@@ -2,168 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 86A802D39C8
-	for <lists+devicetree@lfdr.de>; Wed,  9 Dec 2020 05:44:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 762122D3A0A
+	for <lists+devicetree@lfdr.de>; Wed,  9 Dec 2020 06:05:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727434AbgLIEof (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Dec 2020 23:44:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59238 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727068AbgLIEof (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Dec 2020 23:44:35 -0500
-Received: from mail-il1-x143.google.com (mail-il1-x143.google.com [IPv6:2607:f8b0:4864:20::143])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3DB9FC0613CF
-        for <devicetree@vger.kernel.org>; Tue,  8 Dec 2020 20:43:55 -0800 (PST)
-Received: by mail-il1-x143.google.com with SMTP id g1so364532ilk.7
-        for <devicetree@vger.kernel.org>; Tue, 08 Dec 2020 20:43:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=x8OwbKuB745NIujRjaX3J/+vn0m3CbBdeZbGHQvy0o8=;
-        b=APonctzJzIu1aTdy+fmF2T217BQxgCICkdOttCSgBd9+bffiXsLjKgWsdmuP+HcnJD
-         mSCjZkQo8TlTHP1xjzz6nf9CRQHANGyTAopRvK5MrnytCxTHrNtAGhdlQH+mPZS/LL4h
-         Pu/rSWTLCCnODmDRIvEvrTimjmzOOIJmrS8+U=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=x8OwbKuB745NIujRjaX3J/+vn0m3CbBdeZbGHQvy0o8=;
-        b=uMX3tjpfaBeMLKvmbogvZrw5DZDSPgYTabAJtLS0PHAarSU/Zn1RM3dK4oUnF2ze7r
-         zru4M5z7gP/gYf5zCWx0IsO7sn+DepSnBfScqJ3dxI2cmmq6dfezKkNMg591rUFSl6fP
-         Tr8CvcuhKdAa0LhJy9GdMb/lZiOFoZirtX6ZohwGgdRLQYX6Hm1s8EN5gGloqxk55Hqp
-         +fIesnJRZUcIfQmVVTxg8065OStFlxrxTC0PYvE5OwvP2WKfr/iVurnyC0jzSXwWAqMS
-         1Ky2OSc/CeDeKoXw0C8N5JEZdvT4hf+BmGPEYG/xEZAjOdX2VxNz5HVnGay5Sb8QpL9+
-         iKbA==
-X-Gm-Message-State: AOAM53353Q1DijLgEf7SNnuoGUHKdsAYFGSwmxxxgCdNHi9dp4wJw8OJ
-        zls1g4YPQCYIdrnMazXP+vL4yqMvtxX3dP4v8TeWjw==
-X-Google-Smtp-Source: ABdhPJxMICbx+YCy4SIKp/akVFJXb6NJdJgtkSv5UuqeQV6KBJAZLPpvTkQv0rdHs7H2u3yED+B4/5/WlDbBqH4hlUA=
-X-Received: by 2002:a92:5e08:: with SMTP id s8mr545000ilb.308.1607489034391;
- Tue, 08 Dec 2020 20:43:54 -0800 (PST)
+        id S1725982AbgLIFEq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Dec 2020 00:04:46 -0500
+Received: from outbound-ip23a.ess.barracuda.com ([209.222.82.205]:35640 "EHLO
+        outbound-ip23a.ess.barracuda.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1725968AbgLIFEq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Dec 2020 00:04:46 -0500
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11lp2173.outbound.protection.outlook.com [104.47.58.173]) by mx3.us-east-2a.ess.aws.cudaops.com (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO); Wed, 09 Dec 2020 05:03:31 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=BCzax2ZfJMzq9oQnTAC1s0D6erwTFZJlUyhyKg9BJPglpG1ae/UcrYGbljtyeIqAOfUjZfWzqb7Me8+J/ORirJR7abV9QO+8yAiqyMm8xMmWWCXIHFURFvKvXQfqY3808Ef5taJ8oIA8JgH2TT9tYdTRcbJL5w6kYNQ8zFrHJYod7Ak0QRTUwjynQG5Fn4x+I1WyWTnigc3nU985M1lnmSuzGUjLynspV/4JxNDjIVbjEPzBGVBZfmm9NNqNc+OD0w9qLK+zcwqClSvmsN/fZ/VLAVas/v4zkDm82H4oqdP/ZI1bDC3jrhVDlPvRQBd/NWaQomKyLdc975j2IECk+g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=vGCEsld9BN8Q0YZQvexI1UNFDDZ6jGwAXNatMyy7p0w=;
+ b=VQYIT38O7NvG9UpLSpLx8wec/OjS8rwlzXGXw2c/gwgOowxfhvyCtGkKHgL5YC72c7oW+TtO9/TBJ0fmE8v5CE0xmGaTUJhqElkgLfsWj4nk1yBOdgWB7Ufgq8QWhjxyFmIwsuPLN8pUlXweGnPy4V1+f5n8c2Xw96kuVWJdOsUIvwx/aJBKkKhIsVI0DZxbRGGsabsh9mZNsb5tcnzgsKuoQfVnyvN3/NGb38gNkzWMb2hLeF36Jl81WPSHDVPZrsrVKNdV8peMzLQplLFCzNqWsn4C3rVr4NwiJ63/IEUHnVnmg09122cIwLgwjNfCzibHGN+EDHC8kM7Vcu8u9g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=digi.com; dmarc=pass action=none header.from=digi.com;
+ dkim=pass header.d=digi.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=digi.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=vGCEsld9BN8Q0YZQvexI1UNFDDZ6jGwAXNatMyy7p0w=;
+ b=CLxiSqGmkeu7vHFVzL0Y6oAxxtAVyInrBizVTlwBe88+a390QMpMTWNrTB900Cg24WWOgZuXxbHZ+1b39WcZFh8HAhd6+JlsUvVNobF0mD+mfePdrLK7Phl+CX6D29F3Sjp8++zrF0JmOMV5f+lUHLq9BVtCVyDHpPcAPVJzqv4=
+Authentication-Results: lunn.ch; dkim=none (message not signed)
+ header.d=none;lunn.ch; dmarc=none action=none header.from=digi.com;
+Received: from MN2PR10MB4174.namprd10.prod.outlook.com (2603:10b6:208:1dd::21)
+ by MN2PR10MB4336.namprd10.prod.outlook.com (2603:10b6:208:15f::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3654.12; Wed, 9 Dec
+ 2020 05:03:30 +0000
+Received: from MN2PR10MB4174.namprd10.prod.outlook.com
+ ([fe80::c8b6:2021:35a0:2365]) by MN2PR10MB4174.namprd10.prod.outlook.com
+ ([fe80::c8b6:2021:35a0:2365%9]) with mapi id 15.20.3654.013; Wed, 9 Dec 2020
+ 05:03:30 +0000
+From:   Pavana Sharma <pavana.sharma@digi.com>
+To:     andrew@lunn.ch
+Cc:     ashkan.boldaji@digi.com, clang-built-linux@googlegroups.com,
+        davem@davemloft.net, devicetree@vger.kernel.org,
+        f.fainelli@gmail.com, gregkh@linuxfoundation.org,
+        kbuild-all@lists.01.org, kuba@kernel.org,
+        linux-kernel@vger.kernel.org, lkp@intel.com, marek.behun@nic.cz,
+        netdev@vger.kernel.org, pavana.sharma@digi.com, robh+dt@kernel.org,
+        vivien.didelot@gmail.com
+Subject: [PATCH v11 0/4] Add support for mv88e6393x family of Marvell
+Date:   Wed,  9 Dec 2020 15:02:54 +1000
+Message-Id: <cover.1607488953.git.pavana.sharma@digi.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20201120015436.GC1804098@lunn.ch>
+References: <20201120015436.GC1804098@lunn.ch>
+Content-Type: text/plain
+X-Originating-IP: [203.111.5.166]
+X-ClientProxiedBy: SY3PR01CA0136.ausprd01.prod.outlook.com
+ (2603:10c6:0:1b::21) To MN2PR10MB4174.namprd10.prod.outlook.com
+ (2603:10b6:208:1dd::21)
 MIME-Version: 1.0
-References: <20201123034652.3660584-1-hsinyi@chromium.org> <20201123034652.3660584-2-hsinyi@chromium.org>
-In-Reply-To: <20201123034652.3660584-2-hsinyi@chromium.org>
-From:   Hsin-Yi Wang <hsinyi@chromium.org>
-Date:   Wed, 9 Dec 2020 12:43:28 +0800
-Message-ID: <CAJMQK-jrMmVXtwZ6XumbPf9P-FtFEm_QBP_yrn=PsHgnYBrV+g@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] drm/bridge: anx7625: disable regulators when power off
-To:     Xin Ji <xji@analogixsemi.com>, Sam Ravnborg <sam@ravnborg.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@siol.net>
-Content-Type: text/plain; charset="UTF-8"
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from localhost.localdomain (203.111.5.166) by SY3PR01CA0136.ausprd01.prod.outlook.com (2603:10c6:0:1b::21) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3654.12 via Frontend Transport; Wed, 9 Dec 2020 05:03:25 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 6b39a672-7454-467f-636e-08d89bffc59d
+X-MS-TrafficTypeDiagnostic: MN2PR10MB4336:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <MN2PR10MB4336DD67AA4A4EF0B896695E95CC0@MN2PR10MB4336.namprd10.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:3968;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: WA0gsdCx9/51/ci4kxWCsqbEIXx6ZhxhXCRnJjPakZxlEVCIsI2atIfj9wlvtVUgd/dtjUVBx1ogzvpAVX9VRRhMY2bH8EJ/kGxt/8ch1DexAUZISwUjzTAADl8wRjVulGyh4CvAXW2TH7z1LzcxUxVL/JxSKVDmDu1TNqGInJPV68LxCeNQciXuqTsF/dSP6ycZdUY/e1aURddmHaXfatCCeEA8YsGq2KuHWrRboJ9bSkaLM3hd8e3U3DbHdQOc/YXzeqLsGU3LC43Cg6lbErDj3nGcOHIoNUjioszfuPBGxXPmJgPuBFTUJZ2A6A+tEN7eu+BZMmIw5Ri/i2wsNRSTeWfRYbIFNIG0akP+TDMBHE2zQIsNZJxAzrtAVcLKGpW55xlybfqEZICsOuzfwlzIgWdR0VI1jv3QQsWR1ws=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MN2PR10MB4174.namprd10.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(346002)(136003)(376002)(4744005)(2906002)(34490700003)(66556008)(66946007)(8936002)(83380400001)(8676002)(6666004)(66476007)(5660300002)(508600001)(86362001)(186003)(52116002)(4326008)(36756003)(69590400008)(2616005)(6506007)(26005)(956004)(7416002)(44832011)(16526019)(6916009)(6486002)(6512007);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?ei/1G9tpjIeRMP+qMMYNrKMi2JHo1vAedn1MXsC+98BW3K8pvwzruk7KI3F/?=
+ =?us-ascii?Q?bfSwMfZ/GD35VEF3h0tWzFqP93pHDgQQ3Y5y9PUjojInpWKU5c2IMyqmNFZq?=
+ =?us-ascii?Q?Mroh5NkRXvaOpHdBm6q0DW7zLwgfvbvt2C/66mDWKjNikTRpB9eeahVanMFf?=
+ =?us-ascii?Q?z/yelZ47UKDJkLZ95HadnS65WyeC2QYWedULhNhpHqVvSDPAp4dspCR7mLNu?=
+ =?us-ascii?Q?AJ2YBT0dNSPkoURcf53DyJ4VFLVtO8v1upx8f4KtE9vz7V7U4XL8KKYTYVwu?=
+ =?us-ascii?Q?7CZg1yUS199v17T521O4r4rYj7tzHQpKoFJndF58sAdAi9nJsaddA7hq7ymw?=
+ =?us-ascii?Q?sNDI6e92B1M8CyY6XCaMpsCGz588cS0Sj0V+iOgFxQw2gi98tzXlfRXUxj1n?=
+ =?us-ascii?Q?R/HVGJsFUrffrTaWKboC2UonP/o7bc6BDvk2tmetztd9jEC/zzJMH5XeeMbS?=
+ =?us-ascii?Q?Vgm6mPRaAIGHqyFADgy6/krNAl9kXZy03D2k0PuPURSy1S0hUl1J2Y1xoBtq?=
+ =?us-ascii?Q?2KyymzoOn6meQqYdIE8pqXydkyyaK9DWkHrOdb2/D/a51DEYFrWGSRw7B/Gk?=
+ =?us-ascii?Q?5ASkAGYA6pvdMRAONieAAMzUqcsj21p6UCOiQ7Y2fWSgGqQ0QtjwKBHXbu3Y?=
+ =?us-ascii?Q?XFv7Srjrtdr3VoVFJXJihZx4w9loSPoytH0b1hZDqh0nYyk3MEI6kMiw+vu3?=
+ =?us-ascii?Q?QGxktkgd7OKc5v6YxccncoPiOGTxFu62cNW7fkkD6O3XNdp3kW2LJTfqeDZB?=
+ =?us-ascii?Q?pKHiYdBUhWWxhtX2lyAHwpAAsmkJG0mUQq2CsM5TzFOAMrepw15tBQFHyyLZ?=
+ =?us-ascii?Q?QwL9w9eyqf9EFsweXl+8GHH5Jssby9sGBX8ElcDpv2tMEW15ILAYAX2ztvhg?=
+ =?us-ascii?Q?ADVRKVdZDyibo4AhU8+OGKgnagLUhClOzbLgHEZ7qLoEJt3OoHdROijk2Phq?=
+ =?us-ascii?Q?pLHL54nHMZiww1Ugi6jMoWwu0gt7VkoR7PNgMRufrMkp+Qg6FSGGXdlJ56ju?=
+ =?us-ascii?Q?ae0N?=
+X-OriginatorOrg: digi.com
+X-MS-Exchange-CrossTenant-AuthSource: MN2PR10MB4174.namprd10.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Dec 2020 05:03:30.6580
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: abb4cdb7-1b7e-483e-a143-7ebfd1184b9e
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6b39a672-7454-467f-636e-08d89bffc59d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: XSx9/UKbnIMD+SgX81mbbMb03Fn4YxNQRTF//8OGqefmFAkMjFp25clEHlWUX7857VODMGUpSKpP7FYLdgbQ1w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR10MB4336
+X-BESS-ID: 1607490211-893004-26535-28755-1
+X-BESS-VER: 2019.1_20201208.2330
+X-BESS-Apparent-Source-IP: 104.47.58.173
+X-BESS-Outbound-Spam-Score: 0.00
+X-BESS-Outbound-Spam-Report: Code version 3.2, rules version 3.2.2.228709 [from 
+        cloudscan21-38.us-east-2b.ess.aws.cudaops.com]
+        Rule breakdown below
+         pts rule name              description
+        ---- ---------------------- --------------------------------
+        0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
+        0.00 MSGID_FROM_MTA_HEADER  META: Message-Id was added by a relay 
+X-BESS-Outbound-Spam-Status: SCORE=0.00 using account:ESS112744 scores of KILL_LEVEL=7.0 tests=BSF_BESS_OUTBOUND, MSGID_FROM_MTA_HEADER
+X-BESS-BRTS-Status: 1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 23, 2020 at 11:47 AM Hsin-Yi Wang <hsinyi@chromium.org> wrote:
->
-> When suspending the driver, anx7625_power_standby() will be called to
-> turn off reset-gpios and enable-gpios. However, power supplies are not
-> disabled. To save power, the driver can get the power supply regulators
-> and turn off them in anx7625_power_standby().
->
-> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+Updated patchset after incorporating feedback.
 
-Gentle ping on the patch
+Pavana Sharma (4):
+  dt-bindings: net: Add 5GBASER phy interface mode
+  net: phy: Add 5GBASER interface mode
+  net: dsa: mv88e6xxx: Change serdes lane parameter type  from u8 type
+    to int
+  net: dsa: mv88e6xxx: Add support for mv88e6393x family of Marvell
 
-> ---
-> Change:
-> v2: none
-> ---
->  drivers/gpu/drm/bridge/analogix/anx7625.c | 25 +++++++++++++++++++++++
->  drivers/gpu/drm/bridge/analogix/anx7625.h |  1 +
->  2 files changed, 26 insertions(+)
->
-> diff --git a/drivers/gpu/drm/bridge/analogix/anx7625.c b/drivers/gpu/drm/bridge/analogix/anx7625.c
-> index 65cc05982f82..eb9c4cc2504a 100644
-> --- a/drivers/gpu/drm/bridge/analogix/anx7625.c
-> +++ b/drivers/gpu/drm/bridge/analogix/anx7625.c
-> @@ -11,6 +11,7 @@
->  #include <linux/kernel.h>
->  #include <linux/module.h>
->  #include <linux/mutex.h>
-> +#include <linux/regulator/consumer.h>
->  #include <linux/slab.h>
->  #include <linux/types.h>
->  #include <linux/workqueue.h>
-> @@ -875,12 +876,20 @@ static int sp_tx_edid_read(struct anx7625_data *ctx,
->  static void anx7625_power_on(struct anx7625_data *ctx)
->  {
->         struct device *dev = &ctx->client->dev;
-> +       int ret;
->
->         if (!ctx->pdata.low_power_mode) {
->                 DRM_DEV_DEBUG_DRIVER(dev, "not low power mode!\n");
->                 return;
->         }
->
-> +       ret = regulator_bulk_enable(ARRAY_SIZE(ctx->pdata.supplies),
-> +                                   ctx->pdata.supplies);
-> +       if (ret < 0) {
-> +               DRM_DEV_DEBUG_DRIVER(dev, "cannot enable regulators %d\n", ret);
-> +               return;
-> +       }
-> +
->         /* Power on pin enable */
->         gpiod_set_value(ctx->pdata.gpio_p_on, 1);
->         usleep_range(10000, 11000);
-> @@ -894,6 +903,7 @@ static void anx7625_power_on(struct anx7625_data *ctx)
->  static void anx7625_power_standby(struct anx7625_data *ctx)
->  {
->         struct device *dev = &ctx->client->dev;
-> +       int ret;
->
->         if (!ctx->pdata.low_power_mode) {
->                 DRM_DEV_DEBUG_DRIVER(dev, "not low power mode!\n");
-> @@ -904,6 +914,12 @@ static void anx7625_power_standby(struct anx7625_data *ctx)
->         usleep_range(1000, 1100);
->         gpiod_set_value(ctx->pdata.gpio_p_on, 0);
->         usleep_range(1000, 1100);
-> +
-> +       ret = regulator_bulk_disable(ARRAY_SIZE(ctx->pdata.supplies),
-> +                                    ctx->pdata.supplies);
-> +       if (ret < 0)
-> +               DRM_DEV_DEBUG_DRIVER(dev, "cannot disable regulators %d\n", ret);
-> +
->         DRM_DEV_DEBUG_DRIVER(dev, "power down\n");
->  }
->
-> @@ -1742,6 +1758,15 @@ static int anx7625_i2c_probe(struct i2c_client *client,
->         platform->client = client;
->         i2c_set_clientdata(client, platform);
->
-> +       pdata->supplies[0].supply = "vdd10";
-> +       pdata->supplies[1].supply = "vdd18";
-> +       pdata->supplies[2].supply = "vdd33";
-> +       ret = devm_regulator_bulk_get(dev, ARRAY_SIZE(pdata->supplies),
-> +                                     pdata->supplies);
-> +       if (ret) {
-> +               DRM_DEV_ERROR(dev, "fail to get power supplies: %d\n", ret);
-> +               return ret;
-> +       }
->         anx7625_init_gpio(platform);
->
->         atomic_set(&platform->power_status, 0);
-> diff --git a/drivers/gpu/drm/bridge/analogix/anx7625.h b/drivers/gpu/drm/bridge/analogix/anx7625.h
-> index 193ad86c5450..e4a086b3a3d7 100644
-> --- a/drivers/gpu/drm/bridge/analogix/anx7625.h
-> +++ b/drivers/gpu/drm/bridge/analogix/anx7625.h
-> @@ -350,6 +350,7 @@ struct s_edid_data {
->  struct anx7625_platform_data {
->         struct gpio_desc *gpio_p_on;
->         struct gpio_desc *gpio_reset;
-> +       struct regulator_bulk_data supplies[3];
->         struct drm_bridge *panel_bridge;
->         int intp_irq;
->         u32 low_power_mode;
-> --
-> 2.29.2.454.gaff20da3a2-goog
->
+ .../bindings/net/ethernet-controller.yaml     |   2 +
+ drivers/net/dsa/mv88e6xxx/chip.c              | 164 +++++++++-
+ drivers/net/dsa/mv88e6xxx/chip.h              |  20 +-
+ drivers/net/dsa/mv88e6xxx/global1.h           |   2 +
+ drivers/net/dsa/mv88e6xxx/global2.h           |   8 +
+ drivers/net/dsa/mv88e6xxx/port.c              | 238 +++++++++++++-
+ drivers/net/dsa/mv88e6xxx/port.h              |  43 ++-
+ drivers/net/dsa/mv88e6xxx/serdes.c            | 299 +++++++++++++++---
+ drivers/net/dsa/mv88e6xxx/serdes.h            |  93 ++++--
+ include/linux/phy.h                           |   5 +
+ 10 files changed, 783 insertions(+), 91 deletions(-)
+
+-- 
+2.17.1
+
