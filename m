@@ -2,81 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 468FE2D6B5E
-	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 00:38:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 67F8B2D6BB5
+	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 00:39:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731037AbgLJXAG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Dec 2020 18:00:06 -0500
-Received: from mail.kernel.org ([198.145.29.99]:43952 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1732423AbgLJW71 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 10 Dec 2020 17:59:27 -0500
-X-Gm-Message-State: AOAM531FCbjQPYUdz0bd6fYcLNeMHkVclKRlMTRrH7i4BlpiLYqPimQR
-        1ftsfJxr2CB07NlL4nbdiRYhajjAmYL8+Vzi9g==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1607639681;
-        bh=OGim0nUmmFrhwRPTUiMdWCclYojhxjLVbOmmtJU4csU=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=pIzEUMdDngDPEPv1mxXK3P8k1MqGQ7IN6Hzi9TfM1duXUnxWlP2Atfr6EPBjpjVIo
-         83NMie0udPEshI50YQu1c/BSvr7xTQ4sz06xcjkjQElOgVxylOSBShws30NUSqfPPK
-         gC8Si7qqgDqhQeW8PhZGAu2rRqKaUUyjukjsaLLZKRzCs54ggN+LbVXD4FLSLsVklg
-         delcrLz06oi3b01RlG5HPJ9CSMR0+jot87TcAp4eKCdezQchXcI3lvuk/A04TDDN4y
-         hvQdi0REGHKptG4mNC7sZXR0aBahaVdJDD94YgpLSMG/mHhOnEOFV1G2cghbzDiBNL
-         sT9SJHJpsxoGg==
-X-Google-Smtp-Source: ABdhPJyTeI4Fqqlgkg8TfgiNC7IGq3b3XP/pJwOIHVSU/+bD3CpvBX8H6BjP2pJF0xW3VGAOfGYUAz+3FJJN4crEEgE=
-X-Received: by 2002:a05:6402:1841:: with SMTP id v1mr9276310edy.194.1607639679585;
- Thu, 10 Dec 2020 14:34:39 -0800 (PST)
-MIME-Version: 1.0
-References: <20201124121842.1037035-1-jonathanh@nvidia.com>
- <20201207231352.GA1028809@robh.at.kernel.org> <X8+FCbks0dax2L4J@ulmo>
-In-Reply-To: <X8+FCbks0dax2L4J@ulmo>
+        id S2389182AbgLJXOc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Dec 2020 18:14:32 -0500
+Received: from mail-yb1-f194.google.com ([209.85.219.194]:42487 "EHLO
+        mail-yb1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2392221AbgLJXNi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 18:13:38 -0500
+Received: by mail-yb1-f194.google.com with SMTP id j17so6315470ybt.9;
+        Thu, 10 Dec 2020 15:13:22 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=8kKmMiWcyzbiGl28UHvT780ogwdpkH+Z7+Rdd1Jmvvc=;
+        b=NH4URcFzPmTQFJMkYDfLt9mFIZXi4IfC7WwpmFZ7ix9RItNB852AGCcvoV73wglCwk
+         bzlObcHbvT6ug9Ua1BjJwZtBCdYURD7QcYqv/UvfhW858LCvFfq7yfyRRuiTr2ITigBB
+         2DMthBp9TxBsM9yQcKG1Ak4RjgLgA235CbqDx6h3aAUWgEmLtUxwzC2LNdK3XtBopnrd
+         /9fnrrOyG3qhK4H4685hqxSK5X5AywIAFgclkcoqJOjXi+b4bLW2R6tSC4zTNVBtSt6r
+         4drC5L54fujpMqdudAB2lxo14SjVSHtS3ArOiZ+IC42qNxh+m6wqXY4dIeo7Q1vQN0vq
+         0jsQ==
+X-Gm-Message-State: AOAM5313Q5zWcjwZ4Ilre/S4IajEu7cqY05KdvC55EPhUvJiQNvg5cg3
+        k0tcsuR6TnRtF5qLHO3wYSLg7XtYmQ==
+X-Google-Smtp-Source: ABdhPJytBQRjROhKJFf7zPzfAlUi28CwvvAbDU5KoLfTI0t8eT7ORR6YE3rrdzFZ6SLGEaJ+uhrkwQ==
+X-Received: by 2002:a05:6830:717:: with SMTP id y23mr7914339ots.268.1607639987153;
+        Thu, 10 Dec 2020 14:39:47 -0800 (PST)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id x72sm1327886oia.16.2020.12.10.14.39.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 10 Dec 2020 14:39:46 -0800 (PST)
+Received: (nullmailer pid 3187190 invoked by uid 1000);
+        Thu, 10 Dec 2020 22:39:45 -0000
+Date:   Thu, 10 Dec 2020 16:39:45 -0600
 From:   Rob Herring <robh@kernel.org>
-Date:   Thu, 10 Dec 2020 16:34:28 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLzzWAmJ-hwgxZv6utpiGnsVTWvWjgV+Gn0L8XRVFBxGQ@mail.gmail.com>
-Message-ID: <CAL_JsqLzzWAmJ-hwgxZv6utpiGnsVTWvWjgV+Gn0L8XRVFBxGQ@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: Correct GV11B GPU register sizes
-To:     Thierry Reding <treding@nvidia.com>
-Cc:     Jon Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+To:     Guennadi Liakhovetski <g.liakhovetski@gmx.de>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Jacopo Mondi <jacopo@jmondi.org>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-media@vger.kernel.org
+Subject: Re: [PATCH v2 0/2] dt-bindings: media: Convert video-interfaces.txt
+ to schemas
+Message-ID: <20201210223945.GA651087@robh.at.kernel.org>
+References: <20201210211625.3070388-1-robh@kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201210211625.3070388-1-robh@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 8, 2020 at 7:52 AM Thierry Reding <treding@nvidia.com> wrote:
->
-> On Mon, Dec 07, 2020 at 05:13:52PM -0600, Rob Herring wrote:
-> > On Tue, 24 Nov 2020 12:18:42 +0000, Jon Hunter wrote:
-> > > Commit 90a09178f309 ("dt-bindings: Add documentation for GV11B GPU")
-> > > added the GV11B GPU device-tree bindings information but incorrectly
-> > > added an additional 0 to the size of the addresses in the example.
-> > >
-> > > Fixes: 90a09178f309 ("dt-bindings: Add documentation for GV11B GPU")
-> > > Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
-> > > ---
-> > >  Documentation/devicetree/bindings/gpu/nvidia,gk20a.txt | 4 ++--
-> > >  1 file changed, 2 insertions(+), 2 deletions(-)
-> > >
-> >
-> > Applied, thanks!
-> >
-> > But really, it's just an example and rather than fix trivial things in
-> > txt bindings, convert them to schema please.
->
-> The conversion to schema of this binding was part of a series I sent out
-> earlier this year converting a bunch of Tegra-related bindings. At the
-> time you had requested that rather than converting one binding after
-> another it might be easier to review if whole directories were converted
-> at a time.
+On Thu, Dec 10, 2020 at 03:16:20PM -0600, Rob Herring wrote:
+> This series converts video-interfaces.txt to DT schema which in turn is
+> based on converting the graph binding to a schema. All the media users
+> are converted to use the graph and video-interfaces schemas.
+> 
+> Based on media tree commit a3f132df0e5f. This is dependent on dt-schema
+> changes not yet committed[1]. Please review those too.
 
-That's largely just because the issues tend to be the same (both doing
-the conversion and reviewing it).
-
-> I've been struggling to find time to do so, so I wonder if you'd prefer
-> me to send out that series again, or perhaps in smaller chunks? That
-> sounds better than not doing any conversions at all because I lack the
-> time to do whole directories at once.
-
-The whole series is fine.
-
-Rob
+Sigh, ignore the v2 patches...
