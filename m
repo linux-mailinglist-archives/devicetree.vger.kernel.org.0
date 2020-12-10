@@ -2,137 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1BC342D6B9E
-	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 00:39:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 302AB2D6BE7
+	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 00:39:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1733205AbgLJXLw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Dec 2020 18:11:52 -0500
-Received: from mail.kernel.org ([198.145.29.99]:49374 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2389345AbgLJXLa (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 10 Dec 2020 18:11:30 -0500
-X-Gm-Message-State: AOAM531u9jIXpKuhEDHnYCx1lG6NqCpVqiZxkm/neSfPtPqkYQ31ca0B
-        NEFaiY4uAWktETvPQo01fhulC7NTNtkLwPOuTw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1607641849;
-        bh=PCQQKOjc6YjZumEOD1HngXXOffpY7WJSVffGBmVE2eY=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=TnrcK/moE7nkwoA3Zz9FgXqwnQlEGkMjC7dyAIYEyp2dwR1PKUkk2X8Wb3bhY0+K8
-         cS4FeGf5HoRyJmhDcyJgPk0Osl8ZPnv2OUnMbuVOtkLK13FsRVFNsaQxriZnynzOgF
-         UVJ96bMZKQq3Em7/+bk/3SeY1JXlEPZyAmU0GDJ7NfkWDAOoPZdN8OfOi0RomumxpU
-         5aIY2eK92ra5Qq6STHHjPMCc0bT0lB890owNxnlBAdCq/bEpgHO6SjhF0vMNDr4OAE
-         9GxbTEg2FisGYERWI5hR1XT/2aVNH4u6Ji6XIN2NUwSs/UNHvw9rxy5m7/DJkfzu1d
-         SDJqGXjRmKGOg==
-X-Google-Smtp-Source: ABdhPJwWbOKC/meXbDaIc6eEzcVZ1Jra1FcOfktJmaatdpoXHxeOHbOdTyqqLAwgi9t9ioSO0lTzDdmMwZ7T5b0MOt8=
-X-Received: by 2002:a05:6402:1841:: with SMTP id v1mr9392182edy.194.1607641848145;
- Thu, 10 Dec 2020 15:10:48 -0800 (PST)
+        id S1725904AbgLJXZo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Dec 2020 18:25:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46794 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727291AbgLJXZi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 18:25:38 -0500
+Received: from mail-io1-xd44.google.com (mail-io1-xd44.google.com [IPv6:2607:f8b0:4864:20::d44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F39C9C0613CF;
+        Thu, 10 Dec 2020 15:24:57 -0800 (PST)
+Received: by mail-io1-xd44.google.com with SMTP id r9so7564620ioo.7;
+        Thu, 10 Dec 2020 15:24:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=h/LFEJxN+y9atuUh2I6JGG7R8Sn2KE2ON0GObfP+qI0=;
+        b=nCSZf3v9Ju3JnlXSqOOHaHEnYtbG81gWsxenvNMhmFMmQQtny6NEL927rs7RvwJoBT
+         fjF1weC2UeqTnzot4hgdP04HtUBt59B0H/r923IfSVvPmmPjZ8uHyAFMQtePe2a3P0fJ
+         RVJCN6U7WbVuh5sku6B42oiO0iYAlF8OSf+ZgTqNRwoFliL3uBZ7lkLIN9JIp/MyD+Lu
+         JKm6V4mDXFcTxxIUQcPMMCh/3uWFi5zDLA/2gWIDCM4j/4Q6uK+Jau+DK+rkfqlYrkgr
+         9leTIMSJgG3IKTviJWh/5E++A9cSObIJTqVtSaW59Re08tqdTuNvB7kGVezycjdBDw1y
+         nKHQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=h/LFEJxN+y9atuUh2I6JGG7R8Sn2KE2ON0GObfP+qI0=;
+        b=YpRZL7E77S0T/E4EUr3jLRm0p+WH4vWSM1SmVSOFUYrn2jViCYJfQ48GOczcIPiItc
+         8MBm8xrqrI7ZPfzYFLJL0s50WjpiRwwlLPKjEN3FJTH/7vsQxxiP6RaKJ5KYZ9Luu5lZ
+         hxqvx3gmPEsXsMadkPmVFFBmPSJkqVC91Ai7UeJJJ0sWvk1opyEfC/LX18uCEj69b0g5
+         3wABrLmUnyvXd8/FAOtl6ymth8W4DOut6QZVXoPQXRDYzWzWTDB2xzzwzmtFBXEcMVXQ
+         ldiKfeIi4L18apfClOpdDUE/2maac/aICM5YhA432QQgLVL9CCP6LxFiJiVdutW7FHTz
+         LKfQ==
+X-Gm-Message-State: AOAM530pjg7PBUf7ZxDsSITdCKF0KzENduULFISDRK4z9c0RZTDYV9lB
+        zOPKZdDd/6tn4yvygOzY5bV4UjlHoZi8r8gm9AU=
+X-Google-Smtp-Source: ABdhPJyWCW+/SgIqqLPV2BSYP1U5EoAYFZW3FW6a2YGtXOOpbaX6k+lcONwSD1HzHR2Rg59RovBDh7yeh5XbUjzX/lw=
+X-Received: by 2002:a6b:7501:: with SMTP id l1mr11166527ioh.92.1607642696883;
+ Thu, 10 Dec 2020 15:24:56 -0800 (PST)
 MIME-Version: 1.0
-References: <20201126210642.897302-1-mathieu.poirier@linaro.org>
- <20201126210642.897302-2-mathieu.poirier@linaro.org> <20201130173321.GB2662913@robh.at.kernel.org>
- <20201201234327.GA1248055@xps15>
-In-Reply-To: <20201201234327.GA1248055@xps15>
-From:   Rob Herring <robh@kernel.org>
-Date:   Thu, 10 Dec 2020 17:10:36 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqKq1zM569nPLYNgj9WUHWO98nYYt6dBvHzLRMCKq5=T8g@mail.gmail.com>
-Message-ID: <CAL_JsqKq1zM569nPLYNgj9WUHWO98nYYt6dBvHzLRMCKq5=T8g@mail.gmail.com>
-Subject: Re: [PATCH v3 01/15] dt-bindings: remoteproc: Add bindind to support
- autonomous processors
-To:     Mathieu Poirier <mathieu.poirier@linaro.org>
-Cc:     Ohad Ben-Cohen <ohad@wizery.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        "open list:REMOTE PROCESSOR (REMOTEPROC) SUBSYSTEM" 
-        <linux-remoteproc@vger.kernel.org>, devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Arnaud POULIQUEN <arnaud.pouliquen@st.com>
+References: <1607324004-12960-1-git-send-email-shengjiu.wang@nxp.com>
+ <20201207132140.GA31982@kozik-lap> <20201207133221.GA32877@kozik-lap>
+In-Reply-To: <20201207133221.GA32877@kozik-lap>
+From:   Adam Ford <aford173@gmail.com>
+Date:   Thu, 10 Dec 2020 17:24:45 -0600
+Message-ID: <CAHCN7x+uMFU0jRYKAdLfFY4uyFBsNFvxaCF9rKE4sR=nYq5etA@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: imx8mn: Fix duplicate node name
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     Shengjiu Wang <shengjiu.wang@nxp.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        arm-soc <linux-arm-kernel@lists.infradead.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 1, 2020 at 5:43 PM Mathieu Poirier
-<mathieu.poirier@linaro.org> wrote:
+On Mon, Dec 7, 2020 at 7:36 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
 >
-> Hi Rob,
->
-> On Mon, Nov 30, 2020 at 10:33:21AM -0700, Rob Herring wrote:
-> > On Thu, Nov 26, 2020 at 02:06:28PM -0700, Mathieu Poirier wrote:
-> > > This patch adds a binding to guide the remoteproc core on how to deal with
-> > > remote processors in two cases:
+> On Mon, Dec 07, 2020 at 02:21:40PM +0100, Krzysztof Kozlowski wrote:
+> > On Mon, Dec 07, 2020 at 02:53:24PM +0800, Shengjiu Wang wrote:
+> > > Error log:
+> > > sysfs: cannot create duplicate filename '/bus/platform/devices/30000000.bus'
 > > >
-> > > 1) When an application holding a reference to a remote processor character
-> > >    device interface crashes.
+> > > The spba bus name is duplicate with aips bus name.
+> > > Refine spba bus name to fix this issue.
 > > >
-> > > 2) when the platform driver for a remote processor is removed.
-> > >
-> > > In both cases if "autonomous-on-core-reboot" is specified in the remote
-> > > processor DT node, the remoteproc core will detach the remote processor
-> > > rather than switching it off.
-> > >
-> > > Signed-off-by: Mathieu Poirier <mathieu.poirier@linaro.org>
+> > > Fixes: 970406eaef3a ("arm64: dts: imx8mn: Enable Asynchronous Sample Rate Converter")
+> > > Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
 > > > ---
-> > >  .../bindings/remoteproc/remoteproc-core.yaml  | 25 +++++++++++++++++++
-> > >  1 file changed, 25 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/remoteproc/remoteproc-core.yaml
+> > >  arch/arm64/boot/dts/freescale/imx8mn.dtsi | 2 +-
+> > >  1 file changed, 1 insertion(+), 1 deletion(-)
 > > >
-> > > diff --git a/Documentation/devicetree/bindings/remoteproc/remoteproc-core.yaml b/Documentation/devicetree/bindings/remoteproc/remoteproc-core.yaml
-> > > new file mode 100644
-> > > index 000000000000..3032734f42a3
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/remoteproc/remoteproc-core.yaml
-> > > @@ -0,0 +1,25 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: "http://devicetree.org/schemas/remoteproc/remoteproc-core.yaml#"
-> > > +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> > > +
-> > > +title: Binding for the remoteproc core applicable to all remote processors
-> > > +
-> > > +maintainers:
-> > > +  - Bjorn Andersson <bjorn.andersson@linaro.org>
-> > > +  - Mathieu Poirier <mathieu.poirier@linaro.org>
-> > > +
-> > > +description:
-> > > +  This document defines the binding recognised by the remoteproc core that can
-> > > +  be used by any remote processor in the subsystem.
-> > > +
-> > > +properties:
-> > > +  autonomous-on-core-reboot:
-> > > +    $ref: /schemas/types.yaml#/definitions/flag
-> > > +    description:
-> > > +      Used in two situations, i.e when a user space application releases the
-> > > +      handle it has on the remote processor's character driver interface and
-> > > +      when a remote processor's platform driver is being removed.  If defined,
-> > > +      this flag instructs the remoteproc core to detach the remote processor
-> > > +      rather than turning it off.
-> >
-> > Userspace? character driver? platform driver? remoteproc core? Please
-> > explain this without OS specific terms.
->
-> The remoteproc state machine is gaining in complexity and having technical terms
-> in the binding's description helps understand when and how it should be used.  I
-> could make it more generic but that will lead to confusion and abuse.
+> > > diff --git a/arch/arm64/boot/dts/freescale/imx8mn.dtsi b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
+> > > index fd669c0f3fe5..30762eb4f0a7 100644
+> > > --- a/arch/arm64/boot/dts/freescale/imx8mn.dtsi
+> > > +++ b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
+> > > @@ -246,7 +246,7 @@ aips1: bus@30000000 {
+> > >                     #size-cells = <1>;
+> > >                     ranges;
+> > >
+> > > -                   spba: bus@30000000 {
+> > > +                   spba: spba-bus@30000000 {
 
-Explaining in Linux specific terms will confuse any other OS user.
-
->  Should I
-> make it "rproc,autonomous-on-core-reboot" ?
-
-No, 'rproc' is not a vendor.
+I originally attempted to call it spba-bus@30000000, but I was told to
+switch it to 'bus' but all my testing was with the spba-bus name, so I
+didn't even notice the conflict.
 
 > >
-> > Seems to me this would be implied by functionality the remote proc
-> > provides.
+> > The proper node name is "bus" so basically you introduce wrong name to
+> > other problem.  Introducing wrong names at least requires a comment.
 >
-> Exactly - this binding is used by the remoteproc core itself.  It is specified
-> in the remote processor DT nodes but the individual platform drivers don't do
-> anything with it - the core takes care of enacting the desired behavior on their
-> behalf.  Otherwise each platform driver would end up adding the same code, which
-> nobody wants to see happening.
+> I just noticed that my message was barely understandable... so let me
+> fix it:
+>
+> The proper node name is "bus" so basically you introduce wrong name to
+> _fix_ other problem.  Introducing wrong names at least requires a comment.
+>
+> > However the actual problem here is not in node names but in addresses:
+> >
+> >       aips1: bus@30000000 {
+> >               spba: bus@30000000 {
+> >
+> > You have to devices with the same unit address. How do you share the
+> > address space?
+> >
+> > I think this should be rather fixed.
+>
+> And again, hungry keyboard ate a letter, so:
+>
+> You have _two_ devices with the same unit address. How do you share the
+> address space?
+> I think this should be rather fixed.
 
-The platform drivers just need to set a flag to enable some behavior
-that the core code checks and handles. That should be 1 to a few lines
-in the drivers. It's not really any different, just a question of
-where the flag lives.
+I am no expert on this driver, but from what I can tell, the SDMA
+driver searches for the memory range assigned to the bus associated
+with the spba so the DMA has an idea of which peripheral memory ranges
+are shared.
+from drivers/dma/imx-sdma.c:
 
-Rob
+    spba_bus = of_find_compatible_node(NULL, NULL, "fsl,spba-bus");
+    ret = of_address_to_resource(spba_bus, 0, &spba_res);
+    if (!ret) {
+        sdma->spba_start_addr = spba_res.start;
+        sdma->spba_end_addr = spba_res.end;
+    }
+
+Table 2-3 of the reference manual for the i.MX8M Nano shows the memory
+range from 3000_0000 - 300F_FFFF is defined as AIPS-1 (s_b_1, via
+SPBA) Glob. Module Enable which implies to me that the SPBA needs to
+start at the same place as the AIPS1, but AIPS1 goes from 3000_0000 to
+303F_FFFF, so the spba-bus is a subset of the AIPS1.
+
+NXP/Freescale has a variety of SoC's that use the SPBA and in every
+instance, they do it this way.  Having the spba-bus with the same
+starting address of its parent aips bus isn't unique to this SoC:
+
+imx6q.dtsi
+imx6sl.dtsi
+imx31.dtsi
+imx7s.dtsi
+imx6sll.dtsi
+imx51.dtsi
+imx6qdl.dtsi
+imx35.dtsi
+imx50.dtsi
+imx25.dtsi
+imx6sx.dtsi
+imx6ul.dtsi
+imx53.dtsi
+
+However, in each instance, the bus associated to the SPBA is called
+spba-bus and not just 'bus'
+
+adam
+>
+> Best regards,
+> Krzysztof
+>
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
