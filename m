@@ -2,114 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 42FD82D5AB3
-	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 13:41:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AEDF22D5AC8
+	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 13:45:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728735AbgLJMkk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Dec 2020 07:40:40 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:34772 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728631AbgLJMkk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 07:40:40 -0500
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0BACdex4051840;
-        Thu, 10 Dec 2020 06:39:40 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1607603980;
-        bh=PoKSJKFHo6LVi1AsWhRWfh5gsTPjeohBjOFQoH+PCFU=;
-        h=Subject:From:To:CC:References:Date:In-Reply-To;
-        b=ur2v+oaScko/mvK0G/OEpB5ZohPmWVOUMTdsy8C8R+dboRrTKosuGGaRF3dFrVlkX
-         gYx4NnQKDjldD2jhztENDHI7oCUg7h6ajYGpgbgTHcPu5BbJhWSiHSn7sPDHpX+ts8
-         OtY/lyqC7Eqvrc0KHvqKqlwKB4IC99qNPrJfsvXE=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0BACde9g056026
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 10 Dec 2020 06:39:40 -0600
-Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 10
- Dec 2020 06:39:40 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Thu, 10 Dec 2020 06:39:40 -0600
-Received: from [10.250.235.36] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0BACdY6B052109;
-        Thu, 10 Dec 2020 06:39:35 -0600
-Subject: Re: [PATCH v2 0/3] PCI: J721E: Fix Broken DT w.r.t SYSCON DT
-From:   Kishon Vijay Abraham I <kishon@ti.com>
-To:     Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Tero Kristo <t-kristo@ti.com>, Nishanth Menon <nm@ti.com>,
-        Tom Joseph <tjoseph@cadence.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-CC:     <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-omap@vger.kernel.org>
-References: <20201204075117.10430-1-kishon@ti.com>
- <6c846ae3-0bb5-f8de-0f3e-5e0239a7aa6c@ti.com>
-Message-ID: <3ef9989a-0700-3935-1deb-b86304a76ec6@ti.com>
-Date:   Thu, 10 Dec 2020 18:09:33 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1732048AbgLJMpC convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 10 Dec 2020 07:45:02 -0500
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:40370 "EHLO
+        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726631AbgLJMo5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 07:44:57 -0500
+Received: by mail-ot1-f66.google.com with SMTP id j12so4700221ota.7;
+        Thu, 10 Dec 2020 04:44:41 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=FPboMu+VTnaE7RaGS2GLxEoRVAtRqULfU0L65yc1PQc=;
+        b=AHpgqtHviU06sdJDfvX0uB799B52loORNLUpmRxU2Aj2TsLan2Ks/nB9E7CbRO+QND
+         lStzKO8ATwpPFw0vTHXAF+9kFKwu0fIRPu5dFboHYuA6hgGinHntyn00CcGQKutpW+ni
+         EFezSFUfApbE/BruO7Pjc+v/TBoazrCVqiInHhQ8xy92qZc5+LYMoDsqqHpVN81s940/
+         KDN2rhrzwDTeLAvOlAvu0NpE/v7DflnDRrty8oSN8T5lc/nLDMSm1Mm+Ag1HgLl5UE+d
+         TWTVeVT+1Lq3rwU8c2kvsuP1sHDJyr2k5TR8T0s/hez4K81d6IdbKoJ8jzpCHdaFBial
+         BBWw==
+X-Gm-Message-State: AOAM531og7fWO2QTPrEUGHGIJcWELOFTpHcd/Befw4b6MTDjvluhW4+I
+        Kh9caGAMrcL19A7f6R7FFnaoWjhJFJ4kpwW3FHY=
+X-Google-Smtp-Source: ABdhPJzu25NUIQwvwEhi4rxCWBrcCW4DYh4orSG6njm0I68zKXOr5Nl6ARHn+c+LOxYVjApX3lR7v38Sxg1WLoqU7kw=
+X-Received: by 2002:a05:6830:1f5a:: with SMTP id u26mr5625323oth.250.1607604256362;
+ Thu, 10 Dec 2020 04:44:16 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <6c846ae3-0bb5-f8de-0f3e-5e0239a7aa6c@ti.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <20201209195624.804759-1-niklas.soderlund+renesas@ragnatech.se>
+In-Reply-To: <20201209195624.804759-1-niklas.soderlund+renesas@ragnatech.se>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 10 Dec 2020 13:44:05 +0100
+Message-ID: <CAMuHMdUgo+4LyxBX-N+L5wWb9AGyOkVuAdm5RkTeQN5oCukF6A@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: timer: renesas,tmu: Document missing Gen3 SoCs
+To:     =?UTF-8?Q?Niklas_S=C3=B6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Lorenzo,
+On Wed, Dec 9, 2020 at 8:56 PM Niklas Söderlund
+<niklas.soderlund+renesas@ragnatech.se> wrote:
+> Add missing bindings for Gen3 SoCs.
+>
+> Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
 
-On 10/12/20 12:17 pm, Kishon Vijay Abraham I wrote:
-> Hi Lorenzo,
-> 
-> On 04/12/20 1:21 pm, Kishon Vijay Abraham I wrote:
->> Previously a subnode to syscon node was added which has the
->> exact memory mapped address of pcie_ctrl but based on review comment
->> provided by Rob [1], the offset is now being passed as argument to
->> "ti,syscon-pcie-ctrl" phandle.
->>
->> This series has both driver change and DT change. The driver change
->> should be merged first and the driver takes care of maintaining old
->> DT compatibility.
-> 
-> Can you queue the 1st two patches of this series for this merge window?
-> I'll ask NM to queue the DTS patch. Let me know if you want me to resend
-> only the first two patches as a separate series.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-Never mind, I'll resend the pending patches for which I have already got
-Acks from Rob.
+Gr{oetje,eeting}s,
 
-Thank You,
-Kishon
+                        Geert
 
-> 
-> Thank You,
-> Kishon
-> 
->>
->> Changes frm v1:
->> *) Remove use of allOf in schema
->> *) Added Fixes tag
->> *) Maintain old DT compatibility
->>
->> [1] -> http://lore.kernel.org/r/CAL_JsqKiUcO76bo1GoepWM1TusJWoty_BRy2hFSgtEVMqtrvvQ@mail.gmail.com
->>
->> Kishon Vijay Abraham I (3):
->>   dt-bindings: pci: ti,j721e: Fix "ti,syscon-pcie-ctrl" to take argument
->>   PCI: j721e: Get offset within "syscon" from "ti,syscon-pcie-ctrl"
->>     phandle arg
->>   arm64: dts: ti: k3-j721e-main: Remove "syscon" nodes added for
->>     pcieX_ctrl
->>
->>  .../bindings/pci/ti,j721e-pci-ep.yaml         | 11 +++--
->>  .../bindings/pci/ti,j721e-pci-host.yaml       | 11 +++--
->>  arch/arm64/boot/dts/ti/k3-j721e-main.dtsi     | 48 ++++---------------
->>  drivers/pci/controller/cadence/pci-j721e.c    | 28 +++++++----
->>  4 files changed, 41 insertions(+), 57 deletions(-)
->>
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
