@@ -2,152 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A26542D544A
-	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 08:02:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D2A92D546C
+	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 08:21:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732133AbgLJHB4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Dec 2020 02:01:56 -0500
-Received: from mailgw01.mediatek.com ([210.61.82.183]:49437 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1730039AbgLJHB4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 02:01:56 -0500
-X-UUID: 68c25be54c974b088ad693ece1b5d97d-20201210
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=f8Y5QsexQYDNx3bkp5Erfl/DN3ya8EDVRWIVJ5qRIv4=;
-        b=LRCcpjYAqzTmr8K59/qoHsdHLeaivur0n1BG8MvMx2FTMAo9As+lRBHJwjkonaylNvlYyFa4QdejfoQaYhnOB/dq0eAkaRMXzUq7NWdd9Mu92PuWzgdIESQERmH8Y3Jjz0KJ1O7xAy6VC28er3T2UNzZWXNU4Z/rQyg11bVQt9I=;
-X-UUID: 68c25be54c974b088ad693ece1b5d97d-20201210
-Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw01.mediatek.com
-        (envelope-from <ck.hu@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1318675906; Thu, 10 Dec 2020 15:01:10 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- mtkmbs06n1.mediatek.inc (172.21.101.129) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Thu, 10 Dec 2020 15:01:09 +0800
-Received: from [172.21.77.4] (172.21.77.4) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 10 Dec 2020 15:01:09 +0800
-Message-ID: <1607583669.2269.2.camel@mtksdaap41>
-Subject: Re: [PATCH 3/3] arm64: dts: mt8183: Add display nodes for MT8183
-From:   CK Hu <ck.hu@mediatek.com>
-To:     Enric Balletbo i Serra <enric.balletbo@collabora.com>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        <linux-mediatek@lists.infradead.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Collabora Kernel ML <kernel@collabora.com>,
-        <linux-arm-kernel@lists.infradead.org>
-Date:   Thu, 10 Dec 2020 15:01:09 +0800
-In-Reply-To: <20201127104930.1981497-4-enric.balletbo@collabora.com>
-References: <20201127104930.1981497-1-enric.balletbo@collabora.com>
-         <20201127104930.1981497-4-enric.balletbo@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S1732714AbgLJHVF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Dec 2020 02:21:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51094 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728616AbgLJHVF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 02:21:05 -0500
+Received: from mail-pg1-x542.google.com (mail-pg1-x542.google.com [IPv6:2607:f8b0:4864:20::542])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E7AEC0613CF;
+        Wed,  9 Dec 2020 23:20:25 -0800 (PST)
+Received: by mail-pg1-x542.google.com with SMTP id t37so3382157pga.7;
+        Wed, 09 Dec 2020 23:20:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=kEqav4MUonxV0ffD0QL2dUPuC2s6cmYw6vjXnLqhnqo=;
+        b=D6p4SqjPoSiqokLbMfElp5JYlxWx8o2NPktgBI9reZ7QLkA1NMsrCwBTjGJt2pm0jo
+         B81sApqMq7Z8WPGJubctHCVtqKyGh+WzY4p/B1ej9yB7uBExwMKgEffHrhdL4AVf6RuC
+         0FfAj2PXQqDJvFrv22aWK+B0JsR6hMoZAPGvAOFmxNY6PqnkbMPWLngrkTR8wgAgsCAE
+         f12PmwHdehxMgrHpE2H6Oa/Wd9+ho+ZeIIXIdSY+SOgZ50S588JsAcpx0cqs8kFKqWDY
+         axhirdjuR7jMjRHtPGg2pKm2rEZ/l0qWbeVR6D95xzqStNNlVx65KTSUCBF7SYp9KnU/
+         p02w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=kEqav4MUonxV0ffD0QL2dUPuC2s6cmYw6vjXnLqhnqo=;
+        b=gTeZ6ubmc2jnbav1mhCXyjGezERl7O/o3Pha24sexw1Qtnsis7Bk2qAJzO91rIkq5+
+         t3LErd9k7YqoffWly1u4ztFIJe6eQAHSKh9r82nqow4N70W/Ma3QGc15habangbm+m0v
+         gJ/ydItviDQLJWEyzL8/7iZgaAH4+5PP5drHqRTifTK/hOPxveH6AehZh0BR3DAer7aS
+         WXrF3r6HahuiD2ZfI4jh6fCbVIjbEKHTo+WWYN5lZ+B+dvJgP0TTF/NeKZyjEPdO7QrP
+         yZOItDF140TPZuCmBBnWPjrKzI0S6QocfmjmZQG6kGY67L4BRK/nbbZLwCkt0mTNM6VJ
+         CesA==
+X-Gm-Message-State: AOAM532oUwk1w9/kv/PZOF0P4hD+1bUI/wg7PbeeEVIIGJ8pzVehBjuL
+        bJLqWbtT+2oNXqhF0nvfFyEjHkrRXFQ=
+X-Google-Smtp-Source: ABdhPJzjFadVP3w5IjcE92yG6HaZZDTOTNseP/K9HFNV9SlVSwkrNvLZsOfaCSYq1FdzEGPi8ZupZw==
+X-Received: by 2002:a17:90a:578f:: with SMTP id g15mr6163613pji.3.1607584824741;
+        Wed, 09 Dec 2020 23:20:24 -0800 (PST)
+Received: from google.com ([2620:15c:202:201:a6ae:11ff:fe11:fcc3])
+        by smtp.gmail.com with ESMTPSA id mj5sm4891165pjb.20.2020.12.09.23.20.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 09 Dec 2020 23:20:23 -0800 (PST)
+Date:   Wed, 9 Dec 2020 23:20:21 -0800
+From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To:     Alexandru Ardelean <alexandru.ardelean@analog.com>
+Cc:     linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, lars@metafoo.de, robh+dt@kernel.org
+Subject: Re: [PATCH v3 1/4] Input: adp5589-keys - add default platform data
+Message-ID: <X9HMNWziPToVHKnU@google.com>
+References: <20201127111420.96500-1-alexandru.ardelean@analog.com>
 MIME-Version: 1.0
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201127111420.96500-1-alexandru.ardelean@analog.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGksIEVucmljOg0KDQpPbiBGcmksIDIwMjAtMTEtMjcgYXQgMTE6NDkgKzAxMDAsIEVucmljIEJh
-bGxldGJvIGkgU2VycmEgd3JvdGU6DQo+IEFkZCBkaXNwbGF5IHN1YnN5c3RlbSBkZXZpY2Ugbm9k
-ZXMgdG8gYWxsb3cgdmlkZW8gb3V0cHV0Lg0KPiANCj4gU2lnbmVkLW9mZi1ieTogRW5yaWMgQmFs
-bGV0Ym8gaSBTZXJyYSA8ZW5yaWMuYmFsbGV0Ym9AY29sbGFib3JhLmNvbT4NCj4gLS0tDQo+IA0K
-PiAgYXJjaC9hcm02NC9ib290L2R0cy9tZWRpYXRlay9tdDgxODMuZHRzaSB8IDExNCArKysrKysr
-KysrKysrKysrKysrKysrKw0KPiAgMSBmaWxlIGNoYW5nZWQsIDExNCBpbnNlcnRpb25zKCspDQo+
-IA0KPiBkaWZmIC0tZ2l0IGEvYXJjaC9hcm02NC9ib290L2R0cy9tZWRpYXRlay9tdDgxODMuZHRz
-aSBiL2FyY2gvYXJtNjQvYm9vdC9kdHMvbWVkaWF0ZWsvbXQ4MTgzLmR0c2kNCj4gaW5kZXggYmE5
-ZmYxOTJjZGEzLi4zNGQ4M2Y1MTdiMDcgMTAwNjQ0DQo+IC0tLSBhL2FyY2gvYXJtNjQvYm9vdC9k
-dHMvbWVkaWF0ZWsvbXQ4MTgzLmR0c2kNCj4gKysrIGIvYXJjaC9hcm02NC9ib290L2R0cy9tZWRp
-YXRlay9tdDgxODMuZHRzaQ0KPiBAQCAtNiw2ICs2LDcgQEANCj4gICAqLw0KPiAgDQo+ICAjaW5j
-bHVkZSA8ZHQtYmluZGluZ3MvY2xvY2svbXQ4MTgzLWNsay5oPg0KPiArI2luY2x1ZGUgPGR0LWJp
-bmRpbmdzL2djZS9tdDgxNzMtZ2NlLmg+DQoNClRoaXMgc2hvdWxkIGJlDQoNCiNpbmNsdWRlIDxk
-dC1iaW5kaW5ncy9nY2UvbXQ4MTgzLWdjZS5oPg0KDQpSZWdhcmRzLA0KQ0sNCg0KPiAgI2luY2x1
-ZGUgPGR0LWJpbmRpbmdzL2ludGVycnVwdC1jb250cm9sbGVyL2FybS1naWMuaD4NCj4gICNpbmNs
-dWRlIDxkdC1iaW5kaW5ncy9pbnRlcnJ1cHQtY29udHJvbGxlci9pcnEuaD4NCj4gICNpbmNsdWRl
-IDxkdC1iaW5kaW5ncy9tZW1vcnkvbXQ4MTgzLWxhcmItcG9ydC5oPg0KPiBAQCAtMzMsNiArMzQs
-MTEgQEAgYWxpYXNlcyB7DQo+ICAJCWkyYzkgPSAmaTJjOTsNCj4gIAkJaTJjMTAgPSAmaTJjMTA7
-DQo+ICAJCWkyYzExID0gJmkyYzExOw0KPiArCQlvdmwwID0gJm92bDA7DQo+ICsJCW92bC0ybDAg
-PSAmb3ZsXzJsMDsNCj4gKwkJb3ZsLTJsMSA9ICZvdmxfMmwxOw0KPiArCQlyZG1hMCA9ICZyZG1h
-MDsNCj4gKwkJcmRtYTEgPSAmcmRtYTE7DQo+ICAJfTsNCj4gIA0KPiAgCWNwdXMgew0KPiBAQCAt
-OTY0LDYgKzk3MCwxMDcgQEAgbW1zeXM6IHN5c2NvbkAxNDAwMDAwMCB7DQo+ICAJCQkjY2xvY2st
-Y2VsbHMgPSA8MT47DQo+ICAJCX07DQo+ICANCj4gKwkJb3ZsMDogb3ZsQDE0MDA4MDAwIHsNCj4g
-KwkJCWNvbXBhdGlibGUgPSAibWVkaWF0ZWssbXQ4MTgzLWRpc3Atb3ZsIjsNCj4gKwkJCXJlZyA9
-IDwwIDB4MTQwMDgwMDAgMCAweDEwMDA+Ow0KPiArCQkJaW50ZXJydXB0cyA9IDxHSUNfU1BJIDIy
-NSBJUlFfVFlQRV9MRVZFTF9MT1c+Ow0KPiArCQkJcG93ZXItZG9tYWlucyA9IDwmc3BtIE1UODE4
-M19QT1dFUl9ET01BSU5fRElTUD47DQo+ICsJCQljbG9ja3MgPSA8Jm1tc3lzIENMS19NTV9ESVNQ
-X09WTDA+Ow0KPiArCQkJaW9tbXVzID0gPCZpb21tdSBNNFVfUE9SVF9ESVNQX09WTDA+Ow0KPiAr
-CQkJbWVkaWF0ZWssbGFyYiA9IDwmbGFyYjA+Ow0KPiArCQkJbWVkaWF0ZWssZ2NlLWNsaWVudC1y
-ZWcgPSA8JmdjZSBTVUJTWVNfMTQwMFhYWFggMHg4MDAwIDB4MTAwMD47DQo+ICsJCX07DQo+ICsN
-Cj4gKwkJb3ZsXzJsMDogb3ZsQDE0MDA5MDAwIHsNCj4gKwkJCWNvbXBhdGlibGUgPSAibWVkaWF0
-ZWssbXQ4MTgzLWRpc3Atb3ZsLTJsIjsNCj4gKwkJCXJlZyA9IDwwIDB4MTQwMDkwMDAgMCAweDEw
-MDA+Ow0KPiArCQkJaW50ZXJydXB0cyA9IDxHSUNfU1BJIDIyNiBJUlFfVFlQRV9MRVZFTF9MT1c+
-Ow0KPiArCQkJcG93ZXItZG9tYWlucyA9IDwmc3BtIE1UODE4M19QT1dFUl9ET01BSU5fRElTUD47
-DQo+ICsJCQljbG9ja3MgPSA8Jm1tc3lzIENMS19NTV9ESVNQX09WTDBfMkw+Ow0KPiArCQkJaW9t
-bXVzID0gPCZpb21tdSBNNFVfUE9SVF9ESVNQXzJMX09WTDBfTEFSQjA+Ow0KPiArCQkJbWVkaWF0
-ZWssbGFyYiA9IDwmbGFyYjA+Ow0KPiArCQkJbWVkaWF0ZWssZ2NlLWNsaWVudC1yZWcgPSA8Jmdj
-ZSBTVUJTWVNfMTQwMFhYWFggMHg5MDAwIDB4MTAwMD47DQo+ICsJCX07DQo+ICsNCj4gKwkJb3Zs
-XzJsMTogb3ZsQDE0MDBhMDAwIHsNCj4gKwkJCWNvbXBhdGlibGUgPSAibWVkaWF0ZWssbXQ4MTgz
-LWRpc3Atb3ZsLTJsIjsNCj4gKwkJCXJlZyA9IDwwIDB4MTQwMGEwMDAgMCAweDEwMDA+Ow0KPiAr
-CQkJaW50ZXJydXB0cyA9IDxHSUNfU1BJIDIyNyBJUlFfVFlQRV9MRVZFTF9MT1c+Ow0KPiArCQkJ
-cG93ZXItZG9tYWlucyA9IDwmc3BtIE1UODE4M19QT1dFUl9ET01BSU5fRElTUD47DQo+ICsJCQlj
-bG9ja3MgPSA8Jm1tc3lzIENMS19NTV9ESVNQX09WTDFfMkw+Ow0KPiArCQkJaW9tbXVzID0gPCZp
-b21tdSBNNFVfUE9SVF9ESVNQXzJMX09WTDFfTEFSQjA+Ow0KPiArCQkJbWVkaWF0ZWssbGFyYiA9
-IDwmbGFyYjA+Ow0KPiArCQkJbWVkaWF0ZWssZ2NlLWNsaWVudC1yZWcgPSA8JmdjZSBTVUJTWVNf
-MTQwMFhYWFggMHhhMDAwIDB4MTAwMD47DQo+ICsJCX07DQo+ICsNCj4gKwkJcmRtYTA6IHJkbWFA
-MTQwMGIwMDAgew0KPiArCQkJY29tcGF0aWJsZSA9ICJtZWRpYXRlayxtdDgxODMtZGlzcC1yZG1h
-IjsNCj4gKwkJCXJlZyA9IDwwIDB4MTQwMGIwMDAgMCAweDEwMDA+Ow0KPiArCQkJaW50ZXJydXB0
-cyA9IDxHSUNfU1BJIDIyOCBJUlFfVFlQRV9MRVZFTF9MT1c+Ow0KPiArCQkJcG93ZXItZG9tYWlu
-cyA9IDwmc3BtIE1UODE4M19QT1dFUl9ET01BSU5fRElTUD47DQo+ICsJCQljbG9ja3MgPSA8Jm1t
-c3lzIENMS19NTV9ESVNQX1JETUEwPjsNCj4gKwkJCWlvbW11cyA9IDwmaW9tbXUgTTRVX1BPUlRf
-RElTUF9SRE1BMD47DQo+ICsJCQltZWRpYXRlayxsYXJiID0gPCZsYXJiMD47DQo+ICsJCQltZWRp
-YXRlayxyZG1hX2ZpZm9fc2l6ZSA9IDw1MTIwPjsNCj4gKwkJCW1lZGlhdGVrLGdjZS1jbGllbnQt
-cmVnID0gPCZnY2UgU1VCU1lTXzE0MDBYWFhYIDB4YjAwMCAweDEwMDA+Ow0KPiArCQl9Ow0KPiAr
-DQo+ICsJCXJkbWExOiByZG1hQDE0MDBjMDAwIHsNCj4gKwkJCWNvbXBhdGlibGUgPSAibWVkaWF0
-ZWssbXQ4MTgzLWRpc3AtcmRtYSI7DQo+ICsJCQlyZWcgPSA8MCAweDE0MDBjMDAwIDAgMHgxMDAw
-PjsNCj4gKwkJCWludGVycnVwdHMgPSA8R0lDX1NQSSAyMjkgSVJRX1RZUEVfTEVWRUxfTE9XPjsN
-Cj4gKwkJCXBvd2VyLWRvbWFpbnMgPSA8JnNwbSBNVDgxODNfUE9XRVJfRE9NQUlOX0RJU1A+Ow0K
-PiArCQkJY2xvY2tzID0gPCZtbXN5cyBDTEtfTU1fRElTUF9SRE1BMT47DQo+ICsJCQlpb21tdXMg
-PSA8JmlvbW11IE00VV9QT1JUX0RJU1BfUkRNQTE+Ow0KPiArCQkJbWVkaWF0ZWssbGFyYiA9IDwm
-bGFyYjA+Ow0KPiArCQkJbWVkaWF0ZWsscmRtYV9maWZvX3NpemUgPSA8MjA0OD47DQo+ICsJCQlt
-ZWRpYXRlayxnY2UtY2xpZW50LXJlZyA9IDwmZ2NlIFNVQlNZU18xNDAwWFhYWCAweGMwMDAgMHgx
-MDAwPjsNCj4gKwkJfTsNCj4gKw0KPiArCQljb2xvcjA6IGNvbG9yQDE0MDBlMDAwIHsNCj4gKwkJ
-CWNvbXBhdGlibGUgPSAibWVkaWF0ZWssbXQ4MTgzLWRpc3AtY29sb3IiLA0KPiArCQkJCSAgICAg
-Im1lZGlhdGVrLG10ODE3My1kaXNwLWNvbG9yIjsNCj4gKwkJCXJlZyA9IDwwIDB4MTQwMGUwMDAg
-MCAweDEwMDA+Ow0KPiArCQkJaW50ZXJydXB0cyA9IDxHSUNfU1BJIDIzMSBJUlFfVFlQRV9MRVZF
-TF9MT1c+Ow0KPiArCQkJcG93ZXItZG9tYWlucyA9IDwmc3BtIE1UODE4M19QT1dFUl9ET01BSU5f
-RElTUD47DQo+ICsJCQljbG9ja3MgPSA8Jm1tc3lzIENMS19NTV9ESVNQX0NPTE9SMD47DQo+ICsJ
-CQltZWRpYXRlayxnY2UtY2xpZW50LXJlZyA9IDwmZ2NlIFNVQlNZU18xNDAwWFhYWCAweGUwMDAg
-MHgxMDAwPjsNCj4gKwkJfTsNCj4gKw0KPiArCQljY29ycjA6IGNjb3JyQDE0MDBmMDAwIHsNCj4g
-KwkJCWNvbXBhdGlibGUgPSAibWVkaWF0ZWssbXQ4MTgzLWRpc3AtY2NvcnIiOw0KPiArCQkJcmVn
-ID0gPDAgMHgxNDAwZjAwMCAwIDB4MTAwMD47DQo+ICsJCQlpbnRlcnJ1cHRzID0gPEdJQ19TUEkg
-MjMyIElSUV9UWVBFX0xFVkVMX0xPVz47DQo+ICsJCQlwb3dlci1kb21haW5zID0gPCZzcG0gTVQ4
-MTgzX1BPV0VSX0RPTUFJTl9ESVNQPjsNCj4gKwkJCWNsb2NrcyA9IDwmbW1zeXMgQ0xLX01NX0RJ
-U1BfQ0NPUlIwPjsNCj4gKwkJfTsNCj4gKw0KPiArCQlhYWwwOiBhYWxAMTQwMTAwMDAgew0KPiAr
-CQkJY29tcGF0aWJsZSA9ICJtZWRpYXRlayxtdDgxODMtZGlzcC1hYWwiLA0KPiArCQkJCSAgICAg
-Im1lZGlhdGVrLG10ODE3My1kaXNwLWFhbCI7DQo+ICsJCQlyZWcgPSA8MCAweDE0MDEwMDAwIDAg
-MHgxMDAwPjsNCj4gKwkJCWludGVycnVwdHMgPSA8R0lDX1NQSSAyMzMgSVJRX1RZUEVfTEVWRUxf
-TE9XPjsNCj4gKwkJCXBvd2VyLWRvbWFpbnMgPSA8JnNwbSBNVDgxODNfUE9XRVJfRE9NQUlOX0RJ
-U1A+Ow0KPiArCQkJY2xvY2tzID0gPCZtbXN5cyBDTEtfTU1fRElTUF9BQUwwPjsNCj4gKwkJfTsN
-Cj4gKw0KPiArCQlnYW1tYTA6IGdhbW1hQDE0MDExMDAwIHsNCj4gKwkJCWNvbXBhdGlibGUgPSAi
-bWVkaWF0ZWssbXQ4MTgzLWRpc3AtZ2FtbWEiLA0KPiArCQkJCSAgICAgIm1lZGlhdGVrLG10ODE3
-My1kaXNwLWdhbW1hIjsNCj4gKwkJCXJlZyA9IDwwIDB4MTQwMTEwMDAgMCAweDEwMDA+Ow0KPiAr
-CQkJaW50ZXJydXB0cyA9IDxHSUNfU1BJIDIzNCBJUlFfVFlQRV9MRVZFTF9MT1c+Ow0KPiArCQkJ
-cG93ZXItZG9tYWlucyA9IDwmc3BtIE1UODE4M19QT1dFUl9ET01BSU5fRElTUD47DQo+ICsJCQlj
-bG9ja3MgPSA8Jm1tc3lzIENMS19NTV9ESVNQX0dBTU1BMD47DQo+ICsJCX07DQo+ICsNCj4gKwkJ
-ZGl0aGVyMDogZGl0aGVyQDE0MDEyMDAwIHsNCj4gKwkJCWNvbXBhdGlibGUgPSAibWVkaWF0ZWss
-bXQ4MTgzLWRpc3AtZGl0aGVyIjsNCj4gKwkJCXJlZyA9IDwwIDB4MTQwMTIwMDAgMCAweDEwMDA+
-Ow0KPiArCQkJaW50ZXJydXB0cyA9IDxHSUNfU1BJIDIzNSBJUlFfVFlQRV9MRVZFTF9MT1c+Ow0K
-PiArCQkJcG93ZXItZG9tYWlucyA9IDwmc3BtIE1UODE4M19QT1dFUl9ET01BSU5fRElTUD47DQo+
-ICsJCQljbG9ja3MgPSA8Jm1tc3lzIENMS19NTV9ESVNQX0RJVEhFUjA+Ow0KPiArCQl9Ow0KPiAr
-DQo+ICAJCWRzaTA6IGRzaUAxNDAxNDAwMCB7DQo+ICAJCQljb21wYXRpYmxlID0gIm1lZGlhdGVr
-LG10ODE4My1kc2kiOw0KPiAgCQkJcmVnID0gPDAgMHgxNDAxNDAwMCAwIDB4MTAwMD47DQo+IEBA
-IC05NzgsNiArMTA4NSwxMyBAQCBkc2kwOiBkc2lAMTQwMTQwMDAgew0KPiAgCQkJcGh5LW5hbWVz
-ID0gImRwaHkiOw0KPiAgCQl9Ow0KPiAgDQo+ICsJCW11dGV4OiBtdXRleEAxNDAxNjAwMCB7DQo+
-ICsJCQljb21wYXRpYmxlID0gIm1lZGlhdGVrLG10ODE4My1kaXNwLW11dGV4IjsNCj4gKwkJCXJl
-ZyA9IDwwIDB4MTQwMTYwMDAgMCAweDEwMDA+Ow0KPiArCQkJaW50ZXJydXB0cyA9IDxHSUNfU1BJ
-IDIxNyBJUlFfVFlQRV9MRVZFTF9MT1c+Ow0KPiArCQkJcG93ZXItZG9tYWlucyA9IDwmc3BtIE1U
-ODE4M19QT1dFUl9ET01BSU5fRElTUD47DQo+ICsJCX07DQo+ICsNCj4gIAkJbGFyYjA6IGxhcmJA
-MTQwMTcwMDAgew0KPiAgCQkJY29tcGF0aWJsZSA9ICJtZWRpYXRlayxtdDgxODMtc21pLWxhcmIi
-Ow0KPiAgCQkJcmVnID0gPDAgMHgxNDAxNzAwMCAwIDB4MTAwMD47DQoNCg==
+Hi Alexandru, Lars-Peter,
 
+On Fri, Nov 27, 2020 at 01:14:17PM +0200, Alexandru Ardelean wrote:
+> From: Lars-Peter Clausen <lars@metafoo.de>
+> 
+> If no platform data is supplied use a dummy platform data that configures
+> the device in GPIO only mode. This change adds a adp5589_kpad_pdata_get()
+> helper that returns the default platform-data. This can be later extended
+> to load configuration from device-trees or ACPI.
+
+I was looking at this and I do not think it is a good idea, as later we
+will need to add negation if someone does nor want use GPIO mode. We
+should use the standard "gpio-controller" property from the beginning.
+
+Thanks.
+
+-- 
+Dmitry
