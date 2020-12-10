@@ -2,83 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8CC4A2D5F78
-	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 16:22:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2BCDB2D5F83
+	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 16:22:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389963AbgLJPTx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Dec 2020 10:19:53 -0500
-Received: from mail-oi1-f196.google.com ([209.85.167.196]:45744 "EHLO
-        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389991AbgLJPTm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 10:19:42 -0500
-Received: by mail-oi1-f196.google.com with SMTP id f132so6054437oib.12;
-        Thu, 10 Dec 2020 07:19:26 -0800 (PST)
+        id S2390228AbgLJPVw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Dec 2020 10:21:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40438 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2391471AbgLJPVq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 10:21:46 -0500
+Received: from mail-qk1-x744.google.com (mail-qk1-x744.google.com [IPv6:2607:f8b0:4864:20::744])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66043C0613CF
+        for <devicetree@vger.kernel.org>; Thu, 10 Dec 2020 07:21:05 -0800 (PST)
+Received: by mail-qk1-x744.google.com with SMTP id 1so5078961qka.0
+        for <devicetree@vger.kernel.org>; Thu, 10 Dec 2020 07:21:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=0x0f.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=lzQQMikD25mHaOvU70fXFtFueunUhFhKwR7BFI8Wd2E=;
+        b=qv6OHjvyatbf9wKTVaFQva3h+iUSafbS8ijuZeLyhKbykf4t6BnP+haSBQApyYmukP
+         H+6pdEm9J76xjjxiqX2zzaNFJeKxUke42FfgngvNFw8n3PKxtI1fMdpC5/hg6m4SuP03
+         DbtLskqJ+Y62beHrt6KZB0tysLwvUe+SQ+0TI=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=isKnpZLWDmxxb3Yjeaxd76RZPLoaSrKYVnhT82zCGQk=;
-        b=D8dbadE7cID3JgFlb5YELFKUw0DYmFD2vGoHnrDYzje8p5y+NM56bvUjp1hP9QDBxY
-         zWor0ONLtl9U+ZmiNJRqziby0eOtofXPHSdqOJOYbj7FWnB2ICzHWWaIV16nhTDzHM1a
-         CrpKEbqvYdhOfG30vkWNiy7aYK6yabDT+Vv44s/HfwkCCc2eGyyJ8fi35Sgmp5HKOG7e
-         6XDYP2uDcyH8cjwz+cRlVOV4My3npeSfOffDP9bLHz+aM5/5IXDuN8TZVi/3RaZL90lS
-         bv7HiJ55mDZf86LoAzj2xDflB2ud1lt+H0dGZ8xSHhBeh9cTYSGqa5eXRuvu9BR5Ztb/
-         t1QQ==
-X-Gm-Message-State: AOAM531qOVU1Aa+3NiVI6nO9wP7uNjmh+6XLEZI/rvLtLxd1cmH/VV8i
-        rvctUcypd0jSGepVboHbSQ==
-X-Google-Smtp-Source: ABdhPJzA2iPp0rG4sGDDN0cx8K+xg1jPuuOC+wTD2Jx83mP/UbjeOKKl42g17sulPm6+QYKwvMVlew==
-X-Received: by 2002:aca:5204:: with SMTP id g4mr5750242oib.91.1607613541539;
-        Thu, 10 Dec 2020 07:19:01 -0800 (PST)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id z10sm1065948oom.3.2020.12.10.07.18.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Dec 2020 07:19:00 -0800 (PST)
-Received: (nullmailer pid 2523995 invoked by uid 1000);
-        Thu, 10 Dec 2020 15:18:59 -0000
-Date:   Thu, 10 Dec 2020 09:18:59 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Eric Biggers <ebiggers@kernel.org>
-Cc:     Neeraj Soni <neersoni@codeaurora.org>,
-        Stanley Chu <stanley.chu@mediatek.com>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        linux-fscrypt@vger.kernel.org,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org,
-        Asutosh Das <asutoshd@codeaurora.org>,
-        Barani Muthukumaran <bmuthuku@codeaurora.org>,
-        Peng Zhou <peng.zhou@mediatek.com>,
-        Satya Tangirala <satyat@google.com>,
-        devicetree@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-mmc@vger.kernel.org
-Subject: Re: [PATCH v3 7/9] dt-bindings: mmc: sdhci-msm: add ICE registers
- and clock
-Message-ID: <20201210151859.GA2523965@robh.at.kernel.org>
-References: <20201209044238.78659-1-ebiggers@kernel.org>
- <20201209044238.78659-8-ebiggers@kernel.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=lzQQMikD25mHaOvU70fXFtFueunUhFhKwR7BFI8Wd2E=;
+        b=KufkhE5JBTFjdB9+sxBQjw/6TBaAL7BZRtyVTQBstwx26PbIAueaoJEFHf5izZA51r
+         06AI2oXMU0N21MYbYG8w7gSMHgUcyZ+6AD7qjWGKml81WdN5xT0hcfseZv3ls1T8Gfh5
+         KOXHR+1YNuiffJ8G5l6WpOlCj4YPG93AAXzhfbGYm6n3n9Ts4Ro8wlR3RZPLnsyX8GSs
+         WDqG1stCPiI9oK9DTr2geQmpUpDiV2/r/ZWP3uMJmEulO6N1y6nxI51t3FawYIqxuiXg
+         gnfHaAurbcLC5h0WrL1i7dmSzTxkRUTELCzpzN5b+AfpaS0qAe/sme4rNQAoqPhEWRtd
+         ae7w==
+X-Gm-Message-State: AOAM533QMKSzuqt9TA3ezlh9SBzRROc/zXJ7qP2q8SZ23bMQ9Llxv0m1
+        Wy3Whc6Ax2vHf1nGpDxOl5jlscwnltKGKAnOxIDbXQ==
+X-Google-Smtp-Source: ABdhPJxPU/4SCy7/rE3UgsP7U/aCV3swWmca2vtLjkgy3KaDHEnkpgdsyXm48xf4KUJ4++imK7n8+UBiYOo9V42wb9w=
+X-Received: by 2002:ae9:e219:: with SMTP id c25mr1251874qkc.443.1607613664449;
+ Thu, 10 Dec 2020 07:21:04 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201209044238.78659-8-ebiggers@kernel.org>
+References: <20201129110803.2461700-1-daniel@0x0f.com> <20201129110803.2461700-4-daniel@0x0f.com>
+ <CAHp75Vdy9rBgJhyYXjUKapYdeMfsNhbX9Zi3Jtxb4H8H279V-A@mail.gmail.com>
+In-Reply-To: <CAHp75Vdy9rBgJhyYXjUKapYdeMfsNhbX9Zi3Jtxb4H8H279V-A@mail.gmail.com>
+From:   Daniel Palmer <daniel@0x0f.com>
+Date:   Fri, 11 Dec 2020 00:21:44 +0900
+Message-ID: <CAFr9PX=GTHQvwkCMU6ocK+5=QoEGXK6UAFH4ZUF4zq19ds06wQ@mail.gmail.com>
+Subject: Re: [PATCH v4 3/5] gpio: msc313: MStar MSC313 GPIO driver
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     SoC Team <soc@kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh@kernel.org>, Willy Tarreau <w@1wt.eu>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 08 Dec 2020 20:42:36 -0800, Eric Biggers wrote:
-> From: Eric Biggers <ebiggers@google.com>
-> 
-> Document the bindings for the registers and clock for the MMC instance
-> of the Inline Crypto Engine (ICE) on Snapdragon SoCs.  These bindings
-> are needed in order for sdhci-msm to support inline encryption.
-> 
-> Reviewed-by: Satya Tangirala <satyat@google.com>
-> Signed-off-by: Eric Biggers <ebiggers@google.com>
-> ---
->  Documentation/devicetree/bindings/mmc/sdhci-msm.txt | 3 +++
->  1 file changed, 3 insertions(+)
-> 
+Hi Andy,
 
-Acked-by: Rob Herring <robh@kernel.org>
+On Thu, 10 Dec 2020 at 23:22, Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
+> > +#include <linux/io.h>
+> > +#include <linux/of.h>
+> > +#include <linux/of_device.h>
+> > +#include <linux/of_irq.h>
+> > +#include <linux/gpio/driver.h>
+> > +#include <linux/module.h>
+> > +#include <linux/platform_device.h>
+>
+> Perhaps ordered?
+
+Ok. I did try to find some rules on includes, mainly what should be
+included even though it's included in another include, but couldn't
+find anything really.
+If you have a link that would be helpful. So I could track what
+includes I actually needed I went for order they are used in the code.
+
+> > +       if (offset >= OFF_SPI0_CZ && offset <= OFF_SPI0_DO) {
+>
+> Why not traditional pattern, i.e.
+>
+> if (...)
+>   return -EINVAL;
+> ...
+
+You mean check if the offset is not in the interrupt capable range,
+returning -EINVAL if so, and then having the interrupt mapping code?
+
+> > +       ret = devm_gpiochip_add_data(dev, gpiochip, gpio);
+> > +       return ret;
+>
+> Purpose?
+
+Sorry I think that is probably an artefact of splitting the driver
+apart to extract just the msc313 support.
+The current version of this driver supports more chips but those
+aren't completely reverse engineered yet so I've been constantly
+switching back and forth.
+
+> return devm_...(...);
+>
+> ...
+>
+> > +static int msc313_gpio_remove(struct platform_device *pdev)
+> > +{
+> > +       return 0;
+> > +}
+>
+> Purpose?
+>
+
+None that I can think of. I think I was under the impression that a
+remove callback was needed even if it did nothing.
+
+>
+> > +static const struct of_device_id msc313_gpio_of_match[] = {
+>
+> > +#ifdef CONFIG_MACH_INFINITY
+>
+> What's the point? Are you expecting two drivers for the same IP?
+
+This will make more sense when the support for CONFIG_MACH_MERCURY is added.
+infinity and mercury are very very close but have slightly different
+pinouts, slightly different tables for clks, pin mux etc.
+These chips only have 64MB of DRAM and it's embedded into the chip so
+you probably don't want to include all the baggage for the whole
+family in your kernel if you possibly can. Also the kernel only has a
+few megabytes to fit into on the SPI NOR it's loaded from. Something
+similar is going on for the ingenic pinctrl and I thought maybe
+wrapping of_device_ids in #ifdefs was a no no and asked [0].
+Arguably this is "peeing into the ocean" for a driver like this
+because the difference is going to be tiny but I think I'm probably
+tens of kilobytes away from my kernel not fitting anymore :).
+
+> > +       {
+> > +               .compatible = "mstar,msc313-gpio",
+> > +               .data = &msc313_data,
+> > +       },
+> > +#endif
+> > +       { }
+> > +};
+>
+> ...
+>
+> > +static struct platform_driver msc313_gpio_driver = {
+> > +       .driver = {
+> > +               .name = DRIVER_NAME,
+> > +               .of_match_table = msc313_gpio_of_match,
+> > +               .pm = &msc313_gpio_ops,
+> > +       },
+> > +       .probe = msc313_gpio_probe,
+> > +       .remove = msc313_gpio_remove,
+> > +};
+
+For the fixes to the above should I send another series just to fix
+these up or can it wait a little while?
+I'm pretty close to having all of the registers mapped out for another
+chip that'll go into this driver so I could send these small changes
+as part of that series.
+
+Thanks,
+
+Daniel
+
+0 - https://lore.kernel.org/linux-arm-kernel/CAFr9PX=EgQSXeATLn++DSHkkQar35rpLGh978J5Lnw9jS8XMrw@mail.gmail.com/
