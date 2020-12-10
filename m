@@ -2,72 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F0782D69EE
-	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 22:33:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E630E2D6A15
+	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 22:40:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2405046AbgLJVat (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Dec 2020 16:30:49 -0500
-Received: from mail.kernel.org ([198.145.29.99]:41308 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2404874AbgLJVah (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 10 Dec 2020 16:30:37 -0500
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-Authentication-Results: mail.kernel.org; dkim=permerror (bad message/signature format)
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Marek Szyprowski <m.szyprowski@samsung.com>,
-        Sylwester Nawrocki <snawrocki@kernel.org>
-Subject: [PATCH 9/9] mfd: sec-irq: Do not enforce (incorrect) interrupt trigger type
-Date:   Thu, 10 Dec 2020 22:29:03 +0100
-Message-Id: <20201210212903.216728-9-krzk@kernel.org>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20201210212903.216728-1-krzk@kernel.org>
-References: <20201210212903.216728-1-krzk@kernel.org>
+        id S2394124AbgLJVjr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Dec 2020 16:39:47 -0500
+Received: from relay12.mail.gandi.net ([217.70.178.232]:36071 "EHLO
+        relay12.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2394123AbgLJVji (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 16:39:38 -0500
+Received: from localhost.localdomain (lfbn-tou-1-1617-103.w109-220.abo.wanadoo.fr [109.220.208.103])
+        (Authenticated sender: miquel.raynal@bootlin.com)
+        by relay12.mail.gandi.net (Postfix) with ESMTPSA id A4227200006;
+        Thu, 10 Dec 2020 21:38:55 +0000 (UTC)
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Yifeng Zhao <yifeng.zhao@rock-chips.com>,
+        miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
+        robh+dt@kernel.org
+Cc:     devicetree@vger.kernel.org, heiko@sntech.de,
+        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        linux-mtd@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v16 1/8] dt-bindings: mtd: Describe Rockchip RK3xxx NAND flash controller
+Date:   Thu, 10 Dec 2020 22:38:54 +0100
+Message-Id: <20201210213854.9579-1-miquel.raynal@bootlin.com>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20201210002134.5686-2-yifeng.zhao@rock-chips.com>
+References: 
 MIME-Version: 1.0
+X-linux-mtd-patch-notification: thanks
+X-linux-mtd-patch-commit: 2007ac9e68419ec2407e93888dc1025f6db369dc
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Interrupt line can be configured on different hardware in different way,
-even inverted.  Therefore driver should not enforce specific trigger
-type - edge falling - but instead rely on Devicetree to configure it.
+On Thu, 2020-12-10 at 00:21:31 UTC, Yifeng Zhao wrote:
+> Documentation support for Rockchip RK3xxx NAND flash controllers
+> 
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Yifeng Zhao <yifeng.zhao@rock-chips.com>
 
-The Samsung PMIC drivers are used only on Devicetree boards.
+Applied to https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git nand/next, thanks.
 
-Additionally, the PMIC datasheets describe the interrupt line as active
-low with a requirement of acknowledge from the CPU therefore the edge
-falling is not correct.
-
-Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-
----
-
-This patch should wait till DTS changes are merged, as it relies on
-proper Devicetree.
----
- drivers/mfd/sec-irq.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
-
-diff --git a/drivers/mfd/sec-irq.c b/drivers/mfd/sec-irq.c
-index a98c5d165039..760f88a865ab 100644
---- a/drivers/mfd/sec-irq.c
-+++ b/drivers/mfd/sec-irq.c
-@@ -480,8 +480,7 @@ int sec_irq_init(struct sec_pmic_dev *sec_pmic)
- 	}
- 
- 	ret = devm_regmap_add_irq_chip(sec_pmic->dev, sec_pmic->regmap_pmic,
--				       sec_pmic->irq,
--				       IRQF_TRIGGER_FALLING | IRQF_ONESHOT,
-+				       sec_pmic->irq, IRQF_ONESHOT,
- 				       sec_pmic->irq_base, sec_irq_chip,
- 				       &sec_pmic->irq_data);
- 	if (ret != 0) {
--- 
-2.25.1
-
+Miquel
