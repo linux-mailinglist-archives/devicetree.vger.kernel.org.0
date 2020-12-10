@@ -2,82 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D2A92D546C
-	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 08:21:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3FAE92D547A
+	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 08:24:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732714AbgLJHVF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Dec 2020 02:21:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51094 "EHLO
+        id S2387808AbgLJHXg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Dec 2020 02:23:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51344 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728616AbgLJHVF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 02:21:05 -0500
-Received: from mail-pg1-x542.google.com (mail-pg1-x542.google.com [IPv6:2607:f8b0:4864:20::542])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E7AEC0613CF;
-        Wed,  9 Dec 2020 23:20:25 -0800 (PST)
-Received: by mail-pg1-x542.google.com with SMTP id t37so3382157pga.7;
-        Wed, 09 Dec 2020 23:20:25 -0800 (PST)
+        with ESMTP id S1732927AbgLJHWn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 02:22:43 -0500
+Received: from mail-lf1-x142.google.com (mail-lf1-x142.google.com [IPv6:2a00:1450:4864:20::142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FB94C0613CF
+        for <devicetree@vger.kernel.org>; Wed,  9 Dec 2020 23:22:03 -0800 (PST)
+Received: by mail-lf1-x142.google.com with SMTP id m19so6779783lfb.1
+        for <devicetree@vger.kernel.org>; Wed, 09 Dec 2020 23:22:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=kEqav4MUonxV0ffD0QL2dUPuC2s6cmYw6vjXnLqhnqo=;
-        b=D6p4SqjPoSiqokLbMfElp5JYlxWx8o2NPktgBI9reZ7QLkA1NMsrCwBTjGJt2pm0jo
-         B81sApqMq7Z8WPGJubctHCVtqKyGh+WzY4p/B1ej9yB7uBExwMKgEffHrhdL4AVf6RuC
-         0FfAj2PXQqDJvFrv22aWK+B0JsR6hMoZAPGvAOFmxNY6PqnkbMPWLngrkTR8wgAgsCAE
-         f12PmwHdehxMgrHpE2H6Oa/Wd9+ho+ZeIIXIdSY+SOgZ50S588JsAcpx0cqs8kFKqWDY
-         axhirdjuR7jMjRHtPGg2pKm2rEZ/l0qWbeVR6D95xzqStNNlVx65KTSUCBF7SYp9KnU/
-         p02w==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=KFM4aPjUm0wLH6ZvZ5tYT9bZFyoKoThwefirbnYwScE=;
+        b=sJEMoUx8UdAGwQrJEEGHRBahUTjDmxcHJzMDdYW8Fof1+NRRWLsYCgJkTykE7gQ72i
+         A44z1Kdf/uaZkTUXsggaKL8VzleUmmDI8FknOne/jkSUo2Kk0GawHqImbV3cc7EBGf8W
+         jW+uOiCJ4Ob2T1UWx2h3F26yEcwvtsDPD7znICkxAtTOsfynIM7rJZLYChzONYFPTwD6
+         8oSYoaPCZxym6L4lNl0EiwV/r5bMANtqV98SH20se+Ji3DlfICpgU/os0WAJ2DazBmyQ
+         EPW/hhrNsIMYqxP0sWoQfb+94JSSKBo4kR4ScpgymJPz5o2aO8La32DU6f+PMdHq2MZx
+         U0OA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=kEqav4MUonxV0ffD0QL2dUPuC2s6cmYw6vjXnLqhnqo=;
-        b=gTeZ6ubmc2jnbav1mhCXyjGezERl7O/o3Pha24sexw1Qtnsis7Bk2qAJzO91rIkq5+
-         t3LErd9k7YqoffWly1u4ztFIJe6eQAHSKh9r82nqow4N70W/Ma3QGc15habangbm+m0v
-         gJ/ydItviDQLJWEyzL8/7iZgaAH4+5PP5drHqRTifTK/hOPxveH6AehZh0BR3DAer7aS
-         WXrF3r6HahuiD2ZfI4jh6fCbVIjbEKHTo+WWYN5lZ+B+dvJgP0TTF/NeKZyjEPdO7QrP
-         yZOItDF140TPZuCmBBnWPjrKzI0S6QocfmjmZQG6kGY67L4BRK/nbbZLwCkt0mTNM6VJ
-         CesA==
-X-Gm-Message-State: AOAM532oUwk1w9/kv/PZOF0P4hD+1bUI/wg7PbeeEVIIGJ8pzVehBjuL
-        bJLqWbtT+2oNXqhF0nvfFyEjHkrRXFQ=
-X-Google-Smtp-Source: ABdhPJzjFadVP3w5IjcE92yG6HaZZDTOTNseP/K9HFNV9SlVSwkrNvLZsOfaCSYq1FdzEGPi8ZupZw==
-X-Received: by 2002:a17:90a:578f:: with SMTP id g15mr6163613pji.3.1607584824741;
-        Wed, 09 Dec 2020 23:20:24 -0800 (PST)
-Received: from google.com ([2620:15c:202:201:a6ae:11ff:fe11:fcc3])
-        by smtp.gmail.com with ESMTPSA id mj5sm4891165pjb.20.2020.12.09.23.20.23
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=KFM4aPjUm0wLH6ZvZ5tYT9bZFyoKoThwefirbnYwScE=;
+        b=hyNyDsCntzZjTHUDPz9ehujkMfNNWys7Pr+ANAjusgD+ZGctZ6a29zTW7LIA4BIp0c
+         WYbrykyFyRkDBGenzUuX/Bq+TC9UgwfAZzez7ESK5qpcjNykyM7497TpFNijU6NT8ryk
+         rmZUZtp6Yd5GsLl6eU57iUPAgC714ieXfZE//IFwCa42G8dovFTIgyun6OxObZYhrV2+
+         Z2Qt207ROtLifGhYry4AuFovSueXdKcSj5DMMgTgWiOqerZ6WOPe3z4fA6av+xCzmeGk
+         KrS+vec0aoJTCDvty2FJFiZ0rfY+oi4n6uoLbJ4l+LFWtHuZj8XFfMUp9pkgmXfv5obv
+         cLjA==
+X-Gm-Message-State: AOAM531EIOqE3sJEv6Jj7JILClnKEQ0hSqM7YHQS+vLGjbjUEcbiPfxF
+        SwEgFtiHbnhIFjC+Lwtpt77FiOLi7Aw=
+X-Google-Smtp-Source: ABdhPJxum7w+lfcoXmNeU/L9y17XeHSwebIPOKHcaRKskz6FN1EC7H37BW14+KB4woyC70v7Jt3JMw==
+X-Received: by 2002:a19:857:: with SMTP id 84mr2437905lfi.237.1607584921566;
+        Wed, 09 Dec 2020 23:22:01 -0800 (PST)
+Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.gmail.com with ESMTPSA id 21sm415740lfy.174.2020.12.09.23.22.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Dec 2020 23:20:23 -0800 (PST)
-Date:   Wed, 9 Dec 2020 23:20:21 -0800
-From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To:     Alexandru Ardelean <alexandru.ardelean@analog.com>
-Cc:     linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, lars@metafoo.de, robh+dt@kernel.org
-Subject: Re: [PATCH v3 1/4] Input: adp5589-keys - add default platform data
-Message-ID: <X9HMNWziPToVHKnU@google.com>
-References: <20201127111420.96500-1-alexandru.ardelean@analog.com>
+        Wed, 09 Dec 2020 23:22:01 -0800 (PST)
+From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH] arm64: dts: broadcom: bcm4908: describe PCIe reset controller
+Date:   Thu, 10 Dec 2020 08:21:54 +0100
+Message-Id: <20201210072154.20278-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201127111420.96500-1-alexandru.ardelean@analog.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Alexandru, Lars-Peter,
+From: Rafał Miłecki <rafal@milecki.pl>
 
-On Fri, Nov 27, 2020 at 01:14:17PM +0200, Alexandru Ardelean wrote:
-> From: Lars-Peter Clausen <lars@metafoo.de>
-> 
-> If no platform data is supplied use a dummy platform data that configures
-> the device in GPIO only mode. This change adds a adp5589_kpad_pdata_get()
-> helper that returns the default platform-data. This can be later extended
-> to load configuration from device-trees or ACPI.
+This reset controller is a single register in the Broadcom's MISC block.
 
-I was looking at this and I do not think it is a good idea, as later we
-will need to add negation if someone does nor want use GPIO mode. We
-should use the standard "gpio-controller" property from the beginning.
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+This binding got documented in the commit a269adab36d7 ("reset: simple: add
+BCM4908 MISC PCIe reset controller support") that sits currently in the
+git://git.pengutronix.de/git/pza/linux reset/next
+---
+ arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
 
-Thanks.
-
+diff --git a/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi
+index 55d9b56ac749..b5b772a9a51b 100644
+--- a/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi
++++ b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi
+@@ -177,6 +177,21 @@ nandcs: nandcs@0 {
+ 			};
+ 		};
+ 
++		misc@2600 {
++			compatible = "brcm,misc", "simple-mfd";
++			reg = <0x2600 0xe4>;
++
++			#address-cells = <1>;
++			#size-cells = <1>;
++			ranges = <0x00 0x2600 0xe4>;
++
++			reset-controller@2644 {
++				compatible = "brcm,bcm4908-misc-pcie-reset";
++				reg = <0x44 0x04>;
++				#reset-cells = <1>;
++			};
++		};
++
+ 		reboot {
+ 			compatible = "syscon-reboot";
+ 			regmap = <&timer>;
 -- 
-Dmitry
+2.26.2
+
