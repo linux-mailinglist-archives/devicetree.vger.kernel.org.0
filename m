@@ -2,40 +2,41 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 146B22D568A
-	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 10:17:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F5D62D5684
+	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 10:17:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730142AbgLJJPz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Dec 2020 04:15:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40340 "EHLO
+        id S2388810AbgLJJPP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Dec 2020 04:15:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40342 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388813AbgLJJPJ (ORCPT
+        with ESMTP id S2388815AbgLJJPJ (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 04:15:09 -0500
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31607C0617A6
-        for <devicetree@vger.kernel.org>; Thu, 10 Dec 2020 01:13:56 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E0BCC0617A7
+        for <devicetree@vger.kernel.org>; Thu, 10 Dec 2020 01:13:57 -0800 (PST)
 Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
         by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <ore@pengutronix.de>)
-        id 1knI19-0002ai-EF; Thu, 10 Dec 2020 10:13:43 +0100
+        id 1knI19-0002ak-EH; Thu, 10 Dec 2020 10:13:43 +0100
 Received: from ore by dude.hi.pengutronix.de with local (Exim 4.92)
         (envelope-from <ore@pengutronix.de>)
-        id 1knI18-00074L-S3; Thu, 10 Dec 2020 10:13:42 +0100
+        id 1knI18-00074U-T0; Thu, 10 Dec 2020 10:13:42 +0100
 From:   Oleksij Rempel <o.rempel@pengutronix.de>
 To:     Mark Rutland <mark.rutland@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
         Sascha Hauer <s.hauer@pengutronix.de>,
         Shawn Guo <shawnguo@kernel.org>
 Cc:     Oleksij Rempel <o.rempel@pengutronix.de>,
-        devicetree@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
+        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+        Fabio Estevam <festevam@gmail.com>,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         NXP Linux Team <linux-imx@nxp.com>,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
         David Jander <david@protonic.nl>
-Subject: [PATCH v5 1/5] dt-bindings: vendor-prefixes: Add an entry for Kverneland Group
-Date:   Thu, 10 Dec 2020 10:13:37 +0100
-Message-Id: <20201210091341.27110-2-o.rempel@pengutronix.de>
+Subject: [PATCH v5 2/5] dt-bindings: arm: fsl: add Kverneland UT1, UT1Q and UI1P boards
+Date:   Thu, 10 Dec 2020 10:13:38 +0100
+Message-Id: <20201210091341.27110-3-o.rempel@pengutronix.de>
 X-Mailer: git-send-email 2.29.2
 In-Reply-To: <20201210091341.27110-1-o.rempel@pengutronix.de>
 References: <20201210091341.27110-1-o.rempel@pengutronix.de>
@@ -49,26 +50,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add "kvg" entry for Kverneland Group: https://ien.kvernelandgroup.com/
+Add Kverneland UT1 (imx6dl), UT1Q (imx6q) and UT1P (imx6dp) based boards
 
 Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+Acked-by: Rob Herring <robh@kernel.org>
 ---
- Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+ Documentation/devicetree/bindings/arm/fsl.yaml | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index 8332d50301ea..4cb435f6758a 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -565,6 +565,8 @@ patternProperties:
-     description: Kontron S&T AG
-   "^kosagi,.*":
-     description: Sutajio Ko-Usagi PTE Ltd.
-+  "^kvg,.*":
-+    description: Kverneland Group
-   "^kyo,.*":
-     description: Kyocera Corporation
-   "^lacie,.*":
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index 490cbc75b18a..7b2f83bb56cb 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -210,6 +210,7 @@ properties:
+               - kiebackpeter,imx6q-tpc    # K+P i.MX6 Quad TPC Board
+               - kontron,imx6q-samx6i      # Kontron i.MX6 Dual/Quad SMARC Module
+               - kosagi,imx6q-novena       # Kosagi Novena Dual/Quad
++              - kvg,vicut1q               # Kverneland UT1Q board
+               - logicpd,imx6q-logicpd
+               - lwn,display5              # Liebherr Display5 i.MX6 Quad Board
+               - lwn,mccmon6               # Liebherr Monitor6 i.MX6 Quad Board
+@@ -331,6 +332,7 @@ properties:
+               - fsl,imx6qp-sabreauto      # i.MX6 Quad Plus SABRE Automotive Board
+               - fsl,imx6qp-sabresd        # i.MX6 Quad Plus SABRE Smart Device Board
+               - karo,imx6qp-tx6qp         # Ka-Ro electronics TX6QP-8037 Module
++              - kvg,vicutp                # Kverneland UT1P board
+               - prt,prtwd3                # Protonic WD3 board
+               - wand,imx6qp-wandboard     # Wandboard i.MX6 QuadPlus Board
+               - zii,imx6qp-zii-rdu2       # ZII RDU2+ Board
+@@ -364,6 +366,7 @@ properties:
+               - fsl,imx6dl-sabresd        # i.MX6 DualLite SABRE Smart Device Board
+               - karo,imx6dl-tx6dl         # Ka-Ro electronics TX6U Modules
+               - kontron,imx6dl-samx6i     # Kontron i.MX6 Solo SMARC Module
++              - kvg,vicut1                # Kverneland UT1 board
+               - ply,plybas                # Plymovent BAS board
+               - ply,plym2m                # Plymovent M2M board
+               - poslab,imx6dl-savageboard # Poslab SavageBoard Dual
 -- 
 2.29.2
 
