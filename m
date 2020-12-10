@@ -2,136 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C2B42D6B03
+	by mail.lfdr.de (Postfix) with ESMTP id 2EB5D2D6B02
 	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 00:37:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2394092AbgLJWbS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S2394123AbgLJWbS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Thu, 10 Dec 2020 17:31:18 -0500
-Received: from mail-ed1-f65.google.com ([209.85.208.65]:39110 "EHLO
-        mail-ed1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2405127AbgLJW0K (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 17:26:10 -0500
-Received: by mail-ed1-f65.google.com with SMTP id c7so7271007edv.6;
-        Thu, 10 Dec 2020 14:25:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=DgwiQiINReqpRzkxPBOoj0Pj1hdtR6pe6rpIHW4GOsE=;
-        b=qOwo7R/dQdVStRi7CFUSia34sWh7p0MWiuMguSYwAhblnhHef7ZgSjUTKtVyKBpB+l
-         GljpOmZ6tHJ+D9aRf6Bj27D0ZvQMoGOq9c3Ql6tqKSxTuROrKkSed3VXhK9uPW+Ip1aw
-         k5J/KF+M294bLkbF+U5IqI7QzBxEyejLdNgUh/7NZLE2fdVhpZKBohFtOd2NLrEjXI0U
-         ByvJVTfr8JePELwrxSTrs6jJLprVhgN965dAkddEyOZqsG6fctN/8WV21KuqFjelEWbi
-         qGCnLF4WvHjS+rRllixagOqj7voxenAcGIT68WVbtULZPdCCpqTPWLvlLjaguhmIMCHS
-         JWQQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=DgwiQiINReqpRzkxPBOoj0Pj1hdtR6pe6rpIHW4GOsE=;
-        b=WI+mMCyCXCm1W1L5n2CYQofkzWwkOEQNUu59skFJy4QmiI7J93U9K7HvtLwHBHxZye
-         Bjpi+3LdquksuNQlKJG7BIZ9XqY3AgCQvC8YizxRulyEVxCwmXQISXHtVk2C6VU9qhTH
-         d+8YsZetvpRk96rqUUv4KPppRj2mHhYq90nNFTn52pgjG1xxpS7LvB83bb0oM3aFg578
-         GRps+eLwDUI4mRqqhwKLmvXGdCDuf86e2bujE6NTPBh78pTx7WuHcFVleOd+TOMADroV
-         F9s+yoRIJVYonyRYyEyGm4nzWqqNUTChCtyhPNzKMkupqK0fNaQzuFmtC0fEwllsJ7yJ
-         ix0A==
-X-Gm-Message-State: AOAM5306Zz7z0govK/WHfmcGjUMLM8Vt0lk3ujlM20AIbLoKbb+yjPqf
-        71n3n2d7U1EoiE+TH8yabiepaQ/vXYJn2x5ox6Y=
-X-Google-Smtp-Source: ABdhPJx0t8DQWf69ovL+FHwaCkKpf2+w+k1PIInOVaCXFi1pD+jNx4ETD4gVr0kpBfukXXZUNRKO5s09tkEy6V5Fppc=
-X-Received: by 2002:a05:6402:1714:: with SMTP id y20mr8783980edu.360.1607639068296;
- Thu, 10 Dec 2020 14:24:28 -0800 (PST)
+Received: from mail.kernel.org ([198.145.29.99]:60636 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2405148AbgLJW30 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 10 Dec 2020 17:29:26 -0500
+X-Gm-Message-State: AOAM533pa8O5OGQA9TqMJx1dXIrvQDPQ89RZQTni8wj97lPCR2JN9l/f
+        r8QLt9BjN9gDpHAxYA62eJeEI6p/reiLW+t6dQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1607639325;
+        bh=AwBm1sOylDA4igz4WzY+pw8TKG6j23bjsUanh6pfDgM=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=ZK4U0HCtIlYNCren07U1WyHUPbbOLWxNSzqhA2PgBVceYqIFuqxMMi3fT71+YwiU4
+         RESEQ6zmrqoAzaOOhw3HCysNQKc4g54uVf6tOkhiC6RHOWRz+nD7tJcJgfw9W9H+/S
+         jlsIEXcIbQq/4ueeW/RxchpkSs/3O3n5xOmDzd0EC7DEInzPEUe+5XRiyVK5154Ipd
+         dN7cQDJw0ojVgS3t/QwTTJ0t6CA9lxHvCQFSXhUlU5/P13tCaMHW+xMk/hD5FMN0qH
+         ecFGlWglipuga4Tbx/45JvkfUcMj76Vtp3j43sEkc373Qh/P7LmuX0o2nGImqJfRA8
+         +jR889VTq9FNw==
+X-Google-Smtp-Source: ABdhPJyymUnSALTcy47VYVv5649A6u3+OHeY86YqbeEIaIsYhG09Q5br4FWLGjTGAMJ3p6Rti61dhsS8yjOSzje5knw=
+X-Received: by 2002:a50:f404:: with SMTP id r4mr9019649edm.62.1607639323771;
+ Thu, 10 Dec 2020 14:28:43 -0800 (PST)
 MIME-Version: 1.0
-References: <20201206002629.12872-1-adrien.grassein@gmail.com> <20201207135551.GE5694@sirena.org.uk>
-In-Reply-To: <20201207135551.GE5694@sirena.org.uk>
-From:   Adrien Grassein <adrien.grassein@gmail.com>
-Date:   Thu, 10 Dec 2020 23:24:17 +0100
-Message-ID: <CABkfQAF4AANtxptY+XB2cR6hpz2i2Km+F5U=R67J57zSfnoGMA@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: regulator: Add pf8x00 regulator
-To:     Mark Brown <broonie@kernel.org>
-Cc:     lgirdwood@gmail.com, Rob Herring <robh+dt@kernel.org>,
-        linux-kernel@vger.kernel.org, DTML <devicetree@vger.kernel.org>,
-        troy.kisky@boundarydevices.com,
-        Gary Bisson <gary.bisson@boundarydevices.com>
+References: <20201206165131.1041983-1-contact@paulk.fr> <20201206165131.1041983-2-contact@paulk.fr>
+ <20201207182359.GA565631@robh.at.kernel.org> <X9Da5xdKlqekPPkz@aptenodytes>
+In-Reply-To: <X9Da5xdKlqekPPkz@aptenodytes>
+From:   Rob Herring <robh@kernel.org>
+Date:   Thu, 10 Dec 2020 16:28:31 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+XE+-uGK9kv5+8_mK57zC1Hw+SkOuiBkDyti3s4F896w@mail.gmail.com>
+Message-ID: <CAL_Jsq+XE+-uGK9kv5+8_mK57zC1Hw+SkOuiBkDyti3s4F896w@mail.gmail.com>
+Subject: Re: [PATCH v3 1/5] dt-bindings: irq: sun7i-nmi: Add binding
+ documentation for the V3s NMI
+To:     Paul Kocialkowski <contact@paulk.fr>
+Cc:     linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Icenowy Zheng <icenowy@aosc.io>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Maxime Ripard <mripard@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Wed, Dec 9, 2020 at 8:11 AM Paul Kocialkowski <contact@paulk.fr> wrote:
+>
+> Hi,
+>
+> On Mon 07 Dec 20, 12:23, Rob Herring wrote:
+> > On Sun, 06 Dec 2020 17:51:27 +0100, Paul Kocialkowski wrote:
+> > > The V3s NMI controller seems register-compatible with the A80 (sun9i).
+> > > Add new items for the compatible string, with an entry specific to the V3s
+> > > and the A80 entry.
+> > >
+> > > Signed-off-by: Paul Kocialkowski <contact@paulk.fr>
+> > > ---
+> > >  .../interrupt-controller/allwinner,sun7i-a20-sc-nmi.yaml       | 3 +++
+> > >  1 file changed, 3 insertions(+)
+> >
+> > Please add Acked-by/Reviewed-by tags when posting new versions. However,
+> > there's no need to repost patches *only* to add the tags. The upstream
+> > maintainer will do that for acks received on the version they apply.
+> >
+> > If a tag was not added on purpose, please state why and what changed.
+>
+> Ah sorry, it was indeed intentional as there was a change since this version
+> uses sun9i-a80 as a base and I also renamed the compatible.
+>
+> I put that in the cover letter's changelog but maybe it wasn't very explicit.
 
-Thanks for reviewing my patches.
+Okay.
 
-Le lun. 7 d=C3=A9c. 2020 =C3=A0 14:55, Mark Brown <broonie@kernel.org> a =
-=C3=A9crit :
->
-> On Sun, Dec 06, 2020 at 01:26:28AM +0100, Adrien Grassein wrote:
-> > Add dt-bindings for the pf8x00 driver.
->
-> Please submit patches using subject lines reflecting the style for the
-> subsystem, this makes it easier for people to identify relevant patches.
-> Look at what existing commits in the area you're changing are doing and
-> make sure your subject lines visually resemble what they're doing.
-> There's no need to resubmit to fix this alone.
->
-
-For v2 I just copy-paste another commit message to be sure to be conform.
-
-> > +  compatible:
-> > +    enum:
-> > +      - nxp,pf8x00
->
-> Compatible strings should be for specific devices not wildcards.
->
-> > +          nxp,hw-en:
-> > +            $ref: /schemas/types.yaml#definitions/flag
-> > +            description: |
-> > +              Only available for ldo2. Used to enable or disable ld02.
->
-> I don't understand what this is documenting - what is "hw-en" and how is
-> it used to enable or disable LDO2?
-I think I read better documentation for this point. Sorry, it was very uncl=
-ear.
->
-> > +          nxp,vselect-en:
-> > +            $ref: /schemas/types.yaml#definitions/flag
-> > +            description: |
-> > +              Only available for ldo2. When specified, use the VSELECT=
- pin
-> > +              of the chip to control the output voltage of the ldo02 r=
-egulator.
->
-> Shouldn't there be a GPIO specified somewhere or something so that the
-> VSELECT pin can be controlled?
-
-I think I read better documentation for this point. Sorry, it was very uncl=
-ear.
-VSELECT is in fact an input pin of the chip. The configuration just enabled=
- it.
->
-> > +          nxp,ilim-ma:
-> > +            $ref: /schemas/types.yaml#definitions/uint32
-> > +            minimum: 2100
-> > +            maximum: 4500
-> > +            default: 2100
-> > +            enum: [ 2100, 2600, 3000, 4500 ]
-> > +            description: |
-> > +              Defines the maximum current delivered by the regulator (=
-in mA).
->
-> Is this not a fixed property of the regulator?
-It's not. It's configurable by software.
->
-> > +          nxp,quad-phase:
-> > +            $ref: /schemas/types.yaml#definitions/flag
-> > +            description: |
-> > +              This allow regulators  sw1 and sw2, or sw3 and sw4 or sw=
-4 and sw5
-> > +              to work together to deliver a maximum 10A current.
->
-> Presumably this must be set on both the regulators being grouped
-> together?
-Not. Only the sw1 configuration will be taken in account.
-
-Thanks again,
-Adrien
+Reviewed-by: Rob Herring <robh@kernel.org>
