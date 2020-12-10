@@ -2,124 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D0E122D84ED
-	for <lists+devicetree@lfdr.de>; Sat, 12 Dec 2020 06:48:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 500032D8569
+	for <lists+devicetree@lfdr.de>; Sat, 12 Dec 2020 10:52:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731644AbgLLFr3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 12 Dec 2020 00:47:29 -0500
-Received: from linux.microsoft.com ([13.77.154.182]:41340 "EHLO
-        linux.microsoft.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731406AbgLLFrK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Dec 2020 00:47:10 -0500
-Received: from [192.168.0.104] (c-73-42-176-67.hsd1.wa.comcast.net [73.42.176.67])
-        by linux.microsoft.com (Postfix) with ESMTPSA id 195E420B717A;
-        Fri, 11 Dec 2020 21:46:28 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 195E420B717A
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-        s=default; t=1607751988;
-        bh=V31bOChnr8lat3WNyoEvadwinYKZ3Pm3p29JNFXDyvc=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=m5okTUXaQpr9BxPcQD+AKL1HBqahIUQGwQy5M0QXxtaObm3u3cP5aGmBF8SCtyZD8
-         bhl8wETUf6c/N0ncRmptKshSMM9lvyRPf4QzEyml8m4gB/CXc0Op/ss2tR6CZyTbJs
-         X2wjf4djHP4LKy9fbUokPuvcVqOMy4Nho/T8tqMk=
-Subject: Re: [RFC PATCH 2/4] of: Add a common kexec FDT setup function
-To:     Thiago Jung Bauermann <bauerman@linux.ibm.com>
-Cc:     Rob Herring <robh@kernel.org>, takahiro.akashi@linaro.org,
-        will@kernel.org, catalin.marinas@arm.com, mpe@ellerman.id.au,
-        zohar@linux.ibm.com, james.morse@arm.com, sashal@kernel.org,
-        benh@kernel.crashing.org, paulus@samba.org, frowand.list@gmail.com,
-        vincenzo.frascino@arm.com, mark.rutland@arm.com,
-        dmitry.kasatkin@gmail.com, jmorris@namei.org, serge@hallyn.com,
-        pasha.tatashin@soleen.com, allison@lohutok.net,
-        masahiroy@kernel.org, bhsharma@redhat.com, mbrugger@suse.com,
-        hsinyi@chromium.org, tao.li@vivo.com, christophe.leroy@c-s.fr,
-        linux-integrity@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        prsriva@linux.microsoft.com, balajib@linux.microsoft.com
-References: <20201211221006.1052453-1-robh@kernel.org>
- <20201211221006.1052453-3-robh@kernel.org>
- <6934c005-d848-314d-cfee-23f2273c119d@linux.microsoft.com>
- <87360bahup.fsf@manicouagan.localdomain>
-From:   Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
-Message-ID: <49579baf-6159-0eac-fa36-6fdb618c2320@linux.microsoft.com>
-Date:   Fri, 11 Dec 2020 21:46:27 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S2404747AbgLJV0r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Dec 2020 16:26:47 -0500
+Received: from mail.kernel.org ([198.145.29.99]:38022 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2404754AbgLJV0g (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 10 Dec 2020 16:26:36 -0500
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+Authentication-Results: mail.kernel.org; dkim=permerror (bad message/signature format)
+To:     Chanwoo Choi <cw00.choi@samsung.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-rtc@vger.kernel.org
+Cc:     Iskren Chernev <iskren.chernev@gmail.com>,
+        Matheus Castello <matheus@castello.eng.br>,
+        Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>,
+        Angus Ainslie <angus@akkea.ca>,
+        Hans de Goede <hdegoede@redhat.com>
+Subject: [PATCH 03/18] ARM: dts: exynos: correct fuel gauge interrupt trigger level on Midas family
+Date:   Thu, 10 Dec 2020 22:25:19 +0100
+Message-Id: <20201210212534.216197-3-krzk@kernel.org>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20201210212534.216197-1-krzk@kernel.org>
+References: <20201210212534.216197-1-krzk@kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <87360bahup.fsf@manicouagan.localdomain>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/11/20 6:17 PM, Thiago Jung Bauermann wrote:
-> 
-> Lakshmi Ramasubramanian <nramas@linux.microsoft.com> writes:
-> 
->> On 12/11/20 2:10 PM, Rob Herring wrote:
->>
->> Hi Rob,
->>
->>> Both arm64 and powerpc do essentially the same FDT /chosen setup for
->>> kexec. We can simply combine everything each arch does. The differences
->>> are either omissions that arm64 should have or additional properties
->>> that will be ignored.
->>> The differences relative to the arm64 version:
->>> - If /chosen doesn't exist, it will be created (should never happen).
->>> - Any old dtb and initrd reserved memory will be released.
->>> - The new initrd and elfcorehdr are marked reserved.
->>> - "linux,booted-from-kexec" is set.
->>> The differences relative to the powerpc version:
->>> - "kaslr-seed" and "rng-seed" may be set.
->>> - "linux,elfcorehdr" is set.
->>> - Any existing "linux,usable-memory-range" is removed.
->>> Signed-off-by: Rob Herring <robh@kernel.org>
->>> ---
->>> This could be taken a step further and do the allocation of the new
->>> FDT. The difference is arm64 uses vmalloc and powerpc uses kmalloc. The
->>> arm64 version also retries with a bigger allocation. That seems
->>> unnecessary.
->>> ---
->>>    drivers/of/Makefile |   1 +
->>>    drivers/of/kexec.c  | 228 ++++++++++++++++++++++++++++++++++++++++++++
->>>    include/linux/of.h  |   5 +
->>>    3 files changed, 234 insertions(+)
->>>    create mode 100644 drivers/of/kexec.c
->>> diff --git a/drivers/of/Makefile b/drivers/of/Makefile
->>> index 6e1e5212f058..8ce11955afde 100644
->>> --- a/drivers/of/Makefile
->>> +++ b/drivers/of/Makefile
->>> @@ -13,5 +13,6 @@ obj-$(CONFIG_OF_RESERVED_MEM) += of_reserved_mem.o
->>>    obj-$(CONFIG_OF_RESOLVE)  += resolver.o
->>>    obj-$(CONFIG_OF_OVERLAY) += overlay.o
->>>    obj-$(CONFIG_OF_NUMA) += of_numa.o
->>> +obj-$(CONFIG_KEXEC_FILE) += kexec.o
->>
->> For the functions moved from powerpc & arm64 to "drivers/of/kexec.c" in this
->> patch, compiling kexec.c when CONFIG_KEXEC_FILE is enabled is fine. But when
->> more functions (such as remove_ima_buffer()) are moved to this file, Makefile
->> needs to be updated for other ima kexec related CONFIGs.
-> 
-> IMA kexec is only available if CONFIG_KEXEC_FILE is enabled, so I don't
-> understand what problem you are seeing.
-> 
+The Maxim fuel gauge datasheets describe the interrupt line as active
+low with a requirement of acknowledge from the CPU.  The falling edge
+interrupt will mostly work but it's not correct.
 
-delete_fdt_mem_rsv() and setup_fdt() functions are defined when 
-CONFIG_KEXEC_FILE is enabled. So there is no problem with this patch as 
-such.
+Fixes: e8614292cd41 ("ARM: dts: Add Maxim 77693 fuel gauge node for exynos4412-trats2")
+Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+---
+ arch/arm/boot/dts/exynos4412-midas.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-I was thinking when other arch independent functions such as 
-do_get_kexec_buffer() and remove_ima_buffer() are moved to 
-"drivers/of/kexec.c", they need to be defined only when 
-CONFIG_HAVE_IMA_KEXEC is enabled.
-
-If CONFIG_HAVE_IMA_KEXEC is enabled, CONFIG_KEXEC_FILE is also enabled. 
-So there shouldn't be a problem moving those functions to 
-"drivers/of/kexec.c". You are right Thiago. Thanks.
-
-  -lakshmi
-
-
+diff --git a/arch/arm/boot/dts/exynos4412-midas.dtsi b/arch/arm/boot/dts/exynos4412-midas.dtsi
+index 111c32bae02c..b8b75dc81aa1 100644
+--- a/arch/arm/boot/dts/exynos4412-midas.dtsi
++++ b/arch/arm/boot/dts/exynos4412-midas.dtsi
+@@ -221,7 +221,7 @@ i2c_max77693_fuel: i2c-gpio-3 {
+ 		fuel-gauge@36 {
+ 			compatible = "maxim,max17047";
+ 			interrupt-parent = <&gpx2>;
+-			interrupts = <3 IRQ_TYPE_EDGE_FALLING>;
++			interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
+ 			pinctrl-names = "default";
+ 			pinctrl-0 = <&max77693_fuel_irq>;
+ 			reg = <0x36>;
+-- 
+2.25.1
 
