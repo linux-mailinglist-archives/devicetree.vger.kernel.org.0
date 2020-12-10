@@ -2,88 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B3A02D507A
-	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 02:50:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 609AE2D5097
+	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 03:07:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726718AbgLJBqy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Dec 2020 20:46:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56388 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726642AbgLJBqp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Dec 2020 20:46:45 -0500
-Received: from mail-pg1-x543.google.com (mail-pg1-x543.google.com [IPv6:2607:f8b0:4864:20::543])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A864EC0613D6;
-        Wed,  9 Dec 2020 17:46:05 -0800 (PST)
-Received: by mail-pg1-x543.google.com with SMTP id v29so2668293pgk.12;
-        Wed, 09 Dec 2020 17:46:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=ztmnh0EotlJttn1QeQFN2zJgVITimkDmBGBjGSBjZ2E=;
-        b=qrgcU70Pg/Bo9et1vbm1iOtyUfr69ZMXauI4D7uTh02o+yCmC4KEtQg5udVwkdD+y4
-         pJUXOQXYaDnbcjrSWFA0KK0rpDWMjgGHrPT+gJK//6RTjMpM1hKwi1ejLAY1W2vBdfb+
-         OSOvjOizkXq6XK9RwCMqNjh8nBuu9LRwvgP0nUYQ7u9je9mB8xAJVl0UZmbd2VAp35GW
-         TQT3rOuvINv6cqQzEn27enjclzP6dZkbfG8vDrorpXQdEVQNvGR2u3zgFfIZcF4FmnJI
-         1nRCcj33P/WlEZgg7dVUBUQKrutPwJWgLN6Q0M8YI9mBj3nIOiEeeCFuAR1swPkNoiwB
-         P3aA==
+        id S1727673AbgLJCG2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Dec 2020 21:06:28 -0500
+Received: from mail-oi1-f196.google.com ([209.85.167.196]:43658 "EHLO
+        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727665AbgLJCG2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Dec 2020 21:06:28 -0500
+Received: by mail-oi1-f196.google.com with SMTP id q25so4036521oij.10;
+        Wed, 09 Dec 2020 18:06:12 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=ztmnh0EotlJttn1QeQFN2zJgVITimkDmBGBjGSBjZ2E=;
-        b=sQ95M1MBEulYXuMKaD1U3R5PR55IDSdbLIFVeXrpabMMKTGIGs6yOipE3AYH89uLXG
-         BklNXTjVwg+HzbOtZvSbD95gRz00zqLjH2He2khh6pZLX8jeBUAyLBzRg5UrqMHyMsiZ
-         8Cl3x2eqR1U/M2I/a6ynKf2wvl9nIkViYwhhABgj1AAhxYW2ecRIg5eg7mCfoXQhAkUf
-         XJGVyEkw0rGa5gP4HEf4bq1wmISsWBGQeCnlTb1ovfmprujXT/XCcNdN2oxv7BcggVGa
-         ol6tSFx3iWhkbhLW1vyRWp0fr9efcUCFDHZbt6OD6a9wArxlbptb7QD8mCN3D3wUkxN4
-         SnJg==
-X-Gm-Message-State: AOAM531MBe/mDP1u5f8ar93zrY1IqF8Yh81JGwf0P9FXXd+xGlNqsWDs
-        oTfV1jaGvzKkFo1oTJpKqw4=
-X-Google-Smtp-Source: ABdhPJw64bOpmjMTq7/OZIk/yI3gRHvWvAZ3P5WiyhJ/OnLYX/2BYseVJTASwF+vhEoKbURdwqAwHw==
-X-Received: by 2002:a17:90b:3907:: with SMTP id ob7mr4907565pjb.70.1607564765257;
-        Wed, 09 Dec 2020 17:46:05 -0800 (PST)
-Received: from google.com ([2620:15c:202:201:a6ae:11ff:fe11:fcc3])
-        by smtp.gmail.com with ESMTPSA id t9sm580233pjo.53.2020.12.09.17.46.04
+        bh=8GuGks7pjJoLfrOI5hpguNKWl0aw9SWAL6rU3/z+zUI=;
+        b=sc/Q9Z3DS+E4aiwJw9bgieomocnoqshZUrfpMf/Xk2BwU4zz3MoKsVJdO5BwVuSzhM
+         nNbRH3EcG4lfQGOi8KPml0JemV47gxA76qi6+2cHvXgS7zDO5dZ7ExDle0SEpnskH4C3
+         /Afu/IHUnaDFi8tCJ90yepOWZpgduCUFSoRe6uhsYzkMU0h33bkVwAcvcevORXXGTBcA
+         M8leD+3Ptclv6sRUZXd/10HgyITJ9ZzG11+8jyOPM8SL7djoTjpFUs3Qcf8UcYmPvX4/
+         Bs5WmOkAjs+uoMmDT56Z902Y1J+nbgGPc04NuIKbF8h7NXIES5cOR9MDGxgMCg72J88P
+         izDw==
+X-Gm-Message-State: AOAM530Ae5ORpLgGgqBcy94sCJXxZzXfqpW4aFhoBmD6XYvx0YCgfLsI
+        WukkAr8T1yJlBffQ0zBSEKIFkprs4w==
+X-Google-Smtp-Source: ABdhPJwoARnT512h9iJ5Js1SDMsBW69jc17uvbUNL4uUBpC574j9b0Ymjg3ke21CekdWBTrNzGIxEw==
+X-Received: by 2002:aca:4006:: with SMTP id n6mr3949480oia.22.1607565947425;
+        Wed, 09 Dec 2020 18:05:47 -0800 (PST)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id o82sm693247oih.5.2020.12.09.18.05.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Dec 2020 17:46:04 -0800 (PST)
-Date:   Wed, 9 Dec 2020 17:46:02 -0800
-From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To:     Lubomir Rintel <lkundrak@v3.sk>
-Cc:     Pavel Machek <pavel@ucw.cz>, linux-input@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 2/2] Input: add driver for power button on Dell Wyse
- 3020
-Message-ID: <X9F92jMvEGi4ULU5@google.com>
-References: <20201201083533.1724287-1-lkundrak@v3.sk>
- <20201201083533.1724287-3-lkundrak@v3.sk>
+        Wed, 09 Dec 2020 18:05:46 -0800 (PST)
+Received: (nullmailer pid 1484610 invoked by uid 1000);
+        Thu, 10 Dec 2020 02:05:45 -0000
+Date:   Wed, 9 Dec 2020 20:05:45 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc:     Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: add simple-audio-mux binding
+Message-ID: <20201210020545.GA1480364@robh.at.kernel.org>
+References: <20201205001508.346439-1-alexandre.belloni@bootlin.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201201083533.1724287-3-lkundrak@v3.sk>
+In-Reply-To: <20201205001508.346439-1-alexandre.belloni@bootlin.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 01, 2020 at 09:35:33AM +0100, Lubomir Rintel wrote:
-> This adds support for the power button attached to the Embedded Controller
-> on a Dell Wyse 3020 "Ariel" board.
+On Sat, Dec 05, 2020 at 01:15:07AM +0100, Alexandre Belloni wrote:
+> Add devicetree documentation for simple audio multiplexers
 > 
-> The Embedded Controller's SPI interface is actually capable sending and
-> receiving the PS/2 keyboard and mouse protocol data, which looks like
-> a good fit for a serio driver. Howerver, I don't know of any machines where
-> this is actually used.
+> Signed-off-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
+> ---
+> Cc: Rob Herring <robh+dt@kernel.org>
 > 
-> My board only has a single power button and no way to connect an actual
-> keyboard or a mouse. Using the atkbd driver with serio would be an overkill
-> and would be inconvenient for the userspace. Therefore this driver
-> registers an input device that is only capable of reporting the power
-> button presses and releases.
+>  .../bindings/sound/simple-audio-mux.yaml      | 41 +++++++++++++++++++
+>  1 file changed, 41 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/sound/simple-audio-mux.yaml
 > 
-> Signed-off-by: Lubomir Rintel <lkundrak@v3.sk>
-> 
+> diff --git a/Documentation/devicetree/bindings/sound/simple-audio-mux.yaml b/Documentation/devicetree/bindings/sound/simple-audio-mux.yaml
+> new file mode 100644
+> index 000000000000..5986d1fcbb54
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/simple-audio-mux.yaml
+> @@ -0,0 +1,41 @@
+> +# SPDX-License-Identifier: (GPL-2.0+ OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/simple-audio-mux.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Simple Audio Multiplexer
+> +
+> +maintainers:
+> +  - Alexandre Belloni <aleandre.belloni@bootlin.com>
 
-Applied, thank you.
+typo
 
--- 
-Dmitry
+> +
+> +description: |
+> +  Simple audio multiplexers are driven using gpios, allowing to select which of
+> +  their input line is connected to the output line.
+
+What's wrong with the generic mux binding and driver(s)?
+
+> +
+> +properties:
+> +  compatible:
+> +    const: simple-audio-mux
+> +
+> +  mux-gpios:
+> +    description: |
+> +      GPIOs used to select the input line.
+> +
+> +  sound-name-prefix:
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +    description:
+> +      Used as prefix for sink/source names of the component. Must be a
+> +      unique string among multiple instances of the same component.
+> +
+> +required:
+> +  - compatible
+> +  - mux-gpios
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    mux {
+> +        compatible = "simple-audio-mux";
+> +        mux-gpios = <&gpio 3 0>;
+> +    };
+> -- 
+> 2.28.0
+> 
