@@ -2,69 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D14A2D9047
-	for <lists+devicetree@lfdr.de>; Sun, 13 Dec 2020 20:52:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CC4122D90F6
+	for <lists+devicetree@lfdr.de>; Sun, 13 Dec 2020 23:48:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727749AbgLMTwM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 13 Dec 2020 14:52:12 -0500
-Received: from relay12.mail.gandi.net ([217.70.178.232]:59121 "EHLO
-        relay12.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725308AbgLMTwM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Dec 2020 14:52:12 -0500
-Received: from localhost (lfbn-lyo-1-997-19.w86-194.abo.wanadoo.fr [86.194.74.19])
-        (Authenticated sender: alexandre.belloni@bootlin.com)
-        by relay12.mail.gandi.net (Postfix) with ESMTPSA id 23558200002;
-        Sun, 13 Dec 2020 19:51:30 +0000 (UTC)
-Date:   Sun, 13 Dec 2020 20:51:29 +0100
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/6] iio:pressure:ms5637: introduce hardware
- differentiation
-Message-ID: <20201213195129.GN1781038@piout.net>
-References: <20201209234857.1521453-1-alexandre.belloni@bootlin.com>
- <20201209234857.1521453-3-alexandre.belloni@bootlin.com>
- <20201213171237.4dfe58f5@archlinux>
+        id S1730432AbgLMWsd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 13 Dec 2020 17:48:33 -0500
+Received: from server.kenspensetc.com ([185.148.128.76]:57828 "EHLO
+        server.kenspensetc.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729934AbgLMWsd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Dec 2020 17:48:33 -0500
+Received: from localhost ([127.0.0.1]:57172 helo=server.kenspensetc.com)
+        by server.kenspensetc.com with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        (Exim 4.93)
+        (envelope-from <sender@ridecals.com>)
+        id 1knKTW-0006vv-DN; Thu, 10 Dec 2020 06:51:10 -0500
+Received: from [70.32.0.46] ([70.32.0.46]) by ridecals.com (Horde Framework)
+ with HTTPS; Thu, 10 Dec 2020 06:51:10 -0500
+Date:   Thu, 10 Dec 2020 06:51:10 -0500
+Message-ID: <20201210065110.Horde.XzwQqDMu2rCSbdeICjQsQrO@ridecals.com>
+From:   Russell Branting <sender@ridecals.com>
+Subject: Vital
+Reply-to: Goodagent01@gmail.com
+User-Agent: Horde Application Framework 5
+Content-Type: text/plain; charset=utf-8; format=flowed; DelSp=Yes
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201213171237.4dfe58f5@archlinux>
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - server.kenspensetc.com
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - ridecals.com
+X-Get-Message-Sender-Via: server.kenspensetc.com: authenticated_id: sender9@ridecals.com
+X-Authenticated-Sender: server.kenspensetc.com: sender9@ridecals.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/12/2020 17:12:37+0000, Jonathan Cameron wrote:
-> >  static const int ms5637_samp_freq[6] = { 960, 480, 240, 120, 60, 30 };
-> >  /* String copy of the above const for readability purpose */
-> >  static const char ms5637_show_samp_freq[] = "960 480 240 120 60 30";
-> > @@ -128,6 +133,7 @@ static const struct iio_info ms5637_info = {
-> >  
-> >  static int ms5637_probe(struct i2c_client *client)
-> >  {
-> > +	const struct ms_tp_data *data = device_get_match_data(&client->dev);
-> 
-> As a follow up to the earlier fun with greybus etc, have to jump through
-> some hoops to have a fallback here if we have a firmware type that can't
-> do get_match_data driver/base/sw_node.c is the one greybus is using.
-> 
-> We have drivers that don't do this because frankly I didn't know about it
-> until a month or two ago.  However, I'm not keen to introduce any
-> more.
-> 
 
-Couldn't greybus be fixed in that regard? Using the i2c_device_id has
-been deprecated for a while now.
-
-what we could do is only provide ms5803 support when there is an
-of_node. So this doesn't break the ABI and doesn't break greybus and at
-the same time doesn't unnecessarily add complexity to the probe for
-something that will probably never be used.
+I am instructed to inform you of your appointment as the next of kin  
+to your deceased relative estate. Kindly indicate your acceptance by  
+reconfirming your Full Name, Address & Phone Number for immediate  
+processing of the funds release to your control OR the deceased  
+deposited funds will be declared unclaimed.
 
 
--- 
-Alexandre Belloni, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
