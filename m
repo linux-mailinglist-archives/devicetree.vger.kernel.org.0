@@ -2,116 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A25F92D626D
-	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 17:50:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6DA4A2D6271
+	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 17:50:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391073AbgLJOhQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Dec 2020 09:37:16 -0500
-Received: from new1-smtp.messagingengine.com ([66.111.4.221]:49203 "EHLO
-        new1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S2391065AbgLJOhM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 10 Dec 2020 09:37:12 -0500
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 5735058021E;
-        Thu, 10 Dec 2020 09:36:04 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute1.internal (MEProxy); Thu, 10 Dec 2020 09:36:04 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm1; bh=3z9Szm3Ad/8VO+yw0Ly9E6T/RAB
-        14J7iX5gNjptn2qk=; b=q6sV9R8Zh4/AyXAVZEygTD0pmX4r8Z8xjA2j3x7ZtRQ
-        mnBIQqLGlTc3d16Xv9Obh1rVukG2dIx4+JFewWFD2RimyXk4gG0HtV3mr35znFVI
-        yp+MzKg6WfVcjmWZZuYckUJE4vGlqAvzw5nE9rAWwpy+gCL4Jx+0HaT98mE1WEoW
-        LDnxnqbMjC8fgAAWvb+JeuX8BGSQxDC6vGj9oqCDkOKqTyoRdgZajfceCWpbIiGT
-        XagGk4s60njGqfFZ6+5XLlpnatL248M72R6UYVZ+G+WsRRqqvIlKlvEkWJCU+6YG
-        nCbnNCe3z6rmdXs8Odq4ewm0NMNjCx+Uwl3DP8rL1wQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=3z9Szm
-        3Ad/8VO+yw0Ly9E6T/RAB14J7iX5gNjptn2qk=; b=eYTu3vwBOg6QaezX6316k9
-        ayxVgrzgfMVQmHeF6XVwP5WbL1z68V4BOVw5pLpyqkxDqAqgOL6ilMDC+XiTk5r6
-        bTGCSKZcjapbkz+eQf9/zoy9SYMYBZZsMDI5/o03aQSFQFaDVhJdpVXNrODxVEZm
-        Ktzp52DcjdNBhKUdzQzbP//eRbCXzA5X+lWhwebiT8hAlN/ZflPrfmK0U8VBX0Ow
-        XQMinv7SGaDq7nqBgpteD+rYe6zl49Bvx6TA0RkDI6KUWAvAcIL9xgqfFmXfuwM5
-        gEEVqZYnpDomROaUYaRnbFc03+ZdGWvpu/KO7MmdWIAELdgEFYENWDZi35N0aChg
-        ==
-X-ME-Sender: <xms:UjLSX4QCGt1OtsepXCGElKY2JPiQ4RBQySfKo9pMbyZLA5bniPuEAw>
-    <xme:UjLSX1sre7TuxOHq9016IxJObnhkmZ3-jvv2oWwVOrjJ92gkhnNrBH3JJbVBJPcx1
-    9aUNL1JAdwEmjBk4P0>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrudektddgieeiucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
-    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
-    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
-    gedunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
-    frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:UjLSXystbgQmWFwQmYXVlExQUikt0O7Ydhpb7T_i7dAaerjZaNMKbQ>
-    <xmx:UjLSXzzKzI5ekt7gvhf8F0Zhm-aLrkN-UGkMH0dHcHLcu01NJ-OJtw>
-    <xmx:UjLSXwgNM1FyGxw4bs99I0pUkGarD3sYFSnchcLYgV4TDbCDHUPRYA>
-    <xmx:VDLSXwVxIWowyLt0UVslKNSD7z9Mw2OEWlT6-wAxSWQ52XxfjlRZ_Q>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 4747A240064;
-        Thu, 10 Dec 2020 09:36:02 -0500 (EST)
-Date:   Thu, 10 Dec 2020 15:36:01 +0100
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Daniel Vetter <daniel.vetter@intel.com>,
-        David Airlie <airlied@linux.ie>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Mark Rutland <mark.rutland@arm.com>,
+        id S2391083AbgLJOh1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Dec 2020 09:37:27 -0500
+Received: from mail-wm1-f66.google.com ([209.85.128.66]:36481 "EHLO
+        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2391078AbgLJOhV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 09:37:21 -0500
+Received: by mail-wm1-f66.google.com with SMTP id y23so5564925wmi.1
+        for <devicetree@vger.kernel.org>; Thu, 10 Dec 2020 06:37:05 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=BbKxhSPWpvRU4kjHx4fv+2Bq6TUyiE8kSFJYl9laL/A=;
+        b=EN73Gz4Bp/XBJWkt7z0YAb/mG6HjwmCSjqXj1sLfTG5y3Kpf+/iid9jr8q7rXYr1VC
+         p9LlncmyAtu90ZJjuqpPzpUDV23Kmt31hbk04Lom5ovwInk9AwCOA0EBCVoKFjWqQr7k
+         24Og5e1RdZ28XFlBVgZc/4d+1AZvkhhPNbOoKX0Xgo8t7GZjghTVRAPCt1j2roLB6AdJ
+         5I9BQXyTv2a3LRZhcsypdi9qfsFYWFGRM+mvvIAJSyFeIDI78nZ7oDr8bDiIVVLy6c7r
+         /udjVg/nHWnYEtaQxSLpeVUJAkXaYXCuqqVsRmh18CCf8xVGYEaR4vXDfqNZ/3bAJDD1
+         LAoA==
+X-Gm-Message-State: AOAM533O+hhXcIdIFBhWvk19DdrvhX6CXI1gMhWMRGZUBzirZDg4ELiU
+        q9Tp2bQt4jNKEleXoOL9ACk=
+X-Google-Smtp-Source: ABdhPJyTdTx1oTKESZIO3+v1IjrliTudXIjWNayacbx0oCO9MALjefORSq4YwAwLuaczXxuTLxPIgw==
+X-Received: by 2002:a05:600c:cc:: with SMTP id u12mr8763449wmm.42.1607610999527;
+        Thu, 10 Dec 2020 06:36:39 -0800 (PST)
+Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
+        by smtp.googlemail.com with ESMTPSA id b14sm9811962wrx.77.2020.12.10.06.36.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 10 Dec 2020 06:36:38 -0800 (PST)
+Date:   Thu, 10 Dec 2020 15:36:37 +0100
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Teresa Remmet <t.remmet@phytec.de>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Eric Anholt <eric@anholt.net>
-Cc:     devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        Tim Gover <tim.gover@raspberrypi.com>,
-        Dave Stevenson <dave.stevenson@raspberrypi.com>,
-        dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org,
-        Phil Elwell <phil@raspberrypi.com>
-Subject: Re: [PATCH v2 5/7] drm/vc4: kms: Remove unassigned_channels from the
- HVS state
-Message-ID: <20201210143601.5eq5tlcprcgr5iup@gilmour>
-References: <20201204151138.1739736-1-maxime@cerno.tech>
- <20201204151138.1739736-6-maxime@cerno.tech>
+        Shawn Guo <shawnguo@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>
+Subject: Re: [PATCH v2 3/4] bindings: arm: fsl: Add PHYTEC i.MX8MP devicetree
+ bindings
+Message-ID: <20201210143637.GB46268@kozik-lap>
+References: <1607445491-208271-1-git-send-email-t.remmet@phytec.de>
+ <1607445491-208271-4-git-send-email-t.remmet@phytec.de>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="cwwd5mdmnb2nyhs5"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20201204151138.1739736-6-maxime@cerno.tech>
+In-Reply-To: <1607445491-208271-4-git-send-email-t.remmet@phytec.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Dec 08, 2020 at 05:38:10PM +0100, Teresa Remmet wrote:
+> Add devicetree bindings for i.MX8MP based phyCORE-i.MX8MP
+> and phyBOARD-Pollux RDK.
+> 
+> Signed-off-by: Teresa Remmet <t.remmet@phytec.de>
+> ---
+>  Documentation/devicetree/bindings/arm/fsl.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
 
---cwwd5mdmnb2nyhs5
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
 
-On Fri, Dec 04, 2020 at 04:11:36PM +0100, Maxime Ripard wrote:
-> @@ -893,12 +890,17 @@ static int vc4_pv_muxing_atomic_check(struct drm_device *dev,
->  	struct vc4_hvs_state *hvs_new_state;
->  	struct drm_crtc_state *old_crtc_state, *new_crtc_state;
->  	struct drm_crtc *crtc;
-> +	unsigned int unassigned_channels;
-
-This should be initialized to 0, I'll fix it up while applying if
-there's no other comment.
-
-Maxime
-
---cwwd5mdmnb2nyhs5
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX9IyUAAKCRDj7w1vZxhR
-xcBUAP98BtLSYdyG9czJbCTqk6TP3TxpOjoevKYfF6IBduwicgD+NeUJTj4zcQjZ
-gHZqnkBAbtk0psU3k2/31SFSg9HzMwI=
-=zdAR
------END PGP SIGNATURE-----
-
---cwwd5mdmnb2nyhs5--
+Best regards,
+Krzysztof
