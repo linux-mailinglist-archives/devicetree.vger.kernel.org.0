@@ -2,103 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 62DE52D606B
-	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 16:51:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2939F2D6074
+	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 16:52:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2392020AbgLJPtT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Dec 2020 10:49:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44642 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2392019AbgLJPtF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 10:49:05 -0500
-Received: from mail-qk1-x741.google.com (mail-qk1-x741.google.com [IPv6:2607:f8b0:4864:20::741])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AC1FC061793
-        for <devicetree@vger.kernel.org>; Thu, 10 Dec 2020 07:48:25 -0800 (PST)
-Received: by mail-qk1-x741.google.com with SMTP id 143so5151981qke.10
-        for <devicetree@vger.kernel.org>; Thu, 10 Dec 2020 07:48:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=0x0f.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=jg21SZZlFp2nXg015Qdy7Ey+4o9sWgsPDLbyCKehNlo=;
-        b=dy5DU5wCTwtfk7ljGOi1L73ppuP+Z+I6LgYKef020Y7kmWfzLih5jpQXgRkzcM0eqY
-         AcUP1c3cS2dG0/ibj39VhwpX3gtu8+jhhJMSKjm3C8NqCP+cW0QlR7Oi/KKcRFSqZz1I
-         Lb5iRPAYHYA243SA+1PdA/xrMKPBCb3rr28pI=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=jg21SZZlFp2nXg015Qdy7Ey+4o9sWgsPDLbyCKehNlo=;
-        b=T31NYsdGoklHHzf9VUmbN4Sc/Yvb6LYfctW/2LulV90b7GG8r2pGC7jU6vb7k3b+Ke
-         ZCLiE/2/NGBgsKu6pquRwk8Q15dkRowXNJmB8nOOUadXXVsQAEXh75qfgqoGxyJFCscY
-         mm4Iu+W0SVe2OI1Kn7PHGOTU6TJwn4bur2Lt/rsuImoV4zLcV8PdUzRFsJ9EnFPS1t/P
-         Fx0kWVHmxyx7MFOKqzrff650RS6muC8iAjSkML+KelJcq3fHkQTAKjzhmlaExQ13Zaqp
-         V9hOrGL71GND2mBIA6FlSEEetGVaRIxWGjNzeZpbzTjlebYXedVw2DPZq/G9iESTnJUk
-         Nbaw==
-X-Gm-Message-State: AOAM533k3mXVA1CT8Ddzl6Xaw/UeTXIsK+xZzsuAx3oolmfKlUc+b5aK
-        qPefDUPuCOhm9Iegqcgci8xg2YvpCSupfds+41hF0sMeMkc=
-X-Google-Smtp-Source: ABdhPJyGA4IsN0DyvYeav6TuGz8fI63Z8eB2r82GLqP6jFmdsiKRYyqDFTZHzh4jhRC0raXKyTa1O58NpDKhOQ1MMqM=
-X-Received: by 2002:a37:2742:: with SMTP id n63mr5466883qkn.390.1607615304710;
- Thu, 10 Dec 2020 07:48:24 -0800 (PST)
+        id S2403790AbgLJPvN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Dec 2020 10:51:13 -0500
+Received: from mail.kernel.org ([198.145.29.99]:55090 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2403801AbgLJPvJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 10 Dec 2020 10:51:09 -0500
+X-Gm-Message-State: AOAM531p2FN++cP3ZtHJfsfdjZh2WEML91I7W6Jj+pojvoyWTSPxMgls
+        wEWPKysRcyfo1GnxY+XpFpgwe0BF8xZhMk/NTA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1607615429;
+        bh=JswAsdHWyxMnvC+dTai6TVtWwh9Dj+cpwNchJF8bnPo=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=u4vlNxk5gZO0CNj3V9ovmXkU8Ld269fUM1zfcIXmVogxFNzaTn9yG8x2ztsLM4Ur/
+         nX/gR+bkNweRpLwlcut21M19lVWWwrfkh1vGwtO2bKy/3JiUpCjly809+gbZObR/i6
+         bdvDXyP0hgjzNMFuoM00bgq01lVMolh2pfLtrFRer6SHq7pe+7GGnXwp5n+UgjfHT7
+         RNgu4aVuPlOt+dY4LDm9YpFmOO00MANM3AtkfXeX8FuQXiTBsWsjjBp0JylYmQ5Xz/
+         iZ79sr3Lm6Cjo2aNOk9vPt9jtNfUgpFyqotyViLCrK+WWr2x+sLy4vwOdWido36iUy
+         sQPjnfa0mc9jQ==
+X-Google-Smtp-Source: ABdhPJwtcxVDc6Q2bu5uvq6r1O0IW7GMG0SyjPcCWYbsaNRsfJcxcmQwSG/LXBiPJ0zdfQUzcOkO6cQLrj6rQ7eo7AI=
+X-Received: by 2002:a05:6402:845:: with SMTP id b5mr7518636edz.38.1607615427120;
+ Thu, 10 Dec 2020 07:50:27 -0800 (PST)
 MIME-Version: 1.0
-References: <20201129110803.2461700-1-daniel@0x0f.com> <20201129110803.2461700-4-daniel@0x0f.com>
- <CAK8P3a2DGLfkOEm3JeXN-jWvDfxberaXXqOtu4wKdtYzqDWiNQ@mail.gmail.com>
- <CAFr9PX=fhKiZF80iKaGeBWOONm3VpwtzgbB+yBHk8MHdTotaHg@mail.gmail.com> <CAK8P3a0zCa0Dq8uUDoSbu64sGLeNWrSk=6i4pKzgwerRseXfnA@mail.gmail.com>
-In-Reply-To: <CAK8P3a0zCa0Dq8uUDoSbu64sGLeNWrSk=6i4pKzgwerRseXfnA@mail.gmail.com>
-From:   Daniel Palmer <daniel@0x0f.com>
-Date:   Fri, 11 Dec 2020 00:49:04 +0900
-Message-ID: <CAFr9PXnGF1PV8vnCpdCuSB-z9ns5BPDjhJvPg7b+rUC0GrjhqQ@mail.gmail.com>
-Subject: Re: [PATCH v4 3/5] gpio: msc313: MStar MSC313 GPIO driver
-To:     Arnd Bergmann <arnd@kernel.org>
-Cc:     SoC Team <soc@kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+References: <1607591262-21736-1-git-send-email-yongqiang.niu@mediatek.com> <1607591262-21736-6-git-send-email-yongqiang.niu@mediatek.com>
+In-Reply-To: <1607591262-21736-6-git-send-email-yongqiang.niu@mediatek.com>
+From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Date:   Thu, 10 Dec 2020 23:50:16 +0800
+X-Gmail-Original-Message-ID: <CAAOTY_-aYFz1Xg6r2ur+BF_k_35F3qNLLb16_2c0MaMsYre-+w@mail.gmail.com>
+Message-ID: <CAAOTY_-aYFz1Xg6r2ur+BF_k_35F3qNLLb16_2c0MaMsYre-+w@mail.gmail.com>
+Subject: Re: [PATCH v8, 5/6] drm/mediatek: add RDMA fifo size error handle
+To:     Yongqiang Niu <yongqiang.niu@mediatek.com>
+Cc:     CK Hu <ck.hu@mediatek.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>,
         DTML <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh@kernel.org>, Willy Tarreau <w@1wt.eu>
+        David Airlie <airlied@linux.ie>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        DRI Development <dri-devel@lists.freedesktop.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Arnd,
+Hi, Yongqiang:
 
-On Thu, 10 Dec 2020 at 23:28, Arnd Bergmann <arnd@kernel.org> wrote:
-> > I did think about this and I did this with the clk mux driver I
-> > haven't pushed yet. In that case there is a random lump of registers
-> > with some muxes mixed into it so I decided to make the lump a syscon
-> > and then have a node for each clk mux in the lump and some properties
-> > for the muxes within. The driver is certainly less complex but the
-> > device tree is pretty unmanageable as there are probably 30 or more
-> > muxes.
+Yongqiang Niu <yongqiang.niu@mediatek.com> =E6=96=BC 2020=E5=B9=B412=E6=9C=
+=8810=E6=97=A5 =E9=80=B1=E5=9B=9B =E4=B8=8B=E5=8D=885:08=E5=AF=AB=E9=81=93=
+=EF=BC=9A
 >
-> Right, for clk drivers, the trade-off is often different, it's not
-> unusual that they are a bit of a mess and require a separate driver for
-> each cheap.
-
-I will try to clean up the additions for the ssd202 (the smp enabled
-chip) this weekend and send a series for that.
-If it still seems wrong after adding that I will can that series and
-refactor this before lumping more on top of it.
-
-> > > It would be helpful here to replace all the readb_relaxed/writeb_relaxed()
-> > > with normal readb()/writeb(). Don't use _relaxed() unless there is a strong
-> > > reason why you have to do it, and if you do, explain it in a comment what
-> > > the reason is.
-> >
-> > The reason is that readb()/writeb() will invoke the heavy memory
-> > barrier even though it's not needed for peripheral registers.
-> > I guess it doesn't actually make all that much difference in reality.
+> This patch add RDMA fifo size error handle
+> rdma fifo size will not always bigger than the calculated threshold
+> if that case happened, we need set fifo size as the threshold
 >
-> Ah, I forgot you had that heavy barrier. It depends a bit on what you
-> use the GPIOs for then. For most uses I think the overhead does not
-> matter, but if there is any bit-banged I/O it might make a difference.
+> Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
+> ---
+>  drivers/gpu/drm/mediatek/mtk_disp_rdma.c | 4 ++++
+>  1 file changed, 4 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/mediatek/mtk_disp_rdma.c b/drivers/gpu/drm/m=
+ediatek/mtk_disp_rdma.c
+> index 794acc5..0508392 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_disp_rdma.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_disp_rdma.c
+> @@ -151,6 +151,10 @@ static void mtk_rdma_config(struct mtk_ddp_comp *com=
+p, unsigned int width,
+>          * account for blanking, and with a pixel depth of 4 bytes:
+>          */
+>         threshold =3D width * height * vrefresh * 4 * 7 / 1000000;
+> +
+> +       if (threshold > rdma_fifo_size)
+> +               threshold =3D rdma_fifo_size;
 
-Bit-banged buses are likely to happen I think as there is a lot of
-gpio compared to hardware peripherals.
-Anyhow, I'll add a comment for the readb_relaxed()/writeb_relaxed() usage.
+If the formula is not correct, you should fix the formula not work around.
 
-Cheers,
+Regards,
+Chun-Kuang.
 
-Daniel
+> +
+>         reg =3D RDMA_FIFO_UNDERFLOW_EN |
+>               RDMA_FIFO_PSEUDO_SIZE(rdma_fifo_size) |
+>               RDMA_OUTPUT_VALID_FIFO_THRESHOLD(threshold);
+> --
+> 1.8.1.1.dirty
+> _______________________________________________
+> Linux-mediatek mailing list
+> Linux-mediatek@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-mediatek
