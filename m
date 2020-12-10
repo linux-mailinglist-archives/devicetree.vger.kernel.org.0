@@ -2,145 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0751F2D5121
-	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 04:08:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 311232D5130
+	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 04:17:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727901AbgLJDIB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Dec 2020 22:08:01 -0500
-Received: from mail.kernel.org ([198.145.29.99]:50904 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727612AbgLJDH4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 9 Dec 2020 22:07:56 -0500
-X-Gm-Message-State: AOAM530KYdUeetAxKWP0YDQgCkxq6ooNEHg+GN3mZuzBgqoA3amm/Ilk
-        a9r7SHlWHWmPOASNkX/m1uWchtcd6Zxhx9CnWA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1607569632;
-        bh=Ij9Zk/sFw/WVF3WIL7Awpv4vVlyqAocQrIlQUfk4EAM=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=mRGdRf7AkW5/S3/2Xi22QAXd+Bjl7ZSR49AkoK96PrfRW5t8qzjkJFb7fY9xfKRCx
-         Aqu9uXWF4D2wQ1m+7eJgRtYZKe5k5m6iUEZr/1Eo20oURDQE7M5cbjkFkXTzb9FKpB
-         kA4UPru0N88k3tc3UnDFqw/OqaxEYPy14C90ZB3DiI3isg71Y+Bc7LInUidzUc7jeQ
-         jFEc+P6d8sAf6CxoSevVhfl6iJjH+qxYuR2B/UZBduEYBTAMsFpclIVisVXY3eQb3X
-         K4V3wcjr4zI+SX4XMd9NkPehFR27gL5zmA2KcgKjKG/tk6f+tyzu28xwwfzNQ0cnvR
-         Q0pSs0Hf0WLRw==
-X-Google-Smtp-Source: ABdhPJwEtsuU+F78ug25YRx5NKd5Abr/WII+jJ4HNESUFqg/3e6qw3rnVpO4bkSIn2pbjdbajOHhLUzB3jTHEwV50Sw=
-X-Received: by 2002:a05:6402:ca2:: with SMTP id cn2mr4762536edb.137.1607569630778;
- Wed, 09 Dec 2020 19:07:10 -0800 (PST)
+        id S1728146AbgLJDOe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Dec 2020 22:14:34 -0500
+Received: from szxga06-in.huawei.com ([45.249.212.32]:8974 "EHLO
+        szxga06-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725901AbgLJDOe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Dec 2020 22:14:34 -0500
+Received: from DGGEMS407-HUB.china.huawei.com (unknown [172.30.72.59])
+        by szxga06-in.huawei.com (SkyGuard) with ESMTP id 4CrzWg1lz1zhq4w;
+        Thu, 10 Dec 2020 11:13:19 +0800 (CST)
+Received: from thunder-town.china.huawei.com (10.174.177.9) by
+ DGGEMS407-HUB.china.huawei.com (10.3.19.207) with Microsoft SMTP Server id
+ 14.3.487.0; Thu, 10 Dec 2020 11:13:34 +0800
+From:   Zhen Lei <thunder.leizhen@huawei.com>
+To:     Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-leds <linux-leds@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+CC:     Zhen Lei <thunder.leizhen@huawei.com>,
+        Darshak Patel <darshak.patel@einfochips.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        "Dong Aisheng" <aisheng.dong@nxp.com>,
+        Guodong Xu <guodong.xu@linaro.org>,
+        Wei Xu <xuwei5@hisilicon.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        "Lad Prabhakar" <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Marian-Cristian Rotariu 
+        <marian-cristian.rotariu.rb@bp.renesas.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Heiko Stuebner <heiko@sntech.de>
+Subject: [PATCH 1/1] dt-bindings: leds: add onboard LED triggers of 96Boards
+Date:   Thu, 10 Dec 2020 11:12:03 +0800
+Message-ID: <20201210031203.1901-1-thunder.leizhen@huawei.com>
+X-Mailer: git-send-email 2.26.0.windows.1
 MIME-Version: 1.0
-References: <!&!AAAAAAAAAAAuAAAAAAAAAM7AkQxKEJRHh2BgMNSTrQkBAExvbAW64DNBoXXP8CRioZMAAAAzfOEAABAAAAAJUqiRO33GQqGIHffCVyG/AQAAAAA=@ministro.hu>
-In-Reply-To: <!&!AAAAAAAAAAAuAAAAAAAAAM7AkQxKEJRHh2BgMNSTrQkBAExvbAW64DNBoXXP8CRioZMAAAAzfOEAABAAAAAJUqiRO33GQqGIHffCVyG/AQAAAAA=@ministro.hu>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Wed, 9 Dec 2020 21:06:59 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJ5gXcVnqRxFWt0UadGTFA=QjquQhs3UtyVC=9Jb2-xdg@mail.gmail.com>
-Message-ID: <CAL_JsqJ5gXcVnqRxFWt0UadGTFA=QjquQhs3UtyVC=9Jb2-xdg@mail.gmail.com>
-Subject: Re: [PATCH] Staging: silabs si4455 serial driver
-To:     Info <info@ministro.hu>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "open list:STAGING SUBSYSTEM" <devel@driverdev.osuosl.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [10.174.177.9]
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 9, 2020 at 5:17 AM Info <info@ministro.hu> wrote:
->
-> This is a serial port driver for
-> Silicon Labs Si4455 Sub-GHz transciver.
->
-> Signed-off-by: J=C3=B3zsef Horv=C3=A1th <info@ministro.hu>
-> ---
->  .../bindings/staging/serial/silabs,si4455.txt |   39 +
+For all 96Boards, the following standard is used for onboard LEDs.
 
-Looks straightforward enough to not be in staging. Plus
-bindings/staging/serial is not a directory I want.
+green:user1  default-trigger: heartbeat
+green:user2  default-trigger: mmc0/disk-activity(onboard-storage)
+green:user3  default-trigger: mmc1 (SD-card)
+green:user4  default-trigger: none, panic-indicator
+yellow:wlan  default-trigger: phy0tx
+blue:bt      default-trigger: hci0-power
 
-DT bindings are in DT schema format now. See
-Documentation/devicetree/writing-schema.rst.
+Link to 96Boards CE Specification: https://linaro.co/ce-specification
 
->  drivers/staging/Kconfig                       |    2 +
->  drivers/staging/Makefile                      |    1 +
->  drivers/staging/si4455/Kconfig                |    8 +
->  drivers/staging/si4455/Makefile               |    2 +
->  drivers/staging/si4455/TODO                   |    3 +
->  drivers/staging/si4455/si4455.c               | 1465 +++++++++++++++++
->  drivers/staging/si4455/si4455_api.h           |   56 +
->  8 files changed, 1576 insertions(+)
->  create mode 100644
-> Documentation/devicetree/bindings/staging/serial/silabs,si4455.txt
->  create mode 100644 drivers/staging/si4455/Kconfig
->  create mode 100644 drivers/staging/si4455/Makefile
->  create mode 100644 drivers/staging/si4455/TODO
->  create mode 100644 drivers/staging/si4455/si4455.c
->  create mode 100644 drivers/staging/si4455/si4455_api.h
->
-> diff --git
-> a/Documentation/devicetree/bindings/staging/serial/silabs,si4455.txt
-> b/Documentation/devicetree/bindings/staging/serial/silabs,si4455.txt
-> new file mode 100644
-> index 000000000000..abd659b7b952
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/staging/serial/silabs,si4455.txt
-> @@ -0,0 +1,39 @@
-> +* Silicon Labs Si4455 EASY-TO-USE, LOW-CURRENT OOK/(G)FSK SUB-GHZ
-> TRANSCEIVER
-> +
-> +Required properties:
-> +- compatible: Should be one of the following:
-> +  - "silabs,si4455" for Silicon Labs Si4455-B1A or Si4455-C2A (driver
-> automatically detects the part info),
+Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
+Cc: Darshak Patel <darshak.patel@einfochips.com>
+Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc: Shawn Guo <shawnguo@kernel.org>
+Cc: Dong Aisheng <aisheng.dong@nxp.com>
+Cc: Guodong Xu <guodong.xu@linaro.org>
+Cc: Wei Xu <xuwei5@hisilicon.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>
+Cc: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc: Marian-Cristian Rotariu <marian-cristian.rotariu.rb@bp.renesas.com>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Heiko Stuebner <heiko@sntech.de>
+---
+ Documentation/devicetree/bindings/leds/common.yaml | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-Either do this or...
+diff --git a/Documentation/devicetree/bindings/leds/common.yaml b/Documentation/devicetree/bindings/leds/common.yaml
+index f1211e7045f12f3..525752d6c5c84fd 100644
+--- a/Documentation/devicetree/bindings/leds/common.yaml
++++ b/Documentation/devicetree/bindings/leds/common.yaml
+@@ -97,6 +97,16 @@ properties:
+         # LED alters the brightness for the specified duration with one software
+         # timer (requires "led-pattern" property)
+       - pattern
++        #For all 96Boards, Green, disk-activity(onboard-storage)
++      - mmc0
++        #For all 96Boards, Green, SD-card
++      - mmc1
++        #For all 96Boards, Green, panic-indicator
++      - none
++        #For all 96Boards, Yellow, WiFi activity LED
++      - phy0tx
++        #For all 96Boards, Blue, Bluetooth activity LED
++      - hci0-power
+ 
+   led-pattern:
+     description: |
+-- 
+1.8.3
 
-> +  - "silabs,si4455b1a" for Silicon Labs Si4455-B1A,
-> +  - "silabs,si4455c2a" for Silicon Labs Si4455-C2A,
 
-this. Not both. I assume there's an id register or something you can
-read to determine which one. That's fine, but consider if there's any
-power sequencing differences that you'd need to handle before you can
-read that register.
-
-> +- reg: SPI chip select number.
-> +- interrupts: Specifies the interrupt source of the parent interrupt
-> +  controller. The format of the interrupt specifier depends on the
-> +  parent interrupt controller.
-> +- clocks: phandle to the IC source clock (only external clock source
-> supported).
-> +- spi-max-frequency: maximum clock frequency on SPI port
-> +- shdn-gpios: gpio pin for SDN
-
-shutdown-gpios is the semi-standard name.
-
-> +
-> +Example:
-> +
-> +/ {
-> +       clocks {
-> +                si4455_1_2_osc: si4455_1_2_osc {
-> +                        compatible =3D "fixed-clock";
-> +                        #clock-cells =3D <0>;
-> +                        clock-frequency  =3D <30000000>;
-> +                };
-> +       };
-
-Don't need to show this for the example.
-
-> +};
-> +
-> +&spi0 {
-> +       si4455: si4455@0 {
-> +               compatible =3D "silabs,si4455";
-> +               reg =3D <0>;
-> +               clocks =3D <&si4455_1_2_osc>;
-> +               interrupt-parent =3D <&gpio>;
-> +               interrupts =3D <7 IRQ_TYPE_LEVEL_LOW>;
-> +                shdn-gpios =3D <&gpio 26 1>;
-> +                status =3D "okay";
-
-Don't show status in examples.
-
-> +                spi-max-frequency =3D <3000000>;
-> +       };
-> +};
