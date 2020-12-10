@@ -2,150 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A1D5F2D543E
-	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 07:58:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A26542D544A
+	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 08:02:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1733277AbgLJG5z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Dec 2020 01:57:55 -0500
-Received: from szxga04-in.huawei.com ([45.249.212.190]:9146 "EHLO
-        szxga04-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727852AbgLJG5z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 01:57:55 -0500
-Received: from DGGEMS409-HUB.china.huawei.com (unknown [172.30.72.59])
-        by szxga04-in.huawei.com (SkyGuard) with ESMTP id 4Cs4TM2l3Sz15Zy2;
-        Thu, 10 Dec 2020 14:56:39 +0800 (CST)
-Received: from [127.0.0.1] (10.174.177.9) by DGGEMS409-HUB.china.huawei.com
- (10.3.19.209) with Microsoft SMTP Server id 14.3.487.0; Thu, 10 Dec 2020
- 14:57:10 +0800
-Subject: Re: [PATCH] dt-bindings: leds: Document commonly used LED triggers
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        <jacek.anaszewski@gmail.com>, <pavel@ucw.cz>, <dmurphy@ti.com>,
-        <robh+dt@kernel.org>
-CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-leds@vger.kernel.org>
-References: <20201210061431.23144-1-manivannan.sadhasivam@linaro.org>
-From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
-Message-ID: <a1dde00a-3b39-51c5-b15a-d9cd56ba969c@huawei.com>
-Date:   Thu, 10 Dec 2020 14:57:09 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        id S1732133AbgLJHB4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Dec 2020 02:01:56 -0500
+Received: from mailgw01.mediatek.com ([210.61.82.183]:49437 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1730039AbgLJHB4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 02:01:56 -0500
+X-UUID: 68c25be54c974b088ad693ece1b5d97d-20201210
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=f8Y5QsexQYDNx3bkp5Erfl/DN3ya8EDVRWIVJ5qRIv4=;
+        b=LRCcpjYAqzTmr8K59/qoHsdHLeaivur0n1BG8MvMx2FTMAo9As+lRBHJwjkonaylNvlYyFa4QdejfoQaYhnOB/dq0eAkaRMXzUq7NWdd9Mu92PuWzgdIESQERmH8Y3Jjz0KJ1O7xAy6VC28er3T2UNzZWXNU4Z/rQyg11bVQt9I=;
+X-UUID: 68c25be54c974b088ad693ece1b5d97d-20201210
+Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw01.mediatek.com
+        (envelope-from <ck.hu@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1318675906; Thu, 10 Dec 2020 15:01:10 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ mtkmbs06n1.mediatek.inc (172.21.101.129) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Thu, 10 Dec 2020 15:01:09 +0800
+Received: from [172.21.77.4] (172.21.77.4) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 10 Dec 2020 15:01:09 +0800
+Message-ID: <1607583669.2269.2.camel@mtksdaap41>
+Subject: Re: [PATCH 3/3] arm64: dts: mt8183: Add display nodes for MT8183
+From:   CK Hu <ck.hu@mediatek.com>
+To:     Enric Balletbo i Serra <enric.balletbo@collabora.com>
+CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        <linux-mediatek@lists.infradead.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Collabora Kernel ML <kernel@collabora.com>,
+        <linux-arm-kernel@lists.infradead.org>
+Date:   Thu, 10 Dec 2020 15:01:09 +0800
+In-Reply-To: <20201127104930.1981497-4-enric.balletbo@collabora.com>
+References: <20201127104930.1981497-1-enric.balletbo@collabora.com>
+         <20201127104930.1981497-4-enric.balletbo@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-In-Reply-To: <20201210061431.23144-1-manivannan.sadhasivam@linaro.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.174.177.9]
-X-CFilter-Loop: Reflected
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 2020/12/10 14:14, Manivannan Sadhasivam wrote:
-> This commit documents the LED triggers used commonly in the SoCs. Not
-> all triggers are documented as some of them are very application specific.
-> Most of the triggers documented here are currently used in devicetrees
-> of many SoCs.
-> 
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> ---
->  .../devicetree/bindings/leds/common.yaml      | 72 ++++++++++++++-----
->  1 file changed, 54 insertions(+), 18 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/leds/common.yaml b/Documentation/devicetree/bindings/leds/common.yaml
-> index f1211e7045f1..eee4eb7a4535 100644
-> --- a/Documentation/devicetree/bindings/leds/common.yaml
-> +++ b/Documentation/devicetree/bindings/leds/common.yaml
-> @@ -79,24 +79,60 @@ properties:
->        the LED.
->      $ref: /schemas/types.yaml#definitions/string
->  
-> -    enum:
-> -        # LED will act as a back-light, controlled by the framebuffer system
-> -      - backlight
-> -        # LED will turn on (but for leds-gpio see "default-state" property in
-> -        # Documentation/devicetree/bindings/leds/leds-gpio.yaml)
-> -      - default-on
-> -        # LED "double" flashes at a load average based rate
-> -      - heartbeat
-> -        # LED indicates disk activity
-> -      - disk-activity
-> -        # LED indicates IDE disk activity (deprecated), in new implementations
-> -        # use "disk-activity"
-> -      - ide-disk
-> -        # LED flashes at a fixed, configurable rate
-> -      - timer
-> -        # LED alters the brightness for the specified duration with one software
-> -        # timer (requires "led-pattern" property)
-> -      - pattern
-> +    oneOf:
-> +      - items:
-> +          - enum:
-> +                # LED will act as a back-light, controlled by the framebuffer system
-> +              - backlight
-> +                # LED will turn on (but for leds-gpio see "default-state" property in
-> +                # Documentation/devicetree/bindings/leds/leds-gpio.yaml)
-> +              - default-on
-> +                # LED "double" flashes at a load average based rate
-> +              - heartbeat
-> +                # LED indicates disk activity
-> +              - disk-activity
-> +                # LED indicates IDE disk activity (deprecated), in new implementations
-> +                # use "disk-activity"
-> +              - ide-disk
-> +                # LED flashes at a fixed, configurable rate
-> +              - timer
-> +                # LED alters the brightness for the specified duration with one software
-> +                # timer (requires "led-pattern" property)
-> +              - pattern
-> +                # LED indicates camera flash state
-> +              - flash
-> +                # LED indicates camera torch state
-> +              - torch
-> +                # LED indicates audio mute state
-> +              - audio-mute
-> +                # LED indicates mic mute state
-> +              - audio-micmute
-> +                # LED indicates bluetooth power state
-> +              - bluetooth-power
-> +                # LED indicates USB gadget activity
-> +              - usb-gadget
-> +                # LED indicates USB host activity
-> +              - usb-host
-> +                # LED indicates MTD memory activity
-> +              - mtd
-> +                # LED indicates NAND memory activity (deprecated),
-> +                # in new implementations use "mtd"
-> +              - nand-disk
-> +                # LED indicates disk read activity
-> +              - disk-read
-> +                # LED indicates disk write activity
-> +              - disk-write
-> +                # No trigger assigned to the LED. This is the default mode
-> +                # if trigger is absent
-> +              - none
-> +                # LED indicates activity of all CPUs
-> +              - cpu
-The triggers phy0tx and hci0-power are missed.
-
-Since you've rewritten it, please consider sorting these property strings
-in ascending alphabetical order.
-
-> +      - items:
-> +            # LED indicates activity of [N]th CPU
-> +          - pattern: "^cpu[0-9][0-9]$"
-should be ^cpu[0-9]{1,2}$, otherwise, it always requires two digit.
-
-> +      - items:
-> +            # LED indicates [N]th MMC storage activity
-> +          - pattern: '^mmc[0-9][0-9]$'
-should be '^mmc[0-9]{1,2}$'
-
-Why CPU use "", and mmc use ''，It's better to keep them consistent.
-
->  
->    led-pattern:
->      description: |
-> 
+SGksIEVucmljOg0KDQpPbiBGcmksIDIwMjAtMTEtMjcgYXQgMTE6NDkgKzAxMDAsIEVucmljIEJh
+bGxldGJvIGkgU2VycmEgd3JvdGU6DQo+IEFkZCBkaXNwbGF5IHN1YnN5c3RlbSBkZXZpY2Ugbm9k
+ZXMgdG8gYWxsb3cgdmlkZW8gb3V0cHV0Lg0KPiANCj4gU2lnbmVkLW9mZi1ieTogRW5yaWMgQmFs
+bGV0Ym8gaSBTZXJyYSA8ZW5yaWMuYmFsbGV0Ym9AY29sbGFib3JhLmNvbT4NCj4gLS0tDQo+IA0K
+PiAgYXJjaC9hcm02NC9ib290L2R0cy9tZWRpYXRlay9tdDgxODMuZHRzaSB8IDExNCArKysrKysr
+KysrKysrKysrKysrKysrKw0KPiAgMSBmaWxlIGNoYW5nZWQsIDExNCBpbnNlcnRpb25zKCspDQo+
+IA0KPiBkaWZmIC0tZ2l0IGEvYXJjaC9hcm02NC9ib290L2R0cy9tZWRpYXRlay9tdDgxODMuZHRz
+aSBiL2FyY2gvYXJtNjQvYm9vdC9kdHMvbWVkaWF0ZWsvbXQ4MTgzLmR0c2kNCj4gaW5kZXggYmE5
+ZmYxOTJjZGEzLi4zNGQ4M2Y1MTdiMDcgMTAwNjQ0DQo+IC0tLSBhL2FyY2gvYXJtNjQvYm9vdC9k
+dHMvbWVkaWF0ZWsvbXQ4MTgzLmR0c2kNCj4gKysrIGIvYXJjaC9hcm02NC9ib290L2R0cy9tZWRp
+YXRlay9tdDgxODMuZHRzaQ0KPiBAQCAtNiw2ICs2LDcgQEANCj4gICAqLw0KPiAgDQo+ICAjaW5j
+bHVkZSA8ZHQtYmluZGluZ3MvY2xvY2svbXQ4MTgzLWNsay5oPg0KPiArI2luY2x1ZGUgPGR0LWJp
+bmRpbmdzL2djZS9tdDgxNzMtZ2NlLmg+DQoNClRoaXMgc2hvdWxkIGJlDQoNCiNpbmNsdWRlIDxk
+dC1iaW5kaW5ncy9nY2UvbXQ4MTgzLWdjZS5oPg0KDQpSZWdhcmRzLA0KQ0sNCg0KPiAgI2luY2x1
+ZGUgPGR0LWJpbmRpbmdzL2ludGVycnVwdC1jb250cm9sbGVyL2FybS1naWMuaD4NCj4gICNpbmNs
+dWRlIDxkdC1iaW5kaW5ncy9pbnRlcnJ1cHQtY29udHJvbGxlci9pcnEuaD4NCj4gICNpbmNsdWRl
+IDxkdC1iaW5kaW5ncy9tZW1vcnkvbXQ4MTgzLWxhcmItcG9ydC5oPg0KPiBAQCAtMzMsNiArMzQs
+MTEgQEAgYWxpYXNlcyB7DQo+ICAJCWkyYzkgPSAmaTJjOTsNCj4gIAkJaTJjMTAgPSAmaTJjMTA7
+DQo+ICAJCWkyYzExID0gJmkyYzExOw0KPiArCQlvdmwwID0gJm92bDA7DQo+ICsJCW92bC0ybDAg
+PSAmb3ZsXzJsMDsNCj4gKwkJb3ZsLTJsMSA9ICZvdmxfMmwxOw0KPiArCQlyZG1hMCA9ICZyZG1h
+MDsNCj4gKwkJcmRtYTEgPSAmcmRtYTE7DQo+ICAJfTsNCj4gIA0KPiAgCWNwdXMgew0KPiBAQCAt
+OTY0LDYgKzk3MCwxMDcgQEAgbW1zeXM6IHN5c2NvbkAxNDAwMDAwMCB7DQo+ICAJCQkjY2xvY2st
+Y2VsbHMgPSA8MT47DQo+ICAJCX07DQo+ICANCj4gKwkJb3ZsMDogb3ZsQDE0MDA4MDAwIHsNCj4g
+KwkJCWNvbXBhdGlibGUgPSAibWVkaWF0ZWssbXQ4MTgzLWRpc3Atb3ZsIjsNCj4gKwkJCXJlZyA9
+IDwwIDB4MTQwMDgwMDAgMCAweDEwMDA+Ow0KPiArCQkJaW50ZXJydXB0cyA9IDxHSUNfU1BJIDIy
+NSBJUlFfVFlQRV9MRVZFTF9MT1c+Ow0KPiArCQkJcG93ZXItZG9tYWlucyA9IDwmc3BtIE1UODE4
+M19QT1dFUl9ET01BSU5fRElTUD47DQo+ICsJCQljbG9ja3MgPSA8Jm1tc3lzIENMS19NTV9ESVNQ
+X09WTDA+Ow0KPiArCQkJaW9tbXVzID0gPCZpb21tdSBNNFVfUE9SVF9ESVNQX09WTDA+Ow0KPiAr
+CQkJbWVkaWF0ZWssbGFyYiA9IDwmbGFyYjA+Ow0KPiArCQkJbWVkaWF0ZWssZ2NlLWNsaWVudC1y
+ZWcgPSA8JmdjZSBTVUJTWVNfMTQwMFhYWFggMHg4MDAwIDB4MTAwMD47DQo+ICsJCX07DQo+ICsN
+Cj4gKwkJb3ZsXzJsMDogb3ZsQDE0MDA5MDAwIHsNCj4gKwkJCWNvbXBhdGlibGUgPSAibWVkaWF0
+ZWssbXQ4MTgzLWRpc3Atb3ZsLTJsIjsNCj4gKwkJCXJlZyA9IDwwIDB4MTQwMDkwMDAgMCAweDEw
+MDA+Ow0KPiArCQkJaW50ZXJydXB0cyA9IDxHSUNfU1BJIDIyNiBJUlFfVFlQRV9MRVZFTF9MT1c+
+Ow0KPiArCQkJcG93ZXItZG9tYWlucyA9IDwmc3BtIE1UODE4M19QT1dFUl9ET01BSU5fRElTUD47
+DQo+ICsJCQljbG9ja3MgPSA8Jm1tc3lzIENMS19NTV9ESVNQX09WTDBfMkw+Ow0KPiArCQkJaW9t
+bXVzID0gPCZpb21tdSBNNFVfUE9SVF9ESVNQXzJMX09WTDBfTEFSQjA+Ow0KPiArCQkJbWVkaWF0
+ZWssbGFyYiA9IDwmbGFyYjA+Ow0KPiArCQkJbWVkaWF0ZWssZ2NlLWNsaWVudC1yZWcgPSA8Jmdj
+ZSBTVUJTWVNfMTQwMFhYWFggMHg5MDAwIDB4MTAwMD47DQo+ICsJCX07DQo+ICsNCj4gKwkJb3Zs
+XzJsMTogb3ZsQDE0MDBhMDAwIHsNCj4gKwkJCWNvbXBhdGlibGUgPSAibWVkaWF0ZWssbXQ4MTgz
+LWRpc3Atb3ZsLTJsIjsNCj4gKwkJCXJlZyA9IDwwIDB4MTQwMGEwMDAgMCAweDEwMDA+Ow0KPiAr
+CQkJaW50ZXJydXB0cyA9IDxHSUNfU1BJIDIyNyBJUlFfVFlQRV9MRVZFTF9MT1c+Ow0KPiArCQkJ
+cG93ZXItZG9tYWlucyA9IDwmc3BtIE1UODE4M19QT1dFUl9ET01BSU5fRElTUD47DQo+ICsJCQlj
+bG9ja3MgPSA8Jm1tc3lzIENMS19NTV9ESVNQX09WTDFfMkw+Ow0KPiArCQkJaW9tbXVzID0gPCZp
+b21tdSBNNFVfUE9SVF9ESVNQXzJMX09WTDFfTEFSQjA+Ow0KPiArCQkJbWVkaWF0ZWssbGFyYiA9
+IDwmbGFyYjA+Ow0KPiArCQkJbWVkaWF0ZWssZ2NlLWNsaWVudC1yZWcgPSA8JmdjZSBTVUJTWVNf
+MTQwMFhYWFggMHhhMDAwIDB4MTAwMD47DQo+ICsJCX07DQo+ICsNCj4gKwkJcmRtYTA6IHJkbWFA
+MTQwMGIwMDAgew0KPiArCQkJY29tcGF0aWJsZSA9ICJtZWRpYXRlayxtdDgxODMtZGlzcC1yZG1h
+IjsNCj4gKwkJCXJlZyA9IDwwIDB4MTQwMGIwMDAgMCAweDEwMDA+Ow0KPiArCQkJaW50ZXJydXB0
+cyA9IDxHSUNfU1BJIDIyOCBJUlFfVFlQRV9MRVZFTF9MT1c+Ow0KPiArCQkJcG93ZXItZG9tYWlu
+cyA9IDwmc3BtIE1UODE4M19QT1dFUl9ET01BSU5fRElTUD47DQo+ICsJCQljbG9ja3MgPSA8Jm1t
+c3lzIENMS19NTV9ESVNQX1JETUEwPjsNCj4gKwkJCWlvbW11cyA9IDwmaW9tbXUgTTRVX1BPUlRf
+RElTUF9SRE1BMD47DQo+ICsJCQltZWRpYXRlayxsYXJiID0gPCZsYXJiMD47DQo+ICsJCQltZWRp
+YXRlayxyZG1hX2ZpZm9fc2l6ZSA9IDw1MTIwPjsNCj4gKwkJCW1lZGlhdGVrLGdjZS1jbGllbnQt
+cmVnID0gPCZnY2UgU1VCU1lTXzE0MDBYWFhYIDB4YjAwMCAweDEwMDA+Ow0KPiArCQl9Ow0KPiAr
+DQo+ICsJCXJkbWExOiByZG1hQDE0MDBjMDAwIHsNCj4gKwkJCWNvbXBhdGlibGUgPSAibWVkaWF0
+ZWssbXQ4MTgzLWRpc3AtcmRtYSI7DQo+ICsJCQlyZWcgPSA8MCAweDE0MDBjMDAwIDAgMHgxMDAw
+PjsNCj4gKwkJCWludGVycnVwdHMgPSA8R0lDX1NQSSAyMjkgSVJRX1RZUEVfTEVWRUxfTE9XPjsN
+Cj4gKwkJCXBvd2VyLWRvbWFpbnMgPSA8JnNwbSBNVDgxODNfUE9XRVJfRE9NQUlOX0RJU1A+Ow0K
+PiArCQkJY2xvY2tzID0gPCZtbXN5cyBDTEtfTU1fRElTUF9SRE1BMT47DQo+ICsJCQlpb21tdXMg
+PSA8JmlvbW11IE00VV9QT1JUX0RJU1BfUkRNQTE+Ow0KPiArCQkJbWVkaWF0ZWssbGFyYiA9IDwm
+bGFyYjA+Ow0KPiArCQkJbWVkaWF0ZWsscmRtYV9maWZvX3NpemUgPSA8MjA0OD47DQo+ICsJCQlt
+ZWRpYXRlayxnY2UtY2xpZW50LXJlZyA9IDwmZ2NlIFNVQlNZU18xNDAwWFhYWCAweGMwMDAgMHgx
+MDAwPjsNCj4gKwkJfTsNCj4gKw0KPiArCQljb2xvcjA6IGNvbG9yQDE0MDBlMDAwIHsNCj4gKwkJ
+CWNvbXBhdGlibGUgPSAibWVkaWF0ZWssbXQ4MTgzLWRpc3AtY29sb3IiLA0KPiArCQkJCSAgICAg
+Im1lZGlhdGVrLG10ODE3My1kaXNwLWNvbG9yIjsNCj4gKwkJCXJlZyA9IDwwIDB4MTQwMGUwMDAg
+MCAweDEwMDA+Ow0KPiArCQkJaW50ZXJydXB0cyA9IDxHSUNfU1BJIDIzMSBJUlFfVFlQRV9MRVZF
+TF9MT1c+Ow0KPiArCQkJcG93ZXItZG9tYWlucyA9IDwmc3BtIE1UODE4M19QT1dFUl9ET01BSU5f
+RElTUD47DQo+ICsJCQljbG9ja3MgPSA8Jm1tc3lzIENMS19NTV9ESVNQX0NPTE9SMD47DQo+ICsJ
+CQltZWRpYXRlayxnY2UtY2xpZW50LXJlZyA9IDwmZ2NlIFNVQlNZU18xNDAwWFhYWCAweGUwMDAg
+MHgxMDAwPjsNCj4gKwkJfTsNCj4gKw0KPiArCQljY29ycjA6IGNjb3JyQDE0MDBmMDAwIHsNCj4g
+KwkJCWNvbXBhdGlibGUgPSAibWVkaWF0ZWssbXQ4MTgzLWRpc3AtY2NvcnIiOw0KPiArCQkJcmVn
+ID0gPDAgMHgxNDAwZjAwMCAwIDB4MTAwMD47DQo+ICsJCQlpbnRlcnJ1cHRzID0gPEdJQ19TUEkg
+MjMyIElSUV9UWVBFX0xFVkVMX0xPVz47DQo+ICsJCQlwb3dlci1kb21haW5zID0gPCZzcG0gTVQ4
+MTgzX1BPV0VSX0RPTUFJTl9ESVNQPjsNCj4gKwkJCWNsb2NrcyA9IDwmbW1zeXMgQ0xLX01NX0RJ
+U1BfQ0NPUlIwPjsNCj4gKwkJfTsNCj4gKw0KPiArCQlhYWwwOiBhYWxAMTQwMTAwMDAgew0KPiAr
+CQkJY29tcGF0aWJsZSA9ICJtZWRpYXRlayxtdDgxODMtZGlzcC1hYWwiLA0KPiArCQkJCSAgICAg
+Im1lZGlhdGVrLG10ODE3My1kaXNwLWFhbCI7DQo+ICsJCQlyZWcgPSA8MCAweDE0MDEwMDAwIDAg
+MHgxMDAwPjsNCj4gKwkJCWludGVycnVwdHMgPSA8R0lDX1NQSSAyMzMgSVJRX1RZUEVfTEVWRUxf
+TE9XPjsNCj4gKwkJCXBvd2VyLWRvbWFpbnMgPSA8JnNwbSBNVDgxODNfUE9XRVJfRE9NQUlOX0RJ
+U1A+Ow0KPiArCQkJY2xvY2tzID0gPCZtbXN5cyBDTEtfTU1fRElTUF9BQUwwPjsNCj4gKwkJfTsN
+Cj4gKw0KPiArCQlnYW1tYTA6IGdhbW1hQDE0MDExMDAwIHsNCj4gKwkJCWNvbXBhdGlibGUgPSAi
+bWVkaWF0ZWssbXQ4MTgzLWRpc3AtZ2FtbWEiLA0KPiArCQkJCSAgICAgIm1lZGlhdGVrLG10ODE3
+My1kaXNwLWdhbW1hIjsNCj4gKwkJCXJlZyA9IDwwIDB4MTQwMTEwMDAgMCAweDEwMDA+Ow0KPiAr
+CQkJaW50ZXJydXB0cyA9IDxHSUNfU1BJIDIzNCBJUlFfVFlQRV9MRVZFTF9MT1c+Ow0KPiArCQkJ
+cG93ZXItZG9tYWlucyA9IDwmc3BtIE1UODE4M19QT1dFUl9ET01BSU5fRElTUD47DQo+ICsJCQlj
+bG9ja3MgPSA8Jm1tc3lzIENMS19NTV9ESVNQX0dBTU1BMD47DQo+ICsJCX07DQo+ICsNCj4gKwkJ
+ZGl0aGVyMDogZGl0aGVyQDE0MDEyMDAwIHsNCj4gKwkJCWNvbXBhdGlibGUgPSAibWVkaWF0ZWss
+bXQ4MTgzLWRpc3AtZGl0aGVyIjsNCj4gKwkJCXJlZyA9IDwwIDB4MTQwMTIwMDAgMCAweDEwMDA+
+Ow0KPiArCQkJaW50ZXJydXB0cyA9IDxHSUNfU1BJIDIzNSBJUlFfVFlQRV9MRVZFTF9MT1c+Ow0K
+PiArCQkJcG93ZXItZG9tYWlucyA9IDwmc3BtIE1UODE4M19QT1dFUl9ET01BSU5fRElTUD47DQo+
+ICsJCQljbG9ja3MgPSA8Jm1tc3lzIENMS19NTV9ESVNQX0RJVEhFUjA+Ow0KPiArCQl9Ow0KPiAr
+DQo+ICAJCWRzaTA6IGRzaUAxNDAxNDAwMCB7DQo+ICAJCQljb21wYXRpYmxlID0gIm1lZGlhdGVr
+LG10ODE4My1kc2kiOw0KPiAgCQkJcmVnID0gPDAgMHgxNDAxNDAwMCAwIDB4MTAwMD47DQo+IEBA
+IC05NzgsNiArMTA4NSwxMyBAQCBkc2kwOiBkc2lAMTQwMTQwMDAgew0KPiAgCQkJcGh5LW5hbWVz
+ID0gImRwaHkiOw0KPiAgCQl9Ow0KPiAgDQo+ICsJCW11dGV4OiBtdXRleEAxNDAxNjAwMCB7DQo+
+ICsJCQljb21wYXRpYmxlID0gIm1lZGlhdGVrLG10ODE4My1kaXNwLW11dGV4IjsNCj4gKwkJCXJl
+ZyA9IDwwIDB4MTQwMTYwMDAgMCAweDEwMDA+Ow0KPiArCQkJaW50ZXJydXB0cyA9IDxHSUNfU1BJ
+IDIxNyBJUlFfVFlQRV9MRVZFTF9MT1c+Ow0KPiArCQkJcG93ZXItZG9tYWlucyA9IDwmc3BtIE1U
+ODE4M19QT1dFUl9ET01BSU5fRElTUD47DQo+ICsJCX07DQo+ICsNCj4gIAkJbGFyYjA6IGxhcmJA
+MTQwMTcwMDAgew0KPiAgCQkJY29tcGF0aWJsZSA9ICJtZWRpYXRlayxtdDgxODMtc21pLWxhcmIi
+Ow0KPiAgCQkJcmVnID0gPDAgMHgxNDAxNzAwMCAwIDB4MTAwMD47DQoNCg==
 
