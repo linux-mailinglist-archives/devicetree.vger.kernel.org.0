@@ -2,249 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6BBAA2D52FD
-	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 05:57:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C89752D5348
+	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 06:29:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732642AbgLJEz4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Dec 2020 23:55:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57166 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732644AbgLJEz4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Dec 2020 23:55:56 -0500
-Received: from mail-oi1-x244.google.com (mail-oi1-x244.google.com [IPv6:2607:f8b0:4864:20::244])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F00FC0617B0
-        for <devicetree@vger.kernel.org>; Wed,  9 Dec 2020 20:54:56 -0800 (PST)
-Received: by mail-oi1-x244.google.com with SMTP id p126so4405664oif.7
-        for <devicetree@vger.kernel.org>; Wed, 09 Dec 2020 20:54:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=4qjrVl/8JKQEwNo9I+PzesbUYY8q4z4z4BolfiKEeqQ=;
-        b=kAQlNRpBFOo9izck5mhxIS0wvpkP+HEZ7nN2qH1Nh6zGZ0qMjohBRaqHryNQTnxj7L
-         dEHQhGKrF6CdwrurpH6a1w742RV+KATGRPDpwk3h8MFteY0ckKLlfJSifwKUizu8XIfJ
-         ybdnSU3aBeSzk8OVplplPEnvv5anv3Os4mOoCW+IQoDr1eFDZA7g17lPdaI75zDFSWVR
-         t09qafOJI5LVs7HDW8jS5+jCsE0exNXpmRqCcAD8S4xVJ+NmEIwWzEhA9co+brG84KLb
-         gpyTqZMfLWh62fecv5IDsZ1Fzeq3dD73l3yvCAiT+eTXsamt+NGQiqlcHzE08n0AqZAr
-         F4ZQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=4qjrVl/8JKQEwNo9I+PzesbUYY8q4z4z4BolfiKEeqQ=;
-        b=dN13e+0cY3+o7r0obFD3YyhT6BE+L41HbfIcYw12gj3gz0KYZM8KdV6ZAQhphkFVCQ
-         cznPzW0dgTIVk2q3LRL6bPRfitJWKL5rkqfMXweB7MqLNd+WeSChF2dmpOGu197TNTK2
-         KsPMHhaXiulWYvo59PMWxmIWCymdK/wWeO0zv0N2zS3BtuaMg5Juc/1V5FtW2aK5Bh2H
-         aSFVb43AjG6k48fAKl/uBujk+T3gVVMT+GEnFN1tjWWbxE4zE0a8QseKACZveK9T2JYF
-         fSPO0e/7gbDaO22vG7xtzqtp7m72FWwCWC7HjO7inPDuTq8TaMqFETKpY9kdRtY/D+o/
-         TAig==
-X-Gm-Message-State: AOAM530J4T3IcSopkfjqdF64xvCp8XycrU5w4G2KADJshY5LebOe2vm+
-        yVfKfCkxKYmMqW2ZjVPcPqgH9A==
-X-Google-Smtp-Source: ABdhPJxoIYDZIFI1xkddCr166/on7Y3kLn+ZbaWtrRIXhrb28rZC0grJ7jTbgQK3rZ3/N9K1XxEXTQ==
-X-Received: by 2002:aca:bd0b:: with SMTP id n11mr4167270oif.11.1607576095826;
-        Wed, 09 Dec 2020 20:54:55 -0800 (PST)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id j73sm867370otj.37.2020.12.09.20.54.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Dec 2020 20:54:55 -0800 (PST)
-Date:   Wed, 9 Dec 2020 22:54:53 -0600
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: pinctrl: qcom: Add SM8350 pinctrl
- bindings
-Message-ID: <X9GqHeXRT44XMXFp@builder.lan>
-References: <20201208085748.3684670-1-vkoul@kernel.org>
+        id S1727567AbgLJF2T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Dec 2020 00:28:19 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:41592 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726313AbgLJF2T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 00:28:19 -0500
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0BA5RQkx028286;
+        Wed, 9 Dec 2020 23:27:26 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1607578046;
+        bh=wcps/Y8Os9Y3CDLlV7380+d6JPtTFkhrHuzTjkXqp4g=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=W1eHfXk1KUIkxqUEpn+jEvPea408QOJAP9ADdWVun5Mz4Il8pU742OaGt3haaC8kR
+         jBN5KyVlbghS9VhftLCwDC0XmPX852CXQnPSDD8OsYoBOVOsvqwRsJnCUEZ9T25pmm
+         EH1pSzeqlwNRN+7ZMz8ej9Hzp4ejDmq4VYD1ALYo=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0BA5RQ52061561
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 9 Dec 2020 23:27:26 -0600
+Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 9 Dec
+ 2020 23:27:26 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE101.ent.ti.com
+ (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Wed, 9 Dec 2020 23:27:26 -0600
+Received: from [10.250.232.169] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0BA5RIn0094657;
+        Wed, 9 Dec 2020 23:27:21 -0600
+Subject: Re: [EXTERNAL] Re: [PATCH] dt-bindings: usb: Add new compatible
+ string for AM64 SoC
+To:     Rob Herring <robh@kernel.org>
+CC:     Sekhar Nori <nsekhar@ti.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Roger Quadros <rogerq@ti.com>, <linux-usb@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20201209165733.8204-1-a-govindraju@ti.com>
+ <20201209165733.8204-2-a-govindraju@ti.com>
+ <20201209193417.GB807821@robh.at.kernel.org>
+From:   Aswath Govindraju <a-govindraju@ti.com>
+Message-ID: <dec457d6-5dc2-0823-e405-f5c2d7d555f6@ti.com>
+Date:   Thu, 10 Dec 2020 10:57:18 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201208085748.3684670-1-vkoul@kernel.org>
+In-Reply-To: <20201209193417.GB807821@robh.at.kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue 08 Dec 02:57 CST 2020, Vinod Koul wrote:
+Hi Robert,
 
-> Add device tree binding Documentation details for Qualcomm SM8350
-> pinctrl driver.
+On 10/12/20 1:04 am, Rob Herring wrote:
+> On Wed, Dec 09, 2020 at 10:27:32PM +0530, Aswath Govindraju wrote:
+>> Add compatible string in j721e-usb binding file as similar USB subsystem
+>> is present in AM64.
+>>
+>> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+>> Acked-by: Roger Quadros <rogerq@ti.com>
+>> ---
+>>  Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml | 7 +++++--
+>>  1 file changed, 5 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml b/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml
+>> index 388245b91a55..05d976bb06d0 100644
+>> --- a/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml
+>> +++ b/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml
+>> @@ -11,8 +11,11 @@ maintainers:
+>>  
+>>  properties:
+>>    compatible:
+>> -    items:
+>> -      - const: ti,j721e-usb
+>> +    anyOf:
+>> +      - items:
+>> +	  - const: ti,j721e-usb
+>> +      - items:
+>> +	  - const: ti,am64-usb
 > 
+> Use 'enum'.
+> 
+Thank you for the comments.
 
-Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+I used anyOf to mention that the compatible strings can be either used
+separately or together in the DT files after referring [1].
 
-Regards,
-Bjorn
+Using enum brought in constraints such as if one compatible string is
+used the other cannot be used.
 
-> Signed-off-by: Vinod Koul <vkoul@kernel.org>
-> ---
-> 
-> Changes since v1:
->   - Fix pins pattern
->   - Fix example indent
-> 
->  .../bindings/pinctrl/qcom,sm8350-pinctrl.yaml | 151 ++++++++++++++++++
->  1 file changed, 151 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,sm8350-pinctrl.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sm8350-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sm8350-pinctrl.yaml
-> new file mode 100644
-> index 000000000000..8ddb347c43da
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,sm8350-pinctrl.yaml
-> @@ -0,0 +1,151 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pinctrl/qcom,sm8350-pinctrl.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm Technologies, Inc. SM8350 TLMM block
-> +
-> +maintainers:
-> +  - Vinod Koul <vkoul@kernel.org>
-> +
-> +description: |
-> +  This binding describes the Top Level Mode Multiplexer block found in the
-> +  SM8350 platform.
-> +
-> +properties:
-> +  compatible:
-> +    const: qcom,sm8350-pinctrl
-> +
-> +  reg:
-> +    description: Specifies the base address and size of the TLMM register space
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    description: Specifies the TLMM summary IRQ
-> +    maxItems: 1
-> +
-> +  interrupt-controller: true
-> +
-> +  '#interrupt-cells':
-> +    description: Specifies the PIN numbers and Flags, as defined in
-> +      include/dt-bindings/interrupt-controller/irq.h
-> +    const: 2
-> +
-> +  gpio-controller: true
-> +
-> +  '#gpio-cells':
-> +    description: Specifying the pin number and flags, as defined in
-> +      include/dt-bindings/gpio/gpio.h
-> +    const: 2
-> +
-> +  gpio-ranges:
-> +    maxItems: 1
-> +
-> +  gpio-reserved-ranges:
-> +    maxItems: 1
-> +
-> +#PIN CONFIGURATION NODES
-> +patternProperties:
-> +  '-pins$':
-> +    type: object
-> +    description:
-> +      Pinctrl node's client devices use subnodes for desired pin configuration.
-> +      Client device subnodes use below standard properties.
-> +    $ref: "/schemas/pinctrl/pincfg-node.yaml"
-> +
-> +    properties:
-> +      pins:
-> +        description:
-> +          List of gpio pins affected by the properties specified in this subnode.
-> +        items:
-> +          oneOf:
-> +            - pattern: "^gpio([0-9]|[1-9][0-9]|1[0-9][0-9]|20[0-3])$"
-> +            - enum: [ sdc1_clk, sdc1_cmd, sdc1_data, sdc2_clk, sdc2_cmd, sdc2_data ]
-> +        minItems: 1
-> +        maxItems: 36
-> +
-> +      function:
-> +        description:
-> +          Specify the alternative function to be configured for the specified
-> +          pins. Functions are only valid for gpio pins.
-> +        enum: [ atest_char, atest_usb, audio_ref, cam_mclk, cci_async,
-> +                cci_i2c, cci_timer, cmu_rng, coex_uart1, coex_uart2, cri_trng,
-> +                cri_trng0, cri_trng1, dbg_out, ddr_bist, ddr_pxi0, ddr_pxi1,
-> +                ddr_pxi2, ddr_pxi3, dp_hot, dp_lcd, gcc_gp1, gcc_gp2, gcc_gp3,
-> +                gpio, ibi_i3c, jitter_bist, lpass_slimbus, mdp_vsync, mdp_vsync0,
-> +                mdp_vsync1, mdp_vsync2, mdp_vsync3, mi2s0_data0, mi2s0_data1,
-> +                mi2s0_sck, mi2s0_ws, mi2s1_data0, mi2s1_data1, mi2s1_sck,
-> +                mi2s1_ws, mi2s2_data0, mi2s2_data1, mi2s2_sck, mi2s2_ws,
-> +                mss_grfc0, mss_grfc1, mss_grfc10, mss_grfc11, mss_grfc12,
-> +                mss_grfc2, mss_grfc3, mss_grfc4, mss_grfc5, mss_grfc6,
-> +                mss_grfc7, mss_grfc8, mss_grfc9, nav_gpio, pa_indicator,
-> +                pcie0_clkreqn, pcie1_clkreqn, phase_flag, pll_bist, pll_clk,
-> +                pri_mi2s, prng_rosc, qdss_cti, qdss_gpio, qlink0_enable,
-> +                qlink0_request, qlink0_wmss, qlink1_enable, qlink1_request,
-> +                qlink1_wmss, qlink2_enable, qlink2_request, qlink2_wmss, qspi0,
-> +                qspi1, qspi2, qspi3, qspi_clk, qspi_cs, qup0, qup1, qup10,
-> +                qup11, qup12, qup13, qup14, qup15, qup16, qup17, qup18, qup19,
-> +                qup2, qup3, qup4, qup5, qup6, qup7, qup8, qup9, qup_l4, qup_l5,
-> +                qup_l6, sd_write, sdc40, sdc41, sdc42, sdc43, sdc4_clk,
-> +                sdc4_cmd, sec_mi2s, tb_trig, tgu_ch0, tgu_ch1, tgu_ch2,
-> +                tgu_ch3, tsense_pwm1, tsense_pwm2, uim0_clk, uim0_data,
-> +                uim0_present, uim0_reset, uim1_clk, uim1_data, uim1_present,
-> +                uim1_reset, usb2phy_ac, usb_phy, vfr_0, vfr_1, vsense_trigger ]
-> +
-> +
-> +      drive-strength:
-> +        enum: [2, 4, 6, 8, 10, 12, 14, 16]
-> +        default: 2
-> +        description:
-> +          Selects the drive strength for the specified pins, in mA.
-> +
-> +      bias-pull-down: true
-> +
-> +      bias-pull-up: true
-> +
-> +      bias-disable: true
-> +
-> +      output-high: true
-> +
-> +      output-low: true
-> +
-> +    required:
-> +      - pins
-> +      - function
-> +
-> +    additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - interrupt-controller
-> +  - '#interrupt-cells'
-> +  - gpio-controller
-> +  - '#gpio-cells'
-> +  - gpio-ranges
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +        #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +        tlmm: pinctrl@f000000 {
-> +          compatible = "qcom,sm8350-pinctrl";
-> +          reg = <0x0f100000 0x300000>;
-> +          interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
-> +          gpio-controller;
-> +          #gpio-cells = <2>;
-> +          interrupt-controller;
-> +          #interrupt-cells = <2>;
-> +          gpio-ranges = <&tlmm 0 0 203>;
-> +          serial-pins {
-> +            pins = "gpio18", "gpio19";
-> +            function = "qup3";
-> +            drive-strength = <8>;
-> +            bias-disable;
-> +          };
-> +        };
-> +
-> +...
-> -- 
-> 2.26.2
-> 
+The error that I made was use of '\t' at the start of the lines. I will
+correct it and send a respin.
+
+
+[1]https://github.com/torvalds/linux/blob/master/Documentation/devicetree/bindings/example-schema.yaml
+
+Thanks,
+Aswath
+
+>>  
+>>    reg:
+>>      description: module registers
+>> -- 
+>> 2.17.1
+>>
+
