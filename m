@@ -2,158 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DA3732D6944
-	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 22:00:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B4E4C2D6985
+	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 22:17:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2392513AbgLJVAF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Dec 2020 16:00:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36868 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727019AbgLJVAE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 16:00:04 -0500
-Received: from mail-lf1-x142.google.com (mail-lf1-x142.google.com [IPv6:2a00:1450:4864:20::142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C1D4C0613CF;
-        Thu, 10 Dec 2020 12:59:24 -0800 (PST)
-Received: by mail-lf1-x142.google.com with SMTP id o17so7320542lfg.4;
-        Thu, 10 Dec 2020 12:59:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=L+2kq/mn/GAqmqkIcbgr9LNeg9Bhva26hFZF9Y+zYOc=;
-        b=A2O2xoYnYD6LKvIJNY87qFGg5SGAPNyjXyluJ+/UKQl+J7/ESPcVH+WB+JD6mVL6r8
-         BVj8q+zYaJ579OYuL7ociaLxK2FqP7yegH/wjAe4RO6kOtEOpsR/XxV3h1roJrTTc66I
-         febq8qYC+GVuJxmZn++rUhIvwGhzMaaMjsGb/KESkDZdHtVLYdqPN6+fMb+iFto9dLLs
-         kZR+wYKyJI2vhZcW9MEizjJkdpteOWTLwgRlmuh6/fyzpnaP1OsWd0lMunGNY3ZUT9yl
-         KnVIEK0kKhEfFFUN/TTnjASiwwF4bMaAJdVWK0tA7f2pzJO3cPHgX9Iv2guyK3Y87kGE
-         DL4A==
+        id S2392836AbgLJVRJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Dec 2020 16:17:09 -0500
+Received: from mail-ot1-f49.google.com ([209.85.210.49]:42003 "EHLO
+        mail-ot1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2391281AbgLJVRI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 16:17:08 -0500
+Received: by mail-ot1-f49.google.com with SMTP id 11so6295199oty.9;
+        Thu, 10 Dec 2020 13:16:53 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=L+2kq/mn/GAqmqkIcbgr9LNeg9Bhva26hFZF9Y+zYOc=;
-        b=tI9cVhZVLS3XmF50BMIXh+DTrWA5oDEuzRK+PfGHZHbyACqtVfQyCOgmsjNJfs77PL
-         tTq7Ul7/cJu9WiPGPHnEbLEE6jKZFZ6roe31tI11ZDsQxz47Ws3E3x6IMvK+5/jH8SYj
-         i4W2ZcbU/sRsQ9vpjkx6j4huc6rv8e9EIr2TEnPoeWedZQQNY1DFiEBfxlG9vbM5eSNq
-         zQwuPqNAl1qwy9oEshNVlJOt7btloMrFtX1upE6v6NEu/TefyS/+U5vlkGIenSCrDZ7w
-         55Z/P8dgnmZHKIzo7iIMT5PKd5j2DcprXOBaLxBEqGD4XZtyN0Tnwvl70n4+fsBkUT5U
-         42ag==
-X-Gm-Message-State: AOAM531jj73KYXahVel407KwAc6+LRYlAjFmITKqritHIVJoG72YYb1R
-        qmxsiW+ox2fkWNAtLnVDMsE=
-X-Google-Smtp-Source: ABdhPJyBMknhNz6xYU4ZCi12CSdIk+VQd8R9a0xiFyGovgfVRlVVXl3oi2RWtuH+1Iba/mt/xTj74g==
-X-Received: by 2002:a19:3f47:: with SMTP id m68mr3577297lfa.494.1607633962817;
-        Thu, 10 Dec 2020 12:59:22 -0800 (PST)
-Received: from [192.168.2.145] (109-252-193-205.dynamic.spd-mgts.ru. [109.252.193.205])
-        by smtp.googlemail.com with ESMTPSA id w6sm590100lji.74.2020.12.10.12.59.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 10 Dec 2020 12:59:22 -0800 (PST)
-Subject: Re: [PATCH 1/2] of: property: Get rid of code duplication in port
- getting
-To:     Sam Protsenko <semen.protsenko@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        John Stultz <john.stultz@linaro.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-References: <20201210202944.6747-1-semen.protsenko@linaro.org>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <f18dea6e-5806-370c-0d83-e56f3dc118b4@gmail.com>
-Date:   Thu, 10 Dec 2020 23:59:21 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.4.2
+        bh=DjdSLtOzBPosggV3jRDhGiSxaYkS7MRdHVLaRRWPza0=;
+        b=Ir6X0GAaZupMCdxz6P7oH9BCoj0nx7X0djSY6IG1cokyy8dxwS0EwlbdYwiPgYyWno
+         w0NWrNFGOXZVjzucK8h5R5xs6vsEdV2H0tsPWj4ptlRPGm8jkN5RcTZr5ZogCdJdcXvU
+         R3cKfvWUOs6KcNu7aqEbptOoR71nT7pZHUdoIxaPgeDy1AEEkrMVb93ni6npzY0pyNlC
+         2Uv6/ZwOgoHvrYYUg/keXF+YoXNEfFtKbGs8F3w5OiwdF28nnTpxMEOt2KomAKeWq41n
+         pkHtHgHQrwflmuSmvif5KoyxpysyAGW1kw4qF8dGiPvAdrNhpA5+B9Tam2lp2d4/tEUf
+         +A4w==
+X-Gm-Message-State: AOAM530cTLMFBmL6s22VtS3tab4gDu60sispG/qKEeK//CktVSr3Bb/X
+        pt+eOlp1TWa0cOc6vuZAKn/NjsLmFQ==
+X-Google-Smtp-Source: ABdhPJx+TvfFP3n7D3tdcANwKWQLDP74aXtIfa+ZKxBkmCwEwNqjtcb54c1aALYdQQtyPDjJVVTLLg==
+X-Received: by 2002:a05:6830:1ad4:: with SMTP id r20mr1644647otc.354.1607634987577;
+        Thu, 10 Dec 2020 13:16:27 -0800 (PST)
+Received: from xps15.herring.priv (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.googlemail.com with ESMTPSA id m21sm1260217oos.28.2020.12.10.13.16.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 10 Dec 2020 13:16:26 -0800 (PST)
+From:   Rob Herring <robh@kernel.org>
+To:     Guennadi Liakhovetski <g.liakhovetski@gmx.de>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Jacopo Mondi <jacopo@jmondi.org>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-media@vger.kernel.org
+Subject: [PATCH v2 0/2] dt-bindings: media: Convert video-interfaces.txt to schemas
+Date:   Thu, 10 Dec 2020 15:16:20 -0600
+Message-Id: <20201210211625.3070388-1-robh@kernel.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <20201210202944.6747-1-semen.protsenko@linaro.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-10.12.2020 23:29, Sam Protsenko пишет:
-> Both of_graph_is_present() and of_graph_get_next_endpoint() functions
-> share common piece of code for obtaining the graph port. Extract it into
-> separate static function to get rid of code duplication and avoid
-> possible coding errors in future.
-> 
-> Fixes: 4ec0a44ba8d7 ("of_graph: add of_graph_is_present()")
+This series converts video-interfaces.txt to DT schema which in turn is
+based on converting the graph binding to a schema. All the media users
+are converted to use the graph and video-interfaces schemas.
 
-The "fixes" tag should be used only for bug-fixes and there is no bug
-fixed in this patch.
+Based on media tree commit a3f132df0e5f. This is dependent on dt-schema
+changes not yet committed[1]. Please review those too.
 
-> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
-> ---
->  drivers/of/property.c | 34 ++++++++++++++++++++--------------
->  1 file changed, 20 insertions(+), 14 deletions(-)
-> 
-> diff --git a/drivers/of/property.c b/drivers/of/property.c
-> index 408a7b5f06a9..da111fcf37ac 100644
-> --- a/drivers/of/property.c
-> +++ b/drivers/of/property.c
-> @@ -30,13 +30,13 @@
->  #include "of_private.h"
->  
->  /**
-> - * of_graph_is_present() - check graph's presence
-> + * of_graph_get_port - find the "port" node in a given node
->   * @node: pointer to device_node containing graph port
->   *
-> - * Return: True if @node has a port or ports (with a port) sub-node,
-> - * false otherwise.
-> + * Return: A 'port' node pointer with refcount incremented if found or NULL
-> + * otherwise. The caller has to use of_node_put() on it when done.
->   */
-> -bool of_graph_is_present(const struct device_node *node)
-> +static struct device_node *of_graph_get_port(const struct device_node *node)
->  {
->  	struct device_node *ports, *port;
->  
-> @@ -46,8 +46,22 @@ bool of_graph_is_present(const struct device_node *node)
->  
->  	port = of_get_child_by_name(node, "port");
->  	of_node_put(ports);
-> -	of_node_put(port);
->  
-> +	return port;
-> +}
-> +
-> +/**
-> + * of_graph_is_present() - check graph's presence
-> + * @node: pointer to device_node containing graph port
-> + *
-> + * Return: True if @node has a port or ports (with a port) sub-node,
-> + * false otherwise.
-> + */
-> +bool of_graph_is_present(const struct device_node *node)
-> +{
-> +	struct device_node *port = of_graph_get_port(node);
-> +
-> +	of_node_put(port);
->  	return !!port;
->  }
->  EXPORT_SYMBOL(of_graph_is_present);
-> @@ -631,15 +645,7 @@ struct device_node *of_graph_get_next_endpoint(const struct device_node *parent,
->  	 * parent port node.
->  	 */
->  	if (!prev) {
-> -		struct device_node *node;
-> -
-> -		node = of_get_child_by_name(parent, "ports");
-> -		if (node)
-> -			parent = node;
-> -
-> -		port = of_get_child_by_name(parent, "port");
-> -		of_node_put(node);
-> -
-> +		port = of_graph_get_port(parent);
->  		if (!port) {
->  			pr_err("graph: no port node found in %pOF\n", parent);
->  			return NULL;
-> 
+Rob
 
-This repeats the problem which was made once before:
+[1] https://github.com/devicetree-org/dt-schema/tree/of-graph
 
-https://lore.kernel.org/patchwork/patch/1266028/#1461493
+Rob Herring (2):
+  media: dt-bindings: Convert video-interfaces.txt properties to schemas
+  dt-bindings: media: Use graph and video-interfaces schemas
+
+ .../media/allwinner,sun4i-a10-csi.yaml        |  11 +-
+ .../media/allwinner,sun6i-a31-csi.yaml        |  12 +-
+ .../bindings/media/i2c/adv7180.yaml           |  35 +-
+ .../bindings/media/i2c/adv7604.yaml           |  37 +-
+ .../bindings/media/i2c/aptina,mt9v111.yaml    |   4 +-
+ .../bindings/media/i2c/imi,rdacm2x-gmsl.yaml  |  30 +-
+ .../devicetree/bindings/media/i2c/imx219.yaml |  21 +-
+ .../bindings/media/i2c/maxim,max9286.yaml     | 101 +--
+ .../devicetree/bindings/media/i2c/ov5647.yaml |  20 +-
+ .../devicetree/bindings/media/i2c/ov8856.yaml |  21 +-
+ .../bindings/media/i2c/ovti,ov2680.yaml       |   6 +-
+ .../bindings/media/i2c/ovti,ov772x.yaml       |   9 +-
+ .../bindings/media/i2c/sony,imx214.yaml       |  25 +-
+ .../bindings/media/i2c/sony,imx274.yaml       |   3 +-
+ .../bindings/media/marvell,mmp2-ccic.yaml     |  15 +-
+ .../bindings/media/nxp,imx7-csi.yaml          |   5 +-
+ .../bindings/media/nxp,imx7-mipi-csi2.yaml    |  32 +-
+ .../bindings/media/renesas,ceu.yaml           |  17 +-
+ .../bindings/media/renesas,csi2.yaml          |  54 +-
+ .../bindings/media/renesas,vin.yaml           | 113 +---
+ .../bindings/media/rockchip-isp1.yaml         |  40 +-
+ .../bindings/media/st,stm32-dcmi.yaml         |  18 +-
+ .../devicetree/bindings/media/ti,cal.yaml     |  55 +-
+ .../media/video-interface-devices.yaml        | 405 +++++++++++
+ .../bindings/media/video-interfaces.txt       | 640 +-----------------
+ .../bindings/media/video-interfaces.yaml      | 344 ++++++++++
+ .../bindings/media/xilinx/xlnx,csi2rxss.yaml  |  39 +-
+ 27 files changed, 901 insertions(+), 1211 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/media/video-interface-devices.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/video-interfaces.yaml
+
+--
+2.25.1
