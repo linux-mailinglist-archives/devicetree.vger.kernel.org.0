@@ -2,118 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AECCF2D5748
-	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 10:36:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B13B22D57CA
+	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 10:59:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730769AbgLJJeM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Dec 2020 04:34:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43284 "EHLO
+        id S1731601AbgLJJ6d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Dec 2020 04:58:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47020 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730305AbgLJJeL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 04:34:11 -0500
-Received: from mail-pl1-x644.google.com (mail-pl1-x644.google.com [IPv6:2607:f8b0:4864:20::644])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82612C061793
-        for <devicetree@vger.kernel.org>; Thu, 10 Dec 2020 01:33:31 -0800 (PST)
-Received: by mail-pl1-x644.google.com with SMTP id v3so2468405plz.13
-        for <devicetree@vger.kernel.org>; Thu, 10 Dec 2020 01:33:31 -0800 (PST)
+        with ESMTP id S1728063AbgLJJ63 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 04:58:29 -0500
+Received: from mail-lf1-x144.google.com (mail-lf1-x144.google.com [IPv6:2a00:1450:4864:20::144])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17B84C0613CF;
+        Thu, 10 Dec 2020 01:57:49 -0800 (PST)
+Received: by mail-lf1-x144.google.com with SMTP id a9so7355703lfh.2;
+        Thu, 10 Dec 2020 01:57:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=NMxKlRYBb5lr66i9S2BnZ0csslGiBrLWirm/cD72+fA=;
-        b=nXcY+NK9w3n9SLZKVpMBonSIOdWvBXpO80IxAhoIrhwwgX2QvqyjgoTmELA4QqeMpd
-         IiVlB16sFqbzRqqnO8LoXWGezuBgePlIPyEKliZMnnVEVkxyLeABAnZuvFcTg3zyRh18
-         rPQyq4hMxDpulHtCBwYwvKmsOigSjmk+/jSZd+IX6gcEHMvbB4eEhvOPOX2H3mZaVsyZ
-         pb2Jgts27ka6JBtsfrDFnjd3iWzMhELX54NHZKWoHDL9oH3ScNj/icjqRjw8Qs+o4Y9+
-         i2pMxf06HtCNdeew+iZ9v3VIWLssJErMYa1jF0F2b6gPwXwSP+mk7CChcsRG1RMhjef0
-         g2LA==
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=q6Rle7Zfp/9fsnXTrVMeXSLbIqeu6VGUS6bZlipo6Yg=;
+        b=NEk+KrylcayZ4ow/7WzuzE6tE/6MradNdXkAzkkhcgBfjZQFdrfvd/jLCzSH93DnEj
+         +4Xkj0bZ6+Zrnr8E7L7ZIXLoB9bjSTJEt8jC//nuhHJNhxlYRqBfOSlwY4vGPTe0aOSf
+         rISRBnNwWKoVBd77/QlhMvCgjukH/hk2j9OBIjKS9d1g3iSCDlD+iHlKVTb0w2PgbQsK
+         TNanYeC/6qr42I4x4UPz4EgX/WcuFKdC1RehDFqZolXxCqlyHHxOKh/lhfmXvlfEHWwm
+         /vNgPPOwuXCwILVP6gM3mtvIdvM7Hzknb11MNsNgTbXDKir28Zu5PaejGr7arYW9ymLP
+         Ahew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=NMxKlRYBb5lr66i9S2BnZ0csslGiBrLWirm/cD72+fA=;
-        b=oBpBnH4vb1IMJAKVan2HJtcmDIOaOVIwMr/wbbMrM6cern+jceoSAgV20VyMojud+r
-         lk7drsJese3HMHJ9dqAGJBV8JuG/2Rq2euvusYxRkKANxSwW6sfJI0L5wXwiocmJLqDa
-         2GLeWo+zAVglTf12whiZUp2LmnPxKFkfTfI/iSn/e7HLDFlMw1Ru9JLyWwN2nP5eL8Pt
-         4ooCECT8nq42/B1Q+I59eCreDc3XLWvZI+IC1VnfmbhBohRtu3Sgj593OGhlOCLanIcT
-         hk8z9a9+MgI62zk5vP6ozFgq2cLr0in6FHrCdYqSuK6b2hw+Cg0mjGTEEP6pmJmNBaii
-         Oxpw==
-X-Gm-Message-State: AOAM530J0NtuPArBIglZVEvRaJTw7CejwFT1GYZR0bU9/cg8wQ7SAFYV
-        7Z5z+PbWn3CnXdUkn2uVyS0o
-X-Google-Smtp-Source: ABdhPJynZIeZg2ND6ZfyQeXfcn2q2ncsTKKFruijwxpb9sDXIulSuWSqVh+YHaX8uYsKZaETZI6I2w==
-X-Received: by 2002:a17:902:be11:b029:da:ba30:5791 with SMTP id r17-20020a170902be11b02900daba305791mr5609367pls.13.1607592810943;
-        Thu, 10 Dec 2020 01:33:30 -0800 (PST)
-Received: from work ([103.59.133.81])
-        by smtp.gmail.com with ESMTPSA id p1sm5935208pfb.208.2020.12.10.01.33.27
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Thu, 10 Dec 2020 01:33:30 -0800 (PST)
-Date:   Thu, 10 Dec 2020 15:03:23 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Jisheng Zhang <Jisheng.Zhang@synaptics.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Dinh Nguyen <dinguyen@kernel.org>,
-        Khuong Dinh <khuong@os.amperecomputing.com>,
-        Wei Xu <xuwei5@hisilicon.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Saravana Kannan <saravanak@google.com>
-Subject: Re: [PATCH 0/8] arm/arm64: dts: Use generic "ngpios" rather than
- "snps,nr-gpios"
-Message-ID: <20201210093323.GC24867@work>
-References: <20201109170258.4a70c768@xhacker.debian>
- <CACRpkdbywjEaKORgS4GkWXkX9DOX0318hKoc0YY=o0NtBjyYcA@mail.gmail.com>
- <20201210171224.74943144@xhacker.debian>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=q6Rle7Zfp/9fsnXTrVMeXSLbIqeu6VGUS6bZlipo6Yg=;
+        b=gHoOZwky2w70Szo68LcPFmF+r/WfyVqzvDk0tAxJSUqXg1nzoiRB8g4d6Dk9K0jEbv
+         adho8qlbbn2Ql6fbsoMOVcPHOHk4PVxUs7lASWjit/FCuoQyMxUoMGP/T69jBCXfUpak
+         ukkmlZ80VzMDlATnSv40TCF9w7ciyowM9GdBVbzYush1QAl6jNLdH+Jjl+7vVNA4I0IS
+         jWoGIDMhokdIK9I33gaykGxDmH0T0J88+02uwTlfOWXf/KPmf2LffsbdkVEL4Bg1kuLb
+         jqL6ukfTaF4ahOBNqrrPTTtOYpbmHvp1o+Oj/acNWTLMpBVOZNSR5M5Y5NDqJTIsWPvi
+         qSQA==
+X-Gm-Message-State: AOAM531/TDQkmtf+9SMbxuy2B2OXOffVKJ4FtBW6pFmYzdJfym/lHys/
+        Uv3TvZ93HtSS7hzqj/n7tEhszA1zH8k=
+X-Google-Smtp-Source: ABdhPJx7LLXbSh3NSdhxr7eHO60gCHKufiN0jhXXLcVnoC8vpIK+i7AFVsSDACuQJY7h/KC+WJht9w==
+X-Received: by 2002:a19:d86:: with SMTP id 128mr2453180lfn.317.1607594267393;
+        Thu, 10 Dec 2020 01:57:47 -0800 (PST)
+Received: from [192.168.2.145] (109-252-193-205.dynamic.spd-mgts.ru. [109.252.193.205])
+        by smtp.googlemail.com with ESMTPSA id m17sm459131lfo.132.2020.12.10.01.57.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 10 Dec 2020 01:57:46 -0800 (PST)
+Subject: Re: [PATCH v3 1/3] dt-bindings: input: atmel_mxt_ts: Document
+ atmel,wakeup-method and wake-GPIO
+To:     Rob Herring <robh@kernel.org>
+Cc:     Nick Dyer <nick@shmanahar.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Jiada Wang <jiada_wang@mentor.com>,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20201206212217.6857-1-digetx@gmail.com>
+ <20201206212217.6857-2-digetx@gmail.com>
+ <20201210034420.GA1615537@robh.at.kernel.org>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <ea36d902-b158-981a-f144-2878784bf079@gmail.com>
+Date:   Thu, 10 Dec 2020 12:57:45 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.4.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201210171224.74943144@xhacker.debian>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <20201210034420.GA1615537@robh.at.kernel.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 10, 2020 at 05:12:24PM +0800, Jisheng Zhang wrote:
-> On Tue, 10 Nov 2020 15:43:36 +0100 Linus Walleij <linus.walleij@linaro.org> wrote:
+10.12.2020 06:44, Rob Herring пишет:
+> On Mon, Dec 07, 2020 at 12:22:15AM +0300, Dmitry Osipenko wrote:
+>> Some Atmel touchscreen controllers have a WAKE line that needs to be
+>> asserted low in order to wake up controller from a deep sleep. Document
+>> the wakeup methods and the wake-GPIO properties.
 > 
-> 
-> > 
-> > 
-> > On Mon, Nov 9, 2020 at 10:07 AM Jisheng Zhang
-> > <Jisheng.Zhang@synaptics.com> wrote:
-> > 
-> > > To remove similar errors as below for all snps dw gpio users:
-> > >
-> > > OF: /...gpio-port@0: could not find phandle
-> > >
-> > > Commit 7569486d79ae ("gpio: dwapb: Add ngpios DT-property support")
-> > > explained the reason of above errors well and added the generic
-> > > "ngpios" property, let's use it.  
-> > 
-> > Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-> > For all 8 patches.
-> 
-> > Thanks for cleaning this up!
-> > 
-> > Yours,
-> > Linus Walleij
-> 
-> Hi all,
-> 
-> I merged patch6 and patch7 to berlin, will send out a berlin SoC dts
-> Pull-Request today.
-> 
-> For other patches, I see Wei has taken patch4, will other patches be
-> taken by each SoC maintainers?
+> wake-GPIO?
 
-For bitmain platform, I don't have any other patches this cylce. So I'll
-just send this patch directly to soc@kernel.org.
+The "wake-gpios" is the new property and it has "maxItems: 1", hence the
+wake-GPIO.
 
-Thanks,
-Mani
+>>
+>> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+>> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+>> ---
+>>  .../bindings/input/atmel,maxtouch.yaml        | 29 +++++++++++++++++++
+>>  include/dt-bindings/input/atmel-maxtouch.h    | 10 +++++++
+>>  2 files changed, 39 insertions(+)
+>>  create mode 100644 include/dt-bindings/input/atmel-maxtouch.h
+>>
+>> diff --git a/Documentation/devicetree/bindings/input/atmel,maxtouch.yaml b/Documentation/devicetree/bindings/input/atmel,maxtouch.yaml
+>> index 8c6418f76e94..e6b03a1e7c30 100644
+>> --- a/Documentation/devicetree/bindings/input/atmel,maxtouch.yaml
+>> +++ b/Documentation/devicetree/bindings/input/atmel,maxtouch.yaml
+>> @@ -39,6 +39,13 @@ properties:
+>>        (active low). The line must be flagged with
+>>        GPIO_ACTIVE_LOW.
+>>  
+>> +  wake-gpios:
+>> +    maxItems: 1
+>> +    description:
+>> +      Optional GPIO specifier for the touchscreen's wake pin
+>> +      (active low). The line must be flagged with
+>> +      GPIO_ACTIVE_LOW.
+>> +
+>>    linux,gpio-keymap:
+>>      $ref: /schemas/types.yaml#/definitions/uint32-array
+>>      description: |
+>> @@ -53,6 +60,26 @@ properties:
+>>        or experiment to determine which bit corresponds to which input. Use
+>>        KEY_RESERVED for unused padding values.
+>>  
+>> +  atmel,wakeup-method:
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +    description: |
+>> +      The WAKE line is an active-low input that is used to wake up the touch
+>> +      controller from deep-sleep mode before communication with the controller
+>> +      could be started. This optional feature used to minimize current
+>> +      consumption when the controller is in deep sleep mode. This feature is
+>> +      relevant only to some controller families, like mXT1386 controller for
+>> +      example.
+>> +
+>> +      The WAKE pin can be connected in one of the following ways:
+>> +       1) left permanently low
+>> +       2) connected to the I2C-compatible SCL pin
+>> +       3) connected to a GPIO pin on the host
+>> +    enum:
+>> +      - 0 # ATMEL_MXT_WAKEUP_NONE
+>> +      - 1 # ATMEL_MXT_WAKEUP_I2C_SCL
+>> +      - 2 # ATMEL_MXT_WAKEUP_GPIO
+>> +    default: 0
+>> +
+>>  required:
+>>    - compatible
+>>    - reg
+>> @@ -63,6 +90,7 @@ additionalProperties: false
+>>  examples:
+>>    - |
+>>      #include <dt-bindings/interrupt-controller/irq.h>
+>> +    #include <dt-bindings/input/atmel-maxtouch.h>
+>>      #include <dt-bindings/gpio/gpio.h>
+>>      i2c {
+>>        #address-cells = <1>;
+>> @@ -75,6 +103,7 @@ examples:
+>>          reset-gpios = <&gpio 27 GPIO_ACTIVE_LOW>;
+>>          vdda-supply = <&ab8500_ldo_aux2_reg>;
+>>          vdd-supply = <&ab8500_ldo_aux5_reg>;
+>> +        atmel,wakeup-method = <ATMEL_MXT_WAKEUP_I2C_SCL>;
+>>        };
+>>      };
+>>  
+>> diff --git a/include/dt-bindings/input/atmel-maxtouch.h b/include/dt-bindings/input/atmel-maxtouch.h
+>> new file mode 100644
+>> index 000000000000..7345ab32224d
+>> --- /dev/null
+>> +++ b/include/dt-bindings/input/atmel-maxtouch.h
+>> @@ -0,0 +1,10 @@
+>> +/* SPDX-License-Identifier: GPL-2.0+ */
+>> +
+>> +#ifndef _DT_BINDINGS_ATMEL_MAXTOUCH_H
+>> +#define _DT_BINDINGS_ATMEL_MAXTOUCH_H
+>> +
+>> +#define ATMEL_MXT_WAKEUP_NONE		0
+>> +#define ATMEL_MXT_WAKEUP_I2C_SCL	1
+>> +#define ATMEL_MXT_WAKEUP_GPIO		2
+>> +
+>> +#endif /* _DT_BINDINGS_ATMEL_MAXTOUCH_H */
+>> -- 
+>> 2.29.2
+>>
 
-> 
-> thanks
