@@ -2,154 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 49EE12D5137
-	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 04:17:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8BEEA2D5148
+	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 04:26:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729139AbgLJDQa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Dec 2020 22:16:30 -0500
-Received: from mo-csw1514.securemx.jp ([210.130.202.153]:44522 "EHLO
-        mo-csw.securemx.jp" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728657AbgLJDQ3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Dec 2020 22:16:29 -0500
-Received: by mo-csw.securemx.jp (mx-mo-csw1514) id 0BA3EOED004470; Thu, 10 Dec 2020 12:14:24 +0900
-X-Iguazu-Qid: 34tr90iprcJs0CvEWH
-X-Iguazu-QSIG: v=2; s=0; t=1607570064; q=34tr90iprcJs0CvEWH; m=MGTkGpPCR33awQ5e9q1fuXNGZmOlO+ll14kQslt2LHE=
-Received: from imx12.toshiba.co.jp (imx12.toshiba.co.jp [61.202.160.132])
-        by relay.securemx.jp (mx-mr1511) id 0BA3ENHo028729;
-        Thu, 10 Dec 2020 12:14:23 +0900
-Received: from enc02.toshiba.co.jp ([61.202.160.51])
-        by imx12.toshiba.co.jp  with ESMTP id 0BA3ENt1005878;
-        Thu, 10 Dec 2020 12:14:23 +0900 (JST)
-Received: from hop101.toshiba.co.jp ([133.199.85.107])
-        by enc02.toshiba.co.jp  with ESMTP id 0BA3ENYq008224;
-        Thu, 10 Dec 2020 12:14:23 +0900
-From:   Punit Agrawal <punit1.agrawal@toshiba.co.jp>
-To:     Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-gpio@vger.kernel.org, yuji2.ishikawa@toshiba.co.jp,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v3 1/4] dt-bindings: gpio: Add bindings for Toshiba Visconti GPIO Controller
-References: <20201201181406.2371881-1-nobuhiro1.iwamatsu@toshiba.co.jp>
-        <20201201181406.2371881-2-nobuhiro1.iwamatsu@toshiba.co.jp>
-Date:   Thu, 10 Dec 2020 12:14:22 +0900
-In-Reply-To: <20201201181406.2371881-2-nobuhiro1.iwamatsu@toshiba.co.jp>
-        (Nobuhiro Iwamatsu's message of "Wed, 2 Dec 2020 03:14:03 +0900")
-X-TSB-HOP: ON
-Message-ID: <87mtym2vzl.fsf@kokedama.swc.toshiba.co.jp>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.3 (gnu/linux)
+        id S1729136AbgLJDYo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Dec 2020 22:24:44 -0500
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:44188 "EHLO
+        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728199AbgLJDYo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Dec 2020 22:24:44 -0500
+Received: by mail-ot1-f66.google.com with SMTP id f16so3590543otl.11;
+        Wed, 09 Dec 2020 19:24:28 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=BPV+mbc7aH16lyR1Iy3IK6IHtEQI7lxOlNJLzhXVprg=;
+        b=C0z+Fs4DZeylTcA3P39LK1NiYXw9e3cAFxmHBvy2xNgTrpFChgK/0pHR1zoCesZbOb
+         gQiU+UNIvVs40OjixuT6cNseZs+9ulZxEdHMMXv2tYcsVaJZEV9qZt9CzL2o/LSCKmab
+         qEJ4Pw/mImBiu1NlhRb5BmJArdLjLwon13U/tz/2C9ZTHp+krOZQb5NQgjECXNkxCxlD
+         L3MRtwf9qvQ5AXwo57cc5It2JnWNcnMYcaNFB0QI3Bx4OBgkceD6zVRkrBsLooXpEdyZ
+         5L7T7eF25DvbzakTuPVxZFBuOLFUjisyjPDNnF4pbdKITxIhnMa1NZepZeSLH8UtwhS/
+         qazA==
+X-Gm-Message-State: AOAM531SG/ndtjNWzCb/aBgC/Emj3EAZTcrOD9pP+kPqd9uGgAb52fFD
+        YxbzLsd2i06hVDU172mfTw==
+X-Google-Smtp-Source: ABdhPJxHS5abRR5IlwX+r1rqFuy3fjpJvhGxKQY1kv5d7hwo6ynHH2We4bKSmeX6t6ufoe/klKpb4w==
+X-Received: by 2002:a9d:5f9a:: with SMTP id g26mr4523870oti.241.1607570643083;
+        Wed, 09 Dec 2020 19:24:03 -0800 (PST)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id r204sm334552oif.0.2020.12.09.19.24.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 09 Dec 2020 19:24:01 -0800 (PST)
+Received: (nullmailer pid 1590264 invoked by uid 1000);
+        Thu, 10 Dec 2020 03:23:59 -0000
+Date:   Wed, 9 Dec 2020 21:23:59 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        linux-mips@vger.kernel.org,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Roger Quadros <rogerq@ti.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Ahmad Zainie <wan.ahmad.zainie.wan.mohamad@intel.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Felipe Balbi <balbi@kernel.org>,
+        linux-snps-arc@lists.infradead.org,
+        Kevin Hilman <khilman@baylibre.com>, linux-usb@vger.kernel.org,
+        Mathias Nyman <mathias.nyman@intel.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Andy Gross <agross@kernel.org>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        devicetree@vger.kernel.org, Manu Gautam <mgautam@codeaurora.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v5 01/19] dt-bindings: usb: usb-hcd: Detach generic USB
+ controller properties
+Message-ID: <20201210032359.GA1590225@robh.at.kernel.org>
+References: <20201205152427.29537-1-Sergey.Semin@baikalelectronics.ru>
+ <20201205152427.29537-2-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201205152427.29537-2-Sergey.Semin@baikalelectronics.ru>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp> writes:
-
-> Add bindings for the Toshiba Visconti GPIO Controller.
->
-> Signed-off-by: Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+On Sat, 05 Dec 2020 18:24:08 +0300, Serge Semin wrote:
+> There can be three distinctive types of the USB controllers: USB hosts,
+> USB peripherals/gadgets and USB OTG, which can switch from one role to
+> another. In order to have that hierarchy handled in the DT binding files,
+> we need to collect common properties in a common DT schema and specific
+> properties in dedicated schemas. Seeing the usb-hcd.yaml DT schema is
+> dedicated for the USB host controllers only, let's move some common
+> properties from there into the usb.yaml schema. So the later would be
+> available to evaluate all currently supported types of the USB
+> controllers.
+> 
+> While at it add an explicit "additionalProperties: true" into the
+> usb-hcd.yaml as setting the additionalProperties/unevaluateProperties
+> properties is going to be get mandatory soon.
+> 
+> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> 
 > ---
->  .../bindings/gpio/toshiba,gpio-visconti.yaml  | 85 +++++++++++++++++++
->  1 file changed, 85 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/gpio/toshiba,gpio-visconti.yaml
->
-> diff --git a/Documentation/devicetree/bindings/gpio/toshiba,gpio-visconti.yaml b/Documentation/devicetree/bindings/gpio/toshiba,gpio-visconti.yaml
-> new file mode 100644
-> index 000000000000..5168a15b90e1
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/gpio/toshiba,gpio-visconti.yaml
-> @@ -0,0 +1,85 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/gpio/toshiba,gpio-visconti.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Toshiba Visconti ARM SoCs GPIO controller
-> +
-> +maintainers:
-> +  - Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - const: toshiba,gpio-tmpv7708
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  "#gpio-cells":
-> +    const: 2
-> +
-> +  gpio-ranges: true
-> +
-> +  gpio-controller: true
-> +
-> +  interrupt-controller: true
-> +
-> +  "#interrupt-cells":
-> +    const: 2
-> +
-> +  interrupts:
-> +    description:
-> +      interrupt mapping one per GPIO.
-> +    minItems: 16
-> +    maxItems: 16
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - "#gpio-cells"
-> +  - gpio-ranges
-> +  - gpio-controller
-> +  - interrupt-controller
-> +  - "#interrupt-cells"
-> +  - interrupts
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +      #include <dt-bindings/interrupt-controller/irq.h>
-> +      #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +      soc {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +
-> +        gpio: gpio@28020000 {
-> +          compatible = "toshiba,gpio-tmpv7708";
-> +          reg = <0 0x28020000 0 0x1000>;
-> +          #gpio-cells = <0x2>;
-> +          gpio-ranges = <&pmux 0 0 32>;
-> +          gpio-controller;
-> +          interrupt-controller;
-> +          #interrupt-cells = <2>;
-> +          interrupts = <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>,
-> +              <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>,
-> +              <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>,
-> +              <GIC_SPI 27 IRQ_TYPE_LEVEL_HIGH>,
-> +              <GIC_SPI 28 IRQ_TYPE_LEVEL_HIGH>,
-> +              <GIC_SPI 29 IRQ_TYPE_LEVEL_HIGH>,
-> +              <GIC_SPI 30 IRQ_TYPE_LEVEL_HIGH>,
-> +              <GIC_SPI 31 IRQ_TYPE_LEVEL_HIGH>,
-> +              <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>,
-> +              <GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>,
-> +              <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>,
-> +              <GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>,
-> +              <GIC_SPI 36 IRQ_TYPE_LEVEL_HIGH>,
-> +              <GIC_SPI 37 IRQ_TYPE_LEVEL_HIGH>,
-> +              <GIC_SPI 38 IRQ_TYPE_LEVEL_HIGH>,
-> +              <GIC_SPI 39 IRQ_TYPE_LEVEL_HIGH>;
-> +        };
-> +      };
-> +...
+> 
+> Changelog v4:
+> - This is a new patch created as a result of the comment left
+>   by Chunfeng Yun in v3
+> 
+> Changelog v5:
+> - Discard duplicated additionalProperties property definition.
+> ---
+>  .../devicetree/bindings/usb/usb-hcd.yaml      | 14 ++-------
+>  .../devicetree/bindings/usb/usb.yaml          | 29 +++++++++++++++++++
+>  2 files changed, 31 insertions(+), 12 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/usb/usb.yaml
+> 
 
-FWIW,
-
-Reviewed-by: Punit Agrawal <punit1.agrawal@toshiba.co.jp>
-
-Thanks,
-Punit
+Reviewed-by: Rob Herring <robh@kernel.org>
