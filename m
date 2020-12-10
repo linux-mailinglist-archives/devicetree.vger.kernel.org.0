@@ -2,177 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BDA7A2D54DB
-	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 08:50:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 48AD12D54FC
+	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 09:02:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730724AbgLJHtk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Dec 2020 02:49:40 -0500
-Received: from mailgw02.mediatek.com ([210.61.82.184]:54156 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1729438AbgLJHtb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 02:49:31 -0500
-X-UUID: 7e54449f461c4e3cb3589efb9ed5cc83-20201210
-X-UUID: 7e54449f461c4e3cb3589efb9ed5cc83-20201210
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
-        (envelope-from <hector.yuan@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1181533576; Thu, 10 Dec 2020 15:48:44 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Thu, 10 Dec 2020 15:48:43 +0800
-Received: from mtkswgap22.mediatek.inc (172.21.77.33) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 10 Dec 2020 15:48:43 +0800
-From:   Hector Yuan <hector.yuan@mediatek.com>
-To:     <linux-mediatek@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-pm@vger.kernel.org>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC:     <wsd_upstream@mediatek.com>, <hector.yuan@mediatek.com>
-Subject: [PATCH v9 2/2] dt-bindings: cpufreq: add bindings for MediaTek cpufreq HW
-Date:   Thu, 10 Dec 2020 15:48:36 +0800
-Message-ID: <1607586516-6547-3-git-send-email-hector.yuan@mediatek.com>
-X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <1607586516-6547-1-git-send-email-hector.yuan@mediatek.com>
-References: <1607586516-6547-1-git-send-email-hector.yuan@mediatek.com>
+        id S1732479AbgLJIBI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Dec 2020 03:01:08 -0500
+Received: from aserp2130.oracle.com ([141.146.126.79]:42098 "EHLO
+        aserp2130.oracle.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727734AbgLJIBI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 03:01:08 -0500
+Received: from pps.filterd (aserp2130.oracle.com [127.0.0.1])
+        by aserp2130.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 0BA808Z7046402;
+        Thu, 10 Dec 2020 08:00:19 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=date : from : to : cc
+ : subject : message-id : references : mime-version : content-type :
+ content-transfer-encoding : in-reply-to; s=corp-2020-01-29;
+ bh=qahWmu7yfkzVAk9fNv3cnE4VKjWf+61A/L9L1BkjeEg=;
+ b=xdD3jq2WCyAdlwDDQm0B4lv4ih5tNTqZG2MezTHyT9JGc3ydaCru5ly4pQIcR2059BzU
+ dKmmjoyp2snDGRNG25b9NwPUjBVpA9QPTKpfirSd138k0WP0a2Dl/yGrVmjELMM9Y4HH
+ +rqfAA3WBHuucz+EC6k9DsijUMJggFFfhTpqQEzlSm+5F5SeAlhIz/sX/sm6YiFf60uk
+ XkekeOTl/m40KHM4JpRT60dkj855oKr7LOYUEJEB7PS9yiUo/TWL9xIuZxJm1ePyRQcK
+ hzjqX7UbDn6JZA87aX7yYhZpnkFRREkJMApKDgAKsoqBNhm+8X824hBpVoWrBbRwMFn6 bA== 
+Received: from aserp3020.oracle.com (aserp3020.oracle.com [141.146.126.70])
+        by aserp2130.oracle.com with ESMTP id 357yqc42x7-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 10 Dec 2020 08:00:19 +0000
+Received: from pps.filterd (aserp3020.oracle.com [127.0.0.1])
+        by aserp3020.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 0BA7ua2g132306;
+        Thu, 10 Dec 2020 08:00:19 GMT
+Received: from aserv0122.oracle.com (aserv0122.oracle.com [141.146.126.236])
+        by aserp3020.oracle.com with ESMTP id 358m41cffn-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Thu, 10 Dec 2020 08:00:19 +0000
+Received: from abhmp0018.oracle.com (abhmp0018.oracle.com [141.146.116.24])
+        by aserv0122.oracle.com (8.14.4/8.14.4) with ESMTP id 0BA80EAM013160;
+        Thu, 10 Dec 2020 08:00:14 GMT
+Received: from kadam (/102.36.221.92)
+        by default (Oracle Beehive Gateway v4.0)
+        with ESMTP ; Thu, 10 Dec 2020 00:00:13 -0800
+Date:   Thu, 10 Dec 2020 11:00:06 +0300
+From:   Dan Carpenter <dan.carpenter@oracle.com>
+To:     =?iso-8859-1?Q?J=F3zsef_Horv=E1th?= <info@ministro.hu>
+Cc:     =?iso-8859-1?B?Suly9G1l?= Pouiller <jerome.pouiller@silabs.com>,
+        devel@driverdev.osuosl.org, devicetree@vger.kernel.org,
+        "'Greg Kroah-Hartman'" <gregkh@linuxfoundation.org>,
+        driverdev-devel@linuxdriverproject.org,
+        linux-kernel@vger.kernel.org, "'Rob Herring'" <robh+dt@kernel.org>
+Subject: Re: [PATCH] Staging: silabs si4455 serial driver
+Message-ID: <20201210080006.GK2767@kadam>
+References: <!&!AAAAAAAAAAAuAAAAAAAAAM7AkQxKEJRHh2BgMNSTrQkBAExvbAW64DNBoXXP8CRioZMAAAAzfOEAABAAAAAJUqiRO33GQqGIHffCVyG/AQAAAAA=@ministro.hu>
+ <2907305.Mh6RI2rZIc@pc-42>
+ <20201209194153.GC30918@dincontrollerdev>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20201209194153.GC30918@dincontrollerdev>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9830 signatures=668683
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 spamscore=0 malwarescore=0 adultscore=0
+ bulkscore=0 phishscore=0 suspectscore=0 mlxscore=0 mlxlogscore=999
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2009150000
+ definitions=main-2012100051
+X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9830 signatures=668683
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0 mlxlogscore=999
+ clxscore=1011 malwarescore=0 bulkscore=0 phishscore=0 adultscore=0
+ spamscore=0 priorityscore=1501 mlxscore=0 lowpriorityscore=0
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2009150000 definitions=main-2012100051
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: "Hector.Yuan" <hector.yuan@mediatek.com>
+On Wed, Dec 09, 2020 at 07:41:53PM +0000, József Horváth wrote:
+> > > +static int si4455_get_part_info(struct uart_port *port,
+> > > +                               struct si4455_part_info *result)
+> > > +{
+> > > +       int ret;
+> > > +       u8 dataOut[] = { SI4455_CMD_ID_PART_INFO };
+> > > +       u8 dataIn[SI4455_CMD_REPLY_COUNT_PART_INFO];
+> > > +
+> > > +       ret = si4455_send_command_get_response(port,
+> > > +                                               sizeof(dataOut),
+> > > +                                               dataOut,
+> > > +                                               sizeof(dataIn),
+> > > +                                               dataIn);
+> > 
+> > Why not:
+> > 
+> 
+> I changed all like this in my code already. I test it, and I'll send it again.
+> 
+> Ps.: For my eyes is better to read line or list, reading table is harder :)
+> 
+> 	line(arg1, arg2, arg3, arg4);
+> 
+> 	list(arg1,
+> 		arg2,
+> 		arg3,
+> 		arg4);
+> 
+> 	table(arg1, arg2,
+> 		arg3, arg4);
+> 
 
-Add devicetree bindings for MediaTek HW driver.
+Use spaces to make arguments have to line up properly.
+`checkpatch.pl --strict` will complain if it's not done.
 
-Signed-off-by: Hector.Yuan <hector.yuan@mediatek.com>
----
- .../bindings/cpufreq/cpufreq-mediatek-hw.yaml      |  112 ++++++++++++++++++++
- 1 file changed, 112 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/cpufreq/cpufreq-mediatek-hw.yaml
+	table(arg1, arg2,
+	      arg_whatver, foo);
+[tab][space x 7]arg_whaver, foo);
 
-diff --git a/Documentation/devicetree/bindings/cpufreq/cpufreq-mediatek-hw.yaml b/Documentation/devicetree/bindings/cpufreq/cpufreq-mediatek-hw.yaml
-new file mode 100644
-index 0000000..1ce2a17
---- /dev/null
-+++ b/Documentation/devicetree/bindings/cpufreq/cpufreq-mediatek-hw.yaml
-@@ -0,0 +1,112 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/cpufreq/cpufreq-mediatek-hw.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: MediaTek's CPUFREQ Bindings
-+
-+maintainers:
-+  - Hector Yuan <hector.yuan@mediatek.com>
-+
-+description:
-+  CPUFREQ HW is a hardware engine used by MediaTek
-+  SoCs to manage frequency in hardware. It is capable of controlling frequency
-+  for multiple clusters.
-+
-+properties:
-+  compatible:
-+    const: mediatek,cpufreq-hw
-+
-+  reg:
-+    minItems: 1
-+    maxItems: 2
-+    description: |
-+      Addresses and sizes for the memory of the HW bases in each frequency domain.
-+
-+required:
-+  - compatible
-+  - reg
-+
-+examples:
-+  - |
-+    cpus {
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+
-+            cpu0: cpu@0 {
-+                device_type = "cpu";
-+                compatible = "arm,cortex-a55";
-+                enable-method = "psci";
-+                performance-domains = <&performance 0>;
-+                reg = <0x000>;
-+            };
-+
-+            cpu1: cpu@100 {
-+                device_type = "cpu";
-+                compatible = "arm,cortex-a55";
-+                enable-method = "psci";
-+                performance-domains = <&performance 0>;
-+                reg = <0x100>;
-+            };
-+
-+            cpu2: cpu@200 {
-+                device_type = "cpu";
-+                compatible = "arm,cortex-a55";
-+                enable-method = "psci";
-+                performance-domains = <&performance 0>;
-+                reg = <0x200>;
-+            };
-+
-+            cpu3: cpu@300 {
-+                device_type = "cpu";
-+                compatible = "arm,cortex-a55";
-+                enable-method = "psci";
-+                performance-domains = <&performance 0>;
-+                reg = <0x300>;
-+            };
-+
-+            cpu4: cpu@400 {
-+                device_type = "cpu";
-+                compatible = "arm,cortex-a55";
-+                enable-method = "psci";
-+                performance-domains = <&performance 1>;
-+                reg = <0x400>;
-+            };
-+
-+            cpu5: cpu@500 {
-+                device_type = "cpu";
-+                compatible = "arm,cortex-a55";
-+                enable-method = "psci";
-+                performance-domains = <&performance 1>;
-+                reg = <0x500>;
-+            };
-+
-+            cpu6: cpu@600 {
-+                device_type = "cpu";
-+                compatible = "arm,cortex-a75";
-+                enable-method = "psci";
-+                performance-domains = <&performance 1>;
-+                reg = <0x600>;
-+            };
-+
-+            cpu7: cpu@700 {
-+                device_type = "cpu";
-+                compatible = "arm,cortex-a75";
-+                enable-method = "psci";
-+                performance-domains = <&performance 1>;
-+                reg = <0x700>;
-+            };
-+    };
-+
-+    /* ... */
-+
-+    soc {
-+        #address-cells = <2>;
-+        #size-cells = <2>;
-+        performance: performance-controller@11bc00 {
-+            compatible = "mediatek,cpufreq-hw";
-+            reg = <0 0x0011bc10 0 0x120>, <0 0x0011bd30 0 0x120>;
-+            #performance-domain-cells = <1>;
-+        };
-+    };
--- 
-1.7.9.5
+But I think Jérôme's main point was to get rid of the dataOut buffer and
+use "result" directly.
+
+> 
+> >        ret = si4455_send_command_get_response(port,
+> >                                               sizeof(*result), result,
+> >                                               sizeof(dataIn), dataIn);
+> > 
+> > > +       if (ret == 0) {
+> > > +               result->CHIPREV = dataIn[0];
+> > > +               memcpy(&result->PART, &dataIn[1],sizeof(result->PART));
+> > > +               result->PBUILD = dataIn[3];
+> > > +               memcpy(&result->ID, &dataIn[4], sizeof(result->ID));
+> > > +               result->CUSTOMER = dataIn[6];
+> > > +               result->ROMID = dataIn[7];
+> > > +               result->BOND = dataIn[8];
+> > 
+> > ... it would avoid all these lines.
+> > 
+
+regards,
+dan carpenter
 
