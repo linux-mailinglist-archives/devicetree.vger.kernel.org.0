@@ -2,133 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 245F12D6740
-	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 20:48:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B679D2D681B
+	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 21:09:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2393626AbgLJTr7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Dec 2020 14:47:59 -0500
-Received: from bmail1.ministro.hu ([5.249.150.236]:42608 "EHLO
-        bmail1.ministro.hu" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2390148AbgLJTrw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 14:47:52 -0500
-Received: from localhost (localhost [127.0.0.1])
-        by bmail1.ministro.hu (Postfix) with ESMTP id 3CC7F123B0D;
-        Thu, 10 Dec 2020 20:47:02 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ministro.hu;
-        s=201804; t=1607629622;
-        bh=snH8es/pngoy41pPpSJuMprO26ulqiCPUbM8LssoCrY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ZXpoGjkoXzJOXEMF7nmYz302Yn/i9smNfqtMUy8dLMFsK4E4HNzn8T5sFaf7jpFsR
-         ZmGf3ItZMdKk/Ef6GWBm4uCLOG9xusllpclmerHg6rWZTKSGNvVrC5etZGO4DQavZy
-         Rzm39pxrFWXBsjxh/oG0jQ89RD7Sr/5QEa4pjV1BuKljfje8ULLjBKWwsHIBlPTvVV
-         2prJoMMyC9Ma8+Bx7y8/EJunM6Nx0fiRPWLx0L6Wi3woO7XDfMPk+jG7ADcMlZET1Y
-         6wiI8Atl9a4AtRReuiyaeYOk2EzePS1cVizIi8YWnuMo5Q6EgUYx7P7NMUX6HEv0Vj
-         qwxRm5FgWS3+A==
-X-Virus-Scanned: Debian amavisd-new at ministro.hu
-Received: from bmail1.ministro.hu ([127.0.0.1])
-        by localhost (bmail1.ministro.hu [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id w2CtiJc9gyjG; Thu, 10 Dec 2020 20:46:29 +0100 (CET)
-Received: from dincontrollerdev (localhost [127.0.0.1])
-        by bmail1.ministro.hu (Postfix) with ESMTPSA id 63135123B09;
-        Thu, 10 Dec 2020 20:46:28 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ministro.hu;
-        s=201804; t=1607629589;
-        bh=snH8es/pngoy41pPpSJuMprO26ulqiCPUbM8LssoCrY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=dSHS+7OotGppjefGM/Yx2MCEWP1nsiim1onZY2YaG5dK6gjazk0N5dJ4q/pO6Wf2/
-         T65sndyUDj5coHfQeYEnrSNfui8AovCbGi8MS480d304RM7lB+hQnHrnrDifLe0mwr
-         xBCbz1+Z6sA5PVjYOZDikYi3SZykWB2goLc4Q9f/kaKDRK1Ti0p1o37vwaj5v7Wxlc
-         WwgW+LenFBfZimrWiPg1hcfBZQt7auQRX0sT0PoQAIueW9g4HK9CJxraAZS2vDI8oV
-         u3Mhx1iBSzq29VGAJE10V6tIe90/9IS7jlTaV8edKbzWxx6p7OxoHkMubpms882oZP
-         1DI+xzxxJzQag==
-Date:   Thu, 10 Dec 2020 19:46:25 +0000
-From:   =?iso-8859-1?Q?J=F3zsef_Horv=E1th?= <info@ministro.hu>
-To:     'Greg Kroah-Hartman' <gregkh@linuxfoundation.org>
-Cc:     'Rob Herring' <robh+dt@kernel.org>,
-        'Jiri Slaby' <jirislaby@kernel.org>,
-        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] Serial: silabs si4455 serial driver
-Message-ID: <20201210194625.GA17516@dincontrollerdev>
-References: <20201210170443.GA17304@dincontrollerdev>
- <X9Jw+srprdT8tquZ@kroah.com>
+        id S2390176AbgLJUHs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Dec 2020 15:07:48 -0500
+Received: from mail-oi1-f196.google.com ([209.85.167.196]:44169 "EHLO
+        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2404538AbgLJUD7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 15:03:59 -0500
+Received: by mail-oi1-f196.google.com with SMTP id d189so7104358oig.11;
+        Thu, 10 Dec 2020 12:03:43 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=BtR9F6p1ys0YkETvTwwNV2ZO40Vezo7i8tec8Hr766Q=;
+        b=CFz11nhyjWfFtJkwHws1wQ9EhJ3RiUvgLpYWfwZ9egMMqdwo3l5vHql5ZZPvQ5jmLn
+         9dKR6aGTY/P46TeI0VDMU9q/e+IRUPRXDbBoerACc7nlc9bjFhIup4jZphpxzcW5Ji5H
+         D8/YThEtUsQe5YvynsbgqZm6Hld+jBDttI04dAJ0uIar2q9U2ctv56L3RLhWKUXcjTNP
+         B6bWQzN9WY6SdKIGBrELSEsQnm+5K6T+KsIcDXewIjYKAJykLU0aTUCHHBNxJFOQzjmZ
+         HSgyG2NUrt7TcyFb2sNU9OLbP0Ypuf4Rrif8aPEsHYHzUlJIY4kwDfevzuPg5eIX5oF4
+         IRpw==
+X-Gm-Message-State: AOAM530uwy/pahiCl+39uuiKIwzGgKsc+pDP95rruXVV/1+PDYs2eO31
+        KM6M7Nk/uwPfYfVzxyMN6NIh7Cy0Fg==
+X-Google-Smtp-Source: ABdhPJydQtd6sep0NfygPaKwINOdAqbJ8No1je6RXTu8rcLYonG8EvpVSZkgmcSslyjfqjgtpt8U9Q==
+X-Received: by 2002:aca:383:: with SMTP id 125mr6508871oid.122.1607630597802;
+        Thu, 10 Dec 2020 12:03:17 -0800 (PST)
+Received: from xps15.herring.priv (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.googlemail.com with ESMTPSA id o82sm1220636oih.5.2020.12.10.12.03.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 10 Dec 2020 12:03:17 -0800 (PST)
+From:   Rob Herring <robh@kernel.org>
+To:     Jamie Iles <jamie@jamieiles.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>, soc@kernel.org
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH 0/4] Remove PicoXcell
+Date:   Thu, 10 Dec 2020 14:03:11 -0600
+Message-Id: <20201210200315.2965567-1-robh@kernel.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <X9Jw+srprdT8tquZ@kroah.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 10, 2020 at 08:03:22PM +0100, 'Greg Kroah-Hartman' wrote:
-> On Thu, Dec 10, 2020 at 05:04:46PM +0000, József Horváth wrote:
-> > This is a serial port driver for
-> > Silicon Labs Si4455 Sub-GHz transciver.
-> > 
-> > Signed-off-by: József Horváth <info@ministro.hu>
-> > ---
-> >  .../bindings/serial/silabs,si4455.yaml        |   53 +
-> >  MAINTAINERS                                   |    7 +
-> >  drivers/tty/serial/Kconfig                    |    8 +
-> >  drivers/tty/serial/Makefile                   |    1 +
-> >  drivers/tty/serial/si4455.c                   | 1235 +++++++++++++++++
-> >  drivers/tty/serial/si4455_api.h               |   56 +
-> 
-> First thing, a single .c file should not need a .h file.
-> 
-> But then I looked at the .h file and see:
-> 
-> > --- /dev/null
-> > +++ b/drivers/tty/serial/si4455_api.h
-> > @@ -0,0 +1,56 @@
-> > +/* SPDX-License-Identifier: GPL-2.0
-> > + *
-> > + * Copyright (C) 2020 József Horváth <info@ministro.hu>
-> > + *
-> > + */
-> > +#ifndef SI4455_API_H_
-> > +#define SI4455_API_H_
-> > +
-> > +struct si4455_iocbuff {
-> > +	uint32_t length;
-> > +	uint8_t	data[4096];
-> 
-> If you do have an ioctl, use proper data types.  These are not the
-> correct ones (hint, __u32 and __u8).
-> 
-> > +};
-> > +
-> > +#define BASE_TTYIOC_PRIVATE		0xA0
-> > +/* Set EZConfig.
-> > + * After this ioctl call, the driver restarts the si4455,
-> > + * then apply the new configuration and patch.
-> > + */
-> > +#define SI4455_IOC_SEZC		_IOW('T', \
-> > +				     BASE_TTYIOC_PRIVATE + 0x01, \
-> > +				     struct si4455_iocbuff)
-> 
-> Why does a serial driver have private ioctls?  Please no, don't do that.
+PicoXcell has had nothing but treewide cleanups for at least the last 8
+years and no signs of activity. The most recent activity is a yocto vendor
+kernel based on v3.0 in 2015.
 
-I checked the ioctl.h and serial_core.h, but I not found any similar definition, like BASE_VIDIOC_PRIVATE in videodev2.h.
-In this case the name of macro BASE_TTYIOC_PRIVATE means the base value of special ioctl commands owned by this driver.
+These patches can go via the respective maintainers' trees.
 
-I can change it to BASE_TTYIOC or SI4455_IOC_BASE
+Rob
 
-> Implement the basic serial driver first, and then we can talk about
-> "custom" configurations and the like, using the correct apis.
+Rob Herring (4):
+  ARM: dts: Remove PicoXcell platforms
+  ARM: Remove PicoXcell platform support
+  crypto: Remove PicoXcell driver
+  dt-bindings: Remove PicoXcell bindings
 
-Without the SI4455_IOC_SEZC call, the driver can't configure the Si4455 and not working at all.
-The cofiguration for interface is provided by user for application.
-It contains the base frequency, channel spacing, modulation, and a lot of more stuff, and generated by Silicon Labs Wireless Development Suite.
-The generated configuration is in a non public(compressed, encrypted...who knows) format, so without this the driver can't provide configuration parameters to Si4455.
+ .../devicetree/bindings/arm/picoxcell.txt     |   24 -
+ .../bindings/crypto/picochip-spacc.txt        |   21 -
+ .../devicetree/bindings/net/macb.txt          |    2 -
+ .../bindings/timer/snps,dw-apb-timer.yaml     |    7 -
+ MAINTAINERS                                   |    9 -
+ arch/arm/Kconfig                              |    2 -
+ arch/arm/Kconfig.debug                        |   13 +-
+ arch/arm/Makefile                             |    1 -
+ arch/arm/boot/dts/Makefile                    |    3 -
+ arch/arm/boot/dts/picoxcell-pc3x2.dtsi        |  239 ---
+ arch/arm/boot/dts/picoxcell-pc3x3.dtsi        |  355 ----
+ arch/arm/boot/dts/picoxcell-pc7302-pc3x2.dts  |   78 -
+ arch/arm/boot/dts/picoxcell-pc7302-pc3x3.dts  |   84 -
+ arch/arm/mach-picoxcell/Kconfig               |    9 -
+ arch/arm/mach-picoxcell/Makefile              |    2 -
+ arch/arm/mach-picoxcell/common.c              |   81 -
+ drivers/crypto/Kconfig                        |   18 -
+ drivers/crypto/Makefile                       |    1 -
+ drivers/crypto/picoxcell_crypto.c             | 1806 -----------------
+ drivers/crypto/picoxcell_crypto_regs.h        |  115 --
+ 20 files changed, 1 insertion(+), 2869 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/arm/picoxcell.txt
+ delete mode 100644 Documentation/devicetree/bindings/crypto/picochip-spacc.txt
+ delete mode 100644 arch/arm/boot/dts/picoxcell-pc3x2.dtsi
+ delete mode 100644 arch/arm/boot/dts/picoxcell-pc3x3.dtsi
+ delete mode 100644 arch/arm/boot/dts/picoxcell-pc7302-pc3x2.dts
+ delete mode 100644 arch/arm/boot/dts/picoxcell-pc7302-pc3x3.dts
+ delete mode 100644 arch/arm/mach-picoxcell/Kconfig
+ delete mode 100644 arch/arm/mach-picoxcell/Makefile
+ delete mode 100644 arch/arm/mach-picoxcell/common.c
+ delete mode 100644 drivers/crypto/picoxcell_crypto.c
+ delete mode 100644 drivers/crypto/picoxcell_crypto_regs.h
 
-> 
-> thanks,
-> 
-> greg k-h
-
-Üdvözlettel / Best regards:
-József Horváth
-
+--
+2.25.1
