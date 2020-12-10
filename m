@@ -2,70 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 564422D5CAC
-	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 15:02:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 38F482D5CB8
+	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 15:03:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389854AbgLJOAy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Dec 2020 09:00:54 -0500
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:33959 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389851AbgLJOAt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 09:00:49 -0500
-Received: by mail-ot1-f67.google.com with SMTP id a109so4920267otc.1;
-        Thu, 10 Dec 2020 06:00:33 -0800 (PST)
+        id S1732619AbgLJODZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Dec 2020 09:03:25 -0500
+Received: from mail-ot1-f65.google.com ([209.85.210.65]:38725 "EHLO
+        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731725AbgLJOCi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 09:02:38 -0500
+Received: by mail-ot1-f65.google.com with SMTP id j20so440581otq.5;
+        Thu, 10 Dec 2020 06:02:22 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=CDnG3etuTG2O5w/8pwgzq0QlreX8DZcmIWq84PxhfKg=;
-        b=imY4rlLNAmw4FDqGKT3djCKUdLxajSB5qF/SaBvEFtMG6INmNIbGkav6zbSNjzra1j
-         fytCDLlLvRUqSc5MIwUub38KY/VlkIR/zIICHthaqHVhmRBAuKacaoWe15n0bKtDVskc
-         uXqtUVTgEleHI9Yj0JevJ96rJHkAc1J+Vwmir7mqQj2sCgMVFrmtjAvM4I8cgPCl8Wl9
-         0+76C8+Zeei2Rs3K6YYe0Jx88G1xfofDs4YJNmcPWo/+fJSFpEyzvPb1OfDAxEN4wOh2
-         hCpeC6n++PZGLnEcgp1iNjDupcyKP1LyiFSnf+P+ULaZICTl3cAWTXCenJu4PQkggcG+
-         fDWQ==
-X-Gm-Message-State: AOAM530dL9+F/gzXzu11c8Fkdfqo4bPbKkiR6JFqtIdvWiRO2qQejV36
-        to4z+ghiJhGDSaF5LFw1bw==
-X-Google-Smtp-Source: ABdhPJz90X0LBbNbtmVSc9EIZIuCicnTJlnEkxXOecBv4cMXBoj7eZvZ7vpSU+SbMjRkkNr8U3XHbw==
-X-Received: by 2002:a9d:4e08:: with SMTP id p8mr5824066otf.188.1607608808087;
-        Thu, 10 Dec 2020 06:00:08 -0800 (PST)
+        bh=gzXVrkHTuYt7eLZS3ECwj/trOu0cvJFlQnkF6qE3+w8=;
+        b=XC6FxctKhcUZdWSm5QR+I6mKfqNeQ0r1iuH3IV0QOD2o2La5d6XZ9nYbVY8HXnnlYC
+         qmKnCoNa47KWQzGy9ZmHhDFcNn+chnZoxyCxRteS2X6H5Q2iOIy5VB5Tg/iLM+raj5xT
+         4cihNS9eRFZVCHO62uD676D7h3FzRcT5ZSWOlgh16UyzSKn4ZAXwAk7MGArx9HJ5L+Ik
+         PgFG6/5uUCTwLQG9agT4G1QyC35GYGq6SnCeFQ3942eUc56fUwiaIzrGyZqIcttV1ARz
+         +vM5DDOKmunfh/1/lKNZHEQ/V6pVZWbaag2ngPUP1Pl/AQkyAOMZ2cmMQPTflo8Mwcbk
+         5gpw==
+X-Gm-Message-State: AOAM532OJ92hfeGAoUFwrH3Uzy3mqn+NNmXTP+ppDZcMps0qlUcE15dn
+        Vtlkfx39NhKkj0j4AfO6wg==
+X-Google-Smtp-Source: ABdhPJzmjKYdnN80/BdHxS9eMtMdR1+4ITJdHQjuWkhkfxhKIxTxr4Bi+T2PFo3Taq36HCwBpWyrgw==
+X-Received: by 2002:a9d:5d1a:: with SMTP id b26mr6059810oti.112.1607608917405;
+        Thu, 10 Dec 2020 06:01:57 -0800 (PST)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id r12sm1014107ooo.25.2020.12.10.06.00.05
+        by smtp.gmail.com with ESMTPSA id y35sm1091659otb.5.2020.12.10.06.01.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Dec 2020 06:00:06 -0800 (PST)
-Received: (nullmailer pid 2421016 invoked by uid 1000);
-        Thu, 10 Dec 2020 14:00:05 -0000
-Date:   Thu, 10 Dec 2020 08:00:05 -0600
+        Thu, 10 Dec 2020 06:01:55 -0800 (PST)
+Received: (nullmailer pid 2423529 invoked by uid 1000);
+        Thu, 10 Dec 2020 14:01:54 -0000
+Date:   Thu, 10 Dec 2020 08:01:54 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Peter Ujfalusi <peter.ujfalusi@ti.com>
-Cc:     grygorii.strashko@ti.com, linux-kernel@vger.kernel.org,
-        t-kristo@ti.com, dmaengine@vger.kernel.org,
-        dan.j.williams@intel.com, nm@ti.com, vkoul@kernel.org,
-        vigneshr@ti.com, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, ssantosh@kernel.org, robh+dt@kernel.org
-Subject: Re: [PATCH v3 12/20] dt-bindings: dma: ti: Add document for K3 PKTDMA
-Message-ID: <20201210140005.GA2420984@robh.at.kernel.org>
-References: <20201208090440.31792-1-peter.ujfalusi@ti.com>
- <20201208090440.31792-13-peter.ujfalusi@ti.com>
+To:     Zhen Lei <thunder.leizhen@huawei.com>
+Cc:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Wei Xu <xuwei5@hisilicon.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Chen Feng <puck.chen@hisilicon.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Zhangfei Gao <zhangfei.gao@linaro.org>
+Subject: Re: [PATCH v3 3/4] dt-bindings: reset: correct vendor prefix hisi to
+ hisilicon
+Message-ID: <20201210140154.GA2423435@robh.at.kernel.org>
+References: <20201208124641.1787-1-thunder.leizhen@huawei.com>
+ <20201208124641.1787-4-thunder.leizhen@huawei.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201208090440.31792-13-peter.ujfalusi@ti.com>
+In-Reply-To: <20201208124641.1787-4-thunder.leizhen@huawei.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 08 Dec 2020 11:04:32 +0200, Peter Ujfalusi wrote:
-> New binding document for
-> Texas Instruments K3 Packet DMA (PKTDMA).
+On Tue, 08 Dec 2020 20:46:40 +0800, Zhen Lei wrote:
+> The vendor prefix of "Hisilicon Limited" is "hisilicon", it is clearly
+> stated in "vendor-prefixes.yaml".
 > 
-> PKTDMA is introduced as part of AM64.
-> 
-> Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
+> Fixes: 836e23549583 ("dt-bindings: Document the hi3660 reset bindings")
+> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
+> Cc: Zhangfei Gao <zhangfei.gao@linaro.org>
 > ---
->  .../devicetree/bindings/dma/ti/k3-pktdma.yaml | 172 ++++++++++++++++++
->  1 file changed, 172 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/dma/ti/k3-pktdma.yaml
+>  Documentation/devicetree/bindings/reset/hisilicon,hi3660-reset.txt | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
