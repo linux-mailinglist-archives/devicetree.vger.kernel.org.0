@@ -2,91 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F6182D5A1F
-	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 13:15:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B4C712D5A3B
+	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 13:18:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387580AbgLJMN5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Dec 2020 07:13:57 -0500
-Received: from esa.microchip.iphmx.com ([68.232.154.123]:57596 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727921AbgLJMNz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 07:13:55 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1607602434; x=1639138434;
-  h=from:to:cc:subject:date:message-id:mime-version;
-  bh=qcs0vP++s9/jWYyApeBlg2MnU6kdvbG2oa1qH8lIUMI=;
-  b=duBv80bxPCs3iOknqOEheGhLFzd/tPJ0FgIjw6+M7qQSxHs/Jx8oOEXo
-   XNqxGcyXkj+ZIPDb1CplS72pjZsGXdt6+wndVhvAM9fhExE0G0zU7a9yB
-   ydu1gXNwKSrS8eiQZU1b+WgDH487EqYSPNEf+njSyADHENmf2QydwCDKx
-   anfwk0y3q+5fnW+X36UKlVGy112M0bTUKu/LzJx4nhtsxTIjZt+/aobri
-   ydP4/1F8sMGjA4vFHxFt/aCMdPk+3uz98sDVhgvtjVtLQv4YdJkXPA3o6
-   0e5qK9ME7l8sWLK7nQOHhTlvnIr44omshdhDexAt6mais0MTuVTGpBz8d
-   g==;
-IronPort-SDR: 7qCZ2cM49s5EvOmoQeygAFw8aQOQpBDRmbjeS6CDnn/vL4xiKJLIG1PPJa8/ipk1Rd7VRvv4+w
- W7+hSU+3al69LKzoIfd9NWsbQkcMOdENhTmwYIyl0Ot2CGEQc6/SiWrb1pI7mIXtmOOcWdPnD+
- 9NSdFz6TgMkfKczIXSWfRuUcoweWHe4q6CxIyH6p4eLVlKWrYAkzvWX/EQZKdk9kZ5KY6yIN/u
- F4rTQYfdtLaR3P+SAwpAC25J3iVP++e1ILtB3TF98IDhHfMvOXHvPDlTdxIFNgDd1cBzChSkvA
- xVc=
-X-IronPort-AV: E=Sophos;i="5.78,408,1599548400"; 
-   d="scan'208";a="99350785"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 10 Dec 2020 05:12:38 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1979.3; Thu, 10 Dec 2020 05:12:38 -0700
-Received: from soft-dev10.microchip.com (10.10.115.15) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3
- via Frontend Transport; Thu, 10 Dec 2020 05:12:37 -0700
-User-agent: mu4e 1.2.0; emacs 26.3
-From:   Lars Povlsen <lars.povlsen@microchip.com>
-To:     Arnd Bergmann <arnd@arndb.de>
-CC:     SoC Team <soc@kernel.org>,
-        LAK <linux-arm-kernel@lists.infradead.org>,
-        Microchip UNG Driver List <UNGLinuxDriver@microchip.com>,
-        <devicetree@vger.kernel.org>
-Subject: [GIT PULL] Devicetree patches for Sparx5 v5.11
-Date:   Thu, 10 Dec 2020 13:12:31 +0100
-Message-ID: <87ft4dq2q8.fsf@microchip.com>
+        id S2388266AbgLJMRP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Dec 2020 07:17:15 -0500
+Received: from guitar.tcltek.co.il ([192.115.133.116]:58274 "EHLO
+        mx.tkos.co.il" rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2388197AbgLJMRC (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 10 Dec 2020 07:17:02 -0500
+Received: from tarshish.tkos.co.il (unknown [10.0.8.2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mx.tkos.co.il (Postfix) with ESMTPS id 49959440048;
+        Thu, 10 Dec 2020 14:16:08 +0200 (IST)
+From:   Baruch Siach <baruch@tkos.co.il>
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Baruch Siach <baruch@tkos.co.il>, Andrew Lunn <andrew@lunn.ch>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Chris Packham <chris.packham@alliedtelesis.co.nz>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Ralph Sennhauser <ralph.sennhauser@gmail.com>,
+        linux-pwm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: [PATCH v4 0/3] gpio: mvebu: Armada 8K/7K PWM support
+Date:   Thu, 10 Dec 2020 14:15:57 +0200
+Message-Id: <cover.1607601615.git.baruch@tkos.co.il>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This series makes two changes to v3:
 
-Hi Arnd!
+  * Remove patches that are in LinusW linux-gpio for-next and fixes
 
-Alex made me aware we're late with DT updates for 5.11, I hope you can
-fit these 2 patches in. Sorry!
+  * Rename the 'pwm-offset' property to 'marvell,pwm-offset' as suggested by 
+    Rob Herring
 
----Lars
+The original cover letter follows (with DT property name updated).
 
-The following changes since commit 3650b228f83adda7e5ee532e2b90429c03f7b9ec:
+The gpio-mvebu driver supports the PWM functionality of the GPIO block for
+earlier Armada variants like XP, 370 and 38x. This series extends support to
+newer Armada variants that use CP11x and AP80x, like Armada 8K and 7K.
 
-  Linux 5.10-rc1 (2020-10-25 15:14:11 -0700)
+This series adds adds the 'marvell,pwm-offset' property to DT binding. 
+'marvell,pwm-offset' points to the base of A/B counter registers that 
+determine the PWM period and duty cycle.
 
-are available in the Git repository at:
+The existing PWM DT binding reflects an arbitrary decision to allocate the A
+counter to the first GPIO block, and B counter to the other one. In attempt to
+provide better future flexibility, the new 'marvell,pwm-offset' property 
+always points to the base address of both A/B counters. The driver code still 
+allocates the counters in the same way, but this might change in the future 
+with no change to the DT.
 
-  https://github.com/microchip-ung/linux-upstream.git sparx5-next
+Tested AP806 and CP110 (both) on Armada 8040 based system.
 
-for you to fetch changes up to 7e1f91cbfa0d330fad61c621389373cff81898fd:
+Baruch Siach (3):
+  gpio: mvebu: add pwm support for Armada 8K/7K
+  arm64: dts: armada: add pwm offsets for ap/cp gpios
+  dt-bindings: ap806: document marvell,gpio pwm-offset property
 
-  arm64: dts: sparx5: Add SGPIO devices (2020-12-10 11:55:31 +0100)
+ .../arm/marvell/ap80x-system-controller.txt   |   8 ++
+ arch/arm64/boot/dts/marvell/armada-ap80x.dtsi |   3 +
+ arch/arm64/boot/dts/marvell/armada-cp11x.dtsi |  10 ++
+ drivers/gpio/gpio-mvebu.c                     | 101 ++++++++++++------
+ 4 files changed, 89 insertions(+), 33 deletions(-)
 
-----------------------------------------------------------------
-Lars Povlsen (2):
-      arm64: dts: sparx5: Add reset support
-      arm64: dts: sparx5: Add SGPIO devices
+-- 
+2.29.2
 
- arch/arm64/boot/dts/microchip/sparx5.dtsi          |  96 ++++++++
- arch/arm64/boot/dts/microchip/sparx5_pcb125.dts    |   5 +
- .../boot/dts/microchip/sparx5_pcb134_board.dtsi    | 258 +++++++++++++++++++++
- .../boot/dts/microchip/sparx5_pcb135_board.dtsi    |  55 +++++
- 4 files changed, 414 insertions(+)
-
---
-Lars Povlsen,
-Microchip
