@@ -2,74 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DD3982D5211
-	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 04:53:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5AF2A2D5214
+	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 04:53:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731687AbgLJDvW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Dec 2020 22:51:22 -0500
-Received: from mail-ot1-f66.google.com ([209.85.210.66]:33282 "EHLO
-        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731710AbgLJDvR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Dec 2020 22:51:17 -0500
-Received: by mail-ot1-f66.google.com with SMTP id b18so3660046ots.0;
-        Wed, 09 Dec 2020 19:51:01 -0800 (PST)
+        id S1731218AbgLJDvs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Dec 2020 22:51:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47228 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730914AbgLJDvk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Dec 2020 22:51:40 -0500
+Received: from mail-pg1-x544.google.com (mail-pg1-x544.google.com [IPv6:2607:f8b0:4864:20::544])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F91AC0613D6;
+        Wed,  9 Dec 2020 19:50:56 -0800 (PST)
+Received: by mail-pg1-x544.google.com with SMTP id w4so2912898pgg.13;
+        Wed, 09 Dec 2020 19:50:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=dPjBPu9cpVHm88U4UD4X9nEgu/9xVZnUbnkc3WRW/cg=;
+        b=Xv/s+xlZMiLSZWX+ND3o48l0FgwqnOv4VROLyirBreykQjZf4IFmMY7DdY7/L1zaSr
+         QwJXsXKnxSAAqSQoRQ/uNmsJLER7TMM0Riyg+rBlYoUemtxD74hWG2Wmh/Hv4jPuRCoJ
+         zyZI0f0TdSokk7KovYhCbppBVFAOx28xz9MbO4GghM6j1ZpVwe5PY0aPK/FcD1a3eOQ/
+         eE3VTmreM2haOiJmHMiIWnZvWbOLxvvLNGkTwlApr1ZjF0FOh82kcDc0/oVZnB07jkbu
+         EqKK4ZI9+lbI6Gcvmq3fQl1moc5+VO5bxrpwE7mqY6PJT0bQ0WnU916FgOOLKXAmRM+B
+         X5/w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=wTUKsQsI85r86/4hHQ2dtyPKmWXP2ZvmGt7MBaOH028=;
-        b=NlPHTAUQD2SzOzpAMUOBuvxMA/ZZ1olYiZ4F/TXQCOa3+Vjx788zRj7W57h43isvDm
-         KYfxUFCoKE27Rd+DwOP5SrZi6bzh6pUIYB6R5TfGfxTSTi7sk1HJXe/9br7dZAkYXj6t
-         VbeXTXzRg3FmSgwfZD11YRQV8sTKLJlJUaydWd0ErhY9Naj6+n7JESZ++2hExKSoiMSN
-         k3ilebfDeaejy7but5w/V7HAIpLr/qoDmWzmXlkSl/tQXb96NZWoJzMhQPZiVnC3I+i7
-         TWe/Nf2OMlixrF2pz1TX4AaS6Do4suykKBMSMe/k1I2sa3ACVR2ogtZ5Mkf7hAXUEGgt
-         YWfA==
-X-Gm-Message-State: AOAM533ScYK/DPcV8nRpS2nWY6SlkcgOh7lNR6crM0+k/xmSr3rK4S53
-        GfWMYHXnAIkeq+UMD+XgQg==
-X-Google-Smtp-Source: ABdhPJzyro0TDfjAJJemuxnapS3KeOXJW7vVxsQSlvBdmdYX7hFBfYtY6Rel8ijjf+FAVBOowtVtWg==
-X-Received: by 2002:a05:6830:2144:: with SMTP id r4mr3914253otd.180.1607572236096;
-        Wed, 09 Dec 2020 19:50:36 -0800 (PST)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id z10sm784921oom.3.2020.12.09.19.50.34
+        bh=dPjBPu9cpVHm88U4UD4X9nEgu/9xVZnUbnkc3WRW/cg=;
+        b=Q3j71vwimTDb6NeCswy9r8TM8uqY6noRduc64ImsJE0xRSDYj2SW9jYpv9semxx8uJ
+         1JyvZSTblqOxUjakCdtZJyaM+KgAJ28kQ5RLe0Q275LNw4zYbTVRLp63hnefmGKJ5tnO
+         NAEeZB/HNppS+TnT0cn4YjANAaBT1XUueiXQpyUiYAbLvjR5/meJImHl3v5Vn1o22DFe
+         cYA1xO6ZzIU//W3D/Zn9Pu6CvjA+hNqTa9OYybyQGwh7WsedQSYYxLTFcy9aIfkV8X09
+         NxvWtLW0f/A8Fj3fzumBQ9pCvEwx7xXWdStjiqbRIP61cRYTgxILh2+zJfTBVvdwWWdS
+         oYkw==
+X-Gm-Message-State: AOAM532OLT+mqF2xKI4qzve+9AVzCsAtL+Tv3cQzxxhOCmKjTX/Yd1mM
+        m/6ISetuMhKKbMroJp5AaiY=
+X-Google-Smtp-Source: ABdhPJyItofwmN2r3pwSo0qZOvIQSbw+Z3qM7Tikc+jG3quB2W/oC/cQsN3q/VA944mKVXhIOitg4A==
+X-Received: by 2002:a62:d003:0:b029:19d:cf06:f8c2 with SMTP id p3-20020a62d0030000b029019dcf06f8c2mr4988085pfg.48.1607572255888;
+        Wed, 09 Dec 2020 19:50:55 -0800 (PST)
+Received: from google.com ([2620:15c:202:201:a6ae:11ff:fe11:fcc3])
+        by smtp.gmail.com with ESMTPSA id q22sm819494pjg.15.2020.12.09.19.50.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Dec 2020 19:50:35 -0800 (PST)
-Received: (nullmailer pid 1625643 invoked by uid 1000);
-        Thu, 10 Dec 2020 03:50:34 -0000
-Date:   Wed, 9 Dec 2020 21:50:34 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Kevin Tang <kevin3.tang@gmail.com>
-Cc:     dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-        sean@poorly.run, daniel@ffwll.ch, orsonzhai@gmail.com,
-        devicetree@vger.kernel.org, mark.rutland@arm.com,
-        mripard@kernel.org, robh+dt@kernel.org,
-        maarten.lankhorst@linux.intel.com, airlied@linux.ie,
-        zhang.lyra@gmail.com
-Subject: Re: [PATCH v1 5/6] dt-bindings: display: add Unisoc's mipi dsi
- controller bindings
-Message-ID: <20201210035034.GA1625611@robh.at.kernel.org>
-References: <1607352626-26088-1-git-send-email-kevin3.tang@gmail.com>
- <1607352626-26088-6-git-send-email-kevin3.tang@gmail.com>
+        Wed, 09 Dec 2020 19:50:55 -0800 (PST)
+Date:   Wed, 9 Dec 2020 19:50:52 -0800
+From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To:     Stephan Gerhold <stephan@gerhold.net>
+Cc:     linux-input@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>
+Subject: Re: [PATCH 2/3] dt-bindings: Input: tm2-touchkey - document
+ vddio-supply
+Message-ID: <X9GbHHC2I6KY3D1/@google.com>
+References: <20201203131242.44397-1-stephan@gerhold.net>
+ <20201203131242.44397-2-stephan@gerhold.net>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1607352626-26088-6-git-send-email-kevin3.tang@gmail.com>
+In-Reply-To: <20201203131242.44397-2-stephan@gerhold.net>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 07 Dec 2020 22:50:25 +0800, Kevin Tang wrote:
-> From: Kevin Tang <kevin.tang@unisoc.com>
+On Thu, Dec 03, 2020 at 02:12:41PM +0100, Stephan Gerhold wrote:
+> The Samsung touchkey controllers are often used with external pull-up
+> for the interrupt line and the I2C lines, so we might need to enable
+> a regulator to bring the lines into usable state. Otherwise, this might
+> cause spurious interrupts and reading from I2C will fail.
 > 
-> Adds MIPI DSI Controller
-> support for Unisoc's display subsystem.
+> Document support for a "vddio-supply" that is enabled by the tm2-touchkey
+> driver so that the regulator gets enabled when needed.
 > 
-> Cc: Orson Zhai <orsonzhai@gmail.com>
-> Cc: Chunyan Zhang <zhang.lyra@gmail.com>
-> Signed-off-by: Kevin Tang <kevin.tang@unisoc.com>
-> ---
->  .../display/sprd/sprd,sharkl3-dsi-host.yaml        | 107 +++++++++++++++++++++
->  1 file changed, 107 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/sprd/sprd,sharkl3-dsi-host.yaml
-> 
+> Cc: Linus Walleij <linus.walleij@linaro.org>
+> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Applied, thank you.
+
+-- 
+Dmitry
