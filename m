@@ -2,68 +2,187 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 208692D5693
-	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 10:17:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 46E4E2D5676
+	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 10:17:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729145AbgLJJQp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Dec 2020 04:16:45 -0500
-Received: from mail.persuitflow.com ([89.46.74.132]:41908 "EHLO
-        server1.mail.persuitflow.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S2388561AbgLJJQn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 10 Dec 2020 04:16:43 -0500
-Received: by server1.mail.persuitflow.com (Postfix, from userid 1001)
-        id C19F0A38D3; Thu, 10 Dec 2020 09:11:44 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=persuitflow.com;
-        s=mail; t=1607591529;
-        bh=LIG/EV9hZypKEB8e9JkxJFCirHVIBsQt3YrIS4TkXUA=;
-        h=Date:From:To:Subject:From;
-        b=ODLwWLxiYHP5iM00N6c2TiAR56eOF4T1VNgz8t4i2kJ/573nOxP8rtDs5afwHij/Z
-         V0r9mq/NXi6x2OEPeywWvAHGo0wpzogCV1IuaH/sEyv6L49WxXdixnjVsMhmlK2hi2
-         mxw6BfZR3KOOLKChNve9UFyqV4SBG3kicHewd1aznJXygJa879ceSErW4nvXEOrMH1
-         9yGfbEHl1Ve4xHYhU189v8Qz+I52Aug/daeMLE2k9r58mKjrs8y5QVRNwvIQwZsDoZ
-         Tg5maP6DcZYopGgqv+5Lh7etqshXthPEmlolK2bNMXeV7Hk0gsffyxBZm/HRBnHHjg
-         pUUm0yLAQm51g==
-Received: by mail.persuitflow.com for <devicetree@vger.kernel.org>; Thu, 10 Dec 2020 09:11:01 GMT
-Message-ID: <20201210074501-0.1.1x.8qcw.0.bow12jjpa0@persuitflow.com>
-Date:   Thu, 10 Dec 2020 09:11:01 GMT
-From:   "Raquel Carvalho" <raquel.carvalho@persuitflow.com>
-To:     <devicetree@vger.kernel.org>
-Subject: Desinfetante
-X-Mailer: mail.persuitflow.com
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        id S1732199AbgLJJOI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Dec 2020 04:14:08 -0500
+Received: from mga07.intel.com ([134.134.136.100]:18524 "EHLO mga07.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2388701AbgLJJOF (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 10 Dec 2020 04:14:05 -0500
+IronPort-SDR: oNjLU9Kn+gE76P2Kephz3iVLEtsoutBtnFopXTlJSrbv3Tu+38OntBNI3jNxA2CAH1dZCBEz9x
+ QMH1om7Mt0zw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9830"; a="238330376"
+X-IronPort-AV: E=Sophos;i="5.78,408,1599548400"; 
+   d="scan'208";a="238330376"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Dec 2020 01:12:18 -0800
+IronPort-SDR: Gge6ZG/APD0xChqxyv5yqhDKIcq3bmYXBPkkA4xphzExKt4LrGplRPQM/SR0QYjVmrYVPHkfJv
+ gpWhXiSSuHlQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.78,408,1599548400"; 
+   d="scan'208";a="364543079"
+Received: from sgsxdev004.isng.phoenix.local (HELO localhost) ([10.226.81.179])
+  by orsmga008.jf.intel.com with ESMTP; 10 Dec 2020 01:12:16 -0800
+From:   Amireddy Mallikarjuna reddy <mallikarjunax.reddy@linux.intel.com>
+To:     linux-leds@vger.kernel.org, pavel@ucw.cz, dmurphy@ti.com,
+        devicetree@vger.kernel.org, robh+dt@kernel.org
+Cc:     linux-kernel@vger.kernel.org, cheol.yong.kim@intel.com,
+        qi-ming.wu@intel.com, mallikarjunax.reddy@linux.intel.com,
+        malliamireddy009@gmail.com, yixin.zhu@intel.com
+Subject: [PATCH v3 1/2] dt-bindings: leds: Add bindings for Intel LGM SoC
+Date:   Thu, 10 Dec 2020 17:12:11 +0800
+Message-Id: <49ebc8e27958cb77cde36e5f95ad530803259907.1607591119.git.mallikarjunax.reddy@linux.intel.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Bom Dia,
+Add DT bindings YAML schema for SSO controller driver
+of Lightning Mountain (LGM) SoC.
 
-A demanda por desinfetantes eficazes que permitam a elimina=C3=A7=C3=A3o =
-de microrganismos prejudiciais =C3=A9 continuamente alta em todo o mundo.
+Signed-off-by: Amireddy Mallikarjuna reddy <mallikarjunax.reddy@linux.intel.com>
+---
+v1:
+- Initial version.
 
-Expandir a oferta com uma gama profissional de produtos com atividade vir=
-icida e bactericida permite aumentar a posi=C3=A7=C3=A3o competitiva da e=
-mpresa e construir novas redes de vendas.
+v2:
+- Fix bot errors (wrong indentation).
+- Spell out LGM and SSO.
+- Remove vendor specific name for LED properites.
+- removed deprecating property "label"
+- Include 'reg', 'function' & 'color' properties.
 
-Diversificamos a linha de atacadistas e distribuidores com sabonetes, l=C3=
-=ADquidos e g=C3=A9is para desinfec=C3=A7=C3=A3o das m=C3=A3os e outros p=
-rodutos de limpeza, entre eles: g=C3=A9is de banho, shampoos e condiciona=
-dores de cabelo, al=C3=A9m de detergentes concentrados.
+v3:
+- Included full names(maintainers).
+- changed compatible SoC specific.
+- Remove redundant properties.
+- Updated vendor prefix and unit suffix to properties.
+---
+ .../devicetree/bindings/leds/leds-lgm.yaml    | 113 ++++++++++++++++++
+ 1 file changed, 113 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/leds/leds-lgm.yaml
 
-Nossos parceiros de neg=C3=B3cios est=C3=A3o aumentando sua participa=C3=A7=
-=C3=A3o no mercado externo devido =C3=A0 crescente satisfa=C3=A7=C3=A3o d=
-o cliente e oferta diversificada.
+diff --git a/Documentation/devicetree/bindings/leds/leds-lgm.yaml b/Documentation/devicetree/bindings/leds/leds-lgm.yaml
+new file mode 100644
+index 000000000000..32bbf146c01d
+--- /dev/null
++++ b/Documentation/devicetree/bindings/leds/leds-lgm.yaml
+@@ -0,0 +1,113 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/leds/leds-lgm.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Intel Lightning Mountain (LGM) SoC LED Serial Shift Output (SSO) Controller driver
++
++maintainers:
++  - Zhu, Yi Xin <Yixin.zhu@intel.com>
++  - Amireddy Mallikarjuna reddy <mallikarjunax.reddy@intel.com>
++
++properties:
++  compatible:
++    const: intel,lgm-ssoled
++
++  gpio-controller: true
++
++  '#gpio-cells':
++    const: 2
++
++  ngpios:
++    minimum: 0
++    maximum: 32
++    description:
++      Number of GPIOs this controller provides.
++
++  intel,sso-update-rate-hz:
++    description:
++      Blink frequency for SOUTs in Hz.
++
++  led-controller:
++    type: object
++    description:
++      This sub-node must contain a sub-node for each leds.
++
++    additionalProperties: false
++
++    patternProperties:
++      "^led@[0-23]$":
++        type: object
++
++        properties:
++          reg:
++            description: Index of the LED.
++            minimum: 0
++            maximum: 2
++
++          intel,sso-hw-trigger:
++            type: boolean
++            description: This property indicates Hardware driven/control LED.
++
++          intel,sso-hw-blink:
++            type: boolean
++            description: This property indicates Enable LED blink by Hardware.
++
++          intel,sso-blink-rate-hz:
++            description: LED HW blink frequency.
++
++          retain-state-suspended:
++            type: boolean
++            description: The suspend state of LED can be retained.
++
++          retain-state-shutdown:
++            type: boolean
++            description: Retain the state of the LED on shutdown.
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - clock-names
++  - "#gpio-cells"
++  - gpio-controller
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/intel,lgm-clk.h>
++    #include <dt-bindings/leds/common.h>
++
++    ssogpio: ssogpio@e0d40000 {
++      compatible = "intel,sso-led";
++      reg = <0xE0D40000 0x2E4>;
++      gpio-controller;
++      #gpio-cells = <2>;
++      ngpios = <32>;
++      pinctrl-names = "default";
++      pinctrl-0 = <&pinctrl_ledc>;
++      clocks = <&cgu0 LGM_GCLK_LEDC0>, <&afeclk>;
++      clock-names = "sso", "fpid";
++      intel,sso-update-rate-hz = <250000>;
++
++      led-controller {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        led@0 {
++          reg = <0>;
++          function = "gphy";
++          color = <LED_COLOR_ID_GREEN>;
++          led-gpio = <&ssogpio 0 0>;
++        };
++
++        led@23 {
++          reg = <23>;
++          function = LED_FUNCTION_POWER;
++          color = <LED_COLOR_ID_GREEN>;
++          led-gpio = <&ssogpio 23 0>;
++        };
++      };
++    };
+-- 
+2.17.1
 
-O potencial de crescimento de nossas solu=C3=A7=C3=B5es resulta de pre=C3=
-=A7os acess=C3=ADveis, alto desempenho e versatilidade para se adaptar a =
-todos os tipos de pele.
-
-A extens=C3=A3o da gama de produtos proposta =C3=A9 um campo interessante=
- para a coopera=C3=A7=C3=A3o?
-
-
-Cumprimentos,
-Raquel Carvalho
-Conselheiro do Cliente
