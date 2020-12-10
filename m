@@ -2,70 +2,393 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6DA4A2D6271
-	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 17:50:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B7A742D6370
+	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 18:25:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391083AbgLJOh1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Dec 2020 09:37:27 -0500
-Received: from mail-wm1-f66.google.com ([209.85.128.66]:36481 "EHLO
-        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2391078AbgLJOhV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 09:37:21 -0500
-Received: by mail-wm1-f66.google.com with SMTP id y23so5564925wmi.1
-        for <devicetree@vger.kernel.org>; Thu, 10 Dec 2020 06:37:05 -0800 (PST)
+        id S2389954AbgLJRYy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Dec 2020 12:24:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59764 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2391441AbgLJRYp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 12:24:45 -0500
+Received: from mail-lf1-x144.google.com (mail-lf1-x144.google.com [IPv6:2a00:1450:4864:20::144])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8F12C06179C
+        for <devicetree@vger.kernel.org>; Thu, 10 Dec 2020 09:24:04 -0800 (PST)
+Received: by mail-lf1-x144.google.com with SMTP id u18so9347998lfd.9
+        for <devicetree@vger.kernel.org>; Thu, 10 Dec 2020 09:24:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=2hEi+a/e7wvaXLvoH3MN8IDizE8jT7tD+9IKCNhlW1Q=;
+        b=bapz2v6JpLieBnL/kfHaqnT00bBlemg8exezwGGoQZzAC2eG1/qURlkRARnRZcscH7
+         3X3LWJgXEtlgWQ9qKWJnb06tocBACQmuoY6QE5OWiPR6mBwiDZskELBi7G/D5jCrxV1W
+         GZY7r6venYD369BnxjINkkzijVaudEQfid+iZ50LVP04kUxUs2b6MAE36lteBAJL1blN
+         atZBydtIo7z9pnjVOXrqLtdBdv0irSjSUDF8DBYPLt0zCo/OTFh/GwE2e8TVHm6/YKBF
+         uGvONgw/sFnHW6T/lrWR3MunUs05Y2YB+LuJ+nwZ8FKZwWUUy+kZoR86xi+l/HhHiMAY
+         JthA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=BbKxhSPWpvRU4kjHx4fv+2Bq6TUyiE8kSFJYl9laL/A=;
-        b=EN73Gz4Bp/XBJWkt7z0YAb/mG6HjwmCSjqXj1sLfTG5y3Kpf+/iid9jr8q7rXYr1VC
-         p9LlncmyAtu90ZJjuqpPzpUDV23Kmt31hbk04Lom5ovwInk9AwCOA0EBCVoKFjWqQr7k
-         24Og5e1RdZ28XFlBVgZc/4d+1AZvkhhPNbOoKX0Xgo8t7GZjghTVRAPCt1j2roLB6AdJ
-         5I9BQXyTv2a3LRZhcsypdi9qfsFYWFGRM+mvvIAJSyFeIDI78nZ7oDr8bDiIVVLy6c7r
-         /udjVg/nHWnYEtaQxSLpeVUJAkXaYXCuqqVsRmh18CCf8xVGYEaR4vXDfqNZ/3bAJDD1
-         LAoA==
-X-Gm-Message-State: AOAM533O+hhXcIdIFBhWvk19DdrvhX6CXI1gMhWMRGZUBzirZDg4ELiU
-        q9Tp2bQt4jNKEleXoOL9ACk=
-X-Google-Smtp-Source: ABdhPJyTdTx1oTKESZIO3+v1IjrliTudXIjWNayacbx0oCO9MALjefORSq4YwAwLuaczXxuTLxPIgw==
-X-Received: by 2002:a05:600c:cc:: with SMTP id u12mr8763449wmm.42.1607610999527;
-        Thu, 10 Dec 2020 06:36:39 -0800 (PST)
-Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
-        by smtp.googlemail.com with ESMTPSA id b14sm9811962wrx.77.2020.12.10.06.36.38
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=2hEi+a/e7wvaXLvoH3MN8IDizE8jT7tD+9IKCNhlW1Q=;
+        b=Hr5xjwN5XSsDMy8HkTcsPDBYZMfJ1CQoEUekAKR6HnuuUOBQgr1/gE29B0XpJDxDRT
+         xVYe1hzvwiouCKpJ19IU/xNHwR0r2errND95bitO5jh0n6VOs95lDorfSVQjuH05aEKE
+         iyAZ80mXHRhTG7QvAZGITLkNmU2T/mQLbarHmVTkM/NuVi0ROULQ+wuOiWQsh4x+J+VB
+         KPWcDiDE5JVMXaegBoM8TJXeSF8LqtwIqm2Kyci6kzvpLiw/NMiGSwFgjE653zCn0Agj
+         JsJzHyG27UsGhLvFT7bowdzLxSe0DtGoMOCql15LQkKpbZ74c/mL647TlT0gbqdqTMMj
+         xl9w==
+X-Gm-Message-State: AOAM530o4ZG7Q4B7nqYpFB7qz+6ARh9kDuSdvkCcFiKfxxwx0tcAAI4o
+        LmxkYNU9gpGkTGsnfK2J9OQ=
+X-Google-Smtp-Source: ABdhPJxhuEh3VV2tHODNhAW0XJyU2cFCK6Gjfuh2BaDnujMRRFuHjR6RmjQvlhuVYSHMwHmmJ/JhaQ==
+X-Received: by 2002:a19:ae18:: with SMTP id f24mr3275401lfc.528.1607621043271;
+        Thu, 10 Dec 2020 09:24:03 -0800 (PST)
+Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.gmail.com with ESMTPSA id m29sm666836ljb.30.2020.12.10.09.24.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Dec 2020 06:36:38 -0800 (PST)
-Date:   Thu, 10 Dec 2020 15:36:37 +0100
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Teresa Remmet <t.remmet@phytec.de>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>
-Subject: Re: [PATCH v2 3/4] bindings: arm: fsl: Add PHYTEC i.MX8MP devicetree
- bindings
-Message-ID: <20201210143637.GB46268@kozik-lap>
-References: <1607445491-208271-1-git-send-email-t.remmet@phytec.de>
- <1607445491-208271-4-git-send-email-t.remmet@phytec.de>
+        Thu, 10 Dec 2020 09:24:02 -0800 (PST)
+From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH V2] dt-bindings: mtd: convert "fixed-partitions" to the json-schema
+Date:   Thu, 10 Dec 2020 18:23:52 +0100
+Message-Id: <20201210172352.31632-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <1607445491-208271-4-git-send-email-t.remmet@phytec.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 08, 2020 at 05:38:10PM +0100, Teresa Remmet wrote:
-> Add devicetree bindings for i.MX8MP based phyCORE-i.MX8MP
-> and phyBOARD-Pollux RDK.
-> 
-> Signed-off-by: Teresa Remmet <t.remmet@phytec.de>
-> ---
->  Documentation/devicetree/bindings/arm/fsl.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
+From: Rafał Miłecki <rafal@milecki.pl>
 
-Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+This standardizes its documentation, allows validating with Makefile
+checks and helps writing DTS files.
 
-Best regards,
-Krzysztof
+Noticeable changes:
+1. Dropped "Partitions can be represented by sub-nodes of a flash
+   device." as we also support subpartitions (don't have to be part of
+   flash device node)
+2. Dropped "to Linux" as bindings are meant to be os agnostic.
+
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+V2: Add #address-cells and #size-cells
+    Move "compatible =" property up in examples
+    Add minItems to the "reg"
+---
+ .../devicetree/bindings/mtd/partition.txt     | 131 +--------------
+ .../mtd/partitions/fixed-partitions.yaml      | 152 ++++++++++++++++++
+ 2 files changed, 154 insertions(+), 129 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mtd/partitions/fixed-partitions.yaml
+
+diff --git a/Documentation/devicetree/bindings/mtd/partition.txt b/Documentation/devicetree/bindings/mtd/partition.txt
+index 4a39698221a2..ead90e8274d6 100644
+--- a/Documentation/devicetree/bindings/mtd/partition.txt
++++ b/Documentation/devicetree/bindings/mtd/partition.txt
+@@ -24,137 +24,10 @@ another partitioning method.
+ Available bindings are listed in the "partitions" subdirectory.
+ 
+ 
+-Fixed Partitions
+-================
+-
+-Partitions can be represented by sub-nodes of a flash device. This can be used
+-on platforms which have strong conventions about which portions of a flash are
+-used for what purposes, but which don't use an on-flash partition table such
+-as RedBoot.
+-
+-The partition table should be a subnode of the flash node and should be named
+-'partitions'. This node should have the following property:
+-- compatible : (required) must be "fixed-partitions"
+-Partitions are then defined in subnodes of the partitions node.
++Deprecated: partitions defined in flash node
++============================================
+ 
+ For backwards compatibility partitions as direct subnodes of the flash device are
+ supported. This use is discouraged.
+ NOTE: also for backwards compatibility, direct subnodes that have a compatible
+ string are not considered partitions, as they may be used for other bindings.
+-
+-#address-cells & #size-cells must both be present in the partitions subnode of the
+-flash device. There are two valid values for both:
+-<1>: for partitions that require a single 32-bit cell to represent their
+-     size/address (aka the value is below 4 GiB)
+-<2>: for partitions that require two 32-bit cells to represent their
+-     size/address (aka the value is 4 GiB or greater).
+-
+-Required properties:
+-- reg : The partition's offset and size within the flash
+-
+-Optional properties:
+-- label : The label / name for this partition.  If omitted, the label is taken
+-  from the node name (excluding the unit address).
+-- read-only : This parameter, if present, is a hint to Linux that this
+-  partition should only be mounted read-only. This is usually used for flash
+-  partitions containing early-boot firmware images or data which should not be
+-  clobbered.
+-- lock : Do not unlock the partition at initialization time (not supported on
+-  all devices)
+-- slc-mode: This parameter, if present, allows one to emulate SLC mode on a
+-  partition attached to an MLC NAND thus making this partition immune to
+-  paired-pages corruptions
+-
+-Examples:
+-
+-
+-flash@0 {
+-	partitions {
+-		compatible = "fixed-partitions";
+-		#address-cells = <1>;
+-		#size-cells = <1>;
+-
+-		partition@0 {
+-			label = "u-boot";
+-			reg = <0x0000000 0x100000>;
+-			read-only;
+-		};
+-
+-		uimage@100000 {
+-			reg = <0x0100000 0x200000>;
+-		};
+-	};
+-};
+-
+-flash@1 {
+-	partitions {
+-		compatible = "fixed-partitions";
+-		#address-cells = <1>;
+-		#size-cells = <2>;
+-
+-		/* a 4 GiB partition */
+-		partition@0 {
+-			label = "filesystem";
+-			reg = <0x00000000 0x1 0x00000000>;
+-		};
+-	};
+-};
+-
+-flash@2 {
+-	partitions {
+-		compatible = "fixed-partitions";
+-		#address-cells = <2>;
+-		#size-cells = <2>;
+-
+-		/* an 8 GiB partition */
+-		partition@0 {
+-			label = "filesystem #1";
+-			reg = <0x0 0x00000000 0x2 0x00000000>;
+-		};
+-
+-		/* a 4 GiB partition */
+-		partition@200000000 {
+-			label = "filesystem #2";
+-			reg = <0x2 0x00000000 0x1 0x00000000>;
+-		};
+-	};
+-};
+-
+-flash@3 {
+-	partitions {
+-		compatible = "fixed-partitions";
+-		#address-cells = <1>;
+-		#size-cells = <1>;
+-
+-		partition@0 {
+-			label = "bootloader";
+-			reg = <0x000000 0x100000>;
+-			read-only;
+-		};
+-
+-		firmware@100000 {
+-			label = "firmware";
+-			reg = <0x100000 0xe00000>;
+-			compatible = "brcm,trx";
+-		};
+-
+-		calibration@f00000 {
+-			label = "calibration";
+-			reg = <0xf00000 0x100000>;
+-			compatible = "fixed-partitions";
+-			ranges = <0 0xf00000 0x100000>;
+-			#address-cells = <1>;
+-			#size-cells = <1>;
+-
+-			partition@0 {
+-				label = "wifi0";
+-				reg = <0x000000 0x080000>;
+-			};
+-
+-			partition@80000 {
+-				label = "wifi1";
+-				reg = <0x080000 0x080000>;
+-			};
+-		};
+-	};
+-};
+diff --git a/Documentation/devicetree/bindings/mtd/partitions/fixed-partitions.yaml b/Documentation/devicetree/bindings/mtd/partitions/fixed-partitions.yaml
+new file mode 100644
+index 000000000000..6d4a3450e064
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mtd/partitions/fixed-partitions.yaml
+@@ -0,0 +1,152 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/mtd/partitions/fixed-partitions.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Fixed partitions
++
++description: |
++  This binding can be used on platforms which have strong conventions about
++  which portions of a flash are used for what purposes, but which don't use an
++  on-flash partition table such as RedBoot.
++
++  The partition table should be a node named "partitions". Partitions are then
++  defined as subnodes.
++
++maintainers:
++  - Rafał Miłecki <rafal@milecki.pl>
++
++properties:
++  compatible:
++    const: fixed-partitions
++
++  "#address-cells": true
++
++  "#size-cells": true
++
++patternProperties:
++  "@[0-9a-f]+$":
++    description: node describing a single flash partition
++    type: object
++
++    properties:
++      reg:
++        description: partition's offset and size within the flash
++        maxItems: 1
++
++      label:
++        description: The label / name for this partition. If omitted, the label
++          is taken from the node name (excluding the unit address).
++
++      read-only:
++        description: This parameter, if present, is a hint that this partition
++          should only be mounted read-only. This is usually used for flash
++          partitions containing early-boot firmware images or data which should
++          not be clobbered.
++        type: boolean
++
++      lock:
++        description: Do not unlock the partition at initialization time (not
++          supported on all devices)
++        type: boolean
++
++      slc-mode:
++        description: This parameter, if present, allows one to emulate SLC mode
++          on a partition attached to an MLC NAND thus making this partition
++          immune to paired-pages corruptions
++        type: boolean
++
++    required:
++      - reg
++
++required:
++  - "#address-cells"
++  - "#size-cells"
++
++additionalProperties: true
++
++examples:
++  - |
++    partitions {
++        compatible = "fixed-partitions";
++        #address-cells = <1>;
++        #size-cells = <1>;
++
++        partition@0 {
++            label = "u-boot";
++            reg = <0x0000000 0x100000>;
++            read-only;
++        };
++
++        uimage@100000 {
++            reg = <0x0100000 0x200000>;
++        };
++    };
++  - |
++    partitions {
++        compatible = "fixed-partitions";
++        #address-cells = <1>;
++        #size-cells = <2>;
++
++        /* a 4 GiB partition */
++        partition@0 {
++            label = "filesystem";
++            reg = <0x00000000 0x1 0x00000000>;
++        };
++    };
++  - |
++    partitions {
++        compatible = "fixed-partitions";
++        #address-cells = <2>;
++        #size-cells = <2>;
++
++        /* an 8 GiB partition */
++        partition@0 {
++            label = "filesystem #1";
++            reg = <0x0 0x00000000 0x2 0x00000000>;
++        };
++
++        /* a 4 GiB partition */
++        partition@200000000 {
++            label = "filesystem #2";
++            reg = <0x2 0x00000000 0x1 0x00000000>;
++        };
++    };
++  - |
++    partitions {
++        compatible = "fixed-partitions";
++        #address-cells = <1>;
++        #size-cells = <1>;
++
++        partition@0 {
++            label = "bootloader";
++            reg = <0x000000 0x100000>;
++            read-only;
++        };
++
++        firmware@100000 {
++            compatible = "brcm,trx";
++            label = "firmware";
++            reg = <0x100000 0xe00000>;
++        };
++
++        calibration@f00000 {
++            compatible = "fixed-partitions";
++            label = "calibration";
++            reg = <0xf00000 0x100000>;
++            ranges = <0 0xf00000 0x100000>;
++            #address-cells = <1>;
++            #size-cells = <1>;
++
++            partition@0 {
++                label = "wifi0";
++                reg = <0x000000 0x080000>;
++            };
++
++            partition@80000 {
++                label = "wifi1";
++                reg = <0x080000 0x080000>;
++            };
++        };
++    };
+-- 
+2.26.2
+
