@@ -2,59 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A6D72D559A
-	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 09:45:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EEA2C2D559D
+	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 09:47:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388132AbgLJIpP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Dec 2020 03:45:15 -0500
-Received: from relay5.mymailcheap.com ([159.100.248.207]:33120 "EHLO
-        relay5.mymailcheap.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730042AbgLJIpP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 03:45:15 -0500
-Received: from relay4.mymailcheap.com (relay4.mymailcheap.com [137.74.80.156])
-        by relay5.mymailcheap.com (Postfix) with ESMTPS id 07253260EB
-        for <devicetree@vger.kernel.org>; Thu, 10 Dec 2020 08:44:23 +0000 (UTC)
-Received: from filter2.mymailcheap.com (filter2.mymailcheap.com [91.134.140.82])
-        by relay4.mymailcheap.com (Postfix) with ESMTPS id 68A903F20B;
-        Thu, 10 Dec 2020 09:42:50 +0100 (CET)
+        id S1728455AbgLJIqr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Dec 2020 03:46:47 -0500
+Received: from relay4.mymailcheap.com ([137.74.80.156]:33907 "EHLO
+        relay4.mymailcheap.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726579AbgLJIqq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 03:46:46 -0500
+X-Greylist: delayed 440 seconds by postgrey-1.27 at vger.kernel.org; Thu, 10 Dec 2020 03:46:44 EST
+Received: from filter1.mymailcheap.com (filter1.mymailcheap.com [149.56.130.247])
+        by relay4.mymailcheap.com (Postfix) with ESMTPS id 9D7F43F162;
+        Thu, 10 Dec 2020 09:45:13 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-        by filter2.mymailcheap.com (Postfix) with ESMTP id 3862E2A5BB;
-        Thu, 10 Dec 2020 09:42:50 +0100 (CET)
+        by filter1.mymailcheap.com (Postfix) with ESMTP id D33F62A3C9;
+        Thu, 10 Dec 2020 03:45:12 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mymailcheap.com;
-        s=default; t=1607589770;
-        bh=uz5D/OnHbI0A8MIs3aEBYNyIgMjL3I/ZX0hNBkxBn3E=;
+        s=default; t=1607589912;
+        bh=OAH/72kQAtexFMmJkFN3rsFkzBhidEeqQzj2dxtFf5c=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=G2y33N+3O4CWBV8ps/JpRyC2JX5hFyPvGDjP5GuRhUbD5qFSHKQllV2MvFzPS5c/p
-         AESTdm0lRevrtFd6oeo2sWJiwGiudBlQNah1P59yV9gTLjjOG6aqlPs1J+Kc/1q9sO
-         dTkFHz9afAjEeXb7kAhEsltlzE9JaN5yk9bCU8/I=
-X-Virus-Scanned: Debian amavisd-new at filter2.mymailcheap.com
-Received: from filter2.mymailcheap.com ([127.0.0.1])
-        by localhost (filter2.mymailcheap.com [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id XiAeXK68zidf; Thu, 10 Dec 2020 09:42:49 +0100 (CET)
+        b=RNGT5aG2kKVcc6f30TfyNdwKuFsx2OXudDU5eN05YxeIOzttE4oavPGPp0fUax0fE
+         nG7YB8M/GCc/VcNgZ4EDf21wU2lLYfMF6pKnPnoAPJonGVemoiBLOWqNhcY08rAaiz
+         C91UiX/zJ9v7WG8QLBbX/k1gHLJVhOTU6Hnq+wGw=
+X-Virus-Scanned: Debian amavisd-new at filter1.mymailcheap.com
+Received: from filter1.mymailcheap.com ([127.0.0.1])
+        by localhost (filter1.mymailcheap.com [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id FPY8pcTm4gjD; Thu, 10 Dec 2020 03:45:12 -0500 (EST)
 Received: from mail20.mymailcheap.com (mail20.mymailcheap.com [51.83.111.147])
         (using TLSv1.2 with cipher ADH-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by filter2.mymailcheap.com (Postfix) with ESMTPS;
-        Thu, 10 Dec 2020 09:42:49 +0100 (CET)
-Received: from [213.133.102.83] (ml.mymailcheap.com [213.133.102.83])
-        by mail20.mymailcheap.com (Postfix) with ESMTP id B9C1140AA1;
-        Thu, 10 Dec 2020 08:42:48 +0000 (UTC)
+        by filter1.mymailcheap.com (Postfix) with ESMTPS;
+        Thu, 10 Dec 2020 03:45:11 -0500 (EST)
+Received: from [148.251.23.173] (ml.mymailcheap.com [148.251.23.173])
+        by mail20.mymailcheap.com (Postfix) with ESMTP id ADA6A4119A;
+        Thu, 10 Dec 2020 08:45:10 +0000 (UTC)
 Authentication-Results: mail20.mymailcheap.com;
-        dkim=pass (1024-bit key; unprotected) header.d=aosc.io header.i=@aosc.io header.b="Z3+UnTvi";
+        dkim=pass (1024-bit key; unprotected) header.d=aosc.io header.i=@aosc.io header.b="Iq2mVeCu";
         dkim-atps=neutral
 AI-Spam-Status: Not processed
 Received: from ice-e5v2.lan (unknown [59.41.161.121])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by mail20.mymailcheap.com (Postfix) with ESMTPSA id 8E81540AA1;
-        Thu, 10 Dec 2020 08:42:40 +0000 (UTC)
+        by mail20.mymailcheap.com (Postfix) with ESMTPSA id 7F9294119A;
+        Thu, 10 Dec 2020 08:44:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=aosc.io; s=default;
-        t=1607589763; bh=uz5D/OnHbI0A8MIs3aEBYNyIgMjL3I/ZX0hNBkxBn3E=;
+        t=1607589903; bh=OAH/72kQAtexFMmJkFN3rsFkzBhidEeqQzj2dxtFf5c=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=Z3+UnTvi2fFlFbT2r6qvsEG9O92+AMvQ2+T1RtJKofIcjdG7DJjpe4fTDpwBFUsE2
-         50quhoRSMXnpvY0dk0PufaJISdk3NzddBxfguVYhqwfH1OprLHgZsfBwYKD77nyp0L
-         kZ6sF8KhCMTRMUsd0/mfY1rxqeJp8MImS5q1vBfc=
+        b=Iq2mVeCuyOKT00pKY4rNgaCE4OZqyoKV7SoCkkzqzrJGkhc1HHdXHTMwwFgVQk53N
+         wg/+r/U+GCb1+D8EB2nCqXAE/T8Fo5AHK8wt93rtUB0G2pWucfcRNOlzg6zkLQc1oP
+         B3zuMAn3MkOnDLtfBvuqCsX584btnzNP147PNoog=
 From:   Icenowy Zheng <icenowy@aosc.io>
 To:     Rob Herring <robh+dt@kernel.org>,
         Maxime Ripard <mripard@kernel.org>,
@@ -64,17 +62,17 @@ To:     Rob Herring <robh+dt@kernel.org>,
 Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com,
         Icenowy Zheng <icenowy@aosc.io>
-Subject: [PATCH 1/3] dt-bindings: arm: sunxi: add PineTab new panel DT binding
-Date:   Thu, 10 Dec 2020 16:42:32 +0800
-Message-Id: <20201210084232.1913871-1-icenowy@aosc.io>
+Subject: [PATCH 2/3] arm64: allwinner: dts: a64: add DT for PineTab with new LCD panel
+Date:   Thu, 10 Dec 2020 16:44:50 +0800
+Message-Id: <20201210084450.1915234-1-icenowy@aosc.io>
 X-Mailer: git-send-email 2.28.0
 In-Reply-To: <20201210083722.1912981-1-icenowy@aosc.io>
 References: <20201210083722.1912981-1-icenowy@aosc.io>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spamd-Result: default: False [6.40 / 20.00];
-         ARC_NA(0.00)[];
          RCVD_VIA_SMTP_AUTH(0.00)[];
+         ARC_NA(0.00)[];
          R_DKIM_ALLOW(0.00)[aosc.io:s=default];
          RECEIVED_SPAMHAUS_PBL(0.00)[59.41.161.121:received];
          FROM_HAS_DN(0.00)[];
@@ -84,51 +82,81 @@ X-Spamd-Result: default: False [6.40 / 20.00];
          TAGGED_RCPT(0.00)[dt];
          MIME_GOOD(-0.10)[text/plain];
          BROKEN_CONTENT_TYPE(1.50)[];
-         R_SPF_SOFTFAIL(0.00)[~all:c];
+         R_SPF_SOFTFAIL(0.00)[~all];
          DMARC_NA(0.00)[aosc.io];
-         ML_SERVERS(-3.10)[213.133.102.83];
+         ML_SERVERS(-3.10)[148.251.23.173];
          DKIM_TRACE(0.00)[aosc.io:+];
          RCPT_COUNT_SEVEN(0.00)[10];
          MID_CONTAINS_FROM(1.00)[];
+         DBL_PROHIBIT(0.00)[0.0.0.0:email];
          RCVD_NO_TLS_LAST(0.10)[];
          FROM_EQ_ENVFROM(0.00)[];
          MIME_TRACE(0.00)[0:+];
-         ASN(0.00)[asn:24940, ipnet:213.133.96.0/19, country:DE];
+         ASN(0.00)[asn:24940, ipnet:148.251.0.0/16, country:DE];
          RCVD_COUNT_TWO(0.00)[2];
          SUSPICIOUS_RECIPS(1.50)[];
-         HFILTER_HELO_BAREIP(3.00)[213.133.102.83,1]
-X-Rspamd-Queue-Id: B9C1140AA1
+         HFILTER_HELO_BAREIP(3.00)[148.251.23.173,1]
+X-Rspamd-Queue-Id: ADA6A4119A
 X-Rspamd-Server: mail20.mymailcheap.com
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Early adopters' PineTabs (and all further releases) will have a new LCD
-panel different with the one that is used when in development (because
-the old panel's supply discontinued).
+Further released PineTabs will have a new LCD panel that is different
+with the one used in developers' samples.
 
-Add a new DT compatible for it.
+Add device tree for PineTab with the new panel.
 
 Signed-off-by: Icenowy Zheng <icenowy@aosc.io>
 ---
- Documentation/devicetree/bindings/arm/sunxi.yaml | 5 +++++
- 1 file changed, 5 insertions(+)
+ arch/arm64/boot/dts/allwinner/Makefile        |  1 +
+ .../sun50i-a64-pinetab-new-panel.dts          | 26 +++++++++++++++++++
+ 2 files changed, 27 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-a64-pinetab-new-panel.dts
 
-diff --git a/Documentation/devicetree/bindings/arm/sunxi.yaml b/Documentation/devicetree/bindings/arm/sunxi.yaml
-index 6db32fbf813f..73a6c8421172 100644
---- a/Documentation/devicetree/bindings/arm/sunxi.yaml
-+++ b/Documentation/devicetree/bindings/arm/sunxi.yaml
-@@ -700,6 +700,11 @@ properties:
-           - const: pine64,pinetab
-           - const: allwinner,sun50i-a64
- 
-+      - description: Pine64 PineTab with new LCD panel
-+        items:
-+          - const: pine64,pinetab-new-panel
-+          - const: allwinner,sun50i-a64
+diff --git a/arch/arm64/boot/dts/allwinner/Makefile b/arch/arm64/boot/dts/allwinner/Makefile
+index 211d1e9d4701..83c6d1ea197f 100644
+--- a/arch/arm64/boot/dts/allwinner/Makefile
++++ b/arch/arm64/boot/dts/allwinner/Makefile
+@@ -13,6 +13,7 @@ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-a64-pinephone-1.0.dtb
+ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-a64-pinephone-1.1.dtb
+ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-a64-pinephone-1.2.dtb
+ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-a64-pinetab.dtb
++dtb-$(CONFIG_ARCH_SUNXI) += sun50i-a64-pinetab-new-panel.dtb
+ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-a64-sopine-baseboard.dtb
+ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-a64-teres-i.dtb
+ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-a100-allwinner-perf1.dtb
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinetab-new-panel.dts b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinetab-new-panel.dts
+new file mode 100644
+index 000000000000..f3da9653be3e
+--- /dev/null
++++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinetab-new-panel.dts
+@@ -0,0 +1,26 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Copyright (C) 2020 Icenowy Zheng <icenowy@aosc.io>
++ *
++ */
 +
-       - description: Pine64 SoPine Baseboard
-         items:
-           - const: pine64,sopine-baseboard
++/dts-v1/;
++
++#include "sun50i-a64-pinetab.dts"
++
++/ {
++	model = "PineTab with new LCD panel";
++	compatible = "pine64,pinetab-new-panel", "allwinner,sun50i-a64";
++};
++
++&dsi {
++	/delete-node/ panel@0;
++
++	panel@0 {
++		compatible = "feixin,k101-im2byl02";
++		reg = <0>;
++		power-supply = <&reg_dc1sw>;
++		reset-gpios = <&pio 3 24 GPIO_ACTIVE_LOW>; /* PD24 */
++		backlight = <&backlight>;
++	};
++};
 -- 
 2.28.0
