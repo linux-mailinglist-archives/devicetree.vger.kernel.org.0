@@ -2,114 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EFEF12D570E
-	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 10:26:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E09D52D572C
+	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 10:31:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732308AbgLJJZ4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Dec 2020 04:25:56 -0500
-Received: from mail.kernel.org ([198.145.29.99]:38412 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727356AbgLJJZ4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 10 Dec 2020 04:25:56 -0500
-Date:   Thu, 10 Dec 2020 10:26:28 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1607592315;
-        bh=KHGVsHMNI9pUexaEY9VJTdP9KZ7FbXACIh+y6JJQhrY=;
-        h=From:To:Cc:Subject:References:In-Reply-To:From;
-        b=c3Zv5LTemcEfNV4vGa3Q1rrWMKk9+lxCRdSpQf+9k4AyoZ3pk331wtu3xlJrdX3tg
-         gC/F6Iz0VEbN42qqzb6iPZFqOLvTm7VPucfpjy4wG9JiFKNU6Mi95q/KnO3gJ4yAze
-         HiKw8/2TIrqemuyqN4Cr0H+GcmuTVASOSN+wFMIs=
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Saravana Kannan <saravanak@google.com>
-Cc:     "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Len Brown <lenb@kernel.org>, Ard Biesheuvel <ardb@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Tomi Valkeinen <tomi.valkeinen@ti.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        Android Kernel Team <kernel-team@android.com>,
-        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        linux-efi <linux-efi@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v2 00/17] Refactor fw_devlink to significantly improve
- boot time
-Message-ID: <X9HpxMOgzlCcVI7p@kroah.com>
-References: <20201121020232.908850-1-saravanak@google.com>
- <X9EUbji0tILG6PvX@kroah.com>
- <CAGETcx_5_=VKxbTddtG4u7p0yhCTdkr746fToPtPecEZcE1ncg@mail.gmail.com>
+        id S2388620AbgLJJak (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Dec 2020 04:30:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42730 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730414AbgLJJaj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 04:30:39 -0500
+Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com [IPv6:2607:f8b0:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFAE5C0613CF
+        for <devicetree@vger.kernel.org>; Thu, 10 Dec 2020 01:29:59 -0800 (PST)
+Received: by mail-pf1-x435.google.com with SMTP id i3so3492938pfd.6
+        for <devicetree@vger.kernel.org>; Thu, 10 Dec 2020 01:29:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bytedance-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=TMM7FRlCD8YfgT9nH5Pw055Xkr0/ntfYTn3LIAtEXLA=;
+        b=UT8Yn+ik/8OWESdJcSvQ/Oc8zrhhg1LljtviMYjdMXDqGlQ9DwKBFOq6Gr5Wf5Hsu3
+         KFppzMrnbNOMyXCQU5t5v+cSwf3X5aMjaHNy8SUnqgDILPdTI5Eoi+1cS+9V2/dMiXNW
+         zaQJleuvkgMUonmEypT42bkCn2dvQt52PYq/AhT3O5K/jxpPER2//darWwHoiE/D/GDE
+         AE9D5Art9xT5mWuP/nKCSwKYHpSg64fKSpiIKvA0lkM29NQbg5Zyy2T+zMhyppSHfvYz
+         9Wq1OVfQbix0ilhtIdMza6O2sVIjDJg7oadGRaNFb+XDPs6HQcYJLsGjjU+e+OR/sB/v
+         y+Ng==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=TMM7FRlCD8YfgT9nH5Pw055Xkr0/ntfYTn3LIAtEXLA=;
+        b=E2OLoPjSlL2bUpsxdxz7WbQtywWLITqYJxZio10SJ6X0eK7n80ddETU/RU8HzKuSLe
+         xPym3XLVx1+gWhURBRqbUTNDbjdMlRU8XC6b1YjZEc2z13sWZmFW0neKgKuixss1k95y
+         W3oIg8IhwGaYHXP//Qpv8QhXccz2spa61n/HyLR6jSKEedmselzjOFiVnFdAii2CamgE
+         fKJAsDzQh50sMci4+PDbnIkHeRBZHzNGYpNpTPXqp2R5Xy/9Ti2zkBpxodfnmOPwzyAC
+         h1mMOXv/cOLqgOmKOX2967pvbTTW42TpyeqEoLKWEB8YNpCYTRQmOEKoLAUeku6Yz5J9
+         KrjA==
+X-Gm-Message-State: AOAM530bpXheOEmG7IN9qCqcntSg7m9dlLhOd9PNIh8995OELYHS2fEF
+        HUU95TYxfVJBm89E8QzYm6yaHQ==
+X-Google-Smtp-Source: ABdhPJy8KpNbujB4HGwPSYMJgHDpj9HX6rLYorgHAPHsIdk2p+WnoHKcC4d0hLX7b73wbH1fPychpA==
+X-Received: by 2002:a17:90a:d0c2:: with SMTP id y2mr6583100pjw.183.1607592599227;
+        Thu, 10 Dec 2020 01:29:59 -0800 (PST)
+Received: from localhost ([61.120.150.75])
+        by smtp.gmail.com with ESMTPSA id q23sm5726461pfg.18.2020.12.10.01.29.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 10 Dec 2020 01:29:58 -0800 (PST)
+From:   John Wang <wangzhiqiang.bj@bytedance.com>
+To:     openbmc@lists.ozlabs.org, xuxiaohan@bytedance.com,
+        yulei.sh@bytedance.com
+Cc:     Rob Herring <robh+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS),
+        linux-arm-kernel@lists.infradead.org (moderated list:ARM/ASPEED MACHINE
+        SUPPORT),
+        linux-aspeed@lists.ozlabs.org (moderated list:ARM/ASPEED MACHINE
+        SUPPORT), linux-kernel@vger.kernel.org (open list)
+Subject: [PATCH 2/3] ARM: dts: aspeed: Add uart-routing node
+Date:   Thu, 10 Dec 2020 17:29:55 +0800
+Message-Id: <20201210092955.358-1-wangzhiqiang.bj@bytedance.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAGETcx_5_=VKxbTddtG4u7p0yhCTdkr746fToPtPecEZcE1ncg@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 09, 2020 at 12:24:32PM -0800, Saravana Kannan wrote:
-> On Wed, Dec 9, 2020 at 10:15 AM Greg Kroah-Hartman
-> <gregkh@linuxfoundation.org> wrote:
-> >
-> > On Fri, Nov 20, 2020 at 06:02:15PM -0800, Saravana Kannan wrote:
-> > > The current implementation of fw_devlink is very inefficient because it
-> > > tries to get away without creating fwnode links in the name of saving
-> > > memory usage. Past attempts to optimize runtime at the cost of memory
-> > > usage were blocked with request for data showing that the optimization
-> > > made significant improvement for real world scenarios.
-> > >
-> > > We have those scenarios now. There have been several reports of boot
-> > > time increase in the order of seconds in this thread [1]. Several OEMs
-> > > and SoC manufacturers have also privately reported significant
-> > > (350-400ms) increase in boot time due to all the parsing done by
-> > > fw_devlink.
-> > >
-> > > So this patch series refactors fw_devlink to be more efficient. The key
-> > > difference now is the addition of support for fwnode links -- just a few
-> > > simple APIs. This also allows most of the code to be moved out of
-> > > firmware specific (DT mostly) code into driver core.
-> > >
-> > > This brings the following benefits:
-> > > - Instead of parsing the device tree multiple times (complexity was
-> > >   close to O(N^3) where N in the number of properties) during bootup,
-> > >   fw_devlink parses each fwnode node/property only once and creates
-> > >   fwnode links. The rest of the fw_devlink code then just looks at these
-> > >   fwnode links to do rest of the work.
-> > >
-> > > - Makes it much easier to debug probe issue due to fw_devlink in the
-> > >   future. fw_devlink=on blocks the probing of devices if they depend on
-> > >   a device that hasn't been added yet. With this refactor, it'll be very
-> > >   easy to tell what that device is because we now have a reference to
-> > >   the fwnode of the device.
-> > >
-> > > - Much easier to add fw_devlink support to ACPI and other firmware
-> > >   types. A refactor to move the common bits from DT specific code to
-> > >   driver core was in my TODO list as a prerequisite to adding ACPI
-> > >   support to fw_devlink. This series gets that done.
-> > >
-> > > Laurent and Grygorii tested the v1 series and they saw boot time
-> > > improvment of about 12 seconds and 3 seconds, respectively.
-> >
-> > Now queued up to my tree.  Note, I had to hand-apply patches 13 and 16
-> > due to some reason (for 13, I have no idea, for 16 it was due to a
-> > previous patch applied to my tree that I cc:ed you on.)
-> >
-> > Verifying I got it all correct would be great :)
-> 
-> A quick diff of drivers/base/core.c between driver-core-testing and my
-> local tree doesn't show any major diff (only some unrelated comment
-> fixes). So, it looks fine.
-> 
-> The patch 13 conflict is probably due to having to rebase the v2
-> series on top of this:
-> https://lore.kernel.org/lkml/20201104205431.3795207-1-saravanak@google.com/
-> 
-> And looks like Patch 16 was handled fine.
+Signed-off-by: John Wang <wangzhiqiang.bj@bytedance.com>
+---
+ arch/arm/boot/dts/aspeed-g5.dtsi | 6 ++++++
+ arch/arm/boot/dts/aspeed-g6.dtsi | 6 ++++++
+ 2 files changed, 12 insertions(+)
 
-Great, thanks for verifying!
+diff --git a/arch/arm/boot/dts/aspeed-g5.dtsi b/arch/arm/boot/dts/aspeed-g5.dtsi
+index 30bbf7452b90..bf40e8960244 100644
+--- a/arch/arm/boot/dts/aspeed-g5.dtsi
++++ b/arch/arm/boot/dts/aspeed-g5.dtsi
+@@ -523,6 +523,12 @@ sio_regs: regs {
+ 						compatible = "aspeed,bmc-misc";
+ 					};
+ 				};
++
++				uart_routing: uart_routing@9c {
++					compatible = "aspeed,ast2500-uart-routing";
++					reg = <0x9c 0x4>;
++					status = "disabled";
++				};
+ 			};
+ 
+ 			peci: bus@1e78b000 {
+diff --git a/arch/arm/boot/dts/aspeed-g6.dtsi b/arch/arm/boot/dts/aspeed-g6.dtsi
+index 4b1013870fb1..8b37182e8f36 100644
+--- a/arch/arm/boot/dts/aspeed-g6.dtsi
++++ b/arch/arm/boot/dts/aspeed-g6.dtsi
+@@ -311,6 +311,12 @@ pinctrl: pinctrl {
+ 					compatible = "aspeed,ast2600-pinctrl";
+ 				};
+ 
++				uart_routing: uart_routing@9c {
++					compatible = "aspeed,ast2500-uart-routing";
++					reg = <0x9c 0x4>;
++					status = "disabled";
++				};
++
+ 				smp-memram@180 {
+ 					compatible = "aspeed,ast2600-smpmem";
+ 					reg = <0x180 0x40>;
+-- 
+2.25.1
 
-greg k-h
