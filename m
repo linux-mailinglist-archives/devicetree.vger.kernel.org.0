@@ -2,70 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 586452D5F61
-	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 16:20:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8CC4A2D5F78
+	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 16:22:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389056AbgLJPTe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Dec 2020 10:19:34 -0500
-Received: from mail-oi1-f193.google.com ([209.85.167.193]:33466 "EHLO
-        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2391704AbgLJPT0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 10:19:26 -0500
-Received: by mail-oi1-f193.google.com with SMTP id d27so6093948oic.0
-        for <devicetree@vger.kernel.org>; Thu, 10 Dec 2020 07:19:10 -0800 (PST)
+        id S2389963AbgLJPTx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Dec 2020 10:19:53 -0500
+Received: from mail-oi1-f196.google.com ([209.85.167.196]:45744 "EHLO
+        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2389991AbgLJPTm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 10:19:42 -0500
+Received: by mail-oi1-f196.google.com with SMTP id f132so6054437oib.12;
+        Thu, 10 Dec 2020 07:19:26 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=lnW/OosYumgk1egiUGiVfrvZJRstAsR7RwXvN9hsVl8=;
-        b=IUuQXdyYl6JDPxirQowHuqL6+i/RqW5TE6sKdeb/xNtaYXtwRuSHptYSTjH9ns0gf3
-         yVA2P+oXBEXLMvR2m6DSbMLTghe09Jx9OHazCoJIouy2yEGpGN0zCBJXkFq7dByEDjsi
-         iRDs2205OdaA1SP4WmJ6NuvFTbfFyoe3V45HXXmO9e1AjlSstlgDgicR4IqamAP472cY
-         7W0i50OIzRNW7RaPFYFmKzeugFAvqas4vC9zz35TIE4o/sezG0wnv8WM2di3cly5fcbQ
-         88gIQXQqE2AX6c0FHlwCxdgvoYKTyobiLE3L3SlxSSzjT4s6GH/zag0d+p0+Bpagx4Q9
-         Moag==
-X-Gm-Message-State: AOAM532A1wEAPWT75hW4oOJnf+SHtfnb7FwWxeiaW8SnYFKyIr9sVn8Y
-        WEOW3KeQVBcjXKgpq0F8+A==
-X-Google-Smtp-Source: ABdhPJxehsd5PpUzNMtJ+idsD7wceTd86mAFLIlHn8NkXQx1DqOIr2t7oLil2PKER6iqYD2yWor8tg==
-X-Received: by 2002:aca:578d:: with SMTP id l135mr5715801oib.105.1607613525107;
-        Thu, 10 Dec 2020 07:18:45 -0800 (PST)
+        bh=isKnpZLWDmxxb3Yjeaxd76RZPLoaSrKYVnhT82zCGQk=;
+        b=D8dbadE7cID3JgFlb5YELFKUw0DYmFD2vGoHnrDYzje8p5y+NM56bvUjp1hP9QDBxY
+         zWor0ONLtl9U+ZmiNJRqziby0eOtofXPHSdqOJOYbj7FWnB2ICzHWWaIV16nhTDzHM1a
+         CrpKEbqvYdhOfG30vkWNiy7aYK6yabDT+Vv44s/HfwkCCc2eGyyJ8fi35Sgmp5HKOG7e
+         6XDYP2uDcyH8cjwz+cRlVOV4My3npeSfOffDP9bLHz+aM5/5IXDuN8TZVi/3RaZL90lS
+         bv7HiJ55mDZf86LoAzj2xDflB2ud1lt+H0dGZ8xSHhBeh9cTYSGqa5eXRuvu9BR5Ztb/
+         t1QQ==
+X-Gm-Message-State: AOAM531qOVU1Aa+3NiVI6nO9wP7uNjmh+6XLEZI/rvLtLxd1cmH/VV8i
+        rvctUcypd0jSGepVboHbSQ==
+X-Google-Smtp-Source: ABdhPJzA2iPp0rG4sGDDN0cx8K+xg1jPuuOC+wTD2Jx83mP/UbjeOKKl42g17sulPm6+QYKwvMVlew==
+X-Received: by 2002:aca:5204:: with SMTP id g4mr5750242oib.91.1607613541539;
+        Thu, 10 Dec 2020 07:19:01 -0800 (PST)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id i82sm1059137oia.2.2020.12.10.07.18.43
+        by smtp.gmail.com with ESMTPSA id z10sm1065948oom.3.2020.12.10.07.18.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Dec 2020 07:18:43 -0800 (PST)
-Received: (nullmailer pid 2523540 invoked by uid 1000);
-        Thu, 10 Dec 2020 15:18:42 -0000
-Date:   Thu, 10 Dec 2020 09:18:42 -0600
+        Thu, 10 Dec 2020 07:19:00 -0800 (PST)
+Received: (nullmailer pid 2523995 invoked by uid 1000);
+        Thu, 10 Dec 2020 15:18:59 -0000
+Date:   Thu, 10 Dec 2020 09:18:59 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Teresa Remmet <t.remmet@phytec.de>
-Cc:     Catalin Marinas <catalin.marinas@arm.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Fabio Estevam <festevam@gmail.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        devicetree@vger.kernel.org, Shawn Guo <shawnguo@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v2 3/4] bindings: arm: fsl: Add PHYTEC i.MX8MP devicetree
- bindings
-Message-ID: <20201210151842.GA2523493@robh.at.kernel.org>
-References: <1607445491-208271-1-git-send-email-t.remmet@phytec.de>
- <1607445491-208271-4-git-send-email-t.remmet@phytec.de>
+To:     Eric Biggers <ebiggers@kernel.org>
+Cc:     Neeraj Soni <neersoni@codeaurora.org>,
+        Stanley Chu <stanley.chu@mediatek.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        linux-fscrypt@vger.kernel.org,
+        Konrad Dybcio <konradybcio@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org,
+        Asutosh Das <asutoshd@codeaurora.org>,
+        Barani Muthukumaran <bmuthuku@codeaurora.org>,
+        Peng Zhou <peng.zhou@mediatek.com>,
+        Satya Tangirala <satyat@google.com>,
+        devicetree@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        linux-mmc@vger.kernel.org
+Subject: Re: [PATCH v3 7/9] dt-bindings: mmc: sdhci-msm: add ICE registers
+ and clock
+Message-ID: <20201210151859.GA2523965@robh.at.kernel.org>
+References: <20201209044238.78659-1-ebiggers@kernel.org>
+ <20201209044238.78659-8-ebiggers@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1607445491-208271-4-git-send-email-t.remmet@phytec.de>
+In-Reply-To: <20201209044238.78659-8-ebiggers@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 08 Dec 2020 17:38:10 +0100, Teresa Remmet wrote:
-> Add devicetree bindings for i.MX8MP based phyCORE-i.MX8MP
-> and phyBOARD-Pollux RDK.
+On Tue, 08 Dec 2020 20:42:36 -0800, Eric Biggers wrote:
+> From: Eric Biggers <ebiggers@google.com>
 > 
-> Signed-off-by: Teresa Remmet <t.remmet@phytec.de>
+> Document the bindings for the registers and clock for the MMC instance
+> of the Inline Crypto Engine (ICE) on Snapdragon SoCs.  These bindings
+> are needed in order for sdhci-msm to support inline encryption.
+> 
+> Reviewed-by: Satya Tangirala <satyat@google.com>
+> Signed-off-by: Eric Biggers <ebiggers@google.com>
 > ---
->  Documentation/devicetree/bindings/arm/fsl.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
+>  Documentation/devicetree/bindings/mmc/sdhci-msm.txt | 3 +++
+>  1 file changed, 3 insertions(+)
 > 
 
 Acked-by: Rob Herring <robh@kernel.org>
