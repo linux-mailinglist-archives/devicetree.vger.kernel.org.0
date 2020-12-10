@@ -2,129 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B2B82D6B47
-	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 00:38:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1BC342D6B9E
+	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 00:39:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388339AbgLJW6U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Dec 2020 17:58:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41526 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2393702AbgLJWzF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 17:55:05 -0500
-Received: from mail-lj1-x243.google.com (mail-lj1-x243.google.com [IPv6:2a00:1450:4864:20::243])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43EB5C0619D2
-        for <devicetree@vger.kernel.org>; Thu, 10 Dec 2020 14:40:52 -0800 (PST)
-Received: by mail-lj1-x243.google.com with SMTP id n11so3767648lji.5
-        for <devicetree@vger.kernel.org>; Thu, 10 Dec 2020 14:40:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=tQWc8Ya/SQ8yu30f2oZK/6gpauwPuWfx0xpCfyzU+rc=;
-        b=x0OoNs2LTcACOemmbvVWROexONVqsHi3sxvsxjEkiZzo8yXWD3n2DmqzuWPVW+Lr4b
-         ZJhgIZibF4dI8oEPYTgpj3vnCqYB525AAWOvKChixhX1HbwGJ8vSAaE0408WP1YA75TG
-         S1Nhwojylv6YfsOD+wxBGPQMRLauPSsMloHkNDFklJ1y2vMtdHU/V7YoC69m6DevORi4
-         kF+vdp2hTOIddsuNkaW670CKMwdt6o8sgaDP56d/wvUEluoyEdEpeOxAOCz6ZjYRN2lS
-         7NBmhYBNu2YeZZpzS7fwTANlplEp0hZ2PXtBjnNT5YVv1HOonto2C0QmjPttLym4AgAA
-         KM9Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=tQWc8Ya/SQ8yu30f2oZK/6gpauwPuWfx0xpCfyzU+rc=;
-        b=AWJ97bLrU9uFL3KqItVBikQKmXcxyKvz//NT6q0ro+JJoOkbqS+JP0jCJdMZBqiNfH
-         rPZQr//hqarObBF+B4AARx2pb5iP7pS1vBePZE6CykIpreP8nci98ayeZ8gFNrz9qw7a
-         T3XLhiYw65wKo94xWkQg8kP7SkE8NUX528ps0ayeULxMm/beLyao99FXwWCRXS1mz2Nn
-         zv0Wbm6voQ4LI3MIP/zpIQ3u7eNwFmwo898m2T+3jD8D4QPBI9H3QjpmiqE/oFcUiL8J
-         6/YnC3Ha8GX/vo4FRT8SITrLkySs7n1Dv8Q1MvSdRvDLGigG1a9wFv6UFeW7hJYXtMmh
-         CZeA==
-X-Gm-Message-State: AOAM5303wd2wvbTXsVtpbmxjntzhF38zq3UxKZ1522yJRxxQedaUlphI
-        hkaus9vhKRw+2jfhSFCdBFNfMz6iADoz8xJcl3fkUQ==
-X-Google-Smtp-Source: ABdhPJzyv+/ixUU7Z4gURlK7gfSgTumIWFyuUn9BMQjVKhZOvuG2b6lPyD6nHt8L6UK49w2MpVe7eroKVnmkRciqHvk=
-X-Received: by 2002:a05:651c:10e:: with SMTP id a14mr3979348ljb.128.1607640050539;
- Thu, 10 Dec 2020 14:40:50 -0800 (PST)
+        id S1733205AbgLJXLw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Dec 2020 18:11:52 -0500
+Received: from mail.kernel.org ([198.145.29.99]:49374 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2389345AbgLJXLa (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 10 Dec 2020 18:11:30 -0500
+X-Gm-Message-State: AOAM531u9jIXpKuhEDHnYCx1lG6NqCpVqiZxkm/neSfPtPqkYQ31ca0B
+        NEFaiY4uAWktETvPQo01fhulC7NTNtkLwPOuTw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1607641849;
+        bh=PCQQKOjc6YjZumEOD1HngXXOffpY7WJSVffGBmVE2eY=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=TnrcK/moE7nkwoA3Zz9FgXqwnQlEGkMjC7dyAIYEyp2dwR1PKUkk2X8Wb3bhY0+K8
+         cS4FeGf5HoRyJmhDcyJgPk0Osl8ZPnv2OUnMbuVOtkLK13FsRVFNsaQxriZnynzOgF
+         UVJ96bMZKQq3Em7/+bk/3SeY1JXlEPZyAmU0GDJ7NfkWDAOoPZdN8OfOi0RomumxpU
+         5aIY2eK92ra5Qq6STHHjPMCc0bT0lB890owNxnlBAdCq/bEpgHO6SjhF0vMNDr4OAE
+         9GxbTEg2FisGYERWI5hR1XT/2aVNH4u6Ji6XIN2NUwSs/UNHvw9rxy5m7/DJkfzu1d
+         SDJqGXjRmKGOg==
+X-Google-Smtp-Source: ABdhPJwWbOKC/meXbDaIc6eEzcVZ1Jra1FcOfktJmaatdpoXHxeOHbOdTyqqLAwgi9t9ioSO0lTzDdmMwZ7T5b0MOt8=
+X-Received: by 2002:a05:6402:1841:: with SMTP id v1mr9392182edy.194.1607641848145;
+ Thu, 10 Dec 2020 15:10:48 -0800 (PST)
 MIME-Version: 1.0
-References: <20201117181935.3613581-1-minchan@kernel.org> <20201117181935.3613581-5-minchan@kernel.org>
- <CGME20201118030110epcas2p1105a09711ea2c123f19f413b32372764@epcas2p1.samsung.com>
- <CALAqxLWqDLHpOHNEayvhDjJeXjEk_uneH2=d9fy8M87EjKfReA@mail.gmail.com>
- <20201119011431.GA136599@KEI> <CALAqxLV=r-V6u8hq2fTmxq855nT7QPkkjyAYdPeZRkYPBi_CKg@mail.gmail.com>
- <X9Fjd+eSStUJskOV@google.com> <CALAqxLWthd8bEDRMWmuOf8dOCW8=cFao9HBawKGuRhQZkdgXXw@mail.gmail.com>
- <X9JHjPTdxv6Z7lCW@google.com>
-In-Reply-To: <X9JHjPTdxv6Z7lCW@google.com>
-From:   John Stultz <john.stultz@linaro.org>
-Date:   Thu, 10 Dec 2020 14:40:38 -0800
-Message-ID: <CALAqxLVz5bCYxehjVtCJ5eEJ-Wz81=fe30sqRtYtZpXWMkXZiw@mail.gmail.com>
-Subject: Re: [PATCH 4/4] dma-heap: Devicetree binding for chunk heap
-To:     Minchan Kim <minchan@kernel.org>
-Cc:     Hyesoo Yu <hyesoo.yu@samsung.com>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        linux-mm <linux-mm@kvack.org>,
-        Matthew Wilcox <willy@infradead.org>, david@redhat.com,
-        iamjoonsoo.kim@lge.com, vbabka@suse.cz,
-        Suren Baghdasaryan <surenb@google.com>,
-        KyongHo Cho <pullip.cho@samsung.com>,
-        John Dias <joaodias@google.com>,
-        Hridya Valsaraju <hridya@google.com>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        Brian Starkey <Brian.Starkey@arm.com>,
-        linux-media <linux-media@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Rob Herring <robh@kernel.org>,
-        Christian Koenig <christian.koenig@amd.com>,
-        "moderated list:DMA BUFFER SHARING FRAMEWORK" 
-        <linaro-mm-sig@lists.linaro.org>,
-        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+References: <20201126210642.897302-1-mathieu.poirier@linaro.org>
+ <20201126210642.897302-2-mathieu.poirier@linaro.org> <20201130173321.GB2662913@robh.at.kernel.org>
+ <20201201234327.GA1248055@xps15>
+In-Reply-To: <20201201234327.GA1248055@xps15>
+From:   Rob Herring <robh@kernel.org>
+Date:   Thu, 10 Dec 2020 17:10:36 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKq1zM569nPLYNgj9WUHWO98nYYt6dBvHzLRMCKq5=T8g@mail.gmail.com>
+Message-ID: <CAL_JsqKq1zM569nPLYNgj9WUHWO98nYYt6dBvHzLRMCKq5=T8g@mail.gmail.com>
+Subject: Re: [PATCH v3 01/15] dt-bindings: remoteproc: Add bindind to support
+ autonomous processors
+To:     Mathieu Poirier <mathieu.poirier@linaro.org>
+Cc:     Ohad Ben-Cohen <ohad@wizery.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        "open list:REMOTE PROCESSOR (REMOTEPROC) SUBSYSTEM" 
+        <linux-remoteproc@vger.kernel.org>, devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Arnaud POULIQUEN <arnaud.pouliquen@st.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 10, 2020 at 8:06 AM Minchan Kim <minchan@kernel.org> wrote:
-> On Thu, Dec 10, 2020 at 12:15:15AM -0800, John Stultz wrote:
-> > Well, while I agree that conceptually the dmabuf heaps allow for
-> > allocations for multi-device pipelines, and thus are not tied to
-> > specific devices. I do think that the memory types exposed are likely
-> > to have specific devices/drivers in the pipeline that it matters most
-> > to. So I don't see a big issue with the in-kernel driver registering a
-> > specific CMA region as a dmabuf heap.
+On Tue, Dec 1, 2020 at 5:43 PM Mathieu Poirier
+<mathieu.poirier@linaro.org> wrote:
 >
-> Then, I am worry about that we spread out dma_heap_add_cma to too many
-> drivers since kernel doesn't how userspace will use it.
-> For example, system 1 could have device A-B-C pipeline so they added
-> it A driver. After that, system 2 could have device B-C-D pipeline
-> so they add dma_heap_add_cma into B device.
-
-I'm not sure I see this as a major issue? If the drivers add it based
-on the dt memory reference, those will be configured to not add
-duplicate heaps (and even so the heap driver can also ensure we don't
-try to add a heap twice).
-
-> > Yea, an un-upstreamable dummy driver is maybe what it devolves to in
-> > the worst case. But I suspect it would be cleaner for a display or ISP
-> > driver that benefits most from the heap type to add the reserved
-> > memory reference to their DT node, and on init for them to register
-> > the region with the dmabuf heap code.
+> Hi Rob,
 >
-> As I mentioned above, it could be a display at this moment but it could
-> be different driver next time. If I miss your point, let me know.
+> On Mon, Nov 30, 2020 at 10:33:21AM -0700, Rob Herring wrote:
+> > On Thu, Nov 26, 2020 at 02:06:28PM -0700, Mathieu Poirier wrote:
+> > > This patch adds a binding to guide the remoteproc core on how to deal with
+> > > remote processors in two cases:
+> > >
+> > > 1) When an application holding a reference to a remote processor character
+> > >    device interface crashes.
+> > >
+> > > 2) when the platform driver for a remote processor is removed.
+> > >
+> > > In both cases if "autonomous-on-core-reboot" is specified in the remote
+> > > processor DT node, the remoteproc core will detach the remote processor
+> > > rather than switching it off.
+> > >
+> > > Signed-off-by: Mathieu Poirier <mathieu.poirier@linaro.org>
+> > > ---
+> > >  .../bindings/remoteproc/remoteproc-core.yaml  | 25 +++++++++++++++++++
+> > >  1 file changed, 25 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/remoteproc/remoteproc-core.yaml
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/remoteproc/remoteproc-core.yaml b/Documentation/devicetree/bindings/remoteproc/remoteproc-core.yaml
+> > > new file mode 100644
+> > > index 000000000000..3032734f42a3
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/remoteproc/remoteproc-core.yaml
+> > > @@ -0,0 +1,25 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: "http://devicetree.org/schemas/remoteproc/remoteproc-core.yaml#"
+> > > +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> > > +
+> > > +title: Binding for the remoteproc core applicable to all remote processors
+> > > +
+> > > +maintainers:
+> > > +  - Bjorn Andersson <bjorn.andersson@linaro.org>
+> > > +  - Mathieu Poirier <mathieu.poirier@linaro.org>
+> > > +
+> > > +description:
+> > > +  This document defines the binding recognised by the remoteproc core that can
+> > > +  be used by any remote processor in the subsystem.
+> > > +
+> > > +properties:
+> > > +  autonomous-on-core-reboot:
+> > > +    $ref: /schemas/types.yaml#/definitions/flag
+> > > +    description:
+> > > +      Used in two situations, i.e when a user space application releases the
+> > > +      handle it has on the remote processor's character driver interface and
+> > > +      when a remote processor's platform driver is being removed.  If defined,
+> > > +      this flag instructs the remoteproc core to detach the remote processor
+> > > +      rather than turning it off.
+> >
+> > Userspace? character driver? platform driver? remoteproc core? Please
+> > explain this without OS specific terms.
 >
+> The remoteproc state machine is gaining in complexity and having technical terms
+> in the binding's description helps understand when and how it should be used.  I
+> could make it more generic but that will lead to confusion and abuse.
 
-I guess I just don't see potentially having the registration calls
-added to multiple drivers as a big problem.
+Explaining in Linux specific terms will confuse any other OS user.
 
-Ideally, yes, I'd probably rather see a DT node that would allow the
-heap driver to register specified regions, but that's been NACKed
-multiple times. Given that, having hooks in device drivers to export
-the region seems to me like the next best approach, as it avoids DT
-ABI ( if ends up its a bad approach, its not something we have to
-keep).
+>  Should I
+> make it "rproc,autonomous-on-core-reboot" ?
 
-The bigger problem right now is not that there are too many places the
-registration call would be made from, but that there aren't upstream
-drivers which I'm aware of where it would currently make sense to add
-specific dma_heap_add_cma() registration hooks to.  We need an
-upstream user of Kunihiko Hayashi's patch.
+No, 'rproc' is not a vendor.
 
-thanks
--john
+> >
+> > Seems to me this would be implied by functionality the remote proc
+> > provides.
+>
+> Exactly - this binding is used by the remoteproc core itself.  It is specified
+> in the remote processor DT nodes but the individual platform drivers don't do
+> anything with it - the core takes care of enacting the desired behavior on their
+> behalf.  Otherwise each platform driver would end up adding the same code, which
+> nobody wants to see happening.
+
+The platform drivers just need to set a flag to enable some behavior
+that the core code checks and handles. That should be 1 to a few lines
+in the drivers. It's not really any different, just a question of
+where the flag lives.
+
+Rob
