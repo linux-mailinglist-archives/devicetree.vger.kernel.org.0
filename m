@@ -2,82 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 878AB2D5B5C
-	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 14:12:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C55572D5B8C
+	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 14:24:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389186AbgLJNLJ convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 10 Dec 2020 08:11:09 -0500
-Received: from mail-oi1-f196.google.com ([209.85.167.196]:43191 "EHLO
-        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389179AbgLJNLG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 08:11:06 -0500
-Received: by mail-oi1-f196.google.com with SMTP id q25so5622185oij.10;
-        Thu, 10 Dec 2020 05:10:50 -0800 (PST)
+        id S2389190AbgLJNXm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Dec 2020 08:23:42 -0500
+Received: from mail-oi1-f194.google.com ([209.85.167.194]:34998 "EHLO
+        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2389111AbgLJNXf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 08:23:35 -0500
+Received: by mail-oi1-f194.google.com with SMTP id s2so5689300oij.2;
+        Thu, 10 Dec 2020 05:23:20 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=AfjfEOiPwgm0cBi/nPKDivwriG4JoNrRdEPSRrhwuxM=;
-        b=ABmtcUTW2WZqZ58lM/El7YRJK3KHnGu8iCOQf2yFx66N0C8Lp0eVKOLSchp017R4Le
-         oDGPelgZxqeW/98WoqREjzJOmqGwswYQ5p9IVGspeG0hprwJsLuFTezi55rHeNDIkOr6
-         b5YzeuSXP/1kl36pc06eKN96vNgjQmhNlmc2BZ6BX9dtptL+TqyhYwpD60ZJ6+oopOhX
-         Xpe7YYq2vLq/eg8b/RI2qU3aibpnHp/KbOIC7oilnZpcLuSvQtXwyYU6wWwT/RyX0nWd
-         q1qaqnCpDyyDSfghcfJF9voBs1rqCZdboaBsp3MQol4Beb8MFCcZF6/osbw8fJzHtG3d
-         GTOA==
-X-Gm-Message-State: AOAM530HIz22DhY+MY2+P+wDI2cJFPtIztpgpG3L805lGDOS6ahmXk/x
-        TJrAd+DKHZCtpteeuTmRxJ2yIzJfEhxoxM/ceQ0=
-X-Google-Smtp-Source: ABdhPJzG5fM7j0DQ7gKLs8uvyKscZ7/6LsSwAsCrjkF+XbSlB2LeBBB/tJ3CPcKTV6vm+0nItqMbJ7SvnhzRA8+Hrvs=
-X-Received: by 2002:aca:5c08:: with SMTP id q8mr5379645oib.54.1607605825185;
- Thu, 10 Dec 2020 05:10:25 -0800 (PST)
+         :message-id:subject:to:cc;
+        bh=5YrrmDGBtPB40xWq8Xs0g2ZWc20nUchgMGGf+8yx/xg=;
+        b=RLhCONemDWXyMbPS7k4YD5J0H51u4xG1EKKxcHvE/WtCk8V/hjaTClOV9Eyo3tTi81
+         +1zgq0L0otTaGK9kbuEccGFj/kg03gr7+m96ERNisQS/sNT43we8NjUXIF0PHomPKjOB
+         dZzFhutLrvZytMoeViVp8S7Gz44a6TmKP5jx6pkE+pfHzd/Q331tnr1OokNohMSKIHgL
+         QhcYYoJIPJdHici4HkDxULEnDyTvd5vAttiOARYljM9Go0qZrnXw0mUXFoC7iWFguTRR
+         hCwpBHSv9C3RP5zVP0Whe1aVhhlUtbOv0bK8vqag1E0OlHw5kRRgQSep8FWY48rii0Ef
+         cYUw==
+X-Gm-Message-State: AOAM53070pAQc1sk16nM3qtkiNoCBKKnRAk5Dj9ilnp5QPX7LavuQymg
+        0yj2SsO1rSfQsCM5aKfiqtf1O7SqPZDgP8FF34w=
+X-Google-Smtp-Source: ABdhPJyqGfuC/drmAWDcS+9KsCPX7gcqJAznxiSfiFBUXqkMzi0Y9Mgi8ZYjpvm4VhAa0RHtEVcG55I8rIitOVjYj3s=
+X-Received: by 2002:aca:4b16:: with SMTP id y22mr5296436oia.148.1607606574747;
+ Thu, 10 Dec 2020 05:22:54 -0800 (PST)
 MIME-Version: 1.0
-References: <20201209201950.817566-1-niklas.soderlund+renesas@ragnatech.se> <20201209201950.817566-2-niklas.soderlund+renesas@ragnatech.se>
-In-Reply-To: <20201209201950.817566-2-niklas.soderlund+renesas@ragnatech.se>
+References: <20201210034003.222297-1-damien.lemoal@wdc.com>
+ <CAMuHMdVbU2kjKU3EVN5kszPc=VQcgzYLemV6AOyg+YyZBfc31Q@mail.gmail.com> <5389e421f884c43ff6a806ac4ec95b43a93d02f7.camel@wdc.com>
+In-Reply-To: <5389e421f884c43ff6a806ac4ec95b43a93d02f7.camel@wdc.com>
 From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 10 Dec 2020 14:10:14 +0100
-Message-ID: <CAMuHMdVHUqSjnVp8fTve1BB=ui5ay=nqNRtnmNKPPbmnN6VBdw@mail.gmail.com>
-Subject: Re: [PATCH 1/6] arm64: dts: renesas: r8a77951: Add TMU nodes
-To:     =?UTF-8?Q?Niklas_S=C3=B6derlund?= 
-        <niklas.soderlund+renesas@ragnatech.se>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+Date:   Thu, 10 Dec 2020 14:22:43 +0100
+Message-ID: <CAMuHMdVnR2E6+ANYuZLvsTW8Od4Sa=wDtjnio4h3z=W2ePPGGw@mail.gmail.com>
+Subject: Re: [PATCH v7 00/22] RISC-V Kendryte K210 support improvements
+To:     Damien Le Moal <Damien.LeMoal@wdc.com>
+Cc:     "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+        "palmer@dabbelt.com" <palmer@dabbelt.com>,
+        "sboyd@kernel.org" <sboyd@kernel.org>,
+        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+        "seanga2@gmail.com" <seanga2@gmail.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Niklas,
+Hi Damien,
 
-On Wed, Dec 9, 2020 at 9:20 PM Niklas Söderlund
-<niklas.soderlund+renesas@ragnatech.se> wrote:
-> Add device nodes for the Timer Unit (TMU) on the Renesas R-Car H3
-> (r8a77951) SoC.
+On Thu, Dec 10, 2020 at 1:36 PM Damien Le Moal <Damien.LeMoal@wdc.com> wrote:
+> On Thu, 2020-12-10 at 11:04 +0100, Geert Uytterhoeven wrote:
+> > On Thu, Dec 10, 2020 at 4:41 AM Damien Le Moal <damien.lemoal@wdc.com> wrote:
+> > > Changes from v6:
+> > > * Annotate struct platform_driver variables with __refdata to avoid
+> > >   section mismatch compilation errors
+> >
+> > Blindly following the advice from kernel test robot <lkp@intel.com> is
+> > not always a good idea:
+> >
+> >     The variable k210_rst_driver references
+> >     the function __init set_reset_devices()
+> >     If the reference is valid then annotate the
+> >     variable with or __refdata (see linux/init.h) or name the variable:
+> >
+> > If your driver's probe function is annotated with __init, you cannot
+> > have a pointer to it in the driver structure, as any binding done after
+> > the freeing of initmem will cause a crash.  Adding the __refdata merely
+> > suppresses the warning, and won't avoid the crash.
 >
-> Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+> Hmm... I must be misunderstanding something here. free_initmem() is called from
+> kernel_init() right before starting the user init process. That is late enough
+> that all drivers are already probed and initialized. At least that is what I
+> thought, especially considering that none of the k210 drivers can be modules
+> and are all builtin. What am I missing here ?
 
-Thanks for your patch!
+For these specific cases, binding is indeed unlikely to happen after
+free_initmem(). In the generic case that is not true.
+However, you can still trigger it manually by unbinding and rebinding
+the device manually through sysfs.
 
-> --- a/arch/arm64/boot/dts/renesas/r8a77951.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/r8a77951.dtsi
+> So I think I will go with option 2. It is simpler and safer. We can always
+> revisit and optimize later. I would prefer this series to land first :)
 
-> +               tmu4: timer@ffc00000 {
-> +                       compatible = "renesas,tmu-r8a7795", "renesas,tmu";
-> +                       reg = <0 0xffc00000 0 0x30>;
-> +                       interrupts = <GIC_SPI 438 IRQ_TYPE_LEVEL_HIGH>,
-> +                                    <GIC_SPI 439 IRQ_TYPE_LEVEL_HIGH>,
-> +                                    <GIC_SPI 440 IRQ_TYPE_LEVEL_HIGH>;
-
-These interrupt numbers are wrong: they should be 406, 407, and 408.
-The rest looks good to me.
-Same comment for the other 5 patches.
+Right. Correctness first, performance later.
 
 Gr{oetje,eeting}s,
 
                         Geert
 
--- 
+--
 Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
 In personal conversations with technical people, I call myself a hacker. But
