@@ -2,137 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 48AD12D54FC
-	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 09:02:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 059F22D552C
+	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 09:17:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732479AbgLJIBI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Dec 2020 03:01:08 -0500
-Received: from aserp2130.oracle.com ([141.146.126.79]:42098 "EHLO
-        aserp2130.oracle.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727734AbgLJIBI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 03:01:08 -0500
-Received: from pps.filterd (aserp2130.oracle.com [127.0.0.1])
-        by aserp2130.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 0BA808Z7046402;
-        Thu, 10 Dec 2020 08:00:19 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=date : from : to : cc
- : subject : message-id : references : mime-version : content-type :
- content-transfer-encoding : in-reply-to; s=corp-2020-01-29;
- bh=qahWmu7yfkzVAk9fNv3cnE4VKjWf+61A/L9L1BkjeEg=;
- b=xdD3jq2WCyAdlwDDQm0B4lv4ih5tNTqZG2MezTHyT9JGc3ydaCru5ly4pQIcR2059BzU
- dKmmjoyp2snDGRNG25b9NwPUjBVpA9QPTKpfirSd138k0WP0a2Dl/yGrVmjELMM9Y4HH
- +rqfAA3WBHuucz+EC6k9DsijUMJggFFfhTpqQEzlSm+5F5SeAlhIz/sX/sm6YiFf60uk
- XkekeOTl/m40KHM4JpRT60dkj855oKr7LOYUEJEB7PS9yiUo/TWL9xIuZxJm1ePyRQcK
- hzjqX7UbDn6JZA87aX7yYhZpnkFRREkJMApKDgAKsoqBNhm+8X824hBpVoWrBbRwMFn6 bA== 
-Received: from aserp3020.oracle.com (aserp3020.oracle.com [141.146.126.70])
-        by aserp2130.oracle.com with ESMTP id 357yqc42x7-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 10 Dec 2020 08:00:19 +0000
-Received: from pps.filterd (aserp3020.oracle.com [127.0.0.1])
-        by aserp3020.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 0BA7ua2g132306;
-        Thu, 10 Dec 2020 08:00:19 GMT
-Received: from aserv0122.oracle.com (aserv0122.oracle.com [141.146.126.236])
-        by aserp3020.oracle.com with ESMTP id 358m41cffn-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Thu, 10 Dec 2020 08:00:19 +0000
-Received: from abhmp0018.oracle.com (abhmp0018.oracle.com [141.146.116.24])
-        by aserv0122.oracle.com (8.14.4/8.14.4) with ESMTP id 0BA80EAM013160;
-        Thu, 10 Dec 2020 08:00:14 GMT
-Received: from kadam (/102.36.221.92)
-        by default (Oracle Beehive Gateway v4.0)
-        with ESMTP ; Thu, 10 Dec 2020 00:00:13 -0800
-Date:   Thu, 10 Dec 2020 11:00:06 +0300
-From:   Dan Carpenter <dan.carpenter@oracle.com>
-To:     =?iso-8859-1?Q?J=F3zsef_Horv=E1th?= <info@ministro.hu>
-Cc:     =?iso-8859-1?B?Suly9G1l?= Pouiller <jerome.pouiller@silabs.com>,
-        devel@driverdev.osuosl.org, devicetree@vger.kernel.org,
-        "'Greg Kroah-Hartman'" <gregkh@linuxfoundation.org>,
-        driverdev-devel@linuxdriverproject.org,
-        linux-kernel@vger.kernel.org, "'Rob Herring'" <robh+dt@kernel.org>
-Subject: Re: [PATCH] Staging: silabs si4455 serial driver
-Message-ID: <20201210080006.GK2767@kadam>
-References: <!&!AAAAAAAAAAAuAAAAAAAAAM7AkQxKEJRHh2BgMNSTrQkBAExvbAW64DNBoXXP8CRioZMAAAAzfOEAABAAAAAJUqiRO33GQqGIHffCVyG/AQAAAAA=@ministro.hu>
- <2907305.Mh6RI2rZIc@pc-42>
- <20201209194153.GC30918@dincontrollerdev>
+        id S2387534AbgLJIQI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Dec 2020 03:16:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59540 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725896AbgLJIQH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 03:16:07 -0500
+Received: from mail-ot1-x343.google.com (mail-ot1-x343.google.com [IPv6:2607:f8b0:4864:20::343])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7852CC0613CF
+        for <devicetree@vger.kernel.org>; Thu, 10 Dec 2020 00:15:27 -0800 (PST)
+Received: by mail-ot1-x343.google.com with SMTP id x13so4095732oto.8
+        for <devicetree@vger.kernel.org>; Thu, 10 Dec 2020 00:15:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=olWrAE9JSl9kyhmzpxdnQFXpcomh9eOZ+RfshA6M+Yw=;
+        b=p6vfVBFEHoqspcfUNgn7sdgCPUwg36wBSjUfb4RLyJ5vULAwLKN8GmiD6e33Ac8VER
+         FHjrYoCNFIe95KV0RX2o8nIfoYplxquDDBIrmfd7JKKvmFFKtM7pWvdbEurFdl0S+ixF
+         a9WQ7JW4DjKNcbPrKFxaHPTaUsgn16vKzBa02kR0EjoU02V4pI6BZwvElTZfSnsE5U47
+         FO9QCOfjziR2mf4UreXeSdxMFAqv2P08icJDjBfNGQoS1VkLg1peKe+fS9PJGTp6YjU4
+         nnDn4b9KTTXh4iWvfxY5u22uy3SpZLdJHQwIhSObuqCNepIpcwc+QkYtjVkMO+J6fFF4
+         xlCA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=olWrAE9JSl9kyhmzpxdnQFXpcomh9eOZ+RfshA6M+Yw=;
+        b=W9W/kF3pUDUvkjy3FWeRkNfLB8mU1OgKcFbWVDicsIbE4OotA2iLRWVvqbWXY1Doc9
+         nHOuDNmulF+MBb7AqWJsnKnCLooMOmf8oD4EaZwWnOF6+7fHT9IcF0oFSP7O5RMrO3Cg
+         nCKJ6oqvSH6UtOFO34KEvoqmkEfAgdKSCpibENR73yYuqUWO0r6D8C3KZCE4VPOOlYEK
+         H3v83USPMAOpZ1QvC1gwiGmvbKRNy77aPKijqgo2R96vR0fCmCaQpe3gpQCbfRiUxs1J
+         bBM+lnTQ1L3EddhAOj5zkKkG90gdFRZ4W3jvFgerw7Xri4srGUBCiFgOYrTy6WkNvleZ
+         RtRQ==
+X-Gm-Message-State: AOAM5330siqI+bX4znWG634nC30bDphWiwMqW1c/q/nBODdZ4AVjUyXi
+        hYiUKAbzzvB3Rg5ZTeXYOTEEJhTyN5NRKBeSEh4SZw==
+X-Google-Smtp-Source: ABdhPJzESi9phEemd0Mo7b+JZyuIKDL6cbPIDC8u/pLidmYe6NDQenscRoW5LI/oInq9snMQmz4nqWLuWYa3ePUC+pk=
+X-Received: by 2002:a05:6830:1411:: with SMTP id v17mr1298573otp.352.1607588126592;
+ Thu, 10 Dec 2020 00:15:26 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20201209194153.GC30918@dincontrollerdev>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9830 signatures=668683
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 spamscore=0 malwarescore=0 adultscore=0
- bulkscore=0 phishscore=0 suspectscore=0 mlxscore=0 mlxlogscore=999
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2009150000
- definitions=main-2012100051
-X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9830 signatures=668683
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0 mlxlogscore=999
- clxscore=1011 malwarescore=0 bulkscore=0 phishscore=0 adultscore=0
- spamscore=0 priorityscore=1501 mlxscore=0 lowpriorityscore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2009150000 definitions=main-2012100051
+References: <20201117181935.3613581-1-minchan@kernel.org> <20201117181935.3613581-5-minchan@kernel.org>
+ <CGME20201118030110epcas2p1105a09711ea2c123f19f413b32372764@epcas2p1.samsung.com>
+ <CALAqxLWqDLHpOHNEayvhDjJeXjEk_uneH2=d9fy8M87EjKfReA@mail.gmail.com>
+ <20201119011431.GA136599@KEI> <CALAqxLV=r-V6u8hq2fTmxq855nT7QPkkjyAYdPeZRkYPBi_CKg@mail.gmail.com>
+ <X9Fjd+eSStUJskOV@google.com>
+In-Reply-To: <X9Fjd+eSStUJskOV@google.com>
+From:   John Stultz <john.stultz@linaro.org>
+Date:   Thu, 10 Dec 2020 00:15:15 -0800
+Message-ID: <CALAqxLWthd8bEDRMWmuOf8dOCW8=cFao9HBawKGuRhQZkdgXXw@mail.gmail.com>
+Subject: Re: [PATCH 4/4] dma-heap: Devicetree binding for chunk heap
+To:     Minchan Kim <minchan@kernel.org>
+Cc:     Hyesoo Yu <hyesoo.yu@samsung.com>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        linux-mm <linux-mm@kvack.org>,
+        Matthew Wilcox <willy@infradead.org>, david@redhat.com,
+        iamjoonsoo.kim@lge.com, vbabka@suse.cz,
+        Suren Baghdasaryan <surenb@google.com>,
+        KyongHo Cho <pullip.cho@samsung.com>,
+        John Dias <joaodias@google.com>,
+        Hridya Valsaraju <hridya@google.com>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        Brian Starkey <Brian.Starkey@arm.com>,
+        linux-media <linux-media@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Rob Herring <robh@kernel.org>,
+        Christian Koenig <christian.koenig@amd.com>,
+        "moderated list:DMA BUFFER SHARING FRAMEWORK" 
+        <linaro-mm-sig@lists.linaro.org>,
+        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 09, 2020 at 07:41:53PM +0000, József Horváth wrote:
-> > > +static int si4455_get_part_info(struct uart_port *port,
-> > > +                               struct si4455_part_info *result)
-> > > +{
-> > > +       int ret;
-> > > +       u8 dataOut[] = { SI4455_CMD_ID_PART_INFO };
-> > > +       u8 dataIn[SI4455_CMD_REPLY_COUNT_PART_INFO];
-> > > +
-> > > +       ret = si4455_send_command_get_response(port,
-> > > +                                               sizeof(dataOut),
-> > > +                                               dataOut,
-> > > +                                               sizeof(dataIn),
-> > > +                                               dataIn);
-> > 
-> > Why not:
-> > 
-> 
-> I changed all like this in my code already. I test it, and I'll send it again.
-> 
-> Ps.: For my eyes is better to read line or list, reading table is harder :)
-> 
-> 	line(arg1, arg2, arg3, arg4);
-> 
-> 	list(arg1,
-> 		arg2,
-> 		arg3,
-> 		arg4);
-> 
-> 	table(arg1, arg2,
-> 		arg3, arg4);
-> 
+On Wed, Dec 9, 2020 at 3:53 PM Minchan Kim <minchan@kernel.org> wrote:
+> On Wed, Nov 18, 2020 at 07:19:07PM -0800, John Stultz wrote:
+> > The CMA heap currently only registers the default CMA heap, as we
+> > didn't want to expose all CMA regions and there's otherwise no way to
+> > pick and choose.
+>
+> Yub.
+>
+> dma-buf really need a way to make exclusive CMA area. Otherwise, default
+> CMA would be shared among drivers and introduce fragmentation easily
+> since we couldn't control other drivers. In such aspect, I don't think
+> current cma-heap works if userspace needs big memory chunk.
 
-Use spaces to make arguments have to line up properly.
-`checkpatch.pl --strict` will complain if it's not done.
+Yes, the default CMA region is not always optimal.
 
-	table(arg1, arg2,
-	      arg_whatver, foo);
-[tab][space x 7]arg_whaver, foo);
+That's why I was hopeful for Kunihiko Hayashi's patch to allow for
+exposing specific cma regions:
+  https://lore.kernel.org/lkml/1594948208-4739-1-git-send-email-hayashi.kunihiko@socionext.com/
 
-But I think Jérôme's main point was to get rid of the dataOut buffer and
-use "result" directly.
+I think it would be a good solution, but all we need is *some* driver
+which can be considered the primary user/owner of the cma region which
+would then explicitly export it via the dmabuf heaps.
 
-> 
-> >        ret = si4455_send_command_get_response(port,
-> >                                               sizeof(*result), result,
-> >                                               sizeof(dataIn), dataIn);
-> > 
-> > > +       if (ret == 0) {
-> > > +               result->CHIPREV = dataIn[0];
-> > > +               memcpy(&result->PART, &dataIn[1],sizeof(result->PART));
-> > > +               result->PBUILD = dataIn[3];
-> > > +               memcpy(&result->ID, &dataIn[4], sizeof(result->ID));
-> > > +               result->CUSTOMER = dataIn[6];
-> > > +               result->ROMID = dataIn[7];
-> > > +               result->BOND = dataIn[8];
-> > 
-> > ... it would avoid all these lines.
-> > 
+> Here, the problem is there is no in-kernel user to bind the specific
+> CMA area because the owner will be random in userspace via dma-buf
+> interface.
 
-regards,
-dan carpenter
+Well, while I agree that conceptually the dmabuf heaps allow for
+allocations for multi-device pipelines, and thus are not tied to
+specific devices. I do think that the memory types exposed are likely
+to have specific devices/drivers in the pipeline that it matters most
+to. So I don't see a big issue with the in-kernel driver registering a
+specific CMA region as a dmabuf heap.
 
+> > > Is there a reason to use dma-heap framework to add cma-area for specific device ?
+> > >
+> > > Even if some in-tree users register dma-heap with cma-area, the buffers could be allocated in user-land and these could be shared among other devices.
+> > > For exclusive access, I guess, the device don't need to register dma-heap for cma area.
+> > >
+> >
+> > It's not really about exclusive access. More just that if you want to
+> > bind a memory reservation/region (cma or otherwise), at least for DTS,
+> > it needs to bind with some device in DT.
+> >
+> > Then the device driver can register that region with a heap driver.
+> > This avoids adding new Linux-specific software bindings to DT. It
+> > becomes a driver implementation detail instead. The primary user of
+> > the heap type would probably be a practical pick (ie the display or
+> > isp driver).
+>
+> If it's the only solution, we could create some dummy driver which has
+> only module_init and bind it from there but I don't think it's a good
+> idea.
+
+Yea, an un-upstreamable dummy driver is maybe what it devolves to in
+the worst case. But I suspect it would be cleaner for a display or ISP
+driver that benefits most from the heap type to add the reserved
+memory reference to their DT node, and on init for them to register
+the region with the dmabuf heap code.
+
+
+> > The other potential solution Rob has suggested is that we create some
+> > tag for the memory reservation (ie: like we do with cma: "reusable"),
+> > which can be used to register the region to a heap. But this has the
+> > problem that each tag has to be well defined and map to a known heap.
+>
+> Do you think that's the only solution to make progress for this feature?
+> Then, could you elaborate it a bit more or any other ideas from dma-buf
+> folks?
+
+I'm skeptical of that DT tag approach working out, as we'd need a new
+DT binding for the new tag name, and we'd have to do so for each new
+heap type that needs this (so non-default cma, your chunk heap,
+whatever other similar heap types that use reserved regions folks come
+up with).  Having *some* driver take ownership for the reserved region
+and register it with the appropriate heap type seems much
+cleaner/flexible and avoids mucking with the DT ABI.
+
+thanks
+-john
