@@ -2,89 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 83DFF2D5739
-	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 10:33:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AECCF2D5748
+	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 10:36:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725789AbgLJJbq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Dec 2020 04:31:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42902 "EHLO
+        id S1730769AbgLJJeM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Dec 2020 04:34:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43284 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728762AbgLJJbp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 04:31:45 -0500
-Received: from mail-pg1-x52d.google.com (mail-pg1-x52d.google.com [IPv6:2607:f8b0:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69A07C0613D6
-        for <devicetree@vger.kernel.org>; Thu, 10 Dec 2020 01:31:05 -0800 (PST)
-Received: by mail-pg1-x52d.google.com with SMTP id w5so2910608pgj.3
-        for <devicetree@vger.kernel.org>; Thu, 10 Dec 2020 01:31:05 -0800 (PST)
+        with ESMTP id S1730305AbgLJJeL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 04:34:11 -0500
+Received: from mail-pl1-x644.google.com (mail-pl1-x644.google.com [IPv6:2607:f8b0:4864:20::644])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82612C061793
+        for <devicetree@vger.kernel.org>; Thu, 10 Dec 2020 01:33:31 -0800 (PST)
+Received: by mail-pl1-x644.google.com with SMTP id v3so2468405plz.13
+        for <devicetree@vger.kernel.org>; Thu, 10 Dec 2020 01:33:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bytedance-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=9lTbkG6qYnle+XI3+FSoMjubtfTJEmSz5CKlrBtvf6E=;
-        b=ktJdc72nQon+D8o3CN6amrYc+2R2Xe9NgVdEQLiUb+N9xnep1qCYhVISyvZMOpLcTd
-         gVKcOMINlUiv1HeoB7QpbtjW465deQhf0MyfTUbovVHcmnDKAeimXhqiOo+VjifX2GaQ
-         c7WyVGNhVp7mp8HHDLe1GzyXIfQeTOTul9CloydL2z1umdM+lCj6VJAx7YNamnea1t1K
-         sE3EaHIZzeEDYLy7zUPftlI9SbcNrB6bg40LBRK/muMZmDxlc27+ma7bPNXvK4fjQB1N
-         nYYHCSM+14iyW6EGFu/lhjpW7XD+wLBvgUuF0dAvELw9jqbp4ZauOGNHytfUb0wvpHFc
-         0ZRQ==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=NMxKlRYBb5lr66i9S2BnZ0csslGiBrLWirm/cD72+fA=;
+        b=nXcY+NK9w3n9SLZKVpMBonSIOdWvBXpO80IxAhoIrhwwgX2QvqyjgoTmELA4QqeMpd
+         IiVlB16sFqbzRqqnO8LoXWGezuBgePlIPyEKliZMnnVEVkxyLeABAnZuvFcTg3zyRh18
+         rPQyq4hMxDpulHtCBwYwvKmsOigSjmk+/jSZd+IX6gcEHMvbB4eEhvOPOX2H3mZaVsyZ
+         pb2Jgts27ka6JBtsfrDFnjd3iWzMhELX54NHZKWoHDL9oH3ScNj/icjqRjw8Qs+o4Y9+
+         i2pMxf06HtCNdeew+iZ9v3VIWLssJErMYa1jF0F2b6gPwXwSP+mk7CChcsRG1RMhjef0
+         g2LA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=9lTbkG6qYnle+XI3+FSoMjubtfTJEmSz5CKlrBtvf6E=;
-        b=LnjHM1quvsIgGeUV/zZa1CsVw2O5aH2xxGKOLT2WnCnhkxIgo07Qal0d52VBCo1UFE
-         PhPosRhobfSrna7H5GHfmSCoQoKOnVaVDuxGOJP3v3w2sP6PmYDsCzS84Fnm8SFuRs/t
-         GbZZLkmePjXfa+iX3o8p7ghRxd9EhE0pGuFj9wQMK9J1xMvtA+yDOincp1qM4G/ZUNAE
-         RXllFhgIYX0llyWKHFUI+P+jLPHyulXnO7mIzY5tEE6vpPVIzE+R5WTxB+lH2hyS8eOh
-         8BCNjO9aQFXp7ip9zG7sFRFN/QmjMkNO4/aWKqwQ/gXS07L5Yj09qiruSEUJMk75zch8
-         gFbA==
-X-Gm-Message-State: AOAM531Fudtpx18XIDNKl3SS81Tz6jjQ8YvGfRvIbQCIcJuFDuJbXYkF
-        TdPmnB+OH7P8VZa9ayLLHGRmqA==
-X-Google-Smtp-Source: ABdhPJxvSV2G/C+0G+bkx6xFvzSF4bUj0cMreoupZzb+ckqOtPlyhaJ3KcVb6ZDrOtuDHEhxT/vL3Q==
-X-Received: by 2002:aa7:8ac1:0:b029:19d:beff:4e0f with SMTP id b1-20020aa78ac10000b029019dbeff4e0fmr5893394pfd.0.1607592664959;
-        Thu, 10 Dec 2020 01:31:04 -0800 (PST)
-Received: from localhost ([61.120.150.75])
-        by smtp.gmail.com with ESMTPSA id l1sm5043385pju.48.2020.12.10.01.31.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Dec 2020 01:31:04 -0800 (PST)
-From:   John Wang <wangzhiqiang.bj@bytedance.com>
-To:     openbmc@lists.ozlabs.org, xuxiaohan@bytedance.com,
-        yulei.sh@bytedance.com
-Cc:     Rob Herring <robh+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS),
-        linux-arm-kernel@lists.infradead.org (moderated list:ARM/ASPEED MACHINE
-        SUPPORT),
-        linux-aspeed@lists.ozlabs.org (moderated list:ARM/ASPEED MACHINE
-        SUPPORT), linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH 3/3] ARM: dts: aspeed: Enable g220a uart route
-Date:   Thu, 10 Dec 2020 17:31:01 +0800
-Message-Id: <20201210093101.413-1-wangzhiqiang.bj@bytedance.com>
-X-Mailer: git-send-email 2.25.1
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=NMxKlRYBb5lr66i9S2BnZ0csslGiBrLWirm/cD72+fA=;
+        b=oBpBnH4vb1IMJAKVan2HJtcmDIOaOVIwMr/wbbMrM6cern+jceoSAgV20VyMojud+r
+         lk7drsJese3HMHJ9dqAGJBV8JuG/2Rq2euvusYxRkKANxSwW6sfJI0L5wXwiocmJLqDa
+         2GLeWo+zAVglTf12whiZUp2LmnPxKFkfTfI/iSn/e7HLDFlMw1Ru9JLyWwN2nP5eL8Pt
+         4ooCECT8nq42/B1Q+I59eCreDc3XLWvZI+IC1VnfmbhBohRtu3Sgj593OGhlOCLanIcT
+         hk8z9a9+MgI62zk5vP6ozFgq2cLr0in6FHrCdYqSuK6b2hw+Cg0mjGTEEP6pmJmNBaii
+         Oxpw==
+X-Gm-Message-State: AOAM530J0NtuPArBIglZVEvRaJTw7CejwFT1GYZR0bU9/cg8wQ7SAFYV
+        7Z5z+PbWn3CnXdUkn2uVyS0o
+X-Google-Smtp-Source: ABdhPJynZIeZg2ND6ZfyQeXfcn2q2ncsTKKFruijwxpb9sDXIulSuWSqVh+YHaX8uYsKZaETZI6I2w==
+X-Received: by 2002:a17:902:be11:b029:da:ba30:5791 with SMTP id r17-20020a170902be11b02900daba305791mr5609367pls.13.1607592810943;
+        Thu, 10 Dec 2020 01:33:30 -0800 (PST)
+Received: from work ([103.59.133.81])
+        by smtp.gmail.com with ESMTPSA id p1sm5935208pfb.208.2020.12.10.01.33.27
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Thu, 10 Dec 2020 01:33:30 -0800 (PST)
+Date:   Thu, 10 Dec 2020 15:03:23 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Jisheng Zhang <Jisheng.Zhang@synaptics.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Dinh Nguyen <dinguyen@kernel.org>,
+        Khuong Dinh <khuong@os.amperecomputing.com>,
+        Wei Xu <xuwei5@hisilicon.com>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Saravana Kannan <saravanak@google.com>
+Subject: Re: [PATCH 0/8] arm/arm64: dts: Use generic "ngpios" rather than
+ "snps,nr-gpios"
+Message-ID: <20201210093323.GC24867@work>
+References: <20201109170258.4a70c768@xhacker.debian>
+ <CACRpkdbywjEaKORgS4GkWXkX9DOX0318hKoc0YY=o0NtBjyYcA@mail.gmail.com>
+ <20201210171224.74943144@xhacker.debian>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201210171224.74943144@xhacker.debian>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Signed-off-by: John Wang <wangzhiqiang.bj@bytedance.com>
----
- arch/arm/boot/dts/aspeed-bmc-bytedance-g220a.dts | 4 ++++
- 1 file changed, 4 insertions(+)
+On Thu, Dec 10, 2020 at 05:12:24PM +0800, Jisheng Zhang wrote:
+> On Tue, 10 Nov 2020 15:43:36 +0100 Linus Walleij <linus.walleij@linaro.org> wrote:
+> 
+> 
+> > 
+> > 
+> > On Mon, Nov 9, 2020 at 10:07 AM Jisheng Zhang
+> > <Jisheng.Zhang@synaptics.com> wrote:
+> > 
+> > > To remove similar errors as below for all snps dw gpio users:
+> > >
+> > > OF: /...gpio-port@0: could not find phandle
+> > >
+> > > Commit 7569486d79ae ("gpio: dwapb: Add ngpios DT-property support")
+> > > explained the reason of above errors well and added the generic
+> > > "ngpios" property, let's use it.  
+> > 
+> > Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+> > For all 8 patches.
+> 
+> > Thanks for cleaning this up!
+> > 
+> > Yours,
+> > Linus Walleij
+> 
+> Hi all,
+> 
+> I merged patch6 and patch7 to berlin, will send out a berlin SoC dts
+> Pull-Request today.
+> 
+> For other patches, I see Wei has taken patch4, will other patches be
+> taken by each SoC maintainers?
 
-diff --git a/arch/arm/boot/dts/aspeed-bmc-bytedance-g220a.dts b/arch/arm/boot/dts/aspeed-bmc-bytedance-g220a.dts
-index 89916a2eec18..e3a82679ed9c 100644
---- a/arch/arm/boot/dts/aspeed-bmc-bytedance-g220a.dts
-+++ b/arch/arm/boot/dts/aspeed-bmc-bytedance-g220a.dts
-@@ -929,3 +929,7 @@ &video {
- &vhub {
- 	status = "okay";
- };
-+
-+&uart_routing {
-+	status = "okay";
-+};
--- 
-2.25.1
+For bitmain platform, I don't have any other patches this cylce. So I'll
+just send this patch directly to soc@kernel.org.
 
+Thanks,
+Mani
+
+> 
+> thanks
