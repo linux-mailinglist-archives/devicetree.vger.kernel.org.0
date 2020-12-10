@@ -2,114 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 85EB62D63FA
-	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 18:48:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B8C72D6423
+	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 18:55:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2392703AbgLJRru (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Dec 2020 12:47:50 -0500
-Received: from mail.kernel.org ([198.145.29.99]:36102 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2387836AbgLJRrr (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 10 Dec 2020 12:47:47 -0500
-X-Gm-Message-State: AOAM531pnpgy2uvZkn1NAz5umi0HkwXy6S5KsAJ7fe58NINkGQ2HulNq
-        3AkKtkHjpcdmMQTeEG+Bw2/nlOaWg9OYR0ktyQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1607622426;
-        bh=Pat6PRh+dwRywkKsNXWK62l5b4kJVX0bFiyGi7EimG4=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=pIrjzr6DB9EHkGYQooMHi5S8wcIUxxiRZjNYS22D9bY6SxuQ+174YNsra8LM8dOuv
-         taglDRe8U4Xe1Wi80rJk4btCqarzAyxZ8cGe86gPNPFm/mU8tJJouIZfTNI55zHa3w
-         M2eJ21sNyEiNxHljsIef1JEtppjJb8iXIqOPFcPaTeuL0xhIZ1vGWxbRPR0sJhmiJf
-         CX6DWc8AQhMTx/RE/4FmIPAPNakLlvYeI6sl8Tvm3i/BCzn1VuLaNL1UJkg+Ne6udh
-         TqxF8WlJkkrI55tGTyO622xK6oEHYYqUIeuEyXykpjvaPLpYxcxHft+nZNZmxAfkez
-         FpU92eGUD64Kg==
-X-Google-Smtp-Source: ABdhPJyoC806uyQTMX8flHzurevo7QjpXk2mghbu0LOtVbWGcxPBT5pSjkUuIgCMw6GMH3KnJNskInymF8tmDd4BC6o=
-X-Received: by 2002:a05:6214:c23:: with SMTP id a3mr10252530qvd.4.1607622420671;
- Thu, 10 Dec 2020 09:47:00 -0800 (PST)
-MIME-Version: 1.0
-References: <20201202073156.5187-1-wan.ahmad.zainie.wan.mohamad@intel.com>
- <20201202073156.5187-3-wan.ahmad.zainie.wan.mohamad@intel.com>
- <20201209181350.GB660537@robh.at.kernel.org> <20201209184214.GV4077@smile.fi.intel.com>
-In-Reply-To: <20201209184214.GV4077@smile.fi.intel.com>
+        id S2392441AbgLJRzN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Dec 2020 12:55:13 -0500
+Received: from mail-oi1-f193.google.com ([209.85.167.193]:46858 "EHLO
+        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2392350AbgLJRxV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 12:53:21 -0500
+Received: by mail-oi1-f193.google.com with SMTP id k2so6626331oic.13
+        for <devicetree@vger.kernel.org>; Thu, 10 Dec 2020 09:53:06 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=mJEia+JrAhuk4kvUrUc407ZoNOhv0+KdatpOZ/j17ug=;
+        b=rcC5ovaVNgPG/VxX6fD3UB14jytxOBx4uKqbzfILmXQQ6918tXlj9FVZCNmAShkRtu
+         OK47k3/e6J/w9LoJQtpBbxLavPBzWgF1Ug93dIT4yhLxV1ptfkLGf5pAZVYKBLLJtrSU
+         JLCk9/bEhcG/XM5MosQcJo8R1y6Fdia73E4x18Wv6ElUwRkYIfNWJZqvYJ9Y466qis+2
+         kurfIZD/KtVFFzC4FElsK4eGkPYNmt1xDa4Mu10YGHWwRrXHUyVFWg7BeZs+tKBrZigw
+         9Q+sV2IeT8uuTku/ryP9+GI2ZteTzOBOE/qnd6CUkJ0bwtFA3NCOsX3Jl2sopkrXI5Hb
+         kCDQ==
+X-Gm-Message-State: AOAM533bkuOnDDxUMo2sfnkAKQy2AP5+mL3sRkIotaCNS/pfPWnHHDUC
+        DYDhBJ/jOOtgTUU0cKnGgbhS9ueFjw==
+X-Google-Smtp-Source: ABdhPJxWbe7l6Dj2tw/ojlCKP62wXVvjpBXIzAVZK8R2LzFSH7zGajRIA+b3BwJsy/Z3Uv2TWhqYYQ==
+X-Received: by 2002:aca:3257:: with SMTP id y84mr6220825oiy.132.1607622760815;
+        Thu, 10 Dec 2020 09:52:40 -0800 (PST)
+Received: from xps15.herring.priv (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.googlemail.com with ESMTPSA id w40sm724398ooi.41.2020.12.10.09.52.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 10 Dec 2020 09:52:39 -0800 (PST)
 From:   Rob Herring <robh@kernel.org>
-Date:   Thu, 10 Dec 2020 11:46:48 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJA4Sx93rF_o+V-gPSHwuyAyf-aT96XpN-UCc3ayjDH+w@mail.gmail.com>
-Message-ID: <CAL_JsqJA4Sx93rF_o+V-gPSHwuyAyf-aT96XpN-UCc3ayjDH+w@mail.gmail.com>
-Subject: Re: [PATCH v3 2/2] PCI: keembay: Add support for Intel Keem Bay
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     Wan Ahmad Zainie <wan.ahmad.zainie.wan.mohamad@intel.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        PCI <linux-pci@vger.kernel.org>, devicetree@vger.kernel.org,
-        Mark Gross <mgross@linux.intel.com>,
-        "Raja Subramanian, Lakshmi Bai" 
-        <lakshmi.bai.raja.subramanian@intel.com>
-Content-Type: text/plain; charset="UTF-8"
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     devicetree@vger.kernel.org, Vladimir Zapolskiy <vz@mleia.com>,
+        Sylvain Lemieux <slemieux.tyco@gmail.com>
+Subject: [PATCH] ARM: dts: lpc32xx: Remove unused and undocumented 'pnx,timeout'
+Date:   Thu, 10 Dec 2020 11:52:38 -0600
+Message-Id: <20201210175238.2721550-1-robh@kernel.org>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 9, 2020 at 12:41 PM Andy Shevchenko
-<andriy.shevchenko@linux.intel.com> wrote:
->
-> On Wed, Dec 09, 2020 at 12:13:50PM -0600, Rob Herring wrote:
-> > On Wed, Dec 02, 2020 at 03:31:56PM +0800, Wan Ahmad Zainie wrote:
->
-> ...
->
-> > > +static void keembay_pcie_ltssm_enable(struct keembay_pcie *pcie, bool enable)
-> > > +{
-> > > +   u32 val;
-> > > +
-> > > +   val = keembay_pcie_readl(pcie, PCIE_REGS_PCIE_APP_CNTRL);
-> > > +   if (enable)
-> > > +           val |= APP_LTSSM_ENABLE;
-> > > +   else
-> > > +           val &= ~APP_LTSSM_ENABLE;
-> > > +   keembay_pcie_writel(pcie, PCIE_REGS_PCIE_APP_CNTRL, val);
-> >
-> > If this is the only bit in this register, do you really need RMW?
->
-> I think it's safer than do direct write and have something wrong on next
-> generations of hardware.
+'pnx,timeout' is unused, undocumented and 'pnx' is not a vendor prefix,
+so let's remove it.
 
-We have 2 Intel SoCs with 2 separate PCI drivers so far, is that
-really going to be a concern? :( (This bit in particular is Synopsys'
-fault. This is what happens when IP vendors just give you signals to
-hook up.)
+Cc: Vladimir Zapolskiy <vz@mleia.com>
+Cc: Sylvain Lemieux <slemieux.tyco@gmail.com>
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+ arch/arm/boot/dts/lpc32xx.dtsi | 3 ---
+ 1 file changed, 3 deletions(-)
 
-There's 2 other reasons why to not do a RMW. The firmware or
-bootloader could also change how the register is initialized which you
-may or may not want changed in Linux.  Second, for maintaining this
-code when anyone familiar with this h/w disappears, I'd like to know
-if there's other bits in this register I might want to care about.
+diff --git a/arch/arm/boot/dts/lpc32xx.dtsi b/arch/arm/boot/dts/lpc32xx.dtsi
+index 7b7ec7b1217b..3a5cfb0ddb20 100644
+--- a/arch/arm/boot/dts/lpc32xx.dtsi
++++ b/arch/arm/boot/dts/lpc32xx.dtsi
+@@ -123,7 +123,6 @@ i2cusb: i2c@300 {
+ 				clocks = <&usbclk LPC32XX_USB_CLK_I2C>;
+ 				#address-cells = <1>;
+ 				#size-cells = <0>;
+-				pnx,timeout = <0x64>;
+ 			};
+ 
+ 			usbclk: clock-controller@f00 {
+@@ -286,7 +285,6 @@ i2c1: i2c@400a0000 {
+ 				interrupts = <19 IRQ_TYPE_LEVEL_LOW>;
+ 				#address-cells = <1>;
+ 				#size-cells = <0>;
+-				pnx,timeout = <0x64>;
+ 				clocks = <&clk LPC32XX_CLK_I2C1>;
+ 			};
+ 
+@@ -297,7 +295,6 @@ i2c2: i2c@400a8000 {
+ 				interrupts = <18 IRQ_TYPE_LEVEL_LOW>;
+ 				#address-cells = <1>;
+ 				#size-cells = <0>;
+-				pnx,timeout = <0x64>;
+ 				clocks = <&clk LPC32XX_CLK_I2C2>;
+ 			};
+ 
+-- 
+2.25.1
 
-> > > +static int keembay_pcie_ep_raise_irq(struct dw_pcie_ep *ep, u8 func_no,
-> > > +                                enum pci_epc_irq_type type,
-> > > +                                u16 interrupt_num)
-> > > +{
-> > > +   struct dw_pcie *pci = to_dw_pcie_from_ep(ep);
-> > > +
-> > > +   switch (type) {
-> > > +   case PCI_EPC_IRQ_LEGACY:
-> > > +           /* Legacy interrupts are not supported in Keem Bay */
-> > > +           dev_err(pci->dev, "Legacy IRQ is not supported\n");
-> > > +           return -EINVAL;
-> > > +   case PCI_EPC_IRQ_MSI:
-> > > +           return dw_pcie_ep_raise_msi_irq(ep, func_no, interrupt_num);
-> > > +   case PCI_EPC_IRQ_MSIX:
-> > > +           return dw_pcie_ep_raise_msix_irq(ep, func_no, interrupt_num);
-> > > +   default:
-> > > +           dev_err(pci->dev, "Unknown IRQ type %d\n", type);
-> > > +           return -EINVAL;
-> > > +   }
-> >
-> > Doesn't the lack of a 'return' give a warning?
->
-> Where? I don't see any lack of return.
-
-Is the compiler smart enough to recognize that with a return in every
-'case' that we don't need a return after the switch? I wouldn't have
-thought so, but I haven't checked.
-
-Rob
