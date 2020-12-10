@@ -2,15 +2,15 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BB2C52D69C9
-	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 22:28:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7513B2D69CC
+	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 22:28:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404924AbgLJV1i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Dec 2020 16:27:38 -0500
-Received: from mail.kernel.org ([198.145.29.99]:38786 "EHLO mail.kernel.org"
+        id S2404945AbgLJV15 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Dec 2020 16:27:57 -0500
+Received: from mail.kernel.org ([198.145.29.99]:38460 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2404919AbgLJV1g (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 10 Dec 2020 16:27:36 -0500
+        id S2404944AbgLJV1l (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 10 Dec 2020 16:27:41 -0500
 From:   Krzysztof Kozlowski <krzk@kernel.org>
 Authentication-Results: mail.kernel.org; dkim=permerror (bad message/signature format)
 To:     Chanwoo Choi <cw00.choi@samsung.com>,
@@ -37,9 +37,9 @@ Cc:     Iskren Chernev <iskren.chernev@gmail.com>,
         Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>,
         Angus Ainslie <angus@akkea.ca>,
         Hans de Goede <hdegoede@redhat.com>
-Subject: [RFC 15/18] mfd: max77693: Do not enforce (incorrect) interrupt trigger type
-Date:   Thu, 10 Dec 2020 22:25:31 +0100
-Message-Id: <20201210212534.216197-15-krzk@kernel.org>
+Subject: [RFC 18/18] power: supply: max17040: Do not enforce (incorrect) interrupt trigger type
+Date:   Thu, 10 Dec 2020 22:25:34 +0100
+Message-Id: <20201210212534.216197-18-krzk@kernel.org>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20201210212534.216197-1-krzk@kernel.org>
 References: <20201210212534.216197-1-krzk@kernel.org>
@@ -53,15 +53,9 @@ Interrupt line can be configured on different hardware in different way,
 even inverted.  Therefore driver should not enforce specific trigger
 type - edge falling - but instead rely on Devicetree to configure it.
 
-The Maxim 77693 datasheet describes the interrupt line as active low
-with a requirement of acknowledge from the CPU therefore the edge
+The Maxim 14577/77836 datasheets describe the interrupt line as active
+low with a requirement of acknowledge from the CPU therefore the edge
 falling is not correct.
-
-The interrupt line is shared between PMIC and RTC driver, so using level
-sensitive interrupt is here especially important to avoid races.  With
-an edge configuration in case if first PMIC signals interrupt followed
-shortly after by the RTC, the interrupt might not be yet cleared/acked
-thus the second one would not be noticed.
 
 Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 
@@ -70,67 +64,36 @@ Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 This patch should wait till DTS changes are merged, as it relies on
 proper Devicetree.
 ---
- Documentation/devicetree/bindings/mfd/max77693.txt |  2 +-
- drivers/mfd/max77693.c                             | 12 ++++--------
- 2 files changed, 5 insertions(+), 9 deletions(-)
+ .../devicetree/bindings/power/supply/max17040_battery.txt       | 2 +-
+ drivers/power/supply/max17040_battery.c                         | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/mfd/max77693.txt b/Documentation/devicetree/bindings/mfd/max77693.txt
-index 0ced96e16c16..1032df14498b 100644
---- a/Documentation/devicetree/bindings/mfd/max77693.txt
-+++ b/Documentation/devicetree/bindings/mfd/max77693.txt
-@@ -139,7 +139,7 @@ Example:
- 		compatible = "maxim,max77693";
- 		reg = <0x66>;
- 		interrupt-parent = <&gpx1>;
--		interrupts = <5 2>;
-+		interrupts = <5 IRQ_TYPE_LEVEL_LOW>;
+diff --git a/Documentation/devicetree/bindings/power/supply/max17040_battery.txt b/Documentation/devicetree/bindings/power/supply/max17040_battery.txt
+index c802f664b508..194eb9fe574d 100644
+--- a/Documentation/devicetree/bindings/power/supply/max17040_battery.txt
++++ b/Documentation/devicetree/bindings/power/supply/max17040_battery.txt
+@@ -39,7 +39,7 @@ Example:
+ 		reg = <0x36>;
+ 		maxim,alert-low-soc-level = <10>;
+ 		interrupt-parent = <&gpio7>;
+-		interrupts = <2 IRQ_TYPE_EDGE_FALLING>;
++		interrupts = <2 IRQ_TYPE_LEVEL_LOW>;
+ 		wakeup-source;
+ 	};
  
- 		regulators {
- 			esafeout@1 {
-diff --git a/drivers/mfd/max77693.c b/drivers/mfd/max77693.c
-index 596ed85cab3b..4e6244e17559 100644
---- a/drivers/mfd/max77693.c
-+++ b/drivers/mfd/max77693.c
-@@ -222,8 +222,7 @@ static int max77693_i2c_probe(struct i2c_client *i2c,
- 	}
+diff --git a/drivers/power/supply/max17040_battery.c b/drivers/power/supply/max17040_battery.c
+index d956c67d5155..f737de0470de 100644
+--- a/drivers/power/supply/max17040_battery.c
++++ b/drivers/power/supply/max17040_battery.c
+@@ -367,7 +367,7 @@ static int max17040_enable_alert_irq(struct max17040_chip *chip)
  
- 	ret = regmap_add_irq_chip(max77693->regmap, max77693->irq,
--				IRQF_ONESHOT | IRQF_SHARED |
--				IRQF_TRIGGER_FALLING, 0,
-+				IRQF_ONESHOT | IRQF_SHARED, 0,
- 				&max77693_led_irq_chip,
- 				&max77693->irq_data_led);
- 	if (ret) {
-@@ -232,8 +231,7 @@ static int max77693_i2c_probe(struct i2c_client *i2c,
- 	}
+ 	flags = IRQF_TRIGGER_FALLING | IRQF_ONESHOT;
+ 	ret = devm_request_threaded_irq(&client->dev, client->irq, NULL,
+-					max17040_thread_handler, flags,
++					max17040_thread_handler, IRQF_ONESHOT,
+ 					chip->battery->desc->name, chip);
  
- 	ret = regmap_add_irq_chip(max77693->regmap, max77693->irq,
--				IRQF_ONESHOT | IRQF_SHARED |
--				IRQF_TRIGGER_FALLING, 0,
-+				IRQF_ONESHOT | IRQF_SHARED, 0,
- 				&max77693_topsys_irq_chip,
- 				&max77693->irq_data_topsys);
- 	if (ret) {
-@@ -242,8 +240,7 @@ static int max77693_i2c_probe(struct i2c_client *i2c,
- 	}
- 
- 	ret = regmap_add_irq_chip(max77693->regmap, max77693->irq,
--				IRQF_ONESHOT | IRQF_SHARED |
--				IRQF_TRIGGER_FALLING, 0,
-+				IRQF_ONESHOT | IRQF_SHARED, 0,
- 				&max77693_charger_irq_chip,
- 				&max77693->irq_data_chg);
- 	if (ret) {
-@@ -252,8 +249,7 @@ static int max77693_i2c_probe(struct i2c_client *i2c,
- 	}
- 
- 	ret = regmap_add_irq_chip(max77693->regmap_muic, max77693->irq,
--				IRQF_ONESHOT | IRQF_SHARED |
--				IRQF_TRIGGER_FALLING, 0,
-+				IRQF_ONESHOT | IRQF_SHARED, 0,
- 				&max77693_muic_irq_chip,
- 				&max77693->irq_data_muic);
- 	if (ret) {
+ 	return ret;
 -- 
 2.25.1
 
