@@ -2,169 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 375AA2D55CB
-	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 09:55:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A654C2D55E9
+	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 09:59:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388495AbgLJIyH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Dec 2020 03:54:07 -0500
-Received: from 8.mo2.mail-out.ovh.net ([188.165.52.147]:52858 "EHLO
-        8.mo2.mail-out.ovh.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388179AbgLJIyB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 03:54:01 -0500
-X-Greylist: delayed 390 seconds by postgrey-1.27 at vger.kernel.org; Thu, 10 Dec 2020 03:54:00 EST
-Received: from player696.ha.ovh.net (unknown [10.108.42.23])
-        by mo2.mail-out.ovh.net (Postfix) with ESMTP id 2FB111EF8BB
-        for <devicetree@vger.kernel.org>; Thu, 10 Dec 2020 09:46:45 +0100 (CET)
-Received: from milecki.pl (ip-194-187-74-233.konfederacka.maverick.com.pl [194.187.74.233])
-        (Authenticated sender: rafal@milecki.pl)
-        by player696.ha.ovh.net (Postfix) with ESMTPSA id 53E0D18B5EA83;
-        Thu, 10 Dec 2020 08:46:32 +0000 (UTC)
-Authentication-Results: garm.ovh; auth=pass (GARM-97G0021e0c2119-0cc2-4b96-b9e6-e90cfa33fc5b,
-                    9D96FBD73EB20898266A9FB31776B13AC7912273) smtp.auth=rafal@milecki.pl
-Subject: Re: [PATCH V2 2/2] PCI: brcmstb: support BCM4908 with external PERST#
- signal controller
-To:     Florian Fainelli <f.fainelli@gmail.com>,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-Cc:     Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        linux-rpi-kernel@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        bcm-kernel-feedback-list@broadcom.com
-References: <20201130083223.32594-1-zajec5@gmail.com>
- <20201130083223.32594-3-zajec5@gmail.com>
- <812ab1ce-15e0-d260-97cf-597388505416@gmail.com>
-From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-Message-ID: <d27eec9f-f937-d0c3-1c33-6b6210effb1a@milecki.pl>
-Date:   Thu, 10 Dec 2020 09:46:31 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.5.1
+        id S1727950AbgLJI45 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Dec 2020 03:56:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36736 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388346AbgLJIvo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 03:51:44 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0E77C0613CF
+        for <devicetree@vger.kernel.org>; Thu, 10 Dec 2020 00:51:03 -0800 (PST)
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1knHfB-0007mt-QM; Thu, 10 Dec 2020 09:51:01 +0100
+Received: from ore by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <ore@pengutronix.de>)
+        id 1knHfA-0000BB-DO; Thu, 10 Dec 2020 09:51:00 +0100
+Date:   Thu, 10 Dec 2020 09:51:00 +0100
+From:   Oleksij Rempel <o.rempel@pengutronix.de>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
+        Fabio Estevam <festevam@gmail.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        linux-kernel@vger.kernel.org, NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        David Jander <david@protonic.nl>,
+        Shawn Guo <shawnguo@kernel.org>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v4 2/5] dt-bindings: arm: fsl: add Kverneland UT1, UT1Q
+ and UI1P boards
+Message-ID: <20201210085100.5l4ltbpeemuwvgwp@pengutronix.de>
+References: <20201201072449.28600-1-o.rempel@pengutronix.de>
+ <20201201072449.28600-3-o.rempel@pengutronix.de>
+ <20201209154308.GA495323@robh.at.kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <812ab1ce-15e0-d260-97cf-597388505416@gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-Ovh-Tracer-Id: 16173552164075703951
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedujedrudejledguddvvdcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefuvfhfhffkffgfgggjtgfgsehtkeertddtfeejnecuhfhrohhmpeftrghfrghlucfoihhlvggtkhhiuceorhgrfhgrlhesmhhilhgvtghkihdrphhlqeenucggtffrrghtthgvrhhnpeekudehjeehffdufefhgffhgeejjeelteekveeuleevgeekhffhffeiheellefgveenucfkpheptddrtddrtddrtddpudelgedrudekjedrjeegrddvfeefnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmohguvgepshhmthhpqdhouhhtpdhhvghlohepphhlrgihvghrieeliedrhhgrrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpehrrghfrghlsehmihhlvggtkhhirdhplhdprhgtphhtthhopeguvghvihgtvghtrhgvvgesvhhgvghrrdhkvghrnhgvlhdrohhrgh
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20201209154308.GA495323@robh.at.kernel.org>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 09:49:28 up 7 days, 22:55, 23 users,  load average: 0.00, 0.01, 0.00
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04.12.2020 19:21, Florian Fainelli wrote:
-> On 11/30/2020 12:32 AM, Rafał Miłecki wrote:
->> From: Rafał Miłecki <rafal@milecki.pl>
->>
->> BCM4908 uses external MISC block for controlling PERST# signal. Use it
->> as a reset controller.
->>
->> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
->> ---
->> V2: Reorder BCM4908 in the enum pcie_type
->>      Use devm_reset_control_get_optional_exclusive()
->>      Don't move hw_rev read up in the code
->> ---
->>   drivers/pci/controller/Kconfig        |  2 +-
->>   drivers/pci/controller/pcie-brcmstb.c | 32 +++++++++++++++++++++++++++
->>   2 files changed, 33 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/pci/controller/Kconfig b/drivers/pci/controller/Kconfig
->> index 64e2f5e379aa..d44c70bb88f6 100644
->> --- a/drivers/pci/controller/Kconfig
->> +++ b/drivers/pci/controller/Kconfig
->> @@ -273,7 +273,7 @@ config VMD
->>   
->>   config PCIE_BRCMSTB
->>   	tristate "Broadcom Brcmstb PCIe host controller"
->> -	depends on ARCH_BRCMSTB || ARCH_BCM2835 || COMPILE_TEST
->> +	depends on ARCH_BRCMSTB || ARCH_BCM2835 || ARCH_BCM4908 || COMPILE_TEST
->>   	depends on OF
->>   	depends on PCI_MSI_IRQ_DOMAIN
->>   	default ARCH_BRCMSTB
->> diff --git a/drivers/pci/controller/pcie-brcmstb.c b/drivers/pci/controller/pcie-brcmstb.c
->> index 9c3d2982248d..98536cf3af58 100644
->> --- a/drivers/pci/controller/pcie-brcmstb.c
->> +++ b/drivers/pci/controller/pcie-brcmstb.c
->> @@ -96,6 +96,7 @@
->>   
->>   #define PCIE_MISC_REVISION				0x406c
->>   #define  BRCM_PCIE_HW_REV_33				0x0303
->> +#define  BRCM_PCIE_HW_REV_3_20				0x0320
->>   
->>   #define PCIE_MISC_CPU_2_PCIE_MEM_WIN0_BASE_LIMIT		0x4070
->>   #define  PCIE_MISC_CPU_2_PCIE_MEM_WIN0_BASE_LIMIT_LIMIT_MASK	0xfff00000
->> @@ -190,6 +191,7 @@
->>   struct brcm_pcie;
->>   static inline void brcm_pcie_bridge_sw_init_set_7278(struct brcm_pcie *pcie, u32 val);
->>   static inline void brcm_pcie_bridge_sw_init_set_generic(struct brcm_pcie *pcie, u32 val);
->> +static inline void brcm_pcie_perst_set_4908(struct brcm_pcie *pcie, u32 val);
->>   static inline void brcm_pcie_perst_set_7278(struct brcm_pcie *pcie, u32 val);
->>   static inline void brcm_pcie_perst_set_generic(struct brcm_pcie *pcie, u32 val);
->>   
->> @@ -206,6 +208,7 @@ enum {
->>   
->>   enum pcie_type {
->>   	GENERIC,
->> +	BCM4908,
->>   	BCM7278,
->>   	BCM2711,
->>   };
->> @@ -230,6 +233,13 @@ static const struct pcie_cfg_data generic_cfg = {
->>   	.bridge_sw_init_set = brcm_pcie_bridge_sw_init_set_generic,
->>   };
->>   
->> +static const struct pcie_cfg_data bcm4908_cfg = {
->> +	.offsets	= pcie_offsets,
->> +	.type		= BCM4908,
->> +	.perst_set	= brcm_pcie_perst_set_4908,
->> +	.bridge_sw_init_set = brcm_pcie_bridge_sw_init_set_generic,
->> +};
->> +
->>   static const int pcie_offset_bcm7278[] = {
->>   	[RGR1_SW_INIT_1] = 0xc010,
->>   	[EXT_CFG_INDEX] = 0x9000,
->> @@ -282,6 +292,7 @@ struct brcm_pcie {
->>   	const int		*reg_offsets;
->>   	enum pcie_type		type;
->>   	struct reset_control	*rescal;
->> +	struct reset_control	*perst_reset;
->>   	int			num_memc;
->>   	u64			memc_size[PCIE_BRCM_MAX_MEMC];
->>   	u32			hw_rev;
->> @@ -747,6 +758,17 @@ static inline void brcm_pcie_bridge_sw_init_set_7278(struct brcm_pcie *pcie, u32
->>   	writel(tmp, pcie->base + PCIE_RGR1_SW_INIT_1(pcie));
->>   }
->>   
->> +static inline void brcm_pcie_perst_set_4908(struct brcm_pcie *pcie, u32 val)
->> +{
->> +	if (WARN_ONCE(!pcie->perst_reset, "missing PERST# reset controller\n"))
->> +		return;
->> +
->> +	if (val)
->> +		reset_control_assert(pcie->perst_reset);
->> +	else
->> +		reset_control_deassert(pcie->perst_reset);
+On Wed, Dec 09, 2020 at 09:43:08AM -0600, Rob Herring wrote:
+> On Tue, Dec 01, 2020 at 08:24:45AM +0100, Oleksij Rempel wrote:
+> > Add Kverneland UT1 (imx6dl), UT1Q (imx6q) and UT1P (imx6dp) based boards
+> > 
+> > Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+> > ---
+> >  Documentation/devicetree/bindings/arm/fsl.yaml | 3 +++
+> >  1 file changed, 3 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+> > index 490cbc75b18a..7b2f83bb56cb 100644
+> > --- a/Documentation/devicetree/bindings/arm/fsl.yaml
+> > +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+> > @@ -210,6 +210,7 @@ properties:
+> >                - kiebackpeter,imx6q-tpc    # K+P i.MX6 Quad TPC Board
+> >                - kontron,imx6q-samx6i      # Kontron i.MX6 Dual/Quad SMARC Module
+> >                - kosagi,imx6q-novena       # Kosagi Novena Dual/Quad
+> > +              - kvg,vicut1q               # Kverneland UT1Q board
+> >                - logicpd,imx6q-logicpd
+> >                - lwn,display5              # Liebherr Display5 i.MX6 Quad Board
+> >                - lwn,mccmon6               # Liebherr Monitor6 i.MX6 Quad Board
+> > @@ -331,6 +332,7 @@ properties:
+> >                - fsl,imx6qp-sabreauto      # i.MX6 Quad Plus SABRE Automotive Board
+> >                - fsl,imx6qp-sabresd        # i.MX6 Quad Plus SABRE Smart Device Board
+> >                - karo,imx6qp-tx6qp         # Ka-Ro electronics TX6QP-8037 Module
+> > +              - kvg,vicutp                # Kverneland UT1P board
 > 
-> This looks good to me now, just one nit, you probably do not support
-> suspend/resume on the 4908, likely never will, but you should probably
-> pulse the PERST# during PCIe resume, too. With that fixed:
-> 
-> Acked-by: Florian Fainelli <f.fainelli@gmail.com>
+> Should be kvg,vicut1p?
 
-Driver already does that.
+No. At least it is consequent with boot loader and existing products.
 
-Suspend forward trace:
-brcm_pcie_suspend()
-brcm_pcie_turn_off()
-pcie->perst_set(pcie, 1)
+> >                - prt,prtwd3                # Protonic WD3 board
+> >                - wand,imx6qp-wandboard     # Wandboard i.MX6 QuadPlus Board
+> >                - zii,imx6qp-zii-rdu2       # ZII RDU2+ Board
+> > @@ -364,6 +366,7 @@ properties:
+> >                - fsl,imx6dl-sabresd        # i.MX6 DualLite SABRE Smart Device Board
+> >                - karo,imx6dl-tx6dl         # Ka-Ro electronics TX6U Modules
+> >                - kontron,imx6dl-samx6i     # Kontron i.MX6 Solo SMARC Module
+> > +              - kvg,vicut1                # Kverneland UT1 board
+> >                - ply,plybas                # Plymovent BAS board
+> >                - ply,plym2m                # Plymovent M2M board
+> >                - poslab,imx6dl-savageboard # Poslab SavageBoard Dual
+> > -- 
+> > 2.29.2
+> > 
 
-Resume forward trace:
-brcm_pcie_resume()
-brcm_pcie_setup()
-pcie->perst_set(pcie, 0)
-
-Correct me if I'm wrong please.
+Regards,
+Oleksij
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
