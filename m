@@ -2,108 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B61572D569D
-	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 10:17:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 208692D5693
+	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 10:17:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388915AbgLJJQL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Dec 2020 04:16:11 -0500
-Received: from ns2.baikalelectronics.ru ([94.125.187.42]:36710 "EHLO
-        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1729145AbgLJJL6 (ORCPT
+        id S1729145AbgLJJQp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Dec 2020 04:16:45 -0500
+Received: from mail.persuitflow.com ([89.46.74.132]:41908 "EHLO
+        server1.mail.persuitflow.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S2388561AbgLJJQn (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Thu, 10 Dec 2020 04:11:58 -0500
-From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
-To:     Mathias Nyman <mathias.nyman@intel.com>,
-        Felipe Balbi <balbi@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Ahmad Zainie <wan.ahmad.zainie.wan.mohamad@intel.com>
-CC:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Manu Gautam <mgautam@codeaurora.org>,
-        Roger Quadros <rogerq@ti.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-snps-arc@lists.infradead.org>, <linux-mips@vger.kernel.org>,
-        <linuxppc-dev@lists.ozlabs.org>, <linux-usb@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v6 19/19] dt-bindings: usb: intel,keembay-dwc3: Validate DWC3 sub-node
-Date:   Thu, 10 Dec 2020 12:09:43 +0300
-Message-ID: <20201210090944.16283-20-Sergey.Semin@baikalelectronics.ru>
-In-Reply-To: <20201210090944.16283-1-Sergey.Semin@baikalelectronics.ru>
-References: <20201210090944.16283-1-Sergey.Semin@baikalelectronics.ru>
+        Thu, 10 Dec 2020 04:16:43 -0500
+Received: by server1.mail.persuitflow.com (Postfix, from userid 1001)
+        id C19F0A38D3; Thu, 10 Dec 2020 09:11:44 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=persuitflow.com;
+        s=mail; t=1607591529;
+        bh=LIG/EV9hZypKEB8e9JkxJFCirHVIBsQt3YrIS4TkXUA=;
+        h=Date:From:To:Subject:From;
+        b=ODLwWLxiYHP5iM00N6c2TiAR56eOF4T1VNgz8t4i2kJ/573nOxP8rtDs5afwHij/Z
+         V0r9mq/NXi6x2OEPeywWvAHGo0wpzogCV1IuaH/sEyv6L49WxXdixnjVsMhmlK2hi2
+         mxw6BfZR3KOOLKChNve9UFyqV4SBG3kicHewd1aznJXygJa879ceSErW4nvXEOrMH1
+         9yGfbEHl1Ve4xHYhU189v8Qz+I52Aug/daeMLE2k9r58mKjrs8y5QVRNwvIQwZsDoZ
+         Tg5maP6DcZYopGgqv+5Lh7etqshXthPEmlolK2bNMXeV7Hk0gsffyxBZm/HRBnHHjg
+         pUUm0yLAQm51g==
+Received: by mail.persuitflow.com for <devicetree@vger.kernel.org>; Thu, 10 Dec 2020 09:11:01 GMT
+Message-ID: <20201210074501-0.1.1x.8qcw.0.bow12jjpa0@persuitflow.com>
+Date:   Thu, 10 Dec 2020 09:11:01 GMT
+From:   "Raquel Carvalho" <raquel.carvalho@persuitflow.com>
+To:     <devicetree@vger.kernel.org>
+Subject: Desinfetante
+X-Mailer: mail.persuitflow.com
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Intel Keem Bay DWC3 compatible DT nodes are supposed to have a DWC USB3
-compatible sub-node to describe a fully functioning USB interface. Let's
-use the available DWC USB3 DT schema to validate the Intel Keem Bay DWC3
-sub-nodes.
+Bom Dia,
 
-Note since the generic DWC USB3 DT node is supposed to be named as generic
-USB HCD ("^usb(@.*)?") one we have to accordingly fix the sub-nodes name
-regexp and fix the DT node example.
+A demanda por desinfetantes eficazes que permitam a elimina=C3=A7=C3=A3o =
+de microrganismos prejudiciais =C3=A9 continuamente alta em todo o mundo.
 
-Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Acked-by: Wan Ahmad Zainie <wan.ahmad.zainie.wan.mohamad@intel.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
+Expandir a oferta com uma gama profissional de produtos com atividade vir=
+icida e bactericida permite aumentar a posi=C3=A7=C3=A3o competitiva da e=
+mpresa e construir novas redes de vendas.
 
----
+Diversificamos a linha de atacadistas e distribuidores com sabonetes, l=C3=
+=ADquidos e g=C3=A9is para desinfec=C3=A7=C3=A3o das m=C3=A3os e outros p=
+rodutos de limpeza, entre eles: g=C3=A9is de banho, shampoos e condiciona=
+dores de cabelo, al=C3=A9m de detergentes concentrados.
 
-Changelog v5:
-- This is a new patch created for the new Intel Keem Bay bindings file,
-  which has been added just recently.
+Nossos parceiros de neg=C3=B3cios est=C3=A3o aumentando sua participa=C3=A7=
+=C3=A3o no mercado externo devido =C3=A0 crescente satisfa=C3=A7=C3=A3o d=
+o cliente e oferta diversificada.
 
-Changelog v6:
-- Fix typo in the commit log: Qualcomm sub-node should be called as Intel
-  Keem Bay sub-node
----
- .../devicetree/bindings/usb/intel,keembay-dwc3.yaml      | 9 +++------
- 1 file changed, 3 insertions(+), 6 deletions(-)
+O potencial de crescimento de nossas solu=C3=A7=C3=B5es resulta de pre=C3=
+=A7os acess=C3=ADveis, alto desempenho e versatilidade para se adaptar a =
+todos os tipos de pele.
 
-diff --git a/Documentation/devicetree/bindings/usb/intel,keembay-dwc3.yaml b/Documentation/devicetree/bindings/usb/intel,keembay-dwc3.yaml
-index dd32c10ce6c7..43b91ab62004 100644
---- a/Documentation/devicetree/bindings/usb/intel,keembay-dwc3.yaml
-+++ b/Documentation/devicetree/bindings/usb/intel,keembay-dwc3.yaml
-@@ -34,11 +34,8 @@ properties:
- # Required child node:
- 
- patternProperties:
--  "^dwc3@[0-9a-f]+$":
--    type: object
--    description:
--      A child node must exist to represent the core DWC3 IP block.
--      The content of the node is defined in dwc3.txt.
-+  "^usb@[0-9a-f]+$":
-+    $ref: snps,dwc3.yaml#
- 
- required:
-   - compatible
-@@ -68,7 +65,7 @@ examples:
-           #address-cells = <1>;
-           #size-cells = <1>;
- 
--          dwc3@34000000 {
-+          usb@34000000 {
-                 compatible = "snps,dwc3";
-                 reg = <0x34000000 0x10000>;
-                 interrupts = <GIC_SPI 91 IRQ_TYPE_LEVEL_HIGH>;
--- 
-2.29.2
+A extens=C3=A3o da gama de produtos proposta =C3=A9 um campo interessante=
+ para a coopera=C3=A7=C3=A3o?
 
+
+Cumprimentos,
+Raquel Carvalho
+Conselheiro do Cliente
