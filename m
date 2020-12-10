@@ -2,52 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 98CA52D5848
-	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 11:35:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E2DCC2D5864
+	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 11:40:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726363AbgLJKdw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Dec 2020 05:33:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52458 "EHLO
+        id S2388383AbgLJKkp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Dec 2020 05:40:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53514 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725789AbgLJKdw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 05:33:52 -0500
-Received: from mail-qv1-xf41.google.com (mail-qv1-xf41.google.com [IPv6:2607:f8b0:4864:20::f41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A2F4C0613CF
-        for <devicetree@vger.kernel.org>; Thu, 10 Dec 2020 02:33:12 -0800 (PST)
-Received: by mail-qv1-xf41.google.com with SMTP id q7so2108961qvt.12
-        for <devicetree@vger.kernel.org>; Thu, 10 Dec 2020 02:33:12 -0800 (PST)
+        with ESMTP id S2388284AbgLJKki (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 05:40:38 -0500
+Received: from mail-qt1-x844.google.com (mail-qt1-x844.google.com [IPv6:2607:f8b0:4864:20::844])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8FB12C0617B0
+        for <devicetree@vger.kernel.org>; Thu, 10 Dec 2020 02:39:56 -0800 (PST)
+Received: by mail-qt1-x844.google.com with SMTP id f14so3242124qto.12
+        for <devicetree@vger.kernel.org>; Thu, 10 Dec 2020 02:39:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=0x0f.com; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=6nfEy7jb4JxUEN3UyBm4VG+qNR9wioZAF6quKu0rvhQ=;
-        b=UivoiDMfsRAwmZ/ZLGjUImJpkcyCQo02ymzAKS7rp6+ceFp9V1DnsjBzxirP4Rzt/4
-         9Im9/toCJyxJbeG8opl2ngddMKgyKT2+mtJrcAhNkmvalLFxOcT/uivTCNjhnid7buqU
-         QsRW138BI3fo1Ts6x9aGLtV7zE/rhkvEj3emo=
+        bh=L2WFU4dR05ZGB+4ahSYpvkou90km6wj3qFHGpNOIG9M=;
+        b=ZCaNzYwl7SUQuyXA717WC7IZendW6N96htJ/gjKsEIGCoZB1Ol2tjYR06fRUijr3FA
+         5ISU/OS7u1Az8OZW/eMNZ9OyMnXLIt3fQebq1fqezHuUQvqK9+KckKMwxfVmd83nO9V/
+         Kx92pP+6KrpJnV69lBueCksEBq0CNg/B/GMhU=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=6nfEy7jb4JxUEN3UyBm4VG+qNR9wioZAF6quKu0rvhQ=;
-        b=pUCwAulArS4QTElrHLuGJXNO9U4Mwpc4YlteI71Bg/jR9qyLK9XnjBC5moshU4pqAe
-         0l81i3P/sBk11enQtbwmSaypOlerTs3OHYUvPTlUZfYMUN8GSolBQhT7DXaJK6dPRDe0
-         5kpl7UwmS3DNYdJt6/3yVC4GeUFOAvPXDhOpAosiD27wyVSGpYFSevbpm9/NFscZ2uG3
-         r/hrtXwaAhDmKey5IlJuKwbRo5ASWhtY/Q0gHC3MFkTt2VmJH2aGPnAm0jA6d/y9tCI7
-         7Oe/lSMXNN6NBx88F9zk2WJeL/UVAveqkDycgvIDZpFaOGaE3uPS6mG3k56tKKUJ875W
-         81WQ==
-X-Gm-Message-State: AOAM5314po1PZ8L0S1Po0T6kjTbXZmlYBvnIxwLGW6mumjg98vpqO/l/
-        MWeSBtrvhfw/+wAUO0Hx3/q3r3zfZxjbV6RBkFRuFg==
-X-Google-Smtp-Source: ABdhPJzZGRjhEeNNEDGAWAw+JmsON7yXLlAyf0iR1s+9MtHGwvfratcRgIz5ZM01Ii2KY29VX/Ss2pqrNPcIr18iTC0=
-X-Received: by 2002:a05:6214:140d:: with SMTP id n13mr4614903qvx.45.1607596391428;
- Thu, 10 Dec 2020 02:33:11 -0800 (PST)
+        bh=L2WFU4dR05ZGB+4ahSYpvkou90km6wj3qFHGpNOIG9M=;
+        b=HECiDtzVHngJtPcH5oprc6TtI9wK6Ol6qOi7S5SFVjGKly7O6cHsfd42SKB01yhSRf
+         gwnekDHCEk9i043OnIUwqr02wBVigG8SLVO0kO6sxVx7y/QI9cPxCKBYDsvv1znEOzrl
+         o6f/E7MCeXJxTqFgP6/14J1wsGsdfUoG6Sf1LBwEufj2qGEWANzD17aPA++c0n6N2K/M
+         LRqwEuWQfpw6slrG3+nWeRN7eOnFslGPjRx3SCN0HX8k9sslChJk3hMUag3aCgUF9MN9
+         G2sJAy+q4O5S8PeVi60Vt/ESmj9jvMxMe5RL6+0yOi2jchL+drTcrz94MNhbKG0RwG/d
+         wqlA==
+X-Gm-Message-State: AOAM530Sa8XHZaxf1tEMOPGN7Op6QyD3doTtBm13VHnNZ5K2sXg6YQEI
+        fpSUG9nhjM6HX2N7XhgYk9c43MsAjQPgXM5wRVw6fw==
+X-Google-Smtp-Source: ABdhPJza71bHTJCiyvRTTQ2YNcpXeu9wyUFDyS+bpZT9AnvgoplhU3GXEc+KIUKkz1TdBEplvPh0gJR6E49WgL8pWZg=
+X-Received: by 2002:ac8:5647:: with SMTP id 7mr8312313qtt.148.1607596795854;
+ Thu, 10 Dec 2020 02:39:55 -0800 (PST)
 MIME-Version: 1.0
-References: <20201201134330.3037007-1-daniel@0x0f.com> <20201201134330.3037007-2-daniel@0x0f.com>
- <20201209163536.GB566058@robh.at.kernel.org>
-In-Reply-To: <20201209163536.GB566058@robh.at.kernel.org>
+References: <20201201134330.3037007-1-daniel@0x0f.com> <20201201134330.3037007-3-daniel@0x0f.com>
+ <20201209163409.GA566058@robh.at.kernel.org>
+In-Reply-To: <20201209163409.GA566058@robh.at.kernel.org>
 From:   Daniel Palmer <daniel@0x0f.com>
-Date:   Thu, 10 Dec 2020 19:33:00 +0900
-Message-ID: <CAFr9PXmuCJJ0LXTcH56Dv_ddePaqLtVFVgeJdv7hVN7yRRyj-Q@mail.gmail.com>
-Subject: Re: [PATCH v2 01/10] dt-bindings: mstar: Add binding details for mstar,smpctrl
+Date:   Thu, 10 Dec 2020 19:39:45 +0900
+Message-ID: <CAFr9PXmwOEuHHA-kDeL1YS8bWvovrt43MXxyy1J+hGbXwPUFSA@mail.gmail.com>
+Subject: Re: [PATCH v2 02/10] dt-bindings: vendor-prefixes: Add honestar
+ vendor prefix
 To:     Rob Herring <robh@kernel.org>
 Cc:     DTML <devicetree@vger.kernel.org>, SoC Team <soc@kernel.org>,
         linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
@@ -61,17 +62,14 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hi Rob,
 
-On Thu, 10 Dec 2020 at 01:35, Rob Herring <robh@kernel.org> wrote:
-> On Tue, Dec 01, 2020 at 10:43:21PM +0900, Daniel Palmer wrote:
-> > This adds a YAML description of the smpctrl node needed by the
-> > platform code for the MStar/SigmaStar Armv7 SoCs to boot secondary cpus.
+On Thu, 10 Dec 2020 at 01:34, Rob Herring <robh@kernel.org> wrote:
+> > +  "^honestar,.*":
+> > +    description: Honestar Technologies Co., Ltd.
 >
-> You need an 'enable-method' string defined too.
+> Alphabetical order please.
 
-The machine has smp ops set so I didn't think this was needed?
-I was going to convert it to using enable-method in the cpu node but
-the same code is used to enable the secondary cpu in all of the chips
-with a second cpu so I didn't think I was really needed.
+Sorry about that. I intended to do that but apparently don't know the
+alphabet anymore..
 
 Thanks,
 
