@@ -2,69 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 773322D5B15
-	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 14:00:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B94A82D5B46
+	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 14:09:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1733083AbgLJM7T convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 10 Dec 2020 07:59:19 -0500
-Received: from mail-ot1-f66.google.com ([209.85.210.66]:40066 "EHLO
-        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732831AbgLJM7L (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 07:59:11 -0500
-Received: by mail-ot1-f66.google.com with SMTP id j12so4734124ota.7;
-        Thu, 10 Dec 2020 04:58:55 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=Ghg05MC4S/bnxJ+svvza6c5G2cbCYHhUIsHHq9OSvdo=;
-        b=gRQZwwbloiTG/1/JLuFvo1TxmVjrg7tKNowt0Vqp2gkl1oj14XyxqHL0xhDF0WbDKF
-         /rdWueAslneQEYudN4ddowrBCnUux7gdX2eWYrP+KkVdK9+40af2Xni/PSEDa6Pxd4X9
-         D/913MPXW7s/hko3+QQ2hgEfxKZSIha2mbn2H/7o3fayGmJBGY8KzEV0fur/J9IkxlWn
-         Lq3SWCVKJBWdhEecUoLJN0ysOtRFKSNFXAF3ALV6EGvY7JfPSBOIIuqVAQPUy5ezx1R6
-         S0CNMK22eBmvBgq7wN9k/PTIRZjkbpDyBmNreo7OTzgcmddBnYtbAoqdaAA9qCqx0/iY
-         lN4Q==
-X-Gm-Message-State: AOAM531fSyszoPCEhyPdLS6oYD0pDfkAPOMVRnSZRZB24+FYFWFzd1vw
-        YwlCLQiJg8o9PqiaqbjrCNLFln3SOZ6+hfvBgg4=
-X-Google-Smtp-Source: ABdhPJz+wWfprNtfHT6L45mOHHUI/7Z0cwBmP+dw0Cf78cI82UDAN6HunCM9ykSP+kBa+dN/Rpr6lMAzEoguNcr0/Qg=
-X-Received: by 2002:a9d:2203:: with SMTP id o3mr5666650ota.107.1607605110474;
- Thu, 10 Dec 2020 04:58:30 -0800 (PST)
+        id S1725947AbgLJNIx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Dec 2020 08:08:53 -0500
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:39656 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726439AbgLJNIx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 08:08:53 -0500
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0BAD7xdJ060290;
+        Thu, 10 Dec 2020 07:07:59 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1607605679;
+        bh=8w3tN/GkEKy2qdWLhSNgrT3zaBBEblVCy0wp1e+L/lo=;
+        h=From:To:CC:Subject:Date;
+        b=b617WEEkyx9I8tgwaMYTcNyToz32lse+gXvCnMnBWeQPFavMvorqUTeIPV2jF2hfN
+         YacYdO4djRBB6Sc7LwUZC11yl+qQ73ENW2acbN6mIe/r2dGqNilcQs1ktzMXkZ11p5
+         T+VU4Y2hxJsAqdBtIZJcacQIcSC2HxFuvHZV6fVA=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0BAD7xop093231
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 10 Dec 2020 07:07:59 -0600
+Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 10
+ Dec 2020 07:07:58 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Thu, 10 Dec 2020 07:07:59 -0600
+Received: from a0393678-ssd.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0BAD7raf098988;
+        Thu, 10 Dec 2020 07:07:56 -0600
+From:   Kishon Vijay Abraham I <kishon@ti.com>
+To:     Tero Kristo <t-kristo@ti.com>, Nishanth Menon <nm@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v2 0/6] PCI: J7200/J721E PCIe bindings
+Date:   Thu, 10 Dec 2020 18:37:41 +0530
+Message-ID: <20201210130747.25436-1-kishon@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-References: <20201209200738.811173-1-niklas.soderlund+renesas@ragnatech.se> <20201209200738.811173-3-niklas.soderlund+renesas@ragnatech.se>
-In-Reply-To: <20201209200738.811173-3-niklas.soderlund+renesas@ragnatech.se>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 10 Dec 2020 13:58:19 +0100
-Message-ID: <CAMuHMdVxEvZ=oN5qCOKjFPCE=+EXxMuHP5djHp5eYw-QK4d3dw@mail.gmail.com>
-Subject: Re: [PATCH 2/2] arm64: dts: renesas: r8a77995: Add CMT nodes
-To:     =?UTF-8?Q?Niklas_S=C3=B6derlund?= 
-        <niklas.soderlund+renesas@ragnatech.se>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 9, 2020 at 9:08 PM Niklas Söderlund
-<niklas.soderlund+renesas@ragnatech.se> wrote:
-> Add device nodes for the Compare Match Timer (CMT) on the Renesas R-Car
-> D3 (r8a77995) SoC.
->
-> Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+v1 of the patch series is sent [1]
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v5.12.
+Changes from v1:
+1) Include only the device tree patches here (the binding patch is sent
+separately)
+2) Include couple of patches that fixes J721E DTS.
 
-Gr{oetje,eeting}s,
+[1] -> http://lore.kernel.org/r/20201102101154.13598-1-kishon@ti.com
 
-                        Geert
+Kishon Vijay Abraham I (6):
+  arm64: dts: ti: k3-j721e-main: Fix supported max outbound regions
+  arm64: dts: ti: k3-j721e-main: Remove "syscon" nodes added for
+    pcieX_ctrl
+  arm64: dts: ti: k3-j7200-main: Add DT for WIZ and SERDES
+  arm64: dts: ti: k3-j7200-main: Add PCIe device tree node
+  arm64: dts: ti: k3-j7200-common-proc-board: Enable SERDES0
+  arm64: dts: ti: k3-j7200-common-proc-board: Enable PCIe
+
+ .../dts/ti/k3-j7200-common-proc-board.dts     |  38 ++++++
+ arch/arm64/boot/dts/ti/k3-j7200-main.dtsi     | 109 ++++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-j721e-main.dtsi     |  52 ++-------
+ 3 files changed, 155 insertions(+), 44 deletions(-)
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.17.1
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
