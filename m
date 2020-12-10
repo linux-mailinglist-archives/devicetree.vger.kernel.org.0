@@ -2,102 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C55572D5B8C
-	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 14:24:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 08BC02D5BE8
+	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 14:36:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389190AbgLJNXm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Dec 2020 08:23:42 -0500
-Received: from mail-oi1-f194.google.com ([209.85.167.194]:34998 "EHLO
-        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389111AbgLJNXf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 08:23:35 -0500
-Received: by mail-oi1-f194.google.com with SMTP id s2so5689300oij.2;
-        Thu, 10 Dec 2020 05:23:20 -0800 (PST)
+        id S2389432AbgLJNfh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Dec 2020 08:35:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52260 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2389404AbgLJNfa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 08:35:30 -0500
+Received: from mail-yb1-xb41.google.com (mail-yb1-xb41.google.com [IPv6:2607:f8b0:4864:20::b41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9FC10C0613D6;
+        Thu, 10 Dec 2020 05:34:50 -0800 (PST)
+Received: by mail-yb1-xb41.google.com with SMTP id u203so4733283ybb.2;
+        Thu, 10 Dec 2020 05:34:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=U/roqOTkuyKuA5LDRyyEuc0O+uuXLFYRIA0JUlY59Bk=;
+        b=I+i0gWaLA7UKfNFgJQDCwWrfCS9iCPpQ0A4zUjzU8Y4ZvassZGOITAyYroE6aiVQxp
+         3C7S5fsGAcLvMA+eO0LiCzFAgyULX0jvv67m3oN432kQWKEeC312EQnW9kOU3Nm7vWce
+         Ut5c1HlGF8+9XribssMqLCLY7I9i1aMW2lk0fCNwQphjzMxMT+gK001vflbpbYgzShJi
+         uDcK/EXnVddWy4lPExw0YitK4tkoB/hkd8bGOcAoimf6NKx1l9QZOa3CtXBOS8qL5eF1
+         IUJ/umFa6xMIOtZjhIlBnnFs/ayjL55MRiHZSmGPBddw+TYPs486F3uyhWOww9DiUad4
+         afHg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=5YrrmDGBtPB40xWq8Xs0g2ZWc20nUchgMGGf+8yx/xg=;
-        b=RLhCONemDWXyMbPS7k4YD5J0H51u4xG1EKKxcHvE/WtCk8V/hjaTClOV9Eyo3tTi81
-         +1zgq0L0otTaGK9kbuEccGFj/kg03gr7+m96ERNisQS/sNT43we8NjUXIF0PHomPKjOB
-         dZzFhutLrvZytMoeViVp8S7Gz44a6TmKP5jx6pkE+pfHzd/Q331tnr1OokNohMSKIHgL
-         QhcYYoJIPJdHici4HkDxULEnDyTvd5vAttiOARYljM9Go0qZrnXw0mUXFoC7iWFguTRR
-         hCwpBHSv9C3RP5zVP0Whe1aVhhlUtbOv0bK8vqag1E0OlHw5kRRgQSep8FWY48rii0Ef
-         cYUw==
-X-Gm-Message-State: AOAM53070pAQc1sk16nM3qtkiNoCBKKnRAk5Dj9ilnp5QPX7LavuQymg
-        0yj2SsO1rSfQsCM5aKfiqtf1O7SqPZDgP8FF34w=
-X-Google-Smtp-Source: ABdhPJyqGfuC/drmAWDcS+9KsCPX7gcqJAznxiSfiFBUXqkMzi0Y9Mgi8ZYjpvm4VhAa0RHtEVcG55I8rIitOVjYj3s=
-X-Received: by 2002:aca:4b16:: with SMTP id y22mr5296436oia.148.1607606574747;
- Thu, 10 Dec 2020 05:22:54 -0800 (PST)
+        bh=U/roqOTkuyKuA5LDRyyEuc0O+uuXLFYRIA0JUlY59Bk=;
+        b=DQJCS0U535FpLdj0RiFfKZjpCA19ivlugstB7UBFtILVd3yI1enU3dsQgRmWVzDIne
+         RWXXACNBVJHeBDfO4giB1JexDQ2ftCKQnlVs7Gk3VshTR6U68N1TEtmXPgok/48ft1Vx
+         MkQ0i8GVeo17tydR0+jMBm8Zd+ejL+jg3QwyA4M93jpAqhnirNRDKSDzvgIMGqVqWbND
+         f8WUt+45Ml6hcT93Bphym6UkW9vMWQdlBJ4Tz8LrFfTC1PNNxbNnXWQ9uEHI3/rgBS8v
+         YfwRsxC/Vo0SHFlPXj8FSi7NvpEASSmtN1owKkr4RRe7YEC456KQPtzUZcX0uWS2uIMg
+         1rdQ==
+X-Gm-Message-State: AOAM533ISmZ8qDSjoS8jYaXJoCcko/P0mhd+dIuo9XIHKGizAQsNyciT
+        OArkVSp8Y4Qqnh1FTPqnEkdJW5xBtHq1MHjW7XA=
+X-Google-Smtp-Source: ABdhPJwOblTPqsGeuSVQCngMDfoO16GBD7DpLAVnesO53oahEPxk3iPPRkVlWRjT5EhD+gYUQuxuFgXEhYqvKK6vfrs=
+X-Received: by 2002:a25:690b:: with SMTP id e11mr10757041ybc.314.1607607289459;
+ Thu, 10 Dec 2020 05:34:49 -0800 (PST)
 MIME-Version: 1.0
-References: <20201210034003.222297-1-damien.lemoal@wdc.com>
- <CAMuHMdVbU2kjKU3EVN5kszPc=VQcgzYLemV6AOyg+YyZBfc31Q@mail.gmail.com> <5389e421f884c43ff6a806ac4ec95b43a93d02f7.camel@wdc.com>
-In-Reply-To: <5389e421f884c43ff6a806ac4ec95b43a93d02f7.camel@wdc.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 10 Dec 2020 14:22:43 +0100
-Message-ID: <CAMuHMdVnR2E6+ANYuZLvsTW8Od4Sa=wDtjnio4h3z=W2ePPGGw@mail.gmail.com>
-Subject: Re: [PATCH v7 00/22] RISC-V Kendryte K210 support improvements
-To:     Damien Le Moal <Damien.LeMoal@wdc.com>
-Cc:     "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-        "palmer@dabbelt.com" <palmer@dabbelt.com>,
-        "sboyd@kernel.org" <sboyd@kernel.org>,
-        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        "seanga2@gmail.com" <seanga2@gmail.com>
+References: <1607403341-57214-1-git-send-email-yash.shah@sifive.com> <1607403341-57214-2-git-send-email-yash.shah@sifive.com>
+In-Reply-To: <1607403341-57214-2-git-send-email-yash.shah@sifive.com>
+From:   Bin Meng <bmeng.cn@gmail.com>
+Date:   Thu, 10 Dec 2020 21:34:37 +0800
+Message-ID: <CAEUhbmWVn=W7y+xFGrmpNhQUEqLP-SjKoqeWZ=xgeVaMo5qO=A@mail.gmail.com>
+Subject: Re: [PATCH v2 1/9] dt-bindings: riscv: Update DT binding docs to
+ support SiFive FU740 SoC
+To:     Yash Shah <yash.shah@sifive.com>
+Cc:     linux-spi@vger.kernel.org, linux-serial@vger.kernel.org,
+        linux-pwm@vger.kernel.org, linux-i2c@vger.kernel.org,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        broonie@kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Albert Ou <aou@eecs.berkeley.edu>, lee.jones@linaro.org,
+        u.kleine-koenig@pengutronix.de,
+        Thierry Reding <thierry.reding@gmail.com>, andrew@lunn.ch,
+        Peter Korsgaard <peter@korsgaard.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Linus Walleij <linus.walleij@linaro.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Damien,
-
-On Thu, Dec 10, 2020 at 1:36 PM Damien Le Moal <Damien.LeMoal@wdc.com> wrote:
-> On Thu, 2020-12-10 at 11:04 +0100, Geert Uytterhoeven wrote:
-> > On Thu, Dec 10, 2020 at 4:41 AM Damien Le Moal <damien.lemoal@wdc.com> wrote:
-> > > Changes from v6:
-> > > * Annotate struct platform_driver variables with __refdata to avoid
-> > >   section mismatch compilation errors
-> >
-> > Blindly following the advice from kernel test robot <lkp@intel.com> is
-> > not always a good idea:
-> >
-> >     The variable k210_rst_driver references
-> >     the function __init set_reset_devices()
-> >     If the reference is valid then annotate the
-> >     variable with or __refdata (see linux/init.h) or name the variable:
-> >
-> > If your driver's probe function is annotated with __init, you cannot
-> > have a pointer to it in the driver structure, as any binding done after
-> > the freeing of initmem will cause a crash.  Adding the __refdata merely
-> > suppresses the warning, and won't avoid the crash.
+On Tue, Dec 8, 2020 at 3:06 PM Yash Shah <yash.shah@sifive.com> wrote:
 >
-> Hmm... I must be misunderstanding something here. free_initmem() is called from
-> kernel_init() right before starting the user init process. That is late enough
-> that all drivers are already probed and initialized. At least that is what I
-> thought, especially considering that none of the k210 drivers can be modules
-> and are all builtin. What am I missing here ?
+> Add new compatible strings in cpus.yaml to support the E71 and U74 CPU
+> cores ("harts") that are present on FU740-C000 SoC.
+>
+> Signed-off-by: Yash Shah <yash.shah@sifive.com>
+> ---
+>  Documentation/devicetree/bindings/riscv/cpus.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
+>
 
-For these specific cases, binding is indeed unlikely to happen after
-free_initmem(). In the generic case that is not true.
-However, you can still trigger it manually by unbinding and rebinding
-the device manually through sysfs.
-
-> So I think I will go with option 2. It is simpler and safer. We can always
-> revisit and optimize later. I would prefer this series to land first :)
-
-Right. Correctness first, performance later.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Reviewed-by: Bin Meng <bin.meng@windriver.com>
