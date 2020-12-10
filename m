@@ -2,87 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 80BAD2D542A
-	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 07:51:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D0902D543B
+	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 07:58:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730820AbgLJGt7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Dec 2020 01:49:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46326 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730804AbgLJGt7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 01:49:59 -0500
-Received: from mail-ot1-x341.google.com (mail-ot1-x341.google.com [IPv6:2607:f8b0:4864:20::341])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3209CC0613CF;
-        Wed,  9 Dec 2020 22:49:19 -0800 (PST)
-Received: by mail-ot1-x341.google.com with SMTP id d8so3938857otq.6;
-        Wed, 09 Dec 2020 22:49:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=GpLHl8aI+wmgxv0hazRZPDJI4LNA3P1gAIF5pSq6p6Y=;
-        b=KD3X5V20NWATnMDZqY1vtwyVJUOg0NRR1hdRGaLIDsJJZEpoPXsA3V4Smer6/6zBuR
-         C7t7pkG/o/pAVc6wbHuddSRNTFOWuMXs/zUgmyWJKBu6UzCDN6lkjTaFzX0wqNNTC2rc
-         YZQEA3TqVQWPTg5BP6kaf4uxgzKUQh0KgDA0t4EGJcY/aTPXlSvB63yQyXSiVoXXtHzO
-         LGjbpt2CPx+3PTM/pW4qvqsf4u8ZSZzi++cd8gMglgiQkCHtv3DE5FoYeNv+Y6IVAC9l
-         5/D//6m97hLaJNghfr4hJBIDQHHFvYo8XCWLN6FIEtMlIUSLMXKGQTJ9kG2O2q5NwzBm
-         GOzQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=GpLHl8aI+wmgxv0hazRZPDJI4LNA3P1gAIF5pSq6p6Y=;
-        b=JV1OMol6rtgMoPm0QtVN8W0TOIf26TIlCNjgioHrKa7J752uR8OJZg2nW/EQLAiOjz
-         X4ikIzPsu4VNWDCg+EjPa1IfOTH7TsXofyEhYLr0mhVMeKfeS/fLfPUC6pgwtCkgJtzc
-         lPzv8rTdLDGVzfPY1KOp7MfaNznumj0XS0bR9VrTvnmRRWjzwbkU3fZo/oBM0XTplONI
-         by7wxncBlqDFec4za+TSsr2mMUKCKF2uf/cmiUuTg/1kgwYVYl66PI6pNvcKfiyByMQI
-         s/BJ3CFxS9OCVWJbKjIurYQAy54e6YXJTysIbk7QlwTv7bXGSlYNtey4Kr96HV40NJd8
-         XYlw==
-X-Gm-Message-State: AOAM531f6dpCmxhcGtG52dMdcHKce7E52GvRbuuu6y4LH2tFTI/TDiZk
-        96JXza4XP53HC9ejmE84mmzYrOu66e6rh4IgY62B0Ym2
-X-Google-Smtp-Source: ABdhPJx3GmmPLYce7Q7MbSvoY73AdVSTZAg5Z4f8b87slKZJ/tUFYD/TvNj0jR6sWXX8CcQgic49Wwcj637RG6EfdoA=
-X-Received: by 2002:a05:6830:2371:: with SMTP id r17mr4923392oth.236.1607582958667;
- Wed, 09 Dec 2020 22:49:18 -0800 (PST)
-MIME-Version: 1.0
-References: <20201207081151.7489-1-sergio.paracuellos@gmail.com> <20201210021353.GA1495778@robh.at.kernel.org>
-In-Reply-To: <20201210021353.GA1495778@robh.at.kernel.org>
-From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Date:   Thu, 10 Dec 2020 07:49:07 +0100
-Message-ID: <CAMhs-H_bzC1XLDnZQOKim0baFdM9Fe1_x7kDDjSbMSrw04XKXA@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: mt7621-gpio: convert bindings to YAML format
-To:     Rob Herring <robh@kernel.org>
-Cc:     Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
+        id S2387657AbgLJG4r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Dec 2020 01:56:47 -0500
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:50154 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732661AbgLJG4q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 01:56:46 -0500
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0BA6t0N9066832;
+        Thu, 10 Dec 2020 00:55:00 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1607583300;
+        bh=lScRv7wbyDedbc21GNb38KQWHyHATCRVSTCppcU0aOM=;
+        h=From:To:CC:Subject:Date;
+        b=S9f/jFGItyz+HYMAT5j6l8Nx3FWgCD62Gy8QhoYyr7401pUN6fkh2W/+mT6Mje3b2
+         DvW1Kx6nOux8ushTiEZ6wOBvUehol28eF8QiD07lRs55bTqCeJaj8hLmceasjrWWzD
+         4qvy0IW+fzvUoYpYIOgxl/8qkb7oSflzpKJtF0Jk=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0BA6t0Ce072100
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 10 Dec 2020 00:55:00 -0600
+Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 10
+ Dec 2020 00:54:59 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Thu, 10 Dec 2020 00:54:59 -0600
+Received: from gsaswath-HP-ProBook-640-G5.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0BA6srOj032382;
+        Thu, 10 Dec 2020 00:54:55 -0600
+From:   Aswath Govindraju <a-govindraju@ti.com>
+CC:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Sekhar Nori <nsekhar@ti.com>,
+        Aswath Govindraju <a-govindraju@ti.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Roger Quadros <rogerq@ti.com>, <linux-usb@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v3] dt-bindings: usb: Add new compatible string for AM64 SoC
+Date:   Thu, 10 Dec 2020 12:24:50 +0530
+Message-ID: <20201210065450.16663-1-a-govindraju@ti.com>
+X-Mailer: git-send-email 2.17.1
+MIME-Version: 1.0
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Add compatible string in j721e-usb binding file as the same USB subsystem
+is present in AM64.
 
-On Thu, Dec 10, 2020 at 3:13 AM Rob Herring <robh@kernel.org> wrote:
->
-> On Mon, 07 Dec 2020 09:11:51 +0100, Sergio Paracuellos wrote:
-> > Convert the mt7621-gpio device tree bindings to the new YAML format.
-> >
-> > Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
-> > ---
-> >  .../bindings/gpio/mediatek,mt7621-gpio.txt    | 35 ---------
-> >  .../bindings/gpio/mediatek,mt7621-gpio.yaml   | 72 +++++++++++++++++++
-> >  2 files changed, 72 insertions(+), 35 deletions(-)
-> >  delete mode 100644 Documentation/devicetree/bindings/gpio/mediatek,mt7621-gpio.txt
-> >  create mode 100644 Documentation/devicetree/bindings/gpio/mediatek,mt7621-gpio.yaml
-> >
->
-> Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+Acked-by: Roger Quadros <rogerq@ti.com>
+---
 
-Thanks!
+Changes since v2:
+- added changes done over the versions
 
-Linus, is this patch going in your tree?
+Changes since v1:
+- replaced the '\t' at the beginning of the lines with spaces as it was
+  causing the dt_binding_check to fail
 
-Best regards,
-    Sergio Paracuellos
+
+ Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml b/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml
+index 388245b91a55..453587f6d304 100644
+--- a/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml
++++ b/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml
+@@ -11,8 +11,11 @@ maintainers:
+ 
+ properties:
+   compatible:
+-    items:
+-      - const: ti,j721e-usb
++    anyOf:
++      - items:
++          - const: ti,j721e-usb
++      - items:
++          - const: ti,am64-usb
+ 
+   reg:
+     description: module registers
+-- 
+2.17.1
+
