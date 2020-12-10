@@ -2,58 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 36B852D5AFF
-	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 13:55:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B9FD2D5B0D
+	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 14:00:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726631AbgLJMzC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Dec 2020 07:55:02 -0500
-Received: from mail.kernel.org ([198.145.29.99]:46566 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728557AbgLJMzC (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 10 Dec 2020 07:55:02 -0500
-Date:   Thu, 10 Dec 2020 13:55:36 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1607604861;
-        bh=KcwKvGKRWej3wjBdyOKtL4xEYVhJHIpgdWBDVoUDJec=;
-        h=From:To:Cc:Subject:References:In-Reply-To:From;
-        b=0HyDI+NfW5JFwV4agXDxW+ZshOKLzuJrth8kpM+GcKPtWs/sn6mlh9CxUIxyQxGex
-         FCk9vKUS8G4zIHhGkGvZCeQ9uSiPs3Jwzk3d9Wmwy8V1SuTwlKdkJmpHIsYHsR1m1F
-         Zh56903Z5j/2D9CIyjoyi2DsfMV/JR1Guim+orKc=
-From:   'Greg Kroah-Hartman' <gregkh@linuxfoundation.org>
-To:     =?iso-8859-1?Q?J=F3zsef_Horv=E1th?= <info@ministro.hu>
-Cc:     'Rob Herring' <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devel@driverdev.osuosl.org
-Subject: Re: [PATCH] Staging: silabs si4455 serial driver
-Message-ID: <X9IayHu9E1HbnvJt@kroah.com>
-References: <20201210122001.GA31758@dincontrollerdev>
+        id S1730966AbgLJM6C convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 10 Dec 2020 07:58:02 -0500
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:34275 "EHLO
+        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728462AbgLJM6C (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 07:58:02 -0500
+Received: by mail-ot1-f66.google.com with SMTP id a109so4742487otc.1;
+        Thu, 10 Dec 2020 04:57:47 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=Ed+orW1Np/SsRBg/HtwvZUi+1oCxNv52FBDPOQ84Ync=;
+        b=tprk5OfvveI/V0NgmyG/dXO2wXEipGA9t8brrNAsolx23z8lQJW6932MYwsPI3Wi6S
+         Fd9FgB8y/8VjeFQy/UBsCNJSje5PcCOYMnuBujkmtnLxrDCh35mf30NUgqO93IFaOyTQ
+         uGKyPIR8NRjY4RxIdalmjRl0ZIJgvuA9Vjl8uGJIDdFmYskEUMJoHhvx65rb3HnH6Lb1
+         hqAbefBTM0I7CaQM9MKlaczi7etpXdQ/l2B9QS4KVB8lpLbYs8Sm0bgh7zPwoh3GF4ps
+         jqf0AHoXAkaF2U/rsxxlsjQEtCQt/UTLfFyE9C4YGgSQLtGuR5RQl1ZsEx7wHk2cg3SD
+         Up/g==
+X-Gm-Message-State: AOAM533pYR9etUABStvMgD9zlX+VIWQBvoOE6ymzLBeD4m0wACEW9IG4
+        VUgjNCKdHX37Ju/O/GDjrAZrDlEBEiTaoNz3D9gmfhtA
+X-Google-Smtp-Source: ABdhPJzmAYspIEsCasqe+nmVH30uGvDyIp2eZoH08Z3xCzxVpcFK1IX/fsjMF+isjAQ4CMuIGi37GZTSJ9BlzfaOYq8=
+X-Received: by 2002:a05:6830:1f5a:: with SMTP id u26mr5656189oth.250.1607605042026;
+ Thu, 10 Dec 2020 04:57:22 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20201210122001.GA31758@dincontrollerdev>
+References: <20201209200738.811173-1-niklas.soderlund+renesas@ragnatech.se> <20201209200738.811173-2-niklas.soderlund+renesas@ragnatech.se>
+In-Reply-To: <20201209200738.811173-2-niklas.soderlund+renesas@ragnatech.se>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 10 Dec 2020 13:57:11 +0100
+Message-ID: <CAMuHMdVVjLWQEih4AVFea4zKwkJxKBnU0S74EAh4k6zk7Bavjw@mail.gmail.com>
+Subject: Re: [PATCH 1/2] arm64: dts: renesas: r8a77961: Add CMT nodes
+To:     =?UTF-8?Q?Niklas_S=C3=B6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 10, 2020 at 12:20:10PM +0000, József Horváth wrote:
-> I send this again, because my original mail content was corrupted.
-> 
-> This is a serial port driver for
-> Silicon Labs Si4455 Sub-GHz transciver.
-> 
-> Signed-off-by: József Horváth <info@ministro.hu>
-> ---
->  .../bindings/staging/serial/silabs,si4455.txt |   39 +
->  drivers/staging/Kconfig                       |    2 +
->  drivers/staging/Makefile                      |    1 +
->  drivers/staging/si4455/Kconfig                |    8 +
->  drivers/staging/si4455/Makefile               |    2 +
->  drivers/staging/si4455/TODO                   |    3 +
->  drivers/staging/si4455/si4455.c               | 1465 +++++++++++++++++
+On Wed, Dec 9, 2020 at 9:08 PM Niklas SÃ¶derlund
+<niklas.soderlund+renesas@ragnatech.se> wrote:
+> Add device nodes for the Compare Match Timer (CMT) on the Renesas R-Car
+> M3-W+ (r8a77961) SoC.
+>
+> Signed-off-by: Niklas SÃ¶derlund <niklas.soderlund+renesas@ragnatech.se>
 
-I said I wasn't going to take this into drivers/staging/ so why is this
-still here?
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v5.12.
 
-confused,
+Gr{oetje,eeting}s,
 
-greg k-h
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
