@@ -2,169 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2BCDB2D5F83
-	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 16:22:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A74A02D5FA1
+	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 16:28:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390228AbgLJPVw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Dec 2020 10:21:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40438 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2391471AbgLJPVq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 10:21:46 -0500
-Received: from mail-qk1-x744.google.com (mail-qk1-x744.google.com [IPv6:2607:f8b0:4864:20::744])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66043C0613CF
-        for <devicetree@vger.kernel.org>; Thu, 10 Dec 2020 07:21:05 -0800 (PST)
-Received: by mail-qk1-x744.google.com with SMTP id 1so5078961qka.0
-        for <devicetree@vger.kernel.org>; Thu, 10 Dec 2020 07:21:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=0x0f.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=lzQQMikD25mHaOvU70fXFtFueunUhFhKwR7BFI8Wd2E=;
-        b=qv6OHjvyatbf9wKTVaFQva3h+iUSafbS8ijuZeLyhKbykf4t6BnP+haSBQApyYmukP
-         H+6pdEm9J76xjjxiqX2zzaNFJeKxUke42FfgngvNFw8n3PKxtI1fMdpC5/hg6m4SuP03
-         DbtLskqJ+Y62beHrt6KZB0tysLwvUe+SQ+0TI=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=lzQQMikD25mHaOvU70fXFtFueunUhFhKwR7BFI8Wd2E=;
-        b=KufkhE5JBTFjdB9+sxBQjw/6TBaAL7BZRtyVTQBstwx26PbIAueaoJEFHf5izZA51r
-         06AI2oXMU0N21MYbYG8w7gSMHgUcyZ+6AD7qjWGKml81WdN5xT0hcfseZv3ls1T8Gfh5
-         KOXHR+1YNuiffJ8G5l6WpOlCj4YPG93AAXzhfbGYm6n3n9Ts4Ro8wlR3RZPLnsyX8GSs
-         WDqG1stCPiI9oK9DTr2geQmpUpDiV2/r/ZWP3uMJmEulO6N1y6nxI51t3FawYIqxuiXg
-         gnfHaAurbcLC5h0WrL1i7dmSzTxkRUTELCzpzN5b+AfpaS0qAe/sme4rNQAoqPhEWRtd
-         ae7w==
-X-Gm-Message-State: AOAM533QMKSzuqt9TA3ezlh9SBzRROc/zXJ7qP2q8SZ23bMQ9Llxv0m1
-        Wy3Whc6Ax2vHf1nGpDxOl5jlscwnltKGKAnOxIDbXQ==
-X-Google-Smtp-Source: ABdhPJxPU/4SCy7/rE3UgsP7U/aCV3swWmca2vtLjkgy3KaDHEnkpgdsyXm48xf4KUJ4++imK7n8+UBiYOo9V42wb9w=
-X-Received: by 2002:ae9:e219:: with SMTP id c25mr1251874qkc.443.1607613664449;
- Thu, 10 Dec 2020 07:21:04 -0800 (PST)
+        id S2391558AbgLJP2R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Dec 2020 10:28:17 -0500
+Received: from vsp-unauthed02.binero.net ([195.74.38.227]:1379 "EHLO
+        vsp-unauthed02.binero.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388345AbgLJP2H (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 10:28:07 -0500
+X-Halon-ID: 311f8fab-3afc-11eb-a542-005056917a89
+Authorized-sender: niklas.soderlund@fsdn.se
+Received: from bismarck.berto.se (p4fca2458.dip0.t-ipconnect.de [79.202.36.88])
+        by bin-vsp-out-01.atm.binero.net (Halon) with ESMTPA
+        id 311f8fab-3afc-11eb-a542-005056917a89;
+        Thu, 10 Dec 2020 16:27:23 +0100 (CET)
+From:   =?UTF-8?q?Niklas=20S=C3=B6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Cc:     linux-renesas-soc@vger.kernel.org,
+        =?UTF-8?q?Niklas=20S=C3=B6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>
+Subject: [PATCH v2 0/6] [PATCH 0/6] arm64: dts: renesas: Add TMU nodes
+Date:   Thu, 10 Dec 2020 16:26:59 +0100
+Message-Id: <20201210152705.1535156-1-niklas.soderlund+renesas@ragnatech.se>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-References: <20201129110803.2461700-1-daniel@0x0f.com> <20201129110803.2461700-4-daniel@0x0f.com>
- <CAHp75Vdy9rBgJhyYXjUKapYdeMfsNhbX9Zi3Jtxb4H8H279V-A@mail.gmail.com>
-In-Reply-To: <CAHp75Vdy9rBgJhyYXjUKapYdeMfsNhbX9Zi3Jtxb4H8H279V-A@mail.gmail.com>
-From:   Daniel Palmer <daniel@0x0f.com>
-Date:   Fri, 11 Dec 2020 00:21:44 +0900
-Message-ID: <CAFr9PX=GTHQvwkCMU6ocK+5=QoEGXK6UAFH4ZUF4zq19ds06wQ@mail.gmail.com>
-Subject: Re: [PATCH v4 3/5] gpio: msc313: MStar MSC313 GPIO driver
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     SoC Team <soc@kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh@kernel.org>, Willy Tarreau <w@1wt.eu>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andy,
+Hi,
 
-On Thu, 10 Dec 2020 at 23:22, Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
-> > +#include <linux/io.h>
-> > +#include <linux/of.h>
-> > +#include <linux/of_device.h>
-> > +#include <linux/of_irq.h>
-> > +#include <linux/gpio/driver.h>
-> > +#include <linux/module.h>
-> > +#include <linux/platform_device.h>
->
-> Perhaps ordered?
+Add TMU nodes to Renesas R-Car H3, M3-W, M3-W+, D3, M3-N and E3. I have
+tested this on all but D3 and E3 SoCs which I do not have access to. I
+tested by enabling all TMU nodes in DT and then used the kernel timer
+selftests located in tools/testing/selftests/timers/
 
-Ok. I did try to find some rules on includes, mainly what should be
-included even though it's included in another include, but couldn't
-find anything really.
-If you have a link that would be helpful. So I could track what
-includes I actually needed I went for order they are used in the code.
+    - clocksource-switch.c
+    - inconsistency-check.c
+    - nanosleep.c
 
-> > +       if (offset >= OFF_SPI0_CZ && offset <= OFF_SPI0_DO) {
->
-> Why not traditional pattern, i.e.
->
-> if (...)
->   return -EINVAL;
-> ...
+The test passes for all SoCs I have access to and I no reason to believe
+it would not also work on D3 and E3.
 
-You mean check if the offset is not in the interrupt capable range,
-returning -EINVAL if so, and then having the interrupt mapping code?
+Niklas Söderlund (6):
+  arm64: dts: renesas: r8a77951: Add TMU nodes
+  arm64: dts: renesas: r8a77960: Add TMU nodes
+  arm64: dts: renesas: r8a77961: Add TMU nodes
+  arm64: dts: renesas: r8a77965: Add TMU nodes
+  arm64: dts: renesas: r8a77990: Add TMU nodes
+  arm64: dts: renesas: r8a77995: Add TMU nodes
 
-> > +       ret = devm_gpiochip_add_data(dev, gpiochip, gpio);
-> > +       return ret;
->
-> Purpose?
+ arch/arm64/boot/dts/renesas/r8a77951.dtsi | 65 +++++++++++++++++++++++
+ arch/arm64/boot/dts/renesas/r8a77960.dtsi | 65 +++++++++++++++++++++++
+ arch/arm64/boot/dts/renesas/r8a77961.dtsi | 65 +++++++++++++++++++++++
+ arch/arm64/boot/dts/renesas/r8a77965.dtsi | 65 +++++++++++++++++++++++
+ arch/arm64/boot/dts/renesas/r8a77990.dtsi | 65 +++++++++++++++++++++++
+ arch/arm64/boot/dts/renesas/r8a77995.dtsi | 65 +++++++++++++++++++++++
+ 6 files changed, 390 insertions(+)
 
-Sorry I think that is probably an artefact of splitting the driver
-apart to extract just the msc313 support.
-The current version of this driver supports more chips but those
-aren't completely reverse engineered yet so I've been constantly
-switching back and forth.
+-- 
+2.29.2
 
-> return devm_...(...);
->
-> ...
->
-> > +static int msc313_gpio_remove(struct platform_device *pdev)
-> > +{
-> > +       return 0;
-> > +}
->
-> Purpose?
->
-
-None that I can think of. I think I was under the impression that a
-remove callback was needed even if it did nothing.
-
->
-> > +static const struct of_device_id msc313_gpio_of_match[] = {
->
-> > +#ifdef CONFIG_MACH_INFINITY
->
-> What's the point? Are you expecting two drivers for the same IP?
-
-This will make more sense when the support for CONFIG_MACH_MERCURY is added.
-infinity and mercury are very very close but have slightly different
-pinouts, slightly different tables for clks, pin mux etc.
-These chips only have 64MB of DRAM and it's embedded into the chip so
-you probably don't want to include all the baggage for the whole
-family in your kernel if you possibly can. Also the kernel only has a
-few megabytes to fit into on the SPI NOR it's loaded from. Something
-similar is going on for the ingenic pinctrl and I thought maybe
-wrapping of_device_ids in #ifdefs was a no no and asked [0].
-Arguably this is "peeing into the ocean" for a driver like this
-because the difference is going to be tiny but I think I'm probably
-tens of kilobytes away from my kernel not fitting anymore :).
-
-> > +       {
-> > +               .compatible = "mstar,msc313-gpio",
-> > +               .data = &msc313_data,
-> > +       },
-> > +#endif
-> > +       { }
-> > +};
->
-> ...
->
-> > +static struct platform_driver msc313_gpio_driver = {
-> > +       .driver = {
-> > +               .name = DRIVER_NAME,
-> > +               .of_match_table = msc313_gpio_of_match,
-> > +               .pm = &msc313_gpio_ops,
-> > +       },
-> > +       .probe = msc313_gpio_probe,
-> > +       .remove = msc313_gpio_remove,
-> > +};
-
-For the fixes to the above should I send another series just to fix
-these up or can it wait a little while?
-I'm pretty close to having all of the registers mapped out for another
-chip that'll go into this driver so I could send these small changes
-as part of that series.
-
-Thanks,
-
-Daniel
-
-0 - https://lore.kernel.org/linux-arm-kernel/CAFr9PX=EgQSXeATLn++DSHkkQar35rpLGh978J5Lnw9jS8XMrw@mail.gmail.com/
