@@ -2,191 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 647BC2D53C2
-	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 07:25:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 27CE62D5425
+	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 07:51:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1733195AbgLJGXP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Dec 2020 01:23:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42162 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1733275AbgLJGWh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 01:22:37 -0500
-Received: from mail-pf1-x443.google.com (mail-pf1-x443.google.com [IPv6:2607:f8b0:4864:20::443])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C062C0613CF
-        for <devicetree@vger.kernel.org>; Wed,  9 Dec 2020 22:21:57 -0800 (PST)
-Received: by mail-pf1-x443.google.com with SMTP id d2so3079204pfq.5
-        for <devicetree@vger.kernel.org>; Wed, 09 Dec 2020 22:21:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to
-         :user-agent;
-        bh=NuismVZ4PrSdwp2DMCZD56Vg7x75UKlPw/nhIYGOfUM=;
-        b=DBUQSef+F/ShCuziTzEd++xuwZ+wWAMZvdB3xZmTKewyemy6cgS17H/Wbr0xXu4GuJ
-         R+hxiBaKYCg2Y2ue5XRgiILVM/01eT8WE1Ur2vuBrBgYibF15NmrHtee7l8vP3k5cN25
-         0/pm4l4AyiOZvu0D1ft0Jopz1WlU9B3oRzQmaVwErw5N4EtzDTABoM4YveBIkw3IIty1
-         bA7fY+AU5G5jNbdLM0EpO8S9S8QA3V1i+U3lFhr3+lxnVCbAm280k7S0cxiWLKXVpOsw
-         NevKR42PYd+fNErmQBGZblNqMruJlTgEfayTrDBLhoGth+D6+av+Ze21U8xj7HmHUenO
-         lNCg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=NuismVZ4PrSdwp2DMCZD56Vg7x75UKlPw/nhIYGOfUM=;
-        b=Os4TWUmz6IKTH09T9BZ7KAewx0VeRYGapoIX94Q2Fx+VlVv4zjTtUzex+NFe/tG7Nf
-         BmaoRELmPyeW9LY4q3Bb5aFpC35zQaHUrz6LjZJPhnLUsbfPC4IrlBkU4NCxnC7jgdza
-         UztZ21gnkY6geWyKYV8x4sO1yB7JENN/dj7nzzZedWam7OPgj0MXZ+3o0yOb1ommuFlr
-         jm5mbyH471xKzqPm8SN5C8m5g4cAwVeh+4kSUWwTrrm1eMyA3yX3k8O9Ex9rue555DbR
-         GGEcaw1iCmhqULUD5jHxWQ4LUbszLKqJaajJPcVYp05yfmvTy1A7HY9hHkKHvSN2fW8L
-         kC2g==
-X-Gm-Message-State: AOAM5323gCbyLCk21Ups7HsWnvdjAfB/lrUCPRb/DzgFDSKXKmLzVkah
-        kxwBEJL3zW00pAsyJIc/7BJ2
-X-Google-Smtp-Source: ABdhPJyYrQ6chu6zPDYEq3yrD1lw04Ln2yRldRTh6g+qWim4T69F+f0ZVW0nJPnnTExkYFhg6SEHpg==
-X-Received: by 2002:a17:90b:3698:: with SMTP id mj24mr5739733pjb.149.1607581316615;
-        Wed, 09 Dec 2020 22:21:56 -0800 (PST)
-Received: from work ([103.59.133.81])
-        by smtp.gmail.com with ESMTPSA id i2sm4588909pjd.21.2020.12.09.22.21.51
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Wed, 09 Dec 2020 22:21:56 -0800 (PST)
-Date:   Thu, 10 Dec 2020 11:51:47 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
-Cc:     Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
+        id S1726158AbgLJGsc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Dec 2020 01:48:32 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:60868 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732146AbgLJGs1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 01:48:27 -0500
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0BA6lK6G058566;
+        Thu, 10 Dec 2020 00:47:20 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1607582840;
+        bh=qgITTTZSkIihUU/af1ffR6ZvBdt+qsA59Qd9Not4R7E=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=FgOkCepwyKxkuu4EcETOJr2tWYn56YV4N8ZbOSd1mg7OzrL2hECkWyusJaJ9iny0J
+         uzxgS8MLsHGhFWXczHaYU1wvoxhDQGShcmlejsn1+ZSFDPUJ9n5GcXkz2lb148/zZO
+         jvWSW1j/XJT6UmLqu+hbUgpPbkEN1Fgk42A6FbdI=
+Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0BA6lKQS086512
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 10 Dec 2020 00:47:20 -0600
+Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 10
+ Dec 2020 00:47:20 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Thu, 10 Dec 2020 00:47:20 -0600
+Received: from [10.250.235.36] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0BA6lG7A048565;
+        Thu, 10 Dec 2020 00:47:17 -0600
+Subject: Re: [PATCH v2 0/3] PCI: J721E: Fix Broken DT w.r.t SYSCON DT
+To:     Bjorn Helgaas <bhelgaas@google.com>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-leds <linux-leds@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Darshak Patel <darshak.patel@einfochips.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Dong Aisheng <aisheng.dong@nxp.com>,
-        Guodong Xu <guodong.xu@linaro.org>,
-        Wei Xu <xuwei5@hisilicon.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Marian-Cristian Rotariu 
-        <marian-cristian.rotariu.rb@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Heiko Stuebner <heiko@sntech.de>
-Subject: Re: [PATCH 1/1] dt-bindings: leds: add onboard LED triggers of
- 96Boards
-Message-ID: <20201210062147.GA24867@work>
-References: <20201210031203.1901-1-thunder.leizhen@huawei.com>
- <20201210033157.GA6466@thinkpad>
- <704f703c-7ed9-6302-60df-7708d0633af0@huawei.com>
+        Tero Kristo <t-kristo@ti.com>, Nishanth Menon <nm@ti.com>,
+        Tom Joseph <tjoseph@cadence.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+CC:     <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-omap@vger.kernel.org>
+References: <20201204075117.10430-1-kishon@ti.com>
+From:   Kishon Vijay Abraham I <kishon@ti.com>
+Message-ID: <6c846ae3-0bb5-f8de-0f3e-5e0239a7aa6c@ti.com>
+Date:   Thu, 10 Dec 2020 12:17:14 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <704f703c-7ed9-6302-60df-7708d0633af0@huawei.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <20201204075117.10430-1-kishon@ti.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 10, 2020 at 02:14:57PM +0800, Leizhen (ThunderTown) wrote:
-> 
-> 
-> On 2020/12/10 11:31, Manivannan Sadhasivam wrote:
-> > Hi,
-> > 
-> > On Thu, Dec 10, 2020 at 11:12:03AM +0800, Zhen Lei wrote:
-> >> For all 96Boards, the following standard is used for onboard LEDs.
-> >>
-> >> green:user1  default-trigger: heartbeat
-> >> green:user2  default-trigger: mmc0/disk-activity(onboard-storage)
-> >> green:user3  default-trigger: mmc1 (SD-card)
-> >> green:user4  default-trigger: none, panic-indicator
-> >> yellow:wlan  default-trigger: phy0tx
-> >> blue:bt      default-trigger: hci0-power
-> >>
-> >> Link to 96Boards CE Specification: https://linaro.co/ce-specification
-> >>
-> > 
-> > This is just a board configuration and there is absolutely no need to document
-> > this in common LED binding. But if your intention is to document the missing
-> No, I don't think so. The common just means the property linux,default-trigger
-> is common, but not it values. This can be proved by counter-proving：none of
-> the triggerrs currently defined in common.yaml is used by 96Boards.
-> 
+Hi Lorenzo,
 
-Right, but I was not happy with you mentioning 96Boards in the binding. Because
-the triggers are used in more platforms other than 96Boards and they are not
-specific to 96Boards. The documentation of triggers itself is fine.
-
-> > triggers, then you should look at the patch I submitted long ago.
+On 04/12/20 1:21 pm, Kishon Vijay Abraham I wrote:
+> Previously a subnode to syscon node was added which has the
+> exact memory mapped address of pcie_ctrl but based on review comment
+> provided by Rob [1], the offset is now being passed as argument to
+> "ti,syscon-pcie-ctrl" phandle.
 > 
-> I'm just trying to eliminate the warnings related to Hisilicon that YAML detected.
-> So I didn't pay attention to other missing triggers.
-> 
+> This series has both driver change and DT change. The driver change
+> should be merged first and the driver takes care of maintaining old
+> DT compatibility.
 
-No worries :)
+Can you queue the 1st two patches of this series for this merge window?
+I'll ask NM to queue the DTS patch. Let me know if you want me to resend
+only the first two patches as a separate series.
 
-> > 
-> > https://lore.kernel.org/patchwork/patch/1146359/
-> > 
-> > Maybe I should resubmit it again in YAML format. (thanks for reminding me :P)
-> 
-> Yes, I hope that you will resubmit it. After all, these false positives are
-> entirely due to YAML's failure to list all triggers. The DTS itself is fine.
-> 
-> By the way, the description of this patch I copied from your patch：
-> 953d9f390365 arm64: dts: rockchip: Add on-board LED support on rk3399-rock960
-> 
-> That's why I Cc to you.
-> 
+Thank You,
+Kishon
 
-I've now submitted the patch. Please take a look!
-
-Thanks,
-Mani
-
-> > 
-> > Thanks,
-> > Mani
-> > 
-> >> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
-> >> Cc: Darshak Patel <darshak.patel@einfochips.com>
-> >> Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> >> Cc: Shawn Guo <shawnguo@kernel.org>
-> >> Cc: Dong Aisheng <aisheng.dong@nxp.com>
-> >> Cc: Guodong Xu <guodong.xu@linaro.org>
-> >> Cc: Wei Xu <xuwei5@hisilicon.com>
-> >> Cc: Linus Walleij <linus.walleij@linaro.org>
-> >> Cc: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> >> Cc: Marian-Cristian Rotariu <marian-cristian.rotariu.rb@bp.renesas.com>
-> >> Cc: Geert Uytterhoeven <geert+renesas@glider.be>
-> >> Cc: Heiko Stuebner <heiko@sntech.de>
-> >> ---
-> >>  Documentation/devicetree/bindings/leds/common.yaml | 10 ++++++++++
-> >>  1 file changed, 10 insertions(+)
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/leds/common.yaml b/Documentation/devicetree/bindings/leds/common.yaml
-> >> index f1211e7045f12f3..525752d6c5c84fd 100644
-> >> --- a/Documentation/devicetree/bindings/leds/common.yaml
-> >> +++ b/Documentation/devicetree/bindings/leds/common.yaml
-> >> @@ -97,6 +97,16 @@ properties:
-> >>          # LED alters the brightness for the specified duration with one software
-> >>          # timer (requires "led-pattern" property)
-> >>        - pattern
-> >> +        #For all 96Boards, Green, disk-activity(onboard-storage)
-> >> +      - mmc0
-> >> +        #For all 96Boards, Green, SD-card
-> >> +      - mmc1
-> >> +        #For all 96Boards, Green, panic-indicator
-> >> +      - none
-> >> +        #For all 96Boards, Yellow, WiFi activity LED
-> >> +      - phy0tx
-> >> +        #For all 96Boards, Blue, Bluetooth activity LED
-> >> +      - hci0-power
-> >>  
-> >>    led-pattern:
-> >>      description: |
-> >> -- 
-> >> 1.8.3
-> >>
-> >>
-> > 
-> > .
-> > 
+> 
+> Changes frm v1:
+> *) Remove use of allOf in schema
+> *) Added Fixes tag
+> *) Maintain old DT compatibility
+> 
+> [1] -> http://lore.kernel.org/r/CAL_JsqKiUcO76bo1GoepWM1TusJWoty_BRy2hFSgtEVMqtrvvQ@mail.gmail.com
+> 
+> Kishon Vijay Abraham I (3):
+>   dt-bindings: pci: ti,j721e: Fix "ti,syscon-pcie-ctrl" to take argument
+>   PCI: j721e: Get offset within "syscon" from "ti,syscon-pcie-ctrl"
+>     phandle arg
+>   arm64: dts: ti: k3-j721e-main: Remove "syscon" nodes added for
+>     pcieX_ctrl
+> 
+>  .../bindings/pci/ti,j721e-pci-ep.yaml         | 11 +++--
+>  .../bindings/pci/ti,j721e-pci-host.yaml       | 11 +++--
+>  arch/arm64/boot/dts/ti/k3-j721e-main.dtsi     | 48 ++++---------------
+>  drivers/pci/controller/cadence/pci-j721e.c    | 28 +++++++----
+>  4 files changed, 41 insertions(+), 57 deletions(-)
 > 
