@@ -2,84 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3EF7F2D58F0
-	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 12:10:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DBE052D595F
+	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 12:40:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730856AbgLJLI6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Dec 2020 06:08:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57852 "EHLO
+        id S1727953AbgLJLjX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Dec 2020 06:39:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34378 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728919AbgLJLI6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 06:08:58 -0500
-Received: from mail-yb1-xb41.google.com (mail-yb1-xb41.google.com [IPv6:2607:f8b0:4864:20::b41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55BA0C0613CF;
-        Thu, 10 Dec 2020 03:08:18 -0800 (PST)
-Received: by mail-yb1-xb41.google.com with SMTP id g15so4331793ybq.6;
-        Thu, 10 Dec 2020 03:08:18 -0800 (PST)
+        with ESMTP id S1725947AbgLJLjX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 06:39:23 -0500
+Received: from mail-oi1-x243.google.com (mail-oi1-x243.google.com [IPv6:2607:f8b0:4864:20::243])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6FF84C0613CF
+        for <devicetree@vger.kernel.org>; Thu, 10 Dec 2020 03:38:43 -0800 (PST)
+Received: by mail-oi1-x243.google.com with SMTP id s75so5400623oih.1
+        for <devicetree@vger.kernel.org>; Thu, 10 Dec 2020 03:38:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
+        d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=TMRZYbq3/YGGQqCtm0ztggAEksDLbdNXFqO3NqcBf7o=;
-        b=fHRJRDkrFJ0b2hAIm/OBhL4fExu4aI4qM5Q6YkBYURJVyCOQdxoHleTqdUmbO/ENwK
-         xG5XV5zl3c9gbSiBSt+wmBweD2R8feb8cMvRauhTQqYFnYT8MY2XZvB9TjY5cmVFUfVu
-         I37K5GA7tpUlZL7llHaZMl6Aaqmr7JRfBFItzdeGKcGrEyXNi5gNpuTr1iwsOUMMtvSo
-         n5u0VKRkb5wnZFFp3fduENxJdqZ+FR6W6rsePa88w08XGe61RXlkNIMqGP0mf+THKAnB
-         qQc+UhfjTnm8jabD+zOm58qaxRytBkpTHEqE2E3P4hiIKdIPq3fSCWniWWufRSC+GP23
-         1DmA==
+        bh=Su3KHi+u+I4LTxTYYvjzy6BB9kTgHwzAqGZ/gvLG2cI=;
+        b=spJISVV8kLyo6G0klI/9AU3qXYaRzuRPEFPG4l8hTSXxibbISjh99PTo9nLWtaQKis
+         1VlwaWK5BmMjktAsJ39E6POkoVkAJiecXHvu50MeEpFJsyhXMZL4NtIeksf18ISIklAq
+         RDUeqYjfeJ9+Muh6OnL2AyBClx2awku0SDh+y/7zh8eQjFTnrdS65O9QyPT/cGjeFNFk
+         L3Hd4vzIH2n+7GktJahI8eA+SGjEsty3lz8zGNzx/xT9rYI+xhGbBLlK8oWJ8uCgpT2K
+         +WwUky7tBqWr1aoz/SaeqEgMjjpDC2ER4ed+VI6+VGbbwjlV6ejKmrfUHuA3qaDyhssN
+         FexQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=TMRZYbq3/YGGQqCtm0ztggAEksDLbdNXFqO3NqcBf7o=;
-        b=i77QLUMZyWnLrvKMLkzYf+/HcQCBNPc9Sj44I/4ILuWpPfrKMd1BCr51eXW+H5mg1Z
-         mRj19B8P41+VAsg3+4RAGTwznxEKWvGeV47QV0gyNBIfh0xdRSZeZk6raFQcg27E1J0I
-         FM9JIzh3c/TxuYsCEfGhiGLjTMDmS4/xsXtzqHXZY6VvwjnV5l9ewT4By+6NEs2Tf1Qj
-         qTCslLZ+9SBd0Ac0NCvQ9BM7+fvon4k5PPhmnPV4WL3M5KCdPzADXpxbSrr3Eo214ust
-         TFdhyKpA0b43qHrkZG5G440gpSlReM5nSLRYh1kt4xSLg3Yao4oAaAfuI2I/IpmgE+aO
-         QvYA==
-X-Gm-Message-State: AOAM530iXuHUdNQG2BKwFP1G/Istew6ZE/KEpyo0t5Wn3CLCOZmSrevv
-        TozoZ9Cfr6Ny+WgAJOa2/Q+6DSLD+hxHIF5yVBU=
-X-Google-Smtp-Source: ABdhPJzhmyM1kStq1dHTTkK8Ne310hXwRuJi6G1CWZtXEXfrPVV1Y0OP/tZcsRT3RL7X8v5m/YbCiyBI4pK+a3ohHHk=
-X-Received: by 2002:a25:ec5:: with SMTP id 188mr11136242ybo.387.1607598497708;
- Thu, 10 Dec 2020 03:08:17 -0800 (PST)
+        bh=Su3KHi+u+I4LTxTYYvjzy6BB9kTgHwzAqGZ/gvLG2cI=;
+        b=nz4ETTVwI6DMGXSzfT8vCSYJVnxfr1755ghFVTyxLYYFHVLzLj3bl0oNCuKZDZSVF1
+         2LxAp28/70vLbtWrSNLmHV4JQWwm4a9rE7z67QDZDMYAxBNAQ7lHJH+fl44qC8Wtxwn8
+         mr9TYvs7CBcIxUA8ejoKD9T3aKnDN/dE/kqz0FMiiBkMDVVxW7St1Vkvx6qczC8rKL6r
+         4VqU0QuP+2jMCB9e5jY+6vIZFsXP9V/2UzsASpcvFDhSq6/Uum9K2Ws9sdc8tL9pdbBr
+         D/7LN1WeLdRCWBkslAR+k7iGzhhkNQ4nDZws5sV8ua25dY6wdoNXzqqqphVGqqjBxInP
+         xrGQ==
+X-Gm-Message-State: AOAM5337RmYzrHBHeHhLo/KthzC99Udr0XB0ligQ1HsKN7se91+j6zqK
+        VzTInXYeWEh7EgDxp85uiz78EU6NWguhxEjUfbRDYA==
+X-Google-Smtp-Source: ABdhPJwz8k2qoy6s+7b27jeR1qDUCwmCEa4k6szPC2INm3iH8mkeF+xrR3lEUe4Wj8C9fp4l2p31RU2kIfVAaK5uTNE=
+X-Received: by 2002:aca:cc01:: with SMTP id c1mr5179525oig.18.1607600322881;
+ Thu, 10 Dec 2020 03:38:42 -0800 (PST)
 MIME-Version: 1.0
-References: <20201204085835.2406541-1-atish.patra@wdc.com> <20201204085835.2406541-6-atish.patra@wdc.com>
-In-Reply-To: <20201204085835.2406541-6-atish.patra@wdc.com>
-From:   Bin Meng <bmeng.cn@gmail.com>
-Date:   Thu, 10 Dec 2020 19:08:06 +0800
-Message-ID: <CAEUhbmVZwW-KNcbTp-59wyu-0ia0v02cXy4vxFoYAUH2dbx4-Q@mail.gmail.com>
-Subject: Re: [PATCH v3 5/5] MAINTAINERS: add microchip polarfire soc support
-To:     Atish Patra <atish.patra@wdc.com>
-Cc:     linux-kernel <linux-kernel@vger.kernel.org>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Alistair Francis <alistair.francis@wdc.com>,
-        Anup Patel <anup.patel@wdc.com>,
-        Bin Meng <bin.meng@windriver.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Rob Herring <robh+dt@kernel.org>, Ivan.Griffin@microchip.com,
-        Cyril.Jean@microchip.com,
-        Daire McNamara <daire.mcnamara@microchip.com>
+References: <20201204022401.1054122-1-dmitry.baryshkov@linaro.org> <20201207164342.GA411695@robh.at.kernel.org>
+In-Reply-To: <20201207164342.GA411695@robh.at.kernel.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Thu, 10 Dec 2020 14:38:31 +0300
+Message-ID: <CAA8EJpqA13ncpAvpzUa8igaDTmbJgjBzF-jFWf3Z8T+7MRgkWw@mail.gmail.com>
+Subject: Re: [PATCH v2] dt-bindings: soc: qcom: convert qcom,smem bindings to yaml
+To:     Rob Herring <robh@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
+        <linux-arm-msm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 4, 2020 at 5:07 PM Atish Patra <atish.patra@wdc.com> wrote:
+On Mon, 7 Dec 2020 at 19:43, Rob Herring <robh@kernel.org> wrote:
 >
-> From: Conor Dooley <conor.dooley@microchip.com>
+> On Fri, 04 Dec 2020 05:24:01 +0300, Dmitry Baryshkov wrote:
+> > Convert soc/qcom/qcom,smem.txt bindings to YAML format.
+> >
+> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > ---
+> >  .../bindings/soc/qcom/qcom,smem.txt           | 57 ---------------
+> >  .../bindings/soc/qcom/qcom,smem.yaml          | 73 +++++++++++++++++++
+> >  2 files changed, 73 insertions(+), 57 deletions(-)
+> >  delete mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,smem.txt
+> >  create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,smem.yaml
+> >
 >
-> Add Cyril Jean and Lewis Hanly as maintainers for the Microchip SoC
-> directory
 >
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
->  MAINTAINERS | 8 ++++++++
->  1 file changed, 8 insertions(+)
+> My bot found errors running 'make dt_binding_check' on your patch:
 >
+> yamllint warnings/errors:
+>
+> dtschema/dtc warnings/errors:
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/soc/qcom/qcom,smem.example.dt.yaml: memory@fc428000: 'device_type' is a required property
+>         From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/memory.yaml
 
-Reviewed-by: Bin Meng <bin.meng@windriver.com>
+Rob, Bjorn, this opens a question for me: do we have to specify
+device_type for the following device node? Or is it a false positive?
+
+/ {
+    soc {
+        #address-cells = <1>;
+        #size-cells = <1>;
+        ranges;
+
+        rpm_msg_ram: memory@fc428000 {
+            compatible = "qcom,rpm-msg-ram";
+            reg = <0xfc428000 0x4000>;
+        };
+    };
+};
+
+
+-- 
+With best wishes
+Dmitry
