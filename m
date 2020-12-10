@@ -2,50 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D44F2D4FA9
-	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 01:43:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AD1AA2D4FEE
+	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 01:56:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729061AbgLJAfT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Dec 2020 19:35:19 -0500
-Received: from mail.kernel.org ([198.145.29.99]:56098 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728963AbgLJAfQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 9 Dec 2020 19:35:16 -0500
-Content-Type: text/plain; charset="utf-8"
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1607560466;
-        bh=dGu8x7s/80OJUUCRF1FFqmK37Libi85qRHutPmZx3qA=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=CliVdxcHMRmOdigIpVGjYV/FRrBKyYGGfIZwP5bS3nnlDcvqs1iQ3pNlBufTxTOIK
-         YURYbZb9AA1IcTYrxgFnU0vPdosDipI0V631O+kS/bm08KvERv3Km4W6omzya/Ofo+
-         GI0lKXPpEmxw8+j7m9BGio71SnWSOCIXEJ0/d8uuiLRJys+fJssT1DCKcHcKoxNXuw
-         UC4Wh7zzqjRCGh3AzEQakm1RddjbaVAIz0aanx0JN5WwhmK1nO+EaG3NK1ivw8AQ9d
-         d95VcC5Vr2VLcxZAr1kyzg5Xs9Y4PAcAOyjlWVrh6ld2KvDmAjY0CYF7NRAe3Q0d1o
-         6GleiPyuT+EpQ==
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20201126072844.35370-7-manivannan.sadhasivam@linaro.org>
-References: <20201126072844.35370-1-manivannan.sadhasivam@linaro.org> <20201126072844.35370-7-manivannan.sadhasivam@linaro.org>
-Subject: Re: [RESEND PATCH v4 6/6] clk: qcom: Add GDSC support for SDX55 GCC
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     bjorn.andersson@linaro.org, vkoul@kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        id S1728511AbgLJAyQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Dec 2020 19:54:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48364 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726615AbgLJAyP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Dec 2020 19:54:15 -0500
+Received: from mail.monkeyblade.net (shards.monkeyblade.net [IPv6:2620:137:e000::1:9])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADDC8C0613CF
+        for <devicetree@vger.kernel.org>; Wed,  9 Dec 2020 16:53:35 -0800 (PST)
+Received: from localhost (unknown [IPv6:2601:601:9f00:477:9e51:a893:b0fe:602a])
+        by mail.monkeyblade.net (Postfix) with ESMTPSA id C71F94D259C19;
+        Wed,  9 Dec 2020 16:52:53 -0800 (PST)
+Date:   Wed, 09 Dec 2020 16:52:53 -0800 (PST)
+Message-Id: <20201209.165253.120704618605367403.davem@davemloft.net>
+To:     bongsu.jeon2@gmail.com
+Cc:     krzk@kernel.org, linux-nfc@lists.01.org, netdev@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        mturquette@baylibre.com, robh+dt@kernel.org
-Date:   Wed, 09 Dec 2020 16:34:25 -0800
-Message-ID: <160756046559.1580929.6449738302849701410@swboyd.mtv.corp.google.com>
-User-Agent: alot/0.9.1
+        bongsu.jeon@samsung.com
+Subject: Re: [PATCH v2 net-next 0/2] nfc: s3fwrn5: Change I2C interrupt
+ trigger to EDGE_RISING
+From:   David Miller <davem@davemloft.net>
+In-Reply-To: <20201208141012.6033-1-bongsu.jeon@samsung.com>
+References: <20201208141012.6033-1-bongsu.jeon@samsung.com>
+X-Mailer: Mew version 6.8 on Emacs 27.1
+Mime-Version: 1.0
+Content-Type: Text/Plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+X-Greylist: Sender succeeded SMTP AUTH, not delayed by milter-greylist-4.6.2 (mail.monkeyblade.net [0.0.0.0]); Wed, 09 Dec 2020 16:52:54 -0800 (PST)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Manivannan Sadhasivam (2020-11-25 23:28:44)
-> Add GDSC support to control the power supply of power domains in SDX55
-> GCC.
->=20
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> ---
+From: Bongsu Jeon <bongsu.jeon2@gmail.com>
+Date: Tue,  8 Dec 2020 23:10:10 +0900
 
-Applied to clk-next
+> From: Bongsu Jeon <bongsu.jeon@samsung.com>
+> 
+> For stable Samsung's I2C interrupt handling, I changed the interrupt 
+> trigger from IRQ_TYPE_LEVEL_HIGH to IRQ_TYPE_EDGE_RISING and removed 
+> the hard coded interrupt trigger type in the i2c module for the flexible 
+> control.
+> 
+> 1/2 is the changed dt binding for the edge rising trigger.
+> 2/2 is to remove the hard coded interrupt trigger type in the i2c module.
+> 
+> ChangeLog:
+>  v2:
+>   2/2
+>    - remove the hard coded interrupt trigger type.
+
+Series applied, thanks.
