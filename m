@@ -2,56 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 246F12D58EA
-	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 12:08:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3EF7F2D58F0
+	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 12:10:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729450AbgLJLHT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Dec 2020 06:07:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57600 "EHLO
+        id S1730856AbgLJLI6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Dec 2020 06:08:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57852 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730172AbgLJLHS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 06:07:18 -0500
-Received: from mail-yb1-xb43.google.com (mail-yb1-xb43.google.com [IPv6:2607:f8b0:4864:20::b43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD637C0613CF;
-        Thu, 10 Dec 2020 03:06:37 -0800 (PST)
-Received: by mail-yb1-xb43.google.com with SMTP id a16so4333721ybh.5;
-        Thu, 10 Dec 2020 03:06:37 -0800 (PST)
+        with ESMTP id S1728919AbgLJLI6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 06:08:58 -0500
+Received: from mail-yb1-xb41.google.com (mail-yb1-xb41.google.com [IPv6:2607:f8b0:4864:20::b41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55BA0C0613CF;
+        Thu, 10 Dec 2020 03:08:18 -0800 (PST)
+Received: by mail-yb1-xb41.google.com with SMTP id g15so4331793ybq.6;
+        Thu, 10 Dec 2020 03:08:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=ETGSMY6awNXPXPJo5cOg9EbQ8Jdr01cRs6yp25MZwq4=;
-        b=CEUoIrXzXOfWzXkhrhgG4vM6yIbY5CUSJlpFuQhAg5ptSMGwa1BQYNQ+ZRmvrcddpl
-         A5aBXDOuu4LVlk2ZPoiJJHBKvULxZf3hwBz6Cgbm+y/E6ZbvrmNG69esnTt78RoX9wcr
-         xr3EHyggFRodZCQbnudjL71WPq0w7OjadyqUPpwN0Z9hI1DExi6twGG1CrhEFAOUA7zR
-         gFZY0mbcXV9UcCBv42CmbMPD86CqVVDLqC6M1JRX5NmCeigwekfkvbxCutl6xa2XdqP0
-         MG5J5KWGgiq70KU7nB5tBoocydlp1lZtw5trZDzaxybp/BL08jqn+S4hQ7MmbdYvY8zB
-         JhCA==
+        bh=TMRZYbq3/YGGQqCtm0ztggAEksDLbdNXFqO3NqcBf7o=;
+        b=fHRJRDkrFJ0b2hAIm/OBhL4fExu4aI4qM5Q6YkBYURJVyCOQdxoHleTqdUmbO/ENwK
+         xG5XV5zl3c9gbSiBSt+wmBweD2R8feb8cMvRauhTQqYFnYT8MY2XZvB9TjY5cmVFUfVu
+         I37K5GA7tpUlZL7llHaZMl6Aaqmr7JRfBFItzdeGKcGrEyXNi5gNpuTr1iwsOUMMtvSo
+         n5u0VKRkb5wnZFFp3fduENxJdqZ+FR6W6rsePa88w08XGe61RXlkNIMqGP0mf+THKAnB
+         qQc+UhfjTnm8jabD+zOm58qaxRytBkpTHEqE2E3P4hiIKdIPq3fSCWniWWufRSC+GP23
+         1DmA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=ETGSMY6awNXPXPJo5cOg9EbQ8Jdr01cRs6yp25MZwq4=;
-        b=kWttCNktsyOY1eFaIL/W+YBGydxuI/P1DrpYyGuDK2054QYyc7i/uAUD9y+67HssKB
-         DC/L/Dr/myEOjnHxLINxjPEdEj4WqGTEKYDdqvOdE0l1kDmOyHoN+UrBLtmw/DWdnP7R
-         m2oSnJCgMz+fskyojo6RVjohn69tBd+rQpOMS0sGSVqa6mDAoKlkSkYBi9BZqceuQ0l/
-         5qRe9u22NEZxhznx1CiNgTfooTHEsLoyI6GYsPV1yUnXyWuAaICoAZF2U0gcPxVsjA6Q
-         /IaK3nmF/x8d0XJkNiBzufqMGTRYsztlGXhxw1bQvRUpSLYH58HzxbJUaaT1BpoTwWvY
-         uRUA==
-X-Gm-Message-State: AOAM533v7MJY5ZmcjrFGMgmKIi59MO0Qax1z7O78DMp4pJTL74vnyirS
-        QpHorOAWJGUyM6DCiBu97rXnOquZMyjALAmVSQELN9R0
-X-Google-Smtp-Source: ABdhPJyUHpmghvFm6Cre6IHt0eY0oQI7lbjRspYTn+O1XN7rgEwvLPWvYc1jGSRyf2hoesxTlyH4AVRtUf7f/f1rej0=
-X-Received: by 2002:a25:690b:: with SMTP id e11mr9980504ybc.314.1607598397208;
- Thu, 10 Dec 2020 03:06:37 -0800 (PST)
+        bh=TMRZYbq3/YGGQqCtm0ztggAEksDLbdNXFqO3NqcBf7o=;
+        b=i77QLUMZyWnLrvKMLkzYf+/HcQCBNPc9Sj44I/4ILuWpPfrKMd1BCr51eXW+H5mg1Z
+         mRj19B8P41+VAsg3+4RAGTwznxEKWvGeV47QV0gyNBIfh0xdRSZeZk6raFQcg27E1J0I
+         FM9JIzh3c/TxuYsCEfGhiGLjTMDmS4/xsXtzqHXZY6VvwjnV5l9ewT4By+6NEs2Tf1Qj
+         qTCslLZ+9SBd0Ac0NCvQ9BM7+fvon4k5PPhmnPV4WL3M5KCdPzADXpxbSrr3Eo214ust
+         TFdhyKpA0b43qHrkZG5G440gpSlReM5nSLRYh1kt4xSLg3Yao4oAaAfuI2I/IpmgE+aO
+         QvYA==
+X-Gm-Message-State: AOAM530iXuHUdNQG2BKwFP1G/Istew6ZE/KEpyo0t5Wn3CLCOZmSrevv
+        TozoZ9Cfr6Ny+WgAJOa2/Q+6DSLD+hxHIF5yVBU=
+X-Google-Smtp-Source: ABdhPJzhmyM1kStq1dHTTkK8Ne310hXwRuJi6G1CWZtXEXfrPVV1Y0OP/tZcsRT3RL7X8v5m/YbCiyBI4pK+a3ohHHk=
+X-Received: by 2002:a25:ec5:: with SMTP id 188mr11136242ybo.387.1607598497708;
+ Thu, 10 Dec 2020 03:08:17 -0800 (PST)
 MIME-Version: 1.0
-References: <20201204085835.2406541-1-atish.patra@wdc.com> <20201204085835.2406541-4-atish.patra@wdc.com>
-In-Reply-To: <20201204085835.2406541-4-atish.patra@wdc.com>
+References: <20201204085835.2406541-1-atish.patra@wdc.com> <20201204085835.2406541-6-atish.patra@wdc.com>
+In-Reply-To: <20201204085835.2406541-6-atish.patra@wdc.com>
 From:   Bin Meng <bmeng.cn@gmail.com>
-Date:   Thu, 10 Dec 2020 19:06:12 +0800
-Message-ID: <CAEUhbmU4hrVRGs30oE=GK42NUwpgOtnDXWRcE76xdxmC-z25qA@mail.gmail.com>
-Subject: Re: [PATCH v3 3/5] RISC-V: Initial DTS for Microchip ICICLE board
+Date:   Thu, 10 Dec 2020 19:08:06 +0800
+Message-ID: <CAEUhbmVZwW-KNcbTp-59wyu-0ia0v02cXy4vxFoYAUH2dbx4-Q@mail.gmail.com>
+Subject: Re: [PATCH v3 5/5] MAINTAINERS: add microchip polarfire soc support
 To:     Atish Patra <atish.patra@wdc.com>
 Cc:     linux-kernel <linux-kernel@vger.kernel.org>,
+        Conor Dooley <conor.dooley@microchip.com>,
         Albert Ou <aou@eecs.berkeley.edu>,
         Alistair Francis <alistair.francis@wdc.com>,
         Anup Patel <anup.patel@wdc.com>,
@@ -62,35 +63,23 @@ Cc:     linux-kernel <linux-kernel@vger.kernel.org>,
         Paul Walmsley <paul.walmsley@sifive.com>,
         Rob Herring <robh+dt@kernel.org>, Ivan.Griffin@microchip.com,
         Cyril.Jean@microchip.com,
-        Daire McNamara <daire.mcnamara@microchip.com>,
-        Conor.Dooley@microchip.com
+        Daire McNamara <daire.mcnamara@microchip.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 4, 2020 at 5:05 PM Atish Patra <atish.patra@wdc.com> wrote:
+On Fri, Dec 4, 2020 at 5:07 PM Atish Patra <atish.patra@wdc.com> wrote:
 >
-> Add initial DTS for Microchip ICICLE board having only
-> essential devices (clocks, sdhci, ethernet, serial, etc).
-> The device tree is based on the U-Boot patch.
+> From: Conor Dooley <conor.dooley@microchip.com>
 >
-> https://patchwork.ozlabs.org/project/uboot/patch/20201110103414.10142-6-padmarao.begari@microchip.com/
-
-There is a newer version of U-Boot patch. Probably needs to sync again.
-
+> Add Cyril Jean and Lewis Hanly as maintainers for the Microchip SoC
+> directory
 >
-> Signed-off-by: Atish Patra <atish.patra@wdc.com>
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
 > ---
->  arch/riscv/boot/dts/Makefile                  |   1 +
->  arch/riscv/boot/dts/microchip/Makefile        |   2 +
->  .../microchip/microchip-mpfs-icicle-kit.dts   |  72 ++++
->  .../boot/dts/microchip/microchip-mpfs.dtsi    | 331 ++++++++++++++++++
->  4 files changed, 406 insertions(+)
->  create mode 100644 arch/riscv/boot/dts/microchip/Makefile
->  create mode 100644 arch/riscv/boot/dts/microchip/microchip-mpfs-icicle-kit.dts
->  create mode 100644 arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi
+>  MAINTAINERS | 8 ++++++++
+>  1 file changed, 8 insertions(+)
 >
 
-Regards,
-Bin
+Reviewed-by: Bin Meng <bin.meng@windriver.com>
