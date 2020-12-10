@@ -2,179 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A7C802D520A
-	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 04:53:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 073FD2D520D
+	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 04:53:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731532AbgLJDue (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Dec 2020 22:50:34 -0500
-Received: from mail-oo1-f68.google.com ([209.85.161.68]:38031 "EHLO
-        mail-oo1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729808AbgLJDua (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Dec 2020 22:50:30 -0500
-Received: by mail-oo1-f68.google.com with SMTP id i18so962734ooh.5;
-        Wed, 09 Dec 2020 19:50:14 -0800 (PST)
+        id S1730101AbgLJDvK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Dec 2020 22:51:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47144 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730852AbgLJDvC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Dec 2020 22:51:02 -0500
+Received: from mail-pf1-x444.google.com (mail-pf1-x444.google.com [IPv6:2607:f8b0:4864:20::444])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97EE6C0613CF;
+        Wed,  9 Dec 2020 19:50:22 -0800 (PST)
+Received: by mail-pf1-x444.google.com with SMTP id 11so2775686pfu.4;
+        Wed, 09 Dec 2020 19:50:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=jVuwaB/s0WyObI7xy/VL3MvAWV5Qoq+TBG8A9nEY/B0=;
+        b=MqLLE/qcr+5q1o9VeVM90m+cX5HK7e4nHkK3HmeN+GvYwN9Fs8vW7wXKkq7kgZpJgl
+         yh+5epxy+vWkNwMsoomQCYuplPYqXC4JvIUhm3vPbmtbYpwJ120cl25G4xh9gHzHf7xX
+         zcVhVHW2SECI50VMN8VdzDWVzOY8GfUpgw97aBXFrrn2ARQLuLFLkmb2u36rpDhAiMI0
+         G0ZV/Wh9BZIjkyHJdWE4gvqpaKlj23mJgZ3g4Ki7y3G3LwncRmRIYQ926KERFjsZ/Wl1
+         beCCGAxONhlyg0VdcSYidlqfZ4HHTsVo48BwcrsDjDhIpz1GFPsSK1c1VdunOA3y1V7Y
+         Kvyg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=BCxJsQg1ul9QJzRyHjEilBFVKtIs8lkQBSz8/W5bH2A=;
-        b=qHw/Q8uAOjTc0cOxct1DUXvAQuI2ADW1zv6biQAEwltmqKVl+8r5+e6RM/D9l1X4A1
-         /gEtIuwzBmOeT2Ahvd+3JYKp0WKDArGMvxogrlGbxYCl09XxNCfRvTgoiWkSGDuw1G5U
-         9Of2qZjV37cm5oH6jxCZlhbGJleXiFhfKe46/echbLtDGIpSWf7xWHxxcy61z1AkUfJc
-         m565F2ZlQNiDSAx0Qp3wPMMMzOtgALsGUPOgQD+JszmAtvIYV+GzTlGHtQhA4JFKLeh4
-         89LtyLzGJjsO+/c/oDUctKh+fwrXiJsgmO6tO3yoMf1LKyiMwEGpwlMq3kGjaBQFYRIb
-         sLzA==
-X-Gm-Message-State: AOAM530R0zH/Alb4dX2SVP8lyA86xOeGGyoeFzLcSgNMfjoAVZLP/kSf
-        60QgatxS+T1de+FAw/qKzmYDRopbIA==
-X-Google-Smtp-Source: ABdhPJzIfzWCH7XIrmZPqpuHZq9uqc/+VvK5Aie2DaCMeEOWzCR4gtIt6m7I99FYly/EEJk6512JTg==
-X-Received: by 2002:a4a:d998:: with SMTP id k24mr1675770oou.23.1607572189367;
-        Wed, 09 Dec 2020 19:49:49 -0800 (PST)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id j73sm837962otj.37.2020.12.09.19.49.48
+        bh=jVuwaB/s0WyObI7xy/VL3MvAWV5Qoq+TBG8A9nEY/B0=;
+        b=niVw00qlHVrve/7gp4/HBM7lvvlYCes49whbRW5sanNFNCls/EN5bV5Q4PPkU4mkC9
+         4Z262oK4HcFS3YHIMPbhKDluGtZ6RWwDVadT+ElT47PoUJlkxLC+kLrKXOAyq34PIwez
+         IFXBnrWcUf0XQFmMPU04RUhKrMEG4hGapi0LZ8q7AByUTBUUyshnPeRPXygWDIzdgCyt
+         FoHQ0CTudYbzDVnFtfkr8mMe4TB4sD4Y807GjB6E20SzQlWDb3xtnv7tq6uS/lTFbE+E
+         F0vaFrJ8QWPRoPbO2Pn8pXuXrdnNReVsa7zuMsq/tsn251fk/r8q2fHr7TdHulj/ie00
+         CnYw==
+X-Gm-Message-State: AOAM531rV0JGw1YiqpRMMOGEoGKLAKFmUR2NzZNx7Dwv1CzieOeRUbl9
+        wdQJm6FraQnBbrOMJm1RTXc=
+X-Google-Smtp-Source: ABdhPJxJDO06m7nwb5gObwW7L8n1xs/QgH7wPNtqCOXh3oivOz2L+iaSJCCeUNmo3JJUYo1Xy8X5zA==
+X-Received: by 2002:a63:4b1f:: with SMTP id y31mr4966817pga.29.1607572221944;
+        Wed, 09 Dec 2020 19:50:21 -0800 (PST)
+Received: from google.com ([2620:15c:202:201:a6ae:11ff:fe11:fcc3])
+        by smtp.gmail.com with ESMTPSA id w70sm4351943pfd.65.2020.12.09.19.50.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Dec 2020 19:49:48 -0800 (PST)
-Received: (nullmailer pid 1624587 invoked by uid 1000);
-        Thu, 10 Dec 2020 03:49:47 -0000
-Date:   Wed, 9 Dec 2020 21:49:47 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Kevin Tang <kevin3.tang@gmail.com>
-Cc:     maarten.lankhorst@linux.intel.com, mripard@kernel.org,
-        sean@poorly.run, airlied@linux.ie, daniel@ffwll.ch,
-        mark.rutland@arm.com, orsonzhai@gmail.com, zhang.lyra@gmail.com,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v1 3/6] dt-bindings: display: add Unisoc's dpu bindings
-Message-ID: <20201210034947.GA1622093@robh.at.kernel.org>
-References: <1607352626-26088-1-git-send-email-kevin3.tang@gmail.com>
- <1607352626-26088-4-git-send-email-kevin3.tang@gmail.com>
+        Wed, 09 Dec 2020 19:50:21 -0800 (PST)
+Date:   Wed, 9 Dec 2020 19:50:18 -0800
+From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To:     Stephan Gerhold <stephan@gerhold.net>
+Cc:     linux-input@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>
+Subject: Re: [PATCH 1/3] dt-bindings: Input: tm2-touchkey - convert to yaml
+Message-ID: <X9Ga+nmmyA13BMf6@google.com>
+References: <20201203131242.44397-1-stephan@gerhold.net>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1607352626-26088-4-git-send-email-kevin3.tang@gmail.com>
+In-Reply-To: <20201203131242.44397-1-stephan@gerhold.net>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 07, 2020 at 10:50:23PM +0800, Kevin Tang wrote:
-> From: Kevin Tang <kevin.tang@unisoc.com>
+On Thu, Dec 03, 2020 at 02:12:40PM +0100, Stephan Gerhold wrote:
+> Convert the device tree bindings for tm2-touchkey to the YAML format.
 > 
-> DPU (Display Processor Unit) is the Display Controller for the Unisoc SoCs
-> which transfers the image data from a video memory buffer to an internal
-> LCD interface.
+> While we're at it, clarify the descriptions a bit to make it clear that
+> this driver can be used for many different MCUs that all implement
+> a similar I2C protocol. Depending on the MCU the voltage requirements
+> may be different, on some devices the controller uses 2.2V, 2.8V or
+> even 3.3V for vcc-supply instead of 1.8V.
 > 
-> Cc: Orson Zhai <orsonzhai@gmail.com>
-> Cc: Chunyan Zhang <zhang.lyra@gmail.com>
-> Signed-off-by: Kevin Tang <kevin.tang@unisoc.com>
-> ---
->  .../bindings/display/sprd/sprd,sharkl3-dpu.yaml    | 83 ++++++++++++++++++++++
->  1 file changed, 83 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/sprd/sprd,sharkl3-dpu.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/display/sprd/sprd,sharkl3-dpu.yaml b/Documentation/devicetree/bindings/display/sprd/sprd,sharkl3-dpu.yaml
-> new file mode 100644
-> index 0000000..a9052e1
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/sprd/sprd,sharkl3-dpu.yaml
-> @@ -0,0 +1,83 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/sprd/sprd,sharkl3-dpu.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Unisoc Sharkl3 Display Processor Unit (DPU)
-> +
-> +maintainers:
-> +  - Kevin Tang <kevin.tang@unisoc.com>
-> +
-> +description: |
-> +  DPU (Display Processor Unit) is the Display Controller for the Unisoc SoCs
-> +  which transfers the image data from a video memory buffer to an internal
-> +  LCD interface.
-> +
-> +properties:
-> +  compatible:
-> +    const: sprd,sharkl3-dpu
-> +
-> +  reg:
-> +    maxItems: 1
-> +    description:
-> +      Physical base address and length of the DPU registers set
+> Cc: Linus Walleij <linus.walleij@linaro.org>
+> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
 
-Drop. Nothing unique about this.
+Applied, thank you.
 
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +    description:
-> +      The interrupt signal from DPU
-
-Drop.
-
-> +
-> +  clocks:
-> +    minItems: 2
-> +
-> +  clock-names:
-> +    items:
-> +      - const: clk_src_128m
-> +      - const: clk_src_384m
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +    description: A phandle to DPU power domain node.
-
-Drop.
-
-> +
-> +  iommus:
-> +    maxItems: 1
-> +    description: A phandle to DPU iommu node.
-
-Drop.
-
-With those,
-
-Reviewed-by: Rob Herring <robh@kernel.org>
-
-> +
-> +  port:
-> +    type: object
-> +    description:
-> +      A port node with endpoint definitions as defined in
-> +      Documentation/devicetree/bindings/media/video-interfaces.txt.
-> +      That port should be the output endpoint, usually output to
-> +      the associated DSI.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
-> +  - port
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/clock/sprd,sc9860-clk.h>
-> +    dpu: dpu@63000000 {
-> +        compatible = "sprd,sharkl3-dpu";
-> +        reg = <0x63000000 0x1000>;
-> +        interrupts = <GIC_SPI 46 IRQ_TYPE_LEVEL_HIGH>;
-> +        clock-names = "clk_src_128m", "clk_src_384m";
-> +
-> +        clocks = <&pll CLK_TWPLL_128M>,
-> +          <&pll CLK_TWPLL_384M>;
-> +
-> +        dpu_port: port {
-> +            dpu_out: endpoint {
-> +                remote-endpoint = <&dsi_in>;
-> +            };
-> +        };
-> +    };
-> -- 
-> 2.7.4
-> 
+-- 
+Dmitry
