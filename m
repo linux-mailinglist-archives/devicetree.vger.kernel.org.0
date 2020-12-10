@@ -2,210 +2,352 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 087CE2D5C70
-	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 14:55:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A0C1A2D5CA1
+	for <lists+devicetree@lfdr.de>; Thu, 10 Dec 2020 15:00:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389679AbgLJNyI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Dec 2020 08:54:08 -0500
-Received: from esa3.hgst.iphmx.com ([216.71.153.141]:38693 "EHLO
-        esa3.hgst.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389671AbgLJNyH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 08:54:07 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
-  t=1607608447; x=1639144447;
-  h=from:to:cc:subject:date:message-id:references:
-   content-transfer-encoding:mime-version;
-  bh=eS6SvZkNgQ7BcK9b6Ghm/mI8Wqp57UeYr6iq6V/Ts+A=;
-  b=Qt9xqwzYf48aW8RZEm18SwWTCYH92oBnSRuWiAcBu66n9B0Hnic6+qRV
-   vTYsAOc9n/zQ/+BjuQkSabPJ5T0HvWBPn6SPu7Fj3vIixa9aa9Jl1WDLf
-   mkc/+U8eldDqR2yp4nv3ujITxdZr9s8obCLxryx8eC+zLlUvYJ0PF3v23
-   ONyPMWGVxu+ht14huVtuWYVQXTP1Ym0ibd084oVvRl4XPx131+3gZpyRK
-   zRjny0J1NmLq2PQgXRyhs8XIBOp6GxGjLazJCIlu/5DTGkfMBIUpAwcWm
-   EHv+738wH2uHSLYYy5d+yCzmCHLz+uq8Lb5y2Ix7/DWyNgW4gzobXo0h3
-   A==;
-IronPort-SDR: qAYLc5Ffv5vZBfug700xoPTQ3Mi30GJ+wznC+1vSKU7LqrO6eWMvl7PDmpV2hxVVLS9chlDvMZ
- 2LKRJTJs8pMs3VtvEO4sSwdvUhOXhU/sOYyEPJuWIgloFPGybOX5WnIcnqyHF8emoJ9HkLHWZp
- UEfxhn09XpJLTEg41HXPvrq+7W3XDWGqrglDhDgRjs8nwW4HVVO+Y5WZe9XMZfRGkEcbcCndn9
- V1USPSKwFKllUkqVAOgUSKdiiucm1RZ0PxmClQ+fwfLumaO7JtqNdlgNY1WBiG/cZJvLkh/9LO
- hso=
-X-IronPort-AV: E=Sophos;i="5.78,408,1599494400"; 
-   d="scan'208";a="159316023"
-Received: from mail-mw2nam12lp2043.outbound.protection.outlook.com (HELO NAM12-MW2-obe.outbound.protection.outlook.com) ([104.47.66.43])
-  by ob1.hgst.iphmx.com with ESMTP; 10 Dec 2020 21:53:00 +0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ettZddPeERq/uPaFauGYst/wLvo262+5hMV27t2qScum6xtQ2M8PzWdBsx7adEwSjKA/JcuEuQutPgnlldyeuJSVc2LyhHY6a5+7rXoQgpJVM506wLRaapuZ5HjP+araymOc56i5L0dOSd/rRLwABIuYIlHNHTPgPSdxt581AgyLg9FPp1DdgXoXLyIPUg1nsatk9ep20IcqmIzqudoP6vdOaID25aiUVyJBxLlLNxQGuy7Y1bxcPY3YETQOhiE6Q0Xh6ma6xR/v+eLEXGIqf8uhre1cCcZh57M1zN/49w0ssFMruz8zCJOSp+86P2BLZ8ulMpjPYfDNCNMIseTiyg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=p4ti17RCLoPz4K5CHhqDSWbcTr1eQiXCBQqxfUvWro8=;
- b=GU4oYpt6KHRNQ98HgwLm3wZBYTV37zf3br7yRft6YLOtV7hbgDEkzLNTbrPZuMXBbySJI3El0c169ytV3wPid4/wVc4VkrMMuXdq1Of01XqsUDnV4L0Dp6vWgBeK5/bf4k6JlQonKeN0RzZo+YdTMxkB1gE0M/R74MU4lGHpQiZlNvUV79o7bMvHH1HWJtJKFGY8WVNbhqsbNz9o5d6lBeaB7qysroh4/7rHK0J3VIunnzOpgLQvm+XSKl+bJvbNRPMRwCmfTlKNf2DI6dx2QE2w2l9pf8lgOimUiARmwFPSz86XP1ROPIBp9yOyscOoHq/75UuoeX8uRIyKEbXs6g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=wdc.com; dmarc=pass action=none header.from=wdc.com; dkim=pass
- header.d=wdc.com; arc=none
+        id S2389792AbgLJOAL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Dec 2020 09:00:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55646 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2389761AbgLJN5d (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 08:57:33 -0500
+Received: from mail-lf1-x142.google.com (mail-lf1-x142.google.com [IPv6:2a00:1450:4864:20::142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAECAC0613CF
+        for <devicetree@vger.kernel.org>; Thu, 10 Dec 2020 05:56:52 -0800 (PST)
+Received: by mail-lf1-x142.google.com with SMTP id y19so8277813lfa.13
+        for <devicetree@vger.kernel.org>; Thu, 10 Dec 2020 05:56:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=sharedspace.onmicrosoft.com; s=selector2-sharedspace-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=p4ti17RCLoPz4K5CHhqDSWbcTr1eQiXCBQqxfUvWro8=;
- b=dRmssp4fRh5nQ+RhmLUIbH9K3i5YuZmLizWH6gJ7eIuZelZckV/YRhOzNKqkIsTxOJTa0IY7Vr47Zve/j42iyVqkPjkfe2xWn8QViiVn7l1VeOX+ouYzjvpA2tm3kXeLJzCOa+I8JDMKnMkw2dbjXYcb2QAjYm6X/wdedNta41s=
-Received: from CH2PR04MB6522.namprd04.prod.outlook.com (2603:10b6:610:34::19)
- by CH2PR04MB7125.namprd04.prod.outlook.com (2603:10b6:610:a3::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3632.18; Thu, 10 Dec
- 2020 13:52:57 +0000
-Received: from CH2PR04MB6522.namprd04.prod.outlook.com
- ([fe80::897c:a04b:4eb0:640a]) by CH2PR04MB6522.namprd04.prod.outlook.com
- ([fe80::897c:a04b:4eb0:640a%7]) with mapi id 15.20.3632.023; Thu, 10 Dec 2020
- 13:52:57 +0000
-From:   Damien Le Moal <Damien.LeMoal@wdc.com>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-CC:     "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-        "palmer@dabbelt.com" <palmer@dabbelt.com>,
-        "sboyd@kernel.org" <sboyd@kernel.org>,
-        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        "seanga2@gmail.com" <seanga2@gmail.com>
-Subject: Re: [PATCH v7 00/22] RISC-V Kendryte K210 support improvements
-Thread-Topic: [PATCH v7 00/22] RISC-V Kendryte K210 support improvements
-Thread-Index: AQHWzqYvKtn7lzf0bUaGE16+bO2s4w==
-Date:   Thu, 10 Dec 2020 13:52:57 +0000
-Message-ID: <CH2PR04MB6522B5386D73AAE564D8D98AE7CB0@CH2PR04MB6522.namprd04.prod.outlook.com>
-References: <20201210034003.222297-1-damien.lemoal@wdc.com>
- <CAMuHMdVbU2kjKU3EVN5kszPc=VQcgzYLemV6AOyg+YyZBfc31Q@mail.gmail.com>
- <5389e421f884c43ff6a806ac4ec95b43a93d02f7.camel@wdc.com>
- <CAMuHMdVnR2E6+ANYuZLvsTW8Od4Sa=wDtjnio4h3z=W2ePPGGw@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: linux-m68k.org; dkim=none (message not signed)
- header.d=none;linux-m68k.org; dmarc=none action=none header.from=wdc.com;
-x-originating-ip: [2400:2411:43c0:6000:5911:8225:c337:ee37]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: 6ca7151b-7b37-4fc0-324a-08d89d12e66c
-x-ms-traffictypediagnostic: CH2PR04MB7125:
-x-microsoft-antispam-prvs: <CH2PR04MB712589654094F118DE76AC37E7CB0@CH2PR04MB7125.namprd04.prod.outlook.com>
-wdcipoutbound: EOP-TRUE
-x-ms-oob-tlc-oobclassifiers: OLM:6430;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 8y9pVJVnX1Se3yiJMz3lZMjm6eDV5fGV8k0D+gqadTDkOePwNIemi8TuAgPsHby7LB/8z/0DIE8BHIKih7hfAhf4T4PL3JnKho8e/3RFsvHyQsVgx52+lbdU4r48xwAH11gTj2+mDNAKP1oDbOM6ieCnZyl9y4jFnt5/1eBA41vLwVxduWWZxPOrYe++w16d9+z0sATc8MKHunlkhJIXoxTHZ6bYAt02n5vYDDBLu92Jue984JKYszyiiiEh123BUxJw50FXcA56p2U7Wh1s2viDt1/8FGPQRgf0mfrl4W9pWeTKCoRyb5Rw/VFMELsAxg8PmNcWqbRYEJK3OeUugg==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CH2PR04MB6522.namprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(376002)(136003)(346002)(8936002)(6916009)(71200400001)(5660300002)(54906003)(7696005)(76116006)(64756008)(66446008)(66476007)(52536014)(91956017)(66556008)(66946007)(86362001)(508600001)(4326008)(186003)(53546011)(55016002)(83380400001)(9686003)(2906002)(7416002)(33656002)(6506007)(8676002)(4001150100001);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata: =?us-ascii?Q?vFWH+8OnHJW3yQA2yXkK8TiNPlAxEZNklnfvCNarQDJD1qKAsHQrNDdCjL1G?=
- =?us-ascii?Q?ZAcE4xgM5ai0gHMD7tFGcovPmIvV035uudcYiXzCKVQFL4XxfOdvB6uSR3n+?=
- =?us-ascii?Q?yL8lLVK/TUyDmqRvUy5FuNeuLPahQDcDxINMJmZCgDmizGiWhX0D0k6FFZbd?=
- =?us-ascii?Q?4iARM2zTpQtmpglytA1OQmwJE+CysOnKXshlGdy69G5TEmdxNT/ZV/Yjt4zq?=
- =?us-ascii?Q?+OtWuRk1OQIE4ZzAkP1gsMwqgFpPmzLfnDniAcEfokjmuvC/X0pT21PwMRwM?=
- =?us-ascii?Q?TCCg322ICm0YYuHg90w6PW85Pmz8EXYOr0uJ5XSmNby9fTAD75t5m+da4Jbc?=
- =?us-ascii?Q?Dfejf8L9kAfW9wPgSQArwx5BcfR3Xq1m3fEfFTjEAY3tD6PxMHM9shrGUACh?=
- =?us-ascii?Q?apqJIS9xak7j/sSexIY+5/9aFxg8E7ElK3wI/UCJzr9G1ozvKgR//ZeC7oR+?=
- =?us-ascii?Q?EFWl24EYwmzudigZbXSP+co3WsA/lVEWm+Ng2U0aHojQ/EQz++knasUNB22y?=
- =?us-ascii?Q?NWTFsRls884xQTEjtR5HZGd50z3QYNYSDncwdBPHHXDkGDO3MGxN/Uw30+ZD?=
- =?us-ascii?Q?JshCBv7Qb+/VpvLnS6vIrmkxNOb7lseI3jW3DRFaqSJn8BZmpIMG4+oPwiIt?=
- =?us-ascii?Q?DBH+f2yiWUj+bdU0GvBoPEtlDYqntSapoQxidYABb98ZOj2Z3TArKszLp3G4?=
- =?us-ascii?Q?c6vJfZFzUw4iTdkuzrnuunIcNkRTfqnxIq4v5HDy21m1eIkIhO2iJl9nfwAh?=
- =?us-ascii?Q?QgL/FPB4OK+LSCTZ484hJE6BPkaUjrHrHcWc6th2e8S5X5e+G3XjK/lRcNKL?=
- =?us-ascii?Q?nqRkRjHNWLOMUDiYBWRgPzX2jx6227+7bSDAHGQMctZyAnLDrp11NZ+gfcxQ?=
- =?us-ascii?Q?IS8XNyVKvhvdjL9pOMhUvQhiDKsa3QVdWOkOdY0Y7nWMOcNkvqkYsPH+pZg/?=
- =?us-ascii?Q?IlvKb1q1Wlossk/UG1Gl+z+xaQezE6k7F8yNSi4F/J2BEQLQ1CFgbw31qkvi?=
- =?us-ascii?Q?u5EhJVxPoBkLmEFkPpR2l3fz5kWaCc7LA4rfPpppQCNFdzftkdiLki5Ih4yk?=
- =?us-ascii?Q?s6lzHhCw?=
-x-ms-exchange-transport-forked: True
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=RNFfYLpasfC9Br1QpSswUhPahvfKJChaREtG6rY3u6U=;
+        b=NtHHIPyNsgcmQGlrXBghrGMFjqvLXxOZ0LM928wSPBLXoUIE84JqLiK2njmxSldEgn
+         DxemkUql2x1xb9Tyo2hJqVUYsReoOa6KnCvWarwmeOHNmR7CjUa9nTFOVZn9WgedLD3A
+         iBtaMsyvr4AC2cexgXj6HVbpl+YvGBdfR/hxNK5Cw/rLRMN2OtOdIleXhMHLhkT6/NTu
+         X8lgzlK2vYT/dtvDVHvMaMQjI+mTpzF7RYYhhd6ewGsNbMLoMGErw5LmHaCjTolOZIAO
+         r1IY7/8E3g3aV63WghgMKd+AttlukJxGs1OI6AOfljP3cG495UWLJLKsCtwc+cAjJcqb
+         6idA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=RNFfYLpasfC9Br1QpSswUhPahvfKJChaREtG6rY3u6U=;
+        b=scxVMIQcz68zNnqa6jGlP9daQUXAbtuO1T7Feenn+S5zGH7EceR804/KopC6WPc1SJ
+         PMnh0exP195VPpN+1MNkLSdpmUue7h1XTM9mnBUyNAMY939CIqCtqNBioTC3t0d/zDcG
+         smWHLakpSknSe8pS3kvP2fJ2WiiYAYYgaZKUxAfNDWcuIzGF4/KeVUGwq0nKmchRAeRa
+         eBBM2aC3EpZCIlZpShgFBvLDlgFjzwPYonmAMc5Df9DwsdqrPa3kJPD3I6FGlyQuQHDW
+         MkBe0Phxum3/zx7rm4uSZT988tJ9DE+yrbjcHqTn0KXLIcV6hA6vKyHovpU2VBKy/9st
+         mirg==
+X-Gm-Message-State: AOAM533kWT7DKI08vnlSVFvnMF2f9RVAR2wLTQy5+xHuG0mKNARO1tbU
+        EUNld3u8jSCtFbkv4yXq4Qw=
+X-Google-Smtp-Source: ABdhPJzp4uW5x937rWLyJOuddKRcQ0s7mJUVdx/1JPqrfgYba/+mjiV+UvPI5GG2x53QaZfgC2VBpQ==
+X-Received: by 2002:a05:6512:110a:: with SMTP id l10mr2632401lfg.167.1607608611199;
+        Thu, 10 Dec 2020 05:56:51 -0800 (PST)
+Received: from localhost.localdomain (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.googlemail.com with ESMTPSA id a15sm526651lfr.68.2020.12.10.05.56.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 10 Dec 2020 05:56:50 -0800 (PST)
+Subject: Re: [PATCH] dt-bindings: mtd: convert "fixed-partitions" to the
+ json-schema
+To:     Rob Herring <robh@kernel.org>
+Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+References: <20201209130235.7505-1-zajec5@gmail.com>
+ <20201210024840.GA1510718@robh.at.kernel.org>
+From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Message-ID: <daa204cc-c736-8eab-7740-00c4ba457bcb@gmail.com>
+Date:   Thu, 10 Dec 2020 14:56:47 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.5.1
 MIME-Version: 1.0
-X-OriginatorOrg: wdc.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CH2PR04MB6522.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6ca7151b-7b37-4fc0-324a-08d89d12e66c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Dec 2020 13:52:57.2652
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: b61c8803-16f3-4c35-9b17-6f65f441df86
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: sq0y1/HXEsGjsFhitPnrqWH9Nhvf73Z2fIgh1XisVDqcgc9+vwVnC1ebW6tOmrxQaVU/1IMiiLlYMJU+yjTFCw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR04MB7125
+In-Reply-To: <20201210024840.GA1510718@robh.at.kernel.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2020/12/10 22:23, Geert Uytterhoeven wrote:=0A=
-> Hi Damien,=0A=
-> =0A=
-> On Thu, Dec 10, 2020 at 1:36 PM Damien Le Moal <Damien.LeMoal@wdc.com> wr=
-ote:=0A=
->> On Thu, 2020-12-10 at 11:04 +0100, Geert Uytterhoeven wrote:=0A=
->>> On Thu, Dec 10, 2020 at 4:41 AM Damien Le Moal <damien.lemoal@wdc.com> =
-wrote:=0A=
->>>> Changes from v6:=0A=
->>>> * Annotate struct platform_driver variables with __refdata to avoid=0A=
->>>>   section mismatch compilation errors=0A=
->>>=0A=
->>> Blindly following the advice from kernel test robot <lkp@intel.com> is=
-=0A=
->>> not always a good idea:=0A=
->>>=0A=
->>>     The variable k210_rst_driver references=0A=
->>>     the function __init set_reset_devices()=0A=
->>>     If the reference is valid then annotate the=0A=
->>>     variable with or __refdata (see linux/init.h) or name the variable:=
-=0A=
->>>=0A=
->>> If your driver's probe function is annotated with __init, you cannot=0A=
->>> have a pointer to it in the driver structure, as any binding done after=
-=0A=
->>> the freeing of initmem will cause a crash.  Adding the __refdata merely=
-=0A=
->>> suppresses the warning, and won't avoid the crash.=0A=
->>=0A=
->> Hmm... I must be misunderstanding something here. free_initmem() is call=
-ed from=0A=
->> kernel_init() right before starting the user init process. That is late =
-enough=0A=
->> that all drivers are already probed and initialized. At least that is wh=
-at I=0A=
->> thought, especially considering that none of the k210 drivers can be mod=
-ules=0A=
->> and are all builtin. What am I missing here ?=0A=
-> =0A=
-> For these specific cases, binding is indeed unlikely to happen after=0A=
-> free_initmem(). In the generic case that is not true.=0A=
-> However, you can still trigger it manually by unbinding and rebinding=0A=
-> the device manually through sysfs.=0A=
-=0A=
-Got it. Sending a v8 with the correction.=0A=
-=0A=
-Thanks !=0A=
-=0A=
-> =0A=
->> So I think I will go with option 2. It is simpler and safer. We can alwa=
-ys=0A=
->> revisit and optimize later. I would prefer this series to land first :)=
-=0A=
-> =0A=
-> Right. Correctness first, performance later.=0A=
-> =0A=
-> Gr{oetje,eeting}s,=0A=
-> =0A=
->                         Geert=0A=
-> =0A=
-> --=0A=
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m6=
-8k.org=0A=
-> =0A=
-> In personal conversations with technical people, I call myself a hacker. =
-But=0A=
-> when I'm talking to journalists I just say "programmer" or something like=
- that.=0A=
->                                 -- Linus Torvalds=0A=
-> =0A=
-=0A=
-=0A=
--- =0A=
-Damien Le Moal=0A=
-Western Digital Research=0A=
+On 10.12.2020 03:48, Rob Herring wrote:
+> On Wed, Dec 09, 2020 at 02:02:35PM +0100, Rafał Miłecki wrote:
+>> From: Rafał Miłecki <rafal@milecki.pl>
+>>
+>> This standardizes its documentation, allows validating with Makefile
+>> checks and helps writing DTS files.
+>>
+>> Noticeable changes:
+>> 1. Dropped "Partitions can be represented by sub-nodes of a flash
+>>     device." as we also support subpartitions (don't have to be part of
+>>     flash device node)
+>> 2. Dropped "to Linux" as bindings are meant to be os agnostic.
+>>
+>> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+>> ---
+>>   .../devicetree/bindings/mtd/partition.txt     | 131 +---------------
+>>   .../mtd/partitions/fixed-partitions.yaml      | 146 ++++++++++++++++++
+>>   2 files changed, 148 insertions(+), 129 deletions(-)
+>>   create mode 100644 Documentation/devicetree/bindings/mtd/partitions/fixed-partitions.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/mtd/partition.txt b/Documentation/devicetree/bindings/mtd/partition.txt
+>> index 4a39698221a2..ead90e8274d6 100644
+>> --- a/Documentation/devicetree/bindings/mtd/partition.txt
+>> +++ b/Documentation/devicetree/bindings/mtd/partition.txt
+>> @@ -24,137 +24,10 @@ another partitioning method.
+>>   Available bindings are listed in the "partitions" subdirectory.
+>>   
+>>   
+>> -Fixed Partitions
+>> -================
+>> -
+>> -Partitions can be represented by sub-nodes of a flash device. This can be used
+>> -on platforms which have strong conventions about which portions of a flash are
+>> -used for what purposes, but which don't use an on-flash partition table such
+>> -as RedBoot.
+>> -
+>> -The partition table should be a subnode of the flash node and should be named
+>> -'partitions'. This node should have the following property:
+>> -- compatible : (required) must be "fixed-partitions"
+>> -Partitions are then defined in subnodes of the partitions node.
+>> +Deprecated: partitions defined in flash node
+>> +============================================
+>>   
+>>   For backwards compatibility partitions as direct subnodes of the flash device are
+>>   supported. This use is discouraged.
+>>   NOTE: also for backwards compatibility, direct subnodes that have a compatible
+>>   string are not considered partitions, as they may be used for other bindings.
+>> -
+>> -#address-cells & #size-cells must both be present in the partitions subnode of the
+>> -flash device. There are two valid values for both:
+>> -<1>: for partitions that require a single 32-bit cell to represent their
+>> -     size/address (aka the value is below 4 GiB)
+>> -<2>: for partitions that require two 32-bit cells to represent their
+>> -     size/address (aka the value is 4 GiB or greater).
+>> -
+>> -Required properties:
+>> -- reg : The partition's offset and size within the flash
+>> -
+>> -Optional properties:
+>> -- label : The label / name for this partition.  If omitted, the label is taken
+>> -  from the node name (excluding the unit address).
+>> -- read-only : This parameter, if present, is a hint to Linux that this
+>> -  partition should only be mounted read-only. This is usually used for flash
+>> -  partitions containing early-boot firmware images or data which should not be
+>> -  clobbered.
+>> -- lock : Do not unlock the partition at initialization time (not supported on
+>> -  all devices)
+>> -- slc-mode: This parameter, if present, allows one to emulate SLC mode on a
+>> -  partition attached to an MLC NAND thus making this partition immune to
+>> -  paired-pages corruptions
+>> -
+>> -Examples:
+>> -
+>> -
+>> -flash@0 {
+>> -	partitions {
+>> -		compatible = "fixed-partitions";
+>> -		#address-cells = <1>;
+>> -		#size-cells = <1>;
+>> -
+>> -		partition@0 {
+>> -			label = "u-boot";
+>> -			reg = <0x0000000 0x100000>;
+>> -			read-only;
+>> -		};
+>> -
+>> -		uimage@100000 {
+>> -			reg = <0x0100000 0x200000>;
+>> -		};
+>> -	};
+>> -};
+>> -
+>> -flash@1 {
+>> -	partitions {
+>> -		compatible = "fixed-partitions";
+>> -		#address-cells = <1>;
+>> -		#size-cells = <2>;
+>> -
+>> -		/* a 4 GiB partition */
+>> -		partition@0 {
+>> -			label = "filesystem";
+>> -			reg = <0x00000000 0x1 0x00000000>;
+>> -		};
+>> -	};
+>> -};
+>> -
+>> -flash@2 {
+>> -	partitions {
+>> -		compatible = "fixed-partitions";
+>> -		#address-cells = <2>;
+>> -		#size-cells = <2>;
+>> -
+>> -		/* an 8 GiB partition */
+>> -		partition@0 {
+>> -			label = "filesystem #1";
+>> -			reg = <0x0 0x00000000 0x2 0x00000000>;
+>> -		};
+>> -
+>> -		/* a 4 GiB partition */
+>> -		partition@200000000 {
+>> -			label = "filesystem #2";
+>> -			reg = <0x2 0x00000000 0x1 0x00000000>;
+>> -		};
+>> -	};
+>> -};
+>> -
+>> -flash@3 {
+>> -	partitions {
+>> -		compatible = "fixed-partitions";
+>> -		#address-cells = <1>;
+>> -		#size-cells = <1>;
+>> -
+>> -		partition@0 {
+>> -			label = "bootloader";
+>> -			reg = <0x000000 0x100000>;
+>> -			read-only;
+>> -		};
+>> -
+>> -		firmware@100000 {
+>> -			label = "firmware";
+>> -			reg = <0x100000 0xe00000>;
+>> -			compatible = "brcm,trx";
+>> -		};
+>> -
+>> -		calibration@f00000 {
+>> -			label = "calibration";
+>> -			reg = <0xf00000 0x100000>;
+>> -			compatible = "fixed-partitions";
+>> -			ranges = <0 0xf00000 0x100000>;
+>> -			#address-cells = <1>;
+>> -			#size-cells = <1>;
+>> -
+>> -			partition@0 {
+>> -				label = "wifi0";
+>> -				reg = <0x000000 0x080000>;
+>> -			};
+>> -
+>> -			partition@80000 {
+>> -				label = "wifi1";
+>> -				reg = <0x080000 0x080000>;
+>> -			};
+>> -		};
+>> -	};
+>> -};
+>> diff --git a/Documentation/devicetree/bindings/mtd/partitions/fixed-partitions.yaml b/Documentation/devicetree/bindings/mtd/partitions/fixed-partitions.yaml
+>> new file mode 100644
+>> index 000000000000..c5e509e08f31
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/mtd/partitions/fixed-partitions.yaml
+>> @@ -0,0 +1,146 @@
+>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/mtd/partitions/fixed-partitions.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Fixed partitions
+>> +
+>> +description: |
+>> +  This binding can be used on platforms which have strong conventions about
+>> +  which portions of a flash are used for what purposes, but which don't use an
+>> +  on-flash partition table such as RedBoot.
+>> +
+>> +  The partition table should be a node named "partitions". Partitions are then
+>> +  defined as subnodes.
+>> +
+>> +maintainers:
+>> +  - Rafał Miłecki <rafal@milecki.pl>
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: fixed-partitions
+>> +
+>> +patternProperties:
+>> +  "^.*@[0-9a-f]+$":
+> 
+> You can drop '^.*'.
+> 
+> This needs to recurse to nested nodes.
+> 
+> I think here you can do just:
+>    
+> $ref: #/
+> 
+> And drop 'compatible' as required. It's redundant anyways because the
+> schema will only be applied if compatible matches.
+
+I managed to implement recursive schema but then I run dt_binding_check and
+realized it may be not what we really want.
+
+The error I got was:
+Documentation/devicetree/bindings/mtd/partitions/fixed-partitions.example.dt.yaml: partitions: firmware@100000:compatible:0: 'fixed-partitions' was expected
+         From schema: Documentation/devicetree/bindings/mtd/partitions/fixed-partitions.yaml
+
+and was caused by the following example:
+partitions {
+	compatible = "fixed-partitions";
+	#address-cells = <1>;
+	#size-cells = <1>;
+
+	(...)
+
+	firmware@100000 {
+		label = "firmware";
+		reg = <0x100000 0xe00000>;
+		compatible = "brcm,trx";
+	};
+
+	(...)
+}
+
+As you can see a single partition can use any available parser, so we can't
+require only "fixed-partitions" to be nested in the "fixed-partitions".
+
+In this situation I think this commit may be OK after all if I just fix regex
+and required (drop "compatible").
+
+What do you think?
+
+
+FWIW:
+
+properties:
+   compatible:
+     const: fixed-partitions
+
+patternProperties:
+   "@[0-9a-f]+$":
+     allOf:
+       - $ref: "#"
+       - properties:
+           reg:
+             maxItems: 1
+             description: partition's offset and size within the flash
+
+           label:
+             description: The label / name for this partition. If omitted, the label
+               is taken from the node name (excluding the unit address).
+
+           read-only:
+             description: This parameter, if present, is a hint that this partition
+               should only be mounted read-only. This is usually used for flash
+               partitions containing early-boot firmware images or data which should
+               not be clobbered.
+             type: boolean
+
+           lock:
+             description: Do not unlock the partition at initialization time (not
+               supported on all devices)
+             type: boolean
+
+           slc-mode:
+             description: This parameter, if present, allows one to emulate SLC mode
+               on a partition attached to an MLC NAND thus making this partition
+               immune to paired-pages corruptions
+             type: boolean
+
+         required:
+           - reg
