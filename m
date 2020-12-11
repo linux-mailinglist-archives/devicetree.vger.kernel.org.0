@@ -2,93 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E065F2D6EAE
-	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 04:35:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AA5B02D6EB0
+	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 04:36:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2393957AbgLKDec (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Dec 2020 22:34:32 -0500
-Received: from mail-oo1-f66.google.com ([209.85.161.66]:42748 "EHLO
-        mail-oo1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2395130AbgLKDeB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 22:34:01 -0500
-Received: by mail-oo1-f66.google.com with SMTP id x203so1831595ooa.9;
-        Thu, 10 Dec 2020 19:33:45 -0800 (PST)
+        id S2405256AbgLKDfE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Dec 2020 22:35:04 -0500
+Received: from mail-oi1-f193.google.com ([209.85.167.193]:34239 "EHLO
+        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2405250AbgLKDe4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 22:34:56 -0500
+Received: by mail-oi1-f193.google.com with SMTP id s75so8388209oih.1;
+        Thu, 10 Dec 2020 19:34:40 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=3GnJS91mExiBzt28XQgbgmRTyU/KP5iwnHySnsJrR+g=;
-        b=W9tDr4aDMdj1t3B2NZPCy3IpBQyt7oY+pFLivGp6qO0+LJ958nfLQ8/jjyzYDphg6Z
-         erPrtnSY3EtPA4q1MUYMEH3WsQKImRUB1nGE5Kv/V2nirzQXMJAnBOZBU6/0HC7Nm5OO
-         nFxm1pPGNWow6KlMTDMj3+To1LNhNSQwS+0jq/M1yozwPK+PtENK453ZZCzl/d906UbP
-         A1WhjcXJscoPALA7o3WhfTemoSzN5NFUW5kBGN45eVMLBIcMev2qf7+eM9Ijv0Y9JlGj
-         1nWW2mYY5nadl6qdn/C1k2eKoS+LvMXUzZe0DbiZ+k1yAHI1FUBWqZG1ByQwtAVY9Oui
-         5CqQ==
-X-Gm-Message-State: AOAM531rEOqiRdjuIvIFxcnuF11nxb5DbO8tLBSVtmnJAXE4Ho70FiaO
-        3D3Cy1G28b1XWUyywH+EOl3uiNvY4g==
-X-Google-Smtp-Source: ABdhPJyv+HjIJIG6vQ0mqx8wcxKerll2vL+hFq43z5m9733QezRGM9e/Qwbq1lN4LMs4idy5AaXIWQ==
-X-Received: by 2002:a4a:e687:: with SMTP id u7mr8551739oot.20.1607657600097;
-        Thu, 10 Dec 2020 19:33:20 -0800 (PST)
+        bh=5X4INTOHYkiv4qJceNlizwSZ2F4yaORFWqNAvCdXmig=;
+        b=X0WGyrPTDte7nV+MMAEUhedlrDFhd90oxs3xkAy4/Q0RhtwVF3aFec8d4iDGqPlma0
+         5a72IBHx7iN9MKsyxhCuV0Gm6AFCWxmEqo5RCIv6BsV0LJz510tIfSmzXCJdpW/WIrf0
+         +Uq6GcZ3Jhn6rqEUjd5nJpymGYfmzU6M66Sx81RpyXGVyjA+euOd1K+1H6e8/7JJYeVk
+         T4J7btwupHUV7opJvcv3v2f/I9euetEGBnmuUFENDn2SSfZWOOmsERJhxYEFOkOC/Zpl
+         eIh2MxWefs8oRCvT2WibYJ9D0p+lnNClCcd3kyZz7guvvk0DBwjgqqs9hA69NfzpWJsx
+         1fog==
+X-Gm-Message-State: AOAM533H/JjKkjjfvw5fLDkB9TUna40u2VJlIvwgPX24J/wUaWHMB/Wl
+        0S5WzwytR8vMBQanClIkSQ==
+X-Google-Smtp-Source: ABdhPJx3Vfhhuz3O0orNqKdlqcTcD08QNbyPLmKrJ/Gw+Puo6Ap+WJIrHuJ01GXCsDNGsXvhVmzL+g==
+X-Received: by 2002:aca:6087:: with SMTP id u129mr8031458oib.173.1607657655459;
+        Thu, 10 Dec 2020 19:34:15 -0800 (PST)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id n16sm187964oop.9.2020.12.10.19.33.18
+        by smtp.gmail.com with ESMTPSA id s9sm1577098otb.6.2020.12.10.19.34.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Dec 2020 19:33:19 -0800 (PST)
-Received: (nullmailer pid 3584435 invoked by uid 1000);
-        Fri, 11 Dec 2020 03:33:18 -0000
-Date:   Thu, 10 Dec 2020 21:33:18 -0600
+        Thu, 10 Dec 2020 19:34:14 -0800 (PST)
+Received: (nullmailer pid 3585740 invoked by uid 1000);
+        Fri, 11 Dec 2020 03:34:13 -0000
+Date:   Thu, 10 Dec 2020 21:34:13 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Aswath Govindraju <a-govindraju@ti.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Vadym Kochan <vadym.kochan@plvision.eu>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Sekhar Nori <nsekhar@ti.com>
-Subject: Re: [PATCH RFC 1/2] Documentation: devicetree: Add property for
- ignoring the dummy bits sent before read transfer
-Message-ID: <20201211033301.GA3581630@robh.at.kernel.org>
-References: <20201209175708.16252-1-a-govindraju@ti.com>
- <20201209175708.16252-2-a-govindraju@ti.com>
+To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 6/6] iio:pressure:ms5637: add ms5803 support
+Message-ID: <20201211033413.GA3584721@robh.at.kernel.org>
+References: <20201209234857.1521453-1-alexandre.belloni@bootlin.com>
+ <20201209234857.1521453-7-alexandre.belloni@bootlin.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201209175708.16252-2-a-govindraju@ti.com>
+In-Reply-To: <20201209234857.1521453-7-alexandre.belloni@bootlin.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 09, 2020 at 11:27:07PM +0530, Aswath Govindraju wrote:
-> Dummy zero bits are sent before data during a read transfer. This causes
-> the data read to be shifted to the right. To fix this send zero bits after
-> the address during a read transfer.
+On Thu, Dec 10, 2020 at 12:48:57AM +0100, Alexandre Belloni wrote:
+> The ms5803 is very similar to the ms5805 but has less resolution options
+> and has the 128bit PROM layout.
 > 
-> Add property to send zero bits after the address during a read transfer.
-
-When is this necessary? Why can't it be implied by the compatible 
-string which should be specific to the chip model?
-
-> 
-> Suggested-by: Vignesh Raghavendra <vigneshr@ti.com>
-> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Signed-off-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
 > ---
->  Documentation/devicetree/bindings/misc/eeprom-93xx46.txt | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
+>  Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
+>  drivers/iio/pressure/ms5637.c                          | 8 ++++++++
+>  2 files changed, 10 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/misc/eeprom-93xx46.txt b/Documentation/devicetree/bindings/misc/eeprom-93xx46.txt
-> index a8ebb4621f79..09fb1cec54f0 100644
-> --- a/Documentation/devicetree/bindings/misc/eeprom-93xx46.txt
-> +++ b/Documentation/devicetree/bindings/misc/eeprom-93xx46.txt
-> @@ -10,7 +10,9 @@ Optional properties:
->  - read-only : parameter-less property which disables writes to the EEPROM
->  - select-gpios : if present, specifies the GPIO that will be asserted prior to
->    each access to the EEPROM (e.g. for SPI bus multiplexing)
-> -
-> +- read-op-dummy-cycles: If present specifies the number of dummy zero-bits to
-> +  be sent after the address during a read transfer to ignore any bits sent
-> +  preceding the data.
->  Property rules described in Documentation/devicetree/bindings/spi/spi-bus.txt
->  apply.  In particular, "reg" and "spi-max-frequency" properties must be given.
+> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
+> index ab623ba930d5..84b0e44235c1 100644
+> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
+> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+> @@ -132,6 +132,8 @@ properties:
+>            - mcube,mc3230
+>              # MEMSIC 2-axis 8-bit digital accelerometer
+>            - memsic,mxc6225
+> +            # Measurement Specialities I2C pressure and temperature sensor
+> +          - meas,ms5803
+
+Alphabetical order please.
+
+>              # Microchip differential I2C ADC, 1 Channel, 18 bit
+>            - microchip,mcp3421
+>              # Microchip differential I2C ADC, 2 Channel, 18 bit
+> diff --git a/drivers/iio/pressure/ms5637.c b/drivers/iio/pressure/ms5637.c
+> index 2943b88734b3..39830a51ca78 100644
+> --- a/drivers/iio/pressure/ms5637.c
+> +++ b/drivers/iio/pressure/ms5637.c
+> @@ -192,8 +192,15 @@ static const struct ms_tp_hw_data ms5637_hw_data  = {
+>  	.max_res_index = 5
+>  };
 >  
+> +static const struct ms_tp_hw_data ms5803_hw_data  = {
+> +	.prom_len = 8,
+> +	.max_res_index = 4
+> +};
+> +
+>  static const struct ms_tp_data ms5637_data = { .name = "ms5637", .hw = &ms5637_hw_data };
+>  
+> +static const struct ms_tp_data ms5803_data = { .name = "ms5803", .hw = &ms5803_hw_data };
+> +
+>  static const struct ms_tp_data ms5805_data = { .name = "ms5805", .hw = &ms5637_hw_data };
+>  
+>  static const struct ms_tp_data ms5837_data = { .name = "ms5837", .hw = &ms5637_hw_data };
+> @@ -205,6 +212,7 @@ static const struct ms_tp_data ms8607_data = {
+>  
+>  static const struct of_device_id ms5637_of_match[] = {
+>  	{ .compatible = "meas,ms5637", .data = &ms5637_data },
+> +	{ .compatible = "meas,ms5803", .data = &ms5803_data },
+>  	{ .compatible = "meas,ms5805", .data = &ms5805_data },
+>  	{ .compatible = "meas,ms5837", .data = &ms5837_data },
+>  	{ .compatible = "meas,ms8607-temppressure", .data = &ms8607_data },
 > -- 
-> 2.17.1
+> 2.28.0
 > 
