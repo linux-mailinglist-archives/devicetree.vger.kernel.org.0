@@ -2,163 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2073A2D718A
-	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 09:20:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D2A342D71A2
+	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 09:25:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728034AbgLKISh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Dec 2020 03:18:37 -0500
-Received: from bmail1.ministro.hu ([5.249.150.236]:60882 "EHLO
-        bmail1.ministro.hu" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389785AbgLKISH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Dec 2020 03:18:07 -0500
-Received: from localhost (localhost [127.0.0.1])
-        by bmail1.ministro.hu (Postfix) with ESMTP id 67677123B1E;
-        Fri, 11 Dec 2020 09:17:16 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ministro.hu;
-        s=201804; t=1607674636;
-        bh=fw0CRLnop7lta5hIRJuAVT1kvoifNFSGv0Kp1RHA8xc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=gnTWsh/hWR+rS7K39XfGwPiS4x8NbX2qJuF2GnSKNgG7QSUlDxOVGzkp3pcNJL3wS
-         cqwGdAw9f7fnndZL/12DuIzzjAg+qb/OVjN9ap5DhKTJC/lJ3KTr6+1P95hYmfDx29
-         UensW3OLzCFQiYIMfZsqeAHOoxq2Ne4+ia4XIypi0/5IEPtyAkbEz+0VpLf1t98rH3
-         kiIT40dZ3YgxQvtBtJRfWLMz2AMlA6pfvf39wdg3mVG3zl8hFGDWtjz2IYAnsNJC38
-         ZO0rhiyGkTkNWrHTk/UadyV7Rn5BG12ae7DHxreoLKEGjN/VEcW02BFmovf1FdtNcl
-         obD4nRmAzJTmw==
-X-Virus-Scanned: Debian amavisd-new at ministro.hu
-Received: from bmail1.ministro.hu ([127.0.0.1])
-        by localhost (bmail1.ministro.hu [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id 4mm9n5moSepJ; Fri, 11 Dec 2020 09:16:37 +0100 (CET)
-Received: from dincontrollerdev (localhost [127.0.0.1])
-        by bmail1.ministro.hu (Postfix) with ESMTPSA id 581F5123B1C;
-        Fri, 11 Dec 2020 09:16:36 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ministro.hu;
-        s=201804; t=1607674597;
-        bh=fw0CRLnop7lta5hIRJuAVT1kvoifNFSGv0Kp1RHA8xc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=oPpIrHP9S3zFJ/pkw45eE18pYcr8epaZc+GOlxCDQ2AVNI8L6zQiiDkIunRJcwwu8
-         PYBKaP5K6dvhDttJFWezlr/EMqlytxF3Y0JKvncl4rjvOPIto/xYFW7Pe+pvykhbe7
-         4CwQAa9GlsDMUNgK1KxcIiwK01A8+IMEGnMqf1GO9w2IO+ReJFbulfwnYtzTLXr16r
-         yTk9mHSzr8NDipDsYYluYdevgSuK7QrxoHa6DyXqmjD98M5llRTtrjWjXlLBJE8W60
-         QfyJaVZRS2Yt9oZtYBkJaZ/4TRXro+yA25QJqyhzjXebnaRpOIGw6LEI4VEttEc6o8
-         CmB+4NElOG5+A==
-Date:   Fri, 11 Dec 2020 08:16:34 +0000
-From:   =?iso-8859-1?Q?J=F3zsef_Horv=E1th?= <info@ministro.hu>
-To:     'Greg Kroah-Hartman' <gregkh@linuxfoundation.org>
-Cc:     'Rob Herring' <robh+dt@kernel.org>,
-        'Jiri Slaby' <jirislaby@kernel.org>,
-        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        id S2436847AbgLKIYK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Dec 2020 03:24:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44724 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2436850AbgLKIXz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Dec 2020 03:23:55 -0500
+Received: from mail-pj1-x1044.google.com (mail-pj1-x1044.google.com [IPv6:2607:f8b0:4864:20::1044])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 227CBC0617B0;
+        Fri, 11 Dec 2020 00:22:34 -0800 (PST)
+Received: by mail-pj1-x1044.google.com with SMTP id z12so1832639pjn.1;
+        Fri, 11 Dec 2020 00:22:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=XcEcSr5to6HvuNXKcfIecpj69ar1vtmfturacBpcHIQ=;
+        b=lufsuZX6rG1AE4MtLo652LHCiVXgZaZfH00Ei6n7KHyDwrlzSufHN8EDaszRMANdfe
+         Id6jkC5Y6VAb3F5e5WKzfXaC0DsdbmbmrNxbY2II42T55isrVwD8Gv2M1C1jHmGr78WE
+         PqvSMk2jr766ajEafF9FySWOAuPG65i+/onGW8h1q1PqW51Qga8UQWG4AYgJX9ryL8Gu
+         0SaO3BRwAOelP2ZWeNCLydU7j+gOjM234jUU7+5kSdBCZw7aWrWwJkcNbHNgf8CQyxpR
+         3Reytt0GXXeGD337rHmRtnn4sL3aKmFEdcUlExaL60V+AkCIwxTVhtTZwAnR7qbxZe1A
+         /Gmg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=XcEcSr5to6HvuNXKcfIecpj69ar1vtmfturacBpcHIQ=;
+        b=QOw09tWS4jaNhOKAzMTiKL4NUol3b2aI+GGBhhUcSt7LTJkrOK7fF9z0R+WTMDkbVW
+         tjPGB524xA3lEZs8T2MA6pSAxyMp8Ev8KoyTqrxel8gnPx+oRqGy1DOrffKyUMbja8Up
+         wN2A5Xb30YJsUeeTerTmeRxaPe5UCz9Dj2LEHcmAOd/YkwRWXzsyLDrx5If3iKwCDJlX
+         O4FSgbBcl4MyR2QtBAosrFuoiBm6Sw9Q1c6fHQFg0aNgFqk7p4H0ax77RUqQj5pgw0hm
+         qJqrbckmz4ujjpTXBDUH5GqzuqBsO068w0W3Zv0yJo2/hAZP/soUTHVzotFfTdMC34Yf
+         hHBg==
+X-Gm-Message-State: AOAM533of7xdOoVFkFgbJDxtftPGcEZSWRzUitrEExTvbpwkenC3kin+
+        5RQtT+Oj8tY2ZI4s8b/PdJDLOrCSO7o=
+X-Google-Smtp-Source: ABdhPJyZt6bpYaVg/TXsjnbwtU3bbU35k1LS0TVb+MLh8YLNn7keJeFBAo0g/I/TXzsyVLfsYUVqAA==
+X-Received: by 2002:a17:90a:bf05:: with SMTP id c5mr11967824pjs.95.1607674953735;
+        Fri, 11 Dec 2020 00:22:33 -0800 (PST)
+Received: from google.com ([2620:15c:202:201:a6ae:11ff:fe11:fcc3])
+        by smtp.gmail.com with ESMTPSA id a23sm9170960pju.31.2020.12.11.00.22.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 11 Dec 2020 00:22:32 -0800 (PST)
+Date:   Fri, 11 Dec 2020 00:22:30 -0800
+From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To:     Roy Im <roy.im.opensource@diasemi.com>
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Support Opensource <support.opensource@diasemi.com>,
+        devicetree@vger.kernel.org, linux-input@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] Serial: silabs si4455 serial driver
-Message-ID: <20201211081634.GC1065@dincontrollerdev>
-References: <20201210170443.GA17304@dincontrollerdev>
- <X9Jw+srprdT8tquZ@kroah.com>
- <20201210194625.GA17516@dincontrollerdev>
- <X9MIwqJBG69M5uHq@kroah.com>
- <20201211060943.GA1065@dincontrollerdev>
- <X9MPuX1x4MezwkEj@kroah.com>
- <20201211063752.GB1065@dincontrollerdev>
- <X9MgvZ7bWX7HMNir@kroah.com>
+Subject: Re: [RESEND PATCH V20 2/3] dt-bindings: input: Add document bindings
+ for DA7280
+Message-ID: <X9MsRoE4esfVMTDY@google.com>
+References: <cover.1606320459.git.Roy.Im@diasemi.com>
+ <2bc9a4a9d083ea8f360ec75f6281b6de6c4ef284.1606320459.git.Roy.Im@diasemi.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <X9MgvZ7bWX7HMNir@kroah.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <2bc9a4a9d083ea8f360ec75f6281b6de6c4ef284.1606320459.git.Roy.Im@diasemi.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 11, 2020 at 08:33:17AM +0100, 'Greg Kroah-Hartman' wrote:
-> On Fri, Dec 11, 2020 at 06:37:52AM +0000, József Horváth wrote:
-> > On Fri, Dec 11, 2020 at 07:20:41AM +0100, 'Greg Kroah-Hartman' wrote:
-> > > On Fri, Dec 11, 2020 at 06:09:43AM +0000, József Horváth wrote:
-> > > > On Fri, Dec 11, 2020 at 06:50:58AM +0100, 'Greg Kroah-Hartman' wrote:
-> > > > > On Thu, Dec 10, 2020 at 07:46:25PM +0000, József Horváth wrote:
-> > > > > > On Thu, Dec 10, 2020 at 08:03:22PM +0100, 'Greg Kroah-Hartman' wrote:
-> > > > > > > On Thu, Dec 10, 2020 at 05:04:46PM +0000, József Horváth wrote:
-> > > > > > > > This is a serial port driver for
-> > > > > > > > Silicon Labs Si4455 Sub-GHz transciver.
-> > > > > > > > +
-> > > > > > > > +#define BASE_TTYIOC_PRIVATE		0xA0
-> > > > > > > > +/* Set EZConfig.
-> > > > > > > > + * After this ioctl call, the driver restarts the si4455,
-> > > > > > > > + * then apply the new configuration and patch.
-> > > > > > > > + */
-> > > > > > > > +#define SI4455_IOC_SEZC		_IOW('T', \
-> > > > > > > > +				     BASE_TTYIOC_PRIVATE + 0x01, \
-> > > > > > > > +				     struct si4455_iocbuff)
-> > > > > > > 
-> > > > > > > Why does a serial driver have private ioctls?  Please no, don't do that.
-> > > > > > 
-> > > > > > I checked the ioctl.h and serial_core.h, but I not found any similar definition, like BASE_VIDIOC_PRIVATE in videodev2.h.
-> > > > > > In this case the name of macro BASE_TTYIOC_PRIVATE means the base value of special ioctl commands owned by this driver.
-> > > > > 
-> > > > > My point is, a serial driver should NOT have any custom ioctls.
-> > > > > 
-> > > > > > I can change it to BASE_TTYIOC or SI4455_IOC_BASE
-> > > > > > 
-> > > > > > > Implement the basic serial driver first, and then we can talk about
-> > > > > > > "custom" configurations and the like, using the correct apis.
-> > > > > > 
-> > > > > > Without the SI4455_IOC_SEZC call, the driver can't configure the Si4455 and not working at all.
-> > > > > > The cofiguration for interface is provided by user for application.
-> > > > > 
-> > > > > That is what a device tree is for, to configure the device to have the
-> > > > > correct system configuration, why can't that be the same here?
-> > > > > 
-> > > > > > It contains the base frequency, channel spacing, modulation, and a lot
-> > > > > > of more stuff, and generated by Silicon Labs Wireless Development
-> > > > > > Suite.
-> > > > > > The generated configuration is in a non public(compressed,
-> > > > > > encrypted...who knows) format, so without this the driver can't
-> > > > > > provide configuration parameters to Si4455.
-> > > > > 
-> > > > > So we have to take a "custom" userspace blob and send it to the device
-> > > > > to configure it properly?  Like Jiri said, sounds like firmware, so just
-> > > > > use that interface instead.
-> > > > 
-> > > > I checked Jiri's suggestion, and it is a good solution to replace SI4455_IOC_SEZC(configuration) and SI4455_IOC_SEZP(firmware patch).
-> > > > I can move SI4455_IOC_SSIZ(package size) to device tree property.
-> > > > 
-> > > > Maybe you have good suggestion for the following:
-> > > > SI4455_IOC_STXC -> Radio transmit channel index. It is a real use case to control this parameter by user at runtime.
-> > > > SI4455_IOC_SRXC -> Radio receive channel index. It is a real use case to control this parameter by user at runtime.
-> > > 
-> > > These are not serial port things, why would a serial port care about
-> > > these?
-> > 
-> > You are right, these are not regular serial port things, but this device is not a regular uart, it is a sub-GHz transciever, digital radio.
-> > This driver tries to represent it as a serial port to user.
+On Thu, Nov 26, 2020 at 01:07:39AM +0900, Roy Im wrote:
+> Add device tree binding information for DA7280 haptic driver.
+> Example bindings for DA7280 are added.
 > 
-> Is that the correct representation to be using here?  Why not act like a
-> proper radio device instead?  That way you get to use the normal kernel
-> apis for radio devices.
-
-In my mind it is absolute a serial device by the application.
-
+> Reviewed-by: Rob Herring <robh@kernel.org>.
 > 
-> > > > SI4455_IOC_GRSSI -> Last measured RSSI, when packet received. This is a useful information.
-> > > > (Currently I'm the only one user, and I need this :) )
-> > > 
-> > > What is "RSSI"?
-> > > 
-> > > And why not debugfs if it's only debugging stuff?
-> > 
-> > Received signal strength indication, and not only debugging. It is an information for the end user.
+> Signed-off-by: Roy Im <roy.im.opensource@diasemi.com>
 > 
-> How do other radio devices (like wifi controllers) export this
-> information to userspace?  Don't create custom apis for only a single
-> device when the goal of a kernel is to make hardware interfaces all work
-> the same as far as userspace is concerned.
 
-I move the package size, tx/rx channel properties to dt as device parameter, and the user could control these properties in sysfs and get rssi too. Finally I can remove all custom ioctl commands.
-What do you think?
+Applied, thank you.
 
-> 
-> thanks,
-> 
-> greg k-h
-
-Üdvözlettel / Best regards:
-József Horváth
-
+-- 
+Dmitry
