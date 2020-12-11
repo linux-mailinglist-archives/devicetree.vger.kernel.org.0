@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 460D52D77F8
-	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 15:35:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 18E5F2D77FC
+	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 15:35:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2406267AbgLKOdQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S2406291AbgLKOdQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Fri, 11 Dec 2020 09:33:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45112 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45116 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2406266AbgLKOco (ORCPT
+        with ESMTP id S2406268AbgLKOco (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Fri, 11 Dec 2020 09:32:44 -0500
-Received: from mail-lj1-x244.google.com (mail-lj1-x244.google.com [IPv6:2a00:1450:4864:20::244])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B48E1C0611CE
-        for <devicetree@vger.kernel.org>; Fri, 11 Dec 2020 06:30:48 -0800 (PST)
-Received: by mail-lj1-x244.google.com with SMTP id m13so11076916ljo.11
-        for <devicetree@vger.kernel.org>; Fri, 11 Dec 2020 06:30:48 -0800 (PST)
+Received: from mail-lf1-x143.google.com (mail-lf1-x143.google.com [IPv6:2a00:1450:4864:20::143])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 357AEC0611D0
+        for <devicetree@vger.kernel.org>; Fri, 11 Dec 2020 06:30:50 -0800 (PST)
+Received: by mail-lf1-x143.google.com with SMTP id m12so13605477lfo.7
+        for <devicetree@vger.kernel.org>; Fri, 11 Dec 2020 06:30:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=I4kaS8K9NJ34up6Kjdshn5LWbMYzqvOti/z8UesqHNI=;
-        b=KlC1mAT3qQPNJXPLj8Xkgal4/KRedM5OyNLIxtjlqAjGmXYRSRLNq6CxROHw1S2+LR
-         mlQoJM1RhLhIvwHXnsCZtEjOhGkN1y9OJMJ2WlAzYtuufl+Aea3Z7hwwnMMvA/GrjNkg
-         9U/RO4fzvrW96MWs5zglVc08bB+bk6w6rWm0FOV3uBZCL/uq2eIYcLfcvt1mp3xs6FLG
-         DuwhFSZkKFGop46MVYkSSnxziPxWPahHDCeuIJqGnuzGbndsoRJVKcckPN7nNF+fGYnR
-         UqSoEJv862YcgJh/kIzXoIPt1dYc4i5UUavubF21JtUXFMtO0fftcxw0beNn+WlEeZVg
-         eIsQ==
+        bh=TC3nvcCsKElennu363xgzX81b8s+QPHA8xr9Tbhrl4w=;
+        b=fInATpmn5aXIMdqqCMq1nnYMD46JaKgeio7qqkIWPAy5iyQuaCf5xpZAzST7LnZiTm
+         pT70ncVHd2lqP67P4nbKHZ9a+8Iw2NPSoqecYwa0jtOBDVCG+mIRCn0Q6jO27a7E9Jem
+         ahwGZg63orgPCV+6S6kwJOvwUqast68vh5XMgDJ2lWzJngEVaQ00QMHEZAiTifJToCsP
+         xK98/H2A+EoE7gRboeajuRtpbjG80nnEqCp0WgPh88s/1f3JHi7gPkc9WG1gTYUtugLy
+         IlUJihn1oN5NSWXah1ZJG90tgoB8u82HSIRq82qIFd/JIvwvjQvTjDA9uoxSlHc0qgOo
+         iOLg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=I4kaS8K9NJ34up6Kjdshn5LWbMYzqvOti/z8UesqHNI=;
-        b=Kwc7rThfg7CY1TKhJ43ZZLv221wbil/W6tOYt7wbW+cEHUQMV6vLdjzHThVDCOOd5f
-         Atc9LL0S08qTJv1GCPYrjsy6q+YYkpgEZznOJbgCXDuGOPuqkFrd0MKADayqcW3bmPRE
-         arZPHjq/1oHVDrAm8LrgoDloZnFGsu9a+kiGTVWf6YDGVxznEOiYQIGhAvzq/z2LHWdh
-         dKQpQ9G5cyJgqE4A5PDGyJuYYfodqhA1SiC9E26d7GH7tg5iAz3BgmaOgCJuHIlDLzGS
-         P48IlRKdJPMMfkmo4TOAM5nOXhS5Rp9/pFxEBsH2fyvG9yZU3MFesXVgFpIYmp542siO
-         qroQ==
-X-Gm-Message-State: AOAM533yjcYMBC2ID8+19ot8uIscw3mJGhOLFrdOjC6ejlaxLM1kEUCq
-        mYZfa7WKyFPmpuWoHwV8t1O18w==
-X-Google-Smtp-Source: ABdhPJzzkmbYh7QGxMWgHi37kKpusIhnf5UHgu3mXs+NJ5ZhvmBB6B3Ck/sQFGWP8Az2niFFEReizw==
-X-Received: by 2002:a2e:9546:: with SMTP id t6mr5288769ljh.222.1607697047196;
-        Fri, 11 Dec 2020 06:30:47 -0800 (PST)
+        bh=TC3nvcCsKElennu363xgzX81b8s+QPHA8xr9Tbhrl4w=;
+        b=tmzRs+0QPci5TLCc+sdfBHf0CrA49zJpOUHUNoDHzxTMzxn5SqM4VzfwOcwPXTwOoN
+         TTM6flciy7ycLRThVCOLsWc4+RB4p6Lkfq22HSWSs+1L6jA+VRLbHgZL/vxSQtmBi6du
+         dpOGIlGN6WwWbvguvAkRDVa5A4IV6U56AwNfFNA5cramKuK2a+Safq/f2cdEgHr1FYvo
+         62YasbIw74wcysjotGYBCr9CU9JMUhFjmw7egXDoBFPT89mVgRkmqpxOek3IlLTTU+Oa
+         Rk83SnJLg2gvAcztezSpFAIBiCI/5O3hWWpvihKI14dMI4dypgwf/eU0lmBwEA0TElYp
+         0htw==
+X-Gm-Message-State: AOAM533UT+HMyDZQBsA1UTC56kjIDEyyrhr00TP5YMziRSpNhql0JLyp
+        9465T/axDC2ylen2BAQCrfi0OA==
+X-Google-Smtp-Source: ABdhPJxMxrQ4KNASC27zblm4T7/0+PW+bq/u7+d/RQzYScHtQ48AArv3ONiHIP4xpRXDnTufQITTrA==
+X-Received: by 2002:a19:5f5d:: with SMTP id a29mr4517141lfj.212.1607697048664;
+        Fri, 11 Dec 2020 06:30:48 -0800 (PST)
 Received: from gilgamesh.semihalf.com (193-106-246-138.noc.fibertech.net.pl. [193.106.246.138])
-        by smtp.gmail.com with ESMTPSA id x26sm906491lfq.112.2020.12.11.06.30.46
+        by smtp.gmail.com with ESMTPSA id x26sm906491lfq.112.2020.12.11.06.30.47
         (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 11 Dec 2020 06:30:46 -0800 (PST)
+        Fri, 11 Dec 2020 06:30:48 -0800 (PST)
 From:   Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
 To:     ohad@wizery.com, bjorn.andersson@linaro.org,
         mathieu.poirier@linaro.org, robh+dt@kernel.org, s-anna@ti.com,
@@ -56,9 +56,9 @@ Cc:     grzegorz.jaszczyk@linaro.org, linux-remoteproc@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, praneeth@ti.com,
         rogerq@ti.com
-Subject: [PATCH 4/5] remoteproc: pru: Add pru_rproc_set_ctable() function
-Date:   Fri, 11 Dec 2020 15:29:32 +0100
-Message-Id: <20201211142933.25784-5-grzegorz.jaszczyk@linaro.org>
+Subject: [PATCH 5/5] remoteproc: pru: Configure firmware based on client setup
+Date:   Fri, 11 Dec 2020 15:29:33 +0100
+Message-Id: <20201211142933.25784-6-grzegorz.jaszczyk@linaro.org>
 X-Mailer: git-send-email 2.29.0
 In-Reply-To: <20201211142933.25784-1-grzegorz.jaszczyk@linaro.org>
 References: <20201211142933.25784-1-grzegorz.jaszczyk@linaro.org>
@@ -68,186 +68,89 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Roger Quadros <rogerq@ti.com>
+From: Tero Kristo <t-kristo@ti.com>
 
-Some firmwares expect the OS drivers to configure the CTABLE
-entries publishing dynamically allocated memory regions. For
-example, the PRU Ethernet firmwares use the C28 and C30 entries
-for retrieving the Shared RAM and System SRAM (OCMC) areas
-allocated by the PRU Ethernet client driver.
+Client device node property firmware-name is now used to configure
+firmware for the PRU instances. The default firmware is also
+restored once releasing the PRU resource.
 
-Provide a way for users to do that through a new API,
-pru_rproc_set_ctable(). The API returns 0 on success and
-a negative value on error.
-
-NOTE:
-The programmable CTABLE entries are typically re-programmed by
-the PRU firmwares when dealing with a certain block of memory
-during block processing. This API provides an interface to the
-PRU client drivers to publish a dynamically allocated memory
-block with the PRU firmware using a CTABLE entry instead of a
-negotiated address in shared memory. Additional synchronization
-may be needed between the PRU client drivers and firmwares if
-different addresses needs to be published at run-time reusing
-the same CTABLE entry.
-
-Co-developed-by: Andrew F. Davis <afd@ti.com>
-Signed-off-by: Andrew F. Davis <afd@ti.com>
 Co-developed-by: Suman Anna <s-anna@ti.com>
 Signed-off-by: Suman Anna <s-anna@ti.com>
-Signed-off-by: Roger Quadros <rogerq@ti.com>
+Signed-off-by: Tero Kristo <t-kristo@ti.com>
 Co-developed-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
 Signed-off-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
 ---
- drivers/remoteproc/pru_rproc.c | 59 ++++++++++++++++++++++++++++++++++
- include/linux/pruss.h          | 22 +++++++++++++
- 2 files changed, 81 insertions(+)
+ drivers/remoteproc/pru_rproc.c | 35 ++++++++++++++++++++++++++++++++++
+ 1 file changed, 35 insertions(+)
 
 diff --git a/drivers/remoteproc/pru_rproc.c b/drivers/remoteproc/pru_rproc.c
-index bfb53967edda..ac13e4452a57 100644
+index ac13e4452a57..fed7a2051ebf 100644
 --- a/drivers/remoteproc/pru_rproc.c
 +++ b/drivers/remoteproc/pru_rproc.c
-@@ -118,6 +118,7 @@ struct pru_private_data {
-  * @mapped_irq: virtual interrupt numbers of created fw specific mapping
-  * @pru_interrupt_map: pointer to interrupt mapping description (firmware)
-  * @pru_interrupt_map_sz: pru_interrupt_map size
-+ * @rmw_lock: lock for read, modify, write operations on registers
-  * @dbg_single_step: debug state variable to set PRU into single step mode
-  * @dbg_continuous: debug state variable to restore PRU execution mode
-  * @evt_count: number of mapped events
-@@ -135,6 +136,7 @@ struct pru_rproc {
- 	unsigned int *mapped_irq;
- 	struct pru_irq_rsc *pru_interrupt_map;
- 	size_t pru_interrupt_map_sz;
-+	spinlock_t rmw_lock; /* register access lock */
- 	u32 dbg_single_step;
- 	u32 dbg_continuous;
- 	u8 evt_count;
-@@ -151,6 +153,23 @@ void pru_control_write_reg(struct pru_rproc *pru, unsigned int reg, u32 val)
- 	writel_relaxed(val, pru->mem_regions[PRU_IOMEM_CTRL].va + reg);
+@@ -170,6 +170,23 @@ void pru_control_set_reg(struct pru_rproc *pru, unsigned int reg,
+ 	spin_unlock_irqrestore(&pru->rmw_lock, flags);
  }
  
-+static inline
-+void pru_control_set_reg(struct pru_rproc *pru, unsigned int reg,
-+			 u32 mask, u32 set)
++/**
++ * pru_rproc_set_firmware() - set firmware for a pru core
++ * @rproc: the rproc instance of the PRU
++ * @fw_name: the new firmware name, or NULL if default is desired
++ *
++ * Return: 0 on success, or errno in error case.
++ */
++static int pru_rproc_set_firmware(struct rproc *rproc, const char *fw_name)
 +{
-+	u32 val;
-+	unsigned long flags;
++	struct pru_rproc *pru = rproc->priv;
 +
-+	spin_lock_irqsave(&pru->rmw_lock, flags);
++	if (!fw_name)
++		fw_name = pru->fw_name;
 +
-+	val = pru_control_read_reg(pru, reg);
-+	val &= ~mask;
-+	val |= (set & mask);
-+	pru_control_write_reg(pru, reg, val);
-+
-+	spin_unlock_irqrestore(&pru->rmw_lock, flags);
++	return rproc_set_firmware(rproc, fw_name);
 +}
 +
  static struct rproc *__pru_rproc_get(struct device_node *np, int index)
  {
  	struct device_node *rproc_np = NULL;
-@@ -266,6 +285,45 @@ void pru_rproc_put(struct rproc *rproc)
+@@ -230,6 +247,8 @@ struct rproc *pru_rproc_get(struct device_node *np, int index,
+ 	struct rproc *rproc;
+ 	struct pru_rproc *pru;
+ 	struct device *dev;
++	const char *fw_name;
++	int ret;
+ 
+ 	rproc = __pru_rproc_get(np, index);
+ 	if (IS_ERR(rproc))
+@@ -254,7 +273,21 @@ struct rproc *pru_rproc_get(struct device_node *np, int index,
+ 	if (pru_id)
+ 		*pru_id = pru->id;
+ 
++	ret = of_property_read_string_index(np, "firmware-name", index,
++					    &fw_name);
++	if (!ret) {
++		ret = pru_rproc_set_firmware(rproc, fw_name);
++		if (ret) {
++			dev_err(dev, "failed to set firmware: %d\n", ret);
++			goto err;
++		}
++	}
++
+ 	return rproc;
++
++err:
++	pru_rproc_put(rproc);
++	return ERR_PTR(ret);
  }
- EXPORT_SYMBOL_GPL(pru_rproc_put);
+ EXPORT_SYMBOL_GPL(pru_rproc_get);
  
-+/**
-+ * pru_rproc_set_ctable() - set the constant table index for the PRU
-+ * @rproc: the rproc instance of the PRU
-+ * @c: constant table index to set
-+ * @addr: physical address to set it to
-+ *
-+ * Return: 0 on success, or errno in error case.
-+ */
-+int pru_rproc_set_ctable(struct rproc *rproc, enum pru_ctable_idx c, u32 addr)
-+{
-+	struct pru_rproc *pru = rproc->priv;
-+	unsigned int reg;
-+	u32 mask, set;
-+	u16 idx;
-+	u16 idx_mask;
-+
-+	if (IS_ERR_OR_NULL(rproc))
-+		return -EINVAL;
-+
-+	if (!rproc->dev.parent || !is_pru_rproc(rproc->dev.parent))
-+		return -ENODEV;
-+
-+	/* pointer is 16 bit and index is 8-bit so mask out the rest */
-+	idx_mask = (c >= PRU_C28) ? 0xFFFF : 0xFF;
-+
-+	/* ctable uses bit 8 and upwards only */
-+	idx = (addr >> 8) & idx_mask;
-+
-+	/* configurable ctable (i.e. C24) starts at PRU_CTRL_CTBIR0 */
-+	reg = PRU_CTRL_CTBIR0 + 4 * (c >> 1);
-+	mask = idx_mask << (16 * (c & 1));
-+	set = idx << (16 * (c & 1));
-+
-+	pru_control_set_reg(pru, reg, mask, set);
-+
-+	return 0;
-+}
-+EXPORT_SYMBOL_GPL(pru_rproc_set_ctable);
-+
- static inline u32 pru_debug_read_reg(struct pru_rproc *pru, unsigned int reg)
- {
- 	return readl_relaxed(pru->mem_regions[PRU_IOMEM_DEBUG].va + reg);
-@@ -895,6 +953,7 @@ static int pru_rproc_probe(struct platform_device *pdev)
- 	pru->pruss = platform_get_drvdata(ppdev);
- 	pru->rproc = rproc;
- 	pru->fw_name = fw_name;
-+	spin_lock_init(&pru->rmw_lock);
- 	mutex_init(&pru->lock);
+@@ -276,6 +309,8 @@ void pru_rproc_put(struct rproc *rproc)
+ 	if (!pru->client_np)
+ 		return;
  
- 	for (i = 0; i < ARRAY_SIZE(mem_names); i++) {
-diff --git a/include/linux/pruss.h b/include/linux/pruss.h
-index 43cb5c2eed08..903d0c0b75be 100644
---- a/include/linux/pruss.h
-+++ b/include/linux/pruss.h
-@@ -23,13 +23,29 @@ enum pruss_pru_id {
- 	PRUSS_NUM_PRUS,
- };
- 
-+/*
-+ * enum pru_ctable_idx - Configurable Constant table index identifiers
-+ */
-+enum pru_ctable_idx {
-+	PRU_C24 = 0,
-+	PRU_C25,
-+	PRU_C26,
-+	PRU_C27,
-+	PRU_C28,
-+	PRU_C29,
-+	PRU_C30,
-+	PRU_C31,
-+};
++	pru_rproc_set_firmware(rproc, NULL);
 +
- struct device_node;
-+struct rproc;
- 
- #if IS_ENABLED(CONFIG_PRU_REMOTEPROC)
- 
- struct rproc *pru_rproc_get(struct device_node *np, int index,
- 			    enum pruss_pru_id *pru_id);
- void pru_rproc_put(struct rproc *rproc);
-+int pru_rproc_set_ctable(struct rproc *rproc, enum pru_ctable_idx c, u32 addr);
- 
- #else
- 
-@@ -41,6 +57,12 @@ pru_rproc_get(struct device_node *np, int index, enum pruss_pru_id *pru_id)
- 
- static inline void pru_rproc_put(struct rproc *rproc) { }
- 
-+static inline int pru_rproc_set_ctable(struct rproc *rproc,
-+				       enum pru_ctable_idx c, u32 addr)
-+{
-+	return -ENOTSUPP;
-+}
-+
- #endif /* CONFIG_PRU_REMOTEPROC */
- 
- static inline bool is_pru_rproc(struct device *dev)
+ 	mutex_lock(&pru->lock);
+ 	pru->client_np = NULL;
+ 	rproc->deny_sysfs_ops = false;
 -- 
 2.29.0
 
