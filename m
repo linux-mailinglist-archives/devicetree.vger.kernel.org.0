@@ -2,155 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D2312D78CA
-	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 16:06:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7852C2D78A2
+	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 16:06:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726534AbgLKPFq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Dec 2020 10:05:46 -0500
-Received: from mail.kernel.org ([198.145.29.99]:34244 "EHLO mail.kernel.org"
+        id S2437544AbgLKPCl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Dec 2020 10:02:41 -0500
+Received: from mail.kernel.org ([198.145.29.99]:60980 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2406548AbgLKPFO (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 11 Dec 2020 10:05:14 -0500
-X-Gm-Message-State: AOAM5321Q88Ga4kOvROtWKwptfs7tu6P56B86qs8Hfjd0W4d8xc7o4vA
-        xMFM1yfYf1lC0Pc7TDMgniLCKmFGENaJgbHhyg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1607698012;
-        bh=kMGlC86uydZtd+hqrVgic6SM+HBSXPFoclUBLRZV+W0=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=oIyQEnHRnQVqjF3lPXkM2jdJZPuJrBRV4mjDmkyC7D2YkMytrKxvnLYtY/MuZ8U/Z
-         W2OUDIdIl5P5nA+Grcj7irhjVn0ALUSpEaB9xq3sTtFco4Ioc5EaORLgi+/Fx1x1B1
-         xuTzcH5vpNBd8jobFSsDlhuU/N6m6vTAlNmwOCa52uoTl+L+OKQeUIZBQMMDrnbCbl
-         aWGhg7987Lki9Xe3xfn+ju4MxOO01qIDqA7zvZYo8oun/gimaAkwCOmj43NF6l0pID
-         NrBJeFA4dAUjrbCc1WRzn31ZiyySttmX0+rmnlXaoevbPEZszXOPWO4MHLzSftdiW2
-         VV7HliYYfHt3g==
-X-Google-Smtp-Source: ABdhPJwAF2z+4ptZLYQgJaLTwt2m+q4kzvOhtU1ax7sWHg9DZiTR/rIDy9PKQk1Nfa6Qmwufx6w8ViJve1ZjDZ/qZUQ=
-X-Received: by 2002:a5d:6443:: with SMTP id d3mr14035794wrw.422.1607698005242;
- Fri, 11 Dec 2020 06:46:45 -0800 (PST)
+        id S2437559AbgLKPCa (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 11 Dec 2020 10:02:30 -0500
+Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 5398A206B2;
+        Fri, 11 Dec 2020 15:01:49 +0000 (UTC)
+Received: from 78.163-31-62.static.virginmediabusiness.co.uk ([62.31.163.78] helo=wait-a-minute.lan)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94)
+        (envelope-from <maz@kernel.org>)
+        id 1knjvX-000TxV-27; Fri, 11 Dec 2020 15:01:47 +0000
+From:   Marc Zyngier <maz@kernel.org>
+To:     shawnguo@kernel.org, linux@rasmusvillemoes.dk, leoyang.li@nxp.com,
+        mark.rutland@arm.com, zhiqiang.hou@nxp.com,
+        Biwen Li <biwen.li@oss.nxp.com>, robh+dt@kernel.org,
+        tglx@linutronix.de
+Cc:     xiaobo.xie@nxp.com, Hou Zhiqiang <Zhiqiang.Hou@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Biwen Li <biwen.li@nxp.com>, linux-kernel@vger.kernel.org,
+        jiafei.pan@nxp.com
+Subject: Re: [v4 01/11] irqchip: ls-extirq: Add LS1043A, LS1088A external interrupt
+Date:   Fri, 11 Dec 2020 15:01:32 +0000
+Message-Id: <160769813659.482133.8392979950247989648.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.29.2
+In-Reply-To: <20201130101515.27431-1-biwen.li@oss.nxp.com>
+References: <20201130101515.27431-1-biwen.li@oss.nxp.com>
 MIME-Version: 1.0
-References: <1607591262-21736-1-git-send-email-yongqiang.niu@mediatek.com>
- <1607591262-21736-2-git-send-email-yongqiang.niu@mediatek.com>
- <CAAOTY_-oL+NyzDKssCjyP=E8Py3oyEK6a6s=XoYvTFymZE9-zQ@mail.gmail.com> <1607647416.12750.3.camel@mhfsdcap03>
-In-Reply-To: <1607647416.12750.3.camel@mhfsdcap03>
-From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date:   Fri, 11 Dec 2020 22:46:34 +0800
-X-Gmail-Original-Message-ID: <CAAOTY__y70tF2ORQDgZfk7RfeQm4fKraPnOQWMDnWsBb7HmZnQ@mail.gmail.com>
-Message-ID: <CAAOTY__y70tF2ORQDgZfk7RfeQm4fKraPnOQWMDnWsBb7HmZnQ@mail.gmail.com>
-Subject: Re: [PATCH v8, 1/6] dt-bindings: mediatek: add rdma_fifo_size
- description for mt8183 display
-To:     Yongqiang Niu <yongqiang.niu@mediatek.com>
-Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        CK Hu <ck.hu@mediatek.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        DTML <devicetree@vger.kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        DRI Development <dri-devel@lists.freedesktop.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 62.31.163.78
+X-SA-Exim-Rcpt-To: shawnguo@kernel.org, linux@rasmusvillemoes.dk, leoyang.li@nxp.com, mark.rutland@arm.com, zhiqiang.hou@nxp.com, biwen.li@oss.nxp.com, robh+dt@kernel.org, tglx@linutronix.de, xiaobo.xie@nxp.com, Zhiqiang.Hou@nxp.com, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, biwen.li@nxp.com, linux-kernel@vger.kernel.org, jiafei.pan@nxp.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Yongqiang:
+On Mon, 30 Nov 2020 18:15:05 +0800, Biwen Li wrote:
+> Add an new IRQ chip declaration for LS1043A and LS1088A
+> - compatible "fsl,ls1043a-extirq" for LS1043A, LS1046A.
+> - compatible "fsl,ls1088a-extirq" for LS1088A, LS208xA, LX216xA.
+> - get mask value directly according to compatible property of DT
+>   and remove confused code(bit_reverse field of struct ls_extirq_data,
+>   no need this field for SoC LS1021A. Because the register
+>   LS1021A_SCFGREVCR is initialized to 0xffffffff by the relative rcw)
 
-Yongqiang Niu <yongqiang.niu@mediatek.com> =E6=96=BC 2020=E5=B9=B412=E6=9C=
-=8811=E6=97=A5 =E9=80=B1=E4=BA=94 =E4=B8=8A=E5=8D=888:43=E5=AF=AB=E9=81=93=
-=EF=BC=9A
->
-> On Thu, 2020-12-10 at 23:40 +0800, Chun-Kuang Hu wrote:
-> > Hi, Yongqiang:
-> >
-> > Yongqiang Niu <yongqiang.niu@mediatek.com> =E6=96=BC 2020=E5=B9=B412=E6=
-=9C=8810=E6=97=A5 =E9=80=B1=E5=9B=9B =E4=B8=8B=E5=8D=885:22=E5=AF=AB=E9=81=
-=93=EF=BC=9A
-> > >
-> > > rdma fifo size may be different even in same SOC, add this
-> > > property to the corresponding rdma
-> > >
-> > > Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
-> > > ---
-> > >  .../bindings/display/mediatek/mediatek,disp.txt          | 16 ++++++=
-++++++++++
-> > >  1 file changed, 16 insertions(+)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/display/mediatek/media=
-tek,disp.txt b/Documentation/devicetree/bindings/display/mediatek/mediatek,=
-disp.txt
-> > > index 1212207..64c64ee 100644
-> > > --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,dis=
-p.txt
-> > > +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,dis=
-p.txt
-> > > @@ -66,6 +66,13 @@ Required properties (DMA function blocks):
-> > >    argument, see Documentation/devicetree/bindings/iommu/mediatek,iom=
-mu.txt
-> > >    for details.
-> > >
-> > > +Optional properties (RDMA function blocks):
-> > > +- mediatek,rdma_fifo_size: rdma fifo size may be different even in s=
-ame SOC, add this
-> > > +  property to the corresponding rdma
-> > > +  the value is the Max value which defined in hardware data sheet.
-> > > +  rdma_fifo_size of rdma0 in mt8183 is 5120
-> > > +  rdma_fifo_size of rdma1 in mt8183 is 2048
-> > > +
-> > >  Examples:
-> > >
-> > >  mmsys: clock-controller@14000000 {
-> > > @@ -207,3 +214,12 @@ od@14023000 {
-> > >         power-domains =3D <&scpsys MT8173_POWER_DOMAIN_MM>;
-> > >         clocks =3D <&mmsys CLK_MM_DISP_OD>;
-> > >  };
-> > > +
-> > > +rdma1: rdma@1400c000 {
-> > > +       compatible =3D "mediatek,mt8183-disp-rdma";
-> > > +       reg =3D <0 0x1400c000 0 0x1000>;
-> > > +       interrupts =3D <GIC_SPI 229 IRQ_TYPE_LEVEL_LOW>;
-> > > +       power-domains =3D <&scpsys MT8183_POWER_DOMAIN_DISP>;
-> > > +       clocks =3D <&mmsys CLK_MM_DISP_RDMA1>;
-> > > +       mediatek,rdma_fifo_size =3D <2048>;
-> > > +};
-> >
-> > In [1], Rob has suggest that not add example of rdma1, it's better to
-> > add mediatek,rdma_fifo_size in rdma0 for example.
-> >
-> > [1] https://patchwork.kernel.org/project/linux-mediatek/patch/159685523=
-1-5782-2-git-send-email-yongqiang.niu@mediatek.com/
-> >
-> > Regards,
-> > Chun-Kuang.
->
-> the description of rdma0 is mt8173, and mt8173 rdma driver set the
-> correspond fifo size already ok like this:
-> static const struct mtk_disp_rdma_data mt8173_rdma_driver_data =3D {
->         .fifo_size =3D SZ_8K,
-> };
->
-> please double confirm shall we add this information into rdma0
-> description.
->
+Applied to irq/irqchip-next, thanks!
 
-Device tree is used to describe hardware. That means device tree
-description should not consider your driver's implementation.
-mediatek,rdma-fifo-size of mt8173-rdma0 is 8K, so I could write this
-information in device node because this hardware is.
+[01/11] irqchip: ls-extirq: Add LS1043A, LS1088A external interrupt
+        commit: b16a1caf4686895427c810219d4b2f796e676160
+[11/11] dt-bindings: interrupt-controller: update bindings for supporting more SoCs
+        commit: 9898a59358d7cb925f63bb77bd40224d1bc4857e
 
-Regards,
-Chun-Kuang.
+Patches 2-10 should be routed via the SoC tree.
 
->
-> >
-> > > --
-> > > 1.8.1.1.dirty
-> > > _______________________________________________
-> > > Linux-mediatek mailing list
-> > > Linux-mediatek@lists.infradead.org
-> > > http://lists.infradead.org/mailman/listinfo/linux-mediatek
->
+Cheers,
+
+	M.
+-- 
+Without deviation from the norm, progress is not possible.
+
+
