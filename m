@@ -2,71 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F29A2D6ED0
-	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 04:43:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F6002D6ED2
+	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 04:43:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2395184AbgLKDmE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Dec 2020 22:42:04 -0500
-Received: from mail-oi1-f196.google.com ([209.85.167.196]:44097 "EHLO
-        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2391130AbgLKDl6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 22:41:58 -0500
-Received: by mail-oi1-f196.google.com with SMTP id d189so8349645oig.11;
-        Thu, 10 Dec 2020 19:41:42 -0800 (PST)
+        id S2405295AbgLKDmc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Dec 2020 22:42:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58184 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2405289AbgLKDmM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 22:42:12 -0500
+Received: from mail-pg1-x541.google.com (mail-pg1-x541.google.com [IPv6:2607:f8b0:4864:20::541])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 651BFC0613D3
+        for <devicetree@vger.kernel.org>; Thu, 10 Dec 2020 19:41:32 -0800 (PST)
+Received: by mail-pg1-x541.google.com with SMTP id w5so5465612pgj.3
+        for <devicetree@vger.kernel.org>; Thu, 10 Dec 2020 19:41:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=K2SeJoQSKQ8JaE2gLaz5pmcE9AjGm2enOTgU+sexwHU=;
+        b=cnZWYh1VYSMjtlBYoNXgo9cUY7YW3CiusVomZxf8HuWphF6v+b7HRXVQreiQLcDnui
+         Fg4uTfVkhvbPYvq72W1xB5RyDWapc0VAWmRhJSl8q3eDn8y8RxQk++ek5gsi7Ld3plM9
+         +RXpz+aANB/yLJr+v6wH595YYc9IfbxwQJe+ndRQHrScKFsJ4fdOa/USwUGSBBe9354v
+         RVWaOCisdp8HaWFm2Btufh+g+B0976Zeiu19Mk+KBY9F2Licjhf1VMROJ69pfPMVLSbv
+         xqf6pzbO0nVmKkbq4u0KbA0Y2hA/CPSDo0A/b/N6A2lqcGk7FpnLI6Og2eiUex9a6Y4y
+         GHsA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=JF6a5cRyN74JfPIki4yBoZHOtyP3dbYKgJjhXEIt/Qc=;
-        b=MKs50hOwJ7EcAL9ItnSdColmd3dlRQxV+nwZTGSGL2Pj9yif5I1y3LNtyKbNy4AE57
-         caifoTESSgMt0FWAgC4HgCCzwtpjGanLydEDUvcU0Ypx5mrBwQY68DebO+641BGiC1VS
-         unPGsA9RAVDmonFUePFm8ITXyGh1UaUY3JFiboqmnJthAZOIgBfLoEYIQZYtym6Atgyk
-         wEeZPFPPB7t2e7NAo+maKRLQ/2UExwMjXcDPyQ+RrpotZ7UpIlwSJqymAAU/N1Ur3CFr
-         OTmyzpI36iJAigy6v2JZw6rAFJvy8TVZmhgAxwbm7JSH2PGBgmMLWB+T/1lQiM0yEbhC
-         u+vA==
-X-Gm-Message-State: AOAM533ne8sl+NvjiIVH6ZbGfAuFMDtlu4ggilX+qsMODhEBxgKFhMO6
-        /znlvF5eJcuq2jKa97dHVw==
-X-Google-Smtp-Source: ABdhPJyGbPgGdT7RVO4BHsUzlDrKOpsEQoXFt7a+VKXfIktLizdH955feW9AS7/DqIpm7zeXrKy01g==
-X-Received: by 2002:aca:ddd6:: with SMTP id u205mr3560158oig.121.1607658077127;
-        Thu, 10 Dec 2020 19:41:17 -0800 (PST)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id 43sm1572383otf.28.2020.12.10.19.41.15
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=K2SeJoQSKQ8JaE2gLaz5pmcE9AjGm2enOTgU+sexwHU=;
+        b=FJZjFw7kozh2FhdzY+3ck+/l4HaugnCLqqnXKFEn0vxhxGWep4Ru1o0YfKWStGIiwF
+         Av6ZBKwOBSrCdHY5FAhtI6ScwzEFRVz3LgBeacZ06vF24d5f3C7gJrHQNEJWEQQ48woC
+         gPhfVg9pTfluMEz2VMD6OVAzqQn3g4u88A5fif1NgCXayI11oXm2fRTxpW5EdznyvhzM
+         ABGk92696o0WnX+nrI6DpZleDVkE6irkJ9A0XQeFSrcyVRNiQZlWnmp/tkip9SzsN1yh
+         6C9cVfv7wuhTqBRuCJmN3iSS00BXcIgVRQ29eKLspP1MQ+v8mUtcUdOkAXFKkWetwEBw
+         1paA==
+X-Gm-Message-State: AOAM533u/qQ730rjPdteOP0EUzCurvOnymKHYiLTa4/Pgk5yOlwBzZl7
+        GOEnv2TtuR10RlyRmTYg+0M=
+X-Google-Smtp-Source: ABdhPJzVZ/mlt+VcUySnIYQR+gj6CrgvYqZruMuTtwONq6ENSd5hDXG7IDxFPidha0KSdYt6dIMeww==
+X-Received: by 2002:a63:30c6:: with SMTP id w189mr9553664pgw.120.1607658091916;
+        Thu, 10 Dec 2020 19:41:31 -0800 (PST)
+Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id l8sm5304709pjt.32.2020.12.10.19.41.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Dec 2020 19:41:16 -0800 (PST)
-Received: (nullmailer pid 3595522 invoked by uid 1000);
-        Fri, 11 Dec 2020 03:41:15 -0000
-Date:   Thu, 10 Dec 2020 21:41:15 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Yongqiang Niu <yongqiang.niu@mediatek.com>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        CK Hu <ck.hu@mediatek.com>, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        David Airlie <airlied@linux.ie>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH v8, 2/6] dt-bindings: mediatek: add description for
- mt8183 display
-Message-ID: <20201211034115.GA3595491@robh.at.kernel.org>
-References: <1607591262-21736-1-git-send-email-yongqiang.niu@mediatek.com>
- <1607591262-21736-3-git-send-email-yongqiang.niu@mediatek.com>
+        Thu, 10 Dec 2020 19:41:31 -0800 (PST)
+From:   Florian Fainelli <f.fainelli@gmail.com>
+To:     bcm-kernel-feedback-list@broadcom.com,
+        =?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <zajec5@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        =?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <rafal@milecki.pl>
+Subject: Re: [PATCH] arm64: dts: broadcom: bcm4908: describe PCIe reset controller
+Date:   Thu, 10 Dec 2020 19:41:24 -0800
+Message-Id: <20201211034124.2389472-1-f.fainelli@gmail.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20201210072154.20278-1-zajec5@gmail.com>
+References: <20201210072154.20278-1-zajec5@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1607591262-21736-3-git-send-email-yongqiang.niu@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 10 Dec 2020 17:07:38 +0800, Yongqiang Niu wrote:
-> add description for mt8183 display
+On Thu, 10 Dec 2020 08:21:54 +0100, Rafał Miłecki <zajec5@gmail.com> wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
 > 
-> Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
+> This reset controller is a single register in the Broadcom's MISC block.
+> 
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 > ---
->  Documentation/devicetree/bindings/display/mediatek/mediatek,disp.txt | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
 
-Acked-by: Rob Herring <robh@kernel.org>
+Applied to devicetree-arm64/next, thanks!
+--
+Florian
