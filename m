@@ -2,54 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 696242D7424
-	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 11:47:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D94422D7458
+	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 11:57:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728740AbgLKKqX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Dec 2020 05:46:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38386 "EHLO
+        id S2394295AbgLKK4b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Dec 2020 05:56:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39864 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2393434AbgLKKqA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Dec 2020 05:46:00 -0500
-Received: from mail-ot1-x343.google.com (mail-ot1-x343.google.com [IPv6:2607:f8b0:4864:20::343])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 235FDC0613CF
-        for <devicetree@vger.kernel.org>; Fri, 11 Dec 2020 02:45:20 -0800 (PST)
-Received: by mail-ot1-x343.google.com with SMTP id q25so7798286otn.10
-        for <devicetree@vger.kernel.org>; Fri, 11 Dec 2020 02:45:20 -0800 (PST)
+        with ESMTP id S1728704AbgLKKzc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Dec 2020 05:55:32 -0500
+Received: from mail-ot1-x342.google.com (mail-ot1-x342.google.com [IPv6:2607:f8b0:4864:20::342])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D60BC0613D3
+        for <devicetree@vger.kernel.org>; Fri, 11 Dec 2020 02:54:52 -0800 (PST)
+Received: by mail-ot1-x342.google.com with SMTP id x13so7834532oto.8
+        for <devicetree@vger.kernel.org>; Fri, 11 Dec 2020 02:54:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=Zzn9gP/kFkbbWh2GyPM1nE0Y7IsWt/XdZ7OjlYP2YdA=;
-        b=gbLKD2TfPw40RbVlKqD/YErkGZnupj1epglN7zBchqjQkU5n8M3QaWLtPfyQQpbfyF
-         Kjp96tTClUFjBadz0P5sTxEPhe9eEpIVAQOui+8YonjdWOOdEywZD6GWPJ9WMZX4AhKP
-         CXPs9dmKf4T3GlYVcjPhga/omjb7xYabs/4yLbFvTzWbZOhN8LD9YPxdmzaktMTcH7p+
-         wij163hATDA7E/s9q/+0wbR8Pl/G8e/8zi9rxRlSBD3TP33g67oTMEYEIWc3mhEIjJxJ
-         AQsMC1JcKyfarQImv2WPqRolniTzPS7b5+UYpHVMpUhF9KdgFUsg6Cdx81obm5Fb2yKo
-         jkJA==
+        bh=OU0JEzTbJ7fkYYLfQtmvu91mo3cWoEjESnUS3uYaRIs=;
+        b=EgRtl9pbFqbhuHAgRai+ek6oXd/U1cm1gdzdRYbjEKxKqowl3/LNnNMlWPcrVaX44I
+         QOWPlKhKltYfUfZDnHepzuN8b9/6Rd0VHOPvHiYhHNS/AqmeWwSXTUCTErIucG6WEjHk
+         IJEO1M5TWJ0w5Zb3t9n/joiyyr/nFdE571dBVndvjbLtzFw8+AQb2EoovmGvfpMkXMOY
+         t16euM3nPoxpIg6yTEMqvhqlXfwLC2Dd4EcpV5As2v9E6rYiNU44LL1SWlf9UQdNPf5a
+         9Y7goEMIESZSjefw+lDf1MX2DkxjnT6zTWB2JghLZxZcenMB/0koms675CGhgO/4+Con
+         DrRg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=Zzn9gP/kFkbbWh2GyPM1nE0Y7IsWt/XdZ7OjlYP2YdA=;
-        b=bFaydkkUcK6YLTBSOlQupEUh0ShqrbqdgBhtgGBogkCSHFGqz5qf4VSxWzewZw94Gd
-         5av25B0xS4mfvqibbTqifunS35MmqMv4ZDTTP3mf5p5oHZNkc8XBci8mJoCOQjAgWywq
-         ycCe95BjShQAAt33STc21Aibx/LkzChaQdB3As6yGbKRCKYuKSyH5B23/rJAanOOxOs3
-         qMibS0Tupf9qzhxTy5kBgzmMwgl2Jidep8SAPEleXx9UroppwTaOt3fuCtYQJtjf/3Im
-         QGv2M6nh+gTLgKyjs1a1yem8/S8qtegv+XLBt6J9577S7Q4uf5/mUeA7UzeBj1iVt49j
-         Eo7Q==
-X-Gm-Message-State: AOAM533ZhniFdpOkKXHE7wpAjQy0shvKdlNCjwmr3JUM6l5gschKUHeK
-        24FLb7EDk8++9dhIk/o85WKyTDdsCP48tvS+VTexKA==
-X-Google-Smtp-Source: ABdhPJzV5ffHzojr5oSNof1k0ky2FDv98xd0Oe1IKqvX7NJ48+EGa9ZVFGOhTVa3Fka22bYuq/wBZTv/U3iehEhWEPA=
-X-Received: by 2002:a9d:1d05:: with SMTP id m5mr9475857otm.324.1607683519396;
- Fri, 11 Dec 2020 02:45:19 -0800 (PST)
+        bh=OU0JEzTbJ7fkYYLfQtmvu91mo3cWoEjESnUS3uYaRIs=;
+        b=LUYeDIuKOuuMCGxZmBRwZttr9gT8X4Yw9js39QC8mqixxV4RBjhT63zemM0BtpbnJG
+         4J/033CcJAO117bNglBS26XewcWUs7rwl5tIwwbpPfOCwboBr4RNdR637ezU3bBdJ217
+         +mm9x1G5HNbSkV3zgSofhIAzj0I8tyozF2VntBAqY8ncGZuEV2oPQOdtliJKuUU3ymtz
+         pbHJkeZMrBvB9F6cUVGn6w+UmvqCwIofFZPaRELR6KLEY1SqOR3TmxUgQ2Hh13odsbah
+         q1HAtiW76P4uHnkxSKUnOWTfS2sgWc9/sZtPiyt898J5OcCJK8m8oX/WcRXgn1bOA6ET
+         VETQ==
+X-Gm-Message-State: AOAM532YFrssvts418Qk5vFeODHyWNDBU/RbsmJuuSDUL+5OsOIEH2RN
+        db5pBzMuJGnlxN3ZBDhpc23hbu6OeZTKwRdHhQswBg==
+X-Google-Smtp-Source: ABdhPJzQaY8rnNZ4EI0oXx7hjDNbJOpNAlmjUkHtW+aJOF6ZkfMKOg+8l2yQDCH+DJClqFYfcNaIBhq4Us14Xbg4xTE=
+X-Received: by 2002:a9d:64da:: with SMTP id n26mr9690886otl.283.1607684091413;
+ Fri, 11 Dec 2020 02:54:51 -0800 (PST)
 MIME-Version: 1.0
-References: <20201204121137.2966778-1-sudeep.holla@arm.com> <20201204121137.2966778-7-sudeep.holla@arm.com>
-In-Reply-To: <20201204121137.2966778-7-sudeep.holla@arm.com>
+References: <20201204121137.2966778-1-sudeep.holla@arm.com> <20201204121137.2966778-8-sudeep.holla@arm.com>
+In-Reply-To: <20201204121137.2966778-8-sudeep.holla@arm.com>
 From:   Jens Wiklander <jens.wiklander@linaro.org>
-Date:   Fri, 11 Dec 2020 11:45:08 +0100
-Message-ID: <CAHUa44EfHeKgktefhH2nEM7E++Zap8Nw7kaSqVmYVoH01Zm1VQ@mail.gmail.com>
-Subject: Re: [PATCH v3 6/7] firmware: arm_ffa: Setup in-kernel users of FFA partitions
+Date:   Fri, 11 Dec 2020 11:54:40 +0100
+Message-ID: <CAHUa44Gkp01SJdW65uGGJDHbW0ZDqYWbyoeEz1LfotjGA0peTA@mail.gmail.com>
+Subject: Re: [PATCH v3 7/7] firmware: arm_ffa: Add support for MEM_* interfaces
 To:     Sudeep Holla <sudeep.holla@arm.com>
 Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
         Devicetree List <devicetree@vger.kernel.org>,
@@ -63,359 +63,406 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sudeep,
-
-Some more comments below.
-
 On Fri, Dec 4, 2020 at 1:11 PM Sudeep Holla <sudeep.holla@arm.com> wrote:
 >
-> Parse the FFA nodes from the device-tree and register all the partitions
-> whose services will be used in the kernel.
->
-> In order to also enable in-kernel users of FFA interface, let us add
-> simple set of operations for such devices.
->
-> The in-kernel users are registered without the character device interface.
+> Most of the MEM_* APIs share the same parameters, so they can be
+> generalised. Currently only MEM_SHARE is implemented and the user space
+> interface for that is not added yet.
 >
 > Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
 > ---
->  drivers/firmware/arm_ffa/common.h |   2 +
->  drivers/firmware/arm_ffa/driver.c | 186 ++++++++++++++++++++++++++++++
->  include/linux/arm_ffa.h           |  36 +++++-
->  3 files changed, 223 insertions(+), 1 deletion(-)
+>  drivers/firmware/arm_ffa/driver.c | 180 ++++++++++++++++++++++++++++++
+>  include/linux/arm_ffa.h           | 149 +++++++++++++++++++++++++
+>  2 files changed, 329 insertions(+)
 >
-> diff --git a/drivers/firmware/arm_ffa/common.h b/drivers/firmware/arm_ffa/common.h
-> index d019348bf67d..eb1371c2b2b8 100644
-> --- a/drivers/firmware/arm_ffa/common.h
-> +++ b/drivers/firmware/arm_ffa/common.h
-> @@ -6,6 +6,7 @@
->  #ifndef _FFA_COMMON_H
->  #define _FFA_COMMON_H
->
-> +#include <linux/arm_ffa.h>
->  #include <linux/arm-smccc.h>
->  #include <linux/err.h>
->
-> @@ -17,6 +18,7 @@ typedef ffa_res_t
->
->  int __init arm_ffa_bus_init(void);
->  void __exit arm_ffa_bus_exit(void);
-> +bool ffa_device_is_valid(struct ffa_device *ffa_dev);
->
->  #ifdef CONFIG_ARM_FFA_SMCCC
->  int __init ffa_transport_init(ffa_fn **invoke_ffa_fn);
 > diff --git a/drivers/firmware/arm_ffa/driver.c b/drivers/firmware/arm_ffa/driver.c
-> index 257b331d781c..3e4ba841dbf8 100644
+> index 3e4ba841dbf8..92a0bf542f18 100644
 > --- a/drivers/firmware/arm_ffa/driver.c
 > +++ b/drivers/firmware/arm_ffa/driver.c
-> @@ -24,9 +24,13 @@
->
->  #include <linux/arm_ffa.h>
->  #include <linux/bitfield.h>
-> +#include <linux/device.h>
+> @@ -28,7 +28,9 @@
 >  #include <linux/io.h>
-> +#include <linux/kernel.h>
+>  #include <linux/kernel.h>
 >  #include <linux/module.h>
-> +#include <linux/of.h>
+> +#include <linux/mm.h>
+>  #include <linux/of.h>
+> +#include <linux/scatterlist.h>
 >  #include <linux/slab.h>
-> +#include <linux/uuid.h>
+>  #include <linux/uuid.h>
 >
->  #include "common.h"
->
-> @@ -179,6 +183,20 @@ static int ffa_version_check(u32 *version)
+> @@ -306,6 +308,177 @@ static int ffa_msg_send_direct_req(u16 src_id, u16 dst_id,
 >         return 0;
 >  }
 >
-> +static int ffa_rx_release(void)
+> +static int ffa_mem_first_frag(u32 func_id, phys_addr_t buf, u32 buf_sz,
+> +                             u32 frag_len, u32 len, u64 *handle)
 > +{
 > +       ffa_res_t ret;
 > +
-> +       ret = invoke_ffa_fn(FFA_RX_RELEASE, 0, 0, 0, 0, 0, 0, 0);
+> +       ret = invoke_ffa_fn(func_id, len, frag_len, buf, buf_sz, 0, 0, 0);
 > +
+> +       while (ret.a0 == FFA_MEM_OP_PAUSE)
+> +               ret = invoke_ffa_fn(FFA_MEM_OP_RESUME, ret.a1, ret.a2,
+> +                                   0, 0, 0, 0, 0);
 > +       if (ret.a0 == FFA_ERROR)
 > +               return ffa_to_linux_errno((int)ret.a2);
 > +
-> +       /* check for ret.a0 == FFA_RX_RELEASE ? */
+> +       if (ret.a0 != FFA_SUCCESS)
+> +               return -EOPNOTSUPP;
 > +
-> +       return 0;
-> +}
-> +
->  static int ffa_rxtx_map(phys_addr_t tx_buf, phys_addr_t rx_buf, u32 pg_cnt)
->  {
->         ffa_res_t ret;
-> @@ -203,6 +221,50 @@ static int ffa_rxtx_unmap(u16 vm_id)
->         return 0;
->  }
->
-> +static int __ffa_partition_info_get(u32 uuid0, u32 uuid1, u32 uuid2, u32 uuid3,
-> +                                   struct ffa_partition_info **buffer)
-> +{
-> +       int count;
-> +       ffa_res_t partition_info;
-> +
-> +       mutex_lock(&drv_info->rx_lock);
-> +       partition_info = invoke_ffa_fn(FFA_PARTITION_INFO_GET, uuid0, uuid1,
-> +                                      uuid2, uuid3, 0, 0, 0);
-> +
-> +       if (partition_info.a0 == FFA_ERROR)
-> +               return ffa_to_linux_errno((int)partition_info.a2);
-> +
-> +       count = partition_info.a2;
-> +
-> +       if (buffer)
-> +               memcpy(*buffer, drv_info->rx_buffer, sizeof(*buffer) * count);
-> +
-> +       ffa_rx_release();
-> +
-> +       mutex_unlock(&drv_info->rx_lock);
-> +
-> +       return count;
-> +}
-> +
-> +static int ffa_partition_probe(const char *uuid_str,
-> +                              struct ffa_partition_info *buffer)
-> +{
-> +       int count;
-> +       uuid_t uuid;
-> +       u32 uuid0_4[4] = { 0 };
-> +
-> +       if (uuid_parse(uuid_str, &uuid)) {
-> +               pr_err("invalid uuid (%s)\n", uuid_str);
-> +               return -ENODEV;
-> +       }
-> +
-> +       export_uuid((u8 *)uuid0_4, &uuid);
-> +       count = __ffa_partition_info_get(uuid0_4[0], uuid0_4[1], uuid0_4[2],
-> +                                        uuid0_4[3], &buffer);
-> +
-> +       return count;
-> +}
-> +
->  #define VM_ID_MASK     GENMASK(15, 0)
->  static int ffa_id_get(u16 *vm_id)
->  {
-> @@ -218,9 +280,125 @@ static int ffa_id_get(u16 *vm_id)
->         return 0;
->  }
->
-> +static int ffa_msg_send_direct_req(u16 src_id, u16 dst_id,
-> +                                  struct ffa_send_direct_data *data)
-> +{
-> +       u32 src_dst_ids = PACK_TARGET_INFO(src_id, dst_id);
-> +       ffa_res_t ret;
-> +
-> +       ret = invoke_ffa_fn(FFA_FN_NATIVE(MSG_SEND_DIRECT_REQ), src_dst_ids, 0,
-> +                           data->data0, data->data1, data->data2,
-> +                           data->data3, data->data4);
-> +
-> +       while (ret.a0 == FFA_INTERRUPT)
-> +               ret = invoke_ffa_fn(FFA_RUN, ret.a1, 0, 0, 0, 0, 0, 0);
-> +       if (ret.a0 == FFA_ERROR)
-> +               return ffa_to_linux_errno((int)ret.a2);
-> +
-> +       if (ret.a0 == FFA_FN_NATIVE(MSG_SEND_DIRECT_RESP)) {
-> +               data->data0 = ret.a3;
-> +               data->data1 = ret.a4;
-> +               data->data2 = ret.a5;
-> +               data->data3 = ret.a6;
-> +               data->data4 = ret.a7;
-> +       }
-> +
-> +       return 0;
-> +}
-> +
-> +static u32 ffa_api_version_get(void)
-> +{
-> +       return drv_info->version;
-> +}
-> +
-> +static u16 ffa_partition_id_get(struct ffa_device *dev)
-> +{
-> +       return dev->vm_id;
-> +}
-> +
-> +static int ffa_partition_info_get(const char *uuid_str,
-> +                                 struct ffa_partition_info *buffer)
-> +{
-> +       if (ffa_partition_probe(uuid_str, buffer) == 1)
-> +               return 0;
-> +
-> +       return -ENOENT;
-> +}
-> +
-> +static int ffa_sync_send_receive(struct ffa_device *dev, u16 ep,
-> +                                struct ffa_send_direct_data *data)
-> +{
-> +       return ffa_msg_send_direct_req(dev->vm_id, ep, data);
-> +}
-> +
-> +static const struct ffa_dev_ops ffa_ops = {
-> +       .api_version_get = ffa_api_version_get,
-> +       .partition_id_get = ffa_partition_id_get,
-> +       .partition_info_get = ffa_partition_info_get,
-> +       .sync_send_receive = ffa_sync_send_receive,
-> +};
-> +
-> +const struct ffa_dev_ops *ffa_dev_ops_get(struct ffa_device *dev)
-> +{
-> +       if (ffa_device_is_valid(dev))
-> +               return &ffa_ops;
-> +
-> +       return NULL;
-> +}
-> +EXPORT_SYMBOL_GPL(ffa_dev_ops_get);
-> +
-> +int ffa_setup_partitions(struct device_node *np)
-This function is only used internally and the return value is ignored.
-Maybe make it static void instead?
+> +       if (handle)
+> +               *handle = PACK_HANDLE(ret.a3, ret.a2);
+ret.a2 are the lower 32bit and ret.a3 the higher 32bits according to
+5.10.2 Memory region handle
 
+> +
+> +       return frag_len;
+> +}
+> +
+> +static int ffa_mem_next_frag(u64 handle, u32 frag_len)
+> +{
+> +       ffa_res_t ret;
+> +
+> +       ret = invoke_ffa_fn(FFA_MEM_FRAG_TX, HANDLE_LOW(handle),
+> +                           HANDLE_HIGH(handle), frag_len, 0, 0, 0, 0);
+> +
+> +       while (ret.a0 == FFA_MEM_OP_PAUSE)
+> +               ret = invoke_ffa_fn(FFA_MEM_OP_RESUME, ret.a1, ret.a2,
+> +                                   0, 0, 0, 0, 0);
+> +       if (ret.a0 == FFA_ERROR)
+> +               return ffa_to_linux_errno((int)ret.a2);
+> +
+> +       if (ret.a0 != FFA_MEM_FRAG_RX)
+> +               return -EOPNOTSUPP;
+> +
+> +       return ret.a3;
+> +}
+> +
+> +static int
+> +ffa_transmit_fragment(u32 func_id, phys_addr_t buf, u32 buf_sz, u32 frag_len,
+> +                     u32 len, u64 *handle, bool first)
+> +{
+> +       if (!first)
+> +               return ffa_mem_next_frag(*handle, frag_len);
+> +
+> +       return ffa_mem_first_frag(func_id, buf, buf_sz, frag_len,
+> +                                     len, handle);
+> +}
+> +
+> +static u32 ffa_get_num_pages_sg(struct scatterlist *sg)
+> +{
+> +       u32 num_pages = 0;
+> +
+> +       do {
+> +               num_pages += sg->length / FFA_PAGE_SIZE;
+> +       } while ((sg = sg_next(sg)));
+> +
+> +       return num_pages;
+> +}
+> +
+> +static int
+> +ffa_setup_and_transmit(u32 func_id, void *buffer, u32 max_fragsize,
+> +                      struct ffa_mem_ops_args *args)
+> +{
+> +       int rc = 0;
+> +       bool first = true;
+> +       phys_addr_t addr = 0;
+> +       struct ffa_composite_mem_region *composite;
+> +       struct ffa_mem_region_addr_range *constituents;
+> +       struct ffa_mem_region_attributes *ep_mem_access;
+> +       struct ffa_mem_region *mem_region = buffer;
+> +       u32 idx, frag_len, length, num_entries = sg_nents(args->sg);
+> +       u32 buf_sz = max_fragsize / FFA_PAGE_SIZE;
+This must be zero following the same logic as for addr, see 11.3 FFA_MEM_SHARE
+
+> +
+> +       mem_region->tag = args->tag;
+> +       mem_region->flags = args->flags;
+> +       mem_region->sender_id = drv_info->vm_id;
+> +       mem_region->attributes = FFA_MEM_NORMAL | FFA_MEM_WRITE_BACK |
+> +                                FFA_MEM_INNER_SHAREABLE;
+> +       ep_mem_access = &mem_region->ep_mem_access[0];
+> +
+> +       for (idx = 0; idx < args->nattrs; idx++, ep_mem_access++) {
+> +               ep_mem_access->receiver = args->attrs[idx].receiver;
+> +               ep_mem_access->attrs = args->attrs[idx].attrs;
+> +               ep_mem_access->composite_off = COMPOSITE_OFFSET(args->nattrs);
+> +       }
+> +       mem_region->ep_count = args->nattrs;
+> +
+> +       composite = buffer + COMPOSITE_OFFSET(args->nattrs);
+> +       composite->total_pg_cnt = ffa_get_num_pages_sg(args->sg);
+> +       composite->addr_range_cnt = num_entries;
+> +
+> +       length = COMPOSITE_CONSTITUENTS_OFFSET(args->nattrs, num_entries);
+> +       frag_len = COMPOSITE_CONSTITUENTS_OFFSET(args->nattrs, 0);
+> +       if (frag_len > max_fragsize)
+> +               return -ENXIO;
+> +
+> +       if (!args->use_txbuf)
+> +               addr = virt_to_phys(buffer);
+> +
+> +       constituents = buffer + frag_len;
+> +       idx = 0;
+> +       do {
+> +               if (frag_len == max_fragsize) {
+> +                       rc = ffa_transmit_fragment(func_id, addr, buf_sz,
+> +                                                  frag_len, length,
+> +                                                  args->g_handle, first);
+> +                       if (rc < 0)
+> +                               return -ENXIO;
+> +
+> +                       first = false;
+> +                       idx = 0;
+> +                       frag_len = 0;
+> +                       constituents = buffer;
+> +               }
+> +
+> +               if ((void *)constituents - buffer > max_fragsize) {
+> +                       pr_err("Memory Region Fragment > Tx Buffer size\n");
+> +                       return -EFAULT;
+> +               }
+> +
+> +               constituents->address = sg_phys(args->sg);
+> +               constituents->pg_cnt = args->sg->length / FFA_PAGE_SIZE;
+> +               constituents++;
+> +               frag_len += sizeof(struct ffa_mem_region_addr_range);
+> +       } while ((args->sg = sg_next(args->sg)));
+> +
+> +       return ffa_transmit_fragment(func_id, addr, buf_sz, frag_len,
+> +                                    length, args->g_handle, first);
+> +}
+> +
+> +static int ffa_memory_ops(u32 func_id, struct ffa_mem_ops_args *args)
 > +{
 > +       int ret;
-> +       struct device_node *child;
-> +       struct ffa_device *ffa_dev;
-> +       struct ffa_partition_info pbuf;
-> +       const char *p_uuid, *pfx = "Ignoring FFA partition";
-> +       uuid_t uuid = UUID_INIT(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+> +       void *buffer;
 > +
-> +       for_each_child_of_node(np, child) {
-of_node_put() should only be called on child in case we're leaving the
-loop early. for_each_child_of_node() takes care of the other case.
-
-> +               if (!of_device_is_compatible(child, "arm,ffa-1.0-partition")) {
-> +                       of_node_put(child);
-> +                       continue;
-> +               }
-> +
-> +               if (of_property_read_string(child, "uuid", &p_uuid)) {
-> +                       pr_err("%s: failed to parse \"uuid\" property\n", pfx);
-> +                       of_node_put(child);
-> +                       continue;
-> +               }
-> +
-> +               of_node_put(child);
-> +
-> +               if (uuid_parse(p_uuid, &uuid)) {
-> +                       pr_err("%s: invalid \"uuid\" property (%s)\n",
-> +                              pfx, p_uuid);
-> +                       continue;
-> +               }
-> +
-> +               ret = ffa_partition_probe(p_uuid, &pbuf);
-> +               if (ret != 1) {
-> +                       pr_err("%s: %s partition info probe failed\n",
-> +                              pfx, p_uuid);
-> +                       return -EINVAL;
-> +               }
-> +
-> +               ffa_dev = ffa_device_register(p_uuid, pbuf.id);
-> +               if (!ffa_dev) {
-> +                       pr_err("%s: failed to register %s\n", pfx, p_uuid);
-> +                       continue;
-> +               }
-> +
-> +               ffa_dev_set_drvdata(ffa_dev, drv_info);
+> +       if (!args->use_txbuf) {
+> +               buffer = alloc_pages_exact(RXTX_BUFFER_SIZE, GFP_KERNEL);
+> +               if (!buffer)
+> +                       return -ENOMEM;
+> +       } else {
+> +               buffer = drv_info->tx_buffer;
+> +               mutex_lock(&drv_info->tx_lock);
 > +       }
+> +
+> +       ret = ffa_setup_and_transmit(func_id, buffer, RXTX_BUFFER_SIZE, args);
+> +
+> +       if (args->use_txbuf)
+> +               mutex_unlock(&drv_info->tx_lock);
+> +       else
+> +               free_pages_exact(buffer, RXTX_BUFFER_SIZE);
+> +
+> +       return ret < 0 ? ret : 0;
+> +}
+> +
+> +static int ffa_memory_reclaim(u64 g_handle, u32 flags)
+> +{
+> +       ffa_res_t ret;
+> +
+> +       ret = invoke_ffa_fn(FFA_MEM_RECLAIM, HANDLE_LOW(g_handle),
+> +                           HANDLE_HIGH(g_handle), flags, 0, 0, 0, 0);
+> +
+> +       if (ret.a0 == FFA_ERROR)
+> +               return ffa_to_linux_errno((int)ret.a2);
 > +
 > +       return 0;
 > +}
 > +
->  static int __init ffa_init(void)
+>  static u32 ffa_api_version_get(void)
 >  {
->         int ret;
-> +       struct device_node *np;
+>         return drv_info->version;
+> @@ -331,11 +504,18 @@ static int ffa_sync_send_receive(struct ffa_device *dev, u16 ep,
+>         return ffa_msg_send_direct_req(dev->vm_id, ep, data);
+>  }
 >
->         ret = arm_ffa_bus_init();
->         if (ret)
-> @@ -267,6 +445,14 @@ static int __init ffa_init(void)
->         mutex_init(&drv_info->rx_lock);
->         mutex_init(&drv_info->tx_lock);
+> +static int ffa_memory_share(struct ffa_mem_ops_args *args)
+> +{
+> +       return ffa_memory_ops(FFA_FN_NATIVE(MEM_SHARE), args);
+> +}
+> +
+>  static const struct ffa_dev_ops ffa_ops = {
+>         .api_version_get = ffa_api_version_get,
+>         .partition_id_get = ffa_partition_id_get,
+>         .partition_info_get = ffa_partition_info_get,
+>         .sync_send_receive = ffa_sync_send_receive,
+> +       .memory_reclaim = ffa_memory_reclaim,
+> +       .memory_share = ffa_memory_share,
+>  };
 >
-> +       /* Set up all the partitions */
-> +       np = of_find_compatible_node(NULL, NULL, "arm,ffa-1.0");
-> +       if (!np)
-> +               return 0;
-> +
-> +       ffa_setup_partitions(np);
-> +       of_node_put(np);
-> +
->         return 0;
->  free_pages:
->         if (drv_info->tx_buffer)
+>  const struct ffa_dev_ops *ffa_dev_ops_get(struct ffa_device *dev)
 > diff --git a/include/linux/arm_ffa.h b/include/linux/arm_ffa.h
-> index 3defddfb40fc..8604c48289ce 100644
+> index 8604c48289ce..67e3180e7097 100644
 > --- a/include/linux/arm_ffa.h
 > +++ b/include/linux/arm_ffa.h
-> @@ -6,7 +6,6 @@
->  #ifndef _LINUX_ARM_FFA_H
->  #define _LINUX_ARM_FFA_H
+> @@ -109,6 +109,153 @@ struct ffa_send_direct_data {
+>         unsigned long data4;
+>  };
 >
-> -#include <linux/cdev.h>
->  #include <linux/device.h>
->  #include <linux/module.h>
->  #include <linux/types.h>
-> @@ -47,6 +46,7 @@ void ffa_device_unregister(struct ffa_device *ffa_dev);
->  int ffa_driver_register(struct ffa_driver *driver, struct module *owner,
->                         const char *mod_name);
->  void ffa_driver_unregister(struct ffa_driver *driver);
-> +const struct ffa_dev_ops *ffa_dev_ops_get(struct ffa_device *dev);
->
->  #else
->  static inline
-> @@ -66,6 +66,10 @@ ffa_driver_register(struct ffa_driver *driver, struct module *owner,
->
->  static inline void ffa_driver_unregister(struct ffa_driver *driver) {}
->
-> +const struct ffa_dev_ops *ffa_dev_ops_get(struct ffa_device *dev)
-> +{
-> +       return NULL;
-> +}
->  #endif /* CONFIG_ARM_FFA_TRANSPORT */
->
->  #define ffa_register(driver) \
-> @@ -84,4 +88,34 @@ static inline void ffa_driver_unregister(struct ffa_driver *driver) {}
->  #define module_ffa_driver(__ffa_driver)        \
->         module_driver(__ffa_driver, ffa_register, ffa_unregister)
->
-> +/* FFA transport related */
-> +struct ffa_partition_info {
-> +       u16 id;
-> +       u16 exec_ctxt;
-> +/* partition supports receipt of direct requests */
-> +#define FFA_PARTITION_DIRECT_RECV      BIT(0)
-> +/* partition can send direct requests. */
-> +#define FFA_PARTITION_DIRECT_SEND      BIT(1)
-> +/* partition can send and receive indirect messages. */
-> +#define FFA_PARTITION_INDIRECT_MSG     BIT(2)
-> +       u32 properties;
+> +struct ffa_mem_region_addr_range {
+> +       /* The base IPA of the constituent memory region, aligned to 4 kiB */
+> +       u64 address;
+> +       /* The number of 4 kiB pages in the constituent memory region. */
+> +       u32 pg_cnt;
+> +       u32 reserved;
 > +};
 > +
-> +struct ffa_send_direct_data {
-> +       unsigned long data0;
-> +       unsigned long data1;
-> +       unsigned long data2;
-> +       unsigned long data3;
-> +       unsigned long data4;
+> +struct ffa_composite_mem_region {
+> +       /*
+> +        * The total number of 4 kiB pages included in this memory region. This
+> +        * must be equal to the sum of page counts specified in each
+> +        * `struct ffa_mem_region_addr_range`.
+> +        */
+> +       u32 total_pg_cnt;
+> +       /* The number of constituents included in this memory region range */
+> +       u32 addr_range_cnt;
+> +       u64 reserved;
+> +       /** An array of `addr_range_cnt` memory region constituents. */
+> +       struct ffa_mem_region_addr_range constituents[];
 > +};
-A comment describing which register index these maps to would be helpful.
+> +
+> +struct ffa_mem_region_attributes {
+> +       /* The ID of the VM to which the memory is being given or shared. */
+> +       u16 receiver;
+> +       /*
+> +        * The permissions with which the memory region should be mapped in the
+> +        * receiver's page table.
+> +        */
+> +#define FFA_MEM_EXEC   BIT(3)
+> +#define FFA_MEM_NO_EXEC        BIT(2)
+> +#define FFA_MEM_RW             BIT(1)
+> +#define FFA_MEM_RO             BIT(0)
+> +       u8 attrs;
+> +       /*
+> +        * Flags used during FFA_MEM_RETRIEVE_REQ and FFA_MEM_RETRIEVE_RESP
+> +        * for memory regions with multiple borrowers.
+> +        */
+> +#define FFA_MEM_RETRIEVE_SELF_BORROWER BIT(0)
+> +       u8 flag;
+> +       u32 composite_off;
+> +       /*
+> +        * Offset in bytes from the start of the outer `ffa_memory_region` to
+> +        * an `struct ffa_mem_region_addr_range`.
+> +        */
+> +       u64 reserved;
+> +};
+> +
+> +struct ffa_mem_region {
+> +       /* The ID of the VM/owner which originally sent the memory region */
+> +       u16 sender_id;
+> +#define FFA_MEM_NORMAL         BIT(5)
+> +#define FFA_MEM_DEVICE         BIT(4)
+> +
+> +#define FFA_MEM_WRITE_BACK     (3 << 2)
+> +#define FFA_MEM_NON_CACHEABLE  (1 << 2)
+> +
+> +#define FFA_DEV_nGnRnE         (0 << 2)
+> +#define FFA_DEV_nGnRE          (1 << 2)
+> +#define FFA_DEV_nGRE           (2 << 2)
+> +#define FFA_DEV_GRE            (3 << 2)
+> +
+> +#define FFA_MEM_NON_SHAREABLE  (0)
+> +#define FFA_MEM_OUTER_SHAREABLE        (2)
+> +#define FFA_MEM_INNER_SHAREABLE        (3)
+> +       u8 attributes;
+> +       u8 reserved_0;
+> +/*
+> + * Clear memory region contents after unmapping it from the sender and
+> + * before mapping it for any receiver.
+> + */
+> +#define FFA_MEM_CLEAR                  BIT(0)
+> +/*
+> + * Whether the hypervisor may time slice the memory sharing or retrieval
+> + * operation.
+> + */
+> +#define FFA_TIME_SLICE_ENABLE          BIT(1)
+> +
+> +/*
+> + * Whether the hypervisor should clear the memory region before the receiver
+> + * relinquishes it or is aborted.
+> + */
+> +#define FFA_MEM_CLEAR_BEFORE_RELINQUISH        BIT(0)
+> +/*
+> + * Whether the hypervisor should clear the memory region after the receiver
+> + * relinquishes it or is aborted.
+> + */
+> +#define FFA_MEM_CLEAR_AFTER_RELINQUISH BIT(2)
+> +
+> +#define FFA_MEM_RETRIEVE_TYPE_IN_RESP  (0 << 3)
+> +#define FFA_MEM_RETRIEVE_TYPE_SHARE    (1 << 3)
+> +#define FFA_MEM_RETRIEVE_TYPE_LEND     (2 << 3)
+> +#define FFA_MEM_RETRIEVE_TYPE_DONATE   (3 << 3)
+> +
+> +#define FFA_MEM_RETRIEVE_ADDR_ALIGN_HINT       BIT(9)
+> +#define FFA_MEM_RETRIEVE_ADDR_ALIGN(x)         ((x) << 5)
+> +       /* Flags to control behaviour of the transaction. */
+> +       u32 flags;
+> +#define HANDLE_LOW_MASK                GENMASK_ULL(31, 0)
+> +#define HANDLE_HIGH_MASK       GENMASK_ULL(63, 32)
+> +#define HANDLE_LOW(x)          (u32)(FIELD_GET(HANDLE_LOW_MASK, (x)))
+> +#define        HANDLE_HIGH(x)          (u32)(FIELD_GET(HANDLE_HIGH_MASK, (x)))
+> +
+> +#define PACK_HANDLE(l, h)              \
+> +       (FIELD_PREP(HANDLE_LOW_MASK, (l)) | FIELD_PREP(HANDLE_HIGH_MASK, (h)))
+> +       /*
+> +        * A globally-unique ID assigned by the hypervisor for a region
+> +        * of memory being sent between VMs.
+> +        */
+> +       u64 handle;
+> +       /*
+> +        * An implementation defined value associated with the receiver and the
+> +        * memory region.
+> +        */
+> +       u64 tag;
+> +       u32 reserved_1;
+> +       /*
+> +        * The number of `ffa_mem_region_attributes` entries included in this
+> +        * transaction.
+> +        */
+> +       u32 ep_count;
+> +       /*
+> +        * An array of endpoint memory access descriptors.
+> +        * Each one specifies a memory region offset, an endpoint and the
+> +        * attributes with which this memory region should be mapped in that
+> +        * endpoint's page table.
+> +        */
+> +       struct ffa_mem_region_attributes ep_mem_access[];
+> +};
+> +
+> +#define        COMPOSITE_OFFSET(x)     \
+> +       (offsetof(struct ffa_mem_region, ep_mem_access[x]))
+> +#define CONSTITUENTS_OFFSET(x) \
+> +       (offsetof(struct ffa_composite_mem_region, constituents[x]))
+> +#define COMPOSITE_CONSTITUENTS_OFFSET(x, y)    \
+> +       (COMPOSITE_OFFSET(x) + CONSTITUENTS_OFFSET(y))
+> +
+> +struct ffa_mem_ops_args {
+> +       bool use_txbuf;
+> +       u64 tag;
+> +       u32 flags;
+> +       struct ffa_mem_region_attributes *attrs;
+> +       u32 nattrs;
+> +       struct scatterlist *sg;
+> +       u64 *g_handle;
+It seems a bit inconvenient with a pointer instead of a value here.
 
-> +
-> +struct ffa_dev_ops {
-> +       u32 (*api_version_get)(void);
-> +       u16 (*partition_id_get)(struct ffa_device *dev);
-> +       int (*partition_info_get)(const char *uuid_str,
-> +                                 struct ffa_partition_info *buffer);
-> +       int (*sync_send_receive)(struct ffa_device *dev, u16 ep,
-> +                                struct ffa_send_direct_data *data);
-ep can be read directly from dev->vm_id
-We may need a way to indicate if we're to use the 32bit or 64bit
-calling convention. OP-TEE depends on being able to use 32bit calls
-here.
 
 Cheers,
 Jens
 
 > +};
 > +
+>  struct ffa_dev_ops {
+>         u32 (*api_version_get)(void);
+>         u16 (*partition_id_get)(struct ffa_device *dev);
+> @@ -116,6 +263,8 @@ struct ffa_dev_ops {
+>                                   struct ffa_partition_info *buffer);
+>         int (*sync_send_receive)(struct ffa_device *dev, u16 ep,
+>                                  struct ffa_send_direct_data *data);
+> +       int (*memory_reclaim)(u64 g_handle, u32 flags);
+> +       int (*memory_share)(struct ffa_mem_ops_args *args);
+>  };
+>
 >  #endif /* _LINUX_ARM_FFA_H */
 > --
 > 2.25.1
