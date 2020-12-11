@@ -2,69 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EA6052D75CD
-	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 13:42:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B25562D75EC
+	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 13:46:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2392131AbgLKMlJ convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 11 Dec 2020 07:41:09 -0500
-Received: from mail-ot1-f68.google.com ([209.85.210.68]:39516 "EHLO
-        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2391766AbgLKMkS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Dec 2020 07:40:18 -0500
-Received: by mail-ot1-f68.google.com with SMTP id d8so8057776otq.6;
-        Fri, 11 Dec 2020 04:40:03 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=sZC6YVFP85PKnOZHFsWuvPlPvuphh5kfYfzNbUUSwEo=;
-        b=IlOZP0I9IIH9qo5hbDWlSgCNJvYwStEkXbl/DdYmGAv5BcDKPwpwdnfKrDwILH6qRK
-         tXzrfTlAxh1oVkS+JUt7ytCtm70mtmmr9fiSza+Y/Cx6bOdqEdkP8Islr95CBAao4Tay
-         q6+d0qiV5S8Mi/yxXNp70Ag/Auc1Va2InL7hAaYYU16kjRKo8Ofdf6Q9vZ7C42lOEPyR
-         h6mS6loksAabb1h3jzY1XaduHqcKAyQtDoTWMu3DzaOXz7+0ZnfFT/dn+ChNN+HiHnNp
-         NPZGCZeWJGCpZI3EMdKURT4K7Wlco+WDZPlRrtOI1dwClvx2fxQ/4SXGMaYONblsyRPh
-         fLEA==
-X-Gm-Message-State: AOAM533BRNTLaWGG6ZeVZMOG7bJP7MXzj002bnjNgepJXFsDWdd83oVT
-        DB2XAa42WeDqWJzQPUaIpcpJ4o6bO+4Ucko+5T6P3YaL
-X-Google-Smtp-Source: ABdhPJzUrcoHo9bCn4961JD8r9MHPv4laWc/KugzBvuO6Acj62MAqMF5VmQF0+nNxtYnFXK+9W2NRoPZVqIUHmPkQlQ=
-X-Received: by 2002:a9d:2203:: with SMTP id o3mr9673259ota.107.1607690377886;
- Fri, 11 Dec 2020 04:39:37 -0800 (PST)
+        id S2392095AbgLKMpZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Dec 2020 07:45:25 -0500
+Received: from szxga04-in.huawei.com ([45.249.212.190]:9195 "EHLO
+        szxga04-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2436543AbgLKMpA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Dec 2020 07:45:00 -0500
+Received: from DGGEMS404-HUB.china.huawei.com (unknown [172.30.72.58])
+        by szxga04-in.huawei.com (SkyGuard) with ESMTP id 4Csr6C488Dzkk54;
+        Fri, 11 Dec 2020 20:42:43 +0800 (CST)
+Received: from thunder-town.china.huawei.com (10.174.177.9) by
+ DGGEMS404-HUB.china.huawei.com (10.3.19.204) with Microsoft SMTP Server id
+ 14.3.487.0; Fri, 11 Dec 2020 20:43:17 +0800
+From:   Zhen Lei <thunder.leizhen@huawei.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Wolfram Sang <wsa@kernel.org>,
+        linux-i2c <linux-i2c@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+CC:     Zhen Lei <thunder.leizhen@huawei.com>
+Subject: [PATCH 1/1] dt-bindings: i2c: dw: don't set "#address-cells" and "#size-cells" as required
+Date:   Fri, 11 Dec 2020 20:39:38 +0800
+Message-ID: <20201211123938.2020-1-thunder.leizhen@huawei.com>
+X-Mailer: git-send-email 2.26.0.windows.1
 MIME-Version: 1.0
-References: <20201210152705.1535156-1-niklas.soderlund+renesas@ragnatech.se> <20201210152705.1535156-2-niklas.soderlund+renesas@ragnatech.se>
-In-Reply-To: <20201210152705.1535156-2-niklas.soderlund+renesas@ragnatech.se>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 11 Dec 2020 13:39:26 +0100
-Message-ID: <CAMuHMdXbzdJ-SqWUnTaqBfELgTObtvX+XDrdVi2-TfipfqUE+g@mail.gmail.com>
-Subject: Re: [PATCH v2 1/6] arm64: dts: renesas: r8a77951: Add TMU nodes
-To:     =?UTF-8?Q?Niklas_S=C3=B6derlund?= 
-        <niklas.soderlund+renesas@ragnatech.se>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [10.174.177.9]
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 10, 2020 at 4:27 PM Niklas Söderlund
-<niklas.soderlund+renesas@ragnatech.se> wrote:
-> Add device nodes for the Timer Unit (TMU) on the Renesas R-Car H3
-> (r8a77951) SoC.
->
-> Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+"#address-cells" and "#size-cells" is required only when the I2C
+controller has subnodes. Of the four examples given in this document, only
+the third has a child node "eeprom@64".
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v5.12.
+Ohterwise, false positives similar to the following are reported:
+/root/linux-next/arch/arm64/boot/dts/hisilicon/hi6220-hikey.dt.yaml: \
+i2c@f7100000: '#address-cells' is a required property
+/root/linux-next/arch/arm64/boot/dts/hisilicon/hi6220-hikey.dt.yaml: \
+i2c@f7100000: '#size-cells' is a required property
 
-Gr{oetje,eeting}s,
+In fact, the predecessor of this document: i2c-designware.txt, does not
+list "#address-cells" and "#size-cells" as "Required properties" also.
 
-                        Geert
+Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
+---
+ Documentation/devicetree/bindings/i2c/snps,designware-i2c.yaml | 8 --------
+ 1 file changed, 8 deletions(-)
 
+diff --git a/Documentation/devicetree/bindings/i2c/snps,designware-i2c.yaml b/Documentation/devicetree/bindings/i2c/snps,designware-i2c.yaml
+index 4f746bef23742e9..c22b66b6219eaa3 100644
+--- a/Documentation/devicetree/bindings/i2c/snps,designware-i2c.yaml
++++ b/Documentation/devicetree/bindings/i2c/snps,designware-i2c.yaml
+@@ -101,8 +101,6 @@ unevaluatedProperties: false
+ required:
+   - compatible
+   - reg
+-  - "#address-cells"
+-  - "#size-cells"
+   - interrupts
+ 
+ examples:
+@@ -110,8 +108,6 @@ examples:
+     i2c@f0000 {
+       compatible = "snps,designware-i2c";
+       reg = <0xf0000 0x1000>;
+-      #address-cells = <1>;
+-      #size-cells = <0>;
+       interrupts = <11>;
+       clock-frequency = <400000>;
+     };
+@@ -119,8 +115,6 @@ examples:
+     i2c@1120000 {
+       compatible = "snps,designware-i2c";
+       reg = <0x1120000 0x1000>;
+-      #address-cells = <1>;
+-      #size-cells = <0>;
+       interrupts = <12 1>;
+       clock-frequency = <400000>;
+       i2c-sda-hold-time-ns = <300>;
+@@ -148,8 +142,6 @@ examples:
+       reg = <0x100400 0x100>, <0x198 0x8>;
+       pinctrl-0 = <&i2c_pins>;
+       pinctrl-names = "default";
+-      #address-cells = <1>;
+-      #size-cells = <0>;
+       interrupts = <8>;
+       clocks = <&ahb_clk>;
+     };
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+1.8.3
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+
