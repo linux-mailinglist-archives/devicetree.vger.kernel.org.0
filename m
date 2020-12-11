@@ -2,82 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D2A342D71A2
-	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 09:25:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C2F52D71B8
+	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 09:27:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2436847AbgLKIYK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Dec 2020 03:24:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44724 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2436850AbgLKIXz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Dec 2020 03:23:55 -0500
-Received: from mail-pj1-x1044.google.com (mail-pj1-x1044.google.com [IPv6:2607:f8b0:4864:20::1044])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 227CBC0617B0;
-        Fri, 11 Dec 2020 00:22:34 -0800 (PST)
-Received: by mail-pj1-x1044.google.com with SMTP id z12so1832639pjn.1;
-        Fri, 11 Dec 2020 00:22:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=XcEcSr5to6HvuNXKcfIecpj69ar1vtmfturacBpcHIQ=;
-        b=lufsuZX6rG1AE4MtLo652LHCiVXgZaZfH00Ei6n7KHyDwrlzSufHN8EDaszRMANdfe
-         Id6jkC5Y6VAb3F5e5WKzfXaC0DsdbmbmrNxbY2II42T55isrVwD8Gv2M1C1jHmGr78WE
-         PqvSMk2jr766ajEafF9FySWOAuPG65i+/onGW8h1q1PqW51Qga8UQWG4AYgJX9ryL8Gu
-         0SaO3BRwAOelP2ZWeNCLydU7j+gOjM234jUU7+5kSdBCZw7aWrWwJkcNbHNgf8CQyxpR
-         3Reytt0GXXeGD337rHmRtnn4sL3aKmFEdcUlExaL60V+AkCIwxTVhtTZwAnR7qbxZe1A
-         /Gmg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=XcEcSr5to6HvuNXKcfIecpj69ar1vtmfturacBpcHIQ=;
-        b=QOw09tWS4jaNhOKAzMTiKL4NUol3b2aI+GGBhhUcSt7LTJkrOK7fF9z0R+WTMDkbVW
-         tjPGB524xA3lEZs8T2MA6pSAxyMp8Ev8KoyTqrxel8gnPx+oRqGy1DOrffKyUMbja8Up
-         wN2A5Xb30YJsUeeTerTmeRxaPe5UCz9Dj2LEHcmAOd/YkwRWXzsyLDrx5If3iKwCDJlX
-         O4FSgbBcl4MyR2QtBAosrFuoiBm6Sw9Q1c6fHQFg0aNgFqk7p4H0ax77RUqQj5pgw0hm
-         qJqrbckmz4ujjpTXBDUH5GqzuqBsO068w0W3Zv0yJo2/hAZP/soUTHVzotFfTdMC34Yf
-         hHBg==
-X-Gm-Message-State: AOAM533of7xdOoVFkFgbJDxtftPGcEZSWRzUitrEExTvbpwkenC3kin+
-        5RQtT+Oj8tY2ZI4s8b/PdJDLOrCSO7o=
-X-Google-Smtp-Source: ABdhPJyZt6bpYaVg/TXsjnbwtU3bbU35k1LS0TVb+MLh8YLNn7keJeFBAo0g/I/TXzsyVLfsYUVqAA==
-X-Received: by 2002:a17:90a:bf05:: with SMTP id c5mr11967824pjs.95.1607674953735;
-        Fri, 11 Dec 2020 00:22:33 -0800 (PST)
-Received: from google.com ([2620:15c:202:201:a6ae:11ff:fe11:fcc3])
-        by smtp.gmail.com with ESMTPSA id a23sm9170960pju.31.2020.12.11.00.22.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Dec 2020 00:22:32 -0800 (PST)
-Date:   Fri, 11 Dec 2020 00:22:30 -0800
-From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To:     Roy Im <roy.im.opensource@diasemi.com>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Support Opensource <support.opensource@diasemi.com>,
-        devicetree@vger.kernel.org, linux-input@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [RESEND PATCH V20 2/3] dt-bindings: input: Add document bindings
- for DA7280
-Message-ID: <X9MsRoE4esfVMTDY@google.com>
-References: <cover.1606320459.git.Roy.Im@diasemi.com>
- <2bc9a4a9d083ea8f360ec75f6281b6de6c4ef284.1606320459.git.Roy.Im@diasemi.com>
+        id S2436881AbgLKI0F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Dec 2020 03:26:05 -0500
+Received: from mga04.intel.com ([192.55.52.120]:54519 "EHLO mga04.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2436929AbgLKIZ6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 11 Dec 2020 03:25:58 -0500
+IronPort-SDR: rbU1ZWPFqYRhr37SQGrjNbUN7AF7eEuW7VIpz2m/N5LlL4bfJnBRae18KiPfkV7qaQwC1AmIHi
+ cP1XPyDc5Vew==
+X-IronPort-AV: E=McAfee;i="6000,8403,9831"; a="171833704"
+X-IronPort-AV: E=Sophos;i="5.78,410,1599548400"; 
+   d="scan'208";a="171833704"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Dec 2020 00:24:07 -0800
+IronPort-SDR: XE+342oezvdlXiIo8E8dCGWsWJ1fCNaKga7uCy3EJY4PeJI3X9Gpc/DFDQ9OVeTUQfrBw06wNX
+ Z8usK1NLLTcg==
+X-IronPort-AV: E=Sophos;i="5.78,410,1599548400"; 
+   d="scan'208";a="365306384"
+Received: from mkrastex-mobl.ger.corp.intel.com (HELO mkrastexMOBL) ([10.104.80.6])
+  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Dec 2020 00:24:03 -0800
+From:   "Martina Krasteva" <martinax.krasteva@linux.intel.com>
+To:     "'Rob Herring'" <robh@kernel.org>
+Cc:     <robh+dt@kernel.org>, <mchehab@kernel.org>,
+        <linux-media@vger.kernel.org>,
+        <daniele.alessandrelli@linux.intel.com>,
+        <gjorgjix.rosikopulos@linux.intel.com>,
+        <devicetree@vger.kernel.org>, <sakari.ailus@linux.intel.com>,
+        <paul.j.murphy@linux.intel.com>
+References: <20201207160109.490-1-martinax.krasteva@linux.intel.com> <20201207160109.490-2-martinax.krasteva@linux.intel.com> <20201210035143.GA1627250@robh.at.kernel.org>
+In-Reply-To: <20201210035143.GA1627250@robh.at.kernel.org>
+Subject: RE: [PATCH v3 1/2] dt-bindings: media: Add bindings for imx334
+Date:   Fri, 11 Dec 2020 08:23:59 -0000
+Message-ID: <010e01d6cf96$fdeb7940$f9c26bc0$@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <2bc9a4a9d083ea8f360ec75f6281b6de6c4ef284.1606320459.git.Roy.Im@diasemi.com>
+Content-Type: text/plain;
+        charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQGsqVwHu/71coFvg7c0oMYy8kQsOgFDl0OsAW5z5eWqMEqxUA==
+Content-Language: en-us
+dlp-product: dlpe-windows
+dlp-version: 11.5.1.3
+dlp-reaction: no-action
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 26, 2020 at 01:07:39AM +0900, Roy Im wrote:
-> Add device tree binding information for DA7280 haptic driver.
-> Example bindings for DA7280 are added.
-> 
-> Reviewed-by: Rob Herring <robh@kernel.org>.
-> 
-> Signed-off-by: Roy Im <roy.im.opensource@diasemi.com>
-> 
+Thank you, Rob
 
-Applied, thank you.
+> -----Original Message-----
+> From: Rob Herring <robh@kernel.org>
+> Sent: Thursday, December 10, 2020 3:52 AM
+> To: Martina Krasteva <martinax.krasteva@linux.intel.com>
+> Cc: robh+dt@kernel.org; mchehab@kernel.org; linux-media@vger.kernel.org;
+> daniele.alessandrelli@linux.intel.com;
+gjorgjix.rosikopulos@linux.intel.com;
+> devicetree@vger.kernel.org; sakari.ailus@linux.intel.com;
+> paul.j.murphy@linux.intel.com
+> Subject: Re: [PATCH v3 1/2] dt-bindings: media: Add bindings for imx334
+> 
+> On Mon, 07 Dec 2020 16:01:07 +0000, Martina Krasteva wrote:
+> > From: Martina Krasteva <martinax.krasteva@intel.com>
+> >
+> > - Add dt-bindings documentation for Sony imx334 sensor driver.
+> > - Add MAINTAINERS entry for Sony imx334 binding documentation.
+> >
+> > Signed-off-by: Martina Krasteva <martinax.krasteva@intel.com>
+> > Reviewed-by: Gjorgji Rosikopulos <gjorgjix.rosikopulos@intel.com>
+> > Acked-by: Daniele Alessandrelli <daniele.alessandrelli@intel.com>
+> > Acked-by: Paul J. Murphy <paul.j.murphy@intel.com>
+> > ---
+> >  .../devicetree/bindings/media/i2c/sony,imx334.yaml | 62
+> ++++++++++++++++++++++
+> >  MAINTAINERS                                        |  8 +++
+> >  2 files changed, 70 insertions(+)
+> >  create mode 100644
+> Documentation/devicetree/bindings/media/i2c/sony,imx334.yaml
+> >
+> 
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
--- 
-Dmitry
+Best Regards,
+Martina
+
