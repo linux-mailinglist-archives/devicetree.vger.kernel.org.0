@@ -2,78 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F6002D6ED2
-	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 04:43:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A8D2E2D6ED7
+	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 04:47:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2405295AbgLKDmc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Dec 2020 22:42:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58184 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2405289AbgLKDmM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 22:42:12 -0500
-Received: from mail-pg1-x541.google.com (mail-pg1-x541.google.com [IPv6:2607:f8b0:4864:20::541])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 651BFC0613D3
-        for <devicetree@vger.kernel.org>; Thu, 10 Dec 2020 19:41:32 -0800 (PST)
-Received: by mail-pg1-x541.google.com with SMTP id w5so5465612pgj.3
-        for <devicetree@vger.kernel.org>; Thu, 10 Dec 2020 19:41:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=K2SeJoQSKQ8JaE2gLaz5pmcE9AjGm2enOTgU+sexwHU=;
-        b=cnZWYh1VYSMjtlBYoNXgo9cUY7YW3CiusVomZxf8HuWphF6v+b7HRXVQreiQLcDnui
-         Fg4uTfVkhvbPYvq72W1xB5RyDWapc0VAWmRhJSl8q3eDn8y8RxQk++ek5gsi7Ld3plM9
-         +RXpz+aANB/yLJr+v6wH595YYc9IfbxwQJe+ndRQHrScKFsJ4fdOa/USwUGSBBe9354v
-         RVWaOCisdp8HaWFm2Btufh+g+B0976Zeiu19Mk+KBY9F2Licjhf1VMROJ69pfPMVLSbv
-         xqf6pzbO0nVmKkbq4u0KbA0Y2hA/CPSDo0A/b/N6A2lqcGk7FpnLI6Og2eiUex9a6Y4y
-         GHsA==
+        id S2395191AbgLKDqQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Dec 2020 22:46:16 -0500
+Received: from mail-oo1-f67.google.com ([209.85.161.67]:44719 "EHLO
+        mail-oo1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2390347AbgLKDqC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 22:46:02 -0500
+Received: by mail-oo1-f67.google.com with SMTP id n20so1823087ooq.11;
+        Thu, 10 Dec 2020 19:45:46 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=K2SeJoQSKQ8JaE2gLaz5pmcE9AjGm2enOTgU+sexwHU=;
-        b=FJZjFw7kozh2FhdzY+3ck+/l4HaugnCLqqnXKFEn0vxhxGWep4Ru1o0YfKWStGIiwF
-         Av6ZBKwOBSrCdHY5FAhtI6ScwzEFRVz3LgBeacZ06vF24d5f3C7gJrHQNEJWEQQ48woC
-         gPhfVg9pTfluMEz2VMD6OVAzqQn3g4u88A5fif1NgCXayI11oXm2fRTxpW5EdznyvhzM
-         ABGk92696o0WnX+nrI6DpZleDVkE6irkJ9A0XQeFSrcyVRNiQZlWnmp/tkip9SzsN1yh
-         6C9cVfv7wuhTqBRuCJmN3iSS00BXcIgVRQ29eKLspP1MQ+v8mUtcUdOkAXFKkWetwEBw
-         1paA==
-X-Gm-Message-State: AOAM533u/qQ730rjPdteOP0EUzCurvOnymKHYiLTa4/Pgk5yOlwBzZl7
-        GOEnv2TtuR10RlyRmTYg+0M=
-X-Google-Smtp-Source: ABdhPJzVZ/mlt+VcUySnIYQR+gj6CrgvYqZruMuTtwONq6ENSd5hDXG7IDxFPidha0KSdYt6dIMeww==
-X-Received: by 2002:a63:30c6:: with SMTP id w189mr9553664pgw.120.1607658091916;
-        Thu, 10 Dec 2020 19:41:31 -0800 (PST)
-Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id l8sm5304709pjt.32.2020.12.10.19.41.28
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=UiGfYqcd3SIOWPESdDXiPXkRmItmUwrRrvjwRsZsNew=;
+        b=nNa5aCV+uMjqkgJsdp1+qlcauGi98VRi1FAKRHxQqXRypivxeqI+tUjEy83RqItlMN
+         9lISbWAsLLBTpnJJj5/f14xGee7VI6jrsdM3z6ZvCL1qSJg6bhnyg0wAds+MGjpyESt0
+         zQ7PWCXbjMIiFdzD70/HFkj3OKH6OhQOzpt5l6WH+Zr1dRZvCgZdRcm0e6eKGQ5A/94I
+         zwfa3LMCMpQHHQNFG9ZXnsdHGgm/STyyjej/FFwtb5hbnQl1AlvL3qKcbahrr62buOro
+         dwRqdPl0QPT/I89fvJmq//ftTskN60Lbq73lFaEJPd4tdMxhTGCPixrBKyF/BV5ye25c
+         ZfMQ==
+X-Gm-Message-State: AOAM530fdmwH/5nZy1FKEm1ZCz3EQGC7856NXP/ANO6m5xtUTpqmpLiV
+        vKlZhLRrJ9qogwiY3iBvtQ==
+X-Google-Smtp-Source: ABdhPJyHT5ivvuA3SblzSQql+tmjj3ba0cwmrrDluItDwViRUrTLaIxum8iXelZMmOXx+9wdG0085g==
+X-Received: by 2002:a4a:3e42:: with SMTP id t63mr8464406oot.32.1607658320972;
+        Thu, 10 Dec 2020 19:45:20 -0800 (PST)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id 8sm1597094oii.45.2020.12.10.19.45.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Dec 2020 19:41:31 -0800 (PST)
-From:   Florian Fainelli <f.fainelli@gmail.com>
-To:     bcm-kernel-feedback-list@broadcom.com,
-        =?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <zajec5@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        =?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <rafal@milecki.pl>
-Subject: Re: [PATCH] arm64: dts: broadcom: bcm4908: describe PCIe reset controller
-Date:   Thu, 10 Dec 2020 19:41:24 -0800
-Message-Id: <20201211034124.2389472-1-f.fainelli@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20201210072154.20278-1-zajec5@gmail.com>
-References: <20201210072154.20278-1-zajec5@gmail.com>
+        Thu, 10 Dec 2020 19:45:20 -0800 (PST)
+Received: (nullmailer pid 3600883 invoked by uid 1000);
+        Fri, 11 Dec 2020 03:45:19 -0000
+Date:   Thu, 10 Dec 2020 21:45:19 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Amireddy Mallikarjuna reddy <mallikarjunax.reddy@linux.intel.com>
+Cc:     cheol.yong.kim@intel.com, dmurphy@ti.com,
+        malliamireddy009@gmail.com, linux-kernel@vger.kernel.org,
+        linux-leds@vger.kernel.org, pavel@ucw.cz, qi-ming.wu@intel.com,
+        yixin.zhu@intel.com, robh+dt@kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: leds: Add bindings for Intel LGM SoC
+Message-ID: <20201211034519.GA3600828@robh.at.kernel.org>
+References: <49ebc8e27958cb77cde36e5f95ad530803259907.1607591119.git.mallikarjunax.reddy@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <49ebc8e27958cb77cde36e5f95ad530803259907.1607591119.git.mallikarjunax.reddy@linux.intel.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 10 Dec 2020 08:21:54 +0100, Rafał Miłecki <zajec5@gmail.com> wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
+On Thu, 10 Dec 2020 17:12:11 +0800, Amireddy Mallikarjuna reddy wrote:
+> Add DT bindings YAML schema for SSO controller driver
+> of Lightning Mountain (LGM) SoC.
 > 
-> This reset controller is a single register in the Broadcom's MISC block.
-> 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> Signed-off-by: Amireddy Mallikarjuna reddy <mallikarjunax.reddy@linux.intel.com>
 > ---
+> v1:
+> - Initial version.
+> 
+> v2:
+> - Fix bot errors (wrong indentation).
+> - Spell out LGM and SSO.
+> - Remove vendor specific name for LED properites.
+> - removed deprecating property "label"
+> - Include 'reg', 'function' & 'color' properties.
+> 
+> v3:
+> - Included full names(maintainers).
+> - changed compatible SoC specific.
+> - Remove redundant properties.
+> - Updated vendor prefix and unit suffix to properties.
+> ---
+>  .../devicetree/bindings/leds/leds-lgm.yaml    | 113 ++++++++++++++++++
+>  1 file changed, 113 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/leds/leds-lgm.yaml
+> 
 
-Applied to devicetree-arm64/next, thanks!
---
-Florian
+Reviewed-by: Rob Herring <robh@kernel.org>
