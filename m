@@ -2,150 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C1062D7549
-	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 13:08:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 41E612D7556
+	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 13:12:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389667AbgLKMG7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Dec 2020 07:06:59 -0500
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:57538 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729717AbgLKMGc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Dec 2020 07:06:32 -0500
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0BBC4sEE031693;
-        Fri, 11 Dec 2020 06:04:54 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1607688294;
-        bh=Tu59/3Cv9BBH4Oz+YHX6+4aqIBoWj0gUR86vdaBThG0=;
-        h=Subject:CC:References:From:Date:In-Reply-To;
-        b=pQQTe8/9P79ImNwSWY8bwsYjm4sipUW8iJ/sWpK5M9ADk0fdkkfPoRQz69+iHWVTG
-         GJsd9jvzJptbSuNCxAN/Yw3d6VFu1O4tlnvalFbJYuDipLXQJnyZyvVqSBGhE0TnfX
-         tZ5BWAAI/9tkxtWF8rU6f5dlL3Q1j2o/RdiG/3vw=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0BBC4sle110761
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 11 Dec 2020 06:04:54 -0600
-Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Fri, 11
- Dec 2020 06:00:44 -0600
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Fri, 11 Dec 2020 06:00:44 -0600
-Received: from [10.250.232.169] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0BBC0fj9060784;
-        Fri, 11 Dec 2020 06:00:41 -0600
-Subject: Re: [PATCH v4] dt-bindings: usb: Add new compatible string for AM64
- SoC
-CC:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Sekhar Nori <nsekhar@ti.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Roger Quadros <rogerq@ti.com>, <linux-usb@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20201211060429.20027-1-a-govindraju@ti.com>
-From:   Aswath Govindraju <a-govindraju@ti.com>
-Message-ID: <062c861a-b35e-06cd-2bda-a2d3f5034290@ti.com>
-Date:   Fri, 11 Dec 2020 17:30:40 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S2391376AbgLKMJj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Dec 2020 07:09:39 -0500
+Received: from mail.kernel.org ([198.145.29.99]:51180 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2389342AbgLKMJF (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 11 Dec 2020 07:09:05 -0500
+Date:   Fri, 11 Dec 2020 13:09:35 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1607688503;
+        bh=41rS8U52qZEUqZ7Xg2L67KOIODeUL5vsHKWqEJrq3PY=;
+        h=From:To:Cc:Subject:References:In-Reply-To:From;
+        b=aHNI8D5uOwfHjKS+cWBLwZ0CjZq9PhyzDYeD/RKhSB8O2yaSz6s7CWRprq6HDrIpW
+         Y/LGtZrskpkFmtyZmHNjERogoKuUR0fTZvICbxeWa297qH/ZHEZW32TNbugsC76gTP
+         IEoWW4J62N7D8fqqEANDZScrAj6PO1FhFTvaLvyU=
+From:   'Greg Kroah-Hartman' <gregkh@linuxfoundation.org>
+To:     =?iso-8859-1?Q?J=F3zsef_Horv=E1th?= <info@ministro.hu>
+Cc:     'Rob Herring' <robh+dt@kernel.org>,
+        'Jiri Slaby' <jirislaby@kernel.org>,
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] Serial: silabs si4455 serial driver
+Message-ID: <X9NhfyEuPTxezHt9@kroah.com>
+References: <X9Jw+srprdT8tquZ@kroah.com>
+ <20201210194625.GA17516@dincontrollerdev>
+ <X9MIwqJBG69M5uHq@kroah.com>
+ <20201211060943.GA1065@dincontrollerdev>
+ <X9MPuX1x4MezwkEj@kroah.com>
+ <20201211063752.GB1065@dincontrollerdev>
+ <X9MgvZ7bWX7HMNir@kroah.com>
+ <20201211081634.GC1065@dincontrollerdev>
+ <X9MxM+aEKIAHqd4G@kroah.com>
+ <20201211091823.GD1065@dincontrollerdev>
 MIME-Version: 1.0
-In-Reply-To: <20201211060429.20027-1-a-govindraju@ti.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-To:     unlisted-recipients:; (no To-header on input)
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20201211091823.GD1065@dincontrollerdev>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-On 11/12/20 11:34 am, Aswath Govindraju wrote:
-> Add compatible string in j721e-usb binding file as the same USB subsystem
-> is present in AM64.
+On Fri, Dec 11, 2020 at 09:18:24AM +0000, József Horváth wrote:
+> On Fri, Dec 11, 2020 at 09:43:31AM +0100, 'Greg Kroah-Hartman' wrote:
+> > On Fri, Dec 11, 2020 at 08:16:34AM +0000, József Horváth wrote:
+> > > On Fri, Dec 11, 2020 at 08:33:17AM +0100, 'Greg Kroah-Hartman' wrote:
+> > > > On Fri, Dec 11, 2020 at 06:37:52AM +0000, József Horváth wrote:
+> > > > > On Fri, Dec 11, 2020 at 07:20:41AM +0100, 'Greg Kroah-Hartman' wrote:
+> > > > > > On Fri, Dec 11, 2020 at 06:09:43AM +0000, József Horváth wrote:
+> > > > > > > On Fri, Dec 11, 2020 at 06:50:58AM +0100, 'Greg Kroah-Hartman' wrote:
+> > > > > > > > On Thu, Dec 10, 2020 at 07:46:25PM +0000, József Horváth wrote:
+> > > > > > > > > On Thu, Dec 10, 2020 at 08:03:22PM +0100, 'Greg Kroah-Hartman' wrote:
+> > > > > > > > > > On Thu, Dec 10, 2020 at 05:04:46PM +0000, József Horváth wrote:
+> > > > > > > > > > > This is a serial port driver for
+> > > > > > > > > > > Silicon Labs Si4455 Sub-GHz transciver.
+> > > > > > > > > > > +
+> > > > > > > > > > > +#define BASE_TTYIOC_PRIVATE		0xA0
+> > > > > > > > > > > +/* Set EZConfig.
+> > > > > > > > > > > + * After this ioctl call, the driver restarts the si4455,
+> > > > > > > > > > > + * then apply the new configuration and patch.
+> > > > > > > > > > > + */
+> > > > > > > > > > > +#define SI4455_IOC_SEZC		_IOW('T', \
+> > > > > > > > > > > +				     BASE_TTYIOC_PRIVATE + 0x01, \
+> > > > > > > > > > > +				     struct si4455_iocbuff)
+> > > > > > > > > > 
+> > > > > > > > > > Why does a serial driver have private ioctls?  Please no, don't do that.
+> > > > > > > > > 
+> > > > > > > > > I checked the ioctl.h and serial_core.h, but I not found any similar definition, like BASE_VIDIOC_PRIVATE in videodev2.h.
+> > > > > > > > > In this case the name of macro BASE_TTYIOC_PRIVATE means the base value of special ioctl commands owned by this driver.
+> > > > > > > > 
+> > > > > > > > My point is, a serial driver should NOT have any custom ioctls.
+> > > > > > > > 
+> > > > > > > > > I can change it to BASE_TTYIOC or SI4455_IOC_BASE
+> > > > > > > > > 
+> > > > > > > > > > Implement the basic serial driver first, and then we can talk about
+> > > > > > > > > > "custom" configurations and the like, using the correct apis.
+> > > > > > > > > 
+> > > > > > > > > Without the SI4455_IOC_SEZC call, the driver can't configure the Si4455 and not working at all.
+> > > > > > > > > The cofiguration for interface is provided by user for application.
+> > > > > > > > 
+> > > > > > > > That is what a device tree is for, to configure the device to have the
+> > > > > > > > correct system configuration, why can't that be the same here?
+> > > > > > > > 
+> > > > > > > > > It contains the base frequency, channel spacing, modulation, and a lot
+> > > > > > > > > of more stuff, and generated by Silicon Labs Wireless Development
+> > > > > > > > > Suite.
+> > > > > > > > > The generated configuration is in a non public(compressed,
+> > > > > > > > > encrypted...who knows) format, so without this the driver can't
+> > > > > > > > > provide configuration parameters to Si4455.
+> > > > > > > > 
+> > > > > > > > So we have to take a "custom" userspace blob and send it to the device
+> > > > > > > > to configure it properly?  Like Jiri said, sounds like firmware, so just
+> > > > > > > > use that interface instead.
+> > > > > > > 
+> > > > > > > I checked Jiri's suggestion, and it is a good solution to replace SI4455_IOC_SEZC(configuration) and SI4455_IOC_SEZP(firmware patch).
+> > > > > > > I can move SI4455_IOC_SSIZ(package size) to device tree property.
+> > > > > > > 
+> > > > > > > Maybe you have good suggestion for the following:
+> > > > > > > SI4455_IOC_STXC -> Radio transmit channel index. It is a real use case to control this parameter by user at runtime.
+> > > > > > > SI4455_IOC_SRXC -> Radio receive channel index. It is a real use case to control this parameter by user at runtime.
+> > > > > > 
+> > > > > > These are not serial port things, why would a serial port care about
+> > > > > > these?
+> > > > > 
+> > > > > You are right, these are not regular serial port things, but this device is not a regular uart, it is a sub-GHz transciever, digital radio.
+> > > > > This driver tries to represent it as a serial port to user.
+> > > > 
+> > > > Is that the correct representation to be using here?  Why not act like a
+> > > > proper radio device instead?  That way you get to use the normal kernel
+> > > > apis for radio devices.
+> > > 
+> > > In my mind it is absolute a serial device by the application.
+> > 
+> > What is the application?  Traditionally serial ports don't need radio signals :)
 > 
-> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
-> ---
+> The application is connecting newly developed sensors(with only rf interface) and legacy sensors(with regular serial communication over rs-485 with modbus) keeping the legacy user software.
 > 
-> Changes since v3:
-> - used enum instead of anyOf.
-> 
-> Changes since v2:
-> - added changes done over the versions.
-> 
-> Changes since v1:
-> - replaced the '\t' at the beginning of the lines with spaces as it was
->   causing the dt_binding_check to fail.
-> 
->  Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml | 5 +++--
->  1 file changed, 3 insertions(+), 2 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml b/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml
-> index 388245b91a55..1a5c7bbb40d1 100644
-> --- a/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml
-> +++ b/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml
-> @@ -11,8 +11,9 @@ maintainers:
->  
->  properties:
->    compatible:
-> -    items:
-> -      - const: ti,j721e-usb
-> +    enum:
-> +      - ti,j721e-usb
-> +      - ti,am64-usb
-> 
+> User sw [Java]
+> 	<-> /dev/ttyXXX
+> 		<-> si4455[driver]
+> 			<-> si4455[hardware]
+> 				<---air---> new device[si4455+ARM Cortex-M0] 1
+> 					+-> new device[si4455+ARM Cortex-M0] 2
+> 					+-> new device[si4455+ARM Cortex-M0] n
+> 					+-> gateway[si4455+ARM Cortex-M0]<---RS485--> Legacy device 1
+> 										  +-> Legacy device 2
+> 										  +-> Legacy device n
 
-I am trying to use the compatible strings in the following manner
+If these are "sensors", why are you using a tty interface at all, and
+not just using the correct iio interface for them?
 
-```
-compatible = "ti,am64-usb", "ti,j721e-usb";
+thanks,
 
-```
-If I use above patch I am getting an error while doing a dtbs check.
-
-```
-/home/gsaswath/src/ti-linux-kernel/arch/arm64/boot/dts/ti/k3-am642-evm.dt.yaml:
-cdns-usb@f900000: compatible: Additional items are not allowed
-('ti,j721e-usb' was unexpected)
-	From schema:
-/home/gsaswath/src/ti-linux-kernel/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml
-/home/gsaswath/src/ti-linux-kernel/arch/arm64/boot/dts/ti/k3-am642-evm.dt.yaml:
-cdns-usb@f900000: compatible: ['ti,am64-usb', 'ti,j721e-usb'] is too long
-	From schema:
-/home/gsaswath/src/ti-linux-kernel/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml
-
-```
-
-
-I have looked around for examples but I am unable to find a similar
-case. I tried using anyOf in the following manner
-
-```
-compatible:
-     anyOf:
-        - const: ti,am64-usb
-        - const: ti,j721e-usb
-```
-
-But I am getting an error
-
-```
-/home/gsaswath/src/ti-linux-kernel/Documentation/devicetree/bindings/usb/ti,j721e-usb.example.dt.yaml:
-cdns_usb@4104000: compatible: 'anyOf' conditional failed, one must be fixed:
-	Additional items are not allowed ('ti,j721e-usb' was unexpected)
-	['ti,am64-usb', 'ti,j721e-usb'] is too long
-	'ti,j721e-usb' was expected
-```
-
-Doesn't anyof mean that the compatible strings can be used in any
-combination ??
-
-Thanks,
-Aswath
-
->    reg:
->      description: module registers
-> 
-
+greg k-h
