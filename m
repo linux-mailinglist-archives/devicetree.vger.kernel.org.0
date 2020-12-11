@@ -2,630 +2,233 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F9582D784E
-	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 15:58:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F28A2D78E3
+	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 16:15:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727430AbgLKO4m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Dec 2020 09:56:42 -0500
-Received: from mail.thorsis.com ([92.198.35.195]:45946 "EHLO mail.thorsis.com"
+        id S2437680AbgLKPOt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Dec 2020 10:14:49 -0500
+Received: from mail.kernel.org ([198.145.29.99]:39902 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2391980AbgLKO4d (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 11 Dec 2020 09:56:33 -0500
-Received: from localhost (localhost [127.0.0.1])
-        by mail.thorsis.com (Postfix) with ESMTP id 86956E56;
-        Fri, 11 Dec 2020 15:55:43 +0100 (CET)
-X-Virus-Scanned: Debian amavisd-new at mail.thorsis.com
-Received: from mail.thorsis.com ([127.0.0.1])
-        by localhost (mail.thorsis.com [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id 5d_HMPwfcWae; Fri, 11 Dec 2020 15:55:43 +0100 (CET)
-Received: by mail.thorsis.com (Postfix, from userid 109)
-        id DF1CD2A42; Fri, 11 Dec 2020 15:55:41 +0100 (CET)
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NO_RECEIVED,
-        NO_RELAYS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
-        version=3.4.2
-From:   Alexander Dahl <ada@thorsis.com>
-To:     Teresa Remmet <t.remmet@phytec.de>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
+        id S2406588AbgLKPO2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 11 Dec 2020 10:14:28 -0500
+X-Gm-Message-State: AOAM530CqjNllkzk5YOXiN55aHrnHtjJUkWAkA0O2LQOSfQeWqJ0TC0n
+        9CWHEceHNd1gwIZshrhMpsfGzAYHg5dDxOXq5g==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1607697390;
+        bh=/ZwrZKNlbkblr+ccvxgXpxqqSyaiIIGYtfKF+9mtR0o=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=IiPap5ieh+Vlasayumi0ogQOJya3r1K9GHAyQh8oZnWDIcULjWIhFL7ZaU1upfVbe
+         xTMb1UEmC/Ex1lufBhZfLbvXooQAugmRRyzWVTFl3fJkrTDsYNqB8axZd/AeWal8jh
+         efrc0sEnkHX8V/be3blWm9M0LUSSnYKH/xCzqih8gWqMzDmc+xglCCJjWiAhl3Zsfh
+         giS/lNG0dkujEm6L5MnY5ExHzfljb8XNVrh8+V8SYuMq4Bgo6MJk9uYxvxX1uQf8AM
+         j+9On77QdRok6Z/uAyf1dtWYg2C0urcbtLGIkr4jy/IWDbwByS14qRB0PcsUJ+T10C
+         4RK7/k13Fnusg==
+X-Google-Smtp-Source: ABdhPJyKuTpTCwdxuO84i7E4GBzfPJMWgvofZFgGdvCP9mVCWpdVKYRH24qvd+VGeNPDuTw+bGIIUWWNJDkRiAOg6KA=
+X-Received: by 2002:a5d:6443:: with SMTP id d3mr13991510wrw.422.1607697385198;
+ Fri, 11 Dec 2020 06:36:25 -0800 (PST)
+MIME-Version: 1.0
+References: <1607591262-21736-1-git-send-email-yongqiang.niu@mediatek.com> <1607591262-21736-4-git-send-email-yongqiang.niu@mediatek.com>
+In-Reply-To: <1607591262-21736-4-git-send-email-yongqiang.niu@mediatek.com>
+From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Date:   Fri, 11 Dec 2020 22:36:14 +0800
+X-Gmail-Original-Message-ID: <CAAOTY_-XScjYX9xPvCQJLY2YKP19Ft2hxi5s6a2A0XCawiR6WQ@mail.gmail.com>
+Message-ID: <CAAOTY_-XScjYX9xPvCQJLY2YKP19Ft2hxi5s6a2A0XCawiR6WQ@mail.gmail.com>
+Subject: Re: [PATCH v8, 3/6] soc: mediatek: mmsys: add mt8183 function call
+ for setting the routing registers
+To:     Yongqiang Niu <yongqiang.niu@mediatek.com>
+Cc:     CK Hu <ck.hu@mediatek.com>, Philipp Zabel <p.zabel@pengutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        linux-leds@vger.kernel.org
-Subject: Re: [PATCH v3 4/4] arm64: dts: freescale: Add support for phyBOARD-Pollux-i.MX8MP
-Date:   Fri, 11 Dec 2020 15:55:33 +0100
-Message-ID: <6908071.W7BzXqEGyb@ada>
-Organization: Thorsis Technologies GmbH
-In-Reply-To: <1607694535-417799-5-git-send-email-t.remmet@phytec.de>
-References: <1607694535-417799-1-git-send-email-t.remmet@phytec.de> <1607694535-417799-5-git-send-email-t.remmet@phytec.de>
-Content-Transfer-Encoding: quoted-printable
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        DTML <devicetree@vger.kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        DRI Development <dri-devel@lists.freedesktop.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Teresa,
+Hi, Yongqiang:
 
-I'm sorry if I was too brief in my review last time, see below.
+Yongqiang Niu <yongqiang.niu@mediatek.com> =E6=96=BC 2020=E5=B9=B412=E6=9C=
+=8810=E6=97=A5 =E9=80=B1=E5=9B=9B =E4=B8=8B=E5=8D=885:08=E5=AF=AB=E9=81=93=
+=EF=BC=9A
+>
+> add mt8183 function call for setting the routing registers
 
-Am Freitag, 11. Dezember 2020, 14:48:55 CET schrieb Teresa Remmet:
-> Add initial support for phyBOARD-Pollux-i.MX8MP.
-> Supported basic features:
-> 	* eMMC
-> 	* i2c EEPROM
-> 	* i2c RTC
-> 	* i2c LED
-> 	* PMIC
-> 	* debug UART
-> 	* SD card
-> 	* 1Gbit Ethernet (fec)
-> 	* watchdog
->=20
-> Signed-off-by: Teresa Remmet <t.remmet@phytec.de>
-> Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+I think you should move this patch to the series "soc: mediatek:
+Prepare MMSYS for DDP routing using function call" [1]. Without this
+patch, that series has no strong reason to separate function call and
+create mmsys folder. And this patch would go to soc tree same as that
+series, so I think this patch should be moved to that series.
+
+[1] https://patchwork.kernel.org/project/linux-mediatek/list/?series=3D3988=
+19
+
+Regards,
+Chun-Kuang.
+
+>
+> Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
 > ---
->  arch/arm64/boot/dts/freescale/Makefile             |   1 +
->  .../dts/freescale/imx8mp-phyboard-pollux-rdk.dts   | 163 ++++++++++++
->  .../boot/dts/freescale/imx8mp-phycore-som.dtsi     | 296
-> +++++++++++++++++++++ 3 files changed, 460 insertions(+)
->  create mode 100644
-> arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dts create mode
-> 100644 arch/arm64/boot/dts/freescale/imx8mp-phycore-som.dtsi
->=20
-> diff --git a/arch/arm64/boot/dts/freescale/Makefile
-> b/arch/arm64/boot/dts/freescale/Makefile index acfb8af45912..a43b496678be
-> 100644
-> --- a/arch/arm64/boot/dts/freescale/Makefile
-> +++ b/arch/arm64/boot/dts/freescale/Makefile
-> @@ -37,6 +37,7 @@ dtb-$(CONFIG_ARCH_MXC) +=3D imx8mn-evk.dtb
->  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mn-ddr4-evk.dtb
->  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mn-var-som-symphony.dtb
->  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-evk.dtb
-> +dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-phyboard-pollux-rdk.dtb
->  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mq-evk.dtb
->  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mq-hummingboard-pulse.dtb
->  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mq-librem5-devkit.dtb
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dts
-> b/arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dts new file
-> mode 100644
-> index 000000000000..e92868c10526
+>  drivers/soc/mediatek/mmsys/Makefile       |  1 +
+>  drivers/soc/mediatek/mmsys/mt8183-mmsys.c | 90 +++++++++++++++++++++++++=
+++++++
+>  drivers/soc/mediatek/mmsys/mtk-mmsys.c    |  1 +
+>  include/linux/soc/mediatek/mtk-mmsys.h    |  1 +
+>  4 files changed, 93 insertions(+)
+>  create mode 100644 drivers/soc/mediatek/mmsys/mt8183-mmsys.c
+>
+> diff --git a/drivers/soc/mediatek/mmsys/Makefile b/drivers/soc/mediatek/m=
+msys/Makefile
+> index ac03025..25eeb9e5 100644
+> --- a/drivers/soc/mediatek/mmsys/Makefile
+> +++ b/drivers/soc/mediatek/mmsys/Makefile
+> @@ -1,3 +1,4 @@
+>  # SPDX-License-Identifier: GPL-2.0-only
+>  obj-$(CONFIG_MTK_MMSYS) +=3D mt2701-mmsys.o
+> +obj-$(CONFIG_MTK_MMSYS) +=3D mt8183-mmsys.o
+>  obj-$(CONFIG_MTK_MMSYS) +=3D mtk-mmsys.o
+> diff --git a/drivers/soc/mediatek/mmsys/mt8183-mmsys.c b/drivers/soc/medi=
+atek/mmsys/mt8183-mmsys.c
+> new file mode 100644
+> index 0000000..192b4ab
 > --- /dev/null
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dts
-> @@ -0,0 +1,163 @@
+> +++ b/drivers/soc/mediatek/mmsys/mt8183-mmsys.c
+> @@ -0,0 +1,90 @@
 > +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (C) 2020 PHYTEC Messtechnik GmbH
-> + * Author: Teresa Remmet <t.remmet@phytec.de>
-> + */
+> +//
+> +// Copyright (c) 2020 MediaTek Inc.
 > +
-> +/dts-v1/;
+> +#include <linux/device.h>
+> +#include <linux/io.h>
+> +#include <linux/of_device.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/soc/mediatek/mtk-mmsys.h>
 > +
-> +#include <dt-bindings/leds/leds-pca9532.h>
-> +#include <dt-bindings/pwm/pwm.h>
-> +#include "imx8mp-phycore-som.dtsi"
+> +#define DISP_OVL0_MOUT_EN              0xf00
+> +#define DISP_OVL0_2L_MOUT_EN           0xf04
+> +#define DISP_OVL1_2L_MOUT_EN           0xf08
+> +#define DISP_DITHER0_MOUT_EN           0xf0c
+> +#define DISP_PATH0_SEL_IN              0xf24
+> +#define DISP_DSI0_SEL_IN               0xf2c
+> +#define DISP_DPI0_SEL_IN               0xf30
+> +#define DISP_RDMA0_SOUT_SEL_IN         0xf50
+> +#define DISP_RDMA1_SOUT_SEL_IN         0xf54
 > +
-> +/ {
-> +	model =3D "PHYTEC phyBOARD-Pollux i.MX8MP";
-> +	compatible =3D "phytec,imx8mp-phyboard-pollux-rdk",
-> +		     "phytec,imx8mp-phycore-som", "fsl,imx8mp";
+> +#define OVL0_MOUT_EN_OVL0_2L                   BIT(4)
+> +#define OVL0_2L_MOUT_EN_DISP_PATH0             BIT(0)
+> +#define OVL1_2L_MOUT_EN_RDMA1                  BIT(4)
+> +#define DITHER0_MOUT_IN_DSI0                   BIT(0)
+> +#define DISP_PATH0_SEL_IN_OVL0_2L              0x1
+> +#define DSI0_SEL_IN_RDMA0                      0x1
+> +#define DSI0_SEL_IN_RDMA1                      0x3
+> +#define DPI0_SEL_IN_RDMA0                      0x1
+> +#define DPI0_SEL_IN_RDMA1                      0x2
+> +#define RDMA0_SOUT_COLOR0                      0x1
+> +#define RDMA1_SOUT_DSI0                                0x1
 > +
-> +	chosen {
-> +		stdout-path =3D &uart2;
-> +	};
+> +static unsigned int mtk_mmsys_ddp_mout_en(enum mtk_ddp_comp_id cur,
+> +                                         enum mtk_ddp_comp_id next,
+> +                                         unsigned int *addr)
+> +{
+> +       unsigned int value;
 > +
-> +	reg_usdhc2_vmmc: regulator-usdhc2 {
-> +		compatible =3D "regulator-fixed";
-> +		pinctrl-names =3D "default";
-> +		pinctrl-0 =3D <&pinctrl_reg_usdhc2_vmmc>;
-> +		regulator-name =3D "VSD_3V3";
-> +		regulator-min-microvolt =3D <3300000>;
-> +		regulator-max-microvolt =3D <3300000>;
-> +		gpio =3D <&gpio2 19 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +		startup-delay-us =3D <100>;
-> +		off-on-delay-us =3D <12000>;
-> +	};
+> +       if (cur =3D=3D DDP_COMPONENT_OVL0 && next =3D=3D DDP_COMPONENT_OV=
+L_2L0) {
+> +               *addr =3D DISP_OVL0_MOUT_EN;
+> +               value =3D OVL0_MOUT_EN_OVL0_2L;
+> +       } else if (cur =3D=3D DDP_COMPONENT_OVL_2L0 && next =3D=3D DDP_CO=
+MPONENT_RDMA0) {
+> +               *addr =3D DISP_OVL0_2L_MOUT_EN;
+> +               value =3D OVL0_2L_MOUT_EN_DISP_PATH0;
+> +       } else if (cur =3D=3D DDP_COMPONENT_OVL_2L1 && next =3D=3D DDP_CO=
+MPONENT_RDMA1) {
+> +               *addr =3D DISP_OVL1_2L_MOUT_EN;
+> +               value =3D OVL1_2L_MOUT_EN_RDMA1;
+> +       } else if (cur =3D=3D DDP_COMPONENT_DITHER && next =3D=3D DDP_COM=
+PONENT_DSI0) {
+> +               *addr =3D DISP_DITHER0_MOUT_EN;
+> +               value =3D DITHER0_MOUT_IN_DSI0;
+> +       } else {
+> +               value =3D 0;
+> +       }
+> +
+> +       return value;
+> +}
+> +
+> +static unsigned int mtk_mmsys_ddp_sel_in(enum mtk_ddp_comp_id cur,
+> +                                        enum mtk_ddp_comp_id next,
+> +                                        unsigned int *addr)
+> +{
+> +       unsigned int value;
+> +
+> +       if (cur =3D=3D DDP_COMPONENT_OVL_2L0 && next =3D=3D DDP_COMPONENT=
+_RDMA0) {
+> +               *addr =3D DISP_PATH0_SEL_IN;
+> +               value =3D DISP_PATH0_SEL_IN_OVL0_2L;
+> +       } else if (cur =3D=3D DDP_COMPONENT_RDMA1 && next =3D=3D DDP_COMP=
+ONENT_DPI0) {
+> +               *addr =3D DISP_DPI0_SEL_IN;
+> +               value =3D DPI0_SEL_IN_RDMA1;
+> +       } else {
+> +               value =3D 0;
+> +       }
+> +
+> +       return value;
+> +}
+> +
+> +static void mtk_mmsys_ddp_sout_sel(void __iomem *config_regs,
+> +                                  enum mtk_ddp_comp_id cur,
+> +                                  enum mtk_ddp_comp_id next)
+> +{
+> +       if (cur =3D=3D DDP_COMPONENT_RDMA0 && next =3D=3D DDP_COMPONENT_C=
+OLOR0) {
+> +               writel_relaxed(RDMA0_SOUT_COLOR0, config_regs + DISP_RDMA=
+0_SOUT_SEL_IN);
+> +       }
+> +}
+> +
+> +struct mtk_mmsys_conn_funcs mt8183_mmsys_funcs =3D {
+> +       .mout_en =3D mtk_mmsys_ddp_mout_en,
+> +       .sel_in =3D mtk_mmsys_ddp_sel_in,
+> +       .sout_sel =3D mtk_mmsys_ddp_sout_sel,
 > +};
-> +
-> +&i2c2 {
-> +	clock-frequency =3D <400000>;
-> +	pinctrl-names =3D "default";
-> +	pinctrl-0 =3D <&pinctrl_i2c2>;
-> +	pinctrl-1 =3D <&pinctrl_i2c2_gpio>;
-> +	sda-gpios =3D <&gpio5 17 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-> +	scl-gpios =3D <&gpio5 16 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-> +	status =3D "okay";
-> +
-> +	eeprom@51 {
-> +		compatible =3D "atmel,24c02";
-> +		reg =3D <0x51>;
-> +		pagesize =3D <16>;
-> +		status =3D "okay";
-> +	};
-> +
-> +	leds@62 {
-> +		compatible =3D "nxp,pca9533";
-> +		reg =3D <0x62>;
-> +		status =3D "okay";
-> +
-> +		led1 {
-> +			type =3D <PCA9532_TYPE_LED>;
-> +		};
-> +
-> +		led2 {
-> +			type =3D <PCA9532_TYPE_LED>;
-> +		};
-> +
-> +		led3 {
-> +			type =3D <PCA9532_TYPE_LED>;
-> +		};
-> +	};
-
-You just removed the "label" property. Now the label is generated=20
-automatically (which is the preferred way), but you did neither add the=20
-property "color" nor "function", so the label will be constructed from the=
-=20
-node name only.
-
-Well I just saw the binding for that LED controller is not converted to yam=
-l=20
-yet =E2=80=A6 Documentation/devicetree/bindings/leds/leds-pca9532.txt
-
-Anyways, the modern approach would look like somehow like this:
-
-                led-0 {
-                        function =3D LED_FUNCTION_ALARM;
-                        color =3D <LED_COLOR_ID_RED>;
-                };
-
-                led-1 {
-                        function =3D LED_FUNCTION_STATUS;
-                        color =3D <LED_COLOR_ID_GREEN>;
-                };
-
-                led-2 {
-                        function =3D LED_FUNCTION_INDICATOR;
-                        color =3D <LED_COLOR_ID_RED>;
-                        function-enumerator =3D <1>;
-                };
-
-                led-3 {
-                        function =3D LED_FUNCTION_INDICATOR;
-                        color =3D <LED_COLOR_ID_RED>;
-                        function-enumerator =3D <2>;
-                };
-
-Hope that helps, for more see Documentation/devicetree/bindings/leds and=20
-especially the bindings already converted to yaml. The available macros are=
- in=20
-include/dt-bindings/leds/common.h=20
-
-Maybe just add the colors for now, if you're not sure what the function sho=
-uld=20
-be. As far as I could see the driver for that LED controller does not yet=20
-support multicolor, but I added linux-leds to Cc, maybe someone over there=
-=20
-knows more?
-
-Sorry to nag about this, but I think it's better to not introduce new dts=20
-files with deprecated properties. If that kind of feedback is not desired,=
-=20
-please let me know.
-
-Greets
-Alex
-
-> +};
-> +
-> +&snvs_pwrkey {
-> +	status =3D "okay";
-> +};
-> +
-> +/* debug console */
-> +&uart2 {
-> +	pinctrl-names =3D "default";
-> +	pinctrl-0 =3D <&pinctrl_uart2>;
-> +	status =3D "okay";
-> +};
-> +
-> +/* SD-Card */
-> +&usdhc2 {
-> +	pinctrl-names =3D "default", "state_100mhz", "state_200mhz";
-> +	pinctrl-0 =3D <&pinctrl_usdhc2>, <&pinctrl_usdhc2_pins>;
-> +	pinctrl-1 =3D <&pinctrl_usdhc2_100mhz>, <&pinctrl_usdhc2_pins>;
-> +	pinctrl-2 =3D <&pinctrl_usdhc2_200mhz>, <&pinctrl_usdhc2_pins>;
-> +	cd-gpios =3D <&gpio2 12 GPIO_ACTIVE_LOW>;
-> +	vmmc-supply =3D <&reg_usdhc2_vmmc>;
-> +	bus-width =3D <4>;
-> +	status =3D "okay";
-> +};
-> +
-> +&iomuxc {
-> +	pinctrl_i2c2: i2c2grp {
-> +		fsl,pins =3D <
-> +			MX8MP_IOMUXC_I2C2_SCL__I2C2_SCL		0x400001c3
-> +			MX8MP_IOMUXC_I2C2_SDA__I2C2_SDA		0x400001c3
-> +		>;
-> +	};
-> +
-> +	pinctrl_i2c2_gpio: i2c2gpiogrp {
-> +		fsl,pins =3D <
-> +			MX8MP_IOMUXC_I2C2_SCL__GPIO5_IO16	0x1e3
-> +			MX8MP_IOMUXC_I2C2_SDA__GPIO5_IO17	0x1e3
-> +		>;
-> +	};
-> +
-> +	pinctrl_reg_usdhc2_vmmc: regusdhc2vmmcgrp {
-> +		fsl,pins =3D <
-> +			MX8MP_IOMUXC_SD2_RESET_B__GPIO2_IO19	0x41
-> +		>;
-> +	};
-> +
-> +	pinctrl_uart2: uart2grp {
-> +		fsl,pins =3D <
-> +			MX8MP_IOMUXC_UART2_RXD__UART2_DCE_RX	0x49
-> +			MX8MP_IOMUXC_UART2_TXD__UART2_DCE_TX	0x49
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc2_pins: usdhc2-gpiogrp {
-> +		fsl,pins =3D <
-> +			MX8MP_IOMUXC_SD2_CD_B__GPIO2_IO12	0x1c4
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc2: usdhc2grp {
-> +		fsl,pins =3D <
-> +			MX8MP_IOMUXC_SD2_CLK__USDHC2_CLK	0x190
-> +			MX8MP_IOMUXC_SD2_CMD__USDHC2_CMD	0x1d0
-> +			MX8MP_IOMUXC_SD2_DATA0__USDHC2_DATA0	0x1d0
-> +			MX8MP_IOMUXC_SD2_DATA1__USDHC2_DATA1	0x1d0
-> +			MX8MP_IOMUXC_SD2_DATA2__USDHC2_DATA2	0x1d0
-> +			MX8MP_IOMUXC_SD2_DATA3__USDHC2_DATA3	0x1d0
-> +			MX8MP_IOMUXC_GPIO1_IO04__USDHC2_VSELECT	0xc1
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc2_100mhz: usdhc2-100mhzgrp {
-> +		fsl,pins =3D <
-> +			MX8MP_IOMUXC_SD2_CLK__USDHC2_CLK	0x194
-> +			MX8MP_IOMUXC_SD2_CMD__USDHC2_CMD	0x1d4
-> +			MX8MP_IOMUXC_SD2_DATA0__USDHC2_DATA0	0x1d4
-> +			MX8MP_IOMUXC_SD2_DATA1__USDHC2_DATA1	0x1d4
-> +			MX8MP_IOMUXC_SD2_DATA2__USDHC2_DATA2	0x1d4
-> +			MX8MP_IOMUXC_SD2_DATA3__USDHC2_DATA3	0x1d4
-> +			MX8MP_IOMUXC_GPIO1_IO04__USDHC2_VSELECT	0xc1
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc2_200mhz: usdhc2-200mhzgrp {
-> +		fsl,pins =3D <
-> +			MX8MP_IOMUXC_SD2_CLK__USDHC2_CLK	0x196
-> +			MX8MP_IOMUXC_SD2_CMD__USDHC2_CMD	0x1d6
-> +			MX8MP_IOMUXC_SD2_DATA0__USDHC2_DATA0	0x1d6
-> +			MX8MP_IOMUXC_SD2_DATA1__USDHC2_DATA1	0x1d6
-> +			MX8MP_IOMUXC_SD2_DATA2__USDHC2_DATA2	0x1d6
-> +			MX8MP_IOMUXC_SD2_DATA3__USDHC2_DATA3	0x1d6
-> +			MX8MP_IOMUXC_GPIO1_IO04__USDHC2_VSELECT	0xc1
-> +		>;
-> +	};
-> +};
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-phycore-som.dtsi
-> b/arch/arm64/boot/dts/freescale/imx8mp-phycore-som.dtsi new file mode
-> 100644
-> index 000000000000..8618df68b1e5
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp-phycore-som.dtsi
-> @@ -0,0 +1,296 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (C) 2020 PHYTEC Messtechnik GmbH
-> + * Author: Teresa Remmet <t.remmet@phytec.de>
-> + */
-> +
-> +#include <dt-bindings/net/ti-dp83867.h>
-> +#include "imx8mp.dtsi"
-> +
-> +/ {
-> +	model =3D "PHYTEC phyCORE-i.MX8MP";
-> +	compatible =3D "phytec,imx8mp-phycore-som", "fsl,imx8mp";
-> +
-> +	aliases {
-> +		rtc0 =3D &rv3028;
-> +		rtc1 =3D &snvs_rtc;
-> +	};
-> +
-> +	memory@40000000 {
-> +		device_type =3D "memory";
-> +		reg =3D <0x0 0x40000000 0 0x80000000>;
-> +	};
-> +};
-> +
-> +&A53_0 {
-> +	cpu-supply =3D <&buck2>;
-> +};
-> +
-> +&A53_1 {
-> +	cpu-supply =3D <&buck2>;
-> +};
-> +
-> +&A53_2 {
-> +	cpu-supply =3D <&buck2>;
-> +};
-> +
-> +&A53_3 {
-> +	cpu-supply =3D <&buck2>;
-> +};
-> +
-> +/* ethernet 1 */
-> +&fec {
-> +	pinctrl-names =3D "default";
-> +	pinctrl-0 =3D <&pinctrl_fec>;
-> +	phy-mode =3D "rgmii-id";
-> +	phy-handle =3D <&ethphy1>;
-> +	fsl,magic-packet;
-> +	status =3D "okay";
-> +
-> +	mdio {
-> +		#address-cells =3D <1>;
-> +		#size-cells =3D <0>;
-> +
-> +		ethphy1: ethernet-phy@0 {
-> +			compatible =3D "ethernet-phy-ieee802.3-c22";
-> +			reg =3D <0>;
-> +			interrupt-parent =3D <&gpio1>;
-> +			interrupts =3D <15 IRQ_TYPE_EDGE_FALLING>;
-> +			ti,rx-internal-delay =3D <DP83867_RGMIIDCTL_2_00_NS>;
-> +			ti,tx-internal-delay =3D <DP83867_RGMIIDCTL_2_00_NS>;
-> +			ti,fifo-depth =3D <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
-> +			ti,clk-output-sel =3D <DP83867_CLK_O_SEL_OFF>;
-> +			enet-phy-lane-no-swap;
-> +		};
-> +	};
-> +};
-> +
-> +&i2c1 {
-> +	clock-frequency =3D <400000>;
-> +	pinctrl-names =3D "default";
-> +	pinctrl-0 =3D <&pinctrl_i2c1>;
-> +	pinctrl-1 =3D <&pinctrl_i2c1_gpio>;
-> +	sda-gpios =3D <&gpio5 15 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-> +	scl-gpios =3D <&gpio5 14 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-> +	status =3D "okay";
-> +
-> +	pmic: pmic@25 {
-> +		reg =3D <0x25>;
-> +		compatible =3D "nxp,pca9450c";
-> +		pinctrl-names =3D "default";
-> +		pinctrl-0 =3D <&pinctrl_pmic>;
-> +		interrupt-parent =3D <&gpio4>;
-> +		interrupts =3D <18 IRQ_TYPE_LEVEL_LOW>;
-> +
-> +		regulators {
-> +			buck1: BUCK1 {
-> +				regulator-compatible =3D "BUCK1";
-> +				regulator-min-microvolt =3D <600000>;
-> +				regulator-max-microvolt =3D <2187500>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +				regulator-ramp-delay =3D <3125>;
-> +			};
-> +
-> +			buck2: BUCK2 {
-> +				regulator-compatible =3D "BUCK2";
-> +				regulator-min-microvolt =3D <600000>;
-> +				regulator-max-microvolt =3D <2187500>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +				regulator-ramp-delay =3D <3125>;
-> +			};
-> +
-> +			buck4: BUCK4 {
-> +				regulator-compatible =3D "BUCK4";
-> +				regulator-min-microvolt =3D <600000>;
-> +				regulator-max-microvolt =3D <3400000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			buck5: BUCK5 {
-> +				regulator-compatible =3D "BUCK5";
-> +				regulator-min-microvolt =3D <600000>;
-> +				regulator-max-microvolt =3D <3400000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			buck6: BUCK6 {
-> +				regulator-compatible =3D "BUCK6";
-> +				regulator-min-microvolt =3D <600000>;
-> +				regulator-max-microvolt =3D <3400000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			ldo1: LDO1 {
-> +				regulator-compatible =3D "LDO1";
-> +				regulator-min-microvolt =3D <1600000>;
-> +				regulator-max-microvolt =3D <3300000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			ldo2: LDO2 {
-> +				regulator-compatible =3D "LDO2";
-> +				regulator-min-microvolt =3D <800000>;
-> +				regulator-max-microvolt =3D <1150000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			ldo3: LDO3 {
-> +				regulator-compatible =3D "LDO3";
-> +				regulator-min-microvolt =3D <800000>;
-> +				regulator-max-microvolt =3D <3300000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			ldo4: LDO4 {
-> +				regulator-compatible =3D "LDO4";
-> +				regulator-min-microvolt =3D <800000>;
-> +				regulator-max-microvolt =3D <3300000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			ldo5: LDO5 {
-> +				regulator-compatible =3D "LDO5";
-> +				regulator-min-microvolt =3D <1800000>;
-> +				regulator-max-microvolt =3D <3300000>;
-> +			};
-> +		};
-> +	};
-> +
-> +	eeprom@51 {
-> +		compatible =3D "atmel,24c32";
-> +		reg =3D <0x51>;
-> +		pagesize =3D <32>;
-> +		status =3D "okay";
-> +	};
-> +
-> +	rv3028: rtc@52 {
-> +		compatible =3D "microcrystal,rv3028";
-> +		reg =3D <0x52>;
-> +		trickle-resistor-ohms =3D <1000>;
-> +		enable-level-switching-mode;
-> +		status =3D "okay";
-> +	};
-> +};
-> +
-> +/* eMMC */
-> +&usdhc3 {
-> +	pinctrl-names =3D "default", "state_100mhz", "state_200mhz";
-> +	pinctrl-0 =3D <&pinctrl_usdhc3>;
-> +	pinctrl-1 =3D <&pinctrl_usdhc3_100mhz>;
-> +	pinctrl-2 =3D <&pinctrl_usdhc3_200mhz>;
-> +	bus-width =3D <8>;
-> +	non-removable;
-> +	status =3D "okay";
-> +};
-> +
-> +&wdog1 {
-> +	pinctrl-names =3D "default";
-> +	pinctrl-0 =3D <&pinctrl_wdog>;
-> +	fsl,ext-reset-output;
-> +	status =3D "okay";
-> +};
-> +
-> +&iomuxc {
-> +	pinctrl_fec: fecgrp {
-> +		fsl,pins =3D <
-> +			MX8MP_IOMUXC_SAI1_RXD2__ENET1_MDC		0x3
-> +			MX8MP_IOMUXC_SAI1_RXD3__ENET1_MDIO		0x3
-> +			MX8MP_IOMUXC_SAI1_RXD4__ENET1_RGMII_RD0		0x91
-> +			MX8MP_IOMUXC_SAI1_RXD5__ENET1_RGMII_RD1		0x91
-> +			MX8MP_IOMUXC_SAI1_RXD6__ENET1_RGMII_RD2		0x91
-> +			MX8MP_IOMUXC_SAI1_RXD7__ENET1_RGMII_RD3		0x91
-> +			MX8MP_IOMUXC_SAI1_TXC__ENET1_RGMII_RXC		0x91
-> +			MX8MP_IOMUXC_SAI1_TXFS__ENET1_RGMII_RX_CTL	0x91
-> +			MX8MP_IOMUXC_SAI1_TXD0__ENET1_RGMII_TD0		0x1f
-> +			MX8MP_IOMUXC_SAI1_TXD1__ENET1_RGMII_TD1		0x1f
-> +			MX8MP_IOMUXC_SAI1_TXD2__ENET1_RGMII_TD2		0x1f
-> +			MX8MP_IOMUXC_SAI1_TXD3__ENET1_RGMII_TD3		0x1f
-> +			MX8MP_IOMUXC_SAI1_TXD4__ENET1_RGMII_TX_CTL	0x1f
-> +			MX8MP_IOMUXC_SAI1_TXD5__ENET1_RGMII_TXC		0x1f
-> +			MX8MP_IOMUXC_GPIO1_IO15__GPIO1_IO15		0x11
-> +		>;
-> +	};
-> +
-> +	pinctrl_i2c1: i2c1grp {
-> +		fsl,pins =3D <
-> +			MX8MP_IOMUXC_I2C1_SCL__I2C1_SCL		0x400001c3
-> +			MX8MP_IOMUXC_I2C1_SDA__I2C1_SDA		0x400001c3
-> +		>;
-> +	};
-> +
-> +	pinctrl_i2c1_gpio: i2c1gpiogrp {
-> +		fsl,pins =3D <
-> +			MX8MP_IOMUXC_I2C1_SCL__GPIO5_IO14	0x1e3
-> +			MX8MP_IOMUXC_I2C1_SDA__GPIO5_IO15	0x1e3
-> +		>;
-> +	};
-> +
-> +	pinctrl_pmic: pmicirqgrp {
-> +		fsl,pins =3D <
-> +			MX8MP_IOMUXC_SAI1_TXD6__GPIO4_IO18	0x141
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc3: usdhc3grp {
-> +		fsl,pins =3D <
-> +			MX8MP_IOMUXC_NAND_WE_B__USDHC3_CLK	0x190
-> +			MX8MP_IOMUXC_NAND_WP_B__USDHC3_CMD	0x1d0
-> +			MX8MP_IOMUXC_NAND_DATA04__USDHC3_DATA0	0x1d0
-> +			MX8MP_IOMUXC_NAND_DATA05__USDHC3_DATA1	0x1d0
-> +			MX8MP_IOMUXC_NAND_DATA06__USDHC3_DATA2	0x1d0
-> +			MX8MP_IOMUXC_NAND_DATA07__USDHC3_DATA3	0x1d0
-> +			MX8MP_IOMUXC_NAND_RE_B__USDHC3_DATA4	0x1d0
-> +			MX8MP_IOMUXC_NAND_CE2_B__USDHC3_DATA5	0x1d0
-> +			MX8MP_IOMUXC_NAND_CE3_B__USDHC3_DATA6	0x1d0
-> +			MX8MP_IOMUXC_NAND_CLE__USDHC3_DATA7	0x1d0
-> +			MX8MP_IOMUXC_NAND_CE1_B__USDHC3_STROBE	0x190
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc3_100mhz: usdhc3-100mhzgrp {
-> +		fsl,pins =3D <
-> +			MX8MP_IOMUXC_NAND_WE_B__USDHC3_CLK	0x194
-> +			MX8MP_IOMUXC_NAND_WP_B__USDHC3_CMD	0x1d4
-> +			MX8MP_IOMUXC_NAND_DATA04__USDHC3_DATA0	0x1d4
-> +			MX8MP_IOMUXC_NAND_DATA05__USDHC3_DATA1	0x1d4
-> +			MX8MP_IOMUXC_NAND_DATA06__USDHC3_DATA2	0x1d4
-> +			MX8MP_IOMUXC_NAND_DATA07__USDHC3_DATA3	0x1d4
-> +			MX8MP_IOMUXC_NAND_RE_B__USDHC3_DATA4	0x1d4
-> +			MX8MP_IOMUXC_NAND_CE2_B__USDHC3_DATA5	0x1d4
-> +			MX8MP_IOMUXC_NAND_CE3_B__USDHC3_DATA6	0x1d4
-> +			MX8MP_IOMUXC_NAND_CLE__USDHC3_DATA7	0x1d4
-> +			MX8MP_IOMUXC_NAND_CE1_B__USDHC3_STROBE	0x194
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc3_200mhz: usdhc3-200mhzgrp {
-> +		fsl,pins =3D <
-> +			MX8MP_IOMUXC_NAND_WE_B__USDHC3_CLK	0x196
-> +			MX8MP_IOMUXC_NAND_WP_B__USDHC3_CMD	0x1d6
-> +			MX8MP_IOMUXC_NAND_DATA04__USDHC3_DATA0	0x1d6
-> +			MX8MP_IOMUXC_NAND_DATA05__USDHC3_DATA1	0x1d6
-> +			MX8MP_IOMUXC_NAND_DATA06__USDHC3_DATA2	0x1d6
-> +			MX8MP_IOMUXC_NAND_DATA07__USDHC3_DATA3	0x1d6
-> +			MX8MP_IOMUXC_NAND_RE_B__USDHC3_DATA4	0x1d6
-> +			MX8MP_IOMUXC_NAND_CE2_B__USDHC3_DATA5	0x1d6
-> +			MX8MP_IOMUXC_NAND_CE3_B__USDHC3_DATA6	0x1d6
-> +			MX8MP_IOMUXC_NAND_CLE__USDHC3_DATA7	0x1d6
-> +			MX8MP_IOMUXC_NAND_CE1_B__USDHC3_STROBE	0x196
-> +		>;
-> +	};
-> +
-> +	pinctrl_wdog: wdoggrp {
-> +		fsl,pins =3D <
-> +			MX8MP_IOMUXC_GPIO1_IO02__WDOG1_WDOG_B	0xc6
-> +		>;
-> +	};
-> +};
-
-
-=2D-=20
-Alexander Dahl           Thorsis Technologies GmbH   T +49 391 544 563 1000
-Industrieautomation      Oststr. 18                  F +49 391 544 563 9099
-T +49 391 544 563 3036   39114 Magdeburg             https://www.thorsis.co=
-m/
-
-Sitz der Gesellschaft: Magdeburg
-Amtsgericht Stendal HRB 110339
-Gesch=C3=A4ftsf=C3=BChrer: Dipl.-Ing. Thorsten Szczepanski
-
-
-
+> diff --git a/drivers/soc/mediatek/mmsys/mtk-mmsys.c b/drivers/soc/mediate=
+k/mmsys/mtk-mmsys.c
+> index 9d6a3e9..63e1a63 100644
+> --- a/drivers/soc/mediatek/mmsys/mtk-mmsys.c
+> +++ b/drivers/soc/mediatek/mmsys/mtk-mmsys.c
+> @@ -42,6 +42,7 @@ struct mtk_mmsys_driver_data {
+>
+>  static const struct mtk_mmsys_driver_data mt8183_mmsys_driver_data =3D {
+>         .clk_driver =3D "clk-mt8183-mm",
+> +       .funcs =3D &mt8183_mmsys_funcs,
+>  };
+>
+>  struct mtk_mmsys {
+> diff --git a/include/linux/soc/mediatek/mtk-mmsys.h b/include/linux/soc/m=
+ediatek/mtk-mmsys.h
+> index 17e8b91..4b6c514 100644
+> --- a/include/linux/soc/mediatek/mtk-mmsys.h
+> +++ b/include/linux/soc/mediatek/mtk-mmsys.h
+> @@ -55,6 +55,7 @@ struct mtk_mmsys_conn_funcs {
+>  };
+>
+>  extern struct mtk_mmsys_conn_funcs mt2701_mmsys_funcs;
+> +extern struct mtk_mmsys_conn_funcs mt8183_mmsys_funcs;
+>
+>  void mtk_mmsys_ddp_connect(struct device *dev,
+>                            enum mtk_ddp_comp_id cur,
+> --
+> 1.8.1.1.dirty
+> _______________________________________________
+> Linux-mediatek mailing list
+> Linux-mediatek@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-mediatek
