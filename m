@@ -2,203 +2,256 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ACA362D7DE8
-	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 19:19:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B71602D7DF1
+	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 19:22:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732669AbgLKSSu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Dec 2020 13:18:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51762 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732424AbgLKSSk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Dec 2020 13:18:40 -0500
-Received: from mail-pl1-x642.google.com (mail-pl1-x642.google.com [IPv6:2607:f8b0:4864:20::642])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B43C3C06179C
-        for <devicetree@vger.kernel.org>; Fri, 11 Dec 2020 10:17:20 -0800 (PST)
-Received: by mail-pl1-x642.google.com with SMTP id p6so4983755plr.7
-        for <devicetree@vger.kernel.org>; Fri, 11 Dec 2020 10:17:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google;
-        h=subject:to:cc:references:from:autocrypt:message-id:date:user-agent
-         :mime-version:in-reply-to;
-        bh=XyqwdwrjHWZVM5wmmGeiCTKWPbHvSlc0XJ9Z3C9lJTc=;
-        b=a4upXG3dUiA8OnUxXPs+uQ4o+TFibnZzsILbV01uxdED93y0/mvsTJLorQXPGB/viw
-         DDTRs6zfahgiDNdN7ixIMMrEkoVSTImCvOVyHHv9sjft6+bibbwgvdhdkm7CQNAJa0wT
-         vKD40kfssq1ha0TOfNRw6IPy0O/QT7PGmjPEw=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:autocrypt
-         :message-id:date:user-agent:mime-version:in-reply-to;
-        bh=XyqwdwrjHWZVM5wmmGeiCTKWPbHvSlc0XJ9Z3C9lJTc=;
-        b=dTyjyuYmJXXrZ+dOYu4wtMHo2xVHCgJF+1YtVnCQKYql7jhqO0IMbl2rqoLXv4XBZl
-         0aoiodLxii7Vyr/ZrzdAdb0wWOIcO9aiCijEgeqVbIXIaA50MC0GiErqy01Yn9/0FWjy
-         8IV29Lcr9O4x2/k1SMmLycfWJzkJO9KJwUOJAtl1oc4Km0b5cW1t0NtaUvwQ1xfAwwXF
-         om38R0alWvIqAbR0fg4Hiz8wSoC0UcAirWTHHAnqasuWe21UQRXJGGbLzfVZd2OIzeW0
-         oDR49cnhRvPEEiy53b6Qm/ySh9hFk8iKb8J3aLQp5nS7KVHxfNO+NsGZPoO4UegMRcBq
-         MhyA==
-X-Gm-Message-State: AOAM532ECoBGXinp0BvhXE5W2jyzJCg3FKM7lNH9ZchRDLxPJlnRC0jq
-        8IqRIT7hC2nMTaDVaIUiPnSPOQ==
-X-Google-Smtp-Source: ABdhPJxwHB7vhiVY8KJUGP4wFjVV97OTuvIZEbveK14I95Pu1MivQ3F5mHOxNusZbr1bTAvOaBFlaw==
-X-Received: by 2002:a17:90b:4a03:: with SMTP id kk3mr14049960pjb.97.1607710639743;
-        Fri, 11 Dec 2020 10:17:19 -0800 (PST)
-Received: from [10.67.48.230] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id p16sm10882585pju.47.2020.12.11.10.17.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 11 Dec 2020 10:17:18 -0800 (PST)
-Subject: Re: [PATCH v6 08/11] input: raspberrypi-ts: Release firmware handle
- when not needed
-To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        u.kleine-koenig@pengutronix.de, linux-kernel@vger.kernel.org
-Cc:     f.fainelli@gmail.com, linux-pwm@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        wahrenst@gmx.net, linux-input@vger.kernel.org,
-        dmitry.torokhov@gmail.com, gregkh@linuxfoundation.org,
-        devel@driverdev.osuosl.org, p.zabel@pengutronix.de,
-        linux-gpio@vger.kernel.org, linus.walleij@linaro.org,
-        linux-clk@vger.kernel.org, sboyd@kernel.org,
-        linux-rpi-kernel@lists.infradead.org, bgolaszewski@baylibre.com,
-        andy.shevchenko@gmail.com
-References: <20201211164801.7838-1-nsaenzjulienne@suse.de>
- <20201211164801.7838-9-nsaenzjulienne@suse.de>
-From:   Florian Fainelli <florian.fainelli@broadcom.com>
-Autocrypt: addr=florian.fainelli@broadcom.com; prefer-encrypt=mutual; keydata=
- mQENBFPAG8ABCAC3EO02urEwipgbUNJ1r6oI2Vr/+uE389lSEShN2PmL3MVnzhViSAtrYxeT
- M0Txqn1tOWoIc4QUl6Ggqf5KP6FoRkCrgMMTnUAINsINYXK+3OLe7HjP10h2jDRX4Ajs4Ghs
- JrZOBru6rH0YrgAhr6O5gG7NE1jhly+EsOa2MpwOiXO4DE/YKZGuVe6Bh87WqmILs9KvnNrQ
- PcycQnYKTVpqE95d4M824M5cuRB6D1GrYovCsjA9uxo22kPdOoQRAu5gBBn3AdtALFyQj9DQ
- KQuc39/i/Kt6XLZ/RsBc6qLs+p+JnEuPJngTSfWvzGjpx0nkwCMi4yBb+xk7Hki4kEslABEB
- AAG0MEZsb3JpYW4gRmFpbmVsbGkgPGZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tPokB
- xAQQAQgArgUCXnQoOxcKAAG/SMv+fS3xUQWa0NryPuoRGjsA3SAUAAAAAAAWAAFrZXktdXNh
- Z2UtbWFza0BwZ3AuY29tjDAUgAAAAAAgAAdwcmVmZXJyZWQtZW1haWwtZW5jb2RpbmdAcGdw
- LmNvbXBncG1pbWUICwkIBwMCAQoFF4AAAAAZGGxkYXA6Ly9rZXlzLmJyb2FkY29tLmNvbQUb
- AwAAAAMWAgEFHgEAAAAEFQgJCgAKCRCBMbXEKbxmoHaNB/4p5GXw2Xlk4r2J0MsUAZE4Gnfc
- C4DtilufOGVR1K0/WhROYemyCAP+xuBj8bnQDBtZwB5ED37q4/p8DSmCnkEBjM5Cz12EZQzs
- utQgCV1UIgzryoiDZSF2XLslzF9LOSaOiNzpBvwEYNTZ+koEW+AOHEAgS6SbV2Hob8Zc32xF
- oQdKGwbSwcV8hS2YLL37VxKr2h8ZTtuTmhDNqxuKPzZuoAL61/4i8+BTyVZC4gUL/EUu7pG2
- rbwhg/s8TyQWWeBz18Xiw5K148TXT0LeErmTsJSPQFMqZ6AR/nuJDQzhIUiLeq/hvBs1BIQf
- REqNMShEnnMJfHjd8RFnGpdPk+hKuQENBFPAG8EBCACsa+9aKnvtPjGAnO1mn1hHKUBxVML2
- C3HQaDp5iT8Q8A0ab1OS4akj75P8iXYfZOMVA0Lt65taiFtiPT7pOZ/yc/5WbKhsPE9dwysr
- vHjHL2gP4q5vZV/RJduwzx8v9KrMZsVZlKbvcvUvgZmjG9gjPSLssTFhJfa7lhUtowFof0fA
- q3Zy+vsy5OtEe1xs5kiahdPb2DZSegXW7DFg15GFlj+VG9WSRjSUOKk+4PCDdKl8cy0LJs+r
- W4CzBB2ARsfNGwRfAJHU4Xeki4a3gje1ISEf+TVxqqLQGWqNsZQ6SS7jjELaB/VlTbrsUEGR
- 1XfIn/sqeskSeQwJiFLeQgj3ABEBAAGJAkEEGAECASsFAlPAG8IFGwwAAADAXSAEGQEIAAYF
- AlPAG8EACgkQk2AGqJgvD1UNFQgAlpN5/qGxQARKeUYOkL7KYvZFl3MAnH2VeNTiGFoVzKHO
- e7LIwmp3eZ6GYvGyoNG8cOKrIPvXDYGdzzfwxVnDSnAE92dv+H05yanSUv/2HBIZa/LhrPmV
- hXKgD27XhQjOHRg0a7qOvSKx38skBsderAnBZazfLw9OukSnrxXqW/5pe3mBHTeUkQC8hHUD
- Cngkn95nnLXaBAhKnRfzFqX1iGENYRH3Zgtis7ZvodzZLfWUC6nN8LDyWZmw/U9HPUaYX8qY
- MP0n039vwh6GFZCqsFCMyOfYrZeS83vkecAwcoVh8dlHdke0rnZk/VytXtMe1u2uc9dUOr68
- 7hA+Z0L5IQAKCRCBMbXEKbxmoLoHCACXeRGHuijOmOkbyOk7x6fkIG1OXcb46kokr2ptDLN0
- Ky4nQrWp7XBk9ls/9j5W2apKCcTEHONK2312uMUEryWI9BlqWnawyVL1LtyxLLpwwsXVq5m5
- sBkSqma2ldqBu2BHXZg6jntF5vzcXkqG3DCJZ2hOldFPH+czRwe2OOsiY42E/w7NUyaN6b8H
- rw1j77+q3QXldOw/bON361EusWHdbhcRwu3WWFiY2ZslH+Xr69VtYAoMC1xtDxIvZ96ps9ZX
- pUPJUqHJr8QSrTG1/zioQH7j/4iMJ07MMPeQNkmj4kGQOdTcsFfDhYLDdCE5dj5WeE6fYRxE
- Q3up0ArDSP1L
-Message-ID: <a056a25c-926b-5bd7-bbbe-f54e9e7816af@broadcom.com>
-Date:   Fri, 11 Dec 2020 10:17:14 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S2393174AbgLKSVa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Dec 2020 13:21:30 -0500
+Received: from mx0b-001b2d01.pphosted.com ([148.163.158.5]:40194 "EHLO
+        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S2392900AbgLKSVS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 11 Dec 2020 13:21:18 -0500
+Received: from pps.filterd (m0098419.ppops.net [127.0.0.1])
+        by mx0b-001b2d01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 0BBI4s17139690;
+        Fri, 11 Dec 2020 13:19:56 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=references : from : to :
+ cc : subject : in-reply-to : date : message-id : mime-version :
+ content-type; s=pp1; bh=qpGm3kQ0ZbvtzQ9CK1gFqWjG/Rnaoq8h7KtEQcDd1jg=;
+ b=kZ3n3qO27kMYXvJfJDI+ePWP6N/Eb0rVXIoHPBnpUA8Vl6wg6GrlSTnj1MU5ZTuMy3uA
+ PwIVNe2vU8xnihmAwmzW+i7QAqWk3VNFmmEM4EqiLwk/Wx057kju/00oAjIJOOtceW+n
+ 6oQbn/2dH+My9o9wn6leFW6FAp4oefNqusfRdA3KtlgOlufYV9vWEOXCxdyjJVOvWC0W
+ 6FIERIZe4VLFi/qviS7ak2gnr7F8OybRhFn0yVBXicn93yHvUSsl0MQg6kU5zavjqdSI
+ n5DKvG+IuERdxG5V6B6fTpn+zNuLkEYY0Jsny0zCCoIWEPzyeTxq2sl6X4OkFEgEgS0c mg== 
+Received: from pps.reinject (localhost [127.0.0.1])
+        by mx0b-001b2d01.pphosted.com with ESMTP id 35cbx63p3b-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 11 Dec 2020 13:19:56 -0500
+Received: from m0098419.ppops.net (m0098419.ppops.net [127.0.0.1])
+        by pps.reinject (8.16.0.36/8.16.0.36) with SMTP id 0BBI567Q144454;
+        Fri, 11 Dec 2020 13:19:55 -0500
+Received: from ppma04dal.us.ibm.com (7a.29.35a9.ip4.static.sl-reverse.com [169.53.41.122])
+        by mx0b-001b2d01.pphosted.com with ESMTP id 35cbx63p2w-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 11 Dec 2020 13:19:55 -0500
+Received: from pps.filterd (ppma04dal.us.ibm.com [127.0.0.1])
+        by ppma04dal.us.ibm.com (8.16.0.42/8.16.0.42) with SMTP id 0BBID6aF009324;
+        Fri, 11 Dec 2020 18:19:54 GMT
+Received: from b03cxnp07028.gho.boulder.ibm.com (b03cxnp07028.gho.boulder.ibm.com [9.17.130.15])
+        by ppma04dal.us.ibm.com with ESMTP id 3581uadvdw-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 11 Dec 2020 18:19:54 +0000
+Received: from b03ledav005.gho.boulder.ibm.com (b03ledav005.gho.boulder.ibm.com [9.17.130.236])
+        by b03cxnp07028.gho.boulder.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 0BBIJrdO20644190
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Fri, 11 Dec 2020 18:19:53 GMT
+Received: from b03ledav005.gho.boulder.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 4237BBE053;
+        Fri, 11 Dec 2020 18:19:53 +0000 (GMT)
+Received: from b03ledav005.gho.boulder.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 46D2ABE051;
+        Fri, 11 Dec 2020 18:19:43 +0000 (GMT)
+Received: from manicouagan.localdomain (unknown [9.160.59.9])
+        by b03ledav005.gho.boulder.ibm.com (Postfix) with ESMTPS;
+        Fri, 11 Dec 2020 18:19:42 +0000 (GMT)
+References: <20201204195149.611-1-nramas@linux.microsoft.com>
+ <20201204195149.611-3-nramas@linux.microsoft.com>
+ <87ft4louto.fsf@manicouagan.localdomain>
+ <40f8c03a-f08f-d49e-b404-9a6d79873dd1@linux.microsoft.com>
+ <4a8a9d8f-22b8-0961-7c31-39eb1fe9cb65@linux.microsoft.com>
+User-agent: mu4e 1.4.10; emacs 27.1
+From:   Thiago Jung Bauermann <bauerman@linux.ibm.com>
+To:     Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
+Cc:     zohar@linux.ibm.com, robh@kernel.org, gregkh@linuxfoundation.org,
+        james.morse@arm.com, catalin.marinas@arm.com, sashal@kernel.org,
+        will@kernel.org, mpe@ellerman.id.au, benh@kernel.crashing.org,
+        paulus@samba.org, robh+dt@kernel.org, frowand.list@gmail.com,
+        vincenzo.frascino@arm.com, mark.rutland@arm.com,
+        dmitry.kasatkin@gmail.com, jmorris@namei.org, serge@hallyn.com,
+        pasha.tatashin@soleen.com, allison@lohutok.net,
+        kstewart@linuxfoundation.org, takahiro.akashi@linaro.org,
+        tglx@linutronix.de, masahiroy@kernel.org, bhsharma@redhat.com,
+        mbrugger@suse.com, hsinyi@chromium.org, tao.li@vivo.com,
+        christophe.leroy@c-s.fr, linux-integrity@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        prsriva@linux.microsoft.com, balajib@linux.microsoft.com
+Subject: Re: [PATCH v10 2/8] powerpc: Move delete_fdt_mem_rsv() to
+ drivers/of/kexec.c
+In-reply-to: <4a8a9d8f-22b8-0961-7c31-39eb1fe9cb65@linux.microsoft.com>
+Date:   Fri, 11 Dec 2020 15:19:40 -0300
+Message-ID: <878sa49pdv.fsf@manicouagan.localdomain>
 MIME-Version: 1.0
-In-Reply-To: <20201211164801.7838-9-nsaenzjulienne@suse.de>
-Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-        boundary="0000000000009d9f9705b6344d8d"
+Content-Type: text/plain
+X-TM-AS-GCONF: 00
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.343,18.0.737
+ definitions=2020-12-11_05:2020-12-11,2020-12-11 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ adultscore=0 impostorscore=0 bulkscore=0 mlxscore=0 mlxlogscore=999
+ suspectscore=2 priorityscore=1501 phishscore=0 spamscore=0 malwarescore=0
+ clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2009150000 definitions=main-2012110118
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---0000000000009d9f9705b6344d8d
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
 
-On 12/11/20 8:47 AM, Nicolas Saenz Julienne wrote:
-> There is no use for the firmware interface after getting the touch
-> buffer address, so release it.
-> 
-> Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-> Acked-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Hi Lakshmi,
 
-Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
+Lakshmi Ramasubramanian <nramas@linux.microsoft.com> writes:
+
+> On 12/6/20 5:50 PM, Lakshmi Ramasubramanian wrote:
+>
+> Hi Thiago,
+>
+>> On 12/4/20 6:22 PM, Thiago Jung Bauermann wrote
+>>>
+>>> Hello Lakshmi,
+>>>
+>>> Lakshmi Ramasubramanian <nramas@linux.microsoft.com> writes:
+>>>
+>>>> delete_fdt_mem_rsv() retrieves the memory reserve map entry, for
+>>>> the given starting address and size, from the device tree blob, and
+>>>> removes the entry from the device tree blob. This function is called
+>>>> to free the resources reserved for the buffer used for carrying forward
+>>>> the IMA measurement logs on kexec. This function does not have
+>>>> architecture specific code, but is currently limited to powerpc.
+>>>>
+>>>> Move delete_fdt_mem_rsv() to "drivers/of/kexec_fdt.c" so that it is
+>>>
+>>> s/kexec_fdt.c/kexec.c/
+>> Missed that in the patch description. Will fix it. Thanks.
+>> 
+>>>> accessible for other architectures as well.
+>>>>
+>>>> Co-developed-by: Prakhar Srivastava <prsriva@linux.microsoft.com>
+>>>> Signed-off-by: Prakhar Srivastava <prsriva@linux.microsoft.com>
+>>>> Signed-off-by: Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
+>>>> ---
+>>>>   arch/powerpc/include/asm/kexec.h |  1 -
+>>>>   arch/powerpc/kexec/file_load.c   | 32 -----------------
+>>>>   drivers/of/Makefile              |  1 +
+>>>>   drivers/of/kexec.c               | 61 ++++++++++++++++++++++++++++++++
+>>>>   include/linux/kexec.h            |  5 +++
+>>>>   5 files changed, 67 insertions(+), 33 deletions(-)
+>>>>   create mode 100644 drivers/of/kexec.c
+>>>>
+>>>> diff --git a/arch/powerpc/include/asm/kexec.h
+>>>> b/arch/powerpc/include/asm/kexec.h
+>>>> index 55d6ede30c19..7c223031ecdd 100644
+>>>> --- a/arch/powerpc/include/asm/kexec.h
+>>>> +++ b/arch/powerpc/include/asm/kexec.h
+>>>> @@ -126,7 +126,6 @@ int setup_purgatory(struct kimage *image, const void
+>>>> *slave_code,
+>>>>   int setup_new_fdt(const struct kimage *image, void *fdt,
+>>>>             unsigned long initrd_load_addr, unsigned long initrd_len,
+>>>>             const char *cmdline);
+>>>> -int delete_fdt_mem_rsv(void *fdt, unsigned long start, unsigned long size);
+>>>>   #ifdef CONFIG_PPC64
+>>>>   struct kexec_buf;
+>>>> diff --git a/arch/powerpc/kexec/file_load.c b/arch/powerpc/kexec/file_load.c
+>>>> index 9a232bc36c8f..9efc98b1e2ae 100644
+>>>> --- a/arch/powerpc/kexec/file_load.c
+>>>> +++ b/arch/powerpc/kexec/file_load.c
+>>>> @@ -109,38 +109,6 @@ int setup_purgatory(struct kimage *image, const void
+>>>> *slave_code,
+>>>>       return 0;
+>>>>   }
+>>>> -/**
+>>>> - * delete_fdt_mem_rsv - delete memory reservation with given address and
+>>>> size
+>>>> - *
+>>>> - * Return: 0 on success, or negative errno on error.
+>>>> - */
+>>>> -int delete_fdt_mem_rsv(void *fdt, unsigned long start, unsigned long size)
+>>>> -{
+>>>> -    int i, ret, num_rsvs = fdt_num_mem_rsv(fdt);
+>>>> -
+>>>> -    for (i = 0; i < num_rsvs; i++) {
+>>>> -        uint64_t rsv_start, rsv_size;
+>>>> -
+>>>> -        ret = fdt_get_mem_rsv(fdt, i, &rsv_start, &rsv_size);
+>>>> -        if (ret) {
+>>>> -            pr_err("Malformed device tree.\n");
+>>>> -            return -EINVAL;
+>>>> -        }
+>>>> -
+>>>> -        if (rsv_start == start && rsv_size == size) {
+>>>> -            ret = fdt_del_mem_rsv(fdt, i);
+>>>> -            if (ret) {
+>>>> -                pr_err("Error deleting device tree reservation.\n");
+>>>> -                return -EINVAL;
+>>>> -            }
+>>>> -
+>>>> -            return 0;
+>>>> -        }
+>>>> -    }
+>>>> -
+>>>> -    return -ENOENT;
+>>>> -}
+>>>> -
+>>>>   /*
+>>>>    * setup_new_fdt - modify /chosen and memory reservation for the next
+>>>> kernel
+>>>>    * @image:        kexec image being loaded.
+>>>> diff --git a/drivers/of/Makefile b/drivers/of/Makefile
+>>>> index 6e1e5212f058..77d24712c0c8 100644
+>>>> --- a/drivers/of/Makefile
+>>>> +++ b/drivers/of/Makefile
+>>>> @@ -13,5 +13,6 @@ obj-$(CONFIG_OF_RESERVED_MEM) += of_reserved_mem.o
+>>>>   obj-$(CONFIG_OF_RESOLVE)  += resolver.o
+>>>>   obj-$(CONFIG_OF_OVERLAY) += overlay.o
+>>>>   obj-$(CONFIG_OF_NUMA) += of_numa.o
+>>>> +obj-$(CONFIG_OF_FLATTREE) += kexec.o
+>>>
+>>> Isn't this too broad? kexec.o will only be useful to kernel configs
+>>> which enable CONFIG_KEXEC_FILE, so perhaps do:
+>>>
+>>> ifdef CONFIG_OF_FLATTREE
+>>> ifdef CONFIG_KEXEC_FILE
+>>> obj-y += kexec.o
+>>> endif
+>>> endif
+>>>
+>>> What do you think?
+>> Per Rob's feedback on v9 patch set, I have moved all the architecture 
+>> independent ima kexec functions to a single file "drivers/of/kexec.c"
+>> Since these functions are enabled on different kernel CONFIGs, I have 
+>> used IS_ENABLED(CONFIG_XYZ) macro instead of "#ifdef" in the C file to
+>> conditionally compile.
+> Per Rob's feedback on the v9 patch, I'll keep the ima kexec functions in a
+> single file (in "drivers/of/kexec.c") and use IS_ENABLED() macro to handle the
+> function calls.
+>
+> I'll make the other changes you'd suggested on v10 patches and will post v11
+> patch set shortly.
+
+From a cursory look at the use of functions in this file, I got the
+impression that there wouldn't be any reference to them in kernel
+configs that didn't have CONFIG_KEXEC_FILE enabled, which is why I
+suggested the change above. I think you can make it without any other
+changes to the code.
+
+I could be wrong though, and there could be some config which tried to
+use some of these functions even when CONFIG_KEXEC_FILE is disabled. In
+that case, the customary way to resolve it is to provide static inline
+stub versions in a header file (not in a .c file) of just those
+functions that are needed.
+
+The reason why placing stub functions in header files is better is that
+then the compiler has visibility of the dummy function when compiling
+the source file which uses the function, and is able to eliminate the
+dead code that arises from the function always returning one value.
+
+Using IS_ENABLED() to do an early return as the first operation in the
+function in a separate .c file means that the compiler doesn't know
+anything and has to put a jump to the dummy function (only to
+immediately return), and retain the code that deals with the possibility
+of different values being returned.
+
+It's not a big deal in this case because none of these functions is in a
+hot path, but it does make the kernel text a tiny bit bigger than
+necessary.
+
 -- 
-Florian
-
---0000000000009d9f9705b6344d8d
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
-
-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
-NBgcnL8bS1GD7jRZUdtUvDm/XhPjv+5arhlrB5NmaKDsRaobcoQ0vtEyAnImSb64+wEvXgPF3y7V
-0LCIoQMCAwEAAaOCAdQwggHQMA4GA1UdDwEB/wQEAwIFoDCBngYIKwYBBQUHAQEEgZEwgY4wTQYI
-KwYBBQUHMAKGQWh0dHA6Ly9zZWN1cmUuZ2xvYmFsc2lnbi5jb20vY2FjZXJ0L2dzcGVyc29uYWxz
-aWduMnNoYTJnM29jc3AuY3J0MD0GCCsGAQUFBzABhjFodHRwOi8vb2NzcDIuZ2xvYmFsc2lnbi5j
-b20vZ3NwZXJzb25hbHNpZ24yc2hhMmczME0GA1UdIARGMEQwQgYKKwYBBAGgMgEoCjA0MDIGCCsG
-AQUFBwIBFiZodHRwczovL3d3dy5nbG9iYWxzaWduLmNvbS9yZXBvc2l0b3J5LzAJBgNVHRMEAjAA
-MEQGA1UdHwQ9MDswOaA3oDWGM2h0dHA6Ly9jcmwuZ2xvYmFsc2lnbi5jb20vZ3NwZXJzb25hbHNp
-Z24yc2hhMmczLmNybDAoBgNVHREEITAfgR1mbG9yaWFuLmZhaW5lbGxpQGJyb2FkY29tLmNvbTAT
-BgNVHSUEDDAKBggrBgEFBQcDBDAfBgNVHSMEGDAWgBRpcoJiMWeVRIV3kYDEBDZJnXsLYTAdBgNV
-HQ4EFgQUjDSG6itHmsBGYhab0ncHg6PidD0wDQYJKoZIhvcNAQELBQADggEBAJD+OK9GMwW86kdo
-oTOaDH8VAbGtc3cvxHH/zTSRaq+XQOUwzXeB35AgKQ7VnnW+AYsU0NILbJUrAUGctIt4fMgPi+fZ
-1SJxTyzKxS0LCahS3l9aL3TEWyFOnDurmKeLcgVG5qMVXysLYDXiUGGg1I/zmOHefpv30RDNdUjD
-9oUbBggB6IHlL4Y6x21gV6Cduse0xOgMrY+dXhntQimTLmuPz0b3uUVJNdtTqVG5pZwZZ/cjsGCm
-QTlT5kx0VnHRHhYKS+1b2usAYk+pec77Wth9xL1gsEGVh4JmIdQpkhqGHA/m2nVkhW/WbbFsA7Im
-9CNMvmz2hVgGGipcf47g+EsxggJvMIICawIBATBtMF0xCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBH
-bG9iYWxTaWduIG52LXNhMTMwMQYDVQQDEypHbG9iYWxTaWduIFBlcnNvbmFsU2lnbiAyIENBIC0g
-U0hBMjU2IC0gRzMCDE64Wkk+BtY98mx37TANBglghkgBZQMEAgEFAKCB1DAvBgkqhkiG9w0BCQQx
-IgQgOGRb5K8h1Y9PE805xDVe7xrfhYkpa1tjuAHhaS13u7EwGAYJKoZIhvcNAQkDMQsGCSqGSIb3
-DQEHATAcBgkqhkiG9w0BCQUxDxcNMjAxMjExMTgxNzIwWjBpBgkqhkiG9w0BCQ8xXDBaMAsGCWCG
-SAFlAwQBKjALBglghkgBZQMEARYwCwYJYIZIAWUDBAECMAoGCCqGSIb3DQMHMAsGCSqGSIb3DQEB
-CjALBgkqhkiG9w0BAQcwCwYJYIZIAWUDBAIBMA0GCSqGSIb3DQEBAQUABIIBADn0E3ZJvSftEnBy
-VOmarDsX7DgbILiLzGvfaTN+H+H7G2WuhaDDhNS591+MmAy+oEDceTDV3A/8/xNBgSmtf+lkXlYa
-W/b3SfSZTqXX9cW0PH9TjvI4buSnQJ+bSiywkALTKTpc5t6G8Z/qk2R8N5FbWSYH/qGm4WC1xhiY
-oYqM8V4dHNnx4p2+hY9UtXWrVuZVewyMSOU4BTscevUkC52szpau7oihjxK79u0k9RlxZiIqxBD8
-via3wX83nJcLsDY230ZwD+AJ12cUriMHS6vDL/+ZLRhzYG8vitp2WzLHLCrMNNzjgJ1cKD1xICj1
-wwrXmu+Kfj6+jqyUDkkQmh0=
---0000000000009d9f9705b6344d8d--
+Thiago Jung Bauermann
+IBM Linux Technology Center
