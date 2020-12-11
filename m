@@ -2,190 +2,227 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0AA622D72BD
-	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 10:21:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CEFA22D739E
+	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 11:14:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2437296AbgLKJT6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Dec 2020 04:19:58 -0500
-Received: from bmail1.ministro.hu ([5.249.150.236]:45148 "EHLO
-        bmail1.ministro.hu" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2404401AbgLKJTj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Dec 2020 04:19:39 -0500
-Received: from localhost (localhost [127.0.0.1])
-        by bmail1.ministro.hu (Postfix) with ESMTP id 4A52C123B20;
-        Fri, 11 Dec 2020 10:18:56 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ministro.hu;
-        s=201804; t=1607678336;
-        bh=jfch30BQOQ1n9/oxdKmbDk77amXZ1U44IbP8Ff7D7xY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=qFVsBPkRcPpdjPsKgQUpXfzWVJSjZvVuPXH9Pfexf8OCMAO2Wfzhvgh2tUXBHcF3H
-         pkFeosb8znB/XKrS/uJko0vIs3n4GyVjce3aAu7tOqRHDu72zJy7SdJyTRvplwkcaw
-         Fw8L9zlBlxM0uGIS2OIfr6XmSfqTuMXPgv6r/mt2mqRgIQrmPEO078aX6GZW37QMCo
-         jdpxlQu7v+wkt+bfESgJKPC+lpfxKbFGnkgdH8ptG/iLWkSbcE94VrX1T1VcUu6dT/
-         NAaij3euojmOGnyVXgGLvu/5paCqqUggk/NPiLaiUkXdHClAw3TDrhXD1mVN5iVx81
-         EHihuZ3bAcv8Q==
-X-Virus-Scanned: Debian amavisd-new at ministro.hu
-Received: from bmail1.ministro.hu ([127.0.0.1])
-        by localhost (bmail1.ministro.hu [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id msiF0j-DlpGx; Fri, 11 Dec 2020 10:18:26 +0100 (CET)
-Received: from dincontrollerdev (localhost [127.0.0.1])
-        by bmail1.ministro.hu (Postfix) with ESMTPSA id EAE0E123B1E;
-        Fri, 11 Dec 2020 10:18:25 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ministro.hu;
-        s=201804; t=1607678306;
-        bh=jfch30BQOQ1n9/oxdKmbDk77amXZ1U44IbP8Ff7D7xY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=sG/E4GO0klRvlkpPeSIslfa1nsJSH3kU+Rp9s0EY9NLPFZEyJnlSYY/OUu94KQ23F
-         K8po7a9OD+Ls1pctwCCi/kmnKmF0eBym5geCh3z/HWyTwnevPDwj8M0SBylx82JgXq
-         dcHT/mXDMIirew6GGSLfJcPlXYkOSiwoemwQ02qN2Mv5/+UhGgU+msn7oNEkkISDmF
-         bRTzxgdDff+F2agbuoEcD2YPEa2F8JfMlutBkIOZr+r7cflaMxd84+3YUE2QEdDVUe
-         yoF2JcvVVGhzDY5p+EVaQ0jA9Ou3qBD7Lg0k6OdRBfJmM5n8R9q+SVbsTl2nd7limM
-         LspwBbaxWTXVQ==
-Date:   Fri, 11 Dec 2020 09:18:24 +0000
-From:   =?iso-8859-1?Q?J=F3zsef_Horv=E1th?= <info@ministro.hu>
-To:     'Greg Kroah-Hartman' <gregkh@linuxfoundation.org>
-Cc:     'Rob Herring' <robh+dt@kernel.org>,
-        'Jiri Slaby' <jirislaby@kernel.org>,
-        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] Serial: silabs si4455 serial driver
-Message-ID: <20201211091823.GD1065@dincontrollerdev>
-References: <20201210170443.GA17304@dincontrollerdev>
- <X9Jw+srprdT8tquZ@kroah.com>
- <20201210194625.GA17516@dincontrollerdev>
- <X9MIwqJBG69M5uHq@kroah.com>
- <20201211060943.GA1065@dincontrollerdev>
- <X9MPuX1x4MezwkEj@kroah.com>
- <20201211063752.GB1065@dincontrollerdev>
- <X9MgvZ7bWX7HMNir@kroah.com>
- <20201211081634.GC1065@dincontrollerdev>
- <X9MxM+aEKIAHqd4G@kroah.com>
+        id S1730820AbgLKKMr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Dec 2020 05:12:47 -0500
+Received: from mx2.suse.de ([195.135.220.15]:34032 "EHLO mx2.suse.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2388507AbgLKKMZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 11 Dec 2020 05:12:25 -0500
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.221.27])
+        by mx2.suse.de (Postfix) with ESMTP id A584FAC10;
+        Fri, 11 Dec 2020 10:11:43 +0000 (UTC)
+To:     Maxime Ripard <maxime@cerno.tech>,
+        Daniel Vetter <daniel.vetter@intel.com>,
+        David Airlie <airlied@linux.ie>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Eric Anholt <eric@anholt.net>
+Cc:     devicetree@vger.kernel.org, Tim Gover <tim.gover@raspberrypi.com>,
+        Dave Stevenson <dave.stevenson@raspberrypi.com>,
+        dri-devel@lists.freedesktop.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        linux-rpi-kernel@lists.infradead.org,
+        Phil Elwell <phil@raspberrypi.com>,
+        linux-arm-kernel@lists.infradead.org
+References: <20201204151138.1739736-1-maxime@cerno.tech>
+ <20201204151138.1739736-6-maxime@cerno.tech>
+From:   Thomas Zimmermann <tzimmermann@suse.de>
+Subject: Re: [PATCH v2 5/7] drm/vc4: kms: Remove unassigned_channels from the
+ HVS state
+Message-ID: <ea7e5cdf-f45a-cc62-3d93-d7f9a1409ecb@suse.de>
+Date:   Fri, 11 Dec 2020 11:11:42 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.5.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <X9MxM+aEKIAHqd4G@kroah.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <20201204151138.1739736-6-maxime@cerno.tech>
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="8CsgVUlgHggoOS5UjO2qw1YdQd699lHX7"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 11, 2020 at 09:43:31AM +0100, 'Greg Kroah-Hartman' wrote:
-> On Fri, Dec 11, 2020 at 08:16:34AM +0000, József Horváth wrote:
-> > On Fri, Dec 11, 2020 at 08:33:17AM +0100, 'Greg Kroah-Hartman' wrote:
-> > > On Fri, Dec 11, 2020 at 06:37:52AM +0000, József Horváth wrote:
-> > > > On Fri, Dec 11, 2020 at 07:20:41AM +0100, 'Greg Kroah-Hartman' wrote:
-> > > > > On Fri, Dec 11, 2020 at 06:09:43AM +0000, József Horváth wrote:
-> > > > > > On Fri, Dec 11, 2020 at 06:50:58AM +0100, 'Greg Kroah-Hartman' wrote:
-> > > > > > > On Thu, Dec 10, 2020 at 07:46:25PM +0000, József Horváth wrote:
-> > > > > > > > On Thu, Dec 10, 2020 at 08:03:22PM +0100, 'Greg Kroah-Hartman' wrote:
-> > > > > > > > > On Thu, Dec 10, 2020 at 05:04:46PM +0000, József Horváth wrote:
-> > > > > > > > > > This is a serial port driver for
-> > > > > > > > > > Silicon Labs Si4455 Sub-GHz transciver.
-> > > > > > > > > > +
-> > > > > > > > > > +#define BASE_TTYIOC_PRIVATE		0xA0
-> > > > > > > > > > +/* Set EZConfig.
-> > > > > > > > > > + * After this ioctl call, the driver restarts the si4455,
-> > > > > > > > > > + * then apply the new configuration and patch.
-> > > > > > > > > > + */
-> > > > > > > > > > +#define SI4455_IOC_SEZC		_IOW('T', \
-> > > > > > > > > > +				     BASE_TTYIOC_PRIVATE + 0x01, \
-> > > > > > > > > > +				     struct si4455_iocbuff)
-> > > > > > > > > 
-> > > > > > > > > Why does a serial driver have private ioctls?  Please no, don't do that.
-> > > > > > > > 
-> > > > > > > > I checked the ioctl.h and serial_core.h, but I not found any similar definition, like BASE_VIDIOC_PRIVATE in videodev2.h.
-> > > > > > > > In this case the name of macro BASE_TTYIOC_PRIVATE means the base value of special ioctl commands owned by this driver.
-> > > > > > > 
-> > > > > > > My point is, a serial driver should NOT have any custom ioctls.
-> > > > > > > 
-> > > > > > > > I can change it to BASE_TTYIOC or SI4455_IOC_BASE
-> > > > > > > > 
-> > > > > > > > > Implement the basic serial driver first, and then we can talk about
-> > > > > > > > > "custom" configurations and the like, using the correct apis.
-> > > > > > > > 
-> > > > > > > > Without the SI4455_IOC_SEZC call, the driver can't configure the Si4455 and not working at all.
-> > > > > > > > The cofiguration for interface is provided by user for application.
-> > > > > > > 
-> > > > > > > That is what a device tree is for, to configure the device to have the
-> > > > > > > correct system configuration, why can't that be the same here?
-> > > > > > > 
-> > > > > > > > It contains the base frequency, channel spacing, modulation, and a lot
-> > > > > > > > of more stuff, and generated by Silicon Labs Wireless Development
-> > > > > > > > Suite.
-> > > > > > > > The generated configuration is in a non public(compressed,
-> > > > > > > > encrypted...who knows) format, so without this the driver can't
-> > > > > > > > provide configuration parameters to Si4455.
-> > > > > > > 
-> > > > > > > So we have to take a "custom" userspace blob and send it to the device
-> > > > > > > to configure it properly?  Like Jiri said, sounds like firmware, so just
-> > > > > > > use that interface instead.
-> > > > > > 
-> > > > > > I checked Jiri's suggestion, and it is a good solution to replace SI4455_IOC_SEZC(configuration) and SI4455_IOC_SEZP(firmware patch).
-> > > > > > I can move SI4455_IOC_SSIZ(package size) to device tree property.
-> > > > > > 
-> > > > > > Maybe you have good suggestion for the following:
-> > > > > > SI4455_IOC_STXC -> Radio transmit channel index. It is a real use case to control this parameter by user at runtime.
-> > > > > > SI4455_IOC_SRXC -> Radio receive channel index. It is a real use case to control this parameter by user at runtime.
-> > > > > 
-> > > > > These are not serial port things, why would a serial port care about
-> > > > > these?
-> > > > 
-> > > > You are right, these are not regular serial port things, but this device is not a regular uart, it is a sub-GHz transciever, digital radio.
-> > > > This driver tries to represent it as a serial port to user.
-> > > 
-> > > Is that the correct representation to be using here?  Why not act like a
-> > > proper radio device instead?  That way you get to use the normal kernel
-> > > apis for radio devices.
-> > 
-> > In my mind it is absolute a serial device by the application.
-> 
-> What is the application?  Traditionally serial ports don't need radio signals :)
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--8CsgVUlgHggoOS5UjO2qw1YdQd699lHX7
+Content-Type: multipart/mixed; boundary="G9X4LYRXmU4IZQdRg06F3vjoA4wRm3WWo";
+ protected-headers="v1"
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Maxime Ripard <maxime@cerno.tech>, Daniel Vetter
+ <daniel.vetter@intel.com>, David Airlie <airlied@linux.ie>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Mark Rutland <mark.rutland@arm.com>, Rob Herring <robh+dt@kernel.org>,
+ Frank Rowand <frowand.list@gmail.com>, Eric Anholt <eric@anholt.net>
+Cc: devicetree@vger.kernel.org, Tim Gover <tim.gover@raspberrypi.com>,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>,
+ dri-devel@lists.freedesktop.org, bcm-kernel-feedback-list@broadcom.com,
+ linux-rpi-kernel@lists.infradead.org, Phil Elwell <phil@raspberrypi.com>,
+ linux-arm-kernel@lists.infradead.org
+Message-ID: <ea7e5cdf-f45a-cc62-3d93-d7f9a1409ecb@suse.de>
+Subject: Re: [PATCH v2 5/7] drm/vc4: kms: Remove unassigned_channels from the
+ HVS state
+References: <20201204151138.1739736-1-maxime@cerno.tech>
+ <20201204151138.1739736-6-maxime@cerno.tech>
+In-Reply-To: <20201204151138.1739736-6-maxime@cerno.tech>
 
-The application is connecting newly developed sensors(with only rf interface) and legacy sensors(with regular serial communication over rs-485 with modbus) keeping the legacy user software.
+--G9X4LYRXmU4IZQdRg06F3vjoA4wRm3WWo
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
 
-User sw [Java]
-	<-> /dev/ttyXXX
-		<-> si4455[driver]
-			<-> si4455[hardware]
-				<---air---> new device[si4455+ARM Cortex-M0] 1
-					+-> new device[si4455+ARM Cortex-M0] 2
-					+-> new device[si4455+ARM Cortex-M0] n
-					+-> gateway[si4455+ARM Cortex-M0]<---RS485--> Legacy device 1
-										  +-> Legacy device 2
-										  +-> Legacy device n
+Hi
 
-I think this driver could be a good solution in a lot off applications where the user wants to change from wired to wireless with this(Si4455) device, without changing the user sw.
-Using sub GHz transport is better because the band below GHz is less loaded than Wifi or bluetooth.
+Am 04.12.20 um 16:11 schrieb Maxime Ripard:
+> The HVS state now has both unassigned_channels that reflects the
+> channels that are not used in the associated state, and the in_use
+> boolean for each channel that says whether or not a particular channel
+> is in use.
+>=20
+> Both express pretty much the same thing, and we need the in_use variabl=
+e
+> to properly track the commits, so let's get rid of unassigned_channels.=
 
-Thanks to suggestions, I can remove unnecessary ioctl calls as well. This way, it remains fully compatible with user software and does not need to be hacked.
+>=20
+> Suggested-by: Thomas Zimmermann <tzimmermann@suse.de>
+> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+> ---
+>   drivers/gpu/drm/vc4/vc4_kms.c | 14 +++++++-------
+>   1 file changed, 7 insertions(+), 7 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/vc4/vc4_kms.c b/drivers/gpu/drm/vc4/vc4_km=
+s.c
+> index fdd698df5fbe..fa40c44eb770 100644
+> --- a/drivers/gpu/drm/vc4/vc4_kms.c
+> +++ b/drivers/gpu/drm/vc4/vc4_kms.c
+> @@ -39,7 +39,6 @@ static struct vc4_ctm_state *to_vc4_ctm_state(struct =
+drm_private_state *priv)
+>  =20
+>   struct vc4_hvs_state {
+>   	struct drm_private_state base;
+> -	unsigned int unassigned_channels;
+>  =20
+>   	struct {
+>   		unsigned in_use: 1;
+> @@ -798,7 +797,6 @@ vc4_hvs_channels_duplicate_state(struct drm_private=
+_obj *obj)
+>  =20
+>   	__drm_atomic_helper_private_obj_duplicate_state(obj, &state->base);
+>  =20
+> -	state->unassigned_channels =3D old_state->unassigned_channels;
+>  =20
+>   	for (i =3D 0; i < HVS_NUM_CHANNELS; i++) {
+>   		state->fifo_state[i].in_use =3D old_state->fifo_state[i].in_use;
+> @@ -849,7 +847,6 @@ static int vc4_hvs_channels_obj_init(struct vc4_dev=
+ *vc4)
+>   	if (!state)
+>   		return -ENOMEM;
+>  =20
+> -	state->unassigned_channels =3D GENMASK(HVS_NUM_CHANNELS - 1, 0);
+>   	drm_atomic_private_obj_init(&vc4->base, &vc4->hvs_channels,
+>   				    &state->base,
+>   				    &vc4_hvs_state_funcs);
+> @@ -893,12 +890,17 @@ static int vc4_pv_muxing_atomic_check(struct drm_=
+device *dev,
+>   	struct vc4_hvs_state *hvs_new_state;
+>   	struct drm_crtc_state *old_crtc_state, *new_crtc_state;
+>   	struct drm_crtc *crtc;
+> +	unsigned int unassigned_channels;
+>   	unsigned int i;
+>  =20
+>   	hvs_new_state =3D vc4_hvs_get_global_state(state);
+>   	if (!hvs_new_state)
+>   		return -EINVAL;
+>  =20
+> +	for (i =3D 0; i < HVS_NUM_CHANNELS; i++)
+> +		if (!hvs_new_state->fifo_state[i].in_use)
+> +			unassigned_channels |=3D BIT(i);
+> +
 
-> 
-> > > > > > SI4455_IOC_GRSSI -> Last measured RSSI, when packet received. This is a useful information.
-> > > > > > (Currently I'm the only one user, and I need this :) )
-> > > > > 
-> > > > > What is "RSSI"?
-> > > > > 
-> > > > > And why not debugfs if it's only debugging stuff?
-> > > > 
-> > > > Received signal strength indication, and not only debugging. It is an information for the end user.
-> > > 
-> > > How do other radio devices (like wifi controllers) export this
-> > > information to userspace?  Don't create custom apis for only a single
-> > > device when the goal of a kernel is to make hardware interfaces all work
-> > > the same as far as userspace is concerned.
-> > 
-> > I move the package size, tx/rx channel properties to dt as device
-> > parameter, and the user could control these properties in sysfs and
-> > get rssi too. Finally I can remove all custom ioctl commands.
-> > What do you think?
-> 
-> I do not know, sorry, please try it and see.
-> 
-> thanks,
-> 
-> greg k-h
+More of a nit: I'd turn this block into a helper of struct=20
+vc4_hvs_state. That would also remove the need to initialize=20
+unassigned_channels to 0 here.
 
-Üdvözlettel / Best regards:
-József Horváth
+For the loop's condition, it might be less error prone to use=20
+ARRAY_SIZE(hvs_new_state->fifo_state) instead of HVS_NUM_CHANNEL.
 
+In any case
+
+Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
+
+Best regards
+Thomas
+
+>   	for_each_oldnew_crtc_in_state(state, crtc, old_crtc_state, new_crtc_=
+state, i) {
+>   		struct vc4_crtc_state *old_vc4_crtc_state =3D
+>   			to_vc4_crtc_state(old_crtc_state);
+> @@ -918,8 +920,6 @@ static int vc4_pv_muxing_atomic_check(struct drm_de=
+vice *dev,
+>   		/* If we're disabling our CRTC, we put back our channel */
+>   		if (!new_crtc_state->enable) {
+>   			channel =3D old_vc4_crtc_state->assigned_channel;
+> -
+> -			hvs_new_state->unassigned_channels |=3D BIT(channel);
+>   			hvs_new_state->fifo_state[channel].in_use =3D false;
+>   			new_vc4_crtc_state->assigned_channel =3D VC4_HVS_CHANNEL_DISABLED;=
+
+>   			continue;
+> @@ -949,13 +949,13 @@ static int vc4_pv_muxing_atomic_check(struct drm_=
+device *dev,
+>   		 * the future, we will need to have something smarter,
+>   		 * but it works so far.
+>   		 */
+> -		matching_channels =3D hvs_new_state->unassigned_channels & vc4_crtc-=
+>data->hvs_available_channels;
+> +		matching_channels =3D unassigned_channels & vc4_crtc->data->hvs_avai=
+lable_channels;
+>   		if (!matching_channels)
+>   			return -EINVAL;
+>  =20
+>   		channel =3D ffs(matching_channels) - 1;
+>   		new_vc4_crtc_state->assigned_channel =3D channel;
+> -		hvs_new_state->unassigned_channels &=3D ~BIT(channel);
+> +		unassigned_channels &=3D ~BIT(channel);
+>   		hvs_new_state->fifo_state[channel].in_use =3D true;
+>   	}
+>  =20
+>=20
+
+--=20
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
+(HRB 36809, AG N=C3=BCrnberg)
+Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
+
+
+--G9X4LYRXmU4IZQdRg06F3vjoA4wRm3WWo--
+
+--8CsgVUlgHggoOS5UjO2qw1YdQd699lHX7
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature"
+
+-----BEGIN PGP SIGNATURE-----
+
+wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAl/TRd4FAwAAAAAACgkQlh/E3EQov+Ad
+hg/+LwZ84Lwjy07PhFjbTd60a3jpQm1OvCVjP8AL55ES53f6oRzz+iNXT1IoAEK32Rb9CFY6btlB
+XhKHqQZKLoCw31BxrTKZUkmz2/3sSQYYhL3BlJxXOZXxtbvNk1pOJGeVsHw4knvqblqX4UCRhszV
+XDdVkRFX2zSaPGhUMFI6aj3ZFba9tdsxrtVuK2Hf3kAnvf8BZC3YXbiy9OBimLxtFcFBRb5IeUOt
+MvhShryE/QVDB3LeBWNngj1eC6AGqsFO2JOV0KxW/4KTER8kL4QYAORdHxgfokUVIHbYlKTC+9UN
+D2bcevLoZdyGjb0YTKxXed9RYP3AjBwnOrb3Ty9ej/1YXwiupacQ5dr+LUiCLLJ5UpsWZeEf/ogx
+ue0AsRavyy+3FnMxiiujN/JKmXOdjEuq7jMG3XsxmHhEaLaPKf52tFFtQlX2URIzwAQSS+HjuWus
+cx9OBRsPlySu7uZc5wxZDq2jviRVfkdfdskF3/98V6kMrDIGQkwabBza+zcOWTEaaWR8SZLsGknp
+QNU/eqirNq5Do9PjemK1MB5dgFtOjt4JhpaDLyKD5NtcY8vsabK2htqfjhKFFvtEMyE2Bil8ipOH
+uG5u87hxTbkz3d3yVN2uYFNU6m7ZScpVsem9yYetsyEsFZoCMjh+zqMHfLSx4nSbZ5vzEVerYjou
+2Z0=
+=9P8q
+-----END PGP SIGNATURE-----
+
+--8CsgVUlgHggoOS5UjO2qw1YdQd699lHX7--
