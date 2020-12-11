@@ -2,289 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C90362D6D0E
-	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 02:09:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DB92C2D6D39
+	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 02:22:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404324AbgLKBGh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Dec 2020 20:06:37 -0500
-Received: from mga14.intel.com ([192.55.52.115]:12004 "EHLO mga14.intel.com"
+        id S2404831AbgLKBU5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Dec 2020 20:20:57 -0500
+Received: from foss.arm.com ([217.140.110.172]:49320 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2394390AbgLKBGM (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 10 Dec 2020 20:06:12 -0500
-IronPort-SDR: +jLBC9kj+338ThjLFqpWFcDfTC6uB33QhYdyCj8zxznJrnzk0piJ4UV/vRVBey+qGlU9MaserZ
- Mb/PK+bom/PA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9831"; a="173596156"
-X-IronPort-AV: E=Sophos;i="5.78,409,1599548400"; 
-   d="scan'208";a="173596156"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Dec 2020 17:05:01 -0800
-IronPort-SDR: usIHpIEp1LFBvZjjlu5X1jO0eqcaDfyFH+i3rrIGknNxiWDqxOSqmIzDl1kzZQzPns5wWIN7j8
- J+DPZxB6F/Pg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.78,409,1599548400"; 
-   d="scan'208";a="320965878"
-Received: from jsia-hp-z620-workstation.png.intel.com ([10.221.118.135])
-  by fmsmga007.fm.intel.com with ESMTP; 10 Dec 2020 17:04:59 -0800
-From:   Sia Jee Heng <jee.heng.sia@intel.com>
-To:     vkoul@kernel.org, Eugeniy.Paltsev@synopsys.com, robh+dt@kernel.org
-Cc:     andriy.shevchenko@linux.intel.com, dmaengine@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH v6 16/16] dmaengine: dw-axi-dmac: Virtually split the linked-list
-Date:   Fri, 11 Dec 2020 08:46:42 +0800
-Message-Id: <20201211004642.25393-17-jee.heng.sia@intel.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20201211004642.25393-1-jee.heng.sia@intel.com>
-References: <20201211004642.25393-1-jee.heng.sia@intel.com>
+        id S2404739AbgLKBUn (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 10 Dec 2020 20:20:43 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 571F41396;
+        Thu, 10 Dec 2020 17:19:58 -0800 (PST)
+Received: from localhost.localdomain (unknown [172.31.20.19])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 39CC73F66B;
+        Thu, 10 Dec 2020 17:19:56 -0800 (PST)
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>
+Cc:     Icenowy Zheng <icenowy@aosc.xyz>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>,
+        Shuosheng Huang <huangshuosheng@allwinnertech.com>,
+        Yangtao Li <tiny.windzz@gmail.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-sunxi@googlegroups.com, devicetree@vger.kernel.org,
+        linux-gpio@vger.kernel.org
+Subject: [PATCH v2 02/21] dt-bindings: pinctrl: Add Allwinner H616 compatible strings
+Date:   Fri, 11 Dec 2020 01:19:15 +0000
+Message-Id: <20201211011934.6171-3-andre.przywara@arm.com>
+X-Mailer: git-send-email 2.14.1
+In-Reply-To: <20201211011934.6171-1-andre.przywara@arm.com>
+References: <20201211011934.6171-1-andre.przywara@arm.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-AxiDMA driver exposed the dma_set_max_seg_size() to the DMAENGINE.
-It shall helps the DMA clients to create size-optimized linked-list
-for the controller.
+A new SoC, a new compatible string.
+Also we were too miserly with just allowing seven interrupt banks.
 
-However, there are certain situations where DMA client might not be
-abled to benefit from the dma_get_max_seg_size() if the segment size
-can't meet the nature of the DMA client's operation.
-
-In the case of ALSA operation, ALSA application and driver expecting
-to run in a period of larger than 10ms regardless of the bit depth.
-With this large period, there is a strong request to split the linked-list
-in the AxiDMA driver.
-
-Signed-off-by: Sia Jee Heng <jee.heng.sia@intel.com>
+Signed-off-by: Andre Przywara <andre.przywara@arm.com>
 ---
- .../dma/dw-axi-dmac/dw-axi-dmac-platform.c    | 111 ++++++++++++++----
- drivers/dma/dw-axi-dmac/dw-axi-dmac.h         |   1 +
- 2 files changed, 92 insertions(+), 20 deletions(-)
+ .../pinctrl/allwinner,sun4i-a10-pinctrl.yaml   | 18 ++++++++++++++++--
+ 1 file changed, 16 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c b/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
-index 1a218fcdbb16..bf83dea947be 100644
---- a/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
-+++ b/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
-@@ -576,6 +576,11 @@ static int dw_axi_dma_set_hw_desc(struct axi_dma_chan *chan,
- 	if (mem_width > DWAXIDMAC_TRANS_WIDTH_32)
- 		mem_width = DWAXIDMAC_TRANS_WIDTH_32;
+diff --git a/Documentation/devicetree/bindings/pinctrl/allwinner,sun4i-a10-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/allwinner,sun4i-a10-pinctrl.yaml
+index 5240487dfe50..292b05d9ed08 100644
+--- a/Documentation/devicetree/bindings/pinctrl/allwinner,sun4i-a10-pinctrl.yaml
++++ b/Documentation/devicetree/bindings/pinctrl/allwinner,sun4i-a10-pinctrl.yaml
+@@ -53,6 +53,8 @@ properties:
+       - allwinner,sun50i-h5-pinctrl
+       - allwinner,sun50i-h6-pinctrl
+       - allwinner,sun50i-h6-r-pinctrl
++      - allwinner,sun50i-h616-pinctrl
++      - allwinner,sun50i-h616-r-pinctrl
+       - allwinner,suniv-f1c100s-pinctrl
+       - nextthing,gr8-pinctrl
  
-+	if (!IS_ALIGNED(mem_addr, 4)) {
-+		dev_err(chan->chip->dev, "invalid buffer alignment\n");
-+		return -EINVAL;
-+	}
+@@ -61,7 +63,7 @@ properties:
+ 
+   interrupts:
+     minItems: 1
+-    maxItems: 7
++    maxItems: 8
+     description:
+       One interrupt per external interrupt bank supported on the
+       controller, sorted by bank number ascending order.
+@@ -91,7 +93,7 @@ properties:
+       bank found in the controller
+     $ref: /schemas/types.yaml#/definitions/uint32-array
+     minItems: 1
+-    maxItems: 5
++    maxItems: 8
+ 
+ patternProperties:
+   # It's pretty scary, but the basic idea is that:
+@@ -145,6 +147,18 @@ allOf:
+   # boards are defining it at the moment so it would generate a lot of
+   # warnings.
+ 
++  - if:
++      properties:
++        compatible:
++          enum:
++            - allwinner,sun50i-h616-pinctrl
 +
- 	switch (chan->direction) {
- 	case DMA_MEM_TO_DEV:
- 		reg_width = __ffs(chan->config.dst_addr_width);
-@@ -637,6 +642,35 @@ static int dw_axi_dma_set_hw_desc(struct axi_dma_chan *chan,
- 	return 0;
- }
- 
-+static size_t calculate_block_len(struct axi_dma_chan *chan,
-+				  dma_addr_t dma_addr, size_t buf_len,
-+				  enum dma_transfer_direction direction)
-+{
-+	u32 data_width, reg_width, mem_width;
-+	size_t axi_block_ts, block_len;
++    then:
++      properties:
++        interrupts:
++          minItems: 8
++          maxItems: 8
 +
-+	axi_block_ts = chan->chip->dw->hdata->block_size[chan->id];
-+
-+	switch (direction) {
-+	case DMA_MEM_TO_DEV:
-+		data_width = BIT(chan->chip->dw->hdata->m_data_width);
-+		mem_width = __ffs(data_width | dma_addr | buf_len);
-+		if (mem_width > DWAXIDMAC_TRANS_WIDTH_32)
-+			mem_width = DWAXIDMAC_TRANS_WIDTH_32;
-+
-+		block_len = axi_block_ts << mem_width;
-+		break;
-+	case DMA_DEV_TO_MEM:
-+		reg_width = __ffs(chan->config.src_addr_width);
-+		block_len = axi_block_ts << reg_width;
-+		break;
-+	default:
-+		block_len = 0;
-+	}
-+
-+	return block_len;
-+}
-+
- static struct dma_async_tx_descriptor *
- dw_axi_dma_chan_prep_cyclic(struct dma_chan *dchan, dma_addr_t dma_addr,
- 			    size_t buf_len, size_t period_len,
-@@ -647,13 +681,27 @@ dw_axi_dma_chan_prep_cyclic(struct dma_chan *dchan, dma_addr_t dma_addr,
- 	struct axi_dma_hw_desc *hw_desc = NULL;
- 	struct axi_dma_desc *desc = NULL;
- 	dma_addr_t src_addr = dma_addr;
--	u32 num_periods = buf_len / period_len;
-+	u32 num_periods, num_segments;
-+	size_t axi_block_len;
-+	u32 total_segments;
-+	u32 segment_len;
- 	unsigned int i;
- 	int status;
- 	u64 llp = 0;
- 	u8 lms = 0; /* Select AXI0 master for LLI fetching */
- 
--	desc = axi_desc_alloc(num_periods);
-+	num_periods = buf_len / period_len;
-+
-+	axi_block_len = calculate_block_len(chan, dma_addr, buf_len, direction);
-+	if (axi_block_len == 0)
-+		return NULL;
-+
-+	num_segments = DIV_ROUND_UP(period_len, axi_block_len);
-+	segment_len = DIV_ROUND_UP(period_len, num_segments);
-+
-+	total_segments = num_periods * num_segments;
-+
-+	desc = axi_desc_alloc(total_segments);
- 	if (unlikely(!desc))
- 		goto err_desc_get;
- 
-@@ -661,12 +709,13 @@ dw_axi_dma_chan_prep_cyclic(struct dma_chan *dchan, dma_addr_t dma_addr,
- 	desc->chan = chan;
- 	chan->cyclic = true;
- 	desc->length = 0;
-+	desc->period_len = period_len;
- 
--	for (i = 0; i < num_periods; i++) {
-+	for (i = 0; i < total_segments; i++) {
- 		hw_desc = &desc->hw_desc[i];
- 
- 		status = dw_axi_dma_set_hw_desc(chan, hw_desc, src_addr,
--						period_len);
-+						segment_len);
- 		if (status < 0)
- 			goto err_desc_get;
- 
-@@ -676,17 +725,17 @@ dw_axi_dma_chan_prep_cyclic(struct dma_chan *dchan, dma_addr_t dma_addr,
- 		 */
- 		set_desc_last(hw_desc);
- 
--		src_addr += period_len;
-+		src_addr += segment_len;
- 	}
- 
- 	llp = desc->hw_desc[0].llp;
- 
- 	/* Managed transfer list */
- 	do {
--		hw_desc = &desc->hw_desc[--num_periods];
-+		hw_desc = &desc->hw_desc[--total_segments];
- 		write_desc_llp(hw_desc, llp | lms);
- 		llp = hw_desc->llp;
--	} while (num_periods);
-+	} while (total_segments);
- 
- 	if (dw_axi_dma_set_hw_channel(chan->chip, chan->hw_handshake_num, true))
- 		goto err_desc_get;
-@@ -709,9 +758,13 @@ dw_axi_dma_chan_prep_slave_sg(struct dma_chan *dchan, struct scatterlist *sgl,
- 	struct axi_dma_chan *chan = dchan_to_axi_dma_chan(dchan);
- 	struct axi_dma_hw_desc *hw_desc = NULL;
- 	struct axi_dma_desc *desc = NULL;
-+	u32 num_segments, segment_len;
-+	unsigned int loop = 0;
- 	struct scatterlist *sg;
-+	size_t axi_block_len;
-+	u32 len, num_sgs = 0;
- 	unsigned int i;
--	u32 mem, len;
-+	dma_addr_t mem;
- 	int status;
- 	u64 llp = 0;
- 	u8 lms = 0; /* Select AXI0 master for LLI fetching */
-@@ -719,35 +772,51 @@ dw_axi_dma_chan_prep_slave_sg(struct dma_chan *dchan, struct scatterlist *sgl,
- 	if (unlikely(!is_slave_direction(direction) || !sg_len))
- 		return NULL;
- 
--	chan->direction = direction;
-+	mem = sg_dma_address(sgl);
-+	len = sg_dma_len(sgl);
-+
-+	axi_block_len = calculate_block_len(chan, mem, len, direction);
-+	if (axi_block_len == 0)
-+		return NULL;
- 
--	desc = axi_desc_alloc(sg_len);
-+	for_each_sg(sgl, sg, sg_len, i)
-+		num_sgs += DIV_ROUND_UP(sg_dma_len(sg), axi_block_len);
-+
-+	desc = axi_desc_alloc(num_sgs);
- 	if (unlikely(!desc))
- 		goto err_desc_get;
- 
- 	desc->chan = chan;
- 	desc->length = 0;
-+	chan->direction = direction;
- 
- 	for_each_sg(sgl, sg, sg_len, i) {
- 		mem = sg_dma_address(sg);
- 		len = sg_dma_len(sg);
--		hw_desc = &desc->hw_desc[i];
--
--		status = dw_axi_dma_set_hw_desc(chan, hw_desc, mem, len);
--		if (status < 0)
--			goto err_desc_get;
--		desc->length += hw_desc->len;
-+		num_segments = DIV_ROUND_UP(sg_dma_len(sg), axi_block_len);
-+		segment_len = DIV_ROUND_UP(sg_dma_len(sg), num_segments);
-+
-+		do {
-+			hw_desc = &desc->hw_desc[loop++];
-+			status = dw_axi_dma_set_hw_desc(chan, hw_desc, mem, segment_len);
-+			if (status < 0)
-+				goto err_desc_get;
-+
-+			desc->length += hw_desc->len;
-+			len -= segment_len;
-+			mem += segment_len;
-+		} while (len >= segment_len);
- 	}
- 
- 	/* Set end-of-link to the last link descriptor of list */
--	set_desc_last(&desc->hw_desc[sg_len - 1]);
-+	set_desc_last(&desc->hw_desc[num_sgs - 1]);
- 
- 	/* Managed transfer list */
- 	do {
--		hw_desc = &desc->hw_desc[--sg_len];
-+		hw_desc = &desc->hw_desc[--num_sgs];
- 		write_desc_llp(hw_desc, llp | lms);
- 		llp = hw_desc->llp;
--	} while (sg_len);
-+	} while (num_sgs);
- 
- 	if (dw_axi_dma_set_hw_channel(chan->chip, chan->hw_handshake_num, true))
- 		goto err_desc_get;
-@@ -950,7 +1019,6 @@ static void axi_chan_block_xfer_complete(struct axi_dma_chan *chan)
- 	vd = vchan_next_desc(&chan->vc);
- 
- 	if (chan->cyclic) {
--		vchan_cyclic_callback(vd);
- 		desc = vd_to_axi_desc(vd);
- 		if (desc) {
- 			llp = lo_hi_readq(chan->chan_regs + CH_LLP);
-@@ -960,6 +1028,9 @@ static void axi_chan_block_xfer_complete(struct axi_dma_chan *chan)
- 					axi_chan_irq_clear(chan, hw_desc->lli->status_lo);
- 					hw_desc->lli->ctl_hi |= CH_CTL_H_LLI_VALID;
- 					desc->completed_blocks = i;
-+
-+					if (((hw_desc->len * (i + 1)) % desc->period_len) == 0)
-+						vchan_cyclic_callback(vd);
- 					break;
- 				}
- 			}
-diff --git a/drivers/dma/dw-axi-dmac/dw-axi-dmac.h b/drivers/dma/dw-axi-dmac/dw-axi-dmac.h
-index 1e937ea2a96d..b69897887c76 100644
---- a/drivers/dma/dw-axi-dmac/dw-axi-dmac.h
-+++ b/drivers/dma/dw-axi-dmac/dw-axi-dmac.h
-@@ -100,6 +100,7 @@ struct axi_dma_desc {
- 	struct axi_dma_chan		*chan;
- 	u32				completed_blocks;
- 	u32				length;
-+	u32				period_len;
- };
- 
- static inline struct device *dchan2dev(struct dma_chan *dchan)
+   - if:
+       properties:
+         compatible:
 -- 
-2.18.0
+2.17.5
 
