@@ -2,53 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5AD992D8179
-	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 23:01:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 371A22D819E
+	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 23:11:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2393101AbgLKWAs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Dec 2020 17:00:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57726 "EHLO
+        id S2406470AbgLKWJy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Dec 2020 17:09:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59032 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2404515AbgLKWAj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Dec 2020 17:00:39 -0500
-Received: from mail-lj1-x244.google.com (mail-lj1-x244.google.com [IPv6:2a00:1450:4864:20::244])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 728F2C0613D6;
-        Fri, 11 Dec 2020 13:59:59 -0800 (PST)
-Received: by mail-lj1-x244.google.com with SMTP id q8so12582943ljc.12;
-        Fri, 11 Dec 2020 13:59:59 -0800 (PST)
+        with ESMTP id S2406153AbgLKWJO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Dec 2020 17:09:14 -0500
+Received: from mail-pg1-x541.google.com (mail-pg1-x541.google.com [IPv6:2607:f8b0:4864:20::541])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16B54C0613CF;
+        Fri, 11 Dec 2020 14:08:34 -0800 (PST)
+Received: by mail-pg1-x541.google.com with SMTP id w4so8038804pgg.13;
+        Fri, 11 Dec 2020 14:08:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=WM6KqADRLgdkQgzh2I82UEMjHIE9cRezi1HX1nRnT7w=;
-        b=O6r/hS+0tOBrRuh/x0VIVRLWUhdVT7WkV4MLMs9XGIWBVFyinUXGAOVpx85Uk3+OYd
-         g1wBWDVfidwVQZ9sv2GyqBtufdqzZFivSRCe4+qZSCvI381Tp3ia/OwmT65bQS7Um2I3
-         sAtvCyNYlV0lqM4VL0C/0hgA2FZQfJ5k/rYdiI2II4zAxHaRPVshAsjziINZq45wLn8A
-         LFIYm234YvE5mdkzjWC44oMjvgN54x/LOKwQrfCF5GzBtbsnZ0OO/j1vJ/QGowIxg+jT
-         UeGMGYLU9Y2lA+lS5LvKOEVcORJtfT9vCsZ1SryTLfG9shGCl0c/u89hOlaH79sZ2bQA
-         UoMg==
+        h=subject:to:cc:references:from:autocrypt:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=WgZ37O5rIsi86RISug9VXCvaM0WAAeXC/57vHV4N/aI=;
+        b=MmYat3h5E50Nm+hnDE+XsKALUA8CCm+PhjGLY+fQzjdx2IcsIO9cn1AmfAIvctBF5l
+         8A594e9+8kj0Ea1gCivjdqmzJ4+UOrsH07os93V+G+uL8tdnkvmtVua9eQ43pcosX/8D
+         RmMm+wHyZhZo/UHI8Yxc11KdLj7SL8XlxiP7ZzFyHCQ6KyUKGWnBrJFM1UOJ4I6Cbz1C
+         VpPEJeJH4JGwE8BvoSdyeBeGlIhdJ/3hf/Nrtnzu9SWdH/p+EU7dlzKxvFMVMW7fbppe
+         FU5xfMvw73qUDbxZDagQ37IlRgGiNJ7YJNzB+IyKsW8epG+/jMTnJzRmyX9m06PWqIit
+         UYpg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=WM6KqADRLgdkQgzh2I82UEMjHIE9cRezi1HX1nRnT7w=;
-        b=iJtfc1kQcAERueSK58HlISrjwsooVfWM4wIuXcQBFx+qFZU7iE2vdXuFJw1hk5LFec
-         yDuk0lDJpvuJcgYYWbWLcBqXqUG9AZ3cjyNJ3itdQwVfJKRL8oyepYWIfR2wLNSs7XKT
-         xtV3ZAdJBlHu+w4Oz0lpmTqAEZ/sVZR9ypL5Kayl1Puu66M45rzYLBU8Bkbd9020lHrp
-         xIpGrKP8U6T0+d6cN3lyXbB71vxjravIgvqZlzxxjEfAWvx3JyE1I7PTHaPTha7wmBW2
-         Xj9F4agHr/XfqbpYkgF7/od+ROZ8T80aut3i/oPwVoc3oibellbNplz1/E1J5HqbIx6d
-         NyEg==
-X-Gm-Message-State: AOAM531vHUfPEVrrfZkqIaOTf2Qw9raRJ+dVd0UOM8N2PLmlL06erckf
-        6I3QAl6zfBpLZpJorEkxBIk=
-X-Google-Smtp-Source: ABdhPJwmNtqcjT1OajDswjpsxPOsUZQ0CRY7zNM5RygruVPc985D4avgntnqHUJG6Aet7Rbo3lehSw==
-X-Received: by 2002:a2e:86d2:: with SMTP id n18mr5571335ljj.26.1607723997951;
-        Fri, 11 Dec 2020 13:59:57 -0800 (PST)
-Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.gmail.com with ESMTPSA id d21sm1026140lfi.137.2020.12.11.13.59.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Dec 2020 13:59:57 -0800 (PST)
-From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To:     Florian Fainelli <f.fainelli@gmail.com>,
+        h=x-gm-message-state:subject:to:cc:references:from:autocrypt
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=WgZ37O5rIsi86RISug9VXCvaM0WAAeXC/57vHV4N/aI=;
+        b=SRw64kXWh9KP5h3G/k25WxxtMHzNk6EDxO01yhtmAt7vtAFmWp8rpyagCDB/YjC/sH
+         vB8wX3T8e7CCrI7x/PmAewx7pnc1lITmeoLyPgJ57LPGbWQoUJhenHohUciP7bBOAgAp
+         81Rze4woVxZhzk/1Hfl6ZF6mO5eTcksNjMz1ERB+tARVdx/oFsNCJihZIYccAqDt1l00
+         eEsqeZe89e5PSxaZsvuerbOZ0GuidGI2hanvnUIZlKMdUm4AdEwD+u5WmAFk3Kqtdp5B
+         pY1RI8qxnT/l9mYvL0np0qvMh/uww7Mxvaj0G3Y5a2oQB01HEtqLQaU7h5Kty99cTKAj
+         ZCGQ==
+X-Gm-Message-State: AOAM530WGcAqEC10Qba4mv57b2dvXwLzr9lczc/yYup/Rdr4Zk/GEyQd
+        xm1SSC6AReNqm29/RrjUlZU=
+X-Google-Smtp-Source: ABdhPJws2VmPdFQBhzskFPEqe252O9kdrhbqp/0GTOdjR+a1LeLqrV2rvPrpfTqkmtvAjvzJ3SV+UA==
+X-Received: by 2002:a63:4283:: with SMTP id p125mr13877163pga.26.1607724513623;
+        Fri, 11 Dec 2020 14:08:33 -0800 (PST)
+Received: from [10.67.48.230] ([192.19.223.252])
+        by smtp.googlemail.com with ESMTPSA id z12sm11424419pfn.186.2020.12.11.14.08.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 11 Dec 2020 14:08:32 -0800 (PST)
+Subject: Re: [PATCH 2/2] soc: bcm: add PM driver for Broadcom's PMB
+To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
         Rob Herring <robh+dt@kernel.org>
 Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
         "Rafael J . Wysocki" <rjw@rjwysocki.net>,
@@ -56,404 +58,91 @@ Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
         Ulf Hansson <ulf.hansson@linaro.org>,
         devicetree@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com,
         linux-kernel@vger.kernel.org,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH 2/2] soc: bcm: add PM driver for Broadcom's PMB
-Date:   Fri, 11 Dec 2020 22:59:42 +0100
-Message-Id: <20201211215942.5726-3-zajec5@gmail.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20201211215942.5726-1-zajec5@gmail.com>
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
 References: <20201211215942.5726-1-zajec5@gmail.com>
+ <20201211215942.5726-3-zajec5@gmail.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Autocrypt: addr=f.fainelli@gmail.com; prefer-encrypt=mutual; keydata=
+ mQGiBEjPuBIRBACW9MxSJU9fvEOCTnRNqG/13rAGsj+vJqontvoDSNxRgmafP8d3nesnqPyR
+ xGlkaOSDuu09rxuW+69Y2f1TzjFuGpBk4ysWOR85O2Nx8AJ6fYGCoeTbovrNlGT1M9obSFGQ
+ X3IzRnWoqlfudjTO5TKoqkbOgpYqIo5n1QbEjCCwCwCg3DOH/4ug2AUUlcIT9/l3pGvoRJ0E
+ AICDzi3l7pmC5IWn2n1mvP5247urtHFs/uusE827DDj3K8Upn2vYiOFMBhGsxAk6YKV6IP0d
+ ZdWX6fqkJJlu9cSDvWtO1hXeHIfQIE/xcqvlRH783KrihLcsmnBqOiS6rJDO2x1eAgC8meAX
+ SAgsrBhcgGl2Rl5gh/jkeA5ykwbxA/9u1eEuL70Qzt5APJmqVXR+kWvrqdBVPoUNy/tQ8mYc
+ nzJJ63ng3tHhnwHXZOu8hL4nqwlYHRa9eeglXYhBqja4ZvIvCEqSmEukfivk+DlIgVoOAJbh
+ qIWgvr3SIEuR6ayY3f5j0f2ejUMYlYYnKdiHXFlF9uXm1ELrb0YX4GMHz7QnRmxvcmlhbiBG
+ YWluZWxsaSA8Zi5mYWluZWxsaUBnbWFpbC5jb20+iGYEExECACYCGyMGCwkIBwMCBBUCCAME
+ FgIDAQIeAQIXgAUCVF/S8QUJHlwd3wAKCRBhV5kVtWN2DvCVAJ4u4/bPF4P3jxb4qEY8I2gS
+ 6hG0gACffNWlqJ2T4wSSn+3o7CCZNd7SLSC5BA0ESM+4EhAQAL/o09boR9D3Vk1Tt7+gpYr3
+ WQ6hgYVON905q2ndEoA2J0dQxJNRw3snabHDDzQBAcqOvdi7YidfBVdKi0wxHhSuRBfuOppu
+ pdXkb7zxuPQuSveCLqqZWRQ+Cc2QgF7SBqgznbe6Ngout5qXY5Dcagk9LqFNGhJQzUGHAsIs
+ hap1f0B1PoUyUNeEInV98D8Xd/edM3mhO9nRpUXRK9Bvt4iEZUXGuVtZLT52nK6Wv2EZ1TiT
+ OiqZlf1P+vxYLBx9eKmabPdm3yjalhY8yr1S1vL0gSA/C6W1o/TowdieF1rWN/MYHlkpyj9c
+ Rpc281gAO0AP3V1G00YzBEdYyi0gaJbCEQnq8Vz1vDXFxHzyhgGz7umBsVKmYwZgA8DrrB0M
+ oaP35wuGR3RJcaG30AnJpEDkBYHznI2apxdcuTPOHZyEilIRrBGzDwGtAhldzlBoBwE3Z3MY
+ 31TOpACu1ZpNOMysZ6xiE35pWkwc0KYm4hJA5GFfmWSN6DniimW3pmdDIiw4Ifcx8b3mFrRO
+ BbDIW13E51j9RjbO/nAaK9ndZ5LRO1B/8Fwat7bLzmsCiEXOJY7NNpIEpkoNoEUfCcZwmLrU
+ +eOTPzaF6drw6ayewEi5yzPg3TAT6FV3oBsNg3xlwU0gPK3v6gYPX5w9+ovPZ1/qqNfOrbsE
+ FRuiSVsZQ5s3AAMFD/9XjlnnVDh9GX/r/6hjmr4U9tEsM+VQXaVXqZuHKaSmojOLUCP/YVQo
+ 7IiYaNssCS4FCPe4yrL4FJJfJAsbeyDykMN7wAnBcOkbZ9BPJPNCbqU6dowLOiy8AuTYQ48m
+ vIyQ4Ijnb6GTrtxIUDQeOBNuQC/gyyx3nbL/lVlHbxr4tb6YkhkO6shjXhQh7nQb33FjGO4P
+ WU11Nr9i/qoV8QCo12MQEo244RRA6VMud06y/E449rWZFSTwGqb0FS0seTcYNvxt8PB2izX+
+ HZA8SL54j479ubxhfuoTu5nXdtFYFj5Lj5x34LKPx7MpgAmj0H7SDhpFWF2FzcC1bjiW9mjW
+ HaKaX23Awt97AqQZXegbfkJwX2Y53ufq8Np3e1542lh3/mpiGSilCsaTahEGrHK+lIusl6mz
+ Joil+u3k01ofvJMK0ZdzGUZ/aPMZ16LofjFA+MNxWrZFrkYmiGdv+LG45zSlZyIvzSiG2lKy
+ kuVag+IijCIom78P9jRtB1q1Q5lwZp2TLAJlz92DmFwBg1hyFzwDADjZ2nrDxKUiybXIgZp9
+ aU2d++ptEGCVJOfEW4qpWCCLPbOT7XBr+g/4H3qWbs3j/cDDq7LuVYIe+wchy/iXEJaQVeTC
+ y5arMQorqTFWlEOgRA8OP47L9knl9i4xuR0euV6DChDrguup2aJVU4hPBBgRAgAPAhsMBQJU
+ X9LxBQkeXB3fAAoJEGFXmRW1Y3YOj4UAn3nrFLPZekMeqX5aD/aq/dsbXSfyAKC45Go0YyxV
+ HGuUuzv+GKZ6nsysJ7kCDQRXG8fwARAA6q/pqBi5PjHcOAUgk2/2LR5LjjesK50bCaD4JuNc
+ YDhFR7Vs108diBtsho3w8WRd9viOqDrhLJTroVckkk74OY8r+3t1E0Dd4wHWHQZsAeUvOwDM
+ PQMqTUBFuMi6ydzTZpFA2wBR9x6ofl8Ax+zaGBcFrRlQnhsuXLnM1uuvS39+pmzIjasZBP2H
+ UPk5ifigXcpelKmj6iskP3c8QN6x6GjUSmYx+xUfs/GNVSU1XOZn61wgPDbgINJd/THGdqiO
+ iJxCLuTMqlSsmh1+E1dSdfYkCb93R/0ZHvMKWlAx7MnaFgBfsG8FqNtZu3PCLfizyVYYjXbV
+ WO1A23riZKqwrSJAATo5iTS65BuYxrFsFNPrf7TitM8E76BEBZk0OZBvZxMuOs6Z1qI8YKVK
+ UrHVGFq3NbuPWCdRul9SX3VfOunr9Gv0GABnJ0ET+K7nspax0xqq7zgnM71QEaiaH17IFYGS
+ sG34V7Wo3vyQzsk7qLf9Ajno0DhJ+VX43g8+AjxOMNVrGCt9RNXSBVpyv2AMTlWCdJ5KI6V4
+ KEzWM4HJm7QlNKE6RPoBxJVbSQLPd9St3h7mxLcne4l7NK9eNgNnneT7QZL8fL//s9K8Ns1W
+ t60uQNYvbhKDG7+/yLcmJgjF74XkGvxCmTA1rW2bsUriM533nG9gAOUFQjURkwI8jvMAEQEA
+ AYkCaAQYEQIACQUCVxvH8AIbAgIpCRBhV5kVtWN2DsFdIAQZAQIABgUCVxvH8AAKCRCH0Jac
+ RAcHBIkHD/9nmfog7X2ZXMzL9ktT++7x+W/QBrSTCTmq8PK+69+INN1ZDOrY8uz6htfTLV9+
+ e2W6G8/7zIvODuHk7r+yQ585XbplgP0V5Xc8iBHdBgXbqnY5zBrcH+Q/oQ2STalEvaGHqNoD
+ UGyLQ/fiKoLZTPMur57Fy1c9rTuKiSdMgnT0FPfWVDfpR2Ds0gpqWePlRuRGOoCln5GnREA/
+ 2MW2rWf+CO9kbIR+66j8b4RUJqIK3dWn9xbENh/aqxfonGTCZQ2zC4sLd25DQA4w1itPo+f5
+ V/SQxuhnlQkTOCdJ7b/mby/pNRz1lsLkjnXueLILj7gNjwTabZXYtL16z24qkDTI1x3g98R/
+ xunb3/fQwR8FY5/zRvXJq5us/nLvIvOmVwZFkwXc+AF+LSIajqQz9XbXeIP/BDjlBNXRZNdo
+ dVuSU51ENcMcilPr2EUnqEAqeczsCGpnvRCLfVQeSZr2L9N4svNhhfPOEscYhhpHTh0VPyxI
+ pPBNKq+byuYPMyk3nj814NKhImK0O4gTyCK9b+gZAVvQcYAXvSouCnTZeJRrNHJFTgTgu6E0
+ caxTGgc5zzQHeX67eMzrGomG3ZnIxmd1sAbgvJUDaD2GrYlulfwGWwWyTNbWRvMighVdPkSF
+ 6XFgQaosWxkV0OELLy2N485YrTr2Uq64VKyxpncLh50e2RnyAJ9Za0Dx0yyp44iD1OvHtkEI
+ M5kY0ACeNhCZJvZ5g4C2Lc9fcTHu8jxmEkI=
+Message-ID: <3bc097fa-3bef-396f-a4fd-fa8acbc1b71d@gmail.com>
+Date:   Fri, 11 Dec 2020 14:08:24 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+In-Reply-To: <20201211215942.5726-3-zajec5@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rafał Miłecki <rafal@milecki.pl>
+On 12/11/20 1:59 PM, Rafał Miłecki wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
+> 
+> PMB can be found on BCM4908 and many other chipsets (e.g. BCM63138).
+> It's needed to power on and off SoC blocks like PCIe, SATA, USB.
+> 
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 
-PMB can be found on BCM4908 and many other chipsets (e.g. BCM63138).
-It's needed to power on and off SoC blocks like PCIe, SATA, USB.
+I will do a more thorough review tonight, however do you mind moving the
+driver under drives/soc/bcm/bcm63xx? The first SoC that had PMB was
+63138 and that one is DSL.
 
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
----
- drivers/soc/bcm/Kconfig   |   8 +
- drivers/soc/bcm/Makefile  |   1 +
- drivers/soc/bcm/bcm-pmb.c | 335 ++++++++++++++++++++++++++++++++++++++
- 3 files changed, 344 insertions(+)
- create mode 100644 drivers/soc/bcm/bcm-pmb.c
+And we would probably need a MAINTAINERS file update for this driver?
 
-diff --git a/drivers/soc/bcm/Kconfig b/drivers/soc/bcm/Kconfig
-index 24f92a6e882a..327cfbd88471 100644
---- a/drivers/soc/bcm/Kconfig
-+++ b/drivers/soc/bcm/Kconfig
-@@ -13,6 +13,14 @@ config BCM2835_POWER
- 	  firmware means that Linux usage of the same power domain
- 	  must be accessed using the RASPBERRYPI_POWER driver
- 
-+config BCM_PMB
-+	bool "Broadcom PMB (Power Management Bus) driver"
-+	depends on ARCH_BCM4908 || (COMPILE_TEST && OF)
-+	default ARCH_BCM4908
-+	select PM_GENERIC_DOMAINS if PM
-+	help
-+	  Foo
-+
- config RASPBERRYPI_POWER
- 	bool "Raspberry Pi power domain driver"
- 	depends on ARCH_BCM2835 || (COMPILE_TEST && OF)
-diff --git a/drivers/soc/bcm/Makefile b/drivers/soc/bcm/Makefile
-index 7bc90e0bd773..c451ee76259f 100644
---- a/drivers/soc/bcm/Makefile
-+++ b/drivers/soc/bcm/Makefile
-@@ -1,5 +1,6 @@
- # SPDX-License-Identifier: GPL-2.0-only
- obj-$(CONFIG_BCM2835_POWER)	+= bcm2835-power.o
-+obj-$(CONFIG_BCM_PMB)		+= bcm-pmb.o
- obj-$(CONFIG_RASPBERRYPI_POWER)	+= raspberrypi-power.o
- obj-$(CONFIG_SOC_BCM63XX)	+= bcm63xx/
- obj-$(CONFIG_SOC_BRCMSTB)	+= brcmstb/
-diff --git a/drivers/soc/bcm/bcm-pmb.c b/drivers/soc/bcm/bcm-pmb.c
-new file mode 100644
-index 000000000000..31820e56418d
---- /dev/null
-+++ b/drivers/soc/bcm/bcm-pmb.c
-@@ -0,0 +1,335 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ * Copyright (c) 2013 Broadcom
-+ * Copyright (C) 2020 Rafał Miłecki <rafal@milecki.pl>
-+ */
-+
-+#include <dt-bindings/soc/bcm-pmb.h>
-+#include <linux/io.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/of_device.h>
-+#include <linux/platform_device.h>
-+#include <linux/pm_domain.h>
-+#include <linux/reset/bcm63xx_pmb.h>
-+
-+#define BPCM_ID_REG					0x00
-+#define BPCM_CAPABILITIES				0x04
-+#define  BPCM_CAP_NUM_ZONES				0x000000ff
-+#define  BPCM_CAP_SR_REG_BITS				0x0000ff00
-+#define  BPCM_CAP_PLLTYPE				0x00030000
-+#define  BPCM_CAP_UBUS					0x00080000
-+#define BPCM_CONTROL					0x08
-+#define BPCM_STATUS					0x0c
-+#define BPCM_ROSC_CONTROL				0x10
-+#define BPCM_ROSC_THRESH_H				0x14
-+#define BPCM_ROSC_THRESHOLD_BCM6838			0x14
-+#define BPCM_ROSC_THRESH_S				0x18
-+#define BPCM_ROSC_COUNT_BCM6838				0x18
-+#define BPCM_ROSC_COUNT					0x1c
-+#define BPCM_PWD_CONTROL_BCM6838			0x1c
-+#define BPCM_PWD_CONTROL				0x20
-+#define BPCM_SR_CONTROL_BCM6838				0x20
-+#define BPCM_PWD_ACCUM_CONTROL				0x24
-+#define BPCM_SR_CONTROL					0x28
-+#define BPCM_GLOBAL_CONTROL				0x2c
-+#define BPCM_MISC_CONTROL				0x30
-+#define BPCM_MISC_CONTROL2				0x34
-+#define BPCM_SGPHY_CNTL					0x38
-+#define BPCM_SGPHY_STATUS				0x3c
-+#define BPCM_ZONE0					0x40
-+#define  BPCM_ZONE_CONTROL				0x00
-+#define   BPCM_ZONE_CONTROL_MANUAL_CLK_EN		0x00000001
-+#define   BPCM_ZONE_CONTROL_MANUAL_RESET_CTL		0x00000002
-+#define   BPCM_ZONE_CONTROL_FREQ_SCALE_USED		0x00000004	/* R/O */
-+#define   BPCM_ZONE_CONTROL_DPG_CAPABLE			0x00000008	/* R/O */
-+#define   BPCM_ZONE_CONTROL_MANUAL_MEM_PWR		0x00000030
-+#define   BPCM_ZONE_CONTROL_MANUAL_ISO_CTL		0x00000040
-+#define   BPCM_ZONE_CONTROL_MANUAL_CTL			0x00000080
-+#define   BPCM_ZONE_CONTROL_DPG_CTL_EN			0x00000100
-+#define   BPCM_ZONE_CONTROL_PWR_DN_REQ			0x00000200
-+#define   BPCM_ZONE_CONTROL_PWR_UP_REQ			0x00000400
-+#define   BPCM_ZONE_CONTROL_MEM_PWR_CTL_EN		0x00000800
-+#define   BPCM_ZONE_CONTROL_BLK_RESET_ASSERT		0x00001000
-+#define   BPCM_ZONE_CONTROL_MEM_STBY			0x00002000
-+#define   BPCM_ZONE_CONTROL_RESERVED			0x0007c000
-+#define   BPCM_ZONE_CONTROL_PWR_CNTL_STATE		0x00f80000
-+#define   BPCM_ZONE_CONTROL_FREQ_SCALAR_DYN_SEL		0x01000000	/* R/O */
-+#define   BPCM_ZONE_CONTROL_PWR_OFF_STATE		0x02000000	/* R/O */
-+#define   BPCM_ZONE_CONTROL_PWR_ON_STATE		0x04000000	/* R/O */
-+#define   BPCM_ZONE_CONTROL_PWR_GOOD			0x08000000	/* R/O */
-+#define   BPCM_ZONE_CONTROL_DPG_PWR_STATE		0x10000000	/* R/O */
-+#define   BPCM_ZONE_CONTROL_MEM_PWR_STATE		0x20000000	/* R/O */
-+#define   BPCM_ZONE_CONTROL_ISO_STATE			0x40000000	/* R/O */
-+#define   BPCM_ZONE_CONTROL_RESET_STATE			0x80000000	/* R/O */
-+#define  BPCM_ZONE_CONFIG1				0x04
-+#define  BPCM_ZONE_CONFIG2				0x08
-+#define  BPCM_ZONE_FREQ_SCALAR_CONTROL			0x0c
-+#define  BPCM_ZONE_SIZE					0x10
-+
-+struct bcm_pmb {
-+	struct device *dev;
-+	void __iomem *base;
-+	spinlock_t lock;
-+	bool little_endian;
-+	struct genpd_onecell_data genpd_onecell_data;
-+};
-+
-+struct bcm_pmb_pd_data {
-+	const char * const name;
-+	int id;
-+	u8 bus;
-+	u8 device;
-+};
-+
-+struct bcm_pmb_pm_domain {
-+	struct bcm_pmb *pmb;
-+	const struct bcm_pmb_pd_data *data;
-+	struct generic_pm_domain genpd;
-+};
-+
-+static int bcm_pmb_bpcm_read(struct bcm_pmb *pmb, int bus, u8 device,
-+			     int offset, u32 *val)
-+{
-+	void __iomem *base = pmb->base + bus * 0x20;
-+	unsigned long flags;
-+	int err;
-+
-+	spin_lock_irqsave(&pmb->lock, flags);
-+	err = bpcm_rd(base, device, offset, val);
-+	spin_unlock_irqrestore(&pmb->lock, flags);
-+
-+	if (!err)
-+		*val = pmb->little_endian ? le32_to_cpu(*val) : be32_to_cpu(*val);
-+
-+	return err;
-+}
-+
-+static int bcm_pmb_bpcm_write(struct bcm_pmb *pmb, int bus, u8 device,
-+			      int offset, u32 val)
-+{
-+	void __iomem *base = pmb->base + bus * 0x20;
-+	unsigned long flags;
-+	int err;
-+
-+	val = pmb->little_endian ? cpu_to_le32(val) : cpu_to_be32(val);
-+
-+	spin_lock_irqsave(&pmb->lock, flags);
-+	err = bpcm_wr(base, device, offset, val);
-+	spin_unlock_irqrestore(&pmb->lock, flags);
-+
-+	return err;
-+}
-+
-+static int bcm_pmb_power_off_zone(struct bcm_pmb *pmb, int bus, u8 device,
-+				  int zone)
-+{
-+	int offset;
-+	u32 val;
-+	int err;
-+
-+	offset = BPCM_ZONE0 + zone * BPCM_ZONE_SIZE + BPCM_ZONE_CONTROL;
-+
-+	err = bcm_pmb_bpcm_read(pmb, bus, device, offset, &val);
-+	if (err)
-+		return err;
-+
-+	val |= BPCM_ZONE_CONTROL_PWR_DN_REQ;
-+	val &= ~BPCM_ZONE_CONTROL_PWR_UP_REQ;
-+
-+	err = bcm_pmb_bpcm_write(pmb, bus, device, offset, val);
-+
-+	return err;
-+}
-+
-+static int bcm_pmb_power_on_zone(struct bcm_pmb *pmb, int bus, u8 device,
-+				 int zone)
-+{
-+	int offset;
-+	u32 val;
-+	int err;
-+
-+	offset = BPCM_ZONE0 + zone * BPCM_ZONE_SIZE + BPCM_ZONE_CONTROL;
-+
-+	err = bcm_pmb_bpcm_read(pmb, bus, device, offset, &val);
-+	if (err)
-+		return err;
-+
-+	if (!(val & BPCM_ZONE_CONTROL_PWR_ON_STATE)) {
-+		val &= ~BPCM_ZONE_CONTROL_PWR_DN_REQ;
-+		val |= BPCM_ZONE_CONTROL_DPG_CTL_EN;
-+		val |= BPCM_ZONE_CONTROL_PWR_UP_REQ;
-+		val |= BPCM_ZONE_CONTROL_MEM_PWR_CTL_EN;
-+		val |= BPCM_ZONE_CONTROL_BLK_RESET_ASSERT;
-+
-+		err = bcm_pmb_bpcm_write(pmb, bus, device, offset, val);
-+	}
-+
-+	return err;
-+}
-+
-+static int bcm_pmb_power_off_device(struct bcm_pmb *pmb, int bus, u8 device)
-+{
-+	int offset;
-+	u32 val;
-+	int err;
-+
-+	/* Entire device can be powered off by powering off the 0th zone */
-+	offset = BPCM_ZONE0 + BPCM_ZONE_CONTROL;
-+
-+	err = bcm_pmb_bpcm_read(pmb, bus, device, offset, &val);
-+	if (err)
-+		return err;
-+
-+	if (!(val & BPCM_ZONE_CONTROL_PWR_OFF_STATE)) {
-+		val = BPCM_ZONE_CONTROL_PWR_DN_REQ;
-+
-+		err = bcm_pmb_bpcm_write(pmb, bus, device, offset, val);
-+	}
-+
-+	return err;
-+}
-+
-+static int bcm_pmb_power_on_device(struct bcm_pmb *pmb, int bus, u8 device)
-+{
-+	u32 val;
-+	int err;
-+	int i;
-+
-+	err = bcm_pmb_bpcm_read(pmb, bus, device, BPCM_CAPABILITIES, &val);
-+	if (err)
-+		return err;
-+
-+	for (i = 0; i < (val & BPCM_CAP_NUM_ZONES); i++) {
-+		err = bcm_pmb_power_on_zone(pmb, bus, device, i);
-+		if (err)
-+			return err;
-+	}
-+
-+	return err;
-+}
-+
-+static int bcm_pmb_power_on(struct generic_pm_domain *genpd)
-+{
-+	struct bcm_pmb_pm_domain *pd = container_of(genpd, struct bcm_pmb_pm_domain, genpd);
-+	const struct bcm_pmb_pd_data *data = pd->data;
-+	struct bcm_pmb *pmb = pd->pmb;
-+
-+	switch (data->id) {
-+	case BCM_PMB_PCIE0:
-+	case BCM_PMB_PCIE1:
-+	case BCM_PMB_PCIE2:
-+		return bcm_pmb_power_on_zone(pmb, data->bus, data->device, 0);
-+	case BCM_PMB_HOST_USB:
-+		return bcm_pmb_power_on_device(pmb, data->bus, data->device);
-+	default:
-+		dev_err(pmb->dev, "unsupported device id: %d\n", data->id);
-+		return -EINVAL;
-+	}
-+}
-+
-+static int bcm_pmb_power_off(struct generic_pm_domain *genpd)
-+{
-+	struct bcm_pmb_pm_domain *pd = container_of(genpd, struct bcm_pmb_pm_domain, genpd);
-+	const struct bcm_pmb_pd_data *data = pd->data;
-+	struct bcm_pmb *pmb = pd->pmb;
-+
-+	switch (data->id) {
-+	case BCM_PMB_PCIE0:
-+	case BCM_PMB_PCIE1:
-+	case BCM_PMB_PCIE2:
-+		return bcm_pmb_power_off_zone(pmb, data->bus, data->device, 0);
-+	case BCM_PMB_HOST_USB:
-+		return bcm_pmb_power_off_device(pmb, data->bus, data->device);
-+	default:
-+		dev_err(pmb->dev, "unsupported device id: %d\n", data->id);
-+		return -EINVAL;
-+	}
-+}
-+
-+static int bcm_pmb_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	const struct bcm_pmb_pd_data *table;
-+	const struct bcm_pmb_pd_data *e;
-+	struct resource *res;
-+	struct bcm_pmb *pmb;
-+	int max_id;
-+	int err;
-+
-+	dev_info(dev, "START\n");
-+
-+	pmb = devm_kzalloc(dev, sizeof(*pmb), GFP_KERNEL);
-+	if (!pmb)
-+		return -ENOMEM;
-+
-+	pmb->dev = dev;
-+
-+	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-+	pmb->base = devm_ioremap_resource(&pdev->dev, res);
-+	if (IS_ERR(pmb->base))
-+		return PTR_ERR(pmb->base);
-+
-+	spin_lock_init(&pmb->lock);
-+
-+	pmb->little_endian = !of_device_is_big_endian(dev->of_node);
-+
-+	table = of_device_get_match_data(dev);
-+	if (!table)
-+		return -EINVAL;
-+
-+	max_id = 0;
-+	for (e = table; e->name; e++)
-+		max_id = max(max_id, e->id);
-+
-+	pmb->genpd_onecell_data.num_domains = max_id + 1;
-+	pmb->genpd_onecell_data.domains =
-+		devm_kcalloc(dev, pmb->genpd_onecell_data.num_domains,
-+			     sizeof(struct generic_pm_domain *), GFP_KERNEL);
-+	if (!pmb->genpd_onecell_data.domains)
-+		return -ENOMEM;
-+
-+	for (e = table; e->name; e++) {
-+		struct bcm_pmb_pm_domain *pd = devm_kzalloc(dev, sizeof(*pd), GFP_KERNEL);
-+
-+		pd->pmb = pmb;
-+		pd->data = e;
-+		pd->genpd.name = e->name;
-+		pd->genpd.power_on = bcm_pmb_power_on;
-+		pd->genpd.power_off = bcm_pmb_power_off;
-+
-+		pm_genpd_init(&pd->genpd, NULL, true);
-+		pmb->genpd_onecell_data.domains[e->id] = &pd->genpd;
-+	}
-+
-+	err = of_genpd_add_provider_onecell(dev->of_node, &pmb->genpd_onecell_data);
-+	if (err) {
-+		dev_err(dev, "failed to add genpd provider: %d\n", err);
-+		return err;
-+	}
-+
-+	return 0;
-+}
-+
-+static const struct bcm_pmb_pd_data bcm_pmb_bcm4908_data[] = {
-+	{ .name = "pcie2", .id = BCM_PMB_PCIE2, .bus = 0, .device = 2, },
-+	{ .name = "pcie0", .id = BCM_PMB_PCIE0, .bus = 1, .device = 14, },
-+	{ .name = "pcie1", .id = BCM_PMB_PCIE1, .bus = 1, .device = 15, },
-+	{ .name = "usb", .id = BCM_PMB_HOST_USB, .bus = 1, .device = 17, },
-+	{ },
-+};
-+
-+static const struct of_device_id bcm_pmb_of_match[] = {
-+	{ .compatible = "brcm,bcm4908-pmb", .data = &bcm_pmb_bcm4908_data, },
-+	{ },
-+};
-+
-+static struct platform_driver bcm_pmb_driver = {
-+	.driver = {
-+		.name = "bcm-pmb",
-+		.of_match_table = bcm_pmb_of_match,
-+	},
-+	.probe  = bcm_pmb_probe,
-+};
-+
-+builtin_platform_driver(bcm_pmb_driver);
+Thanks!
 -- 
-2.26.2
-
+Florian
