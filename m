@@ -2,55 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 439082D8298
-	for <lists+devicetree@lfdr.de>; Sat, 12 Dec 2020 00:08:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 68E0C2D82AB
+	for <lists+devicetree@lfdr.de>; Sat, 12 Dec 2020 00:22:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2437002AbgLKXHD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Dec 2020 18:07:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39708 "EHLO
+        id S2407060AbgLKXWC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Dec 2020 18:22:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42008 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2437020AbgLKXGj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Dec 2020 18:06:39 -0500
-Received: from mail-lf1-x141.google.com (mail-lf1-x141.google.com [IPv6:2a00:1450:4864:20::141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7527DC0613D3
-        for <devicetree@vger.kernel.org>; Fri, 11 Dec 2020 15:05:59 -0800 (PST)
-Received: by mail-lf1-x141.google.com with SMTP id l11so15579905lfg.0
-        for <devicetree@vger.kernel.org>; Fri, 11 Dec 2020 15:05:59 -0800 (PST)
+        with ESMTP id S2391719AbgLKXVk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Dec 2020 18:21:40 -0500
+Received: from mail-lj1-x244.google.com (mail-lj1-x244.google.com [IPv6:2a00:1450:4864:20::244])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49959C0613D6
+        for <devicetree@vger.kernel.org>; Fri, 11 Dec 2020 15:21:00 -0800 (PST)
+Received: by mail-lj1-x244.google.com with SMTP id f11so12854144ljn.2
+        for <devicetree@vger.kernel.org>; Fri, 11 Dec 2020 15:21:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=VPtMdGDRGuPEDGFmGnMvWlPbwtTye9nLOQ6zo2Mm3+s=;
-        b=Tkxo8ubznZ/ihmwdGKwM0mnEC/9Inp+35eFt9HZ4SSZ8hVM2LajmncJVbJ8vVT9g7Y
-         Bzevfd9OPqrtR7vCmS+Qyq9Q66deWC7tSue0PfNWMwfZw+4NMc6PVS3sMyL2AEgdJLVQ
-         bs5Q8FBifb8fdc0t8MaeXkMsujAtyFcoVR93gBdo3ts2xXxu84uSsSc7nvDA31bMjA0T
-         zyDFK0CL+q56OwKRrpoRUSRwndyj0xZxR5Awy2lgC48HQMSVM7YiZzG6POcphjwjahwN
-         rIia2uSFw7gU6bSo0F+0LAg6gQCxPIftjemfQbohCg3tLqSw2jxFdpQ51oypEL8ksD+W
-         HPYQ==
+        bh=0RoN+yPlhPZHkfa4tGbZVww5HGHgx9XOlLKoRJlydGo=;
+        b=BBmJ4OSZoB/n6zH0dGbcWGcHgRQ6Exbw9qcL33a9ZZDiDBo0PAcyVfWtKQ24nmmRfh
+         ov6x3jXcXkYzqPNBnJRQu1UUweT4hgbMQkz1mutjf75hnfzgH9eg9EZAcrdPE3nyHpPc
+         uuL6WLwUYAM4/4P13AeCni3FqXLr1rUusP2gR2gQ6+kTirVoNr+5RuQoZx/gtHhBwPhP
+         qrVE0sHlFmt8o99XtCVqy9XnIMnDxKuTWnRTBh2SvNpFkqCu3moYm/eGwmeqhxHG87jJ
+         J5SQkpqfSjwGZpCZmwbJjvrxg+EqFGyjhy4SH9StbACv31AqOjTikKPJbqrCeqT7zgVj
+         eE8A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=VPtMdGDRGuPEDGFmGnMvWlPbwtTye9nLOQ6zo2Mm3+s=;
-        b=Jx6MHt9Yf4cP5G5zqy82luPmjbVPuL/X0EO2jBh1FBfxVv+HFhD2scY/4nDrbzAlA0
-         ARAyZJyvfmqShz2JkOUwGTmmfqQd8mSAjNaCcuKEgKK05zWHb7xCSsbYMClu/RUL+20w
-         dLxEvsELnA6ym6v0D0n/4b+hbazIx46FKx3VK/5hdm8YvKefsnQpkRzuMBBrczSXyO8k
-         1OMXk0AG5m1znJRvT3gKYPQqZDr3hnovOkHirKMUgphlHLJrMXjMYseEuR4+LNf5IjE6
-         SOnH3P9Lzgcclq5sdcM2u0PT9z/ZQyOhJIrUgSf1iAw7O6CHsxjJzFWR+7L0w4k7wwsE
-         tiXA==
-X-Gm-Message-State: AOAM530bZRPxN5FkNi7T4DNQI8fQh2ar3t2qkofkorm0Kv38n1Jy3shh
-        ceSWV0b93qNWU1loJYqUMCTJAWMKXyckLUH9ZHoPrw==
-X-Google-Smtp-Source: ABdhPJyG4JiWO5sICrhd+prNYw2YnrYATbC3tLV3EewLAZiuaES/S08tUz/dKCFSdAJ+lv7Ji7zysfJtwScFy5P1idI=
-X-Received: by 2002:a19:7d84:: with SMTP id y126mr5515292lfc.586.1607727957931;
- Fri, 11 Dec 2020 15:05:57 -0800 (PST)
+        bh=0RoN+yPlhPZHkfa4tGbZVww5HGHgx9XOlLKoRJlydGo=;
+        b=JMRd1CcRRGJ0IZyap30TZHDV87BLo+8cADmLsCCEWe9V6eR2K6PzkVHXZBnyuj+0BX
+         WxyombLBurHiQy9kIXDks/fZ37dq7EvBSqckUJ1iGtRqtV4ecscxUfCBF6t3b1Tn13bV
+         b1W7hr0kjFIUbPwIE0Jhq5XHQcWBN4ihdGgagfosd/Q2euye6Ti0yJO7mxF3yj1+zgn2
+         NUtDwVD6kebXHAcIIy2sXf3ddAsU9uZYEBEF7b0Fd7T7DjNzlKx1PQKIugJHd4oBeU9o
+         thuyiG7dvtHmC/CisE1rHMtftkWUNfmDzYHRTYfmYXcpnC4as1GBAGiT/9ivUQkRvf7H
+         13/w==
+X-Gm-Message-State: AOAM5337igDCpAbXj9dcMzAU+PjNx/SVWOgUeG0uo3W8+rG0zeYyEs+9
+        3PhXBZ89Yw0L5HC8ZUqr4cVwb1WfNKUHvywNeaCcIQ==
+X-Google-Smtp-Source: ABdhPJyjhY7ZXqP/BBEpRStI1Nd4KCt8z+z9ShXxt+jO33EFnGMKPBB1wHooCgru85dBB0aVniyrFm3oaq+WMvz68p8=
+X-Received: by 2002:a2e:b047:: with SMTP id d7mr1474147ljl.467.1607728858283;
+ Fri, 11 Dec 2020 15:20:58 -0800 (PST)
 MIME-Version: 1.0
-References: <20201211094138.2863677-1-nobuhiro1.iwamatsu@toshiba.co.jp> <20201211094138.2863677-2-nobuhiro1.iwamatsu@toshiba.co.jp>
-In-Reply-To: <20201211094138.2863677-2-nobuhiro1.iwamatsu@toshiba.co.jp>
+References: <20201211094138.2863677-1-nobuhiro1.iwamatsu@toshiba.co.jp> <20201211094138.2863677-3-nobuhiro1.iwamatsu@toshiba.co.jp>
+In-Reply-To: <20201211094138.2863677-3-nobuhiro1.iwamatsu@toshiba.co.jp>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Sat, 12 Dec 2020 00:05:47 +0100
-Message-ID: <CACRpkdbsELwWeXe1jM1PpBtgo5oiKOx7MwVA06uS1-ZvaLKnRQ@mail.gmail.com>
-Subject: Re: [PATCH v4 1/4] dt-bindings: gpio: Add bindings for Toshiba
- Visconti GPIO Controller
+Date:   Sat, 12 Dec 2020 00:20:47 +0100
+Message-ID: <CACRpkdZ-umK4troerSA6S2rvyU5XV+KsFdxuWE5Sy0PCgdfT6A@mail.gmail.com>
+Subject: Re: [PATCH v4 2/4] gpio: visconti: Add Toshiba Visconti GPIO support
 To:     Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
         Marc Zyngier <maz@kernel.org>
 Cc:     Rob Herring <robh+dt@kernel.org>,
@@ -60,57 +59,122 @@ Cc:     Rob Herring <robh+dt@kernel.org>,
         <devicetree@vger.kernel.org>,
         Linux ARM <linux-arm-kernel@lists.infradead.org>,
         "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh@kernel.org>
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Looping in Marc here:
-
 On Fri, Dec 11, 2020 at 1:43 AM Nobuhiro Iwamatsu
 <nobuhiro1.iwamatsu@toshiba.co.jp> wrote:
 
-> Add bindings for the Toshiba Visconti GPIO Controller.
+This iteration is looking really good, but we are not quite there yet,
+because now that the driver looks so much better I can see that it
+is a hierarchical interrupt controller.
+
+> Add the GPIO driver for Toshiba Visconti ARM SoCs.
 >
 > Signed-off-by: Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-> Reviewed-by: Rob Herring <robh@kernel.org>
 > Reviewed-by: Punit Agrawal <punit1.agrawal@toshiba.co.jp>
 (...)
-> +          interrupts = <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>,
-> +              <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>,
-> +              <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>,
-> +              <GIC_SPI 27 IRQ_TYPE_LEVEL_HIGH>,
-> +              <GIC_SPI 28 IRQ_TYPE_LEVEL_HIGH>,
-> +              <GIC_SPI 29 IRQ_TYPE_LEVEL_HIGH>,
-> +              <GIC_SPI 30 IRQ_TYPE_LEVEL_HIGH>,
-> +              <GIC_SPI 31 IRQ_TYPE_LEVEL_HIGH>,
-> +              <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>,
-> +              <GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>,
-> +              <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>,
-> +              <GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>,
-> +              <GIC_SPI 36 IRQ_TYPE_LEVEL_HIGH>,
-> +              <GIC_SPI 37 IRQ_TYPE_LEVEL_HIGH>,
-> +              <GIC_SPI 38 IRQ_TYPE_LEVEL_HIGH>,
-> +              <GIC_SPI 39 IRQ_TYPE_LEVEL_HIGH>;
 
-This is an hierarchical IRQ controller. (These IRQs are mapped 1-to-1
-to IRQ lines.)
-I was under the impression that we don't encode interrupts into the GPIO
-controller like this when we have that.
+> +config GPIO_VISCONTI
+> +       tristate "Toshiba Visconti GPIO support"
+> +       depends on ARCH_VISCONTI || COMPILE_TEST
+> +       depends on OF_GPIO
+> +       select GPIOLIB_IRQCHIP
+> +       select GPIO_GENERIC
+> +       help
+> +         Say yes here to support GPIO on Tohisba Visconti.
 
-Instead, hardcode these into the driver. The compatible string gives
-away how the
-local offsets map to the GIC IRQs.
+Add
+select IRQ_DOMAIN_HIERARCHY
 
-Add no interrupts to the node but make sure that the GIC is the parent.
-(Should be default.)
+> +struct visconti_gpio {
+> +       void __iomem *base;
+> +       int *irq;
 
-Compare e.g.
-Documentation/devicetree/bindings/gpio/intel,ixp4xx-gpio.txt
+Don't keep these irqs around.
 
-Which has a similar "some hierarchical IRQs" setup.
+> +       ret = platform_irq_count(pdev);
+> +       if (ret < 0)
+> +               return ret;
+> +
+> +       num_irq = ret;
+> +
+> +       priv->irq = devm_kcalloc(dev, num_irq, sizeof(priv->irq), GFP_KERNEL);
+> +       if (!priv->irq)
+> +               return -ENOMEM;
+> +
+> +       for (i = 0; i < num_irq; i++) {
+> +               priv->irq[i] = platform_get_irq(pdev, i);
+> +               if (priv->irq[i] < 0) {
+> +                       dev_err(dev, "invalid IRQ[%d]\n", i);
+> +                       return priv->irq[i];
+> +               }
+> +       }
+
+Instead of doing this, look in for example
+drivers/gpio/gpio-ixp4xx.c
+
+You need:
+
+> +       girq = &priv->gpio_chip.irq;
+> +       girq->chip = irq_chip;
+
+girq->fwnode = fwnode;
+girq->parent_domain = parent;
+girq->child_to_parent_hwirq = visconti_gpio_child_to_parent_hwirq;
+
+The mapping function will be something like this:
+
+static int visconti_gpio_child_to_parent_hwirq(struct gpio_chip *gc,
+                                             unsigned int child,
+                                             unsigned int child_type,
+                                             unsigned int *parent,
+                                             unsigned int *parent_type)
+{
+        /* Interrupts 0..15 mapped to interrupts 24..39 on the GIC */
+        if (child < 16) {
+            /* All these interrupts are level high in the CPU */
+            *parent_type = IRQ_TYPE_LEVEL_HIGH;
+            *parent = child + 24;
+            return 0;
+        }
+        return -EINVAL;
+}
+
+> +       priv->gpio_chip.irq.init_valid_mask = visconti_init_irq_valid_mask;
+
+This will be set up by gpiolib when using hierarchical irqs.
+
+> +       /* This will let us handle the parent IRQ in the driver */
+> +       girq->parent_handler = NULL;
+> +       girq->num_parents = 0;
+> +       girq->parents = NULL;
+
+You don't need this.
+
+> +       girq->default_type = IRQ_TYPE_NONE;
+> +       girq->handler = handle_level_irq;
+
+But this stays.
+
+> +       for (i = 0; i < num_irq; i++) {
+> +               desc = irq_to_desc(priv->irq[i]);
+> +               desc->status_use_accessors |= IRQ_NOAUTOEN;
+> +               if (devm_request_irq(dev, priv->irq[i],
+> +                                    visconti_gpio_irq_handler, 0, name, priv)) {
+> +                       dev_err(dev, "failed to request IRQ[%d]\n", i);
+> +                       return -ENOENT;
+> +               }
+> +       }
+
+This should not be needed either when using hiearchical IRQs,
+also the irqchip maintainers will beat us up for poking around in the
+descs like this.
+
+The rest looks solid!
 
 Yours,
 Linus Walleij
