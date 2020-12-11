@@ -2,227 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CEFA22D739E
-	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 11:14:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 72B512D73CA
+	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 11:19:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730820AbgLKKMr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Dec 2020 05:12:47 -0500
-Received: from mx2.suse.de ([195.135.220.15]:34032 "EHLO mx2.suse.de"
+        id S2394223AbgLKKOz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Dec 2020 05:14:55 -0500
+Received: from helcar.hmeau.com ([216.24.177.18]:33380 "EHLO fornost.hmeau.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2388507AbgLKKMZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 11 Dec 2020 05:12:25 -0500
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.221.27])
-        by mx2.suse.de (Postfix) with ESMTP id A584FAC10;
-        Fri, 11 Dec 2020 10:11:43 +0000 (UTC)
-To:     Maxime Ripard <maxime@cerno.tech>,
-        Daniel Vetter <daniel.vetter@intel.com>,
-        David Airlie <airlied@linux.ie>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Eric Anholt <eric@anholt.net>
-Cc:     devicetree@vger.kernel.org, Tim Gover <tim.gover@raspberrypi.com>,
-        Dave Stevenson <dave.stevenson@raspberrypi.com>,
-        dri-devel@lists.freedesktop.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        linux-rpi-kernel@lists.infradead.org,
-        Phil Elwell <phil@raspberrypi.com>,
-        linux-arm-kernel@lists.infradead.org
-References: <20201204151138.1739736-1-maxime@cerno.tech>
- <20201204151138.1739736-6-maxime@cerno.tech>
-From:   Thomas Zimmermann <tzimmermann@suse.de>
-Subject: Re: [PATCH v2 5/7] drm/vc4: kms: Remove unassigned_channels from the
- HVS state
-Message-ID: <ea7e5cdf-f45a-cc62-3d93-d7f9a1409ecb@suse.de>
-Date:   Fri, 11 Dec 2020 11:11:42 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.5.0
+        id S1731373AbgLKKOW (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 11 Dec 2020 05:14:22 -0500
+Received: from gwarestrin.arnor.me.apana.org.au ([192.168.0.7])
+        by fornost.hmeau.com with smtp (Exim 4.92 #5 (Debian))
+        id 1knfQa-0004wK-39; Fri, 11 Dec 2020 21:13:33 +1100
+Received: by gwarestrin.arnor.me.apana.org.au (sSMTP sendmail emulation); Fri, 11 Dec 2020 21:13:32 +1100
+Date:   Fri, 11 Dec 2020 21:13:32 +1100
+From:   Herbert Xu <herbert@gondor.apana.org.au>
+To:     Daniele Alessandrelli <daniele.alessandrelli@linux.intel.com>
+Cc:     linux-crypto@vger.kernel.org,
+        "David S. Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
+        Mark Gross <mgross@linux.intel.com>
+Subject: Re: [PATCH 0/2] crypto: Add Keem Bay OCS AES/SM4 driver
+Message-ID: <20201211101332.GA3266@gondor.apana.org.au>
+References: <20201126115148.68039-1-daniele.alessandrelli@linux.intel.com>
 MIME-Version: 1.0
-In-Reply-To: <20201204151138.1739736-6-maxime@cerno.tech>
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="8CsgVUlgHggoOS5UjO2qw1YdQd699lHX7"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201126115148.68039-1-daniele.alessandrelli@linux.intel.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---8CsgVUlgHggoOS5UjO2qw1YdQd699lHX7
-Content-Type: multipart/mixed; boundary="G9X4LYRXmU4IZQdRg06F3vjoA4wRm3WWo";
- protected-headers="v1"
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Maxime Ripard <maxime@cerno.tech>, Daniel Vetter
- <daniel.vetter@intel.com>, David Airlie <airlied@linux.ie>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Mark Rutland <mark.rutland@arm.com>, Rob Herring <robh+dt@kernel.org>,
- Frank Rowand <frowand.list@gmail.com>, Eric Anholt <eric@anholt.net>
-Cc: devicetree@vger.kernel.org, Tim Gover <tim.gover@raspberrypi.com>,
- Dave Stevenson <dave.stevenson@raspberrypi.com>,
- dri-devel@lists.freedesktop.org, bcm-kernel-feedback-list@broadcom.com,
- linux-rpi-kernel@lists.infradead.org, Phil Elwell <phil@raspberrypi.com>,
- linux-arm-kernel@lists.infradead.org
-Message-ID: <ea7e5cdf-f45a-cc62-3d93-d7f9a1409ecb@suse.de>
-Subject: Re: [PATCH v2 5/7] drm/vc4: kms: Remove unassigned_channels from the
- HVS state
-References: <20201204151138.1739736-1-maxime@cerno.tech>
- <20201204151138.1739736-6-maxime@cerno.tech>
-In-Reply-To: <20201204151138.1739736-6-maxime@cerno.tech>
+On Thu, Nov 26, 2020 at 11:51:46AM +0000, Daniele Alessandrelli wrote:
+> The Intel Keem Bay SoC has an Offload Crypto Subsystem (OCS) featuring a
+> crypto engine for accelerating AES/SM4 operations.
+> 
+> This driver adds support for such hardware thus enabling hardware
+> acceleration for the following transformations on the Intel Keem Bay SoC:
+> 
+> - ecb(aes), cbc(aes), ctr(aes), cts(cbc(aes)), gcm(aes) and cbc(aes);
+>   supported for 128-bit and 256-bit keys.
+> 
+> - ecb(sm4), cbc(sm4), ctr(sm4), cts(cbc(sm4)), gcm(sm4) and cbc(sm4);
+>   supported for 128-bit keys.
+> 
+> The driver passes crypto manager self-tests, including the extra tests
+> (CRYPTO_MANAGER_EXTRA_TESTS=y).
+> 
+> Note: this driver is different from the Keem Bay OCS HCU driver previously
+> submitted. Keem Bay OCS HCU provides hardware-accelerated ahash, while
+> Keem Bay AES/SM4 (i.e., this driver) provides hardware-accelerated
+> skcipher and aead.
+> 
+> 
+> Daniele Alessandrelli (1):
+>   dt-bindings: Add Keem Bay OCS AES bindings
+> 
+> Mike Healy (1):
+>   crypto: keembay-ocs-aes: Add support for Keem Bay OCS AES/SM4
+> 
+>  .../crypto/intel,keembay-ocs-aes.yaml         |   45 +
+>  MAINTAINERS                                   |   10 +
+>  drivers/crypto/Kconfig                        |    2 +
+>  drivers/crypto/Makefile                       |    1 +
+>  drivers/crypto/keembay/Kconfig                |   39 +
+>  drivers/crypto/keembay/Makefile               |    5 +
+>  drivers/crypto/keembay/keembay-ocs-aes-core.c | 1713 +++++++++++++++++
+>  drivers/crypto/keembay/ocs-aes.c              | 1489 ++++++++++++++
+>  drivers/crypto/keembay/ocs-aes.h              |  129 ++
+>  9 files changed, 3433 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/crypto/intel,keembay-ocs-aes.yaml
+>  create mode 100644 drivers/crypto/keembay/Kconfig
+>  create mode 100644 drivers/crypto/keembay/Makefile
+>  create mode 100644 drivers/crypto/keembay/keembay-ocs-aes-core.c
+>  create mode 100644 drivers/crypto/keembay/ocs-aes.c
+>  create mode 100644 drivers/crypto/keembay/ocs-aes.h
 
---G9X4LYRXmU4IZQdRg06F3vjoA4wRm3WWo
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
-
-Hi
-
-Am 04.12.20 um 16:11 schrieb Maxime Ripard:
-> The HVS state now has both unassigned_channels that reflects the
-> channels that are not used in the associated state, and the in_use
-> boolean for each channel that says whether or not a particular channel
-> is in use.
->=20
-> Both express pretty much the same thing, and we need the in_use variabl=
-e
-> to properly track the commits, so let's get rid of unassigned_channels.=
-
->=20
-> Suggested-by: Thomas Zimmermann <tzimmermann@suse.de>
-> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
-> ---
->   drivers/gpu/drm/vc4/vc4_kms.c | 14 +++++++-------
->   1 file changed, 7 insertions(+), 7 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/vc4/vc4_kms.c b/drivers/gpu/drm/vc4/vc4_km=
-s.c
-> index fdd698df5fbe..fa40c44eb770 100644
-> --- a/drivers/gpu/drm/vc4/vc4_kms.c
-> +++ b/drivers/gpu/drm/vc4/vc4_kms.c
-> @@ -39,7 +39,6 @@ static struct vc4_ctm_state *to_vc4_ctm_state(struct =
-drm_private_state *priv)
->  =20
->   struct vc4_hvs_state {
->   	struct drm_private_state base;
-> -	unsigned int unassigned_channels;
->  =20
->   	struct {
->   		unsigned in_use: 1;
-> @@ -798,7 +797,6 @@ vc4_hvs_channels_duplicate_state(struct drm_private=
-_obj *obj)
->  =20
->   	__drm_atomic_helper_private_obj_duplicate_state(obj, &state->base);
->  =20
-> -	state->unassigned_channels =3D old_state->unassigned_channels;
->  =20
->   	for (i =3D 0; i < HVS_NUM_CHANNELS; i++) {
->   		state->fifo_state[i].in_use =3D old_state->fifo_state[i].in_use;
-> @@ -849,7 +847,6 @@ static int vc4_hvs_channels_obj_init(struct vc4_dev=
- *vc4)
->   	if (!state)
->   		return -ENOMEM;
->  =20
-> -	state->unassigned_channels =3D GENMASK(HVS_NUM_CHANNELS - 1, 0);
->   	drm_atomic_private_obj_init(&vc4->base, &vc4->hvs_channels,
->   				    &state->base,
->   				    &vc4_hvs_state_funcs);
-> @@ -893,12 +890,17 @@ static int vc4_pv_muxing_atomic_check(struct drm_=
-device *dev,
->   	struct vc4_hvs_state *hvs_new_state;
->   	struct drm_crtc_state *old_crtc_state, *new_crtc_state;
->   	struct drm_crtc *crtc;
-> +	unsigned int unassigned_channels;
->   	unsigned int i;
->  =20
->   	hvs_new_state =3D vc4_hvs_get_global_state(state);
->   	if (!hvs_new_state)
->   		return -EINVAL;
->  =20
-> +	for (i =3D 0; i < HVS_NUM_CHANNELS; i++)
-> +		if (!hvs_new_state->fifo_state[i].in_use)
-> +			unassigned_channels |=3D BIT(i);
-> +
-
-More of a nit: I'd turn this block into a helper of struct=20
-vc4_hvs_state. That would also remove the need to initialize=20
-unassigned_channels to 0 here.
-
-For the loop's condition, it might be less error prone to use=20
-ARRAY_SIZE(hvs_new_state->fifo_state) instead of HVS_NUM_CHANNEL.
-
-In any case
-
-Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
-
-Best regards
-Thomas
-
->   	for_each_oldnew_crtc_in_state(state, crtc, old_crtc_state, new_crtc_=
-state, i) {
->   		struct vc4_crtc_state *old_vc4_crtc_state =3D
->   			to_vc4_crtc_state(old_crtc_state);
-> @@ -918,8 +920,6 @@ static int vc4_pv_muxing_atomic_check(struct drm_de=
-vice *dev,
->   		/* If we're disabling our CRTC, we put back our channel */
->   		if (!new_crtc_state->enable) {
->   			channel =3D old_vc4_crtc_state->assigned_channel;
-> -
-> -			hvs_new_state->unassigned_channels |=3D BIT(channel);
->   			hvs_new_state->fifo_state[channel].in_use =3D false;
->   			new_vc4_crtc_state->assigned_channel =3D VC4_HVS_CHANNEL_DISABLED;=
-
->   			continue;
-> @@ -949,13 +949,13 @@ static int vc4_pv_muxing_atomic_check(struct drm_=
-device *dev,
->   		 * the future, we will need to have something smarter,
->   		 * but it works so far.
->   		 */
-> -		matching_channels =3D hvs_new_state->unassigned_channels & vc4_crtc-=
->data->hvs_available_channels;
-> +		matching_channels =3D unassigned_channels & vc4_crtc->data->hvs_avai=
-lable_channels;
->   		if (!matching_channels)
->   			return -EINVAL;
->  =20
->   		channel =3D ffs(matching_channels) - 1;
->   		new_vc4_crtc_state->assigned_channel =3D channel;
-> -		hvs_new_state->unassigned_channels &=3D ~BIT(channel);
-> +		unassigned_channels &=3D ~BIT(channel);
->   		hvs_new_state->fifo_state[channel].in_use =3D true;
->   	}
->  =20
->=20
-
---=20
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
-(HRB 36809, AG N=C3=BCrnberg)
-Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
-
-
---G9X4LYRXmU4IZQdRg06F3vjoA4wRm3WWo--
-
---8CsgVUlgHggoOS5UjO2qw1YdQd699lHX7
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature"
-
------BEGIN PGP SIGNATURE-----
-
-wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAl/TRd4FAwAAAAAACgkQlh/E3EQov+Ad
-hg/+LwZ84Lwjy07PhFjbTd60a3jpQm1OvCVjP8AL55ES53f6oRzz+iNXT1IoAEK32Rb9CFY6btlB
-XhKHqQZKLoCw31BxrTKZUkmz2/3sSQYYhL3BlJxXOZXxtbvNk1pOJGeVsHw4knvqblqX4UCRhszV
-XDdVkRFX2zSaPGhUMFI6aj3ZFba9tdsxrtVuK2Hf3kAnvf8BZC3YXbiy9OBimLxtFcFBRb5IeUOt
-MvhShryE/QVDB3LeBWNngj1eC6AGqsFO2JOV0KxW/4KTER8kL4QYAORdHxgfokUVIHbYlKTC+9UN
-D2bcevLoZdyGjb0YTKxXed9RYP3AjBwnOrb3Ty9ej/1YXwiupacQ5dr+LUiCLLJ5UpsWZeEf/ogx
-ue0AsRavyy+3FnMxiiujN/JKmXOdjEuq7jMG3XsxmHhEaLaPKf52tFFtQlX2URIzwAQSS+HjuWus
-cx9OBRsPlySu7uZc5wxZDq2jviRVfkdfdskF3/98V6kMrDIGQkwabBza+zcOWTEaaWR8SZLsGknp
-QNU/eqirNq5Do9PjemK1MB5dgFtOjt4JhpaDLyKD5NtcY8vsabK2htqfjhKFFvtEMyE2Bil8ipOH
-uG5u87hxTbkz3d3yVN2uYFNU6m7ZScpVsem9yYetsyEsFZoCMjh+zqMHfLSx4nSbZ5vzEVerYjou
-2Z0=
-=9P8q
------END PGP SIGNATURE-----
-
---8CsgVUlgHggoOS5UjO2qw1YdQd699lHX7--
+All applied.  Thanks.
+-- 
+Email: Herbert Xu <herbert@gondor.apana.org.au>
+Home Page: http://gondor.apana.org.au/~herbert/
+PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
