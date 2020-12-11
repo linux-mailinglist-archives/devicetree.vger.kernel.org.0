@@ -2,149 +2,215 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 286E22D7E2A
-	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 19:35:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 404C32D7E3D
+	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 19:41:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2394883AbgLKSeS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Dec 2020 13:34:18 -0500
-Received: from mail.kernel.org ([198.145.29.99]:34836 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2391277AbgLKSeJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 11 Dec 2020 13:34:09 -0500
-Date:   Fri, 11 Dec 2020 18:33:20 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1607711608;
-        bh=OibTR0PAA39E07obh9yM311f9pvbiTTZNMXQ/YRmRAo=;
-        h=From:To:Cc:Subject:References:In-Reply-To:From;
-        b=abGE1zDu8qOUj34r6/XsGN/Ssij59v6F0e1emxS7665euMEHfLDKAc6/tAdbNKxuJ
-         svLl7dU9CLObR9R1beYDtQHU1s2XIKP7qgyisYdo/r0zFAbZ0a19zJ+LaINlEZ0CLB
-         21JSoaLZ/JQWWQ/0aWhNyqZ/Vd1j5jJL1lYkaMtpZVFJevnPrEFSWsWv0UfcfeNEX8
-         MT5pvRVaAP2HDHjcQD5vvBWkwn390cnOHCuwmie7bdmgMlnjKAhtjIN5lTBaG0NUn6
-         Q/6MxxiLNPVgRqa40nLBukUoEu5q/DcijYS1jdaNAE9BnTjrdQQ9yuecHNa+fhckYs
-         U5tHpNFdWl8JQ==
-From:   Mark Brown <broonie@kernel.org>
-To:     Sowjanya Komatineni <skomatineni@nvidia.com>
-Cc:     thierry.reding@gmail.com, jonathanh@nvidia.com, robh+dt@kernel.org,
-        lukas@wunner.de, linux-spi@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
+        id S2406191AbgLKSkK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Dec 2020 13:40:10 -0500
+Received: from mo4-p01-ob.smtp.rzone.de ([85.215.255.52]:18108 "EHLO
+        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2391319AbgLKSjr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Dec 2020 13:39:47 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1607711814;
+        s=strato-dkim-0002; d=gerhold.net;
+        h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:From:
+        Subject:Sender;
+        bh=n0ZAmmH9D9CDGDYMnyJLYA7Il7vUH7f1aPjp9QFWHPw=;
+        b=iM2DjNpjiPF/WABZUvpMocl1f9u1OYptsticEJ8v81+5nNy0M0seL8fzo3Oq/+E5bF
+        Ny5oVD5nwkK2a6G0o8NNUAL1tnDFNeyOuUKqvMyStOFz4A/5UIi+VxGYD+p4cyhxxgGW
+        3UC4uBkVt82ItQyNqfRobY9L6TmlFEv72mY+60bAlcILSSbsagvtw62PW198EfVK6y+z
+        TIAZjXY1c1Cae0bjhazQZv7eVFYtaI7or/3Wh7pdOv7eNN9KxxDQFy0Rv7lxNN8J6Aph
+        W0IHNFOfbha2unwEwVvdEdjwMxm5Q1Cg0S89JbMXIG+aKnpxOcwV0fXRLaQ2biu+7wOV
+        9Zqw==
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u26zEodhPgRDZ8jxIczFYoo="
+X-RZG-CLASS-ID: mo00
+Received: from gerhold.net
+        by smtp.strato.de (RZmta 47.7.1 DYNA|AUTH)
+        with ESMTPSA id 409b08wBBIak4dD
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+        Fri, 11 Dec 2020 19:36:46 +0100 (CET)
+Date:   Fri, 11 Dec 2020 19:36:40 +0100
+From:   Stephan Gerhold <stephan@gerhold.net>
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Rob Herring <robh+dt@kernel.org>, linux-iio@vger.kernel.org,
         devicetree@vger.kernel.org,
-        Boris Brezillon <bbrezillon@kernel.org>,
-        Pratyush Yadav <p.yadav@ti.com>,
-        Tudor Ambarus <tudor.ambarus@microchip.com>
-Subject: Re: [PATCH v2 5/9] spi: spi-mem: Allow masters to transfer dummy
- cycles directly by hardware
-Message-ID: <20201211183320.GH4929@sirena.org.uk>
-References: <1607706088-1437-1-git-send-email-skomatineni@nvidia.com>
- <1607706088-1437-8-git-send-email-skomatineni@nvidia.com>
+        "H . Nikolaus Schaller" <hns@goldelico.com>,
+        Linus Walleij <linus.walleij@linaro.org>
+Subject: Re: [PATCH 4/4] iio: gyro: bmg160: Add rudimentary regulator support
+Message-ID: <X9O8OEHSZ40OhrB/@gerhold.net>
+References: <20201202093322.77114-1-stephan@gerhold.net>
+ <20201202093322.77114-4-stephan@gerhold.net>
+ <20201205153848.697c77a5@archlinux>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="fd5uyaI9j6xoeUBo"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1607706088-1437-8-git-send-email-skomatineni@nvidia.com>
-X-Cookie: Nostalgia isn't what it used to be.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20201205153848.697c77a5@archlinux>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Jonathan,
 
---fd5uyaI9j6xoeUBo
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Sat, Dec 05, 2020 at 03:38:48PM +0000, Jonathan Cameron wrote:
+> On Wed,  2 Dec 2020 10:33:22 +0100
+> Stephan Gerhold <stephan@gerhold.net> wrote:
+> 
+> > BMG160 needs VDD and VDDIO regulators that might need to be explicitly
+> > enabled. Add some rudimentary support to obtain and enable these
+> > regulators during probe() and disable them during remove()
+> > or on the error path.
+> > 
+> > Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
+> 
+> This one is a bit tricky due to the extensive use of devm_ managed
+> cleanup.  Normally I'd be very fussy about ensuring remove order
+> is precise reverse of probe, but in this driver it isn't quite
+> already, due to that chip_init being before the interrupt allocation.
+> 
+> Having said that I'd rather not make it worse.  Would you mind
+> using automated clean up of the regulator_enable as well via
+> devm_add_action_or_reset() call?
+> 
 
-On Fri, Dec 11, 2020 at 09:01:24AM -0800, Sowjanya Komatineni wrote:
-> This patch adds a flag SPI_MASTER_USES_HW_DUMMY_CYCLES for the controllers
-> that support transfer of dummy cycles by the hardware directly.
->=20
-> For controller with this flag set, spi-mem driver will skip dummy bytes
-> transfer in the spi message.
->=20
-> Controller drivers can get the number of dummy cycles from spi_message.
+Good point, devm_add_action_or_reset() definitely looks better for this
+driver. I will send a v2 with just the bmg160 part shortly.
 
-Copying more people who've worked on spi-mem for their review - I've not
-got such a good perspective on controller features.
+> As a side note, should we not have more cleanup of chip_init()
+> in error paths, specifically putting the device into it's suspended
+> mode?  Obviously nothing to do with your patch...
+> 
 
-> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
-> ---
->  drivers/spi/spi-mem.c   | 18 +++++++++++-------
->  include/linux/spi/spi.h |  8 ++++++++
->  2 files changed, 19 insertions(+), 7 deletions(-)
->=20
-> diff --git a/drivers/spi/spi-mem.c b/drivers/spi/spi-mem.c
-> index f3a3f19..38a523b 100644
-> --- a/drivers/spi/spi-mem.c
-> +++ b/drivers/spi/spi-mem.c
-> @@ -350,13 +350,17 @@ int spi_mem_exec_op(struct spi_mem *mem, const stru=
-ct spi_mem_op *op)
->  	}
-> =20
->  	if (op->dummy.nbytes) {
-> -		memset(tmpbuf + op->addr.nbytes + 1, 0xff, op->dummy.nbytes);
-> -		xfers[xferpos].tx_buf =3D tmpbuf + op->addr.nbytes + 1;
-> -		xfers[xferpos].len =3D op->dummy.nbytes;
-> -		xfers[xferpos].tx_nbits =3D op->dummy.buswidth;
-> -		spi_message_add_tail(&xfers[xferpos], &msg);
-> -		xferpos++;
-> -		totalxferlen +=3D op->dummy.nbytes;
-> +		if (ctlr->flags & SPI_MASTER_USES_HW_DUMMY_CYCLES) {
-> +			msg.dummy_cycles =3D (op->dummy.nbytes * 8) / op->dummy.buswidth;
-> +		} else {
-> +			memset(tmpbuf + op->addr.nbytes + 1, 0xff, op->dummy.nbytes);
-> +			xfers[xferpos].tx_buf =3D tmpbuf + op->addr.nbytes + 1;
-> +			xfers[xferpos].len =3D op->dummy.nbytes;
-> +			xfers[xferpos].tx_nbits =3D op->dummy.buswidth;
-> +			spi_message_add_tail(&xfers[xferpos], &msg);
-> +			xferpos++;
-> +			totalxferlen +=3D op->dummy.nbytes;
-> +		}
->  	}
-> =20
->  	if (op->data.nbytes) {
-> diff --git a/include/linux/spi/spi.h b/include/linux/spi/spi.h
-> index aa09fdc..2024149 100644
-> --- a/include/linux/spi/spi.h
-> +++ b/include/linux/spi/spi.h
-> @@ -512,6 +512,8 @@ struct spi_controller {
-> =20
->  #define SPI_MASTER_GPIO_SS		BIT(5)	/* GPIO CS must select slave */
-> =20
-> +#define SPI_MASTER_USES_HW_DUMMY_CYCLES	BIT(6)	/* HW dummy bytes transfe=
-r */
-> +
->  	/* flag indicating this is an SPI slave controller */
->  	bool			slave;
-> =20
-> @@ -1022,6 +1024,12 @@ struct spi_message {
->  	unsigned		actual_length;
->  	int			status;
-> =20
-> +	/*
-> +	 * dummy cycles in the message transfer. This is used by the controller
-> +	 * drivers supports transfer of dummy cycles directly by the hardware.
-> +	 */
-> +	u8			dummy_cycles;
-> +
->  	/* for optional use by whatever driver currently owns the
->  	 * spi_message ...  between calls to spi_async and then later
->  	 * complete(), that's the spi_controller controller driver.
-> --=20
-> 2.7.4
->=20
+I'm not sure. I guess when bmg160_chip_init() fails there is some kind
+of communication problem or a problem with the chip. Chances are that
+putting it back into suspend mode would also fail.
 
---fd5uyaI9j6xoeUBo
-Content-Type: application/pgp-signature; name="signature.asc"
+But I don't really know enough about the hardware to say more. :)
 
------BEGIN PGP SIGNATURE-----
+I have also fixed your other comments below in v2.
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl/Tu3AACgkQJNaLcl1U
-h9DepQf/XODyzQ0UT45vCpfpru/rfrg5EoDLiG3Dv3KcNgf+JJ7AK8xYAdXIYklu
-GEsr+UZrkclhK4cuRRsj0V+VkSKLdamCA49Qx2E2IbWkB22q2F8vrqfxBuDPbn0I
-gBxDm79dB5PmoxIIRmYWTQejnAdIR5DEwmojdpRJvA8TCI5DW/7h7fie4dhUn69U
-XFFqaflnNZl8SoAq7sMqOFnL2HGGSrdkFWujK7ewo16gKDVX4Qm92BoXdbmsnA8M
-LJeiaVMzdY+3CFy/jpe1A3zm2gqlW61BchCsZpulQtFSQUrqq2bSNcD31saGnXOI
-fLCzrpkWPxUzqZDX18TM1q0TcWCTVA==
-=ETWq
------END PGP SIGNATURE-----
+Thanks!
+Stephan
 
---fd5uyaI9j6xoeUBo--
+> 
+> > ---
+> >  drivers/iio/gyro/bmg160_core.c | 38 +++++++++++++++++++++++++++-------
+> >  1 file changed, 31 insertions(+), 7 deletions(-)
+> > 
+> > diff --git a/drivers/iio/gyro/bmg160_core.c b/drivers/iio/gyro/bmg160_core.c
+> > index 2d5015801a75..4baa4169c5a2 100644
+> > --- a/drivers/iio/gyro/bmg160_core.c
+> > +++ b/drivers/iio/gyro/bmg160_core.c
+> > @@ -19,6 +19,7 @@
+> >  #include <linux/iio/trigger_consumer.h>
+> >  #include <linux/iio/triggered_buffer.h>
+> >  #include <linux/regmap.h>
+> > +#include <linux/regulator/consumer.h>
+> >  #include "bmg160.h"
+> >  
+> >  #define BMG160_IRQ_NAME		"bmg160_event"
+> > @@ -92,6 +93,7 @@
+> >  
+> >  struct bmg160_data {
+> >  	struct regmap *regmap;
+> > +	struct regulator_bulk_data regulators[2];
+> >  	struct iio_trigger *dready_trig;
+> >  	struct iio_trigger *motion_trig;
+> >  	struct iio_mount_matrix orientation;
+> > @@ -1077,14 +1079,28 @@ int bmg160_core_probe(struct device *dev, struct regmap *regmap, int irq,
+> >  	data->irq = irq;
+> >  	data->regmap = regmap;
+> >  
+> > +	data->regulators[0].supply = "vdd";
+> > +	data->regulators[1].supply = "vddio";
+> > +	ret = devm_regulator_bulk_get(dev, ARRAY_SIZE(data->regulators),
+> > +				      data->regulators);
+> > +	if (ret)
+> > +		return dev_err_probe(dev, ret, "Failed to get regulators\n");
+> > +
+> >  	ret = iio_read_mount_matrix(dev, "mount-matrix",
+> >  				&data->orientation);
+> >  	if (ret)
+> >  		return ret;
+> 
+> Why not put regulator get and enable together?  
+> 
+> >  
+> > +	ret = regulator_bulk_enable(ARRAY_SIZE(data->regulators),
+> > +				    data->regulators);
+> > +	if (ret < 0) {
+> > +		dev_err(dev, "Failed to enable regulators: %d\n", ret);
+> > +		return ret;
+> > +	}
+> > +
+> 
+> If you were to use devm_add_action_or_reset() and a trivial wrapper
+> the disable would be automated, simplifying the error handling etc.
+> 
+> >  	ret = bmg160_chip_init(data);
+> >  	if (ret < 0)
+> > -		return ret;
+> > +		goto err_regulator_disable;
+> >  
+> >  	mutex_init(&data->mutex);
+> >  
+> > @@ -1107,28 +1123,32 @@ int bmg160_core_probe(struct device *dev, struct regmap *regmap, int irq,
+> >  						BMG160_IRQ_NAME,
+> >  						indio_dev);
+> >  		if (ret)
+> > -			return ret;
+> > +			goto err_regulator_disable;
+> >  
+> >  		data->dready_trig = devm_iio_trigger_alloc(dev,
+> >  							   "%s-dev%d",
+> >  							   indio_dev->name,
+> >  							   indio_dev->id);
+> > -		if (!data->dready_trig)
+> > -			return -ENOMEM;
+> > +		if (!data->dready_trig) {
+> > +			ret = -ENOMEM;
+> > +			goto err_regulator_disable;
+> > +		}
+> >  
+> >  		data->motion_trig = devm_iio_trigger_alloc(dev,
+> >  							  "%s-any-motion-dev%d",
+> >  							  indio_dev->name,
+> >  							  indio_dev->id);
+> > -		if (!data->motion_trig)
+> > -			return -ENOMEM;
+> > +		if (!data->motion_trig) {
+> > +			ret = -ENOMEM;
+> > +			goto err_regulator_disable;
+> > +		}
+> >  
+> >  		data->dready_trig->dev.parent = dev;
+> >  		data->dready_trig->ops = &bmg160_trigger_ops;
+> >  		iio_trigger_set_drvdata(data->dready_trig, indio_dev);
+> >  		ret = iio_trigger_register(data->dready_trig);
+> >  		if (ret)
+> > -			return ret;
+> > +			goto err_regulator_disable;
+> >  
+> >  		data->motion_trig->dev.parent = dev;
+> >  		data->motion_trig->ops = &bmg160_trigger_ops;
+> > @@ -1174,6 +1194,8 @@ int bmg160_core_probe(struct device *dev, struct regmap *regmap, int irq,
+> >  		iio_trigger_unregister(data->dready_trig);
+> >  	if (data->motion_trig)
+> >  		iio_trigger_unregister(data->motion_trig);
+> > +err_regulator_disable:
+> > +	regulator_bulk_disable(ARRAY_SIZE(data->regulators), data->regulators);
+> >  
+> >  	return ret;
+> >  }
+> > @@ -1200,6 +1222,8 @@ void bmg160_core_remove(struct device *dev)
+> >  	mutex_lock(&data->mutex);
+> >  	bmg160_set_mode(data, BMG160_MODE_DEEP_SUSPEND);
+> >  	mutex_unlock(&data->mutex);
+> > +
+> > +	regulator_bulk_disable(ARRAY_SIZE(data->regulators), data->regulators);
+> >  }
+> >  EXPORT_SYMBOL_GPL(bmg160_core_remove);
+> >  
+> 
