@@ -2,114 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AA5B02D6EB0
-	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 04:36:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D9EB2D6EB3
+	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 04:36:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2405256AbgLKDfE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Dec 2020 22:35:04 -0500
-Received: from mail-oi1-f193.google.com ([209.85.167.193]:34239 "EHLO
-        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2405250AbgLKDe4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 22:34:56 -0500
-Received: by mail-oi1-f193.google.com with SMTP id s75so8388209oih.1;
-        Thu, 10 Dec 2020 19:34:40 -0800 (PST)
+        id S2395102AbgLKDfg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Dec 2020 22:35:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57108 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2405261AbgLKDfO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 22:35:14 -0500
+Received: from mail-pl1-x641.google.com (mail-pl1-x641.google.com [IPv6:2607:f8b0:4864:20::641])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EB28C0613CF
+        for <devicetree@vger.kernel.org>; Thu, 10 Dec 2020 19:34:34 -0800 (PST)
+Received: by mail-pl1-x641.google.com with SMTP id p6so3911744plo.6
+        for <devicetree@vger.kernel.org>; Thu, 10 Dec 2020 19:34:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=XYmqDyr4fC3PZmFsjlkv8u/E21QpEHMo+/6oKHdP3oo=;
+        b=hmTWvm2Hex+RJ06VVZ47E2nPXDkjNLKp/CK1ZobCy+KY062nL+KOLapL+LriTfgswV
+         aqJ8w/5PX6XpblRKGQkdvahtVFr5Kud9gCT19RcPmoJwAbVbF9bfH0naw8LEwpNT1Aho
+         pWpqVmzkenNnkoMPgrzw7yMGCD8u06JaKjrDB6ObN+koduGjOyLUqfSr9jOP78qVgylF
+         4/PjDui6oupZyDJ2RQZddY5jwHGEEwARwD4rO79OJqNoVjF5VK3stGuAigrW1cRjXM0L
+         oxMh5Nc5HU1cgwcA8rtXvvLdHGkWi+Js2nY1QsZuBFsmnZBLNW97G1MvWty9/ERAhbKg
+         UiIA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=5X4INTOHYkiv4qJceNlizwSZ2F4yaORFWqNAvCdXmig=;
-        b=X0WGyrPTDte7nV+MMAEUhedlrDFhd90oxs3xkAy4/Q0RhtwVF3aFec8d4iDGqPlma0
-         5a72IBHx7iN9MKsyxhCuV0Gm6AFCWxmEqo5RCIv6BsV0LJz510tIfSmzXCJdpW/WIrf0
-         +Uq6GcZ3Jhn6rqEUjd5nJpymGYfmzU6M66Sx81RpyXGVyjA+euOd1K+1H6e8/7JJYeVk
-         T4J7btwupHUV7opJvcv3v2f/I9euetEGBnmuUFENDn2SSfZWOOmsERJhxYEFOkOC/Zpl
-         eIh2MxWefs8oRCvT2WibYJ9D0p+lnNClCcd3kyZz7guvvk0DBwjgqqs9hA69NfzpWJsx
-         1fog==
-X-Gm-Message-State: AOAM533H/JjKkjjfvw5fLDkB9TUna40u2VJlIvwgPX24J/wUaWHMB/Wl
-        0S5WzwytR8vMBQanClIkSQ==
-X-Google-Smtp-Source: ABdhPJx3Vfhhuz3O0orNqKdlqcTcD08QNbyPLmKrJ/Gw+Puo6Ap+WJIrHuJ01GXCsDNGsXvhVmzL+g==
-X-Received: by 2002:aca:6087:: with SMTP id u129mr8031458oib.173.1607657655459;
-        Thu, 10 Dec 2020 19:34:15 -0800 (PST)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id s9sm1577098otb.6.2020.12.10.19.34.14
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=XYmqDyr4fC3PZmFsjlkv8u/E21QpEHMo+/6oKHdP3oo=;
+        b=s6hvO3E2IRjKk7tKy/ud6L7SbcEyRmzR4gKRaIJwAB2SdYYhAA3hfB5/oeyIrgJPnf
+         0qm19ePRCXWf4WWxgSouxwAJMkKcda9rJwxJC9/A5VofWkxaUZ81WZwiKhbn6pTlSRMx
+         dgcg3CpAWqU70SkAGIk6FVVC8GV5PoNBpX+VY5URLulFhyWde5DiEX7GBLN+MS3AkhBH
+         2baHdoZZF48qM9pj/+Y+iel7Yke0pi7VbfVnFuqf4ik2C5pTGTcCoPzx73JSDmAxBCXc
+         waBtq7XAcqFhVRK5fELTdkw7MHB+39phTLfd03RuA8wkQBJtWbHHi65fzrmkW30bLlae
+         pkFg==
+X-Gm-Message-State: AOAM530XzYRcyo777sCUfvgSzUWbyBfhBpvvU1TdbesTJQpjQqB/QR8L
+        79euFXf0LJhXvhRjNAQaLaU=
+X-Google-Smtp-Source: ABdhPJyCHhatJa1hU2lVBRSPbspmGSgUQxEKe/Qrknnn8ofq6e0DpYVM+GhXn7V5l+5PtL5Zh1Y7OQ==
+X-Received: by 2002:a17:902:7689:b029:da:52:4586 with SMTP id m9-20020a1709027689b02900da00524586mr8996931pll.47.1607657673569;
+        Thu, 10 Dec 2020 19:34:33 -0800 (PST)
+Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id u15sm8575510pju.7.2020.12.10.19.34.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Dec 2020 19:34:14 -0800 (PST)
-Received: (nullmailer pid 3585740 invoked by uid 1000);
-        Fri, 11 Dec 2020 03:34:13 -0000
-Date:   Thu, 10 Dec 2020 21:34:13 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 6/6] iio:pressure:ms5637: add ms5803 support
-Message-ID: <20201211033413.GA3584721@robh.at.kernel.org>
-References: <20201209234857.1521453-1-alexandre.belloni@bootlin.com>
- <20201209234857.1521453-7-alexandre.belloni@bootlin.com>
+        Thu, 10 Dec 2020 19:34:32 -0800 (PST)
+From:   Florian Fainelli <f.fainelli@gmail.com>
+To:     bcm-kernel-feedback-list@broadcom.com,
+        =?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <zajec5@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        =?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <rafal@milecki.pl>
+Subject: Re: [PATCH 1/2] dt-bindings: arm: bcm: document Netgear R8000P binding
+Date:   Thu, 10 Dec 2020 19:34:27 -0800
+Message-Id: <20201211033427.2388378-1-f.fainelli@gmail.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20201208070304.12536-1-zajec5@gmail.com>
+References: <20201208070304.12536-1-zajec5@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201209234857.1521453-7-alexandre.belloni@bootlin.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 10, 2020 at 12:48:57AM +0100, Alexandre Belloni wrote:
-> The ms5803 is very similar to the ms5805 but has less resolution options
-> and has the 128bit PROM layout.
+On Tue,  8 Dec 2020 08:03:03 +0100, Rafał Miłecki <zajec5@gmail.com> wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
 > 
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Signed-off-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
+> It's a BCM4906 based device.
+> 
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 > ---
->  Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
->  drivers/iio/pressure/ms5637.c                          | 8 ++++++++
->  2 files changed, 10 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-> index ab623ba930d5..84b0e44235c1 100644
-> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
-> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-> @@ -132,6 +132,8 @@ properties:
->            - mcube,mc3230
->              # MEMSIC 2-axis 8-bit digital accelerometer
->            - memsic,mxc6225
-> +            # Measurement Specialities I2C pressure and temperature sensor
-> +          - meas,ms5803
 
-Alphabetical order please.
-
->              # Microchip differential I2C ADC, 1 Channel, 18 bit
->            - microchip,mcp3421
->              # Microchip differential I2C ADC, 2 Channel, 18 bit
-> diff --git a/drivers/iio/pressure/ms5637.c b/drivers/iio/pressure/ms5637.c
-> index 2943b88734b3..39830a51ca78 100644
-> --- a/drivers/iio/pressure/ms5637.c
-> +++ b/drivers/iio/pressure/ms5637.c
-> @@ -192,8 +192,15 @@ static const struct ms_tp_hw_data ms5637_hw_data  = {
->  	.max_res_index = 5
->  };
->  
-> +static const struct ms_tp_hw_data ms5803_hw_data  = {
-> +	.prom_len = 8,
-> +	.max_res_index = 4
-> +};
-> +
->  static const struct ms_tp_data ms5637_data = { .name = "ms5637", .hw = &ms5637_hw_data };
->  
-> +static const struct ms_tp_data ms5803_data = { .name = "ms5803", .hw = &ms5803_hw_data };
-> +
->  static const struct ms_tp_data ms5805_data = { .name = "ms5805", .hw = &ms5637_hw_data };
->  
->  static const struct ms_tp_data ms5837_data = { .name = "ms5837", .hw = &ms5637_hw_data };
-> @@ -205,6 +212,7 @@ static const struct ms_tp_data ms8607_data = {
->  
->  static const struct of_device_id ms5637_of_match[] = {
->  	{ .compatible = "meas,ms5637", .data = &ms5637_data },
-> +	{ .compatible = "meas,ms5803", .data = &ms5803_data },
->  	{ .compatible = "meas,ms5805", .data = &ms5805_data },
->  	{ .compatible = "meas,ms5837", .data = &ms5837_data },
->  	{ .compatible = "meas,ms8607-temppressure", .data = &ms8607_data },
-> -- 
-> 2.28.0
-> 
+Applied to devicetree-arm64/next, thanks!
+--
+Florian
