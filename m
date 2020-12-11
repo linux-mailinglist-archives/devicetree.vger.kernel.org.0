@@ -2,70 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 50E872D6E54
-	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 04:08:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E8C122D6E57
+	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 04:10:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387768AbgLKDHS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Dec 2020 22:07:18 -0500
-Received: from mail-oo1-f66.google.com ([209.85.161.66]:34784 "EHLO
-        mail-oo1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388364AbgLKDHM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 22:07:12 -0500
-Received: by mail-oo1-f66.google.com with SMTP id t63so1811922ooa.1;
-        Thu, 10 Dec 2020 19:06:57 -0800 (PST)
+        id S2392042AbgLKDJ0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Dec 2020 22:09:26 -0500
+Received: from mail-oi1-f194.google.com ([209.85.167.194]:33605 "EHLO
+        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1733046AbgLKDJC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 22:09:02 -0500
+Received: by mail-oi1-f194.google.com with SMTP id d27so8318885oic.0;
+        Thu, 10 Dec 2020 19:08:46 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=tTEMRb7V1p2F9KCydXVvXfb48BNtn6HMFTOoKMCdUp8=;
-        b=n3QQ+ClhRJfv3/C7HG3JBKeMJnkxX7gGm+wpABiYEaZF1A8S8JeenK8Srz1MkSGAMb
-         CNsEkWBr0CB03p8Q4JCKknsi1rvsySsuaL/Nz0UlE5m9LeAxao1zyOK80MWE3spacJlq
-         AglaoBE16zWXxfRoXlETDe1uobKKHW2u+kFz60oDFGsnvoCkuwKCCktCwvwp+04f2ao6
-         GvgBmBeN9Vm02vJTiEfOjeHoNS6y4NViRRLKYjXqfYtMs2gr8i4nHKZOFywLaklXKe6V
-         4qNgBYRxp7WE251WdS3YK5z0vQcCOrzNdAt8O9wk8ms94h8uGDSig1CvxRP+73WcvVPe
-         pYLg==
-X-Gm-Message-State: AOAM531H5HSpmou8ms3c9CdiuF6NWbzbTO72XRsLRiVbwBvXEgjiq8PY
-        PFg9UCXdQs7BLJfVC06+TskpZ6fQQg==
-X-Google-Smtp-Source: ABdhPJzwCZ/LdhdXGPVFCFUrIUwiHobPQlW+a/7pgy6NOGroMHgb/L5um7BEfax0rbsXdfVptKgMgg==
-X-Received: by 2002:a4a:c60c:: with SMTP id l12mr8321136ooq.45.1607655991897;
-        Thu, 10 Dec 2020 19:06:31 -0800 (PST)
+        bh=Kzi4C+7lbCELmX5Fwm3nDaczRxcqLIwFpq+sCs/l4qM=;
+        b=qInERl4Q3xuxw2AgGu3R5QfNwIsd2VIImr71GCabPnbJL6GfZKj0Xz+FT+vFHwfWaS
+         dfid7Lmd2iypCglcAXIw2jVJXXLX0KphE7PUJrWdcF8or9a/ZaLV6pN26PYZP3VQMw2F
+         tjn9Q9uBC4hsMy9sef4UvJo+nGBMngxu0bs263OBD/D/n662HpYUpDI0HWJQD5RsiVge
+         hwrVwwgYNejjxBYpkZjd7TAhHAegwFQ+WkXt+EPjFzRL4dxY4ua5eBT9VUqKdBhoS0PW
+         fFfEpRkSUgXCWBApn0g1mCOcxGOWzCIpeUFvGVdvfu6U7i8Pdr8XZew9WNhyVl/ke4Hx
+         CGbw==
+X-Gm-Message-State: AOAM533OXVVdNW2FSzEMH7a1tjUGQxm8xmHmzAIBtM7cPpHWwKOn6DCA
+        1GK+hASU9n1UeodvHkGHb+QbMPdyCA==
+X-Google-Smtp-Source: ABdhPJypoInSvEeWtGXMHGezQP39HxETrQ5TYmDAug3sm72ZjaPzLKAyDG/UAn0XJVLKeKyjpZhKMA==
+X-Received: by 2002:aca:418b:: with SMTP id o133mr7531930oia.67.1607656101281;
+        Thu, 10 Dec 2020 19:08:21 -0800 (PST)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id p8sm1500250oig.22.2020.12.10.19.06.30
+        by smtp.gmail.com with ESMTPSA id z14sm1559328otk.70.2020.12.10.19.08.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Dec 2020 19:06:31 -0800 (PST)
-Received: (nullmailer pid 3545571 invoked by uid 1000);
-        Fri, 11 Dec 2020 03:06:30 -0000
-Date:   Thu, 10 Dec 2020 21:06:30 -0600
+        Thu, 10 Dec 2020 19:08:20 -0800 (PST)
+Received: (nullmailer pid 3548617 invoked by uid 1000);
+        Fri, 11 Dec 2020 03:08:19 -0000
+Date:   Thu, 10 Dec 2020 21:08:19 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Michael Klein <michael@fossekall.de>
-Cc:     Chen-Yu Tsai <wens@csie.org>, linux-pm@vger.kernel.org,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Maxime Ripard <mripard@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Oleksij Rempel <o.rempel@pengutronix.de>
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        NXP Linux Team <linux-imx@nxp.com>,
         linux-arm-kernel@lists.infradead.org,
-        Sebastian Reichel <sre@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 2/3] Documentation: DT: binding documentation for
- regulator-poweroff
-Message-ID: <20201211030630.GA3545539@robh.at.kernel.org>
-References: <20201209210221.385188-1-michael@fossekall.de>
- <20201209210221.385188-3-michael@fossekall.de>
+        David Jander <david@protonic.nl>,
+        Fabio Estevam <festevam@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v4 2/5] dt-bindings: arm: fsl: add Kverneland UT1, UT1Q
+ and UI1P boards
+Message-ID: <20201211030819.GA3548287@robh.at.kernel.org>
+References: <20201201072449.28600-1-o.rempel@pengutronix.de>
+ <20201201072449.28600-3-o.rempel@pengutronix.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201209210221.385188-3-michael@fossekall.de>
+In-Reply-To: <20201201072449.28600-3-o.rempel@pengutronix.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 09 Dec 2020 22:02:20 +0100, Michael Klein wrote:
-> Add devicetree binding documentation for regulator-poweroff driver.
+On Tue, 01 Dec 2020 08:24:45 +0100, Oleksij Rempel wrote:
+> Add Kverneland UT1 (imx6dl), UT1Q (imx6q) and UT1P (imx6dp) based boards
 > 
-> Signed-off-by: Michael Klein <michael@fossekall.de>
+> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
 > ---
->  .../power/reset/regulator-poweroff.yaml       | 37 +++++++++++++++++++
->  1 file changed, 37 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/power/reset/regulator-poweroff.yaml
+>  Documentation/devicetree/bindings/arm/fsl.yaml | 3 +++
+>  1 file changed, 3 insertions(+)
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
