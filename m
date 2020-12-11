@@ -2,170 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B8F12D76DE
-	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 14:49:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0806C2D76E9
+	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 14:50:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389557AbgLKNrw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Dec 2020 08:47:52 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:40254 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732192AbgLKNrY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Dec 2020 08:47:24 -0500
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0BBDjdTv072408;
-        Fri, 11 Dec 2020 07:45:39 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1607694339;
-        bh=PtbbpmNeH8mroCFh+s1SgSbfVtmFKVFgxh2cmWfEC6c=;
-        h=Subject:From:To:CC:References:Date:In-Reply-To;
-        b=bTB7BB+8EmjuzpTeot2iHsmMi1ajJjBwGI9GezK1bH1UxAfc8UA7w5vVCUSH1bbPr
-         xiFXEm51pDW5BWXDeJnJieiD71FO/aFeCu4dzLl9BE8A7L/xlD8rcRqDHIuMi/F4gd
-         NvM8HoAtl2J2Y8sNQ5gvgOi26iGfna9MpmhAwouo=
-Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0BBDjdxu094975
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 11 Dec 2020 07:45:39 -0600
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Fri, 11
- Dec 2020 07:45:39 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Fri, 11 Dec 2020 07:45:38 -0600
-Received: from [192.168.2.6] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0BBDjama033193;
-        Fri, 11 Dec 2020 07:45:36 -0600
-Subject: Re: [PATCH v3 16/20] soc: ti: k3-ringacc: add AM64 DMA rings support.
-From:   Peter Ujfalusi <peter.ujfalusi@ti.com>
-To:     <vkoul@kernel.org>, <nm@ti.com>, <ssantosh@kernel.org>,
-        <robh+dt@kernel.org>
-CC:     <dan.j.williams@intel.com>, <t-kristo@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <dmaengine@vger.kernel.org>, <vigneshr@ti.com>,
-        <grygorii.strashko@ti.com>
-References: <20201208090440.31792-1-peter.ujfalusi@ti.com>
- <20201208090440.31792-17-peter.ujfalusi@ti.com>
-Message-ID: <a1f83b16-c1ce-630e-3410-738b80a92741@ti.com>
-Date:   Fri, 11 Dec 2020 15:46:38 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.5.1
-MIME-Version: 1.0
-In-Reply-To: <20201208090440.31792-17-peter.ujfalusi@ti.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+        id S2387586AbgLKNuA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Dec 2020 08:50:00 -0500
+Received: from mickerik.phytec.de ([195.145.39.210]:46182 "EHLO
+        mickerik.phytec.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2391239AbgLKNth (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Dec 2020 08:49:37 -0500
+DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a1; c=relaxed/simple;
+        q=dns/txt; i=@phytec.de; t=1607694535; x=1610286535;
+        h=From:Sender:Reply-To:Subject:Date:Message-Id:To:Cc:MIME-Version:Content-Type:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=4KCCPkp/6s25V9wQmTKHknABts+NJhJ+XY43stNJro4=;
+        b=susbmhjNBaC48fi7DNuSRkJxupJsqRGZI+qpfvn/gRlQGbC6EglCvY82Pff1Tw2A
+        QDsF4s4bizY510Xq+wVFq7wk4pQDy6OvBOXkuyMFh5S9nTD9ybAqpwEVux/YCqDt
+        ojfLMxBYkBj9Lz6SPoPcemhNJqe8mvT06u1pSHZ3erc=;
+X-AuditID: c39127d2-96bff70000006435-1f-5fd378c7062b
+Received: from idefix.phytec.de (Unknown_Domain [172.16.0.10])
+        by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id CA.F7.25653.7C873DF5; Fri, 11 Dec 2020 14:48:55 +0100 (CET)
+Received: from augenblix2.phytec.de ([172.16.0.56])
+          by idefix.phytec.de (IBM Domino Release 9.0.1FP7)
+          with ESMTP id 2020121114485536-962992 ;
+          Fri, 11 Dec 2020 14:48:55 +0100 
+From:   Teresa Remmet <t.remmet@phytec.de>
+To:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc:     Catalin Marinas <catalin.marinas@arm.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Alexander Dahl <ada@thorsis.com>
+Subject: [PATCH v3 0/4] Initial support for phyBOARD-Pollux i.MX8MP
+Date:   Fri, 11 Dec 2020 14:48:51 +0100
+Message-Id: <1607694535-417799-1-git-send-email-t.remmet@phytec.de>
+X-Mailer: git-send-email 2.7.4
+X-MIMETrack: Itemize by SMTP Server on Idefix/Phytec(Release 9.0.1FP7|August  17, 2016) at
+ 11.12.2020 14:48:55,
+        Serialize by Router on Idefix/Phytec(Release 9.0.1FP7|August  17, 2016) at
+ 11.12.2020 14:48:55,
+        Serialize complete at 11.12.2020 14:48:55
+X-TNEFEvaluated: 1
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFmpjluLIzCtJLcpLzFFi42JZI8DApXu84nK8wZM3chZ9B5ks3i/rYbSY
+        f+Qcq8XDq/4W589vYLfY9Pgaq0Xr3iPsFn+3b2KxeLFF3IHTY828NYweO2fdZffYtKqTzWPz
+        knqP/r8GHuvmvmf3+LxJLoA9issmJTUnsyy1SN8ugStjxbmLjAU/uCuWHdvE2MB4kbOLkZND
+        QsBEonNODzuILSSwlVHi9qfQLkYuIPs8o8Tc+asZQRJsAhoST1ecZgKxRQRcJDZPeMYEUsQs
+        0MIkcXP+YrYuRg4OYQFniXPHS0FqWARUJSYv+wRWzwsUvt53hA1imZzEzXOdzCC9EgKNTBJr
+        Z8xmgkgISZxefJZ5AiPPAkaGVYxCuZnJ2alFmdl6BRmVJanJeimpmxiBYXV4ovqlHYx9czwO
+        MTJxMB5ilOBgVhLhlWW5FC/Em5JYWZValB9fVJqTWnyIUZqDRUmcdwNvSZiQQHpiSWp2ampB
+        ahFMlomDU6qBcVun9KxOm0KF1PDMjc/rnl/ek9RU1l37u9oyua9A4co8CfHnf7ICODxabOsl
+        4hafWXnivEVi6o53H9bsaevbZee3e8dn3bdpourzS6dN0LS59v4zs0e3AF8+n22l3mwnJZeJ
+        zyZd+m+ryaIedUT0HdNs15PnjzS/NElkuX3ca7p1dqTr1n01SizFGYmGWsxFxYkAzVzcHxkC
+        AAA=
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Third version for the initial support for the SoM phyCORE-i.MX8MP
+and the carrier board phyBOARD-Pollux.
 
+Changes in v3:
+- removed deprecated led label property
+- added Reviewed-by and Acked-by tags
 
-On 08/12/2020 11.04, Peter Ujfalusi wrote:
-> From: Grygorii Strashko <grygorii.strashko@ti.com>
-> 
-> The DMAs in AM64 have built in rings compared to AM654/J721e/J7200 where a
-> separate and generic ringacc is used.
-> 
-> The ring SW interface is similar to ringacc with some major architectural
-> differences, like
-> 
-> They are part of the DMA (BCDMA or PKTDMA).
-> 
-> They are dual mode rings are modeled as pair of Rings objects which has
-> common configuration and memory buffer, but separate real-time control
-> register sets for each direction mem2dev (forward) and dev2mem (reverse).
-> 
-> The ringacc driver must be initialized for DMA rings use with
-> k3_ringacc_dmarings_init() as it is not an independent device as ringacc
-> is.
-> 
-> AM64 rings must be requested only using k3_ringacc_request_rings_pair(),
-> and forward ring must always be initialized/configured. After this any
-> other Ringacc APIs can be used without any callers changes.
-> 
-> Signed-off-by: Grygorii Strashko <grygorii.strashko@ti.com>
-> Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
-> ---
->  drivers/soc/ti/k3-ringacc.c       | 325 +++++++++++++++++++++++++++++-
->  include/linux/soc/ti/k3-ringacc.h |  17 ++
->  2 files changed, 335 insertions(+), 7 deletions(-)
-> 
-> diff --git a/drivers/soc/ti/k3-ringacc.c b/drivers/soc/ti/k3-ringacc.c
-> index 119164abcb41..c88c305ba367 100644
-> --- a/drivers/soc/ti/k3-ringacc.c
-> +++ b/drivers/soc/ti/k3-ringacc.c
+Changes in v2:
+- add rv3028 as module instead of buildin in defconfig
+- updated commit message of rv3028 accordingly
+- changed entries of device tree binding documentation to "const" 
+  and fixed order
+- fixed led dimmer node name
+- removed rtc clock node
+- fixed pmic node name
+- removed reg entries in pmic regulator nodes
+- removed clock entry from rtc node
+- moved muxing of enable gpio for sd-card regulator to the proper node
+- squashed imx8mp-phyboard-pollux.dtsi into imx8mp-phyboard-pollux-rdk.dts
 
-...
+Teresa
 
-> +struct k3_ringacc *k3_ringacc_dmarings_init(struct platform_device *pdev,
-> +					    struct k3_ringacc_init_data *data)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct k3_ringacc *ringacc;
-> +	void __iomem *base_rt;
-> +	struct resource *res;
-> +	int i;
-> +
-> +	ringacc = devm_kzalloc(dev, sizeof(*ringacc), GFP_KERNEL);
-> +	if (!ringacc)
-> +		return ERR_PTR(-ENOMEM);
-> +
-> +	ringacc->dev = dev;
-> +	ringacc->dma_rings = true;
-> +	ringacc->num_rings = data->num_rings;
-> +	ringacc->tisci = data->tisci;
-> +	ringacc->tisci_dev_id = data->tisci_dev_id;
-> +
-> +	mutex_init(&ringacc->req_lock);
-> +
-> +	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "ringrt");
-> +	base_rt = devm_ioremap_resource(dev, res);
-> +	if (IS_ERR(base_rt))
-> +		return base_rt;
+Teresa Remmet (4):
+  arm64: defconfig: Enable rv3028 i2c rtc driver
+  arm64: defconfig: Enable PCA9532 support
+  bindings: arm: fsl: Add PHYTEC i.MX8MP devicetree bindings
+  arm64: dts: freescale: Add support for phyBOARD-Pollux-i.MX8MP
 
-this must have been:
-	return ERR_CAST(base_rt);
+ Documentation/devicetree/bindings/arm/fsl.yaml     |   6 +
+ arch/arm64/boot/dts/freescale/Makefile             |   1 +
+ .../dts/freescale/imx8mp-phyboard-pollux-rdk.dts   | 163 ++++++++++++
+ .../boot/dts/freescale/imx8mp-phycore-som.dtsi     | 296 +++++++++++++++++++++
+ arch/arm64/configs/defconfig                       |   2 +
+ 5 files changed, 468 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-phycore-som.dtsi
 
-> +
-> +	ringacc->rings = devm_kzalloc(dev,
-> +				      sizeof(*ringacc->rings) *
-> +				      ringacc->num_rings * 2,
-> +				      GFP_KERNEL);
-> +	ringacc->rings_inuse = devm_kcalloc(dev,
-> +					    BITS_TO_LONGS(ringacc->num_rings),
-> +					    sizeof(unsigned long), GFP_KERNEL);
-> +
-> +	if (!ringacc->rings || !ringacc->rings_inuse)
-> +		return ERR_PTR(-ENOMEM);
-> +
-> +	for (i = 0; i < ringacc->num_rings; i++) {
-> +		struct k3_ring *ring = &ringacc->rings[i];
-> +
-> +		ring->rt = base_rt + K3_DMARING_RT_REGS_STEP * i;
-> +		ring->parent = ringacc;
-> +		ring->ring_id = i;
-> +		ring->proxy_id = K3_RINGACC_PROXY_NOT_USED;
-> +
-> +		ring = &ringacc->rings[ringacc->num_rings + i];
-> +		ring->rt = base_rt + K3_DMARING_RT_REGS_STEP * i +
-> +			   K3_DMARING_RT_REGS_REVERSE_OFS;
-> +		ring->parent = ringacc;
-> +		ring->ring_id = i;
-> +		ring->proxy_id = K3_RINGACC_PROXY_NOT_USED;
-> +		ring->flags = K3_RING_FLAG_REVERSE;
-> +	}
-> +
-> +	ringacc->tisci_ring_ops = &ringacc->tisci->ops.rm_ring_ops;
-> +
-> +	dev_info(dev, "Number of rings: %u\n", ringacc->num_rings);
-> +
-> +	return ringacc;
-> +}
+-- 
+2.7.4
 
-- Péter
-
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
