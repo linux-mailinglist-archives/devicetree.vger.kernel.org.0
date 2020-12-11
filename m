@@ -2,120 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DF8FF2D6FDC
-	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 06:53:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9BAE12D6FFA
+	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 07:07:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390420AbgLKFwI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Dec 2020 00:52:08 -0500
-Received: from mail.kernel.org ([198.145.29.99]:48948 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2388912AbgLKFvo (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 11 Dec 2020 00:51:44 -0500
-Date:   Fri, 11 Dec 2020 06:50:58 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1607665863;
-        bh=cp6+pYtXaACthxB1XxfyhkIFCLqavljHyzRg1qjaSoY=;
-        h=From:To:Cc:Subject:References:In-Reply-To:From;
-        b=kE5bqkU5UDmezhRr0m/f7HYr4Ms9XJCb/ILK3RBEq5hswZ7Uwh37F//LFY+ieEtw2
-         hgEVJsMXdzWWC/azR1PRcJHuezRx5hJeqJOFSbJjEhfnh2bwfncQ/Mgws8cr1x9Kra
-         lZ1LjpV45i3H1c2ESgp3wkibYqWxeCk0CwqudIrg=
-From:   'Greg Kroah-Hartman' <gregkh@linuxfoundation.org>
-To:     =?iso-8859-1?Q?J=F3zsef_Horv=E1th?= <info@ministro.hu>
-Cc:     'Rob Herring' <robh+dt@kernel.org>,
-        'Jiri Slaby' <jirislaby@kernel.org>,
-        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] Serial: silabs si4455 serial driver
-Message-ID: <X9MIwqJBG69M5uHq@kroah.com>
-References: <20201210170443.GA17304@dincontrollerdev>
- <X9Jw+srprdT8tquZ@kroah.com>
- <20201210194625.GA17516@dincontrollerdev>
+        id S2389790AbgLKGGf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Dec 2020 01:06:35 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:41832 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2391588AbgLKGGQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Dec 2020 01:06:16 -0500
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0BB64cbx039923;
+        Fri, 11 Dec 2020 00:04:38 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1607666678;
+        bh=wSqjmbU0YYGEkg93VVUH28s8uW6BoEtX08kYM08bGPo=;
+        h=From:To:CC:Subject:Date;
+        b=fPgU5gOnLC1M3lsMAIClh7KPtDTIZU9PFV36de1+wxiXDYfWRkhtdD2WB1gZO7Dof
+         rp7ZEjWgKnJh9I3CPHoyxTPKqI4HF7iaku+R0985x47wvZkuxUggXFHpSCrO0gG1xb
+         6X/W4c48RxSTR6aR3Eo/xPG+YxT2mtA6DTnJPQY4=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0BB64c1q078685
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 11 Dec 2020 00:04:38 -0600
+Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Fri, 11
+ Dec 2020 00:04:37 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Fri, 11 Dec 2020 00:04:38 -0600
+Received: from gsaswath-HP-ProBook-640-G5.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0BB64Xoh116260;
+        Fri, 11 Dec 2020 00:04:34 -0600
+From:   Aswath Govindraju <a-govindraju@ti.com>
+CC:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Sekhar Nori <nsekhar@ti.com>,
+        Aswath Govindraju <a-govindraju@ti.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Roger Quadros <rogerq@ti.com>, <linux-usb@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v4] dt-bindings: usb: Add new compatible string for AM64 SoC
+Date:   Fri, 11 Dec 2020 11:34:29 +0530
+Message-ID: <20201211060429.20027-1-a-govindraju@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20201210194625.GA17516@dincontrollerdev>
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 10, 2020 at 07:46:25PM +0000, József Horváth wrote:
-> On Thu, Dec 10, 2020 at 08:03:22PM +0100, 'Greg Kroah-Hartman' wrote:
-> > On Thu, Dec 10, 2020 at 05:04:46PM +0000, József Horváth wrote:
-> > > This is a serial port driver for
-> > > Silicon Labs Si4455 Sub-GHz transciver.
-> > > 
-> > > Signed-off-by: József Horváth <info@ministro.hu>
-> > > ---
-> > >  .../bindings/serial/silabs,si4455.yaml        |   53 +
-> > >  MAINTAINERS                                   |    7 +
-> > >  drivers/tty/serial/Kconfig                    |    8 +
-> > >  drivers/tty/serial/Makefile                   |    1 +
-> > >  drivers/tty/serial/si4455.c                   | 1235 +++++++++++++++++
-> > >  drivers/tty/serial/si4455_api.h               |   56 +
-> > 
-> > First thing, a single .c file should not need a .h file.
-> > 
-> > But then I looked at the .h file and see:
-> > 
-> > > --- /dev/null
-> > > +++ b/drivers/tty/serial/si4455_api.h
-> > > @@ -0,0 +1,56 @@
-> > > +/* SPDX-License-Identifier: GPL-2.0
-> > > + *
-> > > + * Copyright (C) 2020 József Horváth <info@ministro.hu>
-> > > + *
-> > > + */
-> > > +#ifndef SI4455_API_H_
-> > > +#define SI4455_API_H_
-> > > +
-> > > +struct si4455_iocbuff {
-> > > +	uint32_t length;
-> > > +	uint8_t	data[4096];
-> > 
-> > If you do have an ioctl, use proper data types.  These are not the
-> > correct ones (hint, __u32 and __u8).
-> > 
-> > > +};
-> > > +
-> > > +#define BASE_TTYIOC_PRIVATE		0xA0
-> > > +/* Set EZConfig.
-> > > + * After this ioctl call, the driver restarts the si4455,
-> > > + * then apply the new configuration and patch.
-> > > + */
-> > > +#define SI4455_IOC_SEZC		_IOW('T', \
-> > > +				     BASE_TTYIOC_PRIVATE + 0x01, \
-> > > +				     struct si4455_iocbuff)
-> > 
-> > Why does a serial driver have private ioctls?  Please no, don't do that.
-> 
-> I checked the ioctl.h and serial_core.h, but I not found any similar definition, like BASE_VIDIOC_PRIVATE in videodev2.h.
-> In this case the name of macro BASE_TTYIOC_PRIVATE means the base value of special ioctl commands owned by this driver.
+Add compatible string in j721e-usb binding file as the same USB subsystem
+is present in AM64.
 
-My point is, a serial driver should NOT have any custom ioctls.
+Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+---
 
-> I can change it to BASE_TTYIOC or SI4455_IOC_BASE
-> 
-> > Implement the basic serial driver first, and then we can talk about
-> > "custom" configurations and the like, using the correct apis.
-> 
-> Without the SI4455_IOC_SEZC call, the driver can't configure the Si4455 and not working at all.
-> The cofiguration for interface is provided by user for application.
+Changes since v3:
+- used enum instead of anyOf.
 
-That is what a device tree is for, to configure the device to have the
-correct system configuration, why can't that be the same here?
+Changes since v2:
+- added changes done over the versions.
 
-> It contains the base frequency, channel spacing, modulation, and a lot
-> of more stuff, and generated by Silicon Labs Wireless Development
-> Suite.
-> The generated configuration is in a non public(compressed,
-> encrypted...who knows) format, so without this the driver can't
-> provide configuration parameters to Si4455.
+Changes since v1:
+- replaced the '\t' at the beginning of the lines with spaces as it was
+  causing the dt_binding_check to fail.
 
-So we have to take a "custom" userspace blob and send it to the device
-to configure it properly?  Like Jiri said, sounds like firmware, so just
-use that interface instead.
+ Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-thanks,
+diff --git a/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml b/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml
+index 388245b91a55..1a5c7bbb40d1 100644
+--- a/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml
++++ b/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml
+@@ -11,8 +11,9 @@ maintainers:
+ 
+ properties:
+   compatible:
+-    items:
+-      - const: ti,j721e-usb
++    enum:
++      - ti,j721e-usb
++      - ti,am64-usb
+ 
+   reg:
+     description: module registers
+-- 
+2.17.1
 
-greg k-h
