@@ -2,175 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CDAE82D6FD0
-	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 06:45:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DF8FF2D6FDC
+	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 06:53:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390422AbgLKFoi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Dec 2020 00:44:38 -0500
-Received: from mail.kernel.org ([198.145.29.99]:45316 "EHLO mail.kernel.org"
+        id S2390420AbgLKFwI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Dec 2020 00:52:08 -0500
+Received: from mail.kernel.org ([198.145.29.99]:48948 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2389684AbgLKFof (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 11 Dec 2020 00:44:35 -0500
-Date:   Fri, 11 Dec 2020 11:13:49 +0530
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1607665434;
-        bh=PljJxLBJRPp6E9yafYMRiexgxji55Oj5nbr6TTUvD6w=;
+        id S2388912AbgLKFvo (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 11 Dec 2020 00:51:44 -0500
+Date:   Fri, 11 Dec 2020 06:50:58 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1607665863;
+        bh=cp6+pYtXaACthxB1XxfyhkIFCLqavljHyzRg1qjaSoY=;
         h=From:To:Cc:Subject:References:In-Reply-To:From;
-        b=qtw4RwBetRI6XFhvIO0k3EeTJvPe8aSth2o+58zOJLgjEuVjDMmz5s/QXjfW91bRU
-         6u41+hN3GnFx6n+qGey9i4tp+L9zWQncY75mYOpCMMcOhKOVV9V5TgplDXJeJS9q5V
-         j2x1CTxn7Ojwai8XS+gjjZsET/mDJxHgKatmd6ESq4QSAMo2e9rzQ9NzuHUaPQAV5q
-         3CSjroFUaH9Wq8h+nXuxGLtKQl66e+Vb9Bsdp07FRH2YPorqygoNkIpzD+AsCoqoSj
-         emdcQhtSrT8vcGD2KhNZIOw/3gi3L6nH7+03Um6nCX0Xg+FZi6V+jHDC7Hfcg8EOap
-         CNcOs+aL3k4zg==
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Stephen Boyd <sboyd@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Vivek Aknurwar <viveka@codeaurora.org>,
-        Andy Gross <agross@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Taniya Das <tdas@codeaurora.org>, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Jeevan Shriram <jshriram@codeaurora.org>
-Subject: Re: [PATCH v2 5/5] clk: qcom: gcc: Add clock driver for SM8350
-Message-ID: <20201211054349.GS8403@vkoul-mobl>
-References: <20201208064702.3654324-1-vkoul@kernel.org>
- <20201208064702.3654324-6-vkoul@kernel.org>
- <160763302790.1580929.10258660966995584297@swboyd.mtv.corp.google.com>
+        b=kE5bqkU5UDmezhRr0m/f7HYr4Ms9XJCb/ILK3RBEq5hswZ7Uwh37F//LFY+ieEtw2
+         hgEVJsMXdzWWC/azR1PRcJHuezRx5hJeqJOFSbJjEhfnh2bwfncQ/Mgws8cr1x9Kra
+         lZ1LjpV45i3H1c2ESgp3wkibYqWxeCk0CwqudIrg=
+From:   'Greg Kroah-Hartman' <gregkh@linuxfoundation.org>
+To:     =?iso-8859-1?Q?J=F3zsef_Horv=E1th?= <info@ministro.hu>
+Cc:     'Rob Herring' <robh+dt@kernel.org>,
+        'Jiri Slaby' <jirislaby@kernel.org>,
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] Serial: silabs si4455 serial driver
+Message-ID: <X9MIwqJBG69M5uHq@kroah.com>
+References: <20201210170443.GA17304@dincontrollerdev>
+ <X9Jw+srprdT8tquZ@kroah.com>
+ <20201210194625.GA17516@dincontrollerdev>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <160763302790.1580929.10258660966995584297@swboyd.mtv.corp.google.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20201210194625.GA17516@dincontrollerdev>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10-12-20, 12:43, Stephen Boyd wrote:
-> Quoting Vinod Koul (2020-12-07 22:47:02)
-
-> > +config SM_GCC_8350
-> > +       tristate "SM8350 Global Clock Controller"
-> > +       select QCOM_GDSC
-> > +       help
-> > +         Support for the global clock controller on SM8350 devices.
-> > +         Say Y if you want to use peripheral devices such as UART,
-> > +         SPI, I2C, USB, SD/UFS, PCIe etc.
-> > +
-> > +
+On Thu, Dec 10, 2020 at 07:46:25PM +0000, József Horváth wrote:
+> On Thu, Dec 10, 2020 at 08:03:22PM +0100, 'Greg Kroah-Hartman' wrote:
+> > On Thu, Dec 10, 2020 at 05:04:46PM +0000, József Horváth wrote:
+> > > This is a serial port driver for
+> > > Silicon Labs Si4455 Sub-GHz transciver.
+> > > 
+> > > Signed-off-by: József Horváth <info@ministro.hu>
+> > > ---
+> > >  .../bindings/serial/silabs,si4455.yaml        |   53 +
+> > >  MAINTAINERS                                   |    7 +
+> > >  drivers/tty/serial/Kconfig                    |    8 +
+> > >  drivers/tty/serial/Makefile                   |    1 +
+> > >  drivers/tty/serial/si4455.c                   | 1235 +++++++++++++++++
+> > >  drivers/tty/serial/si4455_api.h               |   56 +
+> > 
+> > First thing, a single .c file should not need a .h file.
+> > 
+> > But then I looked at the .h file and see:
+> > 
+> > > --- /dev/null
+> > > +++ b/drivers/tty/serial/si4455_api.h
+> > > @@ -0,0 +1,56 @@
+> > > +/* SPDX-License-Identifier: GPL-2.0
+> > > + *
+> > > + * Copyright (C) 2020 József Horváth <info@ministro.hu>
+> > > + *
+> > > + */
+> > > +#ifndef SI4455_API_H_
+> > > +#define SI4455_API_H_
+> > > +
+> > > +struct si4455_iocbuff {
+> > > +	uint32_t length;
+> > > +	uint8_t	data[4096];
+> > 
+> > If you do have an ioctl, use proper data types.  These are not the
+> > correct ones (hint, __u32 and __u8).
+> > 
+> > > +};
+> > > +
+> > > +#define BASE_TTYIOC_PRIVATE		0xA0
+> > > +/* Set EZConfig.
+> > > + * After this ioctl call, the driver restarts the si4455,
+> > > + * then apply the new configuration and patch.
+> > > + */
+> > > +#define SI4455_IOC_SEZC		_IOW('T', \
+> > > +				     BASE_TTYIOC_PRIVATE + 0x01, \
+> > > +				     struct si4455_iocbuff)
+> > 
+> > Why does a serial driver have private ioctls?  Please no, don't do that.
 > 
-> Why double newline?
+> I checked the ioctl.h and serial_core.h, but I not found any similar definition, like BASE_VIDIOC_PRIVATE in videodev2.h.
+> In this case the name of macro BASE_TTYIOC_PRIVATE means the base value of special ioctl commands owned by this driver.
 
-Will drop
+My point is, a serial driver should NOT have any custom ioctls.
 
-> > +#include <linux/bitops.h>
-> > +#include <linux/clk.h>
+> I can change it to BASE_TTYIOC or SI4455_IOC_BASE
 > 
-> Is this include used?
-
-Will check this and others and drop unused ones
-
+> > Implement the basic serial driver first, and then we can talk about
+> > "custom" configurations and the like, using the correct apis.
 > 
-> > +#include <linux/clk-provider.h>
-> > +#include <linux/err.h>
-> > +#include <linux/kernel.h>
-> > +#include <linux/module.h>
-> > +#include <linux/of_device.h>
-> > +#include <linux/of.h>
-> > +#include <linux/platform_device.h>
-> > +#include <linux/regmap.h>
-> > +#include <linux/reset-controller.h>
-> 
-> Please add newline here
-> 
-> > +#include <dt-bindings/clock/qcom,gcc-sm8350.h>
-> 
-> Please add newline here
+> Without the SI4455_IOC_SEZC call, the driver can't configure the Si4455 and not working at all.
+> The cofiguration for interface is provided by user for application.
 
-Ok to both
+That is what a device tree is for, to configure the device to have the
+correct system configuration, why can't that be the same here?
 
-> > +static const struct clk_parent_data gcc_parent_data_0[] = {
-> > +       { .fw_name = "bi_tcxo", .name = "bi_tcxo" },
-> > +       { .hw = &gcc_gpll0.clkr.hw },
-> > +       { .hw = &gcc_gpll0_out_even.clkr.hw },
-> > +       { .fw_name = "core_bi_pll_test_se", .name = "core_bi_pll_test_se" },
-> 
-> Is this .fw_name in the binding? Please remove .name everywhere in this
-> driver as it shouldn't be necessary.
+> It contains the base frequency, channel spacing, modulation, and a lot
+> of more stuff, and generated by Silicon Labs Wireless Development
+> Suite.
+> The generated configuration is in a non public(compressed,
+> encrypted...who knows) format, so without this the driver can't
+> provide configuration parameters to Si4455.
 
-Ack will drop
+So we have to take a "custom" userspace blob and send it to the device
+to configure it properly?  Like Jiri said, sounds like firmware, so just
+use that interface instead.
 
-> > +static const struct clk_parent_data gcc_parent_data_13[] = {
-> > +       { .fw_name = "usb3_phy_wrapper_gcc_usb30_pipe_clk", .name =
-> 
-> Is this documented in the binding?
+thanks,
 
-Not yet, will update
-
-> > +static struct clk_rcg2 gcc_sdcc2_apps_clk_src = {
-> > +       .cmd_rcgr = 0x1400c,
-> > +       .mnd_width = 8,
-> > +       .hid_width = 5,
-> > +       .parent_map = gcc_parent_map_6,
-> > +       .freq_tbl = ftbl_gcc_sdcc2_apps_clk_src,
-> > +       .clkr.hw.init = &(struct clk_init_data){
-> > +               .name = "gcc_sdcc2_apps_clk_src",
-> > +               .parent_data = gcc_parent_data_6,
-> > +               .num_parents = 6,
-> > +               .flags = CLK_SET_RATE_PARENT,
-> > +               .ops = &clk_rcg2_ops,
-> 
-> Please use floor ops per Doug's recent patch.
-
-Yes
-
-> > +static struct clk_branch gcc_camera_ahb_clk = {
-> > +       .halt_reg = 0x26004,
-> > +       .halt_check = BRANCH_HALT_DELAY,
-> > +       .hwcg_reg = 0x26004,
-> > +       .hwcg_bit = 1,
-> > +       .clkr = {
-> > +               .enable_reg = 0x26004,
-> > +               .enable_mask = BIT(0),
-> > +               .hw.init = &(struct clk_init_data){
-> > +                       .name = "gcc_camera_ahb_clk",
-> > +                       .flags = CLK_IS_CRITICAL,
-> 
-> Why is it critical? Can we just enable it in driver probe and stop
-> modeling it as a clk?
-
-it does not have a parent we control, yeah it would make sense to do
-that. Tanya do you folks agree ..?
-
-> > +static struct clk_branch gcc_video_axi0_clk = {
-> > +       .halt_reg = 0x28010,
-> > +       .halt_check = BRANCH_HALT_SKIP,
-> 
-> Do these need to be halt skip? Is the video axi clk stuff still broken?
-
-I will check on this and update accordingly
-
-> > +static int gcc_sm8350_probe(struct platform_device *pdev)
-> > +{
-> > +       struct regmap *regmap;
-> > +       int ret;
-> > +
-> > +       regmap = qcom_cc_map(pdev, &gcc_sm8350_desc);
-> > +       if (IS_ERR(regmap)) {
-> > +               dev_err(&pdev->dev, "Failed to map gcc registers\n");
-> > +               return PTR_ERR(regmap);
-> > +       }
-> > +
-> > +       ret = qcom_cc_register_rcg_dfs(regmap, gcc_dfs_clocks, ARRAY_SIZE(gcc_dfs_clocks));
-> > +       if (ret)
-> > +               return ret;
-> > +
-> > +       /* FORCE_MEM_CORE_ON for ufs phy ice core clocks */
-> 
-> Why?
-
-So I understood that this needs to be set so that ufs clocks can
-propagate to ufs mem stuff..
-
--- 
-~Vinod
+greg k-h
