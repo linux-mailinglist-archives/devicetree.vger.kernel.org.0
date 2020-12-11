@@ -2,311 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 65FC92D6D76
-	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 02:27:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0FFCC2D6DC8
+	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 02:57:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2394906AbgLKBXM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Dec 2020 20:23:12 -0500
-Received: from foss.arm.com ([217.140.110.172]:49834 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2394786AbgLKBWB (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 10 Dec 2020 20:22:01 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 177221FB;
-        Thu, 10 Dec 2020 17:20:46 -0800 (PST)
-Received: from localhost.localdomain (unknown [172.31.20.19])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 1CAEF3F66B;
-        Thu, 10 Dec 2020 17:20:43 -0800 (PST)
-From:   Andre Przywara <andre.przywara@arm.com>
-To:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>
-Cc:     Icenowy Zheng <icenowy@aosc.xyz>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>,
-        Shuosheng Huang <huangshuosheng@allwinnertech.com>,
-        Yangtao Li <tiny.windzz@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@googlegroups.com, devicetree@vger.kernel.org
-Subject: [PATCH v2 21/21] arm64: dts: allwinner: Add OrangePi Zero 2 .dts
-Date:   Fri, 11 Dec 2020 01:19:34 +0000
-Message-Id: <20201211011934.6171-22-andre.przywara@arm.com>
-X-Mailer: git-send-email 2.14.1
-In-Reply-To: <20201211011934.6171-1-andre.przywara@arm.com>
-References: <20201211011934.6171-1-andre.przywara@arm.com>
+        id S2391283AbgLKB4M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Dec 2020 20:56:12 -0500
+Received: from mail-db8eur05on2075.outbound.protection.outlook.com ([40.107.20.75]:40512
+        "EHLO EUR05-DB8-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S2390071AbgLKBzd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 10 Dec 2020 20:55:33 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=JD9ZzO6v44ghGZEr8JLZkOlf5t0C8kwUR0BdpLizjy7diizmDlHV61j6D/lffSPzSBOtcJ/6iVQqgCHP1gB7VN4aWxUuj8XUfIdI2aTOWlAmQwuff44k/Q9Badr5kYE5zvEvJ0p1oZGAuNFLw8OQCBsrprAxAgPMGOrdO/kIlhr+5VepgdrCJqKShwyL5WMK2OYgCwI04JgbjclM+IuiJ/T54JoKhyJEot17T2fwZjoyZtKuYqSI07vWUt4XSbUiDjcaFU+rW/pBe9azBQy9p31PpTCGVonlwjslnNGPl+wVtKVDHklW0B0wC5cV8sUulIeTzxTQZt2wyJsuBZnicA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=o8QbsVSQpwTDeCI0oMdCzNpmCAjkpWMRnEA4qKBwYgk=;
+ b=Jw1CA80L+AJ5dswBRjnAvaBixZb1LnbRnrOeJ5bq6FGvQIENYQoJupOYdjOiEy2boMfr910SzHsEWsPtAGBg0Luv/1cjcLkv1+0KcuMwaKr9/W+L8Fu0vb5lk2yUSh3F4CYR2aZwuK2IOjzK99ZzhtKb/6FG9uN3qv2IkrPS/vuiv25FZdEqCOcrcb8QWWnHOe4DWz5OC4WHUSqwx+u+fyLSPPSrewIJNB1iF2TETsqJRsxbQVL9Hhv4Cy2/jNdwk98ANX/i7g5bmz6HRVs+LMLKAWKAXLTNSNxWyu/DHdBPmHJ5y3XsaEqmr0YqgHUExoClOQrbqz46JEthO2vz+Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=o8QbsVSQpwTDeCI0oMdCzNpmCAjkpWMRnEA4qKBwYgk=;
+ b=DeahoOAIXe5FFdtfzjaRMbhQod0eZJ3Hr+YVNtuMCLQrT+by+kQDyA34Ebz+ASJTi23INu4+sJpTwrPJezUIbUMUEZkthmhsG5gXtEg/iG6s5Y3ymrOxPLx67tzE3njFR/NXMaEb/JpfAJxVv4j6f/ZHLckm0CnRMY7SOdxT9c4=
+Authentication-Results: vger.kernel.org; dkim=none (message not signed)
+ header.d=none;vger.kernel.org; dmarc=none action=none header.from=nxp.com;
+Received: from VI1PR04MB3983.eurprd04.prod.outlook.com (2603:10a6:803:4c::16)
+ by VI1PR0402MB3952.eurprd04.prod.outlook.com (2603:10a6:803:1c::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3654.12; Fri, 11 Dec
+ 2020 01:54:42 +0000
+Received: from VI1PR04MB3983.eurprd04.prod.outlook.com
+ ([fe80::dcb7:6117:3def:2685]) by VI1PR04MB3983.eurprd04.prod.outlook.com
+ ([fe80::dcb7:6117:3def:2685%7]) with mapi id 15.20.3632.023; Fri, 11 Dec 2020
+ 01:54:41 +0000
+From:   Liu Ying <victor.liu@nxp.com>
+To:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org
+Cc:     kishon@ti.com, vkoul@kernel.org, robh+dt@kernel.org,
+        a.hajda@samsung.com, narmstrong@baylibre.com,
+        Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
+        jernej.skrabec@siol.net, airlied@linux.ie, daniel@ffwll.ch,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com, agx@sigxcpu.org,
+        robert.chiras@nxp.com, martin.kepplinger@puri.sm
+Subject: [PATCH v3 0/5] phy: phy-fsl-imx8-mipi-dphy: Add i.MX8qxp LVDS PHY mode support
+Date:   Fri, 11 Dec 2020 09:46:17 +0800
+Message-Id: <1607651182-12307-1-git-send-email-victor.liu@nxp.com>
+X-Mailer: git-send-email 2.7.4
+Content-Type: text/plain
+X-Originating-IP: [119.31.174.66]
+X-ClientProxiedBy: SG2P153CA0042.APCP153.PROD.OUTLOOK.COM (2603:1096:4:c6::11)
+ To VI1PR04MB3983.eurprd04.prod.outlook.com (2603:10a6:803:4c::16)
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from localhost.localdomain (119.31.174.66) by SG2P153CA0042.APCP153.PROD.OUTLOOK.COM (2603:1096:4:c6::11) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.20.3676.5 via Frontend Transport; Fri, 11 Dec 2020 01:54:35 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: 9190fcdc-9e45-487b-ac04-08d89d77b9d5
+X-MS-TrafficTypeDiagnostic: VI1PR0402MB3952:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <VI1PR0402MB395220BF8A5188894CB4553298CA0@VI1PR0402MB3952.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8273;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: OFSy1tfbktiVBP2M2FZr2/eeKzk8YUIY0LNUPOGG4AISM/GKPeg6pqnml5iMgX0p2LmwWx7hjitoVd+UUYP7THyWlFjc/C8DDyLC0ZesPB4vvwYcuN+eDKIQddUxfb9dFaumE+aVVgUnbo31/HH75+w+v/eXOfBDUoplAxY3mq3/btaK78gnytDgm3fMLl9pn9b3w27v02woTeDCpXuiFqWrk7MN+H/kjiEoJ+Q/n+5pO36MHgW/DBT6HmEcPsx8dOmOpzm/mf87VIwaw5muYkcoB5alCrXGMjV4OxMyybThlfhlUERas5eLCGeZzaNcZKV8Udd6U6+vvFvrDcXDEyutqYO4QMkMyiwrqEu6s64zUKSKG70vaRrbLdTm7xez
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB3983.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(136003)(396003)(376002)(39860400002)(346002)(366004)(52116002)(316002)(956004)(69590400008)(2616005)(5660300002)(66556008)(4326008)(66476007)(2906002)(66946007)(6512007)(7416002)(8676002)(16526019)(26005)(186003)(8936002)(6486002)(36756003)(478600001)(86362001)(6666004)(6506007)(83380400001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?J3mGief3m79kPwuuMy4NNmWnA/Ow6z0vaHLn9fwPbZ9POOi+VyZo0CufyNOC?=
+ =?us-ascii?Q?vec/E8kn4QThVBAw1cvgXPwfrRhlYd/ctjaXpCYtAFmf55rdYR6NN/U6qXV0?=
+ =?us-ascii?Q?acdiwpIIt9RzdCQvJz1/JHx6UNSaOqgf/uX0Wx2ExuPC6VEK2scycYAvLbO3?=
+ =?us-ascii?Q?rNhgbgfsXCL7j6pRsD4HYSISxm8vlLsYlNyaTcTCVHosiKc8dS3AmJxFMLkT?=
+ =?us-ascii?Q?sAdSuZikqrrfnkHHbCAUYAVxALZB6Ys7ELu+45ftaI7XZ1glFw3kt8oVNSeb?=
+ =?us-ascii?Q?eZ0XQ3iolwO3PYr9DF5Y6NnZfU3j2xP8t7HKXa+Ab+TrV2zKs+8c62BnYQNf?=
+ =?us-ascii?Q?tPOEDunvvLDil9XDY5fWuTb4Nm7zR+hXK7CawRRPKl+K30qdmp3yDgCdWory?=
+ =?us-ascii?Q?RCs2vq4FmS0j1DUYlZeCHgeD8+Jv54Dbwsr5nxsN+sPEgLxmr5LZqQnEhZXK?=
+ =?us-ascii?Q?qk41KeYqyJsNxqglM6Hf8zF8415RbHMNUMLQ00fXKz8FbIaEyHSrUph00pnz?=
+ =?us-ascii?Q?PaanrwQgJ34MJgvbJBZvqKKhZaOmJHrwZ1tItEeyv5BPzB9y5rMLv4f+Qcov?=
+ =?us-ascii?Q?/6T0njSUqbmR5yNxCFZAueLoa+fmVg4cml4NQ5tuUWh3eM2M4VqEXrHJDKJ6?=
+ =?us-ascii?Q?jStFPnpxCJ0a2IFHn+eq6qGcNvL/SvX0s89NyxTZ2efJObY4TJUyjqsd95g7?=
+ =?us-ascii?Q?rZzxLNUZcMDC+PgLVuX45X6MxTAsoHRS4myM5t9qhgytaDkbc+DGbkd0JQXx?=
+ =?us-ascii?Q?LUyhoznuoir00in3oOeMin1TQfdx6SIKzc6y3sJaYtoGplTLquop8/t3cCJ5?=
+ =?us-ascii?Q?TNHUvpwQE4KfWKtrU5fq2Q9SR7buI0MAPz94ag/wJLJklNmpVbDlYmSNhfMe?=
+ =?us-ascii?Q?+PAub9O3NigTDMjlCc/6Qr8VdeAej+F8iN3XrfQx2ISRAhqsG+lqrqhZFBUt?=
+ =?us-ascii?Q?p0fWcOoeGoziJ5UqZNEQoJwYIAvytN2ve4sIe2vLn6zTBXvsyenVd4DomXYP?=
+ =?us-ascii?Q?67w/?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB3983.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Dec 2020 01:54:41.5653
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9190fcdc-9e45-487b-ac04-08d89d77b9d5
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: eFbjMN4vuar18vQ1xwpfOsShUvd2FiG8Igo8VmdiRB9hcDcyriu4S6+BfAsYxzxaqmCxNkOsj5zHF950e00ThQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0402MB3952
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The OrangePi Zero 2 is a development board with the new H616 SoC.
+Hi,
 
-It features the usual connectors used on those small boards, and comes
-with the AXP305, which seems to be compatible with the AXP805.
+This series adds i.MX8qxp LVDS PHY mode support for the Mixel PHY in the
+Freescale i.MX8qxp SoC.
 
-For more details see: http://linux-sunxi.org/Xunlong_Orange_Pi_Zero2
+The Mixel PHY is MIPI DPHY + LVDS PHY combo, which can works in either
+MIPI DPHY mode or LVDS PHY mode.  The PHY mode is controlled by i.MX8qxp
+SCU firmware.  The PHY driver would call a SCU function to configure the
+mode.
 
-Signed-off-by: Andre Przywara <andre.przywara@arm.com>
----
- arch/arm64/boot/dts/allwinner/Makefile        |   1 +
- .../allwinner/sun50i-h616-orangepi-zero2.dts  | 240 ++++++++++++++++++
- 2 files changed, 241 insertions(+)
- create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero2.dts
+The PHY driver is already supporting the Mixel MIPI DPHY in i.MX8mq SoC,
+where it appears to be a single MIPI DPHY.
 
-diff --git a/arch/arm64/boot/dts/allwinner/Makefile b/arch/arm64/boot/dts/allwinner/Makefile
-index 211d1e9d4701..0cf8299b1ce7 100644
---- a/arch/arm64/boot/dts/allwinner/Makefile
-+++ b/arch/arm64/boot/dts/allwinner/Makefile
-@@ -35,3 +35,4 @@ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-orangepi-one-plus.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-pine-h64.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-pine-h64-model-b.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-tanix-tx6.dtb
-+dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-orangepi-zero2.dtb
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero2.dts b/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero2.dts
-new file mode 100644
-index 000000000000..2afc036059b4
---- /dev/null
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero2.dts
-@@ -0,0 +1,240 @@
-+// SPDX-License-Identifier: (GPL-2.0+ or MIT)
-+/*
-+ * Copyright (C) 2020 Arm Ltd.
-+ */
-+
-+/dts-v1/;
-+
-+#include "sun50i-h616.dtsi"
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/interrupt-controller/arm-gic.h>
-+#include <dt-bindings/leds/common.h>
-+
-+/ {
-+	model = "OrangePi Zero2";
-+	compatible = "xunlong,orangepi-zero2", "allwinner,sun50i-h616";
-+
-+	aliases {
-+		ethernet0 = &emac0;
-+		serial0 = &uart0;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		power {
-+			function = LED_FUNCTION_POWER;
-+			color = <LED_COLOR_ID_RED>;
-+			gpios = <&pio 2 12 GPIO_ACTIVE_HIGH>; /* PC12 */
-+			default-state = "on";
-+		};
-+
-+		status {
-+			function = LED_FUNCTION_STATUS;
-+			color = <LED_COLOR_ID_GREEN>;
-+			gpios = <&pio 2 13 GPIO_ACTIVE_HIGH>; /* PC13 */
-+		};
-+	};
-+
-+	reg_vcc5v: vcc5v {
-+		/* board wide 5V supply directly from the USB-C socket */
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc-5v";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		regulator-always-on;
-+	};
-+
-+	reg_usb1_vbus: usb1-vbus {
-+		compatible = "regulator-fixed";
-+		regulator-name = "usb1-vbus";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&reg_vcc5v>;
-+		enable-active-high;
-+		gpio = <&pio 2 16 GPIO_ACTIVE_HIGH>; /* PC16 */
-+		status = "okay";
-+	};
-+};
-+
-+&ehci0 {
-+	status = "okay";
-+};
-+
-+&ehci1 {
-+	status = "okay";
-+};
-+
-+/* USB 2 & 3 are on headers only. */
-+
-+&emac0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&ext_rgmii_pins>;
-+	phy-mode = "rgmii";
-+	phy-handle = <&ext_rgmii_phy>;
-+	phy-supply = <&reg_dcdce>;
-+	allwinner,rx-delay-ps = <3100>;
-+	allwinner,tx-delay-ps = <700>;
-+	status = "okay";
-+};
-+
-+&mdio0 {
-+	ext_rgmii_phy: ethernet-phy@1 {
-+		compatible = "ethernet-phy-ieee802.3-c22";
-+		reg = <1>;
-+	};
-+};
-+
-+&mmc0 {
-+	vmmc-supply = <&reg_dcdce>;
-+	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>;	/* PF6 */
-+	bus-width = <4>;
-+	status = "okay";
-+};
-+
-+&ohci0 {
-+	status = "okay";
-+};
-+
-+&ohci1 {
-+	status = "okay";
-+};
-+
-+&r_i2c {
-+	status = "okay";
-+
-+	axp305: pmic@36 {
-+		compatible = "x-powers,axp305", "x-powers,axp805",
-+			     "x-powers,axp806";
-+		reg = <0x36>;
-+
-+		x-powers,self-working-mode;
-+		vina-supply = <&reg_vcc5v>;
-+		vinb-supply = <&reg_vcc5v>;
-+		vinc-supply = <&reg_vcc5v>;
-+		vind-supply = <&reg_vcc5v>;
-+		vine-supply = <&reg_vcc5v>;
-+		aldoin-supply = <&reg_vcc5v>;
-+		bldoin-supply = <&reg_vcc5v>;
-+		cldoin-supply = <&reg_vcc5v>;
-+
-+		regulators {
-+			reg_aldo1: aldo1 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-name = "vcc-sys";
-+			};
-+
-+			reg_aldo2: aldo2 {	/* 3.3V on headers */
-+				regulator-always-on;
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-name = "vcc3v3-ext";
-+			};
-+
-+			reg_aldo3: aldo3 {	/* 3.3V on headers */
-+				regulator-always-on;
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-name = "vcc3v3-ext2";
-+			};
-+
-+			reg_bldo1: bldo1 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-name = "vcc1v8";
-+			};
-+
-+			bldo2 {
-+				/* unused */
-+			};
-+
-+			bldo3 {
-+				/* unused */
-+			};
-+
-+			bldo4 {
-+				/* unused */
-+			};
-+
-+			cldo1 {
-+				/* reserved */
-+			};
-+
-+			cldo2 {
-+				/* unused */
-+			};
-+
-+			cldo3 {
-+				/* unused */
-+			};
-+
-+			reg_dcdca: dcdca {
-+				regulator-always-on;
-+				regulator-min-microvolt = <810000>;
-+				regulator-max-microvolt = <1080000>;
-+				regulator-name = "vdd-cpu";
-+			};
-+
-+			reg_dcdcc: dcdcc {
-+				regulator-always-on;
-+				regulator-min-microvolt = <810000>;
-+				regulator-max-microvolt = <1080000>;
-+				regulator-name = "vdd-gpu-sys";
-+			};
-+
-+			reg_dcdcd: dcdcd {
-+				regulator-always-on;
-+				regulator-min-microvolt = <1500000>;
-+				regulator-max-microvolt = <1500000>;
-+				regulator-name = "vdd-dram";
-+			};
-+
-+			reg_dcdce: dcdce {
-+				regulator-boot-on;
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-name = "vcc-eth-mmc";
-+			};
-+
-+			sw {
-+				/* unused */
-+			};
-+		};
-+	};
-+};
-+
-+&spi0  {
-+	status = "okay";
-+
-+	flash@0 {
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		compatible = "jedec,spi-nor";
-+		reg = <0>;
-+		spi-max-frequency = <40000000>;
-+	};
-+};
-+
-+&uart0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart0_ph_pins>;
-+	status = "okay";
-+};
-+
-+&usbotg {
-+	dr_mode = "peripheral";
-+	status = "okay";
-+};
-+
-+&usbphy {
-+	usb1_vbus-supply = <&reg_usb1_vbus>;
-+	status = "okay";
-+};
+
+Patch 1/5 sets PHY mode in the Northwest Logic MIPI DSI host controller
+bridge driver, since i.MX8qxp SoC embeds this controller IP to support
+MIPI DSI displays together with the Mixel PHY.
+
+Patch 2/5 allows LVDS PHYs to be configured through the generic PHY functions
+and through a custom structure added to the generic PHY configuration union.
+
+Patch 3/5 converts mixel,mipi-dsi-phy plain text dt binding to json-schema.
+
+Patch 4/5 adds dt binding support for the Mixel combo PHY in i.MX8qxp SoC.
+
+Patch 5/5 adds the i.MX8qxp LVDS PHY mode support in the Mixel PHY driver.
+
+
+Welcome comments, thanks.
+
+v2->v3:
+* Improve readability of mixel_dphy_set_mode() in the Mixel PHY driver. (Guido)
+* Improve the 'clock-names' property in the PHY dt binding.
+
+v1->v2:
+* Convert mixel,mipi-dsi-phy plain text dt binding to json-schema. (Guido)
+* Print invalid PHY mode in dmesg from the Mixel PHY driver. (Guido)
+* Add Guido's R-b tag on the patch for the nwl-dsi drm bridge driver.
+
+Liu Ying (5):
+  drm/bridge: nwl-dsi: Set PHY mode in nwl_dsi_enable()
+  phy: Add LVDS configuration options
+  dt-bindings: phy: Convert mixel,mipi-dsi-phy to json-schema
+  dt-bindings: phy: mixel: mipi-dsi-phy: Add Mixel combo PHY support for
+    i.MX8qxp
+  phy: freescale: phy-fsl-imx8-mipi-dphy: Add i.MX8qxp LVDS PHY mode
+    support
+
+ .../devicetree/bindings/phy/mixel,mipi-dsi-phy.txt |  29 ---
+ .../bindings/phy/mixel,mipi-dsi-phy.yaml           | 107 ++++++++
+ drivers/gpu/drm/bridge/nwl-dsi.c                   |   6 +
+ drivers/phy/freescale/phy-fsl-imx8-mipi-dphy.c     | 269 ++++++++++++++++++++-
+ include/linux/phy/phy-lvds.h                       |  48 ++++
+ include/linux/phy/phy.h                            |   4 +
+ 6 files changed, 423 insertions(+), 40 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/phy/mixel,mipi-dsi-phy.txt
+ create mode 100644 Documentation/devicetree/bindings/phy/mixel,mipi-dsi-phy.yaml
+ create mode 100644 include/linux/phy/phy-lvds.h
+
 -- 
-2.17.5
+2.7.4
 
