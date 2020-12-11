@@ -2,186 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B80702D7C37
-	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 18:08:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D34F2D7D00
+	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 18:38:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387640AbgLKREl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Dec 2020 12:04:41 -0500
-Received: from hqnvemgate24.nvidia.com ([216.228.121.143]:2532 "EHLO
-        hqnvemgate24.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2393735AbgLKREN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Dec 2020 12:04:13 -0500
-Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate24.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
-        id <B5fd3a6400000>; Fri, 11 Dec 2020 09:02:56 -0800
-Received: from HQMAIL109.nvidia.com (172.20.187.15) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 11 Dec
- 2020 17:02:56 +0000
-Received: from skomatineni-linux.nvidia.com (172.20.145.6) by mail.nvidia.com
- (172.20.187.15) with Microsoft SMTP Server id 15.0.1473.3 via Frontend
- Transport; Fri, 11 Dec 2020 17:02:55 +0000
-From:   Sowjanya Komatineni <skomatineni@nvidia.com>
-To:     <skomatineni@nvidia.com>, <thierry.reding@gmail.com>,
-        <jonathanh@nvidia.com>, <hverkuil@xs4all.nl>,
-        <sakari.ailus@iki.fi>, <robh+dt@kernel.org>
-CC:     <mchehab@kernel.org>, <linux-media@vger.kernel.org>,
-        <linux-tegra@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH v4 13/13] media: tegra-video: Add custom V4L2 control V4L2_CID_TEGRA_SYNCPT_TIMEOUT_RETRY
-Date:   Fri, 11 Dec 2020 09:02:42 -0800
-Message-ID: <1607706162-1548-14-git-send-email-skomatineni@nvidia.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1607706162-1548-1-git-send-email-skomatineni@nvidia.com>
-References: <1607706162-1548-1-git-send-email-skomatineni@nvidia.com>
-X-NVConfidentiality: public
+        id S2395305AbgLKRgl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Dec 2020 12:36:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45274 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2395369AbgLKRgf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Dec 2020 12:36:35 -0500
+Received: from mail-pg1-x542.google.com (mail-pg1-x542.google.com [IPv6:2607:f8b0:4864:20::542])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B1D8C0613D6
+        for <devicetree@vger.kernel.org>; Fri, 11 Dec 2020 09:35:55 -0800 (PST)
+Received: by mail-pg1-x542.google.com with SMTP id e2so7593762pgi.5
+        for <devicetree@vger.kernel.org>; Fri, 11 Dec 2020 09:35:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=UC8VDOR6bWYQSMmSbZ73sFRI2d4knlSzKHhJz1r8X5s=;
+        b=iYXRXtIY7Ts57AbagWtK7P0ETy/M0tesF+OC5a1t1C7sZzmBuFX489lEemCKFrG4cj
+         pyZo646JynIR6uIadKBPzDYJ+nHr8BGRBVl5a+dBMaJsANXFfhTKcak7Dv7M7OM1ecj9
+         5JYvcE3YlWszLn8gLyOBKlXcRzAv4ojOsJdmQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=UC8VDOR6bWYQSMmSbZ73sFRI2d4knlSzKHhJz1r8X5s=;
+        b=Kr2JDoQVy/HCr/5ovN863rQPbW/GQ0PyZ+goSrBezmA/Ey9KqhfPqb3esXOmcGCtyX
+         es4c9A8uO3VnbNVCUzNgctP6BZkR0Ss7o1F58w6qlfuPLdm+XEZguKCXtTigHAjq6LZ/
+         Yki/HKGe7gGm4F1jzc55Fbr/5tv/DqhhDoFSS9iDyG1e3eSLIryq8eEEHmGSRczRoEIN
+         8leQgc6JP6Rel3g7bSG13/EIOetyv5ZfppEUCn7AT5Xzt0gJg3Wc0m9850jq8iEH4bdo
+         WtwLzzuzVSpopqgq60ls18jbau/LVJgTSdw51Qa702wOobA3eBZhwG+OwR4e1GMO1H6I
+         qC6w==
+X-Gm-Message-State: AOAM533vJNDdoZMBi77YZn5aZDWSQPD87/Xhwz61d2q4VlC6A16l+wzn
+        +5R1zDuR6Vny0CzUOg67jP+W/A==
+X-Google-Smtp-Source: ABdhPJwCA17O2+gXshC38oWub2baCqhVIqKgdoN6JLXeoscngGE2G66TMOyaeL8VNZsjuQUZ4mBAFQ==
+X-Received: by 2002:a63:f501:: with SMTP id w1mr12656744pgh.142.1607708154707;
+        Fri, 11 Dec 2020 09:35:54 -0800 (PST)
+Received: from tictac2.mtv.corp.google.com ([2620:15c:202:1:42b0:34ff:fe3d:58e6])
+        by smtp.gmail.com with ESMTPSA id r185sm11402765pfc.53.2020.12.11.09.35.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 11 Dec 2020 09:35:54 -0800 (PST)
+From:   Douglas Anderson <dianders@chromium.org>
+To:     jkosina@suse.cz, benjamin.tissoires@redhat.com,
+        gregkh@linuxfoundation.org,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc:     hdegoede@redhat.com, swboyd@chromium.org, robh+dt@kernel.org,
+        linux-input@vger.kernel.org, andrea@borgia.bo.it,
+        kai.heng.feng@canonical.com,
+        Douglas Anderson <dianders@chromium.org>,
+        Anson Huang <Anson.Huang@nxp.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Coiby Xu <coiby.xu@gmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        =?UTF-8?q?Guido=20G=C3=BCnther?= <agx@sigxcpu.org>,
+        Jiri Kosina <jikos@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Max Krummenacher <max.oss.09@gmail.com>,
+        Michael Walle <michael@walle.cc>,
+        Pavel Balan <admin@kryma.net>, Shawn Guo <shawnguo@kernel.org>,
+        Will Deacon <will@kernel.org>,
+        Xiaofei Tan <tanxiaofei@huawei.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v7 0/4] HID: i2c-hid: Reorganize to allow supporting goodix,gt7375p
+Date:   Fri, 11 Dec 2020 09:35:22 -0800
+Message-Id: <20201211173526.1516653-1-dianders@chromium.org>
+X-Mailer: git-send-email 2.29.2.576.ga3fc446d84-goog
 MIME-Version: 1.0
-Content-Type: text/plain
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1607706176; bh=OZJ/8SCNM9zia5Uy6aq+c9fc5V1L/LcrVZqaCjqF0cQ=;
-        h=From:To:CC:Subject:Date:Message-ID:X-Mailer:In-Reply-To:
-         References:X-NVConfidentiality:MIME-Version:Content-Type;
-        b=rM7GR58q6tG4hSul58c3J89afQQFafj4IJ8PG1D+E+kEEXRNjBTUlqq1PSMp9mQoh
-         x+U/yU/TQwZnuVvDTHljVgTfMHmPd84OlxgGXu8fq+L1MHpKeA53TZicALPEDBz5iU
-         edq0OtrpYEgv12+2UhfKPXL9of9IeMhTILv8TnExpMlHhLW35CgjXTdt6AQ+J3m6HJ
-         fwxpcptTUNimoCiz4o68Jpgb6MqNZVCYwWG9i6j/1/r42p3eo2/N7Bz3WNxl/2KHD0
-         td5gOAqqh8YlEbiCXywfuJmCFrGuhCNzmR2xdG/Jbb2gX/EyL5l0qkXc/kk6RYPLGn
-         Hr2cdUj7pm4NA==
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds custom V4L2 control for syncpt timeout retry to continue
-capture on error for specified retries count through this control.
 
-This is useful for HDMI-to-CSI bridge debug purposes like for hotplug scenarios
-or for ignoring captures till HDMI input is stabilized.
+The goal of this series is to support the Goodix GT7375P touchscreen.
+This touchscreen is special because it has power sequencing
+requirements that necessitate driving a reset GPIO.
 
-Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
----
- drivers/staging/media/tegra-video/tegra210.c | 10 +++++++++-
- drivers/staging/media/tegra-video/vi.c       | 26 +++++++++++++++++++++++++-
- drivers/staging/media/tegra-video/vi.h       |  4 ++++
- 3 files changed, 38 insertions(+), 2 deletions(-)
+To do this, we totally rejigger the way i2c-hid is organized so that
+it's easier to jam the Goodix support in there.
 
-diff --git a/drivers/staging/media/tegra-video/tegra210.c b/drivers/staging/media/tegra-video/tegra210.c
-index 063d0a3..f10a041 100644
---- a/drivers/staging/media/tegra-video/tegra210.c
-+++ b/drivers/staging/media/tegra-video/tegra210.c
-@@ -454,6 +454,7 @@ static int chan_capture_kthread_start(void *data)
- {
- 	struct tegra_vi_channel *chan = data;
- 	struct tegra_channel_buffer *buf;
-+	unsigned int retries = 0;
- 	int err = 0;
- 
- 	while (1) {
-@@ -483,8 +484,15 @@ static int chan_capture_kthread_start(void *data)
- 		spin_unlock(&chan->start_lock);
- 
- 		err = tegra_channel_capture_frame(chan, buf);
--		if (err)
-+		if (!err) {
-+			retries = 0;
-+			continue;
-+		}
-+
-+		if (retries++ > chan->syncpt_timeout_retry)
- 			vb2_queue_error(&chan->queue);
-+		else
-+			err = 0;
- 	}
- 
- 	return 0;
-diff --git a/drivers/staging/media/tegra-video/vi.c b/drivers/staging/media/tegra-video/vi.c
-index 4773281..70e1e18 100644
---- a/drivers/staging/media/tegra-video/vi.c
-+++ b/drivers/staging/media/tegra-video/vi.c
-@@ -956,7 +956,6 @@ static const struct v4l2_file_operations tegra_channel_fops = {
- /*
-  * V4L2 control operations
-  */
--#if IS_ENABLED(CONFIG_VIDEO_TEGRA_TPG)
- static int vi_s_ctrl(struct v4l2_ctrl *ctrl)
- {
- 	struct tegra_vi_channel *chan = container_of(ctrl->handler,
-@@ -968,6 +967,9 @@ static int vi_s_ctrl(struct v4l2_ctrl *ctrl)
- 		/* pattern change takes effect on next stream */
- 		chan->pg_mode = ctrl->val + 1;
- 		break;
-+	case V4L2_CID_TEGRA_SYNCPT_TIMEOUT_RETRY:
-+		chan->syncpt_timeout_retry = ctrl->val;
-+		break;
- 	default:
- 		return -EINVAL;
- 	}
-@@ -979,10 +981,22 @@ static const struct v4l2_ctrl_ops vi_ctrl_ops = {
- 	.s_ctrl	= vi_s_ctrl,
- };
- 
-+#if IS_ENABLED(CONFIG_VIDEO_TEGRA_TPG)
- static const char *const vi_pattern_strings[] = {
- 	"Black/White Direct Mode",
- 	"Color Patch Mode",
- };
-+#else
-+static const struct v4l2_ctrl_config syncpt_timeout_ctrl = {
-+	.ops = &vi_ctrl_ops,
-+	.id = V4L2_CID_TEGRA_SYNCPT_TIMEOUT_RETRY,
-+	.name = "Syncpt timeout retry",
-+	.type = V4L2_CTRL_TYPE_INTEGER,
-+	.min = 1,
-+	.max = 10000,
-+	.step = 1,
-+	.def = 5,
-+};
- #endif
- 
- static int tegra_channel_setup_ctrl_handler(struct tegra_vi_channel *chan)
-@@ -1004,6 +1018,16 @@ static int tegra_channel_setup_ctrl_handler(struct tegra_vi_channel *chan)
- #else
- 	struct v4l2_subdev *subdev;
- 
-+	/* custom control */
-+	v4l2_ctrl_new_custom(&chan->ctrl_handler, &syncpt_timeout_ctrl, NULL);
-+	if (chan->ctrl_handler.error) {
-+		dev_err(chan->vi->dev, "failed to add %s ctrl handler: %d\n",
-+			syncpt_timeout_ctrl.name,
-+			chan->ctrl_handler.error);
-+		v4l2_ctrl_handler_free(&chan->ctrl_handler);
-+		return chan->ctrl_handler.error;
-+	}
-+
- 	subdev = tegra_channel_get_remote_source_subdev(chan);
- 	if (!subdev)
- 		return -ENODEV;
-diff --git a/drivers/staging/media/tegra-video/vi.h b/drivers/staging/media/tegra-video/vi.h
-index 27061a5..a68e2c0 100644
---- a/drivers/staging/media/tegra-video/vi.h
-+++ b/drivers/staging/media/tegra-video/vi.h
-@@ -23,6 +23,8 @@
- 
- #include "csi.h"
- 
-+#define V4L2_CID_TEGRA_SYNCPT_TIMEOUT_RETRY	(V4L2_CTRL_CLASS_CAMERA | 0x1001)
-+
- #define TEGRA_MIN_WIDTH		32U
- #define TEGRA_MAX_WIDTH		32768U
- #define TEGRA_MIN_HEIGHT	32U
-@@ -160,6 +162,7 @@ struct tegra_vi_graph_entity {
-  * @of_node: device node of VI channel
-  *
-  * @ctrl_handler: V4L2 control handler of this video channel
-+ * @syncpt_timeout_retry: syncpt timeout retry count for the capture
-  * @fmts_bitmap: a bitmap for supported formats matching v4l2 subdev formats
-  * @tpg_fmts_bitmap: a bitmap for supported TPG formats
-  * @pg_mode: test pattern generator mode (disabled/direct/patch)
-@@ -201,6 +204,7 @@ struct tegra_vi_channel {
- 	struct device_node *of_node;
- 
- 	struct v4l2_ctrl_handler ctrl_handler;
-+	unsigned int syncpt_timeout_retry;
- 	DECLARE_BITMAP(fmts_bitmap, MAX_FORMAT_NUM);
- 	DECLARE_BITMAP(tpg_fmts_bitmap, MAX_FORMAT_NUM);
- 	enum tegra_vi_pg_mode pg_mode;
+This series was:
+- Tested on a device that uses normal i2c-hid.
+- Tested on a device that has a Goodix i2c-hid device.
+- Tested on an ACPI device, but an earlier version of the series.
+
+I believe the plan is for Benjamin to land the whole series.  Will
+said this about the arm64 defconfig change (and provided his Ack):
+> ...there are a few things I really care about
+> in defconfig (e.g. things like page size!), generally speaking we don't
+> need to Ack everything that changes in there.
+>
+> That said, might be worth checking whether arm-soc have any defconfig
+> changes queued in -next so you don't end up with conflicts.
+
+Changes in v7:
+- Rebase atop commit afdd34c5fa40 ("HID: i2c-hid: show the error ...")
+
+Changes in v6:
+- ACPI probe function should have been "static"
+- Don't export suspend/resume, just export dev_pm_ops from core.
+- Fixed crash in ACPI module (missing init of "client")
+- No need for regulator include in the core.
+- Removed i2c_device_id table from ACPI module.
+- Suspend/resume are no longer exported from the core.
+
+Changes in v5:
+- Add shutdown_tail op and use it in ACPI.
+- Added mention of i2c-hid in the yaml itself as per Rob.
+- Adjusted subject as per Rob.
+- i2chid_subclass_data => i2chid_ops.
+- power_up_device => power_up (same with power_down).
+- subclass => ops.
+
+Changes in v4:
+- ("arm64: defconfig: Update config names for i2c-hid rejigger") new for v4.
+- Fully rejigger so ACPI and OF are full subclasses.
+- Totally redid based on the new subclass system.
+
+Changes in v3:
+- Fixed compatible in example.
+- Removed Benjamin as a maintainer.
+- Rework to use subclassing.
+- Updated description.
+
+Changes in v2:
+- ("dt-bindings: HID: i2c-hid: Introduce bindings for the Goodix GT7375P") new in v2.
+- Get timings based on the compatible string.
+- Use a separate compatible string for this new touchscreen.
+
+Douglas Anderson (4):
+  HID: i2c-hid: Reorganize so ACPI and OF are separate modules
+  arm64: defconfig: Update config names for i2c-hid rejigger
+  dt-bindings: input: HID: i2c-hid: Introduce bindings for the Goodix
+    GT7375P
+  HID: i2c-hid: Introduce goodix-i2c-hid using i2c-hid core
+
+ .../bindings/input/goodix,gt7375p.yaml        |  65 +++++
+ arch/arm64/configs/defconfig                  |   3 +-
+ drivers/hid/Makefile                          |   2 +-
+ drivers/hid/i2c-hid/Kconfig                   |  47 +++-
+ drivers/hid/i2c-hid/Makefile                  |   6 +-
+ drivers/hid/i2c-hid/i2c-hid-acpi.c            | 159 +++++++++++
+ drivers/hid/i2c-hid/i2c-hid-core.c            | 254 +++---------------
+ drivers/hid/i2c-hid/i2c-hid-of-goodix.c       | 116 ++++++++
+ drivers/hid/i2c-hid/i2c-hid-of.c              | 143 ++++++++++
+ drivers/hid/i2c-hid/i2c-hid.h                 |  22 ++
+ include/linux/platform_data/i2c-hid.h         |  41 ---
+ 11 files changed, 596 insertions(+), 262 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/input/goodix,gt7375p.yaml
+ create mode 100644 drivers/hid/i2c-hid/i2c-hid-acpi.c
+ create mode 100644 drivers/hid/i2c-hid/i2c-hid-of-goodix.c
+ create mode 100644 drivers/hid/i2c-hid/i2c-hid-of.c
+ delete mode 100644 include/linux/platform_data/i2c-hid.h
+
 -- 
-2.7.4
+2.29.2.576.ga3fc446d84-goog
 
