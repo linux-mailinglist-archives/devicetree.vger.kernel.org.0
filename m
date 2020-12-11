@@ -2,141 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F7D52D7209
-	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 09:44:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 022812D729A
+	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 10:09:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2436949AbgLKInJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Dec 2020 03:43:09 -0500
-Received: from mail.kernel.org ([198.145.29.99]:38034 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730095AbgLKInA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 11 Dec 2020 03:43:00 -0500
-Date:   Fri, 11 Dec 2020 09:43:31 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1607676139;
-        bh=EhRpln3hFA6ZsGGfSaHMENiE5WlmKDmn4JFe4GfWzrI=;
-        h=From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Ml0J+KcSp+oPAv9p0m+yfLeIVrtRpa9w9no8zXlTj2MYDxqrk8QelFgkoxHrYlm56
-         fnHpqreXqiUTY3E4VWgRXIFc+tgJEBokwRq55zmAlpsvaB/I5O2QaX6iXS9BOMTptv
-         Nm0AW6rzFQIovFe2xNOvzQVfsOSvAuAON8K2LNXA=
-From:   'Greg Kroah-Hartman' <gregkh@linuxfoundation.org>
-To:     =?iso-8859-1?Q?J=F3zsef_Horv=E1th?= <info@ministro.hu>
-Cc:     'Rob Herring' <robh+dt@kernel.org>,
-        'Jiri Slaby' <jirislaby@kernel.org>,
-        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] Serial: silabs si4455 serial driver
-Message-ID: <X9MxM+aEKIAHqd4G@kroah.com>
-References: <20201210170443.GA17304@dincontrollerdev>
- <X9Jw+srprdT8tquZ@kroah.com>
- <20201210194625.GA17516@dincontrollerdev>
- <X9MIwqJBG69M5uHq@kroah.com>
- <20201211060943.GA1065@dincontrollerdev>
- <X9MPuX1x4MezwkEj@kroah.com>
- <20201211063752.GB1065@dincontrollerdev>
- <X9MgvZ7bWX7HMNir@kroah.com>
- <20201211081634.GC1065@dincontrollerdev>
+        id S2437280AbgLKJHp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Dec 2020 04:07:45 -0500
+Received: from esa.microchip.iphmx.com ([68.232.154.123]:4179 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2437335AbgLKJHO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Dec 2020 04:07:14 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1607677633; x=1639213633;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=DcLLcyitGH0v2VlQHPfKppsGNjLuBXI1WYl/OTeY9xE=;
+  b=Yk9O78I1b3MO/N0VTmDukNWN8MS2PFVKweu2RxgeX0+pHvEBPm78O5fV
+   xm11tn7xwA7ofrx5ppGQzLfWrqs8KuFouvqR5NSecbU0hG8IBuXynjy+a
+   4O56udbO2QJBH87ZAEGbz5yVBBGlOJnWr5agdvdFJYyWF19GtuY4WfrIM
+   gQagJ7IQir4Po4OotNaUTNAFFCH9u2pXWOmHF8YqPu7DP16aHRKB0gjaf
+   rDPJAni5fgYYB+uJI8BQfdv20G0/Vtmi0AGSGO9D944wEReG99kAzRYXc
+   QXDKcn6vU+0sibR0oJTeDQgUqXDqj+b4rsRVkJTwKUXQDjjxf8Oys84gn
+   w==;
+IronPort-SDR: NEVIeZEl1QGsC4X+Lz8jUrFLEWliEcOCLh1AeYE4PhvME6Bc1nnhR2V4XbCrj4uEPEqQWNl36d
+ jMCgJFdtdN3LBEQ9Z/UcG9Ax7BFT5IX12VGTBFemS8WeMbzsWXyIo3VQiRZWWhNzDJNpOiawtZ
+ zQPm94NTEFzo3FMCksE8VfMHp4tRN0nVt3vIWmOz/6cUg5chpR5rinHFlPMNYr7S/S/jjWu3U2
+ 1DM9XPME457xy8l5t7tJjRKB1mBWWtqfbH8EUp27NrjZdUDTZPapd2+E5pt/iTVXG64utnFn6E
+ 9Ss=
+X-IronPort-AV: E=Sophos;i="5.78,410,1599548400"; 
+   d="scan'208";a="37057311"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 11 Dec 2020 02:05:57 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1979.3; Fri, 11 Dec 2020 02:05:57 -0700
+Received: from mchp-dev-shegelun.microchip.com (10.10.115.15) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
+ 15.1.1979.3 via Frontend Transport; Fri, 11 Dec 2020 02:05:54 -0700
+From:   Steen Hegelund <steen.hegelund@microchip.com>
+To:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        Device Tree List <devicetree@vger.kernel.org>
+CC:     Steen Hegelund <steen.hegelund@microchip.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Lars Povlsen <lars.povlsen@microchip.com>,
+        Bjarni Jonasson <bjarni.jonasson@microchip.com>,
+        Microchip UNG Driver List <UNGLinuxDriver@microchip.com>,
+        <netdev@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH v10 1/4] dt-bindings: phy: Add sparx5-serdes bindings
+Date:   Fri, 11 Dec 2020 10:05:38 +0100
+Message-ID: <20201211090541.157926-2-steen.hegelund@microchip.com>
+X-Mailer: git-send-email 2.29.2
+In-Reply-To: <20201211090541.157926-1-steen.hegelund@microchip.com>
+References: <20201211090541.157926-1-steen.hegelund@microchip.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20201211081634.GC1065@dincontrollerdev>
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 11, 2020 at 08:16:34AM +0000, József Horváth wrote:
-> On Fri, Dec 11, 2020 at 08:33:17AM +0100, 'Greg Kroah-Hartman' wrote:
-> > On Fri, Dec 11, 2020 at 06:37:52AM +0000, József Horváth wrote:
-> > > On Fri, Dec 11, 2020 at 07:20:41AM +0100, 'Greg Kroah-Hartman' wrote:
-> > > > On Fri, Dec 11, 2020 at 06:09:43AM +0000, József Horváth wrote:
-> > > > > On Fri, Dec 11, 2020 at 06:50:58AM +0100, 'Greg Kroah-Hartman' wrote:
-> > > > > > On Thu, Dec 10, 2020 at 07:46:25PM +0000, József Horváth wrote:
-> > > > > > > On Thu, Dec 10, 2020 at 08:03:22PM +0100, 'Greg Kroah-Hartman' wrote:
-> > > > > > > > On Thu, Dec 10, 2020 at 05:04:46PM +0000, József Horváth wrote:
-> > > > > > > > > This is a serial port driver for
-> > > > > > > > > Silicon Labs Si4455 Sub-GHz transciver.
-> > > > > > > > > +
-> > > > > > > > > +#define BASE_TTYIOC_PRIVATE		0xA0
-> > > > > > > > > +/* Set EZConfig.
-> > > > > > > > > + * After this ioctl call, the driver restarts the si4455,
-> > > > > > > > > + * then apply the new configuration and patch.
-> > > > > > > > > + */
-> > > > > > > > > +#define SI4455_IOC_SEZC		_IOW('T', \
-> > > > > > > > > +				     BASE_TTYIOC_PRIVATE + 0x01, \
-> > > > > > > > > +				     struct si4455_iocbuff)
-> > > > > > > > 
-> > > > > > > > Why does a serial driver have private ioctls?  Please no, don't do that.
-> > > > > > > 
-> > > > > > > I checked the ioctl.h and serial_core.h, but I not found any similar definition, like BASE_VIDIOC_PRIVATE in videodev2.h.
-> > > > > > > In this case the name of macro BASE_TTYIOC_PRIVATE means the base value of special ioctl commands owned by this driver.
-> > > > > > 
-> > > > > > My point is, a serial driver should NOT have any custom ioctls.
-> > > > > > 
-> > > > > > > I can change it to BASE_TTYIOC or SI4455_IOC_BASE
-> > > > > > > 
-> > > > > > > > Implement the basic serial driver first, and then we can talk about
-> > > > > > > > "custom" configurations and the like, using the correct apis.
-> > > > > > > 
-> > > > > > > Without the SI4455_IOC_SEZC call, the driver can't configure the Si4455 and not working at all.
-> > > > > > > The cofiguration for interface is provided by user for application.
-> > > > > > 
-> > > > > > That is what a device tree is for, to configure the device to have the
-> > > > > > correct system configuration, why can't that be the same here?
-> > > > > > 
-> > > > > > > It contains the base frequency, channel spacing, modulation, and a lot
-> > > > > > > of more stuff, and generated by Silicon Labs Wireless Development
-> > > > > > > Suite.
-> > > > > > > The generated configuration is in a non public(compressed,
-> > > > > > > encrypted...who knows) format, so without this the driver can't
-> > > > > > > provide configuration parameters to Si4455.
-> > > > > > 
-> > > > > > So we have to take a "custom" userspace blob and send it to the device
-> > > > > > to configure it properly?  Like Jiri said, sounds like firmware, so just
-> > > > > > use that interface instead.
-> > > > > 
-> > > > > I checked Jiri's suggestion, and it is a good solution to replace SI4455_IOC_SEZC(configuration) and SI4455_IOC_SEZP(firmware patch).
-> > > > > I can move SI4455_IOC_SSIZ(package size) to device tree property.
-> > > > > 
-> > > > > Maybe you have good suggestion for the following:
-> > > > > SI4455_IOC_STXC -> Radio transmit channel index. It is a real use case to control this parameter by user at runtime.
-> > > > > SI4455_IOC_SRXC -> Radio receive channel index. It is a real use case to control this parameter by user at runtime.
-> > > > 
-> > > > These are not serial port things, why would a serial port care about
-> > > > these?
-> > > 
-> > > You are right, these are not regular serial port things, but this device is not a regular uart, it is a sub-GHz transciever, digital radio.
-> > > This driver tries to represent it as a serial port to user.
-> > 
-> > Is that the correct representation to be using here?  Why not act like a
-> > proper radio device instead?  That way you get to use the normal kernel
-> > apis for radio devices.
-> 
-> In my mind it is absolute a serial device by the application.
+Document the Sparx5 ethernet serdes phy driver bindings.
 
-What is the application?  Traditionally serial ports don't need radio signals :)
+Signed-off-by: Lars Povlsen <lars.povlsen@microchip.com>
+Signed-off-by: Steen Hegelund <steen.hegelund@microchip.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+---
+ .../bindings/phy/microchip,sparx5-serdes.yaml | 100 ++++++++++++++++++
+ 1 file changed, 100 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/phy/microchip,sparx5-serdes.yaml
 
-> > > > > SI4455_IOC_GRSSI -> Last measured RSSI, when packet received. This is a useful information.
-> > > > > (Currently I'm the only one user, and I need this :) )
-> > > > 
-> > > > What is "RSSI"?
-> > > > 
-> > > > And why not debugfs if it's only debugging stuff?
-> > > 
-> > > Received signal strength indication, and not only debugging. It is an information for the end user.
-> > 
-> > How do other radio devices (like wifi controllers) export this
-> > information to userspace?  Don't create custom apis for only a single
-> > device when the goal of a kernel is to make hardware interfaces all work
-> > the same as far as userspace is concerned.
-> 
-> I move the package size, tx/rx channel properties to dt as device
-> parameter, and the user could control these properties in sysfs and
-> get rssi too. Finally I can remove all custom ioctl commands.
-> What do you think?
+diff --git a/Documentation/devicetree/bindings/phy/microchip,sparx5-serdes.yaml b/Documentation/devicetree/bindings/phy/microchip,sparx5-serdes.yaml
+new file mode 100644
+index 000000000000..bdbdb3bbddbe
+--- /dev/null
++++ b/Documentation/devicetree/bindings/phy/microchip,sparx5-serdes.yaml
+@@ -0,0 +1,100 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/phy/microchip,sparx5-serdes.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Microchip Sparx5 Serdes controller
++
++maintainers:
++  - Steen Hegelund <steen.hegelund@microchip.com>
++
++description: |
++  The Sparx5 SERDES interfaces share the same basic functionality, but
++  support different operating modes and line rates.
++
++  The following list lists the SERDES features:
++
++  * RX Adaptive Decision Feedback Equalizer (DFE)
++  * Programmable continuous time linear equalizer (CTLE)
++  * Rx variable gain control
++  * Rx built-in fault detector (loss-of-lock/loss-of-signal)
++  * Adjustable tx de-emphasis (FFE)
++  * Tx output amplitude control
++  * Supports rx eye monitor
++  * Multiple loopback modes
++  * Prbs generator and checker
++  * Polarity inversion control
++
++  SERDES6G:
++
++  The SERDES6G is a high-speed SERDES interface, which can operate at
++  the following data rates:
++
++  * 100 Mbps (100BASE-FX)
++  * 1.25 Gbps (SGMII/1000BASE-X/1000BASE-KX)
++  * 3.125 Gbps (2.5GBASE-X/2.5GBASE-KX)
++  * 5.15625 Gbps (5GBASE-KR/5G-USXGMII)
++
++  SERDES10G
++
++  The SERDES10G is a high-speed SERDES interface, which can operate at
++  the following data rates:
++
++  * 100 Mbps (100BASE-FX)
++  * 1.25 Gbps (SGMII/1000BASE-X/1000BASE-KX)
++  * 3.125 Gbps (2.5GBASE-X/2.5GBASE-KX)
++  * 5 Gbps (QSGMII/USGMII)
++  * 5.15625 Gbps (5GBASE-KR/5G-USXGMII)
++  * 10 Gbps (10G-USGMII)
++  * 10.3125 Gbps (10GBASE-R/10GBASE-KR/USXGMII)
++
++  SERDES25G
++
++  The SERDES25G is a high-speed SERDES interface, which can operate at
++  the following data rates:
++
++  * 1.25 Gbps (SGMII/1000BASE-X/1000BASE-KX)
++  * 3.125 Gbps (2.5GBASE-X/2.5GBASE-KX)
++  * 5 Gbps (QSGMII/USGMII)
++  * 5.15625 Gbps (5GBASE-KR/5G-USXGMII)
++  * 10 Gbps (10G-USGMII)
++  * 10.3125 Gbps (10GBASE-R/10GBASE-KR/USXGMII)
++  * 25.78125 Gbps (25GBASE-KR/25GBASE-CR/25GBASE-SR/25GBASE-LR/25GBASE-ER)
++
++properties:
++  $nodename:
++    pattern: "^serdes@[0-9a-f]+$"
++
++  compatible:
++    const: microchip,sparx5-serdes
++
++  reg:
++    minItems: 1
++
++  '#phy-cells':
++    const: 1
++    description: |
++      - The main serdes input port
++
++  clocks:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - '#phy-cells'
++  - clocks
++
++additionalProperties: false
++
++examples:
++  - |
++    serdes: serdes@10808000 {
++      compatible = "microchip,sparx5-serdes";
++      #phy-cells = <1>;
++      clocks = <&sys_clk>;
++      reg = <0x10808000 0x5d0000>;
++    };
++
++...
+-- 
+2.29.2
 
-I do not know, sorry, please try it and see.
-
-thanks,
-
-greg k-h
