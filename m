@@ -2,65 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CBBF82D7D5D
-	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 18:55:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D4D4E2D7D88
+	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 19:03:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2436675AbgLKRwm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Dec 2020 12:52:42 -0500
-Received: from mail.kernel.org ([198.145.29.99]:60798 "EHLO mail.kernel.org"
+        id S1731878AbgLKSCS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Dec 2020 13:02:18 -0500
+Received: from mleia.com ([178.79.152.223]:33078 "EHLO mail.mleia.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2436663AbgLKRwg (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 11 Dec 2020 12:52:36 -0500
-From:   Mark Brown <broonie@kernel.org>
-Authentication-Results: mail.kernel.org; dkim=permerror (bad message/signature format)
-To:     "H. Nikolaus Schaller" <hns@goldelico.com>,
-        Rob Herring <robh+dt@kernel.org>, linus.walleij@linaro.org
-Cc:     thesven73@gmail.com, devicetree@vger.kernel.org,
-        linux-spi@vger.kernel.org, letux-kernel@openphoenux.org,
-        linux-kernel@vger.kernel.org,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        linux-gpio@vger.kernel.org, laurent.pinchart@ideasonboard.com,
-        andreas@kemnade.info, kernel@pyra-handheld.com, lukas@wunner.de
-In-Reply-To: <3bed61807fff6268789e7d411412fbc5cd6ffe2a.1607507863.git.hns@goldelico.com>
-References: <3bed61807fff6268789e7d411412fbc5cd6ffe2a.1607507863.git.hns@goldelico.com>
-Subject: Re: [PATCH] spi: dt-bindings: clarify CS behavior for spi-cs-high and gpio descriptors
-Message-Id: <160770909979.26609.3989372028641790318.b4-ty@kernel.org>
-Date:   Fri, 11 Dec 2020 17:51:39 +0000
+        id S1728184AbgLKSBu (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 11 Dec 2020 13:01:50 -0500
+Received: from mail.mleia.com (localhost [127.0.0.1])
+        by mail.mleia.com (Postfix) with ESMTP id 7E51642383F;
+        Fri, 11 Dec 2020 18:01:09 +0000 (UTC)
+Subject: Re: [PATCH] ARM: dts: lpc32xx: Remove unused and undocumented
+ 'pnx,timeout'
+To:     Rob Herring <robh@kernel.org>, linux-arm-kernel@lists.infradead.org
+Cc:     devicetree@vger.kernel.org,
+        Sylvain Lemieux <slemieux.tyco@gmail.com>
+References: <20201210175238.2721550-1-robh@kernel.org>
+From:   Vladimir Zapolskiy <vz@mleia.com>
+Message-ID: <7017ac5f-e8da-6761-d0d4-09e1bbebf427@mleia.com>
+Date:   Fri, 11 Dec 2020 20:01:02 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.5.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20201210175238.2721550-1-robh@kernel.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-49551924 
+X-CRM114-CacheID: sfid-20201211_180109_537481_0E087268 
+X-CRM114-Status: UNSURE (   7.59  )
+X-CRM114-Notice: Please train this message. 
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 9 Dec 2020 10:57:44 +0100, H. Nikolaus Schaller wrote:
-> Behavior of CS signal in combination of spi-cs-high and gpio descriptors
-> is not clearly defined and documented. So clarify the documentation
+Hi Rob,
 
-Applied to
+On 12/10/20 7:52 PM, Rob Herring wrote:
+> 'pnx,timeout' is unused, undocumented and 'pnx' is not a vendor prefix,
+> so let's remove it.
+> 
+> Cc: Vladimir Zapolskiy <vz@mleia.com>
+> Cc: Sylvain Lemieux <slemieux.tyco@gmail.com>
+> Signed-off-by: Rob Herring <robh@kernel.org>
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+the change is correct, thank you.
 
-Thanks!
+Please feel free to pull it through the devicetree branch.
 
-[1/1] spi: dt-bindings: clarify CS behavior for spi-cs-high and gpio descriptors
-      commit: 2fee9583198eb97b5351feda7bd825e0f778385c
+Acked-by: Vladimir Zapolskiy <vz@mleia.com>
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+--
+Best wishes,
+Vladimir
