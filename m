@@ -2,83 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9BF752D6E79
-	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 04:23:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5CA902D6E8D
+	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 04:29:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2405198AbgLKDUj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Dec 2020 22:20:39 -0500
-Received: from mail-oi1-f196.google.com ([209.85.167.196]:38563 "EHLO
-        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2405196AbgLKDUM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 22:20:12 -0500
-Received: by mail-oi1-f196.google.com with SMTP id o25so8326436oie.5;
-        Thu, 10 Dec 2020 19:19:57 -0800 (PST)
+        id S1731725AbgLKD1E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Dec 2020 22:27:04 -0500
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:40456 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2395060AbgLKD04 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 22:26:56 -0500
+Received: by mail-ot1-f68.google.com with SMTP id j12so7053412ota.7;
+        Thu, 10 Dec 2020 19:26:40 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=s3P83P57LBssVizfzonJVX27ZJaiiEw3vUl+G1G8C2A=;
-        b=YJYBIwbfcO1i+meooCGH6Y173UJs0lR98g0WeqQfa71P6Cxm83w5mooSr10r/JpV7k
-         x5mDuIlXw0Z0z9+INGsFA4nB76kLAbwpr3FF2tlGkvWQeKi1KOCZOtMfMBFFaZpv4oRR
-         kyI9mgk+1N9YXQBmLy26kt20jhWKJHsY1NT64KbiE0d9kPUJuKsqwe60JjzHXkSIsKk7
-         pBwk8XPN+MI1/i7vmDyBFuBOn9UOZewfLXxb41191Qu2dYOyaduAHgU0Sn0fADp61fLB
-         zrrNF61lciqDS0Puy4jX2ok4rjI3t1anwh68GUur+hjvzFNpXHN1IzV2B8odvx+jhcYq
-         WiIg==
-X-Gm-Message-State: AOAM533xbrscYAFrJwuSfNS4kyPgXalqWR05G6rcRtXGjIlf5wjMvUqO
-        vIkOvWvZ9HNnLIG0wnDR3Q==
-X-Google-Smtp-Source: ABdhPJy7f9jT4f0a9VTi2ZrxM64YP9Ebor8koJwFtxTzBR9yGdaLztovQe5yrb0aUfaCQieDDpJ3yQ==
-X-Received: by 2002:aca:b1c3:: with SMTP id a186mr7847675oif.8.1607656771855;
-        Thu, 10 Dec 2020 19:19:31 -0800 (PST)
+         :mime-version:content-disposition:in-reply-to;
+        bh=FQJ0xYZsg9VuDPNWynmVTQgQAdgxX+zz3aAN9OxOmEM=;
+        b=d/f4UNFeg0HHbmHPFOpSsLhZ9EWrx8IATokW+ttdpaInc0tihLkboJyMoWdypXYVQ0
+         e1oQQzpvWFcIehMgATMxRFx3jmP21mQlO/tjE8Itgf21AJ+09B1Xlp0hkP4SUTZ2yfdK
+         q24kNiN/cBNxqqsBzFDA4OHVRU398RLpds7y1NeDzbguj6cK+foFdpOuIyHRXQWdpwtz
+         WsrJCF7GW1x8tEVEbOjAPhYwaKdKIUlpMgo4y3i78RNBetsLKHri1ybEjybBJpS0e18d
+         LM/QD66ukI/Kq6ssr7Tx1pkc3uIcsrpkJfBUZu8k1Ek1Msl3ZBK0mzEEGvECNcxt9E0x
+         73NQ==
+X-Gm-Message-State: AOAM531WnLt9PsoIFBA7vepOA7QiGBUJcI5csXNY8H8mndYS4gZI8XWH
+        n56wo/mBI8Ma4IdziSgjEA==
+X-Google-Smtp-Source: ABdhPJzKUGBasM7BAwLTxygGxXIuMZ4ml/wcGxyjJSYLcS6Bmb5p1q1zlC+Ak1f0+07k0olzZmbmgg==
+X-Received: by 2002:a9d:3a2:: with SMTP id f31mr8646104otf.216.1607657175132;
+        Thu, 10 Dec 2020 19:26:15 -0800 (PST)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id o21sm1572676otj.1.2020.12.10.19.19.30
+        by smtp.gmail.com with ESMTPSA id x66sm1498750oig.56.2020.12.10.19.26.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Dec 2020 19:19:31 -0800 (PST)
-Received: (nullmailer pid 3565556 invoked by uid 1000);
-        Fri, 11 Dec 2020 03:19:29 -0000
-Date:   Thu, 10 Dec 2020 21:19:29 -0600
+        Thu, 10 Dec 2020 19:26:14 -0800 (PST)
+Received: (nullmailer pid 3574126 invoked by uid 1000);
+        Fri, 11 Dec 2020 03:26:12 -0000
+Date:   Thu, 10 Dec 2020 21:26:12 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Liu Ying <victor.liu@nxp.com>
-Cc:     linux-arm-kernel@lists.infradead.org, a.hajda@samsung.com,
-        robh+dt@kernel.org, airlied@linux.ie, agx@sigxcpu.org,
-        narmstrong@baylibre.com, vkoul@kernel.org, jernej.skrabec@siol.net,
-        linux-imx@nxp.com, dri-devel@lists.freedesktop.org,
-        jonas@kwiboo.se, robert.chiras@nxp.com, kishon@ti.com,
-        kernel@pengutronix.de, s.hauer@pengutronix.de,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        martin.kepplinger@puri.sm, Laurent.pinchart@ideasonboard.com,
-        shawnguo@kernel.org
-Subject: Re: [PATCH v2 4/5] dt-bindings: phy: mixel: mipi-dsi-phy: Add Mixel
- combo PHY support for i.MX8qxp
-Message-ID: <20201211031929.GA3565526@robh.at.kernel.org>
-References: <1607495069-10946-1-git-send-email-victor.liu@nxp.com>
- <1607495069-10946-5-git-send-email-victor.liu@nxp.com>
+To:     Troy Lee <troy_lee@aspeedtech.com>
+Cc:     openbmc@lists.ozlabs.org, Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "open list:HARDWARE MONITORING" <linux-hwmon@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
+        <linux-aspeed@lists.ozlabs.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
+        leetroy@gmail.com, ryan_chen@aspeedtech.com,
+        chiawei_wang@aspeedtech.com, billy_tsai@aspeedtech.com
+Subject: Re: [PATCH 1/4] dt-bindings: hwmon: Add Aspeed AST2600 PWM/Fan
+Message-ID: <20201211032612.GA3565720@robh.at.kernel.org>
+References: <20201209075921.26689-1-troy_lee@aspeedtech.com>
+ <20201209075921.26689-2-troy_lee@aspeedtech.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <1607495069-10946-5-git-send-email-victor.liu@nxp.com>
+In-Reply-To: <20201209075921.26689-2-troy_lee@aspeedtech.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 09 Dec 2020 14:24:27 +0800, Liu Ying wrote:
-> Add support for Mixel MIPI DPHY + LVDS PHY combo IP
-> as found on Freescale i.MX8qxp SoC.
+On Wed, Dec 09, 2020 at 03:59:17PM +0800, Troy Lee wrote:
+> For supporting a new AST2600 PWM/Fan hwmon driver, we add a new binding.
 > 
-> Cc: Guido Günther <agx@sigxcpu.org>
-> Cc: Kishon Vijay Abraham I <kishon@ti.com>
-> Cc: Vinod Koul <vkoul@kernel.org>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: NXP Linux Team <linux-imx@nxp.com>
-> Signed-off-by: Liu Ying <victor.liu@nxp.com>
+> Signed-off-by: Troy Lee <troy_lee@aspeedtech.com>
 > ---
-> v1->v2:
-> * Add the binding for i.MX8qxp Mixel combo PHY based on the converted binding.
->   (Guido)
-> 
->  .../bindings/phy/mixel,mipi-dsi-phy.yaml           | 41 ++++++++++++++++++++--
->  1 file changed, 38 insertions(+), 3 deletions(-)
-> 
+>  .../bindings/hwmon/aspeed2600-pwm-tacho.txt   | 69 +++++++++++++++++++
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Bindings are in DT schema format now.
+
+>  1 file changed, 69 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/hwmon/aspeed2600-pwm-tacho.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/hwmon/aspeed2600-pwm-tacho.txt b/Documentation/devicetree/bindings/hwmon/aspeed2600-pwm-tacho.txt
+> new file mode 100644
+> index 000000000000..61b11914352f
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/hwmon/aspeed2600-pwm-tacho.txt
+> @@ -0,0 +1,69 @@
+> +ASPEED AST2600 PWM and Fan Tacho controller device driver
+> +
+> +The ASPEED PWM controller can support upto 16 PWM outputs. The ASPEED Fan Tacho
+> +controller can support upto 16 Fan tachometer inputs.
+> +
+> +There can be upto 16 fans supported. Each fan can have one PWM output and
+> +one Fan tach inputs.
+> +
+> +Required properties for pwm-tacho node:
+> +- #address-cells : should be 1.
+> +
+> +- #size-cells : should be 0.
+> +
+> +- #cooling-cells: should be 2.
+> +
+> +- reg : address and length of the register set for the device.
+> +
+> +- pinctrl-names : a pinctrl state named "default" must be defined.
+> +
+> +- pinctrl-0 : phandle referencing pin configuration of the PWM ports.
+> +
+> +- compatible : should be "aspeed,ast2600-pwm-tachometer".
+> +
+> +- clocks : phandle to clock provider with the clock number in the second cell
+> +
+> +- resets : phandle to reset controller with the reset number in the second cell
+> +
+> +fan subnode format:
+> +===================
+> +Under fan subnode there can upto 16 child nodes, with each child node
+> +representing a fan. There are 16 fans each fan can have one PWM port and one
+> +Fan tach inputs.
+> +For PWM port can be configured cooling-levels to create cooling device.
+> +Cooling device could be bound to a thermal zone for the thermal control.
+> +
+> +Required properties for each child node:
+> +- reg : should specify PWM source port.
+> +	integer value in the range 0x00 to 0x0f with 0x00 indicating PWM port 0
+> +	and 0x0f indicating PWM port F.
+> +
+> +- cooling-levels: PWM duty cycle values in a range from 0 to 255
+> +                  which correspond to thermal cooling states.
+> +
+> +- aspeed,fan-tach-ch : should specify the Fan tach input channel.
+> +                integer value in the range 0 through 15, with 0 indicating
+> +		Fan tach channel 0 and 15 indicating Fan tach channel 15.
+> +		Atleast one Fan tach input channel is required.
+
+Already has 'fan-tach-ch' in npcm750-pwm-fan.txt.
+
+> +
+> +- aspeed,target-pwm : Specify the frequency of PWM. The value range from 24 to
+> +		      780000. Default value will be set to 25000.
+> +
+> +- aspeed,pulse-pr : Specify tacho pulse per revolution of the fan. A general
+> +		    parameter of pulse-pr is 2.
+
+Already have 'pulses-per-revolution' property in pwm-fan.txt. Use that.
+
+Really, all these should be in a common fan schema that you reference.
+
+> +
+> +Examples:
+> +
+> +&pwm_tacho {
+> +	status = "okay";
+
+Don't show status in examples.
+
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_pwm0_default &pinctrl_tach0_default>;
+> +
+> +	fan@0 {
+> +		reg = <0x00>;
+> +		aspeed,target-pwm = <25000>;
+> +		cooling-levels = /bits/ 8 <125 151 177 203 229 255>;
+> +		aspeed,fan-tach-ch = /bits/ 8 <0x00>;
+> +		aspeed,pulse-pr = <2>;
+> +	};
+> +};
+> -- 
+> 2.17.1
+> 
