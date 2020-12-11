@@ -2,73 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 079CC2D7D4A
-	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 18:52:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 225D62D7D62
+	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 18:55:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2436564AbgLKRvG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Dec 2020 12:51:06 -0500
-Received: from mail.kernel.org ([198.145.29.99]:60304 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2436544AbgLKRu4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 11 Dec 2020 12:50:56 -0500
-From:   Mark Brown <broonie@kernel.org>
-Authentication-Results: mail.kernel.org; dkim=permerror (bad message/signature format)
-To:     Sameer Pujar <spujar@nvidia.com>, robh+dt@kernel.org,
-        thierry.reding@gmail.com
-Cc:     linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, sharadg@nvidia.com,
-        jonathanh@nvidia.com, alsa-devel@alsa-project.org
-In-Reply-To: <1607006202-4078-1-git-send-email-spujar@nvidia.com>
-References: <1607006202-4078-1-git-send-email-spujar@nvidia.com>
-Subject: Re: [RESEND PATCH 0/2] Convert Tegra HDA doc to json-schema
-Message-Id: <160770898108.26354.183397284224263445.b4-ty@kernel.org>
-Date:   Fri, 11 Dec 2020 17:49:41 +0000
+        id S2436689AbgLKRwn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Dec 2020 12:52:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47756 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2436646AbgLKRwg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Dec 2020 12:52:36 -0500
+Received: from mail-yb1-xb43.google.com (mail-yb1-xb43.google.com [IPv6:2607:f8b0:4864:20::b43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04EFCC0613D6
+        for <devicetree@vger.kernel.org>; Fri, 11 Dec 2020 09:51:55 -0800 (PST)
+Received: by mail-yb1-xb43.google.com with SMTP id 82so1851456yby.6
+        for <devicetree@vger.kernel.org>; Fri, 11 Dec 2020 09:51:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=2Q09SnWNYOGRP1aNUnVwFGO3MFQmvVcctUwsQU76BGc=;
+        b=nByrL7+1KjFw3I/zYNYfdITtVIH2sUB1nu7ab1NWcdA8d9RUIyx3D8ncYGF2AQay/M
+         gZvQUoqxfz9zh+IHsxoksiXUA5dFkwt5KAvxAUnLd6gy5d+CrNVkPijTcZjVlGNGyX12
+         /AUf58EyclUw/MN+Qp6b0kBjAtntMdSfoEARdDqo/Do4IkOnsHjBjHRdWk7+5sygM4TM
+         Qu/hkTyBUPqKMXpOddtqNqpI8SmmG1/OEbIRBFOkTSEDxkldAzLD9nL/heWiE6PVjHMs
+         gKmMpbyDBiSyz241Lc0PPj1/J2FzTyEanWMyfoa0d0y8c8T8cuS6n4LxO2jz+72KORc/
+         7g1Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=2Q09SnWNYOGRP1aNUnVwFGO3MFQmvVcctUwsQU76BGc=;
+        b=pnxj+au7QpOfz4SuoJOhAZiOVnPIOfZxhNH9qZDnClYuonOsCXzqLVE0XUZwetChsp
+         WhlrNaCZjTsKkeJ7O3Hy90YULcM6w6XIE7GPP8IHX3Dg3tWP7z6SQP77qxlkTu48H929
+         /RBLEdccY7NxDij9JbNXAPjmx+B5UVK6iqI+cBpYHkQ9iQDZVyJpbOwxP1swDsWnghT5
+         fBs1jBsnCvRFGQHOkp1DifZ+M20oAUKFjhm2LxKdMtglEh06LxUmcekItswxINWPrZ66
+         FS8+sT4yOBz3GUPbq4qPFC5Xs5mAz9Q9+mkBzQ0ixiZxUBsRohaLFHNmeXpQI0pkAEdS
+         AiSA==
+X-Gm-Message-State: AOAM530sWzt3dPj5B8gVdBVQYNnnY4Qq+DbCW32rVwbCdlD6fgowgCSO
+        6emdMIRNjHaVvvf7bw0iX4jIDTH5N1HN4f7HIVCm1w==
+X-Google-Smtp-Source: ABdhPJyKV8I72WSxCSW58eTlK3Q2/Bh0uk6M0D9gYiFdPQFjwUoPp6YT9DUKiRv0Idghprhgulkb5EjOOhWixxO6L50=
+X-Received: by 2002:a25:6604:: with SMTP id a4mr21355396ybc.412.1607709114755;
+ Fri, 11 Dec 2020 09:51:54 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+References: <20201121020232.908850-1-saravanak@google.com> <20201121020232.908850-17-saravanak@google.com>
+ <02e7047071f0b54b046ac472adeeb3fafabc643c.camel@redhat.com> <788ee1c7-0ea2-33ec-658e-50707f7515a6@arm.com>
+In-Reply-To: <788ee1c7-0ea2-33ec-658e-50707f7515a6@arm.com>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Fri, 11 Dec 2020 09:51:18 -0800
+Message-ID: <CAGETcx-MsNyWWT=s1H6hDK+=QvibBLQrT9rM51y5bkomV_+G6g@mail.gmail.com>
+Subject: Re: [PATCH v2 16/17] driver core: Refactor fw_devlink feature
+To:     Robin Murphy <robin.murphy@arm.com>
+Cc:     Qian Cai <qcai@redhat.com>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Len Brown <lenb@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Ard Biesheuvel <ardb@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        Stephen Rothwell <sfr@canb.auug.org.au>,
+        linux-efi <linux-efi@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
+        Tomi Valkeinen <tomi.valkeinen@ti.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Android Kernel Team <kernel-team@android.com>,
+        Linux Next Mailing List <linux-next@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 3 Dec 2020 20:06:40 +0530, Sameer Pujar wrote:
-> Convert Tegra HDA doc to YAML format. Ran binding validation checks to
-> ensure there are no warnings/errors for HDA.
-> 
-> Patch "arm64: tegra: Fix Tegra194 HDA {clock,reset}-names ordering" is
-> already merged and hence not included here.
-> 
-> Sameer Pujar (2):
->   dt-bindings: tegra: Convert HDA doc to json-schema
->   dt-bindings: tegra: Add missing HDA properties
-> 
-> [...]
+On Fri, Dec 11, 2020 at 8:34 AM Robin Murphy <robin.murphy@arm.com> wrote:
+>
+> On 2020-12-11 14:11, Qian Cai wrote:
+> > On Fri, 2020-11-20 at 18:02 -0800, Saravana Kannan wrote:
+> >> The current implementation of fw_devlink is very inefficient because it
+> >> tries to get away without creating fwnode links in the name of saving
+> >> memory usage. Past attempts to optimize runtime at the cost of memory
+> >> usage were blocked with request for data showing that the optimization
+> >> made significant improvement for real world scenarios.
+> >>
+> >> We have those scenarios now. There have been several reports of boot
+> >> time increase in the order of seconds in this thread [1]. Several OEMs
+> >> and SoC manufacturers have also privately reported significant
+> >> (350-400ms) increase in boot time due to all the parsing done by
+> >> fw_devlink.
+> >>
+> >> So this patch uses all the setup done by the previous patches in this
+> >> series to refactor fw_devlink to be more efficient. Most of the code has
+> >> been moved out of firmware specific (DT mostly) code into driver core.
+> >>
+> >> This brings the following benefits:
+> >> - Instead of parsing the device tree multiple times during bootup,
+> >>    fw_devlink parses each fwnode node/property only once and creates
+> >>    fwnode links. The rest of the fw_devlink code then just looks at these
+> >>    fwnode links to do rest of the work.
+> >>
+> >> - Makes it much easier to debug probe issue due to fw_devlink in the
+> >>    future. fw_devlink=on blocks the probing of devices if they depend on
+> >>    a device that hasn't been added yet. With this refactor, it'll be very
+> >>    easy to tell what that device is because we now have a reference to
+> >>    the fwnode of the device.
+> >>
+> >> - Much easier to add fw_devlink support to ACPI and other firmware
+> >>    types. A refactor to move the common bits from DT specific code to
+> >>    driver core was in my TODO list as a prerequisite to adding ACPI
+> >>    support to fw_devlink. This series gets that done.
+> >>
+> >> [1] - https://lore.kernel.org/linux-omap/ea02f57e-871d-cd16-4418-c1da4bbc4696@ti.com/
+> >> Signed-off-by: Saravana Kannan <saravanak@google.com>
+> >> Tested-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> >> Tested-by: Grygorii Strashko <grygorii.strashko@ti.com>
+> >
+> > Reverting this commit and its dependency:
+> >
+> > 2d09e6eb4a6f driver core: Delete pointless parameter in fwnode_operations.add_links
+> >
+> > from today's linux-next fixed a boot crash on an arm64 Thunder X2 server.
+>
+> Since the call stack implicates the platform-device-wrangling we do in
+> IORT code I took a quick look; AFAICS my guess would be it's blowing up
+> trying to walk a zeroed list head since "driver core: Add fwnode_init()"
+> missed acpi_alloc_fwnode_static().
 
-Applied to
+Thanks Robin. I'm pretty sure this is the reason. I thought I fixed
+all ACPI cases, but clearly I missed this one. I'll send out a patch
+for this today. If you think there are any other places I missed
+please let me know. I'll try some git grep foo to see if I missed any
+other instances of fwnode ops being set.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
-
-Thanks!
-
-[1/2] dt-bindings: tegra: Convert HDA doc to json-schema
-      commit: 2d8f8955fe02c1f5d41c283f48d8c6a2a02ae17f
-[2/2] dt-bindings: tegra: Add missing HDA properties
-      commit: 3759d5edc07598d55124d87bd292a95f79f47997
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+-Saravana
