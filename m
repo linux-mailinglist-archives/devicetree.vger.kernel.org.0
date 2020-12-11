@@ -2,133 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 47A5D2D6EA9
-	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 04:34:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E065F2D6EAE
+	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 04:35:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2395128AbgLKDc4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Dec 2020 22:32:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56690 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732919AbgLKDce (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 22:32:34 -0500
-Received: from mail-pg1-x542.google.com (mail-pg1-x542.google.com [IPv6:2607:f8b0:4864:20::542])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DE9BC061793
-        for <devicetree@vger.kernel.org>; Thu, 10 Dec 2020 19:31:48 -0800 (PST)
-Received: by mail-pg1-x542.google.com with SMTP id w4so6188301pgg.13
-        for <devicetree@vger.kernel.org>; Thu, 10 Dec 2020 19:31:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=y91nmoJ33/DVuxYypisPMf8rbIWy+AIDH8dAhBZDQ1w=;
-        b=y0Z8hdWuCcPWIHLD8nGhmLjl6sgFkiiAFpbnABd9ffPeWvaMhXWC0lWy8trhgt50dA
-         DDTlwlH4cox4K8dcvzh01RT0bobVAiT/PCmyBMD66caOcSZU8R92/MQzTUyBSfAW/P9s
-         b/MCI+0Et5/G+5amGgv9s0VThc8NllwSn0Pya3Ox6q/9QuZHFUzfibQXEglI7tmjlcKd
-         eerpJEoIoI2pcENH65KJm30+qVK0DAJgjOTA1CmCmz/E+mipY63Ek5OMjMY5sE94Cl5l
-         HVvz2fb0MmZkaOMc8O3vY/yl+jTOLTFxx5J1uamQ/cIKMc3/Eoo0MDAoeLC+4MH9vA1a
-         TtqQ==
+        id S2393957AbgLKDec (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Dec 2020 22:34:32 -0500
+Received: from mail-oo1-f66.google.com ([209.85.161.66]:42748 "EHLO
+        mail-oo1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2395130AbgLKDeB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 22:34:01 -0500
+Received: by mail-oo1-f66.google.com with SMTP id x203so1831595ooa.9;
+        Thu, 10 Dec 2020 19:33:45 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=y91nmoJ33/DVuxYypisPMf8rbIWy+AIDH8dAhBZDQ1w=;
-        b=sFB18dncOn7l/r++V8VpwwcPURp8p85Y+HwkzzPYGQr8JYVI/DVVPRsHLmTiwP7PT3
-         URW3vgBLAxQTSYzLyIW9hcCoz6/W+QhIFE4fsK4nmgTAVl9r2unNLFQ4iN7wbZraMlzs
-         bzM6Wai5NrAgq0YVyO7EGnjIXie68CmPGQokHgbhsKbltGpewbaXvUV5glhvH+4Wreq+
-         Ei9yGtuj3RxIZczoCelWHzsq6v8U4+e7XZ4HNlxlYWXe9yGFDDxNvYvmO93sGOHbS/yw
-         cDHLrGa+mRq3Am97JoLL4aogD1U6ir73f1B3K0GNuPwaVeoVAgqSKO2M2SA7VAgnFYy9
-         WA7g==
-X-Gm-Message-State: AOAM531NMuvMBOCp0XayWoai/r0/yxO98Yqq6P6ZYDG13TAY8HXfNP6t
-        Dd7RUV1TthtVSBfFEhIzpXqF
-X-Google-Smtp-Source: ABdhPJwmYGB3znEkW5I/5BDEVH4lhxpW/+DkHztLxFxfiyIPh59HV8+xUCkDoBKyNFuQVWgaUsWBQg==
-X-Received: by 2002:a65:6253:: with SMTP id q19mr9559894pgv.412.1607657507999;
-        Thu, 10 Dec 2020 19:31:47 -0800 (PST)
-Received: from work ([103.59.133.81])
-        by smtp.gmail.com with ESMTPSA id v19sm8455043pjg.50.2020.12.10.19.31.44
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Thu, 10 Dec 2020 19:31:46 -0800 (PST)
-Date:   Fri, 11 Dec 2020 09:01:40 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
-        bjorn.andersson@linaro.org, linux-mtd@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/4] dt-bindings: mtd: partitions: Add binding for
- Qcom SMEM parser
-Message-ID: <20201211033140.GA4222@work>
-References: <20201119071308.9292-1-manivannan.sadhasivam@linaro.org>
- <20201119071308.9292-2-manivannan.sadhasivam@linaro.org>
- <20201207215236.GB892840@robh.at.kernel.org>
+         :mime-version:content-disposition:in-reply-to;
+        bh=3GnJS91mExiBzt28XQgbgmRTyU/KP5iwnHySnsJrR+g=;
+        b=W9tDr4aDMdj1t3B2NZPCy3IpBQyt7oY+pFLivGp6qO0+LJ958nfLQ8/jjyzYDphg6Z
+         erPrtnSY3EtPA4q1MUYMEH3WsQKImRUB1nGE5Kv/V2nirzQXMJAnBOZBU6/0HC7Nm5OO
+         nFxm1pPGNWow6KlMTDMj3+To1LNhNSQwS+0jq/M1yozwPK+PtENK453ZZCzl/d906UbP
+         A1WhjcXJscoPALA7o3WhfTemoSzN5NFUW5kBGN45eVMLBIcMev2qf7+eM9Ijv0Y9JlGj
+         1nWW2mYY5nadl6qdn/C1k2eKoS+LvMXUzZe0DbiZ+k1yAHI1FUBWqZG1ByQwtAVY9Oui
+         5CqQ==
+X-Gm-Message-State: AOAM531rEOqiRdjuIvIFxcnuF11nxb5DbO8tLBSVtmnJAXE4Ho70FiaO
+        3D3Cy1G28b1XWUyywH+EOl3uiNvY4g==
+X-Google-Smtp-Source: ABdhPJyv+HjIJIG6vQ0mqx8wcxKerll2vL+hFq43z5m9733QezRGM9e/Qwbq1lN4LMs4idy5AaXIWQ==
+X-Received: by 2002:a4a:e687:: with SMTP id u7mr8551739oot.20.1607657600097;
+        Thu, 10 Dec 2020 19:33:20 -0800 (PST)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id n16sm187964oop.9.2020.12.10.19.33.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 10 Dec 2020 19:33:19 -0800 (PST)
+Received: (nullmailer pid 3584435 invoked by uid 1000);
+        Fri, 11 Dec 2020 03:33:18 -0000
+Date:   Thu, 10 Dec 2020 21:33:18 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Aswath Govindraju <a-govindraju@ti.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Vadym Kochan <vadym.kochan@plvision.eu>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Sekhar Nori <nsekhar@ti.com>
+Subject: Re: [PATCH RFC 1/2] Documentation: devicetree: Add property for
+ ignoring the dummy bits sent before read transfer
+Message-ID: <20201211033301.GA3581630@robh.at.kernel.org>
+References: <20201209175708.16252-1-a-govindraju@ti.com>
+ <20201209175708.16252-2-a-govindraju@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201207215236.GB892840@robh.at.kernel.org>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <20201209175708.16252-2-a-govindraju@ti.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 07, 2020 at 03:52:36PM -0600, Rob Herring wrote:
-> On Thu, Nov 19, 2020 at 12:43:05PM +0530, Manivannan Sadhasivam wrote:
-> > Add YAML binding for Qualcomm Shared Memory (SMEM) Flash partition
-> > parser.
-> > 
-> > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> > ---
-> >  .../mtd/partitions/qcom,smem-part.yaml        | 33 +++++++++++++++++++
-> >  1 file changed, 33 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/mtd/partitions/qcom,smem-part.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/mtd/partitions/qcom,smem-part.yaml b/Documentation/devicetree/bindings/mtd/partitions/qcom,smem-part.yaml
-> > new file mode 100644
-> > index 000000000000..cf3f8c1e035d
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/mtd/partitions/qcom,smem-part.yaml
-> > @@ -0,0 +1,33 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/mtd/partitions/qcom,smem-part.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Qualcomm SMEM NAND flash partition parser binding
-> > +
-> > +maintainers:
-> > +  - Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> > +
-> > +description: |
-> > +  The Qualcomm SoCs supporting the NAND controller interface features a Shared
-> > +  Memory (SMEM) based partition table scheme. The maximum partitions supported
-> > +  varies between partition table revisions. V3 supports maximum 16 partitions
-> > +  and V4 supports 48 partitions.
+On Wed, Dec 09, 2020 at 11:27:07PM +0530, Aswath Govindraju wrote:
+> Dummy zero bits are sent before data during a read transfer. This causes
+> the data read to be shifted to the right. To fix this send zero bits after
+> the address during a read transfer.
 > 
-> V3 vs. V4 (and any other version for that matter) is discoverable?
+> Add property to send zero bits after the address during a read transfer.
+
+When is this necessary? Why can't it be implied by the compatible 
+string which should be specific to the chip model?
+
 > 
-
-Yes, it is discoverable based on the partition header and we do that in
-the parser.
-
-Thanks,
-Mani
-
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: qcom,smem-part
-> > +
-> > +required:
-> > +  - compatible
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    flash {
-> > +        partitions {
-> > +            compatible = "qcom,smem-part";
-> > +        };
-> > +    };
-> > -- 
-> > 2.17.1
-> > 
+> Suggested-by: Vignesh Raghavendra <vigneshr@ti.com>
+> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+> ---
+>  Documentation/devicetree/bindings/misc/eeprom-93xx46.txt | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/misc/eeprom-93xx46.txt b/Documentation/devicetree/bindings/misc/eeprom-93xx46.txt
+> index a8ebb4621f79..09fb1cec54f0 100644
+> --- a/Documentation/devicetree/bindings/misc/eeprom-93xx46.txt
+> +++ b/Documentation/devicetree/bindings/misc/eeprom-93xx46.txt
+> @@ -10,7 +10,9 @@ Optional properties:
+>  - read-only : parameter-less property which disables writes to the EEPROM
+>  - select-gpios : if present, specifies the GPIO that will be asserted prior to
+>    each access to the EEPROM (e.g. for SPI bus multiplexing)
+> -
+> +- read-op-dummy-cycles: If present specifies the number of dummy zero-bits to
+> +  be sent after the address during a read transfer to ignore any bits sent
+> +  preceding the data.
+>  Property rules described in Documentation/devicetree/bindings/spi/spi-bus.txt
+>  apply.  In particular, "reg" and "spi-max-frequency" properties must be given.
+>  
+> -- 
+> 2.17.1
+> 
