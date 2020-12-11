@@ -2,168 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C1202D7942
-	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 16:30:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A4F12D795A
+	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 16:31:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729015AbgLKP3p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Dec 2020 10:29:45 -0500
-Received: from mail.kernel.org ([198.145.29.99]:47096 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730725AbgLKP3J (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 11 Dec 2020 10:29:09 -0500
-Date:   Fri, 11 Dec 2020 15:28:20 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1607700508;
-        bh=tnvzMgG8eljDkEYIrFysYNWVviji68n6KbgsBPRTO5E=;
-        h=From:To:Cc:Subject:References:In-Reply-To:From;
-        b=APicdr0mfjo4vVcP8oAQDsdH2BLigI0a4Gxk/P5htV2k1V3eoUmBp7vLo5Dtw8T43
-         nngsgJvRQHzKj9rWRohXSCbjseUSIeZlr6jMQVcuOL+5gKdHcs7yZ0jZBJ2LReDC1l
-         6PJjQ/ypVpiDpcvqf5CU2cv8KM/xv7Z7Ne6NhRZCZbbGoLbXr7e6pAau+GLd90hmOT
-         Nsro3aMPBVAI0iPZfO3lU38RdZTbPHFJrVzUPlGdDTZw+wVjDUWGvYpKAVh9qy9QGD
-         3cJ4i7ZvvOz83LDBtmY0EJcS9bBohzCwg9KWqK9asug9nG8lrjUguLdFRPCxYyYIcB
-         nub2x7iZmPDrw==
-From:   Mark Brown <broonie@kernel.org>
-To:     Adrien Grassein <adrien.grassein@gmail.com>
-Cc:     lgirdwood@gmail.com, robh+dt@kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        troy.kisky@boundarydevices.com, gary.bisson@boundarydevices.com
-Subject: Re: [PATCH v2 2/2] regulator: pf8x00: add support of nxp pf8x00
- regulator
-Message-ID: <20201211152820.GE4929@sirena.org.uk>
-References: <20201206002629.12872-1-adrien.grassein@gmail.com>
- <20201210221629.17312-1-adrien.grassein@gmail.com>
- <20201210221629.17312-2-adrien.grassein@gmail.com>
+        id S2391224AbgLKPat (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Dec 2020 10:30:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54110 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388379AbgLKPad (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Dec 2020 10:30:33 -0500
+Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com [IPv6:2a00:1450:4864:20::443])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8ED03C0613CF;
+        Fri, 11 Dec 2020 07:29:52 -0800 (PST)
+Received: by mail-wr1-x443.google.com with SMTP id m5so9424447wrx.9;
+        Fri, 11 Dec 2020 07:29:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-transfer-encoding:content-language;
+        bh=zERc61e6q0jyeQa9DII4Gd3+QcLplYsxEQ++mmlkRqE=;
+        b=kAPBD5ididRwkjsfOLZM27vUwQTDQh5Tvkvr2H9LSKoBN1/Tjgz8j0J7BC6GiT3yc7
+         rsyYBvQKGPipWFGSkGYpw9QZUY4lU1EFgOdThLzewOMDzFhr3cHdbMFDhQJrrt22YCjE
+         tttxzDbbGnR2C+APmaFEooKNqOlOerIIBqFrJC4X1PTfKg2ugGVKMYVkoT4JLyq5DG52
+         MFTAeYJfvaTlk6zb7U93xoS37Zasqzn70eLhGHFBUHcuiS0MfGMldYYNBRp76UR20l5J
+         bTVcKDilQoV/mKGAyfGCr4YoVWVPYKBejSiUAk8oVhrRNZvNuMscTS2/DFV6BvmANrNW
+         zk/w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-transfer-encoding
+         :content-language;
+        bh=zERc61e6q0jyeQa9DII4Gd3+QcLplYsxEQ++mmlkRqE=;
+        b=n17nMdGu9iVj9lZ2NvUoOLbMWCSqwvC0Pv2L9djSWWuOv54N6BsXOv+lrrKxVhSTft
+         u+QaEuz0lX182TNMo8Cmm2vJBqCmJh7x8dX+ev40dLLLmuQHJGH/lTZY0SA9IFPYMy7L
+         6UbSky3e54k5CRNuhGoHF8CVfxNfJJWFrRO4XxIjKQ2aLCfMEB8hBOp4aIookiIkE9jy
+         84uN/2uSzzrrPLa+5AH+oV4vEjbyFMk9+wovH15HLahr1yaOw6s7ruUd1U4gSMn6f8WP
+         Wl3hMpTD15zPqmrf5f+HIfvsyDMgS8tD4Py2oX97fNa82VCPvg0tL05HM2HmCs3FrKS0
+         wyrg==
+X-Gm-Message-State: AOAM531jBMUyPlKHRdU4XFrccWQG7HRXTCczKUDPnbaJDQC3KJn9ZUci
+        t17fTRrfZvqF2kNYOvYEq+k=
+X-Google-Smtp-Source: ABdhPJzwPIxc9K6r4gJOoLnDqXZc4XcR3ebtAXpwrJFtq3lWVSRQSceS8zmuKv46R5yN9iv1T3rOmQ==
+X-Received: by 2002:adf:e64b:: with SMTP id b11mr14391204wrn.257.1607700591324;
+        Fri, 11 Dec 2020 07:29:51 -0800 (PST)
+Received: from [192.168.74.106] (178-169-161-196.razgrad.ddns.bulsat.com. [178.169.161.196])
+        by smtp.gmail.com with ESMTPSA id d9sm15262283wrs.26.2020.12.11.07.29.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 11 Dec 2020 07:29:50 -0800 (PST)
+Subject: Re: [PATCH 11/18] ARM: dts: qcom: msm8974-lge-nexus5: correct fuel
+ gauge interrupt trigger level
+To:     Krzysztof Kozlowski <krzk@kernel.org>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-rtc@vger.kernel.org
+Cc:     Matheus Castello <matheus@castello.eng.br>,
+        Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>,
+        Angus Ainslie <angus@akkea.ca>,
+        Hans de Goede <hdegoede@redhat.com>
+References: <20201210212534.216197-1-krzk@kernel.org>
+ <20201210212534.216197-11-krzk@kernel.org>
+From:   Iskren Chernev <iskren.chernev@gmail.com>
+Message-ID: <14e52c51-23ab-6877-dcec-2b1add958d71@gmail.com>
+Date:   Fri, 11 Dec 2020 17:29:48 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="a+b56+3nqLzpiR9O"
-Content-Disposition: inline
-In-Reply-To: <20201210221629.17312-2-adrien.grassein@gmail.com>
-X-Cookie: Nostalgia isn't what it used to be.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20201210212534.216197-11-krzk@kernel.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---a+b56+3nqLzpiR9O
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+On 12/10/20 11:25 PM, Krzysztof Kozlowski wrote:
+ > The Maxim fuel gauge datasheets describe the interrupt line as active
+ > low with a requirement of acknowledge from the CPU.  The falling edge
+ > interrupt will mostly work but it's not correct.
+ >
+ > Fixes: 45dfa741df86 ("ARM: dts: qcom: msm8974-lge-nexus5: Add fuel 
+gauge")
+ > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+ > ---
+ >  arch/arm/boot/dts/qcom-msm8974-lge-nexus5-hammerhead.dts | 2 +-
+ >  1 file changed, 1 insertion(+), 1 deletion(-)
+ >
+ > diff --git a/arch/arm/boot/dts/qcom-msm8974-lge-nexus5-hammerhead.dts 
+b/arch/arm/boot/dts/qcom-msm8974-lge-nexus5-hammerhead.dts
+ > index e769f638f205..4c6f54aa9f66 100644
+ > --- a/arch/arm/boot/dts/qcom-msm8974-lge-nexus5-hammerhead.dts
+ > +++ b/arch/arm/boot/dts/qcom-msm8974-lge-nexus5-hammerhead.dts
+ > @@ -575,7 +575,7 @@ fuelgauge: max17048@36 {
+ >              maxim,rcomp = /bits/ 8 <0x4d>;
+ >
+ >              interrupt-parent = <&msmgpio>;
+ > -            interrupts = <9 IRQ_TYPE_EDGE_FALLING>;
+ > +            interrupts = <9 IRQ_TYPE_LEVEL_LOW>;
+ >
+ >              pinctrl-names = "default";
+ >              pinctrl-0 = <&fuelgauge_pin>;
 
-On Thu, Dec 10, 2020 at 11:16:29PM +0100, Adrien Grassein wrote:
+According to the datasheet for max17048 the ALRT pin is active low, so that
+looks good. The reason it was implemented EDGE_FALLING is mostly due to
+fragments taken from downstream, and the fact that it worked :)
 
-> +	{ .compatible = "nxp,pf8200",},
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(of, pf8x_dt_ids);
-> +
-> +const struct id_name id_list[] = {
-> +	{PF8100, "PF8100"},
-> +	{PF8121A, "PF8121A"},
-> +	{PF8200, "PF8200"},
-> +	{0, "???"},
-> +};
+Acked-by: Iskren Chernev <iskren.chernev@gmail.com>
 
-It's strange to see the list terminated with this ??? entry - these
-things usually have a NULL for both the ID and the string.  The string
-on the terminator is never used so may as well stick with the usual
-pattern.
-
-> +static int encode_phase(struct pf8x_chip *pf, int phase)
-> +{
-> +	int ph;
-> +
-> +	if (phase < 0)
-> +		return -1;
-> +
-> +	ph = phase / 45;
-> +	if ((ph * 45) != phase) {
-> +		dev_err(pf->dev, "ignoring, illegal phase %d\n", phase);
-> +		return -1;
-> +	}
-> +
-> +	return (ph >= 1) ? ph - 1 : 7;
-
-As I said on the previousl review please write normal condidional
-statements to improve the legibility of the code.
-
-> +static inline struct regulator_init_data *match_init_data(int index)
-> +{
-> +	return pf8x00_matches[index].init_data;
-> +}
-> +
-> +static inline struct device_node *match_of_node(int index)
-> +{
-> +	return pf8x00_matches[index].of_node;
-> +}
-
-If you need these your driver has a problem, as previously advised
-please use the standard DT parsing support.
-
-> +	memcpy(pf->regulator_descs, pf8x00_regulators,
-> +		sizeof(pf->regulator_descs));
-
-Why do you need to take a copy of this?  The descriptors should not be
-being modified.
-
-> +	num_regulators = ARRAY_SIZE(pf->regulator_descs);
-> +	for (i = 0; i < num_regulators; i++) {
-> +		struct regulator_init_data *init_data;
-> +		struct regulator_desc *desc;
-> +
-> +		desc = &pf->regulator_descs[i].desc;
-> +		init_data = match_init_data(i);
-> +
-> +		config.dev = &client->dev;
-> +		config.init_data = init_data;
-> +		config.driver_data = pf;
-> +		config.of_node = match_of_node(i);
-> +		config.ena_gpiod = NULL;
-
-You've not done anything to parse the init data (which is good) so the
-init data handling is at best redundant.
-
-> +		if ((i >= REG_SW1) && (i <= REG_SW7)) {
-
-> +			if (mask) {
-> +				ret = regmap_update_bits(pf->regmap, reg, mask,
-> +						val);
-> +			}
-> +
-> +			if (fast_slew > 1) {
-> +				ret = regmap_read(pf->regmap, reg, &fast_slew);
-> +				fast_slew &= 0x20;
-> +				if (ret < 0)
-> +					fast_slew = 0;
-> +				pf->regulator_descs[i].fast_slew = fast_slew >> 5;
-> +			}
-
-May as well just write configurations out when you parse them, no need
-to defer to here and it makes things simpler.
-
-> +module_i2c_driver(pf8x_driver);
-> +
-> +static void __exit pf8x_exit(void)
-> +{
-> +	i2c_del_driver(&pf8x_driver);
-> +}
-> +module_exit(pf8x_exit);
-
-Does this build cleanly?  module_i2c_driver() does both the add and
-delete.
-
---a+b56+3nqLzpiR9O
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl/TkBMACgkQJNaLcl1U
-h9DIrAf/eGEes4Oi2+8dr2mGQIKrcAFKXQdOSLVQK0tnwLk3SRtCO46t2yflddU+
-J1nDXxGpY1uB8YLQrF7jDuw4sAD6cz++fwLfiMFFY4WQElQcx2IU18oqUtiRZfCx
-VUoJ5FiPetCkda8VSuCXj6BQVfDVIEg1tV3+UBDAtmLpZ1yh26xvSA0E7opSsSIT
-z+RB8K5r/HoJRPKJ3WIELlGq/vrhdQKjFT5+/ujNG5sMvNpnrNbNowgemVdzw0OZ
-Oum+IaeTv0eOpl6JmQUVS2ZkjpEuhsaHOWPbnSWyZfbWgKI+RzvRv05F0Mv3G8Nv
-dyCAYIC1p6lFnhHmcV77Y4chzBrZ8w==
-=woI9
------END PGP SIGNATURE-----
-
---a+b56+3nqLzpiR9O--
