@@ -2,93 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AFCC72D6E4E
-	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 04:05:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 50E872D6E54
+	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 04:08:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404998AbgLKDDe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Dec 2020 22:03:34 -0500
-Received: from mail-oi1-f195.google.com ([209.85.167.195]:42072 "EHLO
-        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2404992AbgLKDDP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 22:03:15 -0500
-Received: by mail-oi1-f195.google.com with SMTP id l200so8266999oig.9;
-        Thu, 10 Dec 2020 19:03:00 -0800 (PST)
+        id S2387768AbgLKDHS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Dec 2020 22:07:18 -0500
+Received: from mail-oo1-f66.google.com ([209.85.161.66]:34784 "EHLO
+        mail-oo1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388364AbgLKDHM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 22:07:12 -0500
+Received: by mail-oo1-f66.google.com with SMTP id t63so1811922ooa.1;
+        Thu, 10 Dec 2020 19:06:57 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=rVA3v//5uFeyzZYgKjyJny/vDnQO/EJzRhd8D8iaejQ=;
-        b=tGHxxURFceUNIWu+1IexjktNuzHGJ8/ZKcPo48mNyobobUiXZ9ua6f3K4u5kXDiHoF
-         B7vL14EggvIKbkiK7117i6QYWFoskVRsrQGFN+0r42a9nUNGf7+Nhxca/Bb9lAiCAf2p
-         qh5ckmeeOrIx15jHEaGTC43iM415nrhwoRfO3dDPHTYAhDdxZLgMYdKdaxZdoWZXE6At
-         JTkCnnxTq7R/EQJEZNiC8qPQxBa6LbK2kayml8mJQpdo0FzkUTPyaJMzlnS3UinScMza
-         P1RaDkpBDyzVX2DViij+vwBFmWIIFa1T4Pa96mS7mRg+16d6kqycnh4zmfer1UAbRh24
-         z1Cw==
-X-Gm-Message-State: AOAM5334Nm+NNt3mWatV1HLR7jxn5oovi9iN49C489VGt0qX2qYUz/iw
-        B874CiLIO1Gq3xhX1dYbHg==
-X-Google-Smtp-Source: ABdhPJwCIQonnSCIfxwOgO8gPt+2/0oE5Zl3IUpntY7Xd98njTzBqZsLFZWiIrcsrQosIMcr8S04Rw==
-X-Received: by 2002:aca:dd09:: with SMTP id u9mr7177668oig.73.1607655755070;
-        Thu, 10 Dec 2020 19:02:35 -0800 (PST)
+         :mime-version:content-disposition:in-reply-to;
+        bh=tTEMRb7V1p2F9KCydXVvXfb48BNtn6HMFTOoKMCdUp8=;
+        b=n3QQ+ClhRJfv3/C7HG3JBKeMJnkxX7gGm+wpABiYEaZF1A8S8JeenK8Srz1MkSGAMb
+         CNsEkWBr0CB03p8Q4JCKknsi1rvsySsuaL/Nz0UlE5m9LeAxao1zyOK80MWE3spacJlq
+         AglaoBE16zWXxfRoXlETDe1uobKKHW2u+kFz60oDFGsnvoCkuwKCCktCwvwp+04f2ao6
+         GvgBmBeN9Vm02vJTiEfOjeHoNS6y4NViRRLKYjXqfYtMs2gr8i4nHKZOFywLaklXKe6V
+         4qNgBYRxp7WE251WdS3YK5z0vQcCOrzNdAt8O9wk8ms94h8uGDSig1CvxRP+73WcvVPe
+         pYLg==
+X-Gm-Message-State: AOAM531H5HSpmou8ms3c9CdiuF6NWbzbTO72XRsLRiVbwBvXEgjiq8PY
+        PFg9UCXdQs7BLJfVC06+TskpZ6fQQg==
+X-Google-Smtp-Source: ABdhPJzwCZ/LdhdXGPVFCFUrIUwiHobPQlW+a/7pgy6NOGroMHgb/L5um7BEfax0rbsXdfVptKgMgg==
+X-Received: by 2002:a4a:c60c:: with SMTP id l12mr8321136ooq.45.1607655991897;
+        Thu, 10 Dec 2020 19:06:31 -0800 (PST)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id h20sm1546911otj.57.2020.12.10.19.02.33
+        by smtp.gmail.com with ESMTPSA id p8sm1500250oig.22.2020.12.10.19.06.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Dec 2020 19:02:34 -0800 (PST)
-Received: (nullmailer pid 3538020 invoked by uid 1000);
-        Fri, 11 Dec 2020 03:02:33 -0000
-Date:   Thu, 10 Dec 2020 21:02:33 -0600
+        Thu, 10 Dec 2020 19:06:31 -0800 (PST)
+Received: (nullmailer pid 3545571 invoked by uid 1000);
+        Fri, 11 Dec 2020 03:06:30 -0000
+Date:   Thu, 10 Dec 2020 21:06:30 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     =?iso-8859-1?Q?J=F3zsef_Horv=E1th?= <info@ministro.hu>
-Cc:     devicetree@vger.kernel.org, devel@driverdev.osuosl.org,
-        linux-kernel@vger.kernel.org, 'Rob Herring' <robh+dt@kernel.org>,
-        'Greg Kroah-Hartman' <gregkh@linuxfoundation.org>
-Subject: Re: [PATCH v1 2/2] Staging: silabs si4455 serial driver: docs device
- tree binding
-Message-ID: <20201211030233.GA3536340@robh.at.kernel.org>
-References: <20201210122154.GA31799@dincontrollerdev>
+To:     Michael Klein <michael@fossekall.de>
+Cc:     Chen-Yu Tsai <wens@csie.org>, linux-pm@vger.kernel.org,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Maxime Ripard <mripard@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Sebastian Reichel <sre@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 2/3] Documentation: DT: binding documentation for
+ regulator-poweroff
+Message-ID: <20201211030630.GA3545539@robh.at.kernel.org>
+References: <20201209210221.385188-1-michael@fossekall.de>
+ <20201209210221.385188-3-michael@fossekall.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20201210122154.GA31799@dincontrollerdev>
+In-Reply-To: <20201209210221.385188-3-michael@fossekall.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 10 Dec 2020 12:21:56 +0000, József Horváth wrote:
-> add: device tree binding schema
+On Wed, 09 Dec 2020 22:02:20 +0100, Michael Klein wrote:
+> Add devicetree binding documentation for regulator-poweroff driver.
 > 
-> Signed-off-by: József Horváth <info@ministro.hu>
+> Signed-off-by: Michael Klein <michael@fossekall.de>
 > ---
->  .../bindings/serial/silabs,si4455.yaml        | 53 +++++++++++++++++++
->  MAINTAINERS                                   |  2 +-
->  2 files changed, 54 insertions(+), 1 deletion(-)
->  create mode 100644 Documentation/devicetree/bindings/serial/silabs,si4455.yaml
+>  .../power/reset/regulator-poweroff.yaml       | 37 +++++++++++++++++++
+>  1 file changed, 37 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/power/reset/regulator-poweroff.yaml
 > 
 
-
-My bot found errors running 'make dt_binding_check' on your patch:
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-Error: Documentation/devicetree/bindings/serial/silabs,si4455.example.dts:19.9-14 syntax error
-FATAL ERROR: Unable to parse input tree
-make[1]: *** [scripts/Makefile.lib:342: Documentation/devicetree/bindings/serial/silabs,si4455.example.dt.yaml] Error 1
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1364: dt_binding_check] Error 2
-
-
-See https://patchwork.ozlabs.org/patch/1414082
-
-The base for the patch is generally the last rc1. Any dependencies
-should be noted.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+Reviewed-by: Rob Herring <robh@kernel.org>
