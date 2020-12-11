@@ -2,322 +2,630 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8769C2D781F
-	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 15:45:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F9582D784E
+	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 15:58:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404393AbgLKOo7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Dec 2020 09:44:59 -0500
-Received: from mx0a-0014ca01.pphosted.com ([208.84.65.235]:44940 "EHLO
-        mx0a-0014ca01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S2405148AbgLKOok (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 11 Dec 2020 09:44:40 -0500
-Received: from pps.filterd (m0042385.ppops.net [127.0.0.1])
-        by mx0a-0014ca01.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 0BBEbghu027434;
-        Fri, 11 Dec 2020 06:43:01 -0800
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cadence.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=proofpoint;
- bh=sizgDNex5AbqWRf90FsmwsYDsSjXNGrRzQBon/StLPo=;
- b=QYURCqk6VRYVvw/dKH87+vC4jzdcf8VDI5gG2/ewE/AiOhnF6RdjyzLjclYDZ+E4fDT1
- pie/352cnydeMKZt7sJvG6t0FSa3uBJFfLnc6hSrTH4GBsZ0YS5CJla+OlMdGEMjYQOJ
- A/z/fVqbeerb0PSKTX2lLIqG5VUr/YbnKwfQY48vdO1wHgISZz3O5066HeKbhhuXwOWx
- lqa/KbSbfg/5NTng/Ej/b0wKYGx5aLsiTW8b0X11kBtibuWUOL29yOb5ZctDzJW40vdX
- wKX0+YyoIAFLs/OEIH+BlZyfZn6drtWD9LTCyh0ATPFWwKR6hthOrW94Gdtm6gYPdKjf lA== 
-Received: from nam10-bn7-obe.outbound.protection.outlook.com (mail-bn7nam10lp2104.outbound.protection.outlook.com [104.47.70.104])
-        by mx0a-0014ca01.pphosted.com with ESMTP id 3587n35mhb-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 11 Dec 2020 06:43:01 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=eUtXAUwfWrOM+nVihg1beKMCUVA4AfG6GkqZsVUH4bd+doaavG6KeMndhic6xzLr5/WGIEUT1iOHO9A5lrT/wy7Mg1yVfi7CkfNjnBHg2cYiqEuE3IxV+F7JA4XFOoP6II1QsMVqZojaU/+8aqLWVTZjEgo9dhNG94zLkehKv1TnfgTz8AIQzjNFWgY4hKoJvkq/z89XrjQxjsdRSxqPpI+sXesunACqCdxQp39vsQoSIUDrDtzdNHMRkOh53JG58cmada4p7EFkpeKXzuMHojvd/n4A1qI8vZDUjzV2LeFa0aVgWywLFo2Br5YG3YK+ucAwvn2Qic0kjQav4oyPZw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=sizgDNex5AbqWRf90FsmwsYDsSjXNGrRzQBon/StLPo=;
- b=kVgEkNIn5Mrf17wZGgK3b7dD2ctO9Nm77OtBTM7JdSoShCrtUoWomi4duL62OZLkw0oHJY37A1CUUZbQvHLWeRi9ZuKVWb4dkj+ISJuyQ5+Uti1uzSr76sFfhpkC1bqPpvuXWhZzeKsk3w6bA/zQ4P4JCFDAac/7ddBzNyj8juEJyxIfm/rODLEeEBN2/hFUgSG88nfWsXQ+n/sRv6vbWEe6h5WVe3LSEe1XP4k+8+akKYiTarSDjS2c9j7/ot/iXQ8OChJUYLxXadoPZWFdfXeg+OHMvRzXrasW7zO2I9W61EuGtZKdbr11dXGv6xd0jaVO4Nvie9waXGKR3IVrcw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 199.43.4.23) smtp.rcpttodomain=google.com smtp.mailfrom=cadence.com;
- dmarc=pass (p=none sp=none pct=100) action=none header.from=cadence.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cadence.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=sizgDNex5AbqWRf90FsmwsYDsSjXNGrRzQBon/StLPo=;
- b=Vpu/xp9b5ALgZIYh9XY4Pm3ieNEmSfdHc2oaYfOt8SBVa6YTaMBMIIUt/m2Fg7xpGiffRxM9qov70F0jSTp8d4b8HF6ZbpcCts9p6K5hvkWyw7AIB2Zw47yNbER8sSsym52pJ7UmIVP4KkfNo7Er3oYuggC1fcDtxLoRSfAAX7M=
-Received: from MWHPR04CA0052.namprd04.prod.outlook.com (2603:10b6:300:6c::14)
- by BN7PR07MB4673.namprd07.prod.outlook.com (2603:10b6:406:fa::30) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3654.12; Fri, 11 Dec
- 2020 14:42:53 +0000
-Received: from MW2NAM12FT013.eop-nam12.prod.protection.outlook.com
- (2603:10b6:300:6c:cafe::c) by MWHPR04CA0052.outlook.office365.com
- (2603:10b6:300:6c::14) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3654.12 via Frontend
- Transport; Fri, 11 Dec 2020 14:42:52 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 199.43.4.23)
- smtp.mailfrom=cadence.com; google.com; dkim=none (message not signed)
- header.d=none;google.com; dmarc=pass action=none header.from=cadence.com;
-Received-SPF: Pass (protection.outlook.com: domain of cadence.com designates
- 199.43.4.23 as permitted sender) receiver=protection.outlook.com;
- client-ip=199.43.4.23; helo=rmmaillnx1.cadence.com;
-Received: from rmmaillnx1.cadence.com (199.43.4.23) by
- MW2NAM12FT013.mail.protection.outlook.com (10.13.180.80) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3676.10 via Frontend Transport; Fri, 11 Dec 2020 14:42:52 +0000
-Received: from maileu3.global.cadence.com (maileu3.cadence.com [10.160.88.99])
-        by rmmaillnx1.cadence.com (8.14.4/8.14.4) with ESMTP id 0BBEgnkR014660
-        (version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=OK);
-        Fri, 11 Dec 2020 09:42:51 -0500
-X-CrossPremisesHeadersFilteredBySendConnector: maileu3.global.cadence.com
-Received: from maileu3.global.cadence.com (10.160.88.99) by
- maileu3.global.cadence.com (10.160.88.99) with Microsoft SMTP Server (TLS) id
- 15.0.1367.3; Fri, 11 Dec 2020 15:42:49 +0100
-Received: from vleu-orange.cadence.com (10.160.88.83) by
- maileu3.global.cadence.com (10.160.88.99) with Microsoft SMTP Server (TLS) id
- 15.0.1367.3 via Frontend Transport; Fri, 11 Dec 2020 15:42:49 +0100
-Received: from vleu-orange.cadence.com (localhost.localdomain [127.0.0.1])
-        by vleu-orange.cadence.com (8.14.4/8.14.4) with ESMTP id 0BBEgnTP003924;
-        Fri, 11 Dec 2020 15:42:49 +0100
-Received: (from nadeem@localhost)
-        by vleu-orange.cadence.com (8.14.4/8.14.4/Submit) id 0BBEgnor003923;
-        Fri, 11 Dec 2020 15:42:49 +0100
-From:   Nadeem Athani <nadeem@cadence.com>
-To:     <tjoseph@cadence.com>, <lorenzo.pieralisi@arm.com>,
-        <robh@kernel.org>, <bhelgaas@google.com>,
-        <linux-pci@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <kishon@ti.com>, <devicetree@vger.kernel.org>
-CC:     <nadeem@cadence.com>, <mparab@cadence.com>, <sjakhade@cadence.com>,
-        <pthombar@cadence.com>
-Subject: [PATCH v4 2/2] PCI: cadence: Retrain Link to work around Gen2 training defect.
-Date:   Fri, 11 Dec 2020 15:42:36 +0100
-Message-ID: <20201211144236.3825-3-nadeem@cadence.com>
-X-Mailer: git-send-email 2.15.0
-In-Reply-To: <20201211144236.3825-1-nadeem@cadence.com>
-References: <20201211144236.3825-1-nadeem@cadence.com>
-MIME-Version: 1.0
-Content-Type: text/plain
-X-OrganizationHeadersPreserved: maileu3.global.cadence.com
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 74c05c64-df95-40f7-f251-08d89de30a1b
-X-MS-TrafficTypeDiagnostic: BN7PR07MB4673:
-X-Microsoft-Antispam-PRVS: <BN7PR07MB467360CF8DDB6136485120A1D8CA0@BN7PR07MB4673.namprd07.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:2043;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: uhSHF/k8ikyUWnieyhneLNatGoNFkBhxomj8gz3/U5SZ+WQztdICuxZqIkKAS1YGVsvm3rq2VBssXeZfzHgEJzfy1oNLnkepwQAWXvVag8PID84PI7jbMDypmE61liFni20s5Tn2S0taYuHekQQg3zE6APt5PJBOoqZal5PqlgSbVqNOlRlgKQVBsjdtruANAhprSAU9Gv7JIdXLs0RCU7q7DLNeNf3Fon2NzOt120stsppFoDvS4VyHlkm4eqD/KdiBA762mwkT29oRge+8D7rWH9RF8WoousSSPof94HpHPa2Cr2mAcMsG1T8QrYnNX/P4DomLo7haqh/5Wks2jzMh1qoL9yKSUA8XJtBdUZtwvMDLoJvS1E9E9aZxD2l5UNZwPjMyQA1pk5hmtBtDuO99KLrxHsKrzrDQVqlKCw8iOVpcqWb3YtvZRnprOBq5XnD/EPnQIqXoxrt3bPNc9g==
-X-Forefront-Antispam-Report: CIP:199.43.4.23;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:rmmaillnx1.cadence.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(4636009)(376002)(346002)(136003)(36092001)(46966005)(336012)(26005)(508600001)(54906003)(5660300002)(36756003)(8936002)(426003)(70586007)(8676002)(47076004)(4326008)(86362001)(70206006)(83380400001)(2906002)(34020700004)(82310400003)(1076003)(2616005)(186003)(107886003)(42186006)(6666004)(110136005)(356005)(81166007)(36906005);DIR:OUT;SFP:1101;
-X-OriginatorOrg: cadence.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Dec 2020 14:42:52.4206
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 74c05c64-df95-40f7-f251-08d89de30a1b
-X-MS-Exchange-CrossTenant-Id: d36035c5-6ce6-4662-a3dc-e762e61ae4c9
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=d36035c5-6ce6-4662-a3dc-e762e61ae4c9;Ip=[199.43.4.23];Helo=[rmmaillnx1.cadence.com]
-X-MS-Exchange-CrossTenant-AuthSource: MW2NAM12FT013.eop-nam12.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN7PR07MB4673
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.343,18.0.737
- definitions=2020-12-11_03:2020-12-11,2020-12-11 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_check_notspam policy=outbound_check score=0 mlxscore=0
- clxscore=1015 phishscore=0 mlxlogscore=999 priorityscore=1501
- suspectscore=0 impostorscore=0 malwarescore=0 adultscore=0 spamscore=0
- lowpriorityscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2009150000 definitions=main-2012110096
+        id S1727430AbgLKO4m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Dec 2020 09:56:42 -0500
+Received: from mail.thorsis.com ([92.198.35.195]:45946 "EHLO mail.thorsis.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2391980AbgLKO4d (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 11 Dec 2020 09:56:33 -0500
+Received: from localhost (localhost [127.0.0.1])
+        by mail.thorsis.com (Postfix) with ESMTP id 86956E56;
+        Fri, 11 Dec 2020 15:55:43 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at mail.thorsis.com
+Received: from mail.thorsis.com ([127.0.0.1])
+        by localhost (mail.thorsis.com [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id 5d_HMPwfcWae; Fri, 11 Dec 2020 15:55:43 +0100 (CET)
+Received: by mail.thorsis.com (Postfix, from userid 109)
+        id DF1CD2A42; Fri, 11 Dec 2020 15:55:41 +0100 (CET)
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NO_RECEIVED,
+        NO_RELAYS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
+        version=3.4.2
+From:   Alexander Dahl <ada@thorsis.com>
+To:     Teresa Remmet <t.remmet@phytec.de>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        linux-leds@vger.kernel.org
+Subject: Re: [PATCH v3 4/4] arm64: dts: freescale: Add support for phyBOARD-Pollux-i.MX8MP
+Date:   Fri, 11 Dec 2020 15:55:33 +0100
+Message-ID: <6908071.W7BzXqEGyb@ada>
+Organization: Thorsis Technologies GmbH
+In-Reply-To: <1607694535-417799-5-git-send-email-t.remmet@phytec.de>
+References: <1607694535-417799-1-git-send-email-t.remmet@phytec.de> <1607694535-417799-5-git-send-email-t.remmet@phytec.de>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Cadence controller will not initiate autonomous speed change if strapped as
-Gen2. The Retrain Link bit is set as quirk to enable this speed change.
+Hello Teresa,
 
-Signed-off-by: Nadeem Athani <nadeem@cadence.com>
----
- drivers/pci/controller/cadence/pcie-cadence-host.c | 67 ++++++++++++++++------
- drivers/pci/controller/cadence/pcie-cadence-plat.c | 13 +++++
- drivers/pci/controller/cadence/pcie-cadence.h      | 11 +++-
- 3 files changed, 73 insertions(+), 18 deletions(-)
+I'm sorry if I was too brief in my review last time, see below.
 
-diff --git a/drivers/pci/controller/cadence/pcie-cadence-host.c b/drivers/pci/controller/cadence/pcie-cadence-host.c
-index 811c1cb2e8de..36dccf7241fe 100644
---- a/drivers/pci/controller/cadence/pcie-cadence-host.c
-+++ b/drivers/pci/controller/cadence/pcie-cadence-host.c
-@@ -77,6 +77,53 @@ static struct pci_ops cdns_pcie_host_ops = {
- 	.write		= pci_generic_config_write,
- };
- 
-+static int cdns_pcie_host_wait_for_link(struct cdns_pcie *pcie)
-+{
-+	struct device *dev = pcie->dev;
-+	int retries;
-+
-+	/* Check if the link is up or not */
-+	for (retries = 0; retries < LINK_WAIT_MAX_RETRIES; retries++) {
-+		if (cdns_pcie_link_up(pcie)) {
-+			dev_info(dev, "Link up\n");
-+			return 0;
-+		}
-+		usleep_range(LINK_WAIT_USLEEP_MIN, LINK_WAIT_USLEEP_MAX);
-+	}
-+
-+	return -ETIMEDOUT;
-+}
-+
-+static void cdns_pcie_retrain(struct cdns_pcie *pcie)
-+{
-+	u32 lnk_cap_sls, pcie_cap_off = CDNS_PCIE_RP_CAP_OFFSET;
-+	u16 lnk_stat, lnk_ctl;
-+
-+	if (cdns_pcie_host_wait_for_link(pcie))
-+		return;
-+
-+	/*
-+	 * Set retrain bit if current speed is 2.5 GB/s,
-+	 * but the PCIe root port support is > 2.5 GB/s.
-+	 */
-+
-+	lnk_cap_sls = cdns_pcie_readl(pcie, (CDNS_PCIE_RP_BASE + pcie_cap_off +
-+					     PCI_EXP_LNKCAP));
-+	if ((lnk_cap_sls & PCI_EXP_LNKCAP_SLS) <= PCI_EXP_LNKCAP_SLS_2_5GB)
-+		return;
-+
-+	lnk_stat = cdns_pcie_rp_readw(pcie, pcie_cap_off + PCI_EXP_LNKSTA);
-+	if ((lnk_stat & PCI_EXP_LNKSTA_CLS) == PCI_EXP_LNKSTA_CLS_2_5GB) {
-+		lnk_ctl = cdns_pcie_rp_readw(pcie,
-+					     pcie_cap_off + PCI_EXP_LNKCTL);
-+		lnk_ctl |= PCI_EXP_LNKCTL_RL;
-+		cdns_pcie_rp_writew(pcie, pcie_cap_off + PCI_EXP_LNKCTL,
-+				    lnk_ctl);
-+
-+		if (cdns_pcie_host_wait_for_link(pcie))
-+			return;
-+	}
-+}
- 
- static int cdns_pcie_host_init_root_port(struct cdns_pcie_rc *rc)
- {
-@@ -115,6 +162,9 @@ static int cdns_pcie_host_init_root_port(struct cdns_pcie_rc *rc)
- 	cdns_pcie_rp_writeb(pcie, PCI_CLASS_PROG, 0);
- 	cdns_pcie_rp_writew(pcie, PCI_CLASS_DEVICE, PCI_CLASS_BRIDGE_PCI);
- 
-+	if (rc->quirk_retrain_flag)
-+		cdns_pcie_retrain(pcie);
-+
- 	return 0;
- }
- 
-@@ -398,23 +448,6 @@ static int cdns_pcie_host_init(struct device *dev,
- 	return cdns_pcie_host_init_address_translation(rc);
- }
- 
--static int cdns_pcie_host_wait_for_link(struct cdns_pcie *pcie)
--{
--	struct device *dev = pcie->dev;
--	int retries;
--
--	/* Check if the link is up or not */
--	for (retries = 0; retries < LINK_WAIT_MAX_RETRIES; retries++) {
--		if (cdns_pcie_link_up(pcie)) {
--			dev_info(dev, "Link up\n");
--			return 0;
--		}
--		usleep_range(LINK_WAIT_USLEEP_MIN, LINK_WAIT_USLEEP_MAX);
--	}
--
--	return -ETIMEDOUT;
--}
--
- int cdns_pcie_host_setup(struct cdns_pcie_rc *rc)
- {
- 	struct device *dev = rc->pcie.dev;
-diff --git a/drivers/pci/controller/cadence/pcie-cadence-plat.c b/drivers/pci/controller/cadence/pcie-cadence-plat.c
-index 5fee0f89ab59..97b4b4f98fa4 100644
---- a/drivers/pci/controller/cadence/pcie-cadence-plat.c
-+++ b/drivers/pci/controller/cadence/pcie-cadence-plat.c
-@@ -28,6 +28,7 @@ struct cdns_plat_pcie {
- 
- struct cdns_plat_pcie_of_data {
- 	bool is_rc;
-+	bool quirk_retrain_flag;
- };
- 
- static const struct of_device_id cdns_plat_pcie_of_match[];
-@@ -78,6 +79,7 @@ static int cdns_plat_pcie_probe(struct platform_device *pdev)
- 		rc = pci_host_bridge_priv(bridge);
- 		rc->pcie.dev = dev;
- 		rc->pcie.ops = &cdns_plat_ops;
-+		rc->quirk_retrain_flag = data->quirk_retrain_flag;
- 		cdns_plat_pcie->pcie = &rc->pcie;
- 		cdns_plat_pcie->is_rc = is_rc;
- 
-@@ -156,6 +158,13 @@ static void cdns_plat_pcie_shutdown(struct platform_device *pdev)
- 
- static const struct cdns_plat_pcie_of_data cdns_plat_pcie_host_of_data = {
- 	.is_rc = true,
-+	.quirk_retrain_flag = false,
-+};
-+
-+static const struct cdns_plat_pcie_of_data
-+		    cdns_plat_pcie_host_quirk_retrain_of_data = {
-+	.is_rc = true,
-+	.quirk_retrain_flag = true,
- };
- 
- static const struct cdns_plat_pcie_of_data cdns_plat_pcie_ep_of_data = {
-@@ -167,6 +176,10 @@ static const struct of_device_id cdns_plat_pcie_of_match[] = {
- 		.compatible = "cdns,cdns-pcie-host",
- 		.data = &cdns_plat_pcie_host_of_data,
- 	},
-+	{
-+		.compatible = "cdns,cdns-pcie-host-quirk-retrain",
-+		.data = &cdns_plat_pcie_host_quirk_retrain_of_data,
-+	},
- 	{
- 		.compatible = "cdns,cdns-pcie-ep",
- 		.data = &cdns_plat_pcie_ep_of_data,
-diff --git a/drivers/pci/controller/cadence/pcie-cadence.h b/drivers/pci/controller/cadence/pcie-cadence.h
-index 30eba6cafe2c..0f29128a5d0a 100644
---- a/drivers/pci/controller/cadence/pcie-cadence.h
-+++ b/drivers/pci/controller/cadence/pcie-cadence.h
-@@ -119,7 +119,7 @@
-  * Root Port Registers (PCI configuration space for the root port function)
-  */
- #define CDNS_PCIE_RP_BASE	0x00200000
--
-+#define CDNS_PCIE_RP_CAP_OFFSET 0xc0
- 
- /*
-  * Address Translation Registers
-@@ -291,6 +291,7 @@ struct cdns_pcie {
-  * @device_id: PCI device ID
-  * @avail_ib_bar: Satus of RP_BAR0, RP_BAR1 and	RP_NO_BAR if it's free or
-  *                available
-+ * @quirk_retrain_flag: Retrain link as quirk for PCIe Gen2
-  */
- struct cdns_pcie_rc {
- 	struct cdns_pcie	pcie;
-@@ -299,6 +300,7 @@ struct cdns_pcie_rc {
- 	u32			vendor_id;
- 	u32			device_id;
- 	bool			avail_ib_bar[CDNS_PCIE_RP_MAX_IB];
-+	bool			quirk_retrain_flag;
- };
- 
- /**
-@@ -414,6 +416,13 @@ static inline void cdns_pcie_rp_writew(struct cdns_pcie *pcie,
- 	cdns_pcie_write_sz(addr, 0x2, value);
- }
- 
-+static inline u16 cdns_pcie_rp_readw(struct cdns_pcie *pcie, u32 reg)
-+{
-+	void __iomem *addr = pcie->reg_base + CDNS_PCIE_RP_BASE + reg;
-+
-+	return cdns_pcie_read_sz(addr, 0x2);
-+}
-+
- /* Endpoint Function register access */
- static inline void cdns_pcie_ep_fn_writeb(struct cdns_pcie *pcie, u8 fn,
- 					  u32 reg, u8 value)
--- 
-2.15.0
+Am Freitag, 11. Dezember 2020, 14:48:55 CET schrieb Teresa Remmet:
+> Add initial support for phyBOARD-Pollux-i.MX8MP.
+> Supported basic features:
+> 	* eMMC
+> 	* i2c EEPROM
+> 	* i2c RTC
+> 	* i2c LED
+> 	* PMIC
+> 	* debug UART
+> 	* SD card
+> 	* 1Gbit Ethernet (fec)
+> 	* watchdog
+>=20
+> Signed-off-by: Teresa Remmet <t.remmet@phytec.de>
+> Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+> ---
+>  arch/arm64/boot/dts/freescale/Makefile             |   1 +
+>  .../dts/freescale/imx8mp-phyboard-pollux-rdk.dts   | 163 ++++++++++++
+>  .../boot/dts/freescale/imx8mp-phycore-som.dtsi     | 296
+> +++++++++++++++++++++ 3 files changed, 460 insertions(+)
+>  create mode 100644
+> arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dts create mode
+> 100644 arch/arm64/boot/dts/freescale/imx8mp-phycore-som.dtsi
+>=20
+> diff --git a/arch/arm64/boot/dts/freescale/Makefile
+> b/arch/arm64/boot/dts/freescale/Makefile index acfb8af45912..a43b496678be
+> 100644
+> --- a/arch/arm64/boot/dts/freescale/Makefile
+> +++ b/arch/arm64/boot/dts/freescale/Makefile
+> @@ -37,6 +37,7 @@ dtb-$(CONFIG_ARCH_MXC) +=3D imx8mn-evk.dtb
+>  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mn-ddr4-evk.dtb
+>  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mn-var-som-symphony.dtb
+>  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-evk.dtb
+> +dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-phyboard-pollux-rdk.dtb
+>  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mq-evk.dtb
+>  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mq-hummingboard-pulse.dtb
+>  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mq-librem5-devkit.dtb
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dts
+> b/arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dts new file
+> mode 100644
+> index 000000000000..e92868c10526
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dts
+> @@ -0,0 +1,163 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (C) 2020 PHYTEC Messtechnik GmbH
+> + * Author: Teresa Remmet <t.remmet@phytec.de>
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include <dt-bindings/leds/leds-pca9532.h>
+> +#include <dt-bindings/pwm/pwm.h>
+> +#include "imx8mp-phycore-som.dtsi"
+> +
+> +/ {
+> +	model =3D "PHYTEC phyBOARD-Pollux i.MX8MP";
+> +	compatible =3D "phytec,imx8mp-phyboard-pollux-rdk",
+> +		     "phytec,imx8mp-phycore-som", "fsl,imx8mp";
+> +
+> +	chosen {
+> +		stdout-path =3D &uart2;
+> +	};
+> +
+> +	reg_usdhc2_vmmc: regulator-usdhc2 {
+> +		compatible =3D "regulator-fixed";
+> +		pinctrl-names =3D "default";
+> +		pinctrl-0 =3D <&pinctrl_reg_usdhc2_vmmc>;
+> +		regulator-name =3D "VSD_3V3";
+> +		regulator-min-microvolt =3D <3300000>;
+> +		regulator-max-microvolt =3D <3300000>;
+> +		gpio =3D <&gpio2 19 GPIO_ACTIVE_HIGH>;
+> +		enable-active-high;
+> +		startup-delay-us =3D <100>;
+> +		off-on-delay-us =3D <12000>;
+> +	};
+> +};
+> +
+> +&i2c2 {
+> +	clock-frequency =3D <400000>;
+> +	pinctrl-names =3D "default";
+> +	pinctrl-0 =3D <&pinctrl_i2c2>;
+> +	pinctrl-1 =3D <&pinctrl_i2c2_gpio>;
+> +	sda-gpios =3D <&gpio5 17 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+> +	scl-gpios =3D <&gpio5 16 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+> +	status =3D "okay";
+> +
+> +	eeprom@51 {
+> +		compatible =3D "atmel,24c02";
+> +		reg =3D <0x51>;
+> +		pagesize =3D <16>;
+> +		status =3D "okay";
+> +	};
+> +
+> +	leds@62 {
+> +		compatible =3D "nxp,pca9533";
+> +		reg =3D <0x62>;
+> +		status =3D "okay";
+> +
+> +		led1 {
+> +			type =3D <PCA9532_TYPE_LED>;
+> +		};
+> +
+> +		led2 {
+> +			type =3D <PCA9532_TYPE_LED>;
+> +		};
+> +
+> +		led3 {
+> +			type =3D <PCA9532_TYPE_LED>;
+> +		};
+> +	};
+
+You just removed the "label" property. Now the label is generated=20
+automatically (which is the preferred way), but you did neither add the=20
+property "color" nor "function", so the label will be constructed from the=
+=20
+node name only.
+
+Well I just saw the binding for that LED controller is not converted to yam=
+l=20
+yet =E2=80=A6 Documentation/devicetree/bindings/leds/leds-pca9532.txt
+
+Anyways, the modern approach would look like somehow like this:
+
+                led-0 {
+                        function =3D LED_FUNCTION_ALARM;
+                        color =3D <LED_COLOR_ID_RED>;
+                };
+
+                led-1 {
+                        function =3D LED_FUNCTION_STATUS;
+                        color =3D <LED_COLOR_ID_GREEN>;
+                };
+
+                led-2 {
+                        function =3D LED_FUNCTION_INDICATOR;
+                        color =3D <LED_COLOR_ID_RED>;
+                        function-enumerator =3D <1>;
+                };
+
+                led-3 {
+                        function =3D LED_FUNCTION_INDICATOR;
+                        color =3D <LED_COLOR_ID_RED>;
+                        function-enumerator =3D <2>;
+                };
+
+Hope that helps, for more see Documentation/devicetree/bindings/leds and=20
+especially the bindings already converted to yaml. The available macros are=
+ in=20
+include/dt-bindings/leds/common.h=20
+
+Maybe just add the colors for now, if you're not sure what the function sho=
+uld=20
+be. As far as I could see the driver for that LED controller does not yet=20
+support multicolor, but I added linux-leds to Cc, maybe someone over there=
+=20
+knows more?
+
+Sorry to nag about this, but I think it's better to not introduce new dts=20
+files with deprecated properties. If that kind of feedback is not desired,=
+=20
+please let me know.
+
+Greets
+Alex
+
+> +};
+> +
+> +&snvs_pwrkey {
+> +	status =3D "okay";
+> +};
+> +
+> +/* debug console */
+> +&uart2 {
+> +	pinctrl-names =3D "default";
+> +	pinctrl-0 =3D <&pinctrl_uart2>;
+> +	status =3D "okay";
+> +};
+> +
+> +/* SD-Card */
+> +&usdhc2 {
+> +	pinctrl-names =3D "default", "state_100mhz", "state_200mhz";
+> +	pinctrl-0 =3D <&pinctrl_usdhc2>, <&pinctrl_usdhc2_pins>;
+> +	pinctrl-1 =3D <&pinctrl_usdhc2_100mhz>, <&pinctrl_usdhc2_pins>;
+> +	pinctrl-2 =3D <&pinctrl_usdhc2_200mhz>, <&pinctrl_usdhc2_pins>;
+> +	cd-gpios =3D <&gpio2 12 GPIO_ACTIVE_LOW>;
+> +	vmmc-supply =3D <&reg_usdhc2_vmmc>;
+> +	bus-width =3D <4>;
+> +	status =3D "okay";
+> +};
+> +
+> +&iomuxc {
+> +	pinctrl_i2c2: i2c2grp {
+> +		fsl,pins =3D <
+> +			MX8MP_IOMUXC_I2C2_SCL__I2C2_SCL		0x400001c3
+> +			MX8MP_IOMUXC_I2C2_SDA__I2C2_SDA		0x400001c3
+> +		>;
+> +	};
+> +
+> +	pinctrl_i2c2_gpio: i2c2gpiogrp {
+> +		fsl,pins =3D <
+> +			MX8MP_IOMUXC_I2C2_SCL__GPIO5_IO16	0x1e3
+> +			MX8MP_IOMUXC_I2C2_SDA__GPIO5_IO17	0x1e3
+> +		>;
+> +	};
+> +
+> +	pinctrl_reg_usdhc2_vmmc: regusdhc2vmmcgrp {
+> +		fsl,pins =3D <
+> +			MX8MP_IOMUXC_SD2_RESET_B__GPIO2_IO19	0x41
+> +		>;
+> +	};
+> +
+> +	pinctrl_uart2: uart2grp {
+> +		fsl,pins =3D <
+> +			MX8MP_IOMUXC_UART2_RXD__UART2_DCE_RX	0x49
+> +			MX8MP_IOMUXC_UART2_TXD__UART2_DCE_TX	0x49
+> +		>;
+> +	};
+> +
+> +	pinctrl_usdhc2_pins: usdhc2-gpiogrp {
+> +		fsl,pins =3D <
+> +			MX8MP_IOMUXC_SD2_CD_B__GPIO2_IO12	0x1c4
+> +		>;
+> +	};
+> +
+> +	pinctrl_usdhc2: usdhc2grp {
+> +		fsl,pins =3D <
+> +			MX8MP_IOMUXC_SD2_CLK__USDHC2_CLK	0x190
+> +			MX8MP_IOMUXC_SD2_CMD__USDHC2_CMD	0x1d0
+> +			MX8MP_IOMUXC_SD2_DATA0__USDHC2_DATA0	0x1d0
+> +			MX8MP_IOMUXC_SD2_DATA1__USDHC2_DATA1	0x1d0
+> +			MX8MP_IOMUXC_SD2_DATA2__USDHC2_DATA2	0x1d0
+> +			MX8MP_IOMUXC_SD2_DATA3__USDHC2_DATA3	0x1d0
+> +			MX8MP_IOMUXC_GPIO1_IO04__USDHC2_VSELECT	0xc1
+> +		>;
+> +	};
+> +
+> +	pinctrl_usdhc2_100mhz: usdhc2-100mhzgrp {
+> +		fsl,pins =3D <
+> +			MX8MP_IOMUXC_SD2_CLK__USDHC2_CLK	0x194
+> +			MX8MP_IOMUXC_SD2_CMD__USDHC2_CMD	0x1d4
+> +			MX8MP_IOMUXC_SD2_DATA0__USDHC2_DATA0	0x1d4
+> +			MX8MP_IOMUXC_SD2_DATA1__USDHC2_DATA1	0x1d4
+> +			MX8MP_IOMUXC_SD2_DATA2__USDHC2_DATA2	0x1d4
+> +			MX8MP_IOMUXC_SD2_DATA3__USDHC2_DATA3	0x1d4
+> +			MX8MP_IOMUXC_GPIO1_IO04__USDHC2_VSELECT	0xc1
+> +		>;
+> +	};
+> +
+> +	pinctrl_usdhc2_200mhz: usdhc2-200mhzgrp {
+> +		fsl,pins =3D <
+> +			MX8MP_IOMUXC_SD2_CLK__USDHC2_CLK	0x196
+> +			MX8MP_IOMUXC_SD2_CMD__USDHC2_CMD	0x1d6
+> +			MX8MP_IOMUXC_SD2_DATA0__USDHC2_DATA0	0x1d6
+> +			MX8MP_IOMUXC_SD2_DATA1__USDHC2_DATA1	0x1d6
+> +			MX8MP_IOMUXC_SD2_DATA2__USDHC2_DATA2	0x1d6
+> +			MX8MP_IOMUXC_SD2_DATA3__USDHC2_DATA3	0x1d6
+> +			MX8MP_IOMUXC_GPIO1_IO04__USDHC2_VSELECT	0xc1
+> +		>;
+> +	};
+> +};
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-phycore-som.dtsi
+> b/arch/arm64/boot/dts/freescale/imx8mp-phycore-som.dtsi new file mode
+> 100644
+> index 000000000000..8618df68b1e5
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/freescale/imx8mp-phycore-som.dtsi
+> @@ -0,0 +1,296 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (C) 2020 PHYTEC Messtechnik GmbH
+> + * Author: Teresa Remmet <t.remmet@phytec.de>
+> + */
+> +
+> +#include <dt-bindings/net/ti-dp83867.h>
+> +#include "imx8mp.dtsi"
+> +
+> +/ {
+> +	model =3D "PHYTEC phyCORE-i.MX8MP";
+> +	compatible =3D "phytec,imx8mp-phycore-som", "fsl,imx8mp";
+> +
+> +	aliases {
+> +		rtc0 =3D &rv3028;
+> +		rtc1 =3D &snvs_rtc;
+> +	};
+> +
+> +	memory@40000000 {
+> +		device_type =3D "memory";
+> +		reg =3D <0x0 0x40000000 0 0x80000000>;
+> +	};
+> +};
+> +
+> +&A53_0 {
+> +	cpu-supply =3D <&buck2>;
+> +};
+> +
+> +&A53_1 {
+> +	cpu-supply =3D <&buck2>;
+> +};
+> +
+> +&A53_2 {
+> +	cpu-supply =3D <&buck2>;
+> +};
+> +
+> +&A53_3 {
+> +	cpu-supply =3D <&buck2>;
+> +};
+> +
+> +/* ethernet 1 */
+> +&fec {
+> +	pinctrl-names =3D "default";
+> +	pinctrl-0 =3D <&pinctrl_fec>;
+> +	phy-mode =3D "rgmii-id";
+> +	phy-handle =3D <&ethphy1>;
+> +	fsl,magic-packet;
+> +	status =3D "okay";
+> +
+> +	mdio {
+> +		#address-cells =3D <1>;
+> +		#size-cells =3D <0>;
+> +
+> +		ethphy1: ethernet-phy@0 {
+> +			compatible =3D "ethernet-phy-ieee802.3-c22";
+> +			reg =3D <0>;
+> +			interrupt-parent =3D <&gpio1>;
+> +			interrupts =3D <15 IRQ_TYPE_EDGE_FALLING>;
+> +			ti,rx-internal-delay =3D <DP83867_RGMIIDCTL_2_00_NS>;
+> +			ti,tx-internal-delay =3D <DP83867_RGMIIDCTL_2_00_NS>;
+> +			ti,fifo-depth =3D <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
+> +			ti,clk-output-sel =3D <DP83867_CLK_O_SEL_OFF>;
+> +			enet-phy-lane-no-swap;
+> +		};
+> +	};
+> +};
+> +
+> +&i2c1 {
+> +	clock-frequency =3D <400000>;
+> +	pinctrl-names =3D "default";
+> +	pinctrl-0 =3D <&pinctrl_i2c1>;
+> +	pinctrl-1 =3D <&pinctrl_i2c1_gpio>;
+> +	sda-gpios =3D <&gpio5 15 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+> +	scl-gpios =3D <&gpio5 14 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+> +	status =3D "okay";
+> +
+> +	pmic: pmic@25 {
+> +		reg =3D <0x25>;
+> +		compatible =3D "nxp,pca9450c";
+> +		pinctrl-names =3D "default";
+> +		pinctrl-0 =3D <&pinctrl_pmic>;
+> +		interrupt-parent =3D <&gpio4>;
+> +		interrupts =3D <18 IRQ_TYPE_LEVEL_LOW>;
+> +
+> +		regulators {
+> +			buck1: BUCK1 {
+> +				regulator-compatible =3D "BUCK1";
+> +				regulator-min-microvolt =3D <600000>;
+> +				regulator-max-microvolt =3D <2187500>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +				regulator-ramp-delay =3D <3125>;
+> +			};
+> +
+> +			buck2: BUCK2 {
+> +				regulator-compatible =3D "BUCK2";
+> +				regulator-min-microvolt =3D <600000>;
+> +				regulator-max-microvolt =3D <2187500>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +				regulator-ramp-delay =3D <3125>;
+> +			};
+> +
+> +			buck4: BUCK4 {
+> +				regulator-compatible =3D "BUCK4";
+> +				regulator-min-microvolt =3D <600000>;
+> +				regulator-max-microvolt =3D <3400000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			buck5: BUCK5 {
+> +				regulator-compatible =3D "BUCK5";
+> +				regulator-min-microvolt =3D <600000>;
+> +				regulator-max-microvolt =3D <3400000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			buck6: BUCK6 {
+> +				regulator-compatible =3D "BUCK6";
+> +				regulator-min-microvolt =3D <600000>;
+> +				regulator-max-microvolt =3D <3400000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			ldo1: LDO1 {
+> +				regulator-compatible =3D "LDO1";
+> +				regulator-min-microvolt =3D <1600000>;
+> +				regulator-max-microvolt =3D <3300000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			ldo2: LDO2 {
+> +				regulator-compatible =3D "LDO2";
+> +				regulator-min-microvolt =3D <800000>;
+> +				regulator-max-microvolt =3D <1150000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			ldo3: LDO3 {
+> +				regulator-compatible =3D "LDO3";
+> +				regulator-min-microvolt =3D <800000>;
+> +				regulator-max-microvolt =3D <3300000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			ldo4: LDO4 {
+> +				regulator-compatible =3D "LDO4";
+> +				regulator-min-microvolt =3D <800000>;
+> +				regulator-max-microvolt =3D <3300000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			ldo5: LDO5 {
+> +				regulator-compatible =3D "LDO5";
+> +				regulator-min-microvolt =3D <1800000>;
+> +				regulator-max-microvolt =3D <3300000>;
+> +			};
+> +		};
+> +	};
+> +
+> +	eeprom@51 {
+> +		compatible =3D "atmel,24c32";
+> +		reg =3D <0x51>;
+> +		pagesize =3D <32>;
+> +		status =3D "okay";
+> +	};
+> +
+> +	rv3028: rtc@52 {
+> +		compatible =3D "microcrystal,rv3028";
+> +		reg =3D <0x52>;
+> +		trickle-resistor-ohms =3D <1000>;
+> +		enable-level-switching-mode;
+> +		status =3D "okay";
+> +	};
+> +};
+> +
+> +/* eMMC */
+> +&usdhc3 {
+> +	pinctrl-names =3D "default", "state_100mhz", "state_200mhz";
+> +	pinctrl-0 =3D <&pinctrl_usdhc3>;
+> +	pinctrl-1 =3D <&pinctrl_usdhc3_100mhz>;
+> +	pinctrl-2 =3D <&pinctrl_usdhc3_200mhz>;
+> +	bus-width =3D <8>;
+> +	non-removable;
+> +	status =3D "okay";
+> +};
+> +
+> +&wdog1 {
+> +	pinctrl-names =3D "default";
+> +	pinctrl-0 =3D <&pinctrl_wdog>;
+> +	fsl,ext-reset-output;
+> +	status =3D "okay";
+> +};
+> +
+> +&iomuxc {
+> +	pinctrl_fec: fecgrp {
+> +		fsl,pins =3D <
+> +			MX8MP_IOMUXC_SAI1_RXD2__ENET1_MDC		0x3
+> +			MX8MP_IOMUXC_SAI1_RXD3__ENET1_MDIO		0x3
+> +			MX8MP_IOMUXC_SAI1_RXD4__ENET1_RGMII_RD0		0x91
+> +			MX8MP_IOMUXC_SAI1_RXD5__ENET1_RGMII_RD1		0x91
+> +			MX8MP_IOMUXC_SAI1_RXD6__ENET1_RGMII_RD2		0x91
+> +			MX8MP_IOMUXC_SAI1_RXD7__ENET1_RGMII_RD3		0x91
+> +			MX8MP_IOMUXC_SAI1_TXC__ENET1_RGMII_RXC		0x91
+> +			MX8MP_IOMUXC_SAI1_TXFS__ENET1_RGMII_RX_CTL	0x91
+> +			MX8MP_IOMUXC_SAI1_TXD0__ENET1_RGMII_TD0		0x1f
+> +			MX8MP_IOMUXC_SAI1_TXD1__ENET1_RGMII_TD1		0x1f
+> +			MX8MP_IOMUXC_SAI1_TXD2__ENET1_RGMII_TD2		0x1f
+> +			MX8MP_IOMUXC_SAI1_TXD3__ENET1_RGMII_TD3		0x1f
+> +			MX8MP_IOMUXC_SAI1_TXD4__ENET1_RGMII_TX_CTL	0x1f
+> +			MX8MP_IOMUXC_SAI1_TXD5__ENET1_RGMII_TXC		0x1f
+> +			MX8MP_IOMUXC_GPIO1_IO15__GPIO1_IO15		0x11
+> +		>;
+> +	};
+> +
+> +	pinctrl_i2c1: i2c1grp {
+> +		fsl,pins =3D <
+> +			MX8MP_IOMUXC_I2C1_SCL__I2C1_SCL		0x400001c3
+> +			MX8MP_IOMUXC_I2C1_SDA__I2C1_SDA		0x400001c3
+> +		>;
+> +	};
+> +
+> +	pinctrl_i2c1_gpio: i2c1gpiogrp {
+> +		fsl,pins =3D <
+> +			MX8MP_IOMUXC_I2C1_SCL__GPIO5_IO14	0x1e3
+> +			MX8MP_IOMUXC_I2C1_SDA__GPIO5_IO15	0x1e3
+> +		>;
+> +	};
+> +
+> +	pinctrl_pmic: pmicirqgrp {
+> +		fsl,pins =3D <
+> +			MX8MP_IOMUXC_SAI1_TXD6__GPIO4_IO18	0x141
+> +		>;
+> +	};
+> +
+> +	pinctrl_usdhc3: usdhc3grp {
+> +		fsl,pins =3D <
+> +			MX8MP_IOMUXC_NAND_WE_B__USDHC3_CLK	0x190
+> +			MX8MP_IOMUXC_NAND_WP_B__USDHC3_CMD	0x1d0
+> +			MX8MP_IOMUXC_NAND_DATA04__USDHC3_DATA0	0x1d0
+> +			MX8MP_IOMUXC_NAND_DATA05__USDHC3_DATA1	0x1d0
+> +			MX8MP_IOMUXC_NAND_DATA06__USDHC3_DATA2	0x1d0
+> +			MX8MP_IOMUXC_NAND_DATA07__USDHC3_DATA3	0x1d0
+> +			MX8MP_IOMUXC_NAND_RE_B__USDHC3_DATA4	0x1d0
+> +			MX8MP_IOMUXC_NAND_CE2_B__USDHC3_DATA5	0x1d0
+> +			MX8MP_IOMUXC_NAND_CE3_B__USDHC3_DATA6	0x1d0
+> +			MX8MP_IOMUXC_NAND_CLE__USDHC3_DATA7	0x1d0
+> +			MX8MP_IOMUXC_NAND_CE1_B__USDHC3_STROBE	0x190
+> +		>;
+> +	};
+> +
+> +	pinctrl_usdhc3_100mhz: usdhc3-100mhzgrp {
+> +		fsl,pins =3D <
+> +			MX8MP_IOMUXC_NAND_WE_B__USDHC3_CLK	0x194
+> +			MX8MP_IOMUXC_NAND_WP_B__USDHC3_CMD	0x1d4
+> +			MX8MP_IOMUXC_NAND_DATA04__USDHC3_DATA0	0x1d4
+> +			MX8MP_IOMUXC_NAND_DATA05__USDHC3_DATA1	0x1d4
+> +			MX8MP_IOMUXC_NAND_DATA06__USDHC3_DATA2	0x1d4
+> +			MX8MP_IOMUXC_NAND_DATA07__USDHC3_DATA3	0x1d4
+> +			MX8MP_IOMUXC_NAND_RE_B__USDHC3_DATA4	0x1d4
+> +			MX8MP_IOMUXC_NAND_CE2_B__USDHC3_DATA5	0x1d4
+> +			MX8MP_IOMUXC_NAND_CE3_B__USDHC3_DATA6	0x1d4
+> +			MX8MP_IOMUXC_NAND_CLE__USDHC3_DATA7	0x1d4
+> +			MX8MP_IOMUXC_NAND_CE1_B__USDHC3_STROBE	0x194
+> +		>;
+> +	};
+> +
+> +	pinctrl_usdhc3_200mhz: usdhc3-200mhzgrp {
+> +		fsl,pins =3D <
+> +			MX8MP_IOMUXC_NAND_WE_B__USDHC3_CLK	0x196
+> +			MX8MP_IOMUXC_NAND_WP_B__USDHC3_CMD	0x1d6
+> +			MX8MP_IOMUXC_NAND_DATA04__USDHC3_DATA0	0x1d6
+> +			MX8MP_IOMUXC_NAND_DATA05__USDHC3_DATA1	0x1d6
+> +			MX8MP_IOMUXC_NAND_DATA06__USDHC3_DATA2	0x1d6
+> +			MX8MP_IOMUXC_NAND_DATA07__USDHC3_DATA3	0x1d6
+> +			MX8MP_IOMUXC_NAND_RE_B__USDHC3_DATA4	0x1d6
+> +			MX8MP_IOMUXC_NAND_CE2_B__USDHC3_DATA5	0x1d6
+> +			MX8MP_IOMUXC_NAND_CE3_B__USDHC3_DATA6	0x1d6
+> +			MX8MP_IOMUXC_NAND_CLE__USDHC3_DATA7	0x1d6
+> +			MX8MP_IOMUXC_NAND_CE1_B__USDHC3_STROBE	0x196
+> +		>;
+> +	};
+> +
+> +	pinctrl_wdog: wdoggrp {
+> +		fsl,pins =3D <
+> +			MX8MP_IOMUXC_GPIO1_IO02__WDOG1_WDOG_B	0xc6
+> +		>;
+> +	};
+> +};
+
+
+=2D-=20
+Alexander Dahl           Thorsis Technologies GmbH   T +49 391 544 563 1000
+Industrieautomation      Oststr. 18                  F +49 391 544 563 9099
+T +49 391 544 563 3036   39114 Magdeburg             https://www.thorsis.co=
+m/
+
+Sitz der Gesellschaft: Magdeburg
+Amtsgericht Stendal HRB 110339
+Gesch=C3=A4ftsf=C3=BChrer: Dipl.-Ing. Thorsten Szczepanski
+
+
 
