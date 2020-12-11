@@ -2,70 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A5BE22D6EDD
-	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 04:48:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 94FF82D6EDF
+	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 04:49:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2395221AbgLKDrw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Dec 2020 22:47:52 -0500
-Received: from mail-oi1-f196.google.com ([209.85.167.196]:46803 "EHLO
-        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2405305AbgLKDr2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 22:47:28 -0500
-Received: by mail-oi1-f196.google.com with SMTP id k2so8355888oic.13;
-        Thu, 10 Dec 2020 19:47:12 -0800 (PST)
+        id S2395233AbgLKDsY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Dec 2020 22:48:24 -0500
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:45383 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2395229AbgLKDr4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 22:47:56 -0500
+Received: by mail-ot1-f68.google.com with SMTP id h18so7081595otq.12;
+        Thu, 10 Dec 2020 19:47:40 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=iwVzMGtpSHL3nSep40GqM93jnUr637ufBEvmc9oL7BQ=;
-        b=FMaEXNvtavQr/FYZpDLB9d62ClxQcjXdjPtS8pNIfIgsGuMflKAJBYfmbxM0ECiBNM
-         kUP9JUKYP4MCRHGCxkQ3saDEDk8GjT2MyQo5qW15+v1PEc7UPQSZ5TxJIpzHD94CFwnX
-         s3oz9LbcsR1DRWlRRdL7F53JcpuAFNi7tQhP5W6WbPsK2envW8GWLwocQ4gSB1pPgPis
-         lmDkbXuR8RH89EfXwXi8wCCJazGz0bI8UoO7sF7EqGJI/I2fp0K44z72mGCxY8Yofmtp
-         DiK4/I1uWlEDKx/pk21/kbiXTZ5GhGuG0gwuKFYDc/njf0nE5WBqK7g04/AXSUW2zHC3
-         EPgQ==
-X-Gm-Message-State: AOAM531gbLMIN6c8NAZGWLp3Fh3Dav9hoX6NqVxHoJc94Y7png4WlZHz
-        JS0MNwDMyWmv3P3aun/85w==
-X-Google-Smtp-Source: ABdhPJxbn2bDUr56MHJSyIKL8JYbMykYRWoRV70y5sdY/tAEPi8Rt3Ge/B+Dd2pOmwAWcSlh6S+KsQ==
-X-Received: by 2002:aca:ad85:: with SMTP id w127mr7853659oie.102.1607658407097;
-        Thu, 10 Dec 2020 19:46:47 -0800 (PST)
+        bh=ZwzlRu7XT64jzkln5zNA8fU/0gIXgr88ZmNCsytqy8k=;
+        b=koIwS9rWqEn/kHlRLpoOiJJZMsKjvBYWD1QjDS84D5/U094L1g/YLN6dsVvEjV9xJ6
+         uQ8r+tmQq6/xr0lGOgSBjNvlNe44kwqgk7DvzgCZ0lvMzSJFXsMkindWC5tBA4nSk6tN
+         mZUw810i+Kvtl0EuVdZfHM6yrd3oBo4JQjq20hRABq9HfOpi2nkZep+nbf5qKE9J1YlS
+         id5TwARSyiZ1on8OYrAPEZCSZ+My8WAmLFh2Ilk3N5nrrG7O2Ds8IuLf0QrmMhFx3S1J
+         h/IWOMO2PnXkyDOrdx3JzxEptGnL3a4aPaSdyl2CMc/ximTDuJvwR6SkbgN78ZoNPjFc
+         Rb0A==
+X-Gm-Message-State: AOAM531WBCBNfljpavlbG/usVDRePB+yDFgfDV+uFTWkAWB8OLpDnWHW
+        L2nse1TT0C8Xpu3jtUpgDQ==
+X-Google-Smtp-Source: ABdhPJygjoh6SmZ/btWfAkyVXnqcEeardEM0RdNav2rSCXwN4/B/XBR7OLLAq9AjNOH8/HnTPoz85g==
+X-Received: by 2002:a9d:2de9:: with SMTP id g96mr8336782otb.209.1607658435276;
+        Thu, 10 Dec 2020 19:47:15 -0800 (PST)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id s26sm1583997otd.8.2020.12.10.19.46.45
+        by smtp.gmail.com with ESMTPSA id n16sm759177oov.23.2020.12.10.19.47.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Dec 2020 19:46:45 -0800 (PST)
-Received: (nullmailer pid 3603005 invoked by uid 1000);
-        Fri, 11 Dec 2020 03:46:44 -0000
-Date:   Thu, 10 Dec 2020 21:46:44 -0600
+        Thu, 10 Dec 2020 19:47:12 -0800 (PST)
+Received: (nullmailer pid 3603636 invoked by uid 1000);
+        Fri, 11 Dec 2020 03:47:10 -0000
+Date:   Thu, 10 Dec 2020 21:47:10 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Yash Shah <yash.shah@sifive.com>
-Cc:     anup@brainfault.org, bp@suse.de, paul.walmsley@sifive.com,
-        sagar.kadam@sifive.com, sachin.ghadi@sifive.com,
-        devicetree@vger.kernel.org, palmer@dabbelt.com,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-        robh+dt@kernel.org, aou@eecs.berkeley.edu,
-        Jonathan.Cameron@huawei.com, sam@ravnborg.org, wsa@kernel.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: riscv: Update l2 cache DT
- documentation to add support for SiFive FU740
-Message-ID: <20201211034644.GA3602957@robh.at.kernel.org>
-References: <1607596083-81480-1-git-send-email-yash.shah@sifive.com>
- <1607596083-81480-2-git-send-email-yash.shah@sifive.com>
+To:     Baruch Siach <baruch@tkos.co.il>
+Cc:     Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>, devicetree@vger.kernel.org,
+        Lee Jones <lee.jones@linaro.org>,
+        Chris Packham <chris.packham@alliedtelesis.co.nz>,
+        Ralph Sennhauser <ralph.sennhauser@gmail.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        linux-pwm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>, Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v4 3/3] dt-bindings: ap806: document marvell, gpio
+ pwm-offset property
+Message-ID: <20201211034710.GA3603606@robh.at.kernel.org>
+References: <cover.1607601615.git.baruch@tkos.co.il>
+ <5c2810b698c5099264b82a7f6fbed13e66062307.1607601615.git.baruch@tkos.co.il>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1607596083-81480-2-git-send-email-yash.shah@sifive.com>
+In-Reply-To: <5c2810b698c5099264b82a7f6fbed13e66062307.1607601615.git.baruch@tkos.co.il>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 10 Dec 2020 15:58:02 +0530, Yash Shah wrote:
-> The L2 cache controller in SiFive FU740 has 4 ECC interrupt sources as
-> compared to 3 in FU540. Update the DT documentation accordingly with
-> "compatible" and "interrupt" property changes.
+On Thu, 10 Dec 2020 14:16:00 +0200, Baruch Siach wrote:
+> Update the example as well. Add the '#pwm-cells' and 'clocks' properties
+> for a complete working example.
 > 
-> Signed-off-by: Yash Shah <yash.shah@sifive.com>
+> Signed-off-by: Baruch Siach <baruch@tkos.co.il>
 > ---
->  .../devicetree/bindings/riscv/sifive-l2-cache.yaml | 34 +++++++++++++++++++---
->  1 file changed, 30 insertions(+), 4 deletions(-)
+>  .../bindings/arm/marvell/ap80x-system-controller.txt      | 8 ++++++++
+>  1 file changed, 8 insertions(+)
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
