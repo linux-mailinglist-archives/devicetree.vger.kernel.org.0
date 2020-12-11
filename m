@@ -2,99 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 097A72D821E
-	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 23:32:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E6E712D8258
+	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 23:52:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2406946AbgLKWbP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Dec 2020 17:31:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34236 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2406945AbgLKWbN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Dec 2020 17:31:13 -0500
-Received: from mail-yb1-xb44.google.com (mail-yb1-xb44.google.com [IPv6:2607:f8b0:4864:20::b44])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4269C061793
-        for <devicetree@vger.kernel.org>; Fri, 11 Dec 2020 14:30:32 -0800 (PST)
-Received: by mail-yb1-xb44.google.com with SMTP id x2so9448870ybt.11
-        for <devicetree@vger.kernel.org>; Fri, 11 Dec 2020 14:30:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=DP4u3vyOK1sWRkeFBHWzyC0Qo+Tg4a0hdWg9PLXt3LI=;
-        b=dQ+wUD6qOEbwif75TWsTM+enWTSOPm3SNDSssvHnd0zoAJo1h7QfGOOoD9syKnkLVl
-         C27SrGgxPVqok7to50/jRSkqMmigLyVJ20yuhqtreHsjd9pPRkV7fJG3ksl1tlEBU0qv
-         72q2WYPDiMk3NFLxaHWu0hykAN8QuyjAWDOVTrTGBZa27IZf4OWtQOFJpkaGcqmTkpum
-         u+COznp6nvTukB//0hKmDAim1qAaV7Lr7QpNlnZXCjXm54type681d1kg/EjrrGwXUea
-         ZxxlI/o2703XOzBWDWdewwdgCimXj/sCvoilcoN/rQp7Nrb0SYX6WNuQO+8BGsQeCbv7
-         yXsw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=DP4u3vyOK1sWRkeFBHWzyC0Qo+Tg4a0hdWg9PLXt3LI=;
-        b=fcV30ZO02bsqP3X2w+dsftb1BgGTfWu8gsrjMNLcaYKwNnMm42eqSFzJPB8hJvE0nf
-         EqWWs2UQLB7DUMQYiTqVKdC0EpK1NmlH9UK1k3Hy+VGns14yzKfTk1+SkXd5p6XJV63+
-         GZgN/u0zuAK9TsJTbSVxeLldGk1V9S3VOzE8nA9vSEx0SqSIbczp0u86SgsJutn5Sm6q
-         YJRyarZX6aVWbx6qDchlAAiBhVfzzl8tXx5QdZrxHK4SHT8AFUN/xgMSAWsUK0msclwn
-         5f9wTcEwh7XytFTNjkdIWkoPys0wK+uCCtjGScFptBEN/aYczNDp3Ff9ClAf/i3JTmKG
-         3lYA==
-X-Gm-Message-State: AOAM531UZD9NAGzK/0cGAKEESEMM6PRx0Kk0k8UeWYTp+Ry2kzKqV3Fd
-        CwjoaQ1FJ/4MHYxD+XYy527NDoo8n5mcHBORx8MG6A==
-X-Google-Smtp-Source: ABdhPJwi1KxiLbsYZDLOGSqH5Ut1oteRY1ce66tvlhetU1GnU1dasj0j9yrAzoEUGAb6ZstqFJ/R8Ja8XFgNVbOXVFA=
-X-Received: by 2002:a5b:b49:: with SMTP id b9mr20504737ybr.310.1607725831810;
- Fri, 11 Dec 2020 14:30:31 -0800 (PST)
+        id S2405094AbgLKWt1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Dec 2020 17:49:27 -0500
+Received: from mail.kernel.org ([198.145.29.99]:60364 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2394011AbgLKWtT (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 11 Dec 2020 17:49:19 -0500
+X-Gm-Message-State: AOAM5313Hs3LDR3j5REIZ+4NC3zAsehRiuOC+DdrzIFEyNrZCwNm4uoP
+        5tngIEUWy52Jt9j6UGbGB5cLqsey+TH8qfUwqg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1607726919;
+        bh=9kZNymVdIQdokRAKswxv73AN4tdhSwyYcUymBCQ55Ic=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=hfxGOydcbMt0JjYq6ERbodgzYugBbj5r6D8hPDOOyYvDnnQPOGwQXYqduJbwHc1Rt
+         8Eh4MdG8RgJwHYa1stna5N/rHLQE+bN32BJK6ic1Pu86SB9Jkz/K7qSz8kht1pLKMc
+         r2bm6vIJyIDi6IspadzII6gUbYNrpQKyVoHmdpcmcZtYJVbp6oSTWXDPA3gsE+wXbg
+         wLIXS5s9VJ3OltUs04v6uzu9XjbwNlR4umrcJMhSI3PI1On/t1o66Yypqx11KYwYQT
+         2JPV1Z/4bATMscD9WUVU95VkXJzEjhlPe07PuEvh9J1WHCL+T68QSjQMcf11oDa8sT
+         sNyaC7aTJAMmA==
+X-Google-Smtp-Source: ABdhPJwK8ZorGU0TFVJZH5c/4e3AauDieEoMVL2guTtxGD4PK2qnMlMawIC4UeCIoBz67Lan/AhY/UipOcj6bzR90cw=
+X-Received: by 2002:a17:906:c20f:: with SMTP id d15mr12958728ejz.341.1607726917615;
+ Fri, 11 Dec 2020 14:48:37 -0800 (PST)
 MIME-Version: 1.0
-References: <20201121020232.908850-1-saravanak@google.com> <20201121020232.908850-17-saravanak@google.com>
- <02e7047071f0b54b046ac472adeeb3fafabc643c.camel@redhat.com>
- <788ee1c7-0ea2-33ec-658e-50707f7515a6@arm.com> <CAGETcx-MsNyWWT=s1H6hDK+=QvibBLQrT9rM51y5bkomV_+G6g@mail.gmail.com>
- <813b3fbd80ad4dfee7ff8517d4829a1f@kernel.org> <CAGETcx_hPVv1iTt6q3gLmBN=q+_O6vTwxeS5Nj55Smm3FNk24Q@mail.gmail.com>
- <caf7719771210fb91565d105bd9c7e4b@kernel.org>
-In-Reply-To: <caf7719771210fb91565d105bd9c7e4b@kernel.org>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Fri, 11 Dec 2020 14:29:55 -0800
-Message-ID: <CAGETcx8Fjr-0S5kjUxYytncgQ9ZtMoeey_P680R6RPFk7-haZQ@mail.gmail.com>
-Subject: Re: [PATCH v2 16/17] driver core: Refactor fw_devlink feature
-To:     Marc Zyngier <maz@kernel.org>
-Cc:     Robin Murphy <robin.murphy@arm.com>, Qian Cai <qcai@redhat.com>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Len Brown <lenb@kernel.org>,
+References: <20201211060429.20027-1-a-govindraju@ti.com> <062c861a-b35e-06cd-2bda-a2d3f5034290@ti.com>
+In-Reply-To: <062c861a-b35e-06cd-2bda-a2d3f5034290@ti.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Fri, 11 Dec 2020 16:48:25 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJoq20v7wj0x9Nzp2dFeeEunEmschF+VTXMtPdLwg1izA@mail.gmail.com>
+Message-ID: <CAL_JsqJoq20v7wj0x9Nzp2dFeeEunEmschF+VTXMtPdLwg1izA@mail.gmail.com>
+Subject: Re: [PATCH v4] dt-bindings: usb: Add new compatible string for AM64 SoC
+To:     Aswath Govindraju <a-govindraju@ti.com>
+Cc:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Sekhar Nori <nsekhar@ti.com>,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Ard Biesheuvel <ardb@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        Stephen Rothwell <sfr@canb.auug.org.au>,
-        linux-efi <linux-efi@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
-        Tomi Valkeinen <tomi.valkeinen@ti.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Android Kernel Team <kernel-team@android.com>,
-        Linux Next Mailing List <linux-next@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+        Roger Quadros <rogerq@ti.com>,
+        Linux USB List <linux-usb@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 11, 2020 at 11:07 AM Marc Zyngier <maz@kernel.org> wrote:
+On Fri, Dec 11, 2020 at 6:04 AM Aswath Govindraju <a-govindraju@ti.com> wrote:
 >
-> On 2020-12-11 18:20, Saravana Kannan wrote:
+> Hi,
+> On 11/12/20 11:34 am, Aswath Govindraju wrote:
+> > Add compatible string in j721e-usb binding file as the same USB subsystem
+> > is present in AM64.
+> >
+> > Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+> > ---
+> >
+> > Changes since v3:
+> > - used enum instead of anyOf.
+> >
+> > Changes since v2:
+> > - added changes done over the versions.
+> >
+> > Changes since v1:
+> > - replaced the '\t' at the beginning of the lines with spaces as it was
+> >   causing the dt_binding_check to fail.
+> >
+> >  Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml | 5 +++--
+> >  1 file changed, 3 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml b/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml
+> > index 388245b91a55..1a5c7bbb40d1 100644
+> > --- a/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml
+> > +++ b/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml
+> > @@ -11,8 +11,9 @@ maintainers:
+> >
+> >  properties:
+> >    compatible:
+> > -    items:
+> > -      - const: ti,j721e-usb
+> > +    enum:
+> > +      - ti,j721e-usb
+> > +      - ti,am64-usb
+> >
 >
-> > Lol, my only contribution to the patch will be the commit text. I'll
-> > send them with reported-by, suggested-by and tested-by if no one less
-> > beats me to it.
+> I am trying to use the compatible strings in the following manner
 >
-> Teamwork!
+> ```
+> compatible = "ti,am64-usb", "ti,j721e-usb";
 >
->          M.
+> ```
+> If I use above patch I am getting an error while doing a dtbs check.
+>
+> ```
+> /home/gsaswath/src/ti-linux-kernel/arch/arm64/boot/dts/ti/k3-am642-evm.dt.yaml:
+> cdns-usb@f900000: compatible: Additional items are not allowed
+> ('ti,j721e-usb' was unexpected)
+>         From schema:
+> /home/gsaswath/src/ti-linux-kernel/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml
+> /home/gsaswath/src/ti-linux-kernel/arch/arm64/boot/dts/ti/k3-am642-evm.dt.yaml:
+> cdns-usb@f900000: compatible: ['ti,am64-usb', 'ti,j721e-usb'] is too long
+>         From schema:
+> /home/gsaswath/src/ti-linux-kernel/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml
+>
+> ```
+>
+>
+> I have looked around for examples but I am unable to find a similar
+> case. I tried using anyOf in the following manner
 
-Forgot to CC most of the folks/lists here, but patch has been sent.
+You didn't look hard enough. There are lots.
 
-https://lore.kernel.org/lkml/20201211202629.2164655-1-saravanak@google.com/
+> ```
+> compatible:
+>      anyOf:
+>         - const: ti,am64-usb
+>         - const: ti,j721e-usb
 
--Saravana
+This is really no different than a single 'enum' with the 2 values.
+'anyOf' means one or more in the list are true, but more than 1 is
+impossible here.
+
+If you have different possible lengths of values, then you need
+'oneOf' for each case and then 'items' when you have a value with
+multiple entries:
+
+oneOf:
+  - const: ti,j721e-usb
+  - items:
+      - const: ti,am64-usb
+      - const: ti,j721e-usb
+
+> ```
+>
+> But I am getting an error
+>
+> ```
+> /home/gsaswath/src/ti-linux-kernel/Documentation/devicetree/bindings/usb/ti,j721e-usb.example.dt.yaml:
+> cdns_usb@4104000: compatible: 'anyOf' conditional failed, one must be fixed:
+>         Additional items are not allowed ('ti,j721e-usb' was unexpected)
+>         ['ti,am64-usb', 'ti,j721e-usb'] is too long
+>         'ti,j721e-usb' was expected
+> ```
+>
+> Doesn't anyof mean that the compatible strings can be used in any
+> combination ??
+>
+> Thanks,
+> Aswath
+>
+> >    reg:
+> >      description: module registers
+> >
+>
