@@ -2,83 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 340E62D6E64
-	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 04:13:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AAF4C2D6E6B
+	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 04:18:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2392122AbgLKDNK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Dec 2020 22:13:10 -0500
-Received: from mail-oo1-f65.google.com ([209.85.161.65]:41028 "EHLO
-        mail-oo1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389864AbgLKDMu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 22:12:50 -0500
-Received: by mail-oo1-f65.google.com with SMTP id q6so1021228ooo.8;
-        Thu, 10 Dec 2020 19:12:35 -0800 (PST)
+        id S2395041AbgLKDR0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Dec 2020 22:17:26 -0500
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:37127 "EHLO
+        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2395038AbgLKDRZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 22:17:25 -0500
+Received: by mail-ot1-f67.google.com with SMTP id o11so7044998ote.4;
+        Thu, 10 Dec 2020 19:17:10 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=20FUrkWgYAPacYXxuWXY+xSuM7UzPwHMJmdN/diicTY=;
-        b=AGNFSUdDPq9/57f9mlK/N+NsHz3h8CYkH1WiBVo7JEzWScDSBLw+VL/ls6ZP7D81WK
-         /+HnmCvcTo9tJquaSqXe8lyhWS25rYy50gmX9TsJ0WiUhbGlFNFGPwk5fNrJ25R8AR9F
-         Ck6oxh/S/YPSdWhuPQbgVXZsKHI88/YvaEAwtuZ+3YFvePG8jUqyBO6ZWazTe72v6qsU
-         1uv9fkvhTqgNRGUb5ZY88nijAtfXNV48msEWGroUWBULcdYoCsmBf91h2o9+Ncz8chyZ
-         OAgKxXvyA6AztpAmtML+deSRgFHHM5vczS2a5wX9vWRR0+MARDKYYf+p7iqZjWGJDCO8
-         rb6A==
-X-Gm-Message-State: AOAM533xlnLqMjpzVCjigYFnoLtBzGgE9Il1jbEwlzKV5+lHMGUhdAp4
-        B07GxQkPlmTShPaqb4abdQ==
-X-Google-Smtp-Source: ABdhPJwohjal/Q+JcqCNbtBwiT+Ur1QE8QEtsOSmxZ6JD0zWUlTAcOoTlEyI60ZGWGKBfLTL5wWqQA==
-X-Received: by 2002:a4a:bc8d:: with SMTP id m13mr8457514oop.63.1607656329889;
-        Thu, 10 Dec 2020 19:12:09 -0800 (PST)
+        bh=UAQ/+yxq3lvFh3mlevVQAOgZP4fPvuW24IZd1p2z3wA=;
+        b=NClEFe11d0rBvcJNrdC4c2fiEtfprTUsfDWnTiEfj1U3V1dkTdSSrQiZpbnVeKsyV8
+         YNnP9ZyM8686+J3s8kY+DbXC/VZJBjW7Bku/wEFXcqFlBOhxTqQpLMNceZrjzWsco5XQ
+         oS/L8zEMMERkgdZQ7nte4WLyS6am2XMtMez0MiAcDaXXNovBwuuKTq4cu4TLL4MUhbHr
+         InvugUSxLamdp/pBwFvYIgTK2IhINlBWGonLQvPDopr8aKyvOdtI8X+xaL035s/o2Qhf
+         GFHRidRrCIH0IDrwHKys4iQjJjLwmNQ85HCBx++iBhQTK3TJUCNDbhy26zXTQN4uhiWz
+         DrHA==
+X-Gm-Message-State: AOAM533CbsaROBXlXMB+4rf9Xt+iO7QOtJ727vowD09i9jFTqWcXAeo4
+        KHfODH//y/qI5stFyLp9YQ==
+X-Google-Smtp-Source: ABdhPJzEyaHLlvA4GwXz6prj5x7rXBSxOvLIEtJLnus5sFylsZnfvKpaDBWHA9e5tqLVo02eOu3czQ==
+X-Received: by 2002:a9d:1f0:: with SMTP id e103mr8382432ote.74.1607656604698;
+        Thu, 10 Dec 2020 19:16:44 -0800 (PST)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id o63sm1500679ooa.10.2020.12.10.19.12.07
+        by smtp.gmail.com with ESMTPSA id l134sm830943oig.25.2020.12.10.19.16.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Dec 2020 19:12:08 -0800 (PST)
-Received: (nullmailer pid 3555218 invoked by uid 1000);
-        Fri, 11 Dec 2020 03:12:07 -0000
-Date:   Thu, 10 Dec 2020 21:12:07 -0600
+        Thu, 10 Dec 2020 19:16:43 -0800 (PST)
+Received: (nullmailer pid 3561568 invoked by uid 1000);
+        Fri, 11 Dec 2020 03:16:42 -0000
+Date:   Thu, 10 Dec 2020 21:16:42 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-Cc:     linux-media@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Helen Koike <helen.koike@collabora.com>,
-        Hans Verkuil <hans.verkuil@cisco.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
-        linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org, devel@driverdev.osuosl.org,
-        linux-sunxi@googlegroups.com, Jonathan Corbet <corbet@lwn.net>,
-        Maxime Ripard <mripard@kernel.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        kevin.lhopital@hotmail.com, linux-kernel@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Yong Deng <yong.deng@magewell.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>
-Subject: Re: [PATCH v2 16/19] dt-bindings: media: Add A83T MIPI CSI-2
- bindings documentation
-Message-ID: <20201211031207.GA3555125@robh.at.kernel.org>
-References: <20201128142839.517949-1-paul.kocialkowski@bootlin.com>
- <20201128142839.517949-17-paul.kocialkowski@bootlin.com>
+To:     Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
+Cc:     Lee Jones <lee.jones@linaro.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
+        linux-actions@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
+        linux-pm@vger.kernel.org
+Subject: Re: [PATCH v3 1/7] dt-bindings: input: Add reset-time-sec common
+ property
+Message-ID: <20201211031642.GA3556770@robh.at.kernel.org>
+References: <cover.1607216141.git.cristian.ciocaltea@gmail.com>
+ <c08349db08db67e71cf428fe7fd53624aaa0acf8.1607216141.git.cristian.ciocaltea@gmail.com>
+ <20201210033708.GA1606132@robh.at.kernel.org>
+ <20201210091350.GA322060@ubuntu2004>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201128142839.517949-17-paul.kocialkowski@bootlin.com>
+In-Reply-To: <20201210091350.GA322060@ubuntu2004>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 28 Nov 2020 15:28:36 +0100, Paul Kocialkowski wrote:
-> This introduces YAML bindings documentation for the A83T MIPI CSI-2
-> controller.
+On Thu, Dec 10, 2020 at 11:13:50AM +0200, Cristian Ciocaltea wrote:
+> Hi Rob,
 > 
-> Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-> ---
->  .../media/allwinner,sun8i-a83t-mipi-csi2.yaml | 147 ++++++++++++++++++
->  1 file changed, 147 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/allwinner,sun8i-a83t-mipi-csi2.yaml
+> On Wed, Dec 09, 2020 at 09:37:08PM -0600, Rob Herring wrote:
+> > On Sun, Dec 06, 2020 at 03:27:01AM +0200, Cristian Ciocaltea wrote:
+> > > Add a new common property 'reset-time-sec' to be used in conjunction
+> > > with the devices supporting the key pressed reset feature.
+> > > 
+> > > Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
+> > > ---
+> > > Changes in v3:
+> > >  - This patch was not present in v2
+> > > 
+> > >  Documentation/devicetree/bindings/input/input.yaml | 7 +++++++
+> > >  1 file changed, 7 insertions(+)
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/input/input.yaml b/Documentation/devicetree/bindings/input/input.yaml
+> > > index ab407f266bef..caba93209ae7 100644
+> > > --- a/Documentation/devicetree/bindings/input/input.yaml
+> > > +++ b/Documentation/devicetree/bindings/input/input.yaml
+> > > @@ -34,4 +34,11 @@ properties:
+> > >        specify this property.
+> > >      $ref: /schemas/types.yaml#/definitions/uint32
+> > >  
+> > > +  reset-time-sec:
+> > 
+> > Humm, I'm pretty sure we already have something for this. Or maybe just 
+> > power off.
 > 
+> We only have 'power-off-time-sec', so I added 'reset-time-sec' according
+> to your review in v2:
+> https://lore.kernel.org/lkml/20200908214724.GA959481@bogus/
+
+I'm doing good if I remember reviews from a week ago. From 3 months ago, 
+no chance without some reminder.
 
 Reviewed-by: Rob Herring <robh@kernel.org>
+
+Rob
