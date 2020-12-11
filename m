@@ -2,146 +2,193 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 82E7B2D704B
-	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 07:41:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 77F072D707E
+	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 08:01:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2395479AbgLKGjO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Dec 2020 01:39:14 -0500
-Received: from bmail1.ministro.hu ([5.249.150.236]:40666 "EHLO
-        bmail1.ministro.hu" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389075AbgLKGjG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Dec 2020 01:39:06 -0500
-Received: from localhost (localhost [127.0.0.1])
-        by bmail1.ministro.hu (Postfix) with ESMTP id 44C51123B18;
-        Fri, 11 Dec 2020 07:38:24 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ministro.hu;
-        s=201804; t=1607668704;
-        bh=ugkcwpsp8hU79DcK5AY9md1R6//9xinfQewzn4Q8jzI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=p6hZeKgX2tuj5Ea4LNct2Mmy9dnCcG4FF0HAHspcVrp+tRX6xLvRIqamJTljQZg7T
-         X30Kdu9ObP6Jlr+F61Cxe1lJX2jt0AenXZ5ubJq9UDoaLUgPCXP4CS3pZ5oofXsNbD
-         fYv21Y0X0qNijCF6gIZSEjXlNQeVai3y3Az6qJnadNimCRqiq/EEC4R4RAJrdWd1NH
-         SHcu1Y+1G2PbE4xnFEck26qLx5dRl4zlnzrlm92o3OqPXcjsEwm3lIhoSlZBnTbei9
-         sROqoQyRkQpub1jcb+QEQTYjx1AOrfSLZ5t01FmrkupJ/+ffUkh/8xKSQSfIhUcyot
-         S3OuNQ0/FWgIQ==
-X-Virus-Scanned: Debian amavisd-new at ministro.hu
-Received: from bmail1.ministro.hu ([127.0.0.1])
-        by localhost (bmail1.ministro.hu [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id Y3PUCZX0RggV; Fri, 11 Dec 2020 07:37:55 +0100 (CET)
-Received: from dincontrollerdev (localhost [127.0.0.1])
-        by bmail1.ministro.hu (Postfix) with ESMTPSA id D890C123B16;
-        Fri, 11 Dec 2020 07:37:54 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ministro.hu;
-        s=201804; t=1607668675;
-        bh=ugkcwpsp8hU79DcK5AY9md1R6//9xinfQewzn4Q8jzI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=v6BS2qVvBohPiHfw6I3DUYpNU+2rFywI7q4EyfuEleJoA5BNxC5nO1IVx29veILe3
-         s5igpTUYgQkl6TM7EczT0o+vQ1FFOYrWGm0Gstcg3l8HRN3y2Y/91/Bq58SGUaib7A
-         invJv1mZ8LDDshjyUGR9Vtp4Qysg2WU3O9h86bNbOYvrZeBw2uwnULiajVoH4eiMpB
-         I7M8Or/jb0VQYhaCKZSpW1BANkJ6XfZD2ADTWjgndd1UsQV/CbOKDD1U4nHOWR6f+d
-         sUUWWU8Al78/HQjt51EQKMqnN1XIbgckX7IPh1aqJmLIZHc+aaYCFf6j1MBDgAZ7Jv
-         3h4uZvGEKf5CA==
-Date:   Fri, 11 Dec 2020 06:37:52 +0000
-From:   =?iso-8859-1?Q?J=F3zsef_Horv=E1th?= <info@ministro.hu>
-To:     'Greg Kroah-Hartman' <gregkh@linuxfoundation.org>
-Cc:     'Rob Herring' <robh+dt@kernel.org>,
-        'Jiri Slaby' <jirislaby@kernel.org>,
-        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] Serial: silabs si4455 serial driver
-Message-ID: <20201211063752.GB1065@dincontrollerdev>
-References: <20201210170443.GA17304@dincontrollerdev>
- <X9Jw+srprdT8tquZ@kroah.com>
- <20201210194625.GA17516@dincontrollerdev>
- <X9MIwqJBG69M5uHq@kroah.com>
- <20201211060943.GA1065@dincontrollerdev>
- <X9MPuX1x4MezwkEj@kroah.com>
+        id S2436665AbgLKHAC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Dec 2020 02:00:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60040 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726431AbgLKG7c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Dec 2020 01:59:32 -0500
+Received: from mail-oo1-xc42.google.com (mail-oo1-xc42.google.com [IPv6:2607:f8b0:4864:20::c42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A30A6C0613D3;
+        Thu, 10 Dec 2020 22:58:52 -0800 (PST)
+Received: by mail-oo1-xc42.google.com with SMTP id s1so1919126oon.2;
+        Thu, 10 Dec 2020 22:58:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=EzWEX84UzInmkz2TvYJ3PGWef5ao1pFDDJMFflQQZVA=;
+        b=DWZ2dw4CoxFlz69UT2ewFOGkd9w2VuzDTHuoQpZZfFn4R56VnN7iKjLBLl2xsygTVw
+         wqiGmpChTm/iSDe1Ul7A3BW2D5JBMDt1IOHkQTQ4A6ucGQAwwRcjrrmIHFzb2PD9zvv6
+         Tfmfw0vXrv/bGDrmHfWU1lu470EWR2+y3JnIEPvEn2L0JOKYU6C6XMf2CvOqPli6uMAp
+         82WCo9gMqm2KIP1rHhcEoCo9ubGAIktvNsLSk5W+5P2UT8GETz33v3kA2ofkMKdWCX0i
+         aeuW80s1bXp7fFpp14rlkuxIr1q44PA1WARkcy0aD3OZbphyV9doDN2c3S4D+Dv2Ii3o
+         LW2w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=EzWEX84UzInmkz2TvYJ3PGWef5ao1pFDDJMFflQQZVA=;
+        b=k37dYhyvbNp6VJundK4ZfOHSVXZc4fUPgVOc4rIQfzp9/A1mn+pEeHkQy3gyFVB5KG
+         AJeZehzjpPm+0g/chi2bPLHpTgoJxP+UTLYhw7akH1FEvFkSxxuDMrKfpglB1mXsOUDo
+         1/1LlSo+/B+PZL8aPM4q3CBhsLqT9mraCxUHYCq1ZzRjcixzhspv6h4EmPaYRWOfrz82
+         BOD2S77ZCkbcOMBTiGbACBmLvIyfcZzH36y3JAp1tcqKgU4USyBiXl6700PKWf4RErR5
+         +OEDoi/oZJ2mejUGKNBkOhmhMrnTZjDm25ThmX2uc23cCfvfwcpH2NjKjre8PiTZySbT
+         94TA==
+X-Gm-Message-State: AOAM532DnGHHxABpLLw7IrJWWDelSNwf4WVeDe151j0XLhDP2m9IrBpg
+        5D0PRuqv8KXyMgE2Y5NEDYXdZ6a3DZQc1WBgKIs=
+X-Google-Smtp-Source: ABdhPJzMUUA4+WqCkK3WdnilTntzzibkGR5Y9ww+a9f0INPrM5RodRYjv5ua4KocyTbMgiNpvzfU6IM3NnpHl9QA53c=
+X-Received: by 2002:a4a:ded4:: with SMTP id w20mr8951843oou.49.1607669931921;
+ Thu, 10 Dec 2020 22:58:51 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <X9MPuX1x4MezwkEj@kroah.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+References: <20201208075523.7060-1-sergio.paracuellos@gmail.com>
+ <20201208075523.7060-2-sergio.paracuellos@gmail.com> <20201210134722.GA2398182@robh.at.kernel.org>
+In-Reply-To: <20201210134722.GA2398182@robh.at.kernel.org>
+From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Date:   Fri, 11 Dec 2020 07:58:41 +0100
+Message-ID: <CAMhs-H8nMxO8Xtm5GbsTHyM2se_fCjy3Z9LiY9C=052my9oi+A@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: pinctrl: rt2880: add binding document
+To:     Rob Herring <robh@kernel.org>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Jason Yan <yanaijie@huawei.com>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:STAGING SUBSYSTEM" <devel@driverdev.osuosl.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 11, 2020 at 07:20:41AM +0100, 'Greg Kroah-Hartman' wrote:
-> On Fri, Dec 11, 2020 at 06:09:43AM +0000, József Horváth wrote:
-> > On Fri, Dec 11, 2020 at 06:50:58AM +0100, 'Greg Kroah-Hartman' wrote:
-> > > On Thu, Dec 10, 2020 at 07:46:25PM +0000, József Horváth wrote:
-> > > > On Thu, Dec 10, 2020 at 08:03:22PM +0100, 'Greg Kroah-Hartman' wrote:
-> > > > > On Thu, Dec 10, 2020 at 05:04:46PM +0000, József Horváth wrote:
-> > > > > > This is a serial port driver for
-> > > > > > Silicon Labs Si4455 Sub-GHz transciver.
-> > > > > > +
-> > > > > > +#define BASE_TTYIOC_PRIVATE		0xA0
-> > > > > > +/* Set EZConfig.
-> > > > > > + * After this ioctl call, the driver restarts the si4455,
-> > > > > > + * then apply the new configuration and patch.
-> > > > > > + */
-> > > > > > +#define SI4455_IOC_SEZC		_IOW('T', \
-> > > > > > +				     BASE_TTYIOC_PRIVATE + 0x01, \
-> > > > > > +				     struct si4455_iocbuff)
-> > > > > 
-> > > > > Why does a serial driver have private ioctls?  Please no, don't do that.
-> > > > 
-> > > > I checked the ioctl.h and serial_core.h, but I not found any similar definition, like BASE_VIDIOC_PRIVATE in videodev2.h.
-> > > > In this case the name of macro BASE_TTYIOC_PRIVATE means the base value of special ioctl commands owned by this driver.
-> > > 
-> > > My point is, a serial driver should NOT have any custom ioctls.
-> > > 
-> > > > I can change it to BASE_TTYIOC or SI4455_IOC_BASE
-> > > > 
-> > > > > Implement the basic serial driver first, and then we can talk about
-> > > > > "custom" configurations and the like, using the correct apis.
-> > > > 
-> > > > Without the SI4455_IOC_SEZC call, the driver can't configure the Si4455 and not working at all.
-> > > > The cofiguration for interface is provided by user for application.
-> > > 
-> > > That is what a device tree is for, to configure the device to have the
-> > > correct system configuration, why can't that be the same here?
-> > > 
-> > > > It contains the base frequency, channel spacing, modulation, and a lot
-> > > > of more stuff, and generated by Silicon Labs Wireless Development
-> > > > Suite.
-> > > > The generated configuration is in a non public(compressed,
-> > > > encrypted...who knows) format, so without this the driver can't
-> > > > provide configuration parameters to Si4455.
-> > > 
-> > > So we have to take a "custom" userspace blob and send it to the device
-> > > to configure it properly?  Like Jiri said, sounds like firmware, so just
-> > > use that interface instead.
-> > 
-> > I checked Jiri's suggestion, and it is a good solution to replace SI4455_IOC_SEZC(configuration) and SI4455_IOC_SEZP(firmware patch).
-> > I can move SI4455_IOC_SSIZ(package size) to device tree property.
-> > 
-> > Maybe you have good suggestion for the following:
-> > SI4455_IOC_STXC -> Radio transmit channel index. It is a real use case to control this parameter by user at runtime.
-> > SI4455_IOC_SRXC -> Radio receive channel index. It is a real use case to control this parameter by user at runtime.
-> 
-> These are not serial port things, why would a serial port care about
-> these?
+Hi Rob,
 
-You are right, these are not regular serial port things, but this device is not a regular uart, it is a sub-GHz transciever, digital radio.
-This driver tries to represent it as a serial port to user.
+On Thu, Dec 10, 2020 at 2:47 PM Rob Herring <robh@kernel.org> wrote:
+>
+> On Tue, Dec 08, 2020 at 08:55:22AM +0100, Sergio Paracuellos wrote:
+> > The commit adds rt2880 compatible node in binding document.
+> >
+> > Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+> > ---
+> >  .../pinctrl/ralink,rt2880-pinmux.yaml         | 70 +++++++++++++++++++
+> >  1 file changed, 70 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/pinctrl/ralink,rt2880-pinmux.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/pinctrl/ralink,rt2880-pinmux.yaml b/Documentation/devicetree/bindings/pinctrl/ralink,rt2880-pinmux.yaml
+> > new file mode 100644
+> > index 000000000000..7dea3e26d99e
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/pinctrl/ralink,rt2880-pinmux.yaml
+> > @@ -0,0 +1,70 @@
+> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/pinctrl/ralink,rt2880-pinmux.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Ralink rt2880 pinmux controller
+> > +
+> > +maintainers:
+> > +  - Sergio Paracuellos <sergio.paracuellos@gmail.com>
+> > +
+> > +description:
+> > +  The rt2880 pinmux can only set the muxing of pin groups. muxing indiviual pins
+> > +  is not supported. There is no pinconf support.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - ralink,rt2880-pinmux
+>
+> What's the control interface as you have no 'reg' property.
 
-> 
-> > SI4455_IOC_GRSSI -> Last measured RSSI, when packet received. This is a useful information.
-> > (Currently I'm the only one user, and I need this :) )
-> 
-> What is "RSSI"?
-> 
-> And why not debugfs if it's only debugging stuff?
+There is not used in pinctrl. Every pin has a gpio function and
+pinctrl and gpio are separate drivers. Here only pin functions and
+groups are defined. The glue
+code for this driver is done in arch/mips/ralink/mt7621.c using
+specific pinmux.h header defined for ralink and then all that settings
+are used in drivers through
+the pinctrl driver.
 
-Received signal strength indication, and not only debugging. It is an information for the end user.
+>
+> > +
+> > +  pinctrl-0:
+> > +    description:
+> > +      A phandle to the node containing the subnodes containing default
+> > +      configurations. This is for pinctrl hogs.
+> > +
+> > +  pinctrl-names:
+> > +    description:
+> > +      A pinctrl state named "default" can be defined.
+> > +    const: default
+>
+> These 2 properties go in consumer nodes.
 
-> 
-> thanks,
-> 
-> greg k-h
+Ok, So I have to remove them from here. I see.
 
-Üdvözlettel / Best regards:
-József Horváth
+>
+> > +
+> > +required:
+> > +  - compatible
+> > +
+> > +patternProperties:
+> > +  '[a-z0-9_-]+':
+> > +    if:
+> > +      type: object
+> > +      description: node for pinctrl.
+> > +      $ref: "pinmux-node.yaml"
+> > +    then:
+>
+> For new bindings, don't do this hack. Just name the nodes '-pins$'
 
+I see. I will update bindings for pinctrl in staging and avoid this
+if-then clause.
 
+>
+> > +      properties:
+> > +        groups:
+> > +          description: Name of the pin group to use for the functions.
+> > +          enum: [i2c, spi, uart1, uart2, uart3, rgmii1, rgmii2, mdio,
+> > +                 pcie, sdhci]
+> > +        function:
+> > +          description: The mux function to select
+> > +          enum: [gpio, i2c, spi, uart1, uart2, uart3, rgmii1, rgmii2,
+> > +                 mdio, nand1, nand2, sdhci]
+>
+>          additionalProperties: false
+
+Ok, I will add this.
+
+>
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  # Pinmux controller node
+> > +  - |
+> > +    pinctrl {
+> > +      compatible = "ralink,rt2880-pinmux";
+> > +      pinctrl-names = "default";
+> > +      pinctrl-0 = <&state_default>;
+> > +
+> > +      state_default: pinctrl0 {
+> > +      };
+> > +
+> > +      i2c_pins: i2c0 {
+> > +        i2c0 {
+> > +          groups = "i2c";
+> > +          function = "i2c";
+> > +        };
+> > +      };
+> > +    };
+> > --
+> > 2.25.1
+> >
+
+Thanks for the review.
+
+Best regards,
+    Sergio Paracuellos
