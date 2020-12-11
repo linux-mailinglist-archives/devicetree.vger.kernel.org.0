@@ -2,81 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BAB4E2D6E95
-	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 04:29:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 56DB92D6EA4
+	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 04:31:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390385AbgLKD2k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Dec 2020 22:28:40 -0500
-Received: from mail-oi1-f195.google.com ([209.85.167.195]:45623 "EHLO
-        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2405216AbgLKD2Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 22:28:16 -0500
-Received: by mail-oi1-f195.google.com with SMTP id f132so8323047oib.12;
-        Thu, 10 Dec 2020 19:28:01 -0800 (PST)
+        id S2390598AbgLKDas (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Dec 2020 22:30:48 -0500
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:40605 "EHLO
+        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2405226AbgLKDaZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 22:30:25 -0500
+Received: by mail-ot1-f66.google.com with SMTP id j12so7058991ota.7;
+        Thu, 10 Dec 2020 19:30:10 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=eJ9AhbR7dNhyrIAYTLNaexWFEr8PcE/a+4lZQcMflOY=;
-        b=hVC9gQu1KWqRmG8bM0/Aah2H0goaQhCqtY58abnMqAYxfiacGT1KDJ5nQirbk7JURt
-         fN7d6yl7TM5Sfmk4Zd8x3ZFZuwWqRfNF55JrNZ2ZJTB2gyDpUhtZPlH3muphOKK7IOgn
-         0tXdBw6FxFNv5Y3XX8UCE4/Y3G13zeOgW1DheX4UZvt7y0sTNeVHOKgfmF1pvHgCZFyO
-         leK31/8AnHndCWLJAXvIFpTy4PPIdkmSlaEVbKx+29KDWTe3pZUxFsraFbkIKyt1qiUk
-         obKsXj4kVJ0+/F+Mwe/NRrhRpzkFU9BPgemeIbkpKCHNq0JOT8co3UaRQdppKgfpH5th
-         H9VQ==
-X-Gm-Message-State: AOAM531pJQfKmYbnAI6nYlu6RAkT1MzMANOsuQLsF9LwIo5aFDdxH/a/
-        MAAA0LMrqomS/MRucGE74WCKGWCKgg==
-X-Google-Smtp-Source: ABdhPJw0lGiB1h/FpZokQM3xt/Q9C5srIa56/s86Ohke5ZYCBQy8qi0mlicAN7fw4oZPzQuostgzeQ==
-X-Received: by 2002:aca:3c3:: with SMTP id 186mr7739011oid.22.1607657255601;
-        Thu, 10 Dec 2020 19:27:35 -0800 (PST)
+        bh=l7k4vXfJBn4y3OY/+yHuhF96zAMCYyUkpRpI2p6x+YA=;
+        b=OdC6DJEzo1YxcpSHQrTPFvzq+9uGgppw7Xsd+b2+AEtcFaVmBY9wVA/6YV8JjCnpA8
+         Xgzm+oNgDOMMgJuz8p/vISIly9fV6FeQUQfVYjPgm0aC6zDO3bbRABPNvY8ROAqsxnIY
+         GX/uWCiUPfivRDZfoO9vcAzZSebDcsdsfo4yzGDQbfoacF3FQZE+YoME+FRFSZOOgXps
+         Kr0yPAhtv17/0+FSm4jLVzVc7I4sskE1beWfYS9p+juD7WjPcYjDR+O05FE9vQh7Z4zK
+         dZ3/2cRLn5fFAoLJIh7tYtts1fpTvWbgnhlKeGob0JSEaZgkHXUH/oRYOXt48EgF9zj+
+         U0mQ==
+X-Gm-Message-State: AOAM532xlbJkRnHymG1gRGFx7polHQbHuHPZ8fHHlEeOzYqPVoRQbMoP
+        woBR/URwk9f+XaHb+E2HTg==
+X-Google-Smtp-Source: ABdhPJzPuB0aV5BPZHFyL3PqONSvn97TrtwHbAaJWqyt4VFlBuK0g/hmO8O6Lc74G8axDPciGCWqEg==
+X-Received: by 2002:a9d:6b10:: with SMTP id g16mr8239666otp.301.1607657385175;
+        Thu, 10 Dec 2020 19:29:45 -0800 (PST)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id d62sm1500475oia.6.2020.12.10.19.27.34
+        by smtp.gmail.com with ESMTPSA id m7sm1447318oou.11.2020.12.10.19.29.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Dec 2020 19:27:34 -0800 (PST)
-Received: (nullmailer pid 3576272 invoked by uid 1000);
-        Fri, 11 Dec 2020 03:27:34 -0000
-Date:   Thu, 10 Dec 2020 21:27:34 -0600
+        Thu, 10 Dec 2020 19:29:44 -0800 (PST)
+Received: (nullmailer pid 3579485 invoked by uid 1000);
+        Fri, 11 Dec 2020 03:29:43 -0000
+Date:   Thu, 10 Dec 2020 21:29:43 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        linux-renesas-soc@vger.kernel.org, linux-pci@vger.kernel.org,
-        Marek Vasut <marek.vasut+renesas@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: pci: rcar-pci-ep: Document missing
- interrupts property
-Message-ID: <20201211032734.GA3576224@robh.at.kernel.org>
-References: <20201209101231.2206479-1-geert+renesas@glider.be>
+To:     Oleksij Rempel <o.rempel@pengutronix.de>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        David Jander <david@protonic.nl>,
+        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-kernel@vger.kernel.org,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Sascha Hauer <s.hauer@pengutronix.de>
+Subject: Re: [PATCH v1 1/2] dt-bindings: arm: fsl: add Protonic PRTI6G board
+Message-ID: <20201211032943.GA3579435@robh.at.kernel.org>
+References: <20201209130016.10431-1-o.rempel@pengutronix.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201209101231.2206479-1-geert+renesas@glider.be>
+In-Reply-To: <20201209130016.10431-1-o.rempel@pengutronix.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 09 Dec 2020 11:12:31 +0100, Geert Uytterhoeven wrote:
-> The R-Car PCIe controller does not use interrupts when configured
-> for endpoint mode, hence the bindings do not document the interrupts
-> property.  However, all DTS files provide interrupts properties, and
-> thus fail to validate.
+On Wed, 09 Dec 2020 14:00:15 +0100, Oleksij Rempel wrote:
+> Add Protonic Holland PRTI6G, iMX6UL based board
 > 
-> Fix this by documenting the interrupts property.
-> 
-> Fixes: 4c0f80920923f103 ("dt-bindings: PCI: rcar: Add bindings for R-Car PCIe endpoint controller")
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
 > ---
-> v2:
->   - Fix authorship,
->   - Add Reviewed-by,
->   - Drop RFC state,
->   - Fix name of interrupts property in patch description,
->   - Drop inappropriate Fixes tag,
-> ---
->  Documentation/devicetree/bindings/pci/rcar-pci-ep.yaml | 9 +++++++++
->  1 file changed, 9 insertions(+)
+>  Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
 
-Applied, thanks!
+Acked-by: Rob Herring <robh@kernel.org>
