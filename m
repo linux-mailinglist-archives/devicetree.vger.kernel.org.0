@@ -2,83 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 33EDF2D6EC5
-	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 04:41:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A8CD12D6EC8
+	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 04:41:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391049AbgLKDkY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S2395178AbgLKDkY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Thu, 10 Dec 2020 22:40:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57878 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2391028AbgLKDkN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 22:40:13 -0500
-Received: from mail-pg1-x542.google.com (mail-pg1-x542.google.com [IPv6:2607:f8b0:4864:20::542])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15FA7C0613D6
-        for <devicetree@vger.kernel.org>; Thu, 10 Dec 2020 19:39:32 -0800 (PST)
-Received: by mail-pg1-x542.google.com with SMTP id f17so6234908pge.6
-        for <devicetree@vger.kernel.org>; Thu, 10 Dec 2020 19:39:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=WMbPBe9/knh5GkKtTCfsMp5SaQCnLEtyzf6dbM9wEKQ=;
-        b=MqVpkpOOx2n2GjbgqGu4AWbV+OX0fe9DqNLazVofiH7DjkgS25VVIVUzwDACLFNrH3
-         M9P0dMEuLk+QZaeP3W46Sgp0xgIzVGEwlRwsNWzNmohxfTeddmoSi3OaGwRq1llsj3sQ
-         gPDB1pvNGeWBhfaRDmLthG/Gahg1NAbBGuudhAyRWLGtIoEV1niLsTljlGIcfoZOHnpm
-         jae/lZ5O+dCn9RX3rqr/2gKLTKg28faHp5U4qv1iX8aoxusSHhoXNrbx+gVpMpAsxXXq
-         GRDY4SFOeByiaN1TeJ8HICmXKi0Zj1ChT5s8Tk5VYO0Xo7qoavPDSqMqufcuKsJyDwab
-         J9VA==
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:41919 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388990AbgLKDkU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 22:40:20 -0500
+Received: by mail-ot1-f68.google.com with SMTP id x13so7081732oto.8;
+        Thu, 10 Dec 2020 19:40:05 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=WMbPBe9/knh5GkKtTCfsMp5SaQCnLEtyzf6dbM9wEKQ=;
-        b=CaDI6y/RNr5ryAomzcukY9cumJiTwooNzyzWGE97Gxiy4rj+WmRM7+ZS4+WPi92A1g
-         P5+W++wfCfyOjZRexuRQZhQhWYVH0ofoy0xgNwclMXZnTpYws1ied3Rmwr+x6EB3zTDR
-         U9OMHWYxV7AFEOXOYTXGEm0EqfgT+Ml7xo+PdiN/8BKycuWbM/rIFFdjvAebY5Y9+9ul
-         uC+R1iSWjUrEAR6BehRZmFW4VmpY6kvN9AsVGhRX34Ud+Y3yxx6r9rUXwtVLJbMwQpjT
-         IrsSLfvW5qIQsKln2PJ4O7LSJ1Gw0rUtUr3AEY9pz3bg4RGXzRDhDrmV9hO75RRiZaif
-         8k/Q==
-X-Gm-Message-State: AOAM530oO4BFKalFA0LNgpOCUWHpwVGIrpLCdCq8pD/M/sRXmMt7pl92
-        gr+Xl/o3G7kIe16aVuE3d4E=
-X-Google-Smtp-Source: ABdhPJyaN0yX4J+VtU0nbLYs2/G9tcQa/CBolvw63kotkQ0Gs2J7SlyPFTudpJiUkoHId2jIJPz+cQ==
-X-Received: by 2002:a63:1a58:: with SMTP id a24mr4268735pgm.118.1607657971612;
-        Thu, 10 Dec 2020 19:39:31 -0800 (PST)
-Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id z23sm7846474pfn.202.2020.12.10.19.39.30
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=LOjNdqCDIPCW9nzt1/d/vtXHN7EsbrrpKY6lZwmye5s=;
+        b=VI54F/DOdtLEdsy0rw9LAYcctJiWahRbhjAdZqxOqa7K4+Y2leSidKjNCmnl8TjspY
+         Vwu3IiwAmM78eS5Bzul5j+epKO8N+8imqpUoQhqOBHkZkoj2SDMHVOt6GRLS+Qw36Xrz
+         d1kofm0hKeIr3AF3gBHfibRFEYVUjch2bepfd/JBI5YQ7jMiumY0n9Zu+uM+b/Ky5JJx
+         FGbHKKEnhZIVgbwvE3Dw1UqSBPvM7NoepZOKj9h96tAIPEn52tRfA4pMciY+BfkHPOYX
+         EDXx7FGcb/SVqnMD+rMTN7OnH5wXVGIzTuUcdABcdFBX8vpd2i5ghE03Bf/adqv/AO1T
+         dFHg==
+X-Gm-Message-State: AOAM533zmg66OAljhe5pTMVSmOTZeqLC3KruD8d3OqOVyjxNjoeiPJv9
+        u9cIZYyMnIW8UCsFSHmdUQ==
+X-Google-Smtp-Source: ABdhPJxQbrJG789lq6XonvOFgsDfT/Dn1oRgxe+n9Wg4IUeU7dSxVYB5J/YK/AKOllcqq0DI08tVxg==
+X-Received: by 2002:a05:6830:210f:: with SMTP id i15mr8172762otc.43.1607657979774;
+        Thu, 10 Dec 2020 19:39:39 -0800 (PST)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id t26sm920601otm.17.2020.12.10.19.39.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Dec 2020 19:39:30 -0800 (PST)
-From:   Florian Fainelli <f.fainelli@gmail.com>
-To:     bcm-kernel-feedback-list@broadcom.com,
-        =?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <zajec5@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        =?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <rafal@milecki.pl>
-Subject: Re: [PATCH] arm64: dts: broadcom: bcm4908: use proper NAND binding
-Date:   Thu, 10 Dec 2020 19:39:29 -0800
-Message-Id: <20201211033929.2389334-1-f.fainelli@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20201208104950.14977-1-zajec5@gmail.com>
-References: <20201208104950.14977-1-zajec5@gmail.com>
+        Thu, 10 Dec 2020 19:39:38 -0800 (PST)
+Received: (nullmailer pid 3593171 invoked by uid 1000);
+        Fri, 11 Dec 2020 03:39:37 -0000
+Date:   Thu, 10 Dec 2020 21:39:37 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Icenowy Zheng <icenowy@aosc.io>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Chen-Yu Tsai <wens@csie.org>,
+        Ondrej Jirman <megous@megous.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        linux-kernel@vger.kernel.org, Maxime Ripard <mripard@kernel.org>,
+        linux-sunxi@googlegroups.com
+Subject: Re: [PATCH 1/3] dt-bindings: arm: sunxi: add PineTab new panel DT
+ binding
+Message-ID: <20201211033937.GA3593126@robh.at.kernel.org>
+References: <20201210083722.1912981-1-icenowy@aosc.io>
+ <20201210084232.1913871-1-icenowy@aosc.io>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201210084232.1913871-1-icenowy@aosc.io>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue,  8 Dec 2020 11:49:50 +0100, Rafał Miłecki <zajec5@gmail.com> wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
+On Thu, 10 Dec 2020 16:42:32 +0800, Icenowy Zheng wrote:
+> Early adopters' PineTabs (and all further releases) will have a new LCD
+> panel different with the one that is used when in development (because
+> the old panel's supply discontinued).
 > 
-> BCM4908 has controller that needs different IRQ handling just like the
-> BCM63138. Describe it properly.
+> Add a new DT compatible for it.
 > 
-> On Linux this change fixes:
-> brcmstb_nand ff801800.nand: timeout waiting for command 0x9
-> brcmstb_nand ff801800.nand: intfc status d0000000
-> 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> Signed-off-by: Icenowy Zheng <icenowy@aosc.io>
 > ---
+>  Documentation/devicetree/bindings/arm/sunxi.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
 
-Applied to devicetree-arm64/next, thanks!
---
-Florian
+Reviewed-by: Rob Herring <robh@kernel.org>
