@@ -2,149 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BB0CF2D6BF3
-	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 00:39:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C8052D6C3F
+	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 01:28:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388060AbgLJXcI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Dec 2020 18:32:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47724 "EHLO
+        id S2390836AbgLKAFM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Dec 2020 19:05:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52918 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389466AbgLJXbj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 18:31:39 -0500
-Received: from mail-pg1-x541.google.com (mail-pg1-x541.google.com [IPv6:2607:f8b0:4864:20::541])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46E0FC0613D3;
-        Thu, 10 Dec 2020 15:30:59 -0800 (PST)
-Received: by mail-pg1-x541.google.com with SMTP id t37so5774001pga.7;
-        Thu, 10 Dec 2020 15:30:59 -0800 (PST)
+        with ESMTP id S2390890AbgLKAFB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 19:05:01 -0500
+Received: from mail-pl1-x641.google.com (mail-pl1-x641.google.com [IPv6:2607:f8b0:4864:20::641])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C06E1C0613D3
+        for <devicetree@vger.kernel.org>; Thu, 10 Dec 2020 16:04:21 -0800 (PST)
+Received: by mail-pl1-x641.google.com with SMTP id bj5so3678361plb.4
+        for <devicetree@vger.kernel.org>; Thu, 10 Dec 2020 16:04:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=sender:date:from:to:cc:subject:message-id:references:mime-version
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=DxIVSUX2H6bimNutMDtAzIsDtpsebc1xO6PGsZ2Pwhk=;
-        b=GLRkf6JQL1ptO05KUdb29Wdoj51vQzqeflF1WXIJFrnJiwxWUSO6LD5UW/dQri2ULl
-         7QOrSSeGEpb68pcn9L/fFd7hRoRiQmwg8YgLf8weoubgjcOYqqNfrBP7As0weMoHsLb2
-         Zeqzs1Nx4Ah8yomvfrQovm/gEB2hH8COhGfUw5mePmVVZHlDl5VB9aEWYON4en+DoZNT
-         ucf2LpDwtCCrDkkDUAnzEXyFHS9+g6RjvwNliWU4NjPEiWvamrvarJsaCapXe5qDkMW2
-         L5RBqKjX91B0sL0cgHvra3sfXHRhGTBpdfZjvcXf8y94yWyoX2I4Eg9FF7HsRrDbHGlb
-         8Ozw==
+        bh=b2XTJ2x1R5xZ66SbR6h8AXcrLWdEHj5DcH/Iefxf3Q4=;
+        b=A6zhZ98vZGmItk5taUTdALx1iCQa4bkAu5yRxF7XMlMpPfaAl3DjI4p5UuQZmHIZ/D
+         WFSXBA8a8EBHTXa+lsbCQchI7YzHLz3FCzvkEjRJFxr15i1NpGIJKEyuv3Uw0Af2SSN3
+         sKdgmPz0mX5mFDX9mDh7g/YTP5R3OdXNL0v4E=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
-         :references:mime-version:content-disposition:in-reply-to;
-        bh=DxIVSUX2H6bimNutMDtAzIsDtpsebc1xO6PGsZ2Pwhk=;
-        b=ZnCiRPP7TOrCOGdN4Qv4Ohsu601uaeIRY8WNR3AZXjukhIcKX8ZGkLWVjyE9uyH+fv
-         ePSa4lAQQ6X2X1vNNylQB/vPq48FPQ4LCGhlCZklSWV5QP/mbFGCVGMMg4MSEWrSvrxr
-         iQk9Q+7gB9jCy/exd6VOPZ4tP17ajTjjJ1t3Dw7MEeCeCbqKwH73T3YKh+5k425qQ3/r
-         4tEyDsz0aiF+TrtpMw+biKoyfSIScrKFVJ//+zOnEm8Mo4n8PANKCdbcbwyPldNHW+Ba
-         590cp++jUKFqSsdTEXg5o7DWDRfqehrOYOQQG9Cf14TnEJU1wlr5pv80KoiLe5xkUOEt
-         UZig==
-X-Gm-Message-State: AOAM532TXtH2rKQ+g9mCynahIGj3W/s+uASwil+Ypy8tfLXUjHljuyNO
-        Hdp9xwUj9R24nHg1UVM1RZM=
-X-Google-Smtp-Source: ABdhPJzQ34O5574nawCtthvGcN4o4HywTqDu4/7/e/5QfeGCNPMRhSxX4RTQEVQMyXAdO/WoAlfGnw==
-X-Received: by 2002:a62:19ca:0:b029:19d:cd0d:af83 with SMTP id 193-20020a6219ca0000b029019dcd0daf83mr9006284pfz.51.1607643058804;
-        Thu, 10 Dec 2020 15:30:58 -0800 (PST)
-Received: from google.com ([2620:15c:211:201:7220:84ff:fe09:5e58])
-        by smtp.gmail.com with ESMTPSA id e24sm5119240pjt.16.2020.12.10.15.30.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Dec 2020 15:30:57 -0800 (PST)
-Sender: Minchan Kim <minchan.kim@gmail.com>
-Date:   Thu, 10 Dec 2020 15:30:54 -0800
-From:   Minchan Kim <minchan@kernel.org>
-To:     John Stultz <john.stultz@linaro.org>
-Cc:     Hyesoo Yu <hyesoo.yu@samsung.com>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        linux-mm <linux-mm@kvack.org>,
-        Matthew Wilcox <willy@infradead.org>, david@redhat.com,
-        iamjoonsoo.kim@lge.com, vbabka@suse.cz,
-        Suren Baghdasaryan <surenb@google.com>,
-        KyongHo Cho <pullip.cho@samsung.com>,
-        John Dias <joaodias@google.com>,
-        Hridya Valsaraju <hridya@google.com>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        Brian Starkey <Brian.Starkey@arm.com>,
-        linux-media <linux-media@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Rob Herring <robh@kernel.org>,
-        Christian Koenig <christian.koenig@amd.com>,
-        "moderated list:DMA BUFFER SHARING FRAMEWORK" 
-        <linaro-mm-sig@lists.linaro.org>,
-        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-Subject: Re: [PATCH 4/4] dma-heap: Devicetree binding for chunk heap
-Message-ID: <X9KvruEuDsuuqlfA@google.com>
-References: <20201117181935.3613581-1-minchan@kernel.org>
- <20201117181935.3613581-5-minchan@kernel.org>
- <CGME20201118030110epcas2p1105a09711ea2c123f19f413b32372764@epcas2p1.samsung.com>
- <CALAqxLWqDLHpOHNEayvhDjJeXjEk_uneH2=d9fy8M87EjKfReA@mail.gmail.com>
- <20201119011431.GA136599@KEI>
- <CALAqxLV=r-V6u8hq2fTmxq855nT7QPkkjyAYdPeZRkYPBi_CKg@mail.gmail.com>
- <X9Fjd+eSStUJskOV@google.com>
- <CALAqxLWthd8bEDRMWmuOf8dOCW8=cFao9HBawKGuRhQZkdgXXw@mail.gmail.com>
- <X9JHjPTdxv6Z7lCW@google.com>
- <CALAqxLVz5bCYxehjVtCJ5eEJ-Wz81=fe30sqRtYtZpXWMkXZiw@mail.gmail.com>
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=b2XTJ2x1R5xZ66SbR6h8AXcrLWdEHj5DcH/Iefxf3Q4=;
+        b=Sd9n4Q0uYmCzHaY2Q59Xyd/p/UnfLeZUoqQEEB3ZlnHcYxJF5gtGWOxsM7mqM3hBjT
+         84+JNNHNamltU9H5XpoFpVLxZWMqYCKJJJOYKTf8tbReg50K5r3DdWLP78I8+VCtjgxq
+         hoFP8KeHu4h2O4Yfwk3xabbfVoZA04OInrAQTXtaPaCGA/hAzJh2FnyAkrv3Co7maRY2
+         Gix5IqGgV4H7uTa8CfPfbpKNE/46/0/JBnQq+8TEOq/C1d+11J65rkA3UyypK5y7N5mf
+         GsttPFlTrV54AhWg2XN8SobRflteS5aobTNWmHTeIAeCvdGbE+jjORzxIRBIX8dqmAgy
+         Tgiw==
+X-Gm-Message-State: AOAM533GcMuguteNK/peq2ezo9CKiWaqxKV7VCqy2hiOur4q7xOEGPu+
+        U98sR5pFDhgKlKf6BthdH5YepA==
+X-Google-Smtp-Source: ABdhPJxyhOBKJYPnjJ2YBaiGRbHpCYt2SPOTE6oOxM3QEzT7GA+QV4XtrAXTGw0GM3YW5kVkUAfTgw==
+X-Received: by 2002:a17:902:c584:b029:da:cc62:22f1 with SMTP id p4-20020a170902c584b02900dacc6222f1mr8466785plx.54.1607645060625;
+        Thu, 10 Dec 2020 16:04:20 -0800 (PST)
+Received: from localhost ([2620:15c:202:1:f693:9fff:fef4:e70a])
+        by smtp.gmail.com with ESMTPSA id er23sm7837321pjb.12.2020.12.10.16.04.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 10 Dec 2020 16:04:19 -0800 (PST)
+Date:   Thu, 10 Dec 2020 16:04:17 -0800
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     mgautam@codeaurora.org
+Cc:     Sandeep Maheswaram <sanm@codeaurora.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Felipe Balbi <balbi@kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Doug Anderson <dianders@chromium.org>,
+        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 1/5] usb: dwc3: core: Host wake up support from system
+ suspend
+Message-ID: <X9K3gXAgUW/6o9dr@google.com>
+References: <1603831083-2025-1-git-send-email-sanm@codeaurora.org>
+ <1603831083-2025-2-git-send-email-sanm@codeaurora.org>
+ <bca7bd32710a118d3583dd4e740ef3e0@codeaurora.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <CALAqxLVz5bCYxehjVtCJ5eEJ-Wz81=fe30sqRtYtZpXWMkXZiw@mail.gmail.com>
+In-Reply-To: <bca7bd32710a118d3583dd4e740ef3e0@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 10, 2020 at 02:40:38PM -0800, John Stultz wrote:
-> On Thu, Dec 10, 2020 at 8:06 AM Minchan Kim <minchan@kernel.org> wrote:
-> > On Thu, Dec 10, 2020 at 12:15:15AM -0800, John Stultz wrote:
-> > > Well, while I agree that conceptually the dmabuf heaps allow for
-> > > allocations for multi-device pipelines, and thus are not tied to
-> > > specific devices. I do think that the memory types exposed are likely
-> > > to have specific devices/drivers in the pipeline that it matters most
-> > > to. So I don't see a big issue with the in-kernel driver registering a
-> > > specific CMA region as a dmabuf heap.
-> >
-> > Then, I am worry about that we spread out dma_heap_add_cma to too many
-> > drivers since kernel doesn't how userspace will use it.
-> > For example, system 1 could have device A-B-C pipeline so they added
-> > it A driver. After that, system 2 could have device B-C-D pipeline
-> > so they add dma_heap_add_cma into B device.
+On Sat, Nov 28, 2020 at 08:01:31AM +0530, mgautam@codeaurora.org wrote:
+> Hi,
 > 
-> I'm not sure I see this as a major issue? If the drivers add it based
-> on the dt memory reference, those will be configured to not add
-> duplicate heaps (and even so the heap driver can also ensure we don't
-> try to add a heap twice).
+> 
+> On 2020-10-28 02:07, Sandeep Maheswaram wrote:
+> > Avoiding phy powerdown in host mode so that it can be woken up by
+> > devices.
+> > Added hs_phy_mode flag to check connection status and set phy mode
+> > and configure interrupts.
+> > 
+> > Signed-off-by: Sandeep Maheswaram <sanm@codeaurora.org>
+> > ---
+> >  drivers/usb/dwc3/core.c | 14 +++-----------
+> >  drivers/usb/dwc3/core.h |  2 ++
+> >  2 files changed, 5 insertions(+), 11 deletions(-)
+> > 
+> > diff --git a/drivers/usb/dwc3/core.c b/drivers/usb/dwc3/core.c
+> > index bdf0925..0e4bc1e 100644
+> > --- a/drivers/usb/dwc3/core.c
+> > +++ b/drivers/usb/dwc3/core.c
+> > @@ -1672,10 +1672,6 @@ static int dwc3_suspend_common(struct dwc3
+> > *dwc, pm_message_t msg)
+> >  		dwc3_core_exit(dwc);
+> >  		break;
+> >  	case DWC3_GCTL_PRTCAP_HOST:
+> > -		if (!PMSG_IS_AUTO(msg)) {
+> > -			dwc3_core_exit(dwc);
+> > -			break;
+> > -		}
+> 
+> 
+> This could be a problem for platforms that don't support runtime_suspend
+> and rely on dwc3_core_exit to power-down PHY.
+> IMO you can continue to do dwc3_core_exit() if runtime_pm isn't enabled
+> for the device.
 
-Sure, it doesn't have any problem to work but design ponint of view,
-it looks werid to me in that one of random driver in the specific
-scenario should have the heap registration and then we propagate
-the heap registeration logics to other drivers day by day. To avoid DT
-binding with dmabuf directy but it seems we have bad design.
-To me, it sounds like to toss DT with anonymous dmabuf binding problem
-to device drivers.
+This would imply that USB wakeup isn't supported on such platforms, right?
 
-> 
-> > > Yea, an un-upstreamable dummy driver is maybe what it devolves to in
-> > > the worst case. But I suspect it would be cleaner for a display or ISP
-> > > driver that benefits most from the heap type to add the reserved
-> > > memory reference to their DT node, and on init for them to register
-> > > the region with the dmabuf heap code.
-> >
-> > As I mentioned above, it could be a display at this moment but it could
-> > be different driver next time. If I miss your point, let me know.
-> >
-> 
-> I guess I just don't see potentially having the registration calls
-> added to multiple drivers as a big problem.
-> 
-> Ideally, yes, I'd probably rather see a DT node that would allow the
-> heap driver to register specified regions, but that's been NACKed
-> multiple times. Given that, having hooks in device drivers to export
-> the region seems to me like the next best approach, as it avoids DT
-> ABI ( if ends up its a bad approach, its not something we have to
-> keep).
-> 
-> The bigger problem right now is not that there are too many places the
-> registration call would be made from, but that there aren't upstream
-> drivers which I'm aware of where it would currently make sense to add
-> specific dma_heap_add_cma() registration hooks to.  We need an
-> upstream user of Kunihiko Hayashi's patch.
+Could we have a flag that the dwc3-<glue> driver can set to indicate that
+wakeup is enabled for this suspend cycle to omit the PHY power-down?
 
-Hmm, if that's only way to proceed, Hyesoo, do you have any specifid
-driver in your mind to bind the CMA area?
+> > 
+> >  		/* Let controller to suspend HSPHY before PHY driver suspends */
+> >  		if (dwc->dis_u2_susphy_quirk ||
+> > @@ -1733,13 +1729,9 @@ static int dwc3_resume_common(struct dwc3 *dwc,
+> > pm_message_t msg)
+> >  		spin_unlock_irqrestore(&dwc->lock, flags);
+> >  		break;
+> >  	case DWC3_GCTL_PRTCAP_HOST:
+> > -		if (!PMSG_IS_AUTO(msg)) {
+> > -			ret = dwc3_core_init_for_resume(dwc);
+> > -			if (ret)
+> > -				return ret;
+> > -			dwc3_set_prtcap(dwc, DWC3_GCTL_PRTCAP_HOST);
+> > -			break;
+> > -		}
+> > +
+> > +		dwc3_set_prtcap(dwc, DWC3_GCTL_PRTCAP_HOST);
+> > +
+> >  		/* Restore GUSB2PHYCFG bits that were modified in suspend */
+> >  		reg = dwc3_readl(dwc->regs, DWC3_GUSB2PHYCFG(0));
+> >  		if (dwc->dis_u2_susphy_quirk)
+> > diff --git a/drivers/usb/dwc3/core.h b/drivers/usb/dwc3/core.h
+> > index 74323b1..da63d4a3 100644
+> > --- a/drivers/usb/dwc3/core.h
+> > +++ b/drivers/usb/dwc3/core.h
+> > @@ -1101,6 +1101,8 @@ struct dwc3 {
+> > 
+> >  	bool			phys_ready;
+> > 
+> > +	unsigned int            hs_phy_mode;
+> > +
+> 
+> This change should instead be part of the other patch ?
+> "usb: dwc3: host: Add suspend_quirk for dwc3 host"
+
++1
