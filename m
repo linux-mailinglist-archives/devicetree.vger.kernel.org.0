@@ -2,78 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D9EB2D6EB3
-	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 04:36:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 259802D6EB6
+	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 04:38:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2395102AbgLKDfg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Dec 2020 22:35:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57108 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2405261AbgLKDfO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 22:35:14 -0500
-Received: from mail-pl1-x641.google.com (mail-pl1-x641.google.com [IPv6:2607:f8b0:4864:20::641])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EB28C0613CF
-        for <devicetree@vger.kernel.org>; Thu, 10 Dec 2020 19:34:34 -0800 (PST)
-Received: by mail-pl1-x641.google.com with SMTP id p6so3911744plo.6
-        for <devicetree@vger.kernel.org>; Thu, 10 Dec 2020 19:34:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=XYmqDyr4fC3PZmFsjlkv8u/E21QpEHMo+/6oKHdP3oo=;
-        b=hmTWvm2Hex+RJ06VVZ47E2nPXDkjNLKp/CK1ZobCy+KY062nL+KOLapL+LriTfgswV
-         aqJ8w/5PX6XpblRKGQkdvahtVFr5Kud9gCT19RcPmoJwAbVbF9bfH0naw8LEwpNT1Aho
-         pWpqVmzkenNnkoMPgrzw7yMGCD8u06JaKjrDB6ObN+koduGjOyLUqfSr9jOP78qVgylF
-         4/PjDui6oupZyDJ2RQZddY5jwHGEEwARwD4rO79OJqNoVjF5VK3stGuAigrW1cRjXM0L
-         oxMh5Nc5HU1cgwcA8rtXvvLdHGkWi+Js2nY1QsZuBFsmnZBLNW97G1MvWty9/ERAhbKg
-         UiIA==
+        id S2390875AbgLKDhM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Dec 2020 22:37:12 -0500
+Received: from mail-ot1-f65.google.com ([209.85.210.65]:40909 "EHLO
+        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2391186AbgLKDhG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 22:37:06 -0500
+Received: by mail-ot1-f65.google.com with SMTP id j12so7069818ota.7;
+        Thu, 10 Dec 2020 19:36:50 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=XYmqDyr4fC3PZmFsjlkv8u/E21QpEHMo+/6oKHdP3oo=;
-        b=s6hvO3E2IRjKk7tKy/ud6L7SbcEyRmzR4gKRaIJwAB2SdYYhAA3hfB5/oeyIrgJPnf
-         0qm19ePRCXWf4WWxgSouxwAJMkKcda9rJwxJC9/A5VofWkxaUZ81WZwiKhbn6pTlSRMx
-         dgcg3CpAWqU70SkAGIk6FVVC8GV5PoNBpX+VY5URLulFhyWde5DiEX7GBLN+MS3AkhBH
-         2baHdoZZF48qM9pj/+Y+iel7Yke0pi7VbfVnFuqf4ik2C5pTGTcCoPzx73JSDmAxBCXc
-         waBtq7XAcqFhVRK5fELTdkw7MHB+39phTLfd03RuA8wkQBJtWbHHi65fzrmkW30bLlae
-         pkFg==
-X-Gm-Message-State: AOAM530XzYRcyo777sCUfvgSzUWbyBfhBpvvU1TdbesTJQpjQqB/QR8L
-        79euFXf0LJhXvhRjNAQaLaU=
-X-Google-Smtp-Source: ABdhPJyCHhatJa1hU2lVBRSPbspmGSgUQxEKe/Qrknnn8ofq6e0DpYVM+GhXn7V5l+5PtL5Zh1Y7OQ==
-X-Received: by 2002:a17:902:7689:b029:da:52:4586 with SMTP id m9-20020a1709027689b02900da00524586mr8996931pll.47.1607657673569;
-        Thu, 10 Dec 2020 19:34:33 -0800 (PST)
-Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id u15sm8575510pju.7.2020.12.10.19.34.30
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=2YCw8mPj1l7lOOUQN8Gm4gmeF455YbujAM0oOrlkgbE=;
+        b=TPrDIv4UqzZ9HT9rbr4tGkrdvAlNlROCKsq/ZVloEVj4q2TIlzXJJe9QRbiuoPS1hm
+         VGBXUQ8BZJjvB6mfv6rwiablkkDn0DZgK4wRb0pyfs9ZbKc6gLTRYTpfTWMkPXT9Nv0Y
+         LWS9CcTdn99h8H6zqi6t5AfG2OhMY8GqVYVo56ytJxLPMWXyNJtmYclO1vm/E6Iy8e0p
+         xlmO4GYzkboHrvOTdUToqloMLWuqZ1tJL5wZabrJZema++NNBOG1e3qbMQH/v0qQe2er
+         hiRUarahNaUT4GF2rScCrPlstIUIvOuPtgvt9MYYtRuM0mNt9hHnn8xwlkATH7hMBIkA
+         uHRw==
+X-Gm-Message-State: AOAM532M8f+RIG8Dh1fvdl1bUxzWgm4As2VUMWzaVi9+TnMKOwW9CcQO
+        diHIHozaWbsHrWTxJZc4Ww==
+X-Google-Smtp-Source: ABdhPJxFVPh9P9P0ZHVmYQhR/hbIoLZ1rNrT1zRHbmPx8R1rze/TvRPDhMvNzVSdbSB2eheEIHHPfQ==
+X-Received: by 2002:a9d:1f0:: with SMTP id e103mr8424722ote.74.1607657784884;
+        Thu, 10 Dec 2020 19:36:24 -0800 (PST)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id r204sm1144158oif.0.2020.12.10.19.36.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Dec 2020 19:34:32 -0800 (PST)
-From:   Florian Fainelli <f.fainelli@gmail.com>
-To:     bcm-kernel-feedback-list@broadcom.com,
-        =?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <zajec5@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        =?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <rafal@milecki.pl>
-Subject: Re: [PATCH 1/2] dt-bindings: arm: bcm: document Netgear R8000P binding
-Date:   Thu, 10 Dec 2020 19:34:27 -0800
-Message-Id: <20201211033427.2388378-1-f.fainelli@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20201208070304.12536-1-zajec5@gmail.com>
-References: <20201208070304.12536-1-zajec5@gmail.com>
+        Thu, 10 Dec 2020 19:36:23 -0800 (PST)
+Received: (nullmailer pid 3588674 invoked by uid 1000);
+        Fri, 11 Dec 2020 03:36:22 -0000
+Date:   Thu, 10 Dec 2020 21:36:22 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Gene Chen <gene.chen.richtek@gmail.com>
+Cc:     linux-arm-kernel@lists.infradead.org, cy_huang@richtek.com,
+        linux-mediatek@lists.infradead.org, matthias.bgg@gmail.com,
+        devicetree@vger.kernel.org, jacek.anaszewski@gmail.com,
+        Wilma.Wu@mediatek.com, linux-kernel@vger.kernel.org,
+        shufan_lee@richtek.com, benjamin.chao@mediatek.com, dmurphy@ti.com,
+        pavel@ucw.cz, robh+dt@kernel.org, gene_chen@richtek.com,
+        linux-leds@vger.kernel.org
+Subject: Re: [PATCH v12 4/5] dt-bindings: leds: Add bindings for MT6360 LED
+Message-ID: <20201211033622.GA3588630@robh.at.kernel.org>
+References: <1607580057-4408-1-git-send-email-gene.chen.richtek@gmail.com>
+ <1607580057-4408-5-git-send-email-gene.chen.richtek@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1607580057-4408-5-git-send-email-gene.chen.richtek@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue,  8 Dec 2020 08:03:03 +0100, Rafał Miłecki <zajec5@gmail.com> wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
+On Thu, 10 Dec 2020 14:00:56 +0800, Gene Chen wrote:
+> From: Gene Chen <gene_chen@richtek.com>
 > 
-> It's a BCM4906 based device.
+> Add bindings document for LED support on MT6360 PMIC
 > 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> Signed-off-by: Gene Chen <gene_chen@richtek.com>
 > ---
+>  .../devicetree/bindings/leds/leds-mt6360.yaml      | 159 +++++++++++++++++++++
+>  1 file changed, 159 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/leds/leds-mt6360.yaml
+> 
 
-Applied to devicetree-arm64/next, thanks!
---
-Florian
+Reviewed-by: Rob Herring <robh@kernel.org>
