@@ -2,86 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F2C8A2D6EF8
-	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 04:58:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CE1482D6F4E
+	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 05:31:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2395252AbgLKD52 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Dec 2020 22:57:28 -0500
-Received: from mail-oo1-f65.google.com ([209.85.161.65]:39536 "EHLO
-        mail-oo1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2392205AbgLKD5V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Dec 2020 22:57:21 -0500
-Received: by mail-oo1-f65.google.com with SMTP id k9so1829403oop.6;
-        Thu, 10 Dec 2020 19:57:06 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=ayCrwQlHyJ7DNWgoLclYh2e9r036lnB6ZWhtgl68KDs=;
-        b=deZoHfqAd7a10RFDrtYBoUk1P2IyNEE7bv9TohGRPrQfLprjkIQC6W3RF9rycRQcK8
-         ISMeZ86mlrXFEPQND1vamvEIaBu1MKxbiW4BQx/oABMpTNCfwiFDOl+xcRorNCkHObno
-         3EKMbGv4yRtLxCAkwdjuSKp9zR9MM12gtzl5ByQBj0BAv8GNc5DG1nwul5/RooDNVDB1
-         DM/LHFC1v5WDNUbKBenhZck7e8yF+sVKuI714Zyv12HUJ4UB49WtPWVLQnKu7aOoKNoS
-         bkqJv9uK14j3K3ow6YYHQgmmZvE/NFj8uUH9FdDBVmaykrgqaZjSCOJSMFYn4+2ejU56
-         KBow==
-X-Gm-Message-State: AOAM5328csNoMjLFV1pPz3umnz1tfnzsjQqtj1aFqS3qD9Kmzm1YW1qq
-        Ks+IsJnhu4Z14A+XZvnkMw==
-X-Google-Smtp-Source: ABdhPJwwpC7HWUhCXu0d+UyWyoNPc3+FWY6aX/GqPI/txqW9+ZnUWzheF5f4zETBZ01DX/kKP7qTqg==
-X-Received: by 2002:a4a:c485:: with SMTP id f5mr8470680ooq.78.1607659001036;
-        Thu, 10 Dec 2020 19:56:41 -0800 (PST)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id e1sm1534103oib.11.2020.12.10.19.56.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Dec 2020 19:56:40 -0800 (PST)
-Received: (nullmailer pid 3616780 invoked by uid 1000);
-        Fri, 11 Dec 2020 03:56:39 -0000
-Date:   Thu, 10 Dec 2020 21:56:39 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        linux-rpi-kernel@lists.infradead.org,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        linux-pci@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        bcm-kernel-feedback-list@broadcom.com,
-        linux-arm-kernel@lists.infradead.org,
-        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: PCI: brcmstb: add BCM4908 binding
-Message-ID: <20201211035639.GA3616734@robh.at.kernel.org>
-References: <20201210180421.7230-1-zajec5@gmail.com>
- <20201210180421.7230-2-zajec5@gmail.com>
+        id S2405379AbgLKEah (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Dec 2020 23:30:37 -0500
+Received: from mail.kernel.org ([198.145.29.99]:44390 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2405377AbgLKEaf (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 10 Dec 2020 23:30:35 -0500
+Date:   Fri, 11 Dec 2020 09:59:50 +0530
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1607660994;
+        bh=DxjGtU8api1RScRIaoXPFvfSg6+p81ymEsIxRw9JakY=;
+        h=From:To:Cc:Subject:References:In-Reply-To:From;
+        b=uJRL3Ul8ibENkss7LkCrZIJ+w4s7K6IIC3IBYejhHDJuvqZdnsVs2Hw3BWXO+KwzX
+         ffB5clzroM74Jri0XKQFxH/QUyrtwvRbDuhqkxuEWgrukq7soO3PgvEa6CjY8bjh2b
+         UDoYyWV6Qeq2XWl9zweTdF30zOtKkPwZ6du0FVTwl26LP4OuQa+0sZx+r5h9T+aQ3a
+         r3SOH8zcpOSCqs2rxa4wOSnh8RqVq1JCKgwimObnTWygGq9s81hvSb213h1nIaBSuS
+         MKaemzsUhWwUHlBV2T/3zobOtfoj2PJXDMkiIunQ4z2rfFNcZ8j6rllp8uvk1UuaDp
+         GNhvQOl/0ymiw==
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Stephen Boyd <sboyd@kernel.org>
+Cc:     Rob Herring <robh@kernel.org>, linux-arm-msm@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Taniya Das <tdas@codeaurora.org>, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 3/5] dt-bindings: clock: Add SM8350 GCC clock bindings
+Message-ID: <20201211042950.GQ8403@vkoul-mobl>
+References: <20201208064702.3654324-1-vkoul@kernel.org>
+ <20201208064702.3654324-4-vkoul@kernel.org>
+ <20201210040116.GA1639067@robh.at.kernel.org>
+ <20201210061159.GM8403@vkoul-mobl>
+ <160763226856.1580929.7399412663078488395@swboyd.mtv.corp.google.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20201210180421.7230-2-zajec5@gmail.com>
+In-Reply-To: <160763226856.1580929.7399412663078488395@swboyd.mtv.corp.google.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 10 Dec 2020 19:04:20 +0100, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
+On 10-12-20, 12:31, Stephen Boyd wrote:
+> Quoting Vinod Koul (2020-12-09 22:11:59)
+> > On 09-12-20, 22:01, Rob Herring wrote:
+> > > On Tue, Dec 08, 2020 at 12:17:00PM +0530, Vinod Koul wrote:
+> > 
+> > > > +required:
+> > > > +  - compatible
+> > > > +  - clocks
+> > > > +  - clock-names
+> > > > +  - reg
+> > > > +  - '#clock-cells'
+> > > > +  - '#reset-cells'
+> > > 
+> > > You may or may not have power domains?
+> > 
+> > I have not added them in the driver yet, so I dont think it made sense
+> > to add them when they are not present. For basic stuff it is not
+> > required but eventually yes, so I plan to update binding and driver at
+> > that time
+> > 
 > 
-> BCM4908 is a SoC family with PCIe controller sharing design with the one
-> for STB. BCM4908 has different power management and memory controller so
-> few tweaks are required.
-> 
-> PERST# signal on BCM4908 is handled by an external MISC block so it
-> needs specifying a reset phandle.
-> 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
-> Acked-by: Florian Fainelli <f.fainelli@gmail.com>
-> ---
-> V3: Drop "reset-names" from the generic "properties" - it's now defined as
->     "compatible" specific property
->     Drop "$ref" from the "resets" - thanks Rob.
-> ---
->  .../bindings/pci/brcm,stb-pcie.yaml           | 37 ++++++++++++++-----
->  1 file changed, 28 insertions(+), 9 deletions(-)
-> 
+> They should still be required in the binding though if the hardware has
+> power domains. It's not like the hardware doesn't have power domains
+> already or can gain that ability after the fact. The driver should deal
+> with it when it is ready.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Yeah that is a valid argument, I will add and send updated revision
+
+Thanks
+-- 
+~Vinod
