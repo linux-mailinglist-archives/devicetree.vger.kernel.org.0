@@ -2,127 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BEAA62D80DA
-	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 22:17:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 419292D80FE
+	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 22:20:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2395382AbgLKVOY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Dec 2020 16:14:24 -0500
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:42075 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2395061AbgLKVNt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Dec 2020 16:13:49 -0500
-Received: by mail-ot1-f65.google.com with SMTP id 11so9529589oty.9;
-        Fri, 11 Dec 2020 13:13:33 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=qT7CCI1tZEGzvS2A0x9Rs75/poGHPdnJSJtxrhXJMz4=;
-        b=ipqkB5YtdkHg/J9QeIrmitRz6ldTuOc08YVbCTJ5bIa0/WQArmoNnJmo1aYusrwP9l
-         WsPNz6Lk+xZB4qhgdzxOL4yyJy3mQwpmCky1rjcHZXMffcYOAY1Mwg0SRomTY8KZzXaj
-         BMIqQ69F1zybEeMAjec/QwQkrm5Cf3xvtE44OshKy+Ys1oBPTzt1DG+9q1ziIN5iPGLf
-         /f9Ldd7zSCrGPs8P+Q5qYUZ7SwxkeAtSuLkg7oMNYn3EDewexMdO+0suVO+8qWBEqYj1
-         99TIkZhP9NuIvL3OtRa3sXbEO/eAVttRXGJj9OwuLCIPPD5lXYvTBQjNLeXRYUOpjNTQ
-         Bg4A==
-X-Gm-Message-State: AOAM530x6eCk4CZbo2f4vAaWSXuW3U7i3zfHDWSCpB8JS/5ylWM0JEIj
-        tecBjwm5rQMGQ6fZIeUAfAyxCIqhOA==
-X-Google-Smtp-Source: ABdhPJzadab1s51cOEGqHNNoMqzstzxiaT6kBUcKFKOA9xfhw3HsL7xzFL4OlizXiHn+skrGzvBcLQ==
-X-Received: by 2002:a9d:4c8d:: with SMTP id m13mr9135456otf.229.1607721187996;
-        Fri, 11 Dec 2020 13:13:07 -0800 (PST)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id c18sm2090517oib.31.2020.12.11.13.13.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Dec 2020 13:13:06 -0800 (PST)
-Received: (nullmailer pid 957502 invoked by uid 1000);
-        Fri, 11 Dec 2020 21:13:05 -0000
-Date:   Fri, 11 Dec 2020 15:13:05 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
-        bjorn.andersson@linaro.org, linux-mtd@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/4] dt-bindings: mtd: partitions: Add binding for
- Qcom SMEM parser
-Message-ID: <20201211211305.GA955193@robh.at.kernel.org>
-References: <20201119071308.9292-1-manivannan.sadhasivam@linaro.org>
- <20201119071308.9292-2-manivannan.sadhasivam@linaro.org>
- <20201207215236.GB892840@robh.at.kernel.org>
- <20201211033140.GA4222@work>
+        id S2405482AbgLKVSN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Dec 2020 16:18:13 -0500
+Received: from hqnvemgate25.nvidia.com ([216.228.121.64]:7528 "EHLO
+        hqnvemgate25.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2390563AbgLKVQv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Dec 2020 16:16:51 -0500
+Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate25.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
+        id <B5fd3e19a0000>; Fri, 11 Dec 2020 13:16:10 -0800
+Received: from HQMAIL107.nvidia.com (172.20.187.13) by HQMAIL109.nvidia.com
+ (172.20.187.15) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 11 Dec
+ 2020 21:16:06 +0000
+Received: from skomatineni-linux.nvidia.com (172.20.145.6) by mail.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server id 15.0.1473.3 via Frontend
+ Transport; Fri, 11 Dec 2020 21:16:06 +0000
+From:   Sowjanya Komatineni <skomatineni@nvidia.com>
+To:     <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
+        <broonie@kernel.org>, <robh+dt@kernel.org>, <lukas@wunner.de>
+CC:     <skomatineni@nvidia.com>, <bbrezillon@kernel.org>,
+        <p.yadav@ti.com>, <tudor.ambarus@microchip.com>,
+        <linux-spi@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+Subject: [PATCH v3 0/9] Add Tegra Quad SPI driver
+Date:   Fri, 11 Dec 2020 13:15:54 -0800
+Message-ID: <1607721363-8879-1-git-send-email-skomatineni@nvidia.com>
+X-Mailer: git-send-email 2.7.4
+X-NVConfidentiality: public
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201211033140.GA4222@work>
+Content-Type: text/plain
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1607721370; bh=AOxHAQ0PR5eFzlhWQAdtwTvwlFeD7C1CGjXlEdHoVJA=;
+        h=From:To:CC:Subject:Date:Message-ID:X-Mailer:X-NVConfidentiality:
+         MIME-Version:Content-Type;
+        b=AODVEh1nc+ZUWML7TfijaCbi3fYcBEaE+0HMyIBPkXJVvt4s42G9xgYlGb9PLEhqP
+         kEJu+03z3/q9bnmOdYULSwXbJfxFRpv9oDiWsHw4YosT58beqJYJ/Cgz//LIsCgoey
+         OjczNRyGGA4uuijKa4T5WuhgoxD/3jltVzikLOzakO0M17bAw2uTBzI32Ly7heL7FD
+         4b9DQgNYU3oKJ7L0Z71SKcz957dZyXqVCMuabxAvZSHCyKIXurWL1S4Axj5nF7tGvb
+         iq5LJeuhJGRVk2WbDGxPTqYGzQZN44zAUj/HZLbSVZ5SZ0MO8sa+il8KMN5e6wewLd
+         6XMuaMHrrR+TQ==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 11, 2020 at 09:01:40AM +0530, Manivannan Sadhasivam wrote:
-> On Mon, Dec 07, 2020 at 03:52:36PM -0600, Rob Herring wrote:
-> > On Thu, Nov 19, 2020 at 12:43:05PM +0530, Manivannan Sadhasivam wrote:
-> > > Add YAML binding for Qualcomm Shared Memory (SMEM) Flash partition
-> > > parser.
-> > > 
-> > > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> > > ---
-> > >  .../mtd/partitions/qcom,smem-part.yaml        | 33 +++++++++++++++++++
-> > >  1 file changed, 33 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/mtd/partitions/qcom,smem-part.yaml
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/mtd/partitions/qcom,smem-part.yaml b/Documentation/devicetree/bindings/mtd/partitions/qcom,smem-part.yaml
-> > > new file mode 100644
-> > > index 000000000000..cf3f8c1e035d
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/mtd/partitions/qcom,smem-part.yaml
-> > > @@ -0,0 +1,33 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/mtd/partitions/qcom,smem-part.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Qualcomm SMEM NAND flash partition parser binding
-> > > +
-> > > +maintainers:
-> > > +  - Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> > > +
-> > > +description: |
-> > > +  The Qualcomm SoCs supporting the NAND controller interface features a Shared
-> > > +  Memory (SMEM) based partition table scheme. The maximum partitions supported
-> > > +  varies between partition table revisions. V3 supports maximum 16 partitions
-> > > +  and V4 supports 48 partitions.
-> > 
-> > V3 vs. V4 (and any other version for that matter) is discoverable?
-> > 
-> 
-> Yes, it is discoverable based on the partition header and we do that in
-> the parser.
+This series adds Tegra210, Tegra186, and Tegra194 Quad SPI driver and
+enables Quad SPI on Jetson Nano and Jetson Xavier NX.
 
-Okay,
+QSPI controller is available on Tegra210, Tegra186 and Tegra194.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Tegra186 and Tegra194 has additional feature of combined sequence mode
+where command, address and data can all be transferred in a single transfer.
 
-> 
-> Thanks,
-> Mani
-> 
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    const: qcom,smem-part
-> > > +
-> > > +required:
-> > > +  - compatible
-> > > +
-> > > +additionalProperties: false
-> > > +
-> > > +examples:
-> > > +  - |
-> > > +    flash {
-> > > +        partitions {
-> > > +            compatible = "qcom,smem-part";
-> > > +        };
-> > > +    };
-> > > -- 
-> > > 2.17.1
-> > > 
+Combined sequence mode is useful with DMA mode transfer.
+
+This series does not have combined sequence mode feature as Tegra186/Tegra194
+GPCDMA driver is not upstreamed yet.
+
+This series includes
+- dt-binding document
+- QSPI driver for Tegra210/Tegra186/Tegra194
+- Enables QSPI on Jetson Nano and Jetson Xavier NX.
+
+Delta between patch versions:
+[v3]:	v2 has some mixed patches sent out accidentally.
+	v3 sends proper patches with fixes mentioned in v2.
+[v2]:	below v1 feedback
+	- Added SPI_MASTER_USES_HW_DUMMY_CYCLES flag for controllers supporting
+	  hardware dummy cycles and skips dummy bytes transfer from software for
+	  these controllers.
+	- Updated dt-binding doc with tx/rx tap delay properties.
+	- Added qspi_out clock to dt-binding doc which will be used later with
+	  ddr mode support.
+	- All other v1 feedback on some cleanup.
+
+
+
+Sowjanya Komatineni (9):
+  dt-bindings: clock: tegra: Add clock ID TEGRA210_CLK_QSPI_PM
+  dt-bindings: spi: Add Tegra Quad SPI device tree binding
+  MAINTAINERS: Add Tegra Quad SPI driver section
+  spi: tegra210-quad: Add support for Tegra210 QSPI controller
+  spi: spi-mem: Allow masters to transfer dummy cycles directly by
+    hardware
+  spi: tegra210-quad: Add support for hardware dummy cycles
+  arm64: tegra: Enable QSPI on Jetson Nano
+  arm64: tegra: Add QSPI nodes on Tegra194
+  arm64: tegra: Enable QSPI on Jetson Xavier NX
+
+ .../bindings/spi/nvidia,tegra210-quad.yaml         |  130 ++
+ MAINTAINERS                                        |    8 +
+ .../dts/nvidia/tegra194-p3509-0000+p3668-0000.dts  |   12 +
+ arch/arm64/boot/dts/nvidia/tegra194.dtsi           |   24 +
+ arch/arm64/boot/dts/nvidia/tegra210-p3450-0000.dts |   12 +
+ arch/arm64/boot/dts/nvidia/tegra210.dtsi           |    5 +-
+ drivers/spi/Kconfig                                |    9 +
+ drivers/spi/Makefile                               |    1 +
+ drivers/spi/spi-mem.c                              |   18 +-
+ drivers/spi/spi-tegra210-quad.c                    | 1407 ++++++++++++++++++++
+ include/dt-bindings/clock/tegra210-car.h           |    2 +-
+ include/linux/spi/spi.h                            |    8 +
+ 12 files changed, 1626 insertions(+), 10 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/spi/nvidia,tegra210-quad.yaml
+ create mode 100644 drivers/spi/spi-tegra210-quad.c
+
+-- 
+2.7.4
+
