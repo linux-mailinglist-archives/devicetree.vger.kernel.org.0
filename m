@@ -2,173 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C8BC2D7DF8
-	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 19:23:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 286E22D7E2A
+	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 19:35:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404039AbgLKSWe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Dec 2020 13:22:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52302 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2403914AbgLKSWP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Dec 2020 13:22:15 -0500
-Received: from mail-yb1-xb41.google.com (mail-yb1-xb41.google.com [IPv6:2607:f8b0:4864:20::b41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4774BC0613CF
-        for <devicetree@vger.kernel.org>; Fri, 11 Dec 2020 10:21:35 -0800 (PST)
-Received: by mail-yb1-xb41.google.com with SMTP id j17so8839732ybt.9
-        for <devicetree@vger.kernel.org>; Fri, 11 Dec 2020 10:21:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=3nfCZOSqX7COlA0cX0qwHs2uGtZKPhKQtcgW7ARql84=;
-        b=TTj3anE2uKBi65yax42DvVyXtHiR5dNluaIDzNsBzVLxREPMI0Bv3a3JJkzWlFWVxs
-         EcTM7YX14DVsq611DEoo9rmdi1Ocnp3UTkyhNJB2W7Q34gK0k2M7rGDXI6o0gcH/bNDp
-         DkOX459MIk75crR+cRJ6tgP2MCDkfAclWerJpMa5YdgryyZN9AITPOSxuwm6dfsusT6Y
-         UIWShFAdm9wbcaYDkFSFPAdnSGycyTCLHdK7sagUX+feyZUp44z/r3R4troXKCuyBG+d
-         rvpVWobLXW9SJ15paSnqjDrt9Q6EiS7BccFFO5Zl+Gl5MpI8RTi6i3FGPpMBxpcSFqUk
-         U8Kw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=3nfCZOSqX7COlA0cX0qwHs2uGtZKPhKQtcgW7ARql84=;
-        b=LwGG4epLKgu8R3aqbxw2TqPdGllQJKdVy5BvAYG7jFDhCheyHfE8/MFYkqc9sIcO43
-         er4on/7jDvXrT2M9Ka6bGgYguAtpQLbu9ph4aE/cPs1WTxlX6GqEPm3gxnouPSHn09yG
-         rTA+QMegiQ5KYcMwk93w5oqApNKk5wLwFE1eaGDGX5czGWw7rDsfsEPwxwimxS+vsYl3
-         NRe8XnAr5Z7v2ppl4hNrtOhikebHPfsMyB8oK26alxqkxBT3jTgir6akM4HumDHLw4MI
-         LgImY1rdl9KaunEq/dXAslQvXm/E8mbDRoIDjJQ1utoX/dIgirarSaiYYGWl1HABFkLB
-         I+uw==
-X-Gm-Message-State: AOAM532Qf2+NIoxk2OHtA5RHsBO021xqzBJWC0E6WI3Fk8u+pGAMuN4z
-        +OAB3PF/eeq+NDyQf7edrVi2bozIrjMbp1UhHTFfgA==
-X-Google-Smtp-Source: ABdhPJxAiV+XtwJamoCUeVUhu+ibpatPBAR0rjxSrKWUqKVWEHeqwsrOQAEylJ6pRw/sGUzjlziknTO/PevczSvPNbE=
-X-Received: by 2002:a25:824e:: with SMTP id d14mr13356399ybn.346.1607710894170;
- Fri, 11 Dec 2020 10:21:34 -0800 (PST)
+        id S2394883AbgLKSeS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Dec 2020 13:34:18 -0500
+Received: from mail.kernel.org ([198.145.29.99]:34836 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2391277AbgLKSeJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 11 Dec 2020 13:34:09 -0500
+Date:   Fri, 11 Dec 2020 18:33:20 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1607711608;
+        bh=OibTR0PAA39E07obh9yM311f9pvbiTTZNMXQ/YRmRAo=;
+        h=From:To:Cc:Subject:References:In-Reply-To:From;
+        b=abGE1zDu8qOUj34r6/XsGN/Ssij59v6F0e1emxS7665euMEHfLDKAc6/tAdbNKxuJ
+         svLl7dU9CLObR9R1beYDtQHU1s2XIKP7qgyisYdo/r0zFAbZ0a19zJ+LaINlEZ0CLB
+         21JSoaLZ/JQWWQ/0aWhNyqZ/Vd1j5jJL1lYkaMtpZVFJevnPrEFSWsWv0UfcfeNEX8
+         MT5pvRVaAP2HDHjcQD5vvBWkwn390cnOHCuwmie7bdmgMlnjKAhtjIN5lTBaG0NUn6
+         Q/6MxxiLNPVgRqa40nLBukUoEu5q/DcijYS1jdaNAE9BnTjrdQQ9yuecHNa+fhckYs
+         U5tHpNFdWl8JQ==
+From:   Mark Brown <broonie@kernel.org>
+To:     Sowjanya Komatineni <skomatineni@nvidia.com>
+Cc:     thierry.reding@gmail.com, jonathanh@nvidia.com, robh+dt@kernel.org,
+        lukas@wunner.de, linux-spi@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Boris Brezillon <bbrezillon@kernel.org>,
+        Pratyush Yadav <p.yadav@ti.com>,
+        Tudor Ambarus <tudor.ambarus@microchip.com>
+Subject: Re: [PATCH v2 5/9] spi: spi-mem: Allow masters to transfer dummy
+ cycles directly by hardware
+Message-ID: <20201211183320.GH4929@sirena.org.uk>
+References: <1607706088-1437-1-git-send-email-skomatineni@nvidia.com>
+ <1607706088-1437-8-git-send-email-skomatineni@nvidia.com>
 MIME-Version: 1.0
-References: <20201121020232.908850-1-saravanak@google.com> <20201121020232.908850-17-saravanak@google.com>
- <02e7047071f0b54b046ac472adeeb3fafabc643c.camel@redhat.com>
- <788ee1c7-0ea2-33ec-658e-50707f7515a6@arm.com> <CAGETcx-MsNyWWT=s1H6hDK+=QvibBLQrT9rM51y5bkomV_+G6g@mail.gmail.com>
- <813b3fbd80ad4dfee7ff8517d4829a1f@kernel.org>
-In-Reply-To: <813b3fbd80ad4dfee7ff8517d4829a1f@kernel.org>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Fri, 11 Dec 2020 10:20:58 -0800
-Message-ID: <CAGETcx_hPVv1iTt6q3gLmBN=q+_O6vTwxeS5Nj55Smm3FNk24Q@mail.gmail.com>
-Subject: Re: [PATCH v2 16/17] driver core: Refactor fw_devlink feature
-To:     Marc Zyngier <maz@kernel.org>
-Cc:     Robin Murphy <robin.murphy@arm.com>, Qian Cai <qcai@redhat.com>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Len Brown <lenb@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Ard Biesheuvel <ardb@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        Stephen Rothwell <sfr@canb.auug.org.au>,
-        linux-efi <linux-efi@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
-        Tomi Valkeinen <tomi.valkeinen@ti.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Android Kernel Team <kernel-team@android.com>,
-        Linux Next Mailing List <linux-next@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="fd5uyaI9j6xoeUBo"
+Content-Disposition: inline
+In-Reply-To: <1607706088-1437-8-git-send-email-skomatineni@nvidia.com>
+X-Cookie: Nostalgia isn't what it used to be.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 11, 2020 at 10:03 AM Marc Zyngier <maz@kernel.org> wrote:
->
-> On 2020-12-11 17:51, Saravana Kannan wrote:
-> > On Fri, Dec 11, 2020 at 8:34 AM Robin Murphy <robin.murphy@arm.com>
-> > wrote:
-> >>
-> >> On 2020-12-11 14:11, Qian Cai wrote:
-> >> > On Fri, 2020-11-20 at 18:02 -0800, Saravana Kannan wrote:
-> >> >> The current implementation of fw_devlink is very inefficient because it
-> >> >> tries to get away without creating fwnode links in the name of saving
-> >> >> memory usage. Past attempts to optimize runtime at the cost of memory
-> >> >> usage were blocked with request for data showing that the optimization
-> >> >> made significant improvement for real world scenarios.
-> >> >>
-> >> >> We have those scenarios now. There have been several reports of boot
-> >> >> time increase in the order of seconds in this thread [1]. Several OEMs
-> >> >> and SoC manufacturers have also privately reported significant
-> >> >> (350-400ms) increase in boot time due to all the parsing done by
-> >> >> fw_devlink.
-> >> >>
-> >> >> So this patch uses all the setup done by the previous patches in this
-> >> >> series to refactor fw_devlink to be more efficient. Most of the code has
-> >> >> been moved out of firmware specific (DT mostly) code into driver core.
-> >> >>
-> >> >> This brings the following benefits:
-> >> >> - Instead of parsing the device tree multiple times during bootup,
-> >> >>    fw_devlink parses each fwnode node/property only once and creates
-> >> >>    fwnode links. The rest of the fw_devlink code then just looks at these
-> >> >>    fwnode links to do rest of the work.
-> >> >>
-> >> >> - Makes it much easier to debug probe issue due to fw_devlink in the
-> >> >>    future. fw_devlink=on blocks the probing of devices if they depend on
-> >> >>    a device that hasn't been added yet. With this refactor, it'll be very
-> >> >>    easy to tell what that device is because we now have a reference to
-> >> >>    the fwnode of the device.
-> >> >>
-> >> >> - Much easier to add fw_devlink support to ACPI and other firmware
-> >> >>    types. A refactor to move the common bits from DT specific code to
-> >> >>    driver core was in my TODO list as a prerequisite to adding ACPI
-> >> >>    support to fw_devlink. This series gets that done.
-> >> >>
-> >> >> [1] - https://lore.kernel.org/linux-omap/ea02f57e-871d-cd16-4418-c1da4bbc4696@ti.com/
-> >> >> Signed-off-by: Saravana Kannan <saravanak@google.com>
-> >> >> Tested-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> >> >> Tested-by: Grygorii Strashko <grygorii.strashko@ti.com>
-> >> >
-> >> > Reverting this commit and its dependency:
-> >> >
-> >> > 2d09e6eb4a6f driver core: Delete pointless parameter in fwnode_operations.add_links
-> >> >
-> >> > from today's linux-next fixed a boot crash on an arm64 Thunder X2 server.
-> >>
-> >> Since the call stack implicates the platform-device-wrangling we do in
-> >> IORT code I took a quick look; AFAICS my guess would be it's blowing
-> >> up
-> >> trying to walk a zeroed list head since "driver core: Add
-> >> fwnode_init()"
-> >> missed acpi_alloc_fwnode_static().
-> >
-> > Thanks Robin. I'm pretty sure this is the reason. I thought I fixed
-> > all ACPI cases, but clearly I missed this one. I'll send out a patch
-> > for this today. If you think there are any other places I missed
-> > please let me know. I'll try some git grep foo to see if I missed any
-> > other instances of fwnode ops being set.
->
-> Yup, that fixed it here (QDF2400).
->
-> Thanks,
->
->          M.
->
-> diff --git a/include/linux/acpi.h b/include/linux/acpi.h
-> index 39263c6b52e1..2630c2e953f7 100644
-> --- a/include/linux/acpi.h
-> +++ b/include/linux/acpi.h
-> @@ -55,7 +55,7 @@ static inline struct fwnode_handle
-> *acpi_alloc_fwnode_static(void)
->         if (!fwnode)
->                 return NULL;
->
-> -       fwnode->ops = &acpi_static_fwnode_ops;
-> +       fwnode_init(fwnode, &acpi_static_fwnode_ops);
->
->         return fwnode;
->   }
->
 
-Lol, my only contribution to the patch will be the commit text. I'll
-send them with reported-by, suggested-by and tested-by if no one less
-beats me to it.
+--fd5uyaI9j6xoeUBo
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
--Saravana
+On Fri, Dec 11, 2020 at 09:01:24AM -0800, Sowjanya Komatineni wrote:
+> This patch adds a flag SPI_MASTER_USES_HW_DUMMY_CYCLES for the controllers
+> that support transfer of dummy cycles by the hardware directly.
+>=20
+> For controller with this flag set, spi-mem driver will skip dummy bytes
+> transfer in the spi message.
+>=20
+> Controller drivers can get the number of dummy cycles from spi_message.
+
+Copying more people who've worked on spi-mem for their review - I've not
+got such a good perspective on controller features.
+
+> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
+> ---
+>  drivers/spi/spi-mem.c   | 18 +++++++++++-------
+>  include/linux/spi/spi.h |  8 ++++++++
+>  2 files changed, 19 insertions(+), 7 deletions(-)
+>=20
+> diff --git a/drivers/spi/spi-mem.c b/drivers/spi/spi-mem.c
+> index f3a3f19..38a523b 100644
+> --- a/drivers/spi/spi-mem.c
+> +++ b/drivers/spi/spi-mem.c
+> @@ -350,13 +350,17 @@ int spi_mem_exec_op(struct spi_mem *mem, const stru=
+ct spi_mem_op *op)
+>  	}
+> =20
+>  	if (op->dummy.nbytes) {
+> -		memset(tmpbuf + op->addr.nbytes + 1, 0xff, op->dummy.nbytes);
+> -		xfers[xferpos].tx_buf =3D tmpbuf + op->addr.nbytes + 1;
+> -		xfers[xferpos].len =3D op->dummy.nbytes;
+> -		xfers[xferpos].tx_nbits =3D op->dummy.buswidth;
+> -		spi_message_add_tail(&xfers[xferpos], &msg);
+> -		xferpos++;
+> -		totalxferlen +=3D op->dummy.nbytes;
+> +		if (ctlr->flags & SPI_MASTER_USES_HW_DUMMY_CYCLES) {
+> +			msg.dummy_cycles =3D (op->dummy.nbytes * 8) / op->dummy.buswidth;
+> +		} else {
+> +			memset(tmpbuf + op->addr.nbytes + 1, 0xff, op->dummy.nbytes);
+> +			xfers[xferpos].tx_buf =3D tmpbuf + op->addr.nbytes + 1;
+> +			xfers[xferpos].len =3D op->dummy.nbytes;
+> +			xfers[xferpos].tx_nbits =3D op->dummy.buswidth;
+> +			spi_message_add_tail(&xfers[xferpos], &msg);
+> +			xferpos++;
+> +			totalxferlen +=3D op->dummy.nbytes;
+> +		}
+>  	}
+> =20
+>  	if (op->data.nbytes) {
+> diff --git a/include/linux/spi/spi.h b/include/linux/spi/spi.h
+> index aa09fdc..2024149 100644
+> --- a/include/linux/spi/spi.h
+> +++ b/include/linux/spi/spi.h
+> @@ -512,6 +512,8 @@ struct spi_controller {
+> =20
+>  #define SPI_MASTER_GPIO_SS		BIT(5)	/* GPIO CS must select slave */
+> =20
+> +#define SPI_MASTER_USES_HW_DUMMY_CYCLES	BIT(6)	/* HW dummy bytes transfe=
+r */
+> +
+>  	/* flag indicating this is an SPI slave controller */
+>  	bool			slave;
+> =20
+> @@ -1022,6 +1024,12 @@ struct spi_message {
+>  	unsigned		actual_length;
+>  	int			status;
+> =20
+> +	/*
+> +	 * dummy cycles in the message transfer. This is used by the controller
+> +	 * drivers supports transfer of dummy cycles directly by the hardware.
+> +	 */
+> +	u8			dummy_cycles;
+> +
+>  	/* for optional use by whatever driver currently owns the
+>  	 * spi_message ...  between calls to spi_async and then later
+>  	 * complete(), that's the spi_controller controller driver.
+> --=20
+> 2.7.4
+>=20
+
+--fd5uyaI9j6xoeUBo
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl/Tu3AACgkQJNaLcl1U
+h9DepQf/XODyzQ0UT45vCpfpru/rfrg5EoDLiG3Dv3KcNgf+JJ7AK8xYAdXIYklu
+GEsr+UZrkclhK4cuRRsj0V+VkSKLdamCA49Qx2E2IbWkB22q2F8vrqfxBuDPbn0I
+gBxDm79dB5PmoxIIRmYWTQejnAdIR5DEwmojdpRJvA8TCI5DW/7h7fie4dhUn69U
+XFFqaflnNZl8SoAq7sMqOFnL2HGGSrdkFWujK7ewo16gKDVX4Qm92BoXdbmsnA8M
+LJeiaVMzdY+3CFy/jpe1A3zm2gqlW61BchCsZpulQtFSQUrqq2bSNcD31saGnXOI
+fLCzrpkWPxUzqZDX18TM1q0TcWCTVA==
+=ETWq
+-----END PGP SIGNATURE-----
+
+--fd5uyaI9j6xoeUBo--
