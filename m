@@ -2,95 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9BAE12D6FFA
-	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 07:07:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 644B32D7003
+	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 07:12:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389790AbgLKGGf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Dec 2020 01:06:35 -0500
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:41832 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2391588AbgLKGGQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Dec 2020 01:06:16 -0500
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0BB64cbx039923;
-        Fri, 11 Dec 2020 00:04:38 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1607666678;
-        bh=wSqjmbU0YYGEkg93VVUH28s8uW6BoEtX08kYM08bGPo=;
-        h=From:To:CC:Subject:Date;
-        b=fPgU5gOnLC1M3lsMAIClh7KPtDTIZU9PFV36de1+wxiXDYfWRkhtdD2WB1gZO7Dof
-         rp7ZEjWgKnJh9I3CPHoyxTPKqI4HF7iaku+R0985x47wvZkuxUggXFHpSCrO0gG1xb
-         6X/W4c48RxSTR6aR3Eo/xPG+YxT2mtA6DTnJPQY4=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0BB64c1q078685
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 11 Dec 2020 00:04:38 -0600
-Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Fri, 11
- Dec 2020 00:04:37 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Fri, 11 Dec 2020 00:04:38 -0600
-Received: from gsaswath-HP-ProBook-640-G5.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0BB64Xoh116260;
-        Fri, 11 Dec 2020 00:04:34 -0600
-From:   Aswath Govindraju <a-govindraju@ti.com>
-CC:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Sekhar Nori <nsekhar@ti.com>,
-        Aswath Govindraju <a-govindraju@ti.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Roger Quadros <rogerq@ti.com>, <linux-usb@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v4] dt-bindings: usb: Add new compatible string for AM64 SoC
-Date:   Fri, 11 Dec 2020 11:34:29 +0530
-Message-ID: <20201211060429.20027-1-a-govindraju@ti.com>
-X-Mailer: git-send-email 2.17.1
+        id S2393425AbgLKGLX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Dec 2020 01:11:23 -0500
+Received: from bmail1.ministro.hu ([5.249.150.236]:34642 "EHLO
+        bmail1.ministro.hu" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2390863AbgLKGLH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Dec 2020 01:11:07 -0500
+Received: from localhost (localhost [127.0.0.1])
+        by bmail1.ministro.hu (Postfix) with ESMTP id 3D420123B16;
+        Fri, 11 Dec 2020 07:10:16 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ministro.hu;
+        s=201804; t=1607667016;
+        bh=6kS5gL6N73YvYSzIt+4DLpz4DbOxzlgqvdiiuCRDJys=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=52hxKpCgXch9EL+X9cy06GynYK5wmNLbo4EMlaBsv6iE/4gW+D/WBme3PxCCqOWXB
+         8TsNPThLJd8EmfekExTSnKggR2KN7qgmkFu6eWwSWJaOvtEsSN8+u53WtyI0tb7KZ8
+         kP6gK2fCxfoKLvdFDq29CwlFPv3KHOsq5KbDBbpA2EE7bBW32fC0C1TVFr7iAM28Pd
+         VGQvxzd7eIQ61irqIZFTf9Vrd+2eLfv/lspIcoY3DgRCMflC86yhQoIcWgwsy+GE55
+         Il3ZIC3MT2ZZSDcWRgipakYdn001M8DblqAF8cH25iYO2kM+GzT5yINfym6q8dYufB
+         kur0UtmOqJmGw==
+X-Virus-Scanned: Debian amavisd-new at ministro.hu
+Received: from bmail1.ministro.hu ([127.0.0.1])
+        by localhost (bmail1.ministro.hu [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id HMmVd6l5MS9K; Fri, 11 Dec 2020 07:09:46 +0100 (CET)
+Received: from dincontrollerdev (localhost [127.0.0.1])
+        by bmail1.ministro.hu (Postfix) with ESMTPSA id C262D123B08;
+        Fri, 11 Dec 2020 07:09:45 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ministro.hu;
+        s=201804; t=1607666986;
+        bh=6kS5gL6N73YvYSzIt+4DLpz4DbOxzlgqvdiiuCRDJys=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=bQNZB+sKFfbKuGIzeuoMTSxf3vcGWrtLfNMRu7EYturDr3IhQSd+NY4Z9UX7FvQWB
+         wGLAONj/86q2LVl8lnyl0i8KysE5lTf51S1RHi7xVTQFkzF+uL4qeyvUSqiq9BG1pI
+         uBJRikugFxdGrBJdTgsZu65SQDCF7c7DO3lIseyR2qPIbiOmTKU5mhwsb2wuUuqk9E
+         SwcZPNzwoIEpeWyUICYTjZOfBM2oxwJjvff37E9lKzR0oQUPNWVG8KACu0BwYLlMOD
+         zeWfzsvsdFsCtc9F8i2mH2nE74J/PkqS7awh+U8b0soqgPwH9Eob6QaMQjY/UtajNJ
+         bjE7tK03ZFVvQ==
+Date:   Fri, 11 Dec 2020 06:09:43 +0000
+From:   =?iso-8859-1?Q?J=F3zsef_Horv=E1th?= <info@ministro.hu>
+To:     'Greg Kroah-Hartman' <gregkh@linuxfoundation.org>
+Cc:     'Rob Herring' <robh+dt@kernel.org>,
+        'Jiri Slaby' <jirislaby@kernel.org>,
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] Serial: silabs si4455 serial driver
+Message-ID: <20201211060943.GA1065@dincontrollerdev>
+References: <20201210170443.GA17304@dincontrollerdev>
+ <X9Jw+srprdT8tquZ@kroah.com>
+ <20201210194625.GA17516@dincontrollerdev>
+ <X9MIwqJBG69M5uHq@kroah.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-To:     unlisted-recipients:; (no To-header on input)
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <X9MIwqJBG69M5uHq@kroah.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add compatible string in j721e-usb binding file as the same USB subsystem
-is present in AM64.
+On Fri, Dec 11, 2020 at 06:50:58AM +0100, 'Greg Kroah-Hartman' wrote:
+> On Thu, Dec 10, 2020 at 07:46:25PM +0000, József Horváth wrote:
+> > On Thu, Dec 10, 2020 at 08:03:22PM +0100, 'Greg Kroah-Hartman' wrote:
+> > > On Thu, Dec 10, 2020 at 05:04:46PM +0000, József Horváth wrote:
+> > > > This is a serial port driver for
+> > > > Silicon Labs Si4455 Sub-GHz transciver.
+> > > > +
+> > > > +#define BASE_TTYIOC_PRIVATE		0xA0
+> > > > +/* Set EZConfig.
+> > > > + * After this ioctl call, the driver restarts the si4455,
+> > > > + * then apply the new configuration and patch.
+> > > > + */
+> > > > +#define SI4455_IOC_SEZC		_IOW('T', \
+> > > > +				     BASE_TTYIOC_PRIVATE + 0x01, \
+> > > > +				     struct si4455_iocbuff)
+> > > 
+> > > Why does a serial driver have private ioctls?  Please no, don't do that.
+> > 
+> > I checked the ioctl.h and serial_core.h, but I not found any similar definition, like BASE_VIDIOC_PRIVATE in videodev2.h.
+> > In this case the name of macro BASE_TTYIOC_PRIVATE means the base value of special ioctl commands owned by this driver.
+> 
+> My point is, a serial driver should NOT have any custom ioctls.
+> 
+> > I can change it to BASE_TTYIOC or SI4455_IOC_BASE
+> > 
+> > > Implement the basic serial driver first, and then we can talk about
+> > > "custom" configurations and the like, using the correct apis.
+> > 
+> > Without the SI4455_IOC_SEZC call, the driver can't configure the Si4455 and not working at all.
+> > The cofiguration for interface is provided by user for application.
+> 
+> That is what a device tree is for, to configure the device to have the
+> correct system configuration, why can't that be the same here?
+> 
+> > It contains the base frequency, channel spacing, modulation, and a lot
+> > of more stuff, and generated by Silicon Labs Wireless Development
+> > Suite.
+> > The generated configuration is in a non public(compressed,
+> > encrypted...who knows) format, so without this the driver can't
+> > provide configuration parameters to Si4455.
+> 
+> So we have to take a "custom" userspace blob and send it to the device
+> to configure it properly?  Like Jiri said, sounds like firmware, so just
+> use that interface instead.
 
-Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
----
+I checked Jiri's suggestion, and it is a good solution to replace SI4455_IOC_SEZC(configuration) and SI4455_IOC_SEZP(firmware patch).
+I can move SI4455_IOC_SSIZ(package size) to device tree property.
 
-Changes since v3:
-- used enum instead of anyOf.
+Maybe you have good suggestion for the following:
+SI4455_IOC_STXC -> Radio transmit channel index. It is a real use case to control this parameter by user at runtime.
+SI4455_IOC_SRXC -> Radio receive channel index. It is a real use case to control this parameter by user at runtime.
+SI4455_IOC_GRSSI -> Last measured RSSI, when packet received. This is a useful information.
+(Currently I'm the only one user, and I need this :) )
 
-Changes since v2:
-- added changes done over the versions.
+> 
+> thanks,
+> 
+> greg k-h
 
-Changes since v1:
-- replaced the '\t' at the beginning of the lines with spaces as it was
-  causing the dt_binding_check to fail.
+Üdvözlettel / Best regards:
+József Horváth
 
- Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml b/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml
-index 388245b91a55..1a5c7bbb40d1 100644
---- a/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml
-+++ b/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml
-@@ -11,8 +11,9 @@ maintainers:
- 
- properties:
-   compatible:
--    items:
--      - const: ti,j721e-usb
-+    enum:
-+      - ti,j721e-usb
-+      - ti,am64-usb
- 
-   reg:
-     description: module registers
--- 
-2.17.1
 
