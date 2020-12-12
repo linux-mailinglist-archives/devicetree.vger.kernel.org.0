@@ -2,209 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8EB372D8468
-	for <lists+devicetree@lfdr.de>; Sat, 12 Dec 2020 05:17:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 960F82D8492
+	for <lists+devicetree@lfdr.de>; Sat, 12 Dec 2020 06:07:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2438226AbgLLEOu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Dec 2020 23:14:50 -0500
-Received: from mailgw02.mediatek.com ([210.61.82.184]:41056 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S2438148AbgLLENu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Dec 2020 23:13:50 -0500
-X-UUID: f5e023bbe5a445a48e540c36e19cbfbd-20201212
-X-UUID: f5e023bbe5a445a48e540c36e19cbfbd-20201212
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
-        (envelope-from <yongqiang.niu@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1917355464; Sat, 12 Dec 2020 12:12:15 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs05n2.mediatek.inc (172.21.101.140) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Sat, 12 Dec 2020 12:12:14 +0800
-Received: from localhost.localdomain (10.17.3.153) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Sat, 12 Dec 2020 12:12:13 +0800
-From:   Yongqiang Niu <yongqiang.niu@mediatek.com>
-To:     CK Hu <ck.hu@mediatek.com>, Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-CC:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        Mark Rutland <mark.rutland@arm.com>,
-        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        Yongqiang Niu <yongqiang.niu@mediatek.com>
-Subject: [PATCH v2, 17/17] arm64: dts: mt8192: add display node
-Date:   Sat, 12 Dec 2020 12:11:57 +0800
-Message-ID: <1607746317-4696-18-git-send-email-yongqiang.niu@mediatek.com>
-X-Mailer: git-send-email 1.8.1.1.dirty
-In-Reply-To: <1607746317-4696-1-git-send-email-yongqiang.niu@mediatek.com>
-References: <1607746317-4696-1-git-send-email-yongqiang.niu@mediatek.com>
+        id S1725320AbgLLFFr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 12 Dec 2020 00:05:47 -0500
+Received: from relay1.mymailcheap.com ([149.56.97.132]:59981 "EHLO
+        relay1.mymailcheap.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726022AbgLLFFk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Dec 2020 00:05:40 -0500
+X-Greylist: delayed 3558 seconds by postgrey-1.27 at vger.kernel.org; Sat, 12 Dec 2020 00:05:39 EST
+Received: from filter2.mymailcheap.com (filter2.mymailcheap.com [91.134.140.82])
+        by relay1.mymailcheap.com (Postfix) with ESMTPS id 4D7073F157;
+        Sat, 12 Dec 2020 05:04:08 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+        by filter2.mymailcheap.com (Postfix) with ESMTP id 92D8A2A510;
+        Sat, 12 Dec 2020 06:04:07 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mymailcheap.com;
+        s=default; t=1607749447;
+        bh=1kReouX7Rdy6dmkTKtScUVsD9gkvk20YqptCWD/nPTQ=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=VngGVNzUBlb83e5Of1MvSQLXN9EgFx8RY6oba/trw6li9eym/ffR6er+S8CuOuKDq
+         PNL9N0dM7R8Q7zc7TiYJgtyeEAhrCDTnk3BVGH3QwKrlG4f6cO7vGu+mslMeqaojoj
+         9TeySdwcqaam69dixdC3apCKdn3M/E6fWd0BNh5o=
+X-Virus-Scanned: Debian amavisd-new at filter2.mymailcheap.com
+Received: from filter2.mymailcheap.com ([127.0.0.1])
+        by localhost (filter2.mymailcheap.com [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id D8qkaISYhdYb; Sat, 12 Dec 2020 06:04:06 +0100 (CET)
+Received: from mail20.mymailcheap.com (mail20.mymailcheap.com [51.83.111.147])
+        (using TLSv1.2 with cipher ADH-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by filter2.mymailcheap.com (Postfix) with ESMTPS;
+        Sat, 12 Dec 2020 06:04:06 +0100 (CET)
+Received: from [213.133.102.83] (ml.mymailcheap.com [213.133.102.83])
+        by mail20.mymailcheap.com (Postfix) with ESMTP id D767C42D9B;
+        Sat, 12 Dec 2020 05:04:05 +0000 (UTC)
+Authentication-Results: mail20.mymailcheap.com;
+        dkim=pass (1024-bit key; unprotected) header.d=aosc.io header.i=@aosc.io header.b="L/Gu/b/J";
+        dkim-atps=neutral
+AI-Spam-Status: Not processed
+Received: from ice-e5v2.lan (unknown [59.41.161.2])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by mail20.mymailcheap.com (Postfix) with ESMTPSA id 53D3142D9B;
+        Sat, 12 Dec 2020 05:03:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=aosc.io; s=default;
+        t=1607749439; bh=1kReouX7Rdy6dmkTKtScUVsD9gkvk20YqptCWD/nPTQ=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=L/Gu/b/J9CvdNZSy+4BcVkJ8P5mo3t6RU7Ej/w0vhMOalKZNwQiPThJBDr6aV8xnk
+         Sl6oGsYpCFj99tDjDINCAaCnjV2wb/W40vMvTD9y5w1AQTGVXy1k20bSHZ5XTnvrVu
+         4Oqe3oxIXBsXxTWK7j2lnsy9QmE4TmspDVbuuh14=
+From:   Icenowy Zheng <icenowy@aosc.io>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Icenowy Zheng <icenowy@aosc.io>,
+        Ulf Hansson <ulf.hansson@linaro.org>, linux-mmc@vger.kernel.org
+Subject: [RFC PATCH 08/12] dt-bindings: mmc: sunxi: add compatible strings for V831 MMC
+Date:   Sat, 12 Dec 2020 13:03:42 +0800
+Message-Id: <20201212050346.3644673-1-icenowy@aosc.io>
+X-Mailer: git-send-email 2.28.0
+In-Reply-To: <20201212040157.3639864-1-icenowy@aosc.io>
+References: <20201212040157.3639864-1-icenowy@aosc.io>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Server: mail20.mymailcheap.com
+X-Spamd-Result: default: False [6.40 / 20.00];
+         RCVD_VIA_SMTP_AUTH(0.00)[];
+         ARC_NA(0.00)[];
+         R_DKIM_ALLOW(0.00)[aosc.io:s=default];
+         RECEIVED_SPAMHAUS_PBL(0.00)[59.41.161.2:received];
+         FROM_HAS_DN(0.00)[];
+         TO_DN_SOME(0.00)[];
+         R_MISSING_CHARSET(2.50)[];
+         TO_MATCH_ENVRCPT_ALL(0.00)[];
+         TAGGED_RCPT(0.00)[dt];
+         MIME_GOOD(-0.10)[text/plain];
+         BROKEN_CONTENT_TYPE(1.50)[];
+         R_SPF_SOFTFAIL(0.00)[~all];
+         DMARC_NA(0.00)[aosc.io];
+         ML_SERVERS(-3.10)[213.133.102.83];
+         DKIM_TRACE(0.00)[aosc.io:+];
+         RCPT_COUNT_SEVEN(0.00)[10];
+         MID_CONTAINS_FROM(1.00)[];
+         RCVD_NO_TLS_LAST(0.10)[];
+         FROM_EQ_ENVFROM(0.00)[];
+         MIME_TRACE(0.00)[0:+];
+         ASN(0.00)[asn:24940, ipnet:213.133.96.0/19, country:DE];
+         RCVD_COUNT_TWO(0.00)[2];
+         SUSPICIOUS_RECIPS(1.50)[];
+         HFILTER_HELO_BAREIP(3.00)[213.133.102.83,1]
+X-Rspamd-Queue-Id: D767C42D9B
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-add display node
+V831 has MMC controllers similar to the ones on H6.
 
-Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
+Add a compatible string for them.
+
+The eMMC controller compatible is not added, because the eMMC controller
+is not available on V831, only V833.
+
+Cc: Ulf Hansson <ulf.hansson@linaro.org>
+Cc: linux-mmc@vger.kernel.org
+Signed-off-by: Icenowy Zheng <icenowy@aosc.io>
 ---
- arch/arm64/boot/dts/mediatek/mt8192.dtsi | 130 +++++++++++++++++++++++++++++++
- 1 file changed, 130 insertions(+)
+ .../devicetree/bindings/mmc/allwinner,sun4i-a10-mmc.yaml       | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-index 7c0c233..da681b0 100644
---- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-@@ -17,6 +17,11 @@
- 	#address-cells = <2>;
- 	#size-cells = <2>;
- 
-+	aliases {
-+		ovl_2l2 = &ovl_2l2;
-+		rdma4 = &rdma4;
-+	};
-+
- 	clk26m: oscillator0 {
- 		compatible = "fixed-clock";
- 		#clock-cells = <0>;
-@@ -614,9 +619,134 @@
- 		mmsys: syscon@14000000 {
- 			compatible = "mediatek,mt8192-mmsys", "syscon";
- 			reg = <0 0x14000000 0 0x1000>;
-+			mboxes = <&gce 0 CMDQ_THR_PRIO_HIGHEST 1>,
-+				 <&gce 1 CMDQ_THR_PRIO_HIGHEST 1>;
-+			mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0 0x1000>;
- 			#clock-cells = <1>;
- 		};
- 
-+		mutex: mutex@14001000 {
-+			compatible = "mediatek,mt8192-disp-mutex";
-+			reg = <0 0x14001000 0 0x1000>;
-+			interrupts = <GIC_SPI 252 IRQ_TYPE_LEVEL_HIGH 0>;
-+			clocks = <&mmsys CLK_MM_DISP_CONFIG>,
-+			         <&mmsys CLK_MM_26MHZ>,
-+			         <&mmsys CLK_MM_DISP_MUTEX0>;
-+			mediatek,gce-events = <CMDQ_EVENT_DISP_STREAM_DONE_ENG_EVENT_0>,
-+					      <CMDQ_EVENT_DISP_STREAM_DONE_ENG_EVENT_1>;
-+		};
-+
-+		ovl0: ovl@14005000 {
-+			compatible = "mediatek,mt8192-disp-ovl";
-+			reg = <0 0x14005000 0 0x1000>;
-+			interrupts = <GIC_SPI 254 IRQ_TYPE_LEVEL_HIGH 0>;
-+			clocks = <&mmsys CLK_MM_DISP_OVL0>;
-+			//iommus = <&iommu0 M4U_PORT_L0_OVL_RDMA0>,
-+			//	 <&iommu0 M4U_PORT_L0_OVL_RDMA0_HDR>;
-+			//power-domains = <&scpsys MT8192_POWER_DOMAIN_DISP>;
-+			mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0x5000 0x1000>;
-+		};
-+
-+		ovl_2l0: ovl@14006000 {
-+			compatible = "mediatek,mt8192-disp-ovl-2l";
-+			reg = <0 0x14006000 0 0x1000>;
-+			interrupts = <GIC_SPI 255 IRQ_TYPE_LEVEL_HIGH 0>;
-+			//power-domains = <&scpsys MT8192_POWER_DOMAIN_DISP>;
-+			clocks = <&mmsys CLK_MM_DISP_OVL0_2L>;
-+			//iommus = <&iommu0 M4U_PORT_L1_OVL_2L_RDMA0>,
-+			//	 <&iommu0 M4U_PORT_L1_OVL_2L_RDMA0_HDR>;
-+			mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0x6000 0x1000>;
-+		};
-+
-+		rdma0: rdma@14007000 {
-+			compatible = "mediatek,mt8192-disp-rdma";
-+			reg = <0 0x14007000 0 0x1000>;
-+			interrupts = <GIC_SPI 256 IRQ_TYPE_LEVEL_HIGH 0>;
-+			clocks = <&mmsys CLK_MM_DISP_RDMA0>;
-+			//iommus = <&iommu0 M4U_PORT_L0_DISP_RDMA0>;
-+			mediatek,rdma_fifo_size = <5120>;
-+			//power-domains = <&scpsys MT8192_POWER_DOMAIN_DISP>;
-+			mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0x7000 0x1000>;
-+		};
-+
-+		color0: color@14009000 {
-+			compatible = "mediatek,mt8192-disp-color",
-+				     "mediatek,mt8173-disp-color";
-+			reg = <0 0x14009000 0 0x1000>;
-+			interrupts = <GIC_SPI 258 IRQ_TYPE_LEVEL_HIGH 0>;
-+			//power-domains = <&scpsys MT8192_POWER_DOMAIN_DISP>;
-+			clocks = <&mmsys CLK_MM_DISP_COLOR0>;
-+			mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0x9000 0x1000>;
-+		};
-+
-+		ccorr0: ccorr@1400a000 {
-+			compatible = "mediatek,mt8192-disp-ccorr";
-+			reg = <0 0x1400a000 0 0x1000>;
-+			interrupts = <GIC_SPI 259 IRQ_TYPE_LEVEL_HIGH 0>;
-+			//power-domains = <&scpsys MT8192_POWER_DOMAIN_DISP>;
-+			clocks = <&mmsys CLK_MM_DISP_CCORR0>;
-+			mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0xa000 0x1000>;
-+		};
-+
-+		aal0: aal@1400b000 {
-+			compatible = "mediatek,mt8192-disp-aal";
-+			reg = <0 0x1400b000 0 0x1000>;
-+			interrupts = <GIC_SPI 260 IRQ_TYPE_LEVEL_HIGH 0>;
-+			//power-domains = <&scpsys MT8192_POWER_DOMAIN_DISP>;
-+			clocks = <&mmsys CLK_MM_DISP_AAL0>;
-+			mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0xb000 0x1000>;
-+		};
-+
-+		gamma0: gamma@1400c000 {
-+			compatible = "mediatek,mt8192-disp-gamma";
-+			reg = <0 0x1400c000 0 0x1000>;
-+			interrupts = <GIC_SPI 261 IRQ_TYPE_LEVEL_HIGH 0>;
-+			//power-domains = <&scpsys MT8192_POWER_DOMAIN_DISP>;
-+			clocks = <&mmsys CLK_MM_DISP_GAMMA0>;
-+			mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0xc000 0x1000>;
-+		};
-+
-+		postmask0: postmask@1400d000 {
-+			compatible = "mediatek,mt8192-disp-postmask";
-+			reg = <0 0x1400d000 0 0x1000>;
-+			interrupts = <GIC_SPI 262 IRQ_TYPE_LEVEL_HIGH 0>;
-+			//power-domains = <&scpsys MT8192_POWER_DOMAIN_DISP>;
-+			clocks = <&mmsys CLK_MM_DISP_POSTMASK0>;
-+			//iommus = <&iommu0 M4U_PORT_L0_DISP_POSTMASK0>;
-+			mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0xd000 0x1000>;
-+		};
-+
-+		dither0: dither@1400e000 {
-+			compatible = "mediatek,mt8192-disp-dither";
-+			reg = <0 0x1400e000 0 0x1000>;
-+			interrupts = <GIC_SPI 263 IRQ_TYPE_LEVEL_HIGH 0>;
-+			//power-domains = <&scpsys MT8192_POWER_DOMAIN_DISP>;
-+			clocks = <&mmsys CLK_MM_DISP_DITHER0>;
-+			mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0xe000 0x1000>;
-+		};
-+
-+		ovl_2l2: ovl@14014000 {
-+			compatible = "mediatek,mt8192-disp-ovl-2l";
-+			reg = <0 0x14014000 0 0x1000>;
-+			interrupts = <GIC_SPI 268 IRQ_TYPE_LEVEL_HIGH 0>;
-+			//power-domains = <&scpsys MT8192_POWER_DOMAIN_DISP>;
-+			clocks = <&mmsys CLK_MM_DISP_OVL2_2L>;
-+			//iommus = <&iommu0 M4U_PORT_L1_OVL_2L_RDMA2>,
-+			//	 <&iommu0 M4U_PORT_L1_OVL_2L_RDMA2_HDR>;
-+			mediatek,gce-client-reg = <&gce SUBSYS_1401XXXX 0x4000 0x1000>;
-+		};
-+
-+		rdma4: rdma@14015000 {
-+			compatible = "mediatek,mt8192-disp-rdma";
-+			reg = <0 0x14015000 0 0x1000>;
-+			interrupts = <GIC_SPI 269 IRQ_TYPE_LEVEL_HIGH 0>;
-+			//power-domains = <&scpsys MT8192_POWER_DOMAIN_DISP>;
-+			clocks = <&mmsys CLK_MM_DISP_RDMA4>;
-+			//iommus = <&iommu0 M4U_PORT_L1_DISP_RDMA4>;
-+			mediatek,rdma_fifo_size = <2048>;
-+			mediatek,gce-client-reg = <&gce SUBSYS_1401XXXX 0x5000 0x1000>;
-+		};
-+
- 		imgsys: syscon@15020000 {
- 			compatible = "mediatek,mt8192-imgsys", "syscon";
- 			reg = <0 0x15020000 0 0x1000>;
+diff --git a/Documentation/devicetree/bindings/mmc/allwinner,sun4i-a10-mmc.yaml b/Documentation/devicetree/bindings/mmc/allwinner,sun4i-a10-mmc.yaml
+index e82c9a07b6fb..985586cb93b4 100644
+--- a/Documentation/devicetree/bindings/mmc/allwinner,sun4i-a10-mmc.yaml
++++ b/Documentation/devicetree/bindings/mmc/allwinner,sun4i-a10-mmc.yaml
+@@ -35,6 +35,9 @@ properties:
+       - items:
+           - const: allwinner,sun8i-r40-mmc
+           - const: allwinner,sun50i-a64-mmc
++      - items:
++          - const: allwinner,sun8i-v831-mmc
++          - const: allwinner,sun50i-a64-mmc
+       - items:
+           - const: allwinner,sun50i-h5-emmc
+           - const: allwinner,sun50i-a64-emmc
 -- 
-1.8.1.1.dirty
-
+2.28.0
