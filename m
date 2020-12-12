@@ -2,129 +2,238 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1743E2D8619
-	for <lists+devicetree@lfdr.de>; Sat, 12 Dec 2020 11:58:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 56A552D862C
+	for <lists+devicetree@lfdr.de>; Sat, 12 Dec 2020 12:12:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2438852AbgLLK6D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 12 Dec 2020 05:58:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51438 "EHLO
+        id S2407389AbgLLLLj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 12 Dec 2020 06:11:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53522 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726374AbgLLK6B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Dec 2020 05:58:01 -0500
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0A01C0613D3;
-        Sat, 12 Dec 2020 02:57:20 -0800 (PST)
-Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: bbrezillon)
-        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 6E9431F45DBA;
-        Sat, 12 Dec 2020 10:57:18 +0000 (GMT)
-Date:   Sat, 12 Dec 2020 11:57:15 +0100
-From:   Boris Brezillon <boris.brezillon@collabora.com>
-To:     Sowjanya Komatineni <skomatineni@nvidia.com>
-Cc:     <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
-        <broonie@kernel.org>, <robh+dt@kernel.org>, <lukas@wunner.de>,
-        <bbrezillon@kernel.org>, <p.yadav@ti.com>,
-        <tudor.ambarus@microchip.com>, <linux-spi@vger.kernel.org>,
-        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v3 5/9] spi: spi-mem: Allow masters to transfer dummy
- cycles directly by hardware
-Message-ID: <20201212115715.31a8d755@collabora.com>
-In-Reply-To: <1607721363-8879-6-git-send-email-skomatineni@nvidia.com>
-References: <1607721363-8879-1-git-send-email-skomatineni@nvidia.com>
-        <1607721363-8879-6-git-send-email-skomatineni@nvidia.com>
-Organization: Collabora
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
+        with ESMTP id S2407207AbgLLLLd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Dec 2020 06:11:33 -0500
+Received: from mail-lf1-x142.google.com (mail-lf1-x142.google.com [IPv6:2a00:1450:4864:20::142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33B72C061793
+        for <devicetree@vger.kernel.org>; Sat, 12 Dec 2020 03:10:53 -0800 (PST)
+Received: by mail-lf1-x142.google.com with SMTP id m19so18047518lfb.1
+        for <devicetree@vger.kernel.org>; Sat, 12 Dec 2020 03:10:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=6D+Cc+FWzkuVAMuJyIf/5H2M4c00AdBlhTqbWNSCZm0=;
+        b=GizqmZW/nzKIZu+I34FDCPOhLvRDExiud2qtvNWshB+8md8EdQN8CqOYwHDq/AhyKi
+         YX+gAcM1So80rzozdxNbBrL2NqprgZz5KZdu3rhkUQQD0Y/jo+IVkdiCed9f73ydUl5e
+         1ZiPxxgLaumyM0iTsfTmZ6I4pUjIN3DWFUwTtGe2o4IVGAHRrTImDMYvp9GysfNP+f6C
+         Gr4QIy4y0Jt0ZGh2VYWhN0FWIuDM+RDNmbvE7oWHXrS1st8LTOqGpEznAK5EWNjXei2Y
+         W35loXav2NFB973puS1Gj980pc6K3pLHxaPRFeYcMwyUCQAlUWGJIC4QzDmT17m1jHR+
+         tgMg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=6D+Cc+FWzkuVAMuJyIf/5H2M4c00AdBlhTqbWNSCZm0=;
+        b=BsiYR3TtS+aano+NPP1ALsn7t2XzpGHoymiSvU408HY1ngPC41rNxe4s4jovGwVaIQ
+         c134VjyzTdG4eL+Q1pBcNZvR7u9C20QheSuQI/cqOrs0LY09PmHA1QU/52EH/J0ZVX8M
+         2kLppfRJL5JusUPmcKTxrNciF74xepevUqdcn18Y+XYYXbMPg9lwGtCl1LM9+L+oc3lr
+         9INBwRUXiJOeL2w+fEkfSrjmG+jmFYiWIcffl7vvmD5n7OCcSqnixn4wsEwzlq8bnPye
+         EzCyrPJF0bhIosQMtGpeJv5dkQmAJO75VtjY9YuHP1T8zEcxx1BJlGuNZSOpq5ga9M39
+         hDyQ==
+X-Gm-Message-State: AOAM530J+hIkNLPg30ysqr/yxz79ncl+WHyKzPgG8/RrhA6g3h4U69Uk
+        EsmBM6HaKs+yKh9Un2mj3pZ6sA==
+X-Google-Smtp-Source: ABdhPJyXfKgOEIjRFc92p6si3OoJuinKJU1r0rrGNBi5ah36legqEcPex6KMu7sSNuxEVjI8tEkVnw==
+X-Received: by 2002:ac2:5d68:: with SMTP id h8mr6059551lft.448.1607771451504;
+        Sat, 12 Dec 2020 03:10:51 -0800 (PST)
+Received: from localhost.bredbandsbolaget (c-92d7225c.014-348-6c756e10.bbcust.telenor.se. [92.34.215.146])
+        by smtp.gmail.com with ESMTPSA id u30sm1187835lfc.238.2020.12.12.03.10.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 12 Dec 2020 03:10:50 -0800 (PST)
+From:   Linus Walleij <linus.walleij@linaro.org>
+To:     Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>
+Cc:     linux-leds@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Sakari Ailus <sakari.ailus@iki.fi>, newbytee@protonmail.com,
+        Stephan Gerhold <stephan@gerhold.net>,
+        phone-devel@vger.kernel.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>
+Subject: [PATCH 1/2 v8] dt-bindings: leds: Add DT binding for Richtek RT8515
+Date:   Sat, 12 Dec 2020 12:10:45 +0100
+Message-Id: <20201212111046.2735002-1-linus.walleij@linaro.org>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 11 Dec 2020 13:15:59 -0800
-Sowjanya Komatineni <skomatineni@nvidia.com> wrote:
+Add a YAML devicetree binding for the Richtek RT8515
+dual channel flash/torch LED driver.
 
-> This patch adds a flag SPI_MASTER_USES_HW_DUMMY_CYCLES for the controllers
-> that support transfer of dummy cycles by the hardware directly.
+Cc: Sakari Ailus <sakari.ailus@iki.fi>
+Cc: newbytee@protonmail.com
+Cc: Stephan Gerhold <stephan@gerhold.net>
+Cc: phone-devel@vger.kernel.org
+Cc: linux-media@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Reviewed-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Sakari Ailus <sakari.ailus@linux.intel.com>
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+---
+ChangeLog v7->v8:
+- Add additionalProperties: fals to the leds subnode
+- Fix the bug in the example.
+- Collect Rob's Reviewed-by.
+ChangeLog v6->v7:
+- Use led-max-microamp for the torch mode max current.
+- Drop the torch-specific new property from common.yaml in
+  favor of this property.
+- Collect Sakari's review tag.
+ChangeLog v5->v6:
+- Use the suffix -ohms for the resistor values as this gets
+  recognized by default by dtschema and is nominal.
+ChangeLog v4->v5:
+- Fix the RFS/RTS resistors to reference the u32 schema.
+- Fix resisitor speling error.
+ChangeLog v3->v4:
+- Add DT attributes for the RFS and RTS resistors, so that
+  the hardware-defined maximum current can be determined.
+- Add torch-max-microamp to the common bindings so we can
+  set an attribute for the max microamp in torch mode.
+- Add flash-max-microamp and torch-max-microamp as optional
+  to the LED node.
+- Slot in some elabortative descriptions of the new
+  properties and describe what the hardware is doing.
+- Cc phone-devel@vger.kernel.org
+ChangeLog v2->v3:
+- Add Sakari to CC
+- Resend
+ChangeLog v1->v2:
+- Explicitly inherit function, color and flash-max-timeout-us
+  from common.yaml
+- Add "led" node as required.
+---
+ .../bindings/leds/richtek,rt8515.yaml         | 111 ++++++++++++++++++
+ 1 file changed, 111 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/leds/richtek,rt8515.yaml
 
-Hm, not sure this is a good idea. I mean, if we expect regular SPI
-devices to use this feature, then why not, but if it's just for
-spi-mem, I'd recommend implementing a driver-specific exec_op() instead
-of using the default one.
-
-If we go for those core changes, we should at least add a
-ctrl->max_dummy_cycles field so the core can fallback to regular writes
-when the number of dummy cycles in the spi_mem_op exceeds what the
-controller can do.
-
-> 
-> For controller with this flag set, spi-mem driver will skip dummy bytes
-> transfer in the spi message.
-> 
-> Controller drivers can get the number of dummy cycles from spi_message.
-> 
-> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
-> ---
->  drivers/spi/spi-mem.c   | 18 +++++++++++-------
->  include/linux/spi/spi.h |  8 ++++++++
->  2 files changed, 19 insertions(+), 7 deletions(-)
-> 
-> diff --git a/drivers/spi/spi-mem.c b/drivers/spi/spi-mem.c
-> index f3a3f19..38a523b 100644
-> --- a/drivers/spi/spi-mem.c
-> +++ b/drivers/spi/spi-mem.c
-> @@ -350,13 +350,17 @@ int spi_mem_exec_op(struct spi_mem *mem, const struct spi_mem_op *op)
->  	}
->  
->  	if (op->dummy.nbytes) {
-> -		memset(tmpbuf + op->addr.nbytes + 1, 0xff, op->dummy.nbytes);
-> -		xfers[xferpos].tx_buf = tmpbuf + op->addr.nbytes + 1;
-> -		xfers[xferpos].len = op->dummy.nbytes;
-> -		xfers[xferpos].tx_nbits = op->dummy.buswidth;
-> -		spi_message_add_tail(&xfers[xferpos], &msg);
-> -		xferpos++;
-> -		totalxferlen += op->dummy.nbytes;
-> +		if (ctlr->flags & SPI_MASTER_USES_HW_DUMMY_CYCLES) {
-> +			msg.dummy_cycles = (op->dummy.nbytes * 8) / op->dummy.buswidth;
-> +		} else {
-> +			memset(tmpbuf + op->addr.nbytes + 1, 0xff, op->dummy.nbytes);
-> +			xfers[xferpos].tx_buf = tmpbuf + op->addr.nbytes + 1;
-> +			xfers[xferpos].len = op->dummy.nbytes;
-> +			xfers[xferpos].tx_nbits = op->dummy.buswidth;
-> +			spi_message_add_tail(&xfers[xferpos], &msg);
-> +			xferpos++;
-> +			totalxferlen += op->dummy.nbytes;
-> +		}
->  	}
->  
->  	if (op->data.nbytes) {
-> diff --git a/include/linux/spi/spi.h b/include/linux/spi/spi.h
-> index aa09fdc..2024149 100644
-> --- a/include/linux/spi/spi.h
-> +++ b/include/linux/spi/spi.h
-> @@ -512,6 +512,8 @@ struct spi_controller {
->  
->  #define SPI_MASTER_GPIO_SS		BIT(5)	/* GPIO CS must select slave */
->  
-> +#define SPI_MASTER_USES_HW_DUMMY_CYCLES	BIT(6)	/* HW dummy bytes transfer */
-> +
->  	/* flag indicating this is an SPI slave controller */
->  	bool			slave;
->  
-> @@ -1022,6 +1024,12 @@ struct spi_message {
->  	unsigned		actual_length;
->  	int			status;
->  
-> +	/*
-> +	 * dummy cycles in the message transfer. This is used by the controller
-> +	 * drivers supports transfer of dummy cycles directly by the hardware.
-> +	 */
-> +	u8			dummy_cycles;
-> +
->  	/* for optional use by whatever driver currently owns the
->  	 * spi_message ...  between calls to spi_async and then later
->  	 * complete(), that's the spi_controller controller driver.
+diff --git a/Documentation/devicetree/bindings/leds/richtek,rt8515.yaml b/Documentation/devicetree/bindings/leds/richtek,rt8515.yaml
+new file mode 100644
+index 000000000000..68c328eec03b
+--- /dev/null
++++ b/Documentation/devicetree/bindings/leds/richtek,rt8515.yaml
+@@ -0,0 +1,111 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/leds/richtek,rt8515.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Richtek RT8515 1.5A dual channel LED driver
++
++maintainers:
++  - Linus Walleij <linus.walleij@linaro.org>
++
++description: |
++  The Richtek RT8515 is a dual channel (two mode) LED driver that
++  supports driving a white LED in flash or torch mode. The maximum
++  current for each mode is defined in hardware using two resistors
++  RFS and RTS.
++
++properties:
++  compatible:
++    const: richtek,rt8515
++
++  enf-gpios:
++    maxItems: 1
++    description: A connection to the 'ENF' (enable flash) pin.
++
++  ent-gpios:
++    maxItems: 1
++    description: A connection to the 'ENT' (enable torch) pin.
++
++  richtek,rfs-ohms:
++    minimum: 7680
++    maximum: 367000
++    description: The resistance value of the RFS resistor. This
++      resistors limits the maximum flash current. This must be set
++      for the property flash-max-microamp to work, the RFS resistor
++      defines the range of the dimmer setting (brightness) of the
++      flash LED.
++
++  richtek,rts-ohms:
++    minimum: 7680
++    maximum: 367000
++    description: The resistance value of the RTS resistor. This
++      resistors limits the maximum torch current. This must be set
++      for the property torch-max-microamp to work, the RTS resistor
++      defines the range of the dimmer setting (brightness) of the
++      torch LED.
++
++  led:
++    type: object
++    $ref: common.yaml#
++    properties:
++      function: true
++      color: true
++      flash-max-timeout-us: true
++
++      flash-max-microamp:
++        maximum: 700000
++        description: The maximum current for flash mode
++          is hardwired to the component using the RFS resistor to
++          ground. The maximum hardware current setting is calculated
++          according to the formula Imax = 5500 / RFS. The lowest
++          allowed resistance value is 7.86 kOhm giving an absolute
++          maximum current of 700mA. By setting this attribute in
++          the device tree, you can further restrict the maximum
++          current below the hardware limit. This requires the RFS
++          to be defined as it defines the maximum range.
++
++      led-max-microamp:
++        maximum: 700000
++        description: The maximum current for torch mode
++          is hardwired to the component using the RTS resistor to
++          ground. The maximum hardware current setting is calculated
++          according to the formula Imax = 5500 / RTS. The lowest
++          allowed resistance value is 7.86 kOhm giving an absolute
++          maximum current of 700mA. By setting this attribute in
++          the device tree, you can further restrict the maximum
++          current below the hardware limit. This requires the RTS
++          to be defined as it defines the maximum range.
++
++    additionalProperties: false
++
++required:
++  - compatible
++  - ent-gpios
++  - enf-gpios
++  - led
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/leds/common.h>
++
++    led-controller {
++        compatible = "richtek,rt8515";
++        enf-gpios = <&gpio4 12 GPIO_ACTIVE_HIGH>;
++        ent-gpios = <&gpio4 13 GPIO_ACTIVE_HIGH>;
++        richtek,rfs-ohms = <16000>;
++        richtek,rts-ohms = <100000>;
++
++        led {
++            function = LED_FUNCTION_FLASH;
++            color = <LED_COLOR_ID_WHITE>;
++            flash-max-timeout-us = <250000>;
++            flash-max-microamp = <150000>;
++            led-max-microamp = <25000>;
++        };
++    };
++
++...
+-- 
+2.26.2
 
