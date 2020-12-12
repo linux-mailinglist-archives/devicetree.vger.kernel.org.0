@@ -2,90 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D47CD2D841A
-	for <lists+devicetree@lfdr.de>; Sat, 12 Dec 2020 04:06:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 353BB2D8427
+	for <lists+devicetree@lfdr.de>; Sat, 12 Dec 2020 04:31:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2437976AbgLLDFD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Dec 2020 22:05:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48172 "EHLO
+        id S2438008AbgLLD1a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Dec 2020 22:27:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51536 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2437990AbgLLDE6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Dec 2020 22:04:58 -0500
-Received: from mail-pl1-x643.google.com (mail-pl1-x643.google.com [IPv6:2607:f8b0:4864:20::643])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18A21C0613CF;
-        Fri, 11 Dec 2020 19:04:18 -0800 (PST)
-Received: by mail-pl1-x643.google.com with SMTP id v3so5589117plz.13;
-        Fri, 11 Dec 2020 19:04:18 -0800 (PST)
+        with ESMTP id S2438004AbgLLD1N (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Dec 2020 22:27:13 -0500
+Received: from mail-pg1-x543.google.com (mail-pg1-x543.google.com [IPv6:2607:f8b0:4864:20::543])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 140ADC0613CF;
+        Fri, 11 Dec 2020 19:26:33 -0800 (PST)
+Received: by mail-pg1-x543.google.com with SMTP id w4so8504323pgg.13;
+        Fri, 11 Dec 2020 19:26:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=munrt+lhXv+uJg/N5N5WzdrCtcarWc53yAhr+k4WCKs=;
-        b=Q8yADwDyaQ+yOB+1SPblDyj2k/ml8OXk2FBOvI7z3HelF4Lm2QiyLmiG6iyBxLe8wJ
-         pXi186aukCywRl1fEvKfdeAhm78U3HUm+yid2usrEb7KFzKQg/lSefFbVKA8omCkWA+Z
-         TK8qfjrvatBwngHiaofAIIOyLG1xVGrf6mMfmrFPLy+k/zwGySZdJuj9ZZ7RUu3DWChi
-         w2ZsSt6c7o9rX57IEq80Ak+zbqLllo87/mdylHIm9gKBhn9bFMZkKBv7J2R9AugUKSVf
-         kUksObcl0UXuYnWv3UZfbIbiM7g8LCNDsO8E9oFTOxtycROV2EPy8C4+cqbDdcbgAVeR
-         4WYg==
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=4kixbiaTLgJsGXV+ExdUQR9g/IrBTwTuS3aGWFFjfHc=;
+        b=XME6BObuwL5AgaFXG/sXy1JEyFlna7R6JGA3umlwGVIR1+smU0wA1VAwEZE3Dg07ED
+         0F3QB6KKhEvy39afrK/oNDhc7PR5g12L2/S279nTF22G5X2DnbPRS8bYSjzD7PWWNgdF
+         hrLMgN/mICg+IiLoth8NQk0+9kRWCKz1HLhXejnP2TSyrqFjzXZ/kcluPZ6pMu3tlJK4
+         SpPkHkKDaCYqXlCef19BURhJHlBDLKKrhfqHgcK8GiLCeLGBAmqqpdCSJDGQ6Skm4L8T
+         kM73efpNs6n5q4JIWZ5yVP2c1n6gM5tmjmR/KtwNDVZfk97zENRzm0TXF95HygvN3So8
+         jAbg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=munrt+lhXv+uJg/N5N5WzdrCtcarWc53yAhr+k4WCKs=;
-        b=NfcD9RRWt4OHPQdo4Vb7bN3CsZlD7S6vkV8j0swUD+OlSOEdVXGipIo7lQrD4rsomz
-         RVGOlA2Q9+Ykzuy1DI/kAxVkpby4DJGvSCYSYd/W3ebf6Jr9Y1HVmvUuFDzhMbPx69ty
-         jyniiuGfKP/KPppJC42hs95TH/5D2smw1g4FfprPfnZfy2ZG9DcHd3B2p3LKLLTvJc3r
-         J4GVbGHCVvYqh7YCJMmg0mAFJQ0cgZ824F1n1LtxuFgxHVljIRiX2UhGSXsnXV7+mmAX
-         0PQTqEUETbxN2ZCXxebXq1fmjX7vcj0NLZH95XEzTXlm69KMJy7jGXunc2IITbd2mgXb
-         0H8A==
-X-Gm-Message-State: AOAM532KHUKsnFUCGn8oAjHbUU3MMMwtb0FxsM7C6KlB9HdTzC5qE64R
-        xFr8KgIvHn91b/oLmVWy0J2TNCht6VhZuA==
-X-Google-Smtp-Source: ABdhPJxV18jEQvEmrqkLqutdJI3tQJaofnhUF3/ZaudMLXfS1CT0TmxtwWlegr6DQJ08ROwf6sqW5A==
-X-Received: by 2002:a17:90a:17a4:: with SMTP id q33mr1532114pja.0.1607742257159;
-        Fri, 11 Dec 2020 19:04:17 -0800 (PST)
-Received: from google.com ([2620:15c:202:201:a6ae:11ff:fe11:fcc3])
-        by smtp.gmail.com with ESMTPSA id h36sm12362983pgb.28.2020.12.11.19.04.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Dec 2020 19:04:16 -0800 (PST)
-Date:   Fri, 11 Dec 2020 19:04:13 -0800
-From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To:     Chunyan Zhang <zhang.lyra@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, linux-input@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Orson Zhai <orsonzhai@gmail.com>,
-        Baolin Wang <baolin.wang7@gmail.com>,
-        Chunyan Zhang <chunyan.zhang@unisoc.com>,
-        Nemo Han <nemo.han@unisoc.com>
-Subject: Re: [PATCH v2 1/3] input: sc27xx: Add support for sc2730 and sc2721
-Message-ID: <X9QzLcbk8ZrWbFH9@google.com>
-References: <20201117034949.47877-1-zhang.lyra@gmail.com>
- <20201117034949.47877-2-zhang.lyra@gmail.com>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=4kixbiaTLgJsGXV+ExdUQR9g/IrBTwTuS3aGWFFjfHc=;
+        b=qVJV8HhsjlXctYJq8Bp3PSDoc4gzjVb54ohvqQCAtI07GphKH8pZzMb46IRZKJNkki
+         0n7hAvuyNLGb6oapiqAsnRZTuPNrnfbqkxLZ8jvuoquT7PpwwsxB77kVkz/6cUr554Te
+         oGsGTVfQ/C2JeZhYtEqJ1NgWSnWs3aDEfF8NU2E8611mNGU6G5I8/1CDvDI4C7wQH+Ui
+         c2dcY/QTI8yrDdL1jj5Av26uE9ptU9KbzZrT7eb+hBHFlkvn/MolkGyjh4ftoS9Inmgr
+         mn+T5QQrhVZsnNOv41A8u9rGIPrm0YMu9uNkc79f/RpIgCNRp7GoHHiRRSAS23MgZG2Y
+         BqrQ==
+X-Gm-Message-State: AOAM531hCI3biygkH+z5Tr3wlh63Lhp1SgQW4EPxTTk1XNbT7ZTqXJ5n
+        3OVLIu+CafMgSKR0laI21ZgHGk8XtSc=
+X-Google-Smtp-Source: ABdhPJxJV2c5nM7U4+KWM2CvpWI8X+QiEx9+4aJWCvkBFSAxkCFJFDjD+vcvYpV5FoZ6taaHq1SkeQ==
+X-Received: by 2002:aa7:928c:0:b029:19a:de9d:fb11 with SMTP id j12-20020aa7928c0000b029019ade9dfb11mr14797249pfa.21.1607743592541;
+        Fri, 11 Dec 2020 19:26:32 -0800 (PST)
+Received: from [10.230.29.166] ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id a10sm11822918pfi.168.2020.12.11.19.26.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 11 Dec 2020 19:26:31 -0800 (PST)
+Subject: Re: [PATCH 2/2] soc: bcm: add PM driver for Broadcom's PMB
+To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
+        "Rafael J . Wysocki" <rjw@rjwysocki.net>,
+        Kevin Hilman <khilman@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        devicetree@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com,
+        linux-kernel@vger.kernel.org,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+References: <20201211215942.5726-1-zajec5@gmail.com>
+ <20201211215942.5726-3-zajec5@gmail.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Message-ID: <4d0bea20-1a3b-24d1-2d27-96f2f4fd48b9@gmail.com>
+Date:   Fri, 11 Dec 2020 19:26:28 -0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.5.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201117034949.47877-2-zhang.lyra@gmail.com>
+In-Reply-To: <20201211215942.5726-3-zajec5@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Chunyan,
 
-On Tue, Nov 17, 2020 at 11:49:47AM +0800, Chunyan Zhang wrote:
-> @@ -78,8 +112,15 @@ static void sc27xx_vibra_close(struct input_dev *input)
->  static int sc27xx_vibra_probe(struct platform_device *pdev)
->  {
->  	struct vibra_info *info;
-> +	const struct sc27xx_vibra_data *data;
->  	int error;
->  
-> +	data = of_device_get_match_data(&pdev->dev);
-> +	if (!data) {
-> +		dev_err(&pdev->dev, "no matching driver data found\n");
-> +		return -EINVAL;
-> +	}
 
-This does not have to be OF-specific, so I changed it to
-device_get_match_data() and applied, thank you.
+On 12/11/2020 1:59 PM, Rafał Miłecki wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
+> 
+> PMB can be found on BCM4908 and many other chipsets (e.g. BCM63138).
+> It's needed to power on and off SoC blocks like PCIe, SATA, USB.
+> 
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 
+This looks good to me, just a few nipicks below.
+
+[snip]
+
+> +static int bcm_pmb_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	const struct bcm_pmb_pd_data *table;
+> +	const struct bcm_pmb_pd_data *e;
+> +	struct resource *res;
+> +	struct bcm_pmb *pmb;
+> +	int max_id;
+> +	int err;
+> +
+> +	dev_info(dev, "START\n");
+
+Stray debugging.
+
+[snip]
+
+> +
+> +static const struct bcm_pmb_pd_data bcm_pmb_bcm4908_data[] = {
+> +	{ .name = "pcie2", .id = BCM_PMB_PCIE2, .bus = 0, .device = 2, },
+> +	{ .name = "pcie0", .id = BCM_PMB_PCIE0, .bus = 1, .device = 14, },
+> +	{ .name = "pcie1", .id = BCM_PMB_PCIE1, .bus = 1, .device = 15, },
+> +	{ .name = "usb", .id = BCM_PMB_HOST_USB, .bus = 1, .device = 17, },
+
+Do you have to be more specific and spell out whether this is the host
+controller (xhci) or device (bdc)? If not, then this looks good to me.
 -- 
-Dmitry
+Florian
