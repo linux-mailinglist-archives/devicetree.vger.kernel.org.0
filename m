@@ -2,238 +2,288 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 56A552D862C
-	for <lists+devicetree@lfdr.de>; Sat, 12 Dec 2020 12:12:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 562ED2D8631
+	for <lists+devicetree@lfdr.de>; Sat, 12 Dec 2020 12:16:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2407389AbgLLLLj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 12 Dec 2020 06:11:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53522 "EHLO
+        id S2437973AbgLLLQE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 12 Dec 2020 06:16:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54218 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2407207AbgLLLLd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Dec 2020 06:11:33 -0500
-Received: from mail-lf1-x142.google.com (mail-lf1-x142.google.com [IPv6:2a00:1450:4864:20::142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33B72C061793
-        for <devicetree@vger.kernel.org>; Sat, 12 Dec 2020 03:10:53 -0800 (PST)
-Received: by mail-lf1-x142.google.com with SMTP id m19so18047518lfb.1
-        for <devicetree@vger.kernel.org>; Sat, 12 Dec 2020 03:10:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=6D+Cc+FWzkuVAMuJyIf/5H2M4c00AdBlhTqbWNSCZm0=;
-        b=GizqmZW/nzKIZu+I34FDCPOhLvRDExiud2qtvNWshB+8md8EdQN8CqOYwHDq/AhyKi
-         YX+gAcM1So80rzozdxNbBrL2NqprgZz5KZdu3rhkUQQD0Y/jo+IVkdiCed9f73ydUl5e
-         1ZiPxxgLaumyM0iTsfTmZ6I4pUjIN3DWFUwTtGe2o4IVGAHRrTImDMYvp9GysfNP+f6C
-         Gr4QIy4y0Jt0ZGh2VYWhN0FWIuDM+RDNmbvE7oWHXrS1st8LTOqGpEznAK5EWNjXei2Y
-         W35loXav2NFB973puS1Gj980pc6K3pLHxaPRFeYcMwyUCQAlUWGJIC4QzDmT17m1jHR+
-         tgMg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=6D+Cc+FWzkuVAMuJyIf/5H2M4c00AdBlhTqbWNSCZm0=;
-        b=BsiYR3TtS+aano+NPP1ALsn7t2XzpGHoymiSvU408HY1ngPC41rNxe4s4jovGwVaIQ
-         c134VjyzTdG4eL+Q1pBcNZvR7u9C20QheSuQI/cqOrs0LY09PmHA1QU/52EH/J0ZVX8M
-         2kLppfRJL5JusUPmcKTxrNciF74xepevUqdcn18Y+XYYXbMPg9lwGtCl1LM9+L+oc3lr
-         9INBwRUXiJOeL2w+fEkfSrjmG+jmFYiWIcffl7vvmD5n7OCcSqnixn4wsEwzlq8bnPye
-         EzCyrPJF0bhIosQMtGpeJv5dkQmAJO75VtjY9YuHP1T8zEcxx1BJlGuNZSOpq5ga9M39
-         hDyQ==
-X-Gm-Message-State: AOAM530J+hIkNLPg30ysqr/yxz79ncl+WHyKzPgG8/RrhA6g3h4U69Uk
-        EsmBM6HaKs+yKh9Un2mj3pZ6sA==
-X-Google-Smtp-Source: ABdhPJyXfKgOEIjRFc92p6si3OoJuinKJU1r0rrGNBi5ah36legqEcPex6KMu7sSNuxEVjI8tEkVnw==
-X-Received: by 2002:ac2:5d68:: with SMTP id h8mr6059551lft.448.1607771451504;
-        Sat, 12 Dec 2020 03:10:51 -0800 (PST)
-Received: from localhost.bredbandsbolaget (c-92d7225c.014-348-6c756e10.bbcust.telenor.se. [92.34.215.146])
-        by smtp.gmail.com with ESMTPSA id u30sm1187835lfc.238.2020.12.12.03.10.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 12 Dec 2020 03:10:50 -0800 (PST)
-From:   Linus Walleij <linus.walleij@linaro.org>
-To:     Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>
-Cc:     linux-leds@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Sakari Ailus <sakari.ailus@iki.fi>, newbytee@protonmail.com,
-        Stephan Gerhold <stephan@gerhold.net>,
-        phone-devel@vger.kernel.org, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>
-Subject: [PATCH 1/2 v8] dt-bindings: leds: Add DT binding for Richtek RT8515
-Date:   Sat, 12 Dec 2020 12:10:45 +0100
-Message-Id: <20201212111046.2735002-1-linus.walleij@linaro.org>
-X-Mailer: git-send-email 2.26.2
+        with ESMTP id S2437239AbgLLLQE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Dec 2020 06:16:04 -0500
+Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [IPv6:2001:67c:2050::465:201])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAB10C0613CF
+        for <devicetree@vger.kernel.org>; Sat, 12 Dec 2020 03:15:23 -0800 (PST)
+Received: from smtp2.mailbox.org (smtp2.mailbox.org [80.241.60.241])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4CtQ6y1B66zQlWs;
+        Sat, 12 Dec 2020 12:15:22 +0100 (CET)
+X-Virus-Scanned: amavisd-new at heinlein-support.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=loebl.cz; s=MBO0001;
+        t=1607771721;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=F0kn3r6ljstTv3G1Acdj+KaK3LQTbeyNLhdqeIIElf0=;
+        b=O8OME8cXGGcj8oFM4vKF+edFrdwXJ+xF/9H+Z31u6VmPUUPv6Zox2x6kOMjdKeLQAGtaHH
+        S0CyRVGSZ8tSgmfMFqF/3ytE/qX1VF1T6rx4c3VF8H09NlqAg9RAixhVY3FeCkNk9a1eAN
+        Djj0inuCR6J1cdR0a7MeN9PzyoPiQwGWcQU7FTEWZGDt88aJ5fzVSHDivo81JSMiSj2QB1
+        5ju5smd6JdZF8ncJMVxxsafxxnj5OkwGc2D86FzfKrZ+ghykSxnLZCV4PDnyDsgqAsyYK6
+        w715tAwaqNaocm3Njue+KViWpyU/AhMoPcDXQsAitsWkABDmKwtv01pa29d2Nw==
+Received: from smtp2.mailbox.org ([80.241.60.241])
+        by spamfilter05.heinlein-hosting.de (spamfilter05.heinlein-hosting.de [80.241.56.123]) (amavisd-new, port 10030)
+        with ESMTP id eWoc5BikcryE; Sat, 12 Dec 2020 12:15:20 +0100 (CET)
+From:   =?UTF-8?q?Pavel=20L=C3=B6bl?= <pavel@loebl.cz>
+To:     devicetree@vger.kernel.org
+Cc:     Maxime Ripard <mripard@kernel.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        =?UTF-8?q?Pavel=20L=C3=B6bl?= <pavel@loebl.cz>
+Subject: [PATCH] ARM: dts: sun8i: h2+: add support for Banana Pi P2 Zero board
+Date:   Sat, 12 Dec 2020 12:14:29 +0100
+Message-Id: <20201212111429.286721-1-pavel@loebl.cz>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-MBO-SPAM-Probability: 
+X-Rspamd-Score: -4.04 / 15.00 / 15.00
+X-Rspamd-Queue-Id: A024717D8
+X-Rspamd-UID: a9a96f
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a YAML devicetree binding for the Richtek RT8515
-dual channel flash/torch LED driver.
+Banana Pi P2 Zero is H2+-based board by Sinovoip internally
+similar to Banana Pi M2 Zero.
 
-Cc: Sakari Ailus <sakari.ailus@iki.fi>
-Cc: newbytee@protonmail.com
-Cc: Stephan Gerhold <stephan@gerhold.net>
-Cc: phone-devel@vger.kernel.org
-Cc: linux-media@vger.kernel.org
-Cc: devicetree@vger.kernel.org
-Reviewed-by: Rob Herring <robh@kernel.org>
-Reviewed-by: Sakari Ailus <sakari.ailus@linux.intel.com>
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
----
-ChangeLog v7->v8:
-- Add additionalProperties: fals to the leds subnode
-- Fix the bug in the example.
-- Collect Rob's Reviewed-by.
-ChangeLog v6->v7:
-- Use led-max-microamp for the torch mode max current.
-- Drop the torch-specific new property from common.yaml in
-  favor of this property.
-- Collect Sakari's review tag.
-ChangeLog v5->v6:
-- Use the suffix -ohms for the resistor values as this gets
-  recognized by default by dtschema and is nominal.
-ChangeLog v4->v5:
-- Fix the RFS/RTS resistors to reference the u32 schema.
-- Fix resisitor speling error.
-ChangeLog v3->v4:
-- Add DT attributes for the RFS and RTS resistors, so that
-  the hardware-defined maximum current can be determined.
-- Add torch-max-microamp to the common bindings so we can
-  set an attribute for the max microamp in torch mode.
-- Add flash-max-microamp and torch-max-microamp as optional
-  to the LED node.
-- Slot in some elabortative descriptions of the new
-  properties and describe what the hardware is doing.
-- Cc phone-devel@vger.kernel.org
-ChangeLog v2->v3:
-- Add Sakari to CC
-- Resend
-ChangeLog v1->v2:
-- Explicitly inherit function, color and flash-max-timeout-us
-  from common.yaml
-- Add "led" node as required.
----
- .../bindings/leds/richtek,rt8515.yaml         | 111 ++++++++++++++++++
- 1 file changed, 111 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/leds/richtek,rt8515.yaml
+It features:
+- Allwinner H2+, Quad-core Cortex-A7
+- 512MB DDR3 SDRAM
+- 8G eMMC flash
+- MicroSD card slot
+- 100M LAN
+- WiFi (AP6212) & Bluetooth onboard (SDIO + UART)
+- Micro USB OTG port
+- Micro USB connector (power only)
+- Mini HDMI
+- 40 PIN GPIO includes UART, SPI, I2C, IO etc.
+- GPIO-connected key and LED
+- CSI connector
+- IEEE 802.3af PoE standard PoE module support (optional)
 
-diff --git a/Documentation/devicetree/bindings/leds/richtek,rt8515.yaml b/Documentation/devicetree/bindings/leds/richtek,rt8515.yaml
+This adds support for v1.1 revision. There was also v1.0 available
+which has different SDcard CD polarity and Ethernet port LEDs
+disconnected in layout.
+
+Signed-off-by: Pavel Löbl <pavel@loebl.cz>
+---
+ .../dts/sun8i-h2-plus-bananapi-p2-zero.dts    | 196 ++++++++++++++++++
+ 1 file changed, 196 insertions(+)
+ create mode 100644 arch/arm/boot/dts/sun8i-h2-plus-bananapi-p2-zero.dts
+
+diff --git a/arch/arm/boot/dts/sun8i-h2-plus-bananapi-p2-zero.dts b/arch/arm/boot/dts/sun8i-h2-plus-bananapi-p2-zero.dts
 new file mode 100644
-index 000000000000..68c328eec03b
+index 000000000000..347f2dcee606
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/leds/richtek,rt8515.yaml
-@@ -0,0 +1,111 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/leds/richtek,rt8515.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
++++ b/arch/arm/boot/dts/sun8i-h2-plus-bananapi-p2-zero.dts
+@@ -0,0 +1,196 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Copyright (C) 2020 Pavel Löbl <pavel@loebl.cz>
++ *
++ * Based on sun8i-h2-plus-bananapi-m2-zero.dts, which is:
++ *   Copyright (C) 2017 Icenowy Zheng <icenowy@aosc.io>
++ */
 +
-+title: Richtek RT8515 1.5A dual channel LED driver
++/dts-v1/;
++#include "sun8i-h3.dtsi"
 +
-+maintainers:
-+  - Linus Walleij <linus.walleij@linaro.org>
++#include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/input/input.h>
 +
-+description: |
-+  The Richtek RT8515 is a dual channel (two mode) LED driver that
-+  supports driving a white LED in flash or torch mode. The maximum
-+  current for each mode is defined in hardware using two resistors
-+  RFS and RTS.
++/ {
++	model = "Banana Pi BPI-P2-Zero";
++	compatible = "sinovoip,bpi-p2-zero", "allwinner,sun8i-h2-plus";
 +
-+properties:
-+  compatible:
-+    const: richtek,rt8515
++	aliases {
++		serial0 = &uart0;
++		serial1 = &uart1;
++	};
 +
-+  enf-gpios:
-+    maxItems: 1
-+    description: A connection to the 'ENF' (enable flash) pin.
++	chosen {
++		stdout-path = "serial0:115200n8";
++	};
 +
-+  ent-gpios:
-+    maxItems: 1
-+    description: A connection to the 'ENT' (enable torch) pin.
++	leds {
++		compatible = "gpio-leds";
 +
-+  richtek,rfs-ohms:
-+    minimum: 7680
-+    maximum: 367000
-+    description: The resistance value of the RFS resistor. This
-+      resistors limits the maximum flash current. This must be set
-+      for the property flash-max-microamp to work, the RFS resistor
-+      defines the range of the dimmer setting (brightness) of the
-+      flash LED.
++		pwr_led {
++			label = "power-led";
++			gpios = <&r_pio 0 10 GPIO_ACTIVE_LOW>; /* PL10 */
++			default-state = "on";
++		};
++	};
 +
-+  richtek,rts-ohms:
-+    minimum: 7680
-+    maximum: 367000
-+    description: The resistance value of the RTS resistor. This
-+      resistors limits the maximum torch current. This must be set
-+      for the property torch-max-microamp to work, the RTS resistor
-+      defines the range of the dimmer setting (brightness) of the
-+      torch LED.
++	gpio_keys {
++		compatible = "gpio-keys";
 +
-+  led:
-+    type: object
-+    $ref: common.yaml#
-+    properties:
-+      function: true
-+      color: true
-+      flash-max-timeout-us: true
++		pwr_key {
++			label = "power-key";
++			linux,code = <KEY_POWER>;
++			gpios = <&r_pio 0 3 GPIO_ACTIVE_LOW>;  /* PL3 */
++			wakeup-source;
++		};
++	};
 +
-+      flash-max-microamp:
-+        maximum: 700000
-+        description: The maximum current for flash mode
-+          is hardwired to the component using the RFS resistor to
-+          ground. The maximum hardware current setting is calculated
-+          according to the formula Imax = 5500 / RFS. The lowest
-+          allowed resistance value is 7.86 kOhm giving an absolute
-+          maximum current of 700mA. By setting this attribute in
-+          the device tree, you can further restrict the maximum
-+          current below the hardware limit. This requires the RFS
-+          to be defined as it defines the maximum range.
++	reg_vcc_5v: reg-vcc-5v {
++		compatible = "regulator-fixed";
++		regulator-name = "usb1-vbus";
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++		regulator-boot-on;
++	};
 +
-+      led-max-microamp:
-+        maximum: 700000
-+        description: The maximum current for torch mode
-+          is hardwired to the component using the RTS resistor to
-+          ground. The maximum hardware current setting is calculated
-+          according to the formula Imax = 5500 / RTS. The lowest
-+          allowed resistance value is 7.86 kOhm giving an absolute
-+          maximum current of 700mA. By setting this attribute in
-+          the device tree, you can further restrict the maximum
-+          current below the hardware limit. This requires the RTS
-+          to be defined as it defines the maximum range.
++	reg_vcc_1v2: reg-vcc-1v2 {
++		compatible = "regulator-fixed";
++		regulator-name = "vcc-1v2";
++		regulator-type = "voltage";
++		regulator-min-microvolt = <1200000>;
++		regulator-max-microvolt = <1200000>;
++		regulator-boot-on;
++		vin-supply = <&reg_vcc_5v>;
++	};
 +
-+    additionalProperties: false
++	reg_vcc_3v3: reg-vcc-3v3 {
++		compatible = "regulator-fixed";
++		regulator-name = "vcc-3v3";
++		regulator-type = "voltage";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		regulator-boot-on;
++		vin-supply = <&reg_vcc_5v>;
++	};
 +
-+required:
-+  - compatible
-+  - ent-gpios
-+  - enf-gpios
-+  - led
++	reg_vdd_cpux: vdd-cpux-regulator {
++		compatible = "regulator-gpio";
++		regulator-name = "vdd-cpux";
++		regulator-type = "voltage";
++		regulator-boot-on;
++		regulator-always-on;
++		regulator-min-microvolt = <1100000>;
++		regulator-max-microvolt = <1300000>;
++		regulator-ramp-delay = <50>; /* 4ms */
 +
-+additionalProperties: false
++		gpios = <&r_pio 0 1 GPIO_ACTIVE_HIGH>; /* PL1 */
++		enable-active-high;
++		gpios-states = <0x1>;
++		states = <1100000 0>, <1300000 1>;
++	};
 +
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/leds/common.h>
++	wifi_pwrseq: wifi_pwrseq {
++		compatible = "mmc-pwrseq-simple";
++		reset-gpios = <&r_pio 0 7 GPIO_ACTIVE_LOW>; /* PL7 */
++	};
++};
 +
-+    led-controller {
-+        compatible = "richtek,rt8515";
-+        enf-gpios = <&gpio4 12 GPIO_ACTIVE_HIGH>;
-+        ent-gpios = <&gpio4 13 GPIO_ACTIVE_HIGH>;
-+        richtek,rfs-ohms = <16000>;
-+        richtek,rts-ohms = <100000>;
++&cpu0 {
++	cpu-supply = <&reg_vdd_cpux>;
++};
 +
-+        led {
-+            function = LED_FUNCTION_FLASH;
-+            color = <LED_COLOR_ID_WHITE>;
-+            flash-max-timeout-us = <250000>;
-+            flash-max-microamp = <150000>;
-+            led-max-microamp = <25000>;
-+        };
-+    };
++&ehci0 {
++	status = "okay";
++};
 +
-+...
++&ohci0 {
++	status = "okay";
++};
++
++&mmc0 {
++	vmmc-supply = <&reg_vcc_3v3>;
++	bus-width = <4>;
++	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>; /* PF6 */
++	cd-inverted;
++	status = "okay";
++};
++
++&mmc1 {
++	vmmc-supply = <&reg_vcc_3v3>;
++	vqmmc-supply = <&reg_vcc_3v3>;
++	mmc-pwrseq = <&wifi_pwrseq>;
++	bus-width = <4>;
++	non-removable;
++	status = "okay";
++
++	brcmf: wifi@1 {
++		reg = <1>;
++		compatible = "brcm,bcm4329-fmac";
++		interrupt-parent = <&pio>;
++		interrupts = <6 10 IRQ_TYPE_LEVEL_LOW>; /* PG10 / EINT10 */
++		interrupt-names = "host-wake";
++		clocks = <&rtc 1>;
++		clock-names = "ext_clock";
++	};
++};
++
++&mmc2 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&mmc2_8bit_pins>;
++	vmmc-supply = <&reg_vcc_3v3>;
++	vqmmc-supply = <&reg_vcc_3v3>;
++	bus-width = <8>;
++	non-removable;
++	cap-mmc-hw-reset;
++	status = "okay";
++};
++
++&uart0 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&uart0_pa_pins>;
++	status = "okay";
++};
++
++&uart1 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&uart1_pins>, <&uart1_rts_cts_pins>;
++	uart-has-rtscts;
++	status = "okay";
++
++	bluetooth {
++		compatible = "brcm,bcm4345c5";
++		vbat-supply = <&reg_vcc_3v3>;
++		vddio-supply = <&reg_vcc_3v3>;
++		device-wakeup-gpios = <&pio 6 13 GPIO_ACTIVE_HIGH>; /* PG13 */
++		host-wakeup-gpios = <&pio 6 11 GPIO_ACTIVE_HIGH>; /* PG11 */
++		shutdown-gpios = <&pio 6 12 GPIO_ACTIVE_HIGH>; /* PG12 */
++		clocks = <&rtc 1>;
++		clock-names = "ext_clock";
++	};
++
++};
++
++&emac {
++	phy-handle = <&int_mii_phy>;
++	phy-mode = "mii";
++	phy-supply = <&reg_vcc_1v2>;
++	allwinner,leds-active-low;
++	status = "okay";
++};
++
++&usb_otg {
++	dr_mode = "otg";
++	status = "okay";
++};
++
++&usbphy {
++	usb0_id_det-gpios = <&r_pio 0 6 GPIO_ACTIVE_HIGH>; /* PL6 */
++	/*
++	 * There're two micro-USB connectors, one is power-only and another is
++	 * OTG. The Vbus of these two connectors are connected together, so
++	 * the external USB device will be powered just by the power input
++	 * from the power-only USB port or optional POE module.
++	 */
++	status = "okay";
++};
 -- 
-2.26.2
+2.29.2
 
