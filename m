@@ -2,76 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 500032D8569
-	for <lists+devicetree@lfdr.de>; Sat, 12 Dec 2020 10:52:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 648902D857C
+	for <lists+devicetree@lfdr.de>; Sat, 12 Dec 2020 10:58:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404747AbgLJV0r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Dec 2020 16:26:47 -0500
-Received: from mail.kernel.org ([198.145.29.99]:38022 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2404754AbgLJV0g (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 10 Dec 2020 16:26:36 -0500
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-Authentication-Results: mail.kernel.org; dkim=permerror (bad message/signature format)
-To:     Chanwoo Choi <cw00.choi@samsung.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-rtc@vger.kernel.org
-Cc:     Iskren Chernev <iskren.chernev@gmail.com>,
-        Matheus Castello <matheus@castello.eng.br>,
-        Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>,
-        Angus Ainslie <angus@akkea.ca>,
-        Hans de Goede <hdegoede@redhat.com>
-Subject: [PATCH 03/18] ARM: dts: exynos: correct fuel gauge interrupt trigger level on Midas family
-Date:   Thu, 10 Dec 2020 22:25:19 +0100
-Message-Id: <20201210212534.216197-3-krzk@kernel.org>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20201210212534.216197-1-krzk@kernel.org>
-References: <20201210212534.216197-1-krzk@kernel.org>
+        id S2437100AbgLLJ6O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 12 Dec 2020 04:58:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41822 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726052AbgLLJyn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Dec 2020 04:54:43 -0500
+Received: from mail-ot1-x341.google.com (mail-ot1-x341.google.com [IPv6:2607:f8b0:4864:20::341])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB514C0613D6;
+        Fri, 11 Dec 2020 23:07:24 -0800 (PST)
+Received: by mail-ot1-x341.google.com with SMTP id y24so10481121otk.3;
+        Fri, 11 Dec 2020 23:07:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Flhom67ds9ymrrKQK7zkgwpDlDfY/C0Q9ikgWxRj8R8=;
+        b=GdFx2pbu4P8FXB13bFwq2ESsRhj1ey2X7JeaUrRLkwwYnXNKphABc3htJRMeoZAWOi
+         I1E/TlO4KxYEQ4BQoMEisYew5A0FEuJl9XaZER07Z16CcGyX5N/WTOCvT3heqsYzNv+R
+         axVUcrii+caR3kqM7ecKVqL19nQQbwLirQM8yZ4v+5sswdd6iDfueK+5rPfxuZQccFr2
+         IKqbX6xouMTtztwV0wS3oz1CSryNW/41BvU87/1r19KULBG9SkjU+Y+OISPZqaK62d+H
+         EyQsbM+PGwq65Hyx608W2sJcHXikZIYOa69oGJR8djjhtldjy3mqjLkHPAMhH4+bLVoN
+         OHFg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Flhom67ds9ymrrKQK7zkgwpDlDfY/C0Q9ikgWxRj8R8=;
+        b=imEdER7f3qNnLlYxqdkWpz7BVY+2Dmy2tAoMb09mpxU4R8aWrsm03o9KR45NFf5uby
+         lFzzVZhavLXOG5oF79KKXzxn009itp8LJt+ZHV9NtGGcKVsAvYrlS1XC2RBrRvhSqyMH
+         0vQJcPT/xu8QCsoOT78m1IJxiHuSmWgOKDWuj3gtbL0RjzHvuBvySadF0AC4UWbtEZbd
+         9SKzlnWF+taNz7P8Ztvl+5bYsbmuXZIOTzg8RsNCzsnZOCUqpqPXEqfAC4bGSplOvmdP
+         XeQwKRTDXuxEu3l0J2WDLk79L0ae0FnxqNHrRyudrXQa9p4m28kt/9qKmLXvKTk9+OZx
+         4DiQ==
+X-Gm-Message-State: AOAM532LQnKmRvqtESO8wRthrNwaJ+ElnlWjwpDfM5h2xCeUL2NMek7G
+        MbpU5HwJ7eBuXmZhep9b+1Co9FFmMSvnB9jCkgSL+Yjc
+X-Google-Smtp-Source: ABdhPJx67J1mwkC0UPJwy1tZ8U4jal9WssG0nKYl/10dEhTsMC4VM4W/0hr95qUNdVIYSa0hr3ZS+SYvpd7CMREWy34=
+X-Received: by 2002:a9d:1f0:: with SMTP id e103mr12701957ote.74.1607756844044;
+ Fri, 11 Dec 2020 23:07:24 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20201207081151.7489-1-sergio.paracuellos@gmail.com> <CACRpkdbXZ2t2w=DJ1ECGj7otNJhqoxq2xt88hBhRVbnkqcA+Gw@mail.gmail.com>
+In-Reply-To: <CACRpkdbXZ2t2w=DJ1ECGj7otNJhqoxq2xt88hBhRVbnkqcA+Gw@mail.gmail.com>
+From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Date:   Sat, 12 Dec 2020 08:07:13 +0100
+Message-ID: <CAMhs-H9BSbvY6Z7TygG_BrcVZuy+-2Uo_B+GHsYZFy4JUN9UqA@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: mt7621-gpio: convert bindings to YAML format
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Maxim fuel gauge datasheets describe the interrupt line as active
-low with a requirement of acknowledge from the CPU.  The falling edge
-interrupt will mostly work but it's not correct.
+On Sat, Dec 12, 2020 at 12:24 AM Linus Walleij <linus.walleij@linaro.org> wrote:
+>
+> On Mon, Dec 7, 2020 at 9:11 AM Sergio Paracuellos
+> <sergio.paracuellos@gmail.com> wrote:
+>
+> > Convert the mt7621-gpio device tree bindings to the new YAML format.
+> >
+> > Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+>
+> Patch applied with Rob's review tag!
+>
+> Yours,
+> Linus Walleij
 
-Fixes: e8614292cd41 ("ARM: dts: Add Maxim 77693 fuel gauge node for exynos4412-trats2")
-Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
----
- arch/arm/boot/dts/exynos4412-midas.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Thanks for letting me know!
 
-diff --git a/arch/arm/boot/dts/exynos4412-midas.dtsi b/arch/arm/boot/dts/exynos4412-midas.dtsi
-index 111c32bae02c..b8b75dc81aa1 100644
---- a/arch/arm/boot/dts/exynos4412-midas.dtsi
-+++ b/arch/arm/boot/dts/exynos4412-midas.dtsi
-@@ -221,7 +221,7 @@ i2c_max77693_fuel: i2c-gpio-3 {
- 		fuel-gauge@36 {
- 			compatible = "maxim,max17047";
- 			interrupt-parent = <&gpx2>;
--			interrupts = <3 IRQ_TYPE_EDGE_FALLING>;
-+			interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
- 			pinctrl-names = "default";
- 			pinctrl-0 = <&max77693_fuel_irq>;
- 			reg = <0x36>;
--- 
-2.25.1
-
+Best regards,
+    Sergio Paracuellos
