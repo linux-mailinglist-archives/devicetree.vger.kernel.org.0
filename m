@@ -2,24 +2,24 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F3A9E2D844C
-	for <lists+devicetree@lfdr.de>; Sat, 12 Dec 2020 05:14:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 475552D8460
+	for <lists+devicetree@lfdr.de>; Sat, 12 Dec 2020 05:14:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2438115AbgLLENE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Dec 2020 23:13:04 -0500
-Received: from mailgw02.mediatek.com ([210.61.82.184]:41056 "EHLO
+        id S2438121AbgLLENI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Dec 2020 23:13:08 -0500
+Received: from mailgw02.mediatek.com ([210.61.82.184]:41067 "EHLO
         mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S2436602AbgLLEMy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Dec 2020 23:12:54 -0500
-X-UUID: cc4bb320f27a4ea7aae1d3e7ce917038-20201212
-X-UUID: cc4bb320f27a4ea7aae1d3e7ce917038-20201212
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
+        with ESMTP id S2438012AbgLLEMz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Dec 2020 23:12:55 -0500
+X-UUID: 6348c67c76b34711b50e75b435d8ee71-20201212
+X-UUID: 6348c67c76b34711b50e75b435d8ee71-20201212
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
         (envelope-from <yongqiang.niu@mediatek.com>)
         (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 193529700; Sat, 12 Dec 2020 12:12:03 +0800
+        with ESMTP id 1551359386; Sat, 12 Dec 2020 12:12:03 +0800
 Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs05n2.mediatek.inc (172.21.101.140) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Sat, 12 Dec 2020 12:12:01 +0800
+ mtkmbs05n1.mediatek.inc (172.21.101.15) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Sat, 12 Dec 2020 12:12:02 +0800
 Received: from localhost.localdomain (10.17.3.153) by mtkcas11.mediatek.inc
  (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
  Transport; Sat, 12 Dec 2020 12:12:01 +0800
@@ -34,9 +34,9 @@ CC:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
         <linux-arm-kernel@lists.infradead.org>,
         <linux-mediatek@lists.infradead.org>,
         Yongqiang Niu <yongqiang.niu@mediatek.com>
-Subject: [PATCH v2, 01/17] dt-bindings: mediatek: add description for postmask
-Date:   Sat, 12 Dec 2020 12:11:41 +0800
-Message-ID: <1607746317-4696-2-git-send-email-yongqiang.niu@mediatek.com>
+Subject: [PATCH v2, 02/17] dt-bindings: mediatek: add CLK_MM_DISP_CONFIG control description for mt8192 display
+Date:   Sat, 12 Dec 2020 12:11:42 +0800
+Message-ID: <1607746317-4696-3-git-send-email-yongqiang.niu@mediatek.com>
 X-Mailer: git-send-email 1.8.1.1.dirty
 In-Reply-To: <1607746317-4696-1-git-send-email-yongqiang.niu@mediatek.com>
 References: <1607746317-4696-1-git-send-email-yongqiang.niu@mediatek.com>
@@ -47,25 +47,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-add description for postmask
+add CLK_MM_DISP_CONFIG control description for mt8192 displa
 
 Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
 ---
- Documentation/devicetree/bindings/display/mediatek/mediatek,disp.txt | 1 +
- 1 file changed, 1 insertion(+)
+ Documentation/devicetree/bindings/display/mediatek/mediatek,disp.txt | 3 +++
+ 1 file changed, 3 insertions(+)
 
 diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,disp.txt b/Documentation/devicetree/bindings/display/mediatek/mediatek,disp.txt
-index 5ca693a..1972fa7 100644
+index 1972fa7..dfbec76 100644
 --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,disp.txt
 +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,disp.txt
-@@ -37,6 +37,7 @@ Required properties (all function blocks):
- 	"mediatek,<chip>-disp-aal"   		- adaptive ambient light controller
- 	"mediatek,<chip>-disp-gamma" 		- gamma correction
- 	"mediatek,<chip>-disp-merge" 		- merge streams from two RDMA sources
-+	"mediatek,<chip>-disp-postmask" 	- post mask
- 	"mediatek,<chip>-disp-split" 		- split stream to two encoders
- 	"mediatek,<chip>-disp-ufoe"  		- data compression engine
- 	"mediatek,<chip>-dsi"        		- DSI controller, see mediatek,dsi.txt
+@@ -54,6 +54,9 @@ Required properties (all function blocks):
+   DPI controller nodes have multiple clock inputs. These are documented in
+   mediatek,dsi.txt and mediatek,dpi.txt, respectively.
+   An exception is that the mt8183 mutex is always free running with no clocks property.
++  An exception is that the mt8192 display add 2 more clocks(CLK_MM_DISP_CONFIG, CLK_MM_26MHZ),
++  and these 2 clocks need enabled before display module work like mutex clock, so we add these
++  2 clocks controled same with mutex clock.
+ 
+ Required properties (DMA function blocks):
+ - compatible: Should be one of
 -- 
 1.8.1.1.dirty
 
