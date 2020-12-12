@@ -2,173 +2,288 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 652502D758A
-	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 13:27:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1073C2D752E
+	for <lists+devicetree@lfdr.de>; Fri, 11 Dec 2020 13:01:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391658AbgLKM0M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Dec 2020 07:26:12 -0500
-Received: from bmail1.ministro.hu ([5.249.150.236]:55238 "EHLO
-        bmail1.ministro.hu" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2390375AbgLKMZ7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Dec 2020 07:25:59 -0500
-Received: from localhost (localhost [127.0.0.1])
-        by bmail1.ministro.hu (Postfix) with ESMTP id A6361123B23;
-        Fri, 11 Dec 2020 13:25:16 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ministro.hu;
-        s=201804; t=1607689516;
-        bh=zyJP3wNCH+NJfF5fZZWvL4jJyU8riavZzi8fib50UKY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=fqOlbLBQRYmq4iq+MDTord/HClL7dWA1WG63tgWwlHsxFDBV+EhPqLG+63Vb6AGFB
-         HgqU9wZ/rdzM88RkLZyyKnGCVhJ8I/WnSHm9R6yvjxz3DSnV5wo64S5bYEk7PPHttV
-         MALgaaWpHHDaEE/gATGSLCZpWjmTNIiZi3rASdqVy7uw6JcHylF4d19rbcN3yhUGKD
-         rQax0egWSh33RxnTRyQQ/5ptdA5RVqK/xYyq0KrhklDvtr3cVFT/WBOVqcUks1OcJ4
-         R5gYhli1xfZKm7JRip7J7UB4xdrrFVax2qoDKR+fhbNprHzKf3gInlMSd58PvOwk9N
-         SkN4bPM7qy21Q==
-X-Virus-Scanned: Debian amavisd-new at ministro.hu
-Received: from bmail1.ministro.hu ([127.0.0.1])
-        by localhost (bmail1.ministro.hu [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id s0MEGKDTujuO; Fri, 11 Dec 2020 13:24:44 +0100 (CET)
-Received: from dincontrollerdev (localhost [127.0.0.1])
-        by bmail1.ministro.hu (Postfix) with ESMTPSA id 01496123B21;
-        Fri, 11 Dec 2020 13:24:43 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ministro.hu;
-        s=201804; t=1607689484;
-        bh=zyJP3wNCH+NJfF5fZZWvL4jJyU8riavZzi8fib50UKY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=lFxFqBneotakXSwB5waC18FLi/zFB63kEC3swDNTzhs0DdwOPRc5VrbTCY+FJY+KK
-         wGRdgdCZeisYuPg2kg2beXwkWoYQrTKljXhytoMLBHhIEh2F0Enoio11gC2yRMulfY
-         fn/HLBTT39MQcjId8TFmkmXKZQIucTtIYaCN0f825h9eoSC3v7Bl31veF54UhQX+DD
-         lSRPGJLDTtNK0NaqPl10GLSvwzVINKOQ42CLMR0fG/1MAd7eD3/QGLNZBBYDkWZNPC
-         p37FxO2qCNW1mIcdiz18r6v3kFygQ8lMUkfrTR1naw984Vn0QvRKoqvoA9fcUXTPeX
-         zU5Yn19FuKUzw==
-Date:   Fri, 11 Dec 2020 12:24:42 +0000
-From:   =?iso-8859-1?Q?J=F3zsef_Horv=E1th?= <info@ministro.hu>
-To:     'Greg Kroah-Hartman' <gregkh@linuxfoundation.org>
-Cc:     'Rob Herring' <robh+dt@kernel.org>,
-        'Jiri Slaby' <jirislaby@kernel.org>,
-        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] Serial: silabs si4455 serial driver
-Message-ID: <20201211122441.GE1065@dincontrollerdev>
-References: <20201210194625.GA17516@dincontrollerdev>
- <X9MIwqJBG69M5uHq@kroah.com>
- <20201211060943.GA1065@dincontrollerdev>
- <X9MPuX1x4MezwkEj@kroah.com>
- <20201211063752.GB1065@dincontrollerdev>
- <X9MgvZ7bWX7HMNir@kroah.com>
- <20201211081634.GC1065@dincontrollerdev>
- <X9MxM+aEKIAHqd4G@kroah.com>
- <20201211091823.GD1065@dincontrollerdev>
- <X9NhfyEuPTxezHt9@kroah.com>
+        id S2405865AbgLKMAf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Dec 2020 07:00:35 -0500
+Received: from szxga04-in.huawei.com ([45.249.212.190]:9167 "EHLO
+        szxga04-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727780AbgLKL7x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Dec 2020 06:59:53 -0500
+Received: from DGGEMS410-HUB.china.huawei.com (unknown [172.30.72.59])
+        by szxga04-in.huawei.com (SkyGuard) with ESMTP id 4Csq7F5yjJz15YMk;
+        Fri, 11 Dec 2020 19:58:33 +0800 (CST)
+Received: from huawei.com (10.151.151.249) by DGGEMS410-HUB.china.huawei.com
+ (10.3.19.210) with Microsoft SMTP Server id 14.3.487.0; Fri, 11 Dec 2020
+ 19:59:00 +0800
+From:   Dongjiu Geng <gengdongjiu@huawei.com>
+To:     <mturquette@baylibre.com>, <sboyd@kernel.org>,
+        <robh+dt@kernel.org>, <vkoul@kernel.org>,
+        <dan.j.williams@intel.com>, <p.zabel@pengutronix.de>,
+        <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <dmaengine@vger.kernel.org>,
+        <gengdongjiu@huawei.com>
+Subject: [PATCH RESEND v6 1/4] dt-bindings: Document the hi3559a clock bindings
+Date:   Sat, 12 Dec 2020 13:11:12 +0000
+Message-ID: <20201212131115.569-2-gengdongjiu@huawei.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20201212131115.569-1-gengdongjiu@huawei.com>
+References: <20201212131115.569-1-gengdongjiu@huawei.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <X9NhfyEuPTxezHt9@kroah.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Type: text/plain
+X-Originating-IP: [10.151.151.249]
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 11, 2020 at 01:09:35PM +0100, 'Greg Kroah-Hartman' wrote:
-> On Fri, Dec 11, 2020 at 09:18:24AM +0000, József Horváth wrote:
-> > On Fri, Dec 11, 2020 at 09:43:31AM +0100, 'Greg Kroah-Hartman' wrote:
-> > > On Fri, Dec 11, 2020 at 08:16:34AM +0000, József Horváth wrote:
-> > > > On Fri, Dec 11, 2020 at 08:33:17AM +0100, 'Greg Kroah-Hartman' wrote:
-> > > > > On Fri, Dec 11, 2020 at 06:37:52AM +0000, József Horváth wrote:
-> > > > > > On Fri, Dec 11, 2020 at 07:20:41AM +0100, 'Greg Kroah-Hartman' wrote:
-> > > > > > > On Fri, Dec 11, 2020 at 06:09:43AM +0000, József Horváth wrote:
-> > > > > > > > On Fri, Dec 11, 2020 at 06:50:58AM +0100, 'Greg Kroah-Hartman' wrote:
-> > > > > > > > > On Thu, Dec 10, 2020 at 07:46:25PM +0000, József Horváth wrote:
-> > > > > > > > > > On Thu, Dec 10, 2020 at 08:03:22PM +0100, 'Greg Kroah-Hartman' wrote:
-> > > > > > > > > > > On Thu, Dec 10, 2020 at 05:04:46PM +0000, József Horváth wrote:
-> > > > > > > > > > > > This is a serial port driver for
-> > > > > > > > > > > > Silicon Labs Si4455 Sub-GHz transciver.
-> > > > > > > > > > > > +
-> > > > > > > > > > > > +#define BASE_TTYIOC_PRIVATE		0xA0
-> > > > > > > > > > > > +/* Set EZConfig.
-> > > > > > > > > > > > + * After this ioctl call, the driver restarts the si4455,
-> > > > > > > > > > > > + * then apply the new configuration and patch.
-> > > > > > > > > > > > + */
-> > > > > > > > > > > > +#define SI4455_IOC_SEZC		_IOW('T', \
-> > > > > > > > > > > > +				     BASE_TTYIOC_PRIVATE + 0x01, \
-> > > > > > > > > > > > +				     struct si4455_iocbuff)
-> > > > > > > > > > > 
-> > > > > > > > > > > Why does a serial driver have private ioctls?  Please no, don't do that.
-> > > > > > > > > > 
-> > > > > > > > > > I checked the ioctl.h and serial_core.h, but I not found any similar definition, like BASE_VIDIOC_PRIVATE in videodev2.h.
-> > > > > > > > > > In this case the name of macro BASE_TTYIOC_PRIVATE means the base value of special ioctl commands owned by this driver.
-> > > > > > > > > 
-> > > > > > > > > My point is, a serial driver should NOT have any custom ioctls.
-> > > > > > > > > 
-> > > > > > > > > > I can change it to BASE_TTYIOC or SI4455_IOC_BASE
-> > > > > > > > > > 
-> > > > > > > > > > > Implement the basic serial driver first, and then we can talk about
-> > > > > > > > > > > "custom" configurations and the like, using the correct apis.
-> > > > > > > > > > 
-> > > > > > > > > > Without the SI4455_IOC_SEZC call, the driver can't configure the Si4455 and not working at all.
-> > > > > > > > > > The cofiguration for interface is provided by user for application.
-> > > > > > > > > 
-> > > > > > > > > That is what a device tree is for, to configure the device to have the
-> > > > > > > > > correct system configuration, why can't that be the same here?
-> > > > > > > > > 
-> > > > > > > > > > It contains the base frequency, channel spacing, modulation, and a lot
-> > > > > > > > > > of more stuff, and generated by Silicon Labs Wireless Development
-> > > > > > > > > > Suite.
-> > > > > > > > > > The generated configuration is in a non public(compressed,
-> > > > > > > > > > encrypted...who knows) format, so without this the driver can't
-> > > > > > > > > > provide configuration parameters to Si4455.
-> > > > > > > > > 
-> > > > > > > > > So we have to take a "custom" userspace blob and send it to the device
-> > > > > > > > > to configure it properly?  Like Jiri said, sounds like firmware, so just
-> > > > > > > > > use that interface instead.
-> > > > > > > > 
-> > > > > > > > I checked Jiri's suggestion, and it is a good solution to replace SI4455_IOC_SEZC(configuration) and SI4455_IOC_SEZP(firmware patch).
-> > > > > > > > I can move SI4455_IOC_SSIZ(package size) to device tree property.
-> > > > > > > > 
-> > > > > > > > Maybe you have good suggestion for the following:
-> > > > > > > > SI4455_IOC_STXC -> Radio transmit channel index. It is a real use case to control this parameter by user at runtime.
-> > > > > > > > SI4455_IOC_SRXC -> Radio receive channel index. It is a real use case to control this parameter by user at runtime.
-> > > > > > > 
-> > > > > > > These are not serial port things, why would a serial port care about
-> > > > > > > these?
-> > > > > > 
-> > > > > > You are right, these are not regular serial port things, but this device is not a regular uart, it is a sub-GHz transciever, digital radio.
-> > > > > > This driver tries to represent it as a serial port to user.
-> > > > > 
-> > > > > Is that the correct representation to be using here?  Why not act like a
-> > > > > proper radio device instead?  That way you get to use the normal kernel
-> > > > > apis for radio devices.
-> > > > 
-> > > > In my mind it is absolute a serial device by the application.
-> > > 
-> > > What is the application?  Traditionally serial ports don't need radio signals :)
-> > 
-> > The application is connecting newly developed sensors(with only rf interface) and legacy sensors(with regular serial communication over rs-485 with modbus) keeping the legacy user software.
-> > 
-> > User sw [Java]
-> > 	<-> /dev/ttyXXX
-> > 		<-> si4455[driver]
-> > 			<-> si4455[hardware]
-> > 				<---air---> new device[si4455+ARM Cortex-M0] 1
-> > 					+-> new device[si4455+ARM Cortex-M0] 2
-> > 					+-> new device[si4455+ARM Cortex-M0] n
-> > 					+-> gateway[si4455+ARM Cortex-M0]<---RS485--> Legacy device 1
-> > 										  +-> Legacy device 2
-> > 										  +-> Legacy device n
-> 
-> If these are "sensors", why are you using a tty interface at all, and
-> not just using the correct iio interface for them?
+Add DT bindings documentation for hi3559a SoC clock.
 
-In this context "legacy sensor" means modbus protocol device over serial/rs485 interface, and "new sensors" means modbus protocol device over air(rf).
-All kind of devices are 50-100 m away from central(where linux using this serial driver).
-The goal is to remove the wire between central(linux) and any kind of devices, but keeping the original user software.
+Signed-off-by: Dongjiu Geng <gengdongjiu@huawei.com>
+---
+ .../clock/hisilicon,hi3559av100-clock.yaml    |  59 +++++++
+ include/dt-bindings/clock/hi3559av100-clock.h | 165 ++++++++++++++++++
+ 2 files changed, 224 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/hisilicon,hi3559av100-clock.yaml
+ create mode 100644 include/dt-bindings/clock/hi3559av100-clock.h
 
-> 
-> thanks,
-> 
-> greg k-h
-
-Üdvözlettel / Best regards:
-József Horváth
+diff --git a/Documentation/devicetree/bindings/clock/hisilicon,hi3559av100-clock.yaml b/Documentation/devicetree/bindings/clock/hisilicon,hi3559av100-clock.yaml
+new file mode 100644
+index 000000000000..3ceb29cec704
+--- /dev/null
++++ b/Documentation/devicetree/bindings/clock/hisilicon,hi3559av100-clock.yaml
+@@ -0,0 +1,59 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/clock/hisilicon,hi3559av100-clock.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Hisilicon SOC Clock for HI3559AV100
++
++maintainers:
++  - Dongjiu Geng <gengdongjiu@huawei.com>
++
++description: |
++  Hisilicon SOC clock control module which supports the clocks, resets and
++  power domains on HI3559AV100.
++
++  See also:
++    dt-bindings/clock/hi3559av100-clock.h
++
++properties:
++  compatible:
++    enum:
++      - hisilicon,hi3559av100-clock
++      - hisilicon,hi3559av100-shub-clock
++
++  reg:
++    minItems: 1
++    maxItems: 2
++
++  '#clock-cells':
++    const: 1
++
++  '#reset-cells':
++    const: 2
++    description: |
++      First cell is reset request register offset.
++      Second cell is bit offset in reset request register.
++
++required:
++  - compatible
++  - reg
++  - '#clock-cells'
++  - '#reset-cells'
++
++additionalProperties: false
++
++examples:
++  - |
++    soc {
++        #address-cells = <2>;
++        #size-cells = <2>;
++
++        clock-controller@12010000 {
++            compatible = "hisilicon,hi3559av100-clock";
++            #clock-cells = <1>;
++            #reset-cells = <2>;
++            reg = <0x0 0x12010000 0x0 0x10000>;
++        };
++    };
++...
+diff --git a/include/dt-bindings/clock/hi3559av100-clock.h b/include/dt-bindings/clock/hi3559av100-clock.h
+new file mode 100644
+index 000000000000..5fe7689010a0
+--- /dev/null
++++ b/include/dt-bindings/clock/hi3559av100-clock.h
+@@ -0,0 +1,165 @@
++/* SPDX-License-Identifier: GPL-2.0-or-later or BSD-2-Clause */
++/*
++ * Copyright (c) 2019-2020, Huawei Tech. Co., Ltd.
++ *
++ * Author: Dongjiu Geng <gengdongjiu@huawei.com>
++ */
++
++#ifndef __DTS_HI3559AV100_CLOCK_H
++#define __DTS_HI3559AV100_CLOCK_H
++
++/*  fixed   rate    */
++#define HI3559AV100_FIXED_1188M     1
++#define HI3559AV100_FIXED_1000M     2
++#define HI3559AV100_FIXED_842M      3
++#define HI3559AV100_FIXED_792M      4
++#define HI3559AV100_FIXED_750M      5
++#define HI3559AV100_FIXED_710M      6
++#define HI3559AV100_FIXED_680M      7
++#define HI3559AV100_FIXED_667M      8
++#define HI3559AV100_FIXED_631M      9
++#define HI3559AV100_FIXED_600M      10
++#define HI3559AV100_FIXED_568M      11
++#define HI3559AV100_FIXED_500M      12
++#define HI3559AV100_FIXED_475M      13
++#define HI3559AV100_FIXED_428M      14
++#define HI3559AV100_FIXED_400M      15
++#define HI3559AV100_FIXED_396M      16
++#define HI3559AV100_FIXED_300M      17
++#define HI3559AV100_FIXED_250M      18
++#define HI3559AV100_FIXED_198M      19
++#define HI3559AV100_FIXED_187p5M    20
++#define HI3559AV100_FIXED_150M      21
++#define HI3559AV100_FIXED_148p5M    22
++#define HI3559AV100_FIXED_125M      23
++#define HI3559AV100_FIXED_107M      24
++#define HI3559AV100_FIXED_100M      25
++#define HI3559AV100_FIXED_99M       26
++#define HI3559AV100_FIXED_74p25M    27
++#define HI3559AV100_FIXED_72M       28
++#define HI3559AV100_FIXED_60M       29
++#define HI3559AV100_FIXED_54M       30
++#define HI3559AV100_FIXED_50M       31
++#define HI3559AV100_FIXED_49p5M     32
++#define HI3559AV100_FIXED_37p125M   33
++#define HI3559AV100_FIXED_36M       34
++#define HI3559AV100_FIXED_32p4M     35
++#define HI3559AV100_FIXED_27M       36
++#define HI3559AV100_FIXED_25M       37
++#define HI3559AV100_FIXED_24M       38
++#define HI3559AV100_FIXED_12M       39
++#define HI3559AV100_FIXED_3M        40
++#define HI3559AV100_FIXED_1p6M      41
++#define HI3559AV100_FIXED_400K      42
++#define HI3559AV100_FIXED_100K      43
++#define HI3559AV100_FIXED_200M      44
++#define HI3559AV100_FIXED_75M       75
++
++#define HI3559AV100_I2C0_CLK    50
++#define HI3559AV100_I2C1_CLK    51
++#define HI3559AV100_I2C2_CLK    52
++#define HI3559AV100_I2C3_CLK    53
++#define HI3559AV100_I2C4_CLK    54
++#define HI3559AV100_I2C5_CLK    55
++#define HI3559AV100_I2C6_CLK    56
++#define HI3559AV100_I2C7_CLK    57
++#define HI3559AV100_I2C8_CLK    58
++#define HI3559AV100_I2C9_CLK    59
++#define HI3559AV100_I2C10_CLK   60
++#define HI3559AV100_I2C11_CLK   61
++
++#define HI3559AV100_SPI0_CLK    62
++#define HI3559AV100_SPI1_CLK    63
++#define HI3559AV100_SPI2_CLK    64
++#define HI3559AV100_SPI3_CLK    65
++#define HI3559AV100_SPI4_CLK    66
++#define HI3559AV100_SPI5_CLK    67
++#define HI3559AV100_SPI6_CLK    68
++
++#define HI3559AV100_EDMAC_CLK     69
++#define HI3559AV100_EDMAC_AXICLK  70
++#define HI3559AV100_EDMAC1_CLK    71
++#define HI3559AV100_EDMAC1_AXICLK 72
++#define HI3559AV100_VDMAC_CLK     73
++
++/*  mux clocks  */
++#define HI3559AV100_FMC_MUX     80
++#define HI3559AV100_SYSAPB_MUX  81
++#define HI3559AV100_UART_MUX    82
++#define HI3559AV100_SYSBUS_MUX  83
++#define HI3559AV100_A73_MUX     84
++#define HI3559AV100_MMC0_MUX    85
++#define HI3559AV100_MMC1_MUX    86
++#define HI3559AV100_MMC2_MUX    87
++#define HI3559AV100_MMC3_MUX    88
++
++/*  gate    clocks  */
++#define HI3559AV100_FMC_CLK     90
++#define HI3559AV100_UART0_CLK   91
++#define HI3559AV100_UART1_CLK   92
++#define HI3559AV100_UART2_CLK   93
++#define HI3559AV100_UART3_CLK   94
++#define HI3559AV100_UART4_CLK   95
++#define HI3559AV100_MMC0_CLK    96
++#define HI3559AV100_MMC1_CLK    97
++#define HI3559AV100_MMC2_CLK    98
++#define HI3559AV100_MMC3_CLK    99
++
++#define HI3559AV100_ETH_CLK         100
++#define HI3559AV100_ETH_MACIF_CLK   101
++#define HI3559AV100_ETH1_CLK        102
++#define HI3559AV100_ETH1_MACIF_CLK  103
++
++/*  complex */
++#define HI3559AV100_MAC0_CLK                110
++#define HI3559AV100_MAC1_CLK                111
++#define HI3559AV100_SATA_CLK                112
++#define HI3559AV100_USB_CLK                 113
++#define HI3559AV100_USB1_CLK                114
++
++/* pll clocks */
++#define HI3559AV100_APLL_CLK                250
++#define HI3559AV100_GPLL_CLK                251
++
++#define HI3559AV100_CRG_NR_CLKS	            256
++
++#define HI3559AV100_SHUB_SOURCE_SOC_24M	    0
++#define HI3559AV100_SHUB_SOURCE_SOC_200M    1
++#define HI3559AV100_SHUB_SOURCE_SOC_300M    2
++#define HI3559AV100_SHUB_SOURCE_PLL         3
++#define HI3559AV100_SHUB_SOURCE_CLK         4
++
++#define HI3559AV100_SHUB_I2C0_CLK           10
++#define HI3559AV100_SHUB_I2C1_CLK           11
++#define HI3559AV100_SHUB_I2C2_CLK           12
++#define HI3559AV100_SHUB_I2C3_CLK           13
++#define HI3559AV100_SHUB_I2C4_CLK           14
++#define HI3559AV100_SHUB_I2C5_CLK           15
++#define HI3559AV100_SHUB_I2C6_CLK           16
++#define HI3559AV100_SHUB_I2C7_CLK           17
++
++#define HI3559AV100_SHUB_SPI_SOURCE_CLK     20
++#define HI3559AV100_SHUB_SPI4_SOURCE_CLK    21
++#define HI3559AV100_SHUB_SPI0_CLK           22
++#define HI3559AV100_SHUB_SPI1_CLK           23
++#define HI3559AV100_SHUB_SPI2_CLK           24
++#define HI3559AV100_SHUB_SPI3_CLK           25
++#define HI3559AV100_SHUB_SPI4_CLK           26
++
++#define HI3559AV100_SHUB_UART_CLK_32K       30
++#define HI3559AV100_SHUB_UART_SOURCE_CLK    31
++#define HI3559AV100_SHUB_UART_DIV_CLK       32
++#define HI3559AV100_SHUB_UART0_CLK          33
++#define HI3559AV100_SHUB_UART1_CLK          34
++#define HI3559AV100_SHUB_UART2_CLK          35
++#define HI3559AV100_SHUB_UART3_CLK          36
++#define HI3559AV100_SHUB_UART4_CLK          37
++#define HI3559AV100_SHUB_UART5_CLK          38
++#define HI3559AV100_SHUB_UART6_CLK          39
++
++#define HI3559AV100_SHUB_EDMAC_CLK          40
++
++#define HI3559AV100_SHUB_NR_CLKS            50
++
++#endif  /* __DTS_HI3559AV100_CLOCK_H */
++
+-- 
+2.17.1
 
