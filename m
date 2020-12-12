@@ -2,165 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D0C62D889C
-	for <lists+devicetree@lfdr.de>; Sat, 12 Dec 2020 18:29:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 59B412D893E
+	for <lists+devicetree@lfdr.de>; Sat, 12 Dec 2020 19:27:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404803AbgLLR3i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 12 Dec 2020 12:29:38 -0500
-Received: from nat-hk.nvidia.com ([203.18.50.4]:57028 "EHLO nat-hk.nvidia.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2390595AbgLLR3i (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 12 Dec 2020 12:29:38 -0500
-Received: from HKMAIL104.nvidia.com (Not Verified[10.18.92.9]) by nat-hk.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
-        id <B5fd4fdd70003>; Sun, 13 Dec 2020 01:28:55 +0800
-Received: from HQMAIL107.nvidia.com (172.20.187.13) by HKMAIL104.nvidia.com
- (10.18.16.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Sat, 12 Dec
- 2020 17:28:55 +0000
-Received: from [10.2.60.59] (172.20.145.6) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Sat, 12 Dec
- 2020 17:28:52 +0000
-Subject: Re: [PATCH v3 5/9] spi: spi-mem: Allow masters to transfer dummy
- cycles directly by hardware
-To:     Boris Brezillon <boris.brezillon@collabora.com>
-CC:     <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
-        <broonie@kernel.org>, <robh+dt@kernel.org>, <lukas@wunner.de>,
-        <bbrezillon@kernel.org>, <p.yadav@ti.com>,
-        <tudor.ambarus@microchip.com>, <linux-spi@vger.kernel.org>,
-        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-References: <1607721363-8879-1-git-send-email-skomatineni@nvidia.com>
- <1607721363-8879-6-git-send-email-skomatineni@nvidia.com>
- <20201212115715.31a8d755@collabora.com>
-From:   Sowjanya Komatineni <skomatineni@nvidia.com>
-Message-ID: <7efb281a-98d7-68c5-1515-0e980b6cfe12@nvidia.com>
-Date:   Sat, 12 Dec 2020 09:28:50 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S2439757AbgLLS1N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 12 Dec 2020 13:27:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35728 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2436509AbgLLS1N (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Dec 2020 13:27:13 -0500
+Received: from mail-pl1-x641.google.com (mail-pl1-x641.google.com [IPv6:2607:f8b0:4864:20::641])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EEEF6C0613CF;
+        Sat, 12 Dec 2020 10:26:32 -0800 (PST)
+Received: by mail-pl1-x641.google.com with SMTP id j1so6424382pld.3;
+        Sat, 12 Dec 2020 10:26:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=priY+gMifRi9SXBuHcjr1reGmyMklvNrzc4Nr2fnS9Q=;
+        b=VZKP0fs8LF7hQa1pTcSvuxBeTtWQF+gDl/Bn3za06fUJMryGc/RyjZXn5qdUbxqU7+
+         ttugcx06d2j0fndpQ3+adqR/4jniLSdLxc5im7DKfvTgDTVwrq0L0rO4ATdk+DfgQYvP
+         FccsHypPr5/fRftFBTaTDTgPVh9c+DYa54hstdtJZKgavUCudoS60Ug84TKng6PqFqRW
+         wBczxNkNN5ZT8cY0RwTdGG8ztaxx7xmS4ZZaP+5Y+JyhYwJy6QF3orO2TQljaYdxBj/F
+         X1KnsfashpFgKkKrqfo7Qa+XbEKIjHUcmn9LlY2Tzta0T7z8pTD8SPlpNwIQ9ZW9snQr
+         DUsg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=priY+gMifRi9SXBuHcjr1reGmyMklvNrzc4Nr2fnS9Q=;
+        b=R/vxuAqvrshPvwdxlGx8O3iZyv+qUGtoPeCOjBXEtfsKAEikhDxBDf688wVeQcf0Cd
+         xZfug5ISw3HohV0OriMRHPsvgppUdmzlpau+Tj6P3bV724JILa9R+6MvKok6n1ztK1Ug
+         e2GkoqT5Qa6nUvJL9Kpr08w4yYlGhdwWh781IQRuvK4KuKF0M8/9odTzTWvbiVGvylGh
+         o78GI8hmVZpWg5zca7DsI6lnNW8ZsuvbUpvfNti01C9NSI13JriPGGcO7nrdZtFRlFCM
+         fvBqMBeG7EdoDEZLl3UHJujabfItAzfJgBwMoPIUTitYj7pWfI/67Snc4tWecO8zgaFb
+         aHHg==
+X-Gm-Message-State: AOAM532PkoBxTBbCnv7Jf+Er+Ev3iKSr/zgOplJjhYHjTVhdifhs5elz
+        Pf6LYU1CK9Klh9X9bD5LrURg5W2TTIMssZvLd/6OwpZM0HA=
+X-Google-Smtp-Source: ABdhPJyj+rxm2eGnQb+B2ILCmYQhOJCwmN8Q3Tq+oc6ufek3ysjnd2Yv27lefU8KvCziIzC3PM5ADf1C//6bbnYamNo=
+X-Received: by 2002:a17:90b:a17:: with SMTP id gg23mr18709466pjb.129.1607797592321;
+ Sat, 12 Dec 2020 10:26:32 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20201212115715.31a8d755@collabora.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-X-Originating-IP: [172.20.145.6]
-X-ClientProxiedBy: HQMAIL111.nvidia.com (172.20.187.18) To
- HQMAIL107.nvidia.com (172.20.187.13)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1607794135; bh=JRdJwxDrHqj84zOr7vEYjGJE0Jucw9ayr/+irmlLuFk=;
-        h=Subject:To:CC:References:From:Message-ID:Date:User-Agent:
-         MIME-Version:In-Reply-To:Content-Type:Content-Transfer-Encoding:
-         Content-Language:X-Originating-IP:X-ClientProxiedBy;
-        b=ZllRZodPRm8gF0TopiB6E9PC3EXyRG2M5XjnGN9KtnwCsMZRK9BEJt+L/wY9FQArN
-         3vKCKwhSd7MgrwWwDwDdvVuSM92zMUAIkg7oCmuLSKWTvHkWaEukdUxhvAGf7uPpz6
-         EpLcaZxNDZkrk0XqBf0JreZdyxVEZux9pyORxvo7IhnVbIhQTxdu4CMz/ZGBLYVs5M
-         2nkoGgZ96EgZ9+RXzLBv/OYQT4SOue3yz+8HtgfRq2S/gVIVL0XJL/TKGAA9Er4c/T
-         w2GhNdTsNOmqZulPvh43xaFyZXXHf3N/0+psnBWgreGUjE2zOmdbu7mIV8WmDGUOSt
-         rt169kGFJcw4w==
+References: <20201209234857.1521453-1-alexandre.belloni@bootlin.com> <20201209234857.1521453-4-alexandre.belloni@bootlin.com>
+In-Reply-To: <20201209234857.1521453-4-alexandre.belloni@bootlin.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Sat, 12 Dec 2020 20:26:16 +0200
+Message-ID: <CAHp75Vf7A7e4RC2_wjizsPiGn3EjSPhxq4RA2vSQ0BtKaU1T0Q@mail.gmail.com>
+Subject: Re: [PATCH 3/6] iio:pressure:ms5637: limit available sample frequencies
+To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On 12/12/20 2:57 AM, Boris Brezillon wrote:
-> On Fri, 11 Dec 2020 13:15:59 -0800
-> Sowjanya Komatineni <skomatineni@nvidia.com> wrote:
+On Thu, Dec 10, 2020 at 2:03 AM Alexandre Belloni
+<alexandre.belloni@bootlin.com> wrote:
 >
->> This patch adds a flag SPI_MASTER_USES_HW_DUMMY_CYCLES for the controllers
->> that support transfer of dummy cycles by the hardware directly.
-> Hm, not sure this is a good idea. I mean, if we expect regular SPI
-> devices to use this feature, then why not, but if it's just for
-> spi-mem, I'd recommend implementing a driver-specific exec_op() instead
-> of using the default one.
+> Avoid exposing all the sampling frequencies for chip that only support a
+> subset.
 
-dummy cycles programming is SPI device specific.
+> +static ssize_t ms5637_show_samp_freq(struct device *dev, struct device_attribute *attr, char *buf)
+> +{
+> +       struct iio_dev *indio_dev = dev_to_iio_dev(dev);
+> +       struct ms_tp_dev *dev_data = iio_priv(indio_dev);
+> +       int i, len = 0;
+> +
+> +       for (i = 0; i <= dev_data->hw->max_res_index; i++)
+> +               len += scnprintf(buf + len, PAGE_SIZE - len, "%u ", ms5637_samp_freq[i]);
 
-Transfer of dummy bytes by SW or HW controller can be depending on 
-features supported by controller.
+Doesn't IIO core have a helper?
+Also, it's better to use sysfs_emit().
 
-Adding controller driver specific exec_op() Just for skipping dummy 
-bytes transfer will have so much of redundant code pretty much what all 
-spi_mem_exec_op does.
+> +       buf[len - 1] = '\n';
+> +
+> +       return len;
+> +}
 
-So in v1, I handled this in controller driver by skipping SW transfer of 
-dummy bytes during dummy phase and programming dummy cycles in 
-controller register to allow HW to transfer.
-
-Based on v1 feedback discussion, added this flag 
-SPI_MASTER_USES_HW_DUMMY_CYCLES which can be used by controllers 
-supporting HW dummy bytes transfer and updated spi_mem_exec_op to skip 
-SW dummy bytes.
-
-This helps other controllers supporting HW transfer of dummy bytes as 
-well just to set the flag and use dummy cycles directly.
-
-> If we go for those core changes, we should at least add a
-> ctrl->max_dummy_cycles field so the core can fallback to regular writes
-> when the number of dummy cycles in the spi_mem_op exceeds what the
-> controller can do.
-Yes makes sense. Will add this once we decide on keeping this flag to 
-identify controllers supporting HW transfer of dummy bytes Vs SW transfer.
->> For controller with this flag set, spi-mem driver will skip dummy bytes
->> transfer in the spi message.
->>
->> Controller drivers can get the number of dummy cycles from spi_message.
->>
->> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
->> ---
->>   drivers/spi/spi-mem.c   | 18 +++++++++++-------
->>   include/linux/spi/spi.h |  8 ++++++++
->>   2 files changed, 19 insertions(+), 7 deletions(-)
->>
->> diff --git a/drivers/spi/spi-mem.c b/drivers/spi/spi-mem.c
->> index f3a3f19..38a523b 100644
->> --- a/drivers/spi/spi-mem.c
->> +++ b/drivers/spi/spi-mem.c
->> @@ -350,13 +350,17 @@ int spi_mem_exec_op(struct spi_mem *mem, const struct spi_mem_op *op)
->>   	}
->>   
->>   	if (op->dummy.nbytes) {
->> -		memset(tmpbuf + op->addr.nbytes + 1, 0xff, op->dummy.nbytes);
->> -		xfers[xferpos].tx_buf = tmpbuf + op->addr.nbytes + 1;
->> -		xfers[xferpos].len = op->dummy.nbytes;
->> -		xfers[xferpos].tx_nbits = op->dummy.buswidth;
->> -		spi_message_add_tail(&xfers[xferpos], &msg);
->> -		xferpos++;
->> -		totalxferlen += op->dummy.nbytes;
->> +		if (ctlr->flags & SPI_MASTER_USES_HW_DUMMY_CYCLES) {
->> +			msg.dummy_cycles = (op->dummy.nbytes * 8) / op->dummy.buswidth;
->> +		} else {
->> +			memset(tmpbuf + op->addr.nbytes + 1, 0xff, op->dummy.nbytes);
->> +			xfers[xferpos].tx_buf = tmpbuf + op->addr.nbytes + 1;
->> +			xfers[xferpos].len = op->dummy.nbytes;
->> +			xfers[xferpos].tx_nbits = op->dummy.buswidth;
->> +			spi_message_add_tail(&xfers[xferpos], &msg);
->> +			xferpos++;
->> +			totalxferlen += op->dummy.nbytes;
->> +		}
->>   	}
->>   
->>   	if (op->data.nbytes) {
->> diff --git a/include/linux/spi/spi.h b/include/linux/spi/spi.h
->> index aa09fdc..2024149 100644
->> --- a/include/linux/spi/spi.h
->> +++ b/include/linux/spi/spi.h
->> @@ -512,6 +512,8 @@ struct spi_controller {
->>   
->>   #define SPI_MASTER_GPIO_SS		BIT(5)	/* GPIO CS must select slave */
->>   
->> +#define SPI_MASTER_USES_HW_DUMMY_CYCLES	BIT(6)	/* HW dummy bytes transfer */
->> +
->>   	/* flag indicating this is an SPI slave controller */
->>   	bool			slave;
->>   
->> @@ -1022,6 +1024,12 @@ struct spi_message {
->>   	unsigned		actual_length;
->>   	int			status;
->>   
->> +	/*
->> +	 * dummy cycles in the message transfer. This is used by the controller
->> +	 * drivers supports transfer of dummy cycles directly by the hardware.
->> +	 */
->> +	u8			dummy_cycles;
->> +
->>   	/* for optional use by whatever driver currently owns the
->>   	 * spi_message ...  between calls to spi_async and then later
->>   	 * complete(), that's the spi_controller controller driver.
+-- 
+With Best Regards,
+Andy Shevchenko
