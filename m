@@ -2,146 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 75D6A2D886E
-	for <lists+devicetree@lfdr.de>; Sat, 12 Dec 2020 18:01:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D0C62D889C
+	for <lists+devicetree@lfdr.de>; Sat, 12 Dec 2020 18:29:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2407643AbgLLQrF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 12 Dec 2020 11:47:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48622 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2392549AbgLLQrF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Dec 2020 11:47:05 -0500
-Received: from mail-oi1-x242.google.com (mail-oi1-x242.google.com [IPv6:2607:f8b0:4864:20::242])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F668C0613CF;
-        Sat, 12 Dec 2020 08:46:25 -0800 (PST)
-Received: by mail-oi1-x242.google.com with SMTP id d27so13859911oic.0;
-        Sat, 12 Dec 2020 08:46:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=sender:date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=ymG4jEHUUvXvwINChPOK8vrT9NJD/wpkg/b1KPrA2ME=;
-        b=NB6hS8ZrMm+6EUZA2VCLg1RxPrmeSFn05858jt6Ge8cD/q02rHb9SfK91iBUEiFAhU
-         hCkmWNd5TR3PSC8J7jCfQrFIxssdMx9D2jJQKPjyoyyEMRaNMMZ7L1nJ8ewqp88ft+1d
-         MoPtPW3sdk2NDI5z0HmeGgwTkMRog76ZlFkn6RObH4NUZTHQo2x1TA4l2U+sbISsGOCB
-         Ho5ySzekxPBPqsiORJFyVFF3yk7rkO2N3z4k+2ObW48YbXwldmkcOlewxWddadXZZL1+
-         eBhFtnxZbxr/NBorMXaUhgvOKEQhE06Q3Kv2W4FEY0dq9l75MVOJHxSD1UgtGW16j4IP
-         gF2Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
-         :references:mime-version:content-disposition:in-reply-to:user-agent;
-        bh=ymG4jEHUUvXvwINChPOK8vrT9NJD/wpkg/b1KPrA2ME=;
-        b=kiFtapksqO1Tqf26LxX/dTd0FjdjUUQcSrxvYy4H1XgcdBuy+v+sG0BBR+kGT6Dz9L
-         jLp7oXJ48zR/P4uV4DyjGz810FySdSqTVkwZr8EUniX+miM90Ylv4eGxhE2eA1sbVJ1P
-         L5yEamIz3TuiSS2zfTjhgomuV+JE38/VZuSWImCXbA+aNTY+bWSmNS/+7lsfZdJ9tWXD
-         1GFLAkIDsZ9ztRwMWu+RgCPVB1b5DN4lt51Zt54LHN4J+EaatGC5RFDcUorRhfPY/Dj1
-         vZK5OFAul9njk92BbEKBqrhDA98oPRN5yIDQLzxlphNZt4mIu6zEgvM69Pf2Gct48fc3
-         INjw==
-X-Gm-Message-State: AOAM532PDO4Npf871hI3nFFpLFCeTXWai3J0AKUL9UoN1i8tv0r7mNFL
-        NTzTNlW9Gwr3eNIqgdZ/Qc4=
-X-Google-Smtp-Source: ABdhPJzY4CcqiSHA/j8rLYR6wVjUUREvl9Yx2emWlvX3UmOLenWAz5r/ylh7hyu/TImUaFeCCcAaPg==
-X-Received: by 2002:a05:6808:6c2:: with SMTP id m2mr13131024oih.123.1607791584720;
-        Sat, 12 Dec 2020 08:46:24 -0800 (PST)
-Received: from localhost ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id c18sm2733642oib.31.2020.12.12.08.46.24
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Sat, 12 Dec 2020 08:46:24 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Sat, 12 Dec 2020 08:46:23 -0800
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Kun Yi <kunyi@google.com>
-Cc:     jdelvare@suse.com, robh+dt@kernel.org, mark.rutland@arm.com,
-        supreeth.venkatesh@amd.com, openbmc@lists.ozlabs.org,
-        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH linux hwmon-next v5 3/3] dt-bindings: (hwmon/sbtsi_tmep)
- Add SB-TSI hwmon driver bindings
-Message-ID: <20201212164623.GA29335@roeck-us.net>
-References: <20201211215427.3281681-1-kunyi@google.com>
- <20201211215427.3281681-4-kunyi@google.com>
+        id S2404803AbgLLR3i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 12 Dec 2020 12:29:38 -0500
+Received: from nat-hk.nvidia.com ([203.18.50.4]:57028 "EHLO nat-hk.nvidia.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2390595AbgLLR3i (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 12 Dec 2020 12:29:38 -0500
+Received: from HKMAIL104.nvidia.com (Not Verified[10.18.92.9]) by nat-hk.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
+        id <B5fd4fdd70003>; Sun, 13 Dec 2020 01:28:55 +0800
+Received: from HQMAIL107.nvidia.com (172.20.187.13) by HKMAIL104.nvidia.com
+ (10.18.16.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Sat, 12 Dec
+ 2020 17:28:55 +0000
+Received: from [10.2.60.59] (172.20.145.6) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Sat, 12 Dec
+ 2020 17:28:52 +0000
+Subject: Re: [PATCH v3 5/9] spi: spi-mem: Allow masters to transfer dummy
+ cycles directly by hardware
+To:     Boris Brezillon <boris.brezillon@collabora.com>
+CC:     <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
+        <broonie@kernel.org>, <robh+dt@kernel.org>, <lukas@wunner.de>,
+        <bbrezillon@kernel.org>, <p.yadav@ti.com>,
+        <tudor.ambarus@microchip.com>, <linux-spi@vger.kernel.org>,
+        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+References: <1607721363-8879-1-git-send-email-skomatineni@nvidia.com>
+ <1607721363-8879-6-git-send-email-skomatineni@nvidia.com>
+ <20201212115715.31a8d755@collabora.com>
+From:   Sowjanya Komatineni <skomatineni@nvidia.com>
+Message-ID: <7efb281a-98d7-68c5-1515-0e980b6cfe12@nvidia.com>
+Date:   Sat, 12 Dec 2020 09:28:50 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201211215427.3281681-4-kunyi@google.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <20201212115715.31a8d755@collabora.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-Originating-IP: [172.20.145.6]
+X-ClientProxiedBy: HQMAIL111.nvidia.com (172.20.187.18) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1607794135; bh=JRdJwxDrHqj84zOr7vEYjGJE0Jucw9ayr/+irmlLuFk=;
+        h=Subject:To:CC:References:From:Message-ID:Date:User-Agent:
+         MIME-Version:In-Reply-To:Content-Type:Content-Transfer-Encoding:
+         Content-Language:X-Originating-IP:X-ClientProxiedBy;
+        b=ZllRZodPRm8gF0TopiB6E9PC3EXyRG2M5XjnGN9KtnwCsMZRK9BEJt+L/wY9FQArN
+         3vKCKwhSd7MgrwWwDwDdvVuSM92zMUAIkg7oCmuLSKWTvHkWaEukdUxhvAGf7uPpz6
+         EpLcaZxNDZkrk0XqBf0JreZdyxVEZux9pyORxvo7IhnVbIhQTxdu4CMz/ZGBLYVs5M
+         2nkoGgZ96EgZ9+RXzLBv/OYQT4SOue3yz+8HtgfRq2S/gVIVL0XJL/TKGAA9Er4c/T
+         w2GhNdTsNOmqZulPvh43xaFyZXXHf3N/0+psnBWgreGUjE2zOmdbu7mIV8WmDGUOSt
+         rt169kGFJcw4w==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 11, 2020 at 01:54:27PM -0800, Kun Yi wrote:
-> Document device tree bindings for AMD SB-TSI emulated temperature
-> sensor.
-> 
-> Signed-off-by: Kun Yi <kunyi@google.com>
 
-Applied, after fixing the subject line.
-I also added Rob's Reviewed-by: tag from v2.
+On 12/12/20 2:57 AM, Boris Brezillon wrote:
+> On Fri, 11 Dec 2020 13:15:59 -0800
+> Sowjanya Komatineni <skomatineni@nvidia.com> wrote:
+>
+>> This patch adds a flag SPI_MASTER_USES_HW_DUMMY_CYCLES for the controllers
+>> that support transfer of dummy cycles by the hardware directly.
+> Hm, not sure this is a good idea. I mean, if we expect regular SPI
+> devices to use this feature, then why not, but if it's just for
+> spi-mem, I'd recommend implementing a driver-specific exec_op() instead
+> of using the default one.
 
-Guenter
+dummy cycles programming is SPI device specific.
 
-> ---
->  .../devicetree/bindings/hwmon/amd,sbtsi.yaml  | 54 +++++++++++++++++++
->  1 file changed, 54 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/hwmon/amd,sbtsi.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/hwmon/amd,sbtsi.yaml b/Documentation/devicetree/bindings/hwmon/amd,sbtsi.yaml
-> new file mode 100644
-> index 000000000000..446b09f1ce94
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/hwmon/amd,sbtsi.yaml
-> @@ -0,0 +1,54 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/hwmon/amd,sbtsi.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: >
-> +  Sideband interface Temperature Sensor Interface (SB-TSI) compliant
-> +  AMD SoC temperature device
-> +
-> +maintainers:
-> +  - Kun Yi <kunyi@google.com>
-> +  - Supreeth Venkatesh <supreeth.venkatesh@amd.com>
-> +
-> +description: |
-> +  SB Temperature Sensor Interface (SB-TSI) is an SMBus compatible
-> +  interface that reports AMD SoC's Ttcl (normalized temperature),
-> +  and resembles a typical 8-pin remote temperature sensor's I2C interface
-> +  to BMC. The emulated thermal sensor can report temperatures in increments
-> +  of 0.125 degrees, ranging from 0 to 255.875.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - amd,sbtsi
-> +
-> +  reg:
-> +    maxItems: 1
-> +    description: |
-> +      I2C bus address of the device as specified in Section 6.3.1 of the
-> +      SoC register reference. The SB-TSI address is normally 98h for socket
-> +      0 and 90h for socket 1, but it could vary based on hardware address
-> +      select pins.
-> +      \[open source SoC register reference\]
-> +        https://www.amd.com/system/files/TechDocs/56255_OSRR.pdf
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c0 {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        sbtsi@4c {
-> +                compatible = "amd,sbtsi";
-> +                reg = <0x4c>;
-> +        };
-> +    };
-> +...
+Transfer of dummy bytes by SW or HW controller can be depending on 
+features supported by controller.
+
+Adding controller driver specific exec_op() Just for skipping dummy 
+bytes transfer will have so much of redundant code pretty much what all 
+spi_mem_exec_op does.
+
+So in v1, I handled this in controller driver by skipping SW transfer of 
+dummy bytes during dummy phase and programming dummy cycles in 
+controller register to allow HW to transfer.
+
+Based on v1 feedback discussion, added this flag 
+SPI_MASTER_USES_HW_DUMMY_CYCLES which can be used by controllers 
+supporting HW dummy bytes transfer and updated spi_mem_exec_op to skip 
+SW dummy bytes.
+
+This helps other controllers supporting HW transfer of dummy bytes as 
+well just to set the flag and use dummy cycles directly.
+
+> If we go for those core changes, we should at least add a
+> ctrl->max_dummy_cycles field so the core can fallback to regular writes
+> when the number of dummy cycles in the spi_mem_op exceeds what the
+> controller can do.
+Yes makes sense. Will add this once we decide on keeping this flag to 
+identify controllers supporting HW transfer of dummy bytes Vs SW transfer.
+>> For controller with this flag set, spi-mem driver will skip dummy bytes
+>> transfer in the spi message.
+>>
+>> Controller drivers can get the number of dummy cycles from spi_message.
+>>
+>> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
+>> ---
+>>   drivers/spi/spi-mem.c   | 18 +++++++++++-------
+>>   include/linux/spi/spi.h |  8 ++++++++
+>>   2 files changed, 19 insertions(+), 7 deletions(-)
+>>
+>> diff --git a/drivers/spi/spi-mem.c b/drivers/spi/spi-mem.c
+>> index f3a3f19..38a523b 100644
+>> --- a/drivers/spi/spi-mem.c
+>> +++ b/drivers/spi/spi-mem.c
+>> @@ -350,13 +350,17 @@ int spi_mem_exec_op(struct spi_mem *mem, const struct spi_mem_op *op)
+>>   	}
+>>   
+>>   	if (op->dummy.nbytes) {
+>> -		memset(tmpbuf + op->addr.nbytes + 1, 0xff, op->dummy.nbytes);
+>> -		xfers[xferpos].tx_buf = tmpbuf + op->addr.nbytes + 1;
+>> -		xfers[xferpos].len = op->dummy.nbytes;
+>> -		xfers[xferpos].tx_nbits = op->dummy.buswidth;
+>> -		spi_message_add_tail(&xfers[xferpos], &msg);
+>> -		xferpos++;
+>> -		totalxferlen += op->dummy.nbytes;
+>> +		if (ctlr->flags & SPI_MASTER_USES_HW_DUMMY_CYCLES) {
+>> +			msg.dummy_cycles = (op->dummy.nbytes * 8) / op->dummy.buswidth;
+>> +		} else {
+>> +			memset(tmpbuf + op->addr.nbytes + 1, 0xff, op->dummy.nbytes);
+>> +			xfers[xferpos].tx_buf = tmpbuf + op->addr.nbytes + 1;
+>> +			xfers[xferpos].len = op->dummy.nbytes;
+>> +			xfers[xferpos].tx_nbits = op->dummy.buswidth;
+>> +			spi_message_add_tail(&xfers[xferpos], &msg);
+>> +			xferpos++;
+>> +			totalxferlen += op->dummy.nbytes;
+>> +		}
+>>   	}
+>>   
+>>   	if (op->data.nbytes) {
+>> diff --git a/include/linux/spi/spi.h b/include/linux/spi/spi.h
+>> index aa09fdc..2024149 100644
+>> --- a/include/linux/spi/spi.h
+>> +++ b/include/linux/spi/spi.h
+>> @@ -512,6 +512,8 @@ struct spi_controller {
+>>   
+>>   #define SPI_MASTER_GPIO_SS		BIT(5)	/* GPIO CS must select slave */
+>>   
+>> +#define SPI_MASTER_USES_HW_DUMMY_CYCLES	BIT(6)	/* HW dummy bytes transfer */
+>> +
+>>   	/* flag indicating this is an SPI slave controller */
+>>   	bool			slave;
+>>   
+>> @@ -1022,6 +1024,12 @@ struct spi_message {
+>>   	unsigned		actual_length;
+>>   	int			status;
+>>   
+>> +	/*
+>> +	 * dummy cycles in the message transfer. This is used by the controller
+>> +	 * drivers supports transfer of dummy cycles directly by the hardware.
+>> +	 */
+>> +	u8			dummy_cycles;
+>> +
+>>   	/* for optional use by whatever driver currently owns the
+>>   	 * spi_message ...  between calls to spi_async and then later
+>>   	 * complete(), that's the spi_controller controller driver.
