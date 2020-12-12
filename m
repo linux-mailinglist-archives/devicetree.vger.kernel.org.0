@@ -2,288 +2,239 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 562ED2D8631
-	for <lists+devicetree@lfdr.de>; Sat, 12 Dec 2020 12:16:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E06E82D8660
+	for <lists+devicetree@lfdr.de>; Sat, 12 Dec 2020 13:15:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2437973AbgLLLQE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 12 Dec 2020 06:16:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54218 "EHLO
+        id S1726950AbgLLMOp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 12 Dec 2020 07:14:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34916 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2437239AbgLLLQE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Dec 2020 06:16:04 -0500
-Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [IPv6:2001:67c:2050::465:201])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAB10C0613CF
-        for <devicetree@vger.kernel.org>; Sat, 12 Dec 2020 03:15:23 -0800 (PST)
-Received: from smtp2.mailbox.org (smtp2.mailbox.org [80.241.60.241])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4CtQ6y1B66zQlWs;
-        Sat, 12 Dec 2020 12:15:22 +0100 (CET)
-X-Virus-Scanned: amavisd-new at heinlein-support.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=loebl.cz; s=MBO0001;
-        t=1607771721;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=F0kn3r6ljstTv3G1Acdj+KaK3LQTbeyNLhdqeIIElf0=;
-        b=O8OME8cXGGcj8oFM4vKF+edFrdwXJ+xF/9H+Z31u6VmPUUPv6Zox2x6kOMjdKeLQAGtaHH
-        S0CyRVGSZ8tSgmfMFqF/3ytE/qX1VF1T6rx4c3VF8H09NlqAg9RAixhVY3FeCkNk9a1eAN
-        Djj0inuCR6J1cdR0a7MeN9PzyoPiQwGWcQU7FTEWZGDt88aJ5fzVSHDivo81JSMiSj2QB1
-        5ju5smd6JdZF8ncJMVxxsafxxnj5OkwGc2D86FzfKrZ+ghykSxnLZCV4PDnyDsgqAsyYK6
-        w715tAwaqNaocm3Njue+KViWpyU/AhMoPcDXQsAitsWkABDmKwtv01pa29d2Nw==
-Received: from smtp2.mailbox.org ([80.241.60.241])
-        by spamfilter05.heinlein-hosting.de (spamfilter05.heinlein-hosting.de [80.241.56.123]) (amavisd-new, port 10030)
-        with ESMTP id eWoc5BikcryE; Sat, 12 Dec 2020 12:15:20 +0100 (CET)
-From:   =?UTF-8?q?Pavel=20L=C3=B6bl?= <pavel@loebl.cz>
-To:     devicetree@vger.kernel.org
-Cc:     Maxime Ripard <mripard@kernel.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        =?UTF-8?q?Pavel=20L=C3=B6bl?= <pavel@loebl.cz>
-Subject: [PATCH] ARM: dts: sun8i: h2+: add support for Banana Pi P2 Zero board
-Date:   Sat, 12 Dec 2020 12:14:29 +0100
-Message-Id: <20201212111429.286721-1-pavel@loebl.cz>
+        with ESMTP id S1726696AbgLLMOp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Dec 2020 07:14:45 -0500
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D61FFC0613D3
+        for <devicetree@vger.kernel.org>; Sat, 12 Dec 2020 04:14:04 -0800 (PST)
+Received: by mail-lf1-x12a.google.com with SMTP id a9so18267585lfh.2
+        for <devicetree@vger.kernel.org>; Sat, 12 Dec 2020 04:14:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=nH64bs/o0u6lD1dT5BmfJm1SGgsk3D4ncZDVO5xop3Y=;
+        b=AFkPSFp4VUzxlohcoezcykgpogd8aLGnlWDilPZGEDPAe0BYyV8AP+cN47rbyWyfnK
+         RCVdzZk+osB4vv+VfiRNfeswLY7KIPyTu0zOs7Vp9+jpgWRZA2on+LBb+0esTNexSWsT
+         Hhi3L2QglppNR0gPj2zag/oljXdjwK3XMnf27wyRN1Pk5/scViahp6otZQtdhuF8z5N8
+         pTYkkZ/J6ZKE1Su0E8/aOOcf7F30rOAeqJHQdCJedArijGQHrxngyF6MjdDJHGNljBGA
+         2NEw5c2KcgI011hYbXb+9RZqvgxDSPff5UvNKoaO7PagAdkNbQv7U3bfYvLEqSC3y3mL
+         HM4Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=nH64bs/o0u6lD1dT5BmfJm1SGgsk3D4ncZDVO5xop3Y=;
+        b=ha54nczwkgvOisLdUDFsEXowF3KxKXaKqHcH40Q30wmfqYfynwTygLRyBl8vV+q3dL
+         t3bxF/LX20THfCb6J63FI8RHECtmcq9bVcmGD1lYoLC0eXE/5qGV79mfiM1QxltKnded
+         VQbs01tlXOslWjlwFjBMUyJ5VQ5Ekjc2wSTKsxrX2aYRmc++OAK4q6nzzbC4ddJDzNwi
+         HdmcLMeOGY6xgPMw/C8a8Pe1fG0kPvAf2IIUN7I60LyHyLacllKI9kttF1RYKRE3A/2s
+         pLA6LD9H1XOswOXptw8FYwhfChxuCZrPEru1d3PCWY673zUf2nzPSkGIbVKbTBb1DTXt
+         ZcKw==
+X-Gm-Message-State: AOAM5319rTRrugyiO5+AoSa/tCVa6xwXEnlFtdyGowx6VTlWmWE5pKxl
+        /ohFTl4D5vbhAy7+XD9UJf7lFw==
+X-Google-Smtp-Source: ABdhPJxd1NyM2igO/dGGQouWK9vj8BAY7cPSrJjYoXnewxVarfmV6xwLY5iFJ0nXMp6tC9aIsPD7mg==
+X-Received: by 2002:a05:6512:33a8:: with SMTP id i8mr6551509lfg.5.1607775243192;
+        Sat, 12 Dec 2020 04:14:03 -0800 (PST)
+Received: from localhost.bredbandsbolaget (c-92d7225c.014-348-6c756e10.bbcust.telenor.se. [92.34.215.146])
+        by smtp.gmail.com with ESMTPSA id 136sm1222766lfb.62.2020.12.12.04.14.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 12 Dec 2020 04:14:02 -0800 (PST)
+From:   Linus Walleij <linus.walleij@linaro.org>
+To:     Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org
+Cc:     Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        devicetree@vger.kernel.org, phone-devel@vger.kernel.org,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Jonathan Bakker <xc-racer2@live.ca>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH 1/2 v5] iio: accel: yamaha-yas530: Add DT bindings
+Date:   Sat, 12 Dec 2020 13:13:56 +0100
+Message-Id: <20201212121357.2762397-1-linus.walleij@linaro.org>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-MBO-SPAM-Probability: 
-X-Rspamd-Score: -4.04 / 15.00 / 15.00
-X-Rspamd-Queue-Id: A024717D8
-X-Rspamd-UID: a9a96f
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Banana Pi P2 Zero is H2+-based board by Sinovoip internally
-similar to Banana Pi M2 Zero.
+This adds device tree bindings for the Yamaha YAS530
+family of magnetometers/compass sensors.
 
-It features:
-- Allwinner H2+, Quad-core Cortex-A7
-- 512MB DDR3 SDRAM
-- 8G eMMC flash
-- MicroSD card slot
-- 100M LAN
-- WiFi (AP6212) & Bluetooth onboard (SDIO + UART)
-- Micro USB OTG port
-- Micro USB connector (power only)
-- Mini HDMI
-- 40 PIN GPIO includes UART, SPI, I2C, IO etc.
-- GPIO-connected key and LED
-- CSI connector
-- IEEE 802.3af PoE standard PoE module support (optional)
-
-This adds support for v1.1 revision. There was also v1.0 available
-which has different SDcard CD polarity and Ethernet port LEDs
-disconnected in layout.
-
-Signed-off-by: Pavel Löbl <pavel@loebl.cz>
+Cc: devicetree@vger.kernel.org
+Cc: phone-devel@vger.kernel.org
+Cc: Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc: Jonathan Bakker <xc-racer2@live.ca>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 ---
- .../dts/sun8i-h2-plus-bananapi-p2-zero.dts    | 196 ++++++++++++++++++
- 1 file changed, 196 insertions(+)
- create mode 100644 arch/arm/boot/dts/sun8i-h2-plus-bananapi-p2-zero.dts
+ChangeLog v4->v5:
+- Collect Rob's Reviewed-by tag.
+ChangeLog v3->v4:
+- Rename the bindings and file yas530 after the first
+  introduced component in the family.
+- Simplify conditional logic using the if: not: YAML
+  constructions.
+- Use the possibility to set a property to false to just
+  remvove reset GPIOs and interrupts from variants that
+  do not have them.
+ChangeLog v2->v3:
+- Restrict to cover the YAS53x variants, it turns out that
+  YAS529 is a very different component from the others so
+  keep that for a separate document when/if needed.
+- Rename the file and binding yamaha,53x.yaml
+- Use - if: clauses to restrict some properties.
+- Fix some spelling mistakes.
+- Restrict the nodename to be "magnetometer@[0-9a-f]"
+ChangeLog v1->v2:
+- Add Yamaha to the vendor list, I was surprised to find
+  they were not yet listed.
+---
+ .../iio/magnetometer/yamaha,yas530.yaml       | 112 ++++++++++++++++++
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ 2 files changed, 114 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/magnetometer/yamaha,yas530.yaml
 
-diff --git a/arch/arm/boot/dts/sun8i-h2-plus-bananapi-p2-zero.dts b/arch/arm/boot/dts/sun8i-h2-plus-bananapi-p2-zero.dts
+diff --git a/Documentation/devicetree/bindings/iio/magnetometer/yamaha,yas530.yaml b/Documentation/devicetree/bindings/iio/magnetometer/yamaha,yas530.yaml
 new file mode 100644
-index 000000000000..347f2dcee606
+index 000000000000..4b0ef1ef5445
 --- /dev/null
-+++ b/arch/arm/boot/dts/sun8i-h2-plus-bananapi-p2-zero.dts
-@@ -0,0 +1,196 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (C) 2020 Pavel Löbl <pavel@loebl.cz>
-+ *
-+ * Based on sun8i-h2-plus-bananapi-m2-zero.dts, which is:
-+ *   Copyright (C) 2017 Icenowy Zheng <icenowy@aosc.io>
-+ */
++++ b/Documentation/devicetree/bindings/iio/magnetometer/yamaha,yas530.yaml
+@@ -0,0 +1,112 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iio/magnetometer/yamaha,yas530.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+/dts-v1/;
-+#include "sun8i-h3.dtsi"
++title: Yamaha YAS530 family of magnetometer sensors
 +
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/input.h>
++maintainers:
++  - Linus Walleij <linus.walleij@linaro.org>
 +
-+/ {
-+	model = "Banana Pi BPI-P2-Zero";
-+	compatible = "sinovoip,bpi-p2-zero", "allwinner,sun8i-h2-plus";
++description:
++  The Yamaha YAS530 magnetometers is a line of 3-axis magnetometers
++  first introduced by Yamaha in 2009 with the YAS530. They are successors
++  of Yamaha's first magnetometer YAS529. Over the years this magnetometer
++  has been miniaturized and appeared in a number of different variants.
 +
-+	aliases {
-+		serial0 = &uart0;
-+		serial1 = &uart1;
-+	};
++properties:
++  $nodename:
++    pattern: '^magnetometer@[0-9a-f]+$'
 +
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
++  compatible:
++    items:
++      - enum:
++          - yamaha,yas530
++          - yamaha,yas532
++          - yamaha,yas533
++          - yamaha,yas535
++          - yamaha,yas536
++          - yamaha,yas537
++          - yamaha,yas539
 +
-+	leds {
-+		compatible = "gpio-leds";
++  reg:
++    maxItems: 1
 +
-+		pwr_led {
-+			label = "power-led";
-+			gpios = <&r_pio 0 10 GPIO_ACTIVE_LOW>; /* PL10 */
-+			default-state = "on";
-+		};
-+	};
++  reset-gpios:
++    maxItems: 1
++    description: The YAS530 sensor has a RSTN pin used to reset
++      the logic inside the sensor. This GPIO line should connect
++      to that pin and be marked as GPIO_ACTIVE_LOW.
 +
-+	gpio_keys {
-+		compatible = "gpio-keys";
++  interrupts:
++    maxItems: 1
++    description: Interrupt for INT pin for interrupt generation.
++      The polarity, whether the interrupt is active on the rising
++      or the falling edge, is software-configurable in the hardware.
 +
-+		pwr_key {
-+			label = "power-key";
-+			linux,code = <KEY_POWER>;
-+			gpios = <&r_pio 0 3 GPIO_ACTIVE_LOW>;  /* PL3 */
-+			wakeup-source;
-+		};
-+	};
++  vdd-supply:
++    description: An optional regulator providing core power supply
++      on the VDD pin, typically 1.8 V or 3.0 V.
 +
-+	reg_vcc_5v: reg-vcc-5v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "usb1-vbus";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		regulator-boot-on;
-+	};
++  iovdd-supply:
++    description: An optional regulator providing I/O power supply
++      for the I2C interface on the IOVDD pin, typically 1.8 V.
 +
-+	reg_vcc_1v2: reg-vcc-1v2 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc-1v2";
-+		regulator-type = "voltage";
-+		regulator-min-microvolt = <1200000>;
-+		regulator-max-microvolt = <1200000>;
-+		regulator-boot-on;
-+		vin-supply = <&reg_vcc_5v>;
-+	};
++  mount-matrix:
++    description: An optional 3x3 mounting rotation matrix.
 +
-+	reg_vcc_3v3: reg-vcc-3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc-3v3";
-+		regulator-type = "voltage";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-boot-on;
-+		vin-supply = <&reg_vcc_5v>;
-+	};
++allOf:
++  - if:
++      not:
++        properties:
++          compatible:
++            items:
++              const: yamaha,yas530
++    then:
++      properties:
++        reset-gpios: false
 +
-+	reg_vdd_cpux: vdd-cpux-regulator {
-+		compatible = "regulator-gpio";
-+		regulator-name = "vdd-cpux";
-+		regulator-type = "voltage";
-+		regulator-boot-on;
-+		regulator-always-on;
-+		regulator-min-microvolt = <1100000>;
-+		regulator-max-microvolt = <1300000>;
-+		regulator-ramp-delay = <50>; /* 4ms */
++  - if:
++      properties:
++        compatible:
++          items:
++            const: yamaha,yas539
++    then:
++      properties:
++        interrupts: false
 +
-+		gpios = <&r_pio 0 1 GPIO_ACTIVE_HIGH>; /* PL1 */
-+		enable-active-high;
-+		gpios-states = <0x1>;
-+		states = <1100000 0>, <1300000 1>;
-+	};
++required:
++  - compatible
++  - reg
 +
-+	wifi_pwrseq: wifi_pwrseq {
-+		compatible = "mmc-pwrseq-simple";
-+		reset-gpios = <&r_pio 0 7 GPIO_ACTIVE_LOW>; /* PL7 */
-+	};
-+};
++additionalProperties: false
 +
-+&cpu0 {
-+	cpu-supply = <&reg_vdd_cpux>;
-+};
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    #include <dt-bindings/gpio/gpio.h>
++    i2c-0 {
++        #address-cells = <1>;
++        #size-cells = <0>;
 +
-+&ehci0 {
-+	status = "okay";
-+};
++        magnetometer@2e {
++          compatible = "yamaha,yas530";
++          reg = <0x2e>;
++          vdd-supply = <&ldo1_reg>;
++          iovdd-supply = <&ldo2_reg>;
++          reset-gpios = <&gpio6 12 GPIO_ACTIVE_LOW>;
++          interrupts = <&gpio6 13 IRQ_TYPE_EDGE_RISING>;
++        };
++    };
 +
-+&ohci0 {
-+	status = "okay";
-+};
++    i2c-1 {
++        #address-cells = <1>;
++        #size-cells = <0>;
 +
-+&mmc0 {
-+	vmmc-supply = <&reg_vcc_3v3>;
-+	bus-width = <4>;
-+	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>; /* PF6 */
-+	cd-inverted;
-+	status = "okay";
-+};
-+
-+&mmc1 {
-+	vmmc-supply = <&reg_vcc_3v3>;
-+	vqmmc-supply = <&reg_vcc_3v3>;
-+	mmc-pwrseq = <&wifi_pwrseq>;
-+	bus-width = <4>;
-+	non-removable;
-+	status = "okay";
-+
-+	brcmf: wifi@1 {
-+		reg = <1>;
-+		compatible = "brcm,bcm4329-fmac";
-+		interrupt-parent = <&pio>;
-+		interrupts = <6 10 IRQ_TYPE_LEVEL_LOW>; /* PG10 / EINT10 */
-+		interrupt-names = "host-wake";
-+		clocks = <&rtc 1>;
-+		clock-names = "ext_clock";
-+	};
-+};
-+
-+&mmc2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&mmc2_8bit_pins>;
-+	vmmc-supply = <&reg_vcc_3v3>;
-+	vqmmc-supply = <&reg_vcc_3v3>;
-+	bus-width = <8>;
-+	non-removable;
-+	cap-mmc-hw-reset;
-+	status = "okay";
-+};
-+
-+&uart0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart0_pa_pins>;
-+	status = "okay";
-+};
-+
-+&uart1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart1_pins>, <&uart1_rts_cts_pins>;
-+	uart-has-rtscts;
-+	status = "okay";
-+
-+	bluetooth {
-+		compatible = "brcm,bcm4345c5";
-+		vbat-supply = <&reg_vcc_3v3>;
-+		vddio-supply = <&reg_vcc_3v3>;
-+		device-wakeup-gpios = <&pio 6 13 GPIO_ACTIVE_HIGH>; /* PG13 */
-+		host-wakeup-gpios = <&pio 6 11 GPIO_ACTIVE_HIGH>; /* PG11 */
-+		shutdown-gpios = <&pio 6 12 GPIO_ACTIVE_HIGH>; /* PG12 */
-+		clocks = <&rtc 1>;
-+		clock-names = "ext_clock";
-+	};
-+
-+};
-+
-+&emac {
-+	phy-handle = <&int_mii_phy>;
-+	phy-mode = "mii";
-+	phy-supply = <&reg_vcc_1v2>;
-+	allwinner,leds-active-low;
-+	status = "okay";
-+};
-+
-+&usb_otg {
-+	dr_mode = "otg";
-+	status = "okay";
-+};
-+
-+&usbphy {
-+	usb0_id_det-gpios = <&r_pio 0 6 GPIO_ACTIVE_HIGH>; /* PL6 */
-+	/*
-+	 * There're two micro-USB connectors, one is power-only and another is
-+	 * OTG. The Vbus of these two connectors are connected together, so
-+	 * the external USB device will be powered just by the power input
-+	 * from the power-only USB port or optional POE module.
-+	 */
-+	status = "okay";
-+};
++        magnetometer@2e {
++          compatible = "yamaha,yas539";
++          reg = <0x2e>;
++          vdd-supply = <&ldo1_reg>;
++        };
++    };
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 2735be1a8470..0340674c72bd 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -1210,6 +1210,8 @@ patternProperties:
+     description: Shenzhen Xunlong Software CO.,Limited
+   "^xylon,.*":
+     description: Xylon
++  "^yamaha,.*":
++    description: Yamaha Corporation
+   "^ylm,.*":
+     description: Shenzhen Yangliming Electronic Technology Co., Ltd.
+   "^yna,.*":
 -- 
-2.29.2
+2.26.2
 
