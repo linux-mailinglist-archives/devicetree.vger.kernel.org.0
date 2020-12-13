@@ -2,144 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E6CF2D8AAB
-	for <lists+devicetree@lfdr.de>; Sun, 13 Dec 2020 00:43:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7CAEE2D8AC9
+	for <lists+devicetree@lfdr.de>; Sun, 13 Dec 2020 02:17:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2439901AbgLLXm1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 12 Dec 2020 18:42:27 -0500
-Received: from mail.kernel.org ([198.145.29.99]:59866 "EHLO mail.kernel.org"
+        id S1727205AbgLMBP7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 12 Dec 2020 20:15:59 -0500
+Received: from mail.kernel.org ([198.145.29.99]:55916 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726267AbgLLXmU (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 12 Dec 2020 18:42:20 -0500
-Date:   Sun, 13 Dec 2020 00:41:37 +0100
+        id S1726074AbgLMBP7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 12 Dec 2020 20:15:59 -0500
+X-Gm-Message-State: AOAM533WfqHA8m6nRi+08Ou3NrAWn3EFzaRT62nhAIFmwXj1zeW4/6Xm
+        mUQwuFemsa+Yc9dU/phNJHKmXw/5CISf6fn1NQ==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1607816499;
-        bh=ld6WI/WbyYmPRfnJouXU9CfxjM3Dou47ngCdq5kAuTo=;
-        h=From:To:Cc:Subject:References:In-Reply-To:From;
-        b=p/qq1/cUzMMwE5CNU9VJYm2X9EJpJMiNI7elHxhV7TpKOvaSFHxBhqiU4dFyY5w5T
-         Kdqx7rDxkzgLJJS9GZu+d5C312Zezu/CNCiGlLlozSZfTUJIC5iVyEaqltre51f65J
-         bxGKkxGfWhL82bDpHmzbGjA5qevRlBi9Rk52zO+RYVCkZKJy0D46skX/fkE7PC4wPF
-         QOcn3K5hY7Bqroyw6qKiZHNYBeUBemtb1n/pxJdMNnmMUT7Sj5oPrzaN7xt8JC9k+c
-         elsrwMpLlSiACRXV1wYg+201Hjl0o43/7EpplmVLUduX04npu1z5pQ+zPzxPVlwSM+
-         /wPwpJfoz2Cmw==
-From:   Sebastian Reichel <sre@kernel.org>
-To:     Michael Klein <michael@fossekall.de>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org
-Subject: Re: [PATCH v5 2/3] Documentation: DT: binding documentation for
- regulator-poweroff
-Message-ID: <20201212234137.xnh2vtqbmxqnkj3c@earth.universe>
-References: <20201211151445.115943-1-michael@fossekall.de>
- <20201211151445.115943-3-michael@fossekall.de>
+        s=k20201202; t=1607822118;
+        bh=DuuvSYAgKQaNskB+hKM10xoonyLBpgBKY3lVUg/jzKM=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=mGfFiGHPZ+0K8oG5EitT1rP0Ln7RvsH4jvAjTD/RVWb71OgL+ZTr8BAXiI21Spjtg
+         duuylj1rz9UqQjR3OJ+PXojw0hlVngPLz7cKAwS+YQGKYol99bj1NnYaWyF6bRdPqh
+         oMJFtI1YvBDFzij0buLUhDhZQMQPcLu821pavPB//cyYkhoY25h0sYconPs7MadNiv
+         TqySZQHNs2nxx3QOzCBpq/G9G2Lp2Dc5z8p2lgEYYge3m/bv6wyc6gkmKtZoa1wNtK
+         FEuO4I+UZDyJr/vU9Xk539Ta9f7YLNrRYFVYZwiFCDvZzqFaNMuJa5mxIbETRGhxX3
+         y9smBV9qObshA==
+X-Google-Smtp-Source: ABdhPJxwatlJb+8VRQZCMPRl8VIOjuxvSaZJuqeloLzJDD7QgR6XPq6bmpgZNV+0chJV9VkJ7Cdgd5MYWpjqub7z4kY=
+X-Received: by 2002:a17:907:414c:: with SMTP id od20mr16781511ejb.75.1607822116713;
+ Sat, 12 Dec 2020 17:15:16 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="erqydbu4j5uxkufn"
-Content-Disposition: inline
-In-Reply-To: <20201211151445.115943-3-michael@fossekall.de>
+References: <1607746317-4696-1-git-send-email-yongqiang.niu@mediatek.com> <1607746317-4696-5-git-send-email-yongqiang.niu@mediatek.com>
+In-Reply-To: <1607746317-4696-5-git-send-email-yongqiang.niu@mediatek.com>
+From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Date:   Sun, 13 Dec 2020 09:15:05 +0800
+X-Gmail-Original-Message-ID: <CAAOTY_8bsmRtt9Kpd1__iEuPJ3Ox7jbn_yXnUeUoj041AhjSkQ@mail.gmail.com>
+Message-ID: <CAAOTY_8bsmRtt9Kpd1__iEuPJ3Ox7jbn_yXnUeUoj041AhjSkQ@mail.gmail.com>
+Subject: Re: [PATCH v2, 04/17] drm/mediatek: add component OVL_2L2
+To:     Yongqiang Niu <yongqiang.niu@mediatek.com>
+Cc:     CK Hu <ck.hu@mediatek.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        DTML <devicetree@vger.kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        DRI Development <dri-devel@lists.freedesktop.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi, Yongqiang:
 
---erqydbu4j5uxkufn
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Yongqiang Niu <yongqiang.niu@mediatek.com> =E6=96=BC 2020=E5=B9=B412=E6=9C=
+=8812=E6=97=A5 =E9=80=B1=E5=85=AD =E4=B8=8B=E5=8D=8812:12=E5=AF=AB=E9=81=93=
+=EF=BC=9A
+>
+> This patch add component OVL_2L2
 
-Hi,
+Break drm part and soc part into different patches.
 
-On Fri, Dec 11, 2020 at 04:14:44PM +0100, Michael Klein wrote:
-> Add devicetree binding documentation for regulator-poweroff driver.
->=20
-> Signed-off-by: Michael Klein <michael@fossekall.de>
+Regards,
+Chun-Kuang.
+
+>
+> Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
 > ---
-
-Thanks, queued.
-
--- Sebastian
-
->  .../power/reset/regulator-poweroff.yaml       | 37 +++++++++++++++++++
->  1 file changed, 37 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/power/reset/regulat=
-or-poweroff.yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/power/reset/regulator-powe=
-roff.yaml b/Documentation/devicetree/bindings/power/reset/regulator-powerof=
-f.yaml
-> new file mode 100644
-> index 000000000000..03bd1fa5a623
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/power/reset/regulator-poweroff.ya=
-ml
-> @@ -0,0 +1,37 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/power/reset/regulator-poweroff.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Force-disable power regulator to turn the power off.
-> +
-> +maintainers:
-> +  - Michael Klein <michael@fossekall.de>
-> +
-> +description: |
-> +  When the power-off handler is called, a power regulator is disabled by
-> +  calling regulator_force_disable(). If the power is still on and the
-> +  CPU still running after a 3000ms delay, a warning is emitted.
-> +
-> +properties:
-> +  compatible:
-> +    const: "regulator-poweroff"
-> +
-> +  cpu-supply:
-> +    description:
-> +      regulator to disable on power-down
-> +
-> +required:
-> +  - compatible
-> +  - cpu-supply
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    regulator-poweroff {
-> +        compatible =3D "regulator-poweroff";
-> +        cpu-supply =3D <&reg_vcc1v2>;
-> +    };
-> +...
-> --=20
-> 2.29.2
->=20
->=20
+>  drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c | 1 +
+>  include/linux/soc/mediatek/mtk-mmsys.h      | 1 +
+>  2 files changed, 2 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c b/drivers/gpu/dr=
+m/mediatek/mtk_drm_ddp_comp.c
+> index 8eba44b..8938554 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
+> @@ -403,6 +403,7 @@ struct mtk_ddp_comp_match {
+>         [DDP_COMPONENT_OVL1]    =3D { MTK_DISP_OVL,       1, NULL },
+>         [DDP_COMPONENT_OVL_2L0] =3D { MTK_DISP_OVL_2L,    0, NULL },
+>         [DDP_COMPONENT_OVL_2L1] =3D { MTK_DISP_OVL_2L,    1, NULL },
+> +       [DDP_COMPONENT_OVL_2L2] =3D { MTK_DISP_OVL_2L,    2, NULL },
+>         [DDP_COMPONENT_PWM0]    =3D { MTK_DISP_PWM,       0, NULL },
+>         [DDP_COMPONENT_PWM1]    =3D { MTK_DISP_PWM,       1, NULL },
+>         [DDP_COMPONENT_PWM2]    =3D { MTK_DISP_PWM,       2, NULL },
+> diff --git a/include/linux/soc/mediatek/mtk-mmsys.h b/include/linux/soc/m=
+ediatek/mtk-mmsys.h
+> index 4b6c514..42476c2 100644
+> --- a/include/linux/soc/mediatek/mtk-mmsys.h
+> +++ b/include/linux/soc/mediatek/mtk-mmsys.h
+> @@ -29,6 +29,7 @@ enum mtk_ddp_comp_id {
+>         DDP_COMPONENT_OVL0,
+>         DDP_COMPONENT_OVL_2L0,
+>         DDP_COMPONENT_OVL_2L1,
+> +       DDP_COMPONENT_OVL_2L2,
+>         DDP_COMPONENT_OVL1,
+>         DDP_COMPONENT_PWM0,
+>         DDP_COMPONENT_PWM1,
+> --
+> 1.8.1.1.dirty
 > _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
-
---erqydbu4j5uxkufn
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAl/VVTEACgkQ2O7X88g7
-+poXLg//Y5j/lacOZTPsiDqIHt6dE74UstQENqnz3/rgDBswnVBxSlW/85Md14/a
-j3GLRYe/fqUEO8o2t7CtMxzOQlnmFe80aCpKNfpGj50FKgt1HSaUqN+9rxRDnnhq
-IIvAP1SpdSG2X8ZP031XyRHFYdUsxo2dOJu6W1BSEXAarm0tVqR/AVKohiXuDDYV
-ILotynHjtXgHXN9onhu3s0APz5mHZCQyge/wtPshkE/+ssvbC0l8HFrd6eMarW75
-AS/J1pkQk9vnLgQBOpItUxEtGU79DHkbe+DUKe2DmKA07Q3ZPwnpq69mrJ1MN8yd
-7aO9PZ9ZIae0qUWC59ZDR0wivXLmUc2ROzwvnGfQL7bQedyLPWspE50PVtnydzGb
-9T4jAHctik2i5YnhO6NkbqGmIZueSYl5VCMBx3U+0iOg7QNP1ZiigucMOmZQBGeI
-UNamgXvss4q4izyeGqreH7UAqXmDdPD4qMVfcpgQGf7aiUfRmI0oENtobQ9S2rXq
-Gs1nLgeOUW1xnSnMwebjrzhjGCWuvT0oQPr+d/Iqv0nWN+rIk1AtxiLiNnc4LHEP
-NAznxc7QzQYDseEX4sn7O1rDGtRbJdbcZcJ4i7yXslkQCx6I9DPKhBKRyAMk+MAp
-er+UTH0mHpcuE5fk9hBT85qMletm9b6b8jGuA/d4UJ+ky4Y5WHU=
-=4jjv
------END PGP SIGNATURE-----
-
---erqydbu4j5uxkufn--
+> Linux-mediatek mailing list
+> Linux-mediatek@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-mediatek
