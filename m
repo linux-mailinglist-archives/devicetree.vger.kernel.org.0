@@ -2,172 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C207B2D8F1E
-	for <lists+devicetree@lfdr.de>; Sun, 13 Dec 2020 18:35:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B5822D8F39
+	for <lists+devicetree@lfdr.de>; Sun, 13 Dec 2020 19:05:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727017AbgLMRfd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 13 Dec 2020 12:35:33 -0500
-Received: from hqnvemgate26.nvidia.com ([216.228.121.65]:17185 "EHLO
-        hqnvemgate26.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725924AbgLMRfd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Dec 2020 12:35:33 -0500
-Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate26.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
-        id <B5fd650bc0000>; Sun, 13 Dec 2020 09:34:52 -0800
-Received: from [10.2.60.59] (172.20.145.6) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Sun, 13 Dec
- 2020 17:34:48 +0000
-Subject: Re: [PATCH v3 5/9] spi: spi-mem: Allow masters to transfer dummy
- cycles directly by hardware
-To:     Boris Brezillon <boris.brezillon@collabora.com>
-CC:     <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
-        <broonie@kernel.org>, <robh+dt@kernel.org>, <lukas@wunner.de>,
-        <bbrezillon@kernel.org>, <p.yadav@ti.com>,
-        <tudor.ambarus@microchip.com>, <linux-spi@vger.kernel.org>,
-        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-References: <1607721363-8879-1-git-send-email-skomatineni@nvidia.com>
- <1607721363-8879-6-git-send-email-skomatineni@nvidia.com>
- <20201212115715.31a8d755@collabora.com>
- <7efb281a-98d7-68c5-1515-0e980b6cfe12@nvidia.com>
- <20201213105426.294827c8@collabora.com>
- <20201213122849.65ddd988@collabora.com>
-From:   Sowjanya Komatineni <skomatineni@nvidia.com>
-Message-ID: <56246e0c-9b9f-0170-9c4b-d53a9be16156@nvidia.com>
-Date:   Sun, 13 Dec 2020 09:34:45 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1726617AbgLMSFL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 13 Dec 2020 13:05:11 -0500
+Received: from mail.kernel.org ([198.145.29.99]:56834 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725287AbgLMSFL (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 13 Dec 2020 13:05:11 -0500
+Received: from archlinux (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 08F83224BD;
+        Sun, 13 Dec 2020 18:04:28 +0000 (UTC)
+Date:   Sun, 13 Dec 2020 18:04:25 +0000
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     devajithvs <devajithvs@gmail.com>
+Cc:     Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Rothwell <sfr@canb.auug.org.au>,
+        Robert Yang <decatf@gmail.com>, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] iio: accel: kxcjk1013: Add rudimentary regulator
+ support
+Message-ID: <20201213180425.34eb8a3a@archlinux>
+In-Reply-To: <20201213172437.2779-2-devajithvs@gmail.com>
+References: <20201213172437.2779-1-devajithvs@gmail.com>
+        <20201213172437.2779-2-devajithvs@gmail.com>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-In-Reply-To: <20201213122849.65ddd988@collabora.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-X-Originating-IP: [172.20.145.6]
-X-ClientProxiedBy: HQMAIL101.nvidia.com (172.20.187.10) To
- HQMAIL107.nvidia.com (172.20.187.13)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1607880892; bh=/+r/OFkiTrJ9cwJUQwdpvx74rqFWWTz4XHd4+sExh/c=;
-        h=Subject:To:CC:References:From:Message-ID:Date:User-Agent:
-         MIME-Version:In-Reply-To:Content-Type:Content-Transfer-Encoding:
-         Content-Language:X-Originating-IP:X-ClientProxiedBy;
-        b=AHwzAau4L6pQm/I8MkJyiYFwCLK3MfSk2wB4hKuGKNm2kRLWyhHwUF2k/2mx/ZNTQ
-         roOuyfSC1YV4W5w6aF9Y/5HBKDTJIZn2yjDD+0She/UHy6RmEHS67n00fPZ1ba9BDY
-         +uTDxq+kuSiOHBxGEh+rGJtiTUkUdsPrgScYeyq0bWH4GxZW6YvP2uaOn/Gn//g8nD
-         BvVwtbUFyJewnQO4bz1wcLo0WSejIpCy7Nrw6IiONVkxPoFv5tW1WbLsxJHbUgPXNr
-         ZWRDcQqkaM0X7u/ZyezBQ0HbAOACPDkF03V6nRnmv0KAHuRH1vrIEoz5gNCY8uJu8z
-         yrq1P4x4NvrIw==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Sun, 13 Dec 2020 22:54:36 +0530
+devajithvs <devajithvs@gmail.com> wrote:
 
-On 12/13/20 3:28 AM, Boris Brezillon wrote:
-> On Sun, 13 Dec 2020 10:54:26 +0100
-> Boris Brezillon <boris.brezillon@collabora.com> wrote:
->
->> On Sat, 12 Dec 2020 09:28:50 -0800
->> Sowjanya Komatineni <skomatineni@nvidia.com> wrote:
->>
->>> On 12/12/20 2:57 AM, Boris Brezillon wrote:
->>>> On Fri, 11 Dec 2020 13:15:59 -0800
->>>> Sowjanya Komatineni <skomatineni@nvidia.com> wrote:
->>>>     
->>>>> This patch adds a flag SPI_MASTER_USES_HW_DUMMY_CYCLES for the controllers
->>>>> that support transfer of dummy cycles by the hardware directly.
->>>> Hm, not sure this is a good idea. I mean, if we expect regular SPI
->>>> devices to use this feature, then why not, but if it's just for
->>>> spi-mem, I'd recommend implementing a driver-specific exec_op() instead
->>>> of using the default one.
->>> dummy cycles programming is SPI device specific.
->>>
->>> Transfer of dummy bytes by SW or HW controller can be depending on
->>> features supported by controller.
->>>
->>> Adding controller driver specific exec_op() Just for skipping dummy
->>> bytes transfer will have so much of redundant code pretty much what all
->>> spi_mem_exec_op does.
->>>
->>> So in v1, I handled this in controller driver by skipping SW transfer of
->>> dummy bytes during dummy phase and programming dummy cycles in
->>> controller register to allow HW to transfer.
->>>
->>> Based on v1 feedback discussion, added this flag
->>> SPI_MASTER_USES_HW_DUMMY_CYCLES which can be used by controllers
->>> supporting HW dummy bytes transfer and updated spi_mem_exec_op to skip
->>> SW dummy bytes.
->>>
->>> This helps other controllers supporting HW transfer of dummy bytes as
->>> well just to set the flag and use dummy cycles directly.
->> Except saying a spi_message has X dummy cycle is not precise enough.
->> Where are those dummy cycles in the transfer sequence? spi-mem has well
->> defined sequencing (cmd[+addr][+dummy][+data]) so we know exacly where
->> dummy cycles are, but trying to retro-fit the dummy-cycle concept in
->> the generic spi_message is confusing IMHO. If want to avoid code
->> duplication, I'm pretty sure the driver can be reworked so the
->> spi_transfer/exec_op() path can share most of the logic (that probably
->> implies declaring a tegra_qspi_op).
-> Something like that might also do the trick:
->
-> --->8---
->
-> diff --git a/drivers/spi/spi-mem.c b/drivers/spi/spi-mem.c
-> index ef53290b7d24..8b0476f37fbb 100644
-> --- a/drivers/spi/spi-mem.c
-> +++ b/drivers/spi/spi-mem.c
-> @@ -353,6 +353,7 @@ int spi_mem_exec_op(struct spi_mem *mem, const struct spi_mem_op *op)
->                  xfers[xferpos].tx_buf = tmpbuf + op->addr.nbytes + 1;
->                  xfers[xferpos].len = op->dummy.nbytes;
->                  xfers[xferpos].tx_nbits = op->dummy.buswidth;
-> +               xfers[xferpos].dummy_data = 1;
->                  spi_message_add_tail(&xfers[xferpos], &msg);
->                  xferpos++;
->                  totalxferlen += op->dummy.nbytes;
-> diff --git a/include/linux/spi/spi.h b/include/linux/spi/spi.h
-> index 99380c0825db..ecf7989318c5 100644
-> --- a/include/linux/spi/spi.h
-> +++ b/include/linux/spi/spi.h
-> @@ -807,6 +807,10 @@ extern void spi_res_release(struct spi_controller *ctlr,
->    *      transfer. If 0 the default (from @spi_device) is used.
->    * @bits_per_word: select a bits_per_word other than the device default
->    *      for this transfer. If 0 the default (from @spi_device) is used.
-> + * @dummy_data: set to 1 for a dummy transfer (a transfer whose data is
-> + *      ignored). Controllers that are able to issue dummy cycles can ignore
-> + *      tx_buf, for those that can't tx_buf will contain dummy bytes. The
-> + *      number of  dummy cycles to issue is (len * tx_bits) / 8.
->    * @cs_change: affects chipselect after this transfer completes
->    * @cs_change_delay: delay between cs deassert and assert when
->    *      @cs_change is set and @spi_transfer is not the last in @spi_message
-> @@ -919,6 +923,7 @@ struct spi_transfer {
->          struct sg_table tx_sg;
->          struct sg_table rx_sg;
->   
-> +       unsigned        dummy_data:1;
->          unsigned        cs_change:1;
->          unsigned        tx_nbits:3;
->          unsigned        rx_nbits:3;
+> From: Devajith V S <devajithvs@gmail.com>
+> 
+> kxcjk1013 devices have VDD and VDDIO power lines. Need
+> to make sure the regulators are enabled before any
+> communication with kxcjk1013. This patch introduces
+> vdd/vddio regulators for kxcjk1013.
+> 
+> Signed-off-by: Devajith V S <devajithvs@gmail.com>
+Looks good to me. Trivial comment on the comment inline that I can fix
+whilst applying.
 
-Thanks Boris.
+I'll let this sit on the list for a little while though in case
+anyone else spots something I have missed.
 
-Sorry was thinking of spi flash device only as we only support quad spi 
-flash on Tegra QSPI interface.
+Thanks,
 
-But to make it more generic where spi message preparation can happen 
-from any client driver, agree order of transfers may vary.
+Jonathan
 
-Also having controller driver implement exec_op callback is also not 
-useful considering cases where spi message transfers dont' go thru spi_mem.
+> ---
+>  drivers/iio/accel/kxcjk-1013.c | 31 +++++++++++++++++++++++++++++++
+>  1 file changed, 31 insertions(+)
+> 
+> diff --git a/drivers/iio/accel/kxcjk-1013.c b/drivers/iio/accel/kxcjk-1013.c
+> index e92c7e676..67d3d8270 100644
+> --- a/drivers/iio/accel/kxcjk-1013.c
+> +++ b/drivers/iio/accel/kxcjk-1013.c
+> @@ -14,6 +14,7 @@
+>  #include <linux/acpi.h>
+>  #include <linux/pm.h>
+>  #include <linux/pm_runtime.h>
+> +#include <linux/regulator/consumer.h>
+>  #include <linux/iio/iio.h>
+>  #include <linux/iio/sysfs.h>
+>  #include <linux/iio/buffer.h>
+> @@ -133,6 +134,7 @@ enum kx_acpi_type {
+>  };
+>  
+>  struct kxcjk1013_data {
+> +	struct regulator_bulk_data regulators[2];
+>  	struct i2c_client *client;
+>  	struct iio_trigger *dready_trig;
+>  	struct iio_trigger *motion_trig;
+> @@ -1300,6 +1302,13 @@ static const char *kxcjk1013_match_acpi_device(struct device *dev,
+>  	return dev_name(dev);
+>  }
+>  
+> +static void kxcjk1013_disable_regulators(void *d)
+> +{
+> +	struct kxcjk1013_data *data = d;
+> +
+> +	regulator_bulk_disable(ARRAY_SIZE(data->regulators), data->regulators);
+> +}
+> +
+>  static int kxcjk1013_probe(struct i2c_client *client,
+>  			   const struct i2c_device_id *id)
+>  {
+> @@ -1330,6 +1339,28 @@ static int kxcjk1013_probe(struct i2c_client *client,
+>  			return ret;
+>  	}
+>  
+> +	data->regulators[0].supply = "vdd";
+> +	data->regulators[1].supply = "vddio";
+> +	ret = devm_regulator_bulk_get(&client->dev, ARRAY_SIZE(data->regulators),
+> +				      data->regulators);
+> +	if (ret)
+> +		return dev_err_probe(&client->dev, ret, "Failed to get regulators\n");
+> +
+> +	ret = regulator_bulk_enable(ARRAY_SIZE(data->regulators),
+> +				    data->regulators);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = devm_add_action_or_reset(&client->dev, kxcjk1013_disable_regulators, data);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/*
+> +	 * A typical delay of 10ms is required for powering up
+> +	 * according to the data sheets of supported chips.
 
-Yes adding dummy_data field to indicate transfer is dummy bytes transfer 
-helps for any types of message transfers.
+Probably want to add something like "so double it to play safe."
 
-Tegra QSPI controller dummy cycles need be programmed with transfer 
-after which dummy cycles are needed.
-
-So, will have v4 to add dummy_data to spi_transfer and will update 
-controller driver to convert dummy bytes to dummy cycles and program 
-dummy cycles with its previous transfer and skip dummy transfer buffer.
-
-Thanks
-
-Sowjanya
-
+> +	 */
+> +	msleep(20);
+> +
+>  	if (id) {
+>  		data->chipset = (enum kx_chipset)(id->driver_data);
+>  		name = id->name;
 
