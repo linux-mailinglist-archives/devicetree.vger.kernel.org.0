@@ -2,140 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C0E42D8F6B
-	for <lists+devicetree@lfdr.de>; Sun, 13 Dec 2020 19:44:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 692D62D9035
+	for <lists+devicetree@lfdr.de>; Sun, 13 Dec 2020 20:35:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726411AbgLMSnA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 13 Dec 2020 13:43:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60188 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389529AbgLMSjy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Dec 2020 13:39:54 -0500
-Received: from mail-il1-x144.google.com (mail-il1-x144.google.com [IPv6:2607:f8b0:4864:20::144])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3FEFC0611CD;
-        Sun, 13 Dec 2020 10:38:48 -0800 (PST)
-Received: by mail-il1-x144.google.com with SMTP id 75so1755616ilv.13;
-        Sun, 13 Dec 2020 10:38:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=8U041WmRtyq8BrXAJ3gOrPaoRGECeAfxoPRSHkkfdX8=;
-        b=ScRCo9H/n9rcd41zcQ+TpdXmygMaZAocyJdzDRB9f+v9BNYWxVpGozPUIoAIBx//CO
-         Q6OdVoCgB7G319Y4h+ulvlrQoiYhbQjthHbjfcs2Va1sjKZsoRpClnjmIdzbpcVeD700
-         OGb/uKOZWNAlS7Ll9SWpppEcdNkbL1EvUCJU0OdA33WnVRXY29WxMqNZcAUX/e1WLlGL
-         BiTHZCfuDwNcMUooCxJxlg33AgnlJNYtSQyLgyNV1mRukYzjDKXPAOheefKipYoqn/R7
-         sFaW6PIMOIYap+oHK8IU4S/t9ZkmK2w7tiT7KMILpPh8/eJfZKtBbm4CaQRxWJ/5QkcS
-         93+A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=8U041WmRtyq8BrXAJ3gOrPaoRGECeAfxoPRSHkkfdX8=;
-        b=ZMyIimco08OuWhN7dsBUUasFtX7pdrMSCJDkbUSzkhkVLGpDbMZ616NG9qZ4Hvxjm0
-         6E9a67b4BGDGT4zeeIgLDn6vJPxin0TczYqmuY1VlZGCv8tgWx1YhT1gsAn8a0Z11fwo
-         GEm1d7hYbFEnSIAZUJkm/yZST9qkeLwxYx1xrh9Q5o7RdzkokptY1wQoass4f/2Q7a7p
-         2xo/EYbjtEX1B7g6l1txwPFOKFycFwGZvEI391E0eu9BvZjzj6kNz2iZyZCSuLwFqlZ2
-         QD1TPOuQ7K1RdBocr8ycgkcSpgcrfYccR/LXlkPkw4fBomXpX1DruvhFtF1hXyyq4pIE
-         lxeA==
-X-Gm-Message-State: AOAM532pxF9nTxoiZLmjTOHmC8Fq2iSxL8i4r+b6TmLPokyikJIV5zR4
-        viHR8jPqrF1tPCxc6YxsqpLTw0bejaNwkA==
-X-Google-Smtp-Source: ABdhPJzPYh8wQw0Vw60pTqRwBugHjKzTNFBVh5w9mw4JaSxbSt55aritY+vpq0jrkgg0C5H3nlguUA==
-X-Received: by 2002:a92:cb0d:: with SMTP id s13mr30298321ilo.73.1607884727809;
-        Sun, 13 Dec 2020 10:38:47 -0800 (PST)
-Received: from aford-IdeaCentre-A730.lan ([2601:448:8400:9e8:f45d:df49:9a4c:4914])
-        by smtp.gmail.com with ESMTPSA id o11sm7804532ioa.37.2020.12.13.10.38.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 13 Dec 2020 10:38:47 -0800 (PST)
-From:   Adam Ford <aford173@gmail.com>
-To:     linux-renesas-soc@vger.kernel.org
-Cc:     aford@beaconembedded.com, Adam Ford <aford173@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 18/18] arm64: dts: renesas: Introduce r8a774e1-beacon-rzg2h-kit
-Date:   Sun, 13 Dec 2020 12:37:58 -0600
-Message-Id: <20201213183759.223246-19-aford173@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20201213183759.223246-1-aford173@gmail.com>
-References: <20201213183759.223246-1-aford173@gmail.com>
+        id S1728345AbgLMTfU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 13 Dec 2020 14:35:20 -0500
+Received: from relay12.mail.gandi.net ([217.70.178.232]:37243 "EHLO
+        relay12.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727909AbgLMTfU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Dec 2020 14:35:20 -0500
+Received: from localhost (lfbn-lyo-1-997-19.w86-194.abo.wanadoo.fr [86.194.74.19])
+        (Authenticated sender: alexandre.belloni@bootlin.com)
+        by relay12.mail.gandi.net (Postfix) with ESMTPSA id B61F8200003;
+        Sun, 13 Dec 2020 19:34:36 +0000 (UTC)
+Date:   Sun, 13 Dec 2020 20:34:36 +0100
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 5/6] iio:common:ms_sensors:ms_sensors_i2c: add support
+ for alternative PROM layout
+Message-ID: <20201213193436.GM1781038@piout.net>
+References: <20201209234857.1521453-1-alexandre.belloni@bootlin.com>
+ <20201209234857.1521453-6-alexandre.belloni@bootlin.com>
+ <20201213172042.76b2e028@archlinux>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201213172042.76b2e028@archlinux>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Beacon EmebeddedWorks is introducing a new kit based on the
-RZ/G2H SoC from Renesas.
+On 13/12/2020 17:20:42+0000, Jonathan Cameron wrote:
+> > +/**
+> > + * ms_sensors_tp_crc_valid_112() - CRC check function for
+> > + *     Temperature and pressure devices for 112bit PROM.
+> > + *     This function is only used when reading PROM coefficients
+> > + *
+> > + * @prom:	pointer to PROM coefficients array
+> > + *
+> > + * Return: CRC.
+> 
+> That's a bit confusing.  Perhaps return if CRC correct
+> Sometimes CRC is used to refer to particular bits and sometimes
+> to the check (i.e. whether it is right).
+> 
 
-The SOM supports eMMC, WiFi and Bluetooth, along with a Cat-M1
-cellular radio.
+Roght, this should have been "Return: True if CRC is ok."
 
-The Baseboard has Ethernet, USB, HDMI, stereo audio in and out,
-along with a variety of push buttons and LED's, and support for
-a parallel RGB and an LVDS display.  It uses the same baseboard
-and SOM files as the RZ/G2M and RZ/G2N kits.
+> > + */
+> > +static bool ms_sensors_tp_crc_valid_112(u16 *prom)
+> > +{
+> > +	u16 w0 = prom[0], crc_read = (w0 & 0xF000) >> 12;
+> > +	u8 crc;
+> > +
+> > +	prom[0] &= 0x0FFF;      /* Clear the CRC computation part */
+> > +	prom[MS_SENSORS_TP_PROM_WORDS_NB - 1] = 0;
+> > +
+> > +	crc = ms_sensors_tp_crc4(prom);
+> > +
+> > +	prom[0] = w0;
+> > +
+> > +	return crc == crc_read;
+> > +}
+> > +
+> > +/**
+> > + * ms_sensors_tp_crc_valid_128() - CRC check function for
+> > + *     Temperature and pressure devices for 128bit PROM.
+> > + *     This function is only used when reading PROM coefficients
+> > + *
+> > + * @prom:	pointer to PROM coefficients array
+> > + *
+> > + * Return: CRC.
+> > + */
+> > +static bool ms_sensors_tp_crc_valid_128(u16 *prom)
+> > +{
+> > +	u16 w7 = prom[7], crc_read = w7 & 0x000F;
+> > +	u8 crc;
+> > +
+> > +	prom[7] &= 0xFF00;      /* Clear the CRC and LSB part */
+> > +
+> > +	crc = ms_sensors_tp_crc4(prom);
+> > +
+> > +	prom[7] = w7;
+> > +
+> > +	return crc == crc_read;
+> >  }
+> >  
+> >  /**
+> > @@ -535,6 +577,7 @@ static bool ms_sensors_tp_crc_valid(u16 *prom)
+> >  int ms_sensors_tp_read_prom(struct ms_tp_dev *dev_data)
+> >  {
+> >  	int i, ret;
+> > +	bool valid;
+> >  
+> >  	for (i = 0; i < dev_data->hw->prom_len; i++) {
+> >  		ret = ms_sensors_read_prom_word(
+> > @@ -546,7 +589,12 @@ int ms_sensors_tp_read_prom(struct ms_tp_dev *dev_data)
+> >  			return ret;
+> >  	}
+> >  
+> > -	if (!ms_sensors_tp_crc_valid(dev_data->prom)) {
+> > +	if (dev_data->hw->prom_len == 8)
+> > +		valid = ms_sensors_tp_crc_valid_128(dev_data->prom);
+> > +	else
+> > +		valid = ms_sensors_tp_crc_valid_112(dev_data->prom);
+> > +
+> > +	if (!valid) {
+> >  		dev_err(&dev_data->client->dev,
+> >  			"Calibration coefficients crc check error\n");
+> >  		return -ENODEV;
+> 
 
-Signed-off-by: Adam Ford <aford173@gmail.com>
----
- .../dts/renesas/r8a774e1-beacon-rzg2h-kit.dts | 48 +++++++++++++++++++
- 1 file changed, 48 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/renesas/r8a774e1-beacon-rzg2h-kit.dts b/arch/arm64/boot/dts/renesas/r8a774e1-beacon-rzg2h-kit.dts
-new file mode 100644
-index 000000000000..8ff5856ac727
---- /dev/null
-+++ b/arch/arm64/boot/dts/renesas/r8a774e1-beacon-rzg2h-kit.dts
-@@ -0,0 +1,48 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright 2020, Compass Electronics Group, LLC
-+ */
-+
-+/dts-v1/;
-+
-+#include "r8a774e1.dtsi"
-+#include "beacon-renesom-som.dtsi"
-+#include "beacon-renesom-baseboard.dtsi"
-+
-+/ {
-+	model = "Beacon Embedded Works RZ/G2H Development Kit";
-+	compatible =	"beacon,beacon-rzg2h", "renesas,r8a774e1";
-+
-+	aliases {
-+		serial0 = &scif2;
-+		serial1 = &hscif0;
-+		serial2 = &hscif1;
-+		serial3 = &scif0;
-+		serial4 = &hscif2;
-+		serial5 = &scif5;
-+		serial6 = &scif4;
-+		ethernet0 = &avb;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	memory@500000000 {
-+		device_type = "memory";
-+		reg = <0x5 0x00000000 0x0 0x80000000>;
-+	};
-+};
-+
-+&du {
-+	status = "okay";
-+
-+	clocks = <&cpg CPG_MOD 724>,
-+		<&cpg CPG_MOD 723>,
-+		<&cpg CPG_MOD 721>,
-+		<&versaclock5 1>,
-+		<&x302_clk>,
-+		<&versaclock5 2>;
-+	clock-names = "du.0", "du.1", "du.3",
-+		"dclkin.0", "dclkin.1", "dclkin.3";
-+};
 -- 
-2.25.1
-
+Alexandre Belloni, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
