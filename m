@@ -2,115 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6DA892D8E95
-	for <lists+devicetree@lfdr.de>; Sun, 13 Dec 2020 17:17:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DA9982D8EA4
+	for <lists+devicetree@lfdr.de>; Sun, 13 Dec 2020 17:19:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730108AbgLMQRQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 13 Dec 2020 11:17:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38494 "EHLO
+        id S2395547AbgLMQSL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 13 Dec 2020 11:18:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38620 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730046AbgLMQRQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Dec 2020 11:17:16 -0500
-Received: from mail-oi1-x244.google.com (mail-oi1-x244.google.com [IPv6:2607:f8b0:4864:20::244])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F294CC0613CF;
-        Sun, 13 Dec 2020 08:16:35 -0800 (PST)
-Received: by mail-oi1-x244.google.com with SMTP id d27so16390926oic.0;
-        Sun, 13 Dec 2020 08:16:35 -0800 (PST)
+        with ESMTP id S1728063AbgLMQSF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Dec 2020 11:18:05 -0500
+Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com [IPv6:2a00:1450:4864:20::341])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4032DC0613CF;
+        Sun, 13 Dec 2020 08:17:25 -0800 (PST)
+Received: by mail-wm1-x341.google.com with SMTP id e25so13042779wme.0;
+        Sun, 13 Dec 2020 08:17:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=sender:date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=wn3kZ9eoiz2kfwwRpuyMg/j17oBtSySw24zP5dlXSfI=;
-        b=qooO/KV5EjNcitWHFP/0gcFvFLwMLFBM24mZ2h0icy1TDAuOA5x8QR1oxR3LPBfQAJ
-         PUXL3SdMGXEdtvVFM0m5POCU5gi2b3FGsEyCNvWf5XaS1JBiOxXjo2tIplLYx24664n6
-         FgGrVU6o6IdmjjyM/mybtmKchUJnbBdaDn7vMmOHCfBS9neOlwAkD5Aso4bmAS8S1ZGs
-         wZjVsSMct1mwyfNNXaOVM/LELQphf5ipME9yifPTLGxcsyi1vkmk3fhCctiEwmKRVCST
-         7NmE0g6t2GGRBESY69T3UdUuV0XnFHdu8nrhdFvkGwLNX0Iv3T7BK+NEhquXmpGZO8qt
-         6LAg==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=dmjKdO+JEpT1IqCZS5DtE4FSFs2mvQW8g5a7Dp6tEjk=;
+        b=IxPbfQKxUyhWWjWPfr179EFDY0r+LSab9s12y35Z85P9SQiZmygiHbZ9c7D13MiBNF
+         0rOMzuPZbg8RLwb03mF2fNFChQzWS21iCB/cXvGpSOc7YkO0aef8cUWBhhNfsJL7wM9x
+         PwZwm6HmYPvo9mfj7S7W4tdDd/JpT61IpfxvKFF7OL9Bd7B4rlnPSYHh/p8lsw8w91hL
+         wBmRgm3rJAZgZCj2FC1SPSFBH2Owr474D3biHgFr/0JMlXbZyAm8EXys21T7FNusjs94
+         WwDPV1ZQOqn5gYz3rmZhnx6701eoVuxrds8/067XaNm1r+ZXW9qbhAPw01V/6/2JPt5M
+         KtfQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
-         :references:mime-version:content-disposition:in-reply-to:user-agent;
-        bh=wn3kZ9eoiz2kfwwRpuyMg/j17oBtSySw24zP5dlXSfI=;
-        b=P0B8sANdkoYKjIt7kSCp2yNXWnqiQTIFHyc4e42+XqBUe/BQ1NfWsxnPu8eTjXK4MO
-         E+J0wlVkw/bD4KZH8suybgTziCoeHBoq2Di7M3RtmmK5gqunAUySqoAy2nc35KzNBF4h
-         C63bEq4OdCLr4e8sb9sCJza/kewn0p3ZoZioZ5ZKOGLszX4alKOioiD4E7Lhb1OwzLSd
-         74sfe5+xXFzii1BlfNAlhgQy8COIu+4t2WsVGl7z7Bs0ZgfJp1ZjAMmqVKJrYDNvp/0o
-         0PzTwK+nYX4HJ3okEB6tlsnJjTi1gbllBdLulwqeRLmMZcVIqk2qhtNIP9KuVdnB/B0F
-         o4CQ==
-X-Gm-Message-State: AOAM530UuBB7FkyQnHu4qcWKamycIK4ARzTqRY8C7PO39rImOVn0dD/o
-        F18rIG2sZA5uN760XT8elBc=
-X-Google-Smtp-Source: ABdhPJzCUnsh2yzJjDGf2Ifk+qHTgOCfGhjh87nCxzS2MMtIDKjLjscKkMo+yuxozRdN4S6HI/jZhA==
-X-Received: by 2002:a05:6808:3b8:: with SMTP id n24mr15263083oie.89.1607876195391;
-        Sun, 13 Dec 2020 08:16:35 -0800 (PST)
-Received: from localhost ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id m10sm3644548oig.27.2020.12.13.08.16.34
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Sun, 13 Dec 2020 08:16:34 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Sun, 13 Dec 2020 08:16:33 -0800
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Johan Jonker <jbx6244@gmail.com>
-Cc:     heiko@sntech.de, robh+dt@kernel.org, wim@linux-watchdog.org,
-        jamie@jamieiles.com, linux-watchdog@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-binding: watchdog: add Rockchip compatibles to
- snps,dw-wdt.yaml
-Message-ID: <20201213161633.GA44820@roeck-us.net>
-References: <20201116142539.12377-1-jbx6244@gmail.com>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=dmjKdO+JEpT1IqCZS5DtE4FSFs2mvQW8g5a7Dp6tEjk=;
+        b=F0vxdAJLy0N4B+P9aM3464yIK/WwCcVdHBuz5De+M4vkEWf7e8Y1frwlKkXNQldyCH
+         L3Fj27nv6ndQh00xe/VsAFgGZUkqtDBRvYTu1v56bmfpYkSWJM7A+mfqeAr+9zf+puhK
+         IIRBY93FQDIZIfvky5YtC13BxdgVFuQp7vKeGgWm2ea9wXRwKX5oOcnU9G+ZBpeOxrLc
+         jQy9QYT67yrNqa/MIdKuQ6wMcoupiW62pYTwqoUdMiHdCG1VIl+mj/NC2enCeVZHJ4zR
+         UlwKLzkWWTeWlMskjGB83O3NJHZBMo8+AHoXrt3LHQwhs1Otv0xXqyL277P9Bdixsb80
+         krPw==
+X-Gm-Message-State: AOAM533V1akfrfVbc3yyqAsKqQLVpYZe0ULIGFzmzWl5nQdof0FdKEtb
+        /N8yZnZNdyvuJxMDp37o5N/64W7ck1s=
+X-Google-Smtp-Source: ABdhPJz5o+Q66aJWk460uLI3HwRYoGxECEUuhnH+7NlpQFQfP/nUe8tczjt9EpUFQTxM9EuxYAKlYQ==
+X-Received: by 2002:a1c:5406:: with SMTP id i6mr23593347wmb.137.1607876244038;
+        Sun, 13 Dec 2020 08:17:24 -0800 (PST)
+Received: from localhost.localdomain (188.red-81-44-87.dynamicip.rima-tde.net. [81.44.87.188])
+        by smtp.gmail.com with ESMTPSA id 64sm27102073wmd.12.2020.12.13.08.17.22
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Sun, 13 Dec 2020 08:17:23 -0800 (PST)
+From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
+To:     linus.walleij@linaro.org
+Cc:     robh+dt@kernel.org, gregkh@linuxfoundation.org,
+        yanaijie@huawei.com, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, devel@driverdev.osuosl.org
+Subject: [PATCH 0/8] pinctrl: ralink: rt2880: Some minimal clean ups
+Date:   Sun, 13 Dec 2020 17:17:13 +0100
+Message-Id: <20201213161721.6514-1-sergio.paracuellos@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201116142539.12377-1-jbx6244@gmail.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 16, 2020 at 03:25:39PM +0100, Johan Jonker wrote:
-> The Rockchip watchdog compatibles below are already in use,
-> but somehow never added to a document,
-> so add them to the snps,dw-wdt.yaml file.
-> 
-> "rockchip,rk3066-wdt", "snps,dw-wdt"
-> "rockchip,rk3188-wdt", "snps,dw-wdt"
-> "rockchip,rk3288-wdt", "snps,dw-wdt"
-> "rockchip,rk3368-wdt", "snps,dw-wdt"
-> 
-> make ARCH=arm dtbs_check
-> DT_SCHEMA_FILES=Documentation/devicetree/bindings/watchdog/snps,dw-wdt.yaml
-> 
-> make ARCH=arm64 dtbs_check
-> DT_SCHEMA_FILES=Documentation/devicetree/bindings/watchdog/snps,dw-wdt.yaml
-> 
-> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
+After this driver was moved from staging into pinctrl subsytems
+some reviews for bindigns and driver itself comes from Ron Herring
+and Dan Carpenter. Get rid of all the comments to properly be in
+a good shape before merge window.
 
-Reviewed-by: Guenter Roeck <linux@roeck-us.net>
+Best regards,
+    Sergio Paracuellos
 
-> ---
->  Documentation/devicetree/bindings/watchdog/snps,dw-wdt.yaml | 10 +++++++++-
->  1 file changed, 9 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/watchdog/snps,dw-wdt.yaml b/Documentation/devicetree/bindings/watchdog/snps,dw-wdt.yaml
-> index d9fc7bb85..f7ee9229c 100644
-> --- a/Documentation/devicetree/bindings/watchdog/snps,dw-wdt.yaml
-> +++ b/Documentation/devicetree/bindings/watchdog/snps,dw-wdt.yaml
-> @@ -14,7 +14,15 @@ maintainers:
->  
->  properties:
->    compatible:
-> -    const: snps,dw-wdt
-> +    oneOf:
-> +      - const: snps,dw-wdt
-> +      - items:
-> +          - enum:
-> +              - rockchip,rk3066-wdt
-> +              - rockchip,rk3188-wdt
-> +              - rockchip,rk3288-wdt
-> +              - rockchip,rk3368-wdt
-> +          - const: snps,dw-wdt
->  
->    reg:
->      maxItems: 1
+Sergio Paracuellos (8):
+  dt-bindings: pinctrl: rt2880: properly redo bindings
+  pinctrl: ralink: rt2880: avoid double pointer to simplify code
+  pinctrl: ralink: rt2880: return proper error code
+  pinctrl: ralink: rt2880: add missing NULL check
+  pinctrl: ralink: rt2880: delete not needed error message
+  pinctrl: ralink: rt2880: preserve error codes
+  pinctrl: ralink: rt2880: use 'PTR_ERR_OR_ZERO'
+  staging: mt7621-dts: properly name pinctrl related nodes
+
+ .../pinctrl/ralink,rt2880-pinmux.yaml         | 62 +++++++++----------
+ drivers/pinctrl/ralink/pinctrl-rt2880.c       | 45 +++++++-------
+ drivers/staging/mt7621-dts/mt7621.dtsi        | 46 +++++++-------
+ 3 files changed, 73 insertions(+), 80 deletions(-)
+
+-- 
+2.25.1
+
