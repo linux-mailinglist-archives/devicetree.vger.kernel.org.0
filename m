@@ -2,132 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B5822D8F39
-	for <lists+devicetree@lfdr.de>; Sun, 13 Dec 2020 19:05:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 37FA42D8F48
+	for <lists+devicetree@lfdr.de>; Sun, 13 Dec 2020 19:39:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726617AbgLMSFL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 13 Dec 2020 13:05:11 -0500
-Received: from mail.kernel.org ([198.145.29.99]:56834 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725287AbgLMSFL (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 13 Dec 2020 13:05:11 -0500
-Received: from archlinux (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 08F83224BD;
-        Sun, 13 Dec 2020 18:04:28 +0000 (UTC)
-Date:   Sun, 13 Dec 2020 18:04:25 +0000
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     devajithvs <devajithvs@gmail.com>
-Cc:     Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stephen Rothwell <sfr@canb.auug.org.au>,
-        Robert Yang <decatf@gmail.com>, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] iio: accel: kxcjk1013: Add rudimentary regulator
- support
-Message-ID: <20201213180425.34eb8a3a@archlinux>
-In-Reply-To: <20201213172437.2779-2-devajithvs@gmail.com>
-References: <20201213172437.2779-1-devajithvs@gmail.com>
-        <20201213172437.2779-2-devajithvs@gmail.com>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S1728732AbgLMSi4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 13 Dec 2020 13:38:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60070 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727463AbgLMSi4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Dec 2020 13:38:56 -0500
+Received: from mail-io1-xd2f.google.com (mail-io1-xd2f.google.com [IPv6:2607:f8b0:4864:20::d2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0DAFC0613CF;
+        Sun, 13 Dec 2020 10:38:15 -0800 (PST)
+Received: by mail-io1-xd2f.google.com with SMTP id z136so14774711iof.3;
+        Sun, 13 Dec 2020 10:38:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=v12qW1WArY2nmQqwqjA78iRrbrWEFcVhgErCQdvW398=;
+        b=Q859RKNndI7WoxAr0KoGUezxtMVYM9tq492r4b5OuNe+70lqW51E7subO/sznphmit
+         hW5zD72+D9+Bukv023ALNQLlu5LRySGFXD+G/devKxqQ+7bw+Q7l6XPuuOyqAVS9pvht
+         PAAPIcLNgoaRPjxsdd3rPHk1C/kcmoZps1Cr2eXBuC7Gktjh68BpoL6D6nII3+4R2f3b
+         G3vWDeIhE5zZpIpOp9uEnBhh5gtRqEMLIyKDr3ef//V2sbHShI2XAo0AlZb4KjqIHSpo
+         PnvsT7kjkzbO+BBpCFxckX6YhhaeUWQQKD+AcO3sXFZy7JQPp/V1u8DLz1YWEV4ceV1S
+         olEA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=v12qW1WArY2nmQqwqjA78iRrbrWEFcVhgErCQdvW398=;
+        b=ukICr1VM5Y+4eL28rus919YHuviZNldzdcL4E+8B5D7iPJ1UJZqrfDRe0kV6uOyuq9
+         T+EnFSaBOCYm7KpkLfw4nms2yGoxpLwPBqWJohpwyg3ZOP3mifHVM6VKpeqSfpLEN82t
+         ZMLq9gQmuqzMAujHaYS1PyCMPdAIHBFvlanDQrfGHmKWX5SjAvrovUwLDNmT5dezBwt7
+         hFP4FUGi92AnJEFvQ81EDCKvFLe/0Xxgj34XnhlPgkBi8iGTQGYU8LQX8jlG1eu6wVcG
+         mON1Mjg6iuWGFk+jdI9adnNsqveSN9ewVQqI8Xc9wafSVrKWuNROgcbV6JZKzSn7+iUO
+         s6aw==
+X-Gm-Message-State: AOAM530v3iMn0s4hKflT9XCvsqKoMvVO+5UE2RKn3pHAkpgiGqMQL57Q
+        89AvxyR0AaPb5zfckx8iFvxoa+xd8SPyrQ==
+X-Google-Smtp-Source: ABdhPJz3SgCO8HH+X83wjPzLPfuiwV9MT6P0JwxLf61OCj+oErEI2mHyZIjUzwwElyCOQ3Fv7UovdQ==
+X-Received: by 2002:a05:6638:2a5:: with SMTP id d5mr27951920jaq.92.1607884692462;
+        Sun, 13 Dec 2020 10:38:12 -0800 (PST)
+Received: from aford-IdeaCentre-A730.lan ([2601:448:8400:9e8:f45d:df49:9a4c:4914])
+        by smtp.gmail.com with ESMTPSA id o11sm7804532ioa.37.2020.12.13.10.38.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 13 Dec 2020 10:38:11 -0800 (PST)
+From:   Adam Ford <aford173@gmail.com>
+To:     linux-renesas-soc@vger.kernel.org
+Cc:     aford@beaconembedded.com, Adam Ford <aford173@gmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 00/18] arm64: dts: renesas: Cleanup Beacon Kit and support more SoC's
+Date:   Sun, 13 Dec 2020 12:37:40 -0600
+Message-Id: <20201213183759.223246-1-aford173@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 13 Dec 2020 22:54:36 +0530
-devajithvs <devajithvs@gmail.com> wrote:
+This series contains minor fixes and some reorganization to better
+support the hardware and add two new kits to which reuse the same
+SOM and baseboard files.
 
-> From: Devajith V S <devajithvs@gmail.com>
-> 
-> kxcjk1013 devices have VDD and VDDIO power lines. Need
-> to make sure the regulators are enabled before any
-> communication with kxcjk1013. This patch introduces
-> vdd/vddio regulators for kxcjk1013.
-> 
-> Signed-off-by: Devajith V S <devajithvs@gmail.com>
-Looks good to me. Trivial comment on the comment inline that I can fix
-whilst applying.
+Adam Ford (18):
+  arm64: dts: renesas: beacon kit: Configure programmable clocks
+  arm64: dts: renesas: beacon kit: Fix choppy Bluetooth Audio
+  arm64: dts: renesas: beacon kit: Remove unnecessary nodes
+  arm64: dts: renesas: beacon kit: Fix Audio Clock sources
+  arm64: dts: renesas: beacon: Fix audio-1.8V pin enable
+  arm64: dts: renesas: beacon: Configure Audio CODEC clocks
+  arm64: dts: renesas: beacon: Fix LVDS PWM Backlight
+  arm64: dts: renesas: beacon: Enable SCIF4
+  arm64: dts: renesas: beacon: Fix RGB Display PWM Backlight
+  arm64: dts: renesas: Don't make vccq_sdhi0 always on
+  arm64: dts: renesas: beacon: Remove redundant audio code
+  arm64: dts: renesas: beacon: Better describe keys
+  arm64: dts: renesas: beacon: Enable SPI
+  arm64: dts: renesas: beacon: Correct I2C bus speeds
+  arm64: dts: renesas: beacon-rzg2m-kit: Rearange SoC unique functions
+  dt-bindings: arm: renesas: Add Beacon RZ/G2N and RZ/G2H boards
+  arm64: dts: renesas: Introduce r8a774b1-beacon-rzg2n-kit
+  arm64: dts: renesas: Introduce r8a774e1-beacon-rzg2h-kit
 
-I'll let this sit on the list for a little while though in case
-anyone else spots something I have missed.
+ .../devicetree/bindings/arm/renesas.yaml      |   2 +
+ arch/arm64/boot/dts/renesas/Makefile          |   1 +
+ .../dts/renesas/beacon-renesom-baseboard.dtsi | 150 ++++++++++--------
+ .../boot/dts/renesas/beacon-renesom-som.dtsi  |  43 +++--
+ .../dts/renesas/r8a774a1-beacon-rzg2m-kit.dts |  16 ++
+ .../dts/renesas/r8a774b1-beacon-rzg2n-kit.dts |  43 +++++
+ .../dts/renesas/r8a774e1-beacon-rzg2h-kit.dts |  48 ++++++
+ 7 files changed, 224 insertions(+), 79 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/renesas/r8a774b1-beacon-rzg2n-kit.dts
+ create mode 100644 arch/arm64/boot/dts/renesas/r8a774e1-beacon-rzg2h-kit.dts
 
-Thanks,
-
-Jonathan
-
-> ---
->  drivers/iio/accel/kxcjk-1013.c | 31 +++++++++++++++++++++++++++++++
->  1 file changed, 31 insertions(+)
-> 
-> diff --git a/drivers/iio/accel/kxcjk-1013.c b/drivers/iio/accel/kxcjk-1013.c
-> index e92c7e676..67d3d8270 100644
-> --- a/drivers/iio/accel/kxcjk-1013.c
-> +++ b/drivers/iio/accel/kxcjk-1013.c
-> @@ -14,6 +14,7 @@
->  #include <linux/acpi.h>
->  #include <linux/pm.h>
->  #include <linux/pm_runtime.h>
-> +#include <linux/regulator/consumer.h>
->  #include <linux/iio/iio.h>
->  #include <linux/iio/sysfs.h>
->  #include <linux/iio/buffer.h>
-> @@ -133,6 +134,7 @@ enum kx_acpi_type {
->  };
->  
->  struct kxcjk1013_data {
-> +	struct regulator_bulk_data regulators[2];
->  	struct i2c_client *client;
->  	struct iio_trigger *dready_trig;
->  	struct iio_trigger *motion_trig;
-> @@ -1300,6 +1302,13 @@ static const char *kxcjk1013_match_acpi_device(struct device *dev,
->  	return dev_name(dev);
->  }
->  
-> +static void kxcjk1013_disable_regulators(void *d)
-> +{
-> +	struct kxcjk1013_data *data = d;
-> +
-> +	regulator_bulk_disable(ARRAY_SIZE(data->regulators), data->regulators);
-> +}
-> +
->  static int kxcjk1013_probe(struct i2c_client *client,
->  			   const struct i2c_device_id *id)
->  {
-> @@ -1330,6 +1339,28 @@ static int kxcjk1013_probe(struct i2c_client *client,
->  			return ret;
->  	}
->  
-> +	data->regulators[0].supply = "vdd";
-> +	data->regulators[1].supply = "vddio";
-> +	ret = devm_regulator_bulk_get(&client->dev, ARRAY_SIZE(data->regulators),
-> +				      data->regulators);
-> +	if (ret)
-> +		return dev_err_probe(&client->dev, ret, "Failed to get regulators\n");
-> +
-> +	ret = regulator_bulk_enable(ARRAY_SIZE(data->regulators),
-> +				    data->regulators);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = devm_add_action_or_reset(&client->dev, kxcjk1013_disable_regulators, data);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/*
-> +	 * A typical delay of 10ms is required for powering up
-> +	 * according to the data sheets of supported chips.
-
-Probably want to add something like "so double it to play safe."
-
-> +	 */
-> +	msleep(20);
-> +
->  	if (id) {
->  		data->chipset = (enum kx_chipset)(id->driver_data);
->  		name = id->name;
+-- 
+2.25.1
 
