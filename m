@@ -2,189 +2,202 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E68F92DA40F
-	for <lists+devicetree@lfdr.de>; Tue, 15 Dec 2020 00:21:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D02102DA428
+	for <lists+devicetree@lfdr.de>; Tue, 15 Dec 2020 00:34:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728040AbgLNXTT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Dec 2020 18:19:19 -0500
-Received: from mail-oo1-f65.google.com ([209.85.161.65]:44688 "EHLO
-        mail-oo1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726631AbgLNXTT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Dec 2020 18:19:19 -0500
-Received: by mail-oo1-f65.google.com with SMTP id j21so1777880oou.11;
-        Mon, 14 Dec 2020 15:19:03 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=gz6RZjvTy9oUAq3/SV0rx+zO1XkSdKeASLSSAtga9pc=;
-        b=Sw1iQ99i7OeZh5IiyqMWOrRzJ5CaLT3qm9LKW4lFFFyWixzXBaYp8ZXbZW2si5ipBM
-         FxfG3Ifsm/1mXfkMe1ADXagw2MQNfJs1MRQiipd7JuKBuotDee5LaTBPrq5zQwnrj0hE
-         ku413oksI/RU0ho/B5k3TqDyTpYG3Lkc9CpFVi93TJNnK/heKY5BE14f9s5nSwYmkxUx
-         J0ZErlCITH3qkQ5AzqWFzezi4ePrHupeXTWke3MCYlCYP2DGFCbCxJ3zUEefJZg0jXuS
-         hh2TGrCG6VJYfsNERxMu0x3WvyQ4+XFxWQJ5sMjAPanxOFzrLDiGc+MBVP/PeYU4Cci4
-         LZpA==
-X-Gm-Message-State: AOAM531xvGqhI95SbGOlmyNhI5flxuoYNzlGOZc3yl5QIpojVl4EVYUL
-        RpZoWJQSNvzahdSuDmLOYw==
-X-Google-Smtp-Source: ABdhPJxnye+p+dAjJoGUHSgNXf4suQ0cgyJzdmc7OtobsMvZjyFuHEKNmf6h3mXHc+qun7dsCzst1A==
-X-Received: by 2002:a4a:8c73:: with SMTP id v48mr5682467ooj.53.1607987917887;
-        Mon, 14 Dec 2020 15:18:37 -0800 (PST)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id e81sm4610512oia.30.2020.12.14.15.18.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Dec 2020 15:18:37 -0800 (PST)
-Received: (nullmailer pid 2565959 invoked by uid 1000);
-        Mon, 14 Dec 2020 23:18:36 -0000
-Date:   Mon, 14 Dec 2020 17:18:36 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     cy_huang <u0084500@gmail.com>
-Cc:     lee.jones@linaro.org, cy_huang@richtek.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 2/3] backlight: rt4831: Adds DT binding document for
- Richtek RT4831 backlight
-Message-ID: <20201214231836.GB2560842@robh.at.kernel.org>
-References: <1607704424-16223-1-git-send-email-u0084500@gmail.com>
- <1607704424-16223-2-git-send-email-u0084500@gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1607704424-16223-2-git-send-email-u0084500@gmail.com>
+        id S1725857AbgLNXdM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Dec 2020 18:33:12 -0500
+Received: from out3-smtp.messagingengine.com ([66.111.4.27]:51491 "EHLO
+        out3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1725789AbgLNXdB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 14 Dec 2020 18:33:01 -0500
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailout.nyi.internal (Postfix) with ESMTP id DF0815C0148;
+        Mon, 14 Dec 2020 18:31:53 -0500 (EST)
+Received: from imap2 ([10.202.2.52])
+  by compute3.internal (MEProxy); Mon, 14 Dec 2020 18:31:53 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=
+        mime-version:message-id:in-reply-to:references:date:from:to:cc
+        :subject:content-type; s=fm1; bh=LFF5/tO9nY1OZRQNLJeM62EI6jzrxQX
+        MkvpYLECbH9I=; b=P6AYp58NjCbaJzJB7EQ9YtLJ92XBQwmiwLDirRHAw4p1laV
+        ql7LGdi/IY8aIaL+6Aj53nj6UVA6rIK7dVDUnKtsaCSh940NnyAema4wMNX67IFb
+        9BxRzLARt5Jy1fEtcaII0WPmfWofSiwvoLU+jdaKqtVgIp9vo/udRhhgH6a/mTFG
+        SJTqJAykV11Pxp+Kc+EhqHHkBj0m6I+AP5pauQ1FDZhcHwcCvrjfiIylkWduFaT0
+        2FsEzwo5NvfUGhBWAaDaj4XFBUm/sBArucl2BpCv5DJt11eCIR6T426p1c7b7STY
+        ir5J1m12LwMt6FpxvdCsRiFuMLdNlXO+N7zZnfg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=LFF5/t
+        O9nY1OZRQNLJeM62EI6jzrxQXMkvpYLECbH9I=; b=R2FkRaT/Ga7w1WpVs8t5SQ
+        ir4SFkEy1jNs6LUChTaQzuQvfFWZu6cjf6elSXj6oS8vytP04U74H4O7tgpLriSM
+        Orn0UfhQc1kBWf+T7HT0sp859sxhQ/+9QXIaGRuZtHnIB/0zhJWsjmOaXSru/Tjk
+        ErbACiqu5OKD2Doc78BD8QLwX1eW58nv3QfJcGZ7x5jbjR5D/VHjJfDC3SCEIUfu
+        8kV2fyAjSD1CbJ/fI/gkTNCmLFyINdmjM96niDqzIuVEpkhh2ywDz0VCZProXNWd
+        XUTtJA779p49F218Hwad1m8IXiBGuncsPNwC1Vvm/2C4GsgaLR0zso+LbSlbJI+A
+        ==
+X-ME-Sender: <xms:6PXXX4jxW_gEbq9RtF6OTNO1Wh9nKZUXH8g1dmbMbJEQDsfMtaGkqQ>
+    <xme:6PXXXxAjfDvweqT3TMoi2snE1fYL3_jW3sr1ixRrdL-sTEe4e3jFffb91q8uIVBLT
+    PmsKlTpv6x3vBI8yQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrudekledguddvucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvffutgesthdtredtreerjeenucfhrhhomhepfdetnhgu
+    rhgvficulfgvfhhfvghrhidfuceorghnughrvgifsegrjhdrihgurdgruheqnecuggftrf
+    grthhtvghrnhepuddttdekueeggedvtddtueekiedutdfguedutdefieeuteefieelteet
+    vddthfeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomh
+    eprghnughrvgifsegrjhdrihgurdgruh
+X-ME-Proxy: <xmx:6PXXXwGmewVKVN_u7eGrtkLxmpbahAIRhl3_LCWLXSEahaNN_J7BSA>
+    <xmx:6PXXX5QAmpiaRkSD_chmsx0m3U5D_ksMIQDOthEqPQgaOcyl3VG8mg>
+    <xmx:6PXXX1z7ynJX5iT7XaSyvh-b8bczXebrLmq1TMLX6KGs64XznnPFMQ>
+    <xmx:6fXXX0yRdOggj1yG1JFdgzAlUTENLFI_HoFARIGIX67tjDU7cyvCqQ>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id 8B284E00DD; Mon, 14 Dec 2020 18:31:50 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.3.1-61-gb52c239-fm-20201210.001-gb52c2396
+Mime-Version: 1.0
+Message-Id: <2ba456f0-d9ca-4ca6-9dd0-ae7b5f959333@www.fastmail.com>
+In-Reply-To: <CAPDyKFrceNPNz9+88p+mzbYEo-ZqWOwTBWaqycxPr3MQEFtbaA@mail.gmail.com>
+References: <20201208012615.2717412-1-andrew@aj.id.au>
+ <20201208012615.2717412-2-andrew@aj.id.au>
+ <CAPDyKFrceNPNz9+88p+mzbYEo-ZqWOwTBWaqycxPr3MQEFtbaA@mail.gmail.com>
+Date:   Tue, 15 Dec 2020 10:01:31 +1030
+From:   "Andrew Jeffery" <andrew@aj.id.au>
+To:     "Ulf Hansson" <ulf.hansson@linaro.org>
+Cc:     linux-mmc <linux-mmc@vger.kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Joel Stanley" <joel@jms.id.au>,
+        "Adrian Hunter" <adrian.hunter@intel.com>,
+        "Linux Kernel Mailing List" <linux-kernel@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        "Linux ARM" <linux-arm-kernel@lists.infradead.org>,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
+        "Ryan Chen" <ryan_chen@aspeedtech.com>
+Subject: =?UTF-8?Q?Re:_[PATCH_v5_1/6]_mmc:_core:_Add_helper_for_parsing_clock_pha?=
+ =?UTF-8?Q?se_properties?=
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Dec 12, 2020 at 12:33:43AM +0800, cy_huang wrote:
-> From: ChiYuan Huang <cy_huang@richtek.com>
-> 
-> Adds DT binding document for Richtek RT4831 backlight.
-> 
-> Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
-> ---
-> since v3
-> - Move inlcude/dt-bindings/leds/rt4831-backlight.h from v3 mfd binding patch to here.
-> - Add dual license tag in header and backlight binding document.
-> - Left backlight dt-binding example only.
-> ---
->  .../leds/backlight/richtek,rt4831-backlight.yaml   | 76 ++++++++++++++++++++++
->  include/dt-bindings/leds/rt4831-backlight.h        | 23 +++++++
->  2 files changed, 99 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/leds/backlight/richtek,rt4831-backlight.yaml
->  create mode 100644 include/dt-bindings/leds/rt4831-backlight.h
-> 
-> diff --git a/Documentation/devicetree/bindings/leds/backlight/richtek,rt4831-backlight.yaml b/Documentation/devicetree/bindings/leds/backlight/richtek,rt4831-backlight.yaml
-> new file mode 100644
-> index 00000000..f24c8d1
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/leds/backlight/richtek,rt4831-backlight.yaml
-> @@ -0,0 +1,76 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/leds/backlight/richtek,rt4831-backlight.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Richtek RT4831 Backlight
-> +
-> +maintainers:
-> +  - ChiYuan Huang <cy_huang@richtek.com>
-> +
-> +description: |
-> +  RT4831 is a mutifunctional device that can provide power to the LCD display
-> +  and LCD backlight.
-> +
-> +  For the LCD backlight, it can provide four channel WLED driving capability.
-> +  Each channel driving current is up to 30mA
-> +
-> +  Datasheet is available at
-> +  https://www.richtek.com/assets/product_file/RT4831A/DS4831A-05.pdf
-> +
-> +properties:
-> +  compatible:
-> +    const: richtek,rt4831-backlight
-> +
-> +  default-brightness:
-> +    description: |
-> +      The default brightness that applied to the system on start-up.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minimum: 0
-> +    maximum: 2048
-> +
-> +  max-brightness:
-> +    description: |
-> +      The max brightness for the H/W limit
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minimum: 0
-> +    maximum: 2048
-> +
-> +  richtek,pwm-enable:
-> +    description: |
-> +      Specify the backlight dimming following by PWM duty or by SW control.
-> +    type: boolean
-> +
-> +  richtek,bled-ovp-sel:
-> +    description: |
-> +      Backlight OVP level selection, currently support 17V/21V/25V/29V.
-> +    $ref: /schemas/types.yaml#/definitions/uint8
-> +    default: 1
-> +    minimum: 0
-> +    maximum: 3
-> +
-> +  richtek,channel-use:
-> +    description: |
-> +      Backlight LED channel to be used.
-> +      BIT 0/1/2/3 is used to indicate led channel 1/2/3/4 enable or disable.
-> +    $ref: /schemas/types.yaml#/definitions/uint8
-> +    minimum: 1
-> +    maximum: 15
-> +
-> +required:
-> +  - compatible
-> +  - richtek,channel-use
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/leds/rt4831-backlight.h>
-> +    backlight {
-> +      compatible = "richtek,rt4831-backlight";
-> +      default-brightness = <1024>;
-> +      max-brightness = <2048>;
-> +      richtek,bled-ovp-sel = /bits/ 8 <RT4831_BLOVPLVL_21V>;
-> +      richtek,channel-use = /bits/ 8 <RT4831_BLED_ALLCHEN>;
 
-This is in the MFD schema already, so drop the example.
 
-> +    };
-> diff --git a/include/dt-bindings/leds/rt4831-backlight.h b/include/dt-bindings/leds/rt4831-backlight.h
-> new file mode 100644
-> index 00000000..125c635
-> --- /dev/null
-> +++ b/include/dt-bindings/leds/rt4831-backlight.h
-> @@ -0,0 +1,23 @@
-> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-> +/*
-> + * This header provides constants for rt4831 backlight bindings.
-> + *
-> + * Copyright (C) 2020, Richtek Technology Corp.
-> + * Author: ChiYuan Huang <cy_huang@richtek.com>
-> + */
-> +
-> +#ifndef _DT_BINDINGS_RT4831_BACKLIGHT_H
-> +#define _DT_BINDINGS_RT4831_BACKLIGHT_H
-> +
-> +#define RT4831_BLOVPLVL_17V	0
-> +#define RT4831_BLOVPLVL_21V	1
-> +#define RT4831_BLOVPLVL_25V	2
-> +#define RT4831_BLOVPLVL_29V	3
-> +
-> +#define RT4831_BLED_CH1EN	(1 << 0)
-> +#define RT4831_BLED_CH2EN	(1 << 1)
-> +#define RT4831_BLED_CH3EN	(1 << 2)
-> +#define RT4831_BLED_CH4EN	(1 << 3)
-> +#define RT4831_BLED_ALLCHEN	((1 << 4) - 1)
-> +
-> +#endif /* _DT_BINDINGS_RT4831_BACKLIGHT_H */
-> -- 
-> 2.7.4
+On Tue, 15 Dec 2020, at 02:18, Ulf Hansson wrote:
+> On Tue, 8 Dec 2020 at 02:26, Andrew Jeffery <andrew@aj.id.au> wrote:
+> >
+> > Drivers for MMC hosts that accept phase corrections can take advantage
+> > of the helper by embedding a mmc_clk_phase_map_t object in their
+> > private data and invoking mmc_of_parse_clk_phase() to extract phase
+> > parameters. It is the responsibility of the host driver to translate and
+> > apply the extracted values to hardware as required.
+> >
+> > Signed-off-by: Andrew Jeffery <andrew@aj.id.au>
+> > ---
+> >  drivers/mmc/core/host.c  | 44 ++++++++++++++++++++++++++++++++++++++++
+> >  include/linux/mmc/host.h | 17 ++++++++++++++++
+> >  2 files changed, 61 insertions(+)
+> >
+> > diff --git a/drivers/mmc/core/host.c b/drivers/mmc/core/host.c
+> > index 96b2ca1f1b06..b1697f00c4b5 100644
+> > --- a/drivers/mmc/core/host.c
+> > +++ b/drivers/mmc/core/host.c
+> > @@ -163,6 +163,50 @@ static void mmc_retune_timer(struct timer_list *t)
+> >         mmc_retune_needed(host);
+> >  }
+> >
+> > +static void mmc_of_parse_timing_phase(struct device *dev, const char *prop,
+> > +                                     struct mmc_clk_phase *phase)
+> > +{
+> > +       int degrees[2] = {0};
+> > +       int rc;
+> > +
+> > +       rc = device_property_read_u32_array(dev, prop, degrees, 2);
+> > +       phase->valid = !rc;
+> > +       if (phase->valid) {
+> > +               phase->in_deg = degrees[0];
+> > +               phase->out_deg = degrees[1];
+> > +       }
+> > +}
+> > +
+> > +void
+> > +mmc_of_parse_clk_phase(struct mmc_host *host, mmc_clk_phase_map_t map)
 > 
+> Would you mind to change to pass a "struct mmc_clk_phase_map *map" to this?
+> 
+> See more comments below.
+> 
+> > +{
+> > +       struct device *dev = host->parent;
+> > +
+> > +       mmc_of_parse_timing_phase(dev, "clk-phase-legacy",
+> > +                                 &map[MMC_TIMING_LEGACY]);
+> > +       mmc_of_parse_timing_phase(dev, "clk-phase-mmc-hs",
+> > +                                 &map[MMC_TIMING_MMC_HS]);
+> > +       mmc_of_parse_timing_phase(dev, "clk-phase-sd-hs",
+> > +                                 &map[MMC_TIMING_SD_HS]);
+> > +       mmc_of_parse_timing_phase(dev, "clk-phase-uhs-sdr12",
+> > +                                 &map[MMC_TIMING_UHS_SDR12]);
+> > +       mmc_of_parse_timing_phase(dev, "clk-phase-uhs-sdr25",
+> > +                                 &map[MMC_TIMING_UHS_SDR25]);
+> > +       mmc_of_parse_timing_phase(dev, "clk-phase-uhs-sdr50",
+> > +                                 &map[MMC_TIMING_UHS_SDR50]);
+> > +       mmc_of_parse_timing_phase(dev, "clk-phase-uhs-sdr104",
+> > +                                 &map[MMC_TIMING_UHS_SDR104]);
+> > +       mmc_of_parse_timing_phase(dev, "clk-phase-uhs-ddr50",
+> > +                                 &map[MMC_TIMING_UHS_DDR50]);
+> > +       mmc_of_parse_timing_phase(dev, "clk-phase-mmc-ddr52",
+> > +                                 &map[MMC_TIMING_MMC_DDR52]);
+> > +       mmc_of_parse_timing_phase(dev, "clk-phase-mmc-hs200",
+> > +                                 &map[MMC_TIMING_MMC_HS200]);
+> > +       mmc_of_parse_timing_phase(dev, "clk-phase-mmc-hs400",
+> > +                                 &map[MMC_TIMING_MMC_HS400]);
+> > +}
+> > +EXPORT_SYMBOL(mmc_of_parse_clk_phase);
+> > +
+> >  /**
+> >   *     mmc_of_parse() - parse host's device-tree node
+> >   *     @host: host whose node should be parsed.
+> > diff --git a/include/linux/mmc/host.h b/include/linux/mmc/host.h
+> > index 01bba36545c5..bc4731c9738f 100644
+> > --- a/include/linux/mmc/host.h
+> > +++ b/include/linux/mmc/host.h
+> > @@ -79,6 +79,22 @@ struct mmc_ios {
+> >         bool enhanced_strobe;                   /* hs400es selection */
+> >  };
+> >
+> > +struct mmc_clk_phase {
+> > +       bool valid;
+> > +       u16 in_deg;
+> > +       u16 out_deg;
+> > +};
+> > +
+> > +/*
+> > + * Define a type to map between bus timings and phase correction values. To
+> > + * avoid bloat in struct mmc_host we leave it to the host driver to define the
+> > + * phase map object in its private data if it supports phase correction.
+> > + * However, mmc_of_parse_clk_phase() is provided by the mmc core and needs the
+> > + * provided array to be correctly sized, so typedef an appropriately sized
+> > + * array to minimise the chance that the wrong size object is passed.
+> > + */
+> > +typedef struct mmc_clk_phase mmc_clk_phase_map_t[MMC_TIMING_MMC_HS400 + 1];
+> > +
+> 
+> Nitpick: I would appreciate if we could avoid using "typedefs", as I
+> think they in many cases makes the code harder to read. How about
+> doing this instead?
+> 
+> #define MMC_NUM_CLK_PHASES (MMC_TIMING_MMC_HS400 + 1)
+> 
+> struct mmc_clk_phase_map {
+>         struct mmc_clk_phase phase[MMC_NUM_CLK_PHASES];
+> };
+> 
+> [...]
+
+Right; I experimented with that approach and felt it was kinda clunky (hence 
+the typedef), but I'll respin the series doing as such.
+
+Thanks,
+
+Andrew
