@@ -2,182 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EFE342D9978
-	for <lists+devicetree@lfdr.de>; Mon, 14 Dec 2020 15:11:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6CDF42D997B
+	for <lists+devicetree@lfdr.de>; Mon, 14 Dec 2020 15:11:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2407417AbgLNOKn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Dec 2020 09:10:43 -0500
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:51170 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727458AbgLNOKf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Dec 2020 09:10:35 -0500
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0BEE8wOr072018;
-        Mon, 14 Dec 2020 08:08:58 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1607954938;
-        bh=LQXFOzbcEpV//6PZYz8OunMZKEVrd2RDcf9Ymqtwwtc=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=QUvKXXsw5r6qLRZcQe1VqjrWLRWRGzWXgaPCHjDNGj+tkW1C0kpvv7uj0wnxp7Gnl
-         Qj6glRVeS+H6XhITKVi7EK0BGfyrYXFuN6Dp/rL85NszxLa2tPzdlnLnYgWaBh8SZM
-         iARIyIefV/fSxl+yyIO+lc/ou5aj+ssrTHFpmrPc=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0BEE8wNj031983
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 14 Dec 2020 08:08:58 -0600
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Mon, 14
- Dec 2020 08:08:57 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Mon, 14 Dec 2020 08:08:57 -0600
-Received: from [10.250.232.169] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0BEE8s0C127943;
-        Mon, 14 Dec 2020 08:08:55 -0600
-Subject: Re: [EXTERNAL] Re: [PATCH v4] dt-bindings: usb: Add new compatible
- string for AM64 SoC
-To:     Rob Herring <robh+dt@kernel.org>
-CC:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Sekhar Nori <nsekhar@ti.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Roger Quadros <rogerq@ti.com>,
-        Linux USB List <linux-usb@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20201211060429.20027-1-a-govindraju@ti.com>
- <062c861a-b35e-06cd-2bda-a2d3f5034290@ti.com>
- <CAL_JsqJoq20v7wj0x9Nzp2dFeeEunEmschF+VTXMtPdLwg1izA@mail.gmail.com>
-From:   Aswath Govindraju <a-govindraju@ti.com>
-Message-ID: <814ec065-6dc5-bec5-092d-cc89d1530172@ti.com>
-Date:   Mon, 14 Dec 2020 19:38:53 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1725811AbgLNOL1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Dec 2020 09:11:27 -0500
+Received: from mail.kernel.org ([198.145.29.99]:50796 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727458AbgLNOLS (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 14 Dec 2020 09:11:18 -0500
+X-Gm-Message-State: AOAM531AuGeZUphIJ6bFlQ9IS5u4tKsKMYcl8RfxJkWZgQHedl3FRAn+
+        rxlBsNsL1CBvfWm7AVkOFHf7U2uLTHh7jyydwQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1607955031;
+        bh=Jzn8l38KRoOLsKkVvnCldWRNNSXncIPTkIkR6xkPitI=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=H6RJAYtoicuiA77SS89g7/7wgarP1h28KYBi4he/ZpAttxpAIEH+ISSwzXMIOB1nV
+         ekLHRVocilZfHlK6f2arL5Pi9XBXnTJEZ7wvC3eb8VAt8UdJAEvI78CYUwCk4YS5RN
+         on1OLWBXG2XygQ2ut3NnOJUjEAM4H7r7o87DFCJVXNcx4zWhSvZdS9lw0WQ0Yl7QSI
+         rdgbwvcP9sOW2cqf8q9qNUDqB9ns+Xv3BKO93/cjYeoG5yM7nMwJ38wSWH4QqONntf
+         NKnY/BGHLKLcORPIGVDD7QMtLYCwW/PNa4N2U7jGjrdGSYlw6BWJZ39G06TcgK0Zki
+         Mh0jZIFQVziBw==
+X-Google-Smtp-Source: ABdhPJw143/zC9fcc9wUHjIGVkwDKIZ/YUpCE4b6b1HB/jrN8MuTToZ3sZ8F/J1h8qV8oXUR5pUC/R/NxmzaWK1nUlk=
+X-Received: by 2002:a05:6402:ca2:: with SMTP id cn2mr24906609edb.137.1607955030122;
+ Mon, 14 Dec 2020 06:10:30 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <CAL_JsqJoq20v7wj0x9Nzp2dFeeEunEmschF+VTXMtPdLwg1izA@mail.gmail.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <20201214025946.25753-1-chris.ruehl@gtsys.com.hk> <20201214025946.25753-2-chris.ruehl@gtsys.com.hk>
+In-Reply-To: <20201214025946.25753-2-chris.ruehl@gtsys.com.hk>
+From:   Rob Herring <robh@kernel.org>
+Date:   Mon, 14 Dec 2020 08:10:18 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqL0WF-VwnaqhgQyYP0A-2Xp_q==zAw9jS5eoD3P6PmF-A@mail.gmail.com>
+Message-ID: <CAL_JsqL0WF-VwnaqhgQyYP0A-2Xp_q==zAw9jS5eoD3P6PmF-A@mail.gmail.com>
+Subject: Re: [PATCH v1 1/4] devicetree: phy: rockchip-emmc optional add vendor prefix
+To:     Chris Ruehl <chris.ruehl@gtsys.com.hk>
+Cc:     devicetree@vger.kernel.org, Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
-On 12/12/20 4:18 am, Rob Herring wrote:
-> On Fri, Dec 11, 2020 at 6:04 AM Aswath Govindraju <a-govindraju@ti.com> wrote:
->>
->> Hi,
->> On 11/12/20 11:34 am, Aswath Govindraju wrote:
->>> Add compatible string in j721e-usb binding file as the same USB subsystem
->>> is present in AM64.
->>>
->>> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
->>> ---
->>>
->>> Changes since v3:
->>> - used enum instead of anyOf.
->>>
->>> Changes since v2:
->>> - added changes done over the versions.
->>>
->>> Changes since v1:
->>> - replaced the '\t' at the beginning of the lines with spaces as it was
->>>   causing the dt_binding_check to fail.
->>>
->>>  Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml | 5 +++--
->>>  1 file changed, 3 insertions(+), 2 deletions(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml b/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml
->>> index 388245b91a55..1a5c7bbb40d1 100644
->>> --- a/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml
->>> +++ b/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml
->>> @@ -11,8 +11,9 @@ maintainers:
->>>
->>>  properties:
->>>    compatible:
->>> -    items:
->>> -      - const: ti,j721e-usb
->>> +    enum:
->>> +      - ti,j721e-usb
->>> +      - ti,am64-usb
->>>
->>
->> I am trying to use the compatible strings in the following manner
->>
->> ```
->> compatible = "ti,am64-usb", "ti,j721e-usb";
->>
->> ```
->> If I use above patch I am getting an error while doing a dtbs check.
->>
->> ```
->> /home/gsaswath/src/ti-linux-kernel/arch/arm64/boot/dts/ti/k3-am642-evm.dt.yaml:
->> cdns-usb@f900000: compatible: Additional items are not allowed
->> ('ti,j721e-usb' was unexpected)
->>         From schema:
->> /home/gsaswath/src/ti-linux-kernel/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml
->> /home/gsaswath/src/ti-linux-kernel/arch/arm64/boot/dts/ti/k3-am642-evm.dt.yaml:
->> cdns-usb@f900000: compatible: ['ti,am64-usb', 'ti,j721e-usb'] is too long
->>         From schema:
->> /home/gsaswath/src/ti-linux-kernel/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml
->>
->> ```
->>
->>
->> I have looked around for examples but I am unable to find a similar
->> case. I tried using anyOf in the following manner
-> 
-> You didn't look hard enough. There are lots.
+On Sun, Dec 13, 2020 at 9:00 PM Chris Ruehl <chris.ruehl@gtsys.com.hk> wrote:
 >
->> ```
->> compatible:
->>      anyOf:
->>         - const: ti,am64-usb
->>         - const: ti,j721e-usb
-> 
-> This is really no different than a single 'enum' with the 2 values.
-> 'anyOf' means one or more in the list are true, but more than 1 is
-> impossible here.
-> 
-> If you have different possible lengths of values, then you need
-> 'oneOf' for each case and then 'items' when you have a value with
-> multiple entries:
-> 
-> oneOf:
->   - const: ti,j721e-usb
->   - items:
->       - const: ti,am64-usb
->       - const: ti,j721e-usb
-> 
+> Update the documentation and add the vendor prefix to the optional
+> properties referred in vendor-prefixes.yaml.
+>
+> Signed-off-by: Chris Ruehl <chris.ruehl@gtsys.com.hk>
+> ---
+>  .../bindings/phy/rockchip-emmc-phy.txt        | 19 ++++++++++---------
+>  1 file changed, 10 insertions(+), 9 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/phy/rockchip-emmc-phy.txt b/Documentation/devicetree/bindings/phy/rockchip-emmc-phy.txt
+> index 00aa2d349e55..3a55d8086868 100644
+> --- a/Documentation/devicetree/bindings/phy/rockchip-emmc-phy.txt
+> +++ b/Documentation/devicetree/bindings/phy/rockchip-emmc-phy.txt
+> @@ -13,14 +13,15 @@ Optional properties:
+>                 access to it), it is strongly suggested.
+>                 See ../clock/clock-bindings.txt for details.
+>   - clocks: Should have a phandle to the card clock exported by the SDHCI driver.
+> - - drive-impedance-ohm: Specifies the drive impedance in Ohm.
+> -                        Possible values are 33, 40, 50, 66 and 100.
+> -                        If not set, the default value of 50 will be applied.
+> - - enable-strobe-pulldown: Enable internal pull-down for the strobe line.
+> -                           If not set, pull-down is not used.
+> - - output-tapdelay-select: Specifies the phyctrl_otapdlysec register.
+> -                           If not set, the register defaults to 0x4.
+> -                           Maximum value 0xf.
+> + - rockchip,drive-impedance-ohm: Specifies the drive impedance in Ohm.
+> +                                 Possible values are 33, 40, 50, 66 and 100.
+> +                                 If not set, the default value of 50 will be
+> +                                 applied.
 
-Thank you for the detailed explanation :) . I am sorry for not being
-able figure this out on my own. I have sent a respin of this patch(v5).
+You can't change this one, it's already an ABI. Only what just got
+queued can be changed.
 
-Thanks,
-Aswath
-
->> ```
->>
->> But I am getting an error
->>
->> ```
->> /home/gsaswath/src/ti-linux-kernel/Documentation/devicetree/bindings/usb/ti,j721e-usb.example.dt.yaml:
->> cdns_usb@4104000: compatible: 'anyOf' conditional failed, one must be fixed:
->>         Additional items are not allowed ('ti,j721e-usb' was unexpected)
->>         ['ti,am64-usb', 'ti,j721e-usb'] is too long
->>         'ti,j721e-usb' was expected
->> ```
->>
->> Doesn't anyof mean that the compatible strings can be used in any
->> combination ??
->>
->> Thanks,
->> Aswath
->>
->>>    reg:
->>>      description: module registers
->>>
->>
-
+> + - rockchip,enable-strobe-pulldown: Enable internal pull-down for the strobe
+> +                                    line.  If not set, pull-down is not used.
+> + - rockchip,output-tapdelay-select: Specifies the phyctrl_otapdlysec register.
+> +                                    If not set, the register defaults to 0x4.
+> +                                    Maximum value 0xf.
+>
+>  Example:
+>
+> @@ -37,7 +38,7 @@ grf: syscon@ff770000 {
+>                 reg = <0xf780 0x20>;
+>                 clocks = <&sdhci>;
+>                 clock-names = "emmcclk";
+> -               drive-impedance-ohm = <50>;
+> +               rockchip,drive-impedance-ohm = <50>;
+>                 #phy-cells = <0>;
+>         };
+>  };
+> --
+> 2.20.1
+>
