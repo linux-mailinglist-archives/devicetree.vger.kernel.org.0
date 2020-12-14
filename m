@@ -2,209 +2,431 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C5AFA2D926B
-	for <lists+devicetree@lfdr.de>; Mon, 14 Dec 2020 06:07:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EE6C72D9327
+	for <lists+devicetree@lfdr.de>; Mon, 14 Dec 2020 07:02:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728953AbgLNFHE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Dec 2020 00:07:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43212 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728545AbgLNFHE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Dec 2020 00:07:04 -0500
-Received: from mail-yb1-xb49.google.com (mail-yb1-xb49.google.com [IPv6:2607:f8b0:4864:20::b49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA436C06179C
-        for <devicetree@vger.kernel.org>; Sun, 13 Dec 2020 21:05:51 -0800 (PST)
-Received: by mail-yb1-xb49.google.com with SMTP id t187so17408426ybf.10
-        for <devicetree@vger.kernel.org>; Sun, 13 Dec 2020 21:05:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=sender:date:in-reply-to:message-id:mime-version:references:subject
-         :from:to:cc;
-        bh=O8AQ7ej0ikQ65amEV9o8gcBkhCb1EY1FP1shGPZnluE=;
-        b=gAlYmzUImi7M03yomHNsSVy3NExu5+4A/Qrw7vRXcVwz//y+DBgdvi57zqhwy5g+Od
-         aq5Q688wbUQL/1Wdei7DG/nb58SUqAvCceYqYyyrv0BCqkOLpq/btHVrwq3Ngzz+8em1
-         QMKh3ro0T4cLY3VLJ0emN/yQtyaHhx+ClZ/f5GNCqOc7Nth25qSgtlQX7T/3sxBfN8Jr
-         HpjD7aFSaU+r3BJA9E9QQdz1R7cw0Jfa2ffcb6WBvdCTJm56ZMexzMTx8HauMpUo7K5a
-         VCneyUB+qlM6t6jjqJAk7ri3OZVes/P6eGoKjpcLt+RdUXRat9ej/0HgsIENeM1xj5ja
-         PuGQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:date:in-reply-to:message-id:mime-version
-         :references:subject:from:to:cc;
-        bh=O8AQ7ej0ikQ65amEV9o8gcBkhCb1EY1FP1shGPZnluE=;
-        b=tojMn9Yhy2lCqRsRxnG2fW5Xomj9dGMpMneXFmOzP1hegZXxtxMKbZx8IVZfCX33mo
-         HLTvFNTIZY4uBGqEbdj8+snU+TBAMl12vV5x/i2WmFYbduTygyvvwwYEKIDDUlghbGh/
-         M08ptf54mok5WPKgM0M5DAFaHJ2uDMtBj/jWWoZOE0OjCLkibnx4fnl2HaA2G2jFlsg3
-         Md2w53cVKWfUWGNr1WI5MdOzJi9t47WVt8Aam6YXCLu7j4LvnSsPjmRmWSsQrLMRng+6
-         r8taiE6w195r1YLk+D1W8Fy7fvXH3LA1zDQ8cC2ASGMFi5ovU/c3NF9NgtVjNa12P7QX
-         tvTw==
-X-Gm-Message-State: AOAM533yGum4geB2CVVgdrlTT3c6nh9sl4feBZs8zLZMYA91lBvAg4q/
-        TmTjQDYCOyJD3m5CIHq5R5t8bS3vz1Ru
-X-Google-Smtp-Source: ABdhPJzYd4yzUs4s/dbBiPexbPY/mAOMAuQC9Ou4EpN65HOJGafhsgMH0K2WpP+bNPDuHLaSPs8tULOfD93H
-Sender: "tzungbi via sendgmr" <tzungbi@tzungbi-z840.tpe.corp.google.com>
-X-Received: from tzungbi-z840.tpe.corp.google.com ([2401:fa00:1:b:725a:fff:fe41:c6a5])
- (user=tzungbi job=sendgmr) by 2002:a25:d92:: with SMTP id 140mr35243043ybn.101.1607922350995;
- Sun, 13 Dec 2020 21:05:50 -0800 (PST)
-Date:   Mon, 14 Dec 2020 13:05:21 +0800
-In-Reply-To: <20201214050521.845396-1-tzungbi@google.com>
-Message-Id: <20201214050521.845396-3-tzungbi@google.com>
-Mime-Version: 1.0
-References: <20201214050521.845396-1-tzungbi@google.com>
-X-Mailer: git-send-email 2.29.2.684.gfbc64c5ab5-goog
-Subject: [PATCH 2/2] remoteproc/mediatek: support L1TCM
-From:   Tzung-Bi Shih <tzungbi@google.com>
-To:     ohad@wizery.com, bjorn.andersson@linaro.org, robh+dt@kernel.org
-Cc:     linux-remoteproc@vger.kernel.org, matthias.bgg@gmail.com,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        tzungbi@google.com
-Content-Type: text/plain; charset="UTF-8"
+        id S2389172AbgLNF74 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Dec 2020 00:59:56 -0500
+Received: from mail.loongson.cn ([114.242.206.163]:43408 "EHLO loongson.cn"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S2387410AbgLNF74 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 14 Dec 2020 00:59:56 -0500
+Received: from linux.localdomain (unknown [113.200.148.30])
+        by mail.loongson.cn (Coremail) with SMTP id AQAAf9Dx_38l_9ZfFUodAA--.52092S2;
+        Mon, 14 Dec 2020 13:59:01 +0800 (CST)
+From:   Qing Zhang <zhangqing@loongson.cn>
+To:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+Cc:     linux-spi@vger.kernel.org, Huacai Chen <chenhc@lemote.com>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Juxin Gao <gaojuxin@loongson.cn>
+Subject: [PATCH v3 1/4] spi: LS7A: Add Loongson LS7A SPI controller driver support
+Date:   Mon, 14 Dec 2020 13:58:51 +0800
+Message-Id: <1607925534-8312-1-git-send-email-zhangqing@loongson.cn>
+X-Mailer: git-send-email 2.1.0
+X-CM-TRANSID: AQAAf9Dx_38l_9ZfFUodAA--.52092S2
+X-Coremail-Antispam: 1UD129KBjvJXoW3Zw1xJrWUJr4xZFWUuF4Uurg_yoWDWr4Dpa
+        1rW3yrta18JFyrAFZxJF4UWFyYqw1Sq34rX3yaq34Iga4YqF4DWF1YqryfArWaqFWUua4U
+        XFnFgrW5KF45ZaUanT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+        9KBjDU0xBIdaVrnRJUUUvCb7Iv0xC_Kw4lb4IE77IF4wAFF20E14v26r4j6ryUM7CY07I2
+        0VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rw
+        A2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Ar0_tr1l84ACjcxK6xII
+        jxv20xvEc7CjxVAFwI0_Gr1j6F4UJwA2z4x0Y4vEx4A2jsIE14v26r4UJVWxJr1l84ACjc
+        xK6I8E87Iv6xkF7I0E14v26rxl6s0DM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVAC
+        Y4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r1j6r18McIj6I8E87Iv67AKxVW8JV
+        WxJwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IYc2Ij64vIr41lFIxGxcIEc7CjxVA2Y2ka
+        0xkIwI1lc2xSY4AK67AK6r4rMxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY6r1j6r
+        4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF
+        67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1j6r1xMIIF0xvE2I
+        x0cI8IcVCY1x0267AKxVWUJVW8JwCI42IY6xAIw20EY4v20xvaj40_Wr1j6rW3Jr1lIxAI
+        cVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AKxVW8JVW8JrUvcSsGvfC2Kf
+        nxnUUI43ZEXa7IU5p5l5UUUUU==
+X-CM-SenderInfo: x2kd0wptlqwqxorr0wxvrqhubq/
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-L1TCM is a high performance memory region in MT8192 SCP.
+The SPI controller has the following characteristics:
 
-Reads L1TCM memory region from DTS to determine if the machine supports.
-Loads L1TCM memory region to SCP sys if the firmware provides.
+- Full-duplex synchronous serial data transmission
+- Support up to 4 variable length byte transmission
+- Main mode support
+- Mode failure generates an error flag and issues an interrupt request
+- Double buffer receiver
+- Serial clock with programmable polarity and phase
+- SPI can be controlled in wait mode
+- Support boot from SPI
 
-Starts from MT8192 SCP, the firmware contains physical addresses for
-each memory region, for instance:
+Use mtd_debug tool to earse/write/read /dev/mtd0 on development.
 
-Program Headers:
-  Type   Offset   VirtAddr   PhysAddr   FileSiz MemSiz  Flg Align
-  LOAD   0xXXXXXX 0xXXXXXXXX 0x10500000 0xXXXXX 0xXXXXX XXX 0xXXXX
-  LOAD   0xXXXXXX 0xXXXXXXXX 0x10700000 0xXXXXX 0xXXXXX XXX 0xXXXX
-  LOAD   0xXXXXXX 0xXXXXXXXX 0x50000000 0xXXXXX 0xXXXXX XXX 0xXXXX
+eg:
 
-Kernel driver can use the "PhysAddr" (i.e. da in the da_to_va callbacks)
-to know the ELF segment belongs to which region.
+[root@linux mtd-utils-1.0.0]# mtd_debug erase /dev/mtd0 0x20000 0x40000
+Erased 262144 bytes from address 0x00020000 in flash
+[root@linux mtd-utils-1.0.0]# mtd_debug write /dev/mtd0 0x20000 13 1.img
+Copied 13 bytes from 1.img to address 0x00020000 in flash
+[root@linux mtd-utils-1.0.0]# mtd_debug read /dev/mtd0 0x20000 13 2.img
+Copied 13 bytes from address 0x00020000 in flash to 2.img
+[root@linux mtd-utils-1.0.0]# cmp -l 1.img 2.img
 
-To backward compatible to MT8183 SCP, separates the da_to_va callbacks
-for new and legacy version.
-
-Signed-off-by: Tzung-Bi Shih <tzungbi@google.com>
+Signed-off-by: Juxin Gao <gaojuxin@loongson.cn>
+Signed-off-by: Qing Zhang <zhangqing@loongson.cn>
 ---
- drivers/remoteproc/mtk_common.h |  5 +++
- drivers/remoteproc/mtk_scp.c    | 54 +++++++++++++++++++++++++++++++--
- 2 files changed, 57 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/remoteproc/mtk_common.h b/drivers/remoteproc/mtk_common.h
-index 988edb4977c3..94bc54b224ee 100644
---- a/drivers/remoteproc/mtk_common.h
-+++ b/drivers/remoteproc/mtk_common.h
-@@ -75,6 +75,7 @@ struct mtk_scp_of_data {
- 	void (*scp_reset_assert)(struct mtk_scp *scp);
- 	void (*scp_reset_deassert)(struct mtk_scp *scp);
- 	void (*scp_stop)(struct mtk_scp *scp);
-+	void *(*scp_da_to_va)(struct mtk_scp *scp, u64 da, size_t len);
+v2:
+- keep Kconfig and Makefile sorted
+- make the entire comment a C++ one so things look more intentional
+- Fix unclear indentation
+- make conditional statements to improve legibility
+- Don't use static inline
+- the core handle message queue
+- Add a new binding document
+- Fix probe part mixed pdev and PCI
+
+v3:
+- expose set_cs to the core and let it handle things
+- replace transfer_one_message to transfer_one
+- replace spi_alloc_master to devm_spi_alloc_master
+- split out into prepare/unprepare_message
+- releases pci regions before unregister master
+
+---
+ drivers/spi/Kconfig    |   7 ++
+ drivers/spi/Makefile   |   1 +
+ drivers/spi/spi-ls7a.c | 293 +++++++++++++++++++++++++++++++++++++++++++++++++
+ 3 files changed, 301 insertions(+)
+ create mode 100644 drivers/spi/spi-ls7a.c
+
+diff --git a/drivers/spi/Kconfig b/drivers/spi/Kconfig
+index aadaea0..af7c0d4 100644
+--- a/drivers/spi/Kconfig
++++ b/drivers/spi/Kconfig
+@@ -413,6 +413,13 @@ config SPI_LP8841_RTC
+ 	  Say N here unless you plan to run the kernel on an ICP DAS
+ 	  LP-8x4x industrial computer.
  
- 	u32 host_to_scp_reg;
- 	u32 host_to_scp_int_bit;
-@@ -89,6 +90,10 @@ struct mtk_scp {
- 	void __iomem *reg_base;
- 	void __iomem *sram_base;
- 	size_t sram_size;
-+	phys_addr_t sram_phys;
-+	void __iomem *l1tcm_base;
-+	size_t l1tcm_size;
-+	phys_addr_t l1tcm_phys;
- 
- 	const struct mtk_scp_of_data *data;
- 
-diff --git a/drivers/remoteproc/mtk_scp.c b/drivers/remoteproc/mtk_scp.c
-index e0c235690361..f025aba67abc 100644
---- a/drivers/remoteproc/mtk_scp.c
-+++ b/drivers/remoteproc/mtk_scp.c
-@@ -458,9 +458,8 @@ static int scp_start(struct rproc *rproc)
- 	return ret;
- }
- 
--static void *scp_da_to_va(struct rproc *rproc, u64 da, size_t len)
-+static void *mt8183_scp_da_to_va(struct mtk_scp *scp, u64 da, size_t len)
- {
--	struct mtk_scp *scp = (struct mtk_scp *)rproc->priv;
- 	int offset;
- 
- 	if (da < scp->sram_size) {
-@@ -476,6 +475,42 @@ static void *scp_da_to_va(struct rproc *rproc, u64 da, size_t len)
- 	return NULL;
- }
- 
-+static void *mt8192_scp_da_to_va(struct mtk_scp *scp, u64 da, size_t len)
++config SPI_LS7A
++	tristate "Loongson LS7A SPI Controller Support"
++	depends on CPU_LOONGSON64 || COMPILE_TEST
++	help
++	  This drivers supports the Loongson LS7A SPI controller in master
++	  SPI mode.
++
+ config SPI_MPC52xx
+ 	tristate "Freescale MPC52xx SPI (non-PSC) controller support"
+ 	depends on PPC_MPC52xx
+diff --git a/drivers/spi/Makefile b/drivers/spi/Makefile
+index 6fea582..d015cf2 100644
+--- a/drivers/spi/Makefile
++++ b/drivers/spi/Makefile
+@@ -61,6 +61,7 @@ obj-$(CONFIG_SPI_LANTIQ_SSC)		+= spi-lantiq-ssc.o
+ obj-$(CONFIG_SPI_JCORE)			+= spi-jcore.o
+ obj-$(CONFIG_SPI_LM70_LLP)		+= spi-lm70llp.o
+ obj-$(CONFIG_SPI_LP8841_RTC)		+= spi-lp8841-rtc.o
++obj-$(CONFIG_SPI_LS7A)			+= spi-ls7a.o
+ obj-$(CONFIG_SPI_MESON_SPICC)		+= spi-meson-spicc.o
+ obj-$(CONFIG_SPI_MESON_SPIFC)		+= spi-meson-spifc.o
+ obj-$(CONFIG_SPI_MPC512x_PSC)		+= spi-mpc512x-psc.o
+diff --git a/drivers/spi/spi-ls7a.c b/drivers/spi/spi-ls7a.c
+new file mode 100644
+index 0000000..d3b7e86
+--- /dev/null
++++ b/drivers/spi/spi-ls7a.c
+@@ -0,0 +1,293 @@
++// SPDX-License-Identifier: GPL-2.0-only
++//
++// Loongson LS7A SPI Controller driver
++//
++// Copyright (C) 2020 Loongson Technology Corporation Limited.
++//
++
++#include <linux/module.h>
++#include <linux/pci.h>
++#include <linux/spi/spi.h>
++
++/* define spi register */
++#define	SPCR	0x00
++#define	SPSR	0x01
++#define	FIFO	0x02
++#define	SPER	0x03
++#define	PARA	0x04
++#define	SFCS	0x05
++#define	TIMI	0x06
++
++struct ls7a_spi {
++	spinlock_t lock;
++	struct spi_master *master;
++	void __iomem *base;
++	unsigned int hz;
++	unsigned char spcr, sper;
++	unsigned int mode;
++};
++
++static void ls7a_spi_write_reg(struct ls7a_spi *spi,
++			       unsigned char reg,
++			       unsigned char data)
 +{
-+	int offset;
-+
-+	if (da >= scp->sram_phys &&
-+	    (da + len) <= scp->sram_phys + scp->sram_size) {
-+		offset = da - scp->sram_phys;
-+		return (void __force *)scp->sram_base + offset;
-+	}
-+
-+	/* optional memory region */
-+	if (scp->l1tcm_size &&
-+	    da >= scp->l1tcm_phys &&
-+	    (da + len) <= scp->l1tcm_phys + scp->l1tcm_size) {
-+		offset = da - scp->l1tcm_phys;
-+		return (void __force *)scp->l1tcm_base + offset;
-+	}
-+
-+	/* optional memory region */
-+	if (scp->dram_size &&
-+	    da >= scp->dma_addr &&
-+	    (da + len) <= scp->dma_addr + scp->dram_size) {
-+		offset = da - scp->dma_addr;
-+		return scp->cpu_addr + offset;
-+	}
-+
-+	return NULL;
++	writeb(data, spi->base + reg);
 +}
 +
-+static void *scp_da_to_va(struct rproc *rproc, u64 da, size_t len)
++static char ls7a_spi_read_reg(struct ls7a_spi *spi, unsigned char reg)
 +{
-+	struct mtk_scp *scp = (struct mtk_scp *)rproc->priv;
-+
-+	return scp->data->scp_da_to_va(scp, da, len);
++	return readb(spi->base + reg);
 +}
 +
- static void mt8183_scp_stop(struct mtk_scp *scp)
- {
- 	/* Disable SCP watchdog */
-@@ -714,6 +749,19 @@ static int scp_probe(struct platform_device *pdev)
- 		goto free_rproc;
- 	}
- 	scp->sram_size = resource_size(res);
-+	scp->sram_phys = res->start;
++static int ls7a_spi_prepare_message(struct spi_master *master,
++				    struct spi_message *msg)
++{
++	struct ls7a_spi *ls7a_spi;
++	int param;
 +
-+	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "l1tcm");
-+	if (res) {
-+		scp->l1tcm_base = devm_ioremap_resource(dev, res);
-+		if (IS_ERR((__force void *)scp->l1tcm_base)) {
-+			dev_err(dev, "Failed to parse and map l1tcm memory\n");
-+			ret = PTR_ERR((__force void *)scp->l1tcm_base);
-+			goto free_rproc;
-+		}
-+		scp->l1tcm_size = resource_size(res);
-+		scp->l1tcm_phys = res->start;
++	ls7a_spi = spi_master_get_devdata(master);
++
++	spin_lock(&ls7a_spi->lock);
++	param = ls7a_spi_read_reg(ls7a_spi, PARA);
++	ls7a_spi_write_reg(ls7a_spi, PARA, param &= ~1);
++	spin_unlock(&ls7a_spi->lock);
++
++	return 0;
++}
++
++static int  ls7a_spi_unprepare_message(struct spi_master *master,
++				       struct spi_message *msg)
++{
++	struct ls7a_spi *ls7a_spi;
++	int param = 0;
++
++	ls7a_spi = spi_master_get_devdata(master);
++
++	spin_lock(&ls7a_spi->lock);
++	ls7a_spi_write_reg(ls7a_spi, PARA, param);
++	spin_unlock(&ls7a_spi->lock);
++
++	return 0;
++}
++
++static void ls7a_spi_set_cs(struct spi_device *spi, bool enable)
++{
++	struct ls7a_spi *ls7a_spi;
++	int cs;
++
++	ls7a_spi = spi_master_get_devdata(spi->master);
++
++	cs = ls7a_spi_read_reg(ls7a_spi, SFCS) & ~(0x11 << spi->chip_select);
++
++	if (!!(spi->mode & SPI_CS_HIGH) == enable)
++		ls7a_spi_write_reg(ls7a_spi, SFCS, (0x1 << spi->chip_select) | cs);
++	else
++		ls7a_spi_write_reg(ls7a_spi, SFCS, (0x11 << spi->chip_select) | cs);
++}
++
++static int ls7a_spi_do_transfer(struct ls7a_spi *ls7a_spi,
++				struct spi_device *spi,
++				struct spi_transfer *t)
++{
++	unsigned int hz;
++	unsigned int div, div_tmp;
++	unsigned int bit;
++	unsigned long clk;
++	unsigned char val;
++	const char rdiv[12] = {0, 1, 4, 2, 3, 5, 6, 7, 8, 9, 10, 11};
++
++	if (t) {
++		hz = t->speed_hz;
++		if (!hz)
++			hz = spi->max_speed_hz;
++	} else {
++		hz = spi->max_speed_hz;
 +	}
- 
- 	mutex_init(&scp->send_lock);
- 	for (i = 0; i < SCP_IPI_MAX; i++)
-@@ -803,6 +851,7 @@ static const struct mtk_scp_of_data mt8183_of_data = {
- 	.scp_reset_assert = mt8183_scp_reset_assert,
- 	.scp_reset_deassert = mt8183_scp_reset_deassert,
- 	.scp_stop = mt8183_scp_stop,
-+	.scp_da_to_va = mt8183_scp_da_to_va,
- 	.host_to_scp_reg = MT8183_HOST_TO_SCP,
- 	.host_to_scp_int_bit = MT8183_HOST_IPC_INT_BIT,
- 	.ipi_buf_offset = 0x7bdb0,
-@@ -814,6 +863,7 @@ static const struct mtk_scp_of_data mt8192_of_data = {
- 	.scp_reset_assert = mt8192_scp_reset_assert,
- 	.scp_reset_deassert = mt8192_scp_reset_deassert,
- 	.scp_stop = mt8192_scp_stop,
-+	.scp_da_to_va = mt8192_scp_da_to_va,
- 	.host_to_scp_reg = MT8192_GIPC_IN_SET,
- 	.host_to_scp_int_bit = MT8192_HOST_IPC_INT_BIT,
- };
++
++	if (((spi->mode ^ ls7a_spi->mode) & (SPI_CPOL | SPI_CPHA))
++		|| (hz && ls7a_spi->hz != hz)) {
++		clk = 100000000;
++
++		div = DIV_ROUND_UP(clk, hz);
++		if (div < 2)
++			div = 2;
++		if (div > 4096)
++			div = 4096;
++
++		bit = fls(div) - 1;
++		if ((1<<bit) == div)
++			bit--;
++		div_tmp = rdiv[bit];
++
++		dev_dbg(&spi->dev, "clk = %ld hz = %d div_tmp = %d bit = %d\n",
++			clk, hz, div_tmp, bit);
++
++		ls7a_spi->hz = hz;
++		ls7a_spi->spcr = div_tmp & 3;
++		ls7a_spi->sper = (div_tmp >> 2) & 3;
++
++		val = ls7a_spi_read_reg(ls7a_spi, SPCR);
++		val &= ~0xc;
++		if (spi->mode & SPI_CPOL)
++			val |= 8;
++		if (spi->mode & SPI_CPHA)
++			val |= 4;
++		ls7a_spi_write_reg(ls7a_spi, SPCR, (val & ~3) | ls7a_spi->spcr);
++		val = ls7a_spi_read_reg(ls7a_spi, SPER);
++		ls7a_spi_write_reg(ls7a_spi, SPER, (val & ~3) | ls7a_spi->sper);
++		ls7a_spi->mode = spi->mode;
++	}
++	return 0;
++}
++
++static int ls7a_spi_write_read_8bit(struct spi_device *spi,
++				    const u8 **tx_buf, u8 **rx_buf,
++				    unsigned int num)
++{
++	struct ls7a_spi *ls7a_spi;
++
++	ls7a_spi = spi_master_get_devdata(spi->master);
++
++	if (tx_buf && *tx_buf) {
++		ls7a_spi_write_reg(ls7a_spi, FIFO, *((*tx_buf)++));
++
++		while ((ls7a_spi_read_reg(ls7a_spi, SPSR) & 0x1) == 1)
++			;
++	} else {
++		ls7a_spi_write_reg(ls7a_spi, FIFO, 0);
++
++		while ((ls7a_spi_read_reg(ls7a_spi, SPSR) & 0x1) == 1)
++			;
++	}
++
++	if (rx_buf && *rx_buf)
++		*(*rx_buf)++ = ls7a_spi_read_reg(ls7a_spi, FIFO);
++	else
++		ls7a_spi_read_reg(ls7a_spi, FIFO);
++
++	return 1;
++}
++
++static unsigned int ls7a_spi_write_read(struct spi_device *spi,
++					struct spi_transfer *xfer)
++{
++	unsigned int count;
++	const u8 *tx = xfer->tx_buf;
++
++	u8 *rx = xfer->rx_buf;
++
++	count = xfer->len;
++
++	do {
++		if (ls7a_spi_write_read_8bit(spi, &tx, &rx, count) < 0)
++			goto out;
++		count--;
++	} while (count);
++
++out:
++	return xfer->len - count;
++}
++
++static int  ls7a_spi_transfer_one(struct spi_master *master,
++				  struct spi_device *spi,
++				  struct spi_transfer *t)
++{
++	struct ls7a_spi *ls7a_spi;
++	int status;
++
++	ls7a_spi = spi_master_get_devdata(master);
++
++	status = ls7a_spi_do_transfer(ls7a_spi, spi, t);
++	if (status < 0)
++		return status;
++
++	ls7a_spi_write_read(spi, t);
++
++	return status;
++}
++
++static int ls7a_spi_pci_probe(struct pci_dev *pdev,
++			      const struct pci_device_id *ent)
++{
++	struct spi_master *master;
++	struct ls7a_spi *spi;
++	int ret;
++
++	master = devm_spi_alloc_master(&pdev->dev, sizeof(*spi));
++	if (!master)
++		return -ENOMEM;
++
++	spi = spi_master_get_devdata(master);
++	ret = pcim_enable_device(pdev);
++	if (ret)
++		goto err_free_master;
++
++	ret = pci_request_regions(pdev, "ls7a-spi");
++	if (ret)
++		goto err_free_master;
++
++	spi->base = pcim_iomap(pdev, 0, pci_resource_len(pdev, 0));
++	if (!spi->base) {
++		ret = -EINVAL;
++		goto err_free_master;
++	}
++	ls7a_spi_write_reg(spi, SPCR, 0x51);
++	ls7a_spi_write_reg(spi, SPER, 0x00);
++	ls7a_spi_write_reg(spi, TIMI, 0x01);
++	ls7a_spi_write_reg(spi, PARA, 0x40);
++	spi->mode = 0;
++
++	spin_lock_init(&spi->lock);
++
++	master->mode_bits = SPI_CPOL | SPI_CPHA | SPI_CS_HIGH;
++	master->prepare_message = ls7a_spi_prepare_message;
++	master->set_cs = ls7a_spi_set_cs;
++	master->transfer_one = ls7a_spi_transfer_one;
++	master->unprepare_message = ls7a_spi_unprepare_message;
++	master->bits_per_word_mask = SPI_BPW_MASK(8);
++	master->num_chipselect = 4;
++	master->dev.of_node = pdev->dev.of_node;
++
++	spi->master = master;
++
++	pci_set_drvdata(pdev, master);
++
++	ret = spi_register_master(master);
++	if (ret)
++		goto err_free_master;
++
++	return 0;
++
++err_free_master:
++	pci_release_regions(pdev);
++	return ret;
++}
++
++static void ls7a_spi_pci_remove(struct pci_dev *pdev)
++{
++	struct spi_master *master = pci_get_drvdata(pdev);
++
++	spi_unregister_master(master);
++	pci_release_regions(pdev);
++}
++
++static const struct pci_device_id ls7a_spi_pci_id_table[] = {
++	{ PCI_DEVICE(PCI_VENDOR_ID_LOONGSON, 0x7a0b) },
++	{ 0, }
++};
++
++MODULE_DEVICE_TABLE(pci, ls7a_spi_pci_id_table);
++
++static struct pci_driver ls7a_spi_pci_driver = {
++	.name		= "ls7a-spi",
++	.id_table	= ls7a_spi_pci_id_table,
++	.probe		= ls7a_spi_pci_probe,
++	.remove		= ls7a_spi_pci_remove,
++};
++
++module_pci_driver(ls7a_spi_pci_driver);
++
++MODULE_AUTHOR("Juxin Gao <gaojuxin@loongson.cn>");
++MODULE_AUTHOR("Qing Zhang <zhangqing@loongson.cn>");
++MODULE_DESCRIPTION("Loongson LS7A SPI controller driver");
++MODULE_LICENSE("GPL v2");
 -- 
-2.29.2.684.gfbc64c5ab5-goog
+2.1.0
 
