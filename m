@@ -2,81 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5FF962D9476
-	for <lists+devicetree@lfdr.de>; Mon, 14 Dec 2020 10:00:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EB7EC2D9508
+	for <lists+devicetree@lfdr.de>; Mon, 14 Dec 2020 10:23:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2407185AbgLNI6A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Dec 2020 03:58:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50328 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2406715AbgLNI6A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Dec 2020 03:58:00 -0500
-Received: from mail-lf1-x143.google.com (mail-lf1-x143.google.com [IPv6:2a00:1450:4864:20::143])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E164C0613D3
-        for <devicetree@vger.kernel.org>; Mon, 14 Dec 2020 00:57:19 -0800 (PST)
-Received: by mail-lf1-x143.google.com with SMTP id o19so2554328lfo.1
-        for <devicetree@vger.kernel.org>; Mon, 14 Dec 2020 00:57:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=PeLskSmDYaVOsZxv9dazYTBEZV4Owe3PpH2dLGUOSKI=;
-        b=KWsCICqm5auiKhsRbZlPOGFcRacp9hlIrGS5KIynS4aaQ4DgAkTGJVhw7HGrLsO6oO
-         My98Qtyce3BQgZY3NTyROxxZRL7zkL51Syux7ofWkEVIkqBuvZ5QVzgvH05FzJUOhSGl
-         hEwQzml6uDxkMxmqyMVdMcaeMvcA1Dt/MuA0v/oieVzcm2gMV0X90yEJwP2BaJSf9X9l
-         eP6t4uxbML2qVE2pzH3dJSOf27gtqFcouJFvczJhjcik43RksnkM/gQ9ldsGxZgTiOBK
-         CzMjhWm+GFc+ZghGTj6H7LBXFD/Y8ey2eVNXpjVQoO9DRg8yj7Gk7A8GebAoGaut1DvB
-         4HQg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=PeLskSmDYaVOsZxv9dazYTBEZV4Owe3PpH2dLGUOSKI=;
-        b=DK46VrvdSZ2BPK0UHWjfuqYGJO0HCE51sVpVxf/qTphLHDh0Z4DOqNu51Oe2YNUqmc
-         PZXR1F4wMIqP6bCFc7XBL6BFTLlIWU/s6PYwfMmZ3noAiQWEkuqqtK6EzbPvVg5Gstkn
-         lzMhhgl11DFjPn3LL4cgh+kZRvOLAQkaHqZUBkmw7SFdn7rHrTdrayP7FFXaNEeiYLLe
-         +k4EuKzEebeUh3mmKO2eCIUTrDrdDSyBhYa+9Q08/QmxMvdX5tOw15g21P4JF6bTSdvI
-         sZxHKSuKrfbzZ724Q60ZVeg3M+xtK46E3sANZ93lCVLM6fhCkhKX5uZcC25No12Rrs8c
-         U0Vw==
-X-Gm-Message-State: AOAM532TFSTOoFZtYCvHcTiBaI+CJlffCN/uXwOi2rAyA/2NBbsIVRXy
-        8aRBY+wWkme5IFqlUAnT+b2jfYJYcMd/e7q3UTSTYg==
-X-Google-Smtp-Source: ABdhPJwsHyoU4o37zHEtZOYqmgDKOY1YjMUhOeqiSTQT16Q9804/21EtJ1z7yMpPlKLKYk+6gufMYxW6U48B7xOH69c=
-X-Received: by 2002:a19:495d:: with SMTP id l29mr4671485lfj.465.1607936237341;
- Mon, 14 Dec 2020 00:57:17 -0800 (PST)
+        id S2439898AbgLNJTH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Dec 2020 04:19:07 -0500
+Received: from 6.mo177.mail-out.ovh.net ([46.105.51.249]:34189 "EHLO
+        6.mo177.mail-out.ovh.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2439861AbgLNJSz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Dec 2020 04:18:55 -0500
+X-Greylist: delayed 4219 seconds by postgrey-1.27 at vger.kernel.org; Mon, 14 Dec 2020 04:18:55 EST
+Received: from player789.ha.ovh.net (unknown [10.108.42.196])
+        by mo177.mail-out.ovh.net (Postfix) with ESMTP id 5EA5614A3D1
+        for <devicetree@vger.kernel.org>; Mon, 14 Dec 2020 09:00:39 +0100 (CET)
+Received: from milecki.pl (ip-194-187-74-233.konfederacka.maverick.com.pl [194.187.74.233])
+        (Authenticated sender: rafal@milecki.pl)
+        by player789.ha.ovh.net (Postfix) with ESMTPSA id 14F541927E5EF;
+        Mon, 14 Dec 2020 08:00:27 +0000 (UTC)
+Authentication-Results: garm.ovh; auth=pass (GARM-101G0040c338a84-40d3-4bcf-9a09-0dcf186e6146,
+                    9D4513A06938E8562C9FC8D5040FBB067C1A90C8) smtp.auth=rafal@milecki.pl
+X-OVh-ClientIp: 194.187.74.233
+Subject: Re: [PATCH 2/2] soc: bcm: add PM driver for Broadcom's PMB
+To:     Florian Fainelli <f.fainelli@gmail.com>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
+        "Rafael J . Wysocki" <rjw@rjwysocki.net>,
+        Kevin Hilman <khilman@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        devicetree@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com,
+        linux-kernel@vger.kernel.org
+References: <20201211215942.5726-1-zajec5@gmail.com>
+ <20201211215942.5726-3-zajec5@gmail.com>
+ <4d0bea20-1a3b-24d1-2d27-96f2f4fd48b9@gmail.com>
+From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Message-ID: <d3461875-cdbc-9fde-3ef3-7a7ba478d88a@milecki.pl>
+Date:   Mon, 14 Dec 2020 09:00:25 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.5.1
 MIME-Version: 1.0
-References: <20201211183815.51269-1-stephan@gerhold.net> <20201211183815.51269-2-stephan@gerhold.net>
-In-Reply-To: <20201211183815.51269-2-stephan@gerhold.net>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Mon, 14 Dec 2020 09:57:06 +0100
-Message-ID: <CACRpkdbEqN95-bYHjo7JEbSrGx9qHNoeW2wHC6KPvwn0sG7isg@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] iio: gyro: bmg160: Add rudimentary regulator support
-To:     Stephan Gerhold <stephan@gerhold.net>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "H . Nikolaus Schaller" <hns@goldelico.com>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <4d0bea20-1a3b-24d1-2d27-96f2f4fd48b9@gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Ovh-Tracer-Id: 1992279886806289969
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedujedrudekjedgledvucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepuffvfhfhkffffgggjggtgfesthejredttdefjeenucfhrhhomheptfgrfhgrlhcuofhilhgvtghkihcuoehrrghfrghlsehmihhlvggtkhhirdhplheqnecuggftrfgrthhtvghrnhepkeekgeefieeuhfdujeefgeektddujeekledvheehfeelfffhfeekjefhfeehuefhnecukfhppedtrddtrddtrddtpdduleegrddukeejrdejgedrvdeffeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhhouggvpehsmhhtphdqohhuthdphhgvlhhopehplhgrhigvrhejkeelrdhhrgdrohhvhhdrnhgvthdpihhnvghtpedtrddtrddtrddtpdhmrghilhhfrhhomheprhgrfhgrlhesmhhilhgvtghkihdrphhlpdhrtghpthhtohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhg
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 11, 2020 at 7:39 PM Stephan Gerhold <stephan@gerhold.net> wrote:
+On 12.12.2020 04:26, Florian Fainelli wrote:
+>> +
+>> +static const struct bcm_pmb_pd_data bcm_pmb_bcm4908_data[] = {
+>> +	{ .name = "pcie2", .id = BCM_PMB_PCIE2, .bus = 0, .device = 2, },
+>> +	{ .name = "pcie0", .id = BCM_PMB_PCIE0, .bus = 1, .device = 14, },
+>> +	{ .name = "pcie1", .id = BCM_PMB_PCIE1, .bus = 1, .device = 15, },
+>> +	{ .name = "usb", .id = BCM_PMB_HOST_USB, .bus = 1, .device = 17, },
+> 
+> Do you have to be more specific and spell out whether this is the host
+> controller (xhci) or device (bdc)? If not, then this looks good to me.
 
-> BMG160 needs VDD and VDDIO regulators that might need to be explicitly
-> enabled. Add some rudimentary support to obtain and enable these
-> regulators during probe() and disable them using a devm action.
->
-> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
-> ---
-> Changes in v2:
->   - Do regulator_bulk_enable() immediately after devm_regulator_bulk_get()
->   - Simplify error handling using devm_add_action_or_reset()
+I believe I have to and I believe I already do. I used BCM_PMB_HOST_USB
+which clearly (I believe) points to the HOST controller.
 
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+In 6838 part of pmc_drv.h from Broadcom's SDK I found:
 
-Yours,
-Linus Walleij
+enum {
+     USB30_2X_Zone_Common,
+     USB30_2X_Zone_USB_Host,
+     USB30_2X_Zone_USB_Device,
+};
+
+and that's what makes me believe we need to specify HOST explicitly.
