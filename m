@@ -2,94 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C9C72D9B28
-	for <lists+devicetree@lfdr.de>; Mon, 14 Dec 2020 16:36:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AE9502D9B6F
+	for <lists+devicetree@lfdr.de>; Mon, 14 Dec 2020 16:51:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2438713AbgLNPfn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Dec 2020 10:35:43 -0500
-Received: from mga17.intel.com ([192.55.52.151]:29578 "EHLO mga17.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2407761AbgLNPfk (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 14 Dec 2020 10:35:40 -0500
-IronPort-SDR: u0ij5Ba6eXhRk5wdWtCT0k04nwCSdlgUCvbUUl5SWAxAnvRl+cnB58ysqgnpS5tuQLLhW0R0Rq
- teqnP9qZVKzQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9834"; a="154533059"
-X-IronPort-AV: E=Sophos;i="5.78,420,1599548400"; 
-   d="scan'208";a="154533059"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Dec 2020 07:33:55 -0800
-IronPort-SDR: zIxaIazk4jOgt8HPRzw7UppNp4E/ygsjRldrqZnz85QEf9v1I/q+aCSRxi5GlYKObKtRJEEkxt
- 8yux0UkYLueg==
-X-IronPort-AV: E=Sophos;i="5.78,420,1599548400"; 
-   d="scan'208";a="449054765"
-Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
-  by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Dec 2020 07:33:53 -0800
-Received: from andy by smile with local (Exim 4.94)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1kopsE-00EIfM-Tq; Mon, 14 Dec 2020 17:34:54 +0200
-Date:   Mon, 14 Dec 2020 17:34:54 +0200
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Wan Ahmad Zainie <wan.ahmad.zainie.wan.mohamad@intel.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        PCI <linux-pci@vger.kernel.org>, devicetree@vger.kernel.org,
-        Mark Gross <mgross@linux.intel.com>,
-        "Raja Subramanian, Lakshmi Bai" 
-        <lakshmi.bai.raja.subramanian@intel.com>
-Subject: Re: [PATCH v3 2/2] PCI: keembay: Add support for Intel Keem Bay
-Message-ID: <20201214153454.GJ4077@smile.fi.intel.com>
-References: <20201202073156.5187-1-wan.ahmad.zainie.wan.mohamad@intel.com>
- <20201202073156.5187-3-wan.ahmad.zainie.wan.mohamad@intel.com>
- <20201209181350.GB660537@robh.at.kernel.org>
- <20201209184214.GV4077@smile.fi.intel.com>
- <CAL_JsqJA4Sx93rF_o+V-gPSHwuyAyf-aT96XpN-UCc3ayjDH+w@mail.gmail.com>
+        id S2394828AbgLNPuN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Dec 2020 10:50:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57534 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732560AbgLNPuM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Dec 2020 10:50:12 -0500
+Received: from mail-vs1-xe41.google.com (mail-vs1-xe41.google.com [IPv6:2607:f8b0:4864:20::e41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B417C0613D6
+        for <devicetree@vger.kernel.org>; Mon, 14 Dec 2020 07:49:32 -0800 (PST)
+Received: by mail-vs1-xe41.google.com with SMTP id j140so9201393vsd.4
+        for <devicetree@vger.kernel.org>; Mon, 14 Dec 2020 07:49:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=KvO0sb07TDmRwegOoF9S5e6D5LMN7XTNc/ZFX2Y5vi4=;
+        b=e31mRl3iGwwoztxn7fB1r+7GX+JZDHiFrSDXcuX2noyakj/Rsa2UQvMZSgpkHhDQhz
+         /OhDQiCjCYyTS8VKtZPO51Rgh7Qhva7khKek+vh24xQuYnVwLPv79B9BbyCFMu2t9tk7
+         9Di2/3UEkPhrsYi5JUKM3sWSJYVOz9n6B+nSrb2CKYY05eOhx8u9eVLPyDizCsz1hZ28
+         b5a2lFQN84VYht8a7ZIAyBWqL2voWZ0secptdIDU2brkyUl/fujqriiBs/hPmah1OkR4
+         Hipxd9oLz3IIZNxqdFOkWE5EctlepAr41yu5ofxtmW0LMJWSdxmcYjv/iFjIf9AbABPh
+         Duhw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=KvO0sb07TDmRwegOoF9S5e6D5LMN7XTNc/ZFX2Y5vi4=;
+        b=Q+hHi/a9xSZundGUl/JUTtqZt+UrcoBkBEkxUt1sLCxTj7T3YClZcy3wF02iQLFndo
+         5SnsX3UvrYQgYKRcJvERGw6mbLW91ru2gPWzY8INFAB5uKs4dCollKCDLT3TGySTmFHm
+         hR6eaRdB1SLqZGBNte567+uzxKzCC34x6MdSP9Udl0SujmmoBdd3JaMUohyKp8GhRp0O
+         J768Pc+7THv+cHucdsaRRxGLA803mDMK8ix2WIvInD6HRTeJvF96VJ/98p0O12IWF2sV
+         2ycfrBLjLG+UxUpMiB4QVcrnLosppZw2aTA+9Go+b3JokIA8u9OoZU1FawAaqjwtKDxA
+         a1Bg==
+X-Gm-Message-State: AOAM531ApPiYIFi3ruMkuEDG50YJRh3SRjtbbgB1p1L1Lv2xGIWG30Io
+        MrzToqxmYEmqLeoc3IHjvMA8Lug/KKW30eqR6Rhu9g==
+X-Google-Smtp-Source: ABdhPJxYosNVAKN1SQj4JiAthUoa5PPHeE6hBjmZW96vQQzREIo27iOk/lOij7ngld6+k7N2O0c2NCLcmIebOV2zyTQ=
+X-Received: by 2002:a67:70c6:: with SMTP id l189mr23767784vsc.34.1607960971339;
+ Mon, 14 Dec 2020 07:49:31 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAL_JsqJA4Sx93rF_o+V-gPSHwuyAyf-aT96XpN-UCc3ayjDH+w@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20201208012615.2717412-1-andrew@aj.id.au> <20201208012615.2717412-2-andrew@aj.id.au>
+In-Reply-To: <20201208012615.2717412-2-andrew@aj.id.au>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Mon, 14 Dec 2020 16:48:54 +0100
+Message-ID: <CAPDyKFrceNPNz9+88p+mzbYEo-ZqWOwTBWaqycxPr3MQEFtbaA@mail.gmail.com>
+Subject: Re: [PATCH v5 1/6] mmc: core: Add helper for parsing clock phase properties
+To:     Andrew Jeffery <andrew@aj.id.au>
+Cc:     "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
+        ryan_chen@aspeedtech.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 10, 2020 at 11:46:48AM -0600, Rob Herring wrote:
-> On Wed, Dec 9, 2020 at 12:41 PM Andy Shevchenko
-> <andriy.shevchenko@linux.intel.com> wrote:
-> > On Wed, Dec 09, 2020 at 12:13:50PM -0600, Rob Herring wrote:
-> > > On Wed, Dec 02, 2020 at 03:31:56PM +0800, Wan Ahmad Zainie wrote:
+On Tue, 8 Dec 2020 at 02:26, Andrew Jeffery <andrew@aj.id.au> wrote:
+>
+> Drivers for MMC hosts that accept phase corrections can take advantage
+> of the helper by embedding a mmc_clk_phase_map_t object in their
+> private data and invoking mmc_of_parse_clk_phase() to extract phase
+> parameters. It is the responsibility of the host driver to translate and
+> apply the extracted values to hardware as required.
+>
+> Signed-off-by: Andrew Jeffery <andrew@aj.id.au>
+> ---
+>  drivers/mmc/core/host.c  | 44 ++++++++++++++++++++++++++++++++++++++++
+>  include/linux/mmc/host.h | 17 ++++++++++++++++
+>  2 files changed, 61 insertions(+)
+>
+> diff --git a/drivers/mmc/core/host.c b/drivers/mmc/core/host.c
+> index 96b2ca1f1b06..b1697f00c4b5 100644
+> --- a/drivers/mmc/core/host.c
+> +++ b/drivers/mmc/core/host.c
+> @@ -163,6 +163,50 @@ static void mmc_retune_timer(struct timer_list *t)
+>         mmc_retune_needed(host);
+>  }
+>
+> +static void mmc_of_parse_timing_phase(struct device *dev, const char *prop,
+> +                                     struct mmc_clk_phase *phase)
+> +{
+> +       int degrees[2] = {0};
+> +       int rc;
+> +
+> +       rc = device_property_read_u32_array(dev, prop, degrees, 2);
+> +       phase->valid = !rc;
+> +       if (phase->valid) {
+> +               phase->in_deg = degrees[0];
+> +               phase->out_deg = degrees[1];
+> +       }
+> +}
+> +
+> +void
+> +mmc_of_parse_clk_phase(struct mmc_host *host, mmc_clk_phase_map_t map)
 
-...
+Would you mind to change to pass a "struct mmc_clk_phase_map *map" to this?
 
-> > > > +   struct dw_pcie *pci = to_dw_pcie_from_ep(ep);
-> > > > +
-> > > > +   switch (type) {
-> > > > +   case PCI_EPC_IRQ_LEGACY:
-> > > > +           /* Legacy interrupts are not supported in Keem Bay */
-> > > > +           dev_err(pci->dev, "Legacy IRQ is not supported\n");
-> > > > +           return -EINVAL;
-> > > > +   case PCI_EPC_IRQ_MSI:
-> > > > +           return dw_pcie_ep_raise_msi_irq(ep, func_no, interrupt_num);
-> > > > +   case PCI_EPC_IRQ_MSIX:
-> > > > +           return dw_pcie_ep_raise_msix_irq(ep, func_no, interrupt_num);
-> > > > +   default:
-> > > > +           dev_err(pci->dev, "Unknown IRQ type %d\n", type);
-> > > > +           return -EINVAL;
-> > > > +   }
-> > >
-> > > Doesn't the lack of a 'return' give a warning?
-> >
-> > Where? I don't see any lack of return.
-> 
-> Is the compiler smart enough to recognize that with a return in every
-> 'case' that we don't need a return after the switch? I wouldn't have
-> thought so, but I haven't checked.
+See more comments below.
 
-Dunno what happen with -O0, but with -O2 we certainly have no issues with above
-code. (And for the record there are plenty examples of the same over the kernel)
+> +{
+> +       struct device *dev = host->parent;
+> +
+> +       mmc_of_parse_timing_phase(dev, "clk-phase-legacy",
+> +                                 &map[MMC_TIMING_LEGACY]);
+> +       mmc_of_parse_timing_phase(dev, "clk-phase-mmc-hs",
+> +                                 &map[MMC_TIMING_MMC_HS]);
+> +       mmc_of_parse_timing_phase(dev, "clk-phase-sd-hs",
+> +                                 &map[MMC_TIMING_SD_HS]);
+> +       mmc_of_parse_timing_phase(dev, "clk-phase-uhs-sdr12",
+> +                                 &map[MMC_TIMING_UHS_SDR12]);
+> +       mmc_of_parse_timing_phase(dev, "clk-phase-uhs-sdr25",
+> +                                 &map[MMC_TIMING_UHS_SDR25]);
+> +       mmc_of_parse_timing_phase(dev, "clk-phase-uhs-sdr50",
+> +                                 &map[MMC_TIMING_UHS_SDR50]);
+> +       mmc_of_parse_timing_phase(dev, "clk-phase-uhs-sdr104",
+> +                                 &map[MMC_TIMING_UHS_SDR104]);
+> +       mmc_of_parse_timing_phase(dev, "clk-phase-uhs-ddr50",
+> +                                 &map[MMC_TIMING_UHS_DDR50]);
+> +       mmc_of_parse_timing_phase(dev, "clk-phase-mmc-ddr52",
+> +                                 &map[MMC_TIMING_MMC_DDR52]);
+> +       mmc_of_parse_timing_phase(dev, "clk-phase-mmc-hs200",
+> +                                 &map[MMC_TIMING_MMC_HS200]);
+> +       mmc_of_parse_timing_phase(dev, "clk-phase-mmc-hs400",
+> +                                 &map[MMC_TIMING_MMC_HS400]);
+> +}
+> +EXPORT_SYMBOL(mmc_of_parse_clk_phase);
+> +
+>  /**
+>   *     mmc_of_parse() - parse host's device-tree node
+>   *     @host: host whose node should be parsed.
+> diff --git a/include/linux/mmc/host.h b/include/linux/mmc/host.h
+> index 01bba36545c5..bc4731c9738f 100644
+> --- a/include/linux/mmc/host.h
+> +++ b/include/linux/mmc/host.h
+> @@ -79,6 +79,22 @@ struct mmc_ios {
+>         bool enhanced_strobe;                   /* hs400es selection */
+>  };
+>
+> +struct mmc_clk_phase {
+> +       bool valid;
+> +       u16 in_deg;
+> +       u16 out_deg;
+> +};
+> +
+> +/*
+> + * Define a type to map between bus timings and phase correction values. To
+> + * avoid bloat in struct mmc_host we leave it to the host driver to define the
+> + * phase map object in its private data if it supports phase correction.
+> + * However, mmc_of_parse_clk_phase() is provided by the mmc core and needs the
+> + * provided array to be correctly sized, so typedef an appropriately sized
+> + * array to minimise the chance that the wrong size object is passed.
+> + */
+> +typedef struct mmc_clk_phase mmc_clk_phase_map_t[MMC_TIMING_MMC_HS400 + 1];
+> +
 
--- 
-With Best Regards,
-Andy Shevchenko
+Nitpick: I would appreciate if we could avoid using "typedefs", as I
+think they in many cases makes the code harder to read. How about
+doing this instead?
 
+#define MMC_NUM_CLK_PHASES (MMC_TIMING_MMC_HS400 + 1)
 
+struct mmc_clk_phase_map {
+        struct mmc_clk_phase phase[MMC_NUM_CLK_PHASES];
+};
+
+[...]
+
+Kind regards
+Uffe
