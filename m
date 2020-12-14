@@ -2,69 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C2F32DA3D3
+	by mail.lfdr.de (Postfix) with ESMTP id E6C552DA3D5
 	for <lists+devicetree@lfdr.de>; Tue, 15 Dec 2020 00:01:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2441335AbgLNW5W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Dec 2020 17:57:22 -0500
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:46681 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2441338AbgLNW5N (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Dec 2020 17:57:13 -0500
-Received: by mail-ot1-f65.google.com with SMTP id w3so17480085otp.13;
-        Mon, 14 Dec 2020 14:56:57 -0800 (PST)
+        id S2441348AbgLNW5c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Dec 2020 17:57:32 -0500
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:45153 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2441345AbgLNW52 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Dec 2020 17:57:28 -0500
+Received: by mail-ot1-f68.google.com with SMTP id h18so17491755otq.12;
+        Mon, 14 Dec 2020 14:57:12 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=qNjbVGsJxba9A3pdbcjJuis4jRluWROPs6SRzJDnAiM=;
-        b=KEytD3HnAIbXjH4bgjH/fJNtkWtlFAhviojoIeyHAxnadRyk8o438WdyOpZvTDsqff
-         svGOAGBv7MjKFtTcU7zMPVw8FBWGZkTP80FS7Gmi+ddXeTSyAhoY/IyYUhvbSJGBX49i
-         PR24HMG9ts4Onhl4ElwajTiWDT4ro4DZPdB1vmgLYhZ+D2/x1uu9fOa4UvAhaMvVFlfM
-         A3VDYXtQxw6mySabYPRQGMfvHx0D42luqNuvZ/npgKR5ZsvhABidHHu9wIOFuJeF+hAg
-         KOoujuLJCRd+jw//iTA3I5mMFN1wJzzdtD6yiKSeYmSNlqLoYyJf+kYNwoyCxvbCulBG
-         3chA==
-X-Gm-Message-State: AOAM533H/4e05eGTyadDp6lH25pi6yjaWZPKCAlcsHJhGedY1+lnAHR3
-        MjkF+LDtiWeUZtH7jW/i3A==
-X-Google-Smtp-Source: ABdhPJyVvqrWcs6BRg91Gb3+qyTkUDLgEvyh5I2+/3hC3Iu16580LfsTA7rwDd/BwTwddhZWDdfU+A==
-X-Received: by 2002:a9d:506:: with SMTP id 6mr20289543otw.95.1607986591939;
-        Mon, 14 Dec 2020 14:56:31 -0800 (PST)
+        bh=+8RRmx/saxrEOsk/+4v4Hf95Rm9K3o27fRskhKZP0vA=;
+        b=fvzvBkrFc6Algvr9+SRV45KaK3eI3vq7hGWi/yZNUP6JDxdswQzstAXTPF5YeRv1AO
+         3LgAvQ+4CtXSv78aQ8q6XRQNjDJY8wA2ajzqgsS+KbU+90NocMEM9TXhmPhCmX6IKVMy
+         HRe5oww0XMq6I8VO96l0Bawpg/bTvcbTZ/hOPSFWMzzrRfJrKmbD1MtVPKkD7wSKN2By
+         62JWRQ9z6aqv8EVptsL2fsRNbfmL54es0ubBpiINxQLG8dT2QtcDnXPuH3ANQIyw2GNr
+         LbEtS1Wc+sXQI65funXdSA/tDnM29Vp6Ep1JWcbXDwf4gjnyxHXUEm3pQp9b4Yk4Mk0z
+         7zBA==
+X-Gm-Message-State: AOAM532AM05AgfBz16EzLCop5FayWkXGXI8BGi+hdbm/ggP+Rgg0R11t
+        8IffvjiUadO49vy+l0lkhw==
+X-Google-Smtp-Source: ABdhPJy2OORXX0ADGZfZfe5m8G4mo9LJFRteLkzOii3px8+JdHgVV5JvodnedcIn1T1ffYOLI7Q6xA==
+X-Received: by 2002:a9d:170d:: with SMTP id i13mr21474885ota.106.1607986607540;
+        Mon, 14 Dec 2020 14:56:47 -0800 (PST)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id t3sm4161855oon.14.2020.12.14.14.56.30
+        by smtp.gmail.com with ESMTPSA id z189sm704369oia.28.2020.12.14.14.56.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Dec 2020 14:56:31 -0800 (PST)
-Received: (nullmailer pid 2536903 invoked by uid 1000);
-        Mon, 14 Dec 2020 22:56:29 -0000
-Date:   Mon, 14 Dec 2020 16:56:29 -0600
+        Mon, 14 Dec 2020 14:56:46 -0800 (PST)
+Received: (nullmailer pid 2537300 invoked by uid 1000);
+        Mon, 14 Dec 2020 22:56:45 -0000
+Date:   Mon, 14 Dec 2020 16:56:45 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Andre Przywara <andre.przywara@arm.com>
-Cc:     linux-sunxi@googlegroups.com, linux-arm-kernel@lists.infradead.org,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        linux-kernel@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
-        Shuosheng Huang <huangshuosheng@allwinnertech.com>,
-        =?iso-8859-1?Q?Cl=E9ment_P=E9ron?= <peron.clem@gmail.com>,
-        Yangtao Li <tiny.windzz@gmail.com>,
-        Chen-Yu Tsai <wens@csie.org>, Icenowy Zheng <icenowy@aosc.xyz>
-Subject: Re: [PATCH v2 20/21] dt-bindings: arm: sunxi: Add OrangePi Zero 2
- binding
-Message-ID: <20201214225629.GA2536874@robh.at.kernel.org>
-References: <20201211011934.6171-1-andre.przywara@arm.com>
- <20201211011934.6171-21-andre.przywara@arm.com>
+To:     Pavana Sharma <pavana.sharma@digi.com>
+Cc:     devicetree@vger.kernel.org, marek.behun@nic.cz,
+        f.fainelli@gmail.com, davem@davemloft.net,
+        gregkh@linuxfoundation.org, kbuild-all@lists.01.org, lkp@intel.com,
+        vivien.didelot@gmail.com, kuba@kernel.org, ashkan.boldaji@digi.com,
+        linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+        robh+dt@kernel.org, andrew@lunn.ch,
+        clang-built-linux@googlegroups.com
+Subject: Re: [net-next PATCH v12 1/4] dt-bindings: net: Add 5GBASER phy
+ interface mode
+Message-ID: <20201214225645.GA2537239@robh.at.kernel.org>
+References: <cover.1607685096.git.pavana.sharma@digi.com>
+ <dbad3456b9c80a7f53d64b608ab69e4d4e0b2151.1607685097.git.pavana.sharma@digi.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201211011934.6171-21-andre.przywara@arm.com>
+In-Reply-To: <dbad3456b9c80a7f53d64b608ab69e4d4e0b2151.1607685097.git.pavana.sharma@digi.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 11 Dec 2020 01:19:33 +0000, Andre Przywara wrote:
-> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+On Fri, 11 Dec 2020 22:46:04 +1000, Pavana Sharma wrote:
+> Add 5gbase-r PHY interface mode.
+> 
+> Signed-off-by: Pavana Sharma <pavana.sharma@digi.com>
 > ---
->  Documentation/devicetree/bindings/arm/sunxi.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
+>  Documentation/devicetree/bindings/net/ethernet-controller.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
 
 Acked-by: Rob Herring <robh@kernel.org>
