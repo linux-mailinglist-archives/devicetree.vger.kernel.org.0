@@ -2,76 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 785762D97F3
-	for <lists+devicetree@lfdr.de>; Mon, 14 Dec 2020 13:25:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3696E2D9813
+	for <lists+devicetree@lfdr.de>; Mon, 14 Dec 2020 13:38:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730982AbgLNMZf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Dec 2020 07:25:35 -0500
-Received: from 9.mo177.mail-out.ovh.net ([46.105.72.238]:36896 "EHLO
-        9.mo177.mail-out.ovh.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731395AbgLNMZe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Dec 2020 07:25:34 -0500
-X-Greylist: delayed 13610 seconds by postgrey-1.27 at vger.kernel.org; Mon, 14 Dec 2020 07:25:33 EST
-Received: from player746.ha.ovh.net (unknown [10.108.54.203])
-        by mo177.mail-out.ovh.net (Postfix) with ESMTP id 5ACC214B640
-        for <devicetree@vger.kernel.org>; Mon, 14 Dec 2020 13:24:45 +0100 (CET)
-Received: from milecki.pl (ip-194-187-74-233.konfederacka.maverick.com.pl [194.187.74.233])
-        (Authenticated sender: rafal@milecki.pl)
-        by player746.ha.ovh.net (Postfix) with ESMTPSA id 7AC26193795B4;
-        Mon, 14 Dec 2020 12:24:33 +0000 (UTC)
-Authentication-Results: garm.ovh; auth=pass (GARM-98R0024d04bba9-bba4-4092-81a2-66b9f363d4d7,
-                    9D4513A06938E8562C9FC8D5040FBB067C1A90C8) smtp.auth=rafal@milecki.pl
-X-OVh-ClientIp: 194.187.74.233
-Subject: Re: [PATCH 2/2] soc: bcm: add PM driver for Broadcom's PMB
-To:     Florian Fainelli <f.fainelli@gmail.com>,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
-        "Rafael J . Wysocki" <rjw@rjwysocki.net>,
-        Kevin Hilman <khilman@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        devicetree@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com,
+        id S1729389AbgLNMgc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Dec 2020 07:36:32 -0500
+Received: from bmail1.ministro.hu ([5.249.150.236]:35998 "EHLO
+        bmail1.ministro.hu" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727437AbgLNMgc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Dec 2020 07:36:32 -0500
+Received: from localhost (localhost [127.0.0.1])
+        by bmail1.ministro.hu (Postfix) with ESMTP id AA554123B3B;
+        Mon, 14 Dec 2020 13:35:49 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ministro.hu;
+        s=201804; t=1607949349;
+        bh=z1o91ipcko8gQeyW2F+RhK2XI913BoAYPZf1nyvexD8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=0UzOO3DnH0xfIvVl0lEOJNjD4SW+FOHwETCI8CCrz9ZUeJuVtyAujjHU1Mm1Ivyzk
+         CRlA0l9b3VvmpM9LgBIlsXyNstyhjKYuXoyLfrpHJ2GUxK9FH8rTaOcQjNjLGm528x
+         lOsbJ4sBo1xcBGeSY1yO8IfGqPPxkwWHyaCSbfoqpp09Yvs5CHyi5d7uDe0DwEUm71
+         f5PKvacaPXR6xGAA1rT2Gj6k5gH5FAcvTeECggaS0UPmk12p1M2hkhdP0y1sTGoRJs
+         mp3JwMXMGWb28NRYPTkz+VmrAwVhh3MObSx3q6sJ5GKMLuIhyqunJnhAB4fhf5kAiq
+         A6hIaQ0jqTwZg==
+X-Virus-Scanned: Debian amavisd-new at ministro.hu
+Received: from bmail1.ministro.hu ([127.0.0.1])
+        by localhost (bmail1.ministro.hu [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id 3pmV4oLaPgFt; Mon, 14 Dec 2020 13:35:23 +0100 (CET)
+Received: from dev (localhost [127.0.0.1])
+        by bmail1.ministro.hu (Postfix) with ESMTPSA id 28FFA123B38;
+        Mon, 14 Dec 2020 13:35:23 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ministro.hu;
+        s=201804; t=1607949323;
+        bh=z1o91ipcko8gQeyW2F+RhK2XI913BoAYPZf1nyvexD8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=RlASKX8xx+q+UECjBiX4GzhiHZeBCnQhwDNmx6XYJDUasUBFH09BDgWqDsYr22ewo
+         mAjIMld5uSWuz0aTwqYEUffUfe3vfp36D4TSiP6nDpXoaorcOm3AqdAQAysTc8qxgW
+         +gXx8sjSq6p3hQhLRnxUhqcAOoNHalNW+5TlfHxCbo9TfZfkW1oXTvYhXKRZE+eZG8
+         u4bzlh7y/Zahv2MdVK5IJAeVzzMfbDoCJi7XRSGiwdjNo/lRDBFDsFFaUQGAFf3iUe
+         vLyrkOM2RhUHFIUf8nZfPCWk+wF9Q8mSPg4YOYCNw9mxYs5TAKDz/3wHYyiJs8e338
+         jtgYacrhqWxkA==
+Date:   Mon, 14 Dec 2020 12:35:20 +0000
+From:   =?iso-8859-1?Q?J=F3zsef_Horv=E1th?= <info@ministro.hu>
+To:     Jiri Slaby <jirislaby@kernel.org>
+Cc:     'Greg Kroah-Hartman' <gregkh@linuxfoundation.org>,
+        'Rob Herring' <robh+dt@kernel.org>,
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-References: <20201211215942.5726-1-zajec5@gmail.com>
- <20201211215942.5726-3-zajec5@gmail.com>
- <3bc097fa-3bef-396f-a4fd-fa8acbc1b71d@gmail.com>
-From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-Message-ID: <18ebb7ab-2a45-f9fb-a094-0e63d44eadad@milecki.pl>
-Date:   Mon, 14 Dec 2020 13:24:32 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.5.1
+Subject: Re: [PATCH v4] Serial: silabs si4455 serial driver
+Message-ID: <20201214123519.GA10229@dev>
+References: <20201212070944.GA13909@dincontrollerdev>
+ <2855efaf-79a5-f43b-ff8c-9c01a3f14df7@kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <3bc097fa-3bef-396f-a4fd-fa8acbc1b71d@gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Ovh-Tracer-Id: 6452813843937398321
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedujedrudekkedggedtucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepuffvfhfhkffffgggjggtgfesthekredttdefjeenucfhrhhomheptfgrfhgrlhcuofhilhgvtghkihcuoehrrghfrghlsehmihhlvggtkhhirdhplheqnecuggftrfgrthhtvghrnhepkeduheejheffudefhffghfegjeejleetkeevueelveegkefhhfffieehleelgfevnecukfhppedtrddtrddtrddtpdduleegrddukeejrdejgedrvdeffeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhhouggvpehsmhhtphdqohhuthdphhgvlhhopehplhgrhigvrhejgeeirdhhrgdrohhvhhdrnhgvthdpihhnvghtpedtrddtrddtrddtpdhmrghilhhfrhhomheprhgrfhgrlhesmhhilhgvtghkihdrphhlpdhrtghpthhtohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhg
+In-Reply-To: <2855efaf-79a5-f43b-ff8c-9c01a3f14df7@kernel.org>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11.12.2020 23:08, Florian Fainelli wrote:
-> On 12/11/20 1:59 PM, Rafa≈Ç Mi≈Çecki wrote:
->> From: Rafa≈Ç Mi≈Çecki <rafal@milecki.pl>
->>
->> PMB can be found on BCM4908 and many other chipsets (e.g. BCM63138).
->> It's needed to power on and off SoC blocks like PCIe, SATA, USB.
->>
->> Signed-off-by: Rafa≈Ç Mi≈Çecki <rafal@milecki.pl>
+On Mon, Dec 14, 2020 at 09:04:13AM +0100, Jiri Slaby wrote:
+> On 12. 12. 20, 8:09, JÛzsef Horv·th wrote:
+> > This is a serial port driver for
+> >   Silicon Labs Si4455 Sub-GHz transciver.
+> > 
+> > The goal of this driver is to removing wires
+> >   between central(linux) device and remote serial devices/sensors,
+> >   but keeping the original user software.
+> >   It represents regular serial interface for the user space.
+> > 
+> > Datasheet: https://www.silabs.com/documents/public/data-sheets/Si4455.pdf
 > 
-> I will do a more thorough review tonight, however do you mind moving the
-> driver under drives/soc/bcm/bcm63xx? The first SoC that had PMB was
-> 63138 and that one is DSL.
+> A description of changes between v1..v4 here, please.
+> 
+> > Signed-off-by: JÛzsef Horv·th <info@ministro.hu>
+> ...
+> 
+> spi_register_driver can fail too.
+> 
+> > +
+> > +	return 0;
+> > +}
+> 
+> regards,
+> -- 
+> js
 
-I now realized that bcm63xx's:
-* Kconfig is wrapper in: if SOC_BCM63XX
-* Makefile is conditional: obj-$(CONFIG_SOC_BCM63XX)
+Thank you for your suggestions.
 
-So it means I've to either:
-1. Refactor bcm63xx structure
-2. Make SOC_BCM63XX selectable on ARCH_BCM4908 and select it
+I'm in trouble with the device tree binding schema of this driver too.
 
-I'm not sure if any of above is a really good idea. Any further thought, ideas?
+When I run "make dt_binding_check" with $id: "http://devicetree.org/schemas/serial/silabs,si4455.yaml#" in schema,
+ and silabs,si4455.yaml is under Documentation/devicetree/bindings/serial/,
+ it completes successfully.
+
+When I run "make dt_binding_check" with $id: "http://devicetree.org/schemas/staging/serial/silabs,si4455.yaml#" in schema,
+ and silabs,si4455.yaml is under Documentation/devicetree/bindings/staging/serial/,
+ the make dt_binding_check output:
+
+	Unknown file referenced: [Errno 2] No such file or directory: '/home/administrator/.local/lib/python3.6/site-packages/dtschema/schemas/staging/serial/serial.yaml'
+	xargs: dt-doc-validate: exited with status 255; aborting
+	Documentation/devicetree/bindings/Makefile:59: recipe for target 'Documentation/devicetree/bindings/processed-schema-examples.json' failed
+	make[1]: *** [Documentation/devicetree/bindings/processed-schema-examples.json] Error 124
+	Makefile:1364: recipe for target 'dt_binding_check' failed
+	make: *** [dt_binding_check] Error 2
+
+When I run "make dt_binding_check" with $id: "http://devicetree.org/schemas/staging/serial/silabs,si4455.yaml#" in schema,
+ and silabs,si4455.yaml is under Documentation/devicetree/bindings/staging/serial/,
+ and removed $ref: "serial.yaml#".
+ The make dt_binding_check completes successfully, but this is not a good solution.
+
+My question is, how can I use $ref: "serial.yaml" dependency in silabs,si4455.yaml, while my schema is under staging?
+        allOf:
+          - $ref: "serial.yaml#"
+
+If you have any suggestion that brings me to the right direction it would be great. 
+
+‹dvˆzlettel / Best regards:
+JÛzsef Horv·th
+
