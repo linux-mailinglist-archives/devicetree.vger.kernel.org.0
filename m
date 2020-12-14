@@ -2,79 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E8EB2D9485
-	for <lists+devicetree@lfdr.de>; Mon, 14 Dec 2020 10:03:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E98F12D94CF
+	for <lists+devicetree@lfdr.de>; Mon, 14 Dec 2020 10:18:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2439534AbgLNJCs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Dec 2020 04:02:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51082 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726073AbgLNJCq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Dec 2020 04:02:46 -0500
-Received: from mail-lf1-x144.google.com (mail-lf1-x144.google.com [IPv6:2a00:1450:4864:20::144])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A376C0613D6
-        for <devicetree@vger.kernel.org>; Mon, 14 Dec 2020 01:02:06 -0800 (PST)
-Received: by mail-lf1-x144.google.com with SMTP id o17so25295435lfg.4
-        for <devicetree@vger.kernel.org>; Mon, 14 Dec 2020 01:02:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=h7gw/JKcedbcbsZwWfTxV9h1NBzBz2xSdjArgBt47FY=;
-        b=WIy+wdN5lxXjhzWSRCsGIRQ/FvjPCq2eE4e/RV8zdXhIGPEGF+/Dygqmnulqs2h0oy
-         N39B12UanCXacWSc66RvefD94HonfQ58k1NWUgKUKXAY4zpDQWmZvKBj2W5pKXwo6MnF
-         x5FPL/HMF/C854ApS3GWH+di2LmuWIV832VXVJxSVFqa3C18AkaomEYHXeXemsM3TPxS
-         taxqysgYJxMEsk+r+3hsfGMKVQZrkFWoWAA7Jpie9ACkrJQNQSOD704OWnUVXLMKGZsO
-         wLziKwG+kqLlPfC6UJiTmTvZ0hzRWRIMrj9nolAASDlfjotDFLZxTgOzrfJhpsSn5TEM
-         TqcA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=h7gw/JKcedbcbsZwWfTxV9h1NBzBz2xSdjArgBt47FY=;
-        b=debSX1fMs1czRpqrqNxbK5nbBfLBv66g9pHEQZjJ7o7g9uItYmgLXeXGT3XDvoklFe
-         zc2w6IR4t65Ceo64T5pUxzQ1xIQHlCvkZcAZ6ykxPH5NECIPxXg6KtjEQ6SjuvtLNCDG
-         Ju3Z18JrRUEljj7Ufmor1hhkq7x7AhlCtvsnOyPelv98k+BNFPBQJU3QbehrQnVY2/zz
-         1eA43u2XkW5V4skrrZrM8b3WLFJUtl2sjMAoS9ld49MpuDUup5BuZXpb+Ow8FICfz6s9
-         vgquR/JvVu/o5G4qbIVx6HeSZua8W2jO0XLj+ynVdeJ76cflUKIGN8iPdw/lU+ekTsyd
-         ntyw==
-X-Gm-Message-State: AOAM5320NfOBtPAEsSJ4DgAjcg4scLAs2JgWSPbeOT09+gg9QQJgThRO
-        eeoEBdQkC0mjVGWq4YlPaDd9TvK8LmugeRbCGC31gg==
-X-Google-Smtp-Source: ABdhPJzcfW5SBxLhGM7ZnE4/gbP2E/5QbU94LqpZXgLMKTebXCXYm5Ux1pgYsFxkEX42MlFg1Dig+zvDzSrCm3pQeTM=
-X-Received: by 2002:a05:6512:3f3:: with SMTP id n19mr1240953lfq.586.1607936524573;
- Mon, 14 Dec 2020 01:02:04 -0800 (PST)
+        id S2407460AbgLNJRR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Dec 2020 04:17:17 -0500
+Received: from mx.baikalchip.com ([94.125.187.42]:46156 "EHLO
+        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S2407404AbgLNJRM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 14 Dec 2020 04:17:12 -0500
+From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Johan Hovold <johan@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Joao Pinto <jpinto@synopsys.com>,
+        Lars Persson <larper@axis.com>
+CC:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Vyacheslav Mitrofanov 
+        <Vyacheslav.Mitrofanov@baikalelectronics.ru>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        <netdev@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH 00/25] net: stmmac: Fix clocks/reset-related procedures
+Date:   Mon, 14 Dec 2020 12:15:50 +0300
+Message-ID: <20201214091616.13545-1-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
-References: <20201213161721.6514-1-sergio.paracuellos@gmail.com>
-In-Reply-To: <20201213161721.6514-1-sergio.paracuellos@gmail.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Mon, 14 Dec 2020 10:01:53 +0100
-Message-ID: <CACRpkdaAd-wJuqspYTuj4RGTyJgobX+6j=5ZWWSCtdLLMnPoYw@mail.gmail.com>
-Subject: Re: [PATCH 0/8] pinctrl: ralink: rt2880: Some minimal clean ups
-To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Jason Yan <yanaijie@huawei.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:STAGING SUBSYSTEM" <devel@driverdev.osuosl.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Dec 13, 2020 at 5:17 PM Sergio Paracuellos
-<sergio.paracuellos@gmail.com> wrote:
+Baikal-T1 SoC is equipped with two Synopsys DesignWare GMAC v3.73a-based
+ethernet interfaces with no internal Ethernet PHY attached. The IP-cores
+are configured as GMAC-AXI with CSR interface clocked by a dedicated
+signal. Each of which has got Rx/Tx FIFOs of 16KB, up to 8 MAC addresses
+capability, no embedded filter hash table logic, EEE enabled, IEEE 1588
+and 1588-2008 Advanced timestamping capabilities, power management with
+remote wake-up, IP CSUM hardware acceleration, a single PHY interface -
+RGMII with MDIO bus, 1xGPI and 1xGPO.
 
-> After this driver was moved from staging into pinctrl subsytems
-> some reviews for bindigns and driver itself comes from Ron Herring
-> and Dan Carpenter. Get rid of all the comments to properly be in
-> a good shape before merge window.
+This is a very first series of patches with fixes we've found to be
+required in order to make things working well for our setup. The series
+has turned to be rather large, but most of the patches are trivial and
+some of them are just cleanups, so it shouldn't be that hard to review.
 
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+The series starts with fixes of the PBL (Programmable DMA Burst length)
+DT-property, which is supposed to be defined for each DW *MAC IP-core, but
+not only for a Allwinner sun* GMAC and DW xGMAC. The number of possible
+PBL values need to be also extended in accordance with the DW *MAC manual.
+Then the TSO flag property should be also declared free of the
+vendor-specific conditional schema, because the driver expects the
+compatible string to have the IP-core version specified anyway and none of
+the glue-drivers refer to the property directly.
 
-If Greg wants he can queue them last minute. Else I'll apply these
-after the merge window, no big deal.
+Then we suggest to refactor the "snps,{axi,mtl-rx,mtl-tx}-config"
+properties/nodes declaration, so the configs would be able to be defined
+as the sub-nodes of the DW *MAC DT nodes. The reason is that the DW MAC
+DT-schema doesn't validate them at the moment and having them defined as
+separate from the DW MAC nodes isn't descriptive at all. (Please note the
+patch log, since the DT-schema tool needs to be fixed in order to make the
+change working).
 
-Yours,
-Linus Walleij
+Another big modification of the DW *MAC bindings file is the generic
+DT-properties and generic DT-nodes schema splitting up. So in order to
+improve the DW *MAC bindings maintainability we suggest to leave the
+generic DW *MAC properties definition in the "snps,dwmac.yaml" file and
+move the bindings for the generic DW *MAC DT-nodes validation in the
+dedicated DT-schema "snps,dwmac-generic.yaml".
+
+Another concern has been related with the System/CSR clocks. We have
+discovered that currently the "stmmaceth" clocks are considered by the
+driver as the combined system+CSR clocks, while in fact CSR interface can
+be equipped with a dedicated clock source (this is our case). If so then
+the clock with "pclk" can be used to define the later one. But neither
+bindings are descriptive enough nor the DW *MAC driver is fixed to support
+that feature. So first we suggest to elaborate stmmaceth/pclk description
+in the bindings file and then fix the MDIO-bus clock selection procedure
+so pclk would be used there if specified. The DW QoS Eth MAC driver is
+also fixed in accordance with that modification.
+
+The biggest part of the series concerns adding the generic Tx/Rx clocks
+support to the DT-schema and to the DW MAC drivers and with fixed related
+to that. It is really a good decision to add the generic Tx/Rx clocks,
+because a lot of the glue-drivers expect them to be specified in the
+DT-node. So first we add the "tx"/"rx" clocks declaration in the generic
+DW MAC DT-schema. Then the glue-drivers like
+dwmac-rk/dwmac-sti/dwmac-stm32 remove() callbacks need to be fixed to call
+stmmac_remove_config_dt() otherwise the resources allocated in the
+stmmac_probe_config_dt() won't be freed on the device removal. A small
+modification needs to be provided for the cleanup-on-failure path of the
+stmmac_probe_config_dt() method in order to improve its maintainability.
+Then we've discovered that the "stmmaceth" and "pclk" clocks while being
+acquired and enabled in the stmmac_probe_config_dt() method are disabled
+in the stmmac_dvr_remove() function, which is erroneous for every
+cleanup-on-failure path of the glue-driver probe methods. Finally before
+adding the Tx/Rx clocks support we provide a set of optimizations of the
+"stmmaceth"/"pclk"/"ptp_clk" clocks and the "stmmaceth" reset procedures
+by removing the manual optional resources acquisition/enable/disable
+implementation with the one provided by the corresponding subsystems.
+Since the generic Tx/Rx clocks have been added we can freely remove the
+similar clocks handling from the glue-drivers.
+
+(Please note I have also discovered, but didn't try to fix the Allwinner
+Sun8i cleanup-on-failure path implemented in the DW MAC probe() procedure.
+It has been broken since don't know what time and it's a bit too
+complicated to be fixed with no hardware at hands.)
+
+That's it for now. The next series will concern the GPIOs support and
+Baikal-T1 SoC specific bindings.
+
+Fixes: d2ed0a7755fe ("net: ethernet: stmmac: fix of-node and fixed-link-phydev leaks")
+Fixes: f573c0b9c4e0 ("stmmac: move stmmac_clk, pclk, clk_ptp_ref and stmmac_rst to platform structure")
+Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Cc: Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>
+Cc: Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>
+Cc: Vyacheslav Mitrofanov <Vyacheslav.Mitrofanov@baikalelectronics.ru>
+Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>
+Cc: netdev@vger.kernel.org
+Cc: linux-stm32@st-md-mailman.stormreply.com
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+
+Serge Semin (25):
+  dt-bindings: net: dwmac: Validate PBL for all IP-cores
+  dt-bindings: net: dwmac: Extend number of PBL values
+  dt-bindings: net: dwmac: Fix the TSO property declaration
+  dt-bindings: net: dwmac: Refactor snps,*-config properties
+  dt-bindings: net: dwmac: Elaborate stmmaceth/pclk description
+  dt-bindings: net: dwmac: Add Tx/Rx clock sources
+  dt-bindings: net: dwmac: Detach Generic DW MAC bindings
+  net: stmmac: Add snps,*-config sub-nodes support
+  net: stmmac: dwmac-rk: Cleanup STMMAC DT-config in remove cb
+  net: stmmac: dwmac-sti: Cleanup STMMAC DT-config in remove cb
+  net: stmmac: dwmac-stm32: Cleanup STMMAC DT-config in remove cb
+  net: stmmac: Directly call reverse methods in stmmac_probe_config_dt()
+  net: stmmac: Fix clocks left enabled on glue-probes failure
+  net: stmmac: Use optional clock request method to get stmmaceth
+  net: stmmac: Use optional clock request method to get pclk
+  net: stmmac: Use optional clock request method to get ptp_clk
+  net: stmmac: Use optional reset control API to work with stmmaceth
+  net: stmmac: dwc-qos: Cleanup STMMAC platform data clock pointers
+  net: stmmac: dwc-qos: Use dev_err_probe() for probe errors handling
+  net: stmmac: Add Tx/Rx platform clocks support
+  net: stmmac: dwc-qos: Discard Tx/Rx clocks request
+  net: stmmac: dwmac-imx: Discard Tx clock request
+  net: stmmac: Call stmmaceth clock as system clock in warn-message
+  net: stmmac: Use pclk to set MDC clock frequency
+  net: stmmac: dwc-qos: Save master/slave clocks in the plat-data
+
+ .../bindings/net/snps,dwmac-generic.yaml      | 148 +++++
+ .../devicetree/bindings/net/snps,dwmac.yaml   | 569 ++++++++++--------
+ .../stmicro/stmmac/dwmac-dwc-qos-eth.c        |  91 +--
+ .../net/ethernet/stmicro/stmmac/dwmac-imx.c   |  21 +-
+ .../net/ethernet/stmicro/stmmac/dwmac-intel.c |   2 +
+ .../net/ethernet/stmicro/stmmac/dwmac-rk.c    |   3 +
+ .../net/ethernet/stmicro/stmmac/dwmac-sti.c   |   3 +
+ .../net/ethernet/stmicro/stmmac/dwmac-stm32.c |   2 +
+ .../net/ethernet/stmicro/stmmac/stmmac_main.c |  31 +-
+ .../ethernet/stmicro/stmmac/stmmac_platform.c | 104 ++--
+ include/linux/stmmac.h                        |   2 +
+ 11 files changed, 611 insertions(+), 365 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/snps,dwmac-generic.yaml
+
+-- 
+2.29.2
+
