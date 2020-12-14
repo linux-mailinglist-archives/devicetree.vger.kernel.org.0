@@ -2,240 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7106C2DA05D
-	for <lists+devicetree@lfdr.de>; Mon, 14 Dec 2020 20:27:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D184A2DA0C7
+	for <lists+devicetree@lfdr.de>; Mon, 14 Dec 2020 20:48:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2441014AbgLNTYD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Dec 2020 14:24:03 -0500
-Received: from linux.microsoft.com ([13.77.154.182]:58452 "EHLO
-        linux.microsoft.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2440629AbgLNTUa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Dec 2020 14:20:30 -0500
-Received: from localhost.localdomain (c-73-42-176-67.hsd1.wa.comcast.net [73.42.176.67])
-        by linux.microsoft.com (Postfix) with ESMTPSA id 09A9520B7194;
-        Mon, 14 Dec 2020 11:19:12 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 09A9520B7194
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-        s=default; t=1607973552;
-        bh=QkphXWzx5fz1WuzpPcHwgIcg3+cf9Tl76X22FiGdJLM=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=HFN1aRobory2qztTVo5zA69tHeZH8OzyDVaoijxqttpQv+req1IdIkjqo1YjR+wLV
-         yi5jpKAV0UoMVYzBHSSVt7CQX18is1+P7DF3oMVrNFAV8KSl90eDdJWKWHBnwD870P
-         ntHdzk6rW99/4eUZqa/u0dpAdQh6Ov/GViq4cFQc=
-From:   Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
-To:     zohar@linux.ibm.com, bauerman@linux.ibm.com, robh@kernel.org,
-        takahiro.akashi@linaro.org, gregkh@linuxfoundation.org,
-        will@kernel.org, catalin.marinas@arm.com, mpe@ellerman.id.au
-Cc:     james.morse@arm.com, sashal@kernel.org, benh@kernel.crashing.org,
-        paulus@samba.org, frowand.list@gmail.com,
-        vincenzo.frascino@arm.com, mark.rutland@arm.com,
-        dmitry.kasatkin@gmail.com, jmorris@namei.org, serge@hallyn.com,
-        pasha.tatashin@soleen.com, allison@lohutok.net,
-        masahiroy@kernel.org, bhsharma@redhat.com, mbrugger@suse.com,
-        hsinyi@chromium.org, tao.li@vivo.com, christophe.leroy@c-s.fr,
-        prsriva@linux.microsoft.com, balajib@linux.microsoft.com,
-        linux-integrity@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [PATCH v11 8/8] arm64: Add IMA log information in kimage used for kexec
-Date:   Mon, 14 Dec 2020 11:18:54 -0800
-Message-Id: <20201214191854.9050-9-nramas@linux.microsoft.com>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20201214191854.9050-1-nramas@linux.microsoft.com>
-References: <20201214191854.9050-1-nramas@linux.microsoft.com>
+        id S2502739AbgLNTro (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Dec 2020 14:47:44 -0500
+Received: from mail.kernel.org ([198.145.29.99]:41358 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2502651AbgLNTre (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 14 Dec 2020 14:47:34 -0500
+X-Gm-Message-State: AOAM531DRRlvufKRAOkXba7tZfqH6G/poFFbg9eiAZpAEmvJi4CszD4r
+        X9alM2ON5MwaHJ8YEAbuDjsaBjJv6+Q6+rCokEQ=
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1607975211;
+        bh=iceNd6VKbkYU3nfVma/61jZjDtVc/NaK9/C3nnbBU+s=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=YqOE4WkisE4n/EA2GnnXtjTtyvTCfho3/J/05vyZ2nsT70AO7ql79KlyA+i9606SD
+         MPbennpTkRpYhfCT4z6VX4rxQUjPy41QhfJw1LjEGnvKwZGUl6rZsD1g9BkV9vZSo8
+         zE5OsIeE0JwN9Tw2mq4leC/p106L+/+Tjg8/7uHzVx9VhBOX27Bs/ttvos1NBncu6j
+         9IadRHjAqDuVuKAzQrW0sWXCgdK63OXRkorda7DMTE58Fr43Fc1a6+2WBZ0712/eD/
+         kJwTdG3dLLiOn7UqIPp2EFThm+2sfSZyb7U6NrvN62Nwgbj/wUsZ6lelV03cLqFhQC
+         ZEfAsgGEclKTQ==
+X-Google-Smtp-Source: ABdhPJzYGX1MMWPJFOHz30xp0aU5ph8u4S7t+0cxYtTT/8ErnPkWs3IM3N63LP5Kxy3d1xhce/zozUnaGS1ftZEokd4=
+X-Received: by 2002:aca:3b41:: with SMTP id i62mr4305679oia.67.1607975210247;
+ Mon, 14 Dec 2020 11:46:50 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20201016090833.1892-1-thunder.leizhen@huawei.com>
+ <20201016090833.1892-2-thunder.leizhen@huawei.com> <20201128045328.2411772-1-f.fainelli@gmail.com>
+ <CAK8P3a1_5RgcPz+bgo1bbUBk8NTJd=1-Y5-=CsQYkFgLfTE3_A@mail.gmail.com> <9c6c6b7e-8c39-8c49-5c87-9b560c027841@broadcom.com>
+In-Reply-To: <9c6c6b7e-8c39-8c49-5c87-9b560c027841@broadcom.com>
+From:   Arnd Bergmann <arnd@kernel.org>
+Date:   Mon, 14 Dec 2020 20:46:33 +0100
+X-Gmail-Original-Message-ID: <CAK8P3a2XYk8D80XARrpUSBHk1yye3KHXOdaQge4HNSZZOC=xKw@mail.gmail.com>
+Message-ID: <CAK8P3a2XYk8D80XARrpUSBHk1yye3KHXOdaQge4HNSZZOC=xKw@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] arm64: dts: broadcom: clear the warnings caused by
+ empty dma-ranges
+To:     Ray Jui <ray.jui@broadcom.com>
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Scott Branden <sbranden@broadcom.com>,
+        Ray Jui <rjui@broadcom.com>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
+        Zhen Lei <thunder.leizhen@huawei.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Bharat Gooty <bharat.gooty@broadcom.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Address and size of the buffer containing the IMA measurement log need
-to be passed from the current kernel to the next kernel on kexec.
+On Mon, Dec 14, 2020 at 8:09 PM Ray Jui <ray.jui@broadcom.com> wrote:
+> On 11/28/2020 1:58 AM, Arnd Bergmann wrote:
+> > On Sat, Nov 28, 2020 at 5:53 AM Florian Fainelli <f.fainelli@gmail.com> wrote:
+> >>
+> >> On Fri, 16 Oct 2020 17:08:32 +0800, Zhen Lei <thunder.leizhen@huawei.com> wrote:
+> >>> The scripts/dtc/checks.c requires that the node have empty "dma-ranges"
+> >>> property must have the same "#address-cells" and "#size-cells" values as
+> >>> the parent node. Otherwise, the following warnings is reported:
+> >>>
+> >>> arch/arm64/boot/dts/broadcom/stingray/stingray-usb.dtsi:7.3-14: Warning \
+> >>> (dma_ranges_format): /usb:dma-ranges: empty "dma-ranges" property but \
+> >>> its #address-cells (1) differs from / (2)
+> >>> arch/arm64/boot/dts/broadcom/stingray/stingray-usb.dtsi:7.3-14: Warning \
+> >>> (dma_ranges_format): /usb:dma-ranges: empty "dma-ranges" property but \
+> >>> its #size-cells (1) differs from / (2)
+> >>>
+> >>> Arnd Bergmann figured out why it's necessary:
+> >>> Also note that the #address-cells=<1> means that any device under
+> >>> this bus is assumed to only support 32-bit addressing, and DMA will
+> >>> have to go through a slow swiotlb in the absence of an IOMMU.
+> >>>
+> >>> Suggested-by: Arnd Bergmann <arnd@arndb.de>
+> >>> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
+> >>> ---
+> >>
+> >> Applied to devicetree-arm64/next, thanks!
+> >
+> > The notification may have gone missing, but I had merged it into v5.10-fixes
+> > already, and as of today, it's in mainline, so you can drop it from your
+> > next branch, or just leave it in if you want to avoid taking things out of
+> > your tree.
+>
+> It looks like this patch might have caused a regression on Stingray USB.
+> Bharat, could you please confirm?
 
-Any existing "linux,ima-kexec-buffer" property in the device tree
-needs to be removed and its corresponding memory reservation in
-the currently running kernel needs to be freed. The address and
-size of the current kernel's IMA measurement log need to be added
-to the device tree's IMA kexec buffer node and memory for the buffer
-needs to be reserved for the log to be carried over to the next kernel
-on the kexec call.
+Well, this is what I had asked about originally, I assumed that
+Florian had asked someone with access to the datasheet.
 
-Add address and size fields to "struct kimage_arch" for ARM64 platform
-to hold the address and size of the IMA measurement log buffer. Remove
-any existing "linux,ima-kexec-buffer" property in the device tree and
-free the corresponding memory reservation in the currently running
-kernel. Add "linux,ima-kexec-buffer" property to the device tree and
-reserve the memory for storing the IMA log that needs to be passed from
-the current kernel to the next one.
+> The fix would be to properly define the dma-ranges to be 32-bit (0x0 ~
+> 0xffffffff) since IOMMU is disabled on this device and the device's DMA
+> engine is on a 32-bit bus.
 
-Update CONFIG_KEXEC_FILE to select CONFIG_HAVE_IMA_KEXEC to indicate
-that the IMA measurement log information is present in the device tree
-for ARM64.
+That's not how dma-ranges work, they tell you what the capabilities
+of the bus are, while the capabilities of the device are identified by
+the properties of that device.
 
-Co-developed-by: Prakhar Srivastava <prsriva@linux.microsoft.com>
-Signed-off-by: Prakhar Srivastava <prsriva@linux.microsoft.com>
-Signed-off-by: Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
----
- arch/arm64/Kconfig                     |  1 +
- arch/arm64/include/asm/ima.h           | 24 +++++++++++++
- arch/arm64/include/asm/kexec.h         |  5 +++
- arch/arm64/kernel/Makefile             |  1 +
- arch/arm64/kernel/ima.c                | 49 ++++++++++++++++++++++++++
- arch/arm64/kernel/machine_kexec_file.c |  8 +++++
- 6 files changed, 88 insertions(+)
- create mode 100644 arch/arm64/include/asm/ima.h
- create mode 100644 arch/arm64/kernel/ima.c
+The device claims to be compatible with "generic-xhci", so the
+driver asks for a 64-bit mask to be set according to the xhci
+specification. If this device is not xhci compliant, then it should
+not ask for a 64-bit mask.
 
-diff --git a/arch/arm64/Kconfig b/arch/arm64/Kconfig
-index 1d466addb078..c85d18b1f2fd 100644
---- a/arch/arm64/Kconfig
-+++ b/arch/arm64/Kconfig
-@@ -1094,6 +1094,7 @@ config KEXEC
- config KEXEC_FILE
- 	bool "kexec file based system call"
- 	select KEXEC_CORE
-+	select HAVE_IMA_KEXEC
- 	help
- 	  This is new version of kexec system call. This system call is
- 	  file based and takes file descriptors as system call argument
-diff --git a/arch/arm64/include/asm/ima.h b/arch/arm64/include/asm/ima.h
-new file mode 100644
-index 000000000000..8b105157e55f
---- /dev/null
-+++ b/arch/arm64/include/asm/ima.h
-@@ -0,0 +1,24 @@
-+/* SPDX-License-Identifier: GPL-2.0-or-later */
-+/*
-+ * Copyright (C) 2020 Microsoft Corporation
-+ *
-+ * Author: Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
-+ *
-+ */
-+#ifndef _ASM_ARCH_IMA_H
-+#define _ASM_ARCH_IMA_H
-+
-+#include <linux/of.h>
-+
-+#ifdef CONFIG_IMA_KEXEC
-+int setup_ima_buffer(const struct kimage *image, void *dtb, int off);
-+#else
-+static inline int setup_ima_buffer(const struct kimage *image, void *dtb,
-+				   int off)
-+{
-+	remove_ima_buffer(dtb, off);
-+	return 0;
-+}
-+#endif /* CONFIG_IMA_KEXEC */
-+
-+#endif /* _ASM_ARCH_IMA_H */
-diff --git a/arch/arm64/include/asm/kexec.h b/arch/arm64/include/asm/kexec.h
-index d24b527e8c00..2bd19ccb6c43 100644
---- a/arch/arm64/include/asm/kexec.h
-+++ b/arch/arm64/include/asm/kexec.h
-@@ -100,6 +100,11 @@ struct kimage_arch {
- 	void *elf_headers;
- 	unsigned long elf_headers_mem;
- 	unsigned long elf_headers_sz;
-+
-+#ifdef CONFIG_IMA_KEXEC
-+	phys_addr_t ima_buffer_addr;
-+	size_t ima_buffer_size;
-+#endif
- };
- 
- extern const struct kexec_file_ops kexec_image_ops;
-diff --git a/arch/arm64/kernel/Makefile b/arch/arm64/kernel/Makefile
-index bbaf0bc4ad60..da83f1b3367e 100644
---- a/arch/arm64/kernel/Makefile
-+++ b/arch/arm64/kernel/Makefile
-@@ -60,6 +60,7 @@ obj-$(CONFIG_ARM_SDE_INTERFACE)		+= sdei.o
- obj-$(CONFIG_ARM64_PTR_AUTH)		+= pointer_auth.o
- obj-$(CONFIG_SHADOW_CALL_STACK)		+= scs.o
- obj-$(CONFIG_ARM64_MTE)			+= mte.o
-+obj-$(CONFIG_IMA_KEXEC)			+= ima.o
- 
- obj-y					+= vdso/ probes/
- obj-$(CONFIG_COMPAT_VDSO)		+= vdso32/
-diff --git a/arch/arm64/kernel/ima.c b/arch/arm64/kernel/ima.c
-new file mode 100644
-index 000000000000..fa7a1dbae183
---- /dev/null
-+++ b/arch/arm64/kernel/ima.c
-@@ -0,0 +1,49 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ * Copyright (C) 2020 Microsoft Corporation
-+ *
-+ * Author: Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
-+ *
-+ */
-+
-+#include <linux/kexec.h>
-+#include <linux/of.h>
-+#include <linux/libfdt.h>
-+#include <asm/ima.h>
-+
-+/**
-+ * setup_ima_buffer - add IMA buffer information to the fdt
-+ *
-+ * @image:	kexec image being loaded.
-+ * @dtb:	Flattened device tree for the next kernel.
-+ * @off:	Offset to the chosen node.
-+ *
-+ * Return: 0 on success, or negative errno on error.
-+ */
-+int setup_ima_buffer(const struct kimage *image, void *dtb, int off)
-+{
-+	int ret = 0;
-+
-+	remove_ima_buffer(dtb, off);
-+
-+	/* add ima-kexec-buffer */
-+	if (image->arch.ima_buffer_size > 0) {
-+		ret = fdt_appendprop_addrrange(dtb, 0, off,
-+					       "linux,ima-kexec-buffer",
-+					       image->arch.ima_buffer_addr,
-+					       image->arch.ima_buffer_size);
-+		if (ret) {
-+			ret = (ret == -FDT_ERR_NOSPACE ? -ENOMEM : -EINVAL);
-+			goto out;
-+		}
-+
-+		ret = fdt_add_mem_rsv(dtb, image->arch.ima_buffer_addr,
-+				      image->arch.ima_buffer_size);
-+	}
-+
-+out:
-+	if (ret)
-+		pr_err("Error setting up ima buffer in device tree.\n");
-+
-+	return ret;
-+}
-diff --git a/arch/arm64/kernel/machine_kexec_file.c b/arch/arm64/kernel/machine_kexec_file.c
-index 3e045cd62451..37a528aca780 100644
---- a/arch/arm64/kernel/machine_kexec_file.c
-+++ b/arch/arm64/kernel/machine_kexec_file.c
-@@ -21,6 +21,7 @@
- #include <linux/string.h>
- #include <linux/types.h>
- #include <linux/vmalloc.h>
-+#include <asm/ima.h>
- 
- const struct kexec_file_ops * const kexec_file_loaders[] = {
- 	&kexec_image_ops,
-@@ -83,6 +84,13 @@ static int create_dtb(struct kimage *image,
- 			}
- 		}
- 
-+		ret = setup_ima_buffer(image, buf,
-+				       fdt_path_offset(buf, "/chosen"));
-+		if (ret) {
-+			vfree(buf);
-+			return ret;
-+		}
-+
- 		/* trim it */
- 		fdt_pack(buf);
- 		*dtb = buf;
--- 
-2.29.2
+However, if this is a 64-bit capable bus master on a 32-bit bus,
+then the dma-ranges property should list the capabilities of the
+bus, so the kernel can force the driver to fall back to 32-bit addressing.
 
+      Arnd
