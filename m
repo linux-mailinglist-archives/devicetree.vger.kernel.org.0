@@ -2,490 +2,563 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 220A02D9E94
-	for <lists+devicetree@lfdr.de>; Mon, 14 Dec 2020 19:09:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A24792D9F1C
+	for <lists+devicetree@lfdr.de>; Mon, 14 Dec 2020 19:35:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2440639AbgLNSIx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Dec 2020 13:08:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50750 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2440637AbgLNSIu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Dec 2020 13:08:50 -0500
-Received: from mail-lf1-x143.google.com (mail-lf1-x143.google.com [IPv6:2a00:1450:4864:20::143])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62D58C061794;
-        Mon, 14 Dec 2020 10:08:09 -0800 (PST)
-Received: by mail-lf1-x143.google.com with SMTP id o19so6844546lfo.1;
-        Mon, 14 Dec 2020 10:08:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=xboIL5/mBfOdxGSP39jMm+BFzzRvUU9QIoaNcHU+zr4=;
-        b=L8jp/HY00AKkS80PbWYdsv8fNjCkNkGofPvGUQ68XsVPTTDgXQDU20n29ROa3rYKqd
-         8fI7waXl8GlYFAIebCve+OjCcu06BfPmc3NK1Q2lpI38QRXA0c0pZKUa+Gz5yohpiZsC
-         bmY1iaNIukplY6pIT3OB0RSomLVQqdgJnRnOZBNlCNNbLv9R2QdYzimsgnvUjR1bfwLm
-         8vTgtMKuRReMBHPfftePLU2Cwu3fl7JBZiJEi+k/Prg3aFUUCknpH6gv+JsgGUHrAud4
-         EYy0O2UvZ4NMhmzh/1ZLisBk4dzhbMZWMJW4DCtEFdTOn1NiYHLq1mZuk3wTw7Y6Foom
-         Nc3g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=xboIL5/mBfOdxGSP39jMm+BFzzRvUU9QIoaNcHU+zr4=;
-        b=NCTS4xAhv9euP+GxxKatZc300uGOL1SErbm0VxMoV4K/bjiXVrvXSdiiFfG4gy9ZMa
-         MbegT+3kSfK588QlVO1eWHkra8dwuIDdZnzRtIgUdwvxlc7DhjPiCFix4MxlOx1KyEvY
-         7YjnZGk492wz0U/Wi9hhBgSWtXNqN4zMHMhD7heWyGb8jmNlGSYWbg4yn1ZkZME6fjXQ
-         c7akkB8XSMNGp0Na8NjdTm5MXSGsMoGNs5TbTxdMj2g4zUU4GJwl78hlmc3KYGkqAGmH
-         wmzXKDUibA0ZRBsO8ioyal3KrarNum8HQCIgU8/FOx5Fhl8OpukTD9ewCoo776k97fSX
-         09Jw==
-X-Gm-Message-State: AOAM530UfDFhp5iz6u2slMZG7k4rA1Is/rwIMG83A1G75ec9rIKxOHV7
-        kmgreNpSTjfgR4Yunf1WUC4=
-X-Google-Smtp-Source: ABdhPJxSMHGK+xsNaHWa5q5P/Hf/oliIoFxbF0Gx6RA6U8iFiJmiYbLL8Q1o7iAdc63s/Qg1j2FGYQ==
-X-Received: by 2002:a2e:898a:: with SMTP id c10mr8607436lji.241.1607969287199;
-        Mon, 14 Dec 2020 10:08:07 -0800 (PST)
-Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.gmail.com with ESMTPSA id t26sm2422349ljo.16.2020.12.14.10.08.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Dec 2020 10:08:06 -0800 (PST)
-From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To:     Florian Fainelli <f.fainelli@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
-        "Rafael J . Wysocki" <rjw@rjwysocki.net>,
-        Kevin Hilman <khilman@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        devicetree@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com,
-        linux-kernel@vger.kernel.org,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH V2 2/2] soc: bcm: add PM driver for Broadcom's PMB
-Date:   Mon, 14 Dec 2020 19:07:43 +0100
-Message-Id: <20201214180743.14584-3-zajec5@gmail.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20201214180743.14584-1-zajec5@gmail.com>
-References: <20201214180743.14584-1-zajec5@gmail.com>
+        id S2440915AbgLNSeZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Dec 2020 13:34:25 -0500
+Received: from mout.gmx.net ([212.227.15.15]:36035 "EHLO mout.gmx.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2440902AbgLNSeX (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 14 Dec 2020 13:34:23 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1607970747;
+        bh=a/vukGu8AzXqd21toKVuSDutKwf+6bo7H9J/lsrzujA=;
+        h=X-UI-Sender-Class:Subject:To:Cc:References:From:Date:In-Reply-To;
+        b=hj/j844JKduc6JEborqskl6YuFWpkW7p2JJOsTqKEb6WpG8Lrtf6UnsPDeHGoLmm2
+         JtGHMk/Zo2j80WPBenAsKvM2QcVoIIjvJT1gXJg6U3KSeA8HmWaE74d3U0aVDxkJKq
+         jEN5mGi0rxDNGdwlhRN9YS+ZJqWbSJhMe4QS3ut8=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from [192.168.178.44] ([95.91.192.147]) by mail.gmx.com (mrgmx005
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1Mqb1W-1kJvX11nGK-00mXmp; Mon, 14
+ Dec 2020 19:32:27 +0100
+Subject: Re: [PATCH v3 1/4] spi: LS7A: Add Loongson LS7A SPI controller driver
+ support
+To:     Qing Zhang <zhangqing@loongson.cn>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+Cc:     linux-spi@vger.kernel.org, Huacai Chen <chenhc@lemote.com>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Juxin Gao <gaojuxin@loongson.cn>,
+        ", Du Huanpeng" <u74147@gmail.com>
+References: <1607925534-8312-1-git-send-email-zhangqing@loongson.cn>
+From:   Oleksij Rempel <linux@rempel-privat.de>
+Message-ID: <a6d39f0c-67b1-e518-d493-7b17128c2b06@rempel-privat.de>
+Date:   Mon, 14 Dec 2020 19:32:25 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.5.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <1607925534-8312-1-git-send-email-zhangqing@loongson.cn>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:T1HgYA5I1LtP8QnADaLGEucsnwJNYzY8j3Kyv7MhoO9lp38DKxp
+ /XAoYPXm4l+KGhST4BtMBGNn/NiuXKmXtVFtVVUGVoI8K5aAyCcyZF5zMghvr6q9PUupk5v
+ BsfOIajuAGFegPmn+W++CJ9iG01TCMeNvHIYbvxtCaQjh/BjroMJ1hcg0fpAAQapLr6cKhF
+ 4nHzLtLCZhqyeqIxiOQvQ==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:Mnut7DALhk8=:3yKgbCEJp68Lil5F3VS9+p
+ U4/MSakC0gM9L/JS4DDDmpepQZvjU7KExmj1AY3WLz255lO6ahO3yZsvEC/ncSl/eeIM5ZPjr
+ hZMxceZ+BXtbFoBikpmgztLIb05XG2IIhux4Oj+JLMWsrF/txK+5DX7+u7JR7AlB0FDUeJWp1
+ 1X3tCH13cp6U+Q+67pSPLtSexjLIkxx1KAM6q2JTSjzYi6J0w2ddPqKuZiU3252iXqpxqAgFs
+ spKAgkcv2/WeLJsPaiTKTI3u1iKHPgSPb2VThezbqIpdz1hxVXdyxR60X2jebjbBNdJJV4MJV
+ Qp/3GuJRtom6vdP5mYLGLt6ELku5wRefNNN++lN3hmdlDu8fGNbx0a1qlo9Hxc/0++GFFnG2n
+ c9hMpYJpkjU/JuSFJb2UzjUdxsbbqdedvVhXZubI6hKBkAUFRdtjQX6vJh1N4UV2qEmHWDAOh
+ iCgxJ+ug0TCHOi2GWeO4mhFBdWTINhQxo1UQaz9+RTCzyh28G8X1RAaDBWGjpc1WFrMqM2TpT
+ RnyWphTBDPJNrEG2212Hxvl4nCRufksXNY0uLK9NkzAfYJOA8kwSdUhxWSBxj0aME5nnGR9n4
+ KWwUlbGEUEPkYINYg5dNlPZXa599LNmoDmIf9m9wtpOqnv68dT8ZmxvszakTuJ/J9XUQW8it9
+ ARVwjXj37gS+h0uJ3tTydbKXEMF+AUK3eHnhPjfpD+U581a3a7GWYfyjBSeTp/rjwkDeiARFO
+ y4WWQN2nENHjbP3bYXAD8+qDLj6qOzATqznyeXs0FA31m8M247PsZeWNEcgKxrkwuUUo1V1i5
+ dd4L/Ezufl7RCa9BengKFnD3kVf1JdWc9UUbjYnJPfS1B2tPhieLhStgY0bUE7VIRwJQ+OZal
+ e1XVdizjPuk336+fE1yg==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rafał Miłecki <rafal@milecki.pl>
+Hi
 
-PMB originally comes from BCM63138 but can be also found on many other
-chipsets (e.g. BCM4908). It's needed to power on and off SoC blocks like
-PCIe, SATA, USB.
+After quick search I found (nearly?) identical SPI controller on many
+other Loongson products. For example: ls1b, ls2k, 3A4000, etc...
+Probably it will help you to make right decisions now, if you compare
+this docs:
+http://www.loongson.cn/product/
 
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
----
-V2: Use drivers/soc/bcm/bcm63xx/
-    Add help to the config BCM_PMB
-    Drop debugging print
----
- MAINTAINERS                       |  10 +
- drivers/soc/bcm/Makefile          |   2 +-
- drivers/soc/bcm/bcm63xx/Kconfig   |   9 +
- drivers/soc/bcm/bcm63xx/Makefile  |   1 +
- drivers/soc/bcm/bcm63xx/bcm-pmb.c | 333 ++++++++++++++++++++++++++++++
- 5 files changed, 354 insertions(+), 1 deletion(-)
- create mode 100644 drivers/soc/bcm/bcm63xx/bcm-pmb.c
+Am 14.12.20 um 06:58 schrieb Qing Zhang:
+> The SPI controller has the following characteristics:
+>
+> - Full-duplex synchronous serial data transmission
+> - Support up to 4 variable length byte transmission
+> - Main mode support
+> - Mode failure generates an error flag and issues an interrupt request
+> - Double buffer receiver
+> - Serial clock with programmable polarity and phase
+> - SPI can be controlled in wait mode
+> - Support boot from SPI
+>
+> Use mtd_debug tool to earse/write/read /dev/mtd0 on development.
+>
+> eg:
+>
+> [root@linux mtd-utils-1.0.0]# mtd_debug erase /dev/mtd0 0x20000 0x40000
+> Erased 262144 bytes from address 0x00020000 in flash
+> [root@linux mtd-utils-1.0.0]# mtd_debug write /dev/mtd0 0x20000 13 1.img
+> Copied 13 bytes from 1.img to address 0x00020000 in flash
+> [root@linux mtd-utils-1.0.0]# mtd_debug read /dev/mtd0 0x20000 13 2.img
+> Copied 13 bytes from address 0x00020000 in flash to 2.img
+> [root@linux mtd-utils-1.0.0]# cmp -l 1.img 2.img
+>
+> Signed-off-by: Juxin Gao <gaojuxin@loongson.cn>
+> Signed-off-by: Qing Zhang <zhangqing@loongson.cn>
+> ---
+>
+> v2:
+> - keep Kconfig and Makefile sorted
+> - make the entire comment a C++ one so things look more intentional
+> - Fix unclear indentation
+> - make conditional statements to improve legibility
+> - Don't use static inline
+> - the core handle message queue
+> - Add a new binding document
+> - Fix probe part mixed pdev and PCI
+>
+> v3:
+> - expose set_cs to the core and let it handle things
+> - replace transfer_one_message to transfer_one
+> - replace spi_alloc_master to devm_spi_alloc_master
+> - split out into prepare/unprepare_message
+> - releases pci regions before unregister master
+>
+> ---
+>  drivers/spi/Kconfig    |   7 ++
+>  drivers/spi/Makefile   |   1 +
+>  drivers/spi/spi-ls7a.c | 293 ++++++++++++++++++++++++++++++++++++++++++=
++++++++
+>  3 files changed, 301 insertions(+)
+>  create mode 100644 drivers/spi/spi-ls7a.c
+>
+> diff --git a/drivers/spi/Kconfig b/drivers/spi/Kconfig
+> index aadaea0..af7c0d4 100644
+> --- a/drivers/spi/Kconfig
+> +++ b/drivers/spi/Kconfig
+> @@ -413,6 +413,13 @@ config SPI_LP8841_RTC
+>  	  Say N here unless you plan to run the kernel on an ICP DAS
+>  	  LP-8x4x industrial computer.
+>
+> +config SPI_LS7A
+> +	tristate "Loongson LS7A SPI Controller Support"
+> +	depends on CPU_LOONGSON64 || COMPILE_TEST
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index e73636b75f29..75140f0d1541 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -3656,6 +3656,16 @@ L:	linux-mips@vger.kernel.org
- S:	Maintained
- F:	drivers/firmware/broadcom/*
- 
-+BROADCOM PMB (POWER MANAGEMENT BUS) DRIVER
-+M:	Rafał Miłecki <rafal@milecki.pl>
-+M:	Florian Fainelli <f.fainelli@gmail.com>
-+M:	bcm-kernel-feedback-list@broadcom.com
-+L:	linux-pm@vger.kernel.org
-+S:	Maintained
-+T:	git git://github.com/broadcom/stblinux.git
-+F:	drivers/soc/bcm/bcm-pmb.c
-+F:	include/dt-bindings/soc/bcm-pmb.h
-+
- BROADCOM SPECIFIC AMBA DRIVER (BCMA)
- M:	Rafał Miłecki <zajec5@gmail.com>
- L:	linux-wireless@vger.kernel.org
-diff --git a/drivers/soc/bcm/Makefile b/drivers/soc/bcm/Makefile
-index 7bc90e0bd773..0f0efa28d92b 100644
---- a/drivers/soc/bcm/Makefile
-+++ b/drivers/soc/bcm/Makefile
-@@ -1,5 +1,5 @@
- # SPDX-License-Identifier: GPL-2.0-only
- obj-$(CONFIG_BCM2835_POWER)	+= bcm2835-power.o
- obj-$(CONFIG_RASPBERRYPI_POWER)	+= raspberrypi-power.o
--obj-$(CONFIG_SOC_BCM63XX)	+= bcm63xx/
-+obj-y				+= bcm63xx/
- obj-$(CONFIG_SOC_BRCMSTB)	+= brcmstb/
-diff --git a/drivers/soc/bcm/bcm63xx/Kconfig b/drivers/soc/bcm/bcm63xx/Kconfig
-index 16f648a6c70a..9e501c8ac5ce 100644
---- a/drivers/soc/bcm/bcm63xx/Kconfig
-+++ b/drivers/soc/bcm/bcm63xx/Kconfig
-@@ -10,3 +10,12 @@ config BCM63XX_POWER
- 	  BCM6318, BCM6328, BCM6362 and BCM63268 SoCs.
- 
- endif # SOC_BCM63XX
-+
-+config BCM_PMB
-+	bool "Broadcom PMB (Power Management Bus) driver"
-+	depends on ARCH_BCM4908 || (COMPILE_TEST && OF)
-+	default ARCH_BCM4908
-+	select PM_GENERIC_DOMAINS if PM
-+	help
-+	  This enables support for the Broadcom's PMB (Power Management Bus) that
-+	  is used for disabling and enabling SoC devices.
-diff --git a/drivers/soc/bcm/bcm63xx/Makefile b/drivers/soc/bcm/bcm63xx/Makefile
-index 0710d5e018cc..557eed3d67bd 100644
---- a/drivers/soc/bcm/bcm63xx/Makefile
-+++ b/drivers/soc/bcm/bcm63xx/Makefile
-@@ -1,2 +1,3 @@
- # SPDX-License-Identifier: GPL-2.0-only
- obj-$(CONFIG_BCM63XX_POWER) += bcm63xx-power.o
-+obj-$(CONFIG_BCM_PMB)		+= bcm-pmb.o
-diff --git a/drivers/soc/bcm/bcm63xx/bcm-pmb.c b/drivers/soc/bcm/bcm63xx/bcm-pmb.c
-new file mode 100644
-index 000000000000..c223023dc64f
---- /dev/null
-+++ b/drivers/soc/bcm/bcm63xx/bcm-pmb.c
-@@ -0,0 +1,333 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ * Copyright (c) 2013 Broadcom
-+ * Copyright (C) 2020 Rafał Miłecki <rafal@milecki.pl>
-+ */
-+
-+#include <dt-bindings/soc/bcm-pmb.h>
-+#include <linux/io.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/of_device.h>
-+#include <linux/platform_device.h>
-+#include <linux/pm_domain.h>
-+#include <linux/reset/bcm63xx_pmb.h>
-+
-+#define BPCM_ID_REG					0x00
-+#define BPCM_CAPABILITIES				0x04
-+#define  BPCM_CAP_NUM_ZONES				0x000000ff
-+#define  BPCM_CAP_SR_REG_BITS				0x0000ff00
-+#define  BPCM_CAP_PLLTYPE				0x00030000
-+#define  BPCM_CAP_UBUS					0x00080000
-+#define BPCM_CONTROL					0x08
-+#define BPCM_STATUS					0x0c
-+#define BPCM_ROSC_CONTROL				0x10
-+#define BPCM_ROSC_THRESH_H				0x14
-+#define BPCM_ROSC_THRESHOLD_BCM6838			0x14
-+#define BPCM_ROSC_THRESH_S				0x18
-+#define BPCM_ROSC_COUNT_BCM6838				0x18
-+#define BPCM_ROSC_COUNT					0x1c
-+#define BPCM_PWD_CONTROL_BCM6838			0x1c
-+#define BPCM_PWD_CONTROL				0x20
-+#define BPCM_SR_CONTROL_BCM6838				0x20
-+#define BPCM_PWD_ACCUM_CONTROL				0x24
-+#define BPCM_SR_CONTROL					0x28
-+#define BPCM_GLOBAL_CONTROL				0x2c
-+#define BPCM_MISC_CONTROL				0x30
-+#define BPCM_MISC_CONTROL2				0x34
-+#define BPCM_SGPHY_CNTL					0x38
-+#define BPCM_SGPHY_STATUS				0x3c
-+#define BPCM_ZONE0					0x40
-+#define  BPCM_ZONE_CONTROL				0x00
-+#define   BPCM_ZONE_CONTROL_MANUAL_CLK_EN		0x00000001
-+#define   BPCM_ZONE_CONTROL_MANUAL_RESET_CTL		0x00000002
-+#define   BPCM_ZONE_CONTROL_FREQ_SCALE_USED		0x00000004	/* R/O */
-+#define   BPCM_ZONE_CONTROL_DPG_CAPABLE			0x00000008	/* R/O */
-+#define   BPCM_ZONE_CONTROL_MANUAL_MEM_PWR		0x00000030
-+#define   BPCM_ZONE_CONTROL_MANUAL_ISO_CTL		0x00000040
-+#define   BPCM_ZONE_CONTROL_MANUAL_CTL			0x00000080
-+#define   BPCM_ZONE_CONTROL_DPG_CTL_EN			0x00000100
-+#define   BPCM_ZONE_CONTROL_PWR_DN_REQ			0x00000200
-+#define   BPCM_ZONE_CONTROL_PWR_UP_REQ			0x00000400
-+#define   BPCM_ZONE_CONTROL_MEM_PWR_CTL_EN		0x00000800
-+#define   BPCM_ZONE_CONTROL_BLK_RESET_ASSERT		0x00001000
-+#define   BPCM_ZONE_CONTROL_MEM_STBY			0x00002000
-+#define   BPCM_ZONE_CONTROL_RESERVED			0x0007c000
-+#define   BPCM_ZONE_CONTROL_PWR_CNTL_STATE		0x00f80000
-+#define   BPCM_ZONE_CONTROL_FREQ_SCALAR_DYN_SEL		0x01000000	/* R/O */
-+#define   BPCM_ZONE_CONTROL_PWR_OFF_STATE		0x02000000	/* R/O */
-+#define   BPCM_ZONE_CONTROL_PWR_ON_STATE		0x04000000	/* R/O */
-+#define   BPCM_ZONE_CONTROL_PWR_GOOD			0x08000000	/* R/O */
-+#define   BPCM_ZONE_CONTROL_DPG_PWR_STATE		0x10000000	/* R/O */
-+#define   BPCM_ZONE_CONTROL_MEM_PWR_STATE		0x20000000	/* R/O */
-+#define   BPCM_ZONE_CONTROL_ISO_STATE			0x40000000	/* R/O */
-+#define   BPCM_ZONE_CONTROL_RESET_STATE			0x80000000	/* R/O */
-+#define  BPCM_ZONE_CONFIG1				0x04
-+#define  BPCM_ZONE_CONFIG2				0x08
-+#define  BPCM_ZONE_FREQ_SCALAR_CONTROL			0x0c
-+#define  BPCM_ZONE_SIZE					0x10
-+
-+struct bcm_pmb {
-+	struct device *dev;
-+	void __iomem *base;
-+	spinlock_t lock;
-+	bool little_endian;
-+	struct genpd_onecell_data genpd_onecell_data;
-+};
-+
-+struct bcm_pmb_pd_data {
-+	const char * const name;
-+	int id;
-+	u8 bus;
-+	u8 device;
-+};
-+
-+struct bcm_pmb_pm_domain {
-+	struct bcm_pmb *pmb;
-+	const struct bcm_pmb_pd_data *data;
-+	struct generic_pm_domain genpd;
-+};
-+
-+static int bcm_pmb_bpcm_read(struct bcm_pmb *pmb, int bus, u8 device,
-+			     int offset, u32 *val)
-+{
-+	void __iomem *base = pmb->base + bus * 0x20;
-+	unsigned long flags;
-+	int err;
-+
-+	spin_lock_irqsave(&pmb->lock, flags);
-+	err = bpcm_rd(base, device, offset, val);
-+	spin_unlock_irqrestore(&pmb->lock, flags);
-+
-+	if (!err)
-+		*val = pmb->little_endian ? le32_to_cpu(*val) : be32_to_cpu(*val);
-+
-+	return err;
-+}
-+
-+static int bcm_pmb_bpcm_write(struct bcm_pmb *pmb, int bus, u8 device,
-+			      int offset, u32 val)
-+{
-+	void __iomem *base = pmb->base + bus * 0x20;
-+	unsigned long flags;
-+	int err;
-+
-+	val = pmb->little_endian ? cpu_to_le32(val) : cpu_to_be32(val);
-+
-+	spin_lock_irqsave(&pmb->lock, flags);
-+	err = bpcm_wr(base, device, offset, val);
-+	spin_unlock_irqrestore(&pmb->lock, flags);
-+
-+	return err;
-+}
-+
-+static int bcm_pmb_power_off_zone(struct bcm_pmb *pmb, int bus, u8 device,
-+				  int zone)
-+{
-+	int offset;
-+	u32 val;
-+	int err;
-+
-+	offset = BPCM_ZONE0 + zone * BPCM_ZONE_SIZE + BPCM_ZONE_CONTROL;
-+
-+	err = bcm_pmb_bpcm_read(pmb, bus, device, offset, &val);
-+	if (err)
-+		return err;
-+
-+	val |= BPCM_ZONE_CONTROL_PWR_DN_REQ;
-+	val &= ~BPCM_ZONE_CONTROL_PWR_UP_REQ;
-+
-+	err = bcm_pmb_bpcm_write(pmb, bus, device, offset, val);
-+
-+	return err;
-+}
-+
-+static int bcm_pmb_power_on_zone(struct bcm_pmb *pmb, int bus, u8 device,
-+				 int zone)
-+{
-+	int offset;
-+	u32 val;
-+	int err;
-+
-+	offset = BPCM_ZONE0 + zone * BPCM_ZONE_SIZE + BPCM_ZONE_CONTROL;
-+
-+	err = bcm_pmb_bpcm_read(pmb, bus, device, offset, &val);
-+	if (err)
-+		return err;
-+
-+	if (!(val & BPCM_ZONE_CONTROL_PWR_ON_STATE)) {
-+		val &= ~BPCM_ZONE_CONTROL_PWR_DN_REQ;
-+		val |= BPCM_ZONE_CONTROL_DPG_CTL_EN;
-+		val |= BPCM_ZONE_CONTROL_PWR_UP_REQ;
-+		val |= BPCM_ZONE_CONTROL_MEM_PWR_CTL_EN;
-+		val |= BPCM_ZONE_CONTROL_BLK_RESET_ASSERT;
-+
-+		err = bcm_pmb_bpcm_write(pmb, bus, device, offset, val);
-+	}
-+
-+	return err;
-+}
-+
-+static int bcm_pmb_power_off_device(struct bcm_pmb *pmb, int bus, u8 device)
-+{
-+	int offset;
-+	u32 val;
-+	int err;
-+
-+	/* Entire device can be powered off by powering off the 0th zone */
-+	offset = BPCM_ZONE0 + BPCM_ZONE_CONTROL;
-+
-+	err = bcm_pmb_bpcm_read(pmb, bus, device, offset, &val);
-+	if (err)
-+		return err;
-+
-+	if (!(val & BPCM_ZONE_CONTROL_PWR_OFF_STATE)) {
-+		val = BPCM_ZONE_CONTROL_PWR_DN_REQ;
-+
-+		err = bcm_pmb_bpcm_write(pmb, bus, device, offset, val);
-+	}
-+
-+	return err;
-+}
-+
-+static int bcm_pmb_power_on_device(struct bcm_pmb *pmb, int bus, u8 device)
-+{
-+	u32 val;
-+	int err;
-+	int i;
-+
-+	err = bcm_pmb_bpcm_read(pmb, bus, device, BPCM_CAPABILITIES, &val);
-+	if (err)
-+		return err;
-+
-+	for (i = 0; i < (val & BPCM_CAP_NUM_ZONES); i++) {
-+		err = bcm_pmb_power_on_zone(pmb, bus, device, i);
-+		if (err)
-+			return err;
-+	}
-+
-+	return err;
-+}
-+
-+static int bcm_pmb_power_on(struct generic_pm_domain *genpd)
-+{
-+	struct bcm_pmb_pm_domain *pd = container_of(genpd, struct bcm_pmb_pm_domain, genpd);
-+	const struct bcm_pmb_pd_data *data = pd->data;
-+	struct bcm_pmb *pmb = pd->pmb;
-+
-+	switch (data->id) {
-+	case BCM_PMB_PCIE0:
-+	case BCM_PMB_PCIE1:
-+	case BCM_PMB_PCIE2:
-+		return bcm_pmb_power_on_zone(pmb, data->bus, data->device, 0);
-+	case BCM_PMB_HOST_USB:
-+		return bcm_pmb_power_on_device(pmb, data->bus, data->device);
-+	default:
-+		dev_err(pmb->dev, "unsupported device id: %d\n", data->id);
-+		return -EINVAL;
-+	}
-+}
-+
-+static int bcm_pmb_power_off(struct generic_pm_domain *genpd)
-+{
-+	struct bcm_pmb_pm_domain *pd = container_of(genpd, struct bcm_pmb_pm_domain, genpd);
-+	const struct bcm_pmb_pd_data *data = pd->data;
-+	struct bcm_pmb *pmb = pd->pmb;
-+
-+	switch (data->id) {
-+	case BCM_PMB_PCIE0:
-+	case BCM_PMB_PCIE1:
-+	case BCM_PMB_PCIE2:
-+		return bcm_pmb_power_off_zone(pmb, data->bus, data->device, 0);
-+	case BCM_PMB_HOST_USB:
-+		return bcm_pmb_power_off_device(pmb, data->bus, data->device);
-+	default:
-+		dev_err(pmb->dev, "unsupported device id: %d\n", data->id);
-+		return -EINVAL;
-+	}
-+}
-+
-+static int bcm_pmb_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	const struct bcm_pmb_pd_data *table;
-+	const struct bcm_pmb_pd_data *e;
-+	struct resource *res;
-+	struct bcm_pmb *pmb;
-+	int max_id;
-+	int err;
-+
-+	pmb = devm_kzalloc(dev, sizeof(*pmb), GFP_KERNEL);
-+	if (!pmb)
-+		return -ENOMEM;
-+
-+	pmb->dev = dev;
-+
-+	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-+	pmb->base = devm_ioremap_resource(&pdev->dev, res);
-+	if (IS_ERR(pmb->base))
-+		return PTR_ERR(pmb->base);
-+
-+	spin_lock_init(&pmb->lock);
-+
-+	pmb->little_endian = !of_device_is_big_endian(dev->of_node);
-+
-+	table = of_device_get_match_data(dev);
-+	if (!table)
-+		return -EINVAL;
-+
-+	max_id = 0;
-+	for (e = table; e->name; e++)
-+		max_id = max(max_id, e->id);
-+
-+	pmb->genpd_onecell_data.num_domains = max_id + 1;
-+	pmb->genpd_onecell_data.domains =
-+		devm_kcalloc(dev, pmb->genpd_onecell_data.num_domains,
-+			     sizeof(struct generic_pm_domain *), GFP_KERNEL);
-+	if (!pmb->genpd_onecell_data.domains)
-+		return -ENOMEM;
-+
-+	for (e = table; e->name; e++) {
-+		struct bcm_pmb_pm_domain *pd = devm_kzalloc(dev, sizeof(*pd), GFP_KERNEL);
-+
-+		pd->pmb = pmb;
-+		pd->data = e;
-+		pd->genpd.name = e->name;
-+		pd->genpd.power_on = bcm_pmb_power_on;
-+		pd->genpd.power_off = bcm_pmb_power_off;
-+
-+		pm_genpd_init(&pd->genpd, NULL, true);
-+		pmb->genpd_onecell_data.domains[e->id] = &pd->genpd;
-+	}
-+
-+	err = of_genpd_add_provider_onecell(dev->of_node, &pmb->genpd_onecell_data);
-+	if (err) {
-+		dev_err(dev, "failed to add genpd provider: %d\n", err);
-+		return err;
-+	}
-+
-+	return 0;
-+}
-+
-+static const struct bcm_pmb_pd_data bcm_pmb_bcm4908_data[] = {
-+	{ .name = "pcie2", .id = BCM_PMB_PCIE2, .bus = 0, .device = 2, },
-+	{ .name = "pcie0", .id = BCM_PMB_PCIE0, .bus = 1, .device = 14, },
-+	{ .name = "pcie1", .id = BCM_PMB_PCIE1, .bus = 1, .device = 15, },
-+	{ .name = "usb", .id = BCM_PMB_HOST_USB, .bus = 1, .device = 17, },
-+	{ },
-+};
-+
-+static const struct of_device_id bcm_pmb_of_match[] = {
-+	{ .compatible = "brcm,bcm4908-pmb", .data = &bcm_pmb_bcm4908_data, },
-+	{ },
-+};
-+
-+static struct platform_driver bcm_pmb_driver = {
-+	.driver = {
-+		.name = "bcm-pmb",
-+		.of_match_table = bcm_pmb_of_match,
-+	},
-+	.probe  = bcm_pmb_probe,
-+};
-+
-+builtin_platform_driver(bcm_pmb_driver);
--- 
-2.26.2
+LS1B is 32bit
 
+> +	help
+> +	  This drivers supports the Loongson LS7A SPI controller in master
+> +	  SPI mode.
+> +
+>  config SPI_MPC52xx
+>  	tristate "Freescale MPC52xx SPI (non-PSC) controller support"
+>  	depends on PPC_MPC52xx
+> diff --git a/drivers/spi/Makefile b/drivers/spi/Makefile
+> index 6fea582..d015cf2 100644
+> --- a/drivers/spi/Makefile
+> +++ b/drivers/spi/Makefile
+> @@ -61,6 +61,7 @@ obj-$(CONFIG_SPI_LANTIQ_SSC)		+=3D spi-lantiq-ssc.o
+>  obj-$(CONFIG_SPI_JCORE)			+=3D spi-jcore.o
+>  obj-$(CONFIG_SPI_LM70_LLP)		+=3D spi-lm70llp.o
+>  obj-$(CONFIG_SPI_LP8841_RTC)		+=3D spi-lp8841-rtc.o
+> +obj-$(CONFIG_SPI_LS7A)			+=3D spi-ls7a.o
+>  obj-$(CONFIG_SPI_MESON_SPICC)		+=3D spi-meson-spicc.o
+>  obj-$(CONFIG_SPI_MESON_SPIFC)		+=3D spi-meson-spifc.o
+>  obj-$(CONFIG_SPI_MPC512x_PSC)		+=3D spi-mpc512x-psc.o
+> diff --git a/drivers/spi/spi-ls7a.c b/drivers/spi/spi-ls7a.c
+> new file mode 100644
+> index 0000000..d3b7e86
+> --- /dev/null
+> +++ b/drivers/spi/spi-ls7a.c
+> @@ -0,0 +1,293 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +//
+> +// Loongson LS7A SPI Controller driver
+> +//
+> +// Copyright (C) 2020 Loongson Technology Corporation Limited.
+> +//
+> +
+> +#include <linux/module.h>
+> +#include <linux/pci.h>
+> +#include <linux/spi/spi.h>
+> +
+> +/* define spi register */
+> +#define	SPCR	0x00
+> +#define	SPSR	0x01
+> +#define	FIFO	0x02
+> +#define	SPER	0x03
+> +#define	PARA	0x04
+
+Please use names used in the manual. In this case instead of PARA was
+used SFC_PARAM
+
+> +#define	SFCS	0x05
+> +#define	TIMI	0x06
+
+Please, use driver specific names. Not too generic. For example:
+LSXX_SPI_SPCR
+
+Please, define bits and bit masks from this regs and replace all magic
+numbers. It will help to read this code. It will be good if you can
+provide some comments to this bits in english. If I see it correctly,
+there are no translated documentations.
+
+> +
+> +struct ls7a_spi {
+> +	spinlock_t lock;
+> +	struct spi_master *master;
+> +	void __iomem *base;
+> +	unsigned int hz;
+> +	unsigned char spcr, sper;
+> +	unsigned int mode;
+> +};
+> +
+> +static void ls7a_spi_write_reg(struct ls7a_spi *spi,
+> +			       unsigned char reg,
+> +			       unsigned char data)
+> +{
+> +	writeb(data, spi->base + reg);
+
+In this driver "spi" is used in different caseses:
+- struct ls7a_spi *spi
+- struct spi_device *spi
+
+this is confusing. I personally prefer to call driver privat stucture as
+"priv"
+
+> +}
+> +
+> +static char ls7a_spi_read_reg(struct ls7a_spi *spi, unsigned char reg)
+> +{
+> +	return readb(spi->base + reg);
+> +}
+> +
+> +static int ls7a_spi_prepare_message(struct spi_master *master,
+> +				    struct spi_message *msg)
+> +{
+> +	struct ls7a_spi *ls7a_spi;
+> +	int param;
+> +
+> +	ls7a_spi =3D spi_master_get_devdata(master);
+> +
+> +	spin_lock(&ls7a_spi->lock);
+> +	param =3D ls7a_spi_read_reg(ls7a_spi, PARA
+> +	ls7a_spi_write_reg(ls7a_spi, PARA, param &=3D ~1);
+
+You are switching the SPI controller from SPI Flash mode, to plain SPI.
+This was already done on the probe. Are there any reason for doing this
+again?
+
+> +	spin_unlock(&ls7a_spi->lock);
+> +
+> +	return 0;
+> +}
+> +
+> +static int  ls7a_spi_unprepare_message(struct spi_master *master,
+> +				       struct spi_message *msg)
+> +{
+> +	struct ls7a_spi *ls7a_spi;
+> +	int param =3D 0;
+> +
+> +	ls7a_spi =3D spi_master_get_devdata(master);
+> +
+> +	spin_lock(&ls7a_spi->lock);
+> +	ls7a_spi_write_reg(ls7a_spi, PARA, param);
+
+here we set all bit to 0, why? there is not enable bit, if i see it
+correctly
+
+> +	spin_unlock(&ls7a_spi->lock);
+> +
+> +	return 0;
+> +}
+> +
+> +static void ls7a_spi_set_cs(struct spi_device *spi, bool enable)
+> +{
+> +	struct ls7a_spi *ls7a_spi;
+> +	int cs;
+> +
+> +	ls7a_spi =3D spi_master_get_devdata(spi->master);
+> +
+> +	cs =3D ls7a_spi_read_reg(ls7a_spi, SFCS) & ~(0x11 << spi->chip_select)=
+;
+> +
+> +	if (!!(spi->mode & SPI_CS_HIGH) =3D=3D enable)
+> +		ls7a_spi_write_reg(ls7a_spi, SFCS, (0x1 << spi->chip_select) | cs);
+> +	else
+> +		ls7a_spi_write_reg(ls7a_spi, SFCS, (0x11 << spi->chip_select) | cs);
+> +}
+> +
+> +static int ls7a_spi_do_transfer(struct ls7a_spi *ls7a_spi,
+> +				struct spi_device *spi,
+> +				struct spi_transfer *t)
+
+The functiono name is confusing. What ever is done in this function is
+not realated to this name.
+
+> +{
+> +	unsigned int hz;
+> +	unsigned int div, div_tmp;
+> +	unsigned int bit;
+> +	unsigned long clk;
+> +	unsigned char val;
+> +	const char rdiv[12] =3D {0, 1, 4, 2, 3, 5, 6, 7, 8, 9, 10, 11};
+
+Please use dividers instead of positions, it is easier to read.
+
+> +
+> +	if (t) {
+> +		hz =3D t->speed_hz;
+> +		if (!hz)
+> +			hz =3D spi->max_speed_hz;
+> +	} else {
+> +		hz =3D spi->max_speed_hz;
+> +	}
+
+
+
+
+> +	if (((spi->mode ^ ls7a_spi->mode) & (SPI_CPOL | SPI_CPHA))
+> +		|| (hz && ls7a_spi->hz !=3D hz)) {
+
+Please, do not put complete function in to the if statement. If the
+statment is not true, just return.
+
+> +		clk =3D 100000000;
+
+This code is made with assumption, there is fixed 100MHz clock provider.
+According to the manual, the LS7A clock structure looks like this:
+100MHz-->DIV2--->MISC Block
+              \-->SPI
+
+If some one will change the DIV2, nasty things will happen. Other
+Loongson products have divers and configurable PLLs as well, it will be
+better if you start to use clk framework instead of hard coding clock spee=
+d.
+
+> +		div =3D DIV_ROUND_UP(clk, hz);
+> +		if (div < 2)
+> +			div =3D 2;
+> +		if (div > 4096)
+> +			div =3D 4096;
+> +
+> +		bit =3D fls(div) - 1;
+> +		if ((1<<bit) =3D=3D div)
+> +			bit--;
+> +		div_tmp =3D rdiv[bit];
+
+This divider calculation assums that you have liniar divider. According
+to the manual, your dividers are:
+2, 4, 16, 32, 8, 64,...
+
+This order looks identical in all loongsoon manuals, so I assume there
+is a bug in the hardware.
+
+> +
+> +		dev_dbg(&spi->dev, "clk =3D %ld hz =3D %d div_tmp =3D %d bit =3D %d\n=
+",
+> +			clk, hz, div_tmp, bit);
+> +
+> +		ls7a_spi->hz =3D hz;
+
+After taking best possible divider, the outgoung clk is not equal to the
+requested clock. Please store actual used speed by the controller to the
+transfer->effective_speed_hz
+
+See:
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/=
+drivers/spi/spi-imx.c?h=3Dv5.10&id=3Dbf253e6bf6b876a4ce74db7dcf8a13b80d84a=
+a5f
+
+> +		ls7a_spi->spcr =3D div_tmp & 3;
+> +		ls7a_spi->sper =3D (div_tmp >> 2) & 3;
+> +
+> +		val =3D ls7a_spi_read_reg(ls7a_spi, SPCR);
+> +		val &=3D ~0xc;
+> +		if (spi->mode & SPI_CPOL)
+> +			val |=3D 8;
+> +		if (spi->mode & SPI_CPHA)
+> +			val |=3D 4;
+
+Please, no magi numbers. Use defines.
+
+> +		ls7a_spi_write_reg(ls7a_spi, SPCR, (val & ~3) | ls7a_spi->spcr);
+> +		val =3D ls7a_spi_read_reg(ls7a_spi, SPER);
+> +		ls7a_spi_write_reg(ls7a_spi, SPER, (val & ~3) | ls7a_spi->sper);
+> +		ls7a_spi->mode =3D spi->mode;
+> +	}
+> +	return 0;
+> +}
+> +
+> +static int ls7a_spi_write_read_8bit(struct spi_device *spi,
+> +				    const u8 **tx_buf, u8 **rx_buf,
+> +				    unsigned int num)
+> +{
+> +	struct ls7a_spi *ls7a_spi;
+> +
+> +	ls7a_spi =3D spi_master_get_devdata(spi->master);
+> +
+> +	if (tx_buf && *tx_buf) {
+
+Is it OK to write to FIFO without checking if it is actually empty?
+
+> +		ls7a_spi_write_reg(ls7a_spi, FIFO, *((*tx_buf)++));
+> +
+> +		while ((ls7a_spi_read_reg(ls7a_spi, SPSR) & 0x1) =3D=3D 1)
+> +			;
+
+Should be here used 0x4 instead of 0x1? WFEMPTY instead of RFEMPTY?
+If SPI controller will fail for some reason, this while loop will block
+complete system. Please, abort on time out.
+
+> +	} else {
+> +		ls7a_spi_write_reg(ls7a_spi, FIFO, 0);
+> +
+> +		while ((ls7a_spi_read_reg(ls7a_spi, SPSR) & 0x1) =3D=3D 1)
+> +			;
+> +	}
+
+Should we checl if RxFIFO is not empty before reading it?
+
+> +	if (rx_buf && *rx_buf)
+> +		*(*rx_buf)++ =3D ls7a_spi_read_reg(ls7a_spi, FIFO);
+> +	else
+> +		ls7a_spi_read_reg(ls7a_spi, FIFO);
+> +
+> +	return 1;
+> +}
+> +
+> +static unsigned int ls7a_spi_write_read(struct spi_device *spi,
+> +					struct spi_transfer *xfer)
+> +{
+> +	unsigned int count;
+> +	const u8 *tx =3D xfer->tx_buf;
+> +
+> +	u8 *rx =3D xfer->rx_buf;
+> +
+> +	count =3D xfer->len;
+> +
+> +	do {
+> +		if (ls7a_spi_write_read_8bit(spi, &tx, &rx, count) < 0)
+> +			goto out;
+> +		count--;
+> +	} while (count);
+> +
+> +out:
+> +	return xfer->len - count;
+> +}
+> +
+> +static int  ls7a_spi_transfer_one(struct spi_master *master,
+> +				  struct spi_device *spi,
+> +				  struct spi_transfer *t)
+> +{
+> +	struct ls7a_spi *ls7a_spi;
+> +	int status;
+> +
+> +	ls7a_spi =3D spi_master_get_devdata(master);
+> +
+> +	status =3D ls7a_spi_do_transfer(ls7a_spi, spi, t);
+> +	if (status < 0)
+> +		return status;
+> +
+> +	ls7a_spi_write_read(spi, t);
+
+return value is ignored
+
+> +
+> +	return status;
+> +}
+> +
+> +static int ls7a_spi_pci_probe(struct pci_dev *pdev,
+> +			      const struct pci_device_id *ent)
+> +{
+> +	struct spi_master *master;
+> +	struct ls7a_spi *spi;
+> +	int ret;
+> +
+> +	master =3D devm_spi_alloc_master(&pdev->dev, sizeof(*spi));
+> +	if (!master)
+> +		return -ENOMEM;
+> +
+> +	spi =3D spi_master_get_devdata(master);
+> +	ret =3D pcim_enable_device(pdev);
+> +	if (ret)
+> +		goto err_free_master;
+> +
+> +	ret =3D pci_request_regions(pdev, "ls7a-spi");
+> +	if (ret)
+> +		goto err_free_master;
+> +
+> +	spi->base =3D pcim_iomap(pdev, 0, pci_resource_len(pdev, 0));
+> +	if (!spi->base) {
+> +		ret =3D -EINVAL;
+> +		goto err_free_master;
+> +	}
+> +	ls7a_spi_write_reg(spi, SPCR, 0x51);
+> +	ls7a_spi_write_reg(spi, SPER, 0x00);
+> +	ls7a_spi_write_reg(spi, TIMI, 0x01);
+> +	ls7a_spi_write_reg(spi, PARA, 0x40);
+
+Please do not use magic number, add comments what you are doing here.
+
+> +	spi->mode =3D 0;
+> +
+> +	spin_lock_init(&spi->lock);
+> +
+> +	master->mode_bits =3D SPI_CPOL | SPI_CPHA | SPI_CS_HIGH;
+> +	master->prepare_message =3D ls7a_spi_prepare_message;
+> +	master->set_cs =3D ls7a_spi_set_cs;
+> +	master->transfer_one =3D ls7a_spi_transfer_one;
+> +	master->unprepare_message =3D ls7a_spi_unprepare_message;
+> +	master->bits_per_word_mask =3D SPI_BPW_MASK(8);
+> +	master->num_chipselect =3D 4;
+> +	master->dev.of_node =3D pdev->dev.of_node;
+> +
+> +	spi->master =3D master;
+> +
+> +	pci_set_drvdata(pdev, master);
+> +
+> +	ret =3D spi_register_master(master);
+> +	if (ret)
+> +		goto err_free_master;
+> +
+> +	return 0;
+> +
+> +err_free_master:
+> +	pci_release_regions(pdev);
+> +	return ret;
+> +}
+> +
+> +static void ls7a_spi_pci_remove(struct pci_dev *pdev)
+> +{
+> +	struct spi_master *master =3D pci_get_drvdata(pdev);
+> +
+> +	spi_unregister_master(master);
+> +	pci_release_regions(pdev);
+> +}
+> +
+> +static const struct pci_device_id ls7a_spi_pci_id_table[] =3D {
+> +	{ PCI_DEVICE(PCI_VENDOR_ID_LOONGSON, 0x7a0b) },
+> +	{ 0, }
+> +};
+
+On ls1b and ls2k this SPI controoler is a simple MEMIO.
+
+You will need to add here probe as platform device as well.
+
+> +MODULE_DEVICE_TABLE(pci, ls7a_spi_pci_id_table);
+> +
+> +static struct pci_driver ls7a_spi_pci_driver =3D {
+> +	.name		=3D "ls7a-spi",
+> +	.id_table	=3D ls7a_spi_pci_id_table,
+> +	.probe		=3D ls7a_spi_pci_probe,
+> +	.remove		=3D ls7a_spi_pci_remove,
+> +};
+> +
+> +module_pci_driver(ls7a_spi_pci_driver);
+> +
+> +MODULE_AUTHOR("Juxin Gao <gaojuxin@loongson.cn>");
+> +MODULE_AUTHOR("Qing Zhang <zhangqing@loongson.cn>");
+> +MODULE_DESCRIPTION("Loongson LS7A SPI controller driver");
+> +MODULE_LICENSE("GPL v2");
+
+
+=2D-
+Regards,
+Oleksij
