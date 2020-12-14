@@ -2,94 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 853292DA354
-	for <lists+devicetree@lfdr.de>; Mon, 14 Dec 2020 23:25:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 79A652DA37E
+	for <lists+devicetree@lfdr.de>; Mon, 14 Dec 2020 23:39:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2407506AbgLNWY0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Dec 2020 17:24:26 -0500
-Received: from mail-ot1-f66.google.com ([209.85.210.66]:41641 "EHLO
-        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388259AbgLNWYW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Dec 2020 17:24:22 -0500
-Received: by mail-ot1-f66.google.com with SMTP id x13so17438694oto.8;
-        Mon, 14 Dec 2020 14:24:07 -0800 (PST)
+        id S2502072AbgLNWhK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Dec 2020 17:37:10 -0500
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:39868 "EHLO
+        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2441166AbgLNWhE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Dec 2020 17:37:04 -0500
+Received: by mail-ot1-f67.google.com with SMTP id d8so17458471otq.6;
+        Mon, 14 Dec 2020 14:36:48 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=OrNz2hwsU06c3PuGss1E/QBGUDqYdE0+stQHNjTmEF0=;
-        b=CZHI9O8vnjPlVgFiHAkyfmhz72O+wr7T5vrRkhigotXyJiA1QcbkZaK972E/HdGAnu
-         00jDG573RcknDZ66NKvp0uc3e4S1AOGpzB4UNujJAIHQ3/CMOVJKLoG8Es8Tps7+5nt2
-         EGK4j2Ccbzhvw1P4P+bUwAu8AtOYrk3PO9NIWuik4chiebhHQXck9N7IphD/pJAVnBm1
-         ZnLl4hdq6fAa/zTFAHdKMB1nmJDk5RTuSD1OzK4HJsgBxiS/KCIwS9h6lgrZBfi1KYQx
-         MVnwZU9KJAzQvE4EBEhhl+YSxAu3KvB5MT3SnqExGPN7D/lpl1xn4JMcICNvj9ucF4ml
-         SuLg==
-X-Gm-Message-State: AOAM530qmYa3ck+FAfXeCu92Qr6kmDJP41oYfUbeS8jgGUBTOtxT2PWX
-        fJy2tGEh2YwdQA9N+T8YpWteijyoMQ==
-X-Google-Smtp-Source: ABdhPJx3RDNbVhXJglqZJpbqIq6emTGk8OSz3s6JsLztPU1NdhY8gF90dy0DrBxWP4RDzNUek0hvpA==
-X-Received: by 2002:a05:6830:30a8:: with SMTP id g8mr15557189ots.291.1607984621501;
-        Mon, 14 Dec 2020 14:23:41 -0800 (PST)
+        bh=muRKuV6p86ck6Xh8iJfHfvWMBV8uDpANRpY7OayqqoY=;
+        b=NnWqV7pGuSUIvi4oDYNEPVuR9RV4/q3zTye4hhykcUv6RNPWxbM9dN4SozG18M/yQZ
+         VMkIIX0TmN+F0smdcXf0q1YHjgVQ3UtGM15EllhTK0RmfnWMqaxUTkNI9yZBOGg0KmRW
+         K/PKyJ2pgaZuNqdJhlVdK3h6N0PO4GIPL9ihEhI29d7h8CTwTaUPXFm29XQlRHLJ54D7
+         54IUww/axtQ+/9q/1gemgXX1KpnERj8X7digEFx8uwu53Tv5Gw1hTnHgMlReEm3+BbqS
+         dUa2cgTmSRJMPTyZFqV5gxxX8DiKs8YZXtM29XZkhQVJXTODwv4Z6ZkTfExF0tVl8LIT
+         Lc2g==
+X-Gm-Message-State: AOAM532RzR9b7IdfzFxctTImJWYimvqD5J92Sj3CkW+/u4QY4+oHTU9O
+        lJM7JX6a8JgO6Uh2ls2ciA==
+X-Google-Smtp-Source: ABdhPJyhS6m8TRT1cXi677SphG9iioyteB4JQ+m46tBfZpNxy4D7/3LPFPEzKarrgDjh4d0erS/9UA==
+X-Received: by 2002:a9d:4e87:: with SMTP id v7mr11804853otk.302.1607985383468;
+        Mon, 14 Dec 2020 14:36:23 -0800 (PST)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id i25sm4652825oto.56.2020.12.14.14.23.40
+        by smtp.gmail.com with ESMTPSA id o49sm4649683ota.51.2020.12.14.14.36.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Dec 2020 14:23:40 -0800 (PST)
-Received: (nullmailer pid 2493705 invoked by uid 1000);
-        Mon, 14 Dec 2020 22:23:39 -0000
-Date:   Mon, 14 Dec 2020 16:23:39 -0600
+        Mon, 14 Dec 2020 14:36:22 -0800 (PST)
+Received: (nullmailer pid 2509929 invoked by uid 1000);
+        Mon, 14 Dec 2020 22:36:21 -0000
+Date:   Mon, 14 Dec 2020 16:36:21 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Aswath Govindraju <a-govindraju@ti.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Vadym Kochan <vadym.kochan@plvision.eu>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Sekhar Nori <nsekhar@ti.com>
-Subject: Re: [PATCH RFC 1/2] Documentation: devicetree: Add property for
- ignoring the dummy bits sent before read transfer
-Message-ID: <20201214222339.GA2471866@robh.at.kernel.org>
-References: <20201209175708.16252-1-a-govindraju@ti.com>
- <20201209175708.16252-2-a-govindraju@ti.com>
- <20201211033301.GA3581630@robh.at.kernel.org>
- <70d6c152-5d8d-9ad6-ce06-95a9f599c492@ti.com>
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     jacek.anaszewski@gmail.com, pavel@ucw.cz, dmurphy@ti.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-leds@vger.kernel.org, thunder.leizhen@huawei.com
+Subject: Re: [PATCH v2] dt-bindings: leds: Document commonly used LED triggers
+Message-ID: <20201214223621.GA2493849@robh.at.kernel.org>
+References: <20201210082449.30586-1-manivannan.sadhasivam@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <70d6c152-5d8d-9ad6-ce06-95a9f599c492@ti.com>
+In-Reply-To: <20201210082449.30586-1-manivannan.sadhasivam@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 11, 2020 at 08:34:57PM +0530, Aswath Govindraju wrote:
-> Hi,
-> On 11/12/20 9:03 am, Rob Herring wrote:
-> > On Wed, Dec 09, 2020 at 11:27:07PM +0530, Aswath Govindraju wrote:
-> >> Dummy zero bits are sent before data during a read transfer. This causes
-> >> the data read to be shifted to the right. To fix this send zero bits after
-> >> the address during a read transfer.
-> >>
-> >> Add property to send zero bits after the address during a read transfer.
-> > 
-> > When is this necessary? Why can't it be implied by the compatible 
-> > string which should be specific to the chip model?
-> > 
+On Thu, Dec 10, 2020 at 01:54:49PM +0530, Manivannan Sadhasivam wrote:
+> This commit documents the LED triggers used commonly in the SoCs. Not
+> all triggers are documented as some of them are very application specific.
+> Most of the triggers documented here are currently used in devicetrees
+> of many SoCs.
+
+The idea with recent LED binding changes is to move away from 
+'linux,default-trigger' to 'function' and 'trigger-sources' and to have 
+some sort of standardized names.
+
 > 
-> This is necessary for 93AA46A/B/C, 93LC46A/B/C, 93C46A/B/C eeproms, as
-> it can be seen in section 2.7 of [1]. We were not sure if these were the
-> only devices supported by the driver(eeprom_93xx46.c). So, in order to
-> apply this only to the above listed devices, we thought that it would be
-> better to apply this change when required by introducing a DT property.
+> While at it, let's also sort the triggers in ascending order.
+
+I'm not sure we want that. Probably better to keep related functions 
+together.
+
 > 
-> May I know how has this case been handled till now ??
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> ---
 > 
-
-No idea. From the at93c46d (which has a compatible string) datasheet it 
-looks like it has the same thing.
-
-> If this is required by all the devices then we can drop the property and
-> include the zero bit by default.
-
-Looks like you need a combination of compatible strings for the above 
-devices and a property for the ORG pin state on the C devices. I assume 
-s/w needs to know if x8 or x16?
-
-Rob
+> Changes in v2:
+> 
+> * Added more triggers, fixed the regex
+> * Sorted triggers in ascending order
+> 
+>  .../devicetree/bindings/leds/common.yaml      | 78 ++++++++++++++-----
+>  1 file changed, 60 insertions(+), 18 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/leds/common.yaml b/Documentation/devicetree/bindings/leds/common.yaml
+> index f1211e7045f1..3c2e2208c1da 100644
+> --- a/Documentation/devicetree/bindings/leds/common.yaml
+> +++ b/Documentation/devicetree/bindings/leds/common.yaml
+> @@ -79,24 +79,66 @@ properties:
+>        the LED.
+>      $ref: /schemas/types.yaml#definitions/string
+>  
+> -    enum:
+> -        # LED will act as a back-light, controlled by the framebuffer system
+> -      - backlight
+> -        # LED will turn on (but for leds-gpio see "default-state" property in
+> -        # Documentation/devicetree/bindings/leds/leds-gpio.yaml)
+> -      - default-on
+> -        # LED "double" flashes at a load average based rate
+> -      - heartbeat
+> -        # LED indicates disk activity
+> -      - disk-activity
+> -        # LED indicates IDE disk activity (deprecated), in new implementations
+> -        # use "disk-activity"
+> -      - ide-disk
+> -        # LED flashes at a fixed, configurable rate
+> -      - timer
+> -        # LED alters the brightness for the specified duration with one software
+> -        # timer (requires "led-pattern" property)
+> -      - pattern
+> +    oneOf:
+> +      - items:
+> +          - enum:
+> +                # LED indicates mic mute state
+> +              - audio-micmute
+> +                # LED indicates audio mute state
+> +              - audio-mute
+> +                # LED will act as a back-light, controlled by the framebuffer system
+> +              - backlight
+> +                # LED indicates bluetooth power state
+> +              - bluetooth-power
+> +                # LED indicates activity of all CPUs
+> +              - cpu
+> +                # LED will turn on (but for leds-gpio see "default-state" property in
+> +                # Documentation/devicetree/bindings/leds/leds-gpio.yaml)
+> +              - default-on
+> +                # LED indicates disk activity
+> +              - disk-activity
+> +                # LED indicates disk read activity
+> +              - disk-read
+> +                # LED indicates disk write activity
+> +              - disk-write
+> +                # LED indicates camera flash state
+> +              - flash
+> +                # LED "double" flashes at a load average based rate
+> +              - heartbeat
+> +                # LED indicates IDE disk activity (deprecated), in new implementations
+> +                # use "disk-activity"
+> +              - ide-disk
+> +                # LED indicates MTD memory activity
+> +              - mtd
+> +                # LED indicates NAND memory activity (deprecated),
+> +                # in new implementations use "mtd"
+> +              - nand-disk
+> +                # No trigger assigned to the LED. This is the default mode
+> +                # if trigger is absent
+> +              - none
+> +                # LED alters the brightness for the specified duration with one software
+> +                # timer (requires "led-pattern" property)
+> +              - pattern
+> +                # LED flashes at a fixed, configurable rate
+> +              - timer
+> +                # LED indicates camera torch state
+> +              - torch
+> +                # LED indicates USB gadget activity
+> +              - usb-gadget
+> +                # LED indicates USB host activity
+> +              - usb-host
+> +      - items:
+> +            # LED indicates activity of [N]th CPU
+> +          - pattern: "^cpu[0-9]{1,2}$"
+> +      - items:
+> +            # LED indicates power status of [N]th Bluetooth HCI device
+> +          - pattern: "^hci[0-9]{1,2}-power$"
+> +      - items:
+> +            # LED indicates [N]th MMC storage activity
+> +          - pattern: "^mmc[0-9]{1,2}$"
+> +      - items:
+> +            # LED indicates [N]th WLAN Tx activity
+> +          - pattern: "^phy[0-9]{1,2}tx$"
+>  
+>    led-pattern:
+>      description: |
+> -- 
+> 2.25.1
+> 
