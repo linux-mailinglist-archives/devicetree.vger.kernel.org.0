@@ -2,143 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A0FB2D9AC8
-	for <lists+devicetree@lfdr.de>; Mon, 14 Dec 2020 16:22:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C9C72D9B28
+	for <lists+devicetree@lfdr.de>; Mon, 14 Dec 2020 16:36:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727084AbgLNPVs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Dec 2020 10:21:48 -0500
-Received: from relay1.mymailcheap.com ([144.217.248.100]:55413 "EHLO
-        relay1.mymailcheap.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730520AbgLNPVs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Dec 2020 10:21:48 -0500
-Received: from filter1.mymailcheap.com (filter1.mymailcheap.com [149.56.130.247])
-        by relay1.mymailcheap.com (Postfix) with ESMTPS id 61DF33F1C5;
-        Mon, 14 Dec 2020 15:20:16 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-        by filter1.mymailcheap.com (Postfix) with ESMTP id 562C42A0F7;
-        Mon, 14 Dec 2020 10:20:16 -0500 (EST)
-X-Virus-Scanned: Debian amavisd-new at filter1.mymailcheap.com
-Received: from filter1.mymailcheap.com ([127.0.0.1])
-        by localhost (filter1.mymailcheap.com [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id wIiOzhnCC5Z4; Mon, 14 Dec 2020 10:20:15 -0500 (EST)
-Received: from mail20.mymailcheap.com (mail20.mymailcheap.com [51.83.111.147])
-        (using TLSv1.2 with cipher ADH-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by filter1.mymailcheap.com (Postfix) with ESMTPS;
-        Mon, 14 Dec 2020 10:20:15 -0500 (EST)
-Received: from [213.133.102.83] (ml.mymailcheap.com [213.133.102.83])
-        by mail20.mymailcheap.com (Postfix) with ESMTP id D5B08403C3;
-        Mon, 14 Dec 2020 15:20:13 +0000 (UTC)
-Authentication-Results: mail20.mymailcheap.com;
-        dkim=pass (1024-bit key; unprotected) header.d=aosc.io header.i=@aosc.io header.b="UByCHrDv";
-        dkim-atps=neutral
-AI-Spam-Status: Not processed
-Received: from [172.19.0.1] (unknown [64.225.114.122])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mail20.mymailcheap.com (Postfix) with ESMTPSA id D68FE404B7;
-        Mon, 14 Dec 2020 15:20:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=aosc.io; s=default;
-        t=1607959206; bh=wH3/y6SipLVekAm0WUtujhh2byePaUzn5QHDwr5b8kU=;
-        h=Date:In-Reply-To:References:Subject:To:CC:From:From;
-        b=UByCHrDver083GPvb9gxP32M0p4gK+I4dFWXpkD4KHqawWcYitmOeDqyvK457Xo/8
-         xTu3Dogs0+oAWQJ/FE7khFsuEOFekC17wWdURJnBoWj6DutcSXdbJYfAo9H8dqNUhQ
-         vEbStdzj9poaBLs+E/1d2ABL1hnUAt1rv10wMK88=
-Date:   Mon, 14 Dec 2020 23:19:48 +0800
-User-Agent: K-9 Mail for Android
-In-Reply-To: <20201214142118.bxdzu7z7cdomhgy7@gilmour>
-References: <20201212040157.3639864-1-icenowy@aosc.io> <20201212040430.3640418-2-icenowy@aosc.io> <20201214142118.bxdzu7z7cdomhgy7@gilmour>
+        id S2438713AbgLNPfn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Dec 2020 10:35:43 -0500
+Received: from mga17.intel.com ([192.55.52.151]:29578 "EHLO mga17.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2407761AbgLNPfk (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 14 Dec 2020 10:35:40 -0500
+IronPort-SDR: u0ij5Ba6eXhRk5wdWtCT0k04nwCSdlgUCvbUUl5SWAxAnvRl+cnB58ysqgnpS5tuQLLhW0R0Rq
+ teqnP9qZVKzQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9834"; a="154533059"
+X-IronPort-AV: E=Sophos;i="5.78,420,1599548400"; 
+   d="scan'208";a="154533059"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Dec 2020 07:33:55 -0800
+IronPort-SDR: zIxaIazk4jOgt8HPRzw7UppNp4E/ygsjRldrqZnz85QEf9v1I/q+aCSRxi5GlYKObKtRJEEkxt
+ 8yux0UkYLueg==
+X-IronPort-AV: E=Sophos;i="5.78,420,1599548400"; 
+   d="scan'208";a="449054765"
+Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
+  by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Dec 2020 07:33:53 -0800
+Received: from andy by smile with local (Exim 4.94)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1kopsE-00EIfM-Tq; Mon, 14 Dec 2020 17:34:54 +0200
+Date:   Mon, 14 Dec 2020 17:34:54 +0200
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Wan Ahmad Zainie <wan.ahmad.zainie.wan.mohamad@intel.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        PCI <linux-pci@vger.kernel.org>, devicetree@vger.kernel.org,
+        Mark Gross <mgross@linux.intel.com>,
+        "Raja Subramanian, Lakshmi Bai" 
+        <lakshmi.bai.raja.subramanian@intel.com>
+Subject: Re: [PATCH v3 2/2] PCI: keembay: Add support for Intel Keem Bay
+Message-ID: <20201214153454.GJ4077@smile.fi.intel.com>
+References: <20201202073156.5187-1-wan.ahmad.zainie.wan.mohamad@intel.com>
+ <20201202073156.5187-3-wan.ahmad.zainie.wan.mohamad@intel.com>
+ <20201209181350.GB660537@robh.at.kernel.org>
+ <20201209184214.GV4077@smile.fi.intel.com>
+ <CAL_JsqJA4Sx93rF_o+V-gPSHwuyAyf-aT96XpN-UCc3ayjDH+w@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [RFC PATCH 05/12] pinctrl: sunxi: add pinctrl driver for V831/V833
-To:     Maxime Ripard <maxime@cerno.tech>
-CC:     Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-gpio@vger.kernel.org
-From:   Icenowy Zheng <icenowy@aosc.io>
-Message-ID: <5C8F8115-4DE6-4000-84DF-8D3BE2574713@aosc.io>
-X-Rspamd-Server: mail20.mymailcheap.com
-X-Spamd-Result: default: False [1.40 / 10.00];
-         RCVD_VIA_SMTP_AUTH(0.00)[];
-         ARC_NA(0.00)[];
-         R_DKIM_ALLOW(0.00)[aosc.io:s=default];
-         MID_RHS_MATCH_FROM(0.00)[];
-         FROM_HAS_DN(0.00)[];
-         TO_DN_SOME(0.00)[];
-         TO_MATCH_ENVRCPT_ALL(0.00)[];
-         TAGGED_RCPT(0.00)[dt];
-         MIME_GOOD(-0.10)[text/plain];
-         DMARC_NA(0.00)[aosc.io];
-         R_SPF_SOFTFAIL(0.00)[~all];
-         ML_SERVERS(-3.10)[213.133.102.83];
-         DKIM_TRACE(0.00)[aosc.io:+];
-         RCPT_COUNT_SEVEN(0.00)[9];
-         RCVD_NO_TLS_LAST(0.10)[];
-         FROM_EQ_ENVFROM(0.00)[];
-         MIME_TRACE(0.00)[0:+];
-         ASN(0.00)[asn:24940, ipnet:213.133.96.0/19, country:DE];
-         RCVD_COUNT_TWO(0.00)[2];
-         SUSPICIOUS_RECIPS(1.50)[];
-         HFILTER_HELO_BAREIP(3.00)[213.133.102.83,1]
-X-Rspamd-Queue-Id: D5B08403C3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAL_JsqJA4Sx93rF_o+V-gPSHwuyAyf-aT96XpN-UCc3ayjDH+w@mail.gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Dec 10, 2020 at 11:46:48AM -0600, Rob Herring wrote:
+> On Wed, Dec 9, 2020 at 12:41 PM Andy Shevchenko
+> <andriy.shevchenko@linux.intel.com> wrote:
+> > On Wed, Dec 09, 2020 at 12:13:50PM -0600, Rob Herring wrote:
+> > > On Wed, Dec 02, 2020 at 03:31:56PM +0800, Wan Ahmad Zainie wrote:
+
+...
+
+> > > > +   struct dw_pcie *pci = to_dw_pcie_from_ep(ep);
+> > > > +
+> > > > +   switch (type) {
+> > > > +   case PCI_EPC_IRQ_LEGACY:
+> > > > +           /* Legacy interrupts are not supported in Keem Bay */
+> > > > +           dev_err(pci->dev, "Legacy IRQ is not supported\n");
+> > > > +           return -EINVAL;
+> > > > +   case PCI_EPC_IRQ_MSI:
+> > > > +           return dw_pcie_ep_raise_msi_irq(ep, func_no, interrupt_num);
+> > > > +   case PCI_EPC_IRQ_MSIX:
+> > > > +           return dw_pcie_ep_raise_msix_irq(ep, func_no, interrupt_num);
+> > > > +   default:
+> > > > +           dev_err(pci->dev, "Unknown IRQ type %d\n", type);
+> > > > +           return -EINVAL;
+> > > > +   }
+> > >
+> > > Doesn't the lack of a 'return' give a warning?
+> >
+> > Where? I don't see any lack of return.
+> 
+> Is the compiler smart enough to recognize that with a return in every
+> 'case' that we don't need a return after the switch? I wouldn't have
+> thought so, but I haven't checked.
+
+Dunno what happen with -O0, but with -O2 we certainly have no issues with above
+code. (And for the record there are plenty examples of the same over the kernel)
+
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
-=E4=BA=8E 2020=E5=B9=B412=E6=9C=8814=E6=97=A5 GMT+08:00 =E4=B8=8B=E5=8D=88=
-10:21:18, Maxime Ripard <maxime@cerno=2Etech> =E5=86=99=E5=88=B0:
->On Sat, Dec 12, 2020 at 12:04:23PM +0800, Icenowy Zheng wrote:
->> V831/V833 are new chips from Allwinner=2E They're the same die with
->> different package=2E
->>=20
->> Add a pinctrl driver for them=2E
->>=20
->> The difference between V831/V833 pinctrl is implemented based on the
->> user manual=2E
->>=20
->> Cc: Linus Walleij <linus=2Ewalleij@linaro=2Eorg>
->> Cc: linux-gpio@vger=2Ekernel=2Eorg
->> Signed-off-by: Icenowy Zheng <icenowy@aosc=2Eio>
->> ---
->>  drivers/pinctrl/sunxi/Kconfig              |   5 +
->>  drivers/pinctrl/sunxi/Makefile             |   1 +
->>  drivers/pinctrl/sunxi/pinctrl-sun8i-v83x=2Ec | 743
->+++++++++++++++++++++
->>  drivers/pinctrl/sunxi/pinctrl-sunxi=2Eh      |   2 +
->>  4 files changed, 751 insertions(+)
->>  create mode 100644 drivers/pinctrl/sunxi/pinctrl-sun8i-v83x=2Ec
->>=20
->> diff --git a/drivers/pinctrl/sunxi/Kconfig
->b/drivers/pinctrl/sunxi/Kconfig
->> index 593293584ecc=2E=2Efc13335a3eda 100644
->> --- a/drivers/pinctrl/sunxi/Kconfig
->> +++ b/drivers/pinctrl/sunxi/Kconfig
->> @@ -73,6 +73,11 @@ config PINCTRL_SUN8I_V3S
->>  	default MACH_SUN8I
->>  	select PINCTRL_SUNXI
->> =20
->> +config PINCTRL_SUN8I_V83X
->> +	bool "Support for the Allwinner V831/V833 PIO"
->> +	default MACH_SUN8I
->> +	select PINCTRL_SUNXI
->> +
->
->We're not using the wildcard much, and I'd rather be consistent with
->the
->name / Kconfig option scheme used for the clock driver (and the rest of
->the SoCs in a similar situation)
-
-Well, call everything V831, or call everything V833, or call things usable=
-=20
-on V831 V831 and things only available to V833 V833?
-
->
->Maxime
