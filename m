@@ -2,43 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C3932D9E2E
-	for <lists+devicetree@lfdr.de>; Mon, 14 Dec 2020 18:53:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B9F242D9E43
+	for <lists+devicetree@lfdr.de>; Mon, 14 Dec 2020 18:56:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2407357AbgLNRtR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Dec 2020 12:49:17 -0500
-Received: from mail.kernel.org ([198.145.29.99]:53970 "EHLO mail.kernel.org"
+        id S2439976AbgLNRvD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Dec 2020 12:51:03 -0500
+Received: from mail.kernel.org ([198.145.29.99]:54530 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2408828AbgLNRtO (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 14 Dec 2020 12:49:14 -0500
-Date:   Mon, 14 Dec 2020 17:48:22 +0000
+        id S2439274AbgLNRvB (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 14 Dec 2020 12:51:01 -0500
+Date:   Mon, 14 Dec 2020 17:50:09 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1607968113;
-        bh=NcqAS0fdk9ddPfR571pdN63Yp0bFOzwqCtafAiwa0Mg=;
+        s=k20201202; t=1607968220;
+        bh=7c3uSBpWEkrGyLpkCUlDnIX7pZbHL7FF3A2/sYOnzDo=;
         h=From:To:Cc:Subject:References:In-Reply-To:From;
-        b=WNmmvYml2MNGeb+1OLX1V7rfTCqp5bNGLdXL9oMr05FR+lJujOeYbEmWg9/mppLgl
-         FlojAqt/+wgn8kqstqSP3qkMN2Gh3Vw8s96yfhv318MKroqChPYhbmhDKuyQlGkLn7
-         5ruqWFfAqbbS2AHYS8vbC05m2iEuWid38KGnX/EvP51Y81RLV46q+xx0hLy+ByNrFd
-         UyhCCLPd9eTn0Pgf/GQmwpq0VpxdIO8Rbubjazqg7CRQQWlmp9prYxLca7YJ4O9t5V
-         DptZ9BBWPHCEQBp7XE+gZiHKnw+URjzsA306qZdttBijySBmrl1KVJY9//X6/3wQLJ
-         Sd/mEfWCXjS1g==
+        b=GX0fbQrYdnWDEYLpMP3jiWLRtIOOsYgtpKSu6yRM+pJCcIH+FjzS9ask4+GRjrpQm
+         vkp46yljFoJQIui6UqV8RfkTeHcu6wzxYgXHKIQ/3o3ZLOYjmPeszYEBKGvBn4RApP
+         NYtJ+bibI0AiaE6nRP/4CWo0GBPClDFZBfnn8s2qb0MAi9Ga1tcGSRX9KZyUJbxiWE
+         lL6X1hc15h2A37GjepLfSflyzPimNZlF0NjNG7F+HOjeaYSiCDxXsq2dWiBuKndVGO
+         rTRaY0eLW7M8UsOiYnZCeCu6AdWVDwVGeNljzNEl9N3ZP9qkoqA3qKCI1pK3YXKPZN
+         OX7F6tJJhKANA==
 From:   Mark Brown <broonie@kernel.org>
-To:     Qing Zhang <zhangqing@loongson.cn>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        linux-spi@vger.kernel.org, Huacai Chen <chenhc@lemote.com>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Juxin Gao <gaojuxin@loongson.cn>
-Subject: Re: [PATCH v3 1/4] spi: LS7A: Add Loongson LS7A SPI controller
- driver support
-Message-ID: <20201214174822.GC4880@sirena.org.uk>
-References: <1607925534-8312-1-git-send-email-zhangqing@loongson.cn>
+To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        robh+dt@kernel.org, plai@codeaurora.org, bgoswami@codeaurora.org,
+        perex@perex.cz, tiwai@suse.com, srinivas.kandagatla@linaro.org,
+        rohitkr@codeaurora.org, linux-arm-msm@vger.kernel.org,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        V Sujith Kumar Reddy <vsujithk@codeaurora.org>
+Subject: Re: [PATCH v4 1/2] Partially revert ASoC: qcom: Fix enabling BCLK
+ and LRCLK in LPAIF invalid state
+Message-ID: <20201214175009.GD4880@sirena.org.uk>
+References: <1606539559-4277-1-git-send-email-srivasam@codeaurora.org>
+ <1606539559-4277-2-git-send-email-srivasam@codeaurora.org>
+ <20201130124617.GC4756@sirena.org.uk>
+ <966993b7-4720-bdd2-cf4d-cf5a7c11a0c1@codeaurora.org>
+ <20201201175135.GO5239@sirena.org.uk>
+ <89456f01-aa02-7a7d-a47b-bf1f26e66d4c@codeaurora.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="f0KYrhQ4vYSV2aJu"
+        protocol="application/pgp-signature"; boundary="/3yNEOqWowh/8j+e"
 Content-Disposition: inline
-In-Reply-To: <1607925534-8312-1-git-send-email-zhangqing@loongson.cn>
+In-Reply-To: <89456f01-aa02-7a7d-a47b-bf1f26e66d4c@codeaurora.org>
 X-Cookie: Everything you know is wrong!
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
@@ -46,58 +52,50 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---f0KYrhQ4vYSV2aJu
-Content-Type: text/plain; charset=us-ascii
+--/3yNEOqWowh/8j+e
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Dec 14, 2020 at 01:58:51PM +0800, Qing Zhang wrote:
+On Mon, Dec 14, 2020 at 06:13:22PM +0530, Srinivasa Rao Mandadapu wrote:
+> On 12/1/2020 11:21 PM, Mark Brown wrote:
 
-> +static int ls7a_spi_do_transfer(struct ls7a_spi *ls7a_spi,
-> +                               struct spi_device *spi,
-> +                               struct spi_transfer *t)
+> > > Later from review comments by Srinivas kandagatla, I got to know
+> > >=20
+> > > about regcache sync APIs, which can be used=A0 to sync cache after re=
+sume and
+> > >=20
+> > > HW registers can be updated with=A0 original values. With that playba=
+ck can be
+> > > continued.
 
-This does a lot of configuration, as far as I can see only the clock
-rate can actually vary per transfer though?  The mode configuration
-looks like it should be moved to prepare instead, the divider settings
-can be done with a read/modify/write.  It's also not clear to me why
-spcr and sper are being stored in the driver data, we never read the
-values outside of this function.
+> > > So is the reason, I am reverting partial changes in the commit b18249=
+68221c.
 
-> +static int  ls7a_spi_transfer_one(struct spi_master *master,
-> +				  struct spi_device *spi,
-> +				  struct spi_transfer *t)
-> +{
-> +	struct ls7a_spi *ls7a_spi;
-> +	int status;
-> +
-> +	ls7a_spi = spi_master_get_devdata(master);
-> +
-> +	status = ls7a_spi_do_transfer(ls7a_spi, spi, t);
-> +	if (status < 0)
-> +		return status;
-> +
-> +	ls7a_spi_write_read(spi, t);
+> > I don't understand why a fix for the register cache not being in sync
+> > with the hardware doesn't involve syncing the register cache with the
+> > hardware.
 
-This is kind of confusing - _do_transfer() doesn't actually do the
-transfer so far as I can see, write_read() does the transfer?  Probably
-both functions should be renamed, or even just inlined here - it's
-really configuring the clocks and transferring the data.
+> I am sorry I couldn't understand your point. Could you please elaborate y=
+our
+> query?
 
-Otherwise this looks good.
+Your changelog talks about syncing the cache but neither the driver nor
+your change actually does that.
 
---f0KYrhQ4vYSV2aJu
+--/3yNEOqWowh/8j+e
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl/XpWYACgkQJNaLcl1U
-h9BzHAf/Rwxgo7t4Z5IvsSKHACOvItQQHanhkcSmK862aYJBHTRvoVpnQQzEtqU6
-Wodl6E4dZFq15FhWH12EsOBDv2LPsm4XiaYWbUljPip0ZEfbJNpoOUg43UZZSHri
-cjThPcPGG2UEQEDjyWivFKyip8ws8PJw9o2+2Wm5KygxoIsXX6sIIKQRpzgxcdqw
-k8774KI3eR1lKc6lWstuI442xqfUMGbBPfor59NB6iRkXlG1FlOo2grXwWhrwC4+
-Yvk45cnZDLQvrK5E72VLMVjK9JeA+K0Tkkkg0UGzR5m8YsgDCrWxW4rjCYEIdxpY
-tcpeQhGyu80pqDTE8b8y8k/ldAAC8g==
-=U/sN
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl/XpdAACgkQJNaLcl1U
+h9D/Zwf/fjn9hyBot5AFRtqGND9G8HLpAtWHKW70cPH+wBsFuqB0CLI8tZbBwh0q
+kWZwfm8x8OxC44uZBFactuNZmp1+PgJ6Gj9f7wUuFBAYWUAIMjERH3qmIdBnNKwk
+iVor+tLIrpGRfncjfL0tK7Xxd6YPQx0G7pDkxMHbP7sg6SS094m2CtHFo+jPRtec
+AKRcvjIy7xw561ot5vqjMz62CTazM87RuqnVJsE81XcST4slkJLD9IUOSWTLDivK
+UHNg/3hc3fAUBHwvPC+0t9suBwSMkifi9hJuTGbhPTnPILmRF9GJ0l4+PCqpnrVn
+v5oEVRw7ErT3avD1VlAlKlN49wz43Q==
+=jFTq
 -----END PGP SIGNATURE-----
 
---f0KYrhQ4vYSV2aJu--
+--/3yNEOqWowh/8j+e--
