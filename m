@@ -2,237 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 567002D9A33
-	for <lists+devicetree@lfdr.de>; Mon, 14 Dec 2020 15:42:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F5482D9A5B
+	for <lists+devicetree@lfdr.de>; Mon, 14 Dec 2020 15:56:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2407737AbgLNOlw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Dec 2020 09:41:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46872 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388406AbgLNOls (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Dec 2020 09:41:48 -0500
-Received: from mail-oi1-x241.google.com (mail-oi1-x241.google.com [IPv6:2607:f8b0:4864:20::241])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11F9EC061794;
-        Mon, 14 Dec 2020 06:41:08 -0800 (PST)
-Received: by mail-oi1-x241.google.com with SMTP id s75so19398459oih.1;
-        Mon, 14 Dec 2020 06:41:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=emYH1CDyNm1BhuqvaRMloeDz4m115YgfkfIi4eq8Wq8=;
-        b=B3vxtso6GenEmv5N7OfFAOW+pAGPqwE3gWVo0+MjnBpTrUdnahF9rA15EIdqvfigH+
-         8TuIugvQ9w/KoVeYBORgYX/DB3CPrTkW0VRNkGGAU66r7uIkIaU7ZjHTK7KV6O7qbxoI
-         YzxZ7vDx4YehjcOtXbOGUkaeSk+E9RL7npCFlAbMVLwOcJcvLKb4mHTLWyQZxwoFrL47
-         Z1OCVoR7NyK+7VYYrzd6zcG+gkifFHAoxFDvYPa5RoqcWTqVemtiXyb0PZcEhMp3XAF0
-         NVxyWM0UTcJiVhzUllYiPMGyXuUKm8B2IuzKsaru29R5PacRyjJHKFIxOSma8H1xal/O
-         SBEA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=emYH1CDyNm1BhuqvaRMloeDz4m115YgfkfIi4eq8Wq8=;
-        b=JZOFAaEut8mV2EbhlvT9Vnn9G4Drsceb8xrB3m75i9A/c4RYLaLCaXLDak0yPHw2YJ
-         SypQV2K2SmXvK0UGbriM5bsqTDz819rcalgYRNzn3bcXlHey0El466yHLjoM8wlGoOJd
-         D9qq3YqbM6rUbO7uynMf0o7ML9xU4m7OiiKu6l3YLAgonyOiLxAbYx6dKY7IU1t/lRJb
-         G4hBM2i7yQJZEnFYKlaw/H4PZwVxorUD+Kiadn+1DUa3xvLeH5p/krSal2WuEGNOBddp
-         B9HV4p977c+++MedQHKK8WnGhOOV0DfVcYRrWFgt8mRCS71VNQ/tvx9UbULjTY85ZF7G
-         MR4w==
-X-Gm-Message-State: AOAM530npXxKeLKUtz+9l6E9pI+MybYu6YrwDazk7rBgs9trWC8n7ovL
-        Ewx+7bhLxGkewk3kv8dAIhKEXv+27McDj/XdudOEHsW0
-X-Google-Smtp-Source: ABdhPJxXOvuFwQayUv3DdPo2h+A7x8DDHAt6Nt9SPYFiUn+UebDb+s+6bYFZqDZx/d6/WRuNkVn1pdMYrLyTUP9Ym08=
-X-Received: by 2002:aca:4ec9:: with SMTP id c192mr19079047oib.115.1607956867287;
- Mon, 14 Dec 2020 06:41:07 -0800 (PST)
+        id S2406084AbgLNOzP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Dec 2020 09:55:15 -0500
+Received: from mail.kernel.org ([198.145.29.99]:45372 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2406954AbgLNOzL (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 14 Dec 2020 09:55:11 -0500
+X-Gm-Message-State: AOAM533uTUwhWZ4kEPSTtNs1NqTvRMe9qkARSrAb0INdqWuYaCRoCVR5
+        TFTPFhkLCCaVpR+R9r+xYMwcKrQu5+XbKrKedg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1607957668;
+        bh=lx5LcB4r8kThhsWgyjSZ+LWhuKJpQwGa8oXjjRjm8yY=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=RS3eYjNQYmDFQA7FmdEX3nxqALFkO77gC8VpWHirjJClhd+5Dwy0yRNu1+KhTfH4a
+         cqLZgg/Kkskv4JPmU7JM+DynYOaMl3h0zivY/hoPC+ErlcrFlPH/ad04c1d+5YQ5Ma
+         rZhVtTeWMyp9ZI3yoPEaQYE6IZmJsOf3Diyl2l8fuvOsYYoia+bs9NqJlPn6agoKZ1
+         bIfwzohw/9gHciYqVku6BHJ8LazxVQiEexyGXGFREbFUxxkfjWPvOfuwJN5CWS91HD
+         0kWGbHqO9DXNIcJL+uV33r6CGR+3Ocj3JgrL05xqwZ8KmJWNCI5trWCt0ktl5sT5yp
+         nKd/kmFx/tQVw==
+X-Google-Smtp-Source: ABdhPJywDyFHYaIxrWSBcAnDDsvFyzMN1rO/xQl7TxTsoTfGwXme0jp7BjNRTzumje835VaKEkDPyyP8R0QtuCPZpGE=
+X-Received: by 2002:a17:906:ae4e:: with SMTP id lf14mr23355440ejb.310.1607957666417;
+ Mon, 14 Dec 2020 06:54:26 -0800 (PST)
 MIME-Version: 1.0
-References: <1607704424-16223-1-git-send-email-u0084500@gmail.com>
- <1607704424-16223-2-git-send-email-u0084500@gmail.com> <20201214095916.4g47zlueng4wa3hv@holly.lan>
-In-Reply-To: <20201214095916.4g47zlueng4wa3hv@holly.lan>
-From:   ChiYuan Huang <u0084500@gmail.com>
-Date:   Mon, 14 Dec 2020 22:40:55 +0800
-Message-ID: <CADiBU38wZ+yrfjbggJyY7BHc5-tdV-KWVgWBmZn-q3EY99=PPg@mail.gmail.com>
-Subject: Re: [PATCH v4 2/3] backlight: rt4831: Adds DT binding document for
- Richtek RT4831 backlight
-To:     Daniel Thompson <daniel.thompson@linaro.org>
-Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        cy_huang <cy_huang@richtek.com>,
-        lkml <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
+References: <1607591262-21736-1-git-send-email-yongqiang.niu@mediatek.com>
+ <1607591262-21736-6-git-send-email-yongqiang.niu@mediatek.com>
+ <CAAOTY_-aYFz1Xg6r2ur+BF_k_35F3qNLLb16_2c0MaMsYre-+w@mail.gmail.com> <1607647514.12750.5.camel@mhfsdcap03>
+In-Reply-To: <1607647514.12750.5.camel@mhfsdcap03>
+From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Date:   Mon, 14 Dec 2020 22:54:15 +0800
+X-Gmail-Original-Message-ID: <CAAOTY__HA95WLNppOKainvsZCxA6Wv3edLyvOW6FxAjUos=afQ@mail.gmail.com>
+Message-ID: <CAAOTY__HA95WLNppOKainvsZCxA6Wv3edLyvOW6FxAjUos=afQ@mail.gmail.com>
+Subject: Re: [PATCH v8, 5/6] drm/mediatek: add RDMA fifo size error handle
+To:     Yongqiang Niu <yongqiang.niu@mediatek.com>
+Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        CK Hu <ck.hu@mediatek.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        DTML <devicetree@vger.kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        DRI Development <dri-devel@lists.freedesktop.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi, Yongqiang:
 
-Daniel Thompson <daniel.thompson@linaro.org> =E6=96=BC 2020=E5=B9=B412=E6=
-=9C=8814=E6=97=A5 =E9=80=B1=E4=B8=80 =E4=B8=8B=E5=8D=885:59=E5=AF=AB=E9=81=
+Yongqiang Niu <yongqiang.niu@mediatek.com> =E6=96=BC 2020=E5=B9=B412=E6=9C=
+=8811=E6=97=A5 =E9=80=B1=E4=BA=94 =E4=B8=8A=E5=8D=888:45=E5=AF=AB=E9=81=93=
+=EF=BC=9A
+>
+> On Thu, 2020-12-10 at 23:50 +0800, Chun-Kuang Hu wrote:
+> > Hi, Yongqiang:
+> >
+> > Yongqiang Niu <yongqiang.niu@mediatek.com> =E6=96=BC 2020=E5=B9=B412=E6=
+=9C=8810=E6=97=A5 =E9=80=B1=E5=9B=9B =E4=B8=8B=E5=8D=885:08=E5=AF=AB=E9=81=
 =93=EF=BC=9A
->
-> Hi CY
->
-> On Sat, Dec 12, 2020 at 12:33:43AM +0800, cy_huang wrote:
-> > From: ChiYuan Huang <cy_huang@richtek.com>
+> > >
+> > > This patch add RDMA fifo size error handle
+> > > rdma fifo size will not always bigger than the calculated threshold
+> > > if that case happened, we need set fifo size as the threshold
+> > >
+> > > Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
+> > > ---
+> > >  drivers/gpu/drm/mediatek/mtk_disp_rdma.c | 4 ++++
+> > >  1 file changed, 4 insertions(+)
+> > >
+> > > diff --git a/drivers/gpu/drm/mediatek/mtk_disp_rdma.c b/drivers/gpu/d=
+rm/mediatek/mtk_disp_rdma.c
+> > > index 794acc5..0508392 100644
+> > > --- a/drivers/gpu/drm/mediatek/mtk_disp_rdma.c
+> > > +++ b/drivers/gpu/drm/mediatek/mtk_disp_rdma.c
+> > > @@ -151,6 +151,10 @@ static void mtk_rdma_config(struct mtk_ddp_comp =
+*comp, unsigned int width,
+> > >          * account for blanking, and with a pixel depth of 4 bytes:
+> > >          */
+> > >         threshold =3D width * height * vrefresh * 4 * 7 / 1000000;
+> > > +
+> > > +       if (threshold > rdma_fifo_size)
+> > > +               threshold =3D rdma_fifo_size;
 > >
-> > Adds DT binding document for Richtek RT4831 backlight.
+> > If the formula is not correct, you should fix the formula not work arou=
+nd.
 > >
-> > Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
+> > Regards,
+> > Chun-Kuang.
 >
-> This patch got keyword filtered and brought to my attention
-> but the rest of the series did not.
->
-> If it was a backlight patch series you need to send it To: the
-> all the backlight maintainers.
->
-Yes, I'm waiting for mfd reviewing.
-Due to mfd patch, I need to add backlight dt-binding patch prior to
-backlight source code.
-Or autobuild robot will said mfd dt-binding build fail from Rob.
-That's why I send the backlight dt-binding prior to the source code.
+> how about this:
+> threshold =3D max(width * height * vrefresh * 4 * 7 / 1000000,
+> rdma_fifo_size);
 
-I still have backlight/regulator source code patch after mfd reviewing.
-Do you want me to send all the patches without waiting for mfd reviewing?
->
-> Daniel.
->
->
-> > ---
-> > since v3
-> > - Move inlcude/dt-bindings/leds/rt4831-backlight.h from v3 mfd binding =
-patch to here.
-> > - Add dual license tag in header and backlight binding document.
-> > - Left backlight dt-binding example only.
-> > ---
-> >  .../leds/backlight/richtek,rt4831-backlight.yaml   | 76 ++++++++++++++=
-++++++++
-> >  include/dt-bindings/leds/rt4831-backlight.h        | 23 +++++++
-> >  2 files changed, 99 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/leds/backlight/ri=
-chtek,rt4831-backlight.yaml
-> >  create mode 100644 include/dt-bindings/leds/rt4831-backlight.h
+When I use width =3D 1920, height =3D 1080, vrefresh =3D 60 to calculate, I
+get threshold =3D 2985.
+So I think set threshold to half of fifo size is OK for MAX_WIDTH,
+MAX_HEIGHT, MAX_VREFRESH (these three may be different in each SoC)
+
+threshold =3D RDMA_FIFO_PSEUDO_SIZE(rdma_fifo_size) / 2;
+
+But I worry half fifo size is too big for small resolution and let
+small resolution too easy to trigger burst read DRAM. So let the
+formula to be this:
+
+threshold =3D RDMA_FIFO_PSEUDO_SIZE(rdma_fifo_size) * width * height *
+vrefresh / 2 / MAX_WIDTH / MAX_HEIGHT / MAX_VREFRESH;
+
+How do you think about this?
+
+Regards,
+Chun-Kuang.
+
 > >
-> > diff --git a/Documentation/devicetree/bindings/leds/backlight/richtek,r=
-t4831-backlight.yaml b/Documentation/devicetree/bindings/leds/backlight/ric=
-htek,rt4831-backlight.yaml
-> > new file mode 100644
-> > index 00000000..f24c8d1
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/leds/backlight/richtek,rt4831-b=
-acklight.yaml
-> > @@ -0,0 +1,76 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/leds/backlight/richtek,rt4831-backl=
-ight.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Richtek RT4831 Backlight
-> > +
-> > +maintainers:
-> > +  - ChiYuan Huang <cy_huang@richtek.com>
-> > +
-> > +description: |
-> > +  RT4831 is a mutifunctional device that can provide power to the LCD =
-display
-> > +  and LCD backlight.
-> > +
-> > +  For the LCD backlight, it can provide four channel WLED driving capa=
-bility.
-> > +  Each channel driving current is up to 30mA
-> > +
-> > +  Datasheet is available at
-> > +  https://www.richtek.com/assets/product_file/RT4831A/DS4831A-05.pdf
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: richtek,rt4831-backlight
-> > +
-> > +  default-brightness:
-> > +    description: |
-> > +      The default brightness that applied to the system on start-up.
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    minimum: 0
-> > +    maximum: 2048
-> > +
-> > +  max-brightness:
-> > +    description: |
-> > +      The max brightness for the H/W limit
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    minimum: 0
-> > +    maximum: 2048
-> > +
-> > +  richtek,pwm-enable:
-> > +    description: |
-> > +      Specify the backlight dimming following by PWM duty or by SW con=
-trol.
-> > +    type: boolean
-> > +
-> > +  richtek,bled-ovp-sel:
-> > +    description: |
-> > +      Backlight OVP level selection, currently support 17V/21V/25V/29V=
-.
-> > +    $ref: /schemas/types.yaml#/definitions/uint8
-> > +    default: 1
-> > +    minimum: 0
-> > +    maximum: 3
-> > +
-> > +  richtek,channel-use:
-> > +    description: |
-> > +      Backlight LED channel to be used.
-> > +      BIT 0/1/2/3 is used to indicate led channel 1/2/3/4 enable or di=
-sable.
-> > +    $ref: /schemas/types.yaml#/definitions/uint8
-> > +    minimum: 1
-> > +    maximum: 15
-> > +
-> > +required:
-> > +  - compatible
-> > +  - richtek,channel-use
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/leds/rt4831-backlight.h>
-> > +    backlight {
-> > +      compatible =3D "richtek,rt4831-backlight";
-> > +      default-brightness =3D <1024>;
-> > +      max-brightness =3D <2048>;
-> > +      richtek,bled-ovp-sel =3D /bits/ 8 <RT4831_BLOVPLVL_21V>;
-> > +      richtek,channel-use =3D /bits/ 8 <RT4831_BLED_ALLCHEN>;
-> > +    };
-> > diff --git a/include/dt-bindings/leds/rt4831-backlight.h b/include/dt-b=
-indings/leds/rt4831-backlight.h
-> > new file mode 100644
-> > index 00000000..125c635
-> > --- /dev/null
-> > +++ b/include/dt-bindings/leds/rt4831-backlight.h
-> > @@ -0,0 +1,23 @@
-> > +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-> > +/*
-> > + * This header provides constants for rt4831 backlight bindings.
-> > + *
-> > + * Copyright (C) 2020, Richtek Technology Corp.
-> > + * Author: ChiYuan Huang <cy_huang@richtek.com>
-> > + */
-> > +
-> > +#ifndef _DT_BINDINGS_RT4831_BACKLIGHT_H
-> > +#define _DT_BINDINGS_RT4831_BACKLIGHT_H
-> > +
-> > +#define RT4831_BLOVPLVL_17V  0
-> > +#define RT4831_BLOVPLVL_21V  1
-> > +#define RT4831_BLOVPLVL_25V  2
-> > +#define RT4831_BLOVPLVL_29V  3
-> > +
-> > +#define RT4831_BLED_CH1EN    (1 << 0)
-> > +#define RT4831_BLED_CH2EN    (1 << 1)
-> > +#define RT4831_BLED_CH3EN    (1 << 2)
-> > +#define RT4831_BLED_CH4EN    (1 << 3)
-> > +#define RT4831_BLED_ALLCHEN  ((1 << 4) - 1)
-> > +
-> > +#endif /* _DT_BINDINGS_RT4831_BACKLIGHT_H */
-> > --
-> > 2.7.4
-> >
+> > > +
+> > >         reg =3D RDMA_FIFO_UNDERFLOW_EN |
+> > >               RDMA_FIFO_PSEUDO_SIZE(rdma_fifo_size) |
+> > >               RDMA_OUTPUT_VALID_FIFO_THRESHOLD(threshold);
+> > > --
+> > > 1.8.1.1.dirty
+> > > _______________________________________________
+> > > Linux-mediatek mailing list
+> > > Linux-mediatek@lists.infradead.org
+> > > http://lists.infradead.org/mailman/listinfo/linux-mediatek
+>
