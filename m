@@ -2,74 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3EF9A2D91DA
-	for <lists+devicetree@lfdr.de>; Mon, 14 Dec 2020 03:52:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 301E82D91FD
+	for <lists+devicetree@lfdr.de>; Mon, 14 Dec 2020 04:07:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2438036AbgLNCuS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 13 Dec 2020 21:50:18 -0500
-Received: from server-x.ipv4.hkg02.ds.network ([27.111.83.178]:53966 "EHLO
+        id S1725966AbgLNDEu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 13 Dec 2020 22:04:50 -0500
+Received: from server-x.ipv4.hkg02.ds.network ([27.111.83.178]:54812 "EHLO
         mail.gtsys.com.hk" rhost-flags-OK-FAIL-OK-OK) by vger.kernel.org
-        with ESMTP id S2438033AbgLNCuJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Dec 2020 21:50:09 -0500
+        with ESMTP id S2438171AbgLNDEk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Dec 2020 22:04:40 -0500
+X-Greylist: delayed 417 seconds by postgrey-1.27 at vger.kernel.org; Sun, 13 Dec 2020 22:04:40 EST
 Received: from localhost (localhost [127.0.0.1])
-        by mail.gtsys.com.hk (Postfix) with ESMTP id 422F620139DE;
-        Mon, 14 Dec 2020 10:49:00 +0800 (HKT)
+        by mail.gtsys.com.hk (Postfix) with ESMTP id D0F7920138C7;
+        Mon, 14 Dec 2020 10:56:31 +0800 (HKT)
 X-Virus-Scanned: Debian amavisd-new at gtsys.com.hk
 Received: from mail.gtsys.com.hk ([127.0.0.1])
         by localhost (mail.gtsys.com.hk [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id wIylvA8Ctrid; Mon, 14 Dec 2020 10:49:00 +0800 (HKT)
+        with ESMTP id sDG8LkYOmztR; Mon, 14 Dec 2020 10:56:31 +0800 (HKT)
 Received: from s01.gtsys.com.hk (unknown [10.128.4.2])
-        by mail.gtsys.com.hk (Postfix) with ESMTP id 2843320139A0;
-        Mon, 14 Dec 2020 10:49:00 +0800 (HKT)
-Received: from armhf2.gtsys.com.hk (unknown [10.128.4.15])
-        by s01.gtsys.com.hk (Postfix) with ESMTP id 2CAFAC01FAD;
-        Mon, 14 Dec 2020 10:49:00 +0800 (HKT)
-Received: by armhf2.gtsys.com.hk (Postfix, from userid 1000)
-        id 16E252000CF; Mon, 14 Dec 2020 10:49:00 +0800 (HKT)
-From:   Chris Ruehl <chris.ruehl@gtsys.com.hk>
-To:     Chris Ruehl <chris.ruehl@gtsys.com.hk>
+        by mail.gtsys.com.hk (Postfix) with ESMTP id AB2F420138C6;
+        Mon, 14 Dec 2020 10:56:31 +0800 (HKT)
+Received: from [10.128.2.32] (unknown [124.217.189.105])
+        by s01.gtsys.com.hk (Postfix) with ESMTPSA id 2E953C01FAD;
+        Mon, 14 Dec 2020 10:56:31 +0800 (HKT)
+Subject: Re: [PATCH 0/3] rockchip: emmc: rk3399 add vendor prefix
 Cc:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
         Kishon Vijay Abraham I <kishon@ti.com>,
         Vinod Koul <vkoul@kernel.org>,
-        Johan Jonker <jbx6244@gmail.com>,
+        Heiko Stuebner <heiko@sntech.de>, linux-kernel@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 3/3] devicetree: dtsi: rk3399-puma.dtsi, add "rockchip," vendor prefix
-Date:   Mon, 14 Dec 2020 10:47:19 +0800
-Message-Id: <20201214024720.24656-4-chris.ruehl@gtsys.com.hk>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20201214024720.24656-1-chris.ruehl@gtsys.com.hk>
+        linux-rockchip@lists.infradead.org
 References: <20201214024720.24656-1-chris.ruehl@gtsys.com.hk>
+From:   Chris Ruehl <chris.ruehl@gtsys.com.hk>
+Message-ID: <3de52cae-f790-9881-b540-328118de45cc@gtsys.com.hk>
+Date:   Mon, 14 Dec 2020 10:56:29 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.5.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20201214024720.24656-1-chris.ruehl@gtsys.com.hk>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update rk3399-puma.dtsi with the vendor prefix referred in
-vendor-prefixes.yaml.
-Optional property: rockchip,drive-impedance-ohm
 
-Signed-off-by: Chris Ruehl <chris.ruehl@gtsys.com.hk>
----
- arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+On 14/12/2020 10:47 am, Chris Ruehl wrote:
+> This patchset follow up with commit
+> Following the reference in vendor-prefixes.yaml, update implementation,
+> devicetree binding dtsi and documentation for the phy-rockchip-emmc.
+> 
+> Signed-off-by: Chris Ruehl <chris.ruehl@gtsys.com.hk>
+> ---
+> Documentation/devicetree/bindings/phy/rockchip-emmc-phy.txt | 19 ++++++++++---------
+> arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi               |  2 +-
+> arch/arm64/boot/dts/rockchip/rk3399.dtsi                    |  2 +-
+> drivers/phy/rockchip/phy-rockchip-emmc.c                    |  6 +++---
+> 4 files changed, 15 insertions(+), 14 deletions(-)
+> 
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi
-index 4660416c8f38..b715e73f9749 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi
-@@ -146,7 +146,7 @@
- 
- &emmc_phy {
- 	status = "okay";
--	drive-impedance-ohm = <33>;
-+	rockchip,drive-impedance-ohm = <33>;
- };
- 
- &gmac {
--- 
-2.20.1
+Sorry send incomplete patch-set accidentally
 
+v1 follow.
+
+Chris
