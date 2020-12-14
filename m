@@ -2,114 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D184A2DA0C7
-	for <lists+devicetree@lfdr.de>; Mon, 14 Dec 2020 20:48:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5FB282DA15F
+	for <lists+devicetree@lfdr.de>; Mon, 14 Dec 2020 21:23:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2502739AbgLNTro (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Dec 2020 14:47:44 -0500
-Received: from mail.kernel.org ([198.145.29.99]:41358 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2502651AbgLNTre (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 14 Dec 2020 14:47:34 -0500
-X-Gm-Message-State: AOAM531DRRlvufKRAOkXba7tZfqH6G/poFFbg9eiAZpAEmvJi4CszD4r
-        X9alM2ON5MwaHJ8YEAbuDjsaBjJv6+Q6+rCokEQ=
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1607975211;
-        bh=iceNd6VKbkYU3nfVma/61jZjDtVc/NaK9/C3nnbBU+s=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=YqOE4WkisE4n/EA2GnnXtjTtyvTCfho3/J/05vyZ2nsT70AO7ql79KlyA+i9606SD
-         MPbennpTkRpYhfCT4z6VX4rxQUjPy41QhfJw1LjEGnvKwZGUl6rZsD1g9BkV9vZSo8
-         zE5OsIeE0JwN9Tw2mq4leC/p106L+/+Tjg8/7uHzVx9VhBOX27Bs/ttvos1NBncu6j
-         9IadRHjAqDuVuKAzQrW0sWXCgdK63OXRkorda7DMTE58Fr43Fc1a6+2WBZ0712/eD/
-         kJwTdG3dLLiOn7UqIPp2EFThm+2sfSZyb7U6NrvN62Nwgbj/wUsZ6lelV03cLqFhQC
-         ZEfAsgGEclKTQ==
-X-Google-Smtp-Source: ABdhPJzYGX1MMWPJFOHz30xp0aU5ph8u4S7t+0cxYtTT/8ErnPkWs3IM3N63LP5Kxy3d1xhce/zozUnaGS1ftZEokd4=
-X-Received: by 2002:aca:3b41:: with SMTP id i62mr4305679oia.67.1607975210247;
- Mon, 14 Dec 2020 11:46:50 -0800 (PST)
-MIME-Version: 1.0
-References: <20201016090833.1892-1-thunder.leizhen@huawei.com>
- <20201016090833.1892-2-thunder.leizhen@huawei.com> <20201128045328.2411772-1-f.fainelli@gmail.com>
- <CAK8P3a1_5RgcPz+bgo1bbUBk8NTJd=1-Y5-=CsQYkFgLfTE3_A@mail.gmail.com> <9c6c6b7e-8c39-8c49-5c87-9b560c027841@broadcom.com>
-In-Reply-To: <9c6c6b7e-8c39-8c49-5c87-9b560c027841@broadcom.com>
-From:   Arnd Bergmann <arnd@kernel.org>
-Date:   Mon, 14 Dec 2020 20:46:33 +0100
-X-Gmail-Original-Message-ID: <CAK8P3a2XYk8D80XARrpUSBHk1yye3KHXOdaQge4HNSZZOC=xKw@mail.gmail.com>
-Message-ID: <CAK8P3a2XYk8D80XARrpUSBHk1yye3KHXOdaQge4HNSZZOC=xKw@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] arm64: dts: broadcom: clear the warnings caused by
- empty dma-ranges
-To:     Ray Jui <ray.jui@broadcom.com>
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Scott Branden <sbranden@broadcom.com>,
-        Ray Jui <rjui@broadcom.com>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        id S2502938AbgLNUVu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Dec 2020 15:21:50 -0500
+Received: from mail-oi1-f196.google.com ([209.85.167.196]:41691 "EHLO
+        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2503119AbgLNUVr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Dec 2020 15:21:47 -0500
+Received: by mail-oi1-f196.google.com with SMTP id 15so20656570oix.8;
+        Mon, 14 Dec 2020 12:21:31 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=/QPcy0Axl+o8hy8WDOYUxwEWrmNTJySrAH30GVfVQZo=;
+        b=UY0elicZwjr45LkempZyyZG91SVV6hBGuFki49Fe3db/LFQOAqS1BguNAVU1irfK2U
+         RmFK0lfKGh5x+C5p7rjl2zfnrVHD/kZID9FYi3EAV/bT6Et9iUoxedPodRIRhtqqDKWK
+         StnlnhWnmuDj1Rja22bPIDP6vg4+nZ0DLqdMZMHt+8OS08Jg1w+rKh6gKO//CcZXIjs/
+         Zh73rdQUAm/Rc4ZKqEaYx/0USHXJaNKtf10ZjRgWDKcWl057TuVuCEsTG3Ep50vcHq1x
+         4+8jYOmhf3fDl/GVS2D6rTQeOointoWMHm4FsljBLTa2qz/CINeSqb2YJWql/ez4B9DH
+         y8Yw==
+X-Gm-Message-State: AOAM532yuXs5HOCxc6YzxjMfFT9sct2wdRrfCqFfRBVp23w0lSmsrD+M
+        P0wPQhUxKEXsO/Vnca44cnnoZeKHSA==
+X-Google-Smtp-Source: ABdhPJzXP+picASEtdv4d/QCN9WiqqLRWg5l+ar6sBgJ0RG54qJ2b81kyPQnL8HO14hVdaWOW918WA==
+X-Received: by 2002:aca:3192:: with SMTP id x140mr19614880oix.172.1607977266237;
+        Mon, 14 Dec 2020 12:21:06 -0800 (PST)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id v38sm1286470ott.52.2020.12.14.12.21.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 14 Dec 2020 12:21:05 -0800 (PST)
+Received: (nullmailer pid 2333154 invoked by uid 1000);
+        Mon, 14 Dec 2020 20:21:04 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Aswath Govindraju <a-govindraju@ti.com>
+Cc:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Sekhar Nori <nsekhar@ti.com>, linux-usb@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>,
-        bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
-        Zhen Lei <thunder.leizhen@huawei.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Bharat Gooty <bharat.gooty@broadcom.com>
-Content-Type: text/plain; charset="UTF-8"
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Roger Quadros <rogerq@ti.com>
+In-Reply-To: <20201214140109.21955-1-a-govindraju@ti.com>
+References: <20201214140109.21955-1-a-govindraju@ti.com>
+Subject: Re: [PATCH v5] dt-bindings: usb: Add new compatible string for AM64 SoC
+Date:   Mon, 14 Dec 2020 14:21:04 -0600
+Message-Id: <1607977264.104039.2333153.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 14, 2020 at 8:09 PM Ray Jui <ray.jui@broadcom.com> wrote:
-> On 11/28/2020 1:58 AM, Arnd Bergmann wrote:
-> > On Sat, Nov 28, 2020 at 5:53 AM Florian Fainelli <f.fainelli@gmail.com> wrote:
-> >>
-> >> On Fri, 16 Oct 2020 17:08:32 +0800, Zhen Lei <thunder.leizhen@huawei.com> wrote:
-> >>> The scripts/dtc/checks.c requires that the node have empty "dma-ranges"
-> >>> property must have the same "#address-cells" and "#size-cells" values as
-> >>> the parent node. Otherwise, the following warnings is reported:
-> >>>
-> >>> arch/arm64/boot/dts/broadcom/stingray/stingray-usb.dtsi:7.3-14: Warning \
-> >>> (dma_ranges_format): /usb:dma-ranges: empty "dma-ranges" property but \
-> >>> its #address-cells (1) differs from / (2)
-> >>> arch/arm64/boot/dts/broadcom/stingray/stingray-usb.dtsi:7.3-14: Warning \
-> >>> (dma_ranges_format): /usb:dma-ranges: empty "dma-ranges" property but \
-> >>> its #size-cells (1) differs from / (2)
-> >>>
-> >>> Arnd Bergmann figured out why it's necessary:
-> >>> Also note that the #address-cells=<1> means that any device under
-> >>> this bus is assumed to only support 32-bit addressing, and DMA will
-> >>> have to go through a slow swiotlb in the absence of an IOMMU.
-> >>>
-> >>> Suggested-by: Arnd Bergmann <arnd@arndb.de>
-> >>> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
-> >>> ---
-> >>
-> >> Applied to devicetree-arm64/next, thanks!
-> >
-> > The notification may have gone missing, but I had merged it into v5.10-fixes
-> > already, and as of today, it's in mainline, so you can drop it from your
-> > next branch, or just leave it in if you want to avoid taking things out of
-> > your tree.
->
-> It looks like this patch might have caused a regression on Stingray USB.
-> Bharat, could you please confirm?
+On Mon, 14 Dec 2020 19:31:09 +0530, Aswath Govindraju wrote:
+> Add compatible string in j721e-usb binding file as the same USB subsystem
+> is present in AM64.
+> 
+> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+> ---
+> 
+> Changes since v4:
+>  - used oneOf instead of enum, as the schema has to convey that the strings
+>    ti,j721e-usb and ti,am64-usb can be used combined or seperately in the
+>    DT nodes.
+> 
+> Changes since v3:
+>  - used enum instead of anyOf.
+> 
+> Changes since v2:
+>  - added changes done over the versions.
+> 
+> Changes since v1:
+>  - replaced the '\t' at the beginning of the lines with spaces as it was
+>   causing the dt_binding_check to fail.
+> 
+>  Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml | 6 +++++-
+>  1 file changed, 5 insertions(+), 1 deletion(-)
+> 
 
-Well, this is what I had asked about originally, I assumed that
-Florian had asked someone with access to the datasheet.
+My bot found errors running 'make dt_binding_check' on your patch:
 
-> The fix would be to properly define the dma-ranges to be 32-bit (0x0 ~
-> 0xffffffff) since IOMMU is disabled on this device and the device's DMA
-> engine is on a 32-bit bus.
+yamllint warnings/errors:
 
-That's not how dma-ranges work, they tell you what the capabilities
-of the bus are, while the capabilities of the device are identified by
-the properties of that device.
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml: properties:compatible:oneOf:2:items: 'anyOf' conditional failed, one must be fixed:
+	['ti,j721e-usb', 'ti,am64-usb'] is not of type 'object', 'boolean'
+	'ti,j721e-usb' is not of type 'object', 'boolean'
+	'ti,am64-usb' is not of type 'object', 'boolean'
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml: ignoring, error in schema: properties: compatible: oneOf: 2: items
+warning: no schema found in file: ./Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml
 
-The device claims to be compatible with "generic-xhci", so the
-driver asks for a 64-bit mask to be set according to the xhci
-specification. If this device is not xhci compliant, then it should
-not ask for a 64-bit mask.
+See https://patchwork.ozlabs.org/patch/1415942
 
-However, if this is a 64-bit capable bus master on a 32-bit bus,
-then the dma-ranges property should list the capabilities of the
-bus, so the kernel can force the driver to fall back to 32-bit addressing.
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
 
-      Arnd
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
