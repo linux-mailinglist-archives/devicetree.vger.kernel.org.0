@@ -2,113 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 447472D9832
-	for <lists+devicetree@lfdr.de>; Mon, 14 Dec 2020 13:46:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 58C972D983C
+	for <lists+devicetree@lfdr.de>; Mon, 14 Dec 2020 13:46:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731276AbgLNMoK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Dec 2020 07:44:10 -0500
-Received: from so254-31.mailgun.net ([198.61.254.31]:23184 "EHLO
-        so254-31.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2406851AbgLNMoC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Dec 2020 07:44:02 -0500
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1607949822; h=Content-Transfer-Encoding: Content-Type:
- In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
- Subject: Sender; bh=EtLiKOSmtdxM3lPu08opt0J1Uv63PkkfxPsuqDSZOg4=; b=vwJfDzi9wXAbLaJKtax7H6MzI+fCSuhM9SnnTtrYSpR08QNu4H44miZ1aAeIFmC13+SOeiJV
- mGZDUMoDBgijQWHsmCVUI0dQcYHCO4q5OBg1WgBPnua+Uza/fjt0xxBRx9raJktVI5SIaHhJ
- FQ8kQeQRur5BH6TKlhmBgi2WCAI=
-X-Mailgun-Sending-Ip: 198.61.254.31
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n10.prod.us-east-1.postgun.com with SMTP id
- 5fd75df489d385446809c846 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 14 Dec 2020 12:43:32
- GMT
-Sender: srivasam=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id AFC0AC43465; Mon, 14 Dec 2020 12:43:31 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        NICE_REPLY_A,SPF_FAIL autolearn=no autolearn_force=no version=3.4.0
-Received: from [10.242.141.31] (unknown [202.46.23.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: srivasam)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 72E11C433C6;
-        Mon, 14 Dec 2020 12:43:25 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 72E11C433C6
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=srivasam@codeaurora.org
-Subject: Re: [PATCH v4 1/2] Partially revert ASoC: qcom: Fix enabling BCLK and
- LRCLK in LPAIF invalid state
-To:     Mark Brown <broonie@kernel.org>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        robh+dt@kernel.org, plai@codeaurora.org, bgoswami@codeaurora.org,
-        perex@perex.cz, tiwai@suse.com, srinivas.kandagatla@linaro.org,
-        rohitkr@codeaurora.org, linux-arm-msm@vger.kernel.org,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        V Sujith Kumar Reddy <vsujithk@codeaurora.org>
-References: <1606539559-4277-1-git-send-email-srivasam@codeaurora.org>
- <1606539559-4277-2-git-send-email-srivasam@codeaurora.org>
- <20201130124617.GC4756@sirena.org.uk>
- <966993b7-4720-bdd2-cf4d-cf5a7c11a0c1@codeaurora.org>
- <20201201175135.GO5239@sirena.org.uk>
-From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-Organization: Qualcomm India Private Limited.
-Message-ID: <89456f01-aa02-7a7d-a47b-bf1f26e66d4c@codeaurora.org>
-Date:   Mon, 14 Dec 2020 18:13:22 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.5.1
+        id S2439172AbgLNMow (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Dec 2020 07:44:52 -0500
+Received: from szxga06-in.huawei.com ([45.249.212.32]:9442 "EHLO
+        szxga06-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2439101AbgLNMoq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Dec 2020 07:44:46 -0500
+Received: from DGGEMS403-HUB.china.huawei.com (unknown [172.30.72.59])
+        by szxga06-in.huawei.com (SkyGuard) with ESMTP id 4Cvgzl4b7yzhr6M;
+        Mon, 14 Dec 2020 20:43:31 +0800 (CST)
+Received: from thunder-town.china.huawei.com (10.174.177.9) by
+ DGGEMS403-HUB.china.huawei.com (10.3.19.203) with Microsoft SMTP Server id
+ 14.3.498.0; Mon, 14 Dec 2020 20:43:52 +0800
+From:   Zhen Lei <thunder.leizhen@huawei.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Wolfram Sang <wsa@kernel.org>,
+        linux-i2c <linux-i2c@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+CC:     Zhen Lei <thunder.leizhen@huawei.com>
+Subject: [PATCH v2 0/1] dt-bindings: i2c: dw: cancel mandatory requirements for "#address-cells" and "#size-cells"
+Date:   Mon, 14 Dec 2020 20:43:46 +0800
+Message-ID: <20201214124347.2120-1-thunder.leizhen@huawei.com>
+X-Mailer: git-send-email 2.26.0.windows.1
 MIME-Version: 1.0
-In-Reply-To: <20201201175135.GO5239@sirena.org.uk>
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [10.174.177.9]
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thanks Mark for Your time!!!
+v1 --> v2:
+Update the subject and description.
 
-On 12/1/2020 11:21 PM, Mark Brown wrote:
-> On Tue, Dec 01, 2020 at 11:01:21PM +0530, Srinivasa Rao Mandadapu wrote:
->> On 11/30/2020 6:16 PM, Mark Brown wrote:
->>> Part of this commit message says that the problem was making the registers
->>> non-volatile but both the change and the rest of the commit message say
->>> that the issue was that the registers were made volatile.  I'm also
->>> still unclear as to what the issue is either way - how does reading the
->>> state of the registers from the hardware instead of the cache affect
->>> things?
->> Initial problem was, during playback if device suspended, I2S and DMA
->> control registers
->> are getting reset and unable to recover playback after resume.
->> As these registers were non volatile registers, driver is not getting actual
->> register value
->> and unable to report error state to application. Due to this application
->> keeps on polling for HW current pointer state and not exited from PCM
->> running state.
->> Later from review comments by Srinivas kandagatla, I got to know
->>
->> about regcache sync APIs, which can be used  to sync cache after resume and
->>
->> HW registers can be updated with  original values. With that playback can be
->> continued.
->>
->> So is the reason, I am reverting partial changes in the commit b1824968221c.
-> I don't understand why a fix for the register cache not being in sync
-> with the hardware doesn't involve syncing the register cache with the
-> hardware.
 
-I am sorry I couldn't understand your point. Could you please elaborate 
-your query?
+Zhen Lei (1):
+  dt-bindings: i2c: dw: cancel mandatory requirements for
+    "#address-cells" and "#size-cells"
 
-Actually I posted V5 version based on review comments.
+ Documentation/devicetree/bindings/i2c/snps,designware-i2c.yaml | 8 --------
+ 1 file changed, 8 deletions(-)
 
 -- 
-Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
-is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
+1.8.3
+
 
