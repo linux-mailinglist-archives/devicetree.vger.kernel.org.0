@@ -2,138 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D56A02DA404
-	for <lists+devicetree@lfdr.de>; Tue, 15 Dec 2020 00:18:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B21F2DA40D
+	for <lists+devicetree@lfdr.de>; Tue, 15 Dec 2020 00:19:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388481AbgLNXPL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Dec 2020 18:15:11 -0500
-Received: from mail-oi1-f193.google.com ([209.85.167.193]:34109 "EHLO
-        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2393292AbgLNXPK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Dec 2020 18:15:10 -0500
-Received: by mail-oi1-f193.google.com with SMTP id s75so21219525oih.1;
-        Mon, 14 Dec 2020 15:14:54 -0800 (PST)
+        id S1728588AbgLNXS3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Dec 2020 18:18:29 -0500
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:34475 "EHLO
+        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2392636AbgLNXS0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Dec 2020 18:18:26 -0500
+Received: by mail-ot1-f67.google.com with SMTP id a109so17535096otc.1;
+        Mon, 14 Dec 2020 15:18:11 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=iTh9N+rYwCFON7UymOJ+NHCNudvypqo4gsPCV8m5fAQ=;
-        b=P40iXVwFM4yHW6QJuhIQ338K+oNHVyx2m4/82tHNj/FLCfvXwOh2m9JcSfK0RUaRFd
-         4rzw8TOQvVW9YLNGtkqNbJUB/HgsDds+je1JD3dx5cDC36c7nHZ2G0jEdKQS/tK9eiBj
-         NhmndigXpu00eLYC3337WuWI4dExSEFPultbEG0DudLUgjk5tdR8wulmB2DLrurBfJJG
-         2g1s0paCa1I72v1SCn13zrHjIEQ2Qd1M6CGKwhNA61lZ2TLk7hfHZKhftnAHNiHT02iy
-         4kus+eD2oEc9xLMb0UB4ybdn4IJjWsyqpLo/6NIZnz0xLO58svCYfjs28ykDQiy5Ggsd
-         RKIA==
-X-Gm-Message-State: AOAM532F1/bKw4jasp4A4BkXAHD77FywHkN2NsCBdua8GLZmK0mVmgX+
-        k7UHlalHBrN81bk2XaIB9w==
-X-Google-Smtp-Source: ABdhPJw1/PEgIntKwP3Lbk8KAqgDfV7JdP6WU47iGZx+gZR0xq+HV8tbXHiKJO2xLiTHpwxo3QYgSw==
-X-Received: by 2002:a05:6808:2c4:: with SMTP id a4mr20405604oid.114.1607987669080;
-        Mon, 14 Dec 2020 15:14:29 -0800 (PST)
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=PJYZpqISwTWCGFh/9VLQ/JLUDluHBOnC2KCClfM7zXU=;
+        b=OmRMAMlrHC0iJOS3ynsY//uc4o0EgAXYplu7Tfp9E2iRqRS6Fye9Zsk4nnBdtTGyNE
+         mAQPI5GJerDzPh26M6TFnSTdKtajLL02IzR30XUgneWPJd9lJ4zEVC/ruie/tch/wDWU
+         qNMyEno2/B8T7MjOp4Yd++JTBg3KFaXtcbUk5qlJh2pn1re3+GBWHkXAIeRyzqE50JJf
+         RrL9CDT3drB1k3tnrOwOGFWaT4rCq2et9Y4TSEGdr6lw/9CyPfAl8o9jEZqC3AnzVXRQ
+         8iYH6HYO4jrIaoSFLdsbOiy8WRIgqe42ZuknpnN/Qb8rpcSbOkwIXpUWGkZ6+kHjU1jz
+         iqXA==
+X-Gm-Message-State: AOAM531m4GkUBWw1k4goQE6T/LAE+kK+WN1BsfRFToqoU97UU5S0p1yk
+        MlOocWW1O19WVJrjEV2Aag==
+X-Google-Smtp-Source: ABdhPJwEiFtlSuIvxXmWUCQ/IGRxlFX1etWmF/iAnIsRGh3YRDVzq6jGSi1aA/SKqhzG4sRjORnR8w==
+X-Received: by 2002:a9d:32b6:: with SMTP id u51mr20523362otb.119.1607987865772;
+        Mon, 14 Dec 2020 15:17:45 -0800 (PST)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id u141sm4569388oie.46.2020.12.14.15.14.27
+        by smtp.gmail.com with ESMTPSA id n63sm4620242oih.39.2020.12.14.15.17.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Dec 2020 15:14:28 -0800 (PST)
-Received: (nullmailer pid 2560486 invoked by uid 1000);
-        Mon, 14 Dec 2020 23:14:26 -0000
-Date:   Mon, 14 Dec 2020 17:14:26 -0600
+        Mon, 14 Dec 2020 15:17:44 -0800 (PST)
+Received: (nullmailer pid 2564822 invoked by uid 1000);
+        Mon, 14 Dec 2020 23:17:43 -0000
+Date:   Mon, 14 Dec 2020 17:17:43 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-doc@vger.kernel.org, devel@driverdev.osuosl.org,
-        linux-sunxi@googlegroups.com, Yong Deng <yong.deng@magewell.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Helen Koike <helen.koike@collabora.com>,
-        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Hans Verkuil <hans.verkuil@cisco.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        kevin.lhopital@hotmail.com
-Subject: Re: [PATCH v3 08/15] dt-bindings: media: Add A31 MIPI CSI-2 bindings
- documentation
-Message-ID: <20201214231426.GB2555279@robh.at.kernel.org>
-References: <20201211155708.154710-1-paul.kocialkowski@bootlin.com>
- <20201211155708.154710-9-paul.kocialkowski@bootlin.com>
- <20201214113509.gkzf42rtag5b4mcn@gilmour>
+To:     ChiYuan Huang <u0084500@gmail.com>
+Cc:     Daniel Thompson <daniel.thompson@linaro.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        cy_huang <cy_huang@richtek.com>,
+        lkml <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v4 2/3] backlight: rt4831: Adds DT binding document for
+ Richtek RT4831 backlight
+Message-ID: <20201214231743.GA2560842@robh.at.kernel.org>
+References: <1607704424-16223-1-git-send-email-u0084500@gmail.com>
+ <1607704424-16223-2-git-send-email-u0084500@gmail.com>
+ <20201214095916.4g47zlueng4wa3hv@holly.lan>
+ <CADiBU38wZ+yrfjbggJyY7BHc5-tdV-KWVgWBmZn-q3EY99=PPg@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20201214113509.gkzf42rtag5b4mcn@gilmour>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CADiBU38wZ+yrfjbggJyY7BHc5-tdV-KWVgWBmZn-q3EY99=PPg@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 14, 2020 at 12:35:09PM +0100, Maxime Ripard wrote:
-> On Fri, Dec 11, 2020 at 04:57:01PM +0100, Paul Kocialkowski wrote:
-> > This introduces YAML bindings documentation for the A31 MIPI CSI-2
-> > controller.
-> > 
-> > Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-> > ---
-> >  .../media/allwinner,sun6i-a31-mipi-csi2.yaml  | 149 ++++++++++++++++++
-> >  1 file changed, 149 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/media/allwinner,sun6i-a31-mipi-csi2.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/media/allwinner,sun6i-a31-mipi-csi2.yaml b/Documentation/devicetree/bindings/media/allwinner,sun6i-a31-mipi-csi2.yaml
-> > new file mode 100644
-> > index 000000000000..4d0bab541da1
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/media/allwinner,sun6i-a31-mipi-csi2.yaml
-> > @@ -0,0 +1,149 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/media/allwinner,sun6i-a31-mipi-csi2.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Allwinner A31 MIPI CSI-2 Device Tree Bindings
-> > +
-> > +maintainers:
-> > +  - Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-> > +
-> > +properties:
-> > +  compatible:
-> > +    oneOf:
-> > +      - const: allwinner,sun6i-a31-mipi-csi2
-> > +      - items:
-> > +          - const: allwinner,sun8i-v3s-mipi-csi2
-> > +          - const: allwinner,sun6i-a31-mipi-csi2
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +
-> > +  clocks:
-> > +    items:
-> > +      - description: Bus Clock
-> > +      - description: Module Clock
-> > +
-> > +  clock-names:
-> > +    items:
-> > +      - const: bus
-> > +      - const: mod
-> > +
-> > +  phys:
-> > +    items:
-> > +      - description: MIPI D-PHY
+On Mon, Dec 14, 2020 at 10:40:55PM +0800, ChiYuan Huang wrote:
+> Hi,
 > 
-> This should be written as
+> Daniel Thompson <daniel.thompson@linaro.org> 於 2020年12月14日 週一 下午5:59寫道：
+> >
+> > Hi CY
+> >
+> > On Sat, Dec 12, 2020 at 12:33:43AM +0800, cy_huang wrote:
+> > > From: ChiYuan Huang <cy_huang@richtek.com>
+> > >
+> > > Adds DT binding document for Richtek RT4831 backlight.
+> > >
+> > > Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
+> >
+> > This patch got keyword filtered and brought to my attention
+> > but the rest of the series did not.
+> >
+> > If it was a backlight patch series you need to send it To: the
+> > all the backlight maintainers.
+> >
+> Yes, I'm waiting for mfd reviewing.
+> Due to mfd patch, I need to add backlight dt-binding patch prior to
+> backlight source code.
+> Or autobuild robot will said mfd dt-binding build fail from Rob.
+> That's why I send the backlight dt-binding prior to the source code.
 > 
-> phys:
->   description: ...
+> I still have backlight/regulator source code patch after mfd reviewing.
+> Do you want me to send all the patches without waiting for mfd reviewing?
 
-Then you need 'maxItems: 1' or just that. I guess there is some value in 
-saying it is a D-PHY.
+What happened to the regulator part of the binding? I said you could 
+merge it into the mfd schema, not drop it. Bindings should be complete 
+so we get a full picture of a device.
 
 Rob
-
