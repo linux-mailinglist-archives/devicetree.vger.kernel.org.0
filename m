@@ -2,77 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 69D812D9A0E
-	for <lists+devicetree@lfdr.de>; Mon, 14 Dec 2020 15:36:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 510BB2D9A1F
+	for <lists+devicetree@lfdr.de>; Mon, 14 Dec 2020 15:40:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2437709AbgLNOff (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Dec 2020 09:35:35 -0500
-Received: from mail-oi1-f195.google.com ([209.85.167.195]:41308 "EHLO
-        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2437703AbgLNOff (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Dec 2020 09:35:35 -0500
-Received: by mail-oi1-f195.google.com with SMTP id 15so19354551oix.8;
-        Mon, 14 Dec 2020 06:35:19 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=pmYimdHqPZCmGoKy+QfoCbZ6cMjYvJ9Ol9TiMKbqo5U=;
-        b=UGNT6S3ltcqpANs7rrVV3QG+UqBdrSA6wH6Qv5gq/Ik7TwlpBFuP7Sxc+EZP3og3ad
-         ARJjn0VmpHeDgwDoxW0FldQob7EXeUWCply30Zyd4MlYf0sRlBc7p4qga2fAcA0PeVGP
-         7bsaVmaJJOVWK6D4vqiZm2DZj8/k69C6KnMWOIOcDzIVOTFrsER3shotSzJ7THJM0jy7
-         tj28ecrm81HXEWAX40mp1Phrja/eQnd8Xn6T1omPJty4JAaZWG5EwUpm/ULJ2Ou0p8bd
-         NBT8iH93YaOf3jpqfANLrdYluPrWCYusn0MS/+Iaz0O3cydrG7MgvQyEyGi9cgPVhmJs
-         PcfQ==
-X-Gm-Message-State: AOAM533PUfsKZChFi/R7AsPd05lGxDy1+yMCUJxBfm4I95qPlS2r5FJU
-        c78kDNJeuvt1B5CQjpSH2azuvsfRuA==
-X-Google-Smtp-Source: ABdhPJxIZjyrGjwvcSupSDPeypUPaJjXZrJg/DEAYpaJ6OrhlsJtNXtsfhunBmocYWyjVbBoZqy2LQ==
-X-Received: by 2002:aca:bc41:: with SMTP id m62mr18229830oif.16.1607956494486;
-        Mon, 14 Dec 2020 06:34:54 -0800 (PST)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id d13sm4354186oti.74.2020.12.14.06.34.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Dec 2020 06:34:53 -0800 (PST)
-Received: (nullmailer pid 1883746 invoked by uid 1000);
-        Mon, 14 Dec 2020 14:34:52 -0000
-Date:   Mon, 14 Dec 2020 08:34:52 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        "David S. Miller" <davem@davemloft.net>,
-        linux-kernel@vger.kernel.org, Jamie Iles <jamie@jamieiles.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>, soc@kernel.org,
-        linux-crypto@vger.kernel.org
-Subject: Re: [PATCH 4/4] dt-bindings: Remove PicoXcell bindings
-Message-ID: <20201214143452.GA1883626@robh.at.kernel.org>
-References: <20201210200315.2965567-1-robh@kernel.org>
- <20201210200315.2965567-5-robh@kernel.org>
+        id S2392349AbgLNOjf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Dec 2020 09:39:35 -0500
+Received: from wout5-smtp.messagingengine.com ([64.147.123.21]:54579 "EHLO
+        wout5-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S2407382AbgLNOjR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 14 Dec 2020 09:39:17 -0500
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailout.west.internal (Postfix) with ESMTP id 941676F3;
+        Mon, 14 Dec 2020 09:38:10 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute3.internal (MEProxy); Mon, 14 Dec 2020 09:38:11 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm1; bh=L+rX2CmOwQGtvUvi7iN9sVCi3bo
+        tW8KO7zKQJDj5/e8=; b=M44ztO4Lp5nIQkl5yGMu8Lj+rMlArxAoQNakc+VGKhn
+        BusDmpc5r9yQaTpnUuKWo8o4OnZfDcxztxiqlNynf3RdyWzl+WuUQRYJ0k73vNcY
+        k0CaIWlQGOTz7RaNmdw7k2ZOgNtnBFLmVhaIz/F8fUCcN7q2jnBTacCakb0wYv3R
+        y/n5GC2S9nddyB+ZzfF/HMwXkDJj0/D6Ra+aNauwRD/V/x9eIXyjPhZtR21S+vCj
+        R1FpNqQ0ViBY7W+go7AS3sOxJl3c3ycEvfA+CSyBbfqgO5okA2H+6Cck1dMJb7L6
+        Fw/ixxPuV0BZ8FOne+xTiIrDGIoR/A9u2kMa3N46MXA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=L+rX2C
+        mOwQGtvUvi7iN9sVCi3botW8KO7zKQJDj5/e8=; b=OSw83sUVy9b4tJ1Mt3Y3d7
+        41MyykYsyVFwwDS4Em4rp0zKlwEm63e1HYObAyW3WJEZ+e7x8fnXWGFLzq2CjTKg
+        SlxIjysJfkatVbshPBsy+QVzKJ2Ua4YkEZ6gMu6DgsIFabSIuhzuxQVbHyBC3u17
+        gfnqCsEohhpUeLZPBRBiMM7YicZjGJVm9bgxs2dM12JsqXnJRRYvupAtee0JnNKi
+        MsQS+3LGc7zQpt7f8K2YBsiDFeAjdeLX+9fnw8oZFm0Z0K7VVrwWs0nkyVOHf6LV
+        2pfphw7FWdKaD2NNb8aF69qOI95J1KUJPeHTxIbdhk0MuP7Dma70OoHOPRXPBw6g
+        ==
+X-ME-Sender: <xms:0HjXXz_IBu7DCxzaVLNKrX7KB8uYkIdu5jsmJ30MKJW9s-SeBpS4Yg>
+    <xme:0HjXX5WPdIhe7e_ATKx3qOP8CwFQTGHHIv5XwoBMPfaRJ-fGUKIPnMWix2OitCL8v
+    HeTmEmNWO-cIjjOWoM>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrudekkedgieejucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
+    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
+    gedunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
+    frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:0HjXXxD4zheHsrNA1_mBSeTuKerQo_9u-KguPDmv9_V81iRapXSpNA>
+    <xmx:0HjXXywHPNkHqxOb6acVIJUNke1FQqr7u62cg4NRonXzbZLqgeKapQ>
+    <xmx:0HjXX2AZWxre5nDxsco4GLWno4v-l8bNSXQwuguD_rbqJqeUaaTatw>
+    <xmx:0njXX54d4kKHNovKyH_0npolRJRxu7ezyjvW4qqFKintTc-r8oBhNw>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 4FF64108005F;
+        Mon, 14 Dec 2020 09:38:08 -0500 (EST)
+Date:   Mon, 14 Dec 2020 15:38:07 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Icenowy Zheng <icenowy@aosc.io>
+Cc:     Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Ulf Hansson <ulf.hansson@linaro.org>,
+        linux-mmc@vger.kernel.org
+Subject: Re: [RFC PATCH 08/12] dt-bindings: mmc: sunxi: add compatible
+ strings for V831 MMC
+Message-ID: <20201214143807.3wsot6yk4z6s32u5@gilmour>
+References: <20201212040157.3639864-1-icenowy@aosc.io>
+ <20201212050346.3644673-1-icenowy@aosc.io>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="a6eeaa2leewxdmgu"
 Content-Disposition: inline
-In-Reply-To: <20201210200315.2965567-5-robh@kernel.org>
+In-Reply-To: <20201212050346.3644673-1-icenowy@aosc.io>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 10 Dec 2020 14:03:15 -0600, Rob Herring wrote:
-> PicoXcell has had nothing but treewide cleanups for at least the last 8
-> years and no signs of activity. The most recent activity is a yocto vendor
-> kernel based on v3.0 in 2015.
-> 
-> Cc: Jamie Iles <jamie@jamieiles.com>
-> Cc: linux-crypto@vger.kernel.org
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
-> I'll take this via the DT tree.
-> 
->  .../devicetree/bindings/arm/picoxcell.txt     | 24 -------------------
->  .../bindings/crypto/picochip-spacc.txt        | 21 ----------------
->  .../devicetree/bindings/net/macb.txt          |  2 --
->  .../bindings/timer/snps,dw-apb-timer.yaml     |  7 ------
->  4 files changed, 54 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/arm/picoxcell.txt
->  delete mode 100644 Documentation/devicetree/bindings/crypto/picochip-spacc.txt
-> 
 
-Applied, thanks!
+--a6eeaa2leewxdmgu
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Sat, Dec 12, 2020 at 01:03:42PM +0800, Icenowy Zheng wrote:
+> V831 has MMC controllers similar to the ones on H6.
+>=20
+> Add a compatible string for them.
+>=20
+> The eMMC controller compatible is not added, because the eMMC controller
+> is not available on V831, only V833.
+>=20
+> Cc: Ulf Hansson <ulf.hansson@linaro.org>
+> Cc: linux-mmc@vger.kernel.org
+> Signed-off-by: Icenowy Zheng <icenowy@aosc.io>
+
+There's pretty much the same comment than on the H616, it would be great
+to not have any mode flags being set by the driver to avoid the mess we
+have on the older SoCs right now.
+
+Maxime
+
+--a6eeaa2leewxdmgu
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX9d4zwAKCRDj7w1vZxhR
+xeatAQDlfmtMP5DKMl4QYDtMXUTYVkUEr47s/NVuvZOKmuYQ+AD7B1b1CtM9BG2Q
+TiZsaeXjCGmbFXswP8LlUIdf8b3UhgE=
+=csW8
+-----END PGP SIGNATURE-----
+
+--a6eeaa2leewxdmgu--
