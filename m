@@ -2,94 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1663F2D9C95
-	for <lists+devicetree@lfdr.de>; Mon, 14 Dec 2020 17:26:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4926F2D9CC0
+	for <lists+devicetree@lfdr.de>; Mon, 14 Dec 2020 17:32:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2440283AbgLNQYM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Dec 2020 11:24:12 -0500
-Received: from mail.kernel.org ([198.145.29.99]:58892 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2440213AbgLNQYG (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 14 Dec 2020 11:24:06 -0500
-Date:   Mon, 14 Dec 2020 16:23:15 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1607963005;
-        bh=AHdANBBLNTJw739m69nu1X9LxbPWyebOEdf8x8REzLI=;
-        h=From:To:Cc:Subject:References:In-Reply-To:From;
-        b=m1I79GixJahrYdFPYjFIKqA6vALsyqCralLCJyWM3v6O2BYsc1VFHeMksKIlOzQLU
-         YhMKPRo+bElsRWMKtQ1OPne74/xQcD1lcX+VmsN4xJgKJlrK7TVJj3Vh+EezydIA9K
-         KYOhdXt20eceahFYp0oXWXCH7VWCFkrTtYjI/4NQBuMccz89J0v/39AlBCcQnx7fVR
-         exIwIVX83Eslw0S0KIdZDhLgOmBKnpW3LZMym1/AboPHHfSQ3CXybnaHAIkhwZwCOH
-         cnJdQt61NdwWjRveDyv6Zb+bFqR0WKdaMXYgL5m9QdRa4/oDeA4ieR+Hv6culExWqn
-         /zUfKSRFNqEsA==
-From:   Mark Brown <broonie@kernel.org>
-To:     Boris Brezillon <boris.brezillon@collabora.com>
-Cc:     Sowjanya Komatineni <skomatineni@nvidia.com>,
-        thierry.reding@gmail.com, jonathanh@nvidia.com, robh+dt@kernel.org,
-        lukas@wunner.de, bbrezillon@kernel.org, p.yadav@ti.com,
-        tudor.ambarus@microchip.com, linux-spi@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 5/9] spi: spi-mem: Allow masters to transfer dummy
- cycles directly by hardware
-Message-ID: <20201214162315.GA4880@sirena.org.uk>
-References: <1607721363-8879-1-git-send-email-skomatineni@nvidia.com>
- <1607721363-8879-6-git-send-email-skomatineni@nvidia.com>
- <20201212115715.31a8d755@collabora.com>
+        id S2440152AbgLNQ2f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Dec 2020 11:28:35 -0500
+Received: from bmail1.ministro.hu ([5.249.150.236]:49876 "EHLO
+        bmail1.ministro.hu" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2439386AbgLNQ21 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Dec 2020 11:28:27 -0500
+Received: from localhost (localhost [127.0.0.1])
+        by bmail1.ministro.hu (Postfix) with ESMTP id 4459D123B40;
+        Mon, 14 Dec 2020 17:27:34 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ministro.hu;
+        s=201804; t=1607963254;
+        bh=hu9iB9JUGNU/0E24WGPhmjcNTO4ODbRItq6MiPJhM44=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=y88L057RazIJRKp6wPqHe4gJ63jVhm+zybppiwdzP5ZOunqfFy3FX22vA+mW7PNSG
+         +Tu7PIAqVnw+psnFroOuaz9D22CSU6RTEkZ4VCjTKUK0M/+g8jGrSDcx9obsREGkFr
+         U0n55BnkfCWHNJ7+7MxYaE8R+SnwOGjX5g/BO55buVqwS7Ux47oklQnUYAXZe225gW
+         JzyMDF7ShOXopg0qGNqykzMduKn0GYlh1VQjq2MdvATPBHIwbE6M/u9nkTeXcvCLdW
+         Pc7JglveHkZdgOt0myFw4laehp0If/ccXq9eII/TN5ZXlV0OH0Xq/4VR6Rd0SvxO1h
+         hU678uHaPYYPQ==
+X-Virus-Scanned: Debian amavisd-new at ministro.hu
+Received: from bmail1.ministro.hu ([127.0.0.1])
+        by localhost (bmail1.ministro.hu [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id bBFepFV1-_aB; Mon, 14 Dec 2020 17:27:04 +0100 (CET)
+Received: from dev (localhost [127.0.0.1])
+        by bmail1.ministro.hu (Postfix) with ESMTPSA id E347E123B3D;
+        Mon, 14 Dec 2020 17:27:03 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ministro.hu;
+        s=201804; t=1607963224;
+        bh=hu9iB9JUGNU/0E24WGPhmjcNTO4ODbRItq6MiPJhM44=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=9e4c25+ZX1pZdQmfIddhggMvDPyXadCj5KilaWVtnzhMe47XYsvn3NxOcH0VybpB8
+         Ru2RqZryK8RmPqrRP+6gdKUDqzIzl/QD2CIhW+HsEAJLdDtfJcRKN3hxgQQmSroD+l
+         KD6YZA8YfquIE7H90/X+dr+Jjcp34cp0s1zNrY+PXtwC6HHTuXp9RDUCxvXxyPxYQ1
+         RGwiA862/PUu7q6P3pRPQ615s6NGHQr0Q/lsrThd89Mkty8+IFLIpgo6Pabcfn79+X
+         8x4dqLBf2Fbqz+a3TSQNo0/xHqxPiT2t8+dl2RodWBipa+kpGY8gGkVv6jUBAoJo4m
+         pdHADZjZZINsw==
+Date:   Mon, 14 Dec 2020 16:27:02 +0000
+From:   =?iso-8859-1?Q?J=F3zsef_Horv=E1th?= <info@ministro.hu>
+To:     Jiri Slaby <jirislaby@kernel.org>
+Cc:     'Greg Kroah-Hartman' <gregkh@linuxfoundation.org>,
+        'Rob Herring' <robh+dt@kernel.org>,
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4] Serial: silabs si4455 serial driver
+Message-ID: <20201214162701.GA32214@dev>
+References: <20201212070944.GA13909@dincontrollerdev>
+ <2855efaf-79a5-f43b-ff8c-9c01a3f14df7@kernel.org>
+ <20201214123519.GA10229@dev>
+ <77bb5835-b1f2-125a-d2d1-ad67612b164d@kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="SUOF0GtieIMvvwua"
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20201212115715.31a8d755@collabora.com>
-X-Cookie: Everything you know is wrong!
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <77bb5835-b1f2-125a-d2d1-ad67612b164d@kernel.org>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Dec 14, 2020 at 01:39:09PM +0100, Jiri Slaby wrote:
+> On 14. 12. 20, 13:35, József Horváth wrote:
+> > I'm in trouble with the device tree binding schema of this driver too.
+> 
+> Sorry, someone else has to help you who actually masters DT details.
+> 
+> -- 
+> js
 
---SUOF0GtieIMvvwua
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+I have answer. I forgot read before write...
+The silabs,si4455.yaml was in wrong place, the good place is
+ Documentation/devicetree/bindings/serial/silabs,si4455.yaml as Rob wrote earlier.
+Everything is fine now with it.
 
-On Sat, Dec 12, 2020 at 11:57:15AM +0100, Boris Brezillon wrote:
-> Sowjanya Komatineni <skomatineni@nvidia.com> wrote:
+Sorry for this.
 
-> > This patch adds a flag SPI_MASTER_USES_HW_DUMMY_CYCLES for the controllers
-> > that support transfer of dummy cycles by the hardware directly.
+Üdvözlettel / Best regards:
+József Horváth
 
-> Hm, not sure this is a good idea. I mean, if we expect regular SPI
-> devices to use this feature, then why not, but if it's just for
-> spi-mem, I'd recommend implementing a driver-specific exec_op() instead
-> of using the default one.
 
-I *have* seen other high speed devices which had padding bits in the
-transfer (see regmap's pad_bits feature), I think that corresponds to
-flash dummy bits but haven't checked that the hardware support lines up.
-I'm not sure it's ever been seen as something that we particularly
-needed to speed up with hardware offload though.
 
-> If we go for those core changes, we should at least add a
-> ctrl->max_dummy_cycles field so the core can fallback to regular writes
-> when the number of dummy cycles in the spi_mem_op exceeds what the
-> controller can do.
-
-That seems sensible if there's a risk of controllers being too limited,
-which knowing hardware seems likely.
-
---SUOF0GtieIMvvwua
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl/XkXIACgkQJNaLcl1U
-h9CBsAf/XWrzX5DEizCXgE7T1DvfpDtH0jdGsooRqjRftlV5KVN61c4clryl717B
-ix3GAXx57e3OO/JyWtBuKeLChLsyvDcz4CWnr8AMTmHcxYO1KTlqS9GEEs4EEFIO
-lXBiuZ/9yb2/HJSdJTg0w+mudFvH3B2gsVDZ1C5Waupm+HdqPSP1xilOs1owTVpa
-0fNhf99+NIryvBNeGI4vt9okktA+fnhh0u2VjSXQwyyw4woVVrp+Zv5cn1KSx7cX
-DLP9ciLZBUUWoVX5Vh+IIL0k9un1kKBmAjtUgjdTGYyg0yPdJn+sEvHdnifN0wxP
-Pywb4/N/I3lzBeJah5fx5DH0AZ+GyA==
-=GioU
------END PGP SIGNATURE-----
-
---SUOF0GtieIMvvwua--
