@@ -2,195 +2,256 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3DE4D2D9170
-	for <lists+devicetree@lfdr.de>; Mon, 14 Dec 2020 01:41:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 382D32D91DC
+	for <lists+devicetree@lfdr.de>; Mon, 14 Dec 2020 03:52:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731243AbgLNAkb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 13 Dec 2020 19:40:31 -0500
-Received: from mailgw02.mediatek.com ([210.61.82.184]:52984 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1730972AbgLNAkb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Dec 2020 19:40:31 -0500
-X-UUID: 503347176dea40d7890ef66d253f531d-20201214
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:Reply-To:From:Subject:Message-ID; bh=1yZEqxO2cnZFsAMkMD7O+YcfqSEG91GOKTLRptxYZvc=;
-        b=nUn/03jfELkLrzSp8hRTEkem7omiq6Gc9exBRy84BDywy57AlR/M1Dp3UkfgbGr1mhf+RNgd2nep3EtHB+wNbBsHVqIeLznOIbAHnJz9FPefgO5tDHstKsOUxSiimAFYGMJFfLBgzZzSUYS1qXkd3R6C2gZIeI269nf3h3udjEo=;
-X-UUID: 503347176dea40d7890ef66d253f531d-20201214
-Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw02.mediatek.com
-        (envelope-from <yongqiang.niu@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 543559749; Mon, 14 Dec 2020 08:39:42 +0800
-Received: from MTKCAS32.mediatek.inc (172.27.4.184) by mtkmbs05n2.mediatek.inc
- (172.21.101.140) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 14 Dec
- 2020 08:39:40 +0800
-Received: from [10.17.3.153] (10.17.3.153) by MTKCAS32.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 14 Dec 2020 08:39:39 +0800
-Message-ID: <1607906379.30306.2.camel@mhfsdcap03>
-Subject: Re: [PATCH v2, 15/17] soc: mediatek: mmsys: add mt8192 mmsys support
-From:   Yongqiang Niu <yongqiang.niu@mediatek.com>
-Reply-To: Yongqiang Niu <yongqiang.niu@mediatek.com>
-To:     Chun-Kuang Hu <chunkuang.hu@kernel.org>
-CC:     CK Hu <ck.hu@mediatek.com>, Philipp Zabel <p.zabel@pengutronix.de>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        DTML <devicetree@vger.kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        DRI Development <dri-devel@lists.freedesktop.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Date:   Mon, 14 Dec 2020 08:39:39 +0800
-In-Reply-To: <CAAOTY_85qGGc3FhSBDYgNG79sNyJg+Nm1WUrCCuhraRQO_e96Q@mail.gmail.com>
-References: <1607746317-4696-1-git-send-email-yongqiang.niu@mediatek.com>
-         <1607746317-4696-16-git-send-email-yongqiang.niu@mediatek.com>
-         <CAAOTY_85qGGc3FhSBDYgNG79sNyJg+Nm1WUrCCuhraRQO_e96Q@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S1730722AbgLNCvf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 13 Dec 2020 21:51:35 -0500
+Received: from mail-db8eur05on2073.outbound.protection.outlook.com ([40.107.20.73]:20864
+        "EHLO EUR05-DB8-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S2438033AbgLNCv3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 13 Dec 2020 21:51:29 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=LRthw3oDNX1xLuYYkELcBDqCw9qYrdTp/1KvaZAh9d5wW6mmEDT9UTqqKRblNotH/GshZjmruKuei0FbdpLr4I54aLiu6eyjTTOmNquGjacjLmTH+bOxDT1GNIEEebJx0BU3Fs7OlqymRRoi0fZ+TlPO70CFhODHBHAuUE25gX5TASBTM7tViT2qR3qBvwgOZRAiVqS18i4nV7MZnnH8HgrzF0JxDGYkWNfEokv+AQo+JG/+Vx/MD2C1rQTDn7opjHFuNDkiyZuO+ld0oY6LMgEMoo1kX6o3FcxZcE8fIag20hxpzl6RcswtTo0WLnjkYd2im8lU0kRrO3rYI1lfCA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=NcW2jExdTX3oX+/UGATTPFLyBDdFizbbC3k54k6KcDo=;
+ b=kqtOngKTvuNPA6YUPwKSCx8Flihkfdzt/DYCccEmvt+UdPvr6ZWZTh4WH0YKsvQNDzCXZ3JFE6P682EZmd9Canv5zVNP4oyE1Y6DfMWHP/J3rpL0fpjGq+BPXGKIyAouOhUqpu6uZEJ6B/AaXeQNQNqEWDaz4CHGkYoQkak0xfct6jpZMBc7QJNE1D1DjQpO0ByDoD4VYtGPayLt07VECATP0GZlIL3BbA8AqVbaIeUYww8ygqhlD5WBuoTUmNTo6AVj8jCUp89bYwgd6nXXuqpTrvQEW4mocM3xOiG3VdpK0rKp2OgmRk+A1v/BX8cZznlYgoe7jZFkpONqc9oseg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=NcW2jExdTX3oX+/UGATTPFLyBDdFizbbC3k54k6KcDo=;
+ b=mlAGQUisxc7XS3yLjDC8ucYCReQ/HdFuHGR/zF2+Ne1z8g+8RrghT074q4uojqOPH1iatpMO4AbSOtf+pYpWmEeGupCFRruzBZARV/9bVCi6oq64vw/roDlg34SAHDpGBtclkScBWaZYGwl0r/PbVZN87MgBMCFJp1pTdcN1mfU=
+Authentication-Results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
+Received: from VE1PR04MB6528.eurprd04.prod.outlook.com (2603:10a6:803:127::18)
+ by VI1PR04MB4591.eurprd04.prod.outlook.com (2603:10a6:803:6e::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3654.12; Mon, 14 Dec
+ 2020 02:50:38 +0000
+Received: from VE1PR04MB6528.eurprd04.prod.outlook.com
+ ([fe80::b035:d158:c99c:57c6]) by VE1PR04MB6528.eurprd04.prod.outlook.com
+ ([fe80::b035:d158:c99c:57c6%7]) with mapi id 15.20.3654.024; Mon, 14 Dec 2020
+ 02:50:38 +0000
+From:   Li Jun <jun.li@nxp.com>
+To:     robh+dt@kernel.org
+Cc:     heikki.krogerus@linux.intel.com, gregkh@linuxfoundation.org,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-imx@nxp.com, jun.li@nxp.com, peter.chen@nxp.com
+Subject: [PATCH v7] dt-bindings: usb: add documentation for typec switch simple driver
+Date:   Mon, 14 Dec 2020 10:42:24 +0800
+Message-Id: <1607913744-27217-1-git-send-email-jun.li@nxp.com>
+X-Mailer: git-send-email 2.7.4
+Content-Type: text/plain
+X-Originating-IP: [119.31.174.66]
+X-ClientProxiedBy: MAXPR0101CA0005.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a00:c::15) To VE1PR04MB6528.eurprd04.prod.outlook.com
+ (2603:10a6:803:127::18)
 MIME-Version: 1.0
-X-MTK:  N
-Content-Transfer-Encoding: base64
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from localhost.localdomain (119.31.174.66) by MAXPR0101CA0005.INDPRD01.PROD.OUTLOOK.COM (2603:1096:a00:c::15) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.20.3654.12 via Frontend Transport; Mon, 14 Dec 2020 02:50:35 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: bfd2ac43-e934-4d1b-fa37-08d89fdb09e0
+X-MS-TrafficTypeDiagnostic: VI1PR04MB4591:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <VI1PR04MB4591750678411D2BB901E01689C70@VI1PR04MB4591.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: ZCK9qbTiTz9wqWJeppl/kKmniJAN5m6Fn91KlUPIcp9Jw4YbjJgapEjmsJpvXEzTRydb9MOYWVnPiUmAmUgvlmy960qlxadchtVAJ70TwKf/rntM+GRnjUvyshqImANPuDpuFveCGZj0AN7lQL7DP83qZYMpdsC1yKl15CyfEbQoVqiZf6Gi+hjfNOyG55wvYBvKnL59ZLDE2yBWOPlstqw8ozKJ7pVvxLogmMUgJE9b5ixXT/XiVgu3FY144eBBNvKZt/9TE7lM9TInF6Ma17hcXnqKKu4l6JDblskv23dmB+RrK/mjlsxsb/lr6QfrRRNp8jYgSf9c5tSaZsOokHnF7v47Mf4QVHxexn3lr9xHg+sNIml7uc/f5oeaZs4MAMGeusuRb0RbkpeKj3sGBS8MK4Ss1kAos6R78keKDnTCWq7Re7s1po6WlniMYpNh3PVHxjduORTGUBi1tOEGzA==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VE1PR04MB6528.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(39860400002)(396003)(136003)(346002)(376002)(366004)(66946007)(8676002)(478600001)(66556008)(66476007)(6666004)(6486002)(316002)(2906002)(5660300002)(8936002)(6506007)(26005)(52116002)(6512007)(4326008)(69590400008)(186003)(956004)(16526019)(86362001)(966005)(2616005)(36756003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?gsZ0B5Qqxy0PtzP1qdWzNhF5ys9r6XAeP01PDY0MTQGCTRoy3DZse3dG1H6/?=
+ =?us-ascii?Q?MfBYy5oZkt5Lk2se4bdEWVNul2QbBnC0Z5aUhCpNPvITCMI+MyyKRttk5TZ8?=
+ =?us-ascii?Q?Bxu6SBDlJXguf5BVCYyewEAkGYXV7Eho4qTC2c6Qjej9WTpOBJCyjxmLT3lw?=
+ =?us-ascii?Q?RECR1aV5QpVag31pDirJZtoUKG0GgI0yi7z0RPEElnLlF6IkShAtCI42xk8l?=
+ =?us-ascii?Q?FzOP2YSADlphHQ734QPvOTYe5/ihi4/Y2AJWlkjjhJB+2fTH1MQcjAUUYLxs?=
+ =?us-ascii?Q?UtskLvsk5EKHYwdMEjf70gDJpR45Gx3ja/xQQgstXkpYg813prm8y76p2x17?=
+ =?us-ascii?Q?zbB2lKiWKG2MbEttdo8KWi7OBeXLpGRaVmllFNvX/IDKVLE76rkd+otDkUqM?=
+ =?us-ascii?Q?xQ3mk3+HB4iX23ia8VtgDumPfwZP0BA26uYesMwL4ovuyH9GnTFzq6pTZP5n?=
+ =?us-ascii?Q?I+IvLa2AgLULWDcS1QnCwaPm9LGh6yK6lSwwNDewhS46BqXpFh3+7VFN53WC?=
+ =?us-ascii?Q?wt7l9W+5Or5NEzSgJkHUJfW+Y9wg4v731vz9jjnkwiVpam4ass9lhpXU2mEu?=
+ =?us-ascii?Q?Gj8Qib4PcZvT/NCjmGMxh0jhJN7yP3y5btsswxk0d2fJKVCqTbiv4YN2SftG?=
+ =?us-ascii?Q?2D1i7rsPYnDHFtPqORnTfeKJbgrApvzVQPvPDHTjKJ5m5UTFxoJofNmXInIq?=
+ =?us-ascii?Q?BqO08ciHaXJRsEDTQ9R4TVPiEvU3yoOG1ESi4/1hjyhqwtgccsjVOXrEXjr/?=
+ =?us-ascii?Q?sggnLSOSYCnRH6sii2P+mdmyhsf1E+htvn6ERWyPwNuumlXBVTN+w+Oz9YFF?=
+ =?us-ascii?Q?Ehp3VgjZ4HU/NsywzGyuRZUmQTehhzhOd4dbZbYE1qlW9h8hWCEWG985w6h5?=
+ =?us-ascii?Q?VK57OA81/udYaElZojm8G9WCjpf6c0JzzoWQanPk8MurH8WWTr9HAwu/gDBf?=
+ =?us-ascii?Q?ZEcuq5eKeEfNh7r8yWL7uq2okUlybLuHAugp7NHbcbWMQLmpLDTZRHRH5b01?=
+ =?us-ascii?Q?hIs9?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthSource: VE1PR04MB6528.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Dec 2020 02:50:38.3659
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-Network-Message-Id: bfd2ac43-e934-4d1b-fa37-08d89fdb09e0
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: XgRzANCppTcW8P59jl5puLxpE7NVfDmCG0PwUMGBiGtAWhB6rB9TkclQeZ3Fsbv/
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB4591
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gTW9uLCAyMDIwLTEyLTE0IGF0IDAwOjAyICswODAwLCBDaHVuLUt1YW5nIEh1IHdyb3RlOg0K
-PiBIaSwgWW9uZ3FpYW5nOg0KPiANCj4gWW9uZ3FpYW5nIE5pdSA8eW9uZ3FpYW5nLm5pdUBtZWRp
-YXRlay5jb20+IOaWvCAyMDIw5bm0MTLmnIgxMuaXpSDpgLHlha0g5LiL5Y2IMTI6MjLlr6vpgZPv
-vJoNCj4gPg0KPiA+IGFkZCBtdDgxOTIgbW1zeXMgc3VwcG9ydA0KPiA+DQo+ID4gU2lnbmVkLW9m
-Zi1ieTogWW9uZ3FpYW5nIE5pdSA8eW9uZ3FpYW5nLm5pdUBtZWRpYXRlay5jb20+DQo+ID4gLS0t
-DQo+ID4gIGRyaXZlcnMvc29jL21lZGlhdGVrL21tc3lzL01ha2VmaWxlICAgICAgIHwgICAxICsN
-Cj4gPiAgZHJpdmVycy9zb2MvbWVkaWF0ZWsvbW1zeXMvbXQ4MTkyLW1tc3lzLmMgfCAxMTkgKysr
-KysrKysrKysrKysrKysrKysrKysrKysrKysrDQo+ID4gIGluY2x1ZGUvbGludXgvc29jL21lZGlh
-dGVrL210ay1tbXN5cy5oICAgIHwgICAxICsNCj4gPiAgMyBmaWxlcyBjaGFuZ2VkLCAxMjEgaW5z
-ZXJ0aW9ucygrKQ0KPiA+ICBjcmVhdGUgbW9kZSAxMDA2NDQgZHJpdmVycy9zb2MvbWVkaWF0ZWsv
-bW1zeXMvbXQ4MTkyLW1tc3lzLmMNCj4gPg0KPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL3NvYy9t
-ZWRpYXRlay9tbXN5cy9NYWtlZmlsZSBiL2RyaXZlcnMvc29jL21lZGlhdGVrL21tc3lzL01ha2Vm
-aWxlDQo+ID4gaW5kZXggMjVlZWI5ZTUuLjc1MDhjZDMgMTAwNjQ0DQo+ID4gLS0tIGEvZHJpdmVy
-cy9zb2MvbWVkaWF0ZWsvbW1zeXMvTWFrZWZpbGUNCj4gPiArKysgYi9kcml2ZXJzL3NvYy9tZWRp
-YXRlay9tbXN5cy9NYWtlZmlsZQ0KPiA+IEBAIC0xLDQgKzEsNSBAQA0KPiA+ICAjIFNQRFgtTGlj
-ZW5zZS1JZGVudGlmaWVyOiBHUEwtMi4wLW9ubHkNCj4gPiAgb2JqLSQoQ09ORklHX01US19NTVNZ
-UykgKz0gbXQyNzAxLW1tc3lzLm8NCj4gPiAgb2JqLSQoQ09ORklHX01US19NTVNZUykgKz0gbXQ4
-MTgzLW1tc3lzLm8NCj4gPiArb2JqLSQoQ09ORklHX01US19NTVNZUykgKz0gbXQ4MTkyLW1tc3lz
-Lm8NCj4gPiAgb2JqLSQoQ09ORklHX01US19NTVNZUykgKz0gbXRrLW1tc3lzLm8NCj4gPiBkaWZm
-IC0tZ2l0IGEvZHJpdmVycy9zb2MvbWVkaWF0ZWsvbW1zeXMvbXQ4MTkyLW1tc3lzLmMgYi9kcml2
-ZXJzL3NvYy9tZWRpYXRlay9tbXN5cy9tdDgxOTItbW1zeXMuYw0KPiA+IG5ldyBmaWxlIG1vZGUg
-MTAwNjQ0DQo+ID4gaW5kZXggMDAwMDAwMC4uNzljYjMzZg0KPiA+IC0tLSAvZGV2L251bGwNCj4g
-PiArKysgYi9kcml2ZXJzL3NvYy9tZWRpYXRlay9tbXN5cy9tdDgxOTItbW1zeXMuYw0KPiA+IEBA
-IC0wLDAgKzEsMTE5IEBADQo+ID4gKy8vIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiBHUEwtMi4w
-DQo+ID4gKy8vDQo+ID4gKy8vIENvcHlyaWdodCAoYykgMjAyMCBNZWRpYVRlayBJbmMuDQo+ID4g
-Kw0KPiA+ICsjaW5jbHVkZSA8bGludXgvZGV2aWNlLmg+DQo+ID4gKyNpbmNsdWRlIDxsaW51eC9p
-by5oPg0KPiA+ICsjaW5jbHVkZSA8bGludXgvb2ZfZGV2aWNlLmg+DQo+ID4gKyNpbmNsdWRlIDxs
-aW51eC9wbGF0Zm9ybV9kZXZpY2UuaD4NCj4gPiArI2luY2x1ZGUgPGxpbnV4L3NvYy9tZWRpYXRl
-ay9tdGstbW1zeXMuaD4NCj4gPiArDQo+ID4gKyNkZWZpbmUgTU1TWVNfT1ZMX01PVVRfRU4gICAg
-ICAgICAgICAgIDB4ZjA0DQo+ID4gKyNkZWZpbmUgRElTUF9PVkwwX0dPX0JMRU5EICAgICAgICAg
-ICAgICAgICAgICAgQklUKDApDQo+ID4gKyNkZWZpbmUgRElTUF9PVkwwX0dPX0JHICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICBCSVQoMSkNCj4gPiArI2RlZmluZSBESVNQX09WTDBfMkxf
-R09fQkxFTkQgICAgICAgICAgICAgICAgICBCSVQoMikNCj4gPiArI2RlZmluZSBESVNQX09WTDBf
-MkxfR09fQkcgICAgICAgICAgICAgICAgICAgICBCSVQoMykNCj4gPiArI2RlZmluZSBESVNQX09W
-TDFfMkxfTU9VVF9FTiAgICAgICAgICAgMHhmMDgNCj4gPiArI2RlZmluZSBPVkwxXzJMX01PVVRf
-RU5fUkRNQTEgICAgICAgICAgICAgICAgICBCSVQoNCkNCj4gPiArI2RlZmluZSBESVNQX09WTDBf
-MkxfTU9VVF9FTiAgICAgICAgICAgMHhmMTgNCj4gPiArI2RlZmluZSBESVNQX09WTDBfTU9VVF9F
-TiAgICAgICAgICAgICAgMHhmMWMNCj4gPiArI2RlZmluZSBPVkwwX01PVVRfRU5fRElTUF9SRE1B
-MCAgICAgICAgICAgICAgICAgICAgICAgIEJJVCgwKQ0KPiA+ICsjZGVmaW5lIE9WTDBfTU9VVF9F
-Tl9PVkwwXzJMICAgICAgICAgICAgICAgICAgIEJJVCg0KQ0KPiA+ICsjZGVmaW5lIERJU1BfUkRN
-QTBfU0VMX0lOICAgICAgICAgICAgICAweGYyYw0KPiA+ICsjZGVmaW5lIFJETUEwX1NFTF9JTl9P
-VkwwXzJMICAgICAgICAgICAgICAgICAgIDB4Mw0KPiA+ICsjZGVmaW5lIERJU1BfUkRNQTBfU09V
-VF9TRUwgICAgICAgICAgICAweGYzMA0KPiA+ICsjZGVmaW5lIFJETUEwX1NPVVRfQ09MT1IwICAg
-ICAgICAgICAgICAgICAgICAgIDB4MQ0KPiA+ICsjZGVmaW5lIERJU1BfQ0NPUlIwX1NPVVRfU0VM
-ICAgICAgICAgICAweGYzNA0KPiA+ICsjZGVmaW5lIENDT1JSMF9TT1VUX0FBTDAgICAgICAgICAg
-ICAgICAgICAgICAgIDB4MQ0KPiA+ICsjZGVmaW5lIERJU1BfQUFMMF9TRUxfSU4gICAgICAgICAg
-ICAgICAweGYzOA0KPiA+ICsjZGVmaW5lIEFBTDBfU0VMX0lOX0NDT1JSMCAgICAgICAgICAgICAg
-ICAgICAgIDB4MQ0KPiA+ICsjZGVmaW5lIERJU1BfRElUSEVSMF9NT1VUX0VOICAgICAgICAgICAw
-eGYzYw0KPiA+ICsjZGVmaW5lIERJVEhFUjBfTU9VVF9EU0kwICAgICAgICAgICAgICAgICAgICAg
-IEJJVCgwKQ0KPiA+ICsjZGVmaW5lIERJU1BfRFNJMF9TRUxfSU4gICAgICAgICAgICAgICAweGY0
-MA0KPiA+ICsjZGVmaW5lIERTSTBfU0VMX0lOX0RJVEhFUjAgICAgICAgICAgICAgICAgICAgIDB4
-MQ0KPiA+ICsjZGVmaW5lIERJU1BfT1ZMMl8yTF9NT1VUX0VOICAgICAgICAgICAweGY0Yw0KPiA+
-ICsjZGVmaW5lIE9WTDJfMkxfTU9VVF9SRE1BNCAgICAgICAgICAgICAgICAgICAgIEJJVCgwKQ0K
-PiA+ICsNCj4gPiArc3RhdGljIHVuc2lnbmVkIGludCBtdGtfbW1zeXNfZGRwX21vdXRfZW4oZW51
-bSBtdGtfZGRwX2NvbXBfaWQgY3VyLA0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgIGVudW0gbXRrX2RkcF9jb21wX2lkIG5leHQsDQo+ID4gKyAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgdW5zaWduZWQgaW50ICphZGRyKQ0KPiA+ICt7
-DQo+ID4gKyAgICAgICB1bnNpZ25lZCBpbnQgdmFsdWU7DQo+ID4gKw0KPiA+ICsgICAgICAgaWYg
-KGN1ciA9PSBERFBfQ09NUE9ORU5UX09WTF8yTDAgJiYgbmV4dCA9PSBERFBfQ09NUE9ORU5UX1JE
-TUEwKSB7DQo+ID4gKyAgICAgICAgICAgICAgICphZGRyID0gRElTUF9PVkwwXzJMX01PVVRfRU47
-DQo+ID4gKyAgICAgICAgICAgICAgIHZhbHVlID0gT1ZMMF9NT1VUX0VOX0RJU1BfUkRNQTA7DQo+
-ID4gKyAgICAgICB9IGVsc2UgaWYgKGN1ciA9PSBERFBfQ09NUE9ORU5UX09WTF8yTDIgJiYgbmV4
-dCA9PSBERFBfQ09NUE9ORU5UX1JETUE0KSB7DQo+ID4gKyAgICAgICAgICAgICAgICphZGRyID0g
-RElTUF9PVkwyXzJMX01PVVRfRU47DQo+ID4gKyAgICAgICAgICAgICAgIHZhbHVlID0gT1ZMMl8y
-TF9NT1VUX1JETUE0Ow0KPiA+ICsgICAgICAgfSBlbHNlIGlmIChjdXIgPT0gRERQX0NPTVBPTkVO
-VF9ESVRIRVIgJiYgbmV4dCA9PSBERFBfQ09NUE9ORU5UX0RTSTApIHsNCj4gPiArICAgICAgICAg
-ICAgICAgKmFkZHIgPSBESVNQX0RJVEhFUjBfTU9VVF9FTjsNCj4gPiArICAgICAgICAgICAgICAg
-dmFsdWUgPSBESVRIRVIwX01PVVRfRFNJMDsNCj4gPiArICAgICAgIH0gZWxzZSB7DQo+ID4gKyAg
-ICAgICAgICAgICAgIHZhbHVlID0gMDsNCj4gPiArICAgICAgIH0NCj4gPiArDQo+ID4gKyAgICAg
-ICByZXR1cm4gdmFsdWU7DQo+ID4gK30NCj4gPiArDQo+ID4gK3N0YXRpYyB1bnNpZ25lZCBpbnQg
-bXRrX21tc3lzX2RkcF9zZWxfaW4oZW51bSBtdGtfZGRwX2NvbXBfaWQgY3VyLA0KPiA+ICsgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgZW51bSBtdGtfZGRwX2NvbXBfaWQg
-bmV4dCwNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHVuc2ln
-bmVkIGludCAqYWRkcikNCj4gPiArew0KPiA+ICsgICAgICAgdW5zaWduZWQgaW50IHZhbHVlOw0K
-PiA+ICsNCj4gPiArICAgICAgIGlmIChjdXIgPT0gRERQX0NPTVBPTkVOVF9PVkxfMkwwICYmIG5l
-eHQgPT0gRERQX0NPTVBPTkVOVF9SRE1BMCkgew0KPiA+ICsgICAgICAgICAgICAgICAqYWRkciA9
-IERJU1BfUkRNQTBfU0VMX0lOOw0KPiA+ICsgICAgICAgICAgICAgICB2YWx1ZSA9IFJETUEwX1NF
-TF9JTl9PVkwwXzJMOw0KPiA+ICsgICAgICAgfSBlbHNlIGlmIChjdXIgPT0gRERQX0NPTVBPTkVO
-VF9DQ09SUiAmJiBuZXh0ID09IEREUF9DT01QT05FTlRfQUFMMCkgew0KPiA+ICsgICAgICAgICAg
-ICAgICAqYWRkciA9IERJU1BfQUFMMF9TRUxfSU47DQo+ID4gKyAgICAgICAgICAgICAgIHZhbHVl
-ID0gQUFMMF9TRUxfSU5fQ0NPUlIwOw0KPiA+ICsgICAgICAgfSBlbHNlIGlmIChjdXIgPT0gRERQ
-X0NPTVBPTkVOVF9ESVRIRVIgJiYgbmV4dCA9PSBERFBfQ09NUE9ORU5UX0RTSTApIHsNCj4gPiAr
-ICAgICAgICAgICAgICAgKmFkZHIgPSBESVNQX0RTSTBfU0VMX0lOOw0KPiA+ICsgICAgICAgICAg
-ICAgICB2YWx1ZSA9IERTSTBfU0VMX0lOX0RJVEhFUjA7DQo+ID4gKyAgICAgICB9IGVsc2Ugew0K
-PiA+ICsgICAgICAgICAgICAgICB2YWx1ZSA9IDA7DQo+ID4gKyAgICAgICB9DQo+ID4gKw0KPiA+
-ICsgICAgICAgcmV0dXJuIHZhbHVlOw0KPiA+ICt9DQo+ID4gKw0KPiA+ICtzdGF0aWMgdm9pZCBt
-dGtfbW1zeXNfZGRwX3NvdXRfc2VsKHZvaWQgX19pb21lbSAqY29uZmlnX3JlZ3MsDQo+ID4gKyAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBlbnVtIG10a19kZHBfY29tcF9pZCBjdXIs
-DQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBlbnVtIG10a19kZHBfY29t
-cF9pZCBuZXh0KQ0KPiA+ICt7DQo+ID4gKyAgICAgICBpZiAoY3VyID09IEREUF9DT01QT05FTlRf
-UkRNQTAgJiYgbmV4dCA9PSBERFBfQ09NUE9ORU5UX0NPTE9SMCkgew0KPiA+ICsgICAgICAgICAg
-ICAgICB3cml0ZWxfcmVsYXhlZChSRE1BMF9TT1VUX0NPTE9SMCwgY29uZmlnX3JlZ3MgKyBESVNQ
-X1JETUEwX1NPVVRfU0VMKTsNCj4gPiArICAgICAgIH0gZWxzZSBpZiAoY3VyID09IEREUF9DT01Q
-T05FTlRfQ0NPUlIgJiYgbmV4dCA9PSBERFBfQ09NUE9ORU5UX0FBTDApIHsNCj4gPiArICAgICAg
-ICAgICAgICAgd3JpdGVsX3JlbGF4ZWQoQ0NPUlIwX1NPVVRfQUFMMCwgY29uZmlnX3JlZ3MgKyBE
-SVNQX0NDT1JSMF9TT1VUX1NFTCk7DQo+ID4gKyAgICAgICB9DQo+ID4gK30NCj4gPiArDQo+ID4g
-K3N0YXRpYyB1bnNpZ25lZCBpbnQgbXRrX21tc3lzX292bF9tb3V0X2VuKGVudW0gbXRrX2RkcF9j
-b21wX2lkIGN1ciwNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICBlbnVtIG10a19kZHBfY29tcF9pZCBuZXh0LA0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgIHVuc2lnbmVkIGludCAqYWRkcikNCj4gPiArew0KPiA+ICsgICAg
-ICAgaW50IHZhbHVlID0gLTE7DQo+ID4gKw0KPiA+ICsgICAgICAgKmFkZHIgPSBNTVNZU19PVkxf
-TU9VVF9FTjsNCj4gPiArDQo+ID4gKyAgICAgICBpZiAoY3VyID09IEREUF9DT01QT05FTlRfT1ZM
-MCAmJiBuZXh0ID09IEREUF9DT01QT05FTlRfT1ZMXzJMMCkNCj4gPiArICAgICAgICAgICAgICAg
-dmFsdWUgPSBESVNQX09WTDBfR09fQkc7DQo+ID4gKyAgICAgICBlbHNlIGlmIChjdXIgPT0gRERQ
-X0NPTVBPTkVOVF9PVkxfMkwwICYmIG5leHQgPT0gRERQX0NPTVBPTkVOVF9PVkwwKQ0KPiA+ICsg
-ICAgICAgICAgICAgICB2YWx1ZSA9IERJU1BfT1ZMMF8yTF9HT19CRzsNCj4gPiArICAgICAgIGVs
-c2UgaWYgKGN1ciA9PSBERFBfQ09NUE9ORU5UX09WTDApDQo+ID4gKyAgICAgICAgICAgICAgIHZh
-bHVlID0gRElTUF9PVkwwX0dPX0JMRU5EOw0KPiA+ICsgICAgICAgZWxzZSBpZiAoY3VyID09IERE
-UF9DT01QT05FTlRfT1ZMXzJMMCkNCj4gPiArICAgICAgICAgICAgICAgdmFsdWUgPSBESVNQX09W
-TDBfMkxfR09fQkxFTkQ7DQo+ID4gKyAgICAgICBlbHNlDQo+ID4gKyAgICAgICAgICAgICAgIHZh
-bHVlID0gLTE7DQo+ID4gKw0KPiA+ICsgICAgICAgcmV0dXJuIHZhbHVlOw0KPiA+ICt9DQo+IA0K
-PiBJIHRoaW5rIHlvdSBzaG91bGQgc3F1YXNoIG10a19tbXN5c19vdmxfbW91dF9lbigpIHdpdGgg
-bXRrX21tc3lzX2RkcF9tb3V0X2VuKCkuDQo+IA0KPiBSZWdhcmRzLA0KPiBDaHVuLUt1YW5nLg0K
-DQpoaSANCg0KaW4gc29jIG10ODE5MiwgIG92bDBfMmwgLT4gcmRtYTAgdXNlY2FzZSBuZWVkIHNl
-dCAyIHJlZ2lzdGVyOg0KRElTUF9PVkwwXzJMX01PVVRfRU4gYW5kIE1NU1lTX09WTF9NT1VUX0VO
-LA0KJ2lmLWVsc2UnIGluIG10a19tbXN5c19kZHBfbW91dF9lbiBjYW4gbm90IGNvdmVyIHRoaXMg
-Y2FzZS4NCg0KPiANCj4gPiArDQo+ID4gK3N0cnVjdCBtdGtfbW1zeXNfY29ubl9mdW5jcyBtdDgx
-OTJfbW1zeXNfZnVuY3MgPSB7DQo+ID4gKyAgICAgICAubW91dF9lbiA9IG10a19tbXN5c19kZHBf
-bW91dF9lbiwNCj4gPiArICAgICAgIC5vdmxfbW91dF9lbiA9IG10a19tbXN5c19vdmxfbW91dF9l
-biwNCj4gPiArICAgICAgIC5zZWxfaW4gPSBtdGtfbW1zeXNfZGRwX3NlbF9pbiwNCj4gPiArICAg
-ICAgIC5zb3V0X3NlbCA9IG10a19tbXN5c19kZHBfc291dF9zZWwsDQo+ID4gK307DQo+ID4gZGlm
-ZiAtLWdpdCBhL2luY2x1ZGUvbGludXgvc29jL21lZGlhdGVrL210ay1tbXN5cy5oIGIvaW5jbHVk
-ZS9saW51eC9zb2MvbWVkaWF0ZWsvbXRrLW1tc3lzLmgNCj4gPiBpbmRleCAyMjAyMDNkLi5lZmEw
-N2I5IDEwMDY0NA0KPiA+IC0tLSBhL2luY2x1ZGUvbGludXgvc29jL21lZGlhdGVrL210ay1tbXN5
-cy5oDQo+ID4gKysrIGIvaW5jbHVkZS9saW51eC9zb2MvbWVkaWF0ZWsvbXRrLW1tc3lzLmgNCj4g
-PiBAQCAtNjIsNiArNjIsNyBAQCBzdHJ1Y3QgbXRrX21tc3lzX2Nvbm5fZnVuY3Mgew0KPiA+DQo+
-ID4gIGV4dGVybiBzdHJ1Y3QgbXRrX21tc3lzX2Nvbm5fZnVuY3MgbXQyNzAxX21tc3lzX2Z1bmNz
-Ow0KPiA+ICBleHRlcm4gc3RydWN0IG10a19tbXN5c19jb25uX2Z1bmNzIG10ODE4M19tbXN5c19m
-dW5jczsNCj4gPiArZXh0ZXJuIHN0cnVjdCBtdGtfbW1zeXNfY29ubl9mdW5jcyBtdDgxOTJfbW1z
-eXNfZnVuY3M7DQo+ID4NCj4gPiAgdm9pZCBtdGtfbW1zeXNfZGRwX2Nvbm5lY3Qoc3RydWN0IGRl
-dmljZSAqZGV2LA0KPiA+ICAgICAgICAgICAgICAgICAgICAgICAgICAgIGVudW0gbXRrX2RkcF9j
-b21wX2lkIGN1ciwNCj4gPiAtLQ0KPiA+IDEuOC4xLjEuZGlydHkNCj4gPiBfX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KPiA+IExpbnV4LW1lZGlhdGVrIG1h
-aWxpbmcgbGlzdA0KPiA+IExpbnV4LW1lZGlhdGVrQGxpc3RzLmluZnJhZGVhZC5vcmcNCj4gPiBo
-dHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LW1lZGlhdGVr
-DQoNCg==
+Some platforms need a simple driver to do some controls according to
+typec orientation, this can be extended to be a generic driver with
+compatible with "typec-orientation-switch".
+
+Signed-off-by: Li Jun <jun.li@nxp.com>
+---
+change for v7:
+- Use existing mux control binding node for actual typec switch
+  control, and new typec-orientation-switch as the consumer of
+  it to provide typec_switch for typec subsystem, this way typec
+  switch can use any existing mux control bindings and no need
+  change current common typec switch interface.
+- Only send this binding patch for v7, will send out drivers
+  changes after binding finalized.
+
+changes for v6:
+- Use general mux bindings for typec switch, one typec switch
+  may have 1 or 2 GPIOs for channel selection, if 1 GPIO, only
+  can be used to select cc1 or cc2; if 2 GPIOs, the second GPIO
+  can be used to deselect both channels or keep normal operations.
+- Add one more connection to usb controller.
+
+No changes for v5.
+
+changes on v4:
+- Use compatible instead of bool property for switch matching.
+- Change switch GPIO to be switch simple.
+- Change the active channel selection GPIO to be optional.
+
+previous discussion:
+http://patchwork.ozlabs.org/patch/1054342/
+
+ .../bindings/usb/typec-switch-simple.yaml          | 113 +++++++++++++++++++++
+ 1 file changed, 113 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/usb/typec-switch-simple.yaml b/Documentation/devicetree/bindings/usb/typec-switch-simple.yaml
+new file mode 100644
+index 0000000..ae1ef87
+--- /dev/null
++++ b/Documentation/devicetree/bindings/usb/typec-switch-simple.yaml
+@@ -0,0 +1,113 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/usb/typec-switch-simple.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Typec Orientation Switch Simple Solution Bindings
++
++maintainers:
++  - Li Jun <jun.li@nxp.com>
++
++description: -|
++  USB SuperSpeed (SS) lanes routing to which side of typec connector is
++  decided by orientation, this maybe achieved by some simple control like
++  GPIO toggle. This control is through a mux controller, so there are 2
++  nodes, one is the mux control provider(e.g. gpio-mux), the other one is
++  the typec-orientation-switch node as the consumer of mux control.
++
++properties:
++  compatible:
++    const: typec-orientation-switch
++
++  mux-controls:
++    description: -|
++      Phandle to mux controller node, the mux controller node see
++      Documentation/devicetree/bindings/mux/mux-controller.txt,
++      we have the fixed state of 0 for CC1, and fixed state 1 for
++      CC2.
++
++  mux-control-names:
++    const: mux-typec-switch
++
++  port:
++    type: object
++    additionalProperties: false
++    description: -|
++      Connection to the remote endpoint using OF graph bindings that model
++      SS data bus to typec connector.
++
++    properties:
++      '#address-cells':
++        const: 1
++
++      '#size-cells':
++        const: 0
++
++      endpoint@0:
++        type: object
++        description: Endpoint connected to typec connector.
++        additionalProperties: false
++
++        properties:
++          reg:
++            const: 0
++          remote-endpoint: true
++
++        required:
++          - remote-endpoint
++
++      endpoint@1:
++        type: object
++        description: Endpoint connected to usb controller.
++        additionalProperties: false
++
++        properties:
++          reg:
++            const: 1
++          remote-endpoint: true
++
++        required:
++          - remote-endpoint
++
++    required:
++      - endpoint@0
++
++required:
++  - compatible
++  - port
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    mux: mux-controller {
++        #mux-control-cells = <0>;
++        pinctrl-names = "default";
++        pinctrl-0 = <&pinctrl_ss_sel>;
++        mux-gpios = <&gpio3 15 GPIO_ACTIVE_HIGH>,
++                    <&gpio2 20 GPIO_ACTIVE_HIGH>;
++        idle-state = <2>;
++    };
++
++    typec_switch {
++        compatible = "typec-orientation-switch";
++        mux-controls = <&mux>;
++        mux-control-names = "mux-typec-switch";
++
++        port {
++                #address-cells = <1>;
++                #size-cells = <0>;
++
++                usb3_orien_sel: endpoint@0 {
++                        reg = <0>;
++                        remote-endpoint = <&typec_con_ss>;
++                };
++
++                usb3_con_data: endpoint@1 {
++                        reg = <1>;
++                        remote-endpoint = <&dwc3_0>;
++                };
++        };
++    };
+-- 
+2.7.4
 
