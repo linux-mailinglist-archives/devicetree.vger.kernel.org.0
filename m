@@ -2,104 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ECC5A2D95C2
-	for <lists+devicetree@lfdr.de>; Mon, 14 Dec 2020 11:05:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DFFC72D9635
+	for <lists+devicetree@lfdr.de>; Mon, 14 Dec 2020 11:19:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1733073AbgLNKEE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Dec 2020 05:04:04 -0500
-Received: from out2-smtp.messagingengine.com ([66.111.4.26]:42269 "EHLO
+        id S1727215AbgLNKSi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Dec 2020 05:18:38 -0500
+Received: from out2-smtp.messagingengine.com ([66.111.4.26]:37251 "EHLO
         out2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1727860AbgLNKDg (ORCPT
+        by vger.kernel.org with ESMTP id S1727200AbgLNKSi (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Mon, 14 Dec 2020 05:03:36 -0500
+        Mon, 14 Dec 2020 05:18:38 -0500
 Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailout.nyi.internal (Postfix) with ESMTP id DFBEF5C00D4;
-        Mon, 14 Dec 2020 05:02:29 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute6.internal (MEProxy); Mon, 14 Dec 2020 05:02:29 -0500
+        by mailout.nyi.internal (Postfix) with ESMTP id 8D88B5C0152;
+        Mon, 14 Dec 2020 05:17:32 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute6.internal (MEProxy); Mon, 14 Dec 2020 05:17:32 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
         date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm1; bh=+6hgTtQ1G+/Xs+uY2Rz4ZOY80qy
-        9K3UxTBdA7H+vn28=; b=CcqlFTVPOnNe62eURGM4fCToiXOO2wrP1dDG9DklIc3
-        hyzq42vRJEEFSBAL9X3cC7qtxi1KZ2OvL4GPypA64Sp4rETkYO5cfuuPlTKnpkwX
-        L4ysEXNqyJlxyGFi+LZCBoRIBS/XBFTK8DMZB8muBgS4drynUWWvgbrgsrqmuYOG
-        bk+aQX5bJ5cbtUD9xLg7NMDYNIjJ3jlYPQzRD/sNrip1+w34Wfpnzm6jrmk9kMQr
-        0kpzd5FY+I1bU0sfAf7yGFY3TOX22WqfYciVpXBD83C/HFl2aoqtlQD0briraaA6
-        N9/sU6ZMisciHrJ/jdSoIJOI24kkL1AZCdLrcsBCwiQ==
+        :content-type:in-reply-to; s=fm1; bh=ZhhzqW9pWEM6d6BEhB/y6i8P0um
+        zrVkqu81jk0LYZew=; b=rdUZrA0KD3OMjqsiFNfTqvE4QQ+RC7w3+gGowl9YIVm
+        Xz9A+CXf3HFXB7LqDVuQ/nrqsCLk5QfAfnF9KC5rSLFF/YAuzpUQHQSzBtjWHL6H
+        8TM9WZcRyTMw5aPIWAETmGQx4uuh1lpuZcwLhDVKIEg2Oq8KEb1QSG1Vy2zEKu9U
+        FIdXRfolTar4d4FSxGESFBwPDtAWYyFr4km8V2cQXoRrXu+jdVF7/NnIzuOkh4MY
+        Oe20z7E0lcJqei1A5laT60nFM4kxVlXnuBqMnL4ZO5FdmBUJhoVOjBYoFl4bo/m7
+        u9l/r/tOAyTdtqc/vR2Vps8PPZIDy6Coo0Mx7FZVUmw==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
         messagingengine.com; h=cc:content-type:date:from:in-reply-to
         :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=+6hgTt
-        Q1G+/Xs+uY2Rz4ZOY80qy9K3UxTBdA7H+vn28=; b=fS9mJFOt4vb88c+X4p/TP5
-        osr6tMtwZZvrcE6MpoY2Sqp/bU8TEf4wJA9Cmuly0785wj0ALRmT+o0RnRDda5uX
-        BGHqP/SNRYGQ7Pw5PGLnhJso4nQI7Qp5em7kOYS+dQCYK/4Yury/i91RntMuZXdX
-        yb3ndcHoN9uRzhewMIb8QGGDJjcTz9xi/RwVm1QoTPWNkO77i/Ri0a4F+F8QUnfA
-        GqyKs9xL93HQg2rVg0G7vZ1QousAMxvGukX4SG/yth9xcGYdnrux1Zy8ddKcqRcI
-        x/AHXzqaScYs/QXLQ5TvyjkO5DPCcJh00vMKozieg7mSzZn/TdnUxJvEOLjcL/4A
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=ZhhzqW
+        9pWEM6d6BEhB/y6i8P0umzrVkqu81jk0LYZew=; b=jVLaRRJWFPaR0POwfmDwkO
+        z+9fwQFTXS4tknSEM0tSUANv/qbHBLMn+bI+YVDrHd75n5x+6kWzaXJ5eG3SKinN
+        Xf5Li2Q1+ZoEXNpfokqOGlaFyu25Z/Rhd/p59j8byTDozUaUrlNizQ65kpWn8TWh
+        XiT9NNioOpzMAtrhor8UZ55vhv9PRxElWP7KVIz1vtsqXoLRtxmgF5k8MonsZpfL
+        xf1IHiIq/zps7+2MF+rVUB/FuS1AP3wbN5k7ZPS+BkrTdVWBcmwyVIB2DwXfsAhv
+        x4SJ5jX0nui9ha7q1PILeCs9X7KehNK11ujpuCeEbMxdpK6Hq+55g/iD+qJrH+xA
         ==
-X-ME-Sender: <xms:NTjXX7Y1l3xs4F-7LYLv8n4aekMEd4HQBIfrC0jQdyDN68E1vnkRUw>
-    <xme:NTjXX6Z-YYbAk34jIPISUJdBqBgJ3J4JDChrVforw7e9y01B7kzB4s4hTuUKo1ZxZ
-    0fKmakgY9AqM6e-ReQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrudekkedguddtucetufdoteggodetrfdotf
+X-ME-Sender: <xms:uzvXX_N1xKtHxBHqjw_JoPNZuITInUdmOV7fEy_9KUQyYcZEMnz6AA>
+    <xme:uzvXX5-mmGJopYMkqiV8MzAk-mCvVTthoCTx5nU-Faq5EemFT23e4eiif16hi2g3t
+    3mXdur9qmOlk4YO3Kc>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrudekkedgudegucetufdoteggodetrfdotf
     fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
     uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
+    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddunecuhfhrohhmpeforgigihhm
     vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
-    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
-    gedunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgepvdenuc
+    htvghrnhepuddvudfhkeekhefgffetffelgffftdehffduffegveetffehueeivddvjedv
+    gfevnecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
     frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:NTjXX99otHuqzcKW6_LyoJ8lw2EUevzSMBge5q0teNkogFTHY0VZpA>
-    <xmx:NTjXXxptgBaLgW9TMxYtog03oN9Iu_B8KvKEFe69_B7rp8xzZeOS9A>
-    <xmx:NTjXX2qU71IpbxnJ_upfEZfw3W5YNVeFz70a3-v9mGQF919aZPXshg>
-    <xmx:NTjXX3d0tRIoFOEY6zFQ1VTgPUmYxPVH_1FSYeInNUm423VTrh8xKw>
+X-ME-Proxy: <xmx:uzvXX-QjppQtodDJI-j2E5Ij6CgPOu2IlRG-mVQ1Al_tp4SpQyJItg>
+    <xmx:uzvXXzuMD6KqqY45QuoUg0V29Oc-_yCcT5jD05o_vzbbN7inGJvMmg>
+    <xmx:uzvXX3d7Q6WbEiSB9xtXtJgD-e3Jtf7FR2nS8-ycqKiEbsjVBZF2kg>
+    <xmx:vDvXX3lZ9k3rfvn30l9FcCsuASX1O6V09ILXuS_c_aYB9-EqaJPLng>
 Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 6E85424005B;
-        Mon, 14 Dec 2020 05:02:29 -0500 (EST)
-Date:   Mon, 14 Dec 2020 11:02:28 +0100
+        by mail.messagingengine.com (Postfix) with ESMTPA id 908FC1080057;
+        Mon, 14 Dec 2020 05:17:31 -0500 (EST)
+Date:   Mon, 14 Dec 2020 11:17:30 +0100
 From:   Maxime Ripard <maxime@cerno.tech>
-To:     Michael Klein <michael@fossekall.de>
-Cc:     Sebastian Reichel <sre@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v5 3/3] ARM: dts: sun8i-h2-plus-bananapi-m2-zero: add
- poweroff node
-Message-ID: <20201214100228.ywal5v5xyzw25hmw@gilmour>
-References: <20201211151445.115943-1-michael@fossekall.de>
- <20201211151445.115943-4-michael@fossekall.de>
+To:     Pavel =?utf-8?B?TMO2Ymw=?= <pavel@loebl.cz>
+Cc:     devicetree@vger.kernel.org,
+        Jernej Skrabec <jernej.skrabec@siol.net>
+Subject: Re: [PATCH] ARM: dts: sun8i: h2+: add support for Banana Pi P2 Zero
+ board
+Message-ID: <20201214101730.ye5566a45gopxm7w@gilmour>
+References: <20201212111429.286721-1-pavel@loebl.cz>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="f4xdeddqbje4hsbx"
+        protocol="application/pgp-signature"; boundary="djstr6rbgzoa2kp4"
 Content-Disposition: inline
-In-Reply-To: <20201211151445.115943-4-michael@fossekall.de>
+In-Reply-To: <20201212111429.286721-1-pavel@loebl.cz>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---f4xdeddqbje4hsbx
-Content-Type: text/plain; charset=us-ascii
+--djstr6rbgzoa2kp4
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Dec 11, 2020 at 04:14:45PM +0100, Michael Klein wrote:
-> Add add devicetree information for the regulator-poweroff driver.
->=20
-> Signed-off-by: Michael Klein <michael@fossekall.de>
+Hi,
 
-Queued for 5.12, thanks!
+On Sat, Dec 12, 2020 at 12:14:29PM +0100, Pavel L=F6bl wrote:
+> Banana Pi P2 Zero is H2+-based board by Sinovoip internally
+> similar to Banana Pi M2 Zero.
+>=20
+> It features:
+> - Allwinner H2+, Quad-core Cortex-A7
+> - 512MB DDR3 SDRAM
+> - 8G eMMC flash
+> - MicroSD card slot
+> - 100M LAN
+> - WiFi (AP6212) & Bluetooth onboard (SDIO + UART)
+> - Micro USB OTG port
+> - Micro USB connector (power only)
+> - Mini HDMI
+> - 40 PIN GPIO includes UART, SPI, I2C, IO etc.
+> - GPIO-connected key and LED
+> - CSI connector
+> - IEEE 802.3af PoE standard PoE module support (optional)
+
+Please send this to the proper recipients (get_maintainers.pl will help)
+
 Maxime
 
---f4xdeddqbje4hsbx
+--djstr6rbgzoa2kp4
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX9c4NAAKCRDj7w1vZxhR
-xSxwAP9WB0bbihmJWLWLOsFNtIXErh+AjrGYdeFdrnuWmXgFzwD+OnDMyEmnjmJm
-cTuMw4B4s3aogPo23zUqUxvw8wgt9Ak=
-=o2H6
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX9c7ugAKCRDj7w1vZxhR
+xS6yAPoC+251u39OI8ZmHHP9XDQhfIRYoQJvDwd9Ps9L/AiF5wD9Fh1dBn/GedqF
+hpmVS3DNWAsWHqu7RuDFN2lRhTHMvwM=
+=GSZH
 -----END PGP SIGNATURE-----
 
---f4xdeddqbje4hsbx--
+--djstr6rbgzoa2kp4--
