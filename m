@@ -2,65 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7FF422DA307
-	for <lists+devicetree@lfdr.de>; Mon, 14 Dec 2020 23:10:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 853292DA354
+	for <lists+devicetree@lfdr.de>; Mon, 14 Dec 2020 23:25:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2440676AbgLNWJs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Dec 2020 17:09:48 -0500
-Received: from mail-oi1-f194.google.com ([209.85.167.194]:37539 "EHLO
-        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2441080AbgLNWH3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Dec 2020 17:07:29 -0500
-Received: by mail-oi1-f194.google.com with SMTP id l207so21023159oib.4;
-        Mon, 14 Dec 2020 14:07:12 -0800 (PST)
+        id S2407506AbgLNWY0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Dec 2020 17:24:26 -0500
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:41641 "EHLO
+        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388259AbgLNWYW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Dec 2020 17:24:22 -0500
+Received: by mail-ot1-f66.google.com with SMTP id x13so17438694oto.8;
+        Mon, 14 Dec 2020 14:24:07 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=0/I65MXMkNznaW5LKxsVjR34sG4yDznp7JKf020+wMs=;
-        b=qxddUNS/4OQprr3zCEg0AmEH1dDG/o9Ln0JiKJbQkx3BP7R4jGm+BqR9VZhV0sWKu0
-         YyFPKv/G8XhDHp02fsZTmlU0af7E4U6DovB9fvzuh14EZOUR7ztCIgHmkEwPNwpbsS9u
-         73jvnHM4FokC58gyP7bYzoaIlcDtKVgJtHYtcXx8Opzm5Cna7IyezLCv6D7SvJtjJ2z2
-         8vKdB9w/gdhBadvxmXiQ1WPUWUNXeunWykQWrIRuBYMGDkNZJ9EzbbJ3WFEXS/5caj8j
-         ezdOOWmncPG/t/lnLCaP3ncoa7l/61iJooO97ZEEA7E1+h/4d0vmGE+zoeMaDblIwIaC
-         vQoA==
-X-Gm-Message-State: AOAM533mi/EZOP2D1PXv2+QUMCwc/b9hf/b6dcTEdSYXvHLp9EGQ+LGr
-        +J2LmneFbIVVgpeF27Zk6g==
-X-Google-Smtp-Source: ABdhPJx+39HYyPsjA6xBoSfU2ve06K7MlTuoJO6hqIby89sUj/Ci9w4qXjJZlysdJqYzOH+JUJHhkA==
-X-Received: by 2002:a05:6808:352:: with SMTP id j18mr20177974oie.78.1607983606634;
-        Mon, 14 Dec 2020 14:06:46 -0800 (PST)
+        bh=OrNz2hwsU06c3PuGss1E/QBGUDqYdE0+stQHNjTmEF0=;
+        b=CZHI9O8vnjPlVgFiHAkyfmhz72O+wr7T5vrRkhigotXyJiA1QcbkZaK972E/HdGAnu
+         00jDG573RcknDZ66NKvp0uc3e4S1AOGpzB4UNujJAIHQ3/CMOVJKLoG8Es8Tps7+5nt2
+         EGK4j2Ccbzhvw1P4P+bUwAu8AtOYrk3PO9NIWuik4chiebhHQXck9N7IphD/pJAVnBm1
+         ZnLl4hdq6fAa/zTFAHdKMB1nmJDk5RTuSD1OzK4HJsgBxiS/KCIwS9h6lgrZBfi1KYQx
+         MVnwZU9KJAzQvE4EBEhhl+YSxAu3KvB5MT3SnqExGPN7D/lpl1xn4JMcICNvj9ucF4ml
+         SuLg==
+X-Gm-Message-State: AOAM530qmYa3ck+FAfXeCu92Qr6kmDJP41oYfUbeS8jgGUBTOtxT2PWX
+        fJy2tGEh2YwdQA9N+T8YpWteijyoMQ==
+X-Google-Smtp-Source: ABdhPJx3RDNbVhXJglqZJpbqIq6emTGk8OSz3s6JsLztPU1NdhY8gF90dy0DrBxWP4RDzNUek0hvpA==
+X-Received: by 2002:a05:6830:30a8:: with SMTP id g8mr15557189ots.291.1607984621501;
+        Mon, 14 Dec 2020 14:23:41 -0800 (PST)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id f18sm4632704otf.55.2020.12.14.14.06.45
+        by smtp.gmail.com with ESMTPSA id i25sm4652825oto.56.2020.12.14.14.23.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Dec 2020 14:06:45 -0800 (PST)
-Received: (nullmailer pid 2471687 invoked by uid 1000);
-        Mon, 14 Dec 2020 22:06:44 -0000
-Date:   Mon, 14 Dec 2020 16:06:44 -0600
+        Mon, 14 Dec 2020 14:23:40 -0800 (PST)
+Received: (nullmailer pid 2493705 invoked by uid 1000);
+        Mon, 14 Dec 2020 22:23:39 -0000
+Date:   Mon, 14 Dec 2020 16:23:39 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Lukasz Luba <lukasz.luba@arm.com>
-Cc:     devicetree@vger.kernel.org, airlied@linux.ie,
-        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] dt-bindings: mali-bifrost: Add
- dynamic-power-coefficient
-Message-ID: <20201214220644.GA2471636@robh.at.kernel.org>
-References: <20201209115143.15321-1-lukasz.luba@arm.com>
- <20201209115143.15321-3-lukasz.luba@arm.com>
+To:     Aswath Govindraju <a-govindraju@ti.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Vadym Kochan <vadym.kochan@plvision.eu>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Sekhar Nori <nsekhar@ti.com>
+Subject: Re: [PATCH RFC 1/2] Documentation: devicetree: Add property for
+ ignoring the dummy bits sent before read transfer
+Message-ID: <20201214222339.GA2471866@robh.at.kernel.org>
+References: <20201209175708.16252-1-a-govindraju@ti.com>
+ <20201209175708.16252-2-a-govindraju@ti.com>
+ <20201211033301.GA3581630@robh.at.kernel.org>
+ <70d6c152-5d8d-9ad6-ce06-95a9f599c492@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201209115143.15321-3-lukasz.luba@arm.com>
+In-Reply-To: <70d6c152-5d8d-9ad6-ce06-95a9f599c492@ti.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 09 Dec 2020 11:51:43 +0000, Lukasz Luba wrote:
-> Add a property dynamic-power-coefficient which allows to register Energy
-> Model for the Mali Bifrost devices.
+On Fri, Dec 11, 2020 at 08:34:57PM +0530, Aswath Govindraju wrote:
+> Hi,
+> On 11/12/20 9:03 am, Rob Herring wrote:
+> > On Wed, Dec 09, 2020 at 11:27:07PM +0530, Aswath Govindraju wrote:
+> >> Dummy zero bits are sent before data during a read transfer. This causes
+> >> the data read to be shifted to the right. To fix this send zero bits after
+> >> the address during a read transfer.
+> >>
+> >> Add property to send zero bits after the address during a read transfer.
+> > 
+> > When is this necessary? Why can't it be implied by the compatible 
+> > string which should be specific to the chip model?
+> > 
 > 
-> Signed-off-by: Lukasz Luba <lukasz.luba@arm.com>
-> ---
->  .../bindings/gpu/arm,mali-bifrost.yaml          | 17 +++++++++++++++++
->  1 file changed, 17 insertions(+)
+> This is necessary for 93AA46A/B/C, 93LC46A/B/C, 93C46A/B/C eeproms, as
+> it can be seen in section 2.7 of [1]. We were not sure if these were the
+> only devices supported by the driver(eeprom_93xx46.c). So, in order to
+> apply this only to the above listed devices, we thought that it would be
+> better to apply this change when required by introducing a DT property.
+> 
+> May I know how has this case been handled till now ??
 > 
 
-Applied, thanks!
+No idea. From the at93c46d (which has a compatible string) datasheet it 
+looks like it has the same thing.
+
+> If this is required by all the devices then we can drop the property and
+> include the zero bit by default.
+
+Looks like you need a combination of compatible strings for the above 
+devices and a property for the ORG pin state on the C devices. I assume 
+s/w needs to know if x8 or x16?
+
+Rob
