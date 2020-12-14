@@ -2,53 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2AD022D9265
-	for <lists+devicetree@lfdr.de>; Mon, 14 Dec 2020 06:06:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E7FC2D9269
+	for <lists+devicetree@lfdr.de>; Mon, 14 Dec 2020 06:06:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725385AbgLNFGY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Dec 2020 00:06:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43104 "EHLO
+        id S1727775AbgLNFG2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Dec 2020 00:06:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43118 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726030AbgLNFGY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Dec 2020 00:06:24 -0500
-Received: from mail-yb1-xb49.google.com (mail-yb1-xb49.google.com [IPv6:2607:f8b0:4864:20::b49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D109C0613D3
-        for <devicetree@vger.kernel.org>; Sun, 13 Dec 2020 21:05:44 -0800 (PST)
-Received: by mail-yb1-xb49.google.com with SMTP id z125so12629158ybb.15
-        for <devicetree@vger.kernel.org>; Sun, 13 Dec 2020 21:05:44 -0800 (PST)
+        with ESMTP id S1727632AbgLNFG2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Dec 2020 00:06:28 -0500
+Received: from mail-qt1-x849.google.com (mail-qt1-x849.google.com [IPv6:2607:f8b0:4864:20::849])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2ED92C061793
+        for <devicetree@vger.kernel.org>; Sun, 13 Dec 2020 21:05:48 -0800 (PST)
+Received: by mail-qt1-x849.google.com with SMTP id c14so10884547qtn.5
+        for <devicetree@vger.kernel.org>; Sun, 13 Dec 2020 21:05:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=google.com; s=20161025;
-        h=sender:date:message-id:mime-version:subject:from:to:cc;
-        bh=4jvDXGubsRxhn2wRkLBIdD8iEb/d8966gxDD6ar7m8g=;
-        b=KlDtMcMyuXTNxGUbetGWjtd3p7hpvDYcz1yB/r9pWRwYbw/uRunc0oLBIoTyedZka/
-         +uuHMnhMMyBV7rLugg+K5pmhAH0HTPVj2ACp8VNveYiyt1bsViUM4EH5sbY46MFSXwBy
-         gkSSUCqzVQeUMEG8jbZtx+UiCUAiJy/73YoqXfJA0oLwxQXS1Qv1d9081Dg4F162E95u
-         XwQBFC5e5B18uSMlsZ+EUEcGl+d2tO6Y8wQSpjEl9ddpnAhw8OBOpVyYZNo+7VTezreg
-         UVCGtaSnTN62Yf/xe9on+NX/47S1JMoMzXs4G20PMxuQkomLERygpELc1ZVfSv+Pn+sM
-         60gg==
+        h=sender:date:in-reply-to:message-id:mime-version:references:subject
+         :from:to:cc;
+        bh=GUtMS/yoA8AlX35KWXx+OtSpGWP4nVdoiq93Y3LhngQ=;
+        b=An+eAZV+jljp8c47GZayDSqeDwsRylkUVZ4MKqRbHnCV51SXxfvmLoLhkx7S8IyQ5T
+         itglr6QOCQ+UXv3TlO+pqxRGWAqlN3+sEifWjsO1ZR+fkIjMFUkSFKOdxoeUfEv56Jo8
+         hzB0aVBmm4dbYULgrE1AND+4o0PKjjfJKLSt+MvkvmiV0eS2gmAr6UAaf29Bznvt/Vto
+         z1Un4WItskkMwmtkNRgOiSPVhXhenIqis5W0JvIU/G49TLCPahvBPnvDFDsYqSEO+HxH
+         CCpD0Tx8DlNblfv0uXYxrMxz8fTAuJtyKBPUZ70jqs/RrSKWHHFofTaFgWkaW4wFDYtu
+         DzFg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:date:message-id:mime-version:subject:from
-         :to:cc;
-        bh=4jvDXGubsRxhn2wRkLBIdD8iEb/d8966gxDD6ar7m8g=;
-        b=OFhFPYaHqGbMCmcUhVaX5AVgOwYx7n3yEMA1nqgbkh3IoIa8OlYXHMDsetx4FERH5K
-         qYK4zGEAGoRI1G5GXxVbQMLTOm5pqgxfIwTQZCt2eSvPDxdbyfGmkVciFyJk8bj3t+Na
-         G/IwlWOH2UrCYfPHgbL/IGnnJCHEf8Ck3wn/o1/Wty0hh4J+3YA8qR+RPmNekJAsDzEj
-         4QYC4gG8vdrWYhewS3myEtn67hNzGaSU/POkRZrn/4q+j/3R5iVUQI+NOt3u0E53vMx3
-         WIGwxihTzgDWCw/704BsEmTKQtDPSGklIpQ1APIBI+Tlw9Kj8z9yoXVkZapnMKSeDz+V
-         hvsQ==
-X-Gm-Message-State: AOAM531MQ6Jyf4psapNZ+9ej64dJzicunCsmTkTv/Jxg1TpM30WObmKA
-        znX3ylujJ4F59VvkRjbfJdyriHPq64Uz
-X-Google-Smtp-Source: ABdhPJxUP6w2FBmL9+7gdOpsdC3JE0U//nSrm7jMotOm88ZfM8KsOD/SRblH+17axFBMDd5+7SSemS/Ft2pS
+        h=x-gm-message-state:sender:date:in-reply-to:message-id:mime-version
+         :references:subject:from:to:cc;
+        bh=GUtMS/yoA8AlX35KWXx+OtSpGWP4nVdoiq93Y3LhngQ=;
+        b=eapha16A2rfoaXgVpLfRXk70Cf5C5salUTMfbgZmJCBHkS48VFeIkLtowXuN4p6O/1
+         mnLi9FydB5ekBj57em3+iRc+wLWxvTsFPASrf9tfo+3GWE/l+sdMVnRjy0k9SxQ7qXvn
+         zhOJOq8zVmOZmfceQjDVRYPHSAS5hrGOeujRp30xtwX/fWZQIb4mvsaOMc4/WFNIn2LP
+         JSdad+THBuZr016yf3m+WvUCIM6eV6hMsjxZvXt0ayl/TxZv78Vy/hAuu2iyNe8GCKRz
+         ivkvh2GBtZXISupfM0nPQouAn4M3Tb3qknQ1aoPtUqCVg+dNY7ahhfBCLb98C0AyYLeE
+         jiiQ==
+X-Gm-Message-State: AOAM5304oSasqE8ub9PwO3TEGXTG2X7S7wol1tOncACKbv/Er3th3caO
+        y1Tk8HAwSeS+naV1UH92/uHvBKZXo8Lp
+X-Google-Smtp-Source: ABdhPJxZkqsL5injXgfq7FIilIF3cOR4K4Sb1FhdSzaQnJhs6x8iVHpL1LCGl2mU/1BNaZKzYCSSLrxveN01
 Sender: "tzungbi via sendgmr" <tzungbi@tzungbi-z840.tpe.corp.google.com>
 X-Received: from tzungbi-z840.tpe.corp.google.com ([2401:fa00:1:b:725a:fff:fe41:c6a5])
- (user=tzungbi job=sendgmr) by 2002:a25:25c7:: with SMTP id
- l190mr4045475ybl.177.1607922343460; Sun, 13 Dec 2020 21:05:43 -0800 (PST)
-Date:   Mon, 14 Dec 2020 13:05:19 +0800
-Message-Id: <20201214050521.845396-1-tzungbi@google.com>
+ (user=tzungbi job=sendgmr) by 2002:a0c:df94:: with SMTP id
+ w20mr29806672qvl.33.1607922347262; Sun, 13 Dec 2020 21:05:47 -0800 (PST)
+Date:   Mon, 14 Dec 2020 13:05:20 +0800
+In-Reply-To: <20201214050521.845396-1-tzungbi@google.com>
+Message-Id: <20201214050521.845396-2-tzungbi@google.com>
 Mime-Version: 1.0
+References: <20201214050521.845396-1-tzungbi@google.com>
 X-Mailer: git-send-email 2.29.2.684.gfbc64c5ab5-goog
-Subject: [PATCH 0/2] remoteproc/mediatek: support L1TCM for MT8192 SCP
+Subject: [PATCH 1/2] dt-bindings: remoteproc: mediatek: add L1TCM memory region
 From:   Tzung-Bi Shih <tzungbi@google.com>
 To:     ohad@wizery.com, bjorn.andersson@linaro.org, robh+dt@kernel.org
 Cc:     linux-remoteproc@vger.kernel.org, matthias.bgg@gmail.com,
@@ -59,24 +62,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The series supports L1TCM which is a high performance memory region in
-MT8192 SCP.
+Adds L1TCM memory region.  The reg-name is "l1tcm".
 
-The 1st patch adds a new reg-name "l1tcm" for L1TCM.
+Signed-off-by: Tzung-Bi Shih <tzungbi@google.com>
+---
+ Documentation/devicetree/bindings/remoteproc/mtk,scp.txt | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-The 2nd patch supports L1TCM in the firmware loader.  Note that MT8192
-SCP is still under development.  The 2nd patch breaks early MT8192 SCP
-firmware which should only break our development environment.
-
-Tzung-Bi Shih (2):
-  dt-bindings: remoteproc: mediatek: add L1TCM memory region
-  remoteproc/mediatek: support L1TCM
-
- .../bindings/remoteproc/mtk,scp.txt           |  8 +--
- drivers/remoteproc/mtk_common.h               |  5 ++
- drivers/remoteproc/mtk_scp.c                  | 54 ++++++++++++++++++-
- 3 files changed, 61 insertions(+), 6 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/remoteproc/mtk,scp.txt b/Documentation/devicetree/bindings/remoteproc/mtk,scp.txt
+index 3ba668bab14b..3f5f78764b60 100644
+--- a/Documentation/devicetree/bindings/remoteproc/mtk,scp.txt
++++ b/Documentation/devicetree/bindings/remoteproc/mtk,scp.txt
+@@ -6,10 +6,10 @@ Mediatek SoCs.
+ 
+ Required properties:
+ - compatible		Should be "mediatek,mt8183-scp"
+-- reg			Should contain the address ranges for the two memory
+-			regions, SRAM and CFG.
+-- reg-names		Contains the corresponding names for the two memory
+-			regions. These should be named "sram" & "cfg".
++- reg			Should contain the address ranges for memory regions:
++			SRAM, CFG, and L1TCM.
++- reg-names		Contains the corresponding names for the memory regions:
++			"sram", "cfg", and "l1tcm".
+ - clocks		Clock for co-processor (See: ../clock/clock-bindings.txt)
+ - clock-names		Contains the corresponding name for the clock. This
+ 			should be named "main".
 -- 
 2.29.2.684.gfbc64c5ab5-goog
 
