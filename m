@@ -2,79 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3372D2D9AB2
-	for <lists+devicetree@lfdr.de>; Mon, 14 Dec 2020 16:18:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AE02F2D9AC5
+	for <lists+devicetree@lfdr.de>; Mon, 14 Dec 2020 16:22:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2407571AbgLNPRO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Dec 2020 10:17:14 -0500
-Received: from mail-ot1-f66.google.com ([209.85.210.66]:37111 "EHLO
-        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2407158AbgLNPRN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Dec 2020 10:17:13 -0500
-Received: by mail-ot1-f66.google.com with SMTP id o11so16009456ote.4;
-        Mon, 14 Dec 2020 07:16:58 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=ySr/Vl2ci/XujLZBu5wQq6kxGRFqMO/2YetNSvkqjAc=;
-        b=hwvRFzCMkmLAyumcEZ+x5HoxioVtQ55fkctIIb046RV+u8UCTXuqzd6bJKNbLgMMZ6
-         FFu5CAVC8RUDt8DL7XB91o5m/lRsY/jiIWgZhuH/5Rp1JqtAeyMfsWlFZdlqq3sRcDR7
-         K33Xy/kUSfDCSfstiTPCkNv/oCsX7+cqGqOg+HvLB8VTHt9ttTrKkblKvTbRP/uxxSzJ
-         opGumD1/5OrVCnGhDLbtmfNrZ7rjHFdzg86o/mWdc/B9htfIrTqRTsdSb1QcxIKLYenR
-         CVV4bGEjCKhhGEvP874Fv3tlIsmqm4HnTr6v2quUkrOC4POptoVpPeD5+4jiGqSpX26K
-         ZGUw==
-X-Gm-Message-State: AOAM533gYfvudEV3h/0pxvOPA3y/9nfPQhTy1oanaWUNzKEthW/YZVzz
-        MNFJmtdqxNGjlBtAcgT/SQ==
-X-Google-Smtp-Source: ABdhPJwvWfFei+PUOgunAnO1jgcQwKu4UbC3ifUNhnnCaKcRLPgKg6n6i+c4oz1Hvoc/6ZSzcE5ltA==
-X-Received: by 2002:a9d:2d84:: with SMTP id g4mr20059505otb.212.1607958992340;
-        Mon, 14 Dec 2020 07:16:32 -0800 (PST)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id y8sm4027679oix.43.2020.12.14.07.16.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Dec 2020 07:16:31 -0800 (PST)
-Received: (nullmailer pid 1938534 invoked by uid 1000);
-        Mon, 14 Dec 2020 15:16:30 -0000
-Date:   Mon, 14 Dec 2020 09:16:30 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Zhen Lei <thunder.leizhen@huawei.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Wolfram Sang <wsa@kernel.org>,
-        linux-i2c <linux-i2c@vger.kernel.org>
-Subject: Re: [PATCH v2 1/1] dt-bindings: i2c: dw: cancel mandatory
- requirements for "#address-cells" and "#size-cells"
-Message-ID: <20201214151630.GA1938499@robh.at.kernel.org>
-References: <20201214124347.2120-1-thunder.leizhen@huawei.com>
- <20201214124347.2120-2-thunder.leizhen@huawei.com>
+        id S1729497AbgLNPUA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Dec 2020 10:20:00 -0500
+Received: from foss.arm.com ([217.140.110.172]:48952 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726438AbgLNPTc (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 14 Dec 2020 10:19:32 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 8BF4E30E;
+        Mon, 14 Dec 2020 07:18:44 -0800 (PST)
+Received: from [10.57.33.60] (unknown [10.57.33.60])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 5A02D3F66E;
+        Mon, 14 Dec 2020 07:18:42 -0800 (PST)
+Subject: Re: [PATCH v2 3/4] arm64: dts: rockchip: nanopi4: Move ep-gpios
+ property to nanopc-t4
+To:     Chen-Yu Tsai <wens@kernel.org>,
+        Shawn Lin <shawn.lin@rock-chips.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Rob Herring <robh@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Heiko Stuebner <heiko@sntech.de>
+Cc:     Chen-Yu Tsai <wens@csie.org>, Johan Jonker <jbx6244@gmail.com>,
+        linux-pci@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20201118071724.4866-1-wens@kernel.org>
+ <20201118071724.4866-4-wens@kernel.org>
+From:   Robin Murphy <robin.murphy@arm.com>
+Message-ID: <1e41aefe-6875-d319-1922-210fb865631c@arm.com>
+Date:   Mon, 14 Dec 2020 15:18:40 +0000
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101
+ Thunderbird/78.5.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201214124347.2120-2-thunder.leizhen@huawei.com>
+In-Reply-To: <20201118071724.4866-4-wens@kernel.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 14 Dec 2020 20:43:47 +0800, Zhen Lei wrote:
-> The "#address-cells" and "#size-cells" are required only when the I2C
-> controller has subnodes. However, some I2C controllers defined in
-> "arch/arm64/boot/dts/amd/" and "arch/arm64/boot/dts/hisilicon/"
-> directories do not have child nodes. So they don't need these two
-> properties and don't write them explicitly.
+On 2020-11-18 07:17, Chen-Yu Tsai wrote:
+> From: Chen-Yu Tsai <wens@csie.org>
 > 
-> Therefore, setting properties "#address-cells" and "#size-cells" as
-> "required" in this yaml file causes the following warnings:
-> /root/linux-next/arch/arm64/boot/dts/hisilicon/hi6220-hikey.dt.yaml: \
-> i2c@f7100000: '#address-cells' is a required property
-> /root/linux-next/arch/arm64/boot/dts/hisilicon/hi6220-hikey.dt.yaml: \
-> i2c@f7100000: '#size-cells' is a required property
+> Only the NanoPC T4 hs the PCIe reset pin routed to the SoC. For the
+> NanoPi M4 family, no such signal is routed to the expansion header on
+> the base board.
 > 
-> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
-> ---
->  Documentation/devicetree/bindings/i2c/snps,designware-i2c.yaml | 8 --------
->  1 file changed, 8 deletions(-)
+> As the schematics for the expansion board were not released, it is
+> unclear how this is handled, but the likely answer is that the signal
+> is always pulled high.
 > 
+> Move the ep-gpios property from the common nanopi4.dtsi file to the
+> board level nanopc-t4.dts file. This makes the nanopi-m4 lack ep-gpios,
+> matching the board design.
+> 
+> A companion patch "PCI: rockchip: make ep_gpio optional" for the Linux
+> driver is required, as the driver currently requires the property to be
+> present.
 
-Applied, thanks!
+I concur that this is a more correct description per the schematics (the 
+SOM-RK3399 Dev Kit carrier board is the only other thing showing PERST# 
+wired up like this), and whatever the M4 hats are doing they clearly 
+aren't doing it with GPIO2_A4 either way.
+
+Reviewed-by: Robin Murphy <robin.murphy@arm.com>
+
+> Fixes: e7a095908227 ("arm64: dts: rockchip: Add devicetree for NanoPC-T4")
+> Signed-off-by: Chen-Yu Tsai <wens@csie.org>
+> ---
+>   arch/arm64/boot/dts/rockchip/rk3399-nanopc-t4.dts | 1 +
+>   arch/arm64/boot/dts/rockchip/rk3399-nanopi4.dtsi  | 1 -
+>   2 files changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-nanopc-t4.dts b/arch/arm64/boot/dts/rockchip/rk3399-nanopc-t4.dts
+> index e0d75617bb7e..452728b82e42 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3399-nanopc-t4.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3399-nanopc-t4.dts
+> @@ -95,6 +95,7 @@ map3 {
+>   };
+>   
+>   &pcie0 {
+> +	ep-gpios = <&gpio2 RK_PA4 GPIO_ACTIVE_HIGH>;
+>   	num-lanes = <4>;
+>   	vpcie3v3-supply = <&vcc3v3_sys>;
+>   };
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-nanopi4.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-nanopi4.dtsi
+> index 76a8b40a93c6..48ed4aaa37f3 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3399-nanopi4.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3399-nanopi4.dtsi
+> @@ -504,7 +504,6 @@ &pcie_phy {
+>   };
+>   
+>   &pcie0 {
+> -	ep-gpios = <&gpio2 RK_PA4 GPIO_ACTIVE_HIGH>;
+>   	max-link-speed = <2>;
+>   	num-lanes = <2>;
+>   	vpcie0v9-supply = <&vcca0v9_s3>;
+> 
