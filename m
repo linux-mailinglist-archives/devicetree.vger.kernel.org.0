@@ -2,134 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A7B312D98CE
-	for <lists+devicetree@lfdr.de>; Mon, 14 Dec 2020 14:32:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2DB1C2D995F
+	for <lists+devicetree@lfdr.de>; Mon, 14 Dec 2020 15:05:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2439894AbgLNN3l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Dec 2020 08:29:41 -0500
-Received: from mail-ua1-f67.google.com ([209.85.222.67]:37945 "EHLO
-        mail-ua1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2439890AbgLNN3c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Dec 2020 08:29:32 -0500
-Received: by mail-ua1-f67.google.com with SMTP id y26so5447498uan.5;
-        Mon, 14 Dec 2020 05:29:16 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=cE+oqAfA+GkiyVb1F1JkfAtzYUI1QcTqmk17SNa2LOM=;
-        b=tp+0x0xLft5YtYSFQfNfeErLeoBo18wMgblt9LqDDZVqP8+2gXNq0s47LVchktpj2/
-         8TzrK/FkOT4YsuMuT6LmBIMK/VbFSq/zlq2pgLOhPyI1vWce0K+vr7x6G2NMyACai0QN
-         lELC7WYtiWT5WWW6tM1rhwVgkVYgDWQ+GoxPwx08pY3YH/kDpTFWiOqtGJ+jpcd4weKb
-         OiidhFy/e3f4tmES89bXmFFbTSsBb8fTei+Q6iRVlcGGgSdnVrmyA4VCZZv3/ueJi3kO
-         5cm2d74kunf0pQfucW/dbRk61t1iwq186CdrRJT9haBE7kWdzGAp9JzVAmdEik6dTkSV
-         K+DQ==
-X-Gm-Message-State: AOAM530PavaLZPKknRW51mQWD0UXsTDafyn+Ze7VGa9j0vP+FqrHQrwB
-        J6uQ7xZ21IVxmSGuc/2TW46mjmjgbLonpg==
-X-Google-Smtp-Source: ABdhPJxeW6HVj7qMaeAVjFzseMWk25Yd+2IR/8+m5q2VOq1JFb8GYnXQXrAxN38ZcEMU8AAq7cO7eQ==
-X-Received: by 2002:ab0:35d7:: with SMTP id x23mr22764604uat.119.1607952529668;
-        Mon, 14 Dec 2020 05:28:49 -0800 (PST)
-Received: from mail-vk1-f181.google.com (mail-vk1-f181.google.com. [209.85.221.181])
-        by smtp.gmail.com with ESMTPSA id i187sm2261857vkb.37.2020.12.14.05.28.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 14 Dec 2020 05:28:48 -0800 (PST)
-Received: by mail-vk1-f181.google.com with SMTP id s13so2377007vkb.11;
-        Mon, 14 Dec 2020 05:28:48 -0800 (PST)
-X-Received: by 2002:a1f:5402:: with SMTP id i2mr18377523vkb.5.1607952528088;
- Mon, 14 Dec 2020 05:28:48 -0800 (PST)
+        id S2408159AbgLNOCw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Dec 2020 09:02:52 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:49878 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732936AbgLNOCr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Dec 2020 09:02:47 -0500
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0BEE1q9I069588;
+        Mon, 14 Dec 2020 08:01:52 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1607954512;
+        bh=33AuVZNORvzugvsNVbeRIQp/8O4uTVgriSBQcSSQ/tg=;
+        h=From:To:CC:Subject:Date;
+        b=YObRZc/IHwMXnOGZjqRSpTZ2NgmPmiLwQy53oDkmB5G265jLUD1goYhQeYUHyaxgp
+         Jru7Ygmca3SNFY9BH6h83K01PgrxsNzsAgAqpkzsUpzGyhVrKHGSedkfyIvgO5HxOh
+         TKWZffqVohEV0WR6VQH+mqOG3cMZASY1pTUNzsQM=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0BEE1qr5066001
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 14 Dec 2020 08:01:52 -0600
+Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Mon, 14
+ Dec 2020 08:01:51 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Mon, 14 Dec 2020 08:01:52 -0600
+Received: from gsaswath-HP-ProBook-640-G5.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0BEE1lpW036656;
+        Mon, 14 Dec 2020 08:01:48 -0600
+From:   Aswath Govindraju <a-govindraju@ti.com>
+CC:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Sekhar Nori <nsekhar@ti.com>,
+        Aswath Govindraju <a-govindraju@ti.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Roger Quadros <rogerq@ti.com>, <linux-usb@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v5] dt-bindings: usb: Add new compatible string for AM64 SoC
+Date:   Mon, 14 Dec 2020 19:31:09 +0530
+Message-ID: <20201214140109.21955-1-a-govindraju@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-References: <20201211011934.6171-1-andre.przywara@arm.com> <20201211011934.6171-20-andre.przywara@arm.com>
- <20201214095831.j63nks3fqxlaw75w@gilmour> <20201214125343.0cd1bc6a@slackpad.fritz.box>
-In-Reply-To: <20201214125343.0cd1bc6a@slackpad.fritz.box>
-From:   Chen-Yu Tsai <wens@csie.org>
-Date:   Mon, 14 Dec 2020 21:28:36 +0800
-X-Gmail-Original-Message-ID: <CAGb2v677X7h_Xo3L6gP0Ws4P0ROmZ0LhwNStZk-zcL7XtTRCLA@mail.gmail.com>
-Message-ID: <CAGb2v677X7h_Xo3L6gP0Ws4P0ROmZ0LhwNStZk-zcL7XtTRCLA@mail.gmail.com>
-Subject: Re: [linux-sunxi] Re: [PATCH v2 19/21] arm64: dts: allwinner: Add
- Allwinner H616 .dtsi file
-To:     =?UTF-8?Q?Andr=C3=A9_Przywara?= <andre.przywara@arm.com>
-Cc:     Maxime Ripard <maxime@cerno.tech>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Icenowy Zheng <icenowy@aosc.xyz>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>,
-        Shuosheng Huang <huangshuosheng@allwinnertech.com>,
-        Yangtao Li <tiny.windzz@gmail.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-sunxi <linux-sunxi@googlegroups.com>,
-        devicetree <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 14, 2020 at 8:53 PM Andre Przywara <andre.przywara@arm.com> wrote:
->
-> On Mon, 14 Dec 2020 10:58:31 +0100
-> Maxime Ripard <maxime@cerno.tech> wrote:
->
-> Hi,
->
-> > On Fri, Dec 11, 2020 at 01:19:32AM +0000, Andre Przywara wrote:
-> > > +   reserved-memory {
-> > > +           #address-cells = <2>;
-> > > +           #size-cells = <2>;
-> > > +           ranges;
-> > > +
-> > > +           /* 512KiB reserved for ARM Trusted Firmware (BL31)
-> > > */
-> > > +           secmon_reserved: secmon@40000000 {
-> > > +                   reg = <0x0 0x40000000 0x0 0x80000>;
-> > > +                   no-map;
-> > > +           };
-> > > +   };
-> >
-> > This should still be set by the firmware
-> >
-> > > +           mmc0: mmc@4020000 {
-> > > +                   compatible = "allwinner,sun50i-h616-mmc",
-> > > +                                "allwinner,sun50i-a100-mmc";
-> > > +                   reg = <0x04020000 0x1000>;
-> > > +                   clocks = <&ccu CLK_BUS_MMC0>, <&ccu
-> > > CLK_MMC0>;
-> > > +                   clock-names = "ahb", "mmc";
-> > > +                   resets = <&ccu RST_BUS_MMC0>;
-> > > +                   reset-names = "ahb";
-> > > +                   interrupts = <GIC_SPI 35
-> > > IRQ_TYPE_LEVEL_HIGH>;
-> > > +                   pinctrl-names = "default";
-> > > +                   pinctrl-0 = <&mmc0_pins>;
-> > > +                   status = "disabled";
-> > > +                   #address-cells = <1>;
-> > > +                   #size-cells = <0>;
-> > > +           };
-> >
-> > Somewhat related: we shouldn't set the MMC speed flags in the drivers.
-> > This is biting us on the already supported SoCs, so it would be great
-> > to not repeat the same mistake with the new ones
->
-> Do you mean to list the "sd-uhs-sdr50" and friends properties here in
-> the DT?
-> What is the best practice here in terms putting them in the .dts vs.
-> the .dtsi? Surely the controller has limits, but bad traces on a board
-> could impose further restrictions, right?
-> Though that's probably rare, so it sounds like a lot of churn to list
-> them in every board DT. So can we list everything in here (.dtsi), then
-> delete in those affected boards only?
+Add compatible string in j721e-usb binding file as the same USB subsystem
+is present in AM64.
 
-The driver will most certainly already have the basic high speed modes
-enabled. Or we can list them in the .dtsi file.
+Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+---
 
-For HS-DDR mode, we probably want to list that in the .dtsi file as well,
-as that seems to be the one that is failing most of the time.
+Changes since v4:
+ - used oneOf instead of enum, as the schema has to convey that the strings
+   ti,j721e-usb and ti,am64-usb can be used combined or seperately in the
+   DT nodes.
 
-All the UHS-1 modes would be listed by board, since it requires a way
-to cut power to the card and the ability to change I/O voltage levels.
+Changes since v3:
+ - used enum instead of anyOf.
 
-I wonder if Allwinner still keeps the timing information in the driver,
-or have they moved that to their vendor device tree files. We might want
-to consider moving it as well.
+Changes since v2:
+ - added changes done over the versions.
 
-ChenYu
+Changes since v1:
+ - replaced the '\t' at the beginning of the lines with spaces as it was
+  causing the dt_binding_check to fail.
+
+ Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml b/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml
+index 388245b91a55..21e51ceca293 100644
+--- a/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml
++++ b/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml
+@@ -11,8 +11,12 @@ maintainers:
+ 
+ properties:
+   compatible:
+-    items:
++    oneOf:
+       - const: ti,j721e-usb
++      - const: ti,am64-usb
++      - items:
++          - ti,j721e-usb
++          - ti,am64-usb
+ 
+   reg:
+     description: module registers
+-- 
+2.17.1
+
