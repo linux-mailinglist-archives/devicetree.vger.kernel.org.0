@@ -2,90 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E930E2D924E
-	for <lists+devicetree@lfdr.de>; Mon, 14 Dec 2020 05:41:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2AD022D9265
+	for <lists+devicetree@lfdr.de>; Mon, 14 Dec 2020 06:06:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2438243AbgLNElQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 13 Dec 2020 23:41:16 -0500
-Received: from mail.kernel.org ([198.145.29.99]:58868 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727148AbgLNElQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 13 Dec 2020 23:41:16 -0500
-Date:   Mon, 14 Dec 2020 10:10:30 +0530
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1607920835;
-        bh=Lo6u48Day0mUO4h1+Mhp4AqyFlf4ohZTOz9CjtOwmFA=;
-        h=From:To:Cc:Subject:References:In-Reply-To:From;
-        b=UkJR+Y16cxoSSnofwarCElwnxfN8ODoAh1tnzUrfssp05SRHZl7AhFkfZEudLbt5X
-         TdpZhGSUWbaOjjoBBvbXyvVeIr91XdPjzXUS9gkLSpDWNyc7N/ncYKuGH+Nn0lyD/t
-         U2kkbUeStLelyRiiAqcZxSqvSDCjMrfe2rgshTnJqZdNXcFBuDslE3fVLko3Jm+oed
-         RpDPLK26h19Pf8g3TzjHOotff0AUYbRUCztBkCZOwoDlcHSvyghl5JSYebWSbYGLVF
-         /LHkaUC9YAZhMzzvF8jW/fy3u6x2bE8fb0GWKyYP5F3X4G27dILFvfAKU81zVEANr5
-         R+uxYe4i75NrA==
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Taniya Das <tdas@codeaurora.org>
-Cc:     Stephen Boyd <sboyd@kernel.org>, linux-arm-msm@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Vivek Aknurwar <viveka@codeaurora.org>,
-        Andy Gross <agross@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Jeevan Shriram <jshriram@codeaurora.org>
-Subject: Re: [PATCH v2 5/5] clk: qcom: gcc: Add clock driver for SM8350
-Message-ID: <20201214044030.GD8403@vkoul-mobl>
-References: <20201208064702.3654324-1-vkoul@kernel.org>
- <20201208064702.3654324-6-vkoul@kernel.org>
- <160763302790.1580929.10258660966995584297@swboyd.mtv.corp.google.com>
- <20201211054349.GS8403@vkoul-mobl>
- <160767062876.1580929.14564723998233527816@swboyd.mtv.corp.google.com>
- <a6cc3d1e-4a72-63be-bf1c-5d560ecef9aa@codeaurora.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <a6cc3d1e-4a72-63be-bf1c-5d560ecef9aa@codeaurora.org>
+        id S1725385AbgLNFGY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Dec 2020 00:06:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43104 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726030AbgLNFGY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Dec 2020 00:06:24 -0500
+Received: from mail-yb1-xb49.google.com (mail-yb1-xb49.google.com [IPv6:2607:f8b0:4864:20::b49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D109C0613D3
+        for <devicetree@vger.kernel.org>; Sun, 13 Dec 2020 21:05:44 -0800 (PST)
+Received: by mail-yb1-xb49.google.com with SMTP id z125so12629158ybb.15
+        for <devicetree@vger.kernel.org>; Sun, 13 Dec 2020 21:05:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=sender:date:message-id:mime-version:subject:from:to:cc;
+        bh=4jvDXGubsRxhn2wRkLBIdD8iEb/d8966gxDD6ar7m8g=;
+        b=KlDtMcMyuXTNxGUbetGWjtd3p7hpvDYcz1yB/r9pWRwYbw/uRunc0oLBIoTyedZka/
+         +uuHMnhMMyBV7rLugg+K5pmhAH0HTPVj2ACp8VNveYiyt1bsViUM4EH5sbY46MFSXwBy
+         gkSSUCqzVQeUMEG8jbZtx+UiCUAiJy/73YoqXfJA0oLwxQXS1Qv1d9081Dg4F162E95u
+         XwQBFC5e5B18uSMlsZ+EUEcGl+d2tO6Y8wQSpjEl9ddpnAhw8OBOpVyYZNo+7VTezreg
+         UVCGtaSnTN62Yf/xe9on+NX/47S1JMoMzXs4G20PMxuQkomLERygpELc1ZVfSv+Pn+sM
+         60gg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:sender:date:message-id:mime-version:subject:from
+         :to:cc;
+        bh=4jvDXGubsRxhn2wRkLBIdD8iEb/d8966gxDD6ar7m8g=;
+        b=OFhFPYaHqGbMCmcUhVaX5AVgOwYx7n3yEMA1nqgbkh3IoIa8OlYXHMDsetx4FERH5K
+         qYK4zGEAGoRI1G5GXxVbQMLTOm5pqgxfIwTQZCt2eSvPDxdbyfGmkVciFyJk8bj3t+Na
+         G/IwlWOH2UrCYfPHgbL/IGnnJCHEf8Ck3wn/o1/Wty0hh4J+3YA8qR+RPmNekJAsDzEj
+         4QYC4gG8vdrWYhewS3myEtn67hNzGaSU/POkRZrn/4q+j/3R5iVUQI+NOt3u0E53vMx3
+         WIGwxihTzgDWCw/704BsEmTKQtDPSGklIpQ1APIBI+Tlw9Kj8z9yoXVkZapnMKSeDz+V
+         hvsQ==
+X-Gm-Message-State: AOAM531MQ6Jyf4psapNZ+9ej64dJzicunCsmTkTv/Jxg1TpM30WObmKA
+        znX3ylujJ4F59VvkRjbfJdyriHPq64Uz
+X-Google-Smtp-Source: ABdhPJxUP6w2FBmL9+7gdOpsdC3JE0U//nSrm7jMotOm88ZfM8KsOD/SRblH+17axFBMDd5+7SSemS/Ft2pS
+Sender: "tzungbi via sendgmr" <tzungbi@tzungbi-z840.tpe.corp.google.com>
+X-Received: from tzungbi-z840.tpe.corp.google.com ([2401:fa00:1:b:725a:fff:fe41:c6a5])
+ (user=tzungbi job=sendgmr) by 2002:a25:25c7:: with SMTP id
+ l190mr4045475ybl.177.1607922343460; Sun, 13 Dec 2020 21:05:43 -0800 (PST)
+Date:   Mon, 14 Dec 2020 13:05:19 +0800
+Message-Id: <20201214050521.845396-1-tzungbi@google.com>
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.29.2.684.gfbc64c5ab5-goog
+Subject: [PATCH 0/2] remoteproc/mediatek: support L1TCM for MT8192 SCP
+From:   Tzung-Bi Shih <tzungbi@google.com>
+To:     ohad@wizery.com, bjorn.andersson@linaro.org, robh+dt@kernel.org
+Cc:     linux-remoteproc@vger.kernel.org, matthias.bgg@gmail.com,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        tzungbi@google.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Taniya,
+The series supports L1TCM which is a high performance memory region in
+MT8192 SCP.
 
-On 13-12-20, 14:00, Taniya Das wrote:
-> 
-> 
-> On 12/11/2020 12:40 PM, Stephen Boyd wrote:
-> > Quoting Vinod Koul (2020-12-10 21:43:49)
-> > > On 10-12-20, 12:43, Stephen Boyd wrote:
-> > > > > +static struct clk_branch gcc_camera_ahb_clk = {
-> > > > > +       .halt_reg = 0x26004,
-> > > > > +       .halt_check = BRANCH_HALT_DELAY,
-> > > > > +       .hwcg_reg = 0x26004,
-> > > > > +       .hwcg_bit = 1,
-> > > > > +       .clkr = {
-> > > > > +               .enable_reg = 0x26004,
-> > > > > +               .enable_mask = BIT(0),
-> > > > > +               .hw.init = &(struct clk_init_data){
-> > > > > +                       .name = "gcc_camera_ahb_clk",
-> > > > > +                       .flags = CLK_IS_CRITICAL,
-> > > > 
-> > > > Why is it critical? Can we just enable it in driver probe and stop
-> > > > modeling it as a clk?
-> > > 
-> > > it does not have a parent we control, yeah it would make sense to do
-> > > that. Tanya do you folks agree ..?
-> > > 
-> > 
-> > Maybe it is needed for camera clk controller? Have to check other SoCs
-> > and see if they're using it.
-> > 
-> 
-> Yes, they would have to be left enabled.
-> 
-> Vinod, could you please move them to probe, similar to kona/sc7180 where all
-> the CRITICALs clocks are left enabled?
+The 1st patch adds a new reg-name "l1tcm" for L1TCM.
 
-Thanks for the pointer, will do
+The 2nd patch supports L1TCM in the firmware loader.  Note that MT8192
+SCP is still under development.  The 2nd patch breaks early MT8192 SCP
+firmware which should only break our development environment.
 
-Thanks
+Tzung-Bi Shih (2):
+  dt-bindings: remoteproc: mediatek: add L1TCM memory region
+  remoteproc/mediatek: support L1TCM
+
+ .../bindings/remoteproc/mtk,scp.txt           |  8 +--
+ drivers/remoteproc/mtk_common.h               |  5 ++
+ drivers/remoteproc/mtk_scp.c                  | 54 ++++++++++++++++++-
+ 3 files changed, 61 insertions(+), 6 deletions(-)
+
 -- 
-~Vinod
+2.29.2.684.gfbc64c5ab5-goog
+
