@@ -2,210 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A5732D984F
-	for <lists+devicetree@lfdr.de>; Mon, 14 Dec 2020 13:53:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1BD632D985C
+	for <lists+devicetree@lfdr.de>; Mon, 14 Dec 2020 13:55:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2407525AbgLNMwx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Dec 2020 07:52:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58342 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2407492AbgLNMwn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Dec 2020 07:52:43 -0500
-Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com [IPv6:2a00:1450:4864:20::344])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D382FC0613D3
-        for <devicetree@vger.kernel.org>; Mon, 14 Dec 2020 04:52:02 -0800 (PST)
-Received: by mail-wm1-x344.google.com with SMTP id 3so15124733wmg.4
-        for <devicetree@vger.kernel.org>; Mon, 14 Dec 2020 04:52:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=uA7Oxs/wyvYUE1Q5Z79HLkOoFQjgdYG73UpryFEtyeo=;
-        b=A7JTYmymCT84foHfhEmNIHr/pEfSygaw0il7x05bSBXymRtmnEeQ9s8NImWZYvG1bR
-         IJ7xCY9OfQNEa/YTNBx2CJk7Ipe6KY895wWjACUQcgcAwrrpE4Jqm8k7W/CzO6YM4aR/
-         dscM1fFxsl/sItEgQ3EkazFzVcCs2S7RTUHBTYW31rZbDmyyz0X1ZLZMoXi3UKDQySQH
-         gyixWe2v4wPss1+mh04uaNzSADC1nZCcohSWb/6SDx4QQlplS7Ew13lBe+/dE6xkGvdS
-         aiKO2/ys+HAjPf1PsTGTiBKRnGpAosT6yCiq3CWjYQaTagjjvEcyO/TG5vcVPGXf3plk
-         kSpQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=uA7Oxs/wyvYUE1Q5Z79HLkOoFQjgdYG73UpryFEtyeo=;
-        b=oCZY7yjVHhkiwqctGZ4hBWTbISJBo2Uk0wwOGSzTsQKcBY/T32VCCDjhRCLiMIjd19
-         k7UIm9kUl/PrPpryXcyJqB2ISRu+Tv4Opd4kTuEavBQZtwvZjla2uizVjZ5mOjgQKdsB
-         gQQes6quQm+7LlOZ2CHX1jBuOjwpaAbmvKZajXCJQrr7D3hUhp7JDY/OIOKpq5nC61ak
-         EMTlzc0oX1GC66uDXp8kJa6rf8CnvZzZF02e0waILH9zkQhWQyilkw8zew4JW7vTFA8R
-         EdzpQbICUTEk7g9jZ2MREWup8cFVGS2VrlsGSLA8uQsrRLYNDxFPl8rXD/8dCzyc9bvq
-         xXNA==
-X-Gm-Message-State: AOAM530o16pzQM+VYodh+F9o2sjUXZd0uC5OhLMdJu00DdrkCvq+XrcI
-        f2I1KBNaiBf5/fNpmrmVVzy6gQ==
-X-Google-Smtp-Source: ABdhPJy7ckFB91jTR/PoEmgcekJEn+mvUgXVeEpBAXlu4Plmu8X+fq263Z3FizP3RlKSLXwiHojtUg==
-X-Received: by 2002:a1c:b7d4:: with SMTP id h203mr27925588wmf.59.1607950321431;
-        Mon, 14 Dec 2020 04:52:01 -0800 (PST)
-Received: from myrica ([2001:1715:4e26:a7e0:116c:c27a:3e7f:5eaf])
-        by smtp.gmail.com with ESMTPSA id j15sm31263649wrr.85.2020.12.14.04.51.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Dec 2020 04:52:00 -0800 (PST)
-Date:   Mon, 14 Dec 2020 13:51:41 +0100
-From:   Jean-Philippe Brucker <jean-philippe@linaro.org>
-To:     Robin Murphy <robin.murphy@arm.com>
-Cc:     joro@8bytes.org, will@kernel.org, lorenzo.pieralisi@arm.com,
-        robh+dt@kernel.org, guohanjun@huawei.com, sudeep.holla@arm.com,
-        rjw@rjwysocki.net, lenb@kernel.org, bhelgaas@google.com,
-        Jonathan.Cameron@huawei.com, eric.auger@redhat.com,
-        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
-        linux-acpi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-pci@vger.kernel.org, baolu.lu@linux.intel.com,
-        zhangfei.gao@linaro.org, shameerali.kolothum.thodi@huawei.com,
-        vivek.gautam@arm.com
-Subject: Re: [PATCH v8 4/9] of/iommu: Support dma-can-stall property
-Message-ID: <X9dS9H9PrOZbND9E@myrica>
-References: <20201112125519.3987595-1-jean-philippe@linaro.org>
- <20201112125519.3987595-5-jean-philippe@linaro.org>
- <d0a61d79-82fc-3af8-570e-e2ae3d485455@arm.com>
+        id S2438794AbgLNMyl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Dec 2020 07:54:41 -0500
+Received: from foss.arm.com ([217.140.110.172]:47036 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2438578AbgLNMyk (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 14 Dec 2020 07:54:40 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 013E11FB;
+        Mon, 14 Dec 2020 04:53:55 -0800 (PST)
+Received: from slackpad.fritz.box (unknown [172.31.20.19])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 5299A3F66B;
+        Mon, 14 Dec 2020 04:53:53 -0800 (PST)
+Date:   Mon, 14 Dec 2020 12:53:43 +0000
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Icenowy Zheng <icenowy@aosc.xyz>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>,
+        Shuosheng Huang <huangshuosheng@allwinnertech.com>,
+        Yangtao Li <tiny.windzz@gmail.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-sunxi@googlegroups.com, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 19/21] arm64: dts: allwinner: Add Allwinner H616
+ .dtsi file
+Message-ID: <20201214125343.0cd1bc6a@slackpad.fritz.box>
+In-Reply-To: <20201214095831.j63nks3fqxlaw75w@gilmour>
+References: <20201211011934.6171-1-andre.przywara@arm.com>
+ <20201211011934.6171-20-andre.przywara@arm.com>
+ <20201214095831.j63nks3fqxlaw75w@gilmour>
+Organization: Arm Ltd.
+X-Mailer: Claws Mail 3.17.1 (GTK+ 2.24.31; x86_64-slackware-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <d0a61d79-82fc-3af8-570e-e2ae3d485455@arm.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 26, 2020 at 06:09:26PM +0000, Robin Murphy wrote:
-> On 2020-11-12 12:55, Jean-Philippe Brucker wrote:
-> > Copy the dma-can-stall property into the fwspec structure.
+On Mon, 14 Dec 2020 10:58:31 +0100
+Maxime Ripard <maxime@cerno.tech> wrote:
+
+Hi,
+
+> On Fri, Dec 11, 2020 at 01:19:32AM +0000, Andre Przywara wrote:
+> > +	reserved-memory {
+> > +		#address-cells = <2>;
+> > +		#size-cells = <2>;
+> > +		ranges;
+> > +
+> > +		/* 512KiB reserved for ARM Trusted Firmware (BL31)
+> > */
+> > +		secmon_reserved: secmon@40000000 {
+> > +			reg = <0x0 0x40000000 0x0 0x80000>;
+> > +			no-map;
+> > +		};
+> > +	};  
 > 
-> Can't we just handle this as a regular device property? It's not part of the
-> actual IOMMU specifier, it doesn't need to be translated in any way, and
-> AFAICS it's used a grand total of once, in a slow path. Simply treating it
-> as the per-device property that it is should require zero additional code
-> for DT, and a simple device_add_properties() call for IORT.
+> This should still be set by the firmware
 > 
-> TBH that appears to be true of pasid-num-bits as well.
+> > +		mmc0: mmc@4020000 {
+> > +			compatible = "allwinner,sun50i-h616-mmc",
+> > +				     "allwinner,sun50i-a100-mmc";
+> > +			reg = <0x04020000 0x1000>;
+> > +			clocks = <&ccu CLK_BUS_MMC0>, <&ccu
+> > CLK_MMC0>;
+> > +			clock-names = "ahb", "mmc";
+> > +			resets = <&ccu RST_BUS_MMC0>;
+> > +			reset-names = "ahb";
+> > +			interrupts = <GIC_SPI 35
+> > IRQ_TYPE_LEVEL_HIGH>;
+> > +			pinctrl-names = "default";
+> > +			pinctrl-0 = <&mmc0_pins>;
+> > +			status = "disabled";
+> > +			#address-cells = <1>;
+> > +			#size-cells = <0>;
+> > +		};  
+> 
+> Somewhat related: we shouldn't set the MMC speed flags in the drivers.
+> This is biting us on the already supported SoCs, so it would be great
+> to not repeat the same mistake with the new ones
 
-Right I think that's better, thanks for the pointer. I'll take care of
-pasid-num-bits too. The Huawei quirk (fake PCIe supporting stall) is a
-little worse this way, but it should work.
+Do you mean to list the "sd-uhs-sdr50" and friends properties here in
+the DT?
+What is the best practice here in terms putting them in the .dts vs.
+the .dtsi? Surely the controller has limits, but bad traces on a board
+could impose further restrictions, right? 
+Though that's probably rare, so it sounds like a lot of churn to list
+them in every board DT. So can we list everything in here (.dtsi), then
+delete in those affected boards only?
 
-Thanks,
-Jean
-
----
-Diff untested on ACPI:
-
-diff --git a/include/linux/iommu.h b/include/linux/iommu.h
-index e7b40e569488..ad5c55bc45b2 100644
---- a/include/linux/iommu.h
-+++ b/include/linux/iommu.h
-@@ -591,8 +591,6 @@ struct iommu_group *fsl_mc_device_group(struct device *dev);
- struct iommu_fwspec {
- 	const struct iommu_ops	*ops;
- 	struct fwnode_handle	*iommu_fwnode;
--	u32			num_pasid_bits;
--	bool			can_stall;
- 	unsigned int		num_ids;
- 	u32			ids[];
- };
-diff --git a/drivers/acpi/arm64/iort.c b/drivers/acpi/arm64/iort.c
-index aa76e775bd6d..1582f6585741 100644
---- a/drivers/acpi/arm64/iort.c
-+++ b/drivers/acpi/arm64/iort.c
-@@ -960,16 +960,19 @@ static int iort_pci_iommu_init(struct pci_dev *pdev, u16 alias, void *data)
- static void iort_named_component_init(struct device *dev,
- 				      struct acpi_iort_node *node)
- {
-+	struct property_entry props[3] = {};
- 	struct acpi_iort_named_component *nc;
--	struct iommu_fwspec *fwspec = dev_iommu_fwspec_get(dev);
--
--	if (!fwspec)
--		return;
-
- 	nc = (struct acpi_iort_named_component *)node->node_data;
--	fwspec->num_pasid_bits = FIELD_GET(ACPI_IORT_NC_PASID_BITS,
--					   nc->node_flags);
--	fwspec->can_stall = (nc->node_flags & ACPI_IORT_NC_STALL_SUPPORTED);
-+
-+	props[0] = PROPERTY_ENTRY_U32("pasid-num-bits",
-+				      FIELD_GET(ACPI_IORT_NC_PASID_BITS,
-+						nc->node_flags));
-+	if (nc->node_flags & ACPI_IORT_NC_STALL_SUPPORTED)
-+		props[1] = PROPERTY_ENTRY_BOOL("dma-can-stall");
-+
-+	if (device_add_properties(dev, props))
-+		dev_warn(dev, "Could not register device properties\n");
- }
-
- static int iort_nc_iommu_map(struct device *dev, struct acpi_iort_node *node)
-diff --git a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
-index 521ec7f0b2a0..571bd7c35a62 100644
---- a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
-+++ b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
-@@ -2842,7 +2842,8 @@ static struct iommu_device *arm_smmu_probe_device(struct device *dev)
- 	if (ret)
- 		goto err_free_master;
-
--	master->ssid_bits = min(smmu->ssid_bits, fwspec->num_pasid_bits);
-+	device_property_read_u32(dev, "pasid-num-bits", &master->ssid_bits);
-+	master->ssid_bits = min(smmu->ssid_bits, master->ssid_bits);
-
- 	/*
- 	 * Note that PASID must be enabled before, and disabled after ATS:
-@@ -2858,7 +2859,8 @@ static struct iommu_device *arm_smmu_probe_device(struct device *dev)
- 		master->ssid_bits = min_t(u8, master->ssid_bits,
- 					  CTXDESC_LINEAR_CDMAX);
-
--	if ((smmu->features & ARM_SMMU_FEAT_STALLS && fwspec->can_stall) ||
-+	if ((smmu->features & ARM_SMMU_FEAT_STALLS &&
-+	     device_property_read_bool(dev, "dma-can-stall")) ||
- 	    smmu->features & ARM_SMMU_FEAT_STALL_FORCE)
- 		master->stall_enabled = true;
-
-diff --git a/drivers/iommu/of_iommu.c b/drivers/iommu/of_iommu.c
-index d6255ca823d8..a9d2df001149 100644
---- a/drivers/iommu/of_iommu.c
-+++ b/drivers/iommu/of_iommu.c
-@@ -210,14 +210,6 @@ const struct iommu_ops *of_iommu_configure(struct device *dev,
- 					     of_pci_iommu_init, &info);
- 	} else {
- 		err = of_iommu_configure_device(master_np, dev, id);
--
--		fwspec = dev_iommu_fwspec_get(dev);
--		if (!err && fwspec) {
--			of_property_read_u32(master_np, "pasid-num-bits",
--					     &fwspec->num_pasid_bits);
--			fwspec->can_stall = of_property_read_bool(master_np,
--								  "dma-can-stall");
--		}
- 	}
-
- 	/*
-diff --git a/drivers/pci/quirks.c b/drivers/pci/quirks.c
-index 324dbe55836c..13a43a3d6347 100644
---- a/drivers/pci/quirks.c
-+++ b/drivers/pci/quirks.c
-@@ -1828,12 +1828,17 @@ DECLARE_PCI_FIXUP_CLASS_FINAL(PCI_VENDOR_ID_HUAWEI, 0x1610, PCI_CLASS_BRIDGE_PCI
-
- static void quirk_huawei_pcie_sva(struct pci_dev *pdev)
- {
--	struct iommu_fwspec *fwspec;
-+	struct property_entry properties[] = {
-+		PROPERTY_ENTRY_BOOL("dma-can-stall"),
-+		{},
-+	};
-
- 	pdev->eetlp_prefix_path = 1;
--	fwspec = dev_iommu_fwspec_get(&pdev->dev);
--	if (fwspec)
--		fwspec->can_stall = 1;
-+
-+	/* Device-tree can set the stall property */
-+	if (!pdev->dev.of_node &&
-+	    device_add_properties(&pdev->dev, properties))
-+		pci_warn(pdev, "could not add stall property");
- }
-
- DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_HUAWEI, 0xa250, quirk_huawei_pcie_sva);
-
-
+Cheers,
+Andre
