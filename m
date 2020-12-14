@@ -2,67 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A5BA92DA3B0
-	for <lists+devicetree@lfdr.de>; Mon, 14 Dec 2020 23:56:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 285E52DA3B5
+	for <lists+devicetree@lfdr.de>; Mon, 14 Dec 2020 23:56:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2441248AbgLNWxa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Dec 2020 17:53:30 -0500
-Received: from mail-oi1-f195.google.com ([209.85.167.195]:33557 "EHLO
-        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2441219AbgLNWxW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Dec 2020 17:53:22 -0500
-Received: by mail-oi1-f195.google.com with SMTP id d203so14439oia.0;
-        Mon, 14 Dec 2020 14:53:06 -0800 (PST)
+        id S2441268AbgLNWyi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Dec 2020 17:54:38 -0500
+Received: from mail-ot1-f65.google.com ([209.85.210.65]:33103 "EHLO
+        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2441156AbgLNWyd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Dec 2020 17:54:33 -0500
+Received: by mail-ot1-f65.google.com with SMTP id b24so12994otj.0;
+        Mon, 14 Dec 2020 14:54:17 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=SyyhAllHou+H/Fjg3osbdVQ5pN6LnUp0eGp9T9kAOXM=;
-        b=Jwn60iyJgCFL1BpIpXPxf7bWh9bIe5vTl1AfFYPJL0TbJujTJGQHWcr76T47MhNSin
-         QiggglAD8XePEFFK4+06ED4bZj26gUJCFtRUGXRBnFIqv5zlmfWtwORrqHGFPa76iiu4
-         SKso+B2BqaBe/JeTsjKun99zvSIN90AahesNXpQtoy/qh3aocrIxdK5xsFJE99p3NZ7p
-         TMrZf0GzQ3SP3pQ8xPP+uYL2AbJ/u2Q2S+OFQHaIxvDHar4KllBrmswAP+6S1rDJTIoR
-         3lR10+FZQtDun3rg42CSTtlosqY4qhUdYd+tVMy1RIhQO2jWyc2cBxDuT0Uig3vW0Mpu
-         iMFQ==
-X-Gm-Message-State: AOAM530SyBvPY9o6CAJRYDSYpRM1Edtq6OtpsJPlmJ2wP0AdiNm5twJL
-        lt8oIoBh8qMGAMSdD9oEPZXhQyIi0A==
-X-Google-Smtp-Source: ABdhPJysybPsYe5CRfZkVK6K1vVIoD0WXsRrXEW1j8FYo/Msf0nYVohh3Ui7BOBKcP+kZlKsNOUuQg==
-X-Received: by 2002:aca:3987:: with SMTP id g129mr18994911oia.76.1607986361458;
-        Mon, 14 Dec 2020 14:52:41 -0800 (PST)
+        bh=rqra1QTGjIaQMS8ZO3kXNg7XHyLC+qgPhovHA2Dd1cY=;
+        b=ZAZAg0O5yE7bOMI/C9vE99Vv9toIwTEsaK998Vw7K0VVyxanFYy575yIiviQvfrH40
+         VjDqM/+z3ikfmPE4qJYZvnykjWvqNNitEmFEpgmGgqiVmlpl68QTDNj8RwBEAnuw5rO0
+         SBHgP+HA2Gt0JhVPa+9S0G/fTc9glwBU9MKZ4sW4mU4dQ+iJK/oPsPLCmplW/7YkT5vQ
+         2xKXaQggbSfSr/6JvcpPfSvp3+QQ6f6dxJZ5Uks6qNpa3LN3ix0fprYREePxBBilFNIi
+         k8hc2Hr/MlCFOlCtKWccJeH1Yxp0CNqmAw9S01566Ca2v+qzVrTEZ5G0bU3o0MxH+pZv
+         WyzA==
+X-Gm-Message-State: AOAM5313A95otq4ZXG7dIJCMzYfDvj87cl7xiAQD2DNjjjvFC3f9zKBQ
+        Ru0Aa0x0Za1xMDckXATFRA==
+X-Google-Smtp-Source: ABdhPJydZnn0tJjFmNOqdiiIDPOs6c6PDGcOlM5zpPu6lj/tickohyS5os9MPobP9kqx2P3AcAyz1w==
+X-Received: by 2002:a9d:223:: with SMTP id 32mr21528781otb.84.1607986431960;
+        Mon, 14 Dec 2020 14:53:51 -0800 (PST)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id k23sm4606286oih.52.2020.12.14.14.52.39
+        by smtp.gmail.com with ESMTPSA id n16sm3502009oov.23.2020.12.14.14.53.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Dec 2020 14:52:40 -0800 (PST)
-Received: (nullmailer pid 2531430 invoked by uid 1000);
-        Mon, 14 Dec 2020 22:52:39 -0000
-Date:   Mon, 14 Dec 2020 16:52:39 -0600
+        Mon, 14 Dec 2020 14:53:51 -0800 (PST)
+Received: (nullmailer pid 2533125 invoked by uid 1000);
+        Mon, 14 Dec 2020 22:53:50 -0000
+Date:   Mon, 14 Dec 2020 16:53:50 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Sia Jee Heng <jee.heng.sia@intel.com>
-Cc:     andriy.shevchenko@linux.intel.com, robh+dt@kernel.org,
-        linux-kernel@vger.kernel.org, Eugeniy.Paltsev@synopsys.com,
-        dmaengine@vger.kernel.org, vkoul@kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v6 10/16] dt-binding: dma: dw-axi-dmac: Add support for
- Intel KeemBay AxiDMA
-Message-ID: <20201214225239.GA2531399@robh.at.kernel.org>
-References: <20201211004642.25393-1-jee.heng.sia@intel.com>
- <20201211004642.25393-11-jee.heng.sia@intel.com>
+To:     Andre Przywara <andre.przywara@arm.com>
+Cc:     =?iso-8859-1?Q?Cl=E9ment_P=E9ron?= <peron.clem@gmail.com>,
+        Yangtao Li <tiny.windzz@gmail.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        linux-clk@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Icenowy Zheng <icenowy@aosc.xyz>,
+        Maxime Ripard <mripard@kernel.org>,
+        linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com,
+        Shuosheng Huang <huangshuosheng@allwinnertech.com>
+Subject: Re: [PATCH v2 05/21] dt-bindings: clk: sunxi-ccu: Add compatible
+ string for Allwinner H616
+Message-ID: <20201214225350.GA2533079@robh.at.kernel.org>
+References: <20201211011934.6171-1-andre.przywara@arm.com>
+ <20201211011934.6171-6-andre.przywara@arm.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201211004642.25393-11-jee.heng.sia@intel.com>
+In-Reply-To: <20201211011934.6171-6-andre.przywara@arm.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 11 Dec 2020 08:46:36 +0800, Sia Jee Heng wrote:
-> Add support for Intel KeemBay AxiDMA to the dw-axi-dmac
-> Schemas DT binding.
-> 
-> Signed-off-by: Sia Jee Heng <jee.heng.sia@intel.com>
+On Fri, 11 Dec 2020 01:19:18 +0000, Andre Przywara wrote:
+> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
 > ---
->  Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
+>  .../devicetree/bindings/clock/allwinner,sun4i-a10-ccu.yaml      | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
