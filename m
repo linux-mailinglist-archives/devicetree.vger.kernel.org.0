@@ -2,77 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EB7EC2D9508
-	for <lists+devicetree@lfdr.de>; Mon, 14 Dec 2020 10:23:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E8EB2D9485
+	for <lists+devicetree@lfdr.de>; Mon, 14 Dec 2020 10:03:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2439898AbgLNJTH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Dec 2020 04:19:07 -0500
-Received: from 6.mo177.mail-out.ovh.net ([46.105.51.249]:34189 "EHLO
-        6.mo177.mail-out.ovh.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2439861AbgLNJSz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Dec 2020 04:18:55 -0500
-X-Greylist: delayed 4219 seconds by postgrey-1.27 at vger.kernel.org; Mon, 14 Dec 2020 04:18:55 EST
-Received: from player789.ha.ovh.net (unknown [10.108.42.196])
-        by mo177.mail-out.ovh.net (Postfix) with ESMTP id 5EA5614A3D1
-        for <devicetree@vger.kernel.org>; Mon, 14 Dec 2020 09:00:39 +0100 (CET)
-Received: from milecki.pl (ip-194-187-74-233.konfederacka.maverick.com.pl [194.187.74.233])
-        (Authenticated sender: rafal@milecki.pl)
-        by player789.ha.ovh.net (Postfix) with ESMTPSA id 14F541927E5EF;
-        Mon, 14 Dec 2020 08:00:27 +0000 (UTC)
-Authentication-Results: garm.ovh; auth=pass (GARM-101G0040c338a84-40d3-4bcf-9a09-0dcf186e6146,
-                    9D4513A06938E8562C9FC8D5040FBB067C1A90C8) smtp.auth=rafal@milecki.pl
-X-OVh-ClientIp: 194.187.74.233
-Subject: Re: [PATCH 2/2] soc: bcm: add PM driver for Broadcom's PMB
-To:     Florian Fainelli <f.fainelli@gmail.com>,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
-        "Rafael J . Wysocki" <rjw@rjwysocki.net>,
-        Kevin Hilman <khilman@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        devicetree@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com,
-        linux-kernel@vger.kernel.org
-References: <20201211215942.5726-1-zajec5@gmail.com>
- <20201211215942.5726-3-zajec5@gmail.com>
- <4d0bea20-1a3b-24d1-2d27-96f2f4fd48b9@gmail.com>
-From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-Message-ID: <d3461875-cdbc-9fde-3ef3-7a7ba478d88a@milecki.pl>
-Date:   Mon, 14 Dec 2020 09:00:25 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.5.1
+        id S2439534AbgLNJCs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Dec 2020 04:02:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51082 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726073AbgLNJCq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Dec 2020 04:02:46 -0500
+Received: from mail-lf1-x144.google.com (mail-lf1-x144.google.com [IPv6:2a00:1450:4864:20::144])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A376C0613D6
+        for <devicetree@vger.kernel.org>; Mon, 14 Dec 2020 01:02:06 -0800 (PST)
+Received: by mail-lf1-x144.google.com with SMTP id o17so25295435lfg.4
+        for <devicetree@vger.kernel.org>; Mon, 14 Dec 2020 01:02:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=h7gw/JKcedbcbsZwWfTxV9h1NBzBz2xSdjArgBt47FY=;
+        b=WIy+wdN5lxXjhzWSRCsGIRQ/FvjPCq2eE4e/RV8zdXhIGPEGF+/Dygqmnulqs2h0oy
+         N39B12UanCXacWSc66RvefD94HonfQ58k1NWUgKUKXAY4zpDQWmZvKBj2W5pKXwo6MnF
+         x5FPL/HMF/C854ApS3GWH+di2LmuWIV832VXVJxSVFqa3C18AkaomEYHXeXemsM3TPxS
+         taxqysgYJxMEsk+r+3hsfGMKVQZrkFWoWAA7Jpie9ACkrJQNQSOD704OWnUVXLMKGZsO
+         wLziKwG+kqLlPfC6UJiTmTvZ0hzRWRIMrj9nolAASDlfjotDFLZxTgOzrfJhpsSn5TEM
+         TqcA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=h7gw/JKcedbcbsZwWfTxV9h1NBzBz2xSdjArgBt47FY=;
+        b=debSX1fMs1czRpqrqNxbK5nbBfLBv66g9pHEQZjJ7o7g9uItYmgLXeXGT3XDvoklFe
+         zc2w6IR4t65Ceo64T5pUxzQ1xIQHlCvkZcAZ6ykxPH5NECIPxXg6KtjEQ6SjuvtLNCDG
+         Ju3Z18JrRUEljj7Ufmor1hhkq7x7AhlCtvsnOyPelv98k+BNFPBQJU3QbehrQnVY2/zz
+         1eA43u2XkW5V4skrrZrM8b3WLFJUtl2sjMAoS9ld49MpuDUup5BuZXpb+Ow8FICfz6s9
+         vgquR/JvVu/o5G4qbIVx6HeSZua8W2jO0XLj+ynVdeJ76cflUKIGN8iPdw/lU+ekTsyd
+         ntyw==
+X-Gm-Message-State: AOAM5320NfOBtPAEsSJ4DgAjcg4scLAs2JgWSPbeOT09+gg9QQJgThRO
+        eeoEBdQkC0mjVGWq4YlPaDd9TvK8LmugeRbCGC31gg==
+X-Google-Smtp-Source: ABdhPJzcfW5SBxLhGM7ZnE4/gbP2E/5QbU94LqpZXgLMKTebXCXYm5Ux1pgYsFxkEX42MlFg1Dig+zvDzSrCm3pQeTM=
+X-Received: by 2002:a05:6512:3f3:: with SMTP id n19mr1240953lfq.586.1607936524573;
+ Mon, 14 Dec 2020 01:02:04 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <4d0bea20-1a3b-24d1-2d27-96f2f4fd48b9@gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Ovh-Tracer-Id: 1992279886806289969
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedujedrudekjedgledvucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepuffvfhfhkffffgggjggtgfesthejredttdefjeenucfhrhhomheptfgrfhgrlhcuofhilhgvtghkihcuoehrrghfrghlsehmihhlvggtkhhirdhplheqnecuggftrfgrthhtvghrnhepkeekgeefieeuhfdujeefgeektddujeekledvheehfeelfffhfeekjefhfeehuefhnecukfhppedtrddtrddtrddtpdduleegrddukeejrdejgedrvdeffeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhhouggvpehsmhhtphdqohhuthdphhgvlhhopehplhgrhigvrhejkeelrdhhrgdrohhvhhdrnhgvthdpihhnvghtpedtrddtrddtrddtpdhmrghilhhfrhhomheprhgrfhgrlhesmhhilhgvtghkihdrphhlpdhrtghpthhtohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhg
+References: <20201213161721.6514-1-sergio.paracuellos@gmail.com>
+In-Reply-To: <20201213161721.6514-1-sergio.paracuellos@gmail.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Mon, 14 Dec 2020 10:01:53 +0100
+Message-ID: <CACRpkdaAd-wJuqspYTuj4RGTyJgobX+6j=5ZWWSCtdLLMnPoYw@mail.gmail.com>
+Subject: Re: [PATCH 0/8] pinctrl: ralink: rt2880: Some minimal clean ups
+To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Jason Yan <yanaijie@huawei.com>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:STAGING SUBSYSTEM" <devel@driverdev.osuosl.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12.12.2020 04:26, Florian Fainelli wrote:
->> +
->> +static const struct bcm_pmb_pd_data bcm_pmb_bcm4908_data[] = {
->> +	{ .name = "pcie2", .id = BCM_PMB_PCIE2, .bus = 0, .device = 2, },
->> +	{ .name = "pcie0", .id = BCM_PMB_PCIE0, .bus = 1, .device = 14, },
->> +	{ .name = "pcie1", .id = BCM_PMB_PCIE1, .bus = 1, .device = 15, },
->> +	{ .name = "usb", .id = BCM_PMB_HOST_USB, .bus = 1, .device = 17, },
-> 
-> Do you have to be more specific and spell out whether this is the host
-> controller (xhci) or device (bdc)? If not, then this looks good to me.
+On Sun, Dec 13, 2020 at 5:17 PM Sergio Paracuellos
+<sergio.paracuellos@gmail.com> wrote:
 
-I believe I have to and I believe I already do. I used BCM_PMB_HOST_USB
-which clearly (I believe) points to the HOST controller.
+> After this driver was moved from staging into pinctrl subsytems
+> some reviews for bindigns and driver itself comes from Ron Herring
+> and Dan Carpenter. Get rid of all the comments to properly be in
+> a good shape before merge window.
 
-In 6838 part of pmc_drv.h from Broadcom's SDK I found:
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
-enum {
-     USB30_2X_Zone_Common,
-     USB30_2X_Zone_USB_Host,
-     USB30_2X_Zone_USB_Device,
-};
+If Greg wants he can queue them last minute. Else I'll apply these
+after the merge window, no big deal.
 
-and that's what makes me believe we need to specify HOST explicitly.
+Yours,
+Linus Walleij
