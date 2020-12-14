@@ -2,45 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AC12E2D9677
-	for <lists+devicetree@lfdr.de>; Mon, 14 Dec 2020 11:40:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5EBEE2D9775
+	for <lists+devicetree@lfdr.de>; Mon, 14 Dec 2020 12:38:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2407245AbgLNKk2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Dec 2020 05:40:28 -0500
-Received: from out2-smtp.messagingengine.com ([66.111.4.26]:39599 "EHLO
-        out2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S2407238AbgLNKk1 (ORCPT
+        id S2438227AbgLNLfz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Dec 2020 06:35:55 -0500
+Received: from new1-smtp.messagingengine.com ([66.111.4.221]:46749 "EHLO
+        new1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S2438197AbgLNLfn (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Mon, 14 Dec 2020 05:40:27 -0500
+        Mon, 14 Dec 2020 06:35:43 -0500
 Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailout.nyi.internal (Postfix) with ESMTP id DD4B45C0156;
-        Mon, 14 Dec 2020 05:39:21 -0500 (EST)
+        by mailnew.nyi.internal (Postfix) with ESMTP id 46A28580503;
+        Mon, 14 Dec 2020 06:34:28 -0500 (EST)
 Received: from mailfrontend1 ([10.202.2.162])
-  by compute6.internal (MEProxy); Mon, 14 Dec 2020 05:39:21 -0500
+  by compute6.internal (MEProxy); Mon, 14 Dec 2020 06:34:28 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
         date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm1; bh=kf9WzYleura+y67ZTIVqK/D/+zF
-        BiyYpm6sNj97nVIg=; b=WrZu8TeRMpP4GGCypTIuMQzdoG5zFTa/+sqDWFXsM/+
-        Jz8qadyQPQi1UlUcax9wVr8WIYRe8RYvBohAIq6DrVUHN+9gu80Pxb9yTJLcrB5q
-        z8/E7fCE4428ZoAPklDFz0rCdz+clfgii4xYP7C8gTED6zH4avUMhPYWZqJ1sdAf
-        66/EYsfCBi8TqtWM2miTasAUSUSX6rjdCO31XSnVdYRJOoytalKQrHGSHXpGuo5T
-        KfednWh6rIlBaZ3kGv4QulOiymbJpBl+3hL5pqkg3Hkh4PofZDtMzBI8ZShPbh7q
-        HVkg1F8tv2QKGxsqeQFpHZLsFRqlU0D/kqmXzGMvCOw==
+        :content-type:in-reply-to; s=fm1; bh=HC54RztzNa/cUR9WRuFCupTCs1r
+        TPzZoY9HGRsF4LiI=; b=rkERmi/aXqC6mQzJ61vf3C3Gi6JCObZe75f83T/WCmU
+        aedCWfySN3evAloO4lsWRfTU6x2ZKTLDZpUXXodbgUyCYscu5LCQpBuJ6ZCdr/+O
+        Yq+RskwpX34p+dMKshf2qu+WdPdjeVkUMmWWbDFLql7VOjI3kRcJ5f40P2aS+5bN
+        FErOfZ0bb8klWGisErEe78bHsMbn+YQlOakRMaNUIEVtJ9JBYZjrxjX7BAeg2ExU
+        cbwyaqCBF0tzBqiSRnPFbLZdLHGnyylDvxgCQMTif7KsabqBCP1J0LKHeDQ8mYf1
+        m4EC9ho2+Ap5/VKxMPEhAm39B19gFK0ePP6J501EHSQ==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
         messagingengine.com; h=cc:content-type:date:from:in-reply-to
         :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=kf9WzY
-        leura+y67ZTIVqK/D/+zFBiyYpm6sNj97nVIg=; b=mXqATlVA/V0//+HYckAGHU
-        9yXo0UEWy0ClX5AeYNwUn2o0GpTkjILlWxpIqc3/gdIt/RLq9qODGOjMf/wEqQUK
-        N43xBdI/XYKAzWM2MmIvhlNxhS+pq0WcXI3ySly3s2hVqdcLYYn7CTHVWTiqLj4F
-        rCnU0o6Rspnuqrhdg9/vDztzXCgOztjPSVPczpzOZfguWFauyOhUxyEtsxtn40Gr
-        TQqFozvyLw33kL/l1E/69BXxtxQUyFcRSU8VqbOsD6Qf/x1VWQaJT84DVrnZ3AJs
-        XwALF3nR6zzpDdAZmveU0/+thBQtaDjD1wMPAIovm5YY49FGNJi+7QAKizaFntiw
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=HC54Rz
+        tzNa/cUR9WRuFCupTCs1rTPzZoY9HGRsF4LiI=; b=Ky4mL77zz6E4sqY+AzhWRU
+        AvjJ2uJdZ8O3SkPFPakiQajlS79CHgbkh7gxhEgFJz66I/AMrCiIqEjltO1EBrNV
+        N5IeUy5MMSlhtJmmNWUesL1orqkxjgXj/fJYc69QmFSUWu8paUPHMkCxcOQtqN6V
+        kpXGJUGqOS8UilntQ/4xansxMJ+b1b4xJpPkREv8r+pX4QFHSeUlr6cW2GKgpdkb
+        Wq4Q9g5KH6/G5GQojaL7x3RXhfZNESRLZBfXmiI9xnMS1lZ3mIHVVRLMjv8fk8Ri
+        xosJUpBj5W/9FzHmz3F7fa+krWBF8CThkO6irqw7tUAL1MmMjJAt/m7YvOeco9dA
         ==
-X-ME-Sender: <xms:2UDXX4IawkzEbT8CCDT-cnF-eUzWLDX1S9aCnPSS86JkICfIn0zkzQ>
-    <xme:2UDXX4IxRIYAi_zSJeRZ7nOzOukaooqVXTD6wAs-xg38PGzE5Ccv3nzK28LPGdIR3
-    dK89WzcmjPlO7ipfhk>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrudekkedgudelucetufdoteggodetrfdotf
+X-ME-Sender: <xms:wk3XX30nB47orHKr2_L_Ww9cZ_UdQOjgAVROSpmEE6x7KZt9NPPPbQ>
+    <xme:wk3XX2E6uPvG0LmZ917PpqR8-9So1L4BbZTMVrekBPm_0OT4iaj47qDQXlp8F-wiP
+    2ggXM5A0m8MqpBOWw0>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrudekkedgvdelucetufdoteggodetrfdotf
     fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
     uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
     cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
@@ -48,78 +48,130 @@ X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrudekkedgudelucetufdoteggod
     htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
     gedunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
     frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:2UDXX4s4vMYRaWE2pELTJR6zOxl4WOM7YuUs2B5P7lbX-WVZ37FZ2g>
-    <xmx:2UDXX1Zh-KdGfD-IDQk5-ytlRoCDes6gQVwAbvMrgKWoPWVSG8UuRQ>
-    <xmx:2UDXX_Z5wDeAJMY3yWMPz13lVQ1dTfJrJmgkf0s7rB2l6kQ3KDAVUg>
-    <xmx:2UDXX0Mk028Sk2AQg3s-zAviLV9vr9cWB6HZ7ZZnRiY_egOC0Pf7yw>
+X-ME-Proxy: <xmx:wk3XX35ZsJjqmuVmJ-LXfBkEDRwRaYCWcZe8XXUREfxDHCRWJy8seQ>
+    <xmx:wk3XX826iHwWE7vLS2-RhLWbt0dp1F1E7I6jNut9WZSqmitooCgOjg>
+    <xmx:wk3XX6F7SxWwjV-YcpHFsX7k1NURvP6_d32ntpAZ6HgXVMvbT3oNNg>
+    <xmx:xE3XX-PXjHGA_t162XmWWhoc9J0Ll5i2BUkdRCwzS3Hy1XQp-_Pqlw>
 Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 4254E240062;
-        Mon, 14 Dec 2020 05:39:21 -0500 (EST)
-Date:   Mon, 14 Dec 2020 11:39:19 +0100
+        by mail.messagingengine.com (Postfix) with ESMTPA id C30F1240057;
+        Mon, 14 Dec 2020 06:34:25 -0500 (EST)
+Date:   Mon, 14 Dec 2020 12:34:24 +0100
 From:   Maxime Ripard <maxime@cerno.tech>
-To:     Icenowy Zheng <icenowy@aosc.io>
-Cc:     Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Ondrej Jirman <megous@megous.com>, devicetree@vger.kernel.org,
+To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@googlegroups.com
-Subject: Re: [PATCH 3/3] dt-bindings: arm: sunxi: note that old PineTab
- compatible has old panel
-Message-ID: <20201214103919.l2fw5z2bhoapphf2@gilmour>
-References: <20201210083722.1912981-1-icenowy@aosc.io>
- <20201210084558.1917246-1-icenowy@aosc.io>
+        linux-doc@vger.kernel.org, devel@driverdev.osuosl.org,
+        linux-sunxi@googlegroups.com, Yong Deng <yong.deng@magewell.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Helen Koike <helen.koike@collabora.com>,
+        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Hans Verkuil <hans.verkuil@cisco.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        kevin.lhopital@hotmail.com
+Subject: Re: [PATCH v3 07/15] media: sun6i-csi: Add support for MIPI CSI-2
+ bridge input
+Message-ID: <20201214113424.cx7ox6i5bm7lszhb@gilmour>
+References: <20201211155708.154710-1-paul.kocialkowski@bootlin.com>
+ <20201211155708.154710-8-paul.kocialkowski@bootlin.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="g3put2ecpvbxmkps"
+        protocol="application/pgp-signature"; boundary="q5rb2agebcwu6woe"
 Content-Disposition: inline
-In-Reply-To: <20201210084558.1917246-1-icenowy@aosc.io>
+In-Reply-To: <20201211155708.154710-8-paul.kocialkowski@bootlin.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---g3put2ecpvbxmkps
+--q5rb2agebcwu6woe
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Dec 10, 2020 at 04:45:58PM +0800, Icenowy Zheng wrote:
-> As the old LCD panel used by PineTab developer samples are discontinued,
-> there won't be furtherly any more units of the sample, and this should
-> be noted in the document.
+On Fri, Dec 11, 2020 at 04:57:00PM +0100, Paul Kocialkowski wrote:
+> The A31 CSI controller supports a MIPI CSI-2 bridge input, which has
+> its own dedicated port in the fwnode graph.
 >=20
-> Signed-off-by: Icenowy Zheng <icenowy@aosc.io>
+> Support for this input is added with this change:
+> - two pads are defined for the media entity instead of one
+>   and only one needs to be connected at a time;
+> - the pads currently match the fwnode graph representation;
+> - links are created between our pads and the subdevs for each
+>   interface and are no longer immutable so that userspace can select
+>   which interface to use in case both are bound to a subdev;
+> - fwnode endpoints are parsed and stored for each interface;
+> - the active subdev (and fwnode endpoint) is retrieved when validating
+>   the media link at stream on time and cleared at stream off;
+> - an error is raised if both links are active at the same time;
+> - the MIPI interface bit is set if the MIPI CSI-2 bridge endpoint is
+>   active.
+>=20
+> In the future, the media entity representation might evolve to:
+> - distinguish the internal parallel bridge and data formatter;
+> - represent each of the 4 internal channels that can exist between
+>   the parallel bridge (for BT656 time-multiplex) and MIPI CSI-2
+>   (internal channels can be mapped to virtual channels);
+> - connect the controller's output to the ISP instead of its
+>   DMA engine.
+>=20
+> Finally note that the MIPI CSI-2 bridges should not be linked in
+> the fwnode graph unless they have a sensor subdev attached.
+>=20
+> Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
 > ---
->  Documentation/devicetree/bindings/arm/sunxi.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  .../platform/sunxi/sun6i-csi/sun6i_csi.c      | 123 ++++++++++++++----
+>  .../platform/sunxi/sun6i-csi/sun6i_csi.h      |   3 -
+>  .../platform/sunxi/sun6i-csi/sun6i_video.c    |  53 ++++----
+>  .../platform/sunxi/sun6i-csi/sun6i_video.h    |   7 +-
+>  4 files changed, 135 insertions(+), 51 deletions(-)
 >=20
-> diff --git a/Documentation/devicetree/bindings/arm/sunxi.yaml b/Documenta=
-tion/devicetree/bindings/arm/sunxi.yaml
-> index 73a6c8421172..9f29b5811aa1 100644
-> --- a/Documentation/devicetree/bindings/arm/sunxi.yaml
-> +++ b/Documentation/devicetree/bindings/arm/sunxi.yaml
-> @@ -695,7 +695,7 @@ properties:
->            - const: pine64,pinephone-1.2
->            - const: allwinner,sun50i-a64
+> diff --git a/drivers/media/platform/sunxi/sun6i-csi/sun6i_csi.c b/drivers=
+/media/platform/sunxi/sun6i-csi/sun6i_csi.c
+> index f1150de94e98..481181038e1e 100644
+> --- a/drivers/media/platform/sunxi/sun6i-csi/sun6i_csi.c
+> +++ b/drivers/media/platform/sunxi/sun6i-csi/sun6i_csi.c
+> @@ -52,15 +52,16 @@ bool sun6i_csi_is_format_supported(struct sun6i_csi *=
+csi,
+>  				   u32 pixformat, u32 mbus_code)
+>  {
+>  	struct sun6i_csi_dev *sdev =3D sun6i_csi_to_dev(csi);
+> +	struct v4l2_fwnode_endpoint *endpoint =3D sdev->csi.video.source_endpoi=
+nt;
 > =20
-> -      - description: Pine64 PineTab
-> +      - description: Pine64 PineTab (developers' sample with old discont=
-inued LCD panel, discontinued)
+>  	/*
+>  	 * Some video receivers have the ability to be compatible with
+>  	 * 8bit and 16bit bus width.
+>  	 * Identify the media bus format from device tree.
+>  	 */
+> -	if ((sdev->csi.v4l2_ep.bus_type =3D=3D V4L2_MBUS_PARALLEL
+> -	     || sdev->csi.v4l2_ep.bus_type =3D=3D V4L2_MBUS_BT656)
+> -	     && sdev->csi.v4l2_ep.bus.parallel.bus_width =3D=3D 16) {
+> +	if ((endpoint->bus_type =3D=3D V4L2_MBUS_PARALLEL
+> +	     || endpoint->bus_type =3D=3D V4L2_MBUS_BT656)
+> +	     && endpoint->bus.parallel.bus_width =3D=3D 16) {
 
-I'm not sure it's worth mentioning it's discontinued, making it clear
-it's for the developers sample is enough
+The operators should be at the end of the previous line, not at the beginni=
+ng
 
 Maxime
 
---g3put2ecpvbxmkps
+--q5rb2agebcwu6woe
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX9dA1wAKCRDj7w1vZxhR
-xbKVAP94C6bgdQ+a/d6e5hoBuvMK+6rU7kIB5KIJmjD8U/G9kwD6Aihfsyh8Idc/
-ql9iEKZMMmcGXGY/wCYuQuJ7wAUh2gU=
-=i2dC
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX9dNwAAKCRDj7w1vZxhR
+xU1FAQCe7tGabmV5/A5Z5LxuElH4dianoBeoE4wLIaT/n63r+AD+IT8rCnQclTCB
+sMoAwM/wMKeqVEflw4FhFI2POaza5QQ=
+=gZ/r
 -----END PGP SIGNATURE-----
 
---g3put2ecpvbxmkps--
+--q5rb2agebcwu6woe--
