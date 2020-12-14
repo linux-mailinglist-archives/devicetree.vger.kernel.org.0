@@ -2,107 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A85C22DA1EE
-	for <lists+devicetree@lfdr.de>; Mon, 14 Dec 2020 21:49:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 419712DA29D
+	for <lists+devicetree@lfdr.de>; Mon, 14 Dec 2020 22:40:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387730AbgLNUs7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Dec 2020 15:48:59 -0500
-Received: from mail-oi1-f194.google.com ([209.85.167.194]:34429 "EHLO
-        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1733110AbgLNUs6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Dec 2020 15:48:58 -0500
-Received: by mail-oi1-f194.google.com with SMTP id s75so20761560oih.1;
-        Mon, 14 Dec 2020 12:48:43 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=KjFGVZd72pXYoR/y+HMGePZrAg7DWAslzGxHpf0TdRo=;
-        b=q1bCoWKl7yHPTJYBC80RHm4WDeI4yazfHCg18YPmlgIT6rzUq7exiF0VhQaX5oFRTJ
-         CWnu9aXwLAuaXA7rI+9GGSv0C0Wh9d9+KYRZrNk28yybCZkBlfaLx2MhsUUwF1EStHIC
-         xodE3CbTk4OamlQKKSYX8efxdEDCD6RRKA/wj951zEkW23AVznq5ENTKokZj8hr1G662
-         gMXCZcBpa2PCWVjTKBiV8Fgwdbc+hsYnfUNhLAiGdxf0zkq9L/mscmN/wiboAGLsoEMU
-         PPozPQVlTnpyQJ6utJxQnhHPq4ei6OReWt3VjsEFp9sZa4ciV5H+6TqWNBIpeJq6Vg8T
-         y+TA==
-X-Gm-Message-State: AOAM533Ubrd875svU7V5+usftb3d+s+7m1iBS14Ev9Noqq04CUZFGnPQ
-        +1D/kJRcnZpXcV1TgXySudFVEsP/yw==
-X-Google-Smtp-Source: ABdhPJysSLBGwj8J6AGyRoOcBvSVCOlD/wWCyNt2RmhNbY8v4M8gpszrh6UltONzuXLdEMNcAmSFkg==
-X-Received: by 2002:aca:eccb:: with SMTP id k194mr19645940oih.112.1607978897703;
-        Mon, 14 Dec 2020 12:48:17 -0800 (PST)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id k63sm4495917oia.14.2020.12.14.12.48.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Dec 2020 12:48:16 -0800 (PST)
-Received: (nullmailer pid 2369015 invoked by uid 1000);
-        Mon, 14 Dec 2020 20:48:15 -0000
-Date:   Mon, 14 Dec 2020 14:48:15 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Aswath Govindraju <a-govindraju@ti.com>
-Cc:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Sekhar Nori <nsekhar@ti.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Roger Quadros <rogerq@ti.com>, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5] dt-bindings: usb: Add new compatible string for AM64
- SoC
-Message-ID: <20201214204722.GA2365525@robh.at.kernel.org>
-References: <20201214140109.21955-1-a-govindraju@ti.com>
+        id S1725816AbgLNVjU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Dec 2020 16:39:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55836 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727156AbgLNVjJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Dec 2020 16:39:09 -0500
+Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [IPv6:2001:67c:2050::465:102])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BFE2C0613D3
+        for <devicetree@vger.kernel.org>; Mon, 14 Dec 2020 13:38:29 -0800 (PST)
+Received: from smtp2.mailbox.org (smtp2.mailbox.org [IPv6:2001:67c:2050:105:465:1:2:0])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4Cvvry4RBnzQlLc;
+        Mon, 14 Dec 2020 22:38:26 +0100 (CET)
+X-Virus-Scanned: amavisd-new at heinlein-support.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=loebl.cz; s=MBO0001;
+        t=1607981904;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=1rraB9SwAjxQ2RuxRY86pzFMTLlNMInHVswJeWupyM0=;
+        b=DER2dBVtHIH26yUgbygU8sshNcRnBhmlWWzXAkxyOqpm3nd32aDjBE9xBaS/1RB1V6o4Yp
+        jiEtpkf2bN0KetmYvbzfeWhv7yf07oDgklkw8CdwqDjGU2ZKZBYwfXdRy+MUidM5BGkraV
+        UuUpRhlvyAeEgZjGwdTecIHvsM0iPeVgtTrX9To85XrnBarl/+Mjgp9tJyuh+FWGwvZpvR
+        WCzgdazLXTh/oezAJ62EDYpUQZ/gZ1ybhMNSKEys7DYnl99/kclId7OLESlqWe6WEa+S9T
+        hCHXpspBan3oCDcYRwMXNctpfo3nFhjuLOgpQOki4T9vMqxoWGD8FWA5ae7zGQ==
+Received: from smtp2.mailbox.org ([80.241.60.241])
+        by spamfilter02.heinlein-hosting.de (spamfilter02.heinlein-hosting.de [80.241.56.116]) (amavisd-new, port 10030)
+        with ESMTP id zJ0PwFCzJv1J; Mon, 14 Dec 2020 22:38:24 +0100 (CET)
+Date:   Mon, 14 Dec 2020 22:38:23 +0100 (CET)
+From:   =?UTF-8?Q?Pavel_L=C3=B6bl?= <pavel@loebl.cz>
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     devicetree@vger.kernel.org,
+        Jernej Skrabec <jernej.skrabec@siol.net>
+Message-ID: <1087463930.53861.1607981903391@office.mailbox.org>
+In-Reply-To: <20201214101730.ye5566a45gopxm7w@gilmour>
+References: <20201212111429.286721-1-pavel@loebl.cz>
+ <20201214101730.ye5566a45gopxm7w@gilmour>
+Subject: Re: [PATCH] ARM: dts: sun8i: h2+: add support for Banana Pi P2 Zero
+ board
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201214140109.21955-1-a-govindraju@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Priority: 3
+Importance: Normal
+X-MBO-SPAM-Probability: 
+X-Rspamd-Score: -2.89 / 15.00 / 15.00
+X-Rspamd-Queue-Id: 8D7CA1866
+X-Rspamd-UID: 2ca98f
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 14, 2020 at 07:31:09PM +0530, Aswath Govindraju wrote:
-> Add compatible string in j721e-usb binding file as the same USB subsystem
-> is present in AM64.
-> 
-> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
-> ---
-> 
-> Changes since v4:
->  - used oneOf instead of enum, as the schema has to convey that the strings
->    ti,j721e-usb and ti,am64-usb can be used combined or seperately in the
->    DT nodes.
-> 
-> Changes since v3:
->  - used enum instead of anyOf.
-> 
-> Changes since v2:
->  - added changes done over the versions.
-> 
-> Changes since v1:
->  - replaced the '\t' at the beginning of the lines with spaces as it was
->   causing the dt_binding_check to fail.
-> 
->  Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml | 6 +++++-
->  1 file changed, 5 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml b/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml
-> index 388245b91a55..21e51ceca293 100644
-> --- a/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml
-> +++ b/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml
-> @@ -11,8 +11,12 @@ maintainers:
->  
->  properties:
->    compatible:
-> -    items:
-> +    oneOf:
->        - const: ti,j721e-usb
-> +      - const: ti,am64-usb
-> +      - items:
-> +          - ti,j721e-usb
-> +          - ti,am64-usb
 
-               ^
+> On 12/14/2020 11:17 AM Maxime Ripard <maxime@cerno.tech> wrote:
 
-const needed before the strings
+> Please send this to the proper recipients (get_maintainers.pl will help)
 
->  
->    reg:
->      description: module registers
-> -- 
-> 2.17.1
-> 
+That's what I used. I've also greped Documentation for get_maintainer.pl and read various bits there. And looking at headers of other patches I'm still not sure.
+
+Am I supposed to send the patch to all people in the script output and just Cc the list?
+
+Pavel
