@@ -2,153 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C82D02D95CF
-	for <lists+devicetree@lfdr.de>; Mon, 14 Dec 2020 11:08:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 53C462D9670
+	for <lists+devicetree@lfdr.de>; Mon, 14 Dec 2020 11:40:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731655AbgLNKCj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Dec 2020 05:02:39 -0500
-Received: from szxga06-in.huawei.com ([45.249.212.32]:9440 "EHLO
-        szxga06-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731412AbgLNJ60 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Dec 2020 04:58:26 -0500
-Received: from DGGEMS412-HUB.china.huawei.com (unknown [172.30.72.60])
-        by szxga06-in.huawei.com (SkyGuard) with ESMTP id 4CvcHr4g5Dzhsfw;
-        Mon, 14 Dec 2020 17:57:12 +0800 (CST)
-Received: from huawei.com (10.151.151.249) by DGGEMS412-HUB.china.huawei.com
- (10.3.19.212) with Microsoft SMTP Server id 14.3.498.0; Mon, 14 Dec 2020
- 17:57:34 +0800
-From:   Dongjiu Geng <gengdongjiu@huawei.com>
-To:     <mturquette@baylibre.com>, <sboyd@kernel.org>,
-        <robh+dt@kernel.org>, <vkoul@kernel.org>,
-        <dan.j.williams@intel.com>, <p.zabel@pengutronix.de>,
-        <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <dmaengine@vger.kernel.org>,
-        <gengdongjiu@huawei.com>
-Subject: [PATCH v7 3/4] dt: bindings: dma: Add DT bindings for HiSilicon Hiedma Controller
-Date:   Tue, 15 Dec 2020 11:09:46 +0000
-Message-ID: <20201215110947.41268-4-gengdongjiu@huawei.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20201215110947.41268-1-gengdongjiu@huawei.com>
-References: <20201215110947.41268-1-gengdongjiu@huawei.com>
+        id S2393068AbgLNKiZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Dec 2020 05:38:25 -0500
+Received: from out2-smtp.messagingengine.com ([66.111.4.26]:59455 "EHLO
+        out2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S2405720AbgLNKiR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 14 Dec 2020 05:38:17 -0500
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailout.nyi.internal (Postfix) with ESMTP id 77AD75C0156;
+        Mon, 14 Dec 2020 05:37:08 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute6.internal (MEProxy); Mon, 14 Dec 2020 05:37:08 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm1; bh=BQY9ckE/AoI0OoVhzNkSJcsng4u
+        Fi8d1msnI5pSchPw=; b=M0wd6kt4mF9Et5oUsNM490xcMYybcZZLP2VypZ6BqVL
+        kHq4e/v7TysyDJZPkrJ/T9gdcOd+d7jNeKjlJAhAznd3wv6PRJ03i0/12K1AOj5y
+        vyoUJ+xi4YhOI6tuNaYrGwy/UabWuZMDn4Clp68DOSJdBqGP8zmHjlt9OwA751Tc
+        7e4oZCBfywBMyRWzj6i93wXYF2twMYbMQWSf+9kH/QMb6JzsXosqgxUwddX2UGO1
+        ort+NPT76Q74IkjdhjRrbAZry4ln0B52cOPwtC2wtM/Fnk93dQTl/xPdcL/oBRay
+        JC8gq6E28D0VZKtwkAQMbAH4oesUMdPA8yvFejElUXg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=BQY9ck
+        E/AoI0OoVhzNkSJcsng4uFi8d1msnI5pSchPw=; b=C2hwyvMqNOeOMPZd+ZVEXQ
+        3ay09v0EmxHJmhzQdjhZhnduHfwQhbDjrjUduFlqd5+PnaswSnA3aLWLZ5ZxPIw2
+        QXQ3qgUqXnh5evlwloieuzFw/Ap/ni2+3jlopU6zL+uYq72k+I4QSz4jxsr9zCI5
+        iGnuDx+aQRrfFumCGcf0lX2MGw1iedaPjLIpmRaX6cAzeCvGW0dtPieGNDfFFqjt
+        RPhCVVTMimccVchyOwOAojp7b+u5uMEja8pyFuu2TQA/3yd29lWddC/0168soiaZ
+        tI7rKwp0hkhxt8ar37n5QqS6y3dtAdbIHkANcf+jqm/SmS/lYq8u2+kr/wk1tfFg
+        ==
+X-ME-Sender: <xms:UkDXX8mVcyL00yFTUj4GJpZIGAu9JLq1ZJc4mGvWKCsB1ctAPZsgPw>
+    <xme:UkDXX714Cy9Lnb-BZUxjjyK_IzFzMaJUERpX0C12d8q7QzzmK-ehTFq8fI-gK05W5
+    pV3zJs_HBincO1KT18>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrudekkedgudejucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
+    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
+    gedunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
+    frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:UkDXX6qO-IF_sR0MSS2lHFDKK7Z9-JEGcQFUNZ8NaEPiGwLwhaWqwQ>
+    <xmx:UkDXX4nmnNyPNGL1C0fIv5JDBt4RD6cX-ix-cKzCvCFzJZwHshN6dA>
+    <xmx:UkDXX60CfXYdsomV1QqZHUR-TkTsrJgXnuR3AOYZCRDyK3OQ3-DYOw>
+    <xmx:VEDXX0r_BZGebfBxhY-R6oGd4L7PZfuMOkLfudfWlSBhi3FTRFWI5g>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id DB3E6108005C;
+        Mon, 14 Dec 2020 05:37:05 -0500 (EST)
+Date:   Mon, 14 Dec 2020 11:37:04 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Icenowy Zheng <icenowy@aosc.io>
+Cc:     Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Ondrej Jirman <megous@megous.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-sunxi@googlegroups.com
+Subject: Re: [PATCH 1/3] dt-bindings: arm: sunxi: add PineTab new panel DT
+ binding
+Message-ID: <20201214103704.bkgwh4bdelrtovgd@gilmour>
+References: <20201210083722.1912981-1-icenowy@aosc.io>
+ <20201210084232.1913871-1-icenowy@aosc.io>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.151.151.249]
-X-CFilter-Loop: Reflected
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="jypi6ln6e6jthjwh"
+Content-Disposition: inline
+In-Reply-To: <20201210084232.1913871-1-icenowy@aosc.io>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Hiedma Controller v310 Provides eight DMA channels, each
-channel can be configured for one-way transfer. The data can
-be transferred in 8-bit, 16-bit, 32-bit, or 64-bit mode. This
-documentation describes DT bindings of this controller.
 
-Signed-off-by: Dongjiu Geng <gengdongjiu@huawei.com>
----
- .../bindings/dma/hisilicon,hiedmacv310.yaml   | 94 +++++++++++++++++++
- 1 file changed, 94 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/dma/hisilicon,hiedmacv310.yaml
+--jypi6ln6e6jthjwh
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/Documentation/devicetree/bindings/dma/hisilicon,hiedmacv310.yaml b/Documentation/devicetree/bindings/dma/hisilicon,hiedmacv310.yaml
-new file mode 100644
-index 000000000000..06a1ebe76360
---- /dev/null
-+++ b/Documentation/devicetree/bindings/dma/hisilicon,hiedmacv310.yaml
-@@ -0,0 +1,94 @@
-+# SPDX-License-Identifier:  GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/dma/hisilicon,hiedmacv310.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: HiSilicon Hiedma Controller v310 Device Tree Bindings
-+
-+description: |
-+  These bindings describe the DMA engine included in the HiSilicon Hiedma
-+  Controller v310 Device.
-+
-+maintainers:
-+  - Dongjiu Geng <gengdongjiu@huawei.com>
-+
-+allOf:
-+  - $ref: "dma-controller.yaml#"
-+
-+properties:
-+  "#dma-cells":
-+    const: 2
-+
-+  compatible:
-+    const: hisilicon,hiedmacv310
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  hisilicon,misc-control:
-+    $ref: /schemas/types.yaml#definitions/phandle-array
-+    description: phandle pointing to the misc controller provider node and base register.
-+
-+  clocks:
-+    items:
-+      - description: apb clock
-+      - description: axi clock
-+
-+  clock-names:
-+    items:
-+      - const: apb_pclk
-+      - const: axi_aclk
-+
-+  resets:
-+    description: phandle pointing to the dma reset controller provider node.
-+
-+  reset-names:
-+    items:
-+      - const: dma-reset
-+
-+  dma-requests:
-+    maximum: 32
-+
-+  dma-channels:
-+    maximum: 8
-+
-+
-+required:
-+  - "#dma-cells"
-+  - compatible
-+  - hisilicon,misc-control
-+  - reg
-+  - interrupts
-+  - clocks
-+  - clock-names
-+  - resets
-+  - reset-names
-+  - dma-requests
-+  - dma-channels
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/clock/hi3559av100-clock.h>
-+
-+    dma: dma-controller@10040000 {
-+      compatible = "hisilicon,hiedmacv310";
-+      reg = <0x10040000 0x1000>;
-+      hisilicon,misc-control = <&misc_ctrl 0x144>;
-+      interrupts = <0 82 4>;
-+      clocks = <&clock HI3559AV100_EDMAC1_CLK>, <&clock HI3559AV100_EDMAC1_AXICLK>;
-+      clock-names = "apb_pclk", "axi_aclk";
-+      resets = <&clock 0x16c 7>;
-+      reset-names = "dma-reset";
-+      dma-requests = <32>;
-+      dma-channels = <8>;
-+      #dma-cells = <2>;
-+    };
-+
-+...
--- 
-2.17.1
+On Thu, Dec 10, 2020 at 04:42:32PM +0800, Icenowy Zheng wrote:
+> Early adopters' PineTabs (and all further releases) will have a new LCD
+> panel different with the one that is used when in development (because
+> the old panel's supply discontinued).
+>=20
+> Add a new DT compatible for it.
+>=20
+> Signed-off-by: Icenowy Zheng <icenowy@aosc.io>
+> ---
+>  Documentation/devicetree/bindings/arm/sunxi.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/arm/sunxi.yaml b/Documenta=
+tion/devicetree/bindings/arm/sunxi.yaml
+> index 6db32fbf813f..73a6c8421172 100644
+> --- a/Documentation/devicetree/bindings/arm/sunxi.yaml
+> +++ b/Documentation/devicetree/bindings/arm/sunxi.yaml
+> @@ -700,6 +700,11 @@ properties:
+>            - const: pine64,pinetab
+>            - const: allwinner,sun50i-a64
+> =20
+> +      - description: Pine64 PineTab with new LCD panel
+> +        items:
+> +          - const: pine64,pinetab-new-panel
+> +          - const: allwinner,sun50i-a64
+> +
 
+We're on the right track, but new panel seems a bit too vague. What is
+going to happen when they will change the panel again?
+
+pinetab-early-adopter seems more robust there
+
+Maxime
+
+--jypi6ln6e6jthjwh
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX9dAUAAKCRDj7w1vZxhR
+xY3uAPwIOL8SxCSyIM1zUHuDEuyjbgPAbZ6jyJnIgY8dOhO0CwD+NGmV9Kc113Q+
+BM1jdGb7U1m6WrQVCweD5rvLGl/nGgs=
+=ewmA
+-----END PGP SIGNATURE-----
+
+--jypi6ln6e6jthjwh--
