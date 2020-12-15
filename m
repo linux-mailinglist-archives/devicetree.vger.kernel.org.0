@@ -2,1261 +2,397 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 781B42DAA67
-	for <lists+devicetree@lfdr.de>; Tue, 15 Dec 2020 10:49:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3DAB72DAA6E
+	for <lists+devicetree@lfdr.de>; Tue, 15 Dec 2020 10:51:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728159AbgLOJsu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Dec 2020 04:48:50 -0500
-Received: from twspam01.aspeedtech.com ([211.20.114.71]:33523 "EHLO
-        twspam01.aspeedtech.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728003AbgLOJsr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Dec 2020 04:48:47 -0500
-Received: from mail.aspeedtech.com ([192.168.0.24])
-        by twspam01.aspeedtech.com with ESMTP id 0BF9gUfu077791;
-        Tue, 15 Dec 2020 17:42:30 +0800 (GMT-8)
-        (envelope-from troy_lee@aspeedtech.com)
-Received: from aspeedtech.com (192.168.100.253) by TWMBX02.aspeed.com
- (192.168.0.24) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 15 Dec
- 2020 17:45:45 +0800
-Date:   Tue, 15 Dec 2020 17:45:33 +0800
-From:   Troy Lee <troy_lee@aspeedtech.com>
-To:     Guenter Roeck <linux@roeck-us.net>
-CC:     "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
-        Jean Delvare <jdelvare@suse.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "open list:HARDWARE MONITORING" <linux-hwmon@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
-        <linux-aspeed@lists.ozlabs.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
-        "leetroy@gmail.com" <leetroy@gmail.com>,
-        "Ryan Chen" <ryan_chen@aspeedtech.com>,
-        ChiaWei Wang <chiawei_wang@aspeedtech.com>,
-        Billy Tsai <billy_tsai@aspeedtech.com>
-Subject: Re: [PATCH 4/4] hwmon: Support Aspeed AST2600 PWM/Fan tachometer
-Message-ID: <20201215094532.GB24903@aspeedtech.com>
-References: <20201209075921.26689-1-troy_lee@aspeedtech.com>
- <20201209075921.26689-5-troy_lee@aspeedtech.com>
- <20201210161653.GA107395@roeck-us.net>
+        id S1728424AbgLOJt5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Dec 2020 04:49:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55492 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727639AbgLOJtv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Dec 2020 04:49:51 -0500
+Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com [IPv6:2a00:1450:4864:20::342])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF3B8C06179C
+        for <devicetree@vger.kernel.org>; Tue, 15 Dec 2020 01:49:10 -0800 (PST)
+Received: by mail-wm1-x342.google.com with SMTP id c133so4262982wme.4
+        for <devicetree@vger.kernel.org>; Tue, 15 Dec 2020 01:49:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ffwll.ch; s=google;
+        h=date:from:to:cc:subject:message-id:mail-followup-to:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=+bLScCOCNZQdgDM6p7C9MBE40XK/lq18vroRL1z4urY=;
+        b=KyRMMUQmBtPcq4c3/MC/uHDb80xB1/HQiJFsbk1YAZ65xFxMfPQr55VtQUX/y9lRMi
+         HdvuMMDj21aBlYg7/yHg5MZ6O5UuocG26YAguO8LnHVa/8ujnSrHTH7iVgtafPJiWy4X
+         TyneHYCzt1c0WGPBANJzUaeR/ZYq+XtQ4jCx8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id
+         :mail-followup-to:references:mime-version:content-disposition
+         :content-transfer-encoding:in-reply-to;
+        bh=+bLScCOCNZQdgDM6p7C9MBE40XK/lq18vroRL1z4urY=;
+        b=fNAfqnzc4xWhRqK0+86DFrsiFxwCsTyoe7tX4PjmmlwnsjT5gwzGgoMC6OvBV0S7iJ
+         Npv1FyWATsnO+Z0KignpZ5qn6mTrR3g6qDMH8F0P1RuhK++aad8rFQs61yK+rZeFAB9M
+         C4zyebpWlpwyuAr3tyFjZmRIy2J7EUl42u4Sc90Lso49mWHPNmUlegj8wRSS+CdJsvG+
+         w5Rx79ulmzpHi7gX1p9fy1D7DGKncOTpzF1FYTWck9icI/A3S8cn4+PcSj/vzh2+fBQI
+         OSqFbJNEuIg/tFhC+3MYOqQZZG4TjIfnahK9v/GfnwQk69XXyJhKtigeD5ApFBJGX4Y1
+         hipA==
+X-Gm-Message-State: AOAM5321TjQuWThzKr1Rp51W7sdRUSBu1gfe0oJ7r6K/5TEVHPbXp6gP
+        OgTiQlNv60v0hJubBXliq+IrBQ==
+X-Google-Smtp-Source: ABdhPJz/V2fVbYttE2c+SKppjnnX6Lps98PrevHuWGbBCzD/MFwm4B9sRnrp2egyl55dAyEg27IKzQ==
+X-Received: by 2002:a7b:cbcc:: with SMTP id n12mr11312405wmi.23.1608025749468;
+        Tue, 15 Dec 2020 01:49:09 -0800 (PST)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+        by smtp.gmail.com with ESMTPSA id z22sm33831887wml.1.2020.12.15.01.49.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 15 Dec 2020 01:49:08 -0800 (PST)
+Date:   Tue, 15 Dec 2020 10:49:02 +0100
+From:   Daniel Vetter <daniel@ffwll.ch>
+To:     Jiaying Liang <wendy.liang@xilinx.com>
+Cc:     Daniel Vetter <daniel@ffwll.ch>,
+        Alex Deucher <alexdeucher@gmail.com>, tejas.patel@xilinx.com,
+        ravi.patel@xilinx.com, rajan.vaja@xilinx.com,
+        Arnd Bergmann <arnd@arndb.de>,
+        devicetree <devicetree@vger.kernel.org>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Dragan Cvetic <dragan.cvetic@xilinx.com>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Maling list - DRI developers 
+        <dri-devel@lists.freedesktop.org>,
+        Rob Herring <robh+dt@kernel.org>, manish.narani@xilinx.com,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Derek Kiernan <derek.kiernan@xilinx.com>,
+        Christian Koenig <christian.koenig@amd.com>,
+        LKML <linux-kernel@vger.kernel.org>,
+        linux-media <linux-media@vger.kernel.org>
+Subject: Re: [PATCH v3 0/9] Xilinx AI engine kernel driver
+Message-ID: <X9iEAdStN7lqvZpY@phenom.ffwll.local>
+Mail-Followup-To: Jiaying Liang <wendy.liang@xilinx.com>,
+        Alex Deucher <alexdeucher@gmail.com>, tejas.patel@xilinx.com,
+        ravi.patel@xilinx.com, rajan.vaja@xilinx.com,
+        Arnd Bergmann <arnd@arndb.de>,
+        devicetree <devicetree@vger.kernel.org>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Dragan Cvetic <dragan.cvetic@xilinx.com>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
+        Rob Herring <robh+dt@kernel.org>, manish.narani@xilinx.com,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Derek Kiernan <derek.kiernan@xilinx.com>,
+        Christian Koenig <christian.koenig@amd.com>,
+        LKML <linux-kernel@vger.kernel.org>,
+        linux-media <linux-media@vger.kernel.org>
+References: <1606722505-16194-1-git-send-email-wendy.liang@xilinx.com>
+ <CADnq5_NZrqkouXCFKWc2wv483nc=x4cXXjFCqcEmkUYZpNeMUQ@mail.gmail.com>
+ <CAKMK7uFjwmm9W3RFVdQ=EOqHvWeD5ZPA7zP86O_sxxBv3n4jjw@mail.gmail.com>
+ <b0d41bb6-0347-24f5-7a2d-a3b41d5444c9@xilinx.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20201210161653.GA107395@roeck-us.net>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-X-Originating-IP: [192.168.100.253]
-X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
- (192.168.0.24)
-X-DNSRBL: 
-X-MAIL: twspam01.aspeedtech.com 0BF9gUfu077791
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <b0d41bb6-0347-24f5-7a2d-a3b41d5444c9@xilinx.com>
+X-Operating-System: Linux phenom 5.7.0-1-amd64 
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The 12/11/2020 00:16, Guenter Roeck wrote:
-> On Wed, Dec 09, 2020 at 03:59:20PM +0800, Troy Lee wrote:
-> > Add Aspeed AST2600 PWM/Fan tacho driver. AST2600 has 16 PWM channel and
-> > 16 FAN tacho channel.
+On Mon, Dec 14, 2020 at 04:24:17PM -0800, Jiaying Liang wrote:
+> 
+> On 12/11/20 11:39 AM, Daniel Vetter wrote:
+> > Hi all
 > > 
-> > Signed-off-by: Troy Lee <troy_lee@aspeedtech.com>
-> > ---
-> >  drivers/hwmon/Kconfig                |   10 +
-> >  drivers/hwmon/Makefile               |    1 +
-> >  drivers/hwmon/aspeed2600-pwm-tacho.c | 1053 ++++++++++++++++++++++++++
-> >  3 files changed, 1064 insertions(+)
-> >  create mode 100644 drivers/hwmon/aspeed2600-pwm-tacho.c
+> > On Fri, Dec 11, 2020 at 8:03 PM Alex Deucher<alexdeucher@gmail.com>  wrote:
+> > > On Mon, Nov 30, 2020 at 3:25 AM Wendy Liang<wendy.liang@xilinx.com>  wrote:
+> > > > AI engine is the acceleration engine provided by Xilinx. These engines
+> > > > provide high compute density for vector-based algorithms, and flexible
+> > > > custom compute and data movement. It has core tiles for compute and
+> > > > shim tiles to interface the FPGA fabric.
+> > > > 
+> > > > You can check the AI engine architecture document for more hardware details:
+> > > > https://www.xilinx.com/support/documentation/architecture-manuals/am009-versal-ai-engine.pdf
+> > > > 
+> > > > This patch series adds a Linux kernel driver to manage the Xilinx AI
+> > > > engine array device and AI engine partitions (groups of AI engine tiles
+> > > > dedicated to an application).
+> > > Hi Wendy,
+> > > 
+> > > I think it would be good to provide an overview of how your stack
+> > > works in general.  That would give reviewers a better handle on how
+> > > all of this fits together.  I'd suggest including an overview in the
+> > > cover letter and also in the commit message and/or as a comment in the
+> > > code in one of the patches.  I'm not really an expert when it comes to
+> > > FPGAs, but this basically looks like a pretty low level interface to
+> > > set up the data fabric for a kernel that will run on the soft logic or
+> > > maybe the microcontroller on the board.  It doesn't have to be super
+> > > detailed, just a nice flow for how you might use this.  E.g.,
+> > > 
+> > > Userspace uses ioctls X, Y, Z to configure the data fabric for the
+> > > FPGA kernel.  The kernels can run on... .  DMA access to system memory
+> > > for data sets can be allocated using ioctl A.  DMA access is limited
+> > > by... . The user can then load the FPGA kernel on to one of the
+> > > engines using ioctl B and finally they can kick off the whole thing
+> > > using ioctl C.  FPGA kernels are compiled using YYY toolchain and use
+> > > use the following runtime (link to runtime) to configure the data
+> > > fabric using ioctls X, Y, Z.
+> > At least for drm drivers we ideally have that as a .rst file in
+> > Documentation/. With that you can even do full svg graphs, or just dot
+> > graphs, of the overall stack if you really want to go overboard :-)
 > > 
-> > diff --git a/drivers/hwmon/Kconfig b/drivers/hwmon/Kconfig
-> > index 9aa89d7d4193..097c01430259 100644
-> > --- a/drivers/hwmon/Kconfig
-> > +++ b/drivers/hwmon/Kconfig
-> > @@ -400,6 +400,16 @@ config SENSORS_ASPEED
-> >  	  This driver can also be built as a module. If so, the module
-> >  	  will be called aspeed_pwm_tacho.
-> >  
-> > +config SENSORS_ASPEED2600_PWM_TACHO
-> > +        tristate "ASPEED AST2600 PWM and Fan Tachometer"
-> > +        depends on THERMAL || THERMAL=n
-> > +        help
-> > +          This driver provides support for ASPEED AST2600 PWM
-> > +          and Fan Tacho controllers.
-> > +
-> > +	  This driver can also be built as a module. If so, the module
-> > +	  will be called aspeed2600-pwm-tacho.
-> > +
-> >  config SENSORS_ATXP1
-> >  	tristate "Attansic ATXP1 VID controller"
-> >  	depends on I2C
-> > diff --git a/drivers/hwmon/Makefile b/drivers/hwmon/Makefile
-> > index ae41ee71a71b..10be45768d36 100644
-> > --- a/drivers/hwmon/Makefile
-> > +++ b/drivers/hwmon/Makefile
-> > @@ -52,6 +52,7 @@ obj-$(CONFIG_SENSORS_ARM_SCPI)	+= scpi-hwmon.o
-> >  obj-$(CONFIG_SENSORS_AS370)	+= as370-hwmon.o
-> >  obj-$(CONFIG_SENSORS_ASC7621)	+= asc7621.o
-> >  obj-$(CONFIG_SENSORS_ASPEED)	+= aspeed-pwm-tacho.o
-> > +obj-$(CONFIG_SENSORS_ASPEED2600_PWM_TACHO)      += aspeed2600-pwm-tacho.o
-> >  obj-$(CONFIG_SENSORS_ATXP1)	+= atxp1.o
-> >  obj-$(CONFIG_SENSORS_AXI_FAN_CONTROL) += axi-fan-control.o
-> >  obj-$(CONFIG_SENSORS_BT1_PVT)	+= bt1-pvt.o
-> > diff --git a/drivers/hwmon/aspeed2600-pwm-tacho.c b/drivers/hwmon/aspeed2600-pwm-tacho.c
-> > new file mode 100644
-> > index 000000000000..083eb3b253ff
-> > --- /dev/null
-> > +++ b/drivers/hwmon/aspeed2600-pwm-tacho.c
-> > @@ -0,0 +1,1053 @@
-> > +// SPDX-License-Identifier: GPL-2.0-or-later
-> > +/*
-> > + * Copyright (C) ASPEED Technology Inc.
-> > + *
-> > + * This program is free software; you can redistribute it and/or modify
-> > + * it under the terms of the GNU General Public License version 2 or later as
-> > + * published by the Free Software Foundation.
-> > + */
-> > +
-> > +#include <linux/clk.h>
-> > +#include <linux/errno.h>
-> > +#include <linux/gpio/consumer.h>
-> > +#include <linux/delay.h>
-> > +#include <linux/hwmon.h>
-> > +#include <linux/hwmon-sysfs.h>
-> > +#include <linux/io.h>
-> > +#include <linux/kernel.h>
-> > +#include <linux/module.h>
-> > +#include <linux/of_platform.h>
-> > +#include <linux/of_device.h>
-> > +#include <linux/platform_device.h>
-> > +#include <linux/sysfs.h>
-> > +#include <linux/reset.h>
-> > +#include <linux/regmap.h>
-> > +#include <linux/thermal.h>
-> > +/**********************************************************
-> > + * PWM HW register offset define
-> > + *********************************************************/
-> > +//PWM Control Register
-> 
-> Please no C++ comments, and please use standard multi-line comments.
-> 
-Understood.
-
-> > +#define ASPEED_PWM_CTRL_CH(ch)			((ch * 0x10) + 0x00)
-> > +//PWM Duty Cycle Register
-> > +#define ASPEED_PWM_DUTY_CYCLE_CH(ch)		((ch * 0x10) + 0x04)
-> > +//TACH Control Register
-> > +#define ASPEED_TACHO_CTRL_CH(ch)		((ch * 0x10) + 0x08)
-> 
-> (ch)
-> 
-> > +//TACH Status Register
-> > +#define ASPEED_TACHO_STS_CH(x)			((x * 0x10) + 0x0C)
-> 
-> (x)
-> 
-Good catch.
-
-> > +/**********************************************************
-> > + * PWM register Bit field
-> > + *********************************************************/
-> > +/*PWM_CTRL */
-> > +#define  PWM_LOAD_SEL_AS_WDT_BIT	(19)	//load selection as WDT
-> > +#define  PWM_DUTY_LOAD_AS_WDT_EN	BIT(18)	//enable PWM duty load as WDT
-> > +#define  PWM_DUTY_SYNC_DIS		BIT(17)	//disable PWM duty sync
-> > +#define	 PWM_CLK_ENABLE			BIT(16)	//enable PWM clock
-> > +#define  PWM_LEVEL_OUTPUT		BIT(15)	//output PWM level
-> > +#define  PWM_INVERSE			BIT(14) //inverse PWM pin
-> > +#define  PWM_OPEN_DRAIN_EN		BIT(13)	//enable open-drain
-> > +#define  PWM_PIN_EN			BIT(12) //enable PWM pin
-> > +#define  PWM_CLK_DIV_H_MASK		(0xf << 8) //PWM clock division H bit [3:0]
-> > +#define  PWM_CLK_DIV_L_MASK		(0xff)	//PWM clock division H bit [3:0]
-> > +/* [19] */
-> > +#define LOAD_SEL_FALLING 0
-> > +#define LOAD_SEL_RIGING  1
-> > +
-> > +/*PWM_DUTY_CYCLE */
-> > +#define  PWM_PERIOD_BIT					(24)	//pwm period bit [7:0]
-> > +#define  PWM_PERIOD_BIT_MASK			(0xff << 24)	//pwm period bit [7:0]
-> > +#define  PWM_RISING_FALLING_AS_WDT_BIT  (16)
-> > +#define  PWM_RISING_FALLING_AS_WDT_MASK (0xff << 16)	//pwm rising/falling point bit [7:0] as WDT
-> > +#define  PWM_RISING_FALLING_MASK		(0xffff)
-> > +#define  PWM_FALLING_POINT_BIT			(8)	//pwm falling point bit [7:0]
-> > +#define  PWM_RISING_POINT_BIT			(0)	//pwm rising point bit [7:0]
-> > +/* [31:24] */
-> > +#define  DEFAULT_PWM_PERIOD 0xff
-> > +
-> > +/*PWM_TACHO_CTRL */
-> > +#define  TACHO_IER						BIT(31)	//enable tacho interrupt
-> > +#define  TACHO_INVERS_LIMIT				BIT(30) //inverse tacho limit comparison
-> > +#define  TACHO_LOOPBACK					BIT(29) //tacho loopback
-> > +#define  TACHO_ENABLE					BIT(28)	//{enable tacho}
-> > +#define  TACHO_DEBOUNCE_MASK			(0x3 << 26) //{tacho de-bounce}
-> > +#define  TACHO_DEBOUNCE_BIT				(26) //{tacho de-bounce}
-> > +#define  TECHIO_EDGE_MASK				(0x3 << 24) //tacho edge}
-> > +#define  TECHIO_EDGE_BIT				(24) //tacho edge}
-> > +#define  TACHO_CLK_DIV_T_MASK			(0xf << 20)
-> > +#define  TACHO_CLK_DIV_BIT				(20)
-> > +#define  TACHO_THRESHOLD_MASK			(0xfffff)	//tacho threshold bit
-> > +/* [27:26] */
-> > +#define DEBOUNCE_3_CLK 0x00 /* 10b */
-> > +#define DEBOUNCE_2_CLK 0x01 /* 10b */
-> > +#define DEBOUNCE_1_CLK 0x02 /* 10b */
-> > +#define DEBOUNCE_0_CLK 0x03 /* 10b */
-> > +/* [25:24] */
-> > +#define F2F_EDGES 0x00 /* 10b */
-> > +#define R2R_EDGES 0x01 /* 10b */
-> > +#define BOTH_EDGES 0x02 /* 10b */
-> > +/* [23:20] */
-> > +/* Cover rpm range 5~5859375 */
-> > +#define  DEFAULT_TACHO_DIV 5
-> > +
-> > +/*PWM_TACHO_STS */
-> > +#define  TACHO_ISR			BIT(31)	//interrupt status and clear
-> > +#define  PWM_OUT			BIT(25)	//{pwm_out}
-> > +#define  PWM_OEN			BIT(24)	//{pwm_oeN}
-> > +#define  TACHO_DEB_INPUT	BIT(23)	//tacho deB input
-> > +#define  TACHO_RAW_INPUT	BIT(22) //tacho raw input}
-> > +#define  TACHO_VALUE_UPDATE	BIT(21)	//tacho value updated since the last read
-> > +#define  TACHO_FULL_MEASUREMENT	BIT(20) //{tacho full measurement}
-> > +#define  TACHO_VALUE_MASK	0xfffff	//tacho value bit [19:0]}
-> > +/**********************************************************
-> > + * Software setting
-> > + *********************************************************/
-> > +#define DEFAULT_TARGET_PWM_FREQ		25000
-> > +#define DEFAULT_FAN_PULSE_PR 2
-> > +#define MAX_CDEV_NAME_LEN 16
-> > +
-> > +struct aspeed_pwm_channel_params {
-> > +	int target_freq;
-> > +	int pwm_freq;
-> > +	int load_wdt_rising_falling_pt;
-> > +	int load_wdt_selection;		//0: rising , 1: falling
-> > +	int load_wdt_enable;
-> > +	int	duty_sync_enable;
-> > +	int invert_pin;
-> > +	u8	rising;
-> > +	u8	falling;
-> > +};
-> > +
-> > +static struct aspeed_pwm_channel_params default_pwm_params[] = {
-> > +	[0] = {
-> > +		.target_freq = 25000,
-> > +		.load_wdt_rising_falling_pt = 0x10,
-> > +		.load_wdt_selection = LOAD_SEL_FALLING,
-> > +		.load_wdt_enable = 1,
-> > +		.duty_sync_enable = 0,
-> > +		.invert_pin = 0,
-> > +		.rising = 0x00,
-> > +		.falling = 0x0a,
-> > +	},
-> 
-> I am in general very much opposed to include default configurations
-> in hwmon drivers. Configuration should be provided through devicetree,
-> or through platform data.
-> 
-I'll move most of these configurations into devicetree.
-
-> > +	[1] = {
-> > +		.target_freq = 25000,
-> > +		.load_wdt_rising_falling_pt = 0x10,
-> > +		.load_wdt_selection = LOAD_SEL_FALLING,
-> > +		.load_wdt_enable = 0,
-> > +		.duty_sync_enable = 0,
-> > +		.invert_pin = 0,
-> > +		.rising = 0x00,
-> > +		.falling = 0x0a,
-> > +	},
-> > +	[2] = {
-> > +		.target_freq = 25000,
-> > +		.load_wdt_rising_falling_pt = 0x10,
-> > +		.load_wdt_selection = LOAD_SEL_FALLING,
-> > +		.load_wdt_enable = 0,
-> > +		.duty_sync_enable = 0,
-> > +		.invert_pin = 0,
-> > +		.rising = 0x00,
-> > +		.falling = 0x0a,
-> > +	},
-> > +	[3] = {
-> > +		.target_freq = 25000,
-> > +		.load_wdt_rising_falling_pt = 0x10,
-> > +		.load_wdt_selection = LOAD_SEL_FALLING,
-> > +		.load_wdt_enable = 0,
-> > +		.duty_sync_enable = 0,
-> > +		.invert_pin = 0,
-> > +		.rising = 0x00,
-> > +		.falling = 0x0a,
-> > +	},
-> > +	[4] = {
-> > +		.target_freq = 25000,
-> > +		.load_wdt_rising_falling_pt = 0x10,
-> > +		.load_wdt_selection = LOAD_SEL_FALLING,
-> > +		.load_wdt_enable = 0,
-> > +		.duty_sync_enable = 0,
-> > +		.invert_pin = 0,
-> > +		.rising = 0x00,
-> > +		.falling = 0x0a,
-> > +	},
-> > +	[5] = {
-> > +		.target_freq = 25000,
-> > +		.load_wdt_rising_falling_pt = 0x10,
-> > +		.load_wdt_selection = LOAD_SEL_FALLING,
-> > +		.load_wdt_enable = 0,
-> > +		.duty_sync_enable = 0,
-> > +		.invert_pin = 0,
-> > +		.rising = 0x00,
-> > +		.falling = 0x0a,
-> > +	},
-> > +	[6] = {
-> > +		.target_freq = 25000,
-> > +		.load_wdt_rising_falling_pt = 0x10,
-> > +		.load_wdt_selection = LOAD_SEL_FALLING,
-> > +		.load_wdt_enable = 0,
-> > +		.duty_sync_enable = 0,
-> > +		.invert_pin = 0,
-> > +		.rising = 0x00,
-> > +		.falling = 0x0a,
-> > +	},
-> > +	[7] = {
-> > +		.target_freq = 25000,
-> > +		.load_wdt_rising_falling_pt = 0x10,
-> > +		.load_wdt_selection = LOAD_SEL_FALLING,
-> > +		.load_wdt_enable = 0,
-> > +		.duty_sync_enable = 0,
-> > +		.invert_pin = 0,
-> > +		.rising = 0x00,
-> > +		.falling = 0x0a,
-> > +	},
-> > +	[8] = {
-> > +		.target_freq = 25000,
-> > +		.load_wdt_rising_falling_pt = 0x10,
-> > +		.load_wdt_selection = LOAD_SEL_FALLING,
-> > +		.load_wdt_enable = 0,
-> > +		.duty_sync_enable = 0,
-> > +		.invert_pin = 0,
-> > +		.rising = 0x00,
-> > +		.falling = 0x0a,
-> > +	},
-> > +	[9] = {
-> > +		.target_freq = 25000,
-> > +		.load_wdt_rising_falling_pt = 0x10,
-> > +		.load_wdt_selection = LOAD_SEL_FALLING,
-> > +		.load_wdt_enable = 0,
-> > +		.duty_sync_enable = 0,
-> > +		.invert_pin = 0,
-> > +		.rising = 0x00,
-> > +		.falling = 0x0a,
-> > +	},
-> > +	[10] = {
-> > +		.target_freq = 25000,
-> > +		.load_wdt_rising_falling_pt = 0x10,
-> > +		.load_wdt_selection = LOAD_SEL_FALLING,
-> > +		.load_wdt_enable = 0,
-> > +		.duty_sync_enable = 0,
-> > +		.invert_pin = 0,
-> > +		.rising = 0x00,
-> > +		.falling = 0x0a,
-> > +	},
-> > +	[11] = {
-> > +		.target_freq = 25000,
-> > +		.load_wdt_rising_falling_pt = 0x10,
-> > +		.load_wdt_selection = LOAD_SEL_FALLING,
-> > +		.load_wdt_enable = 0,
-> > +		.duty_sync_enable = 0,
-> > +		.invert_pin = 0,
-> > +		.rising = 0x00,
-> > +		.falling = 0x0a,
-> > +	},
-> > +	[12] = {
-> > +		.target_freq = 25000,
-> > +		.load_wdt_rising_falling_pt = 0x10,
-> > +		.load_wdt_selection = LOAD_SEL_FALLING,
-> > +		.load_wdt_enable = 0,
-> > +		.duty_sync_enable = 0,
-> > +		.invert_pin = 0,
-> > +		.rising = 0x00,
-> > +		.falling = 0x0a,
-> > +	},
-> > +	[13] = {
-> > +		.target_freq = 25000,
-> > +		.load_wdt_rising_falling_pt = 0x10,
-> > +		.load_wdt_selection = LOAD_SEL_FALLING,
-> > +		.load_wdt_enable = 0,
-> > +		.duty_sync_enable = 0,
-> > +		.invert_pin = 0,
-> > +		.rising = 0x00,
-> > +		.falling = 0x0a,
-> > +	},
-> > +	[14] = {
-> > +		.target_freq = 25000,
-> > +		.load_wdt_rising_falling_pt = 0x10,
-> > +		.load_wdt_selection = LOAD_SEL_FALLING,
-> > +		.load_wdt_enable = 0,
-> > +		.duty_sync_enable = 0,
-> > +		.invert_pin = 0,
-> > +		.rising = 0x00,
-> > +		.falling = 0x0a,
-> > +	},
-> > +	[15] = {
-> > +		.target_freq = 25000,
-> > +		.load_wdt_rising_falling_pt = 0x10,
-> > +		.load_wdt_selection = LOAD_SEL_FALLING,
-> > +		.load_wdt_enable = 0,
-> > +		.duty_sync_enable = 0,
-> > +		.invert_pin = 0,
-> > +		.rising = 0x00,
-> > +		.falling = 0x0a,
-> > +	},
-> > +};
-> > +
-> > +struct aspeed_tacho_channel_params {
-> > +	int limited_inverse;
-> > +	u16 threshold;
-> > +	u8	tacho_edge;
-> > +	u8	tacho_debounce;
-> > +	u8  pulse_pr;
-> > +	u32	divide;
-> > +};
-> > +
-> > +
-> > +static struct aspeed_tacho_channel_params default_tacho_params[] = {
-> > +	[0] = {
-> > +		.limited_inverse = 0,
-> > +		.threshold = 0,
-> > +		.tacho_edge = F2F_EDGES,
-> > +		.tacho_debounce = DEBOUNCE_3_CLK,
-> > +		.pulse_pr = DEFAULT_FAN_PULSE_PR,
-> > +		.divide = 8,
-> 
-> Same as above.
-> 
-> > +	},
-> > +	[1] = {
-> > +		.limited_inverse = 0,
-> > +		.threshold = 0,
-> > +		.tacho_edge = F2F_EDGES,
-> > +		.tacho_debounce = DEBOUNCE_3_CLK,
-> > +		.pulse_pr = DEFAULT_FAN_PULSE_PR,
-> > +		.divide = 8,
-> > +	},
-> > +	[2] = {
-> > +		.limited_inverse = 0,
-> > +		.threshold = 0,
-> > +		.tacho_edge = F2F_EDGES,
-> > +		.tacho_debounce = DEBOUNCE_3_CLK,
-> > +		.pulse_pr = DEFAULT_FAN_PULSE_PR,
-> > +		.divide = 8,
-> > +	},
-> > +	[3] = {
-> > +		.limited_inverse = 0,
-> > +		.threshold = 0,
-> > +		.tacho_edge = F2F_EDGES,
-> > +		.tacho_debounce = DEBOUNCE_3_CLK,
-> > +		.pulse_pr = DEFAULT_FAN_PULSE_PR,
-> > +		.divide = 8,
-> > +	},
-> > +	[4] = {
-> > +		.limited_inverse = 0,
-> > +		.threshold = 0,
-> > +		.tacho_edge = F2F_EDGES,
-> > +		.tacho_debounce = DEBOUNCE_3_CLK,
-> > +		.pulse_pr = DEFAULT_FAN_PULSE_PR,
-> > +		.divide = 8,
-> > +	},
-> > +	[5] = {
-> > +		.limited_inverse = 0,
-> > +		.threshold = 0,
-> > +		.tacho_edge = F2F_EDGES,
-> > +		.tacho_debounce = DEBOUNCE_3_CLK,
-> > +		.pulse_pr = DEFAULT_FAN_PULSE_PR,
-> > +		.divide = 8,
-> > +	},
-> > +	[6] = {
-> > +		.limited_inverse = 0,
-> > +		.threshold = 0,
-> > +		.tacho_edge = F2F_EDGES,
-> > +		.tacho_debounce = DEBOUNCE_3_CLK,
-> > +		.pulse_pr = DEFAULT_FAN_PULSE_PR,
-> > +		.divide = 8,
-> > +	},
-> > +	[7] = {
-> > +		.limited_inverse = 0,
-> > +		.threshold = 0,
-> > +		.tacho_edge = F2F_EDGES,
-> > +		.tacho_debounce = DEBOUNCE_3_CLK,
-> > +		.pulse_pr = DEFAULT_FAN_PULSE_PR,
-> > +		.divide = 8,
-> > +	},
-> > +	[8] = {
-> > +		.limited_inverse = 0,
-> > +		.threshold = 0,
-> > +		.tacho_edge = F2F_EDGES,
-> > +		.tacho_debounce = DEBOUNCE_3_CLK,
-> > +		.pulse_pr = DEFAULT_FAN_PULSE_PR,
-> > +		.divide = 8,
-> > +	},
-> > +	[9] = {
-> > +		.limited_inverse = 0,
-> > +		.threshold = 0,
-> > +		.tacho_edge = F2F_EDGES,
-> > +		.tacho_debounce = DEBOUNCE_3_CLK,
-> > +		.pulse_pr = DEFAULT_FAN_PULSE_PR,
-> > +		.divide = 8,
-> > +	},
-> > +	[10] = {
-> > +		.limited_inverse = 0,
-> > +		.threshold = 0,
-> > +		.tacho_edge = F2F_EDGES,
-> > +		.tacho_debounce = DEBOUNCE_3_CLK,
-> > +		.pulse_pr = DEFAULT_FAN_PULSE_PR,
-> > +		.divide = 8,
-> > +	},
-> > +	[11] = {
-> > +		.limited_inverse = 0,
-> > +		.threshold = 0,
-> > +		.tacho_edge = F2F_EDGES,
-> > +		.tacho_debounce = DEBOUNCE_3_CLK,
-> > +		.pulse_pr = DEFAULT_FAN_PULSE_PR,
-> > +		.divide = 8,
-> > +	},
-> > +	[12] = {
-> > +		.limited_inverse = 0,
-> > +		.threshold = 0,
-> > +		.tacho_edge = F2F_EDGES,
-> > +		.tacho_debounce = DEBOUNCE_3_CLK,
-> > +		.pulse_pr = DEFAULT_FAN_PULSE_PR,
-> > +		.divide = 8,
-> > +	},
-> > +	[13] = {
-> > +		.limited_inverse = 0,
-> > +		.threshold = 0,
-> > +		.tacho_edge = F2F_EDGES,
-> > +		.tacho_debounce = DEBOUNCE_3_CLK,
-> > +		.pulse_pr = DEFAULT_FAN_PULSE_PR,
-> > +		.divide = 8,
-> > +	},
-> > +	[14] = {
-> > +		.limited_inverse = 0,
-> > +		.threshold = 0,
-> > +		.tacho_edge = F2F_EDGES,
-> > +		.tacho_debounce = DEBOUNCE_3_CLK,
-> > +		.pulse_pr = DEFAULT_FAN_PULSE_PR,
-> > +		.divide = 8,
-> > +	},
-> > +	[15] = {
-> > +		.limited_inverse = 0,
-> > +		.threshold = 0,
-> > +		.tacho_edge = F2F_EDGES,
-> > +		.tacho_debounce = DEBOUNCE_3_CLK,
-> > +		.pulse_pr = DEFAULT_FAN_PULSE_PR,
-> > +		.divide = 8,
-> > +	},
-> > +};
-> > +
-> > +struct aspeed_pwm_tachometer_data {
-> > +	struct regmap *regmap;
-> > +	unsigned long clk_freq;
-> > +	struct reset_control *reset;
-> > +	bool pwm_present[16];
-> > +	bool fan_tach_present[16];
-> > +	struct aspeed_pwm_channel_params *pwm_channel;
-> > +	struct aspeed_tacho_channel_params *tacho_channel;
-> > +	/* for thermal */
-> > +	struct aspeed_cooling_device *cdev[8];
-> 
-> This makes me wonder if this should be a thermal driver instead.
-> Any thoughts ?
-> 
-> > +	/* for hwmon */
-> > +	const struct attribute_group *groups[3];
-> > +};
-> > +
-> > +struct aspeed_cooling_device {
-> > +	char name[16];
-> > +	struct aspeed_pwm_tachometer_data *priv;
-> > +	struct thermal_cooling_device *tcdev;
-> > +	int pwm_channel;
-> > +	u8 *cooling_levels;
-> > +	u8 max_state;
-> > +	u8 cur_state;
-> > +};
-> > +
-> > +static int regmap_aspeed_pwm_tachometer_reg_write(void *context, unsigned int reg,
-> > +					     unsigned int val)
-> > +{
-> > +	void __iomem *regs = (void __iomem *)context;
-> > +
-> > +	writel(val, regs + reg);
-> > +	return 0;
-> > +}
-> > +
-> > +static int regmap_aspeed_pwm_tachometer_reg_read(void *context, unsigned int reg,
-> > +					    unsigned int *val)
-> > +{
-> > +	void __iomem *regs = (void __iomem *)context;
-> > +
-> > +	*val = readl(regs + reg);
-> > +	return 0;
-> > +}
-> > +
-> > +static const struct regmap_config aspeed_pwm_tachometer_regmap_config = {
-> > +	.reg_bits = 32,
-> > +	.val_bits = 32,
-> > +	.reg_stride = 4,
-> > +	.max_register = 0x100,
-> > +	.reg_write = regmap_aspeed_pwm_tachometer_reg_write,
-> > +	.reg_read = regmap_aspeed_pwm_tachometer_reg_read,
-> > +	.fast_io = true,
-> > +};
-> > +
-> > +static void aspeed_set_pwm_channel_enable(struct regmap *regmap, u8 pwm_channel,
-> > +				       bool enable)
-> > +{
-> > +	regmap_update_bits(regmap, ASPEED_PWM_CTRL_CH(pwm_channel),
-> > +			   (PWM_CLK_ENABLE | PWM_PIN_EN),
-> > +			   enable ? (PWM_CLK_ENABLE | PWM_PIN_EN) : 0);
-> 
-> Unnecessary ()
-> 
-OK.
-
-> > +}
-> > +
-> > +static void aspeed_set_fan_tach_ch_enable(struct aspeed_pwm_tachometer_data *priv, u8 fan_tach_ch,
-> > +					  bool enable, u32 tacho_div)
-> 
-> This function is only called with enable == true. Please no unnecessary
-> complexity.
-> 
-> > +{
-> > +	u32 reg_value = 0;
-> 
-> Unnecessary initialization.
-> 
-> > +
-> > +	if (enable) {
-> > +		/* divide = 2^(tacho_div*2) */
-> > +		priv->tacho_channel[fan_tach_ch].divide = 1 << (tacho_div << 1);
-> > +
-> > +		reg_value = TACHO_ENABLE |
-> > +				(priv->tacho_channel[fan_tach_ch].tacho_edge << TECHIO_EDGE_BIT) |
-> > +				(tacho_div << TACHO_CLK_DIV_BIT) |
-> > +				(priv->tacho_channel[fan_tach_ch].tacho_debounce << TACHO_DEBOUNCE_BIT);
-> > +
-> > +		if (priv->tacho_channel[fan_tach_ch].limited_inverse)
-> > +			reg_value |= TACHO_INVERS_LIMIT;
-> > +
-> > +		if (priv->tacho_channel[fan_tach_ch].threshold)
-> > +			reg_value |= (TACHO_IER | priv->tacho_channel[fan_tach_ch].threshold);
-> > +
-> > +		regmap_write(priv->regmap, ASPEED_TACHO_CTRL_CH(fan_tach_ch), reg_value);
-> > +	} else
-> > +		regmap_update_bits(priv->regmap, ASPEED_TACHO_CTRL_CH(fan_tach_ch),  TACHO_ENABLE, 0);
-> > +}
-> > +
-> > +/*
-> > + * The PWM frequency = HCLK(200Mhz) / (clock division L bit *
-> > + * clock division H bit * (period bit + 1))
-> > + */
-> > +static void aspeed_set_pwm_channel_fan_ctrl(struct device *dev,
-> > +					    struct aspeed_pwm_tachometer_data *priv,
-> > +					    u8 index, u8 fan_ctrl)
-> > +{
-> > +	u32 duty_value,	ctrl_value;
-> > +	u32 div_h, div_l, cal_freq;
-> > +	u8 div_found;
-> 
-> div_found is used as boolean. Declaring it u8 makes the code more complex
-> on many architectures. Please use bool.
-> 
-> > +
-> > +	if (fan_ctrl == 0) {
-> > +		aspeed_set_pwm_channel_enable(priv->regmap, index, false);
-> 
-> Consider using return; here and drop else.
-> 
-> > +	} else {
-> > +		cal_freq = priv->clk_freq / (DEFAULT_PWM_PERIOD + 1);
-> > +		//calculate for target frequence
-> > +		div_found = 0;
-> > +		for (div_h = 0; div_h < 0x10; div_h++) {
-> > +			for (div_l = 0; div_l < 0x100; div_l++) {
-> > +				dev_dbg(dev, "div h %x, l : %x , freq %ld \n", div_h, div_l,
-> > +						(cal_freq / (BIT(div_h) * (div_l + 1))));
-> > +				if ((cal_freq / (BIT(div_h) * (div_l + 1))) < priv->pwm_channel[index].target_freq) {
-> > +					div_found = 1;
-> > +					break;
-> > +				}
-> > +			}
-> > +			if (div_found)
-> > +				break;
-> > +		}
-> 
-> This double loop is quite expensive. Are yu sure there is no better means to
-> determine the fan divider ? By using a binary search, maybe ?
-> 
-> Also, what happens if div_found is false at the end ? The code below suggests
-> that this would be problematic.
-> 
-I'll change the algorithm, so it would not be double loop and remote the need
-of div_found.
-
-> > +
-> > +		priv->pwm_channel[index].pwm_freq = cal_freq / (BIT(div_h) * (div_l + 1));
-> > +		dev_dbg(dev, "div h %x, l : %x pwm out clk %d \n", div_h, div_l,
-> > +				priv->pwm_channel[index].pwm_freq);
-> > +		dev_dbg(dev, "hclk %ld, target pwm freq %d, real pwm freq %d\n", priv->clk_freq,
-> > +				priv->pwm_channel[index].target_freq, priv->pwm_channel[index].pwm_freq);
-> > +
-> > +		ctrl_value = (div_h << 8) | div_l;
-> > +
-> > +		duty_value = (DEFAULT_PWM_PERIOD << PWM_PERIOD_BIT) |
-> > +					(0 << PWM_RISING_POINT_BIT) | (fan_ctrl << PWM_FALLING_POINT_BIT);
-> > +
-> > +		if (priv->pwm_channel[index].load_wdt_enable) {
-> > +			ctrl_value |= PWM_DUTY_LOAD_AS_WDT_EN;
-> > +			ctrl_value |= priv->pwm_channel[index].load_wdt_selection << PWM_LOAD_SEL_AS_WDT_BIT;
-> > +			duty_value |= (priv->pwm_channel[index].load_wdt_rising_falling_pt << PWM_RISING_FALLING_AS_WDT_BIT);
-> > +		}
-> > +
-> > +		regmap_write(priv->regmap, ASPEED_PWM_DUTY_CYCLE_CH(index), duty_value);
-> > +		regmap_write(priv->regmap, ASPEED_PWM_CTRL_CH(index), ctrl_value);
-> > +
-> > +		aspeed_set_pwm_channel_enable(priv->regmap, index, true);
-> > +	}
-> > +}
-> > +
-> > +static int aspeed_get_fan_tach_ch_rpm(struct device *dev, struct aspeed_pwm_tachometer_data *priv,
-> > +				      u8 fan_tach_ch)
-> > +{
-> > +	u32 raw_data, tach_div, clk_source, val;
-> > +	int i, retries = 3;
-> > +
-> > +	for (i = 0; i < retries; i++) {
-> > +		regmap_read(priv->regmap, ASPEED_TACHO_STS_CH(fan_tach_ch), &val);
-> > +		if (TACHO_FULL_MEASUREMENT & val)
-> 
-> No Yoda programming please.
-> 
-Understood.
-
-> > +			break;
-> > +	}
-> > +
-> > +	raw_data = val & TACHO_VALUE_MASK;
-> > +	if (raw_data == 0xfffff)
-> > +		return 0;
-> > +
-> > +	raw_data += 1;
-> > +
-> > +	/*
-> > +	 * We need the mode to determine if the raw_data is double (from
-> > +	 * counting both edges).
-> > +	 */
-> > +	tach_div = raw_data * (priv->tacho_channel[fan_tach_ch].divide) * (priv->tacho_channel[fan_tach_ch].pulse_pr);
-> > +
-> > +	dev_dbg(dev, "clk %ld, raw_data %d , tach_div %d  \n", priv->clk_freq, raw_data, tach_div);
-> > +	clk_source = priv->clk_freq;
-> > +
-> > +	if (raw_data == 0)
-> > +		return 0;
-> 
-> How would raw_data ever be 0 here ? And why check it after using it,
-> and not before ?
-> 
-No, it wouldn't be 0 here.
-
-> > +
-> > +	return ((clk_source / tach_div) * 60);
-> > +
-> > +}
-> > +
-> > +static ssize_t set_pwm(struct device *dev, struct device_attribute *attr,
-> > +		       const char *buf, size_t count)
-> > +{
-> > +	struct sensor_device_attribute *sensor_attr = to_sensor_dev_attr(attr);
-> > +	int index = sensor_attr->index;
-> > +	int ret;
-> > +	struct aspeed_pwm_tachometer_data *priv = dev_get_drvdata(dev);
-> > +	long fan_ctrl;
-> > +	u8 org_falling = priv->pwm_channel[index].falling;
-> > +
-> > +	ret = kstrtol(buf, 10, &fan_ctrl);
-> > +	if (ret != 0)
-> > +		return ret;
-> > +
-> > +	if (fan_ctrl < 0 || fan_ctrl > DEFAULT_PWM_PERIOD)
-> > +		return -EINVAL;
-> 
-> Please use kstrtoul().
-> 
-After change to use devm_device_hwmon_register_with_info, the kstrtoul doesn't
-require anymore, this it will be removed in v2.
-
-> > +
-> > +	if (priv->pwm_channel[index].falling == fan_ctrl)
-> > +		return count;
-> > +
-> > +	priv->pwm_channel[index].falling = fan_ctrl;
-> > +
-> > +	if (fan_ctrl == 0)
-> > +		aspeed_set_pwm_channel_enable(priv->regmap, index, false);
-> > +	else {
-> > +		if (fan_ctrl == DEFAULT_PWM_PERIOD)
-> > +			regmap_update_bits(priv->regmap,
-> > +					   ASPEED_PWM_DUTY_CYCLE_CH(index),
-> > +					   GENMASK(15, 0), 0);
-> > +		else
-> > +			regmap_update_bits(priv->regmap,
-> > +					   ASPEED_PWM_DUTY_CYCLE_CH(index),
-> > +					   GENMASK(15, 8),
-> > +					   (fan_ctrl << PWM_FALLING_POINT_BIT));
-> > +	}
-> > +
-> > +	if (org_falling == 0)
-> > +		aspeed_set_pwm_channel_enable(priv->regmap, index, true);
-> > +
-> > +	return count;
-> > +}
-> > +
-> > +static ssize_t show_pwm(struct device *dev, struct device_attribute *attr,
-> > +			char *buf)
-> > +{
-> > +	struct sensor_device_attribute *sensor_attr = to_sensor_dev_attr(attr);
-> > +	int index = sensor_attr->index;
-> > +	struct aspeed_pwm_tachometer_data *priv = dev_get_drvdata(dev);
-> > +
-> > +	return sprintf(buf, "%u\n", priv->pwm_channel[index].falling);
-> > +}
-> > +
-> > +static ssize_t show_rpm(struct device *dev, struct device_attribute *attr,
-> > +			char *buf)
-> > +{
-> > +	struct sensor_device_attribute *sensor_attr = to_sensor_dev_attr(attr);
-> > +	int index = sensor_attr->index;
-> > +	int rpm;
-> > +	struct aspeed_pwm_tachometer_data *priv = dev_get_drvdata(dev);
-> > +
-> > +	rpm = aspeed_get_fan_tach_ch_rpm(dev, priv, index);
-> > +	if (rpm < 0)
-> > +		return rpm;
-> > +
-> > +	return sprintf(buf, "%d\n", rpm);
-> > +}
-> > +
-> > +static umode_t pwm_is_visible(struct kobject *kobj,
-> > +			      struct attribute *a, int index)
-> > +{
-> > +	struct device *dev = container_of(kobj, struct device, kobj);
-> > +	struct aspeed_pwm_tachometer_data *priv = dev_get_drvdata(dev);
-> > +
-> > +	if (!priv->pwm_present[index])
-> > +		return 0;
-> > +	return a->mode;
-> > +}
-> > +
-> > +static umode_t fan_dev_is_visible(struct kobject *kobj,
-> > +				  struct attribute *a, int index)
-> > +{
-> > +	struct device *dev = container_of(kobj, struct device, kobj);
-> > +	struct aspeed_pwm_tachometer_data *priv = dev_get_drvdata(dev);
-> > +
-> > +	if (!priv->fan_tach_present[index])
-> > +		return 0;
-> > +	return a->mode;
-> > +}
-> > +
-> > +static SENSOR_DEVICE_ATTR(pwm0, 0644,
-> > +			show_pwm, set_pwm, 0);
-> > +static SENSOR_DEVICE_ATTR(pwm1, 0644,
-> > +			show_pwm, set_pwm, 1);
-> > +static SENSOR_DEVICE_ATTR(pwm2, 0644,
-> > +			show_pwm, set_pwm, 2);
-> > +static SENSOR_DEVICE_ATTR(pwm3, 0644,
-> > +			show_pwm, set_pwm, 3);
-> > +static SENSOR_DEVICE_ATTR(pwm4, 0644,
-> > +			show_pwm, set_pwm, 4);
-> > +static SENSOR_DEVICE_ATTR(pwm5, 0644,
-> > +			show_pwm, set_pwm, 5);
-> > +static SENSOR_DEVICE_ATTR(pwm6, 0644,
-> > +			show_pwm, set_pwm, 6);
-> > +static SENSOR_DEVICE_ATTR(pwm7, 0644,
-> > +			show_pwm, set_pwm, 7);
-> > +static SENSOR_DEVICE_ATTR(pwm8, 0644,
-> > +			show_pwm, set_pwm, 8);
-> > +static SENSOR_DEVICE_ATTR(pwm9, 0644,
-> > +			show_pwm, set_pwm, 9);
-> > +static SENSOR_DEVICE_ATTR(pwm10, 0644,
-> > +			show_pwm, set_pwm, 10);
-> > +static SENSOR_DEVICE_ATTR(pwm11, 0644,
-> > +			show_pwm, set_pwm, 11);
-> > +static SENSOR_DEVICE_ATTR(pwm12, 0644,
-> > +			show_pwm, set_pwm, 12);
-> > +static SENSOR_DEVICE_ATTR(pwm13, 0644,
-> > +			show_pwm, set_pwm, 13);
-> > +static SENSOR_DEVICE_ATTR(pwm14, 0644,
-> > +			show_pwm, set_pwm, 14);
-> > +static SENSOR_DEVICE_ATTR(pwm15, 0644,
-> > +			show_pwm, set_pwm, 15);
-> > +static struct attribute *pwm_dev_attrs[] = {
-> > +	&sensor_dev_attr_pwm0.dev_attr.attr,
-> > +	&sensor_dev_attr_pwm1.dev_attr.attr,
-> > +	&sensor_dev_attr_pwm2.dev_attr.attr,
-> > +	&sensor_dev_attr_pwm3.dev_attr.attr,
-> > +	&sensor_dev_attr_pwm4.dev_attr.attr,
-> > +	&sensor_dev_attr_pwm5.dev_attr.attr,
-> > +	&sensor_dev_attr_pwm6.dev_attr.attr,
-> > +	&sensor_dev_attr_pwm7.dev_attr.attr,
-> > +	&sensor_dev_attr_pwm8.dev_attr.attr,
-> > +	&sensor_dev_attr_pwm9.dev_attr.attr,
-> > +	&sensor_dev_attr_pwm10.dev_attr.attr,
-> > +	&sensor_dev_attr_pwm11.dev_attr.attr,
-> > +	&sensor_dev_attr_pwm12.dev_attr.attr,
-> > +	&sensor_dev_attr_pwm13.dev_attr.attr,
-> > +	&sensor_dev_attr_pwm14.dev_attr.attr,
-> > +	&sensor_dev_attr_pwm15.dev_attr.attr,
-> > +	NULL,
-> > +};
-> > +
-> > +static const struct attribute_group pwm_dev_group = {
-> > +	.attrs = pwm_dev_attrs,
-> > +	.is_visible = pwm_is_visible,
-> > +};
-> > +
-> > +static SENSOR_DEVICE_ATTR(fan0_input, 0444,
-> > +		show_rpm, NULL, 0);
-> > +static SENSOR_DEVICE_ATTR(fan1_input, 0444,
-> > +		show_rpm, NULL, 1);
-> > +static SENSOR_DEVICE_ATTR(fan2_input, 0444,
-> > +		show_rpm, NULL, 2);
-> > +static SENSOR_DEVICE_ATTR(fan3_input, 0444,
-> > +		show_rpm, NULL, 3);
-> > +static SENSOR_DEVICE_ATTR(fan4_input, 0444,
-> > +		show_rpm, NULL, 4);
-> > +static SENSOR_DEVICE_ATTR(fan5_input, 0444,
-> > +		show_rpm, NULL, 5);
-> > +static SENSOR_DEVICE_ATTR(fan6_input, 0444,
-> > +		show_rpm, NULL, 6);
-> > +static SENSOR_DEVICE_ATTR(fan7_input, 0444,
-> > +		show_rpm, NULL, 7);
-> > +static SENSOR_DEVICE_ATTR(fan8_input, 0444,
-> > +		show_rpm, NULL, 8);
-> > +static SENSOR_DEVICE_ATTR(fan9_input, 0444,
-> > +		show_rpm, NULL, 9);
-> > +static SENSOR_DEVICE_ATTR(fan10_input, 0444,
-> > +		show_rpm, NULL, 10);
-> > +static SENSOR_DEVICE_ATTR(fan11_input, 0444,
-> > +		show_rpm, NULL, 11);
-> > +static SENSOR_DEVICE_ATTR(fan12_input, 0444,
-> > +		show_rpm, NULL, 12);
-> > +static SENSOR_DEVICE_ATTR(fan13_input, 0444,
-> > +		show_rpm, NULL, 13);
-> > +static SENSOR_DEVICE_ATTR(fan14_input, 0444,
-> > +		show_rpm, NULL, 14);
-> > +static SENSOR_DEVICE_ATTR(fan15_input, 0444,
-> > +		show_rpm, NULL, 15);
-> > +static struct attribute *fan_dev_attrs[] = {
-> > +	&sensor_dev_attr_fan0_input.dev_attr.attr,
-> > +	&sensor_dev_attr_fan1_input.dev_attr.attr,
-> > +	&sensor_dev_attr_fan2_input.dev_attr.attr,
-> > +	&sensor_dev_attr_fan3_input.dev_attr.attr,
-> > +	&sensor_dev_attr_fan4_input.dev_attr.attr,
-> > +	&sensor_dev_attr_fan5_input.dev_attr.attr,
-> > +	&sensor_dev_attr_fan6_input.dev_attr.attr,
-> > +	&sensor_dev_attr_fan7_input.dev_attr.attr,
-> > +	&sensor_dev_attr_fan8_input.dev_attr.attr,
-> > +	&sensor_dev_attr_fan9_input.dev_attr.attr,
-> > +	&sensor_dev_attr_fan10_input.dev_attr.attr,
-> > +	&sensor_dev_attr_fan11_input.dev_attr.attr,
-> > +	&sensor_dev_attr_fan12_input.dev_attr.attr,
-> > +	&sensor_dev_attr_fan13_input.dev_attr.attr,
-> > +	&sensor_dev_attr_fan14_input.dev_attr.attr,
-> > +	&sensor_dev_attr_fan15_input.dev_attr.attr,
-> > +	NULL
-> > +};
-> > +
-> > +static const struct attribute_group fan_dev_group = {
-> > +	.attrs = fan_dev_attrs,
-> > +	.is_visible = fan_dev_is_visible,
-> > +};
-> > +
-> > +static void aspeed_create_pwm_channel(struct device *dev, struct aspeed_pwm_tachometer_data *priv,
-> > +				   u8 pwm_channel, u32 target_pwm_freq)
-> > +{
-> > +	priv->pwm_present[pwm_channel] = true;
-> > +	priv->pwm_channel[pwm_channel].target_freq = target_pwm_freq;
-> > +
-> > +	//use default
-> > +	aspeed_set_pwm_channel_fan_ctrl(dev,
-> > +					priv,
-> > +					pwm_channel,
-> > +					priv->pwm_channel[pwm_channel].falling);
-> > +}
-> > +
-> > +static void aspeed_create_fan_tach_channel(struct aspeed_pwm_tachometer_data *priv,
-> > +					   u8 *fan_tach_ch, int count,
-> > +					   u32 fan_pulse_pr, u32 tacho_div)
-> > +{
-> > +	u8 val, index;
-> > +
-> > +	for (val = 0; val < count; val++) {
-> > +		index = fan_tach_ch[val];
-> > +		priv->fan_tach_present[index] = true;
-> > +		priv->tacho_channel[index].pulse_pr = fan_pulse_pr;
-> > +		aspeed_set_fan_tach_ch_enable(priv, index, true, tacho_div);
-> > +	}
-> > +}
-> > +
-> > +static int
-> > +aspeed_pwm_cz_get_max_state(struct thermal_cooling_device *tcdev,
-> > +			    unsigned long *state)
-> > +{
-> > +	struct aspeed_cooling_device *cdev = tcdev->devdata;
-> > +
-> > +	*state = cdev->max_state;
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int
-> > +aspeed_pwm_cz_get_cur_state(struct thermal_cooling_device *tcdev,
-> > +			    unsigned long *state)
-> > +{
-> > +	struct aspeed_cooling_device *cdev = tcdev->devdata;
-> > +
-> > +	*state = cdev->cur_state;
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int
-> > +aspeed_pwm_cz_set_cur_state(struct thermal_cooling_device *tcdev,
-> > +			    unsigned long state)
-> > +{
-> > +	struct aspeed_cooling_device *cdev = tcdev->devdata;
-> > +
-> > +	if (state > cdev->max_state)
-> > +		return -EINVAL;
-> > +
-> > +	cdev->cur_state = state;
-> > +	cdev->priv->pwm_channel[cdev->pwm_channel].falling =
-> > +					cdev->cooling_levels[cdev->cur_state];
-> > +	aspeed_set_pwm_channel_fan_ctrl(&tcdev->device, cdev->priv, cdev->pwm_channel,
-> > +				     cdev->cooling_levels[cdev->cur_state]);
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static const struct thermal_cooling_device_ops aspeed_pwm_cool_ops = {
-> > +	.get_max_state = aspeed_pwm_cz_get_max_state,
-> > +	.get_cur_state = aspeed_pwm_cz_get_cur_state,
-> > +	.set_cur_state = aspeed_pwm_cz_set_cur_state,
-> > +};
-> > +
-> > +static int aspeed_create_pwm_cooling(struct device *dev,
-> > +				     struct device_node *child,
-> > +				     struct aspeed_pwm_tachometer_data *priv,
-> > +				     u32 pwm_channel, u8 num_levels)
-> > +{
-> > +	int ret;
-> > +	struct aspeed_cooling_device *cdev;
-> > +
-> > +	cdev = devm_kzalloc(dev, sizeof(*cdev), GFP_KERNEL);
-> > +	if (!cdev)
-> > +		return -ENOMEM;
-> > +
-> > +	cdev->cooling_levels = devm_kzalloc(dev, num_levels, GFP_KERNEL);
-> > +	if (!cdev->cooling_levels)
-> > +		return -ENOMEM;
-> > +
-> > +	cdev->max_state = num_levels - 1;
-> > +	ret = of_property_read_u8_array(child, "cooling-levels",
-> > +					cdev->cooling_levels,
-> > +					num_levels);
-> > +	if (ret) {
-> > +		dev_err(dev, "Property 'cooling-levels' cannot be read.\n");
-> > +		return ret;
-> > +	}
-> > +	snprintf(cdev->name, MAX_CDEV_NAME_LEN, "%s%d", child->name, pwm_channel);
-> > +
-> > +	cdev->tcdev = thermal_of_cooling_device_register(child,
-> > +							 cdev->name,
-> > +							 cdev,
-> > +							 &aspeed_pwm_cool_ops);
-> > +	if (IS_ERR(cdev->tcdev))
-> > +		return PTR_ERR(cdev->tcdev);
-> > +
-> > +	cdev->priv = priv;
-> > +	cdev->pwm_channel = pwm_channel;
-> > +
-> > +	priv->cdev[pwm_channel] = cdev;
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int aspeed_pwm_create_fan(struct device *dev,
-> > +			     struct device_node *child,
-> > +			     struct aspeed_pwm_tachometer_data *priv)
-> > +{
-> > +	u8 *fan_tach_ch;
-> > +	u32 fan_pulse_pr;
-> > +	u32 tacho_div;
-> > +	u32 pwm_channel;
-> > +	u32 target_pwm_freq = 0;
-> > +	int ret, count;
-> > +
-> > +	ret = of_property_read_u32(child, "reg", &pwm_channel);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	ret = of_property_read_u32(child, "aspeed,pwm-freq", &target_pwm_freq);
-> > +	if (ret)
-> > +		target_pwm_freq = DEFAULT_TARGET_PWM_FREQ;
-> > +
-> > +	aspeed_create_pwm_channel(dev, priv, (u8)pwm_channel, target_pwm_freq);
-> > +
-> > +	ret = of_property_count_u8_elems(child, "cooling-levels");
-> > +	if (ret > 0) {
-> > +		if (IS_ENABLED(CONFIG_THERMAL)) {
-> > +			ret = aspeed_create_pwm_cooling(dev, child, priv, pwm_channel,
-> > +							ret);
-> > +			if (ret)
-> > +				return ret;
-> > +		}
-> > +	}
-> > +
-> > +	count = of_property_count_u8_elems(child, "aspeed,fan-tach-ch");
-> > +	if (count < 1)
-> > +		return -EINVAL;
-> > +
-> > +	fan_tach_ch = devm_kzalloc(dev, sizeof(*fan_tach_ch) * count,
-> > +				   GFP_KERNEL);
-> > +	if (!fan_tach_ch)
-> > +		return -ENOMEM;
-> > +	ret = of_property_read_u8_array(child, "aspeed,fan-tach-ch",
-> > +					fan_tach_ch, count);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	ret = of_property_read_u32(child, "aspeed,pulse-pr", &fan_pulse_pr);
-> > +	if (ret)
-> > +		fan_pulse_pr = DEFAULT_FAN_PULSE_PR;
-> 
-> Are those properties declared as optional ?
-> 
-I'll update the dt-bindings document and make it clearly.
-
-> > +
-> > +	ret = of_property_read_u32(child, "aspeed,tacho-div", &tacho_div);
-> > +	if (ret)
-> > +		tacho_div = DEFAULT_TACHO_DIV;
-> > +
-> > +	aspeed_create_fan_tach_channel(priv, fan_tach_ch, count, fan_pulse_pr, tacho_div);
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int aspeed_pwm_tachometer_probe(struct platform_device *pdev)
-> > +{
-> > +	struct device *dev = &pdev->dev;
-> > +	struct device_node *np, *child;
-> > +	struct aspeed_pwm_tachometer_data *priv;
-> > +	void __iomem *regs;
-> > +	struct resource *res;
-> > +	struct device *hwmon;
-> > +	struct clk *clk;
-> > +	int ret;
-> > +
-> > +	np = dev->of_node;
-> > +
-> > +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> > +	if (!res)
-> > +		return -ENOENT;
-> 
-> Unnecessary error check. devm_ioremap_resource() does that (and
-> returns -EINVAL).
-> 
-Change these line-of-codes into devm_platform_ioremap_resource(pdev, 0).
-
-> > +	regs = devm_ioremap_resource(dev, res);
-> > +	if (IS_ERR(regs))
-> > +		return PTR_ERR(regs);
-> > +	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-> > +	if (!priv)
-> > +		return -ENOMEM;
-> > +
-> > +	priv->pwm_channel = default_pwm_params;
-> > +	priv->tacho_channel = default_tacho_params;
-> > +	priv->regmap = devm_regmap_init(dev, NULL, (__force void *)regs,
-> > +			&aspeed_pwm_tachometer_regmap_config);
-> > +	if (IS_ERR(priv->regmap))
-> > +		return PTR_ERR(priv->regmap);
-> > +
-> > +	clk = devm_clk_get(dev, NULL);
-> > +	if (IS_ERR(clk))
-> > +		return -ENODEV;
-> > +	priv->clk_freq = clk_get_rate(clk);
-> > +
-> > +	priv->reset = devm_reset_control_get(&pdev->dev, NULL);
-> > +	if (IS_ERR(priv->reset)) {
-> > +		dev_err(&pdev->dev, "can't get aspeed_pwm_tacho reset\n");
-> > +		return PTR_ERR(priv->reset);
-> > +	}
-> > +
-> > +	//scu init
-> > +	reset_control_assert(priv->reset);
-> > +	reset_control_deassert(priv->reset);
-> > +
-> > +	for_each_child_of_node(np, child) {
-> > +		ret = aspeed_pwm_create_fan(dev, child, priv);
-> > +		if (ret) {
-> > +			of_node_put(child);
-> > +			return ret;
-> > +		}
-> > +	}
-> > +
-> > +	priv->groups[0] = &pwm_dev_group;
-> > +	priv->groups[1] = &fan_dev_group;
-> > +	priv->groups[2] = NULL;
-> > +	dev_info(dev, "pwm tach probe done\n");
-> > +	hwmon = devm_hwmon_device_register_with_groups(dev,
-> > +						       "aspeed_pwm_tachometer",
-> > +						       priv, priv->groups);
-> 
-> New drivers must use devm_hwmon_device_register_with_info().
-> 
-I will change using it in v2.
-
-> > +
-> > +	return PTR_ERR_OR_ZERO(hwmon);
-> > +}
-> > +
-> > +static const struct of_device_id of_pwm_tachometer_match_table[] = {
-> > +	{ .compatible = "aspeed,ast2600-pwm-tachometer", },
-> > +	{},
-> > +};
-> > +MODULE_DEVICE_TABLE(of, of_pwm_tachometer_match_table);
-> > +
-> > +static struct platform_driver aspeed_pwm_tachometer_driver = {
-> > +	.probe		= aspeed_pwm_tachometer_probe,
-> > +	.driver		= {
-> > +		.name	= "aspeed_pwm_tachometer",
-> > +		.of_match_table = of_pwm_tachometer_match_table,
-> > +	},
-> > +};
-> > +
-> > +module_platform_driver(aspeed_pwm_tachometer_driver);
-> > +
-> > +MODULE_AUTHOR("Ryan Chen <ryan_chen@aspeedtech.com>");
-> > +MODULE_DESCRIPTION("ASPEED PWM and Fan Tachometer device driver");
-> > +MODULE_LICENSE("GPL");
-> > -- 
-> > 2.17.1
+> > > It would also be good to go over the security implications of the
+> > > design.  E.g., can the FPGA kernel(s) access the DMA engine directly,
+> > > or is it limited to just the DMA regions set up by the ioctls?  Also,
+> > > does the hardware and software design allow for multiple users?  If
+> > > so, how does that work?
+> > I've also seen indications that there's some on-chip or on-card
+> > memory. How that's planned to be used and whether we want to manage
+> > this (maybe even with something like ttm) would be good to understand.
 > > 
+> > All excellent questions from Alex, just figured I add some more.
+> > 
+> > Cheers, Daniel
+> 
+> Hi Alex, Daniel,
+> 
+> Below is an overview of the driver.
+> 
+> AI engine kernel driver manages Xilinx AI engine device. An AI engine device
+> contains cores tiles and SHIM tiles. Core tiles are the computation tiles
+> , the SHIM tiles are the tiles interfacing to external components.
+> 
+>           +--------+--------+--------+--------+
+>            | Core        | Core        | Core        | Core | ...
+>            |                |                | |                |
+>           +-----------------------------------+
+>            | Core        | Core        | Core        | Core     | ...
+>            |                |                | |             |
+>           +--------+--------+--------+---------
+>            ...
+>           +--------+--------+-----------------+
+>           | SHIM        | SHIM       | SHIM       |SHIM        |
+>           | PL            | PL           | PL            |PL | NOC  |
+>           +---+----+---+----+---+-----+-------+
+>   AXI Streams   |        |                |              |    |AXI MM
+>                        |        |                | |    |
+> Events Singals |        |                |              |    |
+>                        |        |                | |    |
+>                        |        |                | |    |
+>           +---+--------+--------+-----+ +--+------+
+>           |       FPGA                                        | |  
+> NOC        |
+>           | | |                  |
+>           +---------------------------+ +--+-------+
+>                                            |
+>                                            |
+>                                        +---+------+
+>                                        |   DDR           |
+>                                        +----------+
+> 
 
-Thanks for you suggestion,
-Troy Lee
+Your diagram here didn't survive email unfortunately :-/
+
+Quick question: Where's the fpga driver for this chip? I'm assuming it's
+something separate.
+
+> Each Core tile contains computing module, local memory and DMA module. The
+> local memory DMA module takes data from or to the AXI streams and writes
+> it to or reads it from the local memory. The computing module can also
+> directly get/put data from/to the AXI stream. The AIE SHIM enables AIE tiles
+> to get/put data from/to AXI streams from FPGA, enables external master to
+> access AI engine address space through AXI MM. SHIM NoC module has DMA
+> engine,
+> which can access extern memory though AXI MM and push it to internal AXI
+> streams.
+> 
+> At runtime, the AI engine tiles interconnection needs to be configured so
+> that
+> it can get fetch data from external components or adjacent tiles, and AI
+> engine
+> core program needs to be loaded. And then user application can push data to
+> the
+> AI engine array and start/stop AI engine core. AI engine device errors can
+> be
+> raised as events, the AI engine kernel driver listens to the events
+> interrupt
+> to monitor runtime async device errors.
+> 
+> Instead of application directly interacting with the AI engine kernel APIs,
+> user
+> application/libraries interacts with AI engine userspace library:
+> https://github.com/Xilinx/embeddedsw/tree/master/XilinxProcessorIPLib/drivers/aienginev2
+> It provides cross OSes low level functional abstraction such as how to
+> connect one
+> stream port to another stream port, how to configure core tile local DMA.
+> 
+> The AI engine library can be used by other runtime libraries such as Xilinx
+> runtime (XRT)
+> library: https://xilinx.github.io/XRT/master/html/index.html,
+> which provides acceleration abstraction for Xilinx accelerators, it has
+> extensions
+> to interface to other acceleration framework such as OpenCL.
+> XRT provides buffer handling abstractions for user application to share data
+> between
+> applicaiton and devices.
+> 
+> Here is an example of application runtime stack:
+> 
+>             +----------------------------+
+>             |      Application                              |
+>             | |
+>             +----------------------------+
+>             |       XRT                                        |
+>             | |
+>             +----------------------------+
+>             |      AIE Library                               |
+>             | |
+>            +----------------------------+
+>     +----------------------------------------+
+> Kern    +----------------------------+
+>             |         AIE Partition                        +--+
+>            +----------------------------+    |
+>                   |----------------------------+
+>             +----------------------------+
+>              |         AIE Device                           |
+>              | |
+>             +----------------------------+
+> 
+> 
+> 
+> The AI engine kernel driver provides the following user interfaces:
+>  * AIE device driver is the root device driver to manage the partitions of
+>    of the AI engine device array. AI engine array can be partitioned into
+>    column wised isolated partitions. Each applicaiton can only access its
+>    own partitions.
+>  * AIE device driver monitors the interrupt from the AI enigne device. All
+>    AI engine tiles shared the same interrupt for error events.
+>  * AIE partition driver controls address mapping and access of the
+>    registers/local memories of the tiles within a partition.
+>    * It provides mmap operation to enable application to direclty access the
+>      tiles local memories for small data update such as parameter update for
+>      performance.
+>    * It provides mmap operatio to map all the registers as readonly for
+>      application to poll registers efficiently to check status.
+>    * It provides ioctl for userspace to pass I/O commands to write/mask
+> write
+>      the registers. How to configure is defined by userspace. Userspace will
+>      pass the I/O commands sequence to the kernel driver, and kernel driver
+>      will validate the commands before it writes to the registers.
+>    * It provides ioctl to import dmabuf and ioctl to configure the the DMA
+> module
+>      in the SHIM tile which can access memory outside AI engine array.
+
+This sounds a bit like there's no model for running multiple userspace,
+aside from hard-partitioning the chip? Could we suspend/resume clients by
+saving/restoring that entire mmio range that they set up?
+
+> The buffer management is out of this driver. In the above example, user
+> application
+> uses Xilinx runtime(XRT), XRT is the one to manage the buffers.
+
+Somehow you're getting data in/out of these compute tiles, and from your
+description it sounds like that's done through special AXI streams that
+connect to this NOC thing?
+
+So someone needs to manage that memory, and on the kernel side you
+probably need something which can do the dma_map_sg for said memory. So
+which kernel driver does that?
+
+In the past there was a drm driver submission for iirc a xilinx fpga, but
+we can't take that one because only the runtime, not the compiler are open
+source. Is that the part which provides memory management (together with
+the userspace runtime)?
+-Daniel
+
+> 
+> 
+> Best Regards,
+> 
+> Wendy
+> 
+> > 
+> > > Thanks,
+> > > 
+> > > Alex
+> > > 
+> > > 
+> > > > v3:
+> > > > * unlock AIE dev mutex after failed to gain the partition lock in
+> > > >    errors handing
+> > > > * replace pointer with __u64 and enum with __u32 in ioctl
+> > > > 
+> > > > v2:
+> > > > * Fix dtschema check errors
+> > > > * Fix test bot warning on interrupt implementation. Removed set but
+> > > >    unused  varaible.
+> > > > * Fix compilation unused function warning of firmware change in case
+> > > >    ZynqMP firmware is not configured
+> > > > * There are other warning on ZynqMP firmware reported from testbot
+> > > >    which is not introduced by this patch set.
+> > > >    "[PATCH] firmware: xlnx-zynqmp: fix compilation warning" is submitted
+> > > >    for those fixes.
+> > > > 
+> > > > 
+> > > > Izhar Ameer Shaikh (1):
+> > > >    firmware: xilinx: Add IOCTL support for AIE ISR Clear
+> > > > 
+> > > > Nishad Saraf (2):
+> > > >    misc: xilinx-ai-engine: Add support to request device management
+> > > >      services
+> > > >    misc: xilinx-ai-engine: Add support for servicing error interrupts
+> > > > 
+> > > > Wendy Liang (6):
+> > > >    dt-binding: soc: xilinx: ai-engine: Add AI engine binding
+> > > >    misc: Add Xilinx AI engine device driver
+> > > >    misc: xilinx-ai-engine: Implement AI engine cleanup sequence
+> > > >    misc: xilinx-ai-engine: expose AI engine tile memories to userspace
+> > > >    misc: xilinx-ai-engine: add setting shim dma bd operation
+> > > >    misc: xilinx-ai-engine: add request and release tiles
+> > > > 
+> > > >   .../bindings/soc/xilinx/xlnx,ai-engine.yaml        | 126 ++++
+> > > >   MAINTAINERS                                        |   8 +
+> > > >   drivers/firmware/xilinx/zynqmp.c                   |  14 +
+> > > >   drivers/misc/Kconfig                               |  12 +
+> > > >   drivers/misc/Makefile                              |   1 +
+> > > >   drivers/misc/xilinx-ai-engine/Makefile             |  16 +
+> > > >   drivers/misc/xilinx-ai-engine/ai-engine-aie.c      | 608 +++++++++++++++++++
+> > > >   drivers/misc/xilinx-ai-engine/ai-engine-clock.c    | 245 ++++++++
+> > > >   drivers/misc/xilinx-ai-engine/ai-engine-dev.c      | 496 ++++++++++++++++
+> > > >   drivers/misc/xilinx-ai-engine/ai-engine-dma.c      | 481 +++++++++++++++
+> > > >   drivers/misc/xilinx-ai-engine/ai-engine-internal.h | 519 ++++++++++++++++
+> > > >   .../misc/xilinx-ai-engine/ai-engine-interrupt.c    | 659 +++++++++++++++++++++
+> > > >   drivers/misc/xilinx-ai-engine/ai-engine-mem.c      | 275 +++++++++
+> > > >   drivers/misc/xilinx-ai-engine/ai-engine-part.c     | 635 ++++++++++++++++++++
+> > > >   drivers/misc/xilinx-ai-engine/ai-engine-res.c      | 219 +++++++
+> > > >   drivers/misc/xilinx-ai-engine/ai-engine-reset.c    | 159 +++++
+> > > >   include/linux/firmware/xlnx-zynqmp.h               |   8 +
+> > > >   include/uapi/linux/xlnx-ai-engine.h                | 238 ++++++++
+> > > >   18 files changed, 4719 insertions(+)
+> > > >   create mode 100644 Documentation/devicetree/bindings/soc/xilinx/xlnx,ai-engine.yaml
+> > > >   create mode 100644 drivers/misc/xilinx-ai-engine/Makefile
+> > > >   create mode 100644 drivers/misc/xilinx-ai-engine/ai-engine-aie.c
+> > > >   create mode 100644 drivers/misc/xilinx-ai-engine/ai-engine-clock.c
+> > > >   create mode 100644 drivers/misc/xilinx-ai-engine/ai-engine-dev.c
+> > > >   create mode 100644 drivers/misc/xilinx-ai-engine/ai-engine-dma.c
+> > > >   create mode 100644 drivers/misc/xilinx-ai-engine/ai-engine-internal.h
+> > > >   create mode 100644 drivers/misc/xilinx-ai-engine/ai-engine-interrupt.c
+> > > >   create mode 100644 drivers/misc/xilinx-ai-engine/ai-engine-mem.c
+> > > >   create mode 100644 drivers/misc/xilinx-ai-engine/ai-engine-part.c
+> > > >   create mode 100644 drivers/misc/xilinx-ai-engine/ai-engine-res.c
+> > > >   create mode 100644 drivers/misc/xilinx-ai-engine/ai-engine-reset.c
+> > > >   create mode 100644 include/uapi/linux/xlnx-ai-engine.h
+> > > > 
+> > > > --
+> > > > 2.7.4
+> > > > 
+> > > > _______________________________________________
+> > > > dri-devel mailing list
+> > > > dri-devel@lists.freedesktop.org
+> > > > https://lists.freedesktop.org/mailman/listinfo/dri-devel
+> > > _______________________________________________
+> > > dri-devel mailing list
+> > > dri-devel@lists.freedesktop.org
+> > > https://lists.freedesktop.org/mailman/listinfo/dri-devel
+
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
