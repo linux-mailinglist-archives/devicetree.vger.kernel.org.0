@@ -2,396 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B1C322DB6D8
-	for <lists+devicetree@lfdr.de>; Wed, 16 Dec 2020 00:04:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2104E2DB6DE
+	for <lists+devicetree@lfdr.de>; Wed, 16 Dec 2020 00:05:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730571AbgLOXDm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Dec 2020 18:03:42 -0500
-Received: from esa5.hgst.iphmx.com ([216.71.153.144]:47513 "EHLO
-        esa5.hgst.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730016AbgLOXDa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Dec 2020 18:03:30 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
-  t=1608073409; x=1639609409;
-  h=from:to:cc:subject:date:message-id:references:
-   content-transfer-encoding:mime-version;
-  bh=Z2AmIV1bin5PNwuj1s6oP+3wcAbfIpD99zu5z7FQtbU=;
-  b=PRYaBNV7yJCwKBh1hU9o34oMPAkDy3h6vBmG5mfXc9L0RYsAyhjNVeN9
-   ZQKmhz2rkvjq25S/tBtyadhuLcZ2I0sc2Oy3edjhP4EYUw/MdLapUpUpH
-   88v5ythbDpss8Ki6YAcjwe0Q39fbSglNTkrCj2lStijuBrRQfpD7HmVFP
-   R3z9lPdw5N44RjAPv3rO0W9hcW184WxriqC0GCAQQVXG7t7Ws9IwHip6r
-   RXpnLK+dOIUll//38gvUdDH2OcHobW96ps2jDuAQq57ylVsmKQBLnqdbE
-   UZ36PZ/1tLlnGUhWzGWinN+dJGvgpDc8v1Ar4EkpLkvNcxkv9OHDEOkuA
-   w==;
-IronPort-SDR: GoyxP0wrAic2DILpqPgiHknTXiXtzajlcom1BLTG8ujOYCSfwfUnjR/42RLcr6+I4M8w0o2zcd
- JCiMVaZKzehqC8UOMfclep8HvVOaW9Xpo2m+vrGufxU30LVDWYrern3ZdIVmiBo9MvYMbwZ+R6
- 1Fe62mY3pNF3kXUAzLa638qfcWbNrLdei1hyh5NgpQk1ODo0TvvD7iBkniWwl/S2ChNu6MOLPC
- nXOAIq1AFn0w7ycjUq+DqODMzRK1X2cMoHj3Z09Rz57IPi4l/vW1+n0bu4bFF3OVrcp7OaxxFH
- GI4=
-X-IronPort-AV: E=Sophos;i="5.78,422,1599494400"; 
-   d="scan'208";a="155263542"
-Received: from mail-dm6nam10lp2102.outbound.protection.outlook.com (HELO NAM10-DM6-obe.outbound.protection.outlook.com) ([104.47.58.102])
-  by ob1.hgst.iphmx.com with ESMTP; 16 Dec 2020 07:02:22 +0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=jg1VPvQdKyKfS5hE0DaAnpB2HFzeJRmeLXDNBn0DaSj8STDW2hvLT8+ossuQ/PIR14hZWgDgI76wU6w3ZM60v/0cfM6xhA2W94Bna6n++4X5QbVtav2Qlao4fz1KOaVJvaYFcBetY5EDG0l+Q6jDtj5xXs+hi2SHzyli4KJVGgdhgFMEU8C+L9fp83fwJj8ODKYeFRkn5nSk4MJFKN4koVroJKvZHCMZzfi44HZk/HcbBEgZtM8JU/BVbSMFTm3+P+u2Jr9MemJdeku6PX+6xxtskpvsULXkJFg5dPArUF0b2wV4wlip9AuTneFsR6OH9HaWLFO8kgMn4y7HYKGnmg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wcqym9b5yMe50qvF4GaplURAgrkNSenYbzrUYb77j+E=;
- b=aeem8iLPV+QNfs/BMUllvuHJybpFZCidpqC1HO2xYhnDPRq4xmxAPCSZD5QATogvOJOlZ9S8AXIzUk/FS4I/HQOeq9KvH3xjX37ez3YuIRdCD81BlK6lcGLfBrfghiK9v5pWumeowlibN89wqbmHpIXoeuNWMunY5H+fhIZ/5GN8AT2nAXNwbSK7SpDFfJtYLHWjNl+oy9YYx1e3ncfgmfKeda+cru96afYGIzKeEcKlcXYgrPrdsxmYKOLIy2CmRVswlJ9g1jYJmK+LTYrIiHMc0nrLp9pijRBoYjnhCwOLP3MvBVVYI8++oyWn5oAGII1CSKolPI1MPCIX6bOoZw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=wdc.com; dmarc=pass action=none header.from=wdc.com; dkim=pass
- header.d=wdc.com; arc=none
+        id S1730170AbgLOXFF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Dec 2020 18:05:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38524 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730912AbgLOXE1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Dec 2020 18:04:27 -0500
+Received: from mail-pj1-x1041.google.com (mail-pj1-x1041.google.com [IPv6:2607:f8b0:4864:20::1041])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AABBC061793
+        for <devicetree@vger.kernel.org>; Tue, 15 Dec 2020 15:03:47 -0800 (PST)
+Received: by mail-pj1-x1041.google.com with SMTP id b5so454140pjk.2
+        for <devicetree@vger.kernel.org>; Tue, 15 Dec 2020 15:03:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=sharedspace.onmicrosoft.com; s=selector2-sharedspace-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wcqym9b5yMe50qvF4GaplURAgrkNSenYbzrUYb77j+E=;
- b=NSCn2fj+tEcsqM7u6Mntki+n7qHDWnXivSU8uO+vqYmFO1+VlLnSNXt6dPGP8tCfBwIXnqZt9f3w4X+RIA1jBme9vXDRMGo216TY5BOMvCzHtps0Vcl0wEuFKG+XDkd8Qu6yHrUt4rktjwG/KObuEk+NSOhzqKPA7Gvgem24XVs=
-Received: from CH2PR04MB6522.namprd04.prod.outlook.com (2603:10b6:610:34::19)
- by CH2PR04MB6902.namprd04.prod.outlook.com (2603:10b6:610:a3::24) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3654.14; Tue, 15 Dec
- 2020 23:02:21 +0000
-Received: from CH2PR04MB6522.namprd04.prod.outlook.com
- ([fe80::897c:a04b:4eb0:640a]) by CH2PR04MB6522.namprd04.prod.outlook.com
- ([fe80::897c:a04b:4eb0:640a%6]) with mapi id 15.20.3654.026; Tue, 15 Dec 2020
- 23:02:21 +0000
-From:   Damien Le Moal <Damien.LeMoal@wdc.com>
-To:     Palmer Dabbelt <palmer@dabbelt.com>,
-        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-CC:     Sean Anderson <seanga2@gmail.com>
-Subject: Re: [PATCH v10 00/23] RISC-V Kendryte K210 support improvements
-Thread-Topic: [PATCH v10 00/23] RISC-V Kendryte K210 support improvements
-Thread-Index: AQHW0VcBx/1WqOKLiUuqE6/7D5Ba7g==
-Date:   Tue, 15 Dec 2020 23:02:20 +0000
-Message-ID: <CH2PR04MB65220A2CDD6F186F1DB53D3AE7C60@CH2PR04MB6522.namprd04.prod.outlook.com>
-References: <20201213135056.24446-1-damien.lemoal@wdc.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dabbelt.com; dkim=none (message not signed)
- header.d=none;dabbelt.com; dmarc=none action=none header.from=wdc.com;
-x-originating-ip: [2400:2411:43c0:6000:f0b5:b4fe:45e3:5658]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: 5be3c3b1-e915-4cd9-87a1-08d8a14d7a5e
-x-ms-traffictypediagnostic: CH2PR04MB6902:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <CH2PR04MB69024F2D0D4D0DC2B063A74CE7C60@CH2PR04MB6902.namprd04.prod.outlook.com>
-wdcipoutbound: EOP-TRUE
-x-ms-oob-tlc-oobclassifiers: OLM:2449;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: YIPFrmC/kYmCYkENJUYkQa1U8ufquettU69kp1G/DR17NZk+UIjzaqbcunvc/rQY/qmBPA3AwhLe/zRYaDsfJTfN50tHqP82UFQUjFFFY6/ijN0HYOaDZKWATlLinGkeVU0XNPo352PTDCTer6244N0dZ/x03TTHlaxv0I6rv8V0LQGvW2RDotaD4in4Fb7Eg3Ci8NL0qtEfPZNub5yMmQNu7TSdWbc4WIb8RZPMNoojjpj1uYcUCpLmIC0CsW1RdPFB1zrvkQL29ji71Y8wtdvz4K8xZHzbC00WPLu8NUWCuUofKWj3vyK7tIv5Q8V4iQJcwTDTGWtBHUr8lQSTmmN9LydI6uut0aotVpYeY/cCB+vyIQZcm1WJxUyualqMeCSNXSg6wDvZyv+Zi+H/zw==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CH2PR04MB6522.namprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(136003)(366004)(396003)(376002)(346002)(39860400002)(316002)(66446008)(8676002)(55016002)(83380400001)(2906002)(4326008)(30864003)(5660300002)(86362001)(478600001)(71200400001)(53546011)(8936002)(52536014)(6506007)(7416002)(7696005)(91956017)(9686003)(186003)(66556008)(64756008)(33656002)(66946007)(966005)(110136005)(66476007)(76116006);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata: =?us-ascii?Q?0CNqvw5BM05PpFmqHxPlOPnXs4K8aw0ivPKiWpJT1qEqxnvmVcYR0tEVCSPv?=
- =?us-ascii?Q?VCVGUixIy5ldK3R+Ev2N2lVXDEe9gyjvorwE2eB7BktQtM8mFHc+0LCmfHNt?=
- =?us-ascii?Q?6umz8fvNDrjEFj84bCuH3QU5hi6wyvzhTlHGtogY15z0wvTfst9TaPaU3kfz?=
- =?us-ascii?Q?mpHb0WHgvgJDelAUnh2MV2xvwGVoRq6V2NC8P44hjNEu3kCdj3ytMoXkANCv?=
- =?us-ascii?Q?8cqdOiRFaIujdQY9C4t2pAzTdMRbjX6XH3k3jk2u8YhSHHStpfI3/hUWL7p+?=
- =?us-ascii?Q?jrjt/5+4KSyGfQu2EaT4BbhDlOk8rWD80Ben5O0E8K82JTnkIn04idAQLxnf?=
- =?us-ascii?Q?W6DLBCn6ABvAMk2jobucqn3MaVNlb4Zq+9ic0R2i2uDRontdvfQBb4GEJf4h?=
- =?us-ascii?Q?FkgxzsKmI8rs0zY8ECbyrkOQc5Ew0HlS5iasBtsYQK9hiULXt2WYO+xF+FMV?=
- =?us-ascii?Q?GG2YKNaTuTdI4JJ0xVzWLp98B5pStgfpj9ABSXIdjqOKL7v6EMIkaICYAcLg?=
- =?us-ascii?Q?WhOXIzLXRWB/FdIvXppbKgYOsjPR0AE6ow7xWpJHim1dl9c+xDxqWZyWfH2V?=
- =?us-ascii?Q?T1Iam6ftLQLewnw9LLvFr8qjl4dPuGnoXnmNOO0LWKN2r9I3vT/ezb1GPk2s?=
- =?us-ascii?Q?9tSrPg9p4HvMggAJEISTTYC+/YZhp2YL2ffB0iu4NY4nAp+yTKUJSY+ATetK?=
- =?us-ascii?Q?hoxVp2jUUnYzb7eNwdjxGvS0uiIMK/mcX9Ij4+/gmbjKDdxW2Cp/7f25g+eF?=
- =?us-ascii?Q?ajcCHATcfdbyzoAk8JhqCBJytnt+RQy/9EryG6vzR8XzEd7AQP7pDQ9Q9m35?=
- =?us-ascii?Q?6kj+bMmxsx7zRV790qTmlQ/h9ZtNAF5ctHJT2iScCoW2nnASlb78Ccy7RdOG?=
- =?us-ascii?Q?hfpRWGDYjiB9hOgTsufXl++Ed1b2WBiXlcL9F7pGrLrLh3rd7wcGp91WWhdm?=
- =?us-ascii?Q?AbVvltGYQtJHSn1U9WMLrW2HYtpCAKfgyfQiCRm30SHSJZwoo+ru1u4OYOLZ?=
- =?us-ascii?Q?OCFdVM3lCxwdXzV3a3nwfL+YaisX1qOzlVjZu8ruiAzo9qaOm3En6AXlMw7Z?=
- =?us-ascii?Q?3fP8Vbad?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        d=gmail.com; s=20161025;
+        h=from:subject:to:cc:references:autocrypt:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=RRyxEJaRNVkKuIWBfnwX88zVROR8RD1iV9BxOiIcgI4=;
+        b=FgIs+rieDR46748ba1zDmNQp/Vo4UNIZ8iCR5jtVcpxwK3/7SZB1nLOoj9cvOta06s
+         VDiPc/2mpJb7f9Mhmyx24Y4KgfkC4J52usERUFzpBT/Yuc4uAuc5AlvdJRlt2Enzldxa
+         X/KKLGeOdklXW7mSU5WQXIm5eP0i03rhS+D22LrGhqrBDWzfnPCINzP1TKbyYo0RoaR5
+         pqVscqz6vCmAVML7PyhD9Qne2fAuHVv+DsOgout2qQh5g8j1sbOrPlV3yygSgoIJqmnT
+         O2tzEJiRre9ht2i+Ge6Vv6YJAy2V2TS6JTl1X8kCT8IHQlyEKBkdO++8GXntQW2Vcp8w
+         eGzQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:subject:to:cc:references:autocrypt
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=RRyxEJaRNVkKuIWBfnwX88zVROR8RD1iV9BxOiIcgI4=;
+        b=ebIR0o9b8u0pX/K6AJ5z/yxMDQno6wxLzwcYt5RYPM4BKuabzb385ygWrpLGIuU0Ch
+         0yAeiaTri4ZKbx77AUHmBCiS7PLAuO5fYpAxzzF6o8SoCNrOOAGkLjCtWK9atZ96opFw
+         gEcVo7Qr/XqPuA7ZVWIhoQctkAIDW7Zg0BLqdIDyi6DyERpu6LfxizLWsmR6gCvOOcui
+         tMl8pZTf4DWL9EuDU0ID89gHjiePZMvSsVI/So36SRLDKiznjNNj3xicViIrVYrsTYE4
+         YJVkmZyUgvWLw9KJGS7FpNNPPZMI/phjeRHxbxLROov5q6zuWhwXsbRDAjXeDHmxAyCN
+         hwwA==
+X-Gm-Message-State: AOAM532AYjzVtIYTWSZ4IMb5GjX9oGFI8X3IMJIVwonF3xRrHcFySdSi
+        /D0RtFs5WJhJ0Z3HSCp6Q88=
+X-Google-Smtp-Source: ABdhPJx7oY2brU35MR/dgifQFjD6/6ko0xFXsLNtkw7pAlEF+e8uUOg2Qf0dA5KI0iRH2J2yAqXoPA==
+X-Received: by 2002:a17:902:6b84:b029:d8:d13d:14e with SMTP id p4-20020a1709026b84b02900d8d13d014emr29931248plk.29.1608073426885;
+        Tue, 15 Dec 2020 15:03:46 -0800 (PST)
+Received: from [10.67.48.230] ([192.19.223.252])
+        by smtp.googlemail.com with ESMTPSA id c14sm5551pfp.167.2020.12.15.15.03.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 15 Dec 2020 15:03:46 -0800 (PST)
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Subject: Re: [PATCH] arm64: dts: broadcom: bcm4908: describe USB PHY
+To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+References: <20201215212232.11275-1-zajec5@gmail.com>
+Autocrypt: addr=f.fainelli@gmail.com; prefer-encrypt=mutual; keydata=
+ mQGiBEjPuBIRBACW9MxSJU9fvEOCTnRNqG/13rAGsj+vJqontvoDSNxRgmafP8d3nesnqPyR
+ xGlkaOSDuu09rxuW+69Y2f1TzjFuGpBk4ysWOR85O2Nx8AJ6fYGCoeTbovrNlGT1M9obSFGQ
+ X3IzRnWoqlfudjTO5TKoqkbOgpYqIo5n1QbEjCCwCwCg3DOH/4ug2AUUlcIT9/l3pGvoRJ0E
+ AICDzi3l7pmC5IWn2n1mvP5247urtHFs/uusE827DDj3K8Upn2vYiOFMBhGsxAk6YKV6IP0d
+ ZdWX6fqkJJlu9cSDvWtO1hXeHIfQIE/xcqvlRH783KrihLcsmnBqOiS6rJDO2x1eAgC8meAX
+ SAgsrBhcgGl2Rl5gh/jkeA5ykwbxA/9u1eEuL70Qzt5APJmqVXR+kWvrqdBVPoUNy/tQ8mYc
+ nzJJ63ng3tHhnwHXZOu8hL4nqwlYHRa9eeglXYhBqja4ZvIvCEqSmEukfivk+DlIgVoOAJbh
+ qIWgvr3SIEuR6ayY3f5j0f2ejUMYlYYnKdiHXFlF9uXm1ELrb0YX4GMHz7QnRmxvcmlhbiBG
+ YWluZWxsaSA8Zi5mYWluZWxsaUBnbWFpbC5jb20+iGYEExECACYCGyMGCwkIBwMCBBUCCAME
+ FgIDAQIeAQIXgAUCVF/S8QUJHlwd3wAKCRBhV5kVtWN2DvCVAJ4u4/bPF4P3jxb4qEY8I2gS
+ 6hG0gACffNWlqJ2T4wSSn+3o7CCZNd7SLSC5BA0ESM+4EhAQAL/o09boR9D3Vk1Tt7+gpYr3
+ WQ6hgYVON905q2ndEoA2J0dQxJNRw3snabHDDzQBAcqOvdi7YidfBVdKi0wxHhSuRBfuOppu
+ pdXkb7zxuPQuSveCLqqZWRQ+Cc2QgF7SBqgznbe6Ngout5qXY5Dcagk9LqFNGhJQzUGHAsIs
+ hap1f0B1PoUyUNeEInV98D8Xd/edM3mhO9nRpUXRK9Bvt4iEZUXGuVtZLT52nK6Wv2EZ1TiT
+ OiqZlf1P+vxYLBx9eKmabPdm3yjalhY8yr1S1vL0gSA/C6W1o/TowdieF1rWN/MYHlkpyj9c
+ Rpc281gAO0AP3V1G00YzBEdYyi0gaJbCEQnq8Vz1vDXFxHzyhgGz7umBsVKmYwZgA8DrrB0M
+ oaP35wuGR3RJcaG30AnJpEDkBYHznI2apxdcuTPOHZyEilIRrBGzDwGtAhldzlBoBwE3Z3MY
+ 31TOpACu1ZpNOMysZ6xiE35pWkwc0KYm4hJA5GFfmWSN6DniimW3pmdDIiw4Ifcx8b3mFrRO
+ BbDIW13E51j9RjbO/nAaK9ndZ5LRO1B/8Fwat7bLzmsCiEXOJY7NNpIEpkoNoEUfCcZwmLrU
+ +eOTPzaF6drw6ayewEi5yzPg3TAT6FV3oBsNg3xlwU0gPK3v6gYPX5w9+ovPZ1/qqNfOrbsE
+ FRuiSVsZQ5s3AAMFD/9XjlnnVDh9GX/r/6hjmr4U9tEsM+VQXaVXqZuHKaSmojOLUCP/YVQo
+ 7IiYaNssCS4FCPe4yrL4FJJfJAsbeyDykMN7wAnBcOkbZ9BPJPNCbqU6dowLOiy8AuTYQ48m
+ vIyQ4Ijnb6GTrtxIUDQeOBNuQC/gyyx3nbL/lVlHbxr4tb6YkhkO6shjXhQh7nQb33FjGO4P
+ WU11Nr9i/qoV8QCo12MQEo244RRA6VMud06y/E449rWZFSTwGqb0FS0seTcYNvxt8PB2izX+
+ HZA8SL54j479ubxhfuoTu5nXdtFYFj5Lj5x34LKPx7MpgAmj0H7SDhpFWF2FzcC1bjiW9mjW
+ HaKaX23Awt97AqQZXegbfkJwX2Y53ufq8Np3e1542lh3/mpiGSilCsaTahEGrHK+lIusl6mz
+ Joil+u3k01ofvJMK0ZdzGUZ/aPMZ16LofjFA+MNxWrZFrkYmiGdv+LG45zSlZyIvzSiG2lKy
+ kuVag+IijCIom78P9jRtB1q1Q5lwZp2TLAJlz92DmFwBg1hyFzwDADjZ2nrDxKUiybXIgZp9
+ aU2d++ptEGCVJOfEW4qpWCCLPbOT7XBr+g/4H3qWbs3j/cDDq7LuVYIe+wchy/iXEJaQVeTC
+ y5arMQorqTFWlEOgRA8OP47L9knl9i4xuR0euV6DChDrguup2aJVU4hPBBgRAgAPAhsMBQJU
+ X9LxBQkeXB3fAAoJEGFXmRW1Y3YOj4UAn3nrFLPZekMeqX5aD/aq/dsbXSfyAKC45Go0YyxV
+ HGuUuzv+GKZ6nsysJ7kCDQRXG8fwARAA6q/pqBi5PjHcOAUgk2/2LR5LjjesK50bCaD4JuNc
+ YDhFR7Vs108diBtsho3w8WRd9viOqDrhLJTroVckkk74OY8r+3t1E0Dd4wHWHQZsAeUvOwDM
+ PQMqTUBFuMi6ydzTZpFA2wBR9x6ofl8Ax+zaGBcFrRlQnhsuXLnM1uuvS39+pmzIjasZBP2H
+ UPk5ifigXcpelKmj6iskP3c8QN6x6GjUSmYx+xUfs/GNVSU1XOZn61wgPDbgINJd/THGdqiO
+ iJxCLuTMqlSsmh1+E1dSdfYkCb93R/0ZHvMKWlAx7MnaFgBfsG8FqNtZu3PCLfizyVYYjXbV
+ WO1A23riZKqwrSJAATo5iTS65BuYxrFsFNPrf7TitM8E76BEBZk0OZBvZxMuOs6Z1qI8YKVK
+ UrHVGFq3NbuPWCdRul9SX3VfOunr9Gv0GABnJ0ET+K7nspax0xqq7zgnM71QEaiaH17IFYGS
+ sG34V7Wo3vyQzsk7qLf9Ajno0DhJ+VX43g8+AjxOMNVrGCt9RNXSBVpyv2AMTlWCdJ5KI6V4
+ KEzWM4HJm7QlNKE6RPoBxJVbSQLPd9St3h7mxLcne4l7NK9eNgNnneT7QZL8fL//s9K8Ns1W
+ t60uQNYvbhKDG7+/yLcmJgjF74XkGvxCmTA1rW2bsUriM533nG9gAOUFQjURkwI8jvMAEQEA
+ AYkCaAQYEQIACQUCVxvH8AIbAgIpCRBhV5kVtWN2DsFdIAQZAQIABgUCVxvH8AAKCRCH0Jac
+ RAcHBIkHD/9nmfog7X2ZXMzL9ktT++7x+W/QBrSTCTmq8PK+69+INN1ZDOrY8uz6htfTLV9+
+ e2W6G8/7zIvODuHk7r+yQ585XbplgP0V5Xc8iBHdBgXbqnY5zBrcH+Q/oQ2STalEvaGHqNoD
+ UGyLQ/fiKoLZTPMur57Fy1c9rTuKiSdMgnT0FPfWVDfpR2Ds0gpqWePlRuRGOoCln5GnREA/
+ 2MW2rWf+CO9kbIR+66j8b4RUJqIK3dWn9xbENh/aqxfonGTCZQ2zC4sLd25DQA4w1itPo+f5
+ V/SQxuhnlQkTOCdJ7b/mby/pNRz1lsLkjnXueLILj7gNjwTabZXYtL16z24qkDTI1x3g98R/
+ xunb3/fQwR8FY5/zRvXJq5us/nLvIvOmVwZFkwXc+AF+LSIajqQz9XbXeIP/BDjlBNXRZNdo
+ dVuSU51ENcMcilPr2EUnqEAqeczsCGpnvRCLfVQeSZr2L9N4svNhhfPOEscYhhpHTh0VPyxI
+ pPBNKq+byuYPMyk3nj814NKhImK0O4gTyCK9b+gZAVvQcYAXvSouCnTZeJRrNHJFTgTgu6E0
+ caxTGgc5zzQHeX67eMzrGomG3ZnIxmd1sAbgvJUDaD2GrYlulfwGWwWyTNbWRvMighVdPkSF
+ 6XFgQaosWxkV0OELLy2N485YrTr2Uq64VKyxpncLh50e2RnyAJ9Za0Dx0yyp44iD1OvHtkEI
+ M5kY0ACeNhCZJvZ5g4C2Lc9fcTHu8jxmEkI=
+Message-ID: <875dd94c-a405-fa62-365b-d1b0e7d075b8@gmail.com>
+Date:   Tue, 15 Dec 2020 15:03:44 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-X-OriginatorOrg: wdc.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CH2PR04MB6522.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5be3c3b1-e915-4cd9-87a1-08d8a14d7a5e
-X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Dec 2020 23:02:20.9498
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: b61c8803-16f3-4c35-9b17-6f65f441df86
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: GUCNsvJ3pDmYZExyRa1IReu29Ix5dr+pH/y/IEFE64AIy+q7jpXpkHXW/bsoXpndoVXz9CuPdQJPFKjvWH7seg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR04MB6902
+In-Reply-To: <20201215212232.11275-1-zajec5@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2020/12/13 22:51, Damien Le Moal wrote:=0A=
-> This series of patches improves support for boards based on the Canaan=0A=
-> Kendryte K210 RISC-V dual core SoC. Minimal support for this SoC is=0A=
-> already included in the kernel. These patches complete it, enabling=0A=
-> support for most peripherals present on the SoC as well as introducing=0A=
-> device trees for the various K210 boards available on the market today=0A=
-> from SiPeed and Kendryte.=0A=
-=0A=
-Palmer,=0A=
-=0A=
-Ping ?=0A=
-What is ypour plan for this series ? Can you queue it for 5.11 ?=0A=
-=0A=
-=0A=
-> =0A=
-> Pathes 1 to 4 are various fixes for riscv arch code and riscv=0A=
-> dependent devices. Of note here is patch 3 which fix system calls=0A=
-> execution in the no MMU case, and patch 4 which simplifies DTB builtin=0A=
-> handling.=0A=
-> =0A=
-> Patch 5 fixes naming of directories and configuration options to use the=
-=0A=
-> K210 SoC vendor name (Canaan) instead of its branding name (Kendryte).=0A=
-> =0A=
-> Patch 6 is a preparatory patch cleaning up the K210 system controller=0A=
-> driver to facilitate introducing the SoC clock driver.=0A=
-> =0A=
-> The following patches 7 to 11 document device tree bindings for the SoC=
-=0A=
-> drivers. The implementation of these drivers is provided in patches 12,=
-=0A=
-> 13 and 14, respectively implementing the SoC clock driver, reset=0A=
-> controller and SOC pin function control.=0A=
-> =0A=
-> Patches 15 to 20 update the existing K210 device tree and add new=0A=
-> device tree files for several K210 based boards: MAIX Bit, MAIXDUINO,=0A=
-> MAIX Dock and MAIX Go boards from SiPeed and the KD233 development=0A=
-> board from Canaan.=0A=
-> =0A=
-> Finally the last two patches updates the k210 nommu defconfig to include=
-=0A=
-> the newly implemented drivers and provide a new default configuration=0A=
-> file enabling SD card support.=0A=
-> =0A=
-> A lot of the work on the device tree and on the K210 drivers come from=0A=
-> the work by Sean Anderson for the U-Boot project support of the K210=0A=
-> SoC. Sean also helped with debugging many aspects of this series.=0A=
-> =0A=
-> A tree with all patches applied is available here:=0A=
-> https://github.com/damien-lemoal/linux, k210-sysctl-v22 branch.=0A=
-> A demonstration of this series used on a SiPeed MAIX Dock=0A=
-> board together with an I2C servo controller can be seen here:=0A=
-> https://damien-lemoal.github.io/linux-robot-arm/#example=0A=
-> =0A=
-> This tree was used to build userspace busybox environment image that is=
-=0A=
-> then copied onto an SD card formatted with ext2:=0A=
-> https://github.com/damien-lemoal/buildroot=0A=
-> Of note is that running this userspace environment requires a revert of=
-=0A=
-> commit 2217b982624680d19a80ebb4600d05c8586c4f96 introduced during the=0A=
-> 5.9 development cycle. Without this revert, execution of the init=0A=
-> process fails. A problem with the riscv port of elf2flt is suspected but=
-=0A=
-> not confirmed. I am now starting to investigate this problem.=0A=
-> =0A=
-> Reviews and comments are as always much welcome.=0A=
-> =0A=
-> Changes from v9:=0A=
-> * Added patch 6 to avoid DTS compilation errors after patch 9 is=0A=
->   applied and until patch 16 is applied.=0A=
-> =0A=
-> Changes from v8:=0A=
-> * Addressed Rob's comments on the sysctl driver bindings documentation=0A=
-> * Fixed a typo in the fpios driver bindings documentation=0A=
-> =0A=
-> Changes from v7:=0A=
-> * Removed the __init annotation for the drivers reset, pinctrl and=0A=
->   sysctl drivers probe functions as suggested by Geert. Also removed=0A=
->   the __refdata annotation for the struct platform_driver variables of=0A=
->   these drivers.=0A=
-> =0A=
-> Changes from v6:=0A=
-> * Annotate struct platform_driver variables with __refdata to avoid=0A=
->   section mismatch compilation errors=0A=
-> * Add empty sentinel entry to of_device_id tables of the sysctl, reset=0A=
->   and pinctrl drivers.=0A=
-> =0A=
-> Changes from v5:=0A=
-> * Addressed Philipp's comment on the reset controller driver=0A=
-> * Added patch 6 to reduce the size of the clock driver patch=0A=
->   (now patch 12).=0A=
-> =0A=
-> Changes from v4:=0A=
-> * Simplified reset controller driver using of_xlate callback as=0A=
->   suggested by Philipp=0A=
-> * Fixed compilation error when using other configs than one of the=0A=
->   nommu_k210 defconfigs.=0A=
-> * Addressed most clock driver comments from Stephen.=0A=
-> * Removed CONFIG_GPIO_SYSFS from defconfigs=0A=
-> * Rebased on 5.10-rc7=0A=
-> =0A=
-> Changes from V3:=0A=
-> * Add one entry per driver in MAINTAINERS file=0A=
-> =0A=
-> Changes from V2:=0A=
-> * Add MAINTAINERS file entry for the SoC support, listing myself as=0A=
->   maintainer.=0A=
-> * Removed use of postcore_initcall() for declaring the drivers, using=0A=
->   the regular builtin_platform_driver() instead.=0A=
-> * Fixed fpio pinctrl driver bindings documentation as commented by=0A=
->   Geert: removed input-schmitt and added input-schmitt-disable, fixed=0A=
->   typo and added input-disable and output-disable.=0A=
-> * Fixed device tree to have cs-gpios active low, as per the default, as=
-=0A=
->   active high necessity was an artifact of the gpio level double=0A=
->   inversion bug fixed recently.=0A=
-> * Removed CONFIG_VT from defconfigs to reduce the kernel image size as=0A=
->   suggested by Geert.=0A=
-> =0A=
-> Changes from v1:=0A=
-> * Improved DT bindings documentation=0A=
-> * SPI and GPIO patches removed from this series (and being processed=0A=
->   directly through the relevant subsystems directly)=0A=
-> * Improved device trees=0A=
-> * Various cleanup and improvments of the drivers=0A=
-> =0A=
-> Damien Le Moal (22):=0A=
->   riscv: Fix kernel time_init()=0A=
->   riscv: Fix sifive serial driver=0A=
->   riscv: Enable interrupts during syscalls with M-Mode=0A=
->   riscv: Fix builtin DTB handling=0A=
->   riscv: Use vendor name for K210 SoC support=0A=
->   riscv: cleanup Canaan Kendryte K210 sysctl driver=0A=
->   dt-bindings: Add Canaan vendor prefix=0A=
->   dt-binding: clock: Document canaan,k210-clk bindings=0A=
->   dt-bindings: reset: Document canaan,k210-rst bindings=0A=
->   dt-bindings: pinctrl: Document canaan,k210-fpioa bindings=0A=
->   dt-binding: mfd: Document canaan,k210-sysctl bindings=0A=
->   riscv: Add Canaan Kendryte K210 clock driver=0A=
->   riscv: Add Canaan Kendryte K210 reset controller=0A=
->   riscv: Add Canaan Kendryte K210 FPIOA driver=0A=
->   riscv: Update Canaan Kendryte K210 device tree=0A=
->   riscv: Add SiPeed MAIX BiT board device tree=0A=
->   riscv: Add SiPeed MAIX DOCK board device tree=0A=
->   riscv: Add SiPeed MAIX GO board device tree=0A=
->   riscv: Add SiPeed MAIXDUINO board device tree=0A=
->   riscv: Add Kendryte KD233 board device tree=0A=
->   riscv: Update Canaan Kendryte K210 defconfig=0A=
->   riscv: Add Canaan Kendryte K210 SD card defconfig=0A=
-> =0A=
-> Damien Le Moal (23):=0A=
->   riscv: Fix kernel time_init()=0A=
->   riscv: Fix sifive serial driver=0A=
->   riscv: Enable interrupts during syscalls with M-Mode=0A=
->   riscv: Fix builtin DTB handling=0A=
->   riscv: Use vendor name for K210 SoC support=0A=
->   riscv: Fix Canaan Kendryte K210 device tree=0A=
->   riscv: cleanup Canaan Kendryte K210 sysctl driver=0A=
->   dt-bindings: Add Canaan vendor prefix=0A=
->   dt-binding: clock: Document canaan,k210-clk bindings=0A=
->   dt-bindings: reset: Document canaan,k210-rst bindings=0A=
->   dt-bindings: pinctrl: Document canaan,k210-fpioa bindings=0A=
->   dt-binding: mfd: Document canaan,k210-sysctl bindings=0A=
->   riscv: Add Canaan Kendryte K210 clock driver=0A=
->   riscv: Add Canaan Kendryte K210 reset controller=0A=
->   riscv: Add Canaan Kendryte K210 FPIOA driver=0A=
->   riscv: Update Canaan Kendryte K210 device tree=0A=
->   riscv: Add SiPeed MAIX BiT board device tree=0A=
->   riscv: Add SiPeed MAIX DOCK board device tree=0A=
->   riscv: Add SiPeed MAIX GO board device tree=0A=
->   riscv: Add SiPeed MAIXDUINO board device tree=0A=
->   riscv: Add Kendryte KD233 board device tree=0A=
->   riscv: Update Canaan Kendryte K210 defconfig=0A=
->   riscv: Add Canaan Kendryte K210 SD card defconfig=0A=
-> =0A=
->  .../bindings/clock/canaan,k210-clk.yaml       |   54 +=0A=
->  .../bindings/mfd/canaan,k210-sysctl.yaml      |  109 ++=0A=
->  .../bindings/pinctrl/canaan,k210-fpioa.yaml   |  171 +++=0A=
->  .../bindings/reset/canaan,k210-rst.yaml       |   40 +=0A=
->  .../devicetree/bindings/vendor-prefixes.yaml  |    2 +=0A=
->  MAINTAINERS                                   |   23 +=0A=
->  arch/riscv/Kconfig.socs                       |   33 +-=0A=
->  arch/riscv/Makefile                           |    2 +-=0A=
->  arch/riscv/boot/dts/Makefile                  |    2 +-=0A=
->  arch/riscv/boot/dts/canaan/Makefile           |    5 +=0A=
->  arch/riscv/boot/dts/canaan/k210.dtsi          |  621 ++++++++++=0A=
->  arch/riscv/boot/dts/canaan/k210_generic.dts   |   46 +=0A=
->  arch/riscv/boot/dts/canaan/k210_kd233.dts     |  178 +++=0A=
->  arch/riscv/boot/dts/canaan/k210_maix_bit.dts  |  227 ++++=0A=
->  arch/riscv/boot/dts/canaan/k210_maix_dock.dts |  229 ++++=0A=
->  arch/riscv/boot/dts/canaan/k210_maix_go.dts   |  237 ++++=0A=
->  arch/riscv/boot/dts/canaan/k210_maixduino.dts |  201 ++++=0A=
->  arch/riscv/boot/dts/kendryte/Makefile         |    4 -=0A=
->  arch/riscv/boot/dts/kendryte/k210.dts         |   23 -=0A=
->  arch/riscv/boot/dts/kendryte/k210.dtsi        |  125 --=0A=
->  arch/riscv/configs/nommu_k210_defconfig       |   39 +-=0A=
->  .../riscv/configs/nommu_k210_sdcard_defconfig |   93 ++=0A=
->  arch/riscv/include/asm/soc.h                  |   38 -=0A=
->  arch/riscv/kernel/entry.S                     |    9 +=0A=
->  arch/riscv/kernel/soc.c                       |   27 -=0A=
->  arch/riscv/kernel/time.c                      |    3 +=0A=
->  arch/riscv/mm/init.c                          |    6 +-=0A=
->  drivers/clk/Kconfig                           |    8 +=0A=
->  drivers/clk/Makefile                          |    1 +=0A=
->  drivers/clk/clk-k210.c                        | 1005 +++++++++++++++++=
-=0A=
->  drivers/pinctrl/Kconfig                       |   13 +=0A=
->  drivers/pinctrl/Makefile                      |    1 +=0A=
->  drivers/pinctrl/pinctrl-k210.c                |  985 ++++++++++++++++=0A=
->  drivers/reset/Kconfig                         |   10 +=0A=
->  drivers/reset/Makefile                        |    1 +=0A=
->  drivers/reset/reset-k210.c                    |  131 +++=0A=
->  drivers/soc/Kconfig                           |    2 +-=0A=
->  drivers/soc/Makefile                          |    2 +-=0A=
->  drivers/soc/canaan/Kconfig                    |   12 +=0A=
->  drivers/soc/canaan/Makefile                   |    3 +=0A=
->  drivers/soc/canaan/k210-sysctl.c              |   78 ++=0A=
->  drivers/soc/kendryte/Kconfig                  |   14 -=0A=
->  drivers/soc/kendryte/Makefile                 |    3 -=0A=
->  drivers/soc/kendryte/k210-sysctl.c            |  260 -----=0A=
->  drivers/tty/serial/sifive.c                   |    1 +=0A=
->  include/dt-bindings/clock/k210-clk.h          |   55 +-=0A=
->  include/dt-bindings/pinctrl/k210-fpioa.h      |  276 +++++=0A=
->  include/dt-bindings/reset/k210-rst.h          |   42 +=0A=
->  include/soc/canaan/k210-sysctl.h              |   43 +=0A=
->  49 files changed, 4962 insertions(+), 531 deletions(-)=0A=
->  create mode 100644 Documentation/devicetree/bindings/clock/canaan,k210-c=
-lk.yaml=0A=
->  create mode 100644 Documentation/devicetree/bindings/mfd/canaan,k210-sys=
-ctl.yaml=0A=
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/canaan,k210=
--fpioa.yaml=0A=
->  create mode 100644 Documentation/devicetree/bindings/reset/canaan,k210-r=
-st.yaml=0A=
->  create mode 100644 arch/riscv/boot/dts/canaan/Makefile=0A=
->  create mode 100644 arch/riscv/boot/dts/canaan/k210.dtsi=0A=
->  create mode 100644 arch/riscv/boot/dts/canaan/k210_generic.dts=0A=
->  create mode 100644 arch/riscv/boot/dts/canaan/k210_kd233.dts=0A=
->  create mode 100644 arch/riscv/boot/dts/canaan/k210_maix_bit.dts=0A=
->  create mode 100644 arch/riscv/boot/dts/canaan/k210_maix_dock.dts=0A=
->  create mode 100644 arch/riscv/boot/dts/canaan/k210_maix_go.dts=0A=
->  create mode 100644 arch/riscv/boot/dts/canaan/k210_maixduino.dts=0A=
->  delete mode 100644 arch/riscv/boot/dts/kendryte/Makefile=0A=
->  delete mode 100644 arch/riscv/boot/dts/kendryte/k210.dts=0A=
->  delete mode 100644 arch/riscv/boot/dts/kendryte/k210.dtsi=0A=
->  create mode 100644 arch/riscv/configs/nommu_k210_sdcard_defconfig=0A=
->  create mode 100644 drivers/clk/clk-k210.c=0A=
->  create mode 100644 drivers/pinctrl/pinctrl-k210.c=0A=
->  create mode 100644 drivers/reset/reset-k210.c=0A=
->  create mode 100644 drivers/soc/canaan/Kconfig=0A=
->  create mode 100644 drivers/soc/canaan/Makefile=0A=
->  create mode 100644 drivers/soc/canaan/k210-sysctl.c=0A=
->  delete mode 100644 drivers/soc/kendryte/Kconfig=0A=
->  delete mode 100644 drivers/soc/kendryte/Makefile=0A=
->  delete mode 100644 drivers/soc/kendryte/k210-sysctl.c=0A=
->  create mode 100644 include/dt-bindings/pinctrl/k210-fpioa.h=0A=
->  create mode 100644 include/dt-bindings/reset/k210-rst.h=0A=
->  create mode 100644 include/soc/canaan/k210-sysctl.h=0A=
-> =0A=
-=0A=
-=0A=
--- =0A=
-Damien Le Moal=0A=
-Western Digital Research=0A=
+On 12/15/20 1:22 PM, Rafał Miłecki wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
+> 
+> It's (nearly?) identical PHY as in the STB line and has to be
+> initialized the same way.
+> 
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> ---
+>  .../dts/broadcom/bcm4908/bcm4906-netgear-r8000p.dts |  4 ++++
+>  arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi   | 13 +++++++++++++
+>  2 files changed, 17 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/broadcom/bcm4908/bcm4906-netgear-r8000p.dts b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4906-netgear-r8000p.dts
+> index ee3ed612274c..e2bb0b04b524 100644
+> --- a/arch/arm64/boot/dts/broadcom/bcm4908/bcm4906-netgear-r8000p.dts
+> +++ b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4906-netgear-r8000p.dts
+> @@ -26,6 +26,10 @@ wps {
+>  	};
+>  };
+>  
+> +&usb_phy {
+> +	brcm,ioc = <1>;
+> +};
+> +
+>  &nandcs {
+>  	nand-ecc-strength = <4>;
+>  	nand-ecc-step-size = <512>;
+> diff --git a/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi
+> index b5b772a9a51b..a96ec9b85d1f 100644
+> --- a/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi
+> +++ b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi
+> @@ -110,10 +110,21 @@ soc {
+>  		#size-cells = <1>;
+>  		ranges = <0x00 0x00 0x80000000 0x10000>;
+>  
+> +		usb_phy: usb-phy@c200 {
+> +			compatible = "brcm,brcmstb-usb-phy";
+
+It is probably prudent to define a compatible string for the 4908 just
+in case we need to key off that chip id within the USB PHY driver. Other
+than that, this looks good to me.
+-- 
+Florian
+
+
