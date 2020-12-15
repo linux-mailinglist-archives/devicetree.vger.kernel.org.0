@@ -2,230 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 34E502DB10A
-	for <lists+devicetree@lfdr.de>; Tue, 15 Dec 2020 17:15:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E6942DB11D
+	for <lists+devicetree@lfdr.de>; Tue, 15 Dec 2020 17:17:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730707AbgLOQNz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Dec 2020 11:13:55 -0500
-Received: from mail-oo1-f66.google.com ([209.85.161.66]:34565 "EHLO
-        mail-oo1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730422AbgLOQNs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Dec 2020 11:13:48 -0500
-Received: by mail-oo1-f66.google.com with SMTP id x23so1760125oop.1;
-        Tue, 15 Dec 2020 08:13:31 -0800 (PST)
+        id S1730483AbgLOQRa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Dec 2020 11:17:30 -0500
+Received: from mail-oo1-f67.google.com ([209.85.161.67]:46026 "EHLO
+        mail-oo1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730839AbgLOQRT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Dec 2020 11:17:19 -0500
+Received: by mail-oo1-f67.google.com with SMTP id o5so1139505oop.12;
+        Tue, 15 Dec 2020 08:17:03 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=iJZnRtX3sbuHq49+KxzSlxIlH2YFeZZTDaGKbhkXMPc=;
-        b=T4A9W5ccVotMK6lIUNKrcjflr8XbJSKy8S+YGUt+DvrSggSzWPlZ9vqib0NCrGCnWM
-         YlmUvWw/LtQN/uTU8kBqGm6dbaYRA+HBgSx78Ik8o65pyOGzklhwiEDbQYbw8OpkBzV2
-         cAzDkfIiAp8K+1yef2M7OmPHKXJ8vEWjwHSL0NGlbCpUbyaOkD8oFd+63qsF6xgFrnZA
-         jzlDdt0OH/oSw6F3/Y/NFgpWgvHx5cKEqkcUdPQiWlPUQv82Y/RSP3iSORX8M4LH3eZn
-         hwysXj9+VwHOyuyexL7Jr3FndyXTaF5PRbvG9IE0VhJOUlnC8wl19XA76d2ogjzSI9rZ
-         bXDg==
-X-Gm-Message-State: AOAM531ksb4cTppqHAJywceCRDfL5aT8OV0/vHT5ehjnw9BFl7OXgaBd
-        njBGSrHJHXu2hPJXG3MpbA==
-X-Google-Smtp-Source: ABdhPJx2AG7yR79xBmnEKYChigB3jUkSqzlHLc2xAzoccoZHSNNlTwnG2/qBh7in6d5DkM1o/KLg1g==
-X-Received: by 2002:a4a:2f91:: with SMTP id p139mr23199961oop.0.1608048785972;
-        Tue, 15 Dec 2020 08:13:05 -0800 (PST)
+        bh=JCp0YIgPUuzIMIdJ9vQl9c0q2/kiCX2Sl1pTBGFGABg=;
+        b=sYHyrSQRgyWzSN8whiiQgyrLv98Fx6ooT3ONeQ+85cZvW7vNJeR4EJxHLh9SYzhuGI
+         beiQreiANAxOurXJkQ3fh5nl3Iv8BmHFyJyASpTGyjOEXmYFsnBk2wd/u/dJBaF1YGw0
+         awXdVm82+/J23cZrQ7D5rUazKagoEmczgy7sxt2y9hRi24o0arkxmUW2h+OJ3cs/8py9
+         HVJZxg0Z8lBZWdirhii9ZzWNGpYhN++XCh5xEyCoUyG/SC8Wic2+m+nNXrffouwtV6u7
+         bYGTXHr/z2SySdUy+iJa2w2ZlBvO2uq+LYexWxltOvz9Hk2Cdl8vAzdX4lmkZkYMg9us
+         Um9w==
+X-Gm-Message-State: AOAM530L8LQACbAZRZ6PRD5bNvhEsYs/RxNwrm5qKLDeqIMPo2q4w5rK
+        fuj7/bqnw4qOO4T67Stkww==
+X-Google-Smtp-Source: ABdhPJxCHnIh4PidpUMSVjSkEq+/wiiHBcx7VoFDsQFXpS7PW6w+e0euJuxIjTLgLSazMzFYrDwwCA==
+X-Received: by 2002:a4a:e1b5:: with SMTP id 21mr23174996ooy.64.1608048998308;
+        Tue, 15 Dec 2020 08:16:38 -0800 (PST)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id n3sm509358otj.46.2020.12.15.08.13.04
+        by smtp.gmail.com with ESMTPSA id s139sm5122420oih.10.2020.12.15.08.16.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Dec 2020 08:13:05 -0800 (PST)
-Received: (nullmailer pid 3949669 invoked by uid 1000);
-        Tue, 15 Dec 2020 16:13:04 -0000
-Date:   Tue, 15 Dec 2020 10:13:04 -0600
+        Tue, 15 Dec 2020 08:16:37 -0800 (PST)
+Received: (nullmailer pid 3955309 invoked by uid 1000);
+        Tue, 15 Dec 2020 16:16:36 -0000
+Date:   Tue, 15 Dec 2020 10:16:36 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Sowjanya Komatineni <skomatineni@nvidia.com>
-Cc:     thierry.reding@gmail.com, jonathanh@nvidia.com, broonie@kernel.org,
-        lukas@wunner.de, bbrezillon@kernel.org, p.yadav@ti.com,
-        tudor.ambarus@microchip.com, linux-spi@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 2/9] dt-bindings: spi: Add Tegra Quad SPI device tree
- binding
-Message-ID: <20201215161304.GA3935217@robh.at.kernel.org>
-References: <1607721363-8879-1-git-send-email-skomatineni@nvidia.com>
- <1607721363-8879-3-git-send-email-skomatineni@nvidia.com>
+To:     Icenowy Zheng <icenowy@aosc.io>
+Cc:     devicetree@vger.kernel.org, Maxime Ripard <mripard@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Chen-Yu Tsai <wens@csie.org>
+Subject: Re: [RFC PATCH 01/12] dt-bindings: clock: sunxi-ng: add compatible
+ for V831/V833 CCU
+Message-ID: <20201215161636.GA3955251@robh.at.kernel.org>
+References: <20201212040157.3639864-1-icenowy@aosc.io>
+ <20201212040157.3639864-2-icenowy@aosc.io>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1607721363-8879-3-git-send-email-skomatineni@nvidia.com>
+In-Reply-To: <20201212040157.3639864-2-icenowy@aosc.io>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 11, 2020 at 01:15:56PM -0800, Sowjanya Komatineni wrote:
-> This patch adds YAML based device tree binding document for Tegra
-> Quad SPI driver.
+On Sat, 12 Dec 2020 12:01:57 +0800, Icenowy Zheng wrote:
+> V831/V833 has a CCU similar to the ones on H6/A100.
 > 
-> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
+> Add a compatible string for it.
+> 
+> As the user manual do not mention the difference between V831 and V833
+> in the CCU chapter, only a single compatible string for V833
+> (full-functional chip) is made.
+> 
+> Signed-off-by: Icenowy Zheng <icenowy@aosc.io>
 > ---
->  .../bindings/spi/nvidia,tegra210-quad.yaml         | 130 +++++++++++++++++++++
->  1 file changed, 130 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/spi/nvidia,tegra210-quad.yaml
+>  .../devicetree/bindings/clock/allwinner,sun4i-a10-ccu.yaml      | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/spi/nvidia,tegra210-quad.yaml b/Documentation/devicetree/bindings/spi/nvidia,tegra210-quad.yaml
-> new file mode 100644
-> index 0000000..0b5fea6
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/spi/nvidia,tegra210-quad.yaml
-> @@ -0,0 +1,130 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/spi/nvidia,tegra210-quad.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Tegra Quad SPI Controller
-> +
-> +maintainers:
-> +  - Thierry Reding <thierry.reding@gmail.com>
-> +  - Jonathan Hunter <jonathanh@nvidia.com>
 
-allOf:
-  - $ref: spi-controller.yaml#
-
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - nvidia,tegra210-qspi
-> +      - nvidia,tegra186-qspi
-> +      - nvidia,tegra194-qspi
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    items:
-> +      - const: qspi
-> +      - const: qspi_out
-> +
-> +  clocks:
-> +    maxItems: 2
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +  dmas:
-> +    maxItems: 2
-> +
-> +  dma-names:
-> +    items:
-> +      - const: rx
-> +      - const: tx
-> +
-> +patternProperties:
-> +  "^.*@[0-9a-f]+":
-
-You can drop '^.*'.
-
-> +    type: object
-> +
-> +    properties:
-> +      compatible:
-> +        description:
-> +          Compatible of the SPI device.
-> +
-> +      reg:
-> +        maxItems: 1
-> +
-> +      spi-max-frequency:
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        description:
-> +          Maximum Quad SPI clocking speed of the device in Hz.
-> +
-> +      spi-rx-bus-width:
-> +        description:
-> +          Bus width to the Quad SPI bus used for read transfers.
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        enum: [1, 2, 4]
-> +
-> +      spi-tx-bus-width:
-> +        description:
-> +          Bus width to the Quad SPI bus used for write transfers.
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        enum: [1, 2, 4]
-
-All of the above 5 properties are covered by spi-controller.yaml. You 
-only need additional constraints here. As 8-bit mode is not supported, 
-you need:
-
-spi-tx-bus-width:
-  enum: [1, 2, 4]
-
-> +
-> +      nvidia,tx-clk-tap-delay:
-> +        description:
-> +          Delays the clock going out to device with this tap value.
-> +          Tap value varies based on platform design trace lengths from Tegra
-> +          QSPI to corresponding slave device.
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        minimum: 0
-> +        maximum: 31
-> +
-> +      nvidia,rx-clk-tap-delay:
-> +        description:
-> +          Delays the clock coming in from the device with this tap value.
-> +          Tap value varies based on platform design trace lengths from Tegra
-> +          QSPI to corresponding slave device.
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        minimum: 0
-> +        maximum: 255
-
-Please include these properties in your example.
-
-> +
-> +    required:
-> +      - reg
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clock-names
-> +  - clocks
-> +  - resets
-> +
-> +additionalProperties: true
-
-That's generally wrong unless it's a schema to be included by other 
-schemas.
-
-unevaluatedProperties: false
-
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/tegra210-car.h>
-> +    #include <dt-bindings/reset/tegra210-car.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    spi@70410000 {
-> +            compatible = "nvidia,tegra210-qspi";
-> +            reg = <0x70410000 0x1000>;
-> +            interrupts = <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>;
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +            clocks = <&tegra_car TEGRA210_CLK_QSPI>,
-> +                     <&tegra_car TEGRA210_CLK_QSPI_PM>;
-> +            clock-names = "qspi", "qspi_out";
-> +            resets = <&tegra_car 211>;
-> +            dmas = <&apbdma 5>, <&apbdma 5>;
-> +            dma-names = "rx", "tx";
-> +
-> +            flash@0 {
-> +                    compatible = "spi-nor";
-> +                    reg = <0>;
-> +                    spi-max-frequency = <104000000>;
-> +                    spi-tx-bus-width = <2>;
-> +                    spi-rx-bus-width = <2>;
-> +            };
-> +    };
-> -- 
-> 2.7.4
-> 
+Acked-by: Rob Herring <robh@kernel.org>
