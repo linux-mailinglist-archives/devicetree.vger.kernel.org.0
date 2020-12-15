@@ -2,220 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A8812DAC65
-	for <lists+devicetree@lfdr.de>; Tue, 15 Dec 2020 12:52:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 838992DAC74
+	for <lists+devicetree@lfdr.de>; Tue, 15 Dec 2020 12:58:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728556AbgLOLue (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Dec 2020 06:50:34 -0500
-Received: from relay9-d.mail.gandi.net ([217.70.183.199]:55781 "EHLO
-        relay9-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728891AbgLOLu0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Dec 2020 06:50:26 -0500
-X-Originating-IP: 93.34.118.233
-Received: from uno.localdomain (93-34-118-233.ip49.fastwebnet.it [93.34.118.233])
-        (Authenticated sender: jacopo@jmondi.org)
-        by relay9-d.mail.gandi.net (Postfix) with ESMTPSA id 66DF1FF812;
-        Tue, 15 Dec 2020 11:49:38 +0000 (UTC)
-Date:   Tue, 15 Dec 2020 12:49:49 +0100
-From:   Jacopo Mondi <jacopo@jmondi.org>
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Prabhakar <prabhakar.csengg@gmail.com>
-Subject: Re: [PATCH v3 2/2] ARM: dts: r8a7742-iwg21d-q7-dbcm-ca: Add support
- for 8-bit ov7725 sensors
-Message-ID: <20201215114949.teyhlmyhejck7jw2@uno.localdomain>
-References: <20201126103053.29881-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20201126103053.29881-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        id S1728619AbgLOL45 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Dec 2020 06:56:57 -0500
+Received: from mail.kernel.org ([198.145.29.99]:36742 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728615AbgLOL4y (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 15 Dec 2020 06:56:54 -0500
+Date:   Tue, 15 Dec 2020 11:56:02 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1608033374;
+        bh=/M1gPHhbjgtFjXVpzyyIzQbBvEuAExjx+HsjBRMWbRY=;
+        h=From:To:Cc:Subject:References:In-Reply-To:From;
+        b=c7rf8bArDp8KcpkW78LRNYjcres70AOcyfyBiAt1LyTHsMcbbEq3G6F9xjmvhtHGS
+         MEz0xhYqxJ18LRM8eMTKA89SCqie8tLcUQOJowOcyPzWcx+/w54LjsuPQwda4XLnz+
+         kgnQ2ExXZj/MyxQzVZJuwIJwbCrskmtubzDQ7jGDLvN8dycKW1AvoPXKcqYvvxgmlk
+         vgUaz+/8jt3IB4GxW+a/U8H2fkUutXyKWooHFHHwMeIOiRsc0fC6EfIFKy7ORq1eDc
+         1ab818dHRmdXgxHO1NsVp+spshTDJ0udtXJAqpW91YQ8lgu4hIZL6GStoGSBqvUTZl
+         oCc+fgF5cNY3Q==
+From:   Mark Brown <broonie@kernel.org>
+To:     Hsin-hsiung Wang <hsin-hsiung.wang@mediatek.com>
+Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        srv_heupstream@mediatek.com, Wen Su <wen.su@mediatek.com>
+Subject: Re: [PATCH v3 5/8] regulator: mt6359: Add support for MT6359
+ regulator
+Message-ID: <20201215115602.GA4738@sirena.org.uk>
+References: <1606103290-15034-1-git-send-email-hsin-hsiung.wang@mediatek.com>
+ <1606103290-15034-6-git-send-email-hsin-hsiung.wang@mediatek.com>
+ <20201124170732.GI4933@sirena.org.uk>
+ <1608024188.29527.2.camel@mtksdaap41>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="HcAYCG3uE/tztfnV"
 Content-Disposition: inline
-In-Reply-To: <20201126103053.29881-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <1608024188.29527.2.camel@mtksdaap41>
+X-Cookie: In specially marked packages only.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
 
-On Thu, Nov 26, 2020 at 10:30:53AM +0000, Lad Prabhakar wrote:
-> The 8-bit ov7725 sensors can also be connected to the camera daughter
-> board.
->
-> This patch creates a separate dtsi file for ov7725 sensors and is included
-> in r8a7742-iwg21d-q7-dbcm-ca.dts. The user can set VINx_SENSOR depending
-> on the cameras connected.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
-> ---
->  .../boot/dts/r8a7742-iwg21d-q7-dbcm-ca.dts    |   7 ++
->  .../dts/r8a7742-iwg21d-q7-dbcm-ov7725.dtsi    | 112 ++++++++++++++++++
->  2 files changed, 119 insertions(+)
->  create mode 100644 arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ov7725.dtsi
->
-> diff --git a/arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ca.dts b/arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ca.dts
-> index 1ab4f9771a34..915ff5fd437c 100644
-> --- a/arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ca.dts
-> +++ b/arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ca.dts
-> @@ -11,6 +11,7 @@
->
->  #define SENSOR_NONE		1
->  #define SENSOR_OV5640		2
-> +#define SENSOR_OV7725		3
->
->  /* 8bit CMOS Camera 1 (J13) */
->  #define CAM1_PARENT_I2C		i2c0
-> @@ -40,6 +41,11 @@
->   * VIN2 interface and also the ov5640 node connected to it)
->   *      #define VIN2_SENSOR		SENSOR_NONE
->   *
-> + * To tie VINx endpoints to ov7725_x endpoints set VINx_SENSOR to
-> + * SENSOR_OV7725 for example if ov7725_3 is connected to the VIN3
-> + * interface set the below (this disables the ov5640_3)
-> + *      #define VIN3_SENSOR		SENSOR_OV7725
-> + *
->   */
->  #define VIN0_SENSOR		SENSOR_OV5640
->  #define VIN1_SENSOR		SENSOR_OV5640
-> @@ -47,6 +53,7 @@
->  #define VIN3_SENSOR		SENSOR_OV5640
->
->  #include "r8a7742-iwg21d-q7-dbcm-ov5640.dtsi"
-> +#include "r8a7742-iwg21d-q7-dbcm-ov7725.dtsi"
+--HcAYCG3uE/tztfnV
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Mmm, can't we alternatively include one .dtsi or the other depending
-on a define symbol ? The .dtsi describe pluggable expansion boards,
-they cannot be mixed, right ?
+On Tue, Dec 15, 2020 at 05:23:08PM +0800, Hsin-hsiung Wang wrote:
+> On Tue, 2020-11-24 at 17:07 +0000, Mark Brown wrote:
 
-Thanks
-  j
+> > This looks like it could just be regmap_get_voltage_sel_regmap()?
+> > Otherwise the driver looks good.
 
->
+> Thanks for the review.
+> MT6359 regulator has sel_reg and status_reg, so we use
+> mt6359_get_linear_voltage_sel for status_reg instead of
+> regmap_get_voltage_sel_regmap() which uses sel_reg.
 
->  #if (VIN0_SENSOR == SENSOR_NONE)
->  #undef VIN0_REMOTE_EP
-> diff --git a/arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ov7725.dtsi b/arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ov7725.dtsi
-> new file mode 100644
-> index 000000000000..054d0a7cc5ce
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ov7725.dtsi
-> @@ -0,0 +1,112 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * This include file ties VIN interfaces with ov7725 sensors on
-> + * iWave-RZ/G1H Qseven board development platform connected with
-> + * camera daughter board.
-> + *
-> + * Copyright (C) 2020 Renesas Electronics Corp.
-> + */
-> +
-> +#if (VIN0_SENSOR == SENSOR_OV7725)
-> +#define OV7725_0_STATUS		"okay"
-> +#define OV7725_0_REMOTE_EP	&VIN0_EP
-> +#define VIN0_REMOTE_EP		&ov7725_0
-> +#else
-> +#define OV7725_0_STATUS		"disabled"
-> +#define OV7725_0_REMOTE_EP	0
-> +#endif
-> +
-> +#if (VIN1_SENSOR == SENSOR_OV7725)
-> +#define OV7725_1_STATUS		"okay"
-> +#define OV7725_1_REMOTE_EP	&VIN1_EP
-> +#define VIN1_REMOTE_EP		&ov7725_1
-> +#else
-> +#define OV7725_1_STATUS		"disabled"
-> +#define OV7725_1_REMOTE_EP	0
-> +#endif
-> +
-> +#if (VIN2_SENSOR == SENSOR_OV7725)
-> +#define OV7725_2_STATUS		"okay"
-> +#define OV7725_2_REMOTE_EP	&VIN2_EP
-> +#define VIN2_REMOTE_EP		&ov7725_2
-> +#else
-> +#define OV7725_2_STATUS		"disabled"
-> +#define OV7725_2_REMOTE_EP	0
-> +#endif
-> +
-> +#if (VIN3_SENSOR == SENSOR_OV7725)
-> +#define OV7725_3_STATUS		"okay"
-> +#define OV7725_3_REMOTE_EP	&VIN3_EP
-> +#define VIN3_REMOTE_EP		&ov7725_3
-> +#else
-> +#define OV7725_3_STATUS		"disabled"
-> +#define OV7725_3_REMOTE_EP	0
-> +#endif
-> +
-> +&CAM1_PARENT_I2C {
-> +	ov7725@21 {
-> +		compatible = "ovti,ov7725";
-> +		reg = <0x21>;
-> +		clocks = <&MCLK_CAM1>;
-> +		status = OV7725_0_STATUS;
-> +
-> +		port {
-> +			ov7725_0: endpoint {
-> +				bus-width = <8>;
-> +				bus-type = <6>;
-> +				remote-endpoint = <OV7725_0_REMOTE_EP>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&CAM2_PARENT_I2C {
-> +	ov7725@21 {
-> +		compatible = "ovti,ov7725";
-> +		reg = <0x21>;
-> +		clocks = <&MCLK_CAM2>;
-> +		status = OV7725_1_STATUS;
-> +
-> +		port {
-> +			ov7725_1: endpoint {
-> +				bus-width = <8>;
-> +				bus-type = <6>;
-> +				remote-endpoint = <OV7725_1_REMOTE_EP>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&CAM3_PARENT_I2C {
-> +	ov7725@21 {
-> +		compatible = "ovti,ov7725";
-> +		reg = <0x21>;
-> +		clocks = <&MCLK_CAM3>;
-> +		status = OV7725_2_STATUS;
-> +
-> +		port {
-> +			ov7725_2: endpoint {
-> +				bus-width = <8>;
-> +				bus-type = <6>;
-> +				remote-endpoint = <OV7725_2_REMOTE_EP>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&CAM4_PARENT_I2C {
-> +	ov7725@21 {
-> +		compatible = "ovti,ov7725";
-> +		reg = <0x21>;
-> +		clocks = <&MCLK_CAM4>;
-> +		status = OV7725_3_STATUS;
-> +
-> +		port {
-> +			ov7725_3: endpoint {
-> +				bus-width = <8>;
-> +				bus-type = <6>;
-> +				remote-endpoint = <OV7725_3_REMOTE_EP>;
-> +			};
-> +		};
-> +	};
-> +};
-> --
-> 2.17.1
->
+Is the selector register not readable?  In general the rule is that the
+get should be reporting what was configured, the actual status should be
+reported separately if it can be read separately.  We don't currently
+have a mechanism for doing that with voltage but one could be added.
+
+--HcAYCG3uE/tztfnV
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl/YpFIACgkQJNaLcl1U
+h9CjjAf+IDONK3A5Udjly1RqCkRY5souPMpCZoh65EQM8+rD21ybKziHZCzWl7fh
+c0Ix4/TdsLHsnruxfg0nBaLrN1xuN+lP0NEHUORKwhrBynNKzWxWBH7wbCsuhE9T
+f18VvOA21BLCiEo/KbvcV7PXRo5XqTOMoNKt2cfdLAgVPViPSx5obkgQicMwXBH2
+Ye5Rg1C1B13EVTnHmIWaALLEIjxtHkTeYGsBK76H09Rj0xGJqPZ7KJZeHst05eaC
+2W4fobgNw046d+jG9SFYahZt8YQDeoa9ADGucwW/C4naZfvIdnwZidEJ4u5VaP+7
+IRWhOc4UbbZxwOXJX4OGoAtVpe1NnA==
+=HdPK
+-----END PGP SIGNATURE-----
+
+--HcAYCG3uE/tztfnV--
