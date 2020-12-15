@@ -2,117 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DFFC72D9635
-	for <lists+devicetree@lfdr.de>; Mon, 14 Dec 2020 11:19:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ED6592D95B7
+	for <lists+devicetree@lfdr.de>; Mon, 14 Dec 2020 11:03:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727215AbgLNKSi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Dec 2020 05:18:38 -0500
-Received: from out2-smtp.messagingengine.com ([66.111.4.26]:37251 "EHLO
-        out2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1727200AbgLNKSi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 14 Dec 2020 05:18:38 -0500
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailout.nyi.internal (Postfix) with ESMTP id 8D88B5C0152;
-        Mon, 14 Dec 2020 05:17:32 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute6.internal (MEProxy); Mon, 14 Dec 2020 05:17:32 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm1; bh=ZhhzqW9pWEM6d6BEhB/y6i8P0um
-        zrVkqu81jk0LYZew=; b=rdUZrA0KD3OMjqsiFNfTqvE4QQ+RC7w3+gGowl9YIVm
-        Xz9A+CXf3HFXB7LqDVuQ/nrqsCLk5QfAfnF9KC5rSLFF/YAuzpUQHQSzBtjWHL6H
-        8TM9WZcRyTMw5aPIWAETmGQx4uuh1lpuZcwLhDVKIEg2Oq8KEb1QSG1Vy2zEKu9U
-        FIdXRfolTar4d4FSxGESFBwPDtAWYyFr4km8V2cQXoRrXu+jdVF7/NnIzuOkh4MY
-        Oe20z7E0lcJqei1A5laT60nFM4kxVlXnuBqMnL4ZO5FdmBUJhoVOjBYoFl4bo/m7
-        u9l/r/tOAyTdtqc/vR2Vps8PPZIDy6Coo0Mx7FZVUmw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=ZhhzqW
-        9pWEM6d6BEhB/y6i8P0umzrVkqu81jk0LYZew=; b=jVLaRRJWFPaR0POwfmDwkO
-        z+9fwQFTXS4tknSEM0tSUANv/qbHBLMn+bI+YVDrHd75n5x+6kWzaXJ5eG3SKinN
-        Xf5Li2Q1+ZoEXNpfokqOGlaFyu25Z/Rhd/p59j8byTDozUaUrlNizQ65kpWn8TWh
-        XiT9NNioOpzMAtrhor8UZ55vhv9PRxElWP7KVIz1vtsqXoLRtxmgF5k8MonsZpfL
-        xf1IHiIq/zps7+2MF+rVUB/FuS1AP3wbN5k7ZPS+BkrTdVWBcmwyVIB2DwXfsAhv
-        x4SJ5jX0nui9ha7q1PILeCs9X7KehNK11ujpuCeEbMxdpK6Hq+55g/iD+qJrH+xA
-        ==
-X-ME-Sender: <xms:uzvXX_N1xKtHxBHqjw_JoPNZuITInUdmOV7fEy_9KUQyYcZEMnz6AA>
-    <xme:uzvXX5-mmGJopYMkqiV8MzAk-mCvVTthoCTx5nU-Faq5EemFT23e4eiif16hi2g3t
-    3mXdur9qmOlk4YO3Kc>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrudekkedgudegucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddunecuhfhrohhmpeforgigihhm
-    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
-    htvghrnhepuddvudfhkeekhefgffetffelgffftdehffduffegveetffehueeivddvjedv
-    gfevnecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
-    frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:uzvXX-QjppQtodDJI-j2E5Ij6CgPOu2IlRG-mVQ1Al_tp4SpQyJItg>
-    <xmx:uzvXXzuMD6KqqY45QuoUg0V29Oc-_yCcT5jD05o_vzbbN7inGJvMmg>
-    <xmx:uzvXX3d7Q6WbEiSB9xtXtJgD-e3Jtf7FR2nS8-ycqKiEbsjVBZF2kg>
-    <xmx:vDvXX3lZ9k3rfvn30l9FcCsuASX1O6V09ILXuS_c_aYB9-EqaJPLng>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 908FC1080057;
-        Mon, 14 Dec 2020 05:17:31 -0500 (EST)
-Date:   Mon, 14 Dec 2020 11:17:30 +0100
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Pavel =?utf-8?B?TMO2Ymw=?= <pavel@loebl.cz>
-Cc:     devicetree@vger.kernel.org,
-        Jernej Skrabec <jernej.skrabec@siol.net>
-Subject: Re: [PATCH] ARM: dts: sun8i: h2+: add support for Banana Pi P2 Zero
- board
-Message-ID: <20201214101730.ye5566a45gopxm7w@gilmour>
-References: <20201212111429.286721-1-pavel@loebl.cz>
+        id S2392476AbgLNJ6g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Dec 2020 04:58:36 -0500
+Received: from szxga05-in.huawei.com ([45.249.212.191]:9601 "EHLO
+        szxga05-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728717AbgLNJ60 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Dec 2020 04:58:26 -0500
+Received: from DGGEMS412-HUB.china.huawei.com (unknown [172.30.72.60])
+        by szxga05-in.huawei.com (SkyGuard) with ESMTP id 4CvcHV2tDhzM5hy;
+        Mon, 14 Dec 2020 17:56:54 +0800 (CST)
+Received: from huawei.com (10.151.151.249) by DGGEMS412-HUB.china.huawei.com
+ (10.3.19.212) with Microsoft SMTP Server id 14.3.498.0; Mon, 14 Dec 2020
+ 17:57:33 +0800
+From:   Dongjiu Geng <gengdongjiu@huawei.com>
+To:     <mturquette@baylibre.com>, <sboyd@kernel.org>,
+        <robh+dt@kernel.org>, <vkoul@kernel.org>,
+        <dan.j.williams@intel.com>, <p.zabel@pengutronix.de>,
+        <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <dmaengine@vger.kernel.org>,
+        <gengdongjiu@huawei.com>
+Subject: [PATCH v7 0/4] Enable Hi3559A SOC clock and HiSilicon Hiedma Controller
+Date:   Tue, 15 Dec 2020 11:09:43 +0000
+Message-ID: <20201215110947.41268-1-gengdongjiu@huawei.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="djstr6rbgzoa2kp4"
-Content-Disposition: inline
-In-Reply-To: <20201212111429.286721-1-pavel@loebl.cz>
+Content-Type: text/plain
+X-Originating-IP: [10.151.151.249]
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+v6->v7:
+1. rename hisi,misc-control to hisi,misc-control to hisilicon,misc-control
 
---djstr6rbgzoa2kp4
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+v5->v6:
+1. Drop #size-cells and #address-cell in the hisilicon,hi3559av100-clock.yaml
+2. Add discription for #reset-cells in the hisilicon,hi3559av100-clock.yaml
+3. Remove #clock-cells in hisilicon,hiedmacv310.yaml 
+4. Merge property misc_ctrl_base and misc_regmap together for hiedmacv310 driver
 
-Hi,
+v4->v5:
+1. change the patch author mail name
 
-On Sat, Dec 12, 2020 at 12:14:29PM +0100, Pavel L=F6bl wrote:
-> Banana Pi P2 Zero is H2+-based board by Sinovoip internally
-> similar to Banana Pi M2 Zero.
->=20
-> It features:
-> - Allwinner H2+, Quad-core Cortex-A7
-> - 512MB DDR3 SDRAM
-> - 8G eMMC flash
-> - MicroSD card slot
-> - 100M LAN
-> - WiFi (AP6212) & Bluetooth onboard (SDIO + UART)
-> - Micro USB OTG port
-> - Micro USB connector (power only)
-> - Mini HDMI
-> - 40 PIN GPIO includes UART, SPI, I2C, IO etc.
-> - GPIO-connected key and LED
-> - CSI connector
-> - IEEE 802.3af PoE standard PoE module support (optional)
+v3->v4:
+1. fix the 'make dt_binding_check' issues.
+2. Combine the 'Enable HiSilicon Hiedma Controller' series patches to this series.
+3. fix the 'make dt_binding_check' issues in 'Enable HiSilicon Hiedma Controller' patchset
 
-Please send this to the proper recipients (get_maintainers.pl will help)
+v2->v3:
+1. change dt-bindings documents from txt to yaml format.
+2. Add SHUB clock to access the devices of m7
 
-Maxime
+Dongjiu Geng (4):
+  dt-bindings: Document the hi3559a clock bindings
+  clk: hisilicon: Add clock driver for hi3559A SoC
+  dt: bindings: dma: Add DT bindings for HiSilicon Hiedma Controller
+  dmaengine: dma: Add Hiedma Controller v310 Device Driver
 
---djstr6rbgzoa2kp4
-Content-Type: application/pgp-signature; name="signature.asc"
+ .../clock/hisilicon,hi3559av100-clock.yaml    |   59 +
+ .../bindings/dma/hisilicon,hiedmacv310.yaml   |   94 ++
+ drivers/clk/hisilicon/Kconfig                 |    7 +
+ drivers/clk/hisilicon/Makefile                |    1 +
+ drivers/clk/hisilicon/clk-hi3559a.c           |  865 ++++++++++
+ drivers/dma/Kconfig                           |   14 +
+ drivers/dma/Makefile                          |    1 +
+ drivers/dma/hiedmacv310.c                     | 1442 +++++++++++++++++
+ drivers/dma/hiedmacv310.h                     |  136 ++
+ include/dt-bindings/clock/hi3559av100-clock.h |  165 ++
+ 10 files changed, 2784 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/hisilicon,hi3559av100-clock.yaml
+ create mode 100644 Documentation/devicetree/bindings/dma/hisilicon,hiedmacv310.yaml
+ create mode 100644 drivers/clk/hisilicon/clk-hi3559a.c
+ create mode 100644 drivers/dma/hiedmacv310.c
+ create mode 100644 drivers/dma/hiedmacv310.h
+ create mode 100644 include/dt-bindings/clock/hi3559av100-clock.h
 
------BEGIN PGP SIGNATURE-----
+-- 
+2.17.1
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX9c7ugAKCRDj7w1vZxhR
-xS6yAPoC+251u39OI8ZmHHP9XDQhfIRYoQJvDwd9Ps9L/AiF5wD9Fh1dBn/GedqF
-hpmVS3DNWAsWHqu7RuDFN2lRhTHMvwM=
-=GSZH
------END PGP SIGNATURE-----
-
---djstr6rbgzoa2kp4--
