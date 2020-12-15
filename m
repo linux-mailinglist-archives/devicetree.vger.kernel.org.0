@@ -2,24 +2,25 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C44FB2DB5BF
-	for <lists+devicetree@lfdr.de>; Tue, 15 Dec 2020 22:17:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 71D682DB5C7
+	for <lists+devicetree@lfdr.de>; Tue, 15 Dec 2020 22:23:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726365AbgLOVRp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Dec 2020 16:17:45 -0500
-Received: from mx2.suse.de ([195.135.220.15]:55352 "EHLO mx2.suse.de"
+        id S1727966AbgLOVWs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Dec 2020 16:22:48 -0500
+Received: from mx2.suse.de ([195.135.220.15]:57114 "EHLO mx2.suse.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727013AbgLOVRj (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 15 Dec 2020 16:17:39 -0500
+        id S1727896AbgLOVWl (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 15 Dec 2020 16:22:41 -0500
 X-Virus-Scanned: by amavisd-new at test-mx.suse.de
 Received: from relay2.suse.de (unknown [195.135.221.27])
-        by mx2.suse.de (Postfix) with ESMTP id 73D62AC93;
-        Tue, 15 Dec 2020 21:16:56 +0000 (UTC)
-Message-ID: <6773252eb539f09383f2b31118467b0be23e592a.camel@suse.de>
-Subject: Re: [PATCH 1/6] dt-bindings: nvmem: Add bindings for rmem driver
+        by mx2.suse.de (Postfix) with ESMTP id 695CEAC93;
+        Tue, 15 Dec 2020 21:22:00 +0000 (UTC)
+Message-ID: <0c29dbdb8c6b042dd1c2dd6f4ed3b113aba19d97.camel@suse.de>
+Subject: Re: [PATCH 0/6] Expose RPi4'd bootloader configuration
 From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
 To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+Cc:     Catalin Marinas <catalin.marinas@arm.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
         devicetree@vger.kernel.org,
         "maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE" 
         <bcm-kernel-feedback-list@broadcom.com>,
@@ -28,17 +29,17 @@ Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
         linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
         Russell King <linux@armlinux.org.uk>,
-        Catalin Marinas <catalin.marinas@arm.com>,
         Will Deacon <will@kernel.org>,
         Tim Gover <tim.gover@raspberrypi.com>,
         Phil Elwell <phil@raspberrypi.com>
-Date:   Tue, 15 Dec 2020 22:16:54 +0100
-In-Reply-To: <CAL_JsqK7zZdWi0orXoqPWqvvxP3H6n7=JRqhdeAiAYAHRS3WHQ@mail.gmail.com>
+Date:   Tue, 15 Dec 2020 22:21:59 +0100
+In-Reply-To: <CAL_JsqJwUzBL+9E0jsTzAr4hTnGbGFUkD=xdTMJiFgYfpo4aFA@mail.gmail.com>
 References: <20201215155627.2513-1-nsaenzjulienne@suse.de>
-         <20201215155627.2513-2-nsaenzjulienne@suse.de>
-         <CAL_JsqK7zZdWi0orXoqPWqvvxP3H6n7=JRqhdeAiAYAHRS3WHQ@mail.gmail.com>
+         <20201215184407.GA44849@C02TF0J2HF1T.local>
+         <1e0ad098ca7b1c13dbc6602285b77790b9cd54a1.camel@suse.de>
+         <CAL_JsqJwUzBL+9E0jsTzAr4hTnGbGFUkD=xdTMJiFgYfpo4aFA@mail.gmail.com>
 Content-Type: multipart/signed; micalg="pgp-sha256";
-        protocol="application/pgp-signature"; boundary="=-HRNIWeNhFPTeTIs+fz/7"
+        protocol="application/pgp-signature"; boundary="=-p4v4j9FxejBEde40K8yJ"
 User-Agent: Evolution 3.38.2 
 MIME-Version: 1.0
 Precedence: bulk
@@ -46,85 +47,72 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---=-HRNIWeNhFPTeTIs+fz/7
+--=-p4v4j9FxejBEde40K8yJ
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, 2020-12-15 at 14:25 -0600, Rob Herring wrote:
-> On Tue, Dec 15, 2020 at 9:56 AM Nicolas Saenz Julienne
+Hi Rob, thanks for having a look at this.
+
+On Tue, 2020-12-15 at 13:54 -0600, Rob Herring wrote:
+> On Tue, Dec 15, 2020 at 1:01 PM Nicolas Saenz Julienne
 > <nsaenzjulienne@suse.de> wrote:
 > >=20
-> > Firmware/co-processors might use reserved memory areas in order to pass
-> > data stemming from an nvmem device otherwise non accessible to Linux.
-> > For example an EEPROM memory only physically accessible to firmware, or
-> > data only accessible early at boot time.
+> > Hi Catalin,
 > >=20
-> > Introduce the dt-bindings to nvmem's rmem.
+> > On Tue, 2020-12-15 at 18:44 +0000, Catalin Marinas wrote:
+> > > On Tue, Dec 15, 2020 at 04:56:20PM +0100, Nicolas Saenz Julienne wrot=
+e:
+> > > > Soon to be released versions of RPi4's firmware will take of care
+> > > > passing their bootloader's configuration to the OS by copying it in=
+to
+> > > > memory and creating a reserved memory node in the board's DT. In or=
+der
+> > > > to make use of this information, this series introduces a new gener=
+ic
+> > > > nvmem driver that maps reserved-memory nodes into nvmem devices.
+> > > >=20
+> > > > An alternative approach, less nice IMO, would be to create a
+> > > > platform-specific 'soc' driver.
+> > >=20
+> > > What kind of information is this and how would the kernel use it?
 > >=20
-> > Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-> > ---
-> > =C2=A0.../devicetree/bindings/nvmem/rmem.yaml       | 35 ++++++++++++++=
-+++++
-> > =C2=A01 file changed, 35 insertions(+)
-> > =C2=A0create mode 100644 Documentation/devicetree/bindings/nvmem/rmem.y=
-aml
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/nvmem/rmem.yaml b/Docume=
-ntation/devicetree/bindings/nvmem/rmem.yaml
-> > new file mode 100644
-> > index 000000000000..3037ebc4634d
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/nvmem/rmem.yaml
-> > @@ -0,0 +1,35 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/nvmem/rmem.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Reserved Memory Based nvmem Device
-> > +
-> > +maintainers:
-> > +  - Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - nvmem-rmem
-> > +
-> > +  memory-region:
-> > +    $ref: /schemas/types.yaml#/definitions/phandle
-> > +    description:
-> > +      phandle to the reserved memory region
+> > Sorry, I wasn't clear enough, the ultimate goal is to use this informat=
+ion from
+> > user-space, through nvmem's sysfs interface. The kernel itself has no u=
+se for
+> > it.
 >=20
-> There's no need for this indirection. Just add a compatible to the
-> reserved-memory node. See ramoops for example.
->=20
-> Please make the compatible specific enough to define what the memory
-> contains. If you want 'nvmem-rmem' as a fallback that's fine.
+> That still leaves the first question.
 
-Ok, I'll look into it.
+It's the bootloader configuration, stuff like boot order, TFTP IP, etc... S=
+ee
+more here:
+https://www.raspberrypi.org/documentation/hardware/raspberrypi/bcm2711_boot=
+loader_config.md
+
+I'll add a new paragraph explaining all this on next version's cover letter=
+.
 
 Regards,
 Nicolas
 
 
---=-HRNIWeNhFPTeTIs+fz/7
+--=-p4v4j9FxejBEde40K8yJ
 Content-Type: application/pgp-signature; name="signature.asc"
 Content-Description: This is a digitally signed message part
 Content-Transfer-Encoding: 7bit
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCAAdFiEErOkkGDHCg2EbPcGjlfZmHno8x/4FAl/ZJ8YACgkQlfZmHno8
-x/6DEgf+Ir9Z/EAoImzzkz0WNDBqJRFShxXJ3Z6YrpJ/j5p/I4owZX9Xtpwjh+k3
-Sk5ZQcjw9MFcs6X9Kka2oLL5O6TspqD3YDHF/Afm0Uo5TXLU69hfcVh5Jx0NIyaG
-2Cll+fLE0ozkyfViIXKwCvL5P7BIB6VWZVXpZSfOr3sxhvgXOGw4O2ivWD3s3LsL
-BsWllvWIXSLZfDAcZr3MVBBOuR2fByCLtyWWMfB+T9SIQodxFVVMYpUuRiHKTn8B
-zCfhsl+Wxsp/WADK+EoIl1euIbBgkzI+9Ws7xq8O3NBTLFanJHxJt/b+IXS7cZw+
-Dub6IRL35RjvAN6O/Ras4aJF9jzvgA==
-=OefD
+iQEzBAABCAAdFiEErOkkGDHCg2EbPcGjlfZmHno8x/4FAl/ZKPcACgkQlfZmHno8
+x/6MKgf7BO8gBlEQPizFY2pVw0UcI+ewT5fdSAO2v/tenS5h7UoAVU+hB/BzsI6E
+0W0X9jBkKxTmL7ZYH6qE2A6E/7JJQ4VaGwxAjq8mmmqYuWq0qjZ/VeDiCOVz3pP/
+ukelSJJWGKTex3/ylirX8QoKS31kgZkLstMjSZnDk8fG4y35QhpBgnlqACcPNGim
+D91ybwJkGN75bVKRxysWsMMwkclek4ey6ILvrpVshpRyT3LJJKKoQGIeN1rHtbyi
+7bncoTJB/eRIVelZZru5CSyZnWX905nils6TS6pb1RUGzp52x0R2V/eEFd5CaoZj
+0liDYByLl+H8g9XHmhkttDu7A/zz+g==
+=S4P/
 -----END PGP SIGNATURE-----
 
---=-HRNIWeNhFPTeTIs+fz/7--
+--=-p4v4j9FxejBEde40K8yJ--
 
