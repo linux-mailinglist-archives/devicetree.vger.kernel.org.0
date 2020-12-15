@@ -2,95 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0869D2DAE0E
-	for <lists+devicetree@lfdr.de>; Tue, 15 Dec 2020 14:34:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DA29D2DAE24
+	for <lists+devicetree@lfdr.de>; Tue, 15 Dec 2020 14:42:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726995AbgLONeF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Dec 2020 08:34:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33742 "EHLO
+        id S1728643AbgLONi6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Dec 2020 08:38:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34482 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726861AbgLONeD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Dec 2020 08:34:03 -0500
-Received: from mail-ed1-x541.google.com (mail-ed1-x541.google.com [IPv6:2a00:1450:4864:20::541])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69742C06179C;
-        Tue, 15 Dec 2020 05:33:23 -0800 (PST)
-Received: by mail-ed1-x541.google.com with SMTP id v22so20995556edt.9;
-        Tue, 15 Dec 2020 05:33:23 -0800 (PST)
+        with ESMTP id S1727685AbgLONir (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Dec 2020 08:38:47 -0500
+Received: from mail-vs1-xe43.google.com (mail-vs1-xe43.google.com [IPv6:2607:f8b0:4864:20::e43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 435EBC0617B0
+        for <devicetree@vger.kernel.org>; Tue, 15 Dec 2020 05:38:07 -0800 (PST)
+Received: by mail-vs1-xe43.google.com with SMTP id j140so10969477vsd.4
+        for <devicetree@vger.kernel.org>; Tue, 15 Dec 2020 05:38:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
+        d=chromium.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=DwitwfTtwjBMbHFgPhiZUy9rSg/91bxVwR6kPXtgAFc=;
-        b=nm1UWzFOC+Yxsb//GqZrsXLF7Z/WAafLbOMVXUuVQGYnkUICQge0B3jVp150UwU8qA
-         8GqegEIXeWUKk2UO7MxXVJnkgt1egzAGWRyatQFRv4R0eugRMOs/1ylk8SzQAJaLNgkZ
-         sysl3I6zMD7M34AnPbgOLWbqsaSCXfBgxfiyYOENyKZ9gHCiKOTTKPqNWYtpS8IQ4DfS
-         1TfeH5qJNwIas5/xMuAx6JILrXnJBNWsv1HJc/xBDQTI1xTzw2+O6sFwwnG75UmauoNL
-         CUp3MnMakKAskxg2AtgAMbMCN/CLA/0Y84GlCqM1FhaXNARyEAyZrc/qUVWmNCUhb4Wi
-         kPhg==
+         :cc;
+        bh=9FgvEA6LpRqaZRiWRCs1HzkpZ2wxH4J/Kj/S8yl9EX8=;
+        b=aMDDKyWXNebTeXg5FMLCK9txB+AXo41QnAw7eILkX0NTeyAdt7jEx4r62/kGLfIHLY
+         NTdTfInWItH7WmdFOmFWrs0hZxC8xA4+JavAwYl1jp8pksKKMo4VeyPHa4XewnixNL71
+         5zM6Wgsl4rhnbDaXq2EpMe4o9FfwGh7clMUv4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=DwitwfTtwjBMbHFgPhiZUy9rSg/91bxVwR6kPXtgAFc=;
-        b=mW1I9KLzWlbZMk226kIK+iT8OP0FQiIqrCN4mC+WK2r6XpUrauoMNGswX1FVvd5cxY
-         Foy3P/1mjqIsLRzjILO8nYPpijNizg/FcZ5ulJkBhJSeION5OfHs4OqvJCiK1tLRKLFU
-         pKg3+tXsvfEU1cmnATQpkoQ0lGazOtrnwugQwBtGSIJUejYCt2u2dCu6JFTTOz+7jJ9y
-         t8SHPsd3QGi4ZQNUeChOJwp3ERQM1zn0icjIozmWvtl4D3tN3HAH5AS3wIOrqY6eOm8j
-         n6g4fJTITlkYrAWPZgxbzRjv3yXXI8I++yk8QfM7Db70tXsV7H1S00pypn4CreiLVJln
-         bdZg==
-X-Gm-Message-State: AOAM530LQ6gTju5auLRXAeOFA0uT86R+t4uovVsSUOGt/kopyAFCzsea
-        dfnTsMgTdw0Tt9PKycocy3B66ZFNtaa+4B5tUjU=
-X-Google-Smtp-Source: ABdhPJxUqoXfAC8kw7FI3HL0zpok8Mtz3fMXJr2XZrZcCgq5QJAeD7Yk+h9KidqBFixlZ0Knxjnfrfy1nRHOvKtoqUk=
-X-Received: by 2002:a05:6402:1a2f:: with SMTP id be15mr29728784edb.209.1608039202182;
- Tue, 15 Dec 2020 05:33:22 -0800 (PST)
+         :message-id:subject:to:cc;
+        bh=9FgvEA6LpRqaZRiWRCs1HzkpZ2wxH4J/Kj/S8yl9EX8=;
+        b=LTDV8UOEmJTTlCXq1c4mf3mswjGVPuq7+Re/NoBIFLO8padfyoXsac+vCVf9p5StGU
+         qrf8MuvZxYdU4A7VYtliXltpBZ6swoqY4E6ARfmsnb/o91CspvgjBbSXoiUhMpmE24fC
+         VRl6kbK4CGORa9TGGKxEBZqEPXUQgMIHgFLHsXAeUqux3O51BpELQoEU/IEIiuils66y
+         yt4JQl1adIoeqeeHlS6mmg6W64TZP2npa8wuSqetEBIx6HQLkuYCv/XgO0l2mKPeWbt5
+         V8aELXFPtxqfF+2cQlMvdhC+pm/vkyP78hBETH1EqvtVAWTXaKumGvqXSC8Dd2qQdXu3
+         R9PA==
+X-Gm-Message-State: AOAM532QRmFzGs28f+h5YH0yX4v+V5M55zMQjThHIWVXFw/MYvJE24gK
+        QeBUFhoBqnFTgBRVUvBtyieroGUDW9D9YdVLqs0Dbw==
+X-Google-Smtp-Source: ABdhPJw2pSaiM6ovuzcTeKxy3DP6Ku+SVy15pyfTwAwM3z1ikPI1R8D7O7JPHcMCx/NBwXhCbuTiLeGCivpmnPRuZRE=
+X-Received: by 2002:a67:5c03:: with SMTP id q3mr26997421vsb.47.1608039486303;
+ Tue, 15 Dec 2020 05:38:06 -0800 (PST)
 MIME-Version: 1.0
-References: <20201214225851.23342-1-adrien.grassein@gmail.com>
- <20201215130622.GD4738@sirena.org.uk> <CABkfQAEAe0XGj16CkmH7xMNxgdQ+SRq0BYzvP+V5PdDqVbyAAw@mail.gmail.com>
- <CAOMZO5A_Gtwn=AFwJXf_wpC4k902Hg=tCMWpcFUGNWOg9me6_w@mail.gmail.com> <20201215132400.GE4738@sirena.org.uk>
-In-Reply-To: <20201215132400.GE4738@sirena.org.uk>
-From:   Adrien Grassein <adrien.grassein@gmail.com>
-Date:   Tue, 15 Dec 2020 14:33:11 +0100
-Message-ID: <CABkfQAFNQv3nfoyC2=Un1VWdWh7bbC4RukT0DYLChk0=K2_K8w@mail.gmail.com>
-Subject: Re: [PATCH v3 0/2] Add support of nxp pf8x00 regulator
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Fabio Estevam <festevam@gmail.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
+References: <1607746317-4696-1-git-send-email-yongqiang.niu@mediatek.com> <1607746317-4696-8-git-send-email-yongqiang.niu@mediatek.com>
+In-Reply-To: <1607746317-4696-8-git-send-email-yongqiang.niu@mediatek.com>
+From:   Nicolas Boichat <drinkcat@chromium.org>
+Date:   Tue, 15 Dec 2020 21:37:55 +0800
+Message-ID: <CANMq1KCbmW4kbY5rbuogr9JJD5c5=-qatFs-EaWbuAxSzWmnLQ@mail.gmail.com>
+Subject: Re: [PATCH v2, 07/17] drm/mediatek: add disp config and mm 26mhz
+ clock into mutex device
+To:     Yongqiang Niu <yongqiang.niu@mediatek.com>
+Cc:     CK Hu <ck.hu@mediatek.com>, Philipp Zabel <p.zabel@pengutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Troy Kisky <troy.kisky@boundarydevices.com>,
-        Gary Bisson <gary.bisson@boundarydevices.com>,
-        Jagan Teki <jagan@amarulasolutions.com>
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        lkml <linux-kernel@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-I just cloned the linux-next repo.
-
-I will try to fix things Mark tells me to fix on my own driver.
-
-Thanks again,
-
-
-Adrien
-
-
-
-Le mar. 15 d=C3=A9c. 2020 =C3=A0 14:24, Mark Brown <broonie@kernel.org> a =
-=C3=A9crit :
+On Sat, Dec 12, 2020 at 12:12 PM Yongqiang Niu
+<yongqiang.niu@mediatek.com> wrote:
 >
-> On Tue, Dec 15, 2020 at 10:20:02AM -0300, Fabio Estevam wrote:
-> > On Tue, Dec 15, 2020 at 10:16 AM Adrien Grassein
-> > <adrien.grassein@gmail.com> wrote:
+> there are 2 more clock need enable for display.
+> parser these clock when mutex device probe,
+> enable and disable when mutex on/off
 >
-> > > Could you please tell me where this driver was merged?
-> > > I checked the main kernel Linux and I can find out this one.
+> Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
+> ---
+>  drivers/gpu/drm/mediatek/mtk_drm_ddp.c | 49 ++++++++++++++++++++++++++++------
+>  1 file changed, 41 insertions(+), 8 deletions(-)
 >
-> > It is in the linux-next tree:
-> > https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/com=
-mit/drivers?h=3Dnext-20201215&id=3Dd3795d6321ecaa55d94dc24c3b1e3cce608aabd6
+> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_ddp.c b/drivers/gpu/drm/mediatek/mtk_drm_ddp.c
+> index 60788c1..de618a1 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_drm_ddp.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_drm_ddp.c
+> @@ -118,7 +118,7 @@ struct mtk_ddp_data {
 >
-> Coming to there from my for-next branch - it's also already been sent in
-> a pull request to Linus so will hopefully be hitting his tree soonish.
+>  struct mtk_ddp {
+>         struct device                   *dev;
+> -       struct clk                      *clk;
+> +       struct clk                      *clk[3];
+>         void __iomem                    *regs;
+>         struct mtk_disp_mutex           mutex[10];
+>         const struct mtk_ddp_data       *data;
+> @@ -257,14 +257,39 @@ int mtk_disp_mutex_prepare(struct mtk_disp_mutex *mutex)
+>  {
+>         struct mtk_ddp *ddp = container_of(mutex, struct mtk_ddp,
+>                                            mutex[mutex->id]);
+> -       return clk_prepare_enable(ddp->clk);
+> +       int ret;
+> +       int i;
+> +
+> +       for (i = 0; i < ARRAY_SIZE(ddp->clk); i++) {
+> +               if (IS_ERR(ddp->clk[i]))
+> +                       continue;
+> +               ret = clk_prepare_enable(ddp->clk[i]);
+> +               if (ret) {
+> +                       pr_err("failed to enable clock, err %d. i:%d\n",
+> +                               ret, i);
+> +                       goto err;
+> +               }
+> +       }
+> +
+> +       return 0;
+> +
+> +err:
+> +       while (--i >= 0)
+> +               clk_disable_unprepare(ddp->clk[i]);
+> +       return ret;
+>  }
+>
+>  void mtk_disp_mutex_unprepare(struct mtk_disp_mutex *mutex)
+>  {
+>         struct mtk_ddp *ddp = container_of(mutex, struct mtk_ddp,
+>                                            mutex[mutex->id]);
+> -       clk_disable_unprepare(ddp->clk);
+> +       int i;
+> +
+> +        for (i = 0; i < ARRAY_SIZE(ddp->clk); i++) {
+> +               if (IS_ERR(ddp->clk[i]))
+> +                       continue;
+> +               clk_disable_unprepare(ddp->clk[i]);
+> +       }
+>  }
+>
+>  void mtk_disp_mutex_add_comp(struct mtk_disp_mutex *mutex,
+> @@ -415,11 +440,19 @@ static int mtk_ddp_probe(struct platform_device *pdev)
+>         ddp->data = of_device_get_match_data(dev);
+>
+>         if (!ddp->data->no_clk) {
+> -               ddp->clk = devm_clk_get(dev, NULL);
+> -               if (IS_ERR(ddp->clk)) {
+> -                       if (PTR_ERR(ddp->clk) != -EPROBE_DEFER)
+> -                               dev_err(dev, "Failed to get clock\n");
+> -                       return PTR_ERR(ddp->clk);
+> +               int ret;
+> +
+> +               for (i = 0; i < ARRAY_SIZE(ddp->clk); i++) {
+> +                       ddp->clk[i] = of_clk_get(dev->of_node, i);
+> +
+> +                       if (IS_ERR(ddp->clk[i])) {
+> +                               ret = PTR_ERR(ddp->clk[i]);
+> +                               if (ret != EPROBE_DEFER)
+> +                                       dev_err(dev, "Failed to get clock %d\n",
+> +                                               ret);
+> +
+> +                               return ret;
+> +                       }
+
+Use of_clk_bulk_get_all instead?
+
+ddp->num_clks = of_clk_bulk_get_all(dev->of_node, &ddp->clks);
+...
+
+Then the calls above can be clk_bulk_enable/clk_bulk_disable using
+num_clks and clks.
+
+
+>                 }
+>         }
+>
+> --
+> 1.8.1.1.dirty
+> _______________________________________________
+> Linux-mediatek mailing list
+> Linux-mediatek@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-mediatek
