@@ -2,38 +2,39 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0994B2DB50B
-	for <lists+devicetree@lfdr.de>; Tue, 15 Dec 2020 21:27:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D5A92DB50F
+	for <lists+devicetree@lfdr.de>; Tue, 15 Dec 2020 21:28:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728286AbgLOU0l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Dec 2020 15:26:41 -0500
-Received: from mail.kernel.org ([198.145.29.99]:59764 "EHLO mail.kernel.org"
+        id S1728378AbgLOU2K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Dec 2020 15:28:10 -0500
+Received: from mail.kernel.org ([198.145.29.99]:60876 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728281AbgLOU02 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 15 Dec 2020 15:26:28 -0500
-X-Gm-Message-State: AOAM530Ne22DdOW8gTljKwakT7AbXS5z80+sywh4DWk6y+IOl1heVXPn
-        QnI9T1AHeBdLkeYnUDtICrAZ1N8AdoCcuQ3rbg==
+        id S1727384AbgLOU2D (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 15 Dec 2020 15:28:03 -0500
+X-Gm-Message-State: AOAM530B5Bw3dLZ0zs9BfiEyXZ572LOlTOR8JJk1g2jdVrpPWLX8aoZY
+        WyR1yg9B8dI1gMmU4CIdiK3d2BidK4E9sYEM7Q==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1608063947;
-        bh=4GhOLILUlkuJ65HRqAEzaNhc4ra+C1P7aIGOJQD/jXg=;
+        s=k20201202; t=1608064043;
+        bh=MBGH1+TBwDVBKnTVwZJ+Y6Pz95/9T53Uh0u3LBjab2w=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=u6pTBvxSNmfYUXqyAylPt/cgwI8H1Cc2HGL0ZazEbn/Kb+axl2Gt21xjbZFx54vsX
-         7G6vbWyEHoTm994MZ1I12pPitHDOd7nm1ZlU9+sirUISex//BP9YNU/vwxTvkFN4Fb
-         tbT1feOnao+Ajaje9mqnrta/YgqxOQl1WJb1CfxSW7bTxm92VI+YuAUYgNS/VIfl/5
-         2qKgC8sWg++GfRz4VOMLb3hDqZiSaybvHX/pcy3m7LyqbYeC5x58T56hlyijo3zXSX
-         +Pky7WG+b/kZ45YIoX6INyui+9yc+UkORunXe6KDPZfV5At2AuGDNwe7NklCDQhk9e
-         ipwlFB4h77s3A==
-X-Google-Smtp-Source: ABdhPJxXuO5NBKO94Bs8XbHsEEhQ71d5V6U+DDgQj6sG1aOEc+fnPpDDZOYhZxjyQJE2Ytjzw3OJujqYsRLhju0/lKs=
-X-Received: by 2002:a50:f404:: with SMTP id r4mr4075570edm.62.1608063946210;
- Tue, 15 Dec 2020 12:25:46 -0800 (PST)
+        b=a0sl4ujDoF7sN+cuW0tYJTVqPsvEyxCTu2cLaIX4uXp2m4V/1PMv0u+Gs/poAeKWy
+         wGE2+ntAvSrr5/Wmn8XnXPLrr4klCO3QCPWDj2KNiLjuEms/XchH96pb7SsmsjotIB
+         x5aOJY6R8N+z2DF1j+pAy9RYl4ag0DhvY+SNpeeWFnQ/xOvps8tpJfvnTR1OhMOso9
+         v0MIR4o2xRAT68eZRTYwCWiqJp9EOWjCPC61U4+QrWDD+2AcNtpgQYOFlSz2p3DDo7
+         w5rkvnCCTBrRXsezL0r33s2rHKsWX3uJ15VW5uZkchDBw+LDppqbq2mm/S3NuNHVwf
+         yb74d6Fy3rUaQ==
+X-Google-Smtp-Source: ABdhPJyPP+RNnfjJT1wTon443g6dC9GOHv+GGIORiF0PyyZm2aga+kv6r74UhqjV+rSblF9RFvh1K2ETFxdMNCEiZ1U=
+X-Received: by 2002:aa7:cc86:: with SMTP id p6mr8286989edt.289.1608064041463;
+ Tue, 15 Dec 2020 12:27:21 -0800 (PST)
 MIME-Version: 1.0
-References: <20201215155627.2513-1-nsaenzjulienne@suse.de> <20201215155627.2513-2-nsaenzjulienne@suse.de>
-In-Reply-To: <20201215155627.2513-2-nsaenzjulienne@suse.de>
+References: <20201215155627.2513-1-nsaenzjulienne@suse.de> <20201215155627.2513-4-nsaenzjulienne@suse.de>
+In-Reply-To: <20201215155627.2513-4-nsaenzjulienne@suse.de>
 From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 15 Dec 2020 14:25:34 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqK7zZdWi0orXoqPWqvvxP3H6n7=JRqhdeAiAYAHRS3WHQ@mail.gmail.com>
-Message-ID: <CAL_JsqK7zZdWi0orXoqPWqvvxP3H6n7=JRqhdeAiAYAHRS3WHQ@mail.gmail.com>
-Subject: Re: [PATCH 1/6] dt-bindings: nvmem: Add bindings for rmem driver
+Date:   Tue, 15 Dec 2020 14:27:09 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLSnGzJgEtJBVQqR7jY2bvxCfC-84u-GR-V8htw_O60JQ@mail.gmail.com>
+Message-ID: <CAL_JsqLSnGzJgEtJBVQqR7jY2bvxCfC-84u-GR-V8htw_O60JQ@mail.gmail.com>
+Subject: Re: [PATCH 3/6] ARM: dts: bcm2711: Add reserved memory template to
+ hold firmware configuration
 To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
 Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
         devicetree@vger.kernel.org,
@@ -56,67 +57,54 @@ X-Mailing-List: devicetree@vger.kernel.org
 On Tue, Dec 15, 2020 at 9:56 AM Nicolas Saenz Julienne
 <nsaenzjulienne@suse.de> wrote:
 >
-> Firmware/co-processors might use reserved memory areas in order to pass
-> data stemming from an nvmem device otherwise non accessible to Linux.
-> For example an EEPROM memory only physically accessible to firmware, or
-> data only accessible early at boot time.
->
-> Introduce the dt-bindings to nvmem's rmem.
+> RPi4's co-processor will copy the board's bootloader configuration into
+> memory for the OS to consume. Introduce a reserved-memory area template
+> for the co-processor to edit before booting the system so as for Linux
+> not to overwrite that memory.
 >
 > Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
 > ---
->  .../devicetree/bindings/nvmem/rmem.yaml       | 35 +++++++++++++++++++
->  1 file changed, 35 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/nvmem/rmem.yaml
+>  arch/arm/boot/dts/bcm2711-rpi-4-b.dts | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
 >
-> diff --git a/Documentation/devicetree/bindings/nvmem/rmem.yaml b/Documentation/devicetree/bindings/nvmem/rmem.yaml
-> new file mode 100644
-> index 000000000000..3037ebc4634d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/nvmem/rmem.yaml
-> @@ -0,0 +1,35 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/nvmem/rmem.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Reserved Memory Based nvmem Device
-> +
-> +maintainers:
-> +  - Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - nvmem-rmem
-> +
-> +  memory-region:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description:
-> +      phandle to the reserved memory region
+> diff --git a/arch/arm/boot/dts/bcm2711-rpi-4-b.dts b/arch/arm/boot/dts/bcm2711-rpi-4-b.dts
+> index 403bacf986eb..c58e58e8ce39 100644
+> --- a/arch/arm/boot/dts/bcm2711-rpi-4-b.dts
+> +++ b/arch/arm/boot/dts/bcm2711-rpi-4-b.dts
+> @@ -25,6 +25,7 @@ aliases {
+>                 emmc2bus = &emmc2bus;
+>                 ethernet0 = &genet;
+>                 pcie0 = &pcie0;
+> +               eeprom = &eeprom;
 
-There's no need for this indirection. Just add a compatible to the
-reserved-memory node. See ramoops for example.
+I don't see the need for this...
 
-Please make the compatible specific enough to define what the memory
-contains. If you want 'nvmem-rmem' as a fallback that's fine.
+>         };
+>
+>         leds {
+> @@ -218,6 +219,19 @@ &pwm1 {
+>         status = "okay";
+>  };
+>
+> +&rmem {
+> +       /*
+> +        * RPi4's co-processor will copy the board's bootloader configuration
+> +        * into memory for the OS to consume. It'll also update this node with
+> +        * its placement information.
+> +        */
+> +       eeprom: eeprom@0 {
 
+But it's not an eeprom. It's just memory with some format to the contents.
+
+> +               reg = <0x0 0x0 0x0>;
+> +               no-map;
+> +               status = "disabled";
+> +       };
+> +};
 > +
-> +required:
-> +  - compatible
-> +  - memory-region
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +        fw-config {
-> +                compatible = "nvmem-rmem";
-> +                memory-region = <&mem>;
-> +        };
-> +
-> +...
+>  /* SDHCI is used to control the SDIO for wireless */
+>  &sdhci {
+>         #address-cells = <1>;
 > --
 > 2.29.2
 >
