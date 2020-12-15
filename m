@@ -2,117 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E0312DACBC
-	for <lists+devicetree@lfdr.de>; Tue, 15 Dec 2020 13:10:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B7692DAD6A
+	for <lists+devicetree@lfdr.de>; Tue, 15 Dec 2020 13:45:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728802AbgLOMJH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Dec 2020 07:09:07 -0500
-Received: from relay9-d.mail.gandi.net ([217.70.183.199]:45609 "EHLO
-        relay9-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728706AbgLOMJA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Dec 2020 07:09:00 -0500
-X-Originating-IP: 93.34.118.233
-Received: from uno.localdomain (93-34-118-233.ip49.fastwebnet.it [93.34.118.233])
-        (Authenticated sender: jacopo@jmondi.org)
-        by relay9-d.mail.gandi.net (Postfix) with ESMTPSA id 89A95FF80E;
-        Tue, 15 Dec 2020 12:07:58 +0000 (UTC)
-Date:   Tue, 15 Dec 2020 13:08:09 +0100
-From:   Jacopo Mondi <jacopo@jmondi.org>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Rob Herring <robh@kernel.org>,
-        Jacopo Mondi <jacopo+renesas@jmondi.org>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Niklas =?utf-8?Q?S=C3=B6derlund?= 
-        <niklas.soderlund+renesas@ragnatech.se>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Hyun Kwon <hyunk@xilinx.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Sergei Shtylyov <sergei.shtylyov@gmail.com>
-Subject: Re: [PATCH v5 2/8] dt-bindings: media: max9286: Document
- 'maxim,initial-reverse-channel-mV'
-Message-ID: <20201215120809.l4qrwdfoq5jpsfi5@uno.localdomain>
-References: <20201116135305.81319-1-jacopo+renesas@jmondi.org>
- <20201116135305.81319-3-jacopo+renesas@jmondi.org>
- <20201130220048.GA3104550@robh.at.kernel.org>
- <20201215111420.zpc67jkary3l5j4z@uno.localdomain>
- <CAMuHMdX1bzRqZEvXod3QNx+SNybP85wpQ66=bxyQJ4kAoo6X1g@mail.gmail.com>
+        id S1728701AbgLOMnY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Dec 2020 07:43:24 -0500
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:56060 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726156AbgLOMnX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Dec 2020 07:43:23 -0500
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0BFCfS2t045638;
+        Tue, 15 Dec 2020 06:41:28 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1608036088;
+        bh=LzfI5xS58ddpJd1dJCTni8TPFW8o/CWU0g/78oxWrVA=;
+        h=From:To:CC:Subject:Date;
+        b=bEN645C76AqczgrGW0AGdXf7+CtkF8ZoswpbFh4lnsIc2YQWal3ZzlUoK7e5PgAiO
+         k8gMctd6bXPfOUkm3bvgrCPtUS5qKmztowPi34DO8mMP3RHGOjevuYLBzx4TANUsSr
+         tORMRQTFB5QEo8br+fBtPBfcoBlbyc+eYbc/z+b0=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0BFCfSVF055830
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 15 Dec 2020 06:41:28 -0600
+Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 15
+ Dec 2020 06:41:27 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Tue, 15 Dec 2020 06:41:27 -0600
+Received: from feketebors.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0BFCfP2I072404;
+        Tue, 15 Dec 2020 06:41:25 -0600
+From:   Peter Ujfalusi <peter.ujfalusi@ti.com>
+To:     <airlied@linux.ie>, <daniel@ffwll.ch>, <robh+dt@kernel.org>,
+        <a.hajda@samsung.com>, <narmstrong@baylibre.com>
+CC:     <Laurent.pinchart@ideasonboard.com>, <jonas@kwiboo.se>,
+        <jernej.skrabec@siol.net>, <dri-devel@lists.freedesktop.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH] dt-bindings: display: bridge: tc358768: Remove maintainer information
+Date:   Tue, 15 Dec 2020 14:42:27 +0200
+Message-ID: <20201215124227.1872-1-peter.ujfalusi@ti.com>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <CAMuHMdX1bzRqZEvXod3QNx+SNybP85wpQ66=bxyQJ4kAoo6X1g@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
+My employment with TI is coming to an end and I will not have access to
+the board where this bridge is connected to.
 
-On Tue, Dec 15, 2020 at 12:44:17PM +0100, Geert Uytterhoeven wrote:
-> Hi Jacopo,
->
-> On Tue, Dec 15, 2020 at 12:14 PM Jacopo Mondi <jacopo@jmondi.org> wrote:
-> > On Mon, Nov 30, 2020 at 03:00:48PM -0700, Rob Herring wrote:
-> > > On Mon, Nov 16, 2020 at 02:52:59PM +0100, Jacopo Mondi wrote:
-> > > > Document the 'initial-reverse-channel-mV' vendor property in the
-> > > > bindings document of the max9286 driver.
-> > > >
-> > > > The newly introduced property allows to specifying the initial
-> > > > configuration of the GMSL reverse control channel to accommodate
-> > > > remote serializers pre-programmed with the high threshold power
-> > > > supply noise immunity enabled.
-> > > >
-> > > > Reviewed-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
-> > > > Signed-off-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
-> > > > ---
-> > > >  .../bindings/media/i2c/maxim,max9286.yaml     | 23 +++++++++++++++++++
-> > > >  1 file changed, 23 insertions(+)
-> > > >
-> > > > diff --git a/Documentation/devicetree/bindings/media/i2c/maxim,max9286.yaml b/Documentation/devicetree/bindings/media/i2c/maxim,max9286.yaml
-> > > > index 9ea827092fdd..f61234d204fa 100644
-> > > > --- a/Documentation/devicetree/bindings/media/i2c/maxim,max9286.yaml
-> > > > +++ b/Documentation/devicetree/bindings/media/i2c/maxim,max9286.yaml
-> > > > @@ -51,6 +51,26 @@ properties:
-> > > >    '#gpio-cells':
-> > > >      const: 2
-> > > >
-> > > > +  maxim,initial-reverse-channel-mV:
-> > >
-> > > Use standard unit suffix.
-> > >
-> >
-> > Which one ? :)
->
-> Documentation/devicetree/bindings/property-units.txt
->
+It is better to remove a soon bouncing email address.
 
-Oh, I had no idea we have this.
-It's been here since a long time it seems, my bad
-        Date:   Mon Feb 8 10:55:55 2016
+Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
+---
+ .../devicetree/bindings/display/bridge/toshiba,tc358768.yaml   | 3 ---
+ 1 file changed, 3 deletions(-)
 
-> > I see in v5.10 one 'mV', three 'mv', one 'millivolts', several
-> > 'microvolts'.
-> >
-> > I'll go with the majority and make this
-> > 'maxim,initial-reverse-channel-mv'
->
-> Wrong guess ;-)
->
+diff --git a/Documentation/devicetree/bindings/display/bridge/toshiba,tc358768.yaml b/Documentation/devicetree/bindings/display/bridge/toshiba,tc358768.yaml
+index c036a75db8f7..454ab8032b97 100644
+--- a/Documentation/devicetree/bindings/display/bridge/toshiba,tc358768.yaml
++++ b/Documentation/devicetree/bindings/display/bridge/toshiba,tc358768.yaml
+@@ -6,9 +6,6 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: Toschiba TC358768/TC358778 Parallel RGB to MIPI DSI bridge
+ 
+-maintainers:
+-  - Peter Ujfalusi <peter.ujfalusi@ti.com>
+-
+ description: |
+   The TC358768/TC358778 is bridge device which converts RGB to DSI.
+ 
+-- 
+Peter
 
-Maybe a stupid question, but the fact only 'microvolts' is listed, is
-an implied suggestion to use 'millivolts' for simmetry or to express
-the value in micro volts ?
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
 
-> Gr{oetje,eeting}s,
->
->                         Geert
->
-> --
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
->
-> In personal conversations with technical people, I call myself a hacker. But
-> when I'm talking to journalists I just say "programmer" or something like that.
->                                 -- Linus Torvalds
