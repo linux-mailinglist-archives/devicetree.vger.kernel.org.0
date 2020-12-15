@@ -2,141 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 27E5B2DB577
-	for <lists+devicetree@lfdr.de>; Tue, 15 Dec 2020 21:55:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DC0422DB597
+	for <lists+devicetree@lfdr.de>; Tue, 15 Dec 2020 22:07:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728268AbgLOUuT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Dec 2020 15:50:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44920 "EHLO
+        id S1727384AbgLOVHt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Dec 2020 16:07:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47778 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727976AbgLOUuE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Dec 2020 15:50:04 -0500
-Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com [IPv6:2a00:1450:4864:20::342])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E47D4C0611C5;
-        Tue, 15 Dec 2020 12:49:06 -0800 (PST)
-Received: by mail-wm1-x342.google.com with SMTP id a3so478308wmb.5;
-        Tue, 15 Dec 2020 12:49:06 -0800 (PST)
+        with ESMTP id S1727582AbgLOVHs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Dec 2020 16:07:48 -0500
+Received: from mail-ej1-x644.google.com (mail-ej1-x644.google.com [IPv6:2a00:1450:4864:20::644])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BA07C0617A7
+        for <devicetree@vger.kernel.org>; Tue, 15 Dec 2020 13:07:08 -0800 (PST)
+Received: by mail-ej1-x644.google.com with SMTP id qw4so29674167ejb.12
+        for <devicetree@vger.kernel.org>; Tue, 15 Dec 2020 13:07:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=VOwHUnMwDHMUa1rvKsjcJQjz89OY4wK32GabZtinnfs=;
-        b=JiKE4GdKngSvirj6RPyQCf/4W4u3+uAUVJDsXak4jPfNAqyvAfjDoM7lQawtzs5v0P
-         sd+yF/xgz0GSrkp8iudQh7KprfEPRKbHNIHEPMhgodwMZ00bctzVTUvrKTd9qkGVsz2U
-         h78SGkGAb5oZfzw+t3rIEHkBFllc0guCskkN6vRZjS4s4PW0EX9l9LTX9u0EgerId/Qr
-         Aczf4uhyDjsVUKC8EPUUFcShOOruCygyPUB8A93MpaJVpQCyTWsLRClYGyXzomn6FmwE
-         ZKzzkiCofTeMAk+RGYhgIPXQVXkFRuOQPYkJ4mL4A2NMapIyVnmsCwxrRsQOMZYl52hx
-         17Hg==
+        d=amarulasolutions.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=5oyP6mvBrvE3aEYFhLfs2RYWHj0K8mQLLM6Luko/efo=;
+        b=del9jE5SOnMZt6v3+c7d+G/TxIN3JzQQaLdEu/P/mWpV1LqwThTlFgRGPPh7HyeAVH
+         JDrbSeo5jQNYKIxUcBS4lME2fzO1FieKxP/gopAy3MPqExnhHza1QJHU/LbujshLUV03
+         tLIUVYkyVUb2qUN09S38om1HeQMcNu+KdL8Io=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=VOwHUnMwDHMUa1rvKsjcJQjz89OY4wK32GabZtinnfs=;
-        b=gU+l1TjvViiEi8MmCNJhU1ZO/JKdRrwudWbQyhU4i5+G/wpt+gaRbK9gvxOlsljww2
-         oHeLbFsJZchgoBgjSA5kLsQEEfPP6NHD46+TGkA7N53Kp+UhNY9yjLCPdwrqd/u7WikZ
-         PYMvCMSrW863nVWfiXmP4W82hP8aOVMz2hhF+BAe7pBq2X04Y/RWwvtt+VMIF071mZXE
-         K8t9XpASR2X3UaV4MU6kCKu2Nsdybny8UaSnKlb26aGAgIOn4P98yGvSIiMnpJe0NYag
-         1thhWbIRZ9dFPK4Wcw5eO7qNn8GsB6Jz62eRAmbBoqcW7w+hTXn2pRltxwJZxyhRDoiO
-         TFjQ==
-X-Gm-Message-State: AOAM530XqgL3BVEQCPaxC1ilWzWSety/tUY/sfPDnSIBQ7PNxXhztUUu
-        hPMszMJjb2QibpY/Zd2cXdQ=
-X-Google-Smtp-Source: ABdhPJwUBlAAAIikGf7hdg7ZgN0kqFVuwCfdpLy6iwzBFB3Wy9PmPulKRvOQMm+EvmJGfFJYvU/F5g==
-X-Received: by 2002:a1c:6208:: with SMTP id w8mr597439wmb.96.1608065345725;
-        Tue, 15 Dec 2020 12:49:05 -0800 (PST)
-Received: from adgra-XPS-15-9570.home (lfbn-idf1-1-1007-144.w86-238.abo.wanadoo.fr. [86.238.83.144])
-        by smtp.gmail.com with ESMTPSA id i16sm37199246wrx.89.2020.12.15.12.49.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Dec 2020 12:49:04 -0800 (PST)
-From:   Adrien Grassein <adrien.grassein@gmail.com>
-To:     broonie@kernel.org, jagan@amarulasolutions.com
-Cc:     lgirdwood@gmail.com, robh+dt@kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        troy.kisky@boundarydevices.com,
-        Adrien Grassein <adrien.grassein@gmail.com>
-Subject: [PATCH 6/6] regulator: pf8x00: use linear range for buck 1-6
-Date:   Tue, 15 Dec 2020 21:48:58 +0100
-Message-Id: <20201215204858.8186-7-adrien.grassein@gmail.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20201215204858.8186-1-adrien.grassein@gmail.com>
-References: <20201215204858.8186-1-adrien.grassein@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=5oyP6mvBrvE3aEYFhLfs2RYWHj0K8mQLLM6Luko/efo=;
+        b=X9DeoSG6D10tdcsyHGZCneEPEO2+JDEpLTY+xH6zt6x+fuwWaPWqfBN+a5/PNf45Nj
+         +NzlRDilTOOsvHOZjDeVl+CEPFV1NL99oM4PI1bHtSTQGInHutXQnB96umT4MTcu+YhP
+         UAhT7GQqle7m1OaGcIQ90qPDOJSBReblYsaeZS9lFI7D+qrwl9RteDWyecuWUzriQdX9
+         Fyte5JTtEHHkwi9sGlczAkqIWWeii8eZM6/XAPmgLthLbeiFTO8SkMUjJ0xQGnwhdTD/
+         F8KDFh76JILX6urJq4WpmWV88BxmB0wZCFfv8gztInneglLCoDu8xVYFlOfVZcrytuZf
+         rdHQ==
+X-Gm-Message-State: AOAM532z741y7+TPlRfSn54tby2JY+t8Yd0O85ttgZ4jO9ZXqmuS3K6i
+        4vNOYaqAm4pxMbdezHOkih8J679LkOlXUoa1VnGoiQ==
+X-Google-Smtp-Source: ABdhPJzWwlcPoqKhjHTrI6zoBOxh/CVBgBRXg6QTI1801GgWXVReiXUxUyJ9HY6W6Y/LCE22kPBK9M045rauq7GzpII=
+X-Received: by 2002:a17:906:4ec7:: with SMTP id i7mr6677702ejv.252.1608066426798;
+ Tue, 15 Dec 2020 13:07:06 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20201215204858.8186-1-adrien.grassein@gmail.com> <20201215204858.8186-4-adrien.grassein@gmail.com>
+In-Reply-To: <20201215204858.8186-4-adrien.grassein@gmail.com>
+From:   Jagan Teki <jagan@amarulasolutions.com>
+Date:   Wed, 16 Dec 2020 02:36:54 +0530
+Message-ID: <CAMty3ZD2WsFeuCnt4DEL87Ou-sxHPYiBVu1n-LoK2gEzgO3XwQ@mail.gmail.com>
+Subject: Re: [PATCH 3/6] regulator: dt-bindings: pf8x00: fix nxp,phase-shift doc
+To:     Adrien Grassein <adrien.grassein@gmail.com>
+Cc:     Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Troy Kisky <troy.kisky@boundarydevices.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Use a linear range to describe the voltages of the
-bucks 1-6 instead of listing it one by one (via a macro)
+On Wed, Dec 16, 2020 at 2:19 AM Adrien Grassein
+<adrien.grassein@gmail.com> wrote:
+>
+> nxp,phase-shift is an enum so use enum format to describe it.
+> Minimum and maximum values are also wrong.
+>
+> Signed-off-by: Adrien Grassein <adrien.grassein@gmail.com>
+> ---
+>  .../bindings/regulator/nxp,pf8x00-regulator.yaml | 16 ++++------------
+>  1 file changed, 4 insertions(+), 12 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/regulator/nxp,pf8x00-regulator.yaml b/Documentation/devicetree/bindings/regulator/nxp,pf8x00-regulator.yaml
+> index 913532d0532e..1da724c6e2ba 100644
+> --- a/Documentation/devicetree/bindings/regulator/nxp,pf8x00-regulator.yaml
+> +++ b/Documentation/devicetree/bindings/regulator/nxp,pf8x00-regulator.yaml
+> @@ -60,21 +60,13 @@ properties:
+>
+>            nxp,phase-shift:
+>              $ref: "/schemas/types.yaml#/definitions/uint32"
+> -            minimum: 45
+> -            maximum: 0
+> +            minimum: 0
+> +            maximum: 315
+> +            default: 0
+> +            enum: [ 0, 45, 90, 135, 180, 225, 270, 315 ]
 
-Signed-off-by: Adrien Grassein <adrien.grassein@gmail.com>
----
- drivers/regulator/pf8x00-regulator.c | 38 ++++++----------------------
- 1 file changed, 8 insertions(+), 30 deletions(-)
+Do you mean 0 is the minimum or starting value? I can see Table 48.
+SWx phase configuration with minimum and maximum values are starting
+from 45, 90, 135, 180, 225, 270, 315, 0 with phase bits as 0x0 to 0x7
 
-diff --git a/drivers/regulator/pf8x00-regulator.c b/drivers/regulator/pf8x00-regulator.c
-index 335aa77ef5fc..d5c1916c0646 100644
---- a/drivers/regulator/pf8x00-regulator.c
-+++ b/drivers/regulator/pf8x00-regulator.c
-@@ -155,35 +155,11 @@ static const unsigned int pf8x00_sw_current_table[] = {
- 	2100000, 2600000, 3000000, 4500000,
- };
- 
--#define SWV(i)		(6250 * i + 400000)
--#define SWV_LINE(i)	SWV(i*8+0), SWV(i*8+1), SWV(i*8+2), SWV(i*8+3), \
--			SWV(i*8+4), SWV(i*8+5), SWV(i*8+6), SWV(i*8+7)
--
- /* Output: 0.4V to 1.8V */
--static const int pf8x00_sw1_to_6_voltages[] = {
--	SWV_LINE(0),
--	SWV_LINE(1),
--	SWV_LINE(2),
--	SWV_LINE(3),
--	SWV_LINE(4),
--	SWV_LINE(5),
--	SWV_LINE(6),
--	SWV_LINE(7),
--	SWV_LINE(8),
--	SWV_LINE(9),
--	SWV_LINE(10),
--	SWV_LINE(11),
--	SWV_LINE(12),
--	SWV_LINE(13),
--	SWV_LINE(14),
--	SWV_LINE(15),
--	SWV_LINE(16),
--	SWV_LINE(17),
--	SWV_LINE(18),
--	SWV_LINE(19),
--	SWV_LINE(20),
--	SWV_LINE(21),
--	1500000, 1800000,
-+#define PF8XOO_SW1_6_VOLTAGE_NUM 0xB2
-+static const struct linear_range pf8x00_sw1_to_6_voltages[] = {
-+	REGULATOR_LINEAR_RANGE(400000, 0x00, 0xB0, 6250),
-+	REGULATOR_LINEAR_RANGE(1800000, 0xB1, 0xB1, 0),
- };
- 
- /* Output: 1.0V to 4.1V */
-@@ -248,7 +224,7 @@ static const struct regulator_ops pf8x00_buck1_6_ops = {
- 	.enable = regulator_enable_regmap,
- 	.disable = regulator_disable_regmap,
- 	.is_enabled = regulator_is_enabled_regmap,
--	.list_voltage = regulator_list_voltage_table,
-+	.list_voltage = regulator_list_voltage_linear_range,
- 	.set_voltage_sel = regulator_set_voltage_sel_regmap,
- 	.get_voltage_sel = regulator_get_voltage_sel_regmap,
- 	.get_current_limit = regulator_get_current_limit_regmap,
-@@ -307,7 +283,9 @@ static const struct regulator_ops pf8x00_vsnvs_ops = {
- 			.type = REGULATOR_VOLTAGE,		\
- 			.id = PF8X00_BUCK ## _id,		\
- 			.owner = THIS_MODULE,			\
--			.volt_table = voltages,			\
-+			.linear_ranges = pf8x00_sw1_to_6_voltages, \
-+			.n_linear_ranges = \
-+				ARRAY_SIZE(pf8x00_sw1_to_6_voltages), \
- 			.vsel_reg = (base) + SW_RUN_VOLT,	\
- 			.vsel_mask = 0xff,			\
- 			.curr_table = pf8x00_sw_current_table, \
--- 
-2.20.1
-
+Jagan.
