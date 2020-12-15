@@ -2,71 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 505B72DB148
-	for <lists+devicetree@lfdr.de>; Tue, 15 Dec 2020 17:25:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3053E2DB16A
+	for <lists+devicetree@lfdr.de>; Tue, 15 Dec 2020 17:30:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730672AbgLOQXu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Dec 2020 11:23:50 -0500
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:37580 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728235AbgLOQXp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Dec 2020 11:23:45 -0500
-Received: by mail-ot1-f65.google.com with SMTP id o11so19906913ote.4;
-        Tue, 15 Dec 2020 08:23:30 -0800 (PST)
+        id S1730706AbgLOQ2X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Dec 2020 11:28:23 -0500
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:39546 "EHLO
+        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730667AbgLOQ14 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Dec 2020 11:27:56 -0500
+Received: by mail-ot1-f67.google.com with SMTP id d8so19935793otq.6;
+        Tue, 15 Dec 2020 08:27:40 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=zZISEQ6HaMntdpVz1WaDdYPo6C8kVf283YLFSzfriUM=;
-        b=GoCGIrBLgTUgLpymx4TebU4uoeG6wCOewJrYgVKPLcb+/qwTHSCMeVVhBwJY7AxwZ9
-         KjV10DOphgJdpUxU9e6qbizzNsQWvR8ShI8QAOxyW2Rwc3J3e6A8hr6E3Y8ZOcwmzPcj
-         DAOuDOc9xDm19xdeVJoR3JIGPz1rogAX3cVPWYfHqrDQI4kaun1iezShB8n0+zKpNTiC
-         jwDRxKv1MNhqU/MwP2/xkwCi4QH2QkHfq+KPfxn7cbP2nouifeVZZ26cqSfpmwOErV80
-         APR5W8zzsXurZ8RJrJ6egaoTC8vNMuja8eanj3Rz4sau9kAQkWnlgjz5zsEYey82TT57
-         K2cw==
-X-Gm-Message-State: AOAM533VRI5Vgl4sLi+89VZwCp7mkcehDxprPJGRD4wga48n6OzyA+eB
-        1WHyXUPuUhBf0Fwnj+H+BQ==
-X-Google-Smtp-Source: ABdhPJycVMPcM/R+xT7/BKd+G6ZNUDi5ob1ruwngO2yqWJBZtYqftnv/DChHiD2lRHcGRL6DK+aT7g==
-X-Received: by 2002:a05:6830:1501:: with SMTP id k1mr24289010otp.12.1608049384744;
-        Tue, 15 Dec 2020 08:23:04 -0800 (PST)
+        bh=0wE9xxwceDsZ28zByo+4tEOtDOwFOo+Prr+3q9/hj2o=;
+        b=rtcEwb7Fk597grcApcass3vXbTbl+YbA8tmjPRJQEGfzA5ZEz9fAC8doJn2/GK2xEL
+         zSNDbyO+5qm/QbRzMtbZAdOYXFSyW2rcTrOq4y65v9kLqURtlbHijFPufBPvhm8nsGOK
+         Fr3rdCVgkMdrcMdt1NM9oAMgg030UG310D3MIdDfZFgivEVzH3w8EFOxLt5ntbea33zh
+         +av2G+WTmXBYItU7P6PDW9HtPtuhus8Nkq1Ll+W6p/zsxZ0nlpOb1U0bD8b+2VJHLHiT
+         MebhPcOZWtdufR5FuX0Nb49PjkmmEM1ojuX58bs11J1xOSrLyCSCKygVTQjXR6veLfkJ
+         VIpA==
+X-Gm-Message-State: AOAM530oGsCvOhc+o5IbncS1/cAdMqoInaz6g+1Nwo3hmMd18oOOmq6C
+        dPiVmqP5q1aDyMFi7/wyTZ+whNaZ1g==
+X-Google-Smtp-Source: ABdhPJy1abSIEoMit2agW50JmubPYDwJhEqtAqTA8omppWigtJGNrpVDmK82Ox8qoB4eAbF+QfcVFQ==
+X-Received: by 2002:a9d:64da:: with SMTP id n26mr23393499otl.64.1608049635151;
+        Tue, 15 Dec 2020 08:27:15 -0800 (PST)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id s23sm105865oot.0.2020.12.15.08.23.03
+        by smtp.gmail.com with ESMTPSA id k3sm4745446oor.19.2020.12.15.08.27.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Dec 2020 08:23:03 -0800 (PST)
-Received: (nullmailer pid 3965708 invoked by uid 1000);
-        Tue, 15 Dec 2020 16:23:02 -0000
-Date:   Tue, 15 Dec 2020 10:23:02 -0600
+        Tue, 15 Dec 2020 08:27:14 -0800 (PST)
+Received: (nullmailer pid 3972401 invoked by uid 1000);
+        Tue, 15 Dec 2020 16:27:13 -0000
+Date:   Tue, 15 Dec 2020 10:27:13 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Yongqiang Niu <yongqiang.niu@mediatek.com>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        CK Hu <ck.hu@mediatek.com>, David Airlie <airlied@linux.ie>,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2, 03/17] dt-bindings: mediatek: add description for
- mt8192 display
-Message-ID: <20201215162302.GA3965660@robh.at.kernel.org>
-References: <1607746317-4696-1-git-send-email-yongqiang.niu@mediatek.com>
- <1607746317-4696-4-git-send-email-yongqiang.niu@mediatek.com>
+To:     Icenowy Zheng <icenowy@aosc.io>
+Cc:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        linux-watchdog@vger.kernel.org
+Subject: Re: [RFC PATCH 09/12] dt-bindings: watchdog: sunxi: add compatible
+ string for V831/V833 WDT
+Message-ID: <20201215162713.GA3970789@robh.at.kernel.org>
+References: <20201212040157.3639864-1-icenowy@aosc.io>
+ <20201212050519.3644837-1-icenowy@aosc.io>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1607746317-4696-4-git-send-email-yongqiang.niu@mediatek.com>
+In-Reply-To: <20201212050519.3644837-1-icenowy@aosc.io>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 12 Dec 2020 12:11:43 +0800, Yongqiang Niu wrote:
-> add description for mt8192 display
+On Sat, Dec 12, 2020 at 01:05:16PM +0800, Icenowy Zheng wrote:
+> V831/V833 has a watchdog similar to the ones on previous Allwinner SoCs
+> after sun6i.
 > 
-> Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
+> Add a compatible string for it.
+> 
+> Cc: Wim Van Sebroeck <wim@linux-watchdog.org>
+> Cc: Guenter Roeck <linux@roeck-us.net>
+> Cc: linux-watchdog@vger.kernel.org
+> Signed-off-by: Icenowy Zheng <icenowy@aosc.io>
 > ---
->  Documentation/devicetree/bindings/display/mediatek/mediatek,disp.txt | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
+>  .../devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml  | 3 +++
+>  1 file changed, 3 insertions(+)
 
-Acked-by: Rob Herring <robh@kernel.org>
+This is going to conflict with Andre's series for H616.
+
+> 
+> diff --git a/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml b/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml
+> index e8f226376108..2f3c350b0057 100644
+> --- a/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml
+> +++ b/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml
+> @@ -18,6 +18,9 @@ properties:
+>      oneOf:
+>        - const: allwinner,sun4i-a10-wdt
+>        - const: allwinner,sun6i-a31-wdt
+> +      - items:
+> +          - const: allwinner,sun8i-v831-wdt
+> +          - const: allwinner,sun6i-a31-wdt
+>        - items:
+>            - const: allwinner,sun50i-a64-wdt
+>            - const: allwinner,sun6i-a31-wdt
+> -- 
+> 2.28.0
