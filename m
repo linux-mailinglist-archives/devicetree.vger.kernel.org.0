@@ -2,131 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D0AF2DA762
-	for <lists+devicetree@lfdr.de>; Tue, 15 Dec 2020 06:18:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5FB812DA84D
+	for <lists+devicetree@lfdr.de>; Tue, 15 Dec 2020 07:58:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726426AbgLOFSC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Dec 2020 00:18:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42004 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725854AbgLOFR4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Dec 2020 00:17:56 -0500
-Received: from mail-lf1-x143.google.com (mail-lf1-x143.google.com [IPv6:2a00:1450:4864:20::143])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA85DC0617A7;
-        Mon, 14 Dec 2020 21:17:15 -0800 (PST)
-Received: by mail-lf1-x143.google.com with SMTP id 23so36109373lfg.10;
-        Mon, 14 Dec 2020 21:17:15 -0800 (PST)
+        id S1726160AbgLOG4L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Dec 2020 01:56:11 -0500
+Received: from mail-dm6nam11on2060.outbound.protection.outlook.com ([40.107.223.60]:37601
+        "EHLO NAM11-DM6-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726048AbgLOG4H (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 15 Dec 2020 01:56:07 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=R4Yj+eLfZapvSxfUAhZ/FR8f/BB3FKz0dZbPfG5UAL4OWjOi9zifj1VGSUq2Fb2TSf7EXM66G4A3pRAzDSmwtxuT65hQCQNUrLNJAt3MjErxH4hxen+59jUJYaP9eYwtCHT7VZ73kf8d6Ben7btsaa1Ku68j97qqSLd8j4aXUYlBxtsA8hv7OvNwxpg7pZQahlq6wVUp5xcqPZAxfJRvYvZbG8GZqu/ANLiUXh7llMGx4j+wzF9QdAizFJbxZuHDLDSh7wtyelZ92C1H9zzLOGZg1vUN/qjDn/cUx1qSX8Fv8xVQNVaEDme7Ct+Y0Xxeae+cce9SwDWrDDU98i6Oow==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=cpVu+eRxsV15Ld42dwxFDEuCfVFciBUOeZO9cLc48BQ=;
+ b=iQo0F+nSOskcfm0cKqJskxD05kEp1dVpNRxhjguF5Cktb/9eFXuq0MqXMFInm7Ijrm1MX3fekgbPE2RN3gVeJjc9DgqoD21fILJhxWfYY8Te7JOpNqN1Hng1ePtRwkowmG/FqpfX0JGvCPySrOXHpzGZgoHTjRiczNIAaKLjMBWYq4nHEeRevoJsoaZqaZFRXTEtg22JXJkKgibVJf67WA9dxPSt9gTAxFZe8xSoukN+8oZmg6ZAP7Si1RvZyMwmRxDK9YmAiplJnkhUKuY42j9JF8frbrFG1I8OAb6GvXAUj2taCYeEHbXgeO74f5aUIxBO5Nq1CJ6Fmi/VuDyX5w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 149.199.62.198) smtp.rcpttodomain=kernel.org smtp.mailfrom=xilinx.com;
+ dmarc=bestguesspass action=none header.from=xilinx.com; dkim=none (message
+ not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=QYK3/QIGX/PdeJs4r8UYSQRr0m3A4G8axIc8eAE272c=;
-        b=BKDmhZkm4AqGvi4OYCwgVb04oqDpY+IzrMaIZPpOh/uneUD9yvvwwRotQrnlf7glp1
-         GUXlFrXkBBbqQbKErgABUqnXAshCb+f+906j+ZKrjetzWlC/vEmYKegVdcrVqlJS1HSM
-         A/nVLnCgycOSvDMFgJMjL1ARrufeOKPPNiWH3l6t955gFTF5TkHPoYc9AmpQYJRY00Hy
-         muPMgUsYFQScWIYy1xYIPLL2oOHXhdrkSYQBj53sY0dTgQSB392MtcnRnZthjsOqtwUt
-         tql7vfFk9wcpVi8h7etoLIU+qjwX42mOlT0vB1gFR2qzNZAo+ydLm1eHWienLKEo8RuK
-         lGkw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=QYK3/QIGX/PdeJs4r8UYSQRr0m3A4G8axIc8eAE272c=;
-        b=T66ECnXscBdOvBQC1EAwSS6pLvYNMKXujyfiDysDtZ2GWn11ULsTV5N4rC8VuyzLLh
-         10SKQYsw1PicP1JVQUB8SAOPssYfDB/UyrUtfkvKaTW4kNRc0Hi1wSK7pvYPocF9Drll
-         BBXYQLpJyIXEuyz6C4F0nTwXB2xLC2rcYZy9EoDqmXRKMpC10RNo4U9wZbasXOYFVo9i
-         JHfHi5V9xnlBvmKqfh5ADcKQVjCsnfEX0dHH02eJDXp4snvenezHgSeWisajfk6oylzG
-         7iQ2BDRawfrXg1ub7FX7zSsUdBpY4pvafyyG4mJm6wpnrbEqJlq6t09pyMerl4nw2399
-         +srg==
-X-Gm-Message-State: AOAM5333ZONJDVCifmLNe4aYhQKpavmQsHVbb5qHb+M/VXPmc612+wf4
-        BfQ7rGYumftN10teaPvyl73bwn5rgOCvuWtcjYw=
-X-Google-Smtp-Source: ABdhPJw7FGd3wzHxzyItMvzbE82I1vUgMOy9JepPEmkrZc9v8moDWWdVeFwWcZp66PeWjlZUGC5DAut0NfoUrr9wOUI=
-X-Received: by 2002:a2e:7607:: with SMTP id r7mr11391137ljc.168.1608009434372;
- Mon, 14 Dec 2020 21:17:14 -0800 (PST)
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=cpVu+eRxsV15Ld42dwxFDEuCfVFciBUOeZO9cLc48BQ=;
+ b=i4VGL4oFTodKsVpmmPRG9r+rbzrVGXh8xro87ctVVP9LUJ4SEZB8r9zuTDl2sc8Vb9wa3lBsQNZ0hIh7YXAnOnfKP8j95PKLqcV1rsg4gl+I71EHuBHMKIHvXdk5PqzYsvg6gxQNqF6ugUgCNMrrAyCCk8+w+eoO2CrO3cXV30I=
+Received: from CY4PR13CA0037.namprd13.prod.outlook.com (2603:10b6:903:99::23)
+ by DM5PR0201MB3622.namprd02.prod.outlook.com (2603:10b6:4:78::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3654.19; Tue, 15 Dec
+ 2020 06:55:14 +0000
+Received: from CY1NAM02FT060.eop-nam02.prod.protection.outlook.com
+ (2603:10b6:903:99:cafe::a8) by CY4PR13CA0037.outlook.office365.com
+ (2603:10b6:903:99::23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3676.9 via Frontend
+ Transport; Tue, 15 Dec 2020 06:55:14 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
+ smtp.mailfrom=xilinx.com; kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=bestguesspass action=none
+ header.from=xilinx.com;
+Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
+ 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=149.199.62.198; helo=xsj-pvapexch01.xlnx.xilinx.com;
+Received: from xsj-pvapexch01.xlnx.xilinx.com (149.199.62.198) by
+ CY1NAM02FT060.mail.protection.outlook.com (10.152.74.252) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.3654.12 via Frontend Transport; Tue, 15 Dec 2020 06:55:14 +0000
+Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
+ xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1913.5; Mon, 14 Dec 2020 22:54:55 -0800
+Received: from smtp.xilinx.com (172.19.127.95) by
+ xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
+ 15.1.1913.5 via Frontend Transport; Mon, 14 Dec 2020 22:54:55 -0800
+Envelope-to: git@xilinx.com,
+ michal.simek@xilinx.com,
+ balbi@kernel.org,
+ robh+dt@kernel.org,
+ gregkh@linuxfoundation.org,
+ linux-arm-kernel@lists.infradead.org,
+ p.zabel@pengutronix.de,
+ devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org,
+ linux-usb@vger.kernel.org
+Received: from [172.23.64.106] (port=59582 helo=xhdvnc125.xilinx.com)
+        by smtp.xilinx.com with esmtp (Exim 4.90)
+        (envelope-from <manish.narani@xilinx.com>)
+        id 1kp4EY-00068J-37; Mon, 14 Dec 2020 22:54:54 -0800
+Received: by xhdvnc125.xilinx.com (Postfix, from userid 16987)
+        id 34F57121274; Tue, 15 Dec 2020 12:24:53 +0530 (IST)
+From:   Manish Narani <manish.narani@xilinx.com>
+To:     <gregkh@linuxfoundation.org>, <robh+dt@kernel.org>,
+        <michal.simek@xilinx.com>, <balbi@kernel.org>,
+        <p.zabel@pengutronix.de>
+CC:     <git@xilinx.com>, <linux-usb@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        Manish Narani <manish.narani@xilinx.com>
+Subject: [RESEND PATCH v3 0/2] Add a separate DWC3 OF driver for Xilinx platforms
+Date:   Tue, 15 Dec 2020 12:24:49 +0530
+Message-ID: <1608015291-52007-1-git-send-email-manish.narani@xilinx.com>
+X-Mailer: git-send-email 2.1.1
 MIME-Version: 1.0
-References: <1607704424-16223-1-git-send-email-u0084500@gmail.com>
- <1607704424-16223-2-git-send-email-u0084500@gmail.com> <20201214095916.4g47zlueng4wa3hv@holly.lan>
- <CADiBU38wZ+yrfjbggJyY7BHc5-tdV-KWVgWBmZn-q3EY99=PPg@mail.gmail.com>
- <20201214231743.GA2560842@robh.at.kernel.org> <1608008909.2963.7.camel@richtek.com>
-In-Reply-To: <1608008909.2963.7.camel@richtek.com>
-From:   ChiYuan Huang <u0084500@gmail.com>
-Date:   Tue, 15 Dec 2020 13:17:02 +0800
-Message-ID: <CADiBU3-AFfso3EyzoTxhnuLfM=6YJEyesgnkPcj8y-7qKhHHnw@mail.gmail.com>
-Subject: Re: [PATCH v4 2/3] backlight: rt4831: Adds DT binding document for
- Richtek RT4831 backlight
-To:     =?UTF-8?B?Y3lfaHVhbmco6buD5ZWf5Y6fKQ==?= <cy_huang@richtek.com>
-Cc:     "robh@kernel.org" <robh@kernel.org>,
-        "daniel.thompson@linaro.org" <daniel.thompson@linaro.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "lee.jones@linaro.org" <lee.jones@linaro.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 54100509-90e5-4db1-1346-08d8a0c65fd4
+X-MS-TrafficTypeDiagnostic: DM5PR0201MB3622:
+X-Microsoft-Antispam-PRVS: <DM5PR0201MB362253C2FF81BCF09A52B097C1C60@DM5PR0201MB3622.namprd02.prod.outlook.com>
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-Oob-TLC-OOBClassifiers: OLM:826;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: wiFA/0oAUIlbG0M6MqGFk3YaGTT8+4NEBHGk6v4vmjHvI5/EI6/GcWSLjwjcR0Oe3rIHuKIQyvcQ09QAMJneFlq88++ElVTCLyNVi9tFdf+GcWgIskrYi6hM0kj5HHld076EOfOMnrG3y6jeUsxnSCQk5lfmZQ2TT7gplWEsi0b7lPehy55a1vQXur3ePfzmbMLKLu9KDQ7Tm6QrCx/p+qNhWpJeBSQLKmBgZF2aCHuU11YBufBJCejJACB1+0sk9lDwqKz1eq1W4WPzugZ9Z9+/65TFnvCyfjsN8fAFklj54nJu7tLTdjaQgiz6VM333xXcBIutM1K7B4lRoFmWR9eQ8bquM0Q94IVreRce3V6aw6d/+yChLILmowFC4zXPpB6IGfuEmBWBycNbZUP/SZJgGn7SzqTtas844RkEuyQ=
+X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch01.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(4636009)(376002)(346002)(136003)(46966005)(356005)(70586007)(2616005)(70206006)(4744005)(83380400001)(7636003)(107886003)(47076004)(26005)(42186006)(44832011)(6666004)(36756003)(54906003)(8676002)(2906002)(186003)(5660300002)(36906005)(426003)(110136005)(6266002)(336012)(82310400003)(508600001)(4326008)(8936002)(102446001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Dec 2020 06:55:14.3998
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 54100509-90e5-4db1-1346-08d8a0c65fd4
+X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch01.xlnx.xilinx.com]
+X-MS-Exchange-CrossTenant-AuthSource: CY1NAM02FT060.eop-nam02.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR0201MB3622
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-cy_huang(=E9=BB=83=E5=95=9F=E5=8E=9F) <cy_huang@richtek.com> =E6=96=BC 2020=
-=E5=B9=B412=E6=9C=8815=E6=97=A5 =E9=80=B1=E4=BA=8C =E4=B8=8B=E5=8D=881:08=
-=E5=AF=AB=E9=81=93=EF=BC=9A
->
-> On Mon, Dec 14, 2020 at 10:40:55PM +0800, ChiYuan Huang wrote:
-> >
-> > Hi,
-> >
-> > Daniel Thompson <daniel.thompson@linaro.org> =E6=96=BC 2020=E5=B9=B412=
-=E6=9C=8814=E6=97=A5 =E9=80=B1=E4=B8=80
-> > =E4=B8=8B=E5=8D=885:59=E5=AF=AB=E9=81=93=EF=BC=9A
-> > >
-> > >
-> > > Hi CY
-> > >
-> > > On Sat, Dec 12, 2020 at 12:33:43AM +0800, cy_huang wrote:
-> > > >
-> > > > From: ChiYuan Huang <cy_huang@richtek.com>
-> > > >
-> > > > Adds DT binding document for Richtek RT4831 backlight.
-> > > >
-> > > > Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
-> > > This patch got keyword filtered and brought to my attention
-> > > but the rest of the series did not.
-> > >
-> > > If it was a backlight patch series you need to send it To: the
-> > > all the backlight maintainers.
-> > >
-> > Yes, I'm waiting for mfd reviewing.
-> > Due to mfd patch, I need to add backlight dt-binding patch prior to
-> > backlight source code.
-> > Or autobuild robot will said mfd dt-binding build fail from Rob.
-> > That's why I send the backlight dt-binding prior to the source code.
-> >
-> > I still have backlight/regulator source code patch after mfd
-> > reviewing.
-> > Do you want me to send all the patches without waiting for mfd
-> > reviewing?
-> What happened to the regulator part of the binding? I said you could
-> merge it into the mfd schema, not drop it. Bindings should be complete
-> so we get a full picture of a device.
->
-Sorry I found the gmail account already loop in. Just my gmail problem.
-I cannot see the email in it.....
-The reply is below.
-Yes, I remove the regulator dt-binding and directly merge into mfd
-schema. Could you check the v4 3/3 patch?
-Or you just want me to remove regulator dt-binding example, not whole
-dt-binding file?
->
-> Rob
-> ************* Email Confidentiality Notice ********************
->
-> The information contained in this e-mail message (including any attachmen=
-ts) may be confidential, proprietary, privileged, or otherwise exempt from =
-disclosure under applicable laws. It is intended to be conveyed only to the=
- designated recipient(s). Any use, dissemination, distribution, printing, r=
-etaining or copying of this e-mail (including its attachments) by unintende=
-d recipient(s) is strictly prohibited and may be unlawful. If you are not a=
-n intended recipient of this e-mail, or believe that you have received this=
- e-mail in error, please notify the sender immediately (by replying to this=
- e-mail), delete any and all copies of this e-mail (including any attachmen=
-ts) from your system, and do not disclose the content of this e-mail to any=
- other person. Thank you!
+This patch series documents the Xilinx Versal DWC3 controller. This also
+adds a new Xilinx specific driver for adding new features in the future.
+
+Changes in v2:
+	- Addressed review comments from v1
+	- merged normal and runtime suspend resume functions as they are
+	  same
+	- Improved description of some register operations to avoid
+	  confusion
+	- Updated commit log for patch 2/2 for better clarity.
+
+Changes in v3:
+	- Removed snps,enable-hibernation property from the devicetree
+	  binding.
+
+Manish Narani (2):
+  dt-bindings: usb: dwc3-xilinx: Add documentation for Versal DWC3
+    Controller
+  usb: dwc3: Add driver for Xilinx platforms
+
+ .../devicetree/bindings/usb/dwc3-xilinx.txt   |  17 +-
+ drivers/usb/dwc3/Kconfig                      |   9 +
+ drivers/usb/dwc3/Makefile                     |   1 +
+ drivers/usb/dwc3/dwc3-of-simple.c             |   1 -
+ drivers/usb/dwc3/dwc3-xilinx.c                | 334 ++++++++++++++++++
+ 5 files changed, 359 insertions(+), 3 deletions(-)
+ create mode 100644 drivers/usb/dwc3/dwc3-xilinx.c
+
+-- 
+2.17.1
+
