@@ -2,70 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 903B52DB470
-	for <lists+devicetree@lfdr.de>; Tue, 15 Dec 2020 20:25:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AFDBD2DB3EF
+	for <lists+devicetree@lfdr.de>; Tue, 15 Dec 2020 19:46:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731995AbgLOTY2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Dec 2020 14:24:28 -0500
-Received: from 49-237-179-185.static.tentacle.fi ([185.179.237.49]:54506 "EHLO
-        bitmer.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731962AbgLOTYU (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 15 Dec 2020 14:24:20 -0500
-X-Greylist: delayed 2514 seconds by postgrey-1.27 at vger.kernel.org; Tue, 15 Dec 2020 14:24:14 EST
-Received: from 88-114-184-87.elisa-laajakaista.fi ([88.114.184.87] helo=[192.168.1.48])
-        by bitmer.com with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
-        (Exim 4.89)
-        (envelope-from <jarkko.nikula@bitmer.com>)
-        id 1kpFGK-00044Z-4g; Tue, 15 Dec 2020 20:41:28 +0200
-Subject: Re: [PATCH 1/2] MAINTAINERS: Update email address for TI ASoC and
- twl4030 codec drivers
-To:     Peter Ujfalusi <peter.ujfalusi@ti.com>, broonie@kernel.org,
-        lgirdwood@gmail.com, robh+dt@kernel.org
-Cc:     alsa-devel@alsa-project.org, perex@perex.cz, tiwai@suse.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        jsarha@ti.com
-References: <20201215130512.8753-1-peter.ujfalusi@ti.com>
- <20201215130512.8753-2-peter.ujfalusi@ti.com>
-From:   Jarkko Nikula <jarkko.nikula@bitmer.com>
-Message-ID: <563f5961-40e3-3333-b734-75893806cd04@bitmer.com>
-Date:   Tue, 15 Dec 2020 20:41:24 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.5.1
+        id S1731593AbgLOSpI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Dec 2020 13:45:08 -0500
+Received: from mail.kernel.org ([198.145.29.99]:49192 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1731267AbgLOSo5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 15 Dec 2020 13:44:57 -0500
+Date:   Tue, 15 Dec 2020 18:44:07 +0000
+From:   Catalin Marinas <catalin.marinas@arm.com>
+To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+Cc:     srinivas.kandagatla@linaro.org, devicetree@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        linux-rpi-kernel@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux@armlinux.org.uk, will@kernel.org, robh+dt@kernel.org,
+        tim.gover@raspberrypi.com, phil@raspberrypi.com
+Subject: Re: [PATCH 0/6] Expose RPi4'd bootloader configuration
+Message-ID: <20201215184407.GA44849@C02TF0J2HF1T.local>
+References: <20201215155627.2513-1-nsaenzjulienne@suse.de>
 MIME-Version: 1.0
-In-Reply-To: <20201215130512.8753-2-peter.ujfalusi@ti.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201215155627.2513-1-nsaenzjulienne@suse.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15.12.2020 15.05, Peter Ujfalusi wrote:
-> My employment with TI is coming to an end, it is my intention to look after
-> the drivers I have worked with over the years.
+On Tue, Dec 15, 2020 at 04:56:20PM +0100, Nicolas Saenz Julienne wrote:
+> Soon to be released versions of RPi4's firmware will take of care
+> passing their bootloader's configuration to the OS by copying it into
+> memory and creating a reserved memory node in the board's DT. In order
+> to make use of this information, this series introduces a new generic
+> nvmem driver that maps reserved-memory nodes into nvmem devices.
 > 
-> Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
-> Signed-off-by: Peter Ujfalusi <peter.ujfalusi@gmail.com>
-> ---
->  MAINTAINERS | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index f6e7162241eb..a091f183b27f 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -12862,7 +12862,7 @@ F:	include/misc/ocxl*
->  F:	include/uapi/misc/ocxl.h
->  
->  OMAP AUDIO SUPPORT
-> -M:	Peter Ujfalusi <peter.ujfalusi@ti.com>
-> +M:	Peter Ujfalusi <peter.ujfalusi@gmail.com>
->  M:	Jarkko Nikula <jarkko.nikula@bitmer.com>
->  L:	alsa-devel@alsa-project.org (moderated for non-subscribers)
->  L:	linux-omap@vger.kernel.org
-> @@ -17537,7 +17537,7 @@ F:	arch/xtensa/
->  F:	drivers/irqchip/irq-xtensa-*
->  
+> An alternative approach, less nice IMO, would be to create a
+> platform-specific 'soc' driver.
 
-Acked-by: Jarkko Nikula <jarkko.nikula@bitmer.com>
+What kind of information is this and how would the kernel use it?
+
+-- 
+Catalin
