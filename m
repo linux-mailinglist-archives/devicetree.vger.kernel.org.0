@@ -2,124 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D435D2DA722
-	for <lists+devicetree@lfdr.de>; Tue, 15 Dec 2020 05:32:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E1C72DA76B
+	for <lists+devicetree@lfdr.de>; Tue, 15 Dec 2020 06:23:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725764AbgLOEb4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Dec 2020 23:31:56 -0500
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:46048 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725763AbgLOEb4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Dec 2020 23:31:56 -0500
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0BF4UJ7C122788;
-        Mon, 14 Dec 2020 22:30:19 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1608006619;
-        bh=9bWv+Y231QyoS6iQbUcEuTzrVE1s5tFBEjEhlWzzl+4=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=PfeC5uzS5FhP3KPRfch9uDKe+CvN0j/Hx0/PGcwD+w+xOyhk9DRBZm12Xb5YRLj9/
-         6YnpM+mU9rQL/tH68YHmIcA7xYvPOJ04JPvQyLWT8z//0NPCEoNleBz2CJEjDOdCXd
-         znWdJE70Ee3qxlOZT3OShHskRK1l0SEmBteA0lN4=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0BF4UJNk079712
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 14 Dec 2020 22:30:19 -0600
-Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Mon, 14
- Dec 2020 22:30:19 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Mon, 14 Dec 2020 22:30:19 -0600
-Received: from [10.250.232.169] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0BF4UFK1033533;
-        Mon, 14 Dec 2020 22:30:16 -0600
-Subject: Re: [PATCH v5] dt-bindings: usb: Add new compatible string for AM64
- SoC
-To:     Rob Herring <robh@kernel.org>
-CC:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Sekhar Nori <nsekhar@ti.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Roger Quadros <rogerq@ti.com>, <linux-usb@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20201214140109.21955-1-a-govindraju@ti.com>
- <20201214204722.GA2365525@robh.at.kernel.org>
-From:   Aswath Govindraju <a-govindraju@ti.com>
-Message-ID: <c31059ae-0923-ee03-a3ed-954a58a12c1a@ti.com>
-Date:   Tue, 15 Dec 2020 10:00:14 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-MIME-Version: 1.0
-In-Reply-To: <20201214204722.GA2365525@robh.at.kernel.org>
+        id S1726259AbgLOFWU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Dec 2020 00:22:20 -0500
+Received: from mg.richtek.com ([220.130.44.152]:42996 "EHLO mg.richtek.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726220AbgLOFWI (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 15 Dec 2020 00:22:08 -0500
+X-MailGates: (compute_score:DELIVER,40,3)
+Received: from 192.168.8.21
+        by mg.richtek.com with MailGates ESMTP Server V3.0(14680:0:AUTH_RELAY)
+        (envelope-from <prvs=1616E08E19=cy_huang@richtek.com>); Tue, 15 Dec 2020 13:16:06 +0800 (CST)
+X-MailGates: (compute_score:DELIVER,40,3)
+Received: from 192.168.10.46
+        by mg.richtek.com with MailGates ESMTP Server V5.0(1671:0:AUTH_RELAY)
+        (envelope-from <cy_huang@richtek.com>); Tue, 15 Dec 2020 13:08:30 +0800 (CST)
+Received: from ex3.rt.l (192.168.10.46) by ex3.rt.l (192.168.10.46) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.721.2; Tue, 15 Dec 2020
+ 13:08:30 +0800
+Received: from ex3.rt.l ([fe80::ede0:40a5:8f78:963e]) by ex3.rt.l
+ ([fe80::ede0:40a5:8f78:963e%2]) with mapi id 15.02.0721.002; Tue, 15 Dec 2020
+ 13:08:30 +0800
+From:   =?utf-8?B?Y3lfaHVhbmco6buD5ZWf5Y6fKQ==?= <cy_huang@richtek.com>
+To:     "robh@kernel.org" <robh@kernel.org>,
+        "u0084500@gmail.com" <u0084500@gmail.com>
+CC:     "daniel.thompson@linaro.org" <daniel.thompson@linaro.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "lee.jones@linaro.org" <lee.jones@linaro.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v4 2/3] backlight: rt4831: Adds DT binding document for
+ Richtek RT4831 backlight
+Thread-Topic: [PATCH v4 2/3] backlight: rt4831: Adds DT binding document for
+ Richtek RT4831 backlight
+Thread-Index: AQHW0f/PhzyfguXN7EejAujRBypYk6n2JCWAgACQZYCAAGIAgA==
+Date:   Tue, 15 Dec 2020 05:08:29 +0000
+Message-ID: <1608008909.2963.7.camel@richtek.com>
+References: <1607704424-16223-1-git-send-email-u0084500@gmail.com>
+         <1607704424-16223-2-git-send-email-u0084500@gmail.com>
+         <20201214095916.4g47zlueng4wa3hv@holly.lan>
+         <CADiBU38wZ+yrfjbggJyY7BHc5-tdV-KWVgWBmZn-q3EY99=PPg@mail.gmail.com>
+         <20201214231743.GA2560842@robh.at.kernel.org>
+In-Reply-To: <20201214231743.GA2560842@robh.at.kernel.org>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-mailer: Evolution 3.18.5.2-0ubuntu3.2 
+x-originating-ip: [192.168.19.169]
 Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-ID: <F3346907517D214E948F96E96A839481@rt.l>
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
-On 15/12/20 2:18 am, Rob Herring wrote:
-> On Mon, Dec 14, 2020 at 07:31:09PM +0530, Aswath Govindraju wrote:
->> Add compatible string in j721e-usb binding file as the same USB subsystem
->> is present in AM64.
->>
->> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
->> ---
->>
->> Changes since v4:
->>  - used oneOf instead of enum, as the schema has to convey that the strings
->>    ti,j721e-usb and ti,am64-usb can be used combined or seperately in the
->>    DT nodes.
->>
->> Changes since v3:
->>  - used enum instead of anyOf.
->>
->> Changes since v2:
->>  - added changes done over the versions.
->>
->> Changes since v1:
->>  - replaced the '\t' at the beginning of the lines with spaces as it was
->>   causing the dt_binding_check to fail.
->>
->>  Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml | 6 +++++-
->>  1 file changed, 5 insertions(+), 1 deletion(-)
->>
->> diff --git a/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml b/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml
->> index 388245b91a55..21e51ceca293 100644
->> --- a/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml
->> +++ b/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml
->> @@ -11,8 +11,12 @@ maintainers:
->>  
->>  properties:
->>    compatible:
->> -    items:
->> +    oneOf:
->>        - const: ti,j721e-usb
->> +      - const: ti,am64-usb
->> +      - items:
->> +          - ti,j721e-usb
->> +          - ti,am64-usb
-> 
->                ^
-> 
-> const needed before the strings
-> 
-
-Thank you for the comments. I am very sorry for this error, I forgot to
-add my changes to  the commit before creating the patch. I have sent a
-respin (v6).
-
-Thanks,
-Aswath
-
->>  
->>    reg:
->>      description: module registers
->> -- 
->> 2.17.1
->>
-
+T24gTW9uLCBEZWMgMTQsIDIwMjAgYXQgMTA6NDA6NTVQTSArMDgwMCwgQ2hpWXVhbiBIdWFuZyB3
+cm90ZToNCj4NCj4gSGksDQo+DQo+IERhbmllbCBUaG9tcHNvbiA8ZGFuaWVsLnRob21wc29uQGxp
+bmFyby5vcmc+IOaWvCAyMDIw5bm0MTLmnIgxNOaXpSDpgLHkuIANCj4g5LiL5Y2INTo1OeWvq+mB
+k++8mg0KPiA+DQo+ID4NCj4gPiBIaSBDWQ0KPiA+DQo+ID4gT24gU2F0LCBEZWMgMTIsIDIwMjAg
+YXQgMTI6MzM6NDNBTSArMDgwMCwgY3lfaHVhbmcgd3JvdGU6DQo+ID4gPg0KPiA+ID4gRnJvbTog
+Q2hpWXVhbiBIdWFuZyA8Y3lfaHVhbmdAcmljaHRlay5jb20+DQo+ID4gPg0KPiA+ID4gQWRkcyBE
+VCBiaW5kaW5nIGRvY3VtZW50IGZvciBSaWNodGVrIFJUNDgzMSBiYWNrbGlnaHQuDQo+ID4gPg0K
+PiA+ID4gU2lnbmVkLW9mZi1ieTogQ2hpWXVhbiBIdWFuZyA8Y3lfaHVhbmdAcmljaHRlay5jb20+
+DQo+ID4gVGhpcyBwYXRjaCBnb3Qga2V5d29yZCBmaWx0ZXJlZCBhbmQgYnJvdWdodCB0byBteSBh
+dHRlbnRpb24NCj4gPiBidXQgdGhlIHJlc3Qgb2YgdGhlIHNlcmllcyBkaWQgbm90Lg0KPiA+DQo+
+ID4gSWYgaXQgd2FzIGEgYmFja2xpZ2h0IHBhdGNoIHNlcmllcyB5b3UgbmVlZCB0byBzZW5kIGl0
+IFRvOiB0aGUNCj4gPiBhbGwgdGhlIGJhY2tsaWdodCBtYWludGFpbmVycy4NCj4gPg0KPiBZZXMs
+IEknbSB3YWl0aW5nIGZvciBtZmQgcmV2aWV3aW5nLg0KPiBEdWUgdG8gbWZkIHBhdGNoLCBJIG5l
+ZWQgdG8gYWRkIGJhY2tsaWdodCBkdC1iaW5kaW5nIHBhdGNoIHByaW9yIHRvDQo+IGJhY2tsaWdo
+dCBzb3VyY2UgY29kZS4NCj4gT3IgYXV0b2J1aWxkIHJvYm90IHdpbGwgc2FpZCBtZmQgZHQtYmlu
+ZGluZyBidWlsZCBmYWlsIGZyb20gUm9iLg0KPiBUaGF0J3Mgd2h5IEkgc2VuZCB0aGUgYmFja2xp
+Z2h0IGR0LWJpbmRpbmcgcHJpb3IgdG8gdGhlIHNvdXJjZSBjb2RlLg0KPg0KPiBJIHN0aWxsIGhh
+dmUgYmFja2xpZ2h0L3JlZ3VsYXRvciBzb3VyY2UgY29kZSBwYXRjaCBhZnRlciBtZmQNCj4gcmV2
+aWV3aW5nLg0KPiBEbyB5b3Ugd2FudCBtZSB0byBzZW5kIGFsbCB0aGUgcGF0Y2hlcyB3aXRob3V0
+IHdhaXRpbmcgZm9yIG1mZA0KPiByZXZpZXdpbmc/DQpXaGF0IGhhcHBlbmVkIHRvIHRoZSByZWd1
+bGF0b3IgcGFydCBvZiB0aGUgYmluZGluZz8gSSBzYWlkIHlvdSBjb3VsZA0KbWVyZ2UgaXQgaW50
+byB0aGUgbWZkIHNjaGVtYSwgbm90IGRyb3AgaXQuIEJpbmRpbmdzIHNob3VsZCBiZSBjb21wbGV0
+ZQ0Kc28gd2UgZ2V0IGEgZnVsbCBwaWN0dXJlIG9mIGEgZGV2aWNlLg0KDQpZZXMsIEkgcmVtb3Zl
+IHRoZSByZWd1bGF0b3IgZHQtYmluZGluZyBhbmQgZGlyZWN0bHkgbWVyZ2UgaW50byBtZmQNCnNj
+aGVtYS4gQ291bGQgeW91IGNoZWNrIHRoZSB2NCAzLzMgcGF0Y2g/DQpPciB5b3UganVzdCB3YW50
+IG1lIHRvIHJlbW92ZSByZWd1bGF0b3IgZHQtYmluZGluZyBleGFtcGxlIGluIHJlZ3VsYXRvcg0K
+ZHQtYmluZGluZyBwYXRjaD8NCg0KU29ycnksIHBsZWFzZSBhbHNvIGxvb3AgbXkgZ21haWwgYWNj
+b3VudC4NCkR1ZSB0byBteSBjb21wYW55IG1haWxib3gsIEknbSBub3Qgc3VyZSB3aGV0aGVyIHRo
+ZSByZXBseSBmb3JtYXQgaXMNCmNvcnJlY3Qgb3Igbm90Lg0KDQpSb2INCioqKioqKioqKioqKiog
+RW1haWwgQ29uZmlkZW50aWFsaXR5IE5vdGljZSAqKioqKioqKioqKioqKioqKioqKg0KDQpUaGUg
+aW5mb3JtYXRpb24gY29udGFpbmVkIGluIHRoaXMgZS1tYWlsIG1lc3NhZ2UgKGluY2x1ZGluZyBh
+bnkgYXR0YWNobWVudHMpIG1heSBiZSBjb25maWRlbnRpYWwsIHByb3ByaWV0YXJ5LCBwcml2aWxl
+Z2VkLCBvciBvdGhlcndpc2UgZXhlbXB0IGZyb20gZGlzY2xvc3VyZSB1bmRlciBhcHBsaWNhYmxl
+IGxhd3MuIEl0IGlzIGludGVuZGVkIHRvIGJlIGNvbnZleWVkIG9ubHkgdG8gdGhlIGRlc2lnbmF0
+ZWQgcmVjaXBpZW50KHMpLiBBbnkgdXNlLCBkaXNzZW1pbmF0aW9uLCBkaXN0cmlidXRpb24sIHBy
+aW50aW5nLCByZXRhaW5pbmcgb3IgY29weWluZyBvZiB0aGlzIGUtbWFpbCAoaW5jbHVkaW5nIGl0
+cyBhdHRhY2htZW50cykgYnkgdW5pbnRlbmRlZCByZWNpcGllbnQocykgaXMgc3RyaWN0bHkgcHJv
+aGliaXRlZCBhbmQgbWF5IGJlIHVubGF3ZnVsLiBJZiB5b3UgYXJlIG5vdCBhbiBpbnRlbmRlZCBy
+ZWNpcGllbnQgb2YgdGhpcyBlLW1haWwsIG9yIGJlbGlldmUgdGhhdCB5b3UgaGF2ZSByZWNlaXZl
+ZCB0aGlzIGUtbWFpbCBpbiBlcnJvciwgcGxlYXNlIG5vdGlmeSB0aGUgc2VuZGVyIGltbWVkaWF0
+ZWx5IChieSByZXBseWluZyB0byB0aGlzIGUtbWFpbCksIGRlbGV0ZSBhbnkgYW5kIGFsbCBjb3Bp
+ZXMgb2YgdGhpcyBlLW1haWwgKGluY2x1ZGluZyBhbnkgYXR0YWNobWVudHMpIGZyb20geW91ciBz
+eXN0ZW0sIGFuZCBkbyBub3QgZGlzY2xvc2UgdGhlIGNvbnRlbnQgb2YgdGhpcyBlLW1haWwgdG8g
+YW55IG90aGVyIHBlcnNvbi4gVGhhbmsgeW91IQ0K
