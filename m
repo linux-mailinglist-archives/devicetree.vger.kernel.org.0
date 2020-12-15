@@ -2,74 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ABEC42DB5D8
-	for <lists+devicetree@lfdr.de>; Tue, 15 Dec 2020 22:27:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 097882DB6CD
+	for <lists+devicetree@lfdr.de>; Wed, 16 Dec 2020 00:01:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730013AbgLOV10 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Dec 2020 16:27:26 -0500
-Received: from ssl.serverraum.org ([176.9.125.105]:53707 "EHLO
-        ssl.serverraum.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726181AbgLOV1R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Dec 2020 16:27:17 -0500
-Received: from mwalle01.fritz.box (unknown [IPv6:2a02:810c:c200:2e91:fa59:71ff:fe9b:b851])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id 362D322FB3;
-        Tue, 15 Dec 2020 22:26:31 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1608067595;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=oOLYs1Po+euDP1vOJWx+fQql3W38JL4DUPMEHPcWbqQ=;
-        b=HiQcJdF97WapcZaCJtZLyldD7ZQ49vVy0qsfl8pBq7isvQCs80A8RYmyfawwlepOgJD3yX
-        66z0NaJP2pOq3KXbN+6zZddAZJUzRI3cA7PYtIqrxQgylMMUxdCQNG7U8UExNZodMIoa7G
-        Tdx4+RHkX3NiV5W4hy5cLijDo1hyOxo=
-From:   Michael Walle <michael@walle.cc>
-To:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Sudhanshu Gupta <sudhanshu.gupta@nxp.com>,
-        Bhaskar Upadhaya <bhaskar.upadhaya@nxp.com>,
-        Rai Harninder <harninder.rai@nxp.com>,
-        Michael Walle <michael@walle.cc>
-Subject: [PATCH] arm64: dts: ls1028a: fix the offset of the reset register
-Date:   Tue, 15 Dec 2020 22:26:22 +0100
-Message-Id: <20201215212622.717-1-michael@walle.cc>
-X-Mailer: git-send-email 2.20.1
+        id S1730526AbgLOXBS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Dec 2020 18:01:18 -0500
+Received: from perceval.ideasonboard.com ([213.167.242.64]:36600 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730533AbgLOXAZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Dec 2020 18:00:25 -0500
+Received: from pendragon.lan (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id E28C6593;
+        Tue, 15 Dec 2020 23:59:37 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1608073178;
+        bh=xoMtxA949fF+Ll5x4NfZx06ethoLb3wfdTfzB+Y8pwQ=;
+        h=From:To:Cc:Subject:Date:From;
+        b=K++9MclYfP+vJv+nB01CAQxwJ/YTX5vZFTmnfdhf4LN+tMs+u4T/UbKyePf/Ie4xp
+         xt+u+nOTkXbj2RzObZwXSnAXBm5vkXYzNizlotd4jpWyr26mR1GGAxtnmfStU3lfjS
+         MQlvFSrXU3OnCtK87lQANQY5b03u2PQ0NinpXci8=
+From:   Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+To:     dri-devel@lists.freedesktop.org
+Cc:     linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Fabrizio Castro <fabrizio.castro@bp.renesas.com>
+Subject: [PATCH] dt-bindings: display: bridge: renesas,lvds: RZ/G2E needs renesas,companion too
+Date:   Wed, 16 Dec 2020 00:59:27 +0200
+Message-Id: <20201215225927.6552-1-laurent.pinchart+renesas@ideasonboard.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The offset of the reset request register is 0, the absolute address is
-0x1e60000. Boards without PSCI support will fail to perform a reset:
+From: Fabrizio Castro <fabrizio.castro@bp.renesas.com>
 
-[   26.734700] reboot: Restarting system
-[   27.743259] Unable to restart system
-[   27.746845] Reboot failed -- System halted
+Document RZ/G2E support for property renesas,companion.
 
-Fixes: 8897f3255c9c ("arm64: dts: Add support for NXP LS1028A SoC")
-Signed-off-by: Michael Walle <michael@walle.cc>
+Signed-off-by: Fabrizio Castro <fabrizio.castro@bp.renesas.com>
+Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+Signed-off-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
 ---
- arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Changes since v1:
 
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-index 045739dbcb17..0a5923e96d7f 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-@@ -102,7 +102,7 @@
- 	reboot {
- 		compatible ="syscon-reboot";
- 		regmap = <&rst>;
--		offset = <0xb0>;
-+		offset = <0>;
- 		mask = <0x02>;
- 	};
+- Slight reword of SoC list in description
+---
+ .../devicetree/bindings/display/bridge/renesas,lvds.yaml    | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/display/bridge/renesas,lvds.yaml b/Documentation/devicetree/bindings/display/bridge/renesas,lvds.yaml
+index e5b163951b91..7eddcdb666dc 100644
+--- a/Documentation/devicetree/bindings/display/bridge/renesas,lvds.yaml
++++ b/Documentation/devicetree/bindings/display/bridge/renesas,lvds.yaml
+@@ -83,9 +83,9 @@ properties:
+     $ref: /schemas/types.yaml#/definitions/phandle
+     description:
+       phandle to the companion LVDS encoder. This property is mandatory
+-      for the first LVDS encoder on D3 and E3 SoCs, and shall point to
+-      the second encoder to be used as a companion in dual-link mode. It
+-      shall not be set for any other LVDS encoder.
++      for the first LVDS encoder on R-Car D3 and E3, and RZ/G2E SoCs, and shall
++      point to the second encoder to be used as a companion in dual-link mode.
++      It shall not be set for any other LVDS encoder.
  
+ required:
+   - compatible
 -- 
-2.20.1
+Regards,
+
+Laurent Pinchart
 
