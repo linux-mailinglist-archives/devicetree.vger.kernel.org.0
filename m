@@ -2,66 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 183462DB24C
-	for <lists+devicetree@lfdr.de>; Tue, 15 Dec 2020 18:15:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 66E452DB257
+	for <lists+devicetree@lfdr.de>; Tue, 15 Dec 2020 18:17:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730522AbgLORNa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Dec 2020 12:13:30 -0500
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:36924 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730472AbgLORNX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Dec 2020 12:13:23 -0500
-Received: by mail-ot1-f67.google.com with SMTP id o11so20084799ote.4;
-        Tue, 15 Dec 2020 09:13:08 -0800 (PST)
+        id S1728936AbgLORPI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Dec 2020 12:15:08 -0500
+Received: from mail-oi1-f195.google.com ([209.85.167.195]:34574 "EHLO
+        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727063AbgLORO6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Dec 2020 12:14:58 -0500
+Received: by mail-oi1-f195.google.com with SMTP id s75so24135240oih.1;
+        Tue, 15 Dec 2020 09:14:42 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=tq/IR9knUY1aNNzaItUIR0LH+tSlkFf5XqzmbSFPck0=;
-        b=Ex+0qeyDLb5HViFl/kVTrvpjZHoEgDC0iF+BHdfYeJgrZrGYw8q2g2yCsqFxGoklse
-         KO4PiUb9s778XX7mkXPL8a45imI2+7ncxY9hDBAnonoXUlCbLfPtOTGxEwJr1gADxWZF
-         oLHp3rWp6UgByNDUslPGkk8HKEO+Fom6evo8wE+khe41WrdukVHfM2FK+cZTQZtGvBpU
-         TlsiFMHJXDJYXjVJ2JPuMaHjB1pxdaikSfZWqcAYmfCnsKHPe4qcqzv+O5vPT0q61w7a
-         +2z/aHaD/y1r9VDIiOkHpR+Gg+uPLtuCja17bzEXx0q4TD7TrMFGMT6X9m/LaRuoNUbg
-         g80Q==
-X-Gm-Message-State: AOAM530FMTzZwy8hx29W4q34jdeEeUM5s0x4kQwJN58VwcPiQzLzicgc
-        8c+1o47djNRag0fC/6bvQA==
-X-Google-Smtp-Source: ABdhPJyzQbJ2HQ/svaqxAA488qWQdmLYLwOfT9qsUlzvoW1OAKhM2rplpYojejBWBK+LfmebEn/TOw==
-X-Received: by 2002:a05:6830:400f:: with SMTP id h15mr24027638ots.284.1608052363028;
-        Tue, 15 Dec 2020 09:12:43 -0800 (PST)
+        bh=+Qu4+kvBzm3PqXb1At7zY+1pW2euTQkxhk/cm9SbdHY=;
+        b=porVhyXOQV+Xm8GqXoFBYH15ecd4J/j2QeUz2aUojP16pvhTQqpk0WAcUGSSA6JlUa
+         G9zgqkCvbNX0UttGVKg+tg1jpuVvw+pvCkc1mkdAgsKvgXiHpJ0BsY99Un4KLUOYsiOS
+         Z2MLnVmWKoegle8t8ANRahw+D2AzgDal/QRXiiB/Gn/+NcdZ4mlI1id3Mqed0Ox4u1jz
+         0UR1IAqvPleJqLX0uqC3YHgQa/hi6aXMeFXa1OHoagAz9Mb15ASrj23ZAoxwHrFwab2p
+         dFHvVmZljCfX12RMjtMp7s2Fto2mYH19X/fvgPjp3rTaBkmvlVzN9SB6tHp/I8mEpQXn
+         JO5g==
+X-Gm-Message-State: AOAM533rNtWJqH6qMOUtJ+cUZpbZ6XgKhZNrdtNRIST1qbsGL1W1cPGN
+        tfdPrqSDAC2CL8LeMaxtFSdYJIRqyg==
+X-Google-Smtp-Source: ABdhPJzVpgelZd7N6boJkoJWy3kD5FQdlN3JtoRPvXPhm8+og2A32ilo2++TNDM964Exsl6NSovr0A==
+X-Received: by 2002:aca:bc84:: with SMTP id m126mr22208391oif.169.1608052457156;
+        Tue, 15 Dec 2020 09:14:17 -0800 (PST)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id g12sm4847248oos.8.2020.12.15.09.12.41
+        by smtp.gmail.com with ESMTPSA id l6sm548795otf.34.2020.12.15.09.14.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Dec 2020 09:12:42 -0800 (PST)
-Received: (nullmailer pid 4043914 invoked by uid 1000);
-        Tue, 15 Dec 2020 17:12:41 -0000
-Date:   Tue, 15 Dec 2020 11:12:41 -0600
+        Tue, 15 Dec 2020 09:14:16 -0800 (PST)
+Received: (nullmailer pid 4046464 invoked by uid 1000);
+        Tue, 15 Dec 2020 17:14:15 -0000
+Date:   Tue, 15 Dec 2020 11:14:15 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Tzung-Bi Shih <tzungbi@google.com>
-Cc:     matthias.bgg@gmail.com, ohad@wizery.com,
-        linux-mediatek@lists.infradead.org,
-        linux-remoteproc@vger.kernel.org, robh+dt@kernel.org,
-        bjorn.andersson@linaro.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: remoteproc: mediatek: add L1TCM memory
- region
-Message-ID: <20201215171241.GA4043874@robh.at.kernel.org>
-References: <20201214050521.845396-1-tzungbi@google.com>
- <20201214050521.845396-2-tzungbi@google.com>
+To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Cc:     Johan Hovold <johan@kernel.org>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        netdev@vger.kernel.org, Jose Abreu <joabreu@synopsys.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        linux-stm32@st-md-mailman.stormreply.com,
+        Jakub Kicinski <kuba@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Vyacheslav Mitrofanov 
+        <Vyacheslav.Mitrofanov@baikalelectronics.ru>,
+        devicetree@vger.kernel.org,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Lars Persson <larper@axis.com>,
+        Joao Pinto <jpinto@synopsys.com>
+Subject: Re: [PATCH 01/25] dt-bindings: net: dwmac: Validate PBL for all
+ IP-cores
+Message-ID: <20201215171415.GA4046412@robh.at.kernel.org>
+References: <20201214091616.13545-1-Sergey.Semin@baikalelectronics.ru>
+ <20201214091616.13545-2-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201214050521.845396-2-tzungbi@google.com>
+In-Reply-To: <20201214091616.13545-2-Sergey.Semin@baikalelectronics.ru>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 14 Dec 2020 13:05:20 +0800, Tzung-Bi Shih wrote:
-> Adds L1TCM memory region.  The reg-name is "l1tcm".
+On Mon, 14 Dec 2020 12:15:51 +0300, Serge Semin wrote:
+> Indeed the maximum DMA burst length can be programmed not only for DW
+> xGMACs, Allwinner EMACs and Spear SoC GMAC, but in accordance with [1]
+> for Generic DW *MAC IP-cores. Moreover the STMMAC set of drivers parse
+> the property and then apply the configuration for all supported DW MAC
+> devices. All of that makes the property being available for all IP-cores
+> the bindings supports. Let's make sure the PBL-related properties are
+> validated for all of them by the common DW MAC DT schema.
 > 
-> Signed-off-by: Tzung-Bi Shih <tzungbi@google.com>
+> [1] DesignWare Cores Ethernet MAC Universal Databook, Revision 3.73a,
+>     October 2013, p. 380.
+> 
+> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
 > ---
->  Documentation/devicetree/bindings/remoteproc/mtk,scp.txt | 8 ++++----
->  1 file changed, 4 insertions(+), 4 deletions(-)
+>  .../devicetree/bindings/net/snps,dwmac.yaml   | 69 +++++++------------
+>  1 file changed, 26 insertions(+), 43 deletions(-)
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
