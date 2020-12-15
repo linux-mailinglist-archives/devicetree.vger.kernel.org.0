@@ -2,57 +2,29 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 86DE52DADE7
-	for <lists+devicetree@lfdr.de>; Tue, 15 Dec 2020 14:21:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 304E72DADF3
+	for <lists+devicetree@lfdr.de>; Tue, 15 Dec 2020 14:26:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726548AbgLONVD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Dec 2020 08:21:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59960 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726959AbgLONU4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Dec 2020 08:20:56 -0500
-Received: from mail-lf1-x144.google.com (mail-lf1-x144.google.com [IPv6:2a00:1450:4864:20::144])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D561BC06138C;
-        Tue, 15 Dec 2020 05:20:15 -0800 (PST)
-Received: by mail-lf1-x144.google.com with SMTP id w13so39226746lfd.5;
-        Tue, 15 Dec 2020 05:20:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=sOTNS1adPzkjd18NAGlnFfcMu9FiOR4jPybdIj8V52A=;
-        b=QzoagYajrS7uM4QhWkUMg3UPeK94F6r3Th5zNpGdydo4CaXBDGSJhKeHrNRbulKU5U
-         QGMdGA1IbHo1GvDvu66sYVf9vCFWzIRMt1btwVSxH8asyuWDroPxhST2ZEPZ+/7xC8CN
-         puKi6KzGAhcrVWxNPIFOOWIm8Escv6IWSr7v1+nhoed1mE+sQZcbH+1hpVFD/5ee/dDN
-         ASKcf+QNR2kayArHG9qOKSNnrSqouxZL7CiX6HxRz8xYW5NrikF08r6iiQEekC1fllzs
-         n6D9R3SK6kiCY4Dfe2zbBGFAF8VKthnuNwc8ubEnm4jS/J86BW2OaRUPV0AfUGF5c5Gr
-         e5Jw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=sOTNS1adPzkjd18NAGlnFfcMu9FiOR4jPybdIj8V52A=;
-        b=SuCcKYZ92W4rvMWWQtNvWpg4n7bkUHUmEvvYvogkEQn7kILqVfTck1boawVyDYzlmv
-         eD1K2r+hGDLq4y2Ci8o3kQ6rqnRsPu+4N8qF8UKA4larS0lcIIUWEsvglLDH4scTLUKz
-         QDK9rIV+fJUuX+AqrzPafftM9Gx8l4xGZQaprN913S/Q8sbz450sMT76P3lnDhk4oYAQ
-         cjS9Cj03b0JzbnaQDt1UZfBAirQnwD5dEqR9ZUkWEle0/ciuudKOA4gjUDQaaWV1wcym
-         aD9TOozd1maa7TaGltMCN/R6fm6yY6s4HT1cgQmu4UdCrmW3stM3aighe4D+M1165P0t
-         eCpg==
-X-Gm-Message-State: AOAM5310Deg43YsJcDI18bYt/DbFGlhdl23KJXz8gCXJk7Qh2XTyIjI0
-        xZBOZaiJJfYvdF603gEjVVrBz9oeHlrWzYt+/1E=
-X-Google-Smtp-Source: ABdhPJzJp7Yq5xVPxVXkqKyZQAg2hSchnL13OBIdipOtaWfun3XG3Oodczt84lms0OlsIi0DkgpmkaPjkJlWdmXWt2I=
-X-Received: by 2002:a2e:bc05:: with SMTP id b5mr13202203ljf.444.1608038414254;
- Tue, 15 Dec 2020 05:20:14 -0800 (PST)
-MIME-Version: 1.0
-References: <20201214225851.23342-1-adrien.grassein@gmail.com>
- <20201215130622.GD4738@sirena.org.uk> <CABkfQAEAe0XGj16CkmH7xMNxgdQ+SRq0BYzvP+V5PdDqVbyAAw@mail.gmail.com>
-In-Reply-To: <CABkfQAEAe0XGj16CkmH7xMNxgdQ+SRq0BYzvP+V5PdDqVbyAAw@mail.gmail.com>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Tue, 15 Dec 2020 10:20:02 -0300
-Message-ID: <CAOMZO5A_Gtwn=AFwJXf_wpC4k902Hg=tCMWpcFUGNWOg9me6_w@mail.gmail.com>
-Subject: Re: [PATCH v3 0/2] Add support of nxp pf8x00 regulator
-To:     Adrien Grassein <adrien.grassein@gmail.com>
-Cc:     Mark Brown <broonie@kernel.org>,
+        id S1726819AbgLONY7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Dec 2020 08:24:59 -0500
+Received: from mail.kernel.org ([198.145.29.99]:51822 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726266AbgLONYw (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 15 Dec 2020 08:24:52 -0500
+Date:   Tue, 15 Dec 2020 13:24:00 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1608038651;
+        bh=3qQoBFFuPirOF/52LC+83ykwfdKtbxAU+odgQo0yl0A=;
+        h=From:To:Cc:Subject:References:In-Reply-To:From;
+        b=aH9fhsJZqtPuEKdbu/mobNlP1qSJDVc2XDnAIIbV+WT6ACQQlP0w/UkjErAf+8MK3
+         NsR3dNNFL4LhlqHynl3VgHXZm0guI6OG2zhdZ/WTAP1VOUhdWqB8m0xdTcc1qqqoWi
+         rGAiKjcSXwuFWnvKcESkZVwi4CLzh5BNkHW1Q7x41PJm4Akzwyz2XQNjsaQDcTL3qo
+         JesHsvLA9NiVydZ/tah0sr3NaZDq+or6pqnROvWVy9dGgkP1zWt04Y2+Kird4xnZ+y
+         UBmUcn4nV8qAj3tBPdv0beY6NTIDUky8nI5orV3tyQVTV1MnpO+s8dn++0GlsjQqN4
+         lgf69sz0fD94Q==
+From:   Mark Brown <broonie@kernel.org>
+To:     Fabio Estevam <festevam@gmail.com>
+Cc:     Adrien Grassein <adrien.grassein@gmail.com>,
         Liam Girdwood <lgirdwood@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         linux-kernel <linux-kernel@vger.kernel.org>,
@@ -60,22 +32,54 @@ Cc:     Mark Brown <broonie@kernel.org>,
         Troy Kisky <troy.kisky@boundarydevices.com>,
         Gary Bisson <gary.bisson@boundarydevices.com>,
         Jagan Teki <jagan@amarulasolutions.com>
-Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [PATCH v3 0/2] Add support of nxp pf8x00 regulator
+Message-ID: <20201215132400.GE4738@sirena.org.uk>
+References: <20201214225851.23342-1-adrien.grassein@gmail.com>
+ <20201215130622.GD4738@sirena.org.uk>
+ <CABkfQAEAe0XGj16CkmH7xMNxgdQ+SRq0BYzvP+V5PdDqVbyAAw@mail.gmail.com>
+ <CAOMZO5A_Gtwn=AFwJXf_wpC4k902Hg=tCMWpcFUGNWOg9me6_w@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="jKBxcB1XkHIR0Eqt"
+Content-Disposition: inline
+In-Reply-To: <CAOMZO5A_Gtwn=AFwJXf_wpC4k902Hg=tCMWpcFUGNWOg9me6_w@mail.gmail.com>
+X-Cookie: In specially marked packages only.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Adrien,
 
-On Tue, Dec 15, 2020 at 10:16 AM Adrien Grassein
-<adrien.grassein@gmail.com> wrote:
+--jKBxcB1XkHIR0Eqt
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-> Could you please tell me where this driver was merged?
-> I checked the main kernel Linux and I can find out this one.
+On Tue, Dec 15, 2020 at 10:20:02AM -0300, Fabio Estevam wrote:
+> On Tue, Dec 15, 2020 at 10:16 AM Adrien Grassein
+> <adrien.grassein@gmail.com> wrote:
 
-It is in the linux-next tree:
-https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/drivers?h=next-20201215&id=d3795d6321ecaa55d94dc24c3b1e3cce608aabd6
+> > Could you please tell me where this driver was merged?
+> > I checked the main kernel Linux and I can find out this one.
 
-Regards,
+> It is in the linux-next tree:
+> https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/drivers?h=next-20201215&id=d3795d6321ecaa55d94dc24c3b1e3cce608aabd6
 
-Fabio Estevam
+Coming to there from my for-next branch - it's also already been sent in
+a pull request to Linus so will hopefully be hitting his tree soonish.
+
+--jKBxcB1XkHIR0Eqt
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl/YuPAACgkQJNaLcl1U
+h9CPmAf/eKV2OidvhHUcIbNxUtY+hbuBOcTMkhaO1UXnfkmmNMFfOGRfD8mJpUaB
+XkK36q7TFoE/TxOdDHRH5wTA/hb7Y/dy28AaZqvGJjQr7D3g5D5cWVvEgK/yFZHE
+gjRt9GkyZGu8gFFGvGDcZzVA2br3PjAzZVS2w0gFWQAZECNTdxW9+DUJduRgCd71
+4C2tW08VIYouEoPuKNFhUlOuMEkSVtvoddTe5KvgwE1T9WX53Fi8w/koY0LfR5u4
+5KyMjKRQCZxw74sHOXs3OaINytshUlV4d2p+ddM2zPjOZl+za5P1LR/3ZkNr5lzN
+DF29tuAR+Hq1OQ7Gbj/jrmmWBUMq5g==
+=DXB3
+-----END PGP SIGNATURE-----
+
+--jKBxcB1XkHIR0Eqt--
