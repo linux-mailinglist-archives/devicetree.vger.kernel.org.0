@@ -2,376 +2,197 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 168542DB1AD
-	for <lists+devicetree@lfdr.de>; Tue, 15 Dec 2020 17:43:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ECF7D2DB211
+	for <lists+devicetree@lfdr.de>; Tue, 15 Dec 2020 18:03:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727074AbgLOQnQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Dec 2020 11:43:16 -0500
-Received: from mail-oi1-f193.google.com ([209.85.167.193]:46633 "EHLO
-        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726022AbgLOQnP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Dec 2020 11:43:15 -0500
-Received: by mail-oi1-f193.google.com with SMTP id q205so11252759oig.13;
-        Tue, 15 Dec 2020 08:42:58 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=85XGOE7slsTASo+kFa4z7Kv6pquXQ13OQ7twLGO4c14=;
-        b=HeLm5IeVgPKGIlj0GCTOLxD9r02lE9BRPlldBrcsJJmgBukhOQ1KIPEGRxu1Q9+Z62
-         NrJq49zzrMga5OcNNU6UjznU1/Bhax/4go/vtTQyhFnsOn37kvAt5/RiBVHc+3GPMQOK
-         KntrbN/TBRwuOWV6BcCdHMnJPkCSX1oEzwIhNzgDuiwiNXqFHhbmSnOxJORmAcfrMODR
-         GtJqJ3z+X2iRxVwbmdk88E2Ws8Uublvf2fXCNvqCy/FSthx0GX02T0tuTCIYE6WBUfuG
-         TS9CzBWql3eWpaS8AdXq2x70I/tibdg1bAtgsxsh3OordZXlwQYkCf/iSe/Pw3Aebb1B
-         FS0A==
-X-Gm-Message-State: AOAM533/P0ybX6Gi8l5X7xR7FLJF2QuQxmjfVmsgzIoK3RYYGN8joYHs
-        IiW3UiW4eTMY3xb6+2RDb8nkf7jlCQ==
-X-Google-Smtp-Source: ABdhPJyPAs5yN0xnBOKW+Qd/QH8ydTbtsoLyamZxqv1/xuZse71FzbPH+jM/RsQW1H+7uyUotu3JiQ==
-X-Received: by 2002:a05:6808:352:: with SMTP id j18mr22459762oie.78.1608050553324;
-        Tue, 15 Dec 2020 08:42:33 -0800 (PST)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id e8sm523530oti.76.2020.12.15.08.42.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Dec 2020 08:42:32 -0800 (PST)
-Received: (nullmailer pid 3996425 invoked by uid 1000);
-        Tue, 15 Dec 2020 16:42:31 -0000
-Date:   Tue, 15 Dec 2020 10:42:31 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     lee.jones@linaro.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2] mfd: db8500-prcmu: Add devicetree bindings
-Message-ID: <20201215164231.GA3980510@robh.at.kernel.org>
-References: <20201212123718.2768502-1-linus.walleij@linaro.org>
+        id S1729028AbgLOQow (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Dec 2020 11:44:52 -0500
+Received: from mail-eopbgr20054.outbound.protection.outlook.com ([40.107.2.54]:56934
+        "EHLO EUR02-VE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1728878AbgLOQol (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 15 Dec 2020 11:44:41 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=UtVdrqS09qCpdjYHejQhsq73H24CBZvNS/WGKDUcN726VaNs++XfWhqKYrJ8yNUv1a2Z9L3u8aOfDneRCybzXZTz/v4ZjmdJg5sK00mkyCZ0i4HyReE/YpJs5+jPqcYJSiCk+g64uGYQQOpKMyYMUhfBlu9BHBwuZ5P3eAndZQ1ds1ga/Km/0Zpabd6+yyLh02EKnY4Ir9ifM/3vpd9299aKYDsSw6RZ+R4Hs36F2Av65erei0QXAkMV1MFQMuHPlNkjRunFpPmEI1ucNYANHBzNVwJ11KuNAE9PWkIBkqAtTFX9z1DMGeu8mkZDP36H7yxh9q4ifj4vNfJNrYje0Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=GWRCq6M3KrxmufWmMapLvc1GitfMNkJNHmmDTh/89ec=;
+ b=U0k19UiaEiHnfr7/hx+1wOiIBDZRCfcNXwVEE4O1COGyhbtNST1es7G58pfSg6LktIL+aRyJFfZpyCJrzyo2uqvXwXlR5QK+TYg1Cpzq5zPpxXOsfC9iigx0MAVaqQYSdkaWlGPpG7f3i6//TRxRDDThg/JQhh66w61ETyP1aa+kAMkNcR53Kkk2dWqvNtVp9OaMLDhG2n6aP4ZI2jjkvtGUgcbe/acA4qCLR5+4e4bufhp0LocA52KmXOnya0Zm+RFGUlsLwhcRL86mQ3UHR8dYfgmLIsL+lGb8WC6OwA38XwGF7bS4l2qFgvGWz3wtDk7K00jxXc7o+chUg9/OVw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector2-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=GWRCq6M3KrxmufWmMapLvc1GitfMNkJNHmmDTh/89ec=;
+ b=grYlUFgjuNJNucsylAucktQYqmy1zOTE5CZ+iJ/unaOl6rxA4orAwHOatvU0jFTX96cMEj+K0W4gwNMonnoo6xzwMRB8b1nDE5v1AVGPfG4GQyE7tHXYCSjUwyQ+G0aHpoFIZRN/4v5iLQ3X83JX7QZon7naHHTCRC4Hr1SMWPY=
+Authentication-Results: arm.com; dkim=none (message not signed)
+ header.d=none;arm.com; dmarc=none action=none header.from=oss.nxp.com;
+Received: from AM0PR04MB5636.eurprd04.prod.outlook.com (2603:10a6:208:130::22)
+ by AM0PR04MB6963.eurprd04.prod.outlook.com (2603:10a6:208:18b::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3654.13; Tue, 15 Dec
+ 2020 16:43:50 +0000
+Received: from AM0PR04MB5636.eurprd04.prod.outlook.com
+ ([fe80::a891:518d:935c:30dd]) by AM0PR04MB5636.eurprd04.prod.outlook.com
+ ([fe80::a891:518d:935c:30dd%6]) with mapi id 15.20.3654.020; Tue, 15 Dec 2020
+ 16:43:50 +0000
+From:   Calvin Johnson <calvin.johnson@oss.nxp.com>
+To:     Grant Likely <grant.likely@arm.com>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Jeremy Linton <jeremy.linton@arm.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Russell King - ARM Linux admin <linux@armlinux.org.uk>,
+        Cristi Sovaiala <cristian.sovaiala@nxp.com>,
+        Florin Laurentiu Chiculita <florinlaurentiu.chiculita@nxp.com>,
+        Ioana Ciornei <ioana.ciornei@nxp.com>,
+        Madalin Bucur <madalin.bucur@oss.nxp.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Marcin Wojtas <mw@semihalf.com>,
+        Pieter Jansen Van Vuuren <pieter.jansenvv@bamboosystems.io>,
+        Jon <jon@solid-run.com>
+Cc:     linux.cj@gmail.com, Laurentiu Tudor <laurentiu.tudor@nxp.com>,
+        Diana Madalina Craciun <diana.craciun@nxp.com>,
+        linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
+        Calvin Johnson <calvin.johnson@oss.nxp.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Ioana Radulescu <ruxandra.radulescu@nxp.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Jamie Iles <jamie@nuviainc.com>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        Len Brown <lenb@kernel.org>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: [net-next PATCH v2 00/14] ACPI support for dpaa2 driver
+Date:   Tue, 15 Dec 2020 22:13:01 +0530
+Message-Id: <20201215164315.3666-1-calvin.johnson@oss.nxp.com>
+X-Mailer: git-send-email 2.17.1
+Content-Type: text/plain
+X-Originating-IP: [14.142.151.118]
+X-ClientProxiedBy: SG2PR06CA0152.apcprd06.prod.outlook.com
+ (2603:1096:1:1f::30) To AM0PR04MB5636.eurprd04.prod.outlook.com
+ (2603:10a6:208:130::22)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201212123718.2768502-1-linus.walleij@linaro.org>
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from lsv03152.swis.in-blr01.nxp.com (14.142.151.118) by SG2PR06CA0152.apcprd06.prod.outlook.com (2603:1096:1:1f::30) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3654.12 via Frontend Transport; Tue, 15 Dec 2020 16:43:41 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: 4e6f179e-f10d-4b53-3a94-08d8a11899be
+X-MS-TrafficTypeDiagnostic: AM0PR04MB6963:
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <AM0PR04MB6963226AC9DE46A59C572935D2C60@AM0PR04MB6963.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:1265;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: T1cuzTDbAd6qFwsDXBx/BexAEJ+3x/K35+9O3oWXhjN1ZlM0qAi4MhSn4a/UX/AUbpoVzuinYEDDwfKVdac/JUvQjn4SqZsDy/NpYPQPvvECZ+PkOVFwz4ojtwuK5E4chrMOlgIuTk12X+0UscweAKyE9LWjkJVIIGlogSpblDvkDYEIZ55TVnVfdq/P6y4Tmk0TuDaSNLC8/7flYFkRiodFAgxJy1PqhOWWsm/cKBNdkkjHlJ67awZQfPWWL0FPXnOztuHBYZgUpDYxpttQBNf/NEtj2G/pVtdEJ52sNzTK1U8P+BeM9B3xu/UNDcS4Z8+ljFPDxifapDsxrTEhb7XeTrlYy/VFYUPy/S0EwdbeWrI7E/yU0aEODF9CWR7yKsmzJNfNNoJnrU0bjngvug==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR04MB5636.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(54906003)(8936002)(4326008)(6506007)(498600001)(83380400001)(66946007)(921005)(2616005)(956004)(86362001)(52116002)(16526019)(8676002)(2906002)(26005)(6512007)(7406005)(44832011)(7416002)(186003)(5660300002)(55236004)(1006002)(1076003)(66476007)(110136005)(6486002)(66556008)(6666004)(110426006);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?//PO7ZPa7go/X3KYFRlRYOUnAUBXQJPqB84Fm3+qlG0GXNExhX9bnjbVv17M?=
+ =?us-ascii?Q?opqj1EUwnHdt1wX3aVoBxuFyIrMBymFxZtOsmbWq6yWHJYPCyE1+IcqTqGrF?=
+ =?us-ascii?Q?OuXDMoUdCBpnyRtPex93KvHaLnIa5hMbZhsLXPyupszw+Foycwc+lJSYp4dp?=
+ =?us-ascii?Q?lC5cNON773DfQh8srCw0CGlaHHLhhjBQnk+n4CT5e/kk4gG1LSsOmYNeBRZV?=
+ =?us-ascii?Q?AM1SjFpZ++klYTNBz10oo2COw5DuO4C8JWQYpdx1J6Ye1ScFHfPgCzHuxHAP?=
+ =?us-ascii?Q?4PRGkddRx0cGJef6asqZKlp5uw3AY0JJtzYbRx/HJ+JXIOWUC5wL2sucmu/6?=
+ =?us-ascii?Q?yXPtnc2uQAju71GQJQHHoxLYHhn3K1OqCm+Z2dSGKL/mT3d5567VxFb96+nM?=
+ =?us-ascii?Q?pHl9fw4iNPc67kX52F4sq5a+59xtp80VAv+fKdZdQIbpaseRkVpB9hUB/ljP?=
+ =?us-ascii?Q?z5Clb6GytuMBpEz4O6zHEnRzukHSVNqAR9oUEJ830Au+hdfsUGTJ/ib969TQ?=
+ =?us-ascii?Q?+97fERRhXjegATqbw0pBrz+5QCzKMenU9euYJtonuL0ZNKlMfhQcIMIs3wFk?=
+ =?us-ascii?Q?0XsJAfKzu9S6+xk7fZb+4+5jjLk/buToaFccTQo3eypwyb+KdNyOZEEUFpk7?=
+ =?us-ascii?Q?5TmsaF3r4qW+b8NoNmMn+h6LqD2It58a6NuItr4Ea3pYox16IcNIRjNICG3X?=
+ =?us-ascii?Q?99LKiBxdrnO3pGstjonKq/zoRJyJgHj21sMIeNAwafar/Dn47fe5R9hDKR5t?=
+ =?us-ascii?Q?QKOorTEJCtcTUleGbvL4iHKpKAg/UvrdbuxOPysubN+usbjfK+ZFWEh008OQ?=
+ =?us-ascii?Q?tXe/cvl7LECZEISR58vj36dvdC3l1DawcbdzhDc6hwFaTVUA/JeQSi32BmcA?=
+ =?us-ascii?Q?UdXDHm6ytnplhxhIiTe+PmXu4IZJCnc19+RrCNqqsxZITVV3W3bO6u5EABsc?=
+ =?us-ascii?Q?w2Hhta3hMYZlzw36swEM2k1VIATijRtQWCkAuU5DjtAnWJCYrQ29JyFaF/Rb?=
+ =?us-ascii?Q?BP2u?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-AuthSource: AM0PR04MB5636.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Dec 2020 16:43:50.2183
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4e6f179e-f10d-4b53-3a94-08d8a11899be
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 67vdqMLt+qzeiXtS1zHnT0vsMC3aHWRHoTHUEnWnghIvKp9Jb6YlpBnad0wECgt+YG9rDApYUVz2mZXImNrYog==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB6963
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Dec 12, 2020 at 01:37:18PM +0100, Linus Walleij wrote:
-> This driver was merged in the early days of device tree
-> on Arm in 2012 and somehow we failed to provide bindings
-> for it. Fix it up with some YAML bindings.
-> 
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
-> ---
-> ChangeLog v1->v2:
-> - Make the main PRCMU node name more generic instead of
->   hammering it down to a specific address.
-> ---
->  .../bindings/mfd/stericsson,db8500-prcmu.yaml | 282 ++++++++++++++++++
->  1 file changed, 282 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mfd/stericsson,db8500-prcmu.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/mfd/stericsson,db8500-prcmu.yaml b/Documentation/devicetree/bindings/mfd/stericsson,db8500-prcmu.yaml
-> new file mode 100644
-> index 000000000000..cf8e2cc25f9d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mfd/stericsson,db8500-prcmu.yaml
-> @@ -0,0 +1,282 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mfd/stericsson,db8500-prcmu.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: ST-Ericsson DB8500 PRCMU - Power Reset and Control Management Unit
-> +
-> +maintainers:
-> +  - Linus Walleij <linus.walleij@linaro.org>
-> +
-> +description:
-> +  The DB8500 Power Reset and Control Management Unit is an XP70 8-bit
-> +  microprocessor that is embedded in the always-on power domain of the
-> +  DB8500 SoCs to manage the low power states, powering up and down parts
-> +  of the silicon, and controlling reset of different IP blocks.
-> +
-> +properties:
-> +  $nodename:
-> +    pattern: '^prcmu(@.*|-[0-9a-f])*$'
 
-As 'reg' required, a unit-address is too. Though presumbly the 
-simple-bus schema will enforce the unit-address. So I'd do:
+This patch set provides ACPI support to DPAA2 network drivers.
 
-'^prcmu@' 
+It also introduces new fwnode based APIs to support phylink and phy
+layers
+    Following functions are defined:
+      phylink_fwnode_phy_connect()
+      fwnode_mdiobus_register_phy()
+      fwnode_mdiobus_register()
+      fwnode_get_phy_id()
+      fwnode_phy_find_device()
+      device_phy_find_device()
+      fwnode_get_phy_node()
+      fwnode_mdio_find_device()
+      fwnode_get_id()
 
-> +
-> +  compatible:
-> +    description: The device is compatible both to the device-specific
-> +      compatible "stericsson,db8500-prcmu" and "syscon". The latter
-> +      compatible is needed for the device to be exposed as a system
-> +      controller so that arbitrary registers can be access by
-> +      different operating system components.
-> +    items:
-> +      - const: stericsson,db8500-prcmu
-> +      - const: syscon
-> +
-> +  reg:
-> +    items:
-> +      - description: Main PRCMU register area
-> +      - description: PRCMU TCPM register area
-> +      - description: PRCMU TCDM register area
-> +
-> +  reg-names:
-> +    items:
-> +      - const: prcmu
-> +      - const: prcmu-tcpm
-> +      - const: prcmu-tcdm
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  '#address-cells':
-> +    const: 1
-> +
-> +  '#size-cells':
-> +    const: 1
-> +
-> +  ranges: true
-> +
-> +  interrupt-controller: true
-> +
-> +  '#interrupt-cells':
-> +    const: 2
-> +
-> +  db8500-prcmu-regulators:
-> +    description: Node describing the DB8500 regulators. These are mainly
-> +      power rails inside the silicon but some of those are also routed
-> +      out to external pins.
-> +    type: object
-> +
-> +    properties:
-> +      compatible:
-> +        const: stericsson,db8500-prcmu-regulator
-> +
-> +      db8500_vape:
-> +        description: The voltage for the application processor, the
-> +          main voltage domain for the chip.
-> +        type: object
-> +        $ref: ../regulator/regulator.yaml#
-> +
-> +      db8500_varm:
-> +        description: The voltage for the ARM Cortex A-9 CPU.
-> +        type: object
-> +        $ref: ../regulator/regulator.yaml#
-> +
-> +      db8500_vmodem:
-> +        description: The voltage for the modem subsystem.
-> +        type: object
-> +        $ref: ../regulator/regulator.yaml#
-> +
-> +      db8500_vpll:
-> +        description: The voltage for the phase locked loop clocks.
-> +        type: object
-> +        $ref: ../regulator/regulator.yaml#
-> +
-> +      db8500_vsmps1:
-> +        description: Also known as VIO12, is a step-down voltage regulator
-> +          for 1.2V I/O. SMPS means System Management Power Source.
-> +        type: object
-> +        $ref: ../regulator/regulator.yaml#
-> +
-> +      db8500_vsmps2:
-> +        description: Also known as VIO18, is a step-down voltage regulator
-> +          for 1.8V I/O. SMPS means System Management Power Source.
-> +        type: object
-> +        $ref: ../regulator/regulator.yaml#
-> +
-> +      db8500_vsmps3:
-> +        description: This is a step-down voltage regulator
-> +          for 0.87 thru 1.875V I/O. SMPS means System Management Power Source.
-> +        type: object
-> +        $ref: ../regulator/regulator.yaml#
-> +
-> +      db8500_vrf1:
-> +        description: RF transciever voltage regulator.
-> +        type: object
-> +        $ref: ../regulator/regulator.yaml#
-> +
-> +      db8500_sva_mmdsp:
-> +        description: Smart Video Accelerator (SVA) multimedia DSP (MMDSP)
-> +          voltage regulator. This is the voltage for the accelerator DSP
-> +          for video encoding and decoding.
-> +        type: object
-> +        $ref: ../regulator/regulator.yaml#
-> +
-> +      db8500_sva_mmdsp_ret:
-> +        description: Smart Video Accelerator (SVA) multimedia DSP (MMDSP)
-> +          voltage regulator for retention mode.
-> +        type: object
-> +        $ref: ../regulator/regulator.yaml#
-> +
-> +      db8500_sva_pipe:
-> +        description: Smart Video Accelerator (SVA) multimedia DSP (MMDSP)
-> +          voltage regulator for the data pipe.
-> +        type: object
-> +        $ref: ../regulator/regulator.yaml#
-> +
-> +      db8500_sia_mmdsp:
-> +        description: Smart Image Accelerator (SIA) multimedia DSP (MMDSP)
-> +          voltage regulator. This is the voltage for the accelerator DSP
-> +          for image encoding and decoding.
-> +        type: object
-> +        $ref: ../regulator/regulator.yaml#
-> +
-> +      db8500_sia_mmdsp_ret:
-> +        description: Smart Image Accelerator (SIA) multimedia DSP (MMDSP)
-> +          voltage regulator for retention mode.
-> +        type: object
-> +        $ref: ../regulator/regulator.yaml#
-> +
-> +      db8500_sia_pipe:
-> +        description: Smart Image Accelerator (SIA) multimedia DSP (MMDSP)
-> +          voltage regulator for the data pipe.
-> +        type: object
-> +        $ref: ../regulator/regulator.yaml#
-> +
-> +      db8500_sga:
-> +        description: Smart Graphics Accelerator (SGA) voltage regulator.
-> +          This is in effect controlling the power to the MALI400 3D
-> +          accelerator block.
-> +        type: object
-> +        $ref: ../regulator/regulator.yaml#
-> +
-> +      db8500_b2r2_mcde:
-> +        description: Blit Blend Rotate and Rescale (B2R2), and Multi-Channel
-> +          Display Engine (MCDE) voltage regulator. These are two graphics
-> +          blocks.
-> +        type: object
-> +        $ref: ../regulator/regulator.yaml#
-> +
-> +      db8500_esram12:
-> +        description: Embedded Static RAM (ESRAM) 1 and 2 voltage regulator.
-> +        type: object
-> +        $ref: ../regulator/regulator.yaml#
-> +
-> +      db8500_esram12_ret:
-> +        description: Embedded Static RAM (ESRAM) 1 and 2 voltage regulator for
-> +          retention mode.
-> +        type: object
-> +        $ref: ../regulator/regulator.yaml#
-> +
-> +      db8500_esram34:
-> +        description: Embedded Static RAM (ESRAM) 3 and 4 voltage regulator.
-> +        type: object
-> +        $ref: ../regulator/regulator.yaml#
-> +
-> +      db8500_esram34_ret:
-> +        description: Embedded Static RAM (ESRAM) 3 and 4 voltage regulator for
-> +          retention mode.
-> +        type: object
-> +        $ref: ../regulator/regulator.yaml#
-> +
-> +    required:
-> +      - compatible
-> +      - db8500_vape
-> +      - db8500_varm
-> +      - db8500_vmodem
-> +      - db8500_vpll
-> +      - db8500_vsmps1
-> +      - db8500_vsmps2
-> +      - db8500_vsmps3
-> +      - db8500_vrf1
-> +      - db8500_sva_mmdsp
-> +      - db8500_sva_mmdsp_ret
-> +      - db8500_sva_pipe
-> +      - db8500_sia_mmdsp
-> +      - db8500_sia_mmdsp_ret
-> +      - db8500_sia_pipe
-> +      - db8500_sga
-> +      - db8500_b2r2_mcde
-> +      - db8500_esram12
-> +      - db8500_esram12_ret
-> +      - db8500_esram34
-> +      - db8500_esram34_ret
-> +
-> +    additionalProperties: false
-> +
-> +  thermal@801573c0:
+    First one helps in connecting phy to phylink instance.
+    Next three helps in getting phy_id and registering phy to mdiobus
+    Next two help in finding a phy on a mdiobus.
+    Next one helps in getting phy_node from a fwnode.
+    Last one is used to get fwnode ID.
 
-This address too?
+    Corresponding OF functions are refactored.
+    END
 
-> +    description: Node describing the DB8500 thermal control functions.
-> +      This binds to an operating system driver that monitors the
-> +      temperature of the SoC.
-> +    type: object
-> +
-> +    properties:
-> +      compatible:
-> +        const: stericsson,db8500-thermal
-> +
-> +      reg:
-> +        maxItems: 1
-> +
-> +      interrupts:
-> +        items:
-> +          - description: Hotmon low interrupt (falling temperature)
-> +          - description: Hotmon high interrupt (rising temperature)
-> +
-> +      interrupt-names:
-> +        items:
-> +          - const: IRQ_HOTMON_LOW
-> +          - const: IRQ_HOTMON_HIGH
-> +
-> +      '#thermal-sensor-cells':
-> +        const: 0
-> +
-> +    additionalProperties: false
-> +
-> +  prcmu-timer-4@80157450:
 
-And this one...
+Changes in v2:
+- Updated with more description in document
+- use reverse christmas tree ordering for local variables
+- Refactor OF functions to use fwnode functions
 
-> +    description: Node describing the externally visible timer 4 in the
-> +      PRCMU block. This timer is interesting to the operating system
-> +      since even thought it has a very low resolution (32768 Hz) it is
-> +      always on, and thus provides a consistent monotonic timeline for
-> +      the system.
-> +    type: object
-> +
-> +    properties:
-> +      compatible:
-> +        const: stericsson,db8500-prcmu-timer-4
-> +
-> +      reg:
-> +        maxItems: 1
-> +
-> +    additionalProperties: false
-> +
-> +patternProperties:
-> +  "^ab850[05]$":
-> +    description: Node describing the Analog Baseband 8500 mixed-signals
-> +      ASIC AB8500 and subcomponents. The AB8500 is accessed through the
-> +      PRCMU and hence it appears here. This component has a separate
-> +      set of devicetree bindings. The AB8505 is a newer version of the
-> +      same ASIC.
-> +    type: object
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - '#address-cells'
-> +  - '#size-cells'
-> +  - ranges
-> +  - interrupt-controller
-> +  - '#interrupt-cells'
-> +  - db8500-prcmu-regulators
-> +  - thermal@801573c0
-> +  - prcmu-timer-4@80157450
-> +
-> +dependencies:
-> +  interrupt-controller: [ interrupts ]
+Calvin Johnson (14):
+  Documentation: ACPI: DSD: Document MDIO PHY
+  net: phy: Introduce phy related fwnode functions
+  of: mdio: Refactor of_phy_find_device()
+  net: phy: Introduce fwnode_get_phy_id()
+  of: mdio: Refactor of_get_phy_id()
+  net: mdiobus: Introduce fwnode_mdiobus_register_phy()
+  of: mdio: Refactor of_mdiobus_register_phy()
+  net: mdiobus: Introduce fwnode_mdiobus_register()
+  net/fsl: Use fwnode_mdiobus_register()
+  device property: Introduce fwnode_get_id()
+  phylink: introduce phylink_fwnode_phy_connect()
+  net: phylink: Refactor phylink_of_phy_connect()
+  net: phy: Introduce fwnode_mdio_find_device()
+  net: dpaa2-mac: Add ACPI support for DPAA2 MAC driver
 
-If 'interrupt-controller' is present, then 'interrupts' is required. But 
-'interrupt-controller' is required, so you can just add 'interrupts' to 
-'required'.
- 
-> +
-> +additionalProperties: false
-> -- 
-> 2.26.2
-> 
+ Documentation/firmware-guide/acpi/dsd/phy.rst | 129 ++++++++++++++++++
+ drivers/base/property.c                       |  26 ++++
+ .../net/ethernet/freescale/dpaa2/dpaa2-mac.c  |  86 +++++++-----
+ drivers/net/ethernet/freescale/xgmac_mdio.c   |  14 +-
+ drivers/net/mdio/of_mdio.c                    |  79 +----------
+ drivers/net/phy/mdio_bus.c                    | 116 ++++++++++++++++
+ drivers/net/phy/phy_device.c                  | 108 +++++++++++++++
+ drivers/net/phy/phylink.c                     |  49 ++++---
+ include/linux/mdio.h                          |   2 +
+ include/linux/of_mdio.h                       |   6 +-
+ include/linux/phy.h                           |  32 +++++
+ include/linux/phylink.h                       |   3 +
+ include/linux/property.h                      |   1 +
+ 13 files changed, 519 insertions(+), 132 deletions(-)
+ create mode 100644 Documentation/firmware-guide/acpi/dsd/phy.rst
+
+-- 
+2.17.1
+
