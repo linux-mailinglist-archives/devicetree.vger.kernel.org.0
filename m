@@ -2,169 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D93502DA905
-	for <lists+devicetree@lfdr.de>; Tue, 15 Dec 2020 09:12:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C4A232DA910
+	for <lists+devicetree@lfdr.de>; Tue, 15 Dec 2020 09:20:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726861AbgLOIKg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Dec 2020 03:10:36 -0500
-Received: from mga05.intel.com ([192.55.52.43]:56362 "EHLO mga05.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726217AbgLOIK3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 15 Dec 2020 03:10:29 -0500
-IronPort-SDR: /taIdlDZrkWXUJj1ECS6Syfg04UDhUEb3hETU9dL44fOqZzzLTBkkD2tkKXg9MgnmlRhB9+QLA
- SC3cH83W9z8g==
-X-IronPort-AV: E=McAfee;i="6000,8403,9835"; a="259570030"
-X-IronPort-AV: E=Sophos;i="5.78,420,1599548400"; 
-   d="scan'208";a="259570030"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Dec 2020 00:09:48 -0800
-IronPort-SDR: xYk8ORQflqIE+wMI1hsjP0QAsQmrM0hDKbDmG2NlUwmApiTI4Ll1W1t/mY7RJRgyGhhw8JhiVQ
- c8LNJAEx0ypQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.78,420,1599548400"; 
-   d="scan'208";a="450975558"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
-  by fmsmga001.fm.intel.com with ESMTP; 15 Dec 2020 00:09:48 -0800
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Tue, 15 Dec 2020 00:09:48 -0800
-Received: from fmsmsx606.amr.corp.intel.com (10.18.126.86) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Tue, 15 Dec 2020 00:09:48 -0800
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx606.amr.corp.intel.com (10.18.126.86) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5
- via Frontend Transport; Tue, 15 Dec 2020 00:09:48 -0800
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.45) by
- edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.1713.5; Tue, 15 Dec 2020 00:09:48 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=iKB+qi3/eUtPq3+9tR7NJB9RhBpCwuoqXWqQKRet/8eukeL63IY7DpRf0S8fpgxgcgqkQAHwW8LIneHTeviOk6TbDQFDDkkKz9KPdxfiE5hK62+59t55g2avMXymya/D2zyLnKtewepz7vbw66IZUB1WmKU1lYenZzXwSQGZzjbRLdgbBWCg9uKcRa3Ukl8LCH4Qlsu+zOAxbfTworCd4i/c2IP9KfAB0SFkU9MIxmFC01Q5bAg7GN2zw6S0FpvLcS7PxUfvS8U+0mFFd38aUMhL8U+zHPJkOfXqru12sfXautjbPQs5tr/rPrjUudOEjSj7gxzqzmDfuGEzi8NCqQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=YIQzTDdMODJhAbNg8auyIY4EoWL8S1d2Jd4C46gPk/k=;
- b=ERjrdpq8GIuMrVEEy6OISKWxo931f5OHGhIvx5mqrXftvkE1B2Udz/djvqizoWcMtM9s0R2Lbagr8qoIOpOwmJf9fRSLMUtNwiP+4Eq64pmsNgDcDiGr8GYZgUOpRzGjtvO3VeaN6worimPUEGL/njJeTYujNI0d3KB3+tww4RN1nC38P1EML/isxLzqxokM6f1/uOIhBe4Ah4581xMtpqI4BwCIvgE8m+Za90hJtDQumKbFazZ1ZJ5T4sVBnayWQqFaAo8KXWKnuJsQRgkhUotV1IBj004gBQZjkqL/wz4vHBrbpooul62mgwFhWJcFq0eOH9ZLvwLPWSdjFY/QIA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com;
- s=selector2-intel-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=YIQzTDdMODJhAbNg8auyIY4EoWL8S1d2Jd4C46gPk/k=;
- b=Pq+BNPmEwAWzcwxdHrGqorVz4XfbqCRIZcmM+eKDGXQwa3/+NHFnWVsn3TpPLG6KW/ti2lRRaQ8trQQB4M3v+7NxwPSJL5EdnPULrfX/nsxyuQyaZnLzSdAqefaq8nTokWAjcSB8Fg9zBa37bocnDOzJo/4cT1nmp4gnP6ulpYA=
-Received: from CO1PR11MB5026.namprd11.prod.outlook.com (2603:10b6:303:9c::13)
- by MWHPR1101MB2208.namprd11.prod.outlook.com (2603:10b6:301:4d::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3654.14; Tue, 15 Dec
- 2020 08:09:47 +0000
-Received: from CO1PR11MB5026.namprd11.prod.outlook.com
- ([fe80::4820:6e90:3d0e:3b5f]) by CO1PR11MB5026.namprd11.prod.outlook.com
- ([fe80::4820:6e90:3d0e:3b5f%4]) with mapi id 15.20.3654.025; Tue, 15 Dec 2020
- 08:09:47 +0000
-From:   "Sia, Jee Heng" <jee.heng.sia@intel.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     "andriy.shevchenko@linux.intel.com" 
-        <andriy.shevchenko@linux.intel.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "Eugeniy.Paltsev@synopsys.com" <Eugeniy.Paltsev@synopsys.com>,
-        "dmaengine@vger.kernel.org" <dmaengine@vger.kernel.org>,
-        "vkoul@kernel.org" <vkoul@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: RE: [PATCH v6 10/16] dt-binding: dma: dw-axi-dmac: Add support for
- Intel KeemBay AxiDMA
-Thread-Topic: [PATCH v6 10/16] dt-binding: dma: dw-axi-dmac: Add support for
- Intel KeemBay AxiDMA
-Thread-Index: AQHW0mvc6aoO4dGCnkyozignSSXE7an3zkVw
-Date:   Tue, 15 Dec 2020 08:09:46 +0000
-Message-ID: <CO1PR11MB50266EC86067669AE02047C5DAC60@CO1PR11MB5026.namprd11.prod.outlook.com>
-References: <20201211004642.25393-1-jee.heng.sia@intel.com>
- <20201211004642.25393-11-jee.heng.sia@intel.com>
- <20201214225239.GA2531399@robh.at.kernel.org>
-In-Reply-To: <20201214225239.GA2531399@robh.at.kernel.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.5.1.3
-authentication-results: kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=none action=none header.from=intel.com;
-x-originating-ip: [192.198.147.218]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 60f74aef-df48-44d1-fda0-08d8a0d0c9b9
-x-ms-traffictypediagnostic: MWHPR1101MB2208:
-x-microsoft-antispam-prvs: <MWHPR1101MB2208CFEBBF488D4B1054B71CDAC60@MWHPR1101MB2208.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:2449;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: +JShYASy3Zp4/QYM7VOp0sGLA/rMf41B28D6tGT9C2bu+eV6SV5wjjbKPBFUVk0EeY2pOXNjPjFqivlt5KZifrrFF5nIS2o6T8mGu7umWw82FV/TJFyA8WEF0S5KlJsYZT3StVTWg2m3Mea81frHASFaAMBvWKkNo8k1cv+kqyIXh/hQkcOewfqPZwpw1cNJ822Qpq1dtk5U8qBD/odBJshfA0bM9veD9CfkoVA0qgyTFbDI0+wrNeHk9iq/7RPWv7Day/vmtJurA1WkWgnDjBfbOeCAASsRY34N6YxSeRFrS9W2zE8qhPJp0NYTd4Iw9sAH7vKKsod9IQ5k7SyFlQ==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO1PR11MB5026.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(346002)(366004)(136003)(376002)(186003)(66476007)(26005)(53546011)(86362001)(6506007)(9686003)(7696005)(508600001)(55016002)(52536014)(33656002)(71200400001)(76116006)(2906002)(5660300002)(64756008)(4326008)(66946007)(83380400001)(66446008)(8676002)(54906003)(66556008)(4744005)(8936002)(6916009);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata: =?us-ascii?Q?wS9GXyU4amxeBhHXqyqwiIDFidhfYsisV1QVUJrJ58YLDOzn+xv+mbim1Mmj?=
- =?us-ascii?Q?smu844BUKGZi1RXPlZuu2tq5oncuBD5A/F1eMlLmsApyCepnCo3wAWnsJ69F?=
- =?us-ascii?Q?LHDY0t4d05xBmmTSuEwvLDiTV+D/s0DefQi7krRMVktO5lRkjRsylizEzTLD?=
- =?us-ascii?Q?/r4DY0GLp3ldqo6jNwe9KeAli6AaA5+2T9/Z8CH9IacmG/hkRG+jCs3knPjF?=
- =?us-ascii?Q?bJ8DqRVmp350vf5a7W60DqBhBHdqWXI7PGauxPc12bd5BSrMHAa5W+ROJK+w?=
- =?us-ascii?Q?lA11IRIhKhUJiR1ksdo3fcomXADdBIFsp42ajvJmRmrFdFPXSxESToiCCztz?=
- =?us-ascii?Q?jlMQ7hnF0QLmQAcYOP2qMn/MeIsNNmWhL5STZEyBvXE+fUI78EPOJ0PbDFnp?=
- =?us-ascii?Q?YvhpfVkbOQCWa3EHubawhKH4gTq1Jvji15cvvJ80aBN4Cq0ff6V2moGYT3Qs?=
- =?us-ascii?Q?Yo2NuqM5I6SZj+U7pvbQhm/GIf45Jy8XETgumtoVx3VWEghik8xEZkJMU7jR?=
- =?us-ascii?Q?R9VdIBXJDrcPyH1h7LelSb1eb0LyzNgZSOtDgRxaAAgU8uYxqUCyLWe75KKp?=
- =?us-ascii?Q?bBtfHDo+8z1NqpDrpfnHhpAVGwmqEvZBZnjMnXMI1kZLrd5FMBrm/CLlpy8F?=
- =?us-ascii?Q?WM9Ur3nnCpHpwrHWMQwUQzcF0frZwDQ+ahx1cXgd95ZAR6e5N9K7hdTIXewG?=
- =?us-ascii?Q?UftJxESAthWAAWNG/uyUDpxKg5f7GKKPIXhSdSIpIoyqmjlrJOexWQ2uI3a6?=
- =?us-ascii?Q?lJ2fj//jzCRYS3VEXBgBGy7GJ7+pJ9+qmMitiVcfYNBcepODbGvcAaZMqoY5?=
- =?us-ascii?Q?kIBLTWzgd4PNqCPDT4LZTZuFByJ0+C3BMAPIX5evhogkvYkKkYfDcjOCmOlL?=
- =?us-ascii?Q?QYAIRBFQuSHUpCBZNFUuVx0kmVpq+iYP+bWFXXr76fPqL+mMMFm9bCXdLXth?=
- =?us-ascii?Q?FsuneUw4BktcIKOdF/mbvV/Ll+ER44gf88cAWqCB9gI=3D?=
-x-ms-exchange-transport-forked: True
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        id S1726266AbgLOIUa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Dec 2020 03:20:30 -0500
+Received: from mail-oi1-f194.google.com ([209.85.167.194]:38115 "EHLO
+        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725907AbgLOIUX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Dec 2020 03:20:23 -0500
+Received: by mail-oi1-f194.google.com with SMTP id x13so13422728oic.5;
+        Tue, 15 Dec 2020 00:20:07 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=p5+R1X9QLX+TWZajWd6rwkHGcp4/zZugTwvmGgE1C/E=;
+        b=T9WSOAbw969S4Xx206lZ+Oeu+alOXnPWtGozqhbDAcWCmQPXDjfSkyjA5Y9ZsfgFKS
+         395e3X4dJ7yCPbIOLqILstk8bPLL7nKFrMCZ3xAJxAtIBnnPCZQMAvSVxnAq1SBqSXKT
+         npwWHrXXtW5Z6KufJQJaSBSEoThX4Vu4DuY7L0aYqvamN1YgKbr8ueBcYjnn7Tq5sQKu
+         ptT1t6mXzrTrW7iInqm8+4bLuEN4sJFaiZZDHasLjROI/Fq1W1OaDLLGObhR9GOzKOcK
+         S2+OGFTh+owHdQjLAUbWN6Whh5HWwsJe+hvRvUqzMuh7se70cH6ppivthz2yFRNpvgBu
+         Cpxg==
+X-Gm-Message-State: AOAM5326pkMMRWWY0ZwLbc7QxpXQUHKnJ3SZhXQZ78F1u/hBt7CcluLN
+        7He6qdex8ucODW6wtZo2aarYXan9KSkoDCBOwy0=
+X-Google-Smtp-Source: ABdhPJz2pvYZqfA8u5YYKQGqP229v9Ys4lCyr+I39Cq9R2A+meSohQnYHADUaHDjX3vEgLH9FA5ZHXAF8UXP8OULghk=
+X-Received: by 2002:aca:4b16:: with SMTP id y22mr20674491oia.148.1608020381818;
+ Tue, 15 Dec 2020 00:19:41 -0800 (PST)
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB5026.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 60f74aef-df48-44d1-fda0-08d8a0d0c9b9
-X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Dec 2020 08:09:47.0060
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: yZVCsxM7u+dt3GLCgH8f3MC4OWkC/xpdMpq9vrhuQJczCQyq1JcHbNOLNyCCkChsOLukIN/qRtrF693TkEfKlA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR1101MB2208
-X-OriginatorOrg: intel.com
+References: <CAK8P3a2Habmz95y+J+-4NiT5SGYhO_Fia-SHhapX-3NYRbEMmw@mail.gmail.com>
+ <CAHk-=wjA2Der39e_SWZ6S-DoVCJTu-Zwf6jn2wxmGTKzNPV1Dw@mail.gmail.com>
+ <CAD=FV=Vow5_jv=-O=f2v4_5Nb4DiOUB1sQUx6r=-y5A-6rP4hw@mail.gmail.com>
+ <CAHk-=whtySEgkH+VFy9oW8Q-+iuivGBo0hOUcee3DvrsBAQUrA@mail.gmail.com>
+ <CAD=FV=Up-JW8RtMLQ_pAG3e0d8NnpT+rDiguxcz3DnVUz_7Jbw@mail.gmail.com>
+ <CAHk-=wi2CQwAnKucLwE8vNZgXxyRy6L+DcgjGqxKHwbacKgaMQ@mail.gmail.com>
+ <CAPDyKFp9L+L9VeUD038G3mBTLBuPJsMtv7JhxCcSGb3iY=eq5A@mail.gmail.com>
+ <CAK8P3a1Va_xJzk8qqJM1VBWfSKpomKbQh_NpPO20aoORoe0SWQ@mail.gmail.com>
+ <CAMuHMdUT83EkE-phUX2Z431AtGPfZvXeKwQriDKEHJKfr2R40A@mail.gmail.com>
+ <CAK8P3a3xqqT7mcroY+-fg4T39msw72SB0NbbVKfBghmOFTNZqw@mail.gmail.com>
+ <CAD=FV=WXcSBkN2y97xNma0P9C6DEPfwkprZe=+0+0iuKYNwwZA@mail.gmail.com>
+ <CAMuHMdWEuzUTg+f_SBqvT1zFYVFL=odgMLz68DjcvaTrbtd94g@mail.gmail.com> <CAPDyKFpG2JZ6riZo=fFJa7q16bvhFyx2kR1K-s3aSfwZ9NDo6A@mail.gmail.com>
+In-Reply-To: <CAPDyKFpG2JZ6riZo=fFJa7q16bvhFyx2kR1K-s3aSfwZ9NDo6A@mail.gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 15 Dec 2020 09:19:30 +0100
+Message-ID: <CAMuHMdVOxdYQD6qTF08NFiw4bRg3xscX=rRW1m9ix1AGEm3DGQ@mail.gmail.com>
+Subject: Re: [GIT PULL] ARM: SoC fixes for v5.10, part 3
+To:     Ulf Hansson <ulf.hansson@linaro.org>
+Cc:     Doug Anderson <dianders@chromium.org>,
+        Arnd Bergmann <arnd@kernel.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        SoC Team <soc@kernel.org>,
+        Linus Torvalds <torvalds@linux-foundation.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Ulf,
+
+On Mon, Dec 14, 2020 at 9:23 PM Ulf Hansson <ulf.hansson@linaro.org> wrote:
+> On Tue, 8 Dec 2020 at 08:32, Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> > On Mon, Dec 7, 2020 at 11:15 PM Doug Anderson <dianders@chromium.org> wrote:
+> > > On Mon, Dec 7, 2020 at 1:55 PM Arnd Bergmann <arnd@kernel.org> wrote:
+> > > > On Mon, Dec 7, 2020 at 9:23 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> > > > > On Tue, Dec 1, 2020 at 3:06 PM Arnd Bergmann <arnd@kernel.org> wrote:
+> > > > > > On Tue, Dec 1, 2020 at 12:39 PM Ulf Hansson <ulf.hansson@linaro.org> wrote:
+> > > > > > > So, I think we have two options. If people are willing to move to
+> > > > > > > "disk labels" or to patch their DTBs with mmc aliases, things can stay
+> > > > > > > as is. Otherwise, we can revert the async probe parts of the mmc host
+> > > > > > > drivers, but that would still leave us in a fragile situation.
+> > > > > >
+> > > > > > Can you reliably detect whether the mmc aliases in the dt exist?
+> > > > > > If that's possible, maybe the async flag could be masked out to only have
+> > > > > > an effect when the device number is known.
+> > > > >
+> > > > > IMHO DT aliases are not a proper solution for this.
+> > > > >
+> > > > > Yes, you can detect reliably if an alias exists in the DT.
+> > > > > The problems start when having multiple devices, some with aliases,
+> > > > > some without.  And when devices can appear dynamically (without
+> > > > > aliases, as there is no support for dynamically updating the aliases
+> > > > > list).
+> > > >
+> > > > Actually you hit a problem earlier than that: the async probe is a
+> > > > property of the host controller driver, which may be a pci_driver,
+> > > > platform_driver, usb_driver, or anything else really. To figure out
+> > > > whether to probe it asynchronously, it would have to be the driver
+> > > > core, or each bus type that can host these to understand which
+> > > > device driver is responsible for probing an eMMC device attached
+> > > > to the host.
+> > >
+> > > From what I've seen so far, my current thought on this issue is that
+> > > it's up to Ulf as the MMC maintainer what the next steps are.  For me,
+> > > at least, his argument that MMC block numbers have already shuffled
+> > > around several times in the last several years is at least some
+> > > evidence that they weren't exactly stable to begin with.  While we
+> > > could go back to the numbers that happened to be chosen as of kernel
+> > > v5.9, if someone was updating from a much older kernel then they may
+> > > have different expectations of what numbers are good / bad I think.
+> > >
+> > > I will also offer one possible suggestion: what about a KConfig option
+> > > here?  In theory we could add a KConfig option like
+> > > "CONFIG_MMC_LEGACY_PROBE" or something that.  One can argue about what
+> > > the default ought to be, but maybe that would satisfy folks?  If you
+> > > were happy giving up a little bit of boot speed to get the v5.9 block
+> > > numbers then you could set this.
+> >
+> > This is not limited to MMC.
+> > The same is true for sdX, ethX (e* these days), ttyS*, i2cX, spiX, ...
+> > The rule has always been to handle it by udev, disklabels, ...
+>
+> That's right.
+>
+> Although, those rules haven't been sufficient for some cases, which
+> has been discussed many many times by now. I can dig out some of the
+> old threads from the mail archive, just tell me and will help to find
+> them.
+>
+> For mmc we have decided to improve the situation by adding support for
+> aliases in DT. The support seems robust enough to me, but if you think
+> there are problems with it, please tell me and I am happy to help to
+> improve it.
+
+DT rule #1: DT is hardware description (device naming is software
+policy).
+
+The only generally accepted aliases are "serial0" (the first serial
+port, as such labeled on the board, to be used for the console;  there
+may be more labeled ports, and thus more "serialX" aliases), and
+"ethernet0" (the first Ethernet port, so U-Boot knows to which port to
+add an appropriate "local-mac-address" property, when booting over the
+network).  So yeah, you can claim the first SD card slot is labeled as
+such, and thus deserves an alias.  Then the issue is what you do with
+the remaining slots, which can be added either statically or
+dynamically.  And what if for some reason the labeled MMC slot is not
+probed first...
+
+The description of commit 7678f4c20fa7670f ("serial: sh-sci: Add support
+for dynamic instances") mentions some background and remaining
+issues w.r.t. aliases.
+
+> In regards to adding a new Kconfig option for "legacy probe", I am
+> open to this if that's what people think is needed. Although, as
+> pointed out earlier in this thread, it won't move us into a stable
+> situation. The only solution to get to that point, is either to use
+> udev/disklabel rules or the mmc aliases in DT.
+
+IMHO that will be a fragile solution, too: over time, it may become
+harder and harder to maintain the original probe order.
+
+And if it will be an option, it means there will be two code paths to
+maintain, increasing the burden.
 
 
-> -----Original Message-----
-> From: Rob Herring <robh@kernel.org>
-> Sent: 15 December 2020 6:53 AM
-> To: Sia, Jee Heng <jee.heng.sia@intel.com>
-> Cc: andriy.shevchenko@linux.intel.com; robh+dt@kernel.org; linux-
-> kernel@vger.kernel.org; Eugeniy.Paltsev@synopsys.com;
-> dmaengine@vger.kernel.org; vkoul@kernel.org;
-> devicetree@vger.kernel.org
-> Subject: Re: [PATCH v6 10/16] dt-binding: dma: dw-axi-dmac: Add
-> support for Intel KeemBay AxiDMA
->=20
-> On Fri, 11 Dec 2020 08:46:36 +0800, Sia Jee Heng wrote:
-> > Add support for Intel KeemBay AxiDMA to the dw-axi-dmac Schemas
-> DT
-> > binding.
-> >
-> > Signed-off-by: Sia Jee Heng <jee.heng.sia@intel.com>
-> > ---
-> >  Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml |
-> 5 +++++
-> >  1 file changed, 5 insertions(+)
-> >
->=20
-> Reviewed-by: Rob Herring <robh@kernel.org>
-[>>] Thanks. Will include your Reviewed-by tag in the next release.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
