@@ -2,109 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D5A92DB50F
-	for <lists+devicetree@lfdr.de>; Tue, 15 Dec 2020 21:28:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A23E02DB53F
+	for <lists+devicetree@lfdr.de>; Tue, 15 Dec 2020 21:37:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728378AbgLOU2K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Dec 2020 15:28:10 -0500
-Received: from mail.kernel.org ([198.145.29.99]:60876 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727384AbgLOU2D (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 15 Dec 2020 15:28:03 -0500
-X-Gm-Message-State: AOAM530B5Bw3dLZ0zs9BfiEyXZ572LOlTOR8JJk1g2jdVrpPWLX8aoZY
-        WyR1yg9B8dI1gMmU4CIdiK3d2BidK4E9sYEM7Q==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1608064043;
-        bh=MBGH1+TBwDVBKnTVwZJ+Y6Pz95/9T53Uh0u3LBjab2w=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=a0sl4ujDoF7sN+cuW0tYJTVqPsvEyxCTu2cLaIX4uXp2m4V/1PMv0u+Gs/poAeKWy
-         wGE2+ntAvSrr5/Wmn8XnXPLrr4klCO3QCPWDj2KNiLjuEms/XchH96pb7SsmsjotIB
-         x5aOJY6R8N+z2DF1j+pAy9RYl4ag0DhvY+SNpeeWFnQ/xOvps8tpJfvnTR1OhMOso9
-         v0MIR4o2xRAT68eZRTYwCWiqJp9EOWjCPC61U4+QrWDD+2AcNtpgQYOFlSz2p3DDo7
-         w5rkvnCCTBrRXsezL0r33s2rHKsWX3uJ15VW5uZkchDBw+LDppqbq2mm/S3NuNHVwf
-         yb74d6Fy3rUaQ==
-X-Google-Smtp-Source: ABdhPJyPP+RNnfjJT1wTon443g6dC9GOHv+GGIORiF0PyyZm2aga+kv6r74UhqjV+rSblF9RFvh1K2ETFxdMNCEiZ1U=
-X-Received: by 2002:aa7:cc86:: with SMTP id p6mr8286989edt.289.1608064041463;
- Tue, 15 Dec 2020 12:27:21 -0800 (PST)
+        id S1728506AbgLOUdW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Dec 2020 15:33:22 -0500
+Received: from mail-oi1-f193.google.com ([209.85.167.193]:33927 "EHLO
+        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727915AbgLOUdV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Dec 2020 15:33:21 -0500
+Received: by mail-oi1-f193.google.com with SMTP id s75so24835962oih.1;
+        Tue, 15 Dec 2020 12:33:06 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=EtjKKd4TCSJPpocIsePkm7hGwgQtFCBsVHbK3e4JQ/A=;
+        b=VcuD3vaUZPC+IIXogl2f1jR4o/6DqsylYeo1qc5TUG9dxWOUeauLt5O/L2nz/EfxCR
+         FGovX2ZjjamcNiOR4gzORK8tZQWJ9RUTLT5Ca+CZL212CohjJT4A2hPRX9m3q9DcLa+b
+         0Swpd0oXkws5zlr1CLArODVpX0Gz8+JmE1PDYtSon6dm+/3wrVIt/gGQ9gZaM81oBBo/
+         jYG7GwefjnrdmLDLnTDA1b2FaeK4rgRO9Vn+Ju//miWJ+DdN+6GqwOVdw8QG4NFvzt8h
+         38Co/bE2fTDU8TxrnTcFaCFEpwn6veGVUCKJ3HNFciFNZ/uK+BDDusgVCVr9tuWZMDLp
+         tMkw==
+X-Gm-Message-State: AOAM530oQCuDaNfV4abbSv40d6pBf6131oKu84S2aAcwSvucysp7oHXF
+        /gMZPcsUA+KRVvuDbmCxp+PmArnauw==
+X-Google-Smtp-Source: ABdhPJw1zNChVh3D0wCKjqWgGzDn+PAXtuD5gGraAOcBX5mba70IZ51cdakGWx1H4k8v2DDA3f6NKg==
+X-Received: by 2002:aca:bdc4:: with SMTP id n187mr417086oif.154.1608064360624;
+        Tue, 15 Dec 2020 12:32:40 -0800 (PST)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id r204sm5056833oif.0.2020.12.15.12.32.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 15 Dec 2020 12:32:39 -0800 (PST)
+Received: (nullmailer pid 165386 invoked by uid 1000);
+        Tue, 15 Dec 2020 20:32:38 -0000
+Date:   Tue, 15 Dec 2020 14:32:38 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     "Alice Guo (OSS)" <alice.guo@oss.nxp.com>
+Cc:     shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, krzk@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-imx@nxp.com
+Subject: Re: [PATCH v7 1/4] dt-bindings: soc: imx8m: add DT Binding doc for
+ soc unique ID
+Message-ID: <20201215203238.GA118912@robh.at.kernel.org>
+References: <20201215083551.6067-1-alice.guo@oss.nxp.com>
 MIME-Version: 1.0
-References: <20201215155627.2513-1-nsaenzjulienne@suse.de> <20201215155627.2513-4-nsaenzjulienne@suse.de>
-In-Reply-To: <20201215155627.2513-4-nsaenzjulienne@suse.de>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 15 Dec 2020 14:27:09 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLSnGzJgEtJBVQqR7jY2bvxCfC-84u-GR-V8htw_O60JQ@mail.gmail.com>
-Message-ID: <CAL_JsqLSnGzJgEtJBVQqR7jY2bvxCfC-84u-GR-V8htw_O60JQ@mail.gmail.com>
-Subject: Re: [PATCH 3/6] ARM: dts: bcm2711: Add reserved memory template to
- hold firmware configuration
-To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        devicetree@vger.kernel.org,
-        "maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE" 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        "moderated list:BROADCOM BCM2835 ARM ARCHITECTURE" 
-        <linux-rpi-kernel@lists.infradead.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Russell King <linux@armlinux.org.uk>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Tim Gover <tim.gover@raspberrypi.com>,
-        Phil Elwell <phil@raspberrypi.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201215083551.6067-1-alice.guo@oss.nxp.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 15, 2020 at 9:56 AM Nicolas Saenz Julienne
-<nsaenzjulienne@suse.de> wrote:
->
-> RPi4's co-processor will copy the board's bootloader configuration into
-> memory for the OS to consume. Introduce a reserved-memory area template
-> for the co-processor to edit before booting the system so as for Linux
-> not to overwrite that memory.
->
-> Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+On Tue, Dec 15, 2020 at 04:35:48PM +0800, Alice Guo (OSS) wrote:
+> From: Alice Guo <alice.guo@nxp.com>
+> 
+> Add DT Binding doc for the Unique ID of i.MX 8M series.
+> 
+> Signed-off-by: Alice Guo <alice.guo@nxp.com>
 > ---
->  arch/arm/boot/dts/bcm2711-rpi-4-b.dts | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
->
-> diff --git a/arch/arm/boot/dts/bcm2711-rpi-4-b.dts b/arch/arm/boot/dts/bcm2711-rpi-4-b.dts
-> index 403bacf986eb..c58e58e8ce39 100644
-> --- a/arch/arm/boot/dts/bcm2711-rpi-4-b.dts
-> +++ b/arch/arm/boot/dts/bcm2711-rpi-4-b.dts
-> @@ -25,6 +25,7 @@ aliases {
->                 emmc2bus = &emmc2bus;
->                 ethernet0 = &genet;
->                 pcie0 = &pcie0;
-> +               eeprom = &eeprom;
-
-I don't see the need for this...
-
->         };
->
->         leds {
-> @@ -218,6 +219,19 @@ &pwm1 {
->         status = "okay";
->  };
->
-> +&rmem {
-> +       /*
-> +        * RPi4's co-processor will copy the board's bootloader configuration
-> +        * into memory for the OS to consume. It'll also update this node with
-> +        * its placement information.
-> +        */
-> +       eeprom: eeprom@0 {
-
-But it's not an eeprom. It's just memory with some format to the contents.
-
-> +               reg = <0x0 0x0 0x0>;
-> +               no-map;
-> +               status = "disabled";
-> +       };
-> +};
+> 
+> Changes for v7:
+>  - change to a separate schema file
+> Changes for v6:
+>  - none
+> Changes for v5:
+>  - correct the error of using allOf
+> Changes for v4:
+>  - use allOf to limit new version DTS files for i.MX8M to include
+>    "fsl,imx8m*-soc", nvmem-cells and nvmem-cells-names
+> Changes for v3:
+>  - put it into Documentation/devicetree/bindings/arm/fsl.yaml
+>  - modify the description of nvmem-cells
+>  - use "make ARCH=arm64 dtbs_check" to make sure it is right
+> Changes for v2:
+>  - remove the subject prefix "LF-2571-1"
+> 
+>  .../bindings/soc/imx/imx8m-soc.yaml           | 54 +++++++++++++++++++
+>  1 file changed, 54 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/soc/imx/imx8m-soc.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/soc/imx/imx8m-soc.yaml b/Documentation/devicetree/bindings/soc/imx/imx8m-soc.yaml
+> new file mode 100644
+> index 000000000000..a2f7dc0c9b35
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/soc/imx/imx8m-soc.yaml
+> @@ -0,0 +1,54 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/soc/imx/imx8m-soc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
->  /* SDHCI is used to control the SDIO for wireless */
->  &sdhci {
->         #address-cells = <1>;
+> +title: NXP i.MX8M Series SoC
+> +
+> +maintainers:
+> +  - Alice Guo <alice.guo@nxp.com>
+> +
+> +description: |
+> +  NXP i.MX8M series SoCs contain fuse entries from which SoC Unique ID can be
+> +  obtained.
+> +
+> +select:
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        enum:
+> +          - fsl,imx8mm
+> +          - fsl,imx8mn
+> +          - fsl,imx8mp
+> +          - fsl,imx8mq
+> +  required:
+> +    - compatible
+> +
+> +properties:
+> +  soc:
+> +    type: object
+> +    properties:
+> +      compatible:
+> +        items:
+> +          - enum:
+> +              - fsl,imx8mm-soc
+> +              - fsl,imx8mn-soc
+> +              - fsl,imx8mp-soc
+> +              - fsl,imx8mq-soc
+> +          - const: simple-bus
+> +
+> +      nvmem-cells:
+> +        maxItems: 1
+> +        description: Phandle to the SOC Unique ID provided by a nvmem node
+> +
+> +      nvmem-cells-names:
+> +        const: soc_unique_id
+> +
+> +    required:
+> +      - compatible
+> +      - nvmem-cells
+> +      - nvmem-cell-names
+
+Anything else should be a node, so:
+
+       additionalProperties:
+         type: object
+
+> +
+> +additionalProperties: true
+> +...
 > --
-> 2.29.2
->
+> 2.17.1
+> 
