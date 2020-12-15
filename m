@@ -2,250 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 597602DAC2C
-	for <lists+devicetree@lfdr.de>; Tue, 15 Dec 2020 12:39:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4FA052DAC41
+	for <lists+devicetree@lfdr.de>; Tue, 15 Dec 2020 12:48:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728113AbgLOLjC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Dec 2020 06:39:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44082 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728643AbgLOLiv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Dec 2020 06:38:51 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A341CC0617A7
-        for <devicetree@vger.kernel.org>; Tue, 15 Dec 2020 03:38:11 -0800 (PST)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mtr@pengutronix.de>)
-        id 1kp8eg-0005T9-6J; Tue, 15 Dec 2020 12:38:10 +0100
-Received: from mtr by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <mtr@pengutronix.de>)
-        id 1kp8ef-0001Z9-DT; Tue, 15 Dec 2020 12:38:09 +0100
-Date:   Tue, 15 Dec 2020 12:38:09 +0100
-From:   Michael Tretter <m.tretter@pengutronix.de>
-To:     Stephen Boyd <sboyd@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-clk@vger.kernel.org, rajanv@xilinx.com, tejasp@xilinx.com,
-        dshah@xilinx.com, rvisaval@xilinx.com, michals@xilinx.com,
-        kernel@pengutronix.de, robh+dt@kernel.org, mturquette@baylibre.com
-Subject: Re: [PATCH 08/12] soc: xilinx: vcu: implement clock provider for
- output clocks
-Message-ID: <20201215113809.GA23407@pengutronix.de>
-References: <20201116075532.4019252-1-m.tretter@pengutronix.de>
- <20201116075532.4019252-9-m.tretter@pengutronix.de>
- <160783893475.1580929.17041767429276672732@swboyd.mtv.corp.google.com>
+        id S1727167AbgLOLpM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Dec 2020 06:45:12 -0500
+Received: from mail-oi1-f195.google.com ([209.85.167.195]:32808 "EHLO
+        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726176AbgLOLpJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Dec 2020 06:45:09 -0500
+Received: by mail-oi1-f195.google.com with SMTP id d203so1815848oia.0;
+        Tue, 15 Dec 2020 03:44:53 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=BbG51VDL4a3D3WxvKDwdNNij3DPMhXdykNgU9lNfhY4=;
+        b=p/GCag1Ta/KIrktKek+HseIeF/7TTVxs6CL5lspMTTsoJX/cjNaqc8Md2drCGlwp3q
+         ESOM4OQvYZQh5uxAs+ZLxkWpm/oigR+M53zeZqw/kqpGjuYi4y6NHkHuGNE47AKIHBaB
+         9wEUGOq3lQBbEVsjQ3lmmhrcH9cdt/3lKOrOLek0lwzm1Jy1LHFQSGElwk8oNKJ4JsEE
+         Cg0oDyoX8a0WHruCYLgLzz6m2uW2WqzI0ufx/VZhoFemjLVuJeahWikZ5DUkdKMdcnyI
+         MiEKsdnLwCuKyArQFsIUymCdtQDlrzD0D3WgIzBRJLTGFIgsIjfWikJCj3Y2g/UGGMMU
+         k9OQ==
+X-Gm-Message-State: AOAM532nQZRDhmUw2vnsklfRovvWGeYYiuvWlpb+07fppBE0y9c8Figq
+        cQb35w+COe8DIviPLXsI6tDWFUGJFio6i/SOrG8=
+X-Google-Smtp-Source: ABdhPJwTIsyWmDlBuDcxelxLOBIEQyA3zttZ+JMw3/42rMVSz+JSr/I6zBJ1mxVhoNfRZpLCvuATTM66b7ku9/kdKZc=
+X-Received: by 2002:aca:5c08:: with SMTP id q8mr21310941oib.54.1608032668032;
+ Tue, 15 Dec 2020 03:44:28 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <160783893475.1580929.17041767429276672732@swboyd.mtv.corp.google.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 11:37:16 up 12 days, 23:04, 61 users,  load average: 0.23, 0.11,
- 0.10
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: mtr@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+References: <20201116135305.81319-1-jacopo+renesas@jmondi.org>
+ <20201116135305.81319-3-jacopo+renesas@jmondi.org> <20201130220048.GA3104550@robh.at.kernel.org>
+ <20201215111420.zpc67jkary3l5j4z@uno.localdomain>
+In-Reply-To: <20201215111420.zpc67jkary3l5j4z@uno.localdomain>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 15 Dec 2020 12:44:17 +0100
+Message-ID: <CAMuHMdX1bzRqZEvXod3QNx+SNybP85wpQ66=bxyQJ4kAoo6X1g@mail.gmail.com>
+Subject: Re: [PATCH v5 2/8] dt-bindings: media: max9286: Document 'maxim,initial-reverse-channel-mV'
+To:     Jacopo Mondi <jacopo@jmondi.org>
+Cc:     Rob Herring <robh@kernel.org>,
+        Jacopo Mondi <jacopo+renesas@jmondi.org>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        =?UTF-8?Q?Niklas_S=C3=B6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Media Mailing List <linux-media@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Hyun Kwon <hyunk@xilinx.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Sergei Shtylyov <sergei.shtylyov@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 12 Dec 2020 21:55:34 -0800, Stephen Boyd wrote:
-> Quoting Michael Tretter (2020-11-15 23:55:28)
-> > diff --git a/drivers/soc/xilinx/xlnx_vcu.c b/drivers/soc/xilinx/xlnx_vcu.c
-> > index 725e646aa726..cedc8b7859f7 100644
-> > --- a/drivers/soc/xilinx/xlnx_vcu.c
-> > +++ b/drivers/soc/xilinx/xlnx_vcu.c
-> > @@ -545,6 +512,146 @@ static int xvcu_set_pll(struct xvcu_device *xvcu)
-> >         return xvcu_pll_enable(xvcu);
-> >  }
-> >  
-> > +static struct clk_hw *xvcu_clk_hw_register_leaf(struct device *dev,
-> > +                                               const char *name,
-> > +                                               const char * const *parent_names,
-> > +                                               u8 num_parents,
-> > +                                               struct clk_hw *parent_default,
-> > +                                               void __iomem *reg,
-> > +                                               spinlock_t *lock)
-> > +{
-> > +       unsigned long flags = CLK_SET_RATE_NO_REPARENT | CLK_SET_RATE_PARENT;
-> > +       u8 divider_flags = CLK_DIVIDER_ONE_BASED | CLK_DIVIDER_ALLOW_ZERO |
-> 
-> Why u8?
+Hi Jacopo,
 
-__clk_hw_register_divider expects u8 as divider_flags.
+On Tue, Dec 15, 2020 at 12:14 PM Jacopo Mondi <jacopo@jmondi.org> wrote:
+> On Mon, Nov 30, 2020 at 03:00:48PM -0700, Rob Herring wrote:
+> > On Mon, Nov 16, 2020 at 02:52:59PM +0100, Jacopo Mondi wrote:
+> > > Document the 'initial-reverse-channel-mV' vendor property in the
+> > > bindings document of the max9286 driver.
+> > >
+> > > The newly introduced property allows to specifying the initial
+> > > configuration of the GMSL reverse control channel to accommodate
+> > > remote serializers pre-programmed with the high threshold power
+> > > supply noise immunity enabled.
+> > >
+> > > Reviewed-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+> > > Signed-off-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
+> > > ---
+> > >  .../bindings/media/i2c/maxim,max9286.yaml     | 23 +++++++++++++++++++
+> > >  1 file changed, 23 insertions(+)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/media/i2c/maxim,max9286.yaml b/Documentation/devicetree/bindings/media/i2c/maxim,max9286.yaml
+> > > index 9ea827092fdd..f61234d204fa 100644
+> > > --- a/Documentation/devicetree/bindings/media/i2c/maxim,max9286.yaml
+> > > +++ b/Documentation/devicetree/bindings/media/i2c/maxim,max9286.yaml
+> > > @@ -51,6 +51,26 @@ properties:
+> > >    '#gpio-cells':
+> > >      const: 2
+> > >
+> > > +  maxim,initial-reverse-channel-mV:
+> >
+> > Use standard unit suffix.
+> >
+>
+> Which one ? :)
 
-> 
-> > +                          CLK_DIVIDER_ROUND_CLOSEST;
-> > +       struct clk_hw *mux = NULL;
-> > +       struct clk_hw *divider = NULL;
-> > +       struct clk_hw *gate = NULL;
-> > +       char *name_mux;
-> > +       char *name_div;
-> > +       int err;
-> > +
-> > +       name_mux = devm_kasprintf(dev, GFP_KERNEL, "%s%s", name, "_mux");
-> > +       if (!name_mux) {
-> > +               err = -ENOMEM;
-> > +               goto err;
-> > +       }
-> > +       mux = clk_hw_register_mux(dev, name_mux, parent_names, num_parents,
-> > +                                 flags, reg, 0, 1, 0, lock);
-> > +       if (IS_ERR(mux)) {
-> > +               err = PTR_ERR(divider);
-> > +               goto err;
-> > +       }
-> > +       clk_hw_set_parent(mux, parent_default);
-> 
-> Can this be done from assigned-clock-parents binding?
+Documentation/devicetree/bindings/property-units.txt
 
-Could be done, if the driver provides at least the PLL and the mux in addition
-to the actual output clocks. Otherwise, it is not possible to reference the
-PLL post divider and the mux from the device tree. I wanted to avoid to expose
-the complexity to the device tree. Would you prefer, if all clocks are
-provided instead of only the output clocks?
+> I see in v5.10 one 'mV', three 'mv', one 'millivolts', several
+> 'microvolts'.
+>
+> I'll go with the majority and make this
+> 'maxim,initial-reverse-channel-mv'
 
-> 
-> > +
-> > +       name_div = devm_kasprintf(dev, GFP_KERNEL, "%s%s", name, "_div");
-> > +       if (!name_div) {
-> > +               err = -ENOMEM;
-> > +               goto err;
-> > +       }
-> > +       divider = clk_hw_register_divider_parent_hw(dev, name_div, mux, flags,
-> > +                                                   reg, 4, 6, divider_flags,
-> > +                                                   lock);
-> > +       if (IS_ERR(divider)) {
-> > +               err = PTR_ERR(divider);
-> > +               goto err;
-> > +       }
-> > +
-> > +       gate = clk_hw_register_gate_parent_hw(dev, name, divider,
-> > +                                             CLK_SET_RATE_PARENT, reg, 12, 0,
-> > +                                             lock);
-> > +       if (IS_ERR(gate)) {
-> > +               err = PTR_ERR(gate);
-> > +               goto err;
-> > +       }
-> > +
-> > +       return gate;
-> > +
-> > +err:
-> > +       if (!IS_ERR_OR_NULL(gate))
-> 
-> Would be nicer to have some more goto labels and skip the IS_ERR_OR_NULL
-> checks.
+Wrong guess ;-)
 
-Ack.
+Gr{oetje,eeting}s,
 
-> 
-> > +               clk_hw_unregister_gate(gate);
-> > +       if (!IS_ERR_OR_NULL(divider))
-> > +               clk_hw_unregister_divider(divider);
-> > +       if (!IS_ERR_OR_NULL(mux))
-> > +               clk_hw_unregister_divider(mux);
-> > +
-> > +       return ERR_PTR(err);
-> > +}
-> > +
-> > +static void xvcu_clk_hw_unregister_leaf(struct clk_hw *hw)
-> > +{
-> > +       struct clk_hw *gate = hw;
-> > +       struct clk_hw *divider;
-> > +       struct clk_hw *mux;
-> > +
-> > +       if (!gate)
-> > +               return;
-> > +
-> > +       divider = clk_hw_get_parent(gate);
-> > +       clk_hw_unregister_gate(gate);
-> > +       if (!divider)
-> > +               return;
-> > +
-> > +       mux = clk_hw_get_parent(divider);
-> > +       clk_hw_unregister_mux(mux);
-> > +       if (!divider)
-> > +               return;
-> > +
-> > +       clk_hw_unregister_divider(divider);
-> > +}
-> > +
-> > +static DEFINE_SPINLOCK(venc_core_lock);
-> > +static DEFINE_SPINLOCK(venc_mcu_lock);
-> 
-> Any reason to not allocate these spinlocks too?
+                        Geert
 
-I will change this.
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-> 
-> > +
-> > +static int xvcu_register_clock_provider(struct xvcu_device *xvcu)
-> > +{
-> > +       struct device *dev = xvcu->dev;
-> > +       const char *parent_names[2];
-> > +       struct clk_hw *parent_default;
-> > +       struct clk_hw_onecell_data *data;
-> > +       struct clk_hw **hws;
-> > +       void __iomem *reg_base = xvcu->vcu_slcr_ba;
-> > +
-> > +       data = devm_kzalloc(dev, struct_size(data, hws, CLK_XVCU_NUM_CLOCKS), GFP_KERNEL);
-> > +       if (!data)
-> > +               return -ENOMEM;
-> > +       data->num = CLK_XVCU_NUM_CLOCKS;
-> > +       hws = data->hws;
-> > +
-> > +       xvcu->clk_data = data;
-> > +
-> > +       parent_default = xvcu->pll;
-> > +       parent_names[0] = "dummy";
-> 
-> What is "dummy"?
-
-According to the register reference [0], the output clocks can be driven by an
-external clock instead of the PLL, but the VCU Product Guide [1] does not
-mention any ports for actually driving the clock. From my understanding of the
-IP core, this is a clock mux which has a not-connected first parent. Maybe
-someone at Xilinx can clarify, what is happening here.
-
-[0] https://www.xilinx.com/html_docs/registers/ug1087/ug1087-zynq-ultrascale-registers.html
-[1] https://www.xilinx.com/support/documentation-navigation/see-all-versions.html?xlnxproducttypes=IP%20Cores&xlnxipcoresname=v-vcu
-
-What would be a better way to handle this?
-
-> 
-> > +       parent_names[1] = clk_hw_get_name(parent_default);
-> 
-> Can we use the new way of specifying clk parents from DT or by using
-> direct pointers instead of using string names? The idea is to get rid of
-> clk_hw_get_name() eventually.
-
-It should be possible to use the direct pointers, but this really depends on
-how the "dummy" clock is handled.
-
-Thanks,
-
-Michael
-
-> 
-> > +
-> > +       hws[CLK_XVCU_ENC_CORE] =
-> > +               xvcu_clk_hw_register_leaf(dev, "venc_core_clk",
-> > +                                         parent_names,
-> > +                                         ARRAY_SIZE(parent_names),
-> > +                                         parent_default,
-> > +                                         reg_base + VCU_ENC_CORE_CTRL,
-> > +                                         &venc_core_lock);
-> > +       hws[CLK_XVCU_ENC_MCU] =
-> > +               xvcu_clk_hw_register_leaf(dev, "venc_mcu_clk",
-> > +                                         parent_names,
-> > +                                         ARRAY_SIZE(parent_names),
-> > +                                         parent_default,
-> > +                                         reg_base + VCU_ENC_MCU_CTRL,
-> > +                                         &venc_mcu_lock);
-> > +
-> 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
