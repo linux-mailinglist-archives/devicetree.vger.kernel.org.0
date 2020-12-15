@@ -2,92 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3AB6B2DADDD
-	for <lists+devicetree@lfdr.de>; Tue, 15 Dec 2020 14:15:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 86DE52DADE7
+	for <lists+devicetree@lfdr.de>; Tue, 15 Dec 2020 14:21:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727157AbgLONPZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Dec 2020 08:15:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59056 "EHLO
+        id S1726548AbgLONVD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Dec 2020 08:21:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59960 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726844AbgLONPP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Dec 2020 08:15:15 -0500
-Received: from mail-ej1-x643.google.com (mail-ej1-x643.google.com [IPv6:2a00:1450:4864:20::643])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7FF14C0617A6;
-        Tue, 15 Dec 2020 05:14:34 -0800 (PST)
-Received: by mail-ej1-x643.google.com with SMTP id ga15so27605747ejb.4;
-        Tue, 15 Dec 2020 05:14:34 -0800 (PST)
+        with ESMTP id S1726959AbgLONU4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Dec 2020 08:20:56 -0500
+Received: from mail-lf1-x144.google.com (mail-lf1-x144.google.com [IPv6:2a00:1450:4864:20::144])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D561BC06138C;
+        Tue, 15 Dec 2020 05:20:15 -0800 (PST)
+Received: by mail-lf1-x144.google.com with SMTP id w13so39226746lfd.5;
+        Tue, 15 Dec 2020 05:20:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=mv8PeOrcfK/msUcUWlX+I7EMcnD/0TTIDrC/nTcaRwk=;
-        b=acoN0lkkxRDrJ2MhS+T7pMghrhbE72m6fH46Ka6gAdWAWdzXhqJfuYo6ct0LzBbmgo
-         265yBe5XQq2Gj37IrDw99vcrXxmBycCf1NwZlW4lrCmgCUGqVZL6WhDJdfPqVug244LL
-         DeyNY4gF4hUAE6UtjvDsBghm+TTsvf/Ri7yxfCf9Aqjk2Jnp3b/Mbv4Z/RkTyPnhzQid
-         cK3KdDUhpSrAUhmUt3tjYmlhqAcx83nOs2P3HL5KPClfeBwW2W33BsG35ahrhTFVIBM3
-         +e1Rudd4QgrqRYGkjrBjtvfmRxRK47042ZEndRcD6LWtIH85Q5mt65myBFz3pyKYFyOx
-         LHSQ==
+         :cc;
+        bh=sOTNS1adPzkjd18NAGlnFfcMu9FiOR4jPybdIj8V52A=;
+        b=QzoagYajrS7uM4QhWkUMg3UPeK94F6r3Th5zNpGdydo4CaXBDGSJhKeHrNRbulKU5U
+         QGMdGA1IbHo1GvDvu66sYVf9vCFWzIRMt1btwVSxH8asyuWDroPxhST2ZEPZ+/7xC8CN
+         puKi6KzGAhcrVWxNPIFOOWIm8Escv6IWSr7v1+nhoed1mE+sQZcbH+1hpVFD/5ee/dDN
+         ASKcf+QNR2kayArHG9qOKSNnrSqouxZL7CiX6HxRz8xYW5NrikF08r6iiQEekC1fllzs
+         n6D9R3SK6kiCY4Dfe2zbBGFAF8VKthnuNwc8ubEnm4jS/J86BW2OaRUPV0AfUGF5c5Gr
+         e5Jw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=mv8PeOrcfK/msUcUWlX+I7EMcnD/0TTIDrC/nTcaRwk=;
-        b=uRzM29cVDqO8ismP64EzDfa3o3v9u3LRa5Qm52aFEcgodm1e4IJd40556pTqowiUFb
-         yFdCXYQjLzxbjqj4YxR0vWVWeuq0DdE07OSaFs7Gc6msUR6gDFvY4Am8/H9ockahn7Xf
-         eNjstciR7RU+128/CSHXiOl8GvmQVE6aNfF8efUfUndAc32wNFvQ0hnCt25LvJnGbqP4
-         OQfryXj2FSlziQ+HAD/hayxakmRKfe7VAZQluIZXiPox6nDwPoY1bJzj8UNUV8EWZYkW
-         qJntpKZDFkAuQIYrX/iOSRqjn8xVG5XQVe+RslaMyp7uYcOBbAxZOXsa7gt0ow4H1sPc
-         xhLw==
-X-Gm-Message-State: AOAM531SlTbtdvWyow/kWhiP98hOccliA3wMair39cyoeKp6x+V0cAi+
-        qm8S6ki3pWQBvcAMwnBGuivjrqMsZwngXStv/V0=
-X-Google-Smtp-Source: ABdhPJwq346DJ84gtq4kEAbErht/H3gGqWGfg0wF2YshoTnovg8lpk3couRtBc2Fir7zFbyu1sxJossrZBIisaBYZpA=
-X-Received: by 2002:a17:906:4d17:: with SMTP id r23mr28106943eju.87.1608038073275;
- Tue, 15 Dec 2020 05:14:33 -0800 (PST)
+         :message-id:subject:to:cc;
+        bh=sOTNS1adPzkjd18NAGlnFfcMu9FiOR4jPybdIj8V52A=;
+        b=SuCcKYZ92W4rvMWWQtNvWpg4n7bkUHUmEvvYvogkEQn7kILqVfTck1boawVyDYzlmv
+         eD1K2r+hGDLq4y2Ci8o3kQ6rqnRsPu+4N8qF8UKA4larS0lcIIUWEsvglLDH4scTLUKz
+         QDK9rIV+fJUuX+AqrzPafftM9Gx8l4xGZQaprN913S/Q8sbz450sMT76P3lnDhk4oYAQ
+         cjS9Cj03b0JzbnaQDt1UZfBAirQnwD5dEqR9ZUkWEle0/ciuudKOA4gjUDQaaWV1wcym
+         aD9TOozd1maa7TaGltMCN/R6fm6yY6s4HT1cgQmu4UdCrmW3stM3aighe4D+M1165P0t
+         eCpg==
+X-Gm-Message-State: AOAM5310Deg43YsJcDI18bYt/DbFGlhdl23KJXz8gCXJk7Qh2XTyIjI0
+        xZBOZaiJJfYvdF603gEjVVrBz9oeHlrWzYt+/1E=
+X-Google-Smtp-Source: ABdhPJzJp7Yq5xVPxVXkqKyZQAg2hSchnL13OBIdipOtaWfun3XG3Oodczt84lms0OlsIi0DkgpmkaPjkJlWdmXWt2I=
+X-Received: by 2002:a2e:bc05:: with SMTP id b5mr13202203ljf.444.1608038414254;
+ Tue, 15 Dec 2020 05:20:14 -0800 (PST)
 MIME-Version: 1.0
-References: <20201214225851.23342-1-adrien.grassein@gmail.com> <20201215130622.GD4738@sirena.org.uk>
-In-Reply-To: <20201215130622.GD4738@sirena.org.uk>
-From:   Adrien Grassein <adrien.grassein@gmail.com>
-Date:   Tue, 15 Dec 2020 14:14:22 +0100
-Message-ID: <CABkfQAEAe0XGj16CkmH7xMNxgdQ+SRq0BYzvP+V5PdDqVbyAAw@mail.gmail.com>
+References: <20201214225851.23342-1-adrien.grassein@gmail.com>
+ <20201215130622.GD4738@sirena.org.uk> <CABkfQAEAe0XGj16CkmH7xMNxgdQ+SRq0BYzvP+V5PdDqVbyAAw@mail.gmail.com>
+In-Reply-To: <CABkfQAEAe0XGj16CkmH7xMNxgdQ+SRq0BYzvP+V5PdDqVbyAAw@mail.gmail.com>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Tue, 15 Dec 2020 10:20:02 -0300
+Message-ID: <CAOMZO5A_Gtwn=AFwJXf_wpC4k902Hg=tCMWpcFUGNWOg9me6_w@mail.gmail.com>
 Subject: Re: [PATCH v3 0/2] Add support of nxp pf8x00 regulator
-To:     Mark Brown <broonie@kernel.org>
-Cc:     lgirdwood@gmail.com, Rob Herring <robh+dt@kernel.org>,
-        linux-kernel@vger.kernel.org, DTML <devicetree@vger.kernel.org>,
-        troy.kisky@boundarydevices.com,
+To:     Adrien Grassein <adrien.grassein@gmail.com>
+Cc:     Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Troy Kisky <troy.kisky@boundarydevices.com>,
         Gary Bisson <gary.bisson@boundarydevices.com>,
         Jagan Teki <jagan@amarulasolutions.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le mar. 15 d=C3=A9c. 2020 =C3=A0 14:06, Mark Brown <broonie@kernel.org> a =
-=C3=A9crit :
->
-> On Mon, Dec 14, 2020 at 11:58:49PM +0100, Adrien Grassein wrote:
->
-> > this set of patch intends to add the support of the pf8x00 PMIC
-> > regulators. This family of PMIC contains 12 regulators (7 bucks
-> > converters, 4 LDO, 1 RTC supply). All these 12 regulators are
-> > configurable via an OTP memory and by i2c at runtime for some
-> > specific properties.
->
-> This looks to have raced with the addition of support for the same
-> device by Jagan Teki - unfortunately I didn't register that I'd seen
-> other patches for the same driver go past so I applied Jagan's version
-> (both look to be based on original work by Troy), sorry about that.
-> Could you please take a look at what got merged and send incremental
-> improvements on top of it - I do notice that I missed the use of the
-> wildcard compatible in there so that needs fixing at least.  :/
+Hi Adrien,
 
-No problem for me, I learned many things about trying to upstream this driv=
-er :)
+On Tue, Dec 15, 2020 at 10:16 AM Adrien Grassein
+<adrien.grassein@gmail.com> wrote:
 
-Could you please tell me where this driver was merged?
-I checked the main kernel Linux and I can find out this one.
+> Could you please tell me where this driver was merged?
+> I checked the main kernel Linux and I can find out this one.
 
+It is in the linux-next tree:
+https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/drivers?h=next-20201215&id=d3795d6321ecaa55d94dc24c3b1e3cce608aabd6
 
+Regards,
 
-Thanks again,
-Adrien
+Fabio Estevam
