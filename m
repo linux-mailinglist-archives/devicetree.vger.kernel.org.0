@@ -2,67 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 91DD72DB536
-	for <lists+devicetree@lfdr.de>; Tue, 15 Dec 2020 21:36:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E3B72DB55B
+	for <lists+devicetree@lfdr.de>; Tue, 15 Dec 2020 21:48:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727115AbgLOUfs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Dec 2020 15:35:48 -0500
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:46937 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728655AbgLOUeO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Dec 2020 15:34:14 -0500
-Received: by mail-ot1-f65.google.com with SMTP id w3so20704839otp.13;
-        Tue, 15 Dec 2020 12:33:58 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=+yEREsPMLzh/wN7w55YrIRd8TCU7izkQLXyeznnrtN0=;
-        b=namlxLWvw0U3k0LcAhSrHSNzL4pHh38sqI3p6QXanMSdOap1XpKVY5PkSBlMQaUHMT
-         nvWMEa5P2ok8nQe0XjJnC7cLNrxkm7Di7HRtEUCPEpPMD6AIOJZUlbT1vHdoO4YBNeAm
-         Jn/2ZjEe+1pcD0mx2M+nFu/asT7U1hHlTWuceSL2MWuOx58hFBUmmRIhI1sU1JsdSlAZ
-         8gcueKKdqomAUz5vArS9473RgFYfWTBNqmp2VGOzTYhU7klrj35ecqmtpYiePETWiz+Z
-         RSkQi8Y1Nrk/NTOIBzUbfjCMsNcjkpAaJfmo0k1szqfRFsFEMYlUbLJOdf0eFhXNOlrz
-         j4nA==
-X-Gm-Message-State: AOAM532BQw3wZGiEsJJY8WxchuCXnE6XzYqRhLS4R1Ww7YqaaGNEAIdo
-        f8zhQuFfBobcQSOI8BpQaq/JnOooOA==
-X-Google-Smtp-Source: ABdhPJwzM7jYzCNSaX0sPIZq0f82K16WK38zzyV1IOymvJieRlk/WdTuPZ4TprB+NDmjEVAI7SNYvQ==
-X-Received: by 2002:a9d:7482:: with SMTP id t2mr24711600otk.339.1608064413271;
-        Tue, 15 Dec 2020 12:33:33 -0800 (PST)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id k63sm5316651oia.14.2020.12.15.12.33.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Dec 2020 12:33:32 -0800 (PST)
-Received: (nullmailer pid 166890 invoked by uid 1000);
-        Tue, 15 Dec 2020 20:33:31 -0000
-Date:   Tue, 15 Dec 2020 14:33:31 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v4] dt-bindings: soc: qcom: convert qcom,smem bindings to
- yaml
-Message-ID: <20201215203331.GA166839@robh.at.kernel.org>
-References: <20201215104537.768914-1-dmitry.baryshkov@linaro.org>
+        id S1727013AbgLOUrs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Dec 2020 15:47:48 -0500
+Received: from bmail1.ministro.hu ([5.249.150.236]:36522 "EHLO
+        bmail1.ministro.hu" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726839AbgLOUrm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Dec 2020 15:47:42 -0500
+Received: from localhost (localhost [127.0.0.1])
+        by bmail1.ministro.hu (Postfix) with ESMTP id 00DE6123B5B;
+        Tue, 15 Dec 2020 21:46:45 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ministro.hu;
+        s=201804; t=1608065205;
+        bh=19l+chU3+45wQcptA8+XqtWJ7OyQVDIIoXRA/3ApHwI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=FYejNmqWHnLAY7p7fKkGbmWAz/mzzH4q7Wa/XSibgCa+jd2fHbrpvbukwRgveP9b6
+         i70JOl9zqkPQj/3I6nsWRlcUrVZmgjc65siEi4eU5NY2jRsgCPGmtaMO8x5FYF4WTY
+         QJ0rnPnc0TmLcUaxBnr8jrBw08Ezmxmj5Ru9gSfBZ0sq6otVs21XagrwGUxBNvHogy
+         lFOeNmfbOXJ8S2POSfRL/qurFLVimyjYN+Peg/rnAX5WgKDGDdS5JM4xlJCmGrPjci
+         8YmZQ3LnADdDS9NiaR+XwUtGOQIpHhXr0HkLUah6HWJGH7H6DSQ9DXkv3yPPazeRXs
+         FPUdgSXp+bGAw==
+X-Virus-Scanned: Debian amavisd-new at ministro.hu
+Received: from bmail1.ministro.hu ([127.0.0.1])
+        by localhost (bmail1.ministro.hu [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id CnQoZGfJPRoV; Tue, 15 Dec 2020 21:46:20 +0100 (CET)
+Received: from dev (localhost [127.0.0.1])
+        by bmail1.ministro.hu (Postfix) with ESMTPSA id E7A24123B47;
+        Tue, 15 Dec 2020 21:46:19 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ministro.hu;
+        s=201804; t=1608065180;
+        bh=19l+chU3+45wQcptA8+XqtWJ7OyQVDIIoXRA/3ApHwI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=8paTSlZ1VTyh0RYtDIhJTUghadlzmSW7RbQd+9o55JNtYNM11zmg58gLCs1v8ido+
+         m/l37eMu6SWnmoEpI8tnfQQypXXErs3BDsWZ+A5roMJZPUyXMYh3tlQx364cFSocQD
+         qJJwxbmYNhjRrNxjNAXaCvjZ0Rt+Gb9msHTdmLXzSlSTGYYbSTg3bv3dVih0+6yQfV
+         9J6tRYDYEV90dtWz3sR32oi31rN81jPZcLLqcx3OY4iaX1Ca9BIYcycKEmbmP2l3nD
+         jEY1EppXJAWp0n8VzD8PZcB97bRT/BH/jNb6e6ZhhZ6KssMW1FBtXOkY3Xj/DRTZgX
+         bWSnLfcgR31oQ==
+Date:   Tue, 15 Dec 2020 20:46:17 +0000
+From:   =?iso-8859-1?Q?J=F3zsef_Horv=E1th?= <info@ministro.hu>
+To:     Rob Herring <robh@kernel.org>
+Cc:     'Greg Kroah-Hartman' <gregkh@linuxfoundation.org>,
+        'Jiri Slaby' <jirislaby@kernel.org>,
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5] Serial: silabs si4455 serial driver
+Message-ID: <20201215204617.GA14153@dev>
+References: <20201215072004.GA12388@dev>
+ <20201215200219.GA4148374@robh.at.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20201215104537.768914-1-dmitry.baryshkov@linaro.org>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20201215200219.GA4148374@robh.at.kernel.org>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 15 Dec 2020 13:45:37 +0300, Dmitry Baryshkov wrote:
-> Convert soc/qcom/qcom,smem.txt bindings to YAML format.
+On Tue, Dec 15, 2020 at 02:02:19PM -0600, Rob Herring wrote:
+> On Tue, Dec 15, 2020 at 07:20:07AM +0000, József Horváth wrote:
+> > This is a serial port driver for
+> >  Silicon Labs Si4455 Sub-GHz transciver.
+> > 
+> >  - fixed: dt-bindings: silabs,si4455: serial.yaml reference added
 > 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->  .../bindings/soc/qcom/qcom,smem.txt           | 57 ---------------
->  .../bindings/soc/qcom/qcom,smem.yaml          | 72 +++++++++++++++++++
->  2 files changed, 72 insertions(+), 57 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,smem.txt
->  create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,smem.yaml
+> The revision history should be after the '---' so it is not in the git 
+> history when applied.
 > 
+> > Signed-off-by: József Horváth <info@ministro.hu>
+> > ---
+> >  .../bindings/serial/silabs,si4455.yaml        |   98 ++
+> 
+> Please make the binding a separate patch.
+> 
+> >  MAINTAINERS                                   |    6 +
+> > +  silabs,ez-config:
+> > +    description:
+> > +      Radio configuration data file name.
+> > +    $ref: /schemas/types.yaml#/definitions/string
+> > +    items:
+> > +      pattern: ^[0-9a-z\._\-]{1,255}$
+> 
+> We use 'firmware-name' property for this purpose. 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Yes, I saw it, but in my mind it is still a configuration
+ and this name covers the meaning,
+ but I can rename it, the "description" above describes the real meaning.
+
+> 
+> Looks good otherwise.
+
+Thank you and everyone who read or commented my code.
+
+> 
+> > +
+> > +required:
+> > +  - reg
+> > +  - interrupts
+> > +  - spi-max-frequency
+> > +  - shutdown-gpios
+> > +  - silabs,package-size
+> > +  - silabs,tx-channel
+> > +  - silabs,rx-channel
+> > +  - silabs,ez-config
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    spi {
+> > +      #address-cells = <1>;
+> > +      #size-cells = <0>;
+> > +      si4455_0: serial@0 {
+> > +        compatible = "silabs,si4455";
+> > +        reg = <0>;
+> > +        interrupt-parent = <&gpio>;
+> > +        interrupts = <7 2>;
+> > +        shutdown-gpios = <&gpio 26 1>;
+> > +        spi-max-frequency = <300000>;
+> > +        silabs,package-size = <30>;
+> > +        silabs,tx-channel = <1>;
+> > +        silabs,rx-channel = <2>;
+> > +        silabs,ez-config = "si4455_spi0_0.ez.bin";
+> > +      };
+> > +    };
+> > +...
+
+Üdvözlettel / Best regards:
+József Horváth
+
