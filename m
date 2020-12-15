@@ -2,87 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 879072DB395
-	for <lists+devicetree@lfdr.de>; Tue, 15 Dec 2020 19:23:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 745B22DB3AC
+	for <lists+devicetree@lfdr.de>; Tue, 15 Dec 2020 19:26:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731544AbgLOST0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Dec 2020 13:19:26 -0500
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:37118 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728004AbgLOSTZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Dec 2020 13:19:25 -0500
-Received: by mail-ot1-f65.google.com with SMTP id o11so20312081ote.4;
-        Tue, 15 Dec 2020 10:19:09 -0800 (PST)
+        id S1731533AbgLOSX4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Dec 2020 13:23:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50330 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729389AbgLOSXm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Dec 2020 13:23:42 -0500
+Received: from mail-pg1-x543.google.com (mail-pg1-x543.google.com [IPv6:2607:f8b0:4864:20::543])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A188C0617A6;
+        Tue, 15 Dec 2020 10:22:59 -0800 (PST)
+Received: by mail-pg1-x543.google.com with SMTP id c12so15316672pgm.4;
+        Tue, 15 Dec 2020 10:22:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=H+MPl6V5JmDOoXGskKZtv6rWjxRnogZLJ4kW84SY9ds=;
+        b=Ebq9jvq8lsnSaUmi4uDwBNEzptpKOUGzLuy1ucPrNHux/8Y6bKrlb4Y3OTCeoXaqOz
+         Th8DD3ssxdLs00KurYGlFmZdUazjSVoRdRDWI20jCVUgjbEB8e+5yiTbRMxSTQNjwUdL
+         PGm13hLW/tTRDvQp/L/SnBZngEZbCsvOaDeudsv7RSRu5i38JgyfPNVujdm/uWXQkrc+
+         8hxKrrsOxNgyTYdzgGFSrj4u9eJtivO5+sOhY78Bw2YKbYspakOOnL/DbtUwaqYrNx2d
+         QkUwrlJ9q56ISbwYEC0RiEgctz94p6h0WO8mQ6acSFProI5zlAfhyOpCkM2ggt0Tgq4w
+         zdfQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=9Za31ObBsxdpTjFd/k1MSNzpI1hhAUb59NU7Vy2qyuM=;
-        b=a5vQQGLXbCnytr5LxR9v3+ttlYM0jmUmZpKzqbjBhWa2Z4LOFxJS1+38/1BBCWveE7
-         mEtMIEMHGe4ttyn2f5cQgOqs5kZ8Vy83n6iS4Xb8goAbRtCwIQfZjEbhxnpsBSqsxOZt
-         uMcWX/HikzxBL0fS6kb42MXKWHCCmqZS/Hr/kGAa4lrPCgXbygidzkY1tDlepODfQIhJ
-         ub2nvmqNTmIIARWC+5emwNPy7opTMSON19zoRtgZD5gcx+GzVj4B8tDJ/sNaAH/AHZAn
-         YJiXeTX7d3fUrJeN99NEarcjMGUevLSzuqK1bSf4MMFJJEjmV7fpHbIecMp/MDKgbMGZ
-         tlMw==
-X-Gm-Message-State: AOAM532e0FLtCWcV4bRoAKozUVXBJSnnQB8utNno6vEcQbFL5Cehn+m1
-        dk0Of8NIUYO2gi6qDtNIGg==
-X-Google-Smtp-Source: ABdhPJyLnlu8EMNR937aY6Yy1rLtfQbCSpj6kIaoagnNiNo1wWWkxaDaJLNyRG2qdJYuwXvPzf4ZRQ==
-X-Received: by 2002:a05:6830:12cf:: with SMTP id a15mr24521499otq.217.1608056324303;
-        Tue, 15 Dec 2020 10:18:44 -0800 (PST)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id n13sm587583otk.58.2020.12.15.10.18.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Dec 2020 10:18:43 -0800 (PST)
-Received: (nullmailer pid 4147585 invoked by uid 1000);
-        Tue, 15 Dec 2020 18:18:42 -0000
-Date:   Tue, 15 Dec 2020 12:18:42 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Aswath Govindraju <a-govindraju@ti.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Sekhar Nori <nsekhar@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Roger Quadros <rogerq@ti.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org
-Subject: Re: [PATCH v6] dt-bindings: usb: Add new compatible string for AM64
- SoC
-Message-ID: <20201215181842.GA4147555@robh.at.kernel.org>
-References: <20201215042549.7956-1-a-govindraju@ti.com>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=H+MPl6V5JmDOoXGskKZtv6rWjxRnogZLJ4kW84SY9ds=;
+        b=t3ZyNU6w62211u8heSo0ubGUghuapqSxCLhg5YI+UGQfNZSFTmDwuDrtevkE41wRgy
+         BhvUCPBeqokceZgYumDoDU1pxn8jbvEaPq8Wb5OZ7o/5q1w+EsTpu/X5gyi+8AKgeYrG
+         NLLcd2zPYz5cNqtybY/qxRJOTfqyAW2MjTgzsw4xCEUsyku2rOXEt9MYjIs1sjPDo8Fa
+         rGdnU+6k6l6Qif3r+FFBu2BIN9QGQvfgceLDBO+Hp+ef5IGfdAJVFyM+N9S1b2rZkXwx
+         t24Z5TiJ/q/f/GQenu3aJgjuhxNqjGQ991jrvw2zXgX7jYb5VdyaIUZAUnrmmi3451YP
+         3+lg==
+X-Gm-Message-State: AOAM5307ZZHhRcBIaQJJerUCYIDOKNgf/w49UcuzVA7Sx3OVDkH/VYrR
+        /4QXUDXevGOvb0Wpy+HbLfik+aldiSY=
+X-Google-Smtp-Source: ABdhPJz1X6MFvy6BAR9qAePvaIKqYUS4US4TnynOlAcH4zfO1oowWMECqvCCcOynwU9C4TBuFZpmuQ==
+X-Received: by 2002:a63:df01:: with SMTP id u1mr19774627pgg.427.1608056579002;
+        Tue, 15 Dec 2020 10:22:59 -0800 (PST)
+Received: from [10.230.29.166] ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id a26sm25249447pgd.64.2020.12.15.10.22.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 15 Dec 2020 10:22:58 -0800 (PST)
+Subject: Re: [PATCH V2 1/2] dt-bindings: power: document Broadcom's PMB
+ binding
+To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
+        "Rafael J . Wysocki" <rjw@rjwysocki.net>,
+        Kevin Hilman <khilman@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        devicetree@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com,
+        linux-kernel@vger.kernel.org,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+References: <20201214180743.14584-1-zajec5@gmail.com>
+ <20201214180743.14584-2-zajec5@gmail.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Message-ID: <5ddb9273-a27b-78f8-71ec-e82b5150fc18@gmail.com>
+Date:   Tue, 15 Dec 2020 10:22:55 -0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.5.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201215042549.7956-1-a-govindraju@ti.com>
+In-Reply-To: <20201214180743.14584-2-zajec5@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 15 Dec 2020 09:55:49 +0530, Aswath Govindraju wrote:
-> Add compatible string in j721e-usb binding file as the same USB subsystem
-> is present in AM64.
-> 
-> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
-> ---
-> 
-> Changes since v5:
->  - Added const as the type for objects in items.
-> 
-> Changes since v4:
->  - used oneOf instead of enum, as the schema has to convey that the strings
->    ti,j721e-usb and ti,am64-usb can be used combined or seperately in the
->    DT nodes.
-> 
-> Changes since v3:
->  - used enum instead of anyOf.
-> 
-> Changes since v2:
->  - added changes done over the versions.
-> 
-> Changes since v1:
->  - replaced the '\t' at the beginning of the lines with spaces as it was
->   causing the dt_binding_check to fail.
-> 
->  Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml | 6 +++++-
->  1 file changed, 5 insertions(+), 1 deletion(-)
-> 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+
+On 12/14/2020 10:07 AM, Rafał Miłecki wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
+> 
+> Broadcom's PMB is power controller used for disabling and enabling SoC
+> devices.
+> 
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+
+Acked-by: Florian Fainelli <f.fainelli@gmail.com>
+-- 
+Florian
