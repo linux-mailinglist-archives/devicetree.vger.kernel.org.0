@@ -2,143 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CDD9E2DA9CD
-	for <lists+devicetree@lfdr.de>; Tue, 15 Dec 2020 10:12:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D46E2DA9D2
+	for <lists+devicetree@lfdr.de>; Tue, 15 Dec 2020 10:12:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727750AbgLOJFZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Dec 2020 04:05:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48532 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726938AbgLOJEj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Dec 2020 04:04:39 -0500
-Received: from mail-lf1-x142.google.com (mail-lf1-x142.google.com [IPv6:2a00:1450:4864:20::142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CB20C06179C;
-        Tue, 15 Dec 2020 01:03:59 -0800 (PST)
-Received: by mail-lf1-x142.google.com with SMTP id s26so2709542lfc.8;
-        Tue, 15 Dec 2020 01:03:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=qlzzoAIKNvep133MTIpFmxgEg1ThjOyD3DYXCkLaku8=;
-        b=QeS9UMG4xB2CSyn1i7d2WqG1r49iJz+vU0j2JygOT0davu0MrbpjBKPn/jTldnScWv
-         k7+vHJUJogaabBb3HY/yj8PBkkn23HGed1K8auxnI6O7/xwIS1BbYcyyNUE1GQ5DQBZR
-         KfDlKwHgsNkYtXWwQ+P/lTyXShM0FDqKbSLEO2cJ9N9VH82fIs4N982SxrVxRXg60wQw
-         g7v3C9ZpBz8OtlsXnto+9MCkA3BSGhTiqjMhgkKB+QiOJcsJU6Vzd3gUsPZuCE2U4+jU
-         fhfFBQeRqt9rI7IVGLgDaS/kMuQF4SNjnJYUmAA6trXWZlJg5/G6vUAO8n/XwK1AeJ7H
-         7nPw==
+        id S1727331AbgLOJMH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Dec 2020 04:12:07 -0500
+Received: from mail-ed1-f65.google.com ([209.85.208.65]:41308 "EHLO
+        mail-ed1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727998AbgLOJMF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Dec 2020 04:12:05 -0500
+Received: by mail-ed1-f65.google.com with SMTP id i24so20151339edj.8;
+        Tue, 15 Dec 2020 01:11:46 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=qlzzoAIKNvep133MTIpFmxgEg1ThjOyD3DYXCkLaku8=;
-        b=LYM8rFWN53Yt8BIOOVK7j97dla6T/LR8uBaz0OFuTrHIRHd+n4ELYB2V0C+KBlPjXy
-         P8EERBEvkV8xTSDXl4xHWSpjGcggmTVLKG3ELARt0DKuPqTaXjprJbHITLcEuNU7frF2
-         OuiSe2MoV5wlHnL8DWMcgm0o1rQbZeT4tj0vJfNNCHFISbOMSUTZ7G32BZcit4ByIpaQ
-         PnhKkmF+Qt43zuOnGG+JROEu+7g/KSTGsbR4iCzk7HE88WCGkiNyZ3XmrDE8NEvuo3m+
-         2EujtpO+M9znvlzxR6vlz5xuqrWA9eObITWF7uBpli1L7N9Z6Xc5u0vqvLlQ/ghr8eZS
-         s0Tw==
-X-Gm-Message-State: AOAM531nzYBkfbT51Ur9MzeLPrkVc1jfeMcFa0TAUJhdF4S1zh3bndnw
-        WyUYCStxySFRN8fYd5vm9mA/rrJGfV9tgq/GaPA=
-X-Google-Smtp-Source: ABdhPJxanHdNcff5iisASwz+QSOx+wS7UVfxaJeQB8zNd0+WmYfobbL+cPrHA64fyiJQWo/1e04mksflPQMHlLrJdcA=
-X-Received: by 2002:a19:747:: with SMTP id 68mr10308918lfh.408.1608023037447;
- Tue, 15 Dec 2020 01:03:57 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=76YNNvedxwQavmwaTRQKT3yfhwPKPqBSFxsGhUfBxyc=;
+        b=NKIQoT9DpTCaUXTaOxSi0JzurYt/hqac+5vIy6US5UOkgLJC7LNWWjfaXj6fEuTu+P
+         h1CnDD3q7Ddo3S6ZspSugdHPjAY9eujQHI0NbMWv/L+fhiYKZ47YSP6OfbB3AAix6zoA
+         Ktv2+UhmKTLbvKp7PUhvc/fMNCvOP1aiibHS3HS3bbDi+w22rQABk4jDyUgn2QksVD2v
+         7H2xZnX3bZSLy/28pGIis07tTnM02n709IisVKJ/S4ichpi+X0pWGo1bCL6zV0MW0U76
+         +ypBuPgPlr2HM+vWA0pHqVpdHkmbK963hWLoH/bt8Fbnv93Qi89lWE8QIai/Nhjq93gX
+         +cVQ==
+X-Gm-Message-State: AOAM531pL8zlRhHZRbViA80u0idfwROqIWge2ukBf0I1fAWnmwzqKUc9
+        k9dc6yhJsiCSkiI1iV/NKiA=
+X-Google-Smtp-Source: ABdhPJxiThtphqQmSV9KKflcAj0vuSGsG4tG5fs8gYfwTz2ko3RETBBR9qsNQj6TcljGF9n3m7sdfA==
+X-Received: by 2002:aa7:d6d8:: with SMTP id x24mr29163229edr.105.1608023480321;
+        Tue, 15 Dec 2020 01:11:20 -0800 (PST)
+Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
+        by smtp.googlemail.com with ESMTPSA id d8sm14289205edm.75.2020.12.15.01.11.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 15 Dec 2020 01:11:19 -0800 (PST)
+Date:   Tue, 15 Dec 2020 10:11:18 +0100
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     "Alice Guo (OSS)" <alice.guo@oss.nxp.com>
+Cc:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-imx@nxp.com
+Subject: Re: [PATCH v7 1/4] dt-bindings: soc: imx8m: add DT Binding doc for
+ soc unique ID
+Message-ID: <20201215091118.GB9386@kozik-lap>
+References: <20201215083551.6067-1-alice.guo@oss.nxp.com>
 MIME-Version: 1.0
-References: <1607704424-16223-1-git-send-email-u0084500@gmail.com>
- <1607704424-16223-2-git-send-email-u0084500@gmail.com> <20201214095916.4g47zlueng4wa3hv@holly.lan>
- <CADiBU38wZ+yrfjbggJyY7BHc5-tdV-KWVgWBmZn-q3EY99=PPg@mail.gmail.com>
- <20201214151409.qdqh2i5hr4g3eboe@holly.lan> <20201215075308.GI5029@dell>
-In-Reply-To: <20201215075308.GI5029@dell>
-From:   ChiYuan Huang <u0084500@gmail.com>
-Date:   Tue, 15 Dec 2020 17:03:45 +0800
-Message-ID: <CADiBU3-MesTvXm31+W1szXDnYOm=2E21J=a3nP2LZ0i7Rs+Kkw@mail.gmail.com>
-Subject: Re: [PATCH v4 2/3] backlight: rt4831: Adds DT binding document for
- Richtek RT4831 backlight
-To:     Lee Jones <lee.jones@linaro.org>
-Cc:     Daniel Thompson <daniel.thompson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        cy_huang <cy_huang@richtek.com>,
-        lkml <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20201215083551.6067-1-alice.guo@oss.nxp.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Lee:
+On Tue, Dec 15, 2020 at 04:35:48PM +0800, Alice Guo (OSS) wrote:
+> From: Alice Guo <alice.guo@nxp.com>
+> 
+> Add DT Binding doc for the Unique ID of i.MX 8M series.
+> 
+> Signed-off-by: Alice Guo <alice.guo@nxp.com>
+> ---
+> 
+> Changes for v7:
+>  - change to a separate schema file
+> Changes for v6:
+>  - none
+> Changes for v5:
+>  - correct the error of using allOf
+> Changes for v4:
+>  - use allOf to limit new version DTS files for i.MX8M to include
+>    "fsl,imx8m*-soc", nvmem-cells and nvmem-cells-names
+> Changes for v3:
+>  - put it into Documentation/devicetree/bindings/arm/fsl.yaml
+>  - modify the description of nvmem-cells
+>  - use "make ARCH=arm64 dtbs_check" to make sure it is right
+> Changes for v2:
+>  - remove the subject prefix "LF-2571-1"
+> 
+>  .../bindings/soc/imx/imx8m-soc.yaml           | 54 +++++++++++++++++++
+>  1 file changed, 54 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/soc/imx/imx8m-soc.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/soc/imx/imx8m-soc.yaml b/Documentation/devicetree/bindings/soc/imx/imx8m-soc.yaml
+> new file mode 100644
+> index 000000000000..a2f7dc0c9b35
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/soc/imx/imx8m-soc.yaml
+> @@ -0,0 +1,54 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/soc/imx/imx8m-soc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: NXP i.MX8M Series SoC
+> +
+> +maintainers:
+> +  - Alice Guo <alice.guo@nxp.com>
+> +
+> +description: |
+> +  NXP i.MX8M series SoCs contain fuse entries from which SoC Unique ID can be
+> +  obtained.
+> +
+> +select:
 
-Lee Jones <lee.jones@linaro.org> =E6=96=BC 2020=E5=B9=B412=E6=9C=8815=E6=97=
-=A5 =E9=80=B1=E4=BA=8C =E4=B8=8B=E5=8D=883:53=E5=AF=AB=E9=81=93=EF=BC=9A
->
-> On Mon, 14 Dec 2020, Daniel Thompson wrote:
->
-> > On Mon, Dec 14, 2020 at 10:40:55PM +0800, ChiYuan Huang wrote:
-> > > Hi,
-> > >
-> > > Daniel Thompson <daniel.thompson@linaro.org> =E6=96=BC 2020=E5=B9=B41=
-2=E6=9C=8814=E6=97=A5 =E9=80=B1=E4=B8=80 =E4=B8=8B=E5=8D=885:59=E5=AF=AB=E9=
-=81=93=EF=BC=9A
-> > > >
-> > > > Hi CY
-> > > >
-> > > > On Sat, Dec 12, 2020 at 12:33:43AM +0800, cy_huang wrote:
-> > > > > From: ChiYuan Huang <cy_huang@richtek.com>
-> > > > >
-> > > > > Adds DT binding document for Richtek RT4831 backlight.
-> > > > >
-> > > > > Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
-> > > >
-> > > > This patch got keyword filtered and brought to my attention
-> > > > but the rest of the series did not.
-> > > >
-> > > > If it was a backlight patch series you need to send it To: the
-> > > > all the backlight maintainers.
-> > > >
-> > > Yes, I'm waiting for mfd reviewing.
-> > > Due to mfd patch, I need to add backlight dt-binding patch prior to
-> > > backlight source code.
-> > > Or autobuild robot will said mfd dt-binding build fail from Rob.
-> > > That's why I send the backlight dt-binding prior to the source code.
-> > >
-> > > I still have backlight/regulator source code patch after mfd reviewin=
-g.
-> > > Do you want me to send all the patches without waiting for mfd review=
-ing?
-> >
-> > To some extent it's up to you.
-> >
-> > I think I would have shared all the pieces at once (although not it Lee=
-,
-> > as mfd maintainer, had suggested otherwise).
->
-> You should not need to concern yourself with patch ordering outside
-> of the realms of the set i.e. [PATCH 1/x], [PATCH 2/x], etc.
->
-> If you just send the whole patch set and you do not specify otherwise,
-> it will be applied, in order, as a set.
->
-> Sending subsystem patches without the correct maintainers as recipients
-> is bad form.  Many of us have filters on, so this tactic will seldom
-> work in any case.
->
+Mhm, there are other compatibles here so indeed, select is needed.
 
-In my case, there're mfd/backlight/regulator for RT4831.
-You mean I can just send the whole patch set directly to whole
-mfd/backlight/regulator maintainers.
-And you can filter like as the keyword to review the related contents, righ=
-t?
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        enum:
+> +          - fsl,imx8mm
+> +          - fsl,imx8mn
+> +          - fsl,imx8mp
+> +          - fsl,imx8mq
+> +  required:
+> +    - compatible
 
-From my original thought, the order is mfd -> backlight-> regulator,
-one by one due to different maintainers.
-Maybe I think too much about the patch ordering
+This does not work - does not match anything. It seems you missed proper
+"required" for the matched node.
 
-If so, after getting the comment from Rob, I'll send the whole patch to you=
-.
-Thanks for the notice.
+Provide also an example.
+
+Best regards,
+Krzysztof
+
+
+> +
+> +properties:
+> +  soc:
+> +    type: object
+> +    properties:
+> +      compatible:
+> +        items:
+> +          - enum:
+> +              - fsl,imx8mm-soc
+> +              - fsl,imx8mn-soc
+> +              - fsl,imx8mp-soc
+> +              - fsl,imx8mq-soc
+> +          - const: simple-bus
+> +
+> +      nvmem-cells:
+> +        maxItems: 1
+> +        description: Phandle to the SOC Unique ID provided by a nvmem node
+> +
+> +      nvmem-cells-names:
+> +        const: soc_unique_id
+> +
+> +    required:
+> +      - compatible
+> +      - nvmem-cells
+> +      - nvmem-cell-names
+> +
+> +additionalProperties: true
+> +...
 > --
-> Lee Jones [=E6=9D=8E=E7=90=BC=E6=96=AF]
-> Senior Technical Lead - Developer Services
-> Linaro.org =E2=94=82 Open source software for Arm SoCs
-> Follow Linaro: Facebook | Twitter | Blog
+> 2.17.1
+> 
