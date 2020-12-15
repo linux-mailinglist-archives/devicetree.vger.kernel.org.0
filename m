@@ -2,114 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C3B352DAEAD
-	for <lists+devicetree@lfdr.de>; Tue, 15 Dec 2020 15:14:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C2452DAEEE
+	for <lists+devicetree@lfdr.de>; Tue, 15 Dec 2020 15:28:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727348AbgLOOOO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Dec 2020 09:14:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40002 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728893AbgLOOOK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Dec 2020 09:14:10 -0500
-Received: from mail-ed1-x543.google.com (mail-ed1-x543.google.com [IPv6:2a00:1450:4864:20::543])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE65BC0617A7;
-        Tue, 15 Dec 2020 06:13:29 -0800 (PST)
-Received: by mail-ed1-x543.google.com with SMTP id r5so21134665eda.12;
-        Tue, 15 Dec 2020 06:13:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=IJYSjx8moRh9VFGJMpbfz9SoxxxRTBulQgPkLgClyoQ=;
-        b=gKkDnioL4mB09Jcb2ubVk7FW0XEFNq0bRPUHe0X020/PSIVQs/kXcbe5sC2CAqctcQ
-         JNV2u31v75fMYDVcPsICIzBOXGMSTnKtjXLKyOGivvwlpGKXLogS79gi+StO866amoID
-         u3pn4ayXHSe92UCI0zfcrg95p7wS5D/aXinVn3F+3vQWJg/Q1Qsi1cpN7+KcV/cdlV1q
-         8IWqUPMzhiHEqUAxG7A71BbtBYe+EFATmqalbTKqZ4Mme4j/Ks17amilCzxZAkYh9bkG
-         rcmv74l8hvhGFjfs50JHjHE5oFO3+N5OAJc2XPrgCQMt9dpZd1XyxMLgjmjtA35MG9Gc
-         XorQ==
+        id S1729555AbgLOO1B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Dec 2020 09:27:01 -0500
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:41904 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728934AbgLOO0v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Dec 2020 09:26:51 -0500
+Received: by mail-ot1-f68.google.com with SMTP id x13so19510097oto.8;
+        Tue, 15 Dec 2020 06:26:36 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=IJYSjx8moRh9VFGJMpbfz9SoxxxRTBulQgPkLgClyoQ=;
-        b=P5iDzGuf48hrIQ+YA92/ilWYqzWjBFkqY9DvKp4ewi2OJgN31cluH3Lceu9Qx7svmf
-         /GDLyJoBatShm5/sHWzhmtLp5cZvloOv3zjeoO+7B6bMK/KRWzJgN1mrE0SP4dw0vrCn
-         uO1iqUyETmOdUQ2EJmO31SMWwQNoSOD1Y+c6d7hNy1PL0cU+mAenx3w7Kn2FyJX77Pm9
-         Wj8tthgPoWyOV2ztSK1/uRxq4t+M4Urm4V/3t3ALK13q8Opy/KW1cIpchV5z0opmyg08
-         WZCTyAUTCrbh06MBypGRGazf9exbWcHfr7wsKO5klCZIdE3ZQWhS19VDWjbpuI6+5/OT
-         UDMA==
-X-Gm-Message-State: AOAM532EoHqAx3FHGfDcD1pID5CU67Nv9FKivGFYOD8Qyn7UYxQrYO2A
-        jiWbfTInzCbTMK0NBUJcAVUF0OGTkRpgXV+SgER+cdBuLthegg==
-X-Google-Smtp-Source: ABdhPJzM115PkKKUs4/mpIyUWyvmmILF+Y6Y7uxFpH7K51vgdsYhdly3ZL/p7FmwavBknIcM/id0h1DX2NYkBYC8bg0=
-X-Received: by 2002:aa7:cf8f:: with SMTP id z15mr29724056edx.17.1608041608598;
- Tue, 15 Dec 2020 06:13:28 -0800 (PST)
-MIME-Version: 1.0
-References: <1595180527-11320-8-git-send-email-amittomer25@gmail.com> <1599802143-6218-1-git-send-email-amittomer25@gmail.com>
-In-Reply-To: <1599802143-6218-1-git-send-email-amittomer25@gmail.com>
-From:   Amit Tomer <amittomer25@gmail.com>
-Date:   Tue, 15 Dec 2020 19:42:52 +0530
-Message-ID: <CABHD4K_3huTchnJC9ZHK==25ePh6TOb8FgYGvWpievcwTaaWYQ@mail.gmail.com>
-Subject: Re: [PATCH v7 07/10] dt-bindings: reset: s700: Add binding constants
- for mmc
-To:     Andre Przywara <andre.przywara@arm.com>,
-        =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, sboyd@kernel.org
-Cc:     cristian.ciocaltea@gmail.com, linux-kernel@vger.kernel.org,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-actions@lists.infradead.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=Di6e3zk8oS0etbJqpgGcmuo1HcvG/3ApCGRJweCbZeQ=;
+        b=NwvoqpQo6gWeiIcAPpTZiPjoqprQcc1trchiKZu4GPTA4QX6PZyJeI3u5WCBVA8Fld
+         D/tSGxaPFkmYdI/h+tLjKhSKcMPPZ5+yUbjymy4Egp+ndruLXjeUJxTw7DBqwUk/CXhs
+         GeP+HqYlO6YZL4rx9PGTRk/nFseP/7+pXswfBg1Td1XgfgkDYkTLawPu1InODD9P0zw8
+         66ynynj0AGjzRnF5n5j1jn+PZE0G6Q+o35yzIHZkaOuf27sfQUJHVlNnhWklYaZ/lTWs
+         V1cX1Mpj9/4MCaLbqIEUu/+FdPq5pEZoYVofrGqmsu3rFEoueYIjuntxOAVt/fR4U9NR
+         /N8w==
+X-Gm-Message-State: AOAM533wkWD9eqzCsysx9ozvoo7nF5lZukGmAZ2qZRgyJW2Y3HgO0Ju9
+        c4a4hEF04uFQO/oxhbUNcA==
+X-Google-Smtp-Source: ABdhPJw8GOO5HxCZiUJSYpWvX2zTLsjXdnSUVTmlo5MeXq8qJNOimO3I5K6K1qJBB+tvfodBRdF1Og==
+X-Received: by 2002:a9d:4c8d:: with SMTP id m13mr21008336otf.229.1608042370869;
+        Tue, 15 Dec 2020 06:26:10 -0800 (PST)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id z6sm4690069ooz.17.2020.12.15.06.26.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 15 Dec 2020 06:26:09 -0800 (PST)
+Received: (nullmailer pid 3775382 invoked by uid 1000);
+        Tue, 15 Dec 2020 14:26:07 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Peter Ujfalusi <peter.ujfalusi@ti.com>
+Cc:     robh+dt@kernel.org, a.hajda@samsung.com, jonas@kwiboo.se,
+        narmstrong@baylibre.com, airlied@linux.ie, jernej.skrabec@siol.net,
+        linux-kernel@vger.kernel.org, Laurent.pinchart@ideasonboard.com,
+        daniel@ffwll.ch, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org
+In-Reply-To: <20201215124227.1872-1-peter.ujfalusi@ti.com>
+References: <20201215124227.1872-1-peter.ujfalusi@ti.com>
+Subject: Re: [PATCH] dt-bindings: display: bridge: tc358768: Remove maintainer information
+Date:   Tue, 15 Dec 2020 08:26:07 -0600
+Message-Id: <1608042367.307112.3775381.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Stephen ,
-
-Could you please help get this merged ?
-
-Thanks
--Amit
-
-On Fri, Sep 11, 2020 at 10:59 AM Amit Singh Tomar <amittomer25@gmail.com> wrote:
->
-> This commit adds device tree binding reset constants for mmc controller
-> present on Actions S700 Soc.
->
-> Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> Acked-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Amit Singh Tomar <amittomer25@gmail.com>
+On Tue, 15 Dec 2020 14:42:27 +0200, Peter Ujfalusi wrote:
+> My employment with TI is coming to an end and I will not have access to
+> the board where this bridge is connected to.
+> 
+> It is better to remove a soon bouncing email address.
+> 
+> Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
 > ---
-> Changes since v6:
->         * No change.
-> Changes since v5:
->         * Added Mani's Reviewed-by: tag.
-> Changes since v4:
->         * No change.
-> Changes since v3:
->         * No change.
-> Changes since v2:
->         * No change.
-> Changes since v1:
->         * No change.
-> Changes since RFC:
->         * added Rob's acked-by tag
-> ---
->  include/dt-bindings/reset/actions,s700-reset.h | 3 +++
->  1 file changed, 3 insertions(+)
->
-> diff --git a/include/dt-bindings/reset/actions,s700-reset.h b/include/dt-bindings/reset/actions,s700-reset.h
-> index 5e3b16b8ef53..a3118de6d7aa 100644
-> --- a/include/dt-bindings/reset/actions,s700-reset.h
-> +++ b/include/dt-bindings/reset/actions,s700-reset.h
-> @@ -30,5 +30,8 @@
->  #define RESET_UART4                            20
->  #define RESET_UART5                            21
->  #define RESET_UART6                            22
-> +#define RESET_SD0                              23
-> +#define RESET_SD1                              24
-> +#define RESET_SD2                              25
->
->  #endif /* __DT_BINDINGS_ACTIONS_S700_RESET_H */
-> --
-> 2.7.4
->
+>  .../devicetree/bindings/display/bridge/toshiba,tc358768.yaml   | 3 ---
+>  1 file changed, 3 deletions(-)
+> 
+
+My bot found errors running 'make dt_binding_check' on your patch:
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/display/bridge/toshiba,tc358768.yaml: 'maintainers' is a required property
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/display/bridge/toshiba,tc358768.yaml: ignoring, error in schema: 
+warning: no schema found in file: ./Documentation/devicetree/bindings/display/bridge/toshiba,tc358768.yaml
+
+See https://patchwork.ozlabs.org/patch/1416419
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
