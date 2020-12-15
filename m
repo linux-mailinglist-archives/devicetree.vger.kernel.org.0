@@ -2,92 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3FA122DB3B2
-	for <lists+devicetree@lfdr.de>; Tue, 15 Dec 2020 19:26:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 903B52DB470
+	for <lists+devicetree@lfdr.de>; Tue, 15 Dec 2020 20:25:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731270AbgLOSY6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Dec 2020 13:24:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50516 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731322AbgLOSYy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Dec 2020 13:24:54 -0500
-Received: from mail-pl1-x644.google.com (mail-pl1-x644.google.com [IPv6:2607:f8b0:4864:20::644])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE35EC06179C;
-        Tue, 15 Dec 2020 10:24:13 -0800 (PST)
-Received: by mail-pl1-x644.google.com with SMTP id g20so10647866plo.2;
-        Tue, 15 Dec 2020 10:24:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=wyTce4BwMKT40r8Wh7Iv+0YuAsPNo6CPnJs7cfZJbrw=;
-        b=PqHkAGeC5Gq6KLzOEoBPEo8HkJEoQcZceYFAx2H5x7IgoeNZtsSjI8+jlUYJHJfvKF
-         rLUIfGxJnvHDkf8MLwUzfYvavd2MxCoSv0M111tZf63YyTZUBcyH52zNGZMHpaO+2GmZ
-         +VrrydM3s1B+0ltY/td8t8ns8i86/2lyNM9ahAoeaisH+PpP0eMX0yvyGMQPQMdloXJ4
-         US6p7nJjJeNCtGXHn3WEair0tpksDjiLidBPZ3ibNBDQZ1OGuzapuAOhkmUJwy4ZjpCx
-         sM0WgCD2hNdbxQO4pjN7+mhBMu8h/0EM/ZRGj1nX4M8BOKqa5SeLNavrfXMmmVg9gYnf
-         XxdQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=wyTce4BwMKT40r8Wh7Iv+0YuAsPNo6CPnJs7cfZJbrw=;
-        b=s6V2qoSahLEqb3eKGqcVWwhlQXWyteQmS/H2jmXF/kriCdgGNIn6sTTQLJN7UqyNpJ
-         zMmhTlwcO/Wjcii8z4bJ55rK2zCHU/Yz0QnOBvj+SvQWCOoKuYUfrytku5UoLPJxOu6Y
-         ZMQUBQXXgAwHKpm00ajBqlTBNAiQn3K78gyqAtIu14NweBelfqM92qRIQzXEKrWqHxle
-         P7PMJZzZqdpB3tyCCHwOIfnrUdbK+vxW3z0APQNxBbhgKyjJphjCsNzkmDetbWu+HwW6
-         RSUQ6jw+9z0i1snBskKOMYAOJisq6w3IwrI1OZUYjPgj+nWIcFVlF1/Uxspi1nd8vRaV
-         E9WQ==
-X-Gm-Message-State: AOAM533+gCGMS5st3CoD/VUMi3qLT6A4H8R8iK2dl4Eq2uXzzruXAsfa
-        cBgJbECpY9PrODms3tOOv3Z0bAy0eGg=
-X-Google-Smtp-Source: ABdhPJxx8zGOoao0n+Rf6TGxJgQdoQTLTClY1/O/Hv91zeCPGUY41/Oqqpsa0Kg6d+F+yy2tltxKGg==
-X-Received: by 2002:a17:90a:7c44:: with SMTP id e4mr154021pjl.138.1608056653515;
-        Tue, 15 Dec 2020 10:24:13 -0800 (PST)
-Received: from [10.230.29.166] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id m15sm25714105pfa.72.2020.12.15.10.24.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 15 Dec 2020 10:24:12 -0800 (PST)
-Subject: Re: [PATCH V2 2/2] soc: bcm: add PM driver for Broadcom's PMB
-To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
-        "Rafael J . Wysocki" <rjw@rjwysocki.net>,
-        Kevin Hilman <khilman@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        devicetree@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com,
-        linux-kernel@vger.kernel.org,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-References: <20201214180743.14584-1-zajec5@gmail.com>
- <20201214180743.14584-3-zajec5@gmail.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-Message-ID: <4c80450f-cf38-190f-0a0f-83f8f116b373@gmail.com>
-Date:   Tue, 15 Dec 2020 10:24:10 -0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.5.1
+        id S1731995AbgLOTY2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Dec 2020 14:24:28 -0500
+Received: from 49-237-179-185.static.tentacle.fi ([185.179.237.49]:54506 "EHLO
+        bitmer.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1731962AbgLOTYU (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 15 Dec 2020 14:24:20 -0500
+X-Greylist: delayed 2514 seconds by postgrey-1.27 at vger.kernel.org; Tue, 15 Dec 2020 14:24:14 EST
+Received: from 88-114-184-87.elisa-laajakaista.fi ([88.114.184.87] helo=[192.168.1.48])
+        by bitmer.com with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+        (Exim 4.89)
+        (envelope-from <jarkko.nikula@bitmer.com>)
+        id 1kpFGK-00044Z-4g; Tue, 15 Dec 2020 20:41:28 +0200
+Subject: Re: [PATCH 1/2] MAINTAINERS: Update email address for TI ASoC and
+ twl4030 codec drivers
+To:     Peter Ujfalusi <peter.ujfalusi@ti.com>, broonie@kernel.org,
+        lgirdwood@gmail.com, robh+dt@kernel.org
+Cc:     alsa-devel@alsa-project.org, perex@perex.cz, tiwai@suse.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        jsarha@ti.com
+References: <20201215130512.8753-1-peter.ujfalusi@ti.com>
+ <20201215130512.8753-2-peter.ujfalusi@ti.com>
+From:   Jarkko Nikula <jarkko.nikula@bitmer.com>
+Message-ID: <563f5961-40e3-3333-b734-75893806cd04@bitmer.com>
+Date:   Tue, 15 Dec 2020 20:41:24 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.5.1
 MIME-Version: 1.0
-In-Reply-To: <20201214180743.14584-3-zajec5@gmail.com>
+In-Reply-To: <20201215130512.8753-2-peter.ujfalusi@ti.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 12/14/2020 10:07 AM, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
+On 15.12.2020 15.05, Peter Ujfalusi wrote:
+> My employment with TI is coming to an end, it is my intention to look after
+> the drivers I have worked with over the years.
 > 
-> PMB originally comes from BCM63138 but can be also found on many other
-> chipsets (e.g. BCM4908). It's needed to power on and off SoC blocks like
-> PCIe, SATA, USB.
+> Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
+> Signed-off-by: Peter Ujfalusi <peter.ujfalusi@gmail.com>
+> ---
+>  MAINTAINERS | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
 > 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index f6e7162241eb..a091f183b27f 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -12862,7 +12862,7 @@ F:	include/misc/ocxl*
+>  F:	include/uapi/misc/ocxl.h
+>  
+>  OMAP AUDIO SUPPORT
+> -M:	Peter Ujfalusi <peter.ujfalusi@ti.com>
+> +M:	Peter Ujfalusi <peter.ujfalusi@gmail.com>
+>  M:	Jarkko Nikula <jarkko.nikula@bitmer.com>
+>  L:	alsa-devel@alsa-project.org (moderated for non-subscribers)
+>  L:	linux-omap@vger.kernel.org
+> @@ -17537,7 +17537,7 @@ F:	arch/xtensa/
+>  F:	drivers/irqchip/irq-xtensa-*
+>  
 
-From a driver perspective this looks good to me and thanks for putting
-it under drivers/soc/bcm/bcm63xx. Ulf, Kevin, I would need an Ack from
-you so I can carry this through the Broadcom SoCs pull requests for
-v5.12, thanks!
--- 
-Florian
+Acked-by: Jarkko Nikula <jarkko.nikula@bitmer.com>
