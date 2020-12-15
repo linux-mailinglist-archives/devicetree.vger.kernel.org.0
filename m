@@ -2,86 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E578F2DAC77
-	for <lists+devicetree@lfdr.de>; Tue, 15 Dec 2020 12:58:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E0312DACBC
+	for <lists+devicetree@lfdr.de>; Tue, 15 Dec 2020 13:10:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728684AbgLOL5T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Dec 2020 06:57:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46906 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728659AbgLOL5P (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Dec 2020 06:57:15 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EAB73C06179C
-        for <devicetree@vger.kernel.org>; Tue, 15 Dec 2020 03:56:34 -0800 (PST)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mtr@pengutronix.de>)
-        id 1kp8wT-0007W9-CP; Tue, 15 Dec 2020 12:56:33 +0100
-Received: from mtr by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <mtr@pengutronix.de>)
-        id 1kp8wS-0002Ce-QC; Tue, 15 Dec 2020 12:56:32 +0100
-Date:   Tue, 15 Dec 2020 12:56:32 +0100
-From:   Michael Tretter <m.tretter@pengutronix.de>
-To:     Stephen Boyd <sboyd@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-clk@vger.kernel.org, rajanv@xilinx.com, tejasp@xilinx.com,
-        dshah@xilinx.com, rvisaval@xilinx.com, michals@xilinx.com,
-        kernel@pengutronix.de, robh+dt@kernel.org, mturquette@baylibre.com
-Subject: Re: [PATCH 00/12] soc: xilinx: vcu: Convert driver to clock provider
-Message-ID: <20201215115632.GB23407@pengutronix.de>
-References: <20201116075532.4019252-1-m.tretter@pengutronix.de>
- <160783860077.1580929.7577989890301235621@swboyd.mtv.corp.google.com>
+        id S1728802AbgLOMJH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Dec 2020 07:09:07 -0500
+Received: from relay9-d.mail.gandi.net ([217.70.183.199]:45609 "EHLO
+        relay9-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728706AbgLOMJA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Dec 2020 07:09:00 -0500
+X-Originating-IP: 93.34.118.233
+Received: from uno.localdomain (93-34-118-233.ip49.fastwebnet.it [93.34.118.233])
+        (Authenticated sender: jacopo@jmondi.org)
+        by relay9-d.mail.gandi.net (Postfix) with ESMTPSA id 89A95FF80E;
+        Tue, 15 Dec 2020 12:07:58 +0000 (UTC)
+Date:   Tue, 15 Dec 2020 13:08:09 +0100
+From:   Jacopo Mondi <jacopo@jmondi.org>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Rob Herring <robh@kernel.org>,
+        Jacopo Mondi <jacopo+renesas@jmondi.org>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        Niklas =?utf-8?Q?S=C3=B6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Media Mailing List <linux-media@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Hyun Kwon <hyunk@xilinx.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Sergei Shtylyov <sergei.shtylyov@gmail.com>
+Subject: Re: [PATCH v5 2/8] dt-bindings: media: max9286: Document
+ 'maxim,initial-reverse-channel-mV'
+Message-ID: <20201215120809.l4qrwdfoq5jpsfi5@uno.localdomain>
+References: <20201116135305.81319-1-jacopo+renesas@jmondi.org>
+ <20201116135305.81319-3-jacopo+renesas@jmondi.org>
+ <20201130220048.GA3104550@robh.at.kernel.org>
+ <20201215111420.zpc67jkary3l5j4z@uno.localdomain>
+ <CAMuHMdX1bzRqZEvXod3QNx+SNybP85wpQ66=bxyQJ4kAoo6X1g@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <160783860077.1580929.7577989890301235621@swboyd.mtv.corp.google.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 12:38:56 up 13 days, 5 min, 63 users,  load average: 0.05, 0.10,
- 0.09
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: mtr@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <CAMuHMdX1bzRqZEvXod3QNx+SNybP85wpQ66=bxyQJ4kAoo6X1g@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 12 Dec 2020 21:50:00 -0800, Stephen Boyd wrote:
-> Quoting Michael Tretter (2020-11-15 23:55:20)
-> > Hello,
-> > 
-> > the xlnx_vcu soc driver is actually a clock provider of a PLL and four output
-> > clocks created from the PLL via dividers.
-> > 
-> > This series reworks the xlnx_vcu driver to use the common clock framework to
-> > enable other drivers to use the clocks. I originally posted a series to expose
-> > the output clocks as fixed clocks [0]. This series now implements the full
-> > tree from the PLL to the output clocks. Therefore, I am sending a separate
-> > series that focuses on the clocks, but it depends on v4 of the previous series
-> > [1].
-> 
-> After this series is this anything besides a clk provider? If it's only
-> providing clks it would make sense to move the driver into drivers/clk/
-> 
+Hi Geert,
 
-1. The driver is also responsible for resetting the entire VCU (the
-VCU_GASKET_INIT register). This isn't something that an individual encoder or
-decoder driver should be doing. However, other clock drivers also implement a
-reset controller.
+On Tue, Dec 15, 2020 at 12:44:17PM +0100, Geert Uytterhoeven wrote:
+> Hi Jacopo,
+>
+> On Tue, Dec 15, 2020 at 12:14 PM Jacopo Mondi <jacopo@jmondi.org> wrote:
+> > On Mon, Nov 30, 2020 at 03:00:48PM -0700, Rob Herring wrote:
+> > > On Mon, Nov 16, 2020 at 02:52:59PM +0100, Jacopo Mondi wrote:
+> > > > Document the 'initial-reverse-channel-mV' vendor property in the
+> > > > bindings document of the max9286 driver.
+> > > >
+> > > > The newly introduced property allows to specifying the initial
+> > > > configuration of the GMSL reverse control channel to accommodate
+> > > > remote serializers pre-programmed with the high threshold power
+> > > > supply noise immunity enabled.
+> > > >
+> > > > Reviewed-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+> > > > Signed-off-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
+> > > > ---
+> > > >  .../bindings/media/i2c/maxim,max9286.yaml     | 23 +++++++++++++++++++
+> > > >  1 file changed, 23 insertions(+)
+> > > >
+> > > > diff --git a/Documentation/devicetree/bindings/media/i2c/maxim,max9286.yaml b/Documentation/devicetree/bindings/media/i2c/maxim,max9286.yaml
+> > > > index 9ea827092fdd..f61234d204fa 100644
+> > > > --- a/Documentation/devicetree/bindings/media/i2c/maxim,max9286.yaml
+> > > > +++ b/Documentation/devicetree/bindings/media/i2c/maxim,max9286.yaml
+> > > > @@ -51,6 +51,26 @@ properties:
+> > > >    '#gpio-cells':
+> > > >      const: 2
+> > > >
+> > > > +  maxim,initial-reverse-channel-mV:
+> > >
+> > > Use standard unit suffix.
+> > >
+> >
+> > Which one ? :)
+>
+> Documentation/devicetree/bindings/property-units.txt
+>
 
-2. There are several registers for AXI performance monitoring in the VCU
-System-Level Control register space. Right now, these are not used by the
-driver and I have no plans to actually use them, but this might be an argument
-against the move.
+Oh, I had no idea we have this.
+It's been here since a long time it seems, my bad
+        Date:   Mon Feb 8 10:55:55 2016
 
-I think it is OK to move the driver to drivers/clk/, but I don't have a strong
-opinion about it.
+> > I see in v5.10 one 'mV', three 'mv', one 'millivolts', several
+> > 'microvolts'.
+> >
+> > I'll go with the majority and make this
+> > 'maxim,initial-reverse-channel-mv'
+>
+> Wrong guess ;-)
+>
 
-Michael
+Maybe a stupid question, but the fact only 'microvolts' is listed, is
+an implied suggestion to use 'millivolts' for simmetry or to express
+the value in micro volts ?
+
+> Gr{oetje,eeting}s,
+>
+>                         Geert
+>
+> --
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+>
+> In personal conversations with technical people, I call myself a hacker. But
+> when I'm talking to journalists I just say "programmer" or something like that.
+>                                 -- Linus Torvalds
