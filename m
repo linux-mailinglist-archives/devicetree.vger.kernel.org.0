@@ -2,109 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A957A2DB23E
-	for <lists+devicetree@lfdr.de>; Tue, 15 Dec 2020 18:14:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 183462DB24C
+	for <lists+devicetree@lfdr.de>; Tue, 15 Dec 2020 18:15:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729457AbgLORKm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Dec 2020 12:10:42 -0500
-Received: from relay5-d.mail.gandi.net ([217.70.183.197]:44731 "EHLO
-        relay5-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728206AbgLORKl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Dec 2020 12:10:41 -0500
-X-Originating-IP: 93.34.118.233
-Received: from uno.lan (93-34-118-233.ip49.fastwebnet.it [93.34.118.233])
-        (Authenticated sender: jacopo@jmondi.org)
-        by relay5-d.mail.gandi.net (Postfix) with ESMTPSA id 456C71C000A;
-        Tue, 15 Dec 2020 17:09:57 +0000 (UTC)
-From:   Jacopo Mondi <jacopo+renesas@jmondi.org>
-To:     kieran.bingham+renesas@ideasonboard.com,
-        laurent.pinchart+renesas@ideasonboard.com,
-        niklas.soderlund+renesas@ragnatech.se, geert@linux-m68k.org,
-        robh@kernel.org, devicetree@vger.kernel.org
-Cc:     Jacopo Mondi <jacopo+renesas@jmondi.org>,
-        linux-media@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Hyun Kwon <hyunk@xilinx.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        sergei.shtylyov@gmail.com
-Subject: [PATCH v6 2/5] dt-bindings: media: max9286: Document 'maxim,reverse-channel-microvolt'
-Date:   Tue, 15 Dec 2020 18:09:54 +0100
-Message-Id: <20201215170957.92761-3-jacopo+renesas@jmondi.org>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20201215170957.92761-1-jacopo+renesas@jmondi.org>
-References: <20201215170957.92761-1-jacopo+renesas@jmondi.org>
+        id S1730522AbgLORNa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Dec 2020 12:13:30 -0500
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:36924 "EHLO
+        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730472AbgLORNX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Dec 2020 12:13:23 -0500
+Received: by mail-ot1-f67.google.com with SMTP id o11so20084799ote.4;
+        Tue, 15 Dec 2020 09:13:08 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=tq/IR9knUY1aNNzaItUIR0LH+tSlkFf5XqzmbSFPck0=;
+        b=Ex+0qeyDLb5HViFl/kVTrvpjZHoEgDC0iF+BHdfYeJgrZrGYw8q2g2yCsqFxGoklse
+         KO4PiUb9s778XX7mkXPL8a45imI2+7ncxY9hDBAnonoXUlCbLfPtOTGxEwJr1gADxWZF
+         oLHp3rWp6UgByNDUslPGkk8HKEO+Fom6evo8wE+khe41WrdukVHfM2FK+cZTQZtGvBpU
+         TlsiFMHJXDJYXjVJ2JPuMaHjB1pxdaikSfZWqcAYmfCnsKHPe4qcqzv+O5vPT0q61w7a
+         +2z/aHaD/y1r9VDIiOkHpR+Gg+uPLtuCja17bzEXx0q4TD7TrMFGMT6X9m/LaRuoNUbg
+         g80Q==
+X-Gm-Message-State: AOAM530FMTzZwy8hx29W4q34jdeEeUM5s0x4kQwJN58VwcPiQzLzicgc
+        8c+1o47djNRag0fC/6bvQA==
+X-Google-Smtp-Source: ABdhPJyzQbJ2HQ/svaqxAA488qWQdmLYLwOfT9qsUlzvoW1OAKhM2rplpYojejBWBK+LfmebEn/TOw==
+X-Received: by 2002:a05:6830:400f:: with SMTP id h15mr24027638ots.284.1608052363028;
+        Tue, 15 Dec 2020 09:12:43 -0800 (PST)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id g12sm4847248oos.8.2020.12.15.09.12.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 15 Dec 2020 09:12:42 -0800 (PST)
+Received: (nullmailer pid 4043914 invoked by uid 1000);
+        Tue, 15 Dec 2020 17:12:41 -0000
+Date:   Tue, 15 Dec 2020 11:12:41 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Tzung-Bi Shih <tzungbi@google.com>
+Cc:     matthias.bgg@gmail.com, ohad@wizery.com,
+        linux-mediatek@lists.infradead.org,
+        linux-remoteproc@vger.kernel.org, robh+dt@kernel.org,
+        bjorn.andersson@linaro.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: remoteproc: mediatek: add L1TCM memory
+ region
+Message-ID: <20201215171241.GA4043874@robh.at.kernel.org>
+References: <20201214050521.845396-1-tzungbi@google.com>
+ <20201214050521.845396-2-tzungbi@google.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201214050521.845396-2-tzungbi@google.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document the 'reverse-channel-microvolt' vendor property in the
-bindings document of the max9286 driver.
+On Mon, 14 Dec 2020 13:05:20 +0800, Tzung-Bi Shih wrote:
+> Adds L1TCM memory region.  The reg-name is "l1tcm".
+> 
+> Signed-off-by: Tzung-Bi Shih <tzungbi@google.com>
+> ---
+>  Documentation/devicetree/bindings/remoteproc/mtk,scp.txt | 8 ++++----
+>  1 file changed, 4 insertions(+), 4 deletions(-)
+> 
 
-The newly introduced property allows to specifying the initial
-configuration of the GMSL reverse control channel to accommodate
-remote serializers pre-programmed with the high threshold power
-supply noise immunity enabled.
-
-Reviewed-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
-Signed-off-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
----
-v5->v6:
-- Use standard unit suffix 'microvolt' for the custom property
-- Drop '$ref' as according to 'example-schema.yaml':
-  "Vendor specific properties having a standard unit suffix don't need a type."
----
- .../bindings/media/i2c/maxim,max9286.yaml     | 23 +++++++++++++++++++
- 1 file changed, 23 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/media/i2c/maxim,max9286.yaml b/Documentation/devicetree/bindings/media/i2c/maxim,max9286.yaml
-index 9ea827092fdd..b22ba3e0db4a 100644
---- a/Documentation/devicetree/bindings/media/i2c/maxim,max9286.yaml
-+++ b/Documentation/devicetree/bindings/media/i2c/maxim,max9286.yaml
-@@ -51,6 +51,26 @@ properties:
-   '#gpio-cells':
-     const: 2
-
-+  maxim,reverse-channel-microvolt:
-+    minimum: 30000
-+    maximum: 200000
-+    default: 170000
-+    description: |
-+      Initial amplitude of the reverse control channel, in micro volts.
-+
-+      The initial amplitude shall be adjusted to a value compatible with the
-+      configuration of the connected remote serializer.
-+
-+      Some camera modules (for example RDACM20) include an on-board MCU that
-+      pre-programs the embedded serializer with power supply noise immunity
-+      (high-threshold) enabled. A typical value of the deserializer's reverse
-+      channel amplitude to communicate with pre-programmed serializers is
-+      170000 micro volts.
-+
-+      A typical value for the reverse channel amplitude to communicate with
-+      a remote serializer whose high-threshold noise immunity is not enabled
-+      is 100000 micro volts
-+
-   ports:
-     type: object
-     description: |
-@@ -221,6 +241,7 @@ required:
-   - ports
-   - i2c-mux
-   - gpio-controller
-+  - maxim,reverse-channel-microvolt
-
- additionalProperties: false
-
-@@ -243,6 +264,8 @@ examples:
-         gpio-controller;
-         #gpio-cells = <2>;
-
-+        maxim,reverse-channel-microvolt = <170000>;
-+
-         ports {
-           #address-cells = <1>;
-           #size-cells = <0>;
---
-2.29.2
-
+Acked-by: Rob Herring <robh@kernel.org>
