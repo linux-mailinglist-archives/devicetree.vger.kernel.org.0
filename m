@@ -2,54 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 745B22DB3AC
-	for <lists+devicetree@lfdr.de>; Tue, 15 Dec 2020 19:26:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3FA122DB3B2
+	for <lists+devicetree@lfdr.de>; Tue, 15 Dec 2020 19:26:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731533AbgLOSX4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Dec 2020 13:23:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50330 "EHLO
+        id S1731270AbgLOSY6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Dec 2020 13:24:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50516 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729389AbgLOSXm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Dec 2020 13:23:42 -0500
-Received: from mail-pg1-x543.google.com (mail-pg1-x543.google.com [IPv6:2607:f8b0:4864:20::543])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A188C0617A6;
-        Tue, 15 Dec 2020 10:22:59 -0800 (PST)
-Received: by mail-pg1-x543.google.com with SMTP id c12so15316672pgm.4;
-        Tue, 15 Dec 2020 10:22:59 -0800 (PST)
+        with ESMTP id S1731322AbgLOSYy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Dec 2020 13:24:54 -0500
+Received: from mail-pl1-x644.google.com (mail-pl1-x644.google.com [IPv6:2607:f8b0:4864:20::644])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE35EC06179C;
+        Tue, 15 Dec 2020 10:24:13 -0800 (PST)
+Received: by mail-pl1-x644.google.com with SMTP id g20so10647866plo.2;
+        Tue, 15 Dec 2020 10:24:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=subject:to:cc:references:from:message-id:date:user-agent
          :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=H+MPl6V5JmDOoXGskKZtv6rWjxRnogZLJ4kW84SY9ds=;
-        b=Ebq9jvq8lsnSaUmi4uDwBNEzptpKOUGzLuy1ucPrNHux/8Y6bKrlb4Y3OTCeoXaqOz
-         Th8DD3ssxdLs00KurYGlFmZdUazjSVoRdRDWI20jCVUgjbEB8e+5yiTbRMxSTQNjwUdL
-         PGm13hLW/tTRDvQp/L/SnBZngEZbCsvOaDeudsv7RSRu5i38JgyfPNVujdm/uWXQkrc+
-         8hxKrrsOxNgyTYdzgGFSrj4u9eJtivO5+sOhY78Bw2YKbYspakOOnL/DbtUwaqYrNx2d
-         QkUwrlJ9q56ISbwYEC0RiEgctz94p6h0WO8mQ6acSFProI5zlAfhyOpCkM2ggt0Tgq4w
-         zdfQ==
+        bh=wyTce4BwMKT40r8Wh7Iv+0YuAsPNo6CPnJs7cfZJbrw=;
+        b=PqHkAGeC5Gq6KLzOEoBPEo8HkJEoQcZceYFAx2H5x7IgoeNZtsSjI8+jlUYJHJfvKF
+         rLUIfGxJnvHDkf8MLwUzfYvavd2MxCoSv0M111tZf63YyTZUBcyH52zNGZMHpaO+2GmZ
+         +VrrydM3s1B+0ltY/td8t8ns8i86/2lyNM9ahAoeaisH+PpP0eMX0yvyGMQPQMdloXJ4
+         US6p7nJjJeNCtGXHn3WEair0tpksDjiLidBPZ3ibNBDQZ1OGuzapuAOhkmUJwy4ZjpCx
+         sM0WgCD2hNdbxQO4pjN7+mhBMu8h/0EM/ZRGj1nX4M8BOKqa5SeLNavrfXMmmVg9gYnf
+         XxdQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=H+MPl6V5JmDOoXGskKZtv6rWjxRnogZLJ4kW84SY9ds=;
-        b=t3ZyNU6w62211u8heSo0ubGUghuapqSxCLhg5YI+UGQfNZSFTmDwuDrtevkE41wRgy
-         BhvUCPBeqokceZgYumDoDU1pxn8jbvEaPq8Wb5OZ7o/5q1w+EsTpu/X5gyi+8AKgeYrG
-         NLLcd2zPYz5cNqtybY/qxRJOTfqyAW2MjTgzsw4xCEUsyku2rOXEt9MYjIs1sjPDo8Fa
-         rGdnU+6k6l6Qif3r+FFBu2BIN9QGQvfgceLDBO+Hp+ef5IGfdAJVFyM+N9S1b2rZkXwx
-         t24Z5TiJ/q/f/GQenu3aJgjuhxNqjGQ991jrvw2zXgX7jYb5VdyaIUZAUnrmmi3451YP
-         3+lg==
-X-Gm-Message-State: AOAM5307ZZHhRcBIaQJJerUCYIDOKNgf/w49UcuzVA7Sx3OVDkH/VYrR
-        /4QXUDXevGOvb0Wpy+HbLfik+aldiSY=
-X-Google-Smtp-Source: ABdhPJz1X6MFvy6BAR9qAePvaIKqYUS4US4TnynOlAcH4zfO1oowWMECqvCCcOynwU9C4TBuFZpmuQ==
-X-Received: by 2002:a63:df01:: with SMTP id u1mr19774627pgg.427.1608056579002;
-        Tue, 15 Dec 2020 10:22:59 -0800 (PST)
+        bh=wyTce4BwMKT40r8Wh7Iv+0YuAsPNo6CPnJs7cfZJbrw=;
+        b=s6V2qoSahLEqb3eKGqcVWwhlQXWyteQmS/H2jmXF/kriCdgGNIn6sTTQLJN7UqyNpJ
+         zMmhTlwcO/Wjcii8z4bJ55rK2zCHU/Yz0QnOBvj+SvQWCOoKuYUfrytku5UoLPJxOu6Y
+         ZMQUBQXXgAwHKpm00ajBqlTBNAiQn3K78gyqAtIu14NweBelfqM92qRIQzXEKrWqHxle
+         P7PMJZzZqdpB3tyCCHwOIfnrUdbK+vxW3z0APQNxBbhgKyjJphjCsNzkmDetbWu+HwW6
+         RSUQ6jw+9z0i1snBskKOMYAOJisq6w3IwrI1OZUYjPgj+nWIcFVlF1/Uxspi1nd8vRaV
+         E9WQ==
+X-Gm-Message-State: AOAM533+gCGMS5st3CoD/VUMi3qLT6A4H8R8iK2dl4Eq2uXzzruXAsfa
+        cBgJbECpY9PrODms3tOOv3Z0bAy0eGg=
+X-Google-Smtp-Source: ABdhPJxx8zGOoao0n+Rf6TGxJgQdoQTLTClY1/O/Hv91zeCPGUY41/Oqqpsa0Kg6d+F+yy2tltxKGg==
+X-Received: by 2002:a17:90a:7c44:: with SMTP id e4mr154021pjl.138.1608056653515;
+        Tue, 15 Dec 2020 10:24:13 -0800 (PST)
 Received: from [10.230.29.166] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id a26sm25249447pgd.64.2020.12.15.10.22.56
+        by smtp.gmail.com with ESMTPSA id m15sm25714105pfa.72.2020.12.15.10.24.11
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 15 Dec 2020 10:22:58 -0800 (PST)
-Subject: Re: [PATCH V2 1/2] dt-bindings: power: document Broadcom's PMB
- binding
+        Tue, 15 Dec 2020 10:24:12 -0800 (PST)
+Subject: Re: [PATCH V2 2/2] soc: bcm: add PM driver for Broadcom's PMB
 To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
         Rob Herring <robh+dt@kernel.org>
 Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
@@ -60,14 +59,14 @@ Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
         linux-kernel@vger.kernel.org,
         =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
 References: <20201214180743.14584-1-zajec5@gmail.com>
- <20201214180743.14584-2-zajec5@gmail.com>
+ <20201214180743.14584-3-zajec5@gmail.com>
 From:   Florian Fainelli <f.fainelli@gmail.com>
-Message-ID: <5ddb9273-a27b-78f8-71ec-e82b5150fc18@gmail.com>
-Date:   Tue, 15 Dec 2020 10:22:55 -0800
+Message-ID: <4c80450f-cf38-190f-0a0f-83f8f116b373@gmail.com>
+Date:   Tue, 15 Dec 2020 10:24:10 -0800
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
  Firefox/78.0 Thunderbird/78.5.1
 MIME-Version: 1.0
-In-Reply-To: <20201214180743.14584-2-zajec5@gmail.com>
+In-Reply-To: <20201214180743.14584-3-zajec5@gmail.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 8bit
@@ -80,11 +79,15 @@ X-Mailing-List: devicetree@vger.kernel.org
 On 12/14/2020 10:07 AM, Rafał Miłecki wrote:
 > From: Rafał Miłecki <rafal@milecki.pl>
 > 
-> Broadcom's PMB is power controller used for disabling and enabling SoC
-> devices.
+> PMB originally comes from BCM63138 but can be also found on many other
+> chipsets (e.g. BCM4908). It's needed to power on and off SoC blocks like
+> PCIe, SATA, USB.
 > 
 > Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 
-Acked-by: Florian Fainelli <f.fainelli@gmail.com>
+From a driver perspective this looks good to me and thanks for putting
+it under drivers/soc/bcm/bcm63xx. Ulf, Kevin, I would need an Ack from
+you so I can carry this through the Broadcom SoCs pull requests for
+v5.12, thanks!
 -- 
 Florian
