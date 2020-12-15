@@ -2,193 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6AE972DAA73
-	for <lists+devicetree@lfdr.de>; Tue, 15 Dec 2020 10:55:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 57B722DAB05
+	for <lists+devicetree@lfdr.de>; Tue, 15 Dec 2020 11:43:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727850AbgLOJy0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Dec 2020 04:54:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56206 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727153AbgLOJyV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Dec 2020 04:54:21 -0500
-Received: from mail-vs1-xe44.google.com (mail-vs1-xe44.google.com [IPv6:2607:f8b0:4864:20::e44])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88325C06179C
-        for <devicetree@vger.kernel.org>; Tue, 15 Dec 2020 01:53:41 -0800 (PST)
-Received: by mail-vs1-xe44.google.com with SMTP id e15so9131931vsa.0
-        for <devicetree@vger.kernel.org>; Tue, 15 Dec 2020 01:53:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=OI5+AJWSwdA8qVAOofTdmeYq5WpDo/US6jBkWpa07uc=;
-        b=RIcgqj1D8rLIpMYChvvIIzfyUjk/FOJnn5jA+EldpSezdMOf3jjoNPIEzmvdWDeT1q
-         aPOw5fQHgEzCST11jORDRfH6g53jMARVGIq8xRkmFjFBSidkYVsw6S/GzwZbkUl6pbCo
-         F4YLJYud76eS21IMHPRN+0ZlkcA3lcmVRyUzewleK1Q59tqSBKh8vEXy8rTGg41wv5Kp
-         jL+Uwh1RpdEfb+wOQ/vTTXB4uWktHCEGjXMeS0qKTcVbbQfvCzzpGFzsqMbJPVTQPrK7
-         WQSpyiVzwpfBXLSkZy5kQyhQB1brXnLpcCgiANnkThCEZ1oNqnLJn0fPqQ8d7YD59GEa
-         6S3A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=OI5+AJWSwdA8qVAOofTdmeYq5WpDo/US6jBkWpa07uc=;
-        b=W+fVv3JFKKv/bzfPKIlcGYH60ZgXl0U7ZhMkhTFxxgm8L6LO7TYc4ZUvolm3gmIU/+
-         niNME1jYj4hsGDF3M7UbAnX1MYlPDVIS95+s2MbI/YxXemjVTOBrduT4rTJsHiBSburu
-         9x6BWQDmFEbIgZdU7PYJaAddRT6VF/CFIqcqotSaLuN1+EXWF8l4eTX7+BRLzzRZP7Hd
-         inD5DOJhCtFCT8HsQ/ZJUNpkTynk/Espt6CxNM4jdA27Mprv26S5G1cSoQez7qtjHOLN
-         tE8d4m1WbwDnfOxO9YYkWjjzphFM0lqm4djuS6pS7J+jpO7MlSuTCAcIHWb5fCqgij1u
-         zmUA==
-X-Gm-Message-State: AOAM531qQZK8d70nR8RaYv6xkEKsYFclmY69omIPzySCqio6JmRgR13C
-        HHTyjK/sZWCOMBo8uFkxvOJ9MEBCGxZPbZubjSYLYQ==
-X-Google-Smtp-Source: ABdhPJzfIj1qnq7tCCnnbUDL2YFGisHI7QMHjJKeJz9nnU70YzQ2UI23tkePA2bkS4ZhZE8tY+yJkYF3Aii2l+3kI0g=
-X-Received: by 2002:a67:e286:: with SMTP id g6mr28189547vsf.42.1608026020738;
- Tue, 15 Dec 2020 01:53:40 -0800 (PST)
+        id S1726512AbgLOKnF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Dec 2020 05:43:05 -0500
+Received: from new2-smtp.messagingengine.com ([66.111.4.224]:54319 "EHLO
+        new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1725535AbgLOKnF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 15 Dec 2020 05:43:05 -0500
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailnew.nyi.internal (Postfix) with ESMTP id DD3065801CF;
+        Tue, 15 Dec 2020 05:41:58 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute6.internal (MEProxy); Tue, 15 Dec 2020 05:41:58 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm1; bh=IVHUcxd6jPfq0gERSuEaAzfSIsw
+        xq6fdJuohmu/LEU0=; b=egPnR0Sqa+yTk4hK79/BaLtnZsh/hElYQOA4UzVraz+
+        w8Uo0AKYJ9RhAedNbDpaOZOGMjFrQFGufEjWQV0K/aapRMgDW+Uj6GsQXOdXVQ2v
+        e2gykxJRn924Qz9KakN/V7huDrG0YcuOrFO0GfG5S1Wj26FN2ZpO8INzFsTpBs2m
+        /rLQWMPIGiU+XASCKx1O6YctquGpTs75pCVagTpmGTdXW2N6z+dhP+7cH7FN7PG1
+        eS7rl2QOm1FqEk3vAX/PmB4gOu7L3k/ukKLOrcWeja6H3hX5k9ROOpmL1hox2y8Q
+        CsG3gjk9FqHeD+GpXwiTDWmdEfz+sGitKmQb1hTj/HQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=IVHUcx
+        d6jPfq0gERSuEaAzfSIswxq6fdJuohmu/LEU0=; b=fOL72VEhc0g9sJnVlYRO9R
+        JClY06gdskAVrryVQQh9risA3JYZ4JsRLt6GzLN6Z+DRXNtkU4Jx1OheQr4FTX0+
+        yMLyQQq3PNR4JLpLnI1rCT5GtX7VYaBmU1xnX9XPkgiiymzymwY0OaCLuQ+3GJlK
+        E4MASRmD8c1mMW56ONpsbtYy2wZL9thYnmILaXzVy58eqI6KvKsmxpME+BjaHj+M
+        M0XuYlTZB3Ejyp/wy6LGVZxCiSUvZWVNpa85Rxtt+UhDaCEJxquJEpEiH37ZDIE0
+        8gYCTjZ66AH6UrKTq36x/GhnmyNGWyZ6xez5npocTHJC2yuDc95SvNlBdFyfGpCg
+        ==
+X-ME-Sender: <xms:85LYX_0b5RXgaNWmUxtl1uxuNGs8wms88RmR129AdGD6_ODBbxCQ2w>
+    <xme:85LYXyUuE_7tO8WTa6V9ULX9iB17BD-bNxEX_BeT1A6nTvGszIobleCRRMKe-J1Gm
+    WQmR2X10hbcduZrbD4>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrudeltddgudekucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
+    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
+    gedunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
+    frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:85LYX67QZstiRlLYaFoqZlEgeFSjFnNAKLhFc-WBgXGYCcMUou0lqQ>
+    <xmx:85LYX5I3qk1NAvL7cL-3ZR2lnmTanPSZRDsf4AczV526gvsMX6FLiw>
+    <xmx:85LYX7J0kq4eC0hDEPXGXY_Rs-eTFkFEkQ1Jz2Q-zLtotJEXvMAyAw>
+    <xmx:9pLYX6vXvS_WagMQA3Q9Wuzdp4qQ8s9CWk4Go8P2ssz7Zq3v7P_aMQ>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 684E624005D;
+        Tue, 15 Dec 2020 05:41:55 -0500 (EST)
+Date:   Tue, 15 Dec 2020 11:41:53 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Daniel Vetter <daniel.vetter@intel.com>,
+        David Airlie <airlied@linux.ie>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Eric Anholt <eric@anholt.net>
+Cc:     devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        Tim Gover <tim.gover@raspberrypi.com>,
+        Dave Stevenson <dave.stevenson@raspberrypi.com>,
+        dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org,
+        Phil Elwell <phil@raspberrypi.com>
+Subject: Re: [PATCH v2 0/7] vc4: Convert to drm_atomic_helper_commit
+Message-ID: <20201215104153.xdwrcvi7fr7etz2v@gilmour>
+References: <20201204151138.1739736-1-maxime@cerno.tech>
 MIME-Version: 1.0
-References: <CAK8P3a2Habmz95y+J+-4NiT5SGYhO_Fia-SHhapX-3NYRbEMmw@mail.gmail.com>
- <CAHk-=wjA2Der39e_SWZ6S-DoVCJTu-Zwf6jn2wxmGTKzNPV1Dw@mail.gmail.com>
- <CAD=FV=Vow5_jv=-O=f2v4_5Nb4DiOUB1sQUx6r=-y5A-6rP4hw@mail.gmail.com>
- <CAHk-=whtySEgkH+VFy9oW8Q-+iuivGBo0hOUcee3DvrsBAQUrA@mail.gmail.com>
- <CAD=FV=Up-JW8RtMLQ_pAG3e0d8NnpT+rDiguxcz3DnVUz_7Jbw@mail.gmail.com>
- <CAHk-=wi2CQwAnKucLwE8vNZgXxyRy6L+DcgjGqxKHwbacKgaMQ@mail.gmail.com>
- <CAPDyKFp9L+L9VeUD038G3mBTLBuPJsMtv7JhxCcSGb3iY=eq5A@mail.gmail.com>
- <CAK8P3a1Va_xJzk8qqJM1VBWfSKpomKbQh_NpPO20aoORoe0SWQ@mail.gmail.com>
- <CAMuHMdUT83EkE-phUX2Z431AtGPfZvXeKwQriDKEHJKfr2R40A@mail.gmail.com>
- <CAK8P3a3xqqT7mcroY+-fg4T39msw72SB0NbbVKfBghmOFTNZqw@mail.gmail.com>
- <CAD=FV=WXcSBkN2y97xNma0P9C6DEPfwkprZe=+0+0iuKYNwwZA@mail.gmail.com>
- <CAMuHMdWEuzUTg+f_SBqvT1zFYVFL=odgMLz68DjcvaTrbtd94g@mail.gmail.com>
- <CAPDyKFpG2JZ6riZo=fFJa7q16bvhFyx2kR1K-s3aSfwZ9NDo6A@mail.gmail.com> <CAMuHMdVOxdYQD6qTF08NFiw4bRg3xscX=rRW1m9ix1AGEm3DGQ@mail.gmail.com>
-In-Reply-To: <CAMuHMdVOxdYQD6qTF08NFiw4bRg3xscX=rRW1m9ix1AGEm3DGQ@mail.gmail.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Tue, 15 Dec 2020 10:53:03 +0100
-Message-ID: <CAPDyKFptyEQNJu8cqzMt2WRFZcwEdjDiytMBp96nkoZyprTgmA@mail.gmail.com>
-Subject: Re: [GIT PULL] ARM: SoC fixes for v5.10, part 3
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Doug Anderson <dianders@chromium.org>,
-        Arnd Bergmann <arnd@kernel.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        SoC Team <soc@kernel.org>,
-        Linus Torvalds <torvalds@linux-foundation.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="cwkuxl3gevsekw5l"
+Content-Disposition: inline
+In-Reply-To: <20201204151138.1739736-1-maxime@cerno.tech>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 15 Dec 2020 at 09:19, Geert Uytterhoeven <geert@linux-m68k.org> wrote:
->
-> Hi Ulf,
->
-> On Mon, Dec 14, 2020 at 9:23 PM Ulf Hansson <ulf.hansson@linaro.org> wrote:
-> > On Tue, 8 Dec 2020 at 08:32, Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> > > On Mon, Dec 7, 2020 at 11:15 PM Doug Anderson <dianders@chromium.org> wrote:
-> > > > On Mon, Dec 7, 2020 at 1:55 PM Arnd Bergmann <arnd@kernel.org> wrote:
-> > > > > On Mon, Dec 7, 2020 at 9:23 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> > > > > > On Tue, Dec 1, 2020 at 3:06 PM Arnd Bergmann <arnd@kernel.org> wrote:
-> > > > > > > On Tue, Dec 1, 2020 at 12:39 PM Ulf Hansson <ulf.hansson@linaro.org> wrote:
-> > > > > > > > So, I think we have two options. If people are willing to move to
-> > > > > > > > "disk labels" or to patch their DTBs with mmc aliases, things can stay
-> > > > > > > > as is. Otherwise, we can revert the async probe parts of the mmc host
-> > > > > > > > drivers, but that would still leave us in a fragile situation.
-> > > > > > >
-> > > > > > > Can you reliably detect whether the mmc aliases in the dt exist?
-> > > > > > > If that's possible, maybe the async flag could be masked out to only have
-> > > > > > > an effect when the device number is known.
-> > > > > >
-> > > > > > IMHO DT aliases are not a proper solution for this.
-> > > > > >
-> > > > > > Yes, you can detect reliably if an alias exists in the DT.
-> > > > > > The problems start when having multiple devices, some with aliases,
-> > > > > > some without.  And when devices can appear dynamically (without
-> > > > > > aliases, as there is no support for dynamically updating the aliases
-> > > > > > list).
-> > > > >
-> > > > > Actually you hit a problem earlier than that: the async probe is a
-> > > > > property of the host controller driver, which may be a pci_driver,
-> > > > > platform_driver, usb_driver, or anything else really. To figure out
-> > > > > whether to probe it asynchronously, it would have to be the driver
-> > > > > core, or each bus type that can host these to understand which
-> > > > > device driver is responsible for probing an eMMC device attached
-> > > > > to the host.
-> > > >
-> > > > From what I've seen so far, my current thought on this issue is that
-> > > > it's up to Ulf as the MMC maintainer what the next steps are.  For me,
-> > > > at least, his argument that MMC block numbers have already shuffled
-> > > > around several times in the last several years is at least some
-> > > > evidence that they weren't exactly stable to begin with.  While we
-> > > > could go back to the numbers that happened to be chosen as of kernel
-> > > > v5.9, if someone was updating from a much older kernel then they may
-> > > > have different expectations of what numbers are good / bad I think.
-> > > >
-> > > > I will also offer one possible suggestion: what about a KConfig option
-> > > > here?  In theory we could add a KConfig option like
-> > > > "CONFIG_MMC_LEGACY_PROBE" or something that.  One can argue about what
-> > > > the default ought to be, but maybe that would satisfy folks?  If you
-> > > > were happy giving up a little bit of boot speed to get the v5.9 block
-> > > > numbers then you could set this.
-> > >
-> > > This is not limited to MMC.
-> > > The same is true for sdX, ethX (e* these days), ttyS*, i2cX, spiX, ...
-> > > The rule has always been to handle it by udev, disklabels, ...
-> >
-> > That's right.
-> >
-> > Although, those rules haven't been sufficient for some cases, which
-> > has been discussed many many times by now. I can dig out some of the
-> > old threads from the mail archive, just tell me and will help to find
-> > them.
-> >
-> > For mmc we have decided to improve the situation by adding support for
-> > aliases in DT. The support seems robust enough to me, but if you think
-> > there are problems with it, please tell me and I am happy to help to
-> > improve it.
->
-> DT rule #1: DT is hardware description (device naming is software
-> policy).
 
-I do admit, the use of aliases in DT, for *all* cases including mmc is
-a bit of a stretch. Anyway, it's there.
+--cwkuxl3gevsekw5l
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
->
-> The only generally accepted aliases are "serial0" (the first serial
-> port, as such labeled on the board, to be used for the console;  there
-> may be more labeled ports, and thus more "serialX" aliases), and
-> "ethernet0" (the first Ethernet port, so U-Boot knows to which port to
-> add an appropriate "local-mac-address" property, when booting over the
-> network).  So yeah, you can claim the first SD card slot is labeled as
-> such, and thus deserves an alias.  Then the issue is what you do with
-> the remaining slots, which can be added either statically or
-> dynamically.  And what if for some reason the labeled MMC slot is not
-> probed first...
+On Fri, Dec 04, 2020 at 04:11:31PM +0100, Maxime Ripard wrote:
+> Hi,
+>=20
+> Here's a conversion of vc4 to remove the hand-rolled atomic_commit helper=
+ from
+> vc4 in favour of the generic one.
+>=20
+> This requires some rework of vc4, but also a new hook and some documentat=
+ion
+> for corner-cases in the DRM core that have been reported and explained by
+> Daniel recently.
+>=20
+> Let me know what you think,
+> Maxime
 
-The probe order shouldn't matter. By pre-parsing all mmc aliases (for
-all slots) existing in the DTB we can keep track of reserved ids. In
-this way, for the non-alias case, we can dynamically select a
-non-reserved id.
+Applied, thanks!
+Maxime
 
-Although, perhaps more improvements can be made.
+--cwkuxl3gevsekw5l
+Content-Type: application/pgp-signature; name="signature.asc"
 
->
-> The description of commit 7678f4c20fa7670f ("serial: sh-sci: Add support
-> for dynamic instances") mentions some background and remaining
-> issues w.r.t. aliases.
->
-> > In regards to adding a new Kconfig option for "legacy probe", I am
-> > open to this if that's what people think is needed. Although, as
-> > pointed out earlier in this thread, it won't move us into a stable
-> > situation. The only solution to get to that point, is either to use
-> > udev/disklabel rules or the mmc aliases in DT.
->
-> IMHO that will be a fragile solution, too: over time, it may become
-> harder and harder to maintain the original probe order.
->
-> And if it will be an option, it means there will be two code paths to
-> maintain, increasing the burden.
+-----BEGIN PGP SIGNATURE-----
 
-Alright, sounds like we can conclude that the Kconfig option doesn't
-seem like a good way forward.
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX9iS8QAKCRDj7w1vZxhR
+xehjAP9wOcR9qJcXi7naiRZnAejp0hlygHQ6DJWoGfUCMt3SZgD+N0zHvjYPWzcd
+4WJiwGq6z+Zxs0+webVjQO18NRL1wQY=
+=WbCd
+-----END PGP SIGNATURE-----
 
-Kind regards
-Uffe
+--cwkuxl3gevsekw5l--
