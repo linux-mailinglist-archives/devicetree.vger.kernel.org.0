@@ -2,170 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 246C82DABA3
-	for <lists+devicetree@lfdr.de>; Tue, 15 Dec 2020 12:08:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 651202DABB5
+	for <lists+devicetree@lfdr.de>; Tue, 15 Dec 2020 12:16:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727065AbgLOLHs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Dec 2020 06:07:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39276 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727340AbgLOLHr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Dec 2020 06:07:47 -0500
-Received: from mail-ed1-x544.google.com (mail-ed1-x544.google.com [IPv6:2a00:1450:4864:20::544])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C10C9C0617A6
-        for <devicetree@vger.kernel.org>; Tue, 15 Dec 2020 03:07:00 -0800 (PST)
-Received: by mail-ed1-x544.google.com with SMTP id cw27so20550928edb.5
-        for <devicetree@vger.kernel.org>; Tue, 15 Dec 2020 03:07:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=references:user-agent:from:to:cc:subject:in-reply-to:message-id
-         :date:mime-version;
-        bh=E/kGG23CuugXLZck5NSeBoHhv9wXgJjs6PBWPuEf4ek=;
-        b=tjS84lj7A5dCdMOd8b8N0ew0ViF4pB9i7y1hJAIdGKDSDwcEOLN9Rx/EoNyCvU0VjS
-         g1be2Ok5bTpnYvoKoQRGE7lqJHZ82XfjxQWCWGG0b1x8XpmrIEuTWOCclbrwM6SZwl11
-         lFectPeRZ6/WENXtmTzG8eCEVmQv4s9JkIbg35sB1OkUbq2E+Waf4fjElvQL8bmwH8hu
-         qcE/Mx1sVq1eki1/3NHb8ZjczkXl8rjaFfzxFTHcvQuj/uTPBtpzUo6vMi7WlaEf/0eE
-         eEPeEKx4tKO4XbZbE+sA0OXxpzNdrUwNGRhQv2YnEms+5TTPXPxBC/0Hn+Yucujt6cyF
-         7rZg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:references:user-agent:from:to:cc:subject
-         :in-reply-to:message-id:date:mime-version;
-        bh=E/kGG23CuugXLZck5NSeBoHhv9wXgJjs6PBWPuEf4ek=;
-        b=FQLpe9o8qKrbHzCATS4SX5Oo9B6Vn22z4Bnk5muyKWwjJEic98tgLgLAv+gA6SDUsy
-         jtOLV7cOreFWCuYRgDwhYu8/L96rDCClbI1jVDlT823xEjvfxap1OSL8wqNuUJRhLZmI
-         b3kf88WnYted2SB6mSUV2G8aWiZ+G0HTuFGfmICq8wZzAnii6z5ZvnDQtWgTEMHvCQwJ
-         O0fIazcHkmMJTF7Yjdg5pJ4LkPf1mBuFFrZ2Z9P4eF5FOO/DbElaW02DEdKVI0kN7HNq
-         5UQsm+NgpW/X4hRuqXRcIJuXy42W4Z9yqQgeP4P/eW79rVwN+zauFgVDenUk5GzdNus/
-         nHuA==
-X-Gm-Message-State: AOAM532EJENtcaB6JG+8Um/aYkuor7YqPM+5w5Q2ZFI+ydLft9xxSYAd
-        5W8T2WW5zDp4No3W6CHpLicpvQ==
-X-Google-Smtp-Source: ABdhPJxodm7zMu059raAbyVPwN1yyu3J57f2oGupv5Nhnn7WQ0KXyvDt6Oa5wkgRHMZmWbh0hhjMHw==
-X-Received: by 2002:a50:9dc9:: with SMTP id l9mr28854817edk.377.1608030419495;
-        Tue, 15 Dec 2020 03:06:59 -0800 (PST)
-Received: from localhost (82-65-169-74.subs.proxad.net. [82.65.169.74])
-        by smtp.gmail.com with ESMTPSA id h16sm1096134eji.110.2020.12.15.03.06.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Dec 2020 03:06:58 -0800 (PST)
-References: <20201207095346.26297-1-jbrunet@baylibre.com>
- <20201207095346.26297-3-jbrunet@baylibre.com>
-User-agent: mu4e 1.4.10; emacs 27.1
-From:   Jerome Brunet <jbrunet@baylibre.com>
-To:     Kevin Hilman <khilman@baylibre.com>
-Cc:     linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] arm64: dts: meson: vim3: enable hdmi audio loopback
-In-reply-to: <20201207095346.26297-3-jbrunet@baylibre.com>
-Message-ID: <1jr1nr1g6m.fsf@starbuckisacylon.baylibre.com>
-Date:   Tue, 15 Dec 2020 12:06:57 +0100
+        id S1728318AbgLOLPF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Dec 2020 06:15:05 -0500
+Received: from relay4-d.mail.gandi.net ([217.70.183.196]:41885 "EHLO
+        relay4-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727783AbgLOLPF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Dec 2020 06:15:05 -0500
+X-Originating-IP: 93.34.118.233
+Received: from uno.localdomain (93-34-118-233.ip49.fastwebnet.it [93.34.118.233])
+        (Authenticated sender: jacopo@jmondi.org)
+        by relay4-d.mail.gandi.net (Postfix) with ESMTPSA id A9617E000D;
+        Tue, 15 Dec 2020 11:14:09 +0000 (UTC)
+Date:   Tue, 15 Dec 2020 12:14:20 +0100
+From:   Jacopo Mondi <jacopo@jmondi.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Jacopo Mondi <jacopo+renesas@jmondi.org>,
+        kieran.bingham+renesas@ideasonboard.com,
+        laurent.pinchart+renesas@ideasonboard.com,
+        niklas.soderlund+renesas@ragnatech.se, geert@linux-m68k.org,
+        devicetree@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Hyun Kwon <hyunk@xilinx.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        sergei.shtylyov@gmail.com
+Subject: Re: [PATCH v5 2/8] dt-bindings: media: max9286: Document
+ 'maxim,initial-reverse-channel-mV'
+Message-ID: <20201215111420.zpc67jkary3l5j4z@uno.localdomain>
+References: <20201116135305.81319-1-jacopo+renesas@jmondi.org>
+ <20201116135305.81319-3-jacopo+renesas@jmondi.org>
+ <20201130220048.GA3104550@robh.at.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20201130220048.GA3104550@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hello,
 
-On Mon 07 Dec 2020 at 10:53, Jerome Brunet <jbrunet@baylibre.com> wrote:
-
-> Enable audio capture frontends and a tdm decoder.
-> This makes it possible to loopback the audio played on the hdmi codec,
-> which is the only output interface at the moment.
+On Mon, Nov 30, 2020 at 03:00:48PM -0700, Rob Herring wrote:
+> On Mon, Nov 16, 2020 at 02:52:59PM +0100, Jacopo Mondi wrote:
+> > Document the 'initial-reverse-channel-mV' vendor property in the
+> > bindings document of the max9286 driver.
+> >
+> > The newly introduced property allows to specifying the initial
+> > configuration of the GMSL reverse control channel to accommodate
+> > remote serializers pre-programmed with the high threshold power
+> > supply noise immunity enabled.
+> >
+> > Reviewed-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+> > Signed-off-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
+> > ---
+> >  .../bindings/media/i2c/maxim,max9286.yaml     | 23 +++++++++++++++++++
+> >  1 file changed, 23 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/media/i2c/maxim,max9286.yaml b/Documentation/devicetree/bindings/media/i2c/maxim,max9286.yaml
+> > index 9ea827092fdd..f61234d204fa 100644
+> > --- a/Documentation/devicetree/bindings/media/i2c/maxim,max9286.yaml
+> > +++ b/Documentation/devicetree/bindings/media/i2c/maxim,max9286.yaml
+> > @@ -51,6 +51,26 @@ properties:
+> >    '#gpio-cells':
+> >      const: 2
+> >
+> > +  maxim,initial-reverse-channel-mV:
 >
-> Of course, one TODDR device would be enough to do that but since
-> the 3 FRDDRs are enabled on the playback side, let's do the same on the
-> capture side.
+> Use standard unit suffix.
 >
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-> ---
->  .../boot/dts/amlogic/meson-khadas-vim3.dtsi   | 41 +++++++++++++++++--
->  1 file changed, 37 insertions(+), 4 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi b/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
-> index 12465c4becc7..4cf2c193d168 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
-> @@ -166,11 +166,16 @@ hdmi_connector_in: endpoint {
->  	sound {
->  		compatible = "amlogic,axg-sound-card";
->  		model = "G12B-KHADAS-VIM3";
-> -		audio-aux-devs = <&tdmout_a>;
-> +		audio-aux-devs = <&tdmin_a>, <&tdmout_a>;
->  		audio-routing = "TDMOUT_A IN 0", "FRDDR_A OUT 0",
->  				"TDMOUT_A IN 1", "FRDDR_B OUT 0",
->  				"TDMOUT_A IN 2", "FRDDR_C OUT 0",
-> -				"TDM_A Playback", "TDMOUT_A OUT";
-> +				"TDM_A Playback", "TDMOUT_A OUT",
-> +				"TDMIN_A IN 1", "TDM_A Capture",
 
-Oops this is wrong
+Which one ? :)
+I see in v5.10 one 'mV', three 'mv', one 'millivolts', several
+'microvolts'.
 
-> +				"TDMIN_A IN 3", "TDM_A Loopback",
+I'll go with the majority and make this
+'maxim,initial-reverse-channel-mv'
 
-And this correct for the vim3 but not the vim3l ...
-Please don't take this patch. Patch 1 can still be applied though.
+Thanks
+   j
 
-> +				"TODDR_A IN 0", "TDMIN_A OUT",
-> +				"TODDR_B IN 0", "TDMIN_A OUT",
-> +				"TODDR_C IN 0", "TDMIN_A OUT";
->  
->  		assigned-clocks = <&clkc CLKID_MPLL2>,
->  				  <&clkc CLKID_MPLL0>,
-> @@ -193,8 +198,20 @@ dai-link-2 {
->  			sound-dai = <&frddr_c>;
->  		};
->  
-> -		/* 8ch hdmi interface */
->  		dai-link-3 {
-> +			sound-dai = <&toddr_a>;
-> +		};
-> +
-> +		dai-link-4 {
-> +			sound-dai = <&toddr_b>;
-> +		};
-> +
-> +		dai-link-5 {
-> +			sound-dai = <&toddr_c>;
-> +		};
-> +
-> +		/* 8ch hdmi interface */
-> +		dai-link-6 {
->  			sound-dai = <&tdmif_a>;
->  			dai-format = "i2s";
->  			dai-tdm-slot-tx-mask-0 = <1 1>;
-> @@ -209,7 +226,7 @@ codec {
->  		};
->  
->  		/* hdmi glue */
-> -		dai-link-4 {
-> +		dai-link-7 {
->  			sound-dai = <&tohdmitx TOHDMITX_I2S_OUT>;
->  
->  			codec {
-> @@ -449,10 +466,26 @@ &tdmif_a {
->  	status = "okay";
->  };
->  
-> +&tdmin_a {
-> +	status = "okay";
-> +};
-> +
->  &tdmout_a {
->  	status = "okay";
->  };
->  
-> +&toddr_a {
-> +	status = "okay";
-> +};
-> +
-> +&toddr_b {
-> +	status = "okay";
-> +};
-> +
-> +&toddr_c {
-> +	status = "okay";
-> +};
-> +
->  &tohdmitx {
->  	status = "okay";
->  };
-
+> > +    $ref: '/schemas/types.yaml#/definitions/uint32'
+> > +    minimum: 30
+> > +    maximum: 200
+> > +    default: 170
+> > +    description: |
+> > +      Initial amplitude of the reverse control channel, in millivolts.
+> > +
+> > +      The initial amplitude shall be adjusted to a value compatible with the
+> > +      configuration of the connected remote serializer.
+> > +
+> > +      Some camera modules (for example RDACM20) include an on-board MCU that
+> > +      pre-programs the embedded serializer with power supply noise immunity
+> > +      (high-threshold) enabled. A typical value of the deserializer's reverse
+> > +      channel amplitude to communicate with pre-programmed serializers is 170mV.
+> > +
+> > +      A typical value for the reverse channel amplitude to communicate with
+> > +      a remote serializer whose high-threshold noise immunity is not enabled
+> > +      is 100mV.
+> > +
+> >    ports:
+> >      type: object
+> >      description: |
+> > @@ -221,6 +241,7 @@ required:
+> >    - ports
+> >    - i2c-mux
+> >    - gpio-controller
+> > +  - maxim,initial-reverse-channel-mV
+> >
+> >  additionalProperties: false
+> >
+> > @@ -243,6 +264,8 @@ examples:
+> >          gpio-controller;
+> >          #gpio-cells = <2>;
+> >
+> > +        maxim,initial-reverse-channel-mV = <170>;
+> > +
+> >          ports {
+> >            #address-cells = <1>;
+> >            #size-cells = <0>;
+> > --
+> > 2.29.1
+> >
