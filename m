@@ -2,101 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 680B02DAF60
-	for <lists+devicetree@lfdr.de>; Tue, 15 Dec 2020 15:50:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3646D2DAFA1
+	for <lists+devicetree@lfdr.de>; Tue, 15 Dec 2020 16:02:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729770AbgLOOuQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Dec 2020 09:50:16 -0500
-Received: from mail.kernel.org ([198.145.29.99]:52060 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729699AbgLOOuK (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 15 Dec 2020 09:50:10 -0500
-X-Gm-Message-State: AOAM5335hZ4wc6d2naPHAqjs/usj6CJOeVFjO/iB9r5oN9JPHrW38Mf5
-        DK8Qh2HPvLuL/puzInU23gdFcaU3TZFFOva9NA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1608043769;
-        bh=pcW98idFE8j4CPrJmo7rwXxa0kGRpcZ4oIUzDbC2c/k=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=HPoLcBk9VIqe4+/U+MkqxElc8KoM3OHM8y3hCkubQRLWCE0WGc3ZqIfxv7wJxu41l
-         uJ1RSIbwfWFbMv22NqGaJ6yRSetwY33+YD2trssPf3h2l0ezrngjHJCI5SeBt+5o1X
-         p7O3WNyttX1eLLzEvZ5OgSDzqazuvVTz9q6ZCZQgeMyj6xKmKfXf9Wi0CvzRsLwB0b
-         vMs7rvUc6LIkif5P1VePoQQoiu2WNdQLRSLuuwrZV519O3Vs2lJ0jPJCcN3JlpbtZP
-         nW1SesrHlIMF2k90mtr6IhadmEuHVVhkk+4XNEVvzehXeFTVYyezJ+l50dmthTHzJn
-         H1G0cvQ1F9obA==
-X-Google-Smtp-Source: ABdhPJzVIhS7/7kGUOi+nJf5HUvRGw0qwmZ5xmolBwFv7MPtxTCbsdxcHfV1ADt98+QRviRZJRXHnIf61pDNrmVvoE4=
-X-Received: by 2002:adf:e60f:: with SMTP id p15mr3067578wrm.60.1608043767643;
- Tue, 15 Dec 2020 06:49:27 -0800 (PST)
+        id S1729919AbgLOPBh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Dec 2020 10:01:37 -0500
+Received: from mail-oi1-f194.google.com ([209.85.167.194]:42860 "EHLO
+        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727833AbgLOPB3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Dec 2020 10:01:29 -0500
+Received: by mail-oi1-f194.google.com with SMTP id l200so23566695oig.9;
+        Tue, 15 Dec 2020 07:01:13 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=q/D2pluZ7I/am9iy0DWbgJXEYcE9L4zDkl0i5rNHerY=;
+        b=TYsshxVc088PBwqgItxWIzCPyDwLQvsPgis61FRfrDxJpdBE8J32TSK2UxJlQPLI4e
+         Dha0xcBDlYwLm9WXVgiVQw8QvPnKy+8WGcJZLX06+cbAvbggVMjQL3Pnikt12jaMJyCU
+         ivA1poHMcW3ZyI1dexEmu3VBC/a63OBE3BgDlW5xJzwxC6Okndv27RMXJHORqd+cZKIP
+         p+0NZaDQKwzhxviedb/ZV6bYIudnbtNIazr0WC+SS/YTGjZ+aZcKKbpk9NPZQPHrl6yH
+         zHkN1V2N/Pz7E6s/Dc1NQwF5cky9AiM8TWzz58ZZb9pUCNVKhBKFIlBKz/iVHKfD0msc
+         YMyw==
+X-Gm-Message-State: AOAM531T8A9ozl3U76mbh5h5GO8h3zSX5QGLokbsAtGxOk1VmZxBM/XG
+        yWPM++dggAoRloSAcuIamg==
+X-Google-Smtp-Source: ABdhPJx4lE7nEbnpKw5PeMU2z4n9r0AN+HlhQq5LR/rdIfF2+GwQ64GuPvmQ2p9iR8pYHXsY620XkQ==
+X-Received: by 2002:a05:6808:a90:: with SMTP id q16mr332468oij.107.1608044448318;
+        Tue, 15 Dec 2020 07:00:48 -0800 (PST)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id m18sm4717473ooa.24.2020.12.15.07.00.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 15 Dec 2020 07:00:47 -0800 (PST)
+Received: (nullmailer pid 3830204 invoked by uid 1000);
+        Tue, 15 Dec 2020 15:00:46 -0000
+Date:   Tue, 15 Dec 2020 09:00:46 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Adrien Grassein <adrien.grassein@gmail.com>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        robh+dt@kernel.org, broonie@kernel.org,
+        gary.bisson@boundarydevices.com, lgirdwood@gmail.com,
+        troy.kisky@boundarydevices.com
+Subject: Re: [PATCH v3 1/2] dt-bindings: regulator: add pf8x00 PMIC
+Message-ID: <20201215150046.GA3829745@robh.at.kernel.org>
+References: <20201214225851.23342-1-adrien.grassein@gmail.com>
+ <20201214225851.23342-2-adrien.grassein@gmail.com>
 MIME-Version: 1.0
-References: <1607746317-4696-1-git-send-email-yongqiang.niu@mediatek.com> <1607746317-4696-2-git-send-email-yongqiang.niu@mediatek.com>
-In-Reply-To: <1607746317-4696-2-git-send-email-yongqiang.niu@mediatek.com>
-From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date:   Tue, 15 Dec 2020 22:49:16 +0800
-X-Gmail-Original-Message-ID: <CAAOTY_-=4ZwXgTA57UE9+nZm-0E-B1oimWXfaJuWxufo8LJ+pg@mail.gmail.com>
-Message-ID: <CAAOTY_-=4ZwXgTA57UE9+nZm-0E-B1oimWXfaJuWxufo8LJ+pg@mail.gmail.com>
-Subject: Re: [PATCH v2, 01/17] dt-bindings: mediatek: add description for postmask
-To:     Yongqiang Niu <yongqiang.niu@mediatek.com>
-Cc:     CK Hu <ck.hu@mediatek.com>, Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        DTML <devicetree@vger.kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        DRI Development <dri-devel@lists.freedesktop.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201214225851.23342-2-adrien.grassein@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Yongqiang:
-
-Yongqiang Niu <yongqiang.niu@mediatek.com> =E6=96=BC 2020=E5=B9=B412=E6=9C=
-=8812=E6=97=A5 =E9=80=B1=E5=85=AD =E4=B8=8B=E5=8D=8812:12=E5=AF=AB=E9=81=93=
-=EF=BC=9A
->
-> add description for postmask
-
-What is postmask? I google it and find a postmask ECO. So it is postmask EC=
-O?
-
-Regards,
-Chun-Kuang.
-
->
-> Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
+On Mon, 14 Dec 2020 23:58:50 +0100, Adrien Grassein wrote:
+> Add a devicetree binding documentation for the pf8x00 regulator driver.
+> 
+> Signed-off-by: Adrien Grassein <adrien.grassein@gmail.com>
 > ---
->  Documentation/devicetree/bindings/display/mediatek/mediatek,disp.txt | 1=
- +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,=
-disp.txt b/Documentation/devicetree/bindings/display/mediatek/mediatek,disp=
-.txt
-> index 5ca693a..1972fa7 100644
-> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,disp.tx=
-t
-> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,disp.tx=
-t
-> @@ -37,6 +37,7 @@ Required properties (all function blocks):
->         "mediatek,<chip>-disp-aal"              - adaptive ambient light =
-controller
->         "mediatek,<chip>-disp-gamma"            - gamma correction
->         "mediatek,<chip>-disp-merge"            - merge streams from two =
-RDMA sources
-> +       "mediatek,<chip>-disp-postmask"         - post mask
->         "mediatek,<chip>-disp-split"            - split stream to two enc=
-oders
->         "mediatek,<chip>-disp-ufoe"             - data compression engine
->         "mediatek,<chip>-dsi"                   - DSI controller, see med=
-iatek,dsi.txt
-> --
-> 1.8.1.1.dirty
-> _______________________________________________
-> Linux-mediatek mailing list
-> Linux-mediatek@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-mediatek
+>  .../regulator/nxp,pf8x00-regulator.yaml       | 220 ++++++++++++++++++
+>  MAINTAINERS                                   |   6 +
+>  2 files changed, 226 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/regulator/nxp,pf8x00-regulator.yaml
+> 
+
+With the whitespace fixed,
+
+Reviewed-by: Rob Herring <robh@kernel.org>
