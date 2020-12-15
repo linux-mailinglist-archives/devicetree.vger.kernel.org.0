@@ -2,73 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E6942DB11D
-	for <lists+devicetree@lfdr.de>; Tue, 15 Dec 2020 17:17:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D5DD2DB123
+	for <lists+devicetree@lfdr.de>; Tue, 15 Dec 2020 17:20:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730483AbgLOQRa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Dec 2020 11:17:30 -0500
-Received: from mail-oo1-f67.google.com ([209.85.161.67]:46026 "EHLO
-        mail-oo1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730839AbgLOQRT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Dec 2020 11:17:19 -0500
-Received: by mail-oo1-f67.google.com with SMTP id o5so1139505oop.12;
-        Tue, 15 Dec 2020 08:17:03 -0800 (PST)
+        id S1730909AbgLOQSu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Dec 2020 11:18:50 -0500
+Received: from mail-oi1-f194.google.com ([209.85.167.194]:38451 "EHLO
+        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730834AbgLOQSq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Dec 2020 11:18:46 -0500
+Received: by mail-oi1-f194.google.com with SMTP id x13so14871421oic.5;
+        Tue, 15 Dec 2020 08:18:31 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=JCp0YIgPUuzIMIdJ9vQl9c0q2/kiCX2Sl1pTBGFGABg=;
-        b=sYHyrSQRgyWzSN8whiiQgyrLv98Fx6ooT3ONeQ+85cZvW7vNJeR4EJxHLh9SYzhuGI
-         beiQreiANAxOurXJkQ3fh5nl3Iv8BmHFyJyASpTGyjOEXmYFsnBk2wd/u/dJBaF1YGw0
-         awXdVm82+/J23cZrQ7D5rUazKagoEmczgy7sxt2y9hRi24o0arkxmUW2h+OJ3cs/8py9
-         HVJZxg0Z8lBZWdirhii9ZzWNGpYhN++XCh5xEyCoUyG/SC8Wic2+m+nNXrffouwtV6u7
-         bYGTXHr/z2SySdUy+iJa2w2ZlBvO2uq+LYexWxltOvz9Hk2Cdl8vAzdX4lmkZkYMg9us
-         Um9w==
-X-Gm-Message-State: AOAM530L8LQACbAZRZ6PRD5bNvhEsYs/RxNwrm5qKLDeqIMPo2q4w5rK
-        fuj7/bqnw4qOO4T67Stkww==
-X-Google-Smtp-Source: ABdhPJxCHnIh4PidpUMSVjSkEq+/wiiHBcx7VoFDsQFXpS7PW6w+e0euJuxIjTLgLSazMzFYrDwwCA==
-X-Received: by 2002:a4a:e1b5:: with SMTP id 21mr23174996ooy.64.1608048998308;
-        Tue, 15 Dec 2020 08:16:38 -0800 (PST)
+        bh=YUVQgTwv4axq9vrq6olsh3jfHaZ2i0lCLI1YkMK+law=;
+        b=h+SyEhnzRzB5O5kmk3W+hg6KK+Z9B6kbFGatp4G+h9sJR7U7p+1eJRp3CcWZ0uGIlj
+         Bb5DLsAmHSjlN4SdV01MhK3Ow+PZBIKE7qHq/qZfxVC1N7DGbV0DOn/l/Qy9olJDLf5t
+         htq0fnguP9iQthV7oZ9qqVE9SRr4bJLaif/dYWCYXEYpHg8uQSvu6RDvXP/gGj0YuEZ5
+         YUC4ZVXTeSaIF8rKuyN+xy1dPHW74SYRRADrBHilG/C4itM/MWMq+4nGEIaHQVNKTHpO
+         T4T3d0nedtXJUMFF8cPN8utiy/qjFN8uFVPGc2Og2N0gz4AhtUZCtERLkxpaUvtg2A2e
+         nz6A==
+X-Gm-Message-State: AOAM533vVZDR2idqJuxhuTzo8VMknGho8zAjie6gsmvbk1zNYvz6dm0g
+        v5EOFSDBjCr1f8jGppcr8A==
+X-Google-Smtp-Source: ABdhPJw7xmnZHDRKJs46SGJ3AWYtxkn2pMs1JTWzHmp6//B2xTY90PQcCmSuYtYHQJnczE/c3/MkgA==
+X-Received: by 2002:aca:c4c2:: with SMTP id u185mr1188400oif.177.1608049085661;
+        Tue, 15 Dec 2020 08:18:05 -0800 (PST)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id s139sm5122420oih.10.2020.12.15.08.16.37
+        by smtp.gmail.com with ESMTPSA id m3sm195649ots.72.2020.12.15.08.18.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Dec 2020 08:16:37 -0800 (PST)
-Received: (nullmailer pid 3955309 invoked by uid 1000);
-        Tue, 15 Dec 2020 16:16:36 -0000
-Date:   Tue, 15 Dec 2020 10:16:36 -0600
+        Tue, 15 Dec 2020 08:18:04 -0800 (PST)
+Received: (nullmailer pid 3957725 invoked by uid 1000);
+        Tue, 15 Dec 2020 16:18:03 -0000
+Date:   Tue, 15 Dec 2020 10:18:03 -0600
 From:   Rob Herring <robh@kernel.org>
 To:     Icenowy Zheng <icenowy@aosc.io>
-Cc:     devicetree@vger.kernel.org, Maxime Ripard <mripard@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+Cc:     linux-arm-kernel@lists.infradead.org,
         Jernej Skrabec <jernej.skrabec@siol.net>,
-        Chen-Yu Tsai <wens@csie.org>
-Subject: Re: [RFC PATCH 01/12] dt-bindings: clock: sunxi-ng: add compatible
- for V831/V833 CCU
-Message-ID: <20201215161636.GA3955251@robh.at.kernel.org>
+        devicetree@vger.kernel.org, Chen-Yu Tsai <wens@csie.org>,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>
+Subject: Re: [RFC PATCH 02/12] dt-bindings: clk: sunxi-ng: add V833 CCU
+ clock/reset indices headers
+Message-ID: <20201215161803.GA3957671@robh.at.kernel.org>
 References: <20201212040157.3639864-1-icenowy@aosc.io>
- <20201212040157.3639864-2-icenowy@aosc.io>
+ <20201212040318.3640236-1-icenowy@aosc.io>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201212040157.3639864-2-icenowy@aosc.io>
+In-Reply-To: <20201212040318.3640236-1-icenowy@aosc.io>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 12 Dec 2020 12:01:57 +0800, Icenowy Zheng wrote:
-> V831/V833 has a CCU similar to the ones on H6/A100.
+On Sat, 12 Dec 2020 12:03:08 +0800, Icenowy Zheng wrote:
+> As the device tree needs the clock/reset indices, add them to DT binding
+> headers.
 > 
-> Add a compatible string for it.
-> 
-> As the user manual do not mention the difference between V831 and V833
-> in the CCU chapter, only a single compatible string for V833
-> (full-functional chip) is made.
+> The driver itself will be then added.
 > 
 > Signed-off-by: Icenowy Zheng <icenowy@aosc.io>
 > ---
->  .../devicetree/bindings/clock/allwinner,sun4i-a10-ccu.yaml      | 2 ++
->  1 file changed, 2 insertions(+)
+>  include/dt-bindings/clock/sun8i-v833-ccu.h | 89 ++++++++++++++++++++++
+>  include/dt-bindings/reset/sun8i-v833-ccu.h | 52 +++++++++++++
+>  2 files changed, 141 insertions(+)
+>  create mode 100644 include/dt-bindings/clock/sun8i-v833-ccu.h
+>  create mode 100644 include/dt-bindings/reset/sun8i-v833-ccu.h
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
