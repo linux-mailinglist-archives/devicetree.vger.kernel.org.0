@@ -2,80 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 341652DB081
-	for <lists+devicetree@lfdr.de>; Tue, 15 Dec 2020 16:52:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 083052DB0ED
+	for <lists+devicetree@lfdr.de>; Tue, 15 Dec 2020 17:08:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730463AbgLOPuX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Dec 2020 10:50:23 -0500
-Received: from mail.kernel.org ([198.145.29.99]:40652 "EHLO mail.kernel.org"
+        id S1730358AbgLOQHu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Dec 2020 11:07:50 -0500
+Received: from mx2.suse.de ([195.135.220.15]:60770 "EHLO mx2.suse.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730417AbgLOPuI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 15 Dec 2020 10:50:08 -0500
-X-Gm-Message-State: AOAM533VzvEKppX5x2bg6rGkw/aPGGWnFKdnwkM6FCP3kZPBlUG/IryM
-        g9pqRWC7GYUJdWUcPrKd8B0UM7ItKbqYFBJVHyA=
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1608047367;
-        bh=vk0DJ0JzWJlteCvdQrm7cTztN3kStbn7sC/CRkgubWQ=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=CtFESZdADvAexjzxRDg0+RJDwS1bEU4mFWyL6SfeZ+2DucZbqnwUsNNCTL0oc4Qab
-         IqgBNcH7SzKOr0po7+b4Co03iExifNCD9cDg2BwBcBEtUDsaLGoky7j/WtlUYOzgkg
-         NqX7/GJCaXouRC2WodvKWPN/csUU/rsQ1Fwg82O6AasTIdQHC+wM+bCN8xX1GPASKn
-         GYIFblyDkCWPHK9niajlvfdRymaofA08J1nxCgngcoLV1DGwURIMCKz6tfXdJ9Ya8b
-         X0Hgew74mexMLfR0YW7R9jfyPwHyLIIN2tXasljBDeHoeuU9VdBFxxA2diiQal6Hhx
-         YsN06IKgUKPcA==
-X-Google-Smtp-Source: ABdhPJyJGtLwNlqBu0sFHqFIYVIxOoGixNWC7BzEOUK+bNoXIyTS4GJ1xdGFVspEYarTce2m30IYXyONWmLH5MOMFZU=
-X-Received: by 2002:a9d:be1:: with SMTP id 88mr23804391oth.210.1608047366643;
- Tue, 15 Dec 2020 07:49:26 -0800 (PST)
+        id S1730307AbgLOP5W (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 15 Dec 2020 10:57:22 -0500
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.221.27])
+        by mx2.suse.de (Postfix) with ESMTP id 4CD2EAC7F;
+        Tue, 15 Dec 2020 15:56:40 +0000 (UTC)
+From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+To:     srinivas.kandagatla@linaro.org,
+        Saenz Julienne <nsaenzjulienne@suse.de>,
+        devicetree@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com,
+        linux-rpi-kernel@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org
+Cc:     linux-kernel@vger.kernel.org, linux@armlinux.org.uk,
+        catalin.marinas@arm.com, will@kernel.org, robh+dt@kernel.org,
+        tim.gover@raspberrypi.com, phil@raspberrypi.com
+Subject: [PATCH 0/6] Expose RPi4'd bootloader configuration
+Date:   Tue, 15 Dec 2020 16:56:20 +0100
+Message-Id: <20201215155627.2513-1-nsaenzjulienne@suse.de>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-References: <20201016090833.1892-1-thunder.leizhen@huawei.com>
- <20201016090833.1892-2-thunder.leizhen@huawei.com> <20201128045328.2411772-1-f.fainelli@gmail.com>
- <CAK8P3a1_5RgcPz+bgo1bbUBk8NTJd=1-Y5-=CsQYkFgLfTE3_A@mail.gmail.com>
- <9c6c6b7e-8c39-8c49-5c87-9b560c027841@broadcom.com> <CAK8P3a2XYk8D80XARrpUSBHk1yye3KHXOdaQge4HNSZZOC=xKw@mail.gmail.com>
- <CACvutz9v+TBUbrCo3X-u5ebbs04nR0y0yQN3qWfSAyZVy9RM2g@mail.gmail.com> <c38cf11a-ed1d-d150-52fb-e3b4a0a30712@gmail.com>
-In-Reply-To: <c38cf11a-ed1d-d150-52fb-e3b4a0a30712@gmail.com>
-From:   Arnd Bergmann <arnd@kernel.org>
-Date:   Tue, 15 Dec 2020 16:49:10 +0100
-X-Gmail-Original-Message-ID: <CAK8P3a1TViQopQNFE4+Dtac0v2CneGiy22WYu5BuYv8HX2r8Lg@mail.gmail.com>
-Message-ID: <CAK8P3a1TViQopQNFE4+Dtac0v2CneGiy22WYu5BuYv8HX2r8Lg@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] arm64: dts: broadcom: clear the warnings caused by
- empty dma-ranges
-To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     Bharat Gooty <bharat.gooty@broadcom.com>,
-        Ray Jui <ray.jui@broadcom.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Scott Branden <sbranden@broadcom.com>,
-        Ray Jui <rjui@broadcom.com>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
-        Zhen Lei <thunder.leizhen@huawei.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 15, 2020 at 4:41 PM Florian Fainelli <f.fainelli@gmail.com> wrote:
->
-> On 12/15/2020 5:19 AM, Bharat Gooty wrote:
-> > Since the IOMMU is disabled and DMA engine is on 32-bit bus, We can not
-> > give the complete DDR for the USB DMA.
-> > So restricting the usable DAM size to 4GB.
->
-> Thanks, can you make this a proper patch submission along with a Fixes:
-> tag that is:
->
-> Fixes: 2013a4b684b6 ("arm64: dts: broadcom: clear the warnings caused by
-> empty dma-ranges")
+Soon to be released versions of RPi4's firmware will take of care
+passing their bootloader's configuration to the OS by copying it into
+memory and creating a reserved memory node in the board's DT. In order
+to make use of this information, this series introduces a new generic
+nvmem driver that maps reserved-memory nodes into nvmem devices.
 
-Yes, that would be helpful, though I would appreciate a better description
-that explains what is actually going on: is it the device or the bus that
-has the 32-bit limitation, and if it is indeed a bug in the device, why do
-you pretend that this is a 64-bit device on a 32-bit bus instead (this
-could also use a comment in the dts file)?
+An alternative approach, less nice IMO, would be to create a
+platform-specific 'soc' driver.
 
-       Arnd
+Regards,
+Nicolas
+
+---
+
+Nicolas Saenz Julienne (6):
+  dt-bindings: nvmem: Add bindings for rmem driver
+  nvmem: Add driver to expose reserved memory as nvmem
+  ARM: dts: bcm2711: Add reserved memory template to hold firmware
+    configuration
+  ARM: dts: bcm2711: Expose boot-loader configuration
+  arm64: defconfig: Enable nvmem's rmem driver
+  ARM: multi_v7_defconfig: Enable nvmem's rmem driver
+
+ .../devicetree/bindings/nvmem/rmem.yaml       | 35 +++++++
+ arch/arm/boot/dts/bcm2711-rpi-4-b.dts         | 25 +++++
+ arch/arm/configs/multi_v7_defconfig           |  1 +
+ arch/arm64/configs/defconfig                  |  1 +
+ drivers/nvmem/Kconfig                         |  8 ++
+ drivers/nvmem/Makefile                        |  2 +
+ drivers/nvmem/rmem.c                          | 92 +++++++++++++++++++
+ 7 files changed, 164 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/nvmem/rmem.yaml
+ create mode 100644 drivers/nvmem/rmem.c
+
+-- 
+2.29.2
+
