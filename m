@@ -2,117 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 71D682DB5C7
-	for <lists+devicetree@lfdr.de>; Tue, 15 Dec 2020 22:23:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 41A442DB60D
+	for <lists+devicetree@lfdr.de>; Tue, 15 Dec 2020 22:50:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727966AbgLOVWs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Dec 2020 16:22:48 -0500
-Received: from mx2.suse.de ([195.135.220.15]:57114 "EHLO mx2.suse.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727896AbgLOVWl (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 15 Dec 2020 16:22:41 -0500
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.221.27])
-        by mx2.suse.de (Postfix) with ESMTP id 695CEAC93;
-        Tue, 15 Dec 2020 21:22:00 +0000 (UTC)
-Message-ID: <0c29dbdb8c6b042dd1c2dd6f4ed3b113aba19d97.camel@suse.de>
-Subject: Re: [PATCH 0/6] Expose RPi4'd bootloader configuration
-From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Catalin Marinas <catalin.marinas@arm.com>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        devicetree@vger.kernel.org,
-        "maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE" 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        "moderated list:BROADCOM BCM2835 ARM ARCHITECTURE" 
-        <linux-rpi-kernel@lists.infradead.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Russell King <linux@armlinux.org.uk>,
-        Will Deacon <will@kernel.org>,
-        Tim Gover <tim.gover@raspberrypi.com>,
-        Phil Elwell <phil@raspberrypi.com>
-Date:   Tue, 15 Dec 2020 22:21:59 +0100
-In-Reply-To: <CAL_JsqJwUzBL+9E0jsTzAr4hTnGbGFUkD=xdTMJiFgYfpo4aFA@mail.gmail.com>
-References: <20201215155627.2513-1-nsaenzjulienne@suse.de>
-         <20201215184407.GA44849@C02TF0J2HF1T.local>
-         <1e0ad098ca7b1c13dbc6602285b77790b9cd54a1.camel@suse.de>
-         <CAL_JsqJwUzBL+9E0jsTzAr4hTnGbGFUkD=xdTMJiFgYfpo4aFA@mail.gmail.com>
-Content-Type: multipart/signed; micalg="pgp-sha256";
-        protocol="application/pgp-signature"; boundary="=-p4v4j9FxejBEde40K8yJ"
-User-Agent: Evolution 3.38.2 
+        id S1729506AbgLOVX3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Dec 2020 16:23:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50234 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729807AbgLOVXZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Dec 2020 16:23:25 -0500
+Received: from mail-lf1-x142.google.com (mail-lf1-x142.google.com [IPv6:2a00:1450:4864:20::142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF401C0617B0
+        for <devicetree@vger.kernel.org>; Tue, 15 Dec 2020 13:22:44 -0800 (PST)
+Received: by mail-lf1-x142.google.com with SMTP id x20so23589409lfe.12
+        for <devicetree@vger.kernel.org>; Tue, 15 Dec 2020 13:22:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=4wmym+efiM8WV7TEDNr4qc8aqC81NZZf8wS7Ce5Q2xc=;
+        b=elDmDFsfIE+Yv5nqEIs1IdnNgAeI5ptd7N7u3PhrOGbfhNQ/VwdVKGqokg06zc3vlF
+         SCF2P87Xzevdt047xekEIboTGcIif8UVeUC6BG5081oLpKFPmNe6E5y9PDnHNT4EakTA
+         O0DCAKfpsotIlrjp4ufjfmvrQ/zdmSyItJVqexsM4Z5amSrEQCx8anjjWt8rHsNVOxtF
+         RQAOEV+H5/vJyIgrq3wvs8J+KkMWB7rHOXy3fAS0HcNAXEJzNepcVjfKUpbnHxvjKEyV
+         j94nQV1mj2gu1tyg8KqvZxQcqmT8sbWPs7dnLBJmxGQqH4osjNc3AEmc5bVVwYGTjnwb
+         342A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=4wmym+efiM8WV7TEDNr4qc8aqC81NZZf8wS7Ce5Q2xc=;
+        b=VMKUkFNOPTX+6Nt9b8eYY9jsli4GXVFyAFKiqpzF9D8pa5xAZ3xEP4MklNKamlTY0t
+         c9asq2Y+7dE6/KZlPvoO9z7gXe1y1JbLp25XGYfnqJBYQHu/lYAJJwzTGPUbSHPSYzrs
+         iH5l1QrwQMBPWCr45FYjtaTRLDEl2N++ojQamuvfSeMqssKwnFHM3oUFNGYKcFRgg/RY
+         z7hNdq8jv6ZYknFTGAHXRYbc3xMBButRUuCyd4CF8/DLq1q5zcJOEW+Je/nmlH+sod0Q
+         3gwSlE72EZQ87155SGyORIgcWhbleqWGYXRuEyElEdt7sTwj6FLFQvXQuiD+SlFrApGR
+         V09w==
+X-Gm-Message-State: AOAM532QU9pujD1kgMD4OhHAe0rtlWnxO3z1GZ/PSJn4Vb8il7FmWbYA
+        wqSY8jsIGvyrCWEDHh+WtP8=
+X-Google-Smtp-Source: ABdhPJwtaD7pIUb4omoW+RokzeuyeBhHtTtFDwiCnZTmNBYknWYZNolDnomBvFfRCL5PqRlUfzRhdg==
+X-Received: by 2002:a2e:b6d0:: with SMTP id m16mr11306164ljo.133.1608067363308;
+        Tue, 15 Dec 2020 13:22:43 -0800 (PST)
+Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.gmail.com with ESMTPSA id q9sm1904960ljm.113.2020.12.15.13.22.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 15 Dec 2020 13:22:42 -0800 (PST)
+From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH] arm64: dts: broadcom: bcm4908: describe USB PHY
+Date:   Tue, 15 Dec 2020 22:22:32 +0100
+Message-Id: <20201215212232.11275-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Rafał Miłecki <rafal@milecki.pl>
 
---=-p4v4j9FxejBEde40K8yJ
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+It's (nearly?) identical PHY as in the STB line and has to be
+initialized the same way.
 
-Hi Rob, thanks for having a look at this.
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+ .../dts/broadcom/bcm4908/bcm4906-netgear-r8000p.dts |  4 ++++
+ arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi   | 13 +++++++++++++
+ 2 files changed, 17 insertions(+)
 
-On Tue, 2020-12-15 at 13:54 -0600, Rob Herring wrote:
-> On Tue, Dec 15, 2020 at 1:01 PM Nicolas Saenz Julienne
-> <nsaenzjulienne@suse.de> wrote:
-> >=20
-> > Hi Catalin,
-> >=20
-> > On Tue, 2020-12-15 at 18:44 +0000, Catalin Marinas wrote:
-> > > On Tue, Dec 15, 2020 at 04:56:20PM +0100, Nicolas Saenz Julienne wrot=
-e:
-> > > > Soon to be released versions of RPi4's firmware will take of care
-> > > > passing their bootloader's configuration to the OS by copying it in=
-to
-> > > > memory and creating a reserved memory node in the board's DT. In or=
-der
-> > > > to make use of this information, this series introduces a new gener=
-ic
-> > > > nvmem driver that maps reserved-memory nodes into nvmem devices.
-> > > >=20
-> > > > An alternative approach, less nice IMO, would be to create a
-> > > > platform-specific 'soc' driver.
-> > >=20
-> > > What kind of information is this and how would the kernel use it?
-> >=20
-> > Sorry, I wasn't clear enough, the ultimate goal is to use this informat=
-ion from
-> > user-space, through nvmem's sysfs interface. The kernel itself has no u=
-se for
-> > it.
->=20
-> That still leaves the first question.
-
-It's the bootloader configuration, stuff like boot order, TFTP IP, etc... S=
-ee
-more here:
-https://www.raspberrypi.org/documentation/hardware/raspberrypi/bcm2711_boot=
-loader_config.md
-
-I'll add a new paragraph explaining all this on next version's cover letter=
-.
-
-Regards,
-Nicolas
-
-
---=-p4v4j9FxejBEde40K8yJ
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCAAdFiEErOkkGDHCg2EbPcGjlfZmHno8x/4FAl/ZKPcACgkQlfZmHno8
-x/6MKgf7BO8gBlEQPizFY2pVw0UcI+ewT5fdSAO2v/tenS5h7UoAVU+hB/BzsI6E
-0W0X9jBkKxTmL7ZYH6qE2A6E/7JJQ4VaGwxAjq8mmmqYuWq0qjZ/VeDiCOVz3pP/
-ukelSJJWGKTex3/ylirX8QoKS31kgZkLstMjSZnDk8fG4y35QhpBgnlqACcPNGim
-D91ybwJkGN75bVKRxysWsMMwkclek4ey6ILvrpVshpRyT3LJJKKoQGIeN1rHtbyi
-7bncoTJB/eRIVelZZru5CSyZnWX905nils6TS6pb1RUGzp52x0R2V/eEFd5CaoZj
-0liDYByLl+H8g9XHmhkttDu7A/zz+g==
-=S4P/
------END PGP SIGNATURE-----
-
---=-p4v4j9FxejBEde40K8yJ--
+diff --git a/arch/arm64/boot/dts/broadcom/bcm4908/bcm4906-netgear-r8000p.dts b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4906-netgear-r8000p.dts
+index ee3ed612274c..e2bb0b04b524 100644
+--- a/arch/arm64/boot/dts/broadcom/bcm4908/bcm4906-netgear-r8000p.dts
++++ b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4906-netgear-r8000p.dts
+@@ -26,6 +26,10 @@ wps {
+ 	};
+ };
+ 
++&usb_phy {
++	brcm,ioc = <1>;
++};
++
+ &nandcs {
+ 	nand-ecc-strength = <4>;
+ 	nand-ecc-step-size = <512>;
+diff --git a/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi
+index b5b772a9a51b..a96ec9b85d1f 100644
+--- a/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi
++++ b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi
+@@ -110,10 +110,21 @@ soc {
+ 		#size-cells = <1>;
+ 		ranges = <0x00 0x00 0x80000000 0x10000>;
+ 
++		usb_phy: usb-phy@c200 {
++			compatible = "brcm,brcmstb-usb-phy";
++			reg = <0xc200 0x100>;
++			reg-names = "crtl";
++			dr_mode = "host";
++			brcm,has-xhci;
++			brcm,has-eohci;
++			#phy-cells = <1>;
++		};
++
+ 		usb@c300 {
+ 			compatible = "generic-ehci";
+ 			reg = <0xc300 0x100>;
+ 			interrupts = <GIC_SPI 73 IRQ_TYPE_LEVEL_HIGH>;
++			phys = <&usb_phy PHY_TYPE_USB2>;
+ 			status = "disabled";
+ 		};
+ 
+@@ -121,6 +132,7 @@ usb@c400 {
+ 			compatible = "generic-ohci";
+ 			reg = <0xc400 0x100>;
+ 			interrupts = <GIC_SPI 72 IRQ_TYPE_LEVEL_HIGH>;
++			phys = <&usb_phy PHY_TYPE_USB2>;
+ 			status = "disabled";
+ 		};
+ 
+@@ -128,6 +140,7 @@ usb@d000 {
+ 			compatible = "generic-xhci";
+ 			reg = <0xd000 0x8c8>;
+ 			interrupts = <GIC_SPI 74 IRQ_TYPE_LEVEL_HIGH>;
++			phys = <&usb_phy PHY_TYPE_USB3>;
+ 			status = "disabled";
+ 		};
+ 	};
+-- 
+2.26.2
 
