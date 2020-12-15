@@ -2,80 +2,249 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 907842DB4AF
-	for <lists+devicetree@lfdr.de>; Tue, 15 Dec 2020 20:55:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F6532DB4C4
+	for <lists+devicetree@lfdr.de>; Tue, 15 Dec 2020 21:04:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727348AbgLOTzK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Dec 2020 14:55:10 -0500
-Received: from mail.kernel.org ([198.145.29.99]:47056 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727649AbgLOTzF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 15 Dec 2020 14:55:05 -0500
-X-Gm-Message-State: AOAM533pqk+EZNgornYxD5KyFdcLeRzJZxCMoaOFzpQJtxMaefHGWUYh
-        J1Fvo51Sok9kLvkRRwcLmbcbS9jh6lObk53pWg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1608062065;
-        bh=18sB+I2TiNDy9kX1hjtB0rhjFr3VDTG6jAxyNvY39wA=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=f+iCtE+TdnFo6Sfq2hOcFR6WJuCtZffDIeT/aHJS015z4K9qcZ5SpL0g1426j/RoB
-         aHrthS2fPlhdv1y6GhmoH3zOIeVYB/2Ak95ZAYO/NFjzIzAKd+wzD5Qm/9ZUzssv5n
-         r2njr1HQUPrJFrVSRK54DjrA/57Ls6NWpaPcj6FppGSeGdpXH2bwNLCsyvoJ/n+yUD
-         c23XdESprqdroaF8EStpY/PraY5GMJbaSIE7XeEQatlJMdB+8NxSiW3KF6aoXPnGQe
-         0+I7MIqMU49xRj41oR0soA8gCmg0X3o8N66VFV+6zq8C5PTEiPrqfTn3eWhLEwQblY
-         K+k07TcBesjSQ==
-X-Google-Smtp-Source: ABdhPJxDw7Ew29rP1Ct1BjvsIzMnGFJf5ITeYRP8RHWmBzY/KLqQ/8v1gnS5rktFU/5uW88LnC4Hm0oAsnqOEGqnnSk=
-X-Received: by 2002:a17:906:d784:: with SMTP id pj4mr27585021ejb.360.1608062063367;
- Tue, 15 Dec 2020 11:54:23 -0800 (PST)
+        id S1729325AbgLOUDJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Dec 2020 15:03:09 -0500
+Received: from mail-oi1-f194.google.com ([209.85.167.194]:40941 "EHLO
+        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726771AbgLOUDD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Dec 2020 15:03:03 -0500
+Received: by mail-oi1-f194.google.com with SMTP id p126so24703517oif.7;
+        Tue, 15 Dec 2020 12:02:47 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=OujEOb3VPBUeMwlgk0xuNnddMQc6/ggtdUHwl4fbzoU=;
+        b=uEStWa/NzFWtaZKuUcxoNC7QLIBHKBCi8PCwAOTGtcRy4XzkMNBv4JBdqPyb7p9D/n
+         GklKvp/n/btZ8HDADOtwl9xBWLu/+bW8EHFshpg2w+vjKL8iIMpQU+ZgxZQFEqoXd9Ut
+         kmFVWWh2Tcwl0ekAP4wvLT14hTuO5yiLzDpP9pzan3Qfs1xACqLLYN/5zFiCPP8yaZai
+         +zW+9j/Q26aT8rHR4fIgSKDtA+sI+Qy8H6sJtycYIYACC3OXJvRHslrjETEsg/q8G2gB
+         kSGRk0mWSfQCPaPG+Vpf736DsgjM1AHMy/IQhuv60LMJdUPLwwTOiQc4IvDV4vjMkbg+
+         L9tg==
+X-Gm-Message-State: AOAM530DLuNegHqnbQ3UDifGcoautQP86CW+wGPBHKk7COWoXtayFDIP
+        Om/6bbgoPDZB9PPFvhaSQQ==
+X-Google-Smtp-Source: ABdhPJxhj1QiepA97wmPfcweVOfy585NuR9FLsDHk/Pp9lM9L8jwR19TYcm2kuWg18DX9ZNE/xCAeA==
+X-Received: by 2002:aca:44d:: with SMTP id 74mr373918oie.4.1608062541672;
+        Tue, 15 Dec 2020 12:02:21 -0800 (PST)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id x31sm662665otb.4.2020.12.15.12.02.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 15 Dec 2020 12:02:20 -0800 (PST)
+Received: (nullmailer pid 118657 invoked by uid 1000);
+        Tue, 15 Dec 2020 20:02:19 -0000
+Date:   Tue, 15 Dec 2020 14:02:19 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     =?iso-8859-1?Q?J=F3zsef_Horv=E1th?= <info@ministro.hu>
+Cc:     'Greg Kroah-Hartman' <gregkh@linuxfoundation.org>,
+        'Jiri Slaby' <jirislaby@kernel.org>,
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5] Serial: silabs si4455 serial driver
+Message-ID: <20201215200219.GA4148374@robh.at.kernel.org>
+References: <20201215072004.GA12388@dev>
 MIME-Version: 1.0
-References: <20201215155627.2513-1-nsaenzjulienne@suse.de> <20201215184407.GA44849@C02TF0J2HF1T.local>
- <1e0ad098ca7b1c13dbc6602285b77790b9cd54a1.camel@suse.de>
-In-Reply-To: <1e0ad098ca7b1c13dbc6602285b77790b9cd54a1.camel@suse.de>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 15 Dec 2020 13:54:11 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJwUzBL+9E0jsTzAr4hTnGbGFUkD=xdTMJiFgYfpo4aFA@mail.gmail.com>
-Message-ID: <CAL_JsqJwUzBL+9E0jsTzAr4hTnGbGFUkD=xdTMJiFgYfpo4aFA@mail.gmail.com>
-Subject: Re: [PATCH 0/6] Expose RPi4'd bootloader configuration
-To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-Cc:     Catalin Marinas <catalin.marinas@arm.com>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        devicetree@vger.kernel.org,
-        "maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE" 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        "moderated list:BROADCOM BCM2835 ARM ARCHITECTURE" 
-        <linux-rpi-kernel@lists.infradead.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Russell King <linux@armlinux.org.uk>,
-        Will Deacon <will@kernel.org>,
-        Tim Gover <tim.gover@raspberrypi.com>,
-        Phil Elwell <phil@raspberrypi.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20201215072004.GA12388@dev>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 15, 2020 at 1:01 PM Nicolas Saenz Julienne
-<nsaenzjulienne@suse.de> wrote:
->
-> Hi Catalin,
->
-> On Tue, 2020-12-15 at 18:44 +0000, Catalin Marinas wrote:
-> > On Tue, Dec 15, 2020 at 04:56:20PM +0100, Nicolas Saenz Julienne wrote:
-> > > Soon to be released versions of RPi4's firmware will take of care
-> > > passing their bootloader's configuration to the OS by copying it into
-> > > memory and creating a reserved memory node in the board's DT. In order
-> > > to make use of this information, this series introduces a new generic
-> > > nvmem driver that maps reserved-memory nodes into nvmem devices.
-> > >
-> > > An alternative approach, less nice IMO, would be to create a
-> > > platform-specific 'soc' driver.
-> >
-> > What kind of information is this and how would the kernel use it?
->
-> Sorry, I wasn't clear enough, the ultimate goal is to use this information from
-> user-space, through nvmem's sysfs interface. The kernel itself has no use for
-> it.
+On Tue, Dec 15, 2020 at 07:20:07AM +0000, József Horváth wrote:
+> This is a serial port driver for
+>  Silicon Labs Si4455 Sub-GHz transciver.
+> 
+> The goal of this driver is to removing wires
+>  between central(linux) device and remote serial devices/sensors,
+>  but keeping the original user software.
+>  It represents regular serial interface for the user space.
+> 
+> Datasheet: https://www.silabs.com/documents/public/data-sheets/Si4455.pdf
+> 
+> changes v1:
+>  - fixed: drivers: serial: si4455: coding style
+>  - fixed: drivers: serial: si4455: error checking and order
+>  - fixed: drivers: serial: si4455: remove unnecessary compatibility
+>    strings from si4455_dt_ids
+>  - fixed: dt-bindings: rename sdn-gpios to shutdown-gpios
+> 
+> changes v2:
+>  - fixed: drivers: serial: si4455: coding style
+> 
+> changes v3:
+>  - fixed: drivers: serial: si4455: coding style
+>  - fixed: drivers: serial: si4455: replace device configuration procedure
+>    (SI4455_IOC_SEZC ioctl call) with request_firmware(...).
+>    The firmware name comes from dt (silabs,ez-config)
+>  - fixed: drivers: serial: si4455: replace transmit/receive channel
+>    select (SI4455_IOC_STXC/SI4455_IOC_SRXC ioctl calls)
+>    with sysfs entries (tx_channel, rx_channel).
+>    Initial values comes from dt (silabs,tx-channel and silabs,rx-channel)
+>  - fixed: drivers: serial: si4455: replace package size setting
+>    (SI4455_IOC_SSIZ ioctl call) with sysfs entry (package_size).
+>    Initial value comes from dt (silabs,package-size)
+>  - fixed: drivers: serial: si4455: replace getting last rssi
+>    (SI4455_IOC_GRSSI ioctl call) with sysfs entry (current_rssi)
+>  - fixed: drivers: serial: si4455: remove si4455_api.h
+>    and custom ioctl definitions
+>  - fixed: dt-bindings: silabs,si4455: more detailed description
+>  - added: dt-bindings: silabs,si4455: properties silabs,package-size,
+>    silabs,tx-channel, silabs,rx-channel, silabs,ez-config
+> 
+> changes v4:
+>  - fixed: dt-bindings: silabs,si4455: $id
+>    from http://devicetree.org/schemas/serial/silabs,si4455.yaml
+>    to http://devicetree.org/schemas/staging/serial/silabs,si4455.yaml
+> 
+> changes v5:
+>  - fixed: drivers: serial: si4455: coding style
+>  - fixed: drivers: serial: si4455: remove struct si4455_one,
+>    members moved to struct si4455_port
+>  - fixed: drivers: serial: si4455: fix line endings in dev_err and
+>    dev_dbg messages
+>  - fixed: drivers: serial: si4455: remove unnecessary else { ... }
+>  - fixed: drivers: serial: si4455: refactor si4455_do_work(...),
+>    xmit circular buffer handling and start tx moved to
+>    si4455_start_tx_xmit(...)
+>  - fixed: drivers: serial: si4455: refactor si4455_configure
+>  - fixed: drivers: serial: si4455: refactor interrupt handling,
+>    remove unnecessary wrapper
+>  - fixed: drivers: serial: si4455: modem line(si4455_get_mctrl)
+>    and tx buffer status(si4455_tx_empty) conditions and signaling
+>  - fixed: drivers: serial: si4455: remove unsafe int to pointer conversion
+>  - fixed: dt-bindings: silabs,si4455: $id
+>    from http://devicetree.org/schemas/staging/serial/silabs,si4455.yaml
+>    to http://devicetree.org/schemas/serial/silabs,si4455.yaml
+>  - fixed: dt-bindings: silabs,si4455: serial.yaml reference added
 
-That still leaves the first question.
+The revision history should be after the '---' so it is not in the git 
+history when applied.
 
-Rob
+> Signed-off-by: József Horváth <info@ministro.hu>
+> ---
+>  .../bindings/serial/silabs,si4455.yaml        |   98 ++
+
+Please make the binding a separate patch.
+
+>  MAINTAINERS                                   |    6 +
+>  drivers/tty/serial/Kconfig                    |    8 +
+>  drivers/tty/serial/Makefile                   |    1 +
+>  drivers/tty/serial/si4455.c                   | 1372 +++++++++++++++++
+>  5 files changed, 1485 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/serial/silabs,si4455.yaml
+>  create mode 100644 drivers/tty/serial/si4455.c
+> 
+> diff --git a/Documentation/devicetree/bindings/serial/silabs,si4455.yaml b/Documentation/devicetree/bindings/serial/silabs,si4455.yaml
+> new file mode 100644
+> index 000000000000..ddff67e6a667
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/serial/silabs,si4455.yaml
+> @@ -0,0 +1,98 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/serial/silabs,si4455.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +
+> +title: Silicon Labs Si4455 device tree bindings
+> +
+> +maintainers:
+> +  - József Horváth <info@ministro.hu>
+> +
+> +description:
+> +  This document is for describing the required device tree parameters for si4455 serial driver.
+> +  The si4455 driver tries to represent the Silicon Labs Si4455 sub-GHz transceiver device
+> +  like a serial port. The required parameters for proper operation are described below.
+> +  https://www.silabs.com/documents/public/data-sheets/Si4455.pdf
+> +
+> +allOf:
+> +  - $ref: "serial.yaml#"
+> +
+> +properties:
+> +  compatible:
+> +    const: silabs,si4455
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  spi-max-frequency:
+> +    description: maximum clock frequency on SPI port
+> +    maximum: 500000
+> +
+> +  shutdown-gpios:
+> +    description: gpio pin for SDN
+> +    maxItems: 1
+> +
+> +  silabs,package-size:
+> +    description:
+> +      Radio payload length, variable packet length is not supported by driver.
+> +      This value should equal with EZConfig payload length.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    maximum: 64
+> +    minimum: 1
+> +
+> +  silabs,tx-channel:
+> +    description:
+> +      Radio transmit channel selection.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    maximum: 255
+> +    minimum: 0
+> +
+> +  silabs,rx-channel:
+> +    description:
+> +      Radio receive channel selection.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    maximum: 255
+> +    minimum: 0
+> +
+> +  silabs,ez-config:
+> +    description:
+> +      Radio configuration data file name.
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +    items:
+> +      pattern: ^[0-9a-z\._\-]{1,255}$
+
+We use 'firmware-name' property for this purpose. 
+
+Looks good otherwise.
+
+> +
+> +required:
+> +  - reg
+> +  - interrupts
+> +  - spi-max-frequency
+> +  - shutdown-gpios
+> +  - silabs,package-size
+> +  - silabs,tx-channel
+> +  - silabs,rx-channel
+> +  - silabs,ez-config
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    spi {
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +      si4455_0: serial@0 {
+> +        compatible = "silabs,si4455";
+> +        reg = <0>;
+> +        interrupt-parent = <&gpio>;
+> +        interrupts = <7 2>;
+> +        shutdown-gpios = <&gpio 26 1>;
+> +        spi-max-frequency = <300000>;
+> +        silabs,package-size = <30>;
+> +        silabs,tx-channel = <1>;
+> +        silabs,rx-channel = <2>;
+> +        silabs,ez-config = "si4455_spi0_0.ez.bin";
+> +      };
+> +    };
+> +...
