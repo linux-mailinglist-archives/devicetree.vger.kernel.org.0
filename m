@@ -2,95 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F05F2DBD92
-	for <lists+devicetree@lfdr.de>; Wed, 16 Dec 2020 10:33:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E8B52DBDC0
+	for <lists+devicetree@lfdr.de>; Wed, 16 Dec 2020 10:37:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725942AbgLPJbW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Dec 2020 04:31:22 -0500
-Received: from mailgw02.mediatek.com ([210.61.82.184]:44177 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1725919AbgLPJbV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Dec 2020 04:31:21 -0500
-X-UUID: 9d20fbdda0e0409c8fae990470fd05f2-20201216
-X-UUID: 9d20fbdda0e0409c8fae990470fd05f2-20201216
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
-        (envelope-from <chunfeng.yun@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 493327425; Wed, 16 Dec 2020 17:30:38 +0800
-Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
- mtkmbs06n1.mediatek.inc (172.21.101.129) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Wed, 16 Dec 2020 17:30:37 +0800
-Received: from mtkslt301.mediatek.inc (10.21.14.114) by MTKCAS06.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 16 Dec 2020 17:30:35 +0800
-From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
-To:     Rob Herring <robh+dt@kernel.org>
-CC:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Stanley Chu <stanley.chu@mediatek.com>,
-        Min Guo <min.guo@mediatek.com>,
-        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <netdev@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>, <linux-usb@vger.kernel.org>,
-        Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Subject: [PATCH v4 11/11] MAINTAINERS: update MediaTek PHY/USB entry
-Date:   Wed, 16 Dec 2020 17:30:12 +0800
-Message-ID: <20201216093012.24406-11-chunfeng.yun@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20201216093012.24406-1-chunfeng.yun@mediatek.com>
-References: <20201216093012.24406-1-chunfeng.yun@mediatek.com>
+        id S1725960AbgLPJhB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Dec 2020 04:37:01 -0500
+Received: from mail.kernel.org ([198.145.29.99]:51494 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725877AbgLPJhB (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 16 Dec 2020 04:37:01 -0500
+Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 68BC923102;
+        Wed, 16 Dec 2020 09:36:20 +0000 (UTC)
+Received: from disco-boy.misterjones.org ([51.254.78.96] helo=www.loen.fr)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        (Exim 4.94)
+        (envelope-from <maz@kernel.org>)
+        id 1kpTEI-001jGE-38; Wed, 16 Dec 2020 09:36:18 +0000
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Wed, 16 Dec 2020 09:36:17 +0000
+From:   Marc Zyngier <maz@kernel.org>
+To:     Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Punit Agrawal <punit1.agrawal@toshiba.co.jp>,
+        yuji2.ishikawa@toshiba.co.jp,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 2/4] gpio: visconti: Add Toshiba Visconti GPIO support
+In-Reply-To: <20201216091148.vmriqt3vsg34pqhj@toshiba.co.jp>
+References: <20201211094138.2863677-1-nobuhiro1.iwamatsu@toshiba.co.jp>
+ <20201211094138.2863677-3-nobuhiro1.iwamatsu@toshiba.co.jp>
+ <CACRpkdZ-umK4troerSA6S2rvyU5XV+KsFdxuWE5Sy0PCgdfT6A@mail.gmail.com>
+ <20201216091148.vmriqt3vsg34pqhj@toshiba.co.jp>
+User-Agent: Roundcube Webmail/1.4.9
+Message-ID: <1ceac365ff6127c96006ed4570f87b47@kernel.org>
+X-Sender: maz@kernel.org
+X-SA-Exim-Connect-IP: 51.254.78.96
+X-SA-Exim-Rcpt-To: nobuhiro1.iwamatsu@toshiba.co.jp, linus.walleij@linaro.org, robh+dt@kernel.org, punit1.agrawal@toshiba.co.jp, yuji2.ishikawa@toshiba.co.jp, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Due to the phy/usb bindings are converted into YAML schema and
-also renamed, update entries.
-Meanwhile add drivers/usb/host/mtk-xhci* files.
+On 2020-12-16 09:11, Nobuhiro Iwamatsu wrote:
 
-Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
----
-v3~v4: no changes
+[...]
 
-v2: new patch
----
- MAINTAINERS | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+>> > +       for (i = 0; i < num_irq; i++) {
+>> > +               desc = irq_to_desc(priv->irq[i]);
+>> > +               desc->status_use_accessors |= IRQ_NOAUTOEN;
+>> > +               if (devm_request_irq(dev, priv->irq[i],
+>> > +                                    visconti_gpio_irq_handler, 0, name, priv)) {
+>> > +                       dev_err(dev, "failed to request IRQ[%d]\n", i);
+>> > +                       return -ENOENT;
+>> > +               }
+>> > +       }
+>> 
+>> This should not be needed either when using hiearchical IRQs,
+>> also the irqchip maintainers will beat us up for poking around in the
+>> descs like this.
+> 
+> I understand that the processing equivalent to request_irq() is 
+> processed
+> by the irqchip frame work (or GIC driver). Is this correct?
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index e73636b75f29..360c6131b866 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2084,7 +2084,7 @@ M:	Chunfeng Yun <chunfeng.yun@mediatek.com>
- L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
- L:	linux-mediatek@lists.infradead.org (moderated for non-subscribers)
- S:	Maintained
--F:	Documentation/devicetree/bindings/phy/phy-mtk-*
-+F:	Documentation/devicetree/bindings/phy/mediatek,*
- F:	drivers/phy/mediatek/
- 
- ARM/Microchip (AT91) SoC support
-@@ -11139,6 +11139,8 @@ L:	linux-usb@vger.kernel.org
- L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
- L:	linux-mediatek@lists.infradead.org (moderated for non-subscribers)
- S:	Maintained
-+F:	Documentation/devicetree/bindings/usb/mediatek,*
-+F:	drivers/usb/host/xhci-mtk*
- F:	drivers/usb/mtu3/
- 
- MEGACHIPS STDPXXXX-GE-B850V3-FW LVDS/DP++ BRIDGES
+request_irq() is reserved to endpoint drivers (the driver for the device
+driving the IRQ line). If this is indeed a hierarchical irqchip, the
+line allocation will be driven from the GPIO framework, and 
+request_irq()
+will perform the activation. There isn't anything that this driver 
+should
+do directly other than configuring its own state and passing the request
+along to the parent controller.
+
+And yes, mucking with the irq descriptor will get you in massive 
+trouble,
+never do that.
+
+Thanks,
+
+         M.
 -- 
-2.18.0
-
+Jazz is not dead. It just smells funny...
