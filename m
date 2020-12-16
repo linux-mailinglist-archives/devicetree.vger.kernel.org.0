@@ -2,133 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 928AB2DC529
-	for <lists+devicetree@lfdr.de>; Wed, 16 Dec 2020 18:18:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 334692DC547
+	for <lists+devicetree@lfdr.de>; Wed, 16 Dec 2020 18:26:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726745AbgLPRRz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Dec 2020 12:17:55 -0500
-Received: from perceval.ideasonboard.com ([213.167.242.64]:42868 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727071AbgLPRRz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Dec 2020 12:17:55 -0500
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 683482CF;
-        Wed, 16 Dec 2020 18:17:12 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1608139032;
-        bh=W9YanIGwZONXqwRTj+UtztRqLzatG/3UateoWE4Lj5M=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=RSrORiqo52IGgnPFTqEig21c+wCtHJnVXiTwtpYrt3OM/Uwwlatl15cz1tc7vbi6b
-         EMyyhFEZrB5vhGGqForlJjKDekOqDHKTys2AfV+2f2MOAWd94LDU8aPuhkawxoF5Ou
-         fwsDc4An9LjNQ202AyBAL4oxAeVmjcWlqbqkFduM=
-Date:   Wed, 16 Dec 2020 19:17:05 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Jacopo Mondi <jacopo+renesas@jmondi.org>
-Cc:     kieran.bingham+renesas@ideasonboard.com,
-        laurent.pinchart+renesas@ideasonboard.com,
-        niklas.soderlund+renesas@ragnatech.se, geert@linux-m68k.org,
-        robh@kernel.org, devicetree@vger.kernel.org,
-        linux-media@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Hyun Kwon <hyunk@xilinx.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        sergei.shtylyov@gmail.com
-Subject: Re: [PATCH v6 2/5] dt-bindings: media: max9286: Document
- 'maxim,reverse-channel-microvolt'
-Message-ID: <X9pBEe+da/8Y34Qv@pendragon.ideasonboard.com>
-References: <20201215170957.92761-1-jacopo+renesas@jmondi.org>
- <20201215170957.92761-3-jacopo+renesas@jmondi.org>
- <X9o+XT3z1sVlh73x@pendragon.ideasonboard.com>
+        id S1726988AbgLPR0c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Dec 2020 12:26:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39396 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726837AbgLPR0b (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Dec 2020 12:26:31 -0500
+Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com [IPv6:2607:f8b0:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8F8BC061794;
+        Wed, 16 Dec 2020 09:25:51 -0800 (PST)
+Received: by mail-pf1-x435.google.com with SMTP id m6so7287785pfm.6;
+        Wed, 16 Dec 2020 09:25:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:autocrypt:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=8pBBpGCrWJiaWjE3XLL6nqRK2b1pyGH5vU9yrJT3Xz4=;
+        b=oDc8K4JzHHVW6ZlZ9oTzL1LcJT4OkV858GTApazxYXwmZChU2X0AQ52+Bd791m7+1h
+         tpSca/0Ih05RUchgsVO2krKIynuUqMS/b2UM3EKFdL3peld4YjPpKcx/6/XfNy42B7yx
+         m0DoSEh9qZReOaZ5bh8NZBB7PuLhZJu6+nN5P0nuQe0rtnS7I/2XgYPHjY7JYFkgHQ4b
+         i9f7+EyofuqvUI/os9d2/HRCo15yk9FwQDmKOo7n1DOuG/YkAzwYZqbV8AmBapK+djiT
+         RyhbfoFEakH9Qa6h9ZJDdQJym5guFxZoI4AKcOk7ikSlV/v/BCsrdNwxC6QT6TVP5J4+
+         JhDA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:autocrypt
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=8pBBpGCrWJiaWjE3XLL6nqRK2b1pyGH5vU9yrJT3Xz4=;
+        b=W0alqQT2nmEhhO/s19X4RbCXgxahXbQwQjWOMGvH8QN0SzGCbQVNdTa3A75OAxvO+X
+         DjJM5BCsHp/O09fiMlePLwQnmM+Q5Ao6ba6zd8rT7Yfdx4kzCx8UNUSidp7XQjFw48Ww
+         qO7AYzEoq5Ce6lW/RqJ3qYifwEq6n05j9jDuV3ZcFH3m9IjHUTpjOkcc0jlJ9qFw5IuC
+         zb1+PoOGdu9zjHXT4es2lDLZIzdlZwnSbsVE5nd4EoGLl056CG0BguDrdhvfbXUX5xLU
+         RbWlNkIGZd+1bIEIuzfrKcm6VetXYHyNN8RtOJ6lsVCvDiSQSMegE7nkAziGUqhGhLtL
+         2+Ww==
+X-Gm-Message-State: AOAM532kjg+Zjcof+PbxAuxaVPG6HpaZC4UjFKLS4so5UAaJ8vr1i2lc
+        Vq1gtPseL6zYts6YvZtfegE=
+X-Google-Smtp-Source: ABdhPJwAUebQekBfuPpP/LUc3OdzdXQLpVnoLJwQU5s6NN0p2ZBu8XA34d+1PoMBg07Nch1VmDb9gg==
+X-Received: by 2002:a63:924f:: with SMTP id s15mr3448064pgn.360.1608139550996;
+        Wed, 16 Dec 2020 09:25:50 -0800 (PST)
+Received: from [10.67.48.230] ([192.19.223.252])
+        by smtp.googlemail.com with ESMTPSA id s24sm2989356pfh.47.2020.12.16.09.25.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 16 Dec 2020 09:25:49 -0800 (PST)
+Subject: Re: [PATCH 1/2] phy: phy-brcm-usb: improve getting OF matching data
+To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>
+Cc:     Al Cooper <alcooperx@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+References: <20201216143305.12179-1-zajec5@gmail.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Autocrypt: addr=f.fainelli@gmail.com; prefer-encrypt=mutual; keydata=
+ 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
+ M5kY0ACeNhCZJvZ5g4C2Lc9fcTHu8jxmEkI=
+Message-ID: <6785d046-7da4-d3bb-14d6-2b18f8e1c870@gmail.com>
+Date:   Wed, 16 Dec 2020 09:25:48 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
+In-Reply-To: <20201216143305.12179-1-zajec5@gmail.com>
 Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <X9o+XT3z1sVlh73x@pendragon.ideasonboard.com>
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 16, 2020 at 07:05:34PM +0200, Laurent Pinchart wrote:
-> Hi Jacopo,
+On 12/16/20 6:33 AM, Rafał Miłecki wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
 > 
-> Thank you for the patch.
+> 1. Use of_device_get_match_data() helper to simplify the code
+> 2. Check for NULL as a good practice
 > 
-> On Tue, Dec 15, 2020 at 06:09:54PM +0100, Jacopo Mondi wrote:
-> > Document the 'reverse-channel-microvolt' vendor property in the
-> > bindings document of the max9286 driver.
-> > 
-> > The newly introduced property allows to specifying the initial
-> > configuration of the GMSL reverse control channel to accommodate
-> > remote serializers pre-programmed with the high threshold power
-> > supply noise immunity enabled.
-> > 
-> > Reviewed-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
-> > Signed-off-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
-> 
-> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> 
-> > ---
-> > v5->v6:
-> > - Use standard unit suffix 'microvolt' for the custom property
-> > - Drop '$ref' as according to 'example-schema.yaml':
-> >   "Vendor specific properties having a standard unit suffix don't need a type."
-> > ---
-> >  .../bindings/media/i2c/maxim,max9286.yaml     | 23 +++++++++++++++++++
-> >  1 file changed, 23 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/media/i2c/maxim,max9286.yaml b/Documentation/devicetree/bindings/media/i2c/maxim,max9286.yaml
-> > index 9ea827092fdd..b22ba3e0db4a 100644
-> > --- a/Documentation/devicetree/bindings/media/i2c/maxim,max9286.yaml
-> > +++ b/Documentation/devicetree/bindings/media/i2c/maxim,max9286.yaml
-> > @@ -51,6 +51,26 @@ properties:
-> >    '#gpio-cells':
-> >      const: 2
-> > 
-> > +  maxim,reverse-channel-microvolt:
-> > +    minimum: 30000
-> > +    maximum: 200000
-> > +    default: 170000
-> > +    description: |
-> > +      Initial amplitude of the reverse control channel, in micro volts.
-> > +
-> > +      The initial amplitude shall be adjusted to a value compatible with the
-> > +      configuration of the connected remote serializer.
-> > +
-> > +      Some camera modules (for example RDACM20) include an on-board MCU that
-> > +      pre-programs the embedded serializer with power supply noise immunity
-> > +      (high-threshold) enabled. A typical value of the deserializer's reverse
-> > +      channel amplitude to communicate with pre-programmed serializers is
-> > +      170000 micro volts.
-> > +
-> > +      A typical value for the reverse channel amplitude to communicate with
-> > +      a remote serializer whose high-threshold noise immunity is not enabled
-> > +      is 100000 micro volts
-> > +
-> >    ports:
-> >      type: object
-> >      description: |
-> > @@ -221,6 +241,7 @@ required:
-> >    - ports
-> >    - i2c-mux
-> >    - gpio-controller
-> > +  - maxim,reverse-channel-microvolt
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 
-One comment though: You specify a default value above, which isn't very
-useful when the property is required. Should we either drop the default
-value, or make the property optional ?
-
-> > 
-> >  additionalProperties: false
-> > 
-> > @@ -243,6 +264,8 @@ examples:
-> >          gpio-controller;
-> >          #gpio-cells = <2>;
-> > 
-> > +        maxim,reverse-channel-microvolt = <170000>;
-> > +
-> >          ports {
-> >            #address-cells = <1>;
-> >            #size-cells = <0>;
-
+Acked-by: Florian Fainelli <f.fainelli@gmail.com>
 -- 
-Regards,
-
-Laurent Pinchart
+Florian
