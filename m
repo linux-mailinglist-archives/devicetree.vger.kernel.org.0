@@ -2,126 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E72042DC603
-	for <lists+devicetree@lfdr.de>; Wed, 16 Dec 2020 19:16:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 85C352DC6A0
+	for <lists+devicetree@lfdr.de>; Wed, 16 Dec 2020 19:36:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729860AbgLPSQD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Dec 2020 13:16:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47072 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729855AbgLPSQD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Dec 2020 13:16:03 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11ACDC061794;
-        Wed, 16 Dec 2020 10:15:23 -0800 (PST)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id C04FC2CF;
-        Wed, 16 Dec 2020 19:15:20 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1608142521;
-        bh=Zod74+lU0JtBwqEtrDwHbiwjFkzk6Uqdpwthggmdb3M=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=rZQwj8j282864o40wilarrhFB/Nlh+GMEJBcz8GWkgcrxVebbb3y3iK2PNvfyzA5I
-         Z+oGfOPvsUl3ESP2nS4Dd/yocRzK7CR3C2VEMt/KyzPYCilFn7TmrXqXbtcajN149u
-         HyMvCY1WG/R4bEBf9AfcWZ6FYxDW5rTd1NNgzXGY=
-Date:   Wed, 16 Dec 2020 20:15:14 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
-Cc:     Geert Uytterhoeven <geert@glider.be>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH 3/3] arm64: dts: renesas: r8a779a0: Add VSPX support
-Message-ID: <X9pOshuRzdT6cs1Z@pendragon.ideasonboard.com>
-References: <20201216170018.861710-1-kieran.bingham+renesas@ideasonboard.com>
- <20201216170018.861710-4-kieran.bingham+renesas@ideasonboard.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20201216170018.861710-4-kieran.bingham+renesas@ideasonboard.com>
+        id S1731320AbgLPSgm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Dec 2020 13:36:42 -0500
+Received: from mga03.intel.com ([134.134.136.65]:17036 "EHLO mga03.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727974AbgLPSgm (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 16 Dec 2020 13:36:42 -0500
+IronPort-SDR: g9FxWxn4Tc58+m7icyZf2y8aSfH07R6VpLINvwKj31F/BZf4ac0KSjJ/M5dpXaCCzvausWBkhn
+ xpxKPWvrQJrg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9837"; a="175219372"
+X-IronPort-AV: E=Sophos;i="5.78,425,1599548400"; 
+   d="scan'208";a="175219372"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Dec 2020 10:36:00 -0800
+IronPort-SDR: fP4Kwp9ruu0kC8+ef7Jzj0tOcZ1d7/FMTDBNVmuZyfWGsYOhBGzdOKVCX7ppLjyYyareC1ey6Q
+ 8cmCcTtb5xLA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.78,425,1599548400"; 
+   d="scan'208";a="488644728"
+Received: from ubuntu18.png.intel.com ([10.88.229.38])
+  by orsmga004.jf.intel.com with ESMTP; 16 Dec 2020 10:35:57 -0800
+From:   vijayakannan.ayyathurai@intel.com
+To:     wim@linux-watchdog.org, linux@roeck-us.net, robh+dt@kernel.org
+Cc:     linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        andriy.shevchenko@linux.intel.com, mgross@linux.intel.com,
+        wan.ahmad.zainie.wan.mohamad@intel.com,
+        lakshmi.bai.raja.subramanian@intel.com, chen.yong.seow@intel.com,
+        vijayakannan.ayyathurai@intel.com
+Subject: [PATCH v4 0/2] Add drivers for Intel Keem Bay SoC watchdog
+Date:   Thu, 17 Dec 2020 02:32:46 +0800
+Message-Id: <cover.1608141131.git.vijayakannan.ayyathurai@intel.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Kieran,
+From: Vijayakannan Ayyathurai <vijayakannan.ayyathurai@intel.com>
 
-Thank you for the patch.
+Hi,
 
-On Wed, Dec 16, 2020 at 05:00:18PM +0000, Kieran Bingham wrote:
-> Provide VSP-X support on the V3U.
-> 
-> Signed-off-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
-> ---
-> The FCPvX is not yet connected here, as the clock domains are unclear
-> for that.
-> 
-> The register mapping space is kept at 0x8000 for now as this is a bit of
-> an unknown entity (with the IIF) so playing it safe and keeping the same
-> value as the BSP (0x8000) - however with no CLU on these nodes, I expect
-> the register space to be suitable to be mapped at length 0x4000.
+This patch set adds the watchdog timer driver support for Intel Keem Bay Soc.
 
-I think so too.
+Patch 2 holds the driver and Patch 1 holds the Device Tree
+binding documentation.
 
->  arch/arm64/boot/dts/renesas/r8a779a0.dtsi | 36 +++++++++++++++++++++++
->  1 file changed, 36 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/renesas/r8a779a0.dtsi b/arch/arm64/boot/dts/renesas/r8a779a0.dtsi
-> index a23b4ce2e5f4..4fb28df5cd6b 100644
-> --- a/arch/arm64/boot/dts/renesas/r8a779a0.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/r8a779a0.dtsi
-> @@ -155,6 +155,42 @@ vspd1: vsp@fea28000 {
->  			renesas,fcp = <&fcpvd1>;
->  		};
->  
-> +		vspx0: vsp@fedd0000 {
-> +			compatible = "renesas,vsp2";
-> +			reg = <0 0xfedd0000 0 0x8000>;
-> +			interrupts = <GIC_SPI 600 IRQ_TYPE_LEVEL_HIGH>;
+This driver was tested on the Keem Bay evaluation module board.
 
-I'm not entirely sure about the interrupt number, as there are other
-VSP-related interrupts listed in the datasheet that don't seem to
-correspond to any IP core. I suppose there will be a documentation
-update at some point. For now I have no reason to believe the interrupts
-here are incorrect.
+Thank you,
+Vijay
 
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Changes since v3:
+ - Fix pretimeout clear, when user attempt in the below sequence.
+	- set pretimeout
+	- clear pretimeout
+	- set timeout to some other value
+ - Cleanup the ping variable usage in the driver.
+ - Add keembay_wdt_set_timeout_reg function.
+ - Cleanup the keembay_wdt_th_isr function.
+ - Rebase the driver with 5.10-rc7 tag.
 
-> +			clocks = <&cpg CPG_MOD 1028>;
-> +			power-domains = <&sysc R8A779A0_PD_ALWAYS_ON>;
-> +			resets = <&cpg 1028>;
-> +		};
-> +
-> +		vspx1: vsp@fedd8000 {
-> +			compatible = "renesas,vsp2";
-> +			reg = <0 0xfedd8000 0 0x8000>;
-> +			interrupts = <GIC_SPI 601 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&cpg CPG_MOD 1029>;
-> +			power-domains = <&sysc R8A779A0_PD_ALWAYS_ON>;
-> +			resets = <&cpg 1029>;
-> +		};
-> +
-> +		vspx2: vsp@fede0000 {
-> +			compatible = "renesas,vsp2";
-> +			reg = <0 0xfede0000 0 0x8000>;
-> +			interrupts = <GIC_SPI 602 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&cpg CPG_MOD 1030>;
-> +			power-domains = <&sysc R8A779A0_PD_ALWAYS_ON>;
-> +			resets = <&cpg 1030>;
-> +		};
-> +
-> +		vspx3: vsp@fede8000 {
-> +			compatible = "renesas,vsp2";
-> +			reg = <0 0xfede8000 0 0x8000>;
-> +			interrupts = <GIC_SPI 603 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&cpg CPG_MOD 1031>;
-> +			power-domains = <&sysc R8A779A0_PD_ALWAYS_ON>;
-> +			resets = <&cpg 1031>;
-> +		};
-> +
->  		prr: chipid@fff00044 {
->  			compatible = "renesas,prr";
->  			reg = <0 0xfff00044 0 4>;
+Changes since v2:
+ - Remove reduntant write to TIM_WATCHDOG as per Guenter.
+ - Rebase the driver with 5.10-rc5 tag.
 
+Changes since v1:
+ - Fix indentation error in the dt-bindings file.
+ - Use true/false in the second arg of keembay_wdt_set_timeout_reg().
+ - Fix the watchdog start sequence.
+ - Avoid reduntant timeout register setting.
+ - Remove min usage to find actual time at keembay_wdt_set_timeout().
+ - Remove timeout configuration boundary check at
+   keembay_wdt_set_pretimeout().
+ - Use devm_watchdog_register_device() for wdt registration, which
+   eventually supports driver unload functionality as well.
+
+Vijayakannan Ayyathurai (2):
+  dt-bindings: watchdog: Add bindings for Intel Keem Bay SoC
+  watchdog: Add watchdog driver for Intel Keembay Soc
+
+ .../bindings/watchdog/intel,keembay-wdt.yaml  |  57 ++++
+ drivers/watchdog/Kconfig                      |  13 +
+ drivers/watchdog/Makefile                     |   1 +
+ drivers/watchdog/keembay_wdt.c                | 286 ++++++++++++++++++
+ 4 files changed, 357 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/watchdog/intel,keembay-wdt.yaml
+ create mode 100644 drivers/watchdog/keembay_wdt.c
+
+
+base-commit: 0477e92881850d44910a7e94fc2c46f96faa131f
+prerequisite-patch-id: 822987dcf4c969ef6ac70359b088af06ba39042b
+prerequisite-patch-id: 0a348762b660d0d817b8e70cc71647e83173c78c
+prerequisite-patch-id: 54c661a006c7362053cb7602448d6c77419d5cf9
+prerequisite-patch-id: d140d8534fb828778e0652fe5fcf6282e027f985
 -- 
-Regards,
+2.17.1
 
-Laurent Pinchart
