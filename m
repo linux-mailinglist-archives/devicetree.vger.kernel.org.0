@@ -2,114 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D4B52DB897
-	for <lists+devicetree@lfdr.de>; Wed, 16 Dec 2020 02:43:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E9A902DB89E
+	for <lists+devicetree@lfdr.de>; Wed, 16 Dec 2020 02:47:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725208AbgLPBnl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Dec 2020 20:43:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35132 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725274AbgLPBnl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Dec 2020 20:43:41 -0500
-Received: from mail-pf1-x442.google.com (mail-pf1-x442.google.com [IPv6:2607:f8b0:4864:20::442])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3314CC061793
-        for <devicetree@vger.kernel.org>; Tue, 15 Dec 2020 17:43:01 -0800 (PST)
-Received: by mail-pf1-x442.google.com with SMTP id f9so15581005pfc.11
-        for <devicetree@vger.kernel.org>; Tue, 15 Dec 2020 17:43:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=dabbelt-com.20150623.gappssmtp.com; s=20150623;
-        h=date:subject:in-reply-to:cc:from:to:message-id:mime-version
-         :content-transfer-encoding;
-        bh=DGe/kRe3MPa9vd1aCEWGdtZxWk4QoHI77u2B0aTPVnk=;
-        b=QuNnQeUg3VuTh7gBLVXdIVgxTypFlOGy6oePrOx2wgkTrttR5ak2rIv7STrsRFoatP
-         fjv1prlnss/4pkuopcEJa1cNeW1zThsNa4mGSOMHXhBDRnZQwEr/+7Z5BbYGhxMkl1Qp
-         7NEMjOpUCkzq2liC0dhW38IdMnm+WmqmUiM0WVEU10mnaF6MYa3Pm3xhDMSfyK3XUgql
-         XnTeaoxOZo3m2wf518FOBMf03pVB/ns4Z1qGHCUE+oyjlUNhogEUlthqZ9QKuoT6ssCx
-         HY1NaeRuF8kGFlsZRtVDrPPqbMZHgm+Rh+UbiIe+7zDwGsHMSx05rWiz+uM6g4TRe4St
-         4v8A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:subject:in-reply-to:cc:from:to:message-id
-         :mime-version:content-transfer-encoding;
-        bh=DGe/kRe3MPa9vd1aCEWGdtZxWk4QoHI77u2B0aTPVnk=;
-        b=InFWbtxxwRslHF+JKqw54AhcuSOHkvO+D8NGMHH0pvTfGWC4edZbbg3z8k5YUc0oW6
-         RrtywBnWZ5aQz0QUWsid3WPP6/LdEpROvZ1vsJgkrDN484jYLyHQ6+Asi3TE6tWnVAQA
-         g3Ms4LPRyVh+xnCq7eHFAcoNtXlrhsSfaf1etBzkdUivi70a7U4feOGstnvP5zSIH5yb
-         1Ill0kOz7u3//Xg3jfb9+lAJ1n37LRvH1kcNmL9J48MroW7vw2gPwUP/EvcOuWS3gKYq
-         6sOou06E6/k2ou71WGhJfo+PGNUUKXddmggJQ10N86UZrPieOYNR3qiGX0FASQtxAbzW
-         WwUQ==
-X-Gm-Message-State: AOAM532JrG4xQlSIgSK8T/DOEGzrb6uLRFPrUe5D6iPTph20tRNR+/gi
-        nNCAmWvEtUoFiT8Zv2yaMj4HoQ==
-X-Google-Smtp-Source: ABdhPJyD+Cum/1oT2A0wUWaIVXeLrYJ3kkq1S47NQ3+eDX2q876+qo+YidZox/GyTlXMcM5A3tbvNg==
-X-Received: by 2002:a63:4950:: with SMTP id y16mr31128740pgk.415.1608082980594;
-        Tue, 15 Dec 2020 17:43:00 -0800 (PST)
-Received: from localhost (76-210-143-223.lightspeed.sntcca.sbcglobal.net. [76.210.143.223])
-        by smtp.gmail.com with ESMTPSA id o11sm154817pjs.36.2020.12.15.17.42.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Dec 2020 17:42:59 -0800 (PST)
-Date:   Tue, 15 Dec 2020 17:42:59 -0800 (PST)
-X-Google-Original-Date: Tue, 15 Dec 2020 17:42:58 PST (-0800)
-Subject:     Re: [PATCH v8 00/22] RISC-V Kendryte K210 support improvements
-In-Reply-To: <f47e089de657073d09ee5407af690e8f97bc6e95.camel@wdc.com>
-CC:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-gpio@vger.kernel.org, sboyd@kernel.org,
-        linus.walleij@linaro.org, p.zabel@pengutronix.de,
-        robh+dt@kernel.org, linux-clk@vger.kernel.org, seanga2@gmail.com
-From:   Palmer Dabbelt <palmer@dabbelt.com>
-To:     Damien Le Moal <Damien.LeMoal@wdc.com>
-Message-ID: <mhng-bdf9260d-0bbf-42e5-b32e-c75b870227b9@palmerdabbelt-glaptop>
-Mime-Version: 1.0 (MHng)
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+        id S1725780AbgLPBq5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Dec 2020 20:46:57 -0500
+Received: from mail.kernel.org ([198.145.29.99]:33858 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725562AbgLPBq5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 15 Dec 2020 20:46:57 -0500
+Date:   Tue, 15 Dec 2020 17:46:15 -0800
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1608083176;
+        bh=6oGqf8YNdR6n8cCHeDIbFqB5b7wcwBQilmXNT/TPfm0=;
+        h=From:To:Cc:Subject:In-Reply-To:References:From;
+        b=LIhhtalnxo4ouESvIS/XcznbvR0DgTNfyX0UZ4g63vzcW412BFx9sWnrK18A2Yk1l
+         oAQifUQgax3zdXNIZi6A9e4y1YFd1clgRvPyP4T7l/4PmpusQDR11PiefxqFPTrD1X
+         G1MSwmZiSfAXzbanFw+O1EIHkB/OKDqD1mdtSvxTkgsVUu8KtBY3ErJuYSpybwX5B5
+         s8pMlQR6ls/kSnkTE1gD4ABvY5DjlFRivEgNV0fO9xihk6RpuK07pEBUWd7DytuI0o
+         MKVDIWmoVf89V6Hq+IHDLAqDPWNBizZASzA1+SC4/V1Ya0ona5BHe+NsPrCfKdWkYE
+         B7neAY/wL+XBA==
+From:   Jakub Kicinski <kuba@kernel.org>
+To:     Lukasz Stelmach <l.stelmach@samsung.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>, jim.cromie@gmail.com,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Kukjin Kim <kgene@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org,
+        =?UTF-8?B?QmFydMWCb21pZWogxbtvbG5pZXJr?= =?UTF-8?B?aWV3aWN6?= 
+        <b.zolnierkie@samsung.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>
+Subject: Re: [PATCH v8 3/3] net: ax88796c: ASIX AX88796C SPI Ethernet
+ Adapter Driver
+Message-ID: <20201215174615.17c08e88@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+In-Reply-To: <dleftjr1nq8tus.fsf%l.stelmach@samsung.com>
+References: <20201204193702.1e4b0427@kicinski-fedora-pc1c0hjn.DHCP.thefacebook.com>
+        <CGME20201216004251eucas1p17b212b74d7382f4dbc0eb9a1955404e7@eucas1p1.samsung.com>
+        <dleftjr1nq8tus.fsf%l.stelmach@samsung.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 13 Dec 2020 00:06:22 PST (-0800), Damien Le Moal wrote:
-> On Sat, 2020-12-12 at 22:04 -0800, Stephen Boyd wrote:
->> Quoting Damien Le Moal (2020-12-10 06:02:51)
->> > 
->> > Finally the last two patches updates the k210 nommu defconfig to include
->> > the newly implemented drivers and provide a new default configuration
->> > file enabling SD card support.
->> > 
->> > A lot of the work on the device tree and on the K210 drivers come from
->> > the work by Sean Anderson for the U-Boot project support of the K210
->> > SoC. Sean also helped with debugging many aspects of this series.
->> > 
->> > A tree with all patches applied is available here:
->> > https://github.com/damien-lemoal/linux, k210-sysctl-v20 branch.
->> > A demonstration of this series used on a SiPeed MAIX Dock
->> > board together with an I2C servo controller can be seen here:
->> > https://damien-lemoal.github.io/linux-robot-arm/#example
->> > 
->> > This tree was used to build userspace busybox environment image that is
->> > then copied onto an SD card formatted with ext2:
->> > https://github.com/damien-lemoal/buildroot
->> > Of note is that running this userspace environment requires a revert of
->> > commit 2217b982624680d19a80ebb4600d05c8586c4f96 introduced during the
->> > 5.9 development cycle. Without this revert, execution of the init
->> > process fails. A problem with the riscv port of elf2flt is suspected but
->> > not confirmed. I am now starting to investigate this problem.
->> > 
->> > Reviews and comments are as always much welcome.
->> 
->> What's the merge plan for this series? I'd like to apply the clk patches
->> but they're combined with the sysctl driver so I guess I can't?
+On Wed, 16 Dec 2020 01:42:03 +0100 Lukasz Stelmach wrote:
+> >> +	ax_local->stats.rx_packets++;
+> >> +	ax_local->stats.rx_bytes += skb->len;
+> >> +	skb->dev = ndev;
+> >> +
+> >> +	skb->truesize = skb->len + sizeof(struct sk_buff);  
+> >
+> > Why do you modify truesize?
+> >  
 > 
-> Not sure. Palmer ? What is your plan for this series ? Can you queue the
-> riscv/DT pieces for 5.11 ?
+> I don't know. Although uncommon, this appears in a few usb drivers, so I
+> didn't think much about it when I ported this code.
+
+I'd guess they do aggregation. I wouldn't touch it in your driver.
+
+>> Since you always punt to a workqueue did you consider just using
+>> threaded interrupts instead?   
 > 
-> I will post a v9 to address Rob's comment on the sysctl and fpioa drivers
-> binding doc, not other with v8 changes beside that.
+> Yes, and I have decided to stay with the workqueue. Interrupt
+> processing is not the only task performed in the workqueue. There is
+> also trasmission to the hardware, which may be quite slow (remember, it
+> is SPI), so it's better decoupled from syscalls
 
-I guess I got hung up on that bultin DT thing, but I've sort of decided I don't
-really care that much (though I guess I didn't decide enough to reply to the
-email...).  I don't think it's 5.11 material: we were told to be stricter this
-time around because of the timing, and I'm trying to sort out a boot issue
-that's manifesting post 5.10+for-next merge so I probably won't have time to
-take more stuff.
+I see, and since the device can't do RX and TX simultaneously (IIRC),
+that makes sense.
 
-Also: I'm kind of trying to avoid the whole thing where I take patches that
-have a bunch of versions sent either right before or during the merge window,
-as it just makes things too hard to keep track of.
+> >> +	u8			plat_endian;
+> >> +		#define PLAT_LITTLE_ENDIAN	0
+> >> +		#define PLAT_BIG_ENDIAN		1  
+> >
+> > Why do you store this little nugget of information?
+> >  
+> 
+> I don't know*. The hardware enables endianness detection by providing a
+> constant value (0x1234) in one of its registers. Unfortunately I don't
+> have a big-endian board with this chip to check if it is necessary to
+> alter AX_READ/AX_WRITE in any way.
+
+Yeah, may be hard to tell what magic the device is doing.
+I was mostly saying that you don't seem to use this information,
+so the member of the struct can be removed IIRC.
+
+> > These all look like multiple of 2 bytes. Why do they need to be packed?
+> >  
+> 
+> These are structures sent to and returned from the hardware. They are
+> prepended and appended to the network packets. I think it is good to
+> keep them packed, so compilers won't try any tricks.
+
+Compilers can't play tricks on memory layout of structures, the
+standard is pretty strict about that. Otherwise ABIs would never work.
+We prefer not to unnecessarily pack structures in the neworking code,
+because it generates byte by byte loads on architectures which can't 
+do unaligned accesses.
+
+> > No need to return some specific pattern on failure? Like 0xffff?
+> >  
+> 
+> All registers are 16 bit wide. I am afraid it isn't safe to assume that
+> there is a 16 bit value we could use. Chances that SPI goes south are
+> pretty slim. And if it does, there isn't much more than reporting an
+> error we can do about it anyway.
+> 
+> One thing I can think of is to change axspi_* to (s32), return -1,
+> somehow (how?) shutdown the device in AX_*.
+
+I'm mostly concerned about potentially random data left over in the
+buffer. Seems like it could lead to hard to repro bugs. Hence the
+suggestion to return a constant of your choosing on error, doesn't
+really matter what as long as it's a known constant.
