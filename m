@@ -2,179 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C02F2DC5B5
-	for <lists+devicetree@lfdr.de>; Wed, 16 Dec 2020 18:51:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E72042DC603
+	for <lists+devicetree@lfdr.de>; Wed, 16 Dec 2020 19:16:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728204AbgLPRuQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Dec 2020 12:50:16 -0500
-Received: from mail-oi1-f181.google.com ([209.85.167.181]:46826 "EHLO
-        mail-oi1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728199AbgLPRuP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Dec 2020 12:50:15 -0500
-Received: by mail-oi1-f181.google.com with SMTP id q205so15678521oig.13;
-        Wed, 16 Dec 2020 09:49:59 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
-         :content-disposition:content-transfer-encoding;
-        bh=YHYDH46cBhOW9MdbdKwXMuCn0mvGIk5Dz9fJjNwpw0s=;
-        b=p6T/B3Pd3m5YZbhX/6+xixH1mqatXah6L0qz5xc785+rebInEw1sV7rBxBIhtWOd3g
-         idfgt0N9MDoL22RZPQ2NYrJVQhHxObdtkyjzgHPo3Y/C2VQoNiet0gZKsDsSLtHIewoQ
-         HhwTc//7J4pTu/6TfPyU+6byeDsyPIfeHFrs+fbMC0skCvCahLJfc+lMoY7hrHFsg9Y2
-         dIuJ73SW2hWZ+zywwPHnxxl1Vh824TaPNUC6Y7PaIF64Q0j0d20c86eLIJRwFz44vgN0
-         BwJoKBwhWxBmUj0gCAfvLcLughiF5Yp22cqj1/gmVjmMjey63YbkM+WUv28QuQqGWyYS
-         8g3g==
-X-Gm-Message-State: AOAM532hTGOCkWsWamB9xCWx9B3t8r9WeFXOnoxDjmCD/2KTdDHFm+R9
-        k5xUErqwSxJk5IGXqTMFUJ4lVxu/qw==
-X-Google-Smtp-Source: ABdhPJzgO6SGUIjxTKKcvtXg+Ps/0Ezob5WhK3niJ7yLCYkPF3uPzL8zlOu4cWTWkkW9/8/w3JU1Gg==
-X-Received: by 2002:aca:fc8d:: with SMTP id a135mr2720802oii.87.1608140974381;
-        Wed, 16 Dec 2020 09:49:34 -0800 (PST)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id q184sm541845oic.41.2020.12.16.09.49.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Dec 2020 09:49:33 -0800 (PST)
-Received: (nullmailer pid 2167020 invoked by uid 1000);
-        Wed, 16 Dec 2020 17:49:32 -0000
-Date:   Wed, 16 Dec 2020 11:49:32 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Linus Torvalds <torvalds@linux-foundation.org>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Frank Rowand <frowand.list@gmail.com>
-Subject: [GIT PULL] Devicetree updates for v5.11
-Message-ID: <20201216174932.GA2165438@robh.at.kernel.org>
+        id S1729860AbgLPSQD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Dec 2020 13:16:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47072 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729855AbgLPSQD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Dec 2020 13:16:03 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11ACDC061794;
+        Wed, 16 Dec 2020 10:15:23 -0800 (PST)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id C04FC2CF;
+        Wed, 16 Dec 2020 19:15:20 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1608142521;
+        bh=Zod74+lU0JtBwqEtrDwHbiwjFkzk6Uqdpwthggmdb3M=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=rZQwj8j282864o40wilarrhFB/Nlh+GMEJBcz8GWkgcrxVebbb3y3iK2PNvfyzA5I
+         Z+oGfOPvsUl3ESP2nS4Dd/yocRzK7CR3C2VEMt/KyzPYCilFn7TmrXqXbtcajN149u
+         HyMvCY1WG/R4bEBf9AfcWZ6FYxDW5rTd1NNgzXGY=
+Date:   Wed, 16 Dec 2020 20:15:14 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+Cc:     Geert Uytterhoeven <geert@glider.be>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH 3/3] arm64: dts: renesas: r8a779a0: Add VSPX support
+Message-ID: <X9pOshuRzdT6cs1Z@pendragon.ideasonboard.com>
+References: <20201216170018.861710-1-kieran.bingham+renesas@ideasonboard.com>
+ <20201216170018.861710-4-kieran.bingham+renesas@ideasonboard.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20201216170018.861710-4-kieran.bingham+renesas@ideasonboard.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Linus,
+Hi Kieran,
 
-Please pull DT updates for v5.11.
+Thank you for the patch.
 
-Rob
+On Wed, Dec 16, 2020 at 05:00:18PM +0000, Kieran Bingham wrote:
+> Provide VSP-X support on the V3U.
+> 
+> Signed-off-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+> ---
+> The FCPvX is not yet connected here, as the clock domains are unclear
+> for that.
+> 
+> The register mapping space is kept at 0x8000 for now as this is a bit of
+> an unknown entity (with the IIF) so playing it safe and keeping the same
+> value as the BSP (0x8000) - however with no CLU on these nodes, I expect
+> the register space to be suitable to be mapped at length 0x4000.
 
-The following changes since commit 3cea11cd5e3b00d91caf0b4730194039b45c5891:
+I think so too.
 
-  Linux 5.10-rc2 (2020-11-01 14:43:51 -0800)
+>  arch/arm64/boot/dts/renesas/r8a779a0.dtsi | 36 +++++++++++++++++++++++
+>  1 file changed, 36 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/renesas/r8a779a0.dtsi b/arch/arm64/boot/dts/renesas/r8a779a0.dtsi
+> index a23b4ce2e5f4..4fb28df5cd6b 100644
+> --- a/arch/arm64/boot/dts/renesas/r8a779a0.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/r8a779a0.dtsi
+> @@ -155,6 +155,42 @@ vspd1: vsp@fea28000 {
+>  			renesas,fcp = <&fcpvd1>;
+>  		};
+>  
+> +		vspx0: vsp@fedd0000 {
+> +			compatible = "renesas,vsp2";
+> +			reg = <0 0xfedd0000 0 0x8000>;
+> +			interrupts = <GIC_SPI 600 IRQ_TYPE_LEVEL_HIGH>;
 
-are available in the Git repository at:
+I'm not entirely sure about the interrupt number, as there are other
+VSP-related interrupts listed in the datasheet that don't seem to
+correspond to any IP core. I suppose there will be a documentation
+update at some point. For now I have no reason to believe the interrupts
+here are incorrect.
 
-  git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-for-5.11
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 
-for you to fetch changes up to e33dc2f3636749c2f949a59c2ff8acd4a69c9c78:
+> +			clocks = <&cpg CPG_MOD 1028>;
+> +			power-domains = <&sysc R8A779A0_PD_ALWAYS_ON>;
+> +			resets = <&cpg 1028>;
+> +		};
+> +
+> +		vspx1: vsp@fedd8000 {
+> +			compatible = "renesas,vsp2";
+> +			reg = <0 0xfedd8000 0 0x8000>;
+> +			interrupts = <GIC_SPI 601 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&cpg CPG_MOD 1029>;
+> +			power-domains = <&sysc R8A779A0_PD_ALWAYS_ON>;
+> +			resets = <&cpg 1029>;
+> +		};
+> +
+> +		vspx2: vsp@fede0000 {
+> +			compatible = "renesas,vsp2";
+> +			reg = <0 0xfede0000 0 0x8000>;
+> +			interrupts = <GIC_SPI 602 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&cpg CPG_MOD 1030>;
+> +			power-domains = <&sysc R8A779A0_PD_ALWAYS_ON>;
+> +			resets = <&cpg 1030>;
+> +		};
+> +
+> +		vspx3: vsp@fede8000 {
+> +			compatible = "renesas,vsp2";
+> +			reg = <0 0xfede8000 0 0x8000>;
+> +			interrupts = <GIC_SPI 603 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&cpg CPG_MOD 1031>;
+> +			power-domains = <&sysc R8A779A0_PD_ALWAYS_ON>;
+> +			resets = <&cpg 1031>;
+> +		};
+> +
+>  		prr: chipid@fff00044 {
+>  			compatible = "renesas,prr";
+>  			reg = <0 0xfff00044 0 4>;
 
-  dt-bindings: mali-bifrost: Add dynamic-power-coefficient (2020-12-14 16:07:09 -0600)
+-- 
+Regards,
 
-----------------------------------------------------------------
-Devicetree updates for v5.11:
-
-- Add vendor prefixes for bm, gpio-key, mentor, FII, and Ampere
-
-- Add ADP5585/ADP5589 and delta,q54sj108a2 to trivial-devices.yaml
-
-- Convert fixed-partitions, i2c-gate and fsl,dpaa2-console bindings to
-  schemas
-
-- Drop PicoXcell bindings
-
-- Drop unused and undocumented 'pnx,timeout' property from LPC32xx
-
-- Add 'dynamic-power-coefficient' to Mali GPU bindings
-
-- Make 'make dt_binding_check' not error out on warnings
-
-- Various minor binding fixes
-
-----------------------------------------------------------------
-Alexandru Ardelean (1):
-      dt-bindings: add ADP5585/ADP5589 entries to trivial-devices
-
-Cengiz Can (1):
-      dt-bindings: fsl-imx-drm: fix example compatible string
-
-Cristian Ciocaltea (1):
-      dt-bindings: Fix error in 'make dtbs_check' when using DT_SCHEMA_FILES
-
-Fabrice Gasnier (1):
-      dt-bindings: mfd: fix stm32 timers example
-
-Geert Uytterhoeven (1):
-      dt-bindings: pci: rcar-pci-ep: Document missing interrupts property
-
-Gustavo Pimentel (1):
-      dt-bindings: Fix typo on the DesignWare IP reset bindings documentation
-
-Ionut-robert Aron (1):
-      dt-bindings: misc: convert fsl,dpaa2-console from txt to YAML
-
-Joel Stanley (1):
-      dt-bindings: vendor-prefixes: Add FII
-
-Jon Hunter (1):
-      dt-bindings: Correct GV11B GPU register sizes
-
-Jonathan Cameron (1):
-      dt-bindings:i2c:i2c-gate: txt to yaml conversion
-
-Krzysztof Kozlowski (1):
-      dt-bindings: arm: vt8500: remove redundant white-spaces
-
-Lukasz Luba (2):
-      dt-bindings: mali-midgard: Add dynamic-power-coefficient
-      dt-bindings: mali-bifrost: Add dynamic-power-coefficient
-
-Max Merchel (1):
-      dt-bindings: vendor-prefixes: correct the spelling of TQ-Systems GmbH
-
-Quan Nguyen (1):
-      dt-bindings: vendor-prefixes: Add an entry for AmpereComputing.com
-
-Rafał Miłecki (1):
-      dt-bindings: mtd: convert "fixed-partitions" to the json-schema
-
-Rob Herring (4):
-      dt-bindings: Don't error out on yamllint and dt-doc-validate errors
-      dt-bindings: vendor-prefixes: Add undocumented bm, gpio-key, and mentor prefixes
-      ARM: dts: lpc32xx: Remove unused and undocumented 'pnx,timeout'
-      dt-bindings: Remove PicoXcell bindings
-
-Zhen Lei (1):
-      dt-bindings: i2c: dw: cancel mandatory requirements for "#address-cells" and "#size-cells"
-
-xiao.ma (1):
-      dt-bindings: trivial-devices: Add delta,q54sj108a2
-
- Documentation/devicetree/bindings/Makefile         |  10 +-
- .../devicetree/bindings/arm/picoxcell.txt          |  24 ----
- Documentation/devicetree/bindings/arm/vt8500.yaml  |   3 +-
- .../devicetree/bindings/crypto/picochip-spacc.txt  |  21 ---
- .../bindings/display/imx/fsl-imx-drm.txt           |   2 +-
- .../devicetree/bindings/gpu/arm,mali-bifrost.yaml  |  17 +++
- .../devicetree/bindings/gpu/arm,mali-midgard.yaml  |  17 +++
- .../devicetree/bindings/gpu/nvidia,gk20a.txt       |   4 +-
- Documentation/devicetree/bindings/i2c/i2c-gate.txt |  41 ------
- .../devicetree/bindings/i2c/i2c-gate.yaml          |  39 ++++++
- .../bindings/i2c/snps,designware-i2c.yaml          |   8 --
- .../devicetree/bindings/mfd/st,stm32-timers.yaml   |   6 +-
- .../devicetree/bindings/misc/fsl,dpaa2-console.txt |  11 --
- .../bindings/misc/fsl,dpaa2-console.yaml           |  25 ++++
- .../devicetree/bindings/mtd/partition.txt          | 131 +-----------------
- .../bindings/mtd/partitions/fixed-partitions.yaml  | 152 +++++++++++++++++++++
- Documentation/devicetree/bindings/net/macb.txt     |   2 -
- .../devicetree/bindings/pci/rcar-pci-ep.yaml       |   9 ++
- .../devicetree/bindings/reset/snps,dw-reset.txt    |   2 +-
- .../bindings/timer/snps,dw-apb-timer.yaml          |   7 -
- .../devicetree/bindings/trivial-devices.yaml       |   8 ++
- .../devicetree/bindings/vendor-prefixes.yaml       |  10 +-
- arch/arm/boot/dts/lpc32xx.dtsi                     |   3 -
- 23 files changed, 290 insertions(+), 262 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/arm/picoxcell.txt
- delete mode 100644 Documentation/devicetree/bindings/crypto/picochip-spacc.txt
- delete mode 100644 Documentation/devicetree/bindings/i2c/i2c-gate.txt
- create mode 100644 Documentation/devicetree/bindings/i2c/i2c-gate.yaml
- delete mode 100644 Documentation/devicetree/bindings/misc/fsl,dpaa2-console.txt
- create mode 100644 Documentation/devicetree/bindings/misc/fsl,dpaa2-console.yaml
- create mode 100644 Documentation/devicetree/bindings/mtd/partitions/fixed-partitions.yaml
+Laurent Pinchart
