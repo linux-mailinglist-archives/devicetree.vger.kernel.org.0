@@ -2,73 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B4402DBCF9
-	for <lists+devicetree@lfdr.de>; Wed, 16 Dec 2020 09:48:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 06F2F2DBD2F
+	for <lists+devicetree@lfdr.de>; Wed, 16 Dec 2020 09:59:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726155AbgLPIsR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Dec 2020 03:48:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43858 "EHLO
+        id S1726159AbgLPI6v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Dec 2020 03:58:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45520 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726189AbgLPIsP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Dec 2020 03:48:15 -0500
-Received: from baptiste.telenet-ops.be (baptiste.telenet-ops.be [IPv6:2a02:1800:120:4::f00:13])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36E80C061793
-        for <devicetree@vger.kernel.org>; Wed, 16 Dec 2020 00:47:35 -0800 (PST)
-Received: from ramsan.of.borg ([84.195.186.194])
-        by baptiste.telenet-ops.be with bizsmtp
-        id 4wnX2400v4C55Sk01wnXhA; Wed, 16 Dec 2020 09:47:32 +0100
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1kpST5-00B6N3-H8; Wed, 16 Dec 2020 09:47:31 +0100
-Received: from geert by rox.of.borg with local (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1kpST4-00Fzfo-UE; Wed, 16 Dec 2020 09:47:30 +0100
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
+        with ESMTP id S1726123AbgLPI6u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Dec 2020 03:58:50 -0500
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F7CEC061794
+        for <devicetree@vger.kernel.org>; Wed, 16 Dec 2020 00:58:10 -0800 (PST)
+Received: by mail-wm1-x329.google.com with SMTP id 3so1624767wmg.4
+        for <devicetree@vger.kernel.org>; Wed, 16 Dec 2020 00:58:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=CnyyKZ0Zx1BxINWxPqOgHgBA1hAyUh9nq8RAHfNkCus=;
+        b=fZHU34jQlz1e2bWiS5yLio80iUB2pJw8FaGi9nwz3hsQAEpTTVFuu9ePjFreyn4sO7
+         PU2DQMlqac65tisGoObkSRhMZ4Cv4e9ByEitpNNAKP/hiQWG7RDD0dj2+UFfc/CAQnxv
+         SSQJOp35A9eG6Wlqwk8K+Kr0V7t/Y0MgdwLiSOG16X5h+WgldPpM43if+YUzeQST2qgf
+         E7pW6z1bseE5Rrii/nSvWF/MAtRDgpnZbEzCSkjg2ZNyPJt0kzaOQoYV2gfSXTT09QZK
+         GSAwtVf5/4BSe9+g1NS6PCDRqUxjeHG1JyCwIpryX0ejWqaq2+4gkfPXu+JE5erN0il6
+         Yvmg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=CnyyKZ0Zx1BxINWxPqOgHgBA1hAyUh9nq8RAHfNkCus=;
+        b=dZRDmGyrxRrf3bBG+KaKpkLEiwFDo5KqmlGaky0NiV7jbziAFI9wTLHT9gGgNR3rHp
+         qk+vIlrwvKAeHvOHEC70jtBEDKOaUKVMLYqDS95ofLaazC+ynDDEHKZ/fP+avHQzYp92
+         kf/ibCTwrRADaSVhWyw3rqXvPOYt9xpXTgjkdUr9pWvzmn6eql6VXx/LOhkaYAPUaZ4S
+         WVDV6YhKV6mrAxlXUW8D8/dzn7VIif3edHkmfLR02mzdkvySUw68UnDZSRtFQ9Lm0apx
+         BtURhvnvoQ4P3cmid6zc7gqj22xETptCLjg0/8mCE0/M3lKnM1TAaa/kflTEJAmyyO69
+         RuhA==
+X-Gm-Message-State: AOAM533LpaO6W+NWiYGemzciMUkiAP+7mqsvA87P3BEWQiKcNgcaxS7k
+        XYzA7yIs11/bqn5t8+LCP/qiHQ==
+X-Google-Smtp-Source: ABdhPJxyD6igsMnOelb9CqTbNakrbhwN83NwuKQeIw5SBvQ4jSlkvgYwYSwyhS6HWPk299U6SE0Fsg==
+X-Received: by 2002:a05:600c:2903:: with SMTP id i3mr2200622wmd.41.1608109089069;
+        Wed, 16 Dec 2020 00:58:09 -0800 (PST)
+Received: from dell ([91.110.221.200])
+        by smtp.gmail.com with ESMTPSA id w13sm2126803wrt.52.2020.12.16.00.58.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 16 Dec 2020 00:58:08 -0800 (PST)
+Date:   Wed, 16 Dec 2020 08:58:06 +0000
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Zhen Lei <thunder.leizhen@huawei.com>
+Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Ahmad Zainie <wan.ahmad.zainie.wan.mohamad@intel.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH] dt-bindings: phy: Rename Intel Keem Bay USB PHY bindings
-Date:   Wed, 16 Dec 2020 09:47:29 +0100
-Message-Id: <20201216084729.3811627-1-geert+renesas@glider.be>
-X-Mailer: git-send-email 2.25.1
+        Karol Gugala <kgugala@antmicro.com>,
+        Mateusz Holenko <mholenko@antmicro.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Pawel Czarnecki <pczarnecki@internships.antmicro.com>,
+        Stafford Horne <shorne@gmail.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-media <linux-media@vger.kernel.org>,
+        linux-serial <linux-serial@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-mediatek <linux-mediatek@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 5/5] dt-bindings: mfd: correct the node name of the panel
+ led
+Message-ID: <20201216085806.GJ4776@dell>
+References: <20201204093813.1275-1-thunder.leizhen@huawei.com>
+ <20201204093813.1275-6-thunder.leizhen@huawei.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20201204093813.1275-6-thunder.leizhen@huawei.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is the only file not using the "intel,keembay-*" pattern.
-Fortunately the actual compatible value is already following the
-standard scheme.
+On Fri, 04 Dec 2020, Zhen Lei wrote:
 
-Fixes: 4086afa2a1627939 ("dt-bindings: phy: Add Intel Keem Bay USB PHY bindings")
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
- .../{intel,phy-keembay-usb.yaml => intel,keembay-phy-usb.yaml}  | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
- rename Documentation/devicetree/bindings/phy/{intel,phy-keembay-usb.yaml => intel,keembay-phy-usb.yaml} (93%)
+> According to the definition in leds-pwm.yaml, the node name of each led
+> must match the regular expression "^led(-[0-9a-f]+)?$". "led" or "led-"
+> followed by a decimal or hexadecimal ID number.
+> 
+> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
+> ---
+>  Documentation/devicetree/bindings/mfd/iqs62x.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/phy/intel,phy-keembay-usb.yaml b/Documentation/devicetree/bindings/phy/intel,keembay-phy-usb.yaml
-similarity index 93%
-rename from Documentation/devicetree/bindings/phy/intel,phy-keembay-usb.yaml
-rename to Documentation/devicetree/bindings/phy/intel,keembay-phy-usb.yaml
-index a217bb8ac5bc0887..52815b6c2b88d019 100644
---- a/Documentation/devicetree/bindings/phy/intel,phy-keembay-usb.yaml
-+++ b/Documentation/devicetree/bindings/phy/intel,keembay-phy-usb.yaml
-@@ -1,7 +1,7 @@
- # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
- %YAML 1.2
- ---
--$id: http://devicetree.org/schemas/phy/intel,phy-keembay-usb.yaml#
-+$id: http://devicetree.org/schemas/phy/intel,keembay-phy-usb.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
- 
- title: Intel Keem Bay USB PHY bindings
+Applied, thanks.
+
 -- 
-2.25.1
-
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
