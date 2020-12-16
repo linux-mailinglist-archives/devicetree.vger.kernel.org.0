@@ -2,103 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 93B3E2DBE8C
-	for <lists+devicetree@lfdr.de>; Wed, 16 Dec 2020 11:23:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 79C212DBE81
+	for <lists+devicetree@lfdr.de>; Wed, 16 Dec 2020 11:20:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726107AbgLPKWp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Dec 2020 05:22:45 -0500
-Received: from hosting.pavoucek.net ([46.28.107.168]:39283 "EHLO
-        hosting.pavoucek.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725820AbgLPKWp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Dec 2020 05:22:45 -0500
-X-Greylist: delayed 496 seconds by postgrey-1.27 at vger.kernel.org; Wed, 16 Dec 2020 05:22:44 EST
-Received: from 176-74-132-138.netdatacomm.cz (176-74-132-138.netdatacomm.cz [176.74.132.138])
-        (Authenticated sender: tomas@novotny.cz)
-        by hosting.pavoucek.net (Postfix) with ESMTPSA id 60A35104073;
-        Wed, 16 Dec 2020 11:13:39 +0100 (CET)
-DKIM-Filter: OpenDKIM Filter v2.11.0 hosting.pavoucek.net 60A35104073
-From:   Tomas Novotny <tomas@novotny.cz>
-To:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Tomas Novotny <tomas@novotny.cz>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>
-Subject: [PATCH] dt-bindings:iio:dac:microchip,mcp4725: fix properties for mcp4726
-Date:   Wed, 16 Dec 2020 11:13:16 +0100
-Message-Id: <20201216101316.1403-1-tomas@novotny.cz>
-X-Mailer: git-send-email 2.26.2
+        id S1726231AbgLPKTp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Dec 2020 05:19:45 -0500
+Received: from mout.gmx.net ([212.227.15.15]:43685 "EHLO mout.gmx.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726224AbgLPKTo (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 16 Dec 2020 05:19:44 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1608113885;
+        bh=EkN0tAvBXM+bEcRrzO1ui4KVWR+Oa9dgiyO3uTvYRhY=;
+        h=X-UI-Sender-Class:Date:From:To:cc:Subject:In-Reply-To:References;
+        b=dZ3hfjxakFD1hrPKwt7to2ocChOR3iyTHMDQsW6hGQw6YDZlLTQwgDPALpfKx4wzR
+         wbURt9Wg8oUlDEFkYeJDphlyC/IQwE4+YJhpHJsknaO+3DRhengenttjibyHC02OdA
+         jy7nZ18eX3iOl5DR2pttTM25dvngRujje35dl8jc=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from axis700.grange ([87.79.50.253]) by mail.gmx.com (mrgmx005
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1Md6Mj-1kGQ2w1UXL-00aDD2; Wed, 16
+ Dec 2020 11:18:05 +0100
+Received: by axis700.grange (Postfix, from userid 1000)
+        id 8487861F51; Wed, 16 Dec 2020 11:18:03 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+        by axis700.grange (Postfix) with ESMTP id 6909A616B7;
+        Wed, 16 Dec 2020 11:18:03 +0100 (CET)
+Date:   Wed, 16 Dec 2020 11:18:03 +0100 (CET)
+From:   Guennadi Liakhovetski <g.liakhovetski@gmx.de>
+X-X-Sender: lyakh@axis700.grange
+To:     Rob Herring <robh@kernel.org>
+cc:     Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Jacopo Mondi <jacopo@jmondi.org>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-media@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] media: dt-bindings: Convert video-interfaces.txt
+ properties to schemas
+In-Reply-To: <20201210211625.3070388-2-robh@kernel.org>
+Message-ID: <alpine.DEB.2.20.2012161113060.15676@axis700.grange>
+References: <20201210211625.3070388-1-robh@kernel.org> <20201210211625.3070388-2-robh@kernel.org>
+User-Agent: Alpine 2.20 (DEB 67 2015-01-07)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+X-Provags-ID: V03:K1:10RrKdIGxPny3KKQBUSxhVFZ4+gRCKzy3mvxV7clzE9UNjib+xt
+ TPLTHLsppU9QgL5Azp84GupTgA9vaRob57wDMCsWo1uxols9w9aY2s4WV8CVhF7GFQDn0pB
+ F1qYLIzBtIkYWt5C34VjwJZJld2B5/BKrOvBPl5SGqDYk7FL+7aT9YD52YR/sJcGgDR3afN
+ U3B8bNd6jRcKZyYFlDOjA==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:nqgYwJno6GQ=:XymytEfsCnpZVPXOdSFnpN
+ Ooig8yVSwGaUuxQJlfBexR8B3G/6LfRs7ZlKtZeBXGG23nDII9dcKpPYBQ6hDqisSecIy8yrs
+ kzFYZwLuFDKJXXKoKm92k70dj1GhUG8fdiIn11nm5Vt0HVwPKvraaM1eno4Hk2HROlxWgb1c/
+ MCR9d+VKzpNPfOPX931z6/tQH48EKTTy1ABGc8SZmkvEAjGehHvrtbWyANY8tLfLn0NdPQWMg
+ xtrr/RX0Rqg4urzUrcwM9S9j43VrhqbCeSTaFvcdovG7f32VeH9TRRL+52aYdXkTbmTrMUPjP
+ 3claeW1NfYUdH07EyaozUaAqjRxuGiAJ6+lz5E7q6LIyfYGEl9INVw4CjMT0t4ANaXsYvo6k6
+ HBi25XqImHo+s91e7yeH7V0EPGPBoWQS4OmWn1qRKfy2FY30vxZXFkGOeJYaEJQyrL02he6+C
+ K3SqB9LDL05XTXTAFIWFST6o2bs0GtZ743ICktRUb+w8D2NoD5s5uRQ2otc30oL5OWIKxMFMS
+ I6TRl+0DRc8Rf/i7MrHPMePD83Tv0ki38Lbv9hDo2OurNQ/1TbugPOsQpoySq4kH2LyB9oG3c
+ /el3wwjnXdNTHlaPLmIGO8OfwnBfqXItiKH7ydbE7b4MHJI0c6dHw/q7Kkz3xluXhex/i8ipe
+ LcJGMe3HgYwpQbgUclsflR6NNFkroBHSLuvzjjz1rnD6FUEsnW+JjvXeaiGMw+zsqYOqi6VJc
+ aE+s3lshYruDDv4lz9P1VpCljKq9xbuVdAneQl8r7D9FXdw8ojIXnwXdT8r4VDkK2IyhcwUR0
+ bzrQmHSPfG5Hi7l7inbSbJA1Pk0wGQRhIta+j5w6xDWo5NwcWqFkzlulJYWg9+eY/YXtVVhFn
+ j7WfeGIzLWTVud74hSLQ==
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The vdd-supply property is optional if vref-supply is provided for
-mcp4726.
+Hi Rob,
 
-Also the microchip,vref-buffered makes sense only if vref-supply is
-specified.
+Sorry for the delay! I didn't realise my ack was required for this patch.
+I won't object against the licence change, but please don't add me as a
+maintainer of
 
-Spotted by Jonathan during conversion to yaml.
+On Thu, 10 Dec 2020, Rob Herring wrote:
 
-Reported-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-Signed-off-by: Tomas Novotny <tomas@novotny.cz>
----
- .../bindings/iio/dac/microchip,mcp4725.yaml   | 31 +++++++++++++++----
- 1 file changed, 25 insertions(+), 6 deletions(-)
+[snip]
 
-diff --git a/Documentation/devicetree/bindings/iio/dac/microchip,mcp4725.yaml b/Documentation/devicetree/bindings/iio/dac/microchip,mcp4725.yaml
-index 271998610ceb..079f302d1349 100644
---- a/Documentation/devicetree/bindings/iio/dac/microchip,mcp4725.yaml
-+++ b/Documentation/devicetree/bindings/iio/dac/microchip,mcp4725.yaml
-@@ -39,20 +39,39 @@ properties:
- 
- allOf:
-   - if:
--      not:
--        properties:
--          compatible:
--            contains:
--              const: microchip,mcp4726
-+      properties:
-+        compatible:
-+          contains:
-+            const: microchip,mcp4725
-     then:
-       properties:
-         vref-supply: false
-+      required:
-+        - vdd-supply
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: microchip,mcp4726
-+    then:
-+      anyOf:
-+        - required:
-+          - vdd-supply
-+        - required:
-+          - vref-supply
-+
-+  - if:
-+      not:
-+        required:
-+          - vref-supply
-+    then:
-+      properties:
-         microchip,vref-buffered: false
- 
- required:
-   - compatible
-   - reg
--  - vdd-supply
- 
- additionalProperties: false
- 
--- 
-2.26.2
+> diff --git a/Documentation/devicetree/bindings/media/video-interfaces.ya=
+ml b/Documentation/devicetree/bindings/media/video-interfaces.yaml
+> new file mode 100644
+> index 000000000000..7415a4df1576
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/video-interfaces.yaml
+> @@ -0,0 +1,344 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/video-interfaces.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Common bindings for video receiver and transmitter interface end=
+points
+> +
+> +maintainers:
+> +  - Guennadi Liakhovetski <g.liakhovetski@gmx.de>
 
+I did commit the original version of
+Documentation/devicetree/bindings/media/video-interfaces.txt but that was
+more than 8 years ago, I haven't worked in media / V4L for several years
+now, so, I don't think I can meaningfully maintain that file now.
+
+Thanks
+Guennadi
