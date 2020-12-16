@@ -2,134 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A88242DC04A
-	for <lists+devicetree@lfdr.de>; Wed, 16 Dec 2020 13:29:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D3E382DC07C
+	for <lists+devicetree@lfdr.de>; Wed, 16 Dec 2020 13:49:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726048AbgLPM33 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Dec 2020 07:29:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49834 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726039AbgLPM33 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Dec 2020 07:29:29 -0500
-Received: from mail-vk1-xa31.google.com (mail-vk1-xa31.google.com [IPv6:2607:f8b0:4864:20::a31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40F55C0617A7
-        for <devicetree@vger.kernel.org>; Wed, 16 Dec 2020 04:28:49 -0800 (PST)
-Received: by mail-vk1-xa31.google.com with SMTP id o195so3494292vka.9
-        for <devicetree@vger.kernel.org>; Wed, 16 Dec 2020 04:28:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=c6pRvGHHMJqQbOIzkgWlEFS44+L0AY9CH1Qe7UGJ3u4=;
-        b=odqmNK1hqN0cRlLeW7sn5pdXMShIK5Q/F49grfeu5fecHGIW3d2eANmZhNWdRfbOaG
-         mF3Q2QJPWg+GEjMfy2yYUX2i3c19AhTygkQ+TyEGVuiGA7tVCzscJPfVfaLX16twNC6n
-         +6u1ZvFmWnXBd4PhPlIy3gmzOoGNoq+s81aIY=
+        id S1725943AbgLPMrr convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 16 Dec 2020 07:47:47 -0500
+Received: from mail-ej1-f51.google.com ([209.85.218.51]:39770 "EHLO
+        mail-ej1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725903AbgLPMrr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Dec 2020 07:47:47 -0500
+Received: by mail-ej1-f51.google.com with SMTP id n26so32492516eju.6;
+        Wed, 16 Dec 2020 04:47:30 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=c6pRvGHHMJqQbOIzkgWlEFS44+L0AY9CH1Qe7UGJ3u4=;
-        b=bBxla3BGnE6AmXcuSnoq9EXgbWF6jz5hy03C3CIOaoCkDUzHt+2Blrl+2OtJSFGYnA
-         Ak8syNjVoWXWOVGHOv9mS9q15Qe60Tk5IH6Ea18QV/SGolK04hQ2mtqYHN0Ef1RQ/HW+
-         SOOZVSHtQdavyk6qIfq71FOmcKRQNuq0A1+r/iZRcNQxXMaUp0e/jC2hM7a2KOUBeBIz
-         M56QKBrCPJqyu31T7vqdv2LZpYHPuhk5608HBvxKImlIgYPw5ZyesJkaVqaJLhqMo47j
-         a8TWlk45NLHTcGNmyAI8rmy08R/hBmKz+QXn0i11FiGbE5+T/txe8vgE0O/awy29WI8b
-         AaNA==
-X-Gm-Message-State: AOAM530kAtIOsYRJp7dwD/06P/mbh5R/lOXltaPuxa4xP7AUbAr+PL7q
-        R9a3c/tzXwzsUUDxvzHd4o8g/nE/8cQ7MTOyG+X4LvEioaZP6g==
-X-Google-Smtp-Source: ABdhPJzlzIMkwB4MfwB+J+NG9epApgDDwgd0osNlLW2n3EV6nng8DOUfvGywX0ToxV0slELC4gu/RwcT3blVqy36deU=
-X-Received: by 2002:a1f:96cd:: with SMTP id y196mr33980353vkd.18.1608121728276;
- Wed, 16 Dec 2020 04:28:48 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=mjY8Os39M4leEEPHTfeQTINO8VNbMA4I5Bxao3MHur4=;
+        b=bBwxP85W/hQ4uMxOWUWfHS02LwSJLBeErtUn956U9uKb6q98knXbMiQajpnvYKrW3Q
+         1zGR3FWCIHioWcWRPC2rqPAmPy3NVDFzVQ/RxbbndsRm9AaUI4HRiS4rnxWfIYMitswY
+         2OYksPTsyyzFmahDLlzzAumVPcf3ZsyV+wSqLBQOKjWpcDDys/lBAcf+/1jlneuF/1F8
+         fNm9AKiAg3MyyCzGSVbPi4Btit8OgBNWKT5UgBQTZaoq0ypYTURwJ3+ck4cpGJPM+PnD
+         nFvoaxXzIRf/sm1wamxW0g9Xn9mc6InHpyKTaKZndCWB4OPLR2AEC0M9tCPakxT6JN5Q
+         Hf3Q==
+X-Gm-Message-State: AOAM533MWAWYyLApUamS4uNJyKqag+ozMOXvdJdAJKdqcYa0FkXKKQ6W
+        giX/JM/FC4zEBOAK8CRuhq0=
+X-Google-Smtp-Source: ABdhPJxUQINFO4W9ye268ixQRaS+0Zf01qYWyeDzWJ0ixBIEYF4tEhSFWniMLmNrOzQ9QWhRxeOYnQ==
+X-Received: by 2002:a17:906:718b:: with SMTP id h11mr30432291ejk.241.1608122824654;
+        Wed, 16 Dec 2020 04:47:04 -0800 (PST)
+Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
+        by smtp.googlemail.com with ESMTPSA id i8sm20536770eds.72.2020.12.16.04.47.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 16 Dec 2020 04:47:03 -0800 (PST)
+Date:   Wed, 16 Dec 2020 13:47:02 +0100
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     "Alice Guo (OSS)" <alice.guo@oss.nxp.com>
+Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        dl-linux-imx <linux-imx@nxp.com>
+Subject: Re: [PATCH v7 1/4] dt-bindings: soc: imx8m: add DT Binding doc for
+ soc unique ID
+Message-ID: <20201216124702.GA28244@kozik-lap>
+References: <20201215083551.6067-1-alice.guo@oss.nxp.com>
+ <20201215091118.GB9386@kozik-lap>
+ <AM6PR04MB6053AE68690ADF805D5A0809E2C50@AM6PR04MB6053.eurprd04.prod.outlook.com>
 MIME-Version: 1.0
-References: <20201216115125.5886-1-chunfeng.yun@mediatek.com> <20201216115125.5886-2-chunfeng.yun@mediatek.com>
-In-Reply-To: <20201216115125.5886-2-chunfeng.yun@mediatek.com>
-From:   Nicolas Boichat <drinkcat@chromium.org>
-Date:   Wed, 16 Dec 2020 20:28:37 +0800
-Message-ID: <CANMq1KDBmuoBNeizm9+f1yJgqF9oMqU5k26KfZrSdjrPQm_LwA@mail.gmail.com>
-Subject: Re: [PATCH 2/3] usb: xhci-mtk: fix UAS issue by XHCI_BROKEN_STREAMS quirk
-To:     Chunfeng Yun <chunfeng.yun@mediatek.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mathias Nyman <mathias.nyman@intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-usb@vger.kernel.org,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Ikjoon Jang <ikjn@chromium.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8BIT
+In-Reply-To: <AM6PR04MB6053AE68690ADF805D5A0809E2C50@AM6PR04MB6053.eurprd04.prod.outlook.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 16, 2020 at 7:53 PM Chunfeng Yun <chunfeng.yun@mediatek.com> wrote:
->
-> The 0.96 xHCI controller on some platforms does not support
-> bulk stream even HCCPARAMS says supporting, due to MaxPSASize
-> is set a non-zero default value by mistake, here use
-> XHCI_BROKEN_STREAMS quirk to fix it.
->
-> Fixes: 94a631d91ad3 ("usb: xhci-mtk: check hcc_params after adding primary hcd")
-> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
-> ---
->  drivers/usb/host/xhci-mtk.c | 7 ++++++-
->  drivers/usb/host/xhci-mtk.h | 1 +
->  2 files changed, 7 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/usb/host/xhci-mtk.c b/drivers/usb/host/xhci-mtk.c
-> index 8f321f39ab96..08dab974d847 100644
-> --- a/drivers/usb/host/xhci-mtk.c
-> +++ b/drivers/usb/host/xhci-mtk.c
-> @@ -395,6 +395,9 @@ static void xhci_mtk_quirks(struct device *dev, struct xhci_hcd *xhci)
->         xhci->quirks |= XHCI_SPURIOUS_SUCCESS;
->         if (mtk->lpm_support)
->                 xhci->quirks |= XHCI_LPM_SUPPORT;
-> +
-> +       if (mtk->broken_streams)
-> +               xhci->quirks |= XHCI_BROKEN_STREAMS;
->  }
->
->  /* called during probe() after chip reset completes */
-> @@ -460,6 +463,8 @@ static int xhci_mtk_probe(struct platform_device *pdev)
->                 return ret;
->
->         mtk->lpm_support = of_property_read_bool(node, "usb3-lpm-capable");
-> +       mtk->broken_streams =
-> +               of_property_read_bool(node, "mediatek,broken_streams_quirk");
+On Wed, Dec 16, 2020 at 09:55:34AM +0000, Alice Guo (OSS) wrote:
+> 
+> 
+> > -----Original Message-----
+> > From: Krzysztof Kozlowski <krzk@kernel.org>
+> > Sent: 2020年12月15日 17:11
+> > To: Alice Guo (OSS) <alice.guo@oss.nxp.com>
+> > Cc: robh+dt@kernel.org; shawnguo@kernel.org; s.hauer@pengutronix.de;
+> > kernel@pengutronix.de; festevam@gmail.com; devicetree@vger.kernel.org;
+> > linux-arm-kernel@lists.infradead.org; linux-kernel@vger.kernel.org; dl-linux-imx
+> > <linux-imx@nxp.com>
+> > Subject: Re: [PATCH v7 1/4] dt-bindings: soc: imx8m: add DT Binding doc for soc
+> > unique ID
+> > 
+> > On Tue, Dec 15, 2020 at 04:35:48PM +0800, Alice Guo (OSS) wrote:
+> > > From: Alice Guo <alice.guo@nxp.com>
+> > >
+> > > Add DT Binding doc for the Unique ID of i.MX 8M series.
+> > >
+> > > Signed-off-by: Alice Guo <alice.guo@nxp.com>
+> > > ---
+> > >
+> > > Changes for v7:
+> > >  - change to a separate schema file
+> > > Changes for v6:
+> > >  - none
+> > > Changes for v5:
+> > >  - correct the error of using allOf
+> > > Changes for v4:
+> > >  - use allOf to limit new version DTS files for i.MX8M to include
+> > >    "fsl,imx8m*-soc", nvmem-cells and nvmem-cells-names Changes for v3:
+> > >  - put it into Documentation/devicetree/bindings/arm/fsl.yaml
+> > >  - modify the description of nvmem-cells
+> > >  - use "make ARCH=arm64 dtbs_check" to make sure it is right Changes
+> > > for v2:
+> > >  - remove the subject prefix "LF-2571-1"
+> > >
+> > >  .../bindings/soc/imx/imx8m-soc.yaml           | 54
+> > +++++++++++++++++++
+> > >  1 file changed, 54 insertions(+)
+> > >  create mode 100644
+> > > Documentation/devicetree/bindings/soc/imx/imx8m-soc.yaml
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/soc/imx/imx8m-soc.yaml
+> > > b/Documentation/devicetree/bindings/soc/imx/imx8m-soc.yaml
+> > > new file mode 100644
+> > > index 000000000000..a2f7dc0c9b35
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/soc/imx/imx8m-soc.yaml
+> > > @@ -0,0 +1,54 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause) %YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/soc/imx/imx8m-soc.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: NXP i.MX8M Series SoC
+> > > +
+> > > +maintainers:
+> > > +  - Alice Guo <alice.guo@nxp.com>
+> > > +
+> > > +description: |
+> > > +  NXP i.MX8M series SoCs contain fuse entries from which SoC Unique
+> > > +ID can be
+> > > +  obtained.
+> > > +
+> > > +select:
+> > 
+> > Mhm, there are other compatibles here so indeed, select is needed.
+> > 
+> > > +  properties:
+> > > +    compatible:
+> > > +      contains:
+> > > +        enum:
+> > > +          - fsl,imx8mm
+> > > +          - fsl,imx8mn
+> > > +          - fsl,imx8mp
+> > > +          - fsl,imx8mq
+> > > +  required:
+> > > +    - compatible
+> > 
+> > This does not work - does not match anything. It seems you missed proper
+> > "required" for the matched node.
+> > 
+> > Provide also an example.
+> > 
+> > Best regards,
+> > Krzysztof
+> > 
+> 
+> Hi, Krzysztof
+> Thank you for your advice. My opinion is different from yours.
+> 
+> I did the fowllowing test:
+> --- a/Documentation/devicetree/bindings/soc/imx/imx8m-soc.yaml
+> +++ b/Documentation/devicetree/bindings/soc/imx/imx8m-soc.yaml
+> @@ -22,6 +22,7 @@ select:
+>            - fsl,imx8mn
+>            - fsl,imx8mp
+>            - fsl,imx8mq
+> +          - fsl,lx2160a
+>    required:
+>      - compatible
+> 
+> ➜  linux-next git:(master) ✗ make ARCH=arm64 dtbs_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/soc/imx/imx8m-soc.yaml
+> ...
+> /home/nxf55104/virtualization/upstream/linux-next/arch/arm64/boot/dts/freescale/fsl-lx2160a-clearfog-cx.dt.yaml: /: soc:compatible:0: 'simple-bus' is not one of ['fsl,imx8mm-soc', 'fsl,imx8mn-soc', 'fsl,imx8mp-soc', 'fsl,imx8mq-soc']
+>         From schema: /home/nxf55104/virtualization/upstream/linux-next/Documentation/devicetree/bindings/soc/imx/imx8m-soc.yaml
+> ...
+> 
+> So, I think it works and can match stuff. I do not understand what proper " required" I missed. Please give me some tips. Thank you.
 
-Would it be better to add a data field to struct of_device_id
-mtk_xhci_of_match, and enable this quirk on mediatek,mt8173-xhci only?
+I applied the bindings (only) and run dtbs_check - everything passed
+fine but it shouldn't. The DTS do not have soc compatibles.
 
-(IMHO usb3-lpm-capable detection should also be done in the same way)
+Best regards,
+Krzysztof
 
-Thanks,
-
->         /* optional property, ignore the error if it does not exist */
->         of_property_read_u32(node, "mediatek,u3p-dis-msk",
->                              &mtk->u3p_dis_msk);
-> @@ -546,7 +551,7 @@ static int xhci_mtk_probe(struct platform_device *pdev)
->         if (ret)
->                 goto put_usb3_hcd;
->
-> -       if (HCC_MAX_PSA(xhci->hcc_params) >= 4)
-> +       if (!mtk->broken_streams && HCC_MAX_PSA(xhci->hcc_params) >= 4)
->                 xhci->shared_hcd->can_do_streams = 1;
->
->         ret = usb_add_hcd(xhci->shared_hcd, irq, IRQF_SHARED);
-> diff --git a/drivers/usb/host/xhci-mtk.h b/drivers/usb/host/xhci-mtk.h
-> index a93cfe817904..86aa4978915e 100644
-> --- a/drivers/usb/host/xhci-mtk.h
-> +++ b/drivers/usb/host/xhci-mtk.h
-> @@ -147,6 +147,7 @@ struct xhci_hcd_mtk {
->         struct phy **phys;
->         int num_phys;
->         bool lpm_support;
-> +       bool broken_streams;
->         /* usb remote wakeup */
->         bool uwk_en;
->         struct regmap *uwk;
-> --
-> 2.18.0
