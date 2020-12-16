@@ -2,155 +2,208 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0FAAE2DC4BF
-	for <lists+devicetree@lfdr.de>; Wed, 16 Dec 2020 17:55:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E7F022DC4D9
+	for <lists+devicetree@lfdr.de>; Wed, 16 Dec 2020 17:59:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726877AbgLPQy4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Dec 2020 11:54:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34554 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726882AbgLPQy4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Dec 2020 11:54:56 -0500
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77E8CC0619D5
-        for <devicetree@vger.kernel.org>; Wed, 16 Dec 2020 08:53:02 -0800 (PST)
-Received: by mail-lf1-x131.google.com with SMTP id a12so50058102lfl.6
-        for <devicetree@vger.kernel.org>; Wed, 16 Dec 2020 08:53:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=QN2ZDNaFP2aT/ClXBsxAgxKdaK3vIBmK5H4WTk/CkiE=;
-        b=F7PRpDU16rzweD3c39edlX+7YkESCotZA/8lVuw7u0iyFp6lxPyNoIfl0Gmn0GfPRu
-         OCGSXbVPuEVr40Ead0jo3k1yeY70xXijLUCaTjfVxqHvWPzP3fy4QAOjarCRXxazAJe8
-         cBhtLSxLpWkBBdgh1jN4e/08b0qSU+soXhcAIuMBp4olkK69NiLajmjSn24lGN9bQOw9
-         srP1jHf1P3c1pu0FMOabufaANlqPNlridBo3+jdRcJ2s1XvU+OyO+3h0y87Dy//Igqhv
-         ZtRI+fAbOWMuf2iRmbKTalhDEDfkjZwfKtLksMmH330rgoqwGh6ySl5KYrSbBLFiRBDZ
-         8E4w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=QN2ZDNaFP2aT/ClXBsxAgxKdaK3vIBmK5H4WTk/CkiE=;
-        b=I+iiA1aGjCl2PeB0Gll7L/Y7rNOhCHKh1mtwpvdk8rtP3ZehFVakbCPaD5MS3Jp9Ow
-         0QOyLyH/YY5X9x7a3H03FEifFGA4Senwlq848GPD9V0h1VTsKfmKSGuTPH1qZ19Hcwm8
-         3tny4z2qRWG3CStjg5KqVGuPqQbeJXDpN/JZVcOaVImJNMVh8TReDmTuELYrn5VDAKh/
-         fkvZqAfew5bqXnHGOGdcflFbveVGt+WU9KEXuGljZf8av4bKemvOQUzy/rCaO2GnwNGi
-         zI/KLxXDIvJb/5UPEx3soJlzPCfnrJ27g9bc/N7syRyS7HB0XyEu1WMyNqKf687Oeo45
-         WcUw==
-X-Gm-Message-State: AOAM533MpQCuGjR3DG8OfwI+fwFWOY6D5L1yR2kbm8wRNjSzvc39clmW
-        hSySPpKULLr6c7csDvAGOiq81Q==
-X-Google-Smtp-Source: ABdhPJxXwjufBrBS5p5gGK+QRTNfqS9gpkIv6Yx7cXPGiFdZEIUdxaMtfzMcrRCrrXmj0W3+90mb4A==
-X-Received: by 2002:a2e:9f14:: with SMTP id u20mr5744528ljk.244.1608137579582;
-        Wed, 16 Dec 2020 08:52:59 -0800 (PST)
-Received: from gilgamesh.semihalf.com (193-106-246-138.noc.fibertech.net.pl. [193.106.246.138])
-        by smtp.gmail.com with ESMTPSA id t3sm281645lfe.263.2020.12.16.08.52.58
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 16 Dec 2020 08:52:58 -0800 (PST)
-From:   Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
-To:     ohad@wizery.com, bjorn.andersson@linaro.org,
-        mathieu.poirier@linaro.org, robh+dt@kernel.org, s-anna@ti.com,
-        ssantosh@kernel.org
-Cc:     grzegorz.jaszczyk@linaro.org, linux-remoteproc@vger.kernel.org,
-        lee.jones@linaro.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, praneeth@ti.com,
-        rogerq@ti.com, t-kristo@ti.com
-Subject: [PATCH v2 5/5] remoteproc: pru: Configure firmware based on client setup
-Date:   Wed, 16 Dec 2020 17:52:39 +0100
-Message-Id: <20201216165239.2744-6-grzegorz.jaszczyk@linaro.org>
-X-Mailer: git-send-email 2.29.0
-In-Reply-To: <20201216165239.2744-1-grzegorz.jaszczyk@linaro.org>
-References: <20201216165239.2744-1-grzegorz.jaszczyk@linaro.org>
+        id S1726899AbgLPQ6n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Dec 2020 11:58:43 -0500
+Received: from linux.microsoft.com ([13.77.154.182]:51890 "EHLO
+        linux.microsoft.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726745AbgLPQ6n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Dec 2020 11:58:43 -0500
+Received: from [192.168.0.104] (c-73-42-176-67.hsd1.wa.comcast.net [73.42.176.67])
+        by linux.microsoft.com (Postfix) with ESMTPSA id D8A2820B717A;
+        Wed, 16 Dec 2020 08:58:00 -0800 (PST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com D8A2820B717A
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+        s=default; t=1608137881;
+        bh=D7IeDQSLrMQalbqHtiNQWaTnbkIyUfEAlM97NWNMyc8=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=RQ4AeGq80q4TfLyhbvpIM28amv3LOW2hqkZrRtHYepCacrCmpTFo5lZyxpyHWCDIy
+         Ez9h00a151IsBDnEXcz+esu18ZpQBy8FAiEq2d0pqemkwkSBmfPwu+FzysDWTsxNss
+         fFZixRgup2LH0lIW3/ENv8OTQTJqcaX+VYtrsTa8=
+Subject: Re: [PATCH v11 2/8] powerpc: Move ima buffer functions to
+ drivers/of/kexec.c
+To:     Rob Herring <robh@kernel.org>
+Cc:     zohar@linux.ibm.com, bauerman@linux.ibm.com,
+        takahiro.akashi@linaro.org, gregkh@linuxfoundation.org,
+        will@kernel.org, catalin.marinas@arm.com, mpe@ellerman.id.au,
+        james.morse@arm.com, sashal@kernel.org, benh@kernel.crashing.org,
+        paulus@samba.org, frowand.list@gmail.com,
+        vincenzo.frascino@arm.com, mark.rutland@arm.com,
+        dmitry.kasatkin@gmail.com, jmorris@namei.org, serge@hallyn.com,
+        pasha.tatashin@soleen.com, allison@lohutok.net,
+        masahiroy@kernel.org, bhsharma@redhat.com, mbrugger@suse.com,
+        hsinyi@chromium.org, tao.li@vivo.com, christophe.leroy@c-s.fr,
+        prsriva@linux.microsoft.com, balajib@linux.microsoft.com,
+        linux-integrity@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+References: <20201214191854.9050-1-nramas@linux.microsoft.com>
+ <20201214191854.9050-3-nramas@linux.microsoft.com>
+ <20201215181601.GA4105316@robh.at.kernel.org>
+From:   Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
+Message-ID: <f0b4d1eb-83a4-d364-62c0-1d6cfc86c74b@linux.microsoft.com>
+Date:   Wed, 16 Dec 2020 08:58:00 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20201215181601.GA4105316@robh.at.kernel.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Tero Kristo <t-kristo@ti.com>
+On 12/15/20 10:16 AM, Rob Herring wrote:
+> On Mon, Dec 14, 2020 at 11:18:48AM -0800, Lakshmi Ramasubramanian wrote:
+>> The functions do_get_kexec_buffer() and get_addr_size_cells(),
+>> defined in arch/powerpc/kexec/ima.c, retrieve the address and size
+>> of the given property from the device tree blob. These functions do
+>> not have architecture specific code, but are currently limited to
+>> powerpc. do_get_kexec_buffer() correctly handles a device tree property
+>> that is a child node of the root node, but not anything other than
+>> the immediate root child nodes.
+>>
+>> Move architecture independent functions get_ima_kexec_buffer() and
+>> get_root_addr_size_cells() to "drivers/of/kexec.c". These functions
+>> retrieve the chosen node "linux,ima-kexec-buffer" from the device tree,
+>> and return the address and size of the buffer used for carrying forward
+>> the IMA measurement log across kexec system call.
+>>
+>> Co-developed-by: Prakhar Srivastava <prsriva@linux.microsoft.com>
+>> Signed-off-by: Prakhar Srivastava <prsriva@linux.microsoft.com>
+>> Signed-off-by: Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
+>> ---
+>>   drivers/of/kexec.c | 68 ++++++++++++++++++++++++++++++++++++++++++++++
+>>   include/linux/of.h |  3 ++
+>>   2 files changed, 71 insertions(+)
+>>
+>> diff --git a/drivers/of/kexec.c b/drivers/of/kexec.c
+>> index 66787be081fe..9af5371340b1 100644
+>> --- a/drivers/of/kexec.c
+>> +++ b/drivers/of/kexec.c
+>> @@ -30,6 +30,10 @@
+>>   /**
+>>    * fdt_find_and_del_mem_rsv - delete memory reservation with given address and size
+>>    *
+>> + * @fdt: Flattened Device Tree to update
+>> + * @start: Starting address of the reservation to delete
+>> + * @size: Size of the reservation to delete
+>> + *
+> 
+> This belongs in the patch adding fdt_find_and_del_mem_rsv.
 
-Client device node property firmware-name is now used to configure
-firmware for the PRU instances. The default firmware is also
-restored once releasing the PRU resource.
+Yes.
 
-Co-developed-by: Suman Anna <s-anna@ti.com>
-Signed-off-by: Suman Anna <s-anna@ti.com>
-Signed-off-by: Tero Kristo <t-kristo@ti.com>
-Co-developed-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
-Signed-off-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
----
- drivers/remoteproc/pru_rproc.c | 35 ++++++++++++++++++++++++++++++++++
- 1 file changed, 35 insertions(+)
+> 
+>>    * Return: 0 on success, or negative errno on error.
+>>    */
+>>   static int fdt_find_and_del_mem_rsv(void *fdt, unsigned long start, unsigned long size)
+>> @@ -226,3 +230,67 @@ int of_kexec_setup_new_fdt(const struct kimage *image, void *fdt,
+>>   
+>>   	return 0;
+>>   }
+>> +
+>> +/**
+>> + * get_root_addr_size_cells - Get address and size of root node
+>> + *
+>> + * @addr_cells: Return address of the root node
+>> + * @size_cells: Return size of the root node
+>> + *
+>> + * Return: 0 on success, or negative errno on error.
+>> + */
+>> +int get_root_addr_size_cells(int *addr_cells, int *size_cells)
+>> +{
+>> +	struct device_node *root;
+>> +
+>> +	root = of_find_node_by_path("/");
+>> +	if (!root)
+>> +		return -EINVAL;
+>> +
+>> +	*addr_cells = of_n_addr_cells(root);
+>> +	*size_cells = of_n_size_cells(root);
+>> +
+>> +	of_node_put(root);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +/**
+>> + * get_ima_kexec_buffer - Get address and size of IMA kexec buffer
+>> + *
+>> + * @fdt: Flattened Device Tree
+>> + * @chosen_node: Offset of chosen node in the FDT
+>> + * @addr: Return address of the node
+>> + * @size: Return size of the node
+>> + *
+>> + * Return: 0 on success, or negative errno on error.
+>> + */
+>> +int get_ima_kexec_buffer(void *fdt, int chosen_node,
+>> +			 unsigned long *addr, size_t *size)
+>> +{
+>> +	const void *prop;
+>> +	int addr_cells, size_cells, prop_len;
+>> +	int rc;
+>> +
+>> +	rc = get_root_addr_size_cells(&addr_cells, &size_cells);
+>> +	if (rc)
+>> +		return rc;
+>> +
+>> +	if (fdt)
+>> +		prop = fdt_getprop(fdt, chosen_node,
+>> +				   "linux,ima-kexec-buffer", &prop_len);
+>> +	else
+>> +		prop = of_get_property(of_chosen,
+>> +				       "linux,ima-kexec-buffer", &prop_len);
+> 
+> This is an odd structure. The DT APIs are generally of_foo() for
+> unflattened tree and of_flat_foo() for FDT.
+> 
+Ok - will update.
 
-diff --git a/drivers/remoteproc/pru_rproc.c b/drivers/remoteproc/pru_rproc.c
-index a37c3f5838ea..4a9c7973bf3a 100644
---- a/drivers/remoteproc/pru_rproc.c
-+++ b/drivers/remoteproc/pru_rproc.c
-@@ -170,6 +170,23 @@ void pru_control_set_reg(struct pru_rproc *pru, unsigned int reg,
- 	spin_unlock_irqrestore(&pru->rmw_lock, flags);
- }
- 
-+/**
-+ * pru_rproc_set_firmware() - set firmware for a pru core
-+ * @rproc: the rproc instance of the PRU
-+ * @fw_name: the new firmware name, or NULL if default is desired
-+ *
-+ * Return: 0 on success, or errno in error case.
-+ */
-+static int pru_rproc_set_firmware(struct rproc *rproc, const char *fw_name)
-+{
-+	struct pru_rproc *pru = rproc->priv;
-+
-+	if (!fw_name)
-+		fw_name = pru->fw_name;
-+
-+	return rproc_set_firmware(rproc, fw_name);
-+}
-+
- static struct rproc *__pru_rproc_get(struct device_node *np, int index)
- {
- 	struct device_node *rproc_np = NULL;
-@@ -230,6 +247,8 @@ struct rproc *pru_rproc_get(struct device_node *np, int index,
- 	struct rproc *rproc;
- 	struct pru_rproc *pru;
- 	struct device *dev;
-+	const char *fw_name;
-+	int ret;
- 
- 	rproc = __pru_rproc_get(np, index);
- 	if (IS_ERR(rproc))
-@@ -254,7 +273,21 @@ struct rproc *pru_rproc_get(struct device_node *np, int index,
- 	if (pru_id)
- 		*pru_id = pru->id;
- 
-+	ret = of_property_read_string_index(np, "firmware-name", index,
-+					    &fw_name);
-+	if (!ret) {
-+		ret = pru_rproc_set_firmware(rproc, fw_name);
-+		if (ret) {
-+			dev_err(dev, "failed to set firmware: %d\n", ret);
-+			goto err;
-+		}
-+	}
-+
- 	return rproc;
-+
-+err:
-+	pru_rproc_put(rproc);
-+	return ERR_PTR(ret);
- }
- EXPORT_SYMBOL_GPL(pru_rproc_get);
- 
-@@ -276,6 +309,8 @@ void pru_rproc_put(struct rproc *rproc)
- 	if (!pru->client_np)
- 		return;
- 
-+	pru_rproc_set_firmware(rproc, NULL);
-+
- 	mutex_lock(&pru->lock);
- 	pru->client_np = NULL;
- 	rproc->deny_sysfs_ops = false;
--- 
-2.29.0
+>> +
+>> +	if (!prop)
+>> +		return -ENOENT;
+>> +
+>> +	if (prop_len < 4 * (addr_cells + size_cells))
+>> +		return -EINVAL;
+>> +
+>> +	*addr = of_read_number(prop, addr_cells);
+>> +	*size = of_read_number(prop + 4 * addr_cells, size_cells);
+>> +
+>> +	return 0;
+>> +}
+>> diff --git a/include/linux/of.h b/include/linux/of.h
+>> index 3375f5295875..fb2ef274135d 100644
+>> --- a/include/linux/of.h
+>> +++ b/include/linux/of.h
+>> @@ -562,6 +562,9 @@ struct kimage;
+>>   int of_kexec_setup_new_fdt(const struct kimage *image, void *fdt,
+>>   			   unsigned long initrd_load_addr, unsigned long initrd_len,
+>>   			   const char *cmdline);
+>> +int get_root_addr_size_cells(int *addr_cells, int *size_cells);
+>> +int get_ima_kexec_buffer(void *fdt, int chosen_node,
+>> +			 unsigned long *addr, size_t *size);
+> 
+> The whole point of moving code out of arch code was to avoid all these
+> cross tree calls.
+> 
+> I was expecting the next step to be moving setup_ima_buffer() call into
+> of_kexec_setup_new_fdt with all the code in powerpc/kexec/ima.c moved
+> here. Then the end result to enable on arm64 is just selecting
+> HAVE_IMA_KEXEC and adding fields to kimage_arch.
+> 
+
+setup_ima_buffer() implemented for powerpc can be simplified by using
+fdt_appendprop_addrrange() to add the IMA buffer's address and size to 
+"linux,ima-kexec-buffer" node. With that change, setup_ima_buffer() can 
+be moved into of_kexec_setup_new_fdt along with all the code in 
+powerpc/kexec/ima.c to drivers'of/kexec.c
+
+I'll make the above change and post the next version shortly.
+
+thanks,
+  -lakshmi
+
 
