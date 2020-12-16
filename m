@@ -2,54 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A6CE32DC54F
-	for <lists+devicetree@lfdr.de>; Wed, 16 Dec 2020 18:28:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E1D242DC55E
+	for <lists+devicetree@lfdr.de>; Wed, 16 Dec 2020 18:30:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727095AbgLPR11 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Dec 2020 12:27:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39538 "EHLO
+        id S1727126AbgLPR37 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Dec 2020 12:29:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39942 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726837AbgLPR11 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Dec 2020 12:27:27 -0500
-Received: from mail-pg1-x52a.google.com (mail-pg1-x52a.google.com [IPv6:2607:f8b0:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4324C061794;
-        Wed, 16 Dec 2020 09:26:46 -0800 (PST)
-Received: by mail-pg1-x52a.google.com with SMTP id e2so18094134pgi.5;
-        Wed, 16 Dec 2020 09:26:46 -0800 (PST)
+        with ESMTP id S1726808AbgLPR36 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Dec 2020 12:29:58 -0500
+Received: from mail-pf1-x432.google.com (mail-pf1-x432.google.com [IPv6:2607:f8b0:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B130C06179C;
+        Wed, 16 Dec 2020 09:29:18 -0800 (PST)
+Received: by mail-pf1-x432.google.com with SMTP id q22so17011629pfk.12;
+        Wed, 16 Dec 2020 09:29:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=subject:to:cc:references:from:autocrypt:message-id:date:user-agent
          :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=EzAS7ldgmcbvMm+9cjHoPH6O8f3axqJD3epKVX+x/EQ=;
-        b=r5eMpvp3tcNskfXh6GF8zvcPqELYreeU6y6Dy/Kx69RR7tiTvVFrTdfuM16TNhMalc
-         sZN7MLBpfnnNE1onoyyPxTwkrZMiELwKt/f0qDhWzxRjf5IhMln2QhnzCqNxKuS0MoK4
-         1Vwyr/w8Q8nDTY0UeSpBTF/GBcGErBp68dGr9XENo9rtm8lTTwvcH7bTUoM4HSmZ2/0d
-         XlHx5eBIaiCS9VpFla8IZHXnJVDBkzPk6s9BNJ35eZQQO5tUSFojepcmOZeusCw3PEH6
-         drVCntWYlWPH09TNMBPsnhU0XXpqD5tyo21dSMvll8/KeL+aqow8XZp5VIQwgyCXd3zh
-         PXgw==
+        bh=UT1B9nUbmAhqtCJn38dlsaMuP8mrnsdDVCBDzR6A/4Y=;
+        b=Y7nSdaiwoNtRlOlJWltUpQHABvcC/d0Mt3kVqhsJCbVZIJ9VS95lvGSS1JcRR4i7qa
+         GbmVJOlyPmWGzG50CIO8qYCk/YnULiBfev6nCnHyFxRBqQ01hmXAthbUnNBoqn00Yv3Q
+         VVfmJi7vGVe2yxwYa/IxVtRW0ADRXVhhd1thvnaCIK6tAlxBk7Z5i+gu1mSwD1uiV68H
+         CcPswJZrpmzBJvCHDArLp0Bw7KSzYM7BrHgAKy7sASJ81F8h3lIP6PdysMUS3SQ5q4Bd
+         LuFqygzX0gyy+Z/r4VChxDQeQI0/MfJVeMyi+T9QwE2oP0jtidD7WmitaD3aP+TO+0Mw
+         mwvQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:autocrypt
          :message-id:date:user-agent:mime-version:in-reply-to
          :content-language:content-transfer-encoding;
-        bh=EzAS7ldgmcbvMm+9cjHoPH6O8f3axqJD3epKVX+x/EQ=;
-        b=PbGM8z4duBcUVnMotx+Hdcsy87ORrwKEE1FLvRnbpcHOSlhLnRruEDD3mKZcGs9hNM
-         crTb5GCR75EgfWolp6yX7p3QC9zM3tkhjSDQ7BrKF3mk4vCOWISLxXumUqbB7Q76uSKj
-         M55P3Ojzu4MyIV4nndGRFHgkepFWSCUGJJozpNXBA/dVy5alydHrdQIwHMHZoaBclwEP
-         qtyQJvFmeg2e5ZuvwHDuvXBi6UghPyKtLJttWggW4Z39hpf/KFifQB+Tjr3PPsTnzeeF
-         s89gpP32t2FF6v0VxbNePvnSBmrWm3VUUs51son63qtwjkGs4Y4xDmAboFcCSpnch/9K
-         v6ig==
-X-Gm-Message-State: AOAM532Bhmf2td2RuHoDDmHTPrS5dNfYVC9iu4t6RduxrfCx5ZnQ/VWC
-        goLZ4vE3F0x73jMS0G34jpw=
-X-Google-Smtp-Source: ABdhPJzIvARaxeB2g4Gl+EcE8TZ9VgTtUP6X+R0yjWppSdR+crc2j0KGYzoZqhRPHWm0k6UBZnMd/A==
-X-Received: by 2002:a63:d846:: with SMTP id k6mr30504685pgj.167.1608139606370;
-        Wed, 16 Dec 2020 09:26:46 -0800 (PST)
+        bh=UT1B9nUbmAhqtCJn38dlsaMuP8mrnsdDVCBDzR6A/4Y=;
+        b=g0o69fqz4E+BDuNHwCmuKPlHo9e2jauiR/oWbgQlrMcldnDNVgjnGWffZMYnMSGge1
+         BkPgsIhDq/WGGS/kjFqj2413dIXBlqFRwWuFz5MJNUSiiiCMyaey2NQ5n3Et1Sfb2iwH
+         +fKFLSkHf9BWbGZuzATSzVlK0KGlBWqEDsgk3th6D7i3c0P3fXkPa0R8BNDJ5V6ZnY+V
+         l4OL5AdkEvoYVOqIJdleguRHx+pxzfwZHj7G6UY0CMslo2hU0kQ6rJeyhZlgW3PLuGPV
+         oGb9WylE1jUtwWm8GT7+5xmGvnMPjZeGkbdoVpOpeYhRsKvDGfZwLCx7xeWbfARyGAVP
+         Dv6Q==
+X-Gm-Message-State: AOAM530UMIvBEWWMqfTVtzxpGeP0cEGvm2o615bTFWaia64ro89zMQv/
+        NrrYTkg2vbKG2u54D7HmTyM=
+X-Google-Smtp-Source: ABdhPJwbFGmPOY6hKSfNWyhOyKqzwidIZcPqICoHd75vsJEsReiyVE89Gj2c//XGXGYjtFbJG/4rMw==
+X-Received: by 2002:a62:7651:0:b029:1a5:929b:1681 with SMTP id r78-20020a6276510000b02901a5929b1681mr14282973pfc.27.1608139757816;
+        Wed, 16 Dec 2020 09:29:17 -0800 (PST)
 Received: from [10.67.48.230] ([192.19.223.252])
-        by smtp.googlemail.com with ESMTPSA id p1sm3454892pfb.208.2020.12.16.09.26.44
+        by smtp.googlemail.com with ESMTPSA id ft19sm2676892pjb.44.2020.12.16.09.29.11
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 16 Dec 2020 09:26:45 -0800 (PST)
-Subject: Re: [PATCH 2/3] dt-bindings: phy: brcm,brcmstb-usb-phy: add BCM4908
- binding
+        Wed, 16 Dec 2020 09:29:16 -0800 (PST)
+Subject: Re: [PATCH 1/3] dt-bindings: phy: brcm,brcmstb-usb-phy: convert to
+ the json-schema
 To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
         Kishon Vijay Abraham I <kishon@ti.com>,
         Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>
@@ -59,7 +59,6 @@ Cc:     Florian Fainelli <f.fainelli@gmail.com>,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
 References: <20201216131451.16900-1-zajec5@gmail.com>
- <20201216131451.16900-2-zajec5@gmail.com>
 From:   Florian Fainelli <f.fainelli@gmail.com>
 Autocrypt: addr=f.fainelli@gmail.com; prefer-encrypt=mutual; keydata=
  mQGiBEjPuBIRBACW9MxSJU9fvEOCTnRNqG/13rAGsj+vJqontvoDSNxRgmafP8d3nesnqPyR
@@ -115,12 +114,12 @@ Autocrypt: addr=f.fainelli@gmail.com; prefer-encrypt=mutual; keydata=
  caxTGgc5zzQHeX67eMzrGomG3ZnIxmd1sAbgvJUDaD2GrYlulfwGWwWyTNbWRvMighVdPkSF
  6XFgQaosWxkV0OELLy2N485YrTr2Uq64VKyxpncLh50e2RnyAJ9Za0Dx0yyp44iD1OvHtkEI
  M5kY0ACeNhCZJvZ5g4C2Lc9fcTHu8jxmEkI=
-Message-ID: <091063a9-c5c5-37a4-bced-50bfa8dc930d@gmail.com>
-Date:   Wed, 16 Dec 2020 09:26:43 -0800
+Message-ID: <c311e512-0d14-56b7-7b86-9d09322fa704@gmail.com>
+Date:   Wed, 16 Dec 2020 09:29:08 -0800
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20201216131451.16900-2-zajec5@gmail.com>
+In-Reply-To: <20201216131451.16900-1-zajec5@gmail.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 8bit
@@ -131,11 +130,138 @@ X-Mailing-List: devicetree@vger.kernel.org
 On 12/16/20 5:14 AM, Rafał Miłecki wrote:
 > From: Rafał Miłecki <rafal@milecki.pl>
 > 
-> BCM4908 uses the same PHY and may require just slightly different
-> programming.
+> Changes that require mentioning:
+> 1. interrupt-names
+>    Name "wakeup" was changed to the "wake". It matches example and what
+>    Linux driver looks for in the first place
+> 2. brcm,ipp and brcm,ioc
+>    Both were described as booleans with 0 / 1 values. In examples they
+>    were integers and Linux driver checks for int as well.
+>    I made both uint32 but that probably should be refactored later.
+> 3. Added minimal description
 > 
 > Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> ---
+>  .../bindings/phy/brcm,brcmstb-usb-phy.txt     |  86 --------
+>  .../bindings/phy/brcm,brcmstb-usb-phy.yaml    | 195 ++++++++++++++++++
+>  2 files changed, 195 insertions(+), 86 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/phy/brcm,brcmstb-usb-phy.txt
+>  create mode 100644 Documentation/devicetree/bindings/phy/brcm,brcmstb-usb-phy.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/phy/brcm,brcmstb-usb-phy.txt b/Documentation/devicetree/bindings/phy/brcm,brcmstb-usb-phy.txt
+> deleted file mode 100644
+> index 698aacbdcfc4..000000000000
+> --- a/Documentation/devicetree/bindings/phy/brcm,brcmstb-usb-phy.txt
+> +++ /dev/null
+> @@ -1,86 +0,0 @@
+> -Broadcom STB USB PHY
+> -
+> -Required properties:
+> -- compatible: should be one of
+> -	"brcm,brcmstb-usb-phy"
+> -	"brcm,bcm7216-usb-phy"
+> -	"brcm,bcm7211-usb-phy"
+> -
+> -- reg and reg-names properties requirements are specific to the
+> -  compatible string.
+> -  "brcm,brcmstb-usb-phy":
+> -    - reg: 1 or 2 offset and length pairs. One for the base CTRL registers
+> -           and an optional pair for systems with USB 3.x support
+> -    - reg-names: not specified
+> -  "brcm,bcm7216-usb-phy":
+> -    - reg: 3 offset and length pairs for CTRL, XHCI_EC and XHCI_GBL
+> -           registers
+> -    - reg-names: "ctrl", "xhci_ec", "xhci_gbl"
+> -  "brcm,bcm7211-usb-phy":
+> -    - reg: 5 offset and length pairs for CTRL, XHCI_EC, XHCI_GBL,
+> -           USB_PHY and USB_MDIO registers and an optional pair
+> -	   for the BDC registers
+> -    - reg-names: "ctrl", "xhci_ec", "xhci_gbl", "usb_phy", "usb_mdio", "bdc_ec"
+> -
+> -- #phy-cells: Shall be 1 as it expects one argument for setting
+> -	      the type of the PHY. Possible values are:
+> -	      - PHY_TYPE_USB2 for USB1.1/2.0 PHY
+> -	      - PHY_TYPE_USB3 for USB3.x PHY
+> -
+> -Optional Properties:
+> -- clocks : clock phandles.
+> -- clock-names: String, clock name.
+> -- interrupts: wakeup interrupt
+> -- interrupt-names: "wakeup"
+> -- brcm,ipp: Boolean, Invert Port Power.
+> -  Possible values are: 0 (Don't invert), 1 (Invert)
+> -- brcm,ioc: Boolean, Invert Over Current detection.
+> -  Possible values are: 0 (Don't invert), 1 (Invert)
+> -- dr_mode: String, PHY Device mode.
+> -  Possible values are: "host", "peripheral ", "drd" or "typec-pd"
+> -  If this property is not defined, the phy will default to "host" mode.
+> -- brcm,syscon-piarbctl: phandle to syscon for handling config registers
+> -NOTE: one or both of the following two properties must be set
+> -- brcm,has-xhci: Boolean indicating the phy has an XHCI phy.
+> -- brcm,has-eohci: Boolean indicating the phy has an EHCI/OHCI phy.
+> -
+> -
+> -Example:
+> -
+> -usbphy_0: usb-phy@f0470200 {
+> -	reg = <0xf0470200 0xb8>,
+> -		<0xf0471940 0x6c0>;
+> -	compatible = "brcm,brcmstb-usb-phy";
+> -	#phy-cells = <1>;
+> -	dr_mode = "host"
+> -	brcm,ioc = <1>;
+> -	brcm,ipp = <1>;
+> -	brcm,has-xhci;
+> -	brcm,has-eohci;
+> -	clocks = <&usb20>, <&usb30>;
+> -	clock-names = "sw_usb", "sw_usb3";
+> -};
+> -
+> -usb-phy@29f0200 {
+> -	reg = <0x29f0200 0x200>,
+> -		<0x29c0880 0x30>,
+> -		<0x29cc100 0x534>,
+> -		<0x2808000 0x24>,
+> -		<0x2980080 0x8>;
+> -	reg-names = "ctrl",
+> -		"xhci_ec",
+> -		"xhci_gbl",
+> -		"usb_phy",
+> -		"usb_mdio";
+> -	brcm,ioc = <0x0>;
+> -	brcm,ipp = <0x0>;
+> -	compatible = "brcm,bcm7211-usb-phy";
+> -	interrupts = <0x30>;
+> -	interrupt-parent = <&vpu_intr1_nosec_intc>;
+> -	interrupt-names = "wake";
+> -	#phy-cells = <0x1>;
+> -	brcm,has-xhci;
+> -	syscon-piarbctl = <&syscon_piarbctl>;
+> -	clocks = <&scmi_clk 256>;
+> -	clock-names = "sw_usb";
+> -};
+> diff --git a/Documentation/devicetree/bindings/phy/brcm,brcmstb-usb-phy.yaml b/Documentation/devicetree/bindings/phy/brcm,brcmstb-usb-phy.yaml
+> new file mode 100644
+> index 000000000000..34664bdfa4be
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/phy/brcm,brcmstb-usb-phy.yaml
+> @@ -0,0 +1,195 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/phy/brcm,brcmstb-usb-phy.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Broadcom STB USB PHY
+> +
+> +description: Broadcom's PHY that handles EHCI/OHCI and/or XHCI
+> +
+> +maintainers:
+> +  - Rafał Miłecki <rafal@milecki.pl>
 
-Acked-by: Florian Fainelli <f.fainelli@gmail.com>
+You would probably want to have Al Cooper be listed as a maintainer as
+well of this binding.
+
+Have not tried to validate the binding, but LGTM!
 -- 
 Florian
