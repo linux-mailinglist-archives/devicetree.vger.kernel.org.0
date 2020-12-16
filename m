@@ -2,95 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E395D2DBED8
-	for <lists+devicetree@lfdr.de>; Wed, 16 Dec 2020 11:39:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6FCD22DBFB5
+	for <lists+devicetree@lfdr.de>; Wed, 16 Dec 2020 12:49:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726328AbgLPKhz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Dec 2020 05:37:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60760 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726292AbgLPKhy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Dec 2020 05:37:54 -0500
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D0C8C0617A6
-        for <devicetree@vger.kernel.org>; Wed, 16 Dec 2020 02:37:14 -0800 (PST)
-Received: by mail-ed1-x52c.google.com with SMTP id r5so24237352eda.12
-        for <devicetree@vger.kernel.org>; Wed, 16 Dec 2020 02:37:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=bsYmkfEVvQqgzD1O+aSIpPO4CsKO+u0Ea3O6N1E481c=;
-        b=E1gRWKOIK1EEv0yOYoQV3P1kGDMjSZejlfc9pBHAb3Ok+GL+cHeIuNDOxsqtxGH7Ef
-         TItAt0jy8MO6I7jrtnl/EtsFj0NIH1iYsicmOwSPqBC1WpEozE46gxcOkApFuK3yM67H
-         3kAry0qXXNXvRk60jFkvTEZAae8Qsj65vAyBAUKRnpHNAwnLStkzn9Vg5UxXlJKu3xpl
-         subhgINJugcYcDXVXRZF/R2lvLpHgjtSBDprPGBKaHegBUYMCngYjKnV0iQpkn1k/D1c
-         YT3MZIqrg5HTPLQjTDj2jiSiTcHfX6l7pl6tyiuZGhOajtlGx2wi/GcI+CwN3awjt/km
-         I9BQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=bsYmkfEVvQqgzD1O+aSIpPO4CsKO+u0Ea3O6N1E481c=;
-        b=kHa/QJ/I2yjKWQZoZ+s3sdP7mZthiSm3UY7fAkZcIq/6B7p4ye53wUntQb8iXXjclI
-         Qa4ooB8fDUVuG7l72sPxxyNtAoae9cWgA7qzEov4Yq+0pwaOjNOOHUIKH030+bta2XzD
-         tsNvy4TadGfXo1P07PkXl/CwV+aNRL6hA4m1qYazSWZVS/mWJUUa4kJ0JbMSqPCgAu1r
-         HjNrIg3HNGoIBaxuXcq6kYOMq03J5M/kzPuOMpbDi5ZKF4jYZR0TgE7WvB3uiJybQr1Y
-         KsL5TqZ4wcSGYMfyurt4pGfDFsgselh/vovAIRN7ZkijgnTS3IBgtUlUsZobDh1Ub+1Y
-         KviQ==
-X-Gm-Message-State: AOAM531eaIB1Ea0HEzohygmkmX1+m59flkED/M3IDxq+BGk3+XoqMFDP
-        I1PJOoTv8Wu3UDdEq5V/zHWbegxcMz66uqXhNAWFhw==
-X-Google-Smtp-Source: ABdhPJwS+suNBsnmqdweQsc8crfYev1Kw3Evg9H2jPGzz2d+ZRjYUcCPzp4JsF4gaLfvS+QySSxQ51abC3XScJaIYz4=
-X-Received: by 2002:a50:b742:: with SMTP id g60mr32617780ede.113.1608115033228;
- Wed, 16 Dec 2020 02:37:13 -0800 (PST)
+        id S1725885AbgLPLsv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Dec 2020 06:48:51 -0500
+Received: from mga17.intel.com ([192.55.52.151]:27995 "EHLO mga17.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725283AbgLPLsv (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 16 Dec 2020 06:48:51 -0500
+IronPort-SDR: dvUR0Dvtd4vInGdaoAn6BxrD9vgdwjFUNj8e+58VOBo4UtfFOZO7uRhle2mq4w7sM93LreJDJW
+ qH8h2VQLmXxA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9836"; a="154856586"
+X-IronPort-AV: E=Sophos;i="5.78,424,1599548400"; 
+   d="scan'208";a="154856586"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Dec 2020 03:47:05 -0800
+IronPort-SDR: mw6V4X+kWItnM7h5ADAiCrJmgqyFR3J+R1aoKxvRKPm36tpYNYS55mN8A45XXfTfLkTqEdMYL0
+ +KQ8EbJs0VaQ==
+X-IronPort-AV: E=Sophos;i="5.78,424,1599548400"; 
+   d="scan'208";a="368985136"
+Received: from johnlyon-mobl.ger.corp.intel.com (HELO dalessan-mobl1.ir.intel.com) ([10.251.90.249])
+  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Dec 2020 03:47:02 -0800
+From:   Daniele Alessandrelli <daniele.alessandrelli@linux.intel.com>
+To:     Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>
+Cc:     linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Gross <mgross@linux.intel.com>,
+        Declan Murphy <declan.murphy@intel.com>,
+        Daniele Alessandrelli <daniele.alessandrelli@intel.com>
+Subject: [PATCH v4 0/5] crypto: Add Keem Bay OCS HCU driver
+Date:   Wed, 16 Dec 2020 11:46:34 +0000
+Message-Id: <20201216114639.3451399-1-daniele.alessandrelli@linux.intel.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-References: <20201211164801.7838-1-nsaenzjulienne@suse.de> <20201211164801.7838-2-nsaenzjulienne@suse.de>
-In-Reply-To: <20201211164801.7838-2-nsaenzjulienne@suse.de>
-From:   Bartosz Golaszewski <bgolaszewski@baylibre.com>
-Date:   Wed, 16 Dec 2020 11:37:02 +0100
-Message-ID: <CAMpxmJUoTHq+ZMm6UOH3tmhGMuDEG5sPn4hiXiZdwSP3FV-hjg@mail.gmail.com>
-Subject: Re: [PATCH v6 01/11] firmware: raspberrypi: Keep count of all consumers
-To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-Cc:     =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        bcm-kernel-feedback-list@broadcom.com, linux-pwm@vger.kernel.org,
-        arm-soc <linux-arm-kernel@lists.infradead.org>,
-        linux-devicetree <devicetree@vger.kernel.org>, wahrenst@gmx.net,
-        Linux Input <linux-input@vger.kernel.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        devel@driverdev.osuosl.org, Philipp Zabel <p.zabel@pengutronix.de>,
-        linux-gpio <linux-gpio@vger.kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        linux-rpi-kernel@lists.infradead.org,
-        Andy Shevchenko <andy.shevchenko@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 11, 2020 at 5:48 PM Nicolas Saenz Julienne
-<nsaenzjulienne@suse.de> wrote:
->
-> When unbinding the firmware device we need to make sure it has no
-> consumers left. Otherwise we'd leave them with a firmware handle
-> pointing at freed memory.
->
-> Keep a reference count of all consumers and introduce rpi_firmware_put()
-> which will permit automatically decrease the reference count upon
-> unbinding consumer drivers.
->
-> Suggested-by: Uwe Kleine-K=C3=B6nig <u.kleine-koenig@pengutronix.de>
-> Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-> Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
->
-> ---
+The Intel Keem Bay SoC has an Offload Crypto Subsystem (OCS) featuring a
+Hashing Control Unit (HCU) for accelerating hashing operations.
 
-Reviewed-by: Bartosz Golaszewski <bgolaszewski@baylibre.com>
+This driver adds support for such hardware thus enabling hardware-accelerated
+hashing on the Keem Bay SoC for the following algorithms:
+- sha224 and hmac(sha224)
+- sha256 and hmac(sha256)
+- sha384 and hmac(sha384)
+- sha512 and hmac(sha512)
+- sm3    and hmac(sm3)
+
+The driver is passing crypto manager self-tests, including the extra tests
+(CRYPTO_MANAGER_EXTRA_TESTS=y).
+
+v3 -> v4:
+- Addressed comments from Mark Gross.
+- Added Reviewed-by-tag from Rob Herring to DT binding patch.
+- Driver reworked to better separate the code interacting with the hardware
+  from the code implementing the crypto ahash API.
+- Main patch split into 3 different patches to simplify review (patch series is
+  now composed of 5 patches)
+
+v2 -> v3:
+- Fixed more issues with dt-bindings (removed useless descriptions for reg,
+  interrupts, and clocks)
+
+v1 -> v2:
+- Fixed issues with dt-bindings
+
+Daniele Alessandrelli (3):
+  crypto: keembay-ocs-hcu - Add HMAC support
+  crypto: keembay-ocs-hcu - Add optional support for sha224
+  MAINTAINERS: Add maintainers for Keem Bay OCS HCU driver
+
+Declan Murphy (2):
+  dt-bindings: crypto: Add Keem Bay OCS HCU bindings
+  crypto: keembay - Add Keem Bay OCS HCU driver
+
+ .../crypto/intel,keembay-ocs-hcu.yaml         |   46 +
+ MAINTAINERS                                   |   11 +
+ drivers/crypto/keembay/Kconfig                |   29 +
+ drivers/crypto/keembay/Makefile               |    3 +
+ drivers/crypto/keembay/keembay-ocs-hcu-core.c | 1264 +++++++++++++++++
+ drivers/crypto/keembay/ocs-hcu.c              |  840 +++++++++++
+ drivers/crypto/keembay/ocs-hcu.h              |  106 ++
+ 7 files changed, 2299 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/crypto/intel,keembay-ocs-hcu.yaml
+ create mode 100644 drivers/crypto/keembay/keembay-ocs-hcu-core.c
+ create mode 100644 drivers/crypto/keembay/ocs-hcu.c
+ create mode 100644 drivers/crypto/keembay/ocs-hcu.h
+
+
+base-commit: 7bba37a1591369e2e506d599b8f5d7d0516b2dbc
+-- 
+2.26.2
+
