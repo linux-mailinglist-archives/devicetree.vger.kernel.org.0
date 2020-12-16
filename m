@@ -2,38 +2,39 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0CF822DC2D6
-	for <lists+devicetree@lfdr.de>; Wed, 16 Dec 2020 16:12:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 605F32DC2EE
+	for <lists+devicetree@lfdr.de>; Wed, 16 Dec 2020 16:18:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725274AbgLPPLu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Dec 2020 10:11:50 -0500
-Received: from mail.kernel.org ([198.145.29.99]:34106 "EHLO mail.kernel.org"
+        id S1726337AbgLPPSL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Dec 2020 10:18:11 -0500
+Received: from mail.kernel.org ([198.145.29.99]:36042 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726162AbgLPPLu (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 16 Dec 2020 10:11:50 -0500
-X-Gm-Message-State: AOAM5335Yn7BBxuAdGP5ljlcsdO8QrCdM2b0/TqqwbHYPD8t2h+GaUZb
-        SNBMF15s/EnakevHp/vXCdpfzaWaLC2XP8CMwg==
+        id S1726310AbgLPPSL (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 16 Dec 2020 10:18:11 -0500
+X-Gm-Message-State: AOAM5311izRs3g4Zqaf9eHp8oQQBP6UO4GHpE4UFGy26QK9Q/ODabb4s
+        PhrNsTX3Qhk0hayxJmULQjwlZ8O69UtlHdNu6w==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1608131469;
-        bh=qJnz4jINEHnwylSMSs8ygzcSuobmntS82hFNu7/S1oQ=;
+        s=k20201202; t=1608131850;
+        bh=YOC88DJH1Ldr/FjwTLsg5NLtJ+aB+EfBl/k2z67zy1U=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=lRAsTNDWesqlzQ3DfHEKOK3sUEih3R8sZvgqKu7FOxscR2Jx2o64DlAWsbq5aOfPs
-         L/+MntDsLzLCCDpILOstBBLRMb061S5uGGRj1DM4HAXGtO2W8YYjN43oWvKR77qeSg
-         MNsoGkyZOHXa+SJtpvYX2kJAqkdZh+G6x7z/V/PZaGr/U5pDDY/6s8Vzq52gVAv8Op
-         NSiBaxK3AQKLvK5wc6xNwdNWW5tDbPLKIxvHwb1WwEvNUPv4Wm5bU609c4aYdqnJ5A
-         6lYHM1a2YCCahcw8rHFeKVsYCj75XkJSHfpaJTy+R5RO+Z/sY/Rwc/1xIbUMzWQTOK
-         O4UFAPVEjkZvg==
-X-Google-Smtp-Source: ABdhPJwS/YraW4qyb0Dm3f675N42jAY1oC2Y8j8EzHOplVWPvcJ8f3cI6/ZgJvdjQ83rFs2emQdjBQ/MA4j9o6AQcBc=
-X-Received: by 2002:a7b:cf30:: with SMTP id m16mr3796965wmg.145.1608131467393;
- Wed, 16 Dec 2020 07:11:07 -0800 (PST)
+        b=d3zPyyMVKaYdL5mltO4VQCc6Hwjmj9nRQPDH6TpXWUQOQ8tS2RTsGSUMuyMGmxQuG
+         vt1J6iptJANrfVh0GdiXg2hqdmT38JHCJdvDA5WNs6nb4RPpeBslQuiAyi5EiM0WUl
+         Ry6gG/cr5UJiSxuA3OUgt/+Oo51YGH/WCvv02r468d3Wn93Sca7Mmi+OyfY0t9GK3D
+         7UZukCc5eNzrKPfF3jt74uit73q6Gge2zvm58xHWt3vjz+fFi34JTndsNRFj/Rj/gn
+         JbuZ+Xwo5xOYaOWE7qnWYYto/8aBCdstxFLBE72PdvH4XHQ+VXHHfp+ppkAjvtAHpc
+         HT76siTDS9xwg==
+X-Google-Smtp-Source: ABdhPJxAAxsNxeLlUnTnLtNubQg6skrY+y2JxetX9D6LYAb9dpqNodHx3+yLdJbf7zIjVVvZiAZDbQ98NMhP+W08ATE=
+X-Received: by 2002:a05:600c:25c2:: with SMTP id 2mr3941456wml.170.1608131848789;
+ Wed, 16 Dec 2020 07:17:28 -0800 (PST)
 MIME-Version: 1.0
-References: <1607746317-4696-1-git-send-email-yongqiang.niu@mediatek.com> <1607746317-4696-11-git-send-email-yongqiang.niu@mediatek.com>
-In-Reply-To: <1607746317-4696-11-git-send-email-yongqiang.niu@mediatek.com>
+References: <1607746317-4696-1-git-send-email-yongqiang.niu@mediatek.com> <1607746317-4696-3-git-send-email-yongqiang.niu@mediatek.com>
+In-Reply-To: <1607746317-4696-3-git-send-email-yongqiang.niu@mediatek.com>
 From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date:   Wed, 16 Dec 2020 23:10:53 +0800
-X-Gmail-Original-Message-ID: <CAAOTY_9JNdL-huHYKq=W5gRMUHVRWeUzDunNa7q_d7DPp4P2pg@mail.gmail.com>
-Message-ID: <CAAOTY_9JNdL-huHYKq=W5gRMUHVRWeUzDunNa7q_d7DPp4P2pg@mail.gmail.com>
-Subject: Re: [PATCH v2, 10/17] drm/mediatek: fix aal size config
+Date:   Wed, 16 Dec 2020 23:17:14 +0800
+X-Gmail-Original-Message-ID: <CAAOTY_-YjP50QrBKfoCqVnMWp41efbs9wdon4gts5QhUfZO8OA@mail.gmail.com>
+Message-ID: <CAAOTY_-YjP50QrBKfoCqVnMWp41efbs9wdon4gts5QhUfZO8OA@mail.gmail.com>
+Subject: Re: [PATCH v2, 02/17] dt-bindings: mediatek: add CLK_MM_DISP_CONFIG
+ control description for mt8192 display
 To:     Yongqiang Niu <yongqiang.niu@mediatek.com>
 Cc:     CK Hu <ck.hu@mediatek.com>, Philipp Zabel <p.zabel@pengutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
@@ -56,59 +57,49 @@ X-Mailing-List: devicetree@vger.kernel.org
 Hi, Yongqiang:
 
 Yongqiang Niu <yongqiang.niu@mediatek.com> =E6=96=BC 2020=E5=B9=B412=E6=9C=
-=8812=E6=97=A5 =E9=80=B1=E5=85=AD =E4=B8=8B=E5=8D=8812:22=E5=AF=AB=E9=81=93=
+=8812=E6=97=A5 =E9=80=B1=E5=85=AD =E4=B8=8B=E5=8D=8812:12=E5=AF=AB=E9=81=93=
 =EF=BC=9A
 >
-> fix aal size config
+> add CLK_MM_DISP_CONFIG control description for mt8192 displa
+
+display
+
 >
-> Fixes: 0664d1392c26 (drm/mediatek: Add AAL engine basic function)
 > Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
 > ---
->  drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c | 11 ++++++++++-
->  1 file changed, 10 insertions(+), 1 deletion(-)
+>  Documentation/devicetree/bindings/display/mediatek/mediatek,disp.txt | 3=
+ +++
+>  1 file changed, 3 insertions(+)
 >
-> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c b/drivers/gpu/dr=
-m/mediatek/mtk_drm_ddp_comp.c
-> index be61d11..e7d481e0 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
-> @@ -33,8 +33,13 @@
->  #define DISP_REG_UFO_START                     0x0000
->
->  #define DISP_AAL_EN                            0x0000
-> +#define DISP_AAL_CFG                           0x0020
-> +#define AAL_RELAY_MODE                                 BIT(0)
-> +#define AAL_ENGINE_EN                                  BIT(1)
->  #define DISP_AAL_SIZE                          0x0030
->
-> +#define DISP_AAL_OUTPUT_SIZE                   0x04d8
-> +
->  #define DISP_CCORR_EN                          0x0000
->  #define CCORR_EN                               BIT(0)
->  #define DISP_CCORR_CFG                         0x0020
-> @@ -184,7 +189,11 @@ static void mtk_aal_config(struct mtk_ddp_comp *comp=
-, unsigned int w,
->                            unsigned int h, unsigned int vrefresh,
->                            unsigned int bpc, struct cmdq_pkt *cmdq_pkt)
->  {
-> -       mtk_ddp_write(cmdq_pkt, h << 16 | w, comp, DISP_AAL_SIZE);
-> +       mtk_ddp_write(cmdq_pkt, w << 16 | h, comp, DISP_AAL_SIZE);
-> +       mtk_ddp_write(cmdq_pkt, w << 16 | h, comp, DISP_AAL_OUTPUT_SIZE);
-> +
-> +       mtk_ddp_write_mask(NULL, AAL_RELAY_MODE, comp, DISP_AAL_CFG,
+> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,=
+disp.txt b/Documentation/devicetree/bindings/display/mediatek/mediatek,disp=
+.txt
+> index 1972fa7..dfbec76 100644
+> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,disp.tx=
+t
+> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,disp.tx=
+t
+> @@ -54,6 +54,9 @@ Required properties (all function blocks):
+>    DPI controller nodes have multiple clock inputs. These are documented =
+in
+>    mediatek,dsi.txt and mediatek,dpi.txt, respectively.
+>    An exception is that the mt8183 mutex is always free running with no c=
+locks property.
+> +  An exception is that the mt8192 display add 2 more clocks(CLK_MM_DISP_=
+CONFIG, CLK_MM_26MHZ),
+> +  and these 2 clocks need enabled before display module work like mutex =
+clock, so we add these
+> +  2 clocks controled same with mutex clock.
 
-cmdq_pkt
-
-> +                          AAL_RELAY_MODE | AAL_ENGINE_EN);
-
-This patch is to fix size config, so move this statement to another patch.
+If every display module needs these two clock, add these two clock to
+all the display module which need them.
 
 Regards,
 Chun-Kuang.
 
->  }
 >
->  static void mtk_aal_start(struct mtk_ddp_comp *comp)
+>  Required properties (DMA function blocks):
+>  - compatible: Should be one of
 > --
 > 1.8.1.1.dirty
 > _______________________________________________
