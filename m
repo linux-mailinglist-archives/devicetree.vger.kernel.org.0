@@ -2,156 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D4F362DBCA8
-	for <lists+devicetree@lfdr.de>; Wed, 16 Dec 2020 09:26:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B4402DBCF9
+	for <lists+devicetree@lfdr.de>; Wed, 16 Dec 2020 09:48:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726410AbgLPI0c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Dec 2020 03:26:32 -0500
-Received: from mail-ej1-f46.google.com ([209.85.218.46]:37069 "EHLO
-        mail-ej1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726417AbgLPI0c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Dec 2020 03:26:32 -0500
-Received: by mail-ej1-f46.google.com with SMTP id ga15so31451656ejb.4;
-        Wed, 16 Dec 2020 00:26:16 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=HkZOg5dGVuAiTfWa+P23apkjAkDfeZHgeEgsN2Bozjo=;
-        b=bjPBhVeKoEohtdPESangqyKb14UNmhy0qjmDV6G7k9+uO9N7Qojo9GKxs7y/5K1FZh
-         VzAQAnIjXYMeXiPVfsMIZ/P4OHDD0mxWwLKeYphcS3PO6bvD1VGjqYznzSNh2WvUQfwk
-         3ZQa170U1pHYAszF+YAEa4WxKV/FwuB0elNckV+t8x6911MEQZFynig9Woc/s5uhYX5d
-         dqerAZ+5Wtqh0dVMABMRq8ZmfkermoYGLuEhZuMYxxom10BbW34xyINB1w+ad0rq/hx/
-         Tv1+nTt7g2LKuSZfKKF0H1dtxB8m3oig507rAI2ClpFWQ3aCLODKy1rmSkjDmD2PsGVM
-         tYYA==
-X-Gm-Message-State: AOAM531/jbgtX20+czH5g8Wpmv1YTsJmu9bolLeBLo+Zvaotsc1jvZce
-        VJ9epEhBILcN9mUNzIf+nCEwR6eiWaC4hw==
-X-Google-Smtp-Source: ABdhPJwO0nwC5J/YIjrpa9PIWO1mPzwt4a69ZXRY6OlmgMrVAhdfro5xYlokNMIoR7LgWCOe0I5eUg==
-X-Received: by 2002:a17:906:b096:: with SMTP id x22mr8732064ejy.471.1608107149932;
-        Wed, 16 Dec 2020 00:25:49 -0800 (PST)
-Received: from ?IPv6:2a0b:e7c0:0:107::49? ([2a0b:e7c0:0:107::49])
-        by smtp.gmail.com with ESMTPSA id w20sm20872984edi.12.2020.12.16.00.25.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 16 Dec 2020 00:25:49 -0800 (PST)
-Subject: Re: [PATCH v6] Serial: silabs si4455 serial driver
-To:     =?UTF-8?Q?J=c3=b3zsef_Horv=c3=a1th?= <info@ministro.hu>,
-        'Greg Kroah-Hartman' <gregkh@linuxfoundation.org>,
-        'Rob Herring' <robh+dt@kernel.org>,
-        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20201215181506.GA20057@dev>
-From:   Jiri Slaby <jirislaby@kernel.org>
-Message-ID: <fcbd72c2-e3a1-241e-a34b-7aecc41c8964@kernel.org>
-Date:   Wed, 16 Dec 2020 09:25:47 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.5.0
+        id S1726155AbgLPIsR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Dec 2020 03:48:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43858 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726189AbgLPIsP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Dec 2020 03:48:15 -0500
+Received: from baptiste.telenet-ops.be (baptiste.telenet-ops.be [IPv6:2a02:1800:120:4::f00:13])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36E80C061793
+        for <devicetree@vger.kernel.org>; Wed, 16 Dec 2020 00:47:35 -0800 (PST)
+Received: from ramsan.of.borg ([84.195.186.194])
+        by baptiste.telenet-ops.be with bizsmtp
+        id 4wnX2400v4C55Sk01wnXhA; Wed, 16 Dec 2020 09:47:32 +0100
+Received: from rox.of.borg ([192.168.97.57])
+        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1kpST5-00B6N3-H8; Wed, 16 Dec 2020 09:47:31 +0100
+Received: from geert by rox.of.borg with local (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1kpST4-00Fzfo-UE; Wed, 16 Dec 2020 09:47:30 +0100
+From:   Geert Uytterhoeven <geert+renesas@glider.be>
+To:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Ahmad Zainie <wan.ahmad.zainie.wan.mohamad@intel.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH] dt-bindings: phy: Rename Intel Keem Bay USB PHY bindings
+Date:   Wed, 16 Dec 2020 09:47:29 +0100
+Message-Id: <20201216084729.3811627-1-geert+renesas@glider.be>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <20201215181506.GA20057@dev>
-Content-Type: text/plain; charset=iso-8859-2; format=flowed
-Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15. 12. 20, 19:15, József Horváth wrote:
-> --- /dev/null
-> +++ b/drivers/tty/serial/si4455.c
-> @@ -0,0 +1,1372 @@
-...
-> +static int si4455_write_data(struct uart_port *port, u8 command, int poll,
-> +			     int length, const u8 *data)
-> +{
-> +	int ret = 0;
-> +	u8 *data_out;
-> +
-> +	if (poll) {
-> +		ret = si4455_poll_cts(port);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	data_out = kzalloc(1 + length, GFP_KERNEL);
-> +	if (!data_out)
-> +		return -ENOMEM;
-> +
-> +	data_out[0] = command;
-> +	memcpy(&data_out[1], data, length);
-> +	ret = spi_write(to_spi_device(port->dev), data_out, 1 + length);
-> +	if (ret) {
-> +		dev_err(port->dev,
-> +			"%s: spi_write error (%i)\n", __func__, ret);
-> +	}
-> +
-> +	kfree(data_out);
-> +
-> +	return ret;
-> +}
-> +
-> +static void si4455_set_power(struct si4455_port *priv, int on)
+This is the only file not using the "intel,keembay-*" pattern.
+Fortunately the actual compatible value is already following the
+standard scheme.
 
-"on" can be bool here. And "poll" in earlier functions. And "on" in 
-later ones.
+Fixes: 4086afa2a1627939 ("dt-bindings: phy: Add Intel Keem Bay USB PHY bindings")
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+---
+ .../{intel,phy-keembay-usb.yaml => intel,keembay-phy-usb.yaml}  | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+ rename Documentation/devicetree/bindings/phy/{intel,phy-keembay-usb.yaml => intel,keembay-phy-usb.yaml} (93%)
 
-> +{
-> +	if (!priv->shdn_gpio)
-> +		return;
-> +	if (on) {
-> +		gpiod_direction_output(priv->shdn_gpio, 0);
-> +		usleep_range(4000, 5000);
-> +		gpiod_set_value(priv->shdn_gpio, 1);
-> +		usleep_range(4000, 5000);
-> +	} else {
-> +		gpiod_direction_output(priv->shdn_gpio, 0);
-> +	}
-
-The above can be simpler:
-
-gpiod_direction_output(priv->shdn_gpio, 0);
-
-if (on) {
-	usleep_range(4000, 5000);
-	gpiod_set_value(priv->shdn_gpio, 1);
-	usleep_range(4000, 5000);
-}
-
-> +static void si4455_handle_rx_pend(struct si4455_port *s)
-> +{
-> +	struct uart_port *port = &s->port;
-> +	u8 *data = NULL;
-
-Unused initialization.
-
-> +	int sret = 0;
-> +	int i = 0;
-> +
-> +	if (s->package_size == 0) {
-> +		//TODO: variable packet length
-> +		dev_err(port->dev, "%s: variable packet length is not supported by the driver\n",
-> +			__func__);
-> +		return;
-> +	}
-> +
-> +	data = kzalloc(s->package_size, GFP_KERNEL);
-
-Missing check of data.
-
-> +	sret = si4455_end_rx(port, s->package_size, data);
-> +	if (sret) {
-> +		dev_err(port->dev, "%s: si4455_end_rx error (%i)\n",
-> +			__func__, sret);
-> +	} else {
-> +		for (i = 0; i < s->package_size; i++) {
-> +			uart_insert_char(port, 0, 0, data[i], TTY_NORMAL);
-> +			port->icount.rx++;
-> +		}
-> +		tty_flip_buffer_push(&port->state->port);
-> +	}
-> +	kfree(data);
-> +}
-...
-thanks,
+diff --git a/Documentation/devicetree/bindings/phy/intel,phy-keembay-usb.yaml b/Documentation/devicetree/bindings/phy/intel,keembay-phy-usb.yaml
+similarity index 93%
+rename from Documentation/devicetree/bindings/phy/intel,phy-keembay-usb.yaml
+rename to Documentation/devicetree/bindings/phy/intel,keembay-phy-usb.yaml
+index a217bb8ac5bc0887..52815b6c2b88d019 100644
+--- a/Documentation/devicetree/bindings/phy/intel,phy-keembay-usb.yaml
++++ b/Documentation/devicetree/bindings/phy/intel,keembay-phy-usb.yaml
+@@ -1,7 +1,7 @@
+ # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+ %YAML 1.2
+ ---
+-$id: http://devicetree.org/schemas/phy/intel,phy-keembay-usb.yaml#
++$id: http://devicetree.org/schemas/phy/intel,keembay-phy-usb.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: Intel Keem Bay USB PHY bindings
 -- 
-js
-suse labs
+2.25.1
+
