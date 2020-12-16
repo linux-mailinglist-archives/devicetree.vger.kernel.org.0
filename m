@@ -2,128 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5974E2DC2BB
-	for <lists+devicetree@lfdr.de>; Wed, 16 Dec 2020 16:08:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0CF822DC2D6
+	for <lists+devicetree@lfdr.de>; Wed, 16 Dec 2020 16:12:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726225AbgLPPIf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Dec 2020 10:08:35 -0500
-Received: from mout.gmx.net ([212.227.17.20]:37333 "EHLO mout.gmx.net"
+        id S1725274AbgLPPLu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Dec 2020 10:11:50 -0500
+Received: from mail.kernel.org ([198.145.29.99]:34106 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725878AbgLPPIf (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 16 Dec 2020 10:08:35 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1608131216;
-        bh=0Mxtf1m4JbBeKNdc0dADWe1cE6qvEFwhrDWcQ4UYmJc=;
-        h=X-UI-Sender-Class:Date:From:To:cc:Subject:In-Reply-To:References;
-        b=aeJk43EZJu8nCRWurpfCHkPoE0ciFPOkpJKA8NS9ygdz+yhqF1zUCFCAG2ADdKNE6
-         Qzk6UvHOMEwMMF10jONC8Wjwq4WVCbdUk/c84JdlNNWzH9X56kX5B+2brtwca6E15G
-         zKCQe80bdASlYLt6j0SqXEpfmC61emnTOZEaPiBk=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from axis700.grange ([87.79.50.253]) by mail.gmx.com (mrgmx105
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1MDQic-1kys461NBe-00ATBa; Wed, 16
- Dec 2020 16:06:56 +0100
-Received: by axis700.grange (Postfix, from userid 1000)
-        id DEE4961F51; Wed, 16 Dec 2020 16:06:54 +0100 (CET)
-Received: from localhost (localhost [127.0.0.1])
-        by axis700.grange (Postfix) with ESMTP id C5D8F616B7;
-        Wed, 16 Dec 2020 16:06:54 +0100 (CET)
-Date:   Wed, 16 Dec 2020 16:06:54 +0100 (CET)
-From:   Guennadi Liakhovetski <g.liakhovetski@gmx.de>
-X-X-Sender: lyakh@axis700.grange
-To:     Rob Herring <robh@kernel.org>
-cc:     Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-media@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] media: dt-bindings: Convert video-interfaces.txt
- properties to schemas
-In-Reply-To: <20201216141210.GB651087@robh.at.kernel.org>
-Message-ID: <alpine.DEB.2.20.2012161605110.17656@axis700.grange>
-References: <20201210211625.3070388-1-robh@kernel.org> <20201210211625.3070388-2-robh@kernel.org> <alpine.DEB.2.20.2012161113060.15676@axis700.grange> <20201216141210.GB651087@robh.at.kernel.org>
-User-Agent: Alpine 2.20 (DEB 67 2015-01-07)
+        id S1726162AbgLPPLu (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 16 Dec 2020 10:11:50 -0500
+X-Gm-Message-State: AOAM5335Yn7BBxuAdGP5ljlcsdO8QrCdM2b0/TqqwbHYPD8t2h+GaUZb
+        SNBMF15s/EnakevHp/vXCdpfzaWaLC2XP8CMwg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1608131469;
+        bh=qJnz4jINEHnwylSMSs8ygzcSuobmntS82hFNu7/S1oQ=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=lRAsTNDWesqlzQ3DfHEKOK3sUEih3R8sZvgqKu7FOxscR2Jx2o64DlAWsbq5aOfPs
+         L/+MntDsLzLCCDpILOstBBLRMb061S5uGGRj1DM4HAXGtO2W8YYjN43oWvKR77qeSg
+         MNsoGkyZOHXa+SJtpvYX2kJAqkdZh+G6x7z/V/PZaGr/U5pDDY/6s8Vzq52gVAv8Op
+         NSiBaxK3AQKLvK5wc6xNwdNWW5tDbPLKIxvHwb1WwEvNUPv4Wm5bU609c4aYdqnJ5A
+         6lYHM1a2YCCahcw8rHFeKVsYCj75XkJSHfpaJTy+R5RO+Z/sY/Rwc/1xIbUMzWQTOK
+         O4UFAPVEjkZvg==
+X-Google-Smtp-Source: ABdhPJwS/YraW4qyb0Dm3f675N42jAY1oC2Y8j8EzHOplVWPvcJ8f3cI6/ZgJvdjQ83rFs2emQdjBQ/MA4j9o6AQcBc=
+X-Received: by 2002:a7b:cf30:: with SMTP id m16mr3796965wmg.145.1608131467393;
+ Wed, 16 Dec 2020 07:11:07 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-X-Provags-ID: V03:K1:Y8tsCGu8N/VT319T01N6iPvC8BeBUDCRTi2OKpL6EMPuKoVWvFx
- RnRdio7A4vFb2ArpEKq1DTKqzCcaeQNfxX4XRu1aXwQy+bnrTZ9Lrh703GWJe2SVpi8qukj
- 49fB1TxZq626Lgwo6dPeFmFS1YptRMyZYEs2cZOv56WCX5eVrqpjk8peHHJJCY5qYWZzpmy
- ScgzzsKGqOKpslwthpRsQ==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:R+pITJ5tPIQ=:7iXQK5jVv3ZfTtbrwzhqly
- 54iEazIA0szeWR3tEdN/s2SrSoo+Zqcb21xchhEgxBkcHu8el8wAlFXDIZOFViPlLHue0mws2
- ySHNEsDIH9TYfn1ocmZG7jAJnoMQNBeJZjFaNY0RyStTHQkP4TV1ksOcozbPd89nmLbZgvRcj
- C++Fm8YqNpbU6mpYgPjHp6kuH54/uc845sIAjbAot+TKEE4UuyEDqQhr/EOFaBTkEiOL+tYkB
- SiE3X7Gclx7PhkaSGvhPVx+QVWO0YEPlTAfx+3y89KzG0ilhuzJ2qmrkB8Q4GZjtEVYav8fhF
- OaamhblJcS8PwFTO9bW8SjtuvtGMxIqJ5hHCy3qYX4wj6MW+ypQ5vn4OYuOJBInCc19p3GjiE
- E1HNlwwN8JX9Ov1FycVofCXWmoaujYrQbjMw1ZTQnfjVW23Z3dlxfu4jgIBuMWZC+8OsbJEL5
- CtHydYXHAhIo74Zk76M77G4RynmGk1sJ67jY3t2hTckMN+/R51VoaYcOat3/6O77EnDqANVBM
- kYOuE5uXgPnsKic+curQXUX0AiV2dyjZNuctZEAebuKtMzgDq6ISsNr5uUEImgDlxnSo2mxTp
- 3FKkSsdZpOrCfaZO1HGGO45UKfF8Af0YbmoPdI4Orw2ySfPLbwRipwosGDF7MPO3byix+j3ys
- MwxNjYPioYSPoLRSpxuZ0x0U97OgvD95dUd5DSjiku1egcEDbNIwQ3oUk5CyPn+npo3QyiQ8M
- vD48YLtJ1Uig6SQevAZ8RBC848JoF0xX95gyf5oYGstRrJh357Ut1+eymsCaHg3oICHWRlf85
- K9P12U4eyUo1GLUUR95SPUu6eTJe7FKadQw/2Dc7RoJQfgPKAVRYHdKKscscfhY0I+Drmu23V
- cP3u9OU1hF/mCu3vdoRA==
+References: <1607746317-4696-1-git-send-email-yongqiang.niu@mediatek.com> <1607746317-4696-11-git-send-email-yongqiang.niu@mediatek.com>
+In-Reply-To: <1607746317-4696-11-git-send-email-yongqiang.niu@mediatek.com>
+From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Date:   Wed, 16 Dec 2020 23:10:53 +0800
+X-Gmail-Original-Message-ID: <CAAOTY_9JNdL-huHYKq=W5gRMUHVRWeUzDunNa7q_d7DPp4P2pg@mail.gmail.com>
+Message-ID: <CAAOTY_9JNdL-huHYKq=W5gRMUHVRWeUzDunNa7q_d7DPp4P2pg@mail.gmail.com>
+Subject: Re: [PATCH v2, 10/17] drm/mediatek: fix aal size config
+To:     Yongqiang Niu <yongqiang.niu@mediatek.com>
+Cc:     CK Hu <ck.hu@mediatek.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        DTML <devicetree@vger.kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        DRI Development <dri-devel@lists.freedesktop.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 16 Dec 2020, Rob Herring wrote:
+Hi, Yongqiang:
 
-> On Wed, Dec 16, 2020 at 11:18:03AM +0100, Guennadi Liakhovetski wrote:
-> > Hi Rob,
-> >
-> > Sorry for the delay! I didn't realise my ack was required for this pat=
-ch.
-> > I won't object against the licence change, but please don't add me as =
-a
-> > maintainer of
+Yongqiang Niu <yongqiang.niu@mediatek.com> =E6=96=BC 2020=E5=B9=B412=E6=9C=
+=8812=E6=97=A5 =E9=80=B1=E5=85=AD =E4=B8=8B=E5=8D=8812:22=E5=AF=AB=E9=81=93=
+=EF=BC=9A
 >
-> Okay, so that's an Ack?
+> fix aal size config
+>
+> Fixes: 0664d1392c26 (drm/mediatek: Add AAL engine basic function)
+> Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
+> ---
+>  drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c | 11 ++++++++++-
+>  1 file changed, 10 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c b/drivers/gpu/dr=
+m/mediatek/mtk_drm_ddp_comp.c
+> index be61d11..e7d481e0 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
+> @@ -33,8 +33,13 @@
+>  #define DISP_REG_UFO_START                     0x0000
+>
+>  #define DISP_AAL_EN                            0x0000
+> +#define DISP_AAL_CFG                           0x0020
+> +#define AAL_RELAY_MODE                                 BIT(0)
+> +#define AAL_ENGINE_EN                                  BIT(1)
+>  #define DISP_AAL_SIZE                          0x0030
+>
+> +#define DISP_AAL_OUTPUT_SIZE                   0x04d8
+> +
+>  #define DISP_CCORR_EN                          0x0000
+>  #define CCORR_EN                               BIT(0)
+>  #define DISP_CCORR_CFG                         0x0020
+> @@ -184,7 +189,11 @@ static void mtk_aal_config(struct mtk_ddp_comp *comp=
+, unsigned int w,
+>                            unsigned int h, unsigned int vrefresh,
+>                            unsigned int bpc, struct cmdq_pkt *cmdq_pkt)
+>  {
+> -       mtk_ddp_write(cmdq_pkt, h << 16 | w, comp, DISP_AAL_SIZE);
+> +       mtk_ddp_write(cmdq_pkt, w << 16 | h, comp, DISP_AAL_SIZE);
+> +       mtk_ddp_write(cmdq_pkt, w << 16 | h, comp, DISP_AAL_OUTPUT_SIZE);
+> +
+> +       mtk_ddp_write_mask(NULL, AAL_RELAY_MODE, comp, DISP_AAL_CFG,
 
-A conditional one, yes. You'll have to send a new version of this your
-patch without me among maintainers, to that version you can add
+cmdq_pkt
 
-Acked-by: Guennadi Liakhovetski <g.liakhovetski@gmx.de>
+> +                          AAL_RELAY_MODE | AAL_ENGINE_EN);
 
-Thanks
-Guennadi
+This patch is to fix size config, so move this statement to another patch.
 
-> > On Thu, 10 Dec 2020, Rob Herring wrote:
-> >
-> > [snip]
-> >
-> > > diff --git a/Documentation/devicetree/bindings/media/video-interface=
-s.yaml b/Documentation/devicetree/bindings/media/video-interfaces.yaml
-> > > new file mode 100644
-> > > index 000000000000..7415a4df1576
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/media/video-interfaces.yaml
-> > > @@ -0,0 +1,344 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/media/video-interfaces.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Common bindings for video receiver and transmitter interface=
- endpoints
-> > > +
-> > > +maintainers:
-> > > +  - Guennadi Liakhovetski <g.liakhovetski@gmx.de>
-> >
-> > I did commit the original version of
-> > Documentation/devicetree/bindings/media/video-interfaces.txt but that =
-was
-> > more than 8 years ago, I haven't worked in media / V4L for several yea=
-rs
-> > now, so, I don't think I can meaningfully maintain that file now.
+Regards,
+Chun-Kuang.
+
+>  }
 >
-> Okay, I'll drop you.
->
-> Anyone else want to sign up? Laurent?
->
-> Rob
->
+>  static void mtk_aal_start(struct mtk_ddp_comp *comp)
+> --
+> 1.8.1.1.dirty
+> _______________________________________________
+> Linux-mediatek mailing list
+> Linux-mediatek@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-mediatek
