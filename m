@@ -2,72 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B5A62DB9A0
-	for <lists+devicetree@lfdr.de>; Wed, 16 Dec 2020 04:26:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CB5042DB9EF
+	for <lists+devicetree@lfdr.de>; Wed, 16 Dec 2020 05:10:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725768AbgLPDZD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Dec 2020 22:25:03 -0500
-Received: from mailgw01.mediatek.com ([210.61.82.183]:54439 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1725765AbgLPDZD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Dec 2020 22:25:03 -0500
-X-UUID: a95baaf95d9b45128311ad90be283fc6-20201216
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=IfRl0dkrWmGs552oR509pYEf+cV5Pv30Kj/jNbHmajw=;
-        b=bYL7jj4OL/Hy/eq10Z0Qt5SpYZ5KGs9xA9Li5LSrM1AtvMvOnIrg7QCShNgvabFIai7GdY3nE5gxiyndppmETOxGt0RHRA0CtuZ11Bdyed8sj8t+1GR7PUJe7dNiGbTveb0AxGvjZXC7ySuxMbpfkTfAYqnuTp11f5vMq28EBfs=;
-X-UUID: a95baaf95d9b45128311ad90be283fc6-20201216
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
-        (envelope-from <hsin-hsiung.wang@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1301583531; Wed, 16 Dec 2020 11:24:15 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Wed, 16 Dec 2020 11:24:15 +0800
-Received: from [172.21.77.4] (172.21.77.4) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 16 Dec 2020 11:24:14 +0800
-Message-ID: <1608089054.12432.1.camel@mtksdaap41>
-Subject: Re: [PATCH v3 5/8] regulator: mt6359: Add support for MT6359
- regulator
-From:   Hsin-hsiung Wang <hsin-hsiung.wang@mediatek.com>
-To:     Mark Brown <broonie@kernel.org>
-CC:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <srv_heupstream@mediatek.com>,
-        Wen Su <wen.su@mediatek.com>
-Date:   Wed, 16 Dec 2020 11:24:14 +0800
-In-Reply-To: <20201215115602.GA4738@sirena.org.uk>
-References: <1606103290-15034-1-git-send-email-hsin-hsiung.wang@mediatek.com>
-         <1606103290-15034-6-git-send-email-hsin-hsiung.wang@mediatek.com>
-         <20201124170732.GI4933@sirena.org.uk> <1608024188.29527.2.camel@mtksdaap41>
-         <20201215115602.GA4738@sirena.org.uk>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
-MIME-Version: 1.0
-X-MTK:  N
-Content-Transfer-Encoding: base64
+        id S1725771AbgLPEKa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Dec 2020 23:10:30 -0500
+Received: from mga14.intel.com ([192.55.52.115]:35424 "EHLO mga14.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725274AbgLPEKa (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 15 Dec 2020 23:10:30 -0500
+IronPort-SDR: OHNbDl7sRfgs44z3s8nzRd1pEpzYvSDBYuDCnBb4SxM5vFnlZIObVyliGnVmvuvUJsoGBwEINR
+ 8KwRH11rAvaw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9836"; a="174227979"
+X-IronPort-AV: E=Sophos;i="5.78,423,1599548400"; 
+   d="scan'208";a="174227979"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Dec 2020 20:08:44 -0800
+IronPort-SDR: jk3Nl9CetlgKdEPSGcVk9zQdB7R7Ii+0F6Wisu9OTK+7GhvqeDvHdCnhoh9hgRmGot95OqW3/M
+ 7sxDzWwVCdaw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.78,423,1599548400"; 
+   d="scan'208";a="368661602"
+Received: from sgsxdev004.isng.phoenix.local (HELO localhost) ([10.226.81.179])
+  by orsmga008.jf.intel.com with ESMTP; 15 Dec 2020 20:08:40 -0800
+From:   Amireddy Mallikarjuna reddy <mallikarjunax.reddy@linux.intel.com>
+To:     dmaengine@vger.kernel.org, vkoul@kernel.org,
+        devicetree@vger.kernel.org, robh+dt@kernel.org
+Cc:     linux-kernel@vger.kernel.org, andriy.shevchenko@intel.com,
+        chuanhua.lei@linux.intel.com, cheol.yong.kim@intel.com,
+        qi-ming.wu@intel.com, mallikarjunax.reddy@linux.intel.com,
+        malliamireddy009@gmail.com, peter.ujfalusi@ti.com
+Subject: [RESEND PATCH v10 0/2] Add Intel LGM SoC DMA support
+Date:   Wed, 16 Dec 2020 12:08:34 +0800
+Message-Id: <cover.1608090736.git.mallikarjunax.reddy@linux.intel.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGksDQpPbiBUdWUsIDIwMjAtMTItMTUgYXQgMTE6NTYgKzAwMDAsIE1hcmsgQnJvd24gd3JvdGU6
-DQo+IE9uIFR1ZSwgRGVjIDE1LCAyMDIwIGF0IDA1OjIzOjA4UE0gKzA4MDAsIEhzaW4taHNpdW5n
-IFdhbmcgd3JvdGU6DQo+ID4gT24gVHVlLCAyMDIwLTExLTI0IGF0IDE3OjA3ICswMDAwLCBNYXJr
-IEJyb3duIHdyb3RlOg0KPiANCj4gPiA+IFRoaXMgbG9va3MgbGlrZSBpdCBjb3VsZCBqdXN0IGJl
-IHJlZ21hcF9nZXRfdm9sdGFnZV9zZWxfcmVnbWFwKCk/DQo+ID4gPiBPdGhlcndpc2UgdGhlIGRy
-aXZlciBsb29rcyBnb29kLg0KPiANCj4gPiBUaGFua3MgZm9yIHRoZSByZXZpZXcuDQo+ID4gTVQ2
-MzU5IHJlZ3VsYXRvciBoYXMgc2VsX3JlZyBhbmQgc3RhdHVzX3JlZywgc28gd2UgdXNlDQo+ID4g
-bXQ2MzU5X2dldF9saW5lYXJfdm9sdGFnZV9zZWwgZm9yIHN0YXR1c19yZWcgaW5zdGVhZCBvZg0K
-PiA+IHJlZ21hcF9nZXRfdm9sdGFnZV9zZWxfcmVnbWFwKCkgd2hpY2ggdXNlcyBzZWxfcmVnLg0K
-PiANCj4gSXMgdGhlIHNlbGVjdG9yIHJlZ2lzdGVyIG5vdCByZWFkYWJsZT8gIEluIGdlbmVyYWwg
-dGhlIHJ1bGUgaXMgdGhhdCB0aGUNCj4gZ2V0IHNob3VsZCBiZSByZXBvcnRpbmcgd2hhdCB3YXMg
-Y29uZmlndXJlZCwgdGhlIGFjdHVhbCBzdGF0dXMgc2hvdWxkIGJlDQo+IHJlcG9ydGVkIHNlcGFy
-YXRlbHkgaWYgaXQgY2FuIGJlIHJlYWQgc2VwYXJhdGVseS4gIFdlIGRvbid0IGN1cnJlbnRseQ0K
-PiBoYXZlIGEgbWVjaGFuaXNtIGZvciBkb2luZyB0aGF0IHdpdGggdm9sdGFnZSBidXQgb25lIGNv
-dWxkIGJlIGFkZGVkLg0KDQpUaGFua3MgZm9yIHlvdXIgY29tbWVudHMuIFRoZSBzZWxlY3QgcmVn
-aXN0ZXIgaXMgcmVhZGFibGUsIGFuZCBJIHdpbGwNCnVwZGF0ZSBpdCBpbiBuZXh0IHBhdGNoLg0K
+Add DMA controller driver for Lightning Mountain (LGM) family of SoCs.
+
+The main function of the DMA controller is the transfer of data from/to any
+peripheral to/from the memory. A memory to memory copy capability can also
+be configured. This ldma driver is used for configure the device and channnels
+for data and control paths.
+
+These controllers provide DMA capabilities for a variety of on-chip
+devices such as SSC, HSNAND and GSWIP (Gigabit Switch IP).
+
+-------------
+Future Plans:
+-------------
+LGM SOC also supports Hardware Memory Copy engine.
+The role of the HW Memory copy engine is to offload memory copy operations
+from the CPU.
+
+Amireddy Mallikarjuna reddy (2):
+  dt-bindings: dma: Add bindings for Intel LGM SoC
+  Add Intel LGM SoC DMA support.
+
+ .../devicetree/bindings/dma/intel,ldma.yaml   |  116 ++
+ drivers/dma/Kconfig                           |    2 +
+ drivers/dma/Makefile                          |    1 +
+ drivers/dma/lgm/Kconfig                       |    9 +
+ drivers/dma/lgm/Makefile                      |    2 +
+ drivers/dma/lgm/lgm-dma.c                     | 1739 +++++++++++++++++
+ 6 files changed, 1869 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/dma/intel,ldma.yaml
+ create mode 100644 drivers/dma/lgm/Kconfig
+ create mode 100644 drivers/dma/lgm/Makefile
+ create mode 100644 drivers/dma/lgm/lgm-dma.c
+---
+v1:
+- Initial version.
+
+v2:
+- Fix device tree bot issues, correspondign driver changes done.
+- Fix kerntel test robot warnings.
+  --------------------------------------------------------
+  >> drivers/dma/lgm/lgm-dma.c:729:5: warning: no previous prototype for function 'intel_dma_chan_desc_cfg' [-Wmissing-prototypes]
+  int intel_dma_chan_desc_cfg(struct dma_chan *chan, dma_addr_t desc_base,
+  ^
+  drivers/dma/lgm/lgm-dma.c:729:1: note: declare 'static' if the function is not intended to be used outside of this translation unit
+  int intel_dma_chan_desc_cfg(struct dma_chan *chan, dma_addr_t desc_base,
+  ^
+  static
+  1 warning generated.
+
+  vim +/intel_dma_chan_desc_cfg +729 drivers/dma/lgm/lgm-dma.c
+
+    728
+  > 729 int intel_dma_chan_desc_cfg(struct dma_chan *chan, dma_addr_t desc_base,
+    730                             int desc_num)
+    731 {
+    732         return ldma_chan_desc_cfg(to_ldma_chan(chan), desc_base, desc_num);
+    733 }
+    734 EXPORT_SYMBOL_GPL(intel_dma_chan_desc_cfg);
+    735
+
+   Reported-by: kernel test robot <lkp@intel.com>
+   ---------------------------------------------------------------
+
+v3:
+- Fix smatch warning.
+  ----------------------------------------------------------------
+  smatch warnings:
+  drivers/dma/lgm/lgm-dma.c:1306 ldma_cfg_init() error: uninitialized symbol 'ret'.
+
+  Reported-by: kernel test robot <lkp@intel.com>
+  Reported-by: Dan Carpenter <dan.carpenter@oracle.com>
+  ----------------------------------------------------------------
+
+v4:
+- Address Thomas Langer comments in dtbinding and corresponding driver side changes.
+- Driver side changes to corresponding device tree changes.
+
+v5:
+- Add changes to read 'dmas' properties and update the config properties driver side.
+- Add virt_dma_desc utilizes virt-dma API.
+
+v6:
+- Driver changes corresponding to the device tree changes.
+- Restructure things to have less activity with the spinlock.
+- Save the slave config in dma_slave_config() and used in prepare time.
+- Addressed & fixed issues related to desc_free callback _free_ up the memory.
+- Addressed peter review comments.
+
+v7:
+- Change bool to tristate in Kconfig
+- Explained the _initcall()
+- change of_property*() to device_property_*()
+- split the code to functions at version checks
+- Remove the dma caller capability restrictions
+- used for_each_set_bit()
+- Addressed minor comments and fine tune the code.
+
+v7-resend:
+- rebase to 5.10-rc1
+- No change.
+
+v8:
+- rebase to 5.10-rc3
+- Addressed structural things and fine tune the code.
+
+v9:
+- No change.
+
+v10:
+- rebase to 5.10-rc6
+- Used helpers in bitfield.h (FIELD_PREP ()) instead of bit fields to set the descriptor fields.
+- Removed local copy of dmaengine ops.
+- Removed custom API and used dmaengine callback & remove include/linux/dma/lgm_dma.h file
+- Moved dt properties to driver data.
+- Fine tune the code.
+
+v10-resend:
+- rebased to 5.10
+- No change.
+-- 
+2.17.1
 
