@@ -2,333 +2,1530 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3815C2DC274
-	for <lists+devicetree@lfdr.de>; Wed, 16 Dec 2020 15:50:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B97A2DC27E
+	for <lists+devicetree@lfdr.de>; Wed, 16 Dec 2020 15:53:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726458AbgLPOuG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Dec 2020 09:50:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43292 "EHLO
+        id S1726077AbgLPOxM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Dec 2020 09:53:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43792 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726447AbgLPOuG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Dec 2020 09:50:06 -0500
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 552E4C061794;
-        Wed, 16 Dec 2020 06:49:25 -0800 (PST)
-Received: by mail-lf1-x131.google.com with SMTP id a12so48994906lfl.6;
-        Wed, 16 Dec 2020 06:49:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=bE4UNwoir30PuHh6XkuL3M6MwBTU+ktUaaMgwLq3cYk=;
-        b=lYrsvw4Q3ad32TyynkseRONGKgzozoK9apMLPHSQi/0MNmFar8mvghx06jWou8F4WD
-         ircDAVPpA0h8sU3eUK/4SMRiSi4joZW7Tyf1gjJ+fWtiev/eW95V6PZVaeFV1wnZJbCi
-         HujlUdMpShyQaiU8MlEMhHu5b1us6lNEfFh5P+uAp7o+gDFk7GJ4yvL5D0WG1qnpvWqI
-         OVIA1hmazjdM+STYGNhPFLH026ZPxPS6BQcqBxgkhwkzatKoNdXGX6htg85uXAiG1wuu
-         wdSLtOpnyPtqG6gW7riRGBJ8yeS5CtPPqTWTVc/C1q9/D6xcRE48wrytAxG7iFZr8ZHK
-         sQnQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=bE4UNwoir30PuHh6XkuL3M6MwBTU+ktUaaMgwLq3cYk=;
-        b=GvGjOJpecolHcqlgytFuUGzXdcg8N8RozXRQXOYIPABh3wmlxyu6g28jrvjmOOla5F
-         XDQRgvGoC3xicXVa6tLGmgNnwzJG67bsZWj/WlpKROb0V2bP+SQfa7dYLYn+hPffG4A3
-         fgLe0U0c9V25beswd+cox1DFaE9epMUwy9VtrUr5LCWdSI5OArE3BYuvBxYQ6o8SPILY
-         MgA9hR5AacuZWkA6qFoeF/dl39dRErnBliOrk2nx44qF5n1AxXP2hxVGzG00M9NGxpIC
-         z2luUhGj8GMnhRjXJks/zLzvRYJAVtQwzQb5RzRJwCCXtD+Gw/qeng8dYpktXqnv7alQ
-         FOaA==
-X-Gm-Message-State: AOAM530FwQy6ZBgb0pyHNCJ0R04OFukOgE2UA/JBch8BTBjkxBqVwnSh
-        ylyyBt23Q9sQ0yFeY0doV7CZy3br68SrHtSF3k4p81Lx
-X-Google-Smtp-Source: ABdhPJzQUIIt3oVexVe9RclrI3fBqFWeQwktyjhcNFHuBUa4OVaoODtiLfYvB1yb6AUGofzerl08dxt4xtyumj9H0jg=
-X-Received: by 2002:a2e:a36a:: with SMTP id i10mr6225178ljn.342.1608130162586;
- Wed, 16 Dec 2020 06:49:22 -0800 (PST)
+        with ESMTP id S1725913AbgLPOxL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Dec 2020 09:53:11 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B52CC06179C;
+        Wed, 16 Dec 2020 06:52:30 -0800 (PST)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 910752CF;
+        Wed, 16 Dec 2020 15:52:27 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1608130347;
+        bh=S+b+fkmbza/OMWTsxV1QeYDcRYtvK2DKOR/69j4N5xE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=u9F3sa8VQvqSbviL4WnPSwJe1Ms11/8PgT2q733Ou4/58My85fij0Hjqr0AlmAfTO
+         0JP0x8vCwgEkRstAssZrHOX73yXmauhgiaTnd460ThVmfvm9tPfHxupmv4WqwuGpTJ
+         N41kpTXpTdvAjeD8MqGFYwa6omewBiAfaIjHZmmw=
+Date:   Wed, 16 Dec 2020 16:52:20 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Guennadi Liakhovetski <g.liakhovetski@gmx.de>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Jacopo Mondi <jacopo@jmondi.org>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-media@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] media: dt-bindings: Convert video-interfaces.txt
+ properties to schemas
+Message-ID: <X9ofJMIivzPzi8x7@pendragon.ideasonboard.com>
+References: <20201210211625.3070388-1-robh@kernel.org>
+ <20201210211625.3070388-5-robh@kernel.org>
 MIME-Version: 1.0
-References: <1607704424-16223-1-git-send-email-u0084500@gmail.com> <20201216141213.GE207743@dell>
-In-Reply-To: <20201216141213.GE207743@dell>
-From:   ChiYuan Huang <u0084500@gmail.com>
-Date:   Wed, 16 Dec 2020 22:49:11 +0800
-Message-ID: <CADiBU3_o6uyS7GsPcWHVUkat2cHk0armDz4FC_TB6XaHfU-rEQ@mail.gmail.com>
-Subject: Re: [PATCH v4 1/3] mfd: rt4831: Adds support for Richtek RT4831 MFD core
-To:     Lee Jones <lee.jones@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, cy_huang <cy_huang@richtek.com>,
-        lkml <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20201210211625.3070388-5-robh@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Lee Jones <lee.jones@linaro.org> =E6=96=BC 2020=E5=B9=B412=E6=9C=8816=E6=97=
-=A5 =E9=80=B1=E4=B8=89 =E4=B8=8B=E5=8D=8810:12=E5=AF=AB=E9=81=93=EF=BC=9A
->
-> On Sat, 12 Dec 2020, cy_huang wrote:
->
-> > From: ChiYuan Huang <cy_huang@richtek.com>
-> >
-> > This adds support Richtek RT4831 MFD core. It includes four channel WLE=
-D driver
->
-> Drop mentions of MFD.  Just core driver will do.
->
-> > and Display Bias Voltage outputs.
-> >
-> > Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
-> > ---
-> > since v2
-> > - Refine Kconfig descriptions.
-> > - Add copyright.
-> > - Refine error logs in probe.
-> > - Refine comment lines in remove and shutdown.
-> > ---
-> >  drivers/mfd/Kconfig       |  10 ++++
-> >  drivers/mfd/Makefile      |   1 +
-> >  drivers/mfd/rt4831-core.c | 124 ++++++++++++++++++++++++++++++++++++++=
-++++++++
-> >  3 files changed, 135 insertions(+)
-> >  create mode 100644 drivers/mfd/rt4831-core.c
-> >
-> > diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
-> > index 8b99a13..dfb2640 100644
-> > --- a/drivers/mfd/Kconfig
-> > +++ b/drivers/mfd/Kconfig
-> > @@ -1088,6 +1088,16 @@ config MFD_RDC321X
-> >         southbridge which provides access to GPIOs and Watchdog using t=
-he
-> >         southbridge PCI device configuration space.
-> >
-> > +config MFD_RT4831
-> > +     tristate "Richtek RT4831 four channel WLED and Display Bias Volta=
-ge"
-> > +     depends on I2C
-> > +     select MFD_CORE
-> > +     select REGMAP_I2C
-> > +     help
-> > +       This enables support for the Richtek RT4831 that includes 4 cha=
-nnel
-> > +       WLED driving and Display Bias Voltage. It's commonly used to pr=
-ovide
-> > +       power to the LCD display and LCD backlight.
-> > +
-> >  config MFD_RT5033
-> >       tristate "Richtek RT5033 Power Management IC"
-> >       depends on I2C
-> > diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
-> > index 1780019..4108141 100644
-> > --- a/drivers/mfd/Makefile
-> > +++ b/drivers/mfd/Makefile
-> > @@ -235,6 +235,7 @@ obj-$(CONFIG_MFD_MENF21BMC)       +=3D menf21bmc.o
-> >  obj-$(CONFIG_MFD_HI6421_PMIC)        +=3D hi6421-pmic-core.o
-> >  obj-$(CONFIG_MFD_HI655X_PMIC)   +=3D hi655x-pmic.o
-> >  obj-$(CONFIG_MFD_DLN2)               +=3D dln2.o
-> > +obj-$(CONFIG_MFD_RT4831)     +=3D rt4831-core.o
->
-> Why is this called -core ...
->
-> >  obj-$(CONFIG_MFD_RT5033)     +=3D rt5033.o
->
-> ... and this isn't?
->
+Hi Rob,
 
-Ok, I'm rename the mfd file to rt4831 only.
-Due to this mfd is the parent of all sub device, to use 'core' is
-trying to distinguish from rt4831-regulator  or rt4831-backlight.
-My original thought is not to let the user confused.
-If to add the postfix '-core' in the file name is bad, I think it can
-be removed.
+Thank you for the patch.
 
-> >  obj-$(CONFIG_MFD_SKY81452)   +=3D sky81452.o
-> >
-> > diff --git a/drivers/mfd/rt4831-core.c b/drivers/mfd/rt4831-core.c
-> > new file mode 100644
-> > index 00000000..f837c06
-> > --- /dev/null
-> > +++ b/drivers/mfd/rt4831-core.c
-> > @@ -0,0 +1,124 @@
-> > +// SPDX-License-Identifier: GPL-2.0+
-> > +/*
-> > + * Copyright (c) 2020 Richtek Technology Corp.
-> > + *
-> > + * Author: ChiYuan Huang <cy_huang@richtek.com>
-> > + */
-> > +
-> > +#include <linux/gpio/consumer.h>
-> > +#include <linux/i2c.h>
-> > +#include <linux/kernel.h>
-> > +#include <linux/mfd/core.h>
-> > +#include <linux/module.h>
-> > +#include <linux/regmap.h>
-> > +
-> > +#define RT4831_REG_REVISION  0x01
-> > +#define RT4831_REG_ENABLE    0x08
-> > +#define RT4831_REG_I2CPROT   0x15
-> > +
-> > +#define RICHTEK_VID          0x03
-> > +#define RT4831_VID_MASK              GENMASK(1, 0)
-> > +#define RT4831_RESET_MASK    BIT(7)
-> > +#define RT4831_I2CSAFETMR_MASK       BIT(0)
-> > +
-> > +static const struct mfd_cell rt4831_subdevs[] =3D {
-> > +     OF_MFD_CELL("rt4831-backlight", NULL, NULL, 0, 0, "richtek,rt4831=
--backlight"),
-> > +     MFD_CELL_NAME("rt4831-regulator")
-> > +};
->
-> Just a little note about these helpers.  I'm planning on unifying the
-> names pretty soon.  So if you have to rebase, please watch out for the
-> rename.
->
-> Essentially OF_MFD_CELL() will soon become MFD_CELL_OF().
->
-Yes, I'll check this change. BTW, is it possible to get this patch
-that I can integrate it into my codebase in advance.
-> > +static bool rt4831_is_accessible_reg(struct device *dev, unsigned int =
-reg)
-> > +{
-> > +     if (reg >=3D RT4831_REG_REVISION && reg <=3D RT4831_REG_I2CPROT)
-> > +             return true;
-> > +     return false;
-> > +}
-> > +
-> > +static const struct regmap_config rt4831_regmap_config =3D {
-> > +     .reg_bits =3D 8,
-> > +     .val_bits =3D 8,
-> > +     .max_register =3D RT4831_REG_I2CPROT,
-> > +
-> > +     .readable_reg =3D rt4831_is_accessible_reg,
-> > +     .writeable_reg =3D rt4831_is_accessible_reg,
-> > +};
-> > +
-> > +static int rt4831_probe(struct i2c_client *client)
-> > +{
-> > +     struct gpio_desc *enable;
->
-> My preference would be "enable_gpio" to ensure it's easily
-> identifiable further on.
->
-Yes, it make sense.
-> > +     struct regmap *regmap;
-> > +     unsigned int val;
->
-> 'val' is not a great name for a variable that is used for a specific
-> purpose.  How about 'revision'?
->
-Actually, this is just for the vendor id check.
-Maybe to named 'vendor_id' is more suitable.
-This register can be divided into two parts, bit[7:4] is the fixed
-vendor identifier, only bit[3:0] is for the chip revision.
-> > +     int ret;
-> > +
-> > +     enable =3D devm_gpiod_get_optional(&client->dev, "enable", GPIOD_=
-OUT_HIGH);
-> > +     if (IS_ERR(enable)) {
-> > +             dev_err(&client->dev, "Failed to get 'enable' GPIO\n");
-> > +             return PTR_ERR(enable);
-> > +     }
-> > +
-> > +     regmap =3D devm_regmap_init_i2c(client, &rt4831_regmap_config);
-> > +     if (IS_ERR(regmap)) {
-> > +             dev_err(&client->dev, "Failed to initialize regmap\n");
-> > +             return PTR_ERR(regmap);
-> > +     }
-> > +
-> > +     ret =3D regmap_read(regmap, RT4831_REG_REVISION, &val);
-> > +     if (ret) {
-> > +             dev_err(&client->dev, "Failed to get H/W revision\n");
-> > +             return ret;
-> > +     }
-> > +
-> > +     if ((val & RT4831_VID_MASK) !=3D RICHTEK_VID) {
->
-> What does VID stand for here?
->
-> The fact that I have to ask probably means it should be changed.
->
-> Variant ID perhaps?  If so, call the define 'VARIANT_ID'.
->
-Like as the the above explaination.
-'RICHTEK_VID' may not be good. So it make you confused.
-I'll rename it to 'RICHTEK_VENDOR_ID'. How about this naming?
+On Thu, Dec 10, 2020 at 03:16:24PM -0600, Rob Herring wrote:
+> Convert video-interfaces.txt to DT schema. As it contains a mixture of
+> device level and endpoint properties, split it up into 2 schemas.
+> 
+> Binding schemas will need to reference both the graph.yaml and
+> video-interfaces.yaml schemas. The exact schema depends on how many
+> ports and endpoints for the binding. A single port with a single
+> endpoint looks similar to this:
+> 
+>   port:
+>     $ref: /schemas/graph.yaml#/$defs/port-base
+> 
+>     properties:
+>       endpoint:
+>         $ref: video-interfaces.yaml#
+>         unevaluatedProperties: false
+> 
+>         properties:
+>           bus-width:
+>             enum: [ 8, 10, 12, 16 ]
+> 
+>           pclk-sample: true
+>           hsync-active: true
+>           vsync-active: true
+> 
+>         required:
+>           - bus-width
+> 
+>     additionalProperties: false
+> 
+> Cc: Guennadi Liakhovetski <g.liakhovetski@gmx.de>
+> Acked-by: Sakari Ailus <sakari.ailus@linux.intel.com>
+> Acked-by: Jacopo Mondi <jacopo@jmondi.org>
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+> I need acks for dual licensing from the listed maintainers.
+> 
+> v3:
+> - Support up to 9 physical lanes
+> - Set lane-polarities array bounds
+> ---
+>  .../media/video-interface-devices.yaml        | 406 +++++++++++
+>  .../bindings/media/video-interfaces.txt       | 640 +-----------------
+>  .../bindings/media/video-interfaces.yaml      | 346 ++++++++++
+>  3 files changed, 753 insertions(+), 639 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/media/video-interface-devices.yaml
+>  create mode 100644 Documentation/devicetree/bindings/media/video-interfaces.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/media/video-interface-devices.yaml b/Documentation/devicetree/bindings/media/video-interface-devices.yaml
+> new file mode 100644
+> index 000000000000..4527f56a5a6e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/video-interface-devices.yaml
+> @@ -0,0 +1,406 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/video-interface-devices.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Common bindings for video receiver and transmitter devices
+> +
+> +maintainers:
+> +  - Jacopo Mondi <jacopo@jmondi.org>
+> +  - Sakari Ailus <sakari.ailus@linux.intel.com>
+> +
+> +properties:
+> +  flash-leds:
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    description:
+> +      An array of phandles, each referring to a flash LED, a sub-node of the LED
+> +      driver device node.
+> +
+> +  lens-focus:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description:
+> +      A phandle to the node of the focus lens controller.
+> +
+> +  rotation:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [ 0, 90, 180, 270 ]
+> +    description: |
+> +      The camera rotation is expressed as the angular difference in degrees
+> +      between two reference systems, one relative to the camera module, and one
+> +      defined on the external world scene to be captured when projected on the
+> +      image sensor pixel array.
+> +
+> +      A camera sensor has a 2-dimensional reference system 'Rc' defined by its
+> +      pixel array read-out order. The origin is set to the first pixel being
+> +      read out, the X-axis points along the column read-out direction towards
+> +      the last columns, and the Y-axis along the row read-out direction towards
+> +      the last row.
+> +
+> +      A typical example for a sensor with a 2592x1944 pixel array matrix
+> +      observed from the front is:
+> +
+> +              2591       X-axis          0
+> +                <------------------------+ 0
+> +                .......... ... ..........!
+> +                .......... ... ..........! Y-axis
+> +                           ...           !
+> +                .......... ... ..........!
+> +                .......... ... ..........! 1943
+> +                                         V
+> +
+> +      The external world scene reference system 'Rs' is a 2-dimensional
+> +      reference system on the focal plane of the camera module. The origin is
+> +      placed on the top-left corner of the visible scene, the X-axis points
+> +      towards the right, and the Y-axis points towards the bottom of the scene.
+> +      The top, bottom, left and right directions are intentionally not defined
+> +      and depend on the environment in which the camera is used.
+> +
+> +      A typical example of a (very common) picture of a shark swimming from left
+> +      to right, as seen from the camera, is:
+> +
+> +               0               X-axis
+> +             0 +------------------------------------->
+> +               !
+> +               !
+> +               !
+> +               !           |\____)\___
+> +               !           ) _____  __`<
+> +               !           |/     )/
+> +               !
+> +               !
+> +               !
+> +               V
+> +             Y-axis
+> +
+> +      with the reference system 'Rs' placed on the camera focal plane:
+> +
+> +                                  ¸.·˙!
+> +                              ¸.·˙    !
+> +                  _       ¸.·˙        !
+> +               +-/ \-+¸.·˙            !
+> +               | (o) |                ! Camera focal plane
+> +               +-----+˙·.¸            !
+> +                          ˙·.¸        !
+> +                              ˙·.¸    !
+> +                                  ˙·.¸!
+> +
+> +      When projected on the sensor's pixel array, the image and the associated
+> +      reference system 'Rs' are typically (but not always) inverted, due to the
+> +      camera module's lens optical inversion effect.
+> +
+> +      Assuming the above represented scene of the swimming shark, the lens
+> +      inversion projects the scene and its reference system onto the sensor
+> +      pixel array, seen from the front of the camera sensor, as follows:
+> +
+> +            Y-axis
+> +               ^
+> +               !
+> +               !
+> +               !
+> +               !            |\_____)\__
+> +               !            ) ____  ___.<
+> +               !            |/    )/
+> +               !
+> +               !
+> +               !
+> +             0 +------------------------------------->
+> +               0               X-axis
+> +
+> +      Note the shark being upside-down.
+> +
+> +      The resulting projected reference system is named 'Rp'.
+> +
+> +      The camera rotation property is then defined as the angular difference in
+> +      the counter-clockwise direction between the camera reference system 'Rc'
+> +      and the projected scene reference system 'Rp'. It is expressed in degrees
+> +      as a number in the range [0, 360[.
+> +
+> +      Examples
+> +
+> +      0 degrees camera rotation:
+> +
+> +
+> +                    Y-Rp
+> +                     ^
+> +              Y-Rc   !
+> +               ^     !
+> +               !     !
+> +               !     !
+> +               !     !
+> +               !     !
+> +               !     !
+> +               !     !
+> +               !     !
+> +               !   0 +------------------------------------->
+> +               !     0               X-Rp
+> +             0 +------------------------------------->
+> +               0               X-Rc
+> +
+> +
+> +                                X-Rc                0
+> +               <------------------------------------+ 0
+> +                           X-Rp                 0   !
+> +           <------------------------------------+ 0 !
+> +                                                !   !
+> +                                                !   !
+> +                                                !   !
+> +                                                !   !
+> +                                                !   !
+> +                                                !   !
+> +                                                !   !
+> +                                                !   V
+> +                                                !  Y-Rc
+> +                                                V
+> +                                               Y-Rp
+> +
+> +      90 degrees camera rotation:
+> +
+> +               0        Y-Rc
+> +             0 +-------------------->
+> +               !   Y-Rp
+> +               !    ^
+> +               !    !
+> +               !    !
+> +               !    !
+> +               !    !
+> +               !    !
+> +               !    !
+> +               !    !
+> +               !    !
+> +               !    !
+> +               !  0 +------------------------------------->
+> +               !    0              X-Rp
+> +               !
+> +               !
+> +               !
+> +               !
+> +               V
+> +              X-Rc
+> +
+> +      180 degrees camera rotation:
+> +
+> +                                            0
+> +       <------------------------------------+ 0
+> +                        X-Rc                !
+> +              Y-Rp                          !
+> +               ^                            !
+> +               !                            !
+> +               !                            !
+> +               !                            !
+> +               !                            !
+> +               !                            !
+> +               !                            !
+> +               !                            V
+> +               !                           Y-Rc
+> +             0 +------------------------------------->
+> +               0              X-Rp
+> +
+> +      270 degrees camera rotation:
+> +
+> +               0        Y-Rc
+> +             0 +-------------------->
+> +               !                                        0
+> +               !    <-----------------------------------+ 0
+> +               !                    X-Rp                !
+> +               !                                        !
+> +               !                                        !
+> +               !                                        !
+> +               !                                        !
+> +               !                                        !
+> +               !                                        !
+> +               !                                        !
+> +               !                                        !
+> +               !                                        V
+> +               !                                       Y-Rp
+> +               !
+> +               !
+> +               !
+> +               !
+> +               V
+> +              X-Rc
+> +
+> +
+> +      Example one - Webcam
+> +
+> +      A camera module installed on the user facing part of a laptop screen
+> +      casing used for video calls. The captured images are meant to be displayed
+> +      in landscape mode (width > height) on the laptop screen.
+> +
+> +      The camera is typically mounted upside-down to compensate the lens optical
+> +      inversion effect:
+> +
+> +                    Y-Rp
+> +              Y-Rc   ^
+> +               ^     !
+> +               !     !
+> +               !     !       |\_____)\__
+> +               !     !       ) ____  ___.<
+> +               !     !       |/    )/
+> +               !     !
+> +               !     !
+> +               !     !
+> +               !   0 +------------------------------------->
+> +               !     0           X-Rp
+> +             0 +------------------------------------->
+> +               0            X-Rc
+> +
+> +      The two reference systems are aligned, the resulting camera rotation is
+> +      0 degrees, no rotation correction needs to be applied to the resulting
+> +      image once captured to memory buffers to correctly display it to users:
+> +
+> +               +--------------------------------------+
+> +               !                                      !
+> +               !                                      !
+> +               !                                      !
+> +               !             |\____)\___              !
+> +               !             ) _____  __`<            !
+> +               !             |/     )/                !
+> +               !                                      !
+> +               !                                      !
+> +               !                                      !
+> +               +--------------------------------------+
+> +
+> +      If the camera sensor is not mounted upside-down to compensate for the lens
+> +      optical inversion, the two reference systems will not be aligned, with
+> +      'Rp' being rotated 180 degrees relatively to 'Rc':
+> +
+> +
+> +                        X-Rc                0
+> +       <------------------------------------+ 0
+> +                                            !
+> +              Y-Rp                          !
+> +               ^                            !
+> +               !                            !
+> +               !       |\_____)\__          !
+> +               !       ) ____  ___.<        !
+> +               !       |/    )/             !
+> +               !                            !
+> +               !                            !
+> +               !                            V
+> +               !                           Y-Rc
+> +             0 +------------------------------------->
+> +               0            X-Rp
+> +
+> +      The image once captured to memory will then be rotated by 180 degrees:
+> +
+> +               +--------------------------------------+
+> +               !                                      !
+> +               !                                      !
+> +               !                                      !
+> +               !              __/(_____/|             !
+> +               !            >.___  ____ (             !
+> +               !                 \(    \|             !
+> +               !                                      !
+> +               !                                      !
+> +               !                                      !
+> +               +--------------------------------------+
+> +
+> +      A software rotation correction of 180 degrees should be applied to
+> +      correctly display the image:
+> +
+> +               +--------------------------------------+
+> +               !                                      !
+> +               !                                      !
+> +               !                                      !
+> +               !             |\____)\___              !
+> +               !             ) _____  __`<            !
+> +               !             |/     )/                !
+> +               !                                      !
+> +               !                                      !
+> +               !                                      !
+> +               +--------------------------------------+
+> +
+> +      Example two - Phone camera
+> +
+> +      A camera installed on the back side of a mobile device facing away from
+> +      the user. The captured images are meant to be displayed in portrait mode
+> +      (height > width) to match the device screen orientation and the device
+> +      usage orientation used when taking the picture.
+> +
+> +      The camera sensor is typically mounted with its pixel array longer side
+> +      aligned to the device longer side, upside-down mounted to compensate for
+> +      the lens optical inversion effect:
+> +
+> +               0        Y-Rc
+> +             0 +-------------------->
+> +               !   Y-Rp
+> +               !    ^
+> +               !    !
+> +               !    !
+> +               !    !
+> +               !    !            |\_____)\__
+> +               !    !            ) ____  ___.<
+> +               !    !            |/    )/
+> +               !    !
+> +               !    !
+> +               !    !
+> +               !  0 +------------------------------------->
+> +               !    0                X-Rp
+> +               !
+> +               !
+> +               !
+> +               !
+> +               V
+> +              X-Rc
+> +
+> +      The two reference systems are not aligned and the 'Rp' reference system is
+> +      rotated by 90 degrees in the counter-clockwise direction relatively to the
+> +      'Rc' reference system.
+> +
+> +      The image once captured to memory will be rotated:
+> +
+> +               +-------------------------------------+
+> +               |                 _ _                 |
+> +               |                \   /                |
+> +               |                 | |                 |
+> +               |                 | |                 |
+> +               |                 |  >                |
+> +               |                <  |                 |
+> +               |                 | |                 |
+> +               |                   .                 |
+> +               |                  V                  |
+> +               +-------------------------------------+
+> +
+> +      A correction of 90 degrees in counter-clockwise direction has to be
+> +      applied to correctly display the image in portrait mode on the device
+> +      screen:
+> +
+> +                        +--------------------+
+> +                        |                    |
+> +                        |                    |
+> +                        |                    |
+> +                        |                    |
+> +                        |                    |
+> +                        |                    |
+> +                        |   |\____)\___      |
+> +                        |   ) _____  __`<    |
+> +                        |   |/     )/        |
+> +                        |                    |
+> +                        |                    |
+> +                        |                    |
+> +                        |                    |
+> +                        |                    |
+> +                        +--------------------+
+> +
+> +  orientation:
+> +    description:
+> +      The orientation of a device (typically an image sensor or a flash LED)
+> +      describing its mounting position relative to the usage orientation of the
+> +      system where the device is installed on.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum:
+> +        # Front. The device is mounted on the front facing side of the system. For
+> +        # mobile devices such as smartphones, tablets and laptops the front side
+> +        # is the user facing side.
+> +      - 0
+> +        # Back. The device is mounted on the back side of the system, which is
+> +        # defined as the opposite side of the front facing one.
+> +      - 1
+> +        # External. The device is not attached directly to the system but is
+> +        # attached in a way that allows it to move freely.
+> +      - 2
+> +
+> +additionalProperties: true
+> +
+> +...
+> diff --git a/Documentation/devicetree/bindings/media/video-interfaces.txt b/Documentation/devicetree/bindings/media/video-interfaces.txt
+> index 3920f25a9123..8fcf5f52bf5b 100644
+> --- a/Documentation/devicetree/bindings/media/video-interfaces.txt
+> +++ b/Documentation/devicetree/bindings/media/video-interfaces.txt
+> @@ -1,639 +1 @@
+> -Common bindings for video receiver and transmitter interfaces
+> -
+> -General concept
+> ----------------
+> -
+> -Video data pipelines usually consist of external devices, e.g. camera sensors,
+> -controlled over an I2C, SPI or UART bus, and SoC internal IP blocks, including
+> -video DMA engines and video data processors.
+> -
+> -SoC internal blocks are described by DT nodes, placed similarly to other SoC
+> -blocks.  External devices are represented as child nodes of their respective
+> -bus controller nodes, e.g. I2C.
+> -
+> -Data interfaces on all video devices are described by their child 'port' nodes.
+> -Configuration of a port depends on other devices participating in the data
+> -transfer and is described by 'endpoint' subnodes.
+> -
+> -device {
+> -	...
+> -	ports {
+> -		#address-cells = <1>;
+> -		#size-cells = <0>;
+> -
+> -		port@0 {
+> -			...
+> -			endpoint@0 { ... };
+> -			endpoint@1 { ... };
+> -		};
+> -		port@1 { ... };
+> -	};
+> -};
+> -
+> -If a port can be configured to work with more than one remote device on the same
+> -bus, an 'endpoint' child node must be provided for each of them.  If more than
+> -one port is present in a device node or there is more than one endpoint at a
+> -port, or port node needs to be associated with a selected hardware interface,
+> -a common scheme using '#address-cells', '#size-cells' and 'reg' properties is
+> -used.
+> -
+> -All 'port' nodes can be grouped under optional 'ports' node, which allows to
+> -specify #address-cells, #size-cells properties independently for the 'port'
+> -and 'endpoint' nodes and any child device nodes a device might have.
+> -
+> -Two 'endpoint' nodes are linked with each other through their 'remote-endpoint'
+> -phandles.  An endpoint subnode of a device contains all properties needed for
+> -configuration of this device for data exchange with other device.  In most
+> -cases properties at the peer 'endpoint' nodes will be identical, however they
+> -might need to be different when there is any signal modifications on the bus
+> -between two devices, e.g. there are logic signal inverters on the lines.
+> -
+> -It is allowed for multiple endpoints at a port to be active simultaneously,
+> -where supported by a device.  For example, in case where a data interface of
+> -a device is partitioned into multiple data busses, e.g. 16-bit input port
+> -divided into two separate ITU-R BT.656 8-bit busses.  In such case bus-width
+> -and data-shift properties can be used to assign physical data lines to each
+> -endpoint node (logical bus).
+> -
+> -Documenting bindings for devices
+> ---------------------------------
+> -
+> -All required and optional bindings the device supports shall be explicitly
+> -documented in device DT binding documentation. This also includes port and
+> -endpoint nodes for the device, including unit-addresses and reg properties where
+> -relevant.
+> -
+> -Please also see Documentation/devicetree/bindings/graph.txt .
+> -
+> -Required properties
+> --------------------
+> -
+> -If there is more than one 'port' or more than one 'endpoint' node or 'reg'
+> -property is present in port and/or endpoint nodes the following properties
+> -are required in a relevant parent node:
+> -
+> - - #address-cells : number of cells required to define port/endpoint
+> -		    identifier, should be 1.
+> - - #size-cells    : should be zero.
+> -
+> -
+> -Optional properties
+> --------------------
+> -
+> -- flash-leds: An array of phandles, each referring to a flash LED, a sub-node
+> -  of the LED driver device node.
+> -
+> -- lens-focus: A phandle to the node of the focus lens controller.
+> -
+> -- rotation: The camera rotation is expressed as the angular difference in
+> -  degrees between two reference systems, one relative to the camera module, and
+> -  one defined on the external world scene to be captured when projected on the
+> -  image sensor pixel array.
+> -
+> -  A camera sensor has a 2-dimensional reference system 'Rc' defined by
+> -  its pixel array read-out order. The origin is set to the first pixel
+> -  being read out, the X-axis points along the column read-out direction
+> -  towards the last columns, and the Y-axis along the row read-out
+> -  direction towards the last row.
+> -
+> -  A typical example for a sensor with a 2592x1944 pixel array matrix
+> -  observed from the front is:
+> -
+> -              2591       X-axis          0
+> -                <------------------------+ 0
+> -                .......... ... ..........!
+> -                .......... ... ..........! Y-axis
+> -                           ...           !
+> -                .......... ... ..........!
+> -                .......... ... ..........! 1943
+> -                                         V
+> -
+> -  The external world scene reference system 'Rs' is a 2-dimensional
+> -  reference system on the focal plane of the camera module. The origin is
+> -  placed on the top-left corner of the visible scene, the X-axis points
+> -  towards the right, and the Y-axis points towards the bottom of the
+> -  scene. The top, bottom, left and right directions are intentionally not
+> -  defined and depend on the environment in which the camera is used.
+> -
+> -  A typical example of a (very common) picture of a shark swimming from
+> -  left to right, as seen from the camera, is:
+> -
+> -               0               X-axis
+> -             0 +------------------------------------->
+> -               !
+> -               !
+> -               !
+> -               !           |\____)\___
+> -               !           ) _____  __`<
+> -               !           |/     )/
+> -               !
+> -               !
+> -               !
+> -               V
+> -             Y-axis
+> -
+> -  with the reference system 'Rs' placed on the camera focal plane:
+> -
+> -                                  ¸.·˙!
+> -                              ¸.·˙    !
+> -                  _       ¸.·˙        !
+> -               +-/ \-+¸.·˙            !
+> -               | (o) |                ! Camera focal plane
+> -               +-----+˙·.¸            !
+> -                          ˙·.¸        !
+> -                              ˙·.¸    !
+> -                                  ˙·.¸!
+> -
+> -  When projected on the sensor's pixel array, the image and the associated
+> -  reference system 'Rs' are typically (but not always) inverted, due to
+> -  the camera module's lens optical inversion effect.
+> -
+> -  Assuming the above represented scene of the swimming shark, the lens
+> -  inversion projects the scene and its reference system onto the sensor
+> -  pixel array, seen from the front of the camera sensor, as follows:
+> -
+> -            Y-axis
+> -               ^
+> -               !
+> -               !
+> -               !
+> -               !            |\_____)\__
+> -               !            ) ____  ___.<
+> -               !            |/    )/
+> -               !
+> -               !
+> -               !
+> -             0 +------------------------------------->
+> -               0               X-axis
+> -
+> -  Note the shark being upside-down.
+> -
+> -  The resulting projected reference system is named 'Rp'.
+> -
+> -  The camera rotation property is then defined as the angular difference
+> -  in the counter-clockwise direction between the camera reference system
+> -  'Rc' and the projected scene reference system 'Rp'. It is expressed in
+> -  degrees as a number in the range [0, 360[.
+> -
+> -  Examples
+> -
+> -  0 degrees camera rotation:
+> -
+> -
+> -                    Y-Rp
+> -                     ^
+> -              Y-Rc   !
+> -               ^     !
+> -               !     !
+> -               !     !
+> -               !     !
+> -               !     !
+> -               !     !
+> -               !     !
+> -               !     !
+> -               !   0 +------------------------------------->
+> -               !     0               X-Rp
+> -             0 +------------------------------------->
+> -               0               X-Rc
+> -
+> -
+> -                                X-Rc                0
+> -               <------------------------------------+ 0
+> -                           X-Rp                 0   !
+> -           <------------------------------------+ 0 !
+> -                                                !   !
+> -                                                !   !
+> -                                                !   !
+> -                                                !   !
+> -                                                !   !
+> -                                                !   !
+> -                                                !   !
+> -                                                !   V
+> -                                                !  Y-Rc
+> -                                                V
+> -                                               Y-Rp
+> -
+> -  90 degrees camera rotation:
+> -
+> -               0        Y-Rc
+> -             0 +-------------------->
+> -               !   Y-Rp
+> -               !    ^
+> -               !    !
+> -               !    !
+> -               !    !
+> -               !    !
+> -               !    !
+> -               !    !
+> -               !    !
+> -               !    !
+> -               !    !
+> -               !  0 +------------------------------------->
+> -               !    0              X-Rp
+> -               !
+> -               !
+> -               !
+> -               !
+> -               V
+> -              X-Rc
+> -
+> -  180 degrees camera rotation:
+> -
+> -                                            0
+> -       <------------------------------------+ 0
+> -                        X-Rc                !
+> -              Y-Rp                          !
+> -               ^                            !
+> -               !                            !
+> -               !                            !
+> -               !                            !
+> -               !                            !
+> -               !                            !
+> -               !                            !
+> -               !                            V
+> -               !                           Y-Rc
+> -             0 +------------------------------------->
+> -               0              X-Rp
+> -
+> -  270 degrees camera rotation:
+> -
+> -               0        Y-Rc
+> -             0 +-------------------->
+> -               !                                        0
+> -               !    <-----------------------------------+ 0
+> -               !                    X-Rp                !
+> -               !                                        !
+> -               !                                        !
+> -               !                                        !
+> -               !                                        !
+> -               !                                        !
+> -               !                                        !
+> -               !                                        !
+> -               !                                        !
+> -               !                                        V
+> -               !                                       Y-Rp
+> -               !
+> -               !
+> -               !
+> -               !
+> -               V
+> -              X-Rc
+> -
+> -
+> -  Example one - Webcam
+> -
+> -  A camera module installed on the user facing part of a laptop screen
+> -  casing used for video calls. The captured images are meant to be
+> -  displayed in landscape mode (width > height) on the laptop screen.
+> -
+> -  The camera is typically mounted upside-down to compensate the lens
+> -  optical inversion effect:
+> -
+> -                    Y-Rp
+> -              Y-Rc   ^
+> -               ^     !
+> -               !     !
+> -               !     !       |\_____)\__
+> -               !     !       ) ____  ___.<
+> -               !     !       |/    )/
+> -               !     !
+> -               !     !
+> -               !     !
+> -               !   0 +------------------------------------->
+> -               !     0           X-Rp
+> -             0 +------------------------------------->
+> -               0            X-Rc
+> -
+> -  The two reference systems are aligned, the resulting camera rotation is
+> -  0 degrees, no rotation correction needs to be applied to the resulting
+> -  image once captured to memory buffers to correctly display it to users:
+> -
+> -               +--------------------------------------+
+> -               !                                      !
+> -               !                                      !
+> -               !                                      !
+> -               !             |\____)\___              !
+> -               !             ) _____  __`<            !
+> -               !             |/     )/                !
+> -               !                                      !
+> -               !                                      !
+> -               !                                      !
+> -               +--------------------------------------+
+> -
+> -  If the camera sensor is not mounted upside-down to compensate for the
+> -  lens optical inversion, the two reference systems will not be aligned,
+> -  with 'Rp' being rotated 180 degrees relatively to 'Rc':
+> -
+> -
+> -                        X-Rc                0
+> -       <------------------------------------+ 0
+> -                                            !
+> -              Y-Rp                          !
+> -               ^                            !
+> -               !                            !
+> -               !       |\_____)\__          !
+> -               !       ) ____  ___.<        !
+> -               !       |/    )/             !
+> -               !                            !
+> -               !                            !
+> -               !                            V
+> -               !                           Y-Rc
+> -             0 +------------------------------------->
+> -               0            X-Rp
+> -
+> -  The image once captured to memory will then be rotated by 180 degrees:
+> -
+> -               +--------------------------------------+
+> -               !                                      !
+> -               !                                      !
+> -               !                                      !
+> -               !              __/(_____/|             !
+> -               !            >.___  ____ (             !
+> -               !                 \(    \|             !
+> -               !                                      !
+> -               !                                      !
+> -               !                                      !
+> -               +--------------------------------------+
+> -
+> -  A software rotation correction of 180 degrees should be applied to
+> -  correctly display the image:
+> -
+> -               +--------------------------------------+
+> -               !                                      !
+> -               !                                      !
+> -               !                                      !
+> -               !             |\____)\___              !
+> -               !             ) _____  __`<            !
+> -               !             |/     )/                !
+> -               !                                      !
+> -               !                                      !
+> -               !                                      !
+> -               +--------------------------------------+
+> -
+> -  Example two - Phone camera
+> -
+> -  A camera installed on the back side of a mobile device facing away from
+> -  the user. The captured images are meant to be displayed in portrait mode
+> -  (height > width) to match the device screen orientation and the device
+> -  usage orientation used when taking the picture.
+> -
+> -  The camera sensor is typically mounted with its pixel array longer side
+> -  aligned to the device longer side, upside-down mounted to compensate for
+> -  the lens optical inversion effect:
+> -
+> -               0        Y-Rc
+> -             0 +-------------------->
+> -               !   Y-Rp
+> -               !    ^
+> -               !    !
+> -               !    !
+> -               !    !
+> -               !    !            |\_____)\__
+> -               !    !            ) ____  ___.<
+> -               !    !            |/    )/
+> -               !    !
+> -               !    !
+> -               !    !
+> -               !  0 +------------------------------------->
+> -               !    0                X-Rp
+> -               !
+> -               !
+> -               !
+> -               !
+> -               V
+> -              X-Rc
+> -
+> -  The two reference systems are not aligned and the 'Rp' reference
+> -  system is rotated by 90 degrees in the counter-clockwise direction
+> -  relatively to the 'Rc' reference system.
+> -
+> -  The image once captured to memory will be rotated:
+> -
+> -               +-------------------------------------+
+> -               |                 _ _                 |
+> -               |                \   /                |
+> -               |                 | |                 |
+> -               |                 | |                 |
+> -               |                 |  >                |
+> -               |                <  |                 |
+> -               |                 | |                 |
+> -               |                   .                 |
+> -               |                  V                  |
+> -               +-------------------------------------+
+> -
+> -  A correction of 90 degrees in counter-clockwise direction has to be
+> -  applied to correctly display the image in portrait mode on the device
+> -  screen:
+> -
+> -                        +--------------------+
+> -                        |                    |
+> -                        |                    |
+> -                        |                    |
+> -                        |                    |
+> -                        |                    |
+> -                        |                    |
+> -                        |   |\____)\___      |
+> -                        |   ) _____  __`<    |
+> -                        |   |/     )/        |
+> -                        |                    |
+> -                        |                    |
+> -                        |                    |
+> -                        |                    |
+> -                        |                    |
+> -                        +--------------------+
+> -
+> -- orientation: The orientation of a device (typically an image sensor or a flash
+> -  LED) describing its mounting position relative to the usage orientation of the
+> -  system where the device is installed on.
+> -  Possible values are:
+> -  0 - Front. The device is mounted on the front facing side of the system.
+> -  For mobile devices such as smartphones, tablets and laptops the front side is
+> -  the user facing side.
+> -  1 - Back. The device is mounted on the back side of the system, which is
+> -  defined as the opposite side of the front facing one.
+> -  2 - External. The device is not attached directly to the system but is
+> -  attached in a way that allows it to move freely.
+> -
+> -Optional endpoint properties
+> -----------------------------
+> -
+> -- remote-endpoint: phandle to an 'endpoint' subnode of a remote device node.
+> -- slave-mode: a boolean property indicating that the link is run in slave mode.
+> -  The default when this property is not specified is master mode. In the slave
+> -  mode horizontal and vertical synchronization signals are provided to the
+> -  slave device (data source) by the master device (data sink). In the master
+> -  mode the data source device is also the source of the synchronization signals.
+> -- bus-type: data bus type. Possible values are:
+> -  1 - MIPI CSI-2 C-PHY
+> -  2 - MIPI CSI1
+> -  3 - CCP2
+> -  4 - MIPI CSI-2 D-PHY
+> -  5 - Parallel
+> -  6 - Bt.656
+> -- bus-width: number of data lines actively used, valid for the parallel busses.
+> -- data-shift: on the parallel data busses, if bus-width is used to specify the
+> -  number of data lines, data-shift can be used to specify which data lines are
+> -  used, e.g. "bus-width=<8>; data-shift=<2>;" means, that lines 9:2 are used.
+> -- hsync-active: active state of the HSYNC signal, 0/1 for LOW/HIGH respectively.
+> -- vsync-active: active state of the VSYNC signal, 0/1 for LOW/HIGH respectively.
+> -  Note, that if HSYNC and VSYNC polarities are not specified, embedded
+> -  synchronization may be required, where supported.
+> -- data-active: similar to HSYNC and VSYNC, specifies data line polarity.
+> -- data-enable-active: similar to HSYNC and VSYNC, specifies the data enable
+> -  signal polarity.
+> -- field-even-active: field signal level during the even field data transmission.
+> -- pclk-sample: sample data on rising (1) or falling (0) edge of the pixel clock
+> -  signal.
+> -- sync-on-green-active: active state of Sync-on-green (SoG) signal, 0/1 for
+> -  LOW/HIGH respectively.
+> -- data-lanes: an array of physical data lane indexes. Position of an entry
+> -  determines the logical lane number, while the value of an entry indicates
+> -  physical lane, e.g. for 2-lane MIPI CSI-2 bus we could have
+> -  "data-lanes = <1 2>;", assuming the clock lane is on hardware lane 0.
+> -  If the hardware does not support lane reordering, monotonically
+> -  incremented values shall be used from 0 or 1 onwards, depending on
+> -  whether or not there is also a clock lane. This property is valid for
+> -  serial busses only (e.g. MIPI CSI-2).
+> -- clock-lanes: an array of physical clock lane indexes. Position of an entry
+> -  determines the logical lane number, while the value of an entry indicates
+> -  physical lane, e.g. for a MIPI CSI-2 bus we could have "clock-lanes = <0>;",
+> -  which places the clock lane on hardware lane 0. This property is valid for
+> -  serial busses only (e.g. MIPI CSI-2). Note that for the MIPI CSI-2 bus this
+> -  array contains only one entry.
+> -- clock-noncontinuous: a boolean property to allow MIPI CSI-2 non-continuous
+> -  clock mode.
+> -- link-frequencies: Allowed data bus frequencies. For MIPI CSI-2, for
+> -  instance, this is the actual frequency of the bus, not bits per clock per
+> -  lane value. An array of 64-bit unsigned integers.
+> -- lane-polarities: an array of polarities of the lanes starting from the clock
+> -  lane and followed by the data lanes in the same order as in data-lanes.
+> -  Valid values are 0 (normal) and 1 (inverted). The length of the array
+> -  should be the combined length of data-lanes and clock-lanes properties.
+> -  If the lane-polarities property is omitted, the value must be interpreted
+> -  as 0 (normal). This property is valid for serial busses only.
+> -- strobe: Whether the clock signal is used as clock (0) or strobe (1). Used
+> -  with CCP2, for instance.
+> -
+> -Example
+> --------
+> -
+> -The example snippet below describes two data pipelines.  ov772x and imx074 are
+> -camera sensors with a parallel and serial (MIPI CSI-2) video bus respectively.
+> -Both sensors are on the I2C control bus corresponding to the i2c0 controller
+> -node.  ov772x sensor is linked directly to the ceu0 video host interface.
+> -imx074 is linked to ceu0 through the MIPI CSI-2 receiver (csi2). ceu0 has a
+> -(single) DMA engine writing captured data to memory.  ceu0 node has a single
+> -'port' node which may indicate that at any time only one of the following data
+> -pipelines can be active: ov772x -> ceu0 or imx074 -> csi2 -> ceu0.
+> -
+> -	ceu0: ceu@fe910000 {
+> -		compatible = "renesas,sh-mobile-ceu";
+> -		reg = <0xfe910000 0xa0>;
+> -		interrupts = <0x880>;
+> -
+> -		mclk: master_clock {
+> -			compatible = "renesas,ceu-clock";
+> -			#clock-cells = <1>;
+> -			clock-frequency = <50000000>;	/* Max clock frequency */
+> -			clock-output-names = "mclk";
+> -		};
+> -
+> -		port {
+> -			#address-cells = <1>;
+> -			#size-cells = <0>;
+> -
+> -			/* Parallel bus endpoint */
+> -			ceu0_1: endpoint@1 {
+> -				reg = <1>;		/* Local endpoint # */
+> -				remote = <&ov772x_1_1>;	/* Remote phandle */
+> -				bus-width = <8>;	/* Used data lines */
+> -				data-shift = <2>;	/* Lines 9:2 are used */
+> -
+> -				/* If hsync-active/vsync-active are missing,
+> -				   embedded BT.656 sync is used */
+> -				hsync-active = <0>;	/* Active low */
+> -				vsync-active = <0>;	/* Active low */
+> -				data-active = <1>;	/* Active high */
+> -				pclk-sample = <1>;	/* Rising */
+> -			};
+> -
+> -			/* MIPI CSI-2 bus endpoint */
+> -			ceu0_0: endpoint@0 {
+> -				reg = <0>;
+> -				remote = <&csi2_2>;
+> -			};
+> -		};
+> -	};
+> -
+> -	i2c0: i2c@fff20000 {
+> -		...
+> -		ov772x_1: camera@21 {
+> -			compatible = "ovti,ov772x";
+> -			reg = <0x21>;
+> -			vddio-supply = <&regulator1>;
+> -			vddcore-supply = <&regulator2>;
+> -
+> -			clock-frequency = <20000000>;
+> -			clocks = <&mclk 0>;
+> -			clock-names = "xclk";
+> -
+> -			port {
+> -				/* With 1 endpoint per port no need for addresses. */
+> -				ov772x_1_1: endpoint {
+> -					bus-width = <8>;
+> -					remote-endpoint = <&ceu0_1>;
+> -					hsync-active = <1>;
+> -					vsync-active = <0>; /* Who came up with an
+> -							       inverter here ?... */
+> -					data-active = <1>;
+> -					pclk-sample = <1>;
+> -				};
+> -			};
+> -		};
+> -
+> -		imx074: camera@1a {
+> -			compatible = "sony,imx074";
+> -			reg = <0x1a>;
+> -			vddio-supply = <&regulator1>;
+> -			vddcore-supply = <&regulator2>;
+> -
+> -			clock-frequency = <30000000>;	/* Shared clock with ov772x_1 */
+> -			clocks = <&mclk 0>;
+> -			clock-names = "sysclk";		/* Assuming this is the
+> -							   name in the datasheet */
+> -			port {
+> -				imx074_1: endpoint {
+> -					clock-lanes = <0>;
+> -					data-lanes = <1 2>;
+> -					remote-endpoint = <&csi2_1>;
+> -				};
+> -			};
+> -		};
+> -	};
+> -
+> -	csi2: csi2@ffc90000 {
+> -		compatible = "renesas,sh-mobile-csi2";
+> -		reg = <0xffc90000 0x1000>;
+> -		interrupts = <0x17a0>;
+> -		#address-cells = <1>;
+> -		#size-cells = <0>;
+> -
+> -		port@1 {
+> -			compatible = "renesas,csi2c";	/* One of CSI2I and CSI2C. */
+> -			reg = <1>;			/* CSI-2 PHY #1 of 2: PHY_S,
+> -							   PHY_M has port address 0,
+> -							   is unused. */
+> -			csi2_1: endpoint {
+> -				clock-lanes = <0>;
+> -				data-lanes = <2 1>;
+> -				remote-endpoint = <&imx074_1>;
+> -			};
+> -		};
+> -		port@2 {
+> -			reg = <2>;			/* port 2: link to the CEU */
+> -
+> -			csi2_2: endpoint {
+> -				remote-endpoint = <&ceu0_0>;
+> -			};
+> -		};
+> -	};
+> +This file has moved to video-interfaces.yaml and video-interface-devices.yaml.
+> diff --git a/Documentation/devicetree/bindings/media/video-interfaces.yaml b/Documentation/devicetree/bindings/media/video-interfaces.yaml
+> new file mode 100644
+> index 000000000000..fefca7d98718
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/video-interfaces.yaml
+> @@ -0,0 +1,346 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/video-interfaces.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Common bindings for video receiver and transmitter interface endpoints
+> +
+> +maintainers:
+> +  - Guennadi Liakhovetski <g.liakhovetski@gmx.de>
+> +  - Sakari Ailus <sakari.ailus@linux.intel.com>
+> +
+> +description: |
+> +  Video data pipelines usually consist of external devices, e.g. camera sensors,
+> +  controlled over an I2C, SPI or UART bus, and SoC internal IP blocks, including
+> +  video DMA engines and video data processors.
+> +
+> +  SoC internal blocks are described by DT nodes, placed similarly to other SoC
+> +  blocks.  External devices are represented as child nodes of their respective
+> +  bus controller nodes, e.g. I2C.
+> +
+> +  Data interfaces on all video devices are described by their child 'port' nodes.
+> +  Configuration of a port depends on other devices participating in the data
+> +  transfer and is described by 'endpoint' subnodes.
+> +
+> +  device {
+> +      ...
+> +      ports {
+> +          #address-cells = <1>;
+> +          #size-cells = <0>;
+> +
+> +          port@0 {
+> +              ...
+> +              endpoint@0 { ... };
+> +              endpoint@1 { ... };
+> +          };
+> +          port@1 { ... };
+> +      };
+> +  };
+> +
+> +  If a port can be configured to work with more than one remote device on the same
+> +  bus, an 'endpoint' child node must be provided for each of them.  If more than
+> +  one port is present in a device node or there is more than one endpoint at a
+> +  port, or port node needs to be associated with a selected hardware interface,
+> +  a common scheme using '#address-cells', '#size-cells' and 'reg' properties is
+> +  used.
+> +
+> +  All 'port' nodes can be grouped under optional 'ports' node, which allows to
+> +  specify #address-cells, #size-cells properties independently for the 'port'
+> +  and 'endpoint' nodes and any child device nodes a device might have.
+> +
+> +  Two 'endpoint' nodes are linked with each other through their 'remote-endpoint'
+> +  phandles.  An endpoint subnode of a device contains all properties needed for
+> +  configuration of this device for data exchange with other device.  In most
+> +  cases properties at the peer 'endpoint' nodes will be identical, however they
+> +  might need to be different when there is any signal modifications on the bus
+> +  between two devices, e.g. there are logic signal inverters on the lines.
+> +
+> +  It is allowed for multiple endpoints at a port to be active simultaneously,
+> +  where supported by a device.  For example, in case where a data interface of
+> +  a device is partitioned into multiple data busses, e.g. 16-bit input port
+> +  divided into two separate ITU-R BT.656 8-bit busses.  In such case bus-width
+> +  and data-shift properties can be used to assign physical data lines to each
+> +  endpoint node (logical bus).
+> +
+> +  Documenting bindings for devices
+> +  --------------------------------
+> +
+> +  All required and optional bindings the device supports shall be explicitly
+> +  documented in device DT binding documentation. This also includes port and
+> +  endpoint nodes for the device, including unit-addresses and reg properties
+> +  where relevant.
+> +
+> +  Please also see Documentation/devicetree/bindings/graph.txt .
 
-> > +             dev_err(&client->dev, "VID not matched, val =3D 0x%02x\n"=
-, val);
->
-> Using variable names means nothing to the user.
->
-> "revision:  0x%02x" ?
->
-How about this one "CHIP ID: 0x%02x"?
-May I use 'chip_id to replace this variable 'val' naming?
-> > +             return -ENODEV;
-> > +     }
-> > +
-> > +     /*
-> > +      * Used to prevent the abnormal shutdown.
-> > +      * If SCL/SDA both keep low for one second to reset HW.
-> > +      */
-> > +     ret =3D regmap_update_bits(regmap, RT4831_REG_I2CPROT, RT4831_I2C=
-SAFETMR_MASK,
-> > +                              RT4831_I2CSAFETMR_MASK);
-> > +     if (ret) {
-> > +             dev_err(&client->dev, "Failed to enable I2C safety timer\=
-n");
-> > +             return ret;
-> > +     }
-> > +
-> > +     return devm_mfd_add_devices(&client->dev, PLATFORM_DEVID_AUTO, rt=
-4831_subdevs,
-> > +                                 ARRAY_SIZE(rt4831_subdevs), NULL, 0, =
-NULL);
-> > +}
-> > +
-> > +static int rt4831_remove(struct i2c_client *client)
-> > +{
-> > +     struct regmap *regmap =3D dev_get_regmap(&client->dev, NULL);
-> > +
-> > +     /* Disable WLED and DSV outputs */
-> > +     return regmap_update_bits(regmap, RT4831_REG_ENABLE, RT4831_RESET=
-_MASK, RT4831_RESET_MASK);
-> > +}
-> > +
-> > +static void rt4831_shutdown(struct i2c_client *client)
-> > +{
-> > +     struct regmap *regmap =3D dev_get_regmap(&client->dev, NULL);
-> > +
-> > +     /* Disable WLED and DSV outputs */
-> > +     regmap_update_bits(regmap, RT4831_REG_ENABLE, RT4831_RESET_MASK, =
-RT4831_RESET_MASK);
-> > +}
-> > +
-> > +static const struct of_device_id __maybe_unused rt4831_of_match[] =3D =
-{
-> > +     { .compatible =3D "richtek,rt4831", },
-> > +     {}
-> > +};
-> > +MODULE_DEVICE_TABLE(of, rt4831_of_match);
-> > +
-> > +static struct i2c_driver rt4831_driver =3D {
-> > +     .driver =3D {
-> > +             .name =3D "rt4831",
-> > +             .of_match_table =3D of_match_ptr(rt4831_of_match),
->
-> The trend is to not use of_match_ptr() anymore, as these devices can
-> not be instantiated using ACPI.
->
-OK, I'll remove 'of_match_ptr'.
-> > +     },
-> > +     .probe_new =3D rt4831_probe,
-> > +     .remove =3D rt4831_remove,
-> > +     .shutdown =3D rt4831_shutdown,
-> > +};
-> > +module_i2c_driver(rt4831_driver);
-> > +
-> > +MODULE_AUTHOR("ChiYuan Huang <cy_huang@richtek.com>");
-> > +MODULE_LICENSE("GPL v2");
->
-> --
-> Lee Jones [=E6=9D=8E=E7=90=BC=E6=96=AF]
-> Senior Technical Lead - Developer Services
-> Linaro.org =E2=94=82 Open source software for Arm SoCs
-> Follow Linaro: Facebook | Twitter | Blog
+Should this be dropped, or modified to reference the YAML schema for OF
+graph ?
+
+> +
+> +allOf:
+> +  - $ref: /schemas/graph.yaml#/$defs/endpoint-base
+> +
+> +properties:
+> +  slave-mode:
+> +    type: boolean
+> +    description:
+> +      Indicates that the link is run in slave mode. The default when this
+> +      property is not specified is master mode. In the slave mode horizontal and
+> +      vertical synchronization signals are provided to the slave device (data
+> +      source) by the master device (data sink). In the master mode the data
+> +      source device is also the source of the synchronization signals.
+> +
+> +  bus-type:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum:
+> +      - 1 # MIPI CSI-2 C-PHY
+> +      - 2 # MIPI CSI1
+> +      - 3 # CCP2
+> +      - 4 # MIPI CSI-2 D-PHY
+> +      - 5 # Parallel
+> +      - 6 # Bt.656
+
+You could already s/Bt.656/BT.656/
+
+> +    description:
+> +      Data bus type.
+> +
+> +  bus-width:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    maximum: 64
+> +    description:
+> +      Number of data lines actively used, valid for the parallel busses.
+> +
+> +  data-shift:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    maximum: 64
+> +    description:
+> +      On the parallel data busses, if bus-width is used to specify the number of
+> +      data lines, data-shift can be used to specify which data lines are used,
+> +      e.g. "bus-width=<8>; data-shift=<2>;" means, that lines 9:2 are used.
+> +
+> +  hsync-active:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [ 0, 1 ]
+> +    description:
+> +      Active state of the HSYNC signal, 0/1 for LOW/HIGH respectively.
+> +
+> +  vsync-active:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [ 0, 1 ]
+> +    description:
+> +      Active state of the VSYNC signal, 0/1 for LOW/HIGH respectively. Note,
+> +      that if HSYNC and VSYNC polarities are not specified, embedded
+> +      synchronization may be required, where supported.
+> +
+> +  data-active:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [ 0, 1 ]
+> +    description:
+> +      Similar to HSYNC and VSYNC, specifies data line polarity.
+> +
+> +  data-enable-active:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [ 0, 1 ]
+> +    description:
+> +      Similar to HSYNC and VSYNC, specifies the data enable signal polarity.
+> +
+> +  field-even-active:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [ 0, 1 ]
+> +    description:
+> +      Field signal level during the even field data transmission.
+> +
+> +  pclk-sample:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [ 0, 1 ]
+> +    description:
+> +      Sample data on rising (1) or falling (0) edge of the pixel clock signal.
+> +
+> +  sync-on-green-active:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [ 0, 1 ]
+> +    description:
+> +      Active state of Sync-on-green (SoG) signal, 0/1 for LOW/HIGH respectively.
+> +
+> +  data-lanes:
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    minItems: 1
+> +    maxItems: 8
+> +    items:
+> +      # Assume up to 9 physical lane indices
+> +      maximum: 8
+> +    description:
+> +      An array of physical data lane indexes. Position of an entry determines
+> +      the logical lane number, while the value of an entry indicates physical
+> +      lane, e.g. for 2-lane MIPI CSI-2 bus we could have "data-lanes = <1 2>;",
+> +      assuming the clock lane is on hardware lane 0. If the hardware does not
+> +      support lane reordering, monotonically incremented values shall be used
+> +      from 0 or 1 onwards, depending on whether or not there is also a clock
+> +      lane. This property is valid for serial busses only (e.g. MIPI CSI-2).
+> +
+> +  clock-lanes:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    # Assume up to 9 physical lane indices
+> +    maximum: 8
+> +    description:
+> +      Physical clock lane index. Position of an entry determines
+
+s/index/indexes/ (or indices) as there are potentially multiple entries
+(even if in practice, for all bus types we currently support, only one
+clock lane is supported) ?
+
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+
+> +      the logical lane number, while the value of an entry indicates physical
+> +      lane, e.g. for a MIPI CSI-2 bus we could have "clock-lanes = <0>;", which
+> +      places the clock lane on hardware lane 0. This property is valid for
+> +      serial busses only (e.g. MIPI CSI-2).
+> +
+> +  clock-noncontinuous:
+> +    type: boolean
+> +    description:
+> +      Allow MIPI CSI-2 non-continuous clock mode.
+> +
+> +  link-frequencies:
+> +    $ref: /schemas/types.yaml#/definitions/uint64-array
+> +    description:
+> +      Allowed data bus frequencies. For MIPI CSI-2, for instance, this is the
+> +      actual frequency of the bus, not bits per clock per lane value. An array
+> +      of 64-bit unsigned integers.
+> +
+> +  lane-polarities:
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    minItems: 1
+> +    maxItems: 9
+> +    items:
+> +      enum: [ 0, 1 ]
+> +    description:
+> +      An array of polarities of the lanes starting from the clock lane and
+> +      followed by the data lanes in the same order as in data-lanes. Valid
+> +      values are 0 (normal) and 1 (inverted). The length of the array should be
+> +      the combined length of data-lanes and clock-lanes properties. If the
+> +      lane-polarities property is omitted, the value must be interpreted as 0
+> +      (normal). This property is valid for serial busses only.
+> +
+> +  strobe:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [ 0, 1 ]
+> +    description:
+> +      Whether the clock signal is used as clock (0) or strobe (1). Used with
+> +      CCP2, for instance.
+> +
+> +additionalProperties: true
+> +
+> +examples:
+> +  # The example snippet below describes two data pipelines.  ov772x and imx074
+> +  # are camera sensors with a parallel and serial (MIPI CSI-2) video bus
+> +  # respectively. Both sensors are on the I2C control bus corresponding to the
+> +  # i2c0 controller node.  ov772x sensor is linked directly to the ceu0 video
+> +  # host interface. imx074 is linked to ceu0 through the MIPI CSI-2 receiver
+> +  # (csi2). ceu0 has a (single) DMA engine writing captured data to memory.
+> +  # ceu0 node has a single 'port' node which may indicate that at any time
+> +  # only one of the following data pipelines can be active:
+> +  # ov772x -> ceu0 or imx074 -> csi2 -> ceu0.
+> +  - |
+> +    ceu@fe910000 {
+> +        compatible = "renesas,sh-mobile-ceu";
+> +        reg = <0xfe910000 0xa0>;
+> +        interrupts = <0x880>;
+> +
+> +        mclk: master_clock {
+> +            compatible = "renesas,ceu-clock";
+> +            #clock-cells = <1>;
+> +            clock-frequency = <50000000>;  /* Max clock frequency */
+> +            clock-output-names = "mclk";
+> +        };
+> +
+> +        port {
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +
+> +            /* Parallel bus endpoint */
+> +            ceu0_1: endpoint@1 {
+> +                reg = <1>;    /* Local endpoint # */
+> +                remote-endpoint = <&ov772x_1_1>;  /* Remote phandle */
+> +                bus-width = <8>;  /* Used data lines */
+> +                data-shift = <2>;  /* Lines 9:2 are used */
+> +
+> +                /* If hsync-active/vsync-active are missing,
+> +                   embedded BT.656 sync is used */
+> +                hsync-active = <0>;  /* Active low */
+> +                vsync-active = <0>;  /* Active low */
+> +                data-active = <1>;  /* Active high */
+> +                pclk-sample = <1>;  /* Rising */
+> +            };
+> +
+> +            /* MIPI CSI-2 bus endpoint */
+> +            ceu0_0: endpoint@0 {
+> +                reg = <0>;
+> +                remote-endpoint = <&csi2_2>;
+> +            };
+> +        };
+> +    };
+> +
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        camera@21 {
+> +            compatible = "ovti,ov772x";
+> +            reg = <0x21>;
+> +            vddio-supply = <&regulator1>;
+> +            vddcore-supply = <&regulator2>;
+> +
+> +            clock-frequency = <20000000>;
+> +            clocks = <&mclk 0>;
+> +            clock-names = "xclk";
+> +
+> +            port {
+> +                /* With 1 endpoint per port no need for addresses. */
+> +                ov772x_1_1: endpoint {
+> +                    bus-width = <8>;
+> +                    remote-endpoint = <&ceu0_1>;
+> +                    hsync-active = <1>;
+> +                    vsync-active = <0>; /* Who came up with an
+> +                               inverter here ?... */
+> +                    data-active = <1>;
+> +                    pclk-sample = <1>;
+> +                };
+> +            };
+> +        };
+> +
+> +        camera@1a {
+> +            compatible = "sony,imx074";
+> +            reg = <0x1a>;
+> +            vddio-supply = <&regulator1>;
+> +            vddcore-supply = <&regulator2>;
+> +
+> +            clock-frequency = <30000000>;  /* Shared clock with ov772x_1 */
+> +            clocks = <&mclk 0>;
+> +            clock-names = "sysclk";    /* Assuming this is the
+> +                       name in the datasheet */
+> +            port {
+> +                imx074_1: endpoint {
+> +                    clock-lanes = <0>;
+> +                    data-lanes = <1 2>;
+> +                    remote-endpoint = <&csi2_1>;
+> +                };
+> +            };
+> +        };
+> +    };
+> +
+> +    csi2: csi2@ffc90000 {
+> +        compatible = "renesas,sh-mobile-csi2";
+> +        reg = <0xffc90000 0x1000>;
+> +        interrupts = <0x17a0>;
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        port@1 {
+> +            compatible = "renesas,csi2c";  /* One of CSI2I and CSI2C. */
+> +            reg = <1>;      /* CSI-2 PHY #1 of 2: PHY_S,
+> +                       PHY_M has port address 0,
+> +                       is unused. */
+> +            csi2_1: endpoint {
+> +                clock-lanes = <0>;
+> +                data-lanes = <2 1>;
+> +                remote-endpoint = <&imx074_1>;
+> +            };
+> +        };
+> +        port@2 {
+> +            reg = <2>;      /* port 2: link to the CEU */
+> +
+> +            csi2_2: endpoint {
+> +                remote-endpoint = <&ceu0_0>;
+> +            };
+> +        };
+> +    };
+> +
+> +...
+
+-- 
+Regards,
+
+Laurent Pinchart
