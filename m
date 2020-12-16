@@ -2,63 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8741D2DC17B
-	for <lists+devicetree@lfdr.de>; Wed, 16 Dec 2020 14:45:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2CBAB2DC171
+	for <lists+devicetree@lfdr.de>; Wed, 16 Dec 2020 14:41:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726096AbgLPNpu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Dec 2020 08:45:50 -0500
-Received: from magratgarlick.emantor.de ([78.46.208.201]:50994 "EHLO
-        magratgarlick.emantor.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725947AbgLPNpu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Dec 2020 08:45:50 -0500
-X-Greylist: delayed 580 seconds by postgrey-1.27 at vger.kernel.org; Wed, 16 Dec 2020 08:45:49 EST
-Received: by magratgarlick.emantor.de (Postfix, from userid 114)
-        id 4BBA2103A18; Wed, 16 Dec 2020 14:35:24 +0100 (CET)
-X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on
-        magratgarlick.emantor.de
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
-        autolearn=unavailable autolearn_force=no version=3.4.2
-Received: from localhost (unknown [IPv6:2001:9e8:79:5902:c0d3:dbff:fefe:ff70])
-        by magratgarlick.emantor.de (Postfix) with ESMTPSA id 11E151039D7;
-        Wed, 16 Dec 2020 14:35:22 +0100 (CET)
-From:   Rouven Czerwinski <r.czerwinski@pengutronix.de>
-Cc:     kernel@pengutronix.de,
-        Rouven Czerwinski <r.czerwinski@pengutronix.de>,
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS),
-        linux-arm-kernel@lists.infradead.org (moderated list:ARM AND ARM64 SoC
-        SUB-ARCHITECTURES (COMMON PARTS)),
-        linux-kernel@vger.kernel.org (open list),
-        Li Yang <leoyang.li@nxp.com>, Rob Herring <robh@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>
-Subject: [PATCH 0/3] Mainline Webasto ccbv2 board
-Date:   Wed, 16 Dec 2020 14:34:58 +0100
-Message-Id: <20201216133501.28135-1-r.czerwinski@pengutronix.de>
-X-Mailer: git-send-email 2.29.2
+        id S1726387AbgLPNlB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Dec 2020 08:41:01 -0500
+Received: from relay12.mail.gandi.net ([217.70.178.232]:46589 "EHLO
+        relay12.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726096AbgLPNlB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Dec 2020 08:41:01 -0500
+Received: from localhost (lfbn-lyo-1-13-140.w86-202.abo.wanadoo.fr [86.202.109.140])
+        (Authenticated sender: alexandre.belloni@bootlin.com)
+        by relay12.mail.gandi.net (Postfix) with ESMTPSA id 02B31200005;
+        Wed, 16 Dec 2020 13:40:15 +0000 (UTC)
+Date:   Wed, 16 Dec 2020 14:40:15 +0100
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Claudiu Beznea <claudiu.beznea@microchip.com>
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com,
+        nicolas.ferre@microchip.com, ludovic.desroches@microchip.com,
+        sre@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org
+Subject: Re: [PATCH 1/3] power: reset: at91-sama5d2_shdwc: fix wkupdbc mask
+Message-ID: <20201216134015.GF2814589@piout.net>
+References: <1608123453-1423-1-git-send-email-claudiu.beznea@microchip.com>
+ <1608123453-1423-2-git-send-email-claudiu.beznea@microchip.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-To:     unlisted-recipients:; (no To-header on input)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1608123453-1423-2-git-send-email-claudiu.beznea@microchip.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add Webasto ccbv2 device tree.
+On 16/12/2020 14:57:31+0200, Claudiu Beznea wrote:
+> According to datasheet WKUPDBC mask is b/w bits 26..24.
+> 
+> Fixes: f80cb48843987 ("power: reset: at91-shdwc: add new shutdown controller driver")
+> Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
+Reviewed-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
 
-Rouven Czerwinski (3):
-  dt-bindings: vendor-prefixes: add Webasto SE
-  ARM: dts: add Webasto ccbv2
-  dt-bindings: arm: fsl: add Webasto ccbv2
+> ---
+>  drivers/power/reset/at91-sama5d2_shdwc.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/power/reset/at91-sama5d2_shdwc.c b/drivers/power/reset/at91-sama5d2_shdwc.c
+> index e90368ed6f71..3996167f676f 100644
+> --- a/drivers/power/reset/at91-sama5d2_shdwc.c
+> +++ b/drivers/power/reset/at91-sama5d2_shdwc.c
+> @@ -37,7 +37,7 @@
+>  
+>  #define AT91_SHDW_MR	0x04		/* Shut Down Mode Register */
+>  #define AT91_SHDW_WKUPDBC_SHIFT	24
+> -#define AT91_SHDW_WKUPDBC_MASK	GENMASK(31, 16)
+> +#define AT91_SHDW_WKUPDBC_MASK	GENMASK(26, 24)
+>  #define AT91_SHDW_WKUPDBC(x)	(((x) << AT91_SHDW_WKUPDBC_SHIFT) \
+>  						& AT91_SHDW_WKUPDBC_MASK)
+>  
 
- .../devicetree/bindings/arm/fsl.yaml          |   1 +
- .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
- arch/arm/boot/dts/Makefile                    |   1 +
- arch/arm/boot/dts/imx6ul-webasto-ccbv2.dts    | 472 ++++++++++++++++++
- 4 files changed, 476 insertions(+)
- create mode 100644 arch/arm/boot/dts/imx6ul-webasto-ccbv2.dts
+Maybe you would switch to FIELD_PREP to remove the need for 2 of those 3
+macros and would have made the issue apparent right away.
 
-
-base-commit: 2c85ebc57b3e1817b6ce1a6b703928e113a90442
 -- 
-2.29.2
-
+Alexandre Belloni, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
