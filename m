@@ -2,107 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 79C212DBE81
-	for <lists+devicetree@lfdr.de>; Wed, 16 Dec 2020 11:20:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F0972DBEBD
+	for <lists+devicetree@lfdr.de>; Wed, 16 Dec 2020 11:37:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726231AbgLPKTp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Dec 2020 05:19:45 -0500
-Received: from mout.gmx.net ([212.227.15.15]:43685 "EHLO mout.gmx.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726224AbgLPKTo (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 16 Dec 2020 05:19:44 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1608113885;
-        bh=EkN0tAvBXM+bEcRrzO1ui4KVWR+Oa9dgiyO3uTvYRhY=;
-        h=X-UI-Sender-Class:Date:From:To:cc:Subject:In-Reply-To:References;
-        b=dZ3hfjxakFD1hrPKwt7to2ocChOR3iyTHMDQsW6hGQw6YDZlLTQwgDPALpfKx4wzR
-         wbURt9Wg8oUlDEFkYeJDphlyC/IQwE4+YJhpHJsknaO+3DRhengenttjibyHC02OdA
-         jy7nZ18eX3iOl5DR2pttTM25dvngRujje35dl8jc=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from axis700.grange ([87.79.50.253]) by mail.gmx.com (mrgmx005
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1Md6Mj-1kGQ2w1UXL-00aDD2; Wed, 16
- Dec 2020 11:18:05 +0100
-Received: by axis700.grange (Postfix, from userid 1000)
-        id 8487861F51; Wed, 16 Dec 2020 11:18:03 +0100 (CET)
-Received: from localhost (localhost [127.0.0.1])
-        by axis700.grange (Postfix) with ESMTP id 6909A616B7;
-        Wed, 16 Dec 2020 11:18:03 +0100 (CET)
-Date:   Wed, 16 Dec 2020 11:18:03 +0100 (CET)
-From:   Guennadi Liakhovetski <g.liakhovetski@gmx.de>
-X-X-Sender: lyakh@axis700.grange
-To:     Rob Herring <robh@kernel.org>
-cc:     Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-media@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] media: dt-bindings: Convert video-interfaces.txt
- properties to schemas
-In-Reply-To: <20201210211625.3070388-2-robh@kernel.org>
-Message-ID: <alpine.DEB.2.20.2012161113060.15676@axis700.grange>
-References: <20201210211625.3070388-1-robh@kernel.org> <20201210211625.3070388-2-robh@kernel.org>
-User-Agent: Alpine 2.20 (DEB 67 2015-01-07)
+        id S1726182AbgLPKgg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Dec 2020 05:36:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60556 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726148AbgLPKgg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Dec 2020 05:36:36 -0500
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8C86C0617B0
+        for <devicetree@vger.kernel.org>; Wed, 16 Dec 2020 02:35:55 -0800 (PST)
+Received: by mail-ed1-x533.google.com with SMTP id i24so24220863edj.8
+        for <devicetree@vger.kernel.org>; Wed, 16 Dec 2020 02:35:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=eY8G+T0bh4LN6y+cxgn4OGYQRTzOO5yifrdrjlzP4xo=;
+        b=uevDLfBCO9sybtFyuI9g0Jolsd9EIBafOCpuddeg/PnCFSM0EIJre/eAALMhnVHa1v
+         83YoKSEg+yR8N+zEKwZfM7aMKPgHaCtkF/tcxOzNRi5oANZuwiXZpP3j13oNGY09WA5v
+         yXWleMUI961UX04vP2i+JyTBwDg3gmTwFBaJG21MyjvPIvS0q42WPOr9DxCrikyW+maS
+         mLTgJuAGMEVcbKP4H62TiepZhlR8xOao/xrd8/bwY3yyBlt1asvDICr7SDTW2gcOQTnG
+         8YPueB0fePMYSHsf+E2QxDnkCb5EsA562nE6n44yZbys+7ZFEl/PaVizHAPgH7MdhjAV
+         a70w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=eY8G+T0bh4LN6y+cxgn4OGYQRTzOO5yifrdrjlzP4xo=;
+        b=PVKeSXmGjAlzy7RUyRHyqCOqN+64ut1/s3AlTu72x4varjAuUeegIw426CwTZITOBt
+         E7jQ+OqMOanPJ9EtSWEBPTNP1QYhlL3aZMoRBn/EbjB9xkmByXPVAZpX9oo8eOPF1XYe
+         VWlzUI52p8wPYp4VQe1WrRWcXNB9MC9uKXaEH4ZrCjQgaUZST4cVX4ms4IJkWz9E3X1M
+         5tUQnbAyRrOVdCOW/4kS+9rLXeqGcvLEL5OSTnXrTaHn+SkqtaTTC5+1TQsVrtL1KjPA
+         lJqe2fIpTXmLmpLA6gYb/cxImI8g5O7tV6d5tLkek/vTEp+VWRZHr7LBNcd5H3wSz06+
+         0QtA==
+X-Gm-Message-State: AOAM531yl+Dzwj2CecAYvVrdNbhgvadrQmfbUvVvvMPJs5ZZ0CmfuL7a
+        Az+UUknXwiJdi8lh+dY7bOQK/3yXYA9QBVBeGOePsA==
+X-Google-Smtp-Source: ABdhPJyahnUh0rw5wbWB1tMgwq0uvYik/i1xvch+qmo0s2+lLe+wAf2QZmn9/oHa2jA6RYanoM46HmiqgQq+MjTAhu8=
+X-Received: by 2002:aa7:cc15:: with SMTP id q21mr29018379edt.213.1608114954502;
+ Wed, 16 Dec 2020 02:35:54 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-X-Provags-ID: V03:K1:10RrKdIGxPny3KKQBUSxhVFZ4+gRCKzy3mvxV7clzE9UNjib+xt
- TPLTHLsppU9QgL5Azp84GupTgA9vaRob57wDMCsWo1uxols9w9aY2s4WV8CVhF7GFQDn0pB
- F1qYLIzBtIkYWt5C34VjwJZJld2B5/BKrOvBPl5SGqDYk7FL+7aT9YD52YR/sJcGgDR3afN
- U3B8bNd6jRcKZyYFlDOjA==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:nqgYwJno6GQ=:XymytEfsCnpZVPXOdSFnpN
- Ooig8yVSwGaUuxQJlfBexR8B3G/6LfRs7ZlKtZeBXGG23nDII9dcKpPYBQ6hDqisSecIy8yrs
- kzFYZwLuFDKJXXKoKm92k70dj1GhUG8fdiIn11nm5Vt0HVwPKvraaM1eno4Hk2HROlxWgb1c/
- MCR9d+VKzpNPfOPX931z6/tQH48EKTTy1ABGc8SZmkvEAjGehHvrtbWyANY8tLfLn0NdPQWMg
- xtrr/RX0Rqg4urzUrcwM9S9j43VrhqbCeSTaFvcdovG7f32VeH9TRRL+52aYdXkTbmTrMUPjP
- 3claeW1NfYUdH07EyaozUaAqjRxuGiAJ6+lz5E7q6LIyfYGEl9INVw4CjMT0t4ANaXsYvo6k6
- HBi25XqImHo+s91e7yeH7V0EPGPBoWQS4OmWn1qRKfy2FY30vxZXFkGOeJYaEJQyrL02he6+C
- K3SqB9LDL05XTXTAFIWFST6o2bs0GtZ743ICktRUb+w8D2NoD5s5uRQ2otc30oL5OWIKxMFMS
- I6TRl+0DRc8Rf/i7MrHPMePD83Tv0ki38Lbv9hDo2OurNQ/1TbugPOsQpoySq4kH2LyB9oG3c
- /el3wwjnXdNTHlaPLmIGO8OfwnBfqXItiKH7ydbE7b4MHJI0c6dHw/q7Kkz3xluXhex/i8ipe
- LcJGMe3HgYwpQbgUclsflR6NNFkroBHSLuvzjjz1rnD6FUEsnW+JjvXeaiGMw+zsqYOqi6VJc
- aE+s3lshYruDDv4lz9P1VpCljKq9xbuVdAneQl8r7D9FXdw8ojIXnwXdT8r4VDkK2IyhcwUR0
- bzrQmHSPfG5Hi7l7inbSbJA1Pk0wGQRhIta+j5w6xDWo5NwcWqFkzlulJYWg9+eY/YXtVVhFn
- j7WfeGIzLWTVud74hSLQ==
-Content-Transfer-Encoding: quoted-printable
+References: <20201211164801.7838-1-nsaenzjulienne@suse.de> <20201211164801.7838-3-nsaenzjulienne@suse.de>
+In-Reply-To: <20201211164801.7838-3-nsaenzjulienne@suse.de>
+From:   Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Date:   Wed, 16 Dec 2020 11:35:43 +0100
+Message-ID: <CAMpxmJX5t=LWpLkY=uYNK9r4rmStuSfmGc7=zcnu4_oHkQevWQ@mail.gmail.com>
+Subject: Re: [PATCH v6 02/11] firmware: raspberrypi: Introduce devm_rpi_firmware_get()
+To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+Cc:     =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        bcm-kernel-feedback-list@broadcom.com, linux-pwm@vger.kernel.org,
+        arm-soc <linux-arm-kernel@lists.infradead.org>,
+        linux-devicetree <devicetree@vger.kernel.org>, wahrenst@gmx.net,
+        Linux Input <linux-input@vger.kernel.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        devel@driverdev.osuosl.org, Philipp Zabel <p.zabel@pengutronix.de>,
+        linux-gpio <linux-gpio@vger.kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        linux-rpi-kernel@lists.infradead.org,
+        Andy Shevchenko <andy.shevchenko@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
-
-Sorry for the delay! I didn't realise my ack was required for this patch.
-I won't object against the licence change, but please don't add me as a
-maintainer of
-
-On Thu, 10 Dec 2020, Rob Herring wrote:
-
-[snip]
-
-> diff --git a/Documentation/devicetree/bindings/media/video-interfaces.ya=
-ml b/Documentation/devicetree/bindings/media/video-interfaces.yaml
-> new file mode 100644
-> index 000000000000..7415a4df1576
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/video-interfaces.yaml
-> @@ -0,0 +1,344 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/video-interfaces.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+On Fri, Dec 11, 2020 at 5:48 PM Nicolas Saenz Julienne
+<nsaenzjulienne@suse.de> wrote:
+>
+> It'll simplify the firmware handling for most consumers.
+>
+> Suggested-by: Bartosz Golaszewski <bgolaszewski@baylibre.com>
+> Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+> Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
+> ---
+>
+> Changes since v4:
+>  - Rearrange function calls for clarity, same functionality
+>
+> Changes since v2:
+> - Create devm_rpi_firmware_get()
+>
+>  drivers/firmware/raspberrypi.c             | 29 ++++++++++++++++++++++
+>  include/soc/bcm2835/raspberrypi-firmware.h |  8 ++++++
+>  2 files changed, 37 insertions(+)
+>
+> diff --git a/drivers/firmware/raspberrypi.c b/drivers/firmware/raspberrypi.c
+> index b65e4c495772..250e01680742 100644
+> --- a/drivers/firmware/raspberrypi.c
+> +++ b/drivers/firmware/raspberrypi.c
+> @@ -243,6 +243,13 @@ void rpi_firmware_put(struct rpi_firmware *fw)
+>  }
+>  EXPORT_SYMBOL_GPL(rpi_firmware_put);
+>
+> +static void devm_rpi_firmware_put(void *data)
+> +{
+> +       struct rpi_firmware *fw = data;
 > +
-> +title: Common bindings for video receiver and transmitter interface end=
-points
+> +       rpi_firmware_put(fw);
+> +}
 > +
-> +maintainers:
-> +  - Guennadi Liakhovetski <g.liakhovetski@gmx.de>
+>  static int rpi_firmware_probe(struct platform_device *pdev)
+>  {
+>         struct device *dev = &pdev->dev;
+> @@ -331,6 +338,28 @@ struct rpi_firmware *rpi_firmware_get(struct device_node *firmware_node)
+>  }
+>  EXPORT_SYMBOL_GPL(rpi_firmware_get);
+>
+> +/**
+> + * devm_rpi_firmware_get - Get pointer to rpi_firmware structure.
+> + * @firmware_node:    Pointer to the firmware Device Tree node.
+> + *
+> + * Returns NULL is the firmware device is not ready.
+> + */
+> +struct rpi_firmware *devm_rpi_firmware_get(struct device *dev,
+> +                                          struct device_node *firmware_node)
+> +{
+> +       struct rpi_firmware *fw;
+> +
+> +       fw = rpi_firmware_get(firmware_node);
+> +       if (!fw)
+> +               return NULL;
+> +
+> +       if (devm_add_action_or_reset(dev, devm_rpi_firmware_put, fw))
+> +               return NULL;
+> +
+> +       return fw;
+> +}
+> +EXPORT_SYMBOL_GPL(devm_rpi_firmware_get);
+> +
+>  static const struct of_device_id rpi_firmware_of_match[] = {
+>         { .compatible = "raspberrypi,bcm2835-firmware", },
+>         {},
+> diff --git a/include/soc/bcm2835/raspberrypi-firmware.h b/include/soc/bcm2835/raspberrypi-firmware.h
+> index fdfef7fe40df..73ad784fca96 100644
+> --- a/include/soc/bcm2835/raspberrypi-firmware.h
+> +++ b/include/soc/bcm2835/raspberrypi-firmware.h
+> @@ -142,6 +142,8 @@ int rpi_firmware_property_list(struct rpi_firmware *fw,
+>                                void *data, size_t tag_size);
+>  void rpi_firmware_put(struct rpi_firmware *fw);
+>  struct rpi_firmware *rpi_firmware_get(struct device_node *firmware_node);
+> +struct rpi_firmware *devm_rpi_firmware_get(struct device *dev,
+> +                                          struct device_node *firmware_node);
+>  #else
+>  static inline int rpi_firmware_property(struct rpi_firmware *fw, u32 tag,
+>                                         void *data, size_t len)
+> @@ -160,6 +162,12 @@ static inline struct rpi_firmware *rpi_firmware_get(struct device_node *firmware
+>  {
+>         return NULL;
+>  }
+> +
+> +static inline struct rpi_firmware *devm_rpi_firmware_get(struct device *dev,
+> +                                       struct device_node *firmware_node)
+> +{
+> +       return NULL;
+> +}
+>  #endif
+>
+>  #endif /* __SOC_RASPBERRY_FIRMWARE_H__ */
+> --
+> 2.29.2
+>
 
-I did commit the original version of
-Documentation/devicetree/bindings/media/video-interfaces.txt but that was
-more than 8 years ago, I haven't worked in media / V4L for several years
-now, so, I don't think I can meaningfully maintain that file now.
-
-Thanks
-Guennadi
+Reviewed-by: Bartosz Golaszewski <bgolaszewski@baylibre.com>
