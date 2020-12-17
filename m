@@ -2,92 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4CAE82DD3E9
-	for <lists+devicetree@lfdr.de>; Thu, 17 Dec 2020 16:16:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D81ED2DD46F
+	for <lists+devicetree@lfdr.de>; Thu, 17 Dec 2020 16:43:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728661AbgLQPOF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Dec 2020 10:14:05 -0500
-Received: from honk.sigxcpu.org ([24.134.29.49]:42132 "EHLO honk.sigxcpu.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726291AbgLQPOF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 17 Dec 2020 10:14:05 -0500
-Received: from localhost (localhost [127.0.0.1])
-        by honk.sigxcpu.org (Postfix) with ESMTP id 22346FB03;
-        Thu, 17 Dec 2020 16:13:22 +0100 (CET)
-X-Virus-Scanned: Debian amavisd-new at honk.sigxcpu.org
-Received: from honk.sigxcpu.org ([127.0.0.1])
-        by localhost (honk.sigxcpu.org [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id aQOZOQE_fcvv; Thu, 17 Dec 2020 16:13:20 +0100 (CET)
-Received: by bogon.sigxcpu.org (Postfix, from userid 1000)
-        id 2A5E243FE3; Thu, 17 Dec 2020 16:13:16 +0100 (CET)
-From:   =?UTF-8?q?Guido=20G=C3=BCnther?= <agx@sigxcpu.org>
-To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Martin Kepplinger <martink@posteo.de>,
-        Angus Ainslie <angus@akkea.ca>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Li Yang <leoyang.li@nxp.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Vinod Koul <vkoul@kernel.org>,
-        Anson Huang <Anson.Huang@nxp.com>,
-        Michael Walle <michael@walle.cc>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        phone-devel@vger.kernel.org
-Subject: [PATCH v2 4/4] arm64: dts: imx8mq-librem5-devkit: Drop custom clock settings
-Date:   Thu, 17 Dec 2020 16:13:15 +0100
-Message-Id: <3343e82ab52e753b385a3e451c07b774920790fc.1608216796.git.agx@sigxcpu.org>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <cover.1608216796.git.agx@sigxcpu.org>
-References: <cover.1608216796.git.agx@sigxcpu.org>
+        id S1728695AbgLQPmr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Dec 2020 10:42:47 -0500
+Received: from mx0b-001ae601.pphosted.com ([67.231.152.168]:50852 "EHLO
+        mx0b-001ae601.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726012AbgLQPmp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 17 Dec 2020 10:42:45 -0500
+Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
+        by mx0b-001ae601.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 0BHFPi96001634;
+        Thu, 17 Dec 2020 09:41:47 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=PODMain02222019;
+ bh=GJuPaWXDibxU2/dULc9tTJBurZLFeQMjY985Dgp9j4E=;
+ b=TcIAf6XNA7au7X+Rgn7vi+65Lo5Oq+IWBErpF7GoTEqmbVeznU15A9wCM5T0dDPivBTK
+ UiOR1U33X5PdHs4dUpIcHI1dvjK/7fxH+7Xs/uBBB92j4L8mDqu2NSbJEuIsVCSHTtpp
+ 7cOWQusHsOT9g+38e8HyBq3WQ0Q3JB8dEI7Vyc+JhmGHTwSYz5ZEpm5iF67AY7vUvATp
+ LUdokZNZUEttX/7R6KvO/OgC0RMigqCoYEY8SSmv14OyjvRxS3MNJoNrk2JUM0145CZg
+ ioYqFNev04MROC+OBhXT0k26tWFcWzHohPjhI9QoEwhYB/P/sFDMGXgshl+X5XpFFIvd Dg== 
+Received: from ediex02.ad.cirrus.com ([87.246.76.36])
+        by mx0b-001ae601.pphosted.com with ESMTP id 35cu5rxy90-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
+        Thu, 17 Dec 2020 09:41:47 -0600
+Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX02.ad.cirrus.com
+ (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1913.5; Thu, 17 Dec
+ 2020 15:41:45 +0000
+Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server id 15.1.1913.5 via Frontend
+ Transport; Thu, 17 Dec 2020 15:41:45 +0000
+Received: from AUSNPC0LSNW1-debian.cirrus.com (AUSNPC0LSNW1.ad.cirrus.com [198.61.64.236])
+        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 0995A11CB;
+        Thu, 17 Dec 2020 15:41:45 +0000 (UTC)
+From:   Richard Fitzgerald <rf@opensource.cirrus.com>
+To:     <broonie@kernel.org>, <robh+dt@kernel.org>,
+        <kuninori.morimoto.gx@renesas.com>, <nsaenzjulienne@suse.de>
+CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <alsa-devel@alsa-project.org>, <patches@opensource.cirrus.com>,
+        <bcm-kernel-feedback-list@broadcom.com>,
+        <linux-rpi-kernel@lists.infradead.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Richard Fitzgerald <rf@opensource.cirrus.com>
+Subject: [PATCH v3 0/6] Add support for Rpi4b + Cirrus Lochnagar2 and CS47L15
+Date:   Thu, 17 Dec 2020 15:41:36 +0000
+Message-ID: <20201217154142.24301-1-rf@opensource.cirrus.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 phishscore=0 adultscore=0 mlxscore=0
+ mlxlogscore=999 suspectscore=0 spamscore=0 clxscore=1011 malwarescore=0
+ impostorscore=0 priorityscore=1501 bulkscore=0 lowpriorityscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2009150000
+ definitions=main-2012170108
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Otherwise the boot hangs early on and the resulting clock tree without
-this already closely matches the selected rates (722534400 and
-786432000).
+This set of patches provides support for using the Raspberry Pi 4b with
+a Cirrus Logic Lochnagar 2 audio development platform plus Cirrus Logic
+CS47L15 codec.
 
-  audio_pll2                  0        0        0   722534397          0     0  50000
-     audio_pll2_bypass        0        0        0   722534397          0     0  50000
-        audio_pll2_out        0        0        0   722534397          0     0  50000
-  audio_pll1                  1        1        0   786431998          0     0  50000
-     audio_pll1_bypass        1        1        0   786431998          0     0  50000
-        audio_pll1_out        1        1        0   786431998          0     0  50000
-           sai2               1        1        0    24576000          0     0  50000
-              sai2_root_clk       1        1        0    24576000          0     0  50000
-           sai6               0        0        0    24576000          0     0  50000
-              sai6_root_clk       0        0        0    24576000          0     0  50000
+Patches are needed to audio-graph-card to enable support for setting the
+component sysclks and plls. These are not specific to CS47L15 - several
+Cirrus and non-Cirrus codecs also require component clock setup, typically
+for larger codecs with multiple internal clocking options and clock domains.
 
-Signed-off-by: Guido Günther <agx@sigxcpu.org>
----
- arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts | 5 -----
- 1 file changed, 5 deletions(-)
+The codec sysclks and plls cannot be placed under the clock framework because
+they are typically I2C/SPI/Soundwire-connected peripherals and access to the
+registers would cause a nested get of the bus clock. The clock framework does
+not support this and it would result in a deadlock.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts b/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
-index 05a43ee6d051..dd217a0760e9 100644
---- a/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
-@@ -244,11 +244,6 @@ &A53_3 {
- 	cpu-supply = <&buck2_reg>;
- };
- 
--&clk {
--	assigned-clocks = <&clk IMX8MQ_AUDIO_PLL1>, <&clk IMX8MQ_AUDIO_PLL2>;
--	assigned-clock-rates = <786432000>, <722534400>;
--};
--
- &dphy {
- 	status = "okay";
- };
+Richard Fitzgerald (6):
+  of: base: Add of_count_phandle_with_fixed_args()
+  ASoC: audio-graph-card: Add plls and sysclks DT bindings
+  ASoC: audio-graph-card: Support setting component plls and sysclks
+  ASoC: madera: Allow codecs to be selected from kernel config
+  ASoC: madera: Export clock config defines to dt-bindings
+  ARM: dts: Add dts for RPi4b + Cirrus Logic Lochnagar2 + CS47L15
+
+ .../bindings/sound/audio-graph-card.txt       |  72 ++++++
+ MAINTAINERS                                   |   1 +
+ arch/arm/boot/dts/Makefile                    |   1 +
+ ...bcm2711-rpi4b-cirrus-lochnagar-cs47l15.dts | 186 ++++++++++++++
+ .../dts/bcm2711-rpi4b-cirrus-lochnagar.dtsi   | 201 +++++++++++++++
+ drivers/of/base.c                             |  73 ++++--
+ include/dt-bindings/sound/madera.h            |  60 +++++
+ include/linux/of.h                            |   9 +
+ include/sound/simple_card_utils.h             |  25 ++
+ sound/soc/codecs/Kconfig                      |  10 +-
+ sound/soc/codecs/madera.h                     |  56 +----
+ sound/soc/generic/audio-graph-card.c          |  16 +-
+ sound/soc/generic/simple-card-utils.c         | 236 ++++++++++++++++++
+ 13 files changed, 861 insertions(+), 85 deletions(-)
+ create mode 100644 arch/arm/boot/dts/bcm2711-rpi4b-cirrus-lochnagar-cs47l15.dts
+ create mode 100644 arch/arm/boot/dts/bcm2711-rpi4b-cirrus-lochnagar.dtsi
+
 -- 
-2.29.2
+2.20.1
 
