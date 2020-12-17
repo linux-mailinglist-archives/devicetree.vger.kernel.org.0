@@ -2,428 +2,245 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 48C482DDA5C
-	for <lists+devicetree@lfdr.de>; Thu, 17 Dec 2020 21:53:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AB4F82DDA7B
+	for <lists+devicetree@lfdr.de>; Thu, 17 Dec 2020 22:01:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731350AbgLQUxQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Dec 2020 15:53:16 -0500
-Received: from linux.microsoft.com ([13.77.154.182]:53250 "EHLO
-        linux.microsoft.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726595AbgLQUxQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Dec 2020 15:53:16 -0500
-Received: from [192.168.0.104] (c-73-42-176-67.hsd1.wa.comcast.net [73.42.176.67])
-        by linux.microsoft.com (Postfix) with ESMTPSA id 65D6E20B717A;
-        Thu, 17 Dec 2020 12:52:33 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 65D6E20B717A
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-        s=default; t=1608238354;
-        bh=UEEhWbtCMd5Hh7iHOVvNopyKXuFawGZ4CPCIryBQP0M=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=ojA6BgY1tZFTuTe5Nn9dcDQ1O25RDFa8tG89oBT9fobnecSzD12K5pGjPYry2mGqF
-         0XFAbwGM48e/2yo1XaJzNiqc3CoY9z0BIpKVK8gdRhMalda+MMtkCom83WrdIh5RCd
-         Kl1bU0VbhYdxKvB2gVRlz/fyXUTKrfmp+6X7jG70=
-Subject: Re: [PATCH v12 2/4] powerpc: Move arch independent ima kexec
- functions to drivers/of/kexec.c
-To:     Rob Herring <robh@kernel.org>
-Cc:     zohar@linux.ibm.com, bauerman@linux.ibm.com,
-        takahiro.akashi@linaro.org, gregkh@linuxfoundation.org,
-        will@kernel.org, catalin.marinas@arm.com, mpe@ellerman.id.au,
-        james.morse@arm.com, sashal@kernel.org, benh@kernel.crashing.org,
-        paulus@samba.org, frowand.list@gmail.com,
-        vincenzo.frascino@arm.com, mark.rutland@arm.com,
-        dmitry.kasatkin@gmail.com, jmorris@namei.org, serge@hallyn.com,
-        pasha.tatashin@soleen.com, allison@lohutok.net,
-        masahiroy@kernel.org, bhsharma@redhat.com, mbrugger@suse.com,
-        hsinyi@chromium.org, tao.li@vivo.com, christophe.leroy@c-s.fr,
-        prsriva@linux.microsoft.com, balajib@linux.microsoft.com,
-        linux-integrity@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-References: <20201217173708.6940-1-nramas@linux.microsoft.com>
- <20201217173708.6940-3-nramas@linux.microsoft.com>
- <20201217200510.GA105447@robh.at.kernel.org>
-From:   Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
-Message-ID: <0b17fbee-cfe9-8cb2-01d1-02b6a61a14f5@linux.microsoft.com>
-Date:   Thu, 17 Dec 2020 12:52:32 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1726960AbgLQU7M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Dec 2020 15:59:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40088 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729655AbgLQU7M (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Dec 2020 15:59:12 -0500
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5B81C061794;
+        Thu, 17 Dec 2020 12:58:31 -0800 (PST)
+Received: by mail-lf1-x129.google.com with SMTP id m25so61160843lfc.11;
+        Thu, 17 Dec 2020 12:58:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:from:to:cc:references:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=2zaYEPU3Dc5zFOFGXsYjz12iYiWYHN8N3O6lakukl/s=;
+        b=qgHdy+aVZrcGxyULYw4C/dnhEhXcHqnIi3WOZ6PUyWeJ1T2KuwB4MyFcAMVcIxtEkN
+         P0wC9L1L3/OzQP2N4oOFkRUNhuvP6BbgtM9veJ1+/75E6Miy7hj7Bf2nEtboXPbzthOR
+         kxxro9rjbhD5efC41F1HFL2RxEsBF22ZTFXdF10FlYyRqWRrEuRkkxNHvNJAyiBiyHb5
+         xCx3hJCcAYykCnF/aKI0AxMDTkj4x39+lQJUW1SrSIqcsl3UFk3eY07U8IrPb8AhV1uo
+         MAvO3Efc7ekB1pIAMLvXK67v6Yhq5T7IZPOk04vo8zGuFhsht5N49PaRJoPc7WLTbass
+         MfYw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:from:to:cc:references:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=2zaYEPU3Dc5zFOFGXsYjz12iYiWYHN8N3O6lakukl/s=;
+        b=mk6ECNMHIfaJnfdVJza6zr3sQqMHNSUgYAr5ydti1HnQ46TwMYNrMnbwcfUw3Asi+C
+         b2yLSIDIROzMJ4LukAW2nI6g0WCFx2Rgp+mq9uJog4e5eFieaS5jShXCayMwSEf11HGI
+         X7T6jbjuu9QqNTxS95tA8I7QTHbfhwKEw7O527CzXhBDqmwJB2aYLR5Vft2Ixka435tP
+         sKi/5FxDUB5UY0wKD7LEMy2xHnmF6UqG0UXampjezxvUVSZ0coNYem4z9WPl2kLL7U+2
+         bq2afagXnH6yG2+yTpWrD+kO3pjf0QaM+NxG/+yqMZulq4kQBMVz/5debAdh5xrh1HEk
+         1smw==
+X-Gm-Message-State: AOAM531DD07vwJRGTuaLZMKW502LLUivI2AlWRZnvbbClbo+msHB3e2f
+        ilcxzGuwW0eCPCm8RSbXdQ77KmaKBMA=
+X-Google-Smtp-Source: ABdhPJybT54BUMIzcynXITACTqPF/IcLrcExqUZ6d4e77IqO+C219fiwEYcS2lWHXSvWZh2/2hrkeQ==
+X-Received: by 2002:a05:6512:3089:: with SMTP id z9mr233591lfd.433.1608238709941;
+        Thu, 17 Dec 2020 12:58:29 -0800 (PST)
+Received: from [192.168.2.145] (109-252-192-57.dynamic.spd-mgts.ru. [109.252.192.57])
+        by smtp.googlemail.com with ESMTPSA id z26sm789139ljn.98.2020.12.17.12.58.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 17 Dec 2020 12:58:29 -0800 (PST)
+Subject: Re: [PATCH v2 34/48] gpu: host1x: Support power management
+From:   Dmitry Osipenko <digetx@gmail.com>
+To:     Mikko Perttunen <cyndis@kapsi.fi>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Nicolas Chauvet <kwizart@gmail.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Kevin Hilman <khilman@kernel.org>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>
+Cc:     devel@driverdev.osuosl.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-media@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-clk@vger.kernel.org
+References: <20201217180638.22748-1-digetx@gmail.com>
+ <20201217180638.22748-35-digetx@gmail.com>
+ <cb8dca7c-6ef2-5116-6c04-816a63525e2e@kapsi.fi>
+ <b106c4c0-bd93-bbc9-9357-45fe8fb1cf0f@gmail.com>
+Message-ID: <5523b804-f5de-a529-fd4e-751c39ab663b@gmail.com>
+Date:   Thu, 17 Dec 2020 23:58:28 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.4.2
 MIME-Version: 1.0
-In-Reply-To: <20201217200510.GA105447@robh.at.kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
+In-Reply-To: <b106c4c0-bd93-bbc9-9357-45fe8fb1cf0f@gmail.com>
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/17/20 12:05 PM, Rob Herring wrote:
-> On Thu, Dec 17, 2020 at 09:37:06AM -0800, Lakshmi Ramasubramanian wrote:
->> The functions defined in "arch/powerpc/kexec/ima.c" handle setting up
->> and freeing the resources required to carry over the IMA measurement
->> list from the current kernel to the next kernel across kexec system call.
->> These functions do not have architecture specific code, but are
->> currently limited to powerpc.
+17.12.2020 21:45, Dmitry Osipenko пишет:
+> 17.12.2020 21:21, Mikko Perttunen пишет:
+>> On 12/17/20 8:06 PM, Dmitry Osipenko wrote:
+>>> Add suspend/resume and generic power domain support to the Host1x driver.
+>>> This is required for enabling system-wide DVFS and supporting dynamic
+>>> power management using a generic power domain.
+>>>
+>>> Tested-by: Peter Geis <pgwipeout@gmail.com>
+>>> Tested-by: Nicolas Chauvet <kwizart@gmail.com>
+>>> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+>>> ---
+>>>   drivers/gpu/host1x/dev.c | 102 ++++++++++++++++++++++++++++++++++-----
+>>>   1 file changed, 91 insertions(+), 11 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/host1x/dev.c b/drivers/gpu/host1x/dev.c
+>>> index d0ebb70e2fdd..c1525cffe7b1 100644
+>>> --- a/drivers/gpu/host1x/dev.c
+>>> +++ b/drivers/gpu/host1x/dev.c
+>>> @@ -12,6 +12,7 @@
+>>>   #include <linux/module.h>
+>>>   #include <linux/of_device.h>
+>>>   #include <linux/of.h>
+>>> +#include <linux/pm_runtime.h>
+>>>   #include <linux/slab.h>
+>>>     #define CREATE_TRACE_POINTS
+>>> @@ -417,7 +418,7 @@ static int host1x_probe(struct platform_device *pdev)
+>>>           return err;
+>>>       }
+>>>   -    host->rst = devm_reset_control_get(&pdev->dev, "host1x");
+>>> +    host->rst = devm_reset_control_get_exclusive_released(&pdev->dev,
+>>> "host1x");
+>>>       if (IS_ERR(host->rst)) {
+>>>           err = PTR_ERR(host->rst);
+>>>           dev_err(&pdev->dev, "failed to get reset: %d\n", err);
+>>> @@ -437,16 +438,15 @@ static int host1x_probe(struct platform_device
+>>> *pdev)
+>>>           goto iommu_exit;
+>>>       }
+>>>   -    err = clk_prepare_enable(host->clk);
+>>> -    if (err < 0) {
+>>> -        dev_err(&pdev->dev, "failed to enable clock\n");
+>>> -        goto free_channels;
+>>> -    }
+>>> +    pm_runtime_enable(&pdev->dev);
+>>> +    err = pm_runtime_get_sync(&pdev->dev);
+>>> +    if (err < 0)
+>>> +        goto rpm_disable;
+>>>         err = reset_control_deassert(host->rst);
+>>>       if (err < 0) {
+>>>           dev_err(&pdev->dev, "failed to deassert reset: %d\n", err);
+>>> -        goto unprepare_disable;
+>>> +        goto rpm_disable;
+>>>       }
+>>>         err = host1x_syncpt_init(host);
+>>> @@ -485,9 +485,10 @@ static int host1x_probe(struct platform_device
+>>> *pdev)
+>>>       host1x_syncpt_deinit(host);
+>>>   reset_assert:
+>>>       reset_control_assert(host->rst);
+>>> -unprepare_disable:
+>>> -    clk_disable_unprepare(host->clk);
+>>> -free_channels:
+>>> +rpm_disable:
+>>> +    pm_runtime_put(&pdev->dev);
+>>> +    pm_runtime_disable(&pdev->dev);
+>>> +
+>>>       host1x_channel_list_free(&host->channel_list);
+>>>   iommu_exit:
+>>>       host1x_iommu_exit(host);
+>>> @@ -504,16 +505,95 @@ static int host1x_remove(struct platform_device
+>>> *pdev)
+>>>       host1x_intr_deinit(host);
+>>>       host1x_syncpt_deinit(host);
+>>>       reset_control_assert(host->rst);
+>>> -    clk_disable_unprepare(host->clk);
+>>> +    pm_runtime_put(&pdev->dev);
+>>> +    pm_runtime_disable(&pdev->dev);
+>>>       host1x_iommu_exit(host);
+>>>         return 0;
+>>>   }
+>>>   +static int __maybe_unused host1x_runtime_suspend(struct device *dev)
+>>> +{
+>>> +    struct host1x *host = dev_get_drvdata(dev);
+>>> +
+>>> +    clk_disable_unprepare(host->clk);
+>>> +    reset_control_release(host->rst);
+>>> +
+>>> +    return 0;
+>>> +}
+>>> +
+>>> +static int __maybe_unused host1x_runtime_resume(struct device *dev)
+>>> +{
+>>> +    struct host1x *host = dev_get_drvdata(dev);
+>>> +    int err;
+>>> +
+>>> +    err = reset_control_acquire(host->rst);
+>>> +    if (err) {
+>>> +        dev_err(dev, "failed to acquire reset: %d\n", err);
+>>> +        return err;
+>>> +    }
+>>> +
+>>> +    err = clk_prepare_enable(host->clk);
+>>> +    if (err) {
+>>> +        dev_err(dev, "failed to enable clock: %d\n", err);
+>>> +        goto release_reset;
+>>> +    }
+>>> +
+>>> +    return 0;
+>>> +
+>>> +release_reset:
+>>> +    reset_control_release(host->rst);
+>>> +
+>>> +    return err;
+>>> +}
+>>> +
+>>> +static __maybe_unused int host1x_suspend(struct device *dev)
+>>> +{
+>>> +    struct host1x *host = dev_get_drvdata(dev);
+>>> +    int err;
+>>> +
+>>> +    host1x_syncpt_save(host);
+>>> +
+>>> +    err = pm_runtime_force_suspend(dev);
+>>> +    if (err < 0)
+>>> +        return err;
+>>> +
+>>> +    return 0;
+>>> +}
+>>> +
+>>> +static __maybe_unused int host1x_resume(struct device *dev)
+>>> +{
+>>> +    struct host1x *host = dev_get_drvdata(dev);
+>>> +    struct host1x_channel *channel;
+>>> +    unsigned int index;
+>>> +    int err;
+>>> +
+>>> +    err = pm_runtime_force_resume(dev);
+>>> +    if (err < 0)
+>>> +        return err;
+>>> +
+>>> +    host1x_syncpt_restore(host);
 >>
->> Move setup_ima_buffer() call into of_kexec_setup_new_fdt().
->>
->> Move architecture independent functions from "arch/powerpc/kexec/ima.c"
->> to "drivers/of/kexec.c". Delete "arch/powerpc/kexec/ima.c" and
->> "arch/powerpc/include/asm/ima.h". Remove references to the deleted files
->> in powerpc and in ima.
->>
->> delete_fdt_mem_rsv() defined in "arch/powerpc/kexec/file_load.c"
->> is not used anymore. Remove this function.
+>> We also need to execute 'host1x_setup_sid_table' upon resume.
 > 
-> I think this patch should come first and then patch 1. Move then rework
-> the code.
-
-Sure - will reorder the patches.
-
+> Indeed, thanks. I'll correct it in the next revision.
 > 
->>
->> Signed-off-by: Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
->> ---
->>   arch/powerpc/include/asm/ima.h     |  30 -----
->>   arch/powerpc/include/asm/kexec.h   |   1 -
->>   arch/powerpc/kexec/Makefile        |   7 -
->>   arch/powerpc/kexec/file_load.c     |  39 ------
->>   arch/powerpc/kexec/ima.c           | 182 --------------------------
->>   drivers/of/kexec.c                 | 198 +++++++++++++++++++++++++++++
->>   include/linux/of.h                 |  17 +++
->>   security/integrity/ima/ima.h       |   4 -
->>   security/integrity/ima/ima_kexec.c |   2 +
->>   9 files changed, 217 insertions(+), 263 deletions(-)
->>   delete mode 100644 arch/powerpc/include/asm/ima.h
->>   delete mode 100644 arch/powerpc/kexec/ima.c
->>
-
->> diff --git a/drivers/of/kexec.c b/drivers/of/kexec.c
->> index 66787be081fe..a6ab35f16dd2 100644
->> --- a/drivers/of/kexec.c
->> +++ b/drivers/of/kexec.c
->> @@ -10,10 +10,12 @@
->>    */
->>   
->>   #include <linux/kernel.h>
->> +#include <linux/slab.h>
->>   #include <linux/kexec.h>
->>   #include <linux/libfdt.h>
->>   #include <linux/of.h>
->>   #include <linux/of_fdt.h>
->> +#include <linux/memblock.h>
->>   #include <linux/random.h>
->>   #include <linux/types.h>
->>   
->> @@ -59,6 +61,141 @@ static int fdt_find_and_del_mem_rsv(void *fdt, unsigned long start, unsigned lon
->>   	return -ENOENT;
->>   }
->>   
->> +/**
->> + * get_addr_size_cells - Get address and size of root node
->> + *
->> + * @addr_cells: Return address of the root node
->> + * @size_cells: Return size of the root node
->> + *
->> + * Return: 0 on success, or negative errno on error.
->> + */
->> +static int get_addr_size_cells(int *addr_cells, int *size_cells)
->> +{
->> +	struct device_node *root;
->> +
->> +	root = of_find_node_by_path("/");
->> +	if (!root)
->> +		return -EINVAL;
->> +
->> +	*addr_cells = of_n_addr_cells(root);
->> +	*size_cells = of_n_size_cells(root);
->> +
->> +	of_node_put(root);
->> +
->> +	return 0;
->> +}
->> +
->> +/**
->> + * do_get_kexec_buffer - Get address and size of device tree property
->> + *
->> + * @prop: Device tree property
->> + * @len: Size of @prop
->> + * @addr: Return address of the node
->> + * @size: Return size of the node
->> + *
->> + * Return: 0 on success, or negative errno on error.
->> + */
->> +static int do_get_kexec_buffer(const void *prop, int len, unsigned long *addr,
->> +			       size_t *size)
->> +{
->> +	int ret, addr_cells, size_cells;
->> +
->> +	ret = get_addr_size_cells(&addr_cells, &size_cells);
->> +	if (ret)
->> +		return ret;
->> +
->> +	if (len < 4 * (addr_cells + size_cells))
->> +		return -ENOENT;
->> +
->> +	*addr = of_read_number(prop, addr_cells);
->> +	*size = of_read_number(prop + 4 * addr_cells, size_cells);
->> +
->> +	return 0;
->> +}
->> +
->> +/**
->> + * ima_get_kexec_buffer - get IMA buffer from the previous kernel
->> + * @addr:	On successful return, set to point to the buffer contents.
->> + * @size:	On successful return, set to the buffer size.
->> + *
->> + * Return: 0 on success, negative errno on error.
->> + */
->> +int ima_get_kexec_buffer(void **addr, size_t *size)
->> +{
->> +	int ret, len;
->> +	unsigned long tmp_addr;
->> +	size_t tmp_size;
->> +	const void *prop;
->> +
->> +	prop = of_get_property(of_chosen, "linux,ima-kexec-buffer", &len);
->> +	if (!prop)
->> +		return -ENOENT;
->> +
->> +	ret = do_get_kexec_buffer(prop, len, &tmp_addr, &tmp_size);
->> +	if (ret)
->> +		return ret;
->> +
->> +	*addr = __va(tmp_addr);
->> +	*size = tmp_size;
->> +
->> +	return 0;
->> +}
->> +
->> +/**
->> + * ima_free_kexec_buffer - free memory used by the IMA buffer
->> + */
->> +int ima_free_kexec_buffer(void)
->> +{
->> +	int ret;
->> +	unsigned long addr;
->> +	size_t size;
->> +	struct property *prop;
->> +
->> +	prop = of_find_property(of_chosen, "linux,ima-kexec-buffer", NULL);
->> +	if (!prop)
->> +		return -ENOENT;
->> +
->> +	ret = do_get_kexec_buffer(prop->value, prop->length, &addr, &size);
->> +	if (ret)
->> +		return ret;
->> +
->> +	ret = of_remove_property(of_chosen, prop);
->> +	if (ret)
->> +		return ret;
->> +
->> +	return memblock_free(addr, size);
->> +}
->> +
->> +/**
->> + * remove_ima_buffer - remove the IMA buffer property and reservation from @fdt
->> + *
->> + * @fdt: Flattened Device Tree to update
->> + * @chosen_node: Offset to the chosen node in the device tree
->> + *
->> + * The IMA measurement buffer is of no use to a subsequent kernel, so we always
->> + * remove it from the device tree.
->> + */
->> +void remove_ima_buffer(void *fdt, int chosen_node)
+> Perhaps the actual save/restore needs to be moved to the runtime
+> callbacks. At least I can't remember right now why this wasn't done in
+> the first place.
 > 
-> static
 
-Will update.
-
-> 
->> +{
->> +	int ret, len;
->> +	unsigned long addr;
->> +	size_t size;
->> +	const void *prop;
->> +
->> +	prop = fdt_getprop(fdt, chosen_node, "linux,ima-kexec-buffer", &len);
->> +	if (!prop)
->> +		return;
->> +
->> +	ret = do_get_kexec_buffer(prop, len, &addr, &size);
->> +	fdt_delprop(fdt, chosen_node, "linux,ima-kexec-buffer");
->> +	if (ret)
->> +		return;
->> +
->> +	ret = fdt_find_and_del_mem_rsv(fdt, addr, size);
->> +	if (!ret)
->> +		pr_debug("Removed old IMA buffer reservation.\n");
->> +}
-> 
-> All the above needs to be in an '#ifdef CONFIG_IMA_KEXEC'.
-
-remove_ima_buffer() needs to be defined when CONFIG_HAVE_IMA_KEXEC is 
-enabled. CONFIG_HAVE_IMA_KEXEC can be enabled even if CONFIG_IMA_KEXEC 
-is not.
-
-I'll move remove_ima_buffer() under "#ifdef CONFIG_HAVE_IMA_KEXEC" in 
-this file.
-
-> 
->> +
->>   /*
->>    * of_kexec_setup_new_fdt - modify /chosen and memory reservation for the next kernel
->>    *
->> @@ -219,6 +356,10 @@ int of_kexec_setup_new_fdt(const struct kimage *image, void *fdt,
->>   	}
->>   
->>   	ret = fdt_setprop(fdt, chosen_node, "linux,booted-from-kexec", NULL, 0);
->> +	if (ret)
->> +		goto out;
->> +
->> +	ret = setup_ima_buffer(image, fdt, fdt_path_offset(fdt, "/chosen"));
->>   
->>   out:
->>   	if (ret)
->> @@ -226,3 +367,60 @@ int of_kexec_setup_new_fdt(const struct kimage *image, void *fdt,
->>   
->>   	return 0;
->>   }
->> +
->> +#ifdef CONFIG_IMA_KEXEC
->> +/**
->> + * arch_ima_add_kexec_buffer - do arch-specific steps to add the IMA buffer
->> + *
->> + * @image: kimage struct to set IMA buffer data
->> + * @load_addr: Starting address where IMA buffer is loaded at
->> + * @size: Number of bytes in the IMA buffer
->> + *
->> + * Architectures should use this function to pass on the IMA buffer
->> + * information to the next kernel.
->> + *
->> + * Return: 0 on success, negative errno on error.
->> + */
->> +int arch_ima_add_kexec_buffer(struct kimage *image, unsigned long load_addr,
->> +			      size_t size)
-> 
-> This should be a static inline in asm/kexec.h.
-
-arch_ima_add_kexec_buffer() is identical for powerpc and arm64.
-Would it be better to "static inline" this function in "of.h" instead of 
-duplicating it in "asm/kexec.h" for powerpc and arm64?
-
-> 
->> +{
->> +	image->arch.ima_buffer_addr = load_addr;
->> +	image->arch.ima_buffer_size = size;
->> +
->> +	return 0;
->> +}
->> +
->> +/**
->> + * setup_ima_buffer - add IMA buffer information to the fdt
->> + * @image:		kexec image being loaded.
->> + * @fdt:		Flattened device tree for the next kernel.
->> + * @chosen_node:	Offset to the chosen node.
->> + *
->> + * Return: 0 on success, or negative errno on error.
->> + */
->> +int setup_ima_buffer(const struct kimage *image, void *fdt, int chosen_node)
-> 
-> static
-Will update.
-
-> 
->> +{
->> +	int ret;
->> +
->> +	remove_ima_buffer(fdt, chosen_node);
->> +	if (!image->arch.ima_buffer_size)
->> +		return 0;
->> +
->> +	ret = fdt_appendprop_addrrange(fdt, 0, chosen_node,
->> +				       "linux,ima-kexec-buffer",
->> +				       image->arch.ima_buffer_addr,
->> +				       image->arch.ima_buffer_size);
->> +	if (ret)
->> +		return (ret == -FDT_ERR_NOSPACE ? -ENOMEM : -EINVAL);
->> +
->> +	ret = fdt_add_mem_rsv(fdt, image->arch.ima_buffer_addr,
->> +			      image->arch.ima_buffer_size);
->> +	if (ret)
->> +		return -EINVAL;
->> +
->> +	pr_debug("IMA buffer at 0x%llx, size = 0x%zx\n",
->> +		 image->arch.ima_buffer_addr, image->arch.ima_buffer_size);
->> +
->> +	return 0;
->> +}
->> +#endif /* CONFIG_IMA_KEXEC */
->> diff --git a/include/linux/of.h b/include/linux/of.h
->> index 3375f5295875..7477f2266d8f 100644
->> --- a/include/linux/of.h
->> +++ b/include/linux/of.h
->> @@ -562,6 +562,23 @@ struct kimage;
->>   int of_kexec_setup_new_fdt(const struct kimage *image, void *fdt,
->>   			   unsigned long initrd_load_addr, unsigned long initrd_len,
->>   			   const char *cmdline);
->> +int ima_get_kexec_buffer(void **addr, size_t *size);
->> +int ima_free_kexec_buffer(void);
->> +void remove_ima_buffer(void *fdt, int chosen_node);
->> +
->> +#ifdef CONFIG_IMA_KEXEC
->> +int arch_ima_add_kexec_buffer(struct kimage *image,
->> +			      unsigned long load_addr,
->> +			      size_t size);
->> +int setup_ima_buffer(const struct kimage *image, void *fdt, int chosen_node);
-> 
-> This doesn't need to be public.
-
-Will update.
-
-thanks,
-  -lakshmi
-
-> 
->> +#else
->> +static inline int setup_ima_buffer(const struct kimage *image, void *fdt,
->> +				   int chosen_node)
->> +{
->> +	remove_ima_buffer(fdt, chosen_node);
->> +	return 0;
->> +}
->> +#endif /* CONFIG_IMA_KEXEC */
->>   
->>   #else /* CONFIG_OF */
->>   
->> diff --git a/security/integrity/ima/ima.h b/security/integrity/ima/ima.h
->> index 6ebefec616e4..7c3947ad3773 100644
->> --- a/security/integrity/ima/ima.h
->> +++ b/security/integrity/ima/ima.h
->> @@ -24,10 +24,6 @@
->>   
->>   #include "../integrity.h"
->>   
->> -#ifdef CONFIG_HAVE_IMA_KEXEC
->> -#include <asm/ima.h>
->> -#endif
->> -
->>   enum ima_show_type { IMA_SHOW_BINARY, IMA_SHOW_BINARY_NO_FIELD_LEN,
->>   		     IMA_SHOW_BINARY_OLD_STRING_FMT, IMA_SHOW_ASCII };
->>   enum tpm_pcrs { TPM_PCR0 = 0, TPM_PCR8 = 8, TPM_PCR10 = 10 };
->> diff --git a/security/integrity/ima/ima_kexec.c b/security/integrity/ima/ima_kexec.c
->> index 121de3e04af2..3d6a8820e2a5 100644
->> --- a/security/integrity/ima/ima_kexec.c
->> +++ b/security/integrity/ima/ima_kexec.c
->> @@ -9,7 +9,9 @@
->>   
->>   #include <linux/seq_file.h>
->>   #include <linux/vmalloc.h>
->> +#include <linux/of.h>
->>   #include <linux/kexec.h>
->> +#include <linux/ima.h>
->>   #include "ima.h"
->>   
->>   #ifdef CONFIG_IMA_KEXEC
->> -- 
->> 2.29.2
->>
-
+I looked at the save/restore once again and recalled why it's done so.
+The reason is that the host1x touches hardware during the driver probe,
+and thus, RPM needs to be resumed first. It will be a bigger change to
+properly decouple the hardware initialization so that it all could be
+put it into the RPM callback. I'll try to do it in v3.
