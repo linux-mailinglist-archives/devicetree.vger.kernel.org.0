@@ -2,508 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 473112DD473
-	for <lists+devicetree@lfdr.de>; Thu, 17 Dec 2020 16:43:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9ADCA2DD48D
+	for <lists+devicetree@lfdr.de>; Thu, 17 Dec 2020 16:49:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728127AbgLQPnC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Dec 2020 10:43:02 -0500
-Received: from mx0b-001ae601.pphosted.com ([67.231.152.168]:24802 "EHLO
-        mx0b-001ae601.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1728684AbgLQPmr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 17 Dec 2020 10:42:47 -0500
-Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
-        by mx0b-001ae601.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 0BHFPi9C001634;
-        Thu, 17 Dec 2020 09:41:50 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding : content-type; s=PODMain02222019;
- bh=gmj8HFDT2HPiRDrHJFz8ZF2n/cAWqZV08im7JSazFa0=;
- b=kPVz1IIby7bCf6Lg5v2bmLkQZuj5p3Ah+TM0GN/uKQetWbkUubMPqcZ/4kDOfwjyzX8O
- AhpeojIU7yEwDNUjwzb7PsLt/todounaCJajKF10jBwC7f3ZWJouMA47vUrag/GryypU
- XsqNwpPuz+tMi/nM6cGojMjWWw9zwQl2X4cqw+vDEmkEH5utlXQjLnl9Z4HcDtWK3PlY
- RP3Nu7pulyC97YDqs38V8URK5Rs4JB0MKeRFR0aROcBVPyk/Oo/4bIkg+9y0dtGVSweM
- dBUDcUWv1xtnkHiN1cDVCUBQGPRPVid38r4LRiliZk2yE/nPULTWJppXNVet0mvUPXCK fg== 
-Received: from ediex02.ad.cirrus.com ([87.246.76.36])
-        by mx0b-001ae601.pphosted.com with ESMTP id 35cu5rxy90-7
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
-        Thu, 17 Dec 2020 09:41:50 -0600
-Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX02.ad.cirrus.com
- (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1913.5; Thu, 17 Dec
- 2020 15:41:48 +0000
-Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server id 15.1.1913.5 via Frontend
- Transport; Thu, 17 Dec 2020 15:41:48 +0000
-Received: from AUSNPC0LSNW1-debian.cirrus.com (AUSNPC0LSNW1.ad.cirrus.com [198.61.64.236])
-        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 593A911CB;
-        Thu, 17 Dec 2020 15:41:48 +0000 (UTC)
-From:   Richard Fitzgerald <rf@opensource.cirrus.com>
-To:     <broonie@kernel.org>, <robh+dt@kernel.org>,
-        <kuninori.morimoto.gx@renesas.com>, <nsaenzjulienne@suse.de>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <alsa-devel@alsa-project.org>, <patches@opensource.cirrus.com>,
-        <bcm-kernel-feedback-list@broadcom.com>,
-        <linux-rpi-kernel@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Richard Fitzgerald <rf@opensource.cirrus.com>
-Subject: [PATCH v3 6/6] ARM: dts: Add dts for RPi4b + Cirrus Logic Lochnagar2 + CS47L15
-Date:   Thu, 17 Dec 2020 15:41:42 +0000
-Message-ID: <20201217154142.24301-7-rf@opensource.cirrus.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20201217154142.24301-1-rf@opensource.cirrus.com>
-References: <20201217154142.24301-1-rf@opensource.cirrus.com>
+        id S1725871AbgLQPtd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Dec 2020 10:49:33 -0500
+Received: from mail.kernel.org ([198.145.29.99]:48018 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726983AbgLQPtc (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 17 Dec 2020 10:49:32 -0500
+X-Gm-Message-State: AOAM533i08aL8cS5pR1EoeDbphURYYfbgo7l7TP5kH6TPvBIE+efQheN
+        v0ec53g+rt8PdI0c3sHoRyoYmhw9qGnI8Cyp+w==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1608220131;
+        bh=HUSPQFcXMROvPbYKYtXZIsh/aLWhRKEeLyA2ehKEYJI=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=NDEigNYHKI5UgntIvlCeYPFftngTCzlwBb7C/svF0MViJSdDGdwpIl/nEHvdHR4iS
+         q0jbD+EEeEc3OeR2JJ56OP2pk5LV8zSaBvfodZBHULrYDf8D+KgsKB3JV/LyaYXz6p
+         6eWcsfjAmeJSY7Aq5Musv+Esv8i0bh2bh4u1aFvkm5HoNdoEesyP9NnsiS9rFxgfO4
+         cev/wes6Q2QNboybE3tQaMCelT+iye1u5b3XMeM23sh2Gm4eZMiEo5OuGKP+cCL0m+
+         SIb2ngcl3vlN9OUbT0OHEdLSfvvWtreBF7rkxVNfzTc8fP7x0WVljimLoFDdg3Lj6m
+         YVhuhfpAFcTPw==
+X-Google-Smtp-Source: ABdhPJxQ5o8gr3Ol8IZEUu8ChReLok3hNEWyi2XRN7tE4l6FMSS1YJtI3F49qoZ7PM1sTugtMnsvnSwKCZenmICk0Yk=
+X-Received: by 2002:a17:906:1197:: with SMTP id n23mr35857468eja.359.1608220129334;
+ Thu, 17 Dec 2020 07:48:49 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 phishscore=0 adultscore=0 mlxscore=0
- mlxlogscore=999 suspectscore=0 spamscore=0 clxscore=1015 malwarescore=0
- impostorscore=0 priorityscore=1501 bulkscore=0 lowpriorityscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2009150000
- definitions=main-2012170108
+References: <20201209175708.16252-1-a-govindraju@ti.com> <20201209175708.16252-2-a-govindraju@ti.com>
+ <20201211033301.GA3581630@robh.at.kernel.org> <70d6c152-5d8d-9ad6-ce06-95a9f599c492@ti.com>
+ <20201214222339.GA2471866@robh.at.kernel.org> <76e73cc7-fdb7-45bb-6270-1f668969ad50@ti.com>
+ <96eada83-cf24-e02a-60a6-d81907a1bba0@ti.com>
+In-Reply-To: <96eada83-cf24-e02a-60a6-d81907a1bba0@ti.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Thu, 17 Dec 2020 09:48:38 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+7A3C5eV+8aoOXTC+axhtQSgf7NAR0ffMD4UUmcTzU9Q@mail.gmail.com>
+Message-ID: <CAL_Jsq+7A3C5eV+8aoOXTC+axhtQSgf7NAR0ffMD4UUmcTzU9Q@mail.gmail.com>
+Subject: Re: [PATCH RFC 1/2] Documentation: devicetree: Add property for
+ ignoring the dummy bits sent before read transfer
+To:     Aswath Govindraju <a-govindraju@ti.com>
+Cc:     devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Vadym Kochan <vadym.kochan@plvision.eu>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Sekhar Nori <nsekhar@ti.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds a devicetree configuration for Raspberry Pi 4b connected to
-Cirrus Logic Lochnagar 2 audio development board and CS47L15 codec.
+On Thu, Dec 17, 2020 at 7:48 AM Aswath Govindraju <a-govindraju@ti.com> wrote:
+>
+> Hi Rob,
+>
+> On 15/12/20 9:42 pm, Aswath Govindraju wrote:
+> > Hi Rob,
+> > On 15/12/20 3:53 am, Rob Herring wrote:
+> >> On Fri, Dec 11, 2020 at 08:34:57PM +0530, Aswath Govindraju wrote:
+> >>> Hi,
+> >>> On 11/12/20 9:03 am, Rob Herring wrote:
+> >>>> On Wed, Dec 09, 2020 at 11:27:07PM +0530, Aswath Govindraju wrote:
+> >>>>> Dummy zero bits are sent before data during a read transfer. This causes
+> >>>>> the data read to be shifted to the right. To fix this send zero bits after
+> >>>>> the address during a read transfer.
+> >>>>>
+> >>>>> Add property to send zero bits after the address during a read transfer.
+> >>>>
+> >>>> When is this necessary? Why can't it be implied by the compatible
+> >>>> string which should be specific to the chip model?
+> >>>>
+> >>>
+> >>> This is necessary for 93AA46A/B/C, 93LC46A/B/C, 93C46A/B/C eeproms, as
+> >>> it can be seen in section 2.7 of [1]. We were not sure if these were the
+> >>> only devices supported by the driver(eeprom_93xx46.c). So, in order to
+> >>> apply this only to the above listed devices, we thought that it would be
+> >>> better to apply this change when required by introducing a DT property.
+> >>>
+> >>> May I know how has this case been handled till now ??
+> >>>
+> >>
+> >> No idea. From the at93c46d (which has a compatible string) datasheet it
+> >> looks like it has the same thing.
+> >>
+> >>> If this is required by all the devices then we can drop the property and
+> >>> include the zero bit by default.
+> >>
+> >> Looks like you need a combination of compatible strings for the above
+> >> devices and a property for the ORG pin state on the C devices. I assume
+> >> s/w needs to know if x8 or x16?
+> >>
+> > Yes, there are separate properties for indicating different types of
+> > types of eeproms.
+> >
+>
+> Here I was saying about x8 or x16 using the data-size property. ORG pin
+> state is implied through data-size property and an additional property
+> is not required for ORG pin state.
 
-The common (codec-independent) Lochnagar 2 configuration is separated
-into a dtsi to simplify re-using it for other codecs.
+Ah, I missed that property.
 
-Signed-off-by: Richard Fitzgerald <rf@opensource.cirrus.com>
----
- MAINTAINERS                                   |   1 +
- arch/arm/boot/dts/Makefile                    |   1 +
- ...bcm2711-rpi4b-cirrus-lochnagar-cs47l15.dts | 186 ++++++++++++++++
- .../dts/bcm2711-rpi4b-cirrus-lochnagar.dtsi   | 201 ++++++++++++++++++
- 4 files changed, 389 insertions(+)
- create mode 100644 arch/arm/boot/dts/bcm2711-rpi4b-cirrus-lochnagar-cs47l15.dts
- create mode 100644 arch/arm/boot/dts/bcm2711-rpi4b-cirrus-lochnagar.dtsi
+>
+> > So, do you think that it is better to add it as a seperate property??
+> >
+>
+>
+> These are the available options to my knowledge,
+>
+> 1) As you mentioned earlier all the eeprom's supported by the driver
+> send a dummy bit before the read data. This can be thought of a bug and
+> add this change as a fix for it. This might a problem for users who are
+> already using this driver and working around it using user space tools.
+>
+> 2) Add a special compatible string "eeprom-93xx46B", to add the extra
+> dummy cycle and not add an additional property.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 5cc595ac7b28..7dca1db52144 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -4193,6 +4193,7 @@ M:	Charles Keepax <ckeepax@opensource.cirrus.com>
- M:	Richard Fitzgerald <rf@opensource.cirrus.com>
- L:	patches@opensource.cirrus.com
- S:	Supported
-+F:	arch/arm/boot/dts/bcm2711-rpi4b-cirrus-lochnagar*
- F:	Documentation/devicetree/bindings/clock/cirrus,lochnagar.yaml
- F:	Documentation/devicetree/bindings/hwmon/cirrus,lochnagar.yaml
- F:	Documentation/devicetree/bindings/mfd/cirrus,lochnagar.yaml
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index ce66ffd5a1bb..240cc58fd954 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -93,6 +93,7 @@ dtb-$(CONFIG_ARCH_BCM2835) += \
- 	bcm2837-rpi-3-b-plus.dtb \
- 	bcm2837-rpi-cm3-io3.dtb \
- 	bcm2711-rpi-4-b.dtb \
-+	bcm2711-rpi4b-cirrus-lochnagar-cs47l15.dtb \
- 	bcm2835-rpi-zero.dtb \
- 	bcm2835-rpi-zero-w.dtb
- dtb-$(CONFIG_ARCH_BCM_5301X) += \
-diff --git a/arch/arm/boot/dts/bcm2711-rpi4b-cirrus-lochnagar-cs47l15.dts b/arch/arm/boot/dts/bcm2711-rpi4b-cirrus-lochnagar-cs47l15.dts
-new file mode 100644
-index 000000000000..b6b91289bc6f
---- /dev/null
-+++ b/arch/arm/boot/dts/bcm2711-rpi4b-cirrus-lochnagar-cs47l15.dts
-@@ -0,0 +1,186 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/dts-v1/;
-+#include "bcm2711-rpi4b-cirrus-lochnagar.dtsi"
-+#include <dt-bindings/sound/madera.h>
-+
-+/ {
-+	sound {
-+		status = "okay";
-+
-+		compatible = "audio-graph-card";
-+		label = "sound-card-cs47l15";
-+
-+		clocks = <&clk_24m>, <&fll1_out>, <&fll1_dsp>;
-+		clock-names = "ln-clk-24m", "fll1-out", "fll1-dsp";
-+
-+		plls = <
-+			&cs47l15 MADERA_FLL1_REFCLK MADERA_FLL_SRC_MCLK1 98304000
-+		>;
-+		plls-clocks = "ln-clk-24m";
-+
-+		sysclks = <
-+			&cs47l15 MADERA_CLK_SYSCLK_1 MADERA_CLK_SRC_FLL1 0
-+			&cs47l15 MADERA_CLK_DSPCLK   MADERA_CLK_SRC_FLL1 0
-+		>;
-+		sysclks-clocks = "fll1-out", "fll1-dsp";
-+
-+		widgets = "Microphone", "Microphone Jack",
-+			  "Headphone", "Headphone Jack";
-+
-+		routing = "Microphone Jack", "MICBIAS1A",
-+			  "IN1BRN", "Microphone Jack",
-+			  "IN1BRP", "Microphone Jack",
-+			  "Headphone Jack", "HPOUTL",
-+			  "Headphone Jack", "HPOUTR";
-+
-+		dais = <&cpu_i2s_port &cs47l15_trace_port>;
-+
-+		/* Main output from FLL1 */
-+		fll1_out: fll1_out {
-+			compatible = "fixed-clock";
-+			#clock-cells = <0>;
-+			clock-frequency = <98304000>;
-+		};
-+
-+		/* x1.5 DSP output from FLL1 */
-+		fll1_dsp: fll1_dsp {
-+			compatible = "fixed-clock";
-+			#clock-cells = <0>;
-+			clock-frequency = <147456000>;
-+		};
-+	};
-+};
-+
-+&i2s {
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		cpu_i2s_port: port@0 {
-+			reg = <0>;
-+			cpu_i2s_ep: endpoint {
-+				remote-endpoint = <&cs47l15_aif1>;
-+				dai-format = "i2s";
-+			};
-+		};
-+	};
-+};
-+
-+&spi {
-+	status = "okay";
-+
-+	cs47l15: cs47l15@1 {
-+		status = "okay";
-+
-+		compatible = "cirrus,cs47l15";
-+		reg = <0x1>;
-+
-+		spi-max-frequency = <11000000>;
-+
-+		interrupts = <27 8>;
-+		interrupt-controller;
-+		#interrupt-cells = <2>;
-+		interrupt-parent = <&gpio>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+		#sound-dai-cells = <1>;
-+
-+		AVDD-supply = <&lochnagar_vdd1v8>;
-+		DCVDD-supply = <&lochnagar_vddcore>;
-+		DBVDD1-supply = <&lochnagar_vdd1v8>;
-+		CPVDD1-supply = <&lochnagar_vdd1v8>;
-+		SPKVDD-supply = <&wallvdd>;
-+		MICVDD-supply = <&lochnagar_micvdd>;
-+
-+		reset-gpios = <&lochnagar_pin 0 0>;
-+
-+		cirrus,dmic-ref = <
-+			MADERA_DMIC_REF_MICBIAS1
-+		>;
-+		cirrus,inmode = <
-+			MADERA_INMODE_SE   MADERA_INMODE_SE   /* IN1A */
-+			MADERA_INMODE_DIFF MADERA_INMODE_DIFF /* IN1B */
-+			MADERA_INMODE_SE   MADERA_INMODE_SE   /* IN2A */
-+			MADERA_INMODE_DIFF MADERA_INMODE_DIFF /* IN2B */
-+		>;
-+
-+		clocks = <&lochnagar_clk LOCHNAGAR_CDC_MCLK1>,
-+			 <&lochnagar_clk LOCHNAGAR_CDC_MCLK2>;
-+		clock-names = "mclk1", "mclk2";
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&cdc_irq &cs47l15_defaults>;
-+
-+		cs47l15_defaults: cs47l15-gpio-defaults {
-+			aif1 {
-+				groups = "aif1";
-+				function = "aif1";
-+				bias-bus-hold;
-+			};
-+			aif2 {
-+				groups = "aif2";
-+				function = "aif2";
-+				bias-bus-hold;
-+			};
-+			aif3 {
-+				groups = "aif3";
-+				function = "aif3";
-+				bias-bus-hold;
-+			};
-+			pdmspk1 {
-+				groups = "pdmspk1";
-+				function = "pdmspk1";
-+			};
-+		};
-+
-+		micvdd {
-+			regulator-min-microvolt = <3000000>;
-+			regulator-max-microvolt = <3000000>;
-+		};
-+
-+		MICBIAS1 {
-+			regulator-min-microvolt = <2800000>;
-+			regulator-max-microvolt = <2800000>;
-+		};
-+		MICBIAS1A {
-+			regulator-active-discharge = <1>;
-+		};
-+		MICBIAS1B {
-+			regulator-active-discharge = <1>;
-+		};
-+		MICBIAS1C {
-+			regulator-active-discharge = <1>;
-+		};
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			cs47l15_aif1_port: port@0 {
-+				reg = <0>;
-+				cs47l15_aif1: endpoint {
-+					remote-endpoint = <&cpu_i2s_ep>;
-+					bitclock-master;
-+					frame-master;
-+					system-clock-frequency = <0>;
-+					mclk-fs = <0>;
-+				};
-+			};
-+			/* Debug trace compressed stream */
-+			cs47l15_trace_port: port@3 {
-+				reg = <3>;
-+				cs47l15_trace_cpu: endpoint {
-+					remote-endpoint = <&cs47l15_trace_codec>;
-+					system-clock-frequency = <0>;
-+					mclk-fs = <0>;
-+				};
-+			};
-+			port@4 {
-+				reg = <4>;
-+				cs47l15_trace_codec: endpoint {
-+					remote-endpoint = <&cs47l15_trace_cpu>;
-+					system-clock-frequency = <0>;
-+					mclk-fs = <0>;
-+				};
-+			};
-+		};
-+	};
-+};
-diff --git a/arch/arm/boot/dts/bcm2711-rpi4b-cirrus-lochnagar.dtsi b/arch/arm/boot/dts/bcm2711-rpi4b-cirrus-lochnagar.dtsi
-new file mode 100644
-index 000000000000..af498d7ad18a
---- /dev/null
-+++ b/arch/arm/boot/dts/bcm2711-rpi4b-cirrus-lochnagar.dtsi
-@@ -0,0 +1,201 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/dts-v1/;
-+#include "bcm2711-rpi-4-b.dts"
-+#include <dt-bindings/clk/lochnagar.h>
-+#include <dt-bindings/pinctrl/bcm2835.h>
-+#include <dt-bindings/pinctrl/lochnagar.h>
-+
-+/ {
-+	wallvdd: wallvdd@0 {
-+		compatible = "regulator-fixed";
-+
-+		regulator-name = "WALL_VDD_5V";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		regulator-boot-on;
-+		regulator-always-on;
-+	};
-+
-+};
-+
-+&gpio {
-+	lochnagar_present: lochnagar_present {
-+		brcm,pins = <22>;
-+		brcm,function = <BCM2835_FSEL_GPIO_OUT>;
-+	};
-+
-+	lochnagar_reset: lochnagar_reset {
-+		brcm,pins = <24>;
-+		brcm,function = <BCM2835_FSEL_GPIO_OUT>;
-+	};
-+
-+	cdc_irq: cdc_irq {
-+		brcm,pins = <27>;
-+		brcm,function = <BCM2835_FSEL_GPIO_IN>;
-+	};
-+
-+	spi_pins: spi_pins {
-+		brcm,pins = <9 10 11>;
-+		brcm,function = <BCM2835_FSEL_ALT0>;
-+	};
-+
-+	spi_cs: spi_cs {
-+		brcm,pins = <7 8>;
-+		brcm,function = <BCM2835_FSEL_GPIO_OUT>;
-+	};
-+
-+	i2s_pins: i2s_pins {
-+		brcm,pins = <18 19 20 21>;
-+		brcm,function = <BCM2835_FSEL_ALT0>;
-+	};
-+};
-+
-+&i2s {
-+	status = "okay";
-+	#sound-dai-cells = <1>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2s_pins>;
-+	dmas = <&dma 2>, <&dma 3>;
-+	dma-names = "tx", "rx";
-+};
-+
-+&i2c1 {
-+	status = "okay";
-+
-+	lochnagar: lochnagar@22 {
-+		status = "okay";
-+
-+		compatible = "cirrus,lochnagar2";
-+		reg = <0x22>;
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&lochnagar_present &lochnagar_reset>;
-+
-+		reset-gpio = <&gpio 24 0>;
-+		present-gpio = <&gpio 22 0>;
-+
-+		lochnagar_vdd1v8: VDD1V8 {
-+			compatible = "regulator-fixed";
-+
-+			regulator-name = "VDD1V8";
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-boot-on;
-+			regulator-always-on;
-+
-+			vin-supply = <&wallvdd>;
-+		};
-+
-+		clk_pmic: clk_pmic {
-+			compatible = "fixed-clock";
-+			#clock-cells = <0>;
-+			clock-frequency = <32768>;
-+		};
-+		clk_24m: clk_24m {
-+			compatible = "fixed-clock";
-+			#clock-cells = <0>;
-+			clock-frequency = <24576000>;
-+		};
-+
-+		lochnagar_clk: clk {
-+			compatible = "cirrus,lochnagar2-clk";
-+
-+			#clock-cells = <1>;
-+
-+			clocks = <&clk_pmic>, <&clk_24m>;
-+			clock-names = "ln-pmic-32k", "ln-clk-24m";
-+
-+			assigned-clocks = <&lochnagar_clk LOCHNAGAR_CDC_MCLK1>,
-+					  <&lochnagar_clk LOCHNAGAR_CDC_MCLK2>,
-+					  <&lochnagar_clk LOCHNAGAR_SOUNDCARD_MCLK>;
-+			assigned-clock-parents = <&clk_24m>,
-+						 <&clk_pmic>,
-+						 <&clk_24m>;
-+		};
-+
-+		lochnagar_pin: pin {
-+			compatible = "cirrus,lochnagar-pinctrl";
-+
-+			gpio-controller;
-+			#gpio-cells = <2>;
-+			gpio-ranges = <&lochnagar_pin 0 0 LOCHNAGAR2_PIN_NUM_GPIOS>;
-+
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&pin_settings>;
-+
-+			pin_settings: pin_settings {
-+				rpi_aif {
-+					input-enable;
-+					groups = "gf-aif1";
-+					function = "codec-aif1";
-+				};
-+				codec_aif1 {
-+					output-master;
-+					groups = "codec-aif1";
-+					function = "gf-aif1";
-+				};
-+				sc_codec_aif {
-+					output-enable;
-+					groups = "codec-aif2";
-+					function = "soundcard-aif";
-+				};
-+				sc_lochnagar_aif {
-+					input-enable;
-+					groups = "soundcard-aif";
-+					function = "codec-aif2";
-+				};
-+			};
-+		};
-+
-+		lochnagar_hwmon: hwmon {
-+			compatible = "cirrus,lochnagar2-hwmon";
-+		};
-+
-+		lochnagar_micvdd: MICVDD {
-+			compatible = "cirrus,lochnagar2-micvdd";
-+
-+			SYSVDD-supply = <&wallvdd>;
-+
-+			regulator-min-microvolt = <3000000>;
-+			regulator-max-microvolt = <3000000>;
-+		};
-+
-+		MIC1VDD {
-+			compatible = "cirrus,lochnagar2-mic1vdd";
-+
-+			regulator-always-on;
-+			cirrus,micbias-input = <2>;
-+		};
-+
-+		MIC2VDD {
-+			compatible = "cirrus,lochnagar2-mic2vdd";
-+
-+			regulator-always-on;
-+			cirrus,micbias-input = <3>;
-+		};
-+
-+		lochnagar_vddcore: VDDCORE {
-+			compatible = "cirrus,lochnagar2-vddcore";
-+
-+			SYSVDD-supply = <&wallvdd>;
-+
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1200000>;
-+		};
-+
-+		lochnagar_sc: soundcard {
-+			compatible = "cirrus,lochnagar2-soundcard";
-+
-+			#sound-dai-cells = <1>;
-+
-+			clocks = <&lochnagar_clk LOCHNAGAR_SOUNDCARD_MCLK>;
-+			clock-names = "mclk";
-+		};
-+	};
-+};
-+
-+&spi {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&spi_pins &spi_cs>;
-+	cs-gpios = <&gpio 8 1>, <&gpio 7 1>;
-+};
--- 
-2.20.1
+No. Genericish compatible strings are what cause the problem and this
+whole discussion.
 
+> 3) Add an additional property as proposed in this patch and use when
+> required.
+>
+> Are there any other suggestions on solving this issue??
+
+You need a compatible string for each vendor+model. Period.
+
+Rob
