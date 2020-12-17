@@ -2,160 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 827BF2DD674
-	for <lists+devicetree@lfdr.de>; Thu, 17 Dec 2020 18:43:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E94E12DD678
+	for <lists+devicetree@lfdr.de>; Thu, 17 Dec 2020 18:44:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727368AbgLQRms (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Dec 2020 12:42:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37978 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728998AbgLQRmq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Dec 2020 12:42:46 -0500
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1EB2BC0617B0
-        for <devicetree@vger.kernel.org>; Thu, 17 Dec 2020 09:42:06 -0800 (PST)
-Received: by mail-ed1-x52e.google.com with SMTP id q16so29488042edv.10
-        for <devicetree@vger.kernel.org>; Thu, 17 Dec 2020 09:42:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=R5jtbbq89EOWcMD5xRFUxvGbx0DAm4t3paIGf1OGL84=;
-        b=FxKb9CyeVXLX0RZE6YVPYu/xqRypCcDzV2ElXEC+2Q0LqCOE2A1smoPthyfdY2UABS
-         7uU6Btqr/9XTS/UE9H+ws2mk5X4KpDuoMVuClEPebp/nOKdNc1Izq/HSDy9MKViMv80C
-         vKTBVDOZpuZU76FLwUhCC9ziITG3BcMr7ezt8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=R5jtbbq89EOWcMD5xRFUxvGbx0DAm4t3paIGf1OGL84=;
-        b=YT+wJP4sN81BG6Ormyfllxyrot+k3UQSf6qTmBCI56PIhbyNOvg2N/2hv8EaAh5CIg
-         EXHkUNXtMrhu5QdSIHBrHVstQKo3wh2pch5Bx8oZCs7h924zgxanQNB7ERx/bkoL8dw/
-         gGJ413qY+h92uz+GYVU2EcRxil1yu241+zLd6+dsMrrbA7U5YDzoMqGYjOEtUcuiTr+V
-         FpwGHe3/F2wHgy2zyx8+IGWvu6f7AJAxmS/e11thD502Z/TKKXpxX9asUSj9u49gA2hS
-         cwkKNmrl+BqiviOu0JBbz83Zu2dOT0a0bSJbhgzgqWHEh+ZXJ/MODVKt35QJooh9jfPZ
-         77kA==
-X-Gm-Message-State: AOAM530XJnREbBsExmZufb0SOCL4EEdkhM3LO86mF1xALktRS9SrM6Jl
-        n1rzip6e3wJ2weDm7IPWGDjIjhFrdkWYzHo6K2cdpw==
-X-Google-Smtp-Source: ABdhPJyYio/s0bRTDE/FJgEu8kJlj+SUW67A7ePhGrHVjZZEWg2UiqQligEC8CR8B3JvkzmZCG028pO1RRGPyA+se5Q=
-X-Received: by 2002:aa7:c355:: with SMTP id j21mr460295edr.338.1608226924260;
- Thu, 17 Dec 2020 09:42:04 -0800 (PST)
+        id S1727723AbgLQRnr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Dec 2020 12:43:47 -0500
+Received: from mail.kernel.org ([198.145.29.99]:49796 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726548AbgLQRnq (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 17 Dec 2020 12:43:46 -0500
+Date:   Thu, 17 Dec 2020 17:42:52 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1608226985;
+        bh=ki+piBQ3QIGhu/Q2d6mwqQe2K57wMWPfXarqxSlcy8c=;
+        h=From:To:Cc:Subject:References:In-Reply-To:From;
+        b=nDJcEuwm5sXOrvLZF6RCP1BGdqZ7Plj62CGrNmHTBaDGBlgMsb6osMAOolnXoDNuh
+         rwKi1EVPwwaRQPh/lOBmStsEoxRD5K+DbKbEnDBiBcjtRqFoa+etBVgAJq1X2K+Etq
+         d0Y5S2qPtyNIahEdOF5wKxBDTXoWm7K5BgFKKXUkFYchPkbo18Y7ozSA5OItmfouRL
+         7O/pIcK1XdUU664wnrofIuul61sYe04+xid9BSm6XfqPGVW6e5CE6pWKA2jubRZapk
+         IVwsR6WMtDUWVVKBWXFdAx5WAjL1eRGA+CW/JAwsKK2QcbFYBVhB1QVOy5sdjP7nkw
+         SFoEnfwrDOqYw==
+From:   Mark Brown <broonie@kernel.org>
+To:     kostap@marvell.com
+Cc:     linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        robh+dt@kernel.org, mw@semihalf.com, jaz@semihalf.com,
+        nadavh@marvell.com, bpeled@marvell.com, stefanc@marvell.com
+Subject: Re: [PATCH v2 2/2] spi: orion: enable support for switching CS every
+ transferred byte
+Message-ID: <20201217174252.GH4708@sirena.org.uk>
+References: <20201217170933.10717-1-kostap@marvell.com>
+ <20201217170933.10717-3-kostap@marvell.com>
 MIME-Version: 1.0
-References: <20201215235639.31516-1-adrien.grassein@gmail.com> <20201215235639.31516-8-adrien.grassein@gmail.com>
-In-Reply-To: <20201215235639.31516-8-adrien.grassein@gmail.com>
-From:   Jagan Teki <jagan@amarulasolutions.com>
-Date:   Thu, 17 Dec 2020 23:11:52 +0530
-Message-ID: <CAMty3ZDgyAx-maPqEOR_cBizQDfRZB0EMGj6iddK1BhGvziFkA@mail.gmail.com>
-Subject: Re: [PATCH v2 7/7] regulator: pf8x00: fix nxp,phase-shift
-To:     Adrien Grassein <adrien.grassein@gmail.com>
-Cc:     Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Troy Kisky <troy.kisky@boundarydevices.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="mYYhpFXgKVw71fwr"
+Content-Disposition: inline
+In-Reply-To: <20201217170933.10717-3-kostap@marvell.com>
+X-Cookie: I'll eat ANYTHING that's BRIGHT BLUE!!
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 16, 2020 at 5:27 AM Adrien Grassein
-<adrien.grassein@gmail.com> wrote:
->
-> Fix the ternary condition which is a bad coding style
-> in the kernel
->
-> I also remove the defering configuration of the nxp,phase-shift.
-> The configuration is now done at parsing time. It save some memory
-> and it's better for comprehension.
->
-> I also use the OTP default configuration when the paramater is wrong
-> or not specified.
-> I think that it's better to use the default configuration from the chip
-> than an arbitrary value.
->
-> Signed-off-by: Adrien Grassein <adrien.grassein@gmail.com>
-> ---
->  drivers/regulator/pf8x00-regulator.c | 45 +++++++++++++---------------
->  1 file changed, 20 insertions(+), 25 deletions(-)
->
-> diff --git a/drivers/regulator/pf8x00-regulator.c b/drivers/regulator/pf8x00-regulator.c
-> index 5ad940b3db0a..b8b3ac393ee8 100644
-> --- a/drivers/regulator/pf8x00-regulator.c
-> +++ b/drivers/regulator/pf8x00-regulator.c
-> @@ -107,7 +107,6 @@ enum pf8x00_ldo_states {
->
->  #define PF8X00_SWXILIM_MASK            GENMASK(4, 3)
->  #define PF8X00_SWXPHASE_MASK           GENMASK(2, 0)
-> -#define PF8X00_SWXPHASE_DEFAULT                0
 
-Keep this as it is and assign it 1 as the below code assigns 1.
+--mYYhpFXgKVw71fwr
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
->  #define PF8X00_SWXPHASE_SHIFT          7
->
->  enum pf8x00_devid {
-> @@ -121,7 +120,6 @@ enum pf8x00_devid {
->
->  struct pf8x00_regulator {
->         struct regulator_desc desc;
-> -       u8 phase_shift;
->  };
->
->  struct pf8x00_chip {
-> @@ -167,17 +165,13 @@ static const int pf8x00_vsnvs_voltages[] = {
->         0, 1800000, 3000000, 3300000,
->  };
->
-> -static struct pf8x00_regulator *desc_to_regulator(const struct regulator_desc *desc)
-> -{
-> -       return container_of(desc, struct pf8x00_regulator, desc);
-> -}
-> -
->  static int pf8x00_of_parse_cb(struct device_node *np,
->                               const struct regulator_desc *desc,
->                               struct regulator_config *config)
+On Thu, Dec 17, 2020 at 07:09:32PM +0200, kostap@marvell.com wrote:
+
+> +++ b/drivers/spi/spi-orion.c
+> @@ -369,8 +369,15 @@ orion_spi_write_read_8bit(struct spi_device *spi,
 >  {
-> -       struct pf8x00_regulator *data = desc_to_regulator(desc);
->         struct pf8x00_chip *chip = config->driver_data;
-> +       unsigned char id = desc->id - PF8X00_LDO4;
-> +       unsigned char reg = PF8X00_SW_BASE(id) + SW_CONFIG2;
->         int phase;
->         int val;
->         int ret;
-> @@ -185,21 +179,30 @@ static int pf8x00_of_parse_cb(struct device_node *np,
->         ret = of_property_read_u32(np, "nxp,phase-shift", &val);
->         if (ret) {
->                 dev_dbg(chip->dev,
-> -                       "unspecified phase-shift for BUCK%d, use 0 degrees\n",
-> -                       desc->id - PF8X00_LDO4);
-> -               val = PF8X00_SWXPHASE_DEFAULT;
-> +                       "unspecified phase-shift for BUCK%d, using OTP configuration\n",
-> +                       id);
-> +               goto end;
->         }
->
-> -       phase = val / 45;
-> -       if ((phase * 45) != val) {
-> +       if (val < 0 || val > 315 || val % 45 != 0) {
->                 dev_warn(config->dev,
-> -                        "invalid phase_shift %d for BUCK%d, use 0 degrees\n",
-> -                        (phase * 45), desc->id - PF8X00_LDO4);
-> -               phase = PF8X00_SWXPHASE_SHIFT;
-> +                        "invalid phase_shift %d for BUCK%d, using OTP configuration\n",
-> +                        val, id);
-> +               goto end;
->         }
->
-> -       data->phase_shift = (phase >= 1) ? phase - 1 : PF8X00_SWXPHASE_SHIFT;
-> +       phase = val / 45;
-> +
-> +       if (phase >= 1)
-> +               phase -= 1;
-> +       else
-> +               phase = PF8X00_SWXPHASE_SHIFT;
-> +
-> +       regmap_update_bits(chip->regmap, reg,
-> +                       PF8X00_SWXPHASE_MASK,
-> +                       phase);
 
-Add all these arguments in the same line.
+This is only supporting SPI_CS_WORD for 8 bit operations but the driver
+also supports 16 bit words, it should at least report an error if
+there's an attempt to use SPI_CS_WORD for 16 bit transfers.  It also
+looks like this won't work on systems where direct access is supported
+since those use a separate I/O path, that can be fixed by just adding an
+additional check when deciding to go down that path.
+
+The driver should also pay attention to SPI_CS_HIGH if it's going to try
+to control chip select by hand as it does, which is generally frowned
+upon.  TBH I'm wondering if it might not be better to just rely on the
+core support for implementing SPI_CS_WORD on controllers that can't do
+it in hardware - it *is* much higher overhead since it needs to split
+the transfers up but it depends how performance critical and frequent
+access to such devices is likely to be.
+
+--mYYhpFXgKVw71fwr
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl/bmJwACgkQJNaLcl1U
+h9BwQgf/fGtDRQJbHSGqpGBtm7M/anY/tH0WDne1H4PQarBPKc0SYdvonJJlE1J8
+v8Oa0ZLh03PbGU6NY7uv/E3FMy7sTEqDTSfdoYm+HiwH4kNwGcESlbiJzncADIjz
+WqzycI1s4QPsUt86HL8tIoCysrEy5fLQ25T9ghqGu4By8sgTfpTlCHiXLNWvCbu1
+b0tcWBuFDLDiY8D5rHThX+uok+DB72+44mubJM9wNZSQ3dxUEaOjTB2QdFdqwiw7
+55m8FqzdzxqkocE6LPLum7EglHtVaHlTWQjVTYiOpm8gbio9nOfSab2Ss7mAc9Y7
+VZ5ZebrzoJaytrLfznN6rIvP6pP0jA==
+=hgj4
+-----END PGP SIGNATURE-----
+
+--mYYhpFXgKVw71fwr--
