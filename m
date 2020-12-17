@@ -2,74 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 27EF62DD5B1
-	for <lists+devicetree@lfdr.de>; Thu, 17 Dec 2020 18:08:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B55BE2DD5BB
+	for <lists+devicetree@lfdr.de>; Thu, 17 Dec 2020 18:12:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728950AbgLQRHd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Dec 2020 12:07:33 -0500
-Received: from mail.kernel.org ([198.145.29.99]:35646 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727368AbgLQRHd (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 17 Dec 2020 12:07:33 -0500
-Date:   Thu, 17 Dec 2020 09:06:51 -0800
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1608224812;
-        bh=JCgs6Gbs/ppNLtmihKsU7u8Ehtj1qIyP3rFDBAXBx54=;
-        h=From:To:Cc:Subject:In-Reply-To:References:From;
-        b=rdWG7XtYC2PM50mhm0SpxcNAJs2LPfnM4y9f5Rt7Yq5RZFZGcwMcxjCAYWAvN0oot
-         Hp06QoTV+L/0jeGpUTUuitDcrmLffUiiIjc7MSkBnNmiXZ0Rn27pK/ij/Z8HT91OkV
-         0nRxcqgJvDP04e7uW3H7WCmc8SNnP8w3gcyFOa1zySWTzNt7vJ1UB655OVAzofVDup
-         ReSnGqq2H/AUIe8pOid3b16CCCnIpQuS9G0EZJzV3Av88hwvgQ5HkppmR75JFyCZ6r
-         OnqRmFnfs0l948811405P8A8/0ntJR02zVWE++8sSRkhkPVy+QgdFX1dK7c2uXtIpa
-         FhGMl6Pt93ArQ==
-From:   Jakub Kicinski <kuba@kernel.org>
-To:     Lukasz Stelmach <l.stelmach@samsung.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>, jim.cromie@gmail.com,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Kukjin Kim <kgene@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org,
-        =?UTF-8?B?QmFydMWCb21pZWogxbtvbG5pZXJr?= =?UTF-8?B?aWV3aWN6?= 
-        <b.zolnierkie@samsung.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>
-Subject: Re: [PATCH v8 3/3] net: ax88796c: ASIX AX88796C SPI Ethernet
- Adapter Driver
-Message-ID: <20201217090651.0912a035@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
-In-Reply-To: <dleftjv9d07iz2.fsf%l.stelmach@samsung.com>
-References: <20201216081300.3477c3fb@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
-        <CGME20201217114714eucas1p1aea2208877de2a39feb692fe795e6d3e@eucas1p1.samsung.com>
-        <dleftjv9d07iz2.fsf%l.stelmach@samsung.com>
+        id S1727260AbgLQRLA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Dec 2020 12:11:00 -0500
+Received: from mx0a-0016f401.pphosted.com ([67.231.148.174]:50502 "EHLO
+        mx0b-0016f401.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1726548AbgLQRLA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 17 Dec 2020 12:11:00 -0500
+Received: from pps.filterd (m0045849.ppops.net [127.0.0.1])
+        by mx0a-0016f401.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 0BHH5hi8018917;
+        Thu, 17 Dec 2020 09:10:18 -0800
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marvell.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=pfpt0220;
+ bh=ClEaVtohDgfm2PEX4c5wAG7Jzltn305pndCxRugCoOk=;
+ b=EK4O3nHJdNp8Uia+H5UwN/nSzG3CZVUZCdmTf/hNHNI5E99gbIeX0mW2kt5gUr+76jKp
+ 060UKI/4YBejW9vDqk4m0DQsm0YKw0s5vmErCuWt21f3h3LUZrfWqC7XwGCd8M+3rlI6
+ J2e3TJEdJ4AtwnQDJhTUEv8sMys19YA6LV9Wl3Zova8eznOYWjeRDWq7OE04wvY7nn7A
+ 5luvG7VXI6o11FGCtpnXpfgk7mXrBnUjeDeiNo6XXkIqYrAAW0kUfTeGaX2yQGf1/asI
+ 6W+DoYyuls64uXvHy39CEvO3+bnkzwZGk3jFNKcbQ/0fdClf84oKyL9+lXFtmL6WAdVp Hg== 
+Received: from sc-exch01.marvell.com ([199.233.58.181])
+        by mx0a-0016f401.pphosted.com with ESMTP id 35g4rp17wp-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
+        Thu, 17 Dec 2020 09:10:18 -0800
+Received: from DC5-EXCH02.marvell.com (10.69.176.39) by SC-EXCH01.marvell.com
+ (10.93.176.81) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Thu, 17 Dec
+ 2020 09:10:17 -0800
+Received: from maili.marvell.com (10.69.176.80) by DC5-EXCH02.marvell.com
+ (10.69.176.39) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 17 Dec 2020 09:10:17 -0800
+Received: from vb-cavnet.porotchkin.lan (PT-LT0319.marvell.com [10.6.202.166])
+        by maili.marvell.com (Postfix) with ESMTP id A6D393F7043;
+        Thu, 17 Dec 2020 09:10:13 -0800 (PST)
+From:   <kostap@marvell.com>
+To:     <linux-spi@vger.kernel.org>
+CC:     <devicetree@vger.kernel.org>, <broonie@kernel.org>,
+        <robh+dt@kernel.org>, <mw@semihalf.com>, <jaz@semihalf.com>,
+        <nadavh@marvell.com>, <bpeled@marvell.com>, <stefanc@marvell.com>,
+        Konstantin Porotchkin <kostap@marvell.com>
+Subject: [PATCH v2 0/2] spi: new feature and fix for Marvell Orion driver
+Date:   Thu, 17 Dec 2020 19:09:30 +0200
+Message-ID: <20201217170933.10717-1-kostap@marvell.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.343,18.0.737
+ definitions=2020-12-17_11:2020-12-15,2020-12-17 signatures=0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 17 Dec 2020 12:46:57 +0100 Lukasz Stelmach wrote:
-> > to the correct values so the stack pre-allocates the needed spaces,
-> > when it can.  
-> 
-> Yes, I fonud these. However, I am not sure setting needed_tailroom has
-> any effect. In many places where alloc_skb() is called needed_headrom
-> and hard_header_len are refered to via the LL_RESERVED_SPACE macro. But
-> the macro does not refer to needed_tailroom. Once (f5184d267c1a ("net:
-> Allow netdevices to specify needed head/tailroom") there was
-> LL_ALLOCATED_SPACE macro, but but it was removed in 56c978f1da1f ("net:
-> Remove LL_ALLOCATED_SPACE"). And now only some protocols refer to
-> needet_tailroom.
+From: Konstantin Porotchkin <kostap@marvell.com>
 
-Yeah, tailroom is used a lot less often. Only really crappy HW requires
-it.
+This patch set contains the following changes:
+- support for switching CS for every transferred byte
+- fix for the clock by enabling it for every call to spi_setup()
 
-> BTW. What is hard_header_len for? Is it the length of the link layer
-> header? Considering "my" hardware requires some headers with each
-> packet, I find hard_headr_len name a bit confusing.
+v2:
+- remove DTS entry for single byte CS, use existing SPI_CS_WORD flag
+- drop changes to core SPI driver
+- fix the wrong first patch signature
 
-Yup, L2 headers, not hardware. Not sure why "hard" was chosen, that must
-have happened way back.
+Marcin Wojtas (2):
+  spi: orion: enable clocks before spi_setup
+  spi: orion: enable support for switching CS every transferred byte
+
+ drivers/spi/spi-orion.c | 34 +++++++++++++++++++-
+ 1 file changed, 33 insertions(+), 1 deletion(-)
+
+-- 
+2.17.1
+
