@@ -2,71 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 587262DD078
-	for <lists+devicetree@lfdr.de>; Thu, 17 Dec 2020 12:36:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A8AC2DD081
+	for <lists+devicetree@lfdr.de>; Thu, 17 Dec 2020 12:39:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726699AbgLQLfm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Dec 2020 06:35:42 -0500
-Received: from mail-ot1-f51.google.com ([209.85.210.51]:33341 "EHLO
-        mail-ot1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726488AbgLQLfl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Dec 2020 06:35:41 -0500
-Received: by mail-ot1-f51.google.com with SMTP id b24so9423291otj.0;
-        Thu, 17 Dec 2020 03:35:26 -0800 (PST)
+        id S1727066AbgLQLiy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Dec 2020 06:38:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38032 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726840AbgLQLix (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Dec 2020 06:38:53 -0500
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64725C061794;
+        Thu, 17 Dec 2020 03:38:13 -0800 (PST)
+Received: by mail-lf1-x12b.google.com with SMTP id h205so13007676lfd.5;
+        Thu, 17 Dec 2020 03:38:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=RZrFgFox88GscJTzprvpE24EKAbg6Vl9s4wji6xqGr8=;
+        b=kmnrCqqnXaiD+iili8Eg1WIT7TbWInxvWY5G6wV7xNW7f8Tjp1/lFuVKVagoP8tuoG
+         2Ml64aESf81U/v/Sj3w8REorf14EUry9+h+VgiDDeNsJvxNMXHrmnpaLKHU2t4GHsSqE
+         2dlVxD4EN2aYW4eeagHqo4IsRnlXYiSP5Yu6R8Y3JMABJQ9Xbw7KEdN0Z0iNFouamu2q
+         QAS5/AlFyQD3KEvu3fWxyBSmId9B9vFVw0U5wc6JNSh5uexP1Pfngy8Nc+bKrGX+3X25
+         2w9ljAiKultGDKtvZA2wpmh0LzXCcZKeF4Jv1lsfh/7fK555VDEITf2STu1AVHDUNjMK
+         Mc7g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=+HNG+75V5cA3JzgDn/KQMUNSxkMeSKfNAPAT6b2lFrg=;
-        b=gUYRme7vszfE5udham7MqixEdMaxKzpluMZQqCu4jcd8ezcQXx1JDRJU4LREg5zj8/
-         n8nys6QRVyV5wm/DcsZbDJZrna+6qribRm1AYr6RJFgCfOt5B+w87sN3Fj7+ZGVIgLaI
-         pwVppnCzx8K2HNXah+bv4TLgm2NNF2Rk+IdffWIzfrzrxE5e9Ji2ZboVKTwCxGe65GZA
-         QvJ07SjnUaJmiyxseJdICsFFh1oelFznfdtbLTPY8FHRRrjoUmWb3XC9m24alwkc0kN6
-         UVNtrXoTxZBSiDEEsmquK5E4x+rk/etTVYxZ24WaAj31kZo8GxRW3JDShh/EmWSo1xeU
-         n/Iw==
-X-Gm-Message-State: AOAM532LCai5tj/8/ItHdbCW7YcWQX16va/BTx17TnN8EKzu3j3Mv6vm
-        IvRqlDBHhdjLD66Ta5ZxoYyqzKAtfYsddpcPdNXs0GqGWd8=
-X-Google-Smtp-Source: ABdhPJyTXAahYsFh818F+sB+G5umDgLpC/RGqQMPW1klvjMlhmiF/jn93hl+YbOkGyNdpR5hVyccDkzeIc/ArRkmbak=
-X-Received: by 2002:a05:6830:210a:: with SMTP id i10mr29039981otc.145.1608204901061;
- Thu, 17 Dec 2020 03:35:01 -0800 (PST)
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=RZrFgFox88GscJTzprvpE24EKAbg6Vl9s4wji6xqGr8=;
+        b=Xt/VV+U1TzCNf+KQ9BpgpTdXsPIqrNXAdbA9rn6L3AbF61QxgY037f8Xm+/tQ+G9fU
+         fNJxJy42BX1QTnWr+StrKTtH3ZD7vKoGQj+TGKoXUNOyPPRLdqcyx1SRyoXqVNTG6C3J
+         GojbCIXrfrqJ/2A1EdOp/olS7CJQybju6NF6sMND3FfoHfqkR77VKOxtrLaY35X5oyHs
+         E3mOZZT/jckv/NYUr11nmDjPORG4F1YhSV7R1+zELJ9zjxjCY27OgkSK886AAKygvBp+
+         6/Ml5pao+jKCdaD8rjoGn3sihq5ReLQe2kztK/uHdWOibWceDBpsSd57z6LX3wrALG/e
+         T5/Q==
+X-Gm-Message-State: AOAM532Pi9cN124earSQphGxcnbTrKx07dyEqv3L8J1mJ/RHEdJ6LSCQ
+        /kWUhQEn/92X56BItvkP0CKLDaXaAcRenNnndTE=
+X-Google-Smtp-Source: ABdhPJwSojLD9W4YcmNB2NeQRlOUH49d3KXyRl/9UWmyxBpBfw4WNxQBGaKHB61MLYkW/CXj4KUKwxf9aI2roUXmJVw=
+X-Received: by 2002:a2e:8416:: with SMTP id z22mr17240339ljg.347.1608205091903;
+ Thu, 17 Dec 2020 03:38:11 -0800 (PST)
 MIME-Version: 1.0
-References: <20201213183759.223246-1-aford173@gmail.com> <20201213183759.223246-14-aford173@gmail.com>
-In-Reply-To: <20201213183759.223246-14-aford173@gmail.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 17 Dec 2020 12:34:49 +0100
-Message-ID: <CAMuHMdW1iOkCYdM=1RqhW_BXquoSydgikBxrtK=Qas8HLZ0hvw@mail.gmail.com>
-Subject: Re: [PATCH 13/18] arm64: dts: renesas: beacon: Enable SPI
-To:     Adam Ford <aford173@gmail.com>
-Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Adam Ford-BE <aford@beaconembedded.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
+References: <20201217104905.25369-1-sebastien.szymanski@armadeus.com>
+In-Reply-To: <20201217104905.25369-1-sebastien.szymanski@armadeus.com>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Thu, 17 Dec 2020 08:38:00 -0300
+Message-ID: <CAOMZO5Dc-i5GdCYB6YrNXUt5HsOoaUCXPiZT630JF8+9pQ9fXA@mail.gmail.com>
+Subject: Re: [PATCH 1/1] ARM: dts: opos6ul: add ksz8081 phy properties
+To:     =?UTF-8?Q?S=C3=A9bastien_Szymanski?= 
+        <sebastien.szymanski@armadeus.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Dec 13, 2020 at 7:38 PM Adam Ford <aford173@gmail.com> wrote:
-> The baseboard routes the SPI to a header which can/will be configured at
-> either the kit level or using device tree overlays.  Because the baseboard
-> be supporting more than one kit, enable at the baseboard level rather
-> than a bunch of duplicates later.
+On Thu, Dec 17, 2020 at 7:49 AM S=C3=A9bastien Szymanski
+<sebastien.szymanski@armadeus.com> wrote:
 >
-> Signed-off-by: Adam Ford <aford173@gmail.com>
+> Set clock mode and the LED mode in the device tree instead of relying on
+> the fixup in mach-imx6ul.
+>
+> Signed-off-by: S=C3=A9bastien Szymanski <sebastien.szymanski@armadeus.com=
+>
 
-Thanks, I have to trust you on this one, i.e. will queue in
-renesas-devel for v5.12.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Reviewed-by: Fabio Estevam <festevam@gmail.com>
