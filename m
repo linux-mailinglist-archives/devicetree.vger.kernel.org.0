@@ -2,97 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 15A7F2DD530
-	for <lists+devicetree@lfdr.de>; Thu, 17 Dec 2020 17:28:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 868872DD543
+	for <lists+devicetree@lfdr.de>; Thu, 17 Dec 2020 17:31:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725930AbgLQQ2i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Dec 2020 11:28:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54770 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728628AbgLQQ2h (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Dec 2020 11:28:37 -0500
-Received: from mail-il1-x132.google.com (mail-il1-x132.google.com [IPv6:2607:f8b0:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA4A1C061794;
-        Thu, 17 Dec 2020 08:27:56 -0800 (PST)
-Received: by mail-il1-x132.google.com with SMTP id n9so15378355ili.0;
-        Thu, 17 Dec 2020 08:27:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=DqaDdh80Jc1X6em3g1sQbEFqj9BR18AP205Qoq6HnvQ=;
-        b=tIiDpTuJUZPZzRuoSNxcEPMns83IKTVDMFVatIG6cEzvgpI9TGROx8mKgey/PdLUvF
-         q9ySr5AgJKnk2ePIfS9NC1Wbci3eqxUW34HmeQrCEd+bb6T48DMLxizg1Tq+sDP/G/7I
-         rNRqTFi/0iW797CYfh4tw5wIwIuvmIrBOQjZJe8WkiGYJLRJDHBseC8LkqvRX+zx/Miq
-         hi1g8aDu6ikI7ehLZa1esCx+scEfjz/WE8AOKgkK+L+lSBDXK17HQcbzAp1mfDnvuT3Y
-         p995VwDnMUXD7H3aVEdtcDPqIziy6Cd2C1AXa2xRgXH37JkjjRGpwqrvBDFp5ewboE1W
-         X6rQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=DqaDdh80Jc1X6em3g1sQbEFqj9BR18AP205Qoq6HnvQ=;
-        b=jNeihY5knspIbUaRC5/8ZTdC0c6YUdmISwkE9nWDfKKM/VmkZIB9FU248eiGfUbkzI
-         zdytqZhbirs6vDQ5i3zqoLrHqr00crZ7TI4dhKJNfNJcIMuSdTqQzdOFRSIyJJmhkoHv
-         Xu+v9P9daPkAv4As+O8wDeT1PnAdivFha9dtWv8//WUL54njdNZiJTx6yEfb7TRdF8tq
-         nsD0SJFh7Oq4DzY9nw2A+nMBlBmHSRF8gHaEzRVJjLNfSfWspqgLi/Z+GiCrS0GajSwl
-         aSYhcCAVXxN9mvCUmChW7Sut7HTkcGCQjSZ/cjmTYIZPk5E3jasmK9iQKWuC85Tqr+uF
-         mJgA==
-X-Gm-Message-State: AOAM532Zqtohs5y1LxSKSkLx9Lau+rwp5Wv+Y8vjsDQV0Tfr5rs3IB2O
-        /vwhpMwdC51LoDH+jGZ2Ksk=
-X-Google-Smtp-Source: ABdhPJx4ygJHmJS4lU4rhhfgBUhLOTH4vOjx/1K+DgCxR3OuwVOeTbo1edMUcENQmcdfJeqDcYgd2A==
-X-Received: by 2002:a05:6e02:4ae:: with SMTP id e14mr48619070ils.132.1608222475876;
-        Thu, 17 Dec 2020 08:27:55 -0800 (PST)
-Received: from aford-IdeaCentre-A730.lan ([2601:448:8400:9e8:f45d:df49:9a4c:4914])
-        by smtp.gmail.com with ESMTPSA id y14sm3416240ilb.66.2020.12.17.08.27.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 17 Dec 2020 08:27:55 -0800 (PST)
-From:   Adam Ford <aford173@gmail.com>
-To:     alsa-devel@alsa-project.org
-Cc:     aford@beaconembedded.com, Adam Ford <aford173@gmail.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] ASoC: wm8962: Add optional mclk device tree binding
-Date:   Thu, 17 Dec 2020 10:27:40 -0600
-Message-Id: <20201217162740.1452000-1-aford173@gmail.com>
-X-Mailer: git-send-email 2.25.1
+        id S1728081AbgLQQbe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Dec 2020 11:31:34 -0500
+Received: from wout4-smtp.messagingengine.com ([64.147.123.20]:47733 "EHLO
+        wout4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1727877AbgLQQbe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 17 Dec 2020 11:31:34 -0500
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailout.west.internal (Postfix) with ESMTP id A0340C8B;
+        Thu, 17 Dec 2020 11:30:47 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute6.internal (MEProxy); Thu, 17 Dec 2020 11:30:48 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:content-transfer-encoding:in-reply-to; s=fm1; bh=R
+        wyjTIzzAC7fG3iGATSvz2APR89Rfjp6vFhip3R2HAQ=; b=J4gbKnhJ3qSlXon0p
+        +auxGXnffCdAwB2fr1UXm1Y4fJIWmt81pu3hYOjaNoF3Zof9HYV+JCvd3WgIfBeN
+        Kp4LIY22vlIgzWGATWJaZ50WLP1OT2dOKwDNYIWMMHzk+ZPsBy3r0A1YRDV+5DJG
+        B6uTr8cDyLZevcvYE7j1HdlUbK5U7NKpSBu+XXPSNqBTLEKRftMkSPovk3KlHk5e
+        5w03p9qg5PIHN+zM6MwXehxijq+e+2e4nt6L7TJZAUl/IbtdtXCemANdSGbW4I3x
+        LCF+XIx4BA+Cmb+b5VK+o3yHDzcrLIOEmEZO7QiYFrn734Y/rRJqN85/XOfktO/5
+        DjgKw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:content-type
+        :date:from:in-reply-to:message-id:mime-version:references
+        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm1; bh=RwyjTIzzAC7fG3iGATSvz2APR89Rfjp6vFhip3R2H
+        AQ=; b=hz7WYXjD5hNRV7M3A4Zsh2V0+qQwqtF2cfl2THISTB7fM4E2XijiSqR2J
+        hiCch84xHZ+RDetoaQMNzRJzpxRGA9JA1/BG+mhn2QhV3yVep50Uiw6NAs5gBy3v
+        eck6OLzuv55WZrmwWm9f94ASWITBZDlXQtxZq53nhzlAWJzkFJgiGHKr6PqmzrEb
+        grJLCjcIh8sJBjfG5d998IIoBrE9wqgfGmZMpeqIfU6lL/ExhV8etiFD4Ko+4ZLM
+        AjG0NAa8twwFZe3zOHwBkec2BtUpwpyR6tA4+JYME19BnLRsEHuLXn5TRqi2nF3Z
+        Nj0JvmMf1oCgDMq++PhXeOK9bGRBw==
+X-ME-Sender: <xms:tofbX5oAbaqQKRxZpHoqOwtFNLRvAzjGqlJk8avfAIp-nZ_N-PXNBQ>
+    <xme:tofbX7q54eAZ0UhvY0rRQ1DQHtPTNOMYyLuEDcpiV7KLDOGm19qY7CSTQAXzgLa_l
+    Mee_XhW2LZzVlLtWio>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrudelgedgkeeiucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvffukfhfgggtugfgjgesthhqredttddtvdenucfhrhhomhepofgrgihi
+    mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
+    htthgvrhhnpefgjeettdejgffgffdvteeutdehtdehgeehueetkeefgefhtdetjeekledu
+    gedvudenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedtne
+    curfgrrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:tofbX2OI0Qegx4Ax3WplXQ2HvKuKIsvyPkSJ-rzZSD79TXFdbefU7A>
+    <xmx:tofbX05w525RD7apY4qht2SNfmPbSXv4Ri2Pml_x5E7K75sTjm96SQ>
+    <xmx:tofbX46pnI85H8DhKHFFmWAb4c_XkHuXdLCDMaNi5L2FoJp3rEM2HA>
+    <xmx:t4fbX2k4MLnaulKacFBoSZvDcd6M2QKwSNra5dDpaS7NKoiM_nPduA>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 2F1631080057;
+        Thu, 17 Dec 2020 11:30:46 -0500 (EST)
+Date:   Thu, 17 Dec 2020 17:30:45 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Paul Kocialkowski <contact@paulk.fr>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>
+Subject: Re: [PATCH] ARM: dts: sun8i-v3s: Add PWM controller and pins
+ definitions
+Message-ID: <20201217163045.i5o5sb4pls4gn52g@gilmour>
+References: <20201217112031.2243683-1-contact@paulk.fr>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20201217112031.2243683-1-contact@paulk.fr>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The driver can request an optional clock for mclk.
-Update the txt file to reflect this.
+Hi,
 
-Suggested-by: Geert Uytterhoeven <geert@linux-m68k.org>
-Signed-off-by: Adam Ford <aford173@gmail.com>
+On Thu, Dec 17, 2020 at 12:20:31PM +0100, Paul Kocialkowski wrote:
+> This introduces definitions for the PWM controller found in the V3s,
+> as well as associated pins. This fashion of the controller has two PWM
+> outputs and is register-compatible with the A20.
+>=20
+> Both PWM outputs were tested on a Lichee Pi Zero with a simple
+> transistor-LED setup.
+>=20
+> Signed-off-by: Paul Kocialkowski <contact@paulk.fr>
+> ---
+>  arch/arm/boot/dts/sun8i-v3s.dtsi | 18 ++++++++++++++++++
+>  1 file changed, 18 insertions(+)
+>=20
+> diff --git a/arch/arm/boot/dts/sun8i-v3s.dtsi b/arch/arm/boot/dts/sun8i-v=
+3s.dtsi
+> index a9f5795d4e57..34a4e638c762 100644
+> --- a/arch/arm/boot/dts/sun8i-v3s.dtsi
+> +++ b/arch/arm/boot/dts/sun8i-v3s.dtsi
+> @@ -398,6 +398,16 @@ spi0_pins: spi0-pins {
+>  				pins =3D "PC0", "PC1", "PC2", "PC3";
+>  				function =3D "spi0";
+>  			};
+> +
+> +			pwm0_pin: pwm0-pin {
+> +				pins =3D "PB4";
+> +				function =3D "pwm0";
+> +			};
+> +
+> +			pwm1_pin: pwm1-pin {
+> +				pins =3D "PB5";
+> +				function =3D "pwm1";
+> +			};
+>  		};
+> =20
+>  		timer@1c20c00 {
+> @@ -416,6 +426,14 @@ wdt0: watchdog@1c20ca0 {
+>  			clocks =3D <&osc24M>;
+>  		};
+> =20
+> +		pwm: pwm@1c21400 {
+> +			compatible =3D "allwinner,sun7i-a20-pwm";
 
-diff --git a/Documentation/devicetree/bindings/sound/wm8962.txt b/Documentation/devicetree/bindings/sound/wm8962.txt
-index dcfa9a3369fd..c36c649ddfd0 100644
---- a/Documentation/devicetree/bindings/sound/wm8962.txt
-+++ b/Documentation/devicetree/bindings/sound/wm8962.txt
-@@ -9,6 +9,9 @@ Required properties:
-   - reg : the I2C address of the device.
- 
- Optional properties:
-+
-+  - clocks : The clock source of the mclk
-+
-   - spk-mono: This is a boolean property. If present, the SPK_MONO bit
-     of R51 (Class D Control 2) gets set, indicating that the speaker is
-     in mono mode.
-@@ -27,6 +30,7 @@ Example:
- wm8962: codec@1a {
- 	compatible = "wlf,wm8962";
- 	reg = <0x1a>;
-+	clocks = <&clks IMX6QDL_CLK_CKO>;
- 
- 	gpio-cfg = <
- 		0x0000 /* 0:Default */
--- 
-2.25.1
+We should have a (documented) v3s compatible there along with the A20
 
+Thanks!
+Maxime
