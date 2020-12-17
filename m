@@ -2,176 +2,246 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EDB732DD828
-	for <lists+devicetree@lfdr.de>; Thu, 17 Dec 2020 19:22:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7815D2DD832
+	for <lists+devicetree@lfdr.de>; Thu, 17 Dec 2020 19:22:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728185AbgLQSUu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Dec 2020 13:20:50 -0500
-Received: from mail.kernel.org ([198.145.29.99]:35314 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727063AbgLQSUu (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 17 Dec 2020 13:20:50 -0500
-Date:   Thu, 17 Dec 2020 10:20:06 -0800
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1608229209;
-        bh=9cPO9+D2N3FGyZSbf5zsTU2pLaw+QPvmEFMIrPhPLC4=;
-        h=From:To:Cc:Subject:References:In-Reply-To:From;
-        b=QehPFQI+9OmEvBAkIA027Y/qhvWQjTeG5EszoFvJyZ5JgxQmj5rQ4Xxfq4u9due25
-         YQK8KprZq8+bysB5az6ho39O8YDoV7ynTI6juX36p0kqEdBwefhaSEfb8kiDpOIUTt
-         trd6J1zkzeRQNUWalE7EVzFM4Z8ycdZVjiNuolh+bo7JKLup3ZbKZtKhIZw4BQ5d/w
-         GKiOgyZ4BoCof+aVIUS6u15KfrqSPVX42Gh3tnqvuUpZtcaOAEuorOSix3VWUIPwmY
-         SIm+gjs8YGf6okydwUE1TpwEkpgXPAIdvvTRLbwFpqc7C+95jXtkbWIhF1fqgliiJE
-         PMYSt6k7blyKQ==
-From:   Eric Biggers <ebiggers@kernel.org>
-To:     "Peng.Zhou" <peng.zhou@mediatek.com>
-Cc:     Adrian Hunter <adrian.hunter@intel.com>, linux-mmc@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-fscrypt@vger.kernel.org, Satya Tangirala <satyat@google.com>,
+        id S1729995AbgLQSWN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Dec 2020 13:22:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44082 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729923AbgLQSWL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Dec 2020 13:22:11 -0500
+Received: from mail.kapsi.fi (mail.kapsi.fi [IPv6:2001:67c:1be8::25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24205C0617A7;
+        Thu, 17 Dec 2020 10:21:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=kapsi.fi;
+         s=20161220; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
+        MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:
+        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=k+TBWoCCmuI+juM/RDKcFjuPs5RlB1YJML8ROgxtvlw=; b=R5sL7KBWSOcu7q0eGSq07mz0ho
+        j0+NPSXrRL9yeaniOZDHuWaAUVw2P1el8IkVWHrEKPgMyaBC6tPpkE02x+lkmACRyi1nUI8VYhEba
+        GryzGGyvSAdgSkDMTxMEKoCwwgzZfq4x5sor0wcLurTcDMASw+FAGnWD3u9srW/2m1KyFb3bq1BD8
+        YIjjrqGYlG6Uvnupn5dUXS/wm/r8RC4x4SnsVeQY9X9POgEG7Psy8lft01Vqfa3Qk/L1JC82JFrZE
+        b6BZqcQDoGn0v3nSv9BC56rPFVkFjCWUpKHpOZ7VRD+T1n5S+8IZ4gdI2K2JtncSw/+m1ibYAuSDI
+        8HY+qvmA==;
+Received: from dsl-hkibng22-54f986-236.dhcp.inet.fi ([84.249.134.236] helo=[192.168.1.10])
+        by mail.kapsi.fi with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+        (Exim 4.89)
+        (envelope-from <cyndis@kapsi.fi>)
+        id 1kpxu0-000859-J2; Thu, 17 Dec 2020 20:21:24 +0200
+Subject: Re: [PATCH v2 34/48] gpu: host1x: Support power management
+To:     Dmitry Osipenko <digetx@gmail.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
         Ulf Hansson <ulf.hansson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Ritesh Harjani <riteshh@codeaurora.org>,
-        Asutosh Das <asutoshd@codeaurora.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Neeraj Soni <neersoni@codeaurora.org>,
-        Barani Muthukumaran <bmuthuku@codeaurora.org>,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        kuohong.wang@mediatek.com, gray.jia@mediatek.com,
-        StanleyChu <stanley.chu@mediatek.com>
-Subject: Re: [PATCH 0/8] eMMC inline encryption support
-Message-ID: <X9uhVj080rvyhAVl@sol.localdomain>
-References: <20201112194011.103774-1-ebiggers@kernel.org>
- <X7gQ9Y44iIgkiM64@sol.localdomain>
- <ea904bcc-3f01-d968-2a16-f9ff9f012968@intel.com>
- <X7gcsC6IS80sUy4K@sol.localdomain>
- <9010afea-1075-8f72-99c7-c471840685db@intel.com>
- <X7xpbJf4gDcFdEc/@sol.localdomain>
- <1606294991.31568.5.camel@mtkswgap22>
- <1608196892.11508.0.camel@mbjsdccf07>
+        Peter Geis <pgwipeout@gmail.com>,
+        Nicolas Chauvet <kwizart@gmail.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Kevin Hilman <khilman@kernel.org>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>
+Cc:     devel@driverdev.osuosl.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-media@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-clk@vger.kernel.org
+References: <20201217180638.22748-1-digetx@gmail.com>
+ <20201217180638.22748-35-digetx@gmail.com>
+From:   Mikko Perttunen <cyndis@kapsi.fi>
+Message-ID: <cb8dca7c-6ef2-5116-6c04-816a63525e2e@kapsi.fi>
+Date:   Thu, 17 Dec 2020 20:21:23 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1608196892.11508.0.camel@mbjsdccf07>
+In-Reply-To: <20201217180638.22748-35-digetx@gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 84.249.134.236
+X-SA-Exim-Mail-From: cyndis@kapsi.fi
+X-SA-Exim-Scanned: No (on mail.kapsi.fi); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 17, 2020 at 05:21:32PM +0800, Peng.Zhou wrote:
+On 12/17/20 8:06 PM, Dmitry Osipenko wrote:
+> Add suspend/resume and generic power domain support to the Host1x driver.
+> This is required for enabling system-wide DVFS and supporting dynamic
+> power management using a generic power domain.
 > 
-> On Wed, 2020-11-25 at 17:03 +0800, Stanley Chu wrote:
-> > Hi Eric,
-> > 
-> > On Mon, 2020-11-23 at 18:01 -0800, Eric Biggers wrote:
-> > > Hi Adrian,
-> > > 
-> > > On Mon, Nov 23, 2020 at 09:04:12AM +0200, Adrian Hunter wrote:
-> > > > On 20/11/20 9:44 pm, Eric Biggers wrote:
-> > > > > Hi Adrian,
-> > > > > 
-> > > > > On Fri, Nov 20, 2020 at 09:29:59PM +0200, Adrian Hunter wrote:
-> > > > >> I haven't had a chance to look at it properly, but I do have a couple of
-> > > > >> dumb questions.  How do you ensure the host controller is not runtime
-> > > > >> suspended when the key is programmed?
-> > > > > 
-> > > > > This is handled by the block layer, in block/keyslot-manager.c.  It ensures that
-> > > > > the device is resumed before calling blk_ksm_ll_ops::keyslot_program() or
-> > > > > blk_ksm_ll_ops::keyslot_evict().  See blk_ksm_hw_enter().
-> > > > 
-> > > > Cool, although cqhci is doing a lazy kind of resume, so maybe not be enabled
-> > > > when a key is programmed?  Would that be a problem?
-> > > > 
-> > > > > 
-> > > > >> Are the keys lost when the host controller is reset, and then how do you know
-> > > > >> the host controller does not get reset after the key is programmed but before
-> > > > >> the I/O is submitted?
-> > > > > 
-> > > > > As with UFS, keys might be lost when the host controller is reset, so we're
-> > > > > reprogramming all the keys when that happens.  See patch 1:
-> > > > > 
-> > > > >     mmc_set_initial_state()
-> > > > >         mmc_crypto_set_initial_state()
-> > > > >             blk_ksm_reprogram_all_keys()
-> > > > > 
-> > > > > (That's the intent, at least.  For MMC, I'm not sure if resets were properly
-> > > > > covered by the testing I've done so far.  But the code looks right to me.)
-> > > > 
-> > > > After reset, cqhci will not necessarily be enabled at this point.  Is that OK?
-> > > 
-> > > The hardware that I have (sdm630) appears to allow programming and evicting keys
-> > > even while CQHCI_CFG.CQHCI_ENABLE is clear, i.e. even when the CQE is "off".
-> > > I tested it using the patch below.
-> > > 
-> > > The eMMC specification isn't clear about this point.  But I'm thinking that the
-> > > crypto configuration registers (the keyslots) are probably supposed to work like
-> > > most of the other CQHCI registers, which can be written to while CQHCI_ENABLE is
-> > > clear.  Then setting CQHCI_ENABLE just enables the ability to actually issue
-> > > requests.  Likewise, setting CQHCI_CRYPTO_GENERAL_ENABLE just allows using
-> > > crypto in requests; it isn't needed to write to the crypto configurations.
-> > > 
-> > > For what it's worth, UFS crypto (which has been supported by upstream since
-> > > v5.9) works similarly.  Keys can be programmed while the UFS host is powered on,
-> > > even before it's "enabled".
-> > > 
-> > > But maybe someone interpreted the eMMC specification differently.  Hopefully
-> > > Mediatek can give some insight into how they implemented it, and test this
-> > > patchset on their hardware too.
-> > 
-> > MediaTek CQHCI also works in this way.
-> > 
-> > Complete test is on-going now and we will update the results as soon as
-> > possible.
-> > 
-> > Thanks,
-> > Stanley Chu
-> > 
-> > > 
-> > > Here's the patch I used to verify that sdm630 allows programming and evicting
-> > > keys even while the CQE is off:
-> > > 
-> > > diff --git a/drivers/mmc/core/block.c b/drivers/mmc/core/block.c
-> > > index eaf2f1074326..eb2d88d0b3ba 100644
-> > > --- a/drivers/mmc/core/block.c
-> > > +++ b/drivers/mmc/core/block.c
-> > > @@ -1406,6 +1406,9 @@ static void mmc_blk_cqe_complete_rq(struct mmc_queue *mq, struct request *req)
-> > >  
-> > >  	mmc_cqe_check_busy(mq);
-> > >  
-> > > +	if (mmc_tot_in_flight(mq) == 0 && host->cqe_on)
-> > > +		host->cqe_ops->cqe_off(host);
-> > > +
-> > >  	spin_unlock_irqrestore(&mq->lock, flags);
-> > >  
-> > >  	if (!mq->cqe_busy)
-> > > diff --git a/drivers/mmc/host/sdhci-msm.c b/drivers/mmc/host/sdhci-msm.c
-> > > index 6ce21414d510..70d8dbc6515f 100644
-> > > --- a/drivers/mmc/host/sdhci-msm.c
-> > > +++ b/drivers/mmc/host/sdhci-msm.c
-> > > @@ -1971,6 +1971,12 @@ static int sdhci_msm_program_key(struct cqhci_host *cq_host,
-> > >  	int i;
-> > >  	int err;
-> > >  
-> > > +	if (!cq_host->mmc->cqe_on) {
-> > > +		pr_info("@@@ cqe is off for %s slot %d\n",
-> > > +			(cfg->config_enable & CQHCI_CRYPTO_CONFIGURATION_ENABLE) ?
-> > > +			"program" : "evict", slot);
-> > > +	}
-> > > +
-> > >  	if (!(cfg->config_enable & CQHCI_CRYPTO_CONFIGURATION_ENABLE))
-> > >  		return qcom_scm_ice_invalidate_key(slot);
-> > 
-> > 
+> Tested-by: Peter Geis <pgwipeout@gmail.com>
+> Tested-by: Nicolas Chauvet <kwizart@gmail.com>
+> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+> ---
+>   drivers/gpu/host1x/dev.c | 102 ++++++++++++++++++++++++++++++++++-----
+>   1 file changed, 91 insertions(+), 11 deletions(-)
 > 
-> Hi Eric,
-> 
-> I also have a question about reprogramming keys scenarios, if some SoC
-> vensors' eMMC host will power down or something else like that keys will
-> be lost after runtime suspend, that means we must do reprogramming keys
-> in runtime resume, right? Do you think that we should add it in
-> cqhci-core layer(such as __cqhci_enable()) or every SoC vendor's host
-> driver resume path?
-> 
+> diff --git a/drivers/gpu/host1x/dev.c b/drivers/gpu/host1x/dev.c
+> index d0ebb70e2fdd..c1525cffe7b1 100644
+> --- a/drivers/gpu/host1x/dev.c
+> +++ b/drivers/gpu/host1x/dev.c
+> @@ -12,6 +12,7 @@
+>   #include <linux/module.h>
+>   #include <linux/of_device.h>
+>   #include <linux/of.h>
+> +#include <linux/pm_runtime.h>
+>   #include <linux/slab.h>
+>   
+>   #define CREATE_TRACE_POINTS
+> @@ -417,7 +418,7 @@ static int host1x_probe(struct platform_device *pdev)
+>   		return err;
+>   	}
+>   
+> -	host->rst = devm_reset_control_get(&pdev->dev, "host1x");
+> +	host->rst = devm_reset_control_get_exclusive_released(&pdev->dev, "host1x");
+>   	if (IS_ERR(host->rst)) {
+>   		err = PTR_ERR(host->rst);
+>   		dev_err(&pdev->dev, "failed to get reset: %d\n", err);
+> @@ -437,16 +438,15 @@ static int host1x_probe(struct platform_device *pdev)
+>   		goto iommu_exit;
+>   	}
+>   
+> -	err = clk_prepare_enable(host->clk);
+> -	if (err < 0) {
+> -		dev_err(&pdev->dev, "failed to enable clock\n");
+> -		goto free_channels;
+> -	}
+> +	pm_runtime_enable(&pdev->dev);
+> +	err = pm_runtime_get_sync(&pdev->dev);
+> +	if (err < 0)
+> +		goto rpm_disable;
+>   
+>   	err = reset_control_deassert(host->rst);
+>   	if (err < 0) {
+>   		dev_err(&pdev->dev, "failed to deassert reset: %d\n", err);
+> -		goto unprepare_disable;
+> +		goto rpm_disable;
+>   	}
+>   
+>   	err = host1x_syncpt_init(host);
+> @@ -485,9 +485,10 @@ static int host1x_probe(struct platform_device *pdev)
+>   	host1x_syncpt_deinit(host);
+>   reset_assert:
+>   	reset_control_assert(host->rst);
+> -unprepare_disable:
+> -	clk_disable_unprepare(host->clk);
+> -free_channels:
+> +rpm_disable:
+> +	pm_runtime_put(&pdev->dev);
+> +	pm_runtime_disable(&pdev->dev);
+> +
+>   	host1x_channel_list_free(&host->channel_list);
+>   iommu_exit:
+>   	host1x_iommu_exit(host);
+> @@ -504,16 +505,95 @@ static int host1x_remove(struct platform_device *pdev)
+>   	host1x_intr_deinit(host);
+>   	host1x_syncpt_deinit(host);
+>   	reset_control_assert(host->rst);
+> -	clk_disable_unprepare(host->clk);
+> +	pm_runtime_put(&pdev->dev);
+> +	pm_runtime_disable(&pdev->dev);
+>   	host1x_iommu_exit(host);
+>   
+>   	return 0;
+>   }
+>   
+> +static int __maybe_unused host1x_runtime_suspend(struct device *dev)
+> +{
+> +	struct host1x *host = dev_get_drvdata(dev);
+> +
+> +	clk_disable_unprepare(host->clk);
+> +	reset_control_release(host->rst);
+> +
+> +	return 0;
+> +}
+> +
+> +static int __maybe_unused host1x_runtime_resume(struct device *dev)
+> +{
+> +	struct host1x *host = dev_get_drvdata(dev);
+> +	int err;
+> +
+> +	err = reset_control_acquire(host->rst);
+> +	if (err) {
+> +		dev_err(dev, "failed to acquire reset: %d\n", err);
+> +		return err;
+> +	}
+> +
+> +	err = clk_prepare_enable(host->clk);
+> +	if (err) {
+> +		dev_err(dev, "failed to enable clock: %d\n", err);
+> +		goto release_reset;
+> +	}
+> +
+> +	return 0;
+> +
+> +release_reset:
+> +	reset_control_release(host->rst);
+> +
+> +	return err;
+> +}
+> +
+> +static __maybe_unused int host1x_suspend(struct device *dev)
+> +{
+> +	struct host1x *host = dev_get_drvdata(dev);
+> +	int err;
+> +
+> +	host1x_syncpt_save(host);
+> +
+> +	err = pm_runtime_force_suspend(dev);
+> +	if (err < 0)
+> +		return err;
+> +
+> +	return 0;
+> +}
+> +
+> +static __maybe_unused int host1x_resume(struct device *dev)
+> +{
+> +	struct host1x *host = dev_get_drvdata(dev);
+> +	struct host1x_channel *channel;
+> +	unsigned int index;
+> +	int err;
+> +
+> +	err = pm_runtime_force_resume(dev);
+> +	if (err < 0)
+> +		return err;
+> +
+> +	host1x_syncpt_restore(host);
 
-The keys should only be lost on reset, not on runtime suspend.  So I believe the
-code I've proposed is sufficient.
+We also need to execute 'host1x_setup_sid_table' upon resume.
 
-- Eric
+cheers,
+Mikko
+
+> +
+> +	for_each_set_bit(index, host->channel_list.allocated_channels,
+> +			 host->info->nb_channels) {
+> +		channel = &host->channel_list.channels[index];
+> +		host1x_hw_channel_init(host, channel, channel->id);
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct dev_pm_ops host1x_pm = {
+> +	SET_RUNTIME_PM_OPS(host1x_runtime_suspend, host1x_runtime_resume,
+> +			   NULL)
+> +	SET_SYSTEM_SLEEP_PM_OPS(host1x_suspend, host1x_resume)
+> +};
+> +
+>   static struct platform_driver tegra_host1x_driver = {
+>   	.driver = {
+>   		.name = "tegra-host1x",
+>   		.of_match_table = host1x_of_match,
+> +		.pm = &host1x_pm,
+>   	},
+>   	.probe = host1x_probe,
+>   	.remove = host1x_remove,
+> 
