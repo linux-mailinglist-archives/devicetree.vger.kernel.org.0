@@ -2,124 +2,428 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 276322DDA0F
-	for <lists+devicetree@lfdr.de>; Thu, 17 Dec 2020 21:31:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 48C482DDA5C
+	for <lists+devicetree@lfdr.de>; Thu, 17 Dec 2020 21:53:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731492AbgLQUaA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Dec 2020 15:30:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35532 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731562AbgLQU3k (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Dec 2020 15:29:40 -0500
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F309C0617B0;
-        Thu, 17 Dec 2020 12:29:00 -0800 (PST)
-Received: by mail-lf1-x132.google.com with SMTP id o13so37812151lfr.3;
-        Thu, 17 Dec 2020 12:29:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=GKljy0FefLQb5prsvrnmqmrfVAtuVTCWN2SoJppsiGI=;
-        b=VYw3hMep39JaWr4RwvGdOrkGOk9i1d6L30sa3pEZc7Jv57OKRk5xzJobClTKgPsGz4
-         Ux2rqCf61N62ecUxjuf+FhwgZuq6/I5KHRjnZ7diKnsWDfTW/SukvhsBUZlxuHES2tBx
-         KA6mi1x/TTsvr79mP2iIAy6rt5BtlZov6lwj0Q/GroxAz5jbgQjbT6zgJMSIwELBKf2g
-         /n0gYoohxBFjsnmUc/HOVz4oKc+nh6akNPzNKQgP+4u5qyrHWzuQTI0sEJ5e7lGr1KM4
-         Iv71/evpjH/o4eVLGPr6hFsFvEMIGycEsSNOAE3yZWz2nbBq0cBhHetzYDI877dr1BgC
-         x8Bw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=GKljy0FefLQb5prsvrnmqmrfVAtuVTCWN2SoJppsiGI=;
-        b=bK8dPBLTb8IUT9lE59gABev/dSI8K0ab6YMycEYDMtItFYXtyulsgW38kChZ0tM+yr
-         dpUrB+atiAuncAV+FgSUUIacOupUShfMRMAkDtyQIOyqA6OGStnOeq+aBxi3pJrAVx9q
-         2oGHDl5aQ0iFWW466oRcSDSwbJa8cAC20wBkws5OM+vJGHRTYLFgNZPKxGHNvsjPic3X
-         VZglFVDmvfqoscAiCGMmKbR7C9GbroR1kFW5ZLBwgxvltXhHqsqivdZ4UqRjsmyXKgxn
-         d7KSoCwAx7C+kgb1EaXnMCgymGtHLLL/bhALeEcBZ7stWlSPy9IG3Sw5bE0BiwtDvvHi
-         TjUg==
-X-Gm-Message-State: AOAM533dLwv83/AkseijTMyZjQDvZDvYlL8gBy2S47e2BmoYYjtDje/j
-        bzYr2LuNxgbRDd7LKIXVZon2RPHAna0=
-X-Google-Smtp-Source: ABdhPJyk0uEwMqjubAd1x7PylZGa1gcruRNAfNVBuufl026RTe1WSf8KkEES9wW9uq7xDnyQwzJAbA==
-X-Received: by 2002:a05:651c:101:: with SMTP id a1mr421137ljb.277.1608236938516;
-        Thu, 17 Dec 2020 12:28:58 -0800 (PST)
-Received: from [192.168.2.145] (109-252-192-57.dynamic.spd-mgts.ru. [109.252.192.57])
-        by smtp.googlemail.com with ESMTPSA id z26sm781859ljn.98.2020.12.17.12.28.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 17 Dec 2020 12:28:57 -0800 (PST)
-Subject: Re: [PATCH v2 47/48] ARM: tegra: ventana: Support CPU voltage scaling
- and thermal throttling
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Nicolas Chauvet <kwizart@gmail.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Kevin Hilman <khilman@kernel.org>,
-        Peter De Schrijver <pdeschrijver@nvidia.com>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>
-Cc:     devel@driverdev.osuosl.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-media@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-clk@vger.kernel.org
-References: <20201217180638.22748-1-digetx@gmail.com>
- <20201217180638.22748-48-digetx@gmail.com>
- <91139f8b-0b83-dd8a-ba53-8e7a499e6344@linaro.org>
- <b39ebfc1-42b3-1fa7-efe4-6ecbc8cfcb50@gmail.com>
- <776e0e84-e395-2bfb-f1ee-c34864b1cf16@linaro.org>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <ce603c74-3a20-7331-36a7-d7bc43ce36b6@gmail.com>
-Date:   Thu, 17 Dec 2020 23:28:56 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.4.2
+        id S1731350AbgLQUxQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Dec 2020 15:53:16 -0500
+Received: from linux.microsoft.com ([13.77.154.182]:53250 "EHLO
+        linux.microsoft.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726595AbgLQUxQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Dec 2020 15:53:16 -0500
+Received: from [192.168.0.104] (c-73-42-176-67.hsd1.wa.comcast.net [73.42.176.67])
+        by linux.microsoft.com (Postfix) with ESMTPSA id 65D6E20B717A;
+        Thu, 17 Dec 2020 12:52:33 -0800 (PST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 65D6E20B717A
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+        s=default; t=1608238354;
+        bh=UEEhWbtCMd5Hh7iHOVvNopyKXuFawGZ4CPCIryBQP0M=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=ojA6BgY1tZFTuTe5Nn9dcDQ1O25RDFa8tG89oBT9fobnecSzD12K5pGjPYry2mGqF
+         0XFAbwGM48e/2yo1XaJzNiqc3CoY9z0BIpKVK8gdRhMalda+MMtkCom83WrdIh5RCd
+         Kl1bU0VbhYdxKvB2gVRlz/fyXUTKrfmp+6X7jG70=
+Subject: Re: [PATCH v12 2/4] powerpc: Move arch independent ima kexec
+ functions to drivers/of/kexec.c
+To:     Rob Herring <robh@kernel.org>
+Cc:     zohar@linux.ibm.com, bauerman@linux.ibm.com,
+        takahiro.akashi@linaro.org, gregkh@linuxfoundation.org,
+        will@kernel.org, catalin.marinas@arm.com, mpe@ellerman.id.au,
+        james.morse@arm.com, sashal@kernel.org, benh@kernel.crashing.org,
+        paulus@samba.org, frowand.list@gmail.com,
+        vincenzo.frascino@arm.com, mark.rutland@arm.com,
+        dmitry.kasatkin@gmail.com, jmorris@namei.org, serge@hallyn.com,
+        pasha.tatashin@soleen.com, allison@lohutok.net,
+        masahiroy@kernel.org, bhsharma@redhat.com, mbrugger@suse.com,
+        hsinyi@chromium.org, tao.li@vivo.com, christophe.leroy@c-s.fr,
+        prsriva@linux.microsoft.com, balajib@linux.microsoft.com,
+        linux-integrity@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+References: <20201217173708.6940-1-nramas@linux.microsoft.com>
+ <20201217173708.6940-3-nramas@linux.microsoft.com>
+ <20201217200510.GA105447@robh.at.kernel.org>
+From:   Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
+Message-ID: <0b17fbee-cfe9-8cb2-01d1-02b6a61a14f5@linux.microsoft.com>
+Date:   Thu, 17 Dec 2020 12:52:32 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <776e0e84-e395-2bfb-f1ee-c34864b1cf16@linaro.org>
-Content-Type: text/plain; charset=utf-8
+In-Reply-To: <20201217200510.GA105447@robh.at.kernel.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-17.12.2020 22:36, Daniel Lezcano пишет:
->>>> +					type = "critical";
->>>> +				};
->>>> +			};
->>>> +
->>>> +			cooling-maps {
->>>> +				map0 {
->>>> +					trip = <&trip0>;
->>>> +					cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
->>> You should add all CPUs here.
+On 12/17/20 12:05 PM, Rob Herring wrote:
+> On Thu, Dec 17, 2020 at 09:37:06AM -0800, Lakshmi Ramasubramanian wrote:
+>> The functions defined in "arch/powerpc/kexec/ima.c" handle setting up
+>> and freeing the resources required to carry over the IMA measurement
+>> list from the current kernel to the next kernel across kexec system call.
+>> These functions do not have architecture specific code, but are
+>> currently limited to powerpc.
 >>
->> All CPU cores are coupled on Tegra in regards to CPUFreq, hence I think
->> it won't make any difference if secondary CPU cores will be added here,
->> isn't it?
-> The explanation is in the description of commit ef4734500407ce4d
+>> Move setup_ima_buffer() call into of_kexec_setup_new_fdt().
+>>
+>> Move architecture independent functions from "arch/powerpc/kexec/ima.c"
+>> to "drivers/of/kexec.c". Delete "arch/powerpc/kexec/ima.c" and
+>> "arch/powerpc/include/asm/ima.h". Remove references to the deleted files
+>> in powerpc and in ima.
+>>
+>> delete_fdt_mem_rsv() defined in "arch/powerpc/kexec/file_load.c"
+>> is not used anymore. Remove this function.
+> 
+> I think this patch should come first and then patch 1. Move then rework
+> the code.
 
-I think that really only makes sense if CPU cores have independent clock
-rate management. IIRC, I actually made some research about this in the
-past and intentionally removed the secondary cores from the
-cooling-device since they didn't make any difference for a coupled CPU
-cores.
+Sure - will reorder the patches.
 
-That commit also says:
+> 
+>>
+>> Signed-off-by: Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
+>> ---
+>>   arch/powerpc/include/asm/ima.h     |  30 -----
+>>   arch/powerpc/include/asm/kexec.h   |   1 -
+>>   arch/powerpc/kexec/Makefile        |   7 -
+>>   arch/powerpc/kexec/file_load.c     |  39 ------
+>>   arch/powerpc/kexec/ima.c           | 182 --------------------------
+>>   drivers/of/kexec.c                 | 198 +++++++++++++++++++++++++++++
+>>   include/linux/of.h                 |  17 +++
+>>   security/integrity/ima/ima.h       |   4 -
+>>   security/integrity/ima/ima_kexec.c |   2 +
+>>   9 files changed, 217 insertions(+), 263 deletions(-)
+>>   delete mode 100644 arch/powerpc/include/asm/ima.h
+>>   delete mode 100644 arch/powerpc/kexec/ima.c
+>>
 
-"But as soon as this CPU ordering changes and any other CPU is used to
-bring up the cooling device, we will start seeing failures."
+>> diff --git a/drivers/of/kexec.c b/drivers/of/kexec.c
+>> index 66787be081fe..a6ab35f16dd2 100644
+>> --- a/drivers/of/kexec.c
+>> +++ b/drivers/of/kexec.c
+>> @@ -10,10 +10,12 @@
+>>    */
+>>   
+>>   #include <linux/kernel.h>
+>> +#include <linux/slab.h>
+>>   #include <linux/kexec.h>
+>>   #include <linux/libfdt.h>
+>>   #include <linux/of.h>
+>>   #include <linux/of_fdt.h>
+>> +#include <linux/memblock.h>
+>>   #include <linux/random.h>
+>>   #include <linux/types.h>
+>>   
+>> @@ -59,6 +61,141 @@ static int fdt_find_and_del_mem_rsv(void *fdt, unsigned long start, unsigned lon
+>>   	return -ENOENT;
+>>   }
+>>   
+>> +/**
+>> + * get_addr_size_cells - Get address and size of root node
+>> + *
+>> + * @addr_cells: Return address of the root node
+>> + * @size_cells: Return size of the root node
+>> + *
+>> + * Return: 0 on success, or negative errno on error.
+>> + */
+>> +static int get_addr_size_cells(int *addr_cells, int *size_cells)
+>> +{
+>> +	struct device_node *root;
+>> +
+>> +	root = of_find_node_by_path("/");
+>> +	if (!root)
+>> +		return -EINVAL;
+>> +
+>> +	*addr_cells = of_n_addr_cells(root);
+>> +	*size_cells = of_n_size_cells(root);
+>> +
+>> +	of_node_put(root);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +/**
+>> + * do_get_kexec_buffer - Get address and size of device tree property
+>> + *
+>> + * @prop: Device tree property
+>> + * @len: Size of @prop
+>> + * @addr: Return address of the node
+>> + * @size: Return size of the node
+>> + *
+>> + * Return: 0 on success, or negative errno on error.
+>> + */
+>> +static int do_get_kexec_buffer(const void *prop, int len, unsigned long *addr,
+>> +			       size_t *size)
+>> +{
+>> +	int ret, addr_cells, size_cells;
+>> +
+>> +	ret = get_addr_size_cells(&addr_cells, &size_cells);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	if (len < 4 * (addr_cells + size_cells))
+>> +		return -ENOENT;
+>> +
+>> +	*addr = of_read_number(prop, addr_cells);
+>> +	*size = of_read_number(prop + 4 * addr_cells, size_cells);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +/**
+>> + * ima_get_kexec_buffer - get IMA buffer from the previous kernel
+>> + * @addr:	On successful return, set to point to the buffer contents.
+>> + * @size:	On successful return, set to the buffer size.
+>> + *
+>> + * Return: 0 on success, negative errno on error.
+>> + */
+>> +int ima_get_kexec_buffer(void **addr, size_t *size)
+>> +{
+>> +	int ret, len;
+>> +	unsigned long tmp_addr;
+>> +	size_t tmp_size;
+>> +	const void *prop;
+>> +
+>> +	prop = of_get_property(of_chosen, "linux,ima-kexec-buffer", &len);
+>> +	if (!prop)
+>> +		return -ENOENT;
+>> +
+>> +	ret = do_get_kexec_buffer(prop, len, &tmp_addr, &tmp_size);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	*addr = __va(tmp_addr);
+>> +	*size = tmp_size;
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +/**
+>> + * ima_free_kexec_buffer - free memory used by the IMA buffer
+>> + */
+>> +int ima_free_kexec_buffer(void)
+>> +{
+>> +	int ret;
+>> +	unsigned long addr;
+>> +	size_t size;
+>> +	struct property *prop;
+>> +
+>> +	prop = of_find_property(of_chosen, "linux,ima-kexec-buffer", NULL);
+>> +	if (!prop)
+>> +		return -ENOENT;
+>> +
+>> +	ret = do_get_kexec_buffer(prop->value, prop->length, &addr, &size);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	ret = of_remove_property(of_chosen, prop);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	return memblock_free(addr, size);
+>> +}
+>> +
+>> +/**
+>> + * remove_ima_buffer - remove the IMA buffer property and reservation from @fdt
+>> + *
+>> + * @fdt: Flattened Device Tree to update
+>> + * @chosen_node: Offset to the chosen node in the device tree
+>> + *
+>> + * The IMA measurement buffer is of no use to a subsequent kernel, so we always
+>> + * remove it from the device tree.
+>> + */
+>> +void remove_ima_buffer(void *fdt, int chosen_node)
+> 
+> static
 
-I don't quite understand to what "failures" that commit referrers. I
-tried to change the cpu0 to cpu1 in the cooling-device and don't see any
-failures. Could you please clarify this?
+Will update.
 
-In general it should be fine to add all the cores to the cooling-device
-and I'll do it in v3, but I want to make it clear why this is needed.
+> 
+>> +{
+>> +	int ret, len;
+>> +	unsigned long addr;
+>> +	size_t size;
+>> +	const void *prop;
+>> +
+>> +	prop = fdt_getprop(fdt, chosen_node, "linux,ima-kexec-buffer", &len);
+>> +	if (!prop)
+>> +		return;
+>> +
+>> +	ret = do_get_kexec_buffer(prop, len, &addr, &size);
+>> +	fdt_delprop(fdt, chosen_node, "linux,ima-kexec-buffer");
+>> +	if (ret)
+>> +		return;
+>> +
+>> +	ret = fdt_find_and_del_mem_rsv(fdt, addr, size);
+>> +	if (!ret)
+>> +		pr_debug("Removed old IMA buffer reservation.\n");
+>> +}
+> 
+> All the above needs to be in an '#ifdef CONFIG_IMA_KEXEC'.
+
+remove_ima_buffer() needs to be defined when CONFIG_HAVE_IMA_KEXEC is 
+enabled. CONFIG_HAVE_IMA_KEXEC can be enabled even if CONFIG_IMA_KEXEC 
+is not.
+
+I'll move remove_ima_buffer() under "#ifdef CONFIG_HAVE_IMA_KEXEC" in 
+this file.
+
+> 
+>> +
+>>   /*
+>>    * of_kexec_setup_new_fdt - modify /chosen and memory reservation for the next kernel
+>>    *
+>> @@ -219,6 +356,10 @@ int of_kexec_setup_new_fdt(const struct kimage *image, void *fdt,
+>>   	}
+>>   
+>>   	ret = fdt_setprop(fdt, chosen_node, "linux,booted-from-kexec", NULL, 0);
+>> +	if (ret)
+>> +		goto out;
+>> +
+>> +	ret = setup_ima_buffer(image, fdt, fdt_path_offset(fdt, "/chosen"));
+>>   
+>>   out:
+>>   	if (ret)
+>> @@ -226,3 +367,60 @@ int of_kexec_setup_new_fdt(const struct kimage *image, void *fdt,
+>>   
+>>   	return 0;
+>>   }
+>> +
+>> +#ifdef CONFIG_IMA_KEXEC
+>> +/**
+>> + * arch_ima_add_kexec_buffer - do arch-specific steps to add the IMA buffer
+>> + *
+>> + * @image: kimage struct to set IMA buffer data
+>> + * @load_addr: Starting address where IMA buffer is loaded at
+>> + * @size: Number of bytes in the IMA buffer
+>> + *
+>> + * Architectures should use this function to pass on the IMA buffer
+>> + * information to the next kernel.
+>> + *
+>> + * Return: 0 on success, negative errno on error.
+>> + */
+>> +int arch_ima_add_kexec_buffer(struct kimage *image, unsigned long load_addr,
+>> +			      size_t size)
+> 
+> This should be a static inline in asm/kexec.h.
+
+arch_ima_add_kexec_buffer() is identical for powerpc and arm64.
+Would it be better to "static inline" this function in "of.h" instead of 
+duplicating it in "asm/kexec.h" for powerpc and arm64?
+
+> 
+>> +{
+>> +	image->arch.ima_buffer_addr = load_addr;
+>> +	image->arch.ima_buffer_size = size;
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +/**
+>> + * setup_ima_buffer - add IMA buffer information to the fdt
+>> + * @image:		kexec image being loaded.
+>> + * @fdt:		Flattened device tree for the next kernel.
+>> + * @chosen_node:	Offset to the chosen node.
+>> + *
+>> + * Return: 0 on success, or negative errno on error.
+>> + */
+>> +int setup_ima_buffer(const struct kimage *image, void *fdt, int chosen_node)
+> 
+> static
+Will update.
+
+> 
+>> +{
+>> +	int ret;
+>> +
+>> +	remove_ima_buffer(fdt, chosen_node);
+>> +	if (!image->arch.ima_buffer_size)
+>> +		return 0;
+>> +
+>> +	ret = fdt_appendprop_addrrange(fdt, 0, chosen_node,
+>> +				       "linux,ima-kexec-buffer",
+>> +				       image->arch.ima_buffer_addr,
+>> +				       image->arch.ima_buffer_size);
+>> +	if (ret)
+>> +		return (ret == -FDT_ERR_NOSPACE ? -ENOMEM : -EINVAL);
+>> +
+>> +	ret = fdt_add_mem_rsv(fdt, image->arch.ima_buffer_addr,
+>> +			      image->arch.ima_buffer_size);
+>> +	if (ret)
+>> +		return -EINVAL;
+>> +
+>> +	pr_debug("IMA buffer at 0x%llx, size = 0x%zx\n",
+>> +		 image->arch.ima_buffer_addr, image->arch.ima_buffer_size);
+>> +
+>> +	return 0;
+>> +}
+>> +#endif /* CONFIG_IMA_KEXEC */
+>> diff --git a/include/linux/of.h b/include/linux/of.h
+>> index 3375f5295875..7477f2266d8f 100644
+>> --- a/include/linux/of.h
+>> +++ b/include/linux/of.h
+>> @@ -562,6 +562,23 @@ struct kimage;
+>>   int of_kexec_setup_new_fdt(const struct kimage *image, void *fdt,
+>>   			   unsigned long initrd_load_addr, unsigned long initrd_len,
+>>   			   const char *cmdline);
+>> +int ima_get_kexec_buffer(void **addr, size_t *size);
+>> +int ima_free_kexec_buffer(void);
+>> +void remove_ima_buffer(void *fdt, int chosen_node);
+>> +
+>> +#ifdef CONFIG_IMA_KEXEC
+>> +int arch_ima_add_kexec_buffer(struct kimage *image,
+>> +			      unsigned long load_addr,
+>> +			      size_t size);
+>> +int setup_ima_buffer(const struct kimage *image, void *fdt, int chosen_node);
+> 
+> This doesn't need to be public.
+
+Will update.
+
+thanks,
+  -lakshmi
+
+> 
+>> +#else
+>> +static inline int setup_ima_buffer(const struct kimage *image, void *fdt,
+>> +				   int chosen_node)
+>> +{
+>> +	remove_ima_buffer(fdt, chosen_node);
+>> +	return 0;
+>> +}
+>> +#endif /* CONFIG_IMA_KEXEC */
+>>   
+>>   #else /* CONFIG_OF */
+>>   
+>> diff --git a/security/integrity/ima/ima.h b/security/integrity/ima/ima.h
+>> index 6ebefec616e4..7c3947ad3773 100644
+>> --- a/security/integrity/ima/ima.h
+>> +++ b/security/integrity/ima/ima.h
+>> @@ -24,10 +24,6 @@
+>>   
+>>   #include "../integrity.h"
+>>   
+>> -#ifdef CONFIG_HAVE_IMA_KEXEC
+>> -#include <asm/ima.h>
+>> -#endif
+>> -
+>>   enum ima_show_type { IMA_SHOW_BINARY, IMA_SHOW_BINARY_NO_FIELD_LEN,
+>>   		     IMA_SHOW_BINARY_OLD_STRING_FMT, IMA_SHOW_ASCII };
+>>   enum tpm_pcrs { TPM_PCR0 = 0, TPM_PCR8 = 8, TPM_PCR10 = 10 };
+>> diff --git a/security/integrity/ima/ima_kexec.c b/security/integrity/ima/ima_kexec.c
+>> index 121de3e04af2..3d6a8820e2a5 100644
+>> --- a/security/integrity/ima/ima_kexec.c
+>> +++ b/security/integrity/ima/ima_kexec.c
+>> @@ -9,7 +9,9 @@
+>>   
+>>   #include <linux/seq_file.h>
+>>   #include <linux/vmalloc.h>
+>> +#include <linux/of.h>
+>>   #include <linux/kexec.h>
+>> +#include <linux/ima.h>
+>>   #include "ima.h"
+>>   
+>>   #ifdef CONFIG_IMA_KEXEC
+>> -- 
+>> 2.29.2
+>>
+
