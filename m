@@ -2,120 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4AF832DD86A
-	for <lists+devicetree@lfdr.de>; Thu, 17 Dec 2020 19:34:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A9E172DD87C
+	for <lists+devicetree@lfdr.de>; Thu, 17 Dec 2020 19:36:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730049AbgLQSbz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Dec 2020 13:31:55 -0500
-Received: from linux.microsoft.com ([13.77.154.182]:58780 "EHLO
-        linux.microsoft.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728192AbgLQSbz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Dec 2020 13:31:55 -0500
-Received: from [192.168.0.104] (c-73-42-176-67.hsd1.wa.comcast.net [73.42.176.67])
-        by linux.microsoft.com (Postfix) with ESMTPSA id 6988320B717A;
-        Thu, 17 Dec 2020 10:31:13 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 6988320B717A
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-        s=default; t=1608229874;
-        bh=YSiVXMGoEHGFdNnt4HIQxoNVrYI8NUxKYoBfHNxuHls=;
-        h=Subject:From:To:Cc:References:Date:In-Reply-To:From;
-        b=WhSapRcRP+6uXtRUrVx5SKLGpWXj4OhOJpCZBFvU6jz7+CnDthAcQx4H0tJI3IODP
-         NpINjRzEg+J99ZaqK27LtX8HEYkmZcwzl0so0TvSjzJhhwjIuWX/eem1DQAxpLHyG0
-         eAE38urGp93Kb5arryMWwUQaFijDzaUM1H5sSP7M=
-Subject: Re: [PATCH v12 4/4] arm64: Add IMA log information in kimage used for
- kexec
-From:   Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
-To:     zohar@linux.ibm.com, bauerman@linux.ibm.com, robh@kernel.org,
-        takahiro.akashi@linaro.org, gregkh@linuxfoundation.org,
-        will@kernel.org, catalin.marinas@arm.com, mpe@ellerman.id.au
-Cc:     james.morse@arm.com, sashal@kernel.org, benh@kernel.crashing.org,
-        paulus@samba.org, frowand.list@gmail.com,
-        vincenzo.frascino@arm.com, mark.rutland@arm.com,
-        dmitry.kasatkin@gmail.com, jmorris@namei.org, serge@hallyn.com,
-        pasha.tatashin@soleen.com, allison@lohutok.net,
-        masahiroy@kernel.org, bhsharma@redhat.com, mbrugger@suse.com,
-        hsinyi@chromium.org, tao.li@vivo.com, christophe.leroy@c-s.fr,
-        prsriva@linux.microsoft.com, balajib@linux.microsoft.com,
-        linux-integrity@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-References: <20201217173708.6940-1-nramas@linux.microsoft.com>
- <20201217173708.6940-5-nramas@linux.microsoft.com>
-Message-ID: <01514c44-5cac-e2b8-6392-1cc31adb276c@linux.microsoft.com>
-Date:   Thu, 17 Dec 2020 10:31:13 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1730015AbgLQSe0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Dec 2020 13:34:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45992 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729986AbgLQSe0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Dec 2020 13:34:26 -0500
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1241C0617A7
+        for <devicetree@vger.kernel.org>; Thu, 17 Dec 2020 10:33:45 -0800 (PST)
+Received: by mail-lf1-x12c.google.com with SMTP id o19so34420673lfo.1
+        for <devicetree@vger.kernel.org>; Thu, 17 Dec 2020 10:33:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Foy2IH04nLZv6t+FNZrv84jPZYor6kJPDkEl5GeJUJY=;
+        b=nbrEfB3+iNOYepDbTysjMyobWTkH1FRZKRPcbm/4eVk5Dz/h1SXpyLxLHGC+MiyMGl
+         KRS3S9J839bzPJMpaQ0n0ggJBSW14iOv0CQGjcuguQwT74hrc5H6xdCDufCg0duogkbA
+         H6LA6vwAvdEAt+yZvq2L50bZ/8PuUTu7veUllV71y4awIRp3NYsCD8+4RbVVDgjL+wi7
+         gKoKgEmecXBTWyP0alOcej5jER1ivr/8L5iF25Tlsagsv6QDGsd4PV/DxTtnC8mgI0vr
+         BUmvJWKQmg16XF4SrQDE3U1jMBo/JdP4o+gW2CGvzQusXYTzjQomBwVNc0rmGQvsevuT
+         h4lA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Foy2IH04nLZv6t+FNZrv84jPZYor6kJPDkEl5GeJUJY=;
+        b=tMkS9DSdAPdCrlSP76aBEjhppRep2yZWG2R08m1fQnX4dyjgt07n2YQpTb9xh3RMga
+         3HqiS0k5Sh/OrE+4pWOETVuBgACxBGkmyp68U4a7UYNFozzziF+wzQKqD/daKUth2WsX
+         t089/hFvDoSoPp2Oz03TYraNPxeC5bCnDTJpFnAtWrb+ubBvTwrQ1sZLpeubQTt2vScN
+         7s+ho4hWMhCYlS0h+NkB7MJ0UD8ITChVaOeNv/LwWcRF4FgORkz2IXkfm+vY4UBYtoyk
+         kwKvYfxi64DhrngQscjAtONM1k7ppc+DUJWvzwXtmJ2FduC3AfSE5XkhP2sOSuILtbnh
+         r0PA==
+X-Gm-Message-State: AOAM530xYRsI9W5QIxrQiaRy8OhuAELqJM4JYTIBsLdu62eJzPCi2zK2
+        pv43tdJS4wppBk2lITtsYuDkSA==
+X-Google-Smtp-Source: ABdhPJyLoslUwYxWOYFGJgAjcPVuy7Ol5NU4Mb5KEg1vaqcDc2dgbRn5J4udCKFA4TO9CsiTQ1Tyqg==
+X-Received: by 2002:ac2:4211:: with SMTP id y17mr25788lfh.49.1608230024191;
+        Thu, 17 Dec 2020 10:33:44 -0800 (PST)
+Received: from eriador.lumag.spb.ru ([94.25.229.149])
+        by smtp.gmail.com with ESMTPSA id v5sm665824lfd.103.2020.12.17.10.33.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 17 Dec 2020 10:33:43 -0800 (PST)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Veerabhadrarao Badiganti <vbadigan@codeaurora.org>
+Subject: [PATCH] arm64: dts: qcom: qrb5165-rb5: fix uSD pins drive strength
+Date:   Thu, 17 Dec 2020 21:33:41 +0300
+Message-Id: <20201217183341.3186402-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-In-Reply-To: <20201217173708.6940-5-nramas@linux.microsoft.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/17/20 9:37 AM, Lakshmi Ramasubramanian wrote:
-> Address and size of the buffer containing the IMA measurement log need
-> to be passed from the current kernel to the next kernel on kexec.
-> 
+Lower drive strength for microSD data and CMD pins from 16 to 10. This
+fixes spurious card removal issues observed on some boards. Also this
+change allows us to re-enable 1.8V support, which seems to work with
+lowered drive strength.
 
-Typo in the email address of James Morse (ARM.com). Sorry about that.
-Adding the correct email address.
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Veerabhadrarao Badiganti <vbadigan@codeaurora.org>
+Fixes: 53a8ccf1c7e5 ("arm64: dts: qcom: rb5: Add support for uSD card")
+---
+ arch/arm64/boot/dts/qcom/qrb5165-rb5.dts | 6 ++----
+ 1 file changed, 2 insertions(+), 4 deletions(-)
 
-  -lakshmi
-
-> Any existing "linux,ima-kexec-buffer" property in the device tree
-> needs to be removed and its corresponding memory reservation in
-> the currently running kernel needs to be freed. The address and
-> size of the current kernel's IMA measurement log need to be added
-> to the device tree's IMA kexec buffer node and memory for the buffer
-> needs to be reserved for the log to be carried over to the next kernel
-> on the kexec call.
-> 
-> Add address and size fields to "struct kimage_arch" for ARM64 platform
-> to hold the address and size of the IMA measurement log buffer. Remove
-> any existing "linux,ima-kexec-buffer" property in the device tree and
-> free the corresponding memory reservation in the currently running
-> kernel. Add "linux,ima-kexec-buffer" property to the device tree and
-> reserve the memory for storing the IMA log that needs to be passed from
-> the current kernel to the next one.
-> 
-> Update CONFIG_KEXEC_FILE to select CONFIG_HAVE_IMA_KEXEC to indicate
-> that the IMA measurement log information is present in the device tree
-> for ARM64.
-> 
-> Signed-off-by: Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
-> ---
->   arch/arm64/Kconfig             | 1 +
->   arch/arm64/include/asm/kexec.h | 5 +++++
->   2 files changed, 6 insertions(+)
-> 
-> diff --git a/arch/arm64/Kconfig b/arch/arm64/Kconfig
-> index 1d466addb078..c85d18b1f2fd 100644
-> --- a/arch/arm64/Kconfig
-> +++ b/arch/arm64/Kconfig
-> @@ -1094,6 +1094,7 @@ config KEXEC
->   config KEXEC_FILE
->   	bool "kexec file based system call"
->   	select KEXEC_CORE
-> +	select HAVE_IMA_KEXEC
->   	help
->   	  This is new version of kexec system call. This system call is
->   	  file based and takes file descriptors as system call argument
-> diff --git a/arch/arm64/include/asm/kexec.h b/arch/arm64/include/asm/kexec.h
-> index d24b527e8c00..2bd19ccb6c43 100644
-> --- a/arch/arm64/include/asm/kexec.h
-> +++ b/arch/arm64/include/asm/kexec.h
-> @@ -100,6 +100,11 @@ struct kimage_arch {
->   	void *elf_headers;
->   	unsigned long elf_headers_mem;
->   	unsigned long elf_headers_sz;
-> +
-> +#ifdef CONFIG_IMA_KEXEC
-> +	phys_addr_t ima_buffer_addr;
-> +	size_t ima_buffer_size;
-> +#endif
->   };
->   
->   extern const struct kexec_file_ops kexec_image_ops;
-> 
+diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+index f3da4b0a63bc..3cb3914b8305 100644
+--- a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
++++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+@@ -1081,8 +1081,6 @@ &sdhc_2 {
+ 	vqmmc-supply = <&vreg_l6c_2p96>;
+ 	cd-gpios = <&tlmm 77 GPIO_ACTIVE_LOW>;
+ 	bus-width = <4>;
+-	/* there seem to be issues with HS400-1.8V mode, so disable it */
+-	no-1-8-v;
+ 	no-sdio;
+ 	no-emmc;
+ };
+@@ -1382,13 +1380,13 @@ clk {
+ 		cmd {
+ 			pins = "sdc2_cmd";
+ 			bias-pull-up;
+-			drive-strength = <16>;
++			drive-strength = <10>;
+ 		};
+ 
+ 		data {
+ 			pins = "sdc2_data";
+ 			bias-pull-up;
+-			drive-strength = <16>;
++			drive-strength = <10>;
+ 		};
+ 	};
+ 
+-- 
+2.29.2
 
