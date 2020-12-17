@@ -2,124 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 868872DD543
-	for <lists+devicetree@lfdr.de>; Thu, 17 Dec 2020 17:31:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 27EF62DD5B1
+	for <lists+devicetree@lfdr.de>; Thu, 17 Dec 2020 18:08:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728081AbgLQQbe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Dec 2020 11:31:34 -0500
-Received: from wout4-smtp.messagingengine.com ([64.147.123.20]:47733 "EHLO
-        wout4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1727877AbgLQQbe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 17 Dec 2020 11:31:34 -0500
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailout.west.internal (Postfix) with ESMTP id A0340C8B;
-        Thu, 17 Dec 2020 11:30:47 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute6.internal (MEProxy); Thu, 17 Dec 2020 11:30:48 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:content-transfer-encoding:in-reply-to; s=fm1; bh=R
-        wyjTIzzAC7fG3iGATSvz2APR89Rfjp6vFhip3R2HAQ=; b=J4gbKnhJ3qSlXon0p
-        +auxGXnffCdAwB2fr1UXm1Y4fJIWmt81pu3hYOjaNoF3Zof9HYV+JCvd3WgIfBeN
-        Kp4LIY22vlIgzWGATWJaZ50WLP1OT2dOKwDNYIWMMHzk+ZPsBy3r0A1YRDV+5DJG
-        B6uTr8cDyLZevcvYE7j1HdlUbK5U7NKpSBu+XXPSNqBTLEKRftMkSPovk3KlHk5e
-        5w03p9qg5PIHN+zM6MwXehxijq+e+2e4nt6L7TJZAUl/IbtdtXCemANdSGbW4I3x
-        LCF+XIx4BA+Cmb+b5VK+o3yHDzcrLIOEmEZO7QiYFrn734Y/rRJqN85/XOfktO/5
-        DjgKw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:content-type
-        :date:from:in-reply-to:message-id:mime-version:references
-        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm1; bh=RwyjTIzzAC7fG3iGATSvz2APR89Rfjp6vFhip3R2H
-        AQ=; b=hz7WYXjD5hNRV7M3A4Zsh2V0+qQwqtF2cfl2THISTB7fM4E2XijiSqR2J
-        hiCch84xHZ+RDetoaQMNzRJzpxRGA9JA1/BG+mhn2QhV3yVep50Uiw6NAs5gBy3v
-        eck6OLzuv55WZrmwWm9f94ASWITBZDlXQtxZq53nhzlAWJzkFJgiGHKr6PqmzrEb
-        grJLCjcIh8sJBjfG5d998IIoBrE9wqgfGmZMpeqIfU6lL/ExhV8etiFD4Ko+4ZLM
-        AjG0NAa8twwFZe3zOHwBkec2BtUpwpyR6tA4+JYME19BnLRsEHuLXn5TRqi2nF3Z
-        Nj0JvmMf1oCgDMq++PhXeOK9bGRBw==
-X-ME-Sender: <xms:tofbX5oAbaqQKRxZpHoqOwtFNLRvAzjGqlJk8avfAIp-nZ_N-PXNBQ>
-    <xme:tofbX7q54eAZ0UhvY0rRQ1DQHtPTNOMYyLuEDcpiV7KLDOGm19qY7CSTQAXzgLa_l
-    Mee_XhW2LZzVlLtWio>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrudelgedgkeeiucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvffukfhfgggtugfgjgesthhqredttddtvdenucfhrhhomhepofgrgihi
-    mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
-    htthgvrhhnpefgjeettdejgffgffdvteeutdehtdehgeehueetkeefgefhtdetjeekledu
-    gedvudenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedtne
-    curfgrrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:tofbX2OI0Qegx4Ax3WplXQ2HvKuKIsvyPkSJ-rzZSD79TXFdbefU7A>
-    <xmx:tofbX05w525RD7apY4qht2SNfmPbSXv4Ri2Pml_x5E7K75sTjm96SQ>
-    <xmx:tofbX46pnI85H8DhKHFFmWAb4c_XkHuXdLCDMaNi5L2FoJp3rEM2HA>
-    <xmx:t4fbX2k4MLnaulKacFBoSZvDcd6M2QKwSNra5dDpaS7NKoiM_nPduA>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 2F1631080057;
-        Thu, 17 Dec 2020 11:30:46 -0500 (EST)
-Date:   Thu, 17 Dec 2020 17:30:45 +0100
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Paul Kocialkowski <contact@paulk.fr>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>
-Subject: Re: [PATCH] ARM: dts: sun8i-v3s: Add PWM controller and pins
- definitions
-Message-ID: <20201217163045.i5o5sb4pls4gn52g@gilmour>
-References: <20201217112031.2243683-1-contact@paulk.fr>
+        id S1728950AbgLQRHd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Dec 2020 12:07:33 -0500
+Received: from mail.kernel.org ([198.145.29.99]:35646 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727368AbgLQRHd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 17 Dec 2020 12:07:33 -0500
+Date:   Thu, 17 Dec 2020 09:06:51 -0800
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1608224812;
+        bh=JCgs6Gbs/ppNLtmihKsU7u8Ehtj1qIyP3rFDBAXBx54=;
+        h=From:To:Cc:Subject:In-Reply-To:References:From;
+        b=rdWG7XtYC2PM50mhm0SpxcNAJs2LPfnM4y9f5Rt7Yq5RZFZGcwMcxjCAYWAvN0oot
+         Hp06QoTV+L/0jeGpUTUuitDcrmLffUiiIjc7MSkBnNmiXZ0Rn27pK/ij/Z8HT91OkV
+         0nRxcqgJvDP04e7uW3H7WCmc8SNnP8w3gcyFOa1zySWTzNt7vJ1UB655OVAzofVDup
+         ReSnGqq2H/AUIe8pOid3b16CCCnIpQuS9G0EZJzV3Av88hwvgQ5HkppmR75JFyCZ6r
+         OnqRmFnfs0l948811405P8A8/0ntJR02zVWE++8sSRkhkPVy+QgdFX1dK7c2uXtIpa
+         FhGMl6Pt93ArQ==
+From:   Jakub Kicinski <kuba@kernel.org>
+To:     Lukasz Stelmach <l.stelmach@samsung.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>, jim.cromie@gmail.com,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Kukjin Kim <kgene@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org,
+        =?UTF-8?B?QmFydMWCb21pZWogxbtvbG5pZXJr?= =?UTF-8?B?aWV3aWN6?= 
+        <b.zolnierkie@samsung.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>
+Subject: Re: [PATCH v8 3/3] net: ax88796c: ASIX AX88796C SPI Ethernet
+ Adapter Driver
+Message-ID: <20201217090651.0912a035@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+In-Reply-To: <dleftjv9d07iz2.fsf%l.stelmach@samsung.com>
+References: <20201216081300.3477c3fb@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+        <CGME20201217114714eucas1p1aea2208877de2a39feb692fe795e6d3e@eucas1p1.samsung.com>
+        <dleftjv9d07iz2.fsf%l.stelmach@samsung.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20201217112031.2243683-1-contact@paulk.fr>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Thu, 17 Dec 2020 12:46:57 +0100 Lukasz Stelmach wrote:
+> > to the correct values so the stack pre-allocates the needed spaces,
+> > when it can.  
+> 
+> Yes, I fonud these. However, I am not sure setting needed_tailroom has
+> any effect. In many places where alloc_skb() is called needed_headrom
+> and hard_header_len are refered to via the LL_RESERVED_SPACE macro. But
+> the macro does not refer to needed_tailroom. Once (f5184d267c1a ("net:
+> Allow netdevices to specify needed head/tailroom") there was
+> LL_ALLOCATED_SPACE macro, but but it was removed in 56c978f1da1f ("net:
+> Remove LL_ALLOCATED_SPACE"). And now only some protocols refer to
+> needet_tailroom.
 
-On Thu, Dec 17, 2020 at 12:20:31PM +0100, Paul Kocialkowski wrote:
-> This introduces definitions for the PWM controller found in the V3s,
-> as well as associated pins. This fashion of the controller has two PWM
-> outputs and is register-compatible with the A20.
->=20
-> Both PWM outputs were tested on a Lichee Pi Zero with a simple
-> transistor-LED setup.
->=20
-> Signed-off-by: Paul Kocialkowski <contact@paulk.fr>
-> ---
->  arch/arm/boot/dts/sun8i-v3s.dtsi | 18 ++++++++++++++++++
->  1 file changed, 18 insertions(+)
->=20
-> diff --git a/arch/arm/boot/dts/sun8i-v3s.dtsi b/arch/arm/boot/dts/sun8i-v=
-3s.dtsi
-> index a9f5795d4e57..34a4e638c762 100644
-> --- a/arch/arm/boot/dts/sun8i-v3s.dtsi
-> +++ b/arch/arm/boot/dts/sun8i-v3s.dtsi
-> @@ -398,6 +398,16 @@ spi0_pins: spi0-pins {
->  				pins =3D "PC0", "PC1", "PC2", "PC3";
->  				function =3D "spi0";
->  			};
-> +
-> +			pwm0_pin: pwm0-pin {
-> +				pins =3D "PB4";
-> +				function =3D "pwm0";
-> +			};
-> +
-> +			pwm1_pin: pwm1-pin {
-> +				pins =3D "PB5";
-> +				function =3D "pwm1";
-> +			};
->  		};
-> =20
->  		timer@1c20c00 {
-> @@ -416,6 +426,14 @@ wdt0: watchdog@1c20ca0 {
->  			clocks =3D <&osc24M>;
->  		};
-> =20
-> +		pwm: pwm@1c21400 {
-> +			compatible =3D "allwinner,sun7i-a20-pwm";
+Yeah, tailroom is used a lot less often. Only really crappy HW requires
+it.
 
-We should have a (documented) v3s compatible there along with the A20
+> BTW. What is hard_header_len for? Is it the length of the link layer
+> header? Considering "my" hardware requires some headers with each
+> packet, I find hard_headr_len name a bit confusing.
 
-Thanks!
-Maxime
+Yup, L2 headers, not hardware. Not sure why "hard" was chosen, that must
+have happened way back.
