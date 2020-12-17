@@ -2,83 +2,215 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 992A32DD954
-	for <lists+devicetree@lfdr.de>; Thu, 17 Dec 2020 20:29:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B7432DD96A
+	for <lists+devicetree@lfdr.de>; Thu, 17 Dec 2020 20:38:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728143AbgLQT3C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Dec 2020 14:29:02 -0500
-Received: from mail-oi1-f177.google.com ([209.85.167.177]:46877 "EHLO
-        mail-oi1-f177.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727368AbgLQT3C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Dec 2020 14:29:02 -0500
-Received: by mail-oi1-f177.google.com with SMTP id q205so80613oig.13;
-        Thu, 17 Dec 2020 11:28:46 -0800 (PST)
+        id S1725930AbgLQTg5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Dec 2020 14:36:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55652 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728186AbgLQTg5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Dec 2020 14:36:57 -0500
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4952C0617B0
+        for <devicetree@vger.kernel.org>; Thu, 17 Dec 2020 11:36:16 -0800 (PST)
+Received: by mail-wr1-x42f.google.com with SMTP id t16so27754103wra.3
+        for <devicetree@vger.kernel.org>; Thu, 17 Dec 2020 11:36:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=6oOm24In2gplgsGMpCabJu/CznURFMD1RnI7ZTKSVZA=;
+        b=EYxCU38suOXjV47ydNpqlSUba1JRYG/aaI35yaJpn1UB+BtzvlRpADO93fzVKy4t36
+         GXDLRzlEn1BYLHTJGeAeqCidRcIMChrWngyKaOn4n3Lo29932Dg9omdUJcjDTAwCVkgh
+         ta58l29XjSHsRigG3HpDtBAEBVaBmuzih2JNgRoFRFYXa9bEBvBJ5hZC2Srp8gPI8mVa
+         uxVtLO0NA79ZScJlXdTUzkgYBE8Tqjur0dClttztc+oLkYcGroJOHdhhPsrsjuIEAO0T
+         /5F6Wcrc0LxkQR8X/uEnQJlAqKc4CbCNzPl9TN1TZtQafiA6+T03sTUGb4huYEgjoWFX
+         KmZA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=OIqxJlEr6qhscRY9Nj69alb23UGeDiYW09DXVg3bkF4=;
-        b=ewxWi9CV7yLkhkmeXyjasmN4l/6tAAVlyKA9mGjbgwhU/w+KVP9YygSciECpWS8OHK
-         9p1T++e/G+vSi4v9k0jYIP2Ecvht/MFleOS8lX1euh1EtGU1EB342kIUSoqJvXwBDvjg
-         ao2kXCLYc0FN7dW8B49LCa0XTIqoH3Y/DMc6pZacT9V+DKAFh0AZ94OUuL0G1z4u2MJr
-         UPOE9Dv2ZOqr94hEzLnT+j0c9xiPSh+qXD2oPwxwLAR5Ibv9EI3WXG5RC94hKuU9xEw6
-         PAiI8Brxec+Vb62k+4jIu+HnfWAx8bqitO7S4kwk6OasnMsMqcLE0BiC3Lgem0nTcbdf
-         26ug==
-X-Gm-Message-State: AOAM533CICczxAKIJ1Gs+5CtQvmcD9zaITt5zNg1PXdoDOYMOBZrGDTu
-        FFxsNkM3pzqGra/3W2Ut7g==
-X-Google-Smtp-Source: ABdhPJw3bvC0XYf+pKjCMi2TrfV+zkB/AwPcr+ycvAdNFlDT5V1e88wLbTciwmx3HwL9jGOPY4nPEQ==
-X-Received: by 2002:aca:3257:: with SMTP id y84mr518377oiy.132.1608233301052;
-        Thu, 17 Dec 2020 11:28:21 -0800 (PST)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id b25sm1497885ooe.18.2020.12.17.11.28.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 17 Dec 2020 11:28:20 -0800 (PST)
-Received: (nullmailer pid 101991 invoked by uid 1000);
-        Thu, 17 Dec 2020 19:28:18 -0000
-Date:   Thu, 17 Dec 2020 13:28:18 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=6oOm24In2gplgsGMpCabJu/CznURFMD1RnI7ZTKSVZA=;
+        b=MIoIfsgN3kLfOI/r8v/u5IPzHGCOy8AhKfpjH4SmBqS7A4L77u3555L1jAehRK/mCu
+         dwFEkmnMIWtRz1/ANL/hs1EQNK73oi17ZxV9z3dJbbeumhm4D8Hr9R/CqZNxJfAWZJ8/
+         pLoE3w6i/G2Ob9dOjhXyT6LgIOXfZnh0fH8EUO9P6i719FjwWS571t0bTkQ0cojnknCr
+         kYUye1uov5ZKDcwEibp29G95B7bivQGLUQXg05f1Q/ZrJPyOTpVK5mehLJ67jPa8VE5A
+         Qe1IZrZmRrN0qZb3/+UCQY4ngXDfkLZnVlwu9VzUXemk5e0YrtM+h3d4Ik0mx1l+2rYo
+         +Q7w==
+X-Gm-Message-State: AOAM532V4fcXGmzUDNdnAtyFQUDNGoNoeLtQCWezxUVOETIAJLMmla0F
+        yvQ4nvUpU57F69S8eDANjl0mqQ==
+X-Google-Smtp-Source: ABdhPJwHDhE2wDWtfE222MozA7wYeHiNXM83hTZa8A1agC08CnIBpdJflfgPV5DnqVW7VF1brOPhmg==
+X-Received: by 2002:a5d:5146:: with SMTP id u6mr433624wrt.46.1608233775160;
+        Thu, 17 Dec 2020 11:36:15 -0800 (PST)
+Received: from ?IPv6:2a01:e34:ed2f:f020:ccb6:ce78:2bcd:4ead? ([2a01:e34:ed2f:f020:ccb6:ce78:2bcd:4ead])
+        by smtp.googlemail.com with ESMTPSA id o124sm6076543wmb.5.2020.12.17.11.36.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 17 Dec 2020 11:36:14 -0800 (PST)
+Subject: Re: [PATCH v2 47/48] ARM: tegra: ventana: Support CPU voltage scaling
+ and thermal throttling
+To:     Dmitry Osipenko <digetx@gmail.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Mark Brown <broonie@kernel.org>,
         Liam Girdwood <lgirdwood@gmail.com>,
-        linux-kernel@vger.kernel.org,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-mediatek@lists.infradead.org, linux-rtc@vger.kernel.org,
-        devicetree@vger.kernel.org, Ran Bi <ran.bi@mediatek.com>,
-        srv_heupstream@mediatek.com, linux-arm-kernel@lists.infradead.org,
-        Yuchen Huang <yuchen.huang@mediatek.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Lee Jones <lee.jones@linaro.org>,
-        Fei Shao <fshao@chromium.org>,
-        Eddie Huang <eddie.huang@mediatek.com>,
-        Mark Brown <broonie@kernel.org>
-Subject: Re: [PATCH v4 3/9] dt-bindings: mfd: Add compatible for the MediaTek
- MT6359 PMIC
-Message-ID: <20201217192818.GA101889@robh.at.kernel.org>
-References: <1608104827-7937-1-git-send-email-hsin-hsiung.wang@mediatek.com>
- <1608104827-7937-4-git-send-email-hsin-hsiung.wang@mediatek.com>
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Nicolas Chauvet <kwizart@gmail.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Kevin Hilman <khilman@kernel.org>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>
+Cc:     devel@driverdev.osuosl.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-media@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-clk@vger.kernel.org
+References: <20201217180638.22748-1-digetx@gmail.com>
+ <20201217180638.22748-48-digetx@gmail.com>
+ <91139f8b-0b83-dd8a-ba53-8e7a499e6344@linaro.org>
+ <b39ebfc1-42b3-1fa7-efe4-6ecbc8cfcb50@gmail.com>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+Message-ID: <776e0e84-e395-2bfb-f1ee-c34864b1cf16@linaro.org>
+Date:   Thu, 17 Dec 2020 20:36:12 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1608104827-7937-4-git-send-email-hsin-hsiung.wang@mediatek.com>
+In-Reply-To: <b39ebfc1-42b3-1fa7-efe4-6ecbc8cfcb50@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 16 Dec 2020 15:47:01 +0800, Hsin-Hsiung Wang wrote:
-> This adds compatible for the MediaTek MT6359 PMIC.
+On 17/12/2020 20:01, Dmitry Osipenko wrote:
+> 17.12.2020 21:28, Daniel Lezcano пишет:
+>> On 17/12/2020 19:06, Dmitry Osipenko wrote:
+>>> Enable CPU voltage scaling and thermal throttling on Tegra20 Ventana board.
+>>>
+>>> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+>>> ---
+>>>  arch/arm/boot/dts/tegra20-ventana.dts | 40 ++++++++++++++++++++++++++-
+>>>  1 file changed, 39 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git a/arch/arm/boot/dts/tegra20-ventana.dts b/arch/arm/boot/dts/tegra20-ventana.dts
+>>> index 14ace2ef749c..c2d9f38960bc 100644
+>>> --- a/arch/arm/boot/dts/tegra20-ventana.dts
+>>> +++ b/arch/arm/boot/dts/tegra20-ventana.dts
+>>> @@ -2,8 +2,10 @@
+>>>  /dts-v1/;
+>>>  
+>>>  #include <dt-bindings/input/input.h>
+>>> +#include <dt-bindings/thermal/thermal.h>
+>>>  #include "tegra20.dtsi"
+>>>  #include "tegra20-cpu-opp.dtsi"
+>>> +#include "tegra20-cpu-opp-microvolt.dtsi"
+>>>  
+>>>  / {
+>>>  	model = "NVIDIA Tegra20 Ventana evaluation board";
+>>> @@ -527,9 +529,10 @@ ldo_rtc {
+>>>  			};
+>>>  		};
+>>>  
+>>> -		temperature-sensor@4c {
+>>> +		nct1008: temperature-sensor@4c {
+>>>  			compatible = "onnn,nct1008";
+>>>  			reg = <0x4c>;
+>>> +			#thermal-sensor-cells = <1>;
+>>>  		};
+>>>  	};
+>>>  
+>>> @@ -615,10 +618,13 @@ clk32k_in: clock@0 {
+>>>  
+>>>  	cpus {
+>>>  		cpu0: cpu@0 {
+>>> +			cpu-supply = <&vdd_cpu>;
+>>>  			operating-points-v2 = <&cpu0_opp_table>;
+>>> +			#cooling-cells = <2>;
+>>>  		};
+>>>  
+>>>  		cpu@1 {
+>>> +			cpu-supply = <&vdd_cpu>;
+>>>  			operating-points-v2 = <&cpu0_opp_table>;
+>>>  		};
+>>>  	};
+>>> @@ -717,4 +723,36 @@ sound {
+>>>  			 <&tegra_car TEGRA20_CLK_CDEV1>;
+>>>  		clock-names = "pll_a", "pll_a_out0", "mclk";
+>>>  	};
+>>> +
+>>> +	thermal-zones {
+>>> +		cpu-thermal {
+>>> +			polling-delay-passive = <1000>; /* milliseconds */
+>>> +			polling-delay = <5000>; /* milliseconds */
+>>> +
+>>> +			thermal-sensors = <&nct1008 1>;
+>>> +
+>>> +			trips {
+>>> +				trip0: cpu-alert0 {
+>>> +					/* start throttling at 50C */
+>>> +					temperature = <50000>;
+>>> +					hysteresis = <200>;
+>>
+>> Did you mean <2000> ?
 > 
-> Signed-off-by: Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
-> ---
->  Documentation/devicetree/bindings/mfd/mt6397.txt | 7 ++++++-
->  1 file changed, 6 insertions(+), 1 deletion(-)
+> The <200> is correct.
 > 
+> Please see this commit for example:
+> 
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=2b22393b27670b45a2c870bce3df6579efd9a86a
+
+Ok, thanks for the pointer.
+
+>>> +					type = "passive";
+>>> +				};
+>>> +
+>>> +				trip1: cpu-crit {
+>>> +					/* shut down at 60C */
+>>> +					temperature = <60000>;
+>>> +					hysteresis = <2000>;
+>>
+>> I think you can drop the hysteresis here, when the critical temperature
+>> is reached, there is an emergency shutdown.
+> 
+> Yes, perhaps you're right. Hysteresis doesn't make sense for a critical
+> trip. I'll improve it in the next revision, thanks.
+> 
+>> 50°C and 60°C sound very low values, no ?
+> 
+> Tegra20 CPU is very cold in comparison to later generations, it should
+> stay under 50°C even at a full load.
+
+Interesting, thanks.
+
+>>> +					type = "critical";
+>>> +				};
+>>> +			};
+>>> +
+>>> +			cooling-maps {
+>>> +				map0 {
+>>> +					trip = <&trip0>;
+>>> +					cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+>>
+>> You should add all CPUs here.
+> 
+> 
+> All CPU cores are coupled on Tegra in regards to CPUFreq, hence I think
+> it won't make any difference if secondary CPU cores will be added here,
+> isn't it?
+
+The explanation is in the description of commit ef4734500407ce4d
 
 
-Please add Acked-by/Reviewed-by tags when posting new versions. However,
-there's no need to repost patches *only* to add the tags. The upstream
-maintainer will do that for acks received on the version they apply.
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
 
-If a tag was not added on purpose, please state why and what changed.
-
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
