@@ -2,86 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E0102DD33F
-	for <lists+devicetree@lfdr.de>; Thu, 17 Dec 2020 15:49:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DADE42DD34D
+	for <lists+devicetree@lfdr.de>; Thu, 17 Dec 2020 15:53:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727394AbgLQOtx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Dec 2020 09:49:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39386 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727414AbgLQOtx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Dec 2020 09:49:53 -0500
-Received: from mail-qk1-x730.google.com (mail-qk1-x730.google.com [IPv6:2607:f8b0:4864:20::730])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DDE73C0617A7
-        for <devicetree@vger.kernel.org>; Thu, 17 Dec 2020 06:49:12 -0800 (PST)
-Received: by mail-qk1-x730.google.com with SMTP id 143so26526804qke.10
-        for <devicetree@vger.kernel.org>; Thu, 17 Dec 2020 06:49:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=semihalf-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=RIzO25uia/ik2/pksNEfaC0K2hkKYlL8M9aPUeHrHkA=;
-        b=jNKDdcUKUdd3WFTXtKNGH0PxO/FPpPWDBcR60lAY8wTkvAu7yXm7vvcgZBYY17ttpb
-         US2lHSY3/EwQZaUow4vkqbGFSEQjGytc2cCuG/QyMiCtA2RpJspAQ0WpMw5ieQGZIOCO
-         X4LPp06RcjHcCFa3kilhnmX4KeBhsl4SWeMJdOMvEZBu8rVxNyYR5bFBmAwpP3Uthf7+
-         Uer8qorfPMzXNlbApFZiCmLqjNLuibtmmuZxH0vwV1ndKbO5Nt2TJk4ecmRGF/WMGMnl
-         e0OUfxHDdIVqv3uhCbKwvUOxX8V0DC4BxDmI3K7vWwPExYsWrPpFcA9w5b0s9jsyP3Ge
-         DOPA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=RIzO25uia/ik2/pksNEfaC0K2hkKYlL8M9aPUeHrHkA=;
-        b=q85oISzIdzGTe3vdlNOVr62/5DWt+amJ501x6iRSrSKOUGf2+3gL/h6bVYKStj6GCC
-         TtydQ0NQM3zoPOmhq8S1NNqFK/tXmcoujuJWrTduptK/aZaVVixS6lh19gFhyO7n/WOw
-         0VXzQOhApUv6PiJ1YCo2MGXgWsye/jAc00Wup2UBzlNbx017AzXY4ABzrGHIVk2Wrs/q
-         AqAlORKcPN458NLjF0nUYD1YMipQTuqTKHLfWvUzVmEFWAQo2plS+TtFOtgOk7jwcOSx
-         wqeCJC/ToE7J20xSefmiTsTIckvBBc7RQEfyosQ9tb/wyC9ZC02U5YV6mQ56+4I35aPn
-         mEfg==
-X-Gm-Message-State: AOAM532qhBCaLQnR+MbNqHLMqKJxXpurNU37T/ZAECl4NGUCHEGY7173
-        BDh6Zw3SlJ91KbOlR3v9N8GtfKU/gIcGY+ZztlCpDw==
-X-Google-Smtp-Source: ABdhPJzz7TrOiym3XxMYcQwkTaIhM2vbf/y0WES9+7lqImW/2SS6joU9/JP7gKeTm8pTEe/B/OWCi2AiuLMgvQRd+3I=
-X-Received: by 2002:a37:7806:: with SMTP id t6mr48181369qkc.360.1608216552128;
- Thu, 17 Dec 2020 06:49:12 -0800 (PST)
+        id S1726613AbgLQOxE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Dec 2020 09:53:04 -0500
+Received: from perceval.ideasonboard.com ([213.167.242.64]:48948 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725871AbgLQOxD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Dec 2020 09:53:03 -0500
+Received: from [192.168.0.20] (cpc89244-aztw30-2-0-cust3082.18-1.cable.virginm.net [86.31.172.11])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 89A732CF;
+        Thu, 17 Dec 2020 15:52:21 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1608216741;
+        bh=cEGaVI2tJhN5ajVC/K4Tal/4c8ASBdqHS7bVwvqOdEg=;
+        h=Reply-To:Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=gfSzSnanMPAatrV998KoAP1Sbo6eZ6GYyBVmTBB9jdtKHZrb69kPl871Wx0Jd/H6C
+         JwnxVa3KZsIGMhYQVJYZ9udMJpwGs31BIPX3fl1d0QfU5yb6taNMexhcYiKLLI39Ne
+         nrieaVfRBBWyvb5xag5kyPnv9f9yLXM6IJT20ncQ=
+Reply-To: kieran.bingham+renesas@ideasonboard.com
+Subject: Re: [PATCH 1/3] arm64: dts: renesas: r8a779a0: Add FCPVD support
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Geert Uytterhoeven <geert@glider.be>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>
+References: <20201216170018.861710-1-kieran.bingham+renesas@ideasonboard.com>
+ <20201216170018.861710-2-kieran.bingham+renesas@ideasonboard.com>
+ <X9pGs3NwNQcmzu1f@pendragon.ideasonboard.com>
+From:   Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+Organization: Ideas on Board
+Message-ID: <d1ec30f5-a72e-df69-4a39-7e68e81b5066@ideasonboard.com>
+Date:   Thu, 17 Dec 2020 14:52:18 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-References: <20201217112708.3473-1-kostap@marvell.com> <20201217112708.3473-3-kostap@marvell.com>
- <CAPv3WKdRM_=t8Rn8LkRWTV2+WGQ3biStjmGXwfQD0z9yKR19jA@mail.gmail.com> <20201217142127.GF4708@sirena.org.uk>
-In-Reply-To: <20201217142127.GF4708@sirena.org.uk>
-From:   Marcin Wojtas <mw@semihalf.com>
-Date:   Thu, 17 Dec 2020 15:49:00 +0100
-Message-ID: <CAPv3WKcbtRUhyr-xsgP12Fujofq1zPtkf_1_gLhVCyg=wPeDQQ@mail.gmail.com>
-Subject: Re: [PATCH 2/3] spi: orion: enable support for switching CS every
- transferred byte
-To:     Mark Brown <broonie@kernel.org>
-Cc:     linux-spi <linux-spi@vger.kernel.org>, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Grzegorz Jaszczyk <jaz@semihalf.com>, nadavh@marvell.com,
-        =?UTF-8?B?QmVuIFBlbGVkICjXkdefINek15zXkyk=?= <bpeled@marvell.com>,
-        Stefan Chulski <stefanc@marvell.com>,
-        Konstantin Porotchkin <kostap@marvell.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <X9pGs3NwNQcmzu1f@pendragon.ideasonboard.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-czw., 17 gru 2020 o 15:21 Mark Brown <broonie@kernel.org> napisa=C5=82(a):
->
-> On Thu, Dec 17, 2020 at 02:56:16PM +0100, Marcin Wojtas wrote:
->
-> > Regarding your comment from patch 3/3 that "spi-1byte-cs" should be
-> > replaced by handling based on the compatible string - do you mean
-> > dropping above parsing and updating SPI bus mode field with
-> > SPI_1BYTE_CS flag in the relevant SPI device driver?
->
-> There's more to it than that but like I said in reply to the patch
-> AFAICT we already support this.
->
-> Please delete unneeded context from mails when replying.  Doing this
-> makes it much easier to find your reply in the message, helping ensure
-> it won't be missed by people scrolling through the irrelevant quoted
-> material.
+Hi Laurent,
 
-Sure, thanks.
+On 16/12/2020 17:41, Laurent Pinchart wrote:
+> Hi Kieran,
+> 
+> Thank you for the patch.
+> 
+> On Wed, Dec 16, 2020 at 05:00:16PM +0000, Kieran Bingham wrote:
+>> Provide FCPVD support for the V3U.
+>>
+>> Signed-off-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+>> ---
+>>  arch/arm64/boot/dts/renesas/r8a779a0.dtsi | 16 ++++++++++++++++
+>>  1 file changed, 16 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/renesas/r8a779a0.dtsi b/arch/arm64/boot/dts/renesas/r8a779a0.dtsi
+>> index 6cf77ce9aa93..ba6fbbd8710e 100644
+>> --- a/arch/arm64/boot/dts/renesas/r8a779a0.dtsi
+>> +++ b/arch/arm64/boot/dts/renesas/r8a779a0.dtsi
+>> @@ -117,6 +117,22 @@ gic: interrupt-controller@f1000000 {
+>>  			power-domains = <&sysc R8A779A0_PD_ALWAYS_ON>;
+>>  		};
+>>  
+>> +		fcpvd0: fcp@fea10000 {
+>> +			compatible = "renesas,fcpv";
+>> +			reg = <0 0xfea10000 0 0x200>;
+>> +			clocks = <&cpg CPG_MOD 508>;
+>> +			power-domains = <&sysc R8A779A0_PD_ALWAYS_ON>;
+>> +			resets = <&cpg 508>;
+>> +		};
+>> +
+>> +		fcpvd1: fcp@fea11000 {
+>> +			compatible = "renesas,fcpv";
+>> +			reg = <0 0xfea2f000 0 0x200>;
+> 
+> This doesn't match the node address (the former being correct I
+> believe). With this fixed,
 
-Marcin
+Oh dear, that's bad indeed.
+
+I'm sorry - could you help me locate the correct buttons on my keyboard
+to fix this please? :
+
+> https://as1.ftcdn.net/jpg/00/74/64/78/500_F_74647888_XIrZ25aSYKhu5YB4PyuU7qYqzAJr3EjQ.jpg
+
+:-D
+
+> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+
+Thanks.
+
+K
+
+> 
+>> +			clocks = <&cpg CPG_MOD 509>;
+>> +			power-domains = <&sysc R8A779A0_PD_ALWAYS_ON>;
+>> +			resets = <&cpg 509>;
+>> +		};
+>> +
+>>  		prr: chipid@fff00044 {
+>>  			compatible = "renesas,prr";
+>>  			reg = <0 0xfff00044 0 4>;
+> 
+
