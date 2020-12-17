@@ -2,109 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D12262DCF54
-	for <lists+devicetree@lfdr.de>; Thu, 17 Dec 2020 11:16:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 310872DCF62
+	for <lists+devicetree@lfdr.de>; Thu, 17 Dec 2020 11:18:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727522AbgLQKPC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Dec 2020 05:15:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53440 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725468AbgLQKPB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Dec 2020 05:15:01 -0500
-Received: from mail-ot1-x32f.google.com (mail-ot1-x32f.google.com [IPv6:2607:f8b0:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CF9EC061794;
-        Thu, 17 Dec 2020 02:14:21 -0800 (PST)
-Received: by mail-ot1-x32f.google.com with SMTP id i6so26761698otr.2;
-        Thu, 17 Dec 2020 02:14:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=t2ZDhGi3vWqPU8yXx5v57vs6HN85EYlUIkyorqPUhOM=;
-        b=mEFfk59Zl/H2JsUM/FG/31kylt3h+0U+rAHzWTLWcudz8whZb3/ylnUJ1I4f0FOCd1
-         /QBqAcRD54pbOEsRli5gaxCwAQmggYp7EHNZhs8ujfyOnVmZo27vc5ZxwKnDGj+Wi0WC
-         xWFMyGtxjNjCpC+tCMiGy4x1hvpsvSdujQIDKJx9a4Sv1djOF++n61fVDnGlstzj/ZvT
-         ME2Tg9nuhKxAnRjMI/toVekxivUSH258czV6TJrhndImbrzqLVXZ7QmUEFYvFNpWc+IT
-         LKK9KIH2ezEWFhSZlzGE3GMbmoagA3WW2m2d6+2we2YpqO9jlccu/ka08uJI1S9Nik23
-         DA3Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=t2ZDhGi3vWqPU8yXx5v57vs6HN85EYlUIkyorqPUhOM=;
-        b=akrI/8e7/hKvsI+A9r89WxcmnUSfDi4R6ybYyfTDd/P5kNTfWa14Fxw/KEpWJImxR1
-         REOwq7VaNb/HRrNqXu5Tkwn1y1TgTx8mfbrmLgdoA/lF7S1m1Rh+06u1Bw0GJHRunyKG
-         qJfHavVjRzug6J1zB47ghMmdC6SSG96RIGs1eJfsbRfcSa0hLpw0L9coUJgAMkv5J5xU
-         L/vq4v5FmVFu1mFqmgGXavT5AqLRaCgC3Zjp9ObmffK73b//1727Qyq0bFYmimdS8THJ
-         ZabPYUNpLg4wCH7chmNTmw21Ui/IyzbfQxOcx9UTD+qZ6xpz9i7gPDJaDCz53bUfnnyk
-         awBw==
-X-Gm-Message-State: AOAM533yga6hf22CRFwAOKtP8SFv6v3wRX0+xMfR8A06HfCxax/YF6C+
-        cCMzJmvsEfBRYsa303K106ciAbWHRdlbE4/oCUA=
-X-Google-Smtp-Source: ABdhPJyGvuo7tSATTxGNsdQ5yu1IfT+pbMxFX//DHKqkuB/okgeYGet+nUCYBDFh7Rw7GAPkZ0+eIrgsxmLGgdvF21o=
-X-Received: by 2002:a9d:730e:: with SMTP id e14mr10799057otk.74.1608200061045;
- Thu, 17 Dec 2020 02:14:21 -0800 (PST)
+        id S1726160AbgLQKRj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Dec 2020 05:17:39 -0500
+Received: from mail.kernel.org ([198.145.29.99]:48618 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726012AbgLQKRi (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 17 Dec 2020 05:17:38 -0500
+Content-Type: text/plain; charset="utf-8"
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1608200218;
+        bh=R0x1PA8BvcIrgXrlUvqF6asRJGMm2WhicqNyzRbZC2o=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=mCL1L9zgdfqLhBl2s7Z9cWUEM5KEpflWhFZaOhh3dbYhlmraw4KTFW1Yh6wHlWEsS
+         Eu427VLD3QX6z2qjMeyRu7gLqwgHoiEJbuzK72wlgEYQMjpj66IKazEg3bIZCa0tS3
+         x14drQubinSh3dl3V1RbLu0itU7G9142RXMd3bMO9YFornBfgvT7byTXJcz706WCl2
+         DhVkteYoW7WUlR/JfEqu+NbvfpnB6F+FzQKyiO3PAujPt3HBZMSS9ChuQ+tRHiQsR4
+         taLbQSCM/AqHjaBNZixdrhHexcseMI3PvmqWJ/sxqc+53WDHEPCCCYeme3Zk6OycoJ
+         h2zjkylROTluw==
 MIME-Version: 1.0
-References: <20201122095556.21597-1-sergio.paracuellos@gmail.com>
- <20201122095556.21597-3-sergio.paracuellos@gmail.com> <160819550615.1580929.14234996916739809712@swboyd.mtv.corp.google.com>
- <CAMhs-H_EiDot_V4Qj1Q8noAf5RNi9BOyy0WmawE+70wY7=FxDg@mail.gmail.com> <160819962346.1580929.2348154780751858972@swboyd.mtv.corp.google.com>
-In-Reply-To: <160819962346.1580929.2348154780751858972@swboyd.mtv.corp.google.com>
-From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Date:   Thu, 17 Dec 2020 11:14:10 +0100
-Message-ID: <CAMhs-H_ixfqMxVFOf+J0O-Tp0Q0ngviMm6jHrHJSgCLwZj+Tvw@mail.gmail.com>
-Subject: Re: [PATCH v4 2/6] dt: bindings: add mt7621-clk device tree binding documentation
-To:     Stephen Boyd <sboyd@kernel.org>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        John Crispin <john@phrozen.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Chuanhong Guo <gch981213@gmail.com>,
-        Weijie Gao <hackpascal@gmail.com>,
-        COMMON CLK FRAMEWORK <linux-clk@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        "open list:MIPS <linux-mips@vger.kernel.org>, open list:STAGING
-        SUBSYSTEM <devel@driverdev.osuosl.org>, NeilBrown <neil@brown.name>,
-        open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <CH2PR04MB65227B0B94F919406CB84C28E7C40@CH2PR04MB6522.namprd04.prod.outlook.com>
+References: <20201213135056.24446-1-damien.lemoal@wdc.com> <20201213135056.24446-10-damien.lemoal@wdc.com> <160819259979.1580929.9332027241734052085@swboyd.mtv.corp.google.com> <CH2PR04MB65227B0B94F919406CB84C28E7C40@CH2PR04MB6522.namprd04.prod.outlook.com>
+Subject: Re: [PATCH v10 09/23] dt-binding: clock: Document canaan,k210-clk bindings
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     Sean Anderson <seanga2@gmail.com>
+To:     Damien Le Moal <Damien.LeMoal@wdc.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-riscv@lists.infradead.org
+Date:   Thu, 17 Dec 2020 02:16:55 -0800
+Message-ID: <160820021596.1580929.1686334340234415270@swboyd.mtv.corp.google.com>
+User-Agent: alot/0.9.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 17, 2020 at 11:07 AM Stephen Boyd <sboyd@kernel.org> wrote:
->
-> Quoting Sergio Paracuellos (2020-12-17 02:01:39)
-> >
-> > On Thu, Dec 17, 2020 at 9:58 AM Stephen Boyd <sboyd@kernel.org> wrote:
-> > >
-> > > Quoting Sergio Paracuellos (2020-11-22 01:55:52)
-> > >
-> > > > diff --git a/Documentation/devicetree/bindings/clock/mediatek,mt7621-clk.yaml b/Documentation/devicetree/bindings/clock/mediatek,mt7621-clk.yaml
-> > > > new file mode 100644
-> > > > index 000000000000..6aca4c1a4a46
-> > > > --- /dev/null
-> > > > +++ b/Documentation/devicetree/bindings/clock/mediatek,mt7621-clk.yaml
-> > >
-> > > > +      compatible = "mediatek,mt7621-sysc", "syscon";
-> > > > +      reg = <0x0 0x100>;
-> > > > +
-> > > > +      pll {
-> > >
-> > > clock-controller? Why can't the parent device be the clk provider and
-> > > have #clock-cells?
-> > >
-> >
-> > I don't get your point, sorry. Can you please explain this a bit more
-> > or point to me to an example to understand the real meaning of this?
->
-> It looks like this is a made up child node of syscon so that a driver
-> can probe in the kernel. It would be more DT friendly to create a
-> platform device from the parent node's driver, or just register the clks
-> with the framework directly in that driver.
+Quoting Damien Le Moal (2020-12-17 00:13:57)
+> On 2020/12/17 17:10, Stephen Boyd wrote:
+> > Quoting Damien Le Moal (2020-12-13 05:50:42)
+> >> diff --git a/include/dt-bindings/clock/k210-clk.h b/include/dt-binding=
+s/clock/k210-clk.h
+> >> index 5a2fd64d1a49..b2de702cbf75 100644
+> >> --- a/include/dt-bindings/clock/k210-clk.h
+> >> +++ b/include/dt-bindings/clock/k210-clk.h
+> >> @@ -3,18 +3,51 @@
+> >>   * Copyright (C) 2019-20 Sean Anderson <seanga2@gmail.com>
+> >>   * Copyright (c) 2020 Western Digital Corporation or its affiliates.
+> >>   */
+> >> -#ifndef K210_CLK_H
+> >> -#define K210_CLK_H
+> >> +#ifndef CLOCK_K210_CLK_H
+> >> +#define CLOCK_K210_CLK_H
+> >> =20
+> >>  /*
+> >> - * Arbitrary identifiers for clocks.
+> >> - * The structure is: in0 -> pll0 -> aclk -> cpu
+> >> - *
+> >> - * Since we use the hardware defaults for now, set all these to the s=
+ame clock.
+> >> + * Kendryte K210 SoC clock identifiers (arbitrary values).
+> >>   */
+> >> -#define K210_CLK_PLL0   0
+> >> -#define K210_CLK_PLL1   0
+> >> -#define K210_CLK_ACLK   0
+> >> -#define K210_CLK_CPU    0
+> >=20
+> > This seems to open a bisection hole. I see that ACLK is used in the
+> > existing dtsi file, and that is the same as CLK_CPU, but after this
+> > patch it will change to not exist anymore. Can we leave ACLK around
+> > defined to be 0? I imagine it won't be used in the future so we can
+> > remove it later. I can then apply this for v5.11-rc1 and then merge the
+> > clk driver patch in clk tree.
+> >=20
+> >> +#define K210_CLK_CPU   0
+> >> +#define K210_CLK_SRAM0 1
+> >> +#define K210_CLK_SRAM1 2
+> >=20
+>=20
+> Patch 6 of the series removes the use of K210_CLK_CPU and K210_CLK_ACLK f=
+rom the
+> device trees. I added that patch as the DT modification proper comes only=
+ at
+> patch 16. Maybe I should squash patch 6 into this one ?
+>=20
 
-We cannot create a platform device because we need clocks available in
-'plat_time_init' before setting up the timer for the GIC.
-The only way I see to avoid this syscon and having this as a child
-node is to use architecture operations in
-'arch/mips/include/asm/mach-ralink/ralink_regs.h'
-instead of getting a phandle using the regmap is being currently used...
+Preferably the defines are just left alone forever and then forgotten.
+The dt-bindings directory is almost ABI and so changing numbers or
+removing defines is hard to do. Usually patches in this directory are an
+additive thing.
