@@ -2,208 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 068922DD855
-	for <lists+devicetree@lfdr.de>; Thu, 17 Dec 2020 19:30:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 49C632DD85A
+	for <lists+devicetree@lfdr.de>; Thu, 17 Dec 2020 19:30:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730981AbgLQS3t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Dec 2020 13:29:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45260 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730320AbgLQS3s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Dec 2020 13:29:48 -0500
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD8AFC061248
-        for <devicetree@vger.kernel.org>; Thu, 17 Dec 2020 10:29:01 -0800 (PST)
-Received: by mail-wr1-x436.google.com with SMTP id r3so27595542wrt.2
-        for <devicetree@vger.kernel.org>; Thu, 17 Dec 2020 10:29:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=q8aRgUoihX8Avz9ruuy2QvIzzYrzaxUTGheCXawpxLo=;
-        b=xl1+B8fgQHVTz0DkWK6xdRV/uEVFC82QHBw49Alo1pZRQNVZfyPx/dg+9bxRxn3y5j
-         wOqiffyVmnYbj1EgpecnWAs09QIW7EF/7NIcncaJdZmmY7+vczFoazIVy/Eg+65pjOtM
-         gbZSGEAdgwAa1cWspO2xP3t3GCTb/mkxr1zZPv3grz2TSux4ttuJEbJVzOWrxUZiqiYa
-         EyespBuebZDUnKpi2lIbacdsmhJeRja5SjUmsnxUg4sTGmUV//8S1eWH9DFS0ELLtHED
-         LuXIIy4cz1c19ZN2cy4JbGpV1+1UqvirDLHJkG8A4GrB16/yngcSjT40kjaVP9H2ytUQ
-         kfsg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=q8aRgUoihX8Avz9ruuy2QvIzzYrzaxUTGheCXawpxLo=;
-        b=ObOIpAfyr4McHYYN5D+VX3ftqUiiLRrcPyAhvneYn2QbtqPt1hf+nFMDP42ViWZP9T
-         zzdocUkYnKNVtF4PL/IoDTXjN4Cw7Hv53H8oUiuav3mZJILhthqGxXPBrtnxu5wwqsZC
-         YDgY1cxWix8jCG5SITdtZxXqEUtadc/bfPCQxq7gcjp1VWME1+QGezT/h7QQuE4KF3D/
-         /YItFnX0AlxLVnfE6oJ+glr2iZUW4F/TnAvDc0PsLz7snrX64M25756vECvzFZtVnsrW
-         23fLTo+2e00EgSin2tMl7idKd6qRqmQ/JFgaFDZzt1NDW+37AIHjJpMJ5Xbokm8I8+pQ
-         PxZA==
-X-Gm-Message-State: AOAM531eascP5cGvz8UiCWG3Rkt8c0FhgQPrNVQsTeusJ4j29giZsIyg
-        w424OIM4VM1Gu8A1nxrzt2uK/g==
-X-Google-Smtp-Source: ABdhPJzsRtqGVStuVvpkZl1+aZoPEJq0l19ZzD3Ifm+FDKdUgsJB+PBHx04WPNMgDSSCFiYkBdKpYg==
-X-Received: by 2002:a5d:61ca:: with SMTP id q10mr144253wrv.124.1608229740327;
-        Thu, 17 Dec 2020 10:29:00 -0800 (PST)
-Received: from ?IPv6:2a01:e34:ed2f:f020:ccb6:ce78:2bcd:4ead? ([2a01:e34:ed2f:f020:ccb6:ce78:2bcd:4ead])
-        by smtp.googlemail.com with ESMTPSA id f7sm15260897wmc.1.2020.12.17.10.28.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 17 Dec 2020 10:28:59 -0800 (PST)
-Subject: Re: [PATCH v2 48/48] ARM: tegra: cardhu: Support CPU voltage scaling
- and thermal throttling
-To:     Dmitry Osipenko <digetx@gmail.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Nicolas Chauvet <kwizart@gmail.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Kevin Hilman <khilman@kernel.org>,
-        Peter De Schrijver <pdeschrijver@nvidia.com>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>
-Cc:     devel@driverdev.osuosl.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-media@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-clk@vger.kernel.org
-References: <20201217180638.22748-1-digetx@gmail.com>
- <20201217180638.22748-49-digetx@gmail.com>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-Message-ID: <c0cb782a-bd26-917a-8f39-db8b6f460472@linaro.org>
-Date:   Thu, 17 Dec 2020 19:28:57 +0100
+        id S1731162AbgLQSaO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Dec 2020 13:30:14 -0500
+Received: from linux.microsoft.com ([13.77.154.182]:58442 "EHLO
+        linux.microsoft.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728180AbgLQSaL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Dec 2020 13:30:11 -0500
+Received: from [192.168.0.104] (c-73-42-176-67.hsd1.wa.comcast.net [73.42.176.67])
+        by linux.microsoft.com (Postfix) with ESMTPSA id 0B6E620B717A;
+        Thu, 17 Dec 2020 10:29:30 -0800 (PST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 0B6E620B717A
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+        s=default; t=1608229770;
+        bh=GwfRqRu08UdwXtSUpS9V9mnLcj+rN1xicTZ0lOWPifs=;
+        h=Subject:From:To:Cc:References:Date:In-Reply-To:From;
+        b=Va0dDR8fH6oIFQsOLK4t9CSVal0ebVldzlYKaF7CNl2rfSNuhHp17P7L9q01f261u
+         ndOKIA66Pku3uWcsP9bumD5l/vEPT5t84v9tJgalSnBXq07ovsz6mNNVBpHAlebueH
+         OnT27wrw3DIoXQZ+LKgduXrjhaB6Jh/00eMCC+Fs=
+Subject: Re: [PATCH v12 1/4] powerpc: Use fdt_appendprop_addrrange() to add
+ ima buffer to FDT
+From:   Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
+To:     zohar@linux.ibm.com, bauerman@linux.ibm.com, robh@kernel.org,
+        takahiro.akashi@linaro.org, gregkh@linuxfoundation.org,
+        will@kernel.org, catalin.marinas@arm.com, mpe@ellerman.id.au
+Cc:     james.morse@arm.com, sashal@kernel.org, benh@kernel.crashing.org,
+        paulus@samba.org, frowand.list@gmail.com,
+        vincenzo.frascino@arm.com, mark.rutland@arm.com,
+        dmitry.kasatkin@gmail.com, jmorris@namei.org, serge@hallyn.com,
+        pasha.tatashin@soleen.com, allison@lohutok.net,
+        masahiroy@kernel.org, bhsharma@redhat.com, mbrugger@suse.com,
+        hsinyi@chromium.org, tao.li@vivo.com, christophe.leroy@c-s.fr,
+        prsriva@linux.microsoft.com, balajib@linux.microsoft.com,
+        linux-integrity@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+References: <20201217173708.6940-1-nramas@linux.microsoft.com>
+ <20201217173708.6940-2-nramas@linux.microsoft.com>
+Message-ID: <37a62c46-cb43-0e71-ee79-8c497a11e159@linux.microsoft.com>
+Date:   Thu, 17 Dec 2020 10:29:29 -0800
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20201217180638.22748-49-digetx@gmail.com>
-Content-Type: text/plain; charset=utf-8
+In-Reply-To: <20201217173708.6940-2-nramas@linux.microsoft.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/12/2020 19:06, Dmitry Osipenko wrote:
-> Enable CPU voltage scaling and thermal throttling on Tegra30 Cardhu board.
+On 12/17/20 9:37 AM, Lakshmi Ramasubramanian wrote:
+> fdt_appendprop_addrrange() function adds a property, with the given name,
+> to the device tree at the given node offset, and also sets the address
+> and size of the property. This function should be used to add
+> "linux,ima-kexec-buffer" property to the device tree and set the address
+> and size of the IMA measurement buffer, instead of using custom function.
 > 
-> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+
+Typo in the email address of James Morse (ARM.com). Sorry about that.
+Adding the correct email address.
+
+  -lakshmi
+
+> Use fdt_appendprop_addrrange() to add  "linux,ima-kexec-buffer" property
+> to the device tree. This property holds the address and size of
+> the IMA measurement buffer that needs to be passed from the current
+> kernel to the next kernel across kexec system call.
+> 
+> Remove custom code that is used in setup_ima_buffer() to add
+> "linux,ima-kexec-buffer" property to the device tree.
+> 
+> Signed-off-by: Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
 > ---
-
-Same comments as 47/48
-
-
-
->  arch/arm/boot/dts/tegra30-cardhu.dtsi | 61 ++++++++++++++++++++++++++-
->  1 file changed, 60 insertions(+), 1 deletion(-)
+>   arch/powerpc/kexec/ima.c | 51 ++++++----------------------------------
+>   1 file changed, 7 insertions(+), 44 deletions(-)
 > 
-> diff --git a/arch/arm/boot/dts/tegra30-cardhu.dtsi b/arch/arm/boot/dts/tegra30-cardhu.dtsi
-> index d74c9ca78a7f..08c0ea4e6228 100644
-> --- a/arch/arm/boot/dts/tegra30-cardhu.dtsi
-> +++ b/arch/arm/boot/dts/tegra30-cardhu.dtsi
-> @@ -1,6 +1,9 @@
->  // SPDX-License-Identifier: GPL-2.0
->  #include <dt-bindings/input/input.h>
-> +#include <dt-bindings/thermal/thermal.h>
->  #include "tegra30.dtsi"
-> +#include "tegra30-cpu-opp.dtsi"
-> +#include "tegra30-cpu-opp-microvolt.dtsi"
->  
->  /**
->   * This file contains common DT entry for all fab version of Cardhu.
-> @@ -339,12 +342,13 @@ ldo8_reg: ldo8 {
->  			};
->  		};
->  
-> -		temperature-sensor@4c {
-> +		nct1008: temperature-sensor@4c {
->  			compatible = "onnn,nct1008";
->  			reg = <0x4c>;
->  			vcc-supply = <&sys_3v3_reg>;
->  			interrupt-parent = <&gpio>;
->  			interrupts = <TEGRA_GPIO(CC, 2) IRQ_TYPE_LEVEL_LOW>;
-> +			#thermal-sensor-cells = <1>;
->  		};
->  
->  		vdd_core: tps62361@60 {
-> @@ -438,6 +442,29 @@ clk32k_in: clock@0 {
->  		#clock-cells = <0>;
->  	};
->  
-> +	cpus {
-> +		cpu0: cpu@0 {
-> +			cpu-supply = <&vddctrl_reg>;
-> +			operating-points-v2 = <&cpu0_opp_table>;
-> +			#cooling-cells = <2>;
-> +		};
-> +
-> +		cpu@1 {
-> +			cpu-supply = <&vddctrl_reg>;
-> +			operating-points-v2 = <&cpu0_opp_table>;
-> +		};
-> +
-> +		cpu@2 {
-> +			cpu-supply = <&vddctrl_reg>;
-> +			operating-points-v2 = <&cpu0_opp_table>;
-> +		};
-> +
-> +		cpu@3 {
-> +			cpu-supply = <&vddctrl_reg>;
-> +			operating-points-v2 = <&cpu0_opp_table>;
-> +		};
-> +	};
-> +
->  	panel: panel {
->  		compatible = "chunghwa,claa101wb01";
->  		ddc-i2c-bus = <&panelddc>;
-> @@ -617,6 +644,38 @@ sound {
->  					 <&tegra_car TEGRA30_CLK_EXTERN1>;
->  	};
->  
-> +	thermal-zones {
-> +		cpu-thermal {
-> +			polling-delay-passive = <1000>; /* milliseconds */
-> +			polling-delay = <5000>; /* milliseconds */
-> +
-> +			thermal-sensors = <&nct1008 1>;
-> +
-> +			trips {
-> +				trip0: cpu-alert0 {
-> +					/* throttle at 57C until temperature drops to 56.8C */
-> +					temperature = <57000>;
-> +					hysteresis = <200>;
-> +					type = "passive";
-> +				};
-> +
-> +				trip1: cpu-crit {
-> +					/* shut down at 60C */
-> +					temperature = <60000>;
-> +					hysteresis = <2000>;
-> +					type = "critical";
-> +				};
-> +			};
-> +
-> +			cooling-maps {
-> +				map0 {
-> +					trip = <&trip0>;
-> +					cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-> +				};
-> +			};
-> +		};
-> +	};
-> +
->  	gpio-keys {
->  		compatible = "gpio-keys";
->  
+> diff --git a/arch/powerpc/kexec/ima.c b/arch/powerpc/kexec/ima.c
+> index 720e50e490b6..d579d3da4715 100644
+> --- a/arch/powerpc/kexec/ima.c
+> +++ b/arch/powerpc/kexec/ima.c
+> @@ -11,6 +11,7 @@
+>   #include <linux/of.h>
+>   #include <linux/memblock.h>
+>   #include <linux/libfdt.h>
+> +#include <asm/ima.h>
+>   
+>   static int get_addr_size_cells(int *addr_cells, int *size_cells)
+>   {
+> @@ -145,27 +146,6 @@ int arch_ima_add_kexec_buffer(struct kimage *image, unsigned long load_addr,
+>   	return 0;
+>   }
+>   
+> -static int write_number(void *p, u64 value, int cells)
+> -{
+> -	if (cells == 1) {
+> -		u32 tmp;
+> -
+> -		if (value > U32_MAX)
+> -			return -EINVAL;
+> -
+> -		tmp = cpu_to_be32(value);
+> -		memcpy(p, &tmp, sizeof(tmp));
+> -	} else if (cells == 2) {
+> -		u64 tmp;
+> -
+> -		tmp = cpu_to_be64(value);
+> -		memcpy(p, &tmp, sizeof(tmp));
+> -	} else
+> -		return -EINVAL;
+> -
+> -	return 0;
+> -}
+> -
+>   /**
+>    * setup_ima_buffer - add IMA buffer information to the fdt
+>    * @image:		kexec image being loaded.
+> @@ -176,35 +156,18 @@ static int write_number(void *p, u64 value, int cells)
+>    */
+>   int setup_ima_buffer(const struct kimage *image, void *fdt, int chosen_node)
+>   {
+> -	int ret, addr_cells, size_cells, entry_size;
+> -	u8 value[16];
+> +	int ret;
+>   
+>   	remove_ima_buffer(fdt, chosen_node);
+>   	if (!image->arch.ima_buffer_size)
+>   		return 0;
+>   
+> -	ret = get_addr_size_cells(&addr_cells, &size_cells);
+> +	ret = fdt_appendprop_addrrange(fdt, 0, chosen_node,
+> +				       "linux,ima-kexec-buffer",
+> +				       image->arch.ima_buffer_addr,
+> +				       image->arch.ima_buffer_size);
+>   	if (ret)
+> -		return ret;
+> -
+> -	entry_size = 4 * (addr_cells + size_cells);
+> -
+> -	if (entry_size > sizeof(value))
+> -		return -EINVAL;
+> -
+> -	ret = write_number(value, image->arch.ima_buffer_addr, addr_cells);
+> -	if (ret)
+> -		return ret;
+> -
+> -	ret = write_number(value + 4 * addr_cells, image->arch.ima_buffer_size,
+> -			   size_cells);
+> -	if (ret)
+> -		return ret;
+> -
+> -	ret = fdt_setprop(fdt, chosen_node, "linux,ima-kexec-buffer", value,
+> -			  entry_size);
+> -	if (ret < 0)
+> -		return -EINVAL;
+> +		return (ret == -FDT_ERR_NOSPACE ? -ENOMEM : -EINVAL);
+>   
+>   	ret = fdt_add_mem_rsv(fdt, image->arch.ima_buffer_addr,
+>   			      image->arch.ima_buffer_size);
 > 
 
-
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
