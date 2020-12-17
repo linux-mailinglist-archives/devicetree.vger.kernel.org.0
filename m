@@ -2,73 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 321282DD04B
-	for <lists+devicetree@lfdr.de>; Thu, 17 Dec 2020 12:25:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C6D4B2DD055
+	for <lists+devicetree@lfdr.de>; Thu, 17 Dec 2020 12:29:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726999AbgLQLZj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Dec 2020 06:25:39 -0500
-Received: from mail-oi1-f176.google.com ([209.85.167.176]:44233 "EHLO
-        mail-oi1-f176.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725930AbgLQLZi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Dec 2020 06:25:38 -0500
-Received: by mail-oi1-f176.google.com with SMTP id d189so31772896oig.11;
-        Thu, 17 Dec 2020 03:25:22 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=CH4KoqxRsgraw3GD+qjjgNC8h8ZHHCh0rHY2dORvgVE=;
-        b=kyL+EXWY0atxIub+6okHfUV839m/VYqN2YCoPNKWN8ZGICNSmBVPp64uBXl3nzoeW6
-         KNnW8X1ddnsYG+ozVeFj9sUlprcvgQAAcb5bs1w705NchXXSGCzuvTBtb53W3NM9B4b7
-         SLH6PeTfh4qVWr1D+ZX2+mg5L2puEziCkrjmoWnPCwaiDoa1hrhTwBYs1BOMg5HuEMt+
-         YIRmx3vAnBgwraCxTu90t0MXbvaTLSb8rbegN1jXB5YwGhiBbDKlPV1QKHPIUIfjMQyF
-         DQr7t3x3OuyEXzYZA0qxwZbvAS1W7pYq87Xip4vEeagsEZvwOpD7T/F9ynZhYHejpdCx
-         auAg==
-X-Gm-Message-State: AOAM532XTO8xvYAms5yyg+Xf0i3CO8S1VSZWGnhSjKxmju3Vxfk6hduZ
-        foLbkSJ1aHRn09F/GQwXcCVAgzpDeLMspTg9P+HRw8iU
-X-Google-Smtp-Source: ABdhPJwvb2isWSCHbGaLy5xA85ukO4Mnju+l4F8u/T64MqBluzT4og9hnca8qu/uO806tgaiN6zVupuJkT+KFSn6Ckc=
-X-Received: by 2002:aca:4b16:: with SMTP id y22mr4472522oia.148.1608204297458;
- Thu, 17 Dec 2020 03:24:57 -0800 (PST)
+        id S1727323AbgLQL2g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Dec 2020 06:28:36 -0500
+Received: from mx0b-0016f401.pphosted.com ([67.231.156.173]:1044 "EHLO
+        mx0b-0016f401.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726548AbgLQL2g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 17 Dec 2020 06:28:36 -0500
+Received: from pps.filterd (m0045851.ppops.net [127.0.0.1])
+        by mx0b-0016f401.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 0BHBM0NL023538;
+        Thu, 17 Dec 2020 03:27:53 -0800
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marvell.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=pfpt0220;
+ bh=epOsstKLC1pL7QQkTo5f4KG8MxmSnaZy2Ju55c2rTbI=;
+ b=gI4mn84yafvs1nGogVBicBrJSiwPS1N7378/TqVEeDW33sT/zsbQB6OD2jv1g44Q/GcX
+ L5pC6tmHxUsAuyZ7U1UOFkr6mXbXkFvPxx/KnJNrldaJSO96zP0Sls+PkJERFtXpc8QZ
+ uux6eG4I/zZ7keqzTodmvkElSeKiGb+/5N6tYK2Mte4YFyB0MQg98tURSx0nSKltfmNC
+ q2mNtvt4a37ZJokKBKtvuzHYfIadPg53fDVJk9M+1Y8Sobb9lILkV/miKk/OQp1moDb1
+ WlblwHS8+2FgJVdWUt5R6tpGdypZ/rtLEMk4S1sVDm57zo4TSEukz9GbvSgnF3PhGou/ kA== 
+Received: from sc-exch01.marvell.com ([199.233.58.181])
+        by mx0b-0016f401.pphosted.com with ESMTP id 35cx8tfcm7-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
+        Thu, 17 Dec 2020 03:27:53 -0800
+Received: from DC5-EXCH02.marvell.com (10.69.176.39) by SC-EXCH01.marvell.com
+ (10.93.176.81) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Thu, 17 Dec
+ 2020 03:27:51 -0800
+Received: from maili.marvell.com (10.69.176.80) by DC5-EXCH02.marvell.com
+ (10.69.176.39) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 17 Dec 2020 03:27:51 -0800
+Received: from vb-cavnet.porotchkin.lan (PT-LT0319.marvell.com [10.6.202.166])
+        by maili.marvell.com (Postfix) with ESMTP id B3EA83F703F;
+        Thu, 17 Dec 2020 03:27:48 -0800 (PST)
+From:   <kostap@marvell.com>
+To:     <linux-spi@vger.kernel.org>
+CC:     <devicetree@vger.kernel.org>, <broonie@kernel.org>,
+        <robh+dt@kernel.org>, <mw@semihalf.com>, <jaz@semihalf.com>,
+        <nadavh@marvell.com>, <bpeled@marvell.com>, <stefanc@marvell.com>,
+        Konstantin Porotchkin <kostap@marvell.com>
+Subject: [PATCH 0/3] spi: new feature and fix for Marvell Orion driver
+Date:   Thu, 17 Dec 2020 13:27:05 +0200
+Message-ID: <20201217112708.3473-1-kostap@marvell.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-References: <20201213183759.223246-1-aford173@gmail.com> <20201213183759.223246-10-aford173@gmail.com>
-In-Reply-To: <20201213183759.223246-10-aford173@gmail.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 17 Dec 2020 12:24:45 +0100
-Message-ID: <CAMuHMdVZyLVRrrRKeE2nDqAEyQtrQSBwmVRGb_ORD0R6C3UNhg@mail.gmail.com>
-Subject: Re: [PATCH 09/18] arm64: dts: renesas: beacon: Fix RGB Display PWM Backlight
-To:     Adam Ford <aford173@gmail.com>
-Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Adam Ford-BE <aford@beaconembedded.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.343,18.0.737
+ definitions=2020-12-17_07:2020-12-15,2020-12-17 signatures=0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Dec 13, 2020 at 7:38 PM Adam Ford <aford173@gmail.com> wrote:
-> The backlight didn't really work correctly due to some updates that were
-> made in hardware.  It should be safe to apply these, because the older
-> hardware was never shipped to anyone, so it shouldn't break anything.
-> Because the display driver refers to the display as DPI, this also
-> renames the backlight to use DPI for consistency.
->
-> Signed-off-by: Adam Ford <aford173@gmail.com>
+From: Konstantin Porotchkin <kostap@marvell.com>
 
-Thanks, I have to trust you on this one, i.e. will queue in
-renesas-devel for v5.12.
+This patch set contains the following:
+- support for switching CS for every transferred byte
+- fix for the clock by enabling it for every call to spi_setup()
 
-Gr{oetje,eeting}s,
+Konstantin Porotchkin (1):
+  dt-bindings: spi: add support for spi-1byte-cs
 
-                        Geert
+Marcin Wojtas (2):
+  spi: orion: enable clocks before spi_setup
+  spi: orion: enable support for switching CS every transferred byte
 
+ .../bindings/spi/spi-controller.yaml          |  5 ++++
+ drivers/spi/spi-orion.c                       | 30 ++++++++++++++++++-
+ drivers/spi/spi.c                             |  6 ++--
+ include/linux/spi/spi.h                       |  1 +
+ 4 files changed, 39 insertions(+), 3 deletions(-)
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+-- 
+2.17.1
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
