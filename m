@@ -2,85 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 993B52DD922
-	for <lists+devicetree@lfdr.de>; Thu, 17 Dec 2020 20:11:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 992A32DD954
+	for <lists+devicetree@lfdr.de>; Thu, 17 Dec 2020 20:29:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730040AbgLQTJd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Dec 2020 14:09:33 -0500
-Received: from mail.kernel.org ([198.145.29.99]:45964 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725468AbgLQTJd (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 17 Dec 2020 14:09:33 -0500
-Date:   Thu, 17 Dec 2020 11:08:51 -0800
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1608232132;
-        bh=c/cxrTjW+7xbFJ6g/nVPp5oNBveIiHB6q+RTtPW5b68=;
-        h=From:To:Cc:Subject:In-Reply-To:References:From;
-        b=XMUQJyyZGnbABRzDrhaINgr/so06gpwLMuKSgKGShi2+MU9Dit1ZZEgxxNn0H4GDK
-         na49b2ciSBUD/twqUfnrUEXUWgtxd+/6KpAKDXX5Zx1PwcLE8NBkmF+WcOlJRjaVgb
-         BLs5TTiOLs+aIBL9tLrsQBPCOgelklPWHbDUTLn4NEyU/hdhQ/3rqoCI5d8OTqS2SN
-         9Hxwtp8iWdjAvkKhPO5J23w0jtYmelikm37zuAzcVcChJsmPVCwujPmnESejLdaZbO
-         wzsOrpEmBQAADzay2CAzCba8dVAguCdWzF37KJVL82pvejb9yuLn1/OeQQ/9VoEvg9
-         gwegoV5bIDe4Q==
-From:   Jakub Kicinski <kuba@kernel.org>
-To:     =?UTF-8?B?xYF1a2Fzeg==?= Stelmach <l.stelmach@samsung.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>, jim.cromie@gmail.com,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Kukjin Kim <kgene@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org,
-        =?UTF-8?B?QmFydMWCb21pZWogxbtvbG5pZXJr?= =?UTF-8?B?aWV3aWN6?= 
-        <b.zolnierkie@samsung.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>
-Subject: Re: [PATCH v9 3/3] net: ax88796c: ASIX AX88796C SPI Ethernet
- Adapter Driver
-Message-ID: <20201217110851.4a059426@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
-In-Reply-To: <20201217115330.28431-4-l.stelmach@samsung.com>
-References: <20201217115330.28431-1-l.stelmach@samsung.com>
-        <CGME20201217115342eucas1p125292db8ba7c23ee71e252d7e1695e0e@eucas1p1.samsung.com>
-        <20201217115330.28431-4-l.stelmach@samsung.com>
+        id S1728143AbgLQT3C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Dec 2020 14:29:02 -0500
+Received: from mail-oi1-f177.google.com ([209.85.167.177]:46877 "EHLO
+        mail-oi1-f177.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727368AbgLQT3C (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Dec 2020 14:29:02 -0500
+Received: by mail-oi1-f177.google.com with SMTP id q205so80613oig.13;
+        Thu, 17 Dec 2020 11:28:46 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=OIqxJlEr6qhscRY9Nj69alb23UGeDiYW09DXVg3bkF4=;
+        b=ewxWi9CV7yLkhkmeXyjasmN4l/6tAAVlyKA9mGjbgwhU/w+KVP9YygSciECpWS8OHK
+         9p1T++e/G+vSi4v9k0jYIP2Ecvht/MFleOS8lX1euh1EtGU1EB342kIUSoqJvXwBDvjg
+         ao2kXCLYc0FN7dW8B49LCa0XTIqoH3Y/DMc6pZacT9V+DKAFh0AZ94OUuL0G1z4u2MJr
+         UPOE9Dv2ZOqr94hEzLnT+j0c9xiPSh+qXD2oPwxwLAR5Ibv9EI3WXG5RC94hKuU9xEw6
+         PAiI8Brxec+Vb62k+4jIu+HnfWAx8bqitO7S4kwk6OasnMsMqcLE0BiC3Lgem0nTcbdf
+         26ug==
+X-Gm-Message-State: AOAM533CICczxAKIJ1Gs+5CtQvmcD9zaITt5zNg1PXdoDOYMOBZrGDTu
+        FFxsNkM3pzqGra/3W2Ut7g==
+X-Google-Smtp-Source: ABdhPJw3bvC0XYf+pKjCMi2TrfV+zkB/AwPcr+ycvAdNFlDT5V1e88wLbTciwmx3HwL9jGOPY4nPEQ==
+X-Received: by 2002:aca:3257:: with SMTP id y84mr518377oiy.132.1608233301052;
+        Thu, 17 Dec 2020 11:28:21 -0800 (PST)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id b25sm1497885ooe.18.2020.12.17.11.28.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 17 Dec 2020 11:28:20 -0800 (PST)
+Received: (nullmailer pid 101991 invoked by uid 1000);
+        Thu, 17 Dec 2020 19:28:18 -0000
+Date:   Thu, 17 Dec 2020 13:28:18 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        linux-kernel@vger.kernel.org,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-mediatek@lists.infradead.org, linux-rtc@vger.kernel.org,
+        devicetree@vger.kernel.org, Ran Bi <ran.bi@mediatek.com>,
+        srv_heupstream@mediatek.com, linux-arm-kernel@lists.infradead.org,
+        Yuchen Huang <yuchen.huang@mediatek.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Lee Jones <lee.jones@linaro.org>,
+        Fei Shao <fshao@chromium.org>,
+        Eddie Huang <eddie.huang@mediatek.com>,
+        Mark Brown <broonie@kernel.org>
+Subject: Re: [PATCH v4 3/9] dt-bindings: mfd: Add compatible for the MediaTek
+ MT6359 PMIC
+Message-ID: <20201217192818.GA101889@robh.at.kernel.org>
+References: <1608104827-7937-1-git-send-email-hsin-hsiung.wang@mediatek.com>
+ <1608104827-7937-4-git-send-email-hsin-hsiung.wang@mediatek.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1608104827-7937-4-git-send-email-hsin-hsiung.wang@mediatek.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 17 Dec 2020 12:53:30 +0100 =C5=81ukasz Stelmach wrote:
-> ASIX AX88796[1] is a versatile ethernet adapter chip, that can be
-> connected to a CPU with a 8/16-bit bus or with an SPI. This driver
-> supports SPI connection.
->=20
-> The driver has been ported from the vendor kernel for ARTIK5[2]
-> boards. Several changes were made to adapt it to the current kernel
-> which include:
->=20
-> + updated DT configuration,
-> + clock configuration moved to DT,
-> + new timer, ethtool and gpio APIs,
-> + dev_* instead of pr_* and custom printk() wrappers,
-> + removed awkward vendor power managemtn.
-> + introduced ethtool tunable to control SPI compression
->=20
-> [1] https://www.asix.com.tw/products.php?op=3DpItemdetail&PItemID=3D104;6=
-5;86&PLine=3D65
-> [2] https://git.tizen.org/cgit/profile/common/platform/kernel/linux-3.10-=
-artik/
->=20
-> The other ax88796 driver is for NE2000 compatible AX88796L chip. These
-> chips are not compatible. Hence, two separate drivers are required.
->=20
-> Signed-off-by: =C5=81ukasz Stelmach <l.stelmach@samsung.com>
-> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+On Wed, 16 Dec 2020 15:47:01 +0800, Hsin-Hsiung Wang wrote:
+> This adds compatible for the MediaTek MT6359 PMIC.
+> 
+> Signed-off-by: Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
+> ---
+>  Documentation/devicetree/bindings/mfd/mt6397.txt | 7 ++++++-
+>  1 file changed, 6 insertions(+), 1 deletion(-)
+> 
 
-drivers/net/ethernet/asix/ax88796c_main.c: In function =E2=80=98ax88796c_tx=
-_fixup=E2=80=99:
-drivers/net/ethernet/asix/ax88796c_main.c:248:6: warning: variable =E2=80=
-=98tol_len=E2=80=99 set but not used [-Wunused-but-set-variable]
-  248 |  u16 tol_len, pkt_len;
-      |      ^~~~~~~
+
+Please add Acked-by/Reviewed-by tags when posting new versions. However,
+there's no need to repost patches *only* to add the tags. The upstream
+maintainer will do that for acks received on the version they apply.
+
+If a tag was not added on purpose, please state why and what changed.
+
