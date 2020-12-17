@@ -2,83 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3282C2DD612
+	by mail.lfdr.de (Postfix) with ESMTP id AA5732DD613
 	for <lists+devicetree@lfdr.de>; Thu, 17 Dec 2020 18:27:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727303AbgLQR0W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Dec 2020 12:26:22 -0500
-Received: from mail.kernel.org ([198.145.29.99]:45260 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725468AbgLQR0W (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 17 Dec 2020 12:26:22 -0500
-Date:   Thu, 17 Dec 2020 17:25:28 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1608225941;
-        bh=xLMc/g9mnU1bL3Jqs927GyUiBY/U/XC8FwWvJM2cfeY=;
-        h=From:To:Cc:Subject:References:In-Reply-To:From;
-        b=V7gSZJnreqazz2QaV4Uamd96KfGbxiZrce64Qhv7wcmLvZJXGoPfiWqOIwWAiw9LF
-         l96pib/+6/RJLwreIWaLIqVrUBXPMPG3l1F22UccX4hhM4HPVIyksR+sIr7IliajZw
-         S5GVPJeMc4WBjkoyrq2NFl6ZoCuwNck8mr+qjtYiCb5jkc5T3Y2Pb+Zocg3hG8B4Mi
-         cYHg2QqEiuRy5ZqtUbj3xmHFZxeHk5pUyVupqTMwP+hjj8gtg7Csuq6XdzrbLsnzVw
-         PuJ2Mg/yVe1JOKXKBMR1iFG046TUE6QT/ORFyewYvFLKNxsSt+kXN2HlbF4w0YLK3o
-         4TBHIBnNbiXKg==
-From:   Mark Brown <broonie@kernel.org>
-To:     kostap@marvell.com
-Cc:     linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, mw@semihalf.com, jaz@semihalf.com,
-        nadavh@marvell.com, bpeled@marvell.com, stefanc@marvell.com
-Subject: Re: [PATCH v2 1/2] spi: orion: enable clocks before spi_setup
-Message-ID: <20201217172528.GG4708@sirena.org.uk>
-References: <20201217170933.10717-1-kostap@marvell.com>
- <20201217170933.10717-2-kostap@marvell.com>
+        id S1728000AbgLQR02 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Dec 2020 12:26:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35436 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725468AbgLQR01 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Dec 2020 12:26:27 -0500
+Received: from mail-io1-xd33.google.com (mail-io1-xd33.google.com [IPv6:2607:f8b0:4864:20::d33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C1E4C0617A7;
+        Thu, 17 Dec 2020 09:25:47 -0800 (PST)
+Received: by mail-io1-xd33.google.com with SMTP id z5so28242907iob.11;
+        Thu, 17 Dec 2020 09:25:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=krTHnXR6iIykJ5sXv4kLG6gH+GfxhHZQ9SdSfjbfxks=;
+        b=gexgyPyLr2RPKCxqRyyvqKBOJ8ukeF6TNc2pZxDiwDvoOxLO5rrtB1rkeXP/J6oJ6+
+         TrmEutXxkDwtBfmFIbBmsW/BNwDhC3RblruiLoQx1zXq52qDzhdCIPrPyq/3jkYGTdjB
+         KDmFztAwavClrdBXriRcWgyfuNozOl29uyPxKklcf4dDIwnGirZdl0IdyBBy0Z3cWyy0
+         zYLrnbUS+0PeSuTIEG1s2ENzvfdZscRijOxlH4wTX+fs6o0BH+j0XtWgwPuuB+3PiIKK
+         QUmho8AbR5aOlMQ60IhOEsO04iC09AuowW5oUP05SdS7VN5V++gAQR/8+HPinvRHk28d
+         DLBw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=krTHnXR6iIykJ5sXv4kLG6gH+GfxhHZQ9SdSfjbfxks=;
+        b=FbIlaX/wUEtv0JOXVuPpT66u7dtc6154SY5zcUdysApfkk9TUCWl9OoUUpYt5kGIAh
+         tzrGTheY/ZhdyikSuhqxTG69vdHoITvKRTeJkwEqrZG8TscMyDReecNCCakgGOCW92He
+         1JR4X8tSvRlDCWvOntxWpDUy6yuO3kVz1mFVoxA0c0mBu0gIbkfJlkSsL9Co460pD+mI
+         gW+71HSc6jhX1Z53glJW7kalWyRyBufG5wCnzYTdWxWWB32e0iuSnyPkTyrlZ24DjKKq
+         vRaYt+1nKjqW0gLNEYWLzBImVtMxn+N6xd2ukolal5L01pNkpx2JY4PT/ALraMwNkhSz
+         FmDQ==
+X-Gm-Message-State: AOAM533NlWMBNXVMJLtEDvE9cG3Iw7PAMWtupf4IAFEsSs4nAeibjMuf
+        UWQfc9b9QvkhHyWXW4IYUiyT3wIaXFToWA==
+X-Google-Smtp-Source: ABdhPJxdjkorQ5pT7rlmmZOyhBdBqw+V6jPKlXWJFW9I8l21dso5Nquu21l7t9TWdAxJZxY4ydqqWQ==
+X-Received: by 2002:a05:6602:387:: with SMTP id f7mr86169iov.209.1608225946916;
+        Thu, 17 Dec 2020 09:25:46 -0800 (PST)
+Received: from aford-IdeaCentre-A730.lan ([2601:448:8400:9e8:f45d:df49:9a4c:4914])
+        by smtp.gmail.com with ESMTPSA id c15sm3447028ils.87.2020.12.17.09.25.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 17 Dec 2020 09:25:45 -0800 (PST)
+From:   Adam Ford <aford173@gmail.com>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     aford@beaconembedded.com, Adam Ford <aford173@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 1/2] ARM: dts: imx6q-logicpd: Drop unused clock-names reference
+Date:   Thu, 17 Dec 2020 11:25:28 -0600
+Message-Id: <20201217172530.1459503-1-aford173@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="kadn00tgSopKmJ1H"
-Content-Disposition: inline
-In-Reply-To: <20201217170933.10717-2-kostap@marvell.com>
-X-Cookie: I'll eat ANYTHING that's BRIGHT BLUE!!
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The wlf,wm8962 driver does not use the clock-names property.
+Drop it.
 
---kadn00tgSopKmJ1H
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Signed-off-by: Adam Ford <aford173@gmail.com>
 
-On Thu, Dec 17, 2020 at 07:09:31PM +0200, kostap@marvell.com wrote:
+diff --git a/arch/arm/boot/dts/imx6-logicpd-baseboard.dtsi b/arch/arm/boot/dts/imx6-logicpd-baseboard.dtsi
+index 665d63765cdc..d9de9b4f0c52 100644
+--- a/arch/arm/boot/dts/imx6-logicpd-baseboard.dtsi
++++ b/arch/arm/boot/dts/imx6-logicpd-baseboard.dtsi
+@@ -238,7 +238,6 @@ wm8962: audio-codec@1a {
+ 		compatible = "wlf,wm8962";
+ 		reg = <0x1a>;
+ 		clocks = <&clks IMX6QDL_CLK_CKO>;
+-		clock-names = "xclk";
+ 		DCVDD-supply = <&reg_audio>;
+ 		DBVDD-supply = <&reg_audio>;
+ 		AVDD-supply = <&reg_audio>;
+-- 
+2.25.1
 
-> +	/*
-> +	 * Make sure the clocks are enabled before
-> +	 * configuring the SPI controller.
-> +	 */
-> +	clk_prepare_enable(orion_spi->clk);
-> +	if (!IS_ERR(orion_spi->axi_clk))
-> +		clk_prepare_enable(orion_spi->axi_clk);
-> +
->  	return orion_spi_setup_transfer(spi, NULL);
->  }
-
-There's no matching disable here so we'll leak the enables every time
-setup() is called - we should unwind the enables after calling
-_setup_transfer().  It may be more sensible to just take a runtime PM
-reference rather than do the raw clock API stuff, one less call and
-means if anything else gets added to runtime PM it'll be handled.
-
---kadn00tgSopKmJ1H
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl/blIcACgkQJNaLcl1U
-h9BkXwf7BSPq2fElEKheAbNxwx5Zm86UCtONGfv6ORWCBWThJTyhTTkrEUqsUTUn
-Ui8fawRs/0n5PJHZC3lW2FM8eftyCf8LTR6UvaU/Hv6PAENEhus3L3RgMQiRVcTp
-+BBcYnGFJw/FdZh3Uf4LrMBLdaVpJ1Vi75tVUV0moqI/qLIBFLo22p+3TmlN3OVS
-PzJjhSYzAfiGtA7QuvkF5qmP1VY90PfTD2yFQIxYfbvXT/c6h+hbk0XhfFMJ1COm
-2cOgJXV905+xTWvJeQ/0kwYOtOZHy8IEXtlEHwNcE0oAiJ7N+PzQ6wYUklOEMrPE
-KNM9RBy4NpWYEdCEbsp4uEC8sgUWvA==
-=IhY9
------END PGP SIGNATURE-----
-
---kadn00tgSopKmJ1H--
