@@ -2,101 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F00362DCBD7
-	for <lists+devicetree@lfdr.de>; Thu, 17 Dec 2020 06:13:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E9B52DCC52
+	for <lists+devicetree@lfdr.de>; Thu, 17 Dec 2020 07:04:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725943AbgLQFMx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Dec 2020 00:12:53 -0500
-Received: from mo-csw1114.securemx.jp ([210.130.202.156]:41798 "EHLO
-        mo-csw.securemx.jp" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725882AbgLQFMx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Dec 2020 00:12:53 -0500
-Received: by mo-csw.securemx.jp (mx-mo-csw1114) id 0BH5ARkV031778; Thu, 17 Dec 2020 14:10:27 +0900
-X-Iguazu-Qid: 2wGr4wgD0TY3NxKKBP
-X-Iguazu-QSIG: v=2; s=0; t=1608181827; q=2wGr4wgD0TY3NxKKBP; m=VS/HNZNDUfKECpOILMhKu5A4oTfVdUJkWsl2uYdhdrc=
-Received: from imx2.toshiba.co.jp (imx2.toshiba.co.jp [106.186.93.51])
-        by relay.securemx.jp (mx-mr1112) id 0BH5AQqs013260;
-        Thu, 17 Dec 2020 14:10:26 +0900
-Received: from enc01.toshiba.co.jp ([106.186.93.100])
-        by imx2.toshiba.co.jp  with ESMTP id 0BH5AQmT023274;
-        Thu, 17 Dec 2020 14:10:26 +0900 (JST)
-Received: from hop001.toshiba.co.jp ([133.199.164.63])
-        by enc01.toshiba.co.jp  with ESMTP id 0BH5AQoc014349;
-        Thu, 17 Dec 2020 14:10:26 +0900
-Date:   Thu, 17 Dec 2020 14:10:21 +0900
-From:   Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-To:     Marc Zyngier <maz@kernel.org>
-Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Punit Agrawal <punit1.agrawal@toshiba.co.jp>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-kernel@vger.kernel.org,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, yuji2.ishikawa@toshiba.co.jp,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v4 2/4] gpio: visconti: Add Toshiba Visconti GPIO support
-X-TSB-HOP: ON
-Message-ID: <20201217051021.x57bigbbdmc7uj7w@toshiba.co.jp>
-References: <20201211094138.2863677-1-nobuhiro1.iwamatsu@toshiba.co.jp>
- <20201211094138.2863677-3-nobuhiro1.iwamatsu@toshiba.co.jp>
- <CACRpkdZ-umK4troerSA6S2rvyU5XV+KsFdxuWE5Sy0PCgdfT6A@mail.gmail.com>
- <20201216091148.vmriqt3vsg34pqhj@toshiba.co.jp>
- <1ceac365ff6127c96006ed4570f87b47@kernel.org>
+        id S1726983AbgLQGDx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Dec 2020 01:03:53 -0500
+Received: from asavdk3.altibox.net ([109.247.116.14]:41076 "EHLO
+        asavdk3.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726500AbgLQGDx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Dec 2020 01:03:53 -0500
+Received: from ravnborg.org (unknown [188.228.123.71])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by asavdk3.altibox.net (Postfix) with ESMTPS id 0650520020;
+        Thu, 17 Dec 2020 07:03:04 +0100 (CET)
+Date:   Thu, 17 Dec 2020 07:03:03 +0100
+From:   Sam Ravnborg <sam@ravnborg.org>
+To:     Paul Cercueil <paul@crapouillou.net>
+Cc:     Rob Herring <robh+dt@kernel.org>, od@zcrc.me,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings/display: abt,y030xx067a: Fix binding
+Message-ID: <20201217060303.GA1279680@ravnborg.org>
+References: <20201101093150.8071-1-paul@crapouillou.net>
+ <20201217005945.335111-1-paul@crapouillou.net>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1ceac365ff6127c96006ed4570f87b47@kernel.org>
+In-Reply-To: <20201217005945.335111-1-paul@crapouillou.net>
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.3 cv=Ibmpp1ia c=1 sm=1 tr=0
+        a=S6zTFyMACwkrwXSdXUNehg==:117 a=S6zTFyMACwkrwXSdXUNehg==:17
+        a=kj9zAlcOel0A:10 a=ER_8r6IbAAAA:8 a=7gkXJVJtAAAA:8
+        a=YuVqg-kK8-MGTqJEOG4A:9 a=CjuIK1q_8ugA:10 a=9LHmKk7ezEChjTCyhBa9:22
+        a=E9Po1WZjFZOl8hwRPBS3:22
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On Wed, Dec 16, 2020 at 09:36:17AM +0000, Marc Zyngier wrote:
-> On 2020-12-16 09:11, Nobuhiro Iwamatsu wrote:
+On Thu, Dec 17, 2020 at 12:59:45AM +0000, Paul Cercueil wrote:
+> The binding should use "unevaluatedProperties" instead of
+> "additionalProperties", since it is a SPI device and may have
+> SPI-related Device Tree properties, for instance the "spi-max-frequency"
+> property that is present in the example.
 > 
-> [...]
-> 
-> > > > +       for (i = 0; i < num_irq; i++) {
-> > > > +               desc = irq_to_desc(priv->irq[i]);
-> > > > +               desc->status_use_accessors |= IRQ_NOAUTOEN;
-> > > > +               if (devm_request_irq(dev, priv->irq[i],
-> > > > +                                    visconti_gpio_irq_handler, 0, name, priv)) {
-> > > > +                       dev_err(dev, "failed to request IRQ[%d]\n", i);
-> > > > +                       return -ENOENT;
-> > > > +               }
-> > > > +       }
-> > > 
-> > > This should not be needed either when using hiearchical IRQs,
-> > > also the irqchip maintainers will beat us up for poking around in the
-> > > descs like this.
-> > 
-> > I understand that the processing equivalent to request_irq() is
-> > processed
-> > by the irqchip frame work (or GIC driver). Is this correct?
-> 
-> request_irq() is reserved to endpoint drivers (the driver for the device
-> driving the IRQ line). If this is indeed a hierarchical irqchip, the
-> line allocation will be driven from the GPIO framework, and request_irq()
-> will perform the activation. There isn't anything that this driver should
-> do directly other than configuring its own state and passing the request
-> along to the parent controller.
-> 
-> And yes, mucking with the irq descriptor will get you in massive trouble,
-> never do that.
-> 
-
-I see. Thank you for the explanation.
-I got a better understanding.
-
-Best regards,
-  Nobuhiro
-
-> -- 
-> Jazz is not dead. It just smells funny...
-> 
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
-> 
+> Fixes: e366a644c69d ("dt-bindings: display: Add ABT Y030XX067A panel bindings")
+> Signed-off-by: Paul Cercueil <paul@crapouillou.net>
+Reviewed-by: Sam Ravnborg <sam@ravnborg.org>
