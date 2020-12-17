@@ -2,135 +2,203 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B88052DD26E
-	for <lists+devicetree@lfdr.de>; Thu, 17 Dec 2020 14:49:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7DBA42DD27F
+	for <lists+devicetree@lfdr.de>; Thu, 17 Dec 2020 14:58:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727303AbgLQNtW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Dec 2020 08:49:22 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:57812 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725871AbgLQNtT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Dec 2020 08:49:19 -0500
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0BHDmW4b039970;
-        Thu, 17 Dec 2020 07:48:32 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1608212912;
-        bh=cCMFbeoGOeXh5a3ALIlrjnmqak/HdGsLUEWJEk/pIfs=;
-        h=Subject:From:To:CC:References:Date:In-Reply-To;
-        b=j4DMop5tNzX/qPSpMLunjtr4Q5T+8mMnGR1k/oVUhuXiVzr9iN6MvHbuMxAhTcfKV
-         4o3fXex9+mR3uITdr4bnBaHR8hQ0xGwkgHOz49LnjUXFD/9lwepge9+mGjaN+lADxH
-         /0giRgy6ffLxFPJ+I8u0AfIehRF6RSKl5C/MD3H4=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0BHDmWUO021827
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 17 Dec 2020 07:48:32 -0600
-Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 17
- Dec 2020 07:48:32 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Thu, 17 Dec 2020 07:48:32 -0600
-Received: from [10.250.232.169] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0BHDmT8N111397;
-        Thu, 17 Dec 2020 07:48:30 -0600
-Subject: Re: [PATCH RFC 1/2] Documentation: devicetree: Add property for
- ignoring the dummy bits sent before read transfer
-From:   Aswath Govindraju <a-govindraju@ti.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Vadym Kochan <vadym.kochan@plvision.eu>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Sekhar Nori <nsekhar@ti.com>
-References: <20201209175708.16252-1-a-govindraju@ti.com>
- <20201209175708.16252-2-a-govindraju@ti.com>
- <20201211033301.GA3581630@robh.at.kernel.org>
- <70d6c152-5d8d-9ad6-ce06-95a9f599c492@ti.com>
- <20201214222339.GA2471866@robh.at.kernel.org>
- <76e73cc7-fdb7-45bb-6270-1f668969ad50@ti.com>
-Message-ID: <96eada83-cf24-e02a-60a6-d81907a1bba0@ti.com>
-Date:   Thu, 17 Dec 2020 19:18:28 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1727415AbgLQN5J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Dec 2020 08:57:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59358 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726595AbgLQN5J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Dec 2020 08:57:09 -0500
+Received: from mail-qv1-xf36.google.com (mail-qv1-xf36.google.com [IPv6:2607:f8b0:4864:20::f36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4FD6C0617B0
+        for <devicetree@vger.kernel.org>; Thu, 17 Dec 2020 05:56:28 -0800 (PST)
+Received: by mail-qv1-xf36.google.com with SMTP id 4so13269889qvh.1
+        for <devicetree@vger.kernel.org>; Thu, 17 Dec 2020 05:56:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=semihalf-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=xPt9ndUPLWdKnPREGGrnhLGFSj0/IvKW6TbYWxdqNWA=;
+        b=fLk4XCXVauRe2GWRUOB2aVcwzGoK07QIVYHWPgIjXOWg4JsdQGVLNDvJLI8Pu+zRti
+         Ic9Z6j5lrCvy+Mh91JRMr8+9FmtzCj6wT8pNB9qpenc9Fkb5zEq/uI9LKPkWYQ7hZM4t
+         4izsHcKGiDYqiyuObRlyw+ExUPnpt/5gwACAfTu4WEhVC/Gp++cGtBUXdSZONCxS9ahD
+         Q7aIXv4a/ipmRtjiXvI/DezBACBOMVoqsO4Tb5CCARxZGo9nBqNdUuqZZc5dYIhFnJxw
+         U/JU0J3yvzYKB5TKY0MK2//JMuUPOIJ5ushgE+udQbnVu1uVxuTcABqgNA2o0Hsj+qGs
+         HeCQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=xPt9ndUPLWdKnPREGGrnhLGFSj0/IvKW6TbYWxdqNWA=;
+        b=OJrEAtIn2L6f8cCQG7J5ABidvtjsJJGDhvJkThM7bmEWGZqrozRLHG/B+NgF7FYMEt
+         7DpjQj4nKBPSCD1Y3iq7bHt0CIAVJpJ2SzHVrgZl3S6Md4mFbEpL+/kfIgLwEMGKSVF7
+         16T8HBd5Y4+B/FdgDgWngdEPwRNwJ7qr0Y210pav96HOD/hsR0foOUVSTZXHrRW3DOER
+         dnJeSu9LuR4IkK8aZMcnvBnsU4QGVYJ90WVlMXMkoixRzKwCHMlz7dtnqcYdmFTDgDhP
+         UlA8aqXvY/+2L8OfTcw0vHAA1eFHRKKGpOOvzloVe2o1BXQodlwNAtzn0ri7T2IlRRnu
+         QDOQ==
+X-Gm-Message-State: AOAM533ttTAJhGkt2TYfB8xy1rQqnSC8wDgxe3cf/ThHsDbDgFfHOA54
+        A6u4oY+nM3dV/RFHt7ILpn5Qe1ZmFDA9uLj33YHi5w==
+X-Google-Smtp-Source: ABdhPJxQ+Ke75x89YHbVzH3k7uvsogqRmnnUGmNyZ7ovk2xwUs23CfSsQpWlEQ2nl7IdAzL0S7ggcIr2al0mgsePgRI=
+X-Received: by 2002:a05:6214:14ae:: with SMTP id bo14mr48320969qvb.16.1608213387949;
+ Thu, 17 Dec 2020 05:56:27 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <76e73cc7-fdb7-45bb-6270-1f668969ad50@ti.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <20201217112708.3473-1-kostap@marvell.com> <20201217112708.3473-3-kostap@marvell.com>
+In-Reply-To: <20201217112708.3473-3-kostap@marvell.com>
+From:   Marcin Wojtas <mw@semihalf.com>
+Date:   Thu, 17 Dec 2020 14:56:16 +0100
+Message-ID: <CAPv3WKdRM_=t8Rn8LkRWTV2+WGQ3biStjmGXwfQD0z9yKR19jA@mail.gmail.com>
+Subject: Re: [PATCH 2/3] spi: orion: enable support for switching CS every
+ transferred byte
+To:     Mark Brown <broonie@kernel.org>
+Cc:     linux-spi <linux-spi@vger.kernel.org>, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Grzegorz Jaszczyk <jaz@semihalf.com>, nadavh@marvell.com,
+        =?UTF-8?B?QmVuIFBlbGVkICjXkdefINek15zXkyk=?= <bpeled@marvell.com>,
+        Stefan Chulski <stefanc@marvell.com>,
+        Konstantin Porotchkin <kostap@marvell.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Hi Mark,
 
-On 15/12/20 9:42 pm, Aswath Govindraju wrote:
-> Hi Rob,
-> On 15/12/20 3:53 am, Rob Herring wrote:
->> On Fri, Dec 11, 2020 at 08:34:57PM +0530, Aswath Govindraju wrote:
->>> Hi,
->>> On 11/12/20 9:03 am, Rob Herring wrote:
->>>> On Wed, Dec 09, 2020 at 11:27:07PM +0530, Aswath Govindraju wrote:
->>>>> Dummy zero bits are sent before data during a read transfer. This causes
->>>>> the data read to be shifted to the right. To fix this send zero bits after
->>>>> the address during a read transfer.
->>>>>
->>>>> Add property to send zero bits after the address during a read transfer.
->>>>
->>>> When is this necessary? Why can't it be implied by the compatible 
->>>> string which should be specific to the chip model?
->>>>
->>>
->>> This is necessary for 93AA46A/B/C, 93LC46A/B/C, 93C46A/B/C eeproms, as
->>> it can be seen in section 2.7 of [1]. We were not sure if these were the
->>> only devices supported by the driver(eeprom_93xx46.c). So, in order to
->>> apply this only to the above listed devices, we thought that it would be
->>> better to apply this change when required by introducing a DT property.
->>>
->>> May I know how has this case been handled till now ??
->>>
->>
->> No idea. From the at93c46d (which has a compatible string) datasheet it 
->> looks like it has the same thing.
->>
->>> If this is required by all the devices then we can drop the property and
->>> include the zero bit by default.
->>
->> Looks like you need a combination of compatible strings for the above  
->> devices and a property for the ORG pin state on the C devices. I assume 
->> s/w needs to know if x8 or x16?
->>
-> Yes, there are separate properties for indicating different types of
-> types of eeproms.
-> 
+czw., 17 gru 2020 o 12:27 <kostap@marvell.com> napisa=C5=82(a):
+>
+> From: Marcin Wojtas <mw@semihalf.com>
+>
+> Some SPI devices, such as SLIC (Subscriber Line Interface Card)
+> require toggling the CS every transferred byte. Enable such
+> possibility by creating a new DT property and enabling SPI
+> device mode update. Add according support in the spi-orion driver.
+>
+> Signed-off-by: Marcin Wojtas <mw@semihalf.com>
+> Signed-off-by: Konstantin Porotchkin <kostap@marvell.com>
+> ---
+>  drivers/spi/spi-orion.c | 20 +++++++++++++++++++-
+>  drivers/spi/spi.c       |  6 ++++--
+>  include/linux/spi/spi.h |  1 +
+>  3 files changed, 24 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/spi/spi-orion.c b/drivers/spi/spi-orion.c
+> index 3bfda4225d45..7db9034b0879 100644
+> --- a/drivers/spi/spi-orion.c
+> +++ b/drivers/spi/spi-orion.c
+> @@ -369,8 +369,15 @@ orion_spi_write_read_8bit(struct spi_device *spi,
+>  {
+>         void __iomem *tx_reg, *rx_reg, *int_reg;
+>         struct orion_spi *orion_spi;
+> +       bool cs_single_byte;
+> +
+> +       cs_single_byte =3D spi->mode & SPI_1BYTE_CS;
+>
+>         orion_spi =3D spi_master_get_devdata(spi->master);
+> +
+> +       if (cs_single_byte)
+> +               orion_spi_set_cs(spi, 0);
+> +
+>         tx_reg =3D spi_reg(orion_spi, ORION_SPI_DATA_OUT_REG);
+>         rx_reg =3D spi_reg(orion_spi, ORION_SPI_DATA_IN_REG);
+>         int_reg =3D spi_reg(orion_spi, ORION_SPI_INT_CAUSE_REG);
+> @@ -384,6 +391,11 @@ orion_spi_write_read_8bit(struct spi_device *spi,
+>                 writel(0, tx_reg);
+>
+>         if (orion_spi_wait_till_ready(orion_spi) < 0) {
+> +               if (cs_single_byte) {
+> +                       orion_spi_set_cs(spi, 1);
+> +                       /* Satisfy some SLIC devices requirements */
+> +                       udelay(4);
+> +               }
+>                 dev_err(&spi->dev, "TXS timed out\n");
+>                 return -1;
+>         }
+> @@ -391,6 +403,12 @@ orion_spi_write_read_8bit(struct spi_device *spi,
+>         if (rx_buf && *rx_buf)
+>                 *(*rx_buf)++ =3D readl(rx_reg);
+>
+> +       if (cs_single_byte) {
+> +               orion_spi_set_cs(spi, 1);
+> +               /* Satisfy some SLIC devices requirements */
+> +               udelay(4);
+> +       }
+> +
+>         return 1;
+>  }
+>
+> @@ -626,7 +644,7 @@ static int orion_spi_probe(struct platform_device *pd=
+ev)
+>         }
+>
+>         /* we support all 4 SPI modes and LSB first option */
+> -       master->mode_bits =3D SPI_CPHA | SPI_CPOL | SPI_LSB_FIRST;
+> +       master->mode_bits =3D SPI_CPHA | SPI_CPOL | SPI_LSB_FIRST | SPI_1=
+BYTE_CS;
+>         master->set_cs =3D orion_spi_set_cs;
+>         master->transfer_one =3D orion_spi_transfer_one;
+>         master->num_chipselect =3D ORION_NUM_CHIPSELECTS;
+> diff --git a/drivers/spi/spi.c b/drivers/spi/spi.c
+> index 51d7c004fbab..998579807a04 100644
+> --- a/drivers/spi/spi.c
+> +++ b/drivers/spi/spi.c
+> @@ -1937,6 +1937,8 @@ static int of_spi_parse_dt(struct spi_controller *c=
+tlr, struct spi_device *spi,
+>                 spi->mode |=3D SPI_LSB_FIRST;
+>         if (of_property_read_bool(nc, "spi-cs-high"))
+>                 spi->mode |=3D SPI_CS_HIGH;
+> +       if (of_find_property(nc, "spi-1byte-cs", NULL))
+> +               spi->mode |=3D SPI_1BYTE_CS;
 
-Here I was saying about x8 or x16 using the data-size property. ORG pin
-state is implied through data-size property and an additional property
-is not required for ORG pin state.
+Regarding your comment from patch 3/3 that "spi-1byte-cs" should be
+replaced by handling based on the compatible string - do you mean
+dropping above parsing and updating SPI bus mode field with
+SPI_1BYTE_CS flag in the relevant SPI device driver?
 
-> So, do you think that it is better to add it as a seperate property??
-> 
+Best regards,
+Marcin
 
-
-These are the available options to my knowledge,
-
-1) As you mentioned earlier all the eeprom's supported by the driver
-send a dummy bit before the read data. This can be thought of a bug and
-add this change as a fix for it. This might a problem for users who are
-already using this driver and working around it using user space tools.
-
-2) Add a special compatible string "eeprom-93xx46B", to add the extra
-dummy cycle and not add an additional property.
-
-3) Add an additional property as proposed in this patch and use when
-required.
-
-Are there any other suggestions on solving this issue??
-
-Thanks,
-Aswath
-
+>
+>         /* Device DUAL/QUAD mode */
+>         if (!of_property_read_u32(nc, "spi-tx-bus-width", &value)) {
+> @@ -3419,15 +3421,15 @@ int spi_setup(struct spi_device *spi)
+>                 spi_set_thread_rt(spi->controller);
+>         }
+>
+> -       dev_dbg(&spi->dev, "setup mode %d, %s%s%s%s%u bits/w, %u Hz max -=
+-> %d\n",
+> +       dev_dbg(&spi->dev, "setup mode %d, %s%s%s%s%s%u bits/w, %u Hz max=
+ --> %d\n",
+>                         (int) (spi->mode & (SPI_CPOL | SPI_CPHA)),
+>                         (spi->mode & SPI_CS_HIGH) ? "cs_high, " : "",
+>                         (spi->mode & SPI_LSB_FIRST) ? "lsb, " : "",
+>                         (spi->mode & SPI_3WIRE) ? "3wire, " : "",
+>                         (spi->mode & SPI_LOOP) ? "loopback, " : "",
+> +                       (spi->mode & SPI_1BYTE_CS) ? "single_cs_byte, " :=
+ "",
+>                         spi->bits_per_word, spi->max_speed_hz,
+>                         status);
+> -
+>         return status;
+>  }
+>  EXPORT_SYMBOL_GPL(spi_setup);
+> diff --git a/include/linux/spi/spi.h b/include/linux/spi/spi.h
+> index aa09fdc8042d..7f65ff6fc25d 100644
+> --- a/include/linux/spi/spi.h
+> +++ b/include/linux/spi/spi.h
+> @@ -186,6 +186,7 @@ struct spi_device {
+>  #define        SPI_TX_OCTAL    0x2000                  /* transmit with =
+8 wires */
+>  #define        SPI_RX_OCTAL    0x4000                  /* receive with 8=
+ wires */
+>  #define        SPI_3WIRE_HIZ   0x8000                  /* high impedance=
+ turnaround */
+> +#define        SPI_1BYTE_CS    0x10000                 /* toggle cs afte=
+r each byte */
+>         int                     irq;
+>         void                    *controller_state;
+>         void                    *controller_data;
+> --
+> 2.17.1
+>
