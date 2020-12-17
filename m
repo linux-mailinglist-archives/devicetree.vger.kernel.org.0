@@ -2,201 +2,478 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 090102DCF0F
-	for <lists+devicetree@lfdr.de>; Thu, 17 Dec 2020 11:06:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 524222DCF16
+	for <lists+devicetree@lfdr.de>; Thu, 17 Dec 2020 11:08:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727185AbgLQKFk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Dec 2020 05:05:40 -0500
-Received: from mail-vi1eur05on2056.outbound.protection.outlook.com ([40.107.21.56]:62595
-        "EHLO EUR05-VI1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1725930AbgLQKFj (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 17 Dec 2020 05:05:39 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=oUjF63HfUtZvVYO58C4Hq6VSAtJM9YeTsNryGqybXAlp7/LI4YOM/Oojt6wO+R2B7Cx0g9H/K7OhuB/rBJV6MWDzgUtegcIGHE6ZDEbk/OBk5He7xlI9n5lSVYWeM8sWjuird7j8/II9fCXrFrLf/3yYYwQD7Di12g1Pe3Q4i9wAdVzw1ZMDS/S4JfdaKPaSBVMRYDPgJCdjJYQRx3aR5YH8W2pyp5JSHPdrerKTT2DCkh/RiCwwMChRwKqmYG5NBRouaIkiGO9zvGiixJTu7Hyq5yQn8CPS1J1nyrUTrNGFBwTUPKW0E9XohWTkkHGQGU8IzOt2NYq0ZUE5fOsaNQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=MK19+Mr8RPMB66iRM2QPITg/rKX4OUb+LI4C6M+zPjo=;
- b=StockriJr2u2Pc/Sglm9cduFiLqrYzYKlJXIyi8UR2K8sC7LsEHvgbnf+/pEzydcJ64E6T4On1MbXQkoLrwFLanOUiXIFQSrgq1Pm3F4tfMqYj96cuyIBeo7XdYVs4CilU37K8yEJQl9d+It9UUwY9m3srWjaGd0d+SO0cnWaF2JYpDalw6XMQFhzPoH8ulqEfJyG0VQc9uHfVM58aFVgQjK+11gt/R4bMwiPJ6WejGtCJj7HQ33oq8JF5hwJEDXwM5LG4NQC8rg/Gm6C+KOVGjcl0Y4fJ7K0mbaYFLdTMxmaU71oC35gAxkEEWXqPU3VU1Rj71xG26isy/IHF7dlA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=fi.rohmeurope.com; dmarc=pass action=none
- header.from=fi.rohmeurope.com; dkim=pass header.d=fi.rohmeurope.com; arc=none
+        id S1727065AbgLQKHP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Dec 2020 05:07:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52246 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726613AbgLQKHM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Dec 2020 05:07:12 -0500
+Received: from mail-ot1-x32c.google.com (mail-ot1-x32c.google.com [IPv6:2607:f8b0:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96EDDC0617B0
+        for <devicetree@vger.kernel.org>; Thu, 17 Dec 2020 02:06:32 -0800 (PST)
+Received: by mail-ot1-x32c.google.com with SMTP id j20so22241834otq.5
+        for <devicetree@vger.kernel.org>; Thu, 17 Dec 2020 02:06:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=rohmsemiconductoreurope.onmicrosoft.com;
- s=selector1-rohmsemiconductoreurope-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=MK19+Mr8RPMB66iRM2QPITg/rKX4OUb+LI4C6M+zPjo=;
- b=mrz8crb/bPdPxs2OT7GPJZd1NiSTivJYbmSBXOwZVg+d8Yy0PT6+mKPdjovvjCTQVbENxORaaL8QEkhBko4ISfKUniR3QBVm9hnyNQ1P+axJ4qwy+bJXHy3wU+pviZQIM9EokZeWPCziTIjXKsplIPA0QHowUOHGDvfZDVSETDQ=
-Received: from HE1PR03MB3162.eurprd03.prod.outlook.com (2603:10a6:7:55::20) by
- HE1PR03MB2890.eurprd03.prod.outlook.com (2603:10a6:7:5c::14) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3654.19; Thu, 17 Dec 2020 10:04:47 +0000
-Received: from HE1PR03MB3162.eurprd03.prod.outlook.com
- ([fe80::f1f1:eb1d:2bf5:eb87]) by HE1PR03MB3162.eurprd03.prod.outlook.com
- ([fe80::f1f1:eb1d:2bf5:eb87%7]) with mapi id 15.20.3676.025; Thu, 17 Dec 2020
- 10:04:47 +0000
-From:   "Vaittinen, Matti" <Matti.Vaittinen@fi.rohmeurope.com>
-To:     "lee.jones@linaro.org" <lee.jones@linaro.org>
-CC:     "linux@roeck-us.net" <linux@roeck-us.net>,
-        "wim@linux-watchdog.org" <wim@linux-watchdog.org>,
-        "mazziesaccount@gmail.com" <mazziesaccount@gmail.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        linux-power <linux-power@fi.rohmeurope.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>
-Subject: Re: [PATCH RESEND v6 2/4] mfd: Support ROHM BD9576MUF and BD9573MUF
-Thread-Topic: [PATCH RESEND v6 2/4] mfd: Support ROHM BD9576MUF and BD9573MUF
-Thread-Index: AQHWwWDHZJglj3cu602g/c6U2v2JcanbrP0AgAAT74CACBGsgIAACbeAgBdZAYA=
-Date:   Thu, 17 Dec 2020 10:04:46 +0000
-Message-ID: <c2949e981014c049571df355501f2af65b3954de.camel@fi.rohmeurope.com>
-References: <cover.1605882179.git.matti.vaittinen@fi.rohmeurope.com>
-         <cc46e329efa30c66f000ab7c97f9bbf0bc31f0f7.1605882179.git.matti.vaittinen@fi.rohmeurope.com>
-         <20201127083242.GK2455276@dell>
-         <6bd4abcb340bdf764fd23b685684d3f984319ed7.camel@fi.rohmeurope.com>
-         <20201202125723.GK4801@dell>
-         <3bab8bd8c69a878f849a07dd9ea35bfac2006da2.camel@fi.rohmeurope.com>
-In-Reply-To: <3bab8bd8c69a878f849a07dd9ea35bfac2006da2.camel@fi.rohmeurope.com>
-Reply-To: "Vaittinen, Matti" <Matti.Vaittinen@fi.rohmeurope.com>
-Accept-Language: fi-FI, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Evolution 3.34.4 (3.34.4-1.fc31) 
-authentication-results: linaro.org; dkim=none (message not signed)
- header.d=none;linaro.org; dmarc=none action=none
- header.from=fi.rohmeurope.com;
-x-originating-ip: [62.78.225.252]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: c5e7510d-5c17-4f8e-a4c4-08d8a2732f4e
-x-ms-traffictypediagnostic: HE1PR03MB2890:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <HE1PR03MB2890BDC3139AA0B4D904609DADC40@HE1PR03MB2890.eurprd03.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:9508;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: YXrxb7yoQonM0zn30JJAfM1LO/Jgc7Jj5vxyLWv3Hu1QdeJ2ZdCQMdWLpDJancK2HN+sTN4PoFoMywSDf5UYU7nBXWNDz/jLua5TYyCJpyNygbaF4Kcn5pnIpIM8Fss2Zjh6WCDaqsSQX5iKhIpNuei9wQi0TnbQ2tC4NSd2b9syBvi6g6HuYfxSQM2ieDvYUWPTMfiu9J+tZxEagHlZk9s3BDQ9W/am3b1/jRlXoKpUBryrt4NHK9q+L+5BJQaJ7bJJ2vdYGnOwUR8NaDimc5spnnjvZOsNfJtclxWDHFUq7CkwXLN2G6soiT2XhVvxcPDq5goOpjYCE5OKRcy23w==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:HE1PR03MB3162.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(136003)(376002)(366004)(346002)(39850400004)(396003)(86362001)(2906002)(3450700001)(8936002)(6486002)(4001150100001)(26005)(5660300002)(6506007)(4326008)(8676002)(6512007)(186003)(66476007)(64756008)(6916009)(66446008)(66946007)(316002)(71200400001)(76116006)(54906003)(66556008)(2616005)(478600001)(83380400001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: =?utf-8?B?YzhoT1NMcFcrVjNHTnlPN09YYXZ2Qk1kaEh1SWpHRFNIbUFwWmVGb0MxNkR1?=
- =?utf-8?B?ckMwVW5idG9RMkliUzhmczVERDVHTFBJcldBc0RFOCt6d09iTkxHdkdPV0Fr?=
- =?utf-8?B?Sk5CTVd3MmVnOEIzb3dBelV1Z0dJV2VEYmVWTHpHUlpJdXFFZ3R2blhSdENq?=
- =?utf-8?B?YkFYMFVGeWRPemt2ZjNBWXJJbk5Fbk5EWGZGWW95SnBHTzJNRmR3Q1hqWU5E?=
- =?utf-8?B?UkhkbTI2M0d3eEhoOHRVT0plWHA4NjVNWENPak5lUFpIMmZpYW96Z1FGbXFk?=
- =?utf-8?B?SFZkSGZ3Nk5BUGg4akZrTDFNOHExWVIvK2xpTzEzMnRtbmZ3YTJKK1Qwa21r?=
- =?utf-8?B?K3g4R2FuR0lzVVFBejlDd0crUGk0U0QrUFFJOVRNd1VIL1ZaYjR1Mlk0THpq?=
- =?utf-8?B?aGpzaFNNdkVBakNRd0srOVV2bmdSR2grOVpQcXRQOWZaTzJrT3hzL0FmakdT?=
- =?utf-8?B?WGZsN0ZmbUNja2tSVTNjeGhVK3hMQlNVbU8wQnR2MExtTm5sZHRzdUtXNWRU?=
- =?utf-8?B?Y3o3MlJtdzA2WEdCd09WV1ZWdlFzT2daVTVUNXhRRmtza0dWckdPZDQ3dFk3?=
- =?utf-8?B?YjNGa2QxanFURTZsQitKdHRPWFZsMlkvYnRlekovekhLVnZMU0ppbTFEejFs?=
- =?utf-8?B?RTNZL3ZQYW9VYnQ1QWlDaTY0UkpQU1NVTGwvZ2lmU0RUVDEvRjEzdHZXaHZp?=
- =?utf-8?B?UTFXRWJOOXA3djBXRDdmWm1ld3FQckYwUlY1cWY2OS9PRWgra29PbXkzTEgx?=
- =?utf-8?B?N241bUwxanlsSFF4dFdKT3ZUNUZ4aVdkaDEveGVxSHlYZGI2QlVsOExidGZ3?=
- =?utf-8?B?dmxyWlZNZCtLMjNpVEUyM244OFQ5Zk9Tcm5yM0ZYZ0tlbnhIbEpQMHVIVW8w?=
- =?utf-8?B?WjB6SVAyUnJLVXRUS2hBL2hKYW91SkRmVlNYdklVbDF3S2FjdWdrK2F1OGJ6?=
- =?utf-8?B?WHRURVZ0c0JOL250RnAyR0Zwa1R2ZzlwYzdkYlNQWit4Sks0N0lkUmZ3SUxV?=
- =?utf-8?B?YWxNdWtrUkZINVJSc3JTdU13bVVHcG9UR1lET005alRnRHMyNDZVNFV3bGNW?=
- =?utf-8?B?K2Y4VCtiM0FCUGcrZi92RU5Xb0xlQ21xRVVDV1pyUGhIVUZYNlN4dGpxbStT?=
- =?utf-8?B?YmpoUkpxMkN5Y3ZjSUpscVZFcHVmajg0RkVFMWxWRFcvNjVLN2pUM2dLamhQ?=
- =?utf-8?B?OVhDZkJRaW9GZ1RFM09hQStjM0d2RW1uSjR2SWsyWS85bW5uUmVtS2lBdWFt?=
- =?utf-8?B?V2FVRDd4ZzF0bEx4TWtTNUJyUzdUQkdVSW9aU1MrRklMcjBLek1WODVySTVD?=
- =?utf-8?Q?jUPYN4Cz0eyAZJfiQCLXz2kNZaOctnjWKr?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <15E6461DBF1F54458759C423C261B9DF@eurprd03.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        d=ffwll.ch; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=+tHtpcTR/08FM9RSBLxTm9nzhr1PLovQ8Q+Zogm9jkc=;
+        b=KcAoqw/jyUdVgzYx1Qus+jkgMPmz9ohPB+OT2c7OHiLbd/QlGQLrgY9+h+jigYMmwG
+         gJcjfB0K9nzwrK/rM8SbjLvNV7TEkAZgfU0G937VK8O6XRsi11cAF+k5c7WGQwmeP0Hg
+         i16xFaSU+39OwdJxuP1wPdxxHPi8aA8t2HBfc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=+tHtpcTR/08FM9RSBLxTm9nzhr1PLovQ8Q+Zogm9jkc=;
+        b=MCP620CBsuVnuSDz0evW4rwPqQj7oA30FRpGJHyyxvtBfDxvq0ZaaJBgfEohVymfWN
+         58t4DvCx/3qqpxe3cay8KloE74eavmxWqo55XX7jSnZcYIcWAhLc+rBjZKnSeHhM/45a
+         A+Qu5K2sK20jkx9ROXW1vTgkWdA8lzhUfwcjNlVU/lra7BX+XpywlQU7SGEUuaLCLIpM
+         B7wiYogi7kphMWiTX0+0YH8ZDahjNJpjr2nMLjnLrK/9Ya1whboupX1bKAYYb3SiHQQd
+         GPsyC8oa4QFYSdd71s6F9PZitjT0NaPnPyzferBNS2/YL+PTHhtOqJLbMKzTRP/SHs6G
+         DjMg==
+X-Gm-Message-State: AOAM5320TV+cZz71fOuGduy2IQny+sgxUiknHHnV++mzrR09K/A2CCqs
+        TjwLD/+FOmMwNvpYw11zRhhwmDYWHEdNuDllKnGFZg==
+X-Google-Smtp-Source: ABdhPJwWKBrnXb4CDjpXcbBs/tMlwtWspKEQCkvamsO1KhfJn+2RqBRcICNDhnpw2bUYVRVn5sc9MqtX0nA9MrV6GBM=
+X-Received: by 2002:a05:6830:1bef:: with SMTP id k15mr20187278otb.303.1608199591499;
+ Thu, 17 Dec 2020 02:06:31 -0800 (PST)
 MIME-Version: 1.0
-X-OriginatorOrg: fi.rohmeurope.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: HE1PR03MB3162.eurprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c5e7510d-5c17-4f8e-a4c4-08d8a2732f4e
-X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Dec 2020 10:04:47.0357
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 94f2c475-a538-4112-b5dd-63f17273d67a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 7todYLBaJF3SK8WMu5envo229uH6MjLF6JOIbEwfiuYcf/PDKkBcNpdFuN5QkBjEr3xSJZciI2E88ZXvVR7OusmLrn6yWFHC792/BXJ8E+NaKstCA7aodvJ8EpNmzcFT
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: HE1PR03MB2890
+References: <1606722505-16194-1-git-send-email-wendy.liang@xilinx.com>
+ <CADnq5_NZrqkouXCFKWc2wv483nc=x4cXXjFCqcEmkUYZpNeMUQ@mail.gmail.com>
+ <CAKMK7uFjwmm9W3RFVdQ=EOqHvWeD5ZPA7zP86O_sxxBv3n4jjw@mail.gmail.com>
+ <b0d41bb6-0347-24f5-7a2d-a3b41d5444c9@xilinx.com> <CADnq5_N7Q_6jfghWQGs17gzT2Ucj_19v9V4s7G0wPStVn+mftQ@mail.gmail.com>
+ <83491d22-64b6-68bd-b7e2-787e0826712c@xilinx.com>
+In-Reply-To: <83491d22-64b6-68bd-b7e2-787e0826712c@xilinx.com>
+From:   Daniel Vetter <daniel@ffwll.ch>
+Date:   Thu, 17 Dec 2020 11:06:20 +0100
+Message-ID: <CAKMK7uHeS9zdv=ZBbft3_qqED9iqt=-GyY1OVkX97GPuKn=mRQ@mail.gmail.com>
+Subject: Re: [PATCH v3 0/9] Xilinx AI engine kernel driver
+To:     Jiaying Liang <wendy.liang@xilinx.com>
+Cc:     Alex Deucher <alexdeucher@gmail.com>, tejas.patel@xilinx.com,
+        ravi.patel@xilinx.com, rajan.vaja@xilinx.com,
+        Arnd Bergmann <arnd@arndb.de>,
+        devicetree <devicetree@vger.kernel.org>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Dragan Cvetic <dragan.cvetic@xilinx.com>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Maling list - DRI developers 
+        <dri-devel@lists.freedesktop.org>,
+        Rob Herring <robh+dt@kernel.org>, manish.narani@xilinx.com,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Derek Kiernan <derek.kiernan@xilinx.com>,
+        Christian Koenig <christian.koenig@amd.com>,
+        LKML <linux-kernel@vger.kernel.org>,
+        linux-media <linux-media@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgZGVlZSBIbyBMZWUsDQoNCk9uIFdlZCwgMjAyMC0xMi0wMiBhdCAxNTozMiArMDIwMCwgTWF0
-dGkgVmFpdHRpbmVuIHdyb3RlOg0KPiBIZWxsbyBMZWUsDQo+IA0KPiBPbiBXZWQsIDIwMjAtMTIt
-MDIgYXQgMTI6NTcgKzAwMDAsIExlZSBKb25lcyB3cm90ZToNCj4gPiBPbiBGcmksIDI3IE5vdiAy
-MDIwLCBWYWl0dGluZW4sIE1hdHRpIHdyb3RlOg0KPiA+IA0KPiA+ID4gSGVsbG8gTGVlLA0KPiA+
-ID4gDQo+ID4gPiBPbiBGcmksIDIwMjAtMTEtMjcgYXQgMDg6MzIgKzAwMDAsIExlZSBKb25lcyB3
-cm90ZToNCj4gPiA+ID4gT24gTW9uLCAyMyBOb3YgMjAyMCwgTWF0dGkgVmFpdHRpbmVuIHdyb3Rl
-Og0KPiA+ID4gPiANCj4gPiA+ID4gPiBBZGQgY29yZSBzdXBwb3J0IGZvciBST0hNIEJEOTU3Nk1V
-RiBhbmQgQkQ5NTczTVVGIFBNSUNzIHdoaWNoDQo+ID4gPiA+ID4gYXJlDQo+ID4gPiA+ID4gbWFp
-bmx5IHVzZWQgdG8gcG93ZXIgdGhlIFItQ2FyIHNlcmllcyBwcm9jZXNzb3JzLg0KPiA+ID4gPiA+
-IA0KPiA+ID4gPiA+IFNpZ25lZC1vZmYtYnk6IE1hdHRpIFZhaXR0aW5lbiA8DQo+ID4gPiA+ID4g
-bWF0dGkudmFpdHRpbmVuQGZpLnJvaG1ldXJvcGUuY29tPg0KPiA+ID4gPiA+IC0tLQ0KPiA+ID4g
-PiA+ICBkcml2ZXJzL21mZC9LY29uZmlnICAgICAgICAgICAgICB8ICAxMSArKysrDQo+ID4gPiA+
-ID4gIGRyaXZlcnMvbWZkL01ha2VmaWxlICAgICAgICAgICAgIHwgICAxICsNCj4gPiA+ID4gPiAg
-ZHJpdmVycy9tZmQvcm9obS1iZDk1NzYuYyAgICAgICAgfCAxMDgNCj4gPiA+ID4gPiArKysrKysr
-KysrKysrKysrKysrKysrKysrKysrKysrDQo+ID4gPiA+ID4gIGluY2x1ZGUvbGludXgvbWZkL3Jv
-aG0tYmQ5NTd4LmggIHwgIDU5ICsrKysrKysrKysrKysrKysrDQo+ID4gPiA+ID4gIGluY2x1ZGUv
-bGludXgvbWZkL3JvaG0tZ2VuZXJpYy5oIHwgICAyICsNCj4gPiA+ID4gPiAgNSBmaWxlcyBjaGFu
-Z2VkLCAxODEgaW5zZXJ0aW9ucygrKQ0KPiA+ID4gPiA+ICBjcmVhdGUgbW9kZSAxMDA2NDQgZHJp
-dmVycy9tZmQvcm9obS1iZDk1NzYuYw0KPiA+ID4gPiA+ICBjcmVhdGUgbW9kZSAxMDA2NDQgaW5j
-bHVkZS9saW51eC9tZmQvcm9obS1iZDk1N3guaA0KPiA+ID4gPiANCj4gPiA+ID4gTG9va3MgbGlr
-ZSBhIHBvc3NpYmxlIGNhbmRpZGF0ZSBmb3IgInNpbXBsZS1tZmQtaTJjIi4NCj4gPiA+ID4gDQo+
-ID4gPiA+IENvdWxkIHlvdSBsb29rIGludG8gdGhhdCBwbGVhc2U/DQo+ID4gPiA+IA0KPiA+ID4g
-SSBtdXN0IGFkbWl0IEkgZGlkbid0IGtub3cgYWJvdXQgInNpbXBsZS1tZmQtaTJjIi4gR29vZCB0
-aGluZyB0bw0KPiA+ID4ga25vdw0KPiA+ID4gd2hlbiB3b3JraW5nIHdpdGggc2ltcGxlIGRldmlj
-ZXMgOikgSXMgdGhpcyBhIG5ldyB0aGluZz8NCj4gPiANCj4gPiBZZXMsIGl0J3MgbmV3Lg0KPiA+
-IA0KPiA+ID4gSSBhbSB1bnN1cmUgSSB1bmRlcnN0YW5kIHRoZSBpZGVhIGZ1bGx5LiBTaG91bGQg
-dXNlcnMgcHV0IGFsbCB0aGUNCj4gPiA+IGRpZmZlcmVudCByZWdhbXAgY29uZmlncyBpbiB0aGlz
-IGZpbGUgYW5kIGp1c3QgYWRkIHRoZSBkZXZpY2UgSURzDQo+ID4gPiB3aXRoDQo+ID4gPiBwb2lu
-dGVyIHRvIGNvcnJlY3QgY29uZmlnPyAoQkQ5NTc2IGFuZCBCRDk1NzMgbmVlZCB2b2xhdGlsZQ0K
-PiA+ID4gcmFuZ2VzKS4NCj4gPiA+IEFsc28sIGRvZXMgdGhpcyBtZWFuIGVhY2ggc3ViLWRldmlj
-ZSBzaG91bGQgaGF2ZSBvd24gbm9kZSBhbmQgb3duDQo+ID4gPiBjb21wYXRpYmxlIGluIERUIHRv
-IGdldCBjb3JyZWN0bHkgbG9hZCBhbmQgcHJvYmVkPyBJIGd1ZXNzIHRoaXMNCj4gPiA+IHdvdWxk
-DQo+ID4gPiBuZWVkIGEgYnV5LWluIGZyb20gUm9iIHRvbyB0aGVuLg0KPiA+IA0KPiA+IFlvdSBz
-aG91bGQgZGVzY3JpYmUgdGhlIEgvVyBpbiBEVC4NCj4gDQo+IFllcy4gQW5kIGl0IGlzIGRlc2Ny
-aWJlZC4gQnV0IEkndmUgb2NjYXNpb25hbGx5IHJlY2VpdmVkIHJlcXVlc3QgZnJvbQ0KPiBEVCBn
-dXlzIHRvIGFkZCBzb21lIHByb3BlcnRpZXMgZGlyZWN0bHkgdG8gTUZEIG5vZGUgYW5kIG5vdCB0
-byBhZGQNCj4gb3duDQo+IHN1Yi1ub2RlLiBUaGlzIGlzIHdoYXQgaXMgZG9uZSBmb3IgZXhhbXBs
-ZSB3aXRoIHRoZSBCRDcxODM3LzQ3IGNsb2Nrcw0KPiAtDQo+IHRoZXJlIGlzIG5vIG93biBub2Rl
-IGZvciBjbGsgLSB0aGUgY2xrIHByb3BlcnRpZXMgYXJlIHBsYWNlZCBkaXJlY3RseQ0KPiBpbiBN
-RkQgbm9kZSAoYXMgd2FzIHJlcXVlc3RlZCBieSBTdGVwaGVuIGFuZCBSb2IgYmFjayB0aGVuIC0g
-SQ0KPiBvcmlnaW5hbGx5IGhhZCBvd24gbm9kZSBmb3IgY2xrKS4gSSByZWFsbHkgaGF2ZSBubyBj
-bGVhciB2aWV3IG9uIHdoZW4NCj4gdGhpbmdzIHdhcnJhbnQgZm9yIG93biBzdWJub2RlIGFuZCB3
-aGVuIHRoZXkgZG9uJ3QgLSBidXQgYXMgZmFyIGFzIEkNCj4gY2FuIHNlZSB1c2luZyBzaW1wbGUt
-bWZkLWkyYyBmb3JjZXMgb25lIHRvIGFsd2F5cyBoYXZlIGEgc3ViLW5vZGUgLw0KPiBkZXZpY2Uu
-IEV2ZW4ganVzdCBhIGVtcHR5IG5vZGUgd2l0aCBub3RoaW5nIGJ1dCB0aGUgY29tcGF0aWJsZSBl
-dmVuDQo+IGlmDQo+IGRldmljZSBkb2VzIG5vdCBuZWVkIHN0dWZmIGZyb20gRFQ/IEFueXdheXMs
-IEkgdGhpbmsgdGhpcyBpcyBuaWNlDQo+IGFkZGl0aW9uIGZvciBzaW1wbGUgZHJpdmVycy4NCj4g
-DQo+ID4gPiBCeSB0aGUgd2F5IC0gZm9yIHVuZWR1Y2F0ZWQgZXllcyBsaWtlIG1pbmUgdGhpcyBk
-b2VzIG5vdCBsb29rDQo+ID4gPiBsaWtlDQo+ID4gPiBpdA0KPiA+ID4gaGFzIG11Y2ggdG8gZG8g
-d2l0aCBNRkQgYXMgYSBkZXZpY2UgLSBoZXJlIE1GRCByZW1pbmRzIG1lIG9mIGENCj4gPiA+IHNp
-bXBsZS0NCj4gPiA+IGJ1cyBvbiB0b3Agb2YgSTJDLg0KPiA+IA0KPiA+IFRoaXMgaXMgZm9yIE1G
-RCBkZXZpY2VzIHdoZXJlIHRoZSBwYXJlbnQgZG9lcyBsaXR0bGUgbW9yZSB0aGFuDQo+ID4gY3Jl
-YXRlDQo+ID4gYSBzaGFyZWQgYWRkcmVzcyBzcGFjZSBmb3IgY2hpbGQgZGV2aWNlcyB0byBvcGVy
-YXRlIG9uIC0gbGlrZQ0KPiA+IHlvdXJzLg0KPiA+IA0KPiA+ID4gQW55d2F5cywgdGhlIEJEOTU3
-NiBhbmQgQkQ5NTczIGJvdGggaGF2ZSBhIGZldyBpbnRlcnJ1cHRzIGZvcg0KPiA+ID4gT1ZEL1VW
-RA0KPiA+ID4gY29uZGl0aW9ucyBhbmQgSSBhbSBleHBlY3RpbmcgdGhhdCBJIHdpbGwgYmUgYXNr
-ZWQgdG8gcHJvdmlkZSB0aGUNCj4gPiA+IHJlZ3VsYXRvciBub3RpZmllcnMgZm9yIHRob3NlLiBS
-ZWFzb24gd2h5IEkgb21pdHRlZCB0aGUgSVJRcyBmb3INCj4gPiA+IG5vdyBpcw0KPiA+ID4gdGhh
-dCB0aGUgSFcgaXMgZGVzaWduZWQgdG8ga2VlcCB0aGUgSVJRIGFzc2VydGVkIGZvciB3aG9sZSBl
-cnJvcg0KPiA+ID4gZHVyYXRpb24gc28gc29tZSBkZWxheWVkIGFjayBtZWNoYW5pc20gd291bGQg
-YmUgbmVlZGVkLiBJIHdvdWxkDQo+ID4gPiBsaWtlIHRvDQo+ID4gPiBrZWVwIHRoZSBkb29yIG9w
-ZW4gZm9yIGFkZGluZyBJUlFzIHRvIE1GRCBjb3JlLg0KPiA+IA0KPiA+IFlvdSBtZWFuIHRvIGFk
-ZCBhbiBJUlEgRG9tYWluPw0KPiANCj4gWWVzLiBJIHBsYW5uZWQgdG8gdXNlIHJlZ21hcC1pcnEg
-YW5kIGNyZWF0ZSBpcnEgY2hpcCBpbiBNRkQgd2hlbiB0aGUNCj4gb3ZlciAvIHVuZGVyIHZvbHRh
-Z2UgLyB0ZW1wZXJhdHVyZSAtIG5vdGlmaWNhdGlvbnMgb3Igd2F0Y2hkb2cgSVJRcw0KPiBhcmUN
-Cj4gbmVlZGVkLiANCg0KSSBhbSBzb3JyeSBpZiBJIGhhdmUgbWlzc2VkIHlvdXIgcmVwbHkuIFRo
-ZSBST0hNIGVtYWlsIGhhZCByZWRpcmVjdGVkDQphbG1vc3QgYWxsIHBhdGNoIGVtYWlscyB0byBz
-cGFtICsgSSBhbSBub3Qgc3VyZSBpZiBzb21lIG1haWxzIGFyZQ0KZHJvcHBpbmcgOigNCg0KKEkg
-YW0gY29uc2lkZXJpbmcgbW92aW5nIHRvIGdtYWlsIC0gYnV0IEknZCByYXRoZXIga2VlcCBhbGwg
-bWFpbHMgaW4NCm9uZSBzeXN0ZW0gYW5kIEkgY2FuJ3QgdHJhbnNmZXIgd29yayBtYWlsIHRyYWZm
-aWMgdG8gZ21haWwuLi4gSSB3b25kZXINCmhvdyBvdGhlcnMgYXJlIG1hbmFnaW5nIHRoZSBtYWls
-cyAtIHdoaWNoIG1haWwgc3lzdGVtIHlvdSBhcmUgdXNpbmc/KQ0KDQpJIHRoaW5rIHRoaXMgc2Vy
-aWVzIGlzIG5vdyBwZW5kaW5nIHRoZSBkZWNpc2lvbiBob3cgdG8gcHJvY2VlZCB3aXRoIE1GRA0K
-cGFydC4gSWYgeW91IHN0aWxsIHdhbnQgbWUgdG8gc3RhcnQgd2l0aCAic2ltcGxlLW1mZC1pMmMi
-LCB0aGVuIEkgd291bGQNCmFwcHJlY2lhdGUgaWYgeW91IHBvaW50ZWQgbWUgaG93IHlvdSB3b3Vs
-ZCBsaWtlIHRvIHNlZSB0aGUgcmVnbWFwDQpjb25maWdzIGFkZGVkLiBBbHRob3VnaCBJIGFtIHF1
-aXRlIHBvc2l0aXZlIHRoaXMgKGV2ZW50dWFsbHkpIGVuZHMgdXANCmJlaW5nIG1vcmUgdGhhbiB3
-aGF0IHNpbXBsZS1tZmQtaTJjIGlzIGludGVuZGVkIGZvciAoYmVjYXVzZSBhdCBzb21lDQpwb2lu
-dCBwZW9wbGUgd2FudCB0byBhZGQgdGhlIHVzZSBvZiB0aGUgaW50ZXJydXB0cykuDQoNCkJlc3Qg
-UmVnYXJkcw0KCU1hdHRpIFZhaXR0aW5lbg0K
+On Thu, Dec 17, 2020 at 9:40 AM Jiaying Liang <wendy.liang@xilinx.com> wrote:
+>
+>
+> On 12/15/20 7:23 AM, Alex Deucher wrote:
+> > On Mon, Dec 14, 2020 at 7:24 PM Jiaying Liang<wendy.liang@xilinx.com>  wrote:
+> >> On 12/11/20 11:39 AM, Daniel Vetter wrote:
+> >>> Hi all
+> >>>
+> >>> On Fri, Dec 11, 2020 at 8:03 PM Alex Deucher<alexdeucher@gmail.com>   wrote:
+> >>>> On Mon, Nov 30, 2020 at 3:25 AM Wendy Liang<wendy.liang@xilinx.com>   wrote:
+> >>>>> AI engine is the acceleration engine provided by Xilinx. These engines
+> >>>>> provide high compute density for vector-based algorithms, and flexible
+> >>>>> custom compute and data movement. It has core tiles for compute and
+> >>>>> shim tiles to interface the FPGA fabric.
+> >>>>>
+> >>>>> You can check the AI engine architecture document for more hardware details:
+> >>>>> https://www.xilinx.com/support/documentation/architecture-manuals/am009-versal-ai-engine.pdf
+> >>>>>
+> >>>>> This patch series adds a Linux kernel driver to manage the Xilinx AI
+> >>>>> engine array device and AI engine partitions (groups of AI engine tiles
+> >>>>> dedicated to an application).
+> >>>> Hi Wendy,
+> >>>>
+> >>>> I think it would be good to provide an overview of how your stack
+> >>>> works in general.  That would give reviewers a better handle on how
+> >>>> all of this fits together.  I'd suggest including an overview in the
+> >>>> cover letter and also in the commit message and/or as a comment in the
+> >>>> code in one of the patches.  I'm not really an expert when it comes to
+> >>>> FPGAs, but this basically looks like a pretty low level interface to
+> >>>> set up the data fabric for a kernel that will run on the soft logic or
+> >>>> maybe the microcontroller on the board.  It doesn't have to be super
+> >>>> detailed, just a nice flow for how you might use this.  E.g.,
+> >>>>
+> >>>> Userspace uses ioctls X, Y, Z to configure the data fabric for the
+> >>>> FPGA kernel.  The kernels can run on... .  DMA access to system memory
+> >>>> for data sets can be allocated using ioctl A.  DMA access is limited
+> >>>> by... . The user can then load the FPGA kernel on to one of the
+> >>>> engines using ioctl B and finally they can kick off the whole thing
+> >>>> using ioctl C.  FPGA kernels are compiled using YYY toolchain and use
+> >>>> use the following runtime (link to runtime) to configure the data
+> >>>> fabric using ioctls X, Y, Z.
+> >>> At least for drm drivers we ideally have that as a .rst file in
+> >>> Documentation/. With that you can even do full svg graphs, or just dot
+> >>> graphs, of the overall stack if you really want to go overboard :-)
+> >>>
+> >>>> It would also be good to go over the security implications of the
+> >>>> design.  E.g., can the FPGA kernel(s) access the DMA engine directly,
+> >>>> or is it limited to just the DMA regions set up by the ioctls?  Also,
+> >>>> does the hardware and software design allow for multiple users?  If
+> >>>> so, how does that work?
+> >>> I've also seen indications that there's some on-chip or on-card
+> >>> memory. How that's planned to be used and whether we want to manage
+> >>> this (maybe even with something like ttm) would be good to understand.
+> >>>
+> >>> All excellent questions from Alex, just figured I add some more.
+> >>>
+> >>> Cheers, Daniel
+> >> Hi Alex, Daniel,
+> >>
+> >> Below is an overview of the driver.
+> >>
+> >> AI engine kernel driver manages Xilinx AI engine device. An AI engine device
+> >> contains cores tiles and SHIM tiles. Core tiles are the computation tiles
+> >> , the SHIM tiles are the tiles interfacing to external components.
+> >>
+> >>             +--------+--------+--------+--------+
+> >>              | Core        | Core        | Core        | Core | ...
+> >>              |                |                | |                |
+> >>             +-----------------------------------+
+> >>              | Core        | Core        | Core        | Core     | ...
+> >>              |                |                | |             |
+> >>             +--------+--------+--------+---------
+> >>              ...
+> >>             +--------+--------+-----------------+
+> >>             | SHIM        | SHIM       | SHIM       |SHIM        |
+> >>             | PL            | PL           | PL            |PL | NOC  |
+> >>             +---+----+---+----+---+-----+-------+
+> >>     AXI Streams   |        |                |              |    |AXI MM
+> >>                          |        |                | |    |
+> >> Events Singals |        |                |              |    |
+> >>                          |        |                | |    |
+> >>                          |        |                | |    |
+> >>             +---+--------+--------+-----+ +--+------+
+> >>             |       FPGA                                        | |
+> >> NOC        |
+> >>             | | |                  |
+> >>             +---------------------------+ +--+-------+
+> >>                                              |
+> >>                                              |
+> >>                                          +---+------+
+> >>                                          |   DDR           |
+> >>                                          +----------+
+> >>
+> >> Each Core tile contains computing module, local memory and DMA module. The
+> >> local memory DMA module takes data from or to the AXI streams and writes
+> >> it to or reads it from the local memory. The computing module can also
+> >> directly get/put data from/to the AXI stream. The AIE SHIM enables AIE tiles
+> >> to get/put data from/to AXI streams from FPGA, enables external master to
+> >> access AI engine address space through AXI MM. SHIM NoC module has DMA
+> >> engine,
+> >> which can access extern memory though AXI MM and push it to internal AXI
+> >> streams.
+> >>
+> >> At runtime, the AI engine tiles interconnection needs to be configured
+> >> so that
+> >> it can get fetch data from external components or adjacent tiles, and AI
+> >> engine
+> >> core program needs to be loaded. And then user application can push data
+> >> to the
+> >> AI engine array and start/stop AI engine core. AI engine device errors
+> >> can be
+> >> raised as events, the AI engine kernel driver listens to the events
+> >> interrupt
+> >> to monitor runtime async device errors.
+> >>
+> >> Instead of application directly interacting with the AI engine kernel
+> >> APIs, user
+> >> application/libraries interacts with AI engine userspace library:
+> >> https://github.com/Xilinx/embeddedsw/tree/master/XilinxProcessorIPLib/drivers/aienginev2
+> >> It provides cross OSes low level functional abstraction such as how to
+> >> connect one
+> >> stream port to another stream port, how to configure core tile local DMA.
+> >>
+> >> The AI engine library can be used by other runtime libraries such as
+> >> Xilinx runtime (XRT)
+> >> library:https://xilinx.github.io/XRT/master/html/index.html,
+> >> which provides acceleration abstraction for Xilinx accelerators, it has
+> >> extensions
+> >> to interface to other acceleration framework such as OpenCL.
+> >> XRT provides buffer handling abstractions for user application to share
+> >> data between
+> >> applicaiton and devices.
+> >>
+> >> Here is an example of application runtime stack:
+> >>
+> >>               +----------------------------+
+> >>               |      Application                              |
+> >>               | |
+> >>               +----------------------------+
+> >>               |       XRT                                        |
+> >>               | |
+> >>               +----------------------------+
+> >>               |      AIE Library                               |
+> >>               | |
+> >>              +----------------------------+
+> >>       +----------------------------------------+
+> >> Kern    +----------------------------+
+> >>               |         AIE Partition                        +--+
+> >>              +----------------------------+    |
+> >>                     |----------------------------+
+> >>               +----------------------------+
+> >>                |         AIE Device                           |
+> >>                | |
+> >>               +----------------------------+
+> >>
+> >>
+> >>
+> >> The AI engine kernel driver provides the following user interfaces:
+> >>    * AIE device driver is the root device driver to manage the partitions of
+> >>      of the AI engine device array. AI engine array can be partitioned into
+> >>      column wised isolated partitions. Each applicaiton can only access its
+> >>      own partitions.
+> >>    * AIE device driver monitors the interrupt from the AI enigne device. All
+> >>      AI engine tiles shared the same interrupt for error events.
+> >>    * AIE partition driver controls address mapping and access of the
+> >>      registers/local memories of the tiles within a partition.
+> >>      * It provides mmap operation to enable application to direclty
+> >> access the
+> >>        tiles local memories for small data update such as parameter
+> >> update for
+> >>        performance.
+> >>      * It provides mmap operatio to map all the registers as readonly for
+> >>        application to poll registers efficiently to check status.
+> >>      * It provides ioctl for userspace to pass I/O commands to write/mask
+> >> write
+> >>        the registers. How to configure is defined by userspace. Userspace
+> >> will
+> >>        pass the I/O commands sequence to the kernel driver, and kernel driver
+> >>        will validate the commands before it writes to the registers.
+> >>      * It provides ioctl to import dmabuf and ioctl to configure the the
+> >> DMA module
+> >>        in the SHIM tile which can access memory outside AI engine array.
+> >>
+> >> The buffer management is out of this driver. In the above example, user
+> >> application
+> >> uses Xilinx runtime(XRT), XRT is the one to manage the buffers.
+> >>
+> > So if I understand this correctly, this driver handles the resource
+> > management for the AI engines, PLs (programmable logic), and DMA
+> > streams.  I think it's important to understand that there are multiple
+> > address spaces here.  Normally when we talk about DMA in the kernel we
+> > are referring to devices accessing an external resource like system
+> > memory on the host CPU or another device's MMIO space (e.g., another
+> > PCIe device).  It would be good to clarify which address spaces the
+> > DMAs in your diagram refer to.  I think the DMAs in the AI engines are
+> > specifically for DMAs within the AI engine logic (e.g., between AIs in
+> > a partition).  How is DMA to system memory handled?  What about
+> > dedicated memory on the FPGA (e.g., HBM or DDR on the FPGA itself)?
+> > Is that what you are exposing as DMA bufs?  When you allocate a
+> > DMA-buf for a partition, is that partition only allowed to access
+> > memory that is part of that DMA buf?  I presume there is some
+> > scatter/gather table that sets up the DMA range that the partition can
+> > access?  Who loads the soft logic (Is that the PL or some other IP)?
+> > Is the soft logic partitioned as well?  If I had some soft logic I
+> > wanted to run on the FPGA, what would the kernel driver interaction
+> > sequence look like?  Maybe using the OpenCL soft logic would be a good
+> > example.  E.g.,
+>
+> The AI engine driver only manage the resources within the AI
+>
+> engine array. There are two types of DMAs of the AI engine device.
+>
+> one is the AI engine tile local memory DMA which can only access the local
+>
+> memory. There is another type of DMA which is in the SHIM tile. This
+>
+> DMA can access external address space such as DDR. Although it can acess
+>
+> the memory on fpga if user configure the platform that way, it is
+> preferred to
+>
+> use PL data mover to move data between FPGA memory and AI engine device.
+>
+> The PL data mover will not be managed by the AI engine driver.
+>
+> One SHIM DMA has up to 16 buffer descriptors to use.
+>
+> Xilinx FPGA manager is the one used to program the FPGA soft logic.
+>
+> E.g. when XRT is used, if AI engine is connected to FPGA logic, the XRT
+> stack is
+>
+> the one to manage the configuration sequence.
+>
+> > 1. user has soft logic blob generated by their soft logic compiler (is
+> > this compiler open source?)
+> The soft logic blob is generated by Xilinx tools which is not open
+> source yet.
+> > 2. user calls AI engine kernel driver to allocate the required
+> > resources (AI engines, AI engine DMAs, doorbells of some sort?  etc.)
+>
+> User will call AI engine kernel driver to allocate required resources within
+>
+> the AI engine array at runtime.
+>
+> However the patches for it is not in this patch set.
+>
+> > 3. user calls AI engine kernel driver to allocate system memory and/or
+> > FGPA memory that can be used by the soft logic blob
+>
+> AI engine kernel driver doesn't allocate system memory. User can use other
+>
+> kernel driver to allocate memory.
+>
+> E.g. when XRT is used, user calls XRT kernel driver (zocl) to allocate
+> system memory.
+>
+> So far, the FPGA memory is usually assigned to a soft data mover when
+> the platform is
+>
+> created. Are you considering to have the FPGA memory in the DMA pool of the
+>
+> system? If it is dedicated to a device, can reserved memory solve this
+> problem?
+>
+> The AI engine kernel driver doesn't consider this yet.
+>
+> > 4. user calls AI engine kernel driver to load soft logic
+>
+> I assume you are referring to the soft logic on the FPGA side which is not
+>
+> part of the AI engine device. FPGA manager is the one to load the soft
+> logic on FPGA.
+>
+> > 5. user interfaces with soft logic (how? presumably via some memory
+> > resource allocated in 2 and 3?)
+>
+> I assume you are referring to the soft logic on the FPGA side (not the
+> AI engine device)
+>
+> The user interface with soft logic is managed by the soft logic IP driver.
+>
+> Each soft logic has some memory mapped control registers. User can
+> access those
+>
+> registers through the soft logic IP driver.
+>
+> About memory allocation, I think it is better to manage the shared
+> memory out of
+>
+> a specific device driver. Are you looking for memory management which covers
+>
+> both the system memory and fpga memory, and the device can specify which
+> memory
+>
+> it prefers?
+
+Ok, I think the picture is getting clearer. But now I'm wondering why
+you have any interactions with dma-buf in this patch series here?
+-Daniel
+
+
+> Thanks,
+>
+> Wendy
+>
+> >
+> > Thanks,
+> >
+> > Alex
+> >
+> >
+> >> Best Regards,
+> >>
+> >> Wendy
+> >>
+> >>>> Thanks,
+> >>>>
+> >>>> Alex
+> >>>>
+> >>>>
+> >>>>> v3:
+> >>>>> * unlock AIE dev mutex after failed to gain the partition lock in
+> >>>>>     errors handing
+> >>>>> * replace pointer with __u64 and enum with __u32 in ioctl
+> >>>>>
+> >>>>> v2:
+> >>>>> * Fix dtschema check errors
+> >>>>> * Fix test bot warning on interrupt implementation. Removed set but
+> >>>>>     unused  varaible.
+> >>>>> * Fix compilation unused function warning of firmware change in case
+> >>>>>     ZynqMP firmware is not configured
+> >>>>> * There are other warning on ZynqMP firmware reported from testbot
+> >>>>>     which is not introduced by this patch set.
+> >>>>>     "[PATCH] firmware: xlnx-zynqmp: fix compilation warning" is submitted
+> >>>>>     for those fixes.
+> >>>>>
+> >>>>>
+> >>>>> Izhar Ameer Shaikh (1):
+> >>>>>     firmware: xilinx: Add IOCTL support for AIE ISR Clear
+> >>>>>
+> >>>>> Nishad Saraf (2):
+> >>>>>     misc: xilinx-ai-engine: Add support to request device management
+> >>>>>       services
+> >>>>>     misc: xilinx-ai-engine: Add support for servicing error interrupts
+> >>>>>
+> >>>>> Wendy Liang (6):
+> >>>>>     dt-binding: soc: xilinx: ai-engine: Add AI engine binding
+> >>>>>     misc: Add Xilinx AI engine device driver
+> >>>>>     misc: xilinx-ai-engine: Implement AI engine cleanup sequence
+> >>>>>     misc: xilinx-ai-engine: expose AI engine tile memories to userspace
+> >>>>>     misc: xilinx-ai-engine: add setting shim dma bd operation
+> >>>>>     misc: xilinx-ai-engine: add request and release tiles
+> >>>>>
+> >>>>>    .../bindings/soc/xilinx/xlnx,ai-engine.yaml        | 126 ++++
+> >>>>>    MAINTAINERS                                        |   8 +
+> >>>>>    drivers/firmware/xilinx/zynqmp.c                   |  14 +
+> >>>>>    drivers/misc/Kconfig                               |  12 +
+> >>>>>    drivers/misc/Makefile                              |   1 +
+> >>>>>    drivers/misc/xilinx-ai-engine/Makefile             |  16 +
+> >>>>>    drivers/misc/xilinx-ai-engine/ai-engine-aie.c      | 608 +++++++++++++++++++
+> >>>>>    drivers/misc/xilinx-ai-engine/ai-engine-clock.c    | 245 ++++++++
+> >>>>>    drivers/misc/xilinx-ai-engine/ai-engine-dev.c      | 496 ++++++++++++++++
+> >>>>>    drivers/misc/xilinx-ai-engine/ai-engine-dma.c      | 481 +++++++++++++++
+> >>>>>    drivers/misc/xilinx-ai-engine/ai-engine-internal.h | 519 ++++++++++++++++
+> >>>>>    .../misc/xilinx-ai-engine/ai-engine-interrupt.c    | 659 +++++++++++++++++++++
+> >>>>>    drivers/misc/xilinx-ai-engine/ai-engine-mem.c      | 275 +++++++++
+> >>>>>    drivers/misc/xilinx-ai-engine/ai-engine-part.c     | 635 ++++++++++++++++++++
+> >>>>>    drivers/misc/xilinx-ai-engine/ai-engine-res.c      | 219 +++++++
+> >>>>>    drivers/misc/xilinx-ai-engine/ai-engine-reset.c    | 159 +++++
+> >>>>>    include/linux/firmware/xlnx-zynqmp.h               |   8 +
+> >>>>>    include/uapi/linux/xlnx-ai-engine.h                | 238 ++++++++
+> >>>>>    18 files changed, 4719 insertions(+)
+> >>>>>    create mode 100644 Documentation/devicetree/bindings/soc/xilinx/xlnx,ai-engine.yaml
+> >>>>>    create mode 100644 drivers/misc/xilinx-ai-engine/Makefile
+> >>>>>    create mode 100644 drivers/misc/xilinx-ai-engine/ai-engine-aie.c
+> >>>>>    create mode 100644 drivers/misc/xilinx-ai-engine/ai-engine-clock.c
+> >>>>>    create mode 100644 drivers/misc/xilinx-ai-engine/ai-engine-dev.c
+> >>>>>    create mode 100644 drivers/misc/xilinx-ai-engine/ai-engine-dma.c
+> >>>>>    create mode 100644 drivers/misc/xilinx-ai-engine/ai-engine-internal.h
+> >>>>>    create mode 100644 drivers/misc/xilinx-ai-engine/ai-engine-interrupt.c
+> >>>>>    create mode 100644 drivers/misc/xilinx-ai-engine/ai-engine-mem.c
+> >>>>>    create mode 100644 drivers/misc/xilinx-ai-engine/ai-engine-part.c
+> >>>>>    create mode 100644 drivers/misc/xilinx-ai-engine/ai-engine-res.c
+> >>>>>    create mode 100644 drivers/misc/xilinx-ai-engine/ai-engine-reset.c
+> >>>>>    create mode 100644 include/uapi/linux/xlnx-ai-engine.h
+> >>>>>
+> >>>>> --
+> >>>>> 2.7.4
+> >>>>>
+> >>>>> _______________________________________________
+> >>>>> dri-devel mailing list
+> >>>>> dri-devel@lists.freedesktop.org
+> >>>>> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+> >>>> _______________________________________________
+> >>>> dri-devel mailing list
+> >>>> dri-devel@lists.freedesktop.org
+> >>>> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+
+
+
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
