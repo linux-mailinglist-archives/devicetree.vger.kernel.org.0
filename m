@@ -2,145 +2,302 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C34202DCC6F
-	for <lists+devicetree@lfdr.de>; Thu, 17 Dec 2020 07:25:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 162EE2DCD1D
+	for <lists+devicetree@lfdr.de>; Thu, 17 Dec 2020 08:55:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726158AbgLQGYr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Dec 2020 01:24:47 -0500
-Received: from mailgw02.mediatek.com ([1.203.163.81]:4571 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1725930AbgLQGYq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Dec 2020 01:24:46 -0500
-X-UUID: d2d0cc4550d947f9800f232a8071bc2e-20201217
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=RV8fWtJixVJsdBrLusXjxNOKP7+KPKBTMLVxNEwmSh4=;
-        b=j0xQzTCC89Kq8wj2X7iVl9V6/o5AR8PwmGY7jE2ZpEre1l9crgwnXTxYDWhEHvCZBaCvtlcj67EPD+6fmAeYpHRE1YdtGQIgvBpyg7AbGv3Ck35OTExSLmAj+6sNrZf7wmDqvoiAd/wABPg5+Kh+tU87c7kKkVhnclLjDFw+bTs=;
-X-UUID: d2d0cc4550d947f9800f232a8071bc2e-20201217
-Received: from mtkcas32.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
-        (envelope-from <chunfeng.yun@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 2108793375; Thu, 17 Dec 2020 14:23:54 +0800
-Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS32N2.mediatek.inc
- (172.27.4.72) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Thu, 17 Dec
- 2020 14:23:50 +0800
-Received: from [10.17.3.153] (10.17.3.153) by MTKCAS36.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 17 Dec 2020 14:23:50 +0800
-Message-ID: <1608186230.23328.78.camel@mhfsdcap03>
-Subject: Re: [PATCH 2/3] usb: xhci-mtk: fix UAS issue by XHCI_BROKEN_STREAMS
- quirk
-From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
-To:     Nicolas Boichat <drinkcat@chromium.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Mathias Nyman <mathias.nyman@intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        <linux-usb@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        "Hsin-Yi Wang" <hsinyi@chromium.org>,
-        Ikjoon Jang <ikjn@chromium.org>
-Date:   Thu, 17 Dec 2020 14:23:50 +0800
-In-Reply-To: <CANMq1KA4L4PPRgHTmeisfSWu4qgjgNVFZRvxeuAOyq2_TimELA@mail.gmail.com>
-References: <20201216115125.5886-1-chunfeng.yun@mediatek.com>
-         <20201216115125.5886-2-chunfeng.yun@mediatek.com>
-         <CANMq1KDBmuoBNeizm9+f1yJgqF9oMqU5k26KfZrSdjrPQm_LwA@mail.gmail.com>
-         <1608171557.23328.53.camel@mhfsdcap03>
-         <CANMq1KA4L4PPRgHTmeisfSWu4qgjgNVFZRvxeuAOyq2_TimELA@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S1727318AbgLQHxR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Dec 2020 02:53:17 -0500
+Received: from mail-eopbgr770058.outbound.protection.outlook.com ([40.107.77.58]:28736
+        "EHLO NAM02-SN1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726470AbgLQHxQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 17 Dec 2020 02:53:16 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=aYFqvh1ZXBtYFqDkvMP1SCZI3+tu5LzERauU1QuR2iMBplnplXCqsz0SZRcKNltoHqBD0Plfwn/hHJI2K2ifWZmzneiTFpelc2H8aJOS1PmZlqLvYKMBIoABVII3TN9rPz/WB4vh8slOTd3h+CAQFgjgAlP/CeOTySI0If+tuBeLb2Yq8k/OCVIU56pVIxFwwjJc7pKurMANmUy+dS5bw42bIRW3DCuAJHvW0FYe8ziwZOtxKFg0BqYlIslj5e9/EaCJxNuYZsg7YBbmC+ifqLLK6BDBEh99m5HuTJ77B0U1RN9/hSOLdTNGqsL+SNj/IiJITM7mq2SJajsAL/jdNA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=GZhF2BKQDdZbCN+9IYm54rtcACJUYNPI1CvxS86jDno=;
+ b=N3eh4Ucwkm/tQXKrofRwdx88g3ddJrd32O5wQg7SZuz723jlCOKZn9unguGfvMxGbVTNjZgbqWSAGSsLnv/beDFojOi/3m7gygLM1LpglckI0VslKa23hLlOTcr4VwermFt9PYF7oeuMRA/32YTCvZpi21WIjHTl1QgxQTPO5tvkJWPfU559/jzThTDBy+xs+Xc99fW5gkltM4JofVmYo0luafA9oQCTZcLz7tSuJJ5izrHUsnRsrcqbbGAD4QBHYmuUNBVhXZM3XLVfpVdejvlHaXUuOXcWMT085dN3VoKPtWt5F4dZumcZFvAkUZ1XqxvCVkfB1HXt1Zi28Nl01g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 149.199.62.198) smtp.rcpttodomain=kernel.org smtp.mailfrom=xilinx.com;
+ dmarc=bestguesspass action=none header.from=xilinx.com; dkim=none (message
+ not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=GZhF2BKQDdZbCN+9IYm54rtcACJUYNPI1CvxS86jDno=;
+ b=qt1ilMX5lqFTX0JG39O/DsgbXD3CMzKnNIvMBSvM9bDOY0c34efMm7r8viwZ+rMMyUlC+6vbUNGCwARSxfWv2U+AGFsau7KwY1xrdXrL+7kCzn1h5549yGPg1n87NRjVYNFfWNAZq+aMdmcuJsz61Sm4LkBC3uVvXbtTl6sRxtk=
+Received: from DM6PR02CA0166.namprd02.prod.outlook.com (2603:10b6:5:332::33)
+ by BYAPR02MB4085.namprd02.prod.outlook.com (2603:10b6:a02:f8::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3676.25; Thu, 17 Dec
+ 2020 07:52:27 +0000
+Received: from CY1NAM02FT018.eop-nam02.prod.protection.outlook.com
+ (2603:10b6:5:332:cafe::5c) by DM6PR02CA0166.outlook.office365.com
+ (2603:10b6:5:332::33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3654.12 via Frontend
+ Transport; Thu, 17 Dec 2020 07:52:27 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
+ smtp.mailfrom=xilinx.com; kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=bestguesspass action=none
+ header.from=xilinx.com;
+Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
+ 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=149.199.62.198; helo=xsj-pvapexch01.xlnx.xilinx.com;
+Received: from xsj-pvapexch01.xlnx.xilinx.com (149.199.62.198) by
+ CY1NAM02FT018.mail.protection.outlook.com (10.152.75.183) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.3654.12 via Frontend Transport; Thu, 17 Dec 2020 07:52:27 +0000
+Received: from xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) by
+ xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1913.5; Wed, 16 Dec 2020 23:52:27 -0800
+Received: from smtp.xilinx.com (172.19.127.95) by
+ xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) with Microsoft SMTP Server id
+ 15.1.1913.5 via Frontend Transport; Wed, 16 Dec 2020 23:52:27 -0800
+Envelope-to: michal.simek@xilinx.com,
+ lizhih@xilinx.com,
+ maxz@xilinx.com,
+ sonals@xilinx.com,
+ stefanos@xilinx.com,
+ mdf@kernel.org,
+ trix@redhat.com,
+ devicetree@vger.kernel.org,
+ linux-fpga@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Received: from [172.19.72.212] (port=42036 helo=xsj-xw9400.xilinx.com)
+        by smtp.xilinx.com with esmtp (Exim 4.90)
+        (envelope-from <sonal.santan@xilinx.com>)
+        id 1kpo5K-0007XC-V2; Wed, 16 Dec 2020 23:52:26 -0800
+Received: by xsj-xw9400.xilinx.com (Postfix, from userid 6354)
+        id F24C060010B; Wed, 16 Dec 2020 23:51:07 -0800 (PST)
+From:   Sonal Santan <sonal.santan@xilinx.com>
+To:     <linux-kernel@vger.kernel.org>
+CC:     Sonal Santan <sonals@xilinx.com>, <linux-fpga@vger.kernel.org>,
+        <maxz@xilinx.com>, <lizhih@xilinx.com>, <michal.simek@xilinx.com>,
+        <stefanos@xilinx.com>, <devicetree@vger.kernel.org>,
+        <trix@redhat.com>, <mdf@kernel.org>
+Subject: [PATCH V2 XRT Alveo 0/6] XRT Alveo driver overview 
+Date:   Wed, 16 Dec 2020 23:50:40 -0800
+Message-ID: <20201217075046.28553-1-sonals@xilinx.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-X-TM-SNTS-SMTP: ED6A86936AB121403639494CDB402CE4A1CF19B2194A5888403A55922E4C5A1A2000:8
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: a442aae6-c177-48d6-2efb-08d8a260b2f8
+X-MS-TrafficTypeDiagnostic: BYAPR02MB4085:
+X-Microsoft-Antispam-PRVS: <BYAPR02MB4085D8CA20264516BDB4B94FBBC40@BYAPR02MB4085.namprd02.prod.outlook.com>
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: qJbmruI1YhSOu0oRZAsgvihDPmza0cqQQmWZrQ755j2lk7Yaqu7awief8YcMAN9XvoAyQLiOqQ2FvX8Dmpf+kW2dE6x2nw9Bgg0S1nbRmN/mlyQzu7FHx7xbZ21m2c/25uZ39ZTYmDoMp66JS85u8SjRxSzPLyjsnGdKVmc5BWAnHl8fjXntcMw8wCUzTxFdrxQaCPYI2Wn15g/N+JuC+9VPuPXjKnHS/IhwVIPmso2CTSNS0HaJHeNRCi2iG0DDwQZ8hWDIEd5QutSUzSHMh4y3yX36Lh2eDZlIcKdhXouEXd7fQcBg2WZE+jYV/JLajIDCWmR1hHX5Vz3T9X/X64ueB7Etbumjiof7mR88zwM7lVvRkwFT2OoVpk+0U3VryescRr7ZEcMg5co9VPl+FY8chJVpe0Ggl1QBnwF/NKxGbgkslzp4teafoSMMVsjnHFgvJV8wmW5eFArKZN2yvD1EzDdS6sW6m/BtFgnMrT6DZcAH+eUoZ3nAzqDGlRQJ9ZKf9v598pE7GAizR+RKXw==
+X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch01.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(4636009)(376002)(396003)(136003)(346002)(39860400002)(46966005)(36906005)(4326008)(2616005)(5660300002)(6666004)(44832011)(316002)(26005)(426003)(1076003)(42186006)(8676002)(336012)(6916009)(7636003)(83380400001)(356005)(36756003)(54906003)(186003)(478600001)(82740400003)(8936002)(966005)(47076004)(4743002)(6266002)(2906002)(82310400003)(70206006)(70586007);DIR:OUT;SFP:1101;
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Dec 2020 07:52:27.5470
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: a442aae6-c177-48d6-2efb-08d8a260b2f8
+X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch01.xlnx.xilinx.com]
+X-MS-Exchange-CrossTenant-AuthSource: CY1NAM02FT018.eop-nam02.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR02MB4085
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gVGh1LCAyMDIwLTEyLTE3IGF0IDExOjMyICswODAwLCBOaWNvbGFzIEJvaWNoYXQgd3JvdGU6
-DQo+IE9uIFRodSwgRGVjIDE3LCAyMDIwIGF0IDEwOjE5IEFNIENodW5mZW5nIFl1biA8Y2h1bmZl
-bmcueXVuQG1lZGlhdGVrLmNvbT4gd3JvdGU6DQo+ID4NCj4gPiBPbiBXZWQsIDIwMjAtMTItMTYg
-YXQgMjA6MjggKzA4MDAsIE5pY29sYXMgQm9pY2hhdCB3cm90ZToNCj4gPiA+IE9uIFdlZCwgRGVj
-IDE2LCAyMDIwIGF0IDc6NTMgUE0gQ2h1bmZlbmcgWXVuIDxjaHVuZmVuZy55dW5AbWVkaWF0ZWsu
-Y29tPiB3cm90ZToNCj4gPiA+ID4NCj4gPiA+ID4gVGhlIDAuOTYgeEhDSSBjb250cm9sbGVyIG9u
-IHNvbWUgcGxhdGZvcm1zIGRvZXMgbm90IHN1cHBvcnQNCj4gPiA+ID4gYnVsayBzdHJlYW0gZXZl
-biBIQ0NQQVJBTVMgc2F5cyBzdXBwb3J0aW5nLCBkdWUgdG8gTWF4UFNBU2l6ZQ0KPiA+ID4gPiBp
-cyBzZXQgYSBub24temVybyBkZWZhdWx0IHZhbHVlIGJ5IG1pc3Rha2UsIGhlcmUgdXNlDQo+ID4g
-PiA+IFhIQ0lfQlJPS0VOX1NUUkVBTVMgcXVpcmsgdG8gZml4IGl0Lg0KPiA+ID4gPg0KPiA+ID4g
-PiBGaXhlczogOTRhNjMxZDkxYWQzICgidXNiOiB4aGNpLW10azogY2hlY2sgaGNjX3BhcmFtcyBh
-ZnRlciBhZGRpbmcgcHJpbWFyeSBoY2QiKQ0KPiA+ID4gPiBTaWduZWQtb2ZmLWJ5OiBDaHVuZmVu
-ZyBZdW4gPGNodW5mZW5nLnl1bkBtZWRpYXRlay5jb20+DQo+ID4gPiA+IC0tLQ0KPiA+ID4gPiAg
-ZHJpdmVycy91c2IvaG9zdC94aGNpLW10ay5jIHwgNyArKysrKystDQo+ID4gPiA+ICBkcml2ZXJz
-L3VzYi9ob3N0L3hoY2ktbXRrLmggfCAxICsNCj4gPiA+ID4gIDIgZmlsZXMgY2hhbmdlZCwgNyBp
-bnNlcnRpb25zKCspLCAxIGRlbGV0aW9uKC0pDQo+ID4gPiA+DQo+ID4gPiA+IGRpZmYgLS1naXQg
-YS9kcml2ZXJzL3VzYi9ob3N0L3hoY2ktbXRrLmMgYi9kcml2ZXJzL3VzYi9ob3N0L3hoY2ktbXRr
-LmMNCj4gPiA+ID4gaW5kZXggOGYzMjFmMzlhYjk2Li4wOGRhYjk3NGQ4NDcgMTAwNjQ0DQo+ID4g
-PiA+IC0tLSBhL2RyaXZlcnMvdXNiL2hvc3QveGhjaS1tdGsuYw0KPiA+ID4gPiArKysgYi9kcml2
-ZXJzL3VzYi9ob3N0L3hoY2ktbXRrLmMNCj4gPiA+ID4gQEAgLTM5NSw2ICszOTUsOSBAQCBzdGF0
-aWMgdm9pZCB4aGNpX210a19xdWlya3Moc3RydWN0IGRldmljZSAqZGV2LCBzdHJ1Y3QgeGhjaV9o
-Y2QgKnhoY2kpDQo+ID4gPiA+ICAgICAgICAgeGhjaS0+cXVpcmtzIHw9IFhIQ0lfU1BVUklPVVNf
-U1VDQ0VTUzsNCj4gPiA+ID4gICAgICAgICBpZiAobXRrLT5scG1fc3VwcG9ydCkNCj4gPiA+ID4g
-ICAgICAgICAgICAgICAgIHhoY2ktPnF1aXJrcyB8PSBYSENJX0xQTV9TVVBQT1JUOw0KPiA+ID4g
-PiArDQo+ID4gPiA+ICsgICAgICAgaWYgKG10ay0+YnJva2VuX3N0cmVhbXMpDQo+ID4gPiA+ICsg
-ICAgICAgICAgICAgICB4aGNpLT5xdWlya3MgfD0gWEhDSV9CUk9LRU5fU1RSRUFNUzsNCj4gPiA+
-ID4gIH0NCj4gPiA+ID4NCj4gPiA+ID4gIC8qIGNhbGxlZCBkdXJpbmcgcHJvYmUoKSBhZnRlciBj
-aGlwIHJlc2V0IGNvbXBsZXRlcyAqLw0KPiA+ID4gPiBAQCAtNDYwLDYgKzQ2Myw4IEBAIHN0YXRp
-YyBpbnQgeGhjaV9tdGtfcHJvYmUoc3RydWN0IHBsYXRmb3JtX2RldmljZSAqcGRldikNCj4gPiA+
-ID4gICAgICAgICAgICAgICAgIHJldHVybiByZXQ7DQo+ID4gPiA+DQo+ID4gPiA+ICAgICAgICAg
-bXRrLT5scG1fc3VwcG9ydCA9IG9mX3Byb3BlcnR5X3JlYWRfYm9vbChub2RlLCAidXNiMy1scG0t
-Y2FwYWJsZSIpOw0KPiA+ID4gPiArICAgICAgIG10ay0+YnJva2VuX3N0cmVhbXMgPQ0KPiA+ID4g
-PiArICAgICAgICAgICAgICAgb2ZfcHJvcGVydHlfcmVhZF9ib29sKG5vZGUsICJtZWRpYXRlayxi
-cm9rZW5fc3RyZWFtc19xdWlyayIpOw0KPiA+ID4NCj4gPiA+IFdvdWxkIGl0IGJlIGJldHRlciB0
-byBhZGQgYSBkYXRhIGZpZWxkIHRvIHN0cnVjdCBvZl9kZXZpY2VfaWQNCj4gPiA+IG10a194aGNp
-X29mX21hdGNoLCBhbmQgZW5hYmxlIHRoaXMgcXVpcmsgb24gbWVkaWF0ZWssbXQ4MTczLXhoY2kg
-b25seT8NCj4gPiBUaGlzIGlzIHRoZSBjb21tb24gaXNzdWUgZm9yIGFsbCBTb0NzIChiZWZvcmUg
-MjAxNi4wNikgd2l0aCAwLjk2IHhIQ0kNCj4gPiB3aGVuIHRoZSBjb250cm9sbGVyIGRvbid0IHN1
-cHBvcnQgYnVsayBzdHJlYW0uIElmIGVuYWJsZSB0aGlzIHF1aXJrIG9ubHkNCj4gPiBmb3IgbXQ4
-MTczLCB0aGVuIGZvciBvdGhlciBTb0NzLCB0aGUgY29tcGF0aWJsZSBuZWVkIGluY2x1ZGUNCj4g
-PiAibWVkaWF0ZWssbXQ4MTczLXhoY2kiIGluIGR0cywgdGhpcyBtYXkgYmUgbm90IGZsZXhpYmxl
-IGZvciBzb21lIGNhc2VzLA0KPiA+IGUuZy4gYSBuZXcgU29DIGhhcyB0aGUgYnJva2VuIHN0cmVh
-bSBhcyBtdDgxNzMsIGJ1dCBhbHNvIGhhcyBhbm90aGVyDQo+ID4gZGlmZmVyZW50IHF1aXJrLCB0
-aGUgd2F5IHlvdSBzdWdnZXN0ZWQgd2lsbCBub3QgaGFuZGxlIGl0Lg0KPiANCj4gSXQgY2FuLCB3
-ZSBkbyB0aGlzIHJlZ3VsYXJseSBmb3IgbWFueSBvdGhlciBjb21wb25lbnRzLiBPbmUgZXhhbXBs
-ZToNCj4gaHR0cHM6Ly9lbGl4aXIuYm9vdGxpbi5jb20vbGludXgvbGF0ZXN0L3NvdXJjZS9kcml2
-ZXJzL2kyYy9idXNzZXMvaTJjLW10NjV4eC5jI0w0MDINCj4gDQpHb3QgaXQuIEluZGVlZCB3b3Jr
-cyB3aGVuIGFkZCBjb21wYXRpYmxlIHByaXZhdGUgZGF0YS4NCg0KRHVlIHRvIG1hbnkgU29DcyBz
-dXBwb3J0cyBVU0IgYW5kIG5vdCB1cHN0cmVhbSwgSSdkIHByZWZlciB0byBhdm9pZA0KYWRkaW5n
-IG5ldyBjb21wYXRpYmxlIGluIGRyaXZlciB3aGVuIHN1cHBvcnQgbmV3IFNvQ3MsIGFuZCBsZWF2
-ZSB0aGUNCmNvZGUgYXMgc2ltcGxlIGFzIHBvc3NpYmxlLg0KDQo+ID4gQW5kIEkgcGxhbiB0byBy
-ZW1vdmUgIm1lZGlhdGVrLG10ODE3My14aGNpIiBpbiBtdGtfeGhjaV9vZl9tYXRjaCBhZnRlcg0K
-PiA+IGNvbnZlcnRpbmcgdGhlIGJpbmRpbmcgdG8gWU1BTC4NCj4gPg0KPiA+ID4NCj4gPiA+IChJ
-TUhPIHVzYjMtbHBtLWNhcGFibGUgZGV0ZWN0aW9uIHNob3VsZCBhbHNvIGJlIGRvbmUgaW4gdGhl
-IHNhbWUgd2F5KQ0KPiA+IEkgcHJlZmVyIHRvIHByb3ZpZGUgYSBwcm9wZXJ0eSBmb3IgY29tbW9u
-IGlzc3VlcywgYW5kIHVzZSB0aGUgd2F5IHlvdQ0KPiA+IHN1Z2dlc3RlZCBmb3IgdGhlIGlzc3Vl
-IG9ubHkgaGFwcGVuZWQgYXQgYSBzcGVjaWZpYyBTb0MuDQo+IA0KPiBVbmRlcnN0YW5kLCBpdCdz
-IGp1c3QgZGlmZmVyZW50IGFwcHJvYWNoZXMsIA0KWWVzDQoNCj4gdGhlcmUgc2VlbXMgdG8gYmUN
-Cj4gcHJlY2VkZW50IChhdCBsZWFzdCBpbiB0aGlzIGRyaXZlci9iaW5kaW5nKSBmb3IgdXNpbmcg
-cHJvcGVydGllcywgc28NCj4gSSdsbCBsZXQgdGhlIFVTQiBtYWludGFpbmVycyBzcGVhayB1cCAs
-LSkNCj4gDQo+ID4NCj4gPiBUaGFuayB5b3UNCj4gPg0KPiA+ID4NCj4gPiA+IFRoYW5rcywNCj4g
-PiA+DQo+ID4gPiA+ICAgICAgICAgLyogb3B0aW9uYWwgcHJvcGVydHksIGlnbm9yZSB0aGUgZXJy
-b3IgaWYgaXQgZG9lcyBub3QgZXhpc3QgKi8NCj4gPiA+ID4gICAgICAgICBvZl9wcm9wZXJ0eV9y
-ZWFkX3UzMihub2RlLCAibWVkaWF0ZWssdTNwLWRpcy1tc2siLA0KPiA+ID4gPiAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICZtdGstPnUzcF9kaXNfbXNrKTsNCj4gPiA+ID4gQEAgLTU0Niw3
-ICs1NTEsNyBAQCBzdGF0aWMgaW50IHhoY2lfbXRrX3Byb2JlKHN0cnVjdCBwbGF0Zm9ybV9kZXZp
-Y2UgKnBkZXYpDQo+ID4gPiA+ICAgICAgICAgaWYgKHJldCkNCj4gPiA+ID4gICAgICAgICAgICAg
-ICAgIGdvdG8gcHV0X3VzYjNfaGNkOw0KPiA+ID4gPg0KPiA+ID4gPiAtICAgICAgIGlmIChIQ0Nf
-TUFYX1BTQSh4aGNpLT5oY2NfcGFyYW1zKSA+PSA0KQ0KPiA+ID4gPiArICAgICAgIGlmICghbXRr
-LT5icm9rZW5fc3RyZWFtcyAmJiBIQ0NfTUFYX1BTQSh4aGNpLT5oY2NfcGFyYW1zKSA+PSA0KQ0K
-PiA+ID4gPiAgICAgICAgICAgICAgICAgeGhjaS0+c2hhcmVkX2hjZC0+Y2FuX2RvX3N0cmVhbXMg
-PSAxOw0KPiA+ID4gPg0KPiA+ID4gPiAgICAgICAgIHJldCA9IHVzYl9hZGRfaGNkKHhoY2ktPnNo
-YXJlZF9oY2QsIGlycSwgSVJRRl9TSEFSRUQpOw0KPiA+ID4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVy
-cy91c2IvaG9zdC94aGNpLW10ay5oIGIvZHJpdmVycy91c2IvaG9zdC94aGNpLW10ay5oDQo+ID4g
-PiA+IGluZGV4IGE5M2NmZTgxNzkwNC4uODZhYTQ5Nzg5MTVlIDEwMDY0NA0KPiA+ID4gPiAtLS0g
-YS9kcml2ZXJzL3VzYi9ob3N0L3hoY2ktbXRrLmgNCj4gPiA+ID4gKysrIGIvZHJpdmVycy91c2Iv
-aG9zdC94aGNpLW10ay5oDQo+ID4gPiA+IEBAIC0xNDcsNiArMTQ3LDcgQEAgc3RydWN0IHhoY2lf
-aGNkX210ayB7DQo+ID4gPiA+ICAgICAgICAgc3RydWN0IHBoeSAqKnBoeXM7DQo+ID4gPiA+ICAg
-ICAgICAgaW50IG51bV9waHlzOw0KPiA+ID4gPiAgICAgICAgIGJvb2wgbHBtX3N1cHBvcnQ7DQo+
-ID4gPiA+ICsgICAgICAgYm9vbCBicm9rZW5fc3RyZWFtczsNCj4gPiA+ID4gICAgICAgICAvKiB1
-c2IgcmVtb3RlIHdha2V1cCAqLw0KPiA+ID4gPiAgICAgICAgIGJvb2wgdXdrX2VuOw0KPiA+ID4g
-PiAgICAgICAgIHN0cnVjdCByZWdtYXAgKnV3azsNCj4gPiA+ID4gLS0NCj4gPiA+ID4gMi4xOC4w
-DQo+ID4NCg0K
+
+Hello,
+
+This is V2 of patch series which adds management physical function driver
+for Xilinx Alveo PCIe accelerator cards,
+https://www.xilinx.com/products/boards-and-kits/alveo.html
+This driver is part of Xilinx Runtime (XRT) open source stack.
+
+The patch series depends on libfdt patches which were posted before:
+https://lore.kernel.org/lkml/20201128235659.24679-1-sonals@xilinx.com/
+https://lore.kernel.org/lkml/20201128235659.24679-2-sonals@xilinx.com/
+
+ALVEO PLATFORM ARCHITECTURE
+
+Alveo PCIe FPGA based platforms have a static *shell* partition and a partial
+re-configurable *user* partition. The shell partition is automatically loaded from
+flash when host is booted and PCIe is enumerated by BIOS. Shell cannot be changed
+till the next cold reboot. The shell exposes two PCIe physical functions:
+
+1. management physical function
+2. user physical function
+
+The patch series includes Documentation/xrt.rst which describes Alveo
+platform, XRT driver architecture and deployment model in more detail.
+
+Users compile their high level design in C/C++/OpenCL or RTL into FPGA image
+using Vitis https://www.xilinx.com/products/design-tools/vitis/vitis-platform.html
+tools. The compiled image is packaged as xclbin and contains partial bitstream
+for the user partition and necessary metadata. Users can dynamically swap the
+image running on the user partition in order to switch between different workloads.
+
+XRT DRIVERS FOR ALVEO
+
+XRT Linux kernel driver *xmgmt* binds to management physical function of
+Alveo platform. The modular driver framework is organized into several
+platform drivers which primarily handle the following functionality:
+
+1.  Loading firmware container also called xsabin at driver attach time
+2.  Loading of user compiled xclbin with FPGA Manager integration
+3.  Clock scaling of image running on user partition
+4.  In-band sensors: temp, voltage, power, etc.
+5.  Device reset and rescan
+6.  Flash upgrade of static *shell* partition
+
+The platform drivers are packaged into *xrt-lib* helper module with a well
+defined interfaces the details of which can be found in Documentation/xrt.rst.
+
+User physical function driver is not included in this patch series.
+
+TESTING AND VALIDATION
+
+xmgmt driver can be tested with full XRT open source stack which includes
+user space libraries, board utilities and (out of tree) first generation
+user physical function driver xocl. XRT open source runtime stack is
+available at https://github.com/Xilinx/XRT
+
+Complete documentation for XRT open source stack including sections on
+Alveo/XRT security and platform architecture can be found here:
+https://xilinx.github.io/XRT/master/html/index.html
+https://xilinx.github.io/XRT/master/html/security.html
+https://xilinx.github.io/XRT/master/html/platforms_partitions.html
+
+Changes since v1:
+- Updated the driver to use fpga_region and fpga_bridge for FPGA
+  programming
+- Dropped subdev drivers not related to PR programming to focus on XRT
+  core framework
+- Updated Documentation/fpga/xrt.rst with information on XRT core framework
+- Addressed checkpatch issues 
+- Dropped xrt- prefix from some header files
+
+For reference V1 version of patch series can be found here--
+https://lore.kernel.org/lkml/20201129000040.24777-1-sonals@xilinx.com/
+https://lore.kernel.org/lkml/20201129000040.24777-2-sonals@xilinx.com/
+https://lore.kernel.org/lkml/20201129000040.24777-3-sonals@xilinx.com/
+https://lore.kernel.org/lkml/20201129000040.24777-4-sonals@xilinx.com/
+https://lore.kernel.org/lkml/20201129000040.24777-5-sonals@xilinx.com/
+https://lore.kernel.org/lkml/20201129000040.24777-6-sonals@xilinx.com/
+https://lore.kernel.org/lkml/20201129000040.24777-7-sonals@xilinx.com/
+https://lore.kernel.org/lkml/20201129000040.24777-8-sonals@xilinx.com/
+https://lore.kernel.org/lkml/20201129000040.24777-9-sonals@xilinx.com/
+
+Thanks,
+-Sonal
+
+Sonal Santan (6):
+  Documentation: fpga: Add a document describing XRT Alveo drivers
+  fpga: xrt: infrastructure support for xmgmt driver
+  fpga: xrt: core infrastructure for xrt-lib module
+  fpga: xrt: XRT Alveo management physical function driver
+  fpga: xrt: platform drivers for subsystems in shell partition
+  fpga: xrt: Kconfig and Makefile updates for XRT drivers
+
+ Documentation/fpga/index.rst                 |    1 +
+ Documentation/fpga/xrt.rst                   |  649 +++++++++++
+ drivers/fpga/Kconfig                         |    2 +
+ drivers/fpga/Makefile                        |    4 +
+ drivers/fpga/xrt/Kconfig                     |    7 +
+ drivers/fpga/xrt/Makefile                    |   21 +
+ drivers/fpga/xrt/common/xrt-metadata.c       |  590 ++++++++++
+ drivers/fpga/xrt/common/xrt-root.c           |  737 +++++++++++++
+ drivers/fpga/xrt/common/xrt-root.h           |   26 +
+ drivers/fpga/xrt/common/xrt-xclbin.c         |  387 +++++++
+ drivers/fpga/xrt/common/xrt-xclbin.h         |   48 +
+ drivers/fpga/xrt/include/metadata.h          |  184 ++++
+ drivers/fpga/xrt/include/parent.h            |  103 ++
+ drivers/fpga/xrt/include/partition.h         |   33 +
+ drivers/fpga/xrt/include/subdev.h            |  333 ++++++
+ drivers/fpga/xrt/include/subdev/axigate.h    |   31 +
+ drivers/fpga/xrt/include/subdev/calib.h      |   28 +
+ drivers/fpga/xrt/include/subdev/clkfreq.h    |   21 +
+ drivers/fpga/xrt/include/subdev/clock.h      |   29 +
+ drivers/fpga/xrt/include/subdev/gpio.h       |   41 +
+ drivers/fpga/xrt/include/subdev/icap.h       |   27 +
+ drivers/fpga/xrt/include/subdev/ucs.h        |   22 +
+ drivers/fpga/xrt/include/xmgmt-main.h        |   34 +
+ drivers/fpga/xrt/lib/Kconfig                 |   11 +
+ drivers/fpga/xrt/lib/Makefile                |   30 +
+ drivers/fpga/xrt/lib/subdevs/xrt-axigate.c   |  298 ++++++
+ drivers/fpga/xrt/lib/subdevs/xrt-calib.c     |  226 ++++
+ drivers/fpga/xrt/lib/subdevs/xrt-clkfreq.c   |  214 ++++
+ drivers/fpga/xrt/lib/subdevs/xrt-clock.c     |  638 +++++++++++
+ drivers/fpga/xrt/lib/subdevs/xrt-gpio.c      |  198 ++++
+ drivers/fpga/xrt/lib/subdevs/xrt-icap.c      |  306 ++++++
+ drivers/fpga/xrt/lib/subdevs/xrt-partition.c |  261 +++++
+ drivers/fpga/xrt/lib/subdevs/xrt-ucs.c       |  238 +++++
+ drivers/fpga/xrt/lib/subdevs/xrt-vsec.c      |  337 ++++++
+ drivers/fpga/xrt/lib/xrt-cdev.c              |  234 ++++
+ drivers/fpga/xrt/lib/xrt-main.c              |  270 +++++
+ drivers/fpga/xrt/lib/xrt-main.h              |   46 +
+ drivers/fpga/xrt/lib/xrt-subdev.c            | 1007 ++++++++++++++++++
+ drivers/fpga/xrt/mgmt/Kconfig                |   11 +
+ drivers/fpga/xrt/mgmt/Makefile               |   27 +
+ drivers/fpga/xrt/mgmt/xmgmt-fmgr-drv.c       |  179 ++++
+ drivers/fpga/xrt/mgmt/xmgmt-fmgr.h           |   29 +
+ drivers/fpga/xrt/mgmt/xmgmt-main-impl.h      |   35 +
+ drivers/fpga/xrt/mgmt/xmgmt-main-region.c    |  476 +++++++++
+ drivers/fpga/xrt/mgmt/xmgmt-main.c           |  738 +++++++++++++
+ drivers/fpga/xrt/mgmt/xmgmt-root.c           |  375 +++++++
+ include/uapi/linux/xrt/xclbin.h              |  386 +++++++
+ include/uapi/linux/xrt/xmgmt-ioctl.h         |   72 ++
+ 48 files changed, 10000 insertions(+)
+ create mode 100644 Documentation/fpga/xrt.rst
+ create mode 100644 drivers/fpga/xrt/Kconfig
+ create mode 100644 drivers/fpga/xrt/Makefile
+ create mode 100644 drivers/fpga/xrt/common/xrt-metadata.c
+ create mode 100644 drivers/fpga/xrt/common/xrt-root.c
+ create mode 100644 drivers/fpga/xrt/common/xrt-root.h
+ create mode 100644 drivers/fpga/xrt/common/xrt-xclbin.c
+ create mode 100644 drivers/fpga/xrt/common/xrt-xclbin.h
+ create mode 100644 drivers/fpga/xrt/include/metadata.h
+ create mode 100644 drivers/fpga/xrt/include/parent.h
+ create mode 100644 drivers/fpga/xrt/include/partition.h
+ create mode 100644 drivers/fpga/xrt/include/subdev.h
+ create mode 100644 drivers/fpga/xrt/include/subdev/axigate.h
+ create mode 100644 drivers/fpga/xrt/include/subdev/calib.h
+ create mode 100644 drivers/fpga/xrt/include/subdev/clkfreq.h
+ create mode 100644 drivers/fpga/xrt/include/subdev/clock.h
+ create mode 100644 drivers/fpga/xrt/include/subdev/gpio.h
+ create mode 100644 drivers/fpga/xrt/include/subdev/icap.h
+ create mode 100644 drivers/fpga/xrt/include/subdev/ucs.h
+ create mode 100644 drivers/fpga/xrt/include/xmgmt-main.h
+ create mode 100644 drivers/fpga/xrt/lib/Kconfig
+ create mode 100644 drivers/fpga/xrt/lib/Makefile
+ create mode 100644 drivers/fpga/xrt/lib/subdevs/xrt-axigate.c
+ create mode 100644 drivers/fpga/xrt/lib/subdevs/xrt-calib.c
+ create mode 100644 drivers/fpga/xrt/lib/subdevs/xrt-clkfreq.c
+ create mode 100644 drivers/fpga/xrt/lib/subdevs/xrt-clock.c
+ create mode 100644 drivers/fpga/xrt/lib/subdevs/xrt-gpio.c
+ create mode 100644 drivers/fpga/xrt/lib/subdevs/xrt-icap.c
+ create mode 100644 drivers/fpga/xrt/lib/subdevs/xrt-partition.c
+ create mode 100644 drivers/fpga/xrt/lib/subdevs/xrt-ucs.c
+ create mode 100644 drivers/fpga/xrt/lib/subdevs/xrt-vsec.c
+ create mode 100644 drivers/fpga/xrt/lib/xrt-cdev.c
+ create mode 100644 drivers/fpga/xrt/lib/xrt-main.c
+ create mode 100644 drivers/fpga/xrt/lib/xrt-main.h
+ create mode 100644 drivers/fpga/xrt/lib/xrt-subdev.c
+ create mode 100644 drivers/fpga/xrt/mgmt/Kconfig
+ create mode 100644 drivers/fpga/xrt/mgmt/Makefile
+ create mode 100644 drivers/fpga/xrt/mgmt/xmgmt-fmgr-drv.c
+ create mode 100644 drivers/fpga/xrt/mgmt/xmgmt-fmgr.h
+ create mode 100644 drivers/fpga/xrt/mgmt/xmgmt-main-impl.h
+ create mode 100644 drivers/fpga/xrt/mgmt/xmgmt-main-region.c
+ create mode 100644 drivers/fpga/xrt/mgmt/xmgmt-main.c
+ create mode 100644 drivers/fpga/xrt/mgmt/xmgmt-root.c
+ create mode 100644 include/uapi/linux/xrt/xclbin.h
+ create mode 100644 include/uapi/linux/xrt/xmgmt-ioctl.h
+
+-- 
+2.17.1
 
