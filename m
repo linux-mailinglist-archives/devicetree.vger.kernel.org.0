@@ -2,67 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 475FB2DEB04
-	for <lists+devicetree@lfdr.de>; Fri, 18 Dec 2020 22:20:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E4432DEB5F
+	for <lists+devicetree@lfdr.de>; Fri, 18 Dec 2020 23:02:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725987AbgLRVUa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Dec 2020 16:20:30 -0500
-Received: from mail.kernel.org ([198.145.29.99]:55040 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725846AbgLRVU3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 18 Dec 2020 16:20:29 -0500
-X-Gm-Message-State: AOAM5313z7sM/5GRlxJ0cY4qTDx+CIOXunBm6GclyCfC4U5ziYqASZ9h
-        rum/YzUyeOZpYRugJkpwmH8yZZeRBCVJEzY4dQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1608326389;
-        bh=a+g5UEoM5NxyQ3jhAuGuysDaoBi8Q33J+a7X928sR4Q=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=qoxf+Q5UtAGsWkJ5xkj9v25mcsePsjG6ghd6qCzHOHRgwy2a+7rbqwfa1P5aW3MaX
-         XR347v+971BNssrNpVDbpXLUZEih6hxCXl3DToDznk/58iRoxrcAUj9mFta2oDQwr3
-         uZEbchQqp61uPKeq8nbjc2LhpL5e2JQovlC5HWbSih6tB/eavfCDhuuYc8wB+HTfva
-         G9gCr7zWxAWVMNVNINOlPWxnzZQPvQP89KZm96cyaQ9YN7y5Dah+B14WctSxYNXc3l
-         r8o3igRWoJHyaPtWKv4UkRw+ktUN/A9RsqgK8ZnJzDKhNHHkxMdIuTLoNOltiHo8OL
-         rzYRrNZ/9G5cA==
-X-Google-Smtp-Source: ABdhPJx8+fT17UjOQlU9nPAMzm+E52wGYx2xiG5y0kU0vonyFLY90euAUWHxhMzieLAV3mq6BLXXHJ/WPviL7X0W090=
-X-Received: by 2002:a05:6402:352:: with SMTP id r18mr6198469edw.373.1608326387306;
- Fri, 18 Dec 2020 13:19:47 -0800 (PST)
+        id S1726121AbgLRWCm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Dec 2020 17:02:42 -0500
+Received: from hqnvemgate26.nvidia.com ([216.228.121.65]:13862 "EHLO
+        hqnvemgate26.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726095AbgLRWCl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Dec 2020 17:02:41 -0500
+Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate26.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
+        id <B5fdd26d80007>; Fri, 18 Dec 2020 14:02:00 -0800
+Received: from [10.2.61.1] (172.20.145.6) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 18 Dec
+ 2020 22:01:57 +0000
+Subject: Re: [PATCH v4 5/9] spi: spi-mem: Mark dummy transfers by setting
+ dummy_data bit
+To:     Mark Brown <broonie@kernel.org>, Pratyush Yadav <p.yadav@ti.com>
+CC:     Boris Brezillon <boris.brezillon@collabora.com>,
+        <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
+        <robh+dt@kernel.org>, <lukas@wunner.de>, <bbrezillon@kernel.org>,
+        <tudor.ambarus@microchip.com>, <linux-spi@vger.kernel.org>,
+        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+References: <1608236927-28701-1-git-send-email-skomatineni@nvidia.com>
+ <1608236927-28701-6-git-send-email-skomatineni@nvidia.com>
+ <20201218092106.skwej2g6bk3oksbb@ti.com>
+ <20201218105759.43789ccf@collabora.com>
+ <31c395ee-d7a6-edc5-a790-89fad91a0a27@nvidia.com>
+ <20201218191936.hb6sq7zr3zdirar7@ti.com>
+ <20201218204102.GF5333@sirena.org.uk> <20201218204414.GG5333@sirena.org.uk>
+From:   Sowjanya Komatineni <skomatineni@nvidia.com>
+Message-ID: <c9343475-44b2-c9c4-1790-f6b50ec9c1bd@nvidia.com>
+Date:   Fri, 18 Dec 2020 14:01:56 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-References: <20201211215611.24392-1-rasmus.villemoes@prevas.dk>
- <20201218101054.25416-1-rasmus.villemoes@prevas.dk> <20201218101054.25416-2-rasmus.villemoes@prevas.dk>
-In-Reply-To: <20201218101054.25416-2-rasmus.villemoes@prevas.dk>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Fri, 18 Dec 2020 15:19:35 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqKZh7iKY+i6jxU+csH_dkdq=sRHff-5+C08WRQqoGnnOQ@mail.gmail.com>
-Message-ID: <CAL_JsqKZh7iKY+i6jxU+csH_dkdq=sRHff-5+C08WRQqoGnnOQ@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: rtc: add reset-source property
-To:     Rasmus Villemoes <rasmus.villemoes@prevas.dk>
-Cc:     "open list:REAL TIME CLOCK (RTC) SUBSYSTEM" 
-        <linux-rtc@vger.kernel.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Qiang Zhao <qiang.zhao@nxp.com>,
-        Bruno Thomsen <bruno.thomsen@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20201218204414.GG5333@sirena.org.uk>
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-Originating-IP: [172.20.145.6]
+X-ClientProxiedBy: HQMAIL111.nvidia.com (172.20.187.18) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1608328920; bh=8Acq9GMc6nnEBbII98wXaf5fZtYBkqKtmc92tqPAku0=;
+        h=Subject:To:CC:References:From:Message-ID:Date:User-Agent:
+         MIME-Version:In-Reply-To:Content-Type:Content-Transfer-Encoding:
+         Content-Language:X-Originating-IP:X-ClientProxiedBy;
+        b=IBjIy3g1xJgPT0QS1nye2wOATxRT9+dPfxL8LVtbKHPbqmixzQGaxpIDYKewcilpT
+         LI6ZoTrTtku07/y8t9ZZPc9yl9ZwsUyideM/rDRhxVIM1sNNbvXqPWKjWa3at9kuxs
+         fwyG32gBi7m9E8gWFVQLy75NMJraywk9hBmbV/e9N2fIdG14syJNk7RElqbr9akQQt
+         QIEG6YjZxgjx59UgkgFRpp6+eFWy9yIJLrxbCaaffk3aqyxsy4vg/+bzZfxmgp1UFH
+         X0yTNbj/mKSBYUTGxMcg8P8CrE8F5XVWyqkHJZgWUBjy92iwnsMi9aTWFow6QRlNuF
+         TgpTtcb05ScGA==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 18, 2020 at 4:11 AM Rasmus Villemoes
-<rasmus.villemoes@prevas.dk> wrote:
->
-> Some RTCs, e.g. the pcf2127, can be used as a hardware watchdog. But
-> if the reset pin is not actually wired up, the driver exposes a
-> watchdog device that doesn't actually work.
->
-> Provide a standard binding that can be used to indicate that a given
-> RTC can perform a reset of the machine, similar to wakeup-source.
->
-> Suggested-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
-> Signed-off-by: Rasmus Villemoes <rasmus.villemoes@prevas.dk>
-> ---
->  Documentation/devicetree/bindings/rtc/rtc.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+On 12/18/20 12:44 PM, Mark Brown wrote:
+> On Fri, Dec 18, 2020 at 08:41:02PM +0000, Mark Brown wrote:
+>> On Sat, Dec 19, 2020 at 12:49:38AM +0530, Pratyush Yadav wrote:
+>>> Anyway, if the SPI maintainers think this is worth it, I won't object.
+>> This gets kind of circular, for me it's a question of if there's some
+>> meaningful benefit from using the feature vs the cost to support it and
+>> from the sounds of it we don't have numbers on the benefits from using
+>> it at present.
+> ...although I do have to say looking at the implementation that the cost
+> seems low, it's just a flag set on an existing transfer.  The only issue
+> is if we'd get more win from coalesing the entire transaction (or entire
+> transmit) into a single transfer that could be DMAed and/or requires
+> fewer trips through the stack which does make it seem like an unclear
+> tradeoff from the point of view of client drivers
+
+Using HW dummy cycles save extra software cycle of transfer which 
+involves transfer setup register writes, writing dummy bytes to TX FIFO, 
+interrupt processing.
+
+Implementation wise it just a single bit field added to spi_transfer and 
+on Tegra controller driver programming dummy cycles with prior transfer 
+and skipping sw dummy transfer which is actually not complex.
+
+ From quick check, I see HW dummy cycles transfer of 128KB shows 18 Mb/s 
+while SW transfer of bytes shows 17.3 MB/s on average.
+
+When back-to-back read commands are executed using HW dummy cycles will 
+definitely save cycles.
+
