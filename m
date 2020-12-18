@@ -2,96 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A1032DEA9A
-	for <lists+devicetree@lfdr.de>; Fri, 18 Dec 2020 21:56:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 64D162DEACF
+	for <lists+devicetree@lfdr.de>; Fri, 18 Dec 2020 22:10:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725808AbgLRUzq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Dec 2020 15:55:46 -0500
-Received: from leonov.paulk.fr ([185.233.101.22]:42878 "EHLO leonov.paulk.fr"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725775AbgLRUzq (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 18 Dec 2020 15:55:46 -0500
-Received: from gagarine.paulk.fr (gagarine [192.168.1.127])
-        by leonov.paulk.fr (Postfix) with ESMTPS id E5A6EBFDE9;
-        Fri, 18 Dec 2020 21:55:03 +0100 (CET)
-Received: by gagarine.paulk.fr (Postfix, from userid 114)
-        id 58D14C1D27; Fri, 18 Dec 2020 21:55:03 +0100 (CET)
-X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on gagarine.paulk.fr
-X-Spam-Level: 
-X-Spam-Status: No, score=0.0 required=5.0 tests=none autolearn=unavailable
-        autolearn_force=no version=3.4.2
-Received: from localhost.localdomain (collins [192.168.1.129])
-        by gagarine.paulk.fr (Postfix) with ESMTP id 4F57AC1D23;
-        Fri, 18 Dec 2020 21:54:38 +0100 (CET)
-From:   Paul Kocialkowski <contact@paulk.fr>
-To:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Paul Kocialkowski <contact@paulk.fr>
-Subject: [PATCH v2 2/2] ARM: dts: sun8i-v3s: Add PWM controller and pins definitions
-Date:   Fri, 18 Dec 2020 21:54:36 +0100
-Message-Id: <20201218205436.2326872-2-contact@paulk.fr>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20201218205436.2326872-1-contact@paulk.fr>
-References: <20201218205436.2326872-1-contact@paulk.fr>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S1727445AbgLRVIh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Dec 2020 16:08:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36612 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725982AbgLRVIh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Dec 2020 16:08:37 -0500
+Received: from mail-yb1-xb49.google.com (mail-yb1-xb49.google.com [IPv6:2607:f8b0:4864:20::b49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8C14C0617A7
+        for <devicetree@vger.kernel.org>; Fri, 18 Dec 2020 13:07:56 -0800 (PST)
+Received: by mail-yb1-xb49.google.com with SMTP id z62so4760150yba.23
+        for <devicetree@vger.kernel.org>; Fri, 18 Dec 2020 13:07:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=sender:date:message-id:mime-version:subject:from:to:cc;
+        bh=t638+7+HwCPMmPZN8BttAu4YYFBZRz0rNr0gnq7g6kQ=;
+        b=X3K1oA1NNGSEagu1/19qhOlEw2wzeX+pTdeitiFiKfBl/0vRXoXSli4nPvDlj86s+X
+         s4V1X30EZgeNlYMAsIRUs4Lk+EBU6wBbW8a0+/E8cxTyO5TXKd+Qq/cbbl3KGC3dp1Jw
+         zHjxfG2DHtUMZgDGW19yVH5m/r9XBeHzbZy8s9c0MeAYYwvCnL2diQwyZ/5JTP9naB21
+         7XWrwAUWXez3hSRRpJaY9U+B4WihIa+sCk/DuVPHuCreri5qKPw3Agb791Xkazj7LHqa
+         Ol++VY12w1aNwvbEHmECXlPSaCC4tHzmXQgZv8MR6jA5SZwGtQLJcIhHIcQVDfmFpBYY
+         QiAA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:sender:date:message-id:mime-version:subject:from
+         :to:cc;
+        bh=t638+7+HwCPMmPZN8BttAu4YYFBZRz0rNr0gnq7g6kQ=;
+        b=WfrNXqeYZ99Bwrr6y2IV6dYV6wPAO9wW2Zb1nBlt4Y5fUXz5To0WLsIrmD0EgZ/NGl
+         1RK9RYtsSPdsJ0DKFy6Cu5vpGzrrEAGQIIaGAQgUqW3FbrFiEY6gDHB8T8DcfDP1/yZc
+         FvoTjJgfEtfxLJ2qyfVREUCL5sipDW8wW6z0/xkUSNVWNf9haJKA8gqBfmfWDXfHUwEH
+         3V8ipitrKNibEoXqiJTsugJpVeN66cMyybseFJlx/QS25vXCaqBdhnYgE+igkqVR/spG
+         8cXJxPsEsUXKPJOVF6s/NRywTAbxvMnRbJR0mvUxoHha3EvYw/7ZPT7SYtU7ELl1nGhW
+         uzWw==
+X-Gm-Message-State: AOAM531dDyTNxwBtEMNNtW4ikDNSxZm+4ObVn7fzJUjRCsxYtHj95OT2
+        5Rf5cPoD1sZVKaK//P30hGCVtnjUCvVFk+c=
+X-Google-Smtp-Source: ABdhPJx3FgmJDWeNm5zfdx0Y9sCCHts79Ft0KxctC8O+IgVj9pVl074vaJoAM7DoRFYel11ggk4LZAvZ6IKdvh0=
+Sender: "saravanak via sendgmr" <saravanak@saravanak.san.corp.google.com>
+X-Received: from saravanak.san.corp.google.com ([2620:15c:2d:3:7220:84ff:fe09:fedc])
+ (user=saravanak job=sendgmr) by 2002:a05:6902:100f:: with SMTP id
+ w15mr8173561ybt.25.1608325675917; Fri, 18 Dec 2020 13:07:55 -0800 (PST)
+Date:   Fri, 18 Dec 2020 13:07:50 -0800
+Message-Id: <20201218210750.3455872-1-saravanak@google.com>
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.29.2.684.gfbc64c5ab5-goog
+Subject: [PATCH] of: property: Add device link support for interrupts
+From:   Saravana Kannan <saravanak@google.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Cc:     Saravana Kannan <saravanak@google.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Kevin Hilman <khilman@baylibre.com>, kernel-team@android.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This introduces definitions for the PWM controller found in the V3s,
-as well as associated pins. This fashion of the controller has two PWM
-outputs and is register-compatible with the A20.
+Add support for creating device links out of interrupts property.
 
-Both PWM outputs were tested on a Lichee Pi Zero with a simple
-transistor-LED setup.
-
-Signed-off-by: Paul Kocialkowski <contact@paulk.fr>
+Cc: Marc Zyngier <maz@kernel.org>
+Cc: Kevin Hilman <khilman@baylibre.com>
+Signed-off-by: Saravana Kannan <saravanak@google.com>
 ---
- arch/arm/boot/dts/sun8i-v3s.dtsi | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
+Rob/Greg,
 
-diff --git a/arch/arm/boot/dts/sun8i-v3s.dtsi b/arch/arm/boot/dts/sun8i-v3s.dtsi
-index bff822b9fa01..f02aa988156d 100644
---- a/arch/arm/boot/dts/sun8i-v3s.dtsi
-+++ b/arch/arm/boot/dts/sun8i-v3s.dtsi
-@@ -404,6 +404,16 @@ spi0_pins: spi0-pins {
- 				pins = "PC0", "PC1", "PC2", "PC3";
- 				function = "spi0";
- 			};
-+
-+			pwm0_pin: pwm0-pin {
-+				pins = "PB4";
-+				function = "pwm0";
-+			};
-+
-+			pwm1_pin: pwm1-pin {
-+				pins = "PB5";
-+				function = "pwm1";
-+			};
- 		};
+This might need to go into driver-core to avoid conflict
+due to fw_devlink refactor series that merged there.
+
+Thanks,
+Saravana
+
+
+ drivers/of/property.c | 17 +++++++++++++++++
+ 1 file changed, 17 insertions(+)
+
+diff --git a/drivers/of/property.c b/drivers/of/property.c
+index 5f9eed79a8aa..e56a5eae0a0b 100644
+--- a/drivers/of/property.c
++++ b/drivers/of/property.c
+@@ -1271,6 +1271,22 @@ static struct device_node *parse_iommu_maps(struct device_node *np,
+ 	return of_parse_phandle(np, prop_name, (index * 4) + 1);
+ }
  
- 		timer@1c20c00 {
-@@ -422,6 +432,15 @@ wdt0: watchdog@1c20ca0 {
- 			clocks = <&osc24M>;
- 		};
- 
-+		pwm: pwm@1c21400 {
-+			compatible = "allwinner,sun8i-v3s-pwm",
-+				     "allwinner,sun7i-a20-pwm";
-+			reg = <0x01c21400 0xc>;
-+			clocks = <&osc24M>;
-+			#pwm-cells = <3>;
-+			status = "disabled";
-+		};
++static struct device_node *parse_interrupts(struct device_node *np,
++					    const char *prop_name, int index)
++{
++	struct device_node *sup;
 +
- 		lradc: lradc@1c22800 {
- 			compatible = "allwinner,sun4i-a10-lradc-keys";
- 			reg = <0x01c22800 0x400>;
++	if (strcmp(prop_name, "interrupts") || index)
++		return NULL;
++
++	of_node_get(np);
++	while (np && !(sup = of_parse_phandle(np, "interrupt-parent", 0)))
++		np = of_get_next_parent(np);
++	of_node_put(np);
++
++	return sup;
++}
++
+ static const struct supplier_bindings of_supplier_bindings[] = {
+ 	{ .parse_prop = parse_clocks, },
+ 	{ .parse_prop = parse_interconnects, },
+@@ -1296,6 +1312,7 @@ static const struct supplier_bindings of_supplier_bindings[] = {
+ 	{ .parse_prop = parse_pinctrl6, },
+ 	{ .parse_prop = parse_pinctrl7, },
+ 	{ .parse_prop = parse_pinctrl8, },
++	{ .parse_prop = parse_interrupts, },
+ 	{ .parse_prop = parse_regulators, },
+ 	{ .parse_prop = parse_gpio, },
+ 	{ .parse_prop = parse_gpios, },
 -- 
-2.29.2
+2.29.2.684.gfbc64c5ab5-goog
 
