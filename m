@@ -2,68 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CB74D2DE853
-	for <lists+devicetree@lfdr.de>; Fri, 18 Dec 2020 18:38:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9140D2DE887
+	for <lists+devicetree@lfdr.de>; Fri, 18 Dec 2020 18:51:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732196AbgLRRiZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Dec 2020 12:38:25 -0500
-Received: from www.zeus03.de ([194.117.254.33]:35720 "EHLO mail.zeus03.de"
+        id S1727375AbgLRRut (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Dec 2020 12:50:49 -0500
+Received: from honk.sigxcpu.org ([24.134.29.49]:49500 "EHLO honk.sigxcpu.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731729AbgLRRiZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 18 Dec 2020 12:38:25 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple; d=sang-engineering.com; h=
-        from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=k1; bh=ytiV+onisZYlsd
-        gtssstNOUjXS3ELZzEJTA29oGv7o4=; b=HVTPqDCncGAA9XTQoBboSfjKtKsCcR
-        ynphNp7otY8pv2drt6Vr7o8HqnWQ9yxSiSTzAz9/g+Zgkpmz8DWBWtDNeVB9K79W
-        IaFDRd3lGuneDVb3t+aymrLOJnvuXcmV/z1P2jYpyMvbo+zJ8q7PosgGd+5pDJ0i
-        so7IPrAl3fSPw=
-Received: (qmail 3906806 invoked from network); 18 Dec 2020 18:37:38 +0100
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 18 Dec 2020 18:37:38 +0100
-X-UD-Smtp-Session: l3s3148p1@vnOEkMC2bJggAwDPXwIpAOUwDQytQs2L
-From:   Wolfram Sang <wsa+renesas@sang-engineering.com>
-To:     linux-renesas-soc@vger.kernel.org
-Cc:     Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        id S1727326AbgLRRut (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 18 Dec 2020 12:50:49 -0500
+Received: from localhost (localhost [127.0.0.1])
+        by honk.sigxcpu.org (Postfix) with ESMTP id 1F9DEFB03;
+        Fri, 18 Dec 2020 18:50:07 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at honk.sigxcpu.org
+Received: from honk.sigxcpu.org ([127.0.0.1])
+        by localhost (honk.sigxcpu.org [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id bjWEg9DrS5lx; Fri, 18 Dec 2020 18:50:06 +0100 (CET)
+Received: by bogon.sigxcpu.org (Postfix, from userid 1000)
+        id 788BB43FDC; Fri, 18 Dec 2020 18:50:05 +0100 (CET)
+From:   =?UTF-8?q?Guido=20G=C3=BCnther?= <agx@sigxcpu.org>
+To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Peng Fan <peng.fan@nxp.com>,
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        Anson Huang <Anson.Huang@nxp.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Shengjiu Wang <shengjiu.wang@nxp.com>,
+        =?UTF-8?q?Guido=20G=C3=BCnther?= <agx@sigxcpu.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH 4/5] arm64: dts: renesas: falcon: Enable watchdog timer
-Date:   Fri, 18 Dec 2020 18:37:29 +0100
-Message-Id: <20201218173731.12839-5-wsa+renesas@sang-engineering.com>
+Subject: [PATCH] arm64: dts: imx8mq: Add clock parents for mipi dphy
+Date:   Fri, 18 Dec 2020 18:50:05 +0100
+Message-Id: <dd135fa55084d886bd6daf777d76677f232c53c6.1608313793.git.agx@sigxcpu.org>
 X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20201218173731.12839-1-wsa+renesas@sang-engineering.com>
-References: <20201218173731.12839-1-wsa+renesas@sang-engineering.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Hoang Vo <hoang.vo.eb@renesas.com>
+This makes sure the clock tree setup for the dphy is not dependent on
+other components.
 
-Enable the watchdog on the Falcon board.
+Without this change bringing up the display can fail like
 
-Signed-off-by: Hoang Vo <hoang.vo.eb@renesas.com>
-[wsa: rebased to mainline]
-Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+  kernel: phy phy-30a00300.dphy.2: Invalid CM/CN/CO values: 165/217/1
+  kernel: phy phy-30a00300.dphy.2: for hs_clk/ref_clk=451656000/593999998 ~ 165/217
+
+if LCDIF doesn't set up that part of the clock tree first. This was
+noticed when testing the Librem 5 devkit with defconfig. It doesn't
+happen when modules are built in.
+
+Signed-off-by: Guido Günther <agx@sigxcpu.org>
 ---
- arch/arm64/boot/dts/renesas/r8a779a0-falcon.dts | 5 +++++
- 1 file changed, 5 insertions(+)
+ arch/arm64/boot/dts/freescale/imx8mq.dtsi | 11 ++++++++---
+ 1 file changed, 8 insertions(+), 3 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/renesas/r8a779a0-falcon.dts b/arch/arm64/boot/dts/renesas/r8a779a0-falcon.dts
-index 8eda70e5a82b..fb9978ea18f4 100644
---- a/arch/arm64/boot/dts/renesas/r8a779a0-falcon.dts
-+++ b/arch/arm64/boot/dts/renesas/r8a779a0-falcon.dts
-@@ -20,3 +20,8 @@ chosen {
- 		stdout-path = "serial0:115200n8";
- 	};
- };
-+
-+&rwdt {
-+	timeout-sec = <60>;
-+	status = "okay";
-+};
+diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+index a841a023e8e0..ca0847e8f13c 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+@@ -1016,9 +1016,14 @@ dphy: dphy@30a00300 {
+ 				reg = <0x30a00300 0x100>;
+ 				clocks = <&clk IMX8MQ_CLK_DSI_PHY_REF>;
+ 				clock-names = "phy_ref";
+-				assigned-clocks = <&clk IMX8MQ_CLK_DSI_PHY_REF>;
+-				assigned-clock-parents = <&clk IMX8MQ_VIDEO_PLL1_OUT>;
+-				assigned-clock-rates = <24000000>;
++				assigned-clocks = <&clk IMX8MQ_VIDEO_PLL1_REF_SEL>,
++						  <&clk IMX8MQ_VIDEO_PLL1_BYPASS>,
++						  <&clk IMX8MQ_CLK_DSI_PHY_REF>,
++						  <&clk IMX8MQ_VIDEO_PLL1>;
++				assigned-clock-parents = <&clk IMX8MQ_CLK_25M>,
++						  <&clk IMX8MQ_VIDEO_PLL1>,
++						  <&clk IMX8MQ_VIDEO_PLL1_OUT>;
++				assigned-clock-rates = <0>, <0>, <24000000>;
+ 				#phy-cells = <0>;
+ 				power-domains = <&pgc_mipi>;
+ 				status = "disabled";
 -- 
 2.29.2
 
