@@ -2,128 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D6022DE737
-	for <lists+devicetree@lfdr.de>; Fri, 18 Dec 2020 17:08:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 217612DE79A
+	for <lists+devicetree@lfdr.de>; Fri, 18 Dec 2020 17:47:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728270AbgLRQH4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Dec 2020 11:07:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46910 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726209AbgLRQHz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Dec 2020 11:07:55 -0500
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51C08C0617A7;
-        Fri, 18 Dec 2020 08:07:15 -0800 (PST)
-Received: by mail-ed1-x533.google.com with SMTP id h16so2870838edt.7;
-        Fri, 18 Dec 2020 08:07:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=wzkg9HGLizXQ+9HDpc1WbATbetIVR7/Fro/Ux3+6OgA=;
-        b=RZn5K7ghqFrFRHAWNUJrDX3DnMDr2eZAQTEYqdPyiYe5bfli3vb5zMCkLGeNkjmAmz
-         b8Jz1OUrK40kkrdce6s4ykBvygXyHSf4R2OGCiYnYotxMX8mSDRxuuiaVUM8bfRuFj9d
-         RuBOqDSo9Z03rPJ5kOaMYMtfu73/y8mpnqHB6U26ULA4rbKueLrzjrHsnWQxHtf0o6pZ
-         2n+W6D354TDPljCSkIKol7JrTXIO1rewtq/NrwP0yT+ijfcvg7yPwotas1W0/REgWK6v
-         t47xv7iqpkPpDtFRIPzAa9MDViMtp51nmgPI87QRG9P1OpfrjUq+0y+kjM1zepVslDmo
-         FyQA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=wzkg9HGLizXQ+9HDpc1WbATbetIVR7/Fro/Ux3+6OgA=;
-        b=uQNOHWblnCHeByYujCwkeExnxbcW4+Gpqdcmxb1n7eYGMwlDhJZXpaVDY1aVo0OMwo
-         t5IlME4x3Av/E1+1X68ZtRbrUxgLNy50q33FWdLW+z6ZEAbN7fi42DU0hXcGxsLt/yo0
-         IF/HwZSPpbO3aVxK6VCYpPA1mfrBe4Tpm6bGZhEkip5XHPZiqignQBcB8+QANS3LYafY
-         YwirGHk+CdHwcdYRd3UvV1ey9v47zEmyYiMCS5sdOswF9JKW4grqARg6i/pORXVlaE4w
-         O6b8AmVn1IRizs06KLvJZ82wnKgozdc5WW6bmTV1/CYof+o+/ntVto5az5Y0f54X+BJo
-         JFxQ==
-X-Gm-Message-State: AOAM531CMluFXrCau4N+I6+p6RevFZpdrKXOnPIEwqjTYMSZta/HoJ2G
-        1nG3E3rFX5GrrSqLK03hWec=
-X-Google-Smtp-Source: ABdhPJxvDwAoAVnPk2gGAa5lSa6k9PViJHSSVYv10/jkGSPcg1UXin24sgPKCxZMHjdbU8zNjmkxag==
-X-Received: by 2002:aa7:df91:: with SMTP id b17mr5134614edy.272.1608307634082;
-        Fri, 18 Dec 2020 08:07:14 -0800 (PST)
-Received: from BV030612LT ([188.24.159.61])
-        by smtp.gmail.com with ESMTPSA id f17sm11561803edu.25.2020.12.18.08.07.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Dec 2020 08:07:12 -0800 (PST)
-Date:   Fri, 18 Dec 2020 18:07:10 +0200
-From:   Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
-To:     Lee Jones <lee.jones@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Sebastian Reichel <sre@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
-        linux-actions@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
-        linux-pm@vger.kernel.org
-Subject: Re: [PATCH v3 3/7] mfd: Add MFD driver for ATC260x PMICs
-Message-ID: <20201218160710.GA134686@BV030612LT>
-References: <cover.1607216141.git.cristian.ciocaltea@gmail.com>
- <f538c21de556c66390614bad778f7dc095222e8c.1607216141.git.cristian.ciocaltea@gmail.com>
- <20201216101000.GD207743@dell>
- <20201217231731.GA104305@BV030612LT>
- <20201218132139.GR207743@dell>
+        id S1730063AbgLRQqg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Dec 2020 11:46:36 -0500
+Received: from mail.kernel.org ([198.145.29.99]:48760 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725949AbgLRQqg (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 18 Dec 2020 11:46:36 -0500
+Date:   Fri, 18 Dec 2020 17:45:53 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1608309955;
+        bh=LUcLD6+xoJ+9/18Np/je+aO+EdueK1jrnCWL7CGjjo8=;
+        h=From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Bz9yL2l36yyZOhI4KYWT8Im349JFQ2NJ0ZElpw+lR8jOi6SuuNNnk/xI/o7q4igxD
+         ZIiwG1HgwK+L3BMfdh1e5qu5u0Gu32r0fwxN1wZL8QeuMUXO4Ue731Z2AF/odMHC2b
+         8DhxyL7IrZ2TgijO1I/fplOcLubFnpkpwTi7MEFAx8ed/G0/2Yv7Eu4edOB2u2NDwN
+         pXgKDEt1pb4vY3hrq8qzSlcFa8EI0HbdD2STC9oFckxLkMHYUSWw0mLogi39Gs6KHb
+         QN+ocb5PsU87DE4tFNafme5gMwVDqEvgESflQJInjd8Arci0OFrbNDh7ntIzs371WB
+         okZKoO3BIJroA==
+From:   Sebastian Reichel <sre@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Maxime Ripard <mripard@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Lee Jones <lee.jones@linaro.org>,
+        Daniel Thompson <daniel.thompson@linaro.org>,
+        Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@ucw.cz>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Mark Brown <broonie@kernel.org>, netdev@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: Fix JSON pointers
+Message-ID: <20201218164553.w7bof2ua5wiqkb6z@earth.universe>
+References: <20201217223429.354283-1-robh@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="dg5hw5w5ew24qk6p"
 Content-Disposition: inline
-In-Reply-To: <20201218132139.GR207743@dell>
+In-Reply-To: <20201217223429.354283-1-robh@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 18, 2020 at 01:21:39PM +0000, Lee Jones wrote:
-> On Fri, 18 Dec 2020, Cristian Ciocaltea wrote:
-> 
-> > Hi Lee,
-> > 
-> > Thank you for the detailed review!
-> > 
-> > I will prepare a new revision, but there are still a couple of open
-> > points..
-> 
-> Could you please snip your replies, leaving only the open points.
-> 
-> Scrolling through lots of empty quotes or "done" comments is quite
-> time consuming.  Thanks.
 
-Sure, I'll take that into account.
+--dg5hw5w5ew24qk6p
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> [...]
-> 
-> > > > +	ret = regmap_read(atc260x->regmap, atc260x->rev_reg, &chip_rev);
-> > > > +	if (ret) {
-> > > > +		dev_err(dev, "Failed to get chip revision\n");
-> > > > +		return ret;
-> > > > +	}
-> > > > +
-> > > > +	if (chip_rev < 0 || chip_rev > 31) {
-> > > > +		dev_err(dev, "Unknown chip revision: %d\n", ret);
-> > > > +		return -EINVAL;
-> > > > +	}
-> > > 
-> > > This still seems limiting.
-> > 
-> > This is based on the vendor implementation. Unfortunately I don't have
-> > access to a data sheet or any other source of information about the
-> > management of the chip revisions.
-> 
-> So which versions does this driver work with?  All 32?
+Hi,
 
-I'm not even sure there are so many revisions, I guess that's just a
-rough validation for a vendor reserved range.
+On Thu, Dec 17, 2020 at 04:34:29PM -0600, Rob Herring wrote:
+> The correct syntax for JSON pointers begins with a '/' after the '#'.
+> Without a '/', the string should be interpretted as a subschema
+> identifier. The jsonschema module currently doesn't handle subschema
+> identifiers and incorrectly allows JSON pointers to begin without a '/'.
+> Let's fix this before it becomes a problem when jsonschema module is
+> fixed.
+>=20
+> Converted with:
+> perl -p -i -e 's/yaml#definitions/yaml#\/definitions/g' `find Documentati=
+on/devicetree/bindings/ -name "*.yaml"`
 
-For the moment, the only place where the functionality is affected
-by the chip revision is in the regulator driver - there is a special
-handling for the ATC2603C rev.B chip variant.
+[...]
 
-I expect some additional handling might be required for new drivers
-bringing support for the other functions provided by the hardware.
+>  .../bindings/power/supply/cw2015_battery.yaml |  2 +-
 
-> [...]
+[...]
 
-Thanks,
-Cristi
+> diff --git a/Documentation/devicetree/bindings/power/supply/cw2015_batter=
+y.yaml b/Documentation/devicetree/bindings/power/supply/cw2015_battery.yaml
+> index ee92e6a076ac..5fcdf5801536 100644
+> --- a/Documentation/devicetree/bindings/power/supply/cw2015_battery.yaml
+> +++ b/Documentation/devicetree/bindings/power/supply/cw2015_battery.yaml
+> @@ -27,7 +27,7 @@ properties:
+>        of this binary blob is kept secret by CellWise. The only way to ob=
+tain
+>        it is to mail two batteries to a test facility of CellWise and rec=
+eive
+>        back a test report with the binary blob.
+> -    $ref: /schemas/types.yaml#definitions/uint8-array
+> +    $ref: /schemas/types.yaml#/definitions/uint8-array
+>      minItems: 64
+>      maxItems: 64
+> =20
+
+[...]
+
+Acked-by: Sebastian Reichel <sre@kernel.org>
+
+-- Sebastian
+
+--dg5hw5w5ew24qk6p
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAl/c3LsACgkQ2O7X88g7
++praeA/+JEplN0yrKaSZjyhRa+L8AyAs3C6WQ4ksz2zVeIlilm+WnXuZG5x3+VO6
+FxXldTLgMRfrxBMpPgj9oOVg2zc76IsbaVlpsDqGbsV8ifuD5nt9FvSmuOeR5uyU
+aiGNbjLQEHjyH15/V/C7tEZDMNPFWa4o8dG3lYodQSbL8lDRFZzMQtJHxW4MHz3L
+bGc2elxpd5xSxTDvduFvTYctmVqodF5i4zYMLTJ2t3TJACuZobaZf/iPEmx123Gi
++hlGQ/Di+LjOGhuSG0pdPKnruJXXReXc7hrw06KN/GPGDJ/iwWVR3JyPyYrFhw89
+gUtvqiWjQA0DDBekoRRnIDaBm1BecAYRhw9hmPU18jCKjy2HMcZ2DHF03Rgco2O8
+frI94OoMjFQq5BXJzZ7b6P0ok/0uDaAszEpfIM4ovNotd4rrOS/CnPMTlCnggZkU
+UYHhqFy5b1hE12rBqXmwfOneCw0vMmIu9nrlzcdZ6NAdamxIzNrdv6/WbWlt0UuI
+5rkTaJikukTYVUFZqWAAknoynXpQA3SOTkr1DzADl5nIdh9odNlv9cJ2BzgOwVsE
+smWm4snBldV3IvXZur2TixXk7gHZF01y6GpjEGA5mhavHSEnM8ywrbzc3uNjnntB
+QcqP5pyP8iHrhASq/aVXrb1ngE/i4Rr8knU+CBxLzNvofHwhJG4=
+=6J+0
+-----END PGP SIGNATURE-----
+
+--dg5hw5w5ew24qk6p--
