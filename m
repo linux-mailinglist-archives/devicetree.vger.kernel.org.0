@@ -2,97 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7AD212DDD83
-	for <lists+devicetree@lfdr.de>; Fri, 18 Dec 2020 04:57:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 084E02DDE95
+	for <lists+devicetree@lfdr.de>; Fri, 18 Dec 2020 07:26:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732693AbgLRDz3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Dec 2020 22:55:29 -0500
-Received: from out2-smtp.messagingengine.com ([66.111.4.26]:37819 "EHLO
-        out2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726789AbgLRDz2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 17 Dec 2020 22:55:28 -0500
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailout.nyi.internal (Postfix) with ESMTP id 945275C0115;
-        Thu, 17 Dec 2020 22:54:30 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute3.internal (MEProxy); Thu, 17 Dec 2020 22:54:30 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=from
-        :to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=fm1; bh=Q1FwOOJn9VJrF
-        xg4mu6zSOR772E69sWYabsnaXN/CgI=; b=dqc7UpKHs8arqoIaKPwepMkO+ZqbE
-        74vwIesaPS2J60ELgm9Ggg65Q2TqpZ8RRU+X1nWN6cO6SvAF3xrZWNnmwsD+wO46
-        BKeGZ3roRDy31zwvBR/zJsVn1l1YQYMEEIEAxwpYjRlQ7k22GabHkBGOA7CNGNRm
-        IT/VnGwSBuiZedloqDNkYzjTE2gWgdqsqymFk7vSgF/OYc9vQixDt1nM62qDNrWw
-        jSaSg7EPx4UYGaTvFl/2o3zFeS8PqAbQ0SkKTh5naXCkaXKnmuQhD/2BTChqvM+v
-        Kae7/kjWdlaq6IaHoUTO5rRgq0TlrniKNZbFemuHGnkeHoDKKo26cmQdg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:date:from
-        :in-reply-to:message-id:mime-version:references:subject:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm1; bh=Q1FwOOJn9VJrFxg4mu6zSOR772E69sWYabsnaXN/CgI=; b=OF9XOxZu
-        oR7r0fVEWhGVNhedSC1BYAJ2Ao/7t+R3BhpwgG0uHJh7pZnMpvYc2gvFWGU4IwIP
-        O2pzwG0fbseOrBS1w7xkoXOjTNVhJoY5g/8CZSSQwYjUd8mKnKgBgNchqcXwHcOH
-        a65GluG3jdSqET6HKsRmgFMunLPfKJ5zVRVjYCfNiZUxqzqsnkktWV9gtHqohLiu
-        kCkBD7RoQSLhSYaA5cNM+iDObA4ha2UJFPFsiGlzUVvFcd/9ZDhsc7XDOKO1IIy8
-        3Cq0Xy2+b4KGRuxTAYH2qV0PpcIRhuD5PSfkSj+cdr+FZypZCGNtlUimRmwzjgUo
-        OkV3pDQoAgDECQ==
-X-ME-Sender: <xms:9ifcX0VYLMr2iNvgyeYI2JwFnGD5PzgfWmz9IWdSaVK92xEpe8tDbg>
-    <xme:9ifcX4mvwWk4SH3hNWvVu-4dA6DJ5uJnJHoxpkm0pV6SPLiO0ic-8faq475AWpFvr
-    FKsDmpcq0sgYtzDeQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrudelhedgieegucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucenucfjughrpefhvffufffkofgjfhgggfestdekre
-    dtredttdenucfhrhhomheptehnughrvgifucflvghffhgvrhihuceorghnughrvgifsegr
-    jhdrihgurdgruheqnecuggftrfgrthhtvghrnhepjefgvdevheetkeevgeegleelgfelte
-    etjeffleffvdduudevieffgeetleevhfetnecukfhppeduvddtrddvtddrjeejrddvuddu
-    necuvehluhhsthgvrhfuihiivgepfeenucfrrghrrghmpehmrghilhhfrhhomheprghnug
-    hrvgifsegrjhdrihgurdgruh
-X-ME-Proxy: <xmx:9ifcX4Yr2aIX74Y4E0BRqCyxdU2yZCQq3hrV2Ss2R1-neenPwm2RXg>
-    <xmx:9ifcXzVY_QtRceW-p9oyO7cz8zz9jVSaHGHL4zRBKuew7l8EpHv_Og>
-    <xmx:9ifcX-nwPTvKnYJRPRsMwld2SQvkYJ6QxKyaZylFUhc2nOcEdCKyVg>
-    <xmx:9ifcXwUuCjqhnib2hOw04Nxhl_om-cRQAkkqi8Zkm8KvGlUiv-uWAw>
-Received: from localhost.localdomain (unknown [120.20.77.211])
-        by mail.messagingengine.com (Postfix) with ESMTPA id E5FF7108005B;
-        Thu, 17 Dec 2020 22:54:25 -0500 (EST)
-From:   Andrew Jeffery <andrew@aj.id.au>
-To:     linux-mmc@vger.kernel.org
-Cc:     ulf.hansson@linaro.org, robh+dt@kernel.org, joel@jms.id.au,
-        adrian.hunter@intel.com, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, ryan_chen@aspeedtech.com
-Subject: [PATCH v6 6/6] ARM: dts: rainier: Add eMMC clock phase compensation
-Date:   Fri, 18 Dec 2020 14:23:38 +1030
-Message-Id: <20201218035338.1130849-7-andrew@aj.id.au>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20201218035338.1130849-1-andrew@aj.id.au>
-References: <20201218035338.1130849-1-andrew@aj.id.au>
+        id S1732671AbgLRG0P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Dec 2020 01:26:15 -0500
+Received: from linux.microsoft.com ([13.77.154.182]:41910 "EHLO
+        linux.microsoft.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732647AbgLRG0P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Dec 2020 01:26:15 -0500
+Received: from [192.168.0.104] (c-73-42-176-67.hsd1.wa.comcast.net [73.42.176.67])
+        by linux.microsoft.com (Postfix) with ESMTPSA id C95CC20B717A;
+        Thu, 17 Dec 2020 22:25:33 -0800 (PST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com C95CC20B717A
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+        s=default; t=1608272734;
+        bh=etZWIFSAunWvvTytCwaw4eRuJpjTSSwN3EVqRwxTxgo=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=dPeYTdzlbJyy71yFOMqIIPpxr4tH8rS154kSISMKYsrQ299j4AjVgYC8DJFV3V2zW
+         EUckcDbECnnMo+b9KomsWtVYJj2oS79xkCOdcjWtxtVs5CULWLV9KZn5z3r6OqO19P
+         90dxam6rHhIKp8WnQe2IMDyJw3W6j0heDI8ijGy8=
+Subject: Re: [PATCH v12 2/4] powerpc: Move arch independent ima kexec
+ functions to drivers/of/kexec.c
+To:     Rob Herring <robh@kernel.org>
+Cc:     Mimi Zohar <zohar@linux.ibm.com>,
+        Thiago Jung Bauermann <bauerman@linux.ibm.com>,
+        "AKASHI, Takahiro" <takahiro.akashi@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Will Deacon <will@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        James Morse <james.morse@arm.com>,
+        Sasha Levin <sashal@kernel.org>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Paul Mackerras <paulus@samba.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        vincenzo.frascino@arm.com, Mark Rutland <mark.rutland@arm.com>,
+        dmitry.kasatkin@gmail.com, James Morris <jmorris@namei.org>,
+        "Serge E. Hallyn" <serge@hallyn.com>,
+        Pavel Tatashin <pasha.tatashin@soleen.com>,
+        Allison Randal <allison@lohutok.net>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Bhupesh Sharma <bhsharma@redhat.com>,
+        Matthias Brugger <mbrugger@suse.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>, tao.li@vivo.com,
+        Christophe Leroy <christophe.leroy@c-s.fr>,
+        Prakhar Srivastava <prsriva@linux.microsoft.com>,
+        balajib@linux.microsoft.com, linux-integrity@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        devicetree@vger.kernel.org
+References: <20201217173708.6940-1-nramas@linux.microsoft.com>
+ <20201217173708.6940-3-nramas@linux.microsoft.com>
+ <20201217200510.GA105447@robh.at.kernel.org>
+ <0b17fbee-cfe9-8cb2-01d1-02b6a61a14f5@linux.microsoft.com>
+ <CAL_Jsq+-HOkxtxOO=zyRbDuGVNZoMy589qoVANciNionsdsGCw@mail.gmail.com>
+From:   Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
+Message-ID: <5dda6968-ca14-1695-3058-7c12653521ba@linux.microsoft.com>
+Date:   Thu, 17 Dec 2020 22:25:33 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAL_Jsq+-HOkxtxOO=zyRbDuGVNZoMy589qoVANciNionsdsGCw@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Determined by scope measurements at speed.
+On 12/17/20 2:01 PM, Rob Herring wrote:
 
-Signed-off-by: Andrew Jeffery <andrew@aj.id.au>
-Reviewed-by: Joel Stanley <joel@jms.id.au>
----
- arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts | 1 +
- 1 file changed, 1 insertion(+)
+> 
+> [...]
+> 
+>>>> +#ifdef CONFIG_IMA_KEXEC
+>>>> +/**
+>>>> + * arch_ima_add_kexec_buffer - do arch-specific steps to add the IMA buffer
+>>>> + *
+>>>> + * @image: kimage struct to set IMA buffer data
+>>>> + * @load_addr: Starting address where IMA buffer is loaded at
+>>>> + * @size: Number of bytes in the IMA buffer
+>>>> + *
+>>>> + * Architectures should use this function to pass on the IMA buffer
+>>>> + * information to the next kernel.
+>>>> + *
+>>>> + * Return: 0 on success, negative errno on error.
+>>>> + */
+>>>> +int arch_ima_add_kexec_buffer(struct kimage *image, unsigned long load_addr,
+>>>> +                          size_t size)
+>>>
+>>> This should be a static inline in asm/kexec.h.
+>>
+>> arch_ima_add_kexec_buffer() is identical for powerpc and arm64.
+>> Would it be better to "static inline" this function in "of.h" instead of
+>> duplicating it in "asm/kexec.h" for powerpc and arm64?
+> 
+> No, think about what it is specific to and place it there. It has
+> nothing to do with DT really. All it is is a wrapper to access the
+> struct members in kimage_arch. So it belongs where they are declared.
+> Now perhaps ima_buffer_addr and ima_buffer_size shouldn't be arch
+> specific, but that's a separate issue.
+> 
 
-diff --git a/arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts b/arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts
-index 21ae880c7530..ab8d37d49f30 100644
---- a/arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts
-+++ b/arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts
-@@ -186,6 +186,7 @@ &pinctrl_emmc_default {
- 
- &emmc {
- 	status = "okay";
-+	clk-phase-mmc-hs200 = <180>, <180>;
- };
- 
- &fsim0 {
--- 
-2.27.0
+Since "struct kimage" definition is not available in "asm/kexec.h", 
+defining arch_ima_add_kexec_buffer() in this header file results in the 
+following build error:
 
+./arch/powerpc/include/asm/kexec.h: In function 'arch_ima_add_kexec_buffer':
+./arch/powerpc/include/asm/kexec.h:139:7: error: 'struct kimage' has no 
+member named 'arch'
+   139 |  image->arch.ima_buffer_addr = load_addr;
+
+I think it would be appropriate to make arch_ima_add_kexec_buffer() a 
+static inline function in "security/integrity/ima/ima_kexec.c" - the 
+only file where this function is used.
+
+This will also enable sharing this function for powerpc and arm64 
+architectures.
+
+thanks,
+  -lakshmi
