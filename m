@@ -2,147 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4EF4F2DE3F8
-	for <lists+devicetree@lfdr.de>; Fri, 18 Dec 2020 15:25:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A74182DE51B
+	for <lists+devicetree@lfdr.de>; Fri, 18 Dec 2020 15:50:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726713AbgLROY2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Dec 2020 09:24:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59214 "EHLO
+        id S1727743AbgLROtB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Dec 2020 09:49:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34754 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726695AbgLROY2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Dec 2020 09:24:28 -0500
-Received: from mail-io1-xd36.google.com (mail-io1-xd36.google.com [IPv6:2607:f8b0:4864:20::d36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4BA2C0617A7;
-        Fri, 18 Dec 2020 06:23:47 -0800 (PST)
-Received: by mail-io1-xd36.google.com with SMTP id 81so2139653ioc.13;
-        Fri, 18 Dec 2020 06:23:47 -0800 (PST)
+        with ESMTP id S1726215AbgLROtA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Dec 2020 09:49:00 -0500
+Received: from mail-oi1-x234.google.com (mail-oi1-x234.google.com [IPv6:2607:f8b0:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C9A5C0617A7;
+        Fri, 18 Dec 2020 06:48:20 -0800 (PST)
+Received: by mail-oi1-x234.google.com with SMTP id w124so3029938oia.6;
+        Fri, 18 Dec 2020 06:48:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Kg+yAMgYFLTlHGrbICoaSFL1GosZ12/l4+s47nG2NxE=;
-        b=a41lRihDMJA4TP/nBOdw2eh8pG7oiVgvKaQQCFZk8Pzo1AuVl/osP+iqI2fp2+koGU
-         P9Lpy/mTk6V7mbOSA2rtpaXxdCobDJn1YRzFS83JnGcpvWz8rKy9d9NHcL3FlEEzUcf8
-         Mfeut7Y+n72ZZLdjqNZMns/c1BBr8pLnmn/R06ry9OOMh25KPd5znLBKguPh5wPbY3ZC
-         0BCWqiqC6ZN7wXdFiHpTN7A9bjTAFo4xQXaK8JMZdh6QPfbgCsMo33HH5C2L0g6waLo/
-         DfYyfzwNUHIfED0Ml9Jzk45/DifES6cyMHqF6xkpe6GjqpLETBsFf3ahBP6tQtEaWFS4
-         Hl6g==
+        h=sender:subject:to:cc:references:from:autocrypt:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=16yKO6jO+Y1W+raoao4y5ptagCxfaD7UbTLUEFgLqGg=;
+        b=WFYJiSNVrEZyaxntrhKoKVWyCxR71d5WDq4I8J94QxJ3sICcB5g5rGaIurvEdI2qN0
+         QjvH/dReKGX+TvzunY60v/9ovpjAexsSvOGEid/1cplVm4wThza71Fz7smIpP4GjWYdS
+         4T3+hZcJdVoxu/geFOTENj2VkSNckpElL/jeMQrAepJ13vrihRU8CG5z8njm/1sgJl0l
+         a+0SE8rDH24oYiXfuSuS6B7KPAxbv0PIbUQG28Fm1GHVkcm39ejiai9RGCvMfRbvDo9k
+         5hkseIR7F+QPo0eCiuNmJNvNCUBZGE82I9WvIrBBOr7Wc3pw8eownxw4OqxircKBMDnP
+         KhDg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Kg+yAMgYFLTlHGrbICoaSFL1GosZ12/l4+s47nG2NxE=;
-        b=meVgNi7NxbWHc+blRk8L+D2dZG2lRVEkyIerKedOvXDwCjYMqBPmxv9kAVGEl31ADo
-         +gwwPEW4on0dXtX0w7iizp+5GQJHSu5B3u/F5GxNES59WiNrP0FTi83WkzHCdlnJALqk
-         Rm/c5lxiKyMSxqOrlmwmzP1J6EbvxpIkXITKT6lrydw/XUkEyTgKn94lbqQ/HQRp4nYw
-         EXqGnHCf4v8UOAosPlDYG0BftSze56ukaJcxhZ0/dJi0Rq1rnOHluJnFo2e2PLgD3wnj
-         gnGkPCV+gLJcNAxe18UIeKdetlg41HODuTfSS4EN3F4UtC83mWYkoxRI4u+718PXTcAv
-         Q1hw==
-X-Gm-Message-State: AOAM530Q8p65jEUZJJHJTqE6t6g3bzw1fnyw8l8YbrmxdaUzNc25GWys
-        upyBaUi9ADQSVETM2ljiZNCOM2zvQFQscqwv/60=
-X-Google-Smtp-Source: ABdhPJypnNeIYn+W4o/Ji0n2E5B65wD4Kl9KP5xwOzucGSlZMNeu9e3eh+wZiO8tVDq4izdDW6Kkt1ZUGsqfN4R7140=
-X-Received: by 2002:a02:ca09:: with SMTP id i9mr3829996jak.135.1608301426863;
- Fri, 18 Dec 2020 06:23:46 -0800 (PST)
+        h=x-gm-message-state:sender:subject:to:cc:references:from:autocrypt
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=16yKO6jO+Y1W+raoao4y5ptagCxfaD7UbTLUEFgLqGg=;
+        b=UiMzAeNRw3eUEKt8kLb3VC0Jfyb/SYHaSomfTQJ6AoqNtZBNPHWtPtIC78eyaMX0oY
+         N3CeNAMRacQIaYwIY/6h/yam1TrNCBQNjK1MWFmMM1qjrpzSz+HbrplQaoLNj0Mqq4HD
+         9B+XiQuSbw5Vh2qWaUawEN9EbSUWjJD3DpY7nd96/IOXtonVagrT1VeFM8bfqC3TGbZT
+         0L5GnD21NKgZfLERAq6vDf562HUtflYh8T4OELMMAyidFN54W6+TbLHKdnQLiuRb42eE
+         IuQPoIYO0FRw004TSbd/tXCzl8BGf6dSJS9fE2kscGtaV7P7Dc2uPg4fC55a8kp1wPfD
+         eZ9g==
+X-Gm-Message-State: AOAM533zA/P3xR7myY0T35RNojTjDG9OZsqznjMBNfa3cd79Z5o/Rbyl
+        6kG21WbbYrbD/RBRxQVBec8+iQgBKqA=
+X-Google-Smtp-Source: ABdhPJxL9PCfdfMcHyMMXbjtJZWMuzi7joIstYK29AMmol8L3Nx3b9V36kACswwiSxIic5bcZZiH6g==
+X-Received: by 2002:aca:1907:: with SMTP id l7mr2972269oii.141.1608302899229;
+        Fri, 18 Dec 2020 06:48:19 -0800 (PST)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id g3sm1538323ooi.28.2020.12.18.06.48.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 18 Dec 2020 06:48:18 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Subject: Re: [PATCH] dt-bindings: Fix JSON pointers
+To:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org, Maxime Ripard <mripard@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Lee Jones <lee.jones@linaro.org>,
+        Daniel Thompson <daniel.thompson@linaro.org>,
+        Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@ucw.cz>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Mark Brown <broonie@kernel.org>, netdev@vger.kernel.org
+References: <20201217223429.354283-1-robh@kernel.org>
+From:   Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
+Message-ID: <9cc080ea-ce25-45f4-3975-cdc0ac77c1c1@roeck-us.net>
+Date:   Fri, 18 Dec 2020 06:48:15 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-References: <20201213183759.223246-1-aford173@gmail.com> <20201213183759.223246-7-aford173@gmail.com>
- <CAMuHMdU+d7SZc9gh_3WS+bqd4EhXYh=kv0XvYrgUUckdQ7o5jw@mail.gmail.com>
- <CAHCN7xJf2T3uFLDtJxvjFYzCksWq02+CUY51_WmnU44YDJKy9Q@mail.gmail.com> <CAMuHMdU5kBHV9-kBnJbtLp6zGcYRjyTxhmGsstKFnh=Qe4jcYg@mail.gmail.com>
-In-Reply-To: <CAMuHMdU5kBHV9-kBnJbtLp6zGcYRjyTxhmGsstKFnh=Qe4jcYg@mail.gmail.com>
-From:   Adam Ford <aford173@gmail.com>
-Date:   Fri, 18 Dec 2020 08:23:35 -0600
-Message-ID: <CAHCN7xKyHckOvLh9U+21dsKMshwA1LyTzTexxAY0akVcJHJD0Q@mail.gmail.com>
-Subject: Re: [PATCH 06/18] arm64: dts: renesas: beacon: Configure Audio CODEC clocks
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Adam Ford-BE <aford@beaconembedded.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        ALSA Development Mailing List <alsa-devel@alsa-project.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20201217223429.354283-1-robh@kernel.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 18, 2020 at 6:57 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
->
-> Hi Adam,
->
-> On Thu, Dec 17, 2020 at 2:33 PM Adam Ford <aford173@gmail.com> wrote:
-> > On Thu, Dec 17, 2020 at 5:12 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> > > CC alsa-devel
-> > >
-> > > On Sun, Dec 13, 2020 at 7:38 PM Adam Ford <aford173@gmail.com> wrote:
-> > > > With the newly added configurable clock options, the audio CODEC can
-> > > > configure the mclk automatically.  Add the reference to the versaclock.
-> > > > Since the devices on I2C5 can communicate at 400KHz, let's also increase
-> > > > that too
-> > > >
-> > > > Signed-off-by: Adam Ford <aford173@gmail.com>
-> > >
-> > > Thanks for your patch!
-> > >
-> > > > --- a/arch/arm64/boot/dts/renesas/beacon-renesom-baseboard.dtsi
-> > > > +++ b/arch/arm64/boot/dts/renesas/beacon-renesom-baseboard.dtsi
-> > > > @@ -424,13 +424,15 @@ &i2c0 {
-> > > >
-> > > >  &i2c5 {
-> > > >         status = "okay";
-> > > > -       clock-frequency = <100000>;
-> > > > +       clock-frequency = <400000>;
-> > > >         pinctrl-0 = <&i2c5_pins>;
-> > > >         pinctrl-names = "default";
-> > > >
-> > > >         codec: wm8962@1a {
-> > > >                 compatible = "wlf,wm8962";
-> > > >                 reg = <0x1a>;
-> > > > +               clocks = <&versaclock6_bb 3>;
-> > > > +               clock-names = "mclk";
-> > >
-> > > While the driver does get the (nameless) clock, the DT bindings lack any
-> > > mention of a clocks property.  It would be good to update the bindings.
-> >
-> > Agreed.  I'll push an update to add the clocks property.
->
-> Thanks!
->
-> > > Note that arch/arm/boot/dts/imx6-logicpd-baseboard.dtsi and
-> > > arch/arm64/boot/dts/freescale/imx8mm-beacon-baseboard.dtsi (both by your
-> > > hand) use "xclk" instead of "mclk"?
-> >
-> > On the schematics for the two imx boards, it's labeled as xclk, so it
-> > was named as such.  For this board, the schematic names it mclk. The
-> > driver doesn't care about the clock-names property, so I'll just
-> > remove them.
->
-> If there's a single clock, not using clock-names is fine.
-> If you do use clock-names, the names should be clock-centric, not
-> board-centric.
+On 12/17/20 2:34 PM, Rob Herring wrote:
+> The correct syntax for JSON pointers begins with a '/' after the '#'.
+> Without a '/', the string should be interpretted as a subschema
+> identifier. The jsonschema module currently doesn't handle subschema
+> identifiers and incorrectly allows JSON pointers to begin without a '/'.
+> Let's fix this before it becomes a problem when jsonschema module is
+> fixed.
+> 
+> Converted with:
+> perl -p -i -e 's/yaml#definitions/yaml#\/definitions/g' `find Documentation/devicetree/bindings/ -name "*.yaml"`
+> 
+> Cc: Maxime Ripard <mripard@kernel.org>
+> Cc: Vinod Koul <vkoul@kernel.org>
+> Cc: Guenter Roeck <linux@roeck-us.net>
+> Cc: Jonathan Cameron <jic23@kernel.org>
+> Cc: Lars-Peter Clausen <lars@metafoo.de>
+> Cc: Lee Jones <lee.jones@linaro.org>
+> Cc: Daniel Thompson <daniel.thompson@linaro.org>
+> Cc: Jingoo Han <jingoohan1@gmail.com>
+> Cc: Pavel Machek <pavel@ucw.cz>
+> Cc: "David S. Miller" <davem@davemloft.net>
+> Cc: Jakub Kicinski <kuba@kernel.org>
+> Cc: Andrew Lunn <andrew@lunn.ch>
+> Cc: Florian Fainelli <f.fainelli@gmail.com>
+> Cc: Sebastian Reichel <sre@kernel.org>
+> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> Cc: Mark Brown <broonie@kernel.org>
+> Cc: netdev@vger.kernel.org
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
 
-I already submitted patches to remove the clock-names reference from
-the other two boards you noted [1].  I agree it should match  the
-driver and not the schematic.  That line was a left-over from our
-internal git repo where the decision was used to follow the schematic
-and not the driver.
+>  .../bindings/hwmon/moortec,mr75203.yaml       |  2 +-
+>  .../bindings/hwmon/sensirion,shtc1.yaml       |  4 +-
+>  .../devicetree/bindings/hwmon/ti,tmp513.yaml  |  2 +-
 
-Thanks for bringing that to my attention.
-
-adam
-
-[1] - https://patchwork.kernel.org/project/linux-arm-kernel/list/?series=403739
-
->
-> BTW, looking at the WM8962 datasheet, it's called "MCLK".
->
-> Gr{oetje,eeting}s,
->
->                         Geert
->
-> --
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
->
-> In personal conversations with technical people, I call myself a hacker. But
-> when I'm talking to journalists I just say "programmer" or something like that.
->                                 -- Linus Torvalds
+Acked-by: Guenter Roeck <linux@roeck-us.net>
