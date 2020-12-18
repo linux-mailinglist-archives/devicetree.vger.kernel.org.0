@@ -2,185 +2,305 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D80B52DE0E0
-	for <lists+devicetree@lfdr.de>; Fri, 18 Dec 2020 11:22:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D6392DE0FD
+	for <lists+devicetree@lfdr.de>; Fri, 18 Dec 2020 11:28:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728246AbgLRKVX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Dec 2020 05:21:23 -0500
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:36940 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725897AbgLRKVW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Dec 2020 05:21:22 -0500
-Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: bbrezillon)
-        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 4BC251F46188;
-        Fri, 18 Dec 2020 10:20:40 +0000 (GMT)
-Date:   Fri, 18 Dec 2020 11:20:37 +0100
-From:   Boris Brezillon <boris.brezillon@collabora.com>
-To:     Sowjanya Komatineni <skomatineni@nvidia.com>
-Cc:     <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
-        <broonie@kernel.org>, <robh+dt@kernel.org>, <lukas@wunner.de>,
-        <bbrezillon@kernel.org>, <p.yadav@ti.com>,
-        <tudor.ambarus@microchip.com>, <linux-spi@vger.kernel.org>,
-        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v4 6/9] spi: tegra210-quad: Add support for hardware
- dummy cycles transfer
-Message-ID: <20201218112037.4465598a@collabora.com>
-In-Reply-To: <1608236927-28701-7-git-send-email-skomatineni@nvidia.com>
-References: <1608236927-28701-1-git-send-email-skomatineni@nvidia.com>
-        <1608236927-28701-7-git-send-email-skomatineni@nvidia.com>
-Organization: Collabora
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+        id S1732744AbgLRK2W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Dec 2020 05:28:22 -0500
+Received: from alexa-out.qualcomm.com ([129.46.98.28]:62467 "EHLO
+        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728213AbgLRK2W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Dec 2020 05:28:22 -0500
+Received: from ironmsg09-lv.qualcomm.com ([10.47.202.153])
+  by alexa-out.qualcomm.com with ESMTP; 18 Dec 2020 02:27:41 -0800
+X-QCInternal: smtphost
+Received: from ironmsg01-blr.qualcomm.com ([10.86.208.130])
+  by ironmsg09-lv.qualcomm.com with ESMTP/TLS/AES256-SHA; 18 Dec 2020 02:27:38 -0800
+X-QCInternal: smtphost
+Received: from kalyant-linux.qualcomm.com ([10.204.66.210])
+  by ironmsg01-blr.qualcomm.com with ESMTP; 18 Dec 2020 15:57:10 +0530
+Received: by kalyant-linux.qualcomm.com (Postfix, from userid 94428)
+        id 903563F56; Fri, 18 Dec 2020 02:27:09 -0800 (PST)
+From:   Kalyan Thota <kalyan_t@codeaurora.org>
+To:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
+Cc:     Kalyan Thota <kalyan_t@codeaurora.org>,
+        linux-kernel@vger.kernel.org, robdclark@gmail.com,
+        seanpaul@chromium.org, hoegsberg@chromium.org,
+        dianders@chromium.org, mkrishn@codeaurora.org, swboyd@chromium.org,
+        abhinavk@codeaurora.org, ddavenport@chromium.org
+Subject: [v2] drm/msm/disp/dpu1: turn off vblank irqs aggressively in dpu driver
+Date:   Fri, 18 Dec 2020 02:27:07 -0800
+Message-Id: <1608287227-17685-1-git-send-email-kalyan_t@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 17 Dec 2020 12:28:44 -0800
-Sowjanya Komatineni <skomatineni@nvidia.com> wrote:
+Set the flag vblank_disable_immediate = true to turn off vblank irqs
+immediately as soon as drm_vblank_put is requested so that there are
+no irqs triggered during idle state. This will reduce cpu wakeups
+and help in power saving.
 
-> Tegra Quad SPI controller hardware supports sending dummy bytes based
-> on programmed dummy clock cycles after the actual transfer bytes.
-> 
-> This patch adds this support of hardware dummy bytes transfer and
-> skips transfer of dummy bytes from the software.
-> 
-> For dummy cycles more than Tegra Quad SPI hardware maximum dummy
-> cycles limit, driver transfers dummy bytes from the software.
-> 
-> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
-> ---
->  drivers/spi/spi-tegra210-quad.c | 41 ++++++++++++++++++++++++++++++++++++++++-
->  1 file changed, 40 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/spi/spi-tegra210-quad.c b/drivers/spi/spi-tegra210-quad.c
-> index e7bee8d..695a296 100644
-> --- a/drivers/spi/spi-tegra210-quad.c
-> +++ b/drivers/spi/spi-tegra210-quad.c
-> @@ -117,6 +117,7 @@
->  
->  #define QSPI_MISC_REG                           0x194
->  #define QSPI_NUM_DUMMY_CYCLE(x)			(((x) & 0xff) << 0)
-> +#define QSPI_DUMMY_CYCLES_MAX			0xff
->  
->  #define DATA_DIR_TX				BIT(0)
->  #define DATA_DIR_RX				BIT(1)
-> @@ -170,6 +171,7 @@ struct tegra_qspi {
->  	u32					def_command2_reg;
->  	u32					spi_cs_timing1;
->  	u32					spi_cs_timing2;
-> +	u8					dummy_cycles;
->  
->  	struct completion			xfer_completion;
->  	struct spi_transfer			*curr_xfer;
-> @@ -856,6 +858,8 @@ static int tegra_qspi_start_transfer_one(struct spi_device *spi,
->  
->  	tqspi->command1_reg = command1;
->  
-> +	tegra_qspi_writel(tqspi, QSPI_NUM_DUMMY_CYCLE(tqspi->dummy_cycles), QSPI_MISC_REG);
-> +
->  	ret = tegra_qspi_flush_fifos(tqspi, false);
->  	if (ret < 0)
->  		return ret;
-> @@ -974,7 +978,8 @@ static int tegra_qspi_transfer_one_message(struct spi_master *master, struct spi
->  {
->  	struct tegra_qspi *tqspi = spi_master_get_devdata(master);
->  	struct spi_device *spi = msg->spi;
-> -	struct spi_transfer *xfer;
-> +	struct spi_transfer *xfer, *next_xfer;
+To enable vblank_disable_immediate flag the underlying KMS driver
+needs to support high precision vblank timestamping and also a
+reliable way of providing vblank counter which is incrementing
+at the leading edge of vblank.
 
-next_after should be declared where it's actually used.
+This patch also brings in changes to support vblank_disable_immediate
+requirement in dpu driver.
 
-> +	bool use_hw_dummy_cycles = false;
+Changes in v1:
+ - Specify reason to add vblank timestamp support. (Rob)
+ - Add changes to provide vblank counter from dpu driver.
 
-I don't think you need this variable (see below).
+Signed-off-by: Kalyan Thota <kalyan_t@codeaurora.org>
+---
+ drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c           | 80 ++++++++++++++++++++++
+ drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c        | 30 ++++++++
+ drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.h        | 11 +++
+ drivers/gpu/drm/msm/disp/dpu1/dpu_encoder_phys.h   |  1 +
+ .../gpu/drm/msm/disp/dpu1/dpu_encoder_phys_vid.c   | 17 +++++
+ drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c            |  5 ++
+ 6 files changed, 144 insertions(+)
 
->  	bool is_first_msg = true;
->  	int ret;
->  
-> @@ -984,8 +989,42 @@ static int tegra_qspi_transfer_one_message(struct spi_master *master, struct spi
->  	tqspi->rx_status = 0;
->  
->  	list_for_each_entry(xfer, &msg->transfers, transfer_list) {
-> +		u8 dummy_cycles = 0;
-
-Should be declared where it's actually used, and you don't want it to be a u8
-since you're checking that the result does not exceed 255 which will always
-be true with a u8.
-
->  		u32 cmd1;
->  
-> +		/*
-> +		 * Skip dummy bytes transfer if they are transferred by the hardware along
-> +		 * with previous transfer.
-> +		 */
-> +		if (xfer->dummy_data && use_hw_dummy_cycles) {
-> +			msg->actual_length += xfer->len;
-> +			continue;
-> +		}
-> +
-> +		/*
-> +		 * Tegra QSPI hardware supports dummy bytes transfer after actual transfer
-> +		 * bytes based on programmed dummy clock cycles in the QSPI_MISC register.
-> +		 * So, check if the next transfer is dummy data transfer and program dummy
-> +		 * clock cycles along with the current transfer.
-> +		 */
-> +		if (!list_is_last(&xfer->transfer_list, &msg->transfers)) {
-> +			next_xfer = list_next_entry(xfer, transfer_list);
-> +			if (next_xfer && next_xfer->dummy_data) {
-> +				dummy_cycles = next_xfer->len * 8 / next_xfer->tx_nbits;
-> +				use_hw_dummy_cycles = true;
-> +				/*
-> +				 * Use software dummy bytes transfer if dummy cycles exceeds
-> +				 * Tegra QSPI hardware maximum dummy cycles limit.
-> +				 */
-> +				if (dummy_cycles > QSPI_DUMMY_CYCLES_MAX) {
-> +					use_hw_dummy_cycles = false;
-> +					dummy_cycles = 0;
-> +				}
-> +			}
-> +		}
-> +
-> +		tqspi->dummy_cycles = dummy_cycles;
-> +
-
-This can be simplified:
-
-		/*
-		 * Skip dummy bytes transfer if they were issued with the
-		 * previous transfer.
-		 */
-		if (tqspi->dummy_cycles) {
-			WARN_ON(!xfer->dummy_data);
-			tqspi->dummy_cycles = 0;
-		}
-
-		/*
-		 * Tegra QSPI hardware supports dummy bytes transfer after actual
-		 * transfer bytes based on programmed dummy clock cycles in the
-		 * QSPI_MISC register. So, check if the next transfer is dummy
-		 * data transfer and program dummy clock cycles along with the
-		 * current transfer.
-		 */
-		if (!list_is_last(&xfer->transfer_list, &msg->transfers)) {
-			struct spi_transfer *next_xfer;
-
-			next_xfer = list_next_entry(xfer, transfer_list);
-			if (next_xfer->dummy_data) {
-				u32 dummy_cycles = next_xfer->len * 8 /
-						   next_xfer->tx_nbits;
-				if (dummy_cycles <= QSPI_DUMMY_CYCLES_MAX)
-					tqspi->dummy_cycles = dummy_cycles;
-			}
-		}
-
-
->  		reinit_completion(&tqspi->xfer_completion);
->  
->  		cmd1 = tegra_qspi_setup_transfer_one(spi, xfer, is_first_msg);
+diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
+index d4662e8..9a80981 100644
+--- a/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
++++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
+@@ -65,6 +65,83 @@ static void dpu_crtc_destroy(struct drm_crtc *crtc)
+ 	kfree(dpu_crtc);
+ }
+ 
++static struct drm_encoder *get_encoder_from_crtc(struct drm_crtc *crtc)
++{
++	struct drm_device *dev = crtc->dev;
++	struct drm_encoder *encoder;
++
++	drm_for_each_encoder(encoder, dev)
++		if (encoder->crtc == crtc)
++			return encoder;
++
++	return NULL;
++}
++
++static u32 dpu_crtc_get_vblank_counter(struct drm_crtc *crtc)
++{
++	struct drm_encoder *encoder;
++
++	encoder = get_encoder_from_crtc(crtc);
++	if (!encoder) {
++		DRM_ERROR("no encoder found for crtc %d\n", crtc->index);
++		return false;
++	}
++
++	return dpu_encoder_get_frame_count(encoder);
++}
++
++static bool dpu_crtc_get_scanout_position(struct drm_crtc *crtc,
++					   bool in_vblank_irq,
++					   int *vpos, int *hpos,
++					   ktime_t *stime, ktime_t *etime,
++					   const struct drm_display_mode *mode)
++{
++	unsigned int pipe = crtc->index;
++	struct drm_encoder *encoder;
++	int line, vsw, vbp, vactive_start, vactive_end, vfp_end;
++
++	encoder = get_encoder_from_crtc(crtc);
++	if (!encoder) {
++		DRM_ERROR("no encoder found for crtc %d\n", pipe);
++		return false;
++	}
++
++	vsw = mode->crtc_vsync_end - mode->crtc_vsync_start;
++	vbp = mode->crtc_vtotal - mode->crtc_vsync_end;
++
++	/*
++	 * the line counter is 1 at the start of the VSYNC pulse and VTOTAL at
++	 * the end of VFP. Translate the porch values relative to the line
++	 * counter positions.
++	 */
++
++	vactive_start = vsw + vbp + 1;
++	vactive_end = vactive_start + mode->crtc_vdisplay;
++
++	/* last scan line before VSYNC */
++	vfp_end = mode->crtc_vtotal;
++
++	if (stime)
++		*stime = ktime_get();
++
++	line = dpu_encoder_get_linecount(encoder);
++
++	if (line < vactive_start)
++		line -= vactive_start;
++	else if (line > vactive_end)
++		line = line - vfp_end - vactive_start;
++	else
++		line -= vactive_start;
++
++	*vpos = line;
++	*hpos = 0;
++
++	if (etime)
++		*etime = ktime_get();
++
++	return true;
++}
++
+ static void _dpu_crtc_setup_blend_cfg(struct dpu_crtc_mixer *mixer,
+ 		struct dpu_plane_state *pstate, struct dpu_format *format)
+ {
+@@ -1243,6 +1320,8 @@ static const struct drm_crtc_funcs dpu_crtc_funcs = {
+ 	.early_unregister = dpu_crtc_early_unregister,
+ 	.enable_vblank  = msm_crtc_enable_vblank,
+ 	.disable_vblank = msm_crtc_disable_vblank,
++	.get_vblank_timestamp = drm_crtc_vblank_helper_get_vblank_timestamp,
++	.get_vblank_counter = dpu_crtc_get_vblank_counter,
+ };
+ 
+ static const struct drm_crtc_helper_funcs dpu_crtc_helper_funcs = {
+@@ -1251,6 +1330,7 @@ static const struct drm_crtc_helper_funcs dpu_crtc_helper_funcs = {
+ 	.atomic_check = dpu_crtc_atomic_check,
+ 	.atomic_begin = dpu_crtc_atomic_begin,
+ 	.atomic_flush = dpu_crtc_atomic_flush,
++	.get_scanout_position = dpu_crtc_get_scanout_position,
+ };
+ 
+ /* initialize crtc */
+diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
+index f7f5c25..5cd3f31 100644
+--- a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
++++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
+@@ -425,6 +425,36 @@ int dpu_encoder_helper_unregister_irq(struct dpu_encoder_phys *phys_enc,
+ 	return 0;
+ }
+ 
++int dpu_encoder_get_frame_count(struct drm_encoder *drm_enc)
++{
++	struct dpu_encoder_virt *dpu_enc;
++	struct dpu_encoder_phys *phys;
++	int framecount = 0;
++
++	dpu_enc = to_dpu_encoder_virt(drm_enc);
++	phys = dpu_enc ? dpu_enc->cur_master : NULL;
++
++	if (phys && phys->ops.get_frame_count)
++		framecount = phys->ops.get_frame_count(phys);
++
++	return framecount;
++}
++
++int dpu_encoder_get_linecount(struct drm_encoder *drm_enc)
++{
++	struct dpu_encoder_virt *dpu_enc;
++	struct dpu_encoder_phys *phys;
++	int linecount = 0;
++
++	dpu_enc = to_dpu_encoder_virt(drm_enc);
++	phys = dpu_enc ? dpu_enc->cur_master : NULL;
++
++	if (phys && phys->ops.get_line_count)
++		linecount = phys->ops.get_line_count(phys);
++
++	return linecount;
++}
++
+ void dpu_encoder_get_hw_resources(struct drm_encoder *drm_enc,
+ 				  struct dpu_encoder_hw_resources *hw_res)
+ {
+diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.h b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.h
+index b491346..99a5d73 100644
+--- a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.h
++++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.h
+@@ -156,5 +156,16 @@ void dpu_encoder_prepare_commit(struct drm_encoder *drm_enc);
+  */
+ void dpu_encoder_set_idle_timeout(struct drm_encoder *drm_enc,
+ 							u32 idle_timeout);
++/**
++ * dpu_encoder_get_linecount - get interface line count for the encoder.
++ * @drm_enc:    Pointer to previously created drm encoder structure
++ */
++int dpu_encoder_get_linecount(struct drm_encoder *drm_enc);
++
++/**
++ * dpu_encoder_get_frame_count - get interface frame count for the encoder.
++ * @drm_enc:    Pointer to previously created drm encoder structure
++ */
++int dpu_encoder_get_frame_count(struct drm_encoder *drm_enc);
+ 
+ #endif /* __DPU_ENCODER_H__ */
+diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder_phys.h b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder_phys.h
+index f8f2515..ecbc4be 100644
+--- a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder_phys.h
++++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder_phys.h
+@@ -143,6 +143,7 @@ struct dpu_encoder_phys_ops {
+ 	void (*prepare_idle_pc)(struct dpu_encoder_phys *phys_enc);
+ 	void (*restore)(struct dpu_encoder_phys *phys);
+ 	int (*get_line_count)(struct dpu_encoder_phys *phys);
++	int (*get_frame_count)(struct dpu_encoder_phys *phys);
+ };
+ 
+ /**
+diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder_phys_vid.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder_phys_vid.c
+index 9a69fad..f983595 100644
+--- a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder_phys_vid.c
++++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder_phys_vid.c
+@@ -658,6 +658,22 @@ static int dpu_encoder_phys_vid_get_line_count(
+ 	return phys_enc->hw_intf->ops.get_line_count(phys_enc->hw_intf);
+ }
+ 
++static int dpu_encoder_phys_vid_get_frame_count(
++		struct dpu_encoder_phys *phys_enc)
++{
++	struct intf_status s = {0};
++
++	if (!dpu_encoder_phys_vid_is_master(phys_enc))
++		return -EINVAL;
++
++	if (!phys_enc->hw_intf || !phys_enc->hw_intf->ops.get_status)
++		return -EINVAL;
++
++	phys_enc->hw_intf->ops.get_status(phys_enc->hw_intf, &s);
++
++	return s.frame_count;
++}
++
+ static void dpu_encoder_phys_vid_init_ops(struct dpu_encoder_phys_ops *ops)
+ {
+ 	ops->is_master = dpu_encoder_phys_vid_is_master;
+@@ -676,6 +692,7 @@ static void dpu_encoder_phys_vid_init_ops(struct dpu_encoder_phys_ops *ops)
+ 	ops->handle_post_kickoff = dpu_encoder_phys_vid_handle_post_kickoff;
+ 	ops->needs_single_flush = dpu_encoder_phys_vid_needs_single_flush;
+ 	ops->get_line_count = dpu_encoder_phys_vid_get_line_count;
++	ops->get_frame_count = dpu_encoder_phys_vid_get_frame_count;
+ }
+ 
+ struct dpu_encoder_phys *dpu_encoder_phys_vid_init(
+diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
+index 374b0e8..764a773 100644
+--- a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
++++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
+@@ -14,6 +14,7 @@
+ 
+ #include <drm/drm_crtc.h>
+ #include <drm/drm_file.h>
++#include <drm/drm_vblank.h>
+ 
+ #include "msm_drv.h"
+ #include "msm_mmu.h"
+@@ -1020,6 +1021,10 @@ static int dpu_kms_hw_init(struct msm_kms *kms)
+ 	 */
+ 	dev->mode_config.allow_fb_modifiers = true;
+ 
++	dev->max_vblank_count = 0;
++	/* Disable vblank irqs aggressively for power-saving */
++	dev->vblank_disable_immediate = true;
++
+ 	/*
+ 	 * _dpu_kms_drm_obj_init should create the DRM related objects
+ 	 * i.e. CRTCs, planes, encoders, connectors and so forth
+-- 
+2.7.4
 
