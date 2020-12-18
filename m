@@ -2,141 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 017B52DE3BB
-	for <lists+devicetree@lfdr.de>; Fri, 18 Dec 2020 15:10:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EC8DB2DE7EB
+	for <lists+devicetree@lfdr.de>; Fri, 18 Dec 2020 18:15:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727298AbgLROKW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Dec 2020 09:10:22 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:58830 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725982AbgLROKW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Dec 2020 09:10:22 -0500
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0BIE8eL5118734;
-        Fri, 18 Dec 2020 08:08:40 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1608300520;
-        bh=cOmMPK7N76tH3xpPKjmndbcOnTWOiNkMnvf3dfW0sHE=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=qjJpn8wRe9mzcGbD3LosJuPfNT0uAVgK5FVOoBMswBoApEc1+j7QJcbF9q83QThKG
-         KjMFa1ANFzaCPbuSzRTezgmDn+mqF7XGiKBa/nJ0jzpUfSEGI7faBRQ5WkPolALptj
-         cN/bFG+3TS8bypoubRR91gORVTfZXszuoz9opIYs=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0BIE8eFW079359
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 18 Dec 2020 08:08:40 -0600
-Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Fri, 18
- Dec 2020 08:08:39 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Fri, 18 Dec 2020 08:08:39 -0600
-Received: from gsaswath-HP-ProBook-640-G5.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0BIE8HoZ035666;
-        Fri, 18 Dec 2020 08:08:35 -0600
-From:   Aswath Govindraju <a-govindraju@ti.com>
-CC:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Sekhar Nori <nsekhar@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Pratyush Yadav <p.yadav@ti.com>,
-        Aswath Govindraju <a-govindraju@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Vadym Kochan <vadym.kochan@plvision.eu>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH 2/2] misc: eeprom_93xx46: Add quirk to support Microchip 93LC46B eeprom
-Date:   Fri, 18 Dec 2020 19:38:11 +0530
-Message-ID: <20201218140815.9501-3-a-govindraju@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20201218140815.9501-1-a-govindraju@ti.com>
-References: <20201218140815.9501-1-a-govindraju@ti.com>
+        id S1727608AbgLRRPl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Dec 2020 12:15:41 -0500
+Received: from 3.mo1.mail-out.ovh.net ([46.105.60.232]:52575 "EHLO
+        3.mo1.mail-out.ovh.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727787AbgLRRPl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Dec 2020 12:15:41 -0500
+X-Greylist: delayed 9597 seconds by postgrey-1.27 at vger.kernel.org; Fri, 18 Dec 2020 12:15:40 EST
+Received: from player716.ha.ovh.net (unknown [10.108.42.168])
+        by mo1.mail-out.ovh.net (Postfix) with ESMTP id 1CBCF1E8A90
+        for <devicetree@vger.kernel.org>; Fri, 18 Dec 2020 15:11:02 +0100 (CET)
+Received: from armadeus.com (lfbn-str-1-215-46.w86-243.abo.wanadoo.fr [86.243.176.46])
+        (Authenticated sender: sebastien.szymanski@armadeus.com)
+        by player716.ha.ovh.net (Postfix) with ESMTPSA id D9C2119403322;
+        Fri, 18 Dec 2020 14:10:46 +0000 (UTC)
+Authentication-Results: garm.ovh; auth=pass (GARM-96R001af125cce-d46d-4306-a7ed-f76bb11df2ae,
+                    F4E34FAEFBBC2F77A8F65A75F5C3271EDA163614) smtp.auth=sebastien.szymanski@armadeus.com
+X-OVh-ClientIp: 86.243.176.46
+From:   =?UTF-8?q?S=C3=A9bastien=20Szymanski?= 
+        <sebastien.szymanski@armadeus.com>
+To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Marek Vasut <marex@denx.de>, Stefan Agner <stefan@agner.ch>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        =?UTF-8?q?S=C3=A9bastien=20Szymanski?= 
+        <sebastien.szymanski@armadeus.com>
+Subject: [PATCH 1/3] drm: mxsfb: add i.MX6UL/i.MX6ULL to the list of supported SoCs in Kconfig
+Date:   Fri, 18 Dec 2020 15:10:33 +0100
+Message-Id: <20201218141035.28038-1-sebastien.szymanski@armadeus.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-To:     unlisted-recipients:; (no To-header on input)
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Ovh-Tracer-Id: 13291811352116679749
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedujedrudeliedgieduucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhephffvufffkffogggtgfesthekredtredtjeenucfhrhhomhepuforsggrshhtihgvnhcuufiihihmrghnshhkihcuoehsvggsrghsthhivghnrdhsiiihmhgrnhhskhhisegrrhhmrgguvghushdrtghomheqnecuggftrfgrthhtvghrnhepgfdtffdvfeetfedttdfgkeegkeekgfefueegffekvddvuddtfeeuheehhfeiteejnecuffhomhgrihhnpehmgiekmhdrihhfmhenucfkpheptddrtddrtddrtddpkeeirddvgeefrddujeeirdegieenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhhouggvpehsmhhtphdqohhuthdphhgvlhhopehplhgrhigvrhejudeirdhhrgdrohhvhhdrnhgvthdpihhnvghtpedtrddtrddtrddtpdhmrghilhhfrhhomhepshgvsggrshhtihgvnhdrshiihihmrghnshhkihesrghrmhgruggvuhhsrdgtohhmpdhrtghpthhtohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhg
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-A dummy zero bit is sent preceding the data during a read transfer by the
-Microchip 93LC46B eeprom (section 2.7 of[1]). This results in right shift
-of data during a read. In order to ignore this bit a quirk can be added to
-send an extra zero bit after the read address.
+The eLCDIF controller is also present on i.MX6UL/i.MX6ULL SoCs so add
+them in the Kconfig option description.
 
-Add a quirk to ignore the zero bit sent before data by adding a zero bit
-after the read address.
-
-[1] - https://www.mouser.com/datasheet/2/268/20001749K-277859.pdf
-
-Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+Signed-off-by: Sébastien Szymanski <sebastien.szymanski@armadeus.com>
 ---
- drivers/misc/eeprom/eeprom_93xx46.c | 15 +++++++++++++++
- include/linux/eeprom_93xx46.h       |  2 ++
- 2 files changed, 17 insertions(+)
+ drivers/gpu/drm/mxsfb/Kconfig | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/misc/eeprom/eeprom_93xx46.c b/drivers/misc/eeprom/eeprom_93xx46.c
-index 7c45f82b4302..b144e7981f36 100644
---- a/drivers/misc/eeprom/eeprom_93xx46.c
-+++ b/drivers/misc/eeprom/eeprom_93xx46.c
-@@ -35,6 +35,10 @@ static const struct eeprom_93xx46_devtype_data atmel_at93c46d_data = {
- 		  EEPROM_93XX46_QUIRK_INSTRUCTION_LENGTH,
- };
+diff --git a/drivers/gpu/drm/mxsfb/Kconfig b/drivers/gpu/drm/mxsfb/Kconfig
+index 0143d539f8f8..a3730f52e6fa 100644
+--- a/drivers/gpu/drm/mxsfb/Kconfig
++++ b/drivers/gpu/drm/mxsfb/Kconfig
+@@ -17,6 +17,6 @@ config DRM_MXSFB
+ 	help
+ 	  Choose this option if you have an LCDIF or eLCDIF LCD controller.
+ 	  Those devices are found in various i.MX SoC (including i.MX23,
+-	  i.MX28, i.MX6SX, i.MX7 and i.MX8M).
++	  i.MX28, i.MX6UL/i.MX6ULL, i.MX6SX, i.MX7 and i.MX8M).
  
-+static const struct eeprom_93xx46_devtype_data microchip_93LC46B_data = {
-+	.quirks = EEPROM_93XX46_QUIRK_EXTRA_READ_CYCLE,
-+};
-+
- struct eeprom_93xx46_dev {
- 	struct spi_device *spi;
- 	struct eeprom_93xx46_platform_data *pdata;
-@@ -55,6 +59,11 @@ static inline bool has_quirk_instruction_length(struct eeprom_93xx46_dev *edev)
- 	return edev->pdata->quirks & EEPROM_93XX46_QUIRK_INSTRUCTION_LENGTH;
- }
- 
-+static inline bool has_quirk_extra_read_cycle(struct eeprom_93xx46_dev *edev)
-+{
-+	return edev->pdata->quirks & EEPROM_93XX46_QUIRK_EXTRA_READ_CYCLE;
-+}
-+
- static int eeprom_93xx46_read(void *priv, unsigned int off,
- 			      void *val, size_t count)
- {
-@@ -96,6 +105,11 @@ static int eeprom_93xx46_read(void *priv, unsigned int off,
- 		dev_dbg(&edev->spi->dev, "read cmd 0x%x, %d Hz\n",
- 			cmd_addr, edev->spi->max_speed_hz);
- 
-+		if (has_quirk_extra_read_cycle(edev)) {
-+			cmd_addr <<= 1;
-+			bits += 1;
-+		}
-+
- 		spi_message_init(&m);
- 
- 		t[0].tx_buf = (char *)&cmd_addr;
-@@ -363,6 +377,7 @@ static void select_deassert(void *context)
- static const struct of_device_id eeprom_93xx46_of_table[] = {
- 	{ .compatible = "eeprom-93xx46", },
- 	{ .compatible = "atmel,at93c46d", .data = &atmel_at93c46d_data, },
-+	{ .compatible = "microchip,93LC46B", .data = &microchip_93LC46B_data, },
- 	{}
- };
- MODULE_DEVICE_TABLE(of, eeprom_93xx46_of_table);
-diff --git a/include/linux/eeprom_93xx46.h b/include/linux/eeprom_93xx46.h
-index eec7928ff8fe..99580c22f91a 100644
---- a/include/linux/eeprom_93xx46.h
-+++ b/include/linux/eeprom_93xx46.h
-@@ -16,6 +16,8 @@ struct eeprom_93xx46_platform_data {
- #define EEPROM_93XX46_QUIRK_SINGLE_WORD_READ		(1 << 0)
- /* Instructions such as EWEN are (addrlen + 2) in length. */
- #define EEPROM_93XX46_QUIRK_INSTRUCTION_LENGTH		(1 << 1)
-+/* Add extra cycle after address during a read */
-+#define EEPROM_93XX46_QUIRK_EXTRA_READ_CYCLE		BIT(2)
- 
- 	/*
- 	 * optional hooks to control additional logic
+ 	  If M is selected the module will be called mxsfb.
 -- 
-2.17.1
+2.26.2
 
