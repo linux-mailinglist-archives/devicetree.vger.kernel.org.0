@@ -2,119 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 64D162DEACF
-	for <lists+devicetree@lfdr.de>; Fri, 18 Dec 2020 22:10:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C7882DEAD9
+	for <lists+devicetree@lfdr.de>; Fri, 18 Dec 2020 22:17:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727445AbgLRVIh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Dec 2020 16:08:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36612 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725982AbgLRVIh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Dec 2020 16:08:37 -0500
-Received: from mail-yb1-xb49.google.com (mail-yb1-xb49.google.com [IPv6:2607:f8b0:4864:20::b49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8C14C0617A7
-        for <devicetree@vger.kernel.org>; Fri, 18 Dec 2020 13:07:56 -0800 (PST)
-Received: by mail-yb1-xb49.google.com with SMTP id z62so4760150yba.23
-        for <devicetree@vger.kernel.org>; Fri, 18 Dec 2020 13:07:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=sender:date:message-id:mime-version:subject:from:to:cc;
-        bh=t638+7+HwCPMmPZN8BttAu4YYFBZRz0rNr0gnq7g6kQ=;
-        b=X3K1oA1NNGSEagu1/19qhOlEw2wzeX+pTdeitiFiKfBl/0vRXoXSli4nPvDlj86s+X
-         s4V1X30EZgeNlYMAsIRUs4Lk+EBU6wBbW8a0+/E8cxTyO5TXKd+Qq/cbbl3KGC3dp1Jw
-         zHjxfG2DHtUMZgDGW19yVH5m/r9XBeHzbZy8s9c0MeAYYwvCnL2diQwyZ/5JTP9naB21
-         7XWrwAUWXez3hSRRpJaY9U+B4WihIa+sCk/DuVPHuCreri5qKPw3Agb791Xkazj7LHqa
-         Ol++VY12w1aNwvbEHmECXlPSaCC4tHzmXQgZv8MR6jA5SZwGtQLJcIhHIcQVDfmFpBYY
-         QiAA==
+        id S1725914AbgLRVRX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Dec 2020 16:17:23 -0500
+Received: from mail-ot1-f46.google.com ([209.85.210.46]:39270 "EHLO
+        mail-ot1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725843AbgLRVRX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Dec 2020 16:17:23 -0500
+Received: by mail-ot1-f46.google.com with SMTP id d8so3263180otq.6;
+        Fri, 18 Dec 2020 13:17:07 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:date:message-id:mime-version:subject:from
-         :to:cc;
-        bh=t638+7+HwCPMmPZN8BttAu4YYFBZRz0rNr0gnq7g6kQ=;
-        b=WfrNXqeYZ99Bwrr6y2IV6dYV6wPAO9wW2Zb1nBlt4Y5fUXz5To0WLsIrmD0EgZ/NGl
-         1RK9RYtsSPdsJ0DKFy6Cu5vpGzrrEAGQIIaGAQgUqW3FbrFiEY6gDHB8T8DcfDP1/yZc
-         FvoTjJgfEtfxLJ2qyfVREUCL5sipDW8wW6z0/xkUSNVWNf9haJKA8gqBfmfWDXfHUwEH
-         3V8ipitrKNibEoXqiJTsugJpVeN66cMyybseFJlx/QS25vXCaqBdhnYgE+igkqVR/spG
-         8cXJxPsEsUXKPJOVF6s/NRywTAbxvMnRbJR0mvUxoHha3EvYw/7ZPT7SYtU7ELl1nGhW
-         uzWw==
-X-Gm-Message-State: AOAM531dDyTNxwBtEMNNtW4ikDNSxZm+4ObVn7fzJUjRCsxYtHj95OT2
-        5Rf5cPoD1sZVKaK//P30hGCVtnjUCvVFk+c=
-X-Google-Smtp-Source: ABdhPJx3FgmJDWeNm5zfdx0Y9sCCHts79Ft0KxctC8O+IgVj9pVl074vaJoAM7DoRFYel11ggk4LZAvZ6IKdvh0=
-Sender: "saravanak via sendgmr" <saravanak@saravanak.san.corp.google.com>
-X-Received: from saravanak.san.corp.google.com ([2620:15c:2d:3:7220:84ff:fe09:fedc])
- (user=saravanak job=sendgmr) by 2002:a05:6902:100f:: with SMTP id
- w15mr8173561ybt.25.1608325675917; Fri, 18 Dec 2020 13:07:55 -0800 (PST)
-Date:   Fri, 18 Dec 2020 13:07:50 -0800
-Message-Id: <20201218210750.3455872-1-saravanak@google.com>
-Mime-Version: 1.0
-X-Mailer: git-send-email 2.29.2.684.gfbc64c5ab5-goog
-Subject: [PATCH] of: property: Add device link support for interrupts
-From:   Saravana Kannan <saravanak@google.com>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Cc:     Saravana Kannan <saravanak@google.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Kevin Hilman <khilman@baylibre.com>, kernel-team@android.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=89ccsB8fwcyvR7nVAanEz4cE3mkZk/u5xESGL8Aypg0=;
+        b=uhjPv7LS6QmRcMStJrwm79kGvRs3/AhzCjqI2FdIjIrJK1tv2sXDstBMPf3RHCeyWA
+         BKLZlJ23CbMixR9Dc3nzacajqNk/CJ7U9u1h6isP238t2jPfe7Q3zt38TtHLrNa4gdLn
+         WlMUqmekC5JBaUE1x973BGcumaWsO9nnPbZpf3136fYvxQVgfwXtZr/HTjDNucxlW6j8
+         xfNkIEJW6zbkR6HdcOh39huUKnJ5d4JGdhdueMrW9qKcBZKcp9mMbrXADLFWZ7HYgJPe
+         wTIZ3a3g5tC8SuQLQ4PhBkWkC3GzU/3DfsIQQxv1YM+4FlM2qVaB9Dx7EsqWOlJzf0So
+         BLdg==
+X-Gm-Message-State: AOAM531Y23OjXMSEf+b1y7VzZn+p0uhUZoTeGhKx7Bph78GZrjAoDUgn
+        /psNmxYpY3xZmm8CKEhRKg==
+X-Google-Smtp-Source: ABdhPJzY04T8aQwTYaKHVfnIc2gJ2xozigpSv7uj4DUWwOdV4MUVP7lFXhPV2ZveO5oUCilPaNGwFw==
+X-Received: by 2002:a9d:347:: with SMTP id 65mr4404416otv.312.1608326202271;
+        Fri, 18 Dec 2020 13:16:42 -0800 (PST)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id w5sm1710731oow.7.2020.12.18.13.16.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 18 Dec 2020 13:16:41 -0800 (PST)
+Received: (nullmailer pid 2189895 invoked by uid 1000);
+        Fri, 18 Dec 2020 21:16:40 -0000
+Date:   Fri, 18 Dec 2020 15:16:40 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, Philipp Zabel <p.zabel@pengutronix.de>,
+        linux-media@vger.kernel.org,
+        Mauro Carvalho Chehab <mchehab@kernel.org>
+Subject: Re: [PATCH v2] media: dt-bindings: coda: Add missing
+ 'additionalProperties'
+Message-ID: <20201218211640.GA2188581@robh.at.kernel.org>
+References: <20201117200752.4004368-1-robh@kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201117200752.4004368-1-robh@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for creating device links out of interrupts property.
+On Tue, 17 Nov 2020 14:07:52 -0600, Rob Herring wrote:
+> 'additionalProperties' is now required by the meta-schema. Add it for
+> coda. As a result, 'interrupts', 'interrupt-names' and 'power-domains'
+> need to be reworked to be defined at the top level.
+> 
+> Cc: Philipp Zabel <p.zabel@pengutronix.de>
+> Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
+> Cc: linux-media@vger.kernel.org
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+>  .../devicetree/bindings/media/coda.yaml       | 42 +++++++++----------
+>  1 file changed, 21 insertions(+), 21 deletions(-)
+> 
 
-Cc: Marc Zyngier <maz@kernel.org>
-Cc: Kevin Hilman <khilman@baylibre.com>
-Signed-off-by: Saravana Kannan <saravanak@google.com>
----
-Rob/Greg,
-
-This might need to go into driver-core to avoid conflict
-due to fw_devlink refactor series that merged there.
-
-Thanks,
-Saravana
-
-
- drivers/of/property.c | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
-
-diff --git a/drivers/of/property.c b/drivers/of/property.c
-index 5f9eed79a8aa..e56a5eae0a0b 100644
---- a/drivers/of/property.c
-+++ b/drivers/of/property.c
-@@ -1271,6 +1271,22 @@ static struct device_node *parse_iommu_maps(struct device_node *np,
- 	return of_parse_phandle(np, prop_name, (index * 4) + 1);
- }
- 
-+static struct device_node *parse_interrupts(struct device_node *np,
-+					    const char *prop_name, int index)
-+{
-+	struct device_node *sup;
-+
-+	if (strcmp(prop_name, "interrupts") || index)
-+		return NULL;
-+
-+	of_node_get(np);
-+	while (np && !(sup = of_parse_phandle(np, "interrupt-parent", 0)))
-+		np = of_get_next_parent(np);
-+	of_node_put(np);
-+
-+	return sup;
-+}
-+
- static const struct supplier_bindings of_supplier_bindings[] = {
- 	{ .parse_prop = parse_clocks, },
- 	{ .parse_prop = parse_interconnects, },
-@@ -1296,6 +1312,7 @@ static const struct supplier_bindings of_supplier_bindings[] = {
- 	{ .parse_prop = parse_pinctrl6, },
- 	{ .parse_prop = parse_pinctrl7, },
- 	{ .parse_prop = parse_pinctrl8, },
-+	{ .parse_prop = parse_interrupts, },
- 	{ .parse_prop = parse_regulators, },
- 	{ .parse_prop = parse_gpio, },
- 	{ .parse_prop = parse_gpios, },
--- 
-2.29.2.684.gfbc64c5ab5-goog
-
+As this wasn't picked up for rc1, I've applied it.
