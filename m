@@ -2,225 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F1ABB2DE8DE
-	for <lists+devicetree@lfdr.de>; Fri, 18 Dec 2020 19:20:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E26B02DE8F7
+	for <lists+devicetree@lfdr.de>; Fri, 18 Dec 2020 19:37:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727058AbgLRSUk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Dec 2020 13:20:40 -0500
-Received: from mail-oi1-f178.google.com ([209.85.167.178]:33012 "EHLO
-        mail-oi1-f178.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727053AbgLRSUj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Dec 2020 13:20:39 -0500
-Received: by mail-oi1-f178.google.com with SMTP id d203so3805242oia.0;
-        Fri, 18 Dec 2020 10:20:23 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Urw9L+aRtTu9Tg6yjD8zWit3QLaRrQsb41ZKzqZv1oA=;
-        b=kPg9XlDw7Bw1CC55pFxOuOiPPKRelZoq/uoZLoMm26RQvlfQkd06X++ana/EHoKDmF
-         uogojCRPJsGARYTbmwhsA/I4cml6vbKep24r61cARVNhJ8ytcStwaTj9mMUPW8yBLY58
-         /0Qt5BYz1iXEOQswSwBvDML3nliFGLZ1UhaAx2Wghj1YX9v6vu+yU8OT7WJOFJHm4c82
-         YtDoPf+3riS8cpTe8KJRV4uf+getCFkpObEpOoNrOQBz/LPiUtFwQe4Wu0jtzFK2NuMT
-         G4MSfdm8Gxq/t/ObVSPetINlLUxzI9pJLGddCxgne27O5y97+aNw1M3ijjpLpSOnEjPb
-         dKkA==
-X-Gm-Message-State: AOAM53039gX02/XtOQsGlmCQYPoFjZ/hPeWGLYcUOqfuk6UC1IJ/9DwD
-        VULmE1f35JOtKMK2ix1r3Q==
-X-Google-Smtp-Source: ABdhPJz0tkJLL4tbXbtHcEuEtTKdirgS0v+Mhs2uHN7i4AIiN1nvp1/I5Kyo6O07YRrG3IxQ/ecItw==
-X-Received: by 2002:aca:5594:: with SMTP id j142mr3787799oib.164.1608315597917;
-        Fri, 18 Dec 2020 10:19:57 -0800 (PST)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id p28sm2045103ota.14.2020.12.18.10.19.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Dec 2020 10:19:57 -0800 (PST)
-Received: (nullmailer pid 1904375 invoked by uid 1000);
-        Fri, 18 Dec 2020 18:19:55 -0000
-Date:   Fri, 18 Dec 2020 12:19:55 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Guennadi Liakhovetski <g.liakhovetski@gmx.de>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-media@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] media: dt-bindings: Convert video-interfaces.txt
- properties to schemas
-Message-ID: <20201218181955.GA2378317@robh.at.kernel.org>
-References: <20201210211625.3070388-1-robh@kernel.org>
- <20201210211625.3070388-5-robh@kernel.org>
- <X9ofJMIivzPzi8x7@pendragon.ideasonboard.com>
+        id S1725957AbgLRSgi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Dec 2020 13:36:38 -0500
+Received: from mail.kernel.org ([198.145.29.99]:56254 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728397AbgLRSgh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 18 Dec 2020 13:36:37 -0500
+X-Gm-Message-State: AOAM531wRJ9tKtdubrmuvaNTz9ONJRlOzVI/l3vfpo/T64Z1JILKghcN
+        pRmzAFx7sIus4OY/hqXQJgN29rcxfvBfyM3onw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1608316556;
+        bh=q4+PJ050HZN1V0i+XmZmmwJSTmoGUL4+8qu2JX2NqyQ=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=GLdQEhr77WBIhWeVmSdEzTUniXq+TXmhsS5hlI/DOtOWN8sNfpOyDks1/k/umODeO
+         bMoGLaXcBkfTim89Re01ikJdfKb5YZkHMmdYcfqRm9LsVttBhHrR+4aDrEeOaOFcd3
+         hl2YyC7p0rMKtE+TNUVqbEu/Y5cdjrTOrK8FkvJQSXpdQL0XlryWuWUyTYx20PJeia
+         gWo3v2szei7PSDbNObDbg3H11gCHmPfw/9y2az/b9Z9aqqy1tYzNWqHhwwLbDO5KYL
+         megp4ZGCbI6hSyQ3XqsVol+eM+K1IIbQ56LPX2SCzKOtNWsPFNP4GYs7ucy+6nDiND
+         dy5QtF5Laf9jw==
+X-Google-Smtp-Source: ABdhPJxTx4RT12OgMAF/FqrkQiTVefQYzeVA1CgrP4EgtWC2+kQNKW3aGx+8zDPvIZTz7CXF8W8+Soa2ai/BKLDfa/k=
+X-Received: by 2002:a50:f404:: with SMTP id r4mr5770822edm.62.1608316554964;
+ Fri, 18 Dec 2020 10:35:54 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <X9ofJMIivzPzi8x7@pendragon.ideasonboard.com>
+References: <20201202090522.251607-1-m.tretter@pengutronix.de>
+ <6029fb9a-bacb-1db0-294f-096323374535@xilinx.com> <20201203084804.GA21858@pengutronix.de>
+ <20201209183455.GA708305@robh.at.kernel.org> <3af6de09-9e3c-fee1-390a-dc13db0f20ba@xilinx.com>
+In-Reply-To: <3af6de09-9e3c-fee1-390a-dc13db0f20ba@xilinx.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Fri, 18 Dec 2020 12:35:43 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJ5DpMBWBAygC=UQqmwEOU8f_otSJbp-d8nkZGiYYGWCA@mail.gmail.com>
+Message-ID: <CAL_JsqJ5DpMBWBAygC=UQqmwEOU8f_otSJbp-d8nkZGiYYGWCA@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: xlnx,vcu-settings: fix dt_binding_check warnings
+To:     Michal Simek <michal.simek@xilinx.com>
+Cc:     Michael Tretter <m.tretter@pengutronix.de>,
+        devicetree@vger.kernel.org,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Sascha Hauer <kernel@pengutronix.de>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 16, 2020 at 04:52:20PM +0200, Laurent Pinchart wrote:
+On Wed, Dec 9, 2020 at 12:59 PM Michal Simek <michal.simek@xilinx.com> wrote:
+>
 > Hi Rob,
-> 
-> Thank you for the patch.
-> 
-> On Thu, Dec 10, 2020 at 03:16:24PM -0600, Rob Herring wrote:
-> > Convert video-interfaces.txt to DT schema. As it contains a mixture of
-> > device level and endpoint properties, split it up into 2 schemas.
-> > 
-> > Binding schemas will need to reference both the graph.yaml and
-> > video-interfaces.yaml schemas. The exact schema depends on how many
-> > ports and endpoints for the binding. A single port with a single
-> > endpoint looks similar to this:
-> > 
-> >   port:
-> >     $ref: /schemas/graph.yaml#/$defs/port-base
-> > 
-> >     properties:
-> >       endpoint:
-> >         $ref: video-interfaces.yaml#
-> >         unevaluatedProperties: false
-> > 
-> >         properties:
-> >           bus-width:
-> >             enum: [ 8, 10, 12, 16 ]
-> > 
-> >           pclk-sample: true
-> >           hsync-active: true
-> >           vsync-active: true
-> > 
-> >         required:
-> >           - bus-width
-> > 
-> >     additionalProperties: false
-> > 
-> > Cc: Guennadi Liakhovetski <g.liakhovetski@gmx.de>
-> > Acked-by: Sakari Ailus <sakari.ailus@linux.intel.com>
-> > Acked-by: Jacopo Mondi <jacopo@jmondi.org>
-> > Signed-off-by: Rob Herring <robh@kernel.org>
-> > ---
-> > I need acks for dual licensing from the listed maintainers.
-> > 
-> > v3:
-> > - Support up to 9 physical lanes
-> > - Set lane-polarities array bounds
-> > ---
-> >  .../media/video-interface-devices.yaml        | 406 +++++++++++
-> >  .../bindings/media/video-interfaces.txt       | 640 +-----------------
-> >  .../bindings/media/video-interfaces.yaml      | 346 ++++++++++
-> >  3 files changed, 753 insertions(+), 639 deletions(-)
-> >  create mode 100644 Documentation/devicetree/bindings/media/video-interface-devices.yaml
-> >  create mode 100644 Documentation/devicetree/bindings/media/video-interfaces.yaml
+>
+> On 09. 12. 20 19:34, Rob Herring wrote:
+> > On Thu, Dec 03, 2020 at 09:48:04AM +0100, Michael Tretter wrote:
+> >> On Thu, 03 Dec 2020 08:49:01 +0100, Michal Simek wrote:
+> >>> On 02. 12. 20 10:05, Michael Tretter wrote:
+> >>>> When running make dt_binding_check, the xlnx,vcu-settings binding
+> >>>> triggers the following two warnings:
+> >>>>
+> >>>>    'additionalProperties' is a required property
+> >>>>
+> >>>>    example-0: vcu@a0041000:reg:0: [0, 2684620800, 0, 4096] is too long
+> >>>>
+> >>>> Fix the binding and make the checker happy.
+> >>>>
+> >>>> Signed-off-by: Michael Tretter <m.tretter@pengutronix.de>
+> >>>> ---
+> >>>>
+> >>>> Hi,
+> >>>>
+> >>>> The xlnx,vcu-settings binding was reviewed [0] before the bot started to
+> >>>> run automated tests on the device tree bindings, but now produces some
+> >>>> warnings. The original patch that introduces the binding is still in
+> >>>> Michal's tree and I am not entirely sure how to handle it, but here is a
+> >>>> patch.
+> >>>>
+> >>>> Michael
+> >>>>
+> >>>> [0] https://lore.kernel.org/linux-arm-kernel/20200429213659.GA9051@bogus/
+> >>>> ---
+> >>>>  .../bindings/soc/xilinx/xlnx,vcu-settings.yaml    | 15 ++++++++++++---
+> >>>>  1 file changed, 12 insertions(+), 3 deletions(-)
+> >>>>
+> >>>> diff --git a/Documentation/devicetree/bindings/soc/xilinx/xlnx,vcu-settings.yaml b/Documentation/devicetree/bindings/soc/xilinx/xlnx,vcu-settings.yaml
+> >>>> index 378d0ced43c8..cb245f400287 100644
+> >>>> --- a/Documentation/devicetree/bindings/soc/xilinx/xlnx,vcu-settings.yaml
+> >>>> +++ b/Documentation/devicetree/bindings/soc/xilinx/xlnx,vcu-settings.yaml
+> >>>> @@ -26,9 +26,18 @@ required:
+> >>>>    - compatible
+> >>>>    - reg
+> >>>>
+> >>>> +additionalProperties: false
+> >>>> +
+> >>>>  examples:
+> >>>>    - |
+> >>>> -    xlnx_vcu: vcu@a0041000 {
+> >>>> -          compatible = "xlnx,vcu-settings", "syscon";
+> >>>> -          reg = <0x0 0xa0041000 0x0 0x1000>;
+> >>>> +    fpga {
+> >>>> +        #address-cells = <2>;
+> >>>> +        #size-cells = <2>;
+> >>>> +
+> >>>> +        xlnx_vcu: vcu@a0041000 {
+> >>>> +            compatible = "xlnx,vcu-settings", "syscon";
+> >>>> +            reg = <0x0 0xa0041000 0x0 0x1000>;
+> >>>> +        };
+> >>>
+> >>> IIRC we had been discussing this recently and Rob wanted to have just
+> >>> 1/1 mapping here.
+> >>>
+> >>> Take a look at 0db958b689ca9.
+> >>
+> >> Thanks for the pointer.
+> >>
+> >> Rob: Is there some kind of rule, when to use a 1/1 mapping and when to add a
+> >> bus with more cells? I still see several examples that add a bus with 2 cells.
+> >> I assume that they more or less legacy, but I didn't find any discussion going
+> >> beyond the commit description of 0db958b689ca9, which "just" fixes the
+> >> warnings.
+> >>
+> >> I will send a v2, but I'd like to understand the rationale for having the 1/1
+> >> mapping first.
+> >
+> > Simplifies the example is all.
+> >
+> > This one is fine as-is.
+> >
+> > Reviewed-by: Rob Herring <robh@kernel.org>
+>
+> I remember that we have been fixing that 2:2 mapping to 1:1 in past.
+>
+> And simplification in this case would be
+> - reg = <0x0 0xa0041000 0x0 0x1000>;
+> + reg = <0xa0041000 0x1000>;
+>
+> That's why I would like to know what we should be asking people to do.
+> Or is it fine because it is the part of fpga node?
 
-
-> > diff --git a/Documentation/devicetree/bindings/media/video-interfaces.yaml b/Documentation/devicetree/bindings/media/video-interfaces.yaml
-> > new file mode 100644
-> > index 000000000000..fefca7d98718
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/media/video-interfaces.yaml
-> > @@ -0,0 +1,346 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/media/video-interfaces.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Common bindings for video receiver and transmitter interface endpoints
-> > +
-> > +maintainers:
-> > +  - Guennadi Liakhovetski <g.liakhovetski@gmx.de>
-> > +  - Sakari Ailus <sakari.ailus@linux.intel.com>
-> > +
-> > +description: |
-> > +  Video data pipelines usually consist of external devices, e.g. camera sensors,
-> > +  controlled over an I2C, SPI or UART bus, and SoC internal IP blocks, including
-> > +  video DMA engines and video data processors.
-> > +
-> > +  SoC internal blocks are described by DT nodes, placed similarly to other SoC
-> > +  blocks.  External devices are represented as child nodes of their respective
-> > +  bus controller nodes, e.g. I2C.
-> > +
-> > +  Data interfaces on all video devices are described by their child 'port' nodes.
-> > +  Configuration of a port depends on other devices participating in the data
-> > +  transfer and is described by 'endpoint' subnodes.
-> > +
-> > +  device {
-> > +      ...
-> > +      ports {
-> > +          #address-cells = <1>;
-> > +          #size-cells = <0>;
-> > +
-> > +          port@0 {
-> > +              ...
-> > +              endpoint@0 { ... };
-> > +              endpoint@1 { ... };
-> > +          };
-> > +          port@1 { ... };
-> > +      };
-> > +  };
-> > +
-> > +  If a port can be configured to work with more than one remote device on the same
-> > +  bus, an 'endpoint' child node must be provided for each of them.  If more than
-> > +  one port is present in a device node or there is more than one endpoint at a
-> > +  port, or port node needs to be associated with a selected hardware interface,
-> > +  a common scheme using '#address-cells', '#size-cells' and 'reg' properties is
-> > +  used.
-> > +
-> > +  All 'port' nodes can be grouped under optional 'ports' node, which allows to
-> > +  specify #address-cells, #size-cells properties independently for the 'port'
-> > +  and 'endpoint' nodes and any child device nodes a device might have.
-> > +
-> > +  Two 'endpoint' nodes are linked with each other through their 'remote-endpoint'
-> > +  phandles.  An endpoint subnode of a device contains all properties needed for
-> > +  configuration of this device for data exchange with other device.  In most
-> > +  cases properties at the peer 'endpoint' nodes will be identical, however they
-> > +  might need to be different when there is any signal modifications on the bus
-> > +  between two devices, e.g. there are logic signal inverters on the lines.
-> > +
-> > +  It is allowed for multiple endpoints at a port to be active simultaneously,
-> > +  where supported by a device.  For example, in case where a data interface of
-> > +  a device is partitioned into multiple data busses, e.g. 16-bit input port
-> > +  divided into two separate ITU-R BT.656 8-bit busses.  In such case bus-width
-> > +  and data-shift properties can be used to assign physical data lines to each
-> > +  endpoint node (logical bus).
-> > +
-> > +  Documenting bindings for devices
-> > +  --------------------------------
-> > +
-> > +  All required and optional bindings the device supports shall be explicitly
-> > +  documented in device DT binding documentation. This also includes port and
-> > +  endpoint nodes for the device, including unit-addresses and reg properties
-> > +  where relevant.
-> > +
-> > +  Please also see Documentation/devicetree/bindings/graph.txt .
-> 
-> Should this be dropped, or modified to reference the YAML schema for OF
-> graph ?
-
-Yeah. A lot of the above I feel is just duplicate of how graphs work, 
-but I left it as-is.
-
-
-> > +  clock-lanes:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    # Assume up to 9 physical lane indices
-> > +    maximum: 8
-> > +    description:
-> > +      Physical clock lane index. Position of an entry determines
-> 
-> s/index/indexes/ (or indices) as there are potentially multiple entries
-> (even if in practice, for all bus types we currently support, only one
-> clock lane is supported) ?
-
-The original text did say 'array', but there aren't any cases, I can't 
-really see why or how you'd have more than 1, and it seemed silly to 
-make it an array type with 'maxItems: 1'. Wouldn't a 2 clock case be 
-dual interface like we do for DSI?
-
-> 
-> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-
-Thanks.
+1:1 is my preference, but I'm not going to enforce either way.
 
 Rob
