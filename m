@@ -2,79 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A503C2DDCC9
-	for <lists+devicetree@lfdr.de>; Fri, 18 Dec 2020 03:05:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 159402DDD11
+	for <lists+devicetree@lfdr.de>; Fri, 18 Dec 2020 03:52:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732194AbgLRCFL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Dec 2020 21:05:11 -0500
-Received: from mailgw01.mediatek.com ([210.61.82.183]:57940 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1732022AbgLRCFL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Dec 2020 21:05:11 -0500
-X-UUID: 18b6315d63be4baf87fa6c8dd2e5c4de-20201218
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=btKOFCjUWo3s6zdtgsKjM1Zw8f6bJKkVDG52Ni7VSlY=;
-        b=WkEUJKDpRKq2KOhzjDXU/30tihqZRWQET3WMc8pJ8HIrAsaiP0cnUBhYKwj+m37Seexl90G5zmXkWMQV/6NIVCq8u+2/5rWx3ZlxZ/xzth51hKKSMj87/WWcB0txYF+8ERJyZfqSeQD188UgrlxBHpeSeFrt1jCyTCFdTEOgFBg=;
-X-UUID: 18b6315d63be4baf87fa6c8dd2e5c4de-20201218
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
-        (envelope-from <hsin-hsiung.wang@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1796678214; Fri, 18 Dec 2020 10:04:26 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Fri, 18 Dec 2020 10:04:21 +0800
-Received: from [172.21.77.4] (172.21.77.4) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 18 Dec 2020 10:04:24 +0800
-Message-ID: <1608257065.9000.3.camel@mtksdaap41>
-Subject: Re: [PATCH v4 3/9] dt-bindings: mfd: Add compatible for the
- MediaTek MT6359 PMIC
-From:   Hsin-hsiung Wang <hsin-hsiung.wang@mediatek.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        <linux-kernel@vger.kernel.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        <linux-mediatek@lists.infradead.org>, <linux-rtc@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, Ran Bi <ran.bi@mediatek.com>,
-        <srv_heupstream@mediatek.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Yuchen Huang <yuchen.huang@mediatek.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        "Alessandro Zummo" <a.zummo@towertech.it>,
-        Lee Jones <lee.jones@linaro.org>,
-        Fei Shao <fshao@chromium.org>,
-        Eddie Huang <eddie.huang@mediatek.com>,
-        Mark Brown <broonie@kernel.org>
-Date:   Fri, 18 Dec 2020 10:04:25 +0800
-In-Reply-To: <20201217192818.GA101889@robh.at.kernel.org>
-References: <1608104827-7937-1-git-send-email-hsin-hsiung.wang@mediatek.com>
-         <1608104827-7937-4-git-send-email-hsin-hsiung.wang@mediatek.com>
-         <20201217192818.GA101889@robh.at.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S1730486AbgLRCws (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Dec 2020 21:52:48 -0500
+Received: from mail.kernel.org ([198.145.29.99]:38984 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727196AbgLRCws (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 17 Dec 2020 21:52:48 -0500
+Date:   Thu, 17 Dec 2020 18:52:06 -0800
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1608259928;
+        bh=glTni2yTCAf7pO5CWMTAn773citvpvX44WaT6+KZheg=;
+        h=From:To:Cc:Subject:References:In-Reply-To:From;
+        b=J9Dz65ZH8ugz3R0xddaHBSP0u5WZ3I31gIUvvxQxiAeLigOmwFRkw8EY8pDOVuLbP
+         VHOTjNHsCTDQQ62grA1nt0f7AZWE6qeV2uXtO8+KSbOCGoEDy/oyglmb2GwdmpSW+W
+         +fCzHZPINwY8IxnjLPb147RgtoEe8SZ/vgyaJkBxoWCWiJlkx67o80ictuIbXGvbH4
+         Mpgell7WjI4+rU6h/kS6nJzNWkbqZ/pv9bMJ+gVqQisLYv714eDvt7QNhS+UnojZ2n
+         e8fYKntXlZhmGeERYfuzhX4aTCpFhv9U5cuNxbDT6vaHTYS6mEDXd4ZrVwvRF9Iim8
+         E5Y0ywykRGA7A==
+From:   Eric Biggers <ebiggers@kernel.org>
+To:     "Peng.Zhou" <peng.zhou@mediatek.com>
+Cc:     Adrian Hunter <adrian.hunter@intel.com>, linux-mmc@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-fscrypt@vger.kernel.org, Satya Tangirala <satyat@google.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Ritesh Harjani <riteshh@codeaurora.org>,
+        Asutosh Das <asutoshd@codeaurora.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Neeraj Soni <neersoni@codeaurora.org>,
+        Barani Muthukumaran <bmuthuku@codeaurora.org>,
+        Konrad Dybcio <konradybcio@gmail.com>,
+        kuohong.wang@mediatek.com, gray.jia@mediatek.com,
+        StanleyChu <stanley.chu@mediatek.com>,
+        peng zhou <peng.zhou@medaitek.com>
+Subject: Re: [PATCH 0/8] eMMC inline encryption support
+Message-ID: <X9wZVvOIH4diFqWn@sol.localdomain>
+References: <20201112194011.103774-1-ebiggers@kernel.org>
+ <X7gQ9Y44iIgkiM64@sol.localdomain>
+ <ea904bcc-3f01-d968-2a16-f9ff9f012968@intel.com>
+ <X7gcsC6IS80sUy4K@sol.localdomain>
+ <9010afea-1075-8f72-99c7-c471840685db@intel.com>
+ <X7xpbJf4gDcFdEc/@sol.localdomain>
+ <1606294991.31568.5.camel@mtkswgap22>
+ <1608196892.11508.0.camel@mbjsdccf07>
+ <X9uhVj080rvyhAVl@sol.localdomain>
+ <1608248441.2255.5.camel@mbjsdccf07>
 MIME-Version: 1.0
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1608248441.2255.5.camel@mbjsdccf07>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGksDQoNCk9uIFRodSwgMjAyMC0xMi0xNyBhdCAxMzoyOCAtMDYwMCwgUm9iIEhlcnJpbmcgd3Jv
-dGU6DQo+IE9uIFdlZCwgMTYgRGVjIDIwMjAgMTU6NDc6MDEgKzA4MDAsIEhzaW4tSHNpdW5nIFdh
-bmcgd3JvdGU6DQo+ID4gVGhpcyBhZGRzIGNvbXBhdGlibGUgZm9yIHRoZSBNZWRpYVRlayBNVDYz
-NTkgUE1JQy4NCj4gPiANCj4gPiBTaWduZWQtb2ZmLWJ5OiBIc2luLUhzaXVuZyBXYW5nIDxoc2lu
-LWhzaXVuZy53YW5nQG1lZGlhdGVrLmNvbT4NCj4gPiAtLS0NCj4gPiAgRG9jdW1lbnRhdGlvbi9k
-ZXZpY2V0cmVlL2JpbmRpbmdzL21mZC9tdDYzOTcudHh0IHwgNyArKysrKystDQo+ID4gIDEgZmls
-ZSBjaGFuZ2VkLCA2IGluc2VydGlvbnMoKyksIDEgZGVsZXRpb24oLSkNCj4gPiANCj4gDQo+IA0K
-PiBQbGVhc2UgYWRkIEFja2VkLWJ5L1Jldmlld2VkLWJ5IHRhZ3Mgd2hlbiBwb3N0aW5nIG5ldyB2
-ZXJzaW9ucy4gSG93ZXZlciwNCj4gdGhlcmUncyBubyBuZWVkIHRvIHJlcG9zdCBwYXRjaGVzICpv
-bmx5KiB0byBhZGQgdGhlIHRhZ3MuIFRoZSB1cHN0cmVhbQ0KPiBtYWludGFpbmVyIHdpbGwgZG8g
-dGhhdCBmb3IgYWNrcyByZWNlaXZlZCBvbiB0aGUgdmVyc2lvbiB0aGV5IGFwcGx5Lg0KPiANCj4g
-SWYgYSB0YWcgd2FzIG5vdCBhZGRlZCBvbiBwdXJwb3NlLCBwbGVhc2Ugc3RhdGUgd2h5IGFuZCB3
-aGF0IGNoYW5nZWQuDQo+IA0KU29ycnksIHRoZSB0YWcgZGlzYXBwZWFyZWQgYmVjYXVzZSBvZiB0
-aGUgY2hhbmdlIG9mIHJ0YyBjb21wYXRpYmxlIG5hbWUuDQpJIHdpbGwgbGlzdCB0aGUgY2hhbmdl
-IGluIHRoZSBlYWNoIHBhdGNoIGZvciB0aGUgbmV4dCB1cGRhdGUuDQpUaGFua3MgZm9yIHlvdXIg
-cmV2aWV3Lg0K
+On Fri, Dec 18, 2020 at 07:40:41AM +0800, Peng.Zhou wrote:
+> > > Hi Eric,
+> > > 
+> > > I also have a question about reprogramming keys scenarios, if some SoC
+> > > vensors' eMMC host will power down or something else like that keys will
+> > > be lost after runtime suspend, that means we must do reprogramming keys
+> > > in runtime resume, right? Do you think that we should add it in
+> > > cqhci-core layer(such as __cqhci_enable()) or every SoC vendor's host
+> > > driver resume path?
+> > > 
+> > 
+> > The keys should only be lost on reset, not on runtime suspend.  So I believe the
+> > code I've proposed is sufficient.
+> > 
+> > - Eric
+> 
+> That's a little too absolute for me...anyway that's my concern for much
+> more SoC vendors who want to be compatible with your framework in
+> future.Thank you for explanation.
 
+But the current approach works on all the hardware that's been tested so far,
+right?  And programming the keys can take a long time, so it shouldn't be done
+unnecessarily.  (I've heard it's fairly fast on Mediatek SoCs.  However, with
+Qualcomm ICE it takes longer.)
+
+It seems that host controller configuration typically doesn't get lost during
+runtime suspend, and the keyslots are no exception to that.
+
+And if (hypothetically) a host controller that adds crypto support in the future
+actually does need to restore the keys during runtime resume, it can just do it
+in its ->runtime_resume() method.
+
+So from what I can see, there isn't anything else we should do for now.
+
+- Eric
