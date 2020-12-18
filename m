@@ -2,68 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 12D3F2DE9ED
-	for <lists+devicetree@lfdr.de>; Fri, 18 Dec 2020 20:51:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 477912DEA05
+	for <lists+devicetree@lfdr.de>; Fri, 18 Dec 2020 21:14:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730485AbgLRTv3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Dec 2020 14:51:29 -0500
-Received: from leonov.paulk.fr ([185.233.101.22]:42842 "EHLO leonov.paulk.fr"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726718AbgLRTv2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 18 Dec 2020 14:51:28 -0500
-Received: from gagarine.paulk.fr (gagarine [192.168.1.127])
-        by leonov.paulk.fr (Postfix) with ESMTPS id 3D4F1BFD9A;
-        Fri, 18 Dec 2020 20:50:47 +0100 (CET)
-Received: by gagarine.paulk.fr (Postfix, from userid 114)
-        id B1EC3C1D4A; Fri, 18 Dec 2020 20:50:46 +0100 (CET)
-X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on gagarine.paulk.fr
-X-Spam-Level: 
-X-Spam-Status: No, score=0.0 required=5.0 tests=none autolearn=unavailable
-        autolearn_force=no version=3.4.2
-Received: from localhost.localdomain (collins [192.168.1.129])
-        by gagarine.paulk.fr (Postfix) with ESMTP id 8C268C1D31;
-        Fri, 18 Dec 2020 20:50:35 +0100 (CET)
-From:   Paul Kocialkowski <contact@paulk.fr>
-To:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Cc:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Paul Kocialkowski <contact@paulk.fr>
-Subject: [PATCH] ARM: dts: sun8i-v3s: Add CSI0 MCLK pin definition
-Date:   Fri, 18 Dec 2020 20:50:33 +0100
-Message-Id: <20201218195033.2301127-1-contact@paulk.fr>
-X-Mailer: git-send-email 2.29.2
+        id S1727324AbgLRUOf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Dec 2020 15:14:35 -0500
+Received: from mail-ot1-f51.google.com ([209.85.210.51]:44009 "EHLO
+        mail-ot1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726697AbgLRUOe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Dec 2020 15:14:34 -0500
+Received: by mail-ot1-f51.google.com with SMTP id q25so3068238otn.10;
+        Fri, 18 Dec 2020 12:14:19 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=g3RrY/5H2pNsMpu6ivf90VzQI9V5J/8AaKgeKCK7dbQ=;
+        b=YSQhqZ9YIDghOHfmWxXYxWXQwdbV2rdkCFx3AqQSnqnm+d7yBrbWmSNp14vFgnC+Ab
+         GZ1USHiviPy8j7Ots2wvKplRaWpa5KrM1rEgFgw4AnIdT0zFm90AutXtLUwKp/WgDd6y
+         PnKJhHQLxCV7w7sKfjYV2eEZOoCUfF6u0cw+DjlTSM3TSEJLac+km/RmGTq4GqdXxmHm
+         NbxqEuLE6gItIuVmq8CORD3qs6R56BUnUV9Sr6hKvlFWAIUh/ELVhwLFMBeEwSwnF7jP
+         81NQS7sJqyaoiVL1Zc47bP47Tn0uioIpOF+jMRoWF5jcbB3roX82yd7uO7EFdtsk6TN1
+         RhpA==
+X-Gm-Message-State: AOAM533OBslp2BtE/9wkA40NYXrqCOc/sRV2XLb1TzMoVYxO1fPpeCib
+        puYXRFZSSI8/xQ+4LuIILA==
+X-Google-Smtp-Source: ABdhPJyWxEs+KjRXMhcvoXJully+6tpRF+3fCMbOaLUN5jp5Oj0gdCDCFzDQrDoc79eGUooarLmJPQ==
+X-Received: by 2002:a9d:46f:: with SMTP id 102mr4185215otc.293.1608322433172;
+        Fri, 18 Dec 2020 12:13:53 -0800 (PST)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id u76sm451886oia.48.2020.12.18.12.13.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 18 Dec 2020 12:13:52 -0800 (PST)
+Received: (nullmailer pid 2092213 invoked by uid 1000);
+        Fri, 18 Dec 2020 20:13:50 -0000
+Date:   Fri, 18 Dec 2020 14:13:50 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Stephen Boyd <sboyd@kernel.org>
+Cc:     Fabio Estevam <festevam@gmail.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Zhen Lei <thunder.leizhen@huawei.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 1/1] dt-bindings: clock: imx8qxp-lpcg: eliminate yamllint
+ warnings
+Message-ID: <20201218201350.GA2089699@robh.at.kernel.org>
+References: <20201207045527.1607-1-thunder.leizhen@huawei.com>
+ <20201207045527.1607-2-thunder.leizhen@huawei.com>
+ <160820093389.1580929.3915867007740168331@swboyd.mtv.corp.google.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <160820093389.1580929.3915867007740168331@swboyd.mtv.corp.google.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds a device-tree definition for the CSI0 MCLK pin,
-which can be used for feeding MIPI CSI-2 sensors.
+On Thu, Dec 17, 2020 at 02:28:53AM -0800, Stephen Boyd wrote:
+> Quoting Zhen Lei (2020-12-06 20:55:27)
+> > Eliminate the following yamllint warnings:
+> > ./Documentation/devicetree/bindings/clock/imx8qxp-lpcg.yaml
+> > :32:13:[warning] wrong indentation: expected 14 but found 12 (indentation)
+> > :35:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
+> > 
+> > Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
+> > ---
+> 
+> Reviewed-by: Stephen Boyd <sboyd@kernel.org>
 
-Signed-off-by: Paul Kocialkowski <contact@paulk.fr>
----
- arch/arm/boot/dts/sun8i-v3s.dtsi | 6 ++++++
- 1 file changed, 6 insertions(+)
+If I tagged it, I was expecting you to pick up. But I'm gathering up all 
+the fixes for what landed in Linus' tree, so I'll apply.
 
-diff --git a/arch/arm/boot/dts/sun8i-v3s.dtsi b/arch/arm/boot/dts/sun8i-v3s.dtsi
-index a9f5795d4e57..bff822b9fa01 100644
---- a/arch/arm/boot/dts/sun8i-v3s.dtsi
-+++ b/arch/arm/boot/dts/sun8i-v3s.dtsi
-@@ -337,6 +337,12 @@ pio: pinctrl@1c20800 {
- 			interrupt-controller;
- 			#interrupt-cells = <3>;
- 
-+			/omit-if-no-ref/
-+			csi0_mclk_pin: csi0-mclk-pin {
-+				pins = "PE20";
-+				function = "csi_mipi";
-+			};
-+
- 			/omit-if-no-ref/
- 			csi1_8bit_pins: csi1-8bit-pins {
- 				pins = "PE0", "PE2", "PE3", "PE8", "PE9",
--- 
-2.29.2
-
+Rob
