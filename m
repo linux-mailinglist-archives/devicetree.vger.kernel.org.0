@@ -2,112 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 170B22DE312
-	for <lists+devicetree@lfdr.de>; Fri, 18 Dec 2020 14:06:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E282B2DE322
+	for <lists+devicetree@lfdr.de>; Fri, 18 Dec 2020 14:15:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727320AbgLRNFw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Dec 2020 08:05:52 -0500
-Received: from mail-ot1-f41.google.com ([209.85.210.41]:38504 "EHLO
-        mail-ot1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727307AbgLRNFw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Dec 2020 08:05:52 -0500
-Received: by mail-ot1-f41.google.com with SMTP id j20so1813256otq.5;
-        Fri, 18 Dec 2020 05:05:37 -0800 (PST)
+        id S1727401AbgLRNO1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Dec 2020 08:14:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48400 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726219AbgLRNO1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Dec 2020 08:14:27 -0500
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B01C4C0617B0
+        for <devicetree@vger.kernel.org>; Fri, 18 Dec 2020 05:13:46 -0800 (PST)
+Received: by mail-wm1-x329.google.com with SMTP id y23so2518211wmi.1
+        for <devicetree@vger.kernel.org>; Fri, 18 Dec 2020 05:13:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=PUVQS6CtIWduzl99LlA0iAcZSxRdzwKzX+tvELGUUxo=;
+        b=qa6KPiTj08B7VyjNIm5SSCKcAwhv1NukA2OGlBZOQFkZJr3uORyWkDbpJcNpkEgi4s
+         nun0mSNR0aR+M1djrx/Q6s6Ejn4bKCuJ+oAKDzXqBYSRJDKRKNQBA1Q1q5Uv/RAu1inu
+         TOMDRCO8pZEFYaYgIqKA1ObTXDSNYpnRB3X5F3ItTrYCU0mGkXcsN3lcmhtjS1uy2nTe
+         9aO2spbYglhLcJOpxya0xTNNTbB1K/8di+BT1crsku3dr1Iqw4f4os/IlClkk+iBnmMA
+         LAqGkNiRXWDhtKeLAcYELGSRKqwHFMeC3EGUdDN8KuillWr87K0MzKEm9YhsaOM9X+Vo
+         c4XQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=reSTRV4dt7ZPUclP+v1NvqHl1Mq5jwxkuDW3Be0Lj/Q=;
-        b=Fgy2sOnKiEB00Kd3mEqaSK0RaOfscVQwK9yVTgWBPLH59f/DK7fTIGf7QJstq0n/SN
-         Q0msK4eQsBG8U3sJ1QsoqNGX05vEPLaD4v7HDhg/Vqvyq1F8UC81h7+h4COF5KLT1K3H
-         rKISZsTm8Tpwcjnv4K4uiKkI6n5uQ7WFEhL8pvPwrXEMCu3svYti+cwfFywERHg/km0G
-         1/QZVFHDeNIgj/E32HkG9q8RECHMMjX4L+TncYACw9/RysdMActuFgCXeTdtj2B5+gZ7
-         ghJBFNMIFdR62+YniZvRj9aubYYenuMhvN3ggBHwBFOOH7kn1lHtAWN+hPvKbgD+qzpR
-         7mEg==
-X-Gm-Message-State: AOAM531NJMcTbd9FcqCHtqXs78yHWGrruBQ9svS47Z1DQjDKspQgkLHX
-        5e44QtcQweX11Y+10Mh6wehvjd+MNqpLO71Xm1g=
-X-Google-Smtp-Source: ABdhPJzGwkhEVu5ipeVElNXuYDRlTMW/vqp/IfddZsJHun4cLC1wohvG+90Iq3eaADoRF/1rXUKP4J71SfpC0VAurNE=
-X-Received: by 2002:a9d:2203:: with SMTP id o3mr2682245ota.107.1608296711700;
- Fri, 18 Dec 2020 05:05:11 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=PUVQS6CtIWduzl99LlA0iAcZSxRdzwKzX+tvELGUUxo=;
+        b=s4QHOjO4VSOxzb7wuwI0Gr2C39C+k+JX3XtoHQppZCmiBRrHxy3drnjopQC0TC9gnq
+         jT9TB+FFBqVjiZyZIq0o6WrjTFa4H872Qunfb5VxnSfLH+LaKN8BOji3nr7XQ5CpcTl7
+         gPD7s0eWGhQAwbscpB9nlKnbBL8g1JtmBW1jVIxGwwz948pzPWxFrtlf0PG8L8jeYS7/
+         sidM0eAZQ5Vsp4oeB/HGFMvurFp6QovVkPxtcoAATu09LmVUnz+0X+zsTMO+IBP937bs
+         NEIN0F/tK1FS0u9S2vtWWwyCpuSwZxDfSbN2C31dSkiTE2xvXmGODdPDYPiaXWyCKCe4
+         zb9g==
+X-Gm-Message-State: AOAM533ebZnACCeoVwxg9zmu8wF/XZha2kESikd6duj2fUG/rf4E9tOK
+        xrfhqfrCYR5S+p+RUMObNPeTpQ==
+X-Google-Smtp-Source: ABdhPJyN50l7VG2cM89yTTsLTEGHtcWLFqr+RQWuBiU2twvWtFsud6ffciBugHbjjOI1UiloucSiJQ==
+X-Received: by 2002:a1c:4843:: with SMTP id v64mr4222832wma.186.1608297225168;
+        Fri, 18 Dec 2020 05:13:45 -0800 (PST)
+Received: from dell ([91.110.221.216])
+        by smtp.gmail.com with ESMTPSA id w189sm11866853wmg.31.2020.12.18.05.13.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 18 Dec 2020 05:13:44 -0800 (PST)
+Date:   Fri, 18 Dec 2020 13:13:42 +0000
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Maxime Ripard <mripard@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Daniel Thompson <daniel.thompson@linaro.org>,
+        Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@ucw.cz>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Mark Brown <broonie@kernel.org>, netdev@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: Fix JSON pointers
+Message-ID: <20201218131342.GQ207743@dell>
+References: <20201217223429.354283-1-robh@kernel.org>
 MIME-Version: 1.0
-References: <20201213183759.223246-1-aford173@gmail.com> <20201213183759.223246-5-aford173@gmail.com>
- <CAMuHMdWAQ9j1b=b7CFcjg97N7YW+7Dj14TB-MGogJGK7kFkdhg@mail.gmail.com> <CAHCN7xL10Lj8VS5WEyyEixf4ptjKchX0OMDuFAQc-JJzFa5Ubw@mail.gmail.com>
-In-Reply-To: <CAHCN7xL10Lj8VS5WEyyEixf4ptjKchX0OMDuFAQc-JJzFa5Ubw@mail.gmail.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 18 Dec 2020 14:05:00 +0100
-Message-ID: <CAMuHMdU4b-pTAKcEKE+UW1+8p34LR2i84Opj31vR3GJ=oY1JWg@mail.gmail.com>
-Subject: Re: [PATCH 04/18] arm64: dts: renesas: beacon kit: Fix Audio Clock sources
-To:     Adam Ford <aford173@gmail.com>
-Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Adam Ford-BE <aford@beaconembedded.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20201217223429.354283-1-robh@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Adam,
+On Thu, 17 Dec 2020, Rob Herring wrote:
 
-On Thu, Dec 17, 2020 at 1:01 PM Adam Ford <aford173@gmail.com> wrote:
-> On Thu, Dec 17, 2020 at 4:54 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> > On Sun, Dec 13, 2020 at 7:38 PM Adam Ford <aford173@gmail.com> wrote:
-> > > The SoC was expecting two clock sources with different frequencies.
-> > > One to support 44.1KHz and one to support 48KHz.  With the newly added
-> > > ability to configure the programmably clock, configure both clocks.
-> > >
-> > > Beacause the SoC is expecting a fixed clock/oscillator, it doesn't
-> > > attempt to get and enable the clock for audio_clk_a. The choice to
-> > > use a fixed-factor-clock was due to the fact that it will automatically
-> > > enable the programmable clock frequency without change any code.
-> > >
-> > > Signed-off-by: Adam Ford <aford173@gmail.com>
-> >
-> > Thanks for your patch!
-> >
-> > > --- a/arch/arm64/boot/dts/renesas/beacon-renesom-baseboard.dtsi
-> > > +++ b/arch/arm64/boot/dts/renesas/beacon-renesom-baseboard.dtsi
-> > > @@ -250,9 +250,12 @@ ss_ep: endpoint {
-> > >  };
-> > >
-> > >  &audio_clk_a {
-> > > -       clock-frequency = <24576000>;
-> > > -       assigned-clocks = <&versaclock6_bb 4>;
-> > > -       assigned-clock-rates = <24576000>;
-> > > +       /delete-property/ clock-frequency;
-> > > +       #clock-cells = <0>;
-> > > +       compatible = "fixed-factor-clock";
-> > > +       clock-mult = <1>;
-> > > +       clock-div = <1>;
-> > > +       clocks = <&versaclock6_bb 4>;
-> > >  };
-> >
-> > Shouldn't you override the clocks property in the rcar_sound node
-> > instead, like is done in several other board DTS files (with cs2000)?
-> >
->
-> I guess there are multiple ways to do this.  Because the rcar_sound
-> was already expecting a reference to audio_clk_a, it seemed less
-> intrusive this way. The way I proposed, we can use the default
-> rcar_sound clocking and just change the audio_clk node to enable the
-> versaclock output.  The versaclock is driving the audio_clk_a
-> reference clock, so it seemed appropriate to put it there.
->
-> If you want me to change, I will.
+> The correct syntax for JSON pointers begins with a '/' after the '#'.
+> Without a '/', the string should be interpretted as a subschema
+> identifier. The jsonschema module currently doesn't handle subschema
+> identifiers and incorrectly allows JSON pointers to begin without a '/'.
+> Let's fix this before it becomes a problem when jsonschema module is
+> fixed.
+> 
+> Converted with:
+> perl -p -i -e 's/yaml#definitions/yaml#\/definitions/g' `find Documentation/devicetree/bindings/ -name "*.yaml"`
+> 
+> Cc: Maxime Ripard <mripard@kernel.org>
+> Cc: Vinod Koul <vkoul@kernel.org>
+> Cc: Guenter Roeck <linux@roeck-us.net>
+> Cc: Jonathan Cameron <jic23@kernel.org>
+> Cc: Lars-Peter Clausen <lars@metafoo.de>
+> Cc: Lee Jones <lee.jones@linaro.org>
+> Cc: Daniel Thompson <daniel.thompson@linaro.org>
+> Cc: Jingoo Han <jingoohan1@gmail.com>
+> Cc: Pavel Machek <pavel@ucw.cz>
+> Cc: "David S. Miller" <davem@davemloft.net>
+> Cc: Jakub Kicinski <kuba@kernel.org>
+> Cc: Andrew Lunn <andrew@lunn.ch>
+> Cc: Florian Fainelli <f.fainelli@gmail.com>
+> Cc: Sebastian Reichel <sre@kernel.org>
+> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> Cc: Mark Brown <broonie@kernel.org>
+> Cc: netdev@vger.kernel.org
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+>  .../devicetree/bindings/arm/idle-states.yaml  |  2 +-
+>  .../bus/allwinner,sun50i-a64-de2.yaml         |  2 +-
+>  .../bindings/bus/baikal,bt1-axi.yaml          |  2 +-
+>  .../bindings/connector/usb-connector.yaml     | 10 ++---
+>  .../devicetree/bindings/dma/dma-common.yaml   |  4 +-
+>  .../devicetree/bindings/dma/dma-router.yaml   |  2 +-
+>  .../devicetree/bindings/dma/ingenic,dma.yaml  |  2 +-
+>  .../bindings/dma/snps,dma-spear1340.yaml      | 10 ++---
+>  .../devicetree/bindings/eeprom/at24.yaml      |  4 +-
+>  .../devicetree/bindings/eeprom/at25.yaml      |  4 +-
+>  .../bindings/hwmon/moortec,mr75203.yaml       |  2 +-
+>  .../bindings/hwmon/sensirion,shtc1.yaml       |  4 +-
+>  .../devicetree/bindings/hwmon/ti,tmp513.yaml  |  2 +-
+>  .../bindings/iio/light/upisemi,us5182.yaml    |  2 +-
+>  .../iio/proximity/semtech,sx9310.yaml         |  6 +--
+>  .../devicetree/bindings/input/gpio-keys.yaml  | 12 +++---
+>  .../interrupt-controller/mti,gic.yaml         |  4 +-
+>  .../interrupt-controller/ti,pruss-intc.yaml   |  2 +-
+>  .../interrupt-controller/ti,sci-inta.yaml     |  2 +-
 
-Taking a fresh look at this, I start to like it.
-What do other people think?
+>  .../bindings/leds/backlight/common.yaml       |  4 +-
 
-Gr{oetje,eeting}s,
+Acked-by: Lee Jones <lee.jones@linaro.org>
 
-                        Geert
+>  .../devicetree/bindings/leds/common.yaml      | 16 ++++----
+>  .../devicetree/bindings/leds/leds-lp55xx.yaml | 10 ++---
+>  .../net/allwinner,sun8i-a83t-emac.yaml        |  6 +--
+>  .../bindings/net/amlogic,meson-dwmac.yaml     |  2 +-
+>  .../devicetree/bindings/net/dsa/dsa.yaml      |  6 +--
+>  .../bindings/net/ethernet-controller.yaml     | 24 ++++++------
+>  .../devicetree/bindings/net/ethernet-phy.yaml | 20 +++++-----
+>  .../bindings/net/fsl,qoriq-mc-dpmac.yaml      |  2 +-
+>  .../devicetree/bindings/net/mdio.yaml         |  2 +-
+>  .../bindings/net/mediatek,star-emac.yaml      |  2 +-
+>  .../devicetree/bindings/net/qcom,ipa.yaml     |  2 +-
+>  .../devicetree/bindings/net/snps,dwmac.yaml   | 38 +++++++++----------
+>  .../bindings/net/socionext,uniphier-ave4.yaml |  2 +-
+>  .../bindings/net/ti,cpsw-switch.yaml          |  2 +-
+>  .../devicetree/bindings/net/ti,dp83867.yaml   | 12 +++---
+>  .../devicetree/bindings/net/ti,dp83869.yaml   |  8 ++--
+>  .../bindings/net/ti,k3-am654-cpsw-nuss.yaml   |  4 +-
+>  .../bindings/net/wireless/qcom,ath11k.yaml    |  2 +-
+>  .../devicetree/bindings/phy/ti,omap-usb2.yaml |  4 +-
+>  .../power/mediatek,power-controller.yaml      | 12 +++---
+>  .../bindings/power/supply/cw2015_battery.yaml |  2 +-
+>  .../devicetree/bindings/powerpc/sleep.yaml    |  2 +-
+>  .../devicetree/bindings/serial/8250.yaml      |  6 +--
+>  .../bindings/soc/ti/k3-ringacc.yaml           |  2 +-
+>  .../sound/allwinner,sun4i-a10-codec.yaml      |  2 +-
+>  .../bindings/sound/st,stm32-sai.yaml          |  4 +-
+>  46 files changed, 138 insertions(+), 138 deletions(-)
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
