@@ -2,135 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 171452DE220
-	for <lists+devicetree@lfdr.de>; Fri, 18 Dec 2020 12:43:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C5C22DE258
+	for <lists+devicetree@lfdr.de>; Fri, 18 Dec 2020 13:07:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726254AbgLRLmw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Dec 2020 06:42:52 -0500
-Received: from mail-ot1-f41.google.com ([209.85.210.41]:45642 "EHLO
-        mail-ot1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725710AbgLRLmw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Dec 2020 06:42:52 -0500
-Received: by mail-ot1-f41.google.com with SMTP id h18so1594032otq.12;
-        Fri, 18 Dec 2020 03:42:36 -0800 (PST)
+        id S1726532AbgLRMG1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Dec 2020 07:06:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37910 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726517AbgLRMG1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Dec 2020 07:06:27 -0500
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 018C8C06138C;
+        Fri, 18 Dec 2020 04:05:47 -0800 (PST)
+Received: by mail-ej1-x632.google.com with SMTP id 6so2864897ejz.5;
+        Fri, 18 Dec 2020 04:05:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=df3IfnfXrm4i2RajA08Sg4cjB+rbAYObLY7D8ABk32s=;
+        b=BfBK4dg6bgst+3YtQSqFkSDaFBbrXIMFOJ7wgIptM74ngk8HU9H0CEKAoYpt5vSymX
+         PjSkbpg3AYqSayRAui5b8rxhNMoNKGmC/fVe63AlOVxhdVTVwTsElVrEcDowTEv3jWOH
+         msw0O4gCFjXaRaM4lScrIYGFIcXLZPdLSiTByijqEM9mCk42VUwE+7rP451p5gxAuJmZ
+         0bTfCCvniv2rWhEzUy9BFdbXRj/wLetGnByd/Sz65EpvNbJGDByQE8EM9r1bjuGlIdfU
+         3WNmuLNSbq4c6KSATu5VB26QnpsJRUAQY/U/fXeTsOELVEEMzKgSR28EZCM+SUS0AIR0
+         4rzg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=hspCpWkXqd6IcgOQp9Fs7ymkdUd3LEicCVc4QESQhZQ=;
-        b=GEbIR59+qu+XtsJzQtsINYzI1uXUykUY9a/ALL45CHRdTYYWoFbv3stzX8Dm7E+i13
-         CWs1UNddggNp6XWxbFMYziW2wW0Wywo7KQKkt6Y2ZxTB2FTopsdDil/98YQbwAvzMPdn
-         BhtrQXBaXI3akDFSLfwz0gG61HnmnqzprhmpajjUaQ7Wr8I+nqg4xafUc8QcptyYlcEW
-         dmQalHtiV4jtq8mpKqZvsjBJmqRuVm2+QyiGebndhTkufu7b42xQO6J7nWe2Imvytq2U
-         GnBBbg0xpGRfvD+7md1OapmnJT6xF3bymY8JS9TjhGgvxNOY5GvQOwSMX8iXjRSNZW3O
-         FK9w==
-X-Gm-Message-State: AOAM5323K3QMrdJgY1x8vS1ejlZSzNcGcTQYqtdo0PNlGa4bHhk8xuHy
-        glhp62hmotakdbWqWsw/MYATaSmJITj1F4Gvj5o=
-X-Google-Smtp-Source: ABdhPJx3TFZxpMf8dvYUErvuGCH1MqJNhv78Sa50rDyIcFpCDau27vV7e3Lg9WjxQDJZ/8wNqgPT89ge177NB+i6UKw=
-X-Received: by 2002:a05:6830:1f5a:: with SMTP id u26mr2481735oth.250.1608291731258;
- Fri, 18 Dec 2020 03:42:11 -0800 (PST)
-MIME-Version: 1.0
-References: <20201216145231.1344317-1-geert+renesas@glider.be> <20201217235919.GA456454@robh.at.kernel.org>
-In-Reply-To: <20201217235919.GA456454@robh.at.kernel.org>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 18 Dec 2020 12:42:00 +0100
-Message-ID: <CAMuHMdVO29He-KHDLp3S=2JyGwOT=tLcDCOw6MPqBvcBLdUCOw@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: clk: versaclock5: Miscellaneous fixes and improvements:
-To:     Rob Herring <robh@kernel.org>
-Cc:     Luca Ceresoli <luca@lucaceresoli.net>,
-        Adam Ford <aford173@gmail.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=df3IfnfXrm4i2RajA08Sg4cjB+rbAYObLY7D8ABk32s=;
+        b=jfgWIgeikFwfRBFcT4u6FxQroLnb2WEGQMLhznKyAQ6oJuGDdShuL828/9upR+J4mQ
+         7XIwemuirqcEdY4Y4fVffShmktrE4JrB9ogjRltqlN9+IBnwV3yDCATwwMXaM88QYVtG
+         uOooEMHMznTRrgxtzzXBlPgDMgfZ27obSQl8hSGLNOrpn5gu6x1ItH7HYJ2wCTLy7/+Q
+         DxRGIfmM4xeISd20MqDQK0goG426bboL40KFGVbVsAV4ZNUtWfmNg3iVvCUE1gHLR6vM
+         QY5pGM5bA8XGoHwhVHFz3ejrtUprChsZNMGNSslpy2fVDl0T9mMR9eZWZFNb9NrwmN0P
+         exhg==
+X-Gm-Message-State: AOAM530WNxEVolaERB5xrJfes0UVbWdEjhXUcy12+2baS83+Vcm9JwiN
+        38mJ9UFCZ4M9p5Tzo9g6pWs=
+X-Google-Smtp-Source: ABdhPJyKw1nhb3temxyQ33TJyRuTbXGlUWp6OlKcoXlUygUCrobAmOrKQUBUJCyln+ziWqp+d7uW0Q==
+X-Received: by 2002:a17:906:1498:: with SMTP id x24mr3598798ejc.170.1608293145634;
+        Fri, 18 Dec 2020 04:05:45 -0800 (PST)
+Received: from debian.home (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id ga37sm4775832ejc.96.2020.12.18.04.05.43
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 18 Dec 2020 04:05:44 -0800 (PST)
+From:   Johan Jonker <jbx6244@gmail.com>
+To:     heiko@sntech.de
+Cc:     robh+dt@kernel.org, wim@linux-watchdog.org, linux@roeck-us.net,
+        jamie@jamieiles.com, linux-watchdog@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org
+Subject: [PATCH 1/8] dt-binding: watchdog: add more Rockchip compatibles to snps,dw-wdt.yaml
+Date:   Fri, 18 Dec 2020 13:05:27 +0100
+Message-Id: <20201218120534.13788-1-jbx6244@gmail.com>
+X-Mailer: git-send-email 2.11.0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+The watchdog compatible strings are suppose to be SoC orientated.
+In the more recently added Rockchip SoC dtsi files only
+the fallback string "snps,dw-wdt" is used, so add the following
+compatible strings:
 
-On Fri, Dec 18, 2020 at 12:59 AM Rob Herring <robh@kernel.org> wrote:
-> On Wed, Dec 16, 2020 at 03:52:31PM +0100, Geert Uytterhoeven wrote:
-> >   - Add reference to clock.yaml, and switch to unevaluatedProperties, to
-> >     stop complaining about the presence of "assigned-clock-rates" and
-> >     "assigned-clocks" in board DTS files,
-> >   - Fix typo in "idt,voltage-microvolts" property name, to match example
-> >     and driver code,
-> >   - Add missing reference for "idt,voltage-microvolts",
-> >   - Add missing "additionalProperties: false" for subnodes, to catch
-> >     typos in properties,
-> >   - There is no reason to wrap the (single) if condition in an allOf
-> >     block,
->
-> True, but more future proof with it and unnecessary churn IMO.
+"rockchip,px30-wdt", "snps,dw-wdt"
+"rockchip,rk3228-wdt", "snps,dw-wdt"
+"rockchip,rk3308-wdt", "snps,dw-wdt"
+"rockchip,rk3328-wdt", "snps,dw-wdt"
+"rockchip,rk3399-wdt", "snps,dw-wdt"
+"rockchip,rv1108-wdt", "snps,dw-wdt"
 
-OK, I'll drop that part.
+make ARCH=arm dtbs_check
+DT_SCHEMA_FILES=Documentation/devicetree/bindings/watchdog/snps,dw-wdt.yaml
 
-> >   - Fix obsolete property names in example.
-> >
-> > Fixes: 45c940184b501fc6 ("dt-bindings: clk: versaclock5: convert to yaml")
-> > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> > ---
-> > Notes:
-> >   1. The use of "idt,voltage-microvolts" (with trailing S) is a bit
-> >      unfortunate, as Documentation/devicetree/bindings/property-units.txt
-> >      suggests to not have the trailing edge.
-> >      Can we still fix the driver and bindings?  While this entered
-> >      uptstream in v5.9, there are no users in next-20201216.
-> >
-> >   2. Due to "clock-output-names" being part of
-> >      dt-schema/schemas/clock/clock.yaml, the presence of this property
-> >      does not trigger an error.  Adding "clock-output-names: false"
-> >      can fix that.  But given this property is deprecated, except for
-> >      very specific use cases, explicitly allowing it for those few use
-> >      cases would be better.
-> > ---
-> >  .../bindings/clock/idt,versaclock5.yaml       | 53 ++++++++++---------
-> >  1 file changed, 29 insertions(+), 24 deletions(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml b/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
-> > index 2ac1131fd9222a86..14851e76f6342095 100644
-> > --- a/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
-> > +++ b/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
-> > @@ -33,6 +33,9 @@ description: |
-> >  maintainers:
-> >    - Luca Ceresoli <luca@lucaceresoli.net>
-> >
-> > +allOf:
-> > +  - $ref: clock.yaml#
->
-> No, that's not right. clock.yaml is already applied unconditionally.
+make ARCH=arm64 dtbs_check
+DT_SCHEMA_FILES=Documentation/devicetree/bindings/watchdog/snps,dw-wdt.yaml
 
-But without that, it complains about unevaluatedProperties?
+Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+---
+ Documentation/devicetree/bindings/watchdog/snps,dw-wdt.yaml | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-> You need to define assigned-clocks, etc. here just like 'clocks' and
-> define how many entries. Or convince me they should be allowed on any
-> node.
-
-They are handled by of_clk_set_defaults(), which is applied to all
-clock providers.
-
-> > @@ -73,40 +76,42 @@ patternProperties:
-> >          $ref: /schemas/types.yaml#/definitions/uint32
-> >          minimum: 0
-> >          maximum: 6
-> > -      idt,voltage-microvolt:
-> > +      idt,voltage-microvolts:
->
-> Can we fix the driver? No in tree users...
-
-I think so.  Will do so.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
+diff --git a/Documentation/devicetree/bindings/watchdog/snps,dw-wdt.yaml b/Documentation/devicetree/bindings/watchdog/snps,dw-wdt.yaml
+index f7ee9229c..b58596b18 100644
+--- a/Documentation/devicetree/bindings/watchdog/snps,dw-wdt.yaml
++++ b/Documentation/devicetree/bindings/watchdog/snps,dw-wdt.yaml
+@@ -18,10 +18,16 @@ properties:
+       - const: snps,dw-wdt
+       - items:
+           - enum:
++              - rockchip,px30-wdt
+               - rockchip,rk3066-wdt
+               - rockchip,rk3188-wdt
++              - rockchip,rk3228-wdt
+               - rockchip,rk3288-wdt
++              - rockchip,rk3308-wdt
++              - rockchip,rk3328-wdt
+               - rockchip,rk3368-wdt
++              - rockchip,rk3399-wdt
++              - rockchip,rv1108-wdt
+           - const: snps,dw-wdt
+ 
+   reg:
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.11.0
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
