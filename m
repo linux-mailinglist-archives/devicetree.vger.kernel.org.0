@@ -2,137 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 90A3E2DE17D
-	for <lists+devicetree@lfdr.de>; Fri, 18 Dec 2020 11:50:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 171452DE220
+	for <lists+devicetree@lfdr.de>; Fri, 18 Dec 2020 12:43:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389223AbgLRKt1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Dec 2020 05:49:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54362 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389221AbgLRKt0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Dec 2020 05:49:26 -0500
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A194C0617B0
-        for <devicetree@vger.kernel.org>; Fri, 18 Dec 2020 02:48:46 -0800 (PST)
-Received: by mail-wr1-x42e.google.com with SMTP id d26so1609248wrb.12
-        for <devicetree@vger.kernel.org>; Fri, 18 Dec 2020 02:48:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=raspberrypi.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=fLzY/djypMs81T+aO2pNTod0N4stmZ6pMUg865xqIcc=;
-        b=QISrBGDGFjCaWRQGhGA/GugdDLg+ehTDRBxqjxDRfp6+PRSkSkIIsl/aqU4mLa3D9V
-         1lhDchOMA5XYtDnwV2u9uTHEqTWspfzU1EQ82GjaAChd4hNnHi18144RGGTUGesp4Psf
-         ervrjKImhl07N4OZ3AFBu40EgX2q3R00hjw1y9cWWg07qgqEt61Dwx6UsiFSHcSwWgVc
-         ST4ndcClAToTdY2ClU7Szp0a3g0+kfAlnqOCWLvjMqvT7Fr4BICv4gnZ5pTm39L9ZD16
-         UbjRemFDIB7SgiMlE9szbx5eAH3wqyEc2v73UegEM9nWVycg15DN1igYaZNtBHKi5gOC
-         e6vQ==
+        id S1726254AbgLRLmw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Dec 2020 06:42:52 -0500
+Received: from mail-ot1-f41.google.com ([209.85.210.41]:45642 "EHLO
+        mail-ot1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725710AbgLRLmw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Dec 2020 06:42:52 -0500
+Received: by mail-ot1-f41.google.com with SMTP id h18so1594032otq.12;
+        Fri, 18 Dec 2020 03:42:36 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=fLzY/djypMs81T+aO2pNTod0N4stmZ6pMUg865xqIcc=;
-        b=GZpFsGgzmwXmG8CZQPCFy1pF8lZH+kPyF2Kxv7LokilKN+mo+cuR4RYptqZTdQPtG0
-         m/mVEPtzJesK+0ntwrm5zKyy+pfAkeYN3ABn+X+OJy01IMegM4FNlbyUw5TX3mq0wPDh
-         0FCqCFIYO8a6IV2FV3zLCv30GXapgTTKetJDNiGFz4J6c1pmJgZf1B12oEEMQ/w6q0sN
-         EEvuYm4drhj/f8+Nvyx5MPApi3m9ghYkjbLaGMl8Y4L9Zwdh/AZbMEmoVPusZ6hN7VgY
-         7den8heyKlvq6lIdwbMvptghH7mwKfgEpqfHpXqqS7AnHso4YwIPgFGp0Pj30VYHLj6j
-         h4pQ==
-X-Gm-Message-State: AOAM5329PexardDwrym9TqTAFjwbeoNTWQkghurj8a2/JorhLO/TTKjP
-        +f30jTtCEWc4DC1BTkMLGt+sonUlHMs3pTy92AygTg==
-X-Google-Smtp-Source: ABdhPJw44cawfORTxLkciS4IgdazVtUtDppSQQMxvbWbSTGYtlJ7nqwnlTGvwVMaZCumr1XM4pzvsXEYRyLQwkEHCYc=
-X-Received: by 2002:a5d:65ca:: with SMTP id e10mr3783824wrw.42.1608288525010;
- Fri, 18 Dec 2020 02:48:45 -0800 (PST)
+        bh=hspCpWkXqd6IcgOQp9Fs7ymkdUd3LEicCVc4QESQhZQ=;
+        b=GEbIR59+qu+XtsJzQtsINYzI1uXUykUY9a/ALL45CHRdTYYWoFbv3stzX8Dm7E+i13
+         CWs1UNddggNp6XWxbFMYziW2wW0Wywo7KQKkt6Y2ZxTB2FTopsdDil/98YQbwAvzMPdn
+         BhtrQXBaXI3akDFSLfwz0gG61HnmnqzprhmpajjUaQ7Wr8I+nqg4xafUc8QcptyYlcEW
+         dmQalHtiV4jtq8mpKqZvsjBJmqRuVm2+QyiGebndhTkufu7b42xQO6J7nWe2Imvytq2U
+         GnBBbg0xpGRfvD+7md1OapmnJT6xF3bymY8JS9TjhGgvxNOY5GvQOwSMX8iXjRSNZW3O
+         FK9w==
+X-Gm-Message-State: AOAM5323K3QMrdJgY1x8vS1ejlZSzNcGcTQYqtdo0PNlGa4bHhk8xuHy
+        glhp62hmotakdbWqWsw/MYATaSmJITj1F4Gvj5o=
+X-Google-Smtp-Source: ABdhPJx3TFZxpMf8dvYUErvuGCH1MqJNhv78Sa50rDyIcFpCDau27vV7e3Lg9WjxQDJZ/8wNqgPT89ge177NB+i6UKw=
+X-Received: by 2002:a05:6830:1f5a:: with SMTP id u26mr2481735oth.250.1608291731258;
+ Fri, 18 Dec 2020 03:42:11 -0800 (PST)
 MIME-Version: 1.0
-References: <20201206172720.9406-1-michael.srba@seznam.cz>
-In-Reply-To: <20201206172720.9406-1-michael.srba@seznam.cz>
-From:   Dave Stevenson <dave.stevenson@raspberrypi.com>
-Date:   Fri, 18 Dec 2020 10:48:28 +0000
-Message-ID: <CAPY8ntB0g21HMkYoXzk6zRMHN6wzK7GrY-nHuiwrLtPzCcdMiQ@mail.gmail.com>
-Subject: Re: [PATCH v2 1/3] media: i2c: imx219: add support for specifying clock-frequencies
-To:     michael.srba@seznam.cz
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-renesas-soc@vger.kernel.org
+References: <20201216145231.1344317-1-geert+renesas@glider.be> <20201217235919.GA456454@robh.at.kernel.org>
+In-Reply-To: <20201217235919.GA456454@robh.at.kernel.org>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 18 Dec 2020 12:42:00 +0100
+Message-ID: <CAMuHMdVO29He-KHDLp3S=2JyGwOT=tLcDCOw6MPqBvcBLdUCOw@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: clk: versaclock5: Miscellaneous fixes and improvements:
+To:     Rob Herring <robh@kernel.org>
+Cc:     Luca Ceresoli <luca@lucaceresoli.net>,
+        Adam Ford <aford173@gmail.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Michael
+Hi Rob,
 
-On Sun, 6 Dec 2020 at 17:29, <michael.srba@seznam.cz> wrote:
+On Fri, Dec 18, 2020 at 12:59 AM Rob Herring <robh@kernel.org> wrote:
+> On Wed, Dec 16, 2020 at 03:52:31PM +0100, Geert Uytterhoeven wrote:
+> >   - Add reference to clock.yaml, and switch to unevaluatedProperties, to
+> >     stop complaining about the presence of "assigned-clock-rates" and
+> >     "assigned-clocks" in board DTS files,
+> >   - Fix typo in "idt,voltage-microvolts" property name, to match example
+> >     and driver code,
+> >   - Add missing reference for "idt,voltage-microvolts",
+> >   - Add missing "additionalProperties: false" for subnodes, to catch
+> >     typos in properties,
+> >   - There is no reason to wrap the (single) if condition in an allOf
+> >     block,
 >
-> From: Michael Srba <Michael.Srba@seznam.cz>
->
-> This patch adds 1% tolerance on input clock, similar to other camera sensor
-> drivers. It also allows for specifying the actual clock in the device tree,
-> instead of relying on it being already set to the right frequency (which is
-> often not the case).
->
-> Signed-off-by: Michael Srba <Michael.Srba@seznam.cz>
+> True, but more future proof with it and unnecessary churn IMO.
 
-As the listed maintainer of this driver I'll say that I don't have any
-objections to the aim of this patch.
-Those who know the clock infrastructure far better than me are
-recommending alternative methods of implementing this, so I'll leave
-it up to them to give a Reviewed-by. When that's happened I'll add an
-ack.
+OK, I'll drop that part.
 
-  Dave
+> >   - Fix obsolete property names in example.
+> >
+> > Fixes: 45c940184b501fc6 ("dt-bindings: clk: versaclock5: convert to yaml")
+> > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> > ---
+> > Notes:
+> >   1. The use of "idt,voltage-microvolts" (with trailing S) is a bit
+> >      unfortunate, as Documentation/devicetree/bindings/property-units.txt
+> >      suggests to not have the trailing edge.
+> >      Can we still fix the driver and bindings?  While this entered
+> >      uptstream in v5.9, there are no users in next-20201216.
+> >
+> >   2. Due to "clock-output-names" being part of
+> >      dt-schema/schemas/clock/clock.yaml, the presence of this property
+> >      does not trigger an error.  Adding "clock-output-names: false"
+> >      can fix that.  But given this property is deprecated, except for
+> >      very specific use cases, explicitly allowing it for those few use
+> >      cases would be better.
+> > ---
+> >  .../bindings/clock/idt,versaclock5.yaml       | 53 ++++++++++---------
+> >  1 file changed, 29 insertions(+), 24 deletions(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml b/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
+> > index 2ac1131fd9222a86..14851e76f6342095 100644
+> > --- a/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
+> > +++ b/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
+> > @@ -33,6 +33,9 @@ description: |
+> >  maintainers:
+> >    - Luca Ceresoli <luca@lucaceresoli.net>
+> >
+> > +allOf:
+> > +  - $ref: clock.yaml#
+>
+> No, that's not right. clock.yaml is already applied unconditionally.
 
-> ---
+But without that, it complains about unevaluatedProperties?
+
+> You need to define assigned-clocks, etc. here just like 'clocks' and
+> define how many entries. Or convince me they should be allowed on any
+> node.
+
+They are handled by of_clk_set_defaults(), which is applied to all
+clock providers.
+
+> > @@ -73,40 +76,42 @@ patternProperties:
+> >          $ref: /schemas/types.yaml#/definitions/uint32
+> >          minimum: 0
+> >          maximum: 6
+> > -      idt,voltage-microvolt:
+> > +      idt,voltage-microvolts:
 >
-> changes since v1: default to exactly 24MHz when `clock-frequency` is not present
->
-> ---
->  drivers/media/i2c/imx219.c | 19 +++++++++++++++++--
->  1 file changed, 17 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/media/i2c/imx219.c b/drivers/media/i2c/imx219.c
-> index f64c0ef7a897..b6500e2ab19e 100644
-> --- a/drivers/media/i2c/imx219.c
-> +++ b/drivers/media/i2c/imx219.c
-> @@ -1443,13 +1443,28 @@ static int imx219_probe(struct i2c_client *client)
->                 return PTR_ERR(imx219->xclk);
->         }
->
-> -       imx219->xclk_freq = clk_get_rate(imx219->xclk);
-> -       if (imx219->xclk_freq != IMX219_XCLK_FREQ) {
-> +       ret = fwnode_property_read_u32(dev_fwnode(dev), "clock-frequency", &imx219->xclk_freq);
-> +       if (ret) {
-> +               dev_warn(dev, "could not get xclk frequency\n");
-> +
-> +               /* default to 24MHz */
-> +               imx219->xclk_freq = 24000000;
-> +       }
-> +
-> +       /* this driver currently expects 24MHz; allow 1% tolerance */
-> +       if (imx219->xclk_freq < 23760000 || imx219->xclk_freq > 24240000) {
->                 dev_err(dev, "xclk frequency not supported: %d Hz\n",
->                         imx219->xclk_freq);
->                 return -EINVAL;
->         }
->
-> +       ret = clk_set_rate(imx219->xclk, imx219->xclk_freq);
-> +       if (ret) {
-> +               dev_err(dev, "could not set xclk frequency\n");
-> +               return ret;
-> +       }
-> +
-> +
->         ret = imx219_get_regulators(imx219);
->         if (ret) {
->                 dev_err(dev, "failed to get regulators\n");
-> --
-> 2.29.2
->
+> Can we fix the driver? No in tree users...
+
+I think so.  Will do so.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
