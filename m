@@ -2,68 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0947E2DEAF4
-	for <lists+devicetree@lfdr.de>; Fri, 18 Dec 2020 22:20:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E89662DEAF8
+	for <lists+devicetree@lfdr.de>; Fri, 18 Dec 2020 22:20:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727881AbgLRVSa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Dec 2020 16:18:30 -0500
-Received: from mail-ot1-f51.google.com ([209.85.210.51]:45986 "EHLO
-        mail-ot1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725938AbgLRVS2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Dec 2020 16:18:28 -0500
-Received: by mail-ot1-f51.google.com with SMTP id h18so3219524otq.12;
-        Fri, 18 Dec 2020 13:18:12 -0800 (PST)
+        id S1728150AbgLRVSr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Dec 2020 16:18:47 -0500
+Received: from mail-oi1-f179.google.com ([209.85.167.179]:34972 "EHLO
+        mail-oi1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725938AbgLRVSr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Dec 2020 16:18:47 -0500
+Received: by mail-oi1-f179.google.com with SMTP id s2so4362814oij.2;
+        Fri, 18 Dec 2020 13:18:31 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=bA/q6/lytXqC0BX2MijAP++B2hrmWNlRg8ooSs4RlPM=;
-        b=eO6OgGMoKm2UkQR16ELTe3lQ/+T3d1othbXDn/iUc9OUl1QY5YMKfWqVlvKCVHPyLo
-         C1PMAhVOVqY0JvBs7fLIWfQuNSM8Wyr36fSJZx2BPjpJsLHsIt0p4rhUk5xdMwTHq8Gv
-         Myqwr0tPimam1N8qdI6DBBIVmocZA2003dqJLNW21suk5nn/E1MTKwfLTsqIzHQUTKRr
-         OhCstLSVRF+/gpZDB4o2s1UUrCyTTDEfpRirhcSL9yLTu82EDefOFbtWdiksORN2Oact
-         AvhPquBhZ8aU8Kpm4QADdb1MfGS75nwFX6n/vwcfgKzBcoz5ljGn3Of8hyObNbQqhtm7
-         nGXA==
-X-Gm-Message-State: AOAM530XnnKch9ms2BZCA7GP0epJ7avfTDcbeuS2quO3i9a0mvtTJN2p
-        Z/GJ2NMBC1VeqbU6/Y5k2A==
-X-Google-Smtp-Source: ABdhPJyoVoLPTGEg/kKZLNBOodRCvkYyVXk5xQ8/x/+uz2Fa5dCMz/ybCZ4YZTqaCGylNMN389z9+A==
-X-Received: by 2002:a05:6830:114e:: with SMTP id x14mr4208264otq.253.1608326267166;
-        Fri, 18 Dec 2020 13:17:47 -0800 (PST)
+        bh=03HFPXnAxYNSTh3L20SLd4XBlw3VNwGfa9nRljaVjjk=;
+        b=tzlZbSxxgR3tHSMbnw8fbfx0noRM2kjEFF3p+Cd4V8Lrh4zq69FqW3SU+aiPBnd9o1
+         EToifXEVESlpOe1863mJQMOpHIK+DIzn7GQgI29400lBH/M+WNYjKzdhvMbMOVzuZlEj
+         m1HbMJqQ1LI/JE9lgfUhgPadBT5aWodawsHPLGGvm8D8funu/s2Iv5GvhmjvoK7oXLgJ
+         Myw8w88Z9qGsy1zqtb3ocP1S3D20lzT3S1Zv3bgYec1v4B/D+ZoVOZ2L7rgCTGTLCu1W
+         bEbUL5bS/9A6nDjHlLhRvPJkvFwJvRwlX8UZrpZ09lmdYu9v+kJvP+Vpwb/rrl/kA2xt
+         vNpA==
+X-Gm-Message-State: AOAM5301BcQZH0TGCKI6pegmD2R6E87iR0GHkw6BdIAf6MdKp5kNQvI2
+        lQcIeaRlk9eFevAT70I9t3ZFnRv2Bw==
+X-Google-Smtp-Source: ABdhPJzp2Vn29fMDo1374G2raWeUpRvXsBe5yqSFqZr9o1/LOLXJmn9Q9gnzEAgSqaGpr8bxwrzA+g==
+X-Received: by 2002:a05:6808:617:: with SMTP id y23mr4138266oih.84.1608326285997;
+        Fri, 18 Dec 2020 13:18:05 -0800 (PST)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id n11sm461314oij.37.2020.12.18.13.17.45
+        by smtp.gmail.com with ESMTPSA id g3sm1761819ooi.28.2020.12.18.13.18.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Dec 2020 13:17:46 -0800 (PST)
-Received: (nullmailer pid 2191479 invoked by uid 1000);
-        Fri, 18 Dec 2020 21:17:45 -0000
-Date:   Fri, 18 Dec 2020 15:17:45 -0600
+        Fri, 18 Dec 2020 13:18:05 -0800 (PST)
+Received: (nullmailer pid 2191933 invoked by uid 1000);
+        Fri, 18 Dec 2020 21:18:04 -0000
+Date:   Fri, 18 Dec 2020 15:18:04 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Paul Cercueil <paul@crapouillou.net>
-Cc:     dri-devel@lists.freedesktop.org, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        od@zcrc.me, Sam Ravnborg <sam@ravnborg.org>
-Subject: Re: [PATCH] dt-bindings/display: abt,y030xx067a: Fix binding
-Message-ID: <20201218211745.GC2190633@robh.at.kernel.org>
-References: <20201101093150.8071-1-paul@crapouillou.net>
- <20201217005945.335111-1-paul@crapouillou.net>
+To:     Zhen Lei <thunder.leizhen@huawei.com>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        David Airlie <airlied@linux.ie>
+Subject: Re: [PATCH v2 1/1] dt-bindings: display: eliminate yamllint warnings
+Message-ID: <20201218211804.GD2190633@robh.at.kernel.org>
+References: <20201207044830.1551-1-thunder.leizhen@huawei.com>
+ <20201207044830.1551-2-thunder.leizhen@huawei.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201217005945.335111-1-paul@crapouillou.net>
+In-Reply-To: <20201207044830.1551-2-thunder.leizhen@huawei.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 17 Dec 2020 00:59:45 +0000, Paul Cercueil wrote:
-> The binding should use "unevaluatedProperties" instead of
-> "additionalProperties", since it is a SPI device and may have
-> SPI-related Device Tree properties, for instance the "spi-max-frequency"
-> property that is present in the example.
+On Mon, 07 Dec 2020 12:48:30 +0800, Zhen Lei wrote:
+> Eliminate the following yamllint warnings:
+> ./Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
+> :52:9: [warning] wrong indentation: expected 6 but found 8 (indentation)
 > 
-> Fixes: e366a644c69d ("dt-bindings: display: Add ABT Y030XX067A panel bindings")
-> Signed-off-by: Paul Cercueil <paul@crapouillou.net>
+> ./Documentation/devicetree/bindings/display/bridge/intel,keembay-dsi.yaml
+> :42:8: [warning] wrong indentation: expected 8 but found 7 (indentation)
+> :45:8: [warning] wrong indentation: expected 8 but found 7 (indentation)
+> 
+> ./Documentation/devicetree/bindings/display/intel,keembay-msscam.yaml
+> :21:6: [warning] wrong indentation: expected 6 but found 5 (indentation)
+> 
+> ./Documentation/devicetree/bindings/display/panel/novatek,nt36672a.yaml
+> :25:10: [warning] wrong indentation: expected 10 but found 9 (indentation)
+> 
+> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
+> Acked-by: Sam Ravnborg <sam@ravnborg.org>
 > ---
->  .../devicetree/bindings/display/panel/abt,y030xx067a.yaml       | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  .../devicetree/bindings/display/bridge/analogix,anx7625.yaml          | 4 ++--
+>  .../devicetree/bindings/display/bridge/intel,keembay-dsi.yaml         | 4 ++--
+>  Documentation/devicetree/bindings/display/intel,keembay-msscam.yaml   | 4 ++--
+>  Documentation/devicetree/bindings/display/panel/novatek,nt36672a.yaml | 2 +-
+>  4 files changed, 7 insertions(+), 7 deletions(-)
 > 
 
 Applied, thanks!
