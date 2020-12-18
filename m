@@ -2,110 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A90372DDF70
-	for <lists+devicetree@lfdr.de>; Fri, 18 Dec 2020 09:16:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E89F2DDFF6
+	for <lists+devicetree@lfdr.de>; Fri, 18 Dec 2020 09:36:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732970AbgLRIQU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Dec 2020 03:16:20 -0500
-Received: from so254-31.mailgun.net ([198.61.254.31]:51784 "EHLO
-        so254-31.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732925AbgLRIQU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Dec 2020 03:16:20 -0500
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1608279355; h=References: In-Reply-To: Message-Id: Date:
- Subject: Cc: To: From: Sender;
- bh=SuZ7faFUxX/UATUsH4gDxKkN2noH4QILCl9/MoQ2O0w=; b=fFLTFvTI5oOza59/INbR/FFb3AoFUaoug5q68kTxcHt8z6U6scP+Az5M23PjnBN4DqFuTI+x
- glFE4f19v6BRBsmcAUN3ifh0TlQ85054m2HyyXL5WhMxp//sviwqtxwdqgtR5ekZ1n8UhBO0
- 3nFfw1UVeWD7l7WPw2ui5vv6DLI=
-X-Mailgun-Sending-Ip: 198.61.254.31
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n04.prod.us-west-2.postgun.com with SMTP id
- 5fdc651b3d3433393dacbe96 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 18 Dec 2020 08:15:23
- GMT
-Sender: kgunda=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 4B93FC433C6; Fri, 18 Dec 2020 08:15:23 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
-Received: from kgunda-linux.qualcomm.com (unknown [202.46.22.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: kgunda)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 9D243C433ED;
-        Fri, 18 Dec 2020 08:15:19 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 9D243C433ED
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=kgunda@codeaurora.org
-From:   Kiran Gunda <kgunda@codeaurora.org>
-To:     robh@kernel.org, swboyd@chromium.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Kiran Gunda <kgunda@codeaurora.org>
-Subject: [PATCH V4 2/2] mfd: qcom-spmi-pmic: Add support for pm6150 and pm6150l
-Date:   Fri, 18 Dec 2020 13:44:52 +0530
-Message-Id: <1608279292-24760-3-git-send-email-kgunda@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1608279292-24760-1-git-send-email-kgunda@codeaurora.org>
-References: <1608279292-24760-1-git-send-email-kgunda@codeaurora.org>
+        id S1725908AbgLRIgQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Dec 2020 03:36:16 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:48922 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725895AbgLRIgQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Dec 2020 03:36:16 -0500
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0BI8YLNd088847;
+        Fri, 18 Dec 2020 02:34:21 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1608280461;
+        bh=+AsqQXhaLlHomK8LtuyuLC+nrR1nfgdnGZarId8P5ag=;
+        h=From:To:CC:Subject:Date;
+        b=GOgmoRUA9guDxKSMZ5dGqSXvTIGgpveRT68U7Ub03FEwIBp0B46diceMYUFeq11SY
+         +y/y5HwP8veq16s2KfUp0SVoFD5xMe+Gi45aVQpxIJ0XXtBXUwvC70ca7jTZatBXgH
+         Aux8hkfkKZdJnzQF/fFxaIqLGH54iZPEgXQmlX+Q=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0BI8YLsw072874
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 18 Dec 2020 02:34:21 -0600
+Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Fri, 18
+ Dec 2020 02:34:21 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Fri, 18 Dec 2020 02:34:20 -0600
+Received: from feketebors.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0BI8YHIY077604;
+        Fri, 18 Dec 2020 02:34:18 -0600
+From:   Peter Ujfalusi <peter.ujfalusi@ti.com>
+To:     <airlied@linux.ie>, <daniel@ffwll.ch>, <robh+dt@kernel.org>,
+        <a.hajda@samsung.com>, <narmstrong@baylibre.com>,
+        <sam@ravnborg.org>
+CC:     <Laurent.pinchart@ideasonboard.com>, <jonas@kwiboo.se>,
+        <jernej.skrabec@siol.net>, <dri-devel@lists.freedesktop.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <peter.ujfalusi@gmail.com>
+Subject: [PATCH v2] dt-bindings: display: bridge: tc358768: Change maintainer information
+Date:   Fri, 18 Dec 2020 10:35:22 +0200
+Message-ID: <20201218083522.21743-1-peter.ujfalusi@ti.com>
+X-Mailer: git-send-email 2.29.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the compatibles and PMIC ids for pm6150 and pm6150l PMICs
-found on SC7180 based platforms.
+My employment with TI is coming to an end and I will not have access to
+the board where this bridge is connected to and I will also loose access to
+the manual of the chip.
 
-Signed-off-by: Kiran Gunda <kgunda@codeaurora.org>
+Add the missing copyright information, author and change the maintainer to
+Sam Ravnborg (thank you for volenteering!)
+
+Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
 ---
- Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml | 2 ++
- drivers/mfd/qcom-spmi-pmic.c                              | 4 ++++
- 2 files changed, 6 insertions(+)
+ .../devicetree/bindings/display/bridge/toshiba,tc358768.yaml  | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml b/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
-index e458dd1..2acddbc 100644
---- a/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
-+++ b/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
-@@ -58,6 +58,8 @@ patternProperties:
-               - qcom,pm8005
-               - qcom,pm660l
-               - qcom,pm660
-+              - qcom,pm6150l
-+              - qcom,pm6150
+diff --git a/Documentation/devicetree/bindings/display/bridge/toshiba,tc358768.yaml b/Documentation/devicetree/bindings/display/bridge/toshiba,tc358768.yaml
+index c036a75db8f7..c08fd42be2d0 100644
+--- a/Documentation/devicetree/bindings/display/bridge/toshiba,tc358768.yaml
++++ b/Documentation/devicetree/bindings/display/bridge/toshiba,tc358768.yaml
+@@ -1,4 +1,6 @@
+ # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++# Copyright (C) 2020 Texas Instruments Incorporated
++# Author: Peter Ujfalusi <peter.ujfalusi@ti.com>
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/display/bridge/toshiba,tc358768.yaml#
+@@ -7,7 +9,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ title: Toschiba TC358768/TC358778 Parallel RGB to MIPI DSI bridge
  
-           - enum:
-               - qcom,spmi-pmic
-diff --git a/drivers/mfd/qcom-spmi-pmic.c b/drivers/mfd/qcom-spmi-pmic.c
-index a35d5cf..78e9084 100644
---- a/drivers/mfd/qcom-spmi-pmic.c
-+++ b/drivers/mfd/qcom-spmi-pmic.c
-@@ -38,6 +38,8 @@
- #define PM8005_SUBTYPE		0x18
- #define PM660L_SUBTYPE		0x1A
- #define PM660_SUBTYPE		0x1B
-+#define PM6150L_SUBTYPE		0x1F
-+#define PM6150_SUBTYPE		0x28
+ maintainers:
+-  - Peter Ujfalusi <peter.ujfalusi@ti.com>
++  - Sam Ravnborg <sam@ravnborg.org>
  
- static const struct of_device_id pmic_spmi_id_table[] = {
- 	{ .compatible = "qcom,spmi-pmic", .data = (void *)COMMON_SUBTYPE },
-@@ -61,6 +63,8 @@ static const struct of_device_id pmic_spmi_id_table[] = {
- 	{ .compatible = "qcom,pm8005",    .data = (void *)PM8005_SUBTYPE },
- 	{ .compatible = "qcom,pm660l",    .data = (void *)PM660L_SUBTYPE },
- 	{ .compatible = "qcom,pm660",     .data = (void *)PM660_SUBTYPE },
-+	{ .compatible = "qcom,pm6150l",    .data = (void *)PM6150L_SUBTYPE },
-+	{ .compatible = "qcom,pm6150",     .data = (void *)PM6150_SUBTYPE },
- 	{ }
- };
- 
+ description: |
+   The TC358768/TC358778 is bridge device which converts RGB to DSI.
 -- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
- a Linux Foundation Collaborative Project
+Peter
+
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
 
