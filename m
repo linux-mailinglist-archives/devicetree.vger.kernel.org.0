@@ -2,124 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 084E02DDE95
-	for <lists+devicetree@lfdr.de>; Fri, 18 Dec 2020 07:26:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 34AF52DDEB9
+	for <lists+devicetree@lfdr.de>; Fri, 18 Dec 2020 07:49:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732671AbgLRG0P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Dec 2020 01:26:15 -0500
-Received: from linux.microsoft.com ([13.77.154.182]:41910 "EHLO
-        linux.microsoft.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732647AbgLRG0P (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Dec 2020 01:26:15 -0500
-Received: from [192.168.0.104] (c-73-42-176-67.hsd1.wa.comcast.net [73.42.176.67])
-        by linux.microsoft.com (Postfix) with ESMTPSA id C95CC20B717A;
-        Thu, 17 Dec 2020 22:25:33 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com C95CC20B717A
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-        s=default; t=1608272734;
-        bh=etZWIFSAunWvvTytCwaw4eRuJpjTSSwN3EVqRwxTxgo=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=dPeYTdzlbJyy71yFOMqIIPpxr4tH8rS154kSISMKYsrQ299j4AjVgYC8DJFV3V2zW
-         EUckcDbECnnMo+b9KomsWtVYJj2oS79xkCOdcjWtxtVs5CULWLV9KZn5z3r6OqO19P
-         90dxam6rHhIKp8WnQe2IMDyJw3W6j0heDI8ijGy8=
-Subject: Re: [PATCH v12 2/4] powerpc: Move arch independent ima kexec
- functions to drivers/of/kexec.c
-To:     Rob Herring <robh@kernel.org>
-Cc:     Mimi Zohar <zohar@linux.ibm.com>,
-        Thiago Jung Bauermann <bauerman@linux.ibm.com>,
-        "AKASHI, Takahiro" <takahiro.akashi@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Will Deacon <will@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        James Morse <james.morse@arm.com>,
-        Sasha Levin <sashal@kernel.org>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Paul Mackerras <paulus@samba.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        vincenzo.frascino@arm.com, Mark Rutland <mark.rutland@arm.com>,
-        dmitry.kasatkin@gmail.com, James Morris <jmorris@namei.org>,
-        "Serge E. Hallyn" <serge@hallyn.com>,
-        Pavel Tatashin <pasha.tatashin@soleen.com>,
-        Allison Randal <allison@lohutok.net>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        Bhupesh Sharma <bhsharma@redhat.com>,
-        Matthias Brugger <mbrugger@suse.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>, tao.li@vivo.com,
-        Christophe Leroy <christophe.leroy@c-s.fr>,
-        Prakhar Srivastava <prsriva@linux.microsoft.com>,
-        balajib@linux.microsoft.com, linux-integrity@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        devicetree@vger.kernel.org
-References: <20201217173708.6940-1-nramas@linux.microsoft.com>
- <20201217173708.6940-3-nramas@linux.microsoft.com>
- <20201217200510.GA105447@robh.at.kernel.org>
- <0b17fbee-cfe9-8cb2-01d1-02b6a61a14f5@linux.microsoft.com>
- <CAL_Jsq+-HOkxtxOO=zyRbDuGVNZoMy589qoVANciNionsdsGCw@mail.gmail.com>
-From:   Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
-Message-ID: <5dda6968-ca14-1695-3058-7c12653521ba@linux.microsoft.com>
-Date:   Thu, 17 Dec 2020 22:25:33 -0800
+        id S1732797AbgLRGsm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Dec 2020 01:48:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45722 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732787AbgLRGsm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Dec 2020 01:48:42 -0500
+Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEAAFC06138C
+        for <devicetree@vger.kernel.org>; Thu, 17 Dec 2020 22:48:01 -0800 (PST)
+Received: by mail-pl1-x62f.google.com with SMTP id q4so889268plr.7
+        for <devicetree@vger.kernel.org>; Thu, 17 Dec 2020 22:48:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-transfer-encoding:content-language;
+        bh=Nd22eKsSmk6waOLkekeVIJaN2h0vcQRGdExQuNh8r+o=;
+        b=JV55w9RJHlNDrpbAs0KqCWm5jTeBirALv3OzEGNimJnmYPpOniRKISwjJZ99KwhMia
+         LZ0cA/j4WGXRXImtf+x7TlBbmYI7cqTI/lNnoBocYvBqR78jTb5wkzTOE5fcLGIRCV54
+         IJwjhcuUOQH2w+I7lEdNtGIM9ry2apQPMX4YimceNtL7qwHnAb1BSx4GOpcpCrkVUcgE
+         8ItjJeUDB8wbN64mphSntnZpXnDtkrrdQKmSWbNcGYgUPqbPpb7IrGaaKwTg+PStjlIP
+         LFy4K6txICy13Oly9GRbh2hxr0hNbKZ0STEFSLj1ymii+OWwgL6EI1gv9ZDgFpBEY8cM
+         pSyA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-transfer-encoding
+         :content-language;
+        bh=Nd22eKsSmk6waOLkekeVIJaN2h0vcQRGdExQuNh8r+o=;
+        b=LKkwZppKu+G68+DCBhlZFJU/3JECGD54Zev19y3RFb9JUjwWRFlbtIE0k8SoCszwN2
+         nChUpUevxaG9TusRghpe0jvcd6a7lWVPno+lo9Zd4QK7YdmfVufzNS6U6bLbNNO4tnL9
+         0yTV4wQ03pwi2+5325rRPhVk4s8APnPtzT91JHLiAR3EcjyPp2NwhXdXhBTP+5ew/R4b
+         C2BJodk1SBvp5FD1k6vLXCKYk8sX3Kz2CQlw+q5z5yPT5jVYprz647jU46MifelZB9Ke
+         /ur0igIgV+Kb0ak4VyCqNLvYFwsXUGmPoYKKtBfNyhgdQVIUVNiQTqnuIdlzxds3WpEW
+         sONw==
+X-Gm-Message-State: AOAM5332Q4p4IC6Z2W26DFnt3TjbalnOfPNRHk0DOHM0Wt7i+Xa7xafD
+        C9MlI1fXGbZXf53IX8XXIEo3sg==
+X-Google-Smtp-Source: ABdhPJxN+zyn/o5/ECghJrrBpTGxb9htIs8KNFZW3iJjEN2NNdnXvN4NN921DPcleas8TN59wDvxSg==
+X-Received: by 2002:a17:90a:fe8e:: with SMTP id co14mr2998599pjb.105.1608274081410;
+        Thu, 17 Dec 2020 22:48:01 -0800 (PST)
+Received: from ?IPv6:240e:362:421:6800:e481:5ceb:8cc4:e9ab? ([240e:362:421:6800:e481:5ceb:8cc4:e9ab])
+        by smtp.gmail.com with ESMTPSA id j20sm7610772pfd.106.2020.12.17.22.47.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 17 Dec 2020 22:48:00 -0800 (PST)
+Subject: Re: [PATCH v8 4/9] of/iommu: Support dma-can-stall property
+To:     Jean-Philippe Brucker <jean-philippe@linaro.org>,
+        Robin Murphy <robin.murphy@arm.com>
+Cc:     joro@8bytes.org, will@kernel.org, lorenzo.pieralisi@arm.com,
+        robh+dt@kernel.org, guohanjun@huawei.com, sudeep.holla@arm.com,
+        rjw@rjwysocki.net, lenb@kernel.org, bhelgaas@google.com,
+        Jonathan.Cameron@huawei.com, eric.auger@redhat.com,
+        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
+        linux-acpi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-pci@vger.kernel.org, baolu.lu@linux.intel.com,
+        shameerali.kolothum.thodi@huawei.com, vivek.gautam@arm.com
+References: <20201112125519.3987595-1-jean-philippe@linaro.org>
+ <20201112125519.3987595-5-jean-philippe@linaro.org>
+ <d0a61d79-82fc-3af8-570e-e2ae3d485455@arm.com> <X9dS9H9PrOZbND9E@myrica>
+From:   Zhangfei Gao <zhangfei.gao@linaro.org>
+Message-ID: <e4dd8876-efe9-d7d9-955e-cadb9e4ef4f7@linaro.org>
+Date:   Fri, 18 Dec 2020 14:47:11 +0800
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <CAL_Jsq+-HOkxtxOO=zyRbDuGVNZoMy589qoVANciNionsdsGCw@mail.gmail.com>
+In-Reply-To: <X9dS9H9PrOZbND9E@myrica>
 Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/17/20 2:01 PM, Rob Herring wrote:
 
-> 
-> [...]
-> 
->>>> +#ifdef CONFIG_IMA_KEXEC
->>>> +/**
->>>> + * arch_ima_add_kexec_buffer - do arch-specific steps to add the IMA buffer
->>>> + *
->>>> + * @image: kimage struct to set IMA buffer data
->>>> + * @load_addr: Starting address where IMA buffer is loaded at
->>>> + * @size: Number of bytes in the IMA buffer
->>>> + *
->>>> + * Architectures should use this function to pass on the IMA buffer
->>>> + * information to the next kernel.
->>>> + *
->>>> + * Return: 0 on success, negative errno on error.
->>>> + */
->>>> +int arch_ima_add_kexec_buffer(struct kimage *image, unsigned long load_addr,
->>>> +                          size_t size)
->>>
->>> This should be a static inline in asm/kexec.h.
+
+On 2020/12/14 下午8:51, Jean-Philippe Brucker wrote:
+> On Thu, Nov 26, 2020 at 06:09:26PM +0000, Robin Murphy wrote:
+>> On 2020-11-12 12:55, Jean-Philippe Brucker wrote:
+>>> Copy the dma-can-stall property into the fwspec structure.
+>> Can't we just handle this as a regular device property? It's not part of the
+>> actual IOMMU specifier, it doesn't need to be translated in any way, and
+>> AFAICS it's used a grand total of once, in a slow path. Simply treating it
+>> as the per-device property that it is should require zero additional code
+>> for DT, and a simple device_add_properties() call for IORT.
 >>
->> arch_ima_add_kexec_buffer() is identical for powerpc and arm64.
->> Would it be better to "static inline" this function in "of.h" instead of
->> duplicating it in "asm/kexec.h" for powerpc and arm64?
-> 
-> No, think about what it is specific to and place it there. It has
-> nothing to do with DT really. All it is is a wrapper to access the
-> struct members in kimage_arch. So it belongs where they are declared.
-> Now perhaps ima_buffer_addr and ima_buffer_size shouldn't be arch
-> specific, but that's a separate issue.
-> 
+>> TBH that appears to be true of pasid-num-bits as well.
+> Right I think that's better, thanks for the pointer. I'll take care of
+> pasid-num-bits too. The Huawei quirk (fake PCIe supporting stall) is a
+> little worse this way, but it should work.
 
-Since "struct kimage" definition is not available in "asm/kexec.h", 
-defining arch_ima_add_kexec_buffer() in this header file results in the 
-following build error:
+Thanks Jean, I tested the following diff, it works with Huawei quirk.
 
-./arch/powerpc/include/asm/kexec.h: In function 'arch_ima_add_kexec_buffer':
-./arch/powerpc/include/asm/kexec.h:139:7: error: 'struct kimage' has no 
-member named 'arch'
-   139 |  image->arch.ima_buffer_addr = load_addr;
-
-I think it would be appropriate to make arch_ima_add_kexec_buffer() a 
-static inline function in "security/integrity/ima/ima_kexec.c" - the 
-only file where this function is used.
-
-This will also enable sharing this function for powerpc and arm64 
-architectures.
-
-thanks,
-  -lakshmi
+Thanks
