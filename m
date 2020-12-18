@@ -2,91 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 504DB2DE305
-	for <lists+devicetree@lfdr.de>; Fri, 18 Dec 2020 14:01:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 843B32DE308
+	for <lists+devicetree@lfdr.de>; Fri, 18 Dec 2020 14:04:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726713AbgLRNBA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Dec 2020 08:01:00 -0500
-Received: from mail-ot1-f44.google.com ([209.85.210.44]:46776 "EHLO
-        mail-ot1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726018AbgLRNBA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Dec 2020 08:01:00 -0500
-Received: by mail-ot1-f44.google.com with SMTP id w3so1755941otp.13;
-        Fri, 18 Dec 2020 05:00:44 -0800 (PST)
+        id S1726682AbgLRNES (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Dec 2020 08:04:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46836 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726050AbgLRNER (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Dec 2020 08:04:17 -0500
+Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com [IPv6:2a00:1450:4864:20::444])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D0D3C0617A7
+        for <devicetree@vger.kernel.org>; Fri, 18 Dec 2020 05:03:37 -0800 (PST)
+Received: by mail-wr1-x444.google.com with SMTP id r7so2059199wrc.5
+        for <devicetree@vger.kernel.org>; Fri, 18 Dec 2020 05:03:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sartura-hr.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Mamze14+WiY2yuDsLyQBfAVHfVo7/eHBt2nEYPH4G8k=;
+        b=k8lkPDdhkDhENNYgO5090SOzikz77aDzpntDip4B3Z6GAzZJOxtZ7Fqrq3Sx4G+aaV
+         ji0cNXH3p/vrGJ+CkpXSoFJca9UqIm+ahdMzsVxN07vmq+ot/uRTz4/ZUhjqllSiWibP
+         XqifJwNTDfTMUwb9L+240NfsnHbuJIUae7SU4ryce+B3EU2SyYtEZvQC+MwU/LgENOu5
+         guHqiw2hzDXVP3/iE3nUoJoTMgS26emMggiswocsFORMN9eleVRrNsG/uoC++ZU2ZtD8
+         tso+z6qaS7SPgDqi+IoLRwiKeJ3iGMh2Jtoq0QoiaSzVUoMV7GNV7TJF4pMMQ/MmIm2+
+         Mjlg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=0S3AKoHHsENQymbZkyA0JK9GKORXuuB7J/baVL2Nerk=;
-        b=U7n4XSK6C2u0tQ5i+SdKuCLwUATr7Ajlld6RHiQ/SUeL16DpzIWgcMPqWDzkasfLjS
-         4v3aS15FQoC4gC1NZEfuECNjKZUNqpTir9yoOiF2JlJTJtifI9469IiyM5pEmCCzDYi/
-         0SolVBfu43yM2kALp2GVXDzn1VVa+xn2palBycY1votr9lbol90lSPffB6tcihVot3/J
-         O71CzqKNHHFP8d4YOrH5S8dRpXBMwLSCHQDp7DvKhGUXNV1uhOuvvbisoprzUX7MNRUG
-         XSpYKIrUbHHn3hnAeNk8iGQvIUNyBPWPxTjwQBOgJslVD06QJkMc9OQ2jhdB3WnkU9aR
-         HM+g==
-X-Gm-Message-State: AOAM532y3ovXwppJMUVAHeJII1PU772wcxuLjkWAAAjLzQnxlLUHaYdA
-        97HlBvoXdFBAsoalY1KRPNjvEytDesABslNJOOA=
-X-Google-Smtp-Source: ABdhPJx6pYx98TTZUrwhjmwJ/OIIyn5LP5Ueli0+x4PXbeXFFhUZIqTm8WyxJU2N1PD57Frkq2Vbw+x6tTpX4RtPhuM=
-X-Received: by 2002:a05:6830:1f5a:: with SMTP id u26mr2671058oth.250.1608296419470;
- Fri, 18 Dec 2020 05:00:19 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Mamze14+WiY2yuDsLyQBfAVHfVo7/eHBt2nEYPH4G8k=;
+        b=OL5TRHJzY6u0b2Im4FveWduZkgA6oFDqnCwmL8viS1LjYJa3yc3r/mUngXwYtS4DAB
+         MiPgg4BveKiBvDqR8Df3hyXH8R5/hU/GkiRyaOyrZyE5MAJqKY7pgnYj+usxW1LIQqlI
+         iknoQuBFOIwz9X5pPzJgyb2kSohW883MdeBMbVNpdt3ejtJf5Bf+UMweAKQYQOloaOXi
+         qmRirZ4fuldNT/CDw0af5d1UMq+MxtwzwXnv1ZidSEOs7nL2pP1+bCO2/yXvhJHtV9q5
+         WngAmT+QqthDehaHDXZ+S8dZIFhr9uHZGBrVk+trlmvbTTqpP7jXtSrjk+D+ywu8ZjCI
+         s7FQ==
+X-Gm-Message-State: AOAM530pKRCS++DCeG/v9UOYLpGHersF7b7qNa5vU12tX9h+R6Xorzuj
+        4+rv5tHdKSOsRsni+6JIgw6vtA==
+X-Google-Smtp-Source: ABdhPJztJTmvV0PhrMPz8lOnD4A76EI8Q6kCR5QfL5usiNGwhNfgb7RWnpSX1LV1wDUFf9BQTMa5Uw==
+X-Received: by 2002:a05:6000:18c:: with SMTP id p12mr4372877wrx.7.1608296616208;
+        Fri, 18 Dec 2020 05:03:36 -0800 (PST)
+Received: from localhost.localdomain (dh207-99-82.xnet.hr. [88.207.99.82])
+        by smtp.googlemail.com with ESMTPSA id l1sm13945720wrq.64.2020.12.18.05.03.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 18 Dec 2020 05:03:35 -0800 (PST)
+From:   Robert Marko <robert.marko@sartura.hr>
+To:     jdelvare@suse.com, linux@roeck-us.net, robh+dt@kernel.org,
+        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Robert Marko <robert.marko@sartura.hr>,
+        Luka Perkov <luka.perkov@sartura.hr>
+Subject: [PATCH 1/3] dt-bindings: hwmon: Add TI TPS23861 bindings
+Date:   Fri, 18 Dec 2020 14:03:27 +0100
+Message-Id: <20201218130329.258254-1-robert.marko@sartura.hr>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-References: <20201213183759.223246-1-aford173@gmail.com> <20201213183759.223246-3-aford173@gmail.com>
- <CAMuHMdW8w-J445DRNH8Ykx7Sp2KGCCVibE5uvccmoD=iZSM-zQ@mail.gmail.com> <CAHCN7xJCxXVUJoEu4h=vBc3v=VpvXd9WnOEM5GNoCrBDeUp6aA@mail.gmail.com>
-In-Reply-To: <CAHCN7xJCxXVUJoEu4h=vBc3v=VpvXd9WnOEM5GNoCrBDeUp6aA@mail.gmail.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 18 Dec 2020 14:00:08 +0100
-Message-ID: <CAMuHMdVqSExMAJfkRu-DuStrRa+x5ij7S48DpCtHyX=b4-Jdwg@mail.gmail.com>
-Subject: Re: [PATCH 02/18] arm64: dts: renesas: beacon kit: Fix choppy
- Bluetooth Audio
-To:     Adam Ford <aford173@gmail.com>
-Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Adam Ford-BE <aford@beaconembedded.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Adam,
+Document bindings for the Texas Instruments TPS23861 driver.
 
-On Thu, Dec 17, 2020 at 1:16 PM Adam Ford <aford173@gmail.com> wrote:
-> On Thu, Dec 17, 2020 at 4:41 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> > On Sun, Dec 13, 2020 at 7:38 PM Adam Ford <aford173@gmail.com> wrote:
-> > > The Bluetooth chip is capable of operating at 4Mbps, but the
-> > > max-speed setting was on the UART node instead of the Bluetooth
-> > > node, so the chip didn't operate at the correct speed resulting
-> > > in choppy audio.  Fix this by setting the max-speed in the proper
-> > > node.
-> > >
-> > > Fixes: a1d8a344f1ca ("arm64: dts: renesas: Introduce r8a774a1-beacon-rzg2m-kit")
-> > > Signed-off-by: Adam Ford <aford173@gmail.com>
-> >
-> > Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> > i.e. will queue in renesas-devel for v5.12.
->
-> Since various other patches in the series need a V2, should this be
-> included in the V2 as no-change, or should I skip this and others that
-> have been queued?  If/when they appear in your branch, I can rebase
-> the series against that branch and just submit V2's on what's missing.
->
-> I want to do whatever creates less work for you.
+Signed-off-by: Robert Marko <robert.marko@sartura.hr>
+Cc: Luka Perkov <luka.perkov@sartura.hr>
+---
+ .../bindings/hwmon/ti,tps23861.yaml           | 53 +++++++++++++++++++
+ 1 file changed, 53 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/hwmon/ti,tps23861.yaml
 
-I think it's best to postpone v2 until I have queued up the accepted patches
-in renesas-devel.  Probably that will happen on Monday.
-
-Thanks!
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
+diff --git a/Documentation/devicetree/bindings/hwmon/ti,tps23861.yaml b/Documentation/devicetree/bindings/hwmon/ti,tps23861.yaml
+new file mode 100644
+index 000000000000..a7a801f54398
+--- /dev/null
++++ b/Documentation/devicetree/bindings/hwmon/ti,tps23861.yaml
+@@ -0,0 +1,53 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++
++$id: http://devicetree.org/schemas/hwmon/ti,tps23861.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: TI TPS23861 PoE PSE
++
++maintainers:
++  - Robert Marko <robert.marko@sartura.hr>
++
++description: |
++  The TPS23861 is a IEEE 802.3at Quad Port Power-over-Ethernet PSE Controller.
++
++  Datasheets:
++  https://www.ti.com/lit/gpn/tps23861
++
++
++properties:
++  compatible:
++    enum:
++      - ti,tps23861
++
++  reg:
++    maxItems: 1
++
++  shunt-resistor-micro-ohms:
++    description: |
++      The value of curent sense resistor in microohms.
++    items:
++      default: 255000
++      minimum: 250000
++      maximum: 255000
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++          #address-cells = <1>;
++          #size-cells = <0>;
++
++          tps23861@30 {
++              compatible = "ti,tps23861";
++              reg = <0x30>;
++              shunt-resistor-micro-ohms = <255000>;
++          };
++    };
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.29.2
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
