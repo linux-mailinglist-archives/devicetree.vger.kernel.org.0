@@ -2,85 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A6C7E2DE077
-	for <lists+devicetree@lfdr.de>; Fri, 18 Dec 2020 10:38:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AC0F82DE0A5
+	for <lists+devicetree@lfdr.de>; Fri, 18 Dec 2020 10:59:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1733053AbgLRJh0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Dec 2020 04:37:26 -0500
-Received: from mail-ed1-f52.google.com ([209.85.208.52]:44445 "EHLO
-        mail-ed1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732991AbgLRJh0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Dec 2020 04:37:26 -0500
-Received: by mail-ed1-f52.google.com with SMTP id p22so1632346edu.11;
-        Fri, 18 Dec 2020 01:37:09 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=sP5Pl2hChRWdlyFWKwCe+3kPLFBbxcwbik9e5Qyx4BY=;
-        b=rpPsrFPG3LyZlWvSxQUshT/7cpRya/qxnQH4qPDz0CVK2///ZtsYuS7f4NnPVJLqlW
-         3/DOZRIrrfy6pagx8HZWX5W/0BR9vPiCNYLzWe1OxG+P9yyvE7CqCPpJc9tz7t4l/x5Z
-         g2VHO8uLV4lnZytVoNuj7k4nN5GPhwkPVc3wGsc1stsGYF8ejDUaSbUwMZkdujB7hVBk
-         rZOWus57a+Ab+ATji+YtvuNXuiE151CI702j80XrO9nXKa61CAf1D6mtjttwdc+wjvdz
-         VAnIonMjn7mZutopD5BNsi1rKfw9kyo5gNGAqwruaoL8LWXd9HaymJYg1VZR0jo49dzX
-         kxKg==
-X-Gm-Message-State: AOAM533Mx09eTEKZkM28271dT28ae6MGF+6XxB5upVfHGVf7c5O/uHQS
-        w0OVs8ZYNHj9x4SA71/HKfQ=
-X-Google-Smtp-Source: ABdhPJwmnQ8vtF9L2mupckjV6KgdPxs54QQxzeJjbslIcDPBwDazexMhbxIle9rXr08GaKC24mHzFg==
-X-Received: by 2002:a50:f392:: with SMTP id g18mr3497517edm.306.1608284204006;
-        Fri, 18 Dec 2020 01:36:44 -0800 (PST)
-Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
-        by smtp.googlemail.com with ESMTPSA id n9sm24449828edy.83.2020.12.18.01.36.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Dec 2020 01:36:43 -0800 (PST)
-Date:   Fri, 18 Dec 2020 10:36:41 +0100
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     "Alice Guo (OSS)" <alice.guo@oss.nxp.com>
-Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>
-Subject: Re: [PATCH v8 1/4] dt-bindings: soc: imx8m: add DT Binding doc for
- soc unique ID
-Message-ID: <20201218093641.GA38684@kozik-lap>
-References: <20201218083726.16427-1-alice.guo@oss.nxp.com>
- <20201218085223.GA17306@kozik-lap>
- <AM6PR04MB6053A65F794B316659CDE638E2C30@AM6PR04MB6053.eurprd04.prod.outlook.com>
+        id S1732823AbgLRJ6o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Dec 2020 04:58:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46550 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732804AbgLRJ6o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Dec 2020 04:58:44 -0500
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0C72C0617A7;
+        Fri, 18 Dec 2020 01:58:03 -0800 (PST)
+Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: bbrezillon)
+        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id DED361F4614A;
+        Fri, 18 Dec 2020 09:58:01 +0000 (GMT)
+Date:   Fri, 18 Dec 2020 10:57:59 +0100
+From:   Boris Brezillon <boris.brezillon@collabora.com>
+To:     Pratyush Yadav <p.yadav@ti.com>
+Cc:     Sowjanya Komatineni <skomatineni@nvidia.com>,
+        <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
+        <broonie@kernel.org>, <robh+dt@kernel.org>, <lukas@wunner.de>,
+        <bbrezillon@kernel.org>, <tudor.ambarus@microchip.com>,
+        <linux-spi@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v4 5/9] spi: spi-mem: Mark dummy transfers by setting
+ dummy_data bit
+Message-ID: <20201218105759.43789ccf@collabora.com>
+In-Reply-To: <20201218092106.skwej2g6bk3oksbb@ti.com>
+References: <1608236927-28701-1-git-send-email-skomatineni@nvidia.com>
+        <1608236927-28701-6-git-send-email-skomatineni@nvidia.com>
+        <20201218092106.skwej2g6bk3oksbb@ti.com>
+Organization: Collabora
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <AM6PR04MB6053A65F794B316659CDE638E2C30@AM6PR04MB6053.eurprd04.prod.outlook.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 18, 2020 at 09:05:00AM +0000, Alice Guo (OSS) wrote:
- > > +    required:
-> > > +      - compatible
-> > > +      - nvmem-cells
-> > > +      - nvmem-cell-names
-> > > +
-> > > +additionalProperties: true
-> > 
-> > Don't leave comments unresolved (or resolve them against review without
-> > discussion). Rob asked for changing it. The same as with all schemas - you need
-> > to describe the missing properties.
-> > 
-> > Best regards,
-> > Krzysztof
+On Fri, 18 Dec 2020 14:51:08 +0530
+Pratyush Yadav <p.yadav@ti.com> wrote:
+
+> Hi Sowjanya,
 > 
-> Hi,
-> Thank you for your advice. I replied to him and let him know I remained here unchanged. There will be errors according to his suggestion.
+> On 17/12/20 12:28PM, Sowjanya Komatineni wrote:
+> > This patch marks dummy transfer by setting dummy_data bit to 1.
+> > 
+> > Controllers supporting dummy transfer by hardware use this bit field
+> > to skip software transfer of dummy bytes and use hardware dummy bytes
+> > transfer.  
+> 
+> What is the benefit you get from this change? You add complexity in 
+> spi-mem and the controller driver, so that must come with some benefits. 
+> Here I don't see any. The transfer will certainly take the same amount 
+> of time because the number or period of the dummy cycles has not 
+> changed. So why is this needed?
 
-Then the solution is to correct the errors - describe missing properties
-- instead of ignoring the suggestion and making a resubmit right away.
+Well, you don't have to queue TX bytes if you use HW-based dummy
+cycles, but I agree, I'd expect the overhead to be negligible,
+especially since we're talking about emitting a few bytes, not hundreds.
+This being said, the complexity added to the core is reasonable IMHO,
+so if it really helps reducing the CPU overhead (we might need some
+numbers to prove that), I guess it's okay.
 
-Best regards,
-Krzysztof
+>  
+> > Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
+> > ---
+> >  drivers/spi/spi-mem.c   | 1 +
+> >  include/linux/spi/spi.h | 2 ++
+> >  2 files changed, 3 insertions(+)
+> > 
+> > diff --git a/drivers/spi/spi-mem.c b/drivers/spi/spi-mem.c
+> > index f3a3f19..c64371c 100644
+> > --- a/drivers/spi/spi-mem.c
+> > +++ b/drivers/spi/spi-mem.c
+> > @@ -354,6 +354,7 @@ int spi_mem_exec_op(struct spi_mem *mem, const struct spi_mem_op *op)
+> >  		xfers[xferpos].tx_buf = tmpbuf + op->addr.nbytes + 1;
+> >  		xfers[xferpos].len = op->dummy.nbytes;
+> >  		xfers[xferpos].tx_nbits = op->dummy.buswidth;
+> > +		xfers[xferpos].dummy_data = 1;
+> >  		spi_message_add_tail(&xfers[xferpos], &msg);
+> >  		xferpos++;
+> >  		totalxferlen += op->dummy.nbytes;
+> > diff --git a/include/linux/spi/spi.h b/include/linux/spi/spi.h
+> > index aa09fdc..708f2f5 100644
+> > --- a/include/linux/spi/spi.h
+> > +++ b/include/linux/spi/spi.h
+> > @@ -827,6 +827,7 @@ extern void spi_res_release(struct spi_controller *ctlr,
+> >   *      transfer. If 0 the default (from @spi_device) is used.
+> >   * @bits_per_word: select a bits_per_word other than the device default
+> >   *      for this transfer. If 0 the default (from @spi_device) is used.
+> > + * @dummy_data: indicates transfer is dummy bytes transfer.
+> >   * @cs_change: affects chipselect after this transfer completes
+> >   * @cs_change_delay: delay between cs deassert and assert when
+> >   *      @cs_change is set and @spi_transfer is not the last in @spi_message
+> > @@ -939,6 +940,7 @@ struct spi_transfer {
+> >  	struct sg_table tx_sg;
+> >  	struct sg_table rx_sg;
+> >  
+> > +	unsigned	dummy_data:1;
+> >  	unsigned	cs_change:1;
+> >  	unsigned	tx_nbits:3;
+> >  	unsigned	rx_nbits:3;
+> > -- 
+> > 2.7.4
+> >   
+> 
 
