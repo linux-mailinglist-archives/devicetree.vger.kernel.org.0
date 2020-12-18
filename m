@@ -2,76 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B0E3A2DE4EF
-	for <lists+devicetree@lfdr.de>; Fri, 18 Dec 2020 15:38:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D0E72DE3F1
+	for <lists+devicetree@lfdr.de>; Fri, 18 Dec 2020 15:23:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727842AbgLROhU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Dec 2020 09:37:20 -0500
-Received: from 15.mo4.mail-out.ovh.net ([91.121.62.11]:51454 "EHLO
-        15.mo4.mail-out.ovh.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729325AbgLROhT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Dec 2020 09:37:19 -0500
-X-Greylist: delayed 99004 seconds by postgrey-1.27 at vger.kernel.org; Fri, 18 Dec 2020 09:37:18 EST
-Received: from player716.ha.ovh.net (unknown [10.108.57.211])
-        by mo4.mail-out.ovh.net (Postfix) with ESMTP id 62CA725ACDD
-        for <devicetree@vger.kernel.org>; Fri, 18 Dec 2020 15:12:12 +0100 (CET)
-Received: from armadeus.com (lfbn-str-1-215-46.w86-243.abo.wanadoo.fr [86.243.176.46])
-        (Authenticated sender: sebastien.szymanski@armadeus.com)
-        by player716.ha.ovh.net (Postfix) with ESMTPSA id 7F1E0194037F5;
-        Fri, 18 Dec 2020 14:11:56 +0000 (UTC)
-Authentication-Results: garm.ovh; auth=pass (GARM-96R001a0f67aaf-926a-48dd-a587-2bb9401b4345,
-                    F4E34FAEFBBC2F77A8F65A75F5C3271EDA163614) smtp.auth=sebastien.szymanski@armadeus.com
-X-OVh-ClientIp: 86.243.176.46
-From:   =?UTF-8?q?S=C3=A9bastien=20Szymanski?= 
-        <sebastien.szymanski@armadeus.com>
-To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     Marek Vasut <marex@denx.de>, Stefan Agner <stefan@agner.ch>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        =?UTF-8?q?S=C3=A9bastien=20Szymanski?= 
-        <sebastien.szymanski@armadeus.com>
-Subject: [PATCH 3/3] dt-bindings: mxsfb: add compatible for i.MX6UL/i.MX6ULL
-Date:   Fri, 18 Dec 2020 15:10:35 +0100
-Message-Id: <20201218141035.28038-3-sebastien.szymanski@armadeus.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20201218141035.28038-1-sebastien.szymanski@armadeus.com>
-References: <20201218141035.28038-1-sebastien.szymanski@armadeus.com>
+        id S1727404AbgLROXc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Dec 2020 09:23:32 -0500
+Received: from mail-ej1-f47.google.com ([209.85.218.47]:39939 "EHLO
+        mail-ej1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727326AbgLROXc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Dec 2020 09:23:32 -0500
+Received: by mail-ej1-f47.google.com with SMTP id x16so3440895ejj.7;
+        Fri, 18 Dec 2020 06:23:15 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=uQTJTNKkDlbCLDDKXRf++qDs0VZ1SBcgKS9o1XvOdT0=;
+        b=nOk2qQzBHBMnSZlYcL00WxhsKUOUSe6Kp8SX9LImV0/ehbQYlRjTKtWkzyvowof0VD
+         y9pOK3zgw95vhpZDmIroSJ/OOitsH/dDGL7U3NsB/6KhCl/FimrGMQsxfbj0x0+dFIj+
+         kVXwdjkJJGK+cOXWnIR0OaDCD8oqFt0K584vuuL31hWeyn6DDAePLVB09m3WlFNkeHAf
+         MzPnXrOGXJllIw+U+XMB46wUgTQlPpgEsg3w8JZByTKHwTSKYLu+SzLYmgXbJPJlgaeL
+         cOlf8MNvzSBv9kcfblR16VnYxFJMgriXQedEpA5k1g5kKjXOcuO0MBbQRhOHPKDTehNY
+         pNOw==
+X-Gm-Message-State: AOAM533kyPODzIsaKythUVKXl27o1UGJNhREylPhgsdpiJaIy37V6ou1
+        vgnaEuw//wcOwvN2j1ZsvfY=
+X-Google-Smtp-Source: ABdhPJzWcltOgqb/FpdNyYBvgBAhF/XpVWHDKNOqVDXjdPxiNEk4HfWFRZ6FFaQxNhwapxmmrHodYw==
+X-Received: by 2002:a17:906:7d91:: with SMTP id v17mr4281139ejo.522.1608301369788;
+        Fri, 18 Dec 2020 06:22:49 -0800 (PST)
+Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
+        by smtp.googlemail.com with ESMTPSA id op5sm5566452ejb.43.2020.12.18.06.22.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 18 Dec 2020 06:22:48 -0800 (PST)
+Date:   Fri, 18 Dec 2020 15:22:47 +0100
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Marek Szyprowski <m.szyprowski@samsung.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Sylwester Nawrocki <snawrocki@kernel.org>
+Subject: Re: [PATCH 9/9] mfd: sec-irq: Do not enforce (incorrect) interrupt
+ trigger type
+Message-ID: <20201218142247.GA2847@kozik-lap>
+References: <20201210212903.216728-1-krzk@kernel.org>
+ <CGME20201210212938eucas1p1297b8503e9c059f2bc77c3a429a9114e@eucas1p1.samsung.com>
+ <20201210212903.216728-9-krzk@kernel.org>
+ <0f1509ef-9ae7-7a77-84b7-360b8f0071c7@samsung.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Ovh-Tracer-Id: 13311514602123383877
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedujedrudeliedgieduucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhephffvufffkffojghfgggtgfesthekredtredtjeenucfhrhhomhepuforsggrshhtihgvnhcuufiihihmrghnshhkihcuoehsvggsrghsthhivghnrdhsiiihmhgrnhhskhhisegrrhhmrgguvghushdrtghomheqnecuggftrfgrthhtvghrnhephfefhfejjeffgfeiteejhfetvdeftdekudeltedvveelleeileffgedufeefvddvnecukfhppedtrddtrddtrddtpdekiedrvdegfedrudejiedrgeeinecuvehluhhsthgvrhfuihiivgepudenucfrrghrrghmpehmohguvgepshhmthhpqdhouhhtpdhhvghlohepphhlrgihvghrjeduiedrhhgrrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpehsvggsrghsthhivghnrdhsiiihmhgrnhhskhhisegrrhhmrgguvghushdrtghomhdprhgtphhtthhopeguvghvihgtvghtrhgvvgesvhhgvghrrdhkvghrnhgvlhdrohhrgh
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <0f1509ef-9ae7-7a77-84b7-360b8f0071c7@samsung.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-i.MX6UL/i.MX6ULL have eLCDIF controller, too.
+On Fri, Dec 18, 2020 at 02:25:39PM +0100, Marek Szyprowski wrote:
+> On 10.12.2020 22:29, Krzysztof Kozlowski wrote:
+> > Interrupt line can be configured on different hardware in different way,
+> > even inverted.  Therefore driver should not enforce specific trigger
+> > type - edge falling - but instead rely on Devicetree to configure it.
+> >
+> > The Samsung PMIC drivers are used only on Devicetree boards.
+> >
+> > Additionally, the PMIC datasheets describe the interrupt line as active
+> > low with a requirement of acknowledge from the CPU therefore the edge
+> > falling is not correct.
+> >
+> > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> 
+> Tested-by: Marek Szyprowski <m.szyprowski@samsung.com>
+> 
+> It looks that this together with DTS change fixes RTC alarm failure that 
+> I've observed from time to time on TM2e board!
 
-Signed-off-by: Sébastien Szymanski <sebastien.szymanski@armadeus.com>
----
- Documentation/devicetree/bindings/display/mxsfb.txt | 1 +
- 1 file changed, 1 insertion(+)
+Great! I'll add this to the commit msg.
 
-diff --git a/Documentation/devicetree/bindings/display/mxsfb.txt b/Documentation/devicetree/bindings/display/mxsfb.txt
-index c985871c46b3..6c1c4ad04b89 100644
---- a/Documentation/devicetree/bindings/display/mxsfb.txt
-+++ b/Documentation/devicetree/bindings/display/mxsfb.txt
-@@ -5,6 +5,7 @@ New bindings:
- Required properties:
- - compatible:	Should be "fsl,imx23-lcdif" for i.MX23.
- 		Should be "fsl,imx28-lcdif" for i.MX28.
-+		Should be "fsl,imx6ul-lcdif" for i.MX6UL/i.MX6ULL.
- 		Should be "fsl,imx6sx-lcdif" for i.MX6SX.
- 		Should be "fsl,imx8mq-lcdif" for i.MX8MQ.
- - reg:		Address and length of the register set for LCDIF
--- 
-2.26.2
+Thanks for testing.
 
+Best regards,
+Krzysztof
+
+
+> 
+> > ---
+> >
+> > This patch should wait till DTS changes are merged, as it relies on
+> > proper Devicetree.
+> > ---
