@@ -2,64 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E9E612DDEE5
-	for <lists+devicetree@lfdr.de>; Fri, 18 Dec 2020 08:14:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D60082DDEEE
+	for <lists+devicetree@lfdr.de>; Fri, 18 Dec 2020 08:17:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728212AbgLRHNk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Dec 2020 02:13:40 -0500
-Received: from muru.com ([72.249.23.125]:39372 "EHLO muru.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726851AbgLRHNk (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 18 Dec 2020 02:13:40 -0500
-Received: from atomide.com (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTPS id 32D73809F;
-        Fri, 18 Dec 2020 07:13:01 +0000 (UTC)
-Date:   Fri, 18 Dec 2020 09:12:55 +0200
-From:   Tony Lindgren <tony@atomide.com>
-To:     "H. Nikolaus Schaller" <hns@goldelico.com>
-Cc:     =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-omap@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        letux-kernel@openphoenux.org,
-        Andreas Kemnade <andreas@kemnade.info>, stable@vger.kernel.org
-Subject: Re: [PATCH] DTS: ARM: gta04: remove legacy spi-cs-high to make
- display work again
-Message-ID: <20201218071255.GD26857@atomide.com>
-References: <de8774e44a8f6402435e64034b8e7122157f5b52.1607766924.git.hns@goldelico.com>
+        id S1728137AbgLRHPj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Dec 2020 02:15:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49858 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726520AbgLRHPi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Dec 2020 02:15:38 -0500
+Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70005C0617A7
+        for <devicetree@vger.kernel.org>; Thu, 17 Dec 2020 23:14:58 -0800 (PST)
+Received: by mail-pj1-x102c.google.com with SMTP id iq13so819775pjb.3
+        for <devicetree@vger.kernel.org>; Thu, 17 Dec 2020 23:14:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=5uBH5KsWopbV7FffwP9cu3qwTCPbWsa/gpWuvPcUSsg=;
+        b=QAa+QgBNWGXQOzLHcEttslyMX7yfVRFnmsie63URsvH5GVYmCfqLASAvZuwYX9MIET
+         eDmE1hBXyewXRMKiWj91RDHrjpb/kMVBkEeGid+6WGS4/m50KcVQrRCW8T8QrPc/NQ/n
+         xkFA8qANdUY/ZMDZ1U10ACf2taGB60mF9xbpsuylhp3HoF/iXl+pGW94NzxojOGrxEL+
+         jbM/5E7N+gPH/W3t8wPwMcbtn6s1VbaU8LAIXwc8wN+nbdu3UYGXyxVvioFI2s3fGdha
+         qUWYb/n/DIAy3pLKM/lOTXvtnloCMYB9AUwFndWYRMY4bs1NSawqpvTYjUnjhU9MTH8e
+         72jA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=5uBH5KsWopbV7FffwP9cu3qwTCPbWsa/gpWuvPcUSsg=;
+        b=huB2qesWSdGSLrVYkqb0a5Vt+l9p9D2ZExYRVeof06EM1LVMlxEf7tP3fALyjfFBeY
+         llaUKdOJ8kN1y4YkJ7zRXVRxHG64fr88m8DRnfUPUXvzaIGj1YLn46HH51e5+T2MIsPX
+         6ifZednv/YMiLoa46E1jeItw7Z+wkUC1jz+1C1c1Q8sYquqj2jb6+j8ln/de7aaVCDP2
+         qwgivHAFYAERUG1l5OdRrevP91AFJX2QROBh1IkJ7q9zKNaFNLhLpp5+OFt1Nv/un4uG
+         TyUb5JyS4v6EcVXtFqki+0LJye4tvUdAxEVIz1BkQpuk5kqaHugVV/2k4oFO6ci5r8a4
+         oydg==
+X-Gm-Message-State: AOAM532aolFGBltxjNF5QEoy9pe+U3naDbpi9KbJE5tLVJe3RuzhOcXm
+        c+vrYY+eBYtwiwbUQhlGvDggsxIa0mtQ/A==
+X-Google-Smtp-Source: ABdhPJxh6Vc+BoEp2nvhSj4YmNHb7ku5mMkwmUaQUKeZHUbZ9rzCY6oJyHfeJDwsJp2g/i5HDfSMhg==
+X-Received: by 2002:a17:902:8f94:b029:da:d168:4443 with SMTP id z20-20020a1709028f94b02900dad1684443mr3091172plo.57.1608275697958;
+        Thu, 17 Dec 2020 23:14:57 -0800 (PST)
+Received: from localhost ([122.172.20.109])
+        by smtp.gmail.com with ESMTPSA id j20sm7721737pfd.106.2020.12.17.23.14.56
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 17 Dec 2020 23:14:57 -0800 (PST)
+Date:   Fri, 18 Dec 2020 12:44:55 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Dmitry Osipenko <digetx@gmail.com>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Nicolas Chauvet <kwizart@gmail.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Kevin Hilman <khilman@kernel.org>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        devel@driverdev.osuosl.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-media@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-clk@vger.kernel.org
+Subject: Re: [PATCH v2 00/48] Introduce core voltage scaling for NVIDIA
+ Tegra20/30 SoCs
+Message-ID: <20201218071455.vdeozvvnmkjtrejt@vireshk-i7>
+References: <20201217180638.22748-1-digetx@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <de8774e44a8f6402435e64034b8e7122157f5b52.1607766924.git.hns@goldelico.com>
+In-Reply-To: <20201217180638.22748-1-digetx@gmail.com>
+User-Agent: NeoMutt/20180716-391-311a52
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-* H. Nikolaus Schaller <hns@goldelico.com> [201212 11:59]:
-> This reverts
-> 
-> commit f1f028ff89cb ("DTS: ARM: gta04: introduce legacy spi-cs-high to make display work again")
-> 
-> which had to be intruduced after
-> 
-> commit 6953c57ab172 ("gpio: of: Handle SPI chipselect legacy bindings")
-> 
-> broke the GTA04 display. This contradicted the data sheet but was the only
-> way to get it as an spi client operational again.
-> 
-> The panel data sheet defines the chip-select to be active low.
-> 
-> Now, with the arrival of
-> 
-> commit 766c6b63aa04 ("spi: fix client driver breakages when using GPIO descriptors")
-> 
-> the logic of interaction between spi-cs-high and the gpio descriptor flags
-> has been changed a second time, making the display broken again. So we have
-> to remove the original fix which in retrospect was a workaround of a bug in
-> the spi subsystem and not a feature of the panel or bug in the device tree.
-> 
-> With this fix the device tree is back in sync with the data sheet and
-> spi subsystem code.
+On 17-12-20, 21:05, Dmitry Osipenko wrote:
+> Introduce core voltage scaling for NVIDIA Tegra20/30 SoCs, which reduces
+> power consumption and heating of the Tegra chips. Tegra SoC has multiple
+> hardware units which belong to a core power domain of the SoC and share
+> the core voltage. The voltage must be selected in accordance to a minimum
+> requirement of every core hardware unit.
 
-Thanks applying into fixes.
+Please submit the OPP changes separately (alone), it will never get
+merged this way. Send fixes at the top, any features you want later in
+the series. It is fine for you to base your series of patches which
+are under review, you just need to mention that in your cover letter
+for your platform's patchset.
 
-Tony
+-- 
+viresh
