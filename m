@@ -2,37 +2,35 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 779F72DE84E
-	for <lists+devicetree@lfdr.de>; Fri, 18 Dec 2020 18:38:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 74CD12DE850
+	for <lists+devicetree@lfdr.de>; Fri, 18 Dec 2020 18:38:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731617AbgLRRiU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Dec 2020 12:38:20 -0500
-Received: from www.zeus03.de ([194.117.254.33]:35624 "EHLO mail.zeus03.de"
+        id S1728169AbgLRRiV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Dec 2020 12:38:21 -0500
+Received: from www.zeus03.de ([194.117.254.33]:35686 "EHLO mail.zeus03.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728118AbgLRRiT (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 18 Dec 2020 12:38:19 -0500
+        id S1731478AbgLRRiV (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 18 Dec 2020 12:38:21 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=simple; d=sang-engineering.com; h=
         from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=k1; bh=kk4glNSs1SM1Gf
-        XglI+JXECfzcYWZ8e1yzurd6rIGbo=; b=unMH8bNVe1M+SVyvga9p7RbIF81Z1j
-        7Vr2bhIV+UgFcQRzDh0OtmvEmwqvcJsgSP9OjeNJRDFC3VBmsxa/QuPTrlbsXogN
-        zsbsvaH/DN2ZctrO5Dav6rRyVVRRtJbevG37H/rRfvtUrXlj1NZNf/flEVrc7kwY
-        8hG4JAzXx38zE=
-Received: (qmail 3906687 invoked from network); 18 Dec 2020 18:37:36 +0100
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 18 Dec 2020 18:37:36 +0100
-X-UD-Smtp-Session: l3s3148p1@sDVhkMC2ZpggAwDPXwIpAOUwDQytQs2L
+        :mime-version:content-transfer-encoding; s=k1; bh=9SXPjY9X7DmDyR
+        YTpXoA8iUdYTm1ebGdtMfXB8+j11Y=; b=I+bWPLWCBEw+Kogh4Fm6ruAT/AWd38
+        n1WlvKyNiCRKH+GTC+seb1Te56Sq+XdUS9DC3MGz3lvLo7EeMN47q4jRB+h7EYj6
+        xt/NxOiqu9UlSyKhbfNgHzsEnvEloevHTIgguxlQejnL5yXZiQ23GXETD3V6L/tj
+        mUtC35K82qcSY=
+Received: (qmail 3906776 invoked from network); 18 Dec 2020 18:37:37 +0100
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 18 Dec 2020 18:37:37 +0100
+X-UD-Smtp-Session: l3s3148p1@HtN4kMC2apggAwDPXwIpAOUwDQytQs2L
 From:   Wolfram Sang <wsa+renesas@sang-engineering.com>
 To:     linux-renesas-soc@vger.kernel.org
 Cc:     Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>,
         Geert Uytterhoeven <geert+renesas@glider.be>,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH 1/5] dt-bindings: watchdog: renesas,wdt: add r8a779a0 (V3U) support
-Date:   Fri, 18 Dec 2020 18:37:26 +0100
-Message-Id: <20201218173731.12839-2-wsa+renesas@sang-engineering.com>
+Subject: [PATCH 3/5] arm64: dts: renesas: r8a779a0: Add RWDT node
+Date:   Fri, 18 Dec 2020 18:37:28 +0100
+Message-Id: <20201218173731.12839-4-wsa+renesas@sang-engineering.com>
 X-Mailer: git-send-email 2.29.2
 In-Reply-To: <20201218173731.12839-1-wsa+renesas@sang-engineering.com>
 References: <20201218173731.12839-1-wsa+renesas@sang-engineering.com>
@@ -42,26 +40,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Hoang Vo <hoang.vo.eb@renesas.com>
+
+Add a device node for the Watchdog Timer (WDT) controller on the
+R8A779A0 SoC.
+
+Signed-off-by: Hoang Vo <hoang.vo.eb@renesas.com>
+[wsa: rebased to mainline]
 Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 ---
+ arch/arm64/boot/dts/renesas/r8a779a0.dtsi | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-Please apply it to the watchdog-tree.
-
- Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml b/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
-index 6933005b52bd..ab66d3f0c476 100644
---- a/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
-+++ b/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
-@@ -50,6 +50,7 @@ properties:
-               - renesas,r8a77980-wdt     # R-Car V3H
-               - renesas,r8a77990-wdt     # R-Car E3
-               - renesas,r8a77995-wdt     # R-Car D3
-+              - renesas,r8a779a0-wdt     # R-Car V3U
-           - const: renesas,rcar-gen3-wdt # R-Car Gen3 and RZ/G2
+diff --git a/arch/arm64/boot/dts/renesas/r8a779a0.dtsi b/arch/arm64/boot/dts/renesas/r8a779a0.dtsi
+index 6cf77ce9aa93..1ca500f55096 100644
+--- a/arch/arm64/boot/dts/renesas/r8a779a0.dtsi
++++ b/arch/arm64/boot/dts/renesas/r8a779a0.dtsi
+@@ -85,6 +85,16 @@ rst: reset-controller@e6160000 {
+ 			reg = <0 0xe6160000 0 0x4000>;
+ 		};
  
-   reg:
++		rwdt: watchdog@e6020000 {
++			compatible = "renesas,r8a779a0-wdt",
++				     "renesas,rcar-gen3-wdt";
++			reg = <0 0xe6020000 0 0x0c>;
++			clocks = <&cpg CPG_MOD 907>;
++			power-domains = <&sysc R8A779A0_PD_ALWAYS_ON>;
++			resets = <&cpg 907>;
++			status = "disabled";
++		};
++
+ 		sysc: system-controller@e6180000 {
+ 			compatible = "renesas,r8a779a0-sysc";
+ 			reg = <0 0xe6180000 0 0x4000>;
 -- 
 2.29.2
 
