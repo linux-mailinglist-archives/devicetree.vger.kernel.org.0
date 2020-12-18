@@ -2,159 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 389C72DE0D4
-	for <lists+devicetree@lfdr.de>; Fri, 18 Dec 2020 11:16:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D80B52DE0E0
+	for <lists+devicetree@lfdr.de>; Fri, 18 Dec 2020 11:22:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1733170AbgLRKP1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Dec 2020 05:15:27 -0500
-Received: from mail-eopbgr150053.outbound.protection.outlook.com ([40.107.15.53]:26052
-        "EHLO EUR01-DB5-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1728246AbgLRKP1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 18 Dec 2020 05:15:27 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=I4rNiayZzHygVTYFaPGgabU/1UBqQdElAUDcnGGAwxoI0o67+BrOtDcOnQsk6MbbahF7w7EuwikNVi9xvHdCkDYug27IbZFulO/Ns25CuyeqZHPcoMwreyHk4r+5QE9HSObiu5GTtY/xMZcFcIRM7gdhcMwvKmkdpvnEyO0oTpYtOax2dEgyBq5uS1r6pdl7T6FsErHjNzAZfQJyzgnukDyw+m6D+WcAAbwXYe4uGNiofW3F6gD7oIlu4lNb2UUKJV7UuEp/9B89NzFpG+x0YxvcvL6eufEliQJtwb4dWaeai3jFEply+8PrMg9ScsvXqF+UBIXw49BWfanFFlmCfw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=j2WFd3wuV6Wx3PKVrQ5qkUXLNP5s8YJc8UUY8OfDhto=;
- b=ZSdHw/zx5xhxvPoY7zrRzkftLy+tNm76TGQnVy8x9kOu6NXD2Ghu6L1kbYzTc97ONwir3QWaXH62Dv1C+hVHW2wwKDWoVQ0qNbmhjCmZKuTCRA1dA7CJXfP2V7oBKZmLnS2r8dKm3acX0upQQwD4iqGG7ZIDKIzpbNlonA2iCl6ywQrMcgbp/6voMDMfY6SUibbzz6wtsj/76Ze63LcyNXSaNh20UOtgHBPBxx2kwxjXFemA8h0E+oVJuefoJzgqR13kHzdiq6/jpOEz7Z8Zmtzwr9OGoOC6Y1Id+odNWSEj6BxbffRsDm9BGU6oK3u262OaKFdClRo6UJM4kQK/Pg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector2-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=j2WFd3wuV6Wx3PKVrQ5qkUXLNP5s8YJc8UUY8OfDhto=;
- b=ICju6Nof+qZN431ioocUDuVSgP7JprTCjnKzF4eutZVvHx1jna4MkG/Q3UNBH+4xyiRSHOxIyKlszEPaU1Ro7wP4o5X0pDmWIpUzn+Iw4vhmPIZgaYt5ztnZtISM/IoifW8QwhSr+/UWKA31p27I4y15JKWKfKt6EgfetcBL4KQ=
-Received: from AM6PR04MB6053.eurprd04.prod.outlook.com (2603:10a6:20b:b9::10)
- by AM6PR04MB4197.eurprd04.prod.outlook.com (2603:10a6:209:44::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3654.13; Fri, 18 Dec
- 2020 10:14:35 +0000
-Received: from AM6PR04MB6053.eurprd04.prod.outlook.com
- ([fe80::78fe:9b7a:a2ac:9631]) by AM6PR04MB6053.eurprd04.prod.outlook.com
- ([fe80::78fe:9b7a:a2ac:9631%7]) with mapi id 15.20.3676.025; Fri, 18 Dec 2020
- 10:14:35 +0000
-From:   "Alice Guo (OSS)" <alice.guo@oss.nxp.com>
-To:     Krzysztof Kozlowski <krzk@kernel.org>,
-        "Alice Guo (OSS)" <alice.guo@oss.nxp.com>
-CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>
-Subject: RE: [PATCH v8 1/4] dt-bindings: soc: imx8m: add DT Binding doc for
- soc unique ID
-Thread-Topic: [PATCH v8 1/4] dt-bindings: soc: imx8m: add DT Binding doc for
- soc unique ID
-Thread-Index: AQHW1RkPpji9TbVGY0Ki90hKbr4yE6n8jAGAgAADhwCAAAjagIAABRgA
-Date:   Fri, 18 Dec 2020 10:14:35 +0000
-Message-ID: <AM6PR04MB60534C972777EED96FD105D2E2C30@AM6PR04MB6053.eurprd04.prod.outlook.com>
-References: <20201218083726.16427-1-alice.guo@oss.nxp.com>
- <20201218085223.GA17306@kozik-lap>
- <AM6PR04MB6053A65F794B316659CDE638E2C30@AM6PR04MB6053.eurprd04.prod.outlook.com>
- <20201218093641.GA38684@kozik-lap>
-In-Reply-To: <20201218093641.GA38684@kozik-lap>
-Accept-Language: zh-CN, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=none action=none header.from=oss.nxp.com;
-x-ms-exchange-messagesentrepresentingtype: 1
-x-originating-ip: [119.31.174.71]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: 8ad224d7-ffc3-4171-f9e9-08d8a33db839
-x-ms-traffictypediagnostic: AM6PR04MB4197:
-x-ms-exchange-sharedmailbox-routingagent-processed: True
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <AM6PR04MB41971FEEF4741D7CDDDCA2AEA3C30@AM6PR04MB4197.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:5516;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: JpQScihbAuAYn5FUkgw3h8sGeAFq5k0+C4aqfqY0sST2oXECqzidrz8cI/Tf7+dhOHwnJP3tJKDa0hdgF9GMZygs5P99Y5AyjhCBpvuEKCYFtPiJhEXb4CzwD8KSojB8Y6F73ao0lnB9x+P83zwhAObZBx7IK3ogXGZaCjiljGZO5iFQ4ubWXg9qgwqBVHz5WCdCOX5tDedd2q5WVSPZpf1kA7j266rc5YjdJeO9tDBLDPzsljTB7exqjymoxDijJ80d4ZLwXeSW2Qzb+tNLHC6qZ9UCK8zB+1yKdYBXOjzPCEvj2vaeA0/3ikd/sWiuIniu1T/JPznsqLsS6o4o2T8gkml7X4ssp5/0Jy61lRO6s7YtCpYrMep7t7TdtSllgvvsbMLxoOnVViODwxPzeZO7mg+gs5DrBDrk3bfCxQxKGSvYdxQOx4mX2WKhuePC
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB6053.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(136003)(346002)(396003)(376002)(39860400002)(366004)(66946007)(54906003)(71200400001)(8676002)(66556008)(7696005)(316002)(6506007)(86362001)(55016002)(66476007)(64756008)(83380400001)(9686003)(33656002)(186003)(26005)(52536014)(2906002)(66446008)(4326008)(8936002)(478600001)(76116006)(110136005)(53546011)(966005)(5660300002)(32563001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: =?utf-8?B?UHRLZ0JtOVRZMnBBRkdUZ0lvZ1V3RGt4SmFiVjAxd1ZMM25FYnNTY3lTQlFL?=
- =?utf-8?B?OHN3UjlZeFY4azBLa1I5cnFXOE1WUEFHY3dsM0NyWVVxalR5VE5RSlBmUlJJ?=
- =?utf-8?B?a1FCQWwyMytMVmZkelJ6UVhpZ2RjRW1CUS9yaG1JZmtSR1pVTXFNeFdVL0pY?=
- =?utf-8?B?TFB5NGxqRzZ6SCs5eFhoUHpoanZ0cU9UbHVKcDIwQW85U05IelNmTERNKy9O?=
- =?utf-8?B?dStrQlY4c0FRVnY2WERUang3TG5kekdpa2dsM3RqRnA5WVZkWk14dGhhbkJT?=
- =?utf-8?B?TTFtL1NjejNYT2RzZzBDemdhd2xpNjJteWdvUmtSVWZ3Y3QrdlFzTHlLcWZu?=
- =?utf-8?B?a3hHV0c4Y1FmVFl4a3VRbzJXdGpnSzc1NkRSamdTaDdPZzJSTlRRWnYydEcw?=
- =?utf-8?B?bXByVWZXUUhJSzQyLzNJeEJIU21SRVd4S2xDTXk3UFV6WHArWUtvVUM1YktW?=
- =?utf-8?B?UFIycERYR0VGbUZVMTYzZitnRUNWQ0RvbS9wU1psd25xRk1KcGg4a3VTbGQ2?=
- =?utf-8?B?SzQzTktrdXpxTGcrZUdsRDIyaW9IVHViL1RFUTB6OUpnZWVndGhlWXk4Qml3?=
- =?utf-8?B?VG15bmdyU2k4ZXhKTHpvdVpMb2NIanB0bXpjTUJYUUdvZXErUjEwYngwTm14?=
- =?utf-8?B?YmNlOW42L0FhQno3alNBWXZrQXl5a2pQbEdmT2E5cS90ZkEraXppZE1nUXVF?=
- =?utf-8?B?VHU5Z0t1U0FYS1hiL1Bwd3dTTWtnUTBuSFliM1d1QnI3Sk5iK3Zoell5RTEx?=
- =?utf-8?B?OHN2VjQ5VjJDb1p1N090OGl2akZ2aTZLc1kvUWFDS3R4RXhtZUVhSEx6UUV1?=
- =?utf-8?B?UmlQclRwNGdjdzFMMlJkbjZ0RTRjRzNhYnUwUmI0MTNxclZPL3FBYktzSEdV?=
- =?utf-8?B?ditVZkFIUHpwbTFNWWZjTi9LRDJSYXdiZ1BGQmZ4YkNEYUVzUm9QRXdyWWFR?=
- =?utf-8?B?dnptaUxTcGpxRTNLM3MvcVNGU2FidGtYUEc0YXVGNHFraGRvWFhucG4walFK?=
- =?utf-8?B?a0xkbStXK244ajN2WXdMUHpqK2g2d0Nsd1VFdWZDb0UwdWpLWmU1WVQxUHNB?=
- =?utf-8?B?OVRNTFhNTXpwNng2SGJKWGZScGkyWEhQdlZUWjFTRDI1QmZyc0tDS3JDVStv?=
- =?utf-8?B?TGdoMmFkNUFPblZNS3RhT0QydWFRa2tVaXNVaDN6Y3VnU1V6U3dZb0FwSW5m?=
- =?utf-8?B?WXRCb2hRL3JsZi9lY0tObS9LQ01RSXRhVjhpcUEvTGR1TTV6NzBXZlVqeHp5?=
- =?utf-8?B?N1lubUJ4dDNSYlBzYStYcjIwSm9BRWNCV3RieHVvY2gvR0tHZ1c3cmFSZUZT?=
- =?utf-8?Q?QVIx1+j3ykVuU=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        id S1728246AbgLRKVX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Dec 2020 05:21:23 -0500
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:36940 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725897AbgLRKVW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Dec 2020 05:21:22 -0500
+Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: bbrezillon)
+        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 4BC251F46188;
+        Fri, 18 Dec 2020 10:20:40 +0000 (GMT)
+Date:   Fri, 18 Dec 2020 11:20:37 +0100
+From:   Boris Brezillon <boris.brezillon@collabora.com>
+To:     Sowjanya Komatineni <skomatineni@nvidia.com>
+Cc:     <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
+        <broonie@kernel.org>, <robh+dt@kernel.org>, <lukas@wunner.de>,
+        <bbrezillon@kernel.org>, <p.yadav@ti.com>,
+        <tudor.ambarus@microchip.com>, <linux-spi@vger.kernel.org>,
+        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v4 6/9] spi: tegra210-quad: Add support for hardware
+ dummy cycles transfer
+Message-ID: <20201218112037.4465598a@collabora.com>
+In-Reply-To: <1608236927-28701-7-git-send-email-skomatineni@nvidia.com>
+References: <1608236927-28701-1-git-send-email-skomatineni@nvidia.com>
+        <1608236927-28701-7-git-send-email-skomatineni@nvidia.com>
+Organization: Collabora
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB6053.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8ad224d7-ffc3-4171-f9e9-08d8a33db839
-X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Dec 2020 10:14:35.0825
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: R3Mog1z4OQAYzPhufw5TpNe/zdPLQ3FSEOod8UjqihWthIFLYEwKyXHtEV0evyVnamLMdcqFhisOr2HZgoWBoA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM6PR04MB4197
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogS3J6eXN6dG9mIEtvemxv
-d3NraSA8a3J6a0BrZXJuZWwub3JnPg0KPiBTZW50OiAyMDIw5bm0MTLmnIgxOOaXpSAxNzozNw0K
-PiBUbzogQWxpY2UgR3VvIChPU1MpIDxhbGljZS5ndW9Ab3NzLm54cC5jb20+DQo+IENjOiByb2Jo
-K2R0QGtlcm5lbC5vcmc7IHNoYXduZ3VvQGtlcm5lbC5vcmc7IHMuaGF1ZXJAcGVuZ3V0cm9uaXgu
-ZGU7DQo+IGtlcm5lbEBwZW5ndXRyb25peC5kZTsgZmVzdGV2YW1AZ21haWwuY29tOyBkZXZpY2V0
-cmVlQHZnZXIua2VybmVsLm9yZzsNCj4gbGludXgtYXJtLWtlcm5lbEBsaXN0cy5pbmZyYWRlYWQu
-b3JnOyBsaW51eC1rZXJuZWxAdmdlci5rZXJuZWwub3JnOyBkbC1saW51eC1pbXgNCj4gPGxpbnV4
-LWlteEBueHAuY29tPg0KPiBTdWJqZWN0OiBSZTogW1BBVENIIHY4IDEvNF0gZHQtYmluZGluZ3M6
-IHNvYzogaW14OG06IGFkZCBEVCBCaW5kaW5nIGRvYyBmb3Igc29jDQo+IHVuaXF1ZSBJRA0KPiAN
-Cj4gT24gRnJpLCBEZWMgMTgsIDIwMjAgYXQgMDk6MDU6MDBBTSArMDAwMCwgQWxpY2UgR3VvIChP
-U1MpIHdyb3RlOg0KPiAgPiA+ICsgICAgcmVxdWlyZWQ6DQo+ID4gPiA+ICsgICAgICAtIGNvbXBh
-dGlibGUNCj4gPiA+ID4gKyAgICAgIC0gbnZtZW0tY2VsbHMNCj4gPiA+ID4gKyAgICAgIC0gbnZt
-ZW0tY2VsbC1uYW1lcw0KPiA+ID4gPiArDQo+ID4gPiA+ICthZGRpdGlvbmFsUHJvcGVydGllczog
-dHJ1ZQ0KPiA+ID4NCj4gPiA+IERvbid0IGxlYXZlIGNvbW1lbnRzIHVucmVzb2x2ZWQgKG9yIHJl
-c29sdmUgdGhlbSBhZ2FpbnN0IHJldmlldw0KPiA+ID4gd2l0aG91dCBkaXNjdXNzaW9uKS4gUm9i
-IGFza2VkIGZvciBjaGFuZ2luZyBpdC4gVGhlIHNhbWUgYXMgd2l0aCBhbGwNCj4gPiA+IHNjaGVt
-YXMgLSB5b3UgbmVlZCB0byBkZXNjcmliZSB0aGUgbWlzc2luZyBwcm9wZXJ0aWVzLg0KPiA+ID4N
-Cj4gPiA+IEJlc3QgcmVnYXJkcywNCj4gPiA+IEtyenlzenRvZg0KPiA+DQo+ID4gSGksDQo+ID4g
-VGhhbmsgeW91IGZvciB5b3VyIGFkdmljZS4gSSByZXBsaWVkIHRvIGhpbSBhbmQgbGV0IGhpbSBr
-bm93IEkgcmVtYWluZWQgaGVyZQ0KPiB1bmNoYW5nZWQuIFRoZXJlIHdpbGwgYmUgZXJyb3JzIGFj
-Y29yZGluZyB0byBoaXMgc3VnZ2VzdGlvbi4NCj4gDQo+IFRoZW4gdGhlIHNvbHV0aW9uIGlzIHRv
-IGNvcnJlY3QgdGhlIGVycm9ycyAtIGRlc2NyaWJlIG1pc3NpbmcgcHJvcGVydGllcw0KPiAtIGlu
-c3RlYWQgb2YgaWdub3JpbmcgdGhlIHN1Z2dlc3Rpb24gYW5kIG1ha2luZyBhIHJlc3VibWl0IHJp
-Z2h0IGF3YXkuDQo+IA0KPiBCZXN0IHJlZ2FyZHMsDQo+IEtyenlzenRvZg0KDQpIaSwNCkkgYW0g
-c29ycnkgSSBkbyBub3QgRFQgQmluZGluZyBkb2MgdmVyeSB3ZWxsLg0KDQpJIGNoZWNrZWQgdGhl
-IHVzYWdlIG9mIHBhdHRlcm5Qcm9wZXJ0aWVzIGFuZCBhZGRpdGlvbmFsUHJvcGVydGllcyBpbiBo
-dHRwczovL2pzb24tc2NoZW1hLm9yZy91bmRlcnN0YW5kaW5nLWpzb24tc2NoZW1hL3JlZmVyZW5j
-ZS9vYmplY3QuaHRtbC4NCkkgbm90aWNlZCBhIHNlbnRlbmNlIG9uIHRoZSB3ZWJzaXRlOiAiIElm
-IGFkZGl0aW9uYWxQcm9wZXJ0aWVzIGlzIGEgYm9vbGVhbiBhbmQgc2V0IHRvIGZhbHNlLCBubyBh
-ZGRpdGlvbmFsIHByb3BlcnRpZXMgd2lsbCBiZSBhbGxvd2VkLiIsIHNvIEkgdGhpbmsgdGhhdA0K
-aWYgYWRkaXRpb25hbFByb3BlcnRpZXMgaXMgYSBib29sZWFuIGFuZCBzZXQgdG8gdHJ1ZSwgYWRk
-aXRpb25hbCBwcm9wZXJ0aWVzIHdpbGwgYmUgYWxsb3dlZC4gTGV0dGluZyBoZXJlIHVuY2hhbmdl
-ZCBpcyBteSBzb2x1dGlvbiB0byBjb3JyZWN0IHRoZSBlcnJvcnMuDQpJIGFtIG5vdCBzdXJlLCBJ
-IGFza2VkIFJvYiBmb3IgYWR2aWNlIG9uIHRoZSB2NiBieSBlbWFpbCwgYnV0IGhlIGRpZG4ndCBy
-ZXBseSB0byBtZSwgc28gSSBtYWRlIGEgcmVzdWJtaXQuDQoNClRoYW5rIHlvdSBmb3IgeW91ciBj
-b21tZW50IGFnYWluLg0KDQpCZXN0IHJlZ2FyZHMsDQpBbGljZQ0KDQo=
+On Thu, 17 Dec 2020 12:28:44 -0800
+Sowjanya Komatineni <skomatineni@nvidia.com> wrote:
+
+> Tegra Quad SPI controller hardware supports sending dummy bytes based
+> on programmed dummy clock cycles after the actual transfer bytes.
+> 
+> This patch adds this support of hardware dummy bytes transfer and
+> skips transfer of dummy bytes from the software.
+> 
+> For dummy cycles more than Tegra Quad SPI hardware maximum dummy
+> cycles limit, driver transfers dummy bytes from the software.
+> 
+> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
+> ---
+>  drivers/spi/spi-tegra210-quad.c | 41 ++++++++++++++++++++++++++++++++++++++++-
+>  1 file changed, 40 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/spi/spi-tegra210-quad.c b/drivers/spi/spi-tegra210-quad.c
+> index e7bee8d..695a296 100644
+> --- a/drivers/spi/spi-tegra210-quad.c
+> +++ b/drivers/spi/spi-tegra210-quad.c
+> @@ -117,6 +117,7 @@
+>  
+>  #define QSPI_MISC_REG                           0x194
+>  #define QSPI_NUM_DUMMY_CYCLE(x)			(((x) & 0xff) << 0)
+> +#define QSPI_DUMMY_CYCLES_MAX			0xff
+>  
+>  #define DATA_DIR_TX				BIT(0)
+>  #define DATA_DIR_RX				BIT(1)
+> @@ -170,6 +171,7 @@ struct tegra_qspi {
+>  	u32					def_command2_reg;
+>  	u32					spi_cs_timing1;
+>  	u32					spi_cs_timing2;
+> +	u8					dummy_cycles;
+>  
+>  	struct completion			xfer_completion;
+>  	struct spi_transfer			*curr_xfer;
+> @@ -856,6 +858,8 @@ static int tegra_qspi_start_transfer_one(struct spi_device *spi,
+>  
+>  	tqspi->command1_reg = command1;
+>  
+> +	tegra_qspi_writel(tqspi, QSPI_NUM_DUMMY_CYCLE(tqspi->dummy_cycles), QSPI_MISC_REG);
+> +
+>  	ret = tegra_qspi_flush_fifos(tqspi, false);
+>  	if (ret < 0)
+>  		return ret;
+> @@ -974,7 +978,8 @@ static int tegra_qspi_transfer_one_message(struct spi_master *master, struct spi
+>  {
+>  	struct tegra_qspi *tqspi = spi_master_get_devdata(master);
+>  	struct spi_device *spi = msg->spi;
+> -	struct spi_transfer *xfer;
+> +	struct spi_transfer *xfer, *next_xfer;
+
+next_after should be declared where it's actually used.
+
+> +	bool use_hw_dummy_cycles = false;
+
+I don't think you need this variable (see below).
+
+>  	bool is_first_msg = true;
+>  	int ret;
+>  
+> @@ -984,8 +989,42 @@ static int tegra_qspi_transfer_one_message(struct spi_master *master, struct spi
+>  	tqspi->rx_status = 0;
+>  
+>  	list_for_each_entry(xfer, &msg->transfers, transfer_list) {
+> +		u8 dummy_cycles = 0;
+
+Should be declared where it's actually used, and you don't want it to be a u8
+since you're checking that the result does not exceed 255 which will always
+be true with a u8.
+
+>  		u32 cmd1;
+>  
+> +		/*
+> +		 * Skip dummy bytes transfer if they are transferred by the hardware along
+> +		 * with previous transfer.
+> +		 */
+> +		if (xfer->dummy_data && use_hw_dummy_cycles) {
+> +			msg->actual_length += xfer->len;
+> +			continue;
+> +		}
+> +
+> +		/*
+> +		 * Tegra QSPI hardware supports dummy bytes transfer after actual transfer
+> +		 * bytes based on programmed dummy clock cycles in the QSPI_MISC register.
+> +		 * So, check if the next transfer is dummy data transfer and program dummy
+> +		 * clock cycles along with the current transfer.
+> +		 */
+> +		if (!list_is_last(&xfer->transfer_list, &msg->transfers)) {
+> +			next_xfer = list_next_entry(xfer, transfer_list);
+> +			if (next_xfer && next_xfer->dummy_data) {
+> +				dummy_cycles = next_xfer->len * 8 / next_xfer->tx_nbits;
+> +				use_hw_dummy_cycles = true;
+> +				/*
+> +				 * Use software dummy bytes transfer if dummy cycles exceeds
+> +				 * Tegra QSPI hardware maximum dummy cycles limit.
+> +				 */
+> +				if (dummy_cycles > QSPI_DUMMY_CYCLES_MAX) {
+> +					use_hw_dummy_cycles = false;
+> +					dummy_cycles = 0;
+> +				}
+> +			}
+> +		}
+> +
+> +		tqspi->dummy_cycles = dummy_cycles;
+> +
+
+This can be simplified:
+
+		/*
+		 * Skip dummy bytes transfer if they were issued with the
+		 * previous transfer.
+		 */
+		if (tqspi->dummy_cycles) {
+			WARN_ON(!xfer->dummy_data);
+			tqspi->dummy_cycles = 0;
+		}
+
+		/*
+		 * Tegra QSPI hardware supports dummy bytes transfer after actual
+		 * transfer bytes based on programmed dummy clock cycles in the
+		 * QSPI_MISC register. So, check if the next transfer is dummy
+		 * data transfer and program dummy clock cycles along with the
+		 * current transfer.
+		 */
+		if (!list_is_last(&xfer->transfer_list, &msg->transfers)) {
+			struct spi_transfer *next_xfer;
+
+			next_xfer = list_next_entry(xfer, transfer_list);
+			if (next_xfer->dummy_data) {
+				u32 dummy_cycles = next_xfer->len * 8 /
+						   next_xfer->tx_nbits;
+				if (dummy_cycles <= QSPI_DUMMY_CYCLES_MAX)
+					tqspi->dummy_cycles = dummy_cycles;
+			}
+		}
+
+
+>  		reinit_completion(&tqspi->xfer_completion);
+>  
+>  		cmd1 = tegra_qspi_setup_transfer_one(spi, xfer, is_first_msg);
+
