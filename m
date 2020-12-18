@@ -2,150 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 876442DDD5C
-	for <lists+devicetree@lfdr.de>; Fri, 18 Dec 2020 04:36:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CC45E2DDD76
+	for <lists+devicetree@lfdr.de>; Fri, 18 Dec 2020 04:54:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732719AbgLRDe4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Dec 2020 22:34:56 -0500
-Received: from mail-db8eur05on2055.outbound.protection.outlook.com ([40.107.20.55]:45920
-        "EHLO EUR05-DB8-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1731130AbgLRDez (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 17 Dec 2020 22:34:55 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=aS5JGjCl97PvlmDUUAU9AYFL5jNBwfBn81By6NRaFUw7BTZtAOQfYZfVGtCSssbt7+CAg6b+EtIfBd8aoPViKjljQP6ac3n7pBGQ6ofX0ZysLXNePAoiszZKAAPEz1qTOjwDj1Ia30bk+Wqcc6SnFI4Ru8R4vUmebD1u98i2uMiC4J6W5ctZ8UKtWgXdhzHIs1r1YxWy1kPGuGlFgIAlk5N9VmwnqwahnTitDn61VJHhZl+D7ShFfNS+8349mrHRiww+EuVBjd5MhNNPhCl8m1kzMgMMUQHG9rirprl/fWIzjOm/UOiVUVwkjGXuGYD14dtlgkq4cuktwydfYjkvUQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3t6+5yLKzNY287JgbsTSRFr7m577T5t9mtkKouShDqA=;
- b=CvHotWqpB0qSOnmZz0y+0fojQR6gjmc28sb10/+omMLG3dMZ9dqrl1cBAXlsduLRJK97jj/l7gQnyydhXd7A/VMNOkNAITaZ5XCTgvYjW+7Pu7Xa1nuYSSsjrh/SW/dizZrFYLpNSibRgPOVdRhSIh6XrH+KEaqTYM6pfpaf78xo/EIFDv51sA6MCBK88FNjzBziKcLAK3KurhQcu7+DkIlEDAjaO/TBjMMHeX3gBMJB+XtlyLLD0G3p/ysa1cGacAWTPPvbGVr4a/n33kQAQEHmJo+WRqzAC13KxRv2Mh0w2bBMACFeA0E99w2myJfww4WBvryEu6drzPqg5SLJPQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3t6+5yLKzNY287JgbsTSRFr7m577T5t9mtkKouShDqA=;
- b=oDVkNxxg77X4Q914siCoh9lI3kGPdF87qLHl13NOYkgHWG/zyHAt1J55je/tNuE9GiUQakjLlPNgktncGOOiY91J2f8StMy1shvLL+UKAF5fsuLxAAS4HsiQX4bfsYXBeO0N5lUaa7EhTwneF/qO21lGltwpe7CTSFu8SaoSdtk=
-Authentication-Results: lists.infradead.org; dkim=none (message not signed)
- header.d=none;lists.infradead.org; dmarc=none action=none
- header.from=nxp.com;
-Received: from VI1PR04MB3983.eurprd04.prod.outlook.com (2603:10a6:803:4c::16)
- by VI1PR0402MB2816.eurprd04.prod.outlook.com (2603:10a6:800:b7::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3654.17; Fri, 18 Dec
- 2020 03:33:16 +0000
-Received: from VI1PR04MB3983.eurprd04.prod.outlook.com
- ([fe80::dcb7:6117:3def:2685]) by VI1PR04MB3983.eurprd04.prod.outlook.com
- ([fe80::dcb7:6117:3def:2685%7]) with mapi id 15.20.3654.024; Fri, 18 Dec 2020
- 03:33:16 +0000
-From:   Liu Ying <victor.liu@nxp.com>
-To:     linux-arm-kernel@lists.infradead.org,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     p.zabel@pengutronix.de, airlied@linux.ie, daniel@ffwll.ch,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com, robh+dt@kernel.org,
-        maarten.lankhorst@linux.intel.com, mripard@kernel.org,
-        tzimmermann@suse.de, laurentiu.palcu@oss.nxp.com,
-        guido.gunther@puri.sm
-Subject: [PATCH v5 6/6] MAINTAINERS: add maintainer for i.MX8qxp DPU DRM driver
-Date:   Fri, 18 Dec 2020 11:23:53 +0800
-Message-Id: <1608261833-24772-7-git-send-email-victor.liu@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1608261833-24772-1-git-send-email-victor.liu@nxp.com>
-References: <1608261833-24772-1-git-send-email-victor.liu@nxp.com>
-Content-Type: text/plain
-X-Originating-IP: [119.31.174.66]
-X-ClientProxiedBy: SG2PR02CA0118.apcprd02.prod.outlook.com
- (2603:1096:4:92::34) To VI1PR04MB3983.eurprd04.prod.outlook.com
- (2603:10a6:803:4c::16)
+        id S1727098AbgLRDym (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Dec 2020 22:54:42 -0500
+Received: from out2-smtp.messagingengine.com ([66.111.4.26]:35277 "EHLO
+        out2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726789AbgLRDym (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 17 Dec 2020 22:54:42 -0500
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailout.nyi.internal (Postfix) with ESMTP id 0779E5C00D1;
+        Thu, 17 Dec 2020 22:53:56 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute3.internal (MEProxy); Thu, 17 Dec 2020 22:53:56 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=from
+        :to:cc:subject:date:message-id:mime-version
+        :content-transfer-encoding; s=fm1; bh=wwSwX31MmtwgHkrLnUTYMvcRUT
+        o1S31FFAv1wRLanEM=; b=GmM7bE4MdWMuu7NHmbXTnbvqSphFDOUT2IKU8QPIrp
+        N2wx2iDvc1WHt0n4Jj+fO3X9qdyQm20wMIIQ896U/8rtTyWaj3v/G1Zr6JAQ80C3
+        X762CtjSX6olhzXK5SKTFXZrii1a5aCUQzAtAgnKG+DI4/6215tDUl+/TImAp2yX
+        nQ7tWXfCk3FMV3VPCLWMb5Yt/QscUCtvPIIm3Ck3KhyrJbdt7Yk5aT9CEiTlUT2m
+        zpNneUiUKsXoCgHNsogkfHmXeejQ1JHZNSGtrGdFg7nH+xcrQyAe/W0ruy6K6zIg
+        cBY/bvhtS5VJTgRF+iqsnLqiKMp6N/x0Wv7V9rtt931A==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:date:from
+        :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=wwSwX31MmtwgHkrLn
+        UTYMvcRUTo1S31FFAv1wRLanEM=; b=HdXy/JgbaS0iBcKewhztP4YWr0YXTaCTM
+        3cO9Ey0U8ynQysCxoBuIDsRH21EylC7ZgkWQYvkivGY/HGkbkIA4IH6TbGj6xDT5
+        fRQVD+RHqGqKLcmKgr3jOx6ksnhJ0Q35DfsKsKPpu1SLyU88Aa0pePEfCsT2CsDz
+        9MvASBP/04chEfttMaVQDOxfJV1ENNTCaV2p8fh5UnDzz4zIjE+x0R0OOOnINCE9
+        AMxcWj1trkkguwAvrNBmNRkvORTS1jQBVtpM7DAgxxf5lbGqJpp7FLqkj7Cxdj7n
+        JLaJ8ApHfGo9Wd+tYvvNhMZDsLqg5qWr7JKRrkvCfRRRIBB5bcqiA==
+X-ME-Sender: <xms:0ifcX851fO4n_LOWLFkxQxWyFmmLgcMA5ZIzL5x24NCu26_YmCMw8A>
+    <xme:0ifcX95Ys-IKgzIkH7IeaJwTG_0HXZHNiD2ZPCfMRi8aAKeJeZLmgdykHOTCUtjcX
+    GR5D4HTjTWwOVBYUg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrudelhedgieefucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucenucfjughrpefhvffufffkofgggfestdekredtre
+    dttdenucfhrhhomheptehnughrvgifucflvghffhgvrhihuceorghnughrvgifsegrjhdr
+    ihgurdgruheqnecuggftrfgrthhtvghrnhepieetheduveelhfdvvdejleeuhfelteevhe
+    ffgfeitdefgeekjeefieevgfehhefgnecuffhomhgrihhnpehkvghrnhgvlhdrohhrghen
+    ucfkphepuddvtddrvddtrdejjedrvdduudenucevlhhushhtvghrufhiiigvpedtnecurf
+    grrhgrmhepmhgrihhlfhhrohhmpegrnhgurhgvfiesrghjrdhiugdrrghu
+X-ME-Proxy: <xmx:0ifcX7eiPBBgR6UdIA92toKrlOmr5Ixivkyh77zbY_d_DI7UXYY7xw>
+    <xmx:0ifcXxIemVvEtnIWeUGneaeEp7UDcvqVJy5mCBGiU6mcFHYkEkHUmg>
+    <xmx:0ifcXwK-ESKio1KBN8niHUjfwRU5gBG9i2sHhiC1-yLe26x6Ufe-Bg>
+    <xmx:1CfcX5rWPG1IP0B0tx5Kkp4OCDEd0JhBWiI_lRvREV3uzxv0gydslg>
+Received: from localhost.localdomain (unknown [120.20.77.211])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 0F28E108005B;
+        Thu, 17 Dec 2020 22:53:49 -0500 (EST)
+From:   Andrew Jeffery <andrew@aj.id.au>
+To:     linux-mmc@vger.kernel.org
+Cc:     ulf.hansson@linaro.org, robh+dt@kernel.org, joel@jms.id.au,
+        adrian.hunter@intel.com, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, ryan_chen@aspeedtech.com
+Subject: [PATCH v6 0/6] mmc: sdhci-of-aspeed: Expose phase delay tuning
+Date:   Fri, 18 Dec 2020 14:23:32 +1030
+Message-Id: <20201218035338.1130849-1-andrew@aj.id.au>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from localhost.localdomain (119.31.174.66) by SG2PR02CA0118.apcprd02.prod.outlook.com (2603:1096:4:92::34) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.20.3676.28 via Frontend Transport; Fri, 18 Dec 2020 03:33:11 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: dc9c62ab-de18-4631-cb21-08d8a305a87b
-X-MS-TrafficTypeDiagnostic: VI1PR0402MB2816:
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <VI1PR0402MB281637BC02D34860C2FDC1F698C30@VI1PR0402MB2816.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:901;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: vojE7/3ALw98SUqEJ1CReKS46WqAXFGBi3ZzBp5u6kkCKUdsb+Uabnx3YhE5wrynkIa7to5HQRTvPECg4kcRTYNFdbUY7d65LwsWIb1GXAdSaERnSw2rQ41fXAdm8cCNOut/kOS3Npelk2PJBQP1f86+N/i1UQq5pnNjAI0Z7mD2/LYpyxNZqjkuaqma6YHQqfevtfEVroltBEfvmcVfQLjVyG+gnx0p0SaFGpJA5kR0clEMhBf7LaxOPSv1fVgytHQ+rTzMHhwhWQEFSPDWzfXTEdZQN2IgpvP4HVim4AY4gqZn0p5fP/nQRW/3iYRSGdCx+e7fb1k1vNrV1+rh+1j8Go9NxsN7c32yT61BxqLKC+/uINHcOAHrb5sSmyBj
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB3983.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(136003)(376002)(396003)(346002)(39860400002)(66476007)(52116002)(478600001)(5660300002)(6666004)(36756003)(316002)(2906002)(6506007)(4326008)(2616005)(66556008)(6486002)(6512007)(16526019)(69590400008)(66946007)(7416002)(8936002)(8676002)(86362001)(26005)(956004)(186003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?/l7PWUHb3lYF4jvWHb3bH2LT01oH4FtJJLk5EoUPNQq82s3Uis6YsGz3MhMh?=
- =?us-ascii?Q?ZBW7o33u529QQe5cwovNEIRM1GWqOGsqDDU2zKl6cmhwdjjfHpWqKmHfn0uQ?=
- =?us-ascii?Q?UNBiYycmNlg+zZcBV003gO1p3FtA7D5S4/hmcAdCCmCfVaq95ThTbFATF1gr?=
- =?us-ascii?Q?TQJC/OsSgPNSleTMc15MTIWHcoKhvxWiOz60Msamw+sdoWbM0Gz6Qc5c2mrC?=
- =?us-ascii?Q?zRqKqHQ7aKmFcgtE8FjxD04ftsUBotXsUVIM33n29cjAbKEo4BcN40jZUWVx?=
- =?us-ascii?Q?3mTuKMcWd4418+7PrD/7lJ8/YCwHp2aBtg8C0Grt/Ct7r4dTTYRUSG3vYe6K?=
- =?us-ascii?Q?4fybfuKCfwYuHo2s07mSwcEZPwjOe2rOQpOXXSP37It4/6gKK6/untyV2Zz7?=
- =?us-ascii?Q?MTj+N40cPzjd4H0nHdfmGq4qHnwe4GgA6tDzq5+lirLexxmfsjmaKMQPNrkm?=
- =?us-ascii?Q?l2U17qjeCWXEaBeUQy6OAJQnhBl2AQpjvtMZ58ULnuhuL/AdA+mV1di/NSJh?=
- =?us-ascii?Q?N7ebqIi2zcFYGoMQlUqgVM/1lT9J4zKCg7eDtpNgaa2WOH8IK+03k0AdxTKS?=
- =?us-ascii?Q?nT5oRGsIVx9IrpUYfJG4gNolfrJ2w1c8yxqCukA2tSxdBVPKHW1rng94f/ui?=
- =?us-ascii?Q?E1GFRndYagVHFwnINQO9aIttwgDxFJoC6u2R/qNC/6LGGUX0VY1wO+jubO62?=
- =?us-ascii?Q?OPx2rdgqkzSab0YBOMWqRz3ImcrRpMzBwjgbdhj19yclGrhafvUncjnaqTGX?=
- =?us-ascii?Q?AhTWu0zp6hKTgjmbRnrEdHij8pev6XZFIBZEvZOyLZaLEngDVCEavlkUepTB?=
- =?us-ascii?Q?IFZbQmBJ9VFqegWW2DZ7Kc42A4Scd5N8eWARbItEEuEKATqiXrYHY2eAFDsQ?=
- =?us-ascii?Q?TAP4HH1tznpD5AaImVLJZqIIGTWdgWK5mxzLRhhtOnNqJ1HKLnXSrRyJTj/9?=
- =?us-ascii?Q?SJhFVkRKBnEvRQcBwNDFN2ObTOaqCjY9wlQ2S7eyeH9skGsYpTszZXn+Rg4f?=
- =?us-ascii?Q?VEMY?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB3983.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Dec 2020 03:33:16.8934
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-Network-Message-Id: dc9c62ab-de18-4631-cb21-08d8a305a87b
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: wijAK0nyvTd9SAciV0YP4yAYh9NaVG56eCA5Kd6hO5U12+dc4JbSyH1GJe4VyY+hyaBlstOyq2vtGKKkyuq7Tw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0402MB2816
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add myself as the maintainer of the i.MX8qxp DPU DRM driver.
+Hello,
 
-Signed-off-by: Liu Ying <victor.liu@nxp.com>
----
-v4->v5:
-* No change.
+This series implements support for the MMC core clk-phase-* devicetree bindings
+in the Aspeed SD/eMMC driver. The relevant register was exposed on the AST2600
+and is present for both the SD/MMC controller and the dedicated eMMC
+controller.
 
-v3->v4:
-* No change.
+v6 simply removes the typedef from v5 in favour of a struct containing the
+phase array.
 
-v2->v3:
-* No change.
+I've just done a quick build test of v6 given the small change and more
+extensive testing done with v5. 
 
-v1->v2:
-* No change.
+v5 can be found here:
 
- MAINTAINERS | 9 +++++++++
- 1 file changed, 9 insertions(+)
+https://lore.kernel.org/linux-mmc/20201208012615.2717412-1-andrew@aj.id.au/
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 17b92e6..96e05cd 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -5846,6 +5846,15 @@ F:	Documentation/devicetree/bindings/display/imx/
- F:	drivers/gpu/drm/imx/
- F:	drivers/gpu/ipu-v3/
- 
-+DRM DRIVERS FOR FREESCALE i.MX8QXP
-+M:	Liu Ying <victor.liu@nxp.com>
-+L:	dri-devel@lists.freedesktop.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dprc.yaml
-+F:	Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dpu.yaml
-+F:	Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-prg.yaml
-+F:	drivers/gpu/drm/imx/dpu/
-+
- DRM DRIVERS FOR GMA500 (Poulsbo, Moorestown and derivative chipsets)
- M:	Patrik Jakobsson <patrik.r.jakobsson@gmail.com>
- L:	dri-devel@lists.freedesktop.org
+Please review!
+
+Cheers,
+
+Andrew
+
+Andrew Jeffery (6):
+  mmc: core: Add helper for parsing clock phase properties
+  mmc: sdhci-of-aspeed: Expose clock phase controls
+  mmc: sdhci-of-aspeed: Add AST2600 bus clock support
+  mmc: sdhci-of-aspeed: Add KUnit tests for phase calculations
+  MAINTAINERS: Add entry for the ASPEED SD/MMC driver
+  ARM: dts: rainier: Add eMMC clock phase compensation
+
+ MAINTAINERS                                  |   9 +
+ arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts |   1 +
+ drivers/mmc/core/host.c                      |  44 ++++
+ drivers/mmc/host/Kconfig                     |  14 ++
+ drivers/mmc/host/Makefile                    |   1 +
+ drivers/mmc/host/sdhci-of-aspeed-test.c      | 100 ++++++++
+ drivers/mmc/host/sdhci-of-aspeed.c           | 251 ++++++++++++++++++-
+ include/linux/mmc/host.h                     |  13 +
+ 8 files changed, 422 insertions(+), 11 deletions(-)
+ create mode 100644 drivers/mmc/host/sdhci-of-aspeed-test.c
+
 -- 
-2.7.4
+2.27.0
 
