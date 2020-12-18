@@ -2,156 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CD0C92DE32D
-	for <lists+devicetree@lfdr.de>; Fri, 18 Dec 2020 14:17:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7171B2DE33B
+	for <lists+devicetree@lfdr.de>; Fri, 18 Dec 2020 14:23:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726287AbgLRNRM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Dec 2020 08:17:12 -0500
-Received: from mail-oo1-f54.google.com ([209.85.161.54]:38074 "EHLO
-        mail-oo1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726279AbgLRNRM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Dec 2020 08:17:12 -0500
-Received: by mail-oo1-f54.google.com with SMTP id i18so533965ooh.5;
-        Fri, 18 Dec 2020 05:16:56 -0800 (PST)
+        id S1726502AbgLRNWX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Dec 2020 08:22:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49662 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726435AbgLRNWX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Dec 2020 08:22:23 -0500
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E155C0617B0
+        for <devicetree@vger.kernel.org>; Fri, 18 Dec 2020 05:21:43 -0800 (PST)
+Received: by mail-wr1-x435.google.com with SMTP id m5so2110476wrx.9
+        for <devicetree@vger.kernel.org>; Fri, 18 Dec 2020 05:21:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=F+ibjVaRawhB9by9+I/z97txlwumatdH7xKnsmPgCGQ=;
+        b=k5O8dSEmSegIR7pYA9kV2ana+UeZIpHtGeDaUNyh9fmp8oCXJhsX8wUXP68tD5eWZv
+         RJZNsMiPVsggdsokowNDv9oX1TWqyfbNOEo8AjdDAIwgyrys3P5y66kWCBOsEuPhQfec
+         eWWyJzb0+2YmlgcrJ2Vewwut/ZG8owPpSTRMsG51UIA2RshPJJEckF1PF17v/GpCTCN9
+         JmoP6ZT/ILZd8XyE1rTs3xCfMNWWFloEsQPfq5hm3XQ/W43zMNM8RXcjG3enzySy8Pjl
+         dsIx74U40ax+muXd4/dAAMrr3h1qL1rj64mYoHM78mhsD9v5orIYz88yAK90ivsTkSv1
+         QU1A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=FNSt8Fkjm6JuWT/uYBPaEJmzaxfUJT+yoJMWo0n8xuk=;
-        b=jg48tbhvWvCY3Ec+7IB2xcoThg3US7qvCM6WsE7+/5/hpqjWfJUXglu8TYAsJvrnx8
-         KLDhSseTi10Fr8ousSGGMfEUjUQwBDsf2sGnjAcNZv60HvUm9QuXFbP9pNR74wtZflfX
-         iNngNl0/VRYsm70JIJX3jMGNkSlC9TzJ99i05GAT4QlH5k1s2VyHgCQAyKbrczXN3WrD
-         EuRE+JllxQlOr9trCF2iqJFwDBOA29rwcPT6DOt8AnbUt+hDwa/Exm8hjuzcOckAv7Bq
-         ps/IslM1GJH/3MYdI9Jj6FzprQp1HKVXV9t5ldW4PcgVm8yAEwV0OqUGloXCkSdM5vWW
-         5/IA==
-X-Gm-Message-State: AOAM533Ij2UTt6LPUR17PYm+0+MOOpYOdPTAr/IMG5JIqQL3o5+s1Hsw
-        xTRyfvKpvSErWJPFNHpbpKHQzV4D3uqIFEtd9pY=
-X-Google-Smtp-Source: ABdhPJxEZefF4VB9P0I0+F1xIwaiYLGwj0pj3vSAi5MF2r0YsXu9tkwT3qasn4rjm+dLOPWSAhjuSa2ZKWizo46ZrRk=
-X-Received: by 2002:a4a:dc1:: with SMTP id 184mr2726085oob.40.1608297390778;
- Fri, 18 Dec 2020 05:16:30 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=F+ibjVaRawhB9by9+I/z97txlwumatdH7xKnsmPgCGQ=;
+        b=Arpd1oExfcq6Cb1FZ1TVBG8CEbJzcYKBDc5t70EOeJ4sxIEuTSFu6oux2pWDccBQjZ
+         wEgDI7QFMm3jwg3wBNc7o75S2py8zdVUK4AOX/9ycx5iBSfbUcbRNz2QOHyrvwVoqms8
+         Ab113lla+KueiR8Dsh2VivnbbblXddeTRw6qTU43GV8EbUPrzumH7zKULAdqhoXJ5f4l
+         6VhINIxbQ/OuJJARdNVpa+xL06YFj/EXpgKX72mGmRAUixixG1SbAgvj4aO0Rd51+6x1
+         HPL0nWh/kLGGPbuRBPXI3BfJywavNx1tqikpirDvzSOPr9RpcQTxSBAr0RWCcsTZrJlm
+         /VMA==
+X-Gm-Message-State: AOAM531wwKNrR1aYC30Y0PPtNXLDV1dXQeNcgi5VSfUi/sg0Xffs1krS
+        vZuSQ5G3kW1GFu07uYEwRDp6yw==
+X-Google-Smtp-Source: ABdhPJwtBIUdA1p+Ktu1cWhF7xpUYRoQd2G/kpx1lZYPa72QSunJ0F9p0UsLXj2jqK45VkD4M5qrZw==
+X-Received: by 2002:a05:6000:11c1:: with SMTP id i1mr4613985wrx.16.1608297701780;
+        Fri, 18 Dec 2020 05:21:41 -0800 (PST)
+Received: from dell ([91.110.221.216])
+        by smtp.gmail.com with ESMTPSA id c190sm11393200wme.19.2020.12.18.05.21.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 18 Dec 2020 05:21:41 -0800 (PST)
+Date:   Fri, 18 Dec 2020 13:21:39 +0000
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
+        linux-actions@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
+        linux-pm@vger.kernel.org
+Subject: Re: [PATCH v3 3/7] mfd: Add MFD driver for ATC260x PMICs
+Message-ID: <20201218132139.GR207743@dell>
+References: <cover.1607216141.git.cristian.ciocaltea@gmail.com>
+ <f538c21de556c66390614bad778f7dc095222e8c.1607216141.git.cristian.ciocaltea@gmail.com>
+ <20201216101000.GD207743@dell>
+ <20201217231731.GA104305@BV030612LT>
 MIME-Version: 1.0
-References: <20201213183759.223246-1-aford173@gmail.com> <20201213183759.223246-2-aford173@gmail.com>
- <CAMuHMdWRieM1H5WLySVDVQds-xKgsqo-OibegJrXgonfqbAL8g@mail.gmail.com>
- <CAHCN7xL3KU4dA=0-S7J5AEPmjAtpz4j-frEUqBD=JU7BV7g1WA@mail.gmail.com>
- <CAMuHMdWc=qD=Oqa-7o9K1bd_OM0L7Br8BVAbDvYNraO0wAX2jw@mail.gmail.com> <CAHCN7xKsSgM+=MFOKpNZTsJJiNyx6_mqZL2g_PKhN5fWyE6y7Q@mail.gmail.com>
-In-Reply-To: <CAHCN7xKsSgM+=MFOKpNZTsJJiNyx6_mqZL2g_PKhN5fWyE6y7Q@mail.gmail.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 18 Dec 2020 14:16:19 +0100
-Message-ID: <CAMuHMdVxzcyVuK06BqE4GQPLE8J7V5Jc-W_RSENNxEQG68krCw@mail.gmail.com>
-Subject: Re: [PATCH 01/18] arm64: dts: renesas: beacon kit: Configure
- programmable clocks
-To:     Adam Ford <aford173@gmail.com>
-Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Adam Ford-BE <aford@beaconembedded.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Luca Ceresoli <luca@lucaceresoli.net>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20201217231731.GA104305@BV030612LT>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Adam,
+On Fri, 18 Dec 2020, Cristian Ciocaltea wrote:
 
-CC Shimoda-san
+> Hi Lee,
+> 
+> Thank you for the detailed review!
+> 
+> I will prepare a new revision, but there are still a couple of open
+> points..
 
-On Thu, Dec 17, 2020 at 12:52 PM Adam Ford <aford173@gmail.com> wrote:
-> On Thu, Dec 17, 2020 at 2:16 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> > On Wed, Dec 16, 2020 at 6:03 PM Adam Ford <aford173@gmail.com> wrote:
-> > > On Wed, Dec 16, 2020 at 8:55 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> > > > On Sun, Dec 13, 2020 at 7:38 PM Adam Ford <aford173@gmail.com> wrote:
-> > > > > When the board was added, clock drivers were being updated done at
-> > > > > the same time to allow the versaclock driver to properly configure
-> > > > > the modes.  Unforutnately, the updates were not applied to the board
-> >
-> > > > > --- a/arch/arm64/boot/dts/renesas/beacon-renesom-baseboard.dtsi
-> > > > > +++ b/arch/arm64/boot/dts/renesas/beacon-renesom-baseboard.dtsi
-> > > > > @@ -5,6 +5,7 @@
-> > > > >
-> > > > >  #include <dt-bindings/gpio/gpio.h>
-> > > > >  #include <dt-bindings/input/input.h>
-> > > > > +#include <dt-bindings/clk/versaclock.h>
-> > > > >
-> > > > >  / {
-> > > > >         backlight_lvds: backlight-lvds {
-> > > > > @@ -294,12 +295,12 @@ &du_out_rgb {
-> > > > >  &ehci0 {
-> > > > >         dr_mode = "otg";
-> > > > >         status = "okay";
-> > > > > -       clocks = <&cpg CPG_MOD 703>, <&cpg CPG_MOD 704>;
-> > > > > +       clocks = <&cpg CPG_MOD 703>, <&cpg CPG_MOD 704>, <&versaclock5 3>;
-> > > >
-> > > > Why this change? You said before you don't need this
-> > > > https://lore.kernel.org/linux-renesas-soc/CAHCN7xJWbP16SA-Ok-5syNnqOZAt8OFJo2_rtg5VrNVsN2-eiQ@mail.gmail.com/
-> > > >
-> > >
-> > > I had talked with the hardware guys about buy pre-programmed
-> > > versaclock chips which would have been pre-configured and pre-enabled.
-> > > I thought it was going to happen, but it didn't, so we need the
-> > > versaclock driver to enable the reference clock for the USB
-> > > controllers, ethernet controller and audio clocks.  Previously we were
-> > > manually configuring it or it was coincidentally working. Ideally,
-> > > we'd have the clock system intentionally enable/disable the clocks
-> > > when drivers are loaded/unloaded for for power management reasons.
-> >
-> > Can you tell me how exactly the Versaclock outputs are wired?
->
-> The SoC is expecting a fixed external 50 MHz clock connected to
-> USB_EXTAL.  Instead of a fixed clock, we're using the Versaclock.
-> We're also using the Versaclock to drive the AVB TXCRefClk,
-> du_dotclkiun0 and du_dotclkin2 (also also called du_dotclkin3 on
-> RZ/G2N) instead of fixed clocks.
->
-> > E.g. for USB, the bindings don't say anything about a third clock input,
-> > so I'd like to know where that clock is fed into USB.
->
-> The way the driver is crafted, it can take in multiple clocks and it
-> goes through a list to enable them all, so I added the versaclock to
-> the array.  Without the versaclock reference, the clock doesn't get
-> turned on and the USB fails to operate.
+Could you please snip your replies, leaving only the open points.
 
-According to the Hardware User's Manual, USBL_EXTAL is used for USB3.0,
-while you added the clock references to the EHCI nodes.
-Are you sure EHCI is failing without this?
+Scrolling through lots of empty quotes or "done" comments is quite
+time consuming.  Thanks.
 
-Still, it means we need to extend the bindings/driver for
-renesas,rcar-gen3-xhci to handle USB_EXTAL.
+[...]
 
-> The DU clocks are also expecting an array, so I added the versaclock
-> to that array as well.
+> > > +	/*
+> > > +	 * Using regmap within an atomic context (e.g. accessing a PMIC when
+> > > +	 * powering system down) is normally allowed only if the regmap type
+> > > +	 * is MMIO and the regcache type is either REGCACHE_NONE or
+> > > +	 * REGCACHE_FLAT. For slow buses like I2C and SPI, the regmap is
+> > > +	 * internally protected by a mutex which is acquired non-atomically.
+> > > +	 *
+> > > +	 * Let's improve this by using a customized locking scheme inspired
+> > > +	 * from I2C atomic transfer. See i2c_in_atomic_xfer_mode() for a
+> > > +	 * starting point.
+> > > +	 */
+> > > +	if (system_state > SYSTEM_RUNNING && irqs_disabled())
+> > 
+> > Were does system_state come from?
+> 
+> It is declared in 'include/linux/kernel.h':
+> 
+> extern enum system_states {
+> 	SYSTEM_BOOTING,
+> 	SYSTEM_SCHEDULING,
+> 	SYSTEM_RUNNING,
+> 	SYSTEM_HALT,
+> 	SYSTEM_POWER_OFF,
+> 	SYSTEM_RESTART,
+> 	SYSTEM_SUSPEND,
+> } system_state;
+> 
+> The definition is in 'init/main.c':
+> 
+> enum system_states system_state __read_mostly;
+> EXPORT_SYMBOL(system_state);
 
-For DU, the clock inputs are clearly defined in the bindings.
+Ah, it's a system wide thing.  No problem.
 
-> It's similar to the rationale that I'm trying to add the option clock
-> for the AVB TXC_Ref clock on the other path.  We're using the
-> versaclock there as well.  The difference is that in the case of the
-> AVB_TXCRefClk, the driver isn't expecting an array of clocks, it's
-> only expecting a single clock.  In order to enable the additional
-> clock,  I started the patch to accept the optional clock for the
-> TXCRefClk in order to get the clock system to enable the clock.
+[...]
 
-Sure.
+> > > +	ret = regmap_read(atc260x->regmap, atc260x->rev_reg, &chip_rev);
+> > > +	if (ret) {
+> > > +		dev_err(dev, "Failed to get chip revision\n");
+> > > +		return ret;
+> > > +	}
+> > > +
+> > > +	if (chip_rev < 0 || chip_rev > 31) {
+> > > +		dev_err(dev, "Unknown chip revision: %d\n", ret);
+> > > +		return -EINVAL;
+> > > +	}
+> > 
+> > This still seems limiting.
+> 
+> This is based on the vendor implementation. Unfortunately I don't have
+> access to a data sheet or any other source of information about the
+> management of the chip revisions.
 
-> Because the Versaclock isn't programmed to automatically start, they
-> need the consumers of the clock to request and enable them.
->
-> I admit that I'll probably need to update the bindings to add the
-> extra clocks as optional, so if you want, I can submit additional
-> patches to add these optional clocks to their respective bindings.
+So which versions does this driver work with?  All 32?
 
-Thanks!
+[...]
 
-Gr{oetje,eeting}s,
+> > > +const struct of_device_id atc260x_i2c_of_match[] = {
+> > > +	{ .compatible = "actions,atc2603c", .data = (void *)ATC2603C },
+> > > +	{ .compatible = "actions,atc2609a", .data = (void *)ATC2609A },
+> > > +	{ /* sentinel */ }
+> > 
+> > I think you can drop the (void *) casts.
+> 
+> Without the cast, I get the following compiler warning:
+> 
+> drivers/mfd/atc260x-i2c.c:46:46: warning: initialization of ‘const void *’
+> from ‘int’ makes pointer from integer without a cast [-Wint-conversion]
+>   { .compatible = "actions,atc2603c", .data = ATC2603C },
 
-                        Geert
+Perhaps I'm getting confused with addresses of things.  Never mind.
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+-- 
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
