@@ -2,70 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C6A42DDEE1
-	for <lists+devicetree@lfdr.de>; Fri, 18 Dec 2020 08:13:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E9E612DDEE5
+	for <lists+devicetree@lfdr.de>; Fri, 18 Dec 2020 08:14:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732903AbgLRHLk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Dec 2020 02:11:40 -0500
-Received: from mail.kernel.org ([198.145.29.99]:37398 "EHLO mail.kernel.org"
+        id S1728212AbgLRHNk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Dec 2020 02:13:40 -0500
+Received: from muru.com ([72.249.23.125]:39372 "EHLO muru.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726520AbgLRHLj (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 18 Dec 2020 02:11:39 -0500
-Date:   Fri, 18 Dec 2020 12:40:54 +0530
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1608275459;
-        bh=6YeZzN3KmE++VpIfogg173kMKgVjRsWI8P+AiUlw2QY=;
-        h=From:To:Cc:Subject:References:In-Reply-To:From;
-        b=WsCg0hJL3D1lSK62EPjwfPee6qkg1MEOA6f6AM98JtHDFbdg6CqmKI+l2IJcX7EcY
-         hiQi1wY1Nsx9G7kTfCw9KXMyrliT8sfqsa0D/MxyRzcs8l4S1reR28ghFM1irRE0on
-         cwZjYItI2E/qFXze0h+mbYUzjU7lagvgBA/8uAFJ41UZWFSR0HHkpsqzcoI/g7q//L
-         tku3ee0HrsJrcMZiHSK1krf8vwWdybOhFjIleqPPoyhdlPo27dltZpCOvkAsAK3bzw
-         h1EexmFE12d+BqXJ2pLBU3ID1bmI6sAbL/wQMS73LlyoD0hbHheDVUh8PA+8A4hV83
-         WE+RqBJne2dMg==
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Maxime Ripard <mripard@kernel.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Lee Jones <lee.jones@linaro.org>,
-        Daniel Thompson <daniel.thompson@linaro.org>,
-        Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@ucw.cz>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Sebastian Reichel <sre@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Mark Brown <broonie@kernel.org>, netdev@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: Fix JSON pointers
-Message-ID: <20201218071054.GH8403@vkoul-mobl>
-References: <20201217223429.354283-1-robh@kernel.org>
+        id S1726851AbgLRHNk (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 18 Dec 2020 02:13:40 -0500
+Received: from atomide.com (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTPS id 32D73809F;
+        Fri, 18 Dec 2020 07:13:01 +0000 (UTC)
+Date:   Fri, 18 Dec 2020 09:12:55 +0200
+From:   Tony Lindgren <tony@atomide.com>
+To:     "H. Nikolaus Schaller" <hns@goldelico.com>
+Cc:     =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-omap@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        letux-kernel@openphoenux.org,
+        Andreas Kemnade <andreas@kemnade.info>, stable@vger.kernel.org
+Subject: Re: [PATCH] DTS: ARM: gta04: remove legacy spi-cs-high to make
+ display work again
+Message-ID: <20201218071255.GD26857@atomide.com>
+References: <de8774e44a8f6402435e64034b8e7122157f5b52.1607766924.git.hns@goldelico.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201217223429.354283-1-robh@kernel.org>
+In-Reply-To: <de8774e44a8f6402435e64034b8e7122157f5b52.1607766924.git.hns@goldelico.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17-12-20, 16:34, Rob Herring wrote:
-> The correct syntax for JSON pointers begins with a '/' after the '#'.
-> Without a '/', the string should be interpretted as a subschema
-> identifier. The jsonschema module currently doesn't handle subschema
-> identifiers and incorrectly allows JSON pointers to begin without a '/'.
-> Let's fix this before it becomes a problem when jsonschema module is
-> fixed.
+* H. Nikolaus Schaller <hns@goldelico.com> [201212 11:59]:
+> This reverts
 > 
-> Converted with:
-> perl -p -i -e 's/yaml#definitions/yaml#\/definitions/g' `find Documentation/devicetree/bindings/ -name "*.yaml"`
+> commit f1f028ff89cb ("DTS: ARM: gta04: introduce legacy spi-cs-high to make display work again")
+> 
+> which had to be intruduced after
+> 
+> commit 6953c57ab172 ("gpio: of: Handle SPI chipselect legacy bindings")
+> 
+> broke the GTA04 display. This contradicted the data sheet but was the only
+> way to get it as an spi client operational again.
+> 
+> The panel data sheet defines the chip-select to be active low.
+> 
+> Now, with the arrival of
+> 
+> commit 766c6b63aa04 ("spi: fix client driver breakages when using GPIO descriptors")
+> 
+> the logic of interaction between spi-cs-high and the gpio descriptor flags
+> has been changed a second time, making the display broken again. So we have
+> to remove the original fix which in retrospect was a workaround of a bug in
+> the spi subsystem and not a feature of the panel or bug in the device tree.
+> 
+> With this fix the device tree is back in sync with the data sheet and
+> spi subsystem code.
 
->  .../devicetree/bindings/dma/dma-common.yaml   |  4 +-
->  .../devicetree/bindings/dma/dma-router.yaml   |  2 +-
->  .../devicetree/bindings/dma/ingenic,dma.yaml  |  2 +-
->  .../bindings/dma/snps,dma-spear1340.yaml      | 10 ++---
+Thanks applying into fixes.
 
-Acked-By: Vinod Koul <vkoul@kernel.org>
-
--- 
-~Vinod
+Tony
