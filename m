@@ -2,96 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BAF342DDF58
-	for <lists+devicetree@lfdr.de>; Fri, 18 Dec 2020 09:02:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3FEBF2DDF6D
+	for <lists+devicetree@lfdr.de>; Fri, 18 Dec 2020 09:16:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728205AbgLRICI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Dec 2020 03:02:08 -0500
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:37748 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725298AbgLRICI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Dec 2020 03:02:08 -0500
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0BI819MM074020;
-        Fri, 18 Dec 2020 02:01:09 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1608278469;
-        bh=xcTb8qYiKGxzuikMSclKbE3udkTmV/7/x9FE2GiyPCY=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=M6kmSKQhQqfl9YhUZn+PY7onXrKICFx16ivOSLZEzuUwQxoNPbe7/LhS3qT/Zf/NC
-         BFQDS48jCOjy0hf/NCOlfy135TosuJM4QUTjUlI7hz5gfIqfMvfUxcosZgSISs+M99
-         RxoLxSc6bxk4QMKcSYSPMz+zUgvRfYaBgmzUqxkc=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0BI819jR071370
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 18 Dec 2020 02:01:09 -0600
-Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Fri, 18
- Dec 2020 02:01:08 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Fri, 18 Dec 2020 02:01:08 -0600
-Received: from [192.168.2.6] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0BI815GB029687;
-        Fri, 18 Dec 2020 02:01:06 -0600
-Subject: Re: [PATCH] dt-bindings: display: bridge: tc358768: Remove maintainer
- information
-To:     Sam Ravnborg <sam@ravnborg.org>
-CC:     Rob Herring <robh@kernel.org>, <devicetree@vger.kernel.org>,
-        <jernej.skrabec@siol.net>, <narmstrong@baylibre.com>,
-        <airlied@linux.ie>, <jonas@kwiboo.se>,
-        <linux-kernel@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <a.hajda@samsung.com>, <robh+dt@kernel.org>,
-        <Laurent.pinchart@ideasonboard.com>
-References: <20201215124227.1872-1-peter.ujfalusi@ti.com>
- <1608042367.307112.3775381.nullmailer@robh.at.kernel.org>
- <90d45716-4f4e-7379-07fd-74eff793e498@ti.com>
- <20201217172556.GA1339623@ravnborg.org>
-From:   Peter Ujfalusi <peter.ujfalusi@ti.com>
-Message-ID: <dfc9fe88-40c6-93c8-4c25-a0c977579ebf@ti.com>
-Date:   Fri, 18 Dec 2020 10:02:10 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.5.1
-MIME-Version: 1.0
-In-Reply-To: <20201217172556.GA1339623@ravnborg.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+        id S1728230AbgLRIQG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Dec 2020 03:16:06 -0500
+Received: from m43-15.mailgun.net ([69.72.43.15]:26932 "EHLO
+        m43-15.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725895AbgLRIQF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Dec 2020 03:16:05 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1608279345; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=V3Rn9GiKs+Sqe/qXL6ZtUr/G35dJ4J1d1IxF3iceEHk=; b=WL+K/lb2N7FhrKpk2KDSGtuEmOXMVD8uOEZe003AaSvN6NTrrIwSABgnc3rN8k0WuB19UwEs
+ WyACc+pdx4AaURh0HKdM7vzQ9FZ/WI+5JX37YEyUVkX6F6d0CStWBdriu3expOMztMu7pcDV
+ QoYEKCoXNI08MzWnGquFHdAaMTE=
+X-Mailgun-Sending-Ip: 69.72.43.15
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n10.prod.us-east-1.postgun.com with SMTP id
+ 5fdc6511ca81d9e625bfea02 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 18 Dec 2020 08:15:13
+ GMT
+Sender: kgunda=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 93F3CC43462; Fri, 18 Dec 2020 08:15:12 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
+        autolearn=no autolearn_force=no version=3.4.0
+Received: from kgunda-linux.qualcomm.com (unknown [202.46.22.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: kgunda)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id E0ADAC433CA;
+        Fri, 18 Dec 2020 08:15:07 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org E0ADAC433CA
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=kgunda@codeaurora.org
+From:   Kiran Gunda <kgunda@codeaurora.org>
+To:     robh@kernel.org, swboyd@chromium.org
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Kiran Gunda <kgunda@codeaurora.org>
+Subject: [PATCH V4 0/2] Convert qcom,spmi-pmic bindings from .txt to .yaml
+Date:   Fri, 18 Dec 2020 13:44:50 +0530
+Message-Id: <1608279292-24760-1-git-send-email-kgunda@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sam,
+This patch series does the following:
+ - converts the qcom,spmi-pmic bindings from .txt to .yaml format
+ - Sorted the compatible strings
+ - Adds PM6150 and PM6150L subtypes.
 
-On 17/12/2020 19.25, Sam Ravnborg wrote:
->>> dtschema/dtc warnings/errors:
->>> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/display/bridge/toshiba,tc358768.yaml: 'maintainers' is a required property
->>> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/display/bridge/toshiba,tc358768.yaml: ignoring, error in schema: 
->>> warning: no schema found in file: ./Documentation/devicetree/bindings/display/bridge/toshiba,tc358768.yaml
->>
->> Right, so it is not that easy to not been able to maintain this... :o
->>
->> Who should be documented as maintainer?
->> Andrzej, Neil, David or Daniel?
-> 
-> I have no problem being listed as maintainer despite my very limited
-> knowledge on the HW. So unless you end up volunteering then just
-> add me.
+Changes from V3:
+ - Fixed compilation error in .yaml file.
 
-thank you. it is not easy to give up on something one has spent time on,
-but without the hardware and manual it would be not right to just move
-it to my private email as I did for the DMA and Audio drivers:
+Changes from V2:
+ - Addressed Stephen Boyd and Rob Herring comments.
 
-https://lore.kernel.org/lkml/20201215130512.8753-1-peter.ujfalusi@ti.com/
+Kiran Gunda (2):
+  mfd: qcom-spmi-pmic: Convert bindings to .yaml format
+  mfd: qcom-spmi-pmic: Add support for pm6150 and pm6150l
 
-https://lore.kernel.org/lkml/20201215131348.11282-1-peter.ujfalusi@ti.com/
+ .../devicetree/bindings/mfd/qcom,spmi-pmic.txt     |  80 -------------
+ .../devicetree/bindings/mfd/qcom,spmi-pmic.yaml    | 129 +++++++++++++++++++++
+ drivers/mfd/qcom-spmi-pmic.c                       |   4 +
+ 3 files changed, 133 insertions(+), 80 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.txt
+ create mode 100644 Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
 
-I'll send v2 as may last patch from ti.com
+-- 
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+ a Linux Foundation Collaborative Project
 
-- Péter
-
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
