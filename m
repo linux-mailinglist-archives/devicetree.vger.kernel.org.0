@@ -2,152 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A95E2DF13E
-	for <lists+devicetree@lfdr.de>; Sat, 19 Dec 2020 20:15:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 81E722DF150
+	for <lists+devicetree@lfdr.de>; Sat, 19 Dec 2020 20:45:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727427AbgLSTPy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 19 Dec 2020 14:15:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41496 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727298AbgLSTPy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Dec 2020 14:15:54 -0500
-Received: from mail-oi1-x22d.google.com (mail-oi1-x22d.google.com [IPv6:2607:f8b0:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3C0EC0617B0
-        for <devicetree@vger.kernel.org>; Sat, 19 Dec 2020 11:15:05 -0800 (PST)
-Received: by mail-oi1-x22d.google.com with SMTP id 15so6864677oix.8
-        for <devicetree@vger.kernel.org>; Sat, 19 Dec 2020 11:15:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sartura-hr.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Cvg0mMj3/9iAeAXAFseY1rufUcEGU4I4FlJPpr/ziaQ=;
-        b=O6O8HayU6qcp39t0RkxnUqAFXQWwffNedWehI2s+6LznXlcp7w92O/Tnx9pblvo11N
-         8r+F2OS9aB/sK/Q4De7Bnd/baWQ1WwEJsGyICNRGrBD2f6YByuapdVWn7SY/AKEQhxIm
-         RcrljaielMhQuBOUnbQdedXMuATNdIh2F96lTfd2820KVLwG4fDRohdj7o51DDVGk3/l
-         00XBog7Vz9rrUGUzxctruYIykGvtZFteE+2c9wz+lsIIypLyPF3rl3ejvtZ3YvfZ5O6f
-         DWkdTK/jcQUzrfTQZktcDn/nWMNTT0I1BbUENM/f6I9vMXuqmDiXXXhcAZc4mLUKWrJ7
-         3Y6g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Cvg0mMj3/9iAeAXAFseY1rufUcEGU4I4FlJPpr/ziaQ=;
-        b=RAaruxpWmRt+K80IZa4BRqB2/cIsckoV+z7NxH2CKDSg6uB4CAGufu6PymS7lyEy9j
-         cfHRvw2m8DV9h1RyeWnx4G7bt8EuiAIS4ABohiOas8WeTsR6K4YjPk9rG/CBrZGeC1Vu
-         hgxAReCVCagbvkWGAqVEmBj9Xv/3EO8jb1QNQ/DCEIzx/JFEafF9f4tx/0dN430V4RI0
-         2D8mYbMTN0OP4j9zI7r+Vb4L7gEzXWeCdvTuuQb/RwNZ6LpojjSYbvOxPH73IZJrMEu+
-         1lsxt7aqLdmWS1P2lQY6OiAcOny2VwIfVzWO4SkjE475V24CzN9LhoZvmRjFmKyLArNc
-         3pDQ==
-X-Gm-Message-State: AOAM533ECvf3VexE7lUjRL9rOp4fStmJrG7NzY1oh8LvU2LqxbhuHm2z
-        BzWDU2Y4DPSWBD18MENAu8r+eKFJpcBU00IpAs3qTA==
-X-Google-Smtp-Source: ABdhPJzXsvRFkrBUiWRyzBJrbEAD5IQQM8CcX/hmvFzsHIdc2MVX+AYWl3cGSLinoNoh5ylUZurwMbx5NR+P/kbGRfs=
-X-Received: by 2002:aca:75cc:: with SMTP id q195mr6669734oic.173.1608405305318;
- Sat, 19 Dec 2020 11:15:05 -0800 (PST)
+        id S1727370AbgLSTpC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 19 Dec 2020 14:45:02 -0500
+Received: from mail.kernel.org ([198.145.29.99]:41178 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727312AbgLSTpB (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 19 Dec 2020 14:45:01 -0500
+Content-Type: text/plain; charset="utf-8"
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1608407061;
+        bh=fBn6lXZfV64Astfjzu3fdYVvoXy6Bi4EdeIjTgzOO3c=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=BaVxFyHCuzC8XJLD/skqqTnE3EdQyVjy7hCk8xP5vMcet3n1i62YL747IQ290G/IG
+         Skvy7D1k4p1pl+ouu1F6y5gZtMhUEipjZEHbeP/oXW2XPfxzq/8sVs5Bh/5UzcB9f0
+         KXnd66kQNUjqevXQMHr6iCS3NW5I0ZD++aCwLyCwS1ZMzUilg3iJZNrLFTvAcpfIKG
+         4itR3NJmTNn0WCk1lYId4+rT2H9tx3wirFIooqoivGrnsEBa84IJEkMdgRgc5GUebG
+         lbuMa7IZpTCcLYmkxNv9lD6PwHcb2VQfUu6uURQcUuGMyWuaoYE5EiQyBd14JgIYcD
+         Hxj2Gh4afleWw==
 MIME-Version: 1.0
-References: <20201218130329.258254-1-robert.marko@sartura.hr>
- <20201218130329.258254-2-robert.marko@sartura.hr> <9dd93c41-aa11-ebfb-7f72-0ee188268976@roeck-us.net>
-In-Reply-To: <9dd93c41-aa11-ebfb-7f72-0ee188268976@roeck-us.net>
-From:   Robert Marko <robert.marko@sartura.hr>
-Date:   Sat, 19 Dec 2020 20:14:54 +0100
-Message-ID: <CA+HBbNGjTD+DYeKEix5D4EfudW8-C-r4uft2hy+OBykN7eXfeg@mail.gmail.com>
-Subject: Re: [PATCH 2/3] hwmon: add Texas Instruments TPS23861 driver
-To:     Guenter Roeck <linux@roeck-us.net>
-Cc:     jdelvare@suse.com, robh+dt@kernel.org, linux-hwmon@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Luka Perkov <luka.perkov@sartura.hr>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20201218201350.GA2089699@robh.at.kernel.org>
+References: <20201207045527.1607-1-thunder.leizhen@huawei.com> <20201207045527.1607-2-thunder.leizhen@huawei.com> <160820093389.1580929.3915867007740168331@swboyd.mtv.corp.google.com> <20201218201350.GA2089699@robh.at.kernel.org>
+Subject: Re: [PATCH 1/1] dt-bindings: clock: imx8qxp-lpcg: eliminate yamllint warnings
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     Fabio Estevam <festevam@gmail.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Zhen Lei <thunder.leizhen@huawei.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Date:   Sat, 19 Dec 2020 11:44:19 -0800
+Message-ID: <160840705988.1580929.18125222574166820024@swboyd.mtv.corp.google.com>
+User-Agent: alot/0.9.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 18, 2020 at 3:50 PM Guenter Roeck <linux@roeck-us.net> wrote:
->
-> On 12/18/20 5:03 AM, Robert Marko wrote:
-> > Add basic monitoring support as well as port on/off control for Texas
-> > Instruments TPS23861 PoE PSE IC.
-> >
-> > Signed-off-by: Robert Marko <robert.marko@sartura.hr>
-> > Cc: Luka Perkov <luka.perkov@sartura.hr>
-> > ---
-> >  drivers/hwmon/Kconfig    |  11 ++
-> >  drivers/hwmon/Makefile   |   1 +
-> >  drivers/hwmon/tps23861.c | 398 +++++++++++++++++++++++++++++++++++++++
-> >  3 files changed, 410 insertions(+)
-> >  create mode 100644 drivers/hwmon/tps23861.c
-> >
-> > diff --git a/drivers/hwmon/Kconfig b/drivers/hwmon/Kconfig
-> > index a850e4f0e0bd..3368ecfa7a9c 100644
-> > --- a/drivers/hwmon/Kconfig
-> > +++ b/drivers/hwmon/Kconfig
-> > @@ -1102,6 +1102,17 @@ config SENSORS_TC654
-> >         This driver can also be built as a module. If so, the module
-> >         will be called tc654.
-> >
-> > +config SENSORS_TPS23861
-> > +     tristate "Texas Instruments TPS23861 PoE PSE"
-> > +     depends on I2C
-> > +     select REGMAP_I2C
-> > +     help
-> > +       If you say yes here you get support for Texas Instruments
-> > +       TPS23861 802.3at PoE PSE chips.
-> > +
-> > +       This driver can also be built as a module. If so, the module
-> > +       will be called tps23861.
-> > +
-> >  config SENSORS_MENF21BMC_HWMON
-> >       tristate "MEN 14F021P00 BMC Hardware Monitoring"
-> >       depends on MFD_MENF21BMC
-> > diff --git a/drivers/hwmon/Makefile b/drivers/hwmon/Makefile
-> > index 9db2903b61e5..7493e9d5dc43 100644
-> > --- a/drivers/hwmon/Makefile
-> > +++ b/drivers/hwmon/Makefile
-> > @@ -141,6 +141,7 @@ obj-$(CONFIG_SENSORS_MAX31790)    += max31790.o
-> >  obj-$(CONFIG_SENSORS_MC13783_ADC)+= mc13783-adc.o
-> >  obj-$(CONFIG_SENSORS_MCP3021)        += mcp3021.o
-> >  obj-$(CONFIG_SENSORS_TC654)  += tc654.o
-> > +obj-$(CONFIG_SENSORS_TPS23861)       += tps23861.o
-> >  obj-$(CONFIG_SENSORS_MLXREG_FAN) += mlxreg-fan.o
-> >  obj-$(CONFIG_SENSORS_MENF21BMC_HWMON) += menf21bmc_hwmon.o
-> >  obj-$(CONFIG_SENSORS_MR75203)        += mr75203.o
-> > diff --git a/drivers/hwmon/tps23861.c b/drivers/hwmon/tps23861.c
-> > new file mode 100644
-> > index 000000000000..e8b614267084
-> > --- /dev/null
-> > +++ b/drivers/hwmon/tps23861.c
-> > @@ -0,0 +1,398 @@
-> > +// SPDX-License-Identifier: GPL-2.0-or-later
-> > +/*
-> > + * Driver for the TI TPS23861 PoE PSE.
-> > + *
-> > + * Author: Robert Marko <robert.marko@sartura.hr>
-> > + */
-> > +
-> > +#include <linux/module.h>
-> > +#include <linux/of_device.h>
-> > +#include <linux/hwmon.h>
-> > +#include <linux/hwmon-sysfs.h>
-> > +#include <linux/i2c.h>
-> > +#include <linux/regmap.h>
-> > +#include <linux/bitfield.h>
-> > +#include <linux/delay.h>
->
-> Alphabetic include file order, please.
+Quoting Rob Herring (2020-12-18 12:13:50)
+> On Thu, Dec 17, 2020 at 02:28:53AM -0800, Stephen Boyd wrote:
+> > Quoting Zhen Lei (2020-12-06 20:55:27)
+> > > Eliminate the following yamllint warnings:
+> > > ./Documentation/devicetree/bindings/clock/imx8qxp-lpcg.yaml
+> > > :32:13:[warning] wrong indentation: expected 14 but found 12 (indenta=
+tion)
+> > > :35:9: [warning] wrong indentation: expected 10 but found 8 (indentat=
+ion)
+> > >=20
+> > > Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
+> > > ---
+> >=20
+> > Reviewed-by: Stephen Boyd <sboyd@kernel.org>
+>=20
+> If I tagged it, I was expecting you to pick up. But I'm gathering up all =
 
-Done in v2.
->
-> [ ... ]
->
-> > +     hwmon_dev = devm_hwmon_device_register_with_groups(dev, client->name,
-> > +                                                        data, tps23861_groups);
->
-> Please rework to use devm_hwmon_device_register_with_info().
+> the fixes for what landed in Linus' tree, so I'll apply.
+>=20
 
-Done in v2.
-
-Thanks for the remarks.
-
-Regards,
-Robert
->
-> Thanks,
-> Guenter
+Thanks! I don't see this in clk tree so I guess it went through arm-soc.
