@@ -2,101 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C35342DEE01
-	for <lists+devicetree@lfdr.de>; Sat, 19 Dec 2020 10:29:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 68D622DEE48
+	for <lists+devicetree@lfdr.de>; Sat, 19 Dec 2020 11:58:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726426AbgLSJ2g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 19 Dec 2020 04:28:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36536 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726367AbgLSJ2f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Dec 2020 04:28:35 -0500
-Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51041C0617B0;
-        Sat, 19 Dec 2020 01:27:55 -0800 (PST)
-Received: by mail-pf1-x433.google.com with SMTP id v2so3034312pfm.9;
-        Sat, 19 Dec 2020 01:27:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=ctmRMSbwSXsaUJmiSd13cerYbuM3368cFgF1ybIbnTk=;
-        b=TJAl+FrXpE9DBSVN6HlpabGbK1T5ePXYs0WRG220mm555kBJcqf2uiFcVg3T7VaSGT
-         LQRfLBrNHh/aIt+fc1XuNI/sRDVQV1Y3KP95RaJDRVSk50P0NEFcEK4r9rleQFjV117a
-         hrr3pBCTPsyip+3lKtfsvF/xP1jJH43EjsTWQjQmVY8HZz4ioQxJVvLsB550cgnPA9lp
-         jexkeuw/XqO4ULcgY2XV1V6gAEl52d95gftoIhuPgDBYYlZggN+CvMvzBzV4D2FX+xrm
-         sQyq8N0lYFVlXT/MQlNlKnWArV+pS5YXkwKRo8GPI1Ib19T2H+YIsGd+FizMJrl5Sv2k
-         s4Eg==
+        id S1726474AbgLSK6G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 19 Dec 2020 05:58:06 -0500
+Received: from mail-ej1-f53.google.com ([209.85.218.53]:34661 "EHLO
+        mail-ej1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726456AbgLSK6G (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Dec 2020 05:58:06 -0500
+Received: by mail-ej1-f53.google.com with SMTP id g20so6920291ejb.1;
+        Sat, 19 Dec 2020 02:57:48 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=ctmRMSbwSXsaUJmiSd13cerYbuM3368cFgF1ybIbnTk=;
-        b=g4GIy2N3rxvQjpLujLqsV7Iaxx7uQcTl6R557ds3KBHRAaO45HDn094vpMOVnRl53T
-         PplzObH0P3p3Dr6ou27yJ19UQT8Jgi+I+kPBkTPpZF7uxj0nm+F6vqSFyUnq1feaJAHn
-         AL0zjettqVG4aYB9i0yqME/J/dQgWiCD3vaxBsluLKCbgFY1lCGdl+ZsDX98g2+CoZUE
-         fI4JgEuxPas3KaQleAxwlX08PoOCCih7a9sKUaYg6/B2lU7hks8bA8edzkYjwrqD0YMN
-         MocHLa8YNv3G0nkHHq5u9hXmjMr3n75pY5kEJnAzXZotuapyEMj7HeKvsm2cILfz1JNj
-         PiYA==
-X-Gm-Message-State: AOAM530JHkL/6dI8x55oYWZ8JJFWtiUrk05bNyAJS/whODl7yDqzOTOa
-        DY4+w6+I4ykzsnHaT6qD6NI=
-X-Google-Smtp-Source: ABdhPJwoWtXQBa4bBhOrr/hAGclT7oR71ftv1fFkA/FD/hXBOdJCLFtbTmZPAJbL75q6V94kP3HcKg==
-X-Received: by 2002:a63:5845:: with SMTP id i5mr7465833pgm.355.1608370074869;
-        Sat, 19 Dec 2020 01:27:54 -0800 (PST)
-Received: from localhost (g39.222-224-245.ppp.wakwak.ne.jp. [222.224.245.39])
-        by smtp.gmail.com with ESMTPSA id mz1sm9467603pjb.33.2020.12.19.01.27.53
+        bh=EpBQBebW9DJ389TpaCDahYCkX51lISZZEMe47kdJ6lQ=;
+        b=IAsruEHJrg2v6P8e0bPaSWQU27WQGHNOQafpZafuRhsmkORmMtmgK0WOjeWIBR1nvA
+         XABh1JLTemUs1aKwRp3FqKge3xIKSgZo4efxOUWUswCbdcZSNM95c4+xraIPgYoYpEDe
+         b8DX+xelZ7CTjfn9iK7U7dZGNqI0U8ZofDamSbwiR+Y0aKxEFDPXnlUfnDfxbWCoidmK
+         3IYUfWytgf/O4LoBR6NTbPzYK2Gi9VniI2nZbPkN0ulBZIGUmoG29h4suHjHWNIXJC9L
+         Qqmdw4GLqHCP0R3rG7IMHMUkCY8uX+uZiWEUAGREbjqP7dBM6lTcUU2/hq4qoL9JlCQv
+         egbA==
+X-Gm-Message-State: AOAM530McxTATj0tA4JvZg130C7LGBPxRV+9LHbVHfFDbwNyPO11M7G/
+        T3BiPwMUZNvqA5oQwQKxzGk=
+X-Google-Smtp-Source: ABdhPJyWR/64ayreIal22iSj58nHkNVe6iV5yUrUJ5pe5qe42bhP84ft40zxoVfZe823dJe4zocuIg==
+X-Received: by 2002:a17:906:4ec7:: with SMTP id i7mr8055250ejv.252.1608375443178;
+        Sat, 19 Dec 2020 02:57:23 -0800 (PST)
+Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
+        by smtp.googlemail.com with ESMTPSA id pk19sm6666596ejb.32.2020.12.19.02.57.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 19 Dec 2020 01:27:54 -0800 (PST)
-Date:   Sat, 19 Dec 2020 18:27:51 +0900
-From:   Stafford Horne <shorne@gmail.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Zhen Lei <thunder.leizhen@huawei.com>,
-        Karol Gugala <kgugala@antmicro.com>,
-        linux-mediatek <linux-mediatek@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
+        Sat, 19 Dec 2020 02:57:22 -0800 (PST)
+Date:   Sat, 19 Dec 2020 11:57:20 +0100
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Dmitry Osipenko <digetx@gmail.com>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
         Mauro Carvalho Chehab <mchehab@kernel.org>,
-        linux-serial <linux-serial@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Mateusz Holenko <mholenko@antmicro.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-media <linux-media@vger.kernel.org>,
-        Pawel Czarnecki <pczarnecki@internships.antmicro.com>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH 3/5] dt-bindings: soc: add the required property
- 'additionalProperties'
-Message-ID: <20201219092751.GI3168563@lianli.shorne-pla.net>
-References: <20201204093813.1275-1-thunder.leizhen@huawei.com>
- <20201204093813.1275-4-thunder.leizhen@huawei.com>
- <20201218211706.GA2190351@robh.at.kernel.org>
+        Rob Herring <robh+dt@kernel.org>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Nicolas Chauvet <kwizart@gmail.com>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Kevin Hilman <khilman@kernel.org>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        devel@driverdev.osuosl.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-media@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-clk@vger.kernel.org
+Subject: Re: [PATCH v2 07/48] dt-bindings: arm: tegra: Add binding for core
+ power domain
+Message-ID: <20201219105720.GA5323@kozik-lap>
+References: <20201217180638.22748-1-digetx@gmail.com>
+ <20201217180638.22748-8-digetx@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20201218211706.GA2190351@robh.at.kernel.org>
+In-Reply-To: <20201217180638.22748-8-digetx@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 18, 2020 at 03:17:06PM -0600, Rob Herring wrote:
-> On Fri, 04 Dec 2020 17:38:11 +0800, Zhen Lei wrote:
-> > When I do dt_binding_check for any YAML file, below wanring is always
-> > reported:
-> > 
-> > xxx/soc/litex/litex,soc-controller.yaml: 'additionalProperties' is a required property
-> > xxx/soc/litex/litex,soc-controller.yaml: ignoring, error in schema:
-> > warning: no schema found in file: xxx/soc/litex/litex,soc-controller.yaml
-> > 
-> > Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
-> > ---
-> >  Documentation/devicetree/bindings/soc/litex/litex,soc-controller.yaml | 2 ++
-> >  1 file changed, 2 insertions(+)
-> > 
+On Thu, Dec 17, 2020 at 09:05:57PM +0300, Dmitry Osipenko wrote:
+> All NVIDIA Tegra SoCs have a core power domain where majority of hardware
+> blocks reside. Add binding for the core power domain.
 > 
-> Applied, thanks!
+> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+> ---
+>  .../arm/tegra/nvidia,tegra20-core-domain.yaml | 48 +++++++++++++++++++
+>  1 file changed, 48 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/arm/tegra/nvidia,tegra20-core-domain.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra20-core-domain.yaml b/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra20-core-domain.yaml
+> new file mode 100644
+> index 000000000000..f3d8fd2d8371
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra20-core-domain.yaml
+> @@ -0,0 +1,48 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/arm/tegra/nvidia,tegra20-core-domain.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: NVIDIA Tegra Core Power Domain
+> +
+> +maintainers:
+> +  - Dmitry Osipenko <digetx@gmail.com>
+> +  - Jon Hunter <jonathanh@nvidia.com>
+> +  - Thierry Reding <thierry.reding@gmail.com>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - nvidia,tegra20-core-domain
+> +      - nvidia,tegra30-core-domain
 
-Thank you!
+The file should be in bindings/power.
+Include also the power-domain.yaml schema.
 
--Stafford
+> +
+> +  operating-points-v2:
+> +    description:
+> +      Should contain level, voltages and opp-supported-hw property.
+> +      The supported-hw is a bitfield indicating SoC speedo or process
+> +      ID mask.
+> +
+> +  "#power-domain-cells":
+> +    const: 0
+> +
+> +  power-supply:
+> +    description:
+> +      Phandle to voltage regulator connected to the SoC Core power rail.
+> +
+> +required:
+> +  - compatible
+> +  - operating-points-v2
+> +  - "#power-domain-cells"
+> +  - power-supply
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    core-domain {
+
+power-domain (to follow schema and devicetree spec)
+
+Best regards,
+Krzysztof
+
+
+> +        compatible = "nvidia,tegra20-core-domain";
+> +        operating-points-v2 = <&opp_table>;
+> +        power-supply = <&regulator>;
+> +        #power-domain-cells = <0>;
+> +    };
+> -- 
+> 2.29.2
+> 
