@@ -2,60 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DAAFD2DF18A
-	for <lists+devicetree@lfdr.de>; Sat, 19 Dec 2020 21:26:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 70FBE2DF1B8
+	for <lists+devicetree@lfdr.de>; Sat, 19 Dec 2020 22:06:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727427AbgLSUZo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 19 Dec 2020 15:25:44 -0500
-Received: from vps0.lunn.ch ([185.16.172.187]:34424 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727370AbgLSUZo (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 19 Dec 2020 15:25:44 -0500
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94)
-        (envelope-from <andrew@lunn.ch>)
-        id 1kqimW-00CtUt-Oo; Sat, 19 Dec 2020 21:24:48 +0100
-Date:   Sat, 19 Dec 2020 21:24:48 +0100
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Steen Hegelund <steen.hegelund@microchip.com>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Device Tree List <devicetree@vger.kernel.org>,
-        Russell King <linux@armlinux.org.uk>,
-        Lars Povlsen <lars.povlsen@microchip.com>,
-        Bjarni Jonasson <bjarni.jonasson@microchip.com>,
-        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Madalin Bucur <madalin.bucur@oss.nxp.com>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Mark Einon <mark.einon@gmail.com>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>, netdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [RFC PATCH v2 8/8] arm64: dts: sparx5: Add the Sparx5 switch node
-Message-ID: <20201219202448.GE3026679@lunn.ch>
-References: <20201217075134.919699-1-steen.hegelund@microchip.com>
- <20201217075134.919699-9-steen.hegelund@microchip.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201217075134.919699-9-steen.hegelund@microchip.com>
+        id S1726473AbgLSVGQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 19 Dec 2020 16:06:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58332 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726249AbgLSVGP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Dec 2020 16:06:15 -0500
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91B9EC0613CF;
+        Sat, 19 Dec 2020 13:05:09 -0800 (PST)
+Received: by mail-ed1-x52d.google.com with SMTP id u19so5953726edx.2;
+        Sat, 19 Dec 2020 13:05:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=yCg0N5XHLdcvyzB8XtbsgLX0uVCGtu8p9OhsrWKEzmI=;
+        b=ZOayuf5MpYctakbG05R3dem09hHqfNfXaxDYwUfuhENiSfcdDzV3Q+uRqNh2bfMTQt
+         BAQQii6h83kwUyA+i32ljQELwP1RoaAdFBGJs6JGE9cFfbweOPT07zGKGE/Ge57mp6i9
+         ocI/L0hJJdnpt1k2a0Q1t4PlMcwZKI2gosI9hSLLwmm/cFaFsoxq/GPG0Qdb6uB0fgBt
+         cVfU32+72cdvm5WpU4Bi5B7rPrR1rHlImJUAec4fMexLk1/mjH33cuKU3HRVa0izDac5
+         +XsDXAoDot7+qF6OwcvnN1MeOr//aCRFvNRcy5vmin6n0to87FT20uTOt3e28BgDtwDY
+         1NZw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=yCg0N5XHLdcvyzB8XtbsgLX0uVCGtu8p9OhsrWKEzmI=;
+        b=L8d2I1SUfszMgh4shdFRPMnTlV+56IIMMgk+Lc8C8jln8LnXeFwHTpWgDN1At0SrFf
+         EcfIWinvn2Z47ZvfKmge4AQ7DMTeyIkONTNQUKxVTEkzK7rxcYHM6GJdtyobqMRA/Xii
+         SgQ3mZuzA6IIQFHrT9+4JpLP2l4zq4L6I6oKHapcaJk7Jyv2PYl0M+mX0Gtn64UHQUUn
+         SY+X/SsDieaCi5Mzs3FDN34dbdSX/fHNYACTYvBqKZg9zfQlbInaAnK5L5KcmFMBu30+
+         r2FAOYVrXOjreKuXBmzOfsFK2BolT+lLpRukGZE6rCkaJtNbnP0Rw4Z4ri2x3nqCwN6A
+         7qLQ==
+X-Gm-Message-State: AOAM533DFYRozmRp7pOSIond+m1iwSunRHp5wYIbZlXP7yxCeJ/HwR1q
+        iRQU7769sYmzjJ/BqXmJcxM=
+X-Google-Smtp-Source: ABdhPJwUOLxMqZHFnWA+AM/Mc5tNkY09FqSU8RHM9licxpTkUPDZ6d6Rp7YMFP1kyyvbL2MzBmbfzQ==
+X-Received: by 2002:a50:d491:: with SMTP id s17mr10004889edi.169.1608411908228;
+        Sat, 19 Dec 2020 13:05:08 -0800 (PST)
+Received: from debian.home (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id a6sm26960419edv.74.2020.12.19.13.05.07
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Sat, 19 Dec 2020 13:05:07 -0800 (PST)
+From:   Johan Jonker <jbx6244@gmail.com>
+To:     heiko@sntech.de
+Cc:     robh+dt@kernel.org, linux-rockchip@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: rockchip: assign a fixed index to mmc devices on rk3328 boards
+Date:   Sat, 19 Dec 2020 22:05:00 +0100
+Message-Id: <20201219210500.3855-1-jbx6244@gmail.com>
+X-Mailer: git-send-email 2.11.0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> +		port13: port@13 {
-> +			reg = <13>;
-> +			/* Example: CU SFP, 1G speed */
-> +			max-speed = <10000>;
+Recently introduced async probe on mmc devices can shuffle block IDs.
+Pin them to fixed values to ease booting in environments where UUIDs
+are not practical. Use newly introduced aliases for mmcblk devices from [1].
 
-One too many 0's for 1G.
+[1] https://patchwork.kernel.org/patch/11747669/
 
-> +		/* 25G SFPs */
-> +		port56: port@56 {
-> +			reg = <56>;
-> +			max-speed = <10000>;
+Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+---
+ arch/arm64/boot/dts/rockchip/rk3328.dtsi | 3 +++
+ 1 file changed, 3 insertions(+)
 
-Why limit a 25G SFP to 10G?
+diff --git a/arch/arm64/boot/dts/rockchip/rk3328.dtsi b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
+index 957ebb70b..1ae129793 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3328.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
+@@ -27,6 +27,9 @@
+ 		i2c1 = &i2c1;
+ 		i2c2 = &i2c2;
+ 		i2c3 = &i2c3;
++		mmc0 = &sdmmc;
++		mmc1 = &sdio;
++		mmc2 = &emmc;
+ 		ethernet0 = &gmac2io;
+ 		ethernet1 = &gmac2phy;
+ 	};
+-- 
+2.11.0
 
-    Andrew
