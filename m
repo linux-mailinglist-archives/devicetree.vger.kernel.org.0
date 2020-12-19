@@ -2,51 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B4A02DF16B
-	for <lists+devicetree@lfdr.de>; Sat, 19 Dec 2020 20:55:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DAAFD2DF18A
+	for <lists+devicetree@lfdr.de>; Sat, 19 Dec 2020 21:26:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727863AbgLSTyk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 19 Dec 2020 14:54:40 -0500
-Received: from mail.kernel.org ([198.145.29.99]:42424 "EHLO mail.kernel.org"
+        id S1727427AbgLSUZo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 19 Dec 2020 15:25:44 -0500
+Received: from vps0.lunn.ch ([185.16.172.187]:34424 "EHLO vps0.lunn.ch"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727853AbgLSTyk (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 19 Dec 2020 14:54:40 -0500
-Content-Type: text/plain; charset="utf-8"
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1608407635;
-        bh=h4zfuL+50Lz1IKB6YCKldollgufXdyY4atdbMGPLpjM=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=HnXtkJ0f8Wy1KD9Qdcp+WMSTQpAyIexQbTfXpzryYB29gOtIUY8SURMojBJAT1IoX
-         W2h7jKcV4xmws9p7ZAeCW3aN3hTdPcj65pcdKWr0l4JrafQHwIy5cKbg3cL+HK2olK
-         aEa0BOYIEuZDmxzmglufYT6d4xnmfqJuj780c75P//NlyTRsn+AGa7HWhFXIlFMza6
-         dA9sFKu449C6S/VYh7gwFQtmxz+wnXB/L+YPYxYZEl/SW4rUBSqYi8b/Y92jGJWmTw
-         lRQijBe9LjutAnTEcIDKr1iwAi7Jt04RwYMdnoADm91Uj0AxUFEWJenryoBlhkZaah
-         OSQF99zOJbdXA==
+        id S1727370AbgLSUZo (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 19 Dec 2020 15:25:44 -0500
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94)
+        (envelope-from <andrew@lunn.ch>)
+        id 1kqimW-00CtUt-Oo; Sat, 19 Dec 2020 21:24:48 +0100
+Date:   Sat, 19 Dec 2020 21:24:48 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Steen Hegelund <steen.hegelund@microchip.com>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Device Tree List <devicetree@vger.kernel.org>,
+        Russell King <linux@armlinux.org.uk>,
+        Lars Povlsen <lars.povlsen@microchip.com>,
+        Bjarni Jonasson <bjarni.jonasson@microchip.com>,
+        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Madalin Bucur <madalin.bucur@oss.nxp.com>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Mark Einon <mark.einon@gmail.com>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [RFC PATCH v2 8/8] arm64: dts: sparx5: Add the Sparx5 switch node
+Message-ID: <20201219202448.GE3026679@lunn.ch>
+References: <20201217075134.919699-1-steen.hegelund@microchip.com>
+ <20201217075134.919699-9-steen.hegelund@microchip.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <1605800597-16720-7-git-send-email-claudiu.beznea@microchip.com>
-References: <1605800597-16720-1-git-send-email-claudiu.beznea@microchip.com> <1605800597-16720-7-git-send-email-claudiu.beznea@microchip.com>
-Subject: Re: [PATCH v6 06/11] clk: at91: clk-sam9x60-pll: allow runtime changes for pll
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Claudiu Beznea <claudiu.beznea@microchip.com>
-To:     Claudiu Beznea <claudiu.beznea@microchip.com>,
-        alexandre.belloni@bootlin.com, ludovic.desroches@microchip.com,
-        mturquette@baylibre.com, nicolas.ferre@microchip.com,
-        robh+dt@kernel.org
-Date:   Sat, 19 Dec 2020 11:53:54 -0800
-Message-ID: <160840763464.1580929.12880803082811509442@swboyd.mtv.corp.google.com>
-User-Agent: alot/0.9.1
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201217075134.919699-9-steen.hegelund@microchip.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Claudiu Beznea (2020-11-19 07:43:12)
-> Allow runtime frequency changes for PLLs registered with proper flags.
-> This is necessary for CPU PLL on SAMA7G5 which is used by DVFS.
->=20
-> Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
-> ---
+> +		port13: port@13 {
+> +			reg = <13>;
+> +			/* Example: CU SFP, 1G speed */
+> +			max-speed = <10000>;
 
-Applied to clk-next
+One too many 0's for 1G.
+
+> +		/* 25G SFPs */
+> +		port56: port@56 {
+> +			reg = <56>;
+> +			max-speed = <10000>;
+
+Why limit a 25G SFP to 10G?
+
+    Andrew
