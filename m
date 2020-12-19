@@ -2,95 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6FBA32DF13A
-	for <lists+devicetree@lfdr.de>; Sat, 19 Dec 2020 20:15:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A95E2DF13E
+	for <lists+devicetree@lfdr.de>; Sat, 19 Dec 2020 20:15:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727524AbgLSTNJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 19 Dec 2020 14:13:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41060 "EHLO
+        id S1727427AbgLSTPy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 19 Dec 2020 14:15:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41496 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727518AbgLSTNI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Dec 2020 14:13:08 -0500
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47B0CC0611CA
-        for <devicetree@vger.kernel.org>; Sat, 19 Dec 2020 11:11:33 -0800 (PST)
-Received: by mail-ej1-x634.google.com with SMTP id n26so8020483eju.6
-        for <devicetree@vger.kernel.org>; Sat, 19 Dec 2020 11:11:33 -0800 (PST)
+        with ESMTP id S1727298AbgLSTPy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Dec 2020 14:15:54 -0500
+Received: from mail-oi1-x22d.google.com (mail-oi1-x22d.google.com [IPv6:2607:f8b0:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3C0EC0617B0
+        for <devicetree@vger.kernel.org>; Sat, 19 Dec 2020 11:15:05 -0800 (PST)
+Received: by mail-oi1-x22d.google.com with SMTP id 15so6864677oix.8
+        for <devicetree@vger.kernel.org>; Sat, 19 Dec 2020 11:15:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=sartura-hr.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=W7MQknUNgfLi/fumFEQOeiLKRWIy/aG8D1EJYUy6tL8=;
-        b=JxoBhYkTL2ZHpGI0Ze8E4247eAu83x00wW3etACBj6rJ6kRaZ3IM31SrX2Im0jgzm4
-         DtolModXybBqIsRpgO5soGVkCddReHwa45NQKna8wF3i90a1pCL0ZBCElRVfNI+rtO0E
-         4l6BIQp1KGCvT5Ml3w/343xjYUs/VupLFoBQ0XvCZkd56XH3ysXsHpso1Gvjp6SM6fWv
-         IdGFMPBndXolvI1W6klpXS2+fkY/d2Y9aDQSY/5e7VO9iFLv5GZS9MPxcwp+YIczDH54
-         m8CFQF29dB6rGLip59peeUAqmr1BWkRId6d2ZliJFVNtVxF5A/8XpkURpCy0EGanBo63
-         REkg==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Cvg0mMj3/9iAeAXAFseY1rufUcEGU4I4FlJPpr/ziaQ=;
+        b=O6O8HayU6qcp39t0RkxnUqAFXQWwffNedWehI2s+6LznXlcp7w92O/Tnx9pblvo11N
+         8r+F2OS9aB/sK/Q4De7Bnd/baWQ1WwEJsGyICNRGrBD2f6YByuapdVWn7SY/AKEQhxIm
+         RcrljaielMhQuBOUnbQdedXMuATNdIh2F96lTfd2820KVLwG4fDRohdj7o51DDVGk3/l
+         00XBog7Vz9rrUGUzxctruYIykGvtZFteE+2c9wz+lsIIypLyPF3rl3ejvtZ3YvfZ5O6f
+         DWkdTK/jcQUzrfTQZktcDn/nWMNTT0I1BbUENM/f6I9vMXuqmDiXXXhcAZc4mLUKWrJ7
+         3Y6g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=W7MQknUNgfLi/fumFEQOeiLKRWIy/aG8D1EJYUy6tL8=;
-        b=Zyrtifdrv3wJg/HplOraDqyBAhTsix8TzOXJ1ifxt+PrPnhKnguGRRxSCAUuE7eFHA
-         rnIJDonowCCS3xcI3+Ff4hEQFTYDEHf6o78epRGece7LPgQddzgppb1OPseRKjMlY6Ss
-         LVfUA7mXXukBM14ybj/cgsO1s94gOrypfCEPyow0K+lMlo/hlyslIugTbLVG1svNtnQu
-         uVbVj5T+76owuPUJ8qpBqRdu6hnrmFQTc+1Y1rYENiy/tF4sgMqLGEVb9rnzIOb6e7p2
-         OAYXwunu6v8Rg71SEYSZRcJqFt1+ybKFeGMMNsiNmf/184DvTPhXzZKg/ZyslPssQNrX
-         jN6Q==
-X-Gm-Message-State: AOAM530dRFXAhbKEbwAlI1UYUCxAXahXMS373VZMzhexkQI6itlPtDdO
-        1tNXGlG0cnxdupfZoQYSCz6XZQ==
-X-Google-Smtp-Source: ABdhPJzDphxy2HHNe5npeVq3Rsq94sKB2aYn/L2GQrQHnieu1+ACIFt0Wd7e26z95PzpRlgxz4YS0w==
-X-Received: by 2002:a17:906:7c49:: with SMTP id g9mr9495383ejp.185.1608405091966;
-        Sat, 19 Dec 2020 11:11:31 -0800 (PST)
-Received: from localhost.localdomain ([88.207.4.44])
-        by smtp.googlemail.com with ESMTPSA id o10sm7081955eju.89.2020.12.19.11.11.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 19 Dec 2020 11:11:31 -0800 (PST)
-From:   Robert Marko <robert.marko@sartura.hr>
-To:     jdelvare@suse.com, robh+dt@kernel.org, linux-hwmon@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Robert Marko <robert.marko@sartura.hr>,
-        Luka Perkov <luka.perkov@sartura.hr>
-Subject: [PATCH v2 3/3] MAINTAINERS: Add entry for Texas Instruments TPS23861 PoE PSE
-Date:   Sat, 19 Dec 2020 20:11:21 +0100
-Message-Id: <20201219191121.85142-3-robert.marko@sartura.hr>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20201219191121.85142-1-robert.marko@sartura.hr>
-References: <20201219191121.85142-1-robert.marko@sartura.hr>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Cvg0mMj3/9iAeAXAFseY1rufUcEGU4I4FlJPpr/ziaQ=;
+        b=RAaruxpWmRt+K80IZa4BRqB2/cIsckoV+z7NxH2CKDSg6uB4CAGufu6PymS7lyEy9j
+         cfHRvw2m8DV9h1RyeWnx4G7bt8EuiAIS4ABohiOas8WeTsR6K4YjPk9rG/CBrZGeC1Vu
+         hgxAReCVCagbvkWGAqVEmBj9Xv/3EO8jb1QNQ/DCEIzx/JFEafF9f4tx/0dN430V4RI0
+         2D8mYbMTN0OP4j9zI7r+Vb4L7gEzXWeCdvTuuQb/RwNZ6LpojjSYbvOxPH73IZJrMEu+
+         1lsxt7aqLdmWS1P2lQY6OiAcOny2VwIfVzWO4SkjE475V24CzN9LhoZvmRjFmKyLArNc
+         3pDQ==
+X-Gm-Message-State: AOAM533ECvf3VexE7lUjRL9rOp4fStmJrG7NzY1oh8LvU2LqxbhuHm2z
+        BzWDU2Y4DPSWBD18MENAu8r+eKFJpcBU00IpAs3qTA==
+X-Google-Smtp-Source: ABdhPJzXsvRFkrBUiWRyzBJrbEAD5IQQM8CcX/hmvFzsHIdc2MVX+AYWl3cGSLinoNoh5ylUZurwMbx5NR+P/kbGRfs=
+X-Received: by 2002:aca:75cc:: with SMTP id q195mr6669734oic.173.1608405305318;
+ Sat, 19 Dec 2020 11:15:05 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20201218130329.258254-1-robert.marko@sartura.hr>
+ <20201218130329.258254-2-robert.marko@sartura.hr> <9dd93c41-aa11-ebfb-7f72-0ee188268976@roeck-us.net>
+In-Reply-To: <9dd93c41-aa11-ebfb-7f72-0ee188268976@roeck-us.net>
+From:   Robert Marko <robert.marko@sartura.hr>
+Date:   Sat, 19 Dec 2020 20:14:54 +0100
+Message-ID: <CA+HBbNGjTD+DYeKEix5D4EfudW8-C-r4uft2hy+OBykN7eXfeg@mail.gmail.com>
+Subject: Re: [PATCH 2/3] hwmon: add Texas Instruments TPS23861 driver
+To:     Guenter Roeck <linux@roeck-us.net>
+Cc:     jdelvare@suse.com, robh+dt@kernel.org, linux-hwmon@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Luka Perkov <luka.perkov@sartura.hr>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add maintainers entry for the Texas Instruments TPS23861 PoE PSE driver.
+On Fri, Dec 18, 2020 at 3:50 PM Guenter Roeck <linux@roeck-us.net> wrote:
+>
+> On 12/18/20 5:03 AM, Robert Marko wrote:
+> > Add basic monitoring support as well as port on/off control for Texas
+> > Instruments TPS23861 PoE PSE IC.
+> >
+> > Signed-off-by: Robert Marko <robert.marko@sartura.hr>
+> > Cc: Luka Perkov <luka.perkov@sartura.hr>
+> > ---
+> >  drivers/hwmon/Kconfig    |  11 ++
+> >  drivers/hwmon/Makefile   |   1 +
+> >  drivers/hwmon/tps23861.c | 398 +++++++++++++++++++++++++++++++++++++++
+> >  3 files changed, 410 insertions(+)
+> >  create mode 100644 drivers/hwmon/tps23861.c
+> >
+> > diff --git a/drivers/hwmon/Kconfig b/drivers/hwmon/Kconfig
+> > index a850e4f0e0bd..3368ecfa7a9c 100644
+> > --- a/drivers/hwmon/Kconfig
+> > +++ b/drivers/hwmon/Kconfig
+> > @@ -1102,6 +1102,17 @@ config SENSORS_TC654
+> >         This driver can also be built as a module. If so, the module
+> >         will be called tc654.
+> >
+> > +config SENSORS_TPS23861
+> > +     tristate "Texas Instruments TPS23861 PoE PSE"
+> > +     depends on I2C
+> > +     select REGMAP_I2C
+> > +     help
+> > +       If you say yes here you get support for Texas Instruments
+> > +       TPS23861 802.3at PoE PSE chips.
+> > +
+> > +       This driver can also be built as a module. If so, the module
+> > +       will be called tps23861.
+> > +
+> >  config SENSORS_MENF21BMC_HWMON
+> >       tristate "MEN 14F021P00 BMC Hardware Monitoring"
+> >       depends on MFD_MENF21BMC
+> > diff --git a/drivers/hwmon/Makefile b/drivers/hwmon/Makefile
+> > index 9db2903b61e5..7493e9d5dc43 100644
+> > --- a/drivers/hwmon/Makefile
+> > +++ b/drivers/hwmon/Makefile
+> > @@ -141,6 +141,7 @@ obj-$(CONFIG_SENSORS_MAX31790)    += max31790.o
+> >  obj-$(CONFIG_SENSORS_MC13783_ADC)+= mc13783-adc.o
+> >  obj-$(CONFIG_SENSORS_MCP3021)        += mcp3021.o
+> >  obj-$(CONFIG_SENSORS_TC654)  += tc654.o
+> > +obj-$(CONFIG_SENSORS_TPS23861)       += tps23861.o
+> >  obj-$(CONFIG_SENSORS_MLXREG_FAN) += mlxreg-fan.o
+> >  obj-$(CONFIG_SENSORS_MENF21BMC_HWMON) += menf21bmc_hwmon.o
+> >  obj-$(CONFIG_SENSORS_MR75203)        += mr75203.o
+> > diff --git a/drivers/hwmon/tps23861.c b/drivers/hwmon/tps23861.c
+> > new file mode 100644
+> > index 000000000000..e8b614267084
+> > --- /dev/null
+> > +++ b/drivers/hwmon/tps23861.c
+> > @@ -0,0 +1,398 @@
+> > +// SPDX-License-Identifier: GPL-2.0-or-later
+> > +/*
+> > + * Driver for the TI TPS23861 PoE PSE.
+> > + *
+> > + * Author: Robert Marko <robert.marko@sartura.hr>
+> > + */
+> > +
+> > +#include <linux/module.h>
+> > +#include <linux/of_device.h>
+> > +#include <linux/hwmon.h>
+> > +#include <linux/hwmon-sysfs.h>
+> > +#include <linux/i2c.h>
+> > +#include <linux/regmap.h>
+> > +#include <linux/bitfield.h>
+> > +#include <linux/delay.h>
+>
+> Alphabetic include file order, please.
 
-Signed-off-by: Robert Marko <robert.marko@sartura.hr>
-Cc: Luka Perkov <luka.perkov@sartura.hr>
----
- MAINTAINERS | 8 ++++++++
- 1 file changed, 8 insertions(+)
+Done in v2.
+>
+> [ ... ]
+>
+> > +     hwmon_dev = devm_hwmon_device_register_with_groups(dev, client->name,
+> > +                                                        data, tps23861_groups);
+>
+> Please rework to use devm_hwmon_device_register_with_info().
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 830244166a7c..5441be7a5c26 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -17336,6 +17336,14 @@ F:	include/dt-bindings/soc/ti,sci_pm_domain.h
- F:	include/linux/soc/ti/ti_sci_inta_msi.h
- F:	include/linux/soc/ti/ti_sci_protocol.h
- 
-+TEXAS INSTRUMENTS TPS23861 PoE PSE DRIVER
-+M:	Robert Marko <robert.marko@sartura.hr>
-+M:	Luka Perkov <luka.perkov@sartura.hr>
-+L:	linux-hwmon@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/hwmon/ti,tps23861.yaml
-+F:	drivers/hwmon/tps23861.c
-+
- THANKO'S RAREMONO AM/FM/SW RADIO RECEIVER USB DRIVER
- M:	Hans Verkuil <hverkuil@xs4all.nl>
- L:	linux-media@vger.kernel.org
--- 
-2.29.2
+Done in v2.
 
+Thanks for the remarks.
+
+Regards,
+Robert
+>
+> Thanks,
+> Guenter
