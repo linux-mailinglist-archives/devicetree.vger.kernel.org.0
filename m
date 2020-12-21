@@ -2,102 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 46FB52DFBC8
-	for <lists+devicetree@lfdr.de>; Mon, 21 Dec 2020 13:19:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 38BE92DFBD3
+	for <lists+devicetree@lfdr.de>; Mon, 21 Dec 2020 13:27:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725807AbgLUMS6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Dec 2020 07:18:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51144 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726016AbgLUMSy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Dec 2020 07:18:54 -0500
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCC78C061282
-        for <devicetree@vger.kernel.org>; Mon, 21 Dec 2020 04:18:13 -0800 (PST)
-Received: by mail-lf1-x12e.google.com with SMTP id s26so23103575lfc.8
-        for <devicetree@vger.kernel.org>; Mon, 21 Dec 2020 04:18:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=M8GIUvdJake4G0GbpUdw/v3KT65N1Elydx4DG8uLLNg=;
-        b=V3ZMo0kMWdDIcf3Iv2YamlGAnGCuRo3sVmr7FZHRBuGjiktTMjkUwo7zFejIH7snuV
-         QpnD9Sl4gm533GK7LJT6Lb3mrbkZokjzFxZ9py3RPoYyYSeR7Eqe+KUATwtkznF2dj/U
-         qL87l2ukiiYLc1G5dXbDn7egjWw4QLUK1FYTPZys8Rm1XGEaNV46BUI/eY1P29S1KPsr
-         LSL5MGZw1fsIPkiM3ge6vFElLb7pDaa7tYAg9KPV+qM0mFRgacyM6z2YpYv4lPRBcwdX
-         om7NELMGAXed+sT2CpRKRXrUmI0m6uXQsdgdg/RLLRSyJ/L2gYVfkgnfV69S/doZL73z
-         dWHQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=M8GIUvdJake4G0GbpUdw/v3KT65N1Elydx4DG8uLLNg=;
-        b=KZZI1iT4749UADIGWl5qEZADPijbVDwMNardf6bc7iWirYxJJdxSvmj07+WnY7b30+
-         L5t3TRJJIFuwpzjpN6P2Cg4A/5KNhi/bk31o1IzHX+espPbmQZJs+TwtJjkoB/jqZK8A
-         oumyWOaqt1onKVtvvxKQIY0vzgo04y1asLzcTAgpfR4ZGB0lHAEpWwYqWRSFPVjwt59p
-         aA4XBpmP5IgsYONeMdiVER5I2axnJowwhwGACoLGwVNQ1YTwxz7BEkj6t9XSYefJ7p1Z
-         D6gqt/BXyho13csYcOMBVpv53nsa4I5H9lccZ+NBeoc+d14OL5rXhMietMagec6YGHQS
-         li8g==
-X-Gm-Message-State: AOAM532Xmo8bebzJo/6E+UcRsyBYFraCeSfgyYv4LmAT9G8Ke2Xs7Z5v
-        MgN1PjwgD0/lrcb3Lp2tXQIzi7HkfwMEoGsj2hjhrQ==
-X-Google-Smtp-Source: ABdhPJwXr8Ac1/MblhevY4EuqX5/WUbMyfBZcQPEfvIJ4Y7jJa8HNHbpGR5pVhHUzmNVnt6LztIOkFhlusozSAe2Dg8=
-X-Received: by 2002:a2e:b047:: with SMTP id d7mr6964671ljl.467.1608553092185;
- Mon, 21 Dec 2020 04:18:12 -0800 (PST)
-MIME-Version: 1.0
-References: <cover.1607216141.git.cristian.ciocaltea@gmail.com>
- <f538c21de556c66390614bad778f7dc095222e8c.1607216141.git.cristian.ciocaltea@gmail.com>
- <20201216101000.GD207743@dell> <20201217231731.GA104305@BV030612LT>
- <20201218132139.GR207743@dell> <20201218160710.GA134686@BV030612LT>
- <20201221081015.GA4825@dell> <20201221115713.GA155203@BV030612LT>
-In-Reply-To: <20201221115713.GA155203@BV030612LT>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Mon, 21 Dec 2020 13:18:01 +0100
-Message-ID: <CACRpkdau=KfOeP5gM2bfLaAEa4U_GrCA=kNR0P6H5_Eov6B25g@mail.gmail.com>
-Subject: Re: [PATCH v3 3/7] mfd: Add MFD driver for ATC260x PMICs
-To:     Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
-Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Sebastian Reichel <sre@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>,
-        linux-actions@lists.infradead.org,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        id S1726196AbgLUM11 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Dec 2020 07:27:27 -0500
+Received: from mailgw02.mediatek.com ([210.61.82.184]:52632 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726173AbgLUM10 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Dec 2020 07:27:26 -0500
+X-UUID: 4c68ba0aa9d74be7b99f7817a22da234-20201221
+X-UUID: 4c68ba0aa9d74be7b99f7817a22da234-20201221
+Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw02.mediatek.com
+        (envelope-from <qii.wang@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1132859232; Mon, 21 Dec 2020 20:26:39 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Mon, 21 Dec 2020 20:26:36 +0800
+Received: from localhost.localdomain (10.17.3.153) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 21 Dec 2020 20:26:35 +0800
+From:   <qii.wang@mediatek.com>
+To:     <robh+dt@kernel.org>
+CC:     <matthias.bgg@gmail.com>, <mark.rutland@arm.com>,
         <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Linux Input <linux-input@vger.kernel.org>,
-        Linux PM list <linux-pm@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>, <leilk.liu@mediatek.com>,
+        <qii.wang@mediatek.com>
+Subject: [PATCH] arm64: dts: mediatek: Correct i2c clock of MT8192
+Date:   Mon, 21 Dec 2020 20:26:30 +0800
+Message-ID: <1608553590-26459-1-git-send-email-qii.wang@mediatek.com>
+X-Mailer: git-send-email 1.9.1
+MIME-Version: 1.0
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 21, 2020 at 12:59 PM Cristian Ciocaltea
-<cristian.ciocaltea@gmail.com> wrote:
+From: Qii Wang <qii.wang@mediatek.com>
 
-> enum atc260x_ver {
->         ATC260X_A = 0,
->         ATC260X_B,
->         ATC260X_C,
->         ATC260X_D,
->         ATC260X_E,
->         ATC260X_F,
->         ATC260X_G,
->         ATC260X_H,
-> };
+imp wrapper clock is the i2c source clock of MT8192
 
-This makes it look like the driver is actually so generic that it makes space
-for all revisions back to ATC2603A which is in the Ainol Hero 10 tablet.
+Signed-off-by: Qii Wang <qii.wang@mediatek.com>
+---
+ arch/arm64/boot/dts/mediatek/mt8192.dtsi | 43 ++++++++++++++++++++++++--------
+ 1 file changed, 33 insertions(+), 10 deletions(-)
 
-This is nice because there are millions of these devices (especially in
-China) that people want to get to run the latest Linux.
+diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+index faea0d9..9c194a8 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+@@ -17,6 +17,19 @@
+ 	#address-cells = <2>;
+ 	#size-cells = <2>;
+ 
++	aliases {
++		i2c0 = &i2c0;
++		i2c1 = &i2c1;
++		i2c2 = &i2c2;
++		i2c3 = &i2c3;
++		i2c4 = &i2c4;
++		i2c5 = &i2c5;
++		i2c6 = &i2c6;
++		i2c7 = &i2c7;
++		i2c8 = &i2c8;
++		i2c9 = &i2c9;
++	};
++
+ 	clk26m: oscillator0 {
+ 		compatible = "fixed-clock";
+ 		#clock-cells = <0>;
+@@ -593,7 +606,8 @@
+ 			reg = <0 0x11cb0000 0 0x1000>,
+ 			      <0 0x10217300 0 0x80>;
+ 			interrupts = <GIC_SPI 115 IRQ_TYPE_LEVEL_HIGH 0>;
+-			clocks = <&clk26m>, <&clk26m>;
++			clocks = <&imp_iic_wrap_e CLK_IMP_IIC_WRAP_E_I2C3>,
++				 <&infracfg CLK_INFRA_AP_DMA>;
+ 			clock-names = "main", "dma";
+ 			clock-div = <1>;
+ 			#address-cells = <1>;
+@@ -612,7 +626,8 @@
+ 			reg = <0 0x11d00000 0 0x1000>,
+ 			      <0 0x10217600 0 0x180>;
+ 			interrupts = <GIC_SPI 119 IRQ_TYPE_LEVEL_HIGH 0>;
+-			clocks = <&clk26m>, <&clk26m>;
++			clocks = <&imp_iic_wrap_s CLK_IMP_IIC_WRAP_S_I2C7>,
++				 <&infracfg CLK_INFRA_AP_DMA>;
+ 			clock-names = "main", "dma";
+ 			clock-div = <1>;
+ 			#address-cells = <1>;
+@@ -625,7 +640,8 @@
+ 			reg = <0 0x11d01000 0 0x1000>,
+ 			      <0 0x10217780 0 0x180>;
+ 			interrupts = <GIC_SPI 120 IRQ_TYPE_LEVEL_HIGH 0>;
+-			clocks = <&clk26m>, <&clk26m>;
++			clocks = <&imp_iic_wrap_s CLK_IMP_IIC_WRAP_S_I2C8>,
++				 <&infracfg CLK_INFRA_AP_DMA>;
+ 			clock-names = "main", "dma";
+ 			clock-div = <1>;
+ 			#address-cells = <1>;
+@@ -638,7 +654,8 @@
+ 			reg = <0 0x11d02000 0 0x1000>,
+ 			      <0 0x10217900 0 0x180>;
+ 			interrupts = <GIC_SPI 121 IRQ_TYPE_LEVEL_HIGH 0>;
+-			clocks = <&clk26m>, <&clk26m>;
++			clocks = <&imp_iic_wrap_s CLK_IMP_IIC_WRAP_S_I2C9>,
++				 <&infracfg CLK_INFRA_AP_DMA>;
+ 			clock-names = "main", "dma";
+ 			clock-div = <1>;
+ 			#address-cells = <1>;
+@@ -657,7 +674,8 @@
+ 			reg = <0 0x11d20000 0 0x1000>,
+ 			      <0 0x10217100 0 0x80>;
+ 			interrupts = <GIC_SPI 113 IRQ_TYPE_LEVEL_HIGH 0>;
+-			clocks = <&clk26m>, <&clk26m>;
++			clocks = <&imp_iic_wrap_ws CLK_IMP_IIC_WRAP_WS_I2C1>,
++				 <&infracfg CLK_INFRA_AP_DMA>;
+ 			clock-names = "main", "dma";
+ 			clock-div = <1>;
+ 			#address-cells = <1>;
+@@ -670,7 +688,8 @@
+ 			reg = <0 0x11d21000 0 0x1000>,
+ 			      <0 0x10217180 0 0x180>;
+ 			interrupts = <GIC_SPI 114 IRQ_TYPE_LEVEL_HIGH 0>;
+-			clocks = <&clk26m>, <&clk26m>;
++			clocks = <&imp_iic_wrap_ws CLK_IMP_IIC_WRAP_WS_I2C2>,
++				 <&infracfg CLK_INFRA_AP_DMA>;
+ 			clock-names = "main", "dma";
+ 			clock-div = <1>;
+ 			#address-cells = <1>;
+@@ -683,7 +702,8 @@
+ 			reg = <0 0x11d22000 0 0x1000>,
+ 			      <0 0x10217380 0 0x180>;
+ 			interrupts = <GIC_SPI 116 IRQ_TYPE_LEVEL_HIGH 0>;
+-			clocks = <&clk26m>, <&clk26m>;
++			clocks = <&imp_iic_wrap_ws CLK_IMP_IIC_WRAP_WS_I2C4>,
++				 <&infracfg CLK_INFRA_AP_DMA>;
+ 			clock-names = "main", "dma";
+ 			clock-div = <1>;
+ 			#address-cells = <1>;
+@@ -702,7 +722,8 @@
+ 			reg = <0 0x11e00000 0 0x1000>,
+ 			      <0 0x10217500 0 0x80>;
+ 			interrupts = <GIC_SPI 117 IRQ_TYPE_LEVEL_HIGH 0>;
+-			clocks = <&clk26m>, <&clk26m>;
++			clocks = <&imp_iic_wrap_w CLK_IMP_IIC_WRAP_W_I2C5>,
++				 <&infracfg CLK_INFRA_AP_DMA>;
+ 			clock-names = "main", "dma";
+ 			clock-div = <1>;
+ 			#address-cells = <1>;
+@@ -721,7 +742,8 @@
+ 			reg = <0 0x11f00000 0 0x1000>,
+ 			      <0 0x10217080 0 0x80>;
+ 			interrupts = <GIC_SPI 112 IRQ_TYPE_LEVEL_HIGH 0>;
+-			clocks = <&clk26m>, <&clk26m>;
++			clocks = <&imp_iic_wrap_n CLK_IMP_IIC_WRAP_N_I2C0>,
++				 <&infracfg CLK_INFRA_AP_DMA>;
+ 			clock-names = "main", "dma";
+ 			clock-div = <1>;
+ 			#address-cells = <1>;
+@@ -734,7 +756,8 @@
+ 			reg = <0 0x11f01000 0 0x1000>,
+ 			      <0 0x10217580 0 0x80>;
+ 			interrupts = <GIC_SPI 118 IRQ_TYPE_LEVEL_HIGH 0>;
+-			clocks = <&clk26m>, <&clk26m>;
++			clocks = <&imp_iic_wrap_n CLK_IMP_IIC_WRAP_N_I2C6>,
++				 <&infracfg CLK_INFRA_AP_DMA>;
+ 			clock-names = "main", "dma";
+ 			clock-div = <1>;
+ 			#address-cells = <1>;
+-- 
+1.9.1
 
-I even wonder how much different the ATM7029 is from S500, I suspect
-not super much apart from the ARM cores.
-
-Good work overall! I'll be happy to deal with the GPIO
-driver when you get there.
-
-Yours,
-Linus Walleij
