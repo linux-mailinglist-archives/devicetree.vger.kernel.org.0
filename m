@@ -2,171 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2871E2DFC72
-	for <lists+devicetree@lfdr.de>; Mon, 21 Dec 2020 14:53:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2302D2E00CC
+	for <lists+devicetree@lfdr.de>; Mon, 21 Dec 2020 20:14:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726913AbgLUNxR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Dec 2020 08:53:17 -0500
-Received: from mail-wm1-f52.google.com ([209.85.128.52]:53226 "EHLO
-        mail-wm1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726612AbgLUNxR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Dec 2020 08:53:17 -0500
-Received: by mail-wm1-f52.google.com with SMTP id a6so9942353wmc.2;
-        Mon, 21 Dec 2020 05:53:00 -0800 (PST)
+        id S1726548AbgLUTNk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Dec 2020 14:13:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59738 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726546AbgLUTNj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Dec 2020 14:13:39 -0500
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7A38C0613D6
+        for <devicetree@vger.kernel.org>; Mon, 21 Dec 2020 11:12:58 -0800 (PST)
+Received: by mail-lf1-x132.google.com with SMTP id o19so26349398lfo.1
+        for <devicetree@vger.kernel.org>; Mon, 21 Dec 2020 11:12:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=9O4weIMpjztcb7QBDFAfSfq/pXNgDRI/CV9lYT9BdMc=;
+        b=lQ5aTHPnBJCpasqOpW05NjZYuxCFWKZ489cCbn6odOR4cGnK8QJcwQMfbfVJf5DtPn
+         oYG9MId8RtXM9PJ7iNrg3Ih30/OODINXDbzaSygtvd/FCQ654CPBdUP/23RYbId0aXtP
+         HzE9mIW4c9sAOYSKvG8DDhAxc8Tutvx9+GacY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=ZGMHpoCRLlbOSEzZjyZVGgOPbJYrjNNdJ+KlSJquj+Q=;
-        b=fVBFKEvAy4x+iU+af9o/SiLvpi02hIkA6puaSWPR6BF8qFUD116hMHZOgy7brmZ75N
-         LiHbBqvs5iSsGXnr85Gp3eK7WzAWR0OaoVaPeWoG6v5TM9ISYl7+y1bnIc4u8iSNtXqR
-         +0aq+V+NUbwfOd7rvCGecnt18iJKF1jKYT4T4I60VdnzEGql9gFvbUVN4EheRNApjBK9
-         MfMAj1pDV739BCvLvdXytvA5exxRfjm7cun2x4HHS47vRUqi0TLN+xPbpjlRJy8jzZFh
-         rrltBJZt4Xk/4r+EzeyTsZEMYgD6/ebUsHFYt2vGfP9crMQcIwf6U+r7dRVlfiAVdujP
-         MeSg==
-X-Gm-Message-State: AOAM5311iD1ptsvDvUJzC0hjumeWShKP2FVzopZwpU5Tx8w3Hn+SyXqs
-        rl3FoRv/CBwI0vo/z4cKN/o=
-X-Google-Smtp-Source: ABdhPJyn9o9z9crVuHtjXoAdSRRjx8DzRlfUgq/b6lvll+qePrGU8R5O4xYbBX9OMsmd2QtgJ8jqcQ==
-X-Received: by 2002:a1c:7d94:: with SMTP id y142mr16765008wmc.105.1608558754985;
-        Mon, 21 Dec 2020 05:52:34 -0800 (PST)
-Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
-        by smtp.googlemail.com with ESMTPSA id z3sm27811592wrn.59.2020.12.21.05.52.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 21 Dec 2020 05:52:33 -0800 (PST)
-Date:   Mon, 21 Dec 2020 14:52:32 +0100
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Jagan Teki <jagan@amarulasolutions.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=9O4weIMpjztcb7QBDFAfSfq/pXNgDRI/CV9lYT9BdMc=;
+        b=lqv3Y5t1PcZBdIsEaNuPjhLUG6WnWGKrA91HJBqhuRcx9Cq405UgRx6wRS6eLCJwI4
+         GdBjQiRrMvOYmeakDatgg0iKzzKNoqOVR8IeDUAD+BukC6PbAdrdM0NEDcP9aB5lQyP2
+         Wfl4zPHt9DusKOrhna3DoMOlZukct8Pjg2r3zGnCjsex+HNGKH/+vmdlTMCIJKuwt3Fb
+         CfV9kKHQd+kFlXvZ9FVNGpprNi7HkC5pdDa53R2oQ98zb5PuH4WwZwC4Edb78RqLcu2q
+         +dZN54Sfh3nocvSZvkgAOBKElOknh5AlA9tQCUs+MQjK9y+JBQ/50cYiQu8dGPHB56VI
+         vAAQ==
+X-Gm-Message-State: AOAM531Mt9DIYP3rvQdJq5LcLvlO6hInzNU81HO+83Pf9FIrxjjvCBGD
+        wBKL9wvaARsNGP7V2gOTQmWF9wDNbWvgnwQo149iiRBBdJJJ5eAX
+X-Google-Smtp-Source: ABdhPJz11UO9Mqv4yMPgNehhtC/hj3Y4jjgczoKo5b7dFLVBfoL3gr78HYG6lOupKS2OZ8EYe1PMB6OfJIUl8ccqinY=
+X-Received: by 2002:a17:906:c254:: with SMTP id bl20mr15313695ejb.336.1608559173756;
+ Mon, 21 Dec 2020 05:59:33 -0800 (PST)
+MIME-Version: 1.0
+References: <20201221113151.94515-1-jagan@amarulasolutions.com>
+ <20201221113151.94515-3-jagan@amarulasolutions.com> <20201221134625.GB31176@kozik-lap>
+In-Reply-To: <20201221134625.GB31176@kozik-lap>
+From:   Jagan Teki <jagan@amarulasolutions.com>
+Date:   Mon, 21 Dec 2020 19:29:22 +0530
+Message-ID: <CAMty3ZAi0B=fSRfpQG4bgE+Jt6GVhzRb_FZjCL3VQXp9vn-FEw@mail.gmail.com>
+Subject: Re: [PATCH v2 2/6] dt-bindings: arm: fsl: Add Engicam i.Core MX8M
+ Mini C.TOUCH 2.0
+To:     Krzysztof Kozlowski <krzk@kernel.org>
 Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
         Li Yang <leoyang.li@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Fabio Estevam <festevam@gmail.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
         NXP Linux Team <linux-imx@nxp.com>,
-        linux-amarula@amarulasolutions.com,
+        linux-amarula <linux-amarula@amarulasolutions.com>,
         Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Matteo Lisi <matteo.lisi@engicam.com>
-Subject: Re: [PATCH v2 3/6] arm64: dts: imx8mm: Add Engicam i.Core MX8M Mini
- SoM
-Message-ID: <20201221135232.GC31176@kozik-lap>
-References: <20201221113151.94515-1-jagan@amarulasolutions.com>
- <20201221113151.94515-4-jagan@amarulasolutions.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20201221113151.94515-4-jagan@amarulasolutions.com>
+        Will Deacon <will@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 21, 2020 at 05:01:48PM +0530, Jagan Teki wrote:
-> i.Core MX8M Mini is an EDIMM SoM based on NXP i.MX8M Mini
-> from Engicam.
-> 
-> General features:
-> - NXP i.MX8M Mini
-> - Up to 2GB LDDR4
-> - 8/16GB eMMC
-> - Gigabit Ethernet
-> - USB 2.0 Host/OTG
-> - PCIe Gen2 interface
-> - I2S
-> - MIPI DSI to LVDS
-> - rest of i.MX8M Mini features
-> 
-> i.Core MX8M Mini needs to mount on top of Engicam baseboards
-> for creating complete platform solutions.
-> 
-> Add support for it.
-> 
-> Signed-off-by: Matteo Lisi <matteo.lisi@engicam.com>
-> Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
-> ---
-> Changes for v2:
-> - updated commit message
-> - add cpu nodes
-> - add fec1 node
-> - fixed pmic tree comments
-> - dropped engicam from filename since it aligned with imx6 engicam
->   dts files naming conventions.
+On Mon, Dec 21, 2020 at 7:16 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>
+> On Mon, Dec 21, 2020 at 05:01:47PM +0530, Jagan Teki wrote:
+> > i.Core MX8M Mini is an EDIMM SoM based on NXP i.MX8M Mini from Engicam.
+> >
+> > C.TOUCH 2.0 is a general purpose carrier board with capacitive
+> > touch interface support.
+> >
+> > i.Core MX8M Mini needs to mount on top of this Carrier board for
+> > creating complete i.Core MX8M Mini C.TOUCH 2.0 board.
+> >
+> > Add bindings for it.
+> >
+> > Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+> > ---
+> > Changes for v2:
+> > - updated commit message
+> >
+> >  Documentation/devicetree/bindings/arm/fsl.yaml | 2 ++
+> >  1 file changed, 2 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+> > index 67980dcef66d..e653e0a43016 100644
+> > --- a/Documentation/devicetree/bindings/arm/fsl.yaml
+> > +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+> > @@ -667,6 +667,8 @@ properties:
+> >          items:
+> >            - enum:
+> >                - beacon,imx8mm-beacon-kit  # i.MX8MM Beacon Development Kit
+> > +              - engicam,icore-mx8mm               # i.MX8MM Engicam i.Core MX8M Mini SOM
+> > +              - engicam,icore-mx8mm-ctouch2       # i.MX8MM Engicam i.Core MX8M Mini C.TOUCH 2.0
+>
+> Please test your DTS against new schema with dtbs_check. This won't
+> match.
 
-Thanks for the changes.
+Sorry, not sure I understand clearly here.
 
-> 
->  .../dts/freescale/imx8mm-icore-mx8mm.dtsi     | 232 ++++++++++++++++++
->  1 file changed, 232 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-icore-mx8mm.dtsi
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-icore-mx8mm.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-icore-mx8mm.dtsi
-> new file mode 100644
-> index 000000000000..e67865fd102a
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm-icore-mx8mm.dtsi
-> @@ -0,0 +1,232 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright (c) 2018 NXP
-> + * Copyright (c) 2019 Engicam srl
-> + * Copyright (c) 2020 Amarula Solutons(India)
-> + */
-> +
-> +/ {
-> +	compatible = "engicam,icore-mx8mm", "fsl,imx8mm";
-> +};
-> +
-> +&A53_0 {
-> +	cpu-supply = <&reg_buck4>;
-> +};
-> +
-> +&A53_1 {
-> +	cpu-supply = <&reg_buck4>;
-> +};
-> +
-> +&A53_2 {
-> +	cpu-supply = <&reg_buck4>;
-> +};
-> +
-> +&A53_3 {
-> +	cpu-supply = <&reg_buck4>;
-> +};
-> +
-> +&fec1 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_fec1>;
-> +	phy-mode = "rgmii-id";
-> +	phy-handle = <&ethphy>;
-> +
-> +	mdio {
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		ethphy: ethernet-phy@3 {
-> +			compatible = "ethernet-phy-ieee802.3-c22";
-> +			reg = <3>;
-> +			reset-gpios = <&gpio3 7 GPIO_ACTIVE_LOW>;
-> +			reset-assert-us = <10000>;
-> +		};
-> +	};
-> +};
-> +
-> +&i2c1 {
-> +	clock-frequency = <400000>;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_i2c1>;
-> +	status = "okay";
-> +
-> +	pmic@8 {
-> +		compatible = "nxp,pf8121a";
-> +		reg = <0x08>;
-> +
-> +		regulators {
-> +			reg_ldo1: ldo1 {
-> +				regulator-max-microvolt = <5000000>;
-> +				regulator-min-microvolt = <1500000>;
+This the dts file ie used matched compatible.
+compatible = "engicam,icore-mx8mm-ctouch2", "engicam,icore-mx8mm",
+                     "fsl,imx8mm";
 
-I mentioned previously min/max hoping it will be obvious (as most or
-even all of DTS follow this convention... although not example in your
-regulator) but let be more specific: first min, then max. Don't reverse
-the logic. See also example in the regulator.yaml.
+I did build the dtbs_check without showing any issues like,
 
-Best regards,
-Krzysztof
+$ make ARCH=arm64 dtbs_check
+...
+
+    From schema: /w/dt-schema/dt-schema/dtschema/schemas/property-units.yaml
+  DTC     arch/arm64/boot/dts/freescale/imx8mm-icore-mx8mm-ctouch2.dtb
+  DTC     arch/arm64/boot/dts/freescale/imx8mm-icore-mx8mm-ctouch2-of10.dtb
+  DTC     arch/arm64/boot/dts/freescale/imx8mm-icore-mx8mm-edimm2.2.dtb
+..
+
+Can you let me know what I missed here?
+
+Jagan.
