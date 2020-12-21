@@ -2,149 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 458782DF985
-	for <lists+devicetree@lfdr.de>; Mon, 21 Dec 2020 08:37:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4FECD2DF9A1
+	for <lists+devicetree@lfdr.de>; Mon, 21 Dec 2020 08:56:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726608AbgLUHg4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Dec 2020 02:36:56 -0500
-Received: from mailout2.w1.samsung.com ([210.118.77.12]:47749 "EHLO
-        mailout2.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726244AbgLUHgz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Dec 2020 02:36:55 -0500
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20201221073604euoutp02f5167c32fb82730fe0b19b966b3623de~Sqx5udb1g1909619096euoutp02G
-        for <devicetree@vger.kernel.org>; Mon, 21 Dec 2020 07:36:04 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20201221073604euoutp02f5167c32fb82730fe0b19b966b3623de~Sqx5udb1g1909619096euoutp02G
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1608536164;
-        bh=z2/Q8BvO8qamiabVE8QS5VDyz3a05waBzY2w8BXLjmE=;
-        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
-        b=U+D4D8Au7N113WFfXRsiohNmburvYAkeAxL0PCO3ir1AKRnQrFv7qxsAiwanfKxFX
-         d8RS5RObAHUP+nZj04mmjTK3EKxTH6ZlvNnAJ10fphh5BRu7L6Ojb2916zWGU04rBW
-         1aSuF2/5skfWC9KqjWSpYtXvcNntmay7OeQAZ1mc=
-Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
-        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
-        20201221073603eucas1p2a7fe137011a7de60d21afc5ddc95f905~Sqx5boaaZ0214502145eucas1p2f;
-        Mon, 21 Dec 2020 07:36:03 +0000 (GMT)
-Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
-        eusmges2new.samsung.com (EUCPMTA) with SMTP id 54.95.44805.36050EF5; Mon, 21
-        Dec 2020 07:36:03 +0000 (GMT)
-Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-        20201221073603eucas1p17cc68c0a43db3cfb15cea2b02211bc08~Sqx4235m62579925799eucas1p1u;
-        Mon, 21 Dec 2020 07:36:03 +0000 (GMT)
-Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
-        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20201221073603eusmtrp2077692bccd15e93a0b532a386639716e~Sqx42IPtn1413814138eusmtrp2-;
-        Mon, 21 Dec 2020 07:36:03 +0000 (GMT)
-X-AuditID: cbfec7f4-b37ff7000000af05-63-5fe05063a13e
-Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
-        eusmgms1.samsung.com (EUCPMTA) with SMTP id 08.F6.21957.26050EF5; Mon, 21
-        Dec 2020 07:36:03 +0000 (GMT)
-Received: from [106.210.134.192] (unknown [106.210.134.192]) by
-        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-        20201221073602eusmtip1e12053b2c47b198201e4c178d52b1b6a~Sqx4NtcyD2921929219eusmtip1A;
-        Mon, 21 Dec 2020 07:36:02 +0000 (GMT)
-Subject: Re: [PATCH 9/9] mfd: sec-irq: Do not enforce (incorrect) interrupt
- trigger type
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
+        id S1727280AbgLUHzw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Dec 2020 02:55:52 -0500
+Received: from mga01.intel.com ([192.55.52.88]:49501 "EHLO mga01.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726671AbgLUHzw (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 21 Dec 2020 02:55:52 -0500
+IronPort-SDR: vs5yyYUrsD9wAIQMZBUiv1V1RP1tk5j+VSMWZ/3pwGGegn/egHtnUDPUYsxDtA8b3dRoUAWQt6
+ 3GAIP8RCLgPQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9841"; a="194118659"
+X-IronPort-AV: E=Sophos;i="5.78,436,1599548400"; 
+   d="scan'208";a="194118659"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Dec 2020 23:54:04 -0800
+IronPort-SDR: 3YZFBbHJQgZ0sUp81t+n3fSzD+Roiww3AEymwF3PgrT79xjDhA865R7xHBDXUQQigeTkzhHmoQ
+ eHCHef0dR8bw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.78,436,1599548400"; 
+   d="scan'208";a="415701255"
+Received: from shwdenpg096.ccr.corp.intel.com (HELO [10.67.104.88]) ([10.67.104.88])
+  by orsmga001.jf.intel.com with ESMTP; 20 Dec 2020 23:53:45 -0800
+Subject: Re: [PATCH v3 3/5] ipmi: kcs: aspeed: Adapt to new LPC DTS layout
+To:     "Chia-Wei, Wang" <chiawei_wang@aspeedtech.com>,
+        lee.jones@linaro.org, robh+dt@kernel.org, joel@jms.id.au,
+        andrew@aj.id.au, linus.walleij@linaro.org, minyard@acm.org,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Sylwester Nawrocki <snawrocki@kernel.org>
-From:   Marek Szyprowski <m.szyprowski@samsung.com>
-Message-ID: <52a1b7c6-c7f1-f5eb-09f6-d84663912db8@samsung.com>
-Date:   Mon, 21 Dec 2020 08:36:02 +0100
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0)
-        Gecko/20100101 Thunderbird/78.5.1
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        openbmc@lists.ozlabs.org
+Cc:     BMC-SW@aspeedtech.com, cyrilbur@gmail.com, rlippert@google.com
+References: <20201221055623.31463-1-chiawei_wang@aspeedtech.com>
+ <20201221055623.31463-4-chiawei_wang@aspeedtech.com>
+From:   Haiyue Wang <haiyue.wang@linux.intel.com>
+Message-ID: <12d347b6-168b-11d2-b906-18164afb1724@linux.intel.com>
+Date:   Mon, 21 Dec 2020 15:53:44 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.0
 MIME-Version: 1.0
-In-Reply-To: <20201218142247.GA2847@kozik-lap>
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
-X-Brightmail-Tracker: H4sIAAAAAAAAA01Se0hTcRjld+8ed4vFbSp+LCsaKWg4LSquKT3owf4oSiowpWzqTaVpumUP
-        C9LKrGliZmVTUMK1pc3HfL9Cl2ZiuWo0rexhabmtCGtlWmZut4f/ne9853C+Ax+BC8vZIiI+
-        8RCtSJTJxRw+q/7uhMk/evvryMCnXX5UdUElm+p3vGdTxZ19bMpkquJSr752Icrw1sKmzM1F
-        HKrAdBujMto6uVTmiBVfx5cays5zpIOWVo60pvSkNKe2DEm/GBZuZ4fzQ2JoefxhWhGwZh8/
-        7m1mOzdpgH+0Z9rOTUNDhArxCCBXwI302xwV4hNCUofgikWHMYMDgb1Tz3GqhOQXBJo3qX8d
-        hk99GMNrERRUBTGGMQTNXdUugxsZDl/tJbgTu5O+0D81znaKcHIAA03PJHIuOOQyUH1UuQwC
-        cg080QxznZhFeoPZlOFK8CCjoFL1/Y9mHvRcG2Y5MY+UgP7FqCsAJxfB6brCP9gTng0XY8yl
-        HwhwWP0ZvBHGbY9YDHYDW3ctl8FeMN1U7KoM5GkEQ316LjNkIzCfKkCMKhgG+yZnriBmEnyh
-        sjmAodfDnXs5mJMGci4MfJzH3DAX8uqv4gwtgHNnhYzaB9TdFf9iOx4+xnORWD2rmXpWG/Ws
-        Nur/uSWIVYY86RRlQiytXJ5IH5EoZQnKlMRYSfTBBAOa+afeX92ORqS1jUmMCCOQEQGBi90F
-        q0SvIoWCGNmxVFpxMFKRIqeVRjSfYIk9BVG1tyKFZKzsEH2AppNoxd8tRvBEaViTpqG87YnJ
-        t5HXsdmrKmKrn9aR7pMunG41e14yBD3z5dvD8/dHB4kKj1/8uc2jxb2ydzzYcWJUkXfKh5/9
-        YupzS0eZYPX0eaPEqMsK3bU2PGECf/ryut6m49lE84eas+6179VOlfrXCuJyAyRuk/Lq+4UT
-        z/v1Nattjl+pjfXJSy+7ZVppi1eyvF0gqnsQOuJfVLFjQ5A9UPwwL816uCLgQol3BJjnxN/U
-        Dr6jVXdDVp7Zc6fp2xZs/LJ3lOVEjC4pwltPW0RnF9SLPb7ZSFvY4lUTyaOa9NFdiqv55Rnr
-        rD7m3WOmhQ+Kbizy2NnVG/IjJWxJ66brr6uTKo7vaSDELGWcbJkfrlDKfgOjFGL2vgMAAA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrHIsWRmVeSWpSXmKPExsVy+t/xu7rJAQ/iDdqOM1lsnLGe1eL6l+es
-        FvOPnGO1OH9+A7vF/a9HGS02Pb7GanF51xw2ixnn9zFZtO49wm7R/vQlswOXx6ZVnWwed67t
-        YfPYvKTeo2/LKkaPz5vkAlij9GyK8ktLUhUy8otLbJWiDS2M9AwtLfSMTCz1DI3NY62MTJX0
-        7WxSUnMyy1KL9O0S9DIetx9gL7jBVXHy/2v2BsaHHF2MnBwSAiYSm96fY+pi5OIQEljKKHF7
-        xVdWiISMxMlpDVC2sMSfa11sEEXvGSUWb5/HCJIQFoiS+Pp6ATOILSKgKXH973ewBmaBW0wS
-        x0+JQDT0MUl87XoL1sAmYCjR9RZkEicHr4CdxNWlT9hBbBYBVYnL51uBzuDgEBVIkjh7WhCi
-        RFDi5MwnLCA2p4CexNq7L5gh5ptJzNv8EMqWl2jeOhvKFpe49WQ+0wRGoVlI2mchaZmFpGUW
-        kpYFjCyrGEVSS4tz03OLDfWKE3OLS/PS9ZLzczcxAiNy27Gfm3cwznv1Ue8QIxMH4yFGCQ5m
-        JRFeM6n78UK8KYmVValF+fFFpTmpxYcYTYHemcgsJZqcD0wJeSXxhmYGpoYmZpYGppZmxkri
-        vFvnrokXEkhPLEnNTk0tSC2C6WPi4JRqYOpaVcO+e3GB6bbS7l8TIx8ytunZzT14tK8+9d+y
-        Zc1cMW9e9jdt2Jv1drVASKmg7M+LbbWPlQ0W2geeXi14gO/xClktFrZ72tzVCS3p+z+48FsW
-        3Dv453qVsedjoXuK15T0zqsduHypJrRqnrwKr2P52X9aaVUTuwpTpdIl1Tyr1hwXDwq0b1Bx
-        k1nPWZV2Z+U2iQ9HvtwUtUybInMhpznHil1KJG9+cUVz3++j7EIbX2kufJ97aDn722dW3hN2
-        H+Vk3PtCt154v9IjlZLU+1vuHE2at2219JNQ5+Or211Lku+n6+1YbXQ2LHbWpAD29fXO9isO
-        Tps497eMf5tJUlU71yetr0rT4t88v+iwUomlOCPRUIu5qDgRALPrM/NRAwAA
-X-CMS-MailID: 20201221073603eucas1p17cc68c0a43db3cfb15cea2b02211bc08
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20201210212938eucas1p1297b8503e9c059f2bc77c3a429a9114e
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20201210212938eucas1p1297b8503e9c059f2bc77c3a429a9114e
-References: <20201210212903.216728-1-krzk@kernel.org>
-        <CGME20201210212938eucas1p1297b8503e9c059f2bc77c3a429a9114e@eucas1p1.samsung.com>
-        <20201210212903.216728-9-krzk@kernel.org>
-        <0f1509ef-9ae7-7a77-84b7-360b8f0071c7@samsung.com>
-        <20201218142247.GA2847@kozik-lap>
+In-Reply-To: <20201221055623.31463-4-chiawei_wang@aspeedtech.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
-
-On 18.12.2020 15:22, Krzysztof Kozlowski wrote:
-> On Fri, Dec 18, 2020 at 02:25:39PM +0100, Marek Szyprowski wrote:
->> On 10.12.2020 22:29, Krzysztof Kozlowski wrote:
->>> Interrupt line can be configured on different hardware in different way,
->>> even inverted.  Therefore driver should not enforce specific trigger
->>> type - edge falling - but instead rely on Devicetree to configure it.
->>>
->>> The Samsung PMIC drivers are used only on Devicetree boards.
->>>
->>> Additionally, the PMIC datasheets describe the interrupt line as active
->>> low with a requirement of acknowledge from the CPU therefore the edge
->>> falling is not correct.
->>>
->>> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
->> Tested-by: Marek Szyprowski <m.szyprowski@samsung.com>
->>
->> It looks that this together with DTS change fixes RTC alarm failure that
->> I've observed from time to time on TM2e board!
-> Great! I'll add this to the commit msg.
+On 12/21/2020 13:56, Chia-Wei, Wang wrote:
+> Add check against LPC device v2 compatible string to
+> ensure that the fixed device tree layout is adopted.
+> The LPC register offsets are also fixed accordingly.
 >
-> Thanks for testing.
+> Signed-off-by: Chia-Wei, Wang <chiawei_wang@aspeedtech.com>
+> ---
+>   drivers/char/ipmi/kcs_bmc_aspeed.c | 35 ++++++++++++++++++------------
+>   1 file changed, 21 insertions(+), 14 deletions(-)
+>
+> diff --git a/drivers/char/ipmi/kcs_bmc_aspeed.c b/drivers/char/ipmi/kcs_bmc_aspeed.c
+> index a140203c079b..6283bfef4ea7 100644
+> --- a/drivers/char/ipmi/kcs_bmc_aspeed.c
+> +++ b/drivers/char/ipmi/kcs_bmc_aspeed.c
+> @@ -27,7 +27,6 @@
+>   
+>   #define KCS_CHANNEL_MAX     4
+>   
+> -/* mapped to lpc-bmc@0 IO space */
+>   #define LPC_HICR0            0x000
+>   #define     LPC_HICR0_LPC3E          BIT(7)
+>   #define     LPC_HICR0_LPC2E          BIT(6)
+> @@ -52,15 +51,13 @@
+>   #define LPC_STR1             0x03C
+>   #define LPC_STR2             0x040
+>   #define LPC_STR3             0x044
+> -
+> -/* mapped to lpc-host@80 IO space */
+> -#define LPC_HICRB            0x080
+> +#define LPC_HICRB            0x100
+>   #define     LPC_HICRB_IBFIF4         BIT(1)
+>   #define     LPC_HICRB_LPC4E          BIT(0)
+> -#define LPC_LADR4            0x090
+> -#define LPC_IDR4             0x094
+> -#define LPC_ODR4             0x098
+> -#define LPC_STR4             0x09C
+> +#define LPC_LADR4            0x110
+> +#define LPC_IDR4             0x114
+> +#define LPC_ODR4             0x118
+> +#define LPC_STR4             0x11C
+>   
+>   struct aspeed_kcs_bmc {
+>   	struct regmap *map;
+> @@ -345,15 +342,25 @@ static int aspeed_kcs_probe(struct platform_device *pdev)
+>   {
+>   	struct device *dev = &pdev->dev;
+>   	struct kcs_bmc *kcs_bmc;
+> -	struct device_node *np;
+> +	struct device_node *kcs_np;
+> +	struct device_node *lpc_np;
+>   	int rc;
+>   
 
-BTW, while playing with this, maybe it would make sense to fix the 
-reported interrupt type for the PMIC sub-interrupts:
+I think you can just use 'np' to do LPC compatible checking:
 
-# grep s2mps /proc/interrupts
-120:          0      gpa0   7 Level     s2mps13
-121:          0   s2mps13  10 Edge      rtc-alarm0
+np = pdev->dev.of_node->parent;
 
-Best regards
+if (!of_device_is_compatible(lpc_np, "aspeed,ast2400-lpc-v2") &&
+     !of_device_is_compatible(lpc_np, "aspeed,ast2500-lpc-v2") &&
+     !of_device_is_compatible(lpc_np, "aspeed,ast2600-lpc-v2")) {
+	dev_err(dev, "unsupported LPC device binding\n");
+	return -ENODEV;
+}
 
--- 
-Marek Szyprowski, PhD
-Samsung R&D Institute Poland
 
+before:
+
+np = pdev->dev.of_node;
+if (of_device_is_compatible(np, "aspeed,ast2400-kcs-bmc") ||
+     of_device_is_compatible(np, "aspeed,ast2500-kcs-bmc"))
+
+Then the patch is clear. ;-)
+
+> -	np = pdev->dev.of_node;
+> -	if (of_device_is_compatible(np, "aspeed,ast2400-kcs-bmc") ||
+> -			of_device_is_compatible(np, "aspeed,ast2500-kcs-bmc"))
+> +	kcs_np = dev->of_node;
+> +	lpc_np = kcs_np->parent;
+> +
+> +	if (!of_device_is_compatible(lpc_np, "aspeed,ast2400-lpc-v2") &&
+> +	    !of_device_is_compatible(lpc_np, "aspeed,ast2500-lpc-v2") &&
+> +	    !of_device_is_compatible(lpc_np, "aspeed,ast2600-lpc-v2")) {
+> +		dev_err(dev, "unsupported LPC device binding\n");
+> +		return -ENODEV;
+> +	}
+> +
+> +	if (of_device_is_compatible(kcs_np, "aspeed,ast2400-kcs-bmc") ||
+> +			of_device_is_compatible(kcs_np, "aspeed,ast2500-kcs-bmc"))
+>   		kcs_bmc = aspeed_kcs_probe_of_v1(pdev);
+> -	else if (of_device_is_compatible(np, "aspeed,ast2400-kcs-bmc-v2") ||
+> -			of_device_is_compatible(np, "aspeed,ast2500-kcs-bmc-v2"))
+> +	else if (of_device_is_compatible(kcs_np, "aspeed,ast2400-kcs-bmc-v2") ||
+> +			of_device_is_compatible(kcs_np, "aspeed,ast2500-kcs-bmc-v2"))
+>   		kcs_bmc = aspeed_kcs_probe_of_v2(pdev);
+>   	else
+>   		return -EINVAL;
