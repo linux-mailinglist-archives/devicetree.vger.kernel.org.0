@@ -2,116 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D3E372DFA71
-	for <lists+devicetree@lfdr.de>; Mon, 21 Dec 2020 10:50:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 72A432DFA7C
+	for <lists+devicetree@lfdr.de>; Mon, 21 Dec 2020 10:54:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727522AbgLUJtb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Dec 2020 04:49:31 -0500
-Received: from mail.kernel.org ([198.145.29.99]:39322 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727554AbgLUJt2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 21 Dec 2020 04:49:28 -0500
-Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 0A28722CB2;
-        Mon, 21 Dec 2020 09:30:48 +0000 (UTC)
-Received: from disco-boy.misterjones.org ([51.254.78.96] helo=www.loen.fr)
-        by disco-boy.misterjones.org with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        (Exim 4.94)
-        (envelope-from <maz@kernel.org>)
-        id 1krHWf-002pqk-T4; Mon, 21 Dec 2020 09:30:45 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Mon, 21 Dec 2020 09:30:45 +0000
-From:   Marc Zyngier <maz@kernel.org>
-To:     Saravana Kannan <saravanak@google.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        id S1725811AbgLUJx5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Dec 2020 04:53:57 -0500
+Received: from mail-40136.protonmail.ch ([185.70.40.136]:27529 "EHLO
+        mail-40136.protonmail.ch" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725852AbgLUJx4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Dec 2020 04:53:56 -0500
+Date:   Mon, 21 Dec 2020 09:53:08 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+        s=protonmail; t=1608544393;
+        bh=uD0o1RGxUdohZwqEit8GaCkXhH2zAclkKXfTpSwZqmA=;
+        h=Date:To:From:Cc:Reply-To:Subject:In-Reply-To:References:From;
+        b=v1/gSWJFAIavvqux48lCUMXon24cFXEdnlWCehvuz7kr+MfqPgN7kTQO3R8yeEQfb
+         gLavYZs84MGdghM0yn1DhKEd9iRigNVDEWwQVzTRrbm0kKeaYoTNw2/wMEkMS45k6L
+         Yud8YFHv1XeVSEdngr8n1ixZVw6i7gOWXWJO7IB8=
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+From:   Timon Baetz <timon.baetz@protonmail.com>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Kevin Hilman <khilman@baylibre.com>, kernel-team@android.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] of: property: Add device link support for interrupts
-In-Reply-To: <20201218210750.3455872-1-saravanak@google.com>
-References: <20201218210750.3455872-1-saravanak@google.com>
-User-Agent: Roundcube Webmail/1.4.9
-Message-ID: <2a6dbcc83d5aca7a3340e0cf4d751cdc@kernel.org>
-X-Sender: maz@kernel.org
-X-SA-Exim-Connect-IP: 51.254.78.96
-X-SA-Exim-Rcpt-To: saravanak@google.com, gregkh@linuxfoundation.org, robh+dt@kernel.org, frowand.list@gmail.com, khilman@baylibre.com, kernel-team@android.com, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-pm@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Timon Baetz <timon.baetz@protonmail.com>
+Reply-To: Timon Baetz <timon.baetz@protonmail.com>
+Subject: [PATCH v2 1/6] extcon: max8997: Add CHGINS and CHGRM interrupt handling
+Message-ID: <20201221095001.595366-1-timon.baetz@protonmail.com>
+In-Reply-To: <20201202203516.43053-1-timon.baetz@protonmail.com>
+References: <20201202203516.43053-1-timon.baetz@protonmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM shortcircuit=no
+        autolearn=disabled version=3.4.4
+X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
+        mailout.protonmail.ch
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2020-12-18 21:07, Saravana Kannan wrote:
-> Add support for creating device links out of interrupts property.
-> 
-> Cc: Marc Zyngier <maz@kernel.org>
-> Cc: Kevin Hilman <khilman@baylibre.com>
-> Signed-off-by: Saravana Kannan <saravanak@google.com>
-> ---
-> Rob/Greg,
-> 
-> This might need to go into driver-core to avoid conflict
-> due to fw_devlink refactor series that merged there.
-> 
-> Thanks,
-> Saravana
-> 
-> 
->  drivers/of/property.c | 17 +++++++++++++++++
->  1 file changed, 17 insertions(+)
-> 
-> diff --git a/drivers/of/property.c b/drivers/of/property.c
-> index 5f9eed79a8aa..e56a5eae0a0b 100644
-> --- a/drivers/of/property.c
-> +++ b/drivers/of/property.c
-> @@ -1271,6 +1271,22 @@ static struct device_node
-> *parse_iommu_maps(struct device_node *np,
->  	return of_parse_phandle(np, prop_name, (index * 4) + 1);
->  }
-> 
-> +static struct device_node *parse_interrupts(struct device_node *np,
-> +					    const char *prop_name, int index)
-> +{
-> +	struct device_node *sup;
-> +
-> +	if (strcmp(prop_name, "interrupts") || index)
-> +		return NULL;
-> +
-> +	of_node_get(np);
-> +	while (np && !(sup = of_parse_phandle(np, "interrupt-parent", 0)))
-> +		np = of_get_next_parent(np);
-> +	of_node_put(np);
-> +
-> +	return sup;
-> +}
-> +
->  static const struct supplier_bindings of_supplier_bindings[] = {
->  	{ .parse_prop = parse_clocks, },
->  	{ .parse_prop = parse_interconnects, },
-> @@ -1296,6 +1312,7 @@ static const struct supplier_bindings
-> of_supplier_bindings[] = {
->  	{ .parse_prop = parse_pinctrl6, },
->  	{ .parse_prop = parse_pinctrl7, },
->  	{ .parse_prop = parse_pinctrl8, },
-> +	{ .parse_prop = parse_interrupts, },
->  	{ .parse_prop = parse_regulators, },
->  	{ .parse_prop = parse_gpio, },
->  	{ .parse_prop = parse_gpios, },
+This allows the MAX8997 charger to set the current limit depending on
+the detected extcon charger type.
 
-You don't really describe what this is for so I'm only guessing
-from the context. If you want to follow the interrupt hierarchy,
-"interrupt-parent" isn't enough. You also need to track
-things like interrupt-map, or anything that carries a phandle
-to an interrupt controller.
+Signed-off-by: Timon Baetz <timon.baetz@protonmail.com>
+---
+ drivers/extcon/extcon-max8997.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-Thanks,
+diff --git a/drivers/extcon/extcon-max8997.c b/drivers/extcon/extcon-max899=
+7.c
+index 337b0eea4e62..e1408075ef7d 100644
+--- a/drivers/extcon/extcon-max8997.c
++++ b/drivers/extcon/extcon-max8997.c
+@@ -44,6 +44,8 @@ static struct max8997_muic_irq muic_irqs[] =3D {
+ =09{ MAX8997_MUICIRQ_ChgDetRun,=09"muic-CHGDETRUN" },
+ =09{ MAX8997_MUICIRQ_ChgTyp,=09"muic-CHGTYP" },
+ =09{ MAX8997_MUICIRQ_OVP,=09=09"muic-OVP" },
++=09{ MAX8997_PMICIRQ_CHGINS,=09"pmic-CHGINS" },
++=09{ MAX8997_PMICIRQ_CHGRM,=09"pmic-CHGRM" },
+ };
+=20
+ /* Define supported cable type */
+@@ -538,6 +540,8 @@ static void max8997_muic_irq_work(struct work_struct *w=
+ork)
+ =09case MAX8997_MUICIRQ_DCDTmr:
+ =09case MAX8997_MUICIRQ_ChgDetRun:
+ =09case MAX8997_MUICIRQ_ChgTyp:
++=09case MAX8997_PMICIRQ_CHGINS:
++=09case MAX8997_PMICIRQ_CHGRM:
+ =09=09/* Handle charger cable */
+ =09=09ret =3D max8997_muic_chg_handler(info);
+ =09=09break;
+--=20
+2.25.1
 
-         M.
--- 
-Jazz is not dead. It just smells funny...
+
