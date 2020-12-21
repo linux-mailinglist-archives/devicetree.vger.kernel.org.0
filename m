@@ -2,110 +2,330 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A1782DF844
-	for <lists+devicetree@lfdr.de>; Mon, 21 Dec 2020 05:34:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6AE272DF87E
+	for <lists+devicetree@lfdr.de>; Mon, 21 Dec 2020 06:05:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727390AbgLUEdS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 20 Dec 2020 23:33:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35276 "EHLO
+        id S1725308AbgLUFE3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Dec 2020 00:04:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40194 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726864AbgLUEdR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Dec 2020 23:33:17 -0500
-Received: from mail-oi1-x232.google.com (mail-oi1-x232.google.com [IPv6:2607:f8b0:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 509FCC061282;
-        Sun, 20 Dec 2020 20:32:37 -0800 (PST)
-Received: by mail-oi1-x232.google.com with SMTP id d203so10150366oia.0;
-        Sun, 20 Dec 2020 20:32:37 -0800 (PST)
+        with ESMTP id S1725497AbgLUFE2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Dec 2020 00:04:28 -0500
+Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com [IPv6:2607:f8b0:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61AC4C061257
+        for <devicetree@vger.kernel.org>; Sun, 20 Dec 2020 21:03:48 -0800 (PST)
+Received: by mail-pl1-x62a.google.com with SMTP id x12so4988406plr.10
+        for <devicetree@vger.kernel.org>; Sun, 20 Dec 2020 21:03:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=P86s/Ha/YvukIzig8L/uizkoYP89m06boY/wkDECHHw=;
-        b=qOxLTtdg1Z9QHkgcaXkZ31LgxTn/+u9RG79CoNwHYX264vgSdR75IJtYocIrlcs1qw
-         jqRWVK+tFvtBMg9Sxc4CYczd0QKo8kch9O6ciOwGL+fF2hqLG18oFLf3pgPf5eMQxb5N
-         CZ4FQjBCkFqswZYpN0WomiQxPnm9U7/7rTZdSrF79RB6DMDnMC26ehE3xkTJSNoKA/Fb
-         b/a+WCSw4s/AEDNcn/NsAhbUJz+0ORnDX9mXpXbm8Zi7QQJrh2A23+5J3GM3xkCoYYMz
-         SR60bzDEN3keqoOhQ4r447zbB3ojyHXI1TjtLb8nkiF7YZ+DGL2krzf+U6H3Pgf22gR2
-         Lctw==
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=c2sv3VkK2By/nwrygpkYVYn6xWRD6GwhccQNwKSBn4w=;
+        b=lG0l2N+YGGhJ5oCJ9JR6Pg+HbQ76IrvYULahKaWv4R8NzZPMc70xVFw1uC6D2pNUqs
+         3VTIRjsfE2A1L9rfCR8h9hz12sovUmCiwHhuITtvbB9nqEAXk6qgaQsY8monhGNhiN+l
+         h4DplYe0I1Vbviao54AAS+oWIvnsilSn6wWFQ=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=P86s/Ha/YvukIzig8L/uizkoYP89m06boY/wkDECHHw=;
-        b=QMbF2fm8JL2i4LZujdZCZg11FUuj/2uBIen23uakKAHlpJBkr+Caw17Ckzm6Ma3CtW
-         JkYYSlG735CcDNCtm9knIXHDDac8jUSmHvIIdt0psRMwzyQUePMS9mL/4T51bsk7/a9l
-         TnkZ3PVX3VJDwnkttVQE+K4UdHTeTBe0QhCjrHkvtm9cRDWzgFAQakk5EbVUaluL1SkO
-         +35dm9mT6+wRO/pLmwfCbAxhKZddHsq1jQPy6p8FxOtVRtJh7Jzcs67t3f7+PfKJWbz3
-         CoqS4gt2hF+Q1hi3RpSnpCW/I+OLYyos+5o03S8Gkbx9CoQHXfr/9JOvxci59ww3SfNT
-         0s+Q==
-X-Gm-Message-State: AOAM5317wSwo8ZujlDiIb4cpUNr9S1Ti8KIN8RJTOp0p1iNO4RSgkCmM
-        axucWX0jZqttXviDPgQWjsvg77UbW/o=
-X-Google-Smtp-Source: ABdhPJw1zpoMHRGk7WJ+p+wUTq3IkshPUpsTuIgwkywDeX1/T+HctdEPY1dkEdp3AeR3YrOLeb1o3Q==
-X-Received: by 2002:aca:c582:: with SMTP id v124mr7470118oif.115.1608512140155;
-        Sun, 20 Dec 2020 16:55:40 -0800 (PST)
-Received: from ?IPv6:2600:1700:dfe0:49f0:40bc:324a:3c8a:8077? ([2600:1700:dfe0:49f0:40bc:324a:3c8a:8077])
-        by smtp.gmail.com with ESMTPSA id u141sm3262831oie.46.2020.12.20.16.55.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 20 Dec 2020 16:55:38 -0800 (PST)
-Subject: Re: [RFC PATCH v2 1/8] dt-bindings: net: sparx5: Add sparx5-switch
- bindings
-To:     Steen Hegelund <steen.hegelund@microchip.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Device Tree List <devicetree@vger.kernel.org>
-Cc:     Andrew Lunn <andrew@lunn.ch>, Russell King <linux@armlinux.org.uk>,
-        Lars Povlsen <lars.povlsen@microchip.com>,
-        Bjarni Jonasson <bjarni.jonasson@microchip.com>,
-        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Madalin Bucur <madalin.bucur@oss.nxp.com>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Mark Einon <mark.einon@gmail.com>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>, netdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20201217075134.919699-1-steen.hegelund@microchip.com>
- <20201217075134.919699-2-steen.hegelund@microchip.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-Message-ID: <bd696641-49f1-6411-ef7d-68bf243c8cba@gmail.com>
-Date:   Sun, 20 Dec 2020 16:55:35 -0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.6.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=c2sv3VkK2By/nwrygpkYVYn6xWRD6GwhccQNwKSBn4w=;
+        b=tZxerV5pX00Sxdnb6fOTgxreUbJvNBKyEMNhMRsmVM7NSgnRGv16l/25auNzanRYPm
+         mS79LRBON5Ai4sLAt7H9Tf49wnD1SPkDW4Xqb7p5AR4tSeDXZd7F8II79NnwEXtZoG8X
+         Y59TuRH+QozaGM2C6jqVyW+0nMsvqodvpvLpyvHiQM9PCnWer+NFLttgffBy5lEuXoRB
+         0NKHQhuTUuxaLVvL6wKUoj+EV1NgrUQ+OKNHvdIOd2Fo6eBb20l1P3TQD4ReDzZ/YEih
+         7pCzA0KFeVAyXs8xi//cDL20+dDWPIkiu5ShQp2NsWqLJYoEnvoQjH8wy5htjf6ouqtM
+         hPmw==
+X-Gm-Message-State: AOAM531SxXOuAYd5xcIKloQ8siC2atkW9bG9V0DIe0Vxey7C/+HznV9a
+        KecgWTNIAhbBumQriWtmxRrAROPfk9TU+T32fexaVt08aLV6IA==
+X-Google-Smtp-Source: ABdhPJyIouX3buCUZ98Imsh5w5akAiycF/we7iirOQojEj+Pe8P9M9Aglq/IXG0MUde1d3b37rDVQIfcviqjMwgt26Q=
+X-Received: by 2002:a67:6182:: with SMTP id v124mr11122635vsb.16.1608517105056;
+ Sun, 20 Dec 2020 18:18:25 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20201217075134.919699-2-steen.hegelund@microchip.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20201202133813.6917-1-jianjun.wang@mediatek.com> <20201202133813.6917-3-jianjun.wang@mediatek.com>
+In-Reply-To: <20201202133813.6917-3-jianjun.wang@mediatek.com>
+From:   Nicolas Boichat <drinkcat@chromium.org>
+Date:   Mon, 21 Dec 2020 10:18:14 +0800
+Message-ID: <CANMq1KCSWf4PDMVhxFiLHOHe3dFqZbq1gzn4ph8aApVMX56MDg@mail.gmail.com>
+Subject: Re: [v5,2/3] PCI: mediatek-gen3: Add MediaTek Gen3 driver for MT8192
+To:     Jianjun Wang <jianjun.wang@mediatek.com>
+Cc:     Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Ryder Lee <ryder.lee@mediatek.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        linux-pci@vger.kernel.org,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Sj Huang <sj.huang@mediatek.com>, youlin.pei@mediatek.com,
+        Chuanjia Liu <chuanjia.liu@mediatek.com>,
+        qizhong.cheng@mediatek.com, sin_jieyang@mediatek.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Dec 2, 2020 at 9:39 PM Jianjun Wang <jianjun.wang@mediatek.com> wrote:
+>
+> MediaTek's PCIe host controller has three generation HWs, the new
+> generation HW is an individual bridge, it supports Gen3 speed and
+> up to 256 MSI interrupt numbers for multi-function devices.
+>
+> Add support for new Gen3 controller which can be found on MT8192.
+>
+> Signed-off-by: Jianjun Wang <jianjun.wang@mediatek.com>
+> Acked-by: Ryder Lee <ryder.lee@mediatek.com>
 
+FWIW, I looked at Rob and Bjorn's comments on v4, and they seem to
+have been addressed (with one small nit highlighted below).
 
-On 12/16/2020 11:51 PM, Steen Hegelund wrote:
-> Document the Sparx5 switch device driver bindings
-> 
-> Signed-off-by: Steen Hegelund <steen.hegelund@microchip.com>
-> Signed-off-by: Lars Povlsen <lars.povlsen@microchip.com>
 > ---
+> This patch dependents on "PCI: Export pci_pio_to_address() for module use"[1]
+> to build as a kernel module.
+>
+> This interface will be used by PCI host drivers for PIO translation,
+> export it to support compiling those drivers as kernel modules.
+>
+> [1]http://lists.infradead.org/pipermail/linux-mediatek/2020-December/019504.html
+> ---
+>  drivers/pci/controller/Kconfig              |   13 +
+>  drivers/pci/controller/Makefile             |    1 +
+>  drivers/pci/controller/pcie-mediatek-gen3.c | 1039 +++++++++++++++++++
+>  3 files changed, 1053 insertions(+)
+>  create mode 100644 drivers/pci/controller/pcie-mediatek-gen3.c
+>
+> [snip]
+> diff --git a/drivers/pci/controller/pcie-mediatek-gen3.c b/drivers/pci/controller/pcie-mediatek-gen3.c
+> new file mode 100644
+> index 000000000000..d30ea734ac0a
+> --- /dev/null
+> +++ b/drivers/pci/controller/pcie-mediatek-gen3.c
+> @@ -0,0 +1,1039 @@
+> [snip]
+> +static int mtk_pcie_set_trans_table(struct mtk_pcie_port *port,
+> +                                   resource_size_t cpu_addr,
+> +                                   resource_size_t pci_addr,
+> +                                   resource_size_t size,
+> +                                   unsigned long type, int num)
+> +{
+> +       void __iomem *table;
+> +       u32 val = 0;
 
-[snip]
+You don't need to init val to 0.
 
-> +          max-speed:
-> +            maxItems: 1
-> +            description: Bandwidth allocated to this port
 > +
-> +          phys:
-> +            description: phandle of a Ethernet Serdes PHY
+> +       if (num >= PCIE_MAX_TRANS_TABLES) {
+> +               dev_notice(port->dev, "not enough translate table[%d] for addr: %#llx, limited to [%d]\n",
+> +                          num, (unsigned long long) cpu_addr,
+> +                          PCIE_MAX_TRANS_TABLES);
+> +               return -ENODEV;
+> +       }
 > +
-> +          phy-handle:
-> +            description: phandle of a Ethernet PHY
+> +       table = port->base + PCIE_TRANS_TABLE_BASE_REG +
+> +               num * PCIE_ATR_TLB_SET_OFFSET;
 > +
-> +          phy-mode:
-> +            description: Interface between the serdes and the phy
+> +       writel(lower_32_bits(cpu_addr) | PCIE_ATR_SIZE(fls(size) - 1), table);
+> +       writel(upper_32_bits(cpu_addr), table + PCIE_ATR_SRC_ADDR_MSB_OFFSET);
+> +       writel(lower_32_bits(pci_addr), table + PCIE_ATR_TRSL_ADDR_LSB_OFFSET);
+> +       writel(upper_32_bits(pci_addr), table + PCIE_ATR_TRSL_ADDR_MSB_OFFSET);
+> +
+> +       if (type == IORESOURCE_IO)
+> +               val = PCIE_ATR_TYPE_IO | PCIE_ATR_TLP_TYPE_IO;
+> +       else
+> +               val = PCIE_ATR_TYPE_MEM | PCIE_ATR_TLP_TYPE_MEM;
+> +
+> +       writel(val, table + PCIE_ATR_TRSL_PARAM_OFFSET);
+> +
+> +       return 0;
+> +}
+> +
+> +static int mtk_pcie_startup_port(struct mtk_pcie_port *port)
+> +{
+> +       struct resource_entry *entry;
+> +       struct pci_host_bridge *host = pci_host_bridge_from_priv(port);
+> +       unsigned int table_index = 0;
+> +       int err;
+> +       u32 val;
+> +
+> +       /* Set as RC mode */
+> +       val = readl(port->base + PCIE_SETTING_REG);
+> +       val |= PCIE_RC_MODE;
+> +       writel(val, port->base + PCIE_SETTING_REG);
+> +
+> +       /* Set class code */
+> +       val = readl(port->base + PCIE_PCI_IDS_1);
+> +       val &= ~GENMASK(31, 8);
+> +       val |= PCI_CLASS(PCI_CLASS_BRIDGE_PCI << 8);
+> +       writel(val, port->base + PCIE_PCI_IDS_1);
+> +
+> +       /* Assert all reset signals */
+> +       val = readl(port->base + PCIE_RST_CTRL_REG);
+> +       val |= PCIE_MAC_RSTB | PCIE_PHY_RSTB | PCIE_BRG_RSTB | PCIE_PE_RSTB;
+> +       writel(val, port->base + PCIE_RST_CTRL_REG);
+> +
+> +       /* De-assert reset signals */
+> +       val &= ~(PCIE_MAC_RSTB | PCIE_PHY_RSTB | PCIE_BRG_RSTB);
+> +       writel(val, port->base + PCIE_RST_CTRL_REG);
+> +
+> +       /* Delay 100ms to wait the reference clocks become stable */
+> +       usleep_range(100 * 1000, 120 * 1000);
 
-Can you specify this pertains to the Serdes and Ethernet PHY?
--- 
-Florian
+Any reason not to use msleep(100)?
+
+> +
+> +       /* De-assert PERST# signal */
+> +       val &= ~PCIE_PE_RSTB;
+> +       writel(val, port->base + PCIE_RST_CTRL_REG);
+> +
+> +       /* Check if the link is up or not */
+> +       err = readl_poll_timeout(port->base + PCIE_LINK_STATUS_REG, val,
+> +                       !!(val & PCIE_PORT_LINKUP), 20,
+> +                       50 * USEC_PER_MSEC);
+> +       if (err) {
+> +               val = readl(port->base + PCIE_LTSSM_STATUS_REG);
+> +               dev_notice(port->dev, "PCIe link down, ltssm reg val: %#x\n",
+> +                          val);
+> +               return err;
+> +       }
+> +
+> +       /* Set PCIe translation windows */
+> +       resource_list_for_each_entry(entry, &host->windows) {
+> +               struct resource *res = entry->res;
+> +               unsigned long type = resource_type(res);
+> +               resource_size_t cpu_addr;
+> +               resource_size_t pci_addr;
+> +               resource_size_t size;
+> +               const char *range_type;
+> +
+> +               if (type == IORESOURCE_IO) {
+> +                       cpu_addr = pci_pio_to_address(res->start);
+> +                       range_type = "IO";
+> +               } else if (type == IORESOURCE_MEM) {
+> +                       cpu_addr = res->start;
+> +                       range_type = "MEM";
+> +               } else {
+> +                       continue;
+> +               }
+> +
+> +               pci_addr = res->start - entry->offset;
+> +               size = resource_size(res);
+> +               err = mtk_pcie_set_trans_table(port, cpu_addr, pci_addr, size,
+> +                                              type, table_index);
+> +               if (err)
+> +                       return err;
+> +
+> +               dev_dbg(port->dev, "set %s trans window[%d]: cpu_addr = %#llx, pci_addr = %#llx, size = %#llx\n",
+> +                       range_type, table_index, (unsigned long long) cpu_addr,
+> +                       (unsigned long long) pci_addr,
+> +                       (unsigned long long) size);
+> +
+> +               table_index++;
+> +       }
+> +
+> +       return 0;
+> +}
+> +
+> [snip]
+> +static irq_hw_number_t mtk_pcie_msi_get_hwirq(struct msi_domain_info *info,
+> +                                             msi_alloc_info_t *arg)
+> +{
+> +       struct msi_desc *entry = arg->desc;
+> +       struct mtk_pcie_port *port = info->chip_data;
+> +       int hwirq;
+> +
+> +       mutex_lock(&port->lock);
+> +
+> +       hwirq = bitmap_find_free_region(port->msi_irq_in_use, PCIE_MSI_IRQS_NUM,
+> +                                       order_base_2(entry->nvec_used));
+> +       if (hwirq < 0) {
+> +               mutex_unlock(&port->lock);
+> +               return -ENOSPC;
+> +       }
+> +
+> +       mutex_unlock(&port->lock);
+> +
+> +       return hwirq;
+
+Code is good, but I had to look twice to make sure the mutex is
+unlocked. Is the following marginally better?
+
+hwirq = ...;
+
+mutex_unlock(&port->lock);
+
+if (hwirq < 0)
+   return -ENOSPC;
+
+return hwirq;
+
+> +}
+> +
+> [snip]
+> +static void mtk_pcie_msi_handler(struct irq_desc *desc)
+> +{
+> +       struct mtk_pcie_msi *msi_info = irq_desc_get_handler_data(desc);
+> +       struct irq_chip *irqchip = irq_desc_get_chip(desc);
+> +       unsigned long msi_enable, msi_status;
+> +       unsigned int virq;
+> +       irq_hw_number_t bit, hwirq;
+> +
+> +       chained_irq_enter(irqchip, desc);
+> +
+> +       msi_enable = readl(msi_info->base + PCIE_MSI_ENABLE_OFFSET);
+> +       while ((msi_status = readl(msi_info->base + PCIE_MSI_STATUS_OFFSET))) {
+> +               msi_status &= msi_enable;
+
+I don't know much about MSI, but what happens if you have a bit that
+is set in PCIE_MSI_STATUS_OFFSET register, but not in msi_enable?
+Sounds like you'll just spin-loop forever without acknowledging the
+interrupt.
+
+> +               for_each_set_bit(bit, &msi_status, PCIE_MSI_IRQS_PER_SET) {
+> +                       hwirq = bit + msi_info->index * PCIE_MSI_IRQS_PER_SET;
+> +                       virq = irq_find_mapping(msi_info->domain, hwirq);
+> +                       generic_handle_irq(virq);
+> +               }
+> +       }
+> +
+> +       chained_irq_exit(irqchip, desc);
+> +}
+> +
+> [snip]
+> +static int __maybe_unused mtk_pcie_suspend_noirq(struct device *dev)
+> +{
+> +       struct mtk_pcie_port *port = dev_get_drvdata(dev);
+> +       int err;
+> +       u32 val;
+> +
+> +       /* Trigger link to L2 state */
+> +       err = mtk_pcie_turn_off_link(port);
+> +       if (err) {
+> +               dev_notice(port->dev, "can not enter L2 state\n");
+
+Rob suggested dev_error here.
+
+(and IMHO, or lot of the other dev_notice above should probably get dev_error)
+
+> +               return err;
+> +       }
+> +
+> +       /* Pull down the PERST# pin */
+> +       val = readl(port->base + PCIE_RST_CTRL_REG);
+> +       val |= PCIE_PE_RSTB;
+> +       writel(val, port->base + PCIE_RST_CTRL_REG);
+> +
+> +       dev_dbg(port->dev, "enter L2 state success");
+> +
+> +       clk_bulk_disable_unprepare(port->num_clks, port->clks);
+> +
+> +       phy_power_off(port->phy);
+> +
+> +       return 0;
+> +}
+> +
+> [snip]
