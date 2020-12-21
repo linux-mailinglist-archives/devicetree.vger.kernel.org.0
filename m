@@ -2,65 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B9412E02A6
-	for <lists+devicetree@lfdr.de>; Mon, 21 Dec 2020 23:54:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C2A92E02AA
+	for <lists+devicetree@lfdr.de>; Mon, 21 Dec 2020 23:54:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725782AbgLUWw1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Dec 2020 17:52:27 -0500
-Received: from mail-ot1-f49.google.com ([209.85.210.49]:40875 "EHLO
-        mail-ot1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725780AbgLUWw1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Dec 2020 17:52:27 -0500
-Received: by mail-ot1-f49.google.com with SMTP id j12so10280484ota.7;
-        Mon, 21 Dec 2020 14:52:12 -0800 (PST)
+        id S1726230AbgLUWxX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Dec 2020 17:53:23 -0500
+Received: from mail-oi1-f175.google.com ([209.85.167.175]:32989 "EHLO
+        mail-oi1-f175.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725961AbgLUWxX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Dec 2020 17:53:23 -0500
+Received: by mail-oi1-f175.google.com with SMTP id d203so12938005oia.0;
+        Mon, 21 Dec 2020 14:53:07 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=xGMhjs6ip+VhnoHGisVBlYY5haZY44B4LgsaGJIElNA=;
-        b=XTh3Xm+PO2QrF7etPF6zDag4i+AFVWgMrK5f1MK/flO0z0KHFr3lT4DGUbl86vsa1f
-         OpdAi0wZf+wd704rMd2waorkxyhb9rCs8qmXsrxbQTjcHNrkqdOC3vlwZgu/NcbLTBDG
-         rPXoQfFbLWy0ObqJpNnUwYWSpikx+AyLAc4igrwi6HXs4P2+LyjngyP2zo2+/tkRDIBH
-         7pA07QyVkhXzgBwVJjW1J7AKIeNVI4I2XZqf7XHYYZDJ8einiEzFC/dGm6sJc91KsLbX
-         2MBuw4jL8mSZq3B62SVyo7bN4xaG/sYV0aLoiVf68VDON1u+uuf+yLJTtmBpiCLoZAiF
-         AFHA==
-X-Gm-Message-State: AOAM533yHFiC4cYOIzpF59A7PovnL9MbRON+jnqaBDCukZb3LyfOwQ2c
-        wAO4QNhAc2aNqBOBgtbJJxLBsFMC0w==
-X-Google-Smtp-Source: ABdhPJyEneAcqgapuClLy3QG+WNloZI+QjG5a9eKSxP6BzvpzXcDR/RnINhSm96dHxDrcRZGlePjkA==
-X-Received: by 2002:a05:6830:1d71:: with SMTP id l17mr13816820oti.269.1608591106625;
-        Mon, 21 Dec 2020 14:51:46 -0800 (PST)
+        bh=C9iutd2vvAw4BVRtr1Ptz+HDHNvn0GlAdfaXvMhcHF4=;
+        b=isZh3LXGvdekEx1ig5Y5gLUVK+wweavcdu4AT0Zz4Pgxwbvtrlo7ICS98scuTzoVTh
+         Q5GFScZSgVYFSSFmdk2ktPtWVK7f3xuTG7CliOrjsbAW+CZ1T4f2Mo//lwdEMjfdvC4T
+         GqnzXq95iep1PYvpiRLiZlB/zV/WjC+JRjERWx29dj7cWfAgcpaTi2OP8dEUkzaERVQq
+         ViN2hAoRWnwtCy6KUetGdKcrsRz4WckAH96lnoQkQjvGfMkN9YrjnlkYmVGpGcHfhNQm
+         0cpeMP7v37glu/Mo+LAje5fQucEqafIE86aFqhfp/LYVW20CksbM4zNaAFZfeSMn5X2L
+         MO2g==
+X-Gm-Message-State: AOAM531VKVpf2JI9iRzcLY56uU2MoD472o/H7SzwwXLnSYQTCjG07NES
+        H+foPXYa6xQ2cYSrq5NxGg==
+X-Google-Smtp-Source: ABdhPJwUMowpxi+lc9HEd0bxek9he5bQ30qsb0QEoS3fjOzeeoceLadSSKZCI6/msTJCS8IaNcLQXw==
+X-Received: by 2002:aca:ed51:: with SMTP id l78mr12407844oih.144.1608591162069;
+        Mon, 21 Dec 2020 14:52:42 -0800 (PST)
 Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id w138sm3856739oie.44.2020.12.21.14.51.43
+        by smtp.gmail.com with ESMTPSA id p132sm2769466oia.41.2020.12.21.14.52.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 21 Dec 2020 14:51:45 -0800 (PST)
-Received: (nullmailer pid 720870 invoked by uid 1000);
-        Mon, 21 Dec 2020 22:51:42 -0000
-Date:   Mon, 21 Dec 2020 15:51:42 -0700
+        Mon, 21 Dec 2020 14:52:41 -0800 (PST)
+Received: (nullmailer pid 722396 invoked by uid 1000);
+        Mon, 21 Dec 2020 22:52:38 -0000
+Date:   Mon, 21 Dec 2020 15:52:38 -0700
 From:   Rob Herring <robh@kernel.org>
-To:     Adam Ford <aford173@gmail.com>
-Cc:     linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        devicetree@vger.kernel.org, Mark Brown <broonie@kernel.org>,
-        aford@beaconembedded.com,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH] ASoC: wm8962: Add optional mclk device tree binding
-Message-ID: <20201221225142.GA720812@robh.at.kernel.org>
-References: <20201217162740.1452000-1-aford173@gmail.com>
+To:     Daniele Alessandrelli <daniele.alessandrelli@linux.intel.com>
+Cc:     Elena Reshetova <elena.reshetova@intel.com>,
+        Prabhjot Khurana <prabhjot.khurana@intel.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        linux-crypto@vger.kernel.org,
+        "David S. Miller" <davem@davemloft.net>,
+        Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
+        Mark Gross <mgross@linux.intel.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [RFC PATCH 5/6] dt-bindings: crypto: Add Keem Bay ECC bindings
+Message-ID: <20201221225238.GA722337@robh.at.kernel.org>
+References: <20201217172101.381772-1-daniele.alessandrelli@linux.intel.com>
+ <20201217172101.381772-6-daniele.alessandrelli@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201217162740.1452000-1-aford173@gmail.com>
+In-Reply-To: <20201217172101.381772-6-daniele.alessandrelli@linux.intel.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 17 Dec 2020 10:27:40 -0600, Adam Ford wrote:
-> The driver can request an optional clock for mclk.
-> Update the txt file to reflect this.
+On Thu, 17 Dec 2020 17:21:00 +0000, Daniele Alessandrelli wrote:
+> From: Prabhjot Khurana <prabhjot.khurana@intel.com>
 > 
-> Suggested-by: Geert Uytterhoeven <geert@linux-m68k.org>
-> Signed-off-by: Adam Ford <aford173@gmail.com>
+> Add Keem Bay Offload and Crypto Subsystem (OCS) Elliptic Curve
+> Cryptography (ECC) device tree bindings.
+> 
+> Signed-off-by: Prabhjot Khurana <prabhjot.khurana@intel.com>
+> Signed-off-by: Daniele Alessandrelli <daniele.alessandrelli@intel.com>
+> ---
+>  .../crypto/intel,keembay-ocs-ecc.yaml         | 47 +++++++++++++++++++
+>  MAINTAINERS                                   |  7 +++
+>  2 files changed, 54 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/crypto/intel,keembay-ocs-ecc.yaml
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
