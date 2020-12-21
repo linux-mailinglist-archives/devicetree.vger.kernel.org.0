@@ -2,99 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D7BA92DFADB
-	for <lists+devicetree@lfdr.de>; Mon, 21 Dec 2020 11:11:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 39B1F2DFB1E
+	for <lists+devicetree@lfdr.de>; Mon, 21 Dec 2020 11:41:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726072AbgLUKKl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Dec 2020 05:10:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58612 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725878AbgLUKKl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Dec 2020 05:10:41 -0500
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60D6DC061282
-        for <devicetree@vger.kernel.org>; Mon, 21 Dec 2020 02:10:00 -0800 (PST)
-Received: by mail-lf1-x12f.google.com with SMTP id s26so22253405lfc.8
-        for <devicetree@vger.kernel.org>; Mon, 21 Dec 2020 02:10:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=gTS5XP2jtgHu359mlLvqf93EvN6ykiTeG0K5/al16QI=;
-        b=mjZsJ0+ovrZ4dWIMP+NT0ePEC9xYzfkmqWhZkKvz4yxZd9h384IRplLWesY5RPM1zk
-         RamBZZLwz9j33w2WiW4erYjF0mRGfRzoMjrTA/mBAglwzpAmjJdFm7dxTFZCfCU5lkvP
-         G0rKJPdkhske3+Wou3ZgxJg5itEdSf4SvEWG3N48vDyKtWuDU1sdF9O+AsEHtgvlHMe6
-         pAF8gNNRNDzr3vznIdbut+C6OfwQM9rjVacBKWEhBK1Dp3PSrNIuZW0tc3r4GsKfxiD1
-         wah7fH8BpywxddirD/AQVMTSui5/oL/wJl/KoMqMT6Y/zPo1VW8n/49xN0nJ0U84NzQT
-         EeZA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=gTS5XP2jtgHu359mlLvqf93EvN6ykiTeG0K5/al16QI=;
-        b=uDn+aIAiKmStXHce0NgqI+Z4sQbS5DmQ2WA1Oxnmkz8+yda58KQ6jMG6UCt4ivFLls
-         C9pbgsFqSsaSGtGFMZGMXsM0D0YyUpyqP8I15ly5zO3a4+VHwcJ9eAYFPWjHrboY85k5
-         h3OZht7F3V+0EDuc88fY3+XrrP1PxD4eI2VXcR9BwCyHqow31b0Hv/M5hbZXqAaJ4RMr
-         NQ27SBBlPcj0fYSzbDrgWLzTdBzhqrwTHfCbypbyJsT5+sInjRHpFNXdIkCMvp2YCfy6
-         98daHQTChed5zsTXZmW1c6HwIYpwaladEhyjYcyCpSRpCr4wt+booiI+SdHUjtOGYjlo
-         Jf0Q==
-X-Gm-Message-State: AOAM530o9Pe1pjQ7LE6n0/C0CMU6lbvDZHnW/SJmVPbjdhIZGwR8NzM0
-        Yvy5gy8Y5ZZ5LIXdKs4Xc5DIZQ==
-X-Google-Smtp-Source: ABdhPJyhhhqWSrhwIpu9AoGAFII+/VTrWX273QHhmSjZOThd/9Efaca2cmV3e4dmcg7AQ2lK7fuF+w==
-X-Received: by 2002:ac2:482c:: with SMTP id 12mr4754844lft.37.1608545398952;
-        Mon, 21 Dec 2020 02:09:58 -0800 (PST)
-Received: from localhost.localdomain (host-95-192-94-245.mobileonline.telia.com. [95.192.94.245])
-        by smtp.gmail.com with ESMTPSA id t14sm1980971lfl.216.2020.12.21.02.09.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 21 Dec 2020 02:09:58 -0800 (PST)
-From:   Robert Foss <robert.foss@linaro.org>
-To:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        robert.foss@linaro.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2] arm64: dts: qcom: sdm845-db845c: Fix reset-pin of ov8856 node
-Date:   Mon, 21 Dec 2020 11:09:55 +0100
-Message-Id: <20201221100955.148584-1-robert.foss@linaro.org>
-X-Mailer: git-send-email 2.27.0
+        id S1725972AbgLUKjZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Dec 2020 05:39:25 -0500
+Received: from mx0b-001ae601.pphosted.com ([67.231.152.168]:64838 "EHLO
+        mx0b-001ae601.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1725796AbgLUKjZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 21 Dec 2020 05:39:25 -0500
+Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
+        by mx0b-001ae601.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 0BLAa20H005340;
+        Mon, 21 Dec 2020 04:38:25 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=PODMain02222019;
+ bh=kqdrZOb2FKOv/PPkSfWW8gDUQTDnYAioyzgCwgZ6rwY=;
+ b=RslDdVW4u3AMhMt7KVd3LndOMuy6lI0ypiM37Wos/JYCG4/lYBStcpHtTV6axoHpcM9g
+ G41mDGnT1FZ2ujzc6HhKQl3AFdaLi92NAaTmzg6ffHLz9+4GmE2Mx5dtu8Z9qt7Qeu8h
+ wn0Tcdhp9tUgZsH6kZvih8o3MysFxaiwjY/9latiAvzt7gnnSUXU5eW+nr5lpwcTWu6o
+ kLB9mN0l7qscO4LIPyUyFirqZs3KA9OAx8A+aDtKgwHGs/rQ1Yad3/vQ502isCWBRL+t
+ I61dqUImyjrtlQwR6caRUFi4rEcD1AscnQDcsDlOg8K2fEb7ywLdgFfWd/uL4cM0JedS DQ== 
+Received: from ediex01.ad.cirrus.com ([87.246.76.36])
+        by mx0b-001ae601.pphosted.com with ESMTP id 35hetuhqqt-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
+        Mon, 21 Dec 2020 04:38:25 -0600
+Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1913.5; Mon, 21 Dec
+ 2020 10:38:23 +0000
+Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server id 15.1.1913.5 via Frontend
+ Transport; Mon, 21 Dec 2020 10:38:23 +0000
+Received: from [10.0.2.15] (AUSNPC0LSNW1.ad.cirrus.com [198.61.64.186])
+        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 0B45511CB;
+        Mon, 21 Dec 2020 10:38:22 +0000 (UTC)
+Subject: Re: [PATCH v3 3/6] ASoC: audio-graph-card: Support setting component
+ plls and sysclks
+To:     Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+CC:     <broonie@kernel.org>, <robh+dt@kernel.org>,
+        <nsaenzjulienne@suse.de>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <alsa-devel@alsa-project.org>,
+        <patches@opensource.cirrus.com>,
+        <bcm-kernel-feedback-list@broadcom.com>,
+        <linux-rpi-kernel@lists.infradead.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20201217154142.24301-1-rf@opensource.cirrus.com>
+ <20201217154142.24301-4-rf@opensource.cirrus.com>
+ <873604gf45.wl-kuninori.morimoto.gx@renesas.com>
+From:   Richard Fitzgerald <rf@opensource.cirrus.com>
+Message-ID: <35430e71-5718-de7f-9587-73d15ed6507a@opensource.cirrus.com>
+Date:   Mon, 21 Dec 2020 10:38:22 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.5.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <873604gf45.wl-kuninori.morimoto.gx@renesas.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 priorityscore=1501 adultscore=0
+ spamscore=0 lowpriorityscore=0 bulkscore=0 clxscore=1015 suspectscore=0
+ malwarescore=0 phishscore=0 mlxlogscore=876 mlxscore=0 impostorscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2009150000
+ definitions=main-2012210077
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Switch reset pin of ov8856 node from GPIO_ACTIVE_HIGH to GPIO_ACTIVE_LOW,
-this issue prevented the ov8856 from probing properly as it did not respon
-to I2C messages.
+On 18/12/2020 00:03, Kuninori Morimoto wrote:
+> 
+> Hi Richard
+> 
+> Thank you for your patch.
+> This is v3 patch, but I think this is the first time for me
+> to receive patch...
 
-Fixes: d4919a44564b ("arm64: dts: qcom: sdm845-db845c: Add ov8856 & ov7251
-camera nodes")
+Yes sorry.
+Somehow I missed you off V1 and V2 emails.
 
-Signed-off-by: Robert Foss <robert.foss@linaro.org>
----
-
-Changes since v1:
- - Bjorn: Use define instead of numeral
-
- arch/arm64/boot/dts/qcom/sdm845-db845c.dts | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-index 7cc236575ee2..f749672c5fdc 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-@@ -1112,11 +1112,11 @@ camera@10 {
- 		reg = <0x10>;
- 
- 		// CAM0_RST_N
--		reset-gpios = <&tlmm 9 0>;
-+		reset-gpios = <&tlmm 9 GPIO_ACTIVE_LOW>;
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&cam0_default>;
- 		gpios = <&tlmm 13 0>,
--			<&tlmm 9 0>;
-+			<&tlmm 9 GPIO_ACTIVE_LOW>;
- 
- 		clocks = <&clock_camcc CAM_CC_MCLK0_CLK>;
- 		clock-names = "xvclk";
--- 
-2.27.0
-
+> 
+>> Some codecs need plls and/or sysclks to be configured using the
+>> snd_soc_component_set_[sysclk|pll] functions. These drivers cannot
+>> necessarily be converted to use the clock framework. If the codec is on
+>> a I2C/SPI bus, a nested clk_get would be needed to enable the bus clock.
+>> But the clock framework does not support nested operations and this would
+>> deadlock.
+>>
+>> This patch adds new dt properties that list phandles of components with
+>> the pll/sysclk settings to be applied. Multiple settings can be given for
+>> the same phandle to allow for components with multiple clocks and plls.
+>> The plls and sysclks are enabled when the card bias level moves to STANDBY
+>> and disabled when it moves to OFF.
+>>
+>> The implementation does not attempt to handle specifying complex clock
+>> ordering interdependencies between components. The plls and sysclks are
+>> applied to a component as it is passed to the card set_bias_level/
+>> set_bias_level_post callbacks. It follows from this that the order
+>> components are configured is the order that they are passed to those
+>> callbacks.
+>>
+>> Signed-off-by: Richard Fitzgerald <rf@opensource.cirrus.com>
+>> ---
+>>   include/sound/simple_card_utils.h     |  25 +++
+>>   sound/soc/generic/audio-graph-card.c  |  16 +-
+>>   sound/soc/generic/simple-card-utils.c | 236 ++++++++++++++++++++++++++
+>>   3 files changed, 275 insertions(+), 2 deletions(-)
+> 
+> I understand that you need sysclk/pll and .set_bias_level_xxx().
+> But I guess makes it generic code is difficult (?).
+> Thus, as Sameer doing on Tegra, creating custom audio-graph-card is better
+> idea for you ?
+> 
+> # Now I'm creating new audio-graph-card2 which also supports
+> # overwriting/customizing each/all functions.
+> # It is not full compatible with audio-graph-card, but almost same if you
+> # uses normal connection.
+> # I hope I can post it next year
+> 
+> Thank you for your help !!
+> 
+> Best regards
+> ---
+> Kuninori Morimoto
+> 
