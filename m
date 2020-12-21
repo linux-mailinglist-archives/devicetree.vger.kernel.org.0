@@ -2,127 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 39B1F2DFB1E
-	for <lists+devicetree@lfdr.de>; Mon, 21 Dec 2020 11:41:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 83AFE2DFB2E
+	for <lists+devicetree@lfdr.de>; Mon, 21 Dec 2020 11:52:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725972AbgLUKjZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Dec 2020 05:39:25 -0500
-Received: from mx0b-001ae601.pphosted.com ([67.231.152.168]:64838 "EHLO
-        mx0b-001ae601.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725796AbgLUKjZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 21 Dec 2020 05:39:25 -0500
-Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
-        by mx0b-001ae601.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 0BLAa20H005340;
-        Mon, 21 Dec 2020 04:38:25 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=subject : to : cc :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=PODMain02222019;
- bh=kqdrZOb2FKOv/PPkSfWW8gDUQTDnYAioyzgCwgZ6rwY=;
- b=RslDdVW4u3AMhMt7KVd3LndOMuy6lI0ypiM37Wos/JYCG4/lYBStcpHtTV6axoHpcM9g
- G41mDGnT1FZ2ujzc6HhKQl3AFdaLi92NAaTmzg6ffHLz9+4GmE2Mx5dtu8Z9qt7Qeu8h
- wn0Tcdhp9tUgZsH6kZvih8o3MysFxaiwjY/9latiAvzt7gnnSUXU5eW+nr5lpwcTWu6o
- kLB9mN0l7qscO4LIPyUyFirqZs3KA9OAx8A+aDtKgwHGs/rQ1Yad3/vQ502isCWBRL+t
- I61dqUImyjrtlQwR6caRUFi4rEcD1AscnQDcsDlOg8K2fEb7ywLdgFfWd/uL4cM0JedS DQ== 
-Received: from ediex01.ad.cirrus.com ([87.246.76.36])
-        by mx0b-001ae601.pphosted.com with ESMTP id 35hetuhqqt-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
-        Mon, 21 Dec 2020 04:38:25 -0600
-Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1913.5; Mon, 21 Dec
- 2020 10:38:23 +0000
-Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server id 15.1.1913.5 via Frontend
- Transport; Mon, 21 Dec 2020 10:38:23 +0000
-Received: from [10.0.2.15] (AUSNPC0LSNW1.ad.cirrus.com [198.61.64.186])
-        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 0B45511CB;
-        Mon, 21 Dec 2020 10:38:22 +0000 (UTC)
-Subject: Re: [PATCH v3 3/6] ASoC: audio-graph-card: Support setting component
- plls and sysclks
-To:     Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-CC:     <broonie@kernel.org>, <robh+dt@kernel.org>,
-        <nsaenzjulienne@suse.de>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <alsa-devel@alsa-project.org>,
-        <patches@opensource.cirrus.com>,
-        <bcm-kernel-feedback-list@broadcom.com>,
-        <linux-rpi-kernel@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20201217154142.24301-1-rf@opensource.cirrus.com>
- <20201217154142.24301-4-rf@opensource.cirrus.com>
- <873604gf45.wl-kuninori.morimoto.gx@renesas.com>
-From:   Richard Fitzgerald <rf@opensource.cirrus.com>
-Message-ID: <35430e71-5718-de7f-9587-73d15ed6507a@opensource.cirrus.com>
-Date:   Mon, 21 Dec 2020 10:38:22 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.5.1
-MIME-Version: 1.0
-In-Reply-To: <873604gf45.wl-kuninori.morimoto.gx@renesas.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 priorityscore=1501 adultscore=0
- spamscore=0 lowpriorityscore=0 bulkscore=0 clxscore=1015 suspectscore=0
- malwarescore=0 phishscore=0 mlxlogscore=876 mlxscore=0 impostorscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2009150000
- definitions=main-2012210077
+        id S1725816AbgLUKwU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Dec 2020 05:52:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36866 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725807AbgLUKwU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Dec 2020 05:52:20 -0500
+Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com [IPv6:2607:f8b0:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27117C0613D3;
+        Mon, 21 Dec 2020 02:51:40 -0800 (PST)
+Received: by mail-pf1-x42b.google.com with SMTP id 11so6243330pfu.4;
+        Mon, 21 Dec 2020 02:51:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=cPuxQSxzMWTU2G1K91YlflotqfV+c7j7rgRMPeG1ygk=;
+        b=WYnpvh7A2/BU+oA+5c8Nxu2JyYVuDR6Z1fIOfwq5Oyejckp1lr9LLxg9neN2XsG6AB
+         3ApHJuCK9wCpFmaUEe02e3InMRpO7KWbAkn2wK7Agqz3LaJ8BY0EaPrYnwWRVGobSG6H
+         Jk3C9cjzOwqrVC1imhwsXAl6SQKijAwYmItvnyZb0QRaj9HZrAC2GZ6ikKvHnHWj1ofN
+         aoBkgRVOo/lSmOd6r0sP/DgdX2XgFcZT6cCNI8EuqS/0j4KOIhmOpdkqoUCGiEUGTPIe
+         +XKNGxG77LSdTVspNT3y1oa3JeIT/9Bjabcq0Ph/qbkNJGkcXx/LDmmehc5/usIA3aFU
+         TkNA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=cPuxQSxzMWTU2G1K91YlflotqfV+c7j7rgRMPeG1ygk=;
+        b=sTlJRDCuLMpK1Z+XIg3qS+SDoqpSOSwaLwln2ry3Z9lNAgrop7Nk9dxK3OzaSupitH
+         GiqtA7l9qKld5RG31Ny7xFJ6khcNCWHx2WaQMQuBLGz92CAirs9OVP8gH5ktCYqHGvu2
+         /6I+tgvi+jNx1AEXUceJdPWngBNio8Qh2wSDkmuYhX0Auajp5GGPmnGkFpUTJOa7gzdI
+         xIIUE6GMede7RXf7ZF5G6wwafZ/QiCq5Ra5ja7ajTQzPeqXEoFhO/8jP8UzSSTJgLO/v
+         2EEWgmwAbwXbkV0huiNDvXIWaUKLwvQLMniuizl+V4tirjLJC6GEkQ2SOQqbVGbTz1dU
+         EVzQ==
+X-Gm-Message-State: AOAM530sFxgRHj17/em8X63/mUycOhVf5TvbW2hT/hsgiyFrPzOu4orW
+        RkuSArbnWoDNcv09HRAL8Qk=
+X-Google-Smtp-Source: ABdhPJxtHBxoAlxeEaEjorEwBwekb6hvbRDr+kStQjV9g5bdCHeXCa5ZJuN0mINxC067EQlz839/yA==
+X-Received: by 2002:a63:d855:: with SMTP id k21mr3814934pgj.399.1608547899772;
+        Mon, 21 Dec 2020 02:51:39 -0800 (PST)
+Received: from localhost.localdomain ([2402:7500:469:a113:4308:e075:646d:7374])
+        by smtp.gmail.com with ESMTPSA id p4sm15364193pjl.30.2020.12.21.02.51.33
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 21 Dec 2020 02:51:39 -0800 (PST)
+From:   Gene Chen <gene.chen.richtek@gmail.com>
+To:     jacek.anaszewski@gmail.com, pavel@ucw.cz, robh+dt@kernel.org,
+        matthias.bgg@gmail.com
+Cc:     dmurphy@ti.com, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        gene_chen@richtek.com, Wilma.Wu@mediatek.com,
+        shufan_lee@richtek.com, cy_huang@richtek.com,
+        benjamin.chao@mediatek.com
+Subject: [PATCH v13 0/5] leds: mt6360: Add LED driver for MT6360
+Date:   Mon, 21 Dec 2020 18:45:49 +0800
+Message-Id: <1608547554-6602-1-git-send-email-gene.chen.richtek@gmail.com>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/12/2020 00:03, Kuninori Morimoto wrote:
-> 
-> Hi Richard
-> 
-> Thank you for your patch.
-> This is v3 patch, but I think this is the first time for me
-> to receive patch...
+In-Reply-To: 
 
-Yes sorry.
-Somehow I missed you off V1 and V2 emails.
+This patch series add MT6360 LED support contains driver and binding document
 
-> 
->> Some codecs need plls and/or sysclks to be configured using the
->> snd_soc_component_set_[sysclk|pll] functions. These drivers cannot
->> necessarily be converted to use the clock framework. If the codec is on
->> a I2C/SPI bus, a nested clk_get would be needed to enable the bus clock.
->> But the clock framework does not support nested operations and this would
->> deadlock.
->>
->> This patch adds new dt properties that list phandles of components with
->> the pll/sysclk settings to be applied. Multiple settings can be given for
->> the same phandle to allow for components with multiple clocks and plls.
->> The plls and sysclks are enabled when the card bias level moves to STANDBY
->> and disabled when it moves to OFF.
->>
->> The implementation does not attempt to handle specifying complex clock
->> ordering interdependencies between components. The plls and sysclks are
->> applied to a component as it is passed to the card set_bias_level/
->> set_bias_level_post callbacks. It follows from this that the order
->> components are configured is the order that they are passed to those
->> callbacks.
->>
->> Signed-off-by: Richard Fitzgerald <rf@opensource.cirrus.com>
->> ---
->>   include/sound/simple_card_utils.h     |  25 +++
->>   sound/soc/generic/audio-graph-card.c  |  16 +-
->>   sound/soc/generic/simple-card-utils.c | 236 ++++++++++++++++++++++++++
->>   3 files changed, 275 insertions(+), 2 deletions(-)
-> 
-> I understand that you need sysclk/pll and .set_bias_level_xxx().
-> But I guess makes it generic code is difficult (?).
-> Thus, as Sameer doing on Tegra, creating custom audio-graph-card is better
-> idea for you ?
-> 
-> # Now I'm creating new audio-graph-card2 which also supports
-> # overwriting/customizing each/all functions.
-> # It is not full compatible with audio-graph-card, but almost same if you
-> # uses normal connection.
-> # I hope I can post it next year
-> 
-> Thank you for your help !!
-> 
-> Best regards
-> ---
-> Kuninori Morimoto
-> 
+Gene Chen (5)
+ leds: flash: Add flash registration with undefined CONFIG_LEDS_CLASS_FLASH
+ leds: flash: Fix multicolor no-ops registration by return 0
+ dt-bindings: leds: Add LED_COLOR_ID_MOONLIGHT definitions
+ dt-bindings: leds: Add bindings for MT6360 LED
+ leds: mt6360: Add LED driver for MT6360
+
+ Documentation/devicetree/bindings/leds/leds-mt6360.yaml |  159 +++
+ drivers/leds/Kconfig                                    |   13 
+ drivers/leds/Makefile                                   |    1 
+ drivers/leds/leds-mt6360.c                              |  827 ++++++++++++++++
+ include/dt-bindings/leds/common.h                       |    1 
+ include/linux/led-class-flash.h                         |   42 
+ include/linux/led-class-multicolor.h                    |   42 
+ 7 files changed, 1049 insertions(+), 36 deletions(-)
+
+changelogs between v1 & v2
+ - add led driver with mfd
+
+changelogs between v2 & v3
+ - independent add led driver
+ - add dt-binding document
+ - refactor macros definition for easy to debug
+ - parse device tree by fwnode
+ - use devm*ext to register led class device
+
+changelogs between v3 & v4
+ - fix binding document description
+ - use GENMASK and add unit postfix to definition
+ - isink register led class device
+
+changelogs between v4 & v5
+ - change rgb isink to multicolor control
+ - add binding reference to mfd yaml
+
+changelogs between v5 & v6
+ - Use DT to decide RGB LED is multicolor device or indicator device only
+
+changelogs between v6 & v7
+ - Add binding multicolor device sample code
+ - Add flash ops mutex lock
+ - Remove V4L2 init with indicator device
+
+changelogs between v7 & v8
+ - Add mutex for led fault get ops
+ - Fix flash and multicolor no-ops return 0
+ - Add LED_FUNCTION_MOONLIGHT
+
+changelogs between v8 & v9
+ - reuse api in flash and multicolor header
+
+changelogs between v9 & v10
+ - add comment for reuse registration functions in flash and multicolor
+
+changelogs between v10 & v11
+ - match dt-binding reg property comment to the functionality name
+ - remove exist patch in linux-next
+ - dicide multicolor channel by color definitiion
+
+changelogs between v11 & v12
+ - Fix print size_t by %zu
+ - Fix dt-binding name regular experssion
+
+changelogs between v12 & v13
+ - Fix kbuild test rebot build error
+
