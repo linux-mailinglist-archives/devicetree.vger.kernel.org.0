@@ -2,105 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 84AA32DF9A7
-	for <lists+devicetree@lfdr.de>; Mon, 21 Dec 2020 08:58:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 84DCB2DF9B2
+	for <lists+devicetree@lfdr.de>; Mon, 21 Dec 2020 09:01:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726746AbgLUH4w convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 21 Dec 2020 02:56:52 -0500
-Received: from mail-wm1-f43.google.com ([209.85.128.43]:37398 "EHLO
-        mail-wm1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726275AbgLUH4w (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Dec 2020 02:56:52 -0500
-Received: by mail-wm1-f43.google.com with SMTP id q75so10021627wme.2;
-        Sun, 20 Dec 2020 23:56:36 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=IZitIFlnmtD/PO5Bk34PbB1x1heRpMsN4+voHWPHlpA=;
-        b=HFTXOMOynIha6BBImFRKN/SNpdBZ39r5s9q+Y/8URiSkxQ766FRnHmzlQJNsuBt3TE
-         cRWo2h3Gb7/pCsOTsIta1+Hzk87pGzboLUf0H6qlwBbiGI7M7+OGq5PCDH/V0Vm/J4hy
-         Eib5ycbypAlAQ2X/lOVF6JrbWuqifYvV1BUqSip6VTX5ydH5bQpCJ0dPuPYrLxpOjisi
-         cdIqX3njfzJoKDY8Qe3vp6wgYUk+UIqqLG9jPr0zEghMn2JoLWzTExexmtDnESqzGgRB
-         Pt9S9m9aVGASZhycWcdsEFoCFxsU75oraWv0vF2uipfB7HYpAebRG1CRgs/4s0CECeee
-         NyuA==
-X-Gm-Message-State: AOAM5307qdNCT6yglexqRl3H3q7ILV4k5GN5WAptoVF/VoaNrJqb9ciT
-        M6128/b/iEnP9I9yyJoAJZA=
-X-Google-Smtp-Source: ABdhPJxSbsQTInETAB2FkKIVe2Wtk/wsibniVXFrCgz90c+UdyaXSTMwiIi3gvc1lDyrW/LGI02ZzA==
-X-Received: by 2002:a7b:c385:: with SMTP id s5mr15154043wmj.170.1608537370489;
-        Sun, 20 Dec 2020 23:56:10 -0800 (PST)
-Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
-        by smtp.googlemail.com with ESMTPSA id b9sm23706221wmd.32.2020.12.20.23.56.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 20 Dec 2020 23:56:09 -0800 (PST)
-Date:   Mon, 21 Dec 2020 08:56:08 +0100
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     "Alice Guo (OSS)" <alice.guo@oss.nxp.com>
-Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>
-Subject: Re: [PATCH v8 3/4] arm64: dts: imx8m: add NVMEM provider and
- consumer to read soc unique ID
-Message-ID: <20201221075608.GB3386@kozik-lap>
-References: <20201218083726.16427-1-alice.guo@oss.nxp.com>
- <20201218083726.16427-3-alice.guo@oss.nxp.com>
- <20201219121656.GA13886@kozik-lap>
- <AM6PR04MB605316DAE14009BB28804AB3E2C00@AM6PR04MB6053.eurprd04.prod.outlook.com>
+        id S1727314AbgLUIAw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Dec 2020 03:00:52 -0500
+Received: from mga03.intel.com ([134.134.136.65]:42768 "EHLO mga03.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727298AbgLUIAw (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 21 Dec 2020 03:00:52 -0500
+IronPort-SDR: eBz9CAAdISS+GOKAQ6NXvZq7rkZOlobkUVleLNrJVHieXiE6cVMDKOtFAls2SnWwCxuq5f/jgH
+ LCuZjPfQEgOQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9841"; a="175792221"
+X-IronPort-AV: E=Sophos;i="5.78,436,1599548400"; 
+   d="scan'208";a="175792221"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Dec 2020 23:59:05 -0800
+IronPort-SDR: JxY58Mh/HZqa84ewBgqXe3YA+sXkMeWHw1VaZ+qNG7gxEwTPPainwf7TAeLK1tjlU1K7tysDX8
+ OpcDC9CzAczA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.78,436,1599548400"; 
+   d="scan'208";a="415702682"
+Received: from shwdenpg096.ccr.corp.intel.com (HELO [10.67.104.88]) ([10.67.104.88])
+  by orsmga001.jf.intel.com with ESMTP; 20 Dec 2020 23:59:01 -0800
+Subject: Re: [PATCH v3 3/5] ipmi: kcs: aspeed: Adapt to new LPC DTS layout
+From:   Haiyue Wang <haiyue.wang@linux.intel.com>
+To:     "Chia-Wei, Wang" <chiawei_wang@aspeedtech.com>,
+        lee.jones@linaro.org, robh+dt@kernel.org, joel@jms.id.au,
+        andrew@aj.id.au, linus.walleij@linaro.org, minyard@acm.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        openbmc@lists.ozlabs.org
+Cc:     BMC-SW@aspeedtech.com, cyrilbur@gmail.com, rlippert@google.com
+References: <20201221055623.31463-1-chiawei_wang@aspeedtech.com>
+ <20201221055623.31463-4-chiawei_wang@aspeedtech.com>
+ <12d347b6-168b-11d2-b906-18164afb1724@linux.intel.com>
+Message-ID: <c1b6e2fe-5b22-ac67-f0eb-159499e06d2b@linux.intel.com>
+Date:   Mon, 21 Dec 2020 15:59:01 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8BIT
-In-Reply-To: <AM6PR04MB605316DAE14009BB28804AB3E2C00@AM6PR04MB6053.eurprd04.prod.outlook.com>
+In-Reply-To: <12d347b6-168b-11d2-b906-18164afb1724@linux.intel.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 21, 2020 at 03:10:52AM +0000, Alice Guo (OSS) wrote:
-> 
-> 
-> > -----Original Message-----
-> > From: Krzysztof Kozlowski <krzk@kernel.org>
-> > Sent: 2020年12月19日 20:17
-> > To: Alice Guo (OSS) <alice.guo@oss.nxp.com>
-> > Cc: robh+dt@kernel.org; shawnguo@kernel.org; s.hauer@pengutronix.de;
-> > kernel@pengutronix.de; festevam@gmail.com; devicetree@vger.kernel.org;
-> > linux-arm-kernel@lists.infradead.org; linux-kernel@vger.kernel.org; dl-linux-imx
-> > <linux-imx@nxp.com>
-> > Subject: Re: [PATCH v8 3/4] arm64: dts: imx8m: add NVMEM provider and
-> > consumer to read soc unique ID
-> > 
-> > On Fri, Dec 18, 2020 at 04:37:25PM +0800, Alice Guo (OSS) wrote:
-> > > From: Alice Guo <alice.guo@nxp.com>
-> > >
-> > > In order to be able to use NVMEM APIs to read soc unique ID, add the
-> > > nvmem data cell and name for nvmem-cells to the "soc" node, and add a
-> > > nvmem node which provides soc unique ID to efuse@30350000.
-> > >
-> > > Signed-off-by: Alice Guo <alice.guo@nxp.com>
-> > > ---
-> > > Changes for v8:
-> > >  - none
-> > > Changes for v7:
-> > >  - add Reviewed-by
-> > 
-> > What happened with my reviewed-by?
-> > 
-> > Best regards,
-> > Krzysztof
-> 
-> Hi,
-> I forgot to add reviewed-by. ☹
 
-It was there already, so you had to remove it for some reason... but you
-kept the changelog.
+On 12/21/2020 15:53, Haiyue Wang wrote:
+> On 12/21/2020 13:56, Chia-Wei, Wang wrote:
+>> Add check against LPC device v2 compatible string to
+>> ensure that the fixed device tree layout is adopted.
+>> The LPC register offsets are also fixed accordingly.
+>>
+>> Signed-off-by: Chia-Wei, Wang <chiawei_wang@aspeedtech.com>
+>> ---
+>>   drivers/char/ipmi/kcs_bmc_aspeed.c | 35 ++++++++++++++++++------------
+>>   1 file changed, 21 insertions(+), 14 deletions(-)
+>>
+>> diff --git a/drivers/char/ipmi/kcs_bmc_aspeed.c 
+>> b/drivers/char/ipmi/kcs_bmc_aspeed.c
+>> index a140203c079b..6283bfef4ea7 100644
+>> --- a/drivers/char/ipmi/kcs_bmc_aspeed.c
+>> +++ b/drivers/char/ipmi/kcs_bmc_aspeed.c
+>> @@ -27,7 +27,6 @@
+>>     #define KCS_CHANNEL_MAX     4
+>>   -/* mapped to lpc-bmc@0 IO space */
+>>   #define LPC_HICR0            0x000
+>>   #define     LPC_HICR0_LPC3E          BIT(7)
+>>   #define     LPC_HICR0_LPC2E          BIT(6)
+>> @@ -52,15 +51,13 @@
+>>   #define LPC_STR1             0x03C
+>>   #define LPC_STR2             0x040
+>>   #define LPC_STR3             0x044
+>> -
+>> -/* mapped to lpc-host@80 IO space */
+>> -#define LPC_HICRB            0x080
+>> +#define LPC_HICRB            0x100
+>>   #define     LPC_HICRB_IBFIF4         BIT(1)
+>>   #define     LPC_HICRB_LPC4E          BIT(0)
+>> -#define LPC_LADR4            0x090
+>> -#define LPC_IDR4             0x094
+>> -#define LPC_ODR4             0x098
+>> -#define LPC_STR4             0x09C
+>> +#define LPC_LADR4            0x110
+>> +#define LPC_IDR4             0x114
+>> +#define LPC_ODR4             0x118
+>> +#define LPC_STR4             0x11C
+>>     struct aspeed_kcs_bmc {
+>>       struct regmap *map;
+>> @@ -345,15 +342,25 @@ static int aspeed_kcs_probe(struct 
+>> platform_device *pdev)
+>>   {
+>>       struct device *dev = &pdev->dev;
+>>       struct kcs_bmc *kcs_bmc;
+>> -    struct device_node *np;
+>> +    struct device_node *kcs_np;
+>> +    struct device_node *lpc_np;
+>>       int rc;
+>
+> I think you can just use 'np' to do LPC compatible checking:
+>
+> np = pdev->dev.of_node->parent;
+>
+> if (!of_device_is_compatible(lpc_np, "aspeed,ast2400-lpc-v2") &&
+>     !of_device_is_compatible(lpc_np, "aspeed,ast2500-lpc-v2") &&
+>     !of_device_is_compatible(lpc_np, "aspeed,ast2600-lpc-v2")) {
+>     dev_err(dev, "unsupported LPC device binding\n");
+>     return -ENODEV;
+> }
+>
+Typo:
 
-Best regards,
-Krzysztof
+if (!of_device_is_compatible(np, "aspeed,ast2400-lpc-v2") &&
+     !of_device_is_compatible(np, "aspeed,ast2500-lpc-v2") &&
+     !of_device_is_compatible(np, "aspeed,ast2600-lpc-v2")) {
+     dev_err(dev, "unsupported LPC device binding\n");
+     return -ENODEV;
+}
+
+
+>
+> before:
+>
+> np = pdev->dev.of_node;
+> if (of_device_is_compatible(np, "aspeed,ast2400-kcs-bmc") ||
+>     of_device_is_compatible(np, "aspeed,ast2500-kcs-bmc"))
+>
+> Then the patch is clear. ;-)
+>
+>> -    np = pdev->dev.of_node;
+>> -    if (of_device_is_compatible(np, "aspeed,ast2400-kcs-bmc") ||
+>> -            of_device_is_compatible(np, "aspeed,ast2500-kcs-bmc"))
+>> +    kcs_np = dev->of_node;
+>> +    lpc_np = kcs_np->parent;
+>> +
+>> +    if (!of_device_is_compatible(lpc_np, "aspeed,ast2400-lpc-v2") &&
+>> +        !of_device_is_compatible(lpc_np, "aspeed,ast2500-lpc-v2") &&
+>> +        !of_device_is_compatible(lpc_np, "aspeed,ast2600-lpc-v2")) {
+>> +        dev_err(dev, "unsupported LPC device binding\n");
+>> +        return -ENODEV;
+>> +    }
+>> +
+>> +    if (of_device_is_compatible(kcs_np, "aspeed,ast2400-kcs-bmc") ||
+>> +            of_device_is_compatible(kcs_np, "aspeed,ast2500-kcs-bmc"))
+>>           kcs_bmc = aspeed_kcs_probe_of_v1(pdev);
+>> -    else if (of_device_is_compatible(np, 
+>> "aspeed,ast2400-kcs-bmc-v2") ||
+>> -            of_device_is_compatible(np, "aspeed,ast2500-kcs-bmc-v2"))
+>> +    else if (of_device_is_compatible(kcs_np, 
+>> "aspeed,ast2400-kcs-bmc-v2") ||
+>> +            of_device_is_compatible(kcs_np, 
+>> "aspeed,ast2500-kcs-bmc-v2"))
+>>           kcs_bmc = aspeed_kcs_probe_of_v2(pdev);
+>>       else
+>>           return -EINVAL;
