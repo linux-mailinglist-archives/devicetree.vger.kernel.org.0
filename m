@@ -2,95 +2,203 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F5132DFCEF
-	for <lists+devicetree@lfdr.de>; Mon, 21 Dec 2020 15:40:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 690D82E0079
+	for <lists+devicetree@lfdr.de>; Mon, 21 Dec 2020 19:54:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726499AbgLUOkN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Dec 2020 09:40:13 -0500
-Received: from mx0a-00128a01.pphosted.com ([148.163.135.77]:53028 "EHLO
-        mx0a-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726214AbgLUOkM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 21 Dec 2020 09:40:12 -0500
-Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
-        by mx0a-00128a01.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 0BLEZCLI006619;
-        Mon, 21 Dec 2020 09:39:19 -0500
-Received: from nwd2mta3.analog.com ([137.71.173.56])
-        by mx0a-00128a01.pphosted.com with ESMTP id 35hfa9w8gj-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 21 Dec 2020 09:39:19 -0500
-Received: from SCSQMBX11.ad.analog.com (SCSQMBX11.ad.analog.com [10.77.17.10])
-        by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 0BLEdHbQ049459
-        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=FAIL);
-        Mon, 21 Dec 2020 09:39:17 -0500
-Received: from SCSQCASHYB6.ad.analog.com (10.77.17.132) by
- SCSQMBX11.ad.analog.com (10.77.17.10) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1779.2; Mon, 21 Dec 2020 06:39:16 -0800
-Received: from SCSQMBX11.ad.analog.com (10.77.17.10) by
- SCSQCASHYB6.ad.analog.com (10.77.17.132) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.2.721.2;
- Mon, 21 Dec 2020 06:39:16 -0800
-Received: from zeus.spd.analog.com (10.66.68.11) by SCSQMBX11.ad.analog.com
- (10.77.17.10) with Microsoft SMTP Server id 15.1.1779.2 via Frontend
- Transport; Mon, 21 Dec 2020 06:39:16 -0800
-Received: from localhost.localdomain ([10.48.65.12])
-        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 0BLEd9nG031672;
-        Mon, 21 Dec 2020 09:39:13 -0500
-From:   Alexandru Ardelean <alexandru.ardelean@analog.com>
-To:     <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC:     <mturquette@baylibre.com>, <sboyd@kernel.org>,
-        <robh+dt@kernel.org>, <lars@metafoo.de>,
-        <linux-fpga@vger.kernel.org>, <mdf@kernel.org>,
-        <dragos.bogdan@analog.com>,
-        Alexandru Ardelean <alexandru.ardelean@analog.com>
-Subject: [PATCH 2/2] dt-bindings: clock: adi,axi-clkgen: add Zynq & ZynqMP compatible strings
-Date:   Mon, 21 Dec 2020 16:42:24 +0200
-Message-ID: <20201221144224.50814-2-alexandru.ardelean@analog.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20201221144224.50814-1-alexandru.ardelean@analog.com>
-References: <20201221144224.50814-1-alexandru.ardelean@analog.com>
+        id S1725854AbgLUSxV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Dec 2020 13:53:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56560 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725811AbgLUSxU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Dec 2020 13:53:20 -0500
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C445C0613D3
+        for <devicetree@vger.kernel.org>; Mon, 21 Dec 2020 10:52:40 -0800 (PST)
+Received: by mail-lf1-x12f.google.com with SMTP id h22so16613267lfu.2
+        for <devicetree@vger.kernel.org>; Mon, 21 Dec 2020 10:52:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=9a0DdEygBE7mz5nOI+SRUZxqrRN9ZuLJGxiPETuZ7aM=;
+        b=iZEjTel7iTEfFtIAlH6sPKeZsrR920tYZSYHR4wPq4FnLc+qp+DVaDOVaMh1n7yKs4
+         zmaofNDAKbnHXBc2zc+joU/nc5RIL2rKtFe7dwk0m90DkjjEr4k7kPwg9b8FgWcjRGbc
+         7hcHr9WD4ObomGxPpxkdz7cDiHmU9jHnKOVOI=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=9a0DdEygBE7mz5nOI+SRUZxqrRN9ZuLJGxiPETuZ7aM=;
+        b=IoALqTvPAWQ7sxeJSS9V+HJZ6FbpYswNUVWGwZTp8x9z5TpIZAaiG9UpWs/QoBXb5M
+         ehxaiCoEeT7aA7GQ/h+9ystZT2moEStpuHunNRrFIYS9iLqMKo/oq8i4TlbGuPovaCVM
+         rYxziZ0mB3APfCKvo+W3076K5q2Axg+itAnlSxSgCSjxmf3ECNHd0cc7mOeJ4uvmKneh
+         37wDcH41ZrBWcyN9cukcPFthDMqIHPI5vu6SyRfOQAYrBsv03iEsOyQAiWXCpUSaqbQl
+         xvncZJ3pIX4bi+iUq2jcpaV90xqe3d77k1fwXg6Yki++7eRjrOr8mmk5HgRWcGRCTjnF
+         y0Jg==
+X-Gm-Message-State: AOAM5321q2D8bMBfv/Gl294ksVOBJo66K9HdMXIbHBarSC9HUf4zS8Q6
+        LDM42kBGJ9h9rWoU0C/1nvJKWpNKJZheEi3D2x2ytSp/I4h/thG9
+X-Google-Smtp-Source: ABdhPJyJrDx1MWKjM4PTWGsiUw3CumrFLtdRMQCF+CzkAzsENImUw0qFoGBl+qVlNWIHhmvhz2W03jxzDe//VmIqr4Q=
+X-Received: by 2002:a17:906:c310:: with SMTP id s16mr15686554ejz.186.1608562034808;
+ Mon, 21 Dec 2020 06:47:14 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.343,18.0.737
- definitions=2020-12-21_08:2020-12-21,2020-12-21 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 impostorscore=0
- bulkscore=0 lowpriorityscore=0 adultscore=0 phishscore=0 suspectscore=0
- priorityscore=1501 mlxlogscore=999 malwarescore=0 mlxscore=0 clxscore=1015
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2009150000
- definitions=main-2012210104
+References: <20201221113151.94515-1-jagan@amarulasolutions.com>
+ <20201221113151.94515-3-jagan@amarulasolutions.com> <20201221134625.GB31176@kozik-lap>
+ <CAMty3ZAi0B=fSRfpQG4bgE+Jt6GVhzRb_FZjCL3VQXp9vn-FEw@mail.gmail.com>
+ <20201221140501.GE31176@kozik-lap> <CAMty3ZA4K8GvTfmrV1Mz6zp1w+iF0FvE04CODZUsHvg+J+a1nw@mail.gmail.com>
+ <20201221144206.GA36114@kozik-lap>
+In-Reply-To: <20201221144206.GA36114@kozik-lap>
+From:   Jagan Teki <jagan@amarulasolutions.com>
+Date:   Mon, 21 Dec 2020 20:17:03 +0530
+Message-ID: <CAMty3ZD8JAp3UGuOS2zTsOZ5QcFE6_Ba_UjtmhKpD3R3qra5jg@mail.gmail.com>
+Subject: Re: [PATCH v2 2/6] dt-bindings: arm: fsl: Add Engicam i.Core MX8M
+ Mini C.TOUCH 2.0
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Li Yang <leoyang.li@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-amarula <linux-amarula@amarulasolutions.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The axi-clkgen driver now supports ZynqMP (UltraScale) as well, however the
-driver needs to use different PFD & VCO limits.
+On Mon, Dec 21, 2020 at 8:12 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>
+> On Mon, Dec 21, 2020 at 08:09:47PM +0530, Jagan Teki wrote:
+> > On Mon, Dec 21, 2020 at 7:35 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> > >
+> > > On Mon, Dec 21, 2020 at 07:29:22PM +0530, Jagan Teki wrote:
+> > > > On Mon, Dec 21, 2020 at 7:16 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> > > > >
+> > > > > On Mon, Dec 21, 2020 at 05:01:47PM +0530, Jagan Teki wrote:
+> > > > > > i.Core MX8M Mini is an EDIMM SoM based on NXP i.MX8M Mini from Engicam.
+> > > > > >
+> > > > > > C.TOUCH 2.0 is a general purpose carrier board with capacitive
+> > > > > > touch interface support.
+> > > > > >
+> > > > > > i.Core MX8M Mini needs to mount on top of this Carrier board for
+> > > > > > creating complete i.Core MX8M Mini C.TOUCH 2.0 board.
+> > > > > >
+> > > > > > Add bindings for it.
+> > > > > >
+> > > > > > Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+> > > > > > ---
+> > > > > > Changes for v2:
+> > > > > > - updated commit message
+> > > > > >
+> > > > > >  Documentation/devicetree/bindings/arm/fsl.yaml | 2 ++
+> > > > > >  1 file changed, 2 insertions(+)
+> > > > > >
+> > > > > > diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+> > > > > > index 67980dcef66d..e653e0a43016 100644
+> > > > > > --- a/Documentation/devicetree/bindings/arm/fsl.yaml
+> > > > > > +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+> > > > > > @@ -667,6 +667,8 @@ properties:
+> > > > > >          items:
+> > > > > >            - enum:
+> > > > > >                - beacon,imx8mm-beacon-kit  # i.MX8MM Beacon Development Kit
+> > > > > > +              - engicam,icore-mx8mm               # i.MX8MM Engicam i.Core MX8M Mini SOM
+> > > > > > +              - engicam,icore-mx8mm-ctouch2       # i.MX8MM Engicam i.Core MX8M Mini C.TOUCH 2.0
+> > > > >
+> > > > > Please test your DTS against new schema with dtbs_check. This won't
+> > > > > match.
+> > > >
+> > > > Sorry, not sure I understand clearly here.
+> > > >
+> > > > This the dts file ie used matched compatible.
+> > > > compatible = "engicam,icore-mx8mm-ctouch2", "engicam,icore-mx8mm",
+> > > >                      "fsl,imx8mm";
+> > > >
+> > > > I did build the dtbs_check without showing any issues like,
+> > > >
+> > > > $ make ARCH=arm64 dtbs_check
+> > > > ...
+> > > >
+> > > >     From schema: /w/dt-schema/dt-schema/dtschema/schemas/property-units.yaml
+> > > >   DTC     arch/arm64/boot/dts/freescale/imx8mm-icore-mx8mm-ctouch2.dtb
+> > > >   DTC     arch/arm64/boot/dts/freescale/imx8mm-icore-mx8mm-ctouch2-of10.dtb
+> > > >   DTC     arch/arm64/boot/dts/freescale/imx8mm-icore-mx8mm-edimm2.2.dtb
+> > > > ..
+> > > >
+> > > > Can you let me know what I missed here?
+> > >
+> > > You pasted here output of validating with property-units.yaml (or
+> > > something else), not the schema which you changed. If you want to limit
+> > > the tests, use DT_SCHEMA_FILES.
+> > >
+> > > I mentioned about exactly the same problem in yout previous v1
+> > > at patch #5. No changes here stil.
+> >
+> > Yes, I usually did that check before posting. Please check the build
+> > log below and fsl.yaml binding is fine to build.
+> >
+> > # make dt_binding_check DT_SCHEMA_FILES=arm/fsl.yaml
+>
+> 1. Wrong path to schema file,
+> 2. Bindings pass, they are not a problem. You were running dtbs_check,
+> right?
 
-For ZynqMP, these needs to be selected by using the
-'adi,zynqmp-axi-clkgen-2.00.a' string. For consistency a
-'adi,zynq-axi-clkgen-2.00.a' has been added which should behave as the
-original compatible string (i.e. 'adi,axi-clkgen-2.00.a').
+But kbuild is building the fsl.yaml I did verify with by adding some
+wrong character in the file, it is showing build issues.
 
-Signed-off-by: Alexandru Ardelean <alexandru.ardelean@analog.com>
----
- Documentation/devicetree/bindings/clock/adi,axi-clkgen.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+Please check the clean log.
 
-diff --git a/Documentation/devicetree/bindings/clock/adi,axi-clkgen.yaml b/Documentation/devicetree/bindings/clock/adi,axi-clkgen.yaml
-index 0d06387184d6..398954ec6767 100644
---- a/Documentation/devicetree/bindings/clock/adi,axi-clkgen.yaml
-+++ b/Documentation/devicetree/bindings/clock/adi,axi-clkgen.yaml
-@@ -20,6 +20,8 @@ properties:
-   compatible:
-     enum:
-       - adi,axi-clkgen-2.00.a
-+      - adi,zynq-axi-clkgen-2.00.a
-+      - adi,zynqmp-axi-clkgen-2.00.a
- 
-   clocks:
-     description:
--- 
-2.17.1
+# make mrproper
+  CLEAN   Documentation/devicetree/bindings
+  CLEAN   scripts/basic
+  CLEAN   scripts/dtc
+# make dt_binding_check
+DT_SCHEMA_FILES=Documentation/devicetree/bindings/arm/fsl.yaml
+  HOSTCC  scripts/basic/fixdep
+  HOSTCC  scripts/dtc/dtc.o
+  HOSTCC  scripts/dtc/flattree.o
+  HOSTCC  scripts/dtc/fstree.o
+  HOSTCC  scripts/dtc/data.o
+  HOSTCC  scripts/dtc/livetree.o
+  HOSTCC  scripts/dtc/treesource.o
+  HOSTCC  scripts/dtc/srcpos.o
+  HOSTCC  scripts/dtc/checks.o
+  HOSTCC  scripts/dtc/util.o
+  LEX     scripts/dtc/dtc-lexer.lex.c
+  YACC    scripts/dtc/dtc-parser.tab.[ch]
+  HOSTCC  scripts/dtc/dtc-lexer.lex.o
+  HOSTCC  scripts/dtc/dtc-parser.tab.o
+  HOSTCC  scripts/dtc/yamltree.o
+  HOSTLD  scripts/dtc/dtc
+  CHKDT   Documentation/devicetree/bindings/processed-schema-examples.json
+/w/linux/Documentation/devicetree/bindings/soc/litex/litex,soc-controller.yaml:
+'additionalProperties' is a required property
+/w/linux/Documentation/devicetree/bindings/soc/mediatek/devapc.yaml:
+'additionalProperties' is a required property
+/w/linux/Documentation/devicetree/bindings/media/coda.yaml:
+'additionalProperties' is a required property
+/w/linux/Documentation/devicetree/bindings/serial/litex,liteuart.yaml:
+'additionalProperties' is a required property
+  SCHEMA  Documentation/devicetree/bindings/processed-schema-examples.json
+/w/linux/Documentation/devicetree/bindings/soc/litex/litex,soc-controller.yaml:
+ignoring, error in schema:
+warning: no schema found in file:
+./Documentation/devicetree/bindings/soc/litex/litex,soc-controller.yaml
+/w/linux/Documentation/devicetree/bindings/soc/mediatek/devapc.yaml:
+ignoring, error in schema:
+warning: no schema found in file:
+./Documentation/devicetree/bindings/soc/mediatek/devapc.yaml
+/w/linux/Documentation/devicetree/bindings/media/coda.yaml: ignoring,
+error in schema:
+warning: no schema found in file:
+./Documentation/devicetree/bindings/media/coda.yaml
+/w/linux/Documentation/devicetree/bindings/serial/litex,liteuart.yaml:
+ignoring, error in schema:
+warning: no schema found in file:
+./Documentation/devicetree/bindings/serial/litex,liteuart.yaml
+  DTEX    Documentation/devicetree/bindings/arm/fsl.example.dts
+  DTC     Documentation/devicetree/bindings/arm/fsl.example.dt.yaml
+  CHECK   Documentation/devicetree/bindings/arm/fsl.example.dt.yaml
 
+Jagan.
