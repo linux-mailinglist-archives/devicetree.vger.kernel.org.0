@@ -2,159 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 84DCB2DF9B2
-	for <lists+devicetree@lfdr.de>; Mon, 21 Dec 2020 09:01:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3942C2DF9C2
+	for <lists+devicetree@lfdr.de>; Mon, 21 Dec 2020 09:11:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727314AbgLUIAw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Dec 2020 03:00:52 -0500
-Received: from mga03.intel.com ([134.134.136.65]:42768 "EHLO mga03.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727298AbgLUIAw (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 21 Dec 2020 03:00:52 -0500
-IronPort-SDR: eBz9CAAdISS+GOKAQ6NXvZq7rkZOlobkUVleLNrJVHieXiE6cVMDKOtFAls2SnWwCxuq5f/jgH
- LCuZjPfQEgOQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9841"; a="175792221"
-X-IronPort-AV: E=Sophos;i="5.78,436,1599548400"; 
-   d="scan'208";a="175792221"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Dec 2020 23:59:05 -0800
-IronPort-SDR: JxY58Mh/HZqa84ewBgqXe3YA+sXkMeWHw1VaZ+qNG7gxEwTPPainwf7TAeLK1tjlU1K7tysDX8
- OpcDC9CzAczA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.78,436,1599548400"; 
-   d="scan'208";a="415702682"
-Received: from shwdenpg096.ccr.corp.intel.com (HELO [10.67.104.88]) ([10.67.104.88])
-  by orsmga001.jf.intel.com with ESMTP; 20 Dec 2020 23:59:01 -0800
-Subject: Re: [PATCH v3 3/5] ipmi: kcs: aspeed: Adapt to new LPC DTS layout
-From:   Haiyue Wang <haiyue.wang@linux.intel.com>
-To:     "Chia-Wei, Wang" <chiawei_wang@aspeedtech.com>,
-        lee.jones@linaro.org, robh+dt@kernel.org, joel@jms.id.au,
-        andrew@aj.id.au, linus.walleij@linaro.org, minyard@acm.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        openbmc@lists.ozlabs.org
-Cc:     BMC-SW@aspeedtech.com, cyrilbur@gmail.com, rlippert@google.com
-References: <20201221055623.31463-1-chiawei_wang@aspeedtech.com>
- <20201221055623.31463-4-chiawei_wang@aspeedtech.com>
- <12d347b6-168b-11d2-b906-18164afb1724@linux.intel.com>
-Message-ID: <c1b6e2fe-5b22-ac67-f0eb-159499e06d2b@linux.intel.com>
-Date:   Mon, 21 Dec 2020 15:59:01 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.0
+        id S1726275AbgLUILA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Dec 2020 03:11:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40750 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726030AbgLUIK7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Dec 2020 03:10:59 -0500
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCEDCC061282
+        for <devicetree@vger.kernel.org>; Mon, 21 Dec 2020 00:10:19 -0800 (PST)
+Received: by mail-wm1-x330.google.com with SMTP id a6so9025016wmc.2
+        for <devicetree@vger.kernel.org>; Mon, 21 Dec 2020 00:10:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=8twWC59nf0hTSYRSk++JzXeEHnzUQgXnLgzo/+5kK6g=;
+        b=ak/30GTUKGf0uURuIBRwK+Z5nJM5LLKw2sFfAb3zHnm6/kGc8thcF/tq1Kdw0YgePc
+         quZBt+/yN0XkBbH/2ISxoXBxFlrf5SW/EIvSLp7LpjmM6y7oCghJ+6XmDxWTJl9qxg7A
+         VzpHTZ8yM97NEExXS00xYG2q8l7LBzVWExi8rJo5SamM2C1AiyixFAeHyWbzaC3Oxecd
+         eQvcC33NzsBe5WsAH1lbD5KtPhsuAvtTZB/NUrsyFXtDYC94GeBeq5bwxYfsxYQqNV0I
+         Qy7fowAljpu7XMO0oFZFeYq644ZHr47XXw/yhWS75H17Jk381f8jC5QBpVkeKsWhle4F
+         guug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=8twWC59nf0hTSYRSk++JzXeEHnzUQgXnLgzo/+5kK6g=;
+        b=tgi4a8M8J1KGBuORqQCoX32Qka6Tf2NpXcLv0cEkj2ZHDxIGCm7J0D2WyNpsqAL/RY
+         tHLj+2T8eMnJVgEtadlnxJAakcxzj2MV5ZL7BuMkiPkHZUEFxCspoCa2SxCg4c0Bv2si
+         v+ofnAntW79O5baGNtKqQvDsklqa2+ZfHeXC0C7HsfXqJpDyeldMCryRkgbnvvYNYxsI
+         bEylOXuyFBVVHo3iVgqTXe32HGdSwVEc+NL5dJMiCVf6i6uGQ3xjSGixtbSqOGqilN/i
+         zL44OexDg/MvpqhvAWKhcrkQRwmriFpHzWavI4MqxFbfqIvDH81kl8HCt6iI7sjmufWG
+         /RAw==
+X-Gm-Message-State: AOAM531x4c9nxlIcrLDAbsELxt8GeLAnn7zWGO1K1ITTvwmpp1KfGDSA
+        pAppSr4EbPiCTaRJMvG/UBUZbw==
+X-Google-Smtp-Source: ABdhPJyzsu0gxJR0INTrbYFQFjvuiP/hGxunooQWgYOOw8WFVAyYSQeKqMfhChXQwTCsxaVthOHAwA==
+X-Received: by 2002:a1c:a5d8:: with SMTP id o207mr15647996wme.30.1608538218599;
+        Mon, 21 Dec 2020 00:10:18 -0800 (PST)
+Received: from dell ([91.110.221.144])
+        by smtp.gmail.com with ESMTPSA id a62sm26520714wmh.40.2020.12.21.00.10.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 21 Dec 2020 00:10:17 -0800 (PST)
+Date:   Mon, 21 Dec 2020 08:10:15 +0000
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
+        linux-actions@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
+        linux-pm@vger.kernel.org
+Subject: Re: [PATCH v3 3/7] mfd: Add MFD driver for ATC260x PMICs
+Message-ID: <20201221081015.GA4825@dell>
+References: <cover.1607216141.git.cristian.ciocaltea@gmail.com>
+ <f538c21de556c66390614bad778f7dc095222e8c.1607216141.git.cristian.ciocaltea@gmail.com>
+ <20201216101000.GD207743@dell>
+ <20201217231731.GA104305@BV030612LT>
+ <20201218132139.GR207743@dell>
+ <20201218160710.GA134686@BV030612LT>
 MIME-Version: 1.0
-In-Reply-To: <12d347b6-168b-11d2-b906-18164afb1724@linux.intel.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20201218160710.GA134686@BV030612LT>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, 18 Dec 2020, Cristian Ciocaltea wrote:
 
-On 12/21/2020 15:53, Haiyue Wang wrote:
-> On 12/21/2020 13:56, Chia-Wei, Wang wrote:
->> Add check against LPC device v2 compatible string to
->> ensure that the fixed device tree layout is adopted.
->> The LPC register offsets are also fixed accordingly.
->>
->> Signed-off-by: Chia-Wei, Wang <chiawei_wang@aspeedtech.com>
->> ---
->>   drivers/char/ipmi/kcs_bmc_aspeed.c | 35 ++++++++++++++++++------------
->>   1 file changed, 21 insertions(+), 14 deletions(-)
->>
->> diff --git a/drivers/char/ipmi/kcs_bmc_aspeed.c 
->> b/drivers/char/ipmi/kcs_bmc_aspeed.c
->> index a140203c079b..6283bfef4ea7 100644
->> --- a/drivers/char/ipmi/kcs_bmc_aspeed.c
->> +++ b/drivers/char/ipmi/kcs_bmc_aspeed.c
->> @@ -27,7 +27,6 @@
->>     #define KCS_CHANNEL_MAX     4
->>   -/* mapped to lpc-bmc@0 IO space */
->>   #define LPC_HICR0            0x000
->>   #define     LPC_HICR0_LPC3E          BIT(7)
->>   #define     LPC_HICR0_LPC2E          BIT(6)
->> @@ -52,15 +51,13 @@
->>   #define LPC_STR1             0x03C
->>   #define LPC_STR2             0x040
->>   #define LPC_STR3             0x044
->> -
->> -/* mapped to lpc-host@80 IO space */
->> -#define LPC_HICRB            0x080
->> +#define LPC_HICRB            0x100
->>   #define     LPC_HICRB_IBFIF4         BIT(1)
->>   #define     LPC_HICRB_LPC4E          BIT(0)
->> -#define LPC_LADR4            0x090
->> -#define LPC_IDR4             0x094
->> -#define LPC_ODR4             0x098
->> -#define LPC_STR4             0x09C
->> +#define LPC_LADR4            0x110
->> +#define LPC_IDR4             0x114
->> +#define LPC_ODR4             0x118
->> +#define LPC_STR4             0x11C
->>     struct aspeed_kcs_bmc {
->>       struct regmap *map;
->> @@ -345,15 +342,25 @@ static int aspeed_kcs_probe(struct 
->> platform_device *pdev)
->>   {
->>       struct device *dev = &pdev->dev;
->>       struct kcs_bmc *kcs_bmc;
->> -    struct device_node *np;
->> +    struct device_node *kcs_np;
->> +    struct device_node *lpc_np;
->>       int rc;
->
-> I think you can just use 'np' to do LPC compatible checking:
->
-> np = pdev->dev.of_node->parent;
->
-> if (!of_device_is_compatible(lpc_np, "aspeed,ast2400-lpc-v2") &&
->     !of_device_is_compatible(lpc_np, "aspeed,ast2500-lpc-v2") &&
->     !of_device_is_compatible(lpc_np, "aspeed,ast2600-lpc-v2")) {
->     dev_err(dev, "unsupported LPC device binding\n");
->     return -ENODEV;
-> }
->
-Typo:
+> On Fri, Dec 18, 2020 at 01:21:39PM +0000, Lee Jones wrote:
+> > On Fri, 18 Dec 2020, Cristian Ciocaltea wrote:
+> > 
+> > > Hi Lee,
+> > > 
+> > > Thank you for the detailed review!
+> > > 
+> > > I will prepare a new revision, but there are still a couple of open
+> > > points..
+> > 
+> > Could you please snip your replies, leaving only the open points.
+> > 
+> > Scrolling through lots of empty quotes or "done" comments is quite
+> > time consuming.  Thanks.
+> 
+> Sure, I'll take that into account.
+> 
+> > [...]
+> > 
+> > > > > +	ret = regmap_read(atc260x->regmap, atc260x->rev_reg, &chip_rev);
+> > > > > +	if (ret) {
+> > > > > +		dev_err(dev, "Failed to get chip revision\n");
+> > > > > +		return ret;
+> > > > > +	}
+> > > > > +
+> > > > > +	if (chip_rev < 0 || chip_rev > 31) {
+> > > > > +		dev_err(dev, "Unknown chip revision: %d\n", ret);
+> > > > > +		return -EINVAL;
+> > > > > +	}
+> > > > 
+> > > > This still seems limiting.
+> > > 
+> > > This is based on the vendor implementation. Unfortunately I don't have
+> > > access to a data sheet or any other source of information about the
+> > > management of the chip revisions.
+> > 
+> > So which versions does this driver work with?  All 32?
+> 
+> I'm not even sure there are so many revisions, I guess that's just a
+> rough validation for a vendor reserved range.
+> 
+> For the moment, the only place where the functionality is affected
+> by the chip revision is in the regulator driver - there is a special
+> handling for the ATC2603C rev.B chip variant.
+> 
+> I expect some additional handling might be required for new drivers
+> bringing support for the other functions provided by the hardware.
 
-if (!of_device_is_compatible(np, "aspeed,ast2400-lpc-v2") &&
-     !of_device_is_compatible(np, "aspeed,ast2500-lpc-v2") &&
-     !of_device_is_compatible(np, "aspeed,ast2600-lpc-v2")) {
-     dev_err(dev, "unsupported LPC device binding\n");
-     return -ENODEV;
-}
+The current patch seems to insinuate that 32 versions are currently
+supported.  What is the chip_rev for the ATC2603C rev.B?
 
-
->
-> before:
->
-> np = pdev->dev.of_node;
-> if (of_device_is_compatible(np, "aspeed,ast2400-kcs-bmc") ||
->     of_device_is_compatible(np, "aspeed,ast2500-kcs-bmc"))
->
-> Then the patch is clear. ;-)
->
->> -    np = pdev->dev.of_node;
->> -    if (of_device_is_compatible(np, "aspeed,ast2400-kcs-bmc") ||
->> -            of_device_is_compatible(np, "aspeed,ast2500-kcs-bmc"))
->> +    kcs_np = dev->of_node;
->> +    lpc_np = kcs_np->parent;
->> +
->> +    if (!of_device_is_compatible(lpc_np, "aspeed,ast2400-lpc-v2") &&
->> +        !of_device_is_compatible(lpc_np, "aspeed,ast2500-lpc-v2") &&
->> +        !of_device_is_compatible(lpc_np, "aspeed,ast2600-lpc-v2")) {
->> +        dev_err(dev, "unsupported LPC device binding\n");
->> +        return -ENODEV;
->> +    }
->> +
->> +    if (of_device_is_compatible(kcs_np, "aspeed,ast2400-kcs-bmc") ||
->> +            of_device_is_compatible(kcs_np, "aspeed,ast2500-kcs-bmc"))
->>           kcs_bmc = aspeed_kcs_probe_of_v1(pdev);
->> -    else if (of_device_is_compatible(np, 
->> "aspeed,ast2400-kcs-bmc-v2") ||
->> -            of_device_is_compatible(np, "aspeed,ast2500-kcs-bmc-v2"))
->> +    else if (of_device_is_compatible(kcs_np, 
->> "aspeed,ast2400-kcs-bmc-v2") ||
->> +            of_device_is_compatible(kcs_np, 
->> "aspeed,ast2500-kcs-bmc-v2"))
->>           kcs_bmc = aspeed_kcs_probe_of_v2(pdev);
->>       else
->>           return -EINVAL;
+-- 
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
