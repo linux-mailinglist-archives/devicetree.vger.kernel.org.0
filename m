@@ -2,170 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BB22B2DF915
-	for <lists+devicetree@lfdr.de>; Mon, 21 Dec 2020 07:01:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ECC802DF926
+	for <lists+devicetree@lfdr.de>; Mon, 21 Dec 2020 07:12:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728166AbgLUF6w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Dec 2020 00:58:52 -0500
-Received: from twspam01.aspeedtech.com ([211.20.114.71]:20088 "EHLO
-        twspam01.aspeedtech.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728549AbgLUF6w (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Dec 2020 00:58:52 -0500
-Received: from mail.aspeedtech.com ([192.168.0.24])
-        by twspam01.aspeedtech.com with ESMTP id 0BL5qWvF013664;
-        Mon, 21 Dec 2020 13:52:38 +0800 (GMT-8)
-        (envelope-from chiawei_wang@aspeedtech.com)
-Received: from ChiaWeiWang-PC.aspeed.com (192.168.2.66) by TWMBX02.aspeed.com
- (192.168.0.24) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 21 Dec
- 2020 13:56:09 +0800
-From:   "Chia-Wei, Wang" <chiawei_wang@aspeedtech.com>
-To:     <lee.jones@linaro.org>, <robh+dt@kernel.org>, <joel@jms.id.au>,
-        <andrew@aj.id.au>, <linus.walleij@linaro.org>, <minyard@acm.org>,
-        <devicetree@vger.kernel.org>,
+        id S1727670AbgLUGLb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Dec 2020 01:11:31 -0500
+Received: from mailgw01.mediatek.com ([210.61.82.183]:56924 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1727449AbgLUGLa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Dec 2020 01:11:30 -0500
+X-UUID: 22801848cbd14ea98ea96d54954b61a8-20201221
+X-UUID: 22801848cbd14ea98ea96d54954b61a8-20201221
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
+        (envelope-from <yz.wu@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 227862454; Mon, 21 Dec 2020 14:10:46 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ mtkmbs01n2.mediatek.inc (172.21.101.79) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Mon, 21 Dec 2020 14:10:42 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 21 Dec 2020 14:10:43 +0800
+From:   <Yz.Wu@mediatek.com>
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+CC:     Seiya Wang <seiya.wang@mediatek.com>, <devicetree@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-aspeed@lists.ozlabs.org>, <linux-kernel@vger.kernel.org>,
-        <openbmc@lists.ozlabs.org>
-CC:     <BMC-SW@aspeedtech.com>, <haiyue.wang@linux.intel.com>,
-        <cyrilbur@gmail.com>, <rlippert@google.com>
-Subject: [PATCH v3 5/5] soc: aspeed: Adapt to new LPC device tree layout
-Date:   Mon, 21 Dec 2020 13:56:23 +0800
-Message-ID: <20201221055623.31463-6-chiawei_wang@aspeedtech.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20201221055623.31463-1-chiawei_wang@aspeedtech.com>
-References: <20201221055623.31463-1-chiawei_wang@aspeedtech.com>
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Ryan Wu <Yz.Wu@mediatek.com>
+Subject: [PATCH v3 0/2] Add Mediatek Efuse Device Node for MT8192 SoC
+Date:   Mon, 21 Dec 2020 14:10:17 +0800
+Message-ID: <20201221061018.18503-1-Yz.Wu@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
 Content-Type: text/plain
-X-Originating-IP: [192.168.2.66]
-X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
- (192.168.0.24)
-X-DNSRBL: 
-X-MAIL: twspam01.aspeedtech.com 0BL5qWvF013664
+X-TM-SNTS-SMTP: A90D87B2DF44468F3662D5C10CBCF828865D875462BFA64D939001BE60DEB8722000:8
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add check against LPC device v2 compatible string to
-ensure that the fixed device tree layout is adopted.
-The LPC register offsets are also fixed accordingly.
+From: Ryan Wu <Yz.Wu@mediatek.com>
 
-Signed-off-by: Chia-Wei, Wang <chiawei_wang@aspeedtech.com>
----
- drivers/soc/aspeed/aspeed-lpc-ctrl.c  | 20 ++++++++++++++------
- drivers/soc/aspeed/aspeed-lpc-snoop.c | 23 +++++++++++++++--------
- 2 files changed, 29 insertions(+), 14 deletions(-)
+This patch adds efuse to read via NVMEM.
 
-diff --git a/drivers/soc/aspeed/aspeed-lpc-ctrl.c b/drivers/soc/aspeed/aspeed-lpc-ctrl.c
-index 439bcd6b8c4a..b04074949240 100644
---- a/drivers/soc/aspeed/aspeed-lpc-ctrl.c
-+++ b/drivers/soc/aspeed/aspeed-lpc-ctrl.c
-@@ -18,15 +18,15 @@
- 
- #define DEVICE_NAME	"aspeed-lpc-ctrl"
- 
--#define HICR5 0x0
-+#define HICR5 0x80
- #define HICR5_ENL2H	BIT(8)
- #define HICR5_ENFWH	BIT(10)
- 
--#define HICR6 0x4
-+#define HICR6 0x84
- #define SW_FWH2AHB	BIT(17)
- 
--#define HICR7 0x8
--#define HICR8 0xc
-+#define HICR7 0x88
-+#define HICR8 0x8c
- 
- struct aspeed_lpc_ctrl {
- 	struct miscdevice	miscdev;
-@@ -215,6 +215,7 @@ static int aspeed_lpc_ctrl_probe(struct platform_device *pdev)
- 	struct device_node *node;
- 	struct resource resm;
- 	struct device *dev;
-+	struct device_node *lpc_np;
- 	int rc;
- 
- 	dev = &pdev->dev;
-@@ -270,8 +271,15 @@ static int aspeed_lpc_ctrl_probe(struct platform_device *pdev)
- 		}
- 	}
- 
--	lpc_ctrl->regmap = syscon_node_to_regmap(
--			pdev->dev.parent->of_node);
-+	lpc_np = pdev->dev.parent->of_node;
-+	if (!of_device_is_compatible(lpc_np, "aspeed,ast2400-lpc-v2") &&
-+	    !of_device_is_compatible(lpc_np, "aspeed,ast2500-lpc-v2") &&
-+	    !of_device_is_compatible(lpc_np, "aspeed,ast2600-lpc-v2")) {
-+		dev_err(dev, "unsupported LPC device binding\n");
-+		return -ENODEV;
-+	}
-+
-+	lpc_ctrl->regmap = syscon_node_to_regmap(lpc_np);
- 	if (IS_ERR(lpc_ctrl->regmap)) {
- 		dev_err(dev, "Couldn't get regmap\n");
- 		return -ENODEV;
-diff --git a/drivers/soc/aspeed/aspeed-lpc-snoop.c b/drivers/soc/aspeed/aspeed-lpc-snoop.c
-index 682ba0eb4eba..63c3d9b8ba61 100644
---- a/drivers/soc/aspeed/aspeed-lpc-snoop.c
-+++ b/drivers/soc/aspeed/aspeed-lpc-snoop.c
-@@ -28,26 +28,25 @@
- #define NUM_SNOOP_CHANNELS 2
- #define SNOOP_FIFO_SIZE 2048
- 
--#define HICR5	0x0
-+#define HICR5	0x80
- #define HICR5_EN_SNP0W		BIT(0)
- #define HICR5_ENINT_SNP0W	BIT(1)
- #define HICR5_EN_SNP1W		BIT(2)
- #define HICR5_ENINT_SNP1W	BIT(3)
--
--#define HICR6	0x4
-+#define HICR6	0x84
- #define HICR6_STR_SNP0W		BIT(0)
- #define HICR6_STR_SNP1W		BIT(1)
--#define SNPWADR	0x10
-+#define SNPWADR	0x90
- #define SNPWADR_CH0_MASK	GENMASK(15, 0)
- #define SNPWADR_CH0_SHIFT	0
- #define SNPWADR_CH1_MASK	GENMASK(31, 16)
- #define SNPWADR_CH1_SHIFT	16
--#define SNPWDR	0x14
-+#define SNPWDR	0x94
- #define SNPWDR_CH0_MASK		GENMASK(7, 0)
- #define SNPWDR_CH0_SHIFT	0
- #define SNPWDR_CH1_MASK		GENMASK(15, 8)
- #define SNPWDR_CH1_SHIFT	8
--#define HICRB	0x80
-+#define HICRB	0x100
- #define HICRB_ENSNP0D		BIT(14)
- #define HICRB_ENSNP1D		BIT(15)
- 
-@@ -258,6 +257,7 @@ static int aspeed_lpc_snoop_probe(struct platform_device *pdev)
- {
- 	struct aspeed_lpc_snoop *lpc_snoop;
- 	struct device *dev;
-+	struct device_node *lpc_np;
- 	u32 port;
- 	int rc;
- 
-@@ -267,8 +267,15 @@ static int aspeed_lpc_snoop_probe(struct platform_device *pdev)
- 	if (!lpc_snoop)
- 		return -ENOMEM;
- 
--	lpc_snoop->regmap = syscon_node_to_regmap(
--			pdev->dev.parent->of_node);
-+	lpc_np = pdev->dev.parent->of_node;
-+	if (!of_device_is_compatible(lpc_np, "aspeed,ast2400-lpc-v2") &&
-+	    !of_device_is_compatible(lpc_np, "aspeed,ast2500-lpc-v2") &&
-+	    !of_device_is_compatible(lpc_np, "aspeed,ast2600-lpc-v2")) {
-+		dev_err(dev, "unsupported LPC device binding\n");
-+		return -ENODEV;
-+	}
-+
-+	lpc_snoop->regmap = syscon_node_to_regmap(lpc_np);
- 	if (IS_ERR(lpc_snoop->regmap)) {
- 		dev_err(dev, "Couldn't get regmap\n");
- 		return -ENODEV;
+Ryan Wu (2):
+  dt-bindings: nvmem: mediatek: add support for MediaTek mt8192 SoC
+  arm64: dts: mt8192: add eFuse support for MT8192 SoC
+
+ Documentation/devicetree/bindings/nvmem/mtk-efuse.txt | 1 +
+ arch/arm64/boot/dts/mediatek/mt8192.dtsi              | 5 +++++
+ 2 files changed, 6 insertions(+)
+
 -- 
-2.17.1
+2.18.0
 
