@@ -2,117 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2DD992DF8CD
-	for <lists+devicetree@lfdr.de>; Mon, 21 Dec 2020 06:25:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 671A12DF912
+	for <lists+devicetree@lfdr.de>; Mon, 21 Dec 2020 07:01:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728352AbgLUFYq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Dec 2020 00:24:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43450 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728351AbgLUFYq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Dec 2020 00:24:46 -0500
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13954C061257;
-        Sun, 20 Dec 2020 21:24:05 -0800 (PST)
-Received: by mail-lf1-x12c.google.com with SMTP id h205so20728242lfd.5;
-        Sun, 20 Dec 2020 21:24:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=1kQKlYjkEsXTqfe1rTtXK6ODUo/QOHx815FNAJpR+HA=;
-        b=kWE4CzRUuiLhewBN3LwV88HGv7PIeug56nZWau594podr2HIkZss2CyKdsZcE0gyZR
-         fgm26t4QROUmV3aQpV8n8ApI/CukOtkg0L0dwMng+Lg2egQkPp+la72FQSGCHAUvWN59
-         CkmNiFTx4+5OCGB3x7bDgIfdgfDzSqxAExxHh2iJx0AdtqvUCEMU5q4y2Ll49t3a6jrU
-         8Arlv4IHYGoxC9AiT/ihKufQHGdrhd+PQ/kCbgoVlfdhtTOAAT66dxu5U1C9tDMEP+1J
-         7kOb40C5c14v599n2O2MEtmQg2k/4UVJ4qaVFLjSFX4HFU05y1qPkYneo2V2HQzKBInV
-         lQ8A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=1kQKlYjkEsXTqfe1rTtXK6ODUo/QOHx815FNAJpR+HA=;
-        b=QTfCoKpZ7Z0HHsFpmgfeOsMmAf2yn8DFckRvEsl+yt1qGbcN5TIV00MjtLG2rtNs3E
-         HnZ5OqtxcdqmKp9XHGXBf1tIxTnOKX8up4RB3GhB0sX3HUY4+3hOr45DodjDXznnRau0
-         x3vmtC+Xn8UlUzMcTHReZmBj3nzYLU0CiTYo/bK7iJ686QVXlUm7tet/UIfXtRAbvTyv
-         Okk1DxEMawc2Djqv4BY5CydZEz88A5P8IkGJvyP1PJEtU6+ye0wLZYjoon+q0DWkn+CO
-         Kg4XnE0d+JqSRCDQxsjm7i8nbHfvgr6DK6suqbGaEUTqg8OHPC/ltr+gmukuzPguF6XG
-         TfPw==
-X-Gm-Message-State: AOAM532ybyHnVq6bTx1sCHW4KTf4rwqdPSG1u2F9gD4PPV3hRI9SlNmM
-        qryk8PP0Zd0V7mu09bL9MiQ=
-X-Google-Smtp-Source: ABdhPJyFOfmlQWQwMN/ER5oqWkaKbwqNXNvbRc47gdcbSQ3QB7UD2O0L8CE3Er3Osehedc87r8rDKg==
-X-Received: by 2002:a05:6512:3397:: with SMTP id h23mr5701889lfg.103.1608528243644;
-        Sun, 20 Dec 2020 21:24:03 -0800 (PST)
-Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.gmail.com with ESMTPSA id v10sm2052525lji.130.2020.12.20.21.24.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 20 Dec 2020 21:24:03 -0800 (PST)
-From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Al Cooper <alcooperx@gmail.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH V2 3/3] phy: phy-brcm-usb: support PHY on the BCM4908
-Date:   Mon, 21 Dec 2020 06:23:39 +0100
-Message-Id: <20201221052339.10100-3-zajec5@gmail.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20201221052339.10100-1-zajec5@gmail.com>
-References: <20201221052339.10100-1-zajec5@gmail.com>
+        id S1728551AbgLUF6w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Dec 2020 00:58:52 -0500
+Received: from twspam01.aspeedtech.com ([211.20.114.71]:20085 "EHLO
+        twspam01.aspeedtech.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728519AbgLUF6v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Dec 2020 00:58:51 -0500
+Received: from mail.aspeedtech.com ([192.168.0.24])
+        by twspam01.aspeedtech.com with ESMTP id 0BL5qWvA013664;
+        Mon, 21 Dec 2020 13:52:32 +0800 (GMT-8)
+        (envelope-from chiawei_wang@aspeedtech.com)
+Received: from ChiaWeiWang-PC.aspeed.com (192.168.2.66) by TWMBX02.aspeed.com
+ (192.168.0.24) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 21 Dec
+ 2020 13:56:08 +0800
+From:   "Chia-Wei, Wang" <chiawei_wang@aspeedtech.com>
+To:     <lee.jones@linaro.org>, <robh+dt@kernel.org>, <joel@jms.id.au>,
+        <andrew@aj.id.au>, <linus.walleij@linaro.org>, <minyard@acm.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-aspeed@lists.ozlabs.org>, <linux-kernel@vger.kernel.org>,
+        <openbmc@lists.ozlabs.org>
+CC:     <BMC-SW@aspeedtech.com>, <haiyue.wang@linux.intel.com>,
+        <cyrilbur@gmail.com>, <rlippert@google.com>
+Subject: [PATCH v3 0/5] Remove LPC register partitioning
+Date:   Mon, 21 Dec 2020 13:56:18 +0800
+Message-ID: <20201221055623.31463-1-chiawei_wang@aspeedtech.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [192.168.2.66]
+X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
+ (192.168.0.24)
+X-DNSRBL: 
+X-MAIL: twspam01.aspeedtech.com 0BL5qWvA013664
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rafał Miłecki <rafal@milecki.pl>
+The LPC controller has no concept of the BMC and the Host partitions.
+The incorrect partitioning can impose unnecessary range restrictions
+on register access through the syscon regmap interface.
 
-BCM4908 seems to have slightly different registers but works when
-programmed just like the STB one.
+For instance, HICRB contains the I/O port address configuration
+of KCS channel 1/2. However, the KCS#1/#2 drivers cannot access
+HICRB as it is located at the other LPC partition.
 
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
----
-V2: Update Kconfig as well
----
- drivers/phy/broadcom/Kconfig        | 3 ++-
- drivers/phy/broadcom/phy-brcm-usb.c | 4 ++++
- 2 files changed, 6 insertions(+), 1 deletion(-)
+In addition, to be backward compatible, the newly added HW control
+bits could be located at any reserved bits over the LPC addressing
+space.
 
-diff --git a/drivers/phy/broadcom/Kconfig b/drivers/phy/broadcom/Kconfig
-index a1f1a9c90d0d..09256339bd04 100644
---- a/drivers/phy/broadcom/Kconfig
-+++ b/drivers/phy/broadcom/Kconfig
-@@ -91,10 +91,11 @@ config PHY_BRCM_SATA
- 
- config PHY_BRCM_USB
- 	tristate "Broadcom STB USB PHY driver"
--	depends on ARCH_BRCMSTB || COMPILE_TEST
-+	depends on ARCH_BCM4908 || ARCH_BRCMSTB || COMPILE_TEST
- 	depends on OF
- 	select GENERIC_PHY
- 	select SOC_BRCMSTB
-+	default ARCH_BCM4908
- 	default ARCH_BRCMSTB
- 	help
- 	  Enable this to support the Broadcom STB USB PHY.
-diff --git a/drivers/phy/broadcom/phy-brcm-usb.c b/drivers/phy/broadcom/phy-brcm-usb.c
-index 99fbc7e4138b..63f922a5f29b 100644
---- a/drivers/phy/broadcom/phy-brcm-usb.c
-+++ b/drivers/phy/broadcom/phy-brcm-usb.c
-@@ -285,6 +285,10 @@ static const struct match_chip_info chip_info_7445 = {
- };
- 
- static const struct of_device_id brcm_usb_dt_ids[] = {
-+	{
-+		.compatible = "brcm,bcm4908-usb-phy",
-+		.data = &chip_info_7445,
-+	},
- 	{
- 		.compatible = "brcm,bcm7216-usb-phy",
- 		.data = &chip_info_7216,
+Thereby, this patch series aims to remove the LPC partitioning for
+better driver development and maintenance. This requires the change
+to both the device tree and the driver implementation. To ensure
+both sides are synchronously updated, a v2 binding check is added.
+
+Changes since v2:
+	- Add v2 binding check to ensure the synchronization between the
+	  device tree change and the driver register offset fix.
+
+Changes since v1:
+	- Add the fix to the aspeed-lpc binding documentation.
+
+Chia-Wei, Wang (5):
+  dt-bindings: aspeed-lpc: Remove LPC partitioning
+  ARM: dts: Remove LPC BMC and Host partitions
+  ipmi: kcs: aspeed: Adapt to new LPC DTS layout
+  pinctrl: aspeed-g5: Adapt to new LPC device tree layout
+  soc: aspeed: Adapt to new LPC device tree layout
+
+ .../devicetree/bindings/mfd/aspeed-lpc.txt    |  99 +++----------
+ arch/arm/boot/dts/aspeed-g4.dtsi              |  74 ++++------
+ arch/arm/boot/dts/aspeed-g5.dtsi              | 135 ++++++++----------
+ arch/arm/boot/dts/aspeed-g6.dtsi              | 135 ++++++++----------
+ drivers/char/ipmi/kcs_bmc_aspeed.c            |  35 +++--
+ drivers/pinctrl/aspeed/pinctrl-aspeed-g5.c    |  19 ++-
+ drivers/soc/aspeed/aspeed-lpc-ctrl.c          |  20 ++-
+ drivers/soc/aspeed/aspeed-lpc-snoop.c         |  23 +--
+ 8 files changed, 232 insertions(+), 308 deletions(-)
+
 -- 
-2.26.2
+2.17.1
 
