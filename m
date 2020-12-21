@@ -2,69 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0FC382E0213
-	for <lists+devicetree@lfdr.de>; Mon, 21 Dec 2020 22:33:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AF3C42E021D
+	for <lists+devicetree@lfdr.de>; Mon, 21 Dec 2020 22:40:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725844AbgLUVdT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Dec 2020 16:33:19 -0500
-Received: from mail-oo1-f49.google.com ([209.85.161.49]:42741 "EHLO
-        mail-oo1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725791AbgLUVdS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Dec 2020 16:33:18 -0500
-Received: by mail-oo1-f49.google.com with SMTP id x203so2523668ooa.9;
-        Mon, 21 Dec 2020 13:33:03 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=gWiQD/y1WI/6B6fr8kyAuu2q2JdRHnUgeEHtsHl3YCs=;
-        b=JHWt4YRNtXX2+buu/W3XWHGRKN9oafH2Leov+q5Ru+2mWjIRDDGngfEzi28/tiq+aL
-         rNdNAPL+9UMnbA+PUeW319A+GtOm0L4PyRq1+d7uhmXGEHiv2gSVtZ1QsCjBSLo4cozK
-         IkprQBj/EXlXWE1LZU8D29QPAnxvSIlWXwvSZ4X5Frd4Sxj9+M/QS/BNAubU49q2sMRj
-         Q7zTA/3a/86+NkIboBVHVVNacCbej6pLYTRkJACJ+zdPSnzQ9LU2snGjZxK6dZ3FOHSE
-         w+WKGJWQOik96pxAt8y6LKwB1cjTA2OCMir6/lIa7mALijkXI5EBmKnzGL8/+8ELwcOP
-         D9Eg==
-X-Gm-Message-State: AOAM532Yl9Zkl75zDT4D2BsUlN02M/U3RnuGzjFkBOJbSCWYR1sciG8S
-        fjBeRb+iJGoKiV1gUO0YFw==
-X-Google-Smtp-Source: ABdhPJzbD9fHgs7bCr8ZeZ5A3JPbHIQ3I7jsG5NUKbqdndCmQUWN8vpFNOP3zntRQLVayUS/+AK78w==
-X-Received: by 2002:a4a:d126:: with SMTP id n6mr12760916oor.47.1608586358001;
-        Mon, 21 Dec 2020 13:32:38 -0800 (PST)
-Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id q18sm3934494ood.35.2020.12.21.13.32.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 21 Dec 2020 13:32:37 -0800 (PST)
-Received: (nullmailer pid 596888 invoked by uid 1000);
-        Mon, 21 Dec 2020 21:32:34 -0000
-Date:   Mon, 21 Dec 2020 14:32:34 -0700
-From:   Rob Herring <robh@kernel.org>
-To:     Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
-Cc:     tony@atomide.com, linux-omap@vger.kernel.org,
-        devicetree@vger.kernel.org, santosh.shilimkar@oracle.com,
-        robh+dt@kernel.org, ssantosh@kernel.org, praneeth@ti.com,
-        lee.jones@linaro.org, s-anna@ti.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: soc: ti: Update TI PRUSS bindings about
- schemas to include
-Message-ID: <20201221213234.GA596829@robh.at.kernel.org>
-References: <20201216225027.2681-1-grzegorz.jaszczyk@linaro.org>
+        id S1725852AbgLUVkg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Dec 2020 16:40:36 -0500
+Received: from relay11.mail.gandi.net ([217.70.178.231]:55515 "EHLO
+        relay11.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725818AbgLUVkf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Dec 2020 16:40:35 -0500
+Received: from localhost (lfbn-lyo-1-13-140.w86-202.abo.wanadoo.fr [86.202.109.140])
+        (Authenticated sender: alexandre.belloni@bootlin.com)
+        by relay11.mail.gandi.net (Postfix) with ESMTPSA id A652E100004;
+        Mon, 21 Dec 2020 21:39:53 +0000 (UTC)
+Date:   Mon, 21 Dec 2020 22:39:53 +0100
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Rasmus Villemoes <rasmus.villemoes@prevas.dk>
+Cc:     Alessandro Zummo <a.zummo@towertech.it>,
+        Rob Herring <robh+dt@kernel.org>, linux-rtc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: rtc: pcf2127: update bindings
+Message-ID: <20201221213953.GA3990390@piout.net>
+References: <20201219013418.3474461-1-alexandre.belloni@bootlin.com>
+ <c5290432-a6b0-2b96-585f-3abc2dcc56f6@prevas.dk>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201216225027.2681-1-grzegorz.jaszczyk@linaro.org>
+In-Reply-To: <c5290432-a6b0-2b96-585f-3abc2dcc56f6@prevas.dk>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 16 Dec 2020 23:50:27 +0100, Grzegorz Jaszczyk wrote:
-> Now after ti,pruss-intc.yaml and ti,pru-rproc.yaml are merged, include
-> them in proper property and extend the examples section.
+On 21/12/2020 22:17:54+0100, Rasmus Villemoes wrote:
+> On 19/12/2020 02.34, Alexandre Belloni wrote:
+> > pcf2127, pcf2129 and pca2129 support start-year and reset-source.
+> > 
 > 
-> At the occasion extend the allowed property list about dma-ranges.
-> 
-> Signed-off-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
-> ---
->  .../devicetree/bindings/soc/ti/ti,pruss.yaml  | 76 +++++++++++++++++++
->  1 file changed, 76 insertions(+)
+> No, the 2129 variant doesn't even have a reset output pin. Not sure if
+> there's any way to reflect that, and it probably doesn't matter, since
+> nobody's going to add the reset-source property to a 2129 node. But the
+> commit message is a bit misleading.
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Ah sure, I forgot about that., the simplest way is then to not mov
+pcf/pca2129 out of trivial
+
+
+-- 
+Alexandre Belloni, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
