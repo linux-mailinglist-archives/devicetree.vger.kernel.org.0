@@ -2,137 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3942C2DF9C2
-	for <lists+devicetree@lfdr.de>; Mon, 21 Dec 2020 09:11:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A684A2DF9E7
+	for <lists+devicetree@lfdr.de>; Mon, 21 Dec 2020 09:26:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726275AbgLUILA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Dec 2020 03:11:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40750 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726030AbgLUIK7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Dec 2020 03:10:59 -0500
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCEDCC061282
-        for <devicetree@vger.kernel.org>; Mon, 21 Dec 2020 00:10:19 -0800 (PST)
-Received: by mail-wm1-x330.google.com with SMTP id a6so9025016wmc.2
-        for <devicetree@vger.kernel.org>; Mon, 21 Dec 2020 00:10:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=8twWC59nf0hTSYRSk++JzXeEHnzUQgXnLgzo/+5kK6g=;
-        b=ak/30GTUKGf0uURuIBRwK+Z5nJM5LLKw2sFfAb3zHnm6/kGc8thcF/tq1Kdw0YgePc
-         quZBt+/yN0XkBbH/2ISxoXBxFlrf5SW/EIvSLp7LpjmM6y7oCghJ+6XmDxWTJl9qxg7A
-         VzpHTZ8yM97NEExXS00xYG2q8l7LBzVWExi8rJo5SamM2C1AiyixFAeHyWbzaC3Oxecd
-         eQvcC33NzsBe5WsAH1lbD5KtPhsuAvtTZB/NUrsyFXtDYC94GeBeq5bwxYfsxYQqNV0I
-         Qy7fowAljpu7XMO0oFZFeYq644ZHr47XXw/yhWS75H17Jk381f8jC5QBpVkeKsWhle4F
-         guug==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=8twWC59nf0hTSYRSk++JzXeEHnzUQgXnLgzo/+5kK6g=;
-        b=tgi4a8M8J1KGBuORqQCoX32Qka6Tf2NpXcLv0cEkj2ZHDxIGCm7J0D2WyNpsqAL/RY
-         tHLj+2T8eMnJVgEtadlnxJAakcxzj2MV5ZL7BuMkiPkHZUEFxCspoCa2SxCg4c0Bv2si
-         v+ofnAntW79O5baGNtKqQvDsklqa2+ZfHeXC0C7HsfXqJpDyeldMCryRkgbnvvYNYxsI
-         bEylOXuyFBVVHo3iVgqTXe32HGdSwVEc+NL5dJMiCVf6i6uGQ3xjSGixtbSqOGqilN/i
-         zL44OexDg/MvpqhvAWKhcrkQRwmriFpHzWavI4MqxFbfqIvDH81kl8HCt6iI7sjmufWG
-         /RAw==
-X-Gm-Message-State: AOAM531x4c9nxlIcrLDAbsELxt8GeLAnn7zWGO1K1ITTvwmpp1KfGDSA
-        pAppSr4EbPiCTaRJMvG/UBUZbw==
-X-Google-Smtp-Source: ABdhPJyzsu0gxJR0INTrbYFQFjvuiP/hGxunooQWgYOOw8WFVAyYSQeKqMfhChXQwTCsxaVthOHAwA==
-X-Received: by 2002:a1c:a5d8:: with SMTP id o207mr15647996wme.30.1608538218599;
-        Mon, 21 Dec 2020 00:10:18 -0800 (PST)
-Received: from dell ([91.110.221.144])
-        by smtp.gmail.com with ESMTPSA id a62sm26520714wmh.40.2020.12.21.00.10.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 21 Dec 2020 00:10:17 -0800 (PST)
-Date:   Mon, 21 Dec 2020 08:10:15 +0000
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
+        id S1727284AbgLUI0P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Dec 2020 03:26:15 -0500
+Received: from mailout2.w1.samsung.com ([210.118.77.12]:35207 "EHLO
+        mailout2.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725878AbgLUI0O (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Dec 2020 03:26:14 -0500
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20201221082522euoutp02ee8806583a1ce4ba20abc093cd64640d~Src9H2sHC1499714997euoutp023
+        for <devicetree@vger.kernel.org>; Mon, 21 Dec 2020 08:25:22 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20201221082522euoutp02ee8806583a1ce4ba20abc093cd64640d~Src9H2sHC1499714997euoutp023
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1608539122;
+        bh=aXYOZaoJwEphzZdnF8VsSwt3JU/V9YyroOepbj1WWl4=;
+        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
+        b=UWKVDO3Bed/neeQJvsQA+zaS2zGhxfgrceip1yHEaskwF2/+c+y4aYP0X2SGzdLYt
+         t+fmgIIgeYP8Adsd6O0DAkP7tXlLKmRiDTgiB0Zj+YS/yaOb3F9ZA9mkTnwrsUXsY7
+         WveThpAmMfihDvA2qeOxP6olm8F7WDInNDlY9Wyw=
+Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
+        20201221082520eucas1p1ad2f5624bdf307d304398b52504429af~Src6zmK0n0284802848eucas1p1N;
+        Mon, 21 Dec 2020 08:25:20 +0000 (GMT)
+Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
+        eusmges2new.samsung.com (EUCPMTA) with SMTP id F9.8D.44805.0FB50EF5; Mon, 21
+        Dec 2020 08:25:20 +0000 (GMT)
+Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+        20201221082519eucas1p194b4112f452aad59054656bca7b7680d~Src6V8hOt2280822808eucas1p1B;
+        Mon, 21 Dec 2020 08:25:19 +0000 (GMT)
+Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
+        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20201221082519eusmtrp25c7b09b5855be28f8dc327ca0839cc3b~Src6VPWuq0863008630eusmtrp2A;
+        Mon, 21 Dec 2020 08:25:19 +0000 (GMT)
+X-AuditID: cbfec7f4-b4fff7000000af05-55-5fe05bf0076e
+Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
+        eusmgms2.samsung.com (EUCPMTA) with SMTP id 60.9B.16282.FEB50EF5; Mon, 21
+        Dec 2020 08:25:19 +0000 (GMT)
+Received: from [106.210.134.192] (unknown [106.210.134.192]) by
+        eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+        20201221082519eusmtip2983f22edeba8fe361a544a9160520007~Src5yFWzx0091300913eusmtip2N;
+        Mon, 21 Dec 2020 08:25:19 +0000 (GMT)
+Subject: Re: [PATCH 9/9] mfd: sec-irq: Do not enforce (incorrect) interrupt
+ trigger type
+To:     Krzysztof Kozlowski <krzk@kernel.org>
 Cc:     Rob Herring <robh+dt@kernel.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Sebastian Reichel <sre@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
-        linux-actions@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
-        linux-pm@vger.kernel.org
-Subject: Re: [PATCH v3 3/7] mfd: Add MFD driver for ATC260x PMICs
-Message-ID: <20201221081015.GA4825@dell>
-References: <cover.1607216141.git.cristian.ciocaltea@gmail.com>
- <f538c21de556c66390614bad778f7dc095222e8c.1607216141.git.cristian.ciocaltea@gmail.com>
- <20201216101000.GD207743@dell>
- <20201217231731.GA104305@BV030612LT>
- <20201218132139.GR207743@dell>
- <20201218160710.GA134686@BV030612LT>
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Sylwester Nawrocki <snawrocki@kernel.org>
+From:   Marek Szyprowski <m.szyprowski@samsung.com>
+Message-ID: <04ff52f6-a3e7-10cd-5d19-e953d1e158d7@samsung.com>
+Date:   Mon, 21 Dec 2020 09:25:18 +0100
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0)
+        Gecko/20100101 Thunderbird/78.5.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+In-Reply-To: <20201221075500.GA3386@kozik-lap>
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20201218160710.GA134686@BV030612LT>
+Content-Language: en-US
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrFKsWRmVeSWpSXmKPExsWy7djPc7ofoh/EG9z+w26xccZ6VovrX56z
+        Wsw/co7V4vz5DewW978eZbTY9Pgaq8XlXXPYLGac38dk0br3CLtF+9OXzA5cHptWdbJ53Lm2
+        h81j85J6j74tqxg9Pm+SC2CN4rJJSc3JLEst0rdL4Mo4dpuz4ABfxde9b9gaGL9ydzFyckgI
+        mEj8+f+RpYuRi0NIYAWjxNmWE+wgCSGBL4wSy095QyQ+M0r8erCfDabjwKWnzBBFyxklXt6s
+        gbA/Mkqs3AbWLCwQJfH19QKwGhEBTYnrf7+zggxiFrjBJLH05C9GkASbgKFE19susKG8AnYS
+        azZ/ZwGxWQRUJe5PXgcWFxVIkljf9QOqRlDi5MwnYDWcAnoSz49cALOZBeQlmrfOZoawxSVu
+        PZnPBLJMQuANh8S/pw+YIK52kbj4sosZwhaWeHV8CzuELSPxfydMQzOjxMNza9khnB5GictN
+        Mxghqqwl7pz7BXQGB9AKTYn1u/Qhwo4Sh0/0MYGEJQT4JG68FYQ4gk9i0rbpzBBhXomONiGI
+        ajWJWcfXwa09eOES8wRGpVlIXpuF5J1ZSN6ZhbB3ASPLKkbx1NLi3PTUYqO81HK94sTc4tK8
+        dL3k/NxNjMDkdPrf8S87GJe/+qh3iJGJg/EQowQHs5IIr5nU/Xgh3pTEyqrUovz4otKc1OJD
+        jNIcLErivElb1sQLCaQnlqRmp6YWpBbBZJk4OKUamHzMJTeIJkZJf0jaeOVh/uQ3hadu8X2x
+        CWacHLDUXsJ55l+XIKeyDZPa5dacW/Wi+HlETPyMje9WTT/0aLrc5N5lhrJf7j6Yzu7kPk0/
+        7XLoNalH4v36246FRX6/culefPZRNmUG19SJAduELCdM3pGuf+CB0TE5xQAbt++Fcn/KXRd1
+        OLDsf//p56ucO+rH5+3nb/0+Q/Pm9iQTYU25pL9lLVf2/JZe6ftB9ofZy3R/6ZBvxku3rl3/
+        9VSTZuiHefqmW3pMHCS+dZV/KI8MX250Xkrt3aPfvaqVp/iXS94z+LDxWHC1uVZe/VJTd8/l
+        9qHPXyqu6pqlXHDyavdeKwMfgZ74xOqE99K9nz/Pk1ViKc5INNRiLipOBAC1fanCvQMAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrLIsWRmVeSWpSXmKPExsVy+t/xe7rvox/EG0zuVrfYOGM9q8X1L89Z
+        LeYfOcdqcf78BnaL+1+PMlpsenyN1eLyrjlsFjPO72OyaN17hN2i/elLZgcuj02rOtk87lzb
+        w+axeUm9R9+WVYwenzfJBbBG6dkU5ZeWpCpk5BeX2CpFG1oY6RlaWugZmVjqGRqbx1oZmSrp
+        29mkpOZklqUW6dsl6GUcu81ZcICv4uveN2wNjF+5uxg5OSQETCQOXHrK3MXIxSEksJRR4vnk
+        3cwQCRmJk9MaWCFsYYk/17rYIIreM0r8+f4bLCEsECXx9fUCsAYRAU2J63+/g8WZBW4xSRw/
+        JQLR8JxJomHSBLAEm4ChRNdbkEmcHLwCdhJrNn9nAbFZBFQl7k9eBxTn4BAVSJI4e1oQokRQ
+        4uTMJ2AlnAJ6Es+PXGCBmG8mMW/zQ2YIW16ieetsKFtc4taT+UwTGIVmIWmfhaRlFpKWWUha
+        FjCyrGIUSS0tzk3PLTbSK07MLS7NS9dLzs/dxAiMx23Hfm7Zwbjy1Ue9Q4xMHIyHGCU4mJVE
+        eM2k7scL8aYkVlalFuXHF5XmpBYfYjQFemcis5Rocj4wIeSVxBuaGZgamphZGphamhkrifOa
+        HFkTLySQnliSmp2aWpBaBNPHxMEp1cDEvnfn06UOab6WjvuSX98w6xaeysPq+mNP+KeMXacs
+        Wde8yM1+l5LzZBLfMol93LPmPMkSV4+orM1gdHjp90fLdu+LGa3n1l16NUtx0Q2psx29ud/v
+        av5p82vhb3y87mJ8i9HpeMMSyUS1h0kb+7qqlm1waHnomP8r79Jrt1uX74Rs/+ZY2LBeLXLR
+        5ImrJp7QEp+7sSrznM2eW+ZLT5jzB2/+G3LG3FRtsUyqmPQ+iZMy17bkGG+y1ipqkPXeUbTI
+        pct+uXfN+vTEiZZV+ZWP7m2b/lhQs+PC9lfT27IY/i8+O2Pjte8PZXTjN+9hj5VmmrnFXu/H
+        vmcXStzXb5ff5dZq8XntWjlznqffzyxtV2Ipzkg01GIuKk4EAIBdJhpQAwAA
+X-CMS-MailID: 20201221082519eucas1p194b4112f452aad59054656bca7b7680d
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20201210212938eucas1p1297b8503e9c059f2bc77c3a429a9114e
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20201210212938eucas1p1297b8503e9c059f2bc77c3a429a9114e
+References: <20201210212903.216728-1-krzk@kernel.org>
+        <CGME20201210212938eucas1p1297b8503e9c059f2bc77c3a429a9114e@eucas1p1.samsung.com>
+        <20201210212903.216728-9-krzk@kernel.org>
+        <0f1509ef-9ae7-7a77-84b7-360b8f0071c7@samsung.com>
+        <20201218142247.GA2847@kozik-lap>
+        <52a1b7c6-c7f1-f5eb-09f6-d84663912db8@samsung.com>
+        <20201221075500.GA3386@kozik-lap>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 18 Dec 2020, Cristian Ciocaltea wrote:
+On 21.12.2020 08:55, Krzysztof Kozlowski wrote:
+> On Mon, Dec 21, 2020 at 08:36:02AM +0100, Marek Szyprowski wrote:
+>> On 18.12.2020 15:22, Krzysztof Kozlowski wrote:
+>>> On Fri, Dec 18, 2020 at 02:25:39PM +0100, Marek Szyprowski wrote:
+>>>> On 10.12.2020 22:29, Krzysztof Kozlowski wrote:
+>>>>> Interrupt line can be configured on different hardware in different way,
+>>>>> even inverted.  Therefore driver should not enforce specific trigger
+>>>>> type - edge falling - but instead rely on Devicetree to configure it.
+>>>>>
+>>>>> The Samsung PMIC drivers are used only on Devicetree boards.
+>>>>>
+>>>>> Additionally, the PMIC datasheets describe the interrupt line as active
+>>>>> low with a requirement of acknowledge from the CPU therefore the edge
+>>>>> falling is not correct.
+>>>>>
+>>>>> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+>>>> Tested-by: Marek Szyprowski <m.szyprowski@samsung.com>
+>>>>
+>>>> It looks that this together with DTS change fixes RTC alarm failure that
+>>>> I've observed from time to time on TM2e board!
+>>> Great! I'll add this to the commit msg.
+>>>
+>>> Thanks for testing.
+>> BTW, while playing with this, maybe it would make sense to fix the
+>> reported interrupt type for the PMIC sub-interrupts:
+>>
+>> # grep s2mps /proc/interrupts
+>> 120:          0      gpa0   7 Level     s2mps13
+>> 121:          0   s2mps13  10 Edge      rtc-alarm0
+> I also spotted this. It's a virtual interrupt and I am not sure whether
+> we can actually configure it when the hardware does not allow to set the
+> type (the regmap_irq_type requires register offsets).
 
-> On Fri, Dec 18, 2020 at 01:21:39PM +0000, Lee Jones wrote:
-> > On Fri, 18 Dec 2020, Cristian Ciocaltea wrote:
-> > 
-> > > Hi Lee,
-> > > 
-> > > Thank you for the detailed review!
-> > > 
-> > > I will prepare a new revision, but there are still a couple of open
-> > > points..
-> > 
-> > Could you please snip your replies, leaving only the open points.
-> > 
-> > Scrolling through lots of empty quotes or "done" comments is quite
-> > time consuming.  Thanks.
-> 
-> Sure, I'll take that into account.
-> 
-> > [...]
-> > 
-> > > > > +	ret = regmap_read(atc260x->regmap, atc260x->rev_reg, &chip_rev);
-> > > > > +	if (ret) {
-> > > > > +		dev_err(dev, "Failed to get chip revision\n");
-> > > > > +		return ret;
-> > > > > +	}
-> > > > > +
-> > > > > +	if (chip_rev < 0 || chip_rev > 31) {
-> > > > > +		dev_err(dev, "Unknown chip revision: %d\n", ret);
-> > > > > +		return -EINVAL;
-> > > > > +	}
-> > > > 
-> > > > This still seems limiting.
-> > > 
-> > > This is based on the vendor implementation. Unfortunately I don't have
-> > > access to a data sheet or any other source of information about the
-> > > management of the chip revisions.
-> > 
-> > So which versions does this driver work with?  All 32?
-> 
-> I'm not even sure there are so many revisions, I guess that's just a
-> rough validation for a vendor reserved range.
-> 
-> For the moment, the only place where the functionality is affected
-> by the chip revision is in the regulator driver - there is a special
-> handling for the ATC2603C rev.B chip variant.
-> 
-> I expect some additional handling might be required for new drivers
-> bringing support for the other functions provided by the hardware.
+I know that it is virtual, but maybe the regmap code could simply copy 
+the interrupt type from its parent interrupt?
 
-The current patch seems to insinuate that 32 versions are currently
-supported.  What is the chip_rev for the ATC2603C rev.B?
+Best regards
 
 -- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+Marek Szyprowski, PhD
+Samsung R&D Institute Poland
+
