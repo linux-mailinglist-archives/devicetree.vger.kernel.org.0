@@ -2,102 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D0BE02DFAC3
-	for <lists+devicetree@lfdr.de>; Mon, 21 Dec 2020 11:08:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F6112DFAAF
+	for <lists+devicetree@lfdr.de>; Mon, 21 Dec 2020 11:02:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725807AbgLUKHT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Dec 2020 05:07:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58064 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725878AbgLUKHS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Dec 2020 05:07:18 -0500
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3643BC0611CC
-        for <devicetree@vger.kernel.org>; Mon, 21 Dec 2020 02:05:47 -0800 (PST)
-Received: by mail-wm1-x335.google.com with SMTP id g25so9907560wmh.1
-        for <devicetree@vger.kernel.org>; Mon, 21 Dec 2020 02:05:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=0Vv2JbmBAjngC3pMRGSx1cPuMWHtt6tiXQKcY+Kelgw=;
-        b=TLglt5AQvjZgZmdtnh/EyevOANMYsHXzcV/JGMkqoYtFMBAB4kYQ/FqDpNBbyLj48D
-         YFxH24jMq6+64MYkJlnI6seNq47sfrXEI+5MhdutCJwZVSkm48VuGXPf1v1VNOJsdxlv
-         iHthvFWR/wkc83nv1NiMeo2ZqObxpNRmpONRObi9+XxrKHLCmAkJ/phEI4ldc2oInkdo
-         JUHNZwIT9NV6u4DS+PMxv7l3sd8oxRa1+zUHbr+0w0Qmq4tLYEe2EE/qyUhhFL/1NBbX
-         Ay/tfe9NA/6jbseLr44dJdVM/Q9g5/cYjg5ReXw9X+mdgjkMjyKP0GxowkASkcKWE3Ii
-         DiIA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=0Vv2JbmBAjngC3pMRGSx1cPuMWHtt6tiXQKcY+Kelgw=;
-        b=jsH+xWGGEcemIU3Inef0UqHagKPDoRn1U8OSPXw3KXE1fJT5ShbgwKJ5hRrqXDFu7i
-         5BlghrXIghPHxbIFMBsQUb0Y+CNogoGlbzqHHJzdMvm+D0h4cp/Y087AG37cA6pdIVSp
-         N8FvUDK2fAvyZGg+oskU5eiFurzL3oQu65LEQzPDr51BMM4TukUIUUazPmh4sMufIXJr
-         nZ6ATTpUzosvAQfqY5IOex+naeWVuw2vO7p4oWxGhu9fF7e1rEl/aYLowTLqAQPJcKdn
-         S8f75sRbj6rkuB/qeFhqNJJGYC1leCp4ct4ojinWqja0aaL5fX66/2I3QanEx/Z61Knu
-         Eajw==
-X-Gm-Message-State: AOAM531cXW9X5irKYc8WpkNTaYf/RiOrfCsKilh2bBZIW1DD33fGJsT3
-        xoJRcK8bSiWwwVlKRdaRFvXvxcMIht5SRgJ0
-X-Google-Smtp-Source: ABdhPJwV1UaD4rwmRRKU3eYSK2VySTMJPM9TCAXi8auRr8LxcUXt/74B0bP1dkXBIbzejKLTyh/UWg==
-X-Received: by 2002:a1c:7d58:: with SMTP id y85mr5910588wmc.50.1608544757077;
-        Mon, 21 Dec 2020 01:59:17 -0800 (PST)
-Received: from dell ([91.110.221.144])
-        by smtp.gmail.com with ESMTPSA id e16sm27858733wra.94.2020.12.21.01.59.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 21 Dec 2020 01:59:16 -0800 (PST)
-Date:   Mon, 21 Dec 2020 09:59:12 +0000
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Timon Baetz <timon.baetz@protonmail.com>
-Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
+        id S1725907AbgLUKCM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Dec 2020 05:02:12 -0500
+Received: from esa.microchip.iphmx.com ([68.232.153.233]:28358 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725895AbgLUKCM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Dec 2020 05:02:12 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1608544931; x=1640080931;
+  h=message-id:subject:from:to:cc:date:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=P5PLkNTxKnTcuBIkt7ohAbLajhx/jYOtM+J9jpjlu3M=;
+  b=NUTXCf5dAoKXNy8wvPWHdVa64EohlFazDxatz+xR24Ml7n1TxmLb0Ywo
+   pOPo9BwQmXMyfxqGYFgIcA7Leu8/Xz5TcQTTR/uK8ionLPZrfpbbq0QzL
+   KuBeJG3pIYt4s6UG9YVF+Xa+yPiUaKL+aOonO51Wtd5zinYn+zM3KpXMO
+   B1z1mSEOweC8FpMXacaX3VNmH5zi0TljxY/3ihXXTPij2mn0PIvI1Ny0A
+   Lvr3X4SYTUoTNtitzxvYevp2HZY9wZkY/3MAFW+5Z3Uwe6b4e69nW5UT2
+   iqZUPO7hCb8iG6/yYWf7GsFFSL6Ww60EgzGnWrGyUtH/IvLexYEZ+lGBb
+   g==;
+IronPort-SDR: v551d5C5GoxU2Cx/ml72RMe8NPhG04HR4z+CBx197HZdVFSIN5pGfKCjRNWV6Ov5yMTLKQ7/E9
+ oxxPH00EtCXeUJSeo/lAACkG1R76lzeIlujo7gDMgd9/FAEgcsYeHUzI5smJ24roRq08G+Fh7p
+ vGo9j3rnuDi84OnOa+PPkOIsb84CTcpJKd31aiGnuAHBa78Y3MSlBWKpgzyjD62rXiybkIbhQO
+ ChhUVYHvRcwww4IVvAFH7KOvprRQT7JC22Gb+fXzu4c/6wPjmLJ6EZkVono6X+D3FLzj1lULPt
+ RVA=
+X-IronPort-AV: E=Sophos;i="5.78,436,1599548400"; 
+   d="scan'208";a="103547960"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 21 Dec 2020 03:00:55 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1979.3; Mon, 21 Dec 2020 03:00:54 -0700
+Received: from tyr.hegelund-hansen.dk (10.10.115.15) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
+ 15.1.1979.3 via Frontend Transport; Mon, 21 Dec 2020 03:00:50 -0700
+Message-ID: <70800b38c931716e985d6614f1c33dd05124ef98.camel@microchip.com>
+Subject: Re: [RFC PATCH v2 1/8] dt-bindings: net: sparx5: Add sparx5-switch
+ bindings
+From:   Steen Hegelund <steen.hegelund@microchip.com>
+To:     Florian Fainelli <f.fainelli@gmail.com>
+CC:     "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Sebastian Reichel <sre@kernel.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-pm@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH v2 2/6] power: supply: max8997_charger: Set CHARGER
- current limit
-Message-ID: <20201221095912.GB53991@dell>
-References: <20201202203516.43053-1-timon.baetz@protonmail.com>
- <20201221095001.595366-1-timon.baetz@protonmail.com>
- <20201221095001.595366-2-timon.baetz@protonmail.com>
+        Device Tree List <devicetree@vger.kernel.org>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Russell King <linux@armlinux.org.uk>,
+        Lars Povlsen <lars.povlsen@microchip.com>,
+        "Bjarni Jonasson" <bjarni.jonasson@microchip.com>,
+        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Madalin Bucur <madalin.bucur@oss.nxp.com>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Mark Einon <mark.einon@gmail.com>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        "Arnd Bergmann" <arnd@arndb.de>, <netdev@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Date:   Mon, 21 Dec 2020 11:00:49 +0100
+In-Reply-To: <bd696641-49f1-6411-ef7d-68bf243c8cba@gmail.com>
+References: <20201217075134.919699-1-steen.hegelund@microchip.com>
+         <20201217075134.919699-2-steen.hegelund@microchip.com>
+         <bd696641-49f1-6411-ef7d-68bf243c8cba@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.38.2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20201221095001.595366-2-timon.baetz@protonmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 21 Dec 2020, Timon Baetz wrote:
-
-> Register for extcon notification and set charging current depending on
-> the detected cable type. Current values are taken from vendor kernel,
-> where most charger types end up setting 650mA [0].
+On Sun, 2020-12-20 at 16:55 -0800, Florian Fainelli wrote:
+> EXTERNAL EMAIL: Do not click links or open attachments unless you
+> know the content is safe
 > 
-> Also enable and disable the CHARGER regulator based on extcon events.
+> On 12/16/2020 11:51 PM, Steen Hegelund wrote:
+> > Document the Sparx5 switch device driver bindings
+> > 
+> > Signed-off-by: Steen Hegelund <steen.hegelund@microchip.com>
+> > Signed-off-by: Lars Povlsen <lars.povlsen@microchip.com>
+> > ---
 > 
-> [0] https://github.com/krzk/linux-vendor-backup/blob/samsung/galaxy-s2-epic-4g-touch-sph-d710-exynos4210-dump/drivers/misc/max8997-muic.c#L1675-L1678
+> [snip]
 > 
-> Signed-off-by: Timon Baetz <timon.baetz@protonmail.com>
-> ---
->  drivers/mfd/max8997.c                  |  4 +-
+> > +          max-speed:
+> > +            maxItems: 1
+> > +            description: Bandwidth allocated to this port
+> > +
+> > +          phys:
+> > +            description: phandle of a Ethernet Serdes PHY
+> > +
+> > +          phy-handle:
+> > +            description: phandle of a Ethernet PHY
+> > +
+> > +          phy-mode:
+> > +            description: Interface between the serdes and the phy
+> 
+> Can you specify this pertains to the Serdes and Ethernet PHY?
+Hi Florian,
 
-Please split this out into a separate patch.
+Yes: I will clarify that phy-mode is for the optional Ethernet cuPHY.
 
->  drivers/power/supply/max8997_charger.c | 94 ++++++++++++++++++++++++++
->  2 files changed, 96 insertions(+), 2 deletions(-)
+Thanks for your comments
+Steen
 
--- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+> --
+> Florian
+
+
