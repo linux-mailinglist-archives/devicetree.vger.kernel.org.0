@@ -2,147 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 406212DFEB4
-	for <lists+devicetree@lfdr.de>; Mon, 21 Dec 2020 18:04:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 223CF2DFEF3
+	for <lists+devicetree@lfdr.de>; Mon, 21 Dec 2020 18:29:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726138AbgLURDL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Dec 2020 12:03:11 -0500
-Received: from mail.kernel.org ([198.145.29.99]:57098 "EHLO mail.kernel.org"
+        id S1725875AbgLURWJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Dec 2020 12:22:09 -0500
+Received: from mail.kernel.org ([198.145.29.99]:60828 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725909AbgLURDK (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 21 Dec 2020 12:03:10 -0500
-X-Gm-Message-State: AOAM533BFc3Gpu1IQyQoe7bRCwtUroWUm/1AwCbCa1KmlgkV6YomoUwL
-        neab5Ozum1v4B7Y8FZApcAcF79o8aT426Y6J9A==
+        id S1725865AbgLURWJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 21 Dec 2020 12:22:09 -0500
+X-Gm-Message-State: AOAM531uEysNefMpx4fVbcz2zyHwSKHT5UWHm9jRJ8tdK18rSzTCLGGW
+        cQ2C5NnIDwXORJzlRZ+Mzgfi97R1nhT+gLBonA==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1608570149;
-        bh=sM2h0j23PeJTO6+PcsYlN9mlNfNiXmH7qyR3e9tb3wM=;
+        s=k20201202; t=1608571288;
+        bh=p5L2uvw4Xw+mZGbmFeQMvwPwFMJocnpG1YnXWsC/ohg=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=rOyb/DMq0Hh13z9j0QVStgXnrHF0eq62ty9SgCN1yggfbCmBQBM179JEgVHBuXCc1
-         6heBkKX/VFo5/tCR3+72VGLfX6r9bW9HFPK4JNj5xcmRIshH9IRSwZAN/EvY5c33EF
-         SV9JtIZzDM/eCsQ4FLaokPUNfoOsAGghICnE3onTepoPuKXeQ6UrhEAWnCw2KElr9V
-         lTDLgPQ2eKQ5Cq8z77spGiyzltixVk+ojaSIc+xO8cdRrh1aOdJRTReQyoQCwFlMmX
-         6Wpls3fpzTecfpOgFahmyDtBG/HOeb1whYQ6XupOaVjqitsJL4gmK8xoKzzSA+Fw/z
-         89oHL0A0kNKHA==
-X-Google-Smtp-Source: ABdhPJyqv5o//R7x196Z0J60E9ub+RYHgqamRUaGDALQ1v/tFOUnEqsnw8wdxZIIFVIvQXlwN1g3Xsu6Oag7LC3jWc8=
-X-Received: by 2002:a05:622a:18d:: with SMTP id s13mr17492349qtw.306.1608570148922;
- Mon, 21 Dec 2020 09:02:28 -0800 (PST)
+        b=AJhEeG3D0NCcWY94nRwWg0zaYAmvBrMIc2IbaEH2l4bQXK2Qa2qhdwcueWBnTjXJV
+         duNCE9wz/I4BRX54iuAJ/PNZP/qIMAy1h+eGSYZwEkt66dwYNs6Hmzm4ndgOSg09sx
+         8VwciqfN/zz8DS6Ty3fO0Yrfsh0JJVvyGxTii5vnzpo7mRFlVR+5iakkCpw/da5r3Y
+         Or7VJW1FJyhjy5VCVpYtmUs9NgvxeLSz+sCO7qN74Tw1AJdk5YrAVO5HCoOJwmdnfU
+         VssrjvVOrz0qRBE1c3JrFtaYlnQv5JlD/BfYkgXfVpEZiDipZAfHkvBmLm1t4S8y2j
+         WDTYPCK6lnAEQ==
+X-Google-Smtp-Source: ABdhPJxPmMLSn2dIoItk6K6RGiGZOaFEwhtsPT9myepBMIU4F8QBp+whNX0o/pIvd85eWVABdHjZUR2RaRzFyhLMM2k=
+X-Received: by 2002:aed:2c63:: with SMTP id f90mr17171370qtd.31.1608571287494;
+ Mon, 21 Dec 2020 09:21:27 -0800 (PST)
 MIME-Version: 1.0
-References: <1608199173-28760-1-git-send-email-victor.liu@nxp.com>
- <1608199173-28760-5-git-send-email-victor.liu@nxp.com> <1608231036.357497.50647.nullmailer@robh.at.kernel.org>
- <e2edc2e37b6905fd19ada4c212338c6978200fa5.camel@nxp.com> <CAL_JsqLcyUJWt_gc3B01C0Y+NC61ucYNA8j1jnxTs8U1kudM=Q@mail.gmail.com>
- <1e0b6178033c064b99546d09b4b3ef9dda3cb1ad.camel@nxp.com>
-In-Reply-To: <1e0b6178033c064b99546d09b4b3ef9dda3cb1ad.camel@nxp.com>
+References: <20201216145231.1344317-1-geert+renesas@glider.be>
+ <20201217235919.GA456454@robh.at.kernel.org> <CAMuHMdVO29He-KHDLp3S=2JyGwOT=tLcDCOw6MPqBvcBLdUCOw@mail.gmail.com>
+ <CAL_JsqLcjhRgkTh=SNEpbq-uuv3LixJ3ivSw+TQvPdCCEtFYNw@mail.gmail.com> <CAMuHMdUqB9+3kKHe42nMHAzp5qrJbv2DbKh7fcPPw07R1yhcMA@mail.gmail.com>
+In-Reply-To: <CAMuHMdUqB9+3kKHe42nMHAzp5qrJbv2DbKh7fcPPw07R1yhcMA@mail.gmail.com>
 From:   Rob Herring <robh@kernel.org>
-Date:   Mon, 21 Dec 2020 10:02:17 -0700
-X-Gmail-Original-Message-ID: <CAL_JsqLCvAWQN=54Rp08bPxLjeXZKo5Pc1a=hoNBFjcGdLGvcg@mail.gmail.com>
-Message-ID: <CAL_JsqLCvAWQN=54Rp08bPxLjeXZKo5Pc1a=hoNBFjcGdLGvcg@mail.gmail.com>
-Subject: Re: [PATCH 04/14] dt-bindings: display: bridge: Add i.MX8qm/qxp pixel
- combiner binding
-To:     Liu Ying <victor.liu@nxp.com>
-Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Andrzej Hajda <a.hajda@samsung.com>, Vinod <vkoul@kernel.org>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        David Airlie <airlied@linux.ie>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org, Sascha Hauer <kernel@pengutronix.de>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Fabio Estevam <festevam@gmail.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>
+Date:   Mon, 21 Dec 2020 10:21:16 -0700
+X-Gmail-Original-Message-ID: <CAL_Jsq+qBmmR8pOabb21JRVVXdHGT1c6xPbeGEmr+OBMjjkV2A@mail.gmail.com>
+Message-ID: <CAL_Jsq+qBmmR8pOabb21JRVVXdHGT1c6xPbeGEmr+OBMjjkV2A@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: clk: versaclock5: Miscellaneous fixes and improvements:
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Luca Ceresoli <luca@lucaceresoli.net>,
+        Adam Ford <aford173@gmail.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 18, 2020 at 9:15 PM Liu Ying <victor.liu@nxp.com> wrote:
+On Sun, Dec 20, 2020 at 3:24 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
 >
-> Hi,
+> Hi Rob,
 >
-> On Fri, 2020-12-18 at 16:42 -0600, Rob Herring wrote:
-> > On Thu, Dec 17, 2020 at 7:48 PM Liu Ying <victor.liu@nxp.com> wrote:
-> > >
-> > > Hi,
-> > >
-> > > On Thu, 2020-12-17 at 12:50 -0600, Rob Herring wrote:
-> > > > On Thu, 17 Dec 2020 17:59:23 +0800, Liu Ying wrote:
-> > > > > This patch adds bindings for i.MX8qm/qxp pixel combiner.
-> > > > >
-> > > > > Signed-off-by: Liu Ying <victor.liu@nxp.com>
+> On Fri, Dec 18, 2020 at 11:32 PM Rob Herring <robh@kernel.org> wrote:
+> > On Fri, Dec 18, 2020 at 5:42 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> > > On Fri, Dec 18, 2020 at 12:59 AM Rob Herring <robh@kernel.org> wrote:
+> > > > On Wed, Dec 16, 2020 at 03:52:31PM +0100, Geert Uytterhoeven wrote:
+> > > > >   - Add reference to clock.yaml, and switch to unevaluatedProperties, to
+> > > > >     stop complaining about the presence of "assigned-clock-rates" and
+> > > > >     "assigned-clocks" in board DTS files,
+>
+> > > > > Fixes: 45c940184b501fc6 ("dt-bindings: clk: versaclock5: convert to yaml")
+> > > > > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 > > > > > ---
-> > > > >  .../display/bridge/fsl,imx8qxp-pixel-combiner.yaml | 160
-> > > > > +++++++++++++++++++++
-> > > > >  1 file changed, 160 insertions(+)
-> > > > >  create mode 100644
-> > > > > Documentation/devicetree/bindings/display/bridge/fsl,imx8qxp-
-> > > > > pixel-combiner.yaml
+> > > > > Notes:
+> > > > >   1. The use of "idt,voltage-microvolts" (with trailing S) is a bit
+> > > > >      unfortunate, as Documentation/devicetree/bindings/property-units.txt
+> > > > >      suggests to not have the trailing edge.
+> > > > >      Can we still fix the driver and bindings?  While this entered
+> > > > >      uptstream in v5.9, there are no users in next-20201216.
 > > > > >
+> > > > >   2. Due to "clock-output-names" being part of
+> > > > >      dt-schema/schemas/clock/clock.yaml, the presence of this property
+> > > > >      does not trigger an error.  Adding "clock-output-names: false"
+> > > > >      can fix that.  But given this property is deprecated, except for
+> > > > >      very specific use cases, explicitly allowing it for those few use
+> > > > >      cases would be better.
+> > > > > ---
+> > > > >  .../bindings/clock/idt,versaclock5.yaml       | 53 ++++++++++---------
+> > > > >  1 file changed, 29 insertions(+), 24 deletions(-)
+> > > > >
+> > > > > diff --git a/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml b/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
+> > > > > index 2ac1131fd9222a86..14851e76f6342095 100644
+> > > > > --- a/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
+> > > > > +++ b/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
+> > > > > @@ -33,6 +33,9 @@ description: |
+> > > > >  maintainers:
+> > > > >    - Luca Ceresoli <luca@lucaceresoli.net>
+> > > > >
+> > > > > +allOf:
+> > > > > +  - $ref: clock.yaml#
 > > > >
-> > > > My bot found errors running 'make dt_binding_check' on your
-> > > > patch:
-> > > >
-> > > > yamllint warnings/errors:
-> > > >
-> > > > dtschema/dtc warnings/errors:
-> > > > Documentation/devicetree/bindings/display/bridge/fsl,imx8qxp-
-> > > > pixel-combiner.example.dts:19:18: fatal error: dt-
-> > > > bindings/clock/imx8-lpcg.h: No such file or directory
-> > > >    19 |         #include <dt-bindings/clock/imx8-lpcg.h>
-> > > >       |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-> > > > compilation terminated.
-> > > > make[1]: *** [scripts/Makefile.lib:342:
-> > > > Documentation/devicetree/bindings/display/bridge/fsl,imx8qxp-
-> > > > pixel-combiner.example.dt.yaml] Error 1
-> > > > make[1]: *** Waiting for unfinished jobs....
-> > > > make: *** [Makefile:1364: dt_binding_check] Error 2
-> > > >
-> > > > See
-> > > > https://eur01.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2=
-Fpatchwork.ozlabs.org%2Fpatch%2F1417599&amp;data=3D04%7C01%7Cvictor.liu%40n=
-xp.com%7C96806e0ce6bc40c936fa08d8a3a64551%7C686ea1d3bc2b4c6fa92cd99c5c30163=
-5%7C0%7C0%7C637439281816690986%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAi=
-LCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;sdata=3DCjyszb0al=
-RE5z2OGKdZZEg5PQpH11U%2BGqVt6couCLGE%3D&amp;reserved=3D0
-> > > >
-> > > > This check can fail if there are any dependencies. The base for a
-> > > > patch
-> > > > series is generally the most recent rc1.
+> > > > No, that's not right. clock.yaml is already applied unconditionally.
 > > >
-> > > This series can be applied to linux-next/master branch.
+> > > But without that, it complains about unevaluatedProperties?
 > >
-> > I can't know that to apply and run checks automatically. I guessed
-> > that reviewing this before sending, but I want it abundantly clear
-> > what the result of applying this might be and it wasn't mentioned in
-> > this patch.
+> > By design. You can't have other properties outside your binding unless
+> > you have a $ref to other schemas. Also, note that there's not a single
+> > other ref to clock.yaml.
 > >
-> > Plus linux-next is a base no one can apply patches to, so should you
-> > be sending patches based on it? It's also the merge window, so maybe
+> > > > You need to define assigned-clocks, etc. here just like 'clocks' and
+> > > > define how many entries. Or convince me they should be allowed on any
+> > > > node.
+> > >
+> > > They are handled by of_clk_set_defaults(), which is applied to all
+> > > clock providers.
+> >
+> > What does that Linux implementation detail have to do with the bindings?
 >
-> I sent this series based on drm-misc-next.  This series is applicable
-> to linux-next/master, and may pass 'make dt_binding_check' there.
+> I consider Linux the reference implementation.
+> Is there any other real reference implementation? ;-)
 
-But to be clear, 'make dt_binding_check' would fail on drm-misc-next
-until 5.11-rc1 is merged in. The drm-misc maintainers need to know
-that.
+No comment. ;)
 
-
-> I'll mention dependencies in the future where similar situations
-> appear. Thanks.
+> > The only other exception we have is pinctrl properties. They often
+> > aren't that interesting unless you have more than one (maybe we should
+> > only automatically allow the single case). That's maybe true in the
+> > assigned-clocks case too. However the big difference I see is pinctrl
+> > properties are almost always present whereas assign-clocks is more the
+> > exception. So I think it's good to be explicit where they are used.
 >
-> BTW, does it make sense for the bot to additionaly try linux-next if
-> needed?  Maybe, that'll be helpful?
+> The problem with the assigned-clock* properties is that the DT binding
+> writer has no idea if they will be ever used or not.  These properties
+> come into play at an even higher level than the pinctrl properties.
+> While the DT binding writer usually[1] knows if there can be pinctrl
+> properties or not, this is not the case for the assigned-clock*
+> properties.  The former are expected and mandatory, the latter are
+> optional, and are added only during the system integration phase, and
+> may appear everywhere.
+>
+> So I think they should be allowed on any node.  Unless we decide
+> assigned-clock* properties are a bad idea in general.
 
-Sure, and when I've got nothing else to do maybe I'll do that. Though
-maintainers still need to know what the dependencies are. The real
-solution here is to make 'base-commit' tags more common or required so
-that neither scripts/bots nor humans have to guess what the base is.
+Okay, let's add them automatically I guess. We can at least make them
+dependent on having a 'clocks' property.
 
 Rob
