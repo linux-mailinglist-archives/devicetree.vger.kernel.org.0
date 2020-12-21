@@ -2,114 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F6112DFAAF
-	for <lists+devicetree@lfdr.de>; Mon, 21 Dec 2020 11:02:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D7BA92DFADB
+	for <lists+devicetree@lfdr.de>; Mon, 21 Dec 2020 11:11:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725907AbgLUKCM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Dec 2020 05:02:12 -0500
-Received: from esa.microchip.iphmx.com ([68.232.153.233]:28358 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725895AbgLUKCM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Dec 2020 05:02:12 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1608544931; x=1640080931;
-  h=message-id:subject:from:to:cc:date:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=P5PLkNTxKnTcuBIkt7ohAbLajhx/jYOtM+J9jpjlu3M=;
-  b=NUTXCf5dAoKXNy8wvPWHdVa64EohlFazDxatz+xR24Ml7n1TxmLb0Ywo
-   pOPo9BwQmXMyfxqGYFgIcA7Leu8/Xz5TcQTTR/uK8ionLPZrfpbbq0QzL
-   KuBeJG3pIYt4s6UG9YVF+Xa+yPiUaKL+aOonO51Wtd5zinYn+zM3KpXMO
-   B1z1mSEOweC8FpMXacaX3VNmH5zi0TljxY/3ihXXTPij2mn0PIvI1Ny0A
-   Lvr3X4SYTUoTNtitzxvYevp2HZY9wZkY/3MAFW+5Z3Uwe6b4e69nW5UT2
-   iqZUPO7hCb8iG6/yYWf7GsFFSL6Ww60EgzGnWrGyUtH/IvLexYEZ+lGBb
-   g==;
-IronPort-SDR: v551d5C5GoxU2Cx/ml72RMe8NPhG04HR4z+CBx197HZdVFSIN5pGfKCjRNWV6Ov5yMTLKQ7/E9
- oxxPH00EtCXeUJSeo/lAACkG1R76lzeIlujo7gDMgd9/FAEgcsYeHUzI5smJ24roRq08G+Fh7p
- vGo9j3rnuDi84OnOa+PPkOIsb84CTcpJKd31aiGnuAHBa78Y3MSlBWKpgzyjD62rXiybkIbhQO
- ChhUVYHvRcwww4IVvAFH7KOvprRQT7JC22Gb+fXzu4c/6wPjmLJ6EZkVono6X+D3FLzj1lULPt
- RVA=
-X-IronPort-AV: E=Sophos;i="5.78,436,1599548400"; 
-   d="scan'208";a="103547960"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 21 Dec 2020 03:00:55 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1979.3; Mon, 21 Dec 2020 03:00:54 -0700
-Received: from tyr.hegelund-hansen.dk (10.10.115.15) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
- 15.1.1979.3 via Frontend Transport; Mon, 21 Dec 2020 03:00:50 -0700
-Message-ID: <70800b38c931716e985d6614f1c33dd05124ef98.camel@microchip.com>
-Subject: Re: [RFC PATCH v2 1/8] dt-bindings: net: sparx5: Add sparx5-switch
- bindings
-From:   Steen Hegelund <steen.hegelund@microchip.com>
-To:     Florian Fainelli <f.fainelli@gmail.com>
-CC:     "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Device Tree List <devicetree@vger.kernel.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Russell King <linux@armlinux.org.uk>,
-        Lars Povlsen <lars.povlsen@microchip.com>,
-        "Bjarni Jonasson" <bjarni.jonasson@microchip.com>,
-        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Madalin Bucur <madalin.bucur@oss.nxp.com>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Mark Einon <mark.einon@gmail.com>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        "Arnd Bergmann" <arnd@arndb.de>, <netdev@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-Date:   Mon, 21 Dec 2020 11:00:49 +0100
-In-Reply-To: <bd696641-49f1-6411-ef7d-68bf243c8cba@gmail.com>
-References: <20201217075134.919699-1-steen.hegelund@microchip.com>
-         <20201217075134.919699-2-steen.hegelund@microchip.com>
-         <bd696641-49f1-6411-ef7d-68bf243c8cba@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.38.2 
+        id S1726072AbgLUKKl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Dec 2020 05:10:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58612 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725878AbgLUKKl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Dec 2020 05:10:41 -0500
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60D6DC061282
+        for <devicetree@vger.kernel.org>; Mon, 21 Dec 2020 02:10:00 -0800 (PST)
+Received: by mail-lf1-x12f.google.com with SMTP id s26so22253405lfc.8
+        for <devicetree@vger.kernel.org>; Mon, 21 Dec 2020 02:10:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=gTS5XP2jtgHu359mlLvqf93EvN6ykiTeG0K5/al16QI=;
+        b=mjZsJ0+ovrZ4dWIMP+NT0ePEC9xYzfkmqWhZkKvz4yxZd9h384IRplLWesY5RPM1zk
+         RamBZZLwz9j33w2WiW4erYjF0mRGfRzoMjrTA/mBAglwzpAmjJdFm7dxTFZCfCU5lkvP
+         G0rKJPdkhske3+Wou3ZgxJg5itEdSf4SvEWG3N48vDyKtWuDU1sdF9O+AsEHtgvlHMe6
+         pAF8gNNRNDzr3vznIdbut+C6OfwQM9rjVacBKWEhBK1Dp3PSrNIuZW0tc3r4GsKfxiD1
+         wah7fH8BpywxddirD/AQVMTSui5/oL/wJl/KoMqMT6Y/zPo1VW8n/49xN0nJ0U84NzQT
+         EeZA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=gTS5XP2jtgHu359mlLvqf93EvN6ykiTeG0K5/al16QI=;
+        b=uDn+aIAiKmStXHce0NgqI+Z4sQbS5DmQ2WA1Oxnmkz8+yda58KQ6jMG6UCt4ivFLls
+         C9pbgsFqSsaSGtGFMZGMXsM0D0YyUpyqP8I15ly5zO3a4+VHwcJ9eAYFPWjHrboY85k5
+         h3OZht7F3V+0EDuc88fY3+XrrP1PxD4eI2VXcR9BwCyHqow31b0Hv/M5hbZXqAaJ4RMr
+         NQ27SBBlPcj0fYSzbDrgWLzTdBzhqrwTHfCbypbyJsT5+sInjRHpFNXdIkCMvp2YCfy6
+         98daHQTChed5zsTXZmW1c6HwIYpwaladEhyjYcyCpSRpCr4wt+booiI+SdHUjtOGYjlo
+         Jf0Q==
+X-Gm-Message-State: AOAM530o9Pe1pjQ7LE6n0/C0CMU6lbvDZHnW/SJmVPbjdhIZGwR8NzM0
+        Yvy5gy8Y5ZZ5LIXdKs4Xc5DIZQ==
+X-Google-Smtp-Source: ABdhPJyhhhqWSrhwIpu9AoGAFII+/VTrWX273QHhmSjZOThd/9Efaca2cmV3e4dmcg7AQ2lK7fuF+w==
+X-Received: by 2002:ac2:482c:: with SMTP id 12mr4754844lft.37.1608545398952;
+        Mon, 21 Dec 2020 02:09:58 -0800 (PST)
+Received: from localhost.localdomain (host-95-192-94-245.mobileonline.telia.com. [95.192.94.245])
+        by smtp.gmail.com with ESMTPSA id t14sm1980971lfl.216.2020.12.21.02.09.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 21 Dec 2020 02:09:58 -0800 (PST)
+From:   Robert Foss <robert.foss@linaro.org>
+To:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        robert.foss@linaro.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2] arm64: dts: qcom: sdm845-db845c: Fix reset-pin of ov8856 node
+Date:   Mon, 21 Dec 2020 11:09:55 +0100
+Message-Id: <20201221100955.148584-1-robert.foss@linaro.org>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 2020-12-20 at 16:55 -0800, Florian Fainelli wrote:
-> EXTERNAL EMAIL: Do not click links or open attachments unless you
-> know the content is safe
-> 
-> On 12/16/2020 11:51 PM, Steen Hegelund wrote:
-> > Document the Sparx5 switch device driver bindings
-> > 
-> > Signed-off-by: Steen Hegelund <steen.hegelund@microchip.com>
-> > Signed-off-by: Lars Povlsen <lars.povlsen@microchip.com>
-> > ---
-> 
-> [snip]
-> 
-> > +          max-speed:
-> > +            maxItems: 1
-> > +            description: Bandwidth allocated to this port
-> > +
-> > +          phys:
-> > +            description: phandle of a Ethernet Serdes PHY
-> > +
-> > +          phy-handle:
-> > +            description: phandle of a Ethernet PHY
-> > +
-> > +          phy-mode:
-> > +            description: Interface between the serdes and the phy
-> 
-> Can you specify this pertains to the Serdes and Ethernet PHY?
-Hi Florian,
+Switch reset pin of ov8856 node from GPIO_ACTIVE_HIGH to GPIO_ACTIVE_LOW,
+this issue prevented the ov8856 from probing properly as it did not respon
+to I2C messages.
 
-Yes: I will clarify that phy-mode is for the optional Ethernet cuPHY.
+Fixes: d4919a44564b ("arm64: dts: qcom: sdm845-db845c: Add ov8856 & ov7251
+camera nodes")
 
-Thanks for your comments
-Steen
+Signed-off-by: Robert Foss <robert.foss@linaro.org>
+---
 
-> --
-> Florian
+Changes since v1:
+ - Bjorn: Use define instead of numeral
 
+ arch/arm64/boot/dts/qcom/sdm845-db845c.dts | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
+index 7cc236575ee2..f749672c5fdc 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
++++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
+@@ -1112,11 +1112,11 @@ camera@10 {
+ 		reg = <0x10>;
+ 
+ 		// CAM0_RST_N
+-		reset-gpios = <&tlmm 9 0>;
++		reset-gpios = <&tlmm 9 GPIO_ACTIVE_LOW>;
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&cam0_default>;
+ 		gpios = <&tlmm 13 0>,
+-			<&tlmm 9 0>;
++			<&tlmm 9 GPIO_ACTIVE_LOW>;
+ 
+ 		clocks = <&clock_camcc CAM_CC_MCLK0_CLK>;
+ 		clock-names = "xvclk";
+-- 
+2.27.0
 
