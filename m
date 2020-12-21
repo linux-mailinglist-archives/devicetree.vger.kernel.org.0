@@ -2,107 +2,386 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 79CC82DF87C
-	for <lists+devicetree@lfdr.de>; Mon, 21 Dec 2020 06:02:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A7802DF8C9
+	for <lists+devicetree@lfdr.de>; Mon, 21 Dec 2020 06:25:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726150AbgLUFBM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Dec 2020 00:01:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39682 "EHLO
+        id S1727463AbgLUFYl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Dec 2020 00:24:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43436 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725872AbgLUFBL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Dec 2020 00:01:11 -0500
-Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com [IPv6:2607:f8b0:4864:20::b2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77DE5C061282
-        for <devicetree@vger.kernel.org>; Sun, 20 Dec 2020 21:00:31 -0800 (PST)
-Received: by mail-yb1-xb2c.google.com with SMTP id x2so7750032ybt.11
-        for <devicetree@vger.kernel.org>; Sun, 20 Dec 2020 21:00:31 -0800 (PST)
+        with ESMTP id S1727449AbgLUFYl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Dec 2020 00:24:41 -0500
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0973C061285;
+        Sun, 20 Dec 2020 21:24:00 -0800 (PST)
+Received: by mail-lf1-x12e.google.com with SMTP id h205so20727980lfd.5;
+        Sun, 20 Dec 2020 21:24:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=wWEd+TxYdAPpu8bXys3dBLACeriF2mvf//pdErslYdo=;
-        b=fsvC0lRr9040uKgjfwIxdY5FblJVUz3r3vxNxL/TytM/xLfLMlIRXdUWAcIEA6uapV
-         A7pyAdobCwrZRjyYMcfN2VCZUKf1fD//dEBgvP/+J7bM+jGfQ1CdSOHgRCX3gFuZHHEX
-         ulLYrMcUfxutFHegle1CFISmppUrBIAUwsRVB0MDJgP8Ez+bhM7KZuVEIZnXWKVNzY9t
-         SClqxerz90aFmSPDlIcV22/V6uh9KpKNtjMRkLHNWbJG8lWhMqGaxjaKwBUfw2T7dps9
-         NfEmAgJRKXI5WbMlb14g14b3seIghHoIb9RhUC0txCYo5aToI0e0YNw4yrgxy1XhCbCE
-         O3kA==
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=bqaQ0DdmuXYFqHhrxFPLMWC4LfVAQ1+HW6TiOdN41vs=;
+        b=NU9mbRCmKnZF93FXrUHPF8lRUDodHesMjk8TEJYX0CY3lATeoCAFdc3doPPSAqZtET
+         rs4C/edK25bcMoPxOllqRKN83zPozUfqONJDOIJy1dr0x61r+/hnXKW9HT3UjVmPL8j8
+         wqUyzkbzzqyQ7PI39t7iheQfDOcPrg3YSV9yf2PykeCOrLC1iodVn4K9WfmpSvbE6Ifk
+         U88usEGTjZvfvSmIr4QtI20CtJvZgcEmAm81gP0PY1FFz9EgX5+/4K7ggGAT6bvyLs1H
+         kDevA/pDIlMenrejoD0AcCjTeqRLAvQkjR9h+W+Vbv/u6f5+aXgs7lkn8k9Rl6v+CBMh
+         gT4w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=wWEd+TxYdAPpu8bXys3dBLACeriF2mvf//pdErslYdo=;
-        b=KQVDpmA/1QeB6sYp1Rp/dF+sMK9ZsKpJmRSADdAFvNt/SFZND0TUoFnAU2hEtEj2oj
-         ZICsUXhec5+Wz2KeCVCmoZxw+YT1drv+taiSVSeSQDCARNvjCHF5W8rGNhOlU5MObUHY
-         sbMZGQJk2qZkbb9vgMdJCx1atmeMWj0ku2vrV4cVAcUDFmQi2ljDSaj8Xzu7qs51Xu/J
-         UdHspBsiTzOBAdEaUqSxDftNgYjeEmo6R27T3jF9bZR6kXg2j3cNEiihOY3HFFeXShCu
-         DNGlkNpVPcuD0Ppmo1zXeJ1rhGO5BQy1DKSb3ur9nbknmfEyI7tKGZSHAnVcPswLqwrI
-         dqZg==
-X-Gm-Message-State: AOAM533uhowNLisdovaWVW551dvIvtm1f3XJgL734S1hFtqt/IfpPTTO
-        QNcx3AOP8ftmCn7bycwiQi9CB+AD6M+Vtg==
-X-Google-Smtp-Source: ABdhPJxq9/CFGCuX1W08nV7vtLJy7F85mt6X2DfoEUGGeEK1nGnoLCHycUC54CMScahha32mvW2NrA==
-X-Received: by 2002:a05:6830:1493:: with SMTP id s19mr10850044otq.175.1608522817719;
-        Sun, 20 Dec 2020 19:53:37 -0800 (PST)
-Received: from ripper (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id s26sm3600580otd.8.2020.12.20.19.53.36
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=bqaQ0DdmuXYFqHhrxFPLMWC4LfVAQ1+HW6TiOdN41vs=;
+        b=BnrjMn2AuuUBBmL2U7Rro/EVcZL2sRIzpZjQnZH2JqRtDUkBmFYMm2AAY0gk9IwuT/
+         nRNzlC4S4onCBjYZJMcLjolzQXSbq3orYoMIEboNBzJuYGqfAklcx6nXx2wBdmrC6EnR
+         vk/Gn/0PRYPPyHdh7Jv4wZnmC0GCcoYSSn+dHb2FZCWMvwsVp8EB2Hn1o/unJHaN1pBn
+         PHNR86dsEoWk95PGecspyyAXsFktwnM0o1ckHtajWPRa3j5kejdw88c75Yx8GsezqOgp
+         SPG+TmvcTFhW1KmlkVKpRPX9UGoMg7/bIgqhONxNooU41SdcfLXwYQs2oa8gTM1g7TqU
+         HJ8A==
+X-Gm-Message-State: AOAM533WPEACjYWvoMKbX7HKXzYj2k+/S4Eq6DHCs6Dz/arunkxyuRpF
+        jKaWkBrQqBMCzgclngHwPZA=
+X-Google-Smtp-Source: ABdhPJyUs2aJkKJdwOJ9ZStZqTT95tIYK7cg/VTh7vSCc75+0R+1BRnv4aiqlYbtS2btxLJGvv1iWg==
+X-Received: by 2002:a2e:b80a:: with SMTP id u10mr6887155ljo.267.1608528239463;
+        Sun, 20 Dec 2020 21:23:59 -0800 (PST)
+Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.gmail.com with ESMTPSA id v10sm2052525lji.130.2020.12.20.21.23.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 20 Dec 2020 19:53:37 -0800 (PST)
-Date:   Sun, 20 Dec 2020 19:54:21 -0800
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Robert Foss <robert.foss@linaro.org>
-Cc:     agross@kernel.org, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1] arm64: dts: qcom: sdm845-db845c: Fix reset-pin of
- ov8856 node
-Message-ID: <X+Acbf5Ks7R+M6ZW@ripper>
-References: <20201217151200.1179555-1-robert.foss@linaro.org>
+        Sun, 20 Dec 2020 21:23:58 -0800 (PST)
+From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Al Cooper <alcooperx@gmail.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH V2 1/3] dt-bindings: phy: brcm,brcmstb-usb-phy: convert to the json-schema
+Date:   Mon, 21 Dec 2020 06:23:37 +0100
+Message-Id: <20201221052339.10100-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201217151200.1179555-1-robert.foss@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu 17 Dec 07:12 PST 2020, Robert Foss wrote:
+From: Rafał Miłecki <rafal@milecki.pl>
 
-> Switch reset pin of ov8856 node from GPIO_ACTIVE_HIGH to GPIO_ACTIVE_LOW,
-> this issue prevented the ov8856 from probing properly as it does not respond
-> to I2C messages.
-> 
-> Fixes: d4919a44564b ("arm64: dts: qcom: sdm845-db845c: Add ov8856 & ov7251
-> camera nodes")
-> 
-> Signed-off-by: Robert Foss <robert.foss@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/sdm845-db845c.dts | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-> index 7cc236575ee2..a943b3f353ce 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-> @@ -1112,11 +1112,11 @@ camera@10 {
->  		reg = <0x10>;
->  
->  		// CAM0_RST_N
-> -		reset-gpios = <&tlmm 9 0>;
-> +		reset-gpios = <&tlmm 9 1>;
+Changes that require mentioning:
+1. interrupt-names
+   Name "wakeup" was changed to the "wake". It matches example and what
+   Linux driver looks for in the first place
+2. brcm,ipp and brcm,ioc
+   Both were described as booleans with 0 / 1 values. In examples they
+   were integers and Linux driver checks for int as well.
+   I made both uint32 but that probably should be refactored later.
+3. Added minimal description
 
-Please do use GPIO_ACTIVE_LOW as the argument...
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+V2: Add Al as maintainer
+---
+ .../bindings/phy/brcm,brcmstb-usb-phy.txt     |  86 --------
+ .../bindings/phy/brcm,brcmstb-usb-phy.yaml    | 196 ++++++++++++++++++
+ 2 files changed, 196 insertions(+), 86 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/phy/brcm,brcmstb-usb-phy.txt
+ create mode 100644 Documentation/devicetree/bindings/phy/brcm,brcmstb-usb-phy.yaml
 
-Regards,
-Bjorn
+diff --git a/Documentation/devicetree/bindings/phy/brcm,brcmstb-usb-phy.txt b/Documentation/devicetree/bindings/phy/brcm,brcmstb-usb-phy.txt
+deleted file mode 100644
+index 698aacbdcfc4..000000000000
+--- a/Documentation/devicetree/bindings/phy/brcm,brcmstb-usb-phy.txt
++++ /dev/null
+@@ -1,86 +0,0 @@
+-Broadcom STB USB PHY
+-
+-Required properties:
+-- compatible: should be one of
+-	"brcm,brcmstb-usb-phy"
+-	"brcm,bcm7216-usb-phy"
+-	"brcm,bcm7211-usb-phy"
+-
+-- reg and reg-names properties requirements are specific to the
+-  compatible string.
+-  "brcm,brcmstb-usb-phy":
+-    - reg: 1 or 2 offset and length pairs. One for the base CTRL registers
+-           and an optional pair for systems with USB 3.x support
+-    - reg-names: not specified
+-  "brcm,bcm7216-usb-phy":
+-    - reg: 3 offset and length pairs for CTRL, XHCI_EC and XHCI_GBL
+-           registers
+-    - reg-names: "ctrl", "xhci_ec", "xhci_gbl"
+-  "brcm,bcm7211-usb-phy":
+-    - reg: 5 offset and length pairs for CTRL, XHCI_EC, XHCI_GBL,
+-           USB_PHY and USB_MDIO registers and an optional pair
+-	   for the BDC registers
+-    - reg-names: "ctrl", "xhci_ec", "xhci_gbl", "usb_phy", "usb_mdio", "bdc_ec"
+-
+-- #phy-cells: Shall be 1 as it expects one argument for setting
+-	      the type of the PHY. Possible values are:
+-	      - PHY_TYPE_USB2 for USB1.1/2.0 PHY
+-	      - PHY_TYPE_USB3 for USB3.x PHY
+-
+-Optional Properties:
+-- clocks : clock phandles.
+-- clock-names: String, clock name.
+-- interrupts: wakeup interrupt
+-- interrupt-names: "wakeup"
+-- brcm,ipp: Boolean, Invert Port Power.
+-  Possible values are: 0 (Don't invert), 1 (Invert)
+-- brcm,ioc: Boolean, Invert Over Current detection.
+-  Possible values are: 0 (Don't invert), 1 (Invert)
+-- dr_mode: String, PHY Device mode.
+-  Possible values are: "host", "peripheral ", "drd" or "typec-pd"
+-  If this property is not defined, the phy will default to "host" mode.
+-- brcm,syscon-piarbctl: phandle to syscon for handling config registers
+-NOTE: one or both of the following two properties must be set
+-- brcm,has-xhci: Boolean indicating the phy has an XHCI phy.
+-- brcm,has-eohci: Boolean indicating the phy has an EHCI/OHCI phy.
+-
+-
+-Example:
+-
+-usbphy_0: usb-phy@f0470200 {
+-	reg = <0xf0470200 0xb8>,
+-		<0xf0471940 0x6c0>;
+-	compatible = "brcm,brcmstb-usb-phy";
+-	#phy-cells = <1>;
+-	dr_mode = "host"
+-	brcm,ioc = <1>;
+-	brcm,ipp = <1>;
+-	brcm,has-xhci;
+-	brcm,has-eohci;
+-	clocks = <&usb20>, <&usb30>;
+-	clock-names = "sw_usb", "sw_usb3";
+-};
+-
+-usb-phy@29f0200 {
+-	reg = <0x29f0200 0x200>,
+-		<0x29c0880 0x30>,
+-		<0x29cc100 0x534>,
+-		<0x2808000 0x24>,
+-		<0x2980080 0x8>;
+-	reg-names = "ctrl",
+-		"xhci_ec",
+-		"xhci_gbl",
+-		"usb_phy",
+-		"usb_mdio";
+-	brcm,ioc = <0x0>;
+-	brcm,ipp = <0x0>;
+-	compatible = "brcm,bcm7211-usb-phy";
+-	interrupts = <0x30>;
+-	interrupt-parent = <&vpu_intr1_nosec_intc>;
+-	interrupt-names = "wake";
+-	#phy-cells = <0x1>;
+-	brcm,has-xhci;
+-	syscon-piarbctl = <&syscon_piarbctl>;
+-	clocks = <&scmi_clk 256>;
+-	clock-names = "sw_usb";
+-};
+diff --git a/Documentation/devicetree/bindings/phy/brcm,brcmstb-usb-phy.yaml b/Documentation/devicetree/bindings/phy/brcm,brcmstb-usb-phy.yaml
+new file mode 100644
+index 000000000000..1dad1e3df1a5
+--- /dev/null
++++ b/Documentation/devicetree/bindings/phy/brcm,brcmstb-usb-phy.yaml
+@@ -0,0 +1,196 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/phy/brcm,brcmstb-usb-phy.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Broadcom STB USB PHY
++
++description: Broadcom's PHY that handles EHCI/OHCI and/or XHCI
++
++maintainers:
++  - Al Cooper <alcooperx@gmail.com>
++  - Rafał Miłecki <rafal@milecki.pl>
++
++properties:
++  compatible:
++    enum:
++      - brcm,bcm7211-usb-phy
++      - brcm,bcm7216-usb-phy
++      - brcm,brcmstb-usb-phy
++
++  clocks:
++    minItems: 1
++    maxItems: 2
++
++  clock-names:
++    minItems: 1
++    maxItems: 2
++    items:
++      - const: sw_usb
++      - const: sw_usb3
++
++  interrupts:
++    description: wakeup interrupt
++
++  interrupt-names:
++    const: wake
++
++  brcm,ipp:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: Invert Port Power
++    minimum: 0
++    maximum: 1
++
++  brcm,ioc:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: Invert Over Current detection
++    minimum: 0
++    maximum: 1
++
++  dr_mode:
++    description: PHY Device mode. If this property is not defined, the PHY will
++      default to "host" mode.
++    enum:
++      - host
++      - peripheral
++      - drd
++      - typec-pd
++
++  brcm,syscon-piarbctl:
++    description: phandle to syscon for handling config registers
++    $ref: /schemas/types.yaml#/definitions/phandle
++
++  brcm,has-xhci:
++    description: Indicates the PHY has an XHCI PHY.
++    type: boolean
++
++  brcm,has-eohci:
++    description: Indicates the PHY has an EHCI/OHCI PHY.
++    type: boolean
++
++  "#phy-cells":
++    description: |
++      Cell allows setting the type of the PHY. Possible values are:
++      - PHY_TYPE_USB2 for USB1.1/2.0 PHY
++      - PHY_TYPE_USB3 for USB3.x PHY
++    const: 1
++
++required:
++  - reg
++  - "#phy-cells"
++
++anyOf:
++  - required:
++      - brcm,has-xhci
++  - required:
++      - brcm,has-eohci
++
++allOf:
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: brcm,brcmstb-usb-phy
++    then:
++      properties:
++        reg:
++          minItems: 1
++          maxItems: 2
++          items:
++            - description: the base CTRL register
++            - description: XHCI EC register
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: brcm,bcm7211-usb-phy
++    then:
++      properties:
++        reg:
++          minItems: 5
++          maxItems: 6
++          items:
++            - description: the base CTRL register
++            - description: XHCI EC register
++            - description: XHCI GBL register
++            - description: USB PHY register
++            - description: USB MDIO register
++            - description: BDC register
++        reg-names:
++          minItems: 5
++          maxItems: 6
++          items:
++            - const: ctrl
++            - const: xhci_ec
++            - const: xhci_gbl
++            - const: usb_phy
++            - const: usb_mdio
++            - const: bdc_ec
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: brcm,bcm7216-usb-phy
++    then:
++      properties:
++        reg:
++          minItems: 3
++          maxItems: 3
++          items:
++            - description: the base CTRL register
++            - description: XHCI EC register
++            - description: XHCI GBL register
++        reg-names:
++          minItems: 3
++          maxItems: 3
++          items:
++            - const: ctrl
++            - const: xhci_ec
++            - const: xhci_gbl
++
++additionalProperties: true
++
++examples:
++  - |
++    #include <dt-bindings/phy/phy.h>
++
++    usb-phy@f0470200 {
++        compatible = "brcm,brcmstb-usb-phy";
++        reg = <0xf0470200 0xb8>,
++              <0xf0471940 0x6c0>;
++        #phy-cells = <1>;
++        dr_mode = "host";
++        brcm,ioc = <1>;
++        brcm,ipp = <1>;
++        brcm,has-xhci;
++        brcm,has-eohci;
++        clocks = <&usb20>, <&usb30>;
++        clock-names = "sw_usb", "sw_usb3";
++    };
++  - |
++    #include <dt-bindings/phy/phy.h>
++
++    usb-phy@29f0200 {
++        compatible = "brcm,bcm7211-usb-phy";
++        reg = <0x29f0200 0x200>,
++              <0x29c0880 0x30>,
++              <0x29cc100 0x534>,
++              <0x2808000 0x24>,
++              <0x2980080 0x8>;
++        reg-names = "ctrl",
++            "xhci_ec",
++            "xhci_gbl",
++            "usb_phy",
++            "usb_mdio";
++        brcm,ioc = <0x0>;
++        brcm,ipp = <0x0>;
++        interrupts = <0x30>;
++        interrupt-parent = <&vpu_intr1_nosec_intc>;
++        interrupt-names = "wake";
++        #phy-cells = <0x1>;
++        brcm,has-xhci;
++        syscon-piarbctl = <&syscon_piarbctl>;
++        clocks = <&scmi_clk 256>;
++        clock-names = "sw_usb";
++    };
+-- 
+2.26.2
 
->  		pinctrl-names = "default";
->  		pinctrl-0 = <&cam0_default>;
->  		gpios = <&tlmm 13 0>,
-> -			<&tlmm 9 0>;
-> +			<&tlmm 9 1>;
->  
->  		clocks = <&clock_camcc CAM_CC_MCLK0_CLK>;
->  		clock-names = "xvclk";
-> -- 
-> 2.27.0
-> 
