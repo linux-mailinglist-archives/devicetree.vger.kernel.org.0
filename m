@@ -2,74 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F0FD12E00F6
-	for <lists+devicetree@lfdr.de>; Mon, 21 Dec 2020 20:29:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 80DAE2E0100
+	for <lists+devicetree@lfdr.de>; Mon, 21 Dec 2020 20:31:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725785AbgLUT2Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Dec 2020 14:28:25 -0500
-Received: from mail-oo1-f52.google.com ([209.85.161.52]:46320 "EHLO
-        mail-oo1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725783AbgLUT2Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Dec 2020 14:28:25 -0500
-Received: by mail-oo1-f52.google.com with SMTP id n127so2443751ooa.13;
-        Mon, 21 Dec 2020 11:28:09 -0800 (PST)
+        id S1726829AbgLUT36 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Dec 2020 14:29:58 -0500
+Received: from mail-ot1-f51.google.com ([209.85.210.51]:34825 "EHLO
+        mail-ot1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726445AbgLUT35 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Dec 2020 14:29:57 -0500
+Received: by mail-ot1-f51.google.com with SMTP id i6so9866308otr.2;
+        Mon, 21 Dec 2020 11:29:42 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=342hl9W3tnuszryiOJ1LOk9jMzULhQYRG+4V/vMDar0=;
-        b=U+9NpF8BA2xTvluo9VeFEywLcEAYui6+ok9VldCStrw1FyjzU1WsrpGLfX+LT8kU/o
-         LMNRD8cJyyOZ+4PNjlm24aUbLhAjh8MZSWaI1Hh6LCiIhPU1ZlfCWJJ/Vb07QggQ1Wdj
-         canSUq3wans7DEA7rkQda2a+raPyRUml2ZsISSPKC3abqyhSoQOGjHdxJ4WB81WKXFzy
-         FQPeXm4mcLenCdYT6JIqFF/L0LOSUHEaiXB2iEaepPGQOL0wLKwEB7YaGC9vWTDwFAVO
-         p/Gl49Sxpw+jDkoUk3mRcoK+Ga5xarDeTnZxcEzXZJaqLFVBk7awAcXRwZMy/7CFJQ1y
-         hA7g==
-X-Gm-Message-State: AOAM530hovkTYojYXPWH9qignEWcf2tr89ltB0YmLtQKHDyfmpaRsupY
-        7BRB7/8dD0EP5AOnX9JmSg==
-X-Google-Smtp-Source: ABdhPJwh/grBUN+KpoYZOAABRvmQ7FaNAelVfkX0YII5Kv+AxpLGHTVFXZ6UbNW61Vf/7ELsq5RPvw==
-X-Received: by 2002:a4a:d118:: with SMTP id k24mr12527650oor.8.1608578862805;
-        Mon, 21 Dec 2020 11:27:42 -0800 (PST)
+        bh=M1MxrPIQn2j84Hy9VX0ZfS3TWh8t1dtQ7AGoSL/X1GM=;
+        b=t1yGlnpLDY19kQT4KFsWZQpPYQm6xVxmN//yokxcezWQc+ToEkgJEQAXYFoTfvTM8/
+         oGj3/gvIGo/pWVcnV9Jj7+BOIKXWXfS+4/4XDjN4mYxA0IKMD1a48sjEX/whwXcBhxJj
+         QHi1vWQMzElS6w3E4lqUh1GHK5g69sRnTffVFRNU3e5tFp+LWEy32SHbfO/mkoZUb8aR
+         r4EwIMM2S2zJX2VzpRy4GRflcxmENQOtNiZXGTN7TyCIiMODxDz0l7yQdVpvqSzHGbIc
+         QfjVo8izBFq8g0Y/TbJB6ybyPWrAMoU2EHc1+Y8P9RISpHPhOJ2YIibiojeOQeVdKUmY
+         VUtQ==
+X-Gm-Message-State: AOAM531RXoWnfwRZmxbNaj8CpGVompZQKrCSjkeeZ2KzaC4xK6u91ns1
+        0HRT+bQ+4TE4JFaSxzb9zw==
+X-Google-Smtp-Source: ABdhPJw47d1FoUkv7savdsGWx47OEshyMKCpowzXUs9f12OxLeVSkNOEAHPrCHH9GkcIRCtcQXgHvw==
+X-Received: by 2002:a05:6830:1c3d:: with SMTP id f29mr13151677ote.47.1608578956645;
+        Mon, 21 Dec 2020 11:29:16 -0800 (PST)
 Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id l132sm3698703oia.23.2020.12.21.11.27.40
+        by smtp.gmail.com with ESMTPSA id s24sm549274oij.20.2020.12.21.11.29.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 21 Dec 2020 11:27:41 -0800 (PST)
-Received: (nullmailer pid 407514 invoked by uid 1000);
-        Mon, 21 Dec 2020 19:27:38 -0000
-Date:   Mon, 21 Dec 2020 12:27:38 -0700
+        Mon, 21 Dec 2020 11:29:15 -0800 (PST)
+Received: (nullmailer pid 409990 invoked by uid 1000);
+        Mon, 21 Dec 2020 19:29:13 -0000
+Date:   Mon, 21 Dec 2020 12:29:13 -0700
 From:   Rob Herring <robh@kernel.org>
-To:     Tomas Novotny <tomas@novotny.cz>
-Cc:     devicetree@vger.kernel.org,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-iio@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings:iio:dac:microchip,mcp4725: fix properties
- for mcp4726
-Message-ID: <20201221192738.GA407457@robh.at.kernel.org>
-References: <20201216101316.1403-1-tomas@novotny.cz>
+To:     Chunfeng Yun <chunfeng.yun@mediatek.com>
+Cc:     Mathias Nyman <mathias.nyman@intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Hsin-Yi Wang <hsinyi@chromium.org>,
+        Ikjoon Jang <ikjn@chromium.org>
+Subject: Re: [PATCH 1/3] dt-bindings: usb: mtk-xhci: add a new property for
+ broken streams
+Message-ID: <20201221192913.GA407645@robh.at.kernel.org>
+References: <20201216115125.5886-1-chunfeng.yun@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201216101316.1403-1-tomas@novotny.cz>
+In-Reply-To: <20201216115125.5886-1-chunfeng.yun@mediatek.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 16 Dec 2020 11:13:16 +0100, Tomas Novotny wrote:
-> The vdd-supply property is optional if vref-supply is provided for
-> mcp4726.
+On Wed, Dec 16, 2020 at 07:51:23PM +0800, Chunfeng Yun wrote:
+> The 0.96 xHCI controller on some platforms does not support
+> bulk stream even HCCPARAMS says supporting, due to MaxPSASize
+> is set a non-zero default value by mistake, so add a new
+> property "mediatek,broken_streams_quirk" to fix it.
 > 
-> Also the microchip,vref-buffered makes sense only if vref-supply is
-> specified.
-> 
-> Spotted by Jonathan during conversion to yaml.
-> 
-> Reported-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> Signed-off-by: Tomas Novotny <tomas@novotny.cz>
+> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
 > ---
->  .../bindings/iio/dac/microchip,mcp4725.yaml   | 31 +++++++++++++++----
->  1 file changed, 25 insertions(+), 6 deletions(-)
+> this patch depends on:
+>   https://patchwork.kernel.org/project/linux-mediatek/list/?series=402773
+>   [v4,09/11] dt-bindings: usb: convert mediatek, mtk-xhci.txt to YAML schema
+> ---
+>  Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml b/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml
+> index e5e03f902802..330f7294bf34 100644
+> --- a/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml
+> +++ b/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml
+> @@ -120,6 +120,11 @@ properties:
+>      description: The mask to disable u3ports, bit0 for u3port0,
+>        bit1 for u3port1, ... etc
+>  
+> +  mediatek,broken_streams_quirk:
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+You should imply this from the compatible property.
+
+(Also, don't use '_' in property names).
+
+> +    description: set if the controller doesn't support bulk stream but
+> +      HCCPARAMS says support.
+> +    type: boolean
+> +
+>    "#address-cells":
+>      const: 1
+>  
+> -- 
+> 2.18.0
