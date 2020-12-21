@@ -2,141 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 13FA52E003E
-	for <lists+devicetree@lfdr.de>; Mon, 21 Dec 2020 19:46:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 873282E004D
+	for <lists+devicetree@lfdr.de>; Mon, 21 Dec 2020 19:47:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727041AbgLUSpS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Dec 2020 13:45:18 -0500
-Received: from mail-oi1-f177.google.com ([209.85.167.177]:46942 "EHLO
-        mail-oi1-f177.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727015AbgLUSpR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Dec 2020 13:45:17 -0500
-Received: by mail-oi1-f177.google.com with SMTP id q205so12193357oig.13;
-        Mon, 21 Dec 2020 10:45:02 -0800 (PST)
+        id S1727415AbgLUSq1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Dec 2020 13:46:27 -0500
+Received: from mail-oi1-f181.google.com ([209.85.167.181]:34844 "EHLO
+        mail-oi1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726445AbgLUSq0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Dec 2020 13:46:26 -0500
+Received: by mail-oi1-f181.google.com with SMTP id s2so12277914oij.2;
+        Mon, 21 Dec 2020 10:46:10 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=WWBYjY6yUTnOC9KU1g2rDC6EQI4nGKdxUE9a6H16YTA=;
-        b=bdjl6YwQWS1gxehInNbUKe2ro/JVraYpd0TipJsVhbnm6PxrtKjv6dS7LSTfekuOx+
-         aAYE9+79SVRR4WK6urVOFFQ045wkki/HDx7vTATJGyuEtvubZrpK91djBjFqteTAlB1K
-         BYABYY+Jlr3lvxqv1F45oD5DubHMQTotD+JRRxDxJQ5F2l0rjvZCFWaCAF/YzdiVYRuq
-         TECo56lpX05jR4pYLv3UoyylHmGu1lDFG291/OQIfOm3KrngpgL7XCkKDmOGWdzRQ2Wg
-         GWvOE2BsF01i5sZ9aieHZka1NbecUjVu8237d7aV3cZa8OmimWCuKVquPO7ESgMG+Dse
-         +PVg==
-X-Gm-Message-State: AOAM530A2/Bm0tKywtglIQK/Tx2pPJh3iaoD0sGarbVQhdYDP5zSwYuG
-        2j5yFVacCwwbyVi/7ONxbBPiklCssg==
-X-Google-Smtp-Source: ABdhPJxSTwka874noWHFkT1NgVKEOOgBGUJtsWNuYPFuZ8cOJ0ovZKYke7z3cf9FGFFrXRvd+BGrnw==
-X-Received: by 2002:a05:6808:3c3:: with SMTP id o3mr12307111oie.24.1608576276873;
-        Mon, 21 Dec 2020 10:44:36 -0800 (PST)
+        bh=C9YKK11A4vCGj5j/fzBjsXO3fgizirMdIUh+8Fg05fI=;
+        b=clOMcac/mpAzXCPLZrjNtRmjc0yV/KtdfkIwUq0GEYQdt/A+dgKwN34diFx858EjIg
+         5IZOrzlYJGjnpfSohVcrw3Ra3OnyAcr/S9PaPAcxqt4w4RkddjNM92jAdFInBGRiqifT
+         0kKiBNB5YaNyFovt1QEiopNNtNnSPqFzrdZPMdNFdTnpoMc/8L7KsKgtbkLodKDLzoUr
+         jGNRMgyhCHYkBQMznCru2EaJMl7BPS9ToMKLW0fWRTTSbJ17/7JRHI4cfwS2/K8vrDjs
+         951IebVDfMjymLGdV7CUS8KuoOMtFZmbp3fFy9mVUobRvAgMWg95SVnQkspZu9EbNr5b
+         o71Q==
+X-Gm-Message-State: AOAM533akQcgwOuHO5YBkuj4sL5ZIxuCzj7Uw+0I2KvnOlRrcZGLBxMz
+        ehzyJp/dOsdx74ec2UPPfQ==
+X-Google-Smtp-Source: ABdhPJwrQo7oPkw60HM1iX43AnG0rd1ZwQBteBiGRAjzgAnn+m2o5dKSjOcluwF2SZZoZnF1ypSzkA==
+X-Received: by 2002:aca:ea42:: with SMTP id i63mr7148216oih.163.1608576345226;
+        Mon, 21 Dec 2020 10:45:45 -0800 (PST)
 Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id h30sm3407306ooi.12.2020.12.21.10.44.35
+        by smtp.gmail.com with ESMTPSA id x31sm3946058otb.4.2020.12.21.10.45.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 21 Dec 2020 10:44:36 -0800 (PST)
-Received: (nullmailer pid 339755 invoked by uid 1000);
-        Mon, 21 Dec 2020 18:44:34 -0000
-Date:   Mon, 21 Dec 2020 11:44:34 -0700
+        Mon, 21 Dec 2020 10:45:44 -0800 (PST)
+Received: (nullmailer pid 342072 invoked by uid 1000);
+        Mon, 21 Dec 2020 18:45:42 -0000
+Date:   Mon, 21 Dec 2020 11:45:42 -0700
 From:   Rob Herring <robh@kernel.org>
-To:     Cristian Pop <cristian.pop@analog.com>
-Cc:     linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        jic23@kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 1/3] dt-bindings: iio: dac: AD5766 yaml documentation
-Message-ID: <20201221184434.GA331914@robh.at.kernel.org>
-References: <20201218171231.58794-1-cristian.pop@analog.com>
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        linux-kernel@vger.kernel.org, Angus Ainslie <angus@akkea.ca>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matheus Castello <matheus@castello.eng.br>,
+        linux-arm-kernel@lists.infradead.org,
+        Mark Brown <broonie@kernel.org>,
+        Iskren Chernev <iskren.chernev@gmail.com>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        linux-clk@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        linux-rtc@vger.kernel.org,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Sebastian Reichel <sre@kernel.org>, devicetree@vger.kernel.org,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        linux-samsung-soc@vger.kernel.org,
+        Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>,
+        Stephen Boyd <sboyd@kernel.org>
+Subject: Re: [RFC 13/18] mfd: max77686: Do not enforce (incorrect) interrupt
+ trigger type
+Message-ID: <20201221184542.GA342038@robh.at.kernel.org>
+References: <20201210212534.216197-1-krzk@kernel.org>
+ <20201210212534.216197-13-krzk@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201218171231.58794-1-cristian.pop@analog.com>
+In-Reply-To: <20201210212534.216197-13-krzk@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 18, 2020 at 07:12:29PM +0200, Cristian Pop wrote:
-> This adds device tree bindings for the AD5766 DAC.
+On Thu, 10 Dec 2020 22:25:29 +0100, Krzysztof Kozlowski wrote:
+> Interrupt line can be configured on different hardware in different way,
+> even inverted.  Therefore driver should not enforce specific trigger
+> type - edge falling - but instead rely on Devicetree to configure it.
 > 
-> Signed-off-by: Cristian Pop <cristian.pop@analog.com>
+> The Maxim 77686 datasheet describes the interrupt line as active low
+> with a requirement of acknowledge from the CPU therefore the edge
+> falling is not correct.
+> 
+> The interrupt line is shared between PMIC and RTC driver, so using level
+> sensitive interrupt is here especially important to avoid races.  With
+> an edge configuration in case if first PMIC signals interrupt followed
+> shortly after by the RTC, the interrupt might not be yet cleared/acked
+> thus the second one would not be noticed.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> 
 > ---
->  Changelog v4:
-> 	- Add range selection
-> 	- Reset is GPIO_ACTIVE_LOW
-> 	
->  .../bindings/iio/dac/adi,ad5766.yaml          | 64 +++++++++++++++++++
->  1 file changed, 64 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/dac/adi,ad5766.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/iio/dac/adi,ad5766.yaml b/Documentation/devicetree/bindings/iio/dac/adi,ad5766.yaml
-> new file mode 100644
-> index 000000000000..846b5ee50761
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/dac/adi,ad5766.yaml
-> @@ -0,0 +1,64 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +# Copyright 2020 Analog Devices Inc.
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/dac/adi,ad5766.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Analog Devices AD5766 DAC device driver
-> +
-> +maintainers:
-> +  - Cristian Pop <cristian.pop@analog.com>
-> +
-> +description: |
-> +  Bindings for the Analog Devices AD5766 current DAC device. Datasheet can be
-> +  found here:
-> +    https://www.analog.com/media/en/technical-documentation/data-sheets/ad5766-5767.pdf
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - adi,ad5766
-> +      - adi,ad5767
-> +
-> +  output-range:
-> +    description: Select converter output range.
-
-Something standard for DACs? If not needs a vendor prefix and type. 
-
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  spi-max-frequency:
-> +    maximum: 1000000
-> +
-> +  spi-cpol: true
-> +
-> +  reset-gpios:
-> +    description: GPIO spec for the RESET pin. If specified, it will be asserted
-> +      during driver probe. As the line is active low, it should be marked
-> +      GPIO_ACTIVE_LOW.
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - output-range
-> +  - reg
-> +  - spi-max-frequency
-> +  - spi-cpol
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    spi {
-> +          #address-cells = <1>;
-> +          #size-cells = <0>;
-> +          
-> +          ad5766@0 {
-> +              compatible = "adi,ad5766";
-> +              output-range = <(-5) 5>;
-> +              reg = <0>;
-> +              spi-cpol;
-> +              spi-max-frequency = <1000000>;
-> +              reset-gpios = <&gpio 22 0>;
-> +            };
-> +      };
-> -- 
-> 2.17.1
+> This patch should wait till DTS changes are merged, as it relies on
+> proper Devicetree.
+> ---
+>  Documentation/devicetree/bindings/clock/maxim,max77686.txt | 4 ++--
+>  Documentation/devicetree/bindings/mfd/max77686.txt         | 2 +-
+>  Documentation/devicetree/bindings/regulator/max77686.txt   | 2 +-
+>  drivers/mfd/max77686.c                                     | 3 +--
+>  4 files changed, 5 insertions(+), 6 deletions(-)
 > 
+
+Acked-by: Rob Herring <robh@kernel.org>
