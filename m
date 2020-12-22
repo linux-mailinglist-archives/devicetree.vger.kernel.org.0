@@ -2,206 +2,187 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3CEA12E044B
-	for <lists+devicetree@lfdr.de>; Tue, 22 Dec 2020 03:16:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E5302E0457
+	for <lists+devicetree@lfdr.de>; Tue, 22 Dec 2020 03:24:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726121AbgLVCPM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Dec 2020 21:15:12 -0500
-Received: from mail-eopbgr1320103.outbound.protection.outlook.com ([40.107.132.103]:43728
-        "EHLO APC01-PU1-obe.outbound.protection.outlook.com"
+        id S1725850AbgLVCX4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Dec 2020 21:23:56 -0500
+Received: from mail-eopbgr40057.outbound.protection.outlook.com ([40.107.4.57]:46830
+        "EHLO EUR03-DB5-obe.outbound.protection.outlook.com"
         rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726069AbgLVCPL (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 21 Dec 2020 21:15:11 -0500
+        id S1725825AbgLVCXz (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 21 Dec 2020 21:23:55 -0500
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=gBQWojkdS5nN+KIXxZU8vuUoTAn5r4aE3uwGXeyVWoGOqzIwUnF1T1uivWWfDYr2Xd/X8x6YBQ5DeBWGcEd/JJ9qvPz2PtP9sFBr+pfMt6XALn3Rpf3dvC60Cf7v5kIk3DWlnbokJdsMo5PzGyc9gN7U1GOwxJrHq9IzoTL6gvXMca9u+kLLAeqG1C6rpd7hWUp7yChQ2I5EUlvHA6najrOUozFM9i+AkHax11tQPnFOsfoW3iUOq6kVOJd8RSDQ4IHUfqx3wXsRUKF7A7L381D//HODbiKNidUj5RaGyL0GOWkp+9iseg8Z29sc73JwxInNFEcswF99t8IJTGZT1Q==
+ b=OcSmzYUcoOPXEBYgqxohr0/k4KPfRM0PuGalpvr4kKg1RyLX3FsT6BmJl5XlzIwFVMZRObdRJw6TUlArAHjTMimzVcVw3SbwwQVqxPl0xMWXVuxKEdUlU7Fk3POxyHJMd1J50r/j+b+5t2gMsunxhbgtEs+4k0ibpfAH0GtRsJZpJYdoqDrmoxSRBp8OiLI/rz1sAk2YvGnN7aZYA547AIMOQpmwdbdFiabvRjr6t+2cJDAu8jfXzAEtWj4wO3d8vyVi4qzK7qMahdmaJ3Qi+/fYzaDNxaYv7YaEAKxNXPkCjYRXzCcEpECB+GtWf2b1Yx8czunz5MsiCmojQj0A0Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kTgyLH4Hn3X6A47LfyZs1s1XSbo9G9ov4g6pyRCRZR0=;
- b=PGzOxXMNDsCcx7YSIStQ4kpSD6ICVOABjnNwtfcDBOKnDvD0zNrj2WRq1DTvheu/V3sY9VZTUYpv1sopeHdKfDvQuDKUFkkCnTJIChXmoAK3PKRF9PASya3w8VNLds/uR6woDBJMT0QRfNDhCDJf4ewzo5FgBIKgf22waMrFVq3dUR9gmjav/TJv6bwNiYOCVPu8nvrbVsQn12jUoj9RIzPublv6Kbaz60Q2Up/t25SQkZKpUmByVPW78S3NJQ1PKpdVhBM8ZAM24/poB5hlXOj+y50KV3s35qg1NUtRZ1TF2+nO9yCzn9dUpvhYsYKYs+a06Qq7y9FDBEs4oogKcg==
+ bh=gMHpbjslkMgJPxu7KiaxD53leVXlL9hECR0uGPv5Wm4=;
+ b=ZVROLvpTtuVH56tdk65nVYWn267viWKnzE12f8dl8vI1FWT55ozPH8O0BR0qudmUBcnwVkhfxDtxpIfxjlkO4C4Dv9+ZVCWwclMFQrY5D3pq9XPQkCEkE2w6sb9w26eNCg5eAZiM//MTLTIiRfL0NqyrqPij36BsJgY8j0/F7+aDDz1InDCAR1d9wumulWLBB4tpWQdrzr1Iws3sM8njzqjKExt0aQRtDj3XtgVND2DZSOlV7JoJO0H+XEP/IEzaWKWDZyku1qeukKON/siGwTXTYdWw2jhXJeBVg6TiQpVrWrbHADnWvYstqQ1efPQbBH0p100TRjfurE9ykAVS5w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=aspeedtech.com; dmarc=pass action=none
- header.from=aspeedtech.com; dkim=pass header.d=aspeedtech.com; arc=none
-Received: from HK0PR06MB3779.apcprd06.prod.outlook.com (2603:1096:203:b8::10)
- by HK2PR0601MB1826.apcprd06.prod.outlook.com (2603:1096:202:3::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3676.29; Tue, 22 Dec
- 2020 02:13:34 +0000
-Received: from HK0PR06MB3779.apcprd06.prod.outlook.com
- ([fe80::7061:73d9:50ae:b35e]) by HK0PR06MB3779.apcprd06.prod.outlook.com
- ([fe80::7061:73d9:50ae:b35e%7]) with mapi id 15.20.3676.033; Tue, 22 Dec 2020
- 02:13:34 +0000
-From:   ChiaWei Wang <chiawei_wang@aspeedtech.com>
-To:     Haiyue Wang <haiyue.wang@linux.intel.com>,
-        "lee.jones@linaro.org" <lee.jones@linaro.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "joel@jms.id.au" <joel@jms.id.au>,
-        "andrew@aj.id.au" <andrew@aj.id.au>,
-        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
-        "minyard@acm.org" <minyard@acm.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>
-CC:     BMC-SW <BMC-SW@aspeedtech.com>,
-        "cyrilbur@gmail.com" <cyrilbur@gmail.com>,
-        "rlippert@google.com" <rlippert@google.com>
-Subject: RE: [PATCH v3 3/5] ipmi: kcs: aspeed: Adapt to new LPC DTS layout
-Thread-Topic: [PATCH v3 3/5] ipmi: kcs: aspeed: Adapt to new LPC DTS layout
-Thread-Index: AQHW1139eR/HqizOtEWmq0E7yl/s8aoBLhMAgAABeoCAATFGwA==
-Date:   Tue, 22 Dec 2020 02:13:33 +0000
-Message-ID: <HK0PR06MB377929E6EA4A1EECEB86E6AD91DF0@HK0PR06MB3779.apcprd06.prod.outlook.com>
-References: <20201221055623.31463-1-chiawei_wang@aspeedtech.com>
- <20201221055623.31463-4-chiawei_wang@aspeedtech.com>
- <12d347b6-168b-11d2-b906-18164afb1724@linux.intel.com>
- <c1b6e2fe-5b22-ac67-f0eb-159499e06d2b@linux.intel.com>
-In-Reply-To: <c1b6e2fe-5b22-ac67-f0eb-159499e06d2b@linux.intel.com>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=gMHpbjslkMgJPxu7KiaxD53leVXlL9hECR0uGPv5Wm4=;
+ b=k4t2sV+o5F2WxVcZmRcWQ+193Xss18JgeXX5Xlk0hsU/GI2LwbW/ZlTBr95oelTu8jZgq4+4+oWeruQosjr7I1B08KofgRnhvNp4AtuI727xmzb+yvRW4Ve6QEHF8XXsPuhiCOCW7vnI1w1Xb5kryXtuofzYGuiywNIVhSv5snM=
+Received: from DBBPR04MB7979.eurprd04.prod.outlook.com (2603:10a6:10:1ec::9)
+ by DB6PR04MB3013.eurprd04.prod.outlook.com (2603:10a6:6:4::28) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3676.25; Tue, 22 Dec 2020 02:23:07 +0000
+Received: from DBBPR04MB7979.eurprd04.prod.outlook.com
+ ([fe80::c8c:888f:3e0c:8d5c]) by DBBPR04MB7979.eurprd04.prod.outlook.com
+ ([fe80::c8c:888f:3e0c:8d5c%5]) with mapi id 15.20.3676.033; Tue, 22 Dec 2020
+ 02:23:07 +0000
+From:   Peter Chen <peter.chen@nxp.com>
+To:     Rob Herring <robh+dt@kernel.org>
+CC:     Peter Chen <peter.chen@kernel.org>,
+        Pawel Laszczak <pawell@cadence.com>,
+        Roger Quadros <rogerq@ti.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Linux USB List <linux-usb@vger.kernel.org>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        Aswath Govindraju <a-govindraju@ti.com>,
+        Frank Li <frank.li@nxp.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: RE: [PATCH 1/2] of: platform: introduce platform data length for
+ auxdata
+Thread-Topic: [PATCH 1/2] of: platform: introduce platform data length for
+ auxdata
+Thread-Index: AQHWzvpRc1lpsn9SoEybCA1XxhexYqnwdyeAgACuF4CAEU8X8A==
+Date:   Tue, 22 Dec 2020 02:23:07 +0000
+Message-ID: <DBBPR04MB7979702AC5456ADE17604AEC8BDF0@DBBPR04MB7979.eurprd04.prod.outlook.com>
+References: <20201210134215.20424-1-peter.chen@kernel.org>
+ <CAL_JsqKxcWjdxVHSSHKKRtshwOXeodjQWCYt6G7asJYjjuoWQQ@mail.gmail.com>
+ <20201211020155.GA490@b29397-desktop>
+In-Reply-To: <20201211020155.GA490@b29397-desktop>
+Accept-Language: en-US
+Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-authentication-results: linux.intel.com; dkim=none (message not signed)
- header.d=none;linux.intel.com; dmarc=none action=none
- header.from=aspeedtech.com;
-x-originating-ip: [211.20.114.70]
+authentication-results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
+x-originating-ip: [92.121.68.129]
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 18505617-1b78-4637-d281-08d8a61f2f48
-x-ms-traffictypediagnostic: HK2PR0601MB1826:
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: 634e869d-6291-4c84-b965-08d8a62084e6
+x-ms-traffictypediagnostic: DB6PR04MB3013:
 x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <HK2PR0601MB18269AADF82220E7DC1BB33691DF0@HK2PR0601MB1826.apcprd06.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:6430;
+x-microsoft-antispam-prvs: <DB6PR04MB30132650E601A441797951CB8BDF0@DB6PR04MB3013.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:5236;
 x-ms-exchange-senderadcheck: 1
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: GfRgwGtZ3H+SrjwOAeyeqDyhhcUp+/aX3B8mnDdIAhDpR/B8AVoVlswxE03ScGQVtZg60K3Y21nA2AKr3ftb4cUrsUh0ApSHiQHYbawRr6GfWlrHktDgVGoguhW9FXEoHWoqkQb9VgvAB8M/d2S0xZ34d6wFyeFx4qyhhlapxgegR2PLp3cssgo4oTvumwRDnS3HPQEVkURu1J3Zc6sMHhzWY+ecjJ6Rwe6zHfp9bsJVLgLx6AZXYulvj8bRxzS0QN9S564+n+lbp5KtrfPNGgx6osdLFT5oez9TvHn0oRjNktYUlar218InIySCqIPpcnvqAoG53neWgQfu4442a4J056mnR2/oxaTxZW326dMckqK0oMilR2Q3/ndSIUpCXdZGOsNeqWfq8OUnmRFXHMufMYpamjJF8/Cp1HF6av6IQbXUZW06rRACyFsfbi0i
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:HK0PR06MB3779.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(366004)(396003)(376002)(136003)(39840400004)(346002)(71200400001)(4326008)(83380400001)(8676002)(7416002)(55016002)(921005)(2906002)(6506007)(9686003)(26005)(8936002)(186003)(5660300002)(478600001)(54906003)(64756008)(66946007)(66446008)(110136005)(7696005)(66556008)(33656002)(55236004)(53546011)(86362001)(66476007)(52536014)(76116006)(316002);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata: =?utf-8?B?QmdJMGQyTW9QbWZ2VlZBNC9xVGs1Vm5lZ3d6YUNXUzdTOWdYb1krQk4zZmJl?=
- =?utf-8?B?TXpzMXVQbjZwTWd4eFVwa09HbE55ektWYlY0Sk5mQ0lObmxLaUdrdURWcXht?=
- =?utf-8?B?bGNSNE9vR1ROVGFPSk9rM1dlY2tOcmZIa1VIT0c2eDBTMGdoN3Y0TDhqQ3FV?=
- =?utf-8?B?NzlMenAycUJjWEROeWVqWTF2WllIT1FUdEpsRFhqMkFiWUZUNEZZZmd3eHFu?=
- =?utf-8?B?Z3hrbjJ4VDNpMVlQZDhZY0prOUNNNXBOeERkNUlBZFkySHR3NXhmVlJnZURI?=
- =?utf-8?B?SmkwN09Dd3B3eW5YdFh3RW1yN2F2S1A4U0V3b1lvOGMyYU1YSXN6czFwaXVq?=
- =?utf-8?B?WG9DdW9PL0gwZGNnN2xZQmRCQjhweTBvNzVsN2ZVNm1rYXlNZjZKYWJUVWMr?=
- =?utf-8?B?ODF3TnBJdnp4SU9XM2JPZHBWOGFUQWYyd1lGdWFkZmQxS3R3VGRsRGEzdUtt?=
- =?utf-8?B?QzBMaWNtTHpoeDZ6NVJuZ0dNRmxZSDZDN1NGOUhPcVVyRE9kL1dzYXp1VWkv?=
- =?utf-8?B?bWRSSGFYQzZFYTFQNE5kWGxpKytiNHVTNjdYbVJtR3BwYkdQcXludDJPcWRJ?=
- =?utf-8?B?MzZ1UGNvQ2dMV0loTTBtTHFvclM5LytnRjBQYjMxYVJBVnMxY0tNUThyU1BI?=
- =?utf-8?B?WEV1M2M0c2R5YjlCTGFDUmRxWjMxWWdibE1iRUNBV3QxcFNJYVFzOHIybWc5?=
- =?utf-8?B?RmxFQTRuamhVL21HbU05NHNHRm10UURhMHJEL09ZM1RQbVJ4clhBYXdKeWJl?=
- =?utf-8?B?YzR6RjFQRjBYOS94YUJWakZIc1JJanJjbTdySXhramRNaTZvNXhoK29pUnQv?=
- =?utf-8?B?cXo0bVFJNHROck9QYjRRbFZKcEJOejJpZWtqNGVORUtIS3ZwUkFWMnVmNjRU?=
- =?utf-8?B?QWU5R1o2MThuUVNhWitKbk1CZ0tycW1wdHlPQ3Q3R2llV1JhcFNjVWlkUEhx?=
- =?utf-8?B?eEJyck41MTRWOVZHODZuemVreEdnYlI3L1dMWjNqNXFwQmt3TlN0VlJDUEll?=
- =?utf-8?B?aklNY2ZkWG5CL2FDbUthckhDRnlaZkQ2YlRvZ0pzY20vWm5MU2RQdURYWGZ6?=
- =?utf-8?B?U0xLQjNCcVpGU1lyVElBbFV6MFhDdWlva3pzMG1Cb2lhVTBySzZ5a3JFTitk?=
- =?utf-8?B?WFdWeHRIZVBqeVdOaG05YmdxSE82U1RXVFRrZnNtR1pDRmRlWTVubk92cDRG?=
- =?utf-8?B?RTkzbHZBbk5BWGpybXZyRXRxcHNUbTQxbGpJUGVCREUzNG02ZG9UeWRrU2xt?=
- =?utf-8?B?UUpXMFZxNVV4TFVrS3ppMEtVK3FSTzhnbDNlL3NUSXlDMHpzblhZaVFkWXNH?=
- =?utf-8?Q?W2nPq3ZTolJUk=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+x-microsoft-antispam-message-info: HDG7rnmEqdzva15Ko2uF+rA7He3m/+LbAksG7I5QGwjcjw4ZFnaLmC/VQQypRuf22hjQbf8LbUnJ/nzbu7l/ebzG3Ogll2eckJ3RzvObsmjjdeTI/VO4Q4IJ/DAUIwXEPlqPICCXTp7xn71liMKloQg5GEOLgcoh6LN7EFNKwBKmxYo408aLWNFgh8HWOr8tVU/wRlIXsEsYhF335NsUxaR8VGznVacWsOajMWrxW5R2QknykI6dIQVa6qfkX8/OgJUyFEF5Vs8b1faeJIN1IqbZIM7PnUCnOnRP+9eJQF/gxwdUqqNpa7V70A1Ar0j8690C/KAMs3uRYA0FarGzNrw62kSAt0sdOnEqaxeWYNzna6KDbKQzZR6LybMHNS2DTA0MowcsPc1ExM6xOHrtgA==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DBBPR04MB7979.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(136003)(376002)(396003)(346002)(39860400002)(366004)(64756008)(66476007)(66556008)(66946007)(52536014)(8676002)(86362001)(44832011)(71200400001)(66446008)(76116006)(5660300002)(8936002)(2906002)(316002)(33656002)(83380400001)(478600001)(54906003)(7696005)(186003)(26005)(53546011)(6506007)(55016002)(9686003)(4326008);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: =?us-ascii?Q?wPa82aPsRxzSpTYWNJDfKWNxhHOpJO2ff49N6SD1AOF2D6qEfyOJq8BVl1cx?=
+ =?us-ascii?Q?H64txiJL1ZfRuTtO77XuFVqSigP40eZNx3iOVpn2OyhmO/DBygKzqkR8nc4U?=
+ =?us-ascii?Q?L2WZzuoJZ98445FX1UBR/mLsGH5iFJ1Uy6Y1sWEXsLcmK3zo5+n51UiRohxQ?=
+ =?us-ascii?Q?8tH+cKbajOXJvqFv3eclE8i0UEm4D3bGTUTFpYcNRN/2nYYDJX/Hp0NsujiR?=
+ =?us-ascii?Q?eE1YQ57zt/RbCxT6lX6kHyFqvGucvuCPNmGgPuBgJXdTciy2GzqlA0TyucYC?=
+ =?us-ascii?Q?ZVIZBnz8udeYx7sdxDwosNfIKrCw2ocCzkR/e7U/IQkS7C7ZUWcobemlhojx?=
+ =?us-ascii?Q?YFyY6l1+b8zEYBDr/CrUbZK0K1usHOb1hZ2lXlkJEB5ZqVSNZmJrE5+ZMV2g?=
+ =?us-ascii?Q?DA79HjS1ddRpTp/Vy6Ct8kOllPzDODgKXsDi5UAjbavQi5IZE4sxMSbXQEqn?=
+ =?us-ascii?Q?QwbXisNGSwlfFun2o21wm3hbQABEpPzCYtp7FgWykUUr1v3QBG/x7STc3UC1?=
+ =?us-ascii?Q?ywoSGxh6traRn1Y7kF2C3uxoRmvU9Gik5sK3VSdrBKLIO7XPTPJZ053AqDO4?=
+ =?us-ascii?Q?PUt5g3OhK3fwvi9A/+l4OnSYLk92HG01CAybjF5G4TLnmvhnPG/qwo0uyzr+?=
+ =?us-ascii?Q?1TGA4ibTcwGKFi+Il4VboQJXDjnsK7N2u7njYm8U6mThoQI7gcyKKKUYk/D2?=
+ =?us-ascii?Q?keqaILQZDt8ZHO/XWvBlyiyoBotiLq45lADvEiT0LuBGMtGnKg0k/a0nMioS?=
+ =?us-ascii?Q?O/i+YrkrS5w8xPFA5k1qamFDlwWSOXaf0kX9joEirJodaeup/KbrKOZsKuzK?=
+ =?us-ascii?Q?CQmCUgimnMf9Gm8pic0znQO1ratWS53v3VbrlnxVuWEvNN7YVzkUXotNwi1V?=
+ =?us-ascii?Q?xphQ9RJnx1wXxgLAN6Xpyz2dyZEmncxlT/pYSnoq2VFhAaDeb9skO/6Pn3Gl?=
+ =?us-ascii?Q?ft99Spn8uhKXpOvzZ2+oZ8cBd3uUXm/9koljs8x2pJM=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-OriginatorOrg: aspeedtech.com
+X-OriginatorOrg: nxp.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: HK0PR06MB3779.apcprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 18505617-1b78-4637-d281-08d8a61f2f48
-X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Dec 2020 02:13:33.9744
+X-MS-Exchange-CrossTenant-AuthSource: DBBPR04MB7979.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 634e869d-6291-4c84-b965-08d8a62084e6
+X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Dec 2020 02:23:07.0946
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 43d4aa98-e35b-4575-8939-080e90d5a249
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 1E/ybMwH+83MRuXHzwt6We12/FXt7nd4TsgGk9Eg/i+1bHMfZGZp2/R8+o1AsPvacEwqTDxQiOvuS/XF3wuX5HzWqLF7MG99tEr2fYD4F+c=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: HK2PR0601MB1826
+X-MS-Exchange-CrossTenant-userprincipalname: 1NKJ2Ldctnt6dHt40EWsOi9CMxrI7XfNC/gFrHXh+58tMfaC79/WPUtHksi5tsL/Ce4/0yshymXF6/LEGpQMKw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB6PR04MB3013
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgSGFpeXVlLA0KDQo+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+IEZyb206IEhhaXl1
-ZSBXYW5nIDxoYWl5dWUud2FuZ0BsaW51eC5pbnRlbC5jb20+DQo+IFNlbnQ6IE1vbmRheSwgRGVj
-ZW1iZXIgMjEsIDIwMjAgMzo1OSBQTQ0KPiBTdWJqZWN0OiBSZTogW1BBVENIIHYzIDMvNV0gaXBt
-aToga2NzOiBhc3BlZWQ6IEFkYXB0IHRvIG5ldyBMUEMgRFRTIGxheW91dA0KPiANCj4gDQo+IE9u
-IDEyLzIxLzIwMjAgMTU6NTMsIEhhaXl1ZSBXYW5nIHdyb3RlOg0KPiA+IE9uIDEyLzIxLzIwMjAg
-MTM6NTYsIENoaWEtV2VpLCBXYW5nIHdyb3RlOg0KPiA+PiBBZGQgY2hlY2sgYWdhaW5zdCBMUEMg
-ZGV2aWNlIHYyIGNvbXBhdGlibGUgc3RyaW5nIHRvIGVuc3VyZSB0aGF0IHRoZQ0KPiA+PiBmaXhl
-ZCBkZXZpY2UgdHJlZSBsYXlvdXQgaXMgYWRvcHRlZC4NCj4gPj4gVGhlIExQQyByZWdpc3RlciBv
-ZmZzZXRzIGFyZSBhbHNvIGZpeGVkIGFjY29yZGluZ2x5Lg0KPiA+Pg0KPiA+PiBTaWduZWQtb2Zm
-LWJ5OiBDaGlhLVdlaSwgV2FuZyA8Y2hpYXdlaV93YW5nQGFzcGVlZHRlY2guY29tPg0KPiA+PiAt
-LS0NCj4gPj4gwqAgZHJpdmVycy9jaGFyL2lwbWkva2NzX2JtY19hc3BlZWQuYyB8IDM1DQo+ID4+
-ICsrKysrKysrKysrKysrKysrKy0tLS0tLS0tLS0tLQ0KPiA+PiDCoCAxIGZpbGUgY2hhbmdlZCwg
-MjEgaW5zZXJ0aW9ucygrKSwgMTQgZGVsZXRpb25zKC0pDQo+ID4+DQo+ID4+IGRpZmYgLS1naXQg
-YS9kcml2ZXJzL2NoYXIvaXBtaS9rY3NfYm1jX2FzcGVlZC5jDQo+ID4+IGIvZHJpdmVycy9jaGFy
-L2lwbWkva2NzX2JtY19hc3BlZWQuYw0KPiA+PiBpbmRleCBhMTQwMjAzYzA3OWIuLjYyODNiZmVm
-NGVhNyAxMDA2NDQNCj4gPj4gLS0tIGEvZHJpdmVycy9jaGFyL2lwbWkva2NzX2JtY19hc3BlZWQu
-Yw0KPiA+PiArKysgYi9kcml2ZXJzL2NoYXIvaXBtaS9rY3NfYm1jX2FzcGVlZC5jDQo+ID4+IEBA
-IC0yNyw3ICsyNyw2IEBADQo+ID4+IMKgIMKgICNkZWZpbmUgS0NTX0NIQU5ORUxfTUFYwqDCoMKg
-wqAgNA0KPiA+PiDCoCAtLyogbWFwcGVkIHRvIGxwYy1ibWNAMCBJTyBzcGFjZSAqLw0KPiA+PiDC
-oCAjZGVmaW5lIExQQ19ISUNSMMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgMHgwMDANCj4gPj4gwqAg
-I2RlZmluZcKgwqDCoMKgIExQQ19ISUNSMF9MUEMzRcKgwqDCoMKgwqDCoMKgwqDCoCBCSVQoNykN
-Cj4gPj4gwqAgI2RlZmluZcKgwqDCoMKgIExQQ19ISUNSMF9MUEMyRcKgwqDCoMKgwqDCoMKgwqDC
-oCBCSVQoNikgQEAgLTUyLDE1DQo+ICs1MSwxMyBAQA0KPiA+PiDCoCAjZGVmaW5lIExQQ19TVFIx
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIDB4MDNDDQo+ID4+IMKgICNkZWZpbmUgTFBDX1NUUjLC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgMHgwNDANCj4gPj4gwqAgI2RlZmluZSBMUENfU1RSM8Kg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAweDA0NA0KPiA+PiAtDQo+ID4+IC0vKiBtYXBwZWQgdG8g
-bHBjLWhvc3RAODAgSU8gc3BhY2UgKi8gLSNkZWZpbmUNCj4gTFBDX0hJQ1JCDQo+ID4+IDB4MDgw
-DQo+ID4+ICsjZGVmaW5lIExQQ19ISUNSQsKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgMHgxMDANCj4g
-Pj4gwqAgI2RlZmluZcKgwqDCoMKgIExQQ19ISUNSQl9JQkZJRjTCoMKgwqDCoMKgwqDCoMKgIEJJ
-VCgxKQ0KPiA+PiDCoCAjZGVmaW5lwqDCoMKgwqAgTFBDX0hJQ1JCX0xQQzRFwqDCoMKgwqDCoMKg
-wqDCoMKgIEJJVCgwKSAtI2RlZmluZQ0KPiBMUENfTEFEUjQNCj4gPj4gMHgwOTAgLSNkZWZpbmUg
-TFBDX0lEUjTCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgMHgwOTQgLSNkZWZpbmUNCj4gTFBDX09E
-UjQNCj4gPj4gMHgwOTggLSNkZWZpbmUgTFBDX1NUUjTCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAg
-MHgwOUMNCj4gPj4gKyNkZWZpbmUgTFBDX0xBRFI0wqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAweDEx
-MA0KPiA+PiArI2RlZmluZSBMUENfSURSNMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAweDExNA0K
-PiA+PiArI2RlZmluZSBMUENfT0RSNMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAweDExOA0KPiA+
-PiArI2RlZmluZSBMUENfU1RSNMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAweDExQw0KPiA+PiDC
-oCDCoCBzdHJ1Y3QgYXNwZWVkX2tjc19ibWMgew0KPiA+PiDCoMKgwqDCoMKgIHN0cnVjdCByZWdt
-YXAgKm1hcDsNCj4gPj4gQEAgLTM0NSwxNSArMzQyLDI1IEBAIHN0YXRpYyBpbnQgYXNwZWVkX2tj
-c19wcm9iZShzdHJ1Y3QNCj4gPj4gcGxhdGZvcm1fZGV2aWNlICpwZGV2KQ0KPiA+PiDCoCB7DQo+
-ID4+IMKgwqDCoMKgwqAgc3RydWN0IGRldmljZSAqZGV2ID0gJnBkZXYtPmRldjsNCj4gPj4gwqDC
-oMKgwqDCoCBzdHJ1Y3Qga2NzX2JtYyAqa2NzX2JtYzsNCj4gPj4gLcKgwqDCoCBzdHJ1Y3QgZGV2
-aWNlX25vZGUgKm5wOw0KPiA+PiArwqDCoMKgIHN0cnVjdCBkZXZpY2Vfbm9kZSAqa2NzX25wOw0K
-PiA+PiArwqDCoMKgIHN0cnVjdCBkZXZpY2Vfbm9kZSAqbHBjX25wOw0KPiA+PiDCoMKgwqDCoMKg
-IGludCByYzsNCj4gPg0KPiA+IEkgdGhpbmsgeW91IGNhbiBqdXN0IHVzZSAnbnAnIHRvIGRvIExQ
-QyBjb21wYXRpYmxlIGNoZWNraW5nOg0KPiA+DQo+ID4gbnAgPSBwZGV2LT5kZXYub2Zfbm9kZS0+
-cGFyZW50Ow0KPiA+DQo+ID4gaWYgKCFvZl9kZXZpY2VfaXNfY29tcGF0aWJsZShscGNfbnAsICJh
-c3BlZWQsYXN0MjQwMC1scGMtdjIiKSAmJg0KPiA+IMKgwqDCoCAhb2ZfZGV2aWNlX2lzX2NvbXBh
-dGlibGUobHBjX25wLCAiYXNwZWVkLGFzdDI1MDAtbHBjLXYyIikgJiYNCj4gPiDCoMKgwqAgIW9m
-X2RldmljZV9pc19jb21wYXRpYmxlKGxwY19ucCwgImFzcGVlZCxhc3QyNjAwLWxwYy12MiIpKSB7
-DQo+ID4gwqDCoMKgwqBkZXZfZXJyKGRldiwgInVuc3VwcG9ydGVkIExQQyBkZXZpY2UgYmluZGlu
-Z1xuIik7DQo+ID4gwqDCoMKgwqByZXR1cm4gLUVOT0RFVjsNCj4gPiB9DQo+ID4NCj4gVHlwbzoN
-Cj4gDQo+IGlmICghb2ZfZGV2aWNlX2lzX2NvbXBhdGlibGUobnAsICJhc3BlZWQsYXN0MjQwMC1s
-cGMtdjIiKSAmJg0KPiAgwqDCoMKgICFvZl9kZXZpY2VfaXNfY29tcGF0aWJsZShucCwgImFzcGVl
-ZCxhc3QyNTAwLWxwYy12MiIpICYmDQo+ICDCoMKgwqAgIW9mX2RldmljZV9pc19jb21wYXRpYmxl
-KG5wLCAiYXNwZWVkLGFzdDI2MDAtbHBjLXYyIikpIHsNCj4gIMKgwqDCoMKgZGV2X2VycihkZXYs
-ICJ1bnN1cHBvcnRlZCBMUEMgZGV2aWNlIGJpbmRpbmdcbiIpOw0KPiAgwqDCoMKgwqByZXR1cm4g
-LUVOT0RFVjsNCj4gfQ0KVGhhbmtzIGZvciB0aGUgc3VnZ2VzdGlvbi4gV2lsbCByZXZpc2UgdGhl
-IGNvZGUgYWZ0ZXIgY29sbGVjdGluZyByZXZpZXdlcnMnIGZlZWRiYWNrLg0KDQo+IA0KPiANCj4g
-Pg0KPiA+IGJlZm9yZToNCj4gPg0KPiA+IG5wID0gcGRldi0+ZGV2Lm9mX25vZGU7DQo+ID4gaWYg
-KG9mX2RldmljZV9pc19jb21wYXRpYmxlKG5wLCAiYXNwZWVkLGFzdDI0MDAta2NzLWJtYyIpIHx8
-DQo+ID4gwqDCoMKgIG9mX2RldmljZV9pc19jb21wYXRpYmxlKG5wLCAiYXNwZWVkLGFzdDI1MDAt
-a2NzLWJtYyIpKQ0KPiA+DQo+ID4gVGhlbiB0aGUgcGF0Y2ggaXMgY2xlYXIuIDstKQ0KPiA+DQo+
-ID4+IC3CoMKgwqAgbnAgPSBwZGV2LT5kZXYub2Zfbm9kZTsNCj4gPj4gLcKgwqDCoCBpZiAob2Zf
-ZGV2aWNlX2lzX2NvbXBhdGlibGUobnAsICJhc3BlZWQsYXN0MjQwMC1rY3MtYm1jIikgfHwNCj4g
-Pj4gLcKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgb2ZfZGV2aWNlX2lzX2NvbXBhdGlibGUobnAsDQo+
-ICJhc3BlZWQsYXN0MjUwMC1rY3MtYm1jIikpDQo+ID4+ICvCoMKgwqAga2NzX25wID0gZGV2LT5v
-Zl9ub2RlOw0KPiA+PiArwqDCoMKgIGxwY19ucCA9IGtjc19ucC0+cGFyZW50Ow0KPiA+PiArDQo+
-ID4+ICvCoMKgwqAgaWYgKCFvZl9kZXZpY2VfaXNfY29tcGF0aWJsZShscGNfbnAsICJhc3BlZWQs
-YXN0MjQwMC1scGMtdjIiKSAmJg0KPiA+PiArwqDCoMKgwqDCoMKgwqAgIW9mX2RldmljZV9pc19j
-b21wYXRpYmxlKGxwY19ucCwgImFzcGVlZCxhc3QyNTAwLWxwYy12MiIpDQo+ICYmDQo+ID4+ICvC
-oMKgwqDCoMKgwqDCoCAhb2ZfZGV2aWNlX2lzX2NvbXBhdGlibGUobHBjX25wLCAiYXNwZWVkLGFz
-dDI2MDAtbHBjLXYyIikpIHsNCj4gPj4gK8KgwqDCoMKgwqDCoMKgIGRldl9lcnIoZGV2LCAidW5z
-dXBwb3J0ZWQgTFBDIGRldmljZSBiaW5kaW5nXG4iKTsNCj4gPj4gK8KgwqDCoMKgwqDCoMKgIHJl
-dHVybiAtRU5PREVWOw0KPiA+PiArwqDCoMKgIH0NCj4gPj4gKw0KPiA+PiArwqDCoMKgIGlmIChv
-Zl9kZXZpY2VfaXNfY29tcGF0aWJsZShrY3NfbnAsICJhc3BlZWQsYXN0MjQwMC1rY3MtYm1jIikg
-fHwNCj4gPj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqAgb2ZfZGV2aWNlX2lzX2NvbXBhdGlibGUo
-a2NzX25wLA0KPiA+PiArImFzcGVlZCxhc3QyNTAwLWtjcy1ibWMiKSkNCj4gPj4gwqDCoMKgwqDC
-oMKgwqDCoMKgIGtjc19ibWMgPSBhc3BlZWRfa2NzX3Byb2JlX29mX3YxKHBkZXYpOw0KPiA+PiAt
-wqDCoMKgIGVsc2UgaWYgKG9mX2RldmljZV9pc19jb21wYXRpYmxlKG5wLA0KPiA+PiAiYXNwZWVk
-LGFzdDI0MDAta2NzLWJtYy12MiIpIHx8DQo+ID4+IC3CoMKgwqDCoMKgwqDCoMKgwqDCoMKgIG9m
-X2RldmljZV9pc19jb21wYXRpYmxlKG5wLA0KPiA+PiAiYXNwZWVkLGFzdDI1MDAta2NzLWJtYy12
-MiIpKQ0KPiA+PiArwqDCoMKgIGVsc2UgaWYgKG9mX2RldmljZV9pc19jb21wYXRpYmxlKGtjc19u
-cCwNCj4gPj4gImFzcGVlZCxhc3QyNDAwLWtjcy1ibWMtdjIiKSB8fA0KPiA+PiArwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoCBvZl9kZXZpY2VfaXNfY29tcGF0aWJsZShrY3NfbnAsDQo+ID4+ICJhc3Bl
-ZWQsYXN0MjUwMC1rY3MtYm1jLXYyIikpDQo+ID4+IMKgwqDCoMKgwqDCoMKgwqDCoCBrY3NfYm1j
-ID0gYXNwZWVkX2tjc19wcm9iZV9vZl92MihwZGV2KTsNCj4gPj4gwqDCoMKgwqDCoCBlbHNlDQo+
-ID4+IMKgwqDCoMKgwqDCoMKgwqDCoCByZXR1cm4gLUVJTlZBTDsNCg==
+=20
+> Subject: Re: [PATCH 1/2] of: platform: introduce platform data length for
+> auxdata
+>=20
+> On 20-12-10 09:38:49, Rob Herring wrote:
+> > On Thu, Dec 10, 2020 at 7:42 AM Peter Chen <peter.chen@kernel.org>
+> wrote:
+> > >
+> > > From: Peter Chen <peter.chen@nxp.com>
+> > >
+> > > When a platform device is released, it frees the device
+> > > platform_data memory region using kfree, if the memory is not
+> > > allocated by kmalloc, it may run into trouble. See the below comments=
+ from
+> kfree API.
+> > >
+> > >          * Don't free memory not originally allocated by kmalloc()
+> > >          * or you will run into trouble.
+> > >
+> > > For the device which is created dynamically using
+> > > of_platform_populate, if the platform_data is existed at
+> > > of_dev_auxdata structure, the OF code simply assigns the
+> > > platform_data pointer to newly created device, but not using
+> > > platform_device_add_data to allocate one. For most of platform data
+> > > region at device driver, which may not be allocated by kmalloc, they =
+are at
+> global data region or at stack region at some situations.
+> >
+> > auxdata is a "temporary" thing for transitioning to DT which I want to
+> > remove. So I don't really want to see it expanded nor new users. We've
+> > got about a dozen arm32 platforms and 5 cases under drivers/.
+> >
+>=20
+> How to handle the below user case:
+> Parent device creates child device through device tree node (eg, usb/dwc3=
+,
+> usb/cdns3), there are some platform quirks at parent device(vendor glue
+> layer) need child device (core IP device) driver to handle. The quirks ar=
+e not
+> limited to the hardware quirk, may include the callbacks, software flag (=
+eg:
+> XHCI_DEFAULT_PM_RUNTIME_ALLOW/XHCI_SKIP_PHY_INIT, at
+> drivers/usb/host/xhci.h)
+>=20
+> > > +       int platform_data_length =3D 0;
+> > >         int rc =3D 0;
+> > >
+> > >         /* Make sure it has a compatible property */ @@ -378,6
+> > > +387,9 @@ static int of_platform_bus_create(struct device_node *bus,
+> > >         if (auxdata) {
+> > >                 bus_id =3D auxdata->name;
+> > >                 platform_data =3D auxdata->platform_data;
+> > > +               platform_data_length =3D
+> auxdata->platform_data_length;
+> > > +               if (platform_data && !platform_data_length)
+> > > +                       pr_warn("Make sure platform_data is
+> > > + allocated by kmalloc\n");
+> >
+> > Isn't this going to warn on the majority of users as static data is the=
+ norm.
+>=20
+> This warning only triggers at the cases which driver defines auxdata and
+> platform_data pointer is in it. Besides, directly assign the address of s=
+tatic data
+> to device platfrom_data pointer is wrong thing, this region will be freed=
+ using
+> kfree at platform_device_release. Using platform_device_add_data API is t=
+he
+> correct thing to do that.
+>=20
+=20
+Hi Rob,
+
+Would you please give me some suggestions how we could fix/workaround this =
+issue?
+
+Peter
