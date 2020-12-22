@@ -2,130 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7DFBC2E0C47
-	for <lists+devicetree@lfdr.de>; Tue, 22 Dec 2020 15:59:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9FC832E0C53
+	for <lists+devicetree@lfdr.de>; Tue, 22 Dec 2020 16:04:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727738AbgLVO7k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Dec 2020 09:59:40 -0500
-Received: from esa.microchip.iphmx.com ([68.232.154.123]:35149 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727715AbgLVO7k (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Dec 2020 09:59:40 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1608649179; x=1640185179;
-  h=references:from:to:cc:subject:in-reply-to:date:
-   message-id:mime-version;
-  bh=sAZWJmx5c/d61ulHI2FfUnXQ6P0/KlO7HU/s+AMVJjI=;
-  b=ezX8SI0ODPhMF1Y5kLffk3hQ5tQMR5RPWJpFqEsc3mDdXsJUEdsYj/xH
-   1oxJkAnybcQ/NbGUXDCAKSIVGonvpGLQe4Rw7eDzmuuNp1AWd2XpZ+rDA
-   7sMTE/HHly0Eiy7FuhV82pRHP+BOa9Ee5QAL6lmRGig40RIBSvwgu4LRs
-   7aKd2GZ4XJzlTAV0tA9jcna4/EemZrwmy4YP7lQh/YyiJW7RwTrZkZHcc
-   OY2n8g9KNXXZ6yEHQz9c43kapPgjxpxKEfh3ypF6bUosPXhM2QaDN8ZRn
-   3NlA0UeOUCpnnbEj2U6RJ5Yh6dmnTYZE9/qNANw/8TR1nj+ayq5xNk2Ft
-   g==;
-IronPort-SDR: M9+cWPLCegujkM6O1CpBrC8OOAo588IURXNakAPVSpM7UvId8OrFCJ4EkvFbalZ4/DJgFChbZl
- ICPbJaomCz3I/S36cBSIkNOSzuKJf2logYZVh1WdS18RfWRweJPGypPrVzAd/9/fzWzIza9cT6
- +BKsASAbNErOnfT622+PcBAjcEJh+5cc6NyMovXkOeoe5k14xBpt1hgNtJncFAnDmYj/qTw/70
- 3VbaWYOuIR6Yb8bTPqqap+bj2bFHihmljmiASbYlvZqAxyjF5Z1slRP1MLpw3qYAQejyxlrDXy
- MAA=
-X-IronPort-AV: E=Sophos;i="5.78,439,1599548400"; 
-   d="scan'208";a="97957140"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 22 Dec 2020 07:58:23 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1979.3; Tue, 22 Dec 2020 07:58:23 -0700
-Received: from soft-dev10.microchip.com (10.10.115.15) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3
- via Frontend Transport; Tue, 22 Dec 2020 07:58:21 -0700
-References: <20201113145151.68900-1-lars.povlsen@microchip.com> <20201113145151.68900-4-lars.povlsen@microchip.com> <20201220224804.GA3107610@lunn.ch> <87eejip2xm.fsf@microchip.com> <20201222135646.GF3107610@lunn.ch>
-User-agent: mu4e 1.2.0; emacs 26.3
-From:   Lars Povlsen <lars.povlsen@microchip.com>
-To:     Andrew Lunn <andrew@lunn.ch>
-CC:     Lars Povlsen <lars.povlsen@microchip.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        <devicetree@vger.kernel.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        <linux-kernel@vger.kernel.org>,
-        "Microchip Linux Driver Support" <UNGLinuxDriver@microchip.com>,
-        <linux-gpio@vger.kernel.org>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v10 3/3] arm64: dts: sparx5: Add SGPIO devices
-In-Reply-To: <20201222135646.GF3107610@lunn.ch>
-Date:   Tue, 22 Dec 2020 15:58:14 +0100
-Message-ID: <875z4tq455.fsf@microchip.com>
+        id S1727438AbgLVPEf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Dec 2020 10:04:35 -0500
+Received: from so254-31.mailgun.net ([198.61.254.31]:29766 "EHLO
+        so254-31.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727452AbgLVPEf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Dec 2020 10:04:35 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1608649450; h=Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Message-ID: In-Reply-To: Date: References: Subject: Cc:
+ To: From: Sender; bh=Ko0cYP+ruBsHvHtPFfJioTlxlBelsXkFGfnxaOLV8Ic=; b=Akp9D1wcwX5ZGaLKlnoPrQun06rR91bxoTpMCLZN4NunybgGLRCB+12yCAdFqKBaX74tfeBL
+ lTpwSPl/uXQyqjX1Hv4X4lloPCg+8Q34ur3/SI2hHmMVJG1+MiEaVaxJXGNszAGruYhWah35
+ 04QiJ/xxWdaydqhujQHynu1QWZY=
+X-Mailgun-Sending-Ip: 198.61.254.31
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n08.prod.us-west-2.postgun.com with SMTP id
+ 5fe20a95cfe5dd67db4ba021 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 22 Dec 2020 15:02:45
+ GMT
+Sender: kvalo=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 02922C43466; Tue, 22 Dec 2020 15:02:45 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
+        autolearn=no autolearn_force=no version=3.4.0
+Received: from x230.qca.qualcomm.com (88-114-240-156.elisa-laajakaista.fi [88.114.240.156])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: kvalo)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id BF67AC433C6;
+        Tue, 22 Dec 2020 15:02:40 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org BF67AC433C6
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=kvalo@codeaurora.org
+From:   Kalle Valo <kvalo@codeaurora.org>
+To:     Jerome Pouiller <Jerome.Pouiller@silabs.com>
+Cc:     linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+        devel@driverdev.osuosl.org, linux-kernel@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        linux-mmc@vger.kernel.org,
+        Pali =?utf-8?Q?Roh?= =?utf-8?Q?=C3=A1r?= <pali@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>
+Subject: Re: [PATCH v3 03/24] wfx: add Makefile/Kconfig
+References: <20201104155207.128076-1-Jerome.Pouiller@silabs.com>
+        <20201104155207.128076-4-Jerome.Pouiller@silabs.com>
+Date:   Tue, 22 Dec 2020 17:02:38 +0200
+In-Reply-To: <20201104155207.128076-4-Jerome.Pouiller@silabs.com> (Jerome
+        Pouiller's message of "Wed, 4 Nov 2020 16:51:46 +0100")
+Message-ID: <8735zxanox.fsf@codeaurora.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/24.5 (gnu/linux)
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Jerome Pouiller <Jerome.Pouiller@silabs.com> writes:
 
-Andrew Lunn writes:
-
-> On Tue, Dec 22, 2020 at 11:09:41AM +0100, Lars Povlsen wrote:
->>
->> Andrew Lunn writes:
->>
->> > On Fri, Nov 13, 2020 at 03:51:51PM +0100, Lars Povlsen wrote:
->> >> +             led@8 {
->> >> +                     label = "eth12:green";
->> >> +                     gpios = <&sgpio_out0 12 0 GPIO_ACTIVE_HIGH>;
->> >> +                     default-state = "off";
->> >> +             };
->> >> +             led@9 {
->> >> +                     label = "eth12:yellow";
->> >> +                     gpios = <&sgpio_out0 12 1 GPIO_ACTIVE_HIGH>;
->> >> +                     default-state = "off";
->> >> +             };
->> >
->> > Hi Lars
->> >
->> > I did not see these patches earlier, but i've been looking at the
->> > switch driver patches recently, so went digging.
->> >
->> > Can the Ethernet switch itself control these LEDs for indicating
->> > things like packet receive/transmit, link state, and link speed? Or
->> > are they purely software controlled?
->> >
->> >     Thanks
->> >         Andrew
->>
->> Hi Andrew!
->>
->> No, the SGPIO device is separate from the switch device as such. I was
->> planning to couple the two by means of "led events" in a later patch.
+> From: J=C3=A9r=C3=B4me Pouiller <jerome.pouiller@silabs.com>
 >
-> O.K, good.
->
-> In the LED subsystem terminology, such an event would be a
-> trigger. Link state, and copper speed should already be mostly covered
-> by phylib triggers. What is missing is link activity.  Does the switch
-> easily provide you with this information, or do you need to poll the
-> switch statistics counters every 10ms to blink the LEDs?
->
->      Andrew
+> Signed-off-by: J=C3=A9r=C3=B4me Pouiller <jerome.pouiller@silabs.com>
 
-Hi Andrew!
+[...]
 
-I am so thrilled with your interest and level of scrutiny! Thank you!
+> +wfx-$(CONFIG_SPI) +=3D bus_spi.o
+> +wfx-$(subst m,y,$(CONFIG_MMC)) +=3D bus_sdio.o
 
-And yes, I meant "LED trigger". The SGPIO's actually have a "blink" mode
-on their own, which I was planning to enable at a later time. But yes,
-you would still need some polling, but a somewhat lower rate, f.ex. 1
-second. At that time, you could change between steady and blink mode.
+Why this subst? And why only for MMC?
 
-Again, that your for the level of effort you contribute to the switch
-driver, it is highly appreciated.
+--=20
+https://patchwork.kernel.org/project/linux-wireless/list/
 
-Cheers,
-
----Lars
-
---
-Lars Povlsen,
-Microchip
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatc=
+hes
