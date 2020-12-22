@@ -2,98 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A17E2E1043
-	for <lists+devicetree@lfdr.de>; Tue, 22 Dec 2020 23:37:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9FE8B2E1067
+	for <lists+devicetree@lfdr.de>; Tue, 22 Dec 2020 23:57:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726841AbgLVW2W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Dec 2020 17:28:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56818 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726282AbgLVW2V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Dec 2020 17:28:21 -0500
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 253AEC0611D0
-        for <devicetree@vger.kernel.org>; Tue, 22 Dec 2020 14:26:53 -0800 (PST)
-Received: by mail-ed1-x536.google.com with SMTP id i24so14395888edj.8
-        for <devicetree@vger.kernel.org>; Tue, 22 Dec 2020 14:26:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sartura-hr.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=QM3qTNIGNxG/WHeZll7yyCa9Z+1LXQcPrYea97FUIZM=;
-        b=xpXcwW8quCCuPqxyQZj2SpKSrzj/zkryI+VwMag56clV+jcfZcIIFKL8soE2BoTbNL
-         WylfRmHyEQP0zXxGtpirQ+q9C9LnK4fgTSoTBh/wM3QaJgPOJ+W4OERNi6qan+qhJtYU
-         tfuygKi8jLoTG3UC19rsnJ0fVcb8zVnfHgo2dpApzbt52n/dq+LmQAdcQWshgnEfznSh
-         hm+xkpP9/UHmB3RNy13LMIfBp/asFo+dZZXDmmUpgKyN+strf9BX2dkkq+Ss5yX6jF8f
-         olQ8LSE0h3Um7/QKEG8xactGpvCwmkwhaKPtiDImEst0ro07kkAGCgCjHp8LIfJNEZSD
-         smlQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=QM3qTNIGNxG/WHeZll7yyCa9Z+1LXQcPrYea97FUIZM=;
-        b=Ngb44G/Uxi4CUOwP6ufpddNip4MbbVwjSa4m7fNAEc5SDmndt7XLbRzLZxXr8/tmmD
-         k4JKSUs09JHjDt5TOo+CaMS1S2eD6A7hobq4lGADeQ+/YP5FULpFpgVtSycZ5a9geI7B
-         b3YsWkrRzK+iPbSbx2+jSnoG8pXkiEkzLx90nd/CELasTbHVrYeLif/XGN9yMCAvsBhh
-         q1QOV+pQsMqLQlfe+q4UJ9nVXLe3lfKE3UAlTEHCBuz2W8rpOgUX8HTkr9KT1LFprD9p
-         56LyRUGcxkV3yMVH9NybygtV0V+gWBv3hS2eLhbAP9s3E79pROtvNAkKZoG3lbQJSgNn
-         pKlg==
-X-Gm-Message-State: AOAM533rjVCDdcNPeQbILq+dxUUFtQ3a0F0wOf+FB86ZlO/XlyhwifY5
-        26SOd1fZArst/qXXZhKjv0Qs9Q==
-X-Google-Smtp-Source: ABdhPJySHq30/8MvKbEXin/mTMu57vy/4J8Vl2P3EGx+35Mk/rcBJce2OTlDJz7DA4LHpKHkv2/vxA==
-X-Received: by 2002:aa7:cb49:: with SMTP id w9mr22911540edt.357.1608676011907;
-        Tue, 22 Dec 2020 14:26:51 -0800 (PST)
-Received: from localhost.localdomain (dh207-99-167.xnet.hr. [88.207.99.167])
-        by smtp.googlemail.com with ESMTPSA id c23sm30515385eds.88.2020.12.22.14.26.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 22 Dec 2020 14:26:51 -0800 (PST)
-From:   Robert Marko <robert.marko@sartura.hr>
-To:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, davem@davemloft.net, kuba@kernel.org,
-        netdev@vger.kernel.org, andrew@lunn.ch, linux@armlinux.org.uk
-Cc:     Robert Marko <robert.marko@sartura.hr>,
-        Luka Perkov <luka.perkov@sartura.hr>
-Subject: [PATCH 4/4] MAINTAINERS: Add entry for Qualcomm QCA807x PHY driver
-Date:   Tue, 22 Dec 2020 23:26:37 +0100
-Message-Id: <20201222222637.3204929-5-robert.marko@sartura.hr>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20201222222637.3204929-1-robert.marko@sartura.hr>
-References: <20201222222637.3204929-1-robert.marko@sartura.hr>
+        id S1727633AbgLVWym (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Dec 2020 17:54:42 -0500
+Received: from mx0a-001b2d01.pphosted.com ([148.163.156.1]:19746 "EHLO
+        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1727559AbgLVWyl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 22 Dec 2020 17:54:41 -0500
+Received: from pps.filterd (m0098396.ppops.net [127.0.0.1])
+        by mx0a-001b2d01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 0BMMWE1W196591;
+        Tue, 22 Dec 2020 17:53:23 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=references : from : to :
+ cc : subject : in-reply-to : date : message-id : mime-version :
+ content-type; s=pp1; bh=8jk/M5PwVWO5wCBRpi9U2tfKxLuehNr5+6fPogwpGkI=;
+ b=crM0xizDekFtIHO00jVdxL37gyE/toBUdwbyhNICzkCR9cQ5Hp6Q0XkClF7aHcXk7jDG
+ wg7bVc5B/cSIEsYnAQPH15LbxFwn3Gii0TCw7LuO9M/3c8VdMyMKAa5GMTZYu0DOPMvJ
+ y0pSETEVSjIsqYTHGQxGkSitKKD0W5nzO0Tn4lL+Mwd1UdpIZWqOntpfHyjjhC5+yi5W
+ 0f68UYxIdlKe75rgqx/IoEQkEUHi2UAazEUGKwm7xqf30dkl7Wds53xFQJyGlfoUF+I3
+ 60fK5uP1rLtkzJwp5CoPY6cjYMVEu+z0pPCwd7z6UI2zjHT4i9OsfvgKmPNakG2AUc8G Kg== 
+Received: from pps.reinject (localhost [127.0.0.1])
+        by mx0a-001b2d01.pphosted.com with ESMTP id 35kr71j8xs-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 22 Dec 2020 17:53:23 -0500
+Received: from m0098396.ppops.net (m0098396.ppops.net [127.0.0.1])
+        by pps.reinject (8.16.0.36/8.16.0.36) with SMTP id 0BMMrMKu086583;
+        Tue, 22 Dec 2020 17:53:22 -0500
+Received: from ppma02dal.us.ibm.com (a.bd.3ea9.ip4.static.sl-reverse.com [169.62.189.10])
+        by mx0a-001b2d01.pphosted.com with ESMTP id 35kr71j8xg-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 22 Dec 2020 17:53:22 -0500
+Received: from pps.filterd (ppma02dal.us.ibm.com [127.0.0.1])
+        by ppma02dal.us.ibm.com (8.16.0.42/8.16.0.42) with SMTP id 0BMMrAKW006408;
+        Tue, 22 Dec 2020 22:53:21 GMT
+Received: from b03cxnp08026.gho.boulder.ibm.com (b03cxnp08026.gho.boulder.ibm.com [9.17.130.18])
+        by ppma02dal.us.ibm.com with ESMTP id 35kj7queyv-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 22 Dec 2020 22:53:21 +0000
+Received: from b03ledav006.gho.boulder.ibm.com (b03ledav006.gho.boulder.ibm.com [9.17.130.237])
+        by b03cxnp08026.gho.boulder.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 0BMMrKgW23396644
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Tue, 22 Dec 2020 22:53:20 GMT
+Received: from b03ledav006.gho.boulder.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 3357EC6055;
+        Tue, 22 Dec 2020 22:53:20 +0000 (GMT)
+Received: from b03ledav006.gho.boulder.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 23184C605B;
+        Tue, 22 Dec 2020 22:53:13 +0000 (GMT)
+Received: from manicouagan.localdomain (unknown [9.80.219.136])
+        by b03ledav006.gho.boulder.ibm.com (Postfix) with ESMTPS;
+        Tue, 22 Dec 2020 22:53:12 +0000 (GMT)
+References: <20201219175713.18888-1-nramas@linux.microsoft.com>
+ <20201219175713.18888-2-nramas@linux.microsoft.com>
+User-agent: mu4e 1.4.10; emacs 27.1
+From:   Thiago Jung Bauermann <bauerman@linux.ibm.com>
+To:     Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
+Cc:     zohar@linux.ibm.com, robh@kernel.org, takahiro.akashi@linaro.org,
+        gregkh@linuxfoundation.org, will@kernel.org,
+        catalin.marinas@arm.com, mpe@ellerman.id.au, james.morse@arm.com,
+        sashal@kernel.org, benh@kernel.crashing.org, paulus@samba.org,
+        frowand.list@gmail.com, vincenzo.frascino@arm.com,
+        mark.rutland@arm.com, dmitry.kasatkin@gmail.com, jmorris@namei.org,
+        serge@hallyn.com, pasha.tatashin@soleen.com, allison@lohutok.net,
+        masahiroy@kernel.org, bhsharma@redhat.com, mbrugger@suse.com,
+        hsinyi@chromium.org, tao.li@vivo.com, christophe.leroy@c-s.fr,
+        prsriva@linux.microsoft.com, balajib@linux.microsoft.com,
+        linux-integrity@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v13 1/6] ima: Move arch_ima_add_kexec_buffer() to ima
+In-reply-to: <20201219175713.18888-2-nramas@linux.microsoft.com>
+Date:   Tue, 22 Dec 2020 19:53:10 -0300
+Message-ID: <87eejhlag9.fsf@manicouagan.localdomain>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-TM-AS-GCONF: 00
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.343,18.0.737
+ definitions=2020-12-22_11:2020-12-21,2020-12-22 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 malwarescore=0
+ clxscore=1015 impostorscore=0 lowpriorityscore=0 mlxscore=0 suspectscore=0
+ mlxlogscore=999 spamscore=0 adultscore=0 bulkscore=0 priorityscore=1501
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2009150000
+ definitions=main-2012220159
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add maintainers entry for the Qualcomm QCA807x PHY driver.
 
-Signed-off-by: Robert Marko <robert.marko@sartura.hr>
-Cc: Luka Perkov <luka.perkov@sartura.hr>
----
- MAINTAINERS | 9 +++++++++
- 1 file changed, 9 insertions(+)
+Lakshmi Ramasubramanian <nramas@linux.microsoft.com> writes:
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 281de213ef47..a86731f86292 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -14546,6 +14546,15 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/regulator/vqmmc-ipq4019-regulator.yaml
- F:	drivers/regulator/vqmmc-ipq4019-regulator.c
- 
-+QUALCOMM QCA807X PHY DRIVER
-+M:	Robert Marko <robert.marko@sartura.hr>
-+M:	Luka Perkov <luka.perkov@sartura.hr>
-+L:	linux-arm-msm@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/net/qcom,qca807x.yaml
-+F:	drivers/net/phy/qca807x.c
-+F:	include/dt-bindings/net/qcom-qca807x.h
-+
- QUALCOMM RMNET DRIVER
- M:	Subash Abhinov Kasiviswanathan <subashab@codeaurora.org>
- M:	Sean Tranchetti <stranche@codeaurora.org>
+> arch_ima_add_kexec_buffer() defined in "arch/powerpc/kexec/ima.c"
+> sets up the address and size of the IMA measurement list in
+> the architecture specific fields in kimage struct. This function does not
+> have architecture specific code, but is currently limited to powerpc.
+>
+> Move arch_ima_add_kexec_buffer() to ima.
+>
+> Co-developed-by: Prakhar Srivastava <prsriva@linux.microsoft.com>
+> Signed-off-by: Prakhar Srivastava <prsriva@linux.microsoft.com>
+> Signed-off-by: Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
+> ---
+>  arch/powerpc/include/asm/ima.h     |  3 ---
+>  arch/powerpc/kexec/ima.c           | 17 -----------------
+>  security/integrity/ima/ima_kexec.c | 22 ++++++++++++++++++++++
+>  3 files changed, 22 insertions(+), 20 deletions(-)
+
+Reviewed-by: Thiago Jung Bauermann <bauerman@linux.ibm.com>
+
+Just one nit below.
+
+Also, I just noticed that this patch series hasn't been cc'd to the linuxppc-dev
+mailing list. You should do that, since it affects powerpc code. The
+powerpc maintainers are being copied so at least they've been made aware
+of it, but that isn't enough.
+
+> diff --git a/security/integrity/ima/ima_kexec.c b/security/integrity/ima/ima_kexec.c
+> index 121de3e04af2..38bcd7543e27 100644
+> --- a/security/integrity/ima/ima_kexec.c
+> +++ b/security/integrity/ima/ima_kexec.c
+> @@ -10,6 +10,7 @@
+>  #include <linux/seq_file.h>
+>  #include <linux/vmalloc.h>
+>  #include <linux/kexec.h>
+> +#include <linux/ima.h>
+>  #include "ima.h"
+>  
+>  #ifdef CONFIG_IMA_KEXEC
+
+There's no need to add this include.
+
 -- 
-2.29.2
-
+Thiago Jung Bauermann
+IBM Linux Technology Center
