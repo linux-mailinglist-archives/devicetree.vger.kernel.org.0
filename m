@@ -2,65 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B3EE92E04AB
-	for <lists+devicetree@lfdr.de>; Tue, 22 Dec 2020 04:20:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1AFE42E04B1
+	for <lists+devicetree@lfdr.de>; Tue, 22 Dec 2020 04:24:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725962AbgLVDUP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Dec 2020 22:20:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49810 "EHLO
+        id S1725833AbgLVDY2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Dec 2020 22:24:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50482 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725780AbgLVDUO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Dec 2020 22:20:14 -0500
-Received: from mail-pg1-x534.google.com (mail-pg1-x534.google.com [IPv6:2607:f8b0:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3DE6C0613D3
-        for <devicetree@vger.kernel.org>; Mon, 21 Dec 2020 19:19:28 -0800 (PST)
-Received: by mail-pg1-x534.google.com with SMTP id g15so2603861pgu.9
-        for <devicetree@vger.kernel.org>; Mon, 21 Dec 2020 19:19:28 -0800 (PST)
+        with ESMTP id S1725869AbgLVDY2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Dec 2020 22:24:28 -0500
+Received: from mail-pl1-x630.google.com (mail-pl1-x630.google.com [IPv6:2607:f8b0:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAF2DC06179C
+        for <devicetree@vger.kernel.org>; Mon, 21 Dec 2020 19:23:47 -0800 (PST)
+Received: by mail-pl1-x630.google.com with SMTP id s15so2287934plr.9
+        for <devicetree@vger.kernel.org>; Mon, 21 Dec 2020 19:23:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=dabbelt-com.20150623.gappssmtp.com; s=20150623;
         h=date:subject:in-reply-to:cc:from:to:message-id:mime-version
          :content-transfer-encoding;
-        bh=UrETX7+k+oMxj1ADA1makxBY/fYwC199e2h31jHKq8Y=;
-        b=KzasxadSxuqu/PLzZSZMPjy96lKqpfxlIHGEgXKjyvGOEm+d1vBR8jgf8hcG9rNYbG
-         plpPQiiRh0x3aapu4u2TeYrHNsIhCv8e+WQ11hOIllsbmiuNIxqy6jx4zqpA2MXgmZUy
-         qLJwXzkxuxGTdqr2UGktmW+g9GPK/Ja4keSCMbEt+u5HWUKf6GBlAWwP+tYBDJoqRm7V
-         rcNU0jRSOzx1qjx2sl6LjFdUyREtXuPMYrHb6EUIBr8tBFKhWoc+3ukKcusoljLn1qvr
-         0+ZSzVEd+V1GjSyWuYKdagoDv7BTbeDJw02ZiMhfUDdsRf3S1JJkR25HKIejDt1SjOZe
-         6jMw==
+        bh=Fml0HPxjeW3KlPkKcmTMycAdGJqoiBPdorZITHm27g0=;
+        b=t2Ihxv8CCjKXimsL3cXaHE5f4jZID8yHMHiPh2PSkXudjaAFnpGShEaw6VdhToOq7+
+         aNwOHfGCpikS0MrjzXMHXHuhzfy4RAbHzd19BZzm2VsL4iJnXjXSlCfSJwmqvSXD4RiR
+         9byzZOdm5eIJmeiWoEiYBI9x3xy5pbZYx01hE3mrNWQNLV7c7YHTv9dav+BLtG7HUt21
+         o4NMzKRpP7sncqtH19KvcsgIpOQRR+bQ8p0WatBuH4qkp/RtoYW4KHSvLTxOGFE6vpNf
+         qCUABT1NvZKEUoSWYxkYLcUUiHeyTlL8t7Gkol+C80Idj0+nPfIOahhErsc2O49n3lRr
+         QYwg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:subject:in-reply-to:cc:from:to:message-id
          :mime-version:content-transfer-encoding;
-        bh=UrETX7+k+oMxj1ADA1makxBY/fYwC199e2h31jHKq8Y=;
-        b=fvlPV2mqpiggJOZTbcPaGuisjZpwThBCA0cp5zz1iI4yn1sJ9uym4SdiHdJTVWDIb9
-         foTJR7qAw/QGKQJ0xhUDUm9+fcpNxe6zXYVU7THMhGF9MLMbGOAq9GLW0nPEgdJeXNF7
-         rwtKxn7+vsHrUos4ucubJUewg7UFfeH2qNI+hdWHDHcdymjdvfkgPT/kxwqlzWO/dIW9
-         SkJTh7+Uv0ruGsgi62iTBRc545YrRz3BtHMxWCbweZ1U87qrY9zcQmWTNRIcIJIOU8yu
-         O+NzeS8B/3Gt8Ov3oGh5yVo8OePKTXKEKOdcZ5UZP0hVJWb2wmu8zKDta4kmApcJNU0f
-         OFkQ==
-X-Gm-Message-State: AOAM532XPEKeQGjo40n6M1sCuMFCVN24vEqWobLx3jPVbO343cmK82IB
-        mAlzd8l1ZRCwdVLVhzXc/8n/Yg==
-X-Google-Smtp-Source: ABdhPJwKQozmbfZzu49I4FjagYuGJagnadN4PuqSMjW6Oa9r48r5iDvLi0AtL8lPQAXBh7WqDR6TlQ==
-X-Received: by 2002:a63:445a:: with SMTP id t26mr17871098pgk.402.1608607168059;
-        Mon, 21 Dec 2020 19:19:28 -0800 (PST)
+        bh=Fml0HPxjeW3KlPkKcmTMycAdGJqoiBPdorZITHm27g0=;
+        b=i/LTSr1HFuvW11tWjCiJYwxsWLUQBzX8Xv7NpSHwyorCRhJ2iMNBY8FMDXfdfDvf0x
+         44Pt1lggGCgjPh78OqfG/6R4fw71CskMZplhbvCXkiiHbmcGGS6y9a2x+ijjy+585EqF
+         mlTT5kroW9aQftrOcYf/JBV5AOGOi24czNkMfg73Tyrr5vFYfNYPYsItForaE9fl07FJ
+         2H1sqzvSof4dLcSSBNJQTOgdQd6/21tywEPSNA9hTnuaFnOB8V56lrk5OjB7MCsIicGA
+         lKUMaYzn+nOe9G57zb1TrtPD7WDHhBCpd3qIJyHeH8cVWDdLRpfH7Pr6zv/HjQzI9qJm
+         Tv1w==
+X-Gm-Message-State: AOAM531vuKZdgYc9DfzXU5wISKK9iRYfiOggRpJZ9S2jvueCtGrNJZkR
+        kNWzAj5AOJT5XQTVFaKAOASAdA==
+X-Google-Smtp-Source: ABdhPJxDXLKNIS+nAjmXcerR0lYz9gNHq8QC54QEIsJysxTCG2V28VwRupYxSkOil5ucyogRD7tvXw==
+X-Received: by 2002:a17:90a:3e4f:: with SMTP id t15mr20316849pjm.57.1608607427201;
+        Mon, 21 Dec 2020 19:23:47 -0800 (PST)
 Received: from localhost (76-210-143-223.lightspeed.sntcca.sbcglobal.net. [76.210.143.223])
-        by smtp.gmail.com with ESMTPSA id a29sm18424156pfr.73.2020.12.21.19.19.27
+        by smtp.gmail.com with ESMTPSA id w27sm14448896pfq.104.2020.12.21.19.23.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 21 Dec 2020 19:19:27 -0800 (PST)
-Date:   Mon, 21 Dec 2020 19:19:27 -0800 (PST)
-X-Google-Original-Date: Mon, 21 Dec 2020 19:19:25 PST (-0800)
-Subject:     Re: [PATCH v3 0/5] Add Microchip PolarFire Soc Support 
-In-Reply-To: <20201204085835.2406541-1-atish.patra@wdc.com>
-CC:     linux-kernel@vger.kernel.org, Atish Patra <Atish.Patra@wdc.com>,
-        aou@eecs.berkeley.edu, Alistair Francis <Alistair.Francis@wdc.com>,
-        Anup Patel <Anup.Patel@wdc.com>, bin.meng@windriver.com,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        Mon, 21 Dec 2020 19:23:46 -0800 (PST)
+Date:   Mon, 21 Dec 2020 19:23:46 -0800 (PST)
+X-Google-Original-Date: Mon, 21 Dec 2020 19:23:16 PST (-0800)
+Subject:     Re: [PATCH v2 6/9] dt-bindings: i2c: Update DT binding docs to support SiFive FU740 SoC
+In-Reply-To: <1607403341-57214-7-git-send-email-yash.shah@sifive.com>
+CC:     linux-spi@vger.kernel.org, linux-serial@vger.kernel.org,
+        linux-pwm@vger.kernel.org, linux-i2c@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+        broonie@kernel.org, Greg KH <gregkh@linuxfoundation.org>,
+        aou@eecs.berkeley.edu, lee.jones@linaro.org,
+        u.kleine-koenig@pengutronix.de, thierry.reding@gmail.com,
+        andrew@lunn.ch, peter@korsgaard.com,
         Paul Walmsley <paul.walmsley@sifive.com>, robh+dt@kernel.org,
-        Ivan.Griffin@microchip.com, Cyril.Jean@microchip.com,
-        daire.mcnamara@microchip.com, Conor.Dooley@microchip.com
+        bgolaszewski@baylibre.com, linus.walleij@linaro.org,
+        yash.shah@sifive.com
 From:   Palmer Dabbelt <palmer@dabbelt.com>
-To:     Atish Patra <Atish.Patra@wdc.com>
-Message-ID: <mhng-2a16d74b-c896-4ad0-9d02-87b3b09ee3be@palmerdabbelt-glaptop>
+To:     yash.shah@sifive.com
+Message-ID: <mhng-c1b8fc11-36ec-4143-846b-130086defe06@palmerdabbelt-glaptop>
 Mime-Version: 1.0 (MHng)
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
@@ -68,62 +72,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 04 Dec 2020 00:58:30 PST (-0800), Atish Patra wrote:
-> This series adds minimal support for Microchip Polar Fire Soc Icicle kit.
-> It is rebased on v5.10-rc6 and depends on clock support.
-> Only MMC and ethernet drivers are enabled via this series.
-> The idea here is to add the foundational patches so that other drivers
-> can be added to on top of this. The device tree may change based on
-> feedback on bindings of individual driver support patches.
+On Mon, 07 Dec 2020 20:55:38 PST (-0800), yash.shah@sifive.com wrote:
+> Add new compatible strings to the DT binding documents to support SiFive
+> FU740-C000.
 >
-> This series has been tested on Qemu and Polar Fire Soc Icicle kit.
-> The following qemu series is necessary to test it on Qemu.
+> Signed-off-by: Yash Shah <yash.shah@sifive.com>
+> ---
+>  Documentation/devicetree/bindings/i2c/i2c-ocores.txt | 8 ++++++--
+>  1 file changed, 6 insertions(+), 2 deletions(-)
 >
-> The series can also be found at.
-> https://github.com/atishp04/linux/tree/polarfire_support_upstream_v3
->
-> I noticed the latest version of mmc driver[2] hangs on the board with
-> the latest clock driver. That's why, I have tested with the old clock
-> driver available in the above github repo.
+> diff --git a/Documentation/devicetree/bindings/i2c/i2c-ocores.txt b/Documentation/devicetree/bindings/i2c/i2c-ocores.txt
+> index 6b25a80..a37c945 100644
+> --- a/Documentation/devicetree/bindings/i2c/i2c-ocores.txt
+> +++ b/Documentation/devicetree/bindings/i2c/i2c-ocores.txt
+> @@ -5,8 +5,12 @@ Required properties:
+>                      "aeroflexgaisler,i2cmst"
+>                      "sifive,fu540-c000-i2c", "sifive,i2c0"
+>                      For Opencore based I2C IP block reimplemented in
+> -                    FU540-C000 SoC. Please refer to sifive-blocks-ip-versioning.txt
+> -                    for additional details.
+> +                    FU540-C000 SoC.
+> +                    "sifive,fu740-c000-i2c", "sifive,i2c0"
+> +                    For Opencore based I2C IP block reimplemented in
+> +                    FU740-C000 SoC.
+> +                    Please refer to sifive-blocks-ip-versioning.txt for
+> +                    additional details.
+>  - reg             : bus address start and address range size of device
+>  - clocks          : handle to the controller clock; see the note below.
+>                      Mutually exclusive with opencores,ip-clock-frequency
 
-IIRC the previous version was an RFC, but this is a PATCH.  I'd be generally
-happy to take it on for-next, but I don't want to merge something that doesn't
-boot and that I don't have any way to fix (I don't have one of the boards yet).
-
-> [1] https://lists.nongnu.org/archive/html/qemu-devel/2020-10/msg08582.html
-> [2] https://www.spinics.net/lists/devicetree/msg383626.html
->
-> Changes from v2->v3:
-> 1. Fixed a typo in dt binding.
-> 2. Included MAINTAINERS entry for PolarFire SoC.
-> 3. Improved the dts file by using lowercase clock names and keeping phy
->    details in board specific dts file.
->
-> Changes from v1->v2:
-> 1. Modified the DT to match the device tree in U-Boot.
-> 2. Added both eMMC & SDcard entries in DT. However, SD card is only enabled
->    as it allows larger storage option for linux distros.
->
-> Atish Patra (4):
-> RISC-V: Add Microchip PolarFire SoC kconfig option
-> dt-bindings: riscv: microchip: Add YAML documentation for the
-> PolarFire SoC
-> RISC-V: Initial DTS for Microchip ICICLE board
-> RISC-V: Enable Microchip PolarFire ICICLE SoC
->
-> Conor Dooley (1):
-> MAINTAINERS: add microchip polarfire soc support
->
-> .../devicetree/bindings/riscv/microchip.yaml  |  28 ++
-> MAINTAINERS                                   |   8 +
-> arch/riscv/Kconfig.socs                       |   7 +
-> arch/riscv/boot/dts/Makefile                  |   1 +
-> arch/riscv/boot/dts/microchip/Makefile        |   2 +
-> .../microchip/microchip-mpfs-icicle-kit.dts   |  72 ++++
-> .../boot/dts/microchip/microchip-mpfs.dtsi    | 331 ++++++++++++++++++
-> arch/riscv/configs/defconfig                  |   4 +
-> 8 files changed, 453 insertions(+)
-> create mode 100644 Documentation/devicetree/bindings/riscv/microchip.yaml
-> create mode 100644 arch/riscv/boot/dts/microchip/Makefile
-> create mode 100644 arch/riscv/boot/dts/microchip/microchip-mpfs-icicle-kit.dts
-> create mode 100644 arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi
+Presumably this new one no longer has the interrupt bug?  The current
+implementation turns the errata off (it's only enabled for the fu540), so if
+that's the case we should be good to go.
