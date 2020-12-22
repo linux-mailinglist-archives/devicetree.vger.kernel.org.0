@@ -2,217 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 022DC2E09B0
-	for <lists+devicetree@lfdr.de>; Tue, 22 Dec 2020 12:30:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B57652E0A23
+	for <lists+devicetree@lfdr.de>; Tue, 22 Dec 2020 13:47:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726340AbgLVL3x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Dec 2020 06:29:53 -0500
-Received: from mout.gmx.net ([212.227.15.19]:56507 "EHLO mout.gmx.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726218AbgLVL3w (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 22 Dec 2020 06:29:52 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1608636487;
-        bh=HwMnnb0SE29Jktf+AvdkyZmGuN2AX0JVfsjEdY2OFUA=;
-        h=X-UI-Sender-Class:Subject:From:To:Cc:References:Date:In-Reply-To;
-        b=AzEq3CSnXmJvwEflPlv+WS8wAOwdTJWBoDTB96dCRptzG+O0sm3lj/V31aARyY/43
-         LDYXup250sTRJCqW9RkawKf7eSLZw53qnLpFhfTV3HOHs1XcNf2qKeFb+hLlmICp45
-         pm8RSHu26eR3eiuEoUA95XWexg1Wd17pgLbhIcx8=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from [192.168.123.51] ([62.143.246.89]) by mail.gmx.com (mrgmx005
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1MBm1e-1kmCjL2Brw-00C7sP; Tue, 22
- Dec 2020 12:28:07 +0100
-Subject: Re: [PATCH v4 1/3] dt-bindings: input: adc-keys bindings
- documentation
-From:   Heinrich Schuchardt <xypron.glpk@gmx.de>
-To:     Marek Szyprowski <m.szyprowski@samsung.com>, u-boot@lists.denx.de,
-        u-boot-amlogic@groups.io
-Cc:     Neil Armstrong <narmstrong@baylibre.com>,
-        Lukasz Majewski <lukma@denx.de>,
-        Philippe Reynes <philippe.reynes@softathome.com>,
-        Simon Glass <sjg@chromium.org>,
-        Jaehoon Chung <jh80.chung@samsung.com>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Rob Herring <robh@kernel.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        devicetree@vger.kernel.org,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        lkml <linux-kernel@vger.kernel.org>
-References: <20201222085633.10194-1-m.szyprowski@samsung.com>
- <CGME20201222085638eucas1p14d9d9da136593a12fea0140c403095c4@eucas1p1.samsung.com>
- <20201222085633.10194-2-m.szyprowski@samsung.com>
- <1b82e9ef-e8af-87e1-ea68-d71d65c2aa8a@gmx.de>
-Message-ID: <f8930b5a-e1eb-7c41-19ad-6ba539c59322@gmx.de>
-Date:   Tue, 22 Dec 2020 12:28:06 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.5.1
-MIME-Version: 1.0
-In-Reply-To: <1b82e9ef-e8af-87e1-ea68-d71d65c2aa8a@gmx.de>
-Content-Type: text/plain; charset=utf-8; format=flowed
+        id S1726549AbgLVMqr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Dec 2020 07:46:47 -0500
+Received: from mx0a-0016f401.pphosted.com ([67.231.148.174]:24260 "EHLO
+        mx0b-0016f401.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1726012AbgLVMqq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 22 Dec 2020 07:46:46 -0500
+Received: from pps.filterd (m0045849.ppops.net [127.0.0.1])
+        by mx0a-0016f401.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 0BMCUYl8018360;
+        Tue, 22 Dec 2020 04:46:04 -0800
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marvell.com; h=from : to : cc :
+ subject : date : message-id : references : in-reply-to : content-type :
+ content-transfer-encoding : mime-version; s=pfpt0220;
+ bh=+f6LKIXAhzTdIxDpYcwX8T35dvkxCCJnxRJlErRtAKU=;
+ b=j0hsIVPqcbwJGxp5TvXBfYSYaYOZYjaOqzut+m9i7fIKRrSwqeZGiIal700pG4My+Iwu
+ 3XGknC3lZ4HqF1dOfu8vQJSMWmz53OvjU9+MSf2JM0CYIBm/CxnldoY1WuWvLiZt929Z
+ LBmGfWlomNsGUaX/keD/2cQHZh4jUaj8ge0M4Pjx1tx7sh9nHS+Fu4lGcLtheEpae+aC
+ zBnzYlZo+Hc/kqi5tkstsGfNX1uKmCM/i6NIc8eoEDUCVounoytPsU8wo+WJqfp7sJ9o
+ wHfkCQXOSVazCXO6EuaPCSyohl4ZTPWYOmV32TE8DFaKw409fiKYsOuzvLuGq9vfR9xM 6g== 
+Received: from sc-exch03.marvell.com ([199.233.58.183])
+        by mx0a-0016f401.pphosted.com with ESMTP id 35k0ebam3p-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
+        Tue, 22 Dec 2020 04:46:04 -0800
+Received: from SC-EXCH04.marvell.com (10.93.176.84) by SC-EXCH03.marvell.com
+ (10.93.176.83) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 22 Dec
+ 2020 04:46:03 -0800
+Received: from SC-EXCH03.marvell.com (10.93.176.83) by SC-EXCH04.marvell.com
+ (10.93.176.84) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 22 Dec
+ 2020 04:46:03 -0800
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.174)
+ by SC-EXCH03.marvell.com (10.93.176.83) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2 via Frontend Transport; Tue, 22 Dec 2020 04:46:02 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=NF49NIG8mH7su+0QL3cPUFW2ThqHLTXqWQlAQ4AZ85jIIlgr1CfQZ+Db9Epnm5y0GDuX+l6OLCy/7M+IgA+mtiNkdTiYke+WIf60ZAzCLmgISDzz6gw06DlQXZymPnr6/QX+GiNyHlG1k5Wyur1erqJa4SA4Is3o4KfPsRNQA5XClx34zDCpMKBfJ01Kl2sXAh0pUZz7skLNf3L0sj6am6C8qfg6k9HoxyCx92NGoW1if16RXX8gPPOsau5Sf537/euD145+NSqn8kbmAKw2OuBgP0vdPzEyKGstH+QVa39JKYResDG54a46Ivdfg8flRK6+NqqrCSq0648lluyJgg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=+f6LKIXAhzTdIxDpYcwX8T35dvkxCCJnxRJlErRtAKU=;
+ b=NuS3JtfkF8y0cAnPZzkdAXImUeu/+oG/s+hC44S0IvuQdU6hwbOFQpFgCVHYE4XZBQG528kqGVeC6ott1W+AFZPGOe+I3eNcL2k/g2EAaGOrUwKHwULd0Cd2sHh5o/ypICni5UG1q5fln7wz+wyCx6XcQgOR8+Um0BngQFAtczLRl73jexma0AjEJHbE5UDdBN4bgBbSaFFG9px1j/A78ARWrsXjBZT+CqvXPOSf+DFRmSYB6mF946E58CvJLD1Gk2JIf6mvHXl9by0S5Q6rJimf0U60DQ0ip6C9y+wW8TaZHo/rC8RvUFztaVZOPvx4oi1J2mOrIajhzztFy34aSQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=marvell.com; dmarc=pass action=none header.from=marvell.com;
+ dkim=pass header.d=marvell.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=marvell.onmicrosoft.com; s=selector1-marvell-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=+f6LKIXAhzTdIxDpYcwX8T35dvkxCCJnxRJlErRtAKU=;
+ b=jDQuCQigP50faLw5Msl6VtT3WrWhwX38DlwVCCfVyu1rpDQMHkkCE03BGGE2YUzSF8mSrtNKoo8sE2NNybuvVaXaLU1MuuAmGp5BjjyDqnaYfR8+3FAPH4nsq3w7vEi33knVcvadwKTl8BlZIqRSZV+TC8ZycMZ8kp5Vt0u27iE=
+Received: from DM5PR18MB1452.namprd18.prod.outlook.com (2603:10b6:3:be::12) by
+ DM5PR18MB2119.namprd18.prod.outlook.com (2603:10b6:4:b6::15) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3676.29; Tue, 22 Dec 2020 12:46:01 +0000
+Received: from DM5PR18MB1452.namprd18.prod.outlook.com
+ ([fe80::1892:7edb:740f:4eb6]) by DM5PR18MB1452.namprd18.prod.outlook.com
+ ([fe80::1892:7edb:740f:4eb6%9]) with mapi id 15.20.3676.033; Tue, 22 Dec 2020
+ 12:46:01 +0000
+From:   Kostya Porotchkin <kostap@marvell.com>
+To:     Mark Brown <broonie@kernel.org>
+CC:     "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mw@semihalf.com" <mw@semihalf.com>,
+        "jaz@semihalf.com" <jaz@semihalf.com>,
+        Nadav Haklai <nadavh@marvell.com>,
+        Ben Peled <bpeled@marvell.com>,
+        Stefan Chulski <stefanc@marvell.com>
+Subject: RE: [EXT] Re: [PATCH v2 1/2] spi: orion: enable clocks before
+ spi_setup
+Thread-Topic: [EXT] Re: [PATCH v2 1/2] spi: orion: enable clocks before
+ spi_setup
+Thread-Index: AQHW1Jerzl1SGlMrn0WYbGqPhxGA56n7igoAgAeMohA=
+Date:   Tue, 22 Dec 2020 12:46:01 +0000
+Message-ID: <DM5PR18MB1452458F0C11FECF40023060CADF0@DM5PR18MB1452.namprd18.prod.outlook.com>
+References: <20201217170933.10717-1-kostap@marvell.com>
+ <20201217170933.10717-2-kostap@marvell.com>
+ <20201217172528.GG4708@sirena.org.uk>
+In-Reply-To: <20201217172528.GG4708@sirena.org.uk>
+Accept-Language: en-US
 Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=marvell.com;
+x-originating-ip: [2a00:a040:19c:b0ca:8dc2:1dfa:155:29fd]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: bc9b0c16-b548-4083-f274-08d8a67789a7
+x-ms-traffictypediagnostic: DM5PR18MB2119:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <DM5PR18MB2119176CBF6EAC548DBECB12CADF0@DM5PR18MB2119.namprd18.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:4303;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: F3dbT8JwmSQlfgoz3DsFmlYb7R1Ca0r4vhnuNKABZicU2OlF2k6J2QUseV7g2+2XdJ5VVaRdwtdiK11xuSam1VQyvjGhwVWCffqtjaa5aeiV9R/AOGNBZgX85J5UfMXURoG7Sj2yr3OaaYApw0U7eqIshB7gqNl0ANR6h6EVOeI7bltsOUPre0nwQpreMRlz1v+H5tbcwEN/IVbXMNm0QqLCIuro9Ua+be7zfxjmOuyQD1zWzEEGpfO2HWdPNqRDIL238zsEVaL58MT3EQPvYXg497M68E09tyjnUrLEY8E+s12/HcCbM5nrAhmtrvJehuQgSZbVR3sCzD0uCb6sVQQgEoeb15iCLu5CRY7M5HUMbFC/2XXYK8xTjcavkDlaHd2TXU75VwcCtuzQrkfE0Q==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM5PR18MB1452.namprd18.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(33656002)(6916009)(9686003)(8936002)(4744005)(54906003)(4326008)(186003)(498600001)(7696005)(86362001)(6506007)(55016002)(66556008)(71200400001)(8676002)(5660300002)(83380400001)(66476007)(52536014)(66946007)(2906002)(66446008)(64756008)(107886003)(76116006);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: =?us-ascii?Q?+oW4Eg2Zk8nDOlOx01nmF7Y6D18ZfIMX2+Ki3hPAIQynI/OGmLCTj7tDKNR+?=
+ =?us-ascii?Q?cP1fbzglBn+qpMHt4MFmG/KJvCEvw+f1PzKF4SfsdiCTNYtGu0HcgdIqQDlN?=
+ =?us-ascii?Q?3AB1RjUpqT+LfCN0zAWzo1iHDQTYGDO1nhs7JNxbRmB2QOXTo/mtATg7Al0T?=
+ =?us-ascii?Q?DdHXu+FlCZmDk70bYHHn3hLx/n48M8ArtThefK2Ar/jtYt9CSBrGYqQD6qrD?=
+ =?us-ascii?Q?MKNwbT1Ej96PtPYBSGecdNDUzPG4LnlgpI4wY4RnoMLZjpheXlxX/rZ2Yfuj?=
+ =?us-ascii?Q?S/hLV8XXohrIPLbxLrIme9/aiNlhdq++jrkHKjebrMF9B8qhrGpW+03jnJN1?=
+ =?us-ascii?Q?d1eg4/4sPlcwQm4dDh/wod77cJrmnUbPF6mqvF3Kq0S5f6dd0UlMiPxpNanx?=
+ =?us-ascii?Q?WhlLGs1VO9/GazURirikJ+Z/3X7QF1jhuAMouzyhXi0lWsoC5IzaTNrmz7NW?=
+ =?us-ascii?Q?cZ5YLjc9gGNdkJywcYXH8h9MPGqtYslKHxYv0HuXpZObSdY29IXEWLQjO6pF?=
+ =?us-ascii?Q?110ECL16q+FJlE7uoMlNPgsk11ykm4x5kMSxBe0iKWA2EodLAqMRykAskaJd?=
+ =?us-ascii?Q?d6ULUVgWq58laXLc5Rpip2lI0CWTCgBx9beB5ZRqPzPVJu6B4Whz97LJEbPN?=
+ =?us-ascii?Q?2y8IkBCV3bqj0IGpHerGOTuZyvBZVNo3ZKziLlaaC+o0yNq/ub+1LoUU4RxV?=
+ =?us-ascii?Q?GrALBSISKsp2PFMS5xhVyigMOPDs1cJDOxBFeJ5RjotvigTcN1GTRkXmfhfu?=
+ =?us-ascii?Q?vrAFgIeHet3UdT1nVoY1GDEXqwWT+9uue2pwt4oj4Y6eG3gt7ma8R5KVEGgg?=
+ =?us-ascii?Q?5O+rD/+vpXMv4CBpfi2WQ5mgUm3RYBr3Kvjq4gS5hej+SHu9Z1Y5HcR+10pJ?=
+ =?us-ascii?Q?NP62WgJeevyLP0UGdxPuhPxPBOD97tLijywafabC4CICi3dCP0zCPOY8hsY9?=
+ =?us-ascii?Q?UG41isq/BRaiedsR2y3w4MZKsTl0Mr60gg8b4A3aA6zxAbZ+JCAxYQ1goXwd?=
+ =?us-ascii?Q?DkVTFBb/uqJikR8bVLTBv6DYvnrHKHDDmUlc1qRW9nsoYaM=3D?=
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:DON19+nfSZKJuFyoDriwCGYQtZzBfTjsl5F+7q2lOxrQIVkWipS
- h4vp5cLNsyuxUX9bMcnil9EoObsZ8BHOAwOX2jza2skQYQ39rnis58Drc1DnuSia4rYwevF
- CqWghNUdn83moDNEWR1kPhh8VECcoGhLcdcCvMS14NwuzandTP2pJDFp1vHyl4aR3EK/h/L
- QHEK4b6b7sTdydgwKlKgw==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:MK5dUzmLINk=:NC12T9lPXpICd9QBVMlRep
- AannL2Rp1pE1cjkKScjCSc8amhfpUCqwOv23Q406/vIdm3UeebU0C5nJZv8Qm5IpMDFnAFxwm
- +17sEIxtbeKyrt0XKDPkWtyGR5X2A00QlnC23pscouUIkrgMSJ3J18D1922FK9qRpXT/mtYsd
- XZO9VjpvMCcM/l9UR1BVpOBoxm3EXgDQsWHvBRIy4oveIZSn9e7tOpKTyQ6LDpgcZK+HN5zRS
- pZPYidxYj0f+spoKeLnM8jAwz01zjqF7tsfu8pamTLw9t2WnzE2KZV1GQFysQ90OAm27S+yg+
- bXF3Vl8ePhDtTuOpWqn9qVC8MBDtOlqrYCEuptICXP5a/59Tq0EnhB6H52Q6NCyk4u7Wmrt1P
- c6a61luH6CFE4nlKLhps2eDA8mCZ8Uy+hZAANEXCZfRzT4rJ1eTfa07eWfHuQR2PjPpUCY6FT
- aYSv2uJbOVo3YoXgVOErRdNIE+ZSZNBoM720PxrSy9f7F9d2XETy83btc3MQ/PIRUEP9VBX4p
- a49F6T53VK32JFfXFA6pRhnHesrnZGeKLX32hYrADXc7BJmeqZZE7xcTZxEwpL5Qc+cM8pR36
- Ao5yhnFGxw1RdrJoTLk4wLHbhL/ukvyO0MA0MPTyVdrtnqmA1mGOCmQJtwXvs0x/gkTsD0BYY
- xMdKTU8Y2C5pICf4jambpVErcxpJhwSfcVJiq9C3uIx5bVPhbZefdiuaIM8dKd35u26hmDPcB
- Z9FIZVL6zkTyFhr93j2V/In0T85kgYk0d5OfBBgusmEAHF2gF1YYTlc1PesdBWSW1jhk7+IKl
- l8uhfbYLQHFHmsrir3IeDS69+xHgf1vHII16hil4hkVO5L7O+2XlYy1ZJvCi4XyBEVOnq7VPz
- xPB6QjOK9Zgxm09o28Hw==
+MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM5PR18MB1452.namprd18.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: bc9b0c16-b548-4083-f274-08d8a67789a7
+X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Dec 2020 12:46:01.2869
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 70e1fb47-1155-421d-87fc-2e58f638b6e0
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: cQyKefOtpwNwVNMA3tme3/AiJ2hFE8v3TtrwRLHdZvxTzAd1RDF3Dl1Nb9a7I1Ixk24VYdvJBOjW9maOkTBVHA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR18MB2119
+X-OriginatorOrg: marvell.com
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.343,18.0.737
+ definitions=2020-12-22_06:2020-12-21,2020-12-22 signatures=0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/22/20 11:12 AM, Heinrich Schuchardt wrote:
-> On 12/22/20 9:56 AM, Marek Szyprowski wrote:
->> Dump adc-keys bindings documentation from Linux kernel source tree v5.1=
-0.
->>
->> Signed-off-by: Marek Szyprowski <m.szyprowski@samsung.com>
->> ---
->> =C2=A0 doc/device-tree-bindings/input/adc-keys.txt | 49 +++++++++++++++=
-++++++
->> =C2=A0 1 file changed, 49 insertions(+)
->> =C2=A0 create mode 100644 doc/device-tree-bindings/input/adc-keys.txt
->>
->> diff --git a/doc/device-tree-bindings/input/adc-keys.txt
->> b/doc/device-tree-bindings/input/adc-keys.txt
->> new file mode 100644
->> index 0000000000..e551814629
->> --- /dev/null
->> +++ b/doc/device-tree-bindings/input/adc-keys.txt
->> @@ -0,0 +1,49 @@
->> +ADC attached resistor ladder buttons
->> +------------------------------------
->> +
->> +Required properties:
->> + - compatible: "adc-keys"
->> + - io-channels: Phandle to an ADC channel
->> + - io-channel-names =3D "buttons";
->> + - keyup-threshold-microvolt: Voltage at which all the keys are
->> considered up.
->> +
->> +Optional properties:
->> +=C2=A0=C2=A0=C2=A0 - poll-interval: Poll interval time in milliseconds
->> +=C2=A0=C2=A0=C2=A0 - autorepeat: Boolean, Enable auto repeat feature o=
-f Linux input
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 subsystem.
->> +
->> +Each button (key) is represented as a sub-node of "adc-keys":
->> +
->> +Required subnode-properties:
->> +=C2=A0=C2=A0=C2=A0 - label: Descriptive name of the key.
->> +=C2=A0=C2=A0=C2=A0 - linux,code: Keycode to emit.
->> +=C2=A0=C2=A0=C2=A0 - press-threshold-microvolt: Voltage ADC input when=
- this key is
->> pressed.
->
-> https://www.merriam-webster.com/dictionary/threshold
-> defines threshold as "a level, point, or value above which something is
-> true or will take place and below which it is not or will not"
->
-> "when this key is pressed" leaves it completely open if a key is
-> considered pressed below or above the threshold. Please, replace the
-> word 'when' by either 'above which' or 'below which'.
->
-> In the example keyup-threshold-microvolt is larger than
-> keyup-threshold-microvolt all values of press-threshold-microvolt. So
-> one might assume that 'above' is the intended meaning and the
-> interpretation of the example might be:
->
-> 2.000.000 <=3D value: no key pressed
-> 1.500.000 <=3D value < 2.000.000: KEY_VOLUMEUP pressed
-> 1.000.000 <=3D value < 1.500.000: KEY_VOLUMEDOWN pressed
-> 500.000 <=3D value < 1.000.000: KEY_ENTER pressed
-> value < 500.000: no key pressed
->
-> Both directions 'above' and 'below' make sense. So maybe if
-> keyup-threshold-microvolt is lower than all press-threshold-microvolt
-> you want to invert the logic?
->
-> The binding lacks a hysteresis which is needed for a reliable function.
->
-> If you look into drivers/input/keyboard/adc-keys.c in the Linux source,
-> you can see that it is not using the threshold value as a threshold at
-> all. Instead is uses abs(st->map[i].voltage - value) to find the nearest
-> "threshold" voltage level.
->
-> Could you, please, try to bring this text into a form that cannot be
-> misinterpreted and reconcile with upstream. This should include
->
-> * a results table for the example
-> * a definition if keyup-threshold-microvolt must be higher than all
->  =C2=A0 press-threshold-microvolt or may be lower than all
->  =C2=A0 press-threshold-microvolt
-> * a sentence forbidding keyup-threshold-microvolt to be between two
->  =C2=A0 press-threshold-microvolt
-> * a definition if or when any of the thresholds is a lower or upper
->  =C2=A0 boundary
+Hi, Mark,
 
-Cf. [PATCH 1/1] dt-bindings: adc-keys.txt: clarify description
-https://lore.kernel.org/linux-input/20201222110815.24121-1-xypron.glpk@gmx=
-.de/T/#u
+> -----Original Message-----
+> From: Mark Brown <broonie@kernel.org>
 
-Best regards
+> > +	/*
+> > +	 * Make sure the clocks are enabled before
+> > +	 * configuring the SPI controller.
+> > +	 */
+> > +	clk_prepare_enable(orion_spi->clk);
+> > +	if (!IS_ERR(orion_spi->axi_clk))
+> > +		clk_prepare_enable(orion_spi->axi_clk);
+> > +
+> >  	return orion_spi_setup_transfer(spi, NULL);  }
+>=20
+> There's no matching disable here so we'll leak the enables every time
+> setup() is called - we should unwind the enables after calling
+> _setup_transfer().  It may be more sensible to just take a runtime PM
+> reference rather than do the raw clock API stuff, one less call and means=
+ if
+> anything else gets added to runtime PM it'll be handled.
 
-Heinrich
+[KP] You mean we should call here to orion_spi_runtime_resume() instead of =
+clk_prepare_enable() and make this PM function available regardless the CON=
+FIG_PM option?
 
->
-> Best regards
->
-> Heinrich
->
->> +
->> +Example:
->> +
->> +#include <dt-bindings/input/input.h>
->> +
->> +=C2=A0=C2=A0=C2=A0 adc-keys {
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compatible =3D "adc-keys";
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 io-channels =3D <&lradc 0>;
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 io-channel-names =3D "butto=
-ns";
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 keyup-threshold-microvolt =
-=3D <2000000>;
->> +
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 button-up {
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 lab=
-el =3D "Volume Up";
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 lin=
-ux,code =3D <KEY_VOLUMEUP>;
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 pre=
-ss-threshold-microvolt =3D <1500000>;
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 };
->> +
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 button-down {
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 lab=
-el =3D "Volume Down";
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 lin=
-ux,code =3D <KEY_VOLUMEDOWN>;
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 pre=
-ss-threshold-microvolt =3D <1000000>;
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 };
->> +
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 button-enter {
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 lab=
-el =3D "Enter";
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 lin=
-ux,code =3D <KEY_ENTER>;
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 pre=
-ss-threshold-microvolt =3D <500000>;
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 };
->> +=C2=A0=C2=A0=C2=A0 };
->>
->
-
+Thanks
+Kosta
