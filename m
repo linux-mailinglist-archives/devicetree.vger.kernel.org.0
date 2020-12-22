@@ -2,129 +2,217 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 550B62E095A
-	for <lists+devicetree@lfdr.de>; Tue, 22 Dec 2020 12:10:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 022DC2E09B0
+	for <lists+devicetree@lfdr.de>; Tue, 22 Dec 2020 12:30:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725897AbgLVLJ4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Dec 2020 06:09:56 -0500
-Received: from mout.gmx.net ([212.227.15.15]:39793 "EHLO mout.gmx.net"
+        id S1726340AbgLVL3x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Dec 2020 06:29:53 -0500
+Received: from mout.gmx.net ([212.227.15.19]:56507 "EHLO mout.gmx.net"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725847AbgLVLJ4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 22 Dec 2020 06:09:56 -0500
+        id S1726218AbgLVL3w (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 22 Dec 2020 06:29:52 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1608635300;
-        bh=w3eF+si7e98IAYsFaPGDgdO3+FGxhhiRKm/JCEsQt9c=;
-        h=X-UI-Sender-Class:From:To:Cc:Subject:Date;
-        b=VN5NKVL6axuhBcpBY5CpatnyuAFi8vs0AyHQZ5NSf+FnSTgyujP3eTn5PYaW4VdWc
-         aQnW2SKMIdO/ERI/ROme1V2Z4wtbsQ338nIjjMgPyy1b+O1pU2nrAxK5taOR416gTo
-         s9snhap9UOLCQ4NyFs4x/NuZlZzwP1BBjvT8N1TM=
+        s=badeba3b8450; t=1608636487;
+        bh=HwMnnb0SE29Jktf+AvdkyZmGuN2AX0JVfsjEdY2OFUA=;
+        h=X-UI-Sender-Class:Subject:From:To:Cc:References:Date:In-Reply-To;
+        b=AzEq3CSnXmJvwEflPlv+WS8wAOwdTJWBoDTB96dCRptzG+O0sm3lj/V31aARyY/43
+         LDYXup250sTRJCqW9RkawKf7eSLZw53qnLpFhfTV3HOHs1XcNf2qKeFb+hLlmICp45
+         pm8RSHu26eR3eiuEoUA95XWexg1Wd17pgLbhIcx8=
 X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from LT02.fritz.box ([62.143.246.89]) by mail.gmx.com (mrgmx004
- [212.227.17.184]) with ESMTPSA (Nemesis) id 1N5GDv-1jsjEf1R25-011E7m; Tue, 22
- Dec 2020 12:08:20 +0100
+Received: from [192.168.123.51] ([62.143.246.89]) by mail.gmx.com (mrgmx005
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1MBm1e-1kmCjL2Brw-00C7sP; Tue, 22
+ Dec 2020 12:28:07 +0100
+Subject: Re: [PATCH v4 1/3] dt-bindings: input: adc-keys bindings
+ documentation
 From:   Heinrich Schuchardt <xypron.glpk@gmx.de>
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Heinrich Schuchardt <xypron.glpk@gmx.de>
-Subject: [PATCH 1/1] dt-bindings: adc-keys.txt: clarify description
-Date:   Tue, 22 Dec 2020 12:08:15 +0100
-Message-Id: <20201222110815.24121-1-xypron.glpk@gmx.de>
-X-Mailer: git-send-email 2.29.2
+To:     Marek Szyprowski <m.szyprowski@samsung.com>, u-boot@lists.denx.de,
+        u-boot-amlogic@groups.io
+Cc:     Neil Armstrong <narmstrong@baylibre.com>,
+        Lukasz Majewski <lukma@denx.de>,
+        Philippe Reynes <philippe.reynes@softathome.com>,
+        Simon Glass <sjg@chromium.org>,
+        Jaehoon Chung <jh80.chung@samsung.com>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Rob Herring <robh@kernel.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        devicetree@vger.kernel.org,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        lkml <linux-kernel@vger.kernel.org>
+References: <20201222085633.10194-1-m.szyprowski@samsung.com>
+ <CGME20201222085638eucas1p14d9d9da136593a12fea0140c403095c4@eucas1p1.samsung.com>
+ <20201222085633.10194-2-m.szyprowski@samsung.com>
+ <1b82e9ef-e8af-87e1-ea68-d71d65c2aa8a@gmx.de>
+Message-ID: <f8930b5a-e1eb-7c41-19ad-6ba539c59322@gmx.de>
+Date:   Tue, 22 Dec 2020 12:28:06 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.5.1
 MIME-Version: 1.0
+In-Reply-To: <1b82e9ef-e8af-87e1-ea68-d71d65c2aa8a@gmx.de>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:T38j14BVNR123t6GreLXV8CdLOXYQXkS20/t6TpFp9eD1nXX81+
- VROophO1u084jvi68NSWgY5pmoIj0Cj7qfrNKOzu1mr425XhIk0R0wsT6tdR2xi4VFhL4YE
- jLs9HWBU62cBB7Eb7JWFfJaHEltKxgpAiB9357UtI+xr2Ye/FOJuNyqqeHAxZsQGJhhKEIH
- BjV9NXXyoTC/TH2R1+xoA==
+X-Provags-ID: V03:K1:DON19+nfSZKJuFyoDriwCGYQtZzBfTjsl5F+7q2lOxrQIVkWipS
+ h4vp5cLNsyuxUX9bMcnil9EoObsZ8BHOAwOX2jza2skQYQ39rnis58Drc1DnuSia4rYwevF
+ CqWghNUdn83moDNEWR1kPhh8VECcoGhLcdcCvMS14NwuzandTP2pJDFp1vHyl4aR3EK/h/L
+ QHEK4b6b7sTdydgwKlKgw==
 X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:iYz9xFU/6DE=:Kqj9JaHSVuDM58CIrnF0R0
- /u7fUe8WrAOTZC2v7tRR8BX6HdFKu5+Jp49FH+1EGkiEQ6R1qXXYqD6zsnU1/H3XwVDiRcR0v
- +/xm/vc16BCVx7VK5xrhsSrHlLIh9NjmdAW2TtUokzquqlgPgG0CJWKdps8g56r8ho18A5MhL
- /OctsokZH7q5WjQzEzrxsC9znf+xTynXxYs2wq2MlmZceS/dWzfNYfODpp+e0pDUA5Te+vc30
- lpVmjPQUgKXllXveZA0PaGyEjTiQ3T/UxZoCqGWgfya0GCAbdWZrhJBCcDGhowOvfEb2M+QoH
- lxIGmybBXLjxctNhVpOW06z0Ipt5a5q/dWx216BER3A71yZ0ieaSscrlZz4wm1DqFY1j9hqWP
- ujIDkahZTgvFL8p/FiI7VNExIBz6g8S5VQq4PZmOUvsjm/IuxHxkcctXx5VBNzKPjr2QYbKUq
- zvPbZ3/9pdajEbry6X9l+0QWJ94Ajw0omeITm99oUE8ugzY8E4X1d3dhNJFdQhE217OYD9eV0
- yAsYSQeOqIOXyFZ9iX7+mPA8zMy7EAaPZenZ7t5/MILXOBJxsPB+T6L53ljGH1P2B6fsC3cMn
- 5qEL4E1ILDDRc2pusB6G8m+6bRUoO/4ZGo3SqIJ1CtD0USzWXY74MQxKNVt22rdXGIupnomS2
- RY9NA4GWuQ5Zf0jI0nJqpn0YVRdmTWmgyRYjmZKyBjHi/2mKchbp4XvXI3jU1gsl5DDB8gHm2
- fsEFEn2C3cdyFDEAesiwyfKY6LdKABc+0olaMJBFOZBaCYqEctbsfNX7+5K45htIjEYqgl0RM
- NOQtvLCjts4woj/see8sGn5kOajOhzyb8MM+qxiFMvuIBh8ZnJHYy2tTiEOnBGKjqKv3zNq2x
- aLHcRo3nyv/C9cOSQLcg==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:MK5dUzmLINk=:NC12T9lPXpICd9QBVMlRep
+ AannL2Rp1pE1cjkKScjCSc8amhfpUCqwOv23Q406/vIdm3UeebU0C5nJZv8Qm5IpMDFnAFxwm
+ +17sEIxtbeKyrt0XKDPkWtyGR5X2A00QlnC23pscouUIkrgMSJ3J18D1922FK9qRpXT/mtYsd
+ XZO9VjpvMCcM/l9UR1BVpOBoxm3EXgDQsWHvBRIy4oveIZSn9e7tOpKTyQ6LDpgcZK+HN5zRS
+ pZPYidxYj0f+spoKeLnM8jAwz01zjqF7tsfu8pamTLw9t2WnzE2KZV1GQFysQ90OAm27S+yg+
+ bXF3Vl8ePhDtTuOpWqn9qVC8MBDtOlqrYCEuptICXP5a/59Tq0EnhB6H52Q6NCyk4u7Wmrt1P
+ c6a61luH6CFE4nlKLhps2eDA8mCZ8Uy+hZAANEXCZfRzT4rJ1eTfa07eWfHuQR2PjPpUCY6FT
+ aYSv2uJbOVo3YoXgVOErRdNIE+ZSZNBoM720PxrSy9f7F9d2XETy83btc3MQ/PIRUEP9VBX4p
+ a49F6T53VK32JFfXFA6pRhnHesrnZGeKLX32hYrADXc7BJmeqZZE7xcTZxEwpL5Qc+cM8pR36
+ Ao5yhnFGxw1RdrJoTLk4wLHbhL/ukvyO0MA0MPTyVdrtnqmA1mGOCmQJtwXvs0x/gkTsD0BYY
+ xMdKTU8Y2C5pICf4jambpVErcxpJhwSfcVJiq9C3uIx5bVPhbZefdiuaIM8dKd35u26hmDPcB
+ Z9FIZVL6zkTyFhr93j2V/In0T85kgYk0d5OfBBgusmEAHF2gF1YYTlc1PesdBWSW1jhk7+IKl
+ l8uhfbYLQHFHmsrir3IeDS69+xHgf1vHII16hil4hkVO5L7O+2XlYy1ZJvCi4XyBEVOnq7VPz
+ xPB6QjOK9Zgxm09o28Hw==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The current description of ADC keys is not precise enough.
+On 12/22/20 11:12 AM, Heinrich Schuchardt wrote:
+> On 12/22/20 9:56 AM, Marek Szyprowski wrote:
+>> Dump adc-keys bindings documentation from Linux kernel source tree v5.1=
+0.
+>>
+>> Signed-off-by: Marek Szyprowski <m.szyprowski@samsung.com>
+>> ---
+>> =C2=A0 doc/device-tree-bindings/input/adc-keys.txt | 49 +++++++++++++++=
+++++++
+>> =C2=A0 1 file changed, 49 insertions(+)
+>> =C2=A0 create mode 100644 doc/device-tree-bindings/input/adc-keys.txt
+>>
+>> diff --git a/doc/device-tree-bindings/input/adc-keys.txt
+>> b/doc/device-tree-bindings/input/adc-keys.txt
+>> new file mode 100644
+>> index 0000000000..e551814629
+>> --- /dev/null
+>> +++ b/doc/device-tree-bindings/input/adc-keys.txt
+>> @@ -0,0 +1,49 @@
+>> +ADC attached resistor ladder buttons
+>> +------------------------------------
+>> +
+>> +Required properties:
+>> + - compatible: "adc-keys"
+>> + - io-channels: Phandle to an ADC channel
+>> + - io-channel-names =3D "buttons";
+>> + - keyup-threshold-microvolt: Voltage at which all the keys are
+>> considered up.
+>> +
+>> +Optional properties:
+>> +=C2=A0=C2=A0=C2=A0 - poll-interval: Poll interval time in milliseconds
+>> +=C2=A0=C2=A0=C2=A0 - autorepeat: Boolean, Enable auto repeat feature o=
+f Linux input
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 subsystem.
+>> +
+>> +Each button (key) is represented as a sub-node of "adc-keys":
+>> +
+>> +Required subnode-properties:
+>> +=C2=A0=C2=A0=C2=A0 - label: Descriptive name of the key.
+>> +=C2=A0=C2=A0=C2=A0 - linux,code: Keycode to emit.
+>> +=C2=A0=C2=A0=C2=A0 - press-threshold-microvolt: Voltage ADC input when=
+ this key is
+>> pressed.
+>
+> https://www.merriam-webster.com/dictionary/threshold
+> defines threshold as "a level, point, or value above which something is
+> true or will take place and below which it is not or will not"
+>
+> "when this key is pressed" leaves it completely open if a key is
+> considered pressed below or above the threshold. Please, replace the
+> word 'when' by either 'above which' or 'below which'.
+>
+> In the example keyup-threshold-microvolt is larger than
+> keyup-threshold-microvolt all values of press-threshold-microvolt. So
+> one might assume that 'above' is the intended meaning and the
+> interpretation of the example might be:
+>
+> 2.000.000 <=3D value: no key pressed
+> 1.500.000 <=3D value < 2.000.000: KEY_VOLUMEUP pressed
+> 1.000.000 <=3D value < 1.500.000: KEY_VOLUMEDOWN pressed
+> 500.000 <=3D value < 1.000.000: KEY_ENTER pressed
+> value < 500.000: no key pressed
+>
+> Both directions 'above' and 'below' make sense. So maybe if
+> keyup-threshold-microvolt is lower than all press-threshold-microvolt
+> you want to invert the logic?
+>
+> The binding lacks a hysteresis which is needed for a reliable function.
+>
+> If you look into drivers/input/keyboard/adc-keys.c in the Linux source,
+> you can see that it is not using the threshold value as a threshold at
+> all. Instead is uses abs(st->map[i].voltage - value) to find the nearest
+> "threshold" voltage level.
+>
+> Could you, please, try to bring this text into a form that cannot be
+> misinterpreted and reconcile with upstream. This should include
+>
+> * a results table for the example
+> * a definition if keyup-threshold-microvolt must be higher than all
+>  =C2=A0 press-threshold-microvolt or may be lower than all
+>  =C2=A0 press-threshold-microvolt
+> * a sentence forbidding keyup-threshold-microvolt to be between two
+>  =C2=A0 press-threshold-microvolt
+> * a definition if or when any of the thresholds is a lower or upper
+>  =C2=A0 boundary
 
-"when this key is pressed" leaves it open if a key is considered pressed
-below or above the threshold. This has led to confusion:
-drivers/input/keyboard/adc-keys.c ignores the meaning of thresholds and
-sets the key that is closest to press-threshold-microvolt.
+Cf. [PATCH 1/1] dt-bindings: adc-keys.txt: clarify description
+https://lore.kernel.org/linux-input/20201222110815.24121-1-xypron.glpk@gmx=
+.de/T/#u
 
-This patch nails down the definitions and provides an interpretation of th=
-e
-supplied example.
+Best regards
 
-Signed-off-by: Heinrich Schuchardt <xypron.glpk@gmx.de>
-=2D--
-I know that this file needs to be converted to YAML. But lets first get th=
-e
-text right.
-=2D--
- .../devicetree/bindings/input/adc-keys.txt    | 22 +++++++++++++++++--
- 1 file changed, 20 insertions(+), 2 deletions(-)
+Heinrich
 
-diff --git a/Documentation/devicetree/bindings/input/adc-keys.txt b/Docume=
-ntation/devicetree/bindings/input/adc-keys.txt
-index e551814629b4..6c8be6a9ace2 100644
-=2D-- a/Documentation/devicetree/bindings/input/adc-keys.txt
-+++ b/Documentation/devicetree/bindings/input/adc-keys.txt
-@@ -5,7 +5,8 @@ Required properties:
-  - compatible: "adc-keys"
-  - io-channels: Phandle to an ADC channel
-  - io-channel-names =3D "buttons";
-- - keyup-threshold-microvolt: Voltage at which all the keys are considere=
-d up.
-+ - keyup-threshold-microvolt: Voltage above or equal to which all the key=
-s are
-+			      considered up.
-
- Optional properties:
- 	- poll-interval: Poll interval time in milliseconds
-@@ -17,7 +18,12 @@ Each button (key) is represented as a sub-node of "adc-=
-keys":
- Required subnode-properties:
- 	- label: Descriptive name of the key.
- 	- linux,code: Keycode to emit.
--	- press-threshold-microvolt: Voltage ADC input when this key is pressed.
-+	- press-threshold-microvolt: voltage above or equal to which this key is
-+				     considered pressed.
-+
-+No two values of press-threshold-microvolt may be the same.
-+All values of press-threshold-microvolt must be less than
-+keyup-threshold-microvolt.
-
- Example:
-
-@@ -47,3 +53,15 @@ Example:
- 			press-threshold-microvolt =3D <500000>;
- 		};
- 	};
-+
-++--------------------------------+------------------------+
-+| 2.000.000 <=3D value             | no key pressed         |
-++--------------------------------+------------------------+
-+| 1.500.000 <=3D value < 2.000.000 | KEY_VOLUMEUP pressed   |
-++--------------------------------+------------------------+
-+| 1.000.000 <=3D value < 1.500.000 | KEY_VOLUMEDOWN pressed |
-++--------------------------------+------------------------+
-+|   500.000 <=3D value < 1.000.000 | KEY_ENTER pressed      |
-++--------------------------------+------------------------+
-+|              value <   500.000 | no key pressed         |
-++--------------------------------+------------------------+
-=2D-
-2.29.2
+>
+> Best regards
+>
+> Heinrich
+>
+>> +
+>> +Example:
+>> +
+>> +#include <dt-bindings/input/input.h>
+>> +
+>> +=C2=A0=C2=A0=C2=A0 adc-keys {
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compatible =3D "adc-keys";
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 io-channels =3D <&lradc 0>;
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 io-channel-names =3D "butto=
+ns";
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 keyup-threshold-microvolt =
+=3D <2000000>;
+>> +
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 button-up {
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 lab=
+el =3D "Volume Up";
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 lin=
+ux,code =3D <KEY_VOLUMEUP>;
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 pre=
+ss-threshold-microvolt =3D <1500000>;
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 };
+>> +
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 button-down {
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 lab=
+el =3D "Volume Down";
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 lin=
+ux,code =3D <KEY_VOLUMEDOWN>;
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 pre=
+ss-threshold-microvolt =3D <1000000>;
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 };
+>> +
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 button-enter {
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 lab=
+el =3D "Enter";
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 lin=
+ux,code =3D <KEY_ENTER>;
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 pre=
+ss-threshold-microvolt =3D <500000>;
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 };
+>> +=C2=A0=C2=A0=C2=A0 };
+>>
+>
 
