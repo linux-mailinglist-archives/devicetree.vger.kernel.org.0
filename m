@@ -2,101 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 00A972E0A99
-	for <lists+devicetree@lfdr.de>; Tue, 22 Dec 2020 14:26:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E0A402E0AC9
+	for <lists+devicetree@lfdr.de>; Tue, 22 Dec 2020 14:33:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727042AbgLVN00 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Dec 2020 08:26:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58100 "EHLO
+        id S1727094AbgLVNdC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Dec 2020 08:33:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59128 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727040AbgLVN0Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Dec 2020 08:26:25 -0500
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F1CBC0613D3;
-        Tue, 22 Dec 2020 05:25:45 -0800 (PST)
-Received: by mail-lf1-x12d.google.com with SMTP id x20so31860268lfe.12;
-        Tue, 22 Dec 2020 05:25:45 -0800 (PST)
+        with ESMTP id S1727008AbgLVNdC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Dec 2020 08:33:02 -0500
+Received: from mail-il1-x133.google.com (mail-il1-x133.google.com [IPv6:2607:f8b0:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9A89C0613D3
+        for <devicetree@vger.kernel.org>; Tue, 22 Dec 2020 05:32:21 -0800 (PST)
+Received: by mail-il1-x133.google.com with SMTP id t9so12015063ilf.2
+        for <devicetree@vger.kernel.org>; Tue, 22 Dec 2020 05:32:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=SCkfsLtgF20+UjWXYeRABeA5CudYBgLQkf9EDb+O2tU=;
-        b=Omjr5BH1sBV2wzA9JhFuTPsUkfIbgz+KDCeYKpEodOcWiXQa4hF5Le244PFScYpnsH
-         6IVR6fVAHtFoDCHDlFMGsILHjTh3PzBUwvw5Oxw3MByJpNVdVVt3VVzolPXO+kmGeges
-         LJ+BA3twF6yNuCVvdTSypNZlyQe7jf6xcbO5bMjkPTuJpvp2q+9AcP5iFczo2CChHg78
-         09ITbKxdouXyzZ96L69KgyLr2yXUpoP9vdZ6e8scmIZJMjaZwnnJr3sZCToiOBrp99Mo
-         WDx3d0l+D9l/5ya0QjZjQoVw/WefnSKnlsoWQBh3icw9yiHlYhxuzWOBzDiKoSVPjSi+
-         cvHQ==
+        d=ieee.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=1h+XS3Jpg37m9OWU9Zgfs5kJQZ5F9azt5axjaoAFa+o=;
+        b=AZpT2+SASG9nJBeXvpxrCgYcrKqMNKBOKhzbZE3iQHjPReCYhNxsX1FIcoozKiaYV+
+         oeNdLumwRlra/kfdUg8dNPyqt/2WT7UP590126MBFhOxbKcmgEHCq97+3rSbF9mHWrD9
+         gwwpYdZ711yTLP5cXBBBMF+bczS9F+VvUZUmA=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=SCkfsLtgF20+UjWXYeRABeA5CudYBgLQkf9EDb+O2tU=;
-        b=hXsupSoS7kuRE33RnZUT/+S8T9e+xnmzyHEoAi5wZNN4K20eF4aQERCoMPcx8S99wJ
-         Lz8dwDus0D6g8HcG9a3v0j7rxvJ6mfdpLFRX2dcCDgxtfu2jtk+73SEKut/xyg+x6g/w
-         CjKbsWAk/lls9YZWcC//G+/tDRMlooV7WS62n/m0RCIZBocZTHvdAOijkZt8L9Ck0Q17
-         ePCAbIj28sFl/dJP2XYJvccEDxAk8gUh4CyGZcwgsUTBTGbm9P6kHxIci9EVOeUAHtBt
-         f11VZZ3zhZBYIShyFflqBaVkeoFLsI9KJ3WDn9bw8uYzOQ3mtH7G1kCHjQdJ1dwREHGi
-         Gqkg==
-X-Gm-Message-State: AOAM533CeuOp6Nfzseg3bZrU70o/5JNfxTmsrhFeZ5e9FWLd+VHAnDtO
-        YOVpxnpumoWn9gdF4p/8OL+rvDjGhLZYy7Pc2xs=
-X-Google-Smtp-Source: ABdhPJwSDDz4TE6sadCDI/RecsWsWwtUR1aurcIP7xOgVOCztaHDjYL3sBqGPY1fgydumKDd9nc51zG5zXHB/E95oHw=
-X-Received: by 2002:a05:6512:1102:: with SMTP id l2mr8472685lfg.500.1608643543723;
- Tue, 22 Dec 2020 05:25:43 -0800 (PST)
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=1h+XS3Jpg37m9OWU9Zgfs5kJQZ5F9azt5axjaoAFa+o=;
+        b=oGYm5yOwufGYNEnqgh5L6L+6YQxwzmEatBCEGNEuvWf1sbgXjXJ0+bGMehryZzGA8s
+         GRbLrcCG9iVb7wh7R6HuDKGQ75VsqjNaBu5QHV7ennrlJx1EA76U/oL35oWi+JTgPXls
+         rJDxaIoxFUr5C9uPLR/Kuko/Fg0AM1HCcAUB8tNaIKFTtch24PzuwtZW7TZICshrW7+b
+         FPguSS+Zu/AGuivHBdT0GDzcW5c8twtOWwPXb6muudQ7EbIoJR8RRKYiVbSygOS14sAC
+         +qkr9wQAa/ySurqWzvYhYUWucjoRpoTsnWSOsA/yfxOVAv2SkXJBfHpIjq0U0Xa4VJl2
+         9ulg==
+X-Gm-Message-State: AOAM530paVP8ozDbSj3XU4DM5n7LjI82w6uP82MFYXcxBbgeHrXU0JN+
+        QhONieOz0Te0cQgH2U4gZEwjweqYgvT1xg==
+X-Google-Smtp-Source: ABdhPJyQG7N3kXgSBl8zSeDDDpQE2eNi22yYVF7ddAXWlUZNzn4bpdY2d8S070MVCt/SQB5C6Vxhlg==
+X-Received: by 2002:a92:b652:: with SMTP id s79mr21318208ili.251.1608643941395;
+        Tue, 22 Dec 2020 05:32:21 -0800 (PST)
+Received: from [172.22.22.4] (c-73-185-129-58.hsd1.mn.comcast.net. [73.185.129.58])
+        by smtp.googlemail.com with ESMTPSA id o7sm23739687iov.1.2020.12.22.05.32.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 22 Dec 2020 05:32:20 -0800 (PST)
+Subject: Re: [PATCH] dt-bindings: net: qcom,ipa: Drop unnecessary type ref on
+ 'memory-region'
+To:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Alex Elder <elder@kernel.org>, netdev@vger.kernel.org
+References: <20201222040121.1314370-1-robh@kernel.org>
+From:   Alex Elder <elder@ieee.org>
+Message-ID: <8d7ee97e-1730-908f-9576-88950fd59c91@ieee.org>
+Date:   Tue, 22 Dec 2020 07:32:20 -0600
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.5.0
 MIME-Version: 1.0
-References: <20201222081057.26401-1-alice.guo@oss.nxp.com> <20201222081057.26401-4-alice.guo@oss.nxp.com>
-In-Reply-To: <20201222081057.26401-4-alice.guo@oss.nxp.com>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Tue, 22 Dec 2020 10:25:32 -0300
-Message-ID: <CAOMZO5C2L1R1YrnoHL19ztCA5kzOLYQHC2OY2LFi2Lh8sbv24Q@mail.gmail.com>
-Subject: Re: [PATCH v9 4/4] soc: imx8m: change to use platform driver
-To:     "Alice Guo (OSS)" <alice.guo@oss.nxp.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20201222040121.1314370-1-robh@kernel.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Alice,
+On 12/21/20 10:01 PM, Rob Herring wrote:
+> 'memory-region' is a common property, so it doesn't need a type ref here.
 
-On Tue, Dec 22, 2020 at 5:11 AM Alice Guo (OSS) <alice.guo@oss.nxp.com> wrote:
+Acked-by: Alex Elder <elder@linaro.org>
 
-> -       soc_uid = readl_relaxed(ocotp_base + OCOTP_UID_HIGH);
-> -       soc_uid <<= 32;
-> -       soc_uid |= readl_relaxed(ocotp_base + OCOTP_UID_LOW);
-> +       if (dev) {
-> +               int ret = 0;
+> Cc: "David S. Miller" <davem@davemloft.net>
+> Cc: Jakub Kicinski <kuba@kernel.org>
+> Cc: Alex Elder <elder@kernel.org>
+> Cc: netdev@vger.kernel.org
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+> I'll take this via the DT tree.
+> 
+>   Documentation/devicetree/bindings/net/qcom,ipa.yaml | 1 -
+>   1 file changed, 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/qcom,ipa.yaml b/Documentation/devicetree/bindings/net/qcom,ipa.yaml
+> index d0cbbcf1b0e5..8a2d12644675 100644
+> --- a/Documentation/devicetree/bindings/net/qcom,ipa.yaml
+> +++ b/Documentation/devicetree/bindings/net/qcom,ipa.yaml
+> @@ -121,7 +121,6 @@ properties:
+>         receive and act on notifications of modem up/down events.
+>   
+>     memory-region:
+> -    $ref: /schemas/types.yaml#/definitions/phandle-array
+>       maxItems: 1
+>       description:
+>         If present, a phandle for a reserved memory area that holds
+> 
 
-No need to initialize ret to 0.
-
-> -       imx8mm_soc_uid();
-> +       if (dev) {
-> +               int ret = 0;
-
-Ditto.
-
-
-> +/* Retain device_initcall is for backward compatibility with DTS. */
-> +static int __init imx8_soc_init(void)
-> +{
-> +       int ret = 0;
-
-Ditto.
-
-> +
-> +       if (of_find_matching_node_and_match(NULL, imx8_soc_match, NULL))
-> +               return 0;
-> +
-> +       ret = imx8_soc_info(NULL);
-> +       return ret;
-
-Or you could even get rid of 'ret' and return imx8_soc_info() directly.
