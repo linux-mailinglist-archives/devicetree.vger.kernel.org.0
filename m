@@ -2,160 +2,284 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 384852E0B3E
-	for <lists+devicetree@lfdr.de>; Tue, 22 Dec 2020 14:59:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 46EBA2E0B4B
+	for <lists+devicetree@lfdr.de>; Tue, 22 Dec 2020 15:01:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726979AbgLVN70 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Dec 2020 08:59:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34928 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726954AbgLVN7Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Dec 2020 08:59:25 -0500
-Received: from mail-il1-x129.google.com (mail-il1-x129.google.com [IPv6:2607:f8b0:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9ED7C0613D3;
-        Tue, 22 Dec 2020 05:58:44 -0800 (PST)
-Received: by mail-il1-x129.google.com with SMTP id r17so12018666ilo.11;
-        Tue, 22 Dec 2020 05:58:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=6i7NrwLKDslBTejJUhiHwrawTUVbXT/BNONd/vz+wMw=;
-        b=dFQocZHAgVe5+oSTsSRYS7k1Y+hX5WOWcDN65k0FcxGHpDCpafbKBpUuS+KLs3cTgO
-         CGPNptel+VHIL89ETlx2VzXLKn0j2tlSlEc7Mfodz6Nmn0NCszG3lYl79dnPBeYuubXm
-         sjdHKDAl4BPcpgNWlfRmFZq9M/BGSLdX3myijNGMAaIr3+CTySruzftKB+OIsVPE6U/J
-         FOspbDbnu/ZgmuDS66F7SHSQtt1AbOaM4/Ium6OWL/ZOXzLMvwqDJw1NQJE5y/HQXCuj
-         4iY0IhlXiapV4pwL7RLRv1v2vokTu5Iuvtw13t1Z3S1smQf1P5ytRuY2vlbXXTn+4Tvd
-         lYqw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=6i7NrwLKDslBTejJUhiHwrawTUVbXT/BNONd/vz+wMw=;
-        b=tj3yV0W50gneSlG2JA+AlATuugLLe9Vo9WpAgsaciQOpJf4qkMxh0F3Po5J2iuekey
-         IDTrwQFzK/BTu4bz2zX558GXIXocTLtEZh+er1vgeJnk5wll38y8MxjwVfdtDR6jelrR
-         DLl0nZmIZ2TQDO3ZODF4GxiWoXx0KNmA8uLVrUQnoF6vyrshhDr93LOAw+l544kdZ+J7
-         RY65aqA9I0bcQDHnCgHjhZo69FHxw2dB+agf7bkNb5PnhpCOUGndI+6pbzTWDt6Tgao2
-         /QAZLQEJQb1gF5U1M84h/+r6JqskDM3HO6G9p0/aarImO6r1d+p24Fs5u5sJN8AEOPOn
-         dRoA==
-X-Gm-Message-State: AOAM531nqBDmI/VIBAL5yuzsPoU7YOOJzeDn3/2ANyLkWkAPq2eDECup
-        1FzY4BAF801EAZ9QSFnR3fBHuX8I2bjNZpFDLXSn5fwoaaY=
-X-Google-Smtp-Source: ABdhPJwYgwMXbi+Yk/cnr6cxtkRgpZGKk8ZSMGaQNUwYvN0cvcQaUj1UmhlHT9IRV1ry42oBJU9jIhZIMNHiS1hDRTQ=
-X-Received: by 2002:a92:d2cf:: with SMTP id w15mr21342632ilg.214.1608645524117;
- Tue, 22 Dec 2020 05:58:44 -0800 (PST)
+        id S1727155AbgLVOAw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Dec 2020 09:00:52 -0500
+Received: from mailgw01.mediatek.com ([210.61.82.183]:59933 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1727050AbgLVOAw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Dec 2020 09:00:52 -0500
+X-UUID: e7a17596386048a79cceac2aea50eae5-20201222
+X-UUID: e7a17596386048a79cceac2aea50eae5-20201222
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
+        (envelope-from <weiyi.lu@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1638723132; Tue, 22 Dec 2020 22:00:05 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Tue, 22 Dec 2020 22:00:00 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 22 Dec 2020 22:00:00 +0800
+From:   Weiyi Lu <weiyi.lu@mediatek.com>
+To:     Enric Balletbo Serra <eballetbo@gmail.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Rob Herring <robh@kernel.org>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Weiyi Lu <weiyi.lu@mediatek.com>
+Subject: [PATCH v4] arm64: dts: mediatek: Add mt8192 power domains controller
+Date:   Tue, 22 Dec 2020 21:59:54 +0800
+Message-ID: <1608645594-18809-1-git-send-email-weiyi.lu@mediatek.com>
+X-Mailer: git-send-email 1.8.1.1.dirty
 MIME-Version: 1.0
-References: <20201213183759.223246-1-aford173@gmail.com> <20201213183759.223246-18-aford173@gmail.com>
- <CAMuHMdWN91xmx5bVb2ww67iHm+b8umeB3WgBQdnR5M3_WcK=7Q@mail.gmail.com>
-In-Reply-To: <CAMuHMdWN91xmx5bVb2ww67iHm+b8umeB3WgBQdnR5M3_WcK=7Q@mail.gmail.com>
-From:   Adam Ford <aford173@gmail.com>
-Date:   Tue, 22 Dec 2020 07:58:33 -0600
-Message-ID: <CAHCN7xKEBUjkgksdqP2V+P9wwC9ZH=EZg7kK=txxTWp8A8=rWA@mail.gmail.com>
-Subject: Re: [PATCH 17/18] arm64: dts: renesas: Introduce r8a774b1-beacon-rzg2n-kit
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Adam Ford-BE <aford@beaconembedded.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 17, 2020 at 5:49 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
->
-> Hi Adam,
->
-> On Sun, Dec 13, 2020 at 7:38 PM Adam Ford <aford173@gmail.com> wrote:
-> > Beacon EmebeddedWorks is introducing a new kit based on the
-> > RZ/G2N SoC from Renesas.
-> >
-> > The SOM supports eMMC, WiFi and Bluetooth, along with a Cat-M1
-> > cellular radio.
-> >
-> > The Baseboard has Ethernet, USB, HDMI, stereo audio in and out,
-> > along with a variety of push buttons and LED's, and support for
-> > a parallel RGB and an LVDS display.  It uses the same baseboard
-> > and SOM as the RZ/G2M.
-> >
-> > Signed-off-by: Adam Ford <aford173@gmail.com>
->
-> Thanks for your patch!
+Add power domains controller node for SoC mt8192
 
-Thank you for the review!
+Signed-off-by: Weiyi Lu <weiyi.lu@mediatek.com>
+---
+This patch is base on v5.10-rc1,
+series "Add new driver for SCPSYS power domains controller"[1]
+and series "Add MediaTek MT8192 clock provider device nodes"[2]
 
->
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/renesas/r8a774b1-beacon-rzg2n-kit.dts
-> > @@ -0,0 +1,43 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +/*
-> > + * Copyright 2020, Compass Electronics Group, LLC
-> > + */
-> > +
-> > +/dts-v1/;
-> > +
-> > +#include "r8a774b1.dtsi"
-> > +#include "beacon-renesom-som.dtsi"
-> > +#include "beacon-renesom-baseboard.dtsi"
-> > +
-> > +/ {
-> > +       model = "Beacon Embedded Works RZ/G2N Development Kit";
-> > +       compatible =    "beacon,beacon-rzg2n", "renesas,r8a774b1";
-> > +
-> > +       aliases {
-> > +               serial0 = &scif2;
-> > +               serial1 = &hscif0;
-> > +               serial2 = &hscif1;
-> > +               serial3 = &scif0;
-> > +               serial4 = &hscif2;
-> > +               serial5 = &scif5;
-> > +               serial6 = &scif4;
-> > +               ethernet0 = &avb;
-> > +       };
-> > +
-> > +       chosen {
-> > +               stdout-path = "serial0:115200n8";
-> > +       };
->
-> No memory nodes? Are you relying on U-Boot to fill them in?
-> If yes, why do you have them in the other board DTS files?
+[1] https://patchwork.kernel.org/project/linux-mediatek/list/?series=374013
+[2] https://patchwork.kernel.org/project/linux-mediatek/list/?series=405329
 
-There is already a memory node included in the beacon-renesom.dtsi
-file which is defining memory@48000000 node which is common to the M,
-N and H.   If I understand it correctly, the extra memory nodes
-defined in the higher-level dts for M and H variation are not
-applicable on the N.
+change since v4: correct the power domain node names
 
->
-> > +};
-> > +
-> > +&du {
-> > +       status = "okay";
->
-> Missing pinctrl properties?
->
-oops.  I'll fix.
-> > +
-> > +       clocks = <&cpg CPG_MOD 724>,
-> > +               <&cpg CPG_MOD 723>,
-> > +               <&cpg CPG_MOD 721>,
-> > +               <&versaclock5 1>,
-> > +               <&x302_clk>,
-> > +               <&versaclock5 2>;
-> > +       clock-names = "du.0", "du.1", "du.3",
-> > +               "dclkin.0", "dclkin.1", "dclkin.3";
-> > +};
->
-> Gr{oetje,eeting}s,
->
->                         Geert
->
-> --
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
->
-> In personal conversations with technical people, I call myself a hacker. But
-> when I'm talking to journalists I just say "programmer" or something like that.
->                                 -- Linus Torvalds
+ arch/arm64/boot/dts/mediatek/mt8192.dtsi | 201 +++++++++++++++++++++++++++++++
+ 1 file changed, 201 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+index ac5dca6..9958a64 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+@@ -9,6 +9,7 @@
+ #include <dt-bindings/interrupt-controller/arm-gic.h>
+ #include <dt-bindings/interrupt-controller/irq.h>
+ #include <dt-bindings/pinctrl/mt8192-pinfunc.h>
++#include <dt-bindings/power/mt8192-power.h>
+ 
+ / {
+ 	compatible = "mediatek,mt8192";
+@@ -257,6 +258,206 @@
+ 			#interrupt-cells = <2>;
+ 		};
+ 
++		scpsys: syscon@10006000 {
++			compatible = "syscon", "simple-mfd";
++			reg = <0 0x10006000 0 0x1000>;
++			#power-domain-cells = <1>;
++
++			/* System Power Manager */
++			spm: power-controller {
++				compatible = "mediatek,mt8192-power-controller";
++				#address-cells = <1>;
++				#size-cells = <0>;
++				#power-domain-cells = <1>;
++
++				/* power domain of the SoC */
++				power-domain@MT8192_POWER_DOMAIN_AUDIO {
++					reg = <MT8192_POWER_DOMAIN_AUDIO>;
++					clocks = <&topckgen CLK_TOP_AUD_INTBUS_SEL>,
++						 <&infracfg CLK_INFRA_AUDIO_26M_B>,
++						 <&infracfg CLK_INFRA_AUDIO>;
++					clock-names = "audio", "audio1", "audio2";
++					mediatek,infracfg = <&infracfg>;
++					#power-domain-cells = <0>;
++				};
++
++				power-domain@MT8192_POWER_DOMAIN_CONN {
++					reg = <MT8192_POWER_DOMAIN_CONN>;
++					clocks = <&infracfg CLK_INFRA_PMIC_CONN>;
++					clock-names = "conn";
++					mediatek,infracfg = <&infracfg>;
++					#power-domain-cells = <0>;
++				};
++
++				power-domain@MT8192_POWER_DOMAIN_MFG0 {
++					reg = <MT8192_POWER_DOMAIN_MFG0>;
++					clocks = <&topckgen CLK_TOP_MFG_PLL_SEL>;
++					clock-names = "mfg";
++					#address-cells = <1>;
++					#size-cells = <0>;
++					#power-domain-cells = <1>;
++
++					power-domain@MT8192_POWER_DOMAIN_MFG1 {
++						reg = <MT8192_POWER_DOMAIN_MFG1>;
++						mediatek,infracfg = <&infracfg>;
++						#address-cells = <1>;
++						#size-cells = <0>;
++						#power-domain-cells = <1>;
++
++						power-domain@MT8192_POWER_DOMAIN_MFG2 {
++							reg = <MT8192_POWER_DOMAIN_MFG2>;
++							#power-domain-cells = <0>;
++						};
++
++						power-domain@MT8192_POWER_DOMAIN_MFG3 {
++							reg = <MT8192_POWER_DOMAIN_MFG3>;
++							#power-domain-cells = <0>;
++						};
++
++						power-domain@MT8192_POWER_DOMAIN_MFG4 {
++							reg = <MT8192_POWER_DOMAIN_MFG4>;
++							#power-domain-cells = <0>;
++						};
++
++						power-domain@MT8192_POWER_DOMAIN_MFG5 {
++							reg = <MT8192_POWER_DOMAIN_MFG5>;
++							#power-domain-cells = <0>;
++						};
++
++						power-domain@MT8192_POWER_DOMAIN_MFG6 {
++							reg = <MT8192_POWER_DOMAIN_MFG6>;
++							#power-domain-cells = <0>;
++						};
++					};
++				};
++
++				power-domain@MT8192_POWER_DOMAIN_DISP {
++					reg = <MT8192_POWER_DOMAIN_DISP>;
++					clocks = <&topckgen CLK_TOP_DISP_SEL>,
++						 <&mmsys CLK_MM_SMI_INFRA>,
++						 <&mmsys CLK_MM_SMI_COMMON>,
++						 <&mmsys CLK_MM_SMI_GALS>,
++						 <&mmsys CLK_MM_SMI_IOMMU>;
++					clock-names = "disp", "disp-0", "disp-1", "disp-2",
++						      "disp-3";
++					mediatek,infracfg = <&infracfg>;
++					#address-cells = <1>;
++					#size-cells = <0>;
++					#power-domain-cells = <1>;
++
++					power-domain@MT8192_POWER_DOMAIN_IPE {
++						reg = <MT8192_POWER_DOMAIN_IPE>;
++						clocks = <&topckgen CLK_TOP_IPE_SEL>,
++							 <&ipesys CLK_IPE_LARB19>,
++							 <&ipesys CLK_IPE_LARB20>,
++							 <&ipesys CLK_IPE_SMI_SUBCOM>,
++							 <&ipesys CLK_IPE_GALS>;
++						clock-names = "ipe", "ipe-0", "ipe-1", "ipe-2",
++							      "ipe-3";
++						mediatek,infracfg = <&infracfg>;
++						#power-domain-cells = <0>;
++					};
++
++					power-domain@MT8192_POWER_DOMAIN_ISP {
++						reg = <MT8192_POWER_DOMAIN_ISP>;
++						clocks = <&topckgen CLK_TOP_IMG1_SEL>,
++							 <&imgsys CLK_IMG_LARB9>,
++							 <&imgsys CLK_IMG_GALS>;
++						clock-names = "isp", "isp-0", "isp-1";
++						mediatek,infracfg = <&infracfg>;
++						#power-domain-cells = <0>;
++					};
++
++					power-domain@MT8192_POWER_DOMAIN_ISP2 {
++						reg = <MT8192_POWER_DOMAIN_ISP2>;
++						clocks = <&topckgen CLK_TOP_IMG2_SEL>,
++							 <&imgsys2 CLK_IMG2_LARB11>,
++							 <&imgsys2 CLK_IMG2_GALS>;
++						clock-names = "isp2", "isp2-0", "isp2-1";
++						mediatek,infracfg = <&infracfg>;
++						#power-domain-cells = <0>;
++					};
++
++					power-domain@MT8192_POWER_DOMAIN_MDP {
++						reg = <MT8192_POWER_DOMAIN_MDP>;
++						clocks = <&topckgen CLK_TOP_MDP_SEL>,
++							 <&mdpsys CLK_MDP_SMI0>;
++						clock-names = "mdp", "mdp-0";
++						mediatek,infracfg = <&infracfg>;
++						#power-domain-cells = <0>;
++					};
++
++					power-domain@MT8192_POWER_DOMAIN_VENC {
++						reg = <MT8192_POWER_DOMAIN_VENC>;
++						clocks = <&topckgen CLK_TOP_VENC_SEL>,
++							 <&vencsys CLK_VENC_SET1_VENC>;
++						clock-names = "venc", "venc-0";
++						mediatek,infracfg = <&infracfg>;
++						#power-domain-cells = <0>;
++					};
++
++					power-domain@MT8192_POWER_DOMAIN_VDEC {
++						reg = <MT8192_POWER_DOMAIN_VDEC>;
++						clocks = <&topckgen CLK_TOP_VDEC_SEL>,
++							 <&vdecsys_soc CLK_VDEC_SOC_VDEC>,
++							 <&vdecsys_soc CLK_VDEC_SOC_LAT>,
++							 <&vdecsys_soc CLK_VDEC_SOC_LARB1>;
++						clock-names = "vdec", "vdec-0", "vdec-1", "vdec-2";
++						mediatek,infracfg = <&infracfg>;
++						#address-cells = <1>;
++						#size-cells = <0>;
++						#power-domain-cells = <1>;
++
++						power-domain@MT8192_POWER_DOMAIN_VDEC2 {
++							reg = <MT8192_POWER_DOMAIN_VDEC2>;
++							clocks = <&vdecsys CLK_VDEC_VDEC>,
++								 <&vdecsys CLK_VDEC_LAT>,
++								 <&vdecsys CLK_VDEC_LARB1>;
++							clock-names = "vdec2-0", "vdec2-1",
++								      "vdec2-2";
++							#power-domain-cells = <0>;
++						};
++					};
++
++					power-domain@MT8192_POWER_DOMAIN_CAM {
++						reg = <MT8192_POWER_DOMAIN_CAM>;
++						clocks = <&topckgen CLK_TOP_CAM_SEL>,
++							 <&camsys CLK_CAM_LARB13>,
++							 <&camsys CLK_CAM_LARB14>,
++							 <&camsys CLK_CAM_CCU_GALS>,
++							 <&camsys CLK_CAM_CAM2MM_GALS>;
++						clock-names = "cam", "cam-0", "cam-1", "cam-2",
++							      "cam-3";
++						mediatek,infracfg = <&infracfg>;
++						#address-cells = <1>;
++						#size-cells = <0>;
++						#power-domain-cells = <1>;
++
++						power-domain@MT8192_POWER_DOMAIN_CAM_RAWA {
++							reg = <MT8192_POWER_DOMAIN_CAM_RAWA>;
++							clocks = <&camsys_rawa CLK_CAM_RAWA_LARBX>;
++							clock-names = "cam_rawa-0";
++							#power-domain-cells = <0>;
++						};
++
++						power-domain@MT8192_POWER_DOMAIN_CAM_RAWB {
++							reg = <MT8192_POWER_DOMAIN_CAM_RAWB>;
++							clocks = <&camsys_rawb CLK_CAM_RAWB_LARBX>;
++							clock-names = "cam_rawb-0";
++							#power-domain-cells = <0>;
++						};
++
++						power-domain@MT8192_POWER_DOMAIN_CAM_RAWC {
++							reg = <MT8192_POWER_DOMAIN_CAM_RAWC>;
++							clocks = <&camsys_rawc CLK_CAM_RAWC_LARBX>;
++							clock-names = "cam_rawc-0";
++							#power-domain-cells = <0>;
++						};
++					};
++				};
++			};
++		};
++
+ 		apmixedsys: syscon@1000c000 {
+ 			compatible = "mediatek,mt8192-apmixedsys", "syscon";
+ 			reg = <0 0x1000c000 0 0x1000>;
+-- 
+1.8.1.1.dirty
+
