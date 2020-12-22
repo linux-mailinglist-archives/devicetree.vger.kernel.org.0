@@ -2,137 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 20F572E0FCD
-	for <lists+devicetree@lfdr.de>; Tue, 22 Dec 2020 22:22:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E97A2E0FE4
+	for <lists+devicetree@lfdr.de>; Tue, 22 Dec 2020 22:44:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727958AbgLVVUm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Dec 2020 16:20:42 -0500
-Received: from mail-eopbgr700072.outbound.protection.outlook.com ([40.107.70.72]:4609
-        "EHLO NAM04-SN1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726956AbgLVVUl (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 22 Dec 2020 16:20:41 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=N2pbrt1/B5Ys+UNTwcxW4TuP1lv0WurkOCA6a4SAan/LNINH9tthxG0AsKw1qQb8fbtKYMPkHlfSPDx9BN5a4yNN6f6+mLIVU1hrqUUHj6iAmXiBVerfbEIBquEPQP1MleefR7EySmBRAlUaAvhk/lwx/bIvnvufb1mwZm4xCb4zfObrk8ODIhsZe+G/zR71jOFVdDmR21G3gImcONaYf/6wAP8A3rPHWVr5VOC0X7uoB/W3nG2uY+m3nHUG/pHUNMnq1fDuIi52Xs9rQh0tuA6ax2mTXxZX6orl0gszOmTwafL8dTe5qhqwUd0UIbHmrDPUpeJE59OYJMsHIZ+Gpw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2H65VfoglVU7uCSWkPYTYyM4ek3Snpa6OxsdklT6its=;
- b=n2Z7gEHFve28gL9OPy9GjteE3QqSG+878WjU6q3vvCxjLD3paiSP3tdFfgnGjSjL6t3W+Q79yqwsSSPAhGsgWl1G5ikqwlJIN297Bkk/EILRB2WGQrtMFacK9yxYu6dcyN77ipXZ0TubMUy7ATDoqJOQQcHpybZXMFK69lAcnvQqL6lpTPXmRgPrlEoqywMVnd1OYXoGr2NAqa4Aa0VJHFftKi4HMFTA1Da3ZNFpNpTGENOKiieIY98gMDMWCU3joaxgJUvUT4qMRMj28ZqQe7RegexG6oWoNc9elQt7OLYNb5KOcCTto1GZOwhf8zWmgX0uF5dCjxJ9pv488R8s7A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=silabs.com; dmarc=pass action=none header.from=silabs.com;
- dkim=pass header.d=silabs.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=silabs.onmicrosoft.com; s=selector2-silabs-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2H65VfoglVU7uCSWkPYTYyM4ek3Snpa6OxsdklT6its=;
- b=FPJep2fPFh0RMvMPoIQnpmPioHm969i2eTNjWZkwo485WzE+m53bY/Y+UI8DwwXQlddkGs9H5eCRhW3NEq67qfBgZhzbikbdAkCJg2rHomFlihU/xFw3VY51shIHv17ACKNqTC4jYk1gwHpmHbb22BJOjxBGOMxBM0YFzFZUlek=
-Authentication-Results: codeaurora.org; dkim=none (message not signed)
- header.d=none;codeaurora.org; dmarc=none action=none header.from=silabs.com;
-Received: from SN6PR11MB2718.namprd11.prod.outlook.com (2603:10b6:805:63::18)
- by SA0PR11MB4637.namprd11.prod.outlook.com (2603:10b6:806:97::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3676.29; Tue, 22 Dec
- 2020 21:19:56 +0000
-Received: from SN6PR11MB2718.namprd11.prod.outlook.com
- ([fe80::a989:f850:6736:97ca]) by SN6PR11MB2718.namprd11.prod.outlook.com
- ([fe80::a989:f850:6736:97ca%5]) with mapi id 15.20.3700.026; Tue, 22 Dec 2020
- 21:19:56 +0000
-From:   =?ISO-8859-1?Q?J=E9r=F4me?= Pouiller <jerome.pouiller@silabs.com>
-To:     Kalle Valo <kvalo@codeaurora.org>
-Cc:     linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
-        devel@driverdev.osuosl.org, linux-kernel@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linux-mmc@vger.kernel.org,
-        Pali =?ISO-8859-1?Q?Roh=E1r?= <pali@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>
-Subject: Re: [PATCH v3 03/24] wfx: add Makefile/Kconfig
-Date:   Tue, 22 Dec 2020 22:19:52 +0100
-Message-ID: <9810105.nUPlyArG6x@pc-42>
-Organization: Silicon Labs
-In-Reply-To: <8735zxanox.fsf@codeaurora.org>
-References: <20201104155207.128076-1-Jerome.Pouiller@silabs.com> <20201104155207.128076-4-Jerome.Pouiller@silabs.com> <8735zxanox.fsf@codeaurora.org>
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Originating-IP: [82.67.86.106]
-X-ClientProxiedBy: SA0PR11CA0107.namprd11.prod.outlook.com
- (2603:10b6:806:d1::22) To SN6PR11MB2718.namprd11.prod.outlook.com
- (2603:10b6:805:63::18)
+        id S1727719AbgLVVny (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Dec 2020 16:43:54 -0500
+Received: from mx0b-001b2d01.pphosted.com ([148.163.158.5]:10458 "EHLO
+        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1727691AbgLVVny (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 22 Dec 2020 16:43:54 -0500
+Received: from pps.filterd (m0098413.ppops.net [127.0.0.1])
+        by mx0b-001b2d01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 0BMLWFjs009803;
+        Tue, 22 Dec 2020 16:42:32 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=references : from : to :
+ cc : subject : in-reply-to : date : message-id : mime-version :
+ content-type; s=pp1; bh=R7AU34tNfE0Ufx8iMqWSvclFjcXLGDL0cBWvu+QX9Hk=;
+ b=O3bMEIg/1UBrc8niWJJ/PGGYTnZjWypnNsIHGm52Eltj5YlsxTBfgTV2brm53NU0VI8W
+ OH4TOiqbORYzdynjjJ9hH9toMtRWqAPqefiDrGuQLbkqAGDsAi4IUnd9tVrbMJyTxqFo
+ 4YDWSJyeEwutZN0SoDT/zltX+Isk2Z7zQl3+fkWw/2UV8HqxW9CyMMaMQ7JnNd0xJGSv
+ JMuvNCOrPaUzv+NdeV58PHyo++GpqPc5tmKkinKppczSiQKkZT/lnI12KYOmlP2tixMW
+ +54/wtP4kNzjuA5fk3xop5XAUGMifSJ5D96TVqPhLsrZXXH/yH9hgXRLv/uJFY1pV+7W Ig== 
+Received: from pps.reinject (localhost [127.0.0.1])
+        by mx0b-001b2d01.pphosted.com with ESMTP id 35kqaxt91g-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 22 Dec 2020 16:42:32 -0500
+Received: from m0098413.ppops.net (m0098413.ppops.net [127.0.0.1])
+        by pps.reinject (8.16.0.36/8.16.0.36) with SMTP id 0BMLbTR6029051;
+        Tue, 22 Dec 2020 16:42:31 -0500
+Received: from ppma01dal.us.ibm.com (83.d6.3fa9.ip4.static.sl-reverse.com [169.63.214.131])
+        by mx0b-001b2d01.pphosted.com with ESMTP id 35kqaxt917-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 22 Dec 2020 16:42:31 -0500
+Received: from pps.filterd (ppma01dal.us.ibm.com [127.0.0.1])
+        by ppma01dal.us.ibm.com (8.16.0.42/8.16.0.42) with SMTP id 0BMLajgI010111;
+        Tue, 22 Dec 2020 21:42:30 GMT
+Received: from b01cxnp22036.gho.pok.ibm.com (b01cxnp22036.gho.pok.ibm.com [9.57.198.26])
+        by ppma01dal.us.ibm.com with ESMTP id 35kejb4rc3-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 22 Dec 2020 21:42:30 +0000
+Received: from b01ledav004.gho.pok.ibm.com (b01ledav004.gho.pok.ibm.com [9.57.199.109])
+        by b01cxnp22036.gho.pok.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 0BMLgTCh11993416
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Tue, 22 Dec 2020 21:42:30 GMT
+Received: from b01ledav004.gho.pok.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id E3FC7112061;
+        Tue, 22 Dec 2020 21:42:29 +0000 (GMT)
+Received: from b01ledav004.gho.pok.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 31DC5112062;
+        Tue, 22 Dec 2020 21:42:23 +0000 (GMT)
+Received: from manicouagan.localdomain (unknown [9.80.219.136])
+        by b01ledav004.gho.pok.ibm.com (Postfix) with ESMTPS;
+        Tue, 22 Dec 2020 21:42:22 +0000 (GMT)
+References: <20201211221006.1052453-1-robh@kernel.org>
+ <20201211221006.1052453-2-robh@kernel.org>
+User-agent: mu4e 1.4.10; emacs 27.1
+From:   Thiago Jung Bauermann <bauerman@linux.ibm.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Lakshmi Ramasubramanian <nramas@linux.microsoft.com>,
+        takahiro.akashi@linaro.org, will@kernel.org,
+        catalin.marinas@arm.com, mpe@ellerman.id.au, zohar@linux.ibm.com,
+        james.morse@arm.com, sashal@kernel.org, benh@kernel.crashing.org,
+        paulus@samba.org, frowand.list@gmail.com,
+        vincenzo.frascino@arm.com, mark.rutland@arm.com,
+        dmitry.kasatkin@gmail.com, jmorris@namei.org, serge@hallyn.com,
+        pasha.tatashin@soleen.com, allison@lohutok.net,
+        masahiroy@kernel.org, bhsharma@redhat.com, mbrugger@suse.com,
+        hsinyi@chromium.org, tao.li@vivo.com, christophe.leroy@c-s.fr,
+        linux-integrity@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        prsriva@linux.microsoft.com, balajib@linux.microsoft.com
+Subject: Re: [RFC PATCH 1/4] powerpc: Rename kexec elfcorehdr_addr to
+ elf_headers_mem
+In-reply-to: <20201211221006.1052453-2-robh@kernel.org>
+Date:   Tue, 22 Dec 2020 18:42:21 -0300
+Message-ID: <87pn31ldqa.fsf@manicouagan.localdomain>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from pc-42.localnet (82.67.86.106) by SA0PR11CA0107.namprd11.prod.outlook.com (2603:10b6:806:d1::22) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3700.27 via Frontend Transport; Tue, 22 Dec 2020 21:19:54 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: b92f5a8c-1311-410b-1ea0-08d8a6bf54f9
-X-MS-TrafficTypeDiagnostic: SA0PR11MB4637:
-X-Microsoft-Antispam-PRVS: <SA0PR11MB46371B6EDD267A3FA9F578A593DF0@SA0PR11MB4637.namprd11.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:4714;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 99L3hI0mk1ojn7DljnWCRGwU5Gbcsq8/M8e7iSIULRjVb7ix1MuCoaQXpzvkDdZpJq4s0ZpZCMz8HiAjkEon39LLcRTrCnqoT4WsqThH/RfCz8W4asi7f53FtpyBNEnaZbO1ME/mM3cNNhsM3oV93bUs3oU/GYnMeA5TqDNwpaqHPwreBnCEujniXtvIYHvFwmjmAq8LUiqhfzu4K6kihEii8gk2icXCDkYHv0qWA3LObECwD0Oz18oO2BMKQcXU6QAXJ/MiWTxirpvAMmaIafOJZv792XA0tKfR/MG57ZEC7jBekPVLrqCdkKl8/dd/rrKocGJld5aWw5Y44qsYOU+h7ADUIdi/yQbXQ/76xthKi5vMXBIfFtSq0yENgAS7O1aRcvTIl6dW2F4hsjgpkyENOeSwwhXVCtxgjyEa/WIdyKaGeyfDza7YBpiNRVMO
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN6PR11MB2718.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(396003)(39850400004)(346002)(366004)(376002)(136003)(478600001)(33716001)(6916009)(956004)(6506007)(4744005)(8936002)(5660300002)(26005)(8676002)(52116002)(7416002)(9686003)(66476007)(2906002)(6486002)(54906003)(66946007)(66556008)(6512007)(4326008)(316002)(186003)(36916002)(16526019)(86362001)(39026012);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: =?iso-8859-1?Q?I5u2OfllaY56m+hmFlXAWvgcUAOOtQA86eKQd79alU8pfluDZ8Iys2EEXK?=
- =?iso-8859-1?Q?8jT640Hq4ZlUa2Kh0x4CwSHabWWoLj8J68qjXVerWbuOBB7PcTwJfmoF2i?=
- =?iso-8859-1?Q?leBVDveU39TshGxpdArXa8B4TccR4oVybyvoi35nIPL/CrUWNLxiroo1B6?=
- =?iso-8859-1?Q?LxvblEytecMm5h5I4FDqGubCpDdAUS3b9e5dfKBOO2gOBfpEZ8nB8P14v+?=
- =?iso-8859-1?Q?Ua8jvXoYVJ4DXct5vDIF0GDJPjJw9lweIfBehD8vgbD5nemWOCn78AamQF?=
- =?iso-8859-1?Q?X9kyxlRUh93OL4nCYl2UMKs5ZIl1pA/oviEQBxK35JzHDxBjRebqp1iv5E?=
- =?iso-8859-1?Q?Ahi63E4yoGiRQvLU4hYUkvYWiEwd2m3xMcFlyTSUaJjbb/utHzMaXtAoE9?=
- =?iso-8859-1?Q?jpqCz0EMH6UMuJfzERPGBFLevxUeCMxM5u2GstIcMvt9osz0wptPOuHD5N?=
- =?iso-8859-1?Q?JtnKsMHXDlKJdld31fNuHzVLwAxARMj4K5HYlePYirCZxv7n7U8fn0QxBq?=
- =?iso-8859-1?Q?M+ZQXQsq3ADxJRRquJrpQGxopGm5i69RcIe7j3IktoGPJPWWkoH4sEBW6O?=
- =?iso-8859-1?Q?jIUt8FJXw672D+ZzwXjks7FvAANoRtpNoP+QMHGEe2qmqjNFepChU+CjLx?=
- =?iso-8859-1?Q?zigrVIY1wCjeYjs6zWPS2PzVuc1nN4LjEbjXAMTzEOqJmUQbGPaTsOXkQh?=
- =?iso-8859-1?Q?Y6IM/A/YM3YJQeIVD5rRjYuVoDGK/VlIZwcB6z//A2EjLHQHszjjKDS21U?=
- =?iso-8859-1?Q?BkRdL/Mu2rfweiyQ0USMcU+L1pmDDbOlmaoNDANaWf/o8VWK8+B3SyZ88Q?=
- =?iso-8859-1?Q?PunZNZEQvyRHW2hsN+KkK+xL0JmEkK/b/dY1pOBQTzO71xus3dDyYdHgva?=
- =?iso-8859-1?Q?cvRRRRaCcXtRwA08f+av2IimpGFDqCkSP+2O/HNFvdJKnEENKykr5ICB32?=
- =?iso-8859-1?Q?j3woVl47foVC+HUWHJQTim57KAE1Gk3E4rEhx3WZIQGZS550J846FgBuf5?=
- =?iso-8859-1?Q?c43PsLsbzcWNQvbtnegowQXLdaG9Hpj481bljI?=
-X-OriginatorOrg: silabs.com
-X-MS-Exchange-CrossTenant-AuthSource: SN6PR11MB2718.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Dec 2020 21:19:56.6702
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 54dbd822-5231-4b20-944d-6f4abcd541fb
-X-MS-Exchange-CrossTenant-Network-Message-Id: b92f5a8c-1311-410b-1ea0-08d8a6bf54f9
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: monzteXiqpMyUZIaNGqy05B+TKQm/6QViz8sb++VN4c4GESGhxxXHqfFrgCoyS897kp440lEPabD9wK7zQEYFg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR11MB4637
+Content-Type: text/plain
+X-TM-AS-GCONF: 00
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.343,18.0.737
+ definitions=2020-12-22_11:2020-12-21,2020-12-22 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ adultscore=0 mlxscore=0 malwarescore=0 clxscore=1015 bulkscore=0
+ suspectscore=0 spamscore=0 phishscore=0 mlxlogscore=999 impostorscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2009150000 definitions=main-2012220153
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tuesday 22 December 2020 16:02:38 CET Kalle Valo wrote:
-> Jerome Pouiller <Jerome.Pouiller@silabs.com> writes:
->=20
-> > From: J=E9r=F4me Pouiller <jerome.pouiller@silabs.com>
-> >
-> > Signed-off-by: J=E9r=F4me Pouiller <jerome.pouiller@silabs.com>
->=20
-> [...]
->=20
-> > +wfx-$(CONFIG_SPI) +=3D bus_spi.o
-> > +wfx-$(subst m,y,$(CONFIG_MMC)) +=3D bus_sdio.o
->=20
-> Why this subst? And why only for MMC?
 
-CONFIG_SPI is a boolean (y or empty). The both values make senses.
+Hello Rob,
 
-CONFIG_MMC is a tristate (y, m or empty). The substitution above
-ensure that bus_sdio.o will included in wfx.ko if CONFIG_MMC is 'm'
-("wfx-$(CONFIG_MMC) +=3D bus_sdio.o" wouldn't make the job).
+Thank you for making this series.
 
-You may want to know what it happens if CONFIG_MMC=3Dm while CONFIG_WFX=3Dy=
-.
-This line in Kconfig prevents to compile wfx statically if MMC is a
-module:
-       depends on MMC || !MMC # do not allow WFX=3Dy if MMC=3Dm
+Rob Herring <robh@kernel.org> writes:
 
+> Align with arm64 name so common code can use it.
+>
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+>  arch/powerpc/include/asm/kexec.h  | 2 +-
+>  arch/powerpc/kexec/file_load.c    | 4 ++--
+>  arch/powerpc/kexec/file_load_64.c | 4 ++--
+>  3 files changed, 5 insertions(+), 5 deletions(-)
 
---=20
-J=E9r=F4me Pouiller
+Reviewed-by: Thiago Jung Bauermann <bauerman@linux.ibm.com>
 
-
+-- 
+Thiago Jung Bauermann
+IBM Linux Technology Center
