@@ -2,128 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C67E32E0CE0
-	for <lists+devicetree@lfdr.de>; Tue, 22 Dec 2020 16:45:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 39AD52E0CF3
+	for <lists+devicetree@lfdr.de>; Tue, 22 Dec 2020 17:00:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727645AbgLVPpE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Dec 2020 10:45:04 -0500
-Received: from so254-31.mailgun.net ([198.61.254.31]:43472 "EHLO
-        so254-31.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727315AbgLVPpE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Dec 2020 10:45:04 -0500
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1608651880; h=Content-Type: MIME-Version: Message-ID:
- In-Reply-To: Date: References: Subject: Cc: To: From: Sender;
- bh=V3is/KP9X3iODvQMYSfeCfbe4PwUmMc4FyAr6uEgGbc=; b=rYwX2QVCsBhZgg2K4ovCC9pAzCIT8OxGcYh5lQxVaD0zkqCCmsf0Z2YmpE/HI5xvUGIP/sMh
- pC/g5ZzLGt2j/b7+tligsQPXtqW93D+xb3jIJGbpzywG6rDSyKa7bJFq+jd4ivOQ/69mAWLO
- lxP81y9ukJS/WsVkPsSkbSgryg4=
-X-Mailgun-Sending-Ip: 198.61.254.31
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n06.prod.us-east-1.postgun.com with SMTP id
- 5fe2144cb00c0d7ad4391cab (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 22 Dec 2020 15:44:12
- GMT
-Sender: kvalo=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 88A61C43466; Tue, 22 Dec 2020 15:44:11 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
-        autolearn=no autolearn_force=no version=3.4.0
-Received: from x230.qca.qualcomm.com (88-114-240-156.elisa-laajakaista.fi [88.114.240.156])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: kvalo)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id DEE1FC433C6;
-        Tue, 22 Dec 2020 15:44:07 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org DEE1FC433C6
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=kvalo@codeaurora.org
-From:   Kalle Valo <kvalo@codeaurora.org>
-To:     Jerome Pouiller <Jerome.Pouiller@silabs.com>
-Cc:     linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
-        devel@driverdev.osuosl.org, linux-kernel@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linux-mmc@vger.kernel.org,
-        Pali =?utf-8?Q?Roh?= =?utf-8?Q?=C3=A1r?= <pali@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>
-Subject: Re: [PATCH v3 05/24] wfx: add main.c/main.h
-References: <20201104155207.128076-1-Jerome.Pouiller@silabs.com>
-        <20201104155207.128076-6-Jerome.Pouiller@silabs.com>
-Date:   Tue, 22 Dec 2020 17:44:05 +0200
-In-Reply-To: <20201104155207.128076-6-Jerome.Pouiller@silabs.com> (Jerome
-        Pouiller's message of "Wed, 4 Nov 2020 16:51:48 +0100")
-Message-ID: <87a6u57smy.fsf@codeaurora.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/24.5 (gnu/linux)
+        id S1727201AbgLVP6g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Dec 2020 10:58:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53432 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726832AbgLVP6f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Dec 2020 10:58:35 -0500
+Received: from mail-qk1-x72a.google.com (mail-qk1-x72a.google.com [IPv6:2607:f8b0:4864:20::72a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B53AEC0613D3
+        for <devicetree@vger.kernel.org>; Tue, 22 Dec 2020 07:57:55 -0800 (PST)
+Received: by mail-qk1-x72a.google.com with SMTP id 22so12221560qkf.9
+        for <devicetree@vger.kernel.org>; Tue, 22 Dec 2020 07:57:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=tSbt+6uAU0/n70HJg2Z4UTZW3SPBYifyx/RQerMQRfc=;
+        b=v7KC8FXXHyCRgKzSN1WdkZDILxNnZ3Tz50y2318GZEHFh2OgiVvbWtDas110A8j1bC
+         bEUiYC07U4pNjkhq5tMD+838LcJrm+4obowXGjaHsc3RA+uiGe0rNYbBNCKn52aZEwnC
+         BmcivK/TRVARKJegXMu8ZFzRsFfrV6Y7RPlm3CCXYLmXCCvVZPZII7ey3+RAXWnuHYkw
+         VbEPi9Vqp1tuNwtjvV0bwxS+nhv1FE0yn+SLr/afAFKEWLTfcHUaQtvx/8wiFeBmYSxX
+         ZjtuPMNqwpNZohmsmlH7kRYZXt9GF3YqcZAdXzrmFIEU9pwaL8VXAIbq3OJSqwbpIN0G
+         E/IQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=tSbt+6uAU0/n70HJg2Z4UTZW3SPBYifyx/RQerMQRfc=;
+        b=QXWoZO6kIIR+yknS2Mc5eOOdEjCFaSaslYL31qJykrVEGlWlRV6/5PYvlrpe5omSmD
+         cj+/c//pq0zrhNQK5ohvy1KGsUALszT8nrGqc6pOBysHlHPfVP/VwB6F70sJNzUwMtYL
+         HBrE/AFKUZ4JHitTb9hTTTwu2E/+XgsQDh7s3pUeNt+7NN3OPLAt+Q9ZNa0EH1PKj6yh
+         IOWw3cELWyw6e57NP/MgkhhuHJeWcO/C79KBuoPI+on51DDVAqinRKCyoP2SKkhCPH1E
+         ybkjAxSK/o+XgilJ4R/RmaP0yF7xQLoDg1js92aU9hrGEl8/aAtyKT8aHzNIKrbnoY9x
+         NySg==
+X-Gm-Message-State: AOAM532oEC3zR9wPaz9Ror7bDgyLWL/1CKEt3I3rlyquvCkypmOlqCQ7
+        hETdH86c6YovnO2TAL6nDL5dKzXV/+FWHTDqOws5ig==
+X-Google-Smtp-Source: ABdhPJyepNPHP4E52r1tz6fvELiPwmDt6Q5gFH4TExNWOuUpN0HYpkwqkhdR3ClOmYLtVmWMmX7T7ktkH+FPYq0fd1o=
+X-Received: by 2002:a05:620a:12b9:: with SMTP id x25mr23021282qki.421.1608652674817;
+ Tue, 22 Dec 2020 07:57:54 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain
+References: <20201211142933.25784-1-grzegorz.jaszczyk@linaro.org>
+ <20201211142933.25784-2-grzegorz.jaszczyk@linaro.org> <20201214225842.GA2537432@robh.at.kernel.org>
+ <CAMxfBF65ve2Pk5Uz5V1V_LfOLFUFKebVE8bzSjLT0nonuH8TDg@mail.gmail.com> <CAL_JsqKpzZvdWJodzbqQBLZ-v98n3KaoTaYM-0iQ-_71hCbW8Q@mail.gmail.com>
+In-Reply-To: <CAL_JsqKpzZvdWJodzbqQBLZ-v98n3KaoTaYM-0iQ-_71hCbW8Q@mail.gmail.com>
+From:   Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
+Date:   Tue, 22 Dec 2020 16:57:43 +0100
+Message-ID: <CAMxfBF5q2hjiYANZNtxz-PD=pR73EpXBpnWuB4dqXD1a=f2=gg@mail.gmail.com>
+Subject: Re: [PATCH 1/5] dt-bindings: remoteproc: Add PRU consumer bindings
+To:     Rob Herring <robh@kernel.org>
+Cc:     Ohad Ben Cohen <ohad@wizery.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        "Anna, Suman" <s-anna@ti.com>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        "open list:REMOTE PROCESSOR (REMOTEPROC) SUBSYSTEM" 
+        <linux-remoteproc@vger.kernel.org>,
+        Lee Jones <lee.jones@linaro.org>, devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-omap <linux-omap@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        "Bajjuri, Praneeth" <praneeth@ti.com>,
+        Roger Quadros <rogerq@ti.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Jerome Pouiller <Jerome.Pouiller@silabs.com> writes:
+Hi Rob,
 
-> +/* NOTE: wfx_send_pds() destroy buf */
-> +int wfx_send_pds(struct wfx_dev *wdev, u8 *buf, size_t len)
-> +{
-> +	int ret;
-> +	int start, brace_level, i;
-> +
-> +	start = 0;
-> +	brace_level = 0;
-> +	if (buf[0] != '{') {
-> + dev_err(wdev->dev, "valid PDS start with '{'. Did you forget to
-> compress it?\n");
-> +		return -EINVAL;
-> +	}
-> +	for (i = 1; i < len - 1; i++) {
-> +		if (buf[i] == '{')
-> +			brace_level++;
-> +		if (buf[i] == '}')
-> +			brace_level--;
-> +		if (buf[i] == '}' && !brace_level) {
-> +			i++;
-> +			if (i - start + 1 > WFX_PDS_MAX_SIZE)
-> +				return -EFBIG;
-> +			buf[start] = '{';
-> +			buf[i] = 0;
-> +			dev_dbg(wdev->dev, "send PDS '%s}'\n", buf + start);
-> +			buf[i] = '}';
-> +			ret = hif_configuration(wdev, buf + start,
-> +						i - start + 1);
-> +			if (ret > 0) {
-> + dev_err(wdev->dev, "PDS bytes %d to %d: invalid data (unsupported
-> options?)\n",
-> +					start, i);
-> +				return -EINVAL;
-> +			}
-> +			if (ret == -ETIMEDOUT) {
-> + dev_err(wdev->dev, "PDS bytes %d to %d: chip didn't reply (corrupted
-> file?)\n",
-> +					start, i);
-> +				return ret;
-> +			}
-> +			if (ret) {
-> + dev_err(wdev->dev, "PDS bytes %d to %d: chip returned an unknown
-> error\n",
-> +					start, i);
-> +				return -EIO;
-> +			}
-> +			buf[i] = ',';
-> +			start = i;
-> +		}
-> +	}
-> +	return 0;
-> +}
+On Fri, 18 Dec 2020 at 23:51, Rob Herring <robh@kernel.org> wrote:
+>
+> On Wed, Dec 16, 2020 at 9:55 AM Grzegorz Jaszczyk
+> <grzegorz.jaszczyk@linaro.org> wrote:
+> >
+> > Hi Rob,
+> >
+> > On Mon, 14 Dec 2020 at 23:58, Rob Herring <robh@kernel.org> wrote:
+> > >
+> > > On Fri, Dec 11, 2020 at 03:29:29PM +0100, Grzegorz Jaszczyk wrote:
+> > > > From: Suman Anna <s-anna@ti.com>
+> > > >
+> > > > Add a YAML binding document for PRU consumers. The binding includes
+> > > > all the common properties that can be used by different PRU consumer
+> > > > or application nodes and supported by the PRU remoteproc driver.
+> > > > These are used to configure the PRU hardware for specific user
+> > > > applications.
+> > > >
+> > > > The application nodes themselves should define their own bindings.
+> > > >
+> > > > Co-developed-by: Tero Kristo <t-kristo@ti.com>
+> > > > Signed-off-by: Tero Kristo <t-kristo@ti.com>
+> > > > Signed-off-by: Suman Anna <s-anna@ti.com>
+> > > > Co-developed-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
+> > > > Signed-off-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
+> > > > ---
+> > > >  .../bindings/remoteproc/ti,pru-consumer.yaml  | 64 +++++++++++++++++++
+> > > >  1 file changed, 64 insertions(+)
+> > > >  create mode 100644 Documentation/devicetree/bindings/remoteproc/ti,pru-consumer.yaml
+> > > >
+> > > > diff --git a/Documentation/devicetree/bindings/remoteproc/ti,pru-consumer.yaml b/Documentation/devicetree/bindings/remoteproc/ti,pru-consumer.yaml
+> > > > new file mode 100644
+> > > > index 000000000000..2c5c5e2b6159
+> > > > --- /dev/null
+> > > > +++ b/Documentation/devicetree/bindings/remoteproc/ti,pru-consumer.yaml
+> > > > @@ -0,0 +1,64 @@
+> > > > +# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
+> > > > +%YAML 1.2
+> > > > +---
+> > > > +$id: http://devicetree.org/schemas/remoteproc/ti,pru-consumer.yaml#
+> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > +
+> > > > +title: Common TI PRU Consumer Binding
+> > > > +
+> > > > +maintainers:
+> > > > +  - Suman Anna <s-anna@ti.com>
+> > > > +
+> > > > +description: |
+> > > > +  A PRU application/consumer/user node typically uses one or more PRU device
+> > > > +  nodes to implement a PRU application/functionality. Each application/client
+> > > > +  node would need a reference to at least a PRU node, and optionally define
+> > > > +  some properties needed for hardware/firmware configuration. The below
+> > > > +  properties are a list of common properties supported by the PRU remoteproc
+> > > > +  infrastructure.
+> > > > +
+> > > > +  The application nodes shall define their own bindings like regular platform
+> > > > +  devices, so below are in addition to each node's bindings.
+> > > > +
+> > > > +properties:
+> > > > +  prus:
+> > >
+> > > ti,prus
+> >
+> > Thank you - I will change and post v2 but with this I will run into
+> > issues when this binding will be referenced by some consumer YAML
+> > binding. Running dtbs_check in such case throws:
+> > ... k3-am654-base-board.dt.yaml: serial@28000: 'ti,prus' does not
+> > match any of the regexes: 'pinctrl-[0-9]+'
+> > In the same time if I will remove this property from that node I am getting:
+> > ... k3-am654-base-board.dt.yaml: serial@28000: 'ti,prus' is a required property
+> > as expected.
+>
+> Sounds like you didn't update 'ti,prus' in whatever schema you include
+> this one from.
+>
+> >
+> > Getting rid of the comma from this property name workarounds mentioned
+> > problem (which is not proper but allows me to correctly test this
+> > binding): e.g. s/ti,prus/ti-pruss/ or using the previous name without
+> > a comma.
+> > It seems to be an issue with dtbs_check itself which we will encounter
+> > in the future.
+>
+> If not, can you point me to a branch having this problem.
 
-What does this function do? Looks very strange.
+Sure, here is temporary branch with 4 last commits demonstrating
+mentioned issues (when property name contains comma):
+https://git.linaro.org/people/grzegorz.jaszczyk/linux.git/log/?h=ti-pruss-binding-issue
 
--- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+The last commit gets rid of the comma from properties names which
+successfully w/a the problem.
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+Please note that those are only TEMP commits which demonstrates the
+mentioned issue. I've put error logs with some notes in commit log to
+ease understanding what issues are seen when.
+
+Thank you in advance,
+Grzegorz
