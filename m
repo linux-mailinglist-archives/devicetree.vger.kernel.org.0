@@ -2,81 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 612E82E0812
-	for <lists+devicetree@lfdr.de>; Tue, 22 Dec 2020 10:25:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BFD1D2E083E
+	for <lists+devicetree@lfdr.de>; Tue, 22 Dec 2020 10:45:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725882AbgLVJY4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Dec 2020 04:24:56 -0500
-Received: from mga04.intel.com ([192.55.52.120]:56926 "EHLO mga04.intel.com"
+        id S1725961AbgLVJpL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Dec 2020 04:45:11 -0500
+Received: from mga11.intel.com ([192.55.52.93]:47324 "EHLO mga11.intel.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725785AbgLVJY4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 22 Dec 2020 04:24:56 -0500
-IronPort-SDR: kH5i1PUbxzDfTz9+tWLby1wN5qDfnK0FRMQ9Btuy841FsO2r41whz/X3wkmmbI9FwyHtHYZmnx
- epMWItf8PnIQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9842"; a="173273938"
+        id S1725782AbgLVJpK (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 22 Dec 2020 04:45:10 -0500
+IronPort-SDR: YKGszhnq6DbDb1FCHSN/iNSBBvQv4H4YsB3wOWCVejd4vByPlpMFrnpx4VrrTpyLCWwvnMYvuQ
+ T4Fe30u3yFfA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9842"; a="172335050"
 X-IronPort-AV: E=Sophos;i="5.78,438,1599548400"; 
-   d="scan'208";a="173273938"
+   d="scan'208";a="172335050"
 Received: from orsmga004.jf.intel.com ([10.7.209.38])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Dec 2020 01:23:09 -0800
-IronPort-SDR: JMAsj9jWUD+gm6jC1vHK9PSdc0vZZ5HHoFlTSWEaJ2Bw56XUQVi33qh58ebt6X18C5P9sr4XjT
- A9S6EmqrHEPQ==
+  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Dec 2020 01:43:24 -0800
+IronPort-SDR: UJw+mmGPgufrv8XuhlBtM0U7qboRtCg4E9oEnuAZ2TepR+h9Wx478S4D78MB3c9iOAHF65XPJA
+ sd5x8w1Ew2qA==
 X-IronPort-AV: E=Sophos;i="5.78,438,1599548400"; 
-   d="scan'208";a="492127221"
+   d="scan'208";a="492132540"
 Received: from paasikivi.fi.intel.com ([10.237.72.42])
-  by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Dec 2020 01:23:06 -0800
+  by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Dec 2020 01:43:21 -0800
 Received: by paasikivi.fi.intel.com (Postfix, from userid 1000)
-        id 257FC205FC; Tue, 22 Dec 2020 11:23:04 +0200 (EET)
-Date:   Tue, 22 Dec 2020 11:23:04 +0200
+        id 38707205FC; Tue, 22 Dec 2020 11:43:19 +0200 (EET)
+Date:   Tue, 22 Dec 2020 11:43:19 +0200
 From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Jonathan Cameron <jic23@kernel.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        dri-devel@lists.freedesktop.org, linux-iio@vger.kernel.org,
-        linux-input@vger.kernel.org, linux-media@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: Drop unnecessary *-supply schemas properties
-Message-ID: <20201222092304.GQ26370@paasikivi.fi.intel.com>
-References: <20201221234659.824881-1-robh@kernel.org>
+To:     Jacopo Mondi <jacopo@jmondi.org>
+Cc:     linux-media@vger.kernel.org, mchehab@kernel.org,
+        hverkuil@xs4all.nl, laurent.pinchart@ideasonboard.com,
+        roman.kovalivskyi@globallogic.com, dafna.hirschfeld@collabora.com,
+        dave.stevenson@raspberrypi.org, naush@raspberrypi.com,
+        erosca@de.adit-jv.com, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v4 01/30] dt-bindings: media: i2c: Rename ov5647.yaml
+Message-ID: <20201222094319.GR26370@paasikivi.fi.intel.com>
+References: <20201119161956.756455-1-jacopo@jmondi.org>
+ <20201119161956.756455-2-jacopo@jmondi.org>
+ <20201125091526.GI3940@paasikivi.fi.intel.com>
+ <20201221173446.z7mtvasohwyjukdp@uno.localdomain>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201221234659.824881-1-robh@kernel.org>
+In-Reply-To: <20201221173446.z7mtvasohwyjukdp@uno.localdomain>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Hi Jacopo,
 
-On Mon, Dec 21, 2020 at 04:46:59PM -0700, Rob Herring wrote:
-> *-supply properties are always a single phandle, so binding schemas
-> don't need a type $ref nor 'maxItems'.
+On Mon, Dec 21, 2020 at 06:34:46PM +0100, Jacopo Mondi wrote:
+> Hello,
 > 
-> A meta-schema check for this is pending once these existing cases are
-> fixed.
+> On Wed, Nov 25, 2020 at 11:15:26AM +0200, Sakari Ailus wrote:
+> > Cc Rob + DT list.
+> >
 > 
-> Cc: Jonathan Cameron <jic23@kernel.org>
-> Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-> Cc: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-> Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
-> Cc: Sakari Ailus <sakari.ailus@linux.intel.com>
-> Cc: Lee Jones <lee.jones@linaro.org>
-> Cc: Mark Brown <broonie@kernel.org>
-> Cc: Maxime Ripard <mripard@kernel.org>
-> Cc: dri-devel@lists.freedesktop.org
-> Cc: linux-iio@vger.kernel.org
-> Cc: linux-input@vger.kernel.org
-> Cc: linux-media@vger.kernel.org
-> Signed-off-by: Rob Herring <robh@kernel.org>
+> Gentle ping.
+> 
+> Sakari, am I mistaken or last time we discussed this, the series is
+> ready for being collected (pending this ack I assume)
+> 
+> I wonder if it needs a rebase (pretty sure it does)
 
-On media bits:
-
-Acked-by: Sakari Ailus <sakari.ailus@linux.intel.com>
+The set is in my tree already.
 
 -- 
 Sakari Ailus
