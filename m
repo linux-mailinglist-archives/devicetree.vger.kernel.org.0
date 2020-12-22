@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B8C82E061E
-	for <lists+devicetree@lfdr.de>; Tue, 22 Dec 2020 07:41:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 787EC2E0628
+	for <lists+devicetree@lfdr.de>; Tue, 22 Dec 2020 07:43:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726012AbgLVGlO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Dec 2020 01:41:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52372 "EHLO
+        id S1725931AbgLVGmR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Dec 2020 01:42:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52530 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725997AbgLVGlN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Dec 2020 01:41:13 -0500
-Received: from mail-pg1-x534.google.com (mail-pg1-x534.google.com [IPv6:2607:f8b0:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B291C0613D6
-        for <devicetree@vger.kernel.org>; Mon, 21 Dec 2020 22:40:33 -0800 (PST)
-Received: by mail-pg1-x534.google.com with SMTP id i7so7766514pgc.8
-        for <devicetree@vger.kernel.org>; Mon, 21 Dec 2020 22:40:33 -0800 (PST)
+        with ESMTP id S1726010AbgLVGmK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Dec 2020 01:42:10 -0500
+Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11FE2C0617A6
+        for <devicetree@vger.kernel.org>; Mon, 21 Dec 2020 22:41:30 -0800 (PST)
+Received: by mail-pl1-x633.google.com with SMTP id b8so6939241plx.0
+        for <devicetree@vger.kernel.org>; Mon, 21 Dec 2020 22:41:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to:user-agent;
-        bh=58if8R3c+oDYrkVVIdvCMuB/HRUSZCNfm9pXzo2Jxis=;
-        b=xrayxzNVWoBOOUTllKsBsgUMpNC6xjZxfZRPwCLEzoXU/sg5+VOejq6aNdvm2F+h2l
-         oH0+TkshTv1ugzupTG92EKZ/M+hvjdg0PJI86pwt4TR1v8JqJdT8Pz61vnx9sJ5e5IhD
-         0EmBrUKXKuIbpIgXqOaGOBgmjNnR7tKFoe67MoGdHqq/3HpwUSPXpkKjhoVhd8YJ7Eol
-         V682sF5RTwD5LSJkgu7VcNMjDxbWuqm/SMYLAkqsFi0U43LQmIqScaYNgn8+0Pf4UE6X
-         FlNsocE3fBXkr36MtWwlASa3aY1opWbBf4DS7Gh+PnwPpww69IKJ7asp4rk18Z4vqVBQ
-         ibyw==
+        bh=qCUDEuOxwnC1AGuwl6fnluLE3mg41lKSQCQsRBnikAE=;
+        b=SLqK80aWe80/oOFjlKAkk5jqsLmB6RoEBWiQMpcRzPAse5ZgDQA6H/f2QcYQaYX+Sk
+         j72VoUeumbbh4H7SoJchN3WQ4I8yPJLZcR2WOnDQDMCzorCW4hJclXsTQgFoRz22RdKG
+         b36kXTEMnqcyvZ4P8k2BHIQ3OnbkH5vPepxZyzfdedwjW/vFkSQupF0OBKJtYCIUOXd+
+         tnsNf4Jyrnc5hEpCgs3Ty8sMXZ+Y1xPDWrfNT0FgbK/gljhOZLN19WV5tE5Pm7gIZMx/
+         BqJRbe7G+WxvEmQbKhOkP8Fkwv3F+QpBIqDZjzxrC/La6nliwsr0G5LVDTCHzO75q9IH
+         T1IQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=58if8R3c+oDYrkVVIdvCMuB/HRUSZCNfm9pXzo2Jxis=;
-        b=Xbl653IZaFO9WdYmaJRKdHm7ipPNfH1gIzPLbqyPYjZU77G0V06GyvkacKUDHdG0WZ
-         lrooIwj03g2g2HXyhDioqiSj05kWBG3NDSOgM7EyLz+rOLF6JQEpvurHXZmpbHXLvzyw
-         ap9pdH8Q+slP0lmP/NHgzB/wLLO+2QsQyMRYk6tfqcG2JNJDTQPujxWe6CMfkhlx7alX
-         O26Qm9XMwoBXASSFzeZX5ucKyvm3gN3kgy0fAg8uBjbXo+zIZ9ANZLfP+otYY4UywbkR
-         mCf7uYi/D6vWvZy50udHtEI6oRozdHsEkA3aOv4G8IV/5KxPBDy0ofyvPlf35j2qZHiv
-         YL+A==
-X-Gm-Message-State: AOAM532OjrzELiZju0GdOhY9SF3xl8rF9tDoVw8gGa6YHU0prZLayXQs
-        wFte8PXC99GBkY9xczQKKzIY+Q==
-X-Google-Smtp-Source: ABdhPJy/vJr+NNSCt7f3w3qkCyZMIzMDucjtinh/w3AD+sfsU1ChxDwkeoH4189p2G8BBp09nYpz6Q==
-X-Received: by 2002:a63:1f10:: with SMTP id f16mr14879515pgf.111.1608619232743;
-        Mon, 21 Dec 2020 22:40:32 -0800 (PST)
+        bh=qCUDEuOxwnC1AGuwl6fnluLE3mg41lKSQCQsRBnikAE=;
+        b=iEPzRPMM1is8MPp7smsbR2zMuAqqytjOhSFF8u3kcKOx+qc0/NOvbkk44e6i0dg0cI
+         rAZywKC7sIqMMjFJWIrPzY2KoTw1LcXUjD71VveWTXYNafyb8inY0SO/cbDOvWY/JQ7r
+         9kb9RrY+UqlzvEkUhkAiTIZpR89AClCN9sUMTrW2gGq6Z0Ee8Nzs5wrxUWf5KPHxvSoP
+         v6hZvgYM7pktDIa48N7zEByOxcAU4BDeaJQlgC1Wm3q7y7JDl9YLl8QvsPYMWkjNaP3u
+         C4TL1QxG+1YK9rOyXgoWMRVNB8xERxSW5xGz/C3tV01WAFLI1eTlz4fJ3sJY5Y/4AW2+
+         7umA==
+X-Gm-Message-State: AOAM532N9puZynZKUIbNCKng5/AGZ61UwJla6TDfJ5bSAs5PcW4ztw2p
+        lRk7JZeA3rAFggw5VTycka777g==
+X-Google-Smtp-Source: ABdhPJxN42pTclkBGDeXVc+JmlXJ2Zqv4ydgjwhoQWE66qXHkx0fFIYjfke1IlzZt4m8tXjIu/60fA==
+X-Received: by 2002:a17:902:b94a:b029:dc:18f2:8063 with SMTP id h10-20020a170902b94ab02900dc18f28063mr20113799pls.8.1608619289583;
+        Mon, 21 Dec 2020 22:41:29 -0800 (PST)
 Received: from localhost ([122.172.20.109])
-        by smtp.gmail.com with ESMTPSA id 197sm19176671pgg.43.2020.12.21.22.40.31
+        by smtp.gmail.com with ESMTPSA id z2sm7851394pgl.49.2020.12.21.22.41.28
         (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 21 Dec 2020 22:40:31 -0800 (PST)
-Date:   Tue, 22 Dec 2020 12:10:29 +0530
+        Mon, 21 Dec 2020 22:41:28 -0800 (PST)
+Date:   Tue, 22 Dec 2020 12:11:27 +0530
 From:   Viresh Kumar <viresh.kumar@linaro.org>
 To:     Dmitry Osipenko <digetx@gmail.com>
 Cc:     Thierry Reding <thierry.reding@gmail.com>,
@@ -70,69 +70,26 @@ Cc:     Thierry Reding <thierry.reding@gmail.com>,
         devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
         linux-media@vger.kernel.org, linux-tegra@vger.kernel.org,
         linux-clk@vger.kernel.org
-Subject: Re: [PATCH v2 28/48] soc/tegra: Introduce core power domain driver
-Message-ID: <20201222064029.duuzcsj53rt7xzvt@vireshk-i7>
+Subject: Re: [PATCH v2 09/48] opp: Add dev_pm_opp_sync_regulators()
+Message-ID: <20201222064127.cn7tagfwpi5tu4zk@vireshk-i7>
 References: <20201217180638.22748-1-digetx@gmail.com>
- <20201217180638.22748-29-digetx@gmail.com>
+ <20201217180638.22748-10-digetx@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201217180638.22748-29-digetx@gmail.com>
+In-Reply-To: <20201217180638.22748-10-digetx@gmail.com>
 User-Agent: NeoMutt/20180716-391-311a52
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17-12-20, 21:06, Dmitry Osipenko wrote:
-> +++ b/drivers/soc/tegra/core-power-domain.c
-> @@ -0,0 +1,125 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/*
-> + * NVIDIA Tegra SoC Core Power Domain Driver
-> + */
-> +
-> +#include <linux/of_device.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/pm_domain.h>
-> +#include <linux/pm_opp.h>
-> +#include <linux/slab.h>
-> +
-> +#include <soc/tegra/common.h>
-> +
-> +static struct lock_class_key tegra_core_domain_lock_class;
-> +static bool tegra_core_domain_state_synced;
-> +
-> +static int tegra_genpd_set_performance_state(struct generic_pm_domain *genpd,
-> +					     unsigned int level)
-> +{
-> +	struct dev_pm_opp *opp;
-> +	int err;
-> +
-> +	opp = dev_pm_opp_find_level_ceil(&genpd->dev, &level);
+On 17-12-20, 21:05, Dmitry Osipenko wrote:
+> Extend OPP API with dev_pm_opp_sync_regulators() function, which syncs
+> voltage state of regulators.
+> 
+> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
 
-We don't need ceil or floor versions for level, but rather _exact() version. Or
-maybe just call it dev_pm_opp_find_level().
-
-> +	if (IS_ERR(opp)) {
-> +		dev_err(&genpd->dev, "failed to find OPP for level %u: %pe\n",
-> +			level, opp);
-> +		return PTR_ERR(opp);
-> +	}
-> +
-> +	err = dev_pm_opp_set_voltage(&genpd->dev, opp);
-
-IIUC, you implemented this callback because you want to use the voltage triplet
-present in the OPP table ?
-
-And so you are setting the regulator ("power") later in this patch ?
-
-I am not in favor of implementing this routine, as it just adds a wrapper above
-the regulator API. What you should be doing rather is get the regulator by
-yourself here (instead of depending on the OPP core). And then you can do
-dev_pm_opp_get_voltage() here and set the voltage yourself. You may want to
-implement a version supporting triplet here though for the same.
-
-And you won't require the sync version of the API as well then.
+We shouldn't be doing this, details in patch 28.
 
 -- 
 viresh
