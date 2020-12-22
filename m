@@ -2,98 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B0872E0C42
-	for <lists+devicetree@lfdr.de>; Tue, 22 Dec 2020 15:57:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7DFBC2E0C47
+	for <lists+devicetree@lfdr.de>; Tue, 22 Dec 2020 15:59:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728009AbgLVO5U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Dec 2020 09:57:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43922 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727985AbgLVO5J (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Dec 2020 09:57:09 -0500
-Received: from mail-pg1-x52a.google.com (mail-pg1-x52a.google.com [IPv6:2607:f8b0:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48E61C061285;
-        Tue, 22 Dec 2020 06:56:11 -0800 (PST)
-Received: by mail-pg1-x52a.google.com with SMTP id i5so429877pgo.1;
-        Tue, 22 Dec 2020 06:56:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=qYGBC9zMCBAhxRIfYfL2yra0LwNo/ANDyVaaTy3nkS0=;
-        b=BmmyXlz6/KcNEo8rqZSNyZivFxGIo4J6QVw4jK0OpdutU8TYHe+dc8JbFMYr8GaT+m
-         Ljzpm5hYMNo1Z2kYdeXQcnYvOn6D/NIJQlGTCnySi8btnlt84gS7r1HT4FRi3WJEAa5f
-         EZ7uSGwbtqTwJuxv2cdDKCG40oa8i2lVw0YUn3QD/R3dWJ0nZUiyq3/C7s29W7+i4vD8
-         AaKF9ru9qYpgIis1ivAWSQQ4DMPVbV4pJI2GX+e6OdPaVIDXcOSEbT3PawMopG7WXiYk
-         X9Xkk3V+KesH/c3KCxkCNldRYqY7R1g0AFI6oWb/syAdsIOQXPJy2XycMy46/8REvzgy
-         3vxg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=qYGBC9zMCBAhxRIfYfL2yra0LwNo/ANDyVaaTy3nkS0=;
-        b=SyxeFIWmPks9B/a4Tfdh7UriybyUK7U/rdsFB3ejD1QC8a92ZwXbeSNicDNrgF987f
-         hr/4HQ2r8gpPsIOPxYTRGqiyhkDkAFa29On+0aPC5TIKBTfaFeZdAFcMKvIul1gSxMb9
-         l6bB6L8xXMPW00MUTw00i6aWN7/GNX052EIzXa9VOh4T374bcaHxI7zjBjxtBjNLqpX9
-         OEmHfnszXTAqDDSnDu6KJsG8QoEsKQn0Mro1urtdX1wUZqWxK4kFnT41nIGBLkKQlbi8
-         hc7c2wac/VQxY0/yuONF2WlgiLhCtNfZVY01VHplqU4Fp9T9IysqAEpO5OXGsvL/dFez
-         glQA==
-X-Gm-Message-State: AOAM533Nrl9hDk2++3CXo12LZkFTvaaMRtc/FZAbwySpaJhOsueutpOJ
-        3JBqgHjLNvlzDdeuyRcemwE=
-X-Google-Smtp-Source: ABdhPJxSxAh0+8dTxByYiL69Y441y0mrB6Fztl+KT+uYawlPEg2KT6aZxbdNJxrQ97fMg1g9FcvyEA==
-X-Received: by 2002:a63:2347:: with SMTP id u7mr19888187pgm.189.1608648970940;
-        Tue, 22 Dec 2020 06:56:10 -0800 (PST)
-Received: from stbsrv-and-01.and.broadcom.net ([192.19.231.250])
-        by smtp.gmail.com with ESMTPSA id k15sm21340349pfp.115.2020.12.22.06.56.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 22 Dec 2020 06:56:10 -0800 (PST)
-From:   Jim Quinlan <jim2101024@gmail.com>
-To:     Sudeep Holla <sudeep.holla@arm.com>,
-        bcm-kernel-feedback-list@broadcom.com, jim2101024@gmail.com,
-        james.quinlan@broadcom.com
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org (open list:SYSTEM CONTROL &
-        POWER/MANAGEMENT INTERFACE Mes...),
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH v4 1/2] dt-bindings: arm: Add optional interrupt to smc/hvc SCMI transport
-Date:   Tue, 22 Dec 2020 09:56:02 -0500
-Message-Id: <20201222145603.40192-2-jim2101024@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20201222145603.40192-1-jim2101024@gmail.com>
-References: <20201222145603.40192-1-jim2101024@gmail.com>
+        id S1727738AbgLVO7k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Dec 2020 09:59:40 -0500
+Received: from esa.microchip.iphmx.com ([68.232.154.123]:35149 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727715AbgLVO7k (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Dec 2020 09:59:40 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1608649179; x=1640185179;
+  h=references:from:to:cc:subject:in-reply-to:date:
+   message-id:mime-version;
+  bh=sAZWJmx5c/d61ulHI2FfUnXQ6P0/KlO7HU/s+AMVJjI=;
+  b=ezX8SI0ODPhMF1Y5kLffk3hQ5tQMR5RPWJpFqEsc3mDdXsJUEdsYj/xH
+   1oxJkAnybcQ/NbGUXDCAKSIVGonvpGLQe4Rw7eDzmuuNp1AWd2XpZ+rDA
+   7sMTE/HHly0Eiy7FuhV82pRHP+BOa9Ee5QAL6lmRGig40RIBSvwgu4LRs
+   7aKd2GZ4XJzlTAV0tA9jcna4/EemZrwmy4YP7lQh/YyiJW7RwTrZkZHcc
+   OY2n8g9KNXXZ6yEHQz9c43kapPgjxpxKEfh3ypF6bUosPXhM2QaDN8ZRn
+   3NlA0UeOUCpnnbEj2U6RJ5Yh6dmnTYZE9/qNANw/8TR1nj+ayq5xNk2Ft
+   g==;
+IronPort-SDR: M9+cWPLCegujkM6O1CpBrC8OOAo588IURXNakAPVSpM7UvId8OrFCJ4EkvFbalZ4/DJgFChbZl
+ ICPbJaomCz3I/S36cBSIkNOSzuKJf2logYZVh1WdS18RfWRweJPGypPrVzAd/9/fzWzIza9cT6
+ +BKsASAbNErOnfT622+PcBAjcEJh+5cc6NyMovXkOeoe5k14xBpt1hgNtJncFAnDmYj/qTw/70
+ 3VbaWYOuIR6Yb8bTPqqap+bj2bFHihmljmiASbYlvZqAxyjF5Z1slRP1MLpw3qYAQejyxlrDXy
+ MAA=
+X-IronPort-AV: E=Sophos;i="5.78,439,1599548400"; 
+   d="scan'208";a="97957140"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 22 Dec 2020 07:58:23 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1979.3; Tue, 22 Dec 2020 07:58:23 -0700
+Received: from soft-dev10.microchip.com (10.10.115.15) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3
+ via Frontend Transport; Tue, 22 Dec 2020 07:58:21 -0700
+References: <20201113145151.68900-1-lars.povlsen@microchip.com> <20201113145151.68900-4-lars.povlsen@microchip.com> <20201220224804.GA3107610@lunn.ch> <87eejip2xm.fsf@microchip.com> <20201222135646.GF3107610@lunn.ch>
+User-agent: mu4e 1.2.0; emacs 26.3
+From:   Lars Povlsen <lars.povlsen@microchip.com>
+To:     Andrew Lunn <andrew@lunn.ch>
+CC:     Lars Povlsen <lars.povlsen@microchip.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        <devicetree@vger.kernel.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        <linux-kernel@vger.kernel.org>,
+        "Microchip Linux Driver Support" <UNGLinuxDriver@microchip.com>,
+        <linux-gpio@vger.kernel.org>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v10 3/3] arm64: dts: sparx5: Add SGPIO devices
+In-Reply-To: <20201222135646.GF3107610@lunn.ch>
+Date:   Tue, 22 Dec 2020 15:58:14 +0100
+Message-ID: <875z4tq455.fsf@microchip.com>
+MIME-Version: 1.0
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In normal use of smc/hvc transport in SCMI the message completion is
-indicated by the return of the SMC call.  This commit provides for an
-optional interrupt named "a2p" which is used instead to
-indicate the completion of a message.
 
-Signed-off-by: Jim Quinlan <jim2101024@gmail.com>
----
- Documentation/devicetree/bindings/arm/arm,scmi.txt | 8 ++++++++
- 1 file changed, 8 insertions(+)
+Andrew Lunn writes:
 
-diff --git a/Documentation/devicetree/bindings/arm/arm,scmi.txt b/Documentation/devicetree/bindings/arm/arm,scmi.txt
-index b5ce5b39bb9c..667d58e0a659 100644
---- a/Documentation/devicetree/bindings/arm/arm,scmi.txt
-+++ b/Documentation/devicetree/bindings/arm/arm,scmi.txt
-@@ -31,6 +31,14 @@ Optional properties:
- 
- - mbox-names: shall be "tx" or "rx" depending on mboxes entries.
- 
-+- interrupts : when using smc or hvc transports, this optional
-+	 property indicates that msg completion by the platform is indicated
-+	 by an interrupt rather than by the return of the smc call. This
-+	 should not be used except when the platform requires such behavior.
-+
-+- interrupt-names : if "interrupts" is present, interrupt-names must also
-+	 be present and have the value "a2p".
-+
- See Documentation/devicetree/bindings/mailbox/mailbox.txt for more details
- about the generic mailbox controller and client driver bindings.
- 
--- 
-2.17.1
+> On Tue, Dec 22, 2020 at 11:09:41AM +0100, Lars Povlsen wrote:
+>>
+>> Andrew Lunn writes:
+>>
+>> > On Fri, Nov 13, 2020 at 03:51:51PM +0100, Lars Povlsen wrote:
+>> >> +             led@8 {
+>> >> +                     label = "eth12:green";
+>> >> +                     gpios = <&sgpio_out0 12 0 GPIO_ACTIVE_HIGH>;
+>> >> +                     default-state = "off";
+>> >> +             };
+>> >> +             led@9 {
+>> >> +                     label = "eth12:yellow";
+>> >> +                     gpios = <&sgpio_out0 12 1 GPIO_ACTIVE_HIGH>;
+>> >> +                     default-state = "off";
+>> >> +             };
+>> >
+>> > Hi Lars
+>> >
+>> > I did not see these patches earlier, but i've been looking at the
+>> > switch driver patches recently, so went digging.
+>> >
+>> > Can the Ethernet switch itself control these LEDs for indicating
+>> > things like packet receive/transmit, link state, and link speed? Or
+>> > are they purely software controlled?
+>> >
+>> >     Thanks
+>> >         Andrew
+>>
+>> Hi Andrew!
+>>
+>> No, the SGPIO device is separate from the switch device as such. I was
+>> planning to couple the two by means of "led events" in a later patch.
+>
+> O.K, good.
+>
+> In the LED subsystem terminology, such an event would be a
+> trigger. Link state, and copper speed should already be mostly covered
+> by phylib triggers. What is missing is link activity.  Does the switch
+> easily provide you with this information, or do you need to poll the
+> switch statistics counters every 10ms to blink the LEDs?
+>
+>      Andrew
 
+Hi Andrew!
+
+I am so thrilled with your interest and level of scrutiny! Thank you!
+
+And yes, I meant "LED trigger". The SGPIO's actually have a "blink" mode
+on their own, which I was planning to enable at a later time. But yes,
+you would still need some polling, but a somewhat lower rate, f.ex. 1
+second. At that time, you could change between steady and blink mode.
+
+Again, that your for the level of effort you contribute to the switch
+driver, it is highly appreciated.
+
+Cheers,
+
+---Lars
+
+--
+Lars Povlsen,
+Microchip
