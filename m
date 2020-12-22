@@ -2,69 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F149A2E07A0
-	for <lists+devicetree@lfdr.de>; Tue, 22 Dec 2020 10:02:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 496132E07A6
+	for <lists+devicetree@lfdr.de>; Tue, 22 Dec 2020 10:02:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725785AbgLVJCF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Dec 2020 04:02:05 -0500
-Received: from mail-oi1-f173.google.com ([209.85.167.173]:32996 "EHLO
-        mail-oi1-f173.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725300AbgLVJCE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Dec 2020 04:02:04 -0500
-Received: by mail-oi1-f173.google.com with SMTP id d203so14124673oia.0;
-        Tue, 22 Dec 2020 01:01:49 -0800 (PST)
+        id S1725907AbgLVJCW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Dec 2020 04:02:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45820 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725881AbgLVJCW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Dec 2020 04:02:22 -0500
+Received: from mail-pg1-x52f.google.com (mail-pg1-x52f.google.com [IPv6:2607:f8b0:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 083B2C0613D3
+        for <devicetree@vger.kernel.org>; Tue, 22 Dec 2020 01:01:42 -0800 (PST)
+Received: by mail-pg1-x52f.google.com with SMTP id n25so2466085pgb.0
+        for <devicetree@vger.kernel.org>; Tue, 22 Dec 2020 01:01:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=3q7nnCnJmd4O4D32PC0P8xH1+bdbk1CdNF9NmfMW4t0=;
+        b=Sw8hWqsmWEV28OZ97FyOgXyFgk5shKHWAxZzHcRzRhaM/6+T4brrF3/aXanmbfPjRw
+         /A9CHWFxY/26ovZDBEoLzvrVEQgYuX/8xBOFFAOh2S++/KtpIaGJfhKZuA8vaiEUG6N5
+         RDqNcxOViH+za8EEfeOTF4OJ0FgNLYkqGyciyEF6yFonDS/ytj6QebompmK2qd5iwMxT
+         f60gJWZOOaEE42z2GFxRM7tJMnnNTqxHJqeFzNzO5GVHLT7/VnICWMEMwFNfUuNd7lT8
+         CMqaiMF7EhSgACQ9J+vlj6sz3hYK3bX6+CzSrtrtNmrSTvIrdM+em0PwSBTuQL1T2brh
+         GG/A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=y9WlW2Avtag9Qm3VK0vnp3R6KYKb/1vJdl41RqUJ06k=;
-        b=ebo1n1RZNV/xCJYbYE0cdSNnmS8ADUwO5XzIIUsmUrniM76PZsc6QEfogh1FZV5RdB
-         wJprGsFLcRBfu7S0Los25zQbgL9sbfLQfgbcCVRyKeH0yg0tkjLh1j++bwWY9RBUyxfR
-         jkkc2/Gf/bpsxaTVWDDgY2XeTyWTV4SpNLFpwX2zGvF3qpR9Rgn7wpdFeCjiQnKnugQE
-         tuPsfJsF3g26KyXPK7SUnbVxtbW8ZinFqnS5GnUyaS/+svyKt3e2pyewRt0lbjb52Lm7
-         Ne7Krq+Xt9AJWIWLUQiPc9HR9MBQeY88dQQHoitdK729qXCeWM1yWh6FpM0WTojRVHLS
-         wQhQ==
-X-Gm-Message-State: AOAM533WiYtA4X1UpV4W4RBw/4k0tVBGRRWzXJl9cIa62ZY++bvR+lL+
-        r0e+YKKk043PhP5uI53WiQ2MY/VlIg3HRrdIPBD1aFiq
-X-Google-Smtp-Source: ABdhPJwwWwtLC3UDR0Y3UYECvlOD7gmE/qGsn9MnVjTSUHVTCx9RFThqzVUiTKjM1K0oxBHbik8ojacyRuDoXZo2XX4=
-X-Received: by 2002:aca:3cc5:: with SMTP id j188mr12386697oia.54.1608627684015;
- Tue, 22 Dec 2020 01:01:24 -0800 (PST)
-MIME-Version: 1.0
-References: <20201218173731.12839-1-wsa+renesas@sang-engineering.com> <20201218173731.12839-2-wsa+renesas@sang-engineering.com>
-In-Reply-To: <20201218173731.12839-2-wsa+renesas@sang-engineering.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 22 Dec 2020 10:01:13 +0100
-Message-ID: <CAMuHMdUALPtX4bLteJps8eBa3+ne3Hwu4rP5ZKJuXs_xYDCvpA@mail.gmail.com>
-Subject: Re: [PATCH 1/5] dt-bindings: watchdog: renesas,wdt: add r8a779a0
- (V3U) support
-To:     Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=3q7nnCnJmd4O4D32PC0P8xH1+bdbk1CdNF9NmfMW4t0=;
+        b=W3ENf2xr86329W0T0BOtq/1O0drNpBZDyj+qN0k05LSzFSd2UDRt3XolFy5orLc3tA
+         JccyT4+qHSVSrwHEbeyoHhQwlYbI/sJKiyaCrLAncHXAlCIlBs+K3vFlAFlV5mmnp0FL
+         jhMqJ6wXgvED8+KPlDHGvDD9E1MsnqEP83F/Cw1wl3KfXn9ezCKupaZ/QBXfQ+vevzjV
+         ObJ4vMElak2L+aDcA0WmLCNqu99086sYU2YaIUKXcPd3gFU5Lx8VKYV5eYR6q+bqpIYm
+         nkqkqZhNzoix4ggrQlOJeF3hTJGGKtxoNU45ty39LQiv8MbBK2ciJQJPQOyf+xbskLr8
+         0uZA==
+X-Gm-Message-State: AOAM530YDnjilPt7KAsawb9uZcXQOjsX6UA5CzbNq3GAn41uzxXcH+L9
+        xGAbUJY1d9LfMWba7S9aeLZs5A==
+X-Google-Smtp-Source: ABdhPJzpaUuhCwigtZPkt7tXXBF91xrRM3nJ/y/UBldoNdmIzxgqD3l3BVqGdS+DNg3W0X8ggHASsA==
+X-Received: by 2002:a62:864e:0:b029:1ab:e82c:d724 with SMTP id x75-20020a62864e0000b02901abe82cd724mr15830943pfd.9.1608627701598;
+        Tue, 22 Dec 2020 01:01:41 -0800 (PST)
+Received: from localhost ([122.172.20.109])
+        by smtp.gmail.com with ESMTPSA id o14sm14548124pgr.44.2020.12.22.01.01.40
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 22 Dec 2020 01:01:40 -0800 (PST)
+Date:   Tue, 22 Dec 2020 14:31:39 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Dmitry Osipenko <digetx@gmail.com>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Linux Watchdog Mailing List <linux-watchdog@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Peter Geis <pgwipeout@gmail.com>,
+        Nicolas Chauvet <kwizart@gmail.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Kevin Hilman <khilman@kernel.org>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        devel@driverdev.osuosl.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-media@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-clk@vger.kernel.org
+Subject: Re: [PATCH v2 15/48] opp: Support set_opp() customization without
+ requiring to use regulators
+Message-ID: <20201222090139.vopgc2ju72kr4ujy@vireshk-i7>
+References: <20201217180638.22748-1-digetx@gmail.com>
+ <20201217180638.22748-16-digetx@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201217180638.22748-16-digetx@gmail.com>
+User-Agent: NeoMutt/20180716-391-311a52
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 18, 2020 at 6:37 PM Wolfram Sang
-<wsa+renesas@sang-engineering.com> wrote:
-> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+On 17-12-20, 21:06, Dmitry Osipenko wrote:
+> Support set_opp() customization without requiring to use regulators. This
+> is needed by drivers which want to use dev_pm_opp_set_rate() for changing
+> rates of a multiple clocks and don't need to touch regulator.
+> 
+> One example is NVIDIA Tegra30/114 SoCs which have two sibling 3D hardware
+> units which should be use to the same clock rate, meanwhile voltage
+> scaling is done using a power domain. In this case OPP table doesn't have
+> a regulator, causing a NULL dereference in _set_opp_custom().
+> 
+> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+> ---
+>  drivers/opp/core.c | 16 ++++++++++++----
+>  1 file changed, 12 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/opp/core.c b/drivers/opp/core.c
+> index 3d02fe33630b..625dae7a5ecb 100644
+> --- a/drivers/opp/core.c
+> +++ b/drivers/opp/core.c
+> @@ -828,17 +828,25 @@ static int _set_opp_custom(const struct opp_table *opp_table,
+>  			   struct dev_pm_opp_supply *old_supply,
+>  			   struct dev_pm_opp_supply *new_supply)
+>  {
+> -	struct dev_pm_set_opp_data *data;
+> +	struct dev_pm_set_opp_data *data, tmp_data;
+> +	unsigned int regulator_count;
+>  	int size;
+>  
+> -	data = opp_table->set_opp_data;
+> +	if (opp_table->set_opp_data) {
+> +		data = opp_table->set_opp_data;
+> +		regulator_count = opp_table->regulator_count;
+> +	} else {
+> +		data = &tmp_data;
+> +		regulator_count = 0;
+> +	}
+> +
+>  	data->regulators = opp_table->regulators;
+> -	data->regulator_count = opp_table->regulator_count;
+> +	data->regulator_count = regulator_count;
+>  	data->clk = opp_table->clk;
+>  	data->dev = dev;
+>  
+>  	data->old_opp.rate = old_freq;
+> -	size = sizeof(*old_supply) * opp_table->regulator_count;
+> +	size = sizeof(*old_supply) * regulator_count;
+>  	if (!old_supply)
+>  		memset(data->old_opp.supplies, 0, size);
+>  	else
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-
-Gr{oetje,eeting}s,
-
-                        Geert
+I don't see you making use of this in this patchset. How did you get this to
+crash ?
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+viresh
