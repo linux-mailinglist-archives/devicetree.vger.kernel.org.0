@@ -2,72 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F16A2E07D3
-	for <lists+devicetree@lfdr.de>; Tue, 22 Dec 2020 10:16:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 087542E07E0
+	for <lists+devicetree@lfdr.de>; Tue, 22 Dec 2020 10:17:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725882AbgLVJPd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Dec 2020 04:15:33 -0500
-Received: from mail-ot1-f54.google.com ([209.85.210.54]:39881 "EHLO
-        mail-ot1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725850AbgLVJPc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Dec 2020 04:15:32 -0500
-Received: by mail-ot1-f54.google.com with SMTP id d8so11341754otq.6;
-        Tue, 22 Dec 2020 01:15:17 -0800 (PST)
+        id S1726526AbgLVJQm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Dec 2020 04:16:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48046 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726044AbgLVJQl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Dec 2020 04:16:41 -0500
+Received: from mail-pf1-x42c.google.com (mail-pf1-x42c.google.com [IPv6:2607:f8b0:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F333EC0613D6
+        for <devicetree@vger.kernel.org>; Tue, 22 Dec 2020 01:16:00 -0800 (PST)
+Received: by mail-pf1-x42c.google.com with SMTP id c12so8095331pfo.10
+        for <devicetree@vger.kernel.org>; Tue, 22 Dec 2020 01:16:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=l8QALzA4i8zX7B1di+fsQ9pXz5BTZwpSgw/mRJC9G3I=;
+        b=iNpi5UGBLQA73+p7sshoUk2MKXQ6+B7bN+nLc+PLyRS7Qzc6JQHE5LPyrHGQxOzXY1
+         uOtxbpfxB2whAININqJ4SNPQdP/iqcNVaDMTfpwi6jlirHg+TpXFAk8EUfaM+f2LThpO
+         ITwA/t+QLxo/gtfFoU6Y1t6N7t+IeYiN4NQyBRuiWeJo1VWI5Wqkou8CGRhI3Ddi6WMb
+         hnbtCuE/ASxcgiGOFPqWP03O9KQV73qnkGAu5hCruEh7I3wNKYJN03dx+O01l7K/zD/k
+         7cuSdAfi+Fx9eHduQ+ALtP2fw1WpzfC4YnQ/pZ7skehvj4ca2ag34R983WJCOmU+lJGf
+         g+CQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=9hQcQQWYWfh4ugI3r7QpSr3LPTc7eg3XDLNQrfFLpVI=;
-        b=j0fgxH0hzXC3Oixe3fZkk89hA8YUTeSIMzYjPkhswQnVVAxxQp3VF9zgefgYK9oYYT
-         lfQBEumvs6vkaGXJntWLndSfqUo0wcCyIcv90QXaFknJGlbYXlV3MJKg/WPzJvuP8uIP
-         4wbbTFS9J2hknfoKxRrFRjBnaKdvg4e1LBk4m1jbWNbarwo3m/daJlrbrvE5Nv7cSdHk
-         QsGTk/EWnoU665wHZdtABVfSwBbBEvjlEjCcCne6SEcyku8//o7YDAnoik4kL/WjqloX
-         vAWN4VkewwV9wLG/Vs3UIl9lMB+pRD4vIqen+tgvtYBuYBWXGQpyb9Uls0RexKd+Pl1x
-         NnyQ==
-X-Gm-Message-State: AOAM533CK2pNPvPSFMCdefHEhK5BUyvWzT+YOCg5qgYUZLJfvfieqTwS
-        iO52qq3LgdE8KvKqqfPYEkSNl/piS6G0uDcct68=
-X-Google-Smtp-Source: ABdhPJzcNEKROIYpQs+xr1XfwyCvISZw+qx7IhhfaGpZjx6FEPrdiQ0hRk0sKQuU8bK3bFw+byuL3wAAeNudirzJEZI=
-X-Received: by 2002:a9d:c01:: with SMTP id 1mr486256otr.107.1608628491879;
- Tue, 22 Dec 2020 01:14:51 -0800 (PST)
-MIME-Version: 1.0
-References: <20201218173731.12839-1-wsa+renesas@sang-engineering.com> <20201218173731.12839-5-wsa+renesas@sang-engineering.com>
-In-Reply-To: <20201218173731.12839-5-wsa+renesas@sang-engineering.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 22 Dec 2020 10:14:40 +0100
-Message-ID: <CAMuHMdXZdiN5KdbzS3wB56pS1xe9kf0brs_i5bFJ0AbvOPFt-w@mail.gmail.com>
-Subject: Re: [PATCH 4/5] arm64: dts: renesas: falcon: Enable watchdog timer
-To:     Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=l8QALzA4i8zX7B1di+fsQ9pXz5BTZwpSgw/mRJC9G3I=;
+        b=Ov7jdw2SXpspxQpfV28YOY+zMV+bYuZctOlxjEekjoydsH0yadJnkcovLz0K63i481
+         xkgItlnfLHd9cEFeOYU41Pv+56ovXyPm28tuuLOjGC+j5FNt/hVJBRe1Y2hYCq4WaUKF
+         D91+tKoXl4MoFK+FXy8aJbOHVseaCyX20qfDXNsOz/eNaUIPdmZoPkf+3dIMBjzLIw0i
+         HnLrqSRyTNPjQd7sgfJPhWc26enNFMD8WfruCniHggKl952pkbuJCNjEKZesFuWziZia
+         QIDM9vpNMpmAJJ/EbF131saLyzvefr9CV74x0Xp5I+ApWBiVjutE8fWYJk6CguL+XHQf
+         yV6w==
+X-Gm-Message-State: AOAM53112TotuIqhYSe3aAXja71bCmZRu6cHYFub64qE76XbpSiR7dIb
+        VfjSTnfZ/H75Rqm/lq4Cd802SA==
+X-Google-Smtp-Source: ABdhPJzoRmGGLI8WVPnxM7oud4VBQbrA5PgTbrGlwdy+hH6OXaJYRZjRb0UVH5lYi+efCVdlFZN7eA==
+X-Received: by 2002:a62:1d0a:0:b029:1a9:8b33:a1bf with SMTP id d10-20020a621d0a0000b02901a98b33a1bfmr19012878pfd.32.1608628560561;
+        Tue, 22 Dec 2020 01:16:00 -0800 (PST)
+Received: from localhost ([122.172.20.109])
+        by smtp.gmail.com with ESMTPSA id t9sm13088468pgh.41.2020.12.22.01.15.59
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 22 Dec 2020 01:15:59 -0800 (PST)
+Date:   Tue, 22 Dec 2020 14:45:58 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Dmitry Osipenko <digetx@gmail.com>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Peter Geis <pgwipeout@gmail.com>,
+        Nicolas Chauvet <kwizart@gmail.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Kevin Hilman <khilman@kernel.org>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        devel@driverdev.osuosl.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-media@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-clk@vger.kernel.org
+Subject: Re: [PATCH v2 00/48] Introduce core voltage scaling for NVIDIA
+ Tegra20/30 SoCs
+Message-ID: <20201222091558.mhqf4oytviwc6b3h@vireshk-i7>
+References: <20201217180638.22748-1-digetx@gmail.com>
+ <20201218071455.vdeozvvnmkjtrejt@vireshk-i7>
+ <c0976db7-ae66-740c-d95f-501d81c99fa0@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <c0976db7-ae66-740c-d95f-501d81c99fa0@gmail.com>
+User-Agent: NeoMutt/20180716-391-311a52
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 18, 2020 at 6:37 PM Wolfram Sang
-<wsa+renesas@sang-engineering.com> wrote:
-> From: Hoang Vo <hoang.vo.eb@renesas.com>
->
-> Enable the watchdog on the Falcon board.
->
-> Signed-off-by: Hoang Vo <hoang.vo.eb@renesas.com>
-> [wsa: rebased to mainline]
-> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+On 18-12-20, 16:51, Dmitry Osipenko wrote:
+> Alright, although I haven't pretended that v2 patches should be merged
+> right away since they are fundamentally different from v1, and thus, all
+> patches need to be reviewed first.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v5.12.
+I agree. I have done some basic review for the stuff.
 
-Gr{oetje,eeting}s,
+> If the current OPP changes look good to you, then please give yours r-b
+> to the patches. Thanks in advance!
 
-                        Geert
+r-b-y isn't required as they will go through my tree itself. So if everyone is
+happy with the idea, please submit the patches separately (fixes, improvements,
+devm_*, etc).
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+viresh
