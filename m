@@ -2,140 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 496132E07A6
-	for <lists+devicetree@lfdr.de>; Tue, 22 Dec 2020 10:02:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 336A02E07B4
+	for <lists+devicetree@lfdr.de>; Tue, 22 Dec 2020 10:07:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725907AbgLVJCW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Dec 2020 04:02:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45820 "EHLO
+        id S1725783AbgLVJGs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Dec 2020 04:06:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46524 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725881AbgLVJCW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Dec 2020 04:02:22 -0500
-Received: from mail-pg1-x52f.google.com (mail-pg1-x52f.google.com [IPv6:2607:f8b0:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 083B2C0613D3
-        for <devicetree@vger.kernel.org>; Tue, 22 Dec 2020 01:01:42 -0800 (PST)
-Received: by mail-pg1-x52f.google.com with SMTP id n25so2466085pgb.0
-        for <devicetree@vger.kernel.org>; Tue, 22 Dec 2020 01:01:42 -0800 (PST)
+        with ESMTP id S1725300AbgLVJGs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Dec 2020 04:06:48 -0500
+Received: from mail-qk1-x731.google.com (mail-qk1-x731.google.com [IPv6:2607:f8b0:4864:20::731])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6A63C0613D3
+        for <devicetree@vger.kernel.org>; Tue, 22 Dec 2020 01:06:07 -0800 (PST)
+Received: by mail-qk1-x731.google.com with SMTP id f26so9664264qka.0
+        for <devicetree@vger.kernel.org>; Tue, 22 Dec 2020 01:06:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=3q7nnCnJmd4O4D32PC0P8xH1+bdbk1CdNF9NmfMW4t0=;
-        b=Sw8hWqsmWEV28OZ97FyOgXyFgk5shKHWAxZzHcRzRhaM/6+T4brrF3/aXanmbfPjRw
-         /A9CHWFxY/26ovZDBEoLzvrVEQgYuX/8xBOFFAOh2S++/KtpIaGJfhKZuA8vaiEUG6N5
-         RDqNcxOViH+za8EEfeOTF4OJ0FgNLYkqGyciyEF6yFonDS/ytj6QebompmK2qd5iwMxT
-         f60gJWZOOaEE42z2GFxRM7tJMnnNTqxHJqeFzNzO5GVHLT7/VnICWMEMwFNfUuNd7lT8
-         CMqaiMF7EhSgACQ9J+vlj6sz3hYK3bX6+CzSrtrtNmrSTvIrdM+em0PwSBTuQL1T2brh
-         GG/A==
+        d=amarulasolutions.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=lgx83uVJqkXmZuiDqOI5l+kZEmkb6zRi1iu5164ju14=;
+        b=CKVpzcpUybVMsFH6eSmwQC/xxiyR8nqWd+k7AUcJ7gR0iG9ijioV4iNDPqBlLhfXAI
+         jgMNVSYfvnn/uZcgrOYaSSfO8qPFgv31476MEAJ/3pyGbEsO0MFEv7xraojmln1S6Cuv
+         pbP6nMBi6JCLwMLfA1MREQ41MQE95WkjVnmDQ=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=3q7nnCnJmd4O4D32PC0P8xH1+bdbk1CdNF9NmfMW4t0=;
-        b=W3ENf2xr86329W0T0BOtq/1O0drNpBZDyj+qN0k05LSzFSd2UDRt3XolFy5orLc3tA
-         JccyT4+qHSVSrwHEbeyoHhQwlYbI/sJKiyaCrLAncHXAlCIlBs+K3vFlAFlV5mmnp0FL
-         jhMqJ6wXgvED8+KPlDHGvDD9E1MsnqEP83F/Cw1wl3KfXn9ezCKupaZ/QBXfQ+vevzjV
-         ObJ4vMElak2L+aDcA0WmLCNqu99086sYU2YaIUKXcPd3gFU5Lx8VKYV5eYR6q+bqpIYm
-         nkqkqZhNzoix4ggrQlOJeF3hTJGGKtxoNU45ty39LQiv8MbBK2ciJQJPQOyf+xbskLr8
-         0uZA==
-X-Gm-Message-State: AOAM530YDnjilPt7KAsawb9uZcXQOjsX6UA5CzbNq3GAn41uzxXcH+L9
-        xGAbUJY1d9LfMWba7S9aeLZs5A==
-X-Google-Smtp-Source: ABdhPJzpaUuhCwigtZPkt7tXXBF91xrRM3nJ/y/UBldoNdmIzxgqD3l3BVqGdS+DNg3W0X8ggHASsA==
-X-Received: by 2002:a62:864e:0:b029:1ab:e82c:d724 with SMTP id x75-20020a62864e0000b02901abe82cd724mr15830943pfd.9.1608627701598;
-        Tue, 22 Dec 2020 01:01:41 -0800 (PST)
-Received: from localhost ([122.172.20.109])
-        by smtp.gmail.com with ESMTPSA id o14sm14548124pgr.44.2020.12.22.01.01.40
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 22 Dec 2020 01:01:40 -0800 (PST)
-Date:   Tue, 22 Dec 2020 14:31:39 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Dmitry Osipenko <digetx@gmail.com>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Nicolas Chauvet <kwizart@gmail.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Kevin Hilman <khilman@kernel.org>,
-        Peter De Schrijver <pdeschrijver@nvidia.com>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        devel@driverdev.osuosl.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-media@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-clk@vger.kernel.org
-Subject: Re: [PATCH v2 15/48] opp: Support set_opp() customization without
- requiring to use regulators
-Message-ID: <20201222090139.vopgc2ju72kr4ujy@vireshk-i7>
-References: <20201217180638.22748-1-digetx@gmail.com>
- <20201217180638.22748-16-digetx@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=lgx83uVJqkXmZuiDqOI5l+kZEmkb6zRi1iu5164ju14=;
+        b=Jdms2UY/JYgpnukn44BYW5DZXXWVB7jxmm5pgEFI+/EMAUe9e+cUXoKbGVjVA5Urzd
+         57dEaA+2R4LM+sd+13662H9cRdOxovxKmq2rLceI/uvk+ace0uUGvNh+fDysn4OdV4+q
+         ZkHx5LPR0xkt+yIDV7pQGkII5vt0s0kfogUKF0q+y1vShM3sLF6eCmEDnp7KYKNnHnVF
+         qYmz2IHbgSR37TzjO4umbKSvJ03RGj7vWwX7NXs9t1QTKVI5JuUEIggZYqnZ/5y/CPtf
+         gzTCprPYP0POXjHu/sopNqOI2n4KdQqIRUm/Wtgw9f2SfxQXcsb77iMN2ApIBU5XOPcB
+         C1cw==
+X-Gm-Message-State: AOAM531Hk1V6J7ANe9igNGmkS4Uov7221sQwUu3gv3+/AMq61lf04b/T
+        x7gEa2Vp6ln7SoWmZdnc+vmTNRknPbjgTuDXySw1Dg==
+X-Google-Smtp-Source: ABdhPJzDggWRTkYePLRNCGDMWI8PuhJo+ZD6H45Zw3kYU6wnxhlE9vqlf0F6M6g325R9gW+YJiiFryvYkCXtt6qSV4s=
+X-Received: by 2002:a37:6845:: with SMTP id d66mr18542948qkc.463.1608627967036;
+ Tue, 22 Dec 2020 01:06:07 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201217180638.22748-16-digetx@gmail.com>
-User-Agent: NeoMutt/20180716-391-311a52
+References: <20201221113151.94515-1-jagan@amarulasolutions.com>
+ <20201221113151.94515-7-jagan@amarulasolutions.com> <20201221140642.GF31176@kozik-lap>
+ <CAMty3ZDWoorJ6y2zATAyd10TqbOAcjMdAkdini5tKt1euY0_7Q@mail.gmail.com>
+ <20201221210601.GB2504@kozik-lap> <CAMty3ZDbSdv9k+SK=tEs-jNNDvGAASt-0zQjo0i3KseTLixSVQ@mail.gmail.com>
+ <20201222085330.GA15568@kozik-lap>
+In-Reply-To: <20201222085330.GA15568@kozik-lap>
+From:   Jagan Teki <jagan@amarulasolutions.com>
+Date:   Tue, 22 Dec 2020 14:35:55 +0530
+Message-ID: <CAMty3ZA58bHw3cL3de1RV2J+D_0ZemuMJYFg1RYmT_nPh0gspQ@mail.gmail.com>
+Subject: Re: [PATCH v2 6/6] arm64: dts: imx8mm: Add Engicam i.Core MX8M Mini
+ EDIMM2.2 Starter Kit
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Li Yang <leoyang.li@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-amarula <linux-amarula@amarulasolutions.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Matteo Lisi <matteo.lisi@engicam.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17-12-20, 21:06, Dmitry Osipenko wrote:
-> Support set_opp() customization without requiring to use regulators. This
-> is needed by drivers which want to use dev_pm_opp_set_rate() for changing
-> rates of a multiple clocks and don't need to touch regulator.
-> 
-> One example is NVIDIA Tegra30/114 SoCs which have two sibling 3D hardware
-> units which should be use to the same clock rate, meanwhile voltage
-> scaling is done using a power domain. In this case OPP table doesn't have
-> a regulator, causing a NULL dereference in _set_opp_custom().
-> 
-> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
-> ---
->  drivers/opp/core.c | 16 ++++++++++++----
->  1 file changed, 12 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/opp/core.c b/drivers/opp/core.c
-> index 3d02fe33630b..625dae7a5ecb 100644
-> --- a/drivers/opp/core.c
-> +++ b/drivers/opp/core.c
-> @@ -828,17 +828,25 @@ static int _set_opp_custom(const struct opp_table *opp_table,
->  			   struct dev_pm_opp_supply *old_supply,
->  			   struct dev_pm_opp_supply *new_supply)
->  {
-> -	struct dev_pm_set_opp_data *data;
-> +	struct dev_pm_set_opp_data *data, tmp_data;
-> +	unsigned int regulator_count;
->  	int size;
->  
-> -	data = opp_table->set_opp_data;
-> +	if (opp_table->set_opp_data) {
-> +		data = opp_table->set_opp_data;
-> +		regulator_count = opp_table->regulator_count;
-> +	} else {
-> +		data = &tmp_data;
-> +		regulator_count = 0;
-> +	}
-> +
->  	data->regulators = opp_table->regulators;
-> -	data->regulator_count = opp_table->regulator_count;
-> +	data->regulator_count = regulator_count;
->  	data->clk = opp_table->clk;
->  	data->dev = dev;
->  
->  	data->old_opp.rate = old_freq;
-> -	size = sizeof(*old_supply) * opp_table->regulator_count;
-> +	size = sizeof(*old_supply) * regulator_count;
->  	if (!old_supply)
->  		memset(data->old_opp.supplies, 0, size);
->  	else
+On Tue, Dec 22, 2020 at 2:23 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>
+> On Tue, Dec 22, 2020 at 02:20:55PM +0530, Jagan Teki wrote:
+> > On Tue, Dec 22, 2020 at 2:36 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> > >
+> > > On Tue, Dec 22, 2020 at 01:03:07AM +0530, Jagan Teki wrote:
+> > > > On Mon, Dec 21, 2020 at 7:36 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> > > > >
+> > > > > On Mon, Dec 21, 2020 at 05:01:51PM +0530, Jagan Teki wrote:
+> > > > > > Engicam EDIMM2.2 Starter Kit is an EDIMM 2.2 Form Factor Capacitive
+> > > > > > Evaluation Board.
+> > > > > >
+> > > > > > Genaral features:
+> > > > > > - LCD 7" C.Touch
+> > > > > > - microSD slot
+> > > > > > - Ethernet 1Gb
+> > > > > > - Wifi/BT
+> > > > > > - 2x LVDS Full HD interfaces
+> > > > > > - 3x USB 2.0
+> > > > > > - 1x USB 3.0
+> > > > > > - HDMI Out
+> > > > > > - Mini PCIe
+> > > > > > - MIPI CSI
+> > > > > > - 2x CAN
+> > > > > > - Audio Out
+> > > > > >
+> > > > > > i.Core MX8M Mini is an EDIMM SoM based on NXP i.MX8M Mini from Engicam.
+> > > > > >
+> > > > > > i.Core MX8M Mini needs to mount on top of this Evaluation board for
+> > > > > > creating complete i.Core MX8M Mini EDIMM2.2 Starter Kit.
+> > > > > >
+> > > > > > PCIe, DSI, CSI nodes will add it into imx8mm-engicam-edimm2.2.dtsi once
+> > > > > > Mainline Linux supported.
+> > > > > >
+> > > > > > Add support for it.
+> > > > > >
+> > > > > > Signed-off-by: Matteo Lisi <matteo.lisi@engicam.com>
+> > > > > > Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+> > > > > > ---
+> > > > > > Changes for v2:
+> > > > > > - updated commit message
+> > > > > > - dropped engicam from filename since it aligned with imx6 engicam
+> > > > > >   dts files naming conventions.
+> > > > > >
+> > > > > >  arch/arm64/boot/dts/freescale/Makefile        |  1 +
+> > > > > >  .../freescale/imx8mm-engicam-edimm2.2.dtsi    |  7 +++++++
+> > > > > >  .../freescale/imx8mm-icore-mx8mm-edimm2.2.dts | 21 +++++++++++++++++++
+> > > > > >  3 files changed, 29 insertions(+)
+> > > > > >  create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-engicam-edimm2.2.dtsi
+> > > > > >  create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-icore-mx8mm-edimm2.2.dts
+> > > > > >
+> > > > > > diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
+> > > > > > index 8d49a2c74604..43783076f856 100644
+> > > > > > --- a/arch/arm64/boot/dts/freescale/Makefile
+> > > > > > +++ b/arch/arm64/boot/dts/freescale/Makefile
+> > > > > > @@ -33,6 +33,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mm-beacon-kit.dtb
+> > > > > >  dtb-$(CONFIG_ARCH_MXC) += imx8mm-evk.dtb
+> > > > > >  dtb-$(CONFIG_ARCH_MXC) += imx8mm-ddr4-evk.dtb
+> > > > > >  dtb-$(CONFIG_ARCH_MXC) += imx8mm-icore-mx8mm-ctouch2.dtb
+> > > > > > +dtb-$(CONFIG_ARCH_MXC) += imx8mm-icore-mx8mm-edimm2.2.dtb
+> > > > > >  dtb-$(CONFIG_ARCH_MXC) += imx8mm-kontron-n801x-s.dtb
+> > > > > >  dtb-$(CONFIG_ARCH_MXC) += imx8mm-var-som-symphony.dtb
+> > > > > >  dtb-$(CONFIG_ARCH_MXC) += imx8mn-evk.dtb
+> > > > > > diff --git a/arch/arm64/boot/dts/freescale/imx8mm-engicam-edimm2.2.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-engicam-edimm2.2.dtsi
+> > > > > > new file mode 100644
+> > > > > > index 000000000000..294df07289a2
+> > > > > > --- /dev/null
+> > > > > > +++ b/arch/arm64/boot/dts/freescale/imx8mm-engicam-edimm2.2.dtsi
+> > > > > > @@ -0,0 +1,7 @@
+> > > > > > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> > > > > > +/*
+> > > > > > + * Copyright (c) 2020 Engicam srl
+> > > > > > + * Copyright (c) 2020 Amarula Solutions(India)
+> > > > > > + */
+> > > > > > +
+> > > > > > +#include "imx8mm-engicam-common.dtsi"
+> > > > >
+> > > > > It seems you ignored my comments from previous email. That's not how we
+> > > > > go with the process.
+> > > > >
+> > > > > Don't create confusing or overcomplicated hierarchy of includes. Don't
+> > > > > create files which do nothing.
+> > > >
+> > > > Idea is to move common nodes in separate dtsi instead of adding
+> > > > redundant nodes into respective areas. let me know if it still
+> > > > confusing.
+> > >
+> > > A file which *only* includes another file does not fulfill this idea of
+> > > moving common nodes to a separate DTSI file. Or if I still miss
+> > > something, please point me, what common nodes are stored in
+> > > imx8mm-engicam-edimm2.2.dtsi?
+> >
+> > imx8mm-engicam-edimm2.2.dtsi for EDIMM2.2 Carrier
+> > imx8mm-engicam-ctouch2.dtsi for C.TOUCH2 Carrier
+> > imx8mm-engicam-common.dtsi for common nodes for above 2 carrier boards.
+> >
+> > Yes, imx8mm-engicam-edimm2.2.dtsi is empty now
+>
+> Then that's the answer. We do not create empty files.
+>
+> > but nodes like PCIe,
+> > CSI, DSI will support once the respective drivers are part of Mainline
+> > but those are not supported in C.TOUCH2 carrier board dtsi. There are
+> > some GPIO pins differences between EDIMM2.2 and C.TOUCH2 carriers on
+> > WiFi/BT so those will be part of the respective carrier dtsi.
+>
+> It's the same clear as before. Don't create empty files. Once you decide
+> to bring new features, you create a new file.
 
-I don't see you making use of this in this patchset. How did you get this to
-crash ?
+Okay, then will add w/o common file in next version.
 
--- 
-viresh
+Jagan.
