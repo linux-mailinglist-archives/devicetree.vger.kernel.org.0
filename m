@@ -2,142 +2,213 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CF2542E0F38
-	for <lists+devicetree@lfdr.de>; Tue, 22 Dec 2020 21:17:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0DA7D2E0F56
+	for <lists+devicetree@lfdr.de>; Tue, 22 Dec 2020 21:26:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726412AbgLVUPT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Dec 2020 15:15:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36398 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726384AbgLVUPT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Dec 2020 15:15:19 -0500
-Received: from mail-io1-xd31.google.com (mail-io1-xd31.google.com [IPv6:2607:f8b0:4864:20::d31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2065FC0613D6
-        for <devicetree@vger.kernel.org>; Tue, 22 Dec 2020 12:14:39 -0800 (PST)
-Received: by mail-io1-xd31.google.com with SMTP id o6so13066836iob.10
-        for <devicetree@vger.kernel.org>; Tue, 22 Dec 2020 12:14:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=atishpatra.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=7zOf6F8ODgFcmacS9f6DCdrzJfrVz8BP88T2NFPCiVA=;
-        b=cXF3QvfttDRIq6gJ4Wz3ZKQqCIAXSUZcQeXRHzebIehV4HKBFNWVNn6z1Ou6En9XWC
-         pObVsIyeBEPxjyG0GERA2gzo+/ZsKhyr/3waLfWia8Uv4rjS210W9rXrPc+7hhfGEifD
-         L0U/GtfZjNVxyBmr9EIZev92P+plFUGWBzWEs=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=7zOf6F8ODgFcmacS9f6DCdrzJfrVz8BP88T2NFPCiVA=;
-        b=my54lrVll/5gpu0VWL1rWj2mXK7OeNTZmpHveqMq80de2L7ww+LJQ+qMfSkSKujO4H
-         0KHjnVAn945dQlbcQNRDCb2ndlw72vBN2zxEEexzRgV0uPKPFTuoW1G/nctHF2jlOEjg
-         qFvXTggqU2tyhZ5e55jUD6s4PIkYJg5p2NljUe9IDiw1IUv97150FblmLec0fWyc2T8c
-         vgLt8+bZb9PA5YjF2WXuShTNKlIopEvkrwkwKldJdm1sdjFLJeaFpSON8lsmt/MS93yj
-         KoXY3ENk7UDsIr1ESxZkkxJxVSboIeHYfkMt19VSomTQ5QY4ouzq7XE2psnTSwCd3Sqy
-         b8Gw==
-X-Gm-Message-State: AOAM530YdYy9Ze499TwaLnTx+pi7+5br92bkM5iOkCPQOc36fWt8PoZV
-        Cka1SBtTyAQu5u2BQI0WI5Zm/FL2jEsr7sVAKdh5
-X-Google-Smtp-Source: ABdhPJyUHJf84Lg2qSP3jMdGstvvHuPcN2/TySq54r/xcVNXu2cRD3MFNmcm4v52z1nN7Jo4djZ2OMIE3EEPlyzUtEI=
-X-Received: by 2002:a6b:b74e:: with SMTP id h75mr19143399iof.0.1608668078357;
- Tue, 22 Dec 2020 12:14:38 -0800 (PST)
+        id S1726289AbgLVU0e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Dec 2020 15:26:34 -0500
+Received: from mail.kernel.org ([198.145.29.99]:53990 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725850AbgLVU0d (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 22 Dec 2020 15:26:33 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 7A4B2229C5;
+        Tue, 22 Dec 2020 20:25:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1608668752;
+        bh=CMHmh//54HzzBao2oGraYPz/Rd2R+Q2LAdo6AbAmdHs=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=gIPowY20E/H+RYtypObWXXpXAZSzyZgRFeHhb5ym1McKJJQFNku9WcnEIrQhln6UV
+         c+HFVrO8mKHLJtypT2RU+0XIqdtZ0jw2iVoqGOrt8XvwgkRbnxG7cPaU+1VI8p7IeR
+         TVvOQY+dI/GSjqCurLGIXolPMTAur5kQ4e4C14ntroExzulUAKdEIDaeRNCDhRocn8
+         wxeMZd1gGpgCX3px9ZMv70AbzwBlWn5L/x2yhm1BnMWEf8UNes5KB3edAHu+0Tm7xu
+         xuX1IGn8Io0NtY0i1DBQc4bmKZzs28dt6XcXVEe9BQh9WwwgyfVzlZ790/jY3t9lJ8
+         LtYmhR0KbxRiw==
+Received: by mail-ot1-f53.google.com with SMTP id w3so13043193otp.13;
+        Tue, 22 Dec 2020 12:25:52 -0800 (PST)
+X-Gm-Message-State: AOAM532B0WgF/sjjqM+tW6g4x+M6ScDVMswoRtPPDHVX8S/dSd6XjeWr
+        t6YHj2XHUzf4qd3YJjahzGNSgNI5TIX1OQ3e230=
+X-Google-Smtp-Source: ABdhPJy3a2xnMofnmCEWCXUXxRsLqyJM6eOAPdo6XyhF3bzTLcGaLujjwr4B85gILg0BkyxZk24YxH8dREXHavmh1Fk=
+X-Received: by 2002:a9d:69c1:: with SMTP id v1mr17840156oto.128.1608668751792;
+ Tue, 22 Dec 2020 12:25:51 -0800 (PST)
 MIME-Version: 1.0
-References: <20201204085835.2406541-1-atish.patra@wdc.com> <mhng-2a16d74b-c896-4ad0-9d02-87b3b09ee3be@palmerdabbelt-glaptop>
-In-Reply-To: <mhng-2a16d74b-c896-4ad0-9d02-87b3b09ee3be@palmerdabbelt-glaptop>
-From:   Atish Patra <atishp@atishpatra.org>
-Date:   Tue, 22 Dec 2020 12:14:27 -0800
-Message-ID: <CAOnJCUJ5UK3Do=uC0R2DVMNt6HmoJHKB1XXr8MkoeBYNzQHZrw@mail.gmail.com>
-Subject: Re: [PATCH v3 0/5] Add Microchip PolarFire Soc Support
-To:     Daire McNamara <daire.mcnamara@microchip.com>
-Cc:     Atish Patra <Atish.Patra@wdc.com>,
+References: <20201221113151.94515-1-jagan@amarulasolutions.com>
+ <20201221113151.94515-3-jagan@amarulasolutions.com> <20201221134625.GB31176@kozik-lap>
+ <CAMty3ZAi0B=fSRfpQG4bgE+Jt6GVhzRb_FZjCL3VQXp9vn-FEw@mail.gmail.com>
+ <20201221140501.GE31176@kozik-lap> <CAMty3ZA4K8GvTfmrV1Mz6zp1w+iF0FvE04CODZUsHvg+J+a1nw@mail.gmail.com>
+ <20201221144206.GA36114@kozik-lap> <CAMty3ZD8JAp3UGuOS2zTsOZ5QcFE6_Ba_UjtmhKpD3R3qra5jg@mail.gmail.com>
+ <CAMty3ZCzB87_NGTRRvugcurSHWikcaCvKPuBBJJ1ocmqDQ8wzw@mail.gmail.com>
+In-Reply-To: <CAMty3ZCzB87_NGTRRvugcurSHWikcaCvKPuBBJJ1ocmqDQ8wzw@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+Date:   Tue, 22 Dec 2020 21:25:40 +0100
+X-Gmail-Original-Message-ID: <CAJKOXPcZ6diMrSxAK4LyvViAmaMNwa_Bz2B4hYUapz5YK6CSnw@mail.gmail.com>
+Message-ID: <CAJKOXPcZ6diMrSxAK4LyvViAmaMNwa_Bz2B4hYUapz5YK6CSnw@mail.gmail.com>
+Subject: Re: [PATCH v2 2/6] dt-bindings: arm: fsl: Add Engicam i.Core MX8M
+ Mini C.TOUCH 2.0
+To:     Jagan Teki <jagan@amarulasolutions.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Li Yang <leoyang.li@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>,
         devicetree <devicetree@vger.kernel.org>,
-        Conor.Dooley@microchip.com, Anup Patel <Anup.Patel@wdc.com>,
-        Cyril.Jean@microchip.com, Bin Meng <bin.meng@windriver.com>,
-        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, Ivan.Griffin@microchip.com,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Alistair Francis <Alistair.Francis@wdc.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-amarula <linux-amarula@amarulasolutions.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 21, 2020 at 7:19 PM Palmer Dabbelt <palmer@dabbelt.com> wrote:
+On Tue, 22 Dec 2020 at 19:28, Jagan Teki <jagan@amarulasolutions.com> wrote:
 >
-> On Fri, 04 Dec 2020 00:58:30 PST (-0800), Atish Patra wrote:
-> > This series adds minimal support for Microchip Polar Fire Soc Icicle kit.
-> > It is rebased on v5.10-rc6 and depends on clock support.
-> > Only MMC and ethernet drivers are enabled via this series.
-> > The idea here is to add the foundational patches so that other drivers
-> > can be added to on top of this. The device tree may change based on
-> > feedback on bindings of individual driver support patches.
+> On Mon, Dec 21, 2020 at 8:17 PM Jagan Teki <jagan@amarulasolutions.com> wrote:
 > >
-> > This series has been tested on Qemu and Polar Fire Soc Icicle kit.
-> > The following qemu series is necessary to test it on Qemu.
+> > On Mon, Dec 21, 2020 at 8:12 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> > >
+> > > On Mon, Dec 21, 2020 at 08:09:47PM +0530, Jagan Teki wrote:
+> > > > On Mon, Dec 21, 2020 at 7:35 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> > > > >
+> > > > > On Mon, Dec 21, 2020 at 07:29:22PM +0530, Jagan Teki wrote:
+> > > > > > On Mon, Dec 21, 2020 at 7:16 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> > > > > > >
+> > > > > > > On Mon, Dec 21, 2020 at 05:01:47PM +0530, Jagan Teki wrote:
+> > > > > > > > i.Core MX8M Mini is an EDIMM SoM based on NXP i.MX8M Mini from Engicam.
+> > > > > > > >
+> > > > > > > > C.TOUCH 2.0 is a general purpose carrier board with capacitive
+> > > > > > > > touch interface support.
+> > > > > > > >
+> > > > > > > > i.Core MX8M Mini needs to mount on top of this Carrier board for
+> > > > > > > > creating complete i.Core MX8M Mini C.TOUCH 2.0 board.
+> > > > > > > >
+> > > > > > > > Add bindings for it.
+> > > > > > > >
+> > > > > > > > Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+> > > > > > > > ---
+> > > > > > > > Changes for v2:
+> > > > > > > > - updated commit message
+> > > > > > > >
+> > > > > > > >  Documentation/devicetree/bindings/arm/fsl.yaml | 2 ++
+> > > > > > > >  1 file changed, 2 insertions(+)
+> > > > > > > >
+> > > > > > > > diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+> > > > > > > > index 67980dcef66d..e653e0a43016 100644
+> > > > > > > > --- a/Documentation/devicetree/bindings/arm/fsl.yaml
+> > > > > > > > +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+> > > > > > > > @@ -667,6 +667,8 @@ properties:
+> > > > > > > >          items:
+> > > > > > > >            - enum:
+> > > > > > > >                - beacon,imx8mm-beacon-kit  # i.MX8MM Beacon Development Kit
+> > > > > > > > +              - engicam,icore-mx8mm               # i.MX8MM Engicam i.Core MX8M Mini SOM
+> > > > > > > > +              - engicam,icore-mx8mm-ctouch2       # i.MX8MM Engicam i.Core MX8M Mini C.TOUCH 2.0
+> > > > > > >
+> > > > > > > Please test your DTS against new schema with dtbs_check. This won't
+> > > > > > > match.
+> > > > > >
+> > > > > > Sorry, not sure I understand clearly here.
+> > > > > >
+> > > > > > This the dts file ie used matched compatible.
+> > > > > > compatible = "engicam,icore-mx8mm-ctouch2", "engicam,icore-mx8mm",
+> > > > > >                      "fsl,imx8mm";
+> > > > > >
+> > > > > > I did build the dtbs_check without showing any issues like,
+> > > > > >
+> > > > > > $ make ARCH=arm64 dtbs_check
+> > > > > > ...
+> > > > > >
+> > > > > >     From schema: /w/dt-schema/dt-schema/dtschema/schemas/property-units.yaml
+> > > > > >   DTC     arch/arm64/boot/dts/freescale/imx8mm-icore-mx8mm-ctouch2.dtb
+> > > > > >   DTC     arch/arm64/boot/dts/freescale/imx8mm-icore-mx8mm-ctouch2-of10.dtb
+> > > > > >   DTC     arch/arm64/boot/dts/freescale/imx8mm-icore-mx8mm-edimm2.2.dtb
+> > > > > > ..
+> > > > > >
+> > > > > > Can you let me know what I missed here?
+> > > > >
+> > > > > You pasted here output of validating with property-units.yaml (or
+> > > > > something else), not the schema which you changed. If you want to limit
+> > > > > the tests, use DT_SCHEMA_FILES.
+> > > > >
+> > > > > I mentioned about exactly the same problem in yout previous v1
+> > > > > at patch #5. No changes here stil.
+> > > >
+> > > > Yes, I usually did that check before posting. Please check the build
+> > > > log below and fsl.yaml binding is fine to build.
+> > > >
+> > > > # make dt_binding_check DT_SCHEMA_FILES=arm/fsl.yaml
+> > >
+> > > 1. Wrong path to schema file,
+> > > 2. Bindings pass, they are not a problem. You were running dtbs_check,
+> > > right?
 > >
-> > The series can also be found at.
-> > https://github.com/atishp04/linux/tree/polarfire_support_upstream_v3
+> > But kbuild is building the fsl.yaml I did verify with by adding some
+> > wrong character in the file, it is showing build issues.
 > >
-> > I noticed the latest version of mmc driver[2] hangs on the board with
-> > the latest clock driver. That's why, I have tested with the old clock
-> > driver available in the above github repo.
+> > Please check the clean log.
+> >
+> > # make mrproper
+> >   CLEAN   Documentation/devicetree/bindings
+> >   CLEAN   scripts/basic
+> >   CLEAN   scripts/dtc
+> > # make dt_binding_check
+> > DT_SCHEMA_FILES=Documentation/devicetree/bindings/arm/fsl.yaml
+> >   HOSTCC  scripts/basic/fixdep
+> >   HOSTCC  scripts/dtc/dtc.o
+> >   HOSTCC  scripts/dtc/flattree.o
+> >   HOSTCC  scripts/dtc/fstree.o
+> >   HOSTCC  scripts/dtc/data.o
+> >   HOSTCC  scripts/dtc/livetree.o
+> >   HOSTCC  scripts/dtc/treesource.o
+> >   HOSTCC  scripts/dtc/srcpos.o
+> >   HOSTCC  scripts/dtc/checks.o
+> >   HOSTCC  scripts/dtc/util.o
+> >   LEX     scripts/dtc/dtc-lexer.lex.c
+> >   YACC    scripts/dtc/dtc-parser.tab.[ch]
+> >   HOSTCC  scripts/dtc/dtc-lexer.lex.o
+> >   HOSTCC  scripts/dtc/dtc-parser.tab.o
+> >   HOSTCC  scripts/dtc/yamltree.o
+> >   HOSTLD  scripts/dtc/dtc
+> >   CHKDT   Documentation/devicetree/bindings/processed-schema-examples.json
+> > /w/linux/Documentation/devicetree/bindings/soc/litex/litex,soc-controller.yaml:
+> > 'additionalProperties' is a required property
+> > /w/linux/Documentation/devicetree/bindings/soc/mediatek/devapc.yaml:
+> > 'additionalProperties' is a required property
+> > /w/linux/Documentation/devicetree/bindings/media/coda.yaml:
+> > 'additionalProperties' is a required property
+> > /w/linux/Documentation/devicetree/bindings/serial/litex,liteuart.yaml:
+> > 'additionalProperties' is a required property
+> >   SCHEMA  Documentation/devicetree/bindings/processed-schema-examples.json
+> > /w/linux/Documentation/devicetree/bindings/soc/litex/litex,soc-controller.yaml:
+> > ignoring, error in schema:
+> > warning: no schema found in file:
+> > ./Documentation/devicetree/bindings/soc/litex/litex,soc-controller.yaml
+> > /w/linux/Documentation/devicetree/bindings/soc/mediatek/devapc.yaml:
+> > ignoring, error in schema:
+> > warning: no schema found in file:
+> > ./Documentation/devicetree/bindings/soc/mediatek/devapc.yaml
+> > /w/linux/Documentation/devicetree/bindings/media/coda.yaml: ignoring,
+> > error in schema:
+> > warning: no schema found in file:
+> > ./Documentation/devicetree/bindings/media/coda.yaml
+> > /w/linux/Documentation/devicetree/bindings/serial/litex,liteuart.yaml:
+> > ignoring, error in schema:
+> > warning: no schema found in file:
+> > ./Documentation/devicetree/bindings/serial/litex,liteuart.yaml
+> >   DTEX    Documentation/devicetree/bindings/arm/fsl.example.dts
+> >   DTC     Documentation/devicetree/bindings/arm/fsl.example.dt.yaml
+> >   CHECK   Documentation/devicetree/bindings/arm/fsl.example.dt.yaml
 >
-> IIRC the previous version was an RFC, but this is a PATCH.  I'd be generally
-> happy to take it on for-next, but I don't want to merge something that doesn't
-> boot and that I don't have any way to fix (I don't have one of the boards yet).
->
+> Any further comments? I'm planning to send v3.
 
-Fair enough. We can wait for clock patches to be merged before merging
-this series.
+What comments do you need? Your schema and DTS are wrong. If you run
+dtbs_check, which I mentioned in the first email, you would see the
+result. Instead you pasted unrelevant check of other bindings and
+later pasted dt_binding_check. It does not make sense, so I clarified:
+> 2. Bindings pass, they are not a problem. You were running dtbs_check, right?
 
-> > [1] https://lists.nongnu.org/archive/html/qemu-devel/2020-10/msg08582.html
-> > [2] https://www.spinics.net/lists/devicetree/msg383626.html
-> >
-> > Changes from v2->v3:
-> > 1. Fixed a typo in dt binding.
-> > 2. Included MAINTAINERS entry for PolarFire SoC.
-> > 3. Improved the dts file by using lowercase clock names and keeping phy
-> >    details in board specific dts file.
-> >
-> > Changes from v1->v2:
-> > 1. Modified the DT to match the device tree in U-Boot.
-> > 2. Added both eMMC & SDcard entries in DT. However, SD card is only enabled
-> >    as it allows larger storage option for linux distros.
-> >
-> > Atish Patra (4):
-> > RISC-V: Add Microchip PolarFire SoC kconfig option
-> > dt-bindings: riscv: microchip: Add YAML documentation for the
-> > PolarFire SoC
-> > RISC-V: Initial DTS for Microchip ICICLE board
-> > RISC-V: Enable Microchip PolarFire ICICLE SoC
-> >
-> > Conor Dooley (1):
-> > MAINTAINERS: add microchip polarfire soc support
-> >
-> > .../devicetree/bindings/riscv/microchip.yaml  |  28 ++
-> > MAINTAINERS                                   |   8 +
-> > arch/riscv/Kconfig.socs                       |   7 +
-> > arch/riscv/boot/dts/Makefile                  |   1 +
-> > arch/riscv/boot/dts/microchip/Makefile        |   2 +
-> > .../microchip/microchip-mpfs-icicle-kit.dts   |  72 ++++
-> > .../boot/dts/microchip/microchip-mpfs.dtsi    | 331 ++++++++++++++++++
-> > arch/riscv/configs/defconfig                  |   4 +
-> > 8 files changed, 453 insertions(+)
-> > create mode 100644 Documentation/devicetree/bindings/riscv/microchip.yaml
-> > create mode 100644 arch/riscv/boot/dts/microchip/Makefile
-> > create mode 100644 arch/riscv/boot/dts/microchip/microchip-mpfs-icicle-kit.dts
-> > create mode 100644 arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi
->
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
+And you pasted dt_binding_check, so it kind of closes the discussion.
+I don't know what to add more.
+I reported this problem already in v1, so please don't send the same
+wrong code for the third time.
 
-@Daire McNamara Do you have a v2 of the clock patch series that works
-with the latest upstream.
-
--- 
-Regards,
-Atish
+Best regards,
+Krzysztof
