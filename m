@@ -2,235 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9FD502E0F67
-	for <lists+devicetree@lfdr.de>; Tue, 22 Dec 2020 21:33:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B95602E0F9B
+	for <lists+devicetree@lfdr.de>; Tue, 22 Dec 2020 22:05:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727341AbgLVUdH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Dec 2020 15:33:07 -0500
-Received: from mail-wr1-f53.google.com ([209.85.221.53]:37856 "EHLO
-        mail-wr1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727245AbgLVUdH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Dec 2020 15:33:07 -0500
-Received: by mail-wr1-f53.google.com with SMTP id i9so15974513wrc.4;
-        Tue, 22 Dec 2020 12:32:49 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=O/y2aVCrsXS4wNPN6dvpENqHdfUVlZD7tj4fZbUkGTc=;
-        b=II3g3VYe4mUwG0/pZh53EHpi6OJgC+DzQAZLx5gQYBv69od1I3m/Fkqh8RAzZlN/jS
-         5qevIEVuTIUkrb+4PX6F/gIsIFOEBWczIN0vWhC8tIlDRkvgS26BX16xcLx/LSTVv32F
-         RAgCiy0uS99jnQ6buPnOMmQsQ59RoY8uQ77+aZ0iW3p73GZayU/kswWHLUnGk6sfV6ki
-         lpE+Xyx8Q771iD+pMWgUearveNUucddfC8VGEhs8QIgsNmE4+fmSZZlE7jwbWa67UN16
-         GHGMUOfAm3p7GJRhHabDZ3nQ5UMYJOalMHbTyrgbDOXJmXbt4/YkD6FL4bQJ+3aea6z6
-         DApw==
-X-Gm-Message-State: AOAM533XrxB8sfJ8IC590EEosIQLWmSUx0/nzf0u/B/uVgxaQFd99bPj
-        BQegWwbiRlqBI4mt+Ve7ptM=
-X-Google-Smtp-Source: ABdhPJx63vP7AmeWdx7F/OALfiVmhMp+kG1WFZKqLT5WxegmooK84QyfwM/lbR3di2S++Tn7lewYYQ==
-X-Received: by 2002:a5d:638b:: with SMTP id p11mr25122760wru.89.1608669143776;
-        Tue, 22 Dec 2020 12:32:23 -0800 (PST)
-Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
-        by smtp.googlemail.com with ESMTPSA id y68sm31235909wmc.0.2020.12.22.12.32.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 22 Dec 2020 12:32:22 -0800 (PST)
-Date:   Tue, 22 Dec 2020 21:32:21 +0100
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Jagan Teki <jagan@amarulasolutions.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Li Yang <leoyang.li@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-amarula <linux-amarula@amarulasolutions.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>
-Subject: Re: [PATCH v2 2/6] dt-bindings: arm: fsl: Add Engicam i.Core MX8M
- Mini C.TOUCH 2.0
-Message-ID: <20201222203221.GA10029@kozik-lap>
-References: <20201221113151.94515-1-jagan@amarulasolutions.com>
- <20201221113151.94515-3-jagan@amarulasolutions.com>
- <20201221134625.GB31176@kozik-lap>
- <CAMty3ZAi0B=fSRfpQG4bgE+Jt6GVhzRb_FZjCL3VQXp9vn-FEw@mail.gmail.com>
- <20201221140501.GE31176@kozik-lap>
- <CAMty3ZA4K8GvTfmrV1Mz6zp1w+iF0FvE04CODZUsHvg+J+a1nw@mail.gmail.com>
- <20201221144206.GA36114@kozik-lap>
- <CAMty3ZD8JAp3UGuOS2zTsOZ5QcFE6_Ba_UjtmhKpD3R3qra5jg@mail.gmail.com>
- <CAMty3ZCzB87_NGTRRvugcurSHWikcaCvKPuBBJJ1ocmqDQ8wzw@mail.gmail.com>
- <CAJKOXPcZ6diMrSxAK4LyvViAmaMNwa_Bz2B4hYUapz5YK6CSnw@mail.gmail.com>
+        id S1727719AbgLVVDD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Dec 2020 16:03:03 -0500
+Received: from mail-bn8nam11on2088.outbound.protection.outlook.com ([40.107.236.88]:41697
+        "EHLO NAM11-BN8-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1727692AbgLVVDC (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 22 Dec 2020 16:03:02 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Gc8hhHoUqK38dmIebdv/PgYpb8ywtmhNdaX/FXrv19yOwGm8Gncv8fBHZpe8K6PSAA91UdPZjV+HJfNFOZ74NmUkVQnBwdsekeYqjZr8yZavV4ukANgRNEn+xjz5KqepN+xawX2hw8BCZZCkuy7D3wg3ARDqjlEHufmPpQXcFluc8uxXYpn7sVjZnLt66xv2Ggx/4kjmZZXEKuskwHhBKafunK6TlP6Bgyj3E1C9PlZ1y60iYeGVYYdTzuf0vByTNyJ/J7DuxlGzR4CdGp9puQL/fyDYeNKVsM0y4KLj8P1zm2HhA8CmjRHEh4ORfVbyXjM/qtDTMtYFOIOn+bZirg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=YHsjut5DNGkwXAKDfSZC3xWJmrqZvlfP4INWUtgpYvY=;
+ b=DqFssqkvr8Hngs1ZbRsWZYYqI6w4jninN3YSato/EXyw7PUlEBHokKguZQKeFz2YmsyROi5NSu3iHwlTH6a8aDaOOc2NzMrNu/lUUnqbfsz2wBaU+6fjvcX2Mf2/AvG+sbEYtYJaW/WqUD3q8ekVROdXupafMgC5NnKoEX3y/jck4fw3wluVwogBd1OiK3oojFrXewhUpaDPSb7MNIdUvt3KF8MmvQQWAMY3XwlQFEi1eYKauz22UfHTm8BP2wzTkWDVY7MzPkYqfokstbe+PoV9v9g7jGXNf+UpgOSM7HDIy0CBOayrHjV7mM92O9QCHvAZQzknqbcboXbujqxnZg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=silabs.com; dmarc=pass action=none header.from=silabs.com;
+ dkim=pass header.d=silabs.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=silabs.onmicrosoft.com; s=selector2-silabs-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=YHsjut5DNGkwXAKDfSZC3xWJmrqZvlfP4INWUtgpYvY=;
+ b=h6Bym/+iFhNDYhwyydNawEDpj16r9cRbmgdUaxIyNa1fAiZzIbK63zsvuOLWYD0kNK2YPeqNfwGPItzz68VQeD/9QWfoOWYc3cuf+cJmaeagjn4JbdOCfWdyxe20VfnOB/bqp76GAfyhjElqVxyaCoEM47Eu9GW0V6BGux/eRs4=
+Authentication-Results: codeaurora.org; dkim=none (message not signed)
+ header.d=none;codeaurora.org; dmarc=none action=none header.from=silabs.com;
+Received: from SN6PR11MB2718.namprd11.prod.outlook.com (2603:10b6:805:63::18)
+ by SA2PR11MB4988.namprd11.prod.outlook.com (2603:10b6:806:f8::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3676.25; Tue, 22 Dec
+ 2020 21:02:15 +0000
+Received: from SN6PR11MB2718.namprd11.prod.outlook.com
+ ([fe80::a989:f850:6736:97ca]) by SN6PR11MB2718.namprd11.prod.outlook.com
+ ([fe80::a989:f850:6736:97ca%5]) with mapi id 15.20.3700.026; Tue, 22 Dec 2020
+ 21:02:14 +0000
+From:   =?ISO-8859-1?Q?J=E9r=F4me?= Pouiller <jerome.pouiller@silabs.com>
+To:     Kalle Valo <kvalo@codeaurora.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     devel@driverdev.osuosl.org, devicetree@vger.kernel.org,
+        Ulf Hansson <ulf.hansson@linaro.org>, netdev@vger.kernel.org,
+        linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, linux-mmc@vger.kernel.org,
+        Pali =?ISO-8859-1?Q?Roh=E1r?= <pali@kernel.org>,
+        "David S . Miller" <davem@davemloft.net>
+Subject: Re: [PATCH v3 09/24] wfx: add hwio.c/hwio.h
+Date:   Tue, 22 Dec 2020 22:02:09 +0100
+Message-ID: <4279510.LvFx2qVVIh@pc-42>
+Organization: Silicon Labs
+In-Reply-To: <X+IQRct0Zsm87H4+@kroah.com>
+References: <20201104155207.128076-1-Jerome.Pouiller@silabs.com> <87lfdp98rw.fsf@codeaurora.org> <X+IQRct0Zsm87H4+@kroah.com>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Originating-IP: [82.67.86.106]
+X-ClientProxiedBy: SA9PR13CA0181.namprd13.prod.outlook.com
+ (2603:10b6:806:26::6) To SN6PR11MB2718.namprd11.prod.outlook.com
+ (2603:10b6:805:63::18)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <CAJKOXPcZ6diMrSxAK4LyvViAmaMNwa_Bz2B4hYUapz5YK6CSnw@mail.gmail.com>
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from pc-42.localnet (82.67.86.106) by SA9PR13CA0181.namprd13.prod.outlook.com (2603:10b6:806:26::6) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3700.19 via Frontend Transport; Tue, 22 Dec 2020 21:02:12 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: e92abdc6-a474-49f7-c018-08d8a6bcdbfd
+X-MS-TrafficTypeDiagnostic: SA2PR11MB4988:
+X-Microsoft-Antispam-PRVS: <SA2PR11MB4988C4324D97CDE6DE76E44793DF0@SA2PR11MB4988.namprd11.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8273;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 2Jms4IfIg+E7TL/WqieQwR6kIenKxaVL/onwlr7ej6D8rTbYtOQQ9Y2JGYTkNLJlHD83nL6bQABbKQ93efPjtdetaOuw8sDZWpAy2dV1Q4/Z6v3Dbjta1SJRSIHrYCI+8yBRJ5JApNxmAx+Ltjdzi39I7Ix8vU6lo4l2GTMwaENLbzwJAKRMC8MwepYRa/ixXYzai2TP8+tQBeN+Bm0uJYCTyJTrUM0robdlyQBNBxLjz539i0MhJLxFpFcvTTFv8ZA8+QG+v0DOkLy2iXR9Cco1IOswaM8IvqOU78gkR9Gx1K13My6673eoJfFOjIFfaodppdSLNrDl05QeHb9ciKtwQd96c7CAEcYRcA/Qirs6vf5pl5yj8ZeyyZUU/i7EVzYXaU8LLBi01U1nuWCg1JzJ/ACmR5R5TRVt7zqun05wTktPVdnINtz8bXHWtpB9
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN6PR11MB2718.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(376002)(346002)(136003)(366004)(39850400004)(396003)(66574015)(4326008)(8936002)(6486002)(2906002)(6666004)(8676002)(36916002)(83380400001)(16526019)(26005)(110136005)(186003)(66556008)(6506007)(956004)(7416002)(33716001)(316002)(66476007)(86362001)(9686003)(54906003)(5660300002)(6512007)(478600001)(66946007)(52116002)(39026012);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: =?iso-8859-1?Q?QglQq2GR9IhKbtmd4ZG4Eg9LSLIsh7NdxHlKQ42SreptEPwG+VcOa9OB+3?=
+ =?iso-8859-1?Q?uqibh72xrmnsQBfYOG2wiMfir8ztal4GM4dsHvKsh2PTbvbESFMWrc9wti?=
+ =?iso-8859-1?Q?1Tk8M8wpjh9KsdXlq1FL0FUOAP9wZqQSKrmqMBPZzpG0JRj+rVV1En82/a?=
+ =?iso-8859-1?Q?F/gcc38XE9nhfW4zjREGXFXyjbRUHCin5qDmNVJlOQaLEWDhyUi2ABWH1s?=
+ =?iso-8859-1?Q?i8H93hgiP2usH13JbNaTnINIhpnK4dKKNkApQeKLeRcDrDfQdzyM/G0q86?=
+ =?iso-8859-1?Q?E9C5KsK+sreSXa9Hgvc0SbZbxx+Ob43C23EXGUk8BYjZBnPwSlce0bbe23?=
+ =?iso-8859-1?Q?S7RTLeAJbkHSX1hWVku2uON/jqRekXtXQtuFMgTMZP0oSDHe5+K/G6h+LR?=
+ =?iso-8859-1?Q?UvxCrTIVkRNNNNU6jrHBTzKJhB5bWBvSDX12FFzhoI+WmuR0aiNqO85w5A?=
+ =?iso-8859-1?Q?lZsagWyZjO7R04G5WHAmA7WbN2itgAS6pDXpXZSeb16dm8t5ze0wPTVYG5?=
+ =?iso-8859-1?Q?IrBUQYF8li2/s2UsMpf9N9Lo59odmBUFx98hHJf56Sr6tF9NCIYLyCE+Ws?=
+ =?iso-8859-1?Q?LCx1plNznB/sGgZPms52Qezb/9Bez6wSxntPFki9z9HgP/v98ajJ/EVQ06?=
+ =?iso-8859-1?Q?assSVYBkj995HdQJTMM3B15G9kkxQi2ufoMLfD4Bu4Gk0N/Tc1kb0CmdJJ?=
+ =?iso-8859-1?Q?wvxOLd5RRdrQ8cUetQASNQ2fQiDpCICmMLJdSccrEPbt4AlCuZVdgOXdQ3?=
+ =?iso-8859-1?Q?6fK+ycF21LAgM/OfDfvT4sq5h5px3JdS/wmQF/d6gCdKdVPBqRFSBlKJmH?=
+ =?iso-8859-1?Q?/txiZhIqJdRPtZROqZgHQZq570dP+j0eezFaoq3aUYwjF5UoedZMEgR4vY?=
+ =?iso-8859-1?Q?jHSOXqwkZ/yYu2+e2+mMr4SXEwycT8wR35sCqbhUlPhW+4Ebq1IUs5t9he?=
+ =?iso-8859-1?Q?kH2Wc/t2B4ufxoTh75b+XmePEztnjdt0kV/1TAxDcxFCjAFIK2ymF9lG/z?=
+ =?iso-8859-1?Q?nkVcaaFautBZef6o/VJ47Loe8k6pVVEAlVtlOq?=
+X-OriginatorOrg: silabs.com
+X-MS-Exchange-CrossTenant-AuthSource: SN6PR11MB2718.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Dec 2020 21:02:14.6598
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 54dbd822-5231-4b20-944d-6f4abcd541fb
+X-MS-Exchange-CrossTenant-Network-Message-Id: e92abdc6-a474-49f7-c018-08d8a6bcdbfd
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: iBJqPxn+nQ4EKOvhH6G45wWS0c+JDjopj+UyCiDcEF63+sfvc6V+7dT31rOPhWvRGMq+Ue22Txn7Lzu1DmH9pg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB4988
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 22, 2020 at 09:25:40PM +0100, Krzysztof Kozlowski wrote:
-> On Tue, 22 Dec 2020 at 19:28, Jagan Teki <jagan@amarulasolutions.com> wrote:
+On Tuesday 22 December 2020 16:27:01 CET Greg Kroah-Hartman wrote:
+>=20
+> On Tue, Dec 22, 2020 at 05:10:11PM +0200, Kalle Valo wrote:
+> > Jerome Pouiller <Jerome.Pouiller@silabs.com> writes:
 > >
-> > On Mon, Dec 21, 2020 at 8:17 PM Jagan Teki <jagan@amarulasolutions.com> wrote:
-> > >
-> > > On Mon, Dec 21, 2020 at 8:12 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> > > >
-> > > > On Mon, Dec 21, 2020 at 08:09:47PM +0530, Jagan Teki wrote:
-> > > > > On Mon, Dec 21, 2020 at 7:35 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> > > > > >
-> > > > > > On Mon, Dec 21, 2020 at 07:29:22PM +0530, Jagan Teki wrote:
-> > > > > > > On Mon, Dec 21, 2020 at 7:16 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> > > > > > > >
-> > > > > > > > On Mon, Dec 21, 2020 at 05:01:47PM +0530, Jagan Teki wrote:
-> > > > > > > > > i.Core MX8M Mini is an EDIMM SoM based on NXP i.MX8M Mini from Engicam.
-> > > > > > > > >
-> > > > > > > > > C.TOUCH 2.0 is a general purpose carrier board with capacitive
-> > > > > > > > > touch interface support.
-> > > > > > > > >
-> > > > > > > > > i.Core MX8M Mini needs to mount on top of this Carrier board for
-> > > > > > > > > creating complete i.Core MX8M Mini C.TOUCH 2.0 board.
-> > > > > > > > >
-> > > > > > > > > Add bindings for it.
-> > > > > > > > >
-> > > > > > > > > Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
-> > > > > > > > > ---
-> > > > > > > > > Changes for v2:
-> > > > > > > > > - updated commit message
-> > > > > > > > >
-> > > > > > > > >  Documentation/devicetree/bindings/arm/fsl.yaml | 2 ++
-> > > > > > > > >  1 file changed, 2 insertions(+)
-> > > > > > > > >
-> > > > > > > > > diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-> > > > > > > > > index 67980dcef66d..e653e0a43016 100644
-> > > > > > > > > --- a/Documentation/devicetree/bindings/arm/fsl.yaml
-> > > > > > > > > +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-> > > > > > > > > @@ -667,6 +667,8 @@ properties:
-> > > > > > > > >          items:
-> > > > > > > > >            - enum:
-> > > > > > > > >                - beacon,imx8mm-beacon-kit  # i.MX8MM Beacon Development Kit
-> > > > > > > > > +              - engicam,icore-mx8mm               # i.MX8MM Engicam i.Core MX8M Mini SOM
-> > > > > > > > > +              - engicam,icore-mx8mm-ctouch2       # i.MX8MM Engicam i.Core MX8M Mini C.TOUCH 2.0
-> > > > > > > >
-> > > > > > > > Please test your DTS against new schema with dtbs_check. This won't
-> > > > > > > > match.
-> > > > > > >
-> > > > > > > Sorry, not sure I understand clearly here.
-> > > > > > >
-> > > > > > > This the dts file ie used matched compatible.
-> > > > > > > compatible = "engicam,icore-mx8mm-ctouch2", "engicam,icore-mx8mm",
-> > > > > > >                      "fsl,imx8mm";
-> > > > > > >
-> > > > > > > I did build the dtbs_check without showing any issues like,
-> > > > > > >
-> > > > > > > $ make ARCH=arm64 dtbs_check
-> > > > > > > ...
-> > > > > > >
-> > > > > > >     From schema: /w/dt-schema/dt-schema/dtschema/schemas/property-units.yaml
-> > > > > > >   DTC     arch/arm64/boot/dts/freescale/imx8mm-icore-mx8mm-ctouch2.dtb
-> > > > > > >   DTC     arch/arm64/boot/dts/freescale/imx8mm-icore-mx8mm-ctouch2-of10.dtb
-> > > > > > >   DTC     arch/arm64/boot/dts/freescale/imx8mm-icore-mx8mm-edimm2.2.dtb
-> > > > > > > ..
-> > > > > > >
-> > > > > > > Can you let me know what I missed here?
-> > > > > >
-> > > > > > You pasted here output of validating with property-units.yaml (or
-> > > > > > something else), not the schema which you changed. If you want to limit
-> > > > > > the tests, use DT_SCHEMA_FILES.
-> > > > > >
-> > > > > > I mentioned about exactly the same problem in yout previous v1
-> > > > > > at patch #5. No changes here stil.
-> > > > >
-> > > > > Yes, I usually did that check before posting. Please check the build
-> > > > > log below and fsl.yaml binding is fine to build.
-> > > > >
-> > > > > # make dt_binding_check DT_SCHEMA_FILES=arm/fsl.yaml
-> > > >
-> > > > 1. Wrong path to schema file,
-> > > > 2. Bindings pass, they are not a problem. You were running dtbs_check,
-> > > > right?
-> > >
-> > > But kbuild is building the fsl.yaml I did verify with by adding some
-> > > wrong character in the file, it is showing build issues.
-> > >
-> > > Please check the clean log.
-> > >
-> > > # make mrproper
-> > >   CLEAN   Documentation/devicetree/bindings
-> > >   CLEAN   scripts/basic
-> > >   CLEAN   scripts/dtc
-> > > # make dt_binding_check
-> > > DT_SCHEMA_FILES=Documentation/devicetree/bindings/arm/fsl.yaml
-> > >   HOSTCC  scripts/basic/fixdep
-> > >   HOSTCC  scripts/dtc/dtc.o
-> > >   HOSTCC  scripts/dtc/flattree.o
-> > >   HOSTCC  scripts/dtc/fstree.o
-> > >   HOSTCC  scripts/dtc/data.o
-> > >   HOSTCC  scripts/dtc/livetree.o
-> > >   HOSTCC  scripts/dtc/treesource.o
-> > >   HOSTCC  scripts/dtc/srcpos.o
-> > >   HOSTCC  scripts/dtc/checks.o
-> > >   HOSTCC  scripts/dtc/util.o
-> > >   LEX     scripts/dtc/dtc-lexer.lex.c
-> > >   YACC    scripts/dtc/dtc-parser.tab.[ch]
-> > >   HOSTCC  scripts/dtc/dtc-lexer.lex.o
-> > >   HOSTCC  scripts/dtc/dtc-parser.tab.o
-> > >   HOSTCC  scripts/dtc/yamltree.o
-> > >   HOSTLD  scripts/dtc/dtc
-> > >   CHKDT   Documentation/devicetree/bindings/processed-schema-examples.json
-> > > /w/linux/Documentation/devicetree/bindings/soc/litex/litex,soc-controller.yaml:
-> > > 'additionalProperties' is a required property
-> > > /w/linux/Documentation/devicetree/bindings/soc/mediatek/devapc.yaml:
-> > > 'additionalProperties' is a required property
-> > > /w/linux/Documentation/devicetree/bindings/media/coda.yaml:
-> > > 'additionalProperties' is a required property
-> > > /w/linux/Documentation/devicetree/bindings/serial/litex,liteuart.yaml:
-> > > 'additionalProperties' is a required property
-> > >   SCHEMA  Documentation/devicetree/bindings/processed-schema-examples.json
-> > > /w/linux/Documentation/devicetree/bindings/soc/litex/litex,soc-controller.yaml:
-> > > ignoring, error in schema:
-> > > warning: no schema found in file:
-> > > ./Documentation/devicetree/bindings/soc/litex/litex,soc-controller.yaml
-> > > /w/linux/Documentation/devicetree/bindings/soc/mediatek/devapc.yaml:
-> > > ignoring, error in schema:
-> > > warning: no schema found in file:
-> > > ./Documentation/devicetree/bindings/soc/mediatek/devapc.yaml
-> > > /w/linux/Documentation/devicetree/bindings/media/coda.yaml: ignoring,
-> > > error in schema:
-> > > warning: no schema found in file:
-> > > ./Documentation/devicetree/bindings/media/coda.yaml
-> > > /w/linux/Documentation/devicetree/bindings/serial/litex,liteuart.yaml:
-> > > ignoring, error in schema:
-> > > warning: no schema found in file:
-> > > ./Documentation/devicetree/bindings/serial/litex,liteuart.yaml
-> > >   DTEX    Documentation/devicetree/bindings/arm/fsl.example.dts
-> > >   DTC     Documentation/devicetree/bindings/arm/fsl.example.dt.yaml
-> > >   CHECK   Documentation/devicetree/bindings/arm/fsl.example.dt.yaml
+> > > +/*
+> > > + * Internal helpers.
+> > > + *
+> > > + * About CONFIG_VMAP_STACK:
+> > > + * When CONFIG_VMAP_STACK is enabled, it is not possible to run DMA =
+on stack
+> > > + * allocated data. Functions below that work with registers (aka fun=
+ctions
+> > > + * ending with "32") automatically reallocate buffers with kmalloc. =
+However,
+> > > + * functions that work with arbitrary length buffers let's caller to=
+ handle
+> > > + * memory location. In doubt, enable CONFIG_DEBUG_SG to detect badly=
+ located
+> > > + * buffer.
+> > > + */
 > >
-> > Any further comments? I'm planning to send v3.
-> 
-> What comments do you need? Your schema and DTS are wrong. If you run
-> dtbs_check, which I mentioned in the first email, you would see the
-> result. Instead you pasted unrelevant check of other bindings and
-> later pasted dt_binding_check. It does not make sense, so I clarified:
-> > 2. Bindings pass, they are not a problem. You were running dtbs_check, right?
-> 
-> And you pasted dt_binding_check, so it kind of closes the discussion.
-> I don't know what to add more.
-> I reported this problem already in v1, so please don't send the same
-> wrong code for the third time.
+> > This sounds very hacky to me, I have understood that you should never
+> > use stack with DMA.
+>=20
+> You should never do that because some platforms do not support it, so no
+> driver should ever try to do that as they do not know what platform they
+> are running on.
 
-Let's make it obvious:
+Yes, I have learned this rule the hard way.
 
-$ make -j4 dtbs_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/arm/fsl.yaml
+There is no better way than a comment to warn the user that the argument
+will be used with a DMA? A Sparse annotation, for example?
 
-make[1]: Entering directory '/home/dev/linux/linux/out'
-  UPD     include/config/kernel.release
-  DTC     arch/arm64/boot/dts/freescale/imx8mm-icore-mx8mm-ctouch2.dtb
-  DTC     arch/arm64/boot/dts/freescale/imx8mm-icore-mx8mm-ctouch2.dt.yaml
-  CHECK   arch/arm64/boot/dts/freescale/imx8mm-icore-mx8mm-ctouch2.dt.yaml
-/home/dev/linux/linux/out/arch/arm64/boot/dts/freescale/imx8mm-icore-mx8mm-ctouch2.dt.yaml: /: compatible: 'oneOf' conditional failed, one must be fixed:
-	['engicam,icore-mx8mm-ctouch2', 'engicam,icore-mx8mm', 'fsl,imx8mm'] is too long
-	Additional items are not allowed ('fsl,imx8mm' was unexpected)
 
-Best regards,
-Krzysztof
+--=20
+J=E9r=F4me Pouiller
+
 
