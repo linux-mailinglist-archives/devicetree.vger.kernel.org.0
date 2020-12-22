@@ -2,123 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E1122E0877
-	for <lists+devicetree@lfdr.de>; Tue, 22 Dec 2020 11:01:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 06C562E0884
+	for <lists+devicetree@lfdr.de>; Tue, 22 Dec 2020 11:11:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726260AbgLVKAU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Dec 2020 05:00:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54722 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725999AbgLVKAP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Dec 2020 05:00:15 -0500
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9ADD0C0613D3
-        for <devicetree@vger.kernel.org>; Tue, 22 Dec 2020 01:59:34 -0800 (PST)
-Received: by mail-wm1-x336.google.com with SMTP id e25so1601498wme.0
-        for <devicetree@vger.kernel.org>; Tue, 22 Dec 2020 01:59:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=1uWQ1lsamrDj670psBGhqmITnRdEWIGipMAwVhvN0IQ=;
-        b=nzzFQvbCE9iM4gRr0OHBQhW95iPZnUHGIevbHh6G8/1DaGIs5orfQtZMKTjTyY2zjJ
-         pltvHVHec5UsnNGgJJfthUftOsewWy8YhxnXYppOWmN7Y3UqFISq3+f0ocm6pWy6s+ao
-         uaRBF2vgyNBikZ7ShJgESCzRRRySZbSAjnMwIBBn8PSrZQ33zLQZUN9iSC4x/lmTq981
-         FJ2Ly2VqTgTlLk7P1ecU0mMa6SWh/a/ZrKv1GDXYGD51DpKiA1XsULU+2oq9wzAV5jgw
-         +k0KhDI7UdHfo056NDutP99ttFQbtHZfAKQ81sHnq9JXVyK6fylkzXtS8AJ7ez5tMlJX
-         s4xA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=1uWQ1lsamrDj670psBGhqmITnRdEWIGipMAwVhvN0IQ=;
-        b=eSN6RcPeLd3JtsNPLbznfHM/R7XPpFsxCeZrdN6LLyj1XW8IP3nnTn00ihbpT2zkL1
-         29oVUXbsiVLTku8ccDvneoPBfBHLDOaCKHDXAHpsDjvA2uFqyyVdhBA2NPAnZaQeEpV1
-         UKhKIIV7I3e68qYlJM2JNZ1Ys+RI8z3EV20/KycDRwZkqWkv16x89gUO1Jz8JTXgmUSP
-         Ul3Fzp/sDphlq00wedRMvTNGIpHwl7dVFpFsd3jOfgw/UgB+Zpc4z9tBh9/wwp60edzm
-         LuQeHcNb/RCFdc0FC+6LgmCXFy4X/ETVRCX1gpIJrPdk1euQjgq4431MgQWE7CpXVyTd
-         Evrw==
-X-Gm-Message-State: AOAM5302HeTnvV/tNw6FBf8HNF14vFeyXIql2jXjv/elidydrYbe7xCs
-        P5zQat3YInaXBk0kwUrYcM0MwA==
-X-Google-Smtp-Source: ABdhPJyryip6dXlJcoBpock1PWleQBmbQZcocbzF4ei8MZdMG4Bgcp5A9SM4uCOXJeAM5U9qRO3loQ==
-X-Received: by 2002:a1c:1d1:: with SMTP id 200mr21458882wmb.98.1608631173322;
-        Tue, 22 Dec 2020 01:59:33 -0800 (PST)
-Received: from dell ([91.110.221.175])
-        by smtp.gmail.com with ESMTPSA id a65sm26056927wmc.35.2020.12.22.01.58.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 22 Dec 2020 01:59:32 -0800 (PST)
-Date:   Tue, 22 Dec 2020 09:58:23 +0000
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Jonathan Cameron <jic23@kernel.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Mark Brown <broonie@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        dri-devel@lists.freedesktop.org, linux-iio@vger.kernel.org,
-        linux-input@vger.kernel.org, linux-media@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: Drop unnecessary *-supply schemas properties
-Message-ID: <20201222095651.GD53991@dell>
-References: <20201221234659.824881-1-robh@kernel.org>
+        id S1725854AbgLVKLC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Dec 2020 05:11:02 -0500
+Received: from esa.microchip.iphmx.com ([68.232.154.123]:37645 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725807AbgLVKLB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Dec 2020 05:11:01 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1608631860; x=1640167860;
+  h=references:from:to:cc:subject:in-reply-to:date:
+   message-id:mime-version;
+  bh=mLxK7pdCxepvYeT16S70cUii2HXJKQUHNnyxW4YH+H8=;
+  b=BL9IsZM+4PcG4SBMu5wWjBX9K1+/tjMjZMf6LkdQN3emAm0cLODditEA
+   oYrylwGQXhYb9BlK75GMv4BowtvHB+3UBkJf1Yg3ssrzsvU0ldErrOzif
+   T+W05wQ3MOIWic8X1dV9MsfCC8HNeHZ17tvcR1UocOSKftVGZ/tRAlSsm
+   2uECJwFr/BDaeGTY+sUPWIpjzohg+iEPUgcAEPybgTpf7fNJo53vjsa+E
+   WIXm9h3W2MlzQd7SwKirj+o+wxv0LL+rClfnAaTbfg0QQVDxr/cS+Ps7g
+   CAiGoClFG4pxe8S8A6njUa4eKgaamaswWwnPYqNjP4iDcOMpM3p0TYr+V
+   g==;
+IronPort-SDR: 13GE3ImmUEBO77AzGj+1urChOLJ2YI/cgB+Z6/z8JGLyDHBvdFbWOsBhbKt2HqP9iqfYMIhRz8
+ bFYcr7rM9c98Np9AqYm3LUyl3KVN9kbmkVgNiCuNdKYDoi7V4fmqdlUQ6cfdRYtPfsuEIbm7Y8
+ CUATxCVHuCDG6pNaJYAZ8Rf+/eeEgMkQkbNpSJQZz6MF4L0AAyZUWyaSVzPVQnx+ySxaHw+WWe
+ pnmKkrA0W+R7jeyYJRxk4PGLgRDFnYzPyuDPoD0jH/6rcB16qxBFpNzSoCjBMyZ0cceFKFthU7
+ ncM=
+X-IronPort-AV: E=Sophos;i="5.78,438,1599548400"; 
+   d="scan'208";a="38261332"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 22 Dec 2020 03:09:44 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1979.3; Tue, 22 Dec 2020 03:09:44 -0700
+Received: from soft-dev10.microchip.com (10.10.115.15) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3
+ via Frontend Transport; Tue, 22 Dec 2020 03:09:42 -0700
+References: <20201113145151.68900-1-lars.povlsen@microchip.com> <20201113145151.68900-4-lars.povlsen@microchip.com> <20201220224804.GA3107610@lunn.ch>
+User-agent: mu4e 1.2.0; emacs 26.3
+From:   Lars Povlsen <lars.povlsen@microchip.com>
+To:     Andrew Lunn <andrew@lunn.ch>
+CC:     Lars Povlsen <lars.povlsen@microchip.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        <devicetree@vger.kernel.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        <linux-kernel@vger.kernel.org>,
+        "Microchip Linux Driver Support" <UNGLinuxDriver@microchip.com>,
+        <linux-gpio@vger.kernel.org>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v10 3/3] arm64: dts: sparx5: Add SGPIO devices
+In-Reply-To: <20201220224804.GA3107610@lunn.ch>
+Date:   Tue, 22 Dec 2020 11:09:41 +0100
+Message-ID: <87eejip2xm.fsf@microchip.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20201221234659.824881-1-robh@kernel.org>
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 21 Dec 2020, Rob Herring wrote:
 
-> *-supply properties are always a single phandle, so binding schemas
-> don't need a type $ref nor 'maxItems'.
-> 
-> A meta-schema check for this is pending once these existing cases are
-> fixed.
-> 
-> Cc: Jonathan Cameron <jic23@kernel.org>
-> Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-> Cc: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-> Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
-> Cc: Sakari Ailus <sakari.ailus@linux.intel.com>
-> Cc: Lee Jones <lee.jones@linaro.org>
-> Cc: Mark Brown <broonie@kernel.org>
-> Cc: Maxime Ripard <mripard@kernel.org>
-> Cc: dri-devel@lists.freedesktop.org
-> Cc: linux-iio@vger.kernel.org
-> Cc: linux-input@vger.kernel.org
-> Cc: linux-media@vger.kernel.org
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
->  Documentation/devicetree/bindings/display/bridge/anx6345.yaml | 2 --
->  .../devicetree/bindings/display/bridge/ite,it6505.yaml        | 2 --
->  .../devicetree/bindings/display/bridge/lvds-codec.yaml        | 3 +--
->  Documentation/devicetree/bindings/display/bridge/ps8640.yaml  | 2 --
->  .../devicetree/bindings/display/bridge/simple-bridge.yaml     | 1 -
->  .../bindings/display/bridge/thine,thc63lvd1024.yaml           | 1 -
->  .../devicetree/bindings/display/bridge/toshiba,tc358775.yaml  | 2 --
->  Documentation/devicetree/bindings/iio/adc/lltc,ltc2496.yaml   | 4 +---
->  .../devicetree/bindings/iio/humidity/ti,hdc2010.yaml          | 3 +--
->  .../devicetree/bindings/input/fsl,mpr121-touchkey.yaml        | 3 +--
->  .../devicetree/bindings/input/touchscreen/edt-ft5x06.yaml     | 3 +--
->  .../devicetree/bindings/media/i2c/maxim,max9286.yaml          | 1 -
->  Documentation/devicetree/bindings/media/i2c/mipi-ccs.yaml     | 3 ---
->  Documentation/devicetree/bindings/media/i2c/sony,imx214.yaml  | 3 ---
->  Documentation/devicetree/bindings/media/i2c/sony,imx274.yaml  | 3 ---
->  Documentation/devicetree/bindings/mfd/st,stmfx.yaml           | 3 +--
+Andrew Lunn writes:
 
-Acked-by: Lee Jones <lee.jones@linaro.org>
+> On Fri, Nov 13, 2020 at 03:51:51PM +0100, Lars Povlsen wrote:
+>> +             led@8 {
+>> +                     label = "eth12:green";
+>> +                     gpios = <&sgpio_out0 12 0 GPIO_ACTIVE_HIGH>;
+>> +                     default-state = "off";
+>> +             };
+>> +             led@9 {
+>> +                     label = "eth12:yellow";
+>> +                     gpios = <&sgpio_out0 12 1 GPIO_ACTIVE_HIGH>;
+>> +                     default-state = "off";
+>> +             };
+>
+> Hi Lars
+>
+> I did not see these patches earlier, but i've been looking at the
+> switch driver patches recently, so went digging.
+>
+> Can the Ethernet switch itself control these LEDs for indicating
+> things like packet receive/transmit, link state, and link speed? Or
+> are they purely software controlled?
+>
+>     Thanks
+>         Andrew
 
->  .../devicetree/bindings/regulator/anatop-regulator.yaml       | 1 -
->  17 files changed, 6 insertions(+), 34 deletions(-)
+Hi Andrew!
 
--- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+No, the SGPIO device is separate from the switch device as such. I was
+planning to couple the two by means of "led events" in a later patch.
+
+---Lars
+
+--
+Lars Povlsen,
+Microchip
