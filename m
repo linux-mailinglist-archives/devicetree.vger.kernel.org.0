@@ -2,207 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B4022E0E37
-	for <lists+devicetree@lfdr.de>; Tue, 22 Dec 2020 19:29:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 21DEB2E0E73
+	for <lists+devicetree@lfdr.de>; Tue, 22 Dec 2020 19:55:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725967AbgLVS3h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Dec 2020 13:29:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48460 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725946AbgLVS3g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Dec 2020 13:29:36 -0500
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4779EC0613D6
-        for <devicetree@vger.kernel.org>; Tue, 22 Dec 2020 10:28:56 -0800 (PST)
-Received: by mail-ej1-x62b.google.com with SMTP id ga15so19530584ejb.4
-        for <devicetree@vger.kernel.org>; Tue, 22 Dec 2020 10:28:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=hESG9UKwjjD/S2wid9cDDihOcqi7xLn6ltJQh3ZQhIw=;
-        b=Ao+v0fik8uwEpkyYsZtDsrfl2EVTaUXpPZ/9xymU/DDU+nYFvZPgJYUVmqVsSs77zf
-         kKIDktED9PDTQ6wB4+SZ/Vg3YXM5xhqRVdXoeSCbP9XJHH5c6RawHiNO+xvvWq8c9Kgw
-         45zssytIlK2bL3CuBrbRcYiPdTwn9MeAcnjBc=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=hESG9UKwjjD/S2wid9cDDihOcqi7xLn6ltJQh3ZQhIw=;
-        b=Kr6WWg2kBGjcoLu/Z0AiwLhHpRAzn91tiAOL7cpQb2M0cXRd68HdsduIur9eX8MvTn
-         Z6vXzhp9ez044CFwEJvFtbww4wzyQpzEk3DJDpcVwF/ICjnt+WWqPamXpXAEKgnLgRHh
-         FX3BffLAx1OBMGlhxsijS2hkCOjqfJzd7PHlqx48QSqNZEBJt+unmEjzb5p4uXVxg/yf
-         w/hZvlZhGPeIixtm90N7Mt/Gel/vopirartwRWltEmG+EHjKpX26K8fR1zNUxoDg2oxh
-         nen9Nx69W21/lKnDOwaiZ9GtGWh4kh07PW5y+jdIwwi5kZR/CNpTTRL3P0wSf4+my2X3
-         3ytw==
-X-Gm-Message-State: AOAM533512bLxZlstRq9aPBW5j8eYoO/j4SCf5BS9YQr8yJjQo05SD1v
-        qgmtMdYnNVLVZQlrS3OpLmDh74cGRS41pH3ziOd3Kw==
-X-Google-Smtp-Source: ABdhPJxK0nngyZUDb6zuuobNnh5aY2C7rqJLlI1jiiPrwB/zHnYF8tEFCdHwD3Tr11aNX1qpb07DCzJNCQN4t7mqvNE=
-X-Received: by 2002:a17:906:2707:: with SMTP id z7mr21173163ejc.418.1608661734951;
- Tue, 22 Dec 2020 10:28:54 -0800 (PST)
+        id S1726412AbgLVSyT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Dec 2020 13:54:19 -0500
+Received: from linux.microsoft.com ([13.77.154.182]:38580 "EHLO
+        linux.microsoft.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726356AbgLVSyT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Dec 2020 13:54:19 -0500
+Received: from [192.168.0.104] (c-73-42-176-67.hsd1.wa.comcast.net [73.42.176.67])
+        by linux.microsoft.com (Postfix) with ESMTPSA id C490C20B83DE;
+        Tue, 22 Dec 2020 10:53:37 -0800 (PST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com C490C20B83DE
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+        s=default; t=1608663218;
+        bh=//PxRnptZMzVjXYlyIzWx/0zydVkwQDoYcP2NBeyDZ8=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=Hb9HWHUZ+LQw+0OkX+tP5HdR/Q7wQOGoBlOskRnaFQ9kuqceUyz0iOqmuPLV+VsI6
+         V1Jtbm11qxpVrmrWUGgcl9d8+EW5IESynwTuFoKFmuHwK2PM/gmJU17L5+D/ZXVouc
+         gy+KEEVaVTjiZoJHevX/cRW3Nc/dI01qh7Y6625M=
+Subject: Re: [PATCH v13 2/6] powerpc: Move arch independent ima kexec
+ functions to drivers/of/kexec.c
+To:     Mimi Zohar <zohar@linux.ibm.com>, bauerman@linux.ibm.com,
+        robh@kernel.org, takahiro.akashi@linaro.org,
+        gregkh@linuxfoundation.org, will@kernel.org,
+        catalin.marinas@arm.com, mpe@ellerman.id.au
+Cc:     james.morse@arm.com, sashal@kernel.org, benh@kernel.crashing.org,
+        paulus@samba.org, frowand.list@gmail.com,
+        vincenzo.frascino@arm.com, mark.rutland@arm.com,
+        dmitry.kasatkin@gmail.com, jmorris@namei.org, serge@hallyn.com,
+        pasha.tatashin@soleen.com, allison@lohutok.net,
+        masahiroy@kernel.org, bhsharma@redhat.com, mbrugger@suse.com,
+        hsinyi@chromium.org, tao.li@vivo.com, christophe.leroy@c-s.fr,
+        prsriva@linux.microsoft.com, balajib@linux.microsoft.com,
+        linux-integrity@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+References: <20201219175713.18888-1-nramas@linux.microsoft.com>
+ <20201219175713.18888-3-nramas@linux.microsoft.com>
+ <a1a4526c0759eb3b5d70fb8edc89360718376def.camel@linux.ibm.com>
+From:   Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
+Message-ID: <e0d9398b-1b46-8115-7bf0-28e9826fcd6b@linux.microsoft.com>
+Date:   Tue, 22 Dec 2020 10:53:37 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-References: <20201221113151.94515-1-jagan@amarulasolutions.com>
- <20201221113151.94515-3-jagan@amarulasolutions.com> <20201221134625.GB31176@kozik-lap>
- <CAMty3ZAi0B=fSRfpQG4bgE+Jt6GVhzRb_FZjCL3VQXp9vn-FEw@mail.gmail.com>
- <20201221140501.GE31176@kozik-lap> <CAMty3ZA4K8GvTfmrV1Mz6zp1w+iF0FvE04CODZUsHvg+J+a1nw@mail.gmail.com>
- <20201221144206.GA36114@kozik-lap> <CAMty3ZD8JAp3UGuOS2zTsOZ5QcFE6_Ba_UjtmhKpD3R3qra5jg@mail.gmail.com>
-In-Reply-To: <CAMty3ZD8JAp3UGuOS2zTsOZ5QcFE6_Ba_UjtmhKpD3R3qra5jg@mail.gmail.com>
-From:   Jagan Teki <jagan@amarulasolutions.com>
-Date:   Tue, 22 Dec 2020 23:58:43 +0530
-Message-ID: <CAMty3ZCzB87_NGTRRvugcurSHWikcaCvKPuBBJJ1ocmqDQ8wzw@mail.gmail.com>
-Subject: Re: [PATCH v2 2/6] dt-bindings: arm: fsl: Add Engicam i.Core MX8M
- Mini C.TOUCH 2.0
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Li Yang <leoyang.li@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-amarula <linux-amarula@amarulasolutions.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <a1a4526c0759eb3b5d70fb8edc89360718376def.camel@linux.ibm.com>
+Content-Type: text/plain; charset=iso-8859-15; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 21, 2020 at 8:17 PM Jagan Teki <jagan@amarulasolutions.com> wrote:
->
-> On Mon, Dec 21, 2020 at 8:12 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> >
-> > On Mon, Dec 21, 2020 at 08:09:47PM +0530, Jagan Teki wrote:
-> > > On Mon, Dec 21, 2020 at 7:35 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> > > >
-> > > > On Mon, Dec 21, 2020 at 07:29:22PM +0530, Jagan Teki wrote:
-> > > > > On Mon, Dec 21, 2020 at 7:16 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> > > > > >
-> > > > > > On Mon, Dec 21, 2020 at 05:01:47PM +0530, Jagan Teki wrote:
-> > > > > > > i.Core MX8M Mini is an EDIMM SoM based on NXP i.MX8M Mini from Engicam.
-> > > > > > >
-> > > > > > > C.TOUCH 2.0 is a general purpose carrier board with capacitive
-> > > > > > > touch interface support.
-> > > > > > >
-> > > > > > > i.Core MX8M Mini needs to mount on top of this Carrier board for
-> > > > > > > creating complete i.Core MX8M Mini C.TOUCH 2.0 board.
-> > > > > > >
-> > > > > > > Add bindings for it.
-> > > > > > >
-> > > > > > > Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
-> > > > > > > ---
-> > > > > > > Changes for v2:
-> > > > > > > - updated commit message
-> > > > > > >
-> > > > > > >  Documentation/devicetree/bindings/arm/fsl.yaml | 2 ++
-> > > > > > >  1 file changed, 2 insertions(+)
-> > > > > > >
-> > > > > > > diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-> > > > > > > index 67980dcef66d..e653e0a43016 100644
-> > > > > > > --- a/Documentation/devicetree/bindings/arm/fsl.yaml
-> > > > > > > +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-> > > > > > > @@ -667,6 +667,8 @@ properties:
-> > > > > > >          items:
-> > > > > > >            - enum:
-> > > > > > >                - beacon,imx8mm-beacon-kit  # i.MX8MM Beacon Development Kit
-> > > > > > > +              - engicam,icore-mx8mm               # i.MX8MM Engicam i.Core MX8M Mini SOM
-> > > > > > > +              - engicam,icore-mx8mm-ctouch2       # i.MX8MM Engicam i.Core MX8M Mini C.TOUCH 2.0
-> > > > > >
-> > > > > > Please test your DTS against new schema with dtbs_check. This won't
-> > > > > > match.
-> > > > >
-> > > > > Sorry, not sure I understand clearly here.
-> > > > >
-> > > > > This the dts file ie used matched compatible.
-> > > > > compatible = "engicam,icore-mx8mm-ctouch2", "engicam,icore-mx8mm",
-> > > > >                      "fsl,imx8mm";
-> > > > >
-> > > > > I did build the dtbs_check without showing any issues like,
-> > > > >
-> > > > > $ make ARCH=arm64 dtbs_check
-> > > > > ...
-> > > > >
-> > > > >     From schema: /w/dt-schema/dt-schema/dtschema/schemas/property-units.yaml
-> > > > >   DTC     arch/arm64/boot/dts/freescale/imx8mm-icore-mx8mm-ctouch2.dtb
-> > > > >   DTC     arch/arm64/boot/dts/freescale/imx8mm-icore-mx8mm-ctouch2-of10.dtb
-> > > > >   DTC     arch/arm64/boot/dts/freescale/imx8mm-icore-mx8mm-edimm2.2.dtb
-> > > > > ..
-> > > > >
-> > > > > Can you let me know what I missed here?
-> > > >
-> > > > You pasted here output of validating with property-units.yaml (or
-> > > > something else), not the schema which you changed. If you want to limit
-> > > > the tests, use DT_SCHEMA_FILES.
-> > > >
-> > > > I mentioned about exactly the same problem in yout previous v1
-> > > > at patch #5. No changes here stil.
-> > >
-> > > Yes, I usually did that check before posting. Please check the build
-> > > log below and fsl.yaml binding is fine to build.
-> > >
-> > > # make dt_binding_check DT_SCHEMA_FILES=arm/fsl.yaml
-> >
-> > 1. Wrong path to schema file,
-> > 2. Bindings pass, they are not a problem. You were running dtbs_check,
-> > right?
->
-> But kbuild is building the fsl.yaml I did verify with by adding some
-> wrong character in the file, it is showing build issues.
->
-> Please check the clean log.
->
-> # make mrproper
->   CLEAN   Documentation/devicetree/bindings
->   CLEAN   scripts/basic
->   CLEAN   scripts/dtc
-> # make dt_binding_check
-> DT_SCHEMA_FILES=Documentation/devicetree/bindings/arm/fsl.yaml
->   HOSTCC  scripts/basic/fixdep
->   HOSTCC  scripts/dtc/dtc.o
->   HOSTCC  scripts/dtc/flattree.o
->   HOSTCC  scripts/dtc/fstree.o
->   HOSTCC  scripts/dtc/data.o
->   HOSTCC  scripts/dtc/livetree.o
->   HOSTCC  scripts/dtc/treesource.o
->   HOSTCC  scripts/dtc/srcpos.o
->   HOSTCC  scripts/dtc/checks.o
->   HOSTCC  scripts/dtc/util.o
->   LEX     scripts/dtc/dtc-lexer.lex.c
->   YACC    scripts/dtc/dtc-parser.tab.[ch]
->   HOSTCC  scripts/dtc/dtc-lexer.lex.o
->   HOSTCC  scripts/dtc/dtc-parser.tab.o
->   HOSTCC  scripts/dtc/yamltree.o
->   HOSTLD  scripts/dtc/dtc
->   CHKDT   Documentation/devicetree/bindings/processed-schema-examples.json
-> /w/linux/Documentation/devicetree/bindings/soc/litex/litex,soc-controller.yaml:
-> 'additionalProperties' is a required property
-> /w/linux/Documentation/devicetree/bindings/soc/mediatek/devapc.yaml:
-> 'additionalProperties' is a required property
-> /w/linux/Documentation/devicetree/bindings/media/coda.yaml:
-> 'additionalProperties' is a required property
-> /w/linux/Documentation/devicetree/bindings/serial/litex,liteuart.yaml:
-> 'additionalProperties' is a required property
->   SCHEMA  Documentation/devicetree/bindings/processed-schema-examples.json
-> /w/linux/Documentation/devicetree/bindings/soc/litex/litex,soc-controller.yaml:
-> ignoring, error in schema:
-> warning: no schema found in file:
-> ./Documentation/devicetree/bindings/soc/litex/litex,soc-controller.yaml
-> /w/linux/Documentation/devicetree/bindings/soc/mediatek/devapc.yaml:
-> ignoring, error in schema:
-> warning: no schema found in file:
-> ./Documentation/devicetree/bindings/soc/mediatek/devapc.yaml
-> /w/linux/Documentation/devicetree/bindings/media/coda.yaml: ignoring,
-> error in schema:
-> warning: no schema found in file:
-> ./Documentation/devicetree/bindings/media/coda.yaml
-> /w/linux/Documentation/devicetree/bindings/serial/litex,liteuart.yaml:
-> ignoring, error in schema:
-> warning: no schema found in file:
-> ./Documentation/devicetree/bindings/serial/litex,liteuart.yaml
->   DTEX    Documentation/devicetree/bindings/arm/fsl.example.dts
->   DTC     Documentation/devicetree/bindings/arm/fsl.example.dt.yaml
->   CHECK   Documentation/devicetree/bindings/arm/fsl.example.dt.yaml
+On 12/22/20 6:26 AM, Mimi Zohar wrote:
 
-Any further comments? I'm planning to send v3.
+Hi Mimi,
 
-Jagan.
+> 
+> On Sat, 2020-12-19 at 09:57 -0800, Lakshmi Ramasubramanian wrote:
+>>
+>> diff --git a/arch/powerpc/kexec/Makefile b/arch/powerpc/kexec/Makefile
+>> index 4aff6846c772..b6c52608cb49 100644
+>> --- a/arch/powerpc/kexec/Makefile
+>> +++ b/arch/powerpc/kexec/Makefile
+>> @@ -9,13 +9,6 @@ obj-$(CONFIG_PPC32)		+= relocate_32.o
+>>   
+>>   obj-$(CONFIG_KEXEC_FILE)	+= file_load.o ranges.o file_load_$(BITS).o elf_$(BITS).o
+>>   
+>> -ifdef CONFIG_HAVE_IMA_KEXEC
+>> -ifdef CONFIG_IMA
+>> -obj-y				+= ima.o
+>> -endif
+>> -endif
+> 
+> Notice how "kexec/ima.o" is only included if the architecture supports
+> it and IMA is configured.  In addition only if CONFIG_IMA_KEXEC is
+> configured, is the IMA measurement list carried across kexec.  After
+> moving the rest of ima.c to drivers/of/kexec.c, this changes.   Notice
+> how drivers/of/Kconfig includes kexec.o:
+> 
+> obj-$(CONFIG_KEXEC_FILE) += kexec.o
+> 
+> It is not dependent on CONFIG_HAVE_IMA_KEXEC.  Shouldn't all of the
+> functions defined in ima.c being moved to kexec.o be defined within a
+> CONFIG_HAVE_IMA_KEXEC ifdef?
+> 
+
+Thanks for reviewing the changes.
+
+In "drivers/of/kexec.c" the function remove_ima_buffer() is defined 
+under "#ifdef CONFIG_HAVE_IMA_KEXEC"
+
+setup_ima_buffer() is defined under "#ifdef CONFIG_IMA_KEXEC" - the same 
+way it was defined in "arch/powerpc/kexec/ima.c".
+
+As you know, CONFIG_IMA_KEXEC depends on CONFIG_HAVE_IMA_KEXEC (as 
+defined in "security/integrity/ima/Kconfig").
+
+ima_get_kexec_buffer() and ima_free_kexec_buffer() are unconditionally 
+defined in "drivers/of/kexec.c" even though they are called only when 
+CONFIG_HAVE_IMA_KEXEC is enabled. I will update these two functions to 
+be moved under "#ifdef CONFIG_HAVE_IMA_KEXEC"
+
+Rob/Mimi/Thiago - Please let me know if you have other comments in the 
+v13 patches. Will address those as well and post v14.
+
+thanks,
+  -lakshmi
