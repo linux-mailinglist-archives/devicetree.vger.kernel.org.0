@@ -2,185 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 498B02E07C3
-	for <lists+devicetree@lfdr.de>; Tue, 22 Dec 2020 10:13:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 34D1F2E07CB
+	for <lists+devicetree@lfdr.de>; Tue, 22 Dec 2020 10:15:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725885AbgLVJNl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Dec 2020 04:13:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47574 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725847AbgLVJNj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Dec 2020 04:13:39 -0500
-Received: from mail-pl1-x62d.google.com (mail-pl1-x62d.google.com [IPv6:2607:f8b0:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2564EC0617A6
-        for <devicetree@vger.kernel.org>; Tue, 22 Dec 2020 01:12:59 -0800 (PST)
-Received: by mail-pl1-x62d.google.com with SMTP id y8so7106970plp.8
-        for <devicetree@vger.kernel.org>; Tue, 22 Dec 2020 01:12:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=aRm1EWTlrTuCGHC7vrOatFzPVY2kkbfTNw0mXXouB3Y=;
-        b=Tz4gidYhRSQQPvxdsB7tqMzsVoYO3crt2ApaMJh6sBPNnz4QdlfPaFxg6Qw+Q9Ttkt
-         wKFwX+PObpzq/4fdMTp+4B5KTH7Re12uhYrXa3HvCaddYet13JjFo+rTTdsSEt5DlkKf
-         bp6SZO5FTIRmcpzQljrgkAITPVaV0bSdOcJWvfc30sM+iw3nPXkWpPYye4ZZWT5QEdXD
-         faqbA50HRxcmPr6Nr9VSBUdTtKxm6LXMJ4WI1xvuYIbxPBsTtG37wCAzUBTtYOR26zRD
-         K/mV0VlzeObZyhDbSnYISRJfGVOrWvx6nt6WqoFU5TRml3oWxZBdtwp7XRKvKR1Qp9D/
-         ptAw==
+        id S1725975AbgLVJOm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Dec 2020 04:14:42 -0500
+Received: from mail-ot1-f43.google.com ([209.85.210.43]:34038 "EHLO
+        mail-ot1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725973AbgLVJOl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Dec 2020 04:14:41 -0500
+Received: by mail-ot1-f43.google.com with SMTP id a109so11351134otc.1;
+        Tue, 22 Dec 2020 01:14:25 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=aRm1EWTlrTuCGHC7vrOatFzPVY2kkbfTNw0mXXouB3Y=;
-        b=pJyKiUgGm6afLLbITh4wPiuWPqq8LM2G7HakOzdcODkpD8vQPnf7VgW2q6dInEtx7r
-         fW4vyABm6ZsEB4YCf7C73yAUvQKrvymtijpZ8W7VaZbjSGsrmJyGQok5bJzI90568R3N
-         fGCFbnCAtaCZYYgBjcPjgg2mR2zKw0e7Jg644FpHASj+vWld58tZjMo1792pyTHeuIcM
-         oLPrnRQw8oxpyfOV23oPR6NGp9eOk2mf86zq3dNJp5KH73gyXsHWaU4/U0Da4XQ07J2k
-         L+d4o0uxUwoeqTw5Q2IHtho9/srJcNJZFMk2YIEtGIJi8RclNmyC80gin9Roicof/80f
-         Jw5w==
-X-Gm-Message-State: AOAM533iZwrdPhCbD/gUYPFt8Vgp6C6suowX8UzCNjM8QdTaX7W5583i
-        PS+c1GY4C8LKDuFS3AajdkYDPw==
-X-Google-Smtp-Source: ABdhPJyTuAI/kmpjoi97riBT35OzUfQwSMT6NxASqK0wJXFrTdvspmvEYCyC6FWsQNUmwA+WXnqrWg==
-X-Received: by 2002:a17:902:6f01:b029:dc:3182:ce69 with SMTP id w1-20020a1709026f01b02900dc3182ce69mr16778961plk.10.1608628378460;
-        Tue, 22 Dec 2020 01:12:58 -0800 (PST)
-Received: from localhost ([122.172.20.109])
-        by smtp.gmail.com with ESMTPSA id q12sm19544480pgj.24.2020.12.22.01.12.57
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 22 Dec 2020 01:12:57 -0800 (PST)
-Date:   Tue, 22 Dec 2020 14:42:55 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Dmitry Osipenko <digetx@gmail.com>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Nicolas Chauvet <kwizart@gmail.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Kevin Hilman <khilman@kernel.org>,
-        Peter De Schrijver <pdeschrijver@nvidia.com>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        devel@driverdev.osuosl.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-media@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-clk@vger.kernel.org
-Subject: Re: [PATCH v2 19/48] opp: Fix adding OPP entries in a wrong order if
- rate is unavailable
-Message-ID: <20201222091255.wentz5hyt726qezg@vireshk-i7>
-References: <20201217180638.22748-1-digetx@gmail.com>
- <20201217180638.22748-20-digetx@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Y/CVZnXbdh3GVjGmeRZ5ybCRX51zJKs1vzq/M4NVM6c=;
+        b=MXQn03fbv0Vt+iP548FPhI7lCxpAkVhVnh6nLsvsEwN3Urt2Qm2eviUCy4z23jtYtd
+         +mg7rcZrd6K0E2PueEjTFEMqA2rYjQQNTH/4w06kGbykBt7ZOIoCnA0ACNynrcYT5PgC
+         LGr8RAD4hawa3uFJ7Ovimm2u8PrAkHzv84NjQquEVcb/pL3yVbLuI82BbXYdxJcRWmkV
+         yynJmDFT69PlOJoj3JE7gTvgjA5I0uKR2brp6wKKfJ5he42O8jq+twMqiSDvrzCl7vIp
+         Xiwj20oxUQ7RGL0kvSudqOHgY9O3355lebEfok7j5kkNNhAmQZyGOnPK+sDyfqUoqIHr
+         YBjQ==
+X-Gm-Message-State: AOAM533IlrJ85gV6LSLVO3B/6Kkwq9pFuCsYU/osMoElXBmKw8lx5i82
+        F1kivtv84Ynbb1KlzboSZ0qtnpXkXh1mKktjFxQ=
+X-Google-Smtp-Source: ABdhPJwL3+OqyzxP/zepnj5gAjKTUB/LKqoYOVNv0A9v/rJSkbVz+Ujp+OEzJsQFhIAaj2T70+xIY9CKTTRVv4UuVlo=
+X-Received: by 2002:a05:6830:1f5a:: with SMTP id u26mr15046822oth.250.1608628440510;
+ Tue, 22 Dec 2020 01:14:00 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201217180638.22748-20-digetx@gmail.com>
-User-Agent: NeoMutt/20180716-391-311a52
+References: <20201218173731.12839-1-wsa+renesas@sang-engineering.com> <20201218173731.12839-4-wsa+renesas@sang-engineering.com>
+In-Reply-To: <20201218173731.12839-4-wsa+renesas@sang-engineering.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 22 Dec 2020 10:13:49 +0100
+Message-ID: <CAMuHMdV2hnNoZdLme=BRKz9vfGe22ZUCw6HiJM5ZUvhU2=P0rA@mail.gmail.com>
+Subject: Re: [PATCH 3/5] arm64: dts: renesas: r8a779a0: Add RWDT node
+To:     Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17-12-20, 21:06, Dmitry Osipenko wrote:
-> Fix adding OPP entries in a wrong (opposite) order if OPP rate is
-> unavailable. The OPP comparison is erroneously skipped if OPP rate is
-> missing, thus OPPs are left unsorted.
-> 
-> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
-> ---
->  drivers/opp/core.c | 23 ++++++++++++-----------
->  drivers/opp/opp.h  |  2 +-
->  2 files changed, 13 insertions(+), 12 deletions(-)
-> 
-> diff --git a/drivers/opp/core.c b/drivers/opp/core.c
-> index 34f7e530d941..5c7f130a8de2 100644
-> --- a/drivers/opp/core.c
-> +++ b/drivers/opp/core.c
-> @@ -1531,9 +1531,10 @@ static bool _opp_supported_by_regulators(struct dev_pm_opp *opp,
->  	return true;
->  }
->  
-> -int _opp_compare_key(struct dev_pm_opp *opp1, struct dev_pm_opp *opp2)
-> +int _opp_compare_key(struct dev_pm_opp *opp1, struct dev_pm_opp *opp2,
-> +		     bool rate_not_available)
->  {
-> -	if (opp1->rate != opp2->rate)
-> +	if (!rate_not_available && opp1->rate != opp2->rate)
+On Fri, Dec 18, 2020 at 6:37 PM Wolfram Sang
+<wsa+renesas@sang-engineering.com> wrote:
+> From: Hoang Vo <hoang.vo.eb@renesas.com>
+>
+> Add a device node for the Watchdog Timer (WDT) controller on the
+> R8A779A0 SoC.
+>
+> Signed-off-by: Hoang Vo <hoang.vo.eb@renesas.com>
+> [wsa: rebased to mainline]
+> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 
-rate will be 0 for both the OPPs here if rate_not_available is true and so this
-change shouldn't be required.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v5.12 (with sort order fixed).
 
->  		return opp1->rate < opp2->rate ? -1 : 1;
->  	if (opp1->bandwidth && opp2->bandwidth &&
->  	    opp1->bandwidth[0].peak != opp2->bandwidth[0].peak)
-> @@ -1545,7 +1546,8 @@ int _opp_compare_key(struct dev_pm_opp *opp1, struct dev_pm_opp *opp2)
->  
->  static int _opp_is_duplicate(struct device *dev, struct dev_pm_opp *new_opp,
->  			     struct opp_table *opp_table,
-> -			     struct list_head **head)
-> +			     struct list_head **head,
-> +			     bool rate_not_available)
->  {
->  	struct dev_pm_opp *opp;
->  	int opp_cmp;
-> @@ -1559,13 +1561,13 @@ static int _opp_is_duplicate(struct device *dev, struct dev_pm_opp *new_opp,
->  	 * loop.
->  	 */
->  	list_for_each_entry(opp, &opp_table->opp_list, node) {
-> -		opp_cmp = _opp_compare_key(new_opp, opp);
-> +		opp_cmp = _opp_compare_key(new_opp, opp, rate_not_available);
->  		if (opp_cmp > 0) {
->  			*head = &opp->node;
->  			continue;
->  		}
->  
-> -		if (opp_cmp < 0)
-> +		if (opp_cmp < 0 || rate_not_available)
->  			return 0;
+> --- a/arch/arm64/boot/dts/renesas/r8a779a0.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/r8a779a0.dtsi
+> @@ -85,6 +85,16 @@ rst: reset-controller@e6160000 {
+>                         reg = <0 0xe6160000 0 0x4000>;
+>                 };
+>
+> +               rwdt: watchdog@e6020000 {
+> +                       compatible = "renesas,r8a779a0-wdt",
+> +                                    "renesas,rcar-gen3-wdt";
+> +                       reg = <0 0xe6020000 0 0x0c>;
+> +                       clocks = <&cpg CPG_MOD 907>;
+> +                       power-domains = <&sysc R8A779A0_PD_ALWAYS_ON>;
+> +                       resets = <&cpg 907>;
+> +                       status = "disabled";
 
-This shouldn't be required as well, isn't it ?
+No interrupts property? ;-)
+As we don't have it described yet for the other R-Car Gen3 SoCs, I
+suggest we do that in one batch...
 
->  
->  		/* Duplicate OPPs */
-> @@ -1601,12 +1603,11 @@ int _opp_add(struct device *dev, struct dev_pm_opp *new_opp,
->  	mutex_lock(&opp_table->lock);
->  	head = &opp_table->opp_list;
->  
-> -	if (likely(!rate_not_available)) {
-> -		ret = _opp_is_duplicate(dev, new_opp, opp_table, &head);
-> -		if (ret) {
-> -			mutex_unlock(&opp_table->lock);
-> -			return ret;
-> -		}
-> +	ret = _opp_is_duplicate(dev, new_opp, opp_table, &head,
-> +				rate_not_available);
+> +               };
+> +
+>                 sysc: system-controller@e6180000 {
+>                         compatible = "renesas,r8a779a0-sysc";
+>                         reg = <0 0xe6180000 0 0x4000>;
 
-This is the only thing we need to do here I believe.
+Gr{oetje,eeting}s,
 
-> +	if (ret) {
-> +		mutex_unlock(&opp_table->lock);
-> +		return ret;
->  	}
->  
->  	list_add(&new_opp->node, head);
-> diff --git a/drivers/opp/opp.h b/drivers/opp/opp.h
-> index 4ced7ffa8158..6f5be6c72f13 100644
-> --- a/drivers/opp/opp.h
-> +++ b/drivers/opp/opp.h
-> @@ -219,7 +219,7 @@ struct opp_table *_find_opp_table(struct device *dev);
->  struct opp_device *_add_opp_dev(const struct device *dev, struct opp_table *opp_table);
->  struct dev_pm_opp *_opp_allocate(struct opp_table *opp_table);
->  void _opp_free(struct dev_pm_opp *opp);
-> -int _opp_compare_key(struct dev_pm_opp *opp1, struct dev_pm_opp *opp2);
-> +int _opp_compare_key(struct dev_pm_opp *opp1, struct dev_pm_opp *opp2, bool rate_not_available);
->  int _opp_add(struct device *dev, struct dev_pm_opp *new_opp, struct opp_table *opp_table, bool rate_not_available);
->  int _opp_add_v1(struct opp_table *opp_table, struct device *dev, unsigned long freq, long u_volt, bool dynamic);
->  void _dev_pm_opp_cpumask_remove_table(const struct cpumask *cpumask, int last_cpu);
-> -- 
-> 2.29.2
+                        Geert
 
 -- 
-viresh
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
