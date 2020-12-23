@@ -2,35 +2,35 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DD8DA2E13B7
-	for <lists+devicetree@lfdr.de>; Wed, 23 Dec 2020 03:37:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D4C42E133A
+	for <lists+devicetree@lfdr.de>; Wed, 23 Dec 2020 03:36:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729479AbgLWCdr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Dec 2020 21:33:47 -0500
-Received: from mail.kernel.org ([198.145.29.99]:54312 "EHLO mail.kernel.org"
+        id S1728803AbgLWCZE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Dec 2020 21:25:04 -0500
+Received: from mail.kernel.org ([198.145.29.99]:54080 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730368AbgLWCZC (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 22 Dec 2020 21:25:02 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 81C69225AB;
-        Wed, 23 Dec 2020 02:24:46 +0000 (UTC)
+        id S1730373AbgLWCZD (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 22 Dec 2020 21:25:03 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id B55832256F;
+        Wed, 23 Dec 2020 02:24:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1608690287;
-        bh=Sr7TWs5AYpwfM26gOTNNMs79uDhXGjlaJEQ3+l3h5t8=;
+        s=k20201202; t=1608690288;
+        bh=pojvyDn4BXbW6OR641QIZZYdPI/ToyfWyKmBZOsJkC8=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=qnBOB01DAP0BcAEGXW2tpB05bVQX86NpjswbXl7JqKFYizixmt9WKdmaUOhd8T9wW
-         fbI4THMBVU/oB6J4Vay9RXIlyh4QR6es+RdU699KLWNdyW21ULN9Ivn+JvKBJN/2y2
-         QOdIWZV0+xm7nVuYtvFxT83RWJV7pbcJTtTB6teA/wuDOmLk+kRtxXkwisR+tbcBGj
-         uCu9E7iWEJvKqjwtxSzBK1d3c2lVEAf3vsYM8prout8ZVS38qpYFy5WUGDeypZHjvk
-         pPI3mHi9KA3HcnHMQETqfwd4ahXQwyBzvsseiAp36POps/V3YhFl5BtQNbNmUxo0qh
-         He0aUpB6k6gAA==
+        b=KKQ5Y5b0cXLj3RD34HSLVn+XFFhj05cvcqO/IX8b41MEmhK4911KVSgoZeHIzfSXk
+         CJniRwDxwF7mNWOlAlBqmNKTXQSvrxE7tru2mP0voYiLC7qFQX7EX1fFPQw1bdABFL
+         8QrU1DE5kA8rMxRJZJNa0Jz8ifhAG6agkA+7RR0xkuoqiyF4yt2kkRakDevPemskOA
+         S+bL58NhP8x4avTISLfqiEtFHyaKgmoJ7F3Rpsf1f9FVpajbLWBV0yGbUBoaNhBbvW
+         cvldmqdMh0DnzmcRBAWWGHYOj650ufgt0gbhTV43N0th6/6pox0Eoxsh9eW3J6l9kU
+         aeVeYSV/dFb8Q==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
 Cc:     Zhen Lei <thunder.leizhen@huawei.com>,
         Wei Xu <xuwei5@hisilicon.com>, Sasha Levin <sashal@kernel.org>,
         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.9 25/48] ARM: dts: hisilicon: fix errors detected by snps-dw-apb-uart.yaml
-Date:   Tue, 22 Dec 2020 21:23:53 -0500
-Message-Id: <20201223022417.2794032-25-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 4.9 26/48] ARM: dts: hisilicon: fix errors detected by usb yaml
+Date:   Tue, 22 Dec 2020 21:23:54 -0500
+Message-Id: <20201223022417.2794032-26-sashal@kernel.org>
 X-Mailer: git-send-email 2.27.0
 In-Reply-To: <20201223022417.2794032-1-sashal@kernel.org>
 References: <20201223022417.2794032-1-sashal@kernel.org>
@@ -44,112 +44,40 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Zhen Lei <thunder.leizhen@huawei.com>
 
-[ Upstream commit 30ea026e33c6dda48849d9fe0d15c1d280a92d53 ]
+[ Upstream commit 64f5b52554a1de47a53972a47b9b58d8d66ee5aa ]
 
-1. Change node name to match '^serial(@[0-9a-f,]+)*$'
-2. Change clock-names to "baudclk", "apb_pclk". Both of them use the same
-   clock.
+1. Change node name to match '^usb(@.*)?'
+
+These errors are detected by generic-ehci.yaml and generic-ohci.yaml.
 
 Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
 Signed-off-by: Wei Xu <xuwei5@hisilicon.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/hip01.dtsi    | 24 ++++++++++++------------
- arch/arm/boot/dts/hip04-d01.dts |  2 +-
- arch/arm/boot/dts/hip04.dtsi    |  6 +++---
- 3 files changed, 16 insertions(+), 16 deletions(-)
+ arch/arm/boot/dts/hisi-x5hd2.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm/boot/dts/hip01.dtsi b/arch/arm/boot/dts/hip01.dtsi
-index 4e9562f806a21..85e201ab216b9 100644
---- a/arch/arm/boot/dts/hip01.dtsi
-+++ b/arch/arm/boot/dts/hip01.dtsi
-@@ -46,41 +46,41 @@ amba {
- 			compatible = "simple-bus";
- 			ranges;
- 
--			uart0: uart@10001000 {
-+			uart0: serial@10001000 {
- 				compatible = "snps,dw-apb-uart";
- 				reg = <0x10001000 0x1000>;
--				clocks = <&hisi_refclk144mhz>;
--				clock-names = "apb_pclk";
-+				clocks = <&hisi_refclk144mhz>, <&hisi_refclk144mhz>;
-+				clock-names = "baudclk", "apb_pclk";
- 				reg-shift = <2>;
- 				interrupts = <0 32 4>;
- 				status = "disabled";
- 			};
- 
--			uart1: uart@10002000 {
-+			uart1: serial@10002000 {
- 				compatible = "snps,dw-apb-uart";
- 				reg = <0x10002000 0x1000>;
--				clocks = <&hisi_refclk144mhz>;
--				clock-names = "apb_pclk";
-+				clocks = <&hisi_refclk144mhz>, <&hisi_refclk144mhz>;
-+				clock-names = "baudclk", "apb_pclk";
- 				reg-shift = <2>;
- 				interrupts = <0 33 4>;
- 				status = "disabled";
- 			};
- 
--			uart2: uart@10003000 {
-+			uart2: serial@10003000 {
- 				compatible = "snps,dw-apb-uart";
- 				reg = <0x10003000 0x1000>;
--				clocks = <&hisi_refclk144mhz>;
--				clock-names = "apb_pclk";
-+				clocks = <&hisi_refclk144mhz>, <&hisi_refclk144mhz>;
-+				clock-names = "baudclk", "apb_pclk";
- 				reg-shift = <2>;
- 				interrupts = <0 34 4>;
- 				status = "disabled";
- 			};
- 
--			uart3: uart@10006000 {
-+			uart3: serial@10006000 {
- 				compatible = "snps,dw-apb-uart";
- 				reg = <0x10006000 0x1000>;
--				clocks = <&hisi_refclk144mhz>;
--				clock-names = "apb_pclk";
-+				clocks = <&hisi_refclk144mhz>, <&hisi_refclk144mhz>;
-+				clock-names = "baudclk", "apb_pclk";
- 				reg-shift = <2>;
- 				interrupts = <0 4 4>;
- 				status = "disabled";
-diff --git a/arch/arm/boot/dts/hip04-d01.dts b/arch/arm/boot/dts/hip04-d01.dts
-index 40a9e33c2654e..9b2499635dc76 100644
---- a/arch/arm/boot/dts/hip04-d01.dts
-+++ b/arch/arm/boot/dts/hip04-d01.dts
-@@ -25,7 +25,7 @@ memory@00000000,10000000 {
- 	};
- 
- 	soc {
--		uart0: uart@4007000 {
-+		uart0: serial@4007000 {
- 			status = "ok";
- 		};
- 	};
-diff --git a/arch/arm/boot/dts/hip04.dtsi b/arch/arm/boot/dts/hip04.dtsi
-index 44044f2751151..9593a78ccf067 100644
---- a/arch/arm/boot/dts/hip04.dtsi
-+++ b/arch/arm/boot/dts/hip04.dtsi
-@@ -253,12 +253,12 @@ arm-pmu {
- 				     <0 79 4>;
- 		};
- 
--		uart0: uart@4007000 {
-+		uart0: serial@4007000 {
- 			compatible = "snps,dw-apb-uart";
- 			reg = <0x4007000 0x1000>;
- 			interrupts = <0 381 4>;
--			clocks = <&clk_168m>;
--			clock-names = "uartclk";
-+			clocks = <&clk_168m>, <&clk_168m>;
-+			clock-names = "baudclk", "apb_pclk";
- 			reg-shift = <2>;
+diff --git a/arch/arm/boot/dts/hisi-x5hd2.dtsi b/arch/arm/boot/dts/hisi-x5hd2.dtsi
+index fdcc23d203e5d..62cee3bdc64cf 100644
+--- a/arch/arm/boot/dts/hisi-x5hd2.dtsi
++++ b/arch/arm/boot/dts/hisi-x5hd2.dtsi
+@@ -451,14 +451,14 @@ gmac1: ethernet@1841000 {
  			status = "disabled";
  		};
+ 
+-		usb0: ehci@1890000 {
++		usb0: usb@1890000 {
+ 			compatible = "generic-ehci";
+ 			reg = <0x1890000 0x1000>;
+ 			interrupts = <0 66 4>;
+ 			clocks = <&clock HIX5HD2_USB_CLK>;
+ 		};
+ 
+-		usb1: ohci@1880000 {
++		usb1: usb@1880000 {
+ 			compatible = "generic-ohci";
+ 			reg = <0x1880000 0x1000>;
+ 			interrupts = <0 67 4>;
 -- 
 2.27.0
 
