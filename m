@@ -2,80 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 490562E1691
-	for <lists+devicetree@lfdr.de>; Wed, 23 Dec 2020 04:10:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 229A62E1801
+	for <lists+devicetree@lfdr.de>; Wed, 23 Dec 2020 05:14:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731358AbgLWC7u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Dec 2020 21:59:50 -0500
-Received: from mail.kernel.org ([198.145.29.99]:45510 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728852AbgLWCUE (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 22 Dec 2020 21:20:04 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id E9B0E2256F;
-        Wed, 23 Dec 2020 02:19:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1608689986;
-        bh=yJRRFSfrUWMNVGR1aJmIOLD3je5SKkACdB7S9UENrAY=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=VKhmnEyDOztZt/Rg7KiZFnGCfsrQbG6iVVa5f1bPJVHHCQa0vdRww6RP/gj8y/dg1
-         SHlsTYOFg7z+AHXoYuK6qiAw241Fp5dVzhboctoB2iHI6N8GVNm6A+sBR9i3ZKKjOK
-         EwkNfsmrYxpxMlX0gJ3sKDbxLEEh20BAF7dPA+mgUinWvebTphDrYuOLnjAZqaUQUz
-         9f5u83+nPBc+//qmoCFmLj8GQ05JrLngrCOeQQaDhy2YWY3ebg6XAhRbLk6TLTz0lS
-         Y1zybisAG4LTUlKdDGQULisaWnrQGHG2S8ZOAfcS/34ro23TqTVyuYSr74hy90BKC4
-         kmOcW4DnNfsyw==
-From:   Sasha Levin <sashal@kernel.org>
-To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Marc Zyngier <maz@kernel.org>, Thierry Reding <treding@nvidia.com>,
-        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.4 072/130] arm64: tegra: Fix GIC400 missing GICH/GICV register regions
-Date:   Tue, 22 Dec 2020 21:17:15 -0500
-Message-Id: <20201223021813.2791612-72-sashal@kernel.org>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20201223021813.2791612-1-sashal@kernel.org>
-References: <20201223021813.2791612-1-sashal@kernel.org>
+        id S1726611AbgLWEOe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Dec 2020 23:14:34 -0500
+Received: from mailgw01.mediatek.com ([210.61.82.183]:41695 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1725938AbgLWEOd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Dec 2020 23:14:33 -0500
+X-UUID: 096b60bf2fbe4ce98979962b3359f3a0-20201223
+X-UUID: 096b60bf2fbe4ce98979962b3359f3a0-20201223
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
+        (envelope-from <stanley.chu@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1456249984; Wed, 23 Dec 2020 12:13:47 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs01n1.mediatek.inc (172.21.101.68) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Wed, 23 Dec 2020 12:13:45 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 23 Dec 2020 12:13:45 +0800
+From:   Stanley Chu <stanley.chu@mediatek.com>
+To:     <linux-scsi@vger.kernel.org>, <martin.petersen@oracle.com>,
+        <avri.altman@wdc.com>, <alim.akhtar@samsung.com>,
+        <jejb@linux.ibm.com>, <robh+dt@kernel.org>,
+        <devicetree@vger.kernel.org>
+CC:     <matthias.bgg@gmail.com>, <linux-mediatek@lists.infradead.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <kuohong.wang@mediatek.com>,
+        <peter.wang@mediatek.com>, <chun-hung.wu@mediatek.com>,
+        <andy.teng@mediatek.com>, <chaotian.jing@mediatek.com>,
+        <cc.chou@mediatek.com>, <jiajie.hao@mediatek.com>,
+        <alice.chao@mediatek.com>, <hanks.chen@mediatek.com>,
+        Stanley Chu <stanley.chu@mediatek.com>
+Subject: [PATCH v1 0/2] arm64: Support Universal Flash Storage on MediaTek MT6779 platform
+Date:   Wed, 23 Dec 2020 12:13:43 +0800
+Message-ID: <20201223041345.24864-1-stanley.chu@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Marc Zyngier <maz@kernel.org>
+Hi,
+This series adds UFS (Universal Flash Storage) support on MediaTek MT6779 SoC platform.
 
-[ Upstream commit 776a3c04da9fa144241476f4a0d263899d6cad26 ]
+Stanley Chu (2):
+  arm64: configs: Support Universal Flash Storage on MediaTek platforms
+  arm64: dts: mt6779: Support ufshci and ufsphy
 
-GIC400 has full support for virtualization, and yet the tegra186
-DT doesn't expose the GICH/GICV regions (despite exposing the
-maintenance interrupt that only makes sense for virtualization).
+ arch/arm64/boot/dts/mediatek/mt6779.dtsi | 36 +++++++++++++++++++++++-
+ arch/arm64/configs/defconfig             |  1 +
+ 2 files changed, 36 insertions(+), 1 deletion(-)
 
-Add the missing regions, based on the hunch that the HW doesn't
-use the CPU build-in interfaces, but instead the external ones
-provided by the GIC. KVM's virtual GIC now works with this change.
-
-Signed-off-by: Marc Zyngier <maz@kernel.org>
-Signed-off-by: Thierry Reding <treding@nvidia.com>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- arch/arm64/boot/dts/nvidia/tegra186.dtsi | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/nvidia/tegra186.dtsi b/arch/arm64/boot/dts/nvidia/tegra186.dtsi
-index 9abf0cb1dd67f..f72c97fe4afc8 100644
---- a/arch/arm64/boot/dts/nvidia/tegra186.dtsi
-+++ b/arch/arm64/boot/dts/nvidia/tegra186.dtsi
-@@ -569,7 +569,9 @@ gic: interrupt-controller@3881000 {
- 		#interrupt-cells = <3>;
- 		interrupt-controller;
- 		reg = <0x0 0x03881000 0x0 0x1000>,
--		      <0x0 0x03882000 0x0 0x2000>;
-+		      <0x0 0x03882000 0x0 0x2000>,
-+		      <0x0 0x03884000 0x0 0x2000>,
-+		      <0x0 0x03886000 0x0 0x2000>;
- 		interrupts = <GIC_PPI 9
- 			(GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>;
- 		interrupt-parent = <&gic>;
 -- 
-2.27.0
+2.18.0
 
