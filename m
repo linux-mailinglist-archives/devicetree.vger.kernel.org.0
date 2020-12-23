@@ -2,85 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 772FE2E1AFE
-	for <lists+devicetree@lfdr.de>; Wed, 23 Dec 2020 11:36:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E5992E1B54
+	for <lists+devicetree@lfdr.de>; Wed, 23 Dec 2020 12:05:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728324AbgLWKgW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Dec 2020 05:36:22 -0500
-Received: from mo4-p01-ob.smtp.rzone.de ([85.215.255.53]:12930 "EHLO
-        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728309AbgLWKgW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Dec 2020 05:36:22 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1608719610;
-        s=strato-dkim-0002; d=goldelico.com;
-        h=Message-Id:Date:Subject:Cc:To:From:From:Subject:Sender;
-        bh=bY0YzpEUeI+dY4ou93dboe/6Z74HesRpsnfqjYRk2Jk=;
-        b=ULnRCvzGFpGwwalZO7iUgZhPAKbROVPYaipAvVFC0Aa++OcUow9wu/iRMb36qVtzAd
-        i9U4c54FWWlD6s7y/KAXro8LfWOvd964r5cFNcx8mPvVOf0vpSHBuFyysm6Zw8Vy+lZU
-        RMCxgkOBc0AM4vjX33+Nh2jP5vq8Xtx9pSL9sm2fcXH2wOQuv4y50tNkiTE3txxbOBVW
-        Vuh1MOPz94mMlNId67nPxkgcbJuJAaomPMSeXIUzSx/yxtROkjN2P5J0rQSo7LR+7vQP
-        DAwy7ipTy6x/BMftMi3bsYnxq3gEbrbDYKjeRQ60Zk2bxspmfya6MVAb3JrfeGyUzKop
-        m5Mw==
-X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMhflhwDubTJ9o1mfYzBGHXH7FjJ5/fxd"
-X-RZG-CLASS-ID: mo00
-Received: from iMac.fritz.box
-        by smtp.strato.de (RZmta 47.10.7 DYNA|AUTH)
-        with ESMTPSA id y052d6wBNAUM04l
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-        Wed, 23 Dec 2020 11:30:22 +0100 (CET)
-From:   "H. Nikolaus Schaller" <hns@goldelico.com>
-To:     =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, letux-kernel@openphoenux.org,
-        Andreas Kemnade <andreas@kemnade.info>,
-        kernel@pyra-handheld.com,
-        "H. Nikolaus Schaller" <hns@goldelico.com>, stable@vger.kernel.org
-Subject: [PATCH] DTS: ARM: gta04: SPI panel chip select is active low
-Date:   Wed, 23 Dec 2020 11:30:21 +0100
-Message-Id: <a539758e798631b54a85df102a1c6635e1f70b37.1608719420.git.hns@goldelico.com>
-X-Mailer: git-send-email 2.26.2
+        id S1728261AbgLWLE7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Dec 2020 06:04:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60000 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728216AbgLWLE6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Dec 2020 06:04:58 -0500
+Received: from mail-pf1-x42c.google.com (mail-pf1-x42c.google.com [IPv6:2607:f8b0:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30B12C0613D3
+        for <devicetree@vger.kernel.org>; Wed, 23 Dec 2020 03:04:18 -0800 (PST)
+Received: by mail-pf1-x42c.google.com with SMTP id x126so10173399pfc.7
+        for <devicetree@vger.kernel.org>; Wed, 23 Dec 2020 03:04:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=9wr04wRtfr+9xAJATRoyW0Odw47YG07e8A4tfkmKY6o=;
+        b=la+BDoB97R8Zm2+gkZTx0LdGGdRFU5HMRB8H7Q/qdsGyuyLFPsb2rf0BHO9Oa02td3
+         +0FLQP0BEYMmqcaqjbConn9GwLnFpkYdlmR2xa0KcOMRTq9E8beL/mvQtC+AoHqNLtQO
+         5pw3ql63taEt54JevUkXkuZnwSxy76szfH7rU=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=9wr04wRtfr+9xAJATRoyW0Odw47YG07e8A4tfkmKY6o=;
+        b=thIhVGswqbCfsgin5qXQhQMll5nXISmFqKJ59/CL2cagD+MBZYtU+0eAXdEt2+AXOd
+         DSj9MGcBeY3t/64oyuQ5LQxEHxm8FPjaK0Ue4pLwgFVQ/2nIb1u01ABpl2TZwKAEyjE8
+         GvJuf7fcJjeqroXxveZWtqe4U1PbsNeXe8qQJXaBOlfrTR1IaOaGVgn9wUmKxuL67CN9
+         tB1X5JJ32ZRSSmN2Sy3x9rfSVXX/YzB/DftDfxMofdvvLeYZiHsnUOYEGpW4omWGmcW6
+         3SpRItkNtkOQUyxZ2P4n6bKVmpFIDMrkRNS5ADipXzoEToiYF6smfkdEhXg0RALVQYy0
+         vVig==
+X-Gm-Message-State: AOAM533xvjfjpYpwggBmGfsffw2+eBwFbFi34nQnfhzyeIQRt1+NtNSN
+        5OKE24VhcvehgKcJSXRrMIv3JQ==
+X-Google-Smtp-Source: ABdhPJy11noMdaqdZLEFb6GtB8b60kIlaNhnZT03fFHUBdVURtMnO5Z2Ij68gj6AlDw3ZSquz7Pbvw==
+X-Received: by 2002:aa7:9501:0:b029:155:3b11:d5c4 with SMTP id b1-20020aa795010000b02901553b11d5c4mr4555036pfp.76.1608721457374;
+        Wed, 23 Dec 2020 03:04:17 -0800 (PST)
+Received: from localhost.localdomain ([2405:201:c00a:a884:eca4:40c1:8784:571c])
+        by smtp.gmail.com with ESMTPSA id 3sm23275909pfv.92.2020.12.23.03.04.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 23 Dec 2020 03:04:16 -0800 (PST)
+From:   Jagan Teki <jagan@amarulasolutions.com>
+To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Li Yang <leoyang.li@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-amarula@amarulasolutions.com,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>
+Subject: [PATCH v3 0/6] arm64: dts: imx8mm: Add Engicam i.Core MX8M Mini
+Date:   Wed, 23 Dec 2020 16:33:37 +0530
+Message-Id: <20201223110343.126638-1-jagan@amarulasolutions.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-With the arrival of
+This is the initial series to support Engicam i.Core MX8M Mini SOM
+and it's associated carrier board dts(i) support.
 
-commit 2fee9583198eb9 ("spi: dt-bindings: clarify CS behavior for spi-cs-high and gpio descriptors")
+i.Core MX8M Mini is an EDIMM SOM based on NXP i.MX8MM from Engicam.
 
-it was clarified what the proper state for cs-gpios should be, even if the
-flag is ignored. The driver code is doing the right thing since
+i.Core MX8M Mini needs to mount on top of Engicam baseboards for
+creating complete platform boards.
 
-766c6b63aa04 ("spi: fix client driver breakages when using GPIO descriptors")
+Possible baseboards are,
+- EDIMM2.2
+- C.TOUCH 2.0
 
-The chip-select of the td028ttec1 panel is active-low, so we must omit spi-cs-high;
-attribute (already removed by separate patch) and should now use GPIO_ACTIVE_LOW for
-the client device description to be fully consistent.
+Changes for v3:
+- don't maintain common nodes and include it, if no feature diff
+- keep min/max regulator hoping
+- collect Krzysztof r-b
+- fix dt-bindings
 
-Fixes: 766c6b63aa04 ("spi: fix client driver breakages when using GPIO descriptors")
-CC: stable@vger.kernel.org
-Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
----
- arch/arm/boot/dts/omap3-gta04.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Any inputs?
+Jagan.
 
-diff --git a/arch/arm/boot/dts/omap3-gta04.dtsi b/arch/arm/boot/dts/omap3-gta04.dtsi
-index 003202d129907b..7b8c18e6605e40 100644
---- a/arch/arm/boot/dts/omap3-gta04.dtsi
-+++ b/arch/arm/boot/dts/omap3-gta04.dtsi
-@@ -114,7 +114,7 @@ spi_lcd: spi_lcd {
- 		gpio-sck = <&gpio1 12 GPIO_ACTIVE_HIGH>;
- 		gpio-miso = <&gpio1 18 GPIO_ACTIVE_HIGH>;
- 		gpio-mosi = <&gpio1 20 GPIO_ACTIVE_HIGH>;
--		cs-gpios = <&gpio1 19 GPIO_ACTIVE_HIGH>;
-+		cs-gpios = <&gpio1 19 GPIO_ACTIVE_LOW>;
- 		num-chipselects = <1>;
- 
- 		/* lcd panel */
+Jagan Teki (6):
+  arm64: defconfig: Enable REGULATOR_PF8X00
+  dt-bindings: arm: fsl: Add Engicam i.Core MX8M Mini C.TOUCH 2.0
+  arm64: dts: imx8mm: Add Engicam i.Core MX8M Mini SoM
+  arm64: dts: imx8mm: Add Engicam i.Core MX8M Mini C.TOUCH 2.0
+  dt-bindings: arm: fsl: Add Engicam i.Core MX8M Mini EDIMM2.2 Starter Kit
+  arm64: dts: imx8mm: Add Engicam i.Core MX8M Mini EDIMM2.2 Starter Kit
+
+ .../devicetree/bindings/arm/fsl.yaml          |   8 +
+ arch/arm64/boot/dts/freescale/Makefile        |   2 +
+ .../dts/freescale/imx8mm-engicam-ctouch2.dtsi |  82 +++++++
+ .../freescale/imx8mm-engicam-edimm2.2.dtsi    |  82 +++++++
+ .../freescale/imx8mm-icore-mx8mm-ctouch2.dts  |  21 ++
+ .../freescale/imx8mm-icore-mx8mm-edimm2.2.dts |  21 ++
+ .../dts/freescale/imx8mm-icore-mx8mm.dtsi     | 232 ++++++++++++++++++
+ arch/arm64/configs/defconfig                  |   1 +
+ 8 files changed, 449 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-engicam-ctouch2.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-engicam-edimm2.2.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-icore-mx8mm-ctouch2.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-icore-mx8mm-edimm2.2.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-icore-mx8mm.dtsi
+
 -- 
-2.26.2
+2.25.1
 
