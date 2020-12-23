@@ -2,35 +2,35 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 87E3A2E1468
-	for <lists+devicetree@lfdr.de>; Wed, 23 Dec 2020 03:47:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1CD0F2E13FA
+	for <lists+devicetree@lfdr.de>; Wed, 23 Dec 2020 03:38:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730078AbgLWCjP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Dec 2020 21:39:15 -0500
-Received: from mail.kernel.org ([198.145.29.99]:51348 "EHLO mail.kernel.org"
+        id S1729518AbgLWChC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Dec 2020 21:37:02 -0500
+Received: from mail.kernel.org ([198.145.29.99]:54312 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730083AbgLWCXz (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 22 Dec 2020 21:23:55 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id CFDC622482;
-        Wed, 23 Dec 2020 02:23:38 +0000 (UTC)
+        id S1730212AbgLWCY0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 22 Dec 2020 21:24:26 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 731AE2222D;
+        Wed, 23 Dec 2020 02:23:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1608690219;
-        bh=1yti10Y7NIYVoeeyGu4abk4to+H5Fd8eyt3vaODxOL4=;
+        s=k20201202; t=1608690226;
+        bh=A73uzdkqQ1ZPQma2CAjuUN93t+I6+FrfDFX5rU73yyU=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=nkTbjrq104TVa3oCH9bj+ntjEiHVBzPF/DA4rvfwn8GyVeBi/qZjJolM9HCJHNLGw
-         Wmiyf6LJ2TFwBV5zJYy6lsDYO20twzyH+o0IyY7Eq/jTQXjBWBAXhTeUuIn/OLLgY8
-         VbkQwJdYFmY77K9oP0fjyX2ma5OOKBxiKlod1SrdbFPm7p+6+xfVDSV1yyYbrxFlQT
-         sEk+2QE5cohA/2Yr4AxbfSpKpV66GUCP7WZsGaNxVFcyY4zJ9KNkFajlHTdqcTrxml
-         YYB5pJs20W29bPw15XA6/1wP9lAMw1IunVTQESgConiWcp5DtYYwE1k0mbDJRiR5g4
-         HtjYDOJ+P1lGg==
+        b=AODv9Yr11hyUgRvzjtSwvQacxRGCHUdCx+4M+dCjYC6Un2iFRMrSd/i9EDmYw2QBs
+         Kt3BCnVev5U2glooMIo+tKlu3Gz9CD9Tj6bfJ9JnkWr0G0XYKuHHx4Nq8tMoiypqYz
+         TZUucWvN7MEsw8vjXi+Goub7+aOQiHFj0TfhpPd2tFI8Lbkv7oCoQh+N1LCsulpncO
+         UxcYUNR4Jj4ytewZZWzMDBVXaCfGt8oyMGBSuu/34eFD4v8ZxniTAyXkrZmGzF8UAP
+         h3Kj2Vl2+FNjxsh3FW+9dBVRNyWqtwSR+6nhbQqfBz8+4jN3YeDITyXFyG29X8sx0G
+         63LoztxceeGdA==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Zhen Lei <thunder.leizhen@huawei.com>,
-        Wei Xu <xuwei5@hisilicon.com>, Sasha Levin <sashal@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.14 37/66] ARM: dts: hisilicon: fix errors detected by spi-pl022.yaml
-Date:   Tue, 22 Dec 2020 21:22:23 -0500
-Message-Id: <20201223022253.2793452-37-sashal@kernel.org>
+Cc:     Marc Zyngier <maz@kernel.org>, Thierry Reding <treding@nvidia.com>,
+        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org
+Subject: [PATCH AUTOSEL 4.14 42/66] arm64: tegra: Fix GIC400 missing GICH/GICV register regions
+Date:   Tue, 22 Dec 2020 21:22:28 -0500
+Message-Id: <20201223022253.2793452-42-sashal@kernel.org>
 X-Mailer: git-send-email 2.27.0
 In-Reply-To: <20201223022253.2793452-1-sashal@kernel.org>
 References: <20201223022253.2793452-1-sashal@kernel.org>
@@ -42,57 +42,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Zhen Lei <thunder.leizhen@huawei.com>
+From: Marc Zyngier <maz@kernel.org>
 
-[ Upstream commit 4c246408f0bdbc4100c95a5dad9e0688b4a3cfd0 ]
+[ Upstream commit 776a3c04da9fa144241476f4a0d263899d6cad26 ]
 
-1. Change clock-names to "sspclk", "apb_pclk". Both of them use the same
-   clock.
+GIC400 has full support for virtualization, and yet the tegra186
+DT doesn't expose the GICH/GICV regions (despite exposing the
+maintenance interrupt that only makes sense for virtualization).
 
-Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
-Signed-off-by: Wei Xu <xuwei5@hisilicon.com>
+Add the missing regions, based on the hunch that the HW doesn't
+use the CPU build-in interfaces, but instead the external ones
+provided by the GIC. KVM's virtual GIC now works with this change.
+
+Signed-off-by: Marc Zyngier <maz@kernel.org>
+Signed-off-by: Thierry Reding <treding@nvidia.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/hi3519.dtsi | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+ arch/arm64/boot/dts/nvidia/tegra186.dtsi | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/hi3519.dtsi b/arch/arm/boot/dts/hi3519.dtsi
-index 5729ecfcdc8bf..723c451d1420e 100644
---- a/arch/arm/boot/dts/hi3519.dtsi
-+++ b/arch/arm/boot/dts/hi3519.dtsi
-@@ -140,8 +140,8 @@ spi_bus0: spi@12120000 {
- 			compatible = "arm,pl022", "arm,primecell";
- 			reg = <0x12120000 0x1000>;
- 			interrupts = <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>;
--			clocks = <&crg HI3519_SPI0_CLK>;
--			clock-names = "apb_pclk";
-+			clocks = <&crg HI3519_SPI0_CLK>, <&crg HI3519_SPI0_CLK>;
-+			clock-names = "sspclk", "apb_pclk";
- 			num-cs = <1>;
- 			#address-cells = <1>;
- 			#size-cells = <0>;
-@@ -152,8 +152,8 @@ spi_bus1: spi@12121000 {
- 			compatible = "arm,pl022", "arm,primecell";
- 			reg = <0x12121000 0x1000>;
- 			interrupts = <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>;
--			clocks = <&crg HI3519_SPI1_CLK>;
--			clock-names = "apb_pclk";
-+			clocks = <&crg HI3519_SPI1_CLK>, <&crg HI3519_SPI1_CLK>;
-+			clock-names = "sspclk", "apb_pclk";
- 			num-cs = <1>;
- 			#address-cells = <1>;
- 			#size-cells = <0>;
-@@ -164,8 +164,8 @@ spi_bus2: spi@12122000 {
- 			compatible = "arm,pl022", "arm,primecell";
- 			reg = <0x12122000 0x1000>;
- 			interrupts = <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>;
--			clocks = <&crg HI3519_SPI2_CLK>;
--			clock-names = "apb_pclk";
-+			clocks = <&crg HI3519_SPI2_CLK>, <&crg HI3519_SPI2_CLK>;
-+			clock-names = "sspclk", "apb_pclk";
- 			num-cs = <1>;
- 			#address-cells = <1>;
- 			#size-cells = <0>;
+diff --git a/arch/arm64/boot/dts/nvidia/tegra186.dtsi b/arch/arm64/boot/dts/nvidia/tegra186.dtsi
+index a9c3eef6c4e09..5738b02973074 100644
+--- a/arch/arm64/boot/dts/nvidia/tegra186.dtsi
++++ b/arch/arm64/boot/dts/nvidia/tegra186.dtsi
+@@ -263,7 +263,9 @@ gic: interrupt-controller@3881000 {
+ 		#interrupt-cells = <3>;
+ 		interrupt-controller;
+ 		reg = <0x0 0x03881000 0x0 0x1000>,
+-		      <0x0 0x03882000 0x0 0x2000>;
++		      <0x0 0x03882000 0x0 0x2000>,
++		      <0x0 0x03884000 0x0 0x2000>,
++		      <0x0 0x03886000 0x0 0x2000>;
+ 		interrupts = <GIC_PPI 9
+ 			(GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>;
+ 		interrupt-parent = <&gic>;
 -- 
 2.27.0
 
