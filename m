@@ -2,88 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F05342E1FBD
-	for <lists+devicetree@lfdr.de>; Wed, 23 Dec 2020 18:09:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 064262E1FC1
+	for <lists+devicetree@lfdr.de>; Wed, 23 Dec 2020 18:11:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725957AbgLWRIL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Dec 2020 12:08:11 -0500
-Received: from mail.kernel.org ([198.145.29.99]:36004 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725950AbgLWRIK (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 23 Dec 2020 12:08:10 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 933182229C;
-        Wed, 23 Dec 2020 17:07:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1608743250;
-        bh=Tul9GE02D4kuMrXf8XkIEh/AjbOZAulo27rJPi4l0pI=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=qSNp5/hyMYbmggWwtV0ksWzRu5UyjSAn6Amx3xwfbuiJjtoZuwPXAT5zOKaSXfMJQ
-         qlrqDtIpFK7FgTbWqTryBMexZ9B+uIJCHPYHOpcce2kVF1HXqyb6RR9xs3Ok5eqjbT
-         mLHpDO/cQHg8kkNYQ/PyKQMMdbCJhirvpPMr5hX9VMEPgxJzdIl6xn0nbjztwLcJSo
-         iOrIQIKoyyJcOdLCxHi0ogT0sVBRH5vsET9sCCOtXVfRzDquIK987fXcdW0zinKX/o
-         46pcNrW2nVX7b6Uuk+u4ARDPKpStgsYOmw+kE0GAUNGQoLP89Zc3foeKy+i0MvjLjH
-         AbNQkbpbHa3Aw==
-Date:   Wed, 23 Dec 2020 09:07:28 -0800
-From:   Jakub Kicinski <kuba@kernel.org>
-To:     Robert Marko <robert.marko@sartura.hr>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, davem@davemloft.net,
-        netdev@vger.kernel.org, andrew@lunn.ch, linux@armlinux.org.uk,
-        Luka Perkov <luka.perkov@sartura.hr>
-Subject: Re: [PATCH 3/4] net: phy: Add Qualcomm QCA807x driver
-Message-ID: <20201223090728.38fa059d@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
-In-Reply-To: <20201222222637.3204929-4-robert.marko@sartura.hr>
-References: <20201222222637.3204929-1-robert.marko@sartura.hr>
-        <20201222222637.3204929-4-robert.marko@sartura.hr>
+        id S1726072AbgLWRL3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Dec 2020 12:11:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59716 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725811AbgLWRL2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Dec 2020 12:11:28 -0500
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4AC31C061794
+        for <devicetree@vger.kernel.org>; Wed, 23 Dec 2020 09:10:48 -0800 (PST)
+Received: by mail-lf1-x12f.google.com with SMTP id m12so41700878lfo.7
+        for <devicetree@vger.kernel.org>; Wed, 23 Dec 2020 09:10:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=5OLVS0meoj7dhJPDF+WBC3oRuo7D1/RNQb7X5Ldzs4M=;
+        b=M4HEwpkNOx+vL0gHmDsCBkDZ1lrpJMDL93MxAX7FC5TgAFMktS5ntZSWXGLg3ANrlk
+         kxkVbHII7Vi6wvrCfvKjnvqzr3qfVGCk5sWsciLG9i0i1XKs5B34rXd9qsknd48LUdZA
+         lwNdD4sOieZzhAZBQcgjKpnKI1Z4kV8MILsZr/XgrcDV24gj8X+xinFX3jRF/ep7uyEh
+         auKuluIFqZhbENOvNaJgGnPdJA4lyUfXYBM6bWCvX+f7oLWRd9rjpfU7jxpUy+am+xtv
+         ElM9ch1KbTmYcl3tAxULEMUWzQVE4UbohRwjLgcMRDOakVKXAOCSU66GHYlcE33Pg8Ic
+         CGHA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=5OLVS0meoj7dhJPDF+WBC3oRuo7D1/RNQb7X5Ldzs4M=;
+        b=PaZ8KhCKnO3aCQ01RKyk+KGdQGx1rx6QDhqbtZchlQnyitAhHYzksNhF0t29hLnQsK
+         A2S+rTj8hqr/c/6zxeobyYh00kxUsm8nZcyAYk6FAP1wnVyq70Cz3jSpM5Nl2I8SDTfD
+         odItrXosUbTAN5/FV4K5kpZhYn0uWansRHAmidS5uGyBlihTHsJXoikLYCRyldlwCssQ
+         qq4aSq1Jf97q49SizBmCgA8yYHxE6gSbW9WZ9FcmSWh0Lo0V4WzyiKmTJfM+1qAnajsC
+         P9VwJhbmDkPKKF62ITlsh1ycwWtPKUCuhIA3LNgQ7xOMJDZODp1tZyKfL9/GFqewD42K
+         EBHA==
+X-Gm-Message-State: AOAM533oKHDBRQt5o1iEKC0vPJmUAgaS2o97brdHMQDPfFFZv0NsdO8j
+        UBvtsaCd/YJ+CznLqvfnIbS/obmuITvfwdPknzg=
+X-Google-Smtp-Source: ABdhPJxTa1LVOuAcF+F0ctMrWbt5UCFH5EfEirK5LB1s/dCM9cnX0ZPtzZJ+fzxfccTs/urrEtSjFq/PyoufronrcDE=
+X-Received: by 2002:a19:5041:: with SMTP id z1mr12080094lfj.77.1608743446885;
+ Wed, 23 Dec 2020 09:10:46 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Received: by 2002:ab3:609:0:0:0:0:0 with HTTP; Wed, 23 Dec 2020 09:10:46 -0800 (PST)
+Reply-To: madammercywilliams8@gmail.com
+From:   Mercy Williams <madammercywilliams01@gmail.com>
+Date:   Wed, 23 Dec 2020 09:10:46 -0800
+Message-ID: <CAJwx9TfEwH90AFpUSKyzdH-oP4TsQzEnhbnY5fOdR1v4RAAzbQ@mail.gmail.com>
+Subject: Hello,
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 22 Dec 2020 23:26:36 +0100 Robert Marko wrote:
-> This adds driver for the Qualcomm QCA8072 and QCA8075 PHY-s.
->=20
-> They are 2 or 5 port IEEE 802.3 clause 22 compliant
-> 10BASE-Te, 100BASE-TX and 1000BASE-T PHY-s.
->=20
-> They feature 2 SerDes, one for PSGMII or QSGMII connection with MAC,
-> while second one is SGMII for connection to MAC or fiber.
->=20
-> Both models have a combo port that supports 1000BASE-X and 100BASE-FX
-> fiber.
->=20
-> Each PHY inside of QCA807x series has 2 digitally controlled output only
-> pins that natively drive LED-s.
-> But some vendors used these to driver generic LED-s controlled by
-> user space, so lets enable registering each PHY as GPIO controller and
-> add driver for it.
->=20
-> This also adds the ability to specify DT properties so that 1000 Base-T
-> LED will also be lit up for 100 and 10 Base connections.
->=20
-> This is usually done by U-boot, but boards running mainline U-boot are
-> not configuring this yet.
->=20
-> These PHY-s are commonly used in Qualcomm IPQ40xx, IPQ60xx and IPQ807x
-> boards.
->=20
-> Signed-off-by: Robert Marko <robert.marko@sartura.hr>
-> Cc: Luka Perkov <luka.perkov@sartura.hr>
+Hi,
 
-You need to rebase this on a more current tree:
+Did you receive the previous mail i sent to you? Contact me via :
+madammercywilliams8@gmail.com
 
-../drivers/net/phy/qca807x.c:770:4: error: =E2=80=98struct phy_driver=E2=80=
-=99 has no member named =E2=80=98ack_interrupt=E2=80=99; did you mean =E2=
-=80=98handle_interrupt=E2=80=99?
-  770 |   .ack_interrupt =3D qca807x_ack_intr,
-      |    ^~~~~~~~~~~~~
-      |    handle_interrupt
-../drivers/net/phy/qca807x.c:770:20: error: initialization of =E2=80=98irqr=
-eturn_t (*)(struct phy_device *)=E2=80=99 {aka =E2=80=98enum irqreturn (*)(=
-struct phy_device *)=E2=80=99} from incompatible pointer type =E2=80=98int =
-(*)(struct phy_device *)=E2=80=99 [-Werror=3Dincompatible-pointer-types]
-  770 |   .ack_interrupt =3D qca807x_ack_intr,
-      |                    ^~~~~~~~~~~~~~~~
+God bless you,
+Mercy Williams
