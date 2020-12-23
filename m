@@ -2,89 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 606752E1539
-	for <lists+devicetree@lfdr.de>; Wed, 23 Dec 2020 03:49:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CB5C12E16AD
+	for <lists+devicetree@lfdr.de>; Wed, 23 Dec 2020 04:10:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731091AbgLWCsy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Dec 2020 21:48:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40394 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731142AbgLWCsx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Dec 2020 21:48:53 -0500
-Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB088C061794;
-        Tue, 22 Dec 2020 18:48:12 -0800 (PST)
-Received: by mail-pf1-x433.google.com with SMTP id f9so9530785pfc.11;
-        Tue, 22 Dec 2020 18:48:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=+PL75IV1YIOve5Jg9V8yrYGzWUBBJbAWUFCp/xwOrcw=;
-        b=p0s/urqh8Vx0Vgs8W2NcMs80gJsnxRCC1jlOJH5PKFFFJ8c8bTADFis/oHZ9ZTidWa
-         HcT3xHBlkLvT9HwRUjhRhpffGd9F42GGOa9XG3WEYj2L4CIjUxC8C4S6vRYGCauBDhXV
-         JjuBq3y4yhhOBesUJLHkYv1a18jax0IfWW6zQnGo4EUpgULI1KA88Ig2dIX4u4Kz4G4s
-         bjODtJ8A5SASKSSh3R9otp0j1P/99wf8i2CRtnAaJsP1jjcohC7CUTny9HRkaVu2yta7
-         zCZ9PxWyil7FXvYdAef8KDyJ0pn0/ir2+gNXjBXqgTabASB5/6Wpke6piVEOD+/1Eei1
-         z1GA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=+PL75IV1YIOve5Jg9V8yrYGzWUBBJbAWUFCp/xwOrcw=;
-        b=ZHDoT4PYiEnmVImQk+IZ9WlJ9juWZDtz2sTf0lOoTIebuYNmOeVJZDtWkcXGDnBAJ0
-         f5o1ErfKiyvTyQEIe3ZkTcVcxsq22N1I+J6mE/pzqS9Vyp6sHf6ZYnVgxKHnp4Oy7z/z
-         57vHQf1fF5/B1NL0VYHTE+UFB4qXZYK97vvi9Fg/8Eoo10AR24UmMVOaVdTn45I2AAwW
-         UtKDed/2hVN56DjPq9oP9SMWPFJaIdezA16YBUsIfP7TUsLdqe7dnHZqL2bJrYAHeMXu
-         KyrOhLBnrR0GHmQZP8UzxCgD1jrvEzxlRY+05yiC9OxMsTmCrwpHyP+gicLTPKAOnWCe
-         qJFw==
-X-Gm-Message-State: AOAM530/L7DFpD3Ci50FOp3iiPEejBETVYxuPbggQqb0Vd+/RUvFdbX4
-        L90KkyBn6Tl+rj+yaRSh/cY6qrlve4U=
-X-Google-Smtp-Source: ABdhPJzzRUw15Y3l8aYDZrE5BwmmYrfjOeWjbCjMBEKO8TbxkfCsaquNLvgH9mJqutbVODIKDFvd0A==
-X-Received: by 2002:a63:af50:: with SMTP id s16mr22903348pgo.448.1608691692119;
-        Tue, 22 Dec 2020 18:48:12 -0800 (PST)
-Received: from [10.230.29.166] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id y3sm21796984pjb.18.2020.12.22.18.48.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 22 Dec 2020 18:48:11 -0800 (PST)
-Subject: Re: [PATCH v4 1/2] dt-bindings: arm: Add optional interrupt to
- smc/hvc SCMI transport
-To:     Jim Quinlan <jim2101024@gmail.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        bcm-kernel-feedback-list@broadcom.com, james.quinlan@broadcom.com
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        "open list:SYSTEM CONTROL & POWER/MANAGEMENT INTERFACE Mes..." 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-References: <20201222145603.40192-1-jim2101024@gmail.com>
- <20201222145603.40192-2-jim2101024@gmail.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-Message-ID: <62da340d-282a-b3cf-5366-18617c03e513@gmail.com>
-Date:   Tue, 22 Dec 2020 18:48:07 -0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.6.0
+        id S1729034AbgLWDBJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Dec 2020 22:01:09 -0500
+Received: from mail.kernel.org ([198.145.29.99]:46368 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728805AbgLWCTy (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 22 Dec 2020 21:19:54 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 6DAFB23331;
+        Wed, 23 Dec 2020 02:19:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1608689972;
+        bh=OHKRax3REAqiKTRPI/vE8/L3wg9nTk7b4ajYgzc2kOc=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=FIBhhmaeuGfL+Dm8We/EsK0XIqZnODvPxdXYDUS+vxaCwX1lar7bT4jwf/32F/XM0
+         chWC+r04n8i23UokPUubzjDLUCZwNxRMC1kx4rJEHOfzaJJRKpNSxRbRYjfNHbKZ4H
+         X1qs35sJH4tzaI1isqvEffNO1QI2nhatkLTbTPOonNjUktoAyd9QUrojI0E+YkkG8j
+         enGhe2Ws5pDs0o/tZsDqkYP7K/OBNtjB2smN3HygC53xxjTyf5BBjE+QEhxCY4RPff
+         js9/ThmFkxbebZBjpSYEgHVft5oc/qRqBoUW7flfnK0B7lwo4wlADarizs49vrAcdi
+         vqT/4keAVKbCw==
+From:   Sasha Levin <sashal@kernel.org>
+To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Cc:     Zhen Lei <thunder.leizhen@huawei.com>,
+        Wei Xu <xuwei5@hisilicon.com>, Sasha Levin <sashal@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 5.4 061/130] ARM: dts: hisilicon: fix errors detected by snps-dw-apb-uart.yaml
+Date:   Tue, 22 Dec 2020 21:17:04 -0500
+Message-Id: <20201223021813.2791612-61-sashal@kernel.org>
+X-Mailer: git-send-email 2.27.0
+In-Reply-To: <20201223021813.2791612-1-sashal@kernel.org>
+References: <20201223021813.2791612-1-sashal@kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <20201222145603.40192-2-jim2101024@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-stable: review
+X-Patchwork-Hint: Ignore
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Zhen Lei <thunder.leizhen@huawei.com>
 
+[ Upstream commit 30ea026e33c6dda48849d9fe0d15c1d280a92d53 ]
 
-On 12/22/2020 6:56 AM, Jim Quinlan wrote:
-> In normal use of smc/hvc transport in SCMI the message completion is
-> indicated by the return of the SMC call.  This commit provides for an
-> optional interrupt named "a2p" which is used instead to
-> indicate the completion of a message.
-> 
-> Signed-off-by: Jim Quinlan <jim2101024@gmail.com>
+1. Change node name to match '^serial(@[0-9a-f,]+)*$'
+2. Change clock-names to "baudclk", "apb_pclk". Both of them use the same
+   clock.
 
-Acked-by: Florian Fainelli <f.fainelli@gmail.com>
+Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
+Signed-off-by: Wei Xu <xuwei5@hisilicon.com>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ arch/arm/boot/dts/hip01.dtsi    | 24 ++++++++++++------------
+ arch/arm/boot/dts/hip04-d01.dts |  2 +-
+ arch/arm/boot/dts/hip04.dtsi    |  6 +++---
+ 3 files changed, 16 insertions(+), 16 deletions(-)
+
+diff --git a/arch/arm/boot/dts/hip01.dtsi b/arch/arm/boot/dts/hip01.dtsi
+index 975d39828405f..fd09e6d9309c7 100644
+--- a/arch/arm/boot/dts/hip01.dtsi
++++ b/arch/arm/boot/dts/hip01.dtsi
+@@ -41,41 +41,41 @@ amba {
+ 			compatible = "simple-bus";
+ 			ranges;
+ 
+-			uart0: uart@10001000 {
++			uart0: serial@10001000 {
+ 				compatible = "snps,dw-apb-uart";
+ 				reg = <0x10001000 0x1000>;
+-				clocks = <&hisi_refclk144mhz>;
+-				clock-names = "apb_pclk";
++				clocks = <&hisi_refclk144mhz>, <&hisi_refclk144mhz>;
++				clock-names = "baudclk", "apb_pclk";
+ 				reg-shift = <2>;
+ 				interrupts = <0 32 4>;
+ 				status = "disabled";
+ 			};
+ 
+-			uart1: uart@10002000 {
++			uart1: serial@10002000 {
+ 				compatible = "snps,dw-apb-uart";
+ 				reg = <0x10002000 0x1000>;
+-				clocks = <&hisi_refclk144mhz>;
+-				clock-names = "apb_pclk";
++				clocks = <&hisi_refclk144mhz>, <&hisi_refclk144mhz>;
++				clock-names = "baudclk", "apb_pclk";
+ 				reg-shift = <2>;
+ 				interrupts = <0 33 4>;
+ 				status = "disabled";
+ 			};
+ 
+-			uart2: uart@10003000 {
++			uart2: serial@10003000 {
+ 				compatible = "snps,dw-apb-uart";
+ 				reg = <0x10003000 0x1000>;
+-				clocks = <&hisi_refclk144mhz>;
+-				clock-names = "apb_pclk";
++				clocks = <&hisi_refclk144mhz>, <&hisi_refclk144mhz>;
++				clock-names = "baudclk", "apb_pclk";
+ 				reg-shift = <2>;
+ 				interrupts = <0 34 4>;
+ 				status = "disabled";
+ 			};
+ 
+-			uart3: uart@10006000 {
++			uart3: serial@10006000 {
+ 				compatible = "snps,dw-apb-uart";
+ 				reg = <0x10006000 0x1000>;
+-				clocks = <&hisi_refclk144mhz>;
+-				clock-names = "apb_pclk";
++				clocks = <&hisi_refclk144mhz>, <&hisi_refclk144mhz>;
++				clock-names = "baudclk", "apb_pclk";
+ 				reg-shift = <2>;
+ 				interrupts = <0 4 4>;
+ 				status = "disabled";
+diff --git a/arch/arm/boot/dts/hip04-d01.dts b/arch/arm/boot/dts/hip04-d01.dts
+index 9019e0d2ef60b..f5691dbc26d24 100644
+--- a/arch/arm/boot/dts/hip04-d01.dts
++++ b/arch/arm/boot/dts/hip04-d01.dts
+@@ -22,7 +22,7 @@ memory@0,10000000 {
+ 	};
+ 
+ 	soc {
+-		uart0: uart@4007000 {
++		uart0: serial@4007000 {
+ 			status = "ok";
+ 		};
+ 	};
+diff --git a/arch/arm/boot/dts/hip04.dtsi b/arch/arm/boot/dts/hip04.dtsi
+index 4263a9339c2e5..c12ded274c755 100644
+--- a/arch/arm/boot/dts/hip04.dtsi
++++ b/arch/arm/boot/dts/hip04.dtsi
+@@ -250,12 +250,12 @@ arm-pmu {
+ 				     <0 79 4>;
+ 		};
+ 
+-		uart0: uart@4007000 {
++		uart0: serial@4007000 {
+ 			compatible = "snps,dw-apb-uart";
+ 			reg = <0x4007000 0x1000>;
+ 			interrupts = <0 381 4>;
+-			clocks = <&clk_168m>;
+-			clock-names = "uartclk";
++			clocks = <&clk_168m>, <&clk_168m>;
++			clock-names = "baudclk", "apb_pclk";
+ 			reg-shift = <2>;
+ 			status = "disabled";
+ 		};
 -- 
-Florian
+2.27.0
+
