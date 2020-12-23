@@ -2,83 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 39F832E20F6
-	for <lists+devicetree@lfdr.de>; Wed, 23 Dec 2020 20:40:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DA43D2E210E
+	for <lists+devicetree@lfdr.de>; Wed, 23 Dec 2020 20:55:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728017AbgLWTjb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Dec 2020 14:39:31 -0500
-Received: from asavdk4.altibox.net ([109.247.116.15]:44328 "EHLO
-        asavdk4.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726147AbgLWTjb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Dec 2020 14:39:31 -0500
-Received: from ravnborg.org (unknown [188.228.123.71])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by asavdk4.altibox.net (Postfix) with ESMTPS id 7EE318053B;
-        Wed, 23 Dec 2020 20:38:41 +0100 (CET)
-Date:   Wed, 23 Dec 2020 20:38:40 +0100
-From:   Sam Ravnborg <sam@ravnborg.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org,
-        Linux-ALSA <alsa-devel@alsa-project.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Linux USB List <linux-usb@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Jassi Brar <jaswinder.singh@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>, Mark Brown <broonie@kernel.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        "open list:DMA GENERIC OFFLOAD ENGINE SUBSYSTEM" 
-        <dmaengine@vger.kernel.org>
-Subject: Re: [PATCH] dt-bindings: Drop redundant maxItems/items
-Message-ID: <20201223193840.GA3669192@ravnborg.org>
-References: <20201222040645.1323611-1-robh@kernel.org>
- <20201222063908.GB3463004@ravnborg.org>
- <CAL_JsqJLw_RtLehYDLu_HKCoxDHsx-AdGTWfN0JMJhgNqLeFng@mail.gmail.com>
+        id S1728141AbgLWTzW convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 23 Dec 2020 14:55:22 -0500
+Received: from email.sct.ru ([91.195.126.106]:38826 "EHLO email.sct.ru"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728075AbgLWTzW (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 23 Dec 2020 14:55:22 -0500
+X-Greylist: delayed 494 seconds by postgrey-1.27 at vger.kernel.org; Wed, 23 Dec 2020 14:55:21 EST
+Received: from localhost (localhost [127.0.0.1])
+        by email.sct.ru (Postfix) with ESMTP id D6B6686B1264;
+        Wed, 23 Dec 2020 22:46:21 +0300 (MSK)
+Received: from email.sct.ru ([127.0.0.1])
+        by localhost (email.sct.ru [127.0.0.1]) (amavisd-new, port 10032)
+        with ESMTP id HHejSTgfomWq; Wed, 23 Dec 2020 22:46:21 +0300 (MSK)
+Received: from localhost (localhost [127.0.0.1])
+        by email.sct.ru (Postfix) with ESMTP id 0E47586B12B6;
+        Wed, 23 Dec 2020 22:46:21 +0300 (MSK)
+X-Virus-Scanned: amavisd-new at sct.ru
+Received: from email.sct.ru ([127.0.0.1])
+        by localhost (email.sct.ru [127.0.0.1]) (amavisd-new, port 10026)
+        with ESMTP id A78vW5JJmlye; Wed, 23 Dec 2020 22:46:20 +0300 (MSK)
+Received: from email.sct.ru (email.sct.ru [10.0.0.127])
+        by email.sct.ru (Postfix) with ESMTP id 5FE4A86B1299;
+        Wed, 23 Dec 2020 22:46:19 +0300 (MSK)
+Date:   Wed, 23 Dec 2020 22:46:19 +0300 (MSK)
+From:   Sheryll Goedert <k.emelyanova@sct.ru>
+Reply-To: Sheryll Goedert <goedertsheryll1@outlook.com>
+Message-ID: <495338509.71085086.1608752779260.JavaMail.zimbra@sct.ru>
+Subject: SPENDE
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAL_JsqJLw_RtLehYDLu_HKCoxDHsx-AdGTWfN0JMJhgNqLeFng@mail.gmail.com>
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.3 cv=Itgwjo3g c=1 sm=1 tr=0
-        a=S6zTFyMACwkrwXSdXUNehg==:117 a=S6zTFyMACwkrwXSdXUNehg==:17
-        a=kj9zAlcOel0A:10 a=7gkXJVJtAAAA:8 a=ceURT3LBwQyT03W6ftYA:9
-        a=CjuIK1q_8ugA:10 a=E9Po1WZjFZOl8hwRPBS3:22
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8BIT
+X-Originating-IP: [10.0.0.127]
+X-Mailer: Zimbra 8.8.9_GA_3006 (zclient/8.8.9_GA_3006)
+Thread-Index: ZgL4nXA55saEANc9/lS7HmYVeBXb0Q==
+Thread-Topic: SPENDE
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
 
-> > With one comment below,
-> > Acked-by: Sam Ravnborg <sam@ravnborg.org>
-> >
-> > > ---
-> > > diff --git a/Documentation/devicetree/bindings/usb/renesas,usbhs.yaml b/Documentation/devicetree/bindings/usb/renesas,usbhs.yaml
-> > > index 737c1f47b7de..54c361d4a7af 100644
-> > > --- a/Documentation/devicetree/bindings/usb/renesas,usbhs.yaml
-> > > +++ b/Documentation/devicetree/bindings/usb/renesas,usbhs.yaml
-> > > @@ -74,11 +74,8 @@ properties:
-> > >
-> > >    phys:
-> > >      maxItems: 1
-> > > -    items:
-> > > -      - description: phandle + phy specifier pair.
-> >
-> > The description may help some people, so keeping the
-> > description and deleting maxItems would maybe be better.
-> 
-> Do we really want to describe 'phys' hundreds of times? No.
-Agree, for common properties we as a minimum want a phy-common.yaml
-or some such - and have the description exactly once.
 
-> The
-> question I ask on the descriptions is could it be generated instead.
-That could also be an idea, but assuming most people look at the source
-then the same "most people" would miss the generated descriptions.
-
-But to be clear - I see that phys: is a commonly used property so no
-problem to have the description dropped here.
-Ack still stands.
-
-	Sam
+Glückwunsch Gewinner.
+Ich heiße Sheryll Goedert. Ich bin der einzige Gewinner eines Lotterie-Jackpots in Höhe von 396,9 Millionen US-Dollar.
+Ich beschloss, zufällig 5 Personen auszuwählen, um die Summe von 3.000.000,00 Euro als Wohltätigkeitsorganisation zu erhalten. Sie werden ausgewählt, um die Summe von 3 Millionen Euro als Wohltätigkeitsfonds zu erhalten, um Ihr Leben zum Besten zu verändern.
+Ich spende Ihnen diese Spende wegen meiner Liebe zur Menschheit und besonders jetzt während der Pandemie und der Sperrung. Kontaktieren Sie mich, um diese Spende anzufordern.
+Gott schütze dich.
+Sheryll Goedert
