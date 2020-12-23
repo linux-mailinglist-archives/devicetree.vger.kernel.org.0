@@ -2,46 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 859FE2E1951
-	for <lists+devicetree@lfdr.de>; Wed, 23 Dec 2020 08:14:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 00E442E1977
+	for <lists+devicetree@lfdr.de>; Wed, 23 Dec 2020 08:50:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727744AbgLWHNt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Dec 2020 02:13:49 -0500
-Received: from mailgw02.mediatek.com ([210.61.82.184]:55942 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1727338AbgLWHNt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Dec 2020 02:13:49 -0500
-X-UUID: d0e66fb2314149519e6d18e548e4a2f3-20201223
-X-UUID: d0e66fb2314149519e6d18e548e4a2f3-20201223
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
-        (envelope-from <stanley.chu@mediatek.com>)
+        id S1727050AbgLWHt7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Dec 2020 02:49:59 -0500
+Received: from mailgw01.mediatek.com ([210.61.82.183]:39247 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1727063AbgLWHt6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Dec 2020 02:49:58 -0500
+X-UUID: f1eb7a0b826f48c39453b49c5c9ef7ea-20201223
+X-UUID: f1eb7a0b826f48c39453b49c5c9ef7ea-20201223
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
+        (envelope-from <michael.kao@mediatek.com>)
         (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1526241365; Wed, 23 Dec 2020 15:13:02 +0800
+        with ESMTP id 164922422; Wed, 23 Dec 2020 15:49:12 +0800
 Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs08n1.mediatek.inc (172.21.101.55) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Wed, 23 Dec 2020 15:13:00 +0800
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Wed, 23 Dec 2020 15:48:48 +0800
 Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas11.mediatek.inc
  (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 23 Dec 2020 15:13:00 +0800
-From:   Stanley Chu <stanley.chu@mediatek.com>
-To:     <linux-scsi@vger.kernel.org>, <martin.petersen@oracle.com>,
-        <avri.altman@wdc.com>, <alim.akhtar@samsung.com>,
-        <jejb@linux.ibm.com>, <matthias.bgg@gmail.com>,
-        <robh+dt@kernel.org>, <devicetree@vger.kernel.org>
-CC:     <linux-mediatek@lists.infradead.org>,
+ Transport; Wed, 23 Dec 2020 15:48:49 +0800
+From:   Michael Kao <michael.kao@mediatek.com>
+To:     <michael.kao@mediatek.com>, <fan.chen@mediatek.com>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        <linux-pm@vger.kernel.org>, <srv_heupstream@mediatek.com>
+CC:     Eduardo Valentin <edubezval@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        <hsinyi@chromium.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <kuohong.wang@mediatek.com>,
-        <peter.wang@mediatek.com>, <chun-hung.wu@mediatek.com>,
-        <andy.teng@mediatek.com>, <chaotian.jing@mediatek.com>,
-        <cc.chou@mediatek.com>, <jiajie.hao@mediatek.com>,
-        <alice.chao@mediatek.com>, <hanks.chen@mediatek.com>,
-        Stanley Chu <stanley.chu@mediatek.com>
-Subject: [PATCH v2 2/2] arm64: dts: mt6779: Support ufshci and ufsphy
-Date:   Wed, 23 Dec 2020 15:12:59 +0800
-Message-ID: <20201223071259.764-3-stanley.chu@mediatek.com>
+        <linux-mediatek@lists.infradead.org>,
+        brian-sy yang <brian-sy.yang@mediatek.com>
+Subject: [PATCH] thermal: cpufreq_cooling: fix slab OOB issue
+Date:   Wed, 23 Dec 2020 15:48:49 +0800
+Message-ID: <20201223074849.1989-1-michael.kao@mediatek.com>
 X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20201223071259.764-1-stanley.chu@mediatek.com>
-References: <20201223071259.764-1-stanley.chu@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-MTK:  N
@@ -49,68 +48,54 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Support UFS on MT6779 platforms by adding ufshci and ufsphy
-nodes in dts file.
+From: brian-sy yang <brian-sy.yang@mediatek.com>
 
-Reviewed-by: Hanks Chen <hanks.chen@mediatek.com>
-Signed-off-by: Stanley Chu <stanley.chu@mediatek.com>
+Slab OOB issue is scanned by KASAN in cpu_power_to_freq().
+If power is limited below the power of OPP0 in EM table,
+it will cause slab out-of-bound issue with negative array
+index.
+
+Return the lowest frequency if limited power cannot found
+a suitable OPP in EM table to fix this issue.
+
+Backtrace:
+[<ffffffd02d2a37f0>] die+0x104/0x5ac
+[<ffffffd02d2a5630>] bug_handler+0x64/0xd0
+[<ffffffd02d288ce4>] brk_handler+0x160/0x258
+[<ffffffd02d281e5c>] do_debug_exception+0x248/0x3f0
+[<ffffffd02d284488>] el1_dbg+0x14/0xbc
+[<ffffffd02d75d1d4>] __kasan_report+0x1dc/0x1e0
+[<ffffffd02d75c2e0>] kasan_report+0x10/0x20
+[<ffffffd02d75def8>] __asan_report_load8_noabort+0x18/0x28
+[<ffffffd02e6fce5c>] cpufreq_power2state+0x180/0x43c
+[<ffffffd02e6ead80>] power_actor_set_power+0x114/0x1d4
+[<ffffffd02e6fac24>] allocate_power+0xaec/0xde0
+[<ffffffd02e6f9f80>] power_allocator_throttle+0x3ec/0x5a4
+[<ffffffd02e6ea888>] handle_thermal_trip+0x160/0x294
+[<ffffffd02e6edd08>] thermal_zone_device_check+0xe4/0x154
+[<ffffffd02d351cb4>] process_one_work+0x5e4/0xe28
+[<ffffffd02d352f44>] worker_thread+0xa4c/0xfac
+[<ffffffd02d360124>] kthread+0x33c/0x358
+[<ffffffd02d289940>] ret_from_fork+0xc/0x18
+
+Signed-off-by: brian-sy yang <brian-sy.yang@mediatek.com>
 ---
- arch/arm64/boot/dts/mediatek/mt6779.dtsi | 36 +++++++++++++++++++++++-
- 1 file changed, 35 insertions(+), 1 deletion(-)
+ drivers/thermal/cpufreq_cooling.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt6779.dtsi b/arch/arm64/boot/dts/mediatek/mt6779.dtsi
-index 370f309d32de..6eaf230bb0d1 100644
---- a/arch/arm64/boot/dts/mediatek/mt6779.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt6779.dtsi
-@@ -225,6 +225,41 @@
- 			#clock-cells = <1>;
- 		};
+diff --git a/drivers/thermal/cpufreq_cooling.c b/drivers/thermal/cpufreq_cooling.c
+index cc2959f22f01..fb33b3480a8f 100644
+--- a/drivers/thermal/cpufreq_cooling.c
++++ b/drivers/thermal/cpufreq_cooling.c
+@@ -123,7 +123,7 @@ static u32 cpu_power_to_freq(struct cpufreq_cooling_device *cpufreq_cdev,
+ {
+ 	int i;
  
-+		ufshci: ufshci@11270000 {
-+			compatible = "mediatek,mt8183-ufshci";
-+			reg = <0 0x11270000 0 0x2300>;
-+			interrupts = <GIC_SPI 104 IRQ_TYPE_LEVEL_LOW>;
-+			phys = <&ufsphy>;
-+
-+			clocks = <&infracfg_ao CLK_INFRA_UFS>,
-+				 <&infracfg_ao CLK_INFRA_UFS_TICK>,
-+				 <&infracfg_ao CLK_INFRA_UFS_AXI>,
-+				 <&infracfg_ao CLK_INFRA_UNIPRO_TICK>,
-+				 <&infracfg_ao CLK_INFRA_UNIPRO_MBIST>,
-+				 <&topckgen CLK_TOP_FAES_UFSFDE>,
-+				 <&infracfg_ao CLK_INFRA_AES_UFSFDE>,
-+				 <&infracfg_ao CLK_INFRA_AES_BCLK>;
-+			clock-names = "ufs", "ufs_tick", "ufs_axi",
-+				      "unipro_tick", "unipro_mbist",
-+				      "aes_top", "aes_infra", "aes_bclk";
-+			freq-table-hz = <0 0>, <0 0>, <0 0>,
-+					<0 0>, <0 0>, <0 0>,
-+					<0 0>, <0 0>;
-+
-+			mediatek,ufs-disable-ah8;
-+			mediatek,ufs-support-va09;
-+		};
-+
-+		ufsphy: phy@11fa0000 {
-+			compatible = "mediatek,mt8183-ufsphy";
-+			reg = <0 0x11fa0000 0 0xc000>;
-+			#phy-cells = <0>;
-+
-+			clocks = <&infracfg_ao CLK_INFRA_UNIPRO_SCK>,
-+				 <&infracfg_ao CLK_INFRA_UFS_MP_SAP_BCLK>;
-+			clock-names = "unipro", "mp";
-+		};
-+
- 		mfgcfg: clock-controller@13fbf000 {
- 			compatible = "mediatek,mt6779-mfgcfg", "syscon";
- 			reg = <0 0x13fbf000 0 0x1000>;
-@@ -266,6 +301,5 @@
- 			reg = <0 0x1b000000 0 0x1000>;
- 			#clock-cells = <1>;
- 		};
--
- 	};
- };
+-	for (i = cpufreq_cdev->max_level; i >= 0; i--) {
++	for (i = cpufreq_cdev->max_level; i > 0; i--) {
+ 		if (power >= cpufreq_cdev->em->table[i].power)
+ 			break;
+ 	}
 -- 
 2.18.0
 
