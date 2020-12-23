@@ -2,81 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 370642E1ABC
-	for <lists+devicetree@lfdr.de>; Wed, 23 Dec 2020 11:05:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 772FE2E1AFE
+	for <lists+devicetree@lfdr.de>; Wed, 23 Dec 2020 11:36:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728523AbgLWKFZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Dec 2020 05:05:25 -0500
-Received: from foss.arm.com ([217.140.110.172]:48062 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728489AbgLWKFW (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 23 Dec 2020 05:05:22 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 2CC0C1509;
-        Wed, 23 Dec 2020 02:04:18 -0800 (PST)
-Received: from p8cg001049571a15.blr.arm.com (unknown [172.31.20.19])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 1C9A43F718;
-        Wed, 23 Dec 2020 02:04:14 -0800 (PST)
-From:   Anshuman Khandual <anshuman.khandual@arm.com>
-To:     linux-arm-kernel@lists.infradead.org, coresight@lists.linaro.org
-Cc:     linux-kernel@vger.kernel.org,
-        Anshuman Khandual <anshuman.khandual@arm.com>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Mike Leach <mike.leach@linaro.org>,
-        Linu Cherian <lcherian@marvell.com>, devicetree@vger.kernel.org
-Subject: [PATCH 11/11] dts: bindings: Document device tree binding for Arm TRBE
-Date:   Wed, 23 Dec 2020 15:33:43 +0530
-Message-Id: <1608717823-18387-12-git-send-email-anshuman.khandual@arm.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1608717823-18387-1-git-send-email-anshuman.khandual@arm.com>
-References: <1608717823-18387-1-git-send-email-anshuman.khandual@arm.com>
+        id S1728324AbgLWKgW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Dec 2020 05:36:22 -0500
+Received: from mo4-p01-ob.smtp.rzone.de ([85.215.255.53]:12930 "EHLO
+        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728309AbgLWKgW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Dec 2020 05:36:22 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1608719610;
+        s=strato-dkim-0002; d=goldelico.com;
+        h=Message-Id:Date:Subject:Cc:To:From:From:Subject:Sender;
+        bh=bY0YzpEUeI+dY4ou93dboe/6Z74HesRpsnfqjYRk2Jk=;
+        b=ULnRCvzGFpGwwalZO7iUgZhPAKbROVPYaipAvVFC0Aa++OcUow9wu/iRMb36qVtzAd
+        i9U4c54FWWlD6s7y/KAXro8LfWOvd964r5cFNcx8mPvVOf0vpSHBuFyysm6Zw8Vy+lZU
+        RMCxgkOBc0AM4vjX33+Nh2jP5vq8Xtx9pSL9sm2fcXH2wOQuv4y50tNkiTE3txxbOBVW
+        Vuh1MOPz94mMlNId67nPxkgcbJuJAaomPMSeXIUzSx/yxtROkjN2P5J0rQSo7LR+7vQP
+        DAwy7ipTy6x/BMftMi3bsYnxq3gEbrbDYKjeRQ60Zk2bxspmfya6MVAb3JrfeGyUzKop
+        m5Mw==
+X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMhflhwDubTJ9o1mfYzBGHXH7FjJ5/fxd"
+X-RZG-CLASS-ID: mo00
+Received: from iMac.fritz.box
+        by smtp.strato.de (RZmta 47.10.7 DYNA|AUTH)
+        with ESMTPSA id y052d6wBNAUM04l
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+        Wed, 23 Dec 2020 11:30:22 +0100 (CET)
+From:   "H. Nikolaus Schaller" <hns@goldelico.com>
+To:     =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, letux-kernel@openphoenux.org,
+        Andreas Kemnade <andreas@kemnade.info>,
+        kernel@pyra-handheld.com,
+        "H. Nikolaus Schaller" <hns@goldelico.com>, stable@vger.kernel.org
+Subject: [PATCH] DTS: ARM: gta04: SPI panel chip select is active low
+Date:   Wed, 23 Dec 2020 11:30:21 +0100
+Message-Id: <a539758e798631b54a85df102a1c6635e1f70b37.1608719420.git.hns@goldelico.com>
+X-Mailer: git-send-email 2.26.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch documents the device tree binding in use for Arm TRBE.
+With the arrival of
 
-Cc: devicetree@vger.kernel.org
-Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
-Cc: Mike Leach <mike.leach@linaro.org>
-Cc: Suzuki K Poulose <suzuki.poulose@arm.com>
-Signed-off-by: Anshuman Khandual <anshuman.khandual@arm.com>
+commit 2fee9583198eb9 ("spi: dt-bindings: clarify CS behavior for spi-cs-high and gpio descriptors")
+
+it was clarified what the proper state for cs-gpios should be, even if the
+flag is ignored. The driver code is doing the right thing since
+
+766c6b63aa04 ("spi: fix client driver breakages when using GPIO descriptors")
+
+The chip-select of the td028ttec1 panel is active-low, so we must omit spi-cs-high;
+attribute (already removed by separate patch) and should now use GPIO_ACTIVE_LOW for
+the client device description to be fully consistent.
+
+Fixes: 766c6b63aa04 ("spi: fix client driver breakages when using GPIO descriptors")
+CC: stable@vger.kernel.org
+Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
 ---
-Changes in V1:
+ arch/arm/boot/dts/omap3-gta04.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-- TRBE DT entry has been renamed as 'arm, trace-buffer-extension'
-
- Documentation/devicetree/bindings/arm/trbe.txt | 20 ++++++++++++++++++++
- 1 file changed, 20 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/arm/trbe.txt
-
-diff --git a/Documentation/devicetree/bindings/arm/trbe.txt b/Documentation/devicetree/bindings/arm/trbe.txt
-new file mode 100644
-index 0000000..001945d
---- /dev/null
-+++ b/Documentation/devicetree/bindings/arm/trbe.txt
-@@ -0,0 +1,20 @@
-+* Trace Buffer Extension (TRBE)
-+
-+Trace Buffer Extension (TRBE) is used for collecting trace data generated
-+from a corresponding trace unit (ETE) using an in memory trace buffer.
-+
-+** TRBE Required properties:
-+
-+- compatible : should be one of:
-+	       "arm,trace-buffer-extension"
-+
-+- interrupts : Exactly 1 PPI must be listed. For heterogeneous systems where
-+	       TRBE is only supported on a subset of the CPUs, please consult
-+	       the arm,gic-v3 binding for details on describing a PPI partition.
-+
-+** Example:
-+
-+trbe {
-+	compatible = "arm,trace-buffer-extension";
-+	interrupts = <GIC_PPI 15 IRQ_TYPE_LEVEL_HIGH>;
-+};
+diff --git a/arch/arm/boot/dts/omap3-gta04.dtsi b/arch/arm/boot/dts/omap3-gta04.dtsi
+index 003202d129907b..7b8c18e6605e40 100644
+--- a/arch/arm/boot/dts/omap3-gta04.dtsi
++++ b/arch/arm/boot/dts/omap3-gta04.dtsi
+@@ -114,7 +114,7 @@ spi_lcd: spi_lcd {
+ 		gpio-sck = <&gpio1 12 GPIO_ACTIVE_HIGH>;
+ 		gpio-miso = <&gpio1 18 GPIO_ACTIVE_HIGH>;
+ 		gpio-mosi = <&gpio1 20 GPIO_ACTIVE_HIGH>;
+-		cs-gpios = <&gpio1 19 GPIO_ACTIVE_HIGH>;
++		cs-gpios = <&gpio1 19 GPIO_ACTIVE_LOW>;
+ 		num-chipselects = <1>;
+ 
+ 		/* lcd panel */
 -- 
-2.7.4
+2.26.2
 
