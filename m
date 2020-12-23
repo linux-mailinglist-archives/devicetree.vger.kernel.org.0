@@ -2,113 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 51DAE2E1111
-	for <lists+devicetree@lfdr.de>; Wed, 23 Dec 2020 02:13:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B5FF2E1117
+	for <lists+devicetree@lfdr.de>; Wed, 23 Dec 2020 02:17:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726361AbgLWBMb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Dec 2020 20:12:31 -0500
-Received: from mx0a-001b2d01.pphosted.com ([148.163.156.1]:10472 "EHLO
-        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726319AbgLWBMa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 22 Dec 2020 20:12:30 -0500
-Received: from pps.filterd (m0098393.ppops.net [127.0.0.1])
-        by mx0a-001b2d01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 0BN13iRw051130;
-        Tue, 22 Dec 2020 20:11:21 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=references : from : to :
- cc : subject : in-reply-to : date : message-id : mime-version :
- content-type; s=pp1; bh=9I2ktiRW2omCj6P9wL6twEhofLLfLCizYSj7nwFz7UM=;
- b=kiKFSpAl4VUXC5L8Sn67vd9xqXE+cvVwAqnPfiDfGhsfBodsX7v6Pk/1OSHvuPLfXxIf
- d6oP3+ULkQWeMieIqytf02E5kItARmEWUSiEykSCCMt8UMhmyFjwjKN6lZ37st+Px4l3
- PXMCkG+8uGvF+3rREhe8+sB/NF0oDNoUr7cQTEISU56z+N7TAZQdViEOI6DxLwyLFTqx
- Ktg+xxzQHs9GOTdvDPk2+6zvOWWUH9CV9uNIN2ysa6xiEjXB18aDJIgK37nWGz7Lkibe
- WeZQ7FtPflbPhZZrIesT5+0AarPGdaufHs8jsoy1Jm9AbKpXcIhP5hcobYvcc0jgigJs +g== 
-Received: from pps.reinject (localhost [127.0.0.1])
-        by mx0a-001b2d01.pphosted.com with ESMTP id 35kuqx8c9d-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 22 Dec 2020 20:11:21 -0500
-Received: from m0098393.ppops.net (m0098393.ppops.net [127.0.0.1])
-        by pps.reinject (8.16.0.36/8.16.0.36) with SMTP id 0BN13ohB051823;
-        Tue, 22 Dec 2020 20:11:21 -0500
-Received: from ppma04wdc.us.ibm.com (1a.90.2fa9.ip4.static.sl-reverse.com [169.47.144.26])
-        by mx0a-001b2d01.pphosted.com with ESMTP id 35kuqx8c90-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 22 Dec 2020 20:11:20 -0500
-Received: from pps.filterd (ppma04wdc.us.ibm.com [127.0.0.1])
-        by ppma04wdc.us.ibm.com (8.16.0.42/8.16.0.42) with SMTP id 0BN12Msh011495;
-        Wed, 23 Dec 2020 01:11:19 GMT
-Received: from b03cxnp07028.gho.boulder.ibm.com (b03cxnp07028.gho.boulder.ibm.com [9.17.130.15])
-        by ppma04wdc.us.ibm.com with ESMTP id 35k7wbf4y2-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 23 Dec 2020 01:11:19 +0000
-Received: from b03ledav005.gho.boulder.ibm.com (b03ledav005.gho.boulder.ibm.com [9.17.130.236])
-        by b03cxnp07028.gho.boulder.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 0BN1BIPq27197918
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Wed, 23 Dec 2020 01:11:18 GMT
-Received: from b03ledav005.gho.boulder.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 59880BE054;
-        Wed, 23 Dec 2020 01:11:18 +0000 (GMT)
-Received: from b03ledav005.gho.boulder.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 8D504BE056;
-        Wed, 23 Dec 2020 01:11:10 +0000 (GMT)
-Received: from manicouagan.localdomain (unknown [9.80.219.136])
-        by b03ledav005.gho.boulder.ibm.com (Postfix) with ESMTPS;
-        Wed, 23 Dec 2020 01:11:10 +0000 (GMT)
-References: <20201219175713.18888-1-nramas@linux.microsoft.com>
- <20201219175713.18888-6-nramas@linux.microsoft.com>
-User-agent: mu4e 1.4.10; emacs 27.1
-From:   Thiago Jung Bauermann <bauerman@linux.ibm.com>
-To:     Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
-Cc:     zohar@linux.ibm.com, robh@kernel.org, takahiro.akashi@linaro.org,
-        gregkh@linuxfoundation.org, will@kernel.org,
-        catalin.marinas@arm.com, mpe@ellerman.id.au, james.morse@arm.com,
-        sashal@kernel.org, benh@kernel.crashing.org, paulus@samba.org,
-        frowand.list@gmail.com, vincenzo.frascino@arm.com,
-        mark.rutland@arm.com, dmitry.kasatkin@gmail.com, jmorris@namei.org,
-        serge@hallyn.com, pasha.tatashin@soleen.com, allison@lohutok.net,
-        masahiroy@kernel.org, bhsharma@redhat.com, mbrugger@suse.com,
-        hsinyi@chromium.org, tao.li@vivo.com, christophe.leroy@c-s.fr,
-        prsriva@linux.microsoft.com, balajib@linux.microsoft.com,
-        linux-integrity@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v13 5/6] arm64: Free DTB buffer if fdt_open_into() fails
-In-reply-to: <20201219175713.18888-6-nramas@linux.microsoft.com>
-Date:   Tue, 22 Dec 2020 22:11:08 -0300
-Message-ID: <87wnx9jphv.fsf@manicouagan.localdomain>
+        id S1725985AbgLWBQt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Dec 2020 20:16:49 -0500
+Received: from mailgw02.mediatek.com ([210.61.82.184]:58561 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1725902AbgLWBQt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Dec 2020 20:16:49 -0500
+X-UUID: 9828f793167c4a04b2907d2aa7a85851-20201223
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:Reply-To:From:Subject:Message-ID; bh=1JreIqPgO/MgWqYvXss3grHwTj5L9rm69LlEytrJzyI=;
+        b=BxkDtmUcYXFQ4o7/U8FsxrmahJCUSuXy2GJiKeQqDllniE1qnbwdwQugB6qQp4PTbU9tvaNigoXT6h2lVAqBr+pq7T8TfJMHZz/VwLwurEWrq0MIxyt1Sag1aIS6JYM6qaC5mvCnzBYPdSK2iKiKgo5r4d6n8kj2N8kfsk7fpJY=;
+X-UUID: 9828f793167c4a04b2907d2aa7a85851-20201223
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
+        (envelope-from <yongqiang.niu@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 85176294; Wed, 23 Dec 2020 09:16:03 +0800
+Received: from MTKCAS36.mediatek.inc (172.27.4.186) by mtkmbs05n1.mediatek.inc
+ (172.21.101.15) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 23 Dec
+ 2020 09:15:58 +0800
+Received: from [10.17.3.153] (10.17.3.153) by MTKCAS36.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 23 Dec 2020 09:15:58 +0800
+Message-ID: <1608686161.18252.3.camel@mhfsdcap03>
+Subject: Re: [PATCH v2, 01/17] dt-bindings: mediatek: add description for
+ postmask
+From:   Yongqiang Niu <yongqiang.niu@mediatek.com>
+Reply-To: Yongqiang Niu <yongqiang.niu@mediatek.com>
+To:     Chun-Kuang Hu <chunkuang.hu@kernel.org>
+CC:     CK Hu <ck.hu@mediatek.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        DTML <devicetree@vger.kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        DRI Development <dri-devel@lists.freedesktop.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+Date:   Wed, 23 Dec 2020 09:16:01 +0800
+In-Reply-To: <CAAOTY_-=4ZwXgTA57UE9+nZm-0E-B1oimWXfaJuWxufo8LJ+pg@mail.gmail.com>
+References: <1607746317-4696-1-git-send-email-yongqiang.niu@mediatek.com>
+         <1607746317-4696-2-git-send-email-yongqiang.niu@mediatek.com>
+         <CAAOTY_-=4ZwXgTA57UE9+nZm-0E-B1oimWXfaJuWxufo8LJ+pg@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-Content-Type: text/plain
-X-TM-AS-GCONF: 00
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.343,18.0.737
- definitions=2020-12-22_13:2020-12-21,2020-12-22 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 adultscore=0
- bulkscore=0 clxscore=1015 mlxscore=0 suspectscore=0 phishscore=0
- priorityscore=1501 lowpriorityscore=0 spamscore=0 impostorscore=0
- mlxlogscore=747 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2009150000 definitions=main-2012230003
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+T24gVHVlLCAyMDIwLTEyLTE1IGF0IDIyOjQ5ICswODAwLCBDaHVuLUt1YW5nIEh1IHdyb3RlOg0K
+PiBIaSwgWW9uZ3FpYW5nOg0KPiANCj4gWW9uZ3FpYW5nIE5pdSA8eW9uZ3FpYW5nLm5pdUBtZWRp
+YXRlay5jb20+IOaWvCAyMDIw5bm0MTLmnIgxMuaXpSDpgLHlha0g5LiL5Y2IMTI6MTLlr6vpgZPv
+vJoNCj4gPg0KPiA+IGFkZCBkZXNjcmlwdGlvbiBmb3IgcG9zdG1hc2sNCj4gDQo+IFdoYXQgaXMg
+cG9zdG1hc2s/IEkgZ29vZ2xlIGl0IGFuZCBmaW5kIGEgcG9zdG1hc2sgRUNPLiBTbyBpdCBpcyBw
+b3N0bWFzayBFQ08/DQo+IA0KPiBSZWdhcmRzLA0KPiBDaHVuLUt1YW5nLg0KPiANCg0KaXQgaXMg
+dXNlZCBjb250cm9sIHJvdW5kIGNvcm5lciBmb3IgZGlzcGxheSBmcmFtZQ0KDQo+ID4NCj4gPiBT
+aWduZWQtb2ZmLWJ5OiBZb25ncWlhbmcgTml1IDx5b25ncWlhbmcubml1QG1lZGlhdGVrLmNvbT4N
+Cj4gPiAtLS0NCj4gPiAgRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2Rpc3BsYXkv
+bWVkaWF0ZWsvbWVkaWF0ZWssZGlzcC50eHQgfCAxICsNCj4gPiAgMSBmaWxlIGNoYW5nZWQsIDEg
+aW5zZXJ0aW9uKCspDQo+ID4NCj4gPiBkaWZmIC0tZ2l0IGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0
+cmVlL2JpbmRpbmdzL2Rpc3BsYXkvbWVkaWF0ZWsvbWVkaWF0ZWssZGlzcC50eHQgYi9Eb2N1bWVu
+dGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvZGlzcGxheS9tZWRpYXRlay9tZWRpYXRlayxkaXNw
+LnR4dA0KPiA+IGluZGV4IDVjYTY5M2EuLjE5NzJmYTcgMTAwNjQ0DQo+ID4gLS0tIGEvRG9jdW1l
+bnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2Rpc3BsYXkvbWVkaWF0ZWsvbWVkaWF0ZWssZGlz
+cC50eHQNCj4gPiArKysgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvZGlzcGxh
+eS9tZWRpYXRlay9tZWRpYXRlayxkaXNwLnR4dA0KPiA+IEBAIC0zNyw2ICszNyw3IEBAIFJlcXVp
+cmVkIHByb3BlcnRpZXMgKGFsbCBmdW5jdGlvbiBibG9ja3MpOg0KPiA+ICAgICAgICAgIm1lZGlh
+dGVrLDxjaGlwPi1kaXNwLWFhbCIgICAgICAgICAgICAgIC0gYWRhcHRpdmUgYW1iaWVudCBsaWdo
+dCBjb250cm9sbGVyDQo+ID4gICAgICAgICAibWVkaWF0ZWssPGNoaXA+LWRpc3AtZ2FtbWEiICAg
+ICAgICAgICAgLSBnYW1tYSBjb3JyZWN0aW9uDQo+ID4gICAgICAgICAibWVkaWF0ZWssPGNoaXA+
+LWRpc3AtbWVyZ2UiICAgICAgICAgICAgLSBtZXJnZSBzdHJlYW1zIGZyb20gdHdvIFJETUEgc291
+cmNlcw0KPiA+ICsgICAgICAgIm1lZGlhdGVrLDxjaGlwPi1kaXNwLXBvc3RtYXNrIiAgICAgICAg
+IC0gcG9zdCBtYXNrDQo+ID4gICAgICAgICAibWVkaWF0ZWssPGNoaXA+LWRpc3Atc3BsaXQiICAg
+ICAgICAgICAgLSBzcGxpdCBzdHJlYW0gdG8gdHdvIGVuY29kZXJzDQo+ID4gICAgICAgICAibWVk
+aWF0ZWssPGNoaXA+LWRpc3AtdWZvZSIgICAgICAgICAgICAgLSBkYXRhIGNvbXByZXNzaW9uIGVu
+Z2luZQ0KPiA+ICAgICAgICAgIm1lZGlhdGVrLDxjaGlwPi1kc2kiICAgICAgICAgICAgICAgICAg
+IC0gRFNJIGNvbnRyb2xsZXIsIHNlZSBtZWRpYXRlayxkc2kudHh0DQo+ID4gLS0NCj4gPiAxLjgu
+MS4xLmRpcnR5DQo+ID4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX18NCj4gPiBMaW51eC1tZWRpYXRlayBtYWlsaW5nIGxpc3QNCj4gPiBMaW51eC1tZWRpYXRl
+a0BsaXN0cy5pbmZyYWRlYWQub3JnDQo+ID4gaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFp
+bG1hbi9saXN0aW5mby9saW51eC1tZWRpYXRlaw0KDQo=
 
-Lakshmi Ramasubramanian <nramas@linux.microsoft.com> writes:
-
-> create_dtb() function allocates memory for the device tree blob (DTB)
-> and calls fdt_open_into(). If this call fails the memory allocated
-> for the DTB is not freed before returning from create_dtb() thereby
-> leaking memory.
->
-> Call vfree() to free the memory allocated for the DTB if fdt_open_into()
-> fails.
->
-> Co-developed-by: Prakhar Srivastava <prsriva@linux.microsoft.com>
-> Signed-off-by: Prakhar Srivastava <prsriva@linux.microsoft.com>
-> Signed-off-by: Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
-> ---
->  arch/arm64/kernel/machine_kexec_file.c | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
-
-Reviewed-by: Thiago Jung Bauermann <bauerman@linux.ibm.com>
-
--- 
-Thiago Jung Bauermann
-IBM Linux Technology Center
