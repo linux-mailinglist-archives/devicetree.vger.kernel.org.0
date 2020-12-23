@@ -2,148 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 446822E1824
-	for <lists+devicetree@lfdr.de>; Wed, 23 Dec 2020 05:36:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 279882E1833
+	for <lists+devicetree@lfdr.de>; Wed, 23 Dec 2020 05:58:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727047AbgLWEfz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Dec 2020 23:35:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56870 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726068AbgLWEfy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Dec 2020 23:35:54 -0500
-Received: from mail-pf1-x429.google.com (mail-pf1-x429.google.com [IPv6:2607:f8b0:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28348C061285
-        for <devicetree@vger.kernel.org>; Tue, 22 Dec 2020 20:34:50 -0800 (PST)
-Received: by mail-pf1-x429.google.com with SMTP id m6so9663026pfm.6
-        for <devicetree@vger.kernel.org>; Tue, 22 Dec 2020 20:34:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to
-         :user-agent;
-        bh=n/wQ/8FF3ZQQmDW8wRJInIGGffY6h+3NeQmSLgJVsG0=;
-        b=OFVqi0FZly+cr6h2L4MgV3W+0bqGCFrv37DumbpBBHHWKR10mlk8j96RhehvYC0ZKZ
-         A7gveeGO4wUPNnptPGhKrlG+oY9ETV8EggwWNNJcSxmSKnIhp4D6iv6jEddwltALPRsH
-         XoYuBifhBdhegWVRfh980lFbJW3ZCSqNzWxi8omP37WhPmGjiRZ+cWui/1OKijohx3Ni
-         VZ3o0KDN4OIc1fPJ6UYDAexLzU558i9zpREZpptiCrCuZwWp74C+otCB7ziEAp6JpBCe
-         /0WINPCLg0o7wHc+WB03uTQnpOkKqeEM2Jo/o42Mju6zYgkhMy6UlsZnrI4SeRLP+Rxr
-         M+6A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=n/wQ/8FF3ZQQmDW8wRJInIGGffY6h+3NeQmSLgJVsG0=;
-        b=uYb7RzJXhuCwEmZEITonrAUkuwJBfyttn6Hrv8+Uko/eFJs2v3A2mFp9UTboBuRVIQ
-         4cEWKJ0jOsYWsH0nwUfnGUuz0jLpA9zBUQNtpLPG42iSjdfZVGtl3vdWcIlytjeUn0kX
-         O8Gq41MJM59aVCEs+Al1nzieXBH8Nox5w0crrgWZvUy3E64x2G2coc+HXQ9YufzKUVWf
-         EaW82NF9Hk26yC0tZE6Xtw6jX5yGCf4pN6HW1YC5BDP3j23sg/JEGnM03DfgIMQBqfmO
-         AIGSk31hiCCOLSCqO99s5roHgNwhuZ4W3frwe24kT1I/Ux1P3vutXbs4E8ygxPlVH+lQ
-         nIwA==
-X-Gm-Message-State: AOAM5311oNZ4g/9YPacyaXyTioZOip1yTFMrO9Xm4IBwDVfv0QlDIOiB
-        u6WDPsGUCQ/Ge0C8INdP5oZKgQ==
-X-Google-Smtp-Source: ABdhPJy/6iEXMfinC0IgZ7fpt7I2g+zIxTjZQnxLRTk8cjqPdAagKq6g9nUKUea3gO9B/DZE0Q9zrw==
-X-Received: by 2002:a63:6305:: with SMTP id x5mr22354072pgb.216.1608698089700;
-        Tue, 22 Dec 2020 20:34:49 -0800 (PST)
-Received: from localhost ([122.172.20.109])
-        by smtp.gmail.com with ESMTPSA id p16sm21154516pju.47.2020.12.22.20.34.48
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 22 Dec 2020 20:34:48 -0800 (PST)
-Date:   Wed, 23 Dec 2020 10:04:43 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Dmitry Osipenko <digetx@gmail.com>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Nicolas Chauvet <kwizart@gmail.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Kevin Hilman <khilman@kernel.org>,
-        Peter De Schrijver <pdeschrijver@nvidia.com>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        devel@driverdev.osuosl.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-media@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-clk@vger.kernel.org
-Subject: Re: [PATCH v2 19/48] opp: Fix adding OPP entries in a wrong order if
- rate is unavailable
-Message-ID: <20201223043443.rklw5er6hck3gl4y@vireshk-i7>
-References: <20201217180638.22748-1-digetx@gmail.com>
- <20201217180638.22748-20-digetx@gmail.com>
- <20201222091255.wentz5hyt726qezg@vireshk-i7>
- <db6273e6-8406-b7ae-b51d-48ceb6d21962@gmail.com>
+        id S1726282AbgLWE51 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Dec 2020 23:57:27 -0500
+Received: from linux.microsoft.com ([13.77.154.182]:33010 "EHLO
+        linux.microsoft.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726161AbgLWE51 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Dec 2020 23:57:27 -0500
+Received: from [192.168.0.104] (c-73-42-176-67.hsd1.wa.comcast.net [73.42.176.67])
+        by linux.microsoft.com (Postfix) with ESMTPSA id BD2E520B7192;
+        Tue, 22 Dec 2020 20:56:45 -0800 (PST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com BD2E520B7192
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+        s=default; t=1608699406;
+        bh=XGD1UGZ6RZjC4xpp5KtSuriQKt2Ml3utmTd4kuwn/SE=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=WrWIEPk23qk6GDC6v9DLLAM7WGqBG2c+BJWDZg0LRo3Azp7AVj9K3Bx7F/t5Wb8Xx
+         UoGdCX5PxPaBaBWFUz/bTcPDju+dcNjrYC+dZ2cR5h/2S2qK/qiF1LuOwq0eMY6tqJ
+         9ck7wm9S4v8Tbqh22HOo2ttRSwuC/4+ye9E6MwG4=
+Subject: Re: [PATCH v13 2/6] powerpc: Move arch independent ima kexec
+ functions to drivers/of/kexec.c
+To:     Thiago Jung Bauermann <bauerman@linux.ibm.com>
+Cc:     zohar@linux.ibm.com, robh@kernel.org, takahiro.akashi@linaro.org,
+        gregkh@linuxfoundation.org, will@kernel.org,
+        catalin.marinas@arm.com, mpe@ellerman.id.au, james.morse@arm.com,
+        sashal@kernel.org, benh@kernel.crashing.org, paulus@samba.org,
+        frowand.list@gmail.com, vincenzo.frascino@arm.com,
+        mark.rutland@arm.com, dmitry.kasatkin@gmail.com, jmorris@namei.org,
+        serge@hallyn.com, pasha.tatashin@soleen.com, allison@lohutok.net,
+        masahiroy@kernel.org, bhsharma@redhat.com, mbrugger@suse.com,
+        hsinyi@chromium.org, tao.li@vivo.com, christophe.leroy@c-s.fr,
+        prsriva@linux.microsoft.com, balajib@linux.microsoft.com,
+        linux-integrity@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+References: <20201219175713.18888-1-nramas@linux.microsoft.com>
+ <20201219175713.18888-3-nramas@linux.microsoft.com>
+ <875z4tl54t.fsf@manicouagan.localdomain>
+From:   Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
+Message-ID: <caf829a6-4d88-d932-f1cb-7dc16817719d@linux.microsoft.com>
+Date:   Tue, 22 Dec 2020 20:56:45 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <db6273e6-8406-b7ae-b51d-48ceb6d21962@gmail.com>
-User-Agent: NeoMutt/20180716-391-311a52
+In-Reply-To: <875z4tl54t.fsf@manicouagan.localdomain>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22-12-20, 22:19, Dmitry Osipenko wrote:
-> 22.12.2020 12:12, Viresh Kumar пишет:
-> > On 17-12-20, 21:06, Dmitry Osipenko wrote:
-> >> Fix adding OPP entries in a wrong (opposite) order if OPP rate is
-> >> unavailable. The OPP comparison is erroneously skipped if OPP rate is
-> >> missing, thus OPPs are left unsorted.
-> >>
-> >> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
-> >> ---
-> >>  drivers/opp/core.c | 23 ++++++++++++-----------
-> >>  drivers/opp/opp.h  |  2 +-
-> >>  2 files changed, 13 insertions(+), 12 deletions(-)
-> >>
-> >> diff --git a/drivers/opp/core.c b/drivers/opp/core.c
-> >> index 34f7e530d941..5c7f130a8de2 100644
-> >> --- a/drivers/opp/core.c
-> >> +++ b/drivers/opp/core.c
-> >> @@ -1531,9 +1531,10 @@ static bool _opp_supported_by_regulators(struct dev_pm_opp *opp,
-> >>  	return true;
-> >>  }
-> >>  
-> >> -int _opp_compare_key(struct dev_pm_opp *opp1, struct dev_pm_opp *opp2)
-> >> +int _opp_compare_key(struct dev_pm_opp *opp1, struct dev_pm_opp *opp2,
-> >> +		     bool rate_not_available)
-> >>  {
-> >> -	if (opp1->rate != opp2->rate)
-> >> +	if (!rate_not_available && opp1->rate != opp2->rate)
-> > 
-> > rate will be 0 for both the OPPs here if rate_not_available is true and so this
-> > change shouldn't be required.
+On 12/22/20 4:48 PM, Thiago Jung Bauermann wrote:
 > 
-> The rate_not_available is negated in the condition. This change is
-> required because both rates are 0 and then we should proceed to the
-> levels comparison.
-
-Won't that happen without this patch ?
-
-> I guess it's not clear by looking at this patch, please see a full
-> version of the function:
+> Actually, I have one more comment on this patch:
 > 
-> int _opp_compare_key(struct dev_pm_opp *opp1, struct dev_pm_opp *opp2,
->          bool rate_not_available)
-> {
->   if (!rate_not_available && opp1->rate != opp2->rate)
->     return opp1->rate < opp2->rate ? -1 : 1;
->   if (opp1->bandwidth && opp2->bandwidth &&
->       opp1->bandwidth[0].peak != opp2->bandwidth[0].peak)
->     return opp1->bandwidth[0].peak < opp2->bandwidth[0].peak ? -1 : 1;
->   if (opp1->level != opp2->level)
->     return opp1->level < opp2->level ? -1 : 1;
->   return 0;
-> }
+> Lakshmi Ramasubramanian <nramas@linux.microsoft.com> writes:
 > 
-> Perhaps we could check whether opp1->rate=0, like it's done for the
-> opp1->bandwidth. I'll consider this variant for v3, thanks.
+>> diff --git a/arch/powerpc/kexec/file_load.c b/arch/powerpc/kexec/file_load.c
+>> index 956bcb2d1ec2..9f3ec0b239ef 100644
+>> --- a/arch/powerpc/kexec/file_load.c
+>> +++ b/arch/powerpc/kexec/file_load.c
+>> @@ -20,7 +20,6 @@
+>>   #include <linux/of_fdt.h>
+>>   #include <linux/libfdt.h>
+>>   #include <asm/setup.h>
+>> -#include <asm/ima.h>
+>>   
+>>   #define SLAVE_CODE_SIZE		256	/* First 0x100 bytes */
+>>   
+>> @@ -163,12 +162,6 @@ int setup_new_fdt(const struct kimage *image, void *fdt,
+>>   	if (ret)
+>>   		goto err;
+>>   
+>> -	ret = setup_ima_buffer(image, fdt, fdt_path_offset(fdt, "/chosen"));
+>> -	if (ret) {
+>> -		pr_err("Error setting up the new device tree.\n");
+>> -		return ret;
+>> -	}
+>> -
+>>   	return 0;
+>>   
+>>   err:
+> 
+> With this change, setup_new_fdt() is nothing more than a call to
+> of_kexec_setup_new_fdt(). It should be removed, and its caller should
+> call of_kexec_setup_new_fdt() directly.
+> 
+> This change could be done in patch 4 of this series, to keep this patch
+> simpler.
+> 
 
--- 
-viresh
+Sure Thiago - I will make that change.
+
+thanks,
+  -lakshmi
