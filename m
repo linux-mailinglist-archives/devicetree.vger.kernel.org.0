@@ -2,69 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D2EF22E1AAB
-	for <lists+devicetree@lfdr.de>; Wed, 23 Dec 2020 11:01:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1DDD72E1ABE
+	for <lists+devicetree@lfdr.de>; Wed, 23 Dec 2020 11:05:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728247AbgLWJ7d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Dec 2020 04:59:33 -0500
-Received: from mail-wr1-f54.google.com ([209.85.221.54]:32923 "EHLO
-        mail-wr1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726022AbgLWJ7d (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Dec 2020 04:59:33 -0500
-Received: by mail-wr1-f54.google.com with SMTP id t30so18053012wrb.0;
-        Wed, 23 Dec 2020 01:59:17 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=QWP1RktMTYfsl0fKzYCCQin4ZcwvidMtCHL6zQrN284=;
-        b=YSmY+8LKaoW/AA+oKYdPFwbpCWli9Kn+yz8plsfETHRvWUitOFnIfJLNzYIEAp6eUB
-         7xvZHjOB2ns3UXGGUaPr7pSKPxw1OUub4HwqfSmyh4mps0cT8Wp4D47O/N/FbEfr5TKy
-         C9Dv9FHaM2I2iUgKBtVW5l00bR+IONh1eUqwmARr+LyKp7Gv+BEKbmdA09q51rYUNlV7
-         JeH2uocophnyOd5eyDuH1Hd8RaTByTLIs7OGOzS/9eQ/cBhyvn/arEPwKSVLQpEe/jw8
-         ZvkezAtY3uMBoCVBoOD+xrXjFY5pztW7si9/GCZ8n3fyp1ZZgkDNSmgH9E+1ZiB/ZwSX
-         WcGA==
-X-Gm-Message-State: AOAM531gLVVnHHJuAc4WP92shBZ98xHXEuZjpYfhhM4UB1uI5Paw6lkO
-        7LB8SZQFftvZ0YrKzkKom3Q=
-X-Google-Smtp-Source: ABdhPJwHW+EgtqX+b/mAV/tabaT1OoBl6ncVwl9nzsD8vQQrKSD/Ux6WqKiSQc6e54EmSQ9o5Lboew==
-X-Received: by 2002:a5d:4f90:: with SMTP id d16mr28172923wru.120.1608717531682;
-        Wed, 23 Dec 2020 01:58:51 -0800 (PST)
-Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
-        by smtp.googlemail.com with ESMTPSA id w13sm34073722wrt.52.2020.12.23.01.58.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Dec 2020 01:58:50 -0800 (PST)
-Date:   Wed, 23 Dec 2020 10:58:49 +0100
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Martin Kepplinger <martin.kepplinger@puri.sm>
-Cc:     robh@kernel.org, shawnguo@kernel.org, festevam@gmail.com,
-        kernel@pengutronix.de, linux-imx@nxp.com, kernel@puri.sm,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 3/4] arm64: dts: imx8mq-librem5: Move usdhc clocks
- assignment to board DT
-Message-ID: <20201223095849.GB11611@kozik-lap>
-References: <20201222151347.7886-1-martin.kepplinger@puri.sm>
- <20201222151347.7886-4-martin.kepplinger@puri.sm>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20201222151347.7886-4-martin.kepplinger@puri.sm>
+        id S1726022AbgLWKFN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Dec 2020 05:05:13 -0500
+Received: from foss.arm.com ([217.140.110.172]:48052 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728387AbgLWKFN (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 23 Dec 2020 05:05:13 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 215231474;
+        Wed, 23 Dec 2020 02:04:01 -0800 (PST)
+Received: from p8cg001049571a15.blr.arm.com (unknown [172.31.20.19])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id DB8063F718;
+        Wed, 23 Dec 2020 02:03:57 -0800 (PST)
+From:   Anshuman Khandual <anshuman.khandual@arm.com>
+To:     linux-arm-kernel@lists.infradead.org, coresight@lists.linaro.org
+Cc:     linux-kernel@vger.kernel.org,
+        Anshuman Khandual <anshuman.khandual@arm.com>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Mike Leach <mike.leach@linaro.org>,
+        Linu Cherian <lcherian@marvell.com>,
+        devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>
+Subject: [PATCH 06/11] dts: bindings: Document device tree bindings for ETE
+Date:   Wed, 23 Dec 2020 15:33:38 +0530
+Message-Id: <1608717823-18387-7-git-send-email-anshuman.khandual@arm.com>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1608717823-18387-1-git-send-email-anshuman.khandual@arm.com>
+References: <1608717823-18387-1-git-send-email-anshuman.khandual@arm.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 22, 2020 at 04:13:46PM +0100, Martin Kepplinger wrote:
-> According to commit e045f044e84e ("arm64: dts: imx8mq: Move usdhc clocks
-> assignment to board DT") add the clocks assignment to imx8mq-librem5.dtsi
-> too.
-> 
-> Fixes: e045f044e84e ("arm64: dts: imx8mq: Move usdhc clocks assignment to board DT")
-> Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
-> ---
->  arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi | 4 ++++
->  1 file changed, 4 insertions(+)
+From: Suzuki K Poulose <suzuki.poulose@arm.com>
 
-Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+Document the device tree bindings for Embedded Trace Extensions.
+ETE can be connected to legacy coresight components and thus
+could optionally contain a connection graph as described by
+the CoreSight bindings.
 
-Best regards,
-Krzysztof
+Cc: devicetree@vger.kernel.org
+Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
+Cc: Mike Leach <mike.leach@linaro.org>
+Cc: Rob Herring <robh@kernel.org>
+Signed-off-by: Suzuki K Poulose <suzuki.poulose@arm.com>
+Signed-off-by: Anshuman Khandual <anshuman.khandual@arm.com>
+---
+ Documentation/devicetree/bindings/arm/ete.txt | 41 +++++++++++++++++++++++++++
+ 1 file changed, 41 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/arm/ete.txt
+
+diff --git a/Documentation/devicetree/bindings/arm/ete.txt b/Documentation/devicetree/bindings/arm/ete.txt
+new file mode 100644
+index 0000000..b52b507
+--- /dev/null
++++ b/Documentation/devicetree/bindings/arm/ete.txt
+@@ -0,0 +1,41 @@
++Arm Embedded Trace Extensions
++
++Arm Embedded Trace Extensions (ETE) is a per CPU trace component that
++allows tracing the CPU execution. It overlaps with the CoreSight ETMv4
++architecture and has extended support for future architecture changes.
++The trace generated by the ETE could be stored via legacy CoreSight
++components (e.g, TMC-ETR) or other means (e.g, using a per CPU buffer
++Arm Trace Buffer Extension (TRBE)). Since the ETE can be connected to
++legacy CoreSight components, a node must be listed per instance, along
++with any optional connection graph as per the coresight bindings.
++See bindings/arm/coresight.txt.
++
++** ETE Required properties:
++
++- compatible : should be one of:
++	"arm,embedded-trace-extensions"
++
++- cpu : the CPU phandle this ETE belongs to.
++
++** Optional properties:
++- CoreSight connection graph, see bindings/arm/coresight.txt.
++
++** Example:
++
++ete_0 {
++	compatible = "arm,embedded-trace-extension";
++	cpu = <&cpu_0>;
++};
++
++ete_1 {
++	compatible = "arm,embedded-trace-extension";
++	cpu = <&cpu_1>;
++
++	out-ports {	/* legacy CoreSight connection */
++		port {
++			ete1_out_port: endpoint@0 {
++				remote-endpoint = <&funnel_in_port0>;
++			};
++		};
++	};
++};
+-- 
+2.7.4
+
