@@ -2,244 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 54E412E1B64
-	for <lists+devicetree@lfdr.de>; Wed, 23 Dec 2020 12:08:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B9AC2E1BAD
+	for <lists+devicetree@lfdr.de>; Wed, 23 Dec 2020 12:13:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728504AbgLWLHN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Dec 2020 06:07:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60366 "EHLO
+        id S1728329AbgLWLJO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Dec 2020 06:09:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60686 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728349AbgLWLHM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Dec 2020 06:07:12 -0500
-Received: from mail-pl1-x62e.google.com (mail-pl1-x62e.google.com [IPv6:2607:f8b0:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A4CEC0613D3
-        for <devicetree@vger.kernel.org>; Wed, 23 Dec 2020 03:06:32 -0800 (PST)
-Received: by mail-pl1-x62e.google.com with SMTP id g3so8971611plp.2
-        for <devicetree@vger.kernel.org>; Wed, 23 Dec 2020 03:06:32 -0800 (PST)
+        with ESMTP id S1728284AbgLWLJO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Dec 2020 06:09:14 -0500
+Received: from mail-pg1-x534.google.com (mail-pg1-x534.google.com [IPv6:2607:f8b0:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC4C6C0613D6
+        for <devicetree@vger.kernel.org>; Wed, 23 Dec 2020 03:08:33 -0800 (PST)
+Received: by mail-pg1-x534.google.com with SMTP id f17so10401873pge.6
+        for <devicetree@vger.kernel.org>; Wed, 23 Dec 2020 03:08:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=amarulasolutions.com; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=WOYP5E3jVy3ELBPtvkaJkjlrVuze1hWdvp4c36IdX2U=;
-        b=p3zJlQz9Vlmt36EFHGxNdzwYc4aV+7XCBflEqgsTMb4FTSKRZYqq2Kgc3l05TNhmoe
-         TrEhfhVw3v57V994HdPezMp64a38t6W4la0KAlq4CgYPTaGPMwyfK7g2XcBh+QuYSepw
-         0HWs3qxskX56JfLec1g2i209x5d/WUYbU7PSI=
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=gRczQcEVREVIHP/xCIGe+pHjWpZBhd9/8Bmyk1xi1h0=;
+        b=Tdm+aRo5fz3I6o6oofiQYP4Dg5J+sA3cDlWHv8d/4XsG4r8Eylj/i+aIK+XiBTRHb/
+         XIY8Y3JA71pVKMxR8MSTEUeKDtuyefm1g9aCi74H4BU1zKeNNbE4lh2RqvES7a/p42Y4
+         EOp0tEPBR3XlgULoCOO+Df6derhRdWd/w/kRc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=WOYP5E3jVy3ELBPtvkaJkjlrVuze1hWdvp4c36IdX2U=;
-        b=C+9YNM6n1YNaCi5mSP4BhaANX17vkxmuPJAAePNKLKqER8eZP0Vmp3KdDbXJ+fcb7J
-         w4C5vHKIWpnmpR2p1HbXMC/d74AR4J5YZEA8GAZxEmnGr7KXRvmVqlqmSplMRha3ZoNR
-         Hgk6MUj/Yx6UgJU+ntA1TVQDl0FSK4ZXlIAMulNmoVzEBnxoEps3XtNWxsjLt87nRP2T
-         0b6Np1sNkASnFUO2/1yhS/meCSg627gY3JtVIQ+vc1MyaxbAiIXaxM7jWUy9hz0ovIY/
-         ehVl33F6AGWO22scRRIc7IrWOZgeivuUDeKdZMMX1049QjUacFnXieGsE3SCOYasy1j+
-         ++Wg==
-X-Gm-Message-State: AOAM532QkeB0yoJ3AuDm5gv3KxVEMh6BaDJwJZST7QN+RtZdqKzW09Dz
-        vCwCUdugeY3wd9xY1GzpjuTKOIcZH1Gacx/z
-X-Google-Smtp-Source: ABdhPJyyfZ4l2rzFh4pr9Dn3ybD3K7BTXS5p8IgzG46e6KJLQl7UdKawwMBZ5zh6mv7hoChOneyX0w==
-X-Received: by 2002:a17:90a:cc0a:: with SMTP id b10mr25930062pju.59.1608721592088;
-        Wed, 23 Dec 2020 03:06:32 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=gRczQcEVREVIHP/xCIGe+pHjWpZBhd9/8Bmyk1xi1h0=;
+        b=f94MCPe9j/u8gwWl3tLYk+xz2FHRPj09m3h8WMugDldMT7nRpBXslWml7OeUuSI03a
+         Yn61hrClWOGvwcDRLCBhx5hFV6VS7ahGWEHh4VakJXysEocdR4C6nxXiEHeNNONhV4BS
+         cLsK74ApxRu+uHTTc4IO+vDsIFgucZybM+l928MAQ6jpz4GjU3SAVQO/hBrt5mianLdL
+         q39Ms34cuOsFM/RG/mEkZj6PWwkt0yfA+f/n5icKOvpOD0E1tmonhE4srZZ1iZ3BEXY3
+         GHOfzh7y5I3tODx3jREY48Fef9GfX/DmnUYrcWXZKfMatjoqBL34T0O0NbDd+9QhaeAx
+         MtKA==
+X-Gm-Message-State: AOAM533KZfefEu55kivwSiOyIdNkPnDCtXcxmSMNzIH26/v7Gk+3+E6u
+        mYNMNFes7rAuhJLCPcrzrxpqWQ==
+X-Google-Smtp-Source: ABdhPJxI0lVlTeQudtwo04v0ZQt+J5cepsKS4VBuncWNGWBA6WddhHvJkit9Q34ifSZGrmUAvmjknQ==
+X-Received: by 2002:a63:4746:: with SMTP id w6mr563080pgk.377.1608721713343;
+        Wed, 23 Dec 2020 03:08:33 -0800 (PST)
 Received: from localhost.localdomain ([2405:201:c00a:a884:eca4:40c1:8784:571c])
-        by smtp.gmail.com with ESMTPSA id 3sm23275909pfv.92.2020.12.23.03.06.08
+        by smtp.gmail.com with ESMTPSA id d4sm23031093pfo.127.2020.12.23.03.08.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Dec 2020 03:06:31 -0800 (PST)
+        Wed, 23 Dec 2020 03:08:32 -0800 (PST)
 From:   Jagan Teki <jagan@amarulasolutions.com>
-To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Li Yang <leoyang.li@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        NXP Linux Team <linux-imx@nxp.com>,
+To:     Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         linux-amarula@amarulasolutions.com,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Matteo Lisi <matteo.lisi@engicam.com>
-Subject: [PATCH v3 6/6] arm64: dts: imx8mm: Add Engicam i.Core MX8M Mini EDIMM2.2 Starter Kit
-Date:   Wed, 23 Dec 2020 16:33:43 +0530
-Message-Id: <20201223110343.126638-7-jagan@amarulasolutions.com>
+        Jagan Teki <jagan@amarulasolutions.com>
+Subject: [PATCH] ARM: dts: stm32: Add STM32MP1 I2C6 SDA/SCL pinmux
+Date:   Wed, 23 Dec 2020 16:37:57 +0530
+Message-Id: <20201223110757.126937-1-jagan@amarulasolutions.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20201223110343.126638-1-jagan@amarulasolutions.com>
-References: <20201223110343.126638-1-jagan@amarulasolutions.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Engicam EDIMM2.2 Starter Kit is an EDIMM 2.2 Form Factor Capacitive
-Evaluation Board.
+Add SDA/SCL pinmux lines for I2C6 on STM32MP1.
 
-Genaral features:
-- LCD 7" C.Touch
-- microSD slot
-- Ethernet 1Gb
-- Wifi/BT
-- 2x LVDS Full HD interfaces
-- 3x USB 2.0
-- 1x USB 3.0
-- HDMI Out
-- Mini PCIe
-- MIPI CSI
-- 2x CAN
-- Audio Out
+This support adds both in default and sleep states.
 
-i.Core MX8M Mini is an EDIMM SoM based on NXP i.MX8M Mini from Engicam.
-
-i.Core MX8M Mini needs to mount on top of this Evaluation board for
-creating complete i.Core MX8M Mini EDIMM2.2 Starter Kit.
-
-PCIe, DSI, CSI nodes will add it into imx8mm-engicam-edimm2.2.dtsi once
-Mainline Linux supported.
-
-Add support for it.
-
-Signed-off-by: Matteo Lisi <matteo.lisi@engicam.com>
 Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
 ---
-Changes for v3:
-- don't maintain common nodes and include it, if no feature diff
-Changes for v2:
-- updated commit message
-- dropped engicam from filename since it aligned with imx6 engicam
-  dts files naming conventions.
+ arch/arm/boot/dts/stm32mp15-pinctrl.dtsi | 17 +++++++++++++++++
+ 1 file changed, 17 insertions(+)
 
- arch/arm64/boot/dts/freescale/Makefile        |  1 +
- .../freescale/imx8mm-engicam-edimm2.2.dtsi    | 82 +++++++++++++++++++
- .../freescale/imx8mm-icore-mx8mm-edimm2.2.dts | 21 +++++
- 3 files changed, 104 insertions(+)
- create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-engicam-edimm2.2.dtsi
- create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-icore-mx8mm-edimm2.2.dts
-
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index 8d49a2c74604..43783076f856 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -33,6 +33,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mm-beacon-kit.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-evk.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-ddr4-evk.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-icore-mx8mm-ctouch2.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx8mm-icore-mx8mm-edimm2.2.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-kontron-n801x-s.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-var-som-symphony.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mn-evk.dtb
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-engicam-edimm2.2.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-engicam-edimm2.2.dtsi
-new file mode 100644
-index 000000000000..f7870efd9dab
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-engicam-edimm2.2.dtsi
-@@ -0,0 +1,82 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2020 Engicam srl
-+ * Copyright (c) 2020 Amarula Solutions(India)
-+ */
-+
-+&fec1 {
-+	status = "okay";
-+};
-+
-+&i2c2 {
-+	clock-frequency = <400000>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_i2c2>;
-+	status = "okay";
-+};
-+
-+&i2c4 {
-+	clock-frequency = <100000>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_i2c4>;
-+	status = "okay";
-+};
-+
-+&iomuxc {
-+	pinctrl_i2c2: i2c2grp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_I2C2_SCL_I2C2_SCL		0x400001c3
-+			MX8MM_IOMUXC_I2C2_SDA_I2C2_SDA		0x400001c3
-+		>;
+diff --git a/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi b/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi
+index 20a59e8f7a33..2036c1d0d798 100644
+--- a/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi
++++ b/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi
+@@ -2018,6 +2018,23 @@ pins {
+ 		};
+ 	};
+ 
++	i2c6_pins_a: i2c6-0 {
++		pins {
++			pinmux = <STM32_PINMUX('Z', 6, AF2)>, /* I2C6_SCL */
++				 <STM32_PINMUX('Z', 7, AF2)>; /* I2C6_SDA */
++			bias-disable;
++			drive-open-drain;
++			slew-rate = <0>;
++		};
 +	};
 +
-+	pinctrl_i2c4: i2c4grp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_I2C4_SCL_I2C4_SCL		0x400001c3
-+			MX8MM_IOMUXC_I2C4_SDA_I2C4_SDA		0x400001c3
-+		>;
++	i2c6_sleep_pins_a: i2c6-sleep-0 {
++		pins {
++			pinmux = <STM32_PINMUX('Z', 6, ANALOG)>, /* I2C6_SCL */
++				 <STM32_PINMUX('Z', 7, ANALOG)>; /* I2C6_SDA */
++		};
 +	};
 +
-+	pinctrl_uart2: uart2grp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_UART2_RXD_UART2_DCE_RX	0x140
-+			MX8MM_IOMUXC_UART2_TXD_UART2_DCE_TX	0x140
-+		>;
-+	};
-+
-+	pinctrl_usdhc1_gpio: usdhc1gpiogrp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_GPIO1_IO06_GPIO1_IO6	0x41
-+		>;
-+	};
-+
-+	pinctrl_usdhc1: usdhc1grp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_SD1_CLK_USDHC1_CLK		0x190
-+			MX8MM_IOMUXC_SD1_CMD_USDHC1_CMD		0x1d0
-+			MX8MM_IOMUXC_SD1_DATA0_USDHC1_DATA0	0x1d0
-+			MX8MM_IOMUXC_SD1_DATA1_USDHC1_DATA1	0x1d0
-+			MX8MM_IOMUXC_SD1_DATA2_USDHC1_DATA2	0x1d0
-+			MX8MM_IOMUXC_SD1_DATA3_USDHC1_DATA3	0x1d0
-+		>;
-+	};
-+};
-+
-+&uart2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart2>;
-+	status = "okay";
-+};
-+
-+/* SD */
-+&usdhc1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_usdhc1>, <&pinctrl_usdhc1_gpio>;
-+	cd-gpios = <&gpio1 6 GPIO_ACTIVE_LOW>;
-+	max-frequency = <50000000>;
-+	bus-width = <4>;
-+	no-1-8-v;
-+	pm-ignore-notify;
-+	keep-power-in-suspend;
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-icore-mx8mm-edimm2.2.dts b/arch/arm64/boot/dts/freescale/imx8mm-icore-mx8mm-edimm2.2.dts
-new file mode 100644
-index 000000000000..672aee1800c4
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-icore-mx8mm-edimm2.2.dts
-@@ -0,0 +1,21 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2019 NXP
-+ * Copyright (c) 2019 Engicam srl
-+ * Copyright (c) 2020 Amarula Solutions(India)
-+ */
-+
-+/dts-v1/;
-+#include "imx8mm.dtsi"
-+#include "imx8mm-engicam-edimm2.2.dtsi"
-+#include "imx8mm-icore-mx8mm.dtsi"
-+
-+/ {
-+	model = "Engicam i.Core MX8M Mini EDIMM2.2 Starter Kit";
-+	compatible = "engicam,icore-mx8mm-edimm2.2", "engicam,icore-mx8mm",
-+		     "fsl,imx8mm";
-+
-+	chosen {
-+		stdout-path = &uart2;
-+	};
-+};
+ 	spi1_pins_a: spi1-0 {
+ 		pins1 {
+ 			pinmux = <STM32_PINMUX('Z', 0, AF5)>, /* SPI1_SCK */
 -- 
 2.25.1
 
