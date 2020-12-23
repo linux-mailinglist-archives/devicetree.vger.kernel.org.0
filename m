@@ -2,121 +2,253 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C0FB32E1170
-	for <lists+devicetree@lfdr.de>; Wed, 23 Dec 2020 02:42:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 033972E118A
+	for <lists+devicetree@lfdr.de>; Wed, 23 Dec 2020 03:02:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726558AbgLWBmF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Dec 2020 20:42:05 -0500
-Received: from mailgw01.mediatek.com ([210.61.82.183]:40524 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726514AbgLWBmF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Dec 2020 20:42:05 -0500
-X-UUID: 196055863cf8486b935c4e8cc7f87ff0-20201223
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:Reply-To:From:Subject:Message-ID; bh=bCO1MdnugxBGFYFW+IFPDqIJhWdsGZS/W2S81orE9VU=;
-        b=igIWUGCuSIo6X6qExWvY69gTOyBvdiIJGiz30XNEQXCUi8PjAxjA/MwWjVHsmdS1SNap6MCa9STHwIkxZ8er/yGuN9rR9gyKAzBysFamABmu/1loGq2fUZaBr8xIHylcPXccGPygGg2mpKkYDRerUsIjeMh0H04J7FrRltK1rHo=;
-X-UUID: 196055863cf8486b935c4e8cc7f87ff0-20201223
-Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw01.mediatek.com
-        (envelope-from <yongqiang.niu@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 927312940; Wed, 23 Dec 2020 09:41:19 +0800
-Received: from MTKCAS36.mediatek.inc (172.27.4.186) by mtkmbs05n1.mediatek.inc
- (172.21.101.15) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 23 Dec
- 2020 09:41:14 +0800
-Received: from [10.17.3.153] (10.17.3.153) by MTKCAS36.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 23 Dec 2020 09:41:16 +0800
-Message-ID: <1608687676.18252.11.camel@mhfsdcap03>
-Subject: Re: [PATCH v2, 14/17] soc: mediatek: mmsys: Use function call for
- setting mmsys ovl mout register
-From:   Yongqiang Niu <yongqiang.niu@mediatek.com>
-Reply-To: Yongqiang Niu <yongqiang.niu@mediatek.com>
-To:     Nicolas Boichat <drinkcat@chromium.org>
-CC:     CK Hu <ck.hu@mediatek.com>, Philipp Zabel <p.zabel@pengutronix.de>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        lkml <linux-kernel@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>
-Date:   Wed, 23 Dec 2020 09:41:16 +0800
-In-Reply-To: <CANMq1KBu4Ft49CUgGMxYdsv6ymWzVWK+eNBhn1t+oEN0ZwP0YA@mail.gmail.com>
-References: <1607746317-4696-1-git-send-email-yongqiang.niu@mediatek.com>
-         <1607746317-4696-15-git-send-email-yongqiang.niu@mediatek.com>
-         <CANMq1KBu4Ft49CUgGMxYdsv6ymWzVWK+eNBhn1t+oEN0ZwP0YA@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
-MIME-Version: 1.0
-X-MTK:  N
-Content-Transfer-Encoding: base64
+        id S1726319AbgLWCCP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Dec 2020 21:02:15 -0500
+Received: from wout3-smtp.messagingengine.com ([64.147.123.19]:34331 "EHLO
+        wout3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726313AbgLWCCK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 22 Dec 2020 21:02:10 -0500
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.42])
+        by mailout.west.internal (Postfix) with ESMTP id 34223614;
+        Tue, 22 Dec 2020 21:01:19 -0500 (EST)
+Received: from imap6 ([10.202.2.56])
+  by compute2.internal (MEProxy); Tue, 22 Dec 2020 21:01:19 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kdrag0n.dev; h=
+        mime-version:message-id:in-reply-to:references:date:from:to:cc
+        :subject:content-type; s=fm3; bh=AmAn74HloV/Wnje54cha8LvSBkLYxJQ
+        MDWJX3ZXuIm0=; b=hADG5CIHDT3sw9fbiWF/9q5ZrxwKYT13iCg4PFlxR0Mo0bf
+        ypubbYxNOO/zdpOztfCf0wXcZzY4I8gNWbNuB7xeaCHbbkpD32YvVlbMg/xAr/mA
+        fewvkKk9w1OnxrTJ/UjdxaPH64sGDxBuvWFZ2XG3aacTLLJjAC1gvlOjhKxOql/9
+        OF1xQs6tEJ24eLu9yYhTRpBubMFfzuQJRr3s4r5uOCu/dYW0rr8uIRRnmQkUVfXL
+        RA0CrpDuNqG0GRn0rhmhUX5UGbSIrKYtdPc+7bJIKf1ZvKUSf2iOQj9nOagkYFdO
+        yq3G0kai8y2LmDbCJY8TD9WgI7aV0ZfQA2m/qvQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=AmAn74
+        HloV/Wnje54cha8LvSBkLYxJQMDWJX3ZXuIm0=; b=Wj/PBUv9dBRMEr6RJijBG2
+        ckH5FOgifJmIPRcop6uZ9mRz5bMdD0CCFCsLuqFkIF/GA5eK6Z7LRXoKVng6WGCt
+        lLwFNeDy+nr0l5Fw4dAO73K9ketIGuuNGMqvFxj2S5xkumn1wq/AU77Qe46Gbfi6
+        3MOuEWG5WoypJ1Rr/Lr2zLoVWPn1MvAv/oELQ0qT9/V2OCdMrn0jNNTXarv+w4Hs
+        2mazCsxYGq5zKDkyG+a7/L7Ez0n+bzzbSKPI4lc6w+NMh7jWq0RtAZoa9ZlG9RLE
+        cNUmxHZ0b7mvzFJsfheojSmuVbk8ofgG/QdGXstain4lZdoWw0LSJv0vwEjoJ95w
+        ==
+X-ME-Sender: <xms:7qTiXzKPft9iFFY23uok5HT9QO5Hm03RP81Mqc5vne6DMUjZYu1hrg>
+    <xme:7qTiX3IAmIMBvQA8eCpyBmw7SzzTKZWhSWP--nIIH1jSAvezZaBo4nC08atflIEQN
+    _tAUappT4pCdKqNIds>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrvddtiedgtdegucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvffutgesthdtredtreertdenucfhrhhomhepfdffrghn
+    nhihucfnihhnfdcuoegurghnnhihsehkughrrghgtdhnrdguvghvqeenucggtffrrghtth
+    gvrhhnpeektdetjeffffeileektdfhgeevgfdttdfggedtueeihfejjeffheettdevtddt
+    vdenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegurg
+    hnnhihsehkughrrghgtdhnrdguvghv
+X-ME-Proxy: <xmx:7qTiX7v0ltTgu1M2Dd1YLToL-tNWRboH2dGYh0B07uWqwl7otigJ5g>
+    <xmx:7qTiX8ahbS-C3fkuP8tgm8BrkTE9FIv8EBCu7ZgF8Rmtvk6EBeX_MA>
+    <xmx:7qTiX6aJ0cMyATsbGQLHAZ3kFB70cwz5yME8cSg8T4_REsFP9iAgCw>
+    <xmx:7qTiX6FBya8WvsqKzLG6nwJVYqFJ-bWNsokA-MEEpSzqrq5WanHXRw>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id 42D821400A1; Tue, 22 Dec 2020 21:01:23 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.3.1-61-gb52c239-fm-20201210.001-gb52c2396
+Mime-Version: 1.0
+Message-Id: <e7776f3c-a517-4cf3-9265-92dc0ac09c88@www.fastmail.com>
+In-Reply-To: <X+AbJvE7OGs3cRCw@ripper>
+References: <20201221002907.2870059-1-danny@kdrag0n.dev>
+ <20201221002907.2870059-3-danny@kdrag0n.dev> <X+AbJvE7OGs3cRCw@ripper>
+Date:   Tue, 22 Dec 2020 18:00:54 -0800
+From:   "Danny Lin" <danny@kdrag0n.dev>
+To:     "Bjorn Andersson" <bjorn.andersson@linaro.org>
+Cc:     "Andy Gross" <agross@kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/3] arm64: dts: qcom: sm8150: Add PSCI idle states
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gVHVlLCAyMDIwLTEyLTE1IGF0IDIxOjQyICswODAwLCBOaWNvbGFzIEJvaWNoYXQgd3JvdGU6
-DQo+IE9uIFNhdCwgRGVjIDEyLCAyMDIwIGF0IDEyOjEzIFBNIFlvbmdxaWFuZyBOaXUNCj4gPHlv
-bmdxaWFuZy5uaXVAbWVkaWF0ZWsuY29tPiB3cm90ZToNCj4gPg0KPiA+IFVzZSBmdW5jdGlvbiBj
-YWxsIGZvciBzZXR0aW5nIG1tc3lzIG92bCBtb3V0IHJlZ2lzdGVyDQo+ID4NCj4gPiBTaWduZWQt
-b2ZmLWJ5OiBZb25ncWlhbmcgTml1IDx5b25ncWlhbmcubml1QG1lZGlhdGVrLmNvbT4NCj4gPiAt
-LS0NCj4gPiAgZHJpdmVycy9zb2MvbWVkaWF0ZWsvbW1zeXMvbXRrLW1tc3lzLmMgfCAxOCArKysr
-KysrKysrKysrKysrKysNCj4gPiAgaW5jbHVkZS9saW51eC9zb2MvbWVkaWF0ZWsvbXRrLW1tc3lz
-LmggfCAgMyArKysNCj4gPiAgMiBmaWxlcyBjaGFuZ2VkLCAyMSBpbnNlcnRpb25zKCspDQo+ID4N
-Cj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9zb2MvbWVkaWF0ZWsvbW1zeXMvbXRrLW1tc3lzLmMg
-Yi9kcml2ZXJzL3NvYy9tZWRpYXRlay9tbXN5cy9tdGstbW1zeXMuYw0KPiA+IGluZGV4IGNiNzZl
-NjQuLjI1NThiNDIgMTAwNjQ0DQo+ID4gLS0tIGEvZHJpdmVycy9zb2MvbWVkaWF0ZWsvbW1zeXMv
-bXRrLW1tc3lzLmMNCj4gPiArKysgYi9kcml2ZXJzL3NvYy9tZWRpYXRlay9tbXN5cy9tdGstbW1z
-eXMuYw0KPiA+IEBAIC03OCw2ICs3OCwxNSBAQCB2b2lkIG10a19tbXN5c19kZHBfY29ubmVjdChz
-dHJ1Y3QgZGV2aWNlICpkZXYsDQo+ID4gICAgICAgICAgICAgICAgIHJlZyA9IHJlYWRsX3JlbGF4
-ZWQobW1zeXMtPnJlZ3MgKyBhZGRyKSB8IHZhbHVlOw0KPiA+ICAgICAgICAgICAgICAgICB3cml0
-ZWxfcmVsYXhlZChyZWcsIG1tc3lzLT5yZWdzICsgYWRkcik7DQo+ID4gICAgICAgICB9DQo+ID4g
-Kw0KPiA+ICsgICAgICAgaWYgKCFmdW5jcy0+b3ZsX21vdXRfZW4pDQo+ID4gKyAgICAgICAgICAg
-ICAgIHJldHVybjsNCj4gPiArDQo+ID4gKyAgICAgICB2YWx1ZSA9IGZ1bmNzLT5vdmxfbW91dF9l
-bihjdXIsIG5leHQsICZhZGRyKTsNCj4gPiArICAgICAgIGlmICh2YWx1ZSkgew0KPiA+ICsgICAg
-ICAgICAgICAgICByZWcgPSByZWFkbF9yZWxheGVkKG1tc3lzLT5yZWdzICsgYWRkcikgfCB2YWx1
-ZTsNCj4gPiArICAgICAgICAgICAgICAgd3JpdGVsX3JlbGF4ZWQocmVnLCBtbXN5cy0+cmVncyAr
-IGFkZHIpOw0KPiA+ICsgICAgICAgfQ0KPiANCj4gVGhpcyBpcyB0ZWNobmljYWxseSBjb3JyZWN0
-LCBidXQgSSdtIGFmcmFpZCB0aGlzIG1heSBiZWNvbWUgYW5kIGlzc3VlDQo+IGxhdGVyIGlmIHdl
-IGhhdmUgYW5vdGhlciBmdW5jdGlvbiBsaWtlIG92bF9tb3V0X2VuLg0KPiANCj4gU28gbWF5YmUg
-aXQncyBiZXR0ZXIgdG8gZG86DQo+IGlmIChmdW5jcy0+b3ZsX21vdXRfZW4pIHsNCj4gICB2YWx1
-ZSA9IGZ1bmNzLT5vdmxfbW91dF9lbihjdXIsIG5leHQsICZhZGRyKTsNCj4gICAuLi4NCj4gfQ0K
-DQp3aWxsIGJlIGltcHJvdmVkIGxpa2UgdGhpcyBpbiBuZXh0IHZlcnNpb24NCj4gDQo+IE9yIGFu
-b3RoZXIgb3B0aW9uOiBDcmVhdGUgYSBuZXcgZnVuY3Rpb24NCj4gc3RhdGljIHVuc2lnbmVkIGlu
-dCBtdGtfbW1zeXNfb3ZsX21vdXRfZW4oLi4uKSB7DQo+ICAgIGlmICghZnVuY3MtPm92bF9tb3V0
-X2VuKQ0KPiAgICAgICByZXR1cm4gMDsNCj4gfQ0KPiANCj4gYW5kIGNhbGwgdGhhdCwgZm9sbG93
-aW5nIHRoZSBzYW1lIHBhdHRlcm4gYXMNCj4gbXRrX21tc3lzX2RkcF9tb3V0X2VuL210a19tbXN5
-c19kZHBfc2VsX2luPw0KPiANCj4gPiAgfQ0KPiA+ICBFWFBPUlRfU1lNQk9MX0dQTChtdGtfbW1z
-eXNfZGRwX2Nvbm5lY3QpOw0KPiA+DQo+ID4gQEAgLTEwMyw2ICsxMTIsMTUgQEAgdm9pZCBtdGtf
-bW1zeXNfZGRwX2Rpc2Nvbm5lY3Qoc3RydWN0IGRldmljZSAqZGV2LA0KPiA+ICAgICAgICAgICAg
-ICAgICByZWcgPSByZWFkbF9yZWxheGVkKG1tc3lzLT5yZWdzICsgYWRkcikgJiB+dmFsdWU7DQo+
-ID4gICAgICAgICAgICAgICAgIHdyaXRlbF9yZWxheGVkKHJlZywgbW1zeXMtPnJlZ3MgKyBhZGRy
-KTsNCj4gPiAgICAgICAgIH0NCj4gPiArDQo+ID4gKyAgICAgICBpZiAoIWZ1bmNzLT5vdmxfbW91
-dF9lbikNCj4gPiArICAgICAgICAgICAgICAgcmV0dXJuOw0KPiA+ICsNCj4gPiArICAgICAgIHZh
-bHVlID0gZnVuY3MtPm92bF9tb3V0X2VuKGN1ciwgbmV4dCwgJmFkZHIpOw0KPiA+ICsgICAgICAg
-aWYgKHZhbHVlKSB7DQo+ID4gKyAgICAgICAgICAgICAgIHJlZyA9IHJlYWRsX3JlbGF4ZWQobW1z
-eXMtPnJlZ3MgKyBhZGRyKSAmIH52YWx1ZTsNCj4gPiArICAgICAgICAgICAgICAgd3JpdGVsX3Jl
-bGF4ZWQocmVnLCBtbXN5cy0+cmVncyArIGFkZHIpOw0KPiA+ICsgICAgICAgfQ0KPiA+ICB9DQo+
-ID4gIEVYUE9SVF9TWU1CT0xfR1BMKG10a19tbXN5c19kZHBfZGlzY29ubmVjdCk7DQo+ID4NCj4g
-PiBkaWZmIC0tZ2l0IGEvaW5jbHVkZS9saW51eC9zb2MvbWVkaWF0ZWsvbXRrLW1tc3lzLmggYi9p
-bmNsdWRlL2xpbnV4L3NvYy9tZWRpYXRlay9tdGstbW1zeXMuaA0KPiA+IGluZGV4IGFhNGY2MGUu
-LjIyMDIwM2QgMTAwNjQ0DQo+ID4gLS0tIGEvaW5jbHVkZS9saW51eC9zb2MvbWVkaWF0ZWsvbXRr
-LW1tc3lzLmgNCj4gPiArKysgYi9pbmNsdWRlL2xpbnV4L3NvYy9tZWRpYXRlay9tdGstbW1zeXMu
-aA0KPiA+IEBAIC00OSw2ICs0OSw5IEBAIHN0cnVjdCBtdGtfbW1zeXNfY29ubl9mdW5jcyB7DQo+
-ID4gICAgICAgICB1MzIgKCptb3V0X2VuKShlbnVtIG10a19kZHBfY29tcF9pZCBjdXIsDQo+ID4g
-ICAgICAgICAgICAgICAgICAgICAgICBlbnVtIG10a19kZHBfY29tcF9pZCBuZXh0LA0KPiA+ICAg
-ICAgICAgICAgICAgICAgICAgICAgdW5zaWduZWQgaW50ICphZGRyKTsNCj4gPiArICAgICAgIHUz
-MiAoKm92bF9tb3V0X2VuKShlbnVtIG10a19kZHBfY29tcF9pZCBjdXIsDQo+ID4gKyAgICAgICAg
-ICAgICAgICAgICAgICAgICAgZW51bSBtdGtfZGRwX2NvbXBfaWQgbmV4dCwNCj4gPiArICAgICAg
-ICAgICAgICAgICAgICAgICAgICB1bnNpZ25lZCBpbnQgKmFkZHIpOw0KPiA+ICAgICAgICAgdTMy
-ICgqc2VsX2luKShlbnVtIG10a19kZHBfY29tcF9pZCBjdXIsDQo+ID4gICAgICAgICAgICAgICAg
-ICAgICAgIGVudW0gbXRrX2RkcF9jb21wX2lkIG5leHQsDQo+ID4gICAgICAgICAgICAgICAgICAg
-ICAgIHVuc2lnbmVkIGludCAqYWRkcik7DQo+ID4gLS0NCj4gPiAxLjguMS4xLmRpcnR5DQo+ID4g
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCj4gPiBMaW51
-eC1tZWRpYXRlayBtYWlsaW5nIGxpc3QNCj4gPiBMaW51eC1tZWRpYXRla0BsaXN0cy5pbmZyYWRl
-YWQub3JnDQo+ID4gaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9s
-aW51eC1tZWRpYXRlaw0KDQo=
+On Sun, Dec 20, 2020 at 7:48 PM, Bjorn Andersson wrote:
+> On Sun 20 Dec 16:29 PST 2020, Danny Lin wrote:
+> 
+> > Like other Qualcomm SoCs, sm8150 exposes CPU and cluster idle states
+> > through PSCI. Define the idle states to save power when the CPU is not
+> > in active use.
+> > 
+> > These idle states, latency, and residency values match the downstream
+> > 4.14 kernel from Qualcomm as of LA.UM.8.1.r1-15600-sm8150.0.
+> > 
+> > It's worth noting that the CPU has an additional C3 power collapse idle
+> > state between WFI and rail power collapse (with PSCI mode 0x40000003),
+> > but it is not officially used in downstream kernels due to "thermal
+> > throttling issues."
+> > 
+> 
+> Thanks Danny for this series, very happy to see this kind of additions.
+> Just one small question about the cluster param below.
+> 
+> > Signed-off-by: Danny Lin <danny@kdrag0n.dev>
+> > ---
+> >  arch/arm64/boot/dts/qcom/sm8150.dtsi | 50 ++++++++++++++++++++++++++++
+> >  1 file changed, 50 insertions(+)
+> > 
+> > diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+> > index 75ed38ee5d88..edc1fe6d7f1b 100644
+> > --- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+> > @@ -50,6 +50,8 @@ CPU0: cpu@0 {
+> >  			compatible = "qcom,kryo485";
+> >  			reg = <0x0 0x0>;
+> >  			enable-method = "psci";
+> > +			cpu-idle-states = <&LITTLE_CPU_SLEEP_0
+> > +					   &CLUSTER_SLEEP_0>;
+> >  			next-level-cache = <&L2_0>;
+> >  			qcom,freq-domain = <&cpufreq_hw 0>;
+> >  			#cooling-cells = <2>;
+> > @@ -67,6 +69,8 @@ CPU1: cpu@100 {
+> >  			compatible = "qcom,kryo485";
+> >  			reg = <0x0 0x100>;
+> >  			enable-method = "psci";
+> > +			cpu-idle-states = <&LITTLE_CPU_SLEEP_0
+> > +					   &CLUSTER_SLEEP_0>;
+> >  			next-level-cache = <&L2_100>;
+> >  			qcom,freq-domain = <&cpufreq_hw 0>;
+> >  			#cooling-cells = <2>;
+> > @@ -82,6 +86,8 @@ CPU2: cpu@200 {
+> >  			compatible = "qcom,kryo485";
+> >  			reg = <0x0 0x200>;
+> >  			enable-method = "psci";
+> > +			cpu-idle-states = <&LITTLE_CPU_SLEEP_0
+> > +					   &CLUSTER_SLEEP_0>;
+> >  			next-level-cache = <&L2_200>;
+> >  			qcom,freq-domain = <&cpufreq_hw 0>;
+> >  			#cooling-cells = <2>;
+> > @@ -96,6 +102,8 @@ CPU3: cpu@300 {
+> >  			compatible = "qcom,kryo485";
+> >  			reg = <0x0 0x300>;
+> >  			enable-method = "psci";
+> > +			cpu-idle-states = <&LITTLE_CPU_SLEEP_0
+> > +					   &CLUSTER_SLEEP_0>;
+> >  			next-level-cache = <&L2_300>;
+> >  			qcom,freq-domain = <&cpufreq_hw 0>;
+> >  			#cooling-cells = <2>;
+> > @@ -110,6 +118,8 @@ CPU4: cpu@400 {
+> >  			compatible = "qcom,kryo485";
+> >  			reg = <0x0 0x400>;
+> >  			enable-method = "psci";
+> > +			cpu-idle-states = <&BIG_CPU_SLEEP_0
+> > +					   &CLUSTER_SLEEP_0>;
+> >  			next-level-cache = <&L2_400>;
+> >  			qcom,freq-domain = <&cpufreq_hw 1>;
+> >  			#cooling-cells = <2>;
+> > @@ -124,6 +134,8 @@ CPU5: cpu@500 {
+> >  			compatible = "qcom,kryo485";
+> >  			reg = <0x0 0x500>;
+> >  			enable-method = "psci";
+> > +			cpu-idle-states = <&BIG_CPU_SLEEP_0
+> > +					   &CLUSTER_SLEEP_0>;
+> >  			next-level-cache = <&L2_500>;
+> >  			qcom,freq-domain = <&cpufreq_hw 1>;
+> >  			#cooling-cells = <2>;
+> > @@ -138,6 +150,8 @@ CPU6: cpu@600 {
+> >  			compatible = "qcom,kryo485";
+> >  			reg = <0x0 0x600>;
+> >  			enable-method = "psci";
+> > +			cpu-idle-states = <&BIG_CPU_SLEEP_0
+> > +					   &CLUSTER_SLEEP_0>;
+> >  			next-level-cache = <&L2_600>;
+> >  			qcom,freq-domain = <&cpufreq_hw 1>;
+> >  			#cooling-cells = <2>;
+> > @@ -152,6 +166,8 @@ CPU7: cpu@700 {
+> >  			compatible = "qcom,kryo485";
+> >  			reg = <0x0 0x700>;
+> >  			enable-method = "psci";
+> > +			cpu-idle-states = <&BIG_CPU_SLEEP_0
+> > +					   &CLUSTER_SLEEP_0>;
+> >  			next-level-cache = <&L2_700>;
+> >  			qcom,freq-domain = <&cpufreq_hw 2>;
+> >  			#cooling-cells = <2>;
+> > @@ -196,6 +212,40 @@ core7 {
+> >  				};
+> >  			};
+> >  		};
+> > +
+> > +		idle-states {
+> > +			entry-method = "psci";
+> > +
+> > +			LITTLE_CPU_SLEEP_0: cpu-sleep-0-0 {
+> > +				compatible = "arm,idle-state";
+> > +				idle-state-name = "little-rail-power-collapse";
+> > +				arm,psci-suspend-param = <0x40000004>;
+> > +				entry-latency-us = <355>;
+> > +				exit-latency-us = <909>;
+> > +				min-residency-us = <3934>;
+> > +				local-timer-stop;
+> > +			};
+> > +
+> > +			BIG_CPU_SLEEP_0: cpu-sleep-1-0 {
+> > +				compatible = "arm,idle-state";
+> > +				idle-state-name = "big-rail-power-collapse";
+> > +				arm,psci-suspend-param = <0x40000004>;
+> > +				entry-latency-us = <241>;
+> > +				exit-latency-us = <1461>;
+> > +				min-residency-us = <4488>;
+> > +				local-timer-stop;
+> > +			};
+> > +
+> > +			CLUSTER_SLEEP_0: cluster-sleep-0 {
+> > +				compatible = "arm,idle-state";
+> > +				idle-state-name = "cluster-power-collapse";
+> > +				arm,psci-suspend-param = <0x400000F4>;
+> 
+> How come this is 0xf4?
+> 
+> Isn't downstream saying that this should be either 0x1 << 4 or 0xc24 <<
+> 4, depending on how deep we want to go? Could we at least mention why
+> this is 0xf4?
 
+I'm not sure where 0x400000F4 originally came from. I noticed that
+sdm845 uses the same 0xc24 mode in downstream, but Qualcomm used
+0x400000F4 in mainline.
+
+I did some testing on a downstream kernel and found that the real value
+it uses on sm8150 is 0x4100c244, but the idle state doesn't work at all
+if I use the same value on mainline. The logic appears to be the same in
+the downstream sdm845 kernel. Maybe it has to do with how downstream has
+"notify RPM" before attempting to enter the idle state?
+
+In downstream, the final PSCI value is calculated as the sum of:
+
+1. (cluster-mode & cluster-mode-mask) << cluster-mode-shift = (0xc24 & 0xfff) << 4 = 0xc240
+2. (is-reset << 30) = 0x40000000
+3. (affinity level & 0x3) << 24 = 0x1000000
+4. (cpu-mode) = 0x4
+
+so 0xc240 + 0x40000000 + 0x1000000 + 0x4 = 0x4100c244.
+
+It's also possible that the problem comes from the cluster idle state
+needing all CPUs in the cluster to be asleep (as far as I know), since
+it doesn't look like mainline handles that.
+
+> 
+> Regards,
+> Bjorn
+> 
+> > +				entry-latency-us = <3263>;
+> > +				exit-latency-us = <6562>;
+> > +				min-residency-us = <9987>;
+> > +				local-timer-stop;
+> > +			};
+> > +		};
+> >  	};
+> >  
+> >  	firmware {
+> > -- 
+> > 2.29.2
+> > 
+>
