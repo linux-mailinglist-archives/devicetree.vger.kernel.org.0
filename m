@@ -2,72 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 363DC2E1A1D
-	for <lists+devicetree@lfdr.de>; Wed, 23 Dec 2020 09:46:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C62A22E1A7F
+	for <lists+devicetree@lfdr.de>; Wed, 23 Dec 2020 10:31:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727734AbgLWIpp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Dec 2020 03:45:45 -0500
-Received: from mailgw02.mediatek.com ([210.61.82.184]:42513 "EHLO
+        id S1727823AbgLWJbg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Dec 2020 04:31:36 -0500
+Received: from mailgw02.mediatek.com ([210.61.82.184]:48052 "EHLO
         mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1727168AbgLWIpp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Dec 2020 03:45:45 -0500
-X-UUID: 19db865d8b104c1f97074ab65c70836d-20201223
-X-UUID: 19db865d8b104c1f97074ab65c70836d-20201223
+        with ESMTP id S1727678AbgLWJbg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Dec 2020 04:31:36 -0500
+X-UUID: c36759556753491589d5ea0fefff35d2-20201223
+X-UUID: c36759556753491589d5ea0fefff35d2-20201223
 Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
-        (envelope-from <neal.liu@mediatek.com>)
+        (envelope-from <eastl.lee@mediatek.com>)
         (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 86269457; Wed, 23 Dec 2020 16:45:02 +0800
+        with ESMTP id 1906518736; Wed, 23 Dec 2020 17:30:51 +0800
 Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs02n2.mediatek.inc (172.21.101.101) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Wed, 23 Dec 2020 16:44:58 +0800
+ mtkmbs01n1.mediatek.inc (172.21.101.68) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Wed, 23 Dec 2020 17:30:48 +0800
 Received: from mtkswgap22.mediatek.inc (172.21.77.33) by mtkcas11.mediatek.inc
  (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 23 Dec 2020 16:44:59 +0800
-From:   Neal Liu <neal.liu@mediatek.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>
-CC:     Neal Liu <neal.liu@mediatek.com>, <devicetree@vger.kernel.org>,
+ Transport; Wed, 23 Dec 2020 17:30:49 +0800
+From:   EastL Lee <EastL.Lee@mediatek.com>
+To:     Sean Wang <sean.wang@mediatek.com>
+CC:     <vkoul@kernel.org>, <robh+dt@kernel.org>, <mark.rutland@arm.com>,
+        <matthias.bgg@gmail.com>, <dmaengine@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        Hanks Chen <Hanks.Chen@mediatek.com>,
-        Jackson-kt Chang <Jackson-kt.Chang@mediatek.com>,
-        <wsd_upstream@mediatek.com>
-Subject: [PATCH v1 2/2] arm64: configs: Support DEVAPC on MediaTek platforms
-Date:   Wed, 23 Dec 2020 16:44:52 +0800
-Message-ID: <1608713092-26952-3-git-send-email-neal.liu@mediatek.com>
-X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <1608713092-26952-1-git-send-email-neal.liu@mediatek.com>
-References: <1608713092-26952-1-git-send-email-neal.liu@mediatek.com>
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <wsd_upstream@mediatek.com>, <cc.hwang@mediatek.com>
+Subject: [PATCH v8] dmaengine: mediatek-cqdma: add dt-bindings and remove redundant queue
+Date:   Wed, 23 Dec 2020 17:30:43 +0800
+Message-ID: <1608715847-28956-1-git-send-email-EastL.Lee@mediatek.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
 Content-Type: text/plain
-X-TM-SNTS-SMTP: B3CE75607B5BE7C66F125DCA8B8924F0596D453F48C50A29BFD93D2914F3AF312000:8
 X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Support DEVAPC on MediaTek platforms by enabling CONFIG_MTK_DEVAPC.
+This patch set adds document the devicetree bindings for MediaTek Command-Queue DMA controller,
+and remove redundant queue structure.
 
-Signed-off-by: Neal Liu <neal.liu@mediatek.com>
----
- arch/arm64/configs/defconfig |    1 +
- 1 file changed, 1 insertion(+)
+hanges since v6:
+- fix dt binding format
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 17a2df6..a373776 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -257,6 +257,7 @@ CONFIG_MTD_NAND_MARVELL=y
- CONFIG_MTD_NAND_FSL_IFC=y
- CONFIG_MTD_NAND_QCOM=y
- CONFIG_MTD_SPI_NOR=y
-+CONFIG_MTK_DEVAPC=m
- CONFIG_SPI_CADENCE_QUADSPI=y
- CONFIG_BLK_DEV_LOOP=y
- CONFIG_BLK_DEV_NBD=m
--- 
-1.7.9.5
+hanges since v5:
+- fix full name
+
+hanges since v4:
+- fix yaml & dma-mask code flow
+
+hanges since v3:
+- fix dt_binding_check errors
+
+Changes since v2:
+- add devicetree bindings for MediaTek Command-Queue DMA controller
+
+Changes since v1:
+- remove redundant queue structure
+- fix wrong description and tags in the earlier patch
+- add dma-channel-mask for DMA capability
+- fix compatible for common
 
