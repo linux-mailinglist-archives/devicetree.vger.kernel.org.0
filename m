@@ -2,18 +2,18 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D7012E2156
+	by mail.lfdr.de (Postfix) with ESMTP id 93DBB2E2157
 	for <lists+devicetree@lfdr.de>; Wed, 23 Dec 2020 21:32:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728563AbgLWUai (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S1727187AbgLWUai (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Wed, 23 Dec 2020 15:30:38 -0500
-Received: from mout.kundenserver.de ([217.72.192.75]:50429 "EHLO
+Received: from mout.kundenserver.de ([217.72.192.75]:52473 "EHLO
         mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727187AbgLWUai (ORCPT
+        with ESMTP id S1728524AbgLWUai (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Wed, 23 Dec 2020 15:30:38 -0500
 Received: from localhost.localdomain ([37.4.249.194]) by
  mrelayeu.kundenserver.de (mreue108 [212.227.15.183]) with ESMTPSA (Nemesis)
- id 1MRmo8-1kTS3U0i30-00TCnc; Wed, 23 Dec 2020 21:27:54 +0100
+ id 1MWAWq-1kXruK2Ok6-00XaWK; Wed, 23 Dec 2020 21:27:54 +0100
 From:   Stefan Wahren <stefan.wahren@i2se.com>
 To:     Eric Anholt <eric@anholt.net>, Maxime Ripard <mripard@kernel.org>,
         David Airlie <airlied@linux.ie>,
@@ -22,60 +22,161 @@ To:     Eric Anholt <eric@anholt.net>, Maxime Ripard <mripard@kernel.org>,
         Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
 Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
-        Phil Elwell <phil@raspberrypi.org>
-Subject: [PATCH 3/4] drm/v3d: Don't clear MMU control bits on exception
-Date:   Wed, 23 Dec 2020 21:27:24 +0100
-Message-Id: <1608755245-18069-4-git-send-email-stefan.wahren@i2se.com>
+        Stefan Wahren <stefan.wahren@i2se.com>
+Subject: [PATCH 4/4] dt-bindings: gpu: Convert v3d to json-schema
+Date:   Wed, 23 Dec 2020 21:27:25 +0100
+Message-Id: <1608755245-18069-5-git-send-email-stefan.wahren@i2se.com>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1608755245-18069-1-git-send-email-stefan.wahren@i2se.com>
 References: <1608755245-18069-1-git-send-email-stefan.wahren@i2se.com>
-X-Provags-ID: V03:K1:0tOEdDp6fR0bZbqYWT127G8PNcCAxolyfkayHeulx2DS57jbIDQ
- XlgCEGoOcHZIlmdGZG19UAOC3Q5kKIAhbXO8PxpaqyQwJzvnjDa5DG34KzCDO/LWNboNs8o
- 45M4mEJ3jiN/nOzDUKkiewC/zJ7Jv9vcrxAWL5UN4L9GDbhqY37XCKp02eQ6Tq3HeWdflqw
- r4e61G4wyZpYGuPvX0pWw==
+X-Provags-ID: V03:K1:pX/LN56hT9ajMLlvxi29HcfZUurA9LJeN+C603L1/ANg4ENBvmH
+ w8uwkjHfG6FBZOFYjf91uWTVS/K0USc5MX0apWyoBD+22FozIOQ6/wN95vavl47a/80dTji
+ RUQrvmeCw/ZYYws++GuhRIa9GvSLxmdtRGcRUu2gjJgB89mAya4j41QMQDK0keaYHUqzrUz
+ 88bgQvA0pJMUS2pJzpYww==
 X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:8+48t7PoDdU=:qUNCbfuT6OyNheBimZ+kNu
- lRWFX8fzqYgCE+k+t+ucZvVFNWC5+iXRA/RbPxyfe18s4mpV18k4G2Ox0YHGZITIwWtjPhj1u
- 1rtqam8JUcUCqwD+78W4L9Cy6QXAahBKz2bb9k38ydMQpYeaN2ZKJUSVXedU3jxGjuggk6gzy
- 5nuT0MBShvVcaS52DaIx6JeTkcvgNlmz3GTui51gXS5aNbXlzfHSUsw4JFPseXSmSbik2F6Vy
- 2gAoCOKhhYxq1YE+OI3D6MrGT3tdaFP0vGgf8UNoJCSd1E1wluHX0oUgG0xf3WqiY9+l6Ht8g
- IOW5GX2lfXpsW8sdiXDM/8AJyc/UEOsXS903OigOuNuDGlIVmm4iwmeEPhBzda3fBNQgVqhZ8
- WTHvq4RW3hJGV8VYNyu5cWFZ2Sw54Up6uRQT1VHF6hSjaTfsQME6nPWsvs3Y9H1wiBoo0wYHR
- wgqol2yDNA==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:rvmANF2DETk=:iUfSGjqZA22mOgY1peyWtD
+ LWY/4a2JplXHfh5Fs1s22faqkSDd7w43ceEyG+sNm3d8h18ehAz1x0NZfCx7nL7G+7u9SwnfH
+ ELjKDu3r43orXRQDkwKiJbK4yZhb7Mcmbuz6tohQI4KHtsQCwBHA4nY/w8+vi8IMB0JfTZZXD
+ VNlTO7h8lBTLPVUIKIO/PYHouvMDdcdhkqandpY5bN/EKqBDDta/yoYcD2E15gT/8+nsoeaGu
+ QiO1pXGG7RipZ2Kv6VKXKfjyFvASLqeLrtFAnGy2x00Lp0oKqjf7+P+nwaoUsVw2xaXyVfr6E
+ QvDtsmduAqOpL0cmIXAifjeAPhmiD4rRk6quq6vPJ3xSSyy8HZbWVp9PD+Pt5h2jjz/ecbO5I
+ oyA37QqS89immqVAbtwRUmuy9KBXCOKyltUYkFI3GZarTy32qf/ht3Etl/PoqZKuC6cDdXtNY
+ uM9HxKs/nw==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Phil Elwell <phil@raspberrypi.org>
+This converts the v3d bindings to yaml format.
 
-MMU exception conditions are reported in the V3D_MMU_CTRL register as
-write-1-to-clear (W1C) bits. The MMU interrupt handling code clears any
-exceptions, but does so by masking out any other bits and writing the
-result back. There are some important control bits in that register,
-including MMU_ENABLE, so a safer approach is to simply write back the
-value just read unaltered.
-
-Signed-off-by: Phil Elwell <phil@raspberrypi.org>
+Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
 ---
- drivers/gpu/drm/v3d/v3d_irq.c | 5 +----
- 1 file changed, 1 insertion(+), 4 deletions(-)
+ .../devicetree/bindings/gpu/brcm,bcm-v3d.txt       | 33 ----------
+ .../devicetree/bindings/gpu/brcm,bcm-v3d.yaml      | 76 ++++++++++++++++++++++
+ 2 files changed, 76 insertions(+), 33 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.txt
+ create mode 100644 Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml
 
-diff --git a/drivers/gpu/drm/v3d/v3d_irq.c b/drivers/gpu/drm/v3d/v3d_irq.c
-index 0be2eb7..e714d53 100644
---- a/drivers/gpu/drm/v3d/v3d_irq.c
-+++ b/drivers/gpu/drm/v3d/v3d_irq.c
-@@ -178,10 +178,7 @@ v3d_hub_irq(int irq, void *arg)
- 		};
- 		const char *client = "?";
- 
--		V3D_WRITE(V3D_MMU_CTL,
--			  V3D_READ(V3D_MMU_CTL) & (V3D_MMU_CTL_CAP_EXCEEDED |
--						   V3D_MMU_CTL_PT_INVALID |
--						   V3D_MMU_CTL_WRITE_VIOLATION));
-+		V3D_WRITE(V3D_MMU_CTL, V3D_READ(V3D_MMU_CTL));
- 
- 		if (v3d->ver >= 41) {
- 			axi_id = axi_id >> 5;
+diff --git a/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.txt b/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.txt
+deleted file mode 100644
+index b2df82b..0000000
+--- a/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.txt
++++ /dev/null
+@@ -1,33 +0,0 @@
+-Broadcom V3D GPU
+-
+-Only the Broadcom V3D 3.x and newer GPUs are covered by this binding.
+-For V3D 2.x, see brcm,bcm-vc4.txt.
+-
+-Required properties:
+-- compatible:	Should be "brcm,7268-v3d" or "brcm,7278-v3d"
+-- reg:		Physical base addresses and lengths of the register areas
+-- reg-names:	Names for the register areas.  The "hub" and "core0"
+-		  register areas are always required.  The "gca" register area
+-		  is required if the GCA cache controller is present.  The
+-		  "bridge" register area is required if an external reset
+-		  controller is not present.
+-- interrupts:	The interrupt numbers.  The first interrupt is for the hub,
+-		  while the following interrupts are separate interrupt lines
+-		  for the cores (if they don't share the hub's interrupt).
+-		  See bindings/interrupt-controller/interrupts.txt
+-
+-Optional properties:
+-- clocks:	The core clock the unit runs on
+-- resets:	The reset line for v3d, if not using a mapping of the bridge
+-		  See bindings/reset/reset.txt
+-
+-v3d {
+-	compatible = "brcm,7268-v3d";
+-	reg = <0xf1204000 0x100>,
+-	      <0xf1200000 0x4000>,
+-	      <0xf1208000 0x4000>,
+-	      <0xf1204100 0x100>;
+-	reg-names = "bridge", "hub", "core0", "gca";
+-	interrupts = <0 78 4>,
+-		     <0 77 4>;
+-};
+diff --git a/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml b/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml
+new file mode 100644
+index 0000000..a2b06d42
+--- /dev/null
++++ b/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml
+@@ -0,0 +1,76 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/gpu/brcm,bcm-v3d.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Broadcom V3D GPU Bindings
++
++maintainers:
++  - Eric Anholt <eric@anholt.net>
++  - Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
++
++properties:
++  $nodename:
++    pattern: '^gpu@[a-f0-9]+$'
++
++  compatible:
++    enum:
++      - brcm,7268-v3d
++      - brcm,7278-v3d
++
++  reg:
++    items:
++      - description: hub register
++      - description: core0 register
++      - description: GCA cache controller register (if GCA controller)
++      - description: bridge register (if no external reset controller)
++    minItems: 2
++    maxItems: 4
++
++  reg-names:
++    items:
++      enum: [ bridge, core0, gca, hub ]
++    minItems: 2
++    maxItems: 4
++
++  interrupts:
++    items:
++      - description: hub interrupt
++      - description: core interrupt (if it doesn't share the hub's interrupt)
++    minItems: 1
++    maxItems: 2
++
++  clocks:
++    maxItems: 1
++
++  clock-names:
++    maxItems: 1
++
++  resets:
++    maxItems: 1
++
++  power-domains:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - interrupts
++
++additionalProperties: false
++
++examples:
++  - |
++    gpu@f1200000 {
++      compatible = "brcm,7268-v3d";
++      reg = <0xf1204000 0x100>,
++            <0xf1200000 0x4000>,
++            <0xf1208000 0x4000>,
++            <0xf1204100 0x100>;
++      reg-names = "bridge", "hub", "core0", "gca";
++      interrupts = <0 78 4>,
++                   <0 77 4>;
++    };
++
++...
 -- 
 2.7.4
 
