@@ -2,89 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B38D2E1819
-	for <lists+devicetree@lfdr.de>; Wed, 23 Dec 2020 05:24:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 446822E1824
+	for <lists+devicetree@lfdr.de>; Wed, 23 Dec 2020 05:36:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727202AbgLWEXs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Dec 2020 23:23:48 -0500
-Received: from mailgw01.mediatek.com ([210.61.82.183]:49896 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726969AbgLWEXs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Dec 2020 23:23:48 -0500
-X-UUID: 1686acba1394405bb4355d821770f93f-20201223
-X-UUID: 1686acba1394405bb4355d821770f93f-20201223
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
-        (envelope-from <bayi.cheng@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1030565150; Wed, 23 Dec 2020 12:23:04 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Wed, 23 Dec 2020 12:23:04 +0800
-Received: from localhost.localdomain (10.17.3.153) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 23 Dec 2020 12:23:02 +0800
-From:   Bayi Cheng <bayi.cheng@mediatek.com>
-To:     Rob Herring <robh+dt@kernel.org>, Mark Brown <broonie@kernel.org>
-CC:     Matthias Brugger <matthias.bgg@gmail.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, Ikjoon Jang <ikjn@chromium.org>,
-        Chuanhong Guo <gch981213@gmail.com>,
-        <srv_heupstream@mediatek.com>, bayi cheng <bayi.cheng@mediatek.com>
-Subject: [PATCH v2] arm64: dts: mt8192: add nor_flash device node
-Date:   Wed, 23 Dec 2020 12:22:59 +0800
-Message-ID: <1608697379-22025-1-git-send-email-bayi.cheng@mediatek.com>
-X-Mailer: git-send-email 1.9.1
+        id S1727047AbgLWEfz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Dec 2020 23:35:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56870 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726068AbgLWEfy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Dec 2020 23:35:54 -0500
+Received: from mail-pf1-x429.google.com (mail-pf1-x429.google.com [IPv6:2607:f8b0:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28348C061285
+        for <devicetree@vger.kernel.org>; Tue, 22 Dec 2020 20:34:50 -0800 (PST)
+Received: by mail-pf1-x429.google.com with SMTP id m6so9663026pfm.6
+        for <devicetree@vger.kernel.org>; Tue, 22 Dec 2020 20:34:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to
+         :user-agent;
+        bh=n/wQ/8FF3ZQQmDW8wRJInIGGffY6h+3NeQmSLgJVsG0=;
+        b=OFVqi0FZly+cr6h2L4MgV3W+0bqGCFrv37DumbpBBHHWKR10mlk8j96RhehvYC0ZKZ
+         A7gveeGO4wUPNnptPGhKrlG+oY9ETV8EggwWNNJcSxmSKnIhp4D6iv6jEddwltALPRsH
+         XoYuBifhBdhegWVRfh980lFbJW3ZCSqNzWxi8omP37WhPmGjiRZ+cWui/1OKijohx3Ni
+         VZ3o0KDN4OIc1fPJ6UYDAexLzU558i9zpREZpptiCrCuZwWp74C+otCB7ziEAp6JpBCe
+         /0WINPCLg0o7wHc+WB03uTQnpOkKqeEM2Jo/o42Mju6zYgkhMy6UlsZnrI4SeRLP+Rxr
+         M+6A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to:user-agent;
+        bh=n/wQ/8FF3ZQQmDW8wRJInIGGffY6h+3NeQmSLgJVsG0=;
+        b=uYb7RzJXhuCwEmZEITonrAUkuwJBfyttn6Hrv8+Uko/eFJs2v3A2mFp9UTboBuRVIQ
+         4cEWKJ0jOsYWsH0nwUfnGUuz0jLpA9zBUQNtpLPG42iSjdfZVGtl3vdWcIlytjeUn0kX
+         O8Gq41MJM59aVCEs+Al1nzieXBH8Nox5w0crrgWZvUy3E64x2G2coc+HXQ9YufzKUVWf
+         EaW82NF9Hk26yC0tZE6Xtw6jX5yGCf4pN6HW1YC5BDP3j23sg/JEGnM03DfgIMQBqfmO
+         AIGSk31hiCCOLSCqO99s5roHgNwhuZ4W3frwe24kT1I/Ux1P3vutXbs4E8ygxPlVH+lQ
+         nIwA==
+X-Gm-Message-State: AOAM5311oNZ4g/9YPacyaXyTioZOip1yTFMrO9Xm4IBwDVfv0QlDIOiB
+        u6WDPsGUCQ/Ge0C8INdP5oZKgQ==
+X-Google-Smtp-Source: ABdhPJy/6iEXMfinC0IgZ7fpt7I2g+zIxTjZQnxLRTk8cjqPdAagKq6g9nUKUea3gO9B/DZE0Q9zrw==
+X-Received: by 2002:a63:6305:: with SMTP id x5mr22354072pgb.216.1608698089700;
+        Tue, 22 Dec 2020 20:34:49 -0800 (PST)
+Received: from localhost ([122.172.20.109])
+        by smtp.gmail.com with ESMTPSA id p16sm21154516pju.47.2020.12.22.20.34.48
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 22 Dec 2020 20:34:48 -0800 (PST)
+Date:   Wed, 23 Dec 2020 10:04:43 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Dmitry Osipenko <digetx@gmail.com>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Nicolas Chauvet <kwizart@gmail.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Kevin Hilman <khilman@kernel.org>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        devel@driverdev.osuosl.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-media@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-clk@vger.kernel.org
+Subject: Re: [PATCH v2 19/48] opp: Fix adding OPP entries in a wrong order if
+ rate is unavailable
+Message-ID: <20201223043443.rklw5er6hck3gl4y@vireshk-i7>
+References: <20201217180638.22748-1-digetx@gmail.com>
+ <20201217180638.22748-20-digetx@gmail.com>
+ <20201222091255.wentz5hyt726qezg@vireshk-i7>
+ <db6273e6-8406-b7ae-b51d-48ceb6d21962@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <db6273e6-8406-b7ae-b51d-48ceb6d21962@gmail.com>
+User-Agent: NeoMutt/20180716-391-311a52
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: bayi cheng <bayi.cheng@mediatek.com>
+On 22-12-20, 22:19, Dmitry Osipenko wrote:
+> 22.12.2020 12:12, Viresh Kumar пишет:
+> > On 17-12-20, 21:06, Dmitry Osipenko wrote:
+> >> Fix adding OPP entries in a wrong (opposite) order if OPP rate is
+> >> unavailable. The OPP comparison is erroneously skipped if OPP rate is
+> >> missing, thus OPPs are left unsorted.
+> >>
+> >> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+> >> ---
+> >>  drivers/opp/core.c | 23 ++++++++++++-----------
+> >>  drivers/opp/opp.h  |  2 +-
+> >>  2 files changed, 13 insertions(+), 12 deletions(-)
+> >>
+> >> diff --git a/drivers/opp/core.c b/drivers/opp/core.c
+> >> index 34f7e530d941..5c7f130a8de2 100644
+> >> --- a/drivers/opp/core.c
+> >> +++ b/drivers/opp/core.c
+> >> @@ -1531,9 +1531,10 @@ static bool _opp_supported_by_regulators(struct dev_pm_opp *opp,
+> >>  	return true;
+> >>  }
+> >>  
+> >> -int _opp_compare_key(struct dev_pm_opp *opp1, struct dev_pm_opp *opp2)
+> >> +int _opp_compare_key(struct dev_pm_opp *opp1, struct dev_pm_opp *opp2,
+> >> +		     bool rate_not_available)
+> >>  {
+> >> -	if (opp1->rate != opp2->rate)
+> >> +	if (!rate_not_available && opp1->rate != opp2->rate)
+> > 
+> > rate will be 0 for both the OPPs here if rate_not_available is true and so this
+> > change shouldn't be required.
+> 
+> The rate_not_available is negated in the condition. This change is
+> required because both rates are 0 and then we should proceed to the
+> levels comparison.
 
-add nor_flash device node
+Won't that happen without this patch ?
 
-Change-Id: I79f0228529bd8a33e5f354b7a861a4ec8d92e9ba
-Signed-off-by: bayi cheng <bayi.cheng@mediatek.com>
----
-Change in v2:
-1: add dependent patch of arm soc
-2: change compatible name
+> I guess it's not clear by looking at this patch, please see a full
+> version of the function:
+> 
+> int _opp_compare_key(struct dev_pm_opp *opp1, struct dev_pm_opp *opp2,
+>          bool rate_not_available)
+> {
+>   if (!rate_not_available && opp1->rate != opp2->rate)
+>     return opp1->rate < opp2->rate ? -1 : 1;
+>   if (opp1->bandwidth && opp2->bandwidth &&
+>       opp1->bandwidth[0].peak != opp2->bandwidth[0].peak)
+>     return opp1->bandwidth[0].peak < opp2->bandwidth[0].peak ? -1 : 1;
+>   if (opp1->level != opp2->level)
+>     return opp1->level < opp2->level ? -1 : 1;
+>   return 0;
+> }
+> 
+> Perhaps we could check whether opp1->rate=0, like it's done for the
+> opp1->bandwidth. I'll consider this variant for v3, thanks.
 
-Depends on:
-https://patchwork.kernel.org/patch/11713559/
-[v4,1/3] arm64: dts: Add Mediatek SoC MT8192 and evaluation board dts and Makefile
----
- arch/arm64/boot/dts/mediatek/mt8192.dtsi | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-index e12e024..751c877 100644
---- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-@@ -379,6 +379,19 @@
- 			status = "disabled";
- 		};
- 
-+		nor_flash: spi@11234000 {
-+			compatible = "mediatek,mt8192-nor";
-+			reg = <0 0x11234000 0 0xe0>;
-+			interrupts = <GIC_SPI 431 IRQ_TYPE_LEVEL_HIGH 0>;
-+			clocks = <&clk26m>,
-+				 <&clk26m>,
-+				 <&clk26m>;
-+			clock-names = "spi", "sf", "axi";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			status = "disable";
-+		};
-+
- 		i2c3: i2c3@11cb0000 {
- 			compatible = "mediatek,mt8192-i2c";
- 			reg = <0 0x11cb0000 0 0x1000>,
 -- 
-1.9.1
-
+viresh
