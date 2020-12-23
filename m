@@ -2,33 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DEC22E1FE9
-	for <lists+devicetree@lfdr.de>; Wed, 23 Dec 2020 18:26:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A99982E1FE1
+	for <lists+devicetree@lfdr.de>; Wed, 23 Dec 2020 18:26:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728094AbgLWR0D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Dec 2020 12:26:03 -0500
-Received: from www.zeus03.de ([194.117.254.33]:42306 "EHLO mail.zeus03.de"
+        id S1727710AbgLWRZx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Dec 2020 12:25:53 -0500
+Received: from www.zeus03.de ([194.117.254.33]:42356 "EHLO mail.zeus03.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726837AbgLWRZu (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 23 Dec 2020 12:25:50 -0500
+        id S1727373AbgLWRZx (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 23 Dec 2020 12:25:53 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=simple; d=sang-engineering.com; h=
         from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=k1; bh=bFZHVNr/wLE5t3
-        3ExpleTFxbiH3fS6rd+dcM1J0TmwM=; b=P5sr6/6A863pAt6pc72yscDf5LxWoB
-        1vdLcD+JeR60pvsn/U7QTXcMfDYIiBktIWxC8f+IuPcbz3mtJ6oO5/ojrs4CrAIY
-        iyUgGdR/o/7BbPkmkEBPrkpq6sWdAM665rOtHOULB3dN1LmBivJhLoG3Axwjc3AS
-        V7Q9zfwjYDsBw=
-Received: (qmail 544577 invoked from network); 23 Dec 2020 18:25:08 +0100
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 23 Dec 2020 18:25:08 +0100
-X-UD-Smtp-Session: l3s3148p1@tdkH+SS3yOdUhszw
+        :mime-version:content-transfer-encoding; s=k1; bh=JMgg2+Zkpjwouh
+        eSkfPrwdtg/lFBbymSjqafJhZzRlM=; b=mUGBKv8wURxvTwd5AZ0D7kOSu4PzhD
+        MLKIk2ikeuTtVGMZRR171cXjMZ3XlLxw6zVEaCjMFgkIOAwGnVvCgC77kHlW7tlZ
+        pgazY2phtzERAR9A/QgcwsaNow/1j/W2v7vUnk5+aXK2kqLPDdEXYW4RCoPBJq7O
+        RuSSs2m0CmXIk=
+Received: (qmail 544662 invoked from network); 23 Dec 2020 18:25:10 +0100
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 23 Dec 2020 18:25:10 +0100
+X-UD-Smtp-Session: l3s3148p1@pTwg+SS3zOdUhszw
 From:   Wolfram Sang <wsa+renesas@sang-engineering.com>
 To:     linux-renesas-soc@vger.kernel.org
-Cc:     Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 1/5] dt-bindings: i2c: renesas,i2c: add r8a779a0 (V3U) support
-Date:   Wed, 23 Dec 2020 18:25:00 +0100
-Message-Id: <20201223172505.34736-2-wsa+renesas@sang-engineering.com>
+Cc:     Koji Matsuoka <koji.matsuoka.xm@renesas.com>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 3/5] arm64: dts: renesas: Add I2C to R8A779A0
+Date:   Wed, 23 Dec 2020 18:25:02 +0100
+Message-Id: <20201223172505.34736-4-wsa+renesas@sang-engineering.com>
 X-Mailer: git-send-email 2.28.0
 In-Reply-To: <20201223172505.34736-1-wsa+renesas@sang-engineering.com>
 References: <20201223172505.34736-1-wsa+renesas@sang-engineering.com>
@@ -38,23 +41,157 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Koji Matsuoka <koji.matsuoka.xm@renesas.com>
+
+Add I2C devicetree description to V3U
+
+Signed-off-by: Koji Matsuoka <koji.matsuoka.xm@renesas.com>
+[wsa: rebased and double checked]
 Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 ---
- Documentation/devicetree/bindings/i2c/renesas,i2c.txt | 1 +
- 1 file changed, 1 insertion(+)
+ arch/arm64/boot/dts/renesas/r8a779a0.dtsi | 122 ++++++++++++++++++++++
+ 1 file changed, 122 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/i2c/renesas,i2c.txt b/Documentation/devicetree/bindings/i2c/renesas,i2c.txt
-index 96d869ac3839..5762d2d1ab9c 100644
---- a/Documentation/devicetree/bindings/i2c/renesas,i2c.txt
-+++ b/Documentation/devicetree/bindings/i2c/renesas,i2c.txt
-@@ -26,6 +26,7 @@ Required properties:
- 	"renesas,i2c-r8a77980" if the device is a part of a R8A77980 SoC.
- 	"renesas,i2c-r8a77990" if the device is a part of a R8A77990 SoC.
- 	"renesas,i2c-r8a77995" if the device is a part of a R8A77995 SoC.
-+	"renesas,i2c-r8a779a0" if the device is a part of a R8A779A0 SoC.
- 	"renesas,rcar-gen1-i2c" for a generic R-Car Gen1 compatible device.
- 	"renesas,rcar-gen2-i2c" for a generic R-Car Gen2 or RZ/G1 compatible
- 				device.
+diff --git a/arch/arm64/boot/dts/renesas/r8a779a0.dtsi b/arch/arm64/boot/dts/renesas/r8a779a0.dtsi
+index 742c04f55f74..177c4e8acc52 100644
+--- a/arch/arm64/boot/dts/renesas/r8a779a0.dtsi
++++ b/arch/arm64/boot/dts/renesas/r8a779a0.dtsi
+@@ -14,6 +14,16 @@ / {
+ 	#address-cells = <2>;
+ 	#size-cells = <2>;
+ 
++	aliases {
++		i2c0 = &i2c0;
++		i2c1 = &i2c1;
++		i2c2 = &i2c2;
++		i2c3 = &i2c3;
++		i2c4 = &i2c4;
++		i2c5 = &i2c5;
++		i2c6 = &i2c6;
++	};
++
+ 	cpus {
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+@@ -115,6 +125,118 @@ sysc: system-controller@e6180000 {
+ 			#power-domain-cells = <1>;
+ 		};
+ 
++		i2c0: i2c@e6500000 {
++			compatible = "renesas,i2c-r8a779a0",
++				     "renesas,rcar-gen3-i2c";
++			reg = <0 0xe6500000 0 0x40>;
++			interrupts = <GIC_SPI 238 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&cpg CPG_MOD 518>;
++			power-domains = <&sysc R8A779A0_PD_ALWAYS_ON>;
++			resets = <&cpg 518>;
++			dmas = <&dmac1 0x91>, <&dmac1 0x90>;
++			dma-names = "tx", "rx";
++			i2c-scl-internal-delay-ns = <110>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++			status = "disabled";
++		};
++
++		i2c1: i2c@e6508000 {
++			compatible = "renesas,i2c-r8a779a0",
++				     "renesas,rcar-gen3-i2c";
++			reg = <0 0xe6508000 0 0x40>;
++			interrupts = <GIC_SPI 239 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&cpg CPG_MOD 519>;
++			power-domains = <&sysc R8A779A0_PD_ALWAYS_ON>;
++			resets = <&cpg 519>;
++			dmas = <&dmac1 0x93>, <&dmac1 0x92>;
++			dma-names = "tx", "rx";
++			i2c-scl-internal-delay-ns = <110>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++			status = "disabled";
++		};
++
++		i2c2: i2c@e6510000 {
++			compatible = "renesas,i2c-r8a779a0",
++				     "renesas,rcar-gen3-i2c";
++			reg = <0 0xe6510000 0 0x40>;
++			interrupts = <GIC_SPI 240 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&cpg CPG_MOD 520>;
++			power-domains = <&sysc R8A779A0_PD_ALWAYS_ON>;
++			resets = <&cpg 520>;
++			dmas = <&dmac1 0x95>, <&dmac1 0x94>;
++			dma-names = "tx", "rx";
++			i2c-scl-internal-delay-ns = <110>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++			status = "disabled";
++		};
++
++		i2c3: i2c@e66d0000 {
++			compatible = "renesas,i2c-r8a779a0",
++				     "renesas,rcar-gen3-i2c";
++			reg = <0 0xe66d0000 0 0x40>;
++			interrupts = <GIC_SPI 241 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&cpg CPG_MOD 521>;
++			power-domains = <&sysc R8A779A0_PD_ALWAYS_ON>;
++			resets = <&cpg 521>;
++			dmas = <&dmac1 0x97>, <&dmac1 0x96>;
++			dma-names = "tx", "rx";
++			i2c-scl-internal-delay-ns = <110>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++			status = "disabled";
++		};
++
++		i2c4: i2c@e66d8000 {
++			compatible = "renesas,i2c-r8a779a0",
++				     "renesas,rcar-gen3-i2c";
++			reg = <0 0xe66d8000 0 0x40>;
++			interrupts = <GIC_SPI 242 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&cpg CPG_MOD 522>;
++			power-domains = <&sysc R8A779A0_PD_ALWAYS_ON>;
++			resets = <&cpg 522>;
++			dmas = <&dmac1 0x99>, <&dmac1 0x98>;
++			dma-names = "tx", "rx";
++			i2c-scl-internal-delay-ns = <110>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++			status = "disabled";
++		};
++
++		i2c5: i2c@e66e0000 {
++			compatible = "renesas,i2c-r8a779a0",
++				     "renesas,rcar-gen3-i2c";
++			reg = <0 0xe66e0000 0 0x40>;
++			interrupts = <GIC_SPI 243 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&cpg CPG_MOD 523>;
++			power-domains = <&sysc R8A779A0_PD_ALWAYS_ON>;
++			resets = <&cpg 523>;
++			dmas = <&dmac1 0x9b>, <&dmac1 0x9a>;
++			dma-names = "tx", "rx";
++			i2c-scl-internal-delay-ns = <110>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++			status = "disabled";
++		};
++
++		i2c6: i2c@e66e8000 {
++			compatible = "renesas,i2c-r8a779a0",
++				     "renesas,rcar-gen3-i2c";
++			reg = <0 0xe66e8000 0 0x40>;
++			interrupts = <GIC_SPI 244 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&cpg CPG_MOD 524>;
++			power-domains = <&sysc R8A779A0_PD_ALWAYS_ON>;
++			resets = <&cpg 524>;
++			dmas = <&dmac1 0x9d>, <&dmac1 0x9c>;
++			dma-names = "tx", "rx";
++			i2c-scl-internal-delay-ns = <110>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++			status = "disabled";
++		};
++
+ 		scif0: serial@e6e60000 {
+ 			compatible = "renesas,scif-r8a779a0",
+ 				     "renesas,rcar-gen3-scif", "renesas,scif";
 -- 
 2.28.0
 
