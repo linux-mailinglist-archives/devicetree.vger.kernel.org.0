@@ -2,39 +2,38 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 62DE72E122F
-	for <lists+devicetree@lfdr.de>; Wed, 23 Dec 2020 03:21:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CAD1F2E12DF
+	for <lists+devicetree@lfdr.de>; Wed, 23 Dec 2020 03:28:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728775AbgLWCTt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Dec 2020 21:19:49 -0500
-Received: from mail.kernel.org ([198.145.29.99]:45490 "EHLO mail.kernel.org"
+        id S1730527AbgLWCZc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Dec 2020 21:25:32 -0500
+Received: from mail.kernel.org ([198.145.29.99]:55876 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728757AbgLWCTs (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 22 Dec 2020 21:19:48 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 3290F2332A;
-        Wed, 23 Dec 2020 02:19:21 +0000 (UTC)
+        id S1728478AbgLWCZb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 22 Dec 2020 21:25:31 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 4547222573;
+        Wed, 23 Dec 2020 02:24:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1608689962;
-        bh=Vcf1KZNula0B3d6tguNttEK09J/wHmlkr4IZJGbreyE=;
+        s=k20201202; t=1608690291;
+        bh=1yti10Y7NIYVoeeyGu4abk4to+H5Fd8eyt3vaODxOL4=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=puKZ+bVcQTEBWmLbpUTe3eh8IcC1t9gsUCGGEpbvrPkVYWKc13xPua95qRXq6/4R1
-         gy/OB+iiDcVBNDUMzPnEMtYkypzyIIibmJ8E50ZqeAdsUPdaz10fDqwEiiY09vw07S
-         FsKatbQVM2SPn9nB7RApw6TGgGfh9P1ydZBaViMoZCGCrUzkZPqTgOQQM11FIlCeP/
-         gvUJpgpvJpt4w3dZB/4SGq10B/1zkyppRMKYIH+gY2EOH+BuZyNL2bsmMoxWQiF5+k
-         hi8deDQscMj8StN29iLvy63KtblcFhic6Jzirx0rqq0GLK7iOmI/HkA1MQhS2rYFV6
-         Xyv8ZjiU/rf1Q==
+        b=B+w6un5bTh7j50lhAZP/FPh33DWXZT6qlSsVPc2vXrIjzCnjUFh2MSvho5KHhkw0n
+         4gFpfTuAKyDOIcBvQeKv6Ow78yut6ak96evIFYL+MdrvLu6C164HpijAc57w8wJ4mI
+         r3GYBJh4RNkqZtJmNtOemxPsLMHSunqm8QUEE4k3/fJEZV2Wnw7aYjcuqWcIyMd3GD
+         kA6LgqUcDiA+CStqDpf5I6SY1KyBIQ54TtXAYu11/67Y7TB4Q0ptADyeARLXTdld39
+         istzk/TSQrLbc71O/XhNccIzprr9JOJpkjBBueMjrNiS6wDhO2mRrx3N6Wy3WfJYor
+         m3LtJPjfZ6O0A==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH AUTOSEL 5.4 053/130] ARM: dts: NSP: Fix Ethernet switch SGMII register name
-Date:   Tue, 22 Dec 2020 21:16:56 -0500
-Message-Id: <20201223021813.2791612-53-sashal@kernel.org>
+Cc:     Zhen Lei <thunder.leizhen@huawei.com>,
+        Wei Xu <xuwei5@hisilicon.com>, Sasha Levin <sashal@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 4.9 28/48] ARM: dts: hisilicon: fix errors detected by spi-pl022.yaml
+Date:   Tue, 22 Dec 2020 21:23:56 -0500
+Message-Id: <20201223022417.2794032-28-sashal@kernel.org>
 X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20201223021813.2791612-1-sashal@kernel.org>
-References: <20201223021813.2791612-1-sashal@kernel.org>
+In-Reply-To: <20201223022417.2794032-1-sashal@kernel.org>
+References: <20201223022417.2794032-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -43,34 +42,57 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Florian Fainelli <f.fainelli@gmail.com>
+From: Zhen Lei <thunder.leizhen@huawei.com>
 
-[ Upstream commit 8b0235d1deace8f1bd8cdd149d698fee3974fdf4 ]
+[ Upstream commit 4c246408f0bdbc4100c95a5dad9e0688b4a3cfd0 ]
 
-The register name should be "sgmii_config", not "sgmii", this is not a
-functional change since no code is currently looking for that register
-by name (or at all).
+1. Change clock-names to "sspclk", "apb_pclk". Both of them use the same
+   clock.
 
-Reviewed-by: Vladimir Oltean <olteanv@gmail.com>
-Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
+Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
+Signed-off-by: Wei Xu <xuwei5@hisilicon.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/bcm-nsp.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm/boot/dts/hi3519.dtsi | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
 
-diff --git a/arch/arm/boot/dts/bcm-nsp.dtsi b/arch/arm/boot/dts/bcm-nsp.dtsi
-index 8615d89fa4690..eff99bd44b38e 100644
---- a/arch/arm/boot/dts/bcm-nsp.dtsi
-+++ b/arch/arm/boot/dts/bcm-nsp.dtsi
-@@ -388,7 +388,7 @@ srab: srab@36000 {
- 			reg = <0x36000 0x1000>,
- 			      <0x3f308 0x8>,
- 			      <0x3f410 0xc>;
--			reg-names = "srab", "mux_config", "sgmii";
-+			reg-names = "srab", "mux_config", "sgmii_config";
- 			interrupts = <GIC_SPI 95 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 96 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 97 IRQ_TYPE_LEVEL_HIGH>,
+diff --git a/arch/arm/boot/dts/hi3519.dtsi b/arch/arm/boot/dts/hi3519.dtsi
+index 5729ecfcdc8bf..723c451d1420e 100644
+--- a/arch/arm/boot/dts/hi3519.dtsi
++++ b/arch/arm/boot/dts/hi3519.dtsi
+@@ -140,8 +140,8 @@ spi_bus0: spi@12120000 {
+ 			compatible = "arm,pl022", "arm,primecell";
+ 			reg = <0x12120000 0x1000>;
+ 			interrupts = <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>;
+-			clocks = <&crg HI3519_SPI0_CLK>;
+-			clock-names = "apb_pclk";
++			clocks = <&crg HI3519_SPI0_CLK>, <&crg HI3519_SPI0_CLK>;
++			clock-names = "sspclk", "apb_pclk";
+ 			num-cs = <1>;
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
+@@ -152,8 +152,8 @@ spi_bus1: spi@12121000 {
+ 			compatible = "arm,pl022", "arm,primecell";
+ 			reg = <0x12121000 0x1000>;
+ 			interrupts = <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>;
+-			clocks = <&crg HI3519_SPI1_CLK>;
+-			clock-names = "apb_pclk";
++			clocks = <&crg HI3519_SPI1_CLK>, <&crg HI3519_SPI1_CLK>;
++			clock-names = "sspclk", "apb_pclk";
+ 			num-cs = <1>;
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
+@@ -164,8 +164,8 @@ spi_bus2: spi@12122000 {
+ 			compatible = "arm,pl022", "arm,primecell";
+ 			reg = <0x12122000 0x1000>;
+ 			interrupts = <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>;
+-			clocks = <&crg HI3519_SPI2_CLK>;
+-			clock-names = "apb_pclk";
++			clocks = <&crg HI3519_SPI2_CLK>, <&crg HI3519_SPI2_CLK>;
++			clock-names = "sspclk", "apb_pclk";
+ 			num-cs = <1>;
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
 -- 
 2.27.0
 
