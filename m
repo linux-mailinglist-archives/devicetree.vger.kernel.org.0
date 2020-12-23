@@ -2,54 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 783672E2264
-	for <lists+devicetree@lfdr.de>; Wed, 23 Dec 2020 23:21:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BB21D2E2286
+	for <lists+devicetree@lfdr.de>; Wed, 23 Dec 2020 23:44:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726477AbgLWWU5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Dec 2020 17:20:57 -0500
-Received: from mail-40133.protonmail.ch ([185.70.40.133]:63468 "EHLO
-        mail-40133.protonmail.ch" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726247AbgLWWU4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Dec 2020 17:20:56 -0500
-Date:   Wed, 23 Dec 2020 22:20:04 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=emersion.fr;
-        s=protonmail2; t=1608762014;
-        bh=EK/kRuktdtjfQl45kjvt1uNuLM2wx6A+3pLRg30o7AI=;
-        h=Date:To:From:Cc:Reply-To:Subject:In-Reply-To:References:From;
-        b=HQBB7c4AzpvPt+F0PSqxFQgiWKTPWDOo2evV4XsOQYMJf3Cxfd/j6F1dkf+Q8tpsH
-         QgUOKzxBfeNBFvKU/kzeO+6LcZL7j6dGJNR89FR87faPSBijOKDdG9RpoORiB90Iu6
-         W7/TBErmSmocrT3LO4fW56DkeRM1T+xCMTgV03X26cKEvwoK8xHVzqtXqklQLNIxoX
-         +r4YGNcJ7OxghwrWKuZcSU/L/Bg9j62uLUDBxmRKdiccPmrvQw7YCcH1dUKy5OwxoJ
-         bY8aWa6WRRlDEM+xY9YxcRRT666H/BfDhri4m9s06fwqIwUvR/Vp25CEvaQFD/nT2k
-         MKScipIHD5S0g==
-To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-From:   Simon Ser <contact@emersion.fr>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@linux.ie>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>
-Reply-To: Simon Ser <contact@emersion.fr>
-Subject: Re: [PATCH v8 4/4] NOTFORMERGE: drm/logicvc: Add plane colorkey support
-Message-ID: <oDsOkjfTYKa11LxfNy4LBLqutkVidfFn8--tjQPZj4w9gzCYNTOFglHqxXohsrYqTJ4uDv2xgJNKXPHzgAsACGnCkbKQis95SScGucOb1PI=@emersion.fr>
-In-Reply-To: <20201223212947.160565-5-paul.kocialkowski@bootlin.com>
-References: <20201223212947.160565-1-paul.kocialkowski@bootlin.com> <20201223212947.160565-5-paul.kocialkowski@bootlin.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF shortcircuit=no
-        autolearn=disabled version=3.4.4
-X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
-        mailout.protonmail.ch
+        id S1727332AbgLWWni (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Dec 2020 17:43:38 -0500
+Received: from lists.gateworks.com ([108.161.130.12]:40155 "EHLO
+        lists.gateworks.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726112AbgLWWni (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Dec 2020 17:43:38 -0500
+Received: from 068-189-091-139.biz.spectrum.com ([68.189.91.139] helo=tharvey.pdc.gateworks.com)
+        by lists.gateworks.com with esmtp (Exim 4.82)
+        (envelope-from <tharvey@gateworks.com>)
+        id 1ksCeW-0007gP-6T; Wed, 23 Dec 2020 22:30:40 +0000
+From:   Tim Harvey <tharvey@gateworks.com>
+To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Tim Harvey <tharvey@gateworks.com>
+Subject: [PATCH 1/2] dt-bindings: arm: fsl: Add binding for Gateworks boards with IMX8MM
+Date:   Wed, 23 Dec 2020 14:23:15 -0800
+Message-Id: <1608762196-29871-1-git-send-email-tharvey@gateworks.com>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-nouveau already has something for colorkey:
-https://drmdb.emersion.fr/properties/4008636142/colorkey
+Add bindings for the Gateworks Venice Development kit boards with
+IMX8MM System on Module.
 
-I know this is marked "not for merge", but it would be nice to discuss
-with them and come up with a standardized property.
+Signed-off-by: Tim Harvey <tharvey@gateworks.com>
+---
+ Documentation/devicetree/bindings/arm/fsl.yaml | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index 1ca9dfa..705c6e8 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -405,6 +405,9 @@ properties:
+               - beacon,imx8mm-beacon-kit  # i.MX8MM Beacon Development Kit
+               - fsl,imx8mm-ddr4-evk       # i.MX8MM DDR4 EVK Board
+               - fsl,imx8mm-evk            # i.MX8MM EVK Board
++              - gw,imx8mm-gw71xx-0x       # i.MX8MM Gateworks Development Kit
++              - gw,imx8mm-gw72xx-0x       # i.MX8MM Gateworks Development Kit
++              - gw,imx8mm-gw73xx-0x       # i.MX8MM Gateworks Development Kit
+               - variscite,var-som-mx8mm   # i.MX8MM Variscite VAR-SOM-MX8MM module
+           - const: fsl,imx8mm
+ 
+-- 
+2.7.4
+
