@@ -2,63 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 064262E1FC1
-	for <lists+devicetree@lfdr.de>; Wed, 23 Dec 2020 18:11:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 71BDA2E1FED
+	for <lists+devicetree@lfdr.de>; Wed, 23 Dec 2020 18:26:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726072AbgLWRL3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Dec 2020 12:11:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59716 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725811AbgLWRL2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Dec 2020 12:11:28 -0500
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4AC31C061794
-        for <devicetree@vger.kernel.org>; Wed, 23 Dec 2020 09:10:48 -0800 (PST)
-Received: by mail-lf1-x12f.google.com with SMTP id m12so41700878lfo.7
-        for <devicetree@vger.kernel.org>; Wed, 23 Dec 2020 09:10:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=5OLVS0meoj7dhJPDF+WBC3oRuo7D1/RNQb7X5Ldzs4M=;
-        b=M4HEwpkNOx+vL0gHmDsCBkDZ1lrpJMDL93MxAX7FC5TgAFMktS5ntZSWXGLg3ANrlk
-         kxkVbHII7Vi6wvrCfvKjnvqzr3qfVGCk5sWsciLG9i0i1XKs5B34rXd9qsknd48LUdZA
-         lwNdD4sOieZzhAZBQcgjKpnKI1Z4kV8MILsZr/XgrcDV24gj8X+xinFX3jRF/ep7uyEh
-         auKuluIFqZhbENOvNaJgGnPdJA4lyUfXYBM6bWCvX+f7oLWRd9rjpfU7jxpUy+am+xtv
-         ElM9ch1KbTmYcl3tAxULEMUWzQVE4UbohRwjLgcMRDOakVKXAOCSU66GHYlcE33Pg8Ic
-         CGHA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=5OLVS0meoj7dhJPDF+WBC3oRuo7D1/RNQb7X5Ldzs4M=;
-        b=PaZ8KhCKnO3aCQ01RKyk+KGdQGx1rx6QDhqbtZchlQnyitAhHYzksNhF0t29hLnQsK
-         A2S+rTj8hqr/c/6zxeobyYh00kxUsm8nZcyAYk6FAP1wnVyq70Cz3jSpM5Nl2I8SDTfD
-         odItrXosUbTAN5/FV4K5kpZhYn0uWansRHAmidS5uGyBlihTHsJXoikLYCRyldlwCssQ
-         qq4aSq1Jf97q49SizBmCgA8yYHxE6gSbW9WZ9FcmSWh0Lo0V4WzyiKmTJfM+1qAnajsC
-         P9VwJhbmDkPKKF62ITlsh1ycwWtPKUCuhIA3LNgQ7xOMJDZODp1tZyKfL9/GFqewD42K
-         EBHA==
-X-Gm-Message-State: AOAM533oKHDBRQt5o1iEKC0vPJmUAgaS2o97brdHMQDPfFFZv0NsdO8j
-        UBvtsaCd/YJ+CznLqvfnIbS/obmuITvfwdPknzg=
-X-Google-Smtp-Source: ABdhPJxTa1LVOuAcF+F0ctMrWbt5UCFH5EfEirK5LB1s/dCM9cnX0ZPtzZJ+fzxfccTs/urrEtSjFq/PyoufronrcDE=
-X-Received: by 2002:a19:5041:: with SMTP id z1mr12080094lfj.77.1608743446885;
- Wed, 23 Dec 2020 09:10:46 -0800 (PST)
+        id S1726949AbgLWRZu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Dec 2020 12:25:50 -0500
+Received: from www.zeus03.de ([194.117.254.33]:42292 "EHLO mail.zeus03.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726642AbgLWRZu (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 23 Dec 2020 12:25:50 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple; d=sang-engineering.com; h=
+        from:to:cc:subject:date:message-id:mime-version
+        :content-transfer-encoding; s=k1; bh=N5+gtJfhBgNR3GRzh/QZPrEtYyM
+        g8i3Kx+IQacgaj9I=; b=cMP3M95faKEZIFTKFE2HWoDRW+NDaASfONbOQym3oTY
+        mBc2c7OiK3EETFo1SmfJjhQjWxMD/1ya99Ua2fLHggsBZkfF9WEL0fYRanjp67fJ
+        77ytIq1RJwi4kYJrgYNWxmQyQorskT75tery+IQrp1W9aIcmyfisaYEAfMafMx/k
+        =
+Received: (qmail 544539 invoked from network); 23 Dec 2020 18:25:07 +0100
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 23 Dec 2020 18:25:07 +0100
+X-UD-Smtp-Session: l3s3148p1@nub7+CS3xudUhszw
+From:   Wolfram Sang <wsa+renesas@sang-engineering.com>
+To:     linux-renesas-soc@vger.kernel.org
+Cc:     Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 0/5] v3u: enable I2C0-6
+Date:   Wed, 23 Dec 2020 18:24:59 +0100
+Message-Id: <20201223172505.34736-1-wsa+renesas@sang-engineering.com>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-Received: by 2002:ab3:609:0:0:0:0:0 with HTTP; Wed, 23 Dec 2020 09:10:46 -0800 (PST)
-Reply-To: madammercywilliams8@gmail.com
-From:   Mercy Williams <madammercywilliams01@gmail.com>
-Date:   Wed, 23 Dec 2020 09:10:46 -0800
-Message-ID: <CAJwx9TfEwH90AFpUSKyzdH-oP4TsQzEnhbnY5fOdR1v4RAAzbQ@mail.gmail.com>
-Subject: Hello,
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+These patches are needed to enable I2C on the Falcon board for the V3U.
+Patch #5 is only for demonstration purposes. The series depends on my
+RWDT series, Ulrich's PFC v2 series and Geert's DMA placeholder. A
+branch can be found here:
 
-Did you receive the previous mail i sent to you? Contact me via :
-madammercywilliams8@gmail.com
+git://git.kernel.org/pub/scm/linux/kernel/git/wsa/linux.git renesas/v3u/i2c
 
-God bless you,
-Mercy Williams
+There is also a series in-flight to handle spurious interrupts on the
+V3U. Because I have never seen one, I wouldn't call it a dependency, so
+the series is handled seperately.
+
+Looking forward to comments...
+
+
+Koji Matsuoka (2):
+  arm64: dts: renesas: Add I2C to R8A779A0
+  arm64: dts: renesas: Add I2C support for falcon board
+
+Wolfram Sang (3):
+  dt-bindings: i2c: renesas,i2c: add r8a779a0 (V3U) support
+  clk: renesas: r8a779a0: add clocks for I2C
+  v3u: enable other I2C busses for testing
+
+ .../devicetree/bindings/i2c/renesas,i2c.txt   |   1 +
+ .../boot/dts/renesas/r8a779a0-falcon.dts      |  93 +++++++++++++
+ arch/arm64/boot/dts/renesas/r8a779a0.dtsi     | 122 ++++++++++++++++++
+ drivers/clk/renesas/r8a779a0-cpg-mssr.c       |   7 +
+ 4 files changed, 223 insertions(+)
+
+-- 
+2.28.0
+
