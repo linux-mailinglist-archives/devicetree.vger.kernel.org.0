@@ -2,309 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D1CC2E2219
-	for <lists+devicetree@lfdr.de>; Wed, 23 Dec 2020 22:31:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C1D202E2232
+	for <lists+devicetree@lfdr.de>; Wed, 23 Dec 2020 22:40:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729246AbgLWVar (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Dec 2020 16:30:47 -0500
-Received: from relay7-d.mail.gandi.net ([217.70.183.200]:47115 "EHLO
-        relay7-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727147AbgLWVaq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Dec 2020 16:30:46 -0500
-X-Originating-IP: 93.29.109.196
-Received: from localhost.localdomain (196.109.29.93.rev.sfr.net [93.29.109.196])
-        (Authenticated sender: paul.kocialkowski@bootlin.com)
-        by relay7-d.mail.gandi.net (Postfix) with ESMTPSA id 3B18120002;
-        Wed, 23 Dec 2020 21:30:02 +0000 (UTC)
-From:   Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-To:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        id S1725536AbgLWVk0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Dec 2020 16:40:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44398 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725270AbgLWVk0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Dec 2020 16:40:26 -0500
+Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 163E3C061794
+        for <devicetree@vger.kernel.org>; Wed, 23 Dec 2020 13:39:46 -0800 (PST)
+Received: by mail-pf1-x433.google.com with SMTP id x126so167939pfc.7
+        for <devicetree@vger.kernel.org>; Wed, 23 Dec 2020 13:39:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=XdnCKmMvXL/IFhJCMVS5L+iCGs5J9t20IcKtN3xxsJk=;
+        b=oKdeGe/VQUEpgKcRl6aNqXkImPkxoKngyitT7qpOuJ+hVu2RPjR7OJkt8Od6lJNwCq
+         F02G41hpLl2amg1aKsDLF8s+yMPT8auy7eMspYAyEGxIoFsDPHPFoTG4H2FKAzcAv6ce
+         QejLDUpUHX7ZR1JyZZ+UtLynrWR9n9wInaiDTRLKW1r0dmLzT2kwZkRgKqdqaBoEziLe
+         QPdI1XUvy2k8xa3HlebXhw9ivzVULkTe+NbvxXhneBrEMNs27KBGs57amCDRMVGA0ZRa
+         tmiqpwSsdls9mK03JiqGFQWxwSC+XwME4V6yuEcsUF/4/Un4GHrtnA4jdzycHImZCRQa
+         7qww==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=XdnCKmMvXL/IFhJCMVS5L+iCGs5J9t20IcKtN3xxsJk=;
+        b=WESPNB0vWIQfJc8fZ82r/WALDnuhM1aNO4U1SfqOrijGdg1OGMyEJNYTZ+1aCKYbJ3
+         N4nQOMvhXyvNw6DNJycfp558uGTRCnzg+Nhjws/x7ejsL4IItba8+MQvEYfaTWMSptH/
+         uvDByvBXDCgZ5nMJYpiv3SBGREt+gLVKWrOE401p+u7ly23TFn7a04EbmPOKrKVMaXXA
+         wqv5UUtwU75njPuPoEw8VGwI71+sei1XVFJ5Jg/GMB/C4wXYlOQvHyUC5p4ivo1a1vky
+         MgHUO3J7zhgYXWVNM9goqm/YvJ9EFHf7kC2RDV/AJW+JLf56b/N8V9RaxsS1gjHon1sW
+         NC4Q==
+X-Gm-Message-State: AOAM5302LEqWVuV9rzO/+gMNv4xCAjKgJua7x+kSQsn1Ag50BNupyOay
+        WR7vu42dhtqkJSlLM5JJk/wL54rNibk=
+X-Google-Smtp-Source: ABdhPJwZKLfszClVLJbmLpMZS8gK1sY+RuEFh15RpcE8sa7j7fAgQtURAu8JquH9nBibGKP/wZv/Hg==
+X-Received: by 2002:aa7:9312:0:b029:19d:fa90:3f42 with SMTP id 18-20020aa793120000b029019dfa903f42mr25335437pfj.18.1608759585546;
+        Wed, 23 Dec 2020 13:39:45 -0800 (PST)
+Received: from [10.230.29.27] ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id b197sm19210996pfb.42.2020.12.23.13.39.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 23 Dec 2020 13:39:44 -0800 (PST)
+Subject: Re: [PATCH 0/4] drm/v3d: Minor improvements
+To:     Stefan Wahren <stefan.wahren@i2se.com>,
+        Eric Anholt <eric@anholt.net>,
         Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: [PATCH v8 4/4] NOTFORMERGE: drm/logicvc: Add plane colorkey support
-Date:   Wed, 23 Dec 2020 22:29:47 +0100
-Message-Id: <20201223212947.160565-5-paul.kocialkowski@bootlin.com>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20201223212947.160565-1-paul.kocialkowski@bootlin.com>
-References: <20201223212947.160565-1-paul.kocialkowski@bootlin.com>
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <1608755245-18069-1-git-send-email-stefan.wahren@i2se.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Message-ID: <2f9769da-f5b3-0c25-2f46-a0796da225ba@gmail.com>
+Date:   Wed, 23 Dec 2020 13:39:42 -0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.6.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <1608755245-18069-1-git-send-email-stefan.wahren@i2se.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
----
- drivers/gpu/drm/logicvc/logicvc_drm.h   |   3 +
- drivers/gpu/drm/logicvc/logicvc_layer.c | 150 +++++++++++++++++++++++-
- drivers/gpu/drm/logicvc/logicvc_layer.h |   7 ++
- 3 files changed, 154 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/logicvc/logicvc_drm.h b/drivers/gpu/drm/logicvc/logicvc_drm.h
-index 68bbac6c4ab9..d69a686ab0f1 100644
---- a/drivers/gpu/drm/logicvc/logicvc_drm.h
-+++ b/drivers/gpu/drm/logicvc/logicvc_drm.h
-@@ -59,6 +59,9 @@ struct logicvc_drm {
- 	struct list_head layers_list;
- 	struct logicvc_crtc *crtc;
- 	struct logicvc_interface *interface;
-+
-+	struct drm_property *colorkey_enabled_property;
-+	struct drm_property *colorkey_value_property;
- };
- 
- #endif
-diff --git a/drivers/gpu/drm/logicvc/logicvc_layer.c b/drivers/gpu/drm/logicvc/logicvc_layer.c
-index 313043d29128..e2c3140926f1 100644
---- a/drivers/gpu/drm/logicvc/logicvc_layer.c
-+++ b/drivers/gpu/drm/logicvc/logicvc_layer.c
-@@ -23,6 +23,8 @@
- 
- #define logicvc_layer(p) \
- 	container_of(p, struct logicvc_layer, drm_plane)
-+#define logicvc_layer_state(p) \
-+	container_of(p, struct logicvc_layer_state, drm_plane_state)
- 
- static uint32_t logicvc_layer_formats_rgb16[] = {
- 	DRM_FORMAT_RGB565,
-@@ -138,6 +140,7 @@ static void logicvc_plane_atomic_update(struct drm_plane *drm_plane,
- 	struct logicvc_drm *logicvc = logicvc_drm(drm_plane->dev);
- 	struct drm_device *drm_dev = &logicvc->drm_dev;
- 	struct drm_plane_state *state = drm_plane->state;
-+	struct logicvc_layer_state *layer_state = logicvc_layer_state(state);
- 	struct drm_crtc *drm_crtc = &logicvc->crtc->drm_crtc;
- 	struct drm_display_mode *mode = &drm_crtc->state->adjusted_mode;
- 	struct drm_framebuffer *fb = state->fb;
-@@ -214,6 +217,15 @@ static void logicvc_plane_atomic_update(struct drm_plane *drm_plane,
- 			     alpha);
- 	}
- 
-+	/* Layer colorkey */
-+
-+	if (layer_state->colorkey_enabled) {
-+		reg = layer_state->colorkey_value;
-+
-+		regmap_write(logicvc->regmap,
-+			     LOGICVC_LAYER_COLOR_KEY_REG(index), reg);
-+	}
-+
- 	/* Layer control */
- 
- 	reg = LOGICVC_LAYER_CTRL_ENABLE;
-@@ -221,7 +233,8 @@ static void logicvc_plane_atomic_update(struct drm_plane *drm_plane,
- 	if (logicvc_layer_format_inverted(fb->format->format))
- 		reg |= LOGICVC_LAYER_CTRL_PIXEL_FORMAT_INVERT;
- 
--	reg |= LOGICVC_LAYER_CTRL_COLOR_KEY_DISABLE;
-+	if (!layer_state->colorkey_enabled)
-+		reg |= LOGICVC_LAYER_CTRL_COLOR_KEY_DISABLE;
- 
- 	regmap_write(logicvc->regmap, LOGICVC_LAYER_CTRL_REG(index), reg);
- }
-@@ -242,13 +255,109 @@ static struct drm_plane_helper_funcs logicvc_plane_helper_funcs = {
- 	.atomic_disable		= logicvc_plane_atomic_disable,
- };
- 
-+static void logicvc_plane_reset(struct drm_plane *drm_plane)
-+{
-+	struct logicvc_drm *logicvc = logicvc_drm(drm_plane->dev);
-+	struct device *dev = logicvc->drm_dev.dev;
-+	struct logicvc_layer_state *layer_state;
-+
-+	if (drm_plane->state) {
-+		layer_state = logicvc_layer_state(drm_plane->state);
-+		__drm_atomic_helper_plane_destroy_state(drm_plane->state);
-+		devm_kfree(dev, layer_state);
-+		drm_plane->state = NULL;
-+	}
-+
-+	layer_state = devm_kzalloc(dev, sizeof(*layer_state), GFP_KERNEL);
-+	if (!layer_state)
-+		return;
-+
-+	__drm_atomic_helper_plane_reset(drm_plane,
-+					&layer_state->drm_plane_state);
-+}
-+
-+static struct drm_plane_state *
-+logicvc_plane_atomic_duplicate_state(struct drm_plane *drm_plane)
-+{
-+	struct logicvc_drm *logicvc = logicvc_drm(drm_plane->dev);
-+	struct device *dev = logicvc->drm_dev.dev;
-+	struct logicvc_layer_state *layer_state_current;
-+	struct logicvc_layer_state *layer_state;
-+
-+	if (WARN_ON(!drm_plane->state))
-+		return NULL;
-+
-+	layer_state_current = logicvc_layer_state(drm_plane->state);
-+	layer_state = devm_kzalloc(dev, sizeof(*layer_state), GFP_KERNEL);
-+	if (!layer_state)
-+		return NULL;
-+
-+	layer_state->colorkey_enabled = layer_state_current->colorkey_enabled;
-+	layer_state->colorkey_value = layer_state_current->colorkey_value;
-+
-+	__drm_atomic_helper_plane_duplicate_state(drm_plane,
-+						  &layer_state->drm_plane_state);
-+
-+	return &layer_state->drm_plane_state;
-+}
-+
-+static void logicvc_plane_destroy_state(struct drm_plane *drm_plane,
-+					struct drm_plane_state *state)
-+{
-+	struct logicvc_drm *logicvc = logicvc_drm(drm_plane->dev);
-+	struct device *dev = logicvc->drm_dev.dev;
-+	struct logicvc_layer_state *layer_state = logicvc_layer_state(state);
-+
-+	__drm_atomic_helper_plane_destroy_state(&layer_state->drm_plane_state);
-+
-+	devm_kfree(dev, layer_state);
-+}
-+
-+static int logicvc_plane_atomic_set_property(struct drm_plane *drm_plane,
-+					     struct drm_plane_state *state,
-+					     struct drm_property *property,
-+					     uint64_t value)
-+{
-+	struct logicvc_drm *logicvc = logicvc_drm(drm_plane->dev);
-+	struct logicvc_layer_state *layer_state = logicvc_layer_state(state);
-+
-+	if (property == logicvc->colorkey_enabled_property)
-+		layer_state->colorkey_enabled = !!value;
-+	else if (property == logicvc->colorkey_value_property)
-+		layer_state->colorkey_value = (uint32_t)value;
-+	else
-+		return -ENOENT;
-+
-+	return 0;
-+}
-+
-+static int logicvc_plane_atomic_get_property(struct drm_plane *drm_plane,
-+					     const struct drm_plane_state *state,
-+					     struct drm_property *property,
-+					     uint64_t *value)
-+{
-+	struct logicvc_drm *logicvc = logicvc_drm(drm_plane->dev);
-+	struct logicvc_layer_state *layer_state = logicvc_layer_state(state);
-+
-+	if (property == logicvc->colorkey_enabled_property)
-+		*value = layer_state->colorkey_enabled;
-+	else if (property == logicvc->colorkey_value_property)
-+		*value = layer_state->colorkey_value;
-+	else
-+		return -ENOENT;
-+
-+	return 0;
-+}
-+
- static const struct drm_plane_funcs logicvc_plane_funcs = {
- 	.update_plane		= drm_atomic_helper_update_plane,
- 	.disable_plane		= drm_atomic_helper_disable_plane,
- 	.destroy		= drm_plane_cleanup,
--	.reset			= drm_atomic_helper_plane_reset,
--	.atomic_duplicate_state	= drm_atomic_helper_plane_duplicate_state,
--	.atomic_destroy_state	= drm_atomic_helper_plane_destroy_state,
-+	.reset			= logicvc_plane_reset,
-+	.atomic_duplicate_state	= logicvc_plane_atomic_duplicate_state,
-+	.atomic_destroy_state	= logicvc_plane_destroy_state,
-+	.atomic_set_property	= logicvc_plane_atomic_set_property,
-+	.atomic_get_property	= logicvc_plane_atomic_get_property,
- };
- 
- int logicvc_layer_buffer_find_setup(struct logicvc_drm *logicvc,
-@@ -345,7 +454,8 @@ int logicvc_layer_buffer_find_setup(struct logicvc_drm *logicvc,
- 	return 0;
- }
- 
--static struct logicvc_layer_formats *logicvc_layer_formats_lookup(struct logicvc_layer *layer)
-+static struct logicvc_layer_formats *
-+logicvc_layer_formats_lookup(struct logicvc_layer *layer)
- {
- 	bool alpha;
- 	unsigned int i = 0;
-@@ -364,7 +474,8 @@ static struct logicvc_layer_formats *logicvc_layer_formats_lookup(struct logicvc
- 	return NULL;
- }
- 
--static unsigned int logicvc_layer_formats_count(struct logicvc_layer_formats *formats)
-+static unsigned int
-+logicvc_layer_formats_count(struct logicvc_layer_formats *formats)
- {
- 	unsigned int count = 0;
- 
-@@ -533,6 +644,11 @@ static int logicvc_layer_init(struct logicvc_drm *logicvc,
- 
- 	drm_plane_create_zpos_immutable_property(&layer->drm_plane, zpos);
- 
-+	drm_object_attach_property(&layer->drm_plane.base,
-+				   logicvc->colorkey_enabled_property, 0);
-+	drm_object_attach_property(&layer->drm_plane.base,
-+				   logicvc->colorkey_value_property, 0);
-+
- 	drm_dbg_kms(drm_dev, "Registering layer #%d\n", index);
- 
- 	layer->formats = formats;
-@@ -581,6 +697,17 @@ int logicvc_layers_init(struct logicvc_drm *logicvc)
- 	struct logicvc_layer *next;
- 	int ret = 0;
- 
-+	logicvc->colorkey_enabled_property =
-+		drm_property_create_bool(drm_dev, 0, "colorkey_enabled");
-+	if (!logicvc->colorkey_enabled_property)
-+		goto error;
-+
-+	logicvc->colorkey_value_property =
-+		drm_property_create_range(drm_dev, 0, "colorkey_value",
-+					  0, 0xffffffff);
-+	if (!logicvc->colorkey_value_property)
-+		goto error;
-+
- 	layers_node = of_get_child_by_name(of_node, "layers");
- 	if (!layers_node) {
- 		drm_err(drm_dev, "No layers node found in the description\n");
-@@ -620,5 +747,16 @@ int logicvc_layers_init(struct logicvc_drm *logicvc)
- 	list_for_each_entry_safe(layer, next, &logicvc->layers_list, list)
- 		logicvc_layer_fini(logicvc, layer);
- 
-+	if (logicvc->colorkey_value_property) {
-+		drm_property_destroy(drm_dev, logicvc->colorkey_value_property);
-+		logicvc->colorkey_value_property = NULL;
-+	}
-+
-+	if (logicvc->colorkey_enabled_property) {
-+		drm_property_destroy(drm_dev,
-+				     logicvc->colorkey_enabled_property);
-+		logicvc->colorkey_enabled_property = NULL;
-+	}
-+
- 	return ret;
- }
-diff --git a/drivers/gpu/drm/logicvc/logicvc_layer.h b/drivers/gpu/drm/logicvc/logicvc_layer.h
-index c5767c81f446..69bb208ad79c 100644
---- a/drivers/gpu/drm/logicvc/logicvc_layer.h
-+++ b/drivers/gpu/drm/logicvc/logicvc_layer.h
-@@ -39,6 +39,13 @@ struct logicvc_layer_formats {
- 	uint32_t *formats;
- };
- 
-+struct logicvc_layer_state {
-+	struct drm_plane_state drm_plane_state;
-+
-+	bool colorkey_enabled;
-+	uint32_t colorkey_value;
-+};
-+
- struct logicvc_layer {
- 	struct logicvc_layer_config config;
- 	struct logicvc_layer_formats *formats;
+
+On 12/23/2020 12:27 PM, Stefan Wahren wrote:
+> This small series of v3d patches is a preparation for the upcoming bcm2711
+> support. The bcm2711 support will be send separate, because it involves
+> bigger changes.
+> 
+> I'm not sure that the schema conversion patch is sufficient.
+> 
+> Patch 2,3 are directly taken from Raspberry Pi 4 vendor tree.
+> 
+> Nicolas Saenz Julienne (1):
+>   drm/v3d: Use platform_get_irq_optional() to get optional IRQs
+> 
+> Phil Elwell (2):
+>   drm/v3d: Set dma_mask as well as coherent_dma_mask
+>   drm/v3d: Don't clear MMU control bits on exception
+
+You need to amend your Signed-off-by to all of those 3 patches that you
+did not author.
 -- 
-2.29.2
-
+Florian
