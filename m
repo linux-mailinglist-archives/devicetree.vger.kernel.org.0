@@ -2,222 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D1362E115B
-	for <lists+devicetree@lfdr.de>; Wed, 23 Dec 2020 02:24:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 47CA22E116C
+	for <lists+devicetree@lfdr.de>; Wed, 23 Dec 2020 02:37:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726361AbgLWBYm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Dec 2020 20:24:42 -0500
-Received: from vps0.lunn.ch ([185.16.172.187]:37668 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726112AbgLWBYm (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 22 Dec 2020 20:24:42 -0500
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94)
-        (envelope-from <andrew@lunn.ch>)
-        id 1krssf-00DU5r-3T; Wed, 23 Dec 2020 02:23:57 +0100
-Date:   Wed, 23 Dec 2020 02:23:57 +0100
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Robert Marko <robert.marko@sartura.hr>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, davem@davemloft.net, kuba@kernel.org,
-        netdev@vger.kernel.org, linux@armlinux.org.uk,
-        Luka Perkov <luka.perkov@sartura.hr>
-Subject: Re: [PATCH 3/4] net: phy: Add Qualcomm QCA807x driver
-Message-ID: <20201223012357.GS3107610@lunn.ch>
-References: <20201222222637.3204929-1-robert.marko@sartura.hr>
- <20201222222637.3204929-4-robert.marko@sartura.hr>
+        id S1726069AbgLWBgy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Dec 2020 20:36:54 -0500
+Received: from mailgw02.mediatek.com ([210.61.82.184]:43175 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1725931AbgLWBgy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Dec 2020 20:36:54 -0500
+X-UUID: 9b86282bee9343a4b2d733b07cdd2414-20201223
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:Reply-To:From:Subject:Message-ID; bh=igemKLkcQLI3htu4s5toT7cvfqLMBfICa3D565HL4bA=;
+        b=ObuJrw8+oKC2xfZhMqn8vvImXA1Dj8Zli5/3iiovlbafA7fq9TfdtT/7LVFodnEX943EcyknzfLBgH0S7Iv+Wd5L8vKw7ZMpBnIR5mJl0d+dqAAYtOvRcqFCtPVxlU0nCToJGbj/ptjh91vOiwnEHpa8UtcCC+b1J1mO3VNKwqQ=;
+X-UUID: 9b86282bee9343a4b2d733b07cdd2414-20201223
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
+        (envelope-from <yongqiang.niu@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 296003127; Wed, 23 Dec 2020 09:36:06 +0800
+Received: from MTKCAS36.mediatek.inc (172.27.4.186) by mtkmbs05n2.mediatek.inc
+ (172.21.101.140) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 23 Dec
+ 2020 09:36:05 +0800
+Received: from [10.17.3.153] (10.17.3.153) by MTKCAS36.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 23 Dec 2020 09:36:02 +0800
+Message-ID: <1608687363.18252.9.camel@mhfsdcap03>
+Subject: Re: [PATCH v2, 10/17] drm/mediatek: fix aal size config
+From:   Yongqiang Niu <yongqiang.niu@mediatek.com>
+Reply-To: Yongqiang Niu <yongqiang.niu@mediatek.com>
+To:     Chun-Kuang Hu <chunkuang.hu@kernel.org>
+CC:     CK Hu <ck.hu@mediatek.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        DTML <devicetree@vger.kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        DRI Development <dri-devel@lists.freedesktop.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+Date:   Wed, 23 Dec 2020 09:36:03 +0800
+In-Reply-To: <CAAOTY_9JNdL-huHYKq=W5gRMUHVRWeUzDunNa7q_d7DPp4P2pg@mail.gmail.com>
+References: <1607746317-4696-1-git-send-email-yongqiang.niu@mediatek.com>
+         <1607746317-4696-11-git-send-email-yongqiang.niu@mediatek.com>
+         <CAAOTY_9JNdL-huHYKq=W5gRMUHVRWeUzDunNa7q_d7DPp4P2pg@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201222222637.3204929-4-robert.marko@sartura.hr>
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> +++ b/drivers/net/phy/Kconfig
-> @@ -264,6 +264,16 @@ config QSEMI_PHY
->  	help
->  	  Currently supports the qs6612
->  
-> +config QCA807X_PHY
-> +	tristate "Qualcomm QCA807X PHYs"
+T24gV2VkLCAyMDIwLTEyLTE2IGF0IDIzOjEwICswODAwLCBDaHVuLUt1YW5nIEh1IHdyb3RlOg0K
+PiBIaSwgWW9uZ3FpYW5nOg0KPiANCj4gWW9uZ3FpYW5nIE5pdSA8eW9uZ3FpYW5nLm5pdUBtZWRp
+YXRlay5jb20+IOaWvCAyMDIw5bm0MTLmnIgxMuaXpSDpgLHlha0g5LiL5Y2IMTI6MjLlr6vpgZPv
+vJoNCj4gPg0KPiA+IGZpeCBhYWwgc2l6ZSBjb25maWcNCj4gPg0KPiA+IEZpeGVzOiAwNjY0ZDEz
+OTJjMjYgKGRybS9tZWRpYXRlazogQWRkIEFBTCBlbmdpbmUgYmFzaWMgZnVuY3Rpb24pDQo+ID4g
+U2lnbmVkLW9mZi1ieTogWW9uZ3FpYW5nIE5pdSA8eW9uZ3FpYW5nLm5pdUBtZWRpYXRlay5jb20+
+DQo+ID4gLS0tDQo+ID4gIGRyaXZlcnMvZ3B1L2RybS9tZWRpYXRlay9tdGtfZHJtX2RkcF9jb21w
+LmMgfCAxMSArKysrKysrKysrLQ0KPiA+ICAxIGZpbGUgY2hhbmdlZCwgMTAgaW5zZXJ0aW9ucygr
+KSwgMSBkZWxldGlvbigtKQ0KPiA+DQo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9t
+ZWRpYXRlay9tdGtfZHJtX2RkcF9jb21wLmMgYi9kcml2ZXJzL2dwdS9kcm0vbWVkaWF0ZWsvbXRr
+X2RybV9kZHBfY29tcC5jDQo+ID4gaW5kZXggYmU2MWQxMS4uZTdkNDgxZTAgMTAwNjQ0DQo+ID4g
+LS0tIGEvZHJpdmVycy9ncHUvZHJtL21lZGlhdGVrL210a19kcm1fZGRwX2NvbXAuYw0KPiA+ICsr
+KyBiL2RyaXZlcnMvZ3B1L2RybS9tZWRpYXRlay9tdGtfZHJtX2RkcF9jb21wLmMNCj4gPiBAQCAt
+MzMsOCArMzMsMTMgQEANCj4gPiAgI2RlZmluZSBESVNQX1JFR19VRk9fU1RBUlQgICAgICAgICAg
+ICAgICAgICAgICAweDAwMDANCj4gPg0KPiA+ICAjZGVmaW5lIERJU1BfQUFMX0VOICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgIDB4MDAwMA0KPiA+ICsjZGVmaW5lIERJU1BfQUFMX0NGRyAgICAg
+ICAgICAgICAgICAgICAgICAgICAgIDB4MDAyMA0KPiA+ICsjZGVmaW5lIEFBTF9SRUxBWV9NT0RF
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgQklUKDApDQo+ID4gKyNkZWZpbmUgQUFM
+X0VOR0lORV9FTiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBCSVQoMSkNCj4gPiAg
+I2RlZmluZSBESVNQX0FBTF9TSVpFICAgICAgICAgICAgICAgICAgICAgICAgICAweDAwMzANCj4g
+Pg0KPiA+ICsjZGVmaW5lIERJU1BfQUFMX09VVFBVVF9TSVpFICAgICAgICAgICAgICAgICAgIDB4
+MDRkOA0KPiA+ICsNCj4gPiAgI2RlZmluZSBESVNQX0NDT1JSX0VOICAgICAgICAgICAgICAgICAg
+ICAgICAgICAweDAwMDANCj4gPiAgI2RlZmluZSBDQ09SUl9FTiAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICBCSVQoMCkNCj4gPiAgI2RlZmluZSBESVNQX0NDT1JSX0NGRyAgICAgICAgICAg
+ICAgICAgICAgICAgICAweDAwMjANCj4gPiBAQCAtMTg0LDcgKzE4OSwxMSBAQCBzdGF0aWMgdm9p
+ZCBtdGtfYWFsX2NvbmZpZyhzdHJ1Y3QgbXRrX2RkcF9jb21wICpjb21wLCB1bnNpZ25lZCBpbnQg
+dywNCj4gPiAgICAgICAgICAgICAgICAgICAgICAgICAgICB1bnNpZ25lZCBpbnQgaCwgdW5zaWdu
+ZWQgaW50IHZyZWZyZXNoLA0KPiA+ICAgICAgICAgICAgICAgICAgICAgICAgICAgIHVuc2lnbmVk
+IGludCBicGMsIHN0cnVjdCBjbWRxX3BrdCAqY21kcV9wa3QpDQo+ID4gIHsNCj4gPiAtICAgICAg
+IG10a19kZHBfd3JpdGUoY21kcV9wa3QsIGggPDwgMTYgfCB3LCBjb21wLCBESVNQX0FBTF9TSVpF
+KTsNCj4gPiArICAgICAgIG10a19kZHBfd3JpdGUoY21kcV9wa3QsIHcgPDwgMTYgfCBoLCBjb21w
+LCBESVNQX0FBTF9TSVpFKTsNCj4gPiArICAgICAgIG10a19kZHBfd3JpdGUoY21kcV9wa3QsIHcg
+PDwgMTYgfCBoLCBjb21wLCBESVNQX0FBTF9PVVRQVVRfU0laRSk7DQo+ID4gKw0KPiA+ICsgICAg
+ICAgbXRrX2RkcF93cml0ZV9tYXNrKE5VTEwsIEFBTF9SRUxBWV9NT0RFLCBjb21wLCBESVNQX0FB
+TF9DRkcsDQo+IA0KPiBjbWRxX3BrdA0KPiANCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAg
+ICBBQUxfUkVMQVlfTU9ERSB8IEFBTF9FTkdJTkVfRU4pOw0KPiANCj4gVGhpcyBwYXRjaCBpcyB0
+byBmaXggc2l6ZSBjb25maWcsIHNvIG1vdmUgdGhpcyBzdGF0ZW1lbnQgdG8gYW5vdGhlciBwYXRj
+aC4NCj4gDQo+IFJlZ2FyZHMsDQo+IENodW4tS3VhbmcuDQo+IA0KDQp3aWxsIGJlIGZpeGVkIGlu
+IG5leHQgdmVyc2lvbg0KDQo+ID4gIH0NCj4gPg0KPiA+ICBzdGF0aWMgdm9pZCBtdGtfYWFsX3N0
+YXJ0KHN0cnVjdCBtdGtfZGRwX2NvbXAgKmNvbXApDQo+ID4gLS0NCj4gPiAxLjguMS4xLmRpcnR5
+DQo+ID4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCj4g
+PiBMaW51eC1tZWRpYXRlayBtYWlsaW5nIGxpc3QNCj4gPiBMaW51eC1tZWRpYXRla0BsaXN0cy5p
+bmZyYWRlYWQub3JnDQo+ID4gaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0
+aW5mby9saW51eC1tZWRpYXRlaw0KDQo=
 
-Kconfig is sorted based on the tristate string. So this should be
-after AT803X_PHY.
-
-> +	depends on OF_MDIO
-> +	help
-> +	  Adds support for the Qualcomm QCA807x PHYs.
-> +	  These are 802.3 Clause 22 compliant PHYs supporting gigabit
-> +	  ethernet as well as 100Base-FX and 1000Base-X fibre.
-> +
-> +	  Currently supports the QCA8072 and QCA8075 models.
-> +
->  config REALTEK_PHY
->  	tristate "Realtek PHYs"
->  	help
-> diff --git a/drivers/net/phy/Makefile b/drivers/net/phy/Makefile
-> index ca0a313423b9..5f463ce0f711 100644
-> --- a/drivers/net/phy/Makefile
-> +++ b/drivers/net/phy/Makefile
-> @@ -74,6 +74,7 @@ obj-$(CONFIG_MICROSEMI_PHY)	+= mscc/
->  obj-$(CONFIG_NATIONAL_PHY)	+= national.o
->  obj-$(CONFIG_NXP_TJA11XX_PHY)	+= nxp-tja11xx.o
->  obj-$(CONFIG_QSEMI_PHY)		+= qsemi.o
-> +obj-$(CONFIG_QCA807X_PHY)		+= qca807x.o
->  obj-$(CONFIG_REALTEK_PHY)	+= realtek.o
-
-One line earlier please.
-
-> +static int qca807x_cable_test_report_trans(int result)
-> +{
-> +	switch (result) {
-> +	case QCA807X_CDT_RESULTS_OK:
-> +		return ETHTOOL_A_CABLE_RESULT_CODE_OK;
-> +	case QCA807X_CDT_RESULTS_OPEN:
-> +		return ETHTOOL_A_CABLE_RESULT_CODE_OPEN;
-> +	case QCA807X_CDT_RESULTS_SAME_SHORT:
-> +		return ETHTOOL_A_CABLE_RESULT_CODE_SAME_SHORT;
-> +	case QCA807X_CDT_RESULTS_CROSS_SHORT_WITH_MDI1_SAME_OK:
-> +	case QCA807X_CDT_RESULTS_CROSS_SHORT_WITH_MDI2_SAME_OK:
-> +	case QCA807X_CDT_RESULTS_CROSS_SHORT_WITH_MDI3_SAME_OK:
-> +	case QCA807X_CDT_RESULTS_CROSS_SHORT_WITH_MDI1_SAME_OPEN:
-> +	case QCA807X_CDT_RESULTS_CROSS_SHORT_WITH_MDI2_SAME_OPEN:
-> +	case QCA807X_CDT_RESULTS_CROSS_SHORT_WITH_MDI3_SAME_OPEN:
-> +	case QCA807X_CDT_RESULTS_CROSS_SHORT_WITH_MDI1_SAME_SHORT:
-> +	case QCA807X_CDT_RESULTS_CROSS_SHORT_WITH_MDI2_SAME_SHORT:
-> +	case QCA807X_CDT_RESULTS_CROSS_SHORT_WITH_MDI3_SAME_SHORT:
-
-Feel free to add an optional pair to the netlink message, indicating
-which pair this pair is shorted to.
-
-> +		return ETHTOOL_A_CABLE_RESULT_CODE_CROSS_SHORT;
-> +	default:
-> +		return ETHTOOL_A_CABLE_RESULT_CODE_UNSPEC;
-> +	}
-> +}
-
-> +static int qca807x_cable_test_start(struct phy_device *phydev)
-> +{
-> +	int val, ret;
-> +
-> +	val = phy_read(phydev, QCA807X_CDT);
-> +	/* Enable inter-pair short check as well */
-> +	val &= ~QCA807X_CDT_ENABLE_INTER_PAIR_SHORT;
-> +	val |= QCA807X_CDT_ENABLE;
-> +	ret = phy_write(phydev, QCA807X_CDT, val);
-
-What happens when you are using the PHY as a media converted to Fibre?
-Should we return -EOPNOTSUPP here? I'm assuming it cannot do cable
-test on a fibre pair.
-
-> +static int qca807x_read_fiber_status(struct phy_device *phydev, bool combo_port)
-> +{
-> +	int ss, err, page, lpa, old_link = phydev->link;
-> +
-> +	/* Check whether fiber page is set and set if needed */
-> +	page = phy_read(phydev, QCA807X_CHIP_CONFIGURATION);
-> +	if (page & QCA807X_BT_BX_REG_SEL) {
-> +		page &= ~QCA807X_BT_BX_REG_SEL;
-> +		phy_write(phydev, QCA807X_CHIP_CONFIGURATION, page);
-> +	}
-> +
-> +	/* Update the link, but return if there was an error */
-> +	err = genphy_update_link(phydev);
-> +	if (err)
-> +		return err;
-> +
-> +	/* why bother the PHY if nothing can have changed */
-> +	if (phydev->autoneg == AUTONEG_ENABLE && old_link && phydev->link)
-> +		return 0;
-> +
-> +	phydev->speed = SPEED_UNKNOWN;
-> +	phydev->duplex = DUPLEX_UNKNOWN;
-> +	phydev->pause = 0;
-> +	phydev->asym_pause = 0;
-> +
-> +	if (phydev->autoneg == AUTONEG_ENABLE && phydev->autoneg_complete) {
-> +		lpa = phy_read(phydev, MII_LPA);
-> +		if (lpa < 0)
-> +			return lpa;
-> +
-> +		linkmode_mod_bit(ETHTOOL_LINK_MODE_Autoneg_BIT,
-> +				 phydev->lp_advertising, lpa & LPA_LPACK);
-> +		linkmode_mod_bit(ETHTOOL_LINK_MODE_1000baseX_Full_BIT,
-> +				 phydev->lp_advertising, lpa & LPA_1000XFULL);
-> +		linkmode_mod_bit(ETHTOOL_LINK_MODE_Pause_BIT,
-> +				 phydev->lp_advertising, lpa & LPA_1000XPAUSE);
-> +		linkmode_mod_bit(ETHTOOL_LINK_MODE_Asym_Pause_BIT,
-> +				 phydev->lp_advertising,
-> +				 lpa & LPA_1000XPAUSE_ASYM);
-> +
-> +		phy_resolve_aneg_linkmode(phydev);
-> +	}
-
-This looks a lot like genphy_c37_read_status(). You could call it, and
-then over write the speed and duplex with values from the PHY specific
-registers.
-
-> +static int qca807x_config_intr(struct phy_device *phydev)
-> +{
-> +	int ret, val;
-> +
-> +	val = phy_read(phydev, QCA807X_INTR_ENABLE);
-> +
-> +	if (phydev->interrupts == PHY_INTERRUPT_ENABLED) {
-> +		/* Check for combo port as it has fewer interrupts */
-> +		if (phy_read(phydev, QCA807X_CHIP_CONFIGURATION)) {
-> +			val |= QCA807X_INTR_ENABLE_SPEED_CHANGED;
-> +			val |= QCA807X_INTR_ENABLE_LINK_FAIL;
-> +			val |= QCA807X_INTR_ENABLE_LINK_SUCCESS;
-> +		} else {
-> +			val |= QCA807X_INTR_ENABLE_AUTONEG_ERR;
-> +			val |= QCA807X_INTR_ENABLE_SPEED_CHANGED;
-> +			val |= QCA807X_INTR_ENABLE_DUPLEX_CHANGED;
-> +			val |= QCA807X_INTR_ENABLE_LINK_FAIL;
-> +			val |= QCA807X_INTR_ENABLE_LINK_SUCCESS;
-> +		}
-> +		ret = phy_write(phydev, QCA807X_INTR_ENABLE, val);
-> +	} else {
-> +		ret = phy_write(phydev, QCA807X_INTR_ENABLE, 0);
-> +	}
-> +
-> +	return ret;
-> +}
-> +
-> +static int qca807x_ack_intr(struct phy_device *phydev)
-> +{
-> +	int ret;
-> +
-> +	ret = phy_read(phydev, QCA807X_INTR_STATUS);
-> +
-> +	return (ret < 0) ? ret : 0;
-> +}
-
-You need to rework this to follow what Ioana has done for interrupt
-handling.
-
-> +	{
-> +		PHY_ID_MATCH_EXACT(PHY_ID_QCA8075),
-> +		.name           = "Qualcomm QCA8075",
-> +		.flags		= PHY_POLL_CABLE_TEST,
-> +		/* PHY_GBIT_FEATURES */
-> +		.probe		= qca807x_probe,
-> +		.config_init	= qca807x_config,
-> +		.read_status	= qca807x_read_status,
-> +		.config_intr	= qca807x_config_intr,
-> +		.ack_interrupt	= qca807x_ack_intr,
-> +		.soft_reset	= genphy_soft_reset,
-> +		.get_tunable	= qca807x_get_tunable,
-> +		.set_tunable	= qca807x_set_tunable,
-> +		.cable_test_start	= qca807x_cable_test_start,
-> +		.cable_test_get_status	= qca807x_cable_test_get_status,
-> +	},
-> +	{
-> +		PHY_ID_MATCH_EXACT(PHY_ID_QCA807X_PSGMII),
-> +		.name           = "Qualcomm QCA807x PSGMII",
-> +		.probe		= qca807x_psgmii_config,
-
-This looks odd. 
-
-     Andrew
