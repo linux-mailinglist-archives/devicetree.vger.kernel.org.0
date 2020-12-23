@@ -2,90 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9635A2E1841
-	for <lists+devicetree@lfdr.de>; Wed, 23 Dec 2020 06:10:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B69D82E184F
+	for <lists+devicetree@lfdr.de>; Wed, 23 Dec 2020 06:17:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725923AbgLWFKC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Dec 2020 00:10:02 -0500
-Received: from linux.microsoft.com ([13.77.154.182]:34680 "EHLO
-        linux.microsoft.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725270AbgLWFKC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Dec 2020 00:10:02 -0500
-Received: from [192.168.0.104] (c-73-42-176-67.hsd1.wa.comcast.net [73.42.176.67])
-        by linux.microsoft.com (Postfix) with ESMTPSA id 600E320B7192;
-        Tue, 22 Dec 2020 21:09:20 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 600E320B7192
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-        s=default; t=1608700160;
-        bh=K9J4ojol1j77p7IqxfZv/TNUZQSXNFBqPQ13ODxz9PI=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=fAVBFFXASa7KYYnhjb+XwFANbcvENxuS5KeUJMg/5y+WFqdoDpwGcpV1TGsmoKG7d
-         mz7/vvMe6gYNzcfRfi3XMMqLCtWR+pSfe+75SjtwXCCueqVvoPMs6ZwNdjPJT5rEXs
-         NROyJh7s59diZb+EoS/ksJZ+y6i86/Fg37/tqxnc=
-Subject: Re: [PATCH v13 4/6] powerpc: Delete unused function
- delete_fdt_mem_rsv()
-To:     Thiago Jung Bauermann <bauerman@linux.ibm.com>
-Cc:     zohar@linux.ibm.com, robh@kernel.org, takahiro.akashi@linaro.org,
-        gregkh@linuxfoundation.org, will@kernel.org,
-        catalin.marinas@arm.com, mpe@ellerman.id.au, james.morse@arm.com,
-        sashal@kernel.org, benh@kernel.crashing.org, paulus@samba.org,
-        frowand.list@gmail.com, vincenzo.frascino@arm.com,
-        mark.rutland@arm.com, dmitry.kasatkin@gmail.com, jmorris@namei.org,
-        serge@hallyn.com, pasha.tatashin@soleen.com, allison@lohutok.net,
-        masahiroy@kernel.org, bhsharma@redhat.com, mbrugger@suse.com,
-        hsinyi@chromium.org, tao.li@vivo.com, christophe.leroy@c-s.fr,
-        prsriva@linux.microsoft.com, balajib@linux.microsoft.com,
-        linux-integrity@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-References: <20201219175713.18888-1-nramas@linux.microsoft.com>
- <20201219175713.18888-5-nramas@linux.microsoft.com>
- <87zh25jpmn.fsf@manicouagan.localdomain>
-From:   Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
-Message-ID: <0ce43447-c029-634b-85e5-3fd97d6d4d17@linux.microsoft.com>
-Date:   Tue, 22 Dec 2020 21:09:19 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1727064AbgLWFRH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Dec 2020 00:17:07 -0500
+Received: from m43-15.mailgun.net ([69.72.43.15]:59991 "EHLO
+        m43-15.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725923AbgLWFRG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Dec 2020 00:17:06 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1608700602; h=Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Message-ID: In-Reply-To: Date: References: Subject: Cc:
+ To: From: Sender; bh=p7NLYtLBCwi9t9Vj9dPZlOCGeUoDz8AD5ZLf0+IFHLk=; b=hXTtqEPUnXmdpTh5fYa0t6zitAmP+MJAhxdSPo3qR/zTgB8YrUi+YC10xv6mxsFQuvGU/mey
+ QbMN9AJqs5y2lzFnVY3/Q0jjBYfv1p8QMVjgXEqdYtGoCRPwvADdClEl773hwsTGPgi2nfaw
+ HgFPGcDuuf2A2VMX6Sxs5Je95XI=
+X-Mailgun-Sending-Ip: 69.72.43.15
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n08.prod.us-west-2.postgun.com with SMTP id
+ 5fe2d29dcfe5dd67db5d7a65 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 23 Dec 2020 05:16:13
+ GMT
+Sender: kvalo=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id EFC86C43465; Wed, 23 Dec 2020 05:16:12 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+Received: from x230.qca.qualcomm.com (88-114-240-156.elisa-laajakaista.fi [88.114.240.156])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: kvalo)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 59070C433CA;
+        Wed, 23 Dec 2020 05:16:09 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 59070C433CA
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=kvalo@codeaurora.org
+From:   Kalle Valo <kvalo@codeaurora.org>
+To:     =?utf-8?B?SsOpcsO0bWU=?= Pouiller <jerome.pouiller@silabs.com>
+Cc:     linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+        devel@driverdev.osuosl.org, linux-kernel@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        linux-mmc@vger.kernel.org,
+        Pali =?utf-8?Q?Roh?= =?utf-8?Q?=C3=A1r?= <pali@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>
+Subject: Re: [PATCH v3 03/24] wfx: add Makefile/Kconfig
+References: <20201104155207.128076-1-Jerome.Pouiller@silabs.com>
+        <20201104155207.128076-4-Jerome.Pouiller@silabs.com>
+        <8735zxanox.fsf@codeaurora.org> <9810105.nUPlyArG6x@pc-42>
+Date:   Wed, 23 Dec 2020 07:16:06 +0200
+In-Reply-To: <9810105.nUPlyArG6x@pc-42> (=?utf-8?B?IkrDqXLDtG1l?=
+ Pouiller"'s message of "Tue,
+        22 Dec 2020 22:19:52 +0100")
+Message-ID: <8735zx6r1l.fsf@codeaurora.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/24.5 (gnu/linux)
 MIME-Version: 1.0
-In-Reply-To: <87zh25jpmn.fsf@manicouagan.localdomain>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/22/20 5:08 PM, Thiago Jung Bauermann wrote:
-> 
-> Lakshmi Ramasubramanian <nramas@linux.microsoft.com> writes:
-> 
->> delete_fdt_mem_rsv() defined in "arch/powerpc/kexec/file_load.c"
->> has been renamed to fdt_find_and_del_mem_rsv(), and moved to
->> "drivers/of/kexec.c".
->>
->> Remove delete_fdt_mem_rsv() in "arch/powerpc/kexec/file_load.c".
->>
->> Co-developed-by: Prakhar Srivastava <prsriva@linux.microsoft.com>
->> Signed-off-by: Prakhar Srivastava <prsriva@linux.microsoft.com>
->> Signed-off-by: Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
->> ---
->>   arch/powerpc/include/asm/kexec.h |  1 -
->>   arch/powerpc/kexec/file_load.c   | 32 --------------------------------
->>   2 files changed, 33 deletions(-)
-> 
-> As I mentioned in the other email, this patch could remove
-> setup_new_fdt() as well.
-> 
-> I'm a bit ambivalent on whether this patch should be squashed with
-> patch 2 or left on its own, but I tend toward the latter option because
-> patch 2 is big enough already.
-> 
+J=C3=A9r=C3=B4me Pouiller <jerome.pouiller@silabs.com> writes:
 
-I also think Patch #2 is already big enough - I don't want to make more 
-changes in that patch.
+> On Tuesday 22 December 2020 16:02:38 CET Kalle Valo wrote:
+>> Jerome Pouiller <Jerome.Pouiller@silabs.com> writes:
+>>=20
+>> > From: J=C3=A9r=C3=B4me Pouiller <jerome.pouiller@silabs.com>
+>> >
+>> > Signed-off-by: J=C3=A9r=C3=B4me Pouiller <jerome.pouiller@silabs.com>
+>>=20
+>> [...]
+>>=20
+>> > +wfx-$(CONFIG_SPI) +=3D bus_spi.o
+>> > +wfx-$(subst m,y,$(CONFIG_MMC)) +=3D bus_sdio.o
+>>=20
+>> Why this subst? And why only for MMC?
+>
+> CONFIG_SPI is a boolean (y or empty). The both values make senses.
+>
+> CONFIG_MMC is a tristate (y, m or empty). The substitution above
+> ensure that bus_sdio.o will included in wfx.ko if CONFIG_MMC is 'm'
+> ("wfx-$(CONFIG_MMC) +=3D bus_sdio.o" wouldn't make the job).
+>
+> You may want to know what it happens if CONFIG_MMC=3Dm while CONFIG_WFX=
+=3Dy.
+> This line in Kconfig prevents to compile wfx statically if MMC is a
+> module:
+>        depends on MMC || !MMC # do not allow WFX=3Dy if MMC=3Dm
 
-I will remove delete_fdt_mem_rsv() and setup_new_fdt() in this patch 
-(Patch #4) and call of_kexec_setup_new_fdt() directly (in 
-setup_new_fdt_ppc64()).
+Ok, thanks for explaining this.
 
-thanks,
-  -lakshmi
+--=20
+https://patchwork.kernel.org/project/linux-wireless/list/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatc=
+hes
