@@ -2,117 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7373E2E188B
-	for <lists+devicetree@lfdr.de>; Wed, 23 Dec 2020 06:31:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CDD6D2E18AC
+	for <lists+devicetree@lfdr.de>; Wed, 23 Dec 2020 06:58:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727202AbgLWF3v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Dec 2020 00:29:51 -0500
-Received: from m43-15.mailgun.net ([69.72.43.15]:48028 "EHLO
-        m43-15.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726069AbgLWF3v (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Dec 2020 00:29:51 -0500
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1608701365; h=Content-Transfer-Encoding: Content-Type:
- MIME-Version: Message-ID: In-Reply-To: Date: References: Subject: Cc:
- To: From: Sender; bh=+PgCftFCNKFXUIzjrZaJrrb1dDkJP0N7TDJaNh3c03M=; b=P8KGtr8Ih/acNhKj7ec2Y1pWv6wpuKN2gGELepv2/Rkq6HBI5L4rIsRoxsauN8DTcFUUdJ2n
- umyAHf7D6MgqXH0NUzyjkqpQMiPc8frZangTw+VvT99oSDk33e0x3iBNXumqu2Ih7CwTMH6Z
- ke+BfXB0Xvm9FFcbqGIzZTmPewE=
-X-Mailgun-Sending-Ip: 69.72.43.15
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n05.prod.us-west-2.postgun.com with SMTP id
- 5fe2d591da471981883969b5 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 23 Dec 2020 05:28:49
- GMT
-Sender: kvalo=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id DC5C9C43461; Wed, 23 Dec 2020 05:28:49 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
-Received: from x230.qca.qualcomm.com (88-114-240-156.elisa-laajakaista.fi [88.114.240.156])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: kvalo)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 460EBC433C6;
-        Wed, 23 Dec 2020 05:28:46 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 460EBC433C6
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=kvalo@codeaurora.org
-From:   Kalle Valo <kvalo@codeaurora.org>
-To:     =?utf-8?B?SsOpcsO0bWU=?= Pouiller <jerome.pouiller@silabs.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        devel@driverdev.osuosl.org, devicetree@vger.kernel.org,
-        Ulf Hansson <ulf.hansson@linaro.org>, netdev@vger.kernel.org,
-        linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, linux-mmc@vger.kernel.org,
-        Pali =?utf-8?Q?Roh=C3=A1r?= <pali@kernel.org>,
-        "David S . Miller" <davem@davemloft.net>
-Subject: Re: [PATCH v3 09/24] wfx: add hwio.c/hwio.h
-References: <20201104155207.128076-1-Jerome.Pouiller@silabs.com>
-        <87lfdp98rw.fsf@codeaurora.org> <X+IQRct0Zsm87H4+@kroah.com>
-        <4279510.LvFx2qVVIh@pc-42>
-Date:   Wed, 23 Dec 2020 07:28:44 +0200
-In-Reply-To: <4279510.LvFx2qVVIh@pc-42> (=?utf-8?B?IkrDqXLDtG1l?=
- Pouiller"'s message of "Tue,
-        22 Dec 2020 22:02:09 +0100")
-Message-ID: <87im8t5bw3.fsf@codeaurora.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/24.5 (gnu/linux)
+        id S1726664AbgLWF6A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Dec 2020 00:58:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41166 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726766AbgLWF57 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Dec 2020 00:57:59 -0500
+Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5798BC06179C
+        for <devicetree@vger.kernel.org>; Tue, 22 Dec 2020 21:57:19 -0800 (PST)
+Received: by mail-pj1-x1029.google.com with SMTP id b5so2615953pjl.0
+        for <devicetree@vger.kernel.org>; Tue, 22 Dec 2020 21:57:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to
+         :user-agent;
+        bh=lJW5Pmu0e9Bh/oQqoiiF+Gb9g3MgQRYVOM3hqkPUzNs=;
+        b=W5YJc6EiiWk23cUCGsgoEZThjaHKBFlEG4O2cgRcXu+x5+1ODHw6d3bAyttpAh4Npy
+         yhDhQA4+L+oz4wy8QflysfNhX4OfzqA0qNs/SHpKza5WXKgrPbKjAZqXsxt3M6+5uj5+
+         VPzhmEJIKzlbozEEPWm1XL8KIXiyyOKO2HmVu9XxWuzA1/dlfxbwhMlk6o4r2lNa/tYB
+         koUJs3PACOOeP10gRbtLplfNUPU/AAwjZHrgwyo0byxhHtSGWR9eYNFuLyVygLLz+QCX
+         6yGQiSn1spMfKd1SRklgKWo8kYn0YWbHteDUGgx/252nlqC2vuCSM8Grhs1IDDtLRYP5
+         ah0w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to:user-agent;
+        bh=lJW5Pmu0e9Bh/oQqoiiF+Gb9g3MgQRYVOM3hqkPUzNs=;
+        b=oo6RaLWS0E3eBp91AjxpblUtspVppP25FSdscrMbAt0XVbqfH0a2qZMLKRR6wr2Upx
+         V2aNJ6vLkShmrfipRoIas89VCGBShhhnDmBRRukMdBnddQcvhmAnVhY3xkKAIV35RfHx
+         1R+AJXwhWYIb5dMfLDf5aLNwRE2Buz+DCb96jvEp21QBBNVvwzv1WKwCTz9UZU8wVkXM
+         zc+nPNh1hx37+3AsVVvvqoIU0R131RmH3X9a8mDcaHw2ujhTYU7RaYbrOMIDCTwNjlBU
+         5znlyqJgVK5NhpTQqKBDcWzJdpZ2gBErzpthIzCpycG4TgRThlfuFr2/Z6UvQEagMyOE
+         TM9w==
+X-Gm-Message-State: AOAM531huOMCzvZL73Z751bmJGTRaDAU1AivWne03+1vQNp2Qnd3jR3O
+        C8MQb80kpsOIrqztz8xuVSmLzw==
+X-Google-Smtp-Source: ABdhPJwsLgoGssujAxswnWOsu8NXhLnCPjFpMxnGOCgLNcgnd+pdiKB2jV1BoCNGdPUko3cGZpeLtQ==
+X-Received: by 2002:a17:90a:cb84:: with SMTP id a4mr25789987pju.50.1608703038680;
+        Tue, 22 Dec 2020 21:57:18 -0800 (PST)
+Received: from localhost ([122.172.20.109])
+        by smtp.gmail.com with ESMTPSA id w7sm22839140pgr.48.2020.12.22.21.57.16
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 22 Dec 2020 21:57:17 -0800 (PST)
+Date:   Wed, 23 Dec 2020 11:27:15 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Dmitry Osipenko <digetx@gmail.com>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Nicolas Chauvet <kwizart@gmail.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Kevin Hilman <khilman@kernel.org>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        devel@driverdev.osuosl.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-media@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-clk@vger.kernel.org
+Subject: Re: [PATCH v2 28/48] soc/tegra: Introduce core power domain driver
+Message-ID: <20201223055715.2n5eba7fohrwpgr5@vireshk-i7>
+References: <20201217180638.22748-1-digetx@gmail.com>
+ <20201217180638.22748-29-digetx@gmail.com>
+ <20201222064029.duuzcsj53rt7xzvt@vireshk-i7>
+ <c130f78d-3d97-9b26-be77-951fee0d8680@gmail.com>
+ <3a5c00e5-2cdd-35ce-2714-d4ffbf9d516a@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <3a5c00e5-2cdd-35ce-2714-d4ffbf9d516a@gmail.com>
+User-Agent: NeoMutt/20180716-391-311a52
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-J=C3=A9r=C3=B4me Pouiller <jerome.pouiller@silabs.com> writes:
+On 22-12-20, 22:39, Dmitry Osipenko wrote:
+> 22.12.2020 22:21, Dmitry Osipenko пишет:
+> >>> +	if (IS_ERR(opp)) {
+> >>> +		dev_err(&genpd->dev, "failed to find OPP for level %u: %pe\n",
+> >>> +			level, opp);
+> >>> +		return PTR_ERR(opp);
+> >>> +	}
+> >>> +
+> >>> +	err = dev_pm_opp_set_voltage(&genpd->dev, opp);
+> >> IIUC, you implemented this callback because you want to use the voltage triplet
+> >> present in the OPP table ?
+> >>
+> >> And so you are setting the regulator ("power") later in this patch ?
+> > yes
+> > 
+> >> I am not in favor of implementing this routine, as it just adds a wrapper above
+> >> the regulator API. What you should be doing rather is get the regulator by
+> >> yourself here (instead of depending on the OPP core). And then you can do
+> >> dev_pm_opp_get_voltage() here and set the voltage yourself. You may want to
+> >> implement a version supporting triplet here though for the same.
+> >>
+> >> And you won't require the sync version of the API as well then.
+> >>
+> > That's what I initially did for this driver. I don't mind to revert back
+> > to the initial variant in v3, it appeared to me that it will be nicer
+> > and cleaner to have OPP API managing everything here.
+> 
+> I forgot one important detail (why the initial variant wasn't good)..
+> OPP entries that have unsupportable voltages should be filtered out and
+> OPP core performs the filtering only if regulator is assigned to the OPP
+> table.
+> 
+> If regulator is assigned to the OPP table, then we need to use OPP API
+> for driving the regulator, hence that's why I added
+> dev_pm_opp_sync_regulators() and dev_pm_opp_set_voltage().
+> 
+> Perhaps it should be possible to add dev_pm_opp_get_regulator() that
 
-> On Tuesday 22 December 2020 16:27:01 CET Greg Kroah-Hartman wrote:
->>=20
->> On Tue, Dec 22, 2020 at 05:10:11PM +0200, Kalle Valo wrote:
->> > Jerome Pouiller <Jerome.Pouiller@silabs.com> writes:
->> >
->> > > +/*
->> > > + * Internal helpers.
->> > > + *
->> > > + * About CONFIG_VMAP_STACK:
->> > > + * When CONFIG_VMAP_STACK is enabled, it is not possible to run DMA=
- on stack
->> > > + * allocated data. Functions below that work with registers (aka fu=
-nctions
->> > > + * ending with "32") automatically reallocate buffers with kmalloc.=
- However,
->> > > + * functions that work with arbitrary length buffers let's caller t=
-o handle
->> > > + * memory location. In doubt, enable CONFIG_DEBUG_SG to detect badl=
-y located
->> > > + * buffer.
->> > > + */
->> >
->> > This sounds very hacky to me, I have understood that you should never
->> > use stack with DMA.
->>=20
->> You should never do that because some platforms do not support it, so no
->> driver should ever try to do that as they do not know what platform they
->> are running on.
->
-> Yes, I have learned this rule the hard way.
->
-> There is no better way than a comment to warn the user that the argument
-> will be used with a DMA? A Sparse annotation, for example?
+What's wrong with getting the regulator in the driver as well ? Apart from the
+OPP core ?
 
-I have not seen anything, but something like sparse annotation would be
-useful. Please let me know if you find anything like that.
+> will return the OPP table regulator in order to allow driver to use the
+> regulator directly. But I'm not sure whether this is a much better
+> option than the opp_sync_regulators() and opp_set_voltage() APIs.
 
-But I think that CONFIG_VMAP_STACK is irrelevant and the comment should
-be clarified that using stack memory must NOT be used for DMA operations
-in any circumstances.
+set_voltage() is still fine as there is some data that the OPP core has, but
+sync_regulator() has nothing to do with OPP core.
 
---=20
-https://patchwork.kernel.org/project/linux-wireless/list/
+And this may lead to more wrapper helpers in the OPP core, which I am afraid of.
+And so even if it is not the best, I would like the OPP core to provide the data
+and not get into this. Ofcourse there is an exception to this, opp_set_rate.
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatc=
-hes
+-- 
+viresh
