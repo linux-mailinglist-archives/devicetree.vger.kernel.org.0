@@ -2,38 +2,38 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 29A222E14BE
-	for <lists+devicetree@lfdr.de>; Wed, 23 Dec 2020 03:48:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 833CF2E1411
+	for <lists+devicetree@lfdr.de>; Wed, 23 Dec 2020 03:38:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730101AbgLWCnD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Dec 2020 21:43:03 -0500
-Received: from mail.kernel.org ([198.145.29.99]:52526 "EHLO mail.kernel.org"
+        id S1729219AbgLWCYS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Dec 2020 21:24:18 -0500
+Received: from mail.kernel.org ([198.145.29.99]:54138 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729907AbgLWCXI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 22 Dec 2020 21:23:08 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 214022256F;
-        Wed, 23 Dec 2020 02:22:27 +0000 (UTC)
+        id S1730163AbgLWCYQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 22 Dec 2020 21:24:16 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 185AC225AB;
+        Wed, 23 Dec 2020 02:23:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1608690147;
-        bh=UkGeKJkcCoTLxKNZoeNdLRsTAEj6DMtSyChkrv5bYHw=;
+        s=k20201202; t=1608690215;
+        bh=L/71AEs9l4suiCyP80pYIjRgIskmdRP1bL+0G9/+pdM=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=gyAyVxIM4L6T+uvTjRbOtdUtPbDu4y35Z1fdU6J48UOgH5xoSG7ro3DwV1FQj+ZAU
-         wzHVTADVXncSaLZKAjxY7+gumkStjZqM7pm7sqzPPIt/FTPkd2d3ZqAD1uMcp+QR9S
-         VRrq5GTzqCeEGB/YtMi+8d8yURWVpCdqd0sTiU1YoHWy9KyO2CT/haBPK4ofx/citN
-         wbyOdw97tT5nWAFzr6Eq02BdkWehtMxAX9u06d+8EGM+fkGkWPLE3nQ6r8yT34M3oW
-         z/EzASYTCP4kMp2fT5yHi8c8ZuSwMAKpJi2xGIEsO3JWPyaCPHn4thEcmtQLkJ6vH0
-         XC+6I5DOb6mlw==
+        b=ad/ecCMkXF2kvkiUB9C1W1rHEuV/F0iszot9VBomk0Bc5WmZrUY8BBlNz35T2jo0q
+         EE1qCwI9QP1Ek4Dey2f9uhblc+XvUbklXV04J3LLlwlYf2fYdJFpSQzlvV7VqIy2Eq
+         7viuWa+3hwJ98nItI+PkV1grDScoEEzBPt7XO29QyBWW6HsaezYxuOaFczm84UBqB1
+         rAnIKOiYfC9BC12SxqTJVkS0L71+ZNuRoZawtGNySI/ex5LQom42norESbcOV488eT
+         3B6603mBeE5XKGmm5igtqNcFbcEY50mFuLHMsh2znkdAQHxA9pTqNkhpqz+KOUYUDM
+         hzaNYqEzeMUZQ==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Michal Simek <michal.simek@xilinx.com>,
-        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH AUTOSEL 4.19 68/87] ARM: zynq: Fix leds subnode name for zc702/zybo-z7
-Date:   Tue, 22 Dec 2020 21:20:44 -0500
-Message-Id: <20201223022103.2792705-68-sashal@kernel.org>
+Cc:     Zhen Lei <thunder.leizhen@huawei.com>,
+        Wei Xu <xuwei5@hisilicon.com>, Sasha Levin <sashal@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 4.14 34/66] ARM: dts: hisilicon: fix errors detected by snps-dw-apb-uart.yaml
+Date:   Tue, 22 Dec 2020 21:22:20 -0500
+Message-Id: <20201223022253.2793452-34-sashal@kernel.org>
 X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20201223022103.2792705-1-sashal@kernel.org>
-References: <20201223022103.2792705-1-sashal@kernel.org>
+In-Reply-To: <20201223022253.2793452-1-sashal@kernel.org>
+References: <20201223022253.2793452-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -42,56 +42,113 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Michal Simek <michal.simek@xilinx.com>
+From: Zhen Lei <thunder.leizhen@huawei.com>
 
-[ Upstream commit 38d1985fdfcf20dc246b552580479ae602f735d1 ]
+[ Upstream commit 30ea026e33c6dda48849d9fe0d15c1d280a92d53 ]
 
-Fix the leds subnode names to match (^led-[0-9a-f]$|led).
+1. Change node name to match '^serial(@[0-9a-f,]+)*$'
+2. Change clock-names to "baudclk", "apb_pclk". Both of them use the same
+   clock.
 
-Similar change has been also done by commit 9a19a39ee48b ("arm64: dts:
-zynqmp: Fix leds subnode name for zcu100/ultra96 v1").
-
-The patch is fixing these warnings:
-.../zynq-zc702.dt.yaml: leds: 'ds23' does not match any of the regexes:
-'(^led-[0-9a-f]$|led)', 'pinctrl-[0-9]+'
->From schema: .../Documentation/devicetree/bindings/leds/leds-gpio.yaml
-.../zynq-zybo-z7.dt.yaml: gpio-leds: 'ld4' does not match any of the
-regexes: '(^led-[0-9a-f]$|led)', 'pinctrl-[0-9]+'
->From schema: .../Documentation/devicetree/bindings/leds/leds-gpio.yaml
-
-Signed-off-by: Michal Simek <michal.simek@xilinx.com>
-Link: https://lore.kernel.org/r/607a66783b129294364abf09a6fc8abd241ff4ee.1606397101.git.michal.simek@xilinx.com
+Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
+Signed-off-by: Wei Xu <xuwei5@hisilicon.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/zynq-zc702.dts   | 2 +-
- arch/arm/boot/dts/zynq-zybo-z7.dts | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+ arch/arm/boot/dts/hip01.dtsi    | 24 ++++++++++++------------
+ arch/arm/boot/dts/hip04-d01.dts |  2 +-
+ arch/arm/boot/dts/hip04.dtsi    |  6 +++---
+ 3 files changed, 16 insertions(+), 16 deletions(-)
 
-diff --git a/arch/arm/boot/dts/zynq-zc702.dts b/arch/arm/boot/dts/zynq-zc702.dts
-index 27cd6cb52f1ba..10a7d0b8cf8b9 100644
---- a/arch/arm/boot/dts/zynq-zc702.dts
-+++ b/arch/arm/boot/dts/zynq-zc702.dts
-@@ -49,7 +49,7 @@ sw13 {
- 	leds {
- 		compatible = "gpio-leds";
+diff --git a/arch/arm/boot/dts/hip01.dtsi b/arch/arm/boot/dts/hip01.dtsi
+index 9d5fd5cfefa66..98667ca26c037 100644
+--- a/arch/arm/boot/dts/hip01.dtsi
++++ b/arch/arm/boot/dts/hip01.dtsi
+@@ -44,41 +44,41 @@ amba {
+ 			compatible = "simple-bus";
+ 			ranges;
  
--		ds23 {
-+		led-ds23 {
- 			label = "ds23";
- 			gpios = <&gpio0 10 0>;
- 			linux,default-trigger = "heartbeat";
-diff --git a/arch/arm/boot/dts/zynq-zybo-z7.dts b/arch/arm/boot/dts/zynq-zybo-z7.dts
-index 357b78a5c11b1..7b87e10d3953b 100644
---- a/arch/arm/boot/dts/zynq-zybo-z7.dts
-+++ b/arch/arm/boot/dts/zynq-zybo-z7.dts
-@@ -25,7 +25,7 @@ chosen {
- 	gpio-leds {
- 		compatible = "gpio-leds";
+-			uart0: uart@10001000 {
++			uart0: serial@10001000 {
+ 				compatible = "snps,dw-apb-uart";
+ 				reg = <0x10001000 0x1000>;
+-				clocks = <&hisi_refclk144mhz>;
+-				clock-names = "apb_pclk";
++				clocks = <&hisi_refclk144mhz>, <&hisi_refclk144mhz>;
++				clock-names = "baudclk", "apb_pclk";
+ 				reg-shift = <2>;
+ 				interrupts = <0 32 4>;
+ 				status = "disabled";
+ 			};
  
--		ld4 {
-+		led-ld4 {
- 			label = "zynq-zybo-z7:green:ld4";
- 			gpios = <&gpio0 7 GPIO_ACTIVE_HIGH>;
+-			uart1: uart@10002000 {
++			uart1: serial@10002000 {
+ 				compatible = "snps,dw-apb-uart";
+ 				reg = <0x10002000 0x1000>;
+-				clocks = <&hisi_refclk144mhz>;
+-				clock-names = "apb_pclk";
++				clocks = <&hisi_refclk144mhz>, <&hisi_refclk144mhz>;
++				clock-names = "baudclk", "apb_pclk";
+ 				reg-shift = <2>;
+ 				interrupts = <0 33 4>;
+ 				status = "disabled";
+ 			};
+ 
+-			uart2: uart@10003000 {
++			uart2: serial@10003000 {
+ 				compatible = "snps,dw-apb-uart";
+ 				reg = <0x10003000 0x1000>;
+-				clocks = <&hisi_refclk144mhz>;
+-				clock-names = "apb_pclk";
++				clocks = <&hisi_refclk144mhz>, <&hisi_refclk144mhz>;
++				clock-names = "baudclk", "apb_pclk";
+ 				reg-shift = <2>;
+ 				interrupts = <0 34 4>;
+ 				status = "disabled";
+ 			};
+ 
+-			uart3: uart@10006000 {
++			uart3: serial@10006000 {
+ 				compatible = "snps,dw-apb-uart";
+ 				reg = <0x10006000 0x1000>;
+-				clocks = <&hisi_refclk144mhz>;
+-				clock-names = "apb_pclk";
++				clocks = <&hisi_refclk144mhz>, <&hisi_refclk144mhz>;
++				clock-names = "baudclk", "apb_pclk";
+ 				reg-shift = <2>;
+ 				interrupts = <0 4 4>;
+ 				status = "disabled";
+diff --git a/arch/arm/boot/dts/hip04-d01.dts b/arch/arm/boot/dts/hip04-d01.dts
+index 40a9e33c2654e..9b2499635dc76 100644
+--- a/arch/arm/boot/dts/hip04-d01.dts
++++ b/arch/arm/boot/dts/hip04-d01.dts
+@@ -25,7 +25,7 @@ memory@00000000,10000000 {
+ 	};
+ 
+ 	soc {
+-		uart0: uart@4007000 {
++		uart0: serial@4007000 {
+ 			status = "ok";
+ 		};
+ 	};
+diff --git a/arch/arm/boot/dts/hip04.dtsi b/arch/arm/boot/dts/hip04.dtsi
+index 44044f2751151..9593a78ccf067 100644
+--- a/arch/arm/boot/dts/hip04.dtsi
++++ b/arch/arm/boot/dts/hip04.dtsi
+@@ -253,12 +253,12 @@ arm-pmu {
+ 				     <0 79 4>;
+ 		};
+ 
+-		uart0: uart@4007000 {
++		uart0: serial@4007000 {
+ 			compatible = "snps,dw-apb-uart";
+ 			reg = <0x4007000 0x1000>;
+ 			interrupts = <0 381 4>;
+-			clocks = <&clk_168m>;
+-			clock-names = "uartclk";
++			clocks = <&clk_168m>, <&clk_168m>;
++			clock-names = "baudclk", "apb_pclk";
+ 			reg-shift = <2>;
+ 			status = "disabled";
  		};
 -- 
 2.27.0
