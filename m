@@ -2,60 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B9AC2E1BAD
-	for <lists+devicetree@lfdr.de>; Wed, 23 Dec 2020 12:13:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E445B2E1BBE
+	for <lists+devicetree@lfdr.de>; Wed, 23 Dec 2020 12:18:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728329AbgLWLJO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Dec 2020 06:09:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60686 "EHLO
+        id S1728452AbgLWLR2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Dec 2020 06:17:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33714 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728284AbgLWLJO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Dec 2020 06:09:14 -0500
-Received: from mail-pg1-x534.google.com (mail-pg1-x534.google.com [IPv6:2607:f8b0:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC4C6C0613D6
-        for <devicetree@vger.kernel.org>; Wed, 23 Dec 2020 03:08:33 -0800 (PST)
-Received: by mail-pg1-x534.google.com with SMTP id f17so10401873pge.6
-        for <devicetree@vger.kernel.org>; Wed, 23 Dec 2020 03:08:33 -0800 (PST)
+        with ESMTP id S1726022AbgLWLR2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Dec 2020 06:17:28 -0500
+Received: from mail-pf1-x436.google.com (mail-pf1-x436.google.com [IPv6:2607:f8b0:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF848C0613D3;
+        Wed, 23 Dec 2020 03:16:47 -0800 (PST)
+Received: by mail-pf1-x436.google.com with SMTP id t22so10204422pfl.3;
+        Wed, 23 Dec 2020 03:16:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
+        d=gmail.com; s=20161025;
         h=from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=gRczQcEVREVIHP/xCIGe+pHjWpZBhd9/8Bmyk1xi1h0=;
-        b=Tdm+aRo5fz3I6o6oofiQYP4Dg5J+sA3cDlWHv8d/4XsG4r8Eylj/i+aIK+XiBTRHb/
-         XIY8Y3JA71pVKMxR8MSTEUeKDtuyefm1g9aCi74H4BU1zKeNNbE4lh2RqvES7a/p42Y4
-         EOp0tEPBR3XlgULoCOO+Df6derhRdWd/w/kRc=
+        bh=i8cSGTFdV6NDouRQh8ewWda9XJF0YqAiRaVhtmmVYqs=;
+        b=FdVyJfiMZLgccBvmk28x2IxrfNCBbrDkEui8a2XFvqwT8XMQnbnq2eUij1zz6Z9FZ/
+         Ac6DIc9SYTKcn7Fkf5L8DNH6xKPaahH8DctB5c6O/X8H3PZg3CsjLLsgeVhPqJW1AT8e
+         QHtnlOxWWeCU7VeRwRE59prGitlRMHyQazqW19YCf1stXTjhu4+pQ2gVrKphwbUyZERH
+         3zVAECN9nAcRlbrK0WEJ7eX+5JjUOkhMVqQ36KFKiATHTxPailU9agD0m2Mz5DDqMQsy
+         PIswlgqE3Edb+PDN6kXRqfH6z1P5lutf+WC+15NxoBfyeRUu53lVu5sfBH5M7hEv+Xav
+         1f9w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=gRczQcEVREVIHP/xCIGe+pHjWpZBhd9/8Bmyk1xi1h0=;
-        b=f94MCPe9j/u8gwWl3tLYk+xz2FHRPj09m3h8WMugDldMT7nRpBXslWml7OeUuSI03a
-         Yn61hrClWOGvwcDRLCBhx5hFV6VS7ahGWEHh4VakJXysEocdR4C6nxXiEHeNNONhV4BS
-         cLsK74ApxRu+uHTTc4IO+vDsIFgucZybM+l928MAQ6jpz4GjU3SAVQO/hBrt5mianLdL
-         q39Ms34cuOsFM/RG/mEkZj6PWwkt0yfA+f/n5icKOvpOD0E1tmonhE4srZZ1iZ3BEXY3
-         GHOfzh7y5I3tODx3jREY48Fef9GfX/DmnUYrcWXZKfMatjoqBL34T0O0NbDd+9QhaeAx
-         MtKA==
-X-Gm-Message-State: AOAM533KZfefEu55kivwSiOyIdNkPnDCtXcxmSMNzIH26/v7Gk+3+E6u
-        mYNMNFes7rAuhJLCPcrzrxpqWQ==
-X-Google-Smtp-Source: ABdhPJxI0lVlTeQudtwo04v0ZQt+J5cepsKS4VBuncWNGWBA6WddhHvJkit9Q34ifSZGrmUAvmjknQ==
-X-Received: by 2002:a63:4746:: with SMTP id w6mr563080pgk.377.1608721713343;
-        Wed, 23 Dec 2020 03:08:33 -0800 (PST)
-Received: from localhost.localdomain ([2405:201:c00a:a884:eca4:40c1:8784:571c])
-        by smtp.gmail.com with ESMTPSA id d4sm23031093pfo.127.2020.12.23.03.08.15
+        bh=i8cSGTFdV6NDouRQh8ewWda9XJF0YqAiRaVhtmmVYqs=;
+        b=K6SMOOBOt/9awTM6jAmPmQz3bRlPssSLEXjG8lkPOHzTcI3LxahSipF+qWa5Dbbtmo
+         eTHl+EPmNHWmT3Vc8ow21rimZItbB5dkOBRr5ty8mAiJ/ZK0KvV+uoY76snHfB1zVUjS
+         5/xZC1G39ulyG0rX7W9rrkJi2uoBZ9TCuQxHlfp9B1jp/dVCF/lIa0u1/ocrCW5Qunis
+         TVOGvwVQoSR+Q38Ofp9c7JV2iKnLp1+MmU0K9BTcn7EdW+zFYLaugiyAu70QULMskEQR
+         MfCE1D2MF0Zc4/XhuXsc0WsYcEbTG/QdVbV9dB3Mn6Vv+UvngHulO6HQCZkWqNJD06dt
+         YkeA==
+X-Gm-Message-State: AOAM531Fi5ziEdaRz3BtdsEMYG8crXYdwaPb7y3npmuAMIkcdQkuX6QV
+        eTQ+dK5LTVg1u6sZWCISnWQ=
+X-Google-Smtp-Source: ABdhPJz8Q7qY4aMwzKG1OtlSYN46oJ8PbdL1vUkKfcU+6WDsOFNd/Q3biq6nIjtENA6Lt5NzGH6rSg==
+X-Received: by 2002:a63:65c5:: with SMTP id z188mr23820319pgb.332.1608722207535;
+        Wed, 23 Dec 2020 03:16:47 -0800 (PST)
+Received: from ubt.spreadtrum.com ([117.18.48.82])
+        by smtp.gmail.com with ESMTPSA id ga12sm21771023pjb.48.2020.12.23.03.16.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Dec 2020 03:08:32 -0800 (PST)
-From:   Jagan Teki <jagan@amarulasolutions.com>
-To:     Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-amarula@amarulasolutions.com,
-        Jagan Teki <jagan@amarulasolutions.com>
-Subject: [PATCH] ARM: dts: stm32: Add STM32MP1 I2C6 SDA/SCL pinmux
-Date:   Wed, 23 Dec 2020 16:37:57 +0530
-Message-Id: <20201223110757.126937-1-jagan@amarulasolutions.com>
+        Wed, 23 Dec 2020 03:16:46 -0800 (PST)
+From:   Chunyan Zhang <zhang.lyra@gmail.com>
+To:     Joerg Roedel <joro@8bytes.org>, Rob Herring <robh+dt@kernel.org>
+Cc:     iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
+        Baolin Wang <baolin.wang7@gmail.com>,
+        linux-kernel@vger.kernel.org, Orson Zhai <orsonzhai@gmail.com>,
+        Chunyan Zhang <zhang.lyra@gmail.com>,
+        Sheng Xu <sheng.xu@unisoc.com>,
+        Kevin Tang <kevin.tang@unisoc.com>
+Subject: [RFC PATCH 1/2] dt-bindings: iommu: add bindings for sprd iommu
+Date:   Wed, 23 Dec 2020 19:16:32 +0800
+Message-Id: <20201223111633.1711477-1-zhang.lyra@gmail.com>
 X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -63,43 +65,69 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add SDA/SCL pinmux lines for I2C6 on STM32MP1.
+From: Chunyan Zhang <chunyan.zhang@unisoc.com>
 
-This support adds both in default and sleep states.
+This patch only adds bindings to support display iommu, support for others
+would be added once finished tests with those devices, such as Image
+codec(jpeg) processor, a few signal processors, including VSP(video),
+GSP(graphic), ISP(image), and camera CPP, etc.
 
-Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+Signed-off-by: Chunyan Zhang <chunyan.zhang@unisoc.com>
 ---
- arch/arm/boot/dts/stm32mp15-pinctrl.dtsi | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
+ .../devicetree/bindings/iommu/sprd,iommu.yaml | 44 +++++++++++++++++++
+ 1 file changed, 44 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iommu/sprd,iommu.yaml
 
-diff --git a/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi b/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi
-index 20a59e8f7a33..2036c1d0d798 100644
---- a/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi
-+++ b/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi
-@@ -2018,6 +2018,23 @@ pins {
- 		};
- 	};
- 
-+	i2c6_pins_a: i2c6-0 {
-+		pins {
-+			pinmux = <STM32_PINMUX('Z', 6, AF2)>, /* I2C6_SCL */
-+				 <STM32_PINMUX('Z', 7, AF2)>; /* I2C6_SDA */
-+			bias-disable;
-+			drive-open-drain;
-+			slew-rate = <0>;
-+		};
-+	};
+diff --git a/Documentation/devicetree/bindings/iommu/sprd,iommu.yaml b/Documentation/devicetree/bindings/iommu/sprd,iommu.yaml
+new file mode 100644
+index 000000000000..4d9a578a7cc9
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iommu/sprd,iommu.yaml
+@@ -0,0 +1,44 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++# Copyright 2020 Unisoc Inc.
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iommu/sprd,iommu.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+	i2c6_sleep_pins_a: i2c6-sleep-0 {
-+		pins {
-+			pinmux = <STM32_PINMUX('Z', 6, ANALOG)>, /* I2C6_SCL */
-+				 <STM32_PINMUX('Z', 7, ANALOG)>; /* I2C6_SDA */
-+		};
-+	};
++title: Unisoc IOMMU and Multi-media MMU
 +
- 	spi1_pins_a: spi1-0 {
- 		pins1 {
- 			pinmux = <STM32_PINMUX('Z', 0, AF5)>, /* SPI1_SCK */
++maintainers:
++  - Chunyan Zhang <zhang.lyra@gmail.com>
++
++properties:
++  compatible:
++    enum:
++      - sprd,iommu-disp
++
++  reg:
++    maxItems: 1
++
++  "#iommu-cells":
++    const: 0
++    description:
++      Unisoc IOMMUs are all single-master IOMMU devices, therefore no
++      additional information needs to associate with its master device.
++      Please refer to the generic bindings document for more details,
++      Documentation/devicetree/bindings/iommu/iommu.txt
++
++required:
++  - compatible
++  - reg
++  - "#iommu-cells"
++
++additionalProperties: false
++
++examples:
++  - |
++    iommu_disp: iommu@63000000 {
++      compatible = "sprd,iommu-disp";
++      reg = <0x63000000 0x880>;
++      #iommu-cells = <0>;
++    };
++
++...
 -- 
 2.25.1
 
