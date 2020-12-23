@@ -2,38 +2,38 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B49D62E12F2
-	for <lists+devicetree@lfdr.de>; Wed, 23 Dec 2020 03:28:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F4C12E1556
+	for <lists+devicetree@lfdr.de>; Wed, 23 Dec 2020 03:58:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730889AbgLWC03 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Dec 2020 21:26:29 -0500
-Received: from mail.kernel.org ([198.145.29.99]:57046 "EHLO mail.kernel.org"
+        id S1729182AbgLWCVD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Dec 2020 21:21:03 -0500
+Received: from mail.kernel.org ([198.145.29.99]:49802 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730886AbgLWC01 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 22 Dec 2020 21:26:27 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 5AF05221E5;
-        Wed, 23 Dec 2020 02:25:46 +0000 (UTC)
+        id S1729176AbgLWCVC (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 22 Dec 2020 21:21:02 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 6899822A99;
+        Wed, 23 Dec 2020 02:20:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1608690347;
-        bh=i7KtEEiOnV164DyJGwkyEAqwUDHPWEL1ofb/pVIao58=;
+        s=k20201202; t=1608690022;
+        bh=UkGeKJkcCoTLxKNZoeNdLRsTAEj6DMtSyChkrv5bYHw=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=A0crKQDw54eF7eDloDbRyxJzJZFO3vhxX75IpLZ0q754UBNm2ztgBZ565I50eF7hC
-         guyjdZT922uym1Uh0l/Z1NAW2ll1hF8nsmCpM2Q0WuJUxu5fSEuxNhCXz8uTzyWBpM
-         ZD6j7MdVDVRGcxaDzKFsicuEBObm/Goz5wgj2Fn0e9dGA0BzGvxvCDw6+dnBixKxvC
-         sUyn1Y1O2wy6OadoYinu4c3EW08iBpNY9mgEoSm0PnDrDWIUVABNZ94aUY1/94YpdV
-         lbJ/fUxFt0uYk9ahWYSDNuVIVrw3CrHupRK1NemqwuBPtlw6YLTo5g6Oi64jefnlPW
-         IrV5ZqBexnlpA==
+        b=ftSi2EHDP/mzmb88YzPSF4HMdhiXt/IC2Ht+/DJqruPwqP474a8qhoYV0oX445UXI
+         K/EJQickXfIxjS9tm3zZeaJAvx6ydL+nYa0yloHeorwNJu4Kc0uRsfGXAJxQGTBhcS
+         XexhIuFfJkyD0fgDPyFdQybi19w21nAWgjwwSkEgnE8g9xbGau2Lr+sopl3VgJuqny
+         hzboB40O2JYdwsCLqgCInRQU7Z4yitJebvJqNDAjBUBJxY1ME4cBLJ/BuyZn+hD5f7
+         bDTRl5Ww5uzjlcMzuS3VR8ud9xNzm8kjbGoRMr/X7LWR2AGT38raJ9GoeiRUaBXwad
+         Gv6DAmlr2BBEg==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Zhen Lei <thunder.leizhen@huawei.com>,
-        Wei Xu <xuwei5@hisilicon.com>, Sasha Levin <sashal@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.4 24/38] ARM: dts: hisilicon: fix errors detected by simple-bus.yaml
-Date:   Tue, 22 Dec 2020 21:25:02 -0500
-Message-Id: <20201223022516.2794471-24-sashal@kernel.org>
+Cc:     Michal Simek <michal.simek@xilinx.com>,
+        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH AUTOSEL 5.4 099/130] ARM: zynq: Fix leds subnode name for zc702/zybo-z7
+Date:   Tue, 22 Dec 2020 21:17:42 -0500
+Message-Id: <20201223021813.2791612-99-sashal@kernel.org>
 X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20201223022516.2794471-1-sashal@kernel.org>
-References: <20201223022516.2794471-1-sashal@kernel.org>
+In-Reply-To: <20201223021813.2791612-1-sashal@kernel.org>
+References: <20201223021813.2791612-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -42,75 +42,57 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Zhen Lei <thunder.leizhen@huawei.com>
+From: Michal Simek <michal.simek@xilinx.com>
 
-[ Upstream commit 8e9e8dd7ce093344a89792deaeb6caedde636dcf ]
+[ Upstream commit 38d1985fdfcf20dc246b552580479ae602f735d1 ]
 
-Change bus node name from "amba" to "amba-bus" to match
-'^([a-z][a-z0-9\\-]+-bus|bus|soc|axi|ahb|apb)(@[0-9a-f]+)?$'
+Fix the leds subnode names to match (^led-[0-9a-f]$|led).
 
-Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
-Signed-off-by: Wei Xu <xuwei5@hisilicon.com>
+Similar change has been also done by commit 9a19a39ee48b ("arm64: dts:
+zynqmp: Fix leds subnode name for zcu100/ultra96 v1").
+
+The patch is fixing these warnings:
+.../zynq-zc702.dt.yaml: leds: 'ds23' does not match any of the regexes:
+'(^led-[0-9a-f]$|led)', 'pinctrl-[0-9]+'
+>From schema: .../Documentation/devicetree/bindings/leds/leds-gpio.yaml
+.../zynq-zybo-z7.dt.yaml: gpio-leds: 'ld4' does not match any of the
+regexes: '(^led-[0-9a-f]$|led)', 'pinctrl-[0-9]+'
+>From schema: .../Documentation/devicetree/bindings/leds/leds-gpio.yaml
+
+Signed-off-by: Michal Simek <michal.simek@xilinx.com>
+Link: https://lore.kernel.org/r/607a66783b129294364abf09a6fc8abd241ff4ee.1606397101.git.michal.simek@xilinx.com
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/hi3620-hi4511.dts | 2 +-
- arch/arm/boot/dts/hi3620.dtsi       | 2 +-
- arch/arm/boot/dts/hip01.dtsi        | 2 +-
- arch/arm/boot/dts/hisi-x5hd2.dtsi   | 2 +-
- 4 files changed, 4 insertions(+), 4 deletions(-)
+ arch/arm/boot/dts/zynq-zc702.dts   | 2 +-
+ arch/arm/boot/dts/zynq-zybo-z7.dts | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm/boot/dts/hi3620-hi4511.dts b/arch/arm/boot/dts/hi3620-hi4511.dts
-index a579fbf13b5f5..a672c4e4babbd 100644
---- a/arch/arm/boot/dts/hi3620-hi4511.dts
-+++ b/arch/arm/boot/dts/hi3620-hi4511.dts
-@@ -25,7 +25,7 @@ memory {
- 		reg = <0x40000000 0x20000000>;
- 	};
+diff --git a/arch/arm/boot/dts/zynq-zc702.dts b/arch/arm/boot/dts/zynq-zc702.dts
+index 27cd6cb52f1ba..10a7d0b8cf8b9 100644
+--- a/arch/arm/boot/dts/zynq-zc702.dts
++++ b/arch/arm/boot/dts/zynq-zc702.dts
+@@ -49,7 +49,7 @@ sw13 {
+ 	leds {
+ 		compatible = "gpio-leds";
  
--	amba {
-+	amba-bus {
- 		dual_timer0: dual_timer@800000 {
- 			status = "ok";
+-		ds23 {
++		led-ds23 {
+ 			label = "ds23";
+ 			gpios = <&gpio0 10 0>;
+ 			linux,default-trigger = "heartbeat";
+diff --git a/arch/arm/boot/dts/zynq-zybo-z7.dts b/arch/arm/boot/dts/zynq-zybo-z7.dts
+index 357b78a5c11b1..7b87e10d3953b 100644
+--- a/arch/arm/boot/dts/zynq-zybo-z7.dts
++++ b/arch/arm/boot/dts/zynq-zybo-z7.dts
+@@ -25,7 +25,7 @@ chosen {
+ 	gpio-leds {
+ 		compatible = "gpio-leds";
+ 
+-		ld4 {
++		led-ld4 {
+ 			label = "zynq-zybo-z7:green:ld4";
+ 			gpios = <&gpio0 7 GPIO_ACTIVE_HIGH>;
  		};
-diff --git a/arch/arm/boot/dts/hi3620.dtsi b/arch/arm/boot/dts/hi3620.dtsi
-index 6cbb62e5c6a9e..c4b371acf1e71 100644
---- a/arch/arm/boot/dts/hi3620.dtsi
-+++ b/arch/arm/boot/dts/hi3620.dtsi
-@@ -64,7 +64,7 @@ cpu@3 {
- 		};
- 	};
- 
--	amba {
-+	amba-bus {
- 
- 		#address-cells = <1>;
- 		#size-cells = <1>;
-diff --git a/arch/arm/boot/dts/hip01.dtsi b/arch/arm/boot/dts/hip01.dtsi
-index 96f6bd0312d09..ebb9661cae889 100644
---- a/arch/arm/boot/dts/hip01.dtsi
-+++ b/arch/arm/boot/dts/hip01.dtsi
-@@ -40,7 +40,7 @@ soc {
- 		interrupt-parent = <&gic>;
- 		ranges = <0 0x10000000 0x20000000>;
- 
--		amba {
-+		amba-bus {
- 			#address-cells = <1>;
- 			#size-cells = <1>;
- 			compatible = "arm,amba-bus";
-diff --git a/arch/arm/boot/dts/hisi-x5hd2.dtsi b/arch/arm/boot/dts/hisi-x5hd2.dtsi
-index 98a8e76492b96..6aafb0e9ca272 100644
---- a/arch/arm/boot/dts/hisi-x5hd2.dtsi
-+++ b/arch/arm/boot/dts/hisi-x5hd2.dtsi
-@@ -31,7 +31,7 @@ soc {
- 		interrupt-parent = <&gic>;
- 		ranges = <0 0xf8000000 0x8000000>;
- 
--		amba {
-+		amba-bus {
- 			#address-cells = <1>;
- 			#size-cells = <1>;
- 			compatible = "arm,amba-bus";
 -- 
 2.27.0
 
