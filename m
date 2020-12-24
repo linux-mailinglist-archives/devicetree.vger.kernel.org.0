@@ -2,164 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0313A2E261B
-	for <lists+devicetree@lfdr.de>; Thu, 24 Dec 2020 12:16:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 50B1F2E2632
+	for <lists+devicetree@lfdr.de>; Thu, 24 Dec 2020 12:20:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728176AbgLXLOO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Dec 2020 06:14:14 -0500
-Received: from alexa-out.qualcomm.com ([129.46.98.28]:29679 "EHLO
-        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726591AbgLXLOO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Dec 2020 06:14:14 -0500
-Received: from ironmsg07-lv.qualcomm.com (HELO ironmsg07-lv.qulacomm.com) ([10.47.202.151])
-  by alexa-out.qualcomm.com with ESMTP; 24 Dec 2020 03:12:57 -0800
-X-QCInternal: smtphost
-Received: from ironmsg02-blr.qualcomm.com ([10.86.208.131])
-  by ironmsg07-lv.qulacomm.com with ESMTP/TLS/AES256-SHA; 24 Dec 2020 03:12:54 -0800
-X-QCInternal: smtphost
-Received: from c-rojay-linux.qualcomm.com ([10.206.21.80])
-  by ironmsg02-blr.qualcomm.com with ESMTP; 24 Dec 2020 16:42:16 +0530
-Received: by c-rojay-linux.qualcomm.com (Postfix, from userid 88981)
-        id 4D2622DCA; Thu, 24 Dec 2020 16:42:15 +0530 (IST)
-From:   Roja Rani Yarubandi <rojay@codeaurora.org>
-To:     ulf.hansson@linaro.org, robh+dt@kernel.org,
-        bjorn.andersson@linaro.org, wsa@kernel.org
-Cc:     swboyd@chromium.org, dianders@chromium.org,
-        saiprakash.ranjan@codeaurora.org, mka@chromium.org,
-        akashast@codeaurora.org, msavaliy@qti.qualcomm.com,
-        parashar@codeaurora.org, rnayak@codeaurora.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        agross@kernel.org, linux-i2c@vger.kernel.org,
-        Roja Rani Yarubandi <rojay@codeaurora.org>
-Subject: [PATCH 3/3] i2c: i2c-qcom-geni: Add support for 'assigned-performance-states'
-Date:   Thu, 24 Dec 2020 16:42:10 +0530
-Message-Id: <20201224111210.1214-4-rojay@codeaurora.org>
-X-Mailer: git-send-email 2.29.0
-In-Reply-To: <20201224111210.1214-1-rojay@codeaurora.org>
-References: <20201224111210.1214-1-rojay@codeaurora.org>
+        id S1728711AbgLXLS2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Dec 2020 06:18:28 -0500
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:35592 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728685AbgLXLS1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Dec 2020 06:18:27 -0500
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0BOBGcm2075986;
+        Thu, 24 Dec 2020 05:16:38 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1608808598;
+        bh=qzVsPalaWPdGH8DnIx8rf2HnmAsNI6XCVFYlcb+Zryc=;
+        h=From:To:CC:Subject:Date;
+        b=OAcZQSGMg5rxRuJ+kn8IjeShKYydM1PHSFhqMiG9jMOkSqc1i6J3ODsNuTVV3SK92
+         HXP7MgJuoUsH6a5VUJUdrSydVVVkKmt8MSe0pRYBJ8CYlVvtMRTbos/t9YjawRY/5J
+         pbnU5k8DAjPo0BSJjJs3qA+XLw9aYzZR4qQexgbI=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0BOBGcE7093043
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 24 Dec 2020 05:16:38 -0600
+Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 24
+ Dec 2020 05:16:37 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Thu, 24 Dec 2020 05:16:37 -0600
+Received: from a0393678-ssd.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0BOBGWG6116630;
+        Thu, 24 Dec 2020 05:16:34 -0600
+From:   Kishon Vijay Abraham I <kishon@ti.com>
+To:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: [PATCH v3 00/15] PHY: Add support in Sierra to use external clock
+Date:   Thu, 24 Dec 2020 16:46:12 +0530
+Message-ID: <20201224111627.32590-1-kishon@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-For devices which have 'assigned-performance-states' specified in DT,
-set the specified performance state during probe and drop it on remove.
-Also drop/set as part of runtime suspend/resume callbacks.
+Patch series adds support in Sierra driver to use external clock.
 
-Signed-off-by: Roja Rani Yarubandi <rojay@codeaurora.org>
----
- drivers/i2c/busses/i2c-qcom-geni.c | 49 ++++++++++++++++++++++++++++++
- 1 file changed, 49 insertions(+)
+v1 of the patch series can be found @ [1]
+v2 of the patch series can be found @ [2]
 
-diff --git a/drivers/i2c/busses/i2c-qcom-geni.c b/drivers/i2c/busses/i2c-qcom-geni.c
-index 046d241183c5..250773784631 100644
---- a/drivers/i2c/busses/i2c-qcom-geni.c
-+++ b/drivers/i2c/busses/i2c-qcom-geni.c
-@@ -11,6 +11,7 @@
- #include <linux/module.h>
- #include <linux/of.h>
- #include <linux/platform_device.h>
-+#include <linux/pm_domain.h>
- #include <linux/pm_runtime.h>
- #include <linux/qcom-geni-se.h>
- #include <linux/spinlock.h>
-@@ -86,6 +87,7 @@ struct geni_i2c_dev {
- 	u32 clk_freq_out;
- 	const struct geni_i2c_clk_fld *clk_fld;
- 	int suspended;
-+	unsigned int assigned_pstate;
- };
- 
- struct geni_i2c_err_log {
-@@ -497,6 +499,7 @@ static int geni_i2c_probe(struct platform_device *pdev)
- 	u32 proto, tx_depth;
- 	int ret;
- 	struct device *dev = &pdev->dev;
-+	unsigned int assigned_pstate;
- 
- 	gi2c = devm_kzalloc(dev, sizeof(*gi2c), GFP_KERNEL);
- 	if (!gi2c)
-@@ -520,6 +523,20 @@ static int geni_i2c_probe(struct platform_device *pdev)
- 		gi2c->clk_freq_out = KHZ(100);
- 	}
- 
-+	/* Set the assigned performance state */
-+	if (!of_property_read_u32(pdev->dev.of_node, "assigned-performance-states",
-+					&assigned_pstate)) {
-+		if (assigned_pstate) {
-+			ret = dev_pm_genpd_set_performance_state(dev,
-+								 assigned_pstate);
-+			if (ret) {
-+				dev_err(dev, "Failed to set performance state\n");
-+				return ret;
-+			}
-+			gi2c->assigned_pstate = assigned_pstate;
-+		}
-+	}
-+
- 	if (has_acpi_companion(dev))
- 		ACPI_COMPANION_SET(&gi2c->adap.dev, ACPI_COMPANION(dev));
- 
-@@ -616,10 +633,22 @@ static int geni_i2c_probe(struct platform_device *pdev)
- 
- static int geni_i2c_remove(struct platform_device *pdev)
- {
-+	int ret;
-+	struct device *dev = &pdev->dev;
- 	struct geni_i2c_dev *gi2c = platform_get_drvdata(pdev);
- 
- 	i2c_del_adapter(&gi2c->adap);
- 	pm_runtime_disable(gi2c->se.dev);
-+
-+	/* Drop the assigned performance state */
-+	if (gi2c->assigned_pstate) {
-+		ret = dev_pm_genpd_set_performance_state(dev, 0);
-+		if (ret) {
-+			dev_err(dev, "Failed to set performance state\n");
-+			return ret;
-+		}
-+	}
-+
- 	return 0;
- }
- 
-@@ -629,6 +658,16 @@ static int __maybe_unused geni_i2c_runtime_suspend(struct device *dev)
- 	struct geni_i2c_dev *gi2c = dev_get_drvdata(dev);
- 
- 	disable_irq(gi2c->irq);
-+
-+	/* Drop the assigned performance state */
-+	if (gi2c->assigned_pstate) {
-+		ret = dev_pm_genpd_set_performance_state(dev, 0);
-+		if (ret) {
-+			dev_err(dev, "Failed to set performance state\n");
-+			return ret;
-+		}
-+	}
-+
- 	ret = geni_se_resources_off(&gi2c->se);
- 	if (ret) {
- 		enable_irq(gi2c->irq);
-@@ -654,6 +693,16 @@ static int __maybe_unused geni_i2c_runtime_resume(struct device *dev)
- 	if (ret)
- 		return ret;
- 
-+	/* Set the assigned performance state */
-+	if (gi2c->assigned_pstate) {
-+		ret = dev_pm_genpd_set_performance_state(dev,
-+							 gi2c->assigned_pstate);
-+		if (ret) {
-+			dev_err(dev, "Failed to set performance state\n");
-+			return ret;
-+		}
-+	}
-+
- 	enable_irq(gi2c->irq);
- 	gi2c->suspended = 0;
- 	return 0;
+Changes from v2:
+1) Add depends on COMMON_CLK in Sierra
+2) Add modelling PLL_CMNLC and PLL_CMNLC1 as clocks into a separate
+patch
+3) Disable clocks in Sierra driver remove
+
+Changes from v1:
+1) Remove the part that prevents configuration if the SERDES is already
+   configured and focus only on using external clock and the associated
+   cleanups
+2) Change patch ordering
+3) Use exclusive reset control APIs
+4) Fix error handling code
+5) Include DT patches in this series (I can send this separately to DT
+MAINTAINER once the driver patches are merged)
+
+[1] -> http://lore.kernel.org/r/20201103035556.21260-1-kishon@ti.com
+[2] -> http://lore.kernel.org/r/20201222070520.28132-1-kishon@ti.com
+
+Kishon Vijay Abraham I (15):
+  phy: cadence: Sierra: Fix PHY power_on sequence
+  phy: ti: j721e-wiz: Invoke wiz_init() before
+    of_platform_device_create()
+  dt-bindings: phy: cadence-sierra: Add bindings for the PLLs within
+    SERDES
+  phy: ti: j721e-wiz: Get PHY properties only for "phy" or "link"
+    subnode
+  phy: cadence: cadence-sierra: Create PHY only for "phy" or "link"
+    sub-nodes
+  phy: cadence: cadence-sierra: Move all clk_get_*() to a separate
+    function
+  phy: cadence: cadence-sierra: Move all reset_control_get*() to a
+    separate function
+  phy: cadence: cadence-sierra: Explicitly request exclusive reset
+    control
+  phy: cadence: sierra: Model reference receiver as clocks (gate clocks)
+  phy: cadence: sierra: Model PLL_CMNLC and PLL_CMNLC1 as clocks (mux
+    clocks)
+  phy: cadence: sierra: Enable pll_cmnlc and pll_cmnlc1 clocks
+  arm64: dts: ti: k3-j721e-main: Add DT nodes for clocks within Sierra
+    SERDES
+  arm64: dts: ti: k3-j721e-main: Fix external refclk input to SERDES
+  arm64: dts: ti: k3-j721e-common-proc-board: Use external clock for
+    SERDES
+  arm64: dts: ti: k3-j721e-common-proc-board: Re-name "link" name as
+    "phy"
+
+ .../bindings/phy/phy-cadence-sierra.yaml      |  89 ++-
+ .../dts/ti/k3-j721e-common-proc-board.dts     |  57 +-
+ arch/arm64/boot/dts/ti/k3-j721e-main.dtsi     | 186 ++++--
+ drivers/phy/cadence/Kconfig                   |   1 +
+ drivers/phy/cadence/phy-cadence-sierra.c      | 544 ++++++++++++++++--
+ drivers/phy/ti/phy-j721e-wiz.c                |  21 +-
+ 6 files changed, 810 insertions(+), 88 deletions(-)
+
 -- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member 
-of Code Aurora Forum, hosted by The Linux Foundation
+2.17.1
 
