@@ -2,102 +2,318 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 24DBF2E26C4
-	for <lists+devicetree@lfdr.de>; Thu, 24 Dec 2020 13:17:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D03C92E26E2
+	for <lists+devicetree@lfdr.de>; Thu, 24 Dec 2020 13:33:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727081AbgLXMR0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Dec 2020 07:17:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37178 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727039AbgLXMR0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Dec 2020 07:17:26 -0500
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66AE9C061794;
-        Thu, 24 Dec 2020 04:16:45 -0800 (PST)
-Received: by mail-lf1-x12c.google.com with SMTP id l11so4447875lfg.0;
-        Thu, 24 Dec 2020 04:16:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=aBLJJg+bzbWbulXzWEitNJ5042asREQNv3cmv9hVKiA=;
-        b=JJuUSYdMpRe4neER0nnPgTpAPimiRI1Igwq+UpeDahgwudF1GCXX8kQ9WPifh+7+rE
-         ns6OdiZdklf9VJoAnwAIpFuFP4soAjlbIn1wKb3lMOLTswsKwQS6wkrGtvHUUduAhIR7
-         xTS0ENwDMGzO1p7nvwvV9whAs0T5WkC6vFtKzk+FV6KWULbCWssULHHLIuTPwqtTLOP7
-         50lmQv/rwlVR4UDetNofZ4dJKnmTquUMRtMeLimaCumiMVuw5zIGpcPia8nF/7F4+HeG
-         KSaiTeEKZgA/vi4p4i0umtKkbryQkR9R/MCG0HSKYHf5WH0l1k5XdA113l+wSElI4Qyw
-         73DQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=aBLJJg+bzbWbulXzWEitNJ5042asREQNv3cmv9hVKiA=;
-        b=Eg/eziSYHkv2chCS/F+OsfbcCKfOmif92ssNXTBcsWG7qsM6PxvNNQrGwLR4/mNK7Y
-         4YRJI5hn6GaXM24s5mHJlGhR2wv20xJYRxesMQ0YrjCtxUtXSxKzfgTOXcimTdv17QXB
-         hQguL/pPCrYHgfJZZQ7J3STWlHKAH6uT5os1w9DlSnZxuyGE6LOfr92PPjMxh7gEQ+PC
-         PlnHCQ09SgvgGSL54O/GN+RY5EePmQa7ZL2RME9vF4kFGe2pBqBdVXSROYB0BVqPhoMf
-         Df+z8nqw95DJx/DbiuleuJCYD5o2ctlT41YIadnQlkdFfktwaXI0JbfGYOdortOd/nuf
-         YSIQ==
-X-Gm-Message-State: AOAM530YIrD5l0i6U5XAabYcBSnZgfpY6mGHU/Ctl7v7JMGcIElElP1L
-        EJEhdENo95fh3SsPNaddTq1olUQjHe0=
-X-Google-Smtp-Source: ABdhPJwqnQyO8QLk/YiNUUylyZroRpd4i08hKXJxtramIT73WqKFf+cxMjJwIeVnmd7ZHuojM/4uMw==
-X-Received: by 2002:a19:7ec9:: with SMTP id z192mr13717595lfc.50.1608812203827;
-        Thu, 24 Dec 2020 04:16:43 -0800 (PST)
-Received: from [192.168.2.145] (109-252-192-57.dynamic.spd-mgts.ru. [109.252.192.57])
-        by smtp.googlemail.com with ESMTPSA id x70sm3283612lfa.224.2020.12.24.04.16.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 24 Dec 2020 04:16:43 -0800 (PST)
-Subject: Re: [PATCH v2 15/48] opp: Support set_opp() customization without
- requiring to use regulators
-To:     Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Nicolas Chauvet <kwizart@gmail.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Kevin Hilman <khilman@kernel.org>,
-        Peter De Schrijver <pdeschrijver@nvidia.com>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        devel@driverdev.osuosl.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-media@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-clk@vger.kernel.org
-References: <20201217180638.22748-1-digetx@gmail.com>
- <20201217180638.22748-16-digetx@gmail.com>
- <20201223060101.v2qihvvgsmpahg24@vireshk-i7>
- <ea025b0f-bb2a-d075-4c8e-45831fa9cd93@gmail.com>
- <20201224041025.mlxsbl2yrxyqt7yh@vireshk-i7>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <236f9306-97a5-5f17-9689-a6e04c052b7a@gmail.com>
-Date:   Thu, 24 Dec 2020 15:16:42 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.4.2
+        id S1727968AbgLXMc7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Dec 2020 07:32:59 -0500
+Received: from mailgw02.mediatek.com ([210.61.82.184]:35563 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1728033AbgLXMc5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Dec 2020 07:32:57 -0500
+X-UUID: d85dc5df3c4a40e5bbe7db0a4d7e4642-20201224
+X-UUID: d85dc5df3c4a40e5bbe7db0a4d7e4642-20201224
+Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw02.mediatek.com
+        (envelope-from <nick.fan@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1071865283; Thu, 24 Dec 2020 20:32:12 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ mtkmbs05n1.mediatek.inc (172.21.101.15) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Thu, 24 Dec 2020 20:32:09 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 24 Dec 2020 20:32:08 +0800
+From:   Nick Fan <Nick.Fan@mediatek.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+CC:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        <dri-devel@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
+        <srv_heupstream@mediatek.com>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <nick.fan@mediatek.com>,
+        Nick Fan <Nick.Fan@mediatek.com>
+Subject: [PATCH 1/2] dt-bindings: Convert Arm Mali Valhall GPU to DT schema
+Date:   Thu, 24 Dec 2020 20:31:18 +0800
+Message-ID: <20201224123119.26504-1-Nick.Fan@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-In-Reply-To: <20201224041025.mlxsbl2yrxyqt7yh@vireshk-i7>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-24.12.2020 07:10, Viresh Kumar пишет:
-> On 23-12-20, 23:38, Dmitry Osipenko wrote:
->> Well, there is no "same structure", the opp_table->set_opp_data is NULL
->> there.
-> 
-> Right, I saw that yesterday. What I meant was that we need to start allocating
-> the structure for this case now.
-> 
+Convert the Arm Valhall GPU binding to DT schema format.
 
-Okay, that will be a bit bigger change than this v2. I'll try it
-implement yours suggestion in the next revision, thanks.
+Define a compatible string for the Mali Valhall GPU
+for Mediatek's SoC platform.
+
+Signed-off-by: Nick Fan <Nick.Fan@mediatek.com>
+---
+ .../bindings/gpu/arm,mali-valhall.yaml        | 252 ++++++++++++++++++
+ 1 file changed, 252 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/gpu/arm,mali-valhall.yaml
+
+diff --git a/Documentation/devicetree/bindings/gpu/arm,mali-valhall.yaml b/Documentation/devicetree/bindings/gpu/arm,mali-valhall.yaml
+new file mode 100644
+index 000000000000..3dba202bec95
+--- /dev/null
++++ b/Documentation/devicetree/bindings/gpu/arm,mali-valhall.yaml
+@@ -0,0 +1,252 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++# Copyright (c) 2020 MediaTek Inc.
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/gpu/arm,mali-vallhall.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: ARM Mali Valhall GPU
++
++maintainers:
++  - Rob Herring <robh@kernel.org>
++
++properties:
++  $nodename:
++    pattern: '^gpu@[a-f0-9]+$'
++
++  compatible:
++    items:
++      - enum:
++          - mediatek,mt8192-mali
++      - const: arm,mali-valhall # Mali Valhall GPU model/revision is fully discoverable
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    items:
++      - description: GPU interrupt
++      - description: MMU interrupt
++      - description: Job interrupt
++
++  interrupt-names:
++    items:
++      - const: gpu
++      - const: mmu
++      - const: job
++
++  clocks:
++    minItems: 1
++
++  power-domains:
++    minItems: 1
++    maxItems: 5
++
++  mali-supply: true
++  sram-supply: true
++
++  operating-points-v2: true
++
++  "#cooling-cells":
++    const: 2
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - interrupt-names
++  - clocks
++
++additionalProperties: false
++
++allOf:
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: mediatek,mt8192-mali
++    then:
++      properties:
++        sram-supply: true
++        power-domains:
++          description:
++            List of phandle and PM domain specifier as documented in
++            Documentation/devicetree/bindings/power/power_domain.txt
++          minItems: 5
++          maxItems: 5
++        power-domain-names:
++          items:
++            - const: core0
++            - const: core1
++            - const: core2
++            - const: core3
++            - const: core4
++
++      required:
++        - sram-supply
++        - power-domains
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++
++    gpu@13000000 {
++           compatible = "mediatek,mt8192-mali", "arm,mali-valhall";
++           reg = <0x13000000 0x4000>;
++           interrupts =
++                   <GIC_SPI 363 IRQ_TYPE_LEVEL_HIGH 0>,
++                   <GIC_SPI 364 IRQ_TYPE_LEVEL_HIGH 0>,
++                   <GIC_SPI 365 IRQ_TYPE_LEVEL_HIGH 0>;
++           interrupt-names =
++                   "gpu",
++                   "mmu",
++                   "job";
++
++           clocks = <&mfgcfg 0>;
++
++           power-domains =
++                   <&scpsys 4>,
++                   <&scpsys 5>,
++                   <&scpsys 6>,
++                   <&scpsys 7>,
++                   <&scpsys 8>;
++
++           operating-points-v2 = <&gpu_opp_table>;
++           mali-supply = <&mt6315_7_vbuck1>;
++           sram-supply = <&mt6359_vsram_others_ldo_reg>;
++    };
++
++    gpu_opp_table: opp_table0 {
++      compatible = "operating-points-v2";
++      opp-shared;
++
++      opp-358000000 {
++              opp-hz = /bits/ 64 <358000000>;
++              opp-hz-real = /bits/ 64 <358000000>,
++                            /bits/ 64 <358000000>;
++              opp-microvolt = <606250>,
++                              <750000>;
++      };
++
++      opp-399000000 {
++              opp-hz = /bits/ 64 <399000000>;
++              opp-hz-real = /bits/ 64 <399000000>,
++                            /bits/ 64 <399000000>;
++              opp-microvolt = <618750>,
++                              <750000>;
++      };
++
++      opp-440000000 {
++              opp-hz = /bits/ 64 <440000000>;
++              opp-hz-real = /bits/ 64 <440000000>,
++                            /bits/ 64 <440000000>;
++              opp-microvolt = <631250>,
++                              <750000>;
++      };
++
++      opp-482000000 {
++              opp-hz = /bits/ 64 <482000000>;
++              opp-hz-real = /bits/ 64 <482000000>,
++                            /bits/ 64 <482000000>;
++              opp-microvolt = <643750>,
++                              <750000>;
++      };
++
++      opp-523000000 {
++              opp-hz = /bits/ 64 <523000000>;
++              opp-hz-real = /bits/ 64 <523000000>,
++                            /bits/ 64 <523000000>;
++              opp-microvolt = <656250>,
++                              <750000>;
++      };
++
++      opp-564000000 {
++              opp-hz = /bits/ 64 <564000000>;
++              opp-hz-real = /bits/ 64 <564000000>,
++                            /bits/ 64 <564000000>;
++              opp-microvolt = <668750>,
++                              <750000>;
++      };
++
++      opp-605000000 {
++              opp-hz = /bits/ 64 <605000000>;
++              opp-hz-real = /bits/ 64 <605000000>,
++                            /bits/ 64 <605000000>;
++              opp-microvolt = <681250>,
++                              <750000>;
++      };
++
++      opp-647000000 {
++              opp-hz = /bits/ 64 <647000000>;
++              opp-hz-real = /bits/ 64 <647000000>,
++                            /bits/ 64 <647000000>;
++              opp-microvolt = <693750>,
++                              <750000>;
++      };
++
++      opp-688000000 {
++              opp-hz = /bits/ 64 <688000000>;
++              opp-hz-real = /bits/ 64 <688000000>,
++                            /bits/ 64 <688000000>;
++              opp-microvolt = <706250>,
++                              <750000>;
++      };
++
++      opp-724000000 {
++              opp-hz = /bits/ 64 <724000000>;
++              opp-hz-real = /bits/ 64 <724000000>,
++                            /bits/ 64 <724000000>;
++              opp-microvolt = <725000>,
++                              <750000>;
++      };
++
++      opp-760000000 {
++              opp-hz = /bits/ 64 <760000000>;
++              opp-hz-real = /bits/ 64 <760000000>,
++                            /bits/ 64 <760000000>;
++              opp-microvolt = <743750>,
++                              <750000>;
++      };
++
++      opp-795000000 {
++              opp-hz = /bits/ 64 <795000000>;
++              opp-hz-real = /bits/ 64 <795000000>,
++                            /bits/ 64 <795000000>;
++              opp-microvolt = <762500>,
++                              <762500>;
++      };
++
++      opp-831000000 {
++              opp-hz = /bits/ 64 <831000000>;
++              opp-hz-real = /bits/ 64 <831000000>,
++                            /bits/ 64 <831000000>;
++              opp-microvolt = <781250>,
++                              <781250>;
++      };
++
++      opp-855000000 {
++              opp-hz = /bits/ 64 <855000000>;
++              opp-hz-real = /bits/ 64 <855000000>,
++                            /bits/ 64 <855000000>;
++              opp-microvolt = <793750>,
++                              <793750>;
++      };
++
++      opp-902000000 {
++              opp-hz = /bits/ 64 <902000000>;
++              opp-hz-real = /bits/ 64 <902000000>,
++                            /bits/ 64 <902000000>;
++              opp-microvolt = <818750>,
++                              <818750>;
++      };
++
++      opp-950000000 {
++              opp-hz = /bits/ 64 <950000000>;
++              opp-hz-real = /bits/ 64 <950000000>,
++                            /bits/ 64 <950000000>;
++              opp-microvolt = <843750>,
++                              <843750>;
++      };
++    };
++...
+-- 
+2.18.0
+
