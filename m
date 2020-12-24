@@ -2,134 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 765DE2E25A3
-	for <lists+devicetree@lfdr.de>; Thu, 24 Dec 2020 10:24:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 241AC2E25BD
+	for <lists+devicetree@lfdr.de>; Thu, 24 Dec 2020 10:47:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727039AbgLXJYX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Dec 2020 04:24:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39000 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726859AbgLXJYX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Dec 2020 04:24:23 -0500
-Received: from leonov.paulk.fr (vpn-0-22.aquilenet.fr [IPv6:2a0c:e300:4:22::])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BC10C061794;
-        Thu, 24 Dec 2020 01:23:43 -0800 (PST)
-Received: from gagarine.paulk.fr (gagarine [192.168.1.127])
-        by leonov.paulk.fr (Postfix) with ESMTPS id 8CE77BFDA5;
-        Thu, 24 Dec 2020 10:23:39 +0100 (CET)
-Received: by gagarine.paulk.fr (Postfix, from userid 114)
-        id C74DCC1D31; Thu, 24 Dec 2020 10:23:38 +0100 (CET)
-X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on gagarine.paulk.fr
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=5.0 tests=ALL_TRUSTED,SHORTCIRCUIT
-        autolearn=disabled version=3.4.2
-Received: from collins (unknown [192.168.1.1])
-        by gagarine.paulk.fr (Postfix) with ESMTPSA id 52B00C1D2D;
-        Thu, 24 Dec 2020 10:23:31 +0100 (CET)
-Date:   Thu, 24 Dec 2020 10:23:30 +0100
-From:   Paul Kocialkowski <contact@paulk.fr>
-To:     Jernej =?utf-8?Q?=C5=A0krabec?= <jernej.skrabec@siol.net>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>
-Subject: Re: [PATCH v2 1/2] dt-bindings: pwm: allwinner: Add V3s compatible
- description
-Message-ID: <X+ReEjkqIYF1UseK@collins>
-References: <20201218205436.2326872-1-contact@paulk.fr>
- <2475548.3AtxBWxPV6@jernej-laptop>
+        id S1727902AbgLXJqs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Dec 2020 04:46:48 -0500
+Received: from esa.microchip.iphmx.com ([68.232.153.233]:34822 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727144AbgLXJqs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Dec 2020 04:46:48 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1608803207; x=1640339207;
+  h=from:to:cc:subject:date:message-id:mime-version;
+  bh=UkyWuBWrroLsO2FpQfjCVCVsDnNl57MHyirL6oeWkEY=;
+  b=GK6595lqZ43W31kEghfG+vvO9bCXgkw2maZahT4ANvQyfAdwTkfNkeWA
+   wX54QUEkPONgcxwP7YyEcfiBRTcsxjc5b4j62Da2XjLARNOLBgP+wgnwj
+   0czfaju+ClCc6xX7mb/d7XHbETjcV+bS/CkUcf4eTL0hhhZ+hicJPLBb+
+   3FvoQFk/EZUfsq2yTzCBFfEfeLVcQCv/d9o5Ge8086eSoIpFOQuIffdkV
+   dJAzeJadhCqW/lrGiXyhTysUaplbG9OhZgoZWKqr4ZmfQj+Meuamml7Kr
+   eNT6Ua0+PInr/EyBdY2T7fEhcTyTnrxgYWQK9VlLQwTldxRj/3ZO5TX0+
+   g==;
+IronPort-SDR: +tudgKHMO/UfplBl4gCIoWnmWadjT9IoxJzfnvc4muzDAGzcwfbqQtCNl62jWF8wkdr/XBZqw0
+ DBHsAWXsGOJga1OUMcCGzgUPkR/lm4k1ik/XmALmg0rx8ixT2eZzPhe63puKVg9l8jqJ+GtGXP
+ VThnJcBuE1ag382MrqvdnU91Jik3idJHM7PgY2MbzdaSe2z6m5sdO1+7K2Br/swLzaX7+62d3q
+ tXMEJ59F0cqmg3uYpFKTQMp8tTJnAWpt/y2SgbiEAoKKbKEPZLR1GjuTGrMSF+XhBbFwrp4+k4
+ zpg=
+X-IronPort-AV: E=Sophos;i="5.78,444,1599548400"; 
+   d="scan'208";a="103376092"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 24 Dec 2020 02:45:06 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1979.3; Thu, 24 Dec 2020 02:45:06 -0700
+Received: from ryzen.microchip.com (10.10.115.15) by chn-vm-ex04.mchp-main.com
+ (10.10.85.152) with Microsoft SMTP Server id 15.1.1979.3 via Frontend
+ Transport; Thu, 24 Dec 2020 02:45:04 -0700
+From:   <daire.mcnamara@microchip.com>
+To:     <lorenzo.pieralisi@arm.com>, <bhelgaas@google.com>,
+        <robh@kernel.org>, <linux-pci@vger.kernel.org>,
+        <robh+dt@kernel.org>, <devicetree@vger.kernel.org>
+CC:     <david.abdurachmanov@gmail.com>, <cyril.jean@microchip.com>,
+        <ben.dooks@codethink.co.uk>,
+        Daire McNamara <daire.mcnamara@microchip.com>
+Subject: [PATCH v19 0/4] PCI: microchip: Add host driver for Microchip PCIe controller
+Date:   Thu, 24 Dec 2020 09:44:56 +0000
+Message-ID: <20201224094500.19149-1-daire.mcnamara@microchip.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="PWZPojefCF+DTRoY"
-Content-Disposition: inline
-In-Reply-To: <2475548.3AtxBWxPV6@jernej-laptop>
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Daire McNamara <daire.mcnamara@microchip.com>
 
---PWZPojefCF+DTRoY
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This patchset adds support for the Microchip PCIe PolarFire PCIe
+controller when configured in host (Root Complex) mode.
 
-Hi,
+Updates since v18:
+* Upgraded interrupt handling as per Lorenzo Pieralisi's suggestions.
+  Gathered disparate registers onto an event register, created a new event domain,
+  and split out end-of-interrupt functionality.
 
-Le Tue 22 Dec 20, 09:21, Jernej =C5=A0krabec a =C3=A9crit :
-> Dne petek, 18. december 2020 ob 21:54:35 CET je Paul Kocialkowski napisal=
-(a):
-> > Introduce bindings description for the V3s PWM, which is
-> > register-compatible with the A20 PWM.
-> >=20
-> > Signed-off-by: Paul Kocialkowski <contact@paulk.fr>
->=20
-> This is meant to be used together with V3s PWM patch you recently send? C=
-an=20
-> you please resend them together, with fixed compatible in DT node? Curren=
-tly=20
-> it's not clear why this patch is needed and PWM patch will need fix anywa=
-y.
+Updates since v17:
+* Regenerated to apply to v5.10rc1
+* Added self as maintainer
+* Added clock enables and extra interrupt handling
 
-I've sent them together (this one is v2 1/2 and 2/2 is the PWM dt patch).
+Updates since v16:
+* Patch needs CONFIG_PCI_HOST_COMMON.  Add this to Kconfig stanza
 
-You can grab it at: https://lore.kernel.org/patchwork/patch/1355289/
-if it didn't reach your emails.
+Updates since v15:
+* Call platform_set_drvdata earlier in devm_pci_alloc_host_bridge()
+* Use host_common_probe() and an init function to set up hw windows
+* status is u32 in mc_pcie_isr()
+* Removed mask var in mc_mask_intx_irq(), mc_unmask_intx_irq()
+* irq var is now signed in mc_platform_init()
 
-Cheers,
+Updates since v14:
+* Removed cfg_read/cfg_write inline functions
+* Updated to irq_data_get_irq_chip_data()
+* Updated to use devm_platform_ioremap_resource()
+* Replaced of_pci_range parsing to setup windows via bridge pointer.
 
-Paul
+Updates since v13:
+* Refactored to use pci_host_common_probe()
 
-> > ---
-> >  .../devicetree/bindings/pwm/allwinner,sun4i-a10-pwm.yaml       | 3 +++
-> >  1 file changed, 3 insertions(+)
-> >=20
-> > diff --git
-> > a/Documentation/devicetree/bindings/pwm/allwinner,sun4i-a10-pwm.yaml
-> > b/Documentation/devicetree/bindings/pwm/allwinner,sun4i-a10-pwm.yaml in=
-dex
-> > 7dcab2bf8128..04ff708fdc86 100644
-> > --- a/Documentation/devicetree/bindings/pwm/allwinner,sun4i-a10-pwm.yaml
-> > +++ b/Documentation/devicetree/bindings/pwm/allwinner,sun4i-a10-pwm.yaml
-> > @@ -24,6 +24,9 @@ properties:
-> >        - items:
-> >            - const: allwinner,sun8i-a83t-pwm
-> >            - const: allwinner,sun8i-h3-pwm
-> > +      - items:
-> > +          - const: allwinner,sun8i-v3s-pwm
-> > +          - const: allwinner,sun7i-a20-pwm
-> >        - items:
-> >            - const: allwinner,sun50i-a64-pwm
-> >            - const: allwinner,sun5i-a13-pwm
->=20
->=20
->=20
->=20
+Updates since v12:
+* Capitalised commit messages.  Use specific subject line for dt-bindings
 
---=20
-Developer of free digital technology and hardware support.
+Updates since v11:
+* Adjusted so yaml file passses make dt_binding_check
 
-Website: https://www.paulk.fr/
-Coding blog: https://code.paulk.fr/
-Git repositories: https://git.paulk.fr/ https://git.code.paulk.fr/
+Updates since v10:
+* Adjusted driver as per Rob Herring's comments, notably:
+  - use common PCI_MSI_FLAGS defines
+  - reduce storage of unnecessary vars in mc_pcie struct
+  - switched to read/write relaxed variants
+  - extended lock in msi_domain_alloc routine
+  - improved 32bit safety, switched from find_first_bit() to ilog2()
+  - removed unnecessary twiddle of eCAM config space
 
---PWZPojefCF+DTRoY
-Content-Type: application/pgp-signature; name="signature.asc"
+Updates since v9:
+* Adjusted commit logs
+* make dt_bindings_check passes
 
------BEGIN PGP SIGNATURE-----
+Updates since v8:
+* Refactored as per Rob Herring's comments:
+  - bindings in schema format
+  - Adjusted licence to GPLv2.0
+  - Refactored access to config space between driver and common eCAM code
+  - Adopted pci_host_probe()
+  - Miscellanous other improvements
 
-iQIzBAEBCAAdFiEEAbcMXZQMtj1fphLChP3B6o/ulQwFAl/kXhIACgkQhP3B6o/u
-lQwggw/+PE/9DPHRtzUcnwkzS1Q0LLtt63bSdLTT11wDKBBx8tZ1IKMeqWj4uw9E
-cbnvP83A/XR8ul4to5vL3qvWoWk4H2sTl5YeAFLLo9Rbwie58/PCFO+mDksUWUEl
-RVGC17Pd/sMYK2pf+qpzFNmkELnVr3aY3pm2D+e2tHyyIfbFWbdIJkaGMfVm5f1/
-BraZ86G0bGhMTszP+lrGnuMrInshWOS7R7v/7OGlosPNSmvsNKHdV0uUv3vEsvaf
-BmtVFDJDWSse9YhcKrpv0t4Nfa/B/du9O/yjAzw9s1MIKMfvHCp270IMrmB/EpOS
-DehY8mzPnUZJxK7E7IUttjtpvT6rXyFwft4W93nPJ3h1xLSNMjAXgxOiEuGz5hqD
-gYNclj3Hb5MwLPEnhmkvOqDdbVdNj14H2MwfPjnbIuFlWdZJ7QCeLmpgrCO4p8cG
-O7rdAMnm9tHoJ/M5edKYySpH1V4qKiHgqYhV1KOg3AVi4Y/3kjbEP6z0l+zmeLRR
-GXgJqthK7A901f//217zndKCPPpHmT/0RStsfEN28HoRVs7KqTvpNV0O0pLwcmoE
-XgqDspLvCECW/gPkWZyKuoQjBPyOuhKn5iTt2t7o0UMqdxZkjRCwdjWIKJrXWUsy
-eHwnRFGpl6FSjGFgXz7TNZ3sizcw+RCpzyD7SJvKOER7qHp3t3c=
-=TS49
------END PGP SIGNATURE-----
+Updates since v7:
+* Build for 64bit RISCV architecture only
 
---PWZPojefCF+DTRoY--
+Updates since v6:
+* Refactored to use common eCAM driver
+* Updated to CONFIG_PCIE_MICROCHIP_HOST etc
+* Formatting improvements
+* Removed code for selection between bridge 0 and 1
+
+Updates since v5:
+* Fixed Kconfig typo noted by Randy Dunlap
+* Updated with comments from Bjorn Helgaas
+
+Updates since v4:
+* Fix compile issues.
+
+Updates since v3:
+* Update all references to Microsemi to Microchip
+* Separate MSI functionality from legacy PCIe interrupt handling functionality
+
+Updates since v2:
+* Split out DT bindings and Vendor ID updates into their own patch
+  from PCIe driver.
+* Updated Change Log
+
+Updates since v1:
+* Incorporate feedback from Bjorn Helgaas
+
+Daire McNamara (4):
+  PCI: Call platform_set_drvdata earlier in devm_pci_alloc_host_bridge
+  dt-bindings: PCI: microchip: Add Microchip PolarFire host binding
+  PCI: microchip: Add host driver for Microchip PCIe controller
+  MAINTAINERS: Add Daire McNamara as maintainer for the Microchip PCIe
+    driver
+
+ .../bindings/pci/microchip,pcie-host.yaml     |   92 ++
+ MAINTAINERS                                   |    7 +
+ drivers/pci/controller/Kconfig                |   10 +
+ drivers/pci/controller/Makefile               |    1 +
+ drivers/pci/controller/pci-host-common.c      |    4 +-
+ drivers/pci/controller/pcie-microchip-host.c  | 1119 +++++++++++++++++
+ 6 files changed, 1231 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pci/microchip,pcie-host.yaml
+ create mode 100644 drivers/pci/controller/pcie-microchip-host.c
+
+
+base-commit: 3650b228f83adda7e5ee532e2b90429c03f7b9ec
+-- 
+2.25.1
+
