@@ -2,179 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 594092E278F
-	for <lists+devicetree@lfdr.de>; Thu, 24 Dec 2020 15:04:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 600C42E27B0
+	for <lists+devicetree@lfdr.de>; Thu, 24 Dec 2020 15:30:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728161AbgLXOEM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Dec 2020 09:04:12 -0500
-Received: from us-smtp-delivery-124.mimecast.com ([63.128.21.124]:42838 "EHLO
-        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1727114AbgLXOEL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 24 Dec 2020 09:04:11 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1608818564;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=KBihBeE7FaK4G7GPAOp0NUP3AloiGzKbKb/E0jog36A=;
-        b=aZq1pHh2gy4vOzYkAKncLfPRauoD0gzIM9QVkacaBph5l82LjFDKP3Uh5fVAQyDVewbUxK
-        ztf3ZbUkrbAvrcUw56fBjE0gHtS7/a2yuNRb86O2eKGBmXVQrXUdJgDipHAzUjWF9an4zU
-        3UwFcN3R/i/XQfqSCWE4WlDXDTMsjbQ=
-Received: from mail-oo1-f70.google.com (mail-oo1-f70.google.com
- [209.85.161.70]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-562-qsrM_fyWNJihUKJAGwD1XQ-1; Thu, 24 Dec 2020 09:02:43 -0500
-X-MC-Unique: qsrM_fyWNJihUKJAGwD1XQ-1
-Received: by mail-oo1-f70.google.com with SMTP id l5so1034896ooj.2
-        for <devicetree@vger.kernel.org>; Thu, 24 Dec 2020 06:02:43 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-transfer-encoding
-         :content-language;
-        bh=KBihBeE7FaK4G7GPAOp0NUP3AloiGzKbKb/E0jog36A=;
-        b=MspAdfzqqGy1UklA7IZQgblrzbG2FzRPmUTHQl3VRp6lirbIJiYMJBtcZbx6+FHU7F
-         NpEqjoU4V+Ik9ThyG4RMeT+pDQUXzGjnxK0DIol71DvuwKc4ohPPT8Jr8EN6Qx4hHSLA
-         2kleR6gL6Tp/iApLhZw1ol6ZOGvlpzxPAYWi0sXgoHFsVT+3UQ2I07kNvuDRehUQaSzN
-         TcXq6bVgbm13fYpuTIBy4JupOULzPMiOraNVE1fZYIcbf0nV+gm2/LS/p86JqlNaqF3j
-         Xt7+t7amxzcO3O0oqxtEbrGebI3SQV3gfubBtQC2ML422DWm+whUcJN4GeVHd21dxhMN
-         w+0g==
-X-Gm-Message-State: AOAM533mKsUEuCT2/ehV4qen8OhHK735ib1sigUVWlQa8UxorbOU5EOs
-        4+jbZkdZtPBPdzMWqBRzTjZBuJL5vSYfpxEB1stngH3KNhQCxvJ/WAGA5ZM6tNTar9Gk+055TTy
-        FAipzNLLutWgkDZmgVsANrA==
-X-Received: by 2002:a9d:5c8b:: with SMTP id a11mr22357625oti.126.1608818562305;
-        Thu, 24 Dec 2020 06:02:42 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJy5TuK4g70Wa7LQ5fkxYOJAqadcOmmttNzmJip+R7fCyD06vTogTSKVmSmRkNY9QCefp2bAug==
-X-Received: by 2002:a9d:5c8b:: with SMTP id a11mr22357606oti.126.1608818562059;
-        Thu, 24 Dec 2020 06:02:42 -0800 (PST)
-Received: from trix.remote.csb (075-142-250-213.res.spectrum.com. [75.142.250.213])
-        by smtp.gmail.com with ESMTPSA id g12sm6838873oos.8.2020.12.24.06.02.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 24 Dec 2020 06:02:41 -0800 (PST)
-Subject: Re: [PATCH 1/2] clk: axi-clkgen: add support for ZynqMP (UltraScale)
-To:     Alexandru Ardelean <alexandru.ardelean@analog.com>,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
-        lars@metafoo.de, linux-fpga@vger.kernel.org, mdf@kernel.org,
-        dragos.bogdan@analog.com, Mathias Tausen <mta@gomspace.com>
-References: <20201221144224.50814-1-alexandru.ardelean@analog.com>
-From:   Tom Rix <trix@redhat.com>
-Message-ID: <58111fcc-d4c7-4b26-e038-2882b636e17f@redhat.com>
-Date:   Thu, 24 Dec 2020 06:02:39 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.4.0
+        id S1728122AbgLXO3a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Dec 2020 09:29:30 -0500
+Received: from mail.kernel.org ([198.145.29.99]:56510 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727883AbgLXO3a (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 24 Dec 2020 09:29:30 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 9A2CD224B0;
+        Thu, 24 Dec 2020 14:28:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1608820129;
+        bh=avuCDzNbHj2dpF1wMtlr+eCWDnDVKL9dKK9/kgnxfs4=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=ENCPJqaoTtx/w/gjRxswEHbm+8HVvkn/o6ithsijzpCIyPfZxK6j1NMT5Bqr0GEGI
+         nJVwGA+Av6dt/xpjmGqyZ0IerOW/S1adE0iqYlvt0jFYaEoV/sc4DI1VKJR/6/4Uu+
+         lNaBlogIq22j485Mm06pp3JZi3HVh0MxQ3EkbAUlgpSVgK7mBmF0L/hsLNbRCJnGRJ
+         +J437zPckoQBf8YfDHgLzoGb+sQdGWxdfEDRl4E9vbSvHVONERHw+PCh/jPLTvwvNJ
+         c4QetSUTVX0uPyqGtPdArOXyrscuH+NmJzl8L4QcKU299UfhUOUzMDaZU0rZGoTxYm
+         XdnBTAc/QCFJQ==
+Received: by mail-ej1-f53.google.com with SMTP id ga15so3548438ejb.4;
+        Thu, 24 Dec 2020 06:28:49 -0800 (PST)
+X-Gm-Message-State: AOAM533OZaL7yBReB98C49ZxlvvI9wJXl+oWVkzHA4+nhtBbn36ERmuZ
+        uubFOhz0z4/YU4lcUAn+5B3TU7pCsOek0lNtsA==
+X-Google-Smtp-Source: ABdhPJz4FZaQVqFZ83WxFt3Fe2+BmFRA28vGU8ERYHuq8sPphR3iLihx8v6LeP10GlrFZUcP3U+83p989lbPDy9D1OQ=
+X-Received: by 2002:a17:907:9627:: with SMTP id gb39mr28660682ejc.267.1608820128218;
+ Thu, 24 Dec 2020 06:28:48 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20201221144224.50814-1-alexandru.ardelean@analog.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+References: <1608770889-9403-1-git-send-email-yongqiang.niu@mediatek.com> <1608770889-9403-4-git-send-email-yongqiang.niu@mediatek.com>
+In-Reply-To: <1608770889-9403-4-git-send-email-yongqiang.niu@mediatek.com>
+From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Date:   Thu, 24 Dec 2020 22:28:35 +0800
+X-Gmail-Original-Message-ID: <CAAOTY_9e9qadeO9k7zQnvSLZAAJFxjWwYSBz-XXEUUh16jsptA@mail.gmail.com>
+Message-ID: <CAAOTY_9e9qadeO9k7zQnvSLZAAJFxjWwYSBz-XXEUUh16jsptA@mail.gmail.com>
+Subject: Re: [PATCH v2, 3/3] mailbox: cmdq: add mt8192 support
+To:     Yongqiang Niu <yongqiang.niu@mediatek.com>
+Cc:     CK Hu <ck.hu@mediatek.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        DTML <devicetree@vger.kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        DRI Development <dri-devel@lists.freedesktop.org>,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi, Yongqiang:
 
-On 12/21/20 6:42 AM, Alexandru Ardelean wrote:
-> From: Dragos Bogdan <dragos.bogdan@analog.com>
+Yongqiang Niu <yongqiang.niu@mediatek.com> =E6=96=BC 2020=E5=B9=B412=E6=9C=
+=8824=E6=97=A5 =E9=80=B1=E5=9B=9B =E4=B8=8A=E5=8D=888:55=E5=AF=AB=E9=81=93=
+=EF=BC=9A
 >
-> This IP core also works and is supported on the Xilinx ZynqMP (UltraScale)
-> FPGA boards.
-> This patch enables the driver to be available on these platforms as well.
+> add mt8192 support
 >
-> Since axi-clkgen is now supported on ZYNQMP, we need to make sure the
-> max/min frequencies of the PFD and VCO are respected.
->
-> This change adds two new compatible strings to select limits for Zynq or
-> ZynqMP from the device data (in the OF table). The old compatible string
-> (i.e. adi,axi-clkgen-2.00.a) is the same as adi,zynq-axi-clkgen-2.00.a,
-> since the original version of this driver was designed on top of that
-> platform.
->
-> Signed-off-by: Dragos Bogdan <dragos.bogdan@analog.com>
-> Signed-off-by: Mathias Tausen <mta@gomspace.com>
-> Signed-off-by: Alexandru Ardelean <alexandru.ardelean@analog.com>
+> Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
 > ---
+>  drivers/mailbox/mtk-cmdq-mailbox.c | 1 +
+>  1 file changed, 1 insertion(+)
 >
-> This is a re-spin of an older series.
-> It needed to wait a txt -> yaml dt conversion:
-> https://patchwork.kernel.org/project/linux-clk/patch/20201013143421.84188-1-alexandru.ardelean@analog.com/
+> diff --git a/drivers/mailbox/mtk-cmdq-mailbox.c b/drivers/mailbox/mtk-cmd=
+q-mailbox.c
+> index 75378e3..7f243e1 100644
+> --- a/drivers/mailbox/mtk-cmdq-mailbox.c
+> +++ b/drivers/mailbox/mtk-cmdq-mailbox.c
+> @@ -607,6 +607,7 @@ static int cmdq_probe(struct platform_device *pdev)
+>         {.compatible =3D "mediatek,mt8173-gce", .data =3D (void *)&gce_pl=
+at_v2},
+>         {.compatible =3D "mediatek,mt8183-gce", .data =3D (void *)&gce_pl=
+at_v3},
+>         {.compatible =3D "mediatek,mt6779-gce", .data =3D (void *)&gce_pl=
+at_v4},
+> +       {.compatible =3D "mediatek,mt8192-gce", .data =3D (void *)&gce_pl=
+at_v4},
+
+In the view of hardware function, is mt8192-gce identical to
+mt6779-gce? If these two are identical, you need not to modify driver,
+and the compatible should be
+
+compatible =3D "mediatek,mt8192-gce", "mediatek,mt6779-gce";
+
+If they are not identical, what's the different?
+
+Regards,
+Chun-Kuang.
+
+>         {}
+>  };
 >
-> It's 2 patches squashed into one:
-> https://patchwork.kernel.org/project/linux-clk/patch/20200929144417.89816-12-alexandru.ardelean@analog.com/
-> https://patchwork.kernel.org/project/linux-clk/patch/20200929144417.89816-14-alexandru.ardelean@analog.com/
->
-> The series from where all this started is:
-> https://lore.kernel.org/linux-clk/20200929144417.89816-1-alexandru.ardelean@analog.com/
->
-> Well, v4 was the point where I decided to split this into smaller
-> series, and also do the conversion of the binding to yaml.
->
->  drivers/clk/Kconfig          |  2 +-
->  drivers/clk/clk-axi-clkgen.c | 15 +++++++++++++++
->  2 files changed, 16 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/clk/Kconfig b/drivers/clk/Kconfig
-> index 85856cff506c..252333e585e7 100644
-> --- a/drivers/clk/Kconfig
-> +++ b/drivers/clk/Kconfig
-> @@ -247,7 +247,7 @@ config CLK_TWL6040
->  
->  config COMMON_CLK_AXI_CLKGEN
->  	tristate "AXI clkgen driver"
-> -	depends on ARCH_ZYNQ || MICROBLAZE || COMPILE_TEST
-> +	depends on ARCH_ZYNQ || ARCH_ZYNQMP || MICROBLAZE || COMPILE_TEST
->  	help
->  	  Support for the Analog Devices axi-clkgen pcore clock generator for Xilinx
->  	  FPGAs. It is commonly used in Analog Devices' reference designs.
-> diff --git a/drivers/clk/clk-axi-clkgen.c b/drivers/clk/clk-axi-clkgen.c
-> index ad86e031ba3e..a413c13334ff 100644
-> --- a/drivers/clk/clk-axi-clkgen.c
-> +++ b/drivers/clk/clk-axi-clkgen.c
-> @@ -108,6 +108,13 @@ static uint32_t axi_clkgen_lookup_lock(unsigned int m)
->  	return 0x1f1f00fa;
->  }
->  
-
-Could something like
-
-#ifdef ARCH_ZYNQMP
-
-> +static const struct axi_clkgen_limits axi_clkgen_zynqmp_default_limits = {
-> +	.fpfd_min = 10000,
-> +	.fpfd_max = 450000,
-> +	.fvco_min = 800000,
-> +	.fvco_max = 1600000,
-> +};
-
-#endif
-
-be added here and similar places to limit unused code ?
-
-> +
->  static const struct axi_clkgen_limits axi_clkgen_zynq_default_limits = {
->  	.fpfd_min = 10000,
->  	.fpfd_max = 300000,
-> @@ -560,6 +567,14 @@ static int axi_clkgen_remove(struct platform_device *pdev)
->  }
->  
->  static const struct of_device_id axi_clkgen_ids[] = {
-> +	{
-> +		.compatible = "adi,zynqmp-axi-clkgen-2.00.a",
-> +		.data = &axi_clkgen_zynqmp_default_limits,
-> +	},
-> +	{
-> +		.compatible = "adi,zynq-axi-clkgen-2.00.a",
-> +		.data = &axi_clkgen_zynq_default_limits,
-> +	},
-
-This looks like zynqmp AND zynq are being added.
-
-Is this a mistake ?
-
-Tom
-
->  	{
->  		.compatible = "adi,axi-clkgen-2.00.a",
->  		.data = &axi_clkgen_zynq_default_limits,
-
+> --
+> 1.8.1.1.dirty
+> _______________________________________________
+> Linux-mediatek mailing list
+> Linux-mediatek@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-mediatek
