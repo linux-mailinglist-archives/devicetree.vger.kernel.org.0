@@ -2,221 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ED9812E25CC
-	for <lists+devicetree@lfdr.de>; Thu, 24 Dec 2020 10:59:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 178B92E25D9
+	for <lists+devicetree@lfdr.de>; Thu, 24 Dec 2020 11:09:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727039AbgLXJ4p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Dec 2020 04:56:45 -0500
-Received: from mail-wm1-f48.google.com ([209.85.128.48]:52227 "EHLO
-        mail-wm1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726186AbgLXJ4p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Dec 2020 04:56:45 -0500
-Received: by mail-wm1-f48.google.com with SMTP id a6so1141066wmc.2;
-        Thu, 24 Dec 2020 01:56:27 -0800 (PST)
+        id S1726746AbgLXKIw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Dec 2020 05:08:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45824 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726591AbgLXKIv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Dec 2020 05:08:51 -0500
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F49FC06179C
+        for <devicetree@vger.kernel.org>; Thu, 24 Dec 2020 02:08:11 -0800 (PST)
+Received: by mail-ej1-x62f.google.com with SMTP id j22so2685738eja.13
+        for <devicetree@vger.kernel.org>; Thu, 24 Dec 2020 02:08:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=uUizvoQj8b1rj8eTw88nSgPpWqjjl7qGR7r5xpNtn3k=;
+        b=Ir4KT9FufwKLEeD68mTzD0wSzo6rco5sEsovSdtDLTFghK5msBi0TiBxBKnfYoHcjM
+         fDtP4rW3KdtNMsam1DejD6vsEv1tXwoJ0VeANDQ+jBSisqGW3f7Lqh3gRRIWRGOkzW6u
+         EQRWVxL9IzSmAc79Fan4zZNonXBp2ObK7YT1I=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=IQ47tmkeP0DrGeHawifdFzRAR5VdAIvwAYy3NMH+MDY=;
-        b=YhZGMjZiarLh6DubI1QVVGJx2xTjmVIwUVKiJ58WI9GOEzHz24hMLsPdB/eIfc3SgK
-         /TmQ/4CeXSrulcAjpqJpWIW70XCQpgRX859OGGoMq/0Cxqef24282huhw79e5fA6SuKV
-         AMwdphRBOezMbWonPKkhtB1RVDyD4qoJTqCTbdlFdAM2GATELqAWfFS64nRaEoUNu3aj
-         VIpgVzPCuiuVqW0eJf3LIW7bEunmhYJmH5E0RnLp7x5zrxGus4m7ov4191ZqKo415SL3
-         k/3x8Vyv51FzTrmKKkWbtIiaqA6jh/pCFxzSNOUWaaWqKYv2+AiBEIoAZUsHY4g5b3No
-         x8Gg==
-X-Gm-Message-State: AOAM531qp6NX2tRCS96MZrRE45kIY3cSOkZ+Kfhlfoe1WaJlQQhE2sxh
-        0BOPHIMPn/D+Jkxkmhbtbfw=
-X-Google-Smtp-Source: ABdhPJxmf6qw/SurLPa7171mcvsx/MR/mZ+Arr9m4C0y3Ps2Ov2COD95YRQIZEk7GrnB2r+2GuGxWg==
-X-Received: by 2002:a1c:a5d8:: with SMTP id o207mr3727438wme.30.1608803761556;
-        Thu, 24 Dec 2020 01:56:01 -0800 (PST)
-Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
-        by smtp.googlemail.com with ESMTPSA id x18sm44965801wrg.55.2020.12.24.01.56.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Dec 2020 01:56:00 -0800 (PST)
-Date:   Thu, 24 Dec 2020 10:55:59 +0100
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Timon Baetz <timon.baetz@protonmail.com>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-pm@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH v4 4/7] power: supply: max8997_charger: Set CHARGER
- current limit
-Message-ID: <20201224095559.GB10937@kozik-lap>
-References: <20201223134221.804943-1-timon.baetz@protonmail.com>
- <20201223134221.804943-4-timon.baetz@protonmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=uUizvoQj8b1rj8eTw88nSgPpWqjjl7qGR7r5xpNtn3k=;
+        b=NuiwunHbDeporfVxSSyxgnYwnuyXq38oyeaxCtZ0sTYK+1i5pP9YTp/dAXXB+RM4A0
+         hldKGu5eNtF56fUHcJi80Bq0GE+0jwb6+RFk/lGFdrUVQVg3X5lrlgBuTphSTbHg2JF4
+         +AnyF47Ool0DzSZcgLtoRnCDTCWeK2ov4ezQgftFArJz7pozxMW5Sb7SDckFB1CivIxc
+         6v14huJLPs/8jPJM4sF738q/XEyNLA4JJV1vxjLysR2yO6dlzWopTFa3aZbpfaSoLOWB
+         fvZzzXEMTpWLKeBodP1RsPGaHZNfdqZUgWLzcDAPkAewW3YXs/RWsqD03890Zia/ganA
+         DkDw==
+X-Gm-Message-State: AOAM533AUO6UmPdFYeV+bTo414UXZP/R/nWNYWilyUoOjQ59iVh6EVP0
+        vXDBdbLcX3jfPvcJkI1E4Beng8zJGk5YXy/7xGZ4hQ==
+X-Google-Smtp-Source: ABdhPJzxoFux0eWRsIJGJjMhK9lodOaJrVTo4LBYmkCrqmsjYET9GZqZZH+jEwe3Xdh+R5d0ESpBY055rHVlYaLuKwQ=
+X-Received: by 2002:a17:906:3d62:: with SMTP id r2mr28094367ejf.295.1608804489815;
+ Thu, 24 Dec 2020 02:08:09 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20201223134221.804943-4-timon.baetz@protonmail.com>
+References: <20201223110343.126638-1-jagan@amarulasolutions.com>
+ <20201223110343.126638-5-jagan@amarulasolutions.com> <20201223115933.GC21091@kozik-lap>
+ <CAMty3ZA0zrHS_wVKm8gdqU1q5ONokoT7aG_MBcWtXTJK59Bozg@mail.gmail.com> <CAJKOXPfNP+6uv6PXmyTCimRd1hrQUbosnY--55yUQh4G4jfZWw@mail.gmail.com>
+In-Reply-To: <CAJKOXPfNP+6uv6PXmyTCimRd1hrQUbosnY--55yUQh4G4jfZWw@mail.gmail.com>
+From:   Jagan Teki <jagan@amarulasolutions.com>
+Date:   Thu, 24 Dec 2020 15:37:58 +0530
+Message-ID: <CAMty3ZBWteW2OZMNwFT5hSRegy-AARqqkR7SAz53fDoM3j5Ong@mail.gmail.com>
+Subject: Re: [PATCH v3 4/6] arm64: dts: imx8mm: Add Engicam i.Core MX8M Mini
+ C.TOUCH 2.0
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Li Yang <leoyang.li@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-amarula <linux-amarula@amarulasolutions.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Matteo Lisi <matteo.lisi@engicam.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 23, 2020 at 01:43:05PM +0000, Timon Baetz wrote:
-> Register for extcon notification and set charging current depending on
-> the detected cable type. Current values are taken from vendor kernel,
-> where most charger types end up setting 650mA [0].
-> 
-> Also enable and disable the CHARGER regulator based on extcon events.
-> 
-> [0] https://github.com/krzk/linux-vendor-backup/blob/samsung/galaxy-s2-epic-4g-touch-sph-d710-exynos4210-dump/drivers/misc/max8997-muic.c#L1675-L1678
-> 
-> Signed-off-by: Timon Baetz <timon.baetz@protonmail.com>
-> ---
->  drivers/power/supply/max8997_charger.c | 89 ++++++++++++++++++++++++++
->  1 file changed, 89 insertions(+)
-> 
-> diff --git a/drivers/power/supply/max8997_charger.c b/drivers/power/supply/max8997_charger.c
-> index 1947af25879a..e8532e2af451 100644
-> --- a/drivers/power/supply/max8997_charger.c
-> +++ b/drivers/power/supply/max8997_charger.c
-> @@ -6,12 +6,14 @@
->  //  MyungJoo Ham <myungjoo.ham@samsung.com>
->  
->  #include <linux/err.h>
-> +#include <linux/extcon.h>
->  #include <linux/module.h>
->  #include <linux/slab.h>
->  #include <linux/platform_device.h>
->  #include <linux/power_supply.h>
->  #include <linux/mfd/max8997.h>
->  #include <linux/mfd/max8997-private.h>
-> +#include <linux/regulator/consumer.h>
->  
->  /* MAX8997_REG_STATUS4 */
->  #define DCINOK_SHIFT		1
-> @@ -31,6 +33,10 @@ struct charger_data {
->  	struct device *dev;
->  	struct max8997_dev *iodev;
->  	struct power_supply *battery;
-> +	struct regulator *reg;
-> +	struct extcon_dev *edev;
-> +	struct notifier_block extcon_nb;
-> +	struct work_struct extcon_work;
->  };
->  
->  static enum power_supply_property max8997_battery_props[] = {
-> @@ -88,6 +94,67 @@ static int max8997_battery_get_property(struct power_supply *psy,
->  	return 0;
->  }
->  
-> +static void max8997_battery_extcon_evt_stop_work(void *data)
-> +{
-> +	struct charger_data *charger = data;
-> +
-> +	cancel_work_sync(&charger->extcon_work);
-> +}
-> +
-> +static void max8997_battery_extcon_evt_worker(struct work_struct *work)
-> +{
-> +	struct charger_data *charger =
-> +	    container_of(work, struct charger_data, extcon_work);
-> +	struct extcon_dev *edev = charger->edev;
-> +	int current_limit;
-> +
-> +	if (extcon_get_state(edev, EXTCON_CHG_USB_SDP) > 0) {
-> +		dev_dbg(charger->dev, "USB SDP charger is connected\n");
-> +		current_limit = 450000;
-> +	} else if (extcon_get_state(edev, EXTCON_CHG_USB_DCP) > 0) {
-> +		dev_dbg(charger->dev, "USB DCP charger is connected\n");
-> +		current_limit = 650000;
-> +	} else if (extcon_get_state(edev, EXTCON_CHG_USB_FAST) > 0) {
-> +		dev_dbg(charger->dev, "USB FAST charger is connected\n");
-> +		current_limit = 650000;
-> +	} else if (extcon_get_state(edev, EXTCON_CHG_USB_SLOW) > 0) {
-> +		dev_dbg(charger->dev, "USB SLOW charger is connected\n");
-> +		current_limit = 650000;
-> +	} else if (extcon_get_state(edev, EXTCON_CHG_USB_CDP) > 0) {
-> +		dev_dbg(charger->dev, "USB CDP charger is connected\n");
-> +		current_limit = 650000;
-> +	} else {
-> +		dev_dbg(charger->dev, "USB charger is diconnected\n");
-> +		current_limit = -1;
-> +	}
-> +
-> +	if (current_limit > 0) {
-> +		int ret = regulator_set_current_limit(charger->reg, current_limit, current_limit);
-> +
-> +		if (ret) {
-> +			dev_err(charger->dev, "failed to set current limit: %d\n", ret);
-> +			return;
-> +		}
-> +		ret = regulator_enable(charger->reg);
-> +		if (ret)
-> +			dev_err(charger->dev, "failed to enable regulator: %d\n", ret);
-> +	} else {
-> +		int ret  = regulator_disable(charger->reg);
-> +
-> +		if (ret)
-> +			dev_err(charger->dev, "failed to disable regulator: %d\n", ret);
-> +	}
-> +}
-> +
-> +static int max8997_battery_extcon_evt(struct notifier_block *nb,
-> +				unsigned long event, void *param)
-> +{
-> +	struct charger_data *charger =
-> +		container_of(nb, struct charger_data, extcon_nb);
-> +	schedule_work(&charger->extcon_work);
-> +	return NOTIFY_OK;
-> +}
-> +
->  static const struct power_supply_desc max8997_battery_desc = {
->  	.name		= "max8997_pmic",
->  	.type		= POWER_SUPPLY_TYPE_BATTERY,
-> @@ -170,6 +237,28 @@ static int max8997_battery_probe(struct platform_device *pdev)
->  		return PTR_ERR(charger->battery);
->  	}
->  
-> +	charger->reg = devm_regulator_get(&pdev->dev, "charger");
+On Thu, Dec 24, 2020 at 2:48 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>
+> On Wed, 23 Dec 2020 at 13:07, Jagan Teki <jagan@amarulasolutions.com> wrote:
+> >
+> > On Wed, Dec 23, 2020 at 5:29 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> > >
+> > > On Wed, Dec 23, 2020 at 04:33:41PM +0530, Jagan Teki wrote:
+> > > > Engicam C.TOUCH 2.0 is an EDIMM compliant general purpose Carrier
+> > > > board.
+> > > >
+> > > > Genaral features:
+> > > > - Ethernet 10/100
+> > > > - Wifi/BT
+> > > > - USB Type A/OTG
+> > > > - Audio Out
+> > > > - CAN
+> > > > - LVDS panel connector
+> > > >
+> > > > i.Core MX8M Mini is an EDIMM SoM based on NXP i.MX8M Mini from Engicam.
+> > > >
+> > > > i.Core MX8M Mini needs to mount on top of this Carrier board for
+> > > > creating complete i.Core MX8M Mini C.TOUCH 2.0 board.
+> > > >
+> > > > Add support for it.
+> > > >
+> > > > Signed-off-by: Matteo Lisi <matteo.lisi@engicam.com>
+> > > > Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+> > > > ---
+> > > > Changes for v3:
+> > > > - don't maintain common nodes and include it, if no feature diff
+> > > > Changes for v2:
+> > > > - enabled fec1 node
+> > > > - updated commit message
+> > > > - dropped engicam from filename since it aligned with imx6 engicam
+> > > >   dts files naming conventions.
+> > > > - add i2c nodes
+> > > > - fixed v1 comments
+> > > >
+> > > >  arch/arm64/boot/dts/freescale/Makefile        |  1 +
+> > > >  .../dts/freescale/imx8mm-engicam-ctouch2.dtsi | 82 +++++++++++++++++++
+> > > >  .../freescale/imx8mm-icore-mx8mm-ctouch2.dts  | 21 +++++
+> > > >  3 files changed, 104 insertions(+)
+> > > >  create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-engicam-ctouch2.dtsi
+> > >
+> > > You split some common part to ctouch2.dtsi so it can be reused in
+> > > multiple places. I saw so far only one usage, where are the others?
+> >
+> > To be clear, ctouch2.dtsi not mean for common it is C.TOUCH2 carrier
+> > board dtsi. The other carrier is C.TOUCH2 10.1" Open Frame(display),
+> > since DSI is not yet mainlined, I didn't add this yet.
+>
+> If I understand correctly: it is a DTSI which is included only by one
+> DTS... and DTS does not have any other nodes. This as well is not the
 
-Since you do not use get_optional, you will always get a dummy
-regulator. In case of error, you should either print it or entirely fail
-the probe. Silently continuing makes it difficult to spot errors.
+This is not mandatory as per my understanding, including exiting DTS
+topologies in Mainline.
 
-Since the driver could operate in case of extcon/regulator error, just
-dev_err() so failure will be spotted with dmesg.
+There are several places where more than one dtsi has been included,
+Simple example of imx8mm tree is
 
-It will complain on older DTBs because you are introducing incompatible
-change, but that's expected. Just correct all other in-tree DTS.
+arch/arm64/boot/dts/freescale/imx8mm-beacon-kit.dts
 
-Best regards,
-Krzysztof
+/dts-v1/;
 
+#include "imx8mm.dtsi"
+#include "imx8mm-beacon-som.dtsi"
+#include "imx8mm-beacon-baseboard.dtsi"
 
-> +	charger->edev = extcon_get_edev_by_phandle(&pdev->dev, 0);
-> +	if (PTR_ERR(charger->reg) == -EPROBE_DEFER ||
-> +	    PTR_ERR(charger->edev) == -EPROBE_DEFER)
-> +		return -EPROBE_DEFER;
-> +
-> +	if (!IS_ERR(charger->reg) && !IS_ERR(charger->edev)) {
-> +		INIT_WORK(&charger->extcon_work, max8997_battery_extcon_evt_worker);
-> +		ret = devm_add_action(&pdev->dev, max8997_battery_extcon_evt_stop_work, charger);
-> +		if (ret) {
-> +			dev_err(&pdev->dev, "failed to add extcon evt stop action: %d\n", ret);
-> +			return ret;
-> +		}
-> +		charger->extcon_nb.notifier_call = max8997_battery_extcon_evt;
-> +		ret = devm_extcon_register_notifier_all(&pdev->dev, charger->edev,
-> +							&charger->extcon_nb);
-> +		if (ret) {
-> +			dev_err(&pdev->dev, "failed to register extcon notifier\n");
-> +			return ret;
-> +		};
-> +	}
-> +
->  	return 0;
->  }
->  
-> -- 
-> 2.25.1
-> 
-> 
+(SoC dtsi, SoM dtsi, Carrier board dtsi)
+
+> design which makes any sense. We do not create empty DTS files which
+> only include one more DTSI. The contents of
+> imx8mm-engicam-ctouch2.dtsi should be directly in
+> imx8mm-icore-mx8mm-ctouch2.dts. That's the same problem as with v1 -
+> you overcomplicate simple stuff. It really looks like you ignored the
+> comments from v1 in multiple places.
+
+As explained above, the design is pretty much the same as the existing SoM's.
+
+imx8mm-engicam-ctouch2.dtsi is not just a dtsi file where nodes are
+enabled. It has nodes enabled for Carrier board, so keeping nodes
+separately will
+
+1. More verbose for which IP's are available in the carrier board
+2. Easy to extend if someone can create another SoM with a similar Carrier.
+
+Ie is the whole idea to keep carrier board dtsi and includes them in dts.
+
+As I suggest, if you can look into px30 you can understand more easily.
+
+Jagan.
