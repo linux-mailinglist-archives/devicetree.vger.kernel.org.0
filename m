@@ -2,101 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C8EB2E2841
-	for <lists+devicetree@lfdr.de>; Thu, 24 Dec 2020 18:10:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 30F392E28EB
+	for <lists+devicetree@lfdr.de>; Thu, 24 Dec 2020 23:00:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729046AbgLXRGu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Dec 2020 12:06:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53568 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729042AbgLXRGt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Dec 2020 12:06:49 -0500
-Received: from mail-io1-xd2d.google.com (mail-io1-xd2d.google.com [IPv6:2607:f8b0:4864:20::d2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BF2CC061796;
-        Thu, 24 Dec 2020 09:05:41 -0800 (PST)
-Received: by mail-io1-xd2d.google.com with SMTP id n4so2438260iow.12;
-        Thu, 24 Dec 2020 09:05:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=BZzYpN7srheW62psnaXSHx8DA2qbyyiIul6QobFgrhs=;
-        b=pA0N/0So8nZP0OL+E6WO/w0EJjn7/wYuJe5u87jCnjsgkJD2CCrOLG6BYv8jmOwtLA
-         HcR3U5BHSV50n8ho6a5xMTmyHZm28YRlXLXtjc8OPBI1CEYdeUxmH8WusnHzxeZzKh1n
-         aDE8K/Er3iHiH8lNtPiRfXD6T3t5xPunfn1GneWzl33megee+0XRJEMy8tEJU6VfGwsM
-         B+hwIzo1Zy9imgfyqHC7zog5LeoI6KWddE8mSDsi7B6Ovjm6bXh0x6R+LXljH/YBI4B1
-         KCKH0fU0xQmo6WaHUrxfNIFz6FNDHNnORE3uZjzfPvCjMtQBh2Ekz34kwp7FrjRre5IV
-         y2ng==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=BZzYpN7srheW62psnaXSHx8DA2qbyyiIul6QobFgrhs=;
-        b=cXdMREGjvVLWVvsA/iXuB9LiZtc6eIKnQTyPpAk3lkfRxrr0ODXbZdI52uvzj2r6go
-         UgP69rUZiYNHYLZJmRridM9QlSR5TpvEPiwow3h6ihn9aVlUowYVuvTr2jh2DKqDKGO8
-         Y9FaAlyMMRvX4V/ZngiefTFhnsET63sTAtsDnXobJbggeu943qwjY02cHN7BePHuIbrG
-         0s6OBUoixkWq2krB0U1QPuWT5lRuzoCmcUVAPw2EHMWl3WVT/wPPOSuTMvHO1p86PWkl
-         2jxYJ46JuI+iDWDko810G1tOL6JkUa9xPK2ewWcH67/diysJG8Ix2onkWWLGUdOYhUm2
-         jxag==
-X-Gm-Message-State: AOAM531CW5+VEJVj6FyHghs0KynY8iPTH4masTffCw4lFpm6V04EAUWQ
-        WmgsPhH55U1jES/iDCSf2h8p3UTzsaE=
-X-Google-Smtp-Source: ABdhPJxKdqblUAPAHVgt0W7cmnN6Wfq1A83dTAVlAHe+WDwoH2mq30O52rceZwlf30PiPDWTV/t3TQ==
-X-Received: by 2002:a6b:dd13:: with SMTP id f19mr26186361ioc.74.1608829540130;
-        Thu, 24 Dec 2020 09:05:40 -0800 (PST)
-Received: from aford-IdeaCentre-A730.lan ([2601:448:8400:9e8:f45d:df49:9a4c:4914])
-        by smtp.gmail.com with ESMTPSA id f20sm9732965ilr.85.2020.12.24.09.05.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Dec 2020 09:05:39 -0800 (PST)
-From:   Adam Ford <aford173@gmail.com>
-To:     linux-renesas-soc@vger.kernel.org
-Cc:     aford@beaconembedded.com, Adam Ford <aford173@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH V2 9/9] arm64: dts: renesas: beacon: Increase sdhi speeds
-Date:   Thu, 24 Dec 2020 11:05:02 -0600
-Message-Id: <20201224170502.2254683-9-aford173@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20201224170502.2254683-1-aford173@gmail.com>
-References: <20201224170502.2254683-1-aford173@gmail.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S1729048AbgLXWAB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Dec 2020 17:00:01 -0500
+Received: from mail.kernel.org ([198.145.29.99]:40270 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729004AbgLXWAA (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 24 Dec 2020 17:00:00 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPS id 6F18F229CA;
+        Thu, 24 Dec 2020 21:59:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1608847160;
+        bh=472ZjBiNherYRAamBzdPkopGnEioMOalNjCSQnIOgP0=;
+        h=Subject:From:In-Reply-To:References:Date:To:Cc:From;
+        b=pSCKSP2+YZd49gjS9/wamPywjioIoteizxDb7xZcCR0mxRLkPo/TX14A8fpbs3nws
+         EaxIxdwZqiQyERMBzJr4wIodYdCjWhxGY8920rbzTDxR0M1zSgEz0aw9Y7okLiSHlA
+         iCc8lIlRKiCYNIh3yohGA4qFU7Lr5j1mx4o+lnqk0e7vAqARL5jPFuQ4NleMHHtPu0
+         6ws9u8WOEekrWasiH11msMb+G+Tj00L54cLpWUW9afwhWsnaRNis4vWoNaIpE3MoRq
+         eMqviiJnZ7foPsYym0cpqW0yrqcvD9AWCE9NXB9Yv2NtolHx2A4AViTg9/SdcdrP6X
+         DFEbfr7bn/qrg==
+Received: from pdx-korg-docbuild-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by pdx-korg-docbuild-1.ci.codeaurora.org (Postfix) with ESMTP id 69CA9604E9;
+        Thu, 24 Dec 2020 21:59:20 +0000 (UTC)
+Subject: Re: [GIT PULL] Devicetree fixes for 5.11, take 1
+From:   pr-tracker-bot@kernel.org
+In-Reply-To: <20201223181120.GA797630@robh.at.kernel.org>
+References: <20201223181120.GA797630@robh.at.kernel.org>
+X-PR-Tracked-List-Id: <devicetree.vger.kernel.org>
+X-PR-Tracked-Message-Id: <20201223181120.GA797630@robh.at.kernel.org>
+X-PR-Tracked-Remote: git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-5.11-1
+X-PR-Tracked-Commit-Id: 2b8f061a4f505aad11fd36adb24c3138ad09b96b
+X-PR-Merge-Tree: torvalds/linux.git
+X-PR-Merge-Refname: refs/heads/master
+X-PR-Merge-Commit-Id: 14571d5f22d3f7f6ecb97e037a2e346b3fb488bd
+Message-Id: <160884716042.31605.4746239064993257708.pr-tracker-bot@kernel.org>
+Date:   Thu, 24 Dec 2020 21:59:20 +0000
+To:     Rob Herring <robh@kernel.org>
+Cc:     Linus Torvalds <torvalds@linux-foundation.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Frank Rowand <frowand.list@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The eMMC can run at hs400 and the WiFi chip can run at sdr104.
-Set the respective flags to push the sdhi faster.
+The pull request you sent on Wed, 23 Dec 2020 11:11:20 -0700:
 
-Signed-off-by: Adam Ford <aford173@gmail.com>
----
-V2:  New to series
+> git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-5.11-1
 
-diff --git a/arch/arm64/boot/dts/renesas/beacon-renesom-som.dtsi b/arch/arm64/boot/dts/renesas/beacon-renesom-som.dtsi
-index b34ffa1e77fa..56bdd80e36d0 100644
---- a/arch/arm64/boot/dts/renesas/beacon-renesom-som.dtsi
-+++ b/arch/arm64/boot/dts/renesas/beacon-renesom-som.dtsi
-@@ -271,8 +271,9 @@ &scif2 {
- };
- 
- &sdhi2 {
--	pinctrl-names = "default";
- 	pinctrl-0 = <&sdhi2_pins>;
-+	pinctrl-1 = <&sdhi2_pins>;
-+	pinctrl-names = "default", "state_uhs";
- 	bus-width = <4>;
- 	vmmc-supply = <&reg_3p3v>;
- 	vqmmc-supply = <&reg_1p8v>;
-@@ -281,6 +282,8 @@ &sdhi2 {
- 	pm-ignore-notify;
- 	keep-power-in-suspend;
- 	mmc-pwrseq = <&wlan_pwrseq>;
-+	sd-uhs-sdr50;
-+	sd-uhs-sdr104;
- 	status = "okay";
- 	#address-cells = <1>;
- 	#size-cells = <0>;
+has been merged into torvalds/linux.git:
+https://git.kernel.org/torvalds/c/14571d5f22d3f7f6ecb97e037a2e346b3fb488bd
+
+Thank you!
+
 -- 
-2.25.1
-
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/prtracker.html
