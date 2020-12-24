@@ -2,54 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CA59A2E24D1
-	for <lists+devicetree@lfdr.de>; Thu, 24 Dec 2020 07:31:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E9B52E24E8
+	for <lists+devicetree@lfdr.de>; Thu, 24 Dec 2020 07:44:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727024AbgLXG3L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Dec 2020 01:29:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40532 "EHLO
+        id S1726064AbgLXGo1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Dec 2020 01:44:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42860 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725747AbgLXG3L (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Dec 2020 01:29:11 -0500
-Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC6D3C06179C
-        for <devicetree@vger.kernel.org>; Wed, 23 Dec 2020 22:28:30 -0800 (PST)
-Received: by mail-pj1-x102c.google.com with SMTP id lj6so643914pjb.0
-        for <devicetree@vger.kernel.org>; Wed, 23 Dec 2020 22:28:30 -0800 (PST)
+        with ESMTP id S1727185AbgLXGoX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Dec 2020 01:44:23 -0500
+Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com [IPv6:2607:f8b0:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66518C061282
+        for <devicetree@vger.kernel.org>; Wed, 23 Dec 2020 22:43:43 -0800 (PST)
+Received: by mail-pl1-x629.google.com with SMTP id t6so882473plq.1
+        for <devicetree@vger.kernel.org>; Wed, 23 Dec 2020 22:43:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:content-transfer-encoding:in-reply-to
          :user-agent;
-        bh=EjusjKqe1uD5qVIhtNFzzFr/40x6TzvZ/Sd3W/PBS+U=;
-        b=fkgyFFom2uaI6UYerCixgJyMGXGGZzyzPl2pC34SDHHWr//SHmo19YSii8QHZaSaa0
-         uZC2skGBke5PtP9vslEZombfKjKIAYRw9D3l2M5uGrJ+VkC9bDxNBcQDONWQUC2dmGxG
-         6UJpFpuY87irp1H90rXExkNF0g2y+4HLV3Ep3/gdgJBqsszg3FbKmgil0GqbQ6dTgEnh
-         DrDRzMipJyOMadGCFG5+H9D0UVs6y0l4FAVZ+I0/J5ZdR5hXHDE2454h+0iAD/EAVgA3
-         IDDlN9SUV6QyhslIyk38zgEDS9uC1vEdXUB6uhGhlyh9+PUCifXrT875haF9d9ipr3qB
-         NnsQ==
+        bh=EggZlPNaFVNouUQNpMn4xGppTh9DzckHE4NrKj3sjKU=;
+        b=Oh3/knrLmICSN2Z3rwKTSyV0rZAdC95C5D83OrFtERU6Bx2ojcAX/s8nBJJNKbvkSv
+         BfQYGy1zC8m1ZuYadonmShwKsEssyRaQOZBAyphCdJD8hE380Ft5/TXEmY6MO3GlJasq
+         RrkhWNQEmgh/GsGttqWcNfZ71NVDkNEYwWsjuqkP8VdwJTCX2vdDpxVwsnQ5HNEweh0M
+         An3fXfg9/d0G0+FuPk0ByAahetYKeSmx82mAoRUPnE+BrNipzngY1IzLAgLZrzjOCrN5
+         irhxwHDc5mBc6s5RnM5iXO8Nlvm9QXzBmJqpuOPmEAQFWdjKY9j2t4sfjZzWKZOQDh3R
+         twCg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:content-transfer-encoding
          :in-reply-to:user-agent;
-        bh=EjusjKqe1uD5qVIhtNFzzFr/40x6TzvZ/Sd3W/PBS+U=;
-        b=nJthCX3TWQtOQryRNiI/LGA50w9PP68STfR4SqQ3iOzTOd0td8uwSwmKmp/BmApJLk
-         psVINK3gRnhZxLjOUsKLPb2zCpb3ZS7Y1fFf80RFeQbLOVTNZzuNHfhpAc54MrefnN2F
-         Vp+1mThIx2rIYExjObxqe0PpWpRY8uGOvKTUV6u14k1fB0YRh5wadUZ5d1fS/ggpb1Jk
-         Ll9VADTnLmX8vCyvTBZvSpctN0ymnNQjDl0gdNzsSiYNws54LVZuTjGr6G/NezaLrbNp
-         0+2E15yQ17J6QXuY7+Er9jioh9nDIOKrVxvGTM7dS/q9ceYrnEvWEW0lZqr4LuYwAxXu
-         PXVQ==
-X-Gm-Message-State: AOAM533qlWmrVh9MFIN3grrVhzhET83g0a7UKYWlcHaTTRUqZUtiTE5W
-        5MgxHr5McFJXuBGO1vV2BMgFIg==
-X-Google-Smtp-Source: ABdhPJwZjLbo7aGBJ7sNLaIhWcs4xnkHkI7BDfYQrcbWA55ODln8fkpMZgsIP8pDydfAZ37ygqOZVA==
-X-Received: by 2002:a17:90a:380c:: with SMTP id w12mr2982286pjb.117.1608791310121;
-        Wed, 23 Dec 2020 22:28:30 -0800 (PST)
+        bh=EggZlPNaFVNouUQNpMn4xGppTh9DzckHE4NrKj3sjKU=;
+        b=rX5iUrHSaqI4AB8zpKYaOc09fGlv5zusfiaTy0xpOJocKK166FyiTp/bW1TSyOl7wA
+         GI1UKA3yo9jjglrvX5n1ZDgYG2sY1fo3W9wWmNd8YhkZ4BYcu/5JAjyzVe+cVU40s800
+         8AMFRX0uKunYdPqymcq4T5cf39FWO18HuvsWTfPWymlPHtwKzeLlUZV2OMw3sMjSx+i1
+         /FAYq/Nxgn7RQtrcd05KHDrTiyF4+N5Fmh+uvDeaL3FlRliX4jK1f9T+dhAOxBM73XwW
+         +HJmVgSa8jIWWHMcucs/pP5cKINB2U18UgCQnGav9bgX1E8qwgU4FJuQzQZDNbPcjxQY
+         GFyw==
+X-Gm-Message-State: AOAM5331pg4cfIDzyeBb89wa1w3YtODT3KTyvC4sE47/qTW2q2hmCyss
+        6XVNzk/FRaKRTPK+eDBfoPHwYQ==
+X-Google-Smtp-Source: ABdhPJzvXFDg0AOs/T4jYpQbUFp8mqlvGxAfA/7keO1x94rQjdeak+7MJF5KZ9Mxu1T0gEblsk2C9g==
+X-Received: by 2002:a17:90b:60b:: with SMTP id gb11mr3193035pjb.122.1608792222393;
+        Wed, 23 Dec 2020 22:43:42 -0800 (PST)
 Received: from localhost ([122.172.20.109])
-        by smtp.gmail.com with ESMTPSA id t18sm25653088pfl.138.2020.12.23.22.28.28
+        by smtp.gmail.com with ESMTPSA id c14sm24658375pfd.37.2020.12.23.22.43.41
         (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 23 Dec 2020 22:28:29 -0800 (PST)
-Date:   Thu, 24 Dec 2020 11:58:27 +0530
+        Wed, 23 Dec 2020 22:43:41 -0800 (PST)
+Date:   Thu, 24 Dec 2020 12:13:39 +0530
 From:   Viresh Kumar <viresh.kumar@linaro.org>
 To:     Dmitry Osipenko <digetx@gmail.com>
 Cc:     Thierry Reding <thierry.reding@gmail.com>,
@@ -72,63 +72,48 @@ Cc:     Thierry Reding <thierry.reding@gmail.com>,
         devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
         linux-media@vger.kernel.org, linux-tegra@vger.kernel.org,
         linux-clk@vger.kernel.org
-Subject: Re: [PATCH v2 19/48] opp: Fix adding OPP entries in a wrong order if
- rate is unavailable
-Message-ID: <20201224062826.frppxddfinjomfui@vireshk-i7>
+Subject: Re: [PATCH v2 11/48] opp: Add dev_pm_opp_find_level_ceil()
+Message-ID: <20201224064339.zngidobhstnlu2a3@vireshk-i7>
 References: <20201217180638.22748-1-digetx@gmail.com>
- <20201217180638.22748-20-digetx@gmail.com>
- <20201222091255.wentz5hyt726qezg@vireshk-i7>
- <db6273e6-8406-b7ae-b51d-48ceb6d21962@gmail.com>
- <20201223043443.rklw5er6hck3gl4y@vireshk-i7>
- <7688d6b9-52a2-d30f-123f-43c01e03b968@gmail.com>
+ <20201217180638.22748-12-digetx@gmail.com>
+ <20201222064253.x7vsurh7q5k7qzb5@vireshk-i7>
+ <fd7b9f42-d0a7-45eb-2a17-d46779011c58@gmail.com>
+ <20201223041931.klnppy4fu3sdgtsz@vireshk-i7>
+ <f00e0c74-8d9a-d3d3-81bb-3ac25a74175d@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <7688d6b9-52a2-d30f-123f-43c01e03b968@gmail.com>
+In-Reply-To: <f00e0c74-8d9a-d3d3-81bb-3ac25a74175d@gmail.com>
 User-Agent: NeoMutt/20180716-391-311a52
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23-12-20, 23:36, Dmitry Osipenko wrote:
-> 23.12.2020 07:34, Viresh Kumar пишет:
-> > On 22-12-20, 22:19, Dmitry Osipenko wrote:
-> >> 22.12.2020 12:12, Viresh Kumar пишет:
-> >>> rate will be 0 for both the OPPs here if rate_not_available is true and so this
-> >>> change shouldn't be required.
+On 23-12-20, 23:37, Dmitry Osipenko wrote:
+> 23.12.2020 07:19, Viresh Kumar пишет:
+> > On 22-12-20, 22:15, Dmitry Osipenko wrote:
+> >> 22.12.2020 09:42, Viresh Kumar пишет:
+> >>> On 17-12-20, 21:06, Dmitry Osipenko wrote:
+> >>>> Add a ceil version of the dev_pm_opp_find_level(). It's handy to have if
+> >>>> levels don't start from 0 in OPP table and zero usually means a minimal
+> >>>> level.
+> >>>>
+> >>>> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+> >>>
+> >>> Why doesn't the exact version work for you here ?
+> >>>
 > >>
-> >> The rate_not_available is negated in the condition. This change is
-> >> required because both rates are 0 and then we should proceed to the
-> >> levels comparison.
+> >> The exact version won't find OPP for level=0 if levels don't start with
+> >> 0, where 0 means that minimal level is desired.
 > > 
-> > Won't that happen without this patch ?
+> > Right, but why do you need to send 0 for your platform ?
+> > 
 > 
-> No
+> To put power domain into the lowest performance state when device is idling.
 
-This is how the code looks like currently:
-
-int _opp_compare_key(struct dev_pm_opp *opp1, struct dev_pm_opp *opp2)
-{
-	if (opp1->rate != opp2->rate)
-		return opp1->rate < opp2->rate ? -1 : 1;
-	if (opp1->bandwidth && opp2->bandwidth &&
-	    opp1->bandwidth[0].peak != opp2->bandwidth[0].peak)
-		return opp1->bandwidth[0].peak < opp2->bandwidth[0].peak ? -1 : 1;
-	if (opp1->level != opp2->level)
-		return opp1->level < opp2->level ? -1 : 1;
-	return 0;
-}
-
-Lets consider the case you are focussing on, where rate is 0 for both the OPPs,
-bandwidth isn't there and we want to run the level comparison here.
-
-Since both the rates are 0, (opp1->rate != opp2->rate) will fail and so we will
-move to bandwidth check which will fail too. And so we will get to the level
-comparison.
-
-What am I missing here ? I am sure there is something for sure as you won't have
-missed this..
+I see. So you really want to set it to the lowest state or just take the vote
+out ? Which may end up powering off the domain in the worst case ?
 
 -- 
 viresh
