@@ -2,224 +2,198 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 732522E2765
-	for <lists+devicetree@lfdr.de>; Thu, 24 Dec 2020 14:38:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C1AE2E2776
+	for <lists+devicetree@lfdr.de>; Thu, 24 Dec 2020 14:55:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728222AbgLXNhw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Dec 2020 08:37:52 -0500
-Received: from mail-wm1-f50.google.com ([209.85.128.50]:51747 "EHLO
-        mail-wm1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727114AbgLXNhw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Dec 2020 08:37:52 -0500
-Received: by mail-wm1-f50.google.com with SMTP id v14so1567052wml.1;
-        Thu, 24 Dec 2020 05:37:34 -0800 (PST)
+        id S1727778AbgLXNxn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Dec 2020 08:53:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52110 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727240AbgLXNxm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Dec 2020 08:53:42 -0500
+Received: from mail-il1-x12c.google.com (mail-il1-x12c.google.com [IPv6:2607:f8b0:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B059C061794;
+        Thu, 24 Dec 2020 05:53:02 -0800 (PST)
+Received: by mail-il1-x12c.google.com with SMTP id 2so2044766ilg.9;
+        Thu, 24 Dec 2020 05:53:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=lWTbHY81KjIshjNuJb4wW01azEJV2L6TrRBUVbFz5yM=;
+        b=MPyPErXN2l5kMYOUI66Phr3Fn8TyGh3fRQtreXjMN6KwViRYHIqK42dD83r2vA5ME0
+         z7kb5+IanYvH+sVbpC32Yv0e4p5nsRPcOunMNxeywG1I5OolmyDiDAMZsA56sS0E8tTJ
+         wNzXEB9iICcw/8gQ503nHDSJ6tisz5VX/xEuRWzrhF6SQCEREhcya2kyXQ5c9tQuepFs
+         AExoFA9UgnTVe+h8qjS3sTTBByzRu06eLIwfeD9hL6XhVtp5zLcODxsOM8lhbK4jcbQw
+         lfqy671lb6u7fS14IL9zKZdTBT/3wx281S4hEBg08ci3S5BBJYvFmWin2cQiyepixtxE
+         MoJg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=FCE5WE21N5MZx3cVhTL+26jN5aENt/JDk271U/g6f+w=;
-        b=cYWWm6i4seXYIcdxvhlUIY/JfmJRIhrn8s9f8QWpBNk3HJk5dFRo9xIlW9+ZgTdDlZ
-         kaqLGki7vlWGzFCt3hRA7iH3mbysw/tniVvD9kg+I5ztI+NJuZFl5+HXnb7aOj6CfVYW
-         xJvSXTf5qmUuxC+J9VLabRbqmIAKGrSyMWjHzxK/f7wGArsMtlbJr5DSDaBzo15FIciu
-         el4KeH/UAC3VNcQPljqO9ad0cEdL3On6c72NuavRj5avEN0Q2A4YpTFWMG3aJwCG77iK
-         xW8u9APznhiiXZqa836QnlO8GTDHWhAtzuvuYHNudNxRcNMylnQs4mdICa7JFDHhOGhu
-         Ddig==
-X-Gm-Message-State: AOAM5302MzB79vjoYR+WKAurzkFdSfQoacXhdKBbz7R1ugy/WoXypVqT
-        +Xg5B24wuWlz7MmtzTShogQ=
-X-Google-Smtp-Source: ABdhPJwueUe+hMI4kHB/bhXr8nqNFFk+k83Yh3Z2ch2XfuWe+gJ0G1dhb1li0U6QTLVEFHB22UOm7w==
-X-Received: by 2002:a1c:2586:: with SMTP id l128mr4490273wml.78.1608817029074;
-        Thu, 24 Dec 2020 05:37:09 -0800 (PST)
-Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
-        by smtp.googlemail.com with ESMTPSA id n11sm22189460wra.9.2020.12.24.05.37.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Dec 2020 05:37:07 -0800 (PST)
-Date:   Thu, 24 Dec 2020 14:37:06 +0100
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Timon Baetz <timon.baetz@protonmail.com>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-pm@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Marek Szyprowski <m.szyprowski@samsung.com>
-Subject: Re: [PATCH v4 4/7] power: supply: max8997_charger: Set CHARGER
- current limit
-Message-ID: <20201224133706.GA22856@kozik-lap>
-References: <20201223134221.804943-1-timon.baetz@protonmail.com>
- <20201223134221.804943-4-timon.baetz@protonmail.com>
- <20201224095559.GB10937@kozik-lap>
- <20201224141246.7ad0ffc4.timon.baetz@protonmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=lWTbHY81KjIshjNuJb4wW01azEJV2L6TrRBUVbFz5yM=;
+        b=pSHtleMD+yGTNIfRjInQD1wDYaWMpIVQ/gJ7bexhd3Y8p4qGm2gvrQW/zNpxvevKVy
+         L8Wof4tLAsIQ8pJbokwvGxTnqErW8KU+PyM7ZHViyLtX9luoU5r1qQ7z4VZpT6HBbhdN
+         o9cyG8v7zU/0U5LNzD3mRgLhUCprm8wZ8zUJ7BId2hZ8rYub+2LqG4SmIN9XIsoLm/iI
+         sAS4k/2AwdSfFrMB517CqEUUHQVTZi6iLEaj/SVgZmnMvZsf/GHnQJuoNQFhtj4/V+4i
+         QuKpc5QIUVWkzAxnWdqFuYCiRh797vXE5cazyKwqDQCyZy2gw/QJd5QUOiP35R1X+tuk
+         wv6w==
+X-Gm-Message-State: AOAM530zEVUq6jxTvfj3ruUJLn8LQA+Ys29QZmQjMUjn/AQOPmAPqJRM
+        UZfxoCwyXjA95WH4CFvK0B6QlY5TInVe69wrWU+5+He4a+Y=
+X-Google-Smtp-Source: ABdhPJxE2icD5c/lgVivHCxytuGP4CovPpSoWzWPs6lMhNw6hkvSkH/JHwdVakD+Sg8/evHADGgwMq5vXjO4YxP8R/A=
+X-Received: by 2002:a92:7d14:: with SMTP id y20mr28873902ilc.196.1608817981468;
+ Thu, 24 Dec 2020 05:53:01 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20201224141246.7ad0ffc4.timon.baetz@protonmail.com>
+References: <20201213183759.223246-1-aford173@gmail.com> <20201213183759.223246-2-aford173@gmail.com>
+ <CAMuHMdWRieM1H5WLySVDVQds-xKgsqo-OibegJrXgonfqbAL8g@mail.gmail.com>
+ <CAHCN7xL3KU4dA=0-S7J5AEPmjAtpz4j-frEUqBD=JU7BV7g1WA@mail.gmail.com>
+ <CAMuHMdWc=qD=Oqa-7o9K1bd_OM0L7Br8BVAbDvYNraO0wAX2jw@mail.gmail.com>
+ <CAHCN7xKsSgM+=MFOKpNZTsJJiNyx6_mqZL2g_PKhN5fWyE6y7Q@mail.gmail.com>
+ <CAMuHMdVxzcyVuK06BqE4GQPLE8J7V5Jc-W_RSENNxEQG68krCw@mail.gmail.com>
+ <CAHCN7xJVn7gbCX8ibSFbyjA4HqyxPR9_vXvJQQSbJRKoaF_51Q@mail.gmail.com> <CAMuHMdV0djkKTSHbCuv0d2sh+rGs1=WNNEcCNXE3daM8uAcRxw@mail.gmail.com>
+In-Reply-To: <CAMuHMdV0djkKTSHbCuv0d2sh+rGs1=WNNEcCNXE3daM8uAcRxw@mail.gmail.com>
+From:   Adam Ford <aford173@gmail.com>
+Date:   Thu, 24 Dec 2020 07:52:50 -0600
+Message-ID: <CAHCN7x+re5Qswbw=n8Gq0newXW0WoO7=ZseD3YZWMvD_nmBq3w@mail.gmail.com>
+Subject: Re: [PATCH 01/18] arm64: dts: renesas: beacon kit: Configure
+ programmable clocks
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Adam Ford-BE <aford@beaconembedded.com>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Luca Ceresoli <luca@lucaceresoli.net>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 24, 2020 at 01:13:02PM +0000, Timon Baetz wrote:
-> On Thu, 24 Dec 2020 10:55:59 +0100, Krzysztof Kozlowski wrote:
-> > On Wed, Dec 23, 2020 at 01:43:05PM +0000, Timon Baetz wrote:
-> > > Register for extcon notification and set charging current depending on
-> > > the detected cable type. Current values are taken from vendor kernel,
-> > > where most charger types end up setting 650mA [0].
+On Tue, Dec 22, 2020 at 2:03 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+>
+> Hi Adam,
+>
+> On Tue, Dec 22, 2020 at 2:39 AM Adam Ford <aford173@gmail.com> wrote:
+> > On Fri, Dec 18, 2020 at 7:16 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> > > On Thu, Dec 17, 2020 at 12:52 PM Adam Ford <aford173@gmail.com> wrote:
+> > > > On Thu, Dec 17, 2020 at 2:16 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> > > > > On Wed, Dec 16, 2020 at 6:03 PM Adam Ford <aford173@gmail.com> wrote:
+> > > > > > On Wed, Dec 16, 2020 at 8:55 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> > > > > > > On Sun, Dec 13, 2020 at 7:38 PM Adam Ford <aford173@gmail.com> wrote:
+> > > > > > > > When the board was added, clock drivers were being updated done at
+> > > > > > > > the same time to allow the versaclock driver to properly configure
+> > > > > > > > the modes.  Unforutnately, the updates were not applied to the board
+> > > > >
+> > > > > > > > --- a/arch/arm64/boot/dts/renesas/beacon-renesom-baseboard.dtsi
+> > > > > > > > +++ b/arch/arm64/boot/dts/renesas/beacon-renesom-baseboard.dtsi
+> > > > > > > > @@ -5,6 +5,7 @@
+> > > > > > > >
+> > > > > > > >  #include <dt-bindings/gpio/gpio.h>
+> > > > > > > >  #include <dt-bindings/input/input.h>
+> > > > > > > > +#include <dt-bindings/clk/versaclock.h>
+> > > > > > > >
+> > > > > > > >  / {
+> > > > > > > >         backlight_lvds: backlight-lvds {
+> > > > > > > > @@ -294,12 +295,12 @@ &du_out_rgb {
+> > > > > > > >  &ehci0 {
+> > > > > > > >         dr_mode = "otg";
+> > > > > > > >         status = "okay";
+> > > > > > > > -       clocks = <&cpg CPG_MOD 703>, <&cpg CPG_MOD 704>;
+> > > > > > > > +       clocks = <&cpg CPG_MOD 703>, <&cpg CPG_MOD 704>, <&versaclock5 3>;
+> > > > > > >
+> > > > > > > Why this change? You said before you don't need this
+> > > > > > > https://lore.kernel.org/linux-renesas-soc/CAHCN7xJWbP16SA-Ok-5syNnqOZAt8OFJo2_rtg5VrNVsN2-eiQ@mail.gmail.com/
+> > > > > > >
+> > > > > >
+> > > > > > I had talked with the hardware guys about buy pre-programmed
+> > > > > > versaclock chips which would have been pre-configured and pre-enabled.
+> > > > > > I thought it was going to happen, but it didn't, so we need the
+> > > > > > versaclock driver to enable the reference clock for the USB
+> > > > > > controllers, ethernet controller and audio clocks.  Previously we were
+> > > > > > manually configuring it or it was coincidentally working. Ideally,
+> > > > > > we'd have the clock system intentionally enable/disable the clocks
+> > > > > > when drivers are loaded/unloaded for for power management reasons.
+> > > > >
+> > > > > Can you tell me how exactly the Versaclock outputs are wired?
+> > > >
+> > > > The SoC is expecting a fixed external 50 MHz clock connected to
+> > > > USB_EXTAL.  Instead of a fixed clock, we're using the Versaclock.
+> > > > We're also using the Versaclock to drive the AVB TXCRefClk,
+> > > > du_dotclkiun0 and du_dotclkin2 (also also called du_dotclkin3 on
+> > > > RZ/G2N) instead of fixed clocks.
+> > > >
+> > > > > E.g. for USB, the bindings don't say anything about a third clock input,
+> > > > > so I'd like to know where that clock is fed into USB.
+> > > >
+> > > > The way the driver is crafted, it can take in multiple clocks and it
+> > > > goes through a list to enable them all, so I added the versaclock to
+> > > > the array.  Without the versaclock reference, the clock doesn't get
+> > > > turned on and the USB fails to operate.
 > > >
-> > > Also enable and disable the CHARGER regulator based on extcon events.
-> > >
-> > > [0] https://github.com/krzk/linux-vendor-backup/blob/samsung/galaxy-s2-epic-4g-touch-sph-d710-exynos4210-dump/drivers/misc/max8997-muic.c#L1675-L1678
-> > >
-> > > Signed-off-by: Timon Baetz <timon.baetz@protonmail.com>
-> > > ---
-> > >  drivers/power/supply/max8997_charger.c | 89 ++++++++++++++++++++++++++
-> > >  1 file changed, 89 insertions(+)
-> > >
-> > > diff --git a/drivers/power/supply/max8997_charger.c b/drivers/power/supply/max8997_charger.c
-> > > index 1947af25879a..e8532e2af451 100644
-> > > --- a/drivers/power/supply/max8997_charger.c
-> > > +++ b/drivers/power/supply/max8997_charger.c
-> > > @@ -6,12 +6,14 @@
-> > >  //  MyungJoo Ham <myungjoo.ham@samsung.com>
-> > >
-> > >  #include <linux/err.h>
-> > > +#include <linux/extcon.h>
-> > >  #include <linux/module.h>
-> > >  #include <linux/slab.h>
-> > >  #include <linux/platform_device.h>
-> > >  #include <linux/power_supply.h>
-> > >  #include <linux/mfd/max8997.h>
-> > >  #include <linux/mfd/max8997-private.h>
-> > > +#include <linux/regulator/consumer.h>
-> > >
-> > >  /* MAX8997_REG_STATUS4 */
-> > >  #define DCINOK_SHIFT		1
-> > > @@ -31,6 +33,10 @@ struct charger_data {
-> > >  	struct device *dev;
-> > >  	struct max8997_dev *iodev;
-> > >  	struct power_supply *battery;
-> > > +	struct regulator *reg;
-> > > +	struct extcon_dev *edev;
-> > > +	struct notifier_block extcon_nb;
-> > > +	struct work_struct extcon_work;
-> > >  };
-> > >
-> > >  static enum power_supply_property max8997_battery_props[] = {
-> > > @@ -88,6 +94,67 @@ static int max8997_battery_get_property(struct power_supply *psy,
-> > >  	return 0;
-> > >  }
-> > >
-> > > +static void max8997_battery_extcon_evt_stop_work(void *data)
-> > > +{
-> > > +	struct charger_data *charger = data;
-> > > +
-> > > +	cancel_work_sync(&charger->extcon_work);
-> > > +}
-> > > +
-> > > +static void max8997_battery_extcon_evt_worker(struct work_struct *work)
-> > > +{
-> > > +	struct charger_data *charger =
-> > > +	    container_of(work, struct charger_data, extcon_work);
-> > > +	struct extcon_dev *edev = charger->edev;
-> > > +	int current_limit;
-> > > +
-> > > +	if (extcon_get_state(edev, EXTCON_CHG_USB_SDP) > 0) {
-> > > +		dev_dbg(charger->dev, "USB SDP charger is connected\n");
-> > > +		current_limit = 450000;
-> > > +	} else if (extcon_get_state(edev, EXTCON_CHG_USB_DCP) > 0) {
-> > > +		dev_dbg(charger->dev, "USB DCP charger is connected\n");
-> > > +		current_limit = 650000;
-> > > +	} else if (extcon_get_state(edev, EXTCON_CHG_USB_FAST) > 0) {
-> > > +		dev_dbg(charger->dev, "USB FAST charger is connected\n");
-> > > +		current_limit = 650000;
-> > > +	} else if (extcon_get_state(edev, EXTCON_CHG_USB_SLOW) > 0) {
-> > > +		dev_dbg(charger->dev, "USB SLOW charger is connected\n");
-> > > +		current_limit = 650000;
-> > > +	} else if (extcon_get_state(edev, EXTCON_CHG_USB_CDP) > 0) {
-> > > +		dev_dbg(charger->dev, "USB CDP charger is connected\n");
-> > > +		current_limit = 650000;
-> > > +	} else {
-> > > +		dev_dbg(charger->dev, "USB charger is diconnected\n");
-> > > +		current_limit = -1;
-> > > +	}
-> > > +
-> > > +	if (current_limit > 0) {
-> > > +		int ret = regulator_set_current_limit(charger->reg, current_limit, current_limit);
-> > > +
-> > > +		if (ret) {
-> > > +			dev_err(charger->dev, "failed to set current limit: %d\n", ret);
-> > > +			return;
-> > > +		}
-> > > +		ret = regulator_enable(charger->reg);
-> > > +		if (ret)
-> > > +			dev_err(charger->dev, "failed to enable regulator: %d\n", ret);
-> > > +	} else {
-> > > +		int ret  = regulator_disable(charger->reg);
-> > > +
-> > > +		if (ret)
-> > > +			dev_err(charger->dev, "failed to disable regulator: %d\n", ret);
-> > > +	}
-> > > +}
-> > > +
-> > > +static int max8997_battery_extcon_evt(struct notifier_block *nb,
-> > > +				unsigned long event, void *param)
-> > > +{
-> > > +	struct charger_data *charger =
-> > > +		container_of(nb, struct charger_data, extcon_nb);
-> > > +	schedule_work(&charger->extcon_work);
-> > > +	return NOTIFY_OK;
-> > > +}
-> > > +
-> > >  static const struct power_supply_desc max8997_battery_desc = {
-> > >  	.name		= "max8997_pmic",
-> > >  	.type		= POWER_SUPPLY_TYPE_BATTERY,
-> > > @@ -170,6 +237,28 @@ static int max8997_battery_probe(struct platform_device *pdev)
-> > >  		return PTR_ERR(charger->battery);
-> > >  	}
-> > >
-> > > +	charger->reg = devm_regulator_get(&pdev->dev, "charger");  
-> > 
-> > Since you do not use get_optional, you will always get a dummy
-> > regulator. In case of error, you should either print it or entirely fail
-> > the probe. Silently continuing makes it difficult to spot errors.
-> > 
-> > Since the driver could operate in case of extcon/regulator error, just
-> > dev_err() so failure will be spotted with dmesg.
-> 
-> I will switch to devm_regulator_get_optional() and print an error on 
-> failure, thanks.
-> 
-> > It will complain on older DTBs because you are introducing incompatible
-> > change, but that's expected. Just correct all other in-tree DTS.
-> 
-> The other 2 in-tree DTS don't have CHARGER regulators. Not sure
-> how to correct those. Should I add muic and charger nodes without a
-> charger-supply? It will still complain in that case.
+> > > According to the Hardware User's Manual, USBL_EXTAL is used for USB3.0,
+> > > while you added the clock references to the EHCI nodes.
+> > > Are you sure EHCI is failing without this?
 
-+Cc Marek,
+Geert,
 
-This is why leaving the code as is - devm_regulator_get(), not optional
-- makes sense. Core would provide dummy regulator, so you only have to
-provide MUIC node.
+I talked to a colleague about the USB_EXTAL.  He pointed me to table
+60.1 of the RZ/2 Series, 2nd Generate reference manual
+(R01UH0808EJ0100 Rev.1.00),  which shows the USB EHCI needing the
+50MHz.  When I clear out the references from ehci0 and echi1, the USB
+stops working, so it does appear that using the versaclock as the 3rd
+clock is needed for operating.  The device tree bindings for the
+generic-ehci provide for up to 4 clocks, so it seems like referencing
+clocks = <&cpg CPG_MOD 703>, <&cpg CPG_MOD 704>, <&versaclock5 3> are
+not a violation of the bindings.
 
-If you change the code to devm_regulator_get_optional(), you need to add
-everything: the charger regulator, the charger node and MUIC node.
+I can add a better description when I do the V2 update for this if you like.
 
-For Trats, the configuration should be similar as i9100, although I
-don't know the exact values of chargign voltage.
 
-For Origen, there is no battery, so the power supply should not bind.
-Maybe this could be achieved with "status disabled" for charger node? It
-depends whether MFD will respect such field... If it disables the
-charger, you're done.
-The max8997 regulator driver is weird... AFAIU, it registers only
-regulators present in DT. That's not how regulator driver should work.
-Maybe you could confirm it? If it's true, then the value of charger
-depends on bootloader settings and max8997 default values.
+> > > Still, it means we need to extend the bindings/driver for
+> > > renesas,rcar-gen3-xhci to handle USB_EXTAL.
+> >
+> > After investigating this, it looks like the USB_EXTAL is already
+> > referenced from the device tree and it's referenced by the USB3 Phy.
+> > The SoC calls it usb_extal_clk.  Since the phy driver is calling
+> > devm_clk_get() it looks like i could just redefine the clocks of
+> > usb3_phy0 to point to the versaclock instead of usb_extal_clk.
+> >
+> > The other option is to use a similar method I proposed for the audio
+> > reference clock and redefine the usb_extal_clk as a fixed
+> > fixed-factor-clock.
+> >
+> > Do you have a preference as to which direction I go?
+>
+> I'd go for the classical solution: override the clocks property of the
+> usb3_phy0 node.
 
-Best regards,
-Krzysztof
+I dug into the USB3_phy and it enables and immediately disables the
+clocks for the simple purpose of determining which clock reference to
+use between usb3s0_clk or usb_extal_clk.  I was hoping that simply
+referencing the versaclock here would be sufficient, but the Beacon
+board has a usb3s0_clk at 100MHz, and the driver appears to use it
+instead of the versaclock so adding the versaclock reference here
+isn't sufficient to make it work for the ehci, nor do I think it's
+appropriate.
+
+It seems like the driver shouldn't immediately disable the clocks, but
+they're expecting external fixed clocks.  Since we meet that criteria
+with the usb3s0_clk, the USB3 works without the versaclock reference.
+
+adam
+>
+> Thanks!
+>
+> Gr{oetje,eeting}s,
+>
+>                         Geert
+>
+> --
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+>
+> In personal conversations with technical people, I call myself a hacker. But
+> when I'm talking to journalists I just say "programmer" or something like that.
+>                                 -- Linus Torvalds
