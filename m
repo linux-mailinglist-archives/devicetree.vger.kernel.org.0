@@ -2,356 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 71EFA2E24F7
-	for <lists+devicetree@lfdr.de>; Thu, 24 Dec 2020 07:58:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B6B782E252D
+	for <lists+devicetree@lfdr.de>; Thu, 24 Dec 2020 08:19:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726043AbgLXG6N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Dec 2020 01:58:13 -0500
-Received: from so254-31.mailgun.net ([198.61.254.31]:51551 "EHLO
-        so254-31.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725613AbgLXG6N (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Dec 2020 01:58:13 -0500
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1608793074; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=TMXdirVqNRPDa0VZK4x4dwB/fyhhXn5YSoDwuOtELbw=;
- b=XgAXgcaUJTarJ7tW88z9DPLnk31UXv8RcejPseDuS+aMsbfMMocK7h6SHSWRktEe2/DPkZg1
- yqobxiQKjHL3FN0d+1c5LOP7z4NF8GAeH+6X1aHRAlWYMin+6U5SYo5oQAudXCno8nvEZDeH
- juMofEqNv8mtVWLz5GRY8IZrG3Y=
-X-Mailgun-Sending-Ip: 198.61.254.31
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n08.prod.us-east-1.postgun.com with SMTP id
- 5fe43bd67bc801dc4f1dd25b (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 24 Dec 2020 06:57:26
- GMT
-Sender: kgunda=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id E15B4C43462; Thu, 24 Dec 2020 06:57:25 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
-        autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: kgunda)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id A2DE6C433C6;
-        Thu, 24 Dec 2020 06:57:24 +0000 (UTC)
+        id S1725871AbgLXHS6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Dec 2020 02:18:58 -0500
+Received: from mailgw02.mediatek.com ([1.203.163.81]:50126 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1725747AbgLXHS6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Dec 2020 02:18:58 -0500
+X-UUID: 86225fd0b8ff45e895aa11c0222e15b0-20201224
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=Mi1mCEIU36uks+SRhET60de/V1o2twi7lWkb9sYvoBw=;
+        b=iDTOVMqKRYY/QWsaOR1sFS6/usBvO4fgE6j32WA9Aco9nbP14tgDYOtL6JeH8RJOy20K9B7tQu3LsV9regVhqopOv6PZEGNElhialrNV+q5g9BIXDPem32YIR/zzEvNaD/OEFM0UhctMSbivsfAYdP/vUOyvjGo1Mb278ekw94o=;
+X-UUID: 86225fd0b8ff45e895aa11c0222e15b0-20201224
+Received: from mtkcas34.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
+        (envelope-from <chunfeng.yun@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1350213302; Thu, 24 Dec 2020 15:18:07 +0800
+Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS32DR.mediatek.inc
+ (172.27.6.104) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Thu, 24 Dec
+ 2020 15:18:05 +0800
+Received: from [10.17.3.153] (10.17.3.153) by MTKCAS36.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 24 Dec 2020 15:18:04 +0800
+Message-ID: <1608794285.23328.79.camel@mhfsdcap03>
+Subject: Re: [PATCH 2/3] usb: xhci-mtk: fix UAS issue by XHCI_BROKEN_STREAMS
+ quirk
+From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
+To:     Rosen Penev <rosenp@gmail.com>
+CC:     Nicolas Boichat <drinkcat@chromium.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        Mathias Nyman <mathias.nyman@intel.com>,
+        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
+        <linux-usb@vger.kernel.org>, lkml <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Ikjoon Jang <ikjn@chromium.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>
+Date:   Thu, 24 Dec 2020 15:18:05 +0800
+In-Reply-To: <CAKxU2N8q1XjDbWbv5ksqYr7RMEedV7fng7OUccVggsT89Oyf5w@mail.gmail.com>
+References: <20201216115125.5886-1-chunfeng.yun@mediatek.com>
+         <20201216115125.5886-2-chunfeng.yun@mediatek.com>
+         <CANMq1KDBmuoBNeizm9+f1yJgqF9oMqU5k26KfZrSdjrPQm_LwA@mail.gmail.com>
+         <1608171557.23328.53.camel@mhfsdcap03>
+         <CAKxU2N8q1XjDbWbv5ksqYr7RMEedV7fng7OUccVggsT89Oyf5w@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Thu, 24 Dec 2020 12:27:24 +0530
-From:   kgunda@codeaurora.org
-To:     Stephen Boyd <swboyd@chromium.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        robh@kernel.org
-Subject: Re: [PATCH V4 1/2] mfd: qcom-spmi-pmic: Convert bindings to .yaml
- format
-In-Reply-To: <160842164192.1580929.12823359876682723808@swboyd.mtv.corp.google.com>
-References: <1608279292-24760-1-git-send-email-kgunda@codeaurora.org>
- <1608279292-24760-2-git-send-email-kgunda@codeaurora.org>
- <160842164192.1580929.12823359876682723808@swboyd.mtv.corp.google.com>
-Message-ID: <f6922b734a54ff64b1732545dc2f7b1c@codeaurora.org>
-X-Sender: kgunda@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+X-TM-SNTS-SMTP: 789013F5892AA70359C8E0AD768F3F63F5C84F45D63E14F2459F4B4C630AC0A42000:8
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2020-12-20 05:17, Stephen Boyd wrote:
-> Quoting Kiran Gunda (2020-12-18 00:14:51)
->> Convert the bindings from .txt to .yaml format.
->> 
->> Signed-off-by: Kiran Gunda <kgunda@codeaurora.org>
->> ---
->>  .../devicetree/bindings/mfd/qcom,spmi-pmic.txt     |  80 
->> -------------
->>  .../devicetree/bindings/mfd/qcom,spmi-pmic.yaml    | 127 
->> +++++++++++++++++++++
->>  2 files changed, 127 insertions(+), 80 deletions(-)
->>  delete mode 100644 
->> Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.txt
->>  create mode 100644 
->> Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
->> 
->> diff --git a/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.txt 
->> b/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.txt
->> deleted file mode 100644
->> index 79367a4..0000000
->> --- a/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.txt
->> +++ /dev/null
->> @@ -1,80 +0,0 @@
->> -          Qualcomm SPMI PMICs multi-function device bindings
->> -
->> -The Qualcomm SPMI series presently includes PM8941, PM8841 and 
->> PMA8084
->> -PMICs.  These PMICs use a QPNP scheme through SPMI interface.
->> -QPNP is effectively a partitioning scheme for dividing the SPMI 
->> extended
->> -register space up into logical pieces, and set of fixed register
->> -locations/definitions within these regions, with some of these 
->> regions
->> -specifically used for interrupt handling.
->> -
->> -The QPNP PMICs are used with the Qualcomm Snapdragon series SoCs, and 
->> are
->> -interfaced to the chip via the SPMI (System Power Management 
->> Interface) bus.
->> -Support for multiple independent functions are implemented by 
->> splitting the
->> -16-bit SPMI slave address space into 256 smaller fixed-size regions, 
->> 256 bytes
->> -each. A function can consume one or more of these fixed-size register 
->> regions.
->> -
->> -Required properties:
->> -- compatible:      Should contain one of:
->> -                   "qcom,pm8941",
->> -                   "qcom,pm8841",
->> -                   "qcom,pma8084",
->> -                   "qcom,pm8019",
->> -                   "qcom,pm8226",
->> -                   "qcom,pm8110",
->> -                   "qcom,pma8084",
->> -                   "qcom,pmi8962",
->> -                   "qcom,pmd9635",
->> -                   "qcom,pm8994",
->> -                   "qcom,pmi8994",
->> -                   "qcom,pm8916",
->> -                   "qcom,pm8004",
->> -                   "qcom,pm8909",
->> -                   "qcom,pm8950",
->> -                   "qcom,pmi8950",
->> -                   "qcom,pm8998",
->> -                   "qcom,pmi8998",
->> -                   "qcom,pm8005",
->> -                   or generalized "qcom,spmi-pmic".
->> -- reg:             Specifies the SPMI USID slave address for this 
->> device.
->> -                   For more information see:
->> -                   Documentation/devicetree/bindings/spmi/spmi.yaml
->> -
->> -Required properties for peripheral child nodes:
->> -- compatible:      Should contain "qcom,xxx", where "xxx" is a 
->> peripheral name.
->> -
->> -Optional properties for peripheral child nodes:
->> -- interrupts:      Interrupts are specified as a 4-tuple. For more 
->> information
->> -                   see:
->> -                   
->> Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.txt
->> -- interrupt-names: Corresponding interrupt name to the interrupts 
->> property
->> -
->> -Each child node of SPMI slave id represents a function of the PMIC. 
->> In the
->> -example below the rtc device node represents a peripheral of pm8941
->> -SID = 0. The regulator device node represents a peripheral of pm8941 
->> SID = 1.
->> -
->> -Example:
->> -
->> -       spmi {
->> -               compatible = "qcom,spmi-pmic-arb";
->> -
->> -               pm8941@0 {
->> -                       compatible = "qcom,pm8941", "qcom,spmi-pmic";
->> -                       reg = <0x0 SPMI_USID>;
->> -
->> -                       rtc {
->> -                               compatible = "qcom,rtc";
->> -                               interrupts = <0x0 0x61 0x1 
->> IRQ_TYPE_EDGE_RISING>;
->> -                               interrupt-names = "alarm";
->> -                       };
->> -               };
->> -
->> -               pm8941@1 {
->> -                       compatible = "qcom,pm8941", "qcom,spmi-pmic";
->> -                       reg = <0x1 SPMI_USID>;
->> -
->> -                       regulator {
->> -                               compatible = "qcom,regulator";
->> -                               regulator-name = "8941_boost";
->> -                       };
->> -               };
->> -       };
->> diff --git a/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml 
->> b/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
->> new file mode 100644
->> index 0000000..e458dd1
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
->> @@ -0,0 +1,127 @@
->> +# SPDX-License-Identifier: GPL-2.0
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/mfd/qcom,spmi-pmic.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Qualcomm SPMI PMICs multi-function device bindings
->> +
->> +maintainers:
->> +  - Stephen Boyd <sboyd@kernel.org>
-> 
-> Someone at Qualcomm should be the maintainer here. Maybe you?
-> 
->> +
->> +description: |
->> +  The Qualcomm SPMI PMICs use a QPNP scheme through SPMI interface.
-> 
-> What is QPNP?
-> 
-Qualcomm Plug And Play.
->> +  QPNP is effectively a partitioning scheme for dividing the SPMI 
->> extended
->> +  register space up into logical pieces, and set of fixed register
->> +  locations/definitions within these regions, with some of these 
->> regions
->> +  specifically used for interrupt handling.
->> +
->> +  The QPNP PMICs are used with the Qualcomm Snapdragon series SoCs, 
->> and are
->> +  interfaced to the chip via the SPMI (System Power Management 
->> Interface) bus.
->> +  Support for multiple independent functions are implemented by 
->> splitting the
->> +  16-bit SPMI slave address space into 256 smaller fixed-size 
->> regions, 256 bytes
->> +  each. A function can consume one or more of these fixed-size 
->> register regions.
->> +
->> +properties:
->> +  spmi_bus:
->> +    type: object
->> +    description: SPMI bus node
->> +
->> +patternProperties:
->> +  "^pmic@[0-9]$":
->> +    description: Child PMIC nodes
->> +    type: object
->> +
->> +    properties:
->> +      compatible:
->> +        items:
->> +          - enum:
->> +              # Sorted based on subtype ID the device reports
->> +              - qcom,pm8941
->> +              - qcom,pm8841
->> +              - qcom,pma8084
->> +              - qcom,pm8019
->> +              - qcom,pm8226
->> +              - qcom,pm8110
->> +              - qcom,pma8084
->> +              - qcom,pmi8962
->> +              - qcom,pmd9635
->> +              - qcom,pm8994
->> +              - qcom,pmi8994
->> +              - qcom,pm8916
->> +              - qcom,pm8004
->> +              - qcom,pm8909
->> +              - qcom,pm8950
->> +              - qcom,pmi8950
->> +              - qcom,pm8998
->> +              - qcom,pmi8998
->> +              - qcom,pm8005
->> +              - qcom,pm660l
->> +              - qcom,pm660
->> +
->> +          - enum:
->> +              - qcom,spmi-pmic
->> +
->> +      reg:
->> +        maxItems: 1
->> +        description:
->> +          Specifies the SPMI USID slave address for this device.
->> +          For more information see bindings/spmi/spmi.txt
->> +
->> +    patternProperties:
->> +      "@[0-9a-f]$":
-> 
-> Is that @ sign supposed to be a ^ sign? I thought the child nodes of a
-> pmic node were [a-zA-Z0-9-] or some sort of regex like that. Certainly
-> not an address that doesn't exist. They look to be things like 'rtc' or
-> 'regulator'.
-> 
-Will fix it in next series.
->> +        description:
->> +          Each child node of SPMI slave id represents a function of 
->> the PMIC.
->> +          In the example below the rtc device node represents a 
->> peripheral of
->> +          pm8941 SID = 0. The regulator device node represents a 
->> peripheral of
->> +          pm8941 SID = 1.
->> +        type: object
->> +
->> +        properties:
->> +          interrupts:
->> +            maxItems: 4
->> +            description:
->> +              Interrupts are specified as a 4-tuple. For more 
->> information
-> 
-> Seems like minItems is also 4 though, so should be a const 4 instead?
-> But then this is about how many interrupts there are, which would be 1
-> or 2?  It really can't be known in case there are many interrupts for a
-> child node so not sure we need to specify anything.
-> 
->> +              see bindings/spmi/qcom,spmi-pmic-arb.txt
->> +
->> +          interrupt-names:
->> +            description:
->> +              Corresponding interrupt name to the interrupts property
-> 
-> I suspect we should drop these two properties and leave them up to the
-> binding for the function, like rtc, or regualator, etc.
-> 
-Okay. I will remove these properties.
->> +
->> +    required:
->> +      - compatible
->> +      - reg
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/spmi/spmi.h>
->> +
->> +    spmi_bus {
->> +        compatible = "qcom,spmi-pmic-arb";
->> +        #address-cells = <2>;
->> +        #size-cells = <0>;
->> +
->> +        pmic@0 {
->> +         compatible = "qcom,pm8941";
->> +         reg = <0x0 SPMI_USID>;
->> +
->> +         rtc {
->> +           compatible = "qcom,rtc";
->> +           interrupts = <0x0 0x61 0x1 0x1>;
->> +           interrupt-names = "alarm";
->> +          };
->> +        };
->> +
->> +        pmic@1 {
->> +         compatible = "qcom,pm8941";
->> +         reg = <0x1 SPMI_USID>;
->> +
->> +         regulator {
->> +           compatible = "qcom,regulator";
->> +           regulator-name = "8941_boost";
->> +           };
->> +          };
->> +        };
->> +...
+T24gV2VkLCAyMDIwLTEyLTE2IGF0IDE5OjQzIC0wODAwLCBSb3NlbiBQZW5ldiB3cm90ZToNCj4g
+T24gV2VkLCBEZWMgMTYsIDIwMjAgYXQgNjoyOSBQTSBDaHVuZmVuZyBZdW4gPGNodW5mZW5nLnl1
+bkBtZWRpYXRlay5jb20+IHdyb3RlOg0KPiA+DQo+ID4gT24gV2VkLCAyMDIwLTEyLTE2IGF0IDIw
+OjI4ICswODAwLCBOaWNvbGFzIEJvaWNoYXQgd3JvdGU6DQo+ID4gPiBPbiBXZWQsIERlYyAxNiwg
+MjAyMCBhdCA3OjUzIFBNIENodW5mZW5nIFl1biA8Y2h1bmZlbmcueXVuQG1lZGlhdGVrLmNvbT4g
+d3JvdGU6DQo+ID4gPiA+DQo+ID4gPiA+IFRoZSAwLjk2IHhIQ0kgY29udHJvbGxlciBvbiBzb21l
+IHBsYXRmb3JtcyBkb2VzIG5vdCBzdXBwb3J0DQo+ID4gPiA+IGJ1bGsgc3RyZWFtIGV2ZW4gSEND
+UEFSQU1TIHNheXMgc3VwcG9ydGluZywgZHVlIHRvIE1heFBTQVNpemUNCj4gPiA+ID4gaXMgc2V0
+IGEgbm9uLXplcm8gZGVmYXVsdCB2YWx1ZSBieSBtaXN0YWtlLCBoZXJlIHVzZQ0KPiA+ID4gPiBY
+SENJX0JST0tFTl9TVFJFQU1TIHF1aXJrIHRvIGZpeCBpdC4NCj4gPiA+ID4NCj4gPiA+ID4gRml4
+ZXM6IDk0YTYzMWQ5MWFkMyAoInVzYjogeGhjaS1tdGs6IGNoZWNrIGhjY19wYXJhbXMgYWZ0ZXIg
+YWRkaW5nIHByaW1hcnkgaGNkIikNCj4gPiA+ID4gU2lnbmVkLW9mZi1ieTogQ2h1bmZlbmcgWXVu
+IDxjaHVuZmVuZy55dW5AbWVkaWF0ZWsuY29tPg0KPiA+ID4gPiAtLS0NCj4gPiA+ID4gIGRyaXZl
+cnMvdXNiL2hvc3QveGhjaS1tdGsuYyB8IDcgKysrKysrLQ0KPiA+ID4gPiAgZHJpdmVycy91c2Iv
+aG9zdC94aGNpLW10ay5oIHwgMSArDQo+ID4gPiA+ICAyIGZpbGVzIGNoYW5nZWQsIDcgaW5zZXJ0
+aW9ucygrKSwgMSBkZWxldGlvbigtKQ0KPiA+ID4gPg0KPiA+ID4gPiBkaWZmIC0tZ2l0IGEvZHJp
+dmVycy91c2IvaG9zdC94aGNpLW10ay5jIGIvZHJpdmVycy91c2IvaG9zdC94aGNpLW10ay5jDQo+
+ID4gPiA+IGluZGV4IDhmMzIxZjM5YWI5Ni4uMDhkYWI5NzRkODQ3IDEwMDY0NA0KPiA+ID4gPiAt
+LS0gYS9kcml2ZXJzL3VzYi9ob3N0L3hoY2ktbXRrLmMNCj4gPiA+ID4gKysrIGIvZHJpdmVycy91
+c2IvaG9zdC94aGNpLW10ay5jDQo+ID4gPiA+IEBAIC0zOTUsNiArMzk1LDkgQEAgc3RhdGljIHZv
+aWQgeGhjaV9tdGtfcXVpcmtzKHN0cnVjdCBkZXZpY2UgKmRldiwgc3RydWN0IHhoY2lfaGNkICp4
+aGNpKQ0KPiA+ID4gPiAgICAgICAgIHhoY2ktPnF1aXJrcyB8PSBYSENJX1NQVVJJT1VTX1NVQ0NF
+U1M7DQo+ID4gPiA+ICAgICAgICAgaWYgKG10ay0+bHBtX3N1cHBvcnQpDQo+ID4gPiA+ICAgICAg
+ICAgICAgICAgICB4aGNpLT5xdWlya3MgfD0gWEhDSV9MUE1fU1VQUE9SVDsNCj4gPiA+ID4gKw0K
+PiA+ID4gPiArICAgICAgIGlmIChtdGstPmJyb2tlbl9zdHJlYW1zKQ0KPiA+ID4gPiArICAgICAg
+ICAgICAgICAgeGhjaS0+cXVpcmtzIHw9IFhIQ0lfQlJPS0VOX1NUUkVBTVM7DQo+ID4gPiA+ICB9
+DQo+ID4gPiA+DQo+ID4gPiA+ICAvKiBjYWxsZWQgZHVyaW5nIHByb2JlKCkgYWZ0ZXIgY2hpcCBy
+ZXNldCBjb21wbGV0ZXMgKi8NCj4gPiA+ID4gQEAgLTQ2MCw2ICs0NjMsOCBAQCBzdGF0aWMgaW50
+IHhoY2lfbXRrX3Byb2JlKHN0cnVjdCBwbGF0Zm9ybV9kZXZpY2UgKnBkZXYpDQo+ID4gPiA+ICAg
+ICAgICAgICAgICAgICByZXR1cm4gcmV0Ow0KPiA+ID4gPg0KPiA+ID4gPiAgICAgICAgIG10ay0+
+bHBtX3N1cHBvcnQgPSBvZl9wcm9wZXJ0eV9yZWFkX2Jvb2wobm9kZSwgInVzYjMtbHBtLWNhcGFi
+bGUiKTsNCj4gPiA+ID4gKyAgICAgICBtdGstPmJyb2tlbl9zdHJlYW1zID0NCj4gPiA+ID4gKyAg
+ICAgICAgICAgICAgIG9mX3Byb3BlcnR5X3JlYWRfYm9vbChub2RlLCAibWVkaWF0ZWssYnJva2Vu
+X3N0cmVhbXNfcXVpcmsiKTsNCj4gPiA+DQo+ID4gPiBXb3VsZCBpdCBiZSBiZXR0ZXIgdG8gYWRk
+IGEgZGF0YSBmaWVsZCB0byBzdHJ1Y3Qgb2ZfZGV2aWNlX2lkDQo+ID4gPiBtdGtfeGhjaV9vZl9t
+YXRjaCwgYW5kIGVuYWJsZSB0aGlzIHF1aXJrIG9uIG1lZGlhdGVrLG10ODE3My14aGNpIG9ubHk/
+DQo+ID4gVGhpcyBpcyB0aGUgY29tbW9uIGlzc3VlIGZvciBhbGwgU29DcyAoYmVmb3JlIDIwMTYu
+MDYpIHdpdGggMC45NiB4SENJDQo+ID4gd2hlbiB0aGUgY29udHJvbGxlciBkb24ndCBzdXBwb3J0
+IGJ1bGsgc3RyZWFtLiBJZiBlbmFibGUgdGhpcyBxdWlyayBvbmx5DQo+ID4gZm9yIG10ODE3Mywg
+dGhlbiBmb3Igb3RoZXIgU29DcywgdGhlIGNvbXBhdGlibGUgbmVlZCBpbmNsdWRlDQo+ID4gIm1l
+ZGlhdGVrLG10ODE3My14aGNpIiBpbiBkdHMsIHRoaXMgbWF5IGJlIG5vdCBmbGV4aWJsZSBmb3Ig
+c29tZSBjYXNlcywNCj4gPiBlLmcuIGEgbmV3IFNvQyBoYXMgdGhlIGJyb2tlbiBzdHJlYW0gYXMg
+bXQ4MTczLCBidXQgYWxzbyBoYXMgYW5vdGhlcg0KPiA+IGRpZmZlcmVudCBxdWlyaywgdGhlIHdh
+eSB5b3Ugc3VnZ2VzdGVkIHdpbGwgbm90IGhhbmRsZSBpdC4NCj4gPiBBbmQgSSBwbGFuIHRvIHJl
+bW92ZSAibWVkaWF0ZWssbXQ4MTczLXhoY2kiIGluIG10a194aGNpX29mX21hdGNoIGFmdGVyDQo+
+ID4gY29udmVydGluZyB0aGUgYmluZGluZyB0byBZTUFMLg0KPiBJJ20gZ3Vlc3NpbmcgdGhpcyBh
+bHNvIGFwcGxpZXMgdG8gbXQ3NjIxPw0KWWVzLCBtdDc2MjEgZG9lc24ndCBzdXBwb3J0IGJ1bGsg
+c3RyZWFtDQoNCj4gPg0KPiA+ID4NCj4gPiA+IChJTUhPIHVzYjMtbHBtLWNhcGFibGUgZGV0ZWN0
+aW9uIHNob3VsZCBhbHNvIGJlIGRvbmUgaW4gdGhlIHNhbWUgd2F5KQ0KPiA+IEkgcHJlZmVyIHRv
+IHByb3ZpZGUgYSBwcm9wZXJ0eSBmb3IgY29tbW9uIGlzc3VlcywgYW5kIHVzZSB0aGUgd2F5IHlv
+dQ0KPiA+IHN1Z2dlc3RlZCBmb3IgdGhlIGlzc3VlIG9ubHkgaGFwcGVuZWQgYXQgYSBzcGVjaWZp
+YyBTb0MuDQo+ID4NCj4gPiBUaGFuayB5b3UNCj4gPg0KPiA+ID4NCj4gPiA+IFRoYW5rcywNCj4g
+PiA+DQo+ID4gPiA+ICAgICAgICAgLyogb3B0aW9uYWwgcHJvcGVydHksIGlnbm9yZSB0aGUgZXJy
+b3IgaWYgaXQgZG9lcyBub3QgZXhpc3QgKi8NCj4gPiA+ID4gICAgICAgICBvZl9wcm9wZXJ0eV9y
+ZWFkX3UzMihub2RlLCAibWVkaWF0ZWssdTNwLWRpcy1tc2siLA0KPiA+ID4gPiAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICZtdGstPnUzcF9kaXNfbXNrKTsNCj4gPiA+ID4gQEAgLTU0Niw3
+ICs1NTEsNyBAQCBzdGF0aWMgaW50IHhoY2lfbXRrX3Byb2JlKHN0cnVjdCBwbGF0Zm9ybV9kZXZp
+Y2UgKnBkZXYpDQo+ID4gPiA+ICAgICAgICAgaWYgKHJldCkNCj4gPiA+ID4gICAgICAgICAgICAg
+ICAgIGdvdG8gcHV0X3VzYjNfaGNkOw0KPiA+ID4gPg0KPiA+ID4gPiAtICAgICAgIGlmIChIQ0Nf
+TUFYX1BTQSh4aGNpLT5oY2NfcGFyYW1zKSA+PSA0KQ0KPiA+ID4gPiArICAgICAgIGlmICghbXRr
+LT5icm9rZW5fc3RyZWFtcyAmJiBIQ0NfTUFYX1BTQSh4aGNpLT5oY2NfcGFyYW1zKSA+PSA0KQ0K
+PiA+ID4gPiAgICAgICAgICAgICAgICAgeGhjaS0+c2hhcmVkX2hjZC0+Y2FuX2RvX3N0cmVhbXMg
+PSAxOw0KPiA+ID4gPg0KPiA+ID4gPiAgICAgICAgIHJldCA9IHVzYl9hZGRfaGNkKHhoY2ktPnNo
+YXJlZF9oY2QsIGlycSwgSVJRRl9TSEFSRUQpOw0KPiA+ID4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVy
+cy91c2IvaG9zdC94aGNpLW10ay5oIGIvZHJpdmVycy91c2IvaG9zdC94aGNpLW10ay5oDQo+ID4g
+PiA+IGluZGV4IGE5M2NmZTgxNzkwNC4uODZhYTQ5Nzg5MTVlIDEwMDY0NA0KPiA+ID4gPiAtLS0g
+YS9kcml2ZXJzL3VzYi9ob3N0L3hoY2ktbXRrLmgNCj4gPiA+ID4gKysrIGIvZHJpdmVycy91c2Iv
+aG9zdC94aGNpLW10ay5oDQo+ID4gPiA+IEBAIC0xNDcsNiArMTQ3LDcgQEAgc3RydWN0IHhoY2lf
+aGNkX210ayB7DQo+ID4gPiA+ICAgICAgICAgc3RydWN0IHBoeSAqKnBoeXM7DQo+ID4gPiA+ICAg
+ICAgICAgaW50IG51bV9waHlzOw0KPiA+ID4gPiAgICAgICAgIGJvb2wgbHBtX3N1cHBvcnQ7DQo+
+ID4gPiA+ICsgICAgICAgYm9vbCBicm9rZW5fc3RyZWFtczsNCj4gPiA+ID4gICAgICAgICAvKiB1
+c2IgcmVtb3RlIHdha2V1cCAqLw0KPiA+ID4gPiAgICAgICAgIGJvb2wgdXdrX2VuOw0KPiA+ID4g
+PiAgICAgICAgIHN0cnVjdCByZWdtYXAgKnV3azsNCj4gPiA+ID4gLS0NCj4gPiA+ID4gMi4xOC4w
+DQo+ID4NCj4gPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+Xw0KPiA+IGxpbnV4LWFybS1rZXJuZWwgbWFpbGluZyBsaXN0DQo+ID4gbGludXgtYXJtLWtlcm5l
+bEBsaXN0cy5pbmZyYWRlYWQub3JnDQo+ID4gaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFp
+bG1hbi9saXN0aW5mby9saW51eC1hcm0ta2VybmVsDQoNCg==
+
