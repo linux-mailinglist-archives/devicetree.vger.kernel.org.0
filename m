@@ -2,342 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A338B2E26AD
-	for <lists+devicetree@lfdr.de>; Thu, 24 Dec 2020 13:12:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DDA8C2E26BB
+	for <lists+devicetree@lfdr.de>; Thu, 24 Dec 2020 13:16:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727946AbgLXMMO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Dec 2020 07:12:14 -0500
-Received: from mail-wr1-f48.google.com ([209.85.221.48]:37622 "EHLO
-        mail-wr1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726591AbgLXMMO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Dec 2020 07:12:14 -0500
-Received: by mail-wr1-f48.google.com with SMTP id i9so2017827wrc.4;
-        Thu, 24 Dec 2020 04:11:56 -0800 (PST)
+        id S1728421AbgLXMOq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Dec 2020 07:14:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36764 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727114AbgLXMOp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Dec 2020 07:14:45 -0500
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02C7BC0617A6;
+        Thu, 24 Dec 2020 04:14:05 -0800 (PST)
+Received: by mail-lf1-x12b.google.com with SMTP id o13so4394522lfr.3;
+        Thu, 24 Dec 2020 04:14:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=56xAzTWTQQ5e5SGZuO7IksvEZZ4TGll9FyZCHqwaIyI=;
+        b=IEomQfiR8gvwpl9AJ1ADx1wLAiBTpBe0MzDzBHrVnyksFAtoCQusyt2aOpddZtgnt0
+         G2xrtk7dkAbPh5mrBpegI3zf7dejgxqz8zhdkTojfBT5HjUiBLt6rBGSE5riltq/UOKr
+         3ZKU17K+r+LGVo70URY/QRisS+jbgdr71ZJH5blzCGp5+H4gymXTDKfWnCB9KDIcl+HM
+         T4HCqn3iAd24R4Z9GQoCK9zagFdGfHbYb5fdrnMoYTtBGpdwl9FSDpYdZD074Gbqtp4/
+         p1NmX52oYCijEX+U1K+BtSTXWdk/xK9mxVFoLZQ+izHlWVXianvWcZvnwwq9UECfsz1T
+         g4cg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=DLoG9as5T9MFSdlS0/mQuvxRzgC8ss+fwvRwXia+TiI=;
-        b=jld6LSh3Lx+nBtmQaebmutoZtqAkDUlzEv/OjRafjhN5GW+CyOAR+ApOWl/Ux6m3VE
-         mVQ/Xo1MC12RctOw+YENbGra9vv3uU4s3bZiSTxqTsGe1ReBG7ufiBHTl1COJAJRS+vV
-         NpuIRojiRlzPS2HfyjZSo9OdBqPUeYKSvnNh6bfSYCOseLT0eq/YB4jHSGvRukPwN62S
-         ta2qMozGzCHPvYfREknhqSu9x/f1DDf7jXjrBBmrK3HyJ/aWFAV5qODIRRQZ9WQHC4Zi
-         QoQaCBYvfsned7K/zt42KqqB/2HTZtA7tQP0wj+nrgubE8pnFjF9vZWpD0xVIcxdJrqY
-         kTzg==
-X-Gm-Message-State: AOAM530Kxgq4hyXtL1uIJCM/8B5+69l41cE/Dve4nUxtMgFcgT/+zxAb
-        vjNidmGViizWypEOB53q1+g=
-X-Google-Smtp-Source: ABdhPJz/lZAFEOWKIewV3fyoyMT122b88AcfAyZ8J41YrHcHJo3+J1KvUfToNlzNH0H+0F2Fav3eLQ==
-X-Received: by 2002:adf:db51:: with SMTP id f17mr34499195wrj.83.1608811890104;
-        Thu, 24 Dec 2020 04:11:30 -0800 (PST)
-Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
-        by smtp.googlemail.com with ESMTPSA id o74sm3588802wme.36.2020.12.24.04.11.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Dec 2020 04:11:29 -0800 (PST)
-Date:   Thu, 24 Dec 2020 13:11:25 +0100
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Tim Harvey <tharvey@gateworks.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 2/2] arm64: dts: imx8mm: Add Gateworks IMX8MM Development
- Kits
-Message-ID: <20201224121125.GC15628@kozik-lap>
-References: <1608762196-29871-1-git-send-email-tharvey@gateworks.com>
- <1608762196-29871-2-git-send-email-tharvey@gateworks.com>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=56xAzTWTQQ5e5SGZuO7IksvEZZ4TGll9FyZCHqwaIyI=;
+        b=uVoqfgfzt/1IW+KBohVGNkK2BOz3Zsk1KlPmBUDLUReY2CQCaBJ0JL8swgeTvYXVZP
+         Yf0EpDCRyDXbw0mdZ4lw2t9A63cwGpmlxD9YdeAZFj0BavHe4noN74aYqKuKTcglGptq
+         FakQRyg5Z54LAAuc3lX+keZYa1XYOw5zxz89iUDPhDIsrYoa8ulV0NC79SXBBfVCR5CY
+         MAf+FfwmOnX3R8w59s/DfrSyrGgs34HQOuAz+MAkX+FbzYoBuFa4YWC/a/0tW+xNAokb
+         zIbKRUmcvR2jSq2vqeGUgc70LzIou7i0D7O9cy+mRDhJwl6xZwX9k/rJMJAmfYu+BApO
+         K0Zw==
+X-Gm-Message-State: AOAM5302y+5LZh6f3iACoV75LKy+nggYYd+ws03ZarM+8j+2yvXsMVUg
+        Axk3AoVvSysyWBuYZiXn0sex4jSajqc=
+X-Google-Smtp-Source: ABdhPJxP11G59ZBkHMu4vd9Pr+ZWgnwRAd9GQgXayLcOGdnmuBtZJBd/bU3MOd1t2CqE+vlRVXlXOw==
+X-Received: by 2002:a2e:80d4:: with SMTP id r20mr10520885ljg.495.1608812043389;
+        Thu, 24 Dec 2020 04:14:03 -0800 (PST)
+Received: from [192.168.2.145] (109-252-192-57.dynamic.spd-mgts.ru. [109.252.192.57])
+        by smtp.googlemail.com with ESMTPSA id c142sm3572365lfg.309.2020.12.24.04.14.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 24 Dec 2020 04:14:02 -0800 (PST)
+Subject: Re: [PATCH v2 19/48] opp: Fix adding OPP entries in a wrong order if
+ rate is unavailable
+To:     Viresh Kumar <viresh.kumar@linaro.org>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Nicolas Chauvet <kwizart@gmail.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Kevin Hilman <khilman@kernel.org>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        devel@driverdev.osuosl.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-media@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-clk@vger.kernel.org
+References: <20201217180638.22748-1-digetx@gmail.com>
+ <20201217180638.22748-20-digetx@gmail.com>
+ <20201222091255.wentz5hyt726qezg@vireshk-i7>
+ <db6273e6-8406-b7ae-b51d-48ceb6d21962@gmail.com>
+ <20201223043443.rklw5er6hck3gl4y@vireshk-i7>
+ <7688d6b9-52a2-d30f-123f-43c01e03b968@gmail.com>
+ <20201224062826.frppxddfinjomfui@vireshk-i7>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <fa54a097-7edd-89af-6233-1e71c131668c@gmail.com>
+Date:   Thu, 24 Dec 2020 15:14:01 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.4.2
 MIME-Version: 1.0
+In-Reply-To: <20201224062826.frppxddfinjomfui@vireshk-i7>
 Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <1608762196-29871-2-git-send-email-tharvey@gateworks.com>
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 23, 2020 at 02:23:16PM -0800, Tim Harvey wrote:
-> The Gateworks Venice GW71xx-0x/GW72xx-0x/GW73xx-0x are development
-> kits comprised of a GW700x SoM and a Baseboard.
+24.12.2020 09:28, Viresh Kumar пишет:
+> On 23-12-20, 23:36, Dmitry Osipenko wrote:
+>> 23.12.2020 07:34, Viresh Kumar пишет:
+>>> On 22-12-20, 22:19, Dmitry Osipenko wrote:
+>>>> 22.12.2020 12:12, Viresh Kumar пишет:
+>>>>> rate will be 0 for both the OPPs here if rate_not_available is true and so this
+>>>>> change shouldn't be required.
+>>>>
+>>>> The rate_not_available is negated in the condition. This change is
+>>>> required because both rates are 0 and then we should proceed to the
+>>>> levels comparison.
+>>>
+>>> Won't that happen without this patch ?
+>>
+>> No
 > 
-> The GW700x SoM contains:
->  - IMX8MM SoC
->  - LPDDR4 DRAM
->  - eMMC FLASH
->  - Gateworks System Controller (eeprom/pushbutton/reset/voltage-monitor)
->  - GbE PHY connected to the IMX8MM FEC
->  - Power Management IC
+> This is how the code looks like currently:
 > 
-> The GW71xx Baseboard contains:
->  - 1x MiniPCIe Socket with USB2.0, PCIe, and SIM
->  - 1x RJ45 GbE (IMX8MM FEC)
->  - PCIe Clock generator
->  - GPS and accelerometer
->  - 1x USB 2.0 Front Panel connector
->  - wide range power supply
+> int _opp_compare_key(struct dev_pm_opp *opp1, struct dev_pm_opp *opp2)
+> {
+> 	if (opp1->rate != opp2->rate)
+> 		return opp1->rate < opp2->rate ? -1 : 1;
+> 	if (opp1->bandwidth && opp2->bandwidth &&
+> 	    opp1->bandwidth[0].peak != opp2->bandwidth[0].peak)
+> 		return opp1->bandwidth[0].peak < opp2->bandwidth[0].peak ? -1 : 1;
+> 	if (opp1->level != opp2->level)
+> 		return opp1->level < opp2->level ? -1 : 1;
+> 	return 0;
+> }
 > 
-> The GW72xx Baseboard contains:
->  - 2x MiniPCIe Socket with USB2.0, PCIe, and SIM
->  - 2x RJ45 GbE (IMX8MM FEC and LAN743x)
->  - 1x MicroSD connector
->  - 1x USB 2.0 Front Panel connector
->  - 1x SPI connector
->  - PCIe Clock generator
->  - GPS and accelerometer
->  - Media Expansion connector (MIPI-CSI/MIPI-DSI/GPIO/I2S)
->  - wide range power supply
+> Lets consider the case you are focussing on, where rate is 0 for both the OPPs,
+> bandwidth isn't there and we want to run the level comparison here.
 > 
-> The GW73xx Baseboard contains:
->  - 3x MiniPCIe Socket with USB2.0, PCIe, and SIM
->  - 2x RJ45 GbE (IMX8MM FEC and LAN743x)
->  - 1x MicroSD connector
->  - 1x USB 2.0 Front Panel connector
->  - 1x SPI connector
->  - WiFi/BT
->  - PCIe Clock generator
->  - GPS and accelerometer
->  - Media Expansion connector (MIPI-CSI/MIPI-DSI/GPIO/I2S)
->  - wide range power supply
+> Since both the rates are 0, (opp1->rate != opp2->rate) will fail and so we will
+> move to bandwidth check which will fail too. And so we will get to the level
+> comparison.
 > 
-> Signed-off-by: Tim Harvey <tharvey@gateworks.com>
-> ---
->  arch/arm64/boot/dts/freescale/Makefile             |   3 +
->  .../boot/dts/freescale/imx8mm-venice-gw700x.dtsi   | 482 +++++++++++++++++++++
->  .../boot/dts/freescale/imx8mm-venice-gw71xx-0x.dts |  19 +
->  .../boot/dts/freescale/imx8mm-venice-gw71xx.dtsi   | 186 ++++++++
->  .../boot/dts/freescale/imx8mm-venice-gw72xx-0x.dts |  20 +
->  .../boot/dts/freescale/imx8mm-venice-gw72xx.dtsi   | 311 +++++++++++++
->  .../boot/dts/freescale/imx8mm-venice-gw73xx-0x.dts |  19 +
->  .../boot/dts/freescale/imx8mm-venice-gw73xx.dtsi   | 363 ++++++++++++++++
->  8 files changed, 1403 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-venice-gw700x.dtsi
->  create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-venice-gw71xx-0x.dts
->  create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-venice-gw71xx.dtsi
->  create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx-0x.dts
->  create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx.dtsi
->  create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x.dts
->  create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx.dtsi
+> What am I missing here ? I am sure there is something for sure as you won't have
+> missed this..
 > 
-> diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-> index f8d5943..ecdd233 100644
-> --- a/arch/arm64/boot/dts/freescale/Makefile
-> +++ b/arch/arm64/boot/dts/freescale/Makefile
-> @@ -32,6 +32,9 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mm-beacon-kit.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mm-evk.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mm-ddr4-evk.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mm-var-som-symphony.dtb
-> +dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw71xx-0x.dtb
-> +dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw72xx-0x.dtb
-> +dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw73xx-0x.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mn-evk.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mn-ddr4-evk.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mn-var-som-symphony.dtb
 
-(...)
-
-I have few more thoughts below.
-
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw71xx.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw71xx.dtsi
-> new file mode 100644
-> index 00000000..a4eeb0d
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw71xx.dtsi
-> @@ -0,0 +1,186 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright 2020 Gateworks Corporation
-> + */
-> +
-> +/ {
-> +	aliases {
-> +		usb0 = &usbotg1;
-> +		usb1 = &usbotg2;
-> +	};
-> +
-> +	leds {
-> +		compatible = "gpio-leds";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_gpio_leds>;
-> +
-> +		user1 { /* GRN */
-> +			label = "user1";
-> +			gpios = <&gpio5 5 GPIO_ACTIVE_HIGH>;
-> +			default-state = "on";
-> +			linux,default-trigger = "heartbeat";
-> +		};
-> +
-> +		user2 { /* RED */
-> +			label = "user2";
-> +			gpios = <&gpio5 4 GPIO_ACTIVE_HIGH>;
-> +			default-state = "off";
-> +		};
-> +	};
-> +
-> +	pps {
-> +		compatible = "pps-gpio";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_pps>;
-> +		gpios = <&gpio1 15 GPIO_ACTIVE_HIGH>;
-> +		status = "okay";
-> +	};
-> +
-> +	reg_usb_otg1_vbus: regulator-usb-otg1 {
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_reg_usb1_en>;
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "usb_otg1_vbus";
-> +		gpio = <&gpio1 12 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +	};
-> +};
-> +
-> +&ecspi2 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_spi2>;
-> +	cs-gpios = <&gpio5 13 GPIO_ACTIVE_HIGH>;
-> +	status = "okay";
-
-Why is it enabled? What's here?
-
-> +};
-> +
-> +&i2c2 {
-> +	clock-frequency = <400000>;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_i2c2>;
-> +	status = "okay";
-> +
-> +	accel@19 {
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_accel>;
-> +		compatible = "st,lis2de12";
-> +		reg = <0x19>;
-> +		st,drdy-int-pin = <1>;
-> +		interrupt-parent = <&gpio4>;
-> +		interrupts = <5 IRQ_TYPE_LEVEL_LOW>;
-> +		interrupt-names = "INT1";
-> +	};
-> +};
-> +
-> +&i2c3 {
-> +	clock-frequency = <400000>;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_i2c3>;
-> +	status = "okay";
-
-Why is it enabled? What's here?
-
-> +};
-> +
-> +&sai3 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_sai3>;
-> +	assigned-clocks = <&clk IMX8MM_CLK_SAI3>;
-> +	assigned-clock-parents = <&clk IMX8MM_AUDIO_PLL1_OUT>;
-> +	assigned-clock-rates = <24576000>;
-> +	status = "okay";
-> +};
-> +
-> +&uart1 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_uart1>;
-> +	status = "okay";
-> +};
-> +
-> +&uart3 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_uart3>;
-> +	status = "okay";
-> +};
-
-Why both UARTs are enabled on the Carrier? The console is UART2.
-
-Best regards,
-Krzysztof
-
-> +
-> +&usbotg1 {
-> +	dr_mode = "otg";
-> +	vbus-supply = <&reg_usb_otg1_vbus>;
-> +	status = "okay";
-> +};
-> +
-> +&usbotg2 {
-> +	dr_mode = "host";
-> +	status = "okay";
-> +};
-> +
-> +&iomuxc {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_hog>;
-> +
-> +	pinctrl_hog: hoggrp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_SPDIF_TX_GPIO5_IO3		0x40000041 /* PLUG_TEST */
-> +			MX8MM_IOMUXC_GPIO1_IO06_GPIO1_IO6	0x40000041 /* PCI_USBSEL */
-> +			MX8MM_IOMUXC_SAI1_RXD5_GPIO4_IO7	0x40000041 /* PCIE_WDIS# */
-> +			MX8MM_IOMUXC_GPIO1_IO07_GPIO1_IO7	0x40000041 /* DIO0 */
-> +			MX8MM_IOMUXC_GPIO1_IO09_GPIO1_IO9	0x40000041 /* DIO1 */
-> +			MX8MM_IOMUXC_SAI1_RXD1_GPIO4_IO3	0x40000041 /* DIO2 */
-> +			MX8MM_IOMUXC_SAI1_RXD2_GPIO4_IO4	0x40000041 /* DIO2 */
-> +		>;
-> +	};
-> +
-> +	pinctrl_accel: accelirq {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_SAI1_RXD3_GPIO4_IO5	0x159
-> +		>;
-> +	};
-> +
-> +	pinctrl_gpio_leds: gpioledgrp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_SPDIF_EXT_CLK_GPIO5_IO5	0x19
-> +			MX8MM_IOMUXC_SPDIF_RX_GPIO5_IO4		0x19
-> +		>;
-> +	};
-> +
-> +	pinctrl_i2c3: i2c3grp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_I2C3_SCL_I2C3_SCL		0x400001c3
-> +			MX8MM_IOMUXC_I2C3_SDA_I2C3_SDA		0x400001c3
-> +		>;
-> +	};
-> +
-> +	pinctrl_pps: ppsgrp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_GPIO1_IO15_GPIO1_IO15	0x41
-> +		>;
-> +	};
-> +
-> +	pinctrl_reg_usb1_en: regusb1grp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_GPIO1_IO12_GPIO1_IO12	0x41
-> +			MX8MM_IOMUXC_GPIO1_IO13_USB1_OTG_OC	0x41
-> +		>;
-> +	};
-> +
-> +	pinctrl_spi2: spi2grp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_ECSPI2_SCLK_ECSPI2_SCLK	0xd6
-> +			MX8MM_IOMUXC_ECSPI2_MOSI_ECSPI2_MOSI	0xd6
-> +			MX8MM_IOMUXC_ECSPI2_SCLK_ECSPI2_SCLK	0xd6
-> +			MX8MM_IOMUXC_ECSPI2_SS0_GPIO5_IO13	0xd6
-> +		>;
-> +	};
-> +
-> +	pinctrl_uart1: uart1grp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_UART1_RXD_UART1_DCE_RX	0x140
-> +			MX8MM_IOMUXC_UART1_TXD_UART1_DCE_TX	0x140
-> +		>;
-> +	};
-> +
-> +	pinctrl_uart3: uart3grp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_UART3_RXD_UART3_DCE_RX	0x140
-> +			MX8MM_IOMUXC_UART3_TXD_UART3_DCE_TX	0x140
-> +		>;
-> +	};
-> +};
+Ah, you're right. It was me who was missing something as I see now,
+after taking a closer look and trying to implement yours suggestion, my
+bad. I'll improve this patch in the next revision, thanks!
