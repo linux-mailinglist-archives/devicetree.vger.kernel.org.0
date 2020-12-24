@@ -2,138 +2,234 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 31B3E2E270B
-	for <lists+devicetree@lfdr.de>; Thu, 24 Dec 2020 14:04:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F6F62E2727
+	for <lists+devicetree@lfdr.de>; Thu, 24 Dec 2020 14:14:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727778AbgLXNBe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Dec 2020 08:01:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43920 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727372AbgLXNBd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Dec 2020 08:01:33 -0500
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F462C061794;
-        Thu, 24 Dec 2020 05:00:53 -0800 (PST)
-Received: by mail-lf1-x130.google.com with SMTP id m25so4539040lfc.11;
-        Thu, 24 Dec 2020 05:00:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=PPrH0JQSkYTBUDfxgE5s9c2FpdNYSs+ZfAVKTdSJpOU=;
-        b=h35B/CGskQN9x2gajXsHnapJAn/oOdmJUPQzEUHvzlPUdoaVdWOHSvn0gRhd+h4Ola
-         kRThB7EwzP4zCJ6I/cDBaa2jz7i8GwFBJ3G3UgCUXtUfsT2g52TetI+SjB06v4QccX98
-         yOgW4XRztBS1Rb1sUB+HjV5efgFf1R3v/2FDKAIhyUg38TSfby9FdbMS/BOhsmpV8q93
-         2PXIilSxhr+6+5vRNFV8pb+G4eE9EQA1e1YzsE81H7g6mvgl8zL3naGYGYHQKfwNKpkP
-         FkcD6cP+0rX2PGwAlkOUF9fsFJlC40+sqMoNc+qDnwDTa8+wBi9oi10CEnKiniae650p
-         1/Aw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=PPrH0JQSkYTBUDfxgE5s9c2FpdNYSs+ZfAVKTdSJpOU=;
-        b=Dru+WFqKfQoeVwsu6JWjGquf9Rpvnsi2Klbb9fDUBucX6JCekDXcdk32mzMnhFQu53
-         ft/V8BgvMeO+s3osfZQleS8SpMtKI4SVszorEV6sSJZTu09fvmQR0Ase+G5SA/5iBq0o
-         iq6zsP92ubCVxBIUUx6zTDCZdVd4pBADD6+DOEnNukRojyTHMWjqM/xHRyev1iVhv/XZ
-         VVdgXNjnRB3mTT4ERua/lIs6E3xtOw2FB3bLFKK9/VNdrxE2m5C1//2GF/d2JphJdIOn
-         +jarpqcbHRpTQLeHd5IBxQSMtXPM4ngPwm1xNbIpDyXfhQOpbKvb0q4cAZKEhel5QqGQ
-         1CSw==
-X-Gm-Message-State: AOAM530uw+ZyjIg1kVdGjUIbVzXeNbmQvJVPslp2NWcskK1MnyzyEtFI
-        cBvXx0QKgeMUF2wFBZmSVQw2m0cIh+w=
-X-Google-Smtp-Source: ABdhPJy4dUISU54G6I/fcsUIBl9m9poD0jxB1pYpBLDFT4iw28ge43cAa/UiLwCH2jmZTgAPqvlFag==
-X-Received: by 2002:a05:6512:52c:: with SMTP id o12mr12294057lfc.559.1608814851636;
-        Thu, 24 Dec 2020 05:00:51 -0800 (PST)
-Received: from [192.168.2.145] (109-252-192-57.dynamic.spd-mgts.ru. [109.252.192.57])
-        by smtp.googlemail.com with ESMTPSA id b4sm3594686lfa.261.2020.12.24.05.00.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 24 Dec 2020 05:00:50 -0800 (PST)
-Subject: Re: [PATCH v2 11/48] opp: Add dev_pm_opp_find_level_ceil()
-To:     Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
+        id S1728017AbgLXNNw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Dec 2020 08:13:52 -0500
+Received: from mail2.protonmail.ch ([185.70.40.22]:41250 "EHLO
+        mail2.protonmail.ch" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728791AbgLXNNu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Dec 2020 08:13:50 -0500
+Date:   Thu, 24 Dec 2020 13:13:02 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+        s=protonmail; t=1608815585;
+        bh=CNeV10U3kCwJJgZL2fsUMux+A8mhrt9SMQKIEFXyZBQ=;
+        h=Date:To:From:Cc:Reply-To:Subject:In-Reply-To:References:From;
+        b=DSqJYAjzawfGh46umurrsISbhLkHutuKvweH4SI/RVZY8Bv6NLgJR3De/+YVj3omU
+         7aWNr4bdNyh8Mb86RtB5vhD+YoJi5647tPI/gNTPHp04OUIR8R9rgXYrmBdU//Tx++
+         nlR5YGa2Yd8rAIps1SqKmQBS3fOf/bbdPYaNNCA8=
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+From:   Timon Baetz <timon.baetz@protonmail.com>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
         Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Nicolas Chauvet <kwizart@gmail.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Kevin Hilman <khilman@kernel.org>,
-        Peter De Schrijver <pdeschrijver@nvidia.com>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        devel@driverdev.osuosl.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-media@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-clk@vger.kernel.org
-References: <20201217180638.22748-1-digetx@gmail.com>
- <20201217180638.22748-12-digetx@gmail.com>
- <20201222064253.x7vsurh7q5k7qzb5@vireshk-i7>
- <fd7b9f42-d0a7-45eb-2a17-d46779011c58@gmail.com>
- <20201223041931.klnppy4fu3sdgtsz@vireshk-i7>
- <f00e0c74-8d9a-d3d3-81bb-3ac25a74175d@gmail.com>
- <20201224064339.zngidobhstnlu2a3@vireshk-i7>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <780db190-d93d-3bca-4819-790010f82c62@gmail.com>
-Date:   Thu, 24 Dec 2020 16:00:49 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.4.2
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-pm@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht
+Reply-To: Timon Baetz <timon.baetz@protonmail.com>
+Subject: Re: [PATCH v4 4/7] power: supply: max8997_charger: Set CHARGER current limit
+Message-ID: <20201224141246.7ad0ffc4.timon.baetz@protonmail.com>
+In-Reply-To: <20201224095559.GB10937@kozik-lap>
+References: <20201223134221.804943-1-timon.baetz@protonmail.com> <20201223134221.804943-4-timon.baetz@protonmail.com> <20201224095559.GB10937@kozik-lap>
 MIME-Version: 1.0
-In-Reply-To: <20201224064339.zngidobhstnlu2a3@vireshk-i7>
 Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM shortcircuit=no
+        autolearn=disabled version=3.4.4
+X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
+        mailout.protonmail.ch
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-24.12.2020 09:43, Viresh Kumar пишет:
-> On 23-12-20, 23:37, Dmitry Osipenko wrote:
->> 23.12.2020 07:19, Viresh Kumar пишет:
->>> On 22-12-20, 22:15, Dmitry Osipenko wrote:
->>>> 22.12.2020 09:42, Viresh Kumar пишет:
->>>>> On 17-12-20, 21:06, Dmitry Osipenko wrote:
->>>>>> Add a ceil version of the dev_pm_opp_find_level(). It's handy to have if
->>>>>> levels don't start from 0 in OPP table and zero usually means a minimal
->>>>>> level.
->>>>>>
->>>>>> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
->>>>>
->>>>> Why doesn't the exact version work for you here ?
->>>>>
->>>>
->>>> The exact version won't find OPP for level=0 if levels don't start with
->>>> 0, where 0 means that minimal level is desired.
->>>
->>> Right, but why do you need to send 0 for your platform ?
->>>
->>
->> To put power domain into the lowest performance state when device is idling.
-> 
-> I see. So you really want to set it to the lowest state or just take the vote
-> out ? Which may end up powering off the domain in the worst case ?
-> 
+On Thu, 24 Dec 2020 10:55:59 +0100, Krzysztof Kozlowski wrote:
+> On Wed, Dec 23, 2020 at 01:43:05PM +0000, Timon Baetz wrote:
+> > Register for extcon notification and set charging current depending on
+> > the detected cable type. Current values are taken from vendor kernel,
+> > where most charger types end up setting 650mA [0].
+> >
+> > Also enable and disable the CHARGER regulator based on extcon events.
+> >
+> > [0] https://github.com/krzk/linux-vendor-backup/blob/samsung/galaxy-s2-=
+epic-4g-touch-sph-d710-exynos4210-dump/drivers/misc/max8997-muic.c#L1675-L1=
+678
+> >
+> > Signed-off-by: Timon Baetz <timon.baetz@protonmail.com>
+> > ---
+> >  drivers/power/supply/max8997_charger.c | 89 ++++++++++++++++++++++++++
+> >  1 file changed, 89 insertions(+)
+> >
+> > diff --git a/drivers/power/supply/max8997_charger.c b/drivers/power/sup=
+ply/max8997_charger.c
+> > index 1947af25879a..e8532e2af451 100644
+> > --- a/drivers/power/supply/max8997_charger.c
+> > +++ b/drivers/power/supply/max8997_charger.c
+> > @@ -6,12 +6,14 @@
+> >  //  MyungJoo Ham <myungjoo.ham@samsung.com>
+> >
+> >  #include <linux/err.h>
+> > +#include <linux/extcon.h>
+> >  #include <linux/module.h>
+> >  #include <linux/slab.h>
+> >  #include <linux/platform_device.h>
+> >  #include <linux/power_supply.h>
+> >  #include <linux/mfd/max8997.h>
+> >  #include <linux/mfd/max8997-private.h>
+> > +#include <linux/regulator/consumer.h>
+> >
+> >  /* MAX8997_REG_STATUS4 */
+> >  #define DCINOK_SHIFT=09=091
+> > @@ -31,6 +33,10 @@ struct charger_data {
+> >  =09struct device *dev;
+> >  =09struct max8997_dev *iodev;
+> >  =09struct power_supply *battery;
+> > +=09struct regulator *reg;
+> > +=09struct extcon_dev *edev;
+> > +=09struct notifier_block extcon_nb;
+> > +=09struct work_struct extcon_work;
+> >  };
+> >
+> >  static enum power_supply_property max8997_battery_props[] =3D {
+> > @@ -88,6 +94,67 @@ static int max8997_battery_get_property(struct power=
+_supply *psy,
+> >  =09return 0;
+> >  }
+> >
+> > +static void max8997_battery_extcon_evt_stop_work(void *data)
+> > +{
+> > +=09struct charger_data *charger =3D data;
+> > +
+> > +=09cancel_work_sync(&charger->extcon_work);
+> > +}
+> > +
+> > +static void max8997_battery_extcon_evt_worker(struct work_struct *work=
+)
+> > +{
+> > +=09struct charger_data *charger =3D
+> > +=09    container_of(work, struct charger_data, extcon_work);
+> > +=09struct extcon_dev *edev =3D charger->edev;
+> > +=09int current_limit;
+> > +
+> > +=09if (extcon_get_state(edev, EXTCON_CHG_USB_SDP) > 0) {
+> > +=09=09dev_dbg(charger->dev, "USB SDP charger is connected\n");
+> > +=09=09current_limit =3D 450000;
+> > +=09} else if (extcon_get_state(edev, EXTCON_CHG_USB_DCP) > 0) {
+> > +=09=09dev_dbg(charger->dev, "USB DCP charger is connected\n");
+> > +=09=09current_limit =3D 650000;
+> > +=09} else if (extcon_get_state(edev, EXTCON_CHG_USB_FAST) > 0) {
+> > +=09=09dev_dbg(charger->dev, "USB FAST charger is connected\n");
+> > +=09=09current_limit =3D 650000;
+> > +=09} else if (extcon_get_state(edev, EXTCON_CHG_USB_SLOW) > 0) {
+> > +=09=09dev_dbg(charger->dev, "USB SLOW charger is connected\n");
+> > +=09=09current_limit =3D 650000;
+> > +=09} else if (extcon_get_state(edev, EXTCON_CHG_USB_CDP) > 0) {
+> > +=09=09dev_dbg(charger->dev, "USB CDP charger is connected\n");
+> > +=09=09current_limit =3D 650000;
+> > +=09} else {
+> > +=09=09dev_dbg(charger->dev, "USB charger is diconnected\n");
+> > +=09=09current_limit =3D -1;
+> > +=09}
+> > +
+> > +=09if (current_limit > 0) {
+> > +=09=09int ret =3D regulator_set_current_limit(charger->reg, current_li=
+mit, current_limit);
+> > +
+> > +=09=09if (ret) {
+> > +=09=09=09dev_err(charger->dev, "failed to set current limit: %d\n", re=
+t);
+> > +=09=09=09return;
+> > +=09=09}
+> > +=09=09ret =3D regulator_enable(charger->reg);
+> > +=09=09if (ret)
+> > +=09=09=09dev_err(charger->dev, "failed to enable regulator: %d\n", ret=
+);
+> > +=09} else {
+> > +=09=09int ret  =3D regulator_disable(charger->reg);
+> > +
+> > +=09=09if (ret)
+> > +=09=09=09dev_err(charger->dev, "failed to disable regulator: %d\n", re=
+t);
+> > +=09}
+> > +}
+> > +
+> > +static int max8997_battery_extcon_evt(struct notifier_block *nb,
+> > +=09=09=09=09unsigned long event, void *param)
+> > +{
+> > +=09struct charger_data *charger =3D
+> > +=09=09container_of(nb, struct charger_data, extcon_nb);
+> > +=09schedule_work(&charger->extcon_work);
+> > +=09return NOTIFY_OK;
+> > +}
+> > +
+> >  static const struct power_supply_desc max8997_battery_desc =3D {
+> >  =09.name=09=09=3D "max8997_pmic",
+> >  =09.type=09=09=3D POWER_SUPPLY_TYPE_BATTERY,
+> > @@ -170,6 +237,28 @@ static int max8997_battery_probe(struct platform_d=
+evice *pdev)
+> >  =09=09return PTR_ERR(charger->battery);
+> >  =09}
+> >
+> > +=09charger->reg =3D devm_regulator_get(&pdev->dev, "charger"); =20
+>=20
+> Since you do not use get_optional, you will always get a dummy
+> regulator. In case of error, you should either print it or entirely fail
+> the probe. Silently continuing makes it difficult to spot errors.
+>=20
+> Since the driver could operate in case of extcon/regulator error, just
+> dev_err() so failure will be spotted with dmesg.
 
-In a device driver I want to set PD to the lowest performance state by
-removing the performance vote when dev_pm_opp_set_rate(dev, 0) is
-invoked by the driver.
+I will switch to devm_regulator_get_optional() and print an error on=20
+failure, thanks.
 
-The OPP core already does this, but if OPP levels don't start from 0 in
-a device-tree for PD, then it currently doesn't work since there is a
-need to get a rounded-up performance state because
-dev_pm_opp_set_voltage() takes OPP entry for the argument (patches 9 and
-28).
+> It will complain on older DTBs because you are introducing incompatible
+> change, but that's expected. Just correct all other in-tree DTS.
 
-The PD powering off and performance-changes are separate from each other
-in the GENPD core. The GENPD core automatically turns off domain when
-all devices within the domain are suspended by system-suspend or RPM.
+The other 2 in-tree DTS don't have CHARGER regulators. Not sure
+how to correct those. Should I add muic and charger nodes without a
+charger-supply? It will still complain in that case.
 
-The performance state of a power domain is controlled solely by a device
-driver. GENPD core only aggregates the performance requests, it doesn't
-change the performance state of a domain by itself when device is
-suspended or resumed, IIUC this is intentional. And I want to put domain
-into lowest performance state when device is suspended.
+Thanks for guiding me through this,
+Timon
+
+> > +=09charger->edev =3D extcon_get_edev_by_phandle(&pdev->dev, 0);
+> > +=09if (PTR_ERR(charger->reg) =3D=3D -EPROBE_DEFER ||
+> > +=09    PTR_ERR(charger->edev) =3D=3D -EPROBE_DEFER)
+> > +=09=09return -EPROBE_DEFER;
+> > +
+> > +=09if (!IS_ERR(charger->reg) && !IS_ERR(charger->edev)) {
+> > +=09=09INIT_WORK(&charger->extcon_work, max8997_battery_extcon_evt_work=
+er);
+> > +=09=09ret =3D devm_add_action(&pdev->dev, max8997_battery_extcon_evt_s=
+top_work, charger);
+> > +=09=09if (ret) {
+> > +=09=09=09dev_err(&pdev->dev, "failed to add extcon evt stop action: %d=
+\n", ret);
+> > +=09=09=09return ret;
+> > +=09=09}
+> > +=09=09charger->extcon_nb.notifier_call =3D max8997_battery_extcon_evt;
+> > +=09=09ret =3D devm_extcon_register_notifier_all(&pdev->dev, charger->e=
+dev,
+> > +=09=09=09=09=09=09=09&charger->extcon_nb);
+> > +=09=09if (ret) {
+> > +=09=09=09dev_err(&pdev->dev, "failed to register extcon notifier\n");
+> > +=09=09=09return ret;
+> > +=09=09};
+> > +=09}
+> > +
+> >  =09return 0;
+> >  }
+> >
+> > --
+> > 2.25.1
+> >
+> > =20
+
+
+
