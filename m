@@ -2,157 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 540352E2392
-	for <lists+devicetree@lfdr.de>; Thu, 24 Dec 2020 03:05:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F5B32E23BC
+	for <lists+devicetree@lfdr.de>; Thu, 24 Dec 2020 03:43:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728280AbgLXCEt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Dec 2020 21:04:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56570 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726288AbgLXCEt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Dec 2020 21:04:49 -0500
-Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com [IPv6:2607:f8b0:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFCCFC061794
-        for <devicetree@vger.kernel.org>; Wed, 23 Dec 2020 18:04:08 -0800 (PST)
-Received: by mail-pf1-x42b.google.com with SMTP id c12so457165pfo.10
-        for <devicetree@vger.kernel.org>; Wed, 23 Dec 2020 18:04:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=0x0f.com; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=6GGRKwj/V72sgXB5x/GYoZyHZnvC0fUrPze665l1A3Y=;
-        b=n0hC6LYXnsWzYbKJUxRHnkLmYFDvKRNXxUglzhk/S0PU1HnlsbU0Tj1R6EYspQLtvj
-         fkHGIfnqJfjes5EVeGqBQv6JLaYOBrZP8kpzjviWVmRXLF8qTY8n/EzqhzVyninoIUZ/
-         mEvo3x9HtvCN3mWolnSigCoSADbbJmm9KXhdg=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=6GGRKwj/V72sgXB5x/GYoZyHZnvC0fUrPze665l1A3Y=;
-        b=Jz7fq7OkunAMlSp/rPruJESpXV/HL7HsVu4x+o6sXoc/Xoqew6X5iK/BgThauhbvC9
-         KYoYQfNDTD0WA6KcXfwMsUiRBDekzPmgAV8Kif+++Vv9qwUEGB+ixfx1HFtbPr2pXMBU
-         AoOJ1mIqqSNiQ9VYcISp67NWWcvdoOgMoq6oP35jAtEQ5ugKR3Z2dWOINjxMF2GxEJHb
-         cfkFHsYuIAjAUukeuZeSFYG0yZ/T8RlQeO9IUdvc0aU7C7HkDu15ReXBUHStGfoz0SQi
-         F/iyYmq34vj3bGoT1a7NkbEMX96friFbCfHkHUN0iM+rW/cOVZagiH608YwQDtDnRxjm
-         SBmg==
-X-Gm-Message-State: AOAM532bujM+PDx3SRLWkXIDGyPSx3sFVu9T1X+Olgv7E/+yf82+qpiJ
-        U5qCrIPISpxjgJ5NY05zfN+M6g==
-X-Google-Smtp-Source: ABdhPJyyxa/q5anc6DBZR2srp741iNm0H7XIBW2Sow3jBUv/Z4CCvkhSAXcwsgVWWhSPbdU3XSb8tg==
-X-Received: by 2002:a63:8c15:: with SMTP id m21mr11410215pgd.396.1608775448301;
-        Wed, 23 Dec 2020 18:04:08 -0800 (PST)
-Received: from shiro.work (p1268123-ipngn200803sizuokaden.shizuoka.ocn.ne.jp. [118.13.124.123])
-        by smtp.googlemail.com with ESMTPSA id t1sm745564pju.43.2020.12.23.18.04.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Dec 2020 18:04:07 -0800 (PST)
-From:   Daniel Palmer <daniel@0x0f.com>
-To:     soc@kernel.org, devicetree@vger.kernel.org
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        arnd@arndb.de, olof@lixom.net, w@1wt.eu,
-        Daniel Palmer <daniel@0x0f.com>
-Subject: [PATCH v2] ARM: mstar: Unify common parts of BreadBee boards into a dtsi
-Date:   Thu, 24 Dec 2020 11:03:54 +0900
-Message-Id: <20201224020354.2212037-1-daniel@0x0f.com>
-X-Mailer: git-send-email 2.29.2
+        id S1728631AbgLXCnE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Dec 2020 21:43:04 -0500
+Received: from relay5.mymailcheap.com ([159.100.241.64]:47679 "EHLO
+        relay5.mymailcheap.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728544AbgLXCnE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Dec 2020 21:43:04 -0500
+Received: from relay3.mymailcheap.com (relay3.mymailcheap.com [217.182.119.157])
+        by relay5.mymailcheap.com (Postfix) with ESMTPS id 892202008F
+        for <devicetree@vger.kernel.org>; Thu, 24 Dec 2020 02:42:10 +0000 (UTC)
+Received: from filter1.mymailcheap.com (filter1.mymailcheap.com [149.56.130.247])
+        by relay3.mymailcheap.com (Postfix) with ESMTPS id 8B8803ECDF;
+        Thu, 24 Dec 2020 03:40:34 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+        by filter1.mymailcheap.com (Postfix) with ESMTP id BB9C92A373;
+        Wed, 23 Dec 2020 21:40:33 -0500 (EST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mymailcheap.com;
+        s=default; t=1608777633;
+        bh=JBzMszsJ/G7414QBsJ980n5//jMYGFQXtKzErisdNWo=;
+        h=From:To:Cc:Subject:Date:From;
+        b=CKtR6meDMtf2xURoiB/N8I7iDV6PtQRuZNiG277fwlkXpBd9pGaAkOkBSbc9eX/zM
+         1qrEDsq+QEUP633eeWk8613qZyeJ0XzR3qTqtDGIUIfGnzFjWosQdDxkTjxRbx0cvC
+         JMMIDBa4vctolpIU0e30sh/DLt4ugMmQwMmBSylo=
+X-Virus-Scanned: Debian amavisd-new at filter1.mymailcheap.com
+Received: from filter1.mymailcheap.com ([127.0.0.1])
+        by localhost (filter1.mymailcheap.com [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id PxpovOwXIGIX; Wed, 23 Dec 2020 21:40:32 -0500 (EST)
+Received: from mail20.mymailcheap.com (mail20.mymailcheap.com [51.83.111.147])
+        (using TLSv1.2 with cipher ADH-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by filter1.mymailcheap.com (Postfix) with ESMTPS;
+        Wed, 23 Dec 2020 21:40:32 -0500 (EST)
+Received: from [213.133.102.83] (ml.mymailcheap.com [213.133.102.83])
+        by mail20.mymailcheap.com (Postfix) with ESMTP id A5E87422D4;
+        Thu, 24 Dec 2020 02:40:30 +0000 (UTC)
+Authentication-Results: mail20.mymailcheap.com;
+        dkim=pass (1024-bit key; unprotected) header.d=aosc.io header.i=@aosc.io header.b="nUHs3+SN";
+        dkim-atps=neutral
+AI-Spam-Status: Not processed
+Received: from ice-e5v2.lan (unknown [59.41.162.103])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by mail20.mymailcheap.com (Postfix) with ESMTPSA id 9C4CC41EFA;
+        Thu, 24 Dec 2020 02:40:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=aosc.io; s=default;
+        t=1608777626; bh=JBzMszsJ/G7414QBsJ980n5//jMYGFQXtKzErisdNWo=;
+        h=From:To:Cc:Subject:Date:From;
+        b=nUHs3+SNCqPfaMcEvHNJ2BmtBVqLDO8C2CUu1GJolzpthkTTDj13VujOhAZpeMBqa
+         9vKM1bp2ehZZGlUjRjrFbgngx9PZYRTwWMLpFAE5fpjPpp5OCDBZ984hpc0Ed0q9HT
+         5O+Hv9arRVY/USKWVr4Ip5I50QFfYeEvff7q0sn8=
+From:   Icenowy Zheng <icenowy@aosc.io>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com,
+        Icenowy Zheng <icenowy@aosc.io>
+Subject: [PATCH v2 1/3] dt-bindings: arm: sunxi: add PineTab Early Adopter edition
+Date:   Thu, 24 Dec 2020 10:39:59 +0800
+Message-Id: <20201224024001.19248-1-icenowy@aosc.io>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [6.40 / 20.00];
+         RCVD_VIA_SMTP_AUTH(0.00)[];
+         ARC_NA(0.00)[];
+         R_DKIM_ALLOW(0.00)[aosc.io:s=default];
+         RECEIVED_SPAMHAUS_PBL(0.00)[59.41.162.103:received];
+         FROM_HAS_DN(0.00)[];
+         TO_DN_SOME(0.00)[];
+         R_MISSING_CHARSET(2.50)[];
+         TO_MATCH_ENVRCPT_ALL(0.00)[];
+         TAGGED_RCPT(0.00)[dt];
+         MIME_GOOD(-0.10)[text/plain];
+         BROKEN_CONTENT_TYPE(1.50)[];
+         R_SPF_SOFTFAIL(0.00)[~all];
+         DMARC_NA(0.00)[aosc.io];
+         ML_SERVERS(-3.10)[213.133.102.83];
+         DKIM_TRACE(0.00)[aosc.io:+];
+         RCPT_COUNT_SEVEN(0.00)[9];
+         MID_CONTAINS_FROM(1.00)[];
+         RCVD_NO_TLS_LAST(0.10)[];
+         FROM_EQ_ENVFROM(0.00)[];
+         MIME_TRACE(0.00)[0:+];
+         ASN(0.00)[asn:24940, ipnet:213.133.96.0/19, country:DE];
+         RCVD_COUNT_TWO(0.00)[2];
+         SUSPICIOUS_RECIPS(1.50)[];
+         HFILTER_HELO_BAREIP(3.00)[213.133.102.83,1]
+X-Rspamd-Queue-Id: A5E87422D4
+X-Rspamd-Server: mail20.mymailcheap.com
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The BreadBee and the BreadBee Crust are the same PCB with a different
-SoC mounted. There are two top level dts to handle this.
+Early adopter's PineTabs (and further releases) will have a new LCD
+panel different with the one that is used when in development (because
+the old panel's supply discontinued).
 
-To avoid deduplicating the parts that are more related to the PCB than
-the SoC (i.e. the voltage regs and LEDs) add a common dtsi that can
-be included in both top level dts.
+Add a new DT compatible for it.
 
-Signed-off-by: Daniel Palmer <daniel@0x0f.com>
+Signed-off-by: Icenowy Zheng <icenowy@aosc.io>
 ---
- .../dts/mstar-infinity-breadbee-common.dtsi   | 49 +++++++++++++++++++
- .../mstar-infinity-msc313-breadbee_crust.dts  |  1 +
- .../dts/mstar-infinity3-msc313e-breadbee.dts  |  1 +
- 3 files changed, 51 insertions(+)
- create mode 100644 arch/arm/boot/dts/mstar-infinity-breadbee-common.dtsi
+ Documentation/devicetree/bindings/arm/sunxi.yaml | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/arch/arm/boot/dts/mstar-infinity-breadbee-common.dtsi b/arch/arm/boot/dts/mstar-infinity-breadbee-common.dtsi
-new file mode 100644
-index 000000000000..507ff2fba837
---- /dev/null
-+++ b/arch/arm/boot/dts/mstar-infinity-breadbee-common.dtsi
-@@ -0,0 +1,49 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (c) 2020 thingy.jp.
-+ * Author: Daniel Palmer <daniel@thingy.jp>
-+ */
-+
-+#include <dt-bindings/gpio/gpio.h>
-+
-+/ {
-+	vcc_core: fixedregulator@0 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc_core";
-+		regulator-min-microvolt = <1000000>;
-+		regulator-max-microvolt = <1000000>;
-+		regulator-boot-on;
-+	};
-+
-+	vcc_dram: fixedregulator@1 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc_dram";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		regulator-boot-on;
-+	};
-+
-+	vcc_io: fixedregulator@2 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc_io";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-boot-on;
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+		red {
-+			gpios = <&gpio MSC313_GPIO_SR_IO16 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "activity";
-+		};
-+		yellow {
-+			gpios = <&gpio MSC313_GPIO_SR_IO17 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "heartbeat";
-+		};
-+	};
-+};
-+
-+&cpu0 {
-+	cpu-supply = <&vcc_core>;
-+};
-diff --git a/arch/arm/boot/dts/mstar-infinity-msc313-breadbee_crust.dts b/arch/arm/boot/dts/mstar-infinity-msc313-breadbee_crust.dts
-index f9db2ff86f2d..db4910dcb8a7 100644
---- a/arch/arm/boot/dts/mstar-infinity-msc313-breadbee_crust.dts
-+++ b/arch/arm/boot/dts/mstar-infinity-msc313-breadbee_crust.dts
-@@ -6,6 +6,7 @@
+diff --git a/Documentation/devicetree/bindings/arm/sunxi.yaml b/Documentation/devicetree/bindings/arm/sunxi.yaml
+index 6db32fbf813f..8c62a1e2a498 100644
+--- a/Documentation/devicetree/bindings/arm/sunxi.yaml
++++ b/Documentation/devicetree/bindings/arm/sunxi.yaml
+@@ -700,6 +700,11 @@ properties:
+           - const: pine64,pinetab
+           - const: allwinner,sun50i-a64
  
- /dts-v1/;
- #include "mstar-infinity-msc313.dtsi"
-+#include "mstar-infinity-breadbee-common.dtsi"
- 
- / {
- 	model = "BreadBee Crust";
-diff --git a/arch/arm/boot/dts/mstar-infinity3-msc313e-breadbee.dts b/arch/arm/boot/dts/mstar-infinity3-msc313e-breadbee.dts
-index f0eda80a95cc..e64ca4ce1830 100644
---- a/arch/arm/boot/dts/mstar-infinity3-msc313e-breadbee.dts
-+++ b/arch/arm/boot/dts/mstar-infinity3-msc313e-breadbee.dts
-@@ -6,6 +6,7 @@
- 
- /dts-v1/;
- #include "mstar-infinity3-msc313e.dtsi"
-+#include "mstar-infinity-breadbee-common.dtsi"
- 
- / {
- 	model = "BreadBee";
++      - description: Pine64 PineTab, Early Adopter's batch (and maybe later ones)
++        items:
++          - const: pine64,pinetab-early-adopter
++          - const: allwinner,sun50i-a64
++
+       - description: Pine64 SoPine Baseboard
+         items:
+           - const: pine64,sopine-baseboard
 -- 
-2.29.2
-
+2.28.0
