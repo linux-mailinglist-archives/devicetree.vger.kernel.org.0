@@ -2,115 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DB4FB2E2786
-	for <lists+devicetree@lfdr.de>; Thu, 24 Dec 2020 15:01:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 594092E278F
+	for <lists+devicetree@lfdr.de>; Thu, 24 Dec 2020 15:04:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727240AbgLXOBX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Dec 2020 09:01:23 -0500
-Received: from mail-wr1-f51.google.com ([209.85.221.51]:40715 "EHLO
-        mail-wr1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726609AbgLXOBX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Dec 2020 09:01:23 -0500
-Received: by mail-wr1-f51.google.com with SMTP id 91so2249157wrj.7;
-        Thu, 24 Dec 2020 06:01:06 -0800 (PST)
+        id S1728161AbgLXOEM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Dec 2020 09:04:12 -0500
+Received: from us-smtp-delivery-124.mimecast.com ([63.128.21.124]:42838 "EHLO
+        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1727114AbgLXOEL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 24 Dec 2020 09:04:11 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1608818564;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=KBihBeE7FaK4G7GPAOp0NUP3AloiGzKbKb/E0jog36A=;
+        b=aZq1pHh2gy4vOzYkAKncLfPRauoD0gzIM9QVkacaBph5l82LjFDKP3Uh5fVAQyDVewbUxK
+        ztf3ZbUkrbAvrcUw56fBjE0gHtS7/a2yuNRb86O2eKGBmXVQrXUdJgDipHAzUjWF9an4zU
+        3UwFcN3R/i/XQfqSCWE4WlDXDTMsjbQ=
+Received: from mail-oo1-f70.google.com (mail-oo1-f70.google.com
+ [209.85.161.70]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-562-qsrM_fyWNJihUKJAGwD1XQ-1; Thu, 24 Dec 2020 09:02:43 -0500
+X-MC-Unique: qsrM_fyWNJihUKJAGwD1XQ-1
+Received: by mail-oo1-f70.google.com with SMTP id l5so1034896ooj.2
+        for <devicetree@vger.kernel.org>; Thu, 24 Dec 2020 06:02:43 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=JXPJKdw80z+OB5yk21y07mm+iviqQpsWpPbSM4Th92c=;
-        b=a3bk5Ge0c2s7QYmcVI8Fb81Uz5JLoN1CMXkJBV/ayV8BYxIYTrhhCCmoEIOrPpWfLT
-         VWXCDWFuYTJTXVwJvGbsNk9dr45Lo1rLZD+nkMZVl65U5+y8fAGyWYjxPxuGku7nGoM4
-         7zJb60Hl3oDxAmMvjDhjiq0gwiKGdM0qiY9oFXBGZp8M+Liyw84VKL9m8Yq4Jftqfgxg
-         /nwPC91r0ZrVcJVD7gBf6Dpc4S43kzF8EimP9v2KXwDYpw4VRqFUhl2IUqOeYpnCntg0
-         1BwI0k+wqdft5aSVgJUjARD1EX53O14iuPB+YhVlPuyHWGgShI7w85n5aGs6OGT4/BDB
-         G0ug==
-X-Gm-Message-State: AOAM5322Ixeq35UekeLYyY3aCc6cjY43fqWnmPLXiUaeK2B+3MBtghuN
-        NQyQWQ+zp9zBdToaFxydPJg=
-X-Google-Smtp-Source: ABdhPJznCRPR6sm397ISThve5dgEO81eDZPCPfAysBrZ8OHDU8wWmjjYYLQ5mpdB4e0gR8EizOqiLw==
-X-Received: by 2002:a5d:4e89:: with SMTP id e9mr34110095wru.201.1608818440801;
-        Thu, 24 Dec 2020 06:00:40 -0800 (PST)
-Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
-        by smtp.googlemail.com with ESMTPSA id h9sm38246689wre.24.2020.12.24.06.00.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Dec 2020 06:00:39 -0800 (PST)
-Date:   Thu, 24 Dec 2020 15:00:38 +0100
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Timon Baetz <timon.baetz@protonmail.com>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-pm@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Marek Szyprowski <m.szyprowski@samsung.com>
-Subject: Re: [PATCH v4 4/7] power: supply: max8997_charger: Set CHARGER
- current limit
-Message-ID: <20201224140038.GA48009@kozik-lap>
-References: <20201223134221.804943-1-timon.baetz@protonmail.com>
- <20201223134221.804943-4-timon.baetz@protonmail.com>
- <20201224095559.GB10937@kozik-lap>
- <20201224141246.7ad0ffc4.timon.baetz@protonmail.com>
- <20201224133706.GA22856@kozik-lap>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-transfer-encoding
+         :content-language;
+        bh=KBihBeE7FaK4G7GPAOp0NUP3AloiGzKbKb/E0jog36A=;
+        b=MspAdfzqqGy1UklA7IZQgblrzbG2FzRPmUTHQl3VRp6lirbIJiYMJBtcZbx6+FHU7F
+         NpEqjoU4V+Ik9ThyG4RMeT+pDQUXzGjnxK0DIol71DvuwKc4ohPPT8Jr8EN6Qx4hHSLA
+         2kleR6gL6Tp/iApLhZw1ol6ZOGvlpzxPAYWi0sXgoHFsVT+3UQ2I07kNvuDRehUQaSzN
+         TcXq6bVgbm13fYpuTIBy4JupOULzPMiOraNVE1fZYIcbf0nV+gm2/LS/p86JqlNaqF3j
+         Xt7+t7amxzcO3O0oqxtEbrGebI3SQV3gfubBtQC2ML422DWm+whUcJN4GeVHd21dxhMN
+         w+0g==
+X-Gm-Message-State: AOAM533mKsUEuCT2/ehV4qen8OhHK735ib1sigUVWlQa8UxorbOU5EOs
+        4+jbZkdZtPBPdzMWqBRzTjZBuJL5vSYfpxEB1stngH3KNhQCxvJ/WAGA5ZM6tNTar9Gk+055TTy
+        FAipzNLLutWgkDZmgVsANrA==
+X-Received: by 2002:a9d:5c8b:: with SMTP id a11mr22357625oti.126.1608818562305;
+        Thu, 24 Dec 2020 06:02:42 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJy5TuK4g70Wa7LQ5fkxYOJAqadcOmmttNzmJip+R7fCyD06vTogTSKVmSmRkNY9QCefp2bAug==
+X-Received: by 2002:a9d:5c8b:: with SMTP id a11mr22357606oti.126.1608818562059;
+        Thu, 24 Dec 2020 06:02:42 -0800 (PST)
+Received: from trix.remote.csb (075-142-250-213.res.spectrum.com. [75.142.250.213])
+        by smtp.gmail.com with ESMTPSA id g12sm6838873oos.8.2020.12.24.06.02.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 24 Dec 2020 06:02:41 -0800 (PST)
+Subject: Re: [PATCH 1/2] clk: axi-clkgen: add support for ZynqMP (UltraScale)
+To:     Alexandru Ardelean <alexandru.ardelean@analog.com>,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+        lars@metafoo.de, linux-fpga@vger.kernel.org, mdf@kernel.org,
+        dragos.bogdan@analog.com, Mathias Tausen <mta@gomspace.com>
+References: <20201221144224.50814-1-alexandru.ardelean@analog.com>
+From:   Tom Rix <trix@redhat.com>
+Message-ID: <58111fcc-d4c7-4b26-e038-2882b636e17f@redhat.com>
+Date:   Thu, 24 Dec 2020 06:02:39 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.4.0
 MIME-Version: 1.0
+In-Reply-To: <20201221144224.50814-1-alexandru.ardelean@analog.com>
 Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20201224133706.GA22856@kozik-lap>
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 24, 2020 at 02:37:06PM +0100, Krzysztof Kozlowski wrote:
-> On Thu, Dec 24, 2020 at 01:13:02PM +0000, Timon Baetz wrote:
-> > On Thu, 24 Dec 2020 10:55:59 +0100, Krzysztof Kozlowski wrote:
-> > > > @@ -170,6 +237,28 @@ static int max8997_battery_probe(struct platform_device *pdev)
-> > > >  		return PTR_ERR(charger->battery);
-> > > >  	}
-> > > >
-> > > > +	charger->reg = devm_regulator_get(&pdev->dev, "charger");  
-> > > 
-> > > Since you do not use get_optional, you will always get a dummy
-> > > regulator. In case of error, you should either print it or entirely fail
-> > > the probe. Silently continuing makes it difficult to spot errors.
-> > > 
-> > > Since the driver could operate in case of extcon/regulator error, just
-> > > dev_err() so failure will be spotted with dmesg.
-> > 
-> > I will switch to devm_regulator_get_optional() and print an error on 
-> > failure, thanks.
-> > 
-> > > It will complain on older DTBs because you are introducing incompatible
-> > > change, but that's expected. Just correct all other in-tree DTS.
-> > 
-> > The other 2 in-tree DTS don't have CHARGER regulators. Not sure
-> > how to correct those. Should I add muic and charger nodes without a
-> > charger-supply? It will still complain in that case.
-> 
-> +Cc Marek,
-> 
-> This is why leaving the code as is - devm_regulator_get(), not optional
-> - makes sense. Core would provide dummy regulator, so you only have to
-> provide MUIC node.
-> 
-> If you change the code to devm_regulator_get_optional(), you need to add
-> everything: the charger regulator, the charger node and MUIC node.
-> 
-> For Trats, the configuration should be similar as i9100, although I
-> don't know the exact values of chargign voltage.
-> 
-> For Origen, there is no battery, so the power supply should not bind.
-> Maybe this could be achieved with "status disabled" for charger node? It
-> depends whether MFD will respect such field... If it disables the
-> charger, you're done.
 
-I just looked at the MFD code and tested it - it nicely skips disabled
-devices. Therefore, for Origen I propose to add disabled nodes for
-charger and MUIC because these pins are not connected. No need to add
-regulators in such case.
+On 12/21/20 6:42 AM, Alexandru Ardelean wrote:
+> From: Dragos Bogdan <dragos.bogdan@analog.com>
+>
+> This IP core also works and is supported on the Xilinx ZynqMP (UltraScale)
+> FPGA boards.
+> This patch enables the driver to be available on these platforms as well.
+>
+> Since axi-clkgen is now supported on ZYNQMP, we need to make sure the
+> max/min frequencies of the PFD and VCO are respected.
+>
+> This change adds two new compatible strings to select limits for Zynq or
+> ZynqMP from the device data (in the OF table). The old compatible string
+> (i.e. adi,axi-clkgen-2.00.a) is the same as adi,zynq-axi-clkgen-2.00.a,
+> since the original version of this driver was designed on top of that
+> platform.
+>
+> Signed-off-by: Dragos Bogdan <dragos.bogdan@analog.com>
+> Signed-off-by: Mathias Tausen <mta@gomspace.com>
+> Signed-off-by: Alexandru Ardelean <alexandru.ardelean@analog.com>
+> ---
+>
+> This is a re-spin of an older series.
+> It needed to wait a txt -> yaml dt conversion:
+> https://patchwork.kernel.org/project/linux-clk/patch/20201013143421.84188-1-alexandru.ardelean@analog.com/
+>
+> It's 2 patches squashed into one:
+> https://patchwork.kernel.org/project/linux-clk/patch/20200929144417.89816-12-alexandru.ardelean@analog.com/
+> https://patchwork.kernel.org/project/linux-clk/patch/20200929144417.89816-14-alexandru.ardelean@analog.com/
+>
+> The series from where all this started is:
+> https://lore.kernel.org/linux-clk/20200929144417.89816-1-alexandru.ardelean@analog.com/
+>
+> Well, v4 was the point where I decided to split this into smaller
+> series, and also do the conversion of the binding to yaml.
+>
+>  drivers/clk/Kconfig          |  2 +-
+>  drivers/clk/clk-axi-clkgen.c | 15 +++++++++++++++
+>  2 files changed, 16 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/clk/Kconfig b/drivers/clk/Kconfig
+> index 85856cff506c..252333e585e7 100644
+> --- a/drivers/clk/Kconfig
+> +++ b/drivers/clk/Kconfig
+> @@ -247,7 +247,7 @@ config CLK_TWL6040
+>  
+>  config COMMON_CLK_AXI_CLKGEN
+>  	tristate "AXI clkgen driver"
+> -	depends on ARCH_ZYNQ || MICROBLAZE || COMPILE_TEST
+> +	depends on ARCH_ZYNQ || ARCH_ZYNQMP || MICROBLAZE || COMPILE_TEST
+>  	help
+>  	  Support for the Analog Devices axi-clkgen pcore clock generator for Xilinx
+>  	  FPGAs. It is commonly used in Analog Devices' reference designs.
+> diff --git a/drivers/clk/clk-axi-clkgen.c b/drivers/clk/clk-axi-clkgen.c
+> index ad86e031ba3e..a413c13334ff 100644
+> --- a/drivers/clk/clk-axi-clkgen.c
+> +++ b/drivers/clk/clk-axi-clkgen.c
+> @@ -108,6 +108,13 @@ static uint32_t axi_clkgen_lookup_lock(unsigned int m)
+>  	return 0x1f1f00fa;
+>  }
+>  
 
-Best regards,
-Krzysztof
+Could something like
+
+#ifdef ARCH_ZYNQMP
+
+> +static const struct axi_clkgen_limits axi_clkgen_zynqmp_default_limits = {
+> +	.fpfd_min = 10000,
+> +	.fpfd_max = 450000,
+> +	.fvco_min = 800000,
+> +	.fvco_max = 1600000,
+> +};
+
+#endif
+
+be added here and similar places to limit unused code ?
+
+> +
+>  static const struct axi_clkgen_limits axi_clkgen_zynq_default_limits = {
+>  	.fpfd_min = 10000,
+>  	.fpfd_max = 300000,
+> @@ -560,6 +567,14 @@ static int axi_clkgen_remove(struct platform_device *pdev)
+>  }
+>  
+>  static const struct of_device_id axi_clkgen_ids[] = {
+> +	{
+> +		.compatible = "adi,zynqmp-axi-clkgen-2.00.a",
+> +		.data = &axi_clkgen_zynqmp_default_limits,
+> +	},
+> +	{
+> +		.compatible = "adi,zynq-axi-clkgen-2.00.a",
+> +		.data = &axi_clkgen_zynq_default_limits,
+> +	},
+
+This looks like zynqmp AND zynq are being added.
+
+Is this a mistake ?
+
+Tom
+
+>  	{
+>  		.compatible = "adi,axi-clkgen-2.00.a",
+>  		.data = &axi_clkgen_zynq_default_limits,
+
