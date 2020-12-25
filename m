@@ -2,159 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 23D3B2E2B4B
-	for <lists+devicetree@lfdr.de>; Fri, 25 Dec 2020 12:02:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7BCB12E2B57
+	for <lists+devicetree@lfdr.de>; Fri, 25 Dec 2020 12:34:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728932AbgLYLCV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Dec 2020 06:02:21 -0500
-Received: from mail-eopbgr690099.outbound.protection.outlook.com ([40.107.69.99]:54594
-        "EHLO NAM04-CO1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1727442AbgLYLCU (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 25 Dec 2020 06:02:20 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=TT8KsHGFXM40Bzm53v/k/eyhvNJIXdiNtgUQxDiOSuz480CnpHbmx+0dQwTRVW1xrqT2gamG/R3Gh2B5dHLszV9K5EfaKFdk1dBZX+YpTZOHX8+RzVbsWjZ21uj73lrRRGfbEA01ZkxMujA0KxEtCFfht++nTavawXvEPEoeny7aHhPZNNLTEo6eDVXZbRdj7wQj7iIFZl/li0dYUnJ1zEuXRz3tjgFdANeg/o0kir8G8zNJAAWVpAnRUa93+LhL16pkuqreqkQf5dGqLnsIu70Ku4JNclJm+vKlGhwfxZOvcLzkeFVxw2MUvPgdPYyRpE+Mwdwm6/12JSjSDQo4hA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0zfchXx4wcWxjhuF4vT0NwWz4ZTEB4irm7p4s7AB7sU=;
- b=Cg5WJVd4KVSf53wHkJQukD2AbDlaeJcNfg+K3JhrplB/Qz2HpZD2ZgkuQtnKdswsHhO+USkai+g18X9Y73tCE5wtlDPwB33WdeOpHkkgT0CmVG5TNZbq3uBey8urmLnouzD2uai2JzHt13E9TQRRwuJm54arFtCP6g3mGwWFBvXfY0TbQF2poiMzVXB080b3QqDMSW+heU2WC/g2oJ1X0x8qf8r3cKFkj0zrIRTR6UsYP/ISUm9m6xTUyDGsbj6EhuKagiXSdmCTNumtovzLIdyh+cd9LzebslBMEJRKpq1CFsFv/6KsW7t6qODmfsmeHyiBLhqjgMAXsB1ZvPonQg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=analogixsemi.com; dmarc=pass action=none
- header.from=analogixsemi.com; dkim=pass header.d=analogixsemi.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=Analogixsemi.onmicrosoft.com; s=selector2-Analogixsemi-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0zfchXx4wcWxjhuF4vT0NwWz4ZTEB4irm7p4s7AB7sU=;
- b=1pHDHtnOjFhxBzmgAmFQkcpTzutMd5zLkaYIZFYvWimerea0IqF0HpOLmr22HagDR0lXzPOAowwUZb7oqWm5hN6da0imZGkKNLuIjWQKUcvLrYcJtzjvipag2vLkc2tkKkjsuJx1YgQuYPJq52cNr4pQiXJPJL7VFj/qS2v0SVM=
-Authentication-Results: vger.kernel.org; dkim=none (message not signed)
- header.d=none;vger.kernel.org; dmarc=none action=none
- header.from=analogixsemi.com;
-Received: from BY5PR04MB6739.namprd04.prod.outlook.com (2603:10b6:a03:229::8)
- by SJ0PR04MB7630.namprd04.prod.outlook.com (2603:10b6:a03:32c::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3700.28; Fri, 25 Dec
- 2020 11:01:16 +0000
-Received: from BY5PR04MB6739.namprd04.prod.outlook.com
- ([fe80::441c:9020:2a79:3eff]) by BY5PR04MB6739.namprd04.prod.outlook.com
- ([fe80::441c:9020:2a79:3eff%6]) with mapi id 15.20.3700.026; Fri, 25 Dec 2020
- 11:01:16 +0000
-Date:   Fri, 25 Dec 2020 19:01:09 +0800
-From:   Xin Ji <xji@analogixsemi.com>
-To:     Rob Herring <robh+dt@kernel.org>, David Airlie <airlied@linux.ie>,
-        Nicolas Boichat <drinkcat@google.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>
-Cc:     Daniel Vetter <daniel@ffwll.ch>, Sam Ravnborg <sam@ravnborg.org>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Maxime Ripard <mripard@kernel.org>,
+        id S1729263AbgLYLeK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Dec 2020 06:34:10 -0500
+Received: from mail-40134.protonmail.ch ([185.70.40.134]:23401 "EHLO
+        mail-40134.protonmail.ch" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729254AbgLYLeJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Dec 2020 06:34:09 -0500
+Date:   Fri, 25 Dec 2020 11:33:21 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+        s=protonmail; t=1608896006;
+        bh=AZddA3E2efwA1g+qUEHAnTmghSFKPKy2RpOAJ63m37w=;
+        h=Date:To:From:Cc:Reply-To:Subject:In-Reply-To:References:From;
+        b=CulIJ8pTiO+N29SlJ4WYYiLNR/jgDe/D8X0fj6eDY0Mpd9ZD8w5goQnRBthx7a56E
+         bMRJe30Fi6oZbhZ+23cwDQBLeS/2vM//Ys2koHBXTWoC3O4c+ExG7nPJhGbXIEm2gz
+         eietdbr2GeFARhMuxFDn4X9V5v029lPKckzKNGGc=
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+From:   Timon Baetz <timon.baetz@protonmail.com>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
         Mark Brown <broonie@kernel.org>,
-        Ricardo =?iso-8859-1?Q?Ca=F1uelo?= 
-        <ricardo.canuelo@collabora.com>, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, Sheng Pan <span@analogixsemi.com>,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v1 1/2] dt-bindings: drm/bridge: anx7625: add DPI flag and
- swing setting
-Message-ID: <c29b7d9fda9ce8619d1c718b077250998a8600b8.1608883950.git.xji@analogixsemi.com>
-References: <cover.1608883950.git.xji@analogixsemi.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cover.1608883950.git.xji@analogixsemi.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-X-Originating-IP: [61.148.116.10]
-X-ClientProxiedBy: HK2PR0401CA0003.apcprd04.prod.outlook.com
- (2603:1096:202:2::13) To BY5PR04MB6739.namprd04.prod.outlook.com
- (2603:10b6:a03:229::8)
+        Rob Herring <robh+dt@kernel.org>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-pm@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Marek Szyprowski <m.szyprowski@samsung.com>
+Reply-To: Timon Baetz <timon.baetz@protonmail.com>
+Subject: Re: [PATCH v4 4/7] power: supply: max8997_charger: Set CHARGER current limit
+Message-ID: <20201225123300.07c84dd8.timon.baetz@protonmail.com>
+In-Reply-To: <20201224140038.GA48009@kozik-lap>
+References: <20201223134221.804943-1-timon.baetz@protonmail.com> <20201223134221.804943-4-timon.baetz@protonmail.com> <20201224095559.GB10937@kozik-lap> <20201224141246.7ad0ffc4.timon.baetz@protonmail.com> <20201224133706.GA22856@kozik-lap> <20201224140038.GA48009@kozik-lap>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from pc-user (61.148.116.10) by HK2PR0401CA0003.apcprd04.prod.outlook.com (2603:1096:202:2::13) with Microsoft SMTP Server (version=TLS1_0, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA) id 15.20.3700.27 via Frontend Transport; Fri, 25 Dec 2020 11:01:15 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 1a8acb47-ab4d-4075-e474-08d8a8c46687
-X-MS-TrafficTypeDiagnostic: SJ0PR04MB7630:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <SJ0PR04MB76309710A6C9056349A8A5BCC7DC0@SJ0PR04MB7630.namprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:3044;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Qg3vKNxvP76CZ2cDop0EUF8qYWSEGT6zNLZwo/tnk2zWJ/Vxq1RqAaeLzkObxwV8PqJ5f+KsBSZMRXu55zibAVMk4hneDUX1mOUygjDPlcLZ/HlmS0WZJWKuvW78gfs9ZYPZchK4aFLA1r1fHNyENJlYA5c7Qk31o/PQIAEDyxtKDuSheeSbK9Glg455YKCHV9bv3/YXUPLUc49zPqM2iQhTJDxZDjbhP7PAnH0G1n+3Yeyx4oV6ldIXw93trso1pjXI0JlB56MMV8ihZ3+PS9p0W9BqtwUijJX7OFMCjZPpFto0ptZAECTbgxAUjNoWtBNPP/aatbjNlf4xhuvbyrOujkNT78d3cfaUDFaQ4nEMX/VSmMTg9ws6yHZjJHk6tMfeg9UrGU0aGtXIxfS1FQ==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY5PR04MB6739.namprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(39840400004)(136003)(366004)(396003)(346002)(376002)(66476007)(16526019)(6496006)(86362001)(66556008)(8676002)(7416002)(2616005)(956004)(26005)(186003)(36756003)(4326008)(8936002)(52116002)(5660300002)(54906003)(110136005)(2906002)(316002)(6666004)(66946007)(6486002)(478600001);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?fIA/XAbE06x1FBguZvYlhE09gD767RxLnkomzYZjp9e52s/LqpoG5RBR8ohP?=
- =?us-ascii?Q?yhmqXXoinOt3h67ELsTjoGkzTfpjESsdZHDhGLObg64sjI5PnihRsnrdbw58?=
- =?us-ascii?Q?zwh4cjPG0Dw926WDspCmIDFOAMldw9CuTRJVGGA/oAlW8FumA5oVviO1ICE3?=
- =?us-ascii?Q?+NFKmJqwT35Y/ohqpT6O0psqUJ+vt8KH6IiJLhP0n++fXFVSvNx7jfDcen2V?=
- =?us-ascii?Q?b3ogCWRbLMN1SHvg8XwGCPQnm6FC4c1Ouyq9GY6tHBbs5bOW+lY1X7gcW/XR?=
- =?us-ascii?Q?UUke5eZ7ied5DSbAVcglRRZBtRN6dv71Amg/EpVax9ycOGYwR5WtwEz5zWcV?=
- =?us-ascii?Q?kMvV+LcfTxmfuSWn8U9Da7RaeSzomqO30bJlwy+jB3EOGB7gA3st8hP/MwIJ?=
- =?us-ascii?Q?bpzXBp6CEfHbrMcH+MlqhFEIbg/vrRAdUpaNMKnbWOwllUql8TXfZEp+3ezK?=
- =?us-ascii?Q?SelabUSOgGBPx9NjWoSW4pN7p3jR+3O61cV6hl8PmzgTshri2ThAZWHaRUe+?=
- =?us-ascii?Q?3TQZ6YthwcMVDfObv2VRndbgcYQp5mq9VBiaRx/ql/s5TjVa1J0PB7XMLAgH?=
- =?us-ascii?Q?Iem195K4q5EJN5Na4PX+kCK5lb7RRHcZMr37F3CBh7IkVxU+83dGPKpivkCi?=
- =?us-ascii?Q?5u0LUoNzFyl2YepPSsa0i8rYBISNtBokch3gZKSKdFf+sQPpSISO7blbH+Tb?=
- =?us-ascii?Q?CBBF1g9exau+8+luWLjds4EeevipikANaOTKbxointncZ9hcanLk/xbH1NfK?=
- =?us-ascii?Q?Z5wYB4rxRweXc3bIJdLf8CzT3LaUyOKyg0PZCLCRfFwYCldc58gtcTXe9f3A?=
- =?us-ascii?Q?Jm9UwXnUUVAKUKGb+0Jyhg3SO3K1+EtkqUer1Mllv+R1kiEyGKUl61r1Rdqu?=
- =?us-ascii?Q?q5h9+Emaxr5xI9yGnzm1T9pLvq117r/Z/kbz3Q6r4sbSlyFpW4WNuwEU8ojl?=
- =?us-ascii?Q?YxCEam0mZj89Fi2PEOx/71FdNZl4IUtrs07jRvnkmopzj7m+uxGxtQOgUBjg?=
- =?us-ascii?Q?a0s3?=
-X-OriginatorOrg: analogixsemi.com
-X-MS-Exchange-CrossTenant-AuthSource: BY5PR04MB6739.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Dec 2020 11:01:15.9546
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: b099b0b4-f26c-4cf5-9a0f-d5be9acab205
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1a8acb47-ab4d-4075-e474-08d8a8c46687
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: nnbHUhXrUzKmNWtYXA17B1h+LUIZao0Hb5cWsCIztjeOpwR9ONXJNvgHJNKYAgO5g08HFFvSbYtpRP0cgySYSQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR04MB7630
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM shortcircuit=no
+        autolearn=disabled version=3.4.4
+X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
+        mailout.protonmail.ch
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add DPI flag for distinguish MIPI input signal type, DSI or DPI. Add
-swing setting for adjusting DP tx PHY swing
+On Thu, 24 Dec 2020 15:00:38 +0100, Krzysztof Kozlowski wrote:
+> On Thu, Dec 24, 2020 at 02:37:06PM +0100, Krzysztof Kozlowski wrote:
+> > On Thu, Dec 24, 2020 at 01:13:02PM +0000, Timon Baetz wrote: =20
+> > > On Thu, 24 Dec 2020 10:55:59 +0100, Krzysztof Kozlowski wrote: =20
+> > > > > @@ -170,6 +237,28 @@ static int max8997_battery_probe(struct plat=
+form_device *pdev)
+> > > > >  =09=09return PTR_ERR(charger->battery);
+> > > > >  =09}
+> > > > >
+> > > > > +=09charger->reg =3D devm_regulator_get(&pdev->dev, "charger"); =
+=20
+> > > >
+> > > > Since you do not use get_optional, you will always get a dummy
+> > > > regulator. In case of error, you should either print it or entirely=
+ fail
+> > > > the probe. Silently continuing makes it difficult to spot errors.
+> > > >
+> > > > Since the driver could operate in case of extcon/regulator error, j=
+ust
+> > > > dev_err() so failure will be spotted with dmesg. =20
+> > >
+> > > I will switch to devm_regulator_get_optional() and print an error on
+> > > failure, thanks.
+> > > =20
+> > > > It will complain on older DTBs because you are introducing incompat=
+ible
+> > > > change, but that's expected. Just correct all other in-tree DTS. =
+=20
+> > >
+> > > The other 2 in-tree DTS don't have CHARGER regulators. Not sure
+> > > how to correct those. Should I add muic and charger nodes without a
+> > > charger-supply? It will still complain in that case. =20
+> >
+> > +Cc Marek,
+> >
+> > This is why leaving the code as is - devm_regulator_get(), not optional
+> > - makes sense. Core would provide dummy regulator, so you only have to
+> > provide MUIC node.
+> >
+> > If you change the code to devm_regulator_get_optional(), you need to ad=
+d
+> > everything: the charger regulator, the charger node and MUIC node.
+> >
+> > For Trats, the configuration should be similar as i9100, although I
+> > don't know the exact values of chargign voltage.
+> >
+> > For Origen, there is no battery, so the power supply should not bind.
+> > Maybe this could be achieved with "status disabled" for charger node? I=
+t
+> > depends whether MFD will respect such field... If it disables the
+> > charger, you're done. =20
+>=20
+> I just looked at the MFD code and tested it - it nicely skips disabled
+> devices. Therefore, for Origen I propose to add disabled nodes for
+> charger and MUIC because these pins are not connected. No need to add
+> regulators in such case.
 
-Signed-off-by: Xin Ji <xji@analogixsemi.com>
----
- .../bindings/display/bridge/analogix,anx7625.yaml     | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
+With a dummy regulator regulator_set_current_limit() fails with -EINVAL.
+Isn't it better to just skip charging control (and dev_info()) when there=
+=20
+is no extcon or regulator? The charger driver would still probe
+without those 2 properties and work as before.
 
-diff --git a/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
-index 60585a4..34a7faf 100644
---- a/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
-+++ b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
-@@ -34,6 +34,14 @@ properties:
-     description: used for reset chip control, RESET_N pin B7.
-     maxItems: 1
- 
-+  anx,swing-setting:
-+    $ref: /schemas/types.yaml#/definitions/uint32-array
-+    description: an array of swing register setting for DP tx PHY
-+
-+  anx,mipi-dpi-in:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: indicate the MIPI rx signal type is DPI or DSI
-+
-   ports:
-     type: object
- 
-@@ -72,6 +80,17 @@ examples:
-             reg = <0x58>;
-             enable-gpios = <&pio 45 GPIO_ACTIVE_HIGH>;
-             reset-gpios = <&pio 73 GPIO_ACTIVE_HIGH>;
-+            anx,swing-setting = <0x00 0x14>, <0x01 0x54>,
-+                <0x02 0x64>, <0x03 0x74>, <0x04 0x29>,
-+                <0x05 0x7b>, <0x06 0x77>, <0x07 0x5b>,
-+                <0x08 0x7f>, <0x0c 0x20>, <0x0d 0x60>,
-+                <0x10 0x60>, <0x12 0x40>, <0x13 0x60>,
-+                <0x14 0x14>, <0x15 0x54>, <0x16 0x64>,
-+                <0x17 0x74>, <0x18 0x29>, <0x19 0x7b>,
-+                <0x1a 0x77>, <0x1b 0x5b>, <0x1c 0x7f>,
-+                <0x20 0x20>, <0x21 0x60>, <0x24 0x60>,
-+                <0x26 0x40>, <0x27 0x60>;
-+            anx,mipi-dpi-in = <0>;
- 
-             ports {
-                 #address-cells = <1>;
--- 
-2.7.4
+Adding disabled nodes for Origen would probably still makes sense.
+
+I also noticed that adding nodes for those MFD cells prints "DMA mask
+not set" which seems to be related to https://lkml.org/lkml/2020/4/23/873.
+Any suggestions on how to handle that?
+
+Thanks,
+Timon
 
