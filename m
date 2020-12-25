@@ -2,90 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 071E72E2A8E
-	for <lists+devicetree@lfdr.de>; Fri, 25 Dec 2020 10:16:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 669DF2E2B19
+	for <lists+devicetree@lfdr.de>; Fri, 25 Dec 2020 11:05:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726198AbgLYJQM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Dec 2020 04:16:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60212 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726184AbgLYJQL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Dec 2020 04:16:11 -0500
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5764C061573;
-        Fri, 25 Dec 2020 01:15:30 -0800 (PST)
-Received: by mail-lf1-x130.google.com with SMTP id x20so9119328lfe.12;
-        Fri, 25 Dec 2020 01:15:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:organization:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=GlWZ8R+fuhT/j1M7sXyJhAgX6o+xq9lQZbiVeR1W5lk=;
-        b=QzU+E7qobAtk/l0yKRryuCEStUbb6S8OiGbr5vyMjslEwobnWatoveE2FOyh57D9bx
-         ctfF3KRFfNVq04QrgQSxaQe4FegYZo/0wcm2GrOTn/X4bQmiHCJk9GWeiaru/1TYuxnC
-         bZeBPzvATp5JXQH695LWEt8eFif7W2dzaRxHGd2e4VY529ARY8UHpPPQ+cscpAaeSlBv
-         xioNX3lrb+HGTvDwinfACd73KMixyyFcPu0E/2geNKakKebIynIkRqadDROxFfL6Ltsl
-         bNuycwxYu3AOl07vxtQkpGwCbIcH/Ljj96M0j5witkoXckJIEXyvRtTBOK4WB7a5Z2dK
-         JduQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:organization
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=GlWZ8R+fuhT/j1M7sXyJhAgX6o+xq9lQZbiVeR1W5lk=;
-        b=pPZXK+Qp7n6Zlo7/ytvlq0ntiFg5VbxlamOBFQjZm2ZPh1n9kcM84z7Z1ttQpJha9p
-         RUPF52yprOLF6ZkYi3sC8AghZ+Jl36GaScw2/vvGr1iYxy5E30W6KuywQzDYIoa4hxR4
-         jz+VvTnU53P7AeI20H9WbqTVosflWWKqfBNa298AYEzTM3dLwWwD0dNtbXtoLhWERkhb
-         Sqrv+nDZ5AQISiVsxm/4fQuT/lRX8qKc+K/pRLRnsZUvGFOg16Sai8iwdVPY2Hz8zhyO
-         cB3gDMrenV/2VXsV0aLCfnUaz/63MP9fqPKnrG7hb2/BtGL31yuDdpsHj8EsvBpSw9nU
-         1i+w==
-X-Gm-Message-State: AOAM531Cyhxi/vcC7R3+DwRTTwwTw9Kz9Sr9kEgRqfAGr+UXmxh7mmpW
-        8D7tqPqsyhM8/hcTWQ96SwIRxzBUU8c=
-X-Google-Smtp-Source: ABdhPJxIT/jMh4PYUi+o6jXCZf1BI41BWXz/BFAW9XBczQCFH+mdWH4mH3sQU6Dwht1n6EHCK31nVA==
-X-Received: by 2002:a19:f718:: with SMTP id z24mr15013731lfe.532.1608887728961;
-        Fri, 25 Dec 2020 01:15:28 -0800 (PST)
-Received: from [192.168.1.100] ([31.173.84.55])
-        by smtp.gmail.com with ESMTPSA id a16sm4581130ljh.91.2020.12.25.01.15.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 25 Dec 2020 01:15:28 -0800 (PST)
-Subject: Re: [PATCH V2 2/9] arm64: dts: renesas: beacon kit: Fix Audio Clock
- sources
-To:     Adam Ford <aford173@gmail.com>, linux-renesas-soc@vger.kernel.org
-Cc:     aford@beaconembedded.com,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20201224170502.2254683-1-aford173@gmail.com>
- <20201224170502.2254683-2-aford173@gmail.com>
-From:   Sergei Shtylyov <sergei.shtylyov@gmail.com>
-Organization: Brain-dead Software
-Message-ID: <054e5cc9-deb8-594c-36e7-8feb022dbf0a@gmail.com>
-Date:   Fri, 25 Dec 2020 12:15:18 +0300
-User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.0
+        id S1729251AbgLYKEB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Dec 2020 05:04:01 -0500
+Received: from mailgw01.mediatek.com ([210.61.82.183]:38099 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1729266AbgLYKEB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Dec 2020 05:04:01 -0500
+X-UUID: 7f06629c63c24f86b21ce1e43f10fb45-20201225
+X-UUID: 7f06629c63c24f86b21ce1e43f10fb45-20201225
+Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw01.mediatek.com
+        (envelope-from <jianjun.wang@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 4389294; Fri, 25 Dec 2020 18:03:12 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs08n1.mediatek.inc (172.21.101.55) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Fri, 25 Dec 2020 18:03:09 +0800
+Received: from localhost.localdomain (10.17.3.153) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 25 Dec 2020 18:03:07 +0800
+From:   Jianjun Wang <jianjun.wang@mediatek.com>
+To:     Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Ryder Lee <ryder.lee@mediatek.com>
+CC:     Philipp Zabel <p.zabel@pengutronix.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        <linux-pci@vger.kernel.org>, <linux-mediatek@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Sj Huang <sj.huang@mediatek.com>,
+        Jianjun Wang <jianjun.wang@mediatek.com>,
+        <youlin.pei@mediatek.com>, <chuanjia.liu@mediatek.com>,
+        <qizhong.cheng@mediatek.com>, <sin_jieyang@mediatek.com>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        <drinkcat@chromium.org>
+Subject: [v6,0/4] PCI: mediatek: Add new generation controller support
+Date:   Fri, 25 Dec 2020 18:03:04 +0800
+Message-ID: <20201225100308.27052-1-jianjun.wang@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-In-Reply-To: <20201224170502.2254683-2-aford173@gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24.12.2020 20:04, Adam Ford wrote:
+These series patches add pcie-mediatek-gen3.c and dt-bindings file to
+support new generation PCIe controller.
 
-> The SoC was expecting two clock sources with different frequencies.
-> One to support 44.1KHz and one to support 48KHz.  With the newly added
-> ability to configure the programmably clock, configure both clocks.
+Changes in v6:
+1. Export pci_pio_to_address() to support compiling as kernel module;
+2. Replace usleep_range(100 * 1000, 120 * 1000) with msleep(100);
+3. Replace dev_notice with dev_err;
+4. Fix MSI get hwirq flow;
+5. Fix warning for possible recursive locking in mtk_pcie_set_affinity.
 
-    Programmable.
+Changes in v5:
+1. Remove unused macros
+2. Modify the config read/write callbacks, set the config byte field
+   in TLP header and use pci_generic_config_read32/write32
+   to access the config space
+3. Fix the settings of translation window, both MEM and IO regions
+   works properly
+4. Fix typos
 
-> Assign the rcar-sound clocks to reference the versaclock instead of
-> the fixed clock.
-> 
-> Signed-off-by: Adam Ford <aford173@gmail.com>
-[...]
+Changes in v4:
+1. Fix PCIe power up/down flow
+2. Use "mac" and "phy" for reset names
+3. Add clock names
+4. Fix the variables type
 
-MBR, Sergei
+Changes in v3:
+1. Remove standard property in binding document
+2. Return error number when get_optional* API throws an error
+3. Use the bulk clk APIs
+
+Changes in v2:
+1. Fix the typo of dt-bindings patch
+2. Remove the unnecessary properties in binding document
+3. dispos the irq mappings of msi top domain when irq teardown
+
+Jianjun Wang (4):
+  dt-bindings: PCI: mediatek: Add YAML schema
+  PCI: Export pci_pio_to_address() for module use
+  PCI: mediatek-gen3: Add MediaTek Gen3 driver for MT8192
+  MAINTAINERS: Add Jianjun Wang as MediaTek PCI co-maintainer
+
+ .../bindings/pci/mediatek-pcie-gen3.yaml      |  135 ++
+ MAINTAINERS                                   |    1 +
+ drivers/pci/controller/Kconfig                |   13 +
+ drivers/pci/controller/Makefile               |    1 +
+ drivers/pci/controller/pcie-mediatek-gen3.c   | 1084 +++++++++++++++++
+ drivers/pci/pci.c                             |    1 +
+ 6 files changed, 1235 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
+ create mode 100644 drivers/pci/controller/pcie-mediatek-gen3.c
+
+-- 
+2.25.1
+
