@@ -2,95 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4CA052E2A30
-	for <lists+devicetree@lfdr.de>; Fri, 25 Dec 2020 08:54:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 329422E2A89
+	for <lists+devicetree@lfdr.de>; Fri, 25 Dec 2020 10:07:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726091AbgLYHxs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Dec 2020 02:53:48 -0500
-Received: from mailgw02.mediatek.com ([210.61.82.184]:43104 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1725842AbgLYHxr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Dec 2020 02:53:47 -0500
-X-UUID: 36024760882d4bac95ae7bcadf8487b9-20201225
-X-UUID: 36024760882d4bac95ae7bcadf8487b9-20201225
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
-        (envelope-from <chunfeng.yun@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 477955591; Fri, 25 Dec 2020 15:53:01 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- mtkmbs06n1.mediatek.inc (172.21.101.129) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Fri, 25 Dec 2020 15:53:00 +0800
-Received: from mtkslt301.mediatek.inc (10.21.14.114) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 25 Dec 2020 15:52:59 +0800
-From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
-To:     Rob Herring <robh+dt@kernel.org>
-CC:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        "Kishon Vijay Abraham I" <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Stanley Chu <stanley.chu@mediatek.com>,
-        Min Guo <min.guo@mediatek.com>,
-        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <netdev@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>, <linux-usb@vger.kernel.org>,
-        Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Subject: [PATCH v5 11/11] MAINTAINERS: update MediaTek PHY/USB entry
-Date:   Fri, 25 Dec 2020 15:52:58 +0800
-Message-ID: <20201225075258.33352-11-chunfeng.yun@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20201225075258.33352-1-chunfeng.yun@mediatek.com>
-References: <20201225075258.33352-1-chunfeng.yun@mediatek.com>
+        id S1726184AbgLYJH2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Dec 2020 04:07:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58896 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725863AbgLYJH1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Dec 2020 04:07:27 -0500
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C5DDC061573;
+        Fri, 25 Dec 2020 01:06:47 -0800 (PST)
+Received: by mail-lf1-x135.google.com with SMTP id o13so9186061lfr.3;
+        Fri, 25 Dec 2020 01:06:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:organization:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=cUbyJb06o/hnZsz1MOHR+WMF5JNEWawg3ZDN0CmkUUQ=;
+        b=cUkepVbyR/kMQ8zl6sCVU1pYKH87b4JcGpsDrS5y/QkLl0l8aYy6yFFpkEe5vtPna/
+         QDW+KeDKCgoQ1vnGu7ifAlYmvoBFEW5zLeSLKhPE9JJTYYx3p2vCZnhq6YMaqwcYHyif
+         BMwQV+F0Vm1d4ZHp6cFoLc6mgnkuT0MJOrTQgQhfA+6fcKfZkO6h9D7gLcXKkdcjFbmT
+         bmHYT70Uysyb0O8ZUY1G8SwDeUH4okynNLZJxN66/Nb+CDxDP+y42qIevvmOuzChx8bv
+         4glm9SeKQsXZTkaHbQDft2xehRaQoonBorkeN4vrYsOQRpSAhShVcwu8snBnmPny55It
+         McXA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:organization
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=cUbyJb06o/hnZsz1MOHR+WMF5JNEWawg3ZDN0CmkUUQ=;
+        b=uLGL8/sPO9PGBZQtm0iolgFaoqdWF/CX0d8sXlKPlSSGIBn18gbq8y56G1xg59Jkl6
+         QIft/V1tVslc+G/HxylnByRza4svw+vfQgMuPtljg1eTF9/KCZJqMoiaXdDDK+YIm3Ks
+         cNHMay01VUJVrHYMMni4s5qNOMuErUiU/Pt/5qFuzCYW8qnA9Qpfo+uwaoyeBNGRSZ+F
+         CfMvgFnaO9VBvdL6CV0sq8x0EnZ9rlE6giogVKnMUtAa52K6esUNuz4BJoeP5jUdNhpg
+         2BksCwO77kp0WZPwCMClPn0Cl1HrAkthbkAiaqqnbdcQiw1P2hOLCsrbK0tIyim0PB4w
+         IAgg==
+X-Gm-Message-State: AOAM532ac/tX1T8Mam5wM7kAmmZM/+9+NqLuvvQasAPSlcCt/PahvOEO
+        PNdiMBzKfB33y+xjdBpQSeTCpSJ4H8rLjw==
+X-Google-Smtp-Source: ABdhPJxBbjrWqj6PhEuq6sWp9flyEd4AVkmve9TI+Uw52hNfCpWC+J6V4irHIoQlYoj3LmGXjsiEJA==
+X-Received: by 2002:a2e:9dd4:: with SMTP id x20mr14972581ljj.37.1608887205486;
+        Fri, 25 Dec 2020 01:06:45 -0800 (PST)
+Received: from [192.168.1.100] ([31.173.84.55])
+        by smtp.gmail.com with ESMTPSA id f15sm4035668lfc.10.2020.12.25.01.06.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 25 Dec 2020 01:06:44 -0800 (PST)
+Subject: Re: [PATCH V2 8/9] arm64: dts: renesas: Introduce
+ r8a774e1-beacon-rzg2h-kit
+To:     Adam Ford <aford173@gmail.com>, linux-renesas-soc@vger.kernel.org
+Cc:     aford@beaconembedded.com,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20201224170502.2254683-1-aford173@gmail.com>
+ <20201224170502.2254683-8-aford173@gmail.com>
+From:   Sergei Shtylyov <sergei.shtylyov@gmail.com>
+Organization: Brain-dead Software
+Message-ID: <5e0abd1d-1006-dce9-5d15-dbda22ed459b@gmail.com>
+Date:   Fri, 25 Dec 2020 12:06:33 +0300
+User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+In-Reply-To: <20201224170502.2254683-8-aford173@gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Due to the phy/usb bindings are converted into YAML schema and
-also renamed, update entries.
-Meanwhile add drivers/usb/host/mtk-xhci* files.
+On 24.12.2020 20:05, Adam Ford wrote:
 
-Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
----
-v3~v5: no changes
+> eacon EmebeddedWorks is introducing a new kit based on the
 
-v2: new patch
----
- MAINTAINERS | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+    Beacon?
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index e73636b75f29..360c6131b866 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2084,7 +2084,7 @@ M:	Chunfeng Yun <chunfeng.yun@mediatek.com>
- L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
- L:	linux-mediatek@lists.infradead.org (moderated for non-subscribers)
- S:	Maintained
--F:	Documentation/devicetree/bindings/phy/phy-mtk-*
-+F:	Documentation/devicetree/bindings/phy/mediatek,*
- F:	drivers/phy/mediatek/
- 
- ARM/Microchip (AT91) SoC support
-@@ -11139,6 +11139,8 @@ L:	linux-usb@vger.kernel.org
- L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
- L:	linux-mediatek@lists.infradead.org (moderated for non-subscribers)
- S:	Maintained
-+F:	Documentation/devicetree/bindings/usb/mediatek,*
-+F:	drivers/usb/host/xhci-mtk*
- F:	drivers/usb/mtu3/
- 
- MEGACHIPS STDPXXXX-GE-B850V3-FW LVDS/DP++ BRIDGES
--- 
-2.18.0
+> RZ/G2H SoC from Renesas.
+> 
+> The SOM supports eMMC, WiFi and Bluetooth, along with a Cat-M1
+> cellular radio.
+> 
+> The Baseboard has Ethernet, USB, HDMI, stereo audio in and out,
+> along with a variety of push buttons and LED's, and support for
+> a parallel RGB and an LVDS display.  It uses the same baseboard
+> and SOM files as the RZ/G2M and RZ/G2N kits.
+> 
+> Signed-off-by: Adam Ford <aford173@gmail.com>
+[...]
 
+MBR, Sergei
