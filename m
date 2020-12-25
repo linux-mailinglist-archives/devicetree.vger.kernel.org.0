@@ -2,145 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 91BC02E2B72
-	for <lists+devicetree@lfdr.de>; Fri, 25 Dec 2020 13:21:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A7D742E2B7C
+	for <lists+devicetree@lfdr.de>; Fri, 25 Dec 2020 13:30:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728932AbgLYMUm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Dec 2020 07:20:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60412 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727426AbgLYMUm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Dec 2020 07:20:42 -0500
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99BD5C061573;
-        Fri, 25 Dec 2020 04:20:01 -0800 (PST)
-Received: by mail-lf1-x12d.google.com with SMTP id m25so9782861lfc.11;
-        Fri, 25 Dec 2020 04:20:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=NikotG70jV13TXNsF314W0wEbJexz4D5n/k+PZhYUC8=;
-        b=izB5uNyY73TR2b/1o2JN3Wac1R9e4hAoCuxwZkAa0QsyVQ+Ryo66kT61xgr+kiEoSA
-         2+uyLlgux4D72idT/jhtUkkHfl9zMnk67DqqgeoCredoN/G+pcKoCleLeGcpsE76cpr/
-         rwUrOkNPL6G6k/gSEjb1TWN490UdkdREgzEgyMyN5cWJM/56zz2+K05iqCwPGiEpIMLp
-         0w9OO4/jkeXD6Shr0TJ9tw/SsdjL/huK9qs5TiolEgNQCrou5cHleZEX5lHbLAOfo/pM
-         LMtiM4+FM9kEs1k7DOewMjrsimgmkepZoxnGoCGpeUSn6h59gKxYJMHkzZC0dLpCSlx8
-         B+SA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=NikotG70jV13TXNsF314W0wEbJexz4D5n/k+PZhYUC8=;
-        b=FqJTe49+MyU9xnhVEDPwB/ru2TThESzcMn/7I9DoPstxTXynB8hAg55vPGoVCK7HaY
-         +pBs12m53UAbymPNE6m5fqZhXE7L6QDXVYxXkzdn6DOXDRvejhcEUK1AN0jC47S219xE
-         nRyVsNGmiExS6ElvMJGa3OKBzD/Hh4LGfu9Til0CFVdTxAERRid7PWClwt6Rv9i9qJbX
-         6AWbFtw1JjBh5I0UEXNYmFFaBfpHzrowBQFM/A0mWs+gp9+yBjxEauP4RC7UkDz+5UV1
-         TtBGsWTRiI/GsKidcHY/kje3YuH4Su+Li5C7vdfF5nMbNiZuE3U9INc/wy6I+gaUhaJV
-         +fWw==
-X-Gm-Message-State: AOAM5303b/gOzbpm7s8Fyq2K/awgD4wjKAKELsaxkPDHkGtYJHnqJM6/
-        wUxGzN9ZnJjUMrzZpjGOLAtQ81WBrQ1ILA==
-X-Google-Smtp-Source: ABdhPJx8zUkdiLAPi5Ra5IczX7Wdza6GkCUdYzI+Rx0SyB/axqnTm7VTcLjnQUUcZtzodklo8YajRg==
-X-Received: by 2002:a2e:8113:: with SMTP id d19mr14821087ljg.303.1608898799585;
-        Fri, 25 Dec 2020 04:19:59 -0800 (PST)
-Received: from [192.168.1.101] ([31.173.81.155])
-        by smtp.gmail.com with ESMTPSA id i18sm4533873lja.102.2020.12.25.04.19.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 25 Dec 2020 04:19:59 -0800 (PST)
-Subject: Re: [PATCH v4 2/4] spi: ls7a: Add YAML schemas
-To:     Qing Zhang <zhangqing@loongson.cn>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        ThomasBogendoerfer <tsbogend@alpha.franken.de>
-Cc:     linux-spi@vger.kernel.org, Huacai Chen <chenhc@lemote.com>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <1608892552-15457-1-git-send-email-zhangqing@loongson.cn>
- <1608892552-15457-2-git-send-email-zhangqing@loongson.cn>
-From:   Sergei Shtylyov <sergei.shtylyov@gmail.com>
-Message-ID: <99ab96cc-6169-19c2-04ef-d023d4427f55@gmail.com>
-Date:   Fri, 25 Dec 2020 15:19:57 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.5.0
+        id S1725910AbgLYM3q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Dec 2020 07:29:46 -0500
+Received: from relay3-d.mail.gandi.net ([217.70.183.195]:38669 "EHLO
+        relay3-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725804AbgLYM3q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Dec 2020 07:29:46 -0500
+X-Originating-IP: 91.165.34.75
+Received: from aptenodytes (91-165-34-75.subs.proxad.net [91.165.34.75])
+        (Authenticated sender: paul.kocialkowski@bootlin.com)
+        by relay3-d.mail.gandi.net (Postfix) with ESMTPSA id E0F5D60002;
+        Fri, 25 Dec 2020 12:29:02 +0000 (UTC)
+Date:   Fri, 25 Dec 2020 13:29:01 +0100
+From:   Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Lee Jones <lee.jones@linaro.org>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        David Airlie <airlied@linux.ie>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        dri-devel@lists.freedesktop.org, Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v8 1/4] dt-bindings: display: Document the Xylon LogiCVC
+ display controller
+Message-ID: <X+XbDe5/U4rk/FxS@aptenodytes>
+References: <20201223212947.160565-1-paul.kocialkowski@bootlin.com>
+ <20201223212947.160565-2-paul.kocialkowski@bootlin.com>
+ <1608829305.375557.2966449.nullmailer@robh.at.kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <1608892552-15457-2-git-send-email-zhangqing@loongson.cn>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="coPQJsKTER+El0UT"
+Content-Disposition: inline
+In-Reply-To: <1608829305.375557.2966449.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/25/20 1:35 PM, Qing Zhang wrote:
 
-> Switch the DT binding to a YAML schema to enable the DT validation.
-> 
-> Signed-off-by: Qing Zhang <zhangqing@loongson.cn>
-> ---
-> 
-> v4: fix warnings/errors about running 'make dt_binding_check'
-> 
-> ---
->  .../devicetree/bindings/spi/loongson,spi-ls7a.yaml | 46 ++++++++++++++++++++++
->  1 file changed, 46 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/spi/loongson,spi-ls7a.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/spi/loongson,spi-ls7a.yaml b/Documentation/devicetree/bindings/spi/loongson,spi-ls7a.yaml
-> new file mode 100644
-> index 0000000..8cc9bc5
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/spi/loongson,spi-ls7a.yaml
-> @@ -0,0 +1,46 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/spi/loongson,spi-ls7a.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Loongson LS7A PCH SPI Controller
-> +
-> +maintainers:
-> +  - Qing Zhang <zhangqing@loongson.cn>
-> +
-> +description: |
-> +  This controller can be found in Loongson-3 systems with LS7A PCH.
-> +
-> +properties:
-> +  compatible:
-> +    const: loongson,ls7a-spi
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - num-chipselects
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    pci {
-> +        #address-cells = <3>;
-> +        #size-cells = <2>;
-> +
-> +        spi@16,0 {
-> +        compatible = "pci0014,7a0b.0",
-> +                        "pci0014,7a0b",
-> +                        "pciclass088000",
-> +                        "pciclass0800";
-> +
-> +        reg = <0xb000 0x0 0x0 0x0 0x0>;
-> +        num-chipselects = <0>;
+--coPQJsKTER+El0UT
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-    The above lines after { need extra indentation level.
+Hi,
 
-> +        };
-> +    };
-> +
-> +...
+On Thu 24 Dec 20, 10:01, Rob Herring wrote:
+> On Wed, 23 Dec 2020 22:29:44 +0100, Paul Kocialkowski wrote:
+> > The Xylon LogiCVC is a display controller implemented as programmable
+> > logic in Xilinx FPGAs.
+> >=20
+> > Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+> > Acked-by: Rob Herring <robh@kernel.org>
+> > ---
+> >  .../display/xylon,logicvc-display.yaml        | 313 ++++++++++++++++++
+> >  1 file changed, 313 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/display/xylon,log=
+icvc-display.yaml
+> >=20
+>=20
+> My bot found errors running 'make dt_binding_check' on your patch:
+>=20
+> yamllint warnings/errors:
+>=20
+> dtschema/dtc warnings/errors:
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/disp=
+lay/xylon,logicvc-display.example.dt.yaml: logicvc@43c00000: 'display@0' do=
+es not match any of the regexes: '^gpio@[0-9a-f]+$', 'pinctrl-[0-9]+'
+> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree=
+/bindings/mfd/xylon,logicvc.yaml
+>=20
+> See https://patchwork.ozlabs.org/patch/1420307
 
-MBR, Sergei
+Just so you know, this specific issue is fixed in patch 2/4.
+
+Cheers,
+
+Paul
+
+--=20
+Paul Kocialkowski, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
+
+--coPQJsKTER+El0UT
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEJZpWjZeIetVBefti3cLmz3+fv9EFAl/l2w0ACgkQ3cLmz3+f
+v9FHVwf/aZ0gtCsvdn07c78G0BjhQepFkKpgOl+V3xroH0VbIy8Eg+7HBpTBE5fN
+0Hso6uGwLF/FCsYXVAge+Bi/LWCCSBAgwyRaag1mVlDN5FXXvitTJeJ5KKOmFKa+
+klOOlO6gfdpLsO2ATbacGkTTKaJqPfSLJoAflRZpndnhB/WCOmQY0gYiW35wT0IC
+ePzP3Bew2vzBSJ2HbpauF6/hXvieTiLVvF/MwdrJyW9XzO0y1Rta9DUJjMbgsEH5
+scRicL6o5HscTnG99RuyHDfsv11w4v0gIspjvjiMuVHwfJx9gs1pdTkxp/QnQwDz
+Ig87NMhqQbdl9cFAizCXYRl7xDkLhg==
+=Ecid
+-----END PGP SIGNATURE-----
+
+--coPQJsKTER+El0UT--
