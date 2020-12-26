@@ -2,164 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D64B12E2E7E
-	for <lists+devicetree@lfdr.de>; Sat, 26 Dec 2020 16:23:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 592652E2EA6
+	for <lists+devicetree@lfdr.de>; Sat, 26 Dec 2020 17:37:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726268AbgLZPWJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 26 Dec 2020 10:22:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53344 "EHLO
+        id S1726185AbgLZQdv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 26 Dec 2020 11:33:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36006 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726101AbgLZPWJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Dec 2020 10:22:09 -0500
-X-Greylist: delayed 1143 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sat, 26 Dec 2020 07:21:28 PST
-Received: from yawp.biot.com (yawp.biot.com [IPv6:2a01:4f8:10a:8e::fce2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8FC51C061757
-        for <devicetree@vger.kernel.org>; Sat, 26 Dec 2020 07:21:28 -0800 (PST)
-Received: from debian-spamd by yawp.biot.com with sa-checked (Exim 4.93)
-        (envelope-from <bert@biot.com>)
-        id 1ktB5K-009v8Y-3I
-        for devicetree@vger.kernel.org; Sat, 26 Dec 2020 16:02:22 +0100
-X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on yawp
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.4
-Received: from [2a02:578:460c:1:ae1f:6bff:fed1:9ca8]
-        by yawp.biot.com with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        (Exim 4.93)
-        (envelope-from <bert@biot.com>)
-        id 1ktB5J-009v8T-U4; Sat, 26 Dec 2020 16:02:22 +0100
-Subject: Re: [PATCH v2] Add support for Realtek RTL838x/RTL839x switch SoCs
-To:     Marc Zyngier <maz@kernel.org>
-Cc:     Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Paul Burton <paulburton@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Damien Le Moal <damien.lemoal@wdc.com>,
-        Mateusz Holenko <mholenko@antmicro.com>,
-        Stafford Horne <shorne@gmail.com>,
-        Pawel Czarnecki <pczarnecki@internships.antmicro.com>,
+        with ESMTP id S1725995AbgLZQdu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Dec 2020 11:33:50 -0500
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F55AC061757
+        for <devicetree@vger.kernel.org>; Sat, 26 Dec 2020 08:33:10 -0800 (PST)
+Received: by mail-wm1-x336.google.com with SMTP id a6so5668365wmc.2
+        for <devicetree@vger.kernel.org>; Sat, 26 Dec 2020 08:33:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=konsulko.com; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=gtpkeBVz5MREbJ4Hh4ldSey/zkGfhttgVGvyAUtLQ9o=;
+        b=nsK5M8nz/VjeGsXTO6OlT+E3dnqJjuzsIRdYtR6PlPUDqdCDN3yCv6jqWygj6PLHjE
+         ZSALb7CkX5KZG8SOH52v2VLIZguJ50ITS96gTh77X0LJ7l+SWt/QbV8E63X2YnRgQSZE
+         6G5jvxVyoCUfMVlps4Y2zq3IDzS+1csIxUclM=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=gtpkeBVz5MREbJ4Hh4ldSey/zkGfhttgVGvyAUtLQ9o=;
+        b=ZLB+eXQ5piHJIM6ujPKAxlDuiXcNp2WWWB+2zVa10RRy4mRPBe5R3wPBd/Sl6qCni1
+         loLHKnYRRtEfLzrrL7QPeYbh4fLuTR7Zui6yY4O9Kklszk4BfNyopzpnc8f3VOuhRjzE
+         bWTLje8/7PvZ5K3gpEMYV/LpoE8CRvL0bqk1hcJQ7JTknZNlafftfTr28+mJVxtnrEVm
+         jEDTCeIyrV+Ufour2JibshUTuo7xg45z7w7Sp5EYnABaU0YPDkXNB6Xv4gHBuLjSe7vS
+         BmekNntgDlat3PHIyQ7by3TOcKDyhdY4GT4mJn+L747bcyYBeeT/fX3Yof6BlwhhatU6
+         8lYw==
+X-Gm-Message-State: AOAM531Qwxe60ti10zKeYiz4fLDQyExaiSrd0KeX/F1sbppBaKH1uZPS
+        P20OskP/YgaR3bWIqROttHSh4vKmU36/GqDf
+X-Google-Smtp-Source: ABdhPJwj20fCyOf4J8xCHJKDZdEjK/pMUpvZ5ueQPVxSkNMqC94ou5zgiSv6fCXwp7uWbqaG0FsL1A==
+X-Received: by 2002:a1c:4b10:: with SMTP id y16mr13184416wma.73.1609000387485;
+        Sat, 26 Dec 2020 08:33:07 -0800 (PST)
+Received: from lootbox.konsulko.bg (lan.nucleusys.com. [92.247.61.126])
+        by smtp.gmail.com with ESMTPSA id r20sm52270387wrg.66.2020.12.26.08.33.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 26 Dec 2020 08:33:06 -0800 (PST)
+From:   Vitaly Wool <vitaly.wool@konsulko.com>
+To:     linux-riscv@lists.infradead.org
+Cc:     linux-kernel@vger.kernel.org, Bin Meng <bin.meng@windriver.com>,
+        Anup Patel <anup@brainfault.org>,
         Palmer Dabbelt <palmerdabbelt@google.com>,
-        =?UTF-8?Q?C=c3=a9dric_Le_Goater?= <clg@kaod.org>,
-        Shawn Guo <shawnguo@kernel.org>, Joel Stanley <joel@jms.id.au>,
-        Leonard Crestez <leonard.crestez@nxp.com>,
-        Peng Fan <peng.fan@nxp.com>, linux-mips@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20201223150648.1633113-1-bert@biot.com>
- <87o8ikqywn.wl-maz@kernel.org>
-From:   Bert Vermeulen <bert@biot.com>
-Message-ID: <b8c989de-aae3-fa5e-90aa-ebce668c80f2@biot.com>
-Date:   Sat, 26 Dec 2020 16:02:21 +0100
+        damien.lemoal@wdc.com, devicetree@vger.kernel.org,
+        Vitaly Wool <vitaly.wool@konsulko.com>
+Subject: [PATCH] riscv: add BUILTIN_DTB support for MMU-enabled targets
+Date:   Sat, 26 Dec 2020 18:30:38 +0200
+Message-Id: <20201226163037.43691-1-vitaly.wool@konsulko.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-In-Reply-To: <87o8ikqywn.wl-maz@kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/23/20 5:18 PM, Marc Zyngier wrote:
+Sometimes, especially in a production system we may not want to
+use a "smart bootloader" like u-boot to load kernel, ramdisk and
+device tree from a filesystem on eMMC, but rather load the kernel
+from a NAND partition and just run it as soon as we can, and in
+this case it is convenient to have device tree compiled into the
+kernel binary. Since this case is not limited to MMU-less systems,
+let's support it for these which have MMU enabled too.
 
-Marc,
+Signed-off-by: Vitaly Wool <vitaly.wool@konsulko.com>
+---
+ arch/riscv/Kconfig   |  1 -
+ arch/riscv/mm/init.c | 12 ++++++++++--
+ 2 files changed, 10 insertions(+), 3 deletions(-)
 
-Thanks for reviewing. We will rework as needed, however:
-
-> On Wed, 23 Dec 2020 15:06:24 +0000,
-> Bert Vermeulen <bert@biot.com> wrote:
-[...]
-
->> +/* Interrupt numbers/bits */
->> +#define RTL8380_IRQ_UART0		31
->> +#define RTL8380_IRQ_UART1		30
->> +#define RTL8380_IRQ_TC0			29
->> +#define RTL8380_IRQ_TC1			28
->> +#define RTL8380_IRQ_OCPTO		27
->> +#define RTL8380_IRQ_HLXTO		26
->> +#define RTL8380_IRQ_SLXTO		25
->> +#define RTL8380_IRQ_NIC			24
->> +#define RTL8380_IRQ_GPIO_ABCD		23
->> +#define RTL8380_IRQ_GPIO_EFGH		22
->> +#define RTL8380_IRQ_RTC			21
->> +#define RTL8380_IRQ_SWCORE		20
->> +#define RTL8380_IRQ_WDT_IP1		19
->> +#define RTL8380_IRQ_WDT_IP2		18
-> 
-> Why do we need any of this? The mapping should be explicit in the DT.
-> 
->> +
->> +/* Global Interrupt Mask Register */
->> +#define RTL8380_ICTL_GIMR	0x00
->> +/* Global Interrupt Status Register */
->> +#define RTL8380_ICTL_GISR	0x04
->> +
->> +/* Cascaded interrupts */
->> +#define RTL8380_CPU_IRQ_SHARED0		(MIPS_CPU_IRQ_BASE + 2)
->> +#define RTL8380_CPU_IRQ_UART		(MIPS_CPU_IRQ_BASE + 3)
->> +#define RTL8380_CPU_IRQ_SWITCH		(MIPS_CPU_IRQ_BASE + 4)
->> +#define RTL8380_CPU_IRQ_SHARED1		(MIPS_CPU_IRQ_BASE + 5)
->> +#define RTL8380_CPU_IRQ_EXTERNAL	(MIPS_CPU_IRQ_BASE + 6)
->> +#define RTL8380_CPU_IRQ_COUNTER		(MIPS_CPU_IRQ_BASE + 7)
->> +
->> +
->> +/* Interrupt routing register */
->> +#define RTL8380_IRR0		0x08
->> +#define RTL8380_IRR1		0x0c
->> +#define RTL8380_IRR2		0x10
->> +#define RTL8380_IRR3		0x14
->> +
->> +/* Cascade map */
->> +#define RTL8380_IRQ_CASCADE_UART0	2
->> +#define RTL8380_IRQ_CASCADE_UART1	1
->> +#define RTL8380_IRQ_CASCADE_TC0		5
->> +#define RTL8380_IRQ_CASCADE_TC1		1
->> +#define RTL8380_IRQ_CASCADE_OCPTO	1
->> +#define RTL8380_IRQ_CASCADE_HLXTO	1
->> +#define RTL8380_IRQ_CASCADE_SLXTO	1
->> +#define RTL8380_IRQ_CASCADE_NIC		4
->> +#define RTL8380_IRQ_CASCADE_GPIO_ABCD	4
->> +#define RTL8380_IRQ_CASCADE_GPIO_EFGH	4
->> +#define RTL8380_IRQ_CASCADE_RTC		4
->> +#define RTL8380_IRQ_CASCADE_SWCORE	3
->> +#define RTL8380_IRQ_CASCADE_WDT_IP1	4
->> +#define RTL8380_IRQ_CASCADE_WDT_IP2	5
->> +
->> +/* Pack cascade map into interrupt routing registers */
->> +#define RTL8380_IRR0_SETTING (\
->> +	(RTL8380_IRQ_CASCADE_UART0	<< 28) | \
->> +	(RTL8380_IRQ_CASCADE_UART1	<< 24) | \
->> +	(RTL8380_IRQ_CASCADE_TC0	<< 20) | \
->> +	(RTL8380_IRQ_CASCADE_TC1	<< 16) | \
->> +	(RTL8380_IRQ_CASCADE_OCPTO	<< 12) | \
->> +	(RTL8380_IRQ_CASCADE_HLXTO	<< 8)  | \
->> +	(RTL8380_IRQ_CASCADE_SLXTO	<< 4)  | \
->> +	(RTL8380_IRQ_CASCADE_NIC	<< 0))
->> +#define RTL8380_IRR1_SETTING (\
->> +	(RTL8380_IRQ_CASCADE_GPIO_ABCD	<< 28) | \
->> +	(RTL8380_IRQ_CASCADE_GPIO_EFGH	<< 24) | \
->> +	(RTL8380_IRQ_CASCADE_RTC	<< 20) | \
->> +	(RTL8380_IRQ_CASCADE_SWCORE	<< 16))
->> +#define RTL8380_IRR2_SETTING	0
->> +#define RTL8380_IRR3_SETTING	0
-
-[...]
-
->> +	/* Set up interrupt routing */
->> +	writel(RTL8380_IRR0_SETTING, REG(RTL8380_IRR0));
->> +	writel(RTL8380_IRR1_SETTING, REG(RTL8380_IRR1));
->> +	writel(RTL8380_IRR2_SETTING, REG(RTL8380_IRR2));
->> +	writel(RTL8380_IRR3_SETTING, REG(RTL8380_IRR3));
-> 
-> What is this doing?
-
-It's fairly evident considering the comments -- routing of secondary IRQs 
-onto the CPU IRQs. But as to packing this into DTS I'm not sure.
-
-DTS syntax being what it is, this would inevitably get more complex and 
-harder to understand. Do you have an example where this is done in a better way?
-
-thanks,
-
-
+diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
+index 2b41f6d8e458..9464b4e3a71a 100644
+--- a/arch/riscv/Kconfig
++++ b/arch/riscv/Kconfig
+@@ -419,7 +419,6 @@ endmenu
+ 
+ config BUILTIN_DTB
+ 	def_bool n
+-	depends on RISCV_M_MODE
+ 	depends on OF
+ 
+ menu "Power management options"
+diff --git a/arch/riscv/mm/init.c b/arch/riscv/mm/init.c
+index 87c305c566ac..5d1c7a3ec01c 100644
+--- a/arch/riscv/mm/init.c
++++ b/arch/riscv/mm/init.c
+@@ -194,12 +194,20 @@ void __init setup_bootmem(void)
+ 	setup_initrd();
+ #endif /* CONFIG_BLK_DEV_INITRD */
+ 
++	/*
++	 * If DTB is built in, no need to reserve its memblock.
++	 * OTOH, initial_boot_params has to be set to properly copy DTB
++	 * before unflattening later on.
++	 */
++	if (IS_ENABLED(CONFIG_BUILTIN_DTB))
++		initial_boot_params = __va(dtb_early_pa);
++	else
++		memblock_reserve(dtb_early_pa, fdt_totalsize(dtb_early_va));
++
+ 	/*
+ 	 * Avoid using early_init_fdt_reserve_self() since __pa() does
+ 	 * not work for DTB pointers that are fixmap addresses
+ 	 */
+-	memblock_reserve(dtb_early_pa, fdt_totalsize(dtb_early_va));
+-
+ 	early_init_fdt_scan_reserved_mem();
+ 	dma_contiguous_reserve(dma32_phys_limit);
+ 	memblock_allow_resize();
 -- 
-Bert Vermeulen
-bert@biot.com
+2.29.2
+
