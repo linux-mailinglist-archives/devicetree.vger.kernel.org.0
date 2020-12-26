@@ -2,89 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 197A52E2DC7
-	for <lists+devicetree@lfdr.de>; Sat, 26 Dec 2020 10:13:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D64B12E2E7E
+	for <lists+devicetree@lfdr.de>; Sat, 26 Dec 2020 16:23:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725865AbgLZJNC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 26 Dec 2020 04:13:02 -0500
-Received: from mail.loongson.cn ([114.242.206.163]:48858 "EHLO loongson.cn"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1725909AbgLZJMy (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 26 Dec 2020 04:12:54 -0500
-Received: from linux.localdomain (unknown [113.200.148.30])
-        by mail.loongson.cn (Coremail) with SMTP id AQAAf9Axmclj_uZfGJQFAA--.14125S5;
-        Sat, 26 Dec 2020 17:12:05 +0800 (CST)
-From:   Qing Zhang <zhangqing@loongson.cn>
-To:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        ThomasBogendoerfer <tsbogend@alpha.franken.de>
-Cc:     linux-spi@vger.kernel.org, Huacai Chen <chenhc@lemote.com>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v5 4/4] MIPS: Loongson: Enable Loongson LS7A SPI in loongson3_defconfig
-Date:   Sat, 26 Dec 2020 17:12:03 +0800
-Message-Id: <1608973923-8328-4-git-send-email-zhangqing@loongson.cn>
-X-Mailer: git-send-email 2.1.0
-In-Reply-To: <1608973923-8328-1-git-send-email-zhangqing@loongson.cn>
-References: <1608973923-8328-1-git-send-email-zhangqing@loongson.cn>
-X-CM-TRANSID: AQAAf9Axmclj_uZfGJQFAA--.14125S5
-X-Coremail-Antispam: 1UD129KBjvdXoWrKw4UJFW3tw4DJry3tF48tFb_yoWfJFg_Ga
-        y7Kw18Wr48JrW8u3yxXw4rW3yDCa4UuFn5CF17try3Xaya9rnxtFWqyrWxG3W5uasI9FW3
-        ZaykJasF9F1xtjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-        9fnUUIcSsGvfJTRUUUbS8YjsxI4VWxJwAYFVCjjxCrM7AC8VAFwI0_Wr0E3s1l1xkIjI8I
-        6I8E6xAIw20EY4v20xvaj40_Wr0E3s1l1IIY67AEw4v_Jr0_Jr4l82xGYIkIc2x26280x7
-        IE14v26r1rM28IrcIa0xkI8VCY1x0267AKxVW5JVCq3wA2ocxC64kIII0Yj41l84x0c7CE
-        w4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26r4j6ryUM28EF7xvwVC0I7IYx2IY6x
-        kF7I0E14v26F4j6r4UJwA2z4x0Y4vEx4A2jsIE14v26r4UJVWxJr1l84ACjcxK6I8E87Iv
-        6xkF7I0E14v26F4UJVW0owAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAKzV
-        Aqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWUGVWUXwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S
-        6xCaFVCjc4AY6r1j6r4UM4x0Y48IcxkI7VAKI48JMxkIecxEwVAFwVW8uwCF04k20xvY0x
-        0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E
-        7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcV
-        C0I7IYx2IY67AKxVWUCVW8JwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcVCF
-        04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r4j6F4UMIIF0xvEx4A2jsIEc7
-        CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x07j0a0PUUUUU=
-X-CM-SenderInfo: x2kd0wptlqwqxorr0wxvrqhubq/
+        id S1726268AbgLZPWJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 26 Dec 2020 10:22:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53344 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726101AbgLZPWJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Dec 2020 10:22:09 -0500
+X-Greylist: delayed 1143 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sat, 26 Dec 2020 07:21:28 PST
+Received: from yawp.biot.com (yawp.biot.com [IPv6:2a01:4f8:10a:8e::fce2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8FC51C061757
+        for <devicetree@vger.kernel.org>; Sat, 26 Dec 2020 07:21:28 -0800 (PST)
+Received: from debian-spamd by yawp.biot.com with sa-checked (Exim 4.93)
+        (envelope-from <bert@biot.com>)
+        id 1ktB5K-009v8Y-3I
+        for devicetree@vger.kernel.org; Sat, 26 Dec 2020 16:02:22 +0100
+X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on yawp
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.4
+Received: from [2a02:578:460c:1:ae1f:6bff:fed1:9ca8]
+        by yawp.biot.com with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        (Exim 4.93)
+        (envelope-from <bert@biot.com>)
+        id 1ktB5J-009v8T-U4; Sat, 26 Dec 2020 16:02:22 +0100
+Subject: Re: [PATCH v2] Add support for Realtek RTL838x/RTL839x switch SoCs
+To:     Marc Zyngier <maz@kernel.org>
+Cc:     Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Paul Burton <paulburton@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Damien Le Moal <damien.lemoal@wdc.com>,
+        Mateusz Holenko <mholenko@antmicro.com>,
+        Stafford Horne <shorne@gmail.com>,
+        Pawel Czarnecki <pczarnecki@internships.antmicro.com>,
+        Palmer Dabbelt <palmerdabbelt@google.com>,
+        =?UTF-8?Q?C=c3=a9dric_Le_Goater?= <clg@kaod.org>,
+        Shawn Guo <shawnguo@kernel.org>, Joel Stanley <joel@jms.id.au>,
+        Leonard Crestez <leonard.crestez@nxp.com>,
+        Peng Fan <peng.fan@nxp.com>, linux-mips@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20201223150648.1633113-1-bert@biot.com>
+ <87o8ikqywn.wl-maz@kernel.org>
+From:   Bert Vermeulen <bert@biot.com>
+Message-ID: <b8c989de-aae3-fa5e-90aa-ebce668c80f2@biot.com>
+Date:   Sat, 26 Dec 2020 16:02:21 +0100
+MIME-Version: 1.0
+In-Reply-To: <87o8ikqywn.wl-maz@kernel.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is now supported, enable for Loongson systems.
+On 12/23/20 5:18 PM, Marc Zyngier wrote:
 
-Reviewed-by: Huacai Chen <chenhuacai@kernel.org>
-Signed-off-by: Qing Zhang <zhangqing@loongson.cn>
----
+Marc,
 
-v2:
- - Modify CONFIG_SPI_LOONGSON to CONFIG_SPI_LS7A
+Thanks for reviewing. We will rework as needed, however:
 
-v3:
- - No changes
+> On Wed, 23 Dec 2020 15:06:24 +0000,
+> Bert Vermeulen <bert@biot.com> wrote:
+[...]
 
-v4:
- - No changes
+>> +/* Interrupt numbers/bits */
+>> +#define RTL8380_IRQ_UART0		31
+>> +#define RTL8380_IRQ_UART1		30
+>> +#define RTL8380_IRQ_TC0			29
+>> +#define RTL8380_IRQ_TC1			28
+>> +#define RTL8380_IRQ_OCPTO		27
+>> +#define RTL8380_IRQ_HLXTO		26
+>> +#define RTL8380_IRQ_SLXTO		25
+>> +#define RTL8380_IRQ_NIC			24
+>> +#define RTL8380_IRQ_GPIO_ABCD		23
+>> +#define RTL8380_IRQ_GPIO_EFGH		22
+>> +#define RTL8380_IRQ_RTC			21
+>> +#define RTL8380_IRQ_SWCORE		20
+>> +#define RTL8380_IRQ_WDT_IP1		19
+>> +#define RTL8380_IRQ_WDT_IP2		18
+> 
+> Why do we need any of this? The mapping should be explicit in the DT.
+> 
+>> +
+>> +/* Global Interrupt Mask Register */
+>> +#define RTL8380_ICTL_GIMR	0x00
+>> +/* Global Interrupt Status Register */
+>> +#define RTL8380_ICTL_GISR	0x04
+>> +
+>> +/* Cascaded interrupts */
+>> +#define RTL8380_CPU_IRQ_SHARED0		(MIPS_CPU_IRQ_BASE + 2)
+>> +#define RTL8380_CPU_IRQ_UART		(MIPS_CPU_IRQ_BASE + 3)
+>> +#define RTL8380_CPU_IRQ_SWITCH		(MIPS_CPU_IRQ_BASE + 4)
+>> +#define RTL8380_CPU_IRQ_SHARED1		(MIPS_CPU_IRQ_BASE + 5)
+>> +#define RTL8380_CPU_IRQ_EXTERNAL	(MIPS_CPU_IRQ_BASE + 6)
+>> +#define RTL8380_CPU_IRQ_COUNTER		(MIPS_CPU_IRQ_BASE + 7)
+>> +
+>> +
+>> +/* Interrupt routing register */
+>> +#define RTL8380_IRR0		0x08
+>> +#define RTL8380_IRR1		0x0c
+>> +#define RTL8380_IRR2		0x10
+>> +#define RTL8380_IRR3		0x14
+>> +
+>> +/* Cascade map */
+>> +#define RTL8380_IRQ_CASCADE_UART0	2
+>> +#define RTL8380_IRQ_CASCADE_UART1	1
+>> +#define RTL8380_IRQ_CASCADE_TC0		5
+>> +#define RTL8380_IRQ_CASCADE_TC1		1
+>> +#define RTL8380_IRQ_CASCADE_OCPTO	1
+>> +#define RTL8380_IRQ_CASCADE_HLXTO	1
+>> +#define RTL8380_IRQ_CASCADE_SLXTO	1
+>> +#define RTL8380_IRQ_CASCADE_NIC		4
+>> +#define RTL8380_IRQ_CASCADE_GPIO_ABCD	4
+>> +#define RTL8380_IRQ_CASCADE_GPIO_EFGH	4
+>> +#define RTL8380_IRQ_CASCADE_RTC		4
+>> +#define RTL8380_IRQ_CASCADE_SWCORE	3
+>> +#define RTL8380_IRQ_CASCADE_WDT_IP1	4
+>> +#define RTL8380_IRQ_CASCADE_WDT_IP2	5
+>> +
+>> +/* Pack cascade map into interrupt routing registers */
+>> +#define RTL8380_IRR0_SETTING (\
+>> +	(RTL8380_IRQ_CASCADE_UART0	<< 28) | \
+>> +	(RTL8380_IRQ_CASCADE_UART1	<< 24) | \
+>> +	(RTL8380_IRQ_CASCADE_TC0	<< 20) | \
+>> +	(RTL8380_IRQ_CASCADE_TC1	<< 16) | \
+>> +	(RTL8380_IRQ_CASCADE_OCPTO	<< 12) | \
+>> +	(RTL8380_IRQ_CASCADE_HLXTO	<< 8)  | \
+>> +	(RTL8380_IRQ_CASCADE_SLXTO	<< 4)  | \
+>> +	(RTL8380_IRQ_CASCADE_NIC	<< 0))
+>> +#define RTL8380_IRR1_SETTING (\
+>> +	(RTL8380_IRQ_CASCADE_GPIO_ABCD	<< 28) | \
+>> +	(RTL8380_IRQ_CASCADE_GPIO_EFGH	<< 24) | \
+>> +	(RTL8380_IRQ_CASCADE_RTC	<< 20) | \
+>> +	(RTL8380_IRQ_CASCADE_SWCORE	<< 16))
+>> +#define RTL8380_IRR2_SETTING	0
+>> +#define RTL8380_IRR3_SETTING	0
 
-v5:
- - No changes
+[...]
 
----
- arch/mips/configs/loongson3_defconfig | 3 +++
- 1 file changed, 3 insertions(+)
+>> +	/* Set up interrupt routing */
+>> +	writel(RTL8380_IRR0_SETTING, REG(RTL8380_IRR0));
+>> +	writel(RTL8380_IRR1_SETTING, REG(RTL8380_IRR1));
+>> +	writel(RTL8380_IRR2_SETTING, REG(RTL8380_IRR2));
+>> +	writel(RTL8380_IRR3_SETTING, REG(RTL8380_IRR3));
+> 
+> What is this doing?
 
-diff --git a/arch/mips/configs/loongson3_defconfig b/arch/mips/configs/loongson3_defconfig
-index 38a817e..28784cb 100644
---- a/arch/mips/configs/loongson3_defconfig
-+++ b/arch/mips/configs/loongson3_defconfig
-@@ -271,6 +271,9 @@ CONFIG_HW_RANDOM=y
- CONFIG_RAW_DRIVER=m
- CONFIG_I2C_CHARDEV=y
- CONFIG_I2C_PIIX4=y
-+CONFIG_SPI=y
-+CONFIG_SPI_MASTER=y
-+CONFIG_SPI_LS7A=y
- CONFIG_GPIO_LOONGSON=y
- CONFIG_SENSORS_LM75=m
- CONFIG_SENSORS_LM93=m
+It's fairly evident considering the comments -- routing of secondary IRQs 
+onto the CPU IRQs. But as to packing this into DTS I'm not sure.
+
+DTS syntax being what it is, this would inevitably get more complex and 
+harder to understand. Do you have an example where this is done in a better way?
+
+thanks,
+
+
 -- 
-2.1.0
-
+Bert Vermeulen
+bert@biot.com
