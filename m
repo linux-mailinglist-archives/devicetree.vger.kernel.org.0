@@ -2,118 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 592652E2EA6
-	for <lists+devicetree@lfdr.de>; Sat, 26 Dec 2020 17:37:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C4BF92E2EB2
+	for <lists+devicetree@lfdr.de>; Sat, 26 Dec 2020 18:05:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726185AbgLZQdv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 26 Dec 2020 11:33:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36006 "EHLO
+        id S1726175AbgLZRFV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 26 Dec 2020 12:05:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40804 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725995AbgLZQdu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Dec 2020 11:33:50 -0500
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F55AC061757
-        for <devicetree@vger.kernel.org>; Sat, 26 Dec 2020 08:33:10 -0800 (PST)
-Received: by mail-wm1-x336.google.com with SMTP id a6so5668365wmc.2
-        for <devicetree@vger.kernel.org>; Sat, 26 Dec 2020 08:33:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=konsulko.com; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=gtpkeBVz5MREbJ4Hh4ldSey/zkGfhttgVGvyAUtLQ9o=;
-        b=nsK5M8nz/VjeGsXTO6OlT+E3dnqJjuzsIRdYtR6PlPUDqdCDN3yCv6jqWygj6PLHjE
-         ZSALb7CkX5KZG8SOH52v2VLIZguJ50ITS96gTh77X0LJ7l+SWt/QbV8E63X2YnRgQSZE
-         6G5jvxVyoCUfMVlps4Y2zq3IDzS+1csIxUclM=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=gtpkeBVz5MREbJ4Hh4ldSey/zkGfhttgVGvyAUtLQ9o=;
-        b=ZLB+eXQ5piHJIM6ujPKAxlDuiXcNp2WWWB+2zVa10RRy4mRPBe5R3wPBd/Sl6qCni1
-         loLHKnYRRtEfLzrrL7QPeYbh4fLuTR7Zui6yY4O9Kklszk4BfNyopzpnc8f3VOuhRjzE
-         bWTLje8/7PvZ5K3gpEMYV/LpoE8CRvL0bqk1hcJQ7JTknZNlafftfTr28+mJVxtnrEVm
-         jEDTCeIyrV+Ufour2JibshUTuo7xg45z7w7Sp5EYnABaU0YPDkXNB6Xv4gHBuLjSe7vS
-         BmekNntgDlat3PHIyQ7by3TOcKDyhdY4GT4mJn+L747bcyYBeeT/fX3Yof6BlwhhatU6
-         8lYw==
-X-Gm-Message-State: AOAM531Qwxe60ti10zKeYiz4fLDQyExaiSrd0KeX/F1sbppBaKH1uZPS
-        P20OskP/YgaR3bWIqROttHSh4vKmU36/GqDf
-X-Google-Smtp-Source: ABdhPJwj20fCyOf4J8xCHJKDZdEjK/pMUpvZ5ueQPVxSkNMqC94ou5zgiSv6fCXwp7uWbqaG0FsL1A==
-X-Received: by 2002:a1c:4b10:: with SMTP id y16mr13184416wma.73.1609000387485;
-        Sat, 26 Dec 2020 08:33:07 -0800 (PST)
-Received: from lootbox.konsulko.bg (lan.nucleusys.com. [92.247.61.126])
-        by smtp.gmail.com with ESMTPSA id r20sm52270387wrg.66.2020.12.26.08.33.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 26 Dec 2020 08:33:06 -0800 (PST)
-From:   Vitaly Wool <vitaly.wool@konsulko.com>
-To:     linux-riscv@lists.infradead.org
-Cc:     linux-kernel@vger.kernel.org, Bin Meng <bin.meng@windriver.com>,
-        Anup Patel <anup@brainfault.org>,
-        Palmer Dabbelt <palmerdabbelt@google.com>,
-        damien.lemoal@wdc.com, devicetree@vger.kernel.org,
-        Vitaly Wool <vitaly.wool@konsulko.com>
-Subject: [PATCH] riscv: add BUILTIN_DTB support for MMU-enabled targets
-Date:   Sat, 26 Dec 2020 18:30:38 +0200
-Message-Id: <20201226163037.43691-1-vitaly.wool@konsulko.com>
-X-Mailer: git-send-email 2.20.1
+        with ESMTP id S1726166AbgLZRFV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Dec 2020 12:05:21 -0500
+Received: from hall.aurel32.net (hall.aurel32.net [IPv6:2001:bc8:30d7:100::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A01DC061757
+        for <devicetree@vger.kernel.org>; Sat, 26 Dec 2020 09:04:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=aurel32.net
+        ; s=202004.hall; h=In-Reply-To:Content-Type:MIME-Version:References:
+        Message-ID:Subject:Cc:To:From:Date:Content-Transfer-Encoding:From:Reply-To:
+        Subject:Content-ID:Content-Description:X-Debbugs-Cc;
+        bh=e9X4my47ggN7suwunTpSwnYHYZG6SCZvR4V6WN+017g=; b=CxbloHr94lNKLG/iOhD/iGHn6I
+        smSmnVzBae6jo8XRppjlhhEtvwKJOtJPi03E6lfinZwEUBw30LgDOy4lnoNTnGhSiBZJ2CZFrvt8N
+        5wmLwboicp0P1I4EZhpA2wrjrc62LGqwcRovNt0Sgmu8xGFOsNG9yhAqAdM79VH+yUHRoQh4pGxE1
+        6qPrgiBU/xVwxxKnu1Jzjl/OptYDmmLMG0vcv7bj1C6E7nid7gEUFIhGHfgFUB8YckUvfYu8Cawpj
+        4h8FHY+rtaf6fXID81OU0iZ/L1VlJCrrdLgFi5WHu/tYCIyjsGbel9pXZDa0XGcDRT+WcaLyyoXbn
+        QD7DHKAA==;
+Received: from [2a01:e35:2fdd:a4e1:fe91:fc89:bc43:b814] (helo=ohm.rr44.fr)
+        by hall.aurel32.net with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <aurelien@aurel32.net>)
+        id 1ktCzY-0006e5-S8; Sat, 26 Dec 2020 18:04:32 +0100
+Received: from aurel32 by ohm.rr44.fr with local (Exim 4.94)
+        (envelope-from <aurelien@aurel32.net>)
+        id 1ktCzY-0021De-2t; Sat, 26 Dec 2020 18:04:32 +0100
+Date:   Sat, 26 Dec 2020 18:04:32 +0100
+From:   Aurelien Jarno <aurelien@aurel32.net>
+To:     daire.mcnamara@microchip.com
+Cc:     lorenzo.pieralisi@arm.com, bhelgaas@google.com, robh@kernel.org,
+        linux-pci@vger.kernel.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, david.abdurachmanov@gmail.com,
+        cyril.jean@microchip.com, ben.dooks@codethink.co.uk
+Subject: Re: [PATCH v19 2/4] dt-bindings: PCI: microchip: Add Microchip
+ PolarFire host binding
+Message-ID: <X+dtIPs70A5v17pj@aurel32.net>
+References: <20201224094500.19149-1-daire.mcnamara@microchip.com>
+ <20201224094500.19149-3-daire.mcnamara@microchip.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201224094500.19149-3-daire.mcnamara@microchip.com>
+User-Agent: Mutt/2.0.2 (2020-11-20)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Sometimes, especially in a production system we may not want to
-use a "smart bootloader" like u-boot to load kernel, ramdisk and
-device tree from a filesystem on eMMC, but rather load the kernel
-from a NAND partition and just run it as soon as we can, and in
-this case it is convenient to have device tree compiled into the
-kernel binary. Since this case is not limited to MMU-less systems,
-let's support it for these which have MMU enabled too.
+On 2020-12-24 09:44, daire.mcnamara@microchip.com wrote:
+> From: Daire McNamara <daire.mcnamara@microchip.com>
+> 
+> Add device tree bindings for the Microchip PolarFire PCIe controller
+> when configured in host (Root Complex) mode.
+> 
+> Signed-off-by: Daire McNamara <daire.mcnamara@microchip.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> ---
+>  .../bindings/pci/microchip,pcie-host.yaml     | 92 +++++++++++++++++++
+>  1 file changed, 92 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pci/microchip,pcie-host.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/pci/microchip,pcie-host.yaml b/Documentation/devicetree/bindings/pci/microchip,pcie-host.yaml
+> new file mode 100644
+> index 000000000000..5a56f07a5ceb
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pci/microchip,pcie-host.yaml
+> @@ -0,0 +1,92 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pci/microchip,pcie-host.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Microchip PCIe Root Port Bridge Controller Device Tree Bindings
+> +
+> +maintainers:
+> +  - Daire McNamara <daire.mcnamara@microchip.com>
+> +
+> +allOf:
+> +  - $ref: /schemas/pci/pci-bus.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: microchip,pcie-host-1.0 # PolarFire
+> +
+> +  reg:
+> +    maxItems: 2
+> +
+> +  reg-names:
+> +    items:
+> +      - const: cfg
+> +      - const: apb
+> +
+> +  interrupts:
+> +    minItems: 1
+> +    maxItems: 2
+> +    items:
+> +      - description: PCIe host controller
+> +      - description: builtin MSI controller
+> +
+> +  interrupt-names:
+> +    minItems: 1
+> +    maxItems: 2
+> +    items:
+> +      - const: pcie
+> +      - const: msi
+> +
+> +  ranges:
+> +    maxItems: 1
+> +
+> +  msi-controller:
+> +    description: Identifies the node as an MSI controller.
+> +
+> +  msi-parent:
+> +    description: MSI controller the device is capable of using.
+> +
+> +required:
+> +  - reg
+> +  - reg-names
+> +  - "#interrupt-cells"
+> +  - interrupts
+> +  - interrupt-map-mask
+> +  - interrupt-map
+> +  - msi-controller
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    soc {
+> +            #address-cells = <2>;
+> +            #size-cells = <2>;
+> +            pcie0: pcie@2030000000 {
+> +                    compatible = "microchip,pcie-host-1.0";
+> +                    reg = <0x0 0x70000000 0x0 0x08000000>,
+> +                          <0x0 0x43000000 0x0 0x00010000>;
+> +                    reg-names = "cfg", "apb";
+> +                    device_type = "pci";
+> +                    #address-cells = <3>;
+> +                    #size-cells = <2>;
+> +                    #interrupt-cells = <1>;
+> +                    interrupts = <119>;
+> +                    interrupt-map-mask = <0x0 0x0 0x0 0x7>;
+> +                    interrupt-map = <0 0 0 1 &pcie_intc0 0>,
+> +                                    <0 0 0 2 &pcie_intc0 1>,
+> +                                    <0 0 0 3 &pcie_intc0 2>,
+> +                                    <0 0 0 4 &pcie_intc0 3>;
+> +                    interrupt-parent = <&plic0>;
+> +                    msi-parent = <&pcie0>;
+> +                    msi-controller;
+> +                    bus-range = <0x00 0x7f>;
+> +                    ranges = <0x03000000 0x0 0x78000000 0x0 0x78000000 0x0 0x04000000>;
+> +                    pcie_intc_0: interrupt-controller {
 
-Signed-off-by: Vitaly Wool <vitaly.wool@konsulko.com>
----
- arch/riscv/Kconfig   |  1 -
- arch/riscv/mm/init.c | 12 ++++++++++--
- 2 files changed, 10 insertions(+), 3 deletions(-)
+Very minor nitpick, the name here doesn't match the one in
+interrupt-map, there is an extra '_'.
 
-diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
-index 2b41f6d8e458..9464b4e3a71a 100644
---- a/arch/riscv/Kconfig
-+++ b/arch/riscv/Kconfig
-@@ -419,7 +419,6 @@ endmenu
- 
- config BUILTIN_DTB
- 	def_bool n
--	depends on RISCV_M_MODE
- 	depends on OF
- 
- menu "Power management options"
-diff --git a/arch/riscv/mm/init.c b/arch/riscv/mm/init.c
-index 87c305c566ac..5d1c7a3ec01c 100644
---- a/arch/riscv/mm/init.c
-+++ b/arch/riscv/mm/init.c
-@@ -194,12 +194,20 @@ void __init setup_bootmem(void)
- 	setup_initrd();
- #endif /* CONFIG_BLK_DEV_INITRD */
- 
-+	/*
-+	 * If DTB is built in, no need to reserve its memblock.
-+	 * OTOH, initial_boot_params has to be set to properly copy DTB
-+	 * before unflattening later on.
-+	 */
-+	if (IS_ENABLED(CONFIG_BUILTIN_DTB))
-+		initial_boot_params = __va(dtb_early_pa);
-+	else
-+		memblock_reserve(dtb_early_pa, fdt_totalsize(dtb_early_va));
-+
- 	/*
- 	 * Avoid using early_init_fdt_reserve_self() since __pa() does
- 	 * not work for DTB pointers that are fixmap addresses
- 	 */
--	memblock_reserve(dtb_early_pa, fdt_totalsize(dtb_early_va));
--
- 	early_init_fdt_scan_reserved_mem();
- 	dma_contiguous_reserve(dma32_phys_limit);
- 	memblock_allow_resize();
+Otherwise I have tested this patch series on top of Atish's tree, and
+it works fine with a NVME device.
+
+Tested-by: Aurelien Jarno <aurelien@aurel32.net>
+
+Aurelien
+
 -- 
-2.29.2
-
+Aurelien Jarno                          GPG: 4096R/1DDD8C9B
+aurelien@aurel32.net                 http://www.aurel32.net
