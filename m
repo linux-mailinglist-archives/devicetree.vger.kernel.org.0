@@ -2,69 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A8BF82E31F9
-	for <lists+devicetree@lfdr.de>; Sun, 27 Dec 2020 17:57:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A2DB12E31FB
+	for <lists+devicetree@lfdr.de>; Sun, 27 Dec 2020 17:57:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726121AbgL0Q5M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Dec 2020 11:57:12 -0500
-Received: from mail-ot1-f47.google.com ([209.85.210.47]:35109 "EHLO
-        mail-ot1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726032AbgL0Q5M (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Dec 2020 11:57:12 -0500
-Received: by mail-ot1-f47.google.com with SMTP id i6so7402728otr.2;
-        Sun, 27 Dec 2020 08:56:56 -0800 (PST)
+        id S1726282AbgL0Q5Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Dec 2020 11:57:16 -0500
+Received: from mail-oi1-f180.google.com ([209.85.167.180]:44491 "EHLO
+        mail-oi1-f180.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726032AbgL0Q5P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Dec 2020 11:57:15 -0500
+Received: by mail-oi1-f180.google.com with SMTP id d189so9333641oig.11;
+        Sun, 27 Dec 2020 08:57:00 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=zOHx7r8bUBdtp0nmUurNuEgdm3BgirvRBP8EZaKtUo8=;
-        b=qUSmAVR2brO5w8O5XkgiQTG5usAPiv9X4SL6T1d4gvOScwM0wYu2lcjuLmcYQJetLp
-         +jMOt29Hi0/DzSo9WKPlC8Y9b/bw9tB8tcxUVN8MS0qJhNtKNQPzBxBUzTxPK2Pbu3Sg
-         IIBNwTOLKxq4/+bC20vM1LqYni6zMA+fOq80LZGK6fGF4xDinXVqe+0YtbpW9d8dKj6S
-         qdL07qA+twhLS00of6YNad5EajyxRYX+JrVsrTVl3V/jamFH/SAFBnjf5qupTzkJlNAI
-         AC+quriOQVET+5MmekHugYfL4FU93U4NO8rJARuVGI8l3F1ZD89DU9qKXcelsybpb+nw
-         6LOQ==
-X-Gm-Message-State: AOAM532HXA1kSSLDbycmw8NGVxleLQpIc3WGi6TLNVY3c/ule+BLadP0
-        aWF1bY/rUjzFvI0xJjYYx2423kMbTQ==
-X-Google-Smtp-Source: ABdhPJzjfapIxx697lofhNlLTsEkycfgDUBiDloMLI4cPPgY1p1lUj/Z+HubGl8e9Xsc57xtzgW1hQ==
-X-Received: by 2002:a9d:27e9:: with SMTP id c96mr29709334otb.15.1609088191057;
-        Sun, 27 Dec 2020 08:56:31 -0800 (PST)
+        bh=reFvH6ludnBqDbOySLtt2v8BCeYwui82hdt4SyxpeVY=;
+        b=q15PXmQnZxuyXOxKQDdcW3Kn+EfoTkZ0B3icQUWIbuiCI/E/JKro2DOdVZuGNt7pI3
+         harcT07LYv34ppxlnMbEHcLSCYsIxmnznYu14T7a8IQJkes7GRYzvxJd79yM6+1BVGm6
+         L/GzR7G6Ei2N0pFAxR3V2SmmU0RDaIYaVDhdQciWMD6jhXrmGXS8iXpQYdgjgIUkzg6X
+         Vu3gbssXL/2O/8nHIDF5oPVw4mPPbkdz8WqELGTWeAfYdUMllmpgPmtZUxozeNrED57w
+         Tn2/c4YWYn99Fvn8KZLXgL5XjwkdlilaxieUxbFzxFgQ3HjV9Jf0fo5pXWzY25l8+/0w
+         HS3Q==
+X-Gm-Message-State: AOAM532k+dm63Zshy12DWPUQL5pJfX5dXbH0Z3frM30IWiRux+/nFgS7
+        400wB4cCFMXR9Qnsfwsc+g==
+X-Google-Smtp-Source: ABdhPJwfAMhyd8OC3ESW9dB5fPdGEXeM0BeBYLt25oNUcFljJ2aWn7U0+ZXQdvfR3rw7xJB6nfKZUw==
+X-Received: by 2002:aca:edd7:: with SMTP id l206mr9774411oih.99.1609088194686;
+        Sun, 27 Dec 2020 08:56:34 -0800 (PST)
 Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id g92sm8621100otb.66.2020.12.27.08.56.27
+        by smtp.gmail.com with ESMTPSA id 39sm8691436otu.6.2020.12.27.08.56.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 27 Dec 2020 08:56:30 -0800 (PST)
-Received: (nullmailer pid 1338172 invoked by uid 1000);
+        Sun, 27 Dec 2020 08:56:33 -0800 (PST)
+Received: (nullmailer pid 1338178 invoked by uid 1000);
         Sun, 27 Dec 2020 16:56:21 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Nick Fan <Nick.Fan@mediatek.com>
-Cc:     linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        devicetree@vger.kernel.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        dri-devel@lists.freedesktop.org, srv_heupstream@mediatek.com,
-        David Airlie <airlied@linux.ie>,
-        Rob Herring <robh+dt@kernel.org>
-In-Reply-To: <20201224123119.26504-1-Nick.Fan@mediatek.com>
-References: <20201224123119.26504-1-Nick.Fan@mediatek.com>
-Subject: Re: [PATCH 1/2] dt-bindings: Convert Arm Mali Valhall GPU to DT schema
+To:     Hongtao Wu <wuht06@gmail.com>
+Cc:     Baolin Wang <baolin.wang7@gmail.com>,
+        Orson Zhai <orsonzhai@gmail.com>,
+        Hongtao Wu <billows.wu@unisoc.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        devicetree@vger.kernel.org, Chunyan Zhang <zhang.lyra@gmail.com>,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        linux-pci@vger.kernel.org
+In-Reply-To: <1609074734-9336-2-git-send-email-wuht06@gmail.com>
+References: <1609074734-9336-1-git-send-email-wuht06@gmail.com> <1609074734-9336-2-git-send-email-wuht06@gmail.com>
+Subject: Re: [PATCH v4 1/2] dt-bindings: PCI: sprd: Document Unisoc PCIe RC host controller
 Date:   Sun, 27 Dec 2020 09:56:21 -0700
-Message-Id: <1609088181.485721.1338171.nullmailer@robh.at.kernel.org>
+Message-Id: <1609088181.508512.1338177.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 24 Dec 2020 20:31:18 +0800, Nick Fan wrote:
-> Convert the Arm Valhall GPU binding to DT schema format.
+On Sun, 27 Dec 2020 21:12:13 +0800, Hongtao Wu wrote:
+> From: Hongtao Wu <billows.wu@unisoc.com>
 > 
-> Define a compatible string for the Mali Valhall GPU
-> for Mediatek's SoC platform.
+> This series adds PCIe bindings for Unisoc SoCs.
+> This controller is based on DesignWare PCIe IP.
 > 
-> Signed-off-by: Nick Fan <Nick.Fan@mediatek.com>
+> Signed-off-by: Hongtao Wu <billows.wu@unisoc.com>
 > ---
->  .../bindings/gpu/arm,mali-valhall.yaml        | 252 ++++++++++++++++++
->  1 file changed, 252 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/gpu/arm,mali-valhall.yaml
+>  .../devicetree/bindings/pci/sprd-pcie.yaml         | 91 ++++++++++++++++++++++
+>  1 file changed, 91 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pci/sprd-pcie.yaml
 > 
 
 My bot found errors running 'make dt_binding_check' on your patch:
@@ -72,10 +71,13 @@ My bot found errors running 'make dt_binding_check' on your patch:
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-./Documentation/devicetree/bindings/gpu/arm,mali-valhall.yaml: $id: relative path/filename doesn't match actual path or filename
-	expected: http://devicetree.org/schemas/gpu/arm,mali-valhall.yaml#
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pci/sprd-pcie.yaml: 'oneOf' conditional failed, one must be fixed:
+	'unevaluatedProperties' is a required property
+	'additionalProperties' is a required property
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pci/sprd-pcie.yaml: ignoring, error in schema: 
+warning: no schema found in file: ./Documentation/devicetree/bindings/pci/sprd-pcie.yaml
 
-See https://patchwork.ozlabs.org/patch/1420519
+See https://patchwork.ozlabs.org/patch/1420734
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
