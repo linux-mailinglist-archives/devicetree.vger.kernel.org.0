@@ -2,34 +2,37 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 536232E324A
-	for <lists+devicetree@lfdr.de>; Sun, 27 Dec 2020 18:44:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 37B3B2E324C
+	for <lists+devicetree@lfdr.de>; Sun, 27 Dec 2020 18:44:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726305AbgL0Rmy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Dec 2020 12:42:54 -0500
-Received: from www.zeus03.de ([194.117.254.33]:46736 "EHLO mail.zeus03.de"
+        id S1726246AbgL0RnQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Dec 2020 12:43:16 -0500
+Received: from www.zeus03.de ([194.117.254.33]:46958 "EHLO mail.zeus03.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726208AbgL0Rmx (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 27 Dec 2020 12:42:53 -0500
+        id S1726336AbgL0RnQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 27 Dec 2020 12:43:16 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=simple; d=sang-engineering.com; h=
         from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=k1; bh=bTxj01yyHGlKGI
-        pnBSuC9wuFrkSh8yqin9kLTHv75GA=; b=IykiVQFI7E/NFoyKOZgYyW5lTACL+L
-        Cb+KTs3nA8VqY2wrH6J7cqi7BOuvUQEG1QKBM2+MZoWGwryfKjqEc0Mj75BoZE0f
-        ZqklRnA+dxZuaFEtNqXLo4Nba0d+JbLs2KJKYzH2sDz/46CEyBPC8lOSIHCasz1S
-        GCeQ8QH2S3XhU=
-Received: (qmail 1556996 invoked from network); 27 Dec 2020 18:42:10 +0100
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 27 Dec 2020 18:42:10 +0100
-X-UD-Smtp-Session: l3s3148p1@1l1RrXW3UJ5UhsuJ
+        :mime-version:content-transfer-encoding; s=k1; bh=2Dhy5zPo9lBjN3
+        eqY3HnEvfo/6Vkx/DX480dSimr12E=; b=ibEetUp+GkaETZjy8F0X69794nSy+z
+        y9VGgdnNScTYFq+dYXCsiIqPEsiy06Gzs95Gp4hSTOA6Jfa3Tan7PNDhTqf6UjRJ
+        biBAA82G89vLs3S1EhZk41u8Jj8i81GqBr0tOIm7e5RFqZzB2F+gpvGWLQlp5Rw9
+        nC2Rp80+zFC1I=
+Received: (qmail 1557148 invoked from network); 27 Dec 2020 18:42:16 +0100
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 27 Dec 2020 18:42:16 +0100
+X-UD-Smtp-Session: l3s3148p1@ZPSgrXW3WJ5UhsuJ
 From:   Wolfram Sang <wsa+renesas@sang-engineering.com>
 To:     linux-renesas-soc@vger.kernel.org
-Cc:     Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 1/6] dt-bindings: mmc: renesas,sdhi: Add r8a779a0 support
-Date:   Sun, 27 Dec 2020 18:41:55 +0100
-Message-Id: <20201227174202.40834-2-wsa+renesas@sang-engineering.com>
+Cc:     Takeshi Saito <takeshi.saito.xv@renesas.com>,
+        Koji Matsuoka <koji.matsuoka.xm@renesas.com>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 5/6] arm64: dts: renesas: r8a779a0: Add MMC node
+Date:   Sun, 27 Dec 2020 18:41:59 +0100
+Message-Id: <20201227174202.40834-6-wsa+renesas@sang-engineering.com>
 X-Mailer: git-send-email 2.28.0
 In-Reply-To: <20201227174202.40834-1-wsa+renesas@sang-engineering.com>
 References: <20201227174202.40834-1-wsa+renesas@sang-engineering.com>
@@ -39,23 +42,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Takeshi Saito <takeshi.saito.xv@renesas.com>
+
+Add a device node for MMC.
+
+Signed-off-by: Koji Matsuoka <koji.matsuoka.xm@renesas.com>
+[wsa: double checked & rebased]
 Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 ---
- Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml | 1 +
- 1 file changed, 1 insertion(+)
+ arch/arm64/boot/dts/renesas/r8a779a0.dtsi | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml b/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
-index 6bbf29b5c239..5908a717d2e8 100644
---- a/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
-+++ b/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
-@@ -59,6 +59,7 @@ properties:
-               - renesas,sdhi-r8a77980 # R-Car V3H
-               - renesas,sdhi-r8a77990 # R-Car E3
-               - renesas,sdhi-r8a77995 # R-Car D3
-+              - renesas,sdhi-r8a779a0 # R-Car V3U
-           - const: renesas,rcar-gen3-sdhi # R-Car Gen3 or RZ/G2
+diff --git a/arch/arm64/boot/dts/renesas/r8a779a0.dtsi b/arch/arm64/boot/dts/renesas/r8a779a0.dtsi
+index 324deeed9078..68aaa49c3540 100644
+--- a/arch/arm64/boot/dts/renesas/r8a779a0.dtsi
++++ b/arch/arm64/boot/dts/renesas/r8a779a0.dtsi
+@@ -667,6 +667,18 @@ dmac1: dma-controller@e7350000 {
+ 			/* placeholder */
+ 		};
  
-   reg:
++		mmc0: mmc@ee140000 {
++			compatible = "renesas,sdhi-r8a779a0",
++				     "renesas,rcar-gen3-sdhi";
++			reg = <0 0xee140000 0 0x2000>;
++			interrupts = <GIC_SPI 236 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&cpg CPG_MOD 706>;
++			power-domains = <&sysc R8A779A0_PD_ALWAYS_ON>;
++			resets = <&cpg 706>;
++			max-frequency = <200000000>;
++			status = "disabled";
++		};
++
+ 		gic: interrupt-controller@f1000000 {
+ 			compatible = "arm,gic-v3";
+ 			#interrupt-cells = <3>;
 -- 
 2.28.0
 
