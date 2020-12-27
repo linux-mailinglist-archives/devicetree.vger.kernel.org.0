@@ -2,121 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D76892E3203
-	for <lists+devicetree@lfdr.de>; Sun, 27 Dec 2020 17:59:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 449562E3216
+	for <lists+devicetree@lfdr.de>; Sun, 27 Dec 2020 18:22:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726345AbgL0Q53 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Dec 2020 11:57:29 -0500
-Received: from mail-oi1-f169.google.com ([209.85.167.169]:40105 "EHLO
-        mail-oi1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726032AbgL0Q52 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Dec 2020 11:57:28 -0500
-Received: by mail-oi1-f169.google.com with SMTP id p5so9356810oif.7;
-        Sun, 27 Dec 2020 08:57:11 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=P+vRRbEsBGMtfHb2YPyzhH2TM3JXQOiejaDyhz0MAuo=;
-        b=lT/YvWzZ/pjr8r2CCUO+IZ727p4plnJ+6Xz9s5BrLI4ag0kq5dT7Gaag4kE/0oEStg
-         enEBbAZAsBAFc6YgEAm4BPlvOjTfX8imVaJeJ+s0SK8MegAymBYHooMmjukT2iNZ0/Q7
-         p6pWmIa18FiGx143XpmlCdmDQnwzEzCB1YTqiuw0/06OoyYvIX+wkxkJhPnLaQM9MnD/
-         PNJSRLhn68m/rTbg1+D/BK5sUQ2Y6rmj1YfcH42bB5QyR2jLweKonzZ1ejJjr1QRM8Oi
-         mikHzWRVP9WD962DIRD1uMsZtxheICPWhOUkfF3OE7pd4CUAnTNq5xHrvvbWNQnEjioE
-         mMlA==
-X-Gm-Message-State: AOAM53246QEfUzqjVkMbaJZhy4BfgdG56wahgQGJa5zCwbcSvmgZwFMl
-        8WvjHD/lfZgtPAqCeVR+og==
-X-Google-Smtp-Source: ABdhPJzW1c26xvUVDm7CZCgmj5L6+PANwuEYyBV3fdt9AjzjORt3FpfN1FrDDtonsBc5KFVQKV9NgA==
-X-Received: by 2002:aca:4b16:: with SMTP id y22mr9912227oia.148.1609088206248;
-        Sun, 27 Dec 2020 08:56:46 -0800 (PST)
-Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id u3sm8682359otk.31.2020.12.27.08.56.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 27 Dec 2020 08:56:45 -0800 (PST)
-Received: (nullmailer pid 1338174 invoked by uid 1000);
-        Sun, 27 Dec 2020 16:56:21 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Xin Ji <xji@analogixsemi.com>
-Cc:     Hsin-Yi Wang <hsinyi@chromium.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>, devicetree@vger.kernel.org,
-        Nicolas Boichat <drinkcat@google.com>,
-        Mark Brown <broonie@kernel.org>,
-        Sheng Pan <span@analogixsemi.com>,
-        linux-kernel@vger.kernel.org,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        =?utf-8?q?Ricardo_Ca=C3=B1uelo?= <ricardo.canuelo@collabora.com>
-In-Reply-To: <c29b7d9fda9ce8619d1c718b077250998a8600b8.1608883950.git.xji@analogixsemi.com>
-References: <cover.1608883950.git.xji@analogixsemi.com> <c29b7d9fda9ce8619d1c718b077250998a8600b8.1608883950.git.xji@analogixsemi.com>
-Subject: Re: [PATCH v1 1/2] dt-bindings: drm/bridge: anx7625: add DPI flag and swing setting
-Date:   Sun, 27 Dec 2020 09:56:21 -0700
-Message-Id: <1609088181.493422.1338173.nullmailer@robh.at.kernel.org>
+        id S1726282AbgL0RWK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Dec 2020 12:22:10 -0500
+Received: from mo4-p00-ob.smtp.rzone.de ([85.215.255.20]:23216 "EHLO
+        mo4-p00-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726087AbgL0RWK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Dec 2020 12:22:10 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1609089496;
+        s=strato-dkim-0002; d=dawncrow.de;
+        h=Message-Id:Date:Subject:Cc:To:From:From:Subject:Sender;
+        bh=AYP9y6KOydXsdhMgYt+y5hc/J9s2ujIb0ELIsjHwReo=;
+        b=B1N4mQyoCQbOtoM4HqloJUM5h5+BJxXJeAKC1SAYeUqU+c5ZdJti9siJ+9jUbuL0lo
+        bxb8lbK1YebPJKSrbdWv4Ae1Hu+tFEsXHmooBLKP9kv5GMpXeScAt3m5DrZHGUl375QB
+        nkylqoPaqLIpfHuxLBCnPQybZengRNCHE0uxXTAhaH1FQGd1fshqt50J7m851OZseUJe
+        LJ8m0nQalCYh6BvxsDf4XPfyLWFiRes6ZfPABoMZifPrQM9fmcgElLf8j6bundhbudth
+        cYu1edndPwMzwD6Chdlt/b8m3qEsSC23QTC1YPxea0KkeBPDFBK/BzLnpu2qlTmaW2ge
+        giKQ==
+X-RZG-AUTH: ":ImkWY2CseuihIZy6ZWWciR6unPhpN+aXzZGGjY6ptdusOaLnXzn3ovD/FrJVNw=="
+X-RZG-CLASS-ID: mo00
+Received: from tesla.fritz.box
+        by smtp.strato.de (RZmta 47.10.7 DYNA|AUTH)
+        with ESMTPSA id L0b32cwBRHEA68j
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+        Sun, 27 Dec 2020 18:14:10 +0100 (CET)
+From:   =?UTF-8?q?Andr=C3=A9=20Hentschel?= <nerv@dawncrow.de>
+To:     robh+dt@kernel.org, bcousson@baylibre.com, tony@atomide.com,
+        linux-omap@vger.kernel.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] ARM: dts: omap3-echo: Add speaker sound card support
+Date:   Sun, 27 Dec 2020 18:13:53 +0100
+Message-Id: <20201227171353.2002674-1-nerv@dawncrow.de>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 25 Dec 2020 19:01:09 +0800, Xin Ji wrote:
-> Add DPI flag for distinguish MIPI input signal type, DSI or DPI. Add
-> swing setting for adjusting DP tx PHY swing
-> 
-> Signed-off-by: Xin Ji <xji@analogixsemi.com>
-> ---
->  .../bindings/display/bridge/analogix,anx7625.yaml     | 19 +++++++++++++++++++
->  1 file changed, 19 insertions(+)
-> 
+This adds audio playback to the first generation Amazon Echo
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Signed-off-by: André Hentschel <nerv@dawncrow.de>
+---
 
-yamllint warnings/errors:
+It took me by far too long to get this working as the codec sets one important bit based on the
+combination of provided supplies. That was just too hidden for me.
+The first generation Amazon Echo was codenamed Misto, so I used that for the sound card name.
 
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.example.dt.yaml: encoder@58: anx,swing-setting: 'anyOf' conditional failed, one must be fixed:
-	[[0, 20], [1, 84], [2, 100], [3, 116], [4, 41], [5, 123], [6, 119], [7, 91], [8, 127], [12, 32], [13, 96], [16, 96], [18, 64], [19, 96], [20, 20], [21, 84], [22, 100], [23, 116], [24, 41], [25, 123], [26, 119], [27, 91], [28, 127], [32, 32], [33, 96], [36, 96], [38, 64], [39, 96]] is too long
-	[0, 20] is too long
-	[1, 84] is too long
-	[2, 100] is too long
-	[3, 116] is too long
-	[4, 41] is too long
-	[5, 123] is too long
-	[6, 119] is too long
-	[7, 91] is too long
-	[8, 127] is too long
-	[12, 32] is too long
-	[13, 96] is too long
-	[16, 96] is too long
-	[18, 64] is too long
-	[19, 96] is too long
-	[20, 20] is too long
-	[21, 84] is too long
-	[22, 100] is too long
-	[23, 116] is too long
-	[24, 41] is too long
-	[25, 123] is too long
-	[26, 119] is too long
-	[27, 91] is too long
-	[28, 127] is too long
-	[32, 32] is too long
-	[33, 96] is too long
-	[36, 96] is too long
-	[38, 64] is too long
-	[39, 96] is too long
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.example.dt.yaml: encoder@58: 'anx,mipi-dpi-in', 'anx,swing-setting' do not match any of the regexes: '^#.*', '^(at25|bm|devbus|dmacap|dsa|exynos|fsi[ab]|gpio-fan|gpio-key|gpio|gpmc|hdmi|i2c-gpio),.*', '^(keypad|m25p|max8952|max8997|max8998|mpmc),.*', '^(pinctrl-single|#pinctrl-single|PowerPC),.*', '^(pl022|pxa-mmc|rcar_sound|rotary-encoder|s5m8767|sdhci),.*', '^(simple-audio-card|st-plgpio|st-spics|ts),.*', '^70mai,.*', '^GEFanuc,.*', '^ORCL,.*', '^SUNW,.*', '^[a-zA-Z0-9#_][a-zA-Z0-9+\\-._@]{0,63}$', '^[a-zA-Z0-9+\\-._]*@[0-9a-zA-Z,]*$', '^abb,.*', '^abilis,.*', '^abracon,.*', '^abt,.*', '^acer,.*', '^acme,.*', '^actions,.*', '^active-semi,.*', '^ad,.*', '^adafruit,.*', '^adapteva,.*', '^adaptrum,.*', '^adh,.*', '^adi,.*', '^advantech,.*', '^aeroflexgaisler,.*', '^al,.*', '^allegro,.*', '^allo,.*', '^allwinner,.*', '^alphascale,.*', '^alps,.*', '^alt,.*', '^altr,.*', '^amarula,.*', '^amazon,.*', '^amcc,.*', '^amd,.*', '^amediatech,.*', '^amlogic,.*', '^ampere,.*', '^ampire,.*', '^ams,.*', '^amstaos,.*', '^analogix,.*', '^andestech,.*', '^anvo,.*', '^apm,.*', '^aptina,.*', '^arasan,.*', '^archermind,.*', '^arctic,.*', '^arcx,.*', '^aries,.*', '^arm,.*', '^armadeus,.*', '^arrow,.*', '^artesyn,.*', '^asahi-kasei,.*', '^asc,.*', '^aspeed,.*', '^asus,.*', '^atlas,.*', '^atmel,.*', '^auo,.*', '^auvidea,.*', '^avago,.*', '^avia,.*', '^avic,.*', '^avnet,.*', '^awinic,.*', '^axentia,.*', '^axis,.*', '^azoteq,.*', '^azw,.*', '^baikal,.*', '^bananapi,.*', '^beacon,.*', '^beagle,.*', '^bhf,.*', '^bitmain,.*', '^boe,.*', '^bosch,.*', '^boundary,.*', '^brcm,.*', '^broadmobi,.*', '^bticino,.*', '^buffalo,.*', '^bur,.*', '^calaosystems,.*', '^calxeda,.*', '^caninos,.*', '^capella,.*', '^cascoda,.*', '^catalyst,.*', '^cavium,.*', '^cdns,.*', '^cdtech,.*', '^cellwise,.*', '^ceva,.*', '^checkpoint,.*', '^chefree,.*', '^chipidea,.*', '^chipone,.*', '^chipspark,.*', '^chrontel,.*', '^chrp,.*', '^chunghwa,.*', '^chuwi,.*', '^ciaa,.*', '^cirrus,.*', '^cloudengines,.*', '^cnm,.*', '^cnxt,.*', '^colorfly,.*', '^compulab,.*', '^coreriver,.*', '^corpro,.*', '^cortina,.*', '^cosmic,.*', '^crane,.*', '^creative,.*', '^crystalfontz,.*', '^csky,.*', '^csq,.*', '^cubietech,.*', '^cypress,.*', '^cznic,.*', '^dallas,.*', '^dataimage,.*', '^davicom,.*', '^dell,.*', '^delta,.*', '^denx,.*', '^devantech,.*', '^dfi,.*', '^dh,.*', '^difrnce,.*', '^digi,.*', '^digilent,.*', '^dioo,.*', '^dlc,.*', '^dlg,.*', '^dlink,.*', '^dmo,.*', '^domintech,.*', '^dongwoon,.*', '^dptechnics,.*', '^dragino,.*', '^dserve,.*', '^dynaimage,.*', '^ea,.*', '^ebs-systart,.*', '^ebv,.*', '^eckelmann,.*', '^edt,.*', '^eeti,.*', '^einfochips,.*', '^elan,.*', '^element14,.*', '^elgin,.*', '^elida,.*', '^elimo,.*', '^embest,.*', '^emlid,.*', '^emmicro,.*', '^empire-electronix,.*', '^emtrion,.*', '^endless,.*', '^ene,.*', '^energymicro,.*', '^engicam,.*', '^epcos,.*', '^epfl,.*', '^epson,.*', '^esp,.*', '^est,.*', '^ettus,.*', '^eukrea,.*', '^everest,.*', '^everspin,.*', '^evervision,.*', '^exar,.*', '^excito,.*', '^ezchip,.*', '^facebook,.*', '^fairphone,.*', '^faraday,.*', '^fastrax,.*', '^fcs,.*', '^feixin,.*', '^feiyang,.*', '^fii,.*', '^firefly,.*', '^focaltech,.*', '^frida,.*', '^friendlyarm,.*', '^fsl,.*', '^fujitsu,.*', '^gardena,.*', '^gateworks,.*', '^gcw,.*', '^ge,.*', '^geekbuying,.*', '^gef,.*', '^gemei,.*', '^geniatech,.*', '^giantec,.*', '^giantplus,.*', '^globalscale,.*', '^globaltop,.*', '^gmt,.*', '^goodix,.*', '^google,.*', '^grinn,.*', '^grmn,.*', '^gumstix,.*', '^gw,.*', '^hannstar,.*', '^haoyu,.*', '^hardkernel,.*', '^hideep,.*', '^himax,.*', '^hirschmann,.*', '^hisilicon,.*', '^hit,.*', '^hitex,.*', '^holt,.*', '^holtek,.*', '^honestar,.*', '^honeywell,.*', '^hoperun,.*', '^hp,.*', '^hsg,.*', '^hugsun,.*', '^hwacom,.*', '^hydis,.*', '^hyundai,.*', '^i2se,.*', '^ibm,.*', '^icplus,.*', '^idt,.*', '^ifi,.*', '^ilitek,.*', '^img,.*', '^imi,.*', '^incircuit,.*', '^inet-tek,.*', '^infineon,.*', '^inforce,.*', '^ingenic,.*', '^innolux,.*', '^inside-secure,.*', '^inspur,.*', '^intel,.*', '^intercontrol,.*', '^invensense,.*', '^inversepath,.*', '^iom,.*', '^isee,.*', '^isil,.*', '^issi,.*', '^ite,.*', '^itead,.*', '^ivo,.*', '^iwave,.*', '^jdi,.*', '^jedec,.*', '^jesurun,.*', '^jianda,.*', '^kam,.*', '^karo,.*', '^keithkoep,.*', '^keymile,.*', '^khadas,.*', '^kiebackpeter,.*', '^kinetic,.*', '^kingdisplay,.*', '^kingnovel,.*', '^kionix,.*', '^kobo,.*', '^kobol,.*', '^koe,.*', '^kontron,.*', '^kosagi,.*', '^kyo,.*', '^lacie,.*', '^laird,.*', '^lamobo,.*', '^lantiq,.*', '^lattice,.*', '^leadtek,.*', '^leez,.*', '^lego,.*', '^lemaker,.*', '^lenovo,.*', '^lg,.*', '^lgphilips,.*', '^libretech,.*', '^licheepi,.*', '^linaro,.*', '^linksprite,.*', '^linksys,.*', '^linutronix,.*', '^linux,.*', '^linx,.*', '^litex,.*', '^lltc,.*', '^logicpd,.*', '^logictechno,.*', '^longcheer,.*', '^lontium,.*', '^loongson,.*', '^lsi,.*', '^lwn,.*', '^lxa,.*', '^macnica,.*', '^mantix,.*', '^mapleboard,.*', '^marvell,.*', '^maxbotix,.*', '^maxim,.*', '^mbvl,.*', '^mcube,.*', '^meas,.*', '^mecer,.*', '^mediatek,.*', '^megachips,.*', '^mele,.*', '^melexis,.*', '^melfas,.*', '^mellanox,.*', '^memsic,.*', '^menlo,.*', '^mentor,.*', '^meraki,.*', '^merrii,.*', '^micrel,.*', '^microchip,.*', '^microcrystal,.*', '^micron,.*', '^microsoft,.*', '^microsys,.*', '^mikroe,.*', '^mikrotik,.*', '^miniand,.*', '^minix,.*', '^miramems,.*', '^mitsubishi,.*', '^modtronix,.*', '^mosaixtech,.*', '^motorola,.*', '^moxa,.*', '^mpl,.*', '^mps,.*', '^mqmaker,.*', '^mrvl,.*', '^mscc,.*', '^msi,.*', '^mstar,.*', '^mti,.*', '^multi-inno,.*', '^mundoreader,.*', '^murata,.*', '^mxicy,.*', '^myir,.*', '^national,.*', '^nec,.*', '^neonode,.*', '^netgear,.*', '^netlogic,.*', '^netron-dy,.*', '^netxeon,.*', '^neweast,.*', '^newhaven,.*', '^nexbox,.*', '^nextthing,.*', '^ni,.*', '^nintendo,.*', '^nlt,.*', '^nokia,.*', '^nordic,.*', '^novtech,.*', '^nutsboard,.*', '^nuvoton,.*', '^nvd,.*', '^nvidia,.*', '^nxp,.*', '^oceanic,.*', '^oct,.*', '^okaya,.*', '^oki,.*', '^olimex,.*', '^olpc,.*', '^onion,.*', '^onnn,.*', '^ontat,.*', '^opalkelly,.*', '^opencores,.*', '^openrisc,.*', '^option,.*', '^oranth,.*', '^orisetech,.*', '^ortustech,.*', '^osddisplays,.*', '^ouya,.*', '^overkiz,.*', '^ovti,.*', '^oxsemi,.*', '^ozzmaker,.*', '^panasonic,.*', '^parade,.*', '^parallax,.*', '^pda,.*', '^pericom,.*', '^pervasive,.*', '^phicomm,.*', '^phytec,.*', '^picochip,.*', '^pine64,.*', '^pineriver,.*', '^pixcir,.*', '^plantower,.*', '^plathome,.*', '^plda,.*', '^plx,.*', '^pni,.*', '^pocketbook,.*', '^polaroid,.*', '^portwell,.*', '^poslab,.*', '^pov,.*', '^powertip,.*', '^powervr,.*', '^primux,.*', '^probox2,.*', '^prt,.*', '^pulsedlight,.*', '^purism,.*', '^qca,.*', '^qcom,.*', '^qemu,.*', '^qi,.*', '^qiaodian,.*', '^qihua,.*', '^qnap,.*', '^radxa,.*', '^raidsonic,.*', '^ralink,.*', '^ramtron,.*', '^raspberrypi,.*', '^raydium,.*', '^rda,.*', '^realtek,.*', '^renesas,.*', '^rervision,.*', '^revotics,.*', '^rex,.*', '^richtek,.*', '^ricoh,.*', '^rikomagic,.*', '^riot,.*', '^riscv,.*', '^rockchip,.*', '^rocktech,.*', '^rohm,.*', '^ronbo,.*', '^roofull,.*', '^roseapplepi,.*', '^samsung,.*', '^samtec,.*', '^sancloud,.*', '^sandisk,.*', '^satoz,.*', '^sbs,.*', '^schindler,.*', '^seagate,.*', '^seeed,.*', '^seirobotics,.*', '^semtech,.*', '^sensirion,.*', '^sensortek,.*', '^sff,.*', '^sgd,.*', '^sgmicro,.*', '^sgx,.*', '^sharp,.*', '^shimafuji,.*', '^shiratech,.*', '^si-en,.*', '^si-linux,.*', '^sifive,.*', '^sigma,.*', '^sii,.*', '^sil,.*', '^silabs,.*', '^silead,.*', '^silergy,.*', '^silex-insight,.*', '^siliconmitus,.*', '^simtek,.*', '^sinlinx,.*', '^sinovoip,.*', '^sipeed,.*', '^sirf,.*', '^sis,.*', '^sitronix,.*', '^skyworks,.*', '^smartlabs,.*', '^smsc,.*', '^snps,.*', '^sochip,.*', '^socionext,.*', '^solidrun,.*', '^solomon,.*', '^sony,.*', '^spansion,.*', '^sprd,.*', '^sst,.*', '^sstar,.*', '^st,.*', '^st-ericsson,.*', '^starry,.*', '^startek,.*', '^ste,.*', '^stericsson,.*', '^summit,.*', '^sunchip,.*', '^swir,.*', '^syna,.*', '^synology,.*', '^tbs,.*', '^tbs-biometrics,.*', '^tcg,.*', '^tcl,.*', '^tdo,.*', '^technexion,.*', '^technologic,.*', '^techstar,.*', '^tempo,.*', '^terasic,.*', '^tfc,.*', '^thine,.*', '^thingyjp,.*', '^ti,.*', '^tianma,.*', '^tlm,.*', '^tmt,.*', '^topeet,.*', '^toppoly,.*', '^topwise,.*', '^toradex,.*', '^toshiba,.*', '^toumaz,.*', '^tpk,.*', '^tplink,.*', '^tpo,.*', '^tq,.*', '^tronfy,.*', '^tronsmart,.*', '^truly,.*', '^tsd,.*', '^tyan,.*', '^u-blox,.*', '^u-boot,.*', '^ubnt,.*', '^ucrobotics,.*', '^udoo,.*', '^ugoos,.*', '^uniwest,.*', '^upisemi,.*', '^urt,.*', '^usi,.*', '^utoo,.*', '^v3,.*', '^vaisala,.*', '^vamrs,.*', '^variscite,.*', '^vdl,.*', '^via,.*', '^videostrong,.*', '^virtio,.*', '^virtual,.*', '^vishay,.*', '^visionox,.*', '^vitesse,.*', '^vivante,.*', '^vocore,.*', '^voipac,.*', '^vot,.*', '^vxt,.*', '^wand,.*', '^waveshare,.*', '^wd,.*', '^we,.*', '^wetek,.*', '^wexler,.*', '^whwave,.*', '^wi2wi,.*', '^winbond,.*', '^winstar,.*', '^wits,.*', '^wlf,.*', '^wm,.*', '^wobo,.*', '^x-powers,.*', '^xes,.*', '^xiaomi,.*', '^xillybus,.*', '^xingbangda,.*', '^xinpeng,.*', '^xiphera,.*', '^xlnx,.*', '^xnano,.*', '^xunlong,.*', '^xylon,.*', '^yes-optoelectronics,.*', '^ylm,.*', '^yna,.*', '^yones-toptech,.*', '^ysoft,.*', '^zarlink,.*', '^zealz,.*', '^zeitec,.*', '^zidoo,.*', '^zii,.*', '^zinitix,.*', '^zkmagic,.*', '^zte,.*', '^zyxel,.*'
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/vendor-prefixes.yaml
+ arch/arm/boot/dts/omap3-echo.dts | 67 ++++++++++++++++++++++++++++++++
+ 1 file changed, 67 insertions(+)
 
-See https://patchwork.ozlabs.org/patch/1420616
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
+diff --git a/arch/arm/boot/dts/omap3-echo.dts b/arch/arm/boot/dts/omap3-echo.dts
+index 93ffeddada1e..b9fd113979f2 100644
+--- a/arch/arm/boot/dts/omap3-echo.dts
++++ b/arch/arm/boot/dts/omap3-echo.dts
+@@ -86,6 +86,38 @@ &gpio3 12 GPIO_ACTIVE_HIGH /* GPIO_76 */
+ 		linux,axis = <REL_X>;
+ 		rotary-encoder,relative-axis;
+ 	};
++
++	speaker_amp: speaker-amplifier {
++		compatible = "simple-audio-amplifier";
++		enable-gpios = <&gpio5 1 GPIO_ACTIVE_HIGH>;	/* gpio_129 */
++		sound-name-prefix = "Speaker Amp";
++		VCC-supply = <&vcc1v8>;
++	};
++
++	sound {
++		compatible = "simple-audio-card";
++		simple-audio-card,name = "Misto Speaker";
++		simple-audio-card,widgets =
++			"Speaker", "Speaker";
++		simple-audio-card,routing =
++			"Speaker Amp INL", "HPL",
++			"Speaker Amp INR", "HPR",
++			"Speaker", "Speaker Amp OUTL",
++			"Speaker", "Speaker Amp OUTR";
++		simple-audio-card,format = "i2s";
++		simple-audio-card,bitclock-master = <&sound_master>;
++		simple-audio-card,frame-master = <&sound_master>;
++		simple-audio-card,aux-devs = <&speaker_amp>;
++
++		simple-audio-card,cpu {
++			sound-dai = <&mcbsp2>;
++		};
++
++		sound_master: simple-audio-card,codec {
++			sound-dai = <&codec0>;
++			system-clock-frequency = <19200000>;
++		};
++	};
+ };
+ 
+ &i2c1 {
+@@ -96,6 +128,13 @@ tps: tps@2d {
+ 	};
+ };
+ 
++&mcbsp2 {
++	status = "okay";
++	#sound-dai-cells = <0>;
++	pinctrl-names = "default";
++	pinctrl-0 = <&mcbsp2_pins>;
++};
++
+ &i2c2 {
+ 	clock-frequency = <400000>;
+ 
+@@ -277,6 +316,22 @@ chan8 {
+ 	};
+ };
+ 
++&i2c3 {
++	clock-frequency = <400000>;
++
++	codec0: codec@18 {
++		#sound-dai-cells = <0>;
++		compatible = "ti,tlv320aic32x4";
++		reg = <0x18>;
++		clocks = <&sys_clkout1>;
++		clock-names = "mclk";
++		ldoin-supply = <&vcc1v8>;
++		iov-supply = <&vcc1v8>;
++		reset-gpios = <&gpio3 10 GPIO_ACTIVE_LOW>;	/* gpio_74 */
++	};
++};
++
++
+ #include "tps65910.dtsi"
+ 
+ &omap3_pmx_core {
+@@ -290,6 +345,9 @@ button_pins: pinmux_button_pins {
+ 		pinctrl-single,pins = <
+ 			OMAP3_CORE1_IOPAD(0x20dc, PIN_INPUT | MUX_MODE4)	/* dss_data0.gpio_70 */
+ 			OMAP3_CORE1_IOPAD(0x20e0, PIN_INPUT | MUX_MODE4)	/* dss_data2.gpio_72 */
++			OMAP3_CORE1_IOPAD(0x20e4, PIN_OUTPUT | MUX_MODE4)	/* dss_data4.gpio_74 */
++			OMAP3_CORE1_IOPAD(0x20fa, PIN_OUTPUT_PULLDOWN | MUX_MODE4)	/* dss_data15.gpio_85 */
++			OMAP3_CORE1_IOPAD(0x2a1a, PIN_OUTPUT | MUX_MODE0)	/* sys_clkout1.sys_clkout1 */
+ 		>;
+ 	};
+ 
+@@ -318,6 +376,15 @@ OMAP3_CORE1_IOPAD(0x2168, PIN_INPUT_PULLUP | MUX_MODE0)		/* sdmmc2_dat6.sdmmc2_d
+ 			OMAP3_CORE1_IOPAD(0x216a, PIN_INPUT_PULLUP | MUX_MODE0)		/* sdmmc2_dat7.sdmmc2_dat7 */
+ 		>;
+ 	};
++
++	mcbsp2_pins: pinmux_mcbsp2_pins {
++		pinctrl-single,pins = <
++			OMAP3_CORE1_IOPAD(0x213c, PIN_INPUT | MUX_MODE0)	/* mcbsp2_fsx.mcbsp2_fsx */
++			OMAP3_CORE1_IOPAD(0x213e, PIN_INPUT | MUX_MODE0)	/* mcbsp2_clkx.mcbsp2_clkx */
++			OMAP3_CORE1_IOPAD(0x2140, PIN_INPUT | MUX_MODE0)	/* mcbsp2_dr.mcbsp2.dr */
++			OMAP3_CORE1_IOPAD(0x2142, PIN_OUTPUT | MUX_MODE0)	/* mcbsp2_dx.mcbsp2_dx */
++		>;
++	};
+ };
+ 
+ &omap3_pmx_core2 {
+-- 
+2.25.1
 
