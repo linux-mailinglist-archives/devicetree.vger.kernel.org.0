@@ -2,83 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3BAAD2E31F8
+	by mail.lfdr.de (Postfix) with ESMTP id A8BF82E31F9
 	for <lists+devicetree@lfdr.de>; Sun, 27 Dec 2020 17:57:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726179AbgL0Q5H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Dec 2020 11:57:07 -0500
-Received: from mail-oi1-f175.google.com ([209.85.167.175]:36646 "EHLO
-        mail-oi1-f175.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726032AbgL0Q5G (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Dec 2020 11:57:06 -0500
-Received: by mail-oi1-f175.google.com with SMTP id 9so9379455oiq.3;
-        Sun, 27 Dec 2020 08:56:51 -0800 (PST)
+        id S1726121AbgL0Q5M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Dec 2020 11:57:12 -0500
+Received: from mail-ot1-f47.google.com ([209.85.210.47]:35109 "EHLO
+        mail-ot1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726032AbgL0Q5M (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Dec 2020 11:57:12 -0500
+Received: by mail-ot1-f47.google.com with SMTP id i6so7402728otr.2;
+        Sun, 27 Dec 2020 08:56:56 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=EOlAg2v9iu08C98UhOwCODLFZ1ENz3Eke06f2dm8E8Q=;
-        b=V9G/MNhR0GCv5YS8CBQJzxhszjVGf//dtuA/WEd39j8f+srC7DlhFqXxxbvNinnZUJ
-         UYhZcWHyvdLavPsq2Rz2+HCOUxWRhVR1cFlzyvSlZMIBsMkCWXVZcztnHK5EyvaAB7ur
-         8Y87/glYS3a6+cAFy8dL9QZYtdequQtQkOkqpX7IR+BhKBmWWeKNPSjtcgFJu0MpUg0k
-         1BmCK/dri1NnxBiWFGA33zz9oScbOfhzKjjU0EHgKZVsofs5mgu3dKIZJ4qjrua03lKP
-         gDDttksrUvHhh2yGNZ9EYOjj7UYc/l6wLvUtXT2i+IGQtSPZMRfuFIV8vbK9s+LFmrN9
-         hrCg==
-X-Gm-Message-State: AOAM5302atC1dfMtkvxp15iYQx3PI+I2UwK5TI5OxSiirSUw5u2swp7L
-        XJ6hVOh5UghU3lkWpxWdnw==
-X-Google-Smtp-Source: ABdhPJyckCpwAtFyTjFjt97XOEQbjKZxOtNJYxYJDg96ts7gNmBlDpmT7nLsm27Xs+98jptq7Q72uQ==
-X-Received: by 2002:aca:c1d6:: with SMTP id r205mr9858213oif.37.1609088185709;
-        Sun, 27 Dec 2020 08:56:25 -0800 (PST)
+        bh=zOHx7r8bUBdtp0nmUurNuEgdm3BgirvRBP8EZaKtUo8=;
+        b=qUSmAVR2brO5w8O5XkgiQTG5usAPiv9X4SL6T1d4gvOScwM0wYu2lcjuLmcYQJetLp
+         +jMOt29Hi0/DzSo9WKPlC8Y9b/bw9tB8tcxUVN8MS0qJhNtKNQPzBxBUzTxPK2Pbu3Sg
+         IIBNwTOLKxq4/+bC20vM1LqYni6zMA+fOq80LZGK6fGF4xDinXVqe+0YtbpW9d8dKj6S
+         qdL07qA+twhLS00of6YNad5EajyxRYX+JrVsrTVl3V/jamFH/SAFBnjf5qupTzkJlNAI
+         AC+quriOQVET+5MmekHugYfL4FU93U4NO8rJARuVGI8l3F1ZD89DU9qKXcelsybpb+nw
+         6LOQ==
+X-Gm-Message-State: AOAM532HXA1kSSLDbycmw8NGVxleLQpIc3WGi6TLNVY3c/ule+BLadP0
+        aWF1bY/rUjzFvI0xJjYYx2423kMbTQ==
+X-Google-Smtp-Source: ABdhPJzjfapIxx697lofhNlLTsEkycfgDUBiDloMLI4cPPgY1p1lUj/Z+HubGl8e9Xsc57xtzgW1hQ==
+X-Received: by 2002:a9d:27e9:: with SMTP id c96mr29709334otb.15.1609088191057;
+        Sun, 27 Dec 2020 08:56:31 -0800 (PST)
 Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id w5sm8209515oow.7.2020.12.27.08.56.22
+        by smtp.gmail.com with ESMTPSA id g92sm8621100otb.66.2020.12.27.08.56.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 27 Dec 2020 08:56:24 -0800 (PST)
-Received: (nullmailer pid 1338169 invoked by uid 1000);
+        Sun, 27 Dec 2020 08:56:30 -0800 (PST)
+Received: (nullmailer pid 1338172 invoked by uid 1000);
         Sun, 27 Dec 2020 16:56:21 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Roja Rani Yarubandi <rojay@codeaurora.org>
-Cc:     akashast@codeaurora.org, robh+dt@kernel.org,
-        bjorn.andersson@linaro.org, wsa@kernel.org, ulf.hansson@linaro.org,
-        parashar@codeaurora.org, dianders@chromium.org,
-        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
-        agross@kernel.org, linux-pm@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, saiprakash.ranjan@codeaurora.org,
-        mka@chromium.org, rnayak@codeaurora.org, swboyd@chromium.org,
-        devicetree@vger.kernel.org, msavaliy@qti.qualcomm.com
-In-Reply-To: <20201224111210.1214-2-rojay@codeaurora.org>
-References: <20201224111210.1214-1-rojay@codeaurora.org> <20201224111210.1214-2-rojay@codeaurora.org>
-Subject: Re: [PATCH 1/3] dt-bindings: power: Introduce 'assigned-performance-states' property
+To:     Nick Fan <Nick.Fan@mediatek.com>
+Cc:     linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        devicetree@vger.kernel.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        dri-devel@lists.freedesktop.org, srv_heupstream@mediatek.com,
+        David Airlie <airlied@linux.ie>,
+        Rob Herring <robh+dt@kernel.org>
+In-Reply-To: <20201224123119.26504-1-Nick.Fan@mediatek.com>
+References: <20201224123119.26504-1-Nick.Fan@mediatek.com>
+Subject: Re: [PATCH 1/2] dt-bindings: Convert Arm Mali Valhall GPU to DT schema
 Date:   Sun, 27 Dec 2020 09:56:21 -0700
-Message-Id: <1609088181.474070.1338168.nullmailer@robh.at.kernel.org>
+Message-Id: <1609088181.485721.1338171.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 24 Dec 2020 16:42:08 +0530, Roja Rani Yarubandi wrote:
-> While most devices within power-domains which support performance states,
-> scale the performance state dynamically, some devices might want to
-> set a static/default performance state while the device is active.
-> These devices typically would also run off a fixed clock and not support
-> dynamically scaling the device's performance, also known as DVFS
-> techniques.
+On Thu, 24 Dec 2020 20:31:18 +0800, Nick Fan wrote:
+> Convert the Arm Valhall GPU binding to DT schema format.
 > 
-> Add a property 'assigned-performance-states' which client devices can
-> use to set this default performance state on their power-domains.
+> Define a compatible string for the Mali Valhall GPU
+> for Mediatek's SoC platform.
 > 
-> Signed-off-by: Roja Rani Yarubandi <rojay@codeaurora.org>
+> Signed-off-by: Nick Fan <Nick.Fan@mediatek.com>
 > ---
->  .../bindings/power/power-domain.yaml          | 49 +++++++++++++++++++
->  1 file changed, 49 insertions(+)
+>  .../bindings/gpu/arm,mali-valhall.yaml        | 252 ++++++++++++++++++
+>  1 file changed, 252 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/gpu/arm,mali-valhall.yaml
 > 
 
 My bot found errors running 'make dt_binding_check' on your patch:
 
 yamllint warnings/errors:
-./Documentation/devicetree/bindings/power/power-domain.yaml:72:8: [warning] wrong indentation: expected 6 but found 7 (indentation)
 
 dtschema/dtc warnings/errors:
+./Documentation/devicetree/bindings/gpu/arm,mali-valhall.yaml: $id: relative path/filename doesn't match actual path or filename
+	expected: http://devicetree.org/schemas/gpu/arm,mali-valhall.yaml#
 
-See https://patchwork.ozlabs.org/patch/1420485
+See https://patchwork.ozlabs.org/patch/1420519
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
