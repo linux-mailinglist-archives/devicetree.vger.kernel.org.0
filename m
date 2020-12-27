@@ -2,166 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 449562E3216
-	for <lists+devicetree@lfdr.de>; Sun, 27 Dec 2020 18:22:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 609652E3247
+	for <lists+devicetree@lfdr.de>; Sun, 27 Dec 2020 18:44:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726282AbgL0RWK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Dec 2020 12:22:10 -0500
-Received: from mo4-p00-ob.smtp.rzone.de ([85.215.255.20]:23216 "EHLO
-        mo4-p00-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726087AbgL0RWK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Dec 2020 12:22:10 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1609089496;
-        s=strato-dkim-0002; d=dawncrow.de;
-        h=Message-Id:Date:Subject:Cc:To:From:From:Subject:Sender;
-        bh=AYP9y6KOydXsdhMgYt+y5hc/J9s2ujIb0ELIsjHwReo=;
-        b=B1N4mQyoCQbOtoM4HqloJUM5h5+BJxXJeAKC1SAYeUqU+c5ZdJti9siJ+9jUbuL0lo
-        bxb8lbK1YebPJKSrbdWv4Ae1Hu+tFEsXHmooBLKP9kv5GMpXeScAt3m5DrZHGUl375QB
-        nkylqoPaqLIpfHuxLBCnPQybZengRNCHE0uxXTAhaH1FQGd1fshqt50J7m851OZseUJe
-        LJ8m0nQalCYh6BvxsDf4XPfyLWFiRes6ZfPABoMZifPrQM9fmcgElLf8j6bundhbudth
-        cYu1edndPwMzwD6Chdlt/b8m3qEsSC23QTC1YPxea0KkeBPDFBK/BzLnpu2qlTmaW2ge
-        giKQ==
-X-RZG-AUTH: ":ImkWY2CseuihIZy6ZWWciR6unPhpN+aXzZGGjY6ptdusOaLnXzn3ovD/FrJVNw=="
-X-RZG-CLASS-ID: mo00
-Received: from tesla.fritz.box
-        by smtp.strato.de (RZmta 47.10.7 DYNA|AUTH)
-        with ESMTPSA id L0b32cwBRHEA68j
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-        Sun, 27 Dec 2020 18:14:10 +0100 (CET)
-From:   =?UTF-8?q?Andr=C3=A9=20Hentschel?= <nerv@dawncrow.de>
-To:     robh+dt@kernel.org, bcousson@baylibre.com, tony@atomide.com,
-        linux-omap@vger.kernel.org
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] ARM: dts: omap3-echo: Add speaker sound card support
-Date:   Sun, 27 Dec 2020 18:13:53 +0100
-Message-Id: <20201227171353.2002674-1-nerv@dawncrow.de>
-X-Mailer: git-send-email 2.25.1
+        id S1726253AbgL0Rmw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Dec 2020 12:42:52 -0500
+Received: from www.zeus03.de ([194.117.254.33]:46712 "EHLO mail.zeus03.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726188AbgL0Rmw (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 27 Dec 2020 12:42:52 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple; d=sang-engineering.com; h=
+        from:to:cc:subject:date:message-id:mime-version
+        :content-transfer-encoding; s=k1; bh=6nOEJgrHuMyJRiP7Y/GclKld1qO
+        GTPICoxsA54xoaw8=; b=UL6vbB0FBI08lotn/SH2oWNRTk2ySXkF4RIzDp2BlLE
+        I0Zw3zjRcZvB+5FZSm0bM/7TKC1e1xvyB+g8DKA4rp9xrEfpe4Kj++ruviHNrsFz
+        7mkFT0uHAr3ZJHAHPOcFPu4n3usVNzRqlHQn6JsFVC0qRxHAYxAD4xVjxQjWFC+8
+        =
+Received: (qmail 1556957 invoked from network); 27 Dec 2020 18:42:09 +0100
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 27 Dec 2020 18:42:09 +0100
+X-UD-Smtp-Session: l3s3148p1@7o74rHW3Tp5UhsuJ
+From:   Wolfram Sang <wsa+renesas@sang-engineering.com>
+To:     linux-renesas-soc@vger.kernel.org
+Cc:     Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org
+Subject: [PATCH 0/6] v3u: add SDHI/MMC support
+Date:   Sun, 27 Dec 2020 18:41:54 +0100
+Message-Id: <20201227174202.40834-1-wsa+renesas@sang-engineering.com>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds audio playback to the first generation Amazon Echo
+So, this series adds SDHI/MMC support to the Renesas R-Car V3U SoC.
+While SDHI is usually complicated, adding basic support to V3U was
+refreshingly uncomplicated :) The crux was this time in the CPG driver.
+In order to avoid code duplication, a CPG library was introduced, so we
+can share the SD clock handling between generic Gen3, V3U, and hopefully
+Gen4 later. The library turned out to be a quite nice solution for SDHI.
+I am quite happy with it. I think we could have a similar benefit for
+RPC, but we still need to see if this is enabled on V3U after all.
 
-Signed-off-by: André Hentschel <nerv@dawncrow.de>
----
+So much for now, looking forward to comments. The branch is here:
 
-It took me by far too long to get this working as the codec sets one important bit based on the
-combination of provided supplies. That was just too hidden for me.
-The first generation Amazon Echo was codenamed Misto, so I used that for the sound card name.
+git://git.kernel.org/pub/scm/linux/kernel/git/wsa/linux.git renesas/v3u/sdhi
 
- arch/arm/boot/dts/omap3-echo.dts | 67 ++++++++++++++++++++++++++++++++
- 1 file changed, 67 insertions(+)
+Happy hacking,
 
-diff --git a/arch/arm/boot/dts/omap3-echo.dts b/arch/arm/boot/dts/omap3-echo.dts
-index 93ffeddada1e..b9fd113979f2 100644
---- a/arch/arm/boot/dts/omap3-echo.dts
-+++ b/arch/arm/boot/dts/omap3-echo.dts
-@@ -86,6 +86,38 @@ &gpio3 12 GPIO_ACTIVE_HIGH /* GPIO_76 */
- 		linux,axis = <REL_X>;
- 		rotary-encoder,relative-axis;
- 	};
-+
-+	speaker_amp: speaker-amplifier {
-+		compatible = "simple-audio-amplifier";
-+		enable-gpios = <&gpio5 1 GPIO_ACTIVE_HIGH>;	/* gpio_129 */
-+		sound-name-prefix = "Speaker Amp";
-+		VCC-supply = <&vcc1v8>;
-+	};
-+
-+	sound {
-+		compatible = "simple-audio-card";
-+		simple-audio-card,name = "Misto Speaker";
-+		simple-audio-card,widgets =
-+			"Speaker", "Speaker";
-+		simple-audio-card,routing =
-+			"Speaker Amp INL", "HPL",
-+			"Speaker Amp INR", "HPR",
-+			"Speaker", "Speaker Amp OUTL",
-+			"Speaker", "Speaker Amp OUTR";
-+		simple-audio-card,format = "i2s";
-+		simple-audio-card,bitclock-master = <&sound_master>;
-+		simple-audio-card,frame-master = <&sound_master>;
-+		simple-audio-card,aux-devs = <&speaker_amp>;
-+
-+		simple-audio-card,cpu {
-+			sound-dai = <&mcbsp2>;
-+		};
-+
-+		sound_master: simple-audio-card,codec {
-+			sound-dai = <&codec0>;
-+			system-clock-frequency = <19200000>;
-+		};
-+	};
- };
- 
- &i2c1 {
-@@ -96,6 +128,13 @@ tps: tps@2d {
- 	};
- };
- 
-+&mcbsp2 {
-+	status = "okay";
-+	#sound-dai-cells = <0>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&mcbsp2_pins>;
-+};
-+
- &i2c2 {
- 	clock-frequency = <400000>;
- 
-@@ -277,6 +316,22 @@ chan8 {
- 	};
- };
- 
-+&i2c3 {
-+	clock-frequency = <400000>;
-+
-+	codec0: codec@18 {
-+		#sound-dai-cells = <0>;
-+		compatible = "ti,tlv320aic32x4";
-+		reg = <0x18>;
-+		clocks = <&sys_clkout1>;
-+		clock-names = "mclk";
-+		ldoin-supply = <&vcc1v8>;
-+		iov-supply = <&vcc1v8>;
-+		reset-gpios = <&gpio3 10 GPIO_ACTIVE_LOW>;	/* gpio_74 */
-+	};
-+};
-+
-+
- #include "tps65910.dtsi"
- 
- &omap3_pmx_core {
-@@ -290,6 +345,9 @@ button_pins: pinmux_button_pins {
- 		pinctrl-single,pins = <
- 			OMAP3_CORE1_IOPAD(0x20dc, PIN_INPUT | MUX_MODE4)	/* dss_data0.gpio_70 */
- 			OMAP3_CORE1_IOPAD(0x20e0, PIN_INPUT | MUX_MODE4)	/* dss_data2.gpio_72 */
-+			OMAP3_CORE1_IOPAD(0x20e4, PIN_OUTPUT | MUX_MODE4)	/* dss_data4.gpio_74 */
-+			OMAP3_CORE1_IOPAD(0x20fa, PIN_OUTPUT_PULLDOWN | MUX_MODE4)	/* dss_data15.gpio_85 */
-+			OMAP3_CORE1_IOPAD(0x2a1a, PIN_OUTPUT | MUX_MODE0)	/* sys_clkout1.sys_clkout1 */
- 		>;
- 	};
- 
-@@ -318,6 +376,15 @@ OMAP3_CORE1_IOPAD(0x2168, PIN_INPUT_PULLUP | MUX_MODE0)		/* sdmmc2_dat6.sdmmc2_d
- 			OMAP3_CORE1_IOPAD(0x216a, PIN_INPUT_PULLUP | MUX_MODE0)		/* sdmmc2_dat7.sdmmc2_dat7 */
- 		>;
- 	};
-+
-+	mcbsp2_pins: pinmux_mcbsp2_pins {
-+		pinctrl-single,pins = <
-+			OMAP3_CORE1_IOPAD(0x213c, PIN_INPUT | MUX_MODE0)	/* mcbsp2_fsx.mcbsp2_fsx */
-+			OMAP3_CORE1_IOPAD(0x213e, PIN_INPUT | MUX_MODE0)	/* mcbsp2_clkx.mcbsp2_clkx */
-+			OMAP3_CORE1_IOPAD(0x2140, PIN_INPUT | MUX_MODE0)	/* mcbsp2_dr.mcbsp2.dr */
-+			OMAP3_CORE1_IOPAD(0x2142, PIN_OUTPUT | MUX_MODE0)	/* mcbsp2_dx.mcbsp2_dx */
-+		>;
-+	};
- };
- 
- &omap3_pmx_core2 {
+   Wolfram
+
+Takeshi Saito (2):
+  arm64: dts: renesas: r8a779a0: Add MMC node
+  arm64: dts: renesas: falcon: Enable MMC
+
+Wolfram Sang (4):
+  dt-bindings: mmc: renesas,sdhi: Add r8a779a0 support
+  clk: renesas: rcar-gen3: remove cpg_quirks access when registering SD
+    clock
+  clk: renesas: rcar-gen3: factor out CPG library
+  clk: renesas: r8a779a0: add SDHI support
+
+ .../devicetree/bindings/mmc/renesas,sdhi.yaml |   1 +
+ .../boot/dts/renesas/r8a779a0-falcon.dts      |  41 +++
+ arch/arm64/boot/dts/renesas/r8a779a0.dtsi     |  12 +
+ drivers/clk/renesas/Kconfig                   |   5 +
+ drivers/clk/renesas/Makefile                  |   1 +
+ drivers/clk/renesas/r8a779a0-cpg-mssr.c       |  17 +-
+ drivers/clk/renesas/rcar-cpg-lib.c            | 270 ++++++++++++++++++
+ drivers/clk/renesas/rcar-cpg-lib.h            |  33 +++
+ drivers/clk/renesas/rcar-gen3-cpg.c           | 267 +----------------
+ 9 files changed, 387 insertions(+), 260 deletions(-)
+ create mode 100644 drivers/clk/renesas/rcar-cpg-lib.c
+ create mode 100644 drivers/clk/renesas/rcar-cpg-lib.h
+
 -- 
-2.25.1
+2.28.0
 
