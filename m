@@ -2,54 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C6282E4150
-	for <lists+devicetree@lfdr.de>; Mon, 28 Dec 2020 16:06:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BB4C32E40DD
+	for <lists+devicetree@lfdr.de>; Mon, 28 Dec 2020 15:59:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2438355AbgL1OLO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Dec 2020 09:11:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58502 "EHLO
+        id S2391486AbgL1O6r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Dec 2020 09:58:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59128 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2439200AbgL1OK7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Dec 2020 09:10:59 -0500
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0EBEC061799
-        for <devicetree@vger.kernel.org>; Mon, 28 Dec 2020 06:10:18 -0800 (PST)
-Received: by mail-lf1-x12b.google.com with SMTP id o17so24156433lfg.4
-        for <devicetree@vger.kernel.org>; Mon, 28 Dec 2020 06:10:18 -0800 (PST)
+        with ESMTP id S2440482AbgL1OOp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Dec 2020 09:14:45 -0500
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5600CC061795
+        for <devicetree@vger.kernel.org>; Mon, 28 Dec 2020 06:14:05 -0800 (PST)
+Received: by mail-lf1-x12e.google.com with SMTP id a12so24160641lfl.6
+        for <devicetree@vger.kernel.org>; Mon, 28 Dec 2020 06:14:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=brainfault-org.20150623.gappssmtp.com; s=20150623;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=eDrae5NlX7atsBnbOFDs+BsHNDAqH6cr7KQ2BZiRu9g=;
-        b=dqHY0sUVNmDOTf+aHtGeQqT+ubwl8V7kw7gIzNrTS/0Zd7s285xIvbrMgrA93eRMAB
-         /1GHwOroZP8yTdaDh+c/YPuYv6yF+l/23WK0pNPHosyN8/V+rJBncoRkWCiIxhDSuIOE
-         sZq2Rs5xOn4W34uvmQXhL/gWHkBMVsxzvVHwV/phaWnNqkCZpJ/HXcjktxusJCdKGsky
-         MtDEp8TBZdd1BbHpyknD+6LjUm9fdAaczpGPMbYX9r7PtCaL2c/KQxSld+s+AaIA6TbK
-         JuzxMFf5+a71DwaQ2MWRs6FU8ho1Af0S6leDecn3FSRMB+NMuO5RuzBRmU1/mndvj2W0
-         vjAw==
+        bh=NPeSW+R1SSfRx+04CRlDhpX7N3sgocK07oaNDyUcAtQ=;
+        b=ca8s8BXf1hhY+CYTlYaY7cbOnbBLNRpJziaNgNL0O1DmVav7uY5DZU2FrvBAul3FPK
+         qASLpWCCyZr9LhbzyJyL0w2jNgqhiCu7DzFiLXvv+70lS6bxurLywKj+A2S933Y09OIR
+         kntxzCfNY2NlsQpftT/btNwnwCnQWF9KIY9dbib2K5X3Ll0lHqxXETqnUCW/U+Fh93zo
+         il/p3u/GOX8kaoIqzEqV+5OycVEntz0Vc7SOeV0vXzya03eFYka/8dnE1D7k/Zgk8ZR9
+         g55hWD6PTSH11D9lCwPnoTp1QtW0Ks7lGV2ZF8eDa+m4YAOc/9tO9ABvEPrvio0PgqM5
+         G+0w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=eDrae5NlX7atsBnbOFDs+BsHNDAqH6cr7KQ2BZiRu9g=;
-        b=JZP8g4HlfOx79ANALd2upl/aMOQaKY6Xj0IJC4up4vM/+mjUacMtmHXRsIC3EdCr1g
-         HHP3FPQn10LAnPaCINLDUmXOzP+JdJIUxJuySUzfwicBEHCBrMwrFgg4F/DFXck6YNXO
-         tJRgUPywFKYfsOXgqTaDbHQ4jpZkaLkXqT0WWdwbMm8w8hd5aS88253X5tTKsgvHXU1A
-         TA/C56x/SC9M/duWhuU+JKmm3283oJ4/W5xhqbGvH5T1jtZZT2PIpsxgFzuTjAsd96Fx
-         Z/AXQLmr90Hr5ps8R0SWtwQRP6aZCCevDmYvCB4hR7FeTjaa8jNdM7SaN3NJYMxi5hZI
-         h1TQ==
-X-Gm-Message-State: AOAM5318GeRvIx1odB05KXQucX8hxVKQ+vNw9zrtkvr3ozVeXIiYJ5cU
-        3HemNIUkFVV5fl+kn3ykaEuCRArY30xUF3c9Ms7WLXZcip8P8zbl
-X-Google-Smtp-Source: ABdhPJxse0shOvUnwJroAasQ1isNMTLZzoRqEfI03iytFRHnoPYRsIhHIflw56KmNtLdTnzsGf7RkAiaClFzBR41C6M=
-X-Received: by 2002:a05:651c:202:: with SMTP id y2mr21426940ljn.162.1609164617377;
- Mon, 28 Dec 2020 06:10:17 -0800 (PST)
+        bh=NPeSW+R1SSfRx+04CRlDhpX7N3sgocK07oaNDyUcAtQ=;
+        b=o2ItaRFiMCPDb5FyktKYoVVfBwRHEj2kdPVVjKUiXEsgZu5IEcuUiXz4VfRSKyt2fF
+         N1v3vQimg8xfik34NIV6e91ZsqtPi2vq/8uo9QEDJUu6HiW1ozn843OhLEffii3pgV4b
+         CRyKjKAMh9t3J6AkMYfT1+S/M8HY+KGrpZTc5qiO8pbvtSH1RuV+gOHEHscwXvI3u3pu
+         DJzAW+OdYEhMDtlgHjVomyOQ09TCYG8cdP2NhbpRK4ywjaD501Uo4Xpru2nOqXKMnlph
+         QwS5ALRtswLQBa0/c15WFx6J2ghFGD4IU7BO7d5pFz+OOKY8iH0U1Rpo9IyahppETlTd
+         plpQ==
+X-Gm-Message-State: AOAM533m2+m5gfnFsNpQGdMIjeuFm3vA1BDLeCtVOnxiq6QR+8Y4cYuK
+        O1D/IPwRiGLACX8VX4dSHslrAgSilI5r+w3nJ7daDg/pYD8ddQ==
+X-Google-Smtp-Source: ABdhPJxkOkUZ2+WFCA9kUXkWVgnWKZbc6ENUsxa3iUZhVqA8izUArbjN5NvmwueKDr2OZFrqx7CqbYQQPKiwAhSOzRs=
+X-Received: by 2002:a05:651c:202:: with SMTP id y2mr21433617ljn.162.1609164843848;
+ Mon, 28 Dec 2020 06:14:03 -0800 (PST)
 MIME-Version: 1.0
 References: <20201226163037.43691-1-vitaly.wool@konsulko.com>
  <CAAhSdy1M5pMjYHNWdOicb3N3fjTfQLEgE8tFb74sqGbPE_9eyQ@mail.gmail.com> <CAM4kBBJ3Vbytx=dFK7+DMByV3zK=FVLATSwjyuuygkDK1MCQjA@mail.gmail.com>
 In-Reply-To: <CAM4kBBJ3Vbytx=dFK7+DMByV3zK=FVLATSwjyuuygkDK1MCQjA@mail.gmail.com>
 From:   Anup Patel <anup@brainfault.org>
-Date:   Mon, 28 Dec 2020 19:40:05 +0530
-Message-ID: <CAAhSdy0E8xspb3epBdrTmjg7vSQanG9zwyMY19eeDDL8z=WJFg@mail.gmail.com>
+Date:   Mon, 28 Dec 2020 19:43:52 +0530
+Message-ID: <CAAhSdy2CssmEJVP=+eXsNqRXbQgTSn=+1d6w1UcFOJTA3Zbcug@mail.gmail.com>
 Subject: Re: [PATCH] riscv: add BUILTIN_DTB support for MMU-enabled targets
 To:     Vitaly Wool <vitaly.wool@konsulko.com>
 Cc:     linux-riscv <linux-riscv@lists.infradead.org>,
@@ -118,10 +118,11 @@ On Mon, Dec 28, 2020 at 7:05 PM Vitaly Wool <vitaly.wool@konsulko.com> wrote:
 > the early mapping which will be gone by the time
 > unflatten_and_copy_device_tree() is called.
 
-That's why we are doing early_init_dt_verify() again for the MMU-enabled
-case which already takes care of your concern.
-
-We use early_init_dt_verify() like most architectures to set the initial DTB.
+The throw-away early DTB mapping in early_pg_dir is anyway
+redundant when we have built-in DTB so this patch needs to
+add an "#ifdef" around it for the MMU-enabled case. Also, please
+update dtb_early_va and dtb_early_pa separately for MMU-enabled
+case in the setup_vm()
 
 >
 > > The setup_vm() is supposed to setup dtb_early_va and dtb_early_pa
@@ -154,10 +155,9 @@ We use early_init_dt_verify() like most architectures to set the initial DTB.
 > Thanks for the pointer, however I don't think our patches have
 > intersections. Besides, Damien is dealing with the MMU-less case
 > there.
-
-Damien's patch is also trying to move to use generic BUILTIN_DTB
-support for the MMU-less case so it is similar work hence the chance
-of patch conflict.
+>
+> Best regards,
+>    Vitaly
 
 Regards,
 Anup
