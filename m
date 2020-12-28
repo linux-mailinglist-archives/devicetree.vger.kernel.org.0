@@ -2,261 +2,449 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C19F12E69E9
-	for <lists+devicetree@lfdr.de>; Mon, 28 Dec 2020 19:03:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C6CCB2E6A3F
+	for <lists+devicetree@lfdr.de>; Mon, 28 Dec 2020 20:05:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728717AbgL1SCv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Dec 2020 13:02:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39302 "EHLO
+        id S1728944AbgL1TDe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Dec 2020 14:03:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48596 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728683AbgL1SCu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Dec 2020 13:02:50 -0500
-Received: from mail-ot1-x32e.google.com (mail-ot1-x32e.google.com [IPv6:2607:f8b0:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C96DC0613D6
-        for <devicetree@vger.kernel.org>; Mon, 28 Dec 2020 10:02:10 -0800 (PST)
-Received: by mail-ot1-x32e.google.com with SMTP id 11so9791812oty.9
-        for <devicetree@vger.kernel.org>; Mon, 28 Dec 2020 10:02:10 -0800 (PST)
+        with ESMTP id S1728928AbgL1TDd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Dec 2020 14:03:33 -0500
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A672C061793
+        for <devicetree@vger.kernel.org>; Mon, 28 Dec 2020 11:02:53 -0800 (PST)
+Received: by mail-ej1-x62b.google.com with SMTP id jx16so15344768ejb.10
+        for <devicetree@vger.kernel.org>; Mon, 28 Dec 2020 11:02:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=QTWKfuMHgWiNYcFSAcl7Raaa7mAx/M1grIN4t0cDBBE=;
-        b=y14+PwCSzsjS7t4j/+cV1GsS7c4cxO5nDG1dAD2GI/liRaDEFlh2eZqtP06fyTV2kA
-         /7O2j9WjLuBJtR1k99e1FvlQXDuPMJtRvkJbZouvsaiBIAMqA0Hl8x1M5pJdUuTLQnSq
-         agJlJBxFKm/GUAeBS8lnpZijEMyvCzB2ie7H4mjKgf3nfoylRuUm0Y7xxlHAPHHjx08J
-         u8M8gdzwluoG8nBA0HMTkSTwy5/XuLxec/Agwtda206vP4K8mfH3DggLfE6lo/5QZQJ7
-         FV9I367GacVbTOV/BVElhWAhLFtvkH0Gma0REF2Og/j/I1Q3ojQSz/OhouazbfXBy1Z2
-         cF6w==
+        d=gateworks-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=/HzG3+Wrxlm1uvlpRJdQ/9SwGbL2ngQgBk55RSigqh8=;
+        b=ZhZY6jiqNdtWOt4+i9RckrGICCET3/MFEdKBQB4rj4dJBLmVtRLvMPbwkbdiKAiWA4
+         +HlUEh6OzjfDIDv/HlD2pjsfu2CvDD4U+otRA3fzdSlfB5J0YFUdZdE4Pk2fIhOe0yoG
+         ZLkHZMrieSA4punb/E6Tp1RGmKjtMU2Eu33ROlMLq/iKMQRghuOeVrNlhJ8pk5QR9Mo3
+         UyTWPP5BHB9VF3eIU0Up2oTOtSMa6g0GjVkswVgqsA0v/Zh66ET/QVZrI9jr6keMnM4B
+         I6ZT77Vh+CHqXjiAZZPq5G1fKNeCb2SOy1t4yr9lkFuiK9c9H7zIYsgwIRf4tmRLGJVL
+         aeZg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=QTWKfuMHgWiNYcFSAcl7Raaa7mAx/M1grIN4t0cDBBE=;
-        b=CZw4xMGKRQzncRyoMMM7n3KFo42yIF9DyP+yFi8CB11XSditO2LW7zDiCpNvGytOrT
-         6DfzcftmQwHRWL1HBHxD0SPJLdyEidfv0dkFqEKXApo6DCQB67LstOBvw1eyKRxbGtW/
-         7TDnkyTS3IuHjnBa5fHMAbu35DZl4TBZnyTFwXZSWypvaEu73DpW4RTjKuarC81YaiZw
-         m/JxNNFhFE1uFD19/imTcBO3eMi6PbM1/0O66yZKPRneKlYwzjPp7OgkFAfLw5rKPrEj
-         90ldrJagAH4HLcHMBFUM6w5GTRngUWCFr6xu0TEcw5NwRqF1E4Fl3YkxrSDPuYliTTQl
-         mi5Q==
-X-Gm-Message-State: AOAM532YcCBLY6inU4Aer7/pYjNfbKbQCa+e+8+zgyFLs+YkDZWdkcba
-        EhvnL/aW/WfmnX5S+iSm2e5+Wg==
-X-Google-Smtp-Source: ABdhPJzUeeIWJpSklgPsQFyVQdZuvVdBp3XowtQCQYo0tnlu7brIHbDm+Q8uwN0bUbIoCl4NHqbcPg==
-X-Received: by 2002:a05:6830:578:: with SMTP id f24mr31427492otc.7.1609178529282;
-        Mon, 28 Dec 2020 10:02:09 -0800 (PST)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id j10sm10023636otn.63.2020.12.28.10.02.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Dec 2020 10:02:08 -0800 (PST)
-Date:   Mon, 28 Dec 2020 12:02:06 -0600
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Danny Lin <danny@kdrag0n.dev>
-Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/3] arm64: dts: qcom: sm8150: Add PSCI idle states
-Message-ID: <X+odnnZYFW3qpubJ@builder.lan>
-References: <20201221002907.2870059-1-danny@kdrag0n.dev>
- <20201221002907.2870059-3-danny@kdrag0n.dev>
- <X+AbJvE7OGs3cRCw@ripper>
- <e7776f3c-a517-4cf3-9265-92dc0ac09c88@www.fastmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=/HzG3+Wrxlm1uvlpRJdQ/9SwGbL2ngQgBk55RSigqh8=;
+        b=lXkiiVsvVOjQfyJoYlnzDHtP+PcujVBjVocW53QtSIg8pjOzGpDP1noUIdjB1otWpW
+         kffADqauhjZCR5IuOLfErHpt1G1JESQoL0tujoUAO6l7YaV9OmSOm3EJfNUdCx/i6I+f
+         S92Bh3ayWpUBDwLd0qr+g28gW/KFZfEzfdH4+xvzRZqCAwsM14cpqB0JFPb4bbzt6RJG
+         An+dWUWuy+4jqOiZwSk1L3QLwWUl5ZzuZHxOlWEOhpxeU1/jtlPseOS4VF7FPWVJ2BP8
+         Cjt6gzwag5RvrNZLrTdNrvRQmizY5AETogOWLy78YK1KPTFZdNyEe3QOPSuvaYfE+fdY
+         Imtw==
+X-Gm-Message-State: AOAM533dKDWYLK5fE649GfU6oTykC4k5piPLYcxzJNxfS/ZYEQrWBQbN
+        Cc938pP/lQdVyQvNRiwnII3Z8XR+4NU7n5Vuwg81RFcIAEvz20s5
+X-Google-Smtp-Source: ABdhPJwKRRWujBfKrBmeWi/c/jUnxNm3v7/iJ/ToIvs/EiLA4NlFfJ3NeyT5n84Hi+BboVXOMX5fy3BaCZKrc9NLfWg=
+X-Received: by 2002:a17:906:720e:: with SMTP id m14mr41064601ejk.161.1609182171693;
+ Mon, 28 Dec 2020 11:02:51 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <e7776f3c-a517-4cf3-9265-92dc0ac09c88@www.fastmail.com>
+References: <1608762196-29871-1-git-send-email-tharvey@gateworks.com>
+ <1608762196-29871-2-git-send-email-tharvey@gateworks.com> <20201224113727.GB15628@kozik-lap>
+In-Reply-To: <20201224113727.GB15628@kozik-lap>
+From:   Tim Harvey <tharvey@gateworks.com>
+Date:   Mon, 28 Dec 2020 11:02:40 -0800
+Message-ID: <CAJ+vNU2NRWx74e94ToFJ+jKgrSveZeGVR8uTOJ+JAaWN3d=PXw@mail.gmail.com>
+Subject: Re: [PATCH 2/2] arm64: dts: imx8mm: Add Gateworks IMX8MM Development Kits
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Device Tree Mailing List <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue 22 Dec 20:00 CST 2020, Danny Lin wrote:
+On Thu, Dec 24, 2020 at 3:37 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>
 
-> On Sun, Dec 20, 2020 at 7:48 PM, Bjorn Andersson wrote:
-> > On Sun 20 Dec 16:29 PST 2020, Danny Lin wrote:
-> > 
-> > > Like other Qualcomm SoCs, sm8150 exposes CPU and cluster idle states
-> > > through PSCI. Define the idle states to save power when the CPU is not
-> > > in active use.
-> > > 
-> > > These idle states, latency, and residency values match the downstream
-> > > 4.14 kernel from Qualcomm as of LA.UM.8.1.r1-15600-sm8150.0.
-> > > 
-> > > It's worth noting that the CPU has an additional C3 power collapse idle
-> > > state between WFI and rail power collapse (with PSCI mode 0x40000003),
-> > > but it is not officially used in downstream kernels due to "thermal
-> > > throttling issues."
-> > > 
-> > 
-> > Thanks Danny for this series, very happy to see this kind of additions.
-> > Just one small question about the cluster param below.
-> > 
-> > > Signed-off-by: Danny Lin <danny@kdrag0n.dev>
-> > > ---
-> > >  arch/arm64/boot/dts/qcom/sm8150.dtsi | 50 ++++++++++++++++++++++++++++
-> > >  1 file changed, 50 insertions(+)
-> > > 
-> > > diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-> > > index 75ed38ee5d88..edc1fe6d7f1b 100644
-> > > --- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
-> > > +++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-> > > @@ -50,6 +50,8 @@ CPU0: cpu@0 {
-> > >  			compatible = "qcom,kryo485";
-> > >  			reg = <0x0 0x0>;
-> > >  			enable-method = "psci";
-> > > +			cpu-idle-states = <&LITTLE_CPU_SLEEP_0
-> > > +					   &CLUSTER_SLEEP_0>;
-> > >  			next-level-cache = <&L2_0>;
-> > >  			qcom,freq-domain = <&cpufreq_hw 0>;
-> > >  			#cooling-cells = <2>;
-> > > @@ -67,6 +69,8 @@ CPU1: cpu@100 {
-> > >  			compatible = "qcom,kryo485";
-> > >  			reg = <0x0 0x100>;
-> > >  			enable-method = "psci";
-> > > +			cpu-idle-states = <&LITTLE_CPU_SLEEP_0
-> > > +					   &CLUSTER_SLEEP_0>;
-> > >  			next-level-cache = <&L2_100>;
-> > >  			qcom,freq-domain = <&cpufreq_hw 0>;
-> > >  			#cooling-cells = <2>;
-> > > @@ -82,6 +86,8 @@ CPU2: cpu@200 {
-> > >  			compatible = "qcom,kryo485";
-> > >  			reg = <0x0 0x200>;
-> > >  			enable-method = "psci";
-> > > +			cpu-idle-states = <&LITTLE_CPU_SLEEP_0
-> > > +					   &CLUSTER_SLEEP_0>;
-> > >  			next-level-cache = <&L2_200>;
-> > >  			qcom,freq-domain = <&cpufreq_hw 0>;
-> > >  			#cooling-cells = <2>;
-> > > @@ -96,6 +102,8 @@ CPU3: cpu@300 {
-> > >  			compatible = "qcom,kryo485";
-> > >  			reg = <0x0 0x300>;
-> > >  			enable-method = "psci";
-> > > +			cpu-idle-states = <&LITTLE_CPU_SLEEP_0
-> > > +					   &CLUSTER_SLEEP_0>;
-> > >  			next-level-cache = <&L2_300>;
-> > >  			qcom,freq-domain = <&cpufreq_hw 0>;
-> > >  			#cooling-cells = <2>;
-> > > @@ -110,6 +118,8 @@ CPU4: cpu@400 {
-> > >  			compatible = "qcom,kryo485";
-> > >  			reg = <0x0 0x400>;
-> > >  			enable-method = "psci";
-> > > +			cpu-idle-states = <&BIG_CPU_SLEEP_0
-> > > +					   &CLUSTER_SLEEP_0>;
-> > >  			next-level-cache = <&L2_400>;
-> > >  			qcom,freq-domain = <&cpufreq_hw 1>;
-> > >  			#cooling-cells = <2>;
-> > > @@ -124,6 +134,8 @@ CPU5: cpu@500 {
-> > >  			compatible = "qcom,kryo485";
-> > >  			reg = <0x0 0x500>;
-> > >  			enable-method = "psci";
-> > > +			cpu-idle-states = <&BIG_CPU_SLEEP_0
-> > > +					   &CLUSTER_SLEEP_0>;
-> > >  			next-level-cache = <&L2_500>;
-> > >  			qcom,freq-domain = <&cpufreq_hw 1>;
-> > >  			#cooling-cells = <2>;
-> > > @@ -138,6 +150,8 @@ CPU6: cpu@600 {
-> > >  			compatible = "qcom,kryo485";
-> > >  			reg = <0x0 0x600>;
-> > >  			enable-method = "psci";
-> > > +			cpu-idle-states = <&BIG_CPU_SLEEP_0
-> > > +					   &CLUSTER_SLEEP_0>;
-> > >  			next-level-cache = <&L2_600>;
-> > >  			qcom,freq-domain = <&cpufreq_hw 1>;
-> > >  			#cooling-cells = <2>;
-> > > @@ -152,6 +166,8 @@ CPU7: cpu@700 {
-> > >  			compatible = "qcom,kryo485";
-> > >  			reg = <0x0 0x700>;
-> > >  			enable-method = "psci";
-> > > +			cpu-idle-states = <&BIG_CPU_SLEEP_0
-> > > +					   &CLUSTER_SLEEP_0>;
-> > >  			next-level-cache = <&L2_700>;
-> > >  			qcom,freq-domain = <&cpufreq_hw 2>;
-> > >  			#cooling-cells = <2>;
-> > > @@ -196,6 +212,40 @@ core7 {
-> > >  				};
-> > >  			};
-> > >  		};
-> > > +
-> > > +		idle-states {
-> > > +			entry-method = "psci";
-> > > +
-> > > +			LITTLE_CPU_SLEEP_0: cpu-sleep-0-0 {
-> > > +				compatible = "arm,idle-state";
-> > > +				idle-state-name = "little-rail-power-collapse";
-> > > +				arm,psci-suspend-param = <0x40000004>;
-> > > +				entry-latency-us = <355>;
-> > > +				exit-latency-us = <909>;
-> > > +				min-residency-us = <3934>;
-> > > +				local-timer-stop;
-> > > +			};
-> > > +
-> > > +			BIG_CPU_SLEEP_0: cpu-sleep-1-0 {
-> > > +				compatible = "arm,idle-state";
-> > > +				idle-state-name = "big-rail-power-collapse";
-> > > +				arm,psci-suspend-param = <0x40000004>;
-> > > +				entry-latency-us = <241>;
-> > > +				exit-latency-us = <1461>;
-> > > +				min-residency-us = <4488>;
-> > > +				local-timer-stop;
-> > > +			};
-> > > +
-> > > +			CLUSTER_SLEEP_0: cluster-sleep-0 {
-> > > +				compatible = "arm,idle-state";
-> > > +				idle-state-name = "cluster-power-collapse";
-> > > +				arm,psci-suspend-param = <0x400000F4>;
-> > 
-> > How come this is 0xf4?
-> > 
-> > Isn't downstream saying that this should be either 0x1 << 4 or 0xc24 <<
-> > 4, depending on how deep we want to go? Could we at least mention why
-> > this is 0xf4?
-> 
-> I'm not sure where 0x400000F4 originally came from. I noticed that
-> sdm845 uses the same 0xc24 mode in downstream, but Qualcomm used
-> 0x400000F4 in mainline.
-> 
-> I did some testing on a downstream kernel and found that the real value
-> it uses on sm8150 is 0x4100c244, but the idle state doesn't work at all
-> if I use the same value on mainline. The logic appears to be the same in
-> the downstream sdm845 kernel. Maybe it has to do with how downstream has
-> "notify RPM" before attempting to enter the idle state?
-> 
-> In downstream, the final PSCI value is calculated as the sum of:
-> 
-> 1. (cluster-mode & cluster-mode-mask) << cluster-mode-shift = (0xc24 & 0xfff) << 4 = 0xc240
-> 2. (is-reset << 30) = 0x40000000
-> 3. (affinity level & 0x3) << 24 = 0x1000000
-> 4. (cpu-mode) = 0x4
-> 
-> so 0xc240 + 0x40000000 + 0x1000000 + 0x4 = 0x4100c244.
-> 
-> It's also possible that the problem comes from the cluster idle state
-> needing all CPUs in the cluster to be asleep (as far as I know), since
-> it doesn't look like mainline handles that.
-> 
+Thanks for the review!
 
-Thanks for the explanation. I believe we have the code in place to do
-OSI sleep using the "psci domain cpuidle" driver, but I'm not entirely
-sure about the details about it - perhaps it's just a matter of wiring
-it all up(?).
-
-Let's go with your current patches and then swing back to this once
-we've figured out the remaining details.
-
-Thanks,
-Bjorn
-
-> > 
-> > Regards,
-> > Bjorn
-> > 
-> > > +				entry-latency-us = <3263>;
-> > > +				exit-latency-us = <6562>;
-> > > +				min-residency-us = <9987>;
-> > > +				local-timer-stop;
-> > > +			};
-> > > +		};
-> > >  	};
-> > >  
-> > >  	firmware {
-> > > -- 
-> > > 2.29.2
-> > > 
+> On Wed, Dec 23, 2020 at 02:23:16PM -0800, Tim Harvey wrote:
+> > The Gateworks Venice GW71xx-0x/GW72xx-0x/GW73xx-0x are development
+> > kits comprised of a GW700x SoM and a Baseboard.
 > >
+> > The GW700x SoM contains:
+> >  - IMX8MM SoC
+>
+> It's i.MX 8M Mini.
+> https://www.nxp.com/products/processors-and-microcontrollers/arm-processors/i-mx-applications-processors/i-mx-8-processors/i-mx-8m-mini-arm-cortex-a53-cortex-m4-audio-voice-video:i.MX8MMINI
+>
+
+ok
+
+> >  - LPDDR4 DRAM
+> >  - eMMC FLASH
+> >  - Gateworks System Controller (eeprom/pushbutton/reset/voltage-monitor)
+> >  - GbE PHY connected to the IMX8MM FEC
+> >  - Power Management IC
+> >
+> > The GW71xx Baseboard contains:
+> >  - 1x MiniPCIe Socket with USB2.0, PCIe, and SIM
+> >  - 1x RJ45 GbE (IMX8MM FEC)
+> >  - PCIe Clock generator
+> >  - GPS and accelerometer
+> >  - 1x USB 2.0 Front Panel connector
+> >  - wide range power supply
+> >
+> > The GW72xx Baseboard contains:
+> >  - 2x MiniPCIe Socket with USB2.0, PCIe, and SIM
+> >  - 2x RJ45 GbE (IMX8MM FEC and LAN743x)
+> >  - 1x MicroSD connector
+> >  - 1x USB 2.0 Front Panel connector
+> >  - 1x SPI connector
+> >  - PCIe Clock generator
+> >  - GPS and accelerometer
+> >  - Media Expansion connector (MIPI-CSI/MIPI-DSI/GPIO/I2S)
+> >  - wide range power supply
+> >
+> > The GW73xx Baseboard contains:
+> >  - 3x MiniPCIe Socket with USB2.0, PCIe, and SIM
+> >  - 2x RJ45 GbE (IMX8MM FEC and LAN743x)
+> >  - 1x MicroSD connector
+> >  - 1x USB 2.0 Front Panel connector
+> >  - 1x SPI connector
+> >  - WiFi/BT
+> >  - PCIe Clock generator
+> >  - GPS and accelerometer
+> >  - Media Expansion connector (MIPI-CSI/MIPI-DSI/GPIO/I2S)
+> >  - wide range power supply
+> >
+> > Signed-off-by: Tim Harvey <tharvey@gateworks.com>
+> > ---
+<snip>
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw700x.dtsi
+> > @@ -0,0 +1,482 @@
+> > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> > +/*
+> > + * Copyright 2020 Gateworks Corporation
+> > + */
+> > +
+> > +#include <dt-bindings/gpio/gpio.h>
+> > +#include <dt-bindings/input/linux-event-codes.h>
+> > +#include <dt-bindings/net/ti-dp83867.h>
+> > +
+> > +/ {
+> > +     memory@40000000 {
+> > +             device_type = "memory";
+> > +             reg = <0x0 0x40000000 0 0x80000000>;
+> > +     };
+> > +
+> > +     gpio_keys {
+> > +             compatible = "gpio-keys";
+> > +             #address-cells = <1>;
+> > +             #size-cells = <0>;
+> > +
+> > +             user_pb {
+> > +                     label = "user_pb";
+> > +                     gpios = <&gsc_gpio 2 GPIO_ACTIVE_LOW>;
+> > +                     linux,code = <BTN_0>;
+> > +             };
+> > +
+> > +             user_pb1x {
+> > +                     label = "user_pb1x";
+> > +                     linux,code = <BTN_1>;
+> > +                     interrupt-parent = <&gsc>;
+> > +                     interrupts = <0>;
+> > +             };
+> > +
+> > +             key_erased {
+> > +                     label = "key-erased";
+>
+> Above you use underscore, here hyphen. Make it consistent.
+
+ok
+
+>
+> > +                     linux,code = <BTN_2>;
+> > +                     interrupt-parent = <&gsc>;
+> > +                     interrupts = <1>;
+> > +             };
+> > +
+> > +             eeprom_wp {
+> > +                     label = "eeprom_wp";
+> > +                     linux,code = <BTN_3>;
+> > +                     interrupt-parent = <&gsc>;
+> > +                     interrupts = <2>;
+> > +             };
+> > +
+> > +             tamper {
+> > +                     label = "tamper";
+> > +                     linux,code = <BTN_4>;
+> > +                     interrupt-parent = <&gsc>;
+> > +                     interrupts = <5>;
+> > +             };
+> > +
+> > +             switch_hold {
+> > +                     label = "switch_hold";
+> > +                     linux,code = <BTN_5>;
+> > +                     interrupt-parent = <&gsc>;
+> > +                     interrupts = <7>;
+> > +             };
+> > +     };
+> > +};
+> > +
+<snip>
+> > +
+> > +&i2c1 {
+> > +     clock-frequency = <100000>;
+> > +     pinctrl-names = "default";
+> > +     pinctrl-0 = <&pinctrl_i2c1>;
+> > +     status = "okay";
+> > +
+> > +     gsc: gsc@20 {
+>
+> Node name should describe class of a device so maybe
+> "system-controller"?
+>
+
+The node-name here must match 'gsc' due to the bindings. The name
+stands for 'Gateworks System Controller'.
+
+> > +             compatible = "gw,gsc";
+> > +             reg = <0x20>;
+> > +             pinctrl-0 = <&pinctrl_gsc>;
+> > +             interrupt-parent = <&gpio2>;
+> > +             interrupts = <6 GPIO_ACTIVE_LOW>;
+>
+> Wrong flag.
+>
+
+oops... thanks for catching it was supposed to be falling anyway. I
+will change to IRQ_TYPE_EDGE_FALLING
+
+> > +             interrupt-controller;
+> > +             #interrupt-cells = <1>;
+> > +             #address-cells = <1>;
+> > +             #size-cells = <0>;
+> > +
+> > +             adc {
+>
+> Just to be sure - did you build it with W=1 to find any dtc warnings?
+>
+
+I did 'make dtbs_check' but not with W=1... will do that for next submission
+
+> > +                     compatible = "gw,gsc-adc";
+> > +                     #address-cells = <1>;
+> > +                     #size-cells = <0>;
+> > +
+<snip>
+> > +             };
+> > +
+> > +             fan-controller@0 {
+> > +                     #address-cells = <1>;
+> > +                     #size-cells = <0>;
+>
+> These do not seem needed.
+
+They are required per
+Documentation/devicetree/bindings/mfd/gateworks-gsc.yaml but they
+should be inherited from the parent node right? So perhaps
+gateworks-gsc.yaml needs to remove them?
+
+>
+> > +                     compatible = "gw,gsc-fan";
+> > +                     reg = <0x0a>;
+> > +             };
+> > +     };
+> > +
+> > +     gsc_gpio: pca9555@23 {
+>
+> Lookes like gpio-controller, so "gpio". Please run make dtbs_check to be
+> sure your board validate against dt-schema.
+
+Yes, I see these warnings now with 'make dtbs_check W=1'
+
+Note when I do run 'make dtbs_check W=1' I see many warnings which
+seem invalid that I have to skip over:
+/usr/src/linux/arch/arm64/boot/dts/freescale/imx8mm-venice-gw71xx-0x.dt.yaml: pi
+nctrl@30330000: fec1grp:fsl,pins:0: [104, 720, 0, 0, 0, 3, 108, 724, 1216, 0, 1,
+ 3, 112, 728, 0, 0, 0, 31, 116, 732, 0, 0, 0, 31, 120, 736, 0, 0, 0,
+31, 124, 740, 0, 0, 0, 31, 156, 772, 0, 0, 0, 145, 152, 768, 0, 0, 0,
+145, 148, 764, 0, 0, 0, 145, 144, 760, 0, 0, 0, 145, 132, 748, 0, 0,
+0, 31, 140, 756, 0, 0, 0, 145, 136, 752, 0, 0, 0, 145, 128, 744, 0, 0,
+0, 31, 244, 860, 0, 5, 0, 25] is too long
+        From schema:
+/usr/src/linux/Documentation/devicetree/bindings/pinctrl/fsl,imx8mm-pinctrl.yaml
+/usr/src/linux/arch/arm64/boot/dts/freescale/imx8mm-venice-gw71xx-0x.dt.yaml:
+pinctrl@30330000: fec1grp:fsl,pins:0: Additional items are not allowed
+(108, 724, 1216, 0, 1, 3, 112, 728, 0, 0, 0, 31, 116, 732, 0, 0, 0,
+31, 120, 736, 0, 0, 0, 31, 124, 740, 0, 0, 0, 31, 156, 772, 0, 0, 0,
+145, 152, 768, 0, 0, 0, 145, 148, 764, 0, 0, 0, 145, 144, 760, 0, 0,
+0, 145, 132, 748, 0, 0, 0, 31, 140, 756, 0, 0, 0, 145, 136, 752, 0, 0,
+0, 145, 128, 744, 0, 0, 0, 31, 244, 860, 0, 5, 0, 25 were unexpected)
+^^^ It seems maybe something is too restrictive with
+Documentation/devicetree/bindings/pinctrl/fsl,imx8mm-pinctrl.yaml that
+doesn't allow an array of pins?
+
+I see lots of warnings about imx8mm gpmi as well but they don't have
+anything to do with my dtbs.
+
+>
+> > +             compatible = "nxp,pca9555";
+> > +             reg = <0x23>;
+> > +             gpio-controller;
+> > +             #gpio-cells = <2>;
+> > +             interrupt-parent = <&gsc>;
+> > +             interrupts = <4>;
+> > +     };
+> > +
+<snip>
+> > +
+> > +&iomuxc {
+> > +     pinctrl_fec1: fec1grp {
+> > +             fsl,pins = <
+> > +                     MX8MM_IOMUXC_ENET_MDC_ENET1_MDC                 0x3
+> > +                     MX8MM_IOMUXC_ENET_MDIO_ENET1_MDIO               0x3
+> > +                     MX8MM_IOMUXC_ENET_TD3_ENET1_RGMII_TD3           0x1f
+> > +                     MX8MM_IOMUXC_ENET_TD2_ENET1_RGMII_TD2           0x1f
+> > +                     MX8MM_IOMUXC_ENET_TD1_ENET1_RGMII_TD1           0x1f
+> > +                     MX8MM_IOMUXC_ENET_TD0_ENET1_RGMII_TD0           0x1f
+> > +                     MX8MM_IOMUXC_ENET_RD3_ENET1_RGMII_RD3           0x91
+> > +                     MX8MM_IOMUXC_ENET_RD2_ENET1_RGMII_RD2           0x91
+> > +                     MX8MM_IOMUXC_ENET_RD1_ENET1_RGMII_RD1           0x91
+> > +                     MX8MM_IOMUXC_ENET_RD0_ENET1_RGMII_RD0           0x91
+> > +                     MX8MM_IOMUXC_ENET_TXC_ENET1_RGMII_TXC           0x1f
+> > +                     MX8MM_IOMUXC_ENET_RXC_ENET1_RGMII_RXC           0x91
+> > +                     MX8MM_IOMUXC_ENET_RX_CTL_ENET1_RGMII_RX_CTL     0x91
+> > +                     MX8MM_IOMUXC_ENET_TX_CTL_ENET1_RGMII_TX_CTL     0x1f
+> > +                     MX8MM_IOMUXC_NAND_ALE_GPIO3_IO0                 0x19
+> > +             >;
+> > +     };
+> > +
+> > +     pinctrl_gsc: gscirq {
+>
+> grp suffix. I think dtbs_check should point this out.
+
+ok, I do see this warning with 'make dtbs_check W=1'. I will fix the
+node names for the iomux pin groups
+
+<snip>
+>
+> > diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw71xx-0x.dts b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw71xx-0x.dts
+> > new file mode 100644
+> > index 00000000..3f88c4a
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw71xx-0x.dts
+> > @@ -0,0 +1,19 @@
+> > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> > +/*
+> > + * Copyright 2020 Gateworks Corporation
+> > + */
+> > +
+> > +/dts-v1/;
+> > +
+> > +#include "imx8mm.dtsi"
+> > +#include "imx8mm-venice-gw700x.dtsi"
+> > +#include "imx8mm-venice-gw71xx.dtsi"
+> > +
+> > +/ {
+> > +     model = "Gateworks Venice GW71xx-0x i.MX8MM Development Kit";
+> > +     compatible = "gw,imx8mm-gw71xx-0x", "fsl,imx8mm";
+> > +
+> > +     chosen {
+> > +             stdout-path = &uart2;
+> > +     };
+> > +};
+> > diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw71xx.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw71xx.dtsi
+> > new file mode 100644
+> > index 00000000..a4eeb0d
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw71xx.dtsi
+>
+> This file is included only once, so it should be directly inside imx8mm-venice-gw71xx-0x.dts. Do not create empty DTS just to include DTSI and nothing more. It's really over-complicating simple hierarchy.
+
+The reason for this is that the '0x' on the end is the SoM and in the
+future there will be a '1x', '2x' SoM so imagine:
+imx8mm-venice-gw71xx-2x.dts being the 'kit' that combines the
+imx8mm-venice-gw71xx.dtsi baseboard and imx8mm-venice-gw702x.dtsi SoM.
+Our numbering scheme has SoM's as gw70xx. I will add something to the
+commit log that explains this.
+
+>
+> > @@ -0,0 +1,186 @@
+> > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> > +/*
+> > + * Copyright 2020 Gateworks Corporation
+> > + */
+> > +
+> > +/ {
+> > +     aliases {
+> > +             usb0 = &usbotg1;
+> > +             usb1 = &usbotg2;
+> > +     };
+> > +
+> > +     leds {
+>
+> led-controller
+
+ok - will fix
+
+>
+> > +             compatible = "gpio-leds";
+> > +             pinctrl-names = "default";
+> > +             pinctrl-0 = <&pinctrl_gpio_leds>;
+> > +
+> > +             user1 { /* GRN */
+>
+> led-0
+
+ok, will fix
+
+>
+> > +                     label = "user1";
+>
+> label is now deprecated. See the common bindings.
+>
+
+ok, will fix by removing deprecated label and adding color/function props
+
+> > +                     gpios = <&gpio5 5 GPIO_ACTIVE_HIGH>;
+> > +                     default-state = "on";
+> > +                     linux,default-trigger = "heartbeat";
+> > +             };
+> > +
+<snip>
+> > +&i2c2 {
+> > +     clock-frequency = <400000>;
+> > +     pinctrl-names = "default";
+> > +     pinctrl-0 = <&pinctrl_i2c2>;
+> > +     status = "okay";
+> > +
+> > +     accel@19 {
+>
+> accelerometer
+>
+
+ok - will fix
+
+You also had asked why ecspi2, i2c3 were enabled (with no child nodes)
+and why uart1/uart3 were enabled on the carrier boards.
+
+The carrier boards have off-board connectors for ecspi2, i2c3 so I
+include them on the baseboard so that the Linux SPI/I2C userspace
+API's could be used.
+
+The carrier boards also have uart1 connected to a GPS, uart2/uart4
+going to a multi-protocol RS232/RS485/RS422 transceiver that has some
+GPIO to configure it, and uart3 going to an offboard I/O connector.
+For this reason I have uart2 basic tx/rx configured on the gw70xx SoM
+and uart1/uart2-gpio/uart4 configures on the carrier board.
+
+I will submit a v2 shortly.
+
+Best regards,
+
+Tim
