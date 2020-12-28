@@ -2,170 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B6702E68A8
-	for <lists+devicetree@lfdr.de>; Mon, 28 Dec 2020 17:40:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 88EAE2E6987
+	for <lists+devicetree@lfdr.de>; Mon, 28 Dec 2020 18:05:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2633799AbgL1Qjf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Dec 2020 11:39:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54558 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2633793AbgL1Qjb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Dec 2020 11:39:31 -0500
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CB09C061793
-        for <devicetree@vger.kernel.org>; Mon, 28 Dec 2020 08:38:51 -0800 (PST)
-Received: by mail-lf1-x129.google.com with SMTP id o17so25121796lfg.4
-        for <devicetree@vger.kernel.org>; Mon, 28 Dec 2020 08:38:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=konsulko.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=l6SS1scNjE1vPCP4wCk2BIZ3zGkp8hqDahwS2HOGBHc=;
-        b=cI8VJXC1C/bDkRCEq7hbWM0zAjKz9rkUJwyt//MfgJsGxs31rPM8LDXwxR7+KO7bZT
-         Sxb4blwNTPzKpjcqaNAiCVXhq2o0SvFVBjbCCU2lVaeH0O4FWkBotHzFUWtDYXUcuwZe
-         tm6SULa0zv72CxkoEwKgqwMYW3JZAKNRWBBIY=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=l6SS1scNjE1vPCP4wCk2BIZ3zGkp8hqDahwS2HOGBHc=;
-        b=SsLmLA5xs0ef7sInVUIGz0KgDZB74rQ3DGP8eDWsiBz0S7UvNto5UKn9h+ZgUQCnez
-         5MiZq07I/6ie67p2ev5i/XXE4U2FwB5Pdpv7JQi+c7ttiwTSsmY2eN8A5rGmBXr0BrUF
-         BjU+qTgO0u6b3jzNSpQr2qpMqNx4OtMiCmH2Cxz5+qis/bsiui9XB/ePaBAne6uELsQE
-         ge2Mj780AL7IPXcB+AfLa7MPz0Hit7KxRfby1UD5sVsGI7h318B+fNgzTZMBKRh45mvI
-         E+K61f+OCWvP3Sh67BaFwQUSyFISsMU28PHEqmOMEJbU3P6qCKOmsOwYQmBgidKgpALb
-         /2zw==
-X-Gm-Message-State: AOAM530uPX1R98AouMj/OIPrbIJHKqufBcTU8INweTEY0rsmTn89f8QW
-        oFxAUMdor4mCb/sde7Uxg5rBqTPIn3W/uxgWnTyWAwTjzc0muA==
-X-Google-Smtp-Source: ABdhPJwz0Fxx9LLj2z88LTe0UC1LHs48miC1FDDtUcODfBZNxv/T65x8UtIsLR6HBrIViAxHgL0KvEm8Cu74BBDBfvw=
-X-Received: by 2002:ac2:5edb:: with SMTP id d27mr18240410lfq.411.1609173529728;
- Mon, 28 Dec 2020 08:38:49 -0800 (PST)
-MIME-Version: 1.0
-References: <20201226163037.43691-1-vitaly.wool@konsulko.com>
- <CAAhSdy1M5pMjYHNWdOicb3N3fjTfQLEgE8tFb74sqGbPE_9eyQ@mail.gmail.com>
- <CAM4kBBJ3Vbytx=dFK7+DMByV3zK=FVLATSwjyuuygkDK1MCQjA@mail.gmail.com> <CAAhSdy0E8xspb3epBdrTmjg7vSQanG9zwyMY19eeDDL8z=WJFg@mail.gmail.com>
-In-Reply-To: <CAAhSdy0E8xspb3epBdrTmjg7vSQanG9zwyMY19eeDDL8z=WJFg@mail.gmail.com>
-From:   Vitaly Wool <vitaly.wool@konsulko.com>
-Date:   Mon, 28 Dec 2020 17:38:38 +0100
-Message-ID: <CAM4kBBJLnrp8XB1OZnv2FEuKdEQuQfDWdgwsV--9mZYB=JmJPQ@mail.gmail.com>
-Subject: Re: [PATCH] riscv: add BUILTIN_DTB support for MMU-enabled targets
-To:     Anup Patel <anup@brainfault.org>
-Cc:     linux-riscv <linux-riscv@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
-        Bin Meng <bin.meng@windriver.com>,
-        Palmer Dabbelt <palmerdabbelt@google.com>,
-        Damien Le Moal <damien.lemoal@wdc.com>,
-        devicetree@vger.kernel.org
+        id S1727997AbgL1RDJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Dec 2020 12:03:09 -0500
+Received: from mailgw01.mediatek.com ([210.61.82.183]:47765 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1727993AbgL1RDJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Dec 2020 12:03:09 -0500
+X-UUID: 055633af851147eebbc5b48d86d3a51b-20201229
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=MKcGaDmRcVBvqDrJbkq1CbbgmmDaPv8lVjeRUC8j44s=;
+        b=uabjDfIplXpYFkdbBNisq5KG98ovAvMLn0LMZbeVIBM8qPNo2Z+M3Bkrm+p7/MPnUmHNixg9wm7KMbPkBtDl76bnFOapQ7asYZ/acVAmBxhK8VXxjP0WF6rw0+mtkaLjDXoeVkOxTxYxNUftRJtYB21FI07+7qAYEuEdn8yluQQ=;
+X-UUID: 055633af851147eebbc5b48d86d3a51b-20201229
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
+        (envelope-from <jerry-ch.chen@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 506157940; Tue, 29 Dec 2020 01:02:25 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ mtkmbs06n2.mediatek.inc (172.21.101.130) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Tue, 29 Dec 2020 01:02:22 +0800
+Received: from [172.21.84.99] (172.21.84.99) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 29 Dec 2020 01:03:30 +0800
+Message-ID: <1609174942.3068.9.camel@mtksdccf07>
+Subject: Re: [RFC PATCH V4 0/4] media: platform: Add support for Face
+ Detection (FD) on mt8183 SoC
+From:   Jerry-ch Chen <Jerry-ch.Chen@mediatek.com>
+To:     Tomasz Figa <tfiga@chromium.org>
+CC:     "hans.verkuil@cisco.com" <hans.verkuil@cisco.com>,
+        HansVerkuil <hverkuil@xs4all.nl>,
+        "laurent.pinchart+renesas@ideasonboard.com" 
+        <laurent.pinchart+renesas@ideasonboard.com>,
+        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+        "mchehab@kernel.org" <mchehab@kernel.org>,
+        "pihsun@chromium.org" <pihsun@chromium.org>,
+        "yuzhao@chromium.org" <yuzhao@chromium.org>,
+        "zwisler@chromium.org" <zwisler@chromium.org>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Sean Cheng =?UTF-8?Q?=28=E9=84=AD=E6=98=87=E5=BC=98=29?= 
+        <Sean.Cheng@mediatek.com>,
+        "Sj Huang =?UTF-8?Q?=28=E9=BB=83=E4=BF=A1=E7=92=8B=29?=" 
+        <sj.huang@mediatek.com>,
+        Christie Yu =?UTF-8?Q?=28=E6=B8=B8=E9=9B=85=E6=83=A0=29?= 
+        <christie.yu@mediatek.com>,
+        Frederic Chen =?UTF-8?Q?=28=E9=99=B3=E4=BF=8A=E5=85=83=29?= 
+        <Frederic.Chen@mediatek.com>,
+        Jungo Lin =?UTF-8?Q?=28=E6=9E=97=E6=98=8E=E4=BF=8A=29?= 
+        <jungo.lin@mediatek.com>,
+        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        <jerry-ch.chen@mediatek.com>
+Date:   Tue, 29 Dec 2020 01:02:22 +0800
+In-Reply-To: <1605182733.28992.12.camel@mtksdccf07>
+References: <20191204124732.10932-1-Jerry-Ch.chen@mediatek.com>
+         <1588903371.16825.14.camel@mtksdccf07>
+         <CAAFQd5CP+gH3zG9fejBv_hTzeAExMoY+L38W8e4e3OSc-gVRHg@mail.gmail.com>
+         <20200521183825.GB249683@chromium.org>
+         <1593526253.29676.28.camel@mtksdccf07>
+         <20200630171912.GE1212092@chromium.org>
+         <1605095509.28992.7.camel@mtksdccf07>
+         <CAAFQd5CeZYOAxwHjsVOV9eJRt15-npTsH15Y5idwr3-ux+85qQ@mail.gmail.com>
+         <1605182733.28992.12.camel@mtksdccf07>
 Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.2.3-0ubuntu6 
+MIME-Version: 1.0
+X-TM-SNTS-SMTP: 8CB3A893A9AB6C3BBF7C61ED52F91BA0A7C48437C37AB22DA5155F362C3E85E02000:8
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 28, 2020 at 3:10 PM Anup Patel <anup@brainfault.org> wrote:
->
-> On Mon, Dec 28, 2020 at 7:05 PM Vitaly Wool <vitaly.wool@konsulko.com> wrote:
-> >
-> > On Mon, Dec 28, 2020 at 12:59 PM Anup Patel <anup@brainfault.org> wrote:
-> > >
-> > > On Sat, Dec 26, 2020 at 10:03 PM Vitaly Wool <vitaly.wool@konsulko.com> wrote:
-> > > >
-> > > > Sometimes, especially in a production system we may not want to
-> > > > use a "smart bootloader" like u-boot to load kernel, ramdisk and
-> > > > device tree from a filesystem on eMMC, but rather load the kernel
-> > > > from a NAND partition and just run it as soon as we can, and in
-> > > > this case it is convenient to have device tree compiled into the
-> > > > kernel binary. Since this case is not limited to MMU-less systems,
-> > > > let's support it for these which have MMU enabled too.
-> > > >
-> > > > Signed-off-by: Vitaly Wool <vitaly.wool@konsulko.com>
-> > > > ---
-> > > >  arch/riscv/Kconfig   |  1 -
-> > > >  arch/riscv/mm/init.c | 12 ++++++++++--
-> > > >  2 files changed, 10 insertions(+), 3 deletions(-)
-> > > >
-> > > > diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
-> > > > index 2b41f6d8e458..9464b4e3a71a 100644
-> > > > --- a/arch/riscv/Kconfig
-> > > > +++ b/arch/riscv/Kconfig
-> > > > @@ -419,7 +419,6 @@ endmenu
-> > > >
-> > > >  config BUILTIN_DTB
-> > > >         def_bool n
-> > > > -       depends on RISCV_M_MODE
-> > > >         depends on OF
-> > > >
-> > > >  menu "Power management options"
-> > > > diff --git a/arch/riscv/mm/init.c b/arch/riscv/mm/init.c
-> > > > index 87c305c566ac..5d1c7a3ec01c 100644
-> > > > --- a/arch/riscv/mm/init.c
-> > > > +++ b/arch/riscv/mm/init.c
-> > > > @@ -194,12 +194,20 @@ void __init setup_bootmem(void)
-> > > >         setup_initrd();
-> > > >  #endif /* CONFIG_BLK_DEV_INITRD */
-> > > >
-> > > > +       /*
-> > > > +        * If DTB is built in, no need to reserve its memblock.
-> > > > +        * OTOH, initial_boot_params has to be set to properly copy DTB
-> > > > +        * before unflattening later on.
-> > > > +        */
-> > > > +       if (IS_ENABLED(CONFIG_BUILTIN_DTB))
-> > > > +               initial_boot_params = __va(dtb_early_pa);
-> > >
-> > > Don't assign initial_boot_params directly here because the
-> > > early_init_dt_scan() will do it.
-> >
-> > early_init_dt_scan will set initial_boot_params to dtb_early_va from
-> > the early mapping which will be gone by the time
-> > unflatten_and_copy_device_tree() is called.
->
-> That's why we are doing early_init_dt_verify() again for the MMU-enabled
-> case which already takes care of your concern.
+SGkgVG9tYXN6LA0KDQpPbiBUaHUsIDIwMjAtMTEtMTIgYXQgMjA6MDUgKzA4MDAsIEplcnJ5LWNo
+IENoZW4gd3JvdGU6DQo+IEhpIFRvbWFzeiwNCj4gDQo+IE9uIFRodSwgMjAyMC0xMS0xMiBhdCAx
+MzoyNiArMDkwMCwgVG9tYXN6IEZpZ2Egd3JvdGU6DQo+ID4gT24gV2VkLCBOb3YgMTEsIDIwMjAg
+YXQgODo1MSBQTSBKZXJyeS1jaCBDaGVuDQo+ID4gPEplcnJ5LWNoLkNoZW5AbWVkaWF0ZWsuY29t
+PiB3cm90ZToNCj4gPiA+DQo+ID4gPiBIaSBUb21hc3osDQo+ID4gPg0KPiA+ID4gT24gV2VkLCAy
+MDIwLTA3LTAxIGF0IDAxOjE5ICswODAwLCBUb21hc3ogRmlnYSB3cm90ZToNCj4gPiA+ID4gSGkg
+SmVycnksDQo+ID4gPiA+DQo+ID4gPiA+IE9uIFR1ZSwgSnVuIDMwLCAyMDIwIGF0IDEwOjEwOjUz
+UE0gKzA4MDAsIEplcnJ5LWNoIENoZW4gd3JvdGU6DQo+ID4gPiA+ID4gSGkgVG9tYXN6LA0KPiA+
+ID4gPiA+DQo+ID4gPiA+ID4gT24gVGh1LCAyMDIwLTA1LTIxIGF0IDE4OjM4ICswMDAwLCBUb21h
+c3ogRmlnYSB3cm90ZToNCj4gPiA+ID4gPiA+IEhpIEplcnJ5LA0KPiA+ID4gPiA+ID4NCj4gPiA+
+ID4gPiA+IE9uIFdlZCwgTWF5IDEzLCAyMDIwIGF0IDExOjQ1OjM3UE0gKzAyMDAsIFRvbWFzeiBG
+aWdhIHdyb3RlOg0KPiA+ID4gPiA+ID4gPiBIaSBKZXJyeSwNCj4gPiA+ID4gPiA+ID4NCj4gPiA+
+ID4gPiA+ID4gT24gRnJpLCBNYXkgOCwgMjAyMCBhdCA0OjAzIEFNIEplcnJ5LWNoIENoZW4gPEpl
+cnJ5LWNoLkNoZW5AbWVkaWF0ZWsuY29tPiB3cm90ZToNCj4gPiA+ID4gPiA+ID4gPg0KPiA+ID4g
+PiA+ID4gPiA+IEhpIExhdXJlbnQsIFRvbWFzeiwgTWF0dGhpYXMsDQo+ID4gPiA+ID4gPiA+ID4N
+Cj4gPiA+ID4gPiA+ID4gPiBnZW50bGUgcGluZyBmb3IgdGhpcyBwYXRjaCBzZXQsDQo+ID4gPiA+
+ID4gPiA+ID4gSWYgbm8gbmV3IGNvbW1lbnRzLCBJIHdvdWxkIGxpa2UgdG8gc2VuZCBhIG5ld2Vy
+IHZlcnNpb24uDQo+ID4gPiA+ID4gPiA+ID4NCj4gPiA+ID4gPiA+ID4NCj4gPiA+ID4gPiA+ID4g
+U29ycnksIEkgc3RpbGwgaGF2ZW4ndCBoYWQgYSBjaGFuY2UgdG8gbG9vayBhdCB0aGUgc2VyaWVz
+LCBzbyBmZWVsDQo+ID4gPiA+ID4gPiA+IGZyZWUgdG8gc2VuZCBhIG5ldyB2ZXJzaW9uIGFuZCBJ
+IHdpbGwgdGFrZSBhIGxvb2sgYXQgdGhlIG5ldyBvbmUuDQo+ID4gPiA+ID4gPiA+DQo+ID4gPiA+
+ID4gPg0KPiA+ID4gPiA+ID4gRmluYWxseSBmb3VuZCBzb21lIHRpbWUgdG8gcmV2aWV3IHRoZSBz
+ZXJpZXMuIEFnYWluIHNvcnJ5IGZvciB0aGUgZGVsYXkNCj4gPiA+ID4gPiA+IGFuZCB0aGFua3Mg
+Zm9yIHlvdXIgcGF0aWVuY2UuDQo+ID4gPiA+ID4gPg0KPiA+ID4gPiA+ID4gU29tZSBnZW5lcmFs
+IGNvbW1lbnRzOg0KPiA+ID4gPiA+ID4gMSkgVGhlIG1ldGFkYXRhIGZvcm1hdCBGb3VyQ0Mgc2hv
+dWxkIGJlIGFkZGVkIGluIGEgc2VwYXJhdGUgcGF0Y2gsDQo+ID4gPiA+ID4gPiB0b2dldGhlciB3
+aXRoIGRvY3VtZW50YXRpb24gZm9yIGl0Lg0KPiA+ID4gPiA+ID4gMikgQ29udHJvbCBJRHMsIHN0
+cnVjdHMgdXNlZCBieSB0aGUgdXNlcnNwYWNlLCBldGMuIHNob3VsZCBiZSBkZWZpbmVkIGluDQo+
+ID4gPiA+ID4gPiBhIGhlYWRlciB1bmRlciBpbmNsdWRlL3VhcGkvbGludXguDQo+ID4gPiA+ID4g
+Pg0KPiA+ID4gPiA+ID4gUGxlYXNlIGFsc28gY2hlY2sgbXkgcmVwbGllcyB0byBwYXJ0aWN1bGFy
+IHBhdGNoZXMgZm9yIGZ1cnRoZXIgY29tbWVudHMuDQo+ID4gPiA+ID4gPg0KPiA+ID4gPiA+ID4g
+QmVzdCByZWdhcmRzLA0KPiA+ID4gPiA+ID4gVG9tYXN6DQo+ID4gPiA+ID4NCj4gPiA+ID4gPiBB
+cHByZWNpYXRlIGZvciB5b3VyIHJlcGx5LA0KPiA+ID4gPiA+DQo+ID4gPiA+ID4gU28gZmFyLCBJ
+J3ZlIGxvY2FsbHkgY3JlYXRlZCBhbiB1YXBpIGhlYWRlcjoNCj4gPiA+ID4gPiBpbmNsdWRlL3Vh
+cGkvbGludXgvbXRrX2ZkXzQwLmgNCj4gPiA+ID4gPiB3aGljaCBwcm92aWRlcyBzb21lIHZhbHVl
+cywgY29udHJvbCBpZHMsIGFuZCB0aGUgZGVmaW5pdGlvbnMgb2YNCj4gPiA+ID4gPiBzdHJ1Y3R1
+cmVzIHRoYXQgd291bGQgYmUgbmVlZGVkIGJ5IHVzZXIgb2YgbXRrX2ZkXzQwIGRyaXZlci4NCj4g
+PiA+ID4gPiBJbiBhZGRpdGlvbiwgSSBhbHNvIHByb3ZpZGUgYSBNQUNSTyBhcyBleGFtcGxlIGlu
+IGNvbW1lbnRzIHRoYXQgY2FuDQo+ID4gPiA+ID4gZXh0cmFjdCB0aGUgc3RydWN0IG1lbWJlciB3
+aXRoIGJpdCBsZW5ndGggYW5kIG9mZnNldA0KPiA+ID4gPiA+IGRlZmluaXRpb25zKGVsaW1pbmF0
+ZSB0aGUgYml0LWZpZWxkcykuDQo+ID4gPiA+ID4NCj4gPiA+ID4gPiBBbHNvLCBJIHdvdWxkIGxp
+a2UgdG8gcmVuYW1lIHN0cnVjdCBmZF91c2VyX291dHB1dCB3aXRoIHN0cnVjdA0KPiA+ID4gPiA+
+IG10a19mZF9od19yZXN1bHQuIEkgd29ycnkgZmRfdXNlcl9vdXRwdXQgd291bGQgYmUgYSBjb25m
+dXNpbmcgbmFtZS4NCj4gPiA+ID4NCj4gPiA+ID4gVGhlIGNoYW5nZSBzb3VuZHMgZ29vZCB0byBt
+ZS4NCj4gPiA+ID4NCj4gPiA+ID4gPiBJIHdpbGwgYWRkIHRoZW0gaW4gYSBzZXBhcmF0ZSBwYXRj
+aCBpbiBuZXh0IHZlcnNpb24uDQo+ID4gPiA+ID4NCj4gPiA+ID4NCj4gPiA+ID4gT2theS4NCj4g
+PiA+ID4NCj4gPiA+ID4gPiBJIGFtIHN0aWxsIHdvcmtpbmcgb24gdGhlIGRvY3VtZW50YXRpb24s
+IHdoaWNoIG1pZ2h0IGJlDQo+ID4gPiA+ID4gRG9jdW1lbnRhdGlvbi9tZWRpYS91YXBpL3Y0bC9w
+aXhmbXQtbWV0YS1tdGstZmQtNDAucnN0Lg0KPiA+ID4gPiA+IFJlZmVyaW5nIHRoZSBvdGhlciBw
+aXhmbXQtKi5yc3QgZmlsZXMsIEkgd2lsbCB0cnkgdG8gcHJvdmlkZSB0aGUNCj4gPiA+ID4gPiBm
+bGF0LXRhYmxlIG9mIHRoZSBtZXRhZGF0YSB3aXRoIHRoZSBzdHJ1Y3R1cmUgb2YgdGhlIG10a19m
+ZF9od19yZXN1bHQuDQo+ID4gPiA+ID4NCj4gPiA+ID4NCj4gPiA+ID4gU291bmRzIGdvb2QgdG8g
+bWUuDQo+ID4gPiA+DQo+ID4gPiA+ID4gSSBhbSBjb25mdXNpbmcgdGhhdCBzaG91bGQgSSByZW1h
+aW4gdGhlIG5hbWUgd2l0aCAtNDAgaW4gdGhlIHRhaWwgb2YgcnN0DQo+ID4gPiA+ID4gZmlsZT8N
+Cj4gPiA+ID4NCj4gPiA+ID4gVGhlIGhlYWRlciBhbmQgZG9jdW1lbnRhdGlvbiBmaWxlIG5hbWVz
+IHNob3VsZCBtYXRjaCB0aGUgZHJpdmVyIG5hbWUuICBJDQo+ID4gPiA+IGp1c3Qgbm90aWNlZCB0
+aGVyZSBpcyBzb21lIGluY29uc2lzdGVuY3kgaW4gdGhlIG5hbWluZywgdGhvdWdoLiBUaGUNCj4g
+PiA+ID4gZHJpdmVyIHNlZW1zIHRvIGJlIGxvY2F0ZWQgdW5kZXIgZHJpdmVycy9tZWRpYS9wbGF0
+Zm9ybS9tdGstaXNwL2ZkLCBidXQNCj4gPiA+ID4gdGhlIGRyaXZlciBuYW1lIGluIHRoZSBwbGF0
+Zm9ybSBkcml2ZXIgc3RydWN0IGFuZCBhcyByZXBvcnRlZCBieQ0KPiA+ID4gPiBWSURJT0NfUVVF
+UllDQVAgc2VlbXMgdG8gYmUgIm10ay1mZC00LjAiLg0KPiA+ID4NCj4gPiA+ID4gU2luY2Ugd2Ug
+aGF2ZSBtYW55IG10ay0qIGRyaXZlcnMgaW4gdGhlIHRyZWUgY3VycmVudGx5LCBJIHRoaW5rIGl0
+IG1pZ2h0DQo+ID4gPiA+IG1ha2Ugc2Vuc2UgdG8gY29uc29saWRhdGUgdGhlbSB1bmRlciBkcml2
+ZXJzL21lZGlhL3BsYXRmb3JtL21lZGlhdGVrLA0KPiA+ID4gPiBzaW1pbGFybHkgdG8gZHJpdmVy
+cy9tZWRpYS9wbGF0Zm9ybS9xY29tIG9yIC9yb2NrY2hpcC4gQnV0IGl0IGNvdWxkIGJlDQo+ID4g
+PiA+IGRvbmUgbGF0ZXIsIGFzIGEgZm9sbG93LXVwLg0KPiA+ID4gPg0KPiA+ID4gPiBNeSBzdWdn
+ZXN0aW9uIHdvdWxkIGJlIHRvIHBsYWNlIHRoZSBkcml2ZXIgdW5kZXINCj4gPiA+ID4gZHJpdmVy
+cy9tZWRpYS9wbGF0Zm9ybS9tdGstZmQtNDAgYW5kIGFsc28gcmVuYW1lIHRoZSByZWxhdGVkIEtj
+b25maWcNCj4gPiA+ID4gc3ltYm9sIHRvIGluY2x1ZGUgdGhlIF80MCBzdWZmaXguDQo+ID4gPiA+
+DQo+ID4gPiA+IFdoYXQgZG8geW91IHRoaW5rPw0KPiA+ID4gPg0KPiA+ID4NCj4gPiA+IEkgQXBw
+cmVjaWF0ZSB5b3VyIGNvbW1lbnRzLA0KPiA+ID4gU29ycnkgZm9yIHRoZSBsYXRlIHJlcGx5Lg0K
+PiA+ID4NCj4gPiA+IFdvdWxkIGl0IGJlIHBvc3NpYmxlIGZvciBtZSB0byByZXBsYWNlIHRoZSBk
+cml2ZXIgYXMgZHJpdmVycy9tZWRpYS9wbGF0Zm9ybS9tdGtfZmQvbXRrLWZkLTQwPyhKdXN0IGxp
+a2UgbXRrLWlzcC9pc3BfNTApDQo+ID4gPg0KPiA+IA0KPiA+IEknbSBub3QgYSBiaWcgZmFuIG9m
+IGR1cGxpY2F0aW5nICJtdGsgZmQiIGluIHRoZSBwYXRoLiBIb3cgYWJvdXQganVzdA0KPiA+IG1h
+a2luZyBpdCBkcml2ZXJzL21lZGlhL3BsYXRmb3JtL210ay1mZC00MD8NCj4gPiANCj4gDQo+IE9r
+LCBJIHdpbGwgbWFrZSBpdCBkcml2ZXJzL21lZGlhL3BsYXRmb3JtL210ay1mZC00MCwNCj4gYW5k
+IGFsc28gcmVuYW1lIHRoZSByZWxhdGVkIEtjb25maWcgc3ltYm9sIHRvIGluY2x1ZGUgdGhlIF80
+MCBzdWZmaXguDQo+IA0KPiBUaGFua3MgYW5kIEJlc3QgUmVnYXJkcywNCj4gSmVycnkuDQo+IA0K
+PiA+IEJlc3QgcmVnYXJkcywNCj4gPiBUb21hc3oNCj4gDQoNCg0KSSd2ZSBmaW5pc2ggdGhlIGRv
+Y3VtZW50IG9mIEZEIGRyaXZlciwgZGVzY3JpYmluZyB0aGUgc3RydWN0dXJlIG9mIHRoZQ0KbXRr
+X2ZkX2h3X3Jlc3VsdC4gQ291bGQgSSBzZW5kIHRoZSBuZXcgdmVyc2lvbiBvZiB0aGUgZHJpdmVy
+PyB3b3VsZCB0aGUNCmZvbGRlciBwYXRoIHJlcGxhY2VtZW50IG11c3QgYmUgaW5jbHVkZWQgaW4g
+dGhlIG5ldyB2ZXJzaW9uPw0KDQpUaGFua3MgYW5kIEJlc3QgUmVnYXJkcywNCkplcnJ5DQo=
 
-I might be out in the woods here but... Do you mean the call to
-early_init_dt_verify() in setup_arch() which is compiled out
-completely in the CONFIG_BUILTIN_DTB case?
-Or is there any other call that I'm overlooking?
-
-Best regards,
-   Vitaly
-
-> We use early_init_dt_verify() like most architectures to set the initial DTB.
->
-> >
-> > > The setup_vm() is supposed to setup dtb_early_va and dtb_early_pa
-> > > for MMU-enabled case so please add a "#ifdef" over there for the
-> > > built-in DTB case.
-> > >
-> > > > +       else
-> > > > +               memblock_reserve(dtb_early_pa, fdt_totalsize(dtb_early_va));
-> > > > +
-> > > >         /*
-> > > >          * Avoid using early_init_fdt_reserve_self() since __pa() does
-> > > >          * not work for DTB pointers that are fixmap addresses
-> > > >          */
-> > >
-> > > This comment needs to be updated and moved along the memblock_reserve()
-> > > statement.
-> > >
-> > > > -       memblock_reserve(dtb_early_pa, fdt_totalsize(dtb_early_va));
-> > > > -
-> > > >         early_init_fdt_scan_reserved_mem();
-> > > >         dma_contiguous_reserve(dma32_phys_limit);
-> > > >         memblock_allow_resize();
-> > > > --
-> > > > 2.29.2
-> > > >
-> > >
-> > > This patch should be based upon Damiens builtin DTB patch.
-> > > Refer, https://www.spinics.net/lists/linux-gpio/msg56616.html
-> >
-> > Thanks for the pointer, however I don't think our patches have
-> > intersections. Besides, Damien is dealing with the MMU-less case
-> > there.
->
-> Damien's patch is also trying to move to use generic BUILTIN_DTB
-> support for the MMU-less case so it is similar work hence the chance
-> of patch conflict.
->
-> Regards,
-> Anup
