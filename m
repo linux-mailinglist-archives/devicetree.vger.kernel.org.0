@@ -2,94 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3462E2E6C08
-	for <lists+devicetree@lfdr.de>; Tue, 29 Dec 2020 00:17:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 002432E6C1E
+	for <lists+devicetree@lfdr.de>; Tue, 29 Dec 2020 00:18:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730285AbgL1Wzo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Dec 2020 17:55:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39424 "EHLO
+        id S1730288AbgL1Wzp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Dec 2020 17:55:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43314 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729484AbgL1VHj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Dec 2020 16:07:39 -0500
-Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3534C0613D6;
-        Mon, 28 Dec 2020 13:06:58 -0800 (PST)
-Received: by mail-pj1-x1034.google.com with SMTP id f14so279229pju.4;
-        Mon, 28 Dec 2020 13:06:58 -0800 (PST)
+        with ESMTP id S1729522AbgL1Vc4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Dec 2020 16:32:56 -0500
+Received: from mail-il1-x136.google.com (mail-il1-x136.google.com [IPv6:2607:f8b0:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48FB5C061793;
+        Mon, 28 Dec 2020 13:32:16 -0800 (PST)
+Received: by mail-il1-x136.google.com with SMTP id 2so10561840ilg.9;
+        Mon, 28 Dec 2020 13:32:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=nJ5sqR0HFrrpP8VODHPa/STLCx17P5kOSNJVjY/F3jY=;
-        b=TFv8Q4oj0hrMK90UI1iMuYcnETqYM0PlOsZ2NxMBX5py+hJIR+N6BTtXlAvha5VBtZ
-         tmoK6QOvCXfUr5JDtn4oToIrpPFtnVfRl2F8Z5c23c6aNxDC8n8RtPCOtWSJNEx4dfn6
-         fW3lNg00KsK6OAUS77YsR78XZhLKKWzpMcNJSo7W0gVEncuJokwYIyo9gjuFwNyZ6FP4
-         wPTN4AIESongPfmkyUm4vwzTS4uU4ksl5GN2dm3fqDysEoSDNM1RnF3bsWrF04YpdZNp
-         LhTvD0D87HUgf9dcWeDg9dXGCKPj/2BAMm8Q+nVv2QaP6XupkMB6qNmNxBg4nQ3i9XIL
-         V5oQ==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=0mgkEBKIgthZwWHaiaeNu2SDu9707vUBzGfBzMLaV6Y=;
+        b=O/WiIoBhWkr8USQeFOPH6PH2BVd2jaVYBAIFzOYkmx0ONnlsHRjaIk4CUVP6lEGiUg
+         rP8t0I9iFTH2MAfc5MCf20HsHO3+/OLK/8CPUqJIMLArDZsDmFnGZXq87DuCh8mHXDS9
+         4vqT7OCiG7zo4Coc63pJYpaAhTx6rohb3yIiTeAV9dIQAgWl3hsD/0scF4wbkmJtxJmA
+         cAWu98GZK+7+8HA2+N+VgZlXpw//HD5YfUKhuqahPCPuIahVAgNLX5DQX91/4MovR2BD
+         0NA18UaUiY+Vz6AyV0oNpoMhFiO3KItYSEerqtzTNRVnuRs24J24lWnMkajFmvEsXDgp
+         5pgQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=nJ5sqR0HFrrpP8VODHPa/STLCx17P5kOSNJVjY/F3jY=;
-        b=MLwYJA8WchE+Q7NBgi1eG0tMBCZ8d6Q+WYfV5I4nwoV5MOd7Buvxd6MbsxPJBOHCxE
-         rPltI8gjLghV1TJLM5obHJFopeXmIoeT1hb2By1dn7Y+n6f58/aE562K7an6SxMrogTX
-         QE758DN34LQ0ykyt0VpUTl/EwnpdpyKqCW8GaDv04f2P4VN+dfwzwfoVT9YLobk26T15
-         DJc9H3WC65AAF1o2uarRoRw1Q+fcemymKuOmq4wQVirjLG/B1JU8pBdri9KWD5f8SXrF
-         iFh61RCGhbQ2yb/QQCJqx4pL10JMm5i/PEZS2BYJjfROHLIdVc3lrn5oJqcFBgcIMKb5
-         Mm8A==
-X-Gm-Message-State: AOAM531r312FqcLM2gjAe9SaEAWGSCEUnJ2YVfzipXrayxG94erEd4WQ
-        XeICPMoBn4q3bKGVGhT9EY0=
-X-Google-Smtp-Source: ABdhPJzGb5+rfvqdiTMT7ceeWIm7Jk6ra4y+shJ+cMwhcgMiGkADJf/6ute3mXb7Y0HzRaISyKOZEw==
-X-Received: by 2002:a17:902:8a88:b029:dc:f3:6db2 with SMTP id p8-20020a1709028a88b02900dc00f36db2mr22385056plo.2.1609189618507;
-        Mon, 28 Dec 2020 13:06:58 -0800 (PST)
-Received: from [10.230.29.27] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id q15sm26820960pgk.11.2020.12.28.13.06.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 28 Dec 2020 13:06:57 -0800 (PST)
-Subject: Re: [PATCH v3 1/5] dt-bindings: net: dwmac-meson: use picoseconds for
- the RGMII RX delay
-To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
-        netdev@vger.kernel.org
-Cc:     davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
-        andrew@lunn.ch, jianxin.pan@amlogic.com, narmstrong@baylibre.com,
-        khilman@baylibre.com, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, jbrunet@baylibre.com
-References: <20201223232905.2958651-1-martin.blumenstingl@googlemail.com>
- <20201223232905.2958651-2-martin.blumenstingl@googlemail.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-Message-ID: <b6bfb849-3d68-59aa-1e75-201a978702f3@gmail.com>
-Date:   Mon, 28 Dec 2020 13:06:55 -0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.6.0
+        bh=0mgkEBKIgthZwWHaiaeNu2SDu9707vUBzGfBzMLaV6Y=;
+        b=C79XtdZQFH3izK2vO14SgAmpVbXBToFI+lxOs9bJUZy7aBZaxW6UYmMoQNZw44gJ7P
+         xRWKFmHgBQfUYoEHwHEFZg80jzjtqduWGvs6i3P4TouNEUgIiSODxpjxj8CsyU7NIInd
+         JyMEVWqmhsCHfPF7cuawaHiTNR4Mf4TBBOD2zMK6FI2tyUHSHSwJta/QIbTIzpVjEFuF
+         OL6R63F2gK6HBOe1dWz5nwhOOiliH8zlEuLI5wWvhAyUq1LHlBtF3KC7fE+1MlcVlC5Y
+         m3BXpG4/TQsIoRAja1ARePcfeUOmvqLS34M42P7RMCa27VMVqaFWHuCPN8VK3XyIuBj8
+         e9pQ==
+X-Gm-Message-State: AOAM530wwlfwebve6CgaQpWwCpX1GvypZyVDxPJo1BTskPPIR5ewy+84
+        oiXkmWQ59tDE4hGNNyh5qCCgf1iHJ8/9HQ==
+X-Google-Smtp-Source: ABdhPJzaz0G0X0wJXZF1uo8GTeZwZfzPWHCfWSYQIuJg3ssr/osNzmLj7vgStIksKo3Dtj994NVBIg==
+X-Received: by 2002:a92:6410:: with SMTP id y16mr46130029ilb.126.1609191135309;
+        Mon, 28 Dec 2020 13:32:15 -0800 (PST)
+Received: from aford-IdeaCentre-A730.lan ([2601:448:8400:9e8:f45d:df49:9a4c:4914])
+        by smtp.gmail.com with ESMTPSA id r10sm27671275ilo.34.2020.12.28.13.32.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 28 Dec 2020 13:32:14 -0800 (PST)
+From:   Adam Ford <aford173@gmail.com>
+To:     linux-renesas-soc@vger.kernel.org
+Cc:     aford@beaconembedded.com, Adam Ford <aford173@gmail.com>,
+        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 1/4] dt-bindings: net: renesas,etheravb: Add additional clocks
+Date:   Mon, 28 Dec 2020 15:31:17 -0600
+Message-Id: <20201228213121.2331449-1-aford173@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <20201223232905.2958651-2-martin.blumenstingl@googlemail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The AVB driver assumes there is an external clock, but it could
+be driven by an external clock.  In order to enable a programmable
+clock, it needs to be added to the clocks list and enabled in the
+driver.  Since there currently only one clock, there is no
+clock-names list either.
 
+Update bindings to add the additional optional clock, and explicitly
+name both of them.
 
-On 12/23/2020 3:29 PM, Martin Blumenstingl wrote:
-> Amlogic Meson G12A, G12B and SM1 SoCs have a more advanced RGMII RX
-> delay register which allows picoseconds precision. Deprecate the old
-> "amlogic,rx-delay-ns" in favour of the generic "rx-internal-delay-ps"
-> property.
-> 
-> For older SoCs the only known supported values were 0ns and 2ns. The new
-> SoCs have support for RGMII RX delays between 0ps and 3000ps in 200ps
-> steps.
-> 
-> Don't carry over the description for the "rx-internal-delay-ps" property
-> and inherit that from ethernet-controller.yaml instead.
-> 
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Signed-off-by: Adam Ford <aford173@gmail.com>
+---
+ .../devicetree/bindings/net/renesas,etheravb.yaml     | 11 ++++++++++-
+ 1 file changed, 10 insertions(+), 1 deletion(-)
 
-Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
+diff --git a/Documentation/devicetree/bindings/net/renesas,etheravb.yaml b/Documentation/devicetree/bindings/net/renesas,etheravb.yaml
+index 244befb6402a..c1a06510f056 100644
+--- a/Documentation/devicetree/bindings/net/renesas,etheravb.yaml
++++ b/Documentation/devicetree/bindings/net/renesas,etheravb.yaml
+@@ -49,7 +49,16 @@ properties:
+   interrupt-names: true
+ 
+   clocks:
+-    maxItems: 1
++    minItems: 1
++    maxItems: 2
++    items:
++      - description: AVB functional clock
++      - description: Optional TXC reference clock
++
++  clock-names:
++    items:
++      - const: fck
++      - const: txc_refclk
+ 
+   iommus:
+     maxItems: 1
 -- 
-Florian
+2.25.1
+
