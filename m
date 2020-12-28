@@ -2,61 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 590012E3EFC
-	for <lists+devicetree@lfdr.de>; Mon, 28 Dec 2020 15:35:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CCDF82E3EEE
+	for <lists+devicetree@lfdr.de>; Mon, 28 Dec 2020 15:35:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2505248AbgL1OfB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Dec 2020 09:35:01 -0500
-Received: from mail.kernel.org ([198.145.29.99]:42982 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2505225AbgL1OfA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 28 Dec 2020 09:35:00 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 196CE208B6;
-        Mon, 28 Dec 2020 14:34:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1609166059;
-        bh=ogKcYkMw9ARzUKF21VmoE9vp/OT8fP5rL3ZGtMvoMDg=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=fYWTZ9tzG3dASXGRvFijK93GYHKBOz+qKNOQu/g4BlfZya9eLTcntZ7Nlql4qaUTq
-         7CR2tycoArNSxqesLE+c3Jf+PQr8YYxT3b5c2VUhjiB7UBKl+I/3Z7vvWII1xqDh71
-         7U0C+AVXy+mLmO1zHTTSO5tfbYjxs+uxrb73DWbc=
-Date:   Mon, 28 Dec 2020 15:25:24 +0100
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Vinod Koul <vkoul@kernel.org>, Mark Brown <broonie@kernel.org>,
-        Jassi Brar <jaswinder.singh@linaro.org>,
-        dri-devel@lists.freedesktop.org, dmaengine@vger.kernel.org,
-        alsa-devel@alsa-project.org, linux-usb@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: Drop redundant maxItems/items
-Message-ID: <X+nq1JJLxyVr7Ih+@kroah.com>
-References: <20201222040645.1323611-1-robh@kernel.org>
+        id S2391043AbgL1OeP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Dec 2020 09:34:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34062 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2392138AbgL1OeN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Dec 2020 09:34:13 -0500
+Received: from mail-qv1-xf2b.google.com (mail-qv1-xf2b.google.com [IPv6:2607:f8b0:4864:20::f2b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 959BCC061794;
+        Mon, 28 Dec 2020 06:33:33 -0800 (PST)
+Received: by mail-qv1-xf2b.google.com with SMTP id a13so5010951qvv.0;
+        Mon, 28 Dec 2020 06:33:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=1ierPRC6nwVyKGRAu13wlHhtdFpPWvdfztnJfDJ7P5k=;
+        b=va2DRmSEXgN4RERvddEc0LUIi0aJ2is7ykW9emcWUQX3DQyUptlLMgP0Bea93irTYn
+         GUNY+yNwBfUcC06TK70sP364qt6UJ0dMoK/+oYiVunlfYs5rDzclAbVJlZLTiFOAAv7Y
+         zImRtB6Riffr8DbKUXQM0M7UjIrnkHXZHPhY2YkurjNfW54/qzpFSRS8/uAOuxOryPSN
+         gy2hDuIsFEu9ROYAYzojZ50JFm+zlGultGM9IWu9tY+bPjpyfFO5qaDlssa7u0UyNUXH
+         WxVPI2ZynCr7Hn6mXxkbbcQB3bl4W1nmQ3ZHYfE4kOI2tXQOuHBFRtUXFsmRGVnS8Yf4
+         UP1Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=1ierPRC6nwVyKGRAu13wlHhtdFpPWvdfztnJfDJ7P5k=;
+        b=o6abMvJVWTJ+9wxVBmdoUHYsaW5kfX1S2X4kAAoi0V0mdD9bjFgw/eLj4PdgGT8lQs
+         2W9Zdx7dqvqE8y4fdc9Lh9uVRUeogTFIM4qdtFRokHsj+wRsTXkIm5yCWAkadhSxZH3H
+         C1LK8cdyc0Ce+/kNXi+jyWaWUwGVJwuq21Mn2M5Xf1YeTKS8h3uKSVFdqYVLARFSeptK
+         2E1ZbwDvxkifi6B9bKbJqhY5Q7X0Df40Tbesq9YlgQ/5W80Gquy4PBveWPXPl0heIXcD
+         gkexWQKAdFh1gx/G5S0YUL/6jq7Ss1nuGAceUyLJkps76hCkNKAhPFa6KxK+j78vJCTW
+         C/Xw==
+X-Gm-Message-State: AOAM5311Xp+tQ2fcK8maclA/zfj4W+9VA7vZcCarUOa2TtX20acwqAFt
+        glAQ9mTC9P9idv57d4vNM+LUgU8h/nwUJA==
+X-Google-Smtp-Source: ABdhPJz0IbZ8X0oYIXV2iC2NMeWRmuwGBjxlk7CI6xetX/5FXgaY6nXvJlB7M8Tk76pOFM76GaP2rQ==
+X-Received: by 2002:a0c:dc13:: with SMTP id s19mr47650134qvk.26.1609166012656;
+        Mon, 28 Dec 2020 06:33:32 -0800 (PST)
+Received: from rockpro64.hsd1.md.comcast.net ([2601:153:900:7730::20])
+        by smtp.gmail.com with ESMTPSA id j142sm24361024qke.117.2020.12.28.06.33.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 28 Dec 2020 06:33:31 -0800 (PST)
+From:   Peter Geis <pgwipeout@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>
+Cc:     devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Peter Geis <pgwipeout@gmail.com>,
+        Matt Merhar <mattmerhar@protonmail.com>
+Subject: [PATCH] ARM: tegra: fix emmc on specific bootloaders
+Date:   Mon, 28 Dec 2020 14:33:20 +0000
+Message-Id: <20201228143321.1863250-1-pgwipeout@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201222040645.1323611-1-robh@kernel.org>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 21, 2020 at 09:06:45PM -0700, Rob Herring wrote:
-> 'maxItems' equal to the 'items' list length is redundant. 'maxItems' is
-> preferred for a single entry while greater than 1 should have an 'items'
-> list.
-> 
-> A meta-schema check for this is pending once these existing cases are
-> fixed.
-> 
-> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Cc: Vinod Koul <vkoul@kernel.org>
-> Cc: Mark Brown <broonie@kernel.org>
-> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> Cc: Jassi Brar <jaswinder.singh@linaro.org>
-> Cc: dri-devel@lists.freedesktop.org
-> Cc: dmaengine@vger.kernel.org
-> Cc: alsa-devel@alsa-project.org
-> Cc: linux-usb@vger.kernel.org
-> Signed-off-by: Rob Herring <robh@kernel.org>
+Ouya fails to detect the emmc module when booting from specific bootloaders.
+Fastboot and hard-kexec bootloaders have observed failures while u-boot does not have this issue.
+It was discovered that if the sdmmc4 alternate configuration clock pin is input disabled the issue manifests.
+Ouya uses sdmmc4 in the primary pin configuration so it is unknown why this occurs.
+It is likely related to the other emmc limitations we have on Ouya.
 
-Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+For now, fix it by enabling input on cam_mclk_pcc0.
+
+Fixes: d7195ac5c9c5 ("ARM: tegra: Add device-tree for Ouya")
+Signed-off-by: Peter Geis <pgwipeout@gmail.com>
+Reported-by: Matt Merhar <mattmerhar@protonmail.com>
+Tested-by: Matt Merhar <mattmerhar@protonmail.com>
+---
+ arch/arm/boot/dts/tegra30-ouya.dts | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/arch/arm/boot/dts/tegra30-ouya.dts b/arch/arm/boot/dts/tegra30-ouya.dts
+index 74da1360d297..0368b3b816ef 100644
+--- a/arch/arm/boot/dts/tegra30-ouya.dts
++++ b/arch/arm/boot/dts/tegra30-ouya.dts
+@@ -4352,8 +4352,8 @@ cam_mclk_pcc0 {
+ 		nvidia,pins = "cam_mclk_pcc0";
+ 		nvidia,function = "vi_alt3";
+ 		nvidia,pull = <TEGRA_PIN_PULL_NONE>;
+-		nvidia,tristate = <TEGRA_PIN_ENABLE>;
+-		nvidia,enable-input = <TEGRA_PIN_DISABLE>;
++		nvidia,tristate = <TEGRA_PIN_DISABLE>;
++		nvidia,enable-input = <TEGRA_PIN_ENABLE>;
+ 	};
+ 	pcc1 {
+ 		nvidia,pins = "pcc1";
+-- 
+2.25.1
+
