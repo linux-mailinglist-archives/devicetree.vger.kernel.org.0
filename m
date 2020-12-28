@@ -2,92 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 63B022E3672
-	for <lists+devicetree@lfdr.de>; Mon, 28 Dec 2020 12:29:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1408B2E3698
+	for <lists+devicetree@lfdr.de>; Mon, 28 Dec 2020 12:37:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727019AbgL1L2l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Dec 2020 06:28:41 -0500
-Received: from www.zeus03.de ([194.117.254.33]:37772 "EHLO mail.zeus03.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727363AbgL1L2k (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 28 Dec 2020 06:28:40 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple; d=sang-engineering.com; h=
-        from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=k1; bh=CLhOPFEJVR+TzA
-        e+nHEahGEsCwUVk3be+Yt7VkTUhBc=; b=Np0/W1/xSiNUAnBvuXz7AB5RQpqO9K
-        C3natCMXeQHAVJiT3pDPaJfzPIhV9S28kUVBP9QDlEFsBNM9tUfxfwyvEGbUkLoz
-        tGCe/N56UVSMnlw+JjwPm6EdH5CO1pPvtrNDHsBFklY/LowHlILfi0Ay+ntWdLYR
-        MdBpxjSQQC03w=
-Received: (qmail 1739157 invoked from network); 28 Dec 2020 12:27:19 +0100
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 28 Dec 2020 12:27:19 +0100
-X-UD-Smtp-Session: l3s3148p1@YteUjoS30JQgAwDPXwIpAOUwDQytQs2L
-From:   Wolfram Sang <wsa+renesas@sang-engineering.com>
-To:     linux-renesas-soc@vger.kernel.org
-Cc:     Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 6/6] WIP: arm64: dts: renesas: falcon: switch to from SCIF0 to HSCIF0
-Date:   Mon, 28 Dec 2020 12:27:13 +0100
-Message-Id: <20201228112715.14947-7-wsa+renesas@sang-engineering.com>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20201228112715.14947-1-wsa+renesas@sang-engineering.com>
-References: <20201228112715.14947-1-wsa+renesas@sang-engineering.com>
+        id S1727471AbgL1Lg1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Dec 2020 06:36:27 -0500
+Received: from mail-40133.protonmail.ch ([185.70.40.133]:41289 "EHLO
+        mail-40133.protonmail.ch" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727239AbgL1Lg1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Dec 2020 06:36:27 -0500
+Date:   Mon, 28 Dec 2020 11:35:38 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+        s=protonmail; t=1609155344;
+        bh=uD0o1RGxUdohZwqEit8GaCkXhH2zAclkKXfTpSwZqmA=;
+        h=Date:To:From:Cc:Reply-To:Subject:From;
+        b=GzusC5A3KgMW40aK26pO3RVGGzI1SpxMK6BD+3djiBXgZQ+kz+jSExJtd1R9o7kqM
+         EEF1bfEWPliTWuBpvfaWK4Wn+eyoxjSYvdhK90QxoVHd0LEqH3HkR41abI4JfjH8EL
+         yL6CjzTo6nSbRq6I3YzsDgt3w6XCZcDnlsbjX2DE=
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+From:   Timon Baetz <timon.baetz@protonmail.com>
+Cc:     Marek Szyprowski <m.szyprowski@samsung.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-pm@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Timon Baetz <timon.baetz@protonmail.com>
+Reply-To: Timon Baetz <timon.baetz@protonmail.com>
+Subject: [PATCH v5 1/8] extcon: max8997: Add CHGINS and CHGRM interrupt handling
+Message-ID: <20201228113507.1292506-1-timon.baetz@protonmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM shortcircuit=no
+        autolearn=disabled version=3.4.4
+X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
+        mailout.protonmail.ch
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Mainly for testing the HSCIF0 node. We could make this switch permanent,
-but we never did for any other SoC. So, I think this is not to be
-applied.
+This allows the MAX8997 charger to set the current limit depending on
+the detected extcon charger type.
 
-Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Signed-off-by: Timon Baetz <timon.baetz@protonmail.com>
 ---
- arch/arm64/boot/dts/renesas/r8a779a0-falcon.dts | 14 +++++++++-----
- 1 file changed, 9 insertions(+), 5 deletions(-)
+ drivers/extcon/extcon-max8997.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/renesas/r8a779a0-falcon.dts b/arch/arm64/boot/dts/renesas/r8a779a0-falcon.dts
-index 54763c73dc74..e2bbaa7a72e3 100644
---- a/arch/arm64/boot/dts/renesas/r8a779a0-falcon.dts
-+++ b/arch/arm64/boot/dts/renesas/r8a779a0-falcon.dts
-@@ -14,7 +14,7 @@ / {
- 	compatible = "renesas,falcon-breakout", "renesas,falcon-cpu", "renesas,r8a779a0";
- 
- 	aliases {
--		serial0 = &scif0;
-+		serial0 = &hscif0;
- 	};
- 
- 	chosen {
-@@ -352,9 +352,9 @@ mmc_pins: mmc {
- 		power-source = <1800>;
- 	};
- 
--	scif0_pins: scif0 {
--		groups = "scif0_data", "scif0_ctrl";
--		function = "scif0";
-+	hscif0_pins: hscif0 {
-+		groups = "hscif0_data", "hscif0_ctrl";
-+		function = "hscif0";
- 	};
- 
- 	scif_clk_pins: scif_clk {
-@@ -369,7 +369,11 @@ &rwdt {
+diff --git a/drivers/extcon/extcon-max8997.c b/drivers/extcon/extcon-max899=
+7.c
+index 337b0eea4e62..e1408075ef7d 100644
+--- a/drivers/extcon/extcon-max8997.c
++++ b/drivers/extcon/extcon-max8997.c
+@@ -44,6 +44,8 @@ static struct max8997_muic_irq muic_irqs[] =3D {
+ =09{ MAX8997_MUICIRQ_ChgDetRun,=09"muic-CHGDETRUN" },
+ =09{ MAX8997_MUICIRQ_ChgTyp,=09"muic-CHGTYP" },
+ =09{ MAX8997_MUICIRQ_OVP,=09=09"muic-OVP" },
++=09{ MAX8997_PMICIRQ_CHGINS,=09"pmic-CHGINS" },
++=09{ MAX8997_PMICIRQ_CHGRM,=09"pmic-CHGRM" },
  };
- 
- &scif0 {
--	pinctrl-0 = <&scif0_pins>;
-+	status = "disabled";
-+};
-+
-+&hscif0 {
-+	pinctrl-0 = <&hscif0_pins>;
- 	pinctrl-names = "default";
- 
- 	uart-has-rtscts;
--- 
-2.29.2
+=20
+ /* Define supported cable type */
+@@ -538,6 +540,8 @@ static void max8997_muic_irq_work(struct work_struct *w=
+ork)
+ =09case MAX8997_MUICIRQ_DCDTmr:
+ =09case MAX8997_MUICIRQ_ChgDetRun:
+ =09case MAX8997_MUICIRQ_ChgTyp:
++=09case MAX8997_PMICIRQ_CHGINS:
++=09case MAX8997_PMICIRQ_CHGRM:
+ =09=09/* Handle charger cable */
+ =09=09ret =3D max8997_muic_chg_handler(info);
+ =09=09break;
+--=20
+2.25.1
+
 
