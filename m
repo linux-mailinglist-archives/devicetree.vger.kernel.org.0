@@ -2,210 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2CD272E370A
-	for <lists+devicetree@lfdr.de>; Mon, 28 Dec 2020 13:13:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2FEE72E3725
+	for <lists+devicetree@lfdr.de>; Mon, 28 Dec 2020 13:34:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727743AbgL1MNV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Dec 2020 07:13:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40384 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727617AbgL1MNU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Dec 2020 07:13:20 -0500
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35FCEC061794
-        for <devicetree@vger.kernel.org>; Mon, 28 Dec 2020 04:12:40 -0800 (PST)
-Received: by mail-lf1-x12f.google.com with SMTP id s26so23414410lfc.8
-        for <devicetree@vger.kernel.org>; Mon, 28 Dec 2020 04:12:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=brainfault-org.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=U5dnI6hl/uAinnpfwjzW42khHlLLdEo6KFHybJaznUs=;
-        b=Jjb/nwUvkEGmkSEzVwmXn+lIezhxSCwnCtBvaNxeeiDgCb7PMiokmM1cqfH3/4rb+e
-         XyFo74xz0qxF8mjDYOFcbGd6H2sGCyh3XWCoBM9vLWRa09nq/idp+AWqYRHqIM3MPcK6
-         7BwJZfHx4w+NSbgUlsmePG/yOTJRMlZ2+Gs/036xKf7gUovORvmdCSlLa2ACLiBEkwxG
-         b/evgHVMvJD6nRbHECWe8o/Gqg33nOFw22LpGuRIkceZvlQC/QjVaFyBDnBYq3IiO2yn
-         iHLT7/SY6TWLnAo3zwkFYcVZc4v6oV9CFwZv+pEukiOrqUSoQL9E5XdXZcwl4JuaW8GB
-         RyBQ==
+        id S1726855AbgL1Me1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Dec 2020 07:34:27 -0500
+Received: from mail-oi1-f182.google.com ([209.85.167.182]:34686 "EHLO
+        mail-oi1-f182.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726420AbgL1Me0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Dec 2020 07:34:26 -0500
+Received: by mail-oi1-f182.google.com with SMTP id s75so11331752oih.1;
+        Mon, 28 Dec 2020 04:34:10 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=U5dnI6hl/uAinnpfwjzW42khHlLLdEo6KFHybJaznUs=;
-        b=cwkJqqFTQWkqSRZg24PJ+SkEyrN6E5vuWofoOHOIYjPU1yju7qXTVBDv9rbSjFm/7w
-         SlEl/SQyENZAZtarmK5daafp0S55IpwmouU60V0aJQzJqIBn96VFFSIM0GLZ9cczfrZ5
-         lHRMTtXQ4minZMFrUfgUH+bpi7gAXEVA7OQ4JtiKpfjehZIXN0SnLV6gXq8KofSmdiBU
-         5btTh/2COfR5XkTK0KYJiHnJgr3JcfbE6ZSEYaKv6wy+PbreE4tW7KlfDvLGl8+G1CSZ
-         qHRwIG05QVysA8irlxF452v9EF3HHYp1ZMgdE/BERFgUa2C2Q/gwfT8KJlfVNPevlmdG
-         BmeA==
-X-Gm-Message-State: AOAM530d8P+YDuIHXoCfBq1wz9m4ICQh5page7acSW8OMuddT+yjg6aj
-        6SvaJw3mljU773mw9F6yK4Ut9YhtQHwIwQAqsbtAVbFnjoetakUG
-X-Google-Smtp-Source: ABdhPJxwpJprr6pD65kQrg3HfTYT/inYom0+1ZwhUQegnwfPAS2avm2w25j3YRiAFyIflTh1hkDoKyEuPzX3x50S5o0=
-X-Received: by 2002:a05:6512:34c5:: with SMTP id w5mr18333870lfr.214.1609157558710;
- Mon, 28 Dec 2020 04:12:38 -0800 (PST)
+        bh=DhsUhlUGmAXN4EXX9F3nlVv3tC7B658SwbZ+95FpGT4=;
+        b=b1Z0fkOevfh7DpxR3c/IpSgdBWwBxC5KOwEuR0SPHmeFpnXPPidwv6gGGi7xIxmq7q
+         U8m7hVmD3Qb73R7zM01SHNwbNm1kt0yP7OIm+botPj02nr+eVYYhmkF1PU0gBBnUy+Gj
+         rQPhUgWcCpFq/fIpzn0d6omRU3h1MlcgNv4H8jNozhffijzHEulc7KSIDKwH07gqFeZQ
+         3sCueKtMx2diUL2ozWyjU46h7/NnUg3z2fZrIe2jpzfLt1Jl4vp4R68pCxg/KCwXi0LU
+         G5qLoNG1OZvcBsO7NPUsh38B6MaLoCo6k9kNTCGXQlyjqdA2AdoHAK4uRhIVOUNZea5s
+         6Wig==
+X-Gm-Message-State: AOAM532F73mVkOUCBBtZ0+DlCP2d3xLrw4GQ+CA8yplvtUI0aD24iw2h
+        HLrc3d0ERGEc6D4v8J9e5EltMIXQUSC2EwYZUno=
+X-Google-Smtp-Source: ABdhPJxYxCfpY77LW3Syfq+6c6sxzRzLeyvGO2sN+ocx1LIFlKkBBp2K/v4U8f4+/D3C/pxkp+2tD6kca1sUJPRYSMg=
+X-Received: by 2002:aca:ec09:: with SMTP id k9mr11722486oih.153.1609158825156;
+ Mon, 28 Dec 2020 04:33:45 -0800 (PST)
 MIME-Version: 1.0
-References: <20201213135056.24446-1-damien.lemoal@wdc.com> <20201213135056.24446-24-damien.lemoal@wdc.com>
-In-Reply-To: <20201213135056.24446-24-damien.lemoal@wdc.com>
-From:   Anup Patel <anup@brainfault.org>
-Date:   Mon, 28 Dec 2020 17:42:27 +0530
-Message-ID: <CAAhSdy0XSzrnucDJPWzVVr37Zn0iRxVQZf5X2KkxCkv2kDf4_Q@mail.gmail.com>
-Subject: Re: [PATCH v10 23/23] riscv: Add Canaan Kendryte K210 SD card defconfig
-To:     Damien Le Moal <damien.lemoal@wdc.com>
-Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-gpio@vger.kernel.org, Philipp Zabel <p.zabel@pengutronix.de>,
-        Sean Anderson <seanga2@gmail.com>
+References: <20201213183759.223246-1-aford173@gmail.com> <20201213183759.223246-2-aford173@gmail.com>
+ <CAMuHMdWRieM1H5WLySVDVQds-xKgsqo-OibegJrXgonfqbAL8g@mail.gmail.com>
+ <CAHCN7xL3KU4dA=0-S7J5AEPmjAtpz4j-frEUqBD=JU7BV7g1WA@mail.gmail.com>
+ <CAMuHMdWc=qD=Oqa-7o9K1bd_OM0L7Br8BVAbDvYNraO0wAX2jw@mail.gmail.com>
+ <CAHCN7xKsSgM+=MFOKpNZTsJJiNyx6_mqZL2g_PKhN5fWyE6y7Q@mail.gmail.com>
+ <CAMuHMdVxzcyVuK06BqE4GQPLE8J7V5Jc-W_RSENNxEQG68krCw@mail.gmail.com>
+ <CAHCN7xJVn7gbCX8ibSFbyjA4HqyxPR9_vXvJQQSbJRKoaF_51Q@mail.gmail.com>
+ <CAMuHMdV0djkKTSHbCuv0d2sh+rGs1=WNNEcCNXE3daM8uAcRxw@mail.gmail.com> <CAHCN7x+re5Qswbw=n8Gq0newXW0WoO7=ZseD3YZWMvD_nmBq3w@mail.gmail.com>
+In-Reply-To: <CAHCN7x+re5Qswbw=n8Gq0newXW0WoO7=ZseD3YZWMvD_nmBq3w@mail.gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 28 Dec 2020 13:33:34 +0100
+Message-ID: <CAMuHMdUDb8e3Vv3C3N74D2-VYgsyVEHG9iVcnuNESTX6NArkFA@mail.gmail.com>
+Subject: Re: [PATCH 01/18] arm64: dts: renesas: beacon kit: Configure
+ programmable clocks
+To:     Adam Ford <aford173@gmail.com>
+Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Adam Ford-BE <aford@beaconembedded.com>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Luca Ceresoli <luca@lucaceresoli.net>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Dec 13, 2020 at 7:22 PM Damien Le Moal <damien.lemoal@wdc.com> wrote:
->
-> The nommu_k210_defconfig default configuration allows booting a Canaan
-> Kendryte K210 SoC based boards using an embedded intramfs cpio file.
-> Modifying this configuration to enable support for the board SD card is
-> not trivial for all users. To help beginners getting started with these
-> boards, add the nommu_k210_sdcard_defconfig default configuration file
-> to set all configuration options necessary to use the board mmc-spi sd
-> card for the root file system.
->
-> This new configuration adds support for the block layer, the mmc-spi
-> driver and modifies the boot options to specify the rootfs device as
-> mmcblk0p1 (first partition of the sd card block device). The ext2 file
-> system is selected by default to encourage its use as that results in
-> only about 4KB added to the kernel image size. As ext2 does not have
-> journaling, the boot options specify a read-only mount of the file
-> system. Similarly to the smaller nommu_k210_defconfig, this new default
-> configuration disables virtual terminal support to reduce the kernel
-> image size.
->
-> The default device tree selected is unchanged, specifying the simple
-> "k210_generic" device tree file. The user must change this setting to
-> specify the device tree suitable for the board being used
-> (k210_maix_bit, k210_maix_dock, k210_maix_go, k210_maixduino or
-> k210_kd233).
->
-> Signed-off-by: Damien Le Moal <damien.lemoal@wdc.com>
-> ---
->  .../riscv/configs/nommu_k210_sdcard_defconfig | 93 +++++++++++++++++++
->  1 file changed, 93 insertions(+)
->  create mode 100644 arch/riscv/configs/nommu_k210_sdcard_defconfig
->
-> diff --git a/arch/riscv/configs/nommu_k210_sdcard_defconfig b/arch/riscv/configs/nommu_k210_sdcard_defconfig
-> new file mode 100644
-> index 000000000000..a75388defd44
-> --- /dev/null
-> +++ b/arch/riscv/configs/nommu_k210_sdcard_defconfig
-> @@ -0,0 +1,93 @@
-> +# CONFIG_CPU_ISOLATION is not set
-> +CONFIG_LOG_BUF_SHIFT=13
-> +CONFIG_PRINTK_SAFE_LOG_BUF_SHIFT=12
-> +CONFIG_CC_OPTIMIZE_FOR_SIZE=y
-> +# CONFIG_SYSFS_SYSCALL is not set
-> +# CONFIG_FHANDLE is not set
-> +# CONFIG_BASE_FULL is not set
-> +# CONFIG_FUTEX is not set
-> +# CONFIG_EPOLL is not set
-> +# CONFIG_SIGNALFD is not set
-> +# CONFIG_TIMERFD is not set
-> +# CONFIG_EVENTFD is not set
-> +# CONFIG_AIO is not set
-> +# CONFIG_IO_URING is not set
-> +# CONFIG_ADVISE_SYSCALLS is not set
-> +# CONFIG_MEMBARRIER is not set
-> +# CONFIG_KALLSYMS is not set
-> +CONFIG_EMBEDDED=y
-> +# CONFIG_VM_EVENT_COUNTERS is not set
-> +# CONFIG_COMPAT_BRK is not set
-> +CONFIG_SLOB=y
-> +# CONFIG_MMU is not set
-> +CONFIG_SOC_CANAAN=y
-> +CONFIG_SOC_CANAAN_K210_DTB_SOURCE="k210_generic"
-> +CONFIG_MAXPHYSMEM_2GB=y
-> +CONFIG_SMP=y
-> +CONFIG_NR_CPUS=2
-> +CONFIG_CMDLINE="earlycon console=ttySIF0 rootdelay=2 root=/dev/mmcblk0p1 ro"
-> +CONFIG_CMDLINE_FORCE=y
-> +# CONFIG_SECCOMP is not set
-> +# CONFIG_STACKPROTECTOR is not set
-> +# CONFIG_BLK_DEV_BSG is not set
-> +# CONFIG_MQ_IOSCHED_DEADLINE is not set
-> +# CONFIG_MQ_IOSCHED_KYBER is not set
-> +CONFIG_BINFMT_FLAT=y
-> +# CONFIG_COREDUMP is not set
-> +CONFIG_DEVTMPFS=y
-> +CONFIG_DEVTMPFS_MOUNT=y
-> +# CONFIG_FW_LOADER is not set
-> +# CONFIG_ALLOW_DEV_COREDUMP is not set
-> +# CONFIG_BLK_DEV is not set
-> +# CONFIG_INPUT_LEDS is not set
-> +# CONFIG_INPUT_KEYBOARD is not set
-> +# CONFIG_INPUT_MOUSE is not set
-> +# CONFIG_SERIO is not set
-> +# CONFIG_VT is not set
-> +# CONFIG_UNIX98_PTYS is not set
-> +# CONFIG_LEGACY_PTYS is not set
-> +# CONFIG_LDISC_AUTOLOAD is not set
-> +# CONFIG_HW_RANDOM is not set
-> +# CONFIG_DEVMEM is not set
-> +CONFIG_I2C=y
-> +CONFIG_I2C_CHARDEV=y
-> +# CONFIG_I2C_HELPER_AUTO is not set
-> +CONFIG_I2C_DESIGNWARE_PLATFORM=y
-> +CONFIG_SPI=y
-> +# CONFIG_SPI_MEM is not set
-> +CONFIG_SPI_DESIGNWARE=y
-> +CONFIG_SPI_DW_MMIO=y
-> +# CONFIG_GPIO_SYSFS is not set
-> +# CONFIG_GPIO_CDEV_V1 is not set
-> +CONFIG_GPIO_DWAPB=y
-> +CONFIG_GPIO_SIFIVE=y
-> +CONFIG_POWER_RESET=y
-> +CONFIG_POWER_RESET_SYSCON=y
-> +# CONFIG_HWMON is not set
-> +# CONFIG_HID is not set
-> +# CONFIG_USB_SUPPORT is not set
-> +CONFIG_MMC=y
-> +# CONFIG_PWRSEQ_EMMC is not set
-> +# CONFIG_PWRSEQ_SIMPLE is not set
-> +CONFIG_MMC_SPI=y
-> +CONFIG_NEW_LEDS=y
-> +CONFIG_LEDS_CLASS=y
-> +CONFIG_LEDS_GPIO=y
-> +CONFIG_LEDS_USER=y
-> +# CONFIG_VIRTIO_MENU is not set
-> +# CONFIG_VHOST_MENU is not set
-> +CONFIG_EXT2_FS=y
-> +# CONFIG_FILE_LOCKING is not set
-> +# CONFIG_DNOTIFY is not set
-> +# CONFIG_INOTIFY_USER is not set
-> +# CONFIG_MISC_FILESYSTEMS is not set
-> +CONFIG_LSM="[]"
-> +CONFIG_PRINTK_TIME=y
-> +# CONFIG_SYMBOLIC_ERRNAME is not set
-> +# CONFIG_DEBUG_BUGVERBOSE is not set
-> +# CONFIG_DEBUG_MISC is not set
-> +CONFIG_PANIC_ON_OOPS=y
-> +# CONFIG_SCHED_DEBUG is not set
-> +# CONFIG_RCU_TRACE is not set
-> +# CONFIG_FTRACE is not set
-> +# CONFIG_RUNTIME_TESTING_MENU is not set
-> --
-> 2.29.2
->
->
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
+Hi Adam,
 
-Looks good to me.
+On Thu, Dec 24, 2020 at 2:53 PM Adam Ford <aford173@gmail.com> wrote:
+> On Tue, Dec 22, 2020 at 2:03 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> > On Tue, Dec 22, 2020 at 2:39 AM Adam Ford <aford173@gmail.com> wrote:
+> > > On Fri, Dec 18, 2020 at 7:16 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> > > > On Thu, Dec 17, 2020 at 12:52 PM Adam Ford <aford173@gmail.com> wrote:
+> > > > > On Thu, Dec 17, 2020 at 2:16 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> > > > > > On Wed, Dec 16, 2020 at 6:03 PM Adam Ford <aford173@gmail.com> wrote:
+> > > > > > > On Wed, Dec 16, 2020 at 8:55 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> > > > > > > > On Sun, Dec 13, 2020 at 7:38 PM Adam Ford <aford173@gmail.com> wrote:
+> > > > > > > > > When the board was added, clock drivers were being updated done at
+> > > > > > > > > the same time to allow the versaclock driver to properly configure
+> > > > > > > > > the modes.  Unforutnately, the updates were not applied to the board
+> > > > > >
+> > > > > > > > > --- a/arch/arm64/boot/dts/renesas/beacon-renesom-baseboard.dtsi
+> > > > > > > > > +++ b/arch/arm64/boot/dts/renesas/beacon-renesom-baseboard.dtsi
+> > > > > > > > > @@ -5,6 +5,7 @@
+> > > > > > > > >
+> > > > > > > > >  #include <dt-bindings/gpio/gpio.h>
+> > > > > > > > >  #include <dt-bindings/input/input.h>
+> > > > > > > > > +#include <dt-bindings/clk/versaclock.h>
+> > > > > > > > >
+> > > > > > > > >  / {
+> > > > > > > > >         backlight_lvds: backlight-lvds {
+> > > > > > > > > @@ -294,12 +295,12 @@ &du_out_rgb {
+> > > > > > > > >  &ehci0 {
+> > > > > > > > >         dr_mode = "otg";
+> > > > > > > > >         status = "okay";
+> > > > > > > > > -       clocks = <&cpg CPG_MOD 703>, <&cpg CPG_MOD 704>;
+> > > > > > > > > +       clocks = <&cpg CPG_MOD 703>, <&cpg CPG_MOD 704>, <&versaclock5 3>;
+> > > > > > > >
+> > > > > > > > Why this change? You said before you don't need this
+> > > > > > > > https://lore.kernel.org/linux-renesas-soc/CAHCN7xJWbP16SA-Ok-5syNnqOZAt8OFJo2_rtg5VrNVsN2-eiQ@mail.gmail.com/
+> > > > > > > >
+> > > > > > >
+> > > > > > > I had talked with the hardware guys about buy pre-programmed
+> > > > > > > versaclock chips which would have been pre-configured and pre-enabled.
+> > > > > > > I thought it was going to happen, but it didn't, so we need the
+> > > > > > > versaclock driver to enable the reference clock for the USB
+> > > > > > > controllers, ethernet controller and audio clocks.  Previously we were
+> > > > > > > manually configuring it or it was coincidentally working. Ideally,
+> > > > > > > we'd have the clock system intentionally enable/disable the clocks
+> > > > > > > when drivers are loaded/unloaded for for power management reasons.
+> > > > > >
+> > > > > > Can you tell me how exactly the Versaclock outputs are wired?
+> > > > >
+> > > > > The SoC is expecting a fixed external 50 MHz clock connected to
+> > > > > USB_EXTAL.  Instead of a fixed clock, we're using the Versaclock.
+> > > > > We're also using the Versaclock to drive the AVB TXCRefClk,
+> > > > > du_dotclkiun0 and du_dotclkin2 (also also called du_dotclkin3 on
+> > > > > RZ/G2N) instead of fixed clocks.
+> > > > >
+> > > > > > E.g. for USB, the bindings don't say anything about a third clock input,
+> > > > > > so I'd like to know where that clock is fed into USB.
+> > > > >
+> > > > > The way the driver is crafted, it can take in multiple clocks and it
+> > > > > goes through a list to enable them all, so I added the versaclock to
+> > > > > the array.  Without the versaclock reference, the clock doesn't get
+> > > > > turned on and the USB fails to operate.
+> > > >
+> > > > According to the Hardware User's Manual, USBL_EXTAL is used for USB3.0,
+> > > > while you added the clock references to the EHCI nodes.
+> > > > Are you sure EHCI is failing without this?
+>
+> I talked to a colleague about the USB_EXTAL.  He pointed me to table
+> 60.1 of the RZ/2 Series, 2nd Generate reference manual
+> (R01UH0808EJ0100 Rev.1.00),  which shows the USB EHCI needing the
+> 50MHz.  When I clear out the references from ehci0 and echi1, the USB
+> stops working, so it does appear that using the versaclock as the 3rd
+> clock is needed for operating.  The device tree bindings for the
+> generic-ehci provide for up to 4 clocks, so it seems like referencing
+> clocks = <&cpg CPG_MOD 703>, <&cpg CPG_MOD 704>, <&versaclock5 3> are
+> not a violation of the bindings.
 
-Reviewed-by: Anup Patel <anup@brainfault.org>
+Perhaps you need to use renesas,rcar-usb2-clock-sel?
+Documentation/devicetree/bindings/clock/renesas,rcar-usb2-clock-sel.yaml
 
-Regards,
-Anup
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
