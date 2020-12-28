@@ -2,153 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D47FC2E6867
-	for <lists+devicetree@lfdr.de>; Mon, 28 Dec 2020 17:37:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E2BC2E68A1
+	for <lists+devicetree@lfdr.de>; Mon, 28 Dec 2020 17:40:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2441040AbgL1Qfy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Dec 2020 11:35:54 -0500
-Received: from mout.kundenserver.de ([212.227.17.13]:34673 "EHLO
-        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729933AbgL1Qfu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Dec 2020 11:35:50 -0500
-Received: from methusalix.internal.home.lespocky.de ([92.117.54.172]) by
- mrelayeu.kundenserver.de (mreue109 [212.227.15.183]) with ESMTPSA (Nemesis)
- id 1MxmBc-1k66FO0Vl0-00zH4a; Mon, 28 Dec 2020 17:33:00 +0100
-Received: from lemmy.internal.home.lespocky.de ([192.168.243.175] helo=lemmy.home.lespocky.de)
-        by methusalix.internal.home.lespocky.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-        (Exim 4.94)
-        (envelope-from <alex@home.lespocky.de>)
-        id 1ktvS5-0002GX-8S; Mon, 28 Dec 2020 17:32:58 +0100
-Received: (nullmailer pid 32629 invoked by uid 2001);
-        Mon, 28 Dec 2020 16:32:54 -0000
-From:   Alexander Dahl <post@lespocky.de>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Alexander Dahl <ada@thorsis.com>, linux-leds@vger.kernel.org,
-        Alexander Dahl <post@lespocky.de>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-amlogic@lists.infradead.org,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: [PATCH v9 4/4] arm64: dts: meson: Fix schema warnings for pwm-leds
-Date:   Mon, 28 Dec 2020 17:32:17 +0100
-Message-Id: <20201228163217.32520-5-post@lespocky.de>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20201228163217.32520-1-post@lespocky.de>
-References: <20201228163217.32520-1-post@lespocky.de>
+        id S2633768AbgL1QjC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Dec 2020 11:39:02 -0500
+Received: from mail.kernel.org ([198.145.29.99]:43286 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729523AbgL1Qi7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 28 Dec 2020 11:38:59 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 87E822245C;
+        Mon, 28 Dec 2020 16:38:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1609173498;
+        bh=YV/sRyX1UmvG3GgdJ2m2ftk6FRFQv84QER2+PC7WNP0=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=UK5kKQ8TFRZmctDcMCpNwJwPKX+GfRJDqejqbHjLqlfEGLwBX3n8bZVw06xsMmJwR
+         JjKvIRcN6I2rcNK9gh7+SV29hg+EgYWBPEJavUuG0h6Ra0F37O29wffn2NdMjKzj/s
+         rh1frW8ZlXyOSbvX9wbPxFjkpT/f6IlwfQrNVs/KNGhUPwS99KMnLHk+0AWVBPx43i
+         pt0Y7fdU1Q25Fn4Un7lOvEIwUHgNTQkdFEjgigz5z9SQ2xtTP3Xlss94yRHSBm4VEm
+         7tAvCyq6ElkWLMiXTcmGas+bUNAxqzmhn6OPA0tKNyqGvqDeg8ZanAQsu+WtK+gAyv
+         i7agiC8kfw8cw==
+Received: by mail-wr1-f51.google.com with SMTP id 91so11780957wrj.7;
+        Mon, 28 Dec 2020 08:38:18 -0800 (PST)
+X-Gm-Message-State: AOAM533koXx012QVX392Fg1pd/efWqvttBqLVkZQ3NNP3q7XS8YXihFV
+        kmkAMuF8V3Q1a0AIyaV6gtEVC+RzdMRR11gYrQ==
+X-Google-Smtp-Source: ABdhPJyH9luqvq7mDBrXfC//wmYqhVyPNCFSGbrh2c9nlDMvIXGLGHRAotR70G+rGeb+bseslPiYL4Rabit/Z+t8IxA=
+X-Received: by 2002:adf:e84c:: with SMTP id d12mr53775611wrn.382.1609173497206;
+ Mon, 28 Dec 2020 08:38:17 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Scan-Signature: 9f3e2451014eddb8c015276babd3c637
-X-Spam-Score: -2.9 (--)
-X-Provags-ID: V03:K1:8uronqTsuXPgzFbvVftbTks1E0sX0UeFjWtLf04xFRehTTCBYdy
- yzCyTwaCtC765Xf57s/UyBYY/JNonjzM3opE6ZEG8Cyi3xo9I02Yks2bzoUC5hpA2AvojQP
- td6yXilYMGXIWOvY5ba9NbYTWUIJbGr+GOkJQnccJsc3buNLMJy9A4ywOK6qnjshKj3sRlx
- yaulYhkUGnXPRPKpLFRfQ==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:n/+RqIPN01Q=:RYT4l5liSU5gg7GNcMZE12
- Jpr1bRg4dGohmKMtq6H0aS4fujycVB/eVOXky4hQkVI/FNpQ24cLhG8S6jI7ruGjqijpTT7+J
- byBP+xjAHWYL3fRZBp0yWS2j4QCaN0ZTfPU4+S+E+yT3TLnJL8k13Lo6i5lNt61iAfjY4Y7Rl
- B8sV2qnNeebpNfZNRbUUKeBvcV052PmI8YMvJ0sgP0zjM4rLeJ54IZWTWxQri8aP9p7/I7Xec
- 9Lu02oDjbhyg2Dj9UcNvZJ0SoxNbVUqgfMvnkjSlsUrFMsU8jLlYNuf271RPLl/yBm1ke6SNU
- bxaeKcRqLvsjL5JqrqszJ+hc+HsD1G9QM9pGqR0BZIcx/WaoY/AzWGxqcnPrUv3gilqkL51TD
- DJT18xCikn6NhFFdGr5x9qTQsaOPueEJrIyak3hVX7GvPTLzLurwFk5FiEymOHkuVBQAAv6Y1
- 8f1rxzI8kg==
+References: <1609144630-14721-1-git-send-email-yongqiang.niu@mediatek.com> <1609144630-14721-8-git-send-email-yongqiang.niu@mediatek.com>
+In-Reply-To: <1609144630-14721-8-git-send-email-yongqiang.niu@mediatek.com>
+From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Date:   Tue, 29 Dec 2020 00:38:05 +0800
+X-Gmail-Original-Message-ID: <CAAOTY_9ObwPwKt6nRc_qSu9JE3WbqeRDEpKObnxsfhENbkT+iw@mail.gmail.com>
+Message-ID: <CAAOTY_9ObwPwKt6nRc_qSu9JE3WbqeRDEpKObnxsfhENbkT+iw@mail.gmail.com>
+Subject: Re: [PATCH v3, 7/8] soc: mediatek: mmsys: Use function call for
+ setting mmsys ovl mout register
+To:     Yongqiang Niu <yongqiang.niu@mediatek.com>
+Cc:     CK Hu <ck.hu@mediatek.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        DTML <devicetree@vger.kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        DRI Development <dri-devel@lists.freedesktop.org>,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The node names for devices using the pwm-leds driver follow a certain
-naming scheme (now).  Parent node name is not enforced, but recommended
-by DT project.
+Hi, Yongqiang:
 
-Signed-off-by: Alexander Dahl <post@lespocky.de>
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
----
+Yongqiang Niu <yongqiang.niu@mediatek.com> =E6=96=BC 2020=E5=B9=B412=E6=9C=
+=8828=E6=97=A5 =E9=80=B1=E4=B8=80 =E4=B8=8B=E5=8D=884:38=E5=AF=AB=E9=81=93=
+=EF=BC=9A
+>
+> Use function call for setting mmsys ovl mout register
+>
+> Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
+> ---
+>  drivers/soc/mediatek/mmsys/mtk-mmsys.c | 20 ++++++++++++++++++++
+>  include/linux/soc/mediatek/mtk-mmsys.h |  3 +++
+>  2 files changed, 23 insertions(+)
+>
+> diff --git a/drivers/soc/mediatek/mmsys/mtk-mmsys.c b/drivers/soc/mediate=
+k/mmsys/mtk-mmsys.c
+> index dae665b..ea36a11 100644
+> --- a/drivers/soc/mediatek/mmsys/mtk-mmsys.c
+> +++ b/drivers/soc/mediatek/mmsys/mtk-mmsys.c
+> @@ -74,6 +74,17 @@ void mtk_mmsys_ddp_connect(struct device *dev,
+>                 reg =3D readl_relaxed(mmsys->regs + addr) | value;
+>                 writel_relaxed(reg, mmsys->regs + addr);
+>         }
+> +
+> +       if (!funcs->ovl_mout_en)
+> +               return;
+> +
+> +       if (funcs->ovl_mout_en) {
+> +               value =3D funcs->ovl_mout_en(cur, next, &addr);
+> +               if (value) {
+> +                       reg =3D readl_relaxed(mmsys->regs + addr) | value=
+;
+> +                       writel_relaxed(reg, mmsys->regs + addr);
+> +               }
+> +       }
 
-Notes:
-    v8 -> v9:
-      * rebased on v5.11-rc1
-    
-    v7 -> v8:
-      * rebased on pavel/for-next (post v5.10-rc1)
-    
-    v6 -> v7:
-      * added Reviewed-by
-      * added another explaining sentence to commit message
-    
-    v6:
-      * added this patch to series
+mtk_mmsys_ddp_mout_en() could write register inside it rather than
+return value and write register in mtk_mmsys_ddp_connect(). So you
+could do ovl_mout_en() in mtk_mmsys_ddp_mout_en().
 
- .../arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts | 4 ++--
- arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts     | 4 ++--
- arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts          | 8 ++++----
- 3 files changed, 8 insertions(+), 8 deletions(-)
+Regards,
+Chun-Kuang.
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts
-index 6fe589cd2ba2..45adae480a3d 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts
-@@ -42,10 +42,10 @@
- 		};
- 	};
- 
--	pwmleds {
-+	led-controller {
- 		compatible = "pwm-leds";
- 
--		power {
-+		led-1 {
- 			label = "vim:red:power";
- 			pwms = <&pwm_AO_ab 1 7812500 0>;
- 			max-brightness = <255>;
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
-index bf9877d33427..25857e0c0831 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
-@@ -81,10 +81,10 @@
- 		};
- 	};
- 
--	pwmleds {
-+	led-controller {
- 		compatible = "pwm-leds";
- 
--		power {
-+		led-1 {
- 			label = "vim:red:power";
- 			pwms = <&pwm_AO_ab 1 7812500 0>;
- 			max-brightness = <255>;
-diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts
-index 5ab139a34c01..039a8d0d1e9b 100644
---- a/arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts
-@@ -101,20 +101,20 @@
- 		};
- 	};
- 
--	leds {
-+	led-controller-1 {
- 		compatible = "gpio-leds";
- 
--		led-bluetooth {
-+		led-1 {
- 			label = "sei610:blue:bt";
- 			gpios = <&gpio GPIOC_7 (GPIO_ACTIVE_LOW | GPIO_OPEN_DRAIN)>;
- 			default-state = "off";
- 		};
- 	};
- 
--	pwmleds {
-+	led-controller-2 {
- 		compatible = "pwm-leds";
- 
--		power {
-+		led-2 {
- 			label = "sei610:red:power";
- 			pwms = <&pwm_AO_ab 0 30518 0>;
- 			max-brightness = <255>;
--- 
-2.20.1
-
+>  }
+>  EXPORT_SYMBOL_GPL(mtk_mmsys_ddp_connect);
+>
+> @@ -99,6 +110,15 @@ void mtk_mmsys_ddp_disconnect(struct device *dev,
+>                 reg =3D readl_relaxed(mmsys->regs + addr) & ~value;
+>                 writel_relaxed(reg, mmsys->regs + addr);
+>         }
+> +
+> +       if (!funcs->ovl_mout_en)
+> +               return;
+> +
+> +       value =3D funcs->ovl_mout_en(cur, next, &addr);
+> +       if (value) {
+> +               reg =3D readl_relaxed(mmsys->regs + addr) & ~value;
+> +               writel_relaxed(reg, mmsys->regs + addr);
+> +       }
+>  }
+>  EXPORT_SYMBOL_GPL(mtk_mmsys_ddp_disconnect);
+>
+> diff --git a/include/linux/soc/mediatek/mtk-mmsys.h b/include/linux/soc/m=
+ediatek/mtk-mmsys.h
+> index aa4f60e..220203d 100644
+> --- a/include/linux/soc/mediatek/mtk-mmsys.h
+> +++ b/include/linux/soc/mediatek/mtk-mmsys.h
+> @@ -49,6 +49,9 @@ struct mtk_mmsys_conn_funcs {
+>         u32 (*mout_en)(enum mtk_ddp_comp_id cur,
+>                        enum mtk_ddp_comp_id next,
+>                        unsigned int *addr);
+> +       u32 (*ovl_mout_en)(enum mtk_ddp_comp_id cur,
+> +                          enum mtk_ddp_comp_id next,
+> +                          unsigned int *addr);
+>         u32 (*sel_in)(enum mtk_ddp_comp_id cur,
+>                       enum mtk_ddp_comp_id next,
+>                       unsigned int *addr);
+> --
+> 1.8.1.1.dirty
+> _______________________________________________
+> Linux-mediatek mailing list
+> Linux-mediatek@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-mediatek
