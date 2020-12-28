@@ -2,146 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 08FD02E650C
-	for <lists+devicetree@lfdr.de>; Mon, 28 Dec 2020 16:57:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DD9162E3C02
+	for <lists+devicetree@lfdr.de>; Mon, 28 Dec 2020 14:57:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389458AbgL1NgP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Dec 2020 08:36:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53012 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2391360AbgL1NgJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Dec 2020 08:36:09 -0500
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 812ACC061794
-        for <devicetree@vger.kernel.org>; Mon, 28 Dec 2020 05:35:28 -0800 (PST)
-Received: by mail-lf1-x12c.google.com with SMTP id a12so23916864lfl.6
-        for <devicetree@vger.kernel.org>; Mon, 28 Dec 2020 05:35:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=konsulko.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=lnlocphoctX4r6uKPUYm4iHsqJYYWrO7RnR7sqTcTMQ=;
-        b=DdXN+SIqlIxijQhfqX1KanDmg13RIXZawO+UXnE2GnWP6WUQA7qLK01tybwDacK6iT
-         h9liV046J29RuS5Zo7EOoAUQXF2kmtjRWi7TLj0vlg/kmog2D6lwCNkbM3zfTiw0/Gnt
-         2A7ihf1wx1d8wlrQdJbC9WjqiuVOgoEiAoSPc=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=lnlocphoctX4r6uKPUYm4iHsqJYYWrO7RnR7sqTcTMQ=;
-        b=WTcS6HKcq0jdp952e5wasrsMC5uUK228YxXGrX2mYDSBtMMRdnOCj9+L1r5ajynSf/
-         NTLcwHG3buJ1Ocajek8c3YvXGEoBDnxyFnBW4I4q98c0zQ0pEKY79jr8L9Ul09tlyS/U
-         710dXV8smkYJv1l2IWfyP3Mo8Q0ClsyrsrpaF/O8qAxGkyI3EciiojmghBiaVz1DIDmw
-         0QyUbfBos2OeXSorJhGOIvFevrMMwByinmviuUhEvu8NKRWPRcETlAu827axNJDCUMmB
-         VK7ytsxlv/luowbSPfalpKi8MeAyvmXy5+mBoftcKQJk1jWeFJHhXYT3x2t8zbxz3yNU
-         Jp6w==
-X-Gm-Message-State: AOAM530tMlZDCV0dzqegiiGOVlogoKEL0vsfhwxUkp0PNzm5FhLLgdUu
-        K3Axocvi0bMDH9GuZP+wf+8BsVbMF1/1Fic0ToaVWw==
-X-Google-Smtp-Source: ABdhPJyiqupZuDE0Vxp4Jp2VXGNRbz8ArOYKPHzS+2ZWvcmC136bVxjhF83SmGCPsFzZ1cANTCZzpN6YjAEuwCAW2d0=
-X-Received: by 2002:a05:6512:2009:: with SMTP id a9mr18356183lfb.575.1609162526880;
- Mon, 28 Dec 2020 05:35:26 -0800 (PST)
+        id S2407868AbgL1N53 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Dec 2020 08:57:29 -0500
+Received: from www.zeus03.de ([194.117.254.33]:57592 "EHLO mail.zeus03.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2406938AbgL1N52 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 28 Dec 2020 08:57:28 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple; d=sang-engineering.com; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=k1; bh=JpSS6SJxSrGFlfoJzPOk0zvGh8aI
+        +TuYM/8FlHNqQBk=; b=Jta7t7RYoAkAjAYoqr2FZ70Di+k6zforFCXuyd/XEZZ8
+        kbu+u4hlBku5k1IHThsmmDU1hsL8WlN2jtYoPHC5mBWdk8i3H+cNi/LdR+F/FLbB
+        vunIcZ9J6MVeUtrXe4AY8uvFWnREscTklmir2QaQZGdY/kI6CxkYPoUM1kxVWWg=
+Received: (qmail 1773424 invoked from network); 28 Dec 2020 14:56:46 +0100
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 28 Dec 2020 14:56:46 +0100
+X-UD-Smtp-Session: l3s3148p1@RfcMpYa3ApYgAwDPXwIpAOUwDQytQs2L
+Date:   Mon, 28 Dec 2020 14:56:46 +0100
+From:   Wolfram Sang <wsa+renesas@sang-engineering.com>
+To:     linux-renesas-soc@vger.kernel.org
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 5/5] arm64: dts: r8a779a0: WIP disable reset-gpios for AVB
+Message-ID: <20201228135646.GE10822@kunai>
+Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        linux-renesas-soc@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20201227130407.10991-1-wsa+renesas@sang-engineering.com>
+ <20201227130407.10991-6-wsa+renesas@sang-engineering.com>
 MIME-Version: 1.0
-References: <20201226163037.43691-1-vitaly.wool@konsulko.com> <CAAhSdy1M5pMjYHNWdOicb3N3fjTfQLEgE8tFb74sqGbPE_9eyQ@mail.gmail.com>
-In-Reply-To: <CAAhSdy1M5pMjYHNWdOicb3N3fjTfQLEgE8tFb74sqGbPE_9eyQ@mail.gmail.com>
-From:   Vitaly Wool <vitaly.wool@konsulko.com>
-Date:   Mon, 28 Dec 2020 14:35:16 +0100
-Message-ID: <CAM4kBBJ3Vbytx=dFK7+DMByV3zK=FVLATSwjyuuygkDK1MCQjA@mail.gmail.com>
-Subject: Re: [PATCH] riscv: add BUILTIN_DTB support for MMU-enabled targets
-To:     Anup Patel <anup@brainfault.org>
-Cc:     linux-riscv <linux-riscv@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
-        Bin Meng <bin.meng@windriver.com>,
-        Palmer Dabbelt <palmerdabbelt@google.com>,
-        Damien Le Moal <damien.lemoal@wdc.com>,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="fWddYNRDgTk9wQGZ"
+Content-Disposition: inline
+In-Reply-To: <20201227130407.10991-6-wsa+renesas@sang-engineering.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 28, 2020 at 12:59 PM Anup Patel <anup@brainfault.org> wrote:
->
-> On Sat, Dec 26, 2020 at 10:03 PM Vitaly Wool <vitaly.wool@konsulko.com> wrote:
-> >
-> > Sometimes, especially in a production system we may not want to
-> > use a "smart bootloader" like u-boot to load kernel, ramdisk and
-> > device tree from a filesystem on eMMC, but rather load the kernel
-> > from a NAND partition and just run it as soon as we can, and in
-> > this case it is convenient to have device tree compiled into the
-> > kernel binary. Since this case is not limited to MMU-less systems,
-> > let's support it for these which have MMU enabled too.
-> >
-> > Signed-off-by: Vitaly Wool <vitaly.wool@konsulko.com>
-> > ---
-> >  arch/riscv/Kconfig   |  1 -
-> >  arch/riscv/mm/init.c | 12 ++++++++++--
-> >  2 files changed, 10 insertions(+), 3 deletions(-)
-> >
-> > diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
-> > index 2b41f6d8e458..9464b4e3a71a 100644
-> > --- a/arch/riscv/Kconfig
-> > +++ b/arch/riscv/Kconfig
-> > @@ -419,7 +419,6 @@ endmenu
-> >
-> >  config BUILTIN_DTB
-> >         def_bool n
-> > -       depends on RISCV_M_MODE
-> >         depends on OF
-> >
-> >  menu "Power management options"
-> > diff --git a/arch/riscv/mm/init.c b/arch/riscv/mm/init.c
-> > index 87c305c566ac..5d1c7a3ec01c 100644
-> > --- a/arch/riscv/mm/init.c
-> > +++ b/arch/riscv/mm/init.c
-> > @@ -194,12 +194,20 @@ void __init setup_bootmem(void)
-> >         setup_initrd();
-> >  #endif /* CONFIG_BLK_DEV_INITRD */
-> >
-> > +       /*
-> > +        * If DTB is built in, no need to reserve its memblock.
-> > +        * OTOH, initial_boot_params has to be set to properly copy DTB
-> > +        * before unflattening later on.
-> > +        */
-> > +       if (IS_ENABLED(CONFIG_BUILTIN_DTB))
-> > +               initial_boot_params = __va(dtb_early_pa);
->
-> Don't assign initial_boot_params directly here because the
-> early_init_dt_scan() will do it.
 
-early_init_dt_scan will set initial_boot_params to dtb_early_va from
-the early mapping which will be gone by the time
-unflatten_and_copy_device_tree() is called.
+--fWddYNRDgTk9wQGZ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> The setup_vm() is supposed to setup dtb_early_va and dtb_early_pa
-> for MMU-enabled case so please add a "#ifdef" over there for the
-> built-in DTB case.
->
-> > +       else
-> > +               memblock_reserve(dtb_early_pa, fdt_totalsize(dtb_early_va));
-> > +
-> >         /*
-> >          * Avoid using early_init_fdt_reserve_self() since __pa() does
-> >          * not work for DTB pointers that are fixmap addresses
-> >          */
->
-> This comment needs to be updated and moved along the memblock_reserve()
-> statement.
->
-> > -       memblock_reserve(dtb_early_pa, fdt_totalsize(dtb_early_va));
-> > -
-> >         early_init_fdt_scan_reserved_mem();
-> >         dma_contiguous_reserve(dma32_phys_limit);
-> >         memblock_allow_resize();
-> > --
-> > 2.29.2
-> >
->
-> This patch should be based upon Damiens builtin DTB patch.
-> Refer, https://www.spinics.net/lists/linux-gpio/msg56616.html
+On Sun, Dec 27, 2020 at 02:04:06PM +0100, Wolfram Sang wrote:
+> Retrieving a GPIO currently fails, so probing the whole driver fails
+> then. Remove them for now to get a working AVB device for testing.
+>=20
+> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 
-Thanks for the pointer, however I don't think our patches have
-intersections. Besides, Damien is dealing with the MMU-less case
-there.
+I just pushed out another version of this branch. There, in the
+depending gpio branch, a fix for the GPIO DTS addition has been applied,
+so 'reset-gpios' work now as expected. So, this patch has been dropped.
 
-Best regards,
-   Vitaly
+
+--fWddYNRDgTk9wQGZ
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAl/p5BoACgkQFA3kzBSg
+KbaQwRAAi0sSIeBJxddxz+u6GkgNf+0wUSrPzu+WBp7kW5HpBDYy7JYrwVlv8pje
+Lqj8whWEPLSeCa60uLaigKqTrpK5MyjZthDG22KrIOR9kLHOUP+7cAnzC1pcXrX9
+tvsvkjnL9aUk3d+XivmgwY88Eg65e1RwWjjI4WXJi8REMWw9VmcY4s6pI9/wNfSE
+GLh3iMxomVSvEjVgqpWloT1AX5UxHe9GyOqxzfGuNP90ELZPiF49TigaTxdwkn1i
+Bx4U77zWUZcXstdvOFzJGA7LDM0ZAYn220DH6qFrNS2K9Z7+Wr33Ky3Z6owNg1fb
+fM+5GiqBvjCAFab2f9hNAqfGqRDBp5tP7A444Ms3bp414ZU5EeOXcJDHEYgu1jyM
+l/pL30nj8yPHPT//m/p2i6ZoapMd+hP4+ocJxyCDxQkzq8Fmmt73JnuW1GcDCWs5
+ufcMPizdfENjxJ2eY7BbFputaFXf2r64/jGrNPjCuaxwc1+aYZdKy4X5T5I8bYY7
+VdE/Fs7+WFqwhvWIrhLOo1DFp8TIB8balaxTESR54ZI1a2wST10EXFYX+iITkoNu
+awiMI8ta1Ty6rKzUjdlL3v0zfOC3uNToN0V9kQWy4F+pefttZBvbikzT/fkueoiY
+Zkz7NREePjZ54TGLX0lP9+xZquti0rzUmb4PY4dyfDMi7GlH6sE=
+=1AWs
+-----END PGP SIGNATURE-----
+
+--fWddYNRDgTk9wQGZ--
