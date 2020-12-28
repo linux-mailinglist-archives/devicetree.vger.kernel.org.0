@@ -2,134 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C31E52E4226
-	for <lists+devicetree@lfdr.de>; Mon, 28 Dec 2020 16:18:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C6282E4150
+	for <lists+devicetree@lfdr.de>; Mon, 28 Dec 2020 16:06:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2437276AbgL1PRg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Dec 2020 10:17:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57420 "EHLO
+        id S2438355AbgL1OLO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Dec 2020 09:11:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58502 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2437278AbgL1OEH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Dec 2020 09:04:07 -0500
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBA96C06179B;
-        Mon, 28 Dec 2020 06:03:26 -0800 (PST)
-Received: by mail-lf1-x131.google.com with SMTP id b26so24049748lff.9;
-        Mon, 28 Dec 2020 06:03:26 -0800 (PST)
+        with ESMTP id S2439200AbgL1OK7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Dec 2020 09:10:59 -0500
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0EBEC061799
+        for <devicetree@vger.kernel.org>; Mon, 28 Dec 2020 06:10:18 -0800 (PST)
+Received: by mail-lf1-x12b.google.com with SMTP id o17so24156433lfg.4
+        for <devicetree@vger.kernel.org>; Mon, 28 Dec 2020 06:10:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=4qvAPOSnb3gCPzAXuw8OIJYZA27uuHy18ix0nvJW1CU=;
-        b=bl3r2U9yXYFzTcL+MMt8/u3WC03Tv2y9aGpfMDF+N5t5SOd8te41chnr2P+tYXgxap
-         qwi67ZrMGeBXFF6i2U1/h8fpFscRnAJlA+bG6BE++9jg1sJirjaO75C7ygUTfOp9iHPc
-         Yars2YYOMCQH/+4lrFdWgHgHubxtlUGfSVWkGmuTDRDCNETQoRFqyJm1yOemv2j+fOXU
-         5/WBa1SGMKBukcACZnAJkY1bpWqyZu0kDtPBWL8qeKDNz7QV8CxI3OuE7812UUrxl/Ya
-         aAvrf8QxKJLq4+dD8I+H5iaFUT2AaRAEOFTZRmLcbpirb4b1hMFAXt64Gu5605ULqSGz
-         0zSA==
+        d=brainfault-org.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=eDrae5NlX7atsBnbOFDs+BsHNDAqH6cr7KQ2BZiRu9g=;
+        b=dqHY0sUVNmDOTf+aHtGeQqT+ubwl8V7kw7gIzNrTS/0Zd7s285xIvbrMgrA93eRMAB
+         /1GHwOroZP8yTdaDh+c/YPuYv6yF+l/23WK0pNPHosyN8/V+rJBncoRkWCiIxhDSuIOE
+         sZq2Rs5xOn4W34uvmQXhL/gWHkBMVsxzvVHwV/phaWnNqkCZpJ/HXcjktxusJCdKGsky
+         MtDEp8TBZdd1BbHpyknD+6LjUm9fdAaczpGPMbYX9r7PtCaL2c/KQxSld+s+AaIA6TbK
+         JuzxMFf5+a71DwaQ2MWRs6FU8ho1Af0S6leDecn3FSRMB+NMuO5RuzBRmU1/mndvj2W0
+         vjAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=4qvAPOSnb3gCPzAXuw8OIJYZA27uuHy18ix0nvJW1CU=;
-        b=na61UGSU/DZ0aenfWKJYKOyIzvSAOVDZiPphjqKuOeplwGhHkrph8xmMg/IZuyCQL5
-         hSGAWhJnZcSSoOf3Bql9CR9O3aL1Z5P73a7Wh8UUAECogRSe4BsWwM6b/I21U6qEAxy/
-         lRCrRg76Qf2RTEUzzbfw0o2C2jlcS+WGwSQNrOr2pMbcNyXff2wB7e9m5EQ96qFm8vFa
-         HbfWYnlmuJ9Ra2A7iDKOucMrj+cmrKdI9MXglVP1Yi3J3RDXJaz4Y+zFXWch7Wbet0vj
-         QcHmNgVXUu5iqG6K+JqKuFOd5mTPDS22jaLMoMASXxwOD3uX+5ZitXGkpQdokxUZRNSo
-         v8CQ==
-X-Gm-Message-State: AOAM531MIWHKrI2gdOXoPt8jjktN5MgdJUjd5RnmPmBssS0GUpbaIMXS
-        cyq2Mu57A0isWLm/5Vo5dKKBWfGWEIQ=
-X-Google-Smtp-Source: ABdhPJzUpl1/di7tj7MASZGrGRvUabOdas4lVkZNDhVFRvZuxbYB/Sicx781pXRzuHaMyLMY0tnsEQ==
-X-Received: by 2002:a19:ccc9:: with SMTP id c192mr12718066lfg.98.1609164205141;
-        Mon, 28 Dec 2020 06:03:25 -0800 (PST)
-Received: from [192.168.2.145] (109-252-192-57.dynamic.spd-mgts.ru. [109.252.192.57])
-        by smtp.googlemail.com with ESMTPSA id d23sm5324052lfl.115.2020.12.28.06.03.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 28 Dec 2020 06:03:24 -0800 (PST)
-Subject: Re: [PATCH v2 11/48] opp: Add dev_pm_opp_find_level_ceil()
-To:     Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Nicolas Chauvet <kwizart@gmail.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Kevin Hilman <khilman@kernel.org>,
-        Peter De Schrijver <pdeschrijver@nvidia.com>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        devel@driverdev.osuosl.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-media@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-clk@vger.kernel.org
-References: <20201217180638.22748-1-digetx@gmail.com>
- <20201217180638.22748-12-digetx@gmail.com>
- <20201222064253.x7vsurh7q5k7qzb5@vireshk-i7>
- <fd7b9f42-d0a7-45eb-2a17-d46779011c58@gmail.com>
- <20201223041931.klnppy4fu3sdgtsz@vireshk-i7>
- <f00e0c74-8d9a-d3d3-81bb-3ac25a74175d@gmail.com>
- <20201224064339.zngidobhstnlu2a3@vireshk-i7>
- <780db190-d93d-3bca-4819-790010f82c62@gmail.com>
- <20201228062254.ui727ka2ftijov4m@vireshk-i7>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <c4a6336f-e7e6-b23e-4d60-a41d8e09aef3@gmail.com>
-Date:   Mon, 28 Dec 2020 17:03:23 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.4.2
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=eDrae5NlX7atsBnbOFDs+BsHNDAqH6cr7KQ2BZiRu9g=;
+        b=JZP8g4HlfOx79ANALd2upl/aMOQaKY6Xj0IJC4up4vM/+mjUacMtmHXRsIC3EdCr1g
+         HHP3FPQn10LAnPaCINLDUmXOzP+JdJIUxJuySUzfwicBEHCBrMwrFgg4F/DFXck6YNXO
+         tJRgUPywFKYfsOXgqTaDbHQ4jpZkaLkXqT0WWdwbMm8w8hd5aS88253X5tTKsgvHXU1A
+         TA/C56x/SC9M/duWhuU+JKmm3283oJ4/W5xhqbGvH5T1jtZZT2PIpsxgFzuTjAsd96Fx
+         Z/AXQLmr90Hr5ps8R0SWtwQRP6aZCCevDmYvCB4hR7FeTjaa8jNdM7SaN3NJYMxi5hZI
+         h1TQ==
+X-Gm-Message-State: AOAM5318GeRvIx1odB05KXQucX8hxVKQ+vNw9zrtkvr3ozVeXIiYJ5cU
+        3HemNIUkFVV5fl+kn3ykaEuCRArY30xUF3c9Ms7WLXZcip8P8zbl
+X-Google-Smtp-Source: ABdhPJxse0shOvUnwJroAasQ1isNMTLZzoRqEfI03iytFRHnoPYRsIhHIflw56KmNtLdTnzsGf7RkAiaClFzBR41C6M=
+X-Received: by 2002:a05:651c:202:: with SMTP id y2mr21426940ljn.162.1609164617377;
+ Mon, 28 Dec 2020 06:10:17 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20201228062254.ui727ka2ftijov4m@vireshk-i7>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+References: <20201226163037.43691-1-vitaly.wool@konsulko.com>
+ <CAAhSdy1M5pMjYHNWdOicb3N3fjTfQLEgE8tFb74sqGbPE_9eyQ@mail.gmail.com> <CAM4kBBJ3Vbytx=dFK7+DMByV3zK=FVLATSwjyuuygkDK1MCQjA@mail.gmail.com>
+In-Reply-To: <CAM4kBBJ3Vbytx=dFK7+DMByV3zK=FVLATSwjyuuygkDK1MCQjA@mail.gmail.com>
+From:   Anup Patel <anup@brainfault.org>
+Date:   Mon, 28 Dec 2020 19:40:05 +0530
+Message-ID: <CAAhSdy0E8xspb3epBdrTmjg7vSQanG9zwyMY19eeDDL8z=WJFg@mail.gmail.com>
+Subject: Re: [PATCH] riscv: add BUILTIN_DTB support for MMU-enabled targets
+To:     Vitaly Wool <vitaly.wool@konsulko.com>
+Cc:     linux-riscv <linux-riscv@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
+        Bin Meng <bin.meng@windriver.com>,
+        Palmer Dabbelt <palmerdabbelt@google.com>,
+        Damien Le Moal <damien.lemoal@wdc.com>,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-28.12.2020 09:22, Viresh Kumar пишет:
-> On 24-12-20, 16:00, Dmitry Osipenko wrote:
->> In a device driver I want to set PD to the lowest performance state by
->> removing the performance vote when dev_pm_opp_set_rate(dev, 0) is
->> invoked by the driver.
->>
->> The OPP core already does this, but if OPP levels don't start from 0 in
->> a device-tree for PD, then it currently doesn't work since there is a
->> need to get a rounded-up performance state because
->> dev_pm_opp_set_voltage() takes OPP entry for the argument (patches 9 and
->> 28).
->>
->> The PD powering off and performance-changes are separate from each other
->> in the GENPD core. The GENPD core automatically turns off domain when
->> all devices within the domain are suspended by system-suspend or RPM.
->>
->> The performance state of a power domain is controlled solely by a device
->> driver. GENPD core only aggregates the performance requests, it doesn't
->> change the performance state of a domain by itself when device is
->> suspended or resumed, IIUC this is intentional. And I want to put domain
->> into lowest performance state when device is suspended.
-> 
-> Right, so if you really want to just drop the performance vote, then with a
-> value of 0 for the performance state the call will reach to your genpd's
-> callback ->set_performance_state(). Just as dev_pm_opp_set_rate() accepts the
-> frequency to be 0, I would expect dev_pm_opp_set_rate() to accept opp argument
-> as NULL and in that case set voltage to 0 and do regulator_disable() as well.
-> Won't that work better than going for the lowest voltage ?
-> 
+On Mon, Dec 28, 2020 at 7:05 PM Vitaly Wool <vitaly.wool@konsulko.com> wrote:
+>
+> On Mon, Dec 28, 2020 at 12:59 PM Anup Patel <anup@brainfault.org> wrote:
+> >
+> > On Sat, Dec 26, 2020 at 10:03 PM Vitaly Wool <vitaly.wool@konsulko.com> wrote:
+> > >
+> > > Sometimes, especially in a production system we may not want to
+> > > use a "smart bootloader" like u-boot to load kernel, ramdisk and
+> > > device tree from a filesystem on eMMC, but rather load the kernel
+> > > from a NAND partition and just run it as soon as we can, and in
+> > > this case it is convenient to have device tree compiled into the
+> > > kernel binary. Since this case is not limited to MMU-less systems,
+> > > let's support it for these which have MMU enabled too.
+> > >
+> > > Signed-off-by: Vitaly Wool <vitaly.wool@konsulko.com>
+> > > ---
+> > >  arch/riscv/Kconfig   |  1 -
+> > >  arch/riscv/mm/init.c | 12 ++++++++++--
+> > >  2 files changed, 10 insertions(+), 3 deletions(-)
+> > >
+> > > diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
+> > > index 2b41f6d8e458..9464b4e3a71a 100644
+> > > --- a/arch/riscv/Kconfig
+> > > +++ b/arch/riscv/Kconfig
+> > > @@ -419,7 +419,6 @@ endmenu
+> > >
+> > >  config BUILTIN_DTB
+> > >         def_bool n
+> > > -       depends on RISCV_M_MODE
+> > >         depends on OF
+> > >
+> > >  menu "Power management options"
+> > > diff --git a/arch/riscv/mm/init.c b/arch/riscv/mm/init.c
+> > > index 87c305c566ac..5d1c7a3ec01c 100644
+> > > --- a/arch/riscv/mm/init.c
+> > > +++ b/arch/riscv/mm/init.c
+> > > @@ -194,12 +194,20 @@ void __init setup_bootmem(void)
+> > >         setup_initrd();
+> > >  #endif /* CONFIG_BLK_DEV_INITRD */
+> > >
+> > > +       /*
+> > > +        * If DTB is built in, no need to reserve its memblock.
+> > > +        * OTOH, initial_boot_params has to be set to properly copy DTB
+> > > +        * before unflattening later on.
+> > > +        */
+> > > +       if (IS_ENABLED(CONFIG_BUILTIN_DTB))
+> > > +               initial_boot_params = __va(dtb_early_pa);
+> >
+> > Don't assign initial_boot_params directly here because the
+> > early_init_dt_scan() will do it.
+>
+> early_init_dt_scan will set initial_boot_params to dtb_early_va from
+> the early mapping which will be gone by the time
+> unflatten_and_copy_device_tree() is called.
 
-We can make dev_pm_opp_set_voltage() to accept OPP=NULL in order to
-disable the regulator, like it's done for dev_pm_opp_set_rate(dev, 0).
-Although, I don't need this kind of behaviour for the Tegra PD driver,
-and thus, would prefer to leave this for somebody else to implement in
-the future, once it will be really needed.
+That's why we are doing early_init_dt_verify() again for the MMU-enabled
+case which already takes care of your concern.
 
-Still we need the dev_pm_opp_find_level_ceil() because level=0 means
-that we want to set PD to the lowest (minimal) performance state, i.e.
-it doesn't necessarily mean that we want to set the voltage to 0 and
-disable the PD entirely. GENPD has a separate controls for on/off.
+We use early_init_dt_verify() like most architectures to set the initial DTB.
+
+>
+> > The setup_vm() is supposed to setup dtb_early_va and dtb_early_pa
+> > for MMU-enabled case so please add a "#ifdef" over there for the
+> > built-in DTB case.
+> >
+> > > +       else
+> > > +               memblock_reserve(dtb_early_pa, fdt_totalsize(dtb_early_va));
+> > > +
+> > >         /*
+> > >          * Avoid using early_init_fdt_reserve_self() since __pa() does
+> > >          * not work for DTB pointers that are fixmap addresses
+> > >          */
+> >
+> > This comment needs to be updated and moved along the memblock_reserve()
+> > statement.
+> >
+> > > -       memblock_reserve(dtb_early_pa, fdt_totalsize(dtb_early_va));
+> > > -
+> > >         early_init_fdt_scan_reserved_mem();
+> > >         dma_contiguous_reserve(dma32_phys_limit);
+> > >         memblock_allow_resize();
+> > > --
+> > > 2.29.2
+> > >
+> >
+> > This patch should be based upon Damiens builtin DTB patch.
+> > Refer, https://www.spinics.net/lists/linux-gpio/msg56616.html
+>
+> Thanks for the pointer, however I don't think our patches have
+> intersections. Besides, Damien is dealing with the MMU-less case
+> there.
+
+Damien's patch is also trying to move to use generic BUILTIN_DTB
+support for the MMU-less case so it is similar work hence the chance
+of patch conflict.
+
+Regards,
+Anup
