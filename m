@@ -2,116 +2,258 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E2402E41A1
-	for <lists+devicetree@lfdr.de>; Mon, 28 Dec 2020 16:10:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 499832E41D7
+	for <lists+devicetree@lfdr.de>; Mon, 28 Dec 2020 16:14:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2439607AbgL1PJw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Dec 2020 10:09:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39940 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2440286AbgL1PJt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Dec 2020 10:09:49 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27D0FC061794;
-        Mon, 28 Dec 2020 07:09:09 -0800 (PST)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 8969B99;
-        Mon, 28 Dec 2020 16:09:06 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1609168146;
-        bh=BNY31dBvBUFP1U6FYYy/epeGZDj+VnkZejf+O7DTcTg=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=AeTK3VEeFqHGfSMYp5yReXu7Z2I2AXq8NNODSZ/vyaYQuW3ayiHwVZNftw7VXbLwH
-         Ddwl2UBdv7TSZbt1IWa6uapGJA3RDGGdlqzcrjNTuNvN0yCLO4f+NH75xuVdmOb9pn
-         D8InRDdvY7x1JvoHJo1dgJUcqzWpg//8gQ3gdIG0=
-Date:   Mon, 28 Dec 2020 17:08:56 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Xin Ji <xji@analogixsemi.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, David Airlie <airlied@linux.ie>,
-        Nicolas Boichat <drinkcat@google.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Ricardo =?utf-8?Q?Ca=C3=B1uelo?= <ricardo.canuelo@collabora.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        Sheng Pan <span@analogixsemi.com>, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 1/2] dt-bindings: drm/bridge: anx7625: add DPI flag
- and swing setting
-Message-ID: <X+n1COtS8nrCFUHd@pendragon.ideasonboard.com>
-References: <cover.1608883950.git.xji@analogixsemi.com>
- <c29b7d9fda9ce8619d1c718b077250998a8600b8.1608883950.git.xji@analogixsemi.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <c29b7d9fda9ce8619d1c718b077250998a8600b8.1608883950.git.xji@analogixsemi.com>
+        id S2441067AbgL1PN1 convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 28 Dec 2020 10:13:27 -0500
+Received: from mail.kernel.org ([198.145.29.99]:58266 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2441084AbgL1PN0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 28 Dec 2020 10:13:26 -0500
+Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 4F814223E8;
+        Mon, 28 Dec 2020 15:12:45 +0000 (UTC)
+Received: from 78.163-31-62.static.virginmediabusiness.co.uk ([62.31.163.78] helo=wait-a-minute.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94)
+        (envelope-from <maz@kernel.org>)
+        id 1ktuCQ-004F2a-KF; Mon, 28 Dec 2020 15:12:43 +0000
+Date:   Mon, 28 Dec 2020 15:12:41 +0000
+Message-ID: <87bleeotg6.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Jianjun Wang <jianjun.wang@mediatek.com>
+Cc:     <youlin.pei@mediatek.com>, <devicetree@vger.kernel.org>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        <qizhong.cheng@mediatek.com>, <chuanjia.liu@mediatek.com>,
+        <linux-pci@vger.kernel.org>, <drinkcat@chromium.org>,
+        Ryder Lee <ryder.lee@mediatek.com>,
+        <linux-kernel@vger.kernel.org>, <sin_jieyang@mediatek.com>,
+        Sj Huang <sj.huang@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        <linux-mediatek@lists.infradead.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Subject: Re: [v6,3/4] PCI: mediatek-gen3: Add MediaTek Gen3 driver for MT8192
+In-Reply-To: <1609156917.14736.171.camel@mhfsdcap03>
+References: <20201225100308.27052-1-jianjun.wang@mediatek.com>
+        <20201225100308.27052-4-jianjun.wang@mediatek.com>
+        <87ft3tpu67.wl-maz@kernel.org>
+        <1609156917.14736.171.camel@mhfsdcap03>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 8BIT
+X-SA-Exim-Connect-IP: 62.31.163.78
+X-SA-Exim-Rcpt-To: jianjun.wang@mediatek.com, youlin.pei@mediatek.com, devicetree@vger.kernel.org, lorenzo.pieralisi@arm.com, qizhong.cheng@mediatek.com, chuanjia.liu@mediatek.com, linux-pci@vger.kernel.org, drinkcat@chromium.org, ryder.lee@mediatek.com, linux-kernel@vger.kernel.org, sin_jieyang@mediatek.com, sj.huang@mediatek.com, robh+dt@kernel.org, linux-mediatek@lists.infradead.org, p.zabel@pengutronix.de, bhelgaas@google.com, linux-arm-kernel@lists.infradead.org, matthias.bgg@gmail.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Xin Ji,
-
-Thank you for the patch.
-
-On Fri, Dec 25, 2020 at 07:01:09PM +0800, Xin Ji wrote:
-> Add DPI flag for distinguish MIPI input signal type, DSI or DPI. Add
-> swing setting for adjusting DP tx PHY swing
+On Mon, 28 Dec 2020 12:01:57 +0000,
+Jianjun Wang <jianjun.wang@mediatek.com> wrote:
 > 
-> Signed-off-by: Xin Ji <xji@analogixsemi.com>
-> ---
->  .../bindings/display/bridge/analogix,anx7625.yaml     | 19 +++++++++++++++++++
->  1 file changed, 19 insertions(+)
+> On Fri, 2020-12-25 at 19:22 +0000, Marc Zyngier wrote:
+
+Dropped	<Project_Global_Chrome_Upstream_Group@mediatek.com>, as it
+bounces:
+
+<Project_Global_Chrome_Upstream_Group@mediatek.com>: host
+    mailgw01.mediatek.com[216.200.240.184] said: 550 Relaying mail to
+    project_global_chrome_upstream_group@mediatek.com is not allowed (in reply
+    to RCPT TO command)
+
+Please make sure you don't Cc email addresses that cannot accept email
+form the outside world.
+
+[...]
+
+> > > +/**
+> > > + * struct mtk_pcie_msi - MSI information for each set
+> > > + * @base: IO mapped register base
+> > > + * @irq: MSI set Interrupt number
+> > > + * @index: MSI set number
+> > > + * @msg_addr: MSI message address
+> > > + * @domain: IRQ domain
+> > > + */
+> > > +struct mtk_pcie_msi {
+> > > +	void __iomem *base;
+> > > +	unsigned int irq;
+> > > +	int index;
+> > > +	phys_addr_t msg_addr;
+> > > +	struct irq_domain *domain;
+> > > +};
+> > 
+> > This looks odd. You seem to say that this covers a set if MSIs, and
+> > yet the irq field here clearly isn't part of a set. Is that per MSI
+> > instead? Either way, something is not quite as it should be.
+> > 
 > 
-> diff --git a/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
-> index 60585a4..34a7faf 100644
-> --- a/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
-> +++ b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
-> @@ -34,6 +34,14 @@ properties:
->      description: used for reset chip control, RESET_N pin B7.
->      maxItems: 1
->  
-> +  anx,swing-setting:
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> +    description: an array of swing register setting for DP tx PHY
+> Appreciate all these comments, please allow me to explain the MSI
+> interrupt design in this HW.
+> 
+> The HW design of MSI interrupts will be like the following:
+> 
+>                   +-----+
+>                   | GIC |
+>                   +-----+
+>                      ^
+>                      |
+>                      |[port->irq]
+>                      |
+>              +-+-+-+-+-+-+-+-+
+>              |0|1|2|3|4|5|6|7|[PCIe intc]
+>              +-+-+-+-+-+-+-+-+
+>               ^ ^           ^
+>               | |    ...    |[msi_info->irq]
+>       +-------+ +------+    +-----------+
+>       |                |                |
+> +-+-+---+--+--+  +-+-+---+--+--+  +-+-+---+--+--+
+> |0|1|...|30|31|  |0|1|...|30|31|  |0|1|...|30|31|[MSI sets]
+> +-+-+---+--+--+  +-+-+---+--+--+  +-+-+---+--+--+
+>  ^ ^      ^  ^    ^ ^      ^  ^    ^ ^      ^  ^
+>  | |      |  |    | |      |  |    | |      |  | [MSI irq]
+>  | |      |  |    | |      |  |    | |      |  |
+> 
+>   (MSI SET0)       (MSI SET1)  ...   (MSI SET7)
+> 
 
-Register values in DT are frowned upon.
+Thanks, that's really helpful. You should consider adding this to the
+driver code, as part of the documentation.
 
-> +  anx,mipi-dpi-in:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: indicate the MIPI rx signal type is DPI or DSI
+> In software parts, the port->msi_top_domain is created to maintains 8
+> MSI IRQs from the PCIe intc layer, its hardware IRQ will be mapped to
+> msi_info->irq by irq_create_mapping.
+> 
+> The port->msi_domain contains 256 MSI IRQs in total, it consist of 8 MSI
+> sets, and each MSI set contains 32 MSI IRQs.
+> 
+> The structure of mtk_pcie_msi is used to describe the MSI set, I think
+> it will be more convenient and comply with the HW design when use this
+> structure, we can get the information of MSI set directly, instead of
+> calculated by port->base.
+> 
+> When a MSI interrupt is received, the interrupt handle flow will be like
+> the following:
+> 
+>               mtk_pcie_irq_handler (port->irq)
+>                         |
+>                         |(find mapping in msi_top_domain)
+>                         |
+>                         v
+>                 mtk_pcie_msi_handler (msi_info->irq)
+>                         |
+>                         |(find mapping in msi_domain)
+>                         |
+>                         v
+>                  handle_edge_irq  (MSI irq)
+>                         |
+>                         |
+>                         v
+>             (dispatch to device handler)
+> 
+> Yes, I had to admit that it's not a quite good solution of irqdomains,
+> since the local irq domain is partial coupled with the standard PCI MSI
+> irqdomain.
+> 
+> Should I need to create another irqdomain to maintain the MSI sets
+> layer, and set it as the parent domain of PCI MSI domain? I really need
+> your suggestions, thanks a lot.
 
-This sounds similar to the bus-type property defined in
-Documentation/devicetree/bindings/media/video-interfaces.txt (which is
-getting converted to YAML, Rob has posted a patch series, I expect it to
-land in v5.13). I think it would make sense to extend bus-type to
-support DSI, and use that property.
+<rant>
+My first suggestion would be to go back to whoever put this HW block
+together and make sure they never write a line of RTL ever again.
+Programming using copy/paste is bad enough, but doing the same thing
+with HW is just terrible.
+</rant>
 
-> +
->    ports:
->      type: object
->  
-> @@ -72,6 +80,17 @@ examples:
->              reg = <0x58>;
->              enable-gpios = <&pio 45 GPIO_ACTIVE_HIGH>;
->              reset-gpios = <&pio 73 GPIO_ACTIVE_HIGH>;
-> +            anx,swing-setting = <0x00 0x14>, <0x01 0x54>,
-> +                <0x02 0x64>, <0x03 0x74>, <0x04 0x29>,
-> +                <0x05 0x7b>, <0x06 0x77>, <0x07 0x5b>,
-> +                <0x08 0x7f>, <0x0c 0x20>, <0x0d 0x60>,
-> +                <0x10 0x60>, <0x12 0x40>, <0x13 0x60>,
-> +                <0x14 0x14>, <0x15 0x54>, <0x16 0x64>,
-> +                <0x17 0x74>, <0x18 0x29>, <0x19 0x7b>,
-> +                <0x1a 0x77>, <0x1b 0x5b>, <0x1c 0x7f>,
-> +                <0x20 0x20>, <0x21 0x60>, <0x24 0x60>,
-> +                <0x26 0x40>, <0x27 0x60>;
-> +            anx,mipi-dpi-in = <0>;
->  
->              ports {
->                  #address-cells = <1>;
+Ideally, you would model the whole thing as 8 distinct MSI
+controllers, as that is effectively what they are. Evidently, this
+would cause all kind of issues when associating PCI devices with their
+MSI domain, so let's not do that.
+
+So what we want is to have a single MSI domain (with 256 entries,
+hence covering all sets), and compute the hwirq from the level below,
+depending on the interrupt PCIe interrupt, and the index of the MSI in
+the status register for this PCIe interrupt. I think you have most of
+the information already, you just need to simplify the way you keep
+track of it, and maybe come up with better names for the various
+blocks.
+
+I expect you would need something like this:
+
+struct mtk_msi_set {
+	void __iomem		*base;
+	phys_addr_t		msg_addr;
+};
+
+struct mtk_pcie_port {
+[...]
+	int 			base_irq;
+	struct mtk_msi_set	msi_sets[8];
+[...]
+};
+
+The assumption is that you can build the bottom MSI domain hwirq as:
+
+    hwirq = set_idx * 32 + set_status_bit;
+
+From that, you can directly go back from a hwirq to a set, and index
+the msi_sets[] array to find the relevant information.
+
+Another assumption is that all 8 cascade interrupts are contiguous
+(which is pretty easy to guarantee), meaning that you can directly use
+the PCIe interrupt to compute the set number.
+
+With all that, you can directly keep a pointer from the bottom MSI
+domain irq_data structures to the mtk_pcie_port structure, providing
+you with all the information you need.
+
+Once you will have moved the various bits at the right place, and used
+the established MSI abstractions, things should just work.
+
+[...]
+
+> > > +static void mtk_intx_eoi(struct irq_data *data)
+> > > +{
+> > > +	struct mtk_pcie_port *port = irq_data_get_irq_chip_data(data);
+> > > +	unsigned long hwirq;
+> > > +
+> > > +	/**
+> > > +	 * As an emulated level IRQ, its interrupt status will remain
+> > > +	 * until the corresponding de-assert message is received; hence that
+> > > +	 * the status can only be cleared when the interrupt has been serviced.
+> > > +	 */
+> > > +	hwirq = data->hwirq + PCIE_INTX_SHIFT;
+> > > +	writel(BIT(hwirq), port->base + PCIE_INT_STATUS_REG);
+> > 
+> > All of this is the description of a level interrupt, so this is pretty
+> > much devoid of any information as to *why* you need to write to clear
+> > this bit. What happens if the interrupt is still asserted because
+> > nothing has handled it? Without any further information, this looks
+> > terribly wrong.
+> 
+> Sorry, this comment should be used to describe the mtk_intx_eoi
+> function, it cause misunderstandings at this place. I just want to add
+> the comment to explain that why this interrupt needs to be acked at the
+> end of interrupt. I will move it to the front of mtk_intx_eoi in the
+> next version.
+
+Is it an ack or an eoi? These are two different things, and really
+depends on your HW. Please find out which one it is, and we will work
+out a way to handle it.
+
+Thanks,
+
+	M.
 
 -- 
-Regards,
-
-Laurent Pinchart
+Without deviation from the norm, progress is not possible.
