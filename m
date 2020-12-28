@@ -2,102 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 02A422E66FA
-	for <lists+devicetree@lfdr.de>; Mon, 28 Dec 2020 17:19:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 157DE2E6882
+	for <lists+devicetree@lfdr.de>; Mon, 28 Dec 2020 17:38:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732574AbgL1QTL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Dec 2020 11:19:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51376 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2633217AbgL1QTK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Dec 2020 11:19:10 -0500
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48E19C0613D6
-        for <devicetree@vger.kernel.org>; Mon, 28 Dec 2020 08:18:30 -0800 (PST)
-Received: by mail-ej1-x633.google.com with SMTP id b9so14862166ejy.0
-        for <devicetree@vger.kernel.org>; Mon, 28 Dec 2020 08:18:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gateworks-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=TOPSXu09PYTsiu/Wdh2HSg+eyyVEEi2NvtnN4/vv3Wg=;
-        b=SAuHeVN65tID5NqatUXbrkPK84oWTgv369sJyXjv6OiZVCwsjkMvIpx6urKsXLjIvA
-         PQnDVKgO3PhNKLa0B0ufpvE0awZxc7LMUvc6WdIy+nHv4t+cl0BMEqVHs/XIWYvjgP4V
-         R+oxDoX5BXorOMNmPZRnt9tb/s+Pya8Xd5R4jLKN4+zgZKmZxQDYg1n8+B4M7+boU1Y0
-         lkj1lNWzFdiO1rp5Qg0K50xtgz/bmgAttfAWENmENfzfgMBushQR6Xwi59C+dbl5z/gD
-         zoSYtGSUlRyyYPb8xlcLyLQK8ImgQEZx+dnEWNxJMA8sr2Dj3PUTNDXLzp6zznbh5XaT
-         YFAQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=TOPSXu09PYTsiu/Wdh2HSg+eyyVEEi2NvtnN4/vv3Wg=;
-        b=qTOykatSOnWJnS501Qsp8IcOjodbsDDMKWvSEos4BPRnJVfZT52Bb/7zomr2CNwteX
-         VbtY1RukIAYcAZzGd5O6AKLdVnKwN8+WGAV/lc91d9kLzgDa893gq2jL8ciiG+wW9tSQ
-         weaq2HzYnO/Gdy/lTjCq4IWMGITlDf9HYmtiCVVlfFCpnytfFpGfEBFg3Gfrv5ej2Dte
-         J9ewy8EAMVddbXOJqyDKE/qC75S9z6aDCDxJ1gKqdsAb/A3CaUD4wmQhwrGfZCjOw2Om
-         2Be5jFvOesOPN2jWKsrv+i9Bs3UK0gYGrBhi25DltqPaZh1LSp7fnV1bvWQv6yl96Alz
-         TfJw==
-X-Gm-Message-State: AOAM533Mq8BXZU8/aMlK+lmgc8oR5noGzbvJa9NDU99KoCwC23g0Qdsg
-        XInJ1ja4/l0nqjfQFTrjX+TLu4WZFxJZaQmPB3Mm1g==
-X-Google-Smtp-Source: ABdhPJzpGxgLX1x1kHX5FmBn5e3K0N3tgN2POjPbGkgKYNPn7agrr/SlgWVd+qedEODn+u5XsCI1WNi9lz6D9jhJ8LA=
-X-Received: by 2002:a17:907:3e23:: with SMTP id hp35mr42624451ejc.254.1609172308970;
- Mon, 28 Dec 2020 08:18:28 -0800 (PST)
+        id S1729824AbgL1QhN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Dec 2020 11:37:13 -0500
+Received: from mout.kundenserver.de ([212.227.126.187]:43641 "EHLO
+        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2634203AbgL1Qfv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Dec 2020 11:35:51 -0500
+Received: from methusalix.internal.home.lespocky.de ([92.117.54.172]) by
+ mrelayeu.kundenserver.de (mreue012 [212.227.15.167]) with ESMTPSA (Nemesis)
+ id 1MhFpq-1kOjYv2tNq-00eJLS; Mon, 28 Dec 2020 17:32:59 +0100
+Received: from lemmy.internal.home.lespocky.de ([192.168.243.175] helo=lemmy.home.lespocky.de)
+        by methusalix.internal.home.lespocky.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+        (Exim 4.94)
+        (envelope-from <alex@home.lespocky.de>)
+        id 1ktvS2-0002GJ-5N; Mon, 28 Dec 2020 17:32:55 +0100
+Received: (nullmailer pid 32604 invoked by uid 2001);
+        Mon, 28 Dec 2020 16:32:53 -0000
+From:   Alexander Dahl <post@lespocky.de>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Alexander Dahl <ada@thorsis.com>, linux-leds@vger.kernel.org,
+        Alexander Dahl <post@lespocky.de>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-amlogic@lists.infradead.org
+Subject: [PATCH v9 0/4] leds: pwm: Make automatic labels work
+Date:   Mon, 28 Dec 2020 17:32:13 +0100
+Message-Id: <20201228163217.32520-1-post@lespocky.de>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-References: <1608762196-29871-1-git-send-email-tharvey@gateworks.com> <20201224112335.GA15628@kozik-lap>
-In-Reply-To: <20201224112335.GA15628@kozik-lap>
-From:   Tim Harvey <tharvey@gateworks.com>
-Date:   Mon, 28 Dec 2020 08:18:17 -0800
-Message-ID: <CAJ+vNU0cEvMMFQXmO9KOG3WR4Cu1E+o1XSWv8xx35ALeZ=pzzg@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: arm: fsl: Add binding for Gateworks
- boards with IMX8MM
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Device Tree Mailing List <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Scan-Signature: e9056562e10c809dee3344e50e145a1f
+X-Spam-Score: -2.9 (--)
+X-Provags-ID: V03:K1:ztIxjkZXmzA4zIV1xgFd+DY20dZqEQMIRVMHSPYRMW3VFcqIiZw
+ n9f6GRjs+5QUaQjm5RvcphCke18ZeRqeibmGi/uiyzWXTS3qJGNYbEJTzYwZZyL2xi/5G5X
+ pk07IfD1zPx2OQ/t6ey+RPliD/dYCy/vL/hJgUMbQpEKtWbAii+kSAMSx2pEizt+uTt6Qug
+ 59hx5SzeZ4RSpArkPg95g==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:RQlq3c2RuHM=:OfzQvvbw4nmVmbV7Hct3WL
+ kvLq1UK438l/NeFTcb9L1gMen7sj2Isbqok1YD9HEv6/3VMu5HBYcwLm0pVbKrjRIRdlUhnyz
+ 0uccCuUAJiOJU0sNmXI7NxnJypmSoCuvWw7zIy7fMctiYakM/rROpU2DqN4JQtMwWg+kSJZQX
+ rsnx+iIRuDLY0GClkUhhZS4Jk4dCzXlpCIMdOnRyjbGONzPjp5nm+IGGoOneMutjYUYDg0v+s
+ NWby0pvE0EZl8f2z8JNZpAuep5fJ8oqHWmW59sCOTyCq354LoLuSLZu1NzUJYj+IRy4SIX0K4
+ fP+1t/FNaHhAFSphWcp36/4dAO4JzsqEPZDgWXttXZCukJqfDQd8oavxpSLvY+Zssh8v1N3Rn
+ D7GVGANRiNTlmphvMDw6PkO7wIVTr6/ihboppxpBQtUB1YZU6ol8ISg+m0Wrdd6yVkYN807cK
+ s2wYjuyqUQ==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 24, 2020 at 3:23 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
->
-> On Wed, Dec 23, 2020 at 02:23:15PM -0800, Tim Harvey wrote:
-> > Add bindings for the Gateworks Venice Development kit boards with
-> > IMX8MM System on Module.
-> >
-> > Signed-off-by: Tim Harvey <tharvey@gateworks.com>
-> > ---
-> >  Documentation/devicetree/bindings/arm/fsl.yaml | 3 +++
-> >  1 file changed, 3 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-> > index 1ca9dfa..705c6e8 100644
-> > --- a/Documentation/devicetree/bindings/arm/fsl.yaml
-> > +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-> > @@ -405,6 +405,9 @@ properties:
-> >                - beacon,imx8mm-beacon-kit  # i.MX8MM Beacon Development Kit
-> >                - fsl,imx8mm-ddr4-evk       # i.MX8MM DDR4 EVK Board
-> >                - fsl,imx8mm-evk            # i.MX8MM EVK Board
-> > +              - gw,imx8mm-gw71xx-0x       # i.MX8MM Gateworks Development Kit
-> > +              - gw,imx8mm-gw72xx-0x       # i.MX8MM Gateworks Development Kit
-> > +              - gw,imx8mm-gw73xx-0x       # i.MX8MM Gateworks Development Kit
->
-> I think you should skip the wildcards in compatible and choose one
-> specific compatible. What if at some point you would like to add gw,imx8mm-gw7113-0x?
->
+Hei hei,
 
-Krzysztof,
+these are the not yet taken patches from a series which originally fixed
+a minor issue in the leds pwm driver, then migrated the leds pwm dts
+docs to yaml (by request), and then fixed all the dts files triggering
+warnings on those new bindings.  The remaining four patches now only fix
+dts warnings, the base fix and the yaml conversion is already merged to
+master.
 
-Thanks for the review. I do want the wildcards as above because they
-represent model variations that do not affect device-tree such as
-component subloads.
+Series changelog below …
 
-Thanks,
+Greets
+Alex
 
-Tim
+v9:
+- rebased series on v5.11-rc1
+- removed already applied patches
+- added some more Acked-by
+
+v8:
+- rebased series on recent pavel/for-next (post v5.10-rc1)
+- removed already applied patches
+- added Acked-by on patch 1/5
+- updated patch 3/5 based on comments by Ahmad Fatoum
+
+v7:
+- rebased series on recent pavel/for-next
+- split up arm dts patch by arm sub arch (suggested by Krzysztof Kozlowski)
+- added multiple Reviewed-by tags
+- slightly reworded commit messages (suggested by Krzysztof Kozlowski)
+- added actual dtbs_check warnings to commit messages
+- added Russell King to Cc for binding conversion patch (because license)
+
+v6:
+- rebased series on recent pavel/for-next
+- added Reviewed-by from Marek to patch 1
+- patch 2 from v5 was picked by Pavel and is already in his for-next
+  branch
+- previous patch 3/3 (now 2/7) was reworked based on feedback by Rob
+- added more dt patches fixing warnings after binding conversion to yaml
+
+v5:
+- replaced patch 1/3 by a new patch removing platform_data support for
+  the leds-pwm driver
+- little rewording of commit message in patch 2/3
+- updated patch 3/3 based on feedback by Rob Herring
+- added Marek Behún to Cc, because he also works on removing
+  platform_data support
+- rebased series on pavel/for-next
+
+v4:
+- added led-class patch handling fwnode passing differently (patch 1/3)
+- adapted leds-pwm patch to new led-class (patch 2/3)
+- contacted original author of leds-pwm dt binding on license issue
+  (patch 3/3)
+
+v3:
+- series rebased on v5.9-rc4
+- changed license of .yaml file to recommended one (patch 2/2)
+- added Acked-by to both patches
+
+v2:
+- series rebased on v5.9-rc3
+- added the dt-bindings update patch (2/2)
+
+v1:
+- based on v5.9-rc2
+- backport on v5.4.59 tested and working
+
+Cc: linux-leds@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-stm32@st-md-mailman.stormreply.com
+Cc: linux-amlogic@lists.infradead.org
+
+
+Alexander Dahl (4):
+  dt-bindings: mfd: Fix schema warnings for pwm-leds
+  ARM: dts: berlin: Fix schema warnings for pwm-leds
+  ARM: dts: stm32: Fix schema warnings for pwm-leds
+  arm64: dts: meson: Fix schema warnings for pwm-leds
+
+ Documentation/devicetree/bindings/mfd/iqs62x.yaml   |  5 +++--
+ arch/arm/boot/dts/berlin2cd-google-chromecast.dts   |  6 +++---
+ arch/arm/boot/dts/stm32mp157c-lxa-mc1.dts           | 13 +++++++------
+ .../boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts |  4 ++--
+ .../boot/dts/amlogic/meson-gxm-khadas-vim2.dts      |  4 ++--
+ arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts    |  8 ++++----
+ 6 files changed, 21 insertions(+), 19 deletions(-)
+
+
+base-commit: 5c8fe583cce542aa0b84adc939ce85293de36e5e
+-- 
+2.20.1
+
