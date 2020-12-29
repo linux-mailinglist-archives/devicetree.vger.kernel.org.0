@@ -2,34 +2,38 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5191E2E72CD
-	for <lists+devicetree@lfdr.de>; Tue, 29 Dec 2020 18:47:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E1882E7303
+	for <lists+devicetree@lfdr.de>; Tue, 29 Dec 2020 19:31:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726261AbgL2RrZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Dec 2020 12:47:25 -0500
-Received: from mail.kernel.org ([198.145.29.99]:56822 "EHLO mail.kernel.org"
+        id S1726161AbgL2SbL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Dec 2020 13:31:11 -0500
+Received: from mail.kernel.org ([198.145.29.99]:37940 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726258AbgL2RrZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 29 Dec 2020 12:47:25 -0500
+        id S1726111AbgL2SbL (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 29 Dec 2020 13:31:11 -0500
 Received: from archlinux (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 37FC220825;
-        Tue, 29 Dec 2020 17:46:43 +0000 (UTC)
-Date:   Tue, 29 Dec 2020 17:46:40 +0000
+        by mail.kernel.org (Postfix) with ESMTPSA id 894E620867;
+        Tue, 29 Dec 2020 18:30:29 +0000 (UTC)
+Date:   Tue, 29 Dec 2020 18:30:26 +0000
 From:   Jonathan Cameron <jic23@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Tomas Novotny <tomas@novotny.cz>, devicetree@vger.kernel.org,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Stephan Gerhold <stephan@gerhold.net>,
         Lars-Peter Clausen <lars@metafoo.de>,
         Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Rob Herring <robh+dt@kernel.org>, linux-iio@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings:iio:dac:microchip,mcp4725: fix properties
- for mcp4726
-Message-ID: <20201229174640.11079e45@archlinux>
-In-Reply-To: <20201221192738.GA407457@robh.at.kernel.org>
-References: <20201216101316.1403-1-tomas@novotny.cz>
-        <20201221192738.GA407457@robh.at.kernel.org>
+        Rob Herring <robh+dt@kernel.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "H . Nikolaus Schaller" <hns@goldelico.com>
+Subject: Re: [PATCH v2 2/2] iio: gyro: bmg160: Add rudimentary regulator
+ support
+Message-ID: <20201229183026.7e5a1d4f@archlinux>
+In-Reply-To: <CACRpkdbEqN95-bYHjo7JEbSrGx9qHNoeW2wHC6KPvwn0sG7isg@mail.gmail.com>
+References: <20201211183815.51269-1-stephan@gerhold.net>
+        <20201211183815.51269-2-stephan@gerhold.net>
+        <CACRpkdbEqN95-bYHjo7JEbSrGx9qHNoeW2wHC6KPvwn0sG7isg@mail.gmail.com>
 X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
@@ -38,34 +42,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 21 Dec 2020 12:27:38 -0700
-Rob Herring <robh@kernel.org> wrote:
+On Mon, 14 Dec 2020 09:57:06 +0100
+Linus Walleij <linus.walleij@linaro.org> wrote:
 
-> On Wed, 16 Dec 2020 11:13:16 +0100, Tomas Novotny wrote:
-> > The vdd-supply property is optional if vref-supply is provided for
-> > mcp4726.
-> > 
-> > Also the microchip,vref-buffered makes sense only if vref-supply is
-> > specified.
-> > 
-> > Spotted by Jonathan during conversion to yaml.
-> > 
-> > Reported-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> > Signed-off-by: Tomas Novotny <tomas@novotny.cz>
-I'm taking this this slow way as we are just providing slightly more flexible
-conditions rather than allowing anything we suspect anyone is already using.
+> On Fri, Dec 11, 2020 at 7:39 PM Stephan Gerhold <stephan@gerhold.net> wrote:
+> 
+> > BMG160 needs VDD and VDDIO regulators that might need to be explicitly
+> > enabled. Add some rudimentary support to obtain and enable these
+> > regulators during probe() and disable them using a devm action.
+> >
+> > Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
+> > ---
+> > Changes in v2:
+> >   - Do regulator_bulk_enable() immediately after devm_regulator_bulk_get()
+> >   - Simplify error handling using devm_add_action_or_reset()  
+> 
+> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+Series applied,
 
-Applied to the togreg branch of iio.git and pushed out as testing for
-the autobuilders to probably ignore it ;)
-
-Thanks for tidying this up.
+Thanks,
 
 Jonathan
 
-> > ---
-> >  .../bindings/iio/dac/microchip,mcp4725.yaml   | 31 +++++++++++++++----
-> >  1 file changed, 25 insertions(+), 6 deletions(-)
-> >   
 > 
-> Reviewed-by: Rob Herring <robh@kernel.org>
+> Yours,
+> Linus Walleij
 
