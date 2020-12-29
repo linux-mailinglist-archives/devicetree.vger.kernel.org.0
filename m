@@ -2,142 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D33EE2E6EB9
-	for <lists+devicetree@lfdr.de>; Tue, 29 Dec 2020 08:21:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 69FE72E6EDA
+	for <lists+devicetree@lfdr.de>; Tue, 29 Dec 2020 09:18:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726168AbgL2HUs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Dec 2020 02:20:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48940 "EHLO
+        id S1726019AbgL2IRw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Dec 2020 03:17:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57688 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725866AbgL2HUs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Dec 2020 02:20:48 -0500
-Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com [IPv6:2607:f8b0:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2AE86C061793;
-        Mon, 28 Dec 2020 23:20:08 -0800 (PST)
-Received: by mail-pf1-x42b.google.com with SMTP id h10so6613540pfo.9;
-        Mon, 28 Dec 2020 23:20:08 -0800 (PST)
+        with ESMTP id S1725979AbgL2IRv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Dec 2020 03:17:51 -0500
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49A0AC0613D6;
+        Tue, 29 Dec 2020 00:17:11 -0800 (PST)
+Received: by mail-lf1-x130.google.com with SMTP id 23so29087878lfg.10;
+        Tue, 29 Dec 2020 00:17:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
+        h=subject:to:cc:references:from:organization:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=kBEBtsW2irgq6PGYdUQwTOTY6n0Khj2SouVUPR5ajI0=;
-        b=oacOvtUvxf7jxRJ/HEMrMmiOOr6gPzz9mzltJf8SLX+oPOsMBVirvWTn0V2WE2fVzB
-         CIDhyg5PKVt+hiaHjnl0wJ+If4nLL/jZGwiO3+9a69aQP8fSPIhKNe2F+30jOVsl6RIG
-         CenQTMBvgM7b+bjolrV7ZfWWTvi78yyuiat0Rt7XbFB3r7lzhbkSO5iivPcE+aiDkS3T
-         HLPfBqtr5RXzKux+layJ7epR33BuQOHtpHcsY4Vlngk2pgbcZ3zSU2vdfqx8JTflQ2fu
-         A4yeWablM2Vq9uSgLseNbbuS2jwo0MggA4ydGgHxMhlIBw2/HvCZh7klwse4b7JIBbG+
-         t1nQ==
+        bh=8yoRVgdzslZ2s5VNKQ7c0EICKigH3eQ9ghrStUXwk4g=;
+        b=NAXzB5SEXKT2bdZhaJkeCOkkfpKiPGJBBASxeYQOSpuat0xf42fmQCDnSwxSBPCWrh
+         2jFqaAMVDjwhpqvLkqvaAHUjh1AKm0Y6j3+PWZMuoVRtshT8nnuNM3EVkQCFTdQbo5/k
+         k2TkqTCZfQfb0nVfkP+r0Tbq2K9Wzc0l+NdO9x1GS+HfUFW/WCJzSSG/5cm51cubJrak
+         jwLpgut8CURr+wpKmoAOwYaNa1KDQ7fMv4GFHmkkW3d5tgRL0jER429lsliDYUG7B9Fh
+         A3lTxYrbbrA8C7qGq4PAZ3U3PrvXW4K4dIdS6wCCXu1Tndl3KPSpMIjumF+l6pGv3Ahc
+         hYzw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=kBEBtsW2irgq6PGYdUQwTOTY6n0Khj2SouVUPR5ajI0=;
-        b=Cxwdck/bX6633Scr6/Wj1gqpcNyOWdpo5t5F5lc0CEJR1zmpK6zpiSK753RimXYWoL
-         CD8ifZvKwaPyeqqFWXqEJBqQ5JcKOsPA3UYYkfSlq9u+8+TrdeC1N8UPfLyOc92jXkD5
-         vSEjvPuhNa5TP1THYeJOgFf82GFeitdzm7UhH2TTbk0O1Tl29ubm5nmnSUNW4dye8q5H
-         v59sZgL9MGQe4nA56IEYB3H0yu3QLlQ04GTd4IWI4Bf6CDg7Bs3tPO3xG0Syg/FYqRIn
-         IB8rPy53f6634aHIGFntWRzpmjrPt2hxCsOG18+VrLDKocOerh7GSj+H8VINMEUmKw9m
-         8rXg==
-X-Gm-Message-State: AOAM530mlX+74OQOX24R3JJDqaXonuMSY0+DVvwMBfaYbfNnky/5s66h
-        G+M3iaIW0htCv6k+WrovjdJdEQZGsm4=
-X-Google-Smtp-Source: ABdhPJwXaCBQh5JeWVe6+nZE7Wrt6Q3eygPmDknt2GMHLy0SPvbERa8SrgSpu65WMOK9c+qpjR2fgg==
-X-Received: by 2002:a05:6a00:816:b029:198:30d:e020 with SMTP id m22-20020a056a000816b0290198030de020mr44670060pfk.52.1609226407364;
-        Mon, 28 Dec 2020 23:20:07 -0800 (PST)
-Received: from charles-System-Product-Name.dhcpserver.local (220-135-135-179.HINET-IP.hinet.net. [220.135.135.179])
-        by smtp.googlemail.com with ESMTPSA id q70sm1838943pja.39.2020.12.28.23.20.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Dec 2020 23:20:06 -0800 (PST)
-From:   Charles Hsu <hsu.yungteng@gmail.com>
-To:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org
-Cc:     Charles Hsu <hsu.yungteng@gmail.com>
-Subject: [PATCH] dt-bindings: (hwmon/pm6764tr) Add PM6764TR hwmon driver bindings
-Date:   Tue, 29 Dec 2020 15:17:23 +0800
-Message-Id: <20201229071723.2219360-1-hsu.yungteng@gmail.com>
-X-Mailer: git-send-email 2.25.1
+        h=x-gm-message-state:subject:to:cc:references:from:organization
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=8yoRVgdzslZ2s5VNKQ7c0EICKigH3eQ9ghrStUXwk4g=;
+        b=a4x0iYhvLQWm1PU2aF69o4K94pxIEP8xueIeUQ94i4F1HJO1ZTFDklUfYc1GGDaR9a
+         z5vQmCWgSZ4EgqmkwTx3+JGStLYshKQKYkMY6heAScwXR5v2mC1lM7myPZ91SJLF2EVu
+         KAEFtiKAiMrYmZXVgvGVz1CGyZ8ppi+MPbcPMvok6ZTs3A/dhjLQ1UUoyK0496RiMmiL
+         nq32WXaP3bjIMiPTQfmwLN1nd3MMPUQFgD6k05DNrurzS7fEQq6VImmOaGhFvgrgdnGM
+         65rrXY8fPlLtelwg8DwHdvFpMT7cEw3sl5AP2tjcY3ti7QZl6ubMT+EPaiu0mimOyZ7G
+         Fbkw==
+X-Gm-Message-State: AOAM53272ZsMdStBke1kNsJ/FN0oRYdPKD7heOpyPWIS6doni/GLszF/
+        60reyDokhxp1NTCZjF3pVedE4ujv+I4=
+X-Google-Smtp-Source: ABdhPJwI4Qk5tmYMi5kKb5Z0GK99s9dL1UCkByjF5rAXM5cHmVOfPpXmRZYHrusB374Mi/s3hM8iwQ==
+X-Received: by 2002:a19:9d8:: with SMTP id 207mr20532632lfj.581.1609229829361;
+        Tue, 29 Dec 2020 00:17:09 -0800 (PST)
+Received: from [192.168.1.100] ([178.176.78.246])
+        by smtp.gmail.com with ESMTPSA id u14sm6875979ljo.72.2020.12.29.00.17.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 29 Dec 2020 00:17:08 -0800 (PST)
+Subject: Re: [PATCH 1/4] dt-bindings: net: renesas,etheravb: Add additional
+ clocks
+To:     Adam Ford <aford173@gmail.com>, linux-renesas-soc@vger.kernel.org
+Cc:     aford@beaconembedded.com, "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20201228213121.2331449-1-aford173@gmail.com>
+From:   Sergei Shtylyov <sergei.shtylyov@gmail.com>
+Organization: Brain-dead Software
+Message-ID: <7b271d36-3178-0338-7bfb-558115cb2516@gmail.com>
+Date:   Tue, 29 Dec 2020 11:17:01 +0300
+User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20201228213121.2331449-1-aford173@gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document device tree bindings for STMicroelectronics PM6764tr Voltage
-Regulator.
+Hello!
 
-Signed-off-by: Charles Hsu <hsu.yungteng@gmail.com>
----
- .../bindings/hwmon/pmbus/st,pm6764tr.yaml     | 47 +++++++++++++++++++
- .../devicetree/bindings/trivial-devices.yaml  |  2 +
- 2 files changed, 49 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/hwmon/pmbus/st,pm6764tr.yaml
+On 29.12.2020 0:31, Adam Ford wrote:
 
-diff --git a/Documentation/devicetree/bindings/hwmon/pmbus/st,pm6764tr.yaml b/Documentation/devicetree/bindings/hwmon/pmbus/st,pm6764tr.yaml
-new file mode 100644
-index 000000000000..b4b0d5614d8d
---- /dev/null
-+++ b/Documentation/devicetree/bindings/hwmon/pmbus/st,pm6764tr.yaml
-@@ -0,0 +1,47 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+
-+$id: http://devicetree.org/schemas/hwmon/pmbus/st,pm6764tr.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: PM6764TR voltage regulator
-+
-+maintainers:
-+  - Charles Hsu <hsu.yungteng@gmail.com>
-+
-+description: |
-+  The PM6764/66 is a high performance digital controller designed to power
-+  Intel’s VR12.5 processors (PM6766) and memories (PM6764): all required
-+  parameters are programmable through a PMBus™ interface.
-+  The device utilizes digital technology to implement all control and
-+  power management functions to provide maximum flexibility and performance.
-+  The NVM is embedded to store custom configurations.
-+
-+  https://www.st.com/resource/en/data_brief/pm6764.pdf
-+
-+properties:
-+  compatible:
-+    enum:
-+      - st,pm6764tr
-+
-+  reg:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        pm6764tr@68 {
-+            compatible = "st,pm6764tr";
-+            reg = <0x68>;
-+        };
-+    };
-diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-index bdc2dc318178..0a2dcd03220b 100644
---- a/Documentation/devicetree/bindings/trivial-devices.yaml
-+++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-@@ -260,6 +260,8 @@ properties:
-           - socionext,synquacer-tpm-mmio
-             # i2c serial eeprom  (24cxx)
-           - st,24c256
-+            # STMicroelectronics Voltage Regulator
-+          - st,pm6764tr
-             # Ambient Light Sensor with SMBUS/Two Wire Serial Interface
-           - taos,tsl2550
-             # Temperature Monitoring and Fan Control
--- 
-2.25.1
+> The AVB driver assumes there is an external clock, but it could
+> be driven by an external clock.
 
+     Driver can be driven by external clock? :-)
+
+> In order to enable a programmable
+> clock, it needs to be added to the clocks list and enabled in the
+> driver.  Since there currently only one clock, there is no
+                       ^ is
+> clock-names list either.
+> 
+> Update bindings to add the additional optional clock, and explicitly
+> name both of them.
+> 
+> Signed-off-by: Adam Ford <aford173@gmail.com>
+[...]
+
+MBR, Sergei
