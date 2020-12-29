@@ -2,189 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8406D2E6EA4
-	for <lists+devicetree@lfdr.de>; Tue, 29 Dec 2020 07:52:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D33EE2E6EB9
+	for <lists+devicetree@lfdr.de>; Tue, 29 Dec 2020 08:21:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725979AbgL2GwI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Dec 2020 01:52:08 -0500
-Received: from mail-dm6nam12on2090.outbound.protection.outlook.com ([40.107.243.90]:2048
-        "EHLO NAM12-DM6-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1725767AbgL2GwH (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 29 Dec 2020 01:52:07 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=elemIVo0tn0MUvQnLfL+xk5gd8fQz7FgZyjYGGgMFfXQTcFDVq6L2R6IbCqqntVRLZN5kgiywkgaX1fmdffsLhAlrcz/HppBk63iT2jPlKFY37clPVAdwCq1uhu0HM25dPYO6uoG5fdV06D2vk9wxmkjk2hb2o6H7YX0N9PZ4gKkBC4GWce9piD9CluZ5atmHdEhGq/+IwGs8L4N3ycMQCEp9ofOV7NFWiBF+rYQ8cN9GUZd+Svn5IRwOcxXOjhbyFCfIAl23379JCt/2TTlRgyV/T0Ssj9EhIof3J8BjhvQtgTHLz7NTSF2JVIlLPr5U+r4CE3fQ7IDR1zMwtX1HQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0cmWmalDNRoLyrAdpt9mHBwXLGeK5ro02H1XItwELTE=;
- b=c096BQnwrySd6N4WPfpCqth2YAv2rU7nOQwJXFD0RPooEJO8LCf18W4eMWoBFXI2dtwZ/vm1twfmk/D3Us9o5JNUT6DV7x+is6BcOv4TKeMw301jwQnJO4g9goHuzvTP4Qi9stnCP5gzW97uWvOvTsyUGQVnOFjSzBHKylepCZlgdqrjY2RX2JL2tWruTQuPtOx8PPtJjtcOyxShD0Wz/JPuE6Fos7Cnvnhjy9J1MLYpicwT/xEzSnULSlxWQZ946KNgtz+lLBPTzFefF4RAoJZxZxxbVpdmZyVuvncRJykQoIRZFV8BcnI4VcwTJQLnOWVM7QEZzcMhyk+7gh/ozw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=analogixsemi.com; dmarc=pass action=none
- header.from=analogixsemi.com; dkim=pass header.d=analogixsemi.com; arc=none
+        id S1726168AbgL2HUs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Dec 2020 02:20:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48940 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725866AbgL2HUs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Dec 2020 02:20:48 -0500
+Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com [IPv6:2607:f8b0:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2AE86C061793;
+        Mon, 28 Dec 2020 23:20:08 -0800 (PST)
+Received: by mail-pf1-x42b.google.com with SMTP id h10so6613540pfo.9;
+        Mon, 28 Dec 2020 23:20:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=Analogixsemi.onmicrosoft.com; s=selector2-Analogixsemi-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0cmWmalDNRoLyrAdpt9mHBwXLGeK5ro02H1XItwELTE=;
- b=CsnXWJahYTa7qw73bKoE6uCk6F0hy2htnPvtCZP56MoHvJ1GNu4ptepYxltr1v4iCKUAVy7MeNY2Rrb7P4W1/Ldf3sDENdV+HuIK8IRuDuU6e3QuS/cJUVoJ/HzAcpIm/EKc37WN8eeNmEsYCwvxsUUA9JyskanFx7avTE70tBs=
-Authentication-Results: vger.kernel.org; dkim=none (message not signed)
- header.d=none;vger.kernel.org; dmarc=none action=none
- header.from=analogixsemi.com;
-Received: from BY5PR04MB6739.namprd04.prod.outlook.com (2603:10b6:a03:229::8)
- by BYAPR04MB3816.namprd04.prod.outlook.com (2603:10b6:a02:ac::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3700.28; Tue, 29 Dec
- 2020 06:50:58 +0000
-Received: from BY5PR04MB6739.namprd04.prod.outlook.com
- ([fe80::441c:9020:2a79:3eff]) by BY5PR04MB6739.namprd04.prod.outlook.com
- ([fe80::441c:9020:2a79:3eff%6]) with mapi id 15.20.3700.031; Tue, 29 Dec 2020
- 06:50:57 +0000
-Date:   Tue, 29 Dec 2020 14:50:48 +0800
-From:   Xin Ji <xji@analogixsemi.com>
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, David Airlie <airlied@linux.ie>,
-        Nicolas Boichat <drinkcat@google.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Ricardo =?iso-8859-1?Q?Ca=F1uelo?= 
-        <ricardo.canuelo@collabora.com>, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, Sheng Pan <span@analogixsemi.com>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 1/2] dt-bindings: drm/bridge: anx7625: add DPI flag
- and swing setting
-Message-ID: <20201229065048.GB7073@pc-user>
-References: <cover.1608883950.git.xji@analogixsemi.com>
- <c29b7d9fda9ce8619d1c718b077250998a8600b8.1608883950.git.xji@analogixsemi.com>
- <X+n1COtS8nrCFUHd@pendragon.ideasonboard.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <X+n1COtS8nrCFUHd@pendragon.ideasonboard.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-X-Originating-IP: [61.148.116.10]
-X-ClientProxiedBy: HK0PR03CA0115.apcprd03.prod.outlook.com
- (2603:1096:203:b0::31) To BY5PR04MB6739.namprd04.prod.outlook.com
- (2603:10b6:a03:229::8)
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=kBEBtsW2irgq6PGYdUQwTOTY6n0Khj2SouVUPR5ajI0=;
+        b=oacOvtUvxf7jxRJ/HEMrMmiOOr6gPzz9mzltJf8SLX+oPOsMBVirvWTn0V2WE2fVzB
+         CIDhyg5PKVt+hiaHjnl0wJ+If4nLL/jZGwiO3+9a69aQP8fSPIhKNe2F+30jOVsl6RIG
+         CenQTMBvgM7b+bjolrV7ZfWWTvi78yyuiat0Rt7XbFB3r7lzhbkSO5iivPcE+aiDkS3T
+         HLPfBqtr5RXzKux+layJ7epR33BuQOHtpHcsY4Vlngk2pgbcZ3zSU2vdfqx8JTflQ2fu
+         A4yeWablM2Vq9uSgLseNbbuS2jwo0MggA4ydGgHxMhlIBw2/HvCZh7klwse4b7JIBbG+
+         t1nQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=kBEBtsW2irgq6PGYdUQwTOTY6n0Khj2SouVUPR5ajI0=;
+        b=Cxwdck/bX6633Scr6/Wj1gqpcNyOWdpo5t5F5lc0CEJR1zmpK6zpiSK753RimXYWoL
+         CD8ifZvKwaPyeqqFWXqEJBqQ5JcKOsPA3UYYkfSlq9u+8+TrdeC1N8UPfLyOc92jXkD5
+         vSEjvPuhNa5TP1THYeJOgFf82GFeitdzm7UhH2TTbk0O1Tl29ubm5nmnSUNW4dye8q5H
+         v59sZgL9MGQe4nA56IEYB3H0yu3QLlQ04GTd4IWI4Bf6CDg7Bs3tPO3xG0Syg/FYqRIn
+         IB8rPy53f6634aHIGFntWRzpmjrPt2hxCsOG18+VrLDKocOerh7GSj+H8VINMEUmKw9m
+         8rXg==
+X-Gm-Message-State: AOAM530mlX+74OQOX24R3JJDqaXonuMSY0+DVvwMBfaYbfNnky/5s66h
+        G+M3iaIW0htCv6k+WrovjdJdEQZGsm4=
+X-Google-Smtp-Source: ABdhPJwXaCBQh5JeWVe6+nZE7Wrt6Q3eygPmDknt2GMHLy0SPvbERa8SrgSpu65WMOK9c+qpjR2fgg==
+X-Received: by 2002:a05:6a00:816:b029:198:30d:e020 with SMTP id m22-20020a056a000816b0290198030de020mr44670060pfk.52.1609226407364;
+        Mon, 28 Dec 2020 23:20:07 -0800 (PST)
+Received: from charles-System-Product-Name.dhcpserver.local (220-135-135-179.HINET-IP.hinet.net. [220.135.135.179])
+        by smtp.googlemail.com with ESMTPSA id q70sm1838943pja.39.2020.12.28.23.20.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 28 Dec 2020 23:20:06 -0800 (PST)
+From:   Charles Hsu <hsu.yungteng@gmail.com>
+To:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        robh+dt@kernel.org
+Cc:     Charles Hsu <hsu.yungteng@gmail.com>
+Subject: [PATCH] dt-bindings: (hwmon/pm6764tr) Add PM6764TR hwmon driver bindings
+Date:   Tue, 29 Dec 2020 15:17:23 +0800
+Message-Id: <20201229071723.2219360-1-hsu.yungteng@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from pc-user (61.148.116.10) by HK0PR03CA0115.apcprd03.prod.outlook.com (2603:1096:203:b0::31) with Microsoft SMTP Server (version=TLS1_0, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA) id 15.20.3700.27 via Frontend Transport; Tue, 29 Dec 2020 06:50:57 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 294b9308-0618-4fd3-cbd2-08d8abc618ab
-X-MS-TrafficTypeDiagnostic: BYAPR04MB3816:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <BYAPR04MB38162B481B13665F8EAAA3C2C7D80@BYAPR04MB3816.namprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: LY5VcEN0Kg36GNmxhfmN9SS8Tfv1Fv4Q8YpXsPUq/lCNjIlp6YeB7WtCUqoVbj0xh7ok3ZNd+dIhF+C8RQXim7854YdPSlTHt7P/2f/diuYpIzDzIegFUGAa9tVu8J+/+8ulE/1DltOB0lmjS0LlfVHfPQdjA3dk9oWdsyJRc2vgkbVWanEUEDd4ZIoY5vMJMP4NGDMXTKXDyRA4EBqqKQoIRIBu5K5uZ2eisrLhV3C+SR6V4ehoXcCeHD+vtMczoWLdoePKO8+C19eP35jki6nuqjzW0AmZ/qLHT6G5xHnt7Ehsv2hOpE/8+VL4TpCxSk63SMN7SBS1R27FtReHZcpBk4DEioHXTdWHNvEwKyYoW5GvevP3QyosiNCKt7YFk4UfUFtHHePOYA8vI+J6IA==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY5PR04MB6739.namprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(396003)(376002)(136003)(39840400004)(346002)(366004)(66946007)(5660300002)(54906003)(6666004)(16526019)(66476007)(26005)(186003)(33716001)(956004)(8936002)(316002)(83380400001)(33656002)(478600001)(2906002)(86362001)(8676002)(66556008)(52116002)(9686003)(55016002)(6916009)(6496006)(4326008)(7416002)(1076003);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?3lFgIuZ6ADzsQAFpBPB5KM6HkeuJR7eAVTF3pyhjrJ0JIBlC9+Gaa24j6nZ8?=
- =?us-ascii?Q?YB4ihXLHKROO1RXuKpvYkDLZbrblMe8/IdvPBjbh/EKsdrf/zlaOnGWQD0XT?=
- =?us-ascii?Q?EhB3YrQ1JVUwtvWI7B3JOZlo1BUraEuP+2Ana0y5fYbLCw/t17Zq6fdiKZRv?=
- =?us-ascii?Q?5691XoW6y/cXb0IaD3Z4klXPy8jTROp+9JI9bvmZUEvD5b+WUeKFNE41tcsj?=
- =?us-ascii?Q?Ktm4Atj9KLMTKUmlW5bHqQLH+Kx52nPCDHX8mFAFXfKw8meJoVllBmxOhCYU?=
- =?us-ascii?Q?FuNOlXzoE7qMOVDifR36ZFslYm5atd3FNgTZmi+H0tfT3XbxwSX5veg1qMdV?=
- =?us-ascii?Q?sCgG/jZyiqDcKwZ7B+Q+LsPAs5Q/5FRDwG/P6vCDBOmQ6qYJuS53BZNEObF2?=
- =?us-ascii?Q?25pSkoVKOQxgohHT8NUtpz+CtHnIv9W9cdwLOs1xskwlrnDpu8Vb4sesZ1Yp?=
- =?us-ascii?Q?Ao4trgzhoM4MAbYNo/vYHjsLn7rfcp8GUH6z3I/zzgKUC/ddd1l1S0lUzfpw?=
- =?us-ascii?Q?yovCzBHvKWYRr4NnM3/doM92/XX/sAAnF9jSSJbs2FP18gj5meuRrsCv5Xs3?=
- =?us-ascii?Q?uGP8uGhrhdT4IRZrlL9sl+ipLReFSrkrCQYrraGpFF/AEatFcuwPNjCJ464L?=
- =?us-ascii?Q?EIRG+D9ziyNAAi4QhnrO3kYxDxbrK/7ppKmxH3so3yFTQ06CpBWTswjjP5pm?=
- =?us-ascii?Q?7YYq98qU2B6av8mRGE63y8zLS9DQOGFyA4BM9aCr4Hclay5igSY7K4hEjzSI?=
- =?us-ascii?Q?pN9DDNVXP8tAORGaowSK//+bKxkcFNyfYFDJrG1qmLOGnw+DmqXBih3R1jhA?=
- =?us-ascii?Q?F23Dh95hiQw0ZJk2lVlRLfn9PdIChjgiZyL8Ubl4G57fGqB7ReVDj7nqvD11?=
- =?us-ascii?Q?B8fN4Z2U34TXnHaK0IRZfc6NVsKx4nH4sx6B3a7xve0GOG2vUkLKqTxmwZfq?=
- =?us-ascii?Q?G4ir19nH+arjA6/7pvZRDU6bmTso55tm5nWm4OtsNAyUyf7XkdNwjXgfGYNl?=
- =?us-ascii?Q?lEWs?=
-X-OriginatorOrg: analogixsemi.com
-X-MS-Exchange-CrossTenant-AuthSource: BY5PR04MB6739.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Dec 2020 06:50:57.7954
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: b099b0b4-f26c-4cf5-9a0f-d5be9acab205
-X-MS-Exchange-CrossTenant-Network-Message-Id: 294b9308-0618-4fd3-cbd2-08d8abc618ab
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: tLf/dvXnfwuMuo/iSpty/BU1GPNFM8tNFodvwvVd9CVkIKSAtFXa3ubbVuVpXZxfKtFvyIgQOeefq89bfvtxpQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR04MB3816
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 28, 2020 at 05:08:56PM +0200, Laurent Pinchart wrote:
-> Hi Xin Ji,
-> 
-> Thank you for the patch.
-> 
-> On Fri, Dec 25, 2020 at 07:01:09PM +0800, Xin Ji wrote:
-> > Add DPI flag for distinguish MIPI input signal type, DSI or DPI. Add
-> > swing setting for adjusting DP tx PHY swing
-> > 
-> > Signed-off-by: Xin Ji <xji@analogixsemi.com>
-> > ---
-> >  .../bindings/display/bridge/analogix,anx7625.yaml     | 19 +++++++++++++++++++
-> >  1 file changed, 19 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
-> > index 60585a4..34a7faf 100644
-> > --- a/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
-> > +++ b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
-> > @@ -34,6 +34,14 @@ properties:
-> >      description: used for reset chip control, RESET_N pin B7.
-> >      maxItems: 1
-> >  
-> > +  anx,swing-setting:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> > +    description: an array of swing register setting for DP tx PHY
-> 
-> Register values in DT are frowned upon.
-Hi Laurent Pinchart, as the different vendor has the different PCB layout,
-it effects DP CTS test result, so they may need config DP tx Swing register
-to adjust signal swing(the default swing setting is not satisfy for
-every platform). If we move the config code to driver file, it must define
-swing register setting for each vendor, so the DT is the best way. Do you
-have any idea for it if you don't agree to add in DT.
-> 
-> > +  anx,mipi-dpi-in:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    description: indicate the MIPI rx signal type is DPI or DSI
-> 
-> This sounds similar to the bus-type property defined in
-> Documentation/devicetree/bindings/media/video-interfaces.txt (which is
-> getting converted to YAML, Rob has posted a patch series, I expect it to
-> land in v5.13). I think it would make sense to extend bus-type to
-> support DSI, and use that property.
-Sorry, I didn't found any define for DPI or DSI flag in Rob's patches.
-Do you mean I just remove this flag define and call a special function
-to read the port's type(DSI or DPI)?
-> 
-> > +
-> >    ports:
-> >      type: object
-> >  
-> > @@ -72,6 +80,17 @@ examples:
-> >              reg = <0x58>;
-> >              enable-gpios = <&pio 45 GPIO_ACTIVE_HIGH>;
-> >              reset-gpios = <&pio 73 GPIO_ACTIVE_HIGH>;
-> > +            anx,swing-setting = <0x00 0x14>, <0x01 0x54>,
-> > +                <0x02 0x64>, <0x03 0x74>, <0x04 0x29>,
-> > +                <0x05 0x7b>, <0x06 0x77>, <0x07 0x5b>,
-> > +                <0x08 0x7f>, <0x0c 0x20>, <0x0d 0x60>,
-> > +                <0x10 0x60>, <0x12 0x40>, <0x13 0x60>,
-> > +                <0x14 0x14>, <0x15 0x54>, <0x16 0x64>,
-> > +                <0x17 0x74>, <0x18 0x29>, <0x19 0x7b>,
-> > +                <0x1a 0x77>, <0x1b 0x5b>, <0x1c 0x7f>,
-> > +                <0x20 0x20>, <0x21 0x60>, <0x24 0x60>,
-> > +                <0x26 0x40>, <0x27 0x60>;
-> > +            anx,mipi-dpi-in = <0>;
-> >  
-> >              ports {
-> >                  #address-cells = <1>;
-> 
-> -- 
-> Regards,
-> 
-> Laurent Pinchart
+Document device tree bindings for STMicroelectronics PM6764tr Voltage
+Regulator.
+
+Signed-off-by: Charles Hsu <hsu.yungteng@gmail.com>
+---
+ .../bindings/hwmon/pmbus/st,pm6764tr.yaml     | 47 +++++++++++++++++++
+ .../devicetree/bindings/trivial-devices.yaml  |  2 +
+ 2 files changed, 49 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/hwmon/pmbus/st,pm6764tr.yaml
+
+diff --git a/Documentation/devicetree/bindings/hwmon/pmbus/st,pm6764tr.yaml b/Documentation/devicetree/bindings/hwmon/pmbus/st,pm6764tr.yaml
+new file mode 100644
+index 000000000000..b4b0d5614d8d
+--- /dev/null
++++ b/Documentation/devicetree/bindings/hwmon/pmbus/st,pm6764tr.yaml
+@@ -0,0 +1,47 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++
++$id: http://devicetree.org/schemas/hwmon/pmbus/st,pm6764tr.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: PM6764TR voltage regulator
++
++maintainers:
++  - Charles Hsu <hsu.yungteng@gmail.com>
++
++description: |
++  The PM6764/66 is a high performance digital controller designed to power
++  Intel’s VR12.5 processors (PM6766) and memories (PM6764): all required
++  parameters are programmable through a PMBus™ interface.
++  The device utilizes digital technology to implement all control and
++  power management functions to provide maximum flexibility and performance.
++  The NVM is embedded to store custom configurations.
++
++  https://www.st.com/resource/en/data_brief/pm6764.pdf
++
++properties:
++  compatible:
++    enum:
++      - st,pm6764tr
++
++  reg:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        pm6764tr@68 {
++            compatible = "st,pm6764tr";
++            reg = <0x68>;
++        };
++    };
+diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
+index bdc2dc318178..0a2dcd03220b 100644
+--- a/Documentation/devicetree/bindings/trivial-devices.yaml
++++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+@@ -260,6 +260,8 @@ properties:
+           - socionext,synquacer-tpm-mmio
+             # i2c serial eeprom  (24cxx)
+           - st,24c256
++            # STMicroelectronics Voltage Regulator
++          - st,pm6764tr
+             # Ambient Light Sensor with SMBUS/Two Wire Serial Interface
+           - taos,tsl2550
+             # Temperature Monitoring and Fan Control
+-- 
+2.25.1
+
