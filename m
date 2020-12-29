@@ -2,82 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D4DEB2E7233
-	for <lists+devicetree@lfdr.de>; Tue, 29 Dec 2020 17:18:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BFE162E723A
+	for <lists+devicetree@lfdr.de>; Tue, 29 Dec 2020 17:21:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726302AbgL2QST (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Dec 2020 11:18:19 -0500
-Received: from relay4-d.mail.gandi.net ([217.70.183.196]:35299 "EHLO
-        relay4-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726144AbgL2QSP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Dec 2020 11:18:15 -0500
-X-Originating-IP: 90.55.97.122
-Received: from pc-2.home (apoitiers-259-1-26-122.w90-55.abo.wanadoo.fr [90.55.97.122])
-        (Authenticated sender: maxime.chevallier@bootlin.com)
-        by relay4-d.mail.gandi.net (Postfix) with ESMTPSA id DAF03E0002;
-        Tue, 29 Dec 2020 16:17:32 +0000 (UTC)
-From:   Maxime Chevallier <maxime.chevallier@bootlin.com>
-To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
-Cc:     Maxime Chevallier <maxime.chevallier@bootlin.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-Subject: [PATCH v5 3/3] arm64: dts: rockchip: Add the camera interface description of the PX30
-Date:   Tue, 29 Dec 2020 17:17:24 +0100
-Message-Id: <20201229161724.511102-4-maxime.chevallier@bootlin.com>
-X-Mailer: git-send-email 2.25.4
-In-Reply-To: <20201229161724.511102-1-maxime.chevallier@bootlin.com>
-References: <20201229161724.511102-1-maxime.chevallier@bootlin.com>
+        id S1726492AbgL2QUY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Dec 2020 11:20:24 -0500
+Received: from mail.kernel.org ([198.145.29.99]:56980 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726197AbgL2QUY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 29 Dec 2020 11:20:24 -0500
+Received: from archlinux (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id E99A3207CF;
+        Tue, 29 Dec 2020 16:19:42 +0000 (UTC)
+Date:   Tue, 29 Dec 2020 16:19:39 +0000
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Cristian Pop <cristian.pop@analog.com>, linux-iio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 1/3] dt-bindings: iio: dac: AD5766 yaml documentation
+Message-ID: <20201229161939.7860f1b1@archlinux>
+In-Reply-To: <20201221184434.GA331914@robh.at.kernel.org>
+References: <20201218171231.58794-1-cristian.pop@analog.com>
+        <20201221184434.GA331914@robh.at.kernel.org>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The PX30 has a camera interface, supporting CSI2 and BT656
-modes. Add a DT description for this interface.
+On Mon, 21 Dec 2020 11:44:34 -0700
+Rob Herring <robh@kernel.org> wrote:
 
-Signed-off-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
----
-V3 : Renamed the controlled
+> On Fri, Dec 18, 2020 at 07:12:29PM +0200, Cristian Pop wrote:
+> > This adds device tree bindings for the AD5766 DAC.
+> > 
+> > Signed-off-by: Cristian Pop <cristian.pop@analog.com>
+> > ---
+> >  Changelog v4:
+> > 	- Add range selection
+> > 	- Reset is GPIO_ACTIVE_LOW
+> > 	
+> >  .../bindings/iio/dac/adi,ad5766.yaml          | 64 +++++++++++++++++++
+> >  1 file changed, 64 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/iio/dac/adi,ad5766.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/iio/dac/adi,ad5766.yaml b/Documentation/devicetree/bindings/iio/dac/adi,ad5766.yaml
+> > new file mode 100644
+> > index 000000000000..846b5ee50761
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/iio/dac/adi,ad5766.yaml
+> > @@ -0,0 +1,64 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +# Copyright 2020 Analog Devices Inc.
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/iio/dac/adi,ad5766.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Analog Devices AD5766 DAC device driver
+> > +
+> > +maintainers:
+> > +  - Cristian Pop <cristian.pop@analog.com>
+> > +
+> > +description: |
+> > +  Bindings for the Analog Devices AD5766 current DAC device. Datasheet can be
+> > +  found here:
+> > +    https://www.analog.com/media/en/technical-documentation/data-sheets/ad5766-5767.pdf
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - adi,ad5766
+> > +      - adi,ad5767
+> > +
+> > +  output-range:
+> > +    description: Select converter output range.  
+> 
+> Something standard for DACs? If not needs a vendor prefix and type. 
 
-V4: Fixed the clock names
+Hmm. It's a common enough thing that we could think about standardizing
+it but it would need units in the naming.
 
-v5: No change
+output-range-volts
 
- arch/arm64/boot/dts/rockchip/px30.dtsi | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+and promoting to a higher level in the DT bindings docs than the individual
+driver.
 
-diff --git a/arch/arm64/boot/dts/rockchip/px30.dtsi b/arch/arm64/boot/dts/rockchip/px30.dtsi
-index 2695ea8cda14..39987afe5ed5 100644
---- a/arch/arm64/boot/dts/rockchip/px30.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/px30.dtsi
-@@ -1106,6 +1106,18 @@ vopl_mmu: iommu@ff470f00 {
- 		status = "disabled";
- 	};
- 
-+	vip: vip@ff490000 {
-+		compatible = "rockchip,px30-vip";
-+		reg = <0x0 0xff490000 0x0 0x200>;
-+		interrupts = <GIC_SPI 69 IRQ_TYPE_LEVEL_HIGH>;
-+		clocks = <&cru ACLK_CIF>, <&cru HCLK_CIF>, <&cru PCLK_CIF>, <&cru SCLK_CIF_OUT>;
-+		clock-names = "aclk", "hclk", "pclk";
-+		power-domains = <&power PX30_PD_VI>;
-+		resets = <&cru SRST_CIF_A>, <&cru SRST_CIF_H>, <&cru SRST_CIF_PCLKIN>;
-+		reset-names = "axi", "ahb", "pclkin";
-+		status = "disabled";
-+	};
-+
- 	qos_gmac: qos@ff518000 {
- 		compatible = "syscon";
- 		reg = <0x0 0xff518000 0x0 0x20>;
--- 
-2.25.4
+We almost certainly have a bunch of preexisting bindings using manufacturer
+specific equivalents.  I've not be completely consistent on this so have
+encouraged separate max / min attributes but with hind sight I two value
+version like this probably makes more sense in a DT binding (not so much
+if userspace is controlling it).
+
+
+> 
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  spi-max-frequency:
+> > +    maximum: 1000000
+> > +
+> > +  spi-cpol: true
+> > +
+> > +  reset-gpios:
+> > +    description: GPIO spec for the RESET pin. If specified, it will be asserted
+> > +      during driver probe. As the line is active low, it should be marked
+> > +      GPIO_ACTIVE_LOW.
+> > +    maxItems: 1
+> > +
+> > +required:
+> > +  - compatible
+> > +  - output-range
+> > +  - reg
+> > +  - spi-max-frequency
+> > +  - spi-cpol
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    spi {
+> > +          #address-cells = <1>;
+> > +          #size-cells = <0>;
+> > +          
+> > +          ad5766@0 {
+> > +              compatible = "adi,ad5766";
+> > +              output-range = <(-5) 5>;
+> > +              reg = <0>;
+> > +              spi-cpol;
+> > +              spi-max-frequency = <1000000>;
+> > +              reset-gpios = <&gpio 22 0>;
+> > +            };
+> > +      };
+> > -- 
+> > 2.17.1
+> >   
 
