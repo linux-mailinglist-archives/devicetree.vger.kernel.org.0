@@ -2,63 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0BE282E7188
-	for <lists+devicetree@lfdr.de>; Tue, 29 Dec 2020 15:55:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C4AF2E71CB
+	for <lists+devicetree@lfdr.de>; Tue, 29 Dec 2020 16:27:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726196AbgL2Ozb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Dec 2020 09:55:31 -0500
-Received: from mga12.intel.com ([192.55.52.136]:6084 "EHLO mga12.intel.com"
+        id S1726196AbgL2PYW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Dec 2020 10:24:22 -0500
+Received: from mail.kernel.org ([198.145.29.99]:42704 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726144AbgL2Ozb (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 29 Dec 2020 09:55:31 -0500
-IronPort-SDR: mmaY9qs+AgslRpB4Km3vmtd3wxytZ9A0iyLccfDEq7uajuCQXncy+GFu30QSevjBLcc7Ti8QL2
- xygXav0HBqnQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9849"; a="155702542"
-X-IronPort-AV: E=Sophos;i="5.78,458,1599548400"; 
-   d="scan'208";a="155702542"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
-  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Dec 2020 06:53:46 -0800
-IronPort-SDR: naMXQxSTKeZ8d9ibYInaBR39K4Kl+cvc/FcMS3Zhbo88T5DLOPx+6kXEki6cXBSP6KYI/JOoMF
- EstTeOFCOc3A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.78,458,1599548400"; 
-   d="scan'208";a="347412123"
-Received: from shwdenpg096.ccr.corp.intel.com (HELO [10.67.104.88]) ([10.67.104.88])
-  by fmsmga008.fm.intel.com with ESMTP; 29 Dec 2020 06:53:42 -0800
-Subject: Re: [PATCH v4 3/5] ipmi: kcs: aspeed: Adapt to new LPC DTS layout
-To:     "Chia-Wei, Wang" <chiawei_wang@aspeedtech.com>, robh+dt@kernel.org,
-        lee.jones@linaro.org, joel@jms.id.au, andrew@aj.id.au,
-        linus.walleij@linaro.org, minyard@acm.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        openbmc@lists.ozlabs.org
-Cc:     BMC-SW@aspeedtech.com, cyrilbur@gmail.com, rlippert@google.com
-References: <20201229063157.3587-1-chiawei_wang@aspeedtech.com>
- <20201229063157.3587-4-chiawei_wang@aspeedtech.com>
-From:   Haiyue Wang <haiyue.wang@linux.intel.com>
-Message-ID: <d436cf38-7ce2-3bea-4d0e-03003e36af42@linux.intel.com>
-Date:   Tue, 29 Dec 2020 22:53:42 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.0
+        id S1726144AbgL2PYW (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 29 Dec 2020 10:24:22 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 037D9221F8;
+        Tue, 29 Dec 2020 15:23:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1609255421;
+        bh=X6TWp8dtmGsNefHM5i1nqwfEHyC2PBReZvmW2bXfzjs=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=YiK96+qPYqPeQfZbYUCC5myl9I5msotfpsB1XpSD0MI3yAeOItyLc1a5So/p06XLw
+         kZ1YsdWfBEOra1Q9hlC9D5BgTeYrox5JqgXx9iw6iF7uULCPEFQE5TPC+6FAFKK0jC
+         lDxtiPcDu5rkv2zFo1TRIt1nQ4PhU9Pkg25Oj4MW6ZSN1yJe/yvxlyTuhgSxFqpHwV
+         /+PqbfhSUOCGFXKXQh4XOv6RYJ/u7+KPX8eGhIWWGdO9T5xXTZlL8Tvc87aRVV5kYq
+         pM9w49egp49Lr0BxicP+ofmhSLy+rD0ocGxjFpZ6f92653v8iMSOKzAfVHFN2QGgzk
+         Z4+X63LZTOIHA==
+Received: by mail-wm1-f46.google.com with SMTP id g185so2507021wmf.3;
+        Tue, 29 Dec 2020 07:23:40 -0800 (PST)
+X-Gm-Message-State: AOAM532MNerBagvZXERg9Eb+TKl57H7v0CDGFQLTq9OThB/bxbIVgUWq
+        iR/kxtB/YSXb2ZvWaR33dCvh52T4k0McnkI1aw==
+X-Google-Smtp-Source: ABdhPJzqoSYiS8eONYJzh10hdAnaMFldS8v6+IVw1T9bzfQwd+ZdVmWEddSO/Y3HQ64cIJxjddzsuEn54GHCRRPwA2w=
+X-Received: by 2002:a1c:790f:: with SMTP id l15mr3965420wme.188.1609255419668;
+ Tue, 29 Dec 2020 07:23:39 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20201229063157.3587-4-chiawei_wang@aspeedtech.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <1609144630-14721-1-git-send-email-yongqiang.niu@mediatek.com> <1609144630-14721-5-git-send-email-yongqiang.niu@mediatek.com>
+In-Reply-To: <1609144630-14721-5-git-send-email-yongqiang.niu@mediatek.com>
+From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Date:   Tue, 29 Dec 2020 23:23:27 +0800
+X-Gmail-Original-Message-ID: <CAAOTY_98vrwQrefD9KwvsM+9+tDpNcUwbLoVwu_mXRf17imuTA@mail.gmail.com>
+Message-ID: <CAAOTY_98vrwQrefD9KwvsM+9+tDpNcUwbLoVwu_mXRf17imuTA@mail.gmail.com>
+Subject: Re: [PATCH v3, 4/8] soc: mediatek: mmsys: add component OVL_2L2
+To:     Yongqiang Niu <yongqiang.niu@mediatek.com>
+Cc:     CK Hu <ck.hu@mediatek.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        DTML <devicetree@vger.kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        DRI Development <dri-devel@lists.freedesktop.org>,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/29/2020 14:31, Chia-Wei, Wang wrote:
-> Add check against LPC device v2 compatible string to
-> ensure that the fixed device tree layout is adopted.
-> The LPC register offsets are also fixed accordingly.
+Hi, Yongqiang:
+
+Yongqiang Niu <yongqiang.niu@mediatek.com> =E6=96=BC 2020=E5=B9=B412=E6=9C=
+=8828=E6=97=A5 =E9=80=B1=E4=B8=80 =E4=B8=8B=E5=8D=884:37=E5=AF=AB=E9=81=93=
+=EF=BC=9A
 >
-> Signed-off-by: Chia-Wei, Wang<chiawei_wang@aspeedtech.com>
+> This patch add component OVL_2L2
+
+Reviewed-by: Chun-Kuang Hu <chunkuang.hu@kernel.org>
+
+>
+> Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
 > ---
->   drivers/char/ipmi/kcs_bmc_aspeed.c | 27 ++++++++++++++++-----------
->   1 file changed, 16 insertions(+), 11 deletions(-)
-
-Acked-by: Haiyue Wang <haiyue.wang@linux.intel.com>
-
-
-
+>  include/linux/soc/mediatek/mtk-mmsys.h | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/include/linux/soc/mediatek/mtk-mmsys.h b/include/linux/soc/m=
+ediatek/mtk-mmsys.h
+> index 4b6c514..42476c2 100644
+> --- a/include/linux/soc/mediatek/mtk-mmsys.h
+> +++ b/include/linux/soc/mediatek/mtk-mmsys.h
+> @@ -29,6 +29,7 @@ enum mtk_ddp_comp_id {
+>         DDP_COMPONENT_OVL0,
+>         DDP_COMPONENT_OVL_2L0,
+>         DDP_COMPONENT_OVL_2L1,
+> +       DDP_COMPONENT_OVL_2L2,
+>         DDP_COMPONENT_OVL1,
+>         DDP_COMPONENT_PWM0,
+>         DDP_COMPONENT_PWM1,
+> --
+> 1.8.1.1.dirty
+> _______________________________________________
+> Linux-mediatek mailing list
+> Linux-mediatek@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-mediatek
