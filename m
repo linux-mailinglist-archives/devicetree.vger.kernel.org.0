@@ -2,98 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 103772E6E76
-	for <lists+devicetree@lfdr.de>; Tue, 29 Dec 2020 07:20:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 339A02E6E8F
+	for <lists+devicetree@lfdr.de>; Tue, 29 Dec 2020 07:34:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726285AbgL2GTX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Dec 2020 01:19:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39554 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725986AbgL2GTX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Dec 2020 01:19:23 -0500
-Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DAD56C0613D6;
-        Mon, 28 Dec 2020 22:18:42 -0800 (PST)
-Received: by mail-pj1-x102d.google.com with SMTP id hk16so994550pjb.4;
-        Mon, 28 Dec 2020 22:18:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=iQ57yDlhaXQP4FMUP6u+cqmcjHx6tyVwVCZONWgFI3Y=;
-        b=LDYhSWjHMTEZ6f9yejIxbZFELwf52UcOV0uLIcQYwV5DrC1fpzcn3jPAVzlTJ4alwd
-         yvlwG+8eBNz85zBybs5uTjQN6hYK1G2UGYlhrW1jgnI01ONT5o3CZkp5YitiYxWlYoYG
-         gcwkQophOqFjSpXVz5ciUlbhTd5Q//dMmOF3oL8Zk1ofo4uGoIeyu0edctwkHFXwzv3Z
-         GO+3Em6SA/3bzXDRdIO1F+bkGi5Dme+L/daCF9LsQqesKlID3skrL2k/MGfFx0Tf7xy9
-         TqrUXl12V5TN2/0f+SLaB4ikTvDax54Rq9s9PGUQu4+VOtOXYIhVWJsIctPnavC3Bxmq
-         NUiw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=iQ57yDlhaXQP4FMUP6u+cqmcjHx6tyVwVCZONWgFI3Y=;
-        b=Yb9IvO0nrDGsb8OZ61Db3RgjwEsB6YMU5d82yUTvkyuCU1rCrOYE1NgS1tTBkJgLu+
-         wgBVwKMyancWXxyKBORedskJPr27EKpgaw5uDMXGLkgauXp2NzPken6yuVEPTE+V5l13
-         NLf7jrgnoBNErSt5agFGoD8rfZepo5IrVixDs8bLi2Qef8HDNqpYPXffnhUne076Az4B
-         cZUu/zrrgwiOAs4ptatMc+FkcdSKEkfOTDfHQ9/QV6cDV56OivuJEmFRasDld9PTqoY6
-         mBTcezFg/ZzRcCyF5F/dNPnhC6OW1jxmWMVOnKNzuW+lvP0g8ep/C4dC686cWzbqm9jh
-         yq7g==
-X-Gm-Message-State: AOAM532bW0VFbgdDePTrN47gsG0y7uMM8w9en+XjxhxeKqtfWnmN54jU
-        IMczGmY9Kw4BHMhchBMMs1Q=
-X-Google-Smtp-Source: ABdhPJwqdYggJ2xmahWNQn4DJwa7BSHZGjS6OB7HaO4SDM3vKKOT/XjeyxtehZtw4odI8f3tgo4IqA==
-X-Received: by 2002:a17:90a:1c02:: with SMTP id s2mr2671199pjs.212.1609222722132;
-        Mon, 28 Dec 2020 22:18:42 -0800 (PST)
-Received: from google.com ([2620:15c:202:201:a6ae:11ff:fe11:fcc3])
-        by smtp.gmail.com with ESMTPSA id v3sm1657993pjn.7.2020.12.28.22.18.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Dec 2020 22:18:41 -0800 (PST)
-Date:   Mon, 28 Dec 2020 22:18:38 -0800
-From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To:     Philip Chen <philipchen@chromium.org>
-Cc:     LKML <linux-kernel@vger.kernel.org>, dtor@chromium.org,
-        swboyd@chromium.org, dianders@chromium.org, rajatja@chromium.org,
-        Benson Leung <bleung@chromium.org>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Guenter Roeck <groeck@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Simon Glass <sjg@chromium.org>, devicetree@vger.kernel.org,
-        linux-input@vger.kernel.org
-Subject: Re: [PATCH 1/3] dt-bindings: input: cros-ec-keyb: Add a new property
-Message-ID: <X+rKPhJrQaykPxri@google.com>
-References: <20201221174751.1.I025fb861cd5fa0ef5286b7dce514728e9df7ae74@changeid>
+        id S1726168AbgL2GeO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Dec 2020 01:34:14 -0500
+Received: from twspam01.aspeedtech.com ([211.20.114.71]:42266 "EHLO
+        twspam01.aspeedtech.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726190AbgL2GeO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Dec 2020 01:34:14 -0500
+Received: from mail.aspeedtech.com ([192.168.0.24])
+        by twspam01.aspeedtech.com with ESMTP id 0BT6RTSM012593;
+        Tue, 29 Dec 2020 14:27:29 +0800 (GMT-8)
+        (envelope-from chiawei_wang@aspeedtech.com)
+Received: from ChiaWeiWang-PC.aspeed.com (192.168.2.66) by TWMBX02.aspeed.com
+ (192.168.0.24) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 29 Dec
+ 2020 14:31:35 +0800
+From:   "Chia-Wei, Wang" <chiawei_wang@aspeedtech.com>
+To:     <robh+dt@kernel.org>, <lee.jones@linaro.org>, <joel@jms.id.au>,
+        <andrew@aj.id.au>, <linus.walleij@linaro.org>, <minyard@acm.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-aspeed@lists.ozlabs.org>, <linux-kernel@vger.kernel.org>,
+        <openbmc@lists.ozlabs.org>
+CC:     <BMC-SW@aspeedtech.com>, <haiyue.wang@linux.intel.com>,
+        <cyrilbur@gmail.com>, <rlippert@google.com>
+Subject: [PATCH v4 0/5] Remove LPC register partitioning
+Date:   Tue, 29 Dec 2020 14:31:52 +0800
+Message-ID: <20201229063157.3587-1-chiawei_wang@aspeedtech.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201221174751.1.I025fb861cd5fa0ef5286b7dce514728e9df7ae74@changeid>
+Content-Type: text/plain
+X-Originating-IP: [192.168.2.66]
+X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
+ (192.168.0.24)
+X-DNSRBL: 
+X-MAIL: twspam01.aspeedtech.com 0BT6RTSM012593
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Philip,
+The LPC controller has no concept of the BMC and the Host partitions.
+The incorrect partitioning can impose unnecessary range restrictions
+on register access through the syscon regmap interface.
 
-On Mon, Dec 21, 2020 at 05:47:57PM -0800, Philip Chen wrote:
-> This patch adds a new property `google,custom-keyb-top-row` to the
-> device tree for the custom keyboard top row design.
+For instance, HICRB contains the I/O port address configuration
+of KCS channel 1/2. However, the KCS#1/#2 drivers cannot access
+HICRB as it is located at the other LPC partition.
 
-Why don't we use the property we have for the same purpose in atkbd.c?
-I.e. function-row-physmap?
+In addition, to be backward compatible, the newly added HW control
+bits could be located at any reserved bits over the LPC addressing
+space.
 
-Also, instead of specifying keycodes in this array we should use
-combination of row and column identifying keys, like this:
+Thereby, this patch series aims to remove the LPC partitioning for
+better driver development and maintenance. This requires the change
+to both the device tree and the driver implementation. To ensure
+both sides are synchronously updated, a v2 binding check is added.
 
-	function-row-physmap = <
-		MATRIX_KEY(0x00, 0x02, KEY_F1),
-		MATRIX_KEY(0x03, 0x02, KEY_F2),
-		...
-	>;
+Chagnes since v3:
+	- Revise binding check as suggested by Haiyue Wang
 
-Note that the last item in the triple is purely cosmetic in this case,
-you can change it to 0. It is row and column that are important.
+Changes since v2:
+	- Add v2 binding check to ensure the synchronization between the
+	  device tree change and the driver register offset fix.
 
-Then the mapping will work properly even if we change keymap, for
-example from userspace.
+Changes since v1:
+	- Add the fix to the aspeed-lpc binding documentation.
 
-Thanks.
+Chia-Wei, Wang (5):
+  dt-bindings: aspeed-lpc: Remove LPC partitioning
+  ARM: dts: Remove LPC BMC and Host partitions
+  ipmi: kcs: aspeed: Adapt to new LPC DTS layout
+  pinctrl: aspeed-g5: Adapt to new LPC device tree layout
+  soc: aspeed: Adapt to new LPC device tree layout
+
+ .../devicetree/bindings/mfd/aspeed-lpc.txt    |  99 +++----------
+ arch/arm/boot/dts/aspeed-g4.dtsi              |  74 ++++------
+ arch/arm/boot/dts/aspeed-g5.dtsi              | 135 ++++++++----------
+ arch/arm/boot/dts/aspeed-g6.dtsi              | 135 ++++++++----------
+ drivers/char/ipmi/kcs_bmc_aspeed.c            |  27 ++--
+ drivers/pinctrl/aspeed/pinctrl-aspeed-g5.c    |  17 ++-
+ drivers/soc/aspeed/aspeed-lpc-ctrl.c          |  20 ++-
+ drivers/soc/aspeed/aspeed-lpc-snoop.c         |  23 +--
+ 8 files changed, 225 insertions(+), 305 deletions(-)
 
 -- 
-Dmitry
+2.17.1
+
