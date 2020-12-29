@@ -2,404 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 23F1E2E7020
-	for <lists+devicetree@lfdr.de>; Tue, 29 Dec 2020 12:50:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 01C502E7082
+	for <lists+devicetree@lfdr.de>; Tue, 29 Dec 2020 13:10:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726533AbgL2Lsj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Dec 2020 06:48:39 -0500
-Received: from ssl.serverraum.org ([176.9.125.105]:36173 "EHLO
-        ssl.serverraum.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726419AbgL2Lsh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Dec 2020 06:48:37 -0500
-Received: from mwalle01.fritz.box (unknown [IPv6:2a02:810c:c200:2e91:fa59:71ff:fe9b:b851])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id 2259523E63;
-        Tue, 29 Dec 2020 12:47:54 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1609242474;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=FOmKeCjYomUUA6VaUP8Rbhpromvfdll+dp4HcVM/W78=;
-        b=qD3jFqKERK670FbKBkfLhLb8/1JJF7d9G7/18B6LfRPmmOxcmdKXITkjJwwsaCWS2Vzv60
-        HyXfh3IfM3ZIKI6i+43j8opEh6NSoKYKdCOUMmFFzmEC6v5K17tVmSj+BlQts1nyqaVT/g
-        sg/eLLmkBXa2z7sTsxB5ILmUhobb71Q=
-From:   Michael Walle <michael@walle.cc>
-To:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michael Walle <michael@walle.cc>
-Subject: [PATCH 7/7] arm64: dts: lx2160a: use constants in the clockgen phandle
-Date:   Tue, 29 Dec 2020 12:47:40 +0100
-Message-Id: <20201229114740.7936-8-michael@walle.cc>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20201229114740.7936-1-michael@walle.cc>
-References: <20201229114740.7936-1-michael@walle.cc>
+        id S1726148AbgL2MKp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Dec 2020 07:10:45 -0500
+Received: from mail-db8eur05on2070.outbound.protection.outlook.com ([40.107.20.70]:49409
+        "EHLO EUR05-DB8-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726016AbgL2MKo (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 29 Dec 2020 07:10:44 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=c0+EhZ3r+E66TXYOqpK3wFNHvfq9sVsWJKaD4knDRhiip4OZMKzT/h1zEf1jgInW5BX+zGMnvchIMvemhKReJvlsDTVxfn4/zisLo8Muq6W9hDi5Zkdh0KsGChSXzbQTtA/xctTjdFfsv+BMlmTVse8mbT0uztvsJ8W8KsX21BpUoQFTH/Awz/3DeOPrBFLFay5FWu9j70Q1UQODqEeg2C+IxI+hhfzrVeLsd/njNvOwXl7v73VwPS9xcDbp4E14pK3DuGEj4/t9airCMG8vHCF9sgUvddw6YCgkxKza3Pi/ngJzkRyqVbnMNv12jWxOpz+quoF0oGkj1tA+443dFg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=FrdX5qQC0bDMROMzITwpF1um9Ec4pjifGKg5kLH8/C0=;
+ b=UYoVj1XFYohJb3Cp8p/tHjGhHwqSRvtiioMNAuNX5UNbBigksyw/UJJEDRZFMS1GyHZeRduKfr4sN/dRf9zUGvnGdrgdn/Cn6Vfq3p6u9dhlf0EO+9Mbuo6gvr9O0RYd2+r2M9mgZk/HJbbrXLB/7Q576W1L/GErZBsau9LnuJTJZqtruUP0r0WFB9/D4OMOYKlLX3ZN/YSjpdRZ9K/gukVLOLXHaR35d4yrjEZh0177geHrHaONZ5eCgpFqd9r7GX9WefIHHkPdLfnC0cQp3yl7imaIHKWy72Hzl4Gjp20M6TIAQbEPiqN2f4jD15/4xevoy+tqOX6mZvRg8x6l8A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=FrdX5qQC0bDMROMzITwpF1um9Ec4pjifGKg5kLH8/C0=;
+ b=f53WKKlfXo2YubD69HC4bSKL2zhduGcMeK+vQyUr5RN/H8XKnJ+DfZFRsk3gU0NKsYpVTuJUdZKDWulYlO64mLW9+S20tXonX8lOlDXChpFA7HgxkiSsg+U7HPtxtJluF2uxkgYdA7utEufxe0yKiJUAeDRVh2Tbd382vUnIBBw=
+Authentication-Results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
+Received: from DB6PR0402MB2760.eurprd04.prod.outlook.com (2603:10a6:4:a1::14)
+ by DB6PR0401MB2533.eurprd04.prod.outlook.com (2603:10a6:4:37::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3700.29; Tue, 29 Dec
+ 2020 12:09:55 +0000
+Received: from DB6PR0402MB2760.eurprd04.prod.outlook.com
+ ([fe80::c964:9:850a:fc5]) by DB6PR0402MB2760.eurprd04.prod.outlook.com
+ ([fe80::c964:9:850a:fc5%10]) with mapi id 15.20.3700.031; Tue, 29 Dec 2020
+ 12:09:54 +0000
+From:   peng.fan@nxp.com
+To:     shawnguo@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com,
+        robh+dt@kernel.org
+Cc:     kernel@pengutronix.de, linux-imx@nxp.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, krzk@kernel.org,
+        Peng Fan <peng.fan@nxp.com>
+Subject: [PATCH 0/4] arm64: dts: imx8m: add spda bus
+Date:   Tue, 29 Dec 2020 20:00:41 +0800
+Message-Id: <1609243245-9671-1-git-send-email-peng.fan@nxp.com>
+X-Mailer: git-send-email 2.7.4
+Content-Type: text/plain
+X-Originating-IP: [119.31.174.66]
+X-ClientProxiedBy: SG2PR03CA0161.apcprd03.prod.outlook.com
+ (2603:1096:4:c9::16) To DB6PR0402MB2760.eurprd04.prod.outlook.com
+ (2603:10a6:4:a1::14)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from localhost.localdomain (119.31.174.66) by SG2PR03CA0161.apcprd03.prod.outlook.com (2603:1096:4:c9::16) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.20.3721.12 via Frontend Transport; Tue, 29 Dec 2020 12:09:51 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: aeccf346-8cbb-4940-b4e5-08d8abf2a736
+X-MS-TrafficTypeDiagnostic: DB6PR0401MB2533:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <DB6PR0401MB253362850C9EAF8AD83C398788D80@DB6PR0401MB2533.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:3826;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 1GE30/zwyi9fx+CyZQ6qyiLJst5ttV7L71m9pI/j4ZKXGrb+YRbDOnqS5msUq7jJTVqLcVYtmnxqOFDVfH6V+0qjUahChXe2HsQVLzfSHAW8PFCpJld3/bM+mdxidPYCykp9jTfqRzlAslxGl2dcWPtFmHMFqr4khT/YjNiuXp0sf//ubgRRJzXtTPzLWAt0sIPGlJ9bhoA3+lGIZaO5UQu8JWO7wqnUaJSZYVMtJXxHI6lZO+VliFawp+Zn5q+U9hRgX4hTT2uB7bsX4aT2Sfy/KIiQIHgof7aGmRBQ7VqNGg1o53baUl2fMrDHM0qUCwV0nnhSFBfLCp0+vhEfJAsUEK76VxyOrxuQrTj8q0UCO3oTEZyKkZcglhodQu7TiBexX7pxl98/ctCZi+/im91LtKHSRRJyUXwYKrGAsNclwQf1YIyFGQDYA6v0moe+CiN2bBY8QvDm2HHXSSSXKRJae59bcSMBzk5NCU1tDiU=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB6PR0402MB2760.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(6506007)(66476007)(66556008)(66946007)(86362001)(52116002)(5660300002)(4744005)(2906002)(8936002)(26005)(16526019)(69590400010)(6666004)(36756003)(6512007)(8676002)(83380400001)(498600001)(9686003)(186003)(956004)(2616005)(6486002)(4326008)(32563001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?+yPoRMAxpolMzsH0WA5fEldB4R56Esj8ze7y/C+163M5BqayFWGozvvPiVO+?=
+ =?us-ascii?Q?nYG/3uD9HNTKKQtWdlyQwOoA0ZjMqB+Ar7XFqJSZLsdbq9thLPrYwt0faUjG?=
+ =?us-ascii?Q?Wi6trrowlApnez0AJXq5K4jsPZbXONf7qK84IeNLr3NGRKHsTyzLCYoLRc2w?=
+ =?us-ascii?Q?Mv1CVae8eft8LIwdtMSMixRo0CkN3A9os1Gsp61LwABZsW8xK5okWzO03aeE?=
+ =?us-ascii?Q?kfOw1ovCVVQDbmLxRPtmZQr/6QuzwJBs+djHyNDCWM5RmjdOuBepz0GKQG0A?=
+ =?us-ascii?Q?hAZTZ7v4pXJssgmo90YXW1HXNUj3eUdUndtsHWVrKrqRnhMeJ0EXnWjCDuFe?=
+ =?us-ascii?Q?cLdv2CDPuPMpQHPZnb/Jl09NYciJAjzr83/Y8fECTwp/iGdtqVvfjZZ8+g8Z?=
+ =?us-ascii?Q?bBjbIYstaksAHS0pLpx7rsTJLc65CBZE30vOeb/09biDXIkTHCwAL4/XCqLZ?=
+ =?us-ascii?Q?3/mAuehT1BxN1FE4cyENrF2ozWJrgnUe7U8gRRgrTyNb3YYCdXbSic1JauLo?=
+ =?us-ascii?Q?/IIltxybJD2wr66hhjcfguS7YOHNlgxuX2Obypyfj4Tp2qfr4wbggiGZJ1Zv?=
+ =?us-ascii?Q?reFa8SpA2vvUr6VIZnVkjVsOH6PmiQNqAdQI7FcKBwuSlgnWoKDZ2IJqlK48?=
+ =?us-ascii?Q?Yu9q9DwX0fqXoTE39nP+W18oLtx+RFWmICm4xckmB+OkCbcvyPqYZ7YX6wbb?=
+ =?us-ascii?Q?mGUhLwP+v6Z2Rdh5cy8zc1sKYqPsSNLaLHBJMB98zUiStRE/4KQ3dEmi2GvP?=
+ =?us-ascii?Q?v5pGBVjndrMk3biAB5VR8JNQZMS7oFmcnQbN2v3pMreOUjlhz9wccOBL7lJl?=
+ =?us-ascii?Q?XPpKGIxa8CHxDiyWeo8gJGHlYpF09HcV4qo37XESUlA5cUWbJEtqaBpr/c3V?=
+ =?us-ascii?Q?piIVADqznTYVa2WXkJsu7csRsKoCh6r+HefDjmrFmaFDfkgEfqZo1b6bjo9Y?=
+ =?us-ascii?Q?ARYeO8Wd0guzW+jxvPzYR+QZXbjIRRSks7H0t34Xwn5zU0tqSwp/FcqScQEl?=
+ =?us-ascii?Q?2SLy?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthSource: DB6PR0402MB2760.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Dec 2020 12:09:54.7521
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-Network-Message-Id: aeccf346-8cbb-4940-b4e5-08d8abf2a736
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: B/oiZWPrtv/YErEEfdZIp53eLYWdPGDRW2kpKgBUNs329RHrsei7+Q8SShdoojEeUqbcp+z5Ofdc8ceikORf7A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB6PR0401MB2533
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Now that we have constants, use them. This is just a mechanical change.
+From: Peng Fan <peng.fan@nxp.com>
 
-Signed-off-by: Michael Walle <michael@walle.cc>
----
- .../arm64/boot/dts/freescale/fsl-lx2160a.dtsi | 92 ++++++++++++-------
- 1 file changed, 57 insertions(+), 35 deletions(-)
+There is spba bus in aips1 and aips3, each spba bus has some
+peripherals inside, add the spba bus node
 
-diff --git a/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi b/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
-index 197397777c83..b16e7f738f52 100644
---- a/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
-+++ b/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
-@@ -4,6 +4,7 @@
- //
- // Copyright 2018-2020 NXP
- 
-+#include <dt-bindings/clock/fsl,qoriq-clockgen.h>
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/thermal/thermal.h>
-@@ -30,7 +31,7 @@
- 			compatible = "arm,cortex-a72";
- 			enable-method = "psci";
- 			reg = <0x0>;
--			clocks = <&clockgen 1 0>;
-+			clocks = <&clockgen QORIQ_CLK_CMUX 0>;
- 			d-cache-size = <0x8000>;
- 			d-cache-line-size = <64>;
- 			d-cache-sets = <128>;
-@@ -47,7 +48,7 @@
- 			compatible = "arm,cortex-a72";
- 			enable-method = "psci";
- 			reg = <0x1>;
--			clocks = <&clockgen 1 0>;
-+			clocks = <&clockgen QORIQ_CLK_CMUX 0>;
- 			d-cache-size = <0x8000>;
- 			d-cache-line-size = <64>;
- 			d-cache-sets = <128>;
-@@ -64,7 +65,7 @@
- 			compatible = "arm,cortex-a72";
- 			enable-method = "psci";
- 			reg = <0x100>;
--			clocks = <&clockgen 1 1>;
-+			clocks = <&clockgen QORIQ_CLK_CMUX 1>;
- 			d-cache-size = <0x8000>;
- 			d-cache-line-size = <64>;
- 			d-cache-sets = <128>;
-@@ -81,7 +82,7 @@
- 			compatible = "arm,cortex-a72";
- 			enable-method = "psci";
- 			reg = <0x101>;
--			clocks = <&clockgen 1 1>;
-+			clocks = <&clockgen QORIQ_CLK_CMUX 1>;
- 			d-cache-size = <0x8000>;
- 			d-cache-line-size = <64>;
- 			d-cache-sets = <128>;
-@@ -98,7 +99,7 @@
- 			compatible = "arm,cortex-a72";
- 			enable-method = "psci";
- 			reg = <0x200>;
--			clocks = <&clockgen 1 2>;
-+			clocks = <&clockgen QORIQ_CLK_CMUX 2>;
- 			d-cache-size = <0x8000>;
- 			d-cache-line-size = <64>;
- 			d-cache-sets = <128>;
-@@ -115,7 +116,7 @@
- 			compatible = "arm,cortex-a72";
- 			enable-method = "psci";
- 			reg = <0x201>;
--			clocks = <&clockgen 1 2>;
-+			clocks = <&clockgen QORIQ_CLK_CMUX 2>;
- 			d-cache-size = <0x8000>;
- 			d-cache-line-size = <64>;
- 			d-cache-sets = <128>;
-@@ -132,7 +133,7 @@
- 			compatible = "arm,cortex-a72";
- 			enable-method = "psci";
- 			reg = <0x300>;
--			clocks = <&clockgen 1 3>;
-+			clocks = <&clockgen QORIQ_CLK_CMUX 3>;
- 			d-cache-size = <0x8000>;
- 			d-cache-line-size = <64>;
- 			d-cache-sets = <128>;
-@@ -149,7 +150,7 @@
- 			compatible = "arm,cortex-a72";
- 			enable-method = "psci";
- 			reg = <0x301>;
--			clocks = <&clockgen 1 3>;
-+			clocks = <&clockgen QORIQ_CLK_CMUX 3>;
- 			d-cache-size = <0x8000>;
- 			d-cache-line-size = <64>;
- 			d-cache-sets = <128>;
-@@ -166,7 +167,7 @@
- 			compatible = "arm,cortex-a72";
- 			enable-method = "psci";
- 			reg = <0x400>;
--			clocks = <&clockgen 1 4>;
-+			clocks = <&clockgen QORIQ_CLK_CMUX 4>;
- 			d-cache-size = <0x8000>;
- 			d-cache-line-size = <64>;
- 			d-cache-sets = <128>;
-@@ -183,7 +184,7 @@
- 			compatible = "arm,cortex-a72";
- 			enable-method = "psci";
- 			reg = <0x401>;
--			clocks = <&clockgen 1 4>;
-+			clocks = <&clockgen QORIQ_CLK_CMUX 4>;
- 			d-cache-size = <0x8000>;
- 			d-cache-line-size = <64>;
- 			d-cache-sets = <128>;
-@@ -200,7 +201,7 @@
- 			compatible = "arm,cortex-a72";
- 			enable-method = "psci";
- 			reg = <0x500>;
--			clocks = <&clockgen 1 5>;
-+			clocks = <&clockgen QORIQ_CLK_CMUX 5>;
- 			d-cache-size = <0x8000>;
- 			d-cache-line-size = <64>;
- 			d-cache-sets = <128>;
-@@ -217,7 +218,7 @@
- 			compatible = "arm,cortex-a72";
- 			enable-method = "psci";
- 			reg = <0x501>;
--			clocks = <&clockgen 1 5>;
-+			clocks = <&clockgen QORIQ_CLK_CMUX 5>;
- 			d-cache-size = <0x8000>;
- 			d-cache-line-size = <64>;
- 			d-cache-sets = <128>;
-@@ -234,7 +235,7 @@
- 			compatible = "arm,cortex-a72";
- 			enable-method = "psci";
- 			reg = <0x600>;
--			clocks = <&clockgen 1 6>;
-+			clocks = <&clockgen QORIQ_CLK_CMUX 6>;
- 			d-cache-size = <0x8000>;
- 			d-cache-line-size = <64>;
- 			d-cache-sets = <128>;
-@@ -251,7 +252,7 @@
- 			compatible = "arm,cortex-a72";
- 			enable-method = "psci";
- 			reg = <0x601>;
--			clocks = <&clockgen 1 6>;
-+			clocks = <&clockgen QORIQ_CLK_CMUX 6>;
- 			d-cache-size = <0x8000>;
- 			d-cache-line-size = <64>;
- 			d-cache-sets = <128>;
-@@ -268,7 +269,7 @@
- 			compatible = "arm,cortex-a72";
- 			enable-method = "psci";
- 			reg = <0x700>;
--			clocks = <&clockgen 1 7>;
-+			clocks = <&clockgen QORIQ_CLK_CMUX 7>;
- 			d-cache-size = <0x8000>;
- 			d-cache-line-size = <64>;
- 			d-cache-sets = <128>;
-@@ -285,7 +286,7 @@
- 			compatible = "arm,cortex-a72";
- 			enable-method = "psci";
- 			reg = <0x701>;
--			clocks = <&clockgen 1 7>;
-+			clocks = <&clockgen QORIQ_CLK_CMUX 7>;
- 			d-cache-size = <0x8000>;
- 			d-cache-line-size = <64>;
- 			d-cache-sets = <128>;
-@@ -685,7 +686,8 @@
- 			reg = <0x0 0x2000000 0x0 0x10000>;
- 			interrupts = <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>;
- 			clock-names = "i2c";
--			clocks = <&clockgen 4 15>;
-+			clocks = <&clockgen QORIQ_CLK_PLATFORM_PLL
-+					    QORIQ_CLK_PLL_DIV(16)>;
- 			scl-gpio = <&gpio2 15 GPIO_ACTIVE_HIGH>;
- 			status = "disabled";
- 		};
-@@ -697,7 +699,8 @@
- 			reg = <0x0 0x2010000 0x0 0x10000>;
- 			interrupts = <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>;
- 			clock-names = "i2c";
--			clocks = <&clockgen 4 15>;
-+			clocks = <&clockgen QORIQ_CLK_PLATFORM_PLL
-+					    QORIQ_CLK_PLL_DIV(16)>;
- 			status = "disabled";
- 		};
- 
-@@ -708,7 +711,8 @@
- 			reg = <0x0 0x2020000 0x0 0x10000>;
- 			interrupts = <GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>;
- 			clock-names = "i2c";
--			clocks = <&clockgen 4 15>;
-+			clocks = <&clockgen QORIQ_CLK_PLATFORM_PLL
-+					    QORIQ_CLK_PLL_DIV(16)>;
- 			status = "disabled";
- 		};
- 
-@@ -719,7 +723,8 @@
- 			reg = <0x0 0x2030000 0x0 0x10000>;
- 			interrupts = <GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>;
- 			clock-names = "i2c";
--			clocks = <&clockgen 4 15>;
-+			clocks = <&clockgen QORIQ_CLK_PLATFORM_PLL
-+					    QORIQ_CLK_PLL_DIV(16)>;
- 			status = "disabled";
- 		};
- 
-@@ -730,7 +735,8 @@
- 			reg = <0x0 0x2040000 0x0 0x10000>;
- 			interrupts = <GIC_SPI 74 IRQ_TYPE_LEVEL_HIGH>;
- 			clock-names = "i2c";
--			clocks = <&clockgen 4 15>;
-+			clocks = <&clockgen QORIQ_CLK_PLATFORM_PLL
-+					    QORIQ_CLK_PLL_DIV(16)>;
- 			scl-gpio = <&gpio2 16 GPIO_ACTIVE_HIGH>;
- 			status = "disabled";
- 		};
-@@ -742,7 +748,8 @@
- 			reg = <0x0 0x2050000 0x0 0x10000>;
- 			interrupts = <GIC_SPI 74 IRQ_TYPE_LEVEL_HIGH>;
- 			clock-names = "i2c";
--			clocks = <&clockgen 4 15>;
-+			clocks = <&clockgen QORIQ_CLK_PLATFORM_PLL
-+					    QORIQ_CLK_PLL_DIV(16)>;
- 			status = "disabled";
- 		};
- 
-@@ -753,7 +760,8 @@
- 			reg = <0x0 0x2060000 0x0 0x10000>;
- 			interrupts = <GIC_SPI 75 IRQ_TYPE_LEVEL_HIGH>;
- 			clock-names = "i2c";
--			clocks = <&clockgen 4 15>;
-+			clocks = <&clockgen QORIQ_CLK_PLATFORM_PLL
-+					    QORIQ_CLK_PLL_DIV(16)>;
- 			status = "disabled";
- 		};
- 
-@@ -764,7 +772,8 @@
- 			reg = <0x0 0x2070000 0x0 0x10000>;
- 			interrupts = <GIC_SPI 75 IRQ_TYPE_LEVEL_HIGH>;
- 			clock-names = "i2c";
--			clocks = <&clockgen 4 15>;
-+			clocks = <&clockgen QORIQ_CLK_PLATFORM_PLL
-+					    QORIQ_CLK_PLL_DIV(16)>;
- 			status = "disabled";
- 		};
- 
-@@ -776,7 +785,10 @@
- 			      <0x0 0x20000000 0x0 0x10000000>;
- 			reg-names = "fspi_base", "fspi_mmap";
- 			interrupts = <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>;
--			clocks = <&clockgen 4 3>, <&clockgen 4 3>;
-+			clocks = <&clockgen QORIQ_CLK_PLATFORM_PLL
-+					    QORIQ_CLK_PLL_DIV(4)>,
-+				 <&clockgen QORIQ_CLK_PLATFORM_PLL
-+					    QORIQ_CLK_PLL_DIV(4)>;
- 			clock-names = "fspi_en", "fspi";
- 			status = "disabled";
- 		};
-@@ -787,7 +799,8 @@
- 			#size-cells = <0>;
- 			reg = <0x0 0x2100000 0x0 0x10000>;
- 			interrupts = <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>;
--			clocks = <&clockgen 4 7>;
-+			clocks = <&clockgen QORIQ_CLK_PLATFORM_PLL
-+					    QORIQ_CLK_PLL_DIV(8)>;
- 			clock-names = "dspi";
- 			spi-num-chipselects = <5>;
- 			bus-num = <0>;
-@@ -800,7 +813,8 @@
- 			#size-cells = <0>;
- 			reg = <0x0 0x2110000 0x0 0x10000>;
- 			interrupts = <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>;
--			clocks = <&clockgen 4 7>;
-+			clocks = <&clockgen QORIQ_CLK_PLATFORM_PLL
-+					    QORIQ_CLK_PLL_DIV(8)>;
- 			clock-names = "dspi";
- 			spi-num-chipselects = <5>;
- 			bus-num = <1>;
-@@ -813,7 +827,8 @@
- 			#size-cells = <0>;
- 			reg = <0x0 0x2120000 0x0 0x10000>;
- 			interrupts = <GIC_SPI 241 IRQ_TYPE_LEVEL_HIGH>;
--			clocks = <&clockgen 4 7>;
-+			clocks = <&clockgen QORIQ_CLK_PLATFORM_PLL
-+					    QORIQ_CLK_PLL_DIV(8)>;
- 			clock-names = "dspi";
- 			spi-num-chipselects = <5>;
- 			bus-num = <2>;
-@@ -824,7 +839,8 @@
- 			compatible = "fsl,esdhc";
- 			reg = <0x0 0x2140000 0x0 0x10000>;
- 			interrupts = <0 28 0x4>; /* Level high type */
--			clocks = <&clockgen 4 1>;
-+			clocks = <&clockgen QORIQ_CLK_PLATFORM_PLL
-+					    QORIQ_CLK_PLL_DIV(2)>;
- 			dma-coherent;
- 			voltage-ranges = <1800 1800 3300 3300>;
- 			sdhci,auto-cmd12;
-@@ -837,7 +853,8 @@
- 			compatible = "fsl,esdhc";
- 			reg = <0x0 0x2150000 0x0 0x10000>;
- 			interrupts = <0 63 0x4>; /* Level high type */
--			clocks = <&clockgen 4 1>;
-+			clocks = <&clockgen QORIQ_CLK_PLATFORM_PLL
-+					    QORIQ_CLK_PLL_DIV(2)>;
- 			dma-coherent;
- 			voltage-ranges = <1800 1800 3300 3300>;
- 			sdhci,auto-cmd12;
-@@ -973,7 +990,8 @@
- 			      <0x7 0x100520 0x0 0x4>;
- 			reg-names = "ahci", "sata-ecc";
- 			interrupts = <GIC_SPI 133 IRQ_TYPE_LEVEL_HIGH>;
--			clocks = <&clockgen 4 3>;
-+			clocks = <&clockgen QORIQ_CLK_PLATFORM_PLL
-+					    QORIQ_CLK_PLL_DIV(4)>;
- 			dma-coherent;
- 			status = "disabled";
- 		};
-@@ -984,7 +1002,8 @@
- 			      <0x7 0x100520 0x0 0x4>;
- 			reg-names = "ahci", "sata-ecc";
- 			interrupts = <GIC_SPI 136 IRQ_TYPE_LEVEL_HIGH>;
--			clocks = <&clockgen 4 3>;
-+			clocks = <&clockgen QORIQ_CLK_PLATFORM_PLL
-+					    QORIQ_CLK_PLL_DIV(4)>;
- 			dma-coherent;
- 			status = "disabled";
- 		};
-@@ -995,7 +1014,8 @@
- 			      <0x7 0x100520 0x0 0x4>;
- 			reg-names = "ahci", "sata-ecc";
- 			interrupts = <GIC_SPI 97 IRQ_TYPE_LEVEL_HIGH>;
--			clocks = <&clockgen 4 3>;
-+			clocks = <&clockgen QORIQ_CLK_PLATFORM_PLL
-+					    QORIQ_CLK_PLL_DIV(4)>;
- 			dma-coherent;
- 			status = "disabled";
- 		};
-@@ -1006,7 +1026,8 @@
- 			      <0x7 0x100520 0x0 0x4>;
- 			reg-names = "ahci", "sata-ecc";
- 			interrupts = <GIC_SPI 100 IRQ_TYPE_LEVEL_HIGH>;
--			clocks = <&clockgen 4 3>;
-+			clocks = <&clockgen QORIQ_CLK_PLATFORM_PLL
-+					    QORIQ_CLK_PLL_DIV(4)>;
- 			dma-coherent;
- 			status = "disabled";
- 		};
-@@ -1279,7 +1300,8 @@
- 		ptp-timer@8b95000 {
- 			compatible = "fsl,dpaa2-ptp";
- 			reg = <0x0 0x8b95000 0x0 0x100>;
--			clocks = <&clockgen 4 1>;
-+			clocks = <&clockgen QORIQ_CLK_PLATFORM_PLL
-+					    QORIQ_CLK_PLL_DIV(2)>;
- 			little-endian;
- 			fsl,extts-fifo;
- 		};
+Peng Fan (4):
+  arm64: dts: imx8mn: add spba bus node of aips3
+  arm64: dts: imx8mn: add spba bus node
+  arm64: dts: imx8mn: add spba bus node
+  arm64: dts: imx8mq: add spba bus node
+
+ arch/arm64/boot/dts/freescale/imx8mm.dtsi | 362 ++++++++++----------
+ arch/arm64/boot/dts/freescale/imx8mn.dtsi | 146 ++++----
+ arch/arm64/boot/dts/freescale/imx8mq.dtsi | 386 +++++++++++-----------
+ 3 files changed, 467 insertions(+), 427 deletions(-)
+
 -- 
-2.20.1
+2.28.0
 
