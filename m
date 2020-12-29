@@ -2,116 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AEAD22E72B7
-	for <lists+devicetree@lfdr.de>; Tue, 29 Dec 2020 18:32:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5191E2E72CD
+	for <lists+devicetree@lfdr.de>; Tue, 29 Dec 2020 18:47:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726517AbgL2Rcs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Dec 2020 12:32:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58332 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726318AbgL2Rcr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Dec 2020 12:32:47 -0500
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E39EC06179E;
-        Tue, 29 Dec 2020 09:31:39 -0800 (PST)
-Received: by mail-ej1-x630.google.com with SMTP id w1so18953626ejf.11;
-        Tue, 29 Dec 2020 09:31:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=O4z4PPAfMQG+koE9MA8XVXddPnXre2EJoT6yNQ4Wyrk=;
-        b=YhrRGrZ8pXHNgnzpyr1lBUplvsIDc5amXJ45qiaepAkpnqWq5xb2oAaoposiAG3lFw
-         x1QF1Ts9sp+4pw5LAEwAdnYL4DQ6rRa4tLEdKksVH8ul4QV0OPcEWrzj1T5qQZR2hlik
-         Zzg7IkEgGZ2XoGUsSVNg2RGnygy3OITzZg9Y54mSkLi0JnHPO0Lx4744QrwzzsPgnUlc
-         5g1eCERWOnhooAumqxkqGPAlcikR/lFdeMecMjRa7Vwxux+edX2vKGvGBe/DxuDS1xTg
-         +eyqgXReLtyDZZIIW6CFjFausKEUsY35p0AHM9yxZucw4R93eZM7EqtzAsDnjJPc6tVW
-         8o8A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=O4z4PPAfMQG+koE9MA8XVXddPnXre2EJoT6yNQ4Wyrk=;
-        b=lOYYTc6nRQevFLS2I4eT0ha4JekEtwBqZNdXJf6+JrDlqjo4xqa99ehx1wXQkVzCQJ
-         5Up7GFYVarwm2gGr800A/+Lfn/9MDIcwAZAWFFrl9BBNKwIPDhVQu8+2BZ4aBi5Y9aZL
-         ckvYZOGt77ZxGAnABTqidXaQAza3xGSq0s/CL1dQxEbBrXa1fqEu6N+9KXtGYM9Vx/om
-         FYzjyE+r09NBFMlOA+lzeDsxQhGbwS7NN2/ed2sP1EyYtDtIhJm4zgXO+j3J0vKywMNB
-         cSz39z2+cgZ6vl7jgCg2wer+g8xtnGQusWprVtHtVbVB6UrpwMpUo9Wg4vXbeKqeyJib
-         fApw==
-X-Gm-Message-State: AOAM532WVffKFuzoMhKdHeDeNfL99LvAgU4eqCK6qsD5W/U5XH/LhDIN
-        46I8wDkAJ36zu8horZLYyGQ=
-X-Google-Smtp-Source: ABdhPJz2YOtH94yzVysMbDLaw1EUZL6X9gL+49yWlXtDdMnq2CMPuQKa3v9+ZBBkN5FNLsnurFH+lA==
-X-Received: by 2002:a17:906:5043:: with SMTP id e3mr6757205ejk.260.1609263098128;
-        Tue, 29 Dec 2020 09:31:38 -0800 (PST)
-Received: from localhost.localdomain ([188.24.159.61])
-        by smtp.gmail.com with ESMTPSA id q25sm37385362eds.85.2020.12.29.09.31.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 29 Dec 2020 09:31:37 -0800 (PST)
-From:   Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
-To:     Lee Jones <lee.jones@linaro.org>, Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Sebastian Reichel <sre@kernel.org>
-Cc:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        =?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-actions@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
-        linux-pm@vger.kernel.org
-Subject: [PATCH v4 7/7] MAINTAINERS: Add entry for ATC260x PMIC
-Date:   Tue, 29 Dec 2020 19:31:22 +0200
-Message-Id: <8b592d0b6d9ae96117ac9ff3b959be6f49b2e317.1609258905.git.cristian.ciocaltea@gmail.com>
-X-Mailer: git-send-email 2.30.0
-In-Reply-To: <cover.1609258905.git.cristian.ciocaltea@gmail.com>
-References: <cover.1609258905.git.cristian.ciocaltea@gmail.com>
+        id S1726261AbgL2RrZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Dec 2020 12:47:25 -0500
+Received: from mail.kernel.org ([198.145.29.99]:56822 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726258AbgL2RrZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 29 Dec 2020 12:47:25 -0500
+Received: from archlinux (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 37FC220825;
+        Tue, 29 Dec 2020 17:46:43 +0000 (UTC)
+Date:   Tue, 29 Dec 2020 17:46:40 +0000
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Tomas Novotny <tomas@novotny.cz>, devicetree@vger.kernel.org,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Rob Herring <robh+dt@kernel.org>, linux-iio@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings:iio:dac:microchip,mcp4725: fix properties
+ for mcp4726
+Message-ID: <20201229174640.11079e45@archlinux>
+In-Reply-To: <20201221192738.GA407457@robh.at.kernel.org>
+References: <20201216101316.1403-1-tomas@novotny.cz>
+        <20201221192738.GA407457@robh.at.kernel.org>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+On Mon, 21 Dec 2020 12:27:38 -0700
+Rob Herring <robh@kernel.org> wrote:
 
-Add MAINTAINERS entry for ATC260x PMIC.
+> On Wed, 16 Dec 2020 11:13:16 +0100, Tomas Novotny wrote:
+> > The vdd-supply property is optional if vref-supply is provided for
+> > mcp4726.
+> > 
+> > Also the microchip,vref-buffered makes sense only if vref-supply is
+> > specified.
+> > 
+> > Spotted by Jonathan during conversion to yaml.
+> > 
+> > Reported-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> > Signed-off-by: Tomas Novotny <tomas@novotny.cz>
+I'm taking this this slow way as we are just providing slightly more flexible
+conditions rather than allowing anything we suspect anyone is already using.
 
-Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-[cristian: change binding doc file path, add file patterns for onkey and
-           poweroff drivers, fix ordering, add myself as co-maintainer]
-Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
----
-Changes in v4:
- - None
+Applied to the togreg branch of iio.git and pushed out as testing for
+the autobuilders to probably ignore it ;)
 
-Changes in v3:
- - Restored the authorship of the patch to Mani
+Thanks for tidying this up.
 
- MAINTAINERS | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+Jonathan
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 74a6eaae7b31..8bbf7d9b8f23 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2892,6 +2892,18 @@ W:	http://www.openaoe.org/
- F:	Documentation/admin-guide/aoe/
- F:	drivers/block/aoe/
- 
-+ATC260X PMIC MFD DRIVER
-+M:	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-+M:	Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
-+L:	linux-actions@lists.infradead.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/mfd/actions,atc260x.yaml
-+F:	drivers/input/misc/atc260x-onkey.c
-+F:	drivers/mfd/atc260*
-+F:	drivers/power/reset/atc260x-poweroff.c
-+F:	drivers/regulator/atc260x-regulator.c
-+F:	include/linux/mfd/atc260x/*
-+
- ATHEROS 71XX/9XXX GPIO DRIVER
- M:	Alban Bedel <albeu@free.fr>
- S:	Maintained
--- 
-2.30.0
+> > ---
+> >  .../bindings/iio/dac/microchip,mcp4725.yaml   | 31 +++++++++++++++----
+> >  1 file changed, 25 insertions(+), 6 deletions(-)
+> >   
+> 
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
