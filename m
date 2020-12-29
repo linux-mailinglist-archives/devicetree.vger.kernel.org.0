@@ -2,780 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CA4692E726C
-	for <lists+devicetree@lfdr.de>; Tue, 29 Dec 2020 17:54:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C3F2F2E72AC
+	for <lists+devicetree@lfdr.de>; Tue, 29 Dec 2020 18:32:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726196AbgL2Qxo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Dec 2020 11:53:44 -0500
-Received: from mail.kernel.org ([198.145.29.99]:37160 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726178AbgL2Qxo (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 29 Dec 2020 11:53:44 -0500
-Received: from archlinux (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 9976E20867;
-        Tue, 29 Dec 2020 16:53:01 +0000 (UTC)
-Date:   Tue, 29 Dec 2020 16:52:57 +0000
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Cristian Pop <cristian.pop@analog.com>
-Cc:     <linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v4 3/3] iio: dac: ad5766: add driver support for AD5766
-Message-ID: <20201229165257.4238566d@archlinux>
-In-Reply-To: <20201218171231.58794-3-cristian.pop@analog.com>
-References: <20201218171231.58794-1-cristian.pop@analog.com>
-        <20201218171231.58794-3-cristian.pop@analog.com>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+        id S1726138AbgL2RcH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Dec 2020 12:32:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58216 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726111AbgL2RcH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Dec 2020 12:32:07 -0500
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8692AC061793;
+        Tue, 29 Dec 2020 09:31:26 -0800 (PST)
+Received: by mail-ej1-x62c.google.com with SMTP id ce23so18987967ejb.8;
+        Tue, 29 Dec 2020 09:31:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=NpRbovEFhIUWDeLgLi1cmLAq8hw0Nkuzyn5MTBdA9MY=;
+        b=cb9FFcqwCorBCPQ8N8ipTckD/AzQQFNpSvvMeqTM6ZitmkksK6Xf2Q8nov5FVrIez1
+         HfpJRvWvPfin+VztGqsfHchJSXT2nJjnkvCwPEU2jBTPyEGMhkqtkPd2iKkWQPm9kT3R
+         yCiZ19Rq6QuCEKjzljWG5k77s2EhgF9AYZ5+c+aubRwdt6ls0viIfY64IIl1FYLW6HK/
+         KIfLWX84ZzTvuvA7wvatcsHBKg1y8+h7dn9v+VpzKGrgq6Tg+LbDH0psuhyCNJ64rkCm
+         uMPwGwsYJN/Ftv5nU5EXeGI2kq5euNxEjyhzCTFU33B3as6aMnbYzsNBcoa2p/JXYbaD
+         b4uw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=NpRbovEFhIUWDeLgLi1cmLAq8hw0Nkuzyn5MTBdA9MY=;
+        b=UcTNh9sV8zi/89wqlM4ts/RSGv4ZQpeDTLGQX8dVHKxf8cKN8Eq9yn89saBtGDp7a4
+         7a98Hbthg8CZ/9sZTIKml/xvmNPzIdoG97uvUdvpa4XgRuZIT1cr+haUZWZo5Mi3cqhK
+         MmfmRQwkd+2ZuFAR8GLfEUl8tE0fkqiBXPe/fkOR3q1GyVLZ9cp1MnDe+1BWV1hu5B5B
+         JbBB187Z7wpDSpUggzDJ5ICSlN3bP16x7ueDFfujneu//l4y3VumldEF7+CDvR79ND1N
+         jbwGcVWQhQmeh4puVh5vjwP651PrHdZDe2Rkt28oTQ9NFY7PwnfTrZOGxT0x1+5ENv3f
+         jTMA==
+X-Gm-Message-State: AOAM533ivYFkoRsho4rwJEDBmL7O0SgMIhL5wRfLnsbXtPdG0QdBaHOb
+        temW29PA8vo0Aiw2rGgsJf8=
+X-Google-Smtp-Source: ABdhPJwngcnyeFWq9S5cj8VQ/qbch7z2mOYsx5pDTPqOuhiSwX6UF9jtITAGWLy6Qy7qauFMMNCKFA==
+X-Received: by 2002:a17:906:2499:: with SMTP id e25mr46484142ejb.446.1609263085258;
+        Tue, 29 Dec 2020 09:31:25 -0800 (PST)
+Received: from localhost.localdomain ([188.24.159.61])
+        by smtp.gmail.com with ESMTPSA id q25sm37385362eds.85.2020.12.29.09.31.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 29 Dec 2020 09:31:24 -0800 (PST)
+From:   Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
+To:     Lee Jones <lee.jones@linaro.org>, Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Sebastian Reichel <sre@kernel.org>
+Cc:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        =?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-actions@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
+        linux-pm@vger.kernel.org
+Subject: [PATCH v4 0/7] Add initial support for ATC260x PMICs
+Date:   Tue, 29 Dec 2020 19:31:15 +0200
+Message-Id: <cover.1609258905.git.cristian.ciocaltea@gmail.com>
+X-Mailer: git-send-email 2.30.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 18 Dec 2020 19:12:31 +0200
-Cristian Pop <cristian.pop@analog.com> wrote:
+The ATC260x family of PMICs integrates Audio Codec, Power management,
+Clock generation and GPIO controller blocks. There are currently 3
+variants: ATC2603A, ATC2603C and ATC2609A.
 
-> The AD5766/AD5767 are 16-channel, 16-bit/12-bit, voltage output dense DACs
-> Digital-to-Analog converters.
-> 
-> This change adds support for these DACs.
-> 
-> Signed-off-by: Cristian Pop <cristian.pop@analog.com>
-Hi Cristian,
+This is re-spin of the v1 patch series submitted some time ago by
+Mani, who provided the MFD and regulator drivers for ATC2609A:
+https://lore.kernel.org/lkml/20190617155011.15376-1-manivannan.sadhasivam@linaro.org/
 
-The addressing in this device 'interesting'. I'm not sure it can be handled
-much better than you have done though.
+Since v2, I added support for ATC2603C, together with some new
+functionalities for both chips: power controller and onkey input.
+The ATC2603A chip type remains unsupported for the moment.
 
-Otherwise, a few minor bits and pieces inline.
+This has been tested on RoseapplePi, a SBC based on the Actions Semi S500
+SoC, which integrates the ATC2603C variant of the PMIC.
+
+Note that enabling the ATC260x PMICs on compatible Actions Semi Owl SoC
+based boards depends on:
+
+* the Actions Semi SIRQ driver (for PMIC DTS setup), merged in v5.10:
+  https://lore.kernel.org/lkml/cover.1600114378.git.cristian.ciocaltea@gmail.com/
+
+* the atomic transfers in Owl I2C driver (for power controller), merged in v5.11:
+  https://lore.kernel.org/lkml/cover.1602190168.git.cristian.ciocaltea@gmail.com/
+
+Additionally, please note that I have taken the authorship for the MFD
+and regulator drivers patches, considering the original code has been
+modified to a large extent.
 
 Thanks,
+Cristi
 
-Jonathan
+Changes in v4:
+- Updated MFD driver according to Lee's review
+- Handled ATC2603C's LDO12 fixed regulator per Mark's suggestion
+- Rebased patchset on v5.11-rc1
 
+Changes in v3:
+- Integrated feedback from Mani, Rob, Mark, Sebastian, Dmitry
+- Fixed issues reported by Lee's kernel test robot
+- Added new patch for 'reset-time-sec' DT binding property
+- Rebased patchset on v5.10-rc6
 
-> ---
-> Changelog v4:
-> 	- Select output range
-> 	- Set possible dither source to: 0 - N0 and 1 for N1.
-> 	- Better macros usage
-> 	- Invert reset logic
-> 	- Use GENMASK
-> 	- Add/remove some commas
->  drivers/iio/dac/Kconfig  |  10 +
->  drivers/iio/dac/Makefile |   1 +
->  drivers/iio/dac/ad5766.c | 668 +++++++++++++++++++++++++++++++++++++++
->  3 files changed, 679 insertions(+)
->  create mode 100644 drivers/iio/dac/ad5766.c
-> 
-> diff --git a/drivers/iio/dac/Kconfig b/drivers/iio/dac/Kconfig
-> index 6f6074a5d3db..cea07b4cced1 100644
-> --- a/drivers/iio/dac/Kconfig
-> +++ b/drivers/iio/dac/Kconfig
-> @@ -189,6 +189,16 @@ config AD5764
->  	  To compile this driver as a module, choose M here: the
->  	  module will be called ad5764.
->  
-> +config AD5766
-> +	tristate "Analog Devices AD5766/AD5767 DAC driver"
-> +	depends on SPI_MASTER
-> +	help
-> +	  Say yes here to build support for Analog Devices AD5766, AD5767
-> +	  Digital to Analog Converter.
-> +
-> +	  To compile this driver as a module, choose M here: the
-> +	  module will be called ad5766.
-> +
->  config AD5770R
->  	tristate "Analog Devices AD5770R IDAC driver"
->  	depends on SPI_MASTER
-> diff --git a/drivers/iio/dac/Makefile b/drivers/iio/dac/Makefile
-> index 2fc481167724..33e16f14902a 100644
-> --- a/drivers/iio/dac/Makefile
-> +++ b/drivers/iio/dac/Makefile
-> @@ -19,6 +19,7 @@ obj-$(CONFIG_AD5755) += ad5755.o
->  obj-$(CONFIG_AD5755) += ad5758.o
->  obj-$(CONFIG_AD5761) += ad5761.o
->  obj-$(CONFIG_AD5764) += ad5764.o
-> +obj-$(CONFIG_AD5766) += ad5766.o
->  obj-$(CONFIG_AD5770R) += ad5770r.o
->  obj-$(CONFIG_AD5791) += ad5791.o
->  obj-$(CONFIG_AD5686) += ad5686.o
-> diff --git a/drivers/iio/dac/ad5766.c b/drivers/iio/dac/ad5766.c
-> new file mode 100644
-> index 000000000000..b7405185f3d8
-> --- /dev/null
-> +++ b/drivers/iio/dac/ad5766.c
-> @@ -0,0 +1,668 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Analog Devices AD5766, AD5767
-> + * Digital to Analog Converters driver
-> + * Copyright 2019-2020 Analog Devices Inc.
-> + */
-> +#include <linux/bitfield.h>
-> +#include <linux/delay.h>
-> +#include <linux/device.h>
-> +#include <linux/gpio/consumer.h>
-> +#include <linux/iio/iio.h>
-> +#include <linux/module.h>
-> +#include <linux/spi/spi.h>
-> +#include <linux/unaligned/be_byteshift.h>
-> +
-> +#define AD5766_UPPER_WORD_SPI_MASK		GENMASK(31, 16)
-> +#define AD5766_LOWER_WORD_SPI_MASK		GENMASK(15, 0)
-> +#define AD5766_DITHER_SOURCE_MASK(ch)		GENMASK(((2 * ch) + 1), (2 * ch))
-> +#define AD5766_DITHER_SOURCE(ch, source)	BIT((ch * 2) + source)
-> +#define AD5766_DITHER_SCALE_MASK(x)		AD5766_DITHER_SOURCE_MASK(x)
-> +#define AD5766_DITHER_SCALE(ch, scale)		(scale << (ch * 2))
-> +#define AD5766_DITHER_ENABLE_MASK(ch)		BIT(ch)
-> +#define AD5766_DITHER_ENABLE(ch, state)		((!state) << ch)
-> +#define AD5766_DITHER_INVERT_MASK(ch)		BIT(ch)
-> +#define AD5766_DITHER_INVERT(ch, state)		(state << ch)
-> +
-> +#define AD5766_CMD_NOP_MUX_OUT			0x00
-> +#define AD5766_CMD_SDO_CNTRL			0x01
-> +#define AD5766_CMD_WR_IN_REG(x)			(0x10 | ((x) & GENMASK(3, 0)))
-> +#define AD5766_CMD_WR_DAC_REG(x)		(0x20 | ((x) & GENMASK(3, 0)))
-> +#define AD5766_CMD_SW_LDAC			0x30
-> +#define AD5766_CMD_SPAN_REG			0x40
-> +#define AD5766_CMD_WR_PWR_DITHER		0x51
-> +#define AD5766_CMD_WR_DAC_REG_ALL		0x60
-> +#define AD5766_CMD_SW_FULL_RESET		0x70
-> +#define AD5766_CMD_READBACK_REG(x)		(0x80 | ((x) & GENMASK(3, 0)))
-> +#define AD5766_CMD_DITHER_SIG_1			0x90
-> +#define AD5766_CMD_DITHER_SIG_2			0xA0
-> +#define AD5766_CMD_INV_DITHER			0xB0
-> +#define AD5766_CMD_DITHER_SCALE_1		0xC0
-> +#define AD5766_CMD_DITHER_SCALE_2		0xD0
+Changes in v2:
+- Reworked MFD core & I2C driver
+  * Integrated Lee's feedback
+  * Added support for using the regmap within atomic contexts
+  * Added support for ATC2603C chip variant
+  * Reorganized KConfig entries
+- Improved regulator driver
+  * Added support for ATC2603C variant
+  * Used helper macros for more compact specification of regulator_desc items
+  * Added more regulator capabilities
+- Added power controller driver
+  * Provides system poweroff/reboot functionalities
+  * Depends on atomic transfers in the Owl I2C driver
+- Added onkey driver: exposes the power button as an input device
+- Added yaml binding doc
+- Rebased patchset on kernel v5.9-rc1
 
-These addresses struck me as 'unusual' so I went and had a look at the datasheet.
-I would separate the definition of C3-C0 and A3-A0 as then it will look a lot
-more obvious as we will just have registers 0x0 to 0xD, some of which are banked
-with the address bits acting as selector.
+Cristian Ciocaltea (6):
+  dt-bindings: input: Add reset-time-sec common property
+  dt-bindings: mfd: Add Actions Semi ATC260x PMIC binding
+  mfd: Add MFD driver for ATC260x PMICs
+  regulator: Add regulator driver for ATC260x PMICs
+  power: reset: Add poweroff driver for ATC260x PMICs
+  input: atc260x: Add onkey driver for ATC260x PMICs
 
-However. There are at least 2 special cases where the address bits aren't acting
-to specify a banked per output channel register *sigh* so perhaps what you have
-is the best we can do.
+Manivannan Sadhasivam (1):
+  MAINTAINERS: Add entry for ATC260x PMIC
 
-> +
-> +#define AD5766_FULL_RESET_CODE			0x1234
-> +
-> +enum ad5766_type {
-> +	ID_AD5766,
-> +	ID_AD5767,
-> +};
-> +
-> +enum ad5766_voltage_range {
-> +	AD5766_VOLTAGE_RANGE_M20V_0V,
-> +	AD5766_VOLTAGE_RANGE_M16V_to_0V,
-> +	AD5766_VOLTAGE_RANGE_M10V_to_0V,
-> +	AD5766_VOLTAGE_RANGE_M12V_to_14V,
-> +	AD5766_VOLTAGE_RANGE_M16V_to_10V,
-> +	AD5766_VOLTAGE_RANGE_M10V_to_6V,
-> +	AD5766_VOLTAGE_RANGE_M5V_to_5V,
-> +	AD5766_VOLTAGE_RANGE_M10V_to_10V,
-> +};
-> +
-> +/**
-> + * struct ad5766_chip_info - chip specific information
-> + * @num_channels:	number of channels
-> + * @channel:	        channel specification
-> + */
-> +struct ad5766_chip_info {
-> +	unsigned int			num_channels;
-> +	const struct iio_chan_spec	*channels;
-> +};
-> +
-> +enum {
-> +	AD5766_DITHER_ENABLE,
-> +	AD5766_DITHER_INVERT,
-> +	AD5766_DITHER_SOURCE,
-> +};
-> +
-> +/*
-> + * Dither signal can also be scaled.
-> + * Available dither scale strings corresponding to "dither_scale" field in
-> + * "struct ad5766_state".
-> + */
-> +static const char * const ad5766_dither_scales[] = {
-> +	"100",
-> +	"75",
-> +	"50",
-> +	"25",
-> +};
-> +
-> +/**
-> + * struct ad5766_state - driver instance specific data
-> + * @spi:		SPI device
-> + * @lock:		Lock used to restrict concurent access to SPI device
-> + * @chip_info:		Chip model specific constants
-> + * @gpio_reset:		Reset GPIO, used to reset the device
-> + * @crt_range:		Current selected output range
-> + * @dither_enable:	Power enable bit for each channel dither block (for
-> + *			example, D15 = DAC 15,D8 = DAC 8, and D0 = DAC 0)
-> + *			0 - Normal operation, 1 - Power down
-> + * @dither_invert:	Inverts the dither signal applied to the selected DAC
-> + *			outputs
-> + * @dither_source:	Selects between 2 possible sources:
-> + *			1: N0, 2: N1
-> + *			Two bits are used for each channel
-> + * @dither_scale:	Two bits are used for each of the 16 channels:
-> + *			0: 100% SCALING, 1: 75% SCALING, 2: 50% SCALING,
-> + *			3: 25% SCALING.
-> + * @data:		SPI transfer buffers
-> + */
-> +struct ad5766_state {
-> +	struct spi_device		*spi;
-> +	struct mutex			lock;
-> +	const struct ad5766_chip_info	*chip_info;
-> +	struct gpio_desc		*gpio_reset;
-> +	enum ad5766_voltage_range	crt_range;
-> +	u16		dither_enable;
-> +	u16		dither_invert;
-> +	u32		dither_source;
-> +	u32		dither_scale;
-> +	union {
-> +		u32	d32;
-> +		u16	w16[2];
-> +		u8	b8[4];
-> +	} data[3] ____cacheline_aligned;
-> +};
-> +
-> +struct ad5766_span_tbl {
-> +	int		min;
-> +	int		max;
-> +};
-> +
-> +static const struct ad5766_span_tbl ad5766_span_tbl[] = {
-> +	[AD5766_VOLTAGE_RANGE_M20V_0V] = {
-Giving naming you 'could' just assume the min, max element was clear enough
-and go with
-        [AD5766_VOLTAGE_RANGE_M20V_0V] = {-20, 0}, etc
-I don't think there would be any significant loss in readability.
+ .../devicetree/bindings/input/input.yaml      |   7 +
+ .../bindings/mfd/actions,atc260x.yaml         | 183 ++++++
+ MAINTAINERS                                   |  12 +
+ drivers/input/misc/Kconfig                    |  11 +
+ drivers/input/misc/Makefile                   |   2 +-
+ drivers/input/misc/atc260x-onkey.c            | 305 ++++++++++
+ drivers/mfd/Kconfig                           |  18 +
+ drivers/mfd/Makefile                          |   3 +
+ drivers/mfd/atc260x-core.c                    | 293 ++++++++++
+ drivers/mfd/atc260x-i2c.c                     |  64 +++
+ drivers/power/reset/Kconfig                   |   8 +-
+ drivers/power/reset/Makefile                  |   1 +
+ drivers/power/reset/atc260x-poweroff.c        | 263 +++++++++
+ drivers/regulator/Kconfig                     |   8 +
+ drivers/regulator/Makefile                    |   1 +
+ drivers/regulator/atc260x-regulator.c         | 539 ++++++++++++++++++
+ include/linux/mfd/atc260x/atc2603c.h          | 281 +++++++++
+ include/linux/mfd/atc260x/atc2609a.h          | 308 ++++++++++
+ include/linux/mfd/atc260x/core.h              |  58 ++
+ 19 files changed, 2363 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mfd/actions,atc260x.yaml
+ create mode 100644 drivers/input/misc/atc260x-onkey.c
+ create mode 100644 drivers/mfd/atc260x-core.c
+ create mode 100644 drivers/mfd/atc260x-i2c.c
+ create mode 100644 drivers/power/reset/atc260x-poweroff.c
+ create mode 100644 drivers/regulator/atc260x-regulator.c
+ create mode 100644 include/linux/mfd/atc260x/atc2603c.h
+ create mode 100644 include/linux/mfd/atc260x/atc2609a.h
+ create mode 100644 include/linux/mfd/atc260x/core.h
 
-> +		.min = -20,
-> +		.max = 0,
-> +	},
-> +	[AD5766_VOLTAGE_RANGE_M16V_to_0V] = {
-> +		.min = -16,
-> +		.max = 0,
-> +	},
-> +	[AD5766_VOLTAGE_RANGE_M10V_to_0V] = {
-> +		.min = -10,
-> +		.max = 0,
-> +	},
-> +	[AD5766_VOLTAGE_RANGE_M12V_to_14V] = {
-> +		.min = -12,
-> +		.max = 14,
-> +	},
-> +	[AD5766_VOLTAGE_RANGE_M16V_to_10V] = {
-> +		.min = -16,
-> +		.max = 10,
-> +	},
-> +	[AD5766_VOLTAGE_RANGE_M10V_to_6V] = {
-> +		.min = -10,
-> +		.max = 6,
-> +	},
-> +	[AD5766_VOLTAGE_RANGE_M5V_to_5V] = {
-> +		.min = -5,
-> +		.max = 5,
-> +	},
-> +	[AD5766_VOLTAGE_RANGE_M10V_to_10V] = {
-> +		.min = -10,
-> +		.max = 10,
-> +	},
-> +};
-> +
-> +static int __ad5766_spi_read(struct ad5766_state *st, u8 dac, int *val)
-> +{
-> +	int ret;
-> +	struct spi_transfer xfers[] = {
-> +		{
-> +			.tx_buf = &st->data[0].d32,
-> +			.bits_per_word = 8,
-> +			.len = 3,
-> +			.cs_change = 1,
-> +		}, {
-> +			.tx_buf = &st->data[1].d32,
-> +			.rx_buf = &st->data[2].d32,
-> +			.bits_per_word = 8,
-> +			.len = 3,
-> +		},
-> +	};
-> +
-> +	st->data[0].d32 = AD5766_CMD_READBACK_REG(dac);
-> +	st->data[1].d32 = AD5766_CMD_NOP_MUX_OUT;
-> +
-> +	ret = spi_sync_transfer(st->spi, xfers, ARRAY_SIZE(xfers));
-> +	if (ret)
-> +		return ret;
-> +
-> +	*val = st->data[2].w16[1];
-> +
-> +	return ret;
-> +}
-> +
-> +static int __ad5766_spi_write(struct ad5766_state *st, u8 command, u16 data)
-> +{
-> +	st->data[0].b8[0] = command;
-> +	put_unaligned_be16(data, &st->data[0].b8[1]);
-> +
-> +	return spi_write(st->spi, &st->data[0].b8[0], 3);
-> +}
-> +
-> +static int ad5766_read(struct iio_dev *indio_dev, u8 dac, int *val)
-> +{
-> +	struct ad5766_state *st = iio_priv(indio_dev);
-> +	int ret;
-> +
-> +	mutex_lock(&st->lock);
-> +	ret = __ad5766_spi_read(st, dac, val);
-> +	mutex_unlock(&st->lock);
-> +
-> +	return ret;
-> +}
-> +
-> +static int ad5766_write(struct iio_dev *indio_dev, u8 dac, u16 data)
-> +{
-> +	struct ad5766_state *st = iio_priv(indio_dev);
-> +	int ret;
-> +
-> +	mutex_lock(&st->lock);
-> +	ret = __ad5766_spi_write(st, AD5766_CMD_WR_DAC_REG(dac), data);
-> +	mutex_unlock(&st->lock);
-> +
-> +	return ret;
-> +}
-> +
-> +static int ad5766_reset(struct ad5766_state *st)
-> +{
-> +	int ret;
-> +
-> +	if (st->gpio_reset) {
-> +		gpiod_set_value_cansleep(st->gpio_reset, 1);
-> +		ndelay(100); /* t_reset >= 100ns */
-> +		gpiod_set_value_cansleep(st->gpio_reset, 0);
-> +	} else {
-> +		ret = __ad5766_spi_write(st, AD5766_CMD_SW_FULL_RESET,
-> +					AD5766_FULL_RESET_CODE);
-> +		if (ret < 0)
-> +			return ret;
-> +	}
-> +
-> +	/*
-> +	 * Minimum time between a reset and the subsequent successful write is
-> +	 * typically 25 ns
-> +	 */
-> +	ndelay(25);
-> +
-> +	return 0;
-> +}
-> +
-> +static int ad5766_read_raw(struct iio_dev *indio_dev,
-> +			   struct iio_chan_spec const *chan,
-> +			   int *val,
-> +			   int *val2,
-> +			   long m)
-> +{
-> +	struct ad5766_state *st = iio_priv(indio_dev);
-> +	int ret;
-> +
-> +	switch (m) {
-> +	case IIO_CHAN_INFO_RAW:
-> +		ret = ad5766_read(indio_dev, chan->address, val);
-> +		if (ret)
-> +			return ret;
-> +
-> +		return IIO_VAL_INT;
-> +	case IIO_CHAN_INFO_OFFSET:
-> +		*val = ad5766_span_tbl[st->crt_range].min;
-> +
-> +		return IIO_VAL_INT;
-> +	case IIO_CHAN_INFO_SCALE:
-> +		*val = ad5766_span_tbl[st->crt_range].max -
-> +		       ad5766_span_tbl[st->crt_range].min;
-> +		*val2 = st->chip_info->channels[0].scan_type.realbits;
-> +
-> +		return IIO_VAL_FRACTIONAL_LOG2;
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +}
-> +
-> +static int ad5766_write_raw(struct iio_dev *indio_dev,
-> +			    struct iio_chan_spec const *chan,
-> +			    int val,
-> +			    int val2,
-> +			    long info)
-> +{
-> +	switch (info) {
-> +	case IIO_CHAN_INFO_RAW:
-> +	{
-> +		const int max_val = GENMASK(chan->scan_type.realbits - 1, 0);
-> +
-> +		if (val > max_val || val < 0)
-> +			return -EINVAL;
-> +		val <<= chan->scan_type.shift;
-> +		return ad5766_write(indio_dev, chan->address, val);
-> +	}
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +}
-> +
-> +static const struct iio_info ad5766_info = {
-> +	.read_raw = ad5766_read_raw,
-> +	.write_raw = ad5766_write_raw,
-> +};
-> +
-> +static int ad5766_get_dither_source(struct iio_dev *dev,
-> +				    const struct iio_chan_spec *chan)
-> +{
-> +	struct ad5766_state *st = iio_priv(dev);
-> +	u32 source;
-> +
-> +	source = st->dither_source & AD5766_DITHER_SOURCE_MASK(chan->channel);
-> +	source = source >> (chan->channel * 2);
-> +	source -= 1;
-> +
-> +	return source;
-> +}
-> +
-> +static int ad5766_set_dither_source(struct iio_dev *dev,
-> +			  const struct iio_chan_spec *chan,
-> +			  unsigned int source)
-> +{
-> +	struct ad5766_state *st = iio_priv(dev);
-> +	uint16_t val;
-> +	int ret;
-> +
-> +	st->dither_source &= ~AD5766_DITHER_SOURCE_MASK(chan->channel);
-> +	st->dither_source |= AD5766_DITHER_SOURCE(chan->channel, source);
-> +
-> +	val = FIELD_GET(AD5766_LOWER_WORD_SPI_MASK, st->dither_source);
-> +	ret = ad5766_write(dev, AD5766_CMD_DITHER_SIG_1, val);
-> +	if (ret)
-> +		return ret;
-> +
-> +	val = FIELD_GET(AD5766_UPPER_WORD_SPI_MASK, st->dither_source);
-> +
-> +	return ad5766_write(dev, AD5766_CMD_DITHER_SIG_2, val);
-> +}
-> +
-> +static int ad5766_get_dither_scale(struct iio_dev *dev,
-> +				   const struct iio_chan_spec *chan)
-> +{
-> +	struct ad5766_state *st = iio_priv(dev);
-> +	u32 scale;
-> +
-> +	scale = st->dither_scale & AD5766_DITHER_SCALE_MASK(chan->channel);
-> +
-> +	return (scale >> (chan->channel * 2));
-> +}
-> +
-> +static int ad5766_set_dither_scale(struct iio_dev *dev,
-> +			  const struct iio_chan_spec *chan,
-> +			  unsigned int scale)
-> +{
-> +	int ret;
-> +	struct ad5766_state *st = iio_priv(dev);
-> +	uint16_t val;
-> +
-> +	st->dither_scale &= ~AD5766_DITHER_SCALE_MASK(chan->channel);
-> +	st->dither_scale |= AD5766_DITHER_SCALE(chan->channel, scale);
-> +
-> +	val = FIELD_GET(AD5766_LOWER_WORD_SPI_MASK, st->dither_scale);
-> +	ret = ad5766_write(dev, AD5766_CMD_DITHER_SCALE_1, val);
-> +	if (ret)
-> +		return ret;
-> +	val = FIELD_GET(AD5766_UPPER_WORD_SPI_MASK, st->dither_scale);
-> +
-> +	return ad5766_write(dev, AD5766_CMD_DITHER_SCALE_2, val);
-> +}
-> +
-> +static const struct iio_enum ad5766_dither_scale_enum = {
-> +	.items = ad5766_dither_scales,
-> +	.num_items = ARRAY_SIZE(ad5766_dither_scales),
-> +	.set = ad5766_set_dither_scale,
-> +	.get = ad5766_get_dither_scale,
-> +};
-> +
-> +static ssize_t ad5766_read_ext(struct iio_dev *indio_dev,
-> +			       uintptr_t private,
-> +			       const struct iio_chan_spec *chan,
-> +			       char *buf)
-> +{
-> +	struct ad5766_state *st = iio_priv(indio_dev);
-> +	int ret;
-> +
-> +	switch (private) {
-> +	case AD5766_DITHER_ENABLE:
-> +		return sprintf(buf, "%u\n",
-> +			       !(st->dither_enable & BIT(chan->channel)));
-> +		break;
-> +	case AD5766_DITHER_INVERT:
-> +		return sprintf(buf, "%u\n",
-> +			       !!(st->dither_invert & BIT(chan->channel)));
-> +		break;
-> +	case AD5766_DITHER_SOURCE:
-> +		return sprintf(buf, "%u\n",
-> +			       ad5766_get_dither_source(indio_dev, chan));
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +
-
-Can't get here
-
-> +	return ret;
-> +}
-> +
-> +static ssize_t ad5766_write_ext(struct iio_dev *indio_dev,
-> +				 uintptr_t private,
-> +				 const struct iio_chan_spec *chan,
-> +				 const char *buf, size_t len)
-> +{
-> +	struct ad5766_state *st = iio_priv(indio_dev);
-> +	bool readin;
-> +	int ret;
-> +
-> +	ret = kstrtobool(buf, &readin);
-> +	if (ret)
-> +		return ret;
-> +
-> +	switch (private) {
-> +	case AD5766_DITHER_ENABLE:
-> +		st->dither_enable &= ~AD5766_DITHER_ENABLE_MASK(chan->channel);
-> +		st->dither_enable |= AD5766_DITHER_ENABLE(chan->channel,
-> +							  readin);
-> +		ret = ad5766_write(indio_dev, AD5766_CMD_WR_PWR_DITHER,
-> +				   st->dither_enable);
-> +		break;
-> +	case AD5766_DITHER_INVERT:
-> +		st->dither_invert &= ~AD5766_DITHER_INVERT_MASK(chan->channel);
-> +		st->dither_invert |= AD5766_DITHER_INVERT(chan->channel,
-> +							  readin);
-> +		ret = ad5766_write(indio_dev, AD5766_CMD_INV_DITHER,
-> +				   st->dither_invert);
-> +		break;
-> +	case AD5766_DITHER_SOURCE:
-> +		ret = ad5766_set_dither_source(indio_dev, chan, readin);
-> +		break;
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +
-> +	return ret ? ret : len;
-> +}
-> +
-> +#define _AD5766_CHAN_EXT_INFO(_name, _what, _shared) { \
-> +	.name = _name, \
-> +	.read = ad5766_read_ext, \
-> +	.write = ad5766_write_ext, \
-> +	.private = _what, \
-> +	.shared = _shared, \
-> +}
-> +
-> +#define IIO_ENUM_AVAILABLE_SHARED(_name, _shared, _e) \
-> +{ \
-> +	.name = (_name "_available"), \
-> +	.shared = _shared, \
-> +	.read = iio_enum_available_read, \
-> +	.private = (uintptr_t)(_e), \
-> +}
-> +
-> +static const struct iio_chan_spec_ext_info ad5766_ext_info[] = {
-> +
-> +	_AD5766_CHAN_EXT_INFO("dither_enable", AD5766_DITHER_ENABLE,
-> +			      IIO_SEPARATE),
-> +	_AD5766_CHAN_EXT_INFO("dither_invert", AD5766_DITHER_INVERT,
-> +			      IIO_SEPARATE),
-> +	_AD5766_CHAN_EXT_INFO("dither_source", AD5766_DITHER_SOURCE,
-> +			      IIO_SEPARATE),
-> +	IIO_ENUM("dither_scale", IIO_SEPARATE, &ad5766_dither_scale_enum),
-> +	IIO_ENUM_AVAILABLE_SHARED("dither_scale",
-> +				  IIO_SEPARATE,
-> +				  &ad5766_dither_scale_enum),
-> +	{}
-> +};
-> +
-> +#define AD576x_CHANNEL(_chan, _bits) {					\
-> +	.type = IIO_VOLTAGE,						\
-> +	.indexed = 1,							\
-> +	.output = 1,							\
-> +	.channel = (_chan),						\
-> +	.address = (_chan),						\
-> +	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),			\
-> +	.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_OFFSET) |		\
-> +		BIT(IIO_CHAN_INFO_SCALE),				\
-> +	.scan_type = {							\
-> +		.sign = 'u',						\
-> +		.realbits = (_bits),					\
-> +		.storagebits = 16,					\
-> +		.shift = 16 - (_bits),					\
-> +	},								\
-> +	.ext_info = ad5766_ext_info,					\
-> +}
-> +
-> +#define DECLARE_AD576x_CHANNELS(_name, _bits)			\
-> +const struct iio_chan_spec _name[] = {				\
-> +	AD576x_CHANNEL(0, (_bits)),				\
-> +	AD576x_CHANNEL(1, (_bits)),				\
-> +	AD576x_CHANNEL(2, (_bits)),				\
-> +	AD576x_CHANNEL(3, (_bits)),				\
-> +	AD576x_CHANNEL(4, (_bits)),				\
-> +	AD576x_CHANNEL(5, (_bits)),				\
-> +	AD576x_CHANNEL(6, (_bits)),				\
-> +	AD576x_CHANNEL(7, (_bits)),				\
-> +	AD576x_CHANNEL(8, (_bits)),				\
-> +	AD576x_CHANNEL(9, (_bits)),				\
-> +	AD576x_CHANNEL(10, (_bits)),				\
-> +	AD576x_CHANNEL(11, (_bits)),				\
-> +	AD576x_CHANNEL(12, (_bits)),				\
-> +	AD576x_CHANNEL(13, (_bits)),				\
-> +	AD576x_CHANNEL(14, (_bits)),				\
-> +	AD576x_CHANNEL(15, (_bits)),				\
-> +}
-> +
-> +static DECLARE_AD576x_CHANNELS(ad5766_channels, 16);
-> +static DECLARE_AD576x_CHANNELS(ad5767_channels, 12);
-> +
-> +static const struct ad5766_chip_info ad5766_chip_infos[] = {
-> +	[ID_AD5766] = {
-> +		.num_channels = ARRAY_SIZE(ad5766_channels),
-> +		.channels = ad5766_channels,
-> +	},
-> +	[ID_AD5767] = {
-> +		.num_channels = ARRAY_SIZE(ad5767_channels),
-> +		.channels = ad5767_channels,
-> +	},
-> +};
-> +
-> +static int ad5766_get_output_range(struct ad5766_state *st)
-> +{
-> +	int i, ret, min, max, tmp[2];
-> +
-> +	ret = device_property_read_u32_array(&st->spi->dev,
-> +					     "output-range",
-> +					     tmp, 2);
-> +	if (ret)
-> +		return ret;
-> +
-> +	min = tmp[0];
-> +	max = tmp[1];
-> +	for (i = 0; i < ARRAY_SIZE(ad5766_span_tbl); i++) {
-> +		if (ad5766_span_tbl[i].min != min ||
-> +		    ad5766_span_tbl[i].max != max)
-> +			continue;
-> +
-> +		st->crt_range = i;
-> +
-> +		return 0;
-> +	}
-> +
-> +	return -EINVAL;
-> +}
-> +
-> +static int ad5766_default_setup(struct ad5766_state *st)
-> +{
-> +	uint16_t val;
-> +	int ret, i;
-> +
-> +	/* Always issue a reset before writing to the span register. */
-> +	ret = ad5766_reset(st);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = ad5766_get_output_range(st);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* Dither power down */
-> +	st->dither_enable = GENMASK(15, 0);
-> +	ret = __ad5766_spi_write(st, AD5766_CMD_WR_PWR_DITHER,
-> +			     st->dither_enable);
-> +	if (ret)
-> +		return ret;
-> +
-> +	st->dither_source = 0;
-> +	for (i = 0; i < ARRAY_SIZE(ad5766_channels); i++)
-> +		st->dither_source |= AD5766_DITHER_SOURCE(i, 0);
-> +	val = FIELD_GET(AD5766_LOWER_WORD_SPI_MASK, st->dither_source);
-> +	ret = __ad5766_spi_write(st, AD5766_CMD_DITHER_SIG_1, val);
-> +	if (ret)
-> +		return ret;
-> +
-> +	val = FIELD_GET(AD5766_UPPER_WORD_SPI_MASK, st->dither_source);
-> +	ret = __ad5766_spi_write(st, AD5766_CMD_DITHER_SIG_2, val);
-> +	if (ret)
-> +		return ret;
-> +
-> +	st->dither_scale = 0;
-> +	val = FIELD_GET(AD5766_LOWER_WORD_SPI_MASK, st->dither_scale);
-> +	ret = __ad5766_spi_write(st, AD5766_CMD_DITHER_SCALE_1, val);
-> +	if (ret)
-> +		return ret;
-> +
-> +	val = FIELD_GET(AD5766_UPPER_WORD_SPI_MASK, st->dither_scale);
-
-This is a rather unusual use of FIELD_GET to split a value that we then
-write to two 16 bit registers. I guess it works, but does feel a bit odd.
-If you are happy with it, I guess I can cope with it confusing me.
-
-> +	ret = __ad5766_spi_write(st, AD5766_CMD_DITHER_SCALE_2, val);
-> +	if (ret)
-> +		return ret;
-> +
-> +	st->dither_invert = 0;
-> +	ret = __ad5766_spi_write(st, AD5766_CMD_INV_DITHER, st->dither_invert);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return  __ad5766_spi_write(st, AD5766_CMD_SPAN_REG, st->crt_range);
-> +}
-> +
-> +static int ad5766_probe(struct spi_device *spi)
-> +{
-> +	enum ad5766_type type;
-> +	struct iio_dev *indio_dev;
-> +	struct ad5766_state *st;
-> +	int ret;
-> +
-> +	indio_dev = devm_iio_device_alloc(&spi->dev, sizeof(*st));
-> +	if (!indio_dev)
-> +		return -ENOMEM;
-> +
-> +	st = iio_priv(indio_dev);
-> +	mutex_init(&st->lock);
-> +
-> +	st->spi = spi;
-> +	type = spi_get_device_id(spi)->driver_data;
-> +	st->chip_info = &ad5766_chip_infos[type];
-> +
-> +	indio_dev->channels = st->chip_info->channels;
-> +	indio_dev->num_channels = st->chip_info->num_channels;
-> +	indio_dev->info = &ad5766_info;
-> +	indio_dev->dev.parent = &spi->dev;
-> +	indio_dev->dev.of_node = spi->dev.of_node;
-> +	indio_dev->name = spi_get_device_id(spi)->name;
-> +	indio_dev->modes = INDIO_DIRECT_MODE;
-> +
-> +	st->gpio_reset = devm_gpiod_get_optional(&st->spi->dev, "reset",
-> +						GPIOD_OUT_LOW);
-
-Minor point, but in theory this might return an error code rather than
-NULL (which it will return if no gpio was specified). Should probably
-handle that.
-
-> +
-> +	ret = ad5766_default_setup(st);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return devm_iio_device_register(&spi->dev, indio_dev);
-> +}
-> +
-...
+-- 
+2.30.0
 
