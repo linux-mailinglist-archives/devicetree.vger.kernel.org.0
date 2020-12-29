@@ -2,139 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BA55B2E6DA4
-	for <lists+devicetree@lfdr.de>; Tue, 29 Dec 2020 04:36:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C9A52E6DE6
+	for <lists+devicetree@lfdr.de>; Tue, 29 Dec 2020 06:05:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727281AbgL2DgD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Dec 2020 22:36:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42694 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727217AbgL2DgD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Dec 2020 22:36:03 -0500
-Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2536C0613D6;
-        Mon, 28 Dec 2020 19:35:22 -0800 (PST)
-Received: from mwalle01.fritz.box (unknown [IPv6:2a02:810c:c200:2e91:fa59:71ff:fe9b:b851])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id E039722802;
-        Tue, 29 Dec 2020 04:35:17 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1609212919;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=cNdJDbDl/05MujOD4qQl4/7GqexrrHvbmx1qNqivlSU=;
-        b=WM/xtIyBLhf31SuCiZgFmRkU8AS6VdMxcUgA/+iMcr5GeIDX82oWeb+NHgHO8DXlam3F9r
-        t8PwP2aDtrFNXpGL0vC7HcTLESRO5qWs1eYqqSWpuUmCHEN3wOHE6TvBp64bT/FHf775I6
-        c2J5isdcP499j2aMyDW2ot/unbwI0sY=
-From:   Michael Walle <michael@walle.cc>
-To:     saravanak@google.com
-Cc:     ardb@kernel.org, devicetree@vger.kernel.org,
-        frowand.list@gmail.com, gregkh@linuxfoundation.org,
-        grygorii.strashko@ti.com, kernel-team@android.com,
-        laurent.pinchart@ideasonboard.com, lenb@kernel.org,
-        linux-acpi@vger.kernel.org, linux-efi@vger.kernel.org,
-        linux-kernel@vger.kernel.org, maz@kernel.org, rafael@kernel.org,
-        rjw@rjwysocki.net, robh+dt@kernel.org, tglx@linutronix.de,
-        tomi.valkeinen@ti.com, Michael Walle <michael@walle.cc>
-Subject: Re: [PATCH v2 16/17] driver core: Refactor fw_devlink feature
-Date:   Tue, 29 Dec 2020 04:34:40 +0100
-Message-Id: <20201229033440.32142-1-michael@walle.cc>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20201121020232.908850-17-saravanak@google.com>
-References: <20201121020232.908850-17-saravanak@google.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam: Yes
+        id S1725866AbgL2FEu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Dec 2020 00:04:50 -0500
+Received: from mga03.intel.com ([134.134.136.65]:37338 "EHLO mga03.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725767AbgL2FEu (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 29 Dec 2020 00:04:50 -0500
+IronPort-SDR: MOeomMJWICtRF4leNCZRK1cbeu0XznJq2RW7geVOjMHOZ+X2H3LFJ9Jt44Cmcq18dVu/+nUiMk
+ PnaphOSivk6A==
+X-IronPort-AV: E=McAfee;i="6000,8403,9848"; a="176554682"
+X-IronPort-AV: E=Sophos;i="5.78,457,1599548400"; 
+   d="scan'208";a="176554682"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Dec 2020 21:04:09 -0800
+IronPort-SDR: o0jlk6iAQFAxS2D0gZJB0+KjVfAbV7c96SroTyH4DGqdjhE+NZ72k8jV7Kx41f6LKMwFlzq28s
+ HRPRF1RhUKIA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.78,457,1599548400"; 
+   d="scan'208";a="347249673"
+Received: from jsia-hp-z620-workstation.png.intel.com ([10.221.118.135])
+  by fmsmga008.fm.intel.com with ESMTP; 28 Dec 2020 21:04:07 -0800
+From:   Sia Jee Heng <jee.heng.sia@intel.com>
+To:     vkoul@kernel.org, Eugeniy.Paltsev@synopsys.com, robh+dt@kernel.org
+Cc:     andriy.shevchenko@linux.intel.com, dmaengine@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH v8 00/16] dmaengine: dw-axi-dmac: support Intel KeemBay AxiDMA
+Date:   Tue, 29 Dec 2020 12:46:57 +0800
+Message-Id: <20201229044713.28464-1-jee.heng.sia@intel.com>
+X-Mailer: git-send-email 2.18.0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> The current implementation of fw_devlink is very inefficient because it
-> tries to get away without creating fwnode links in the name of saving
-> memory usage. Past attempts to optimize runtime at the cost of memory
-> usage were blocked with request for data showing that the optimization
-> made significant improvement for real world scenarios.
-> 
-> We have those scenarios now. There have been several reports of boot
-> time increase in the order of seconds in this thread [1]. Several OEMs
-> and SoC manufacturers have also privately reported significant
-> (350-400ms) increase in boot time due to all the parsing done by
-> fw_devlink.
-> 
-> So this patch uses all the setup done by the previous patches in this
-> series to refactor fw_devlink to be more efficient. Most of the code has
-> been moved out of firmware specific (DT mostly) code into driver core.
-> 
-> This brings the following benefits:
-> - Instead of parsing the device tree multiple times during bootup,
->   fw_devlink parses each fwnode node/property only once and creates
->   fwnode links. The rest of the fw_devlink code then just looks at these
->   fwnode links to do rest of the work.
-> 
-> - Makes it much easier to debug probe issue due to fw_devlink in the
->   future. fw_devlink=on blocks the probing of devices if they depend on
->   a device that hasn't been added yet. With this refactor, it'll be very
->   easy to tell what that device is because we now have a reference to
->   the fwnode of the device.
-> 
-> - Much easier to add fw_devlink support to ACPI and other firmware
->   types. A refactor to move the common bits from DT specific code to
->   driver core was in my TODO list as a prerequisite to adding ACPI
->   support to fw_devlink. This series gets that done.
-> 
-> [1] - https://lore.kernel.org/linux-omap/ea02f57e-871d-cd16-4418-c1da4bbc4696@ti.com/
-> Signed-off-by: Saravana Kannan <saravanak@google.com>
-> Tested-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Tested-by: Grygorii Strashko <grygorii.strashko@ti.com>
+The below patch series are to support AxiDMA running on Intel KeemBay SoC.
+The base driver is dw-axi-dmac. This driver only support DMA memory copy
+transfers. Code refactoring is needed so that additional features can be
+supported.
+The features added in this patch series are:
+- Replacing Linked List with virtual descriptor management.
+- Remove unrelated hw desc stuff from dma memory pool.
+- Manage dma memory pool alloc/destroy based on channel activity.
+- Support dmaengine device_sync() callback.
+- Support dmaengine device_config().
+- Support dmaengine device_prep_slave_sg().
+- Support dmaengine device_prep_dma_cyclic().
+- Support of_dma_controller_register().
+- Support burst residue granularity.
+- Support Intel KeemBay AxiDMA registers.
+- Support Intel KeemBay AxiDMA device handshake.
+- Support Intel KeemBay AxiDMA BYTE and HALFWORD device operation.
+- Add constraint to Max segment size.
+- Virtually split the linked-list.
 
-git bisect show that this commit broke my board in 5.11-rc1:
+This patch series are tested on Intel KeemBay platform.
 
-[    2.294375] sysfs: cannot create duplicate filename '/devices/virtual/devlink/0000:00:00.1--0000:00:00.1'
-[    2.303999] CPU: 1 PID: 1 Comm: swapper/0 Not tainted 5.11.0-rc1-00016-ga0fb284b267 #267
-[    2.312125] Hardware name: Kontron SMARC-sAL28 (4 Lane) (DT)
-[    2.317804] Call trace:
-[    2.320253]  dump_backtrace+0x0/0x1b8
-[    2.323936]  show_stack+0x20/0x70
-[    2.327263]  dump_stack+0xd8/0x134
-[    2.330677]  sysfs_warn_dup+0x6c/0x88
-[    2.334351]  sysfs_create_dir_ns+0xe8/0x100
-[    2.338547]  kobject_add_internal+0x9c/0x290
-[    2.342833]  kobject_add+0xa0/0x108
-[    2.346331]  device_add+0xfc/0x798
-[    2.349746]  device_link_add+0x454/0x5e0
-[    2.353682]  fw_devlink_create_devlink+0xb8/0xc8
-[    2.358316]  __fw_devlink_link_to_suppliers+0x84/0x180
-[    2.363474]  __fw_devlink_link_to_suppliers+0x134/0x180
-[    2.368718]  device_add+0x778/0x798
-[    2.372217]  device_register+0x28/0x38
-[    2.375979]  __mdiobus_register+0x94/0x340
-[    2.380089]  of_mdiobus_register+0xb4/0x380
-[    2.384285]  enetc_pf_probe+0x73c/0xb10
-[    2.388132]  local_pci_probe+0x48/0xb8
-[    2.391896]  pci_device_probe+0x120/0x1c0
-[    2.395920]  really_probe+0xec/0x3c0
-[    2.399505]  driver_probe_device+0x60/0xc0
-[    2.403614]  device_driver_attach+0x7c/0x88
-[    2.407810]  __driver_attach+0x60/0xe8
-[    2.411570]  bus_for_each_dev+0x7c/0xd0
-[    2.415419]  driver_attach+0x2c/0x38
-[    2.419004]  bus_add_driver+0x194/0x1f8
-[    2.422851]  driver_register+0x6c/0x128
-[    2.426698]  __pci_register_driver+0x4c/0x58
-[    2.430983]  enetc_pf_driver_init+0x2c/0x38
-[    2.435181]  do_one_initcall+0x54/0x2d8
-[    2.439029]  kernel_init_freeable+0x1fc/0x268
-[    2.443403]  kernel_init+0x1c/0x120
-[    2.446904]  ret_from_fork+0x10/0x30
-[    2.450502] kobject_add_internal failed for 0000:00:00.1--0000:00:00.1 with -EEXIST, don't try to register things with the same name in the same directory.
+v8:
+- Rebased to kernel v5.11-rc1.
+- Added reviewed-by tag from Rob.
 
-Looks like it will generate that link twice? Let me know if I can help
-testing.
+v7:
+- Added 'allOf' and '$ref:dma-controller.yaml#' in DT binding.
+- Removed the dma-channels common description in DT binding.
+- Removed the default fields in DT binding.
 
-See also: https://lavalab.kontron.com/scheduler/job/3894#L831
+v6:
+- Removed 'allOf' cases in DT binding.
+- Added '>' at the end of the email address.
+- Removed additional '|' at the start of description.
+- Fixed space indent.
+- Added proper constraint in DT binding.
+- Removed second example in DT binding.
 
--michael
+v5:
+- Added comment to the Apb registers used by Intel KeemBay Soc.
+- Renamed "hs_num" to "handshake_num".
+- Conditional check for the compatible property and return error
+  instead of printing warning.
+- Added patch 16th to virtually split the linked-list as per
+  request from ALSA team.
+
+v4:
+- Fixed bot found errors running make_dt_binding_check.
+- Added minItems: 1 to the YAML schemas DT binding.
+- Updated "reg" field to the YAML schemas DT binding.
+
+v3:
+- Added additionalProperties: false to the YAML schemas DT binding.
+- Reordered patch sequence for patch 10th, 11th and 12th so that
+  DT binding come first, follow by adding Intel KeemBay SoC registers
+  and update .compatible field.
+- Checked txstate NULL condition.
+- Created helper function dw_axi_dma_set_hw_desc() to handle common code.
+
+v2:
+- Rebased to v5.10-rc1 kernel.
+- Added support for dmaengine device_config().
+- Added support for dmaengine device_prep_slave_sg().
+- Added support for dmaengine device_prep_dma_cyclic().
+- Added support for of_dma_controller_register().
+- Added support for burst residue granularity.
+- Added support for Intel KeemBay AxiDMA registers.
+- Added support for Intel KeemBay AxiDMA device handshake.
+- Added support for Intel KeemBay AxiDMA BYTE and HALFWORD device operation.
+- Added constraint to Max segment size.
+
+v1:
+- Initial version. Patch on top of dw-axi-dma driver. This version improve
+  the descriptor management by replacing Linked List Item (LLI) with
+  virtual descriptor management, only allocate hardware LLI memories from
+  DMA memory pool, manage DMA memory pool alloc/destroy based on channel
+  activity and to support device_sync callback.
+
+Sia Jee Heng (16):
+  dt-bindings: dma: Add YAML schemas for dw-axi-dmac
+  dmaengine: dw-axi-dmac: simplify descriptor management
+  dmaengine: dw-axi-dmac: move dma_pool_create() to
+    alloc_chan_resources()
+  dmaengine: dw-axi-dmac: Add device_synchronize() callback
+  dmaengine: dw-axi-dmac: Add device_config operation
+  dmaengine: dw-axi-dmac: Support device_prep_slave_sg
+  dmaegine: dw-axi-dmac: Support device_prep_dma_cyclic()
+  dmaengine: dw-axi-dmac: Support of_dma_controller_register()
+  dmaengine: dw-axi-dmac: Support burst residue granularity
+  dt-binding: dma: dw-axi-dmac: Add support for Intel KeemBay AxiDMA
+  dmaengine: dw-axi-dmac: Add Intel KeemBay DMA register fields
+  dmaengine: dw-axi-dmac: Add Intel KeemBay AxiDMA support
+  dmaengine: dw-axi-dmac: Add Intel KeemBay AxiDMA handshake
+  dmaengine: dw-axi-dmac: Add Intel KeemBay AxiDMA BYTE and HALFWORD
+    registers
+  dmaengine: dw-axi-dmac: Set constraint to the Max segment size
+  dmaengine: dw-axi-dmac: Virtually split the linked-list
+
+ .../bindings/dma/snps,dw-axi-dmac.txt         |  39 -
+ .../bindings/dma/snps,dw-axi-dmac.yaml        | 126 ++++
+ .../dma/dw-axi-dmac/dw-axi-dmac-platform.c    | 710 +++++++++++++++---
+ drivers/dma/dw-axi-dmac/dw-axi-dmac.h         |  34 +-
+ 4 files changed, 775 insertions(+), 134 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.txt
+ create mode 100644 Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
+
+
+base-commit: dea8dcf2a9fa8cc540136a6cd885c3beece16ec3
+-- 
+2.18.0
+
