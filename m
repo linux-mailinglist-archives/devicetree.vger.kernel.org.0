@@ -2,144 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DC04D2E79DD
-	for <lists+devicetree@lfdr.de>; Wed, 30 Dec 2020 15:03:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 570982E79F7
+	for <lists+devicetree@lfdr.de>; Wed, 30 Dec 2020 15:32:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726683AbgL3OC5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Dec 2020 09:02:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49308 "EHLO
+        id S1726305AbgL3ObX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Dec 2020 09:31:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53642 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726547AbgL3OC5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Dec 2020 09:02:57 -0500
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBFC9C061799;
-        Wed, 30 Dec 2020 06:02:16 -0800 (PST)
-Received: by mail-lf1-x132.google.com with SMTP id l11so37890711lfg.0;
-        Wed, 30 Dec 2020 06:02:16 -0800 (PST)
+        with ESMTP id S1726161AbgL3ObX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Dec 2020 09:31:23 -0500
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2AFC8C06179B;
+        Wed, 30 Dec 2020 06:30:43 -0800 (PST)
+Received: by mail-wr1-x433.google.com with SMTP id w5so17570493wrm.11;
+        Wed, 30 Dec 2020 06:30:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=subject:to:cc:references:from:message-id:date:user-agent
          :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=kgbDtfqk5fP8ba7WjhXh9EaZlWvPtHxJW5owvXGnu28=;
-        b=UhvgoE4yfbHePS8AaVrQlFt/hwDbTrDKwDFCbRhhHEgAe1Hv4O3OeOiKmqtsQSuVUt
-         2EzhCLUkVX94507wJTEO5Xcx1y+/WKL+HxJw3rG+NdjkqHYpTIHmHfAD6BDhG9cTHfw/
-         vI46uHG3aMxT/34J9JakJmRQGq2WI51algXfdeGu//jRDCGJYh6bFnl478JzLePw7j/B
-         PkiZp4Mvwg7KwrUqwWlkYglwRdXL9EVQm3e922wabLwzAcaGgWzj9L4tsiCFYznbDjk8
-         mPEUkLquIXzerq6FYZOehyvFtuTnWM/jmFGV4sZIvKmT7wLr8MTGy18L+eHVf9I8UdGN
-         c/Ng==
+        bh=AfKen0Opghye/eUbjPu8FvhlOJf1r0MkP+kC/srEZsg=;
+        b=ry3BL+8MfCUYXjXbwHxMQ35RgxtVcALtJ2EzBqWdzl1Rn7Np6spbv3hPufbZKuA01f
+         cwTtXstUVjmG4YE7No2VAwpIkIqI291MK4CF3GZ4V02fVoRh6/RIqP01j9zLVYGozQj/
+         9DhzahQ3UTPWAe1LHYOn9eCt31poeriP+4NzaBuqbVuELmR6qU6T+ZrqAh/Erjo4b+fU
+         xUjS1sF99D1Z4ZRxgswDIQZMtjNLCI3F8S/vRJl0MLWrCmsLLPVZMXoF+yamLxPjTrDD
+         TaX+ZhUo6cWln0iURikF13qjde/sHUszDsXtZ1jGmAk2xypf9g910v/QAI+cYcP1D2Mc
+         7i/A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=kgbDtfqk5fP8ba7WjhXh9EaZlWvPtHxJW5owvXGnu28=;
-        b=e3qBoxKZGn4JF5yYU33YgPN84os2XX+j1PKDG21xo7us6kPXXpejhry/nLOZTSI75B
-         u1B40/Igafrj+4VEjROKtx9/AMheU+oLzIHfZmqlUJ8q4VNPAIdAAtlHD4OTduaf5B3g
-         20BH0acXxhApEMHgYjsrTHjMcvlRJigP+K650awY3vlLq7/mszFl4r7OATXDDc9FDD40
-         Akz+3eKdf98Z6yonlLNrGRddFvNnR/bDWXxg8+BgoZZWAu2FORbDRS3uMoMV7OkjoN6L
-         6yU7WSJ+7HKtcm+8S72ZIvA7dJ5I5Ajg5AoFXtiKG883l+W/W9m7ifm01+kxH/fJCRFq
-         cUSA==
-X-Gm-Message-State: AOAM531i+ycErGYsEpaoivzpCIC4vGjRKALo/QB9MEkVgPYQyrC/v8qX
-        FpHsQgSN2KjMnixgDB/Aip0tUUQ5HhY=
-X-Google-Smtp-Source: ABdhPJw9wWSFuQc16RX9NiqQUb8w4TZ5fG/vmflab4lL/iZ0G+l9QXIErYZJBZgqcLvosb2HGM3QiA==
-X-Received: by 2002:a2e:8910:: with SMTP id d16mr25849728lji.357.1609336933615;
-        Wed, 30 Dec 2020 06:02:13 -0800 (PST)
-Received: from [192.168.2.145] (109-252-192-57.dynamic.spd-mgts.ru. [109.252.192.57])
-        by smtp.googlemail.com with ESMTPSA id o12sm5965987lfb.49.2020.12.30.06.02.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 30 Dec 2020 06:02:12 -0800 (PST)
-Subject: Re: [PATCH v2 11/48] opp: Add dev_pm_opp_find_level_ceil()
-To:     Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Nicolas Chauvet <kwizart@gmail.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Kevin Hilman <khilman@kernel.org>,
-        Peter De Schrijver <pdeschrijver@nvidia.com>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        devel@driverdev.osuosl.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-media@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-clk@vger.kernel.org
-References: <20201217180638.22748-1-digetx@gmail.com>
- <20201217180638.22748-12-digetx@gmail.com>
- <20201222064253.x7vsurh7q5k7qzb5@vireshk-i7>
- <fd7b9f42-d0a7-45eb-2a17-d46779011c58@gmail.com>
- <20201223041931.klnppy4fu3sdgtsz@vireshk-i7>
- <f00e0c74-8d9a-d3d3-81bb-3ac25a74175d@gmail.com>
- <20201224064339.zngidobhstnlu2a3@vireshk-i7>
- <780db190-d93d-3bca-4819-790010f82c62@gmail.com>
- <20201228062254.ui727ka2ftijov4m@vireshk-i7>
- <c4a6336f-e7e6-b23e-4d60-a41d8e09aef3@gmail.com>
- <20201230044637.jjyw5gwe73ovslbd@vireshk-i7>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <7f2385d1-603d-28ab-34e8-3623635045f6@gmail.com>
-Date:   Wed, 30 Dec 2020 17:02:11 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.4.2
+        bh=AfKen0Opghye/eUbjPu8FvhlOJf1r0MkP+kC/srEZsg=;
+        b=k8Wq+Oocm2grOmVjYj0pmVQ6Q82psSQowLTNWthz4jqaZ6oiYSQ4Wo2Bbzyy3k0y6B
+         YXNL6ymbKPT2qb3jzttM0G5XSmnhgz0LYKHfG93yPpRiOhBGOmHbYOZKUNnUyDcG4cXk
+         NXbiiobqe6iPPMu1inM4lQ9vI9fq8R5F01wqFBZ4vzL7Y1oiL2Zq0Nr1mdlaXJ6kuw01
+         sNC90shdAJCJjFon4+QfmvDTfWhbTO3BVTouDUPEVaFrj4qeQz6GDUZCQatNhoPA6iLy
+         HPZcHAQZDr/GtYs87lhKs76G4ArTYE40TziZJwwD2GnJ/OxvXVvkxbQxG3Drzs62KLKL
+         aU4w==
+X-Gm-Message-State: AOAM530ovBffiWbc6qGgzSO3ctswed5wAxdqfM/vw+FccoGjsjNDnjGj
+        tKdSlCKis9YCfRbuxhRSOJixjW1hT4Y=
+X-Google-Smtp-Source: ABdhPJwbSE96H74Nk76qbml8O6A+fNaPt01qUnPvlex94fifI00oSAmmoyltLVi5ZYk2M96hwatYdA==
+X-Received: by 2002:a5d:674c:: with SMTP id l12mr59836412wrw.399.1609338641737;
+        Wed, 30 Dec 2020 06:30:41 -0800 (PST)
+Received: from [192.168.1.10] ([46.249.74.23])
+        by smtp.googlemail.com with ESMTPSA id a14sm63377979wrn.3.2020.12.30.06.30.40
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 30 Dec 2020 06:30:41 -0800 (PST)
+Subject: Re: [PATCH 1/1] ARM: dts: omap443x: Correct sgx clock to 307.2MHz as
+ used on motorola vendor kernel
+To:     Carl Philipp Klemm <philipp@uvos.xyz>
+Cc:     tony@atomide.com, bcousson@baylibre.com, robh+dt@kernel.org,
+        linux-omap@vger.kernel.org, devicetree@vger.kernel.org
+References: <20201230145115.239b4e1d50db37fce3560007@uvos.xyz>
+From:   Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>
+Message-ID: <8f782d10-4c55-ffe6-aa1c-1960ca0e20c9@gmail.com>
+Date:   Wed, 30 Dec 2020 16:30:39 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Firefox/60.0 Thunderbird/60.6.1
 MIME-Version: 1.0
-In-Reply-To: <20201230044637.jjyw5gwe73ovslbd@vireshk-i7>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
+In-Reply-To: <20201230145115.239b4e1d50db37fce3560007@uvos.xyz>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-30.12.2020 07:46, Viresh Kumar пишет:
-> On 28-12-20, 17:03, Dmitry Osipenko wrote:
->> 28.12.2020 09:22, Viresh Kumar пишет:
->>> On 24-12-20, 16:00, Dmitry Osipenko wrote:
->>>> In a device driver I want to set PD to the lowest performance state by
->>>> removing the performance vote when dev_pm_opp_set_rate(dev, 0) is
->>>> invoked by the driver.
->>>>
->>>> The OPP core already does this, but if OPP levels don't start from 0 in
->>>> a device-tree for PD, then it currently doesn't work since there is a
->>>> need to get a rounded-up performance state because
->>>> dev_pm_opp_set_voltage() takes OPP entry for the argument (patches 9 and
->>>> 28).
->>>>
->>>> The PD powering off and performance-changes are separate from each other
->>>> in the GENPD core. The GENPD core automatically turns off domain when
->>>> all devices within the domain are suspended by system-suspend or RPM.
->>>>
->>>> The performance state of a power domain is controlled solely by a device
->>>> driver. GENPD core only aggregates the performance requests, it doesn't
->>>> change the performance state of a domain by itself when device is
->>>> suspended or resumed, IIUC this is intentional. And I want to put domain
->>>> into lowest performance state when device is suspended.
->>>
->>> Right, so if you really want to just drop the performance vote, then with a
->>> value of 0 for the performance state the call will reach to your genpd's
->>> callback ->set_performance_state(). Just as dev_pm_opp_set_rate() accepts the
->>> frequency to be 0, I would expect dev_pm_opp_set_rate() to accept opp argument
->>> as NULL and in that case set voltage to 0 and do regulator_disable() as well.
->>> Won't that work better than going for the lowest voltage ?
->>>
->>
->> We can make dev_pm_opp_set_voltage() to accept OPP=NULL in order to
->> disable the regulator, like it's done for dev_pm_opp_set_rate(dev, 0).
->> Although, I don't need this kind of behaviour for the Tegra PD driver,
->> and thus, would prefer to leave this for somebody else to implement in
->> the future, once it will be really needed.
->>
->> Still we need the dev_pm_opp_find_level_ceil() because level=0 means
->> that we want to set PD to the lowest (minimal) performance state, i.e.
->> it doesn't necessarily mean that we want to set the voltage to 0 and
->> disable the PD entirely. GENPD has a separate controls for on/off.
-> 
-> Ok.
-> 
 
-I'll separate the OPP patches from this series and will prepare v3,
-thank you for the review!
+
+On 30.12.20 г. 15:51 ч., Carl Philipp Klemm wrote:
+> The Android vendor kernel uses 307.2MHz or a devider ratio of /5 while active
+> 153600000 or /10 is only used when the sgx core is inactive.
+> 
+> Signed-off-by: Carl Philipp Klemm <philipp@uvos.xyz>
+> ---
+>   arch/arm/boot/dts/omap443x.dtsi | 4 ++--
+>   1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/omap443x.dtsi b/arch/arm/boot/dts/omap443x.dtsi
+> index dd8ef58cbaed..8466161197ae 100644
+> --- a/arch/arm/boot/dts/omap443x.dtsi
+> +++ b/arch/arm/boot/dts/omap443x.dtsi
+> @@ -78,11 +78,11 @@ &cpu_thermal {
+>   /include/ "omap443x-clocks.dtsi"
+>   
+>   /*
+> - * Use dpll_per for sgx at 153.6MHz like droid4 stock v3.0.8 Android kernel
+> + * Use dpll_per for sgx at   like droid4 stock v3.0.8 Android kernel
+
+Is is missing the value here (I guess this should be 307.2MHz)
+
+Regards,
+Ivo
+
+>    */
+>   &sgx_module {
+>   	assigned-clocks = <&l3_gfx_clkctrl OMAP4_GPU_CLKCTRL 24>,
+>   			  <&dpll_per_m7x2_ck>;
+> -	assigned-clock-rates = <0>, <153600000>;
+> +	assigned-clock-rates = <0>, <307200000>;
+>   	assigned-clock-parents = <&dpll_per_m7x2_ck>;
+>   };
+> 
