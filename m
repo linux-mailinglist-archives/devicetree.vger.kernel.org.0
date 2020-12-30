@@ -2,116 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A4E2C2E7C74
-	for <lists+devicetree@lfdr.de>; Wed, 30 Dec 2020 21:55:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A823B2E7C82
+	for <lists+devicetree@lfdr.de>; Wed, 30 Dec 2020 22:04:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726659AbgL3UyA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Dec 2020 15:54:00 -0500
-Received: from mail1.protonmail.ch ([185.70.40.18]:19880 "EHLO
-        mail1.protonmail.ch" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726360AbgL3Ux7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Dec 2020 15:53:59 -0500
-Date:   Wed, 30 Dec 2020 20:53:11 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-        s=protonmail; t=1609361597;
-        bh=uYDyTYEISn/6Dn56ySZ1G8C+g1webIBwDMuMSIUTjPM=;
-        h=Date:To:From:Cc:Reply-To:Subject:In-Reply-To:References:From;
-        b=AsELXTqyVYE4EDeDlC04hCVT4g0IYLBL71lOWBBL8nVi94pY+dqqmQ7mF2JpSiy7n
-         8o9xedGqF9lLl5rDEYfggsQXwRFJT8B9iJkD6+tblc+kK9wp22apF2XmqkaaWnEXB7
-         6oZuXNkdmbz3AWB/dvDhuAhtQbcq/xfp0W0FF+EU=
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-From:   Timon Baetz <timon.baetz@protonmail.com>
-Cc:     Marek Szyprowski <m.szyprowski@samsung.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-pm@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Timon Baetz <timon.baetz@protonmail.com>
-Reply-To: Timon Baetz <timon.baetz@protonmail.com>
-Subject: [PATCH v6 8/8] ARM: dts: exynos: Add top-off charging regulator node for I9100
-Message-ID: <20201230205139.1812366-8-timon.baetz@protonmail.com>
-In-Reply-To: <20201230205139.1812366-1-timon.baetz@protonmail.com>
-References: <20201230205139.1812366-1-timon.baetz@protonmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM shortcircuit=no
-        autolearn=disabled version=3.4.4
-X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
-        mailout.protonmail.ch
+        id S1726503AbgL3VAL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Dec 2020 16:00:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56760 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726502AbgL3VAK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Dec 2020 16:00:10 -0500
+Received: from mail-qv1-xf2b.google.com (mail-qv1-xf2b.google.com [IPv6:2607:f8b0:4864:20::f2b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A29D6C061575;
+        Wed, 30 Dec 2020 12:59:30 -0800 (PST)
+Received: by mail-qv1-xf2b.google.com with SMTP id h16so8226767qvu.8;
+        Wed, 30 Dec 2020 12:59:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=mSSJGsPqhouBo2Mp5AidaQG3JJvDQTg+FTRq3a3ps7o=;
+        b=nWMErpLPA/cKQytVkYYq0YmDf3T3DMjQZcMYZBva8bxheaneD/e3dQtDYQNTykZrp1
+         RIIdb2fpLAWnNfh48UctdpiJCNalHJCiedGfLrli8XQ0j1qMDBw39Kl2wst6X5uPICO3
+         LGRQ5C9EF9h72RpAIRxkTsasJJEJr5kdsVe5qOe9KS4T+R34uXw4lRZCAEVBMPV7JDnC
+         QmY39n7RC19B4dVD4QTgFVN+s4f0rInxjKWtVAZgB595CaWZ8m5Nl9xJh/oWqBnYSJdC
+         K9JLJ8xUo8eG7DqqL1iupqD4l8qd6csloIx+KMIwWwQDF8J2EtoarEkHshFrO0/JtLf+
+         bHTQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=mSSJGsPqhouBo2Mp5AidaQG3JJvDQTg+FTRq3a3ps7o=;
+        b=XvdmNrPYAsyp65GGnI/UAERJNpvVt6zy1PavVfdGkx3poi573D5QNa0Lt8BKzRQjnn
+         D1x0tvHwTUTucI4ciRS0NrK9re/EppJc86qCN7kU+irNu7a+rpzGQh+q9VXGMGsHEmHQ
+         Yu67Gsh/XdjutwN9GkMnxEEg7UqlvTH3iMacEuoR0SyCT4q9XkWeSL6b+3eOhAi9kkrS
+         TF8fZPtB+UwfMjv5linVbPhweNUcARfzVn6l8qIoKfOlWcje0MVtC9ZlrYD93vvF2KRw
+         8xlHNsD+ZhLuPsCFtR9CRoskaDrJ5I9JmeEj3SLc/cNEcS6P3VVqWs+99Kw39pYWG/C4
+         pEAA==
+X-Gm-Message-State: AOAM532ZU4jcl/7/BYmofnp5Nrhcr/+3705F44wOrxgCMvwk+5iEC27U
+        66jrzNUXBxHxMJJRltXU8OQ=
+X-Google-Smtp-Source: ABdhPJynPMg9sgVsCs9B00Bri1ZkJMmTGTtsUssaxCYh3TqVgstIqLOcYX2pD7DXv3LOoCd9C+I4Lw==
+X-Received: by 2002:a05:6214:533:: with SMTP id x19mr58629015qvw.20.1609361969446;
+        Wed, 30 Dec 2020 12:59:29 -0800 (PST)
+Received: from localhost.localdomain ([2804:14c:482:a80:d66:6051:ad08:aa32])
+        by smtp.gmail.com with ESMTPSA id m41sm20892474qtc.28.2020.12.30.12.59.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 30 Dec 2020 12:59:28 -0800 (PST)
+From:   Fabio Estevam <festevam@gmail.com>
+To:     linus.walleij@linaro.org
+Cc:     robh+dt@kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, sandor.yu@nxp.com,
+        Fabio Estevam <festevam@gmail.com>
+Subject: [PATCH v2 1/2] dt-bindings: gpio: 74x164: Introduce the 'registers-default' property
+Date:   Wed, 30 Dec 2020 17:59:15 -0300
+Message-Id: <20201230205916.8875-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Value taken from Galaxy S2 Epic 4G Touch SPH-D710 Android vendor
-kernel [0] which always sets 200mA.
+There are cases where a certain default output value in the 74x164
+output is needed.
 
-Also rearrange regulators based on definition in max8997.h.
+For example: the imx6ul-evk board has the Ethernet PHY reset controlled
+by the 74x164 chip.
 
-[0] https://github.com/krzk/linux-vendor-backup/blob/samsung/galaxy-s2-epic=
--4g-touch-sph-d710-exynos4210-dump/drivers/power/sec_battery_u1.c#L1525
+After enabling the OE pin, the output pins of the 74x164 chip go to
+zero by default, which makes the Ethernet PHY not to be detected.
 
-Signed-off-by: Timon Baetz <timon.baetz@protonmail.com>
+Add a new optional property called 'registers-default' that allows
+describing the default output value for each shift register.
+
+Signed-off-by: Fabio Estevam <festevam@gmail.com>
 ---
-v6: No change.
-v5: No change.
-v4: No change.
-v3: Remove label.=20
-    Fix commit message.
-v2: Add patch.
+Changes since v1:
+- None
 
- arch/arm/boot/dts/exynos4210-i9100.dts | 21 ++++++++++++++-------
- 1 file changed, 14 insertions(+), 7 deletions(-)
+ Documentation/devicetree/bindings/gpio/gpio-74x164.txt | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/arch/arm/boot/dts/exynos4210-i9100.dts b/arch/arm/boot/dts/exy=
-nos4210-i9100.dts
-index 586d801af0b5..e702adb69670 100644
---- a/arch/arm/boot/dts/exynos4210-i9100.dts
-+++ b/arch/arm/boot/dts/exynos4210-i9100.dts
-@@ -560,6 +560,16 @@ safe2_sreg: ESAFEOUT2 {
- =09=09=09=09regulator-boot-on;
- =09=09=09};
-=20
-+=09=09=09EN32KHZ_AP {
-+=09=09=09=09regulator-name =3D "EN32KHZ_AP";
-+=09=09=09=09regulator-always-on;
-+=09=09=09};
-+
-+=09=09=09EN32KHZ_CP {
-+=09=09=09=09regulator-name =3D "EN32KHZ_CP";
-+=09=09=09=09regulator-always-on;
-+=09=09=09};
-+
- =09=09=09charger_reg: CHARGER {
- =09=09=09=09regulator-name =3D "CHARGER";
- =09=09=09=09regulator-min-microamp =3D <200000>;
-@@ -573,13 +583,10 @@ chargercv_reg: CHARGER_CV {
- =09=09=09=09regulator-always-on;
- =09=09=09};
-=20
--=09=09=09EN32KHZ_AP {
--=09=09=09=09regulator-name =3D "EN32KHZ_AP";
--=09=09=09=09regulator-always-on;
--=09=09=09};
--
--=09=09=09EN32KHZ_CP {
--=09=09=09=09regulator-name =3D "EN32KHZ_CP";
-+=09=09=09CHARGER_TOPOFF {
-+=09=09=09=09regulator-name =3D "CHARGER_TOPOFF";
-+=09=09=09=09regulator-min-microamp =3D <200000>;
-+=09=09=09=09regulator-max-microamp =3D <200000>;
- =09=09=09=09regulator-always-on;
- =09=09=09};
- =09=09};
---=20
-2.25.1
-
+diff --git a/Documentation/devicetree/bindings/gpio/gpio-74x164.txt b/Documentation/devicetree/bindings/gpio/gpio-74x164.txt
+index 2a97553d8d76..bf8f45896018 100644
+--- a/Documentation/devicetree/bindings/gpio/gpio-74x164.txt
++++ b/Documentation/devicetree/bindings/gpio/gpio-74x164.txt
+@@ -14,6 +14,8 @@ Required properties:
+ 
+ Optional properties:
+ - enable-gpios: GPIO connected to the OE (Output Enable) pin.
++- registers-default: An array of 8-bit values describing the default output
++value of each shift registers.
+ 
+ Example:
+ 
+@@ -24,4 +26,5 @@ gpio5: gpio5@0 {
+ 	#gpio-cells = <2>;
+ 	registers-number = <4>;
+ 	spi-max-frequency = <100000>;
++	registers-default = /bits/ 8 <0x57 0xF0 0xFF 0xF0>;
+ };
+-- 
+2.17.1
 
