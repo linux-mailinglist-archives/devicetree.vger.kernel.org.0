@@ -2,75 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AD7922E7C20
-	for <lists+devicetree@lfdr.de>; Wed, 30 Dec 2020 20:22:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 64DA92E7C57
+	for <lists+devicetree@lfdr.de>; Wed, 30 Dec 2020 21:54:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726429AbgL3TVk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Dec 2020 14:21:40 -0500
-Received: from jabberwock.ucw.cz ([46.255.230.98]:60666 "EHLO
-        jabberwock.ucw.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726197AbgL3TVk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Dec 2020 14:21:40 -0500
-Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
-        id 80A641C0B79; Wed, 30 Dec 2020 20:20:57 +0100 (CET)
-Date:   Wed, 30 Dec 2020 20:20:57 +0100
-From:   Pavel Machek <pavel@ucw.cz>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        jacek.anaszewski@gmail.com, dmurphy@ti.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-leds@vger.kernel.org, thunder.leizhen@huawei.com
-Subject: Re: [PATCH v2] dt-bindings: leds: Document commonly used LED triggers
-Message-ID: <20201230192057.GF25903@duo.ucw.cz>
-References: <20201210082449.30586-1-manivannan.sadhasivam@linaro.org>
- <20201214223621.GA2493849@robh.at.kernel.org>
+        id S1726247AbgL3Uwm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Dec 2020 15:52:42 -0500
+Received: from mail-40134.protonmail.ch ([185.70.40.134]:60163 "EHLO
+        mail-40134.protonmail.ch" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726277AbgL3Uwm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Dec 2020 15:52:42 -0500
+Date:   Wed, 30 Dec 2020 20:51:53 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+        s=protonmail; t=1609361519;
+        bh=+xD2FarfshYIV4IW9XFPK6r4Ai4Fr6Cddj2HlgicqZs=;
+        h=Date:To:From:Cc:Reply-To:Subject:From;
+        b=o2FlyKVrdCTja9nVGQGaMcfgmmLjHu07ijKp5Qp6yEzyWX+p5BPljRmQqljzVzpcm
+         pPXOv3Bde2PPNTO1+QJkJau12D2QUCNEx0w8VfuKDT3U1hEl3mBGarpIom9FTswvsq
+         ixTrWNNc6CwIe9LTgZSp0iw8ZRRhLDYncNksrK/o=
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+From:   Timon Baetz <timon.baetz@protonmail.com>
+Cc:     Marek Szyprowski <m.szyprowski@samsung.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-pm@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Timon Baetz <timon.baetz@protonmail.com>
+Reply-To: Timon Baetz <timon.baetz@protonmail.com>
+Subject: [PATCH v6 1/8] extcon: max8997: Add CHGINS and CHGRM interrupt handling
+Message-ID: <20201230205139.1812366-1-timon.baetz@protonmail.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha1;
-        protocol="application/pgp-signature"; boundary="xkXJwpr35CY/Lc3I"
-Content-Disposition: inline
-In-Reply-To: <20201214223621.GA2493849@robh.at.kernel.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM shortcircuit=no
+        autolearn=disabled version=3.4.4
+X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
+        mailout.protonmail.ch
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This allows the MAX8997 charger to set the current limit depending on
+the detected extcon charger type.
 
---xkXJwpr35CY/Lc3I
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Timon Baetz <timon.baetz@protonmail.com>
+---
+v6: No change.
+v5: No change.
+v4: No change.
+v3: No change.
+v2: Remove empty line.
 
-On Mon 2020-12-14 16:36:21, Rob Herring wrote:
-> On Thu, Dec 10, 2020 at 01:54:49PM +0530, Manivannan Sadhasivam wrote:
-> > This commit documents the LED triggers used commonly in the SoCs. Not
-> > all triggers are documented as some of them are very application specif=
-ic.
-> > Most of the triggers documented here are currently used in devicetrees
-> > of many SoCs.
->=20
-> The idea with recent LED binding changes is to move away from=20
-> 'linux,default-trigger' to 'function' and 'trigger-sources' and to have=
+ drivers/extcon/extcon-max8997.c | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/drivers/extcon/extcon-max8997.c b/drivers/extcon/extcon-max899=
+7.c
+index 337b0eea4e62..e1408075ef7d 100644
+--- a/drivers/extcon/extcon-max8997.c
++++ b/drivers/extcon/extcon-max8997.c
+@@ -44,6 +44,8 @@ static struct max8997_muic_irq muic_irqs[] =3D {
+ =09{ MAX8997_MUICIRQ_ChgDetRun,=09"muic-CHGDETRUN" },
+ =09{ MAX8997_MUICIRQ_ChgTyp,=09"muic-CHGTYP" },
+ =09{ MAX8997_MUICIRQ_OVP,=09=09"muic-OVP" },
++=09{ MAX8997_PMICIRQ_CHGINS,=09"pmic-CHGINS" },
++=09{ MAX8997_PMICIRQ_CHGRM,=09"pmic-CHGRM" },
+ };
 =20
-> some sort of standardized names.
-
-Yes, but I guess we still want to document this... and perhaps use it
-during transition and when trigger-sources (etc) are too hard to set
-up.
-
-Best regards,
-								Pavel
-
+ /* Define supported cable type */
+@@ -538,6 +540,8 @@ static void max8997_muic_irq_work(struct work_struct *w=
+ork)
+ =09case MAX8997_MUICIRQ_DCDTmr:
+ =09case MAX8997_MUICIRQ_ChgDetRun:
+ =09case MAX8997_MUICIRQ_ChgTyp:
++=09case MAX8997_PMICIRQ_CHGINS:
++=09case MAX8997_PMICIRQ_CHGRM:
+ =09=09/* Handle charger cable */
+ =09=09ret =3D max8997_muic_chg_handler(info);
+ =09=09break;
 --=20
-http://www.livejournal.com/~pavelmachek
+2.25.1
 
---xkXJwpr35CY/Lc3I
-Content-Type: application/pgp-signature; name="signature.asc"
 
------BEGIN PGP SIGNATURE-----
-
-iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCX+zTGQAKCRAw5/Bqldv6
-8g4bAJ9c4pSJ1XVBUmopWKPjhhhiIKiUJgCeLML1TCTldG0ypmbnMMN6q0LeMRY=
-=HQML
------END PGP SIGNATURE-----
-
---xkXJwpr35CY/Lc3I--
