@@ -2,83 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E4B3D2E79D1
-	for <lists+devicetree@lfdr.de>; Wed, 30 Dec 2020 14:53:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D482E2E79E7
+	for <lists+devicetree@lfdr.de>; Wed, 30 Dec 2020 15:08:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726689AbgL3NxA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Dec 2020 08:53:00 -0500
-Received: from mail.kernel.org ([198.145.29.99]:34530 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726656AbgL3Nw7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 30 Dec 2020 08:52:59 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id A2D0920791;
-        Wed, 30 Dec 2020 13:52:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1609336339;
-        bh=A8KDxk2J7yDBfz+5AzQj8eYVlMtcX4Tp2Ks9wdanxjY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=DOk5fuT/SZohpcmYMIoLDKexl84L1uiwodTWrcIQs8Y5iuNlHrYkt4ptFLtTtplsr
-         yprYZUWFUPVRGv0ibQw3SLBeHD9BhmDnCHXx5Ab6eo+PYFgV08zRSsCUEynvqiQddj
-         cFUbzeSSGvQ7UPpOCUwCizyGx4ccXoYNjtRRnv7hKNMS9fv74lWAJWHAKXN4qA04m5
-         hjhIq4CgTFe0okfbtqywsxYvvEPWkj1i5DQJYt7a5QRUF5S8J6OMqwhmWGGGvpwBr3
-         RNEZNHVNtxW7Sif3zjRKvWsFxYVMikE7HqJGC5KwM/LVOY/N4QnbZl/XXJwy+3nmqY
-         28P3Uu23IDUMA==
-Date:   Wed, 30 Dec 2020 13:51:56 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Bert Vermeulen <bert@biot.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Birger Koblitz <mail@birger-koblitz.de>,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH RESEND v2 1/2] dt-bindings: spi: Realtek RTL838x/RTL839x
- SPI controller
-Message-ID: <20201230135156.GF4428@sirena.org.uk>
-References: <20201229231904.2558916-1-bert@biot.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="p8PhoBjPxaQXD0vg"
-Content-Disposition: inline
-In-Reply-To: <20201229231904.2558916-1-bert@biot.com>
-X-Cookie: Above all things, reverence yourself.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        id S1726735AbgL3OI2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Dec 2020 09:08:28 -0500
+Received: from sender11-of-o51.zoho.eu ([31.186.226.237]:21198 "EHLO
+        sender11-of-o51.zoho.eu" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726610AbgL3OI2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Dec 2020 09:08:28 -0500
+X-Greylist: delayed 983 seconds by postgrey-1.27 at vger.kernel.org; Wed, 30 Dec 2020 09:08:27 EST
+ARC-Seal: i=1; a=rsa-sha256; t=1609336277; cv=none; 
+        d=zohomail.eu; s=zohoarc; 
+        b=QjGhdD6EWGp06wwivV2Zmi4LsLFrPaHxeyYj8/X9LaAbaLLX7aRL1dBfEYWf/d1kmMuqURimmLQIp9DAiWFJV16fzDaFBgfWcGo3ku6TBIvAnBZ+h/tUzR5JlzI8aOlxtViQwMD+EnZdDthRwcRb+XIcToxvtGDD5h8rVzLwdQE=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.eu; s=zohoarc; 
+        t=1609336277; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:MIME-Version:Message-ID:Subject:To; 
+        bh=as2epJK+1brfBBs/4Iz5rsidAXMjCRi10mQgGkykLQw=; 
+        b=Rr26YQL7go35vY+ENG84Nu0ZmHPONYDJ9y3EzbBpNnvpT8ocizeDegzsFFwnSfDmWk/Ydt/xN2t+etTENO8GZt48Y1GEMfm2da7y7l080KkSg2u+VAHQuVGN5aH/Txj14RA+Ia79UScKkmHBJgydQuuhUTzQVmgHyfBCVkzrxuE=
+ARC-Authentication-Results: i=1; mx.zohomail.eu;
+        spf=pass  smtp.mailfrom=philipp@uvos.xyz;
+        dmarc=pass header.from=<philipp@uvos.xyz> header.from=<philipp@uvos.xyz>
+Received: from localhost.localdomain (ip-95-222-213-179.hsi15.unitymediagroup.de [95.222.213.179]) by mx.zoho.eu
+        with SMTPS id 160933627607382.34662944915351; Wed, 30 Dec 2020 14:51:16 +0100 (CET)
+Date:   Wed, 30 Dec 2020 14:51:15 +0100
+From:   Carl Philipp Klemm <philipp@uvos.xyz>
+To:     tony@atomide.com, bcousson@baylibre.com
+Cc:     robh+dt@kernel.org, linux-omap@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH 1/1] ARM: dts: omap443x: Correct sgx clock to 307.2MHz as
+ used on motorola vendor kernel
+Message-Id: <20201230145115.239b4e1d50db37fce3560007@uvos.xyz>
+X-Mailer: Sylpheed 3.7.0 (GTK+ 2.24.33; x86_64-unknown-linux-gnu)
+Mime-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-ZohoMailClient: External
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The Android vendor kernel uses 307.2MHz or a devider ratio of /5 while active 
+153600000 or /10 is only used when the sgx core is inactive.
 
---p8PhoBjPxaQXD0vg
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Signed-off-by: Carl Philipp Klemm <philipp@uvos.xyz>
+---
+ arch/arm/boot/dts/omap443x.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-On Wed, Dec 30, 2020 at 12:19:03AM +0100, Bert Vermeulen wrote:
-
-> +properties:
-> +  compatible:
-> +    const: realtek,spi
-
-It is possibled Realtek might make other SPI controllers, there should
-be some more specific name such as a compatible for each SoC that the
-controller appears in or an IP name if one is known.
-
-Please submit patches using subject lines reflecting the style for the
-subsystem, this makes it easier for people to identify relevant patches.
-Look at what existing commits in the area you're changing are doing and
-make sure your subject lines visually resemble what they're doing.
-There's no need to resubmit to fix this alone.
-
---p8PhoBjPxaQXD0vg
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl/shfsACgkQJNaLcl1U
-h9B4mwf/SDei1d9DKPMjGfTGoqYmyuzwYLFOr3ddZgUv7qoN3PvV0AIXoJNBSR4h
-Ajwh5t8bopJIo4sqplupw22PcIT7jzIejn7XgQdr9ctYPZSeaBt/3smJainNvDit
-K/in9Os6lvPa6YGLeDPYFlrZK59W2Fx2ApIYY2a8luq2Y8CLH6TzJbuYj3ps72eZ
-MtQW1Bv6VMg1F6wCUd7jgDP6ppLrIss671KSGxlCMk36UiRYNJdH2TDB3o89LhT1
-tfuC3n/kCS+DIfTb82B3nQxSKb2dijnd53a0S9/hqr2sLuYBhQm2b5ZqB+H3wmeM
-dfYORicJLznhGIZZOgpbIETvMTRKxA==
-=UBK0
------END PGP SIGNATURE-----
-
---p8PhoBjPxaQXD0vg--
+diff --git a/arch/arm/boot/dts/omap443x.dtsi b/arch/arm/boot/dts/omap443x.dtsi
+index dd8ef58cbaed..8466161197ae 100644
+--- a/arch/arm/boot/dts/omap443x.dtsi
++++ b/arch/arm/boot/dts/omap443x.dtsi
+@@ -78,11 +78,11 @@ &cpu_thermal {
+ /include/ "omap443x-clocks.dtsi"
+ 
+ /*
+- * Use dpll_per for sgx at 153.6MHz like droid4 stock v3.0.8 Android kernel
++ * Use dpll_per for sgx at   like droid4 stock v3.0.8 Android kernel
+  */
+ &sgx_module {
+ 	assigned-clocks = <&l3_gfx_clkctrl OMAP4_GPU_CLKCTRL 24>,
+ 			  <&dpll_per_m7x2_ck>;
+-	assigned-clock-rates = <0>, <153600000>;
++	assigned-clock-rates = <0>, <307200000>;
+ 	assigned-clock-parents = <&dpll_per_m7x2_ck>;
+ };
+-- 
+2.29.2
