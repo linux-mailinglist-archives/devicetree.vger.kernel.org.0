@@ -2,227 +2,210 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 160742E76AF
-	for <lists+devicetree@lfdr.de>; Wed, 30 Dec 2020 07:54:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 635672E76D0
+	for <lists+devicetree@lfdr.de>; Wed, 30 Dec 2020 08:19:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726247AbgL3GyN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Dec 2020 01:54:13 -0500
-Received: from mail-bn8nam08on2116.outbound.protection.outlook.com ([40.107.100.116]:2452
-        "EHLO NAM04-BN8-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726230AbgL3GyM (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 30 Dec 2020 01:54:12 -0500
+        id S1726517AbgL3HS3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Dec 2020 02:18:29 -0500
+Received: from mga05.intel.com ([192.55.52.43]:56373 "EHLO mga05.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726313AbgL3HS3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 30 Dec 2020 02:18:29 -0500
+IronPort-SDR: 5j1Q/GGttgJpMVEsyWu1tRbzXYh2FCFIraQERd+UC+PolQUIUtBV8Fl6rQ25dP6stPRjdvaSaE
+ /I4x/mqXwraA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9849"; a="261331158"
+X-IronPort-AV: E=Sophos;i="5.78,460,1599548400"; 
+   d="scan'208";a="261331158"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Dec 2020 23:17:48 -0800
+IronPort-SDR: Ti/ymPYAAeuyCSpTVixEonBue9GbIgRGIzzi37y8/OTl5Z1mv/cfXKkS4JM3wMJbxdRgPbaL1Z
+ PONlhdSnDLyA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.78,460,1599548400"; 
+   d="scan'208";a="419445409"
+Received: from orsmsx606.amr.corp.intel.com ([10.22.229.19])
+  by orsmga001.jf.intel.com with ESMTP; 29 Dec 2020 23:17:48 -0800
+Received: from orsmsx608.amr.corp.intel.com (10.22.229.21) by
+ ORSMSX606.amr.corp.intel.com (10.22.229.19) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Tue, 29 Dec 2020 23:17:48 -0800
+Received: from orsmsx607.amr.corp.intel.com (10.22.229.20) by
+ ORSMSX608.amr.corp.intel.com (10.22.229.21) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Tue, 29 Dec 2020 23:17:47 -0800
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx607.amr.corp.intel.com (10.22.229.20) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5
+ via Frontend Transport; Tue, 29 Dec 2020 23:17:47 -0800
+Received: from NAM02-BL2-obe.outbound.protection.outlook.com (104.47.38.57) by
+ edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.1713.5; Tue, 29 Dec 2020 23:17:47 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=UIJSPAi+QPGE5qpNBxLKff54UbWqBXHwBu1qS2b3HSHIRJIo18Ty0UASKdWUMrxvltcqxf+DubcnTxNaz8kufLwE7XEBsmba+P5f2ChNu5lTW8HneI6Op4J5atpjlc/dZ4yKsbikJyVmT30NFaQIT0hC1t1hNSiWl5N1VoDW9H37fYumhsqc2Qnewdhq8BafSkKS0pwAb4Sbl0R7x3qtMGmhhVowHjqfOJZrYABPsTeA3mmUovKRvKJx/OgSuH4ZNXXrnsoOdv14v186D41IvEc635bOKehFyPVmm+zV8la2p4r1qwyZRL9Mx6J8PVn+UW6wc8Y20JKA23sHI2e20g==
+ b=FGMSQeLj3ZYuu/d2MZQqgpefIb+21B/7w0ZdYrHo/7/FSgP4cGIkijF3aiLUX8QnJkeYsQ3KsLHKHS8g9Am1udvTHoEReBSdVWe+EOPv9eaK7MM8lup5PvTk6Wsx5HyhRpOLBY1g8Gia5nBGToyqYI+u8XjmZm0x6R/oMHdoK2vXdsak+UIvgZtMhxsjKbtVLuovPGYSAUYzJjzb44DJ+AEExPb1InKFtRBI9LeJjAq5BNoN+HgIXr3cYko8hVbAJsmcs9y3lIw0CPoaGByCyeGKLP0+L6lFptoytzLVt/ziYQRfUFi0IaY1UWMXA4+7IhpAP0PhOokZEioNiIAjrw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=9YELPedk8GvDzFuKeU8ulKrf3pcN3C+OF3SkxHDXOa4=;
- b=NCx1kPuSecaCd5GY8FdPTChyghSud+TN2gg9LiUVT04yta85W6Lk9rKj0Pi2aH5VE1yH2HFOV0vbTWssnhSChbEqmvFaSdsgKitzNQ3SlX9h6zFTjDUTOO0op8DtTGFA2wMB0C8VSCce8jk4UEn0hLpK4lvI7VjR4wHqHqzy14DEYZ95K9Vano22u6p+mZpV9YOfr3ZL1DZhutQlYfRh6j5pRcix45UlcIq9mHA0WFlvbG3ctnqEkzqO+6W3GysLxHF30BcfFdZHzFJ4x9FRz7gKL9ivBAHjJxWSFWw3QD2eS2DR10olq8KYhuRUqxV59dt7t6B4UVvySgfXeJYD0w==
+ bh=KLHLQBbBABK+clEPCXL5N5JXjJSQ0VLsTUbE1RV6rnA=;
+ b=VlmnHneziWfOibbshmvcx32Ntenjay7H2ws+LUjvzRAk8Ua3UOHQRGjPllzm2Bg7PbA4cBJcqz9u99VCBRMnMGS9bllakT1PDD9hB8PVc9xHkIZbXuy0BjI4TBf6Ch/slvLililITkEB80JNqv71gTbaM47h7S8MKWWZRs9YFXCYLireKS4afxy9Gpv5aLzF+Elizl5HDg9MLiadZE4J1JdFhhCHnF5pbzVNuhimEww98c2e3mp8p18OhyMemDud5/E0u/EzsUz8MwiDEX9fUDhNXWY9axISESfIEFaTplJxILMijxs87MQSPe5CWwU2A/+4LusNAe1BKZn+Wkgl6A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=analogixsemi.com; dmarc=pass action=none
- header.from=analogixsemi.com; dkim=pass header.d=analogixsemi.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=Analogixsemi.onmicrosoft.com; s=selector2-Analogixsemi-onmicrosoft-com;
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com;
+ s=selector2-intel-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=9YELPedk8GvDzFuKeU8ulKrf3pcN3C+OF3SkxHDXOa4=;
- b=sbttjiFGLdVqoakiAP48zUivH0dvPYhPo8WyLK6Fk4gopDx2JtvTjex+v+94pCHGn7rd632PbBAPnuFP1mOcoPPEo0HZs3+44lYfpQupf0R3hvCCh5O5mlLm/M2Uns4qHPGIGVUhW/JUUXtAaHbAPyTgzXEUFw0YwGUrM+9oKs0=
-Authentication-Results: vger.kernel.org; dkim=none (message not signed)
- header.d=none;vger.kernel.org; dmarc=none action=none
- header.from=analogixsemi.com;
-Received: from CH2PR04MB6741.namprd04.prod.outlook.com (2603:10b6:610:96::19)
- by CH2PR04MB6696.namprd04.prod.outlook.com (2603:10b6:610:91::7) with
+ bh=KLHLQBbBABK+clEPCXL5N5JXjJSQ0VLsTUbE1RV6rnA=;
+ b=UZ4h+lwJ+AyDsr8J3stPKUTOdSwHA6WUTHvvbIcv+cfzrDSAgHJXNwsmv0bgq49ABYXXMy47cEwS/zu+mhPJ9KlBLPka139zGvD/Y63xA5F2H3Nd8yxRvRa7b1qgyXRTydg1mKlMwg32M4Q/GRlCVVlECrSRO7uCG8y/QdSf0pg=
+Received: from DM6PR11MB4250.namprd11.prod.outlook.com (2603:10b6:5:1df::18)
+ by DM6PR11MB2828.namprd11.prod.outlook.com (2603:10b6:5:c6::14) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3721.20; Wed, 30 Dec
- 2020 06:53:03 +0000
-Received: from CH2PR04MB6741.namprd04.prod.outlook.com
- ([fe80::957a:caf2:db9e:8c8d]) by CH2PR04MB6741.namprd04.prod.outlook.com
- ([fe80::957a:caf2:db9e:8c8d%9]) with mapi id 15.20.3721.019; Wed, 30 Dec 2020
- 06:53:03 +0000
-Date:   Wed, 30 Dec 2020 14:52:53 +0800
-From:   Xin Ji <xji@analogixsemi.com>
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, David Airlie <airlied@linux.ie>,
-        Nicolas Boichat <drinkcat@google.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Ricardo =?iso-8859-1?Q?Ca=F1uelo?= 
-        <ricardo.canuelo@collabora.com>, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, Sheng Pan <span@analogixsemi.com>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 1/2] dt-bindings: drm/bridge: anx7625: add DPI flag
- and swing setting
-Message-ID: <20201230065253.GA31290@pc-user>
-References: <cover.1608883950.git.xji@analogixsemi.com>
- <c29b7d9fda9ce8619d1c718b077250998a8600b8.1608883950.git.xji@analogixsemi.com>
- <X+n1COtS8nrCFUHd@pendragon.ideasonboard.com>
- <20201229065048.GB7073@pc-user>
- <X+s+bDHLbhxBDz7E@pendragon.ideasonboard.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <X+s+bDHLbhxBDz7E@pendragon.ideasonboard.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-X-Originating-IP: [61.148.116.10]
-X-ClientProxiedBy: HK2PR02CA0174.apcprd02.prod.outlook.com
- (2603:1096:201:1f::34) To CH2PR04MB6741.namprd04.prod.outlook.com
- (2603:10b6:610:96::19)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3700.31; Wed, 30 Dec
+ 2020 07:17:45 +0000
+Received: from DM6PR11MB4250.namprd11.prod.outlook.com
+ ([fe80::b90d:d053:9de6:e5ef]) by DM6PR11MB4250.namprd11.prod.outlook.com
+ ([fe80::b90d:d053:9de6:e5ef%4]) with mapi id 15.20.3700.031; Wed, 30 Dec 2020
+ 07:17:45 +0000
+From:   "Ayyathurai, Vijayakannan" <vijayakannan.ayyathurai@intel.com>
+To:     "wim@linux-watchdog.org" <wim@linux-watchdog.org>,
+        "linux@roeck-us.net" <linux@roeck-us.net>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>
+CC:     "linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "andriy.shevchenko@linux.intel.com" 
+        <andriy.shevchenko@linux.intel.com>,
+        "mgross@linux.intel.com" <mgross@linux.intel.com>,
+        "Wan Mohamad, Wan Ahmad Zainie" 
+        <wan.ahmad.zainie.wan.mohamad@intel.com>,
+        "Raja Subramanian, Lakshmi Bai" 
+        <lakshmi.bai.raja.subramanian@intel.com>,
+        "Seow, Chen Yong" <chen.yong.seow@intel.com>
+Subject: RE: [PATCH v4 0/2] Add drivers for Intel Keem Bay SoC watchdog
+Thread-Topic: [PATCH v4 0/2] Add drivers for Intel Keem Bay SoC watchdog
+Thread-Index: AQHW09gGEECAwQGck0ygFmf5JftxTKoPTyXQ
+Date:   Wed, 30 Dec 2020 07:17:45 +0000
+Message-ID: <DM6PR11MB42500128E416A387353AE1C6FBD70@DM6PR11MB4250.namprd11.prod.outlook.com>
+References: <cover.1608141131.git.vijayakannan.ayyathurai@intel.com>
+In-Reply-To: <cover.1608141131.git.vijayakannan.ayyathurai@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+dlp-version: 11.5.1.3
+authentication-results: linux-watchdog.org; dkim=none (message not signed)
+ header.d=none;linux-watchdog.org; dmarc=none action=none
+ header.from=intel.com;
+x-originating-ip: [42.106.177.166]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: b82299cc-d304-4b93-289c-08d8ac93014e
+x-ms-traffictypediagnostic: DM6PR11MB2828:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <DM6PR11MB2828829D1AC602BD577B7D57FBD70@DM6PR11MB2828.namprd11.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:5516;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: /zv122ymw2VnN+UlksCW8D5ycQIw+fLDM3i3mck+Zj+/FYDDP1jxiNb+EIMj7MIPrzho+vIBPX/f1zPVXPzkN0W7qNxr2HOwqskEt/YhxldIBpBHYZnbIAKxm+mT7rfUd23qBnDh2sEb3Cwi8BrmJsCfKQE5T1ewg41zxSwyLJmRdMXAetHCBAoQM4Z8CkukCEjdCsUo0NO18oMWhJbqPi5AWtw7T6dYf8lRjYTP6R0AE5vmfULQAe88ilh+U0hOlR4byP96PsmjzMAoxQcWuR5dd9JDynwOaKTrqFaLj7bWdALW2oE8E2oyfI/VvjWK1HRsaTL1FljKUazYFjXOGo5XO+3SmC9XcyJL1uCo+EKi25K61IMncno9bNzza+MtsHOJRvLKmz/OPMrjgYh5pg==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR11MB4250.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(136003)(396003)(346002)(366004)(39860400002)(376002)(4326008)(8936002)(26005)(316002)(7696005)(55016002)(6506007)(83380400001)(52536014)(478600001)(5660300002)(71200400001)(33656002)(8676002)(2906002)(76116006)(66946007)(54906003)(9686003)(66556008)(64756008)(110136005)(86362001)(66476007)(186003)(66446008);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata: =?us-ascii?Q?WrkMCl1c/zmLqjS6dgN4wNIwdiIWeezYIcjkDte2GGAKZhbhWst2jN8cU1qA?=
+ =?us-ascii?Q?4aM7b7eAyu+4POGOOMTlBw4+nDfVXXIIIHCPL4gh4uxN6uEo0SRdFHrMbjsJ?=
+ =?us-ascii?Q?i8iv8VeDHMpQpqXjsQfV7hneZNOB9BGbFTFNxVt7M9p6RAlv63RkTyd9mhhw?=
+ =?us-ascii?Q?PZlTbT8Z6joygpTiuBch4MqQEI+Sc3BN1X4vaoTf8SUXZprEn/ZK/4MLerpn?=
+ =?us-ascii?Q?/OYGcq6st9YI/+H0w+7UFhB9NB+99sdPZGUsBHuGJYRGPYMDuI9QLhuUhKWu?=
+ =?us-ascii?Q?vTO9nhEE8vI3rqnSCIogPT/R1HWYFNXUSM9TxGcu7V5VIPU2173ZAYAYx86Q?=
+ =?us-ascii?Q?Dithm9+IU8jNqztknGNmK7OMzOkqFoygwQIa9b8rW9WlDRzl6dEAeFR6DbEc?=
+ =?us-ascii?Q?AkwIsdHOvsTNMAHpTgEAC2XtdCDi1tUQfzPh49wkgW+sY/QPJHwB4JmNZ2Ef?=
+ =?us-ascii?Q?qgjQtTosadOnkoJ+uJuFTejarTSvADkiD6NP3O9LShJIR9rLhnqsfHIFsxOM?=
+ =?us-ascii?Q?fzHy/UYsY10FOeOden0i7XBine9yLwzLpEi4gxg+rR4oDs0XFbdw8mMedATs?=
+ =?us-ascii?Q?IKDZqXuEEo6pnnIUrZPudhiny+gxYHXh+qnh17/q5nGZ/7Ga9PrJ+0mIm8MO?=
+ =?us-ascii?Q?CHXNjjTOpQmHruG1h1qnIJqirlxDiHeVfeYGmMuudGo2utcG7yUGUy1MtmP6?=
+ =?us-ascii?Q?RETM6xMrPxUbZRKb/xdwl15/i2yKXlVozL6d20/IEL5dhaS59FQEK/O0S7Ct?=
+ =?us-ascii?Q?A5261ijC3iK1RWENT0vcu9lVlKeZRWgXcBE9mNNxDxR0kEqHwRl9g5o117a1?=
+ =?us-ascii?Q?3brlck6+IkiA6jkBiNAB7yZmOMs7zV9JHkOCTb/mItL59BMNLmjCtZVpQAtk?=
+ =?us-ascii?Q?ygVBQhrrCxHxm9LSprruVh+OHWTRJRzp5GdZXUkBmjzCGL2J+AJ3wQxLw7wF?=
+ =?us-ascii?Q?f7pNPThIx/zu06Ymb5PyvQa1tN5Tjff5C9H0x8AO0X0=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from pc-user (61.148.116.10) by HK2PR02CA0174.apcprd02.prod.outlook.com (2603:1096:201:1f::34) with Microsoft SMTP Server (version=TLS1_0, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA) id 15.20.3700.27 via Frontend Transport; Wed, 30 Dec 2020 06:53:02 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 01566213-308f-4687-3431-08d8ac8f8e1a
-X-MS-TrafficTypeDiagnostic: CH2PR04MB6696:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <CH2PR04MB6696819A956DDA8A7ABBBCFDC7D70@CH2PR04MB6696.namprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: R22Rjohkys9tmwpYvy3M20ppuEsIt7fIrnlok/3eR/hB8K5lEEz7MYJWkjxWa7Hnhgf+jcrm9n8eDfldM1KxePizMH72/gNGobIcC46xGcXtFgaBBtq+pEPO6HfBqc6fTwOd96k3DzO9wE8FGwV+2N4Ph60E7XS5csQ/wjjp5Nt4wtWFVzrW+x5wLDt56XSDXnmWrMFjQMPbHm9i9AtCRJePf4/vT+3Y+XxCAYPoGI4qQD3kTeNDMOVXVDGEasNyCpqlvXnMwMCq0tbLFRMLRtKnvoxmcxv0Xdvrb0T+6PNrdfus5mBvcTTql0mAyRiNDSdPWQ8bO80o9/40SoQy/fEqXiHxzxZKnKDiSFeLcivWzGWpEFdTGuNMuxprDab+lEgXEBrHqE9AaOfuvVxM+w==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CH2PR04MB6741.namprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(39840400004)(366004)(346002)(136003)(396003)(376002)(478600001)(4326008)(33656002)(6666004)(33716001)(9686003)(55016002)(8676002)(83380400001)(956004)(5660300002)(54906003)(186003)(6916009)(1076003)(16526019)(7416002)(86362001)(8936002)(26005)(316002)(66556008)(66946007)(6496006)(2906002)(52116002)(66476007);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?5wwrYOIq+SIG6q0p0tTpA1K9vGcyYZDLpJxkxiTcZlnn4YS58pUAzS9hUqE2?=
- =?us-ascii?Q?UJ3TYrBAvbj2nCoMtTijVflfVyGjdIaIbjZD9vqY0vM+JYS+v4htlv0+rpJe?=
- =?us-ascii?Q?Pvq2vzHIjqpqh39g634gNTbMZZoE0oUgMJtg/Q1tyZUkKS2cxoQtrbV7IPEI?=
- =?us-ascii?Q?fISfO0YLvddOG+FSP923H9sUce4vOfYwQbtnyH5POU1GfCb7L/fejSeGOZOZ?=
- =?us-ascii?Q?IPTJMAVFVi5wNfyeLH14gxDGHqRlTDufPs7CKD5tgQuTqkm+bIYIKkYYxbkl?=
- =?us-ascii?Q?ZmBTRJquW4lB0zcHxd8+mG9kh3Gj7XNY0hVNm1HYirTXtkZONGDv4tONxk/g?=
- =?us-ascii?Q?V9o/2O0vlQalW+D+bZxTEKdYkn/pQjiO/enJBpvU/G8ANLPKbX7K6DQebZS9?=
- =?us-ascii?Q?xgKBMXppLX1ARdVXcGSb3gymn7JZzE8c5t5ee4ZU+qO8u/U0jYCbF7uO4B9z?=
- =?us-ascii?Q?PC1YOBJ1BUQQpadmN9Pdn40IMQZG6OCldB1RZIuALSYbZ6I3x03qcVj8N/77?=
- =?us-ascii?Q?XONzcEaFnHhKoN3qlOyRTGGJDiPE9Nfyx/Mz9GrPr5qaSAEG5H9w5e+9MQZf?=
- =?us-ascii?Q?X2/PRtObCvkOXcGhpygxJ98GQkN0JovMXB+0Rz1+SLCj2UrXo+lHzd/qKnBu?=
- =?us-ascii?Q?vbNpNyU2zpd9JC14T6D15HP1Zma88yDQSfPmgyg3Y1x94ewdzrihJt+1CO8t?=
- =?us-ascii?Q?Xbp4eTiAJZQaluUJVKmJvm3OVpiWIPtzLsHiJQQ2sS00kOhd//iAJyawcX0T?=
- =?us-ascii?Q?SCF9yH2v3ytuhUGduGAzJBMTqv6HrwWCCvL5qGf4Ui4XFrzEY/I4WSMyaUoK?=
- =?us-ascii?Q?bLDn6MzRGParh1mT21A1lE0dWCqYVIYb3f8/JbtPWyNYimuKztJDy/ADGGih?=
- =?us-ascii?Q?zveu4sVP1REUI1m6jMyPbu4czpWXseY/XjXRNcB3MrJREbPrOpuoiZagWid6?=
- =?us-ascii?Q?zuw/cXWUul2uydrxgMqD6JlLJWzKCKi3VSNCl1JMCG8r8pCsV8qTt4VTlp1K?=
- =?us-ascii?Q?GHmQ?=
-X-OriginatorOrg: analogixsemi.com
-X-MS-Exchange-CrossTenant-AuthSource: CH2PR04MB6741.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Dec 2020 06:53:03.5894
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB4250.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b82299cc-d304-4b93-289c-08d8ac93014e
+X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Dec 2020 07:17:45.3855
  (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: b099b0b4-f26c-4cf5-9a0f-d5be9acab205
-X-MS-Exchange-CrossTenant-Network-Message-Id: 01566213-308f-4687-3431-08d8ac8f8e1a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: yStyratQDUlyZQl8h8lGhZoAj3HTtIGwQTwMALoZnZJZeyTTpYagREVgtMa9lbErJ7D7CzjVavow0CTYKvtVRw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR04MB6696
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: HgPW7RyqeO62dXS9eHbAHB7A8bYXSSHBB6JzG89820CPGSbCqQfEPOWoY5vo74y3RMAZMHYPOmQQ153FtDy51Pwsf9nlxhCUHNgc4MCiNBHn0vsYjUd7cj7FGfsIlE1u
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB2828
+X-OriginatorOrg: intel.com
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 29, 2020 at 04:34:20PM +0200, Laurent Pinchart wrote:
-> Hi Xin Ji,
-> 
-> On Tue, Dec 29, 2020 at 02:50:48PM +0800, Xin Ji wrote:
-> > On Mon, Dec 28, 2020 at 05:08:56PM +0200, Laurent Pinchart wrote:
-> > > On Fri, Dec 25, 2020 at 07:01:09PM +0800, Xin Ji wrote:
-> > > > Add DPI flag for distinguish MIPI input signal type, DSI or DPI. Add
-> > > > swing setting for adjusting DP tx PHY swing
-> > > > 
-> > > > Signed-off-by: Xin Ji <xji@analogixsemi.com>
-> > > > ---
-> > > >  .../bindings/display/bridge/analogix,anx7625.yaml     | 19 +++++++++++++++++++
-> > > >  1 file changed, 19 insertions(+)
-> > > > 
-> > > > diff --git a/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
-> > > > index 60585a4..34a7faf 100644
-> > > > --- a/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
-> > > > +++ b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
-> > > > @@ -34,6 +34,14 @@ properties:
-> > > >      description: used for reset chip control, RESET_N pin B7.
-> > > >      maxItems: 1
-> > > >  
-> > > > +  anx,swing-setting:
-> > > > +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> > > > +    description: an array of swing register setting for DP tx PHY
-> > > 
-> > > Register values in DT are frowned upon.
-> >
-> > Hi Laurent Pinchart, as the different vendor has the different PCB layout,
-> > it effects DP CTS test result, so they may need config DP tx Swing register
-> > to adjust signal swing(the default swing setting is not satisfy for
-> > every platform). If we move the config code to driver file, it must define
-> > swing register setting for each vendor, so the DT is the best way. Do you
-> > have any idea for it if you don't agree to add in DT.
-> 
-> If it depends on the PCB layout then it should indeed be in DT. What I
-> wonder is if there would be a better way to specify the data than
-> register values. The ANX7625 datasheet isn't public, so there's
-> effectively no way for someone to write a device tree compliant with
-> this binding only with the information contained here. Reviewing the
-> bindings is equally difficult. It would be best if this property instead
-> contained information that could be documented clearly.
-Hi Laurent Pinchart, the swing register setting is optional. Basically, no need
-to care about it if customer PCB layout match our chip requirement. The
-property define just in case. So far, we just found one customer encountered
-DP tx swing issue. As the datasheet swing register adjusting algorithm
-has a little complex, we will help customer to adjust the DP tx swing
-case by case.
-> 
-> > > > +  anx,mipi-dpi-in:
-> > > > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > > > +    description: indicate the MIPI rx signal type is DPI or DSI
-> > > 
-> > > This sounds similar to the bus-type property defined in
-> > > Documentation/devicetree/bindings/media/video-interfaces.txt (which is
-> > > getting converted to YAML, Rob has posted a patch series, I expect it to
-> > > land in v5.13). I think it would make sense to extend bus-type to
-> > > support DSI, and use that property.
-> >
-> > Sorry, I didn't found any define for DPI or DSI flag in Rob's patches.
-> > Do you mean I just remove this flag define and call a special function
-> > to read the port's type(DSI or DPI)?
-> 
-> video-interfaces.yaml has initially been written for cameras, so it
-> doesn't support DSI. I think it would make sense to extend the bus-type
-> property with a DSI type, and use it here instead of a vendor-specific
-> property.
-> 
-> Alternatively, I'm wondering if this isn't information we could query at
-> runtime. DRM bridges and panels have a type, so we could look at the
-> next bridge or panel to find the type of the connected device instead of
-> specifying it in DT.
+Hi,
+Kindly help to review this updated(v4) patch set.
 
-At anx7625 driver probe stage, for the DSI, driver needs call some special
-interface to attach to DSI interface. For the DPI port, there is no such
-limitation, so we need to know what kind of MIPI signal type at driver initial
-stage.
-Maybe we can keep this flag, if the future has defined DSI, I'll submit new
-patch to remove this flag.
+> From: Vijayakannan Ayyathurai <vijayakannan.ayyathurai@intel.com>
+>=20
+> Hi,
+>=20
+> This patch set adds the watchdog timer driver support for Intel Keem Bay =
+Soc.
+>=20
+> Patch 2 holds the driver and Patch 1 holds the Device Tree
+> binding documentation.
+>=20
+> This driver was tested on the Keem Bay evaluation module board.
+>=20
+> Thank you,
+> Vijay
+>=20
+> Changes since v3:
+>  - Fix pretimeout clear, when user attempt in the below sequence.
+> 	- set pretimeout
+> 	- clear pretimeout
+> 	- set timeout to some other value
+>  - Cleanup the ping variable usage in the driver.
+>  - Add keembay_wdt_set_timeout_reg function.
+>  - Cleanup the keembay_wdt_th_isr function.
+>  - Rebase the driver with 5.10-rc7 tag.
+>=20
+> Changes since v2:
+>  - Remove reduntant write to TIM_WATCHDOG as per Guenter.
+>  - Rebase the driver with 5.10-rc5 tag.
+>=20
+> Changes since v1:
+>  - Fix indentation error in the dt-bindings file.
+>  - Use true/false in the second arg of keembay_wdt_set_timeout_reg().
+>  - Fix the watchdog start sequence.
+>  - Avoid reduntant timeout register setting.
+>  - Remove min usage to find actual time at keembay_wdt_set_timeout().
+>  - Remove timeout configuration boundary check at
+>    keembay_wdt_set_pretimeout().
+>  - Use devm_watchdog_register_device() for wdt registration, which
+>    eventually supports driver unload functionality as well.
+>=20
+> Vijayakannan Ayyathurai (2):
+>   dt-bindings: watchdog: Add bindings for Intel Keem Bay SoC
+>   watchdog: Add watchdog driver for Intel Keembay Soc
+>=20
+>  .../bindings/watchdog/intel,keembay-wdt.yaml  |  57 ++++
+>  drivers/watchdog/Kconfig                      |  13 +
+>  drivers/watchdog/Makefile                     |   1 +
+>  drivers/watchdog/keembay_wdt.c                | 286 ++++++++++++++++++
+>  4 files changed, 357 insertions(+)
+>  create mode 100644
+> Documentation/devicetree/bindings/watchdog/intel,keembay-wdt.yaml
+>  create mode 100644 drivers/watchdog/keembay_wdt.c
+>=20
+>=20
+> base-commit: 0477e92881850d44910a7e94fc2c46f96faa131f
+> prerequisite-patch-id: 822987dcf4c969ef6ac70359b088af06ba39042b
+> prerequisite-patch-id: 0a348762b660d0d817b8e70cc71647e83173c78c
+> prerequisite-patch-id: 54c661a006c7362053cb7602448d6c77419d5cf9
+> prerequisite-patch-id: d140d8534fb828778e0652fe5fcf6282e027f985
+> --
+> 2.17.1
 
 Thanks,
-Xin
-
-> 
-> > > > +
-> > > >    ports:
-> > > >      type: object
-> > > >  
-> > > > @@ -72,6 +80,17 @@ examples:
-> > > >              reg = <0x58>;
-> > > >              enable-gpios = <&pio 45 GPIO_ACTIVE_HIGH>;
-> > > >              reset-gpios = <&pio 73 GPIO_ACTIVE_HIGH>;
-> > > > +            anx,swing-setting = <0x00 0x14>, <0x01 0x54>,
-> > > > +                <0x02 0x64>, <0x03 0x74>, <0x04 0x29>,
-> > > > +                <0x05 0x7b>, <0x06 0x77>, <0x07 0x5b>,
-> > > > +                <0x08 0x7f>, <0x0c 0x20>, <0x0d 0x60>,
-> > > > +                <0x10 0x60>, <0x12 0x40>, <0x13 0x60>,
-> > > > +                <0x14 0x14>, <0x15 0x54>, <0x16 0x64>,
-> > > > +                <0x17 0x74>, <0x18 0x29>, <0x19 0x7b>,
-> > > > +                <0x1a 0x77>, <0x1b 0x5b>, <0x1c 0x7f>,
-> > > > +                <0x20 0x20>, <0x21 0x60>, <0x24 0x60>,
-> > > > +                <0x26 0x40>, <0x27 0x60>;
-> > > > +            anx,mipi-dpi-in = <0>;
-> > > >  
-> > > >              ports {
-> > > >                  #address-cells = <1>;
-> 
-> -- 
-> Regards,
-> 
-> Laurent Pinchart
+Vijay
