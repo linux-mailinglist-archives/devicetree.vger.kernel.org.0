@@ -2,128 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D7A32E7A3E
-	for <lists+devicetree@lfdr.de>; Wed, 30 Dec 2020 16:19:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A7BB2E7A8B
+	for <lists+devicetree@lfdr.de>; Wed, 30 Dec 2020 16:44:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726525AbgL3PSG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Dec 2020 10:18:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60816 "EHLO
+        id S1726305AbgL3PnO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Dec 2020 10:43:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36432 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725853AbgL3PSF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Dec 2020 10:18:05 -0500
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B4C5C06179B;
-        Wed, 30 Dec 2020 07:17:25 -0800 (PST)
-Received: by mail-ej1-x62c.google.com with SMTP id qw4so22243807ejb.12;
-        Wed, 30 Dec 2020 07:17:25 -0800 (PST)
+        with ESMTP id S1726293AbgL3PnN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Dec 2020 10:43:13 -0500
+Received: from mail-qt1-x830.google.com (mail-qt1-x830.google.com [IPv6:2607:f8b0:4864:20::830])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8530BC06179B;
+        Wed, 30 Dec 2020 07:42:33 -0800 (PST)
+Received: by mail-qt1-x830.google.com with SMTP id 2so11130929qtt.10;
+        Wed, 30 Dec 2020 07:42:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=tN9R7XEuR/MI9VKQRuMKlkJ4/z1wACtnnnmm4C2QvRs=;
-        b=U0FYCGHWsbgYU6cVFVNaMtyKIm1tExUy1jpoAGvYcHCBx4bwWJoRjzLDVDm5a8NfzM
-         Q4db910XAPgI+b3a89f+Aws1ZyenFv5SVF7B+p9iK6g9hH9LgMqkcFM7YLEYaUX52wNS
-         Yq4WRBxUOTxYisGf4gLEPHPMFaVhIpQAuAhrNZgV1Sdt7rPT6VUBCqyuLcGcNPTBpw02
-         xDXq/DI/ShXE0YCVksdkrW04bVugJBSgLNzd9O76vYk4OnO9MzCoifKEUB/XcrGdKkbj
-         hfQuphlgvHHo0ytc3nUM727aYikz22bWM0ir6xDb/25oZ2esgs5/mkumAF4tcjarYTaf
-         IO6g==
+        h=from:to:cc:subject:date:message-id;
+        bh=gksk1aXwxYA/bWUDFXmTOZvpRAh0XcLj+0G7pkJFM9o=;
+        b=auFWZBuWXjWKK4/q2IWjWYwMgtDLGLAh8xteNOxEyqu63aPirwQJC53hwiXt/yTeGB
+         ZkS+aCUY71NA2ElYRqYYd2b8anOofopb0I+Vig0FAY62DMMD1L0R758nEEzfZUnTv/mi
+         ypn8vCNzto65JyanZEN1sbqCMqxsZYt99axyZsTw1EirUctTaZvlJhqGIj3gu+f6pqhf
+         NeaVlCV6eCiWzHwMuQS0st5dptiYD76TCnVwN9yx/M1sVWN1d3pPk59Kei/BjdeC0cTd
+         bk1MtGSKb7onotyxWAvMVTyRtxBODql2f1g2gRBCUqmPCB6Aw05dCz4VkpUSpspEPsaQ
+         /2mw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=tN9R7XEuR/MI9VKQRuMKlkJ4/z1wACtnnnmm4C2QvRs=;
-        b=YRj+/rvs9SQkZ5/JKe+0TJmTq+cwX6x9uXv2up21sbChmP/uFgsGuHEDb+tVG5+CB8
-         jDISxmL1i3MqDLRGJTSanmxwd9fzBByTp0EJbUdCb95JcKPY49frCOqEE685rvfp827E
-         xddMzP5nk8wPkaY0upNIkFx4BRBet8uO4ETX+ijIef5UuMcbBx59XqTyKrvFgA26AZxZ
-         R6FPwKYQL0rQ76LzaEv+jG5jT+6nMW9I4zjW8ORi0yTyAe0AgmGsp/majpzsAndaIYiD
-         K6YZMMf+o4zVTJj8mNtzTEiP4fEBZAYo4TGz/G+lpzfxyhydlL87lwMJorExStM9SngJ
-         iIhw==
-X-Gm-Message-State: AOAM5302A+4rnEMYNIYq3HK9B8WEQNxffaCF4jNHddH1mRE9UQqyn+Kp
-        VZhvf5QiB/tvhX+iUQ9+WN0=
-X-Google-Smtp-Source: ABdhPJy5CVgXNzWxBNFzhz6ipQehWwMHs78M3LRkZeGND5vm1dqJp9fWwUBfN/eHLLSv/BesAzCA3A==
-X-Received: by 2002:a17:906:f1cc:: with SMTP id gx12mr47991397ejb.164.1609341443932;
-        Wed, 30 Dec 2020 07:17:23 -0800 (PST)
-Received: from localhost (178-169-161-196.razgrad.ddns.bulsat.com. [178.169.161.196])
-        by smtp.gmail.com with ESMTPSA id r24sm38624518edc.21.2020.12.30.07.17.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 30 Dec 2020 07:17:23 -0800 (PST)
-From:   Iskren Chernev <iskren.chernev@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>, Sam Ravnborg <sam@ravnborg.org>,
-        Thierry Reding <thierry.reding@gmail.com>
-Cc:     Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@linux.ie>,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Samuel Pascua <pascua.samuel.14@gmail.com>
-Subject: [PATCH 2/2] drm/panel: simple: add samsung,s6e3fa2 panel
-Date:   Wed, 30 Dec 2020 17:17:11 +0200
-Message-Id: <20201230151711.3619846-2-iskren.chernev@gmail.com>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20201230151711.3619846-1-iskren.chernev@gmail.com>
-References: <20201230151711.3619846-1-iskren.chernev@gmail.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=gksk1aXwxYA/bWUDFXmTOZvpRAh0XcLj+0G7pkJFM9o=;
+        b=CmD384E/ACBrsZKyz+tH0CB85GZ3OIDBOp4Ar2tM3gBDl0qE1p5VxMkc+GDT4Gv/g0
+         DUtw5Rt07AKrAIgJkH70y8e3HnG8jDiAKcG29HpbRb8KQYey+mjUQDlJ77DKc0n5Boty
+         tAeV5zsOfuW4qu0FS2nkKpCjIKJ0JbbXdTca2aSkd8cO4a40qtXhgVB5lDFX0ds57qXa
+         6L1fMW5RHuM28CLsf47rJlIHP1m105rBf6gCj1zVHWUQbS8OtKEwcC5Ayp+OVjKTijlP
+         m6cE0Mn2Ulqlfb+p/cRsbppmsXhP4vi71L5IFcz5SGjDF4ptiwin/VriB671jTTiNhxE
+         99eQ==
+X-Gm-Message-State: AOAM532AMEDC5im6ccQioFlgPOcJHHUEqUStL09CMVtG6TdjeMruM0r1
+        djy8YjFZZoE2lyJBwMcsrs0=
+X-Google-Smtp-Source: ABdhPJzli+ijWqt6AUY6Ku1LH4/Im0AGcU2ccMRaiWuOL7+UkyH4ELDkjYWWIkJdevVYxuE10rZ8Ig==
+X-Received: by 2002:ac8:6bc2:: with SMTP id b2mr53980683qtt.286.1609342952638;
+        Wed, 30 Dec 2020 07:42:32 -0800 (PST)
+Received: from localhost.localdomain ([2804:14c:482:a80:d66:6051:ad08:aa32])
+        by smtp.gmail.com with ESMTPSA id o4sm26694832qta.26.2020.12.30.07.42.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 30 Dec 2020 07:42:31 -0800 (PST)
+From:   Fabio Estevam <festevam@gmail.com>
+To:     linus.walleij@linaro.org
+Cc:     robh+dt@kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, sandor.yu@nxp.com,
+        Fabio Estevam <festevam@gmail.com>
+Subject: [PATCH 1/2] dt-bindings: gpio: 74x164: Introduce the 'registers-default' property
+Date:   Wed, 30 Dec 2020 12:41:06 -0300
+Message-Id: <20201230154107.4151-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Samuel Pascua <pascua.samuel.14@gmail.com>
+There are cases where a certain default output value in the 74x164
+output is needed.
 
-This panel is used on the Samsung Galaxy S5 (klte).
+For example: the imx6ul-evk board has the Ethernet PHY reset controlled
+by the 74x164 chip.
 
-Signed-off-by: Samuel Pascua <pascua.samuel.14@gmail.com>
+After enabling the OE pin, the output pins of the 74x164 chip go to
+zero by default, which makes the Ethernet PHY not to be detected.
+
+Add a new optional property called 'registers-default' that allows
+describing the default output value for each shift register.
+
+Signed-off-by: Fabio Estevam <festevam@gmail.com>
 ---
- drivers/gpu/drm/panel/panel-simple.c | 30 ++++++++++++++++++++++++++++
- 1 file changed, 30 insertions(+)
+ Documentation/devicetree/bindings/gpio/gpio-74x164.txt | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
-index 41bbec72b2dad..5f16826f3ae06 100644
---- a/drivers/gpu/drm/panel/panel-simple.c
-+++ b/drivers/gpu/drm/panel/panel-simple.c
-@@ -4611,6 +4611,33 @@ static const struct panel_desc_dsi osd101t2045_53ts = {
- 	.lanes = 4,
+diff --git a/Documentation/devicetree/bindings/gpio/gpio-74x164.txt b/Documentation/devicetree/bindings/gpio/gpio-74x164.txt
+index 2a97553d8d76..bf8f45896018 100644
+--- a/Documentation/devicetree/bindings/gpio/gpio-74x164.txt
++++ b/Documentation/devicetree/bindings/gpio/gpio-74x164.txt
+@@ -14,6 +14,8 @@ Required properties:
+ 
+ Optional properties:
+ - enable-gpios: GPIO connected to the OE (Output Enable) pin.
++- registers-default: An array of 8-bit values describing the default output
++value of each shift registers.
+ 
+ Example:
+ 
+@@ -24,4 +26,5 @@ gpio5: gpio5@0 {
+ 	#gpio-cells = <2>;
+ 	registers-number = <4>;
+ 	spi-max-frequency = <100000>;
++	registers-default = /bits/ 8 <0x57 0xF0 0xFF 0xF0>;
  };
-
-+static const struct drm_display_mode s6e3fa2_mode = {
-+	.clock = 149769,
-+	.hdisplay = 1080,
-+	.hsync_start = 1080 + 162,
-+	.hsync_end = 1080 + 162 + 10,
-+	.htotal = 1080 + 162 + 10 + 36,
-+	.vdisplay = 1920,
-+	.vsync_start = 1920 + 13,
-+	.vsync_end = 1920 + 13 + 2,
-+	.vtotal = 1920 + 13 + 2 + 3,
-+};
-+
-+static const struct panel_desc_dsi samsung_s6e3fa2 = {
-+	.desc = {
-+		.modes = &s6e3fa2_mode,
-+		.num_modes = 1,
-+		.bpc = 8,
-+		.size = {
-+			.width = 65,
-+			.height = 115,
-+		},
-+	},
-+	.flags = MIPI_DSI_MODE_VIDEO_BURST,
-+	.format = MIPI_DSI_FMT_RGB888,
-+	.lanes = 4,
-+};
-+
- static const struct of_device_id dsi_of_match[] = {
- 	{
- 		.compatible = "auo,b080uan01",
-@@ -4633,6 +4660,9 @@ static const struct of_device_id dsi_of_match[] = {
- 	}, {
- 		.compatible = "osddisplays,osd101t2045-53ts",
- 		.data = &osd101t2045_53ts
-+	}, {
-+		.compatible = "samsung,s6e3fa2",
-+		.data = &samsung_s6e3fa2
- 	}, {
- 		/* sentinel */
- 	}
---
-2.29.2
+-- 
+2.17.1
 
