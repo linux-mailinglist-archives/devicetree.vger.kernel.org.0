@@ -2,97 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3657D2E7A88
-	for <lists+devicetree@lfdr.de>; Wed, 30 Dec 2020 16:43:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 69FF42E7AB3
+	for <lists+devicetree@lfdr.de>; Wed, 30 Dec 2020 16:52:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726322AbgL3PnR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Dec 2020 10:43:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36440 "EHLO
+        id S1726552AbgL3PwX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Dec 2020 10:52:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37850 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726293AbgL3PnQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Dec 2020 10:43:16 -0500
-Received: from mail-qt1-x830.google.com (mail-qt1-x830.google.com [IPv6:2607:f8b0:4864:20::830])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BD55C06179C;
-        Wed, 30 Dec 2020 07:42:36 -0800 (PST)
-Received: by mail-qt1-x830.google.com with SMTP id g24so11113255qtq.12;
-        Wed, 30 Dec 2020 07:42:36 -0800 (PST)
+        with ESMTP id S1726420AbgL3PwX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Dec 2020 10:52:23 -0500
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEC3EC06179B;
+        Wed, 30 Dec 2020 07:51:42 -0800 (PST)
+Received: by mail-ej1-x632.google.com with SMTP id lt17so22391855ejb.3;
+        Wed, 30 Dec 2020 07:51:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=N4Z6AhJilnlXeLxA+iKYxp/M8/ETHwPd3nAZGuYmO/s=;
-        b=Qh3jayu1EDCyj1NDcIhdiMYAFauCpIi72rDar6XiBey1YDB3kZGayzwkgNVsgqygVC
-         +txHiPGc+U0PkyZmX9TXFUj168YPbQL63vPavBfuyPBFynfu0YH7qRlJ1Ib3AQnL/p9Q
-         pneFrTb9LusyZvNyI73rdkfvgesM0Lg8tZPxzo24o1+FM/xntFDBXcKsdd/QAPnuA1kR
-         TpSwXYx6/1eq6HGPv0xhrNuXwDmOpUB/yHI/rUzeUwuF5Xcq2R95KBMVjUozpnn2gXcj
-         /BVE0jaiK1Or0wAI5IIykWTg4ZqHhrE4Qqu8hc4Kxl7rF4pxKlgFvaRuXGOi9VRTjo2k
-         BzEA==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=kXDPufsV/CJlhPK091V+/kgxs0loRtpY8e0jDMSC9UU=;
+        b=U9fVpPIwoEg5IMxL7DQjkJxhIbf7p13gmiST+pWTqUE379YZJA93O6agfMpYqoCFMs
+         QqSwthaLzb06et0jj4mXT0rMIO+MWoue5IqCSJbC7KiNtLckt3la+KWVfLQ+m+UAHgGb
+         ZJk3xncARWvGSBNWh4yvYf7/1pX0rIZLcny4KMtHcEQtgN+XdIrSkTOBDW9wGyYDipUM
+         3ZeVvQoyx1rr3opPS+DuUhT/2pkc/pu4Fa8wxEccXiexOAvnlmVfIKl+gOEYqHX2LhEV
+         0f60P//6bJBBS2NLBPlM2uq4ZPDDh0DmfdFzIuFUB7gLfF+HQ8GDLUWysssKA/BHlKqU
+         eH3w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=N4Z6AhJilnlXeLxA+iKYxp/M8/ETHwPd3nAZGuYmO/s=;
-        b=d02TockTmSEBw5Txcvq1H5T4d0njCX+NMT0IZI07nbG2TtMUUyZ95jYWWl4fARHzjB
-         4e/PUKn4iv+crUVLbDiE8MeIxy99i0eHoG3aY0Quo3RcKp9nR6v5bPeyZz67b33G+N1O
-         zu4tWi0zB+TEOYntrWcn3BUnWayAavXEQWVPoRDg4RvzPLJ/z3DT7QVKRRqE79t62la/
-         LuQhb3CRMNAkDQx5kvfP1RlPuV34Xh0jMvyV/8gfi/WvtdldHqsPiGogukPTd3VHvdr3
-         dzyCujQXf6+qIIpMNKlLARQQds4zJ0V6sZR69YY3XtxT8DNtw3qAX/piP8hVoLUGHeAC
-         orhA==
-X-Gm-Message-State: AOAM532in2GL75Rz60LBeKCrJHRMqFlek60oMDAROJo0zLxI57d9c61g
-        YWiYY90L6AWobIyiaTnnZEA=
-X-Google-Smtp-Source: ABdhPJwLzrAA8bfqbq7xJ5AdFzGW25KDDu80eJT2wAHRDXJp3zApbSftBMYNsESHMCu7I2PX5Ul0nQ==
-X-Received: by 2002:ac8:4545:: with SMTP id z5mr52269936qtn.356.1609342955645;
-        Wed, 30 Dec 2020 07:42:35 -0800 (PST)
-Received: from localhost.localdomain ([2804:14c:482:a80:d66:6051:ad08:aa32])
-        by smtp.gmail.com with ESMTPSA id o4sm26694832qta.26.2020.12.30.07.42.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 30 Dec 2020 07:42:34 -0800 (PST)
-From:   Fabio Estevam <festevam@gmail.com>
-To:     linus.walleij@linaro.org
-Cc:     robh+dt@kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, sandor.yu@nxp.com,
-        Sandor Yu <Sandor.yu@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>
-Subject: [PATCH 2/2] gpio: 74x164: Introduce the 'registers-default' property
-Date:   Wed, 30 Dec 2020 12:41:07 -0300
-Message-Id: <20201230154107.4151-2-festevam@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20201230154107.4151-1-festevam@gmail.com>
-References: <20201230154107.4151-1-festevam@gmail.com>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=kXDPufsV/CJlhPK091V+/kgxs0loRtpY8e0jDMSC9UU=;
+        b=a5jeeAZWkccv3dezlHWgsU5uAEhWI9Vg7kf9Kl6fHzixpFKoIEbOghPzzQDwcuRQOy
+         kYD+vDSzlnfofxmSrXnCKcpeB9ZlSZAj5qgobbAsZxZcZAQUXbTbugPWEPwuvN+IncHq
+         tsz5G5Hs2/PojfvNeYUHR4xoWj9TaIQofvfGDEDWWS2o+tcnjcILJOc6wOdbzPy4VkhU
+         tytqifAAqH79iU0M8Z0ridV7UAi3XbUY0YgH5nFwNQW5+yaCG1Bn1q1cT5GbabB4xDvw
+         WzphX1n9whypwbvB5hAEicIMzgp4Kbg7OXFHV6yPQBB5itdGJuozz7wzPab3QNkyF/7E
+         Z1Ug==
+X-Gm-Message-State: AOAM533r3WCVyhun8zGQGUoVImICcIingrb6AozYWS80HzVzYfNrTHh/
+        FQ017GmLjcY1ruTc0KmC+3w=
+X-Google-Smtp-Source: ABdhPJy6NpVN8AMBKK45PHRfNCxHZXoWSu6SVHE2UoWggd+lqZ/Ai3gzAewYypvjRfZtZvaE1vuSGQ==
+X-Received: by 2002:a17:906:e18:: with SMTP id l24mr48340138eji.434.1609343501664;
+        Wed, 30 Dec 2020 07:51:41 -0800 (PST)
+Received: from localhost (178-169-161-196.razgrad.ddns.bulsat.com. [178.169.161.196])
+        by smtp.gmail.com with ESMTPSA id u9sm38183530edd.54.2020.12.30.07.51.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 30 Dec 2020 07:51:41 -0800 (PST)
+From:   Iskren Chernev <iskren.chernev@gmail.com>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Iskren Chernev <iskren.chernev@gmail.com>,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Brian Masney <masneyb@onstation.org>
+Subject: [PATCH 1/4] ARM: dts: qcom: msm8974: add gpu support
+Date:   Wed, 30 Dec 2020 17:51:29 +0200
+Message-Id: <20201230155132.3661292-1-iskren.chernev@gmail.com>
+X-Mailer: git-send-email 2.29.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Sandor Yu <Sandor.yu@nxp.com>
+From: Brian Masney <masneyb@onstation.org>
 
-On the imx7d-sdb board, there is one output pin of the 74x164 that
-controls all peripherals power supply (PERI_3V).
+Add support for the a3xx GPU
 
-This pin should be at high voltage level when the 74x164 is probed,
-otherwise the modules dependent on PERI_3V3 will not be powered.
-
-Add a new optional property called 'registers-default' that allows
-describing the default output value for each shift register.
-
-Signed-off-by: Sandor Yu <sandor.yu@nxp.com>
-Signed-off-by: Fabio Estevam <festevam@gmail.com>
+Signed-off-by: Brian Masney <masneyb@onstation.org>
 ---
- drivers/gpio/gpio-74x164.c | 3 +++
- 1 file changed, 3 insertions(+)
+ arch/arm/boot/dts/qcom-msm8974.dtsi | 45 +++++++++++++++++++++++++++++
+ 1 file changed, 45 insertions(+)
 
-diff --git a/drivers/gpio/gpio-74x164.c b/drivers/gpio/gpio-74x164.c
-index 05637d585152..4be51ee4d44c 100644
---- a/drivers/gpio/gpio-74x164.c
-+++ b/drivers/gpio/gpio-74x164.c
-@@ -141,6 +141,9 @@ static int gen_74x164_probe(struct spi_device *spi)
- 	chip->registers = nregs;
- 	chip->gpio_chip.ngpio = GEN_74X164_NUMBER_GPIOS * chip->registers;
+diff --git a/arch/arm/boot/dts/qcom-msm8974.dtsi b/arch/arm/boot/dts/qcom-msm8974.dtsi
+index 51f5f904f9eb9..c399446d8154e 100644
+--- a/arch/arm/boot/dts/qcom-msm8974.dtsi
++++ b/arch/arm/boot/dts/qcom-msm8974.dtsi
+@@ -1399,6 +1399,51 @@ cnoc: interconnect@fc480000 {
+ 			         <&rpmcc RPM_SMD_CNOC_A_CLK>;
+ 		};
  
-+	of_property_read_u8_array(spi->dev.of_node, "registers-default",
-+				  chip->buffer, chip->registers);
++		gpu_opp_table: opp_table {
++			status = "disabled";
 +
- 	chip->gpio_chip.can_sleep = true;
- 	chip->gpio_chip.parent = &spi->dev;
- 	chip->gpio_chip.owner = THIS_MODULE;
++			compatible = "operating-points-v2";
++
++			opp-800000000 {
++				opp-hz = /bits/ 64 <800000000>;
++			};
++
++			opp-500000000 {
++				opp-hz = /bits/ 64 <500000000>;
++			};
++
++			opp-275000000 {
++				opp-hz = /bits/ 64 <275000000>;
++			};
++		};
++
++		gpu: adreno@fdb00000 {
++			status = "disabled";
++
++			compatible = "qcom,adreno-330.2",
++			             "qcom,adreno";
++			reg = <0xfdb00000 0x10000>;
++			reg-names = "kgsl_3d0_reg_memory";
++			interrupts = <GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "kgsl_3d0_irq";
++			clock-names = "core",
++			              "iface",
++			              "mem_iface";
++			clocks = <&mmcc OXILI_GFX3D_CLK>,
++			         <&mmcc OXILICX_AHB_CLK>,
++			         <&mmcc OXILICX_AXI_CLK>;
++			sram = <&gmu_sram>;
++			power-domains = <&mmcc OXILICX_GDSC>;
++			operating-points-v2 = <&gpu_opp_table>;
++
++			interconnects = <&mmssnoc MNOC_MAS_GRAPHICS_3D &bimc BIMC_SLV_EBI_CH0>,
++			                <&ocmemnoc OCMEM_VNOC_MAS_GFX3D &ocmemnoc OCMEM_SLV_OCMEM>;
++			interconnect-names = "gfx-mem",
++			                     "ocmem";
++
++			// iommus = <&gpu_iommu 0>;
++		};
++
+ 		mdss: mdss@fd900000 {
+ 			status = "disabled";
+ 
+
+base-commit: d7a03a44a5e93f39ece70ec75d25c6088caa0fdb
+prerequisite-patch-id: aba6f684932cab35d98457c21e4ff7a5ac75c753
+prerequisite-patch-id: 4884d57df1bd197896b69e115d9002d6c26ae2e2
+prerequisite-patch-id: 4f1aba3c3675236b18578eedbe71b0cdca01ed77
+prerequisite-patch-id: cbfe6ccfebb142370baff15bbdf3cf2f34ee77df
 -- 
-2.17.1
+2.29.2
 
