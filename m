@@ -2,345 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 68B5A2E7530
-	for <lists+devicetree@lfdr.de>; Wed, 30 Dec 2020 00:20:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 964A72E754C
+	for <lists+devicetree@lfdr.de>; Wed, 30 Dec 2020 01:13:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726189AbgL2XUl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Dec 2020 18:20:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55172 "EHLO
+        id S1726230AbgL3AMd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Dec 2020 19:12:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34890 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726161AbgL2XUl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Dec 2020 18:20:41 -0500
-Received: from yawp.biot.com (yawp.biot.com [IPv6:2a01:4f8:10a:8e::fce2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E2ECC061798
-        for <devicetree@vger.kernel.org>; Tue, 29 Dec 2020 15:20:01 -0800 (PST)
-Received: from debian-spamd by yawp.biot.com with sa-checked (Exim 4.93)
-        (envelope-from <bert@biot.com>)
-        id 1kuOHX-00Acff-7J
-        for devicetree@vger.kernel.org; Wed, 30 Dec 2020 00:19:59 +0100
-X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on yawp
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.4
-Received: from [2a02:578:460c:1:ae1f:6bff:fed1:9ca8] (helo=sumner.biot.com)
-        by yawp.biot.com with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.93)
-        (envelope-from <bert@biot.com>)
-        id 1kuOGg-00Acds-Qy; Wed, 30 Dec 2020 00:19:06 +0100
-Received: from bert by sumner.biot.com with local (Exim 4.93)
-        (envelope-from <bert@biot.com>)
-        id 1kuOGg-00Ajhq-Be; Wed, 30 Dec 2020 00:19:06 +0100
-From:   Bert Vermeulen <bert@biot.com>
-To:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Birger Koblitz <mail@birger-koblitz.de>,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Bert Vermeulen <bert@biot.com>
-Subject: [PATCH RESEND v2 2/2] Add support for Realtek RTL838x/RTL839x SoC SPI controllers
-Date:   Wed, 30 Dec 2020 00:19:04 +0100
-Message-Id: <20201229231904.2558916-2-bert@biot.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20201229231904.2558916-1-bert@biot.com>
-References: <20201229231904.2558916-1-bert@biot.com>
+        with ESMTP id S1726185AbgL3AMd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Dec 2020 19:12:33 -0500
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39C07C061799;
+        Tue, 29 Dec 2020 16:11:53 -0800 (PST)
+Received: by mail-ej1-x636.google.com with SMTP id x16so20111590ejj.7;
+        Tue, 29 Dec 2020 16:11:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=BIC/2qIdJeGBQNWxLU5IRoKvRyuZw5pGh6L03h8axVM=;
+        b=ZXoYaTF9bdee6/o+D9RUWWvQtRtNTYdwAItnxc5kAGIMUCw7lNqKJ+rZ0UHgq6bCXs
+         6dsBeUb2CoojB6ZeH+53yL0aKdp+OFLOFmxOj5bW0pWbToSoObLYfxG9AY9V5xGyJto3
+         CjMvYrIjsYGKXU+7zPfHelpCusMmEVYheXIDPQDHJg8chMZ0v81Sv+LUiR6aJV/4wgPA
+         IJ6kSZjV+HD+MTgEwCkcNQQwEOrcAXG1JtWGWsTahbpLHBkSHJrJukXd0O1ivxzXEjVk
+         fN66t7QhuzUtHFfFv2yOjXu/n9+usKyxVy0dYuewW1mrbRV3cFibpBIZ2HwnLaBKOOAE
+         POAQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=BIC/2qIdJeGBQNWxLU5IRoKvRyuZw5pGh6L03h8axVM=;
+        b=ATuKa4rJzavAXWdHBPYD0fUasYLYiorthrc9LqMfZYf6NWClYH6LZ4ZxThVtAReHxD
+         +QejA/Y1kwFQopnsrR3nXE57gHRAntxM4B/6ZiG1SGg9OmxDqAVjBUXPwXzlCLShO6iV
+         sdX349vRIiwUzMHMI3WtrmA/I3le5a68Vj8ZaWJh39/8rRAmtR9ltwIV67HOopxSXXzG
+         aQm0Fc59fyneszrU+jWAsygjbjiC2OkVbK0McMAY+Ifkb4LsT8DLngG6zee1CJQ1cJFQ
+         MohfJlM722fjS93sVOXO34gQgrT70fgz6zgAtGrktZkr643Ze72TDQ/Ik/l5WuzwpVyl
+         1hRg==
+X-Gm-Message-State: AOAM531KAq8K9bBPJSmX3+uocYdtvGq0R2V/s2OVCYeNyA9kVcT4Ls9q
+        Gqm335LFObxTAETd7LZdozWk2/6Vo6G8xzJk3g4=
+X-Google-Smtp-Source: ABdhPJxAo/edRUUxpOPraaqjveLTeoRRb5rrdRwWHdyI1u852zzcnS6mVRrCRKC/Cls55s6FCcSBPu9Xu4SkdZwl2Wg=
+X-Received: by 2002:a17:906:447:: with SMTP id e7mr46945242eja.172.1609287111922;
+ Tue, 29 Dec 2020 16:11:51 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20201223232905.2958651-1-martin.blumenstingl@googlemail.com> <20201228123744.551d1364@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+In-Reply-To: <20201228123744.551d1364@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date:   Wed, 30 Dec 2020 01:11:41 +0100
+Message-ID: <CAFBinCDM+bPgwquZAG-H=iMZr4+0rW9CG=WafRys5_HdeBkzjA@mail.gmail.com>
+Subject: Re: [PATCH v3 0/5] dwmac-meson8b: picosecond precision RX delay support
+To:     Jakub Kicinski <kuba@kernel.org>
+Cc:     linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
+        netdev@vger.kernel.org, davem@davemloft.net, robh+dt@kernel.org,
+        andrew@lunn.ch, f.fainelli@gmail.com, jianxin.pan@amlogic.com,
+        Neil Armstrong <narmstrong@baylibre.com>, khilman@baylibre.com,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        jbrunet@baylibre.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This driver likely also supports earlier (RTL8196) and later (RTL93xx)
-SoCs.
+Hi Jakub,
 
-The SPI hardware in these SoCs is specifically intended for connecting NOR
-bootflash chips, and only used for that in dozens of examined devices.
-However boiled down to basics, it's really just a half-duplex SPI
-controller.
+On Mon, Dec 28, 2020 at 9:37 PM Jakub Kicinski <kuba@kernel.org> wrote:
+>
+> On Thu, 24 Dec 2020 00:29:00 +0100 Martin Blumenstingl wrote:
+> > Hello,
+> >
+> > with the help of Jianxin Pan (many thanks!) the meaning of the "new"
+> > PRG_ETH1[19:16] register bits on Amlogic Meson G12A, G12B and SM1 SoCs
+> > are finally known. These SoCs allow fine-tuning the RGMII RX delay in
+> > 200ps steps (contrary to what I have thought in the past [0] these are
+> > not some "calibration" values).
+>
+> Could you repost in a few days? Net-next is still closed:
+sure
+I also received a Reviewed-by from Florian on patch #1 so I'll also include that
 
-The hardware appears to have a vestigial second chip-select control, but
-it hasn't been seen in the wild and is thus not supported.
 
-Signed-off-by: Bert Vermeulen <bert@biot.com>
----
-(resent due to mail trouble)
-Notes:
-    v2: rewrote from spi-nor driver to regular spi driver, implementing only
-        set_cs() and transfer_one() (Thanks Chuanhong Guo!)
-
- MAINTAINERS               |   6 ++
- drivers/spi/Kconfig       |   7 ++
- drivers/spi/Makefile      |   1 +
- drivers/spi/spi-realtek.c | 215 ++++++++++++++++++++++++++++++++++++++
- 4 files changed, 229 insertions(+)
- create mode 100644 drivers/spi/spi-realtek.c
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index ad0e34bf8453..311e5413b1dd 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -15048,6 +15048,12 @@ F:	Documentation/devicetree/bindings/net/dsa/realtek-smi.txt
- F:	drivers/net/dsa/realtek-smi*
- F:	drivers/net/dsa/rtl83*
- 
-+REALTEK RTL83XX SPI DRIVER
-+M:	Bert Vermeulen <bert@biot.com>
-+M:	Birger Koblitz <mail@birger-koblitz.de>
-+S:	Maintained
-+F:	drivers/spi/spi-realtek.c
-+
- REALTEK WIRELESS DRIVER (rtlwifi family)
- M:	Ping-Ke Shih <pkshih@realtek.com>
- L:	linux-wireless@vger.kernel.org
-diff --git a/drivers/spi/Kconfig b/drivers/spi/Kconfig
-index aadaea052f51..058ed1b19bc6 100644
---- a/drivers/spi/Kconfig
-+++ b/drivers/spi/Kconfig
-@@ -646,6 +646,13 @@ config SPI_RB4XX
- 	help
- 	  SPI controller driver for the Mikrotik RB4xx series boards.
- 
-+config SPI_REALTEK
-+	bool "Realtek SPI controller"
-+	depends on MACH_REALTEK
-+	help
-+	  This driver supports the SPI controller used for the bootflash
-+	  in the Realtek RTL83xx series SoCs.
-+
- config SPI_RPCIF
- 	tristate "Renesas RPC-IF SPI driver"
- 	depends on RENESAS_RPCIF
-diff --git a/drivers/spi/Makefile b/drivers/spi/Makefile
-index 6fea5821662e..6e9612b70555 100644
---- a/drivers/spi/Makefile
-+++ b/drivers/spi/Makefile
-@@ -94,6 +94,7 @@ obj-$(CONFIG_SPI_QCOM_QSPI)		+= spi-qcom-qspi.o
- obj-$(CONFIG_SPI_QUP)			+= spi-qup.o
- obj-$(CONFIG_SPI_ROCKCHIP)		+= spi-rockchip.o
- obj-$(CONFIG_SPI_RB4XX)			+= spi-rb4xx.o
-+obj-$(CONFIG_SPI_REALTEK)		+= spi-realtek.o
- obj-$(CONFIG_SPI_RPCIF)			+= spi-rpc-if.o
- obj-$(CONFIG_SPI_RSPI)			+= spi-rspi.o
- obj-$(CONFIG_SPI_S3C24XX)		+= spi-s3c24xx-hw.o
-diff --git a/drivers/spi/spi-realtek.c b/drivers/spi/spi-realtek.c
-new file mode 100644
-index 000000000000..d425d36f022f
---- /dev/null
-+++ b/drivers/spi/spi-realtek.c
-@@ -0,0 +1,215 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+
-+#include <linux/module.h>
-+#include <linux/platform_device.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/spi/spi.h>
-+
-+struct rtspi {
-+	void __iomem *base;
-+};
-+
-+/* SPI Flash Configuration Register */
-+#define RTL8380_SPI_SFCR		0x00
-+#define RTL8380_SPI_SFCR_RBO		BIT(28)
-+#define RTL8380_SPI_SFCR_WBO		BIT(27)
-+
-+/* SPI Flash Control and Status Register */
-+#define RTL8380_SPI_SFCSR		0x08
-+#define RTL8380_SPI_SFCSR_CSB0		BIT(31)
-+#define RTL8380_SPI_SFCSR_CSB1		BIT(30)
-+#define RTL8380_SPI_SFCSR_RDY		BIT(27)
-+#define RTL8380_SPI_SFCSR_CS		BIT(24)
-+#define RTL8380_SPI_SFCSR_LEN_MASK	~(0x03 << 28)
-+#define RTL8380_SPI_SFCSR_LEN1		(0x00 << 28)
-+#define RTL8380_SPI_SFCSR_LEN4		(0x03 << 28)
-+
-+/* SPI Flash Data Registers */
-+#define RTL8380_SPI_SFDR		0x0c
-+
-+#define REG(x)		(rtspi->base + x)
-+
-+
-+static void rt_set_cs(struct spi_device *spi, bool active)
-+{
-+	struct rtspi *rtspi = spi_controller_get_devdata(spi->controller);
-+	u32 value;
-+
-+	/* CS0 bit is active low */
-+	value = readl(REG(RTL8380_SPI_SFCSR));
-+	if (active)
-+		value |= RTL8380_SPI_SFCSR_CSB0;
-+	else
-+		value &= ~RTL8380_SPI_SFCSR_CSB0;
-+	writel(value, REG(RTL8380_SPI_SFCSR));
-+}
-+
-+static void set_size(struct rtspi *rtspi, int size)
-+{
-+	u32 value;
-+
-+	value = readl(REG(RTL8380_SPI_SFCSR));
-+	value &= RTL8380_SPI_SFCSR_LEN_MASK;
-+	if (size == 4)
-+		value |= RTL8380_SPI_SFCSR_LEN4;
-+	else if (size == 1)
-+		value |= RTL8380_SPI_SFCSR_LEN1;
-+	writel(value, REG(RTL8380_SPI_SFCSR));
-+}
-+
-+static inline void wait_ready(struct rtspi *rtspi)
-+{
-+	while (!(readl(REG(RTL8380_SPI_SFCSR)) & RTL8380_SPI_SFCSR_RDY))
-+		;
-+}
-+static void send4(struct rtspi *rtspi, const u32 *buf)
-+{
-+	wait_ready(rtspi);
-+	set_size(rtspi, 4);
-+	writel(*buf, REG(RTL8380_SPI_SFDR));
-+}
-+
-+static void send1(struct rtspi *rtspi, const u8 *buf)
-+{
-+	wait_ready(rtspi);
-+	set_size(rtspi, 1);
-+	writel(buf[0] << 24, REG(RTL8380_SPI_SFDR));
-+}
-+
-+static void rcv4(struct rtspi *rtspi, u32 *buf)
-+{
-+	wait_ready(rtspi);
-+	set_size(rtspi, 4);
-+	*buf = readl(REG(RTL8380_SPI_SFDR));
-+}
-+
-+static void rcv1(struct rtspi *rtspi, u8 *buf)
-+{
-+	wait_ready(rtspi);
-+	set_size(rtspi, 1);
-+	*buf = readl(REG(RTL8380_SPI_SFDR)) >> 24;
-+}
-+
-+static int transfer_one(struct spi_controller *ctrl, struct spi_device *spi,
-+			struct spi_transfer *xfer)
-+{
-+	struct rtspi *rtspi = spi_controller_get_devdata(ctrl);
-+	void *rx_buf;
-+	const void *tx_buf;
-+	int cnt;
-+
-+	tx_buf = xfer->tx_buf;
-+	rx_buf = xfer->rx_buf;
-+	cnt = xfer->len;
-+	if (tx_buf) {
-+		while (cnt >= 4) {
-+			send4(rtspi, tx_buf);
-+			tx_buf += 4;
-+			cnt -= 4;
-+		}
-+		while (cnt) {
-+			send1(rtspi, tx_buf);
-+			tx_buf++;
-+			cnt--;
-+		}
-+	} else if (rx_buf) {
-+		while (cnt >= 4) {
-+			rcv4(rtspi, rx_buf);
-+			rx_buf += 4;
-+			cnt -= 4;
-+		}
-+		while (cnt) {
-+			rcv1(rtspi, rx_buf);
-+			rx_buf++;
-+			cnt--;
-+		}
-+	}
-+
-+	spi_finalize_current_transfer(ctrl);
-+
-+	return 0;
-+}
-+
-+static void init_hw(struct rtspi *rtspi)
-+{
-+	u32 value;
-+
-+	/* Turn on big-endian byte ordering */
-+	value = readl(REG(RTL8380_SPI_SFCR));
-+	value |= RTL8380_SPI_SFCR_RBO | RTL8380_SPI_SFCR_WBO;
-+	writel(value, REG(RTL8380_SPI_SFCR));
-+
-+	value = readl(REG(RTL8380_SPI_SFCSR));
-+	/* Permanently disable CS1, since it's never used */
-+	value |= RTL8380_SPI_SFCSR_CSB1;
-+	/* Select CS0 for use */
-+	value &= RTL8380_SPI_SFCSR_CS;
-+	writel(value, REG(RTL8380_SPI_SFCSR));
-+}
-+
-+static int realtek_spi_probe(struct platform_device *pdev)
-+{
-+	struct spi_controller *ctrl;
-+	struct rtspi *rtspi;
-+	int err;
-+
-+	ctrl = devm_spi_alloc_master(&pdev->dev, sizeof(*rtspi));
-+	if (!ctrl) {
-+		dev_err(&pdev->dev, "Error allocating SPI controller\n");
-+		return -ENOMEM;
-+	}
-+	platform_set_drvdata(pdev, ctrl);
-+	rtspi = spi_controller_get_devdata(ctrl);
-+
-+	rtspi->base = devm_platform_get_and_ioremap_resource(pdev, 0, NULL);
-+	if (IS_ERR(rtspi->base)) {
-+		dev_err(&pdev->dev, "Could not map SPI register address");
-+		return -ENOMEM;
-+	}
-+
-+	init_hw(rtspi);
-+
-+	ctrl->dev.of_node = pdev->dev.of_node;
-+	ctrl->flags = SPI_CONTROLLER_HALF_DUPLEX;
-+	ctrl->set_cs = rt_set_cs;
-+	ctrl->transfer_one = transfer_one;
-+
-+	err = devm_spi_register_controller(&pdev->dev, ctrl);
-+	if (err) {
-+		dev_err(&pdev->dev, "Could not register SPI controller\n");
-+		return -ENODEV;
-+	}
-+
-+	return 0;
-+}
-+
-+static int realtek_spi_remove(struct platform_device *pdev)
-+{
-+	struct spi_controller *ctrl = platform_get_drvdata(pdev);
-+
-+	spi_unregister_controller(ctrl);
-+
-+	return 0;
-+}
-+
-+
-+static const struct of_device_id realtek_spi_of_ids[] = {
-+	{ .compatible = "realtek,spi" },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, realtek_spi_of_ids);
-+
-+static struct platform_driver realtek_spi_driver = {
-+	.probe = realtek_spi_probe,
-+	.remove = realtek_spi_remove,
-+	.driver = {
-+		.name = "spi-realtek",
-+		.of_match_table = realtek_spi_of_ids,
-+	},
-+};
-+
-+module_platform_driver(realtek_spi_driver);
-+
-+MODULE_LICENSE("GPL v2");
-+MODULE_AUTHOR("Bert Vermeulen <bert@biot.com>");
-+MODULE_DESCRIPTION("Realtek SPI driver");
--- 
-2.25.1
-
+Best regards,
+Martin
