@@ -2,83 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 964A72E754C
-	for <lists+devicetree@lfdr.de>; Wed, 30 Dec 2020 01:13:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 140602E757C
+	for <lists+devicetree@lfdr.de>; Wed, 30 Dec 2020 02:29:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726230AbgL3AMd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Dec 2020 19:12:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34890 "EHLO
+        id S1726429AbgL3B2X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Dec 2020 20:28:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46450 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726185AbgL3AMd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Dec 2020 19:12:33 -0500
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39C07C061799;
-        Tue, 29 Dec 2020 16:11:53 -0800 (PST)
-Received: by mail-ej1-x636.google.com with SMTP id x16so20111590ejj.7;
-        Tue, 29 Dec 2020 16:11:53 -0800 (PST)
+        with ESMTP id S1726161AbgL3B2X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Dec 2020 20:28:23 -0500
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8674CC061799;
+        Tue, 29 Dec 2020 17:27:42 -0800 (PST)
+Received: by mail-ed1-x52f.google.com with SMTP id cw27so14155542edb.5;
+        Tue, 29 Dec 2020 17:27:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlemail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=BIC/2qIdJeGBQNWxLU5IRoKvRyuZw5pGh6L03h8axVM=;
-        b=ZXoYaTF9bdee6/o+D9RUWWvQtRtNTYdwAItnxc5kAGIMUCw7lNqKJ+rZ0UHgq6bCXs
-         6dsBeUb2CoojB6ZeH+53yL0aKdp+OFLOFmxOj5bW0pWbToSoObLYfxG9AY9V5xGyJto3
-         CjMvYrIjsYGKXU+7zPfHelpCusMmEVYheXIDPQDHJg8chMZ0v81Sv+LUiR6aJV/4wgPA
-         IJ6kSZjV+HD+MTgEwCkcNQQwEOrcAXG1JtWGWsTahbpLHBkSHJrJukXd0O1ivxzXEjVk
-         fN66t7QhuzUtHFfFv2yOjXu/n9+usKyxVy0dYuewW1mrbRV3cFibpBIZ2HwnLaBKOOAE
-         POAQ==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ARDULvl3K+7mKmorfNn+FGZREJqQZbCok3NrkDyimB8=;
+        b=ZcuNfiQHvJIMcXrTtox5laXU3Dx9NrLtrwcrB8xthQmGlTCzsc+kLmv76rvWh1SAJJ
+         tSCo/HmXcaoS7VhbUProe6Pd7m5ZIPJK1xC/eUauojnlQ0bIOnNg3PPrTjjhytxi4wGA
+         AYW/Jo/eZ00etEXLXudPuzWry6D9jxg8lsfC3kBARM7ScnB+dG6CQw9foMJPYoXD2N7O
+         J4flPQCnGLZoDth8IzuygGGyrAawwJewuoCaofKA67lDuKDmj3jVekEs9oXIBhLLbtMp
+         qBrtvhZuCMovXa4brw2q1G2Hn6y6PKdkIkVeTCkjGLnp2jbEqVRR3FJKLITp7iyoB5m6
+         jI5w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=BIC/2qIdJeGBQNWxLU5IRoKvRyuZw5pGh6L03h8axVM=;
-        b=ATuKa4rJzavAXWdHBPYD0fUasYLYiorthrc9LqMfZYf6NWClYH6LZ4ZxThVtAReHxD
-         +QejA/Y1kwFQopnsrR3nXE57gHRAntxM4B/6ZiG1SGg9OmxDqAVjBUXPwXzlCLShO6iV
-         sdX349vRIiwUzMHMI3WtrmA/I3le5a68Vj8ZaWJh39/8rRAmtR9ltwIV67HOopxSXXzG
-         aQm0Fc59fyneszrU+jWAsygjbjiC2OkVbK0McMAY+Ifkb4LsT8DLngG6zee1CJQ1cJFQ
-         MohfJlM722fjS93sVOXO34gQgrT70fgz6zgAtGrktZkr643Ze72TDQ/Ik/l5WuzwpVyl
-         1hRg==
-X-Gm-Message-State: AOAM531KAq8K9bBPJSmX3+uocYdtvGq0R2V/s2OVCYeNyA9kVcT4Ls9q
-        Gqm335LFObxTAETd7LZdozWk2/6Vo6G8xzJk3g4=
-X-Google-Smtp-Source: ABdhPJxAo/edRUUxpOPraaqjveLTeoRRb5rrdRwWHdyI1u852zzcnS6mVRrCRKC/Cls55s6FCcSBPu9Xu4SkdZwl2Wg=
-X-Received: by 2002:a17:906:447:: with SMTP id e7mr46945242eja.172.1609287111922;
- Tue, 29 Dec 2020 16:11:51 -0800 (PST)
-MIME-Version: 1.0
-References: <20201223232905.2958651-1-martin.blumenstingl@googlemail.com> <20201228123744.551d1364@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
-In-Reply-To: <20201228123744.551d1364@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ARDULvl3K+7mKmorfNn+FGZREJqQZbCok3NrkDyimB8=;
+        b=X3W5wYlE724dLEV0TSuMGvkPHX9dDVqia1i8r2k9FK9UBd0KQM9k1H+X7/h52BTARE
+         3n1DIt4XSD1rqhBez2MdkmGd2v9Mkvu7/Oeuz9c5ChLHPpgXrAZApFBUy66yez2ee915
+         Dm3a28ZLL13QgpLW++t0Bdy9rLijFoA5TSZyNv9dKfniUzJphMs9E10x8rYaRbZNPRfr
+         dX8a9mNhucL9lxNArf7agGIpkrRd5XSO0FoXE1Z+ufGnDun8WtQFby2c7aVhEV04OnHr
+         8jMEcEMjNlXgJgdpKWzbANaH3vweUsd1RMee+PjogybCjEZMefLBkOxy4QA4H2f8vTpP
+         sT2g==
+X-Gm-Message-State: AOAM531zrYCsou/MKIS2S47mv5Y/Mx7v13U98/0G4MseFASUBLZeE6CA
+        7c6hnQ9Hw4noKhhR/MsZjp4vaS76Jcw=
+X-Google-Smtp-Source: ABdhPJza+dkuhISoCbq9Ju6Frs/urZxRvLH025K73xoTWyGduYLzL9TNOLz0Tk2zCYERiB5KWDuxjA==
+X-Received: by 2002:a50:875b:: with SMTP id 27mr49390011edv.24.1609291661131;
+        Tue, 29 Dec 2020 17:27:41 -0800 (PST)
+Received: from localhost.localdomain (p200300f1372a4000428d5cfffeb99db8.dip0.t-ipconnect.de. [2003:f1:372a:4000:428d:5cff:feb9:9db8])
+        by smtp.googlemail.com with ESMTPSA id f20sm26576696edx.92.2020.12.29.17.27.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 29 Dec 2020 17:27:40 -0800 (PST)
 From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Wed, 30 Dec 2020 01:11:41 +0100
-Message-ID: <CAFBinCDM+bPgwquZAG-H=iMZr4+0rW9CG=WafRys5_HdeBkzjA@mail.gmail.com>
-Subject: Re: [PATCH v3 0/5] dwmac-meson8b: picosecond precision RX delay support
-To:     Jakub Kicinski <kuba@kernel.org>
-Cc:     linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
-        netdev@vger.kernel.org, davem@davemloft.net, robh+dt@kernel.org,
-        andrew@lunn.ch, f.fainelli@gmail.com, jianxin.pan@amlogic.com,
-        Neil Armstrong <narmstrong@baylibre.com>, khilman@baylibre.com,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        jbrunet@baylibre.com
-Content-Type: text/plain; charset="UTF-8"
+To:     linux-remoteproc@vger.kernel.org, linux-amlogic@lists.infradead.org
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, bjorn.andersson@linaro.org,
+        ohad@wizery.com, robh+dt@kernel.org,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Subject: [PATCH 0/5] Amlogic Meson Always-On ARC remote-processor support
+Date:   Wed, 30 Dec 2020 02:27:19 +0100
+Message-Id: <20201230012724.1326156-1-martin.blumenstingl@googlemail.com>
+X-Mailer: git-send-email 2.30.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jakub,
+Amlogic Meson6/8/8b/8m2 come with an ARC core in the Always-On (AO)
+power-domain. This is typically used for waking up the ARM CPU after
+powering it down for system suspend.
 
-On Mon, Dec 28, 2020 at 9:37 PM Jakub Kicinski <kuba@kernel.org> wrote:
->
-> On Thu, 24 Dec 2020 00:29:00 +0100 Martin Blumenstingl wrote:
-> > Hello,
-> >
-> > with the help of Jianxin Pan (many thanks!) the meaning of the "new"
-> > PRG_ETH1[19:16] register bits on Amlogic Meson G12A, G12B and SM1 SoCs
-> > are finally known. These SoCs allow fine-tuning the RGMII RX delay in
-> > 200ps steps (contrary to what I have thought in the past [0] these are
-> > not some "calibration" values).
->
-> Could you repost in a few days? Net-next is still closed:
-sure
-I also received a Reviewed-by from Florian on patch #1 so I'll also include that
+The exact ARC core used on Meson6 and earlier is not known. I believe
+it is an ARC625, but I am not sure about this. Meson8/8b/8m2 uses an
+ARC EM4 core.
+They all have in common that they use a section of the SoCs SRAM for
+running code on the ARC core.
+
+Unfortunately there's no information about the remote-processor control
+registers in the public Meson8b (S805) datasheet. All information is
+either taken from Amlogic's 3.10 kernel and 2011-03 u-boot or found by
+testing (for example the clock input is not mentioned anywhere in the
+reference code, but disabling it stops the AO ARC core from working).
+
+This series consists of five patches:
+ 1: dt-bindings for the SRAM section
+ 2: dt-bindings for the SECBUS2 syscon region which contains a few
+    bits for controlling this remote processor
+ 3: dt-bindings for the AO ARC remote processor
+ 4: the driver for booting code on the AO ARC remote processor
+ 5: (only included for documentation purposes) dts changes (these will
+    be re-sent separately)
+
+Patches #3 and #4 should go through the remoteproc tree. Patches #1
+and #2 may go through Rob's (devicetree) tree, Kevin's linux-amlogic
+tree or through the remoteproc tree. Personally I have no preference
+here.
+
+To test this series I ported the Amlogic serial driver and added the
+board files for the Amlogic AO ARC EM4 to the Zephyr RTOS. The code can
+be found here: [0] (the resulting zephyr.elf can then be loaded as
+remote-processor firmware from Linux).
 
 
-Best regards,
-Martin
+[0] https://github.com/xdarklight/zephyr-rtos/commits/amlogic_ao_em4-20201229
+
+
+Martin Blumenstingl (5):
+  dt-bindings: sram: Add compatible strings for the Meson AO ARC SRAM
+  dt-bindings: Amlogic: add the documentation for the SECBUS2 registers
+  dt-bindings: remoteproc: Add the documentation for Meson AO ARC rproc
+  remoteproc: meson-mx-ao-arc: Add a driver for the AO ARC remote
+    procesor
+  ARM: dts: meson: add the AO ARC remote processor
+
+ .../arm/amlogic/amlogic,meson-mx-secbus2.yaml |  53 ++++
+ .../remoteproc/amlogic,meson-mx-ao-arc.yaml   |  87 +++++++
+ .../devicetree/bindings/sram/sram.yaml        |   2 +
+ arch/arm/boot/dts/meson.dtsi                  |   7 +
+ arch/arm/boot/dts/meson8.dtsi                 |  21 ++
+ arch/arm/boot/dts/meson8b.dtsi                |  21 ++
+ drivers/remoteproc/Kconfig                    |  11 +
+ drivers/remoteproc/Makefile                   |   1 +
+ drivers/remoteproc/meson_mx_ao_arc.c          | 240 ++++++++++++++++++
+ 9 files changed, 443 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/arm/amlogic/amlogic,meson-mx-secbus2.yaml
+ create mode 100644 Documentation/devicetree/bindings/remoteproc/amlogic,meson-mx-ao-arc.yaml
+ create mode 100644 drivers/remoteproc/meson_mx_ao_arc.c
+
+-- 
+2.30.0
+
