@@ -2,142 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9DAD72E787B
-	for <lists+devicetree@lfdr.de>; Wed, 30 Dec 2020 13:22:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E4B3D2E79D1
+	for <lists+devicetree@lfdr.de>; Wed, 30 Dec 2020 14:53:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726552AbgL3MWB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Dec 2020 07:22:01 -0500
-Received: from mail.kernel.org ([198.145.29.99]:46282 "EHLO mail.kernel.org"
+        id S1726689AbgL3NxA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Dec 2020 08:53:00 -0500
+Received: from mail.kernel.org ([198.145.29.99]:34530 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726203AbgL3MWB (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 30 Dec 2020 07:22:01 -0500
-Received: from archlinux (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 35E3D22209;
-        Wed, 30 Dec 2020 12:21:19 +0000 (UTC)
-Date:   Wed, 30 Dec 2020 12:21:14 +0000
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     "open list:IIO SUBSYSTEM AND DRIVERS" <linux-iio@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        "Andrew F . Davis" <afd@ti.com>
-Subject: Re: [PATCH 08/46] dt-bindings:iio:health:ti,afe4404: txt to yaml
- conversion
-Message-ID: <20201230122114.12e6957f@archlinux>
-In-Reply-To: <CAL_JsqL0ssp2M02+J8teNu_fcwn9qn4HxPwaOu1weTCTQoC5Kw@mail.gmail.com>
-References: <20201031184854.745828-1-jic23@kernel.org>
-        <20201031184854.745828-9-jic23@kernel.org>
-        <CAL_JsqL0ssp2M02+J8teNu_fcwn9qn4HxPwaOu1weTCTQoC5Kw@mail.gmail.com>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+        id S1726656AbgL3Nw7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 30 Dec 2020 08:52:59 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id A2D0920791;
+        Wed, 30 Dec 2020 13:52:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1609336339;
+        bh=A8KDxk2J7yDBfz+5AzQj8eYVlMtcX4Tp2Ks9wdanxjY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=DOk5fuT/SZohpcmYMIoLDKexl84L1uiwodTWrcIQs8Y5iuNlHrYkt4ptFLtTtplsr
+         yprYZUWFUPVRGv0ibQw3SLBeHD9BhmDnCHXx5Ab6eo+PYFgV08zRSsCUEynvqiQddj
+         cFUbzeSSGvQ7UPpOCUwCizyGx4ccXoYNjtRRnv7hKNMS9fv74lWAJWHAKXN4qA04m5
+         hjhIq4CgTFe0okfbtqywsxYvvEPWkj1i5DQJYt7a5QRUF5S8J6OMqwhmWGGGvpwBr3
+         RNEZNHVNtxW7Sif3zjRKvWsFxYVMikE7HqJGC5KwM/LVOY/N4QnbZl/XXJwy+3nmqY
+         28P3Uu23IDUMA==
+Date:   Wed, 30 Dec 2020 13:51:56 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Bert Vermeulen <bert@biot.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Birger Koblitz <mail@birger-koblitz.de>,
+        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH RESEND v2 1/2] dt-bindings: spi: Realtek RTL838x/RTL839x
+ SPI controller
+Message-ID: <20201230135156.GF4428@sirena.org.uk>
+References: <20201229231904.2558916-1-bert@biot.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="p8PhoBjPxaQXD0vg"
+Content-Disposition: inline
+In-Reply-To: <20201229231904.2558916-1-bert@biot.com>
+X-Cookie: Above all things, reverence yourself.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 18 Dec 2020 13:42:19 -0600
-Rob Herring <robh+dt@kernel.org> wrote:
 
-> On Sat, Oct 31, 2020 at 1:51 PM Jonathan Cameron <jic23@kernel.org> wrote:
-> >
-> > From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> >
-> > This basically has same questions as for the afe4403.  We could combine
-> > the two bindings, but as the drivers are separate and it would be a little
-> > fiddly due to different buses let's keep the separating.
-> > To repeat questions from the ti,afe4403 binding.
-> >
-> > A few questions came up whilst converting this one.
-> > 1) What is actually required?
-> >    - Checking Linux driver, interrupt is not, and the tx-supply could
-> >      be supplied by a stub regulator as long as it's always on.
-> >      As such I have reduced the required list to just compatible and reg.
-> > 2) What is the regulator called?
-> >    - It's tx-supply in the binding doc, but the driver request tx_sup
-> >      I've left this alone for now.  Andrew could you confirm what is
-> >      intended for this?
-> >
-> > Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> > Cc: Andrew F. Davis <afd@ti.com>
-> > ---
-> >  .../bindings/iio/health/afe4404.txt           | 29 -----------
-> >  .../bindings/iio/health/ti,afe4404.yaml       | 51 +++++++++++++++++++
-> >  2 files changed, 51 insertions(+), 29 deletions(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/iio/health/afe4404.txt b/Documentation/devicetree/bindings/iio/health/afe4404.txt
-> > deleted file mode 100644
-> > index 0b52830a0d9c..000000000000
-> > --- a/Documentation/devicetree/bindings/iio/health/afe4404.txt
-> > +++ /dev/null
-> > @@ -1,29 +0,0 @@
-> > -Texas Instruments AFE4404 Heart rate and Pulse Oximeter
-> > -
-> > -Required properties:
-> > - - compatible          : Should be "ti,afe4404".
-> > - - reg                 : I2C address of the device.
-> > - - tx-supply           : Regulator supply to transmitting LEDs.
-> > - - interrupts          : The interrupt line the device ADC_RDY pin is
-> > -                         connected to. For details refer to,
-> > -                         ../interrupt-controller/interrupts.txt.
-> > -
-> > -Optional properties:
-> > - - reset-gpios         : GPIO used to reset the device.
-> > -                         For details refer to, ../gpio/gpio.txt.
-> > -
-> > -Example:
-> > -
-> > -&i2c2 {
-> > -       heart_mon@58 {
-> > -               compatible = "ti,afe4404";
-> > -               reg = <0x58>;
-> > -
-> > -               tx-supply = <&vbat>;
-> > -
-> > -               interrupt-parent = <&gpio1>;
-> > -               interrupts = <28 IRQ_TYPE_EDGE_RISING>;
-> > -
-> > -               reset-gpios = <&gpio1 16 GPIO_ACTIVE_LOW>;
-> > -       };
-> > -};
-> > diff --git a/Documentation/devicetree/bindings/iio/health/ti,afe4404.yaml b/Documentation/devicetree/bindings/iio/health/ti,afe4404.yaml
-> > new file mode 100644
-> > index 000000000000..187b99b22312
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/iio/health/ti,afe4404.yaml
-> > @@ -0,0 +1,51 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/iio/health/ti,afe4404.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Texas Instruments AFE4404 Heart rate and Pulse Oximeter
-> > +
-> > +maintainers:
-> > +  - Andrew F. Davis <afd@ti.com>
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: ti,afe4403  
-> 
-> Typo here, which causes this warning:
-> 
-> Documentation/devicetree/bindings/iio/health/ti,afe4403.example.dt.yaml:
-> heart_mon@0: 'spi-max-frequency' does not match any of the regexes:
-> 'pinctrl-[0-9]+'
-> 
-> Took me a minute staring at ti,afe4403.yaml to figure out what was happening.
-Doh!
+--p8PhoBjPxaQXD0vg
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Patch on it's way.
+On Wed, Dec 30, 2020 at 12:19:03AM +0100, Bert Vermeulen wrote:
 
-Thanks,
+> +properties:
+> +  compatible:
+> +    const: realtek,spi
 
-Jonathan
+It is possibled Realtek might make other SPI controllers, there should
+be some more specific name such as a compatible for each SoC that the
+controller appears in or an IP name if one is known.
 
-> 
-> Rob
+Please submit patches using subject lines reflecting the style for the
+subsystem, this makes it easier for people to identify relevant patches.
+Look at what existing commits in the area you're changing are doing and
+make sure your subject lines visually resemble what they're doing.
+There's no need to resubmit to fix this alone.
 
+--p8PhoBjPxaQXD0vg
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl/shfsACgkQJNaLcl1U
+h9B4mwf/SDei1d9DKPMjGfTGoqYmyuzwYLFOr3ddZgUv7qoN3PvV0AIXoJNBSR4h
+Ajwh5t8bopJIo4sqplupw22PcIT7jzIejn7XgQdr9ctYPZSeaBt/3smJainNvDit
+K/in9Os6lvPa6YGLeDPYFlrZK59W2Fx2ApIYY2a8luq2Y8CLH6TzJbuYj3ps72eZ
+MtQW1Bv6VMg1F6wCUd7jgDP6ppLrIss671KSGxlCMk36UiRYNJdH2TDB3o89LhT1
+tfuC3n/kCS+DIfTb82B3nQxSKb2dijnd53a0S9/hqr2sLuYBhQm2b5ZqB+H3wmeM
+dfYORicJLznhGIZZOgpbIETvMTRKxA==
+=UBK0
+-----END PGP SIGNATURE-----
+
+--p8PhoBjPxaQXD0vg--
