@@ -2,78 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 12FCA2E7780
-	for <lists+devicetree@lfdr.de>; Wed, 30 Dec 2020 10:40:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3AEBE2E77C7
+	for <lists+devicetree@lfdr.de>; Wed, 30 Dec 2020 11:38:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726499AbgL3Jjr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Dec 2020 04:39:47 -0500
-Received: from mail-vs1-f49.google.com ([209.85.217.49]:35456 "EHLO
-        mail-vs1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726492AbgL3Jjr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Dec 2020 04:39:47 -0500
-Received: by mail-vs1-f49.google.com with SMTP id s2so8333728vsk.2;
-        Wed, 30 Dec 2020 01:39:31 -0800 (PST)
+        id S1726323AbgL3KiR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Dec 2020 05:38:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46098 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726203AbgL3KiQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Dec 2020 05:38:16 -0500
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FD8CC061799;
+        Wed, 30 Dec 2020 02:37:35 -0800 (PST)
+Received: by mail-wr1-x433.google.com with SMTP id r7so17065907wrc.5;
+        Wed, 30 Dec 2020 02:37:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=lB2jyYvwAFJqgVsiDcs5q586quNuRit4RsqbIhvpDwc=;
+        b=t8D2NXMib2OLbtiEq5l5ecValyii3h7bqMz+EpQVrCxtRdc+mKf4ZdiWmkUYabnrfq
+         QDfC60lxCZ+4sUmp2K4b1waHjxiDnq+CJCjV929wEbbDLkrbQ/K3JnRW9ZTUmzvaX1Yx
+         0Eh80JlyEikRcwuo0kk7EaHMp4pvjNx4W4mDjts3rDu5OBy62WCYDStcM/rqHy45fwuR
+         8DokrqVFRH4IPlCdjNdnnAvlAhfHwIzBe/ict0mXJuJ3Zq3s5Ezg8UlmFl86okqGtVMB
+         b50Zjlvsv1RrlMLZe0kJ6J2BzT2iudLqIOPwkVXyTWZziRltj11Lf7QNAIRwnAdQBJOV
+         zTpA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=b/NAoMC4juGnaAFwgnH9SSYWSCdJbRU69A34V2lsSW0=;
-        b=W+PmxCchkxtf8PVi9oC693lKhm53luuu+mfxmP9gRyPQ/MQSuctYhVL8wla6yyUCCl
-         Xzxqz42pNTQDBE0+wrVhv6f1rey6OK9OZOf8yGRjYSJUOqCEnfjp9cD0laz35hdOo/Km
-         MBjuXoKdDSTNwcoutJzU01IT1KCeB2xfJQTHkUq+470aXn54zxPKuPCFWg6tyuDujINT
-         TLaqYEgLk72dm/q/99gj3xTq2Q/k3tYKh4pSrfZQbM3tQ1t12wl40mhMciw9CLsg4l7S
-         Np3W8R22xf+sxfECbEhnrI333pCNrTr9xeHDKB4qqkFDtvrl3WH4Z0VeNthXctrMZYhH
-         CHHA==
-X-Gm-Message-State: AOAM5328+9pIO64R8H8II2YHwIKypuNBo1OJPA5LSOcMjCHnvHQIJ4/C
-        ynhZwME+IIf78+4mLNa3QvuKUejuuEO1rw==
-X-Google-Smtp-Source: ABdhPJzufUI+2VOB50xp1xB2/fODV6F2oPYl8muxn4LrmKqhQ6c5PZOvaEf7/UvCWpxHBk85OH710g==
-X-Received: by 2002:a67:1946:: with SMTP id 67mr30390431vsz.60.1609321145510;
-        Wed, 30 Dec 2020 01:39:05 -0800 (PST)
-Received: from mail-ua1-f47.google.com (mail-ua1-f47.google.com. [209.85.222.47])
-        by smtp.gmail.com with ESMTPSA id v65sm6295435vkb.31.2020.12.30.01.39.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 30 Dec 2020 01:39:05 -0800 (PST)
-Received: by mail-ua1-f47.google.com with SMTP id f29so5124704uab.0;
-        Wed, 30 Dec 2020 01:39:04 -0800 (PST)
-X-Received: by 2002:ab0:7654:: with SMTP id s20mr33015414uaq.23.1609321144661;
- Wed, 30 Dec 2020 01:39:04 -0800 (PST)
-MIME-Version: 1.0
-References: <20201229154106.4867-1-me@dylanvanassche.be>
-In-Reply-To: <20201229154106.4867-1-me@dylanvanassche.be>
-From:   Chen-Yu Tsai <wens@csie.org>
-Date:   Wed, 30 Dec 2020 17:38:51 +0800
-X-Gmail-Original-Message-ID: <CAGb2v67C+hQyqjrx9A9MiyjEQdeVv+9BgrzxcuiHwf2e8JTswg@mail.gmail.com>
-Message-ID: <CAGb2v67C+hQyqjrx9A9MiyjEQdeVv+9BgrzxcuiHwf2e8JTswg@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: sun50i-a64-pinephone: add 'pine64, pinephone'
- to the compatible list
-To:     Dylan Van Assche <me@dylanvanassche.be>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=lB2jyYvwAFJqgVsiDcs5q586quNuRit4RsqbIhvpDwc=;
+        b=F1yQWIAcIKkdgr4Wp0kMap3+z/BB6cN8Wzgs2gYmzTbjVvHrPpo9M8vfW70zM4/wYc
+         2SmLsmhukHoZMZKgRYdEGQ5vivGcVWuehG4kzL7cSXVHV4QSWaN63KpXK/8BDgjZrVz/
+         EXl9Eyam/iZD+QPlJoly1h0RizAAuXuMEyBXHFY+10nh2qBNfMUGjOGeWTnNFffCI2AQ
+         6zaOnH3rnSnnO0z6yDaf66F8wXuU/xyAR/iSTgSHNpXJPYz44aV/m2NnvKKMyKK8ZYpv
+         xFECDA26b4mCyJd/MWeg7Xi6TWIL5uWDQKTHyBMKqUCNqHOgWP7LqumpUtixhPXUP3SI
+         MO9g==
+X-Gm-Message-State: AOAM530xE/j48NkivNDGNGrXXlokTbUEkPRn86oZIdKxx4lKjWzxLAEd
+        RtyfRpp+dEuvflwaKm7EpBI=
+X-Google-Smtp-Source: ABdhPJzLX1NguQsuiZgg15MM5WznDUrE9WmYBn+8YF63U9dYWpUYEV9el75+TDC2/A3CUHqLMEqmsg==
+X-Received: by 2002:adf:f6c9:: with SMTP id y9mr60289027wrp.121.1609324653781;
+        Wed, 30 Dec 2020 02:37:33 -0800 (PST)
+Received: from localhost.localdomain ([87.200.95.144])
+        by smtp.gmail.com with ESMTPSA id j15sm66672156wrr.85.2020.12.30.02.37.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 30 Dec 2020 02:37:32 -0800 (PST)
+From:   Christian Hewitt <christianshewitt@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Christian Hewitt <christianshewitt@gmail.com>
+Subject: [PATCH v2 0/2] arm64: dts: meson: add support for Beelink GS-King-X
+Date:   Wed, 30 Dec 2020 10:37:27 +0000
+Message-Id: <20201230103729.2272-1-christianshewitt@gmail.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 29, 2020 at 11:42 PM Dylan Van Assche <me@dylanvanassche.be> wrote:
->
-> All revisions of the PinePhone share most of the hardware.
-> This patch makes it easier to detect PinePhone hardware without
-> having to check for each possible revision.
+This series adds bindings and device-tree for the Beelink (AZW) GS-King-X,
+which like GT-King and GT-King Pro is based on the W400 reference design.
 
-Sounds good.
+Changes since v1:
+- move audio from TDM_B to TDM_A
+- drop S/PDIF content
+- add Rob's bindings ack
 
-> Signed-off-by: Dylan Van Assche <me@dylanvanassche.be>
-> ---
->  arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone-1.0.dts | 2 +-
->  arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone-1.1.dts | 2 +-
->  arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone-1.2.dts | 2 +-
+Christian Hewitt (2):
+  dt-bindings: arm: amlogic: add support for the Beelink GS-King-X
+  arm64: dts: meson: add initial Beelink GS-King-X device-tree
 
-Please also update the DT binding file:
+ .../devicetree/bindings/arm/amlogic.yaml      |   1 +
+ arch/arm64/boot/dts/amlogic/Makefile          |   1 +
+ .../boot/dts/amlogic/meson-g12b-gsking-x.dts  | 133 ++++++++++++++++++
+ 3 files changed, 135 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-g12b-gsking-x.dts
 
-    Documentation/devicetree/bindings/arm/sunxi.yaml
+-- 
+2.17.1
 
-ChenYu
