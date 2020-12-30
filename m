@@ -2,343 +2,227 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A16F2E7693
-	for <lists+devicetree@lfdr.de>; Wed, 30 Dec 2020 07:33:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 160742E76AF
+	for <lists+devicetree@lfdr.de>; Wed, 30 Dec 2020 07:54:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726209AbgL3Gae (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Dec 2020 01:30:34 -0500
-Received: from mga09.intel.com ([134.134.136.24]:5563 "EHLO mga09.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726189AbgL3Gad (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 30 Dec 2020 01:30:33 -0500
-IronPort-SDR: 44qaucBZoKWqUWpOKOzxaA6g12buhClGQtfrLDi2BgT+gaCnspKiRCLGp4GR7Rx7xzbMWrIG9Z
- dCxzjxqYev0A==
-X-IronPort-AV: E=McAfee;i="6000,8403,9849"; a="176728439"
-X-IronPort-AV: E=Sophos;i="5.78,460,1599548400"; 
-   d="scan'208";a="176728439"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Dec 2020 22:29:51 -0800
-IronPort-SDR: yd5W+M3ZisLqcVzsQuPQ4Wuldq+0+VXS8Q57uWEZkYtFKRnVtCSWf0LbU86yPG0JRmIuFx+K88
- Oq2bQsZwdn7g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.78,460,1599548400"; 
-   d="scan'208";a="460372538"
-Received: from ubuntu18.png.intel.com ([10.88.229.38])
-  by fmsmga001.fm.intel.com with ESMTP; 29 Dec 2020 22:29:41 -0800
-From:   vijayakannan.ayyathurai@intel.com
-To:     daniel.lezcano@linaro.org, tglx@linutronix.de, robh+dt@kernel.org,
-        catalin.marinas@arm.com, will@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        andriy.shevchenko@linux.intel.com, mgross@linux.intel.com,
-        wan.ahmad.zainie.wan.mohamad@intel.com,
-        lakshmi.bai.raja.subramanian@intel.com, chen.yong.seow@intel.com,
-        vijayakannan.ayyathurai@intel.com
-Subject: [PATCH v2 2/2] clocksource: Add Intel Keem Bay Timer Support
-Date:   Wed, 30 Dec 2020 14:25:27 +0800
-Message-Id: <2a7038bc170e31a668995c367bbae018bf805dbe.1609306622.git.vijayakannan.ayyathurai@intel.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <cover.1609306622.git.vijayakannan.ayyathurai@intel.com>
-References: <cover.1609306622.git.vijayakannan.ayyathurai@intel.com>
-In-Reply-To: <cover.1609306622.git.vijayakannan.ayyathurai@intel.com>
-References: <cover.1609306622.git.vijayakannan.ayyathurai@intel.com>
+        id S1726247AbgL3GyN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Dec 2020 01:54:13 -0500
+Received: from mail-bn8nam08on2116.outbound.protection.outlook.com ([40.107.100.116]:2452
+        "EHLO NAM04-BN8-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726230AbgL3GyM (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 30 Dec 2020 01:54:12 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=UIJSPAi+QPGE5qpNBxLKff54UbWqBXHwBu1qS2b3HSHIRJIo18Ty0UASKdWUMrxvltcqxf+DubcnTxNaz8kufLwE7XEBsmba+P5f2ChNu5lTW8HneI6Op4J5atpjlc/dZ4yKsbikJyVmT30NFaQIT0hC1t1hNSiWl5N1VoDW9H37fYumhsqc2Qnewdhq8BafSkKS0pwAb4Sbl0R7x3qtMGmhhVowHjqfOJZrYABPsTeA3mmUovKRvKJx/OgSuH4ZNXXrnsoOdv14v186D41IvEc635bOKehFyPVmm+zV8la2p4r1qwyZRL9Mx6J8PVn+UW6wc8Y20JKA23sHI2e20g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=9YELPedk8GvDzFuKeU8ulKrf3pcN3C+OF3SkxHDXOa4=;
+ b=NCx1kPuSecaCd5GY8FdPTChyghSud+TN2gg9LiUVT04yta85W6Lk9rKj0Pi2aH5VE1yH2HFOV0vbTWssnhSChbEqmvFaSdsgKitzNQ3SlX9h6zFTjDUTOO0op8DtTGFA2wMB0C8VSCce8jk4UEn0hLpK4lvI7VjR4wHqHqzy14DEYZ95K9Vano22u6p+mZpV9YOfr3ZL1DZhutQlYfRh6j5pRcix45UlcIq9mHA0WFlvbG3ctnqEkzqO+6W3GysLxHF30BcfFdZHzFJ4x9FRz7gKL9ivBAHjJxWSFWw3QD2eS2DR10olq8KYhuRUqxV59dt7t6B4UVvySgfXeJYD0w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=analogixsemi.com; dmarc=pass action=none
+ header.from=analogixsemi.com; dkim=pass header.d=analogixsemi.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=Analogixsemi.onmicrosoft.com; s=selector2-Analogixsemi-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=9YELPedk8GvDzFuKeU8ulKrf3pcN3C+OF3SkxHDXOa4=;
+ b=sbttjiFGLdVqoakiAP48zUivH0dvPYhPo8WyLK6Fk4gopDx2JtvTjex+v+94pCHGn7rd632PbBAPnuFP1mOcoPPEo0HZs3+44lYfpQupf0R3hvCCh5O5mlLm/M2Uns4qHPGIGVUhW/JUUXtAaHbAPyTgzXEUFw0YwGUrM+9oKs0=
+Authentication-Results: vger.kernel.org; dkim=none (message not signed)
+ header.d=none;vger.kernel.org; dmarc=none action=none
+ header.from=analogixsemi.com;
+Received: from CH2PR04MB6741.namprd04.prod.outlook.com (2603:10b6:610:96::19)
+ by CH2PR04MB6696.namprd04.prod.outlook.com (2603:10b6:610:91::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3721.20; Wed, 30 Dec
+ 2020 06:53:03 +0000
+Received: from CH2PR04MB6741.namprd04.prod.outlook.com
+ ([fe80::957a:caf2:db9e:8c8d]) by CH2PR04MB6741.namprd04.prod.outlook.com
+ ([fe80::957a:caf2:db9e:8c8d%9]) with mapi id 15.20.3721.019; Wed, 30 Dec 2020
+ 06:53:03 +0000
+Date:   Wed, 30 Dec 2020 14:52:53 +0800
+From:   Xin Ji <xji@analogixsemi.com>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, David Airlie <airlied@linux.ie>,
+        Nicolas Boichat <drinkcat@google.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Ricardo =?iso-8859-1?Q?Ca=F1uelo?= 
+        <ricardo.canuelo@collabora.com>, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, Sheng Pan <span@analogixsemi.com>,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 1/2] dt-bindings: drm/bridge: anx7625: add DPI flag
+ and swing setting
+Message-ID: <20201230065253.GA31290@pc-user>
+References: <cover.1608883950.git.xji@analogixsemi.com>
+ <c29b7d9fda9ce8619d1c718b077250998a8600b8.1608883950.git.xji@analogixsemi.com>
+ <X+n1COtS8nrCFUHd@pendragon.ideasonboard.com>
+ <20201229065048.GB7073@pc-user>
+ <X+s+bDHLbhxBDz7E@pendragon.ideasonboard.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <X+s+bDHLbhxBDz7E@pendragon.ideasonboard.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+X-Originating-IP: [61.148.116.10]
+X-ClientProxiedBy: HK2PR02CA0174.apcprd02.prod.outlook.com
+ (2603:1096:201:1f::34) To CH2PR04MB6741.namprd04.prod.outlook.com
+ (2603:10b6:610:96::19)
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from pc-user (61.148.116.10) by HK2PR02CA0174.apcprd02.prod.outlook.com (2603:1096:201:1f::34) with Microsoft SMTP Server (version=TLS1_0, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA) id 15.20.3700.27 via Frontend Transport; Wed, 30 Dec 2020 06:53:02 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 01566213-308f-4687-3431-08d8ac8f8e1a
+X-MS-TrafficTypeDiagnostic: CH2PR04MB6696:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <CH2PR04MB6696819A956DDA8A7ABBBCFDC7D70@CH2PR04MB6696.namprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: R22Rjohkys9tmwpYvy3M20ppuEsIt7fIrnlok/3eR/hB8K5lEEz7MYJWkjxWa7Hnhgf+jcrm9n8eDfldM1KxePizMH72/gNGobIcC46xGcXtFgaBBtq+pEPO6HfBqc6fTwOd96k3DzO9wE8FGwV+2N4Ph60E7XS5csQ/wjjp5Nt4wtWFVzrW+x5wLDt56XSDXnmWrMFjQMPbHm9i9AtCRJePf4/vT+3Y+XxCAYPoGI4qQD3kTeNDMOVXVDGEasNyCpqlvXnMwMCq0tbLFRMLRtKnvoxmcxv0Xdvrb0T+6PNrdfus5mBvcTTql0mAyRiNDSdPWQ8bO80o9/40SoQy/fEqXiHxzxZKnKDiSFeLcivWzGWpEFdTGuNMuxprDab+lEgXEBrHqE9AaOfuvVxM+w==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CH2PR04MB6741.namprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(39840400004)(366004)(346002)(136003)(396003)(376002)(478600001)(4326008)(33656002)(6666004)(33716001)(9686003)(55016002)(8676002)(83380400001)(956004)(5660300002)(54906003)(186003)(6916009)(1076003)(16526019)(7416002)(86362001)(8936002)(26005)(316002)(66556008)(66946007)(6496006)(2906002)(52116002)(66476007);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?5wwrYOIq+SIG6q0p0tTpA1K9vGcyYZDLpJxkxiTcZlnn4YS58pUAzS9hUqE2?=
+ =?us-ascii?Q?UJ3TYrBAvbj2nCoMtTijVflfVyGjdIaIbjZD9vqY0vM+JYS+v4htlv0+rpJe?=
+ =?us-ascii?Q?Pvq2vzHIjqpqh39g634gNTbMZZoE0oUgMJtg/Q1tyZUkKS2cxoQtrbV7IPEI?=
+ =?us-ascii?Q?fISfO0YLvddOG+FSP923H9sUce4vOfYwQbtnyH5POU1GfCb7L/fejSeGOZOZ?=
+ =?us-ascii?Q?IPTJMAVFVi5wNfyeLH14gxDGHqRlTDufPs7CKD5tgQuTqkm+bIYIKkYYxbkl?=
+ =?us-ascii?Q?ZmBTRJquW4lB0zcHxd8+mG9kh3Gj7XNY0hVNm1HYirTXtkZONGDv4tONxk/g?=
+ =?us-ascii?Q?V9o/2O0vlQalW+D+bZxTEKdYkn/pQjiO/enJBpvU/G8ANLPKbX7K6DQebZS9?=
+ =?us-ascii?Q?xgKBMXppLX1ARdVXcGSb3gymn7JZzE8c5t5ee4ZU+qO8u/U0jYCbF7uO4B9z?=
+ =?us-ascii?Q?PC1YOBJ1BUQQpadmN9Pdn40IMQZG6OCldB1RZIuALSYbZ6I3x03qcVj8N/77?=
+ =?us-ascii?Q?XONzcEaFnHhKoN3qlOyRTGGJDiPE9Nfyx/Mz9GrPr5qaSAEG5H9w5e+9MQZf?=
+ =?us-ascii?Q?X2/PRtObCvkOXcGhpygxJ98GQkN0JovMXB+0Rz1+SLCj2UrXo+lHzd/qKnBu?=
+ =?us-ascii?Q?vbNpNyU2zpd9JC14T6D15HP1Zma88yDQSfPmgyg3Y1x94ewdzrihJt+1CO8t?=
+ =?us-ascii?Q?Xbp4eTiAJZQaluUJVKmJvm3OVpiWIPtzLsHiJQQ2sS00kOhd//iAJyawcX0T?=
+ =?us-ascii?Q?SCF9yH2v3ytuhUGduGAzJBMTqv6HrwWCCvL5qGf4Ui4XFrzEY/I4WSMyaUoK?=
+ =?us-ascii?Q?bLDn6MzRGParh1mT21A1lE0dWCqYVIYb3f8/JbtPWyNYimuKztJDy/ADGGih?=
+ =?us-ascii?Q?zveu4sVP1REUI1m6jMyPbu4czpWXseY/XjXRNcB3MrJREbPrOpuoiZagWid6?=
+ =?us-ascii?Q?zuw/cXWUul2uydrxgMqD6JlLJWzKCKi3VSNCl1JMCG8r8pCsV8qTt4VTlp1K?=
+ =?us-ascii?Q?GHmQ?=
+X-OriginatorOrg: analogixsemi.com
+X-MS-Exchange-CrossTenant-AuthSource: CH2PR04MB6741.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Dec 2020 06:53:03.5894
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: b099b0b4-f26c-4cf5-9a0f-d5be9acab205
+X-MS-Exchange-CrossTenant-Network-Message-Id: 01566213-308f-4687-3431-08d8ac8f8e1a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: yStyratQDUlyZQl8h8lGhZoAj3HTtIGwQTwMALoZnZJZeyTTpYagREVgtMa9lbErJ7D7CzjVavow0CTYKvtVRw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR04MB6696
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Vijayakannan Ayyathurai <vijayakannan.ayyathurai@intel.com>
+On Tue, Dec 29, 2020 at 04:34:20PM +0200, Laurent Pinchart wrote:
+> Hi Xin Ji,
+> 
+> On Tue, Dec 29, 2020 at 02:50:48PM +0800, Xin Ji wrote:
+> > On Mon, Dec 28, 2020 at 05:08:56PM +0200, Laurent Pinchart wrote:
+> > > On Fri, Dec 25, 2020 at 07:01:09PM +0800, Xin Ji wrote:
+> > > > Add DPI flag for distinguish MIPI input signal type, DSI or DPI. Add
+> > > > swing setting for adjusting DP tx PHY swing
+> > > > 
+> > > > Signed-off-by: Xin Ji <xji@analogixsemi.com>
+> > > > ---
+> > > >  .../bindings/display/bridge/analogix,anx7625.yaml     | 19 +++++++++++++++++++
+> > > >  1 file changed, 19 insertions(+)
+> > > > 
+> > > > diff --git a/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
+> > > > index 60585a4..34a7faf 100644
+> > > > --- a/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
+> > > > +++ b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
+> > > > @@ -34,6 +34,14 @@ properties:
+> > > >      description: used for reset chip control, RESET_N pin B7.
+> > > >      maxItems: 1
+> > > >  
+> > > > +  anx,swing-setting:
+> > > > +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> > > > +    description: an array of swing register setting for DP tx PHY
+> > > 
+> > > Register values in DT are frowned upon.
+> >
+> > Hi Laurent Pinchart, as the different vendor has the different PCB layout,
+> > it effects DP CTS test result, so they may need config DP tx Swing register
+> > to adjust signal swing(the default swing setting is not satisfy for
+> > every platform). If we move the config code to driver file, it must define
+> > swing register setting for each vendor, so the DT is the best way. Do you
+> > have any idea for it if you don't agree to add in DT.
+> 
+> If it depends on the PCB layout then it should indeed be in DT. What I
+> wonder is if there would be a better way to specify the data than
+> register values. The ANX7625 datasheet isn't public, so there's
+> effectively no way for someone to write a device tree compliant with
+> this binding only with the information contained here. Reviewing the
+> bindings is equally difficult. It would be best if this property instead
+> contained information that could be documented clearly.
+Hi Laurent Pinchart, the swing register setting is optional. Basically, no need
+to care about it if customer PCB layout match our chip requirement. The
+property define just in case. So far, we just found one customer encountered
+DP tx swing issue. As the datasheet swing register adjusting algorithm
+has a little complex, we will help customer to adjust the DP tx swing
+case by case.
+> 
+> > > > +  anx,mipi-dpi-in:
+> > > > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > > > +    description: indicate the MIPI rx signal type is DPI or DSI
+> > > 
+> > > This sounds similar to the bus-type property defined in
+> > > Documentation/devicetree/bindings/media/video-interfaces.txt (which is
+> > > getting converted to YAML, Rob has posted a patch series, I expect it to
+> > > land in v5.13). I think it would make sense to extend bus-type to
+> > > support DSI, and use that property.
+> >
+> > Sorry, I didn't found any define for DPI or DSI flag in Rob's patches.
+> > Do you mean I just remove this flag define and call a special function
+> > to read the port's type(DSI or DPI)?
+> 
+> video-interfaces.yaml has initially been written for cameras, so it
+> doesn't support DSI. I think it would make sense to extend the bus-type
+> property with a DSI type, and use it here instead of a vendor-specific
+> property.
+> 
+> Alternatively, I'm wondering if this isn't information we could query at
+> runtime. DRM bridges and panels have a type, so we could look at the
+> next bridge or panel to find the type of the connected device instead of
+> specifying it in DT.
 
-Add generic clocksource and clockevent driver for the timer IP used
-in Intel Keem Bay SoC.
+At anx7625 driver probe stage, for the DSI, driver needs call some special
+interface to attach to DSI interface. For the DPI port, there is no such
+limitation, so we need to know what kind of MIPI signal type at driver initial
+stage.
+Maybe we can keep this flag, if the future has defined DSI, I'll submit new
+patch to remove this flag.
 
-One free running Counter used as a clocksource device and one Timer
-used as a clockevent device. Both are enabled through TIM_GEN_CONFIG
-register. This register is in the DT resource index 2.
+Thanks,
+Xin
 
-Timer and Counter base register is in the DT resource index 0 and 1
-respectively. This register map/unmap handled by TIMER OF api.
-
-Acked-by: Mark Gross <mgross@linux.intel.com>
-Acked-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Signed-off-by: Vijayakannan Ayyathurai <vijayakannan.ayyathurai@intel.com>
----
- arch/arm64/Kconfig.platforms        |   1 +
- drivers/clocksource/Kconfig         |  10 ++
- drivers/clocksource/Makefile        |   1 +
- drivers/clocksource/timer-keembay.c | 225 ++++++++++++++++++++++++++++
- 4 files changed, 237 insertions(+)
- create mode 100644 drivers/clocksource/timer-keembay.c
-
-diff --git a/arch/arm64/Kconfig.platforms b/arch/arm64/Kconfig.platforms
-index 6eecdef538bd..12c0c39a27ff 100644
---- a/arch/arm64/Kconfig.platforms
-+++ b/arch/arm64/Kconfig.platforms
-@@ -146,6 +146,7 @@ config ARCH_HISI
- 
- config ARCH_KEEMBAY
- 	bool "Keem Bay SoC"
-+	select KEEMBAY_TIMER
- 	help
- 	  This enables support for Intel Movidius SoC code-named Keem Bay.
- 
-diff --git a/drivers/clocksource/Kconfig b/drivers/clocksource/Kconfig
-index 14c7c4712478..cebe774fe104 100644
---- a/drivers/clocksource/Kconfig
-+++ b/drivers/clocksource/Kconfig
-@@ -728,4 +728,14 @@ config MICROCHIP_PIT64B
- 	  modes and high resolution. It is used as a clocksource
- 	  and a clockevent.
- 
-+config KEEMBAY_TIMER
-+	bool "Intel Keembay timer driver"
-+	depends on ARCH_KEEMBAY || (ARM64 && COMPILE_TEST)
-+	select TIMER_OF
-+	help
-+	  This option enables the support for the Intel Keembay general
-+	  purpose timer and free running counter driver. Each timer can
-+	  generate an individual interrupt and the 64 bit counter can also
-+	  be used as one of the clock source.
-+
- endmenu
-diff --git a/drivers/clocksource/Makefile b/drivers/clocksource/Makefile
-index 3c75cbbf8533..584628a56c76 100644
---- a/drivers/clocksource/Makefile
-+++ b/drivers/clocksource/Makefile
-@@ -93,3 +93,4 @@ obj-$(CONFIG_CSKY_MP_TIMER)		+= timer-mp-csky.o
- obj-$(CONFIG_GX6605S_TIMER)		+= timer-gx6605s.o
- obj-$(CONFIG_HYPERV_TIMER)		+= hyperv_timer.o
- obj-$(CONFIG_MICROCHIP_PIT64B)		+= timer-microchip-pit64b.o
-+obj-$(CONFIG_KEEMBAY_TIMER)		+= timer-keembay.o
-diff --git a/drivers/clocksource/timer-keembay.c b/drivers/clocksource/timer-keembay.c
-new file mode 100644
-index 000000000000..f5465b907ba4
---- /dev/null
-+++ b/drivers/clocksource/timer-keembay.c
-@@ -0,0 +1,225 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Intel Keembay Timer driver
-+ *
-+ * Copyright (C) 2020 Intel Corporation
-+ */
-+
-+#include <linux/bits.h>
-+#include <linux/interrupt.h>
-+#include <linux/io-64-nonatomic-lo-hi.h>
-+#include <linux/module.h>
-+#include <linux/of_address.h>
-+#include <linux/sizes.h>
-+
-+#include "timer-of.h"
-+
-+/* Registers offset */
-+#define TIM_CNT_VAL_OFFSET		0
-+#define TIM_RELOAD_VAL_OFFSET		SZ_4
-+#define TIM_CONFIG_OFFSET		SZ_8
-+
-+/* Bit fields of TIM_GEN_CONFIG register */
-+#define TIM_CONFIG_PRESCALER_ENABLE	BIT(2)
-+
-+/* Bit fields of TIM_CONFIG registers */
-+#define TIM_CONFIG_INTERRUPT_PENDING	BIT(4)
-+#define TIM_CONFIG_INTERRUPT_ENABLE	BIT(2)
-+#define TIM_CONFIG_RESTART		BIT(1)
-+#define TIM_CONFIG_ENABLE		BIT(0)
-+
-+#define TIM_RATING			200
-+#define TIM_CLKSRC_BITS			SZ_64
-+
-+struct keembay_init_data {
-+	struct timer_of	*cfg;
-+	void __iomem	*base;
-+	u32		mask;
-+};
-+
-+static inline void keembay_timer_disable(void __iomem *base)
-+{
-+	writel(0, base + TIM_CONFIG_OFFSET);
-+}
-+
-+static inline void keembay_timer_enable(void __iomem *base, u32 flags)
-+{
-+	writel(TIM_CONFIG_ENABLE | flags, base + TIM_CONFIG_OFFSET);
-+}
-+
-+static inline void keembay_timer_update_counter(void __iomem *base, u32 val)
-+{
-+	writel(val, base + TIM_CNT_VAL_OFFSET);
-+	writel(val, base + TIM_RELOAD_VAL_OFFSET);
-+}
-+
-+static int keembay_timer_set_next_event(unsigned long evt, struct clock_event_device *ce)
-+{
-+	u32 flags = TIM_CONFIG_INTERRUPT_ENABLE;
-+	struct timer_of *to = to_timer_of(ce);
-+
-+	keembay_timer_disable(timer_of_base(to));
-+	keembay_timer_update_counter(timer_of_base(to), evt);
-+	keembay_timer_enable(timer_of_base(to), flags);
-+
-+	return 0;
-+}
-+
-+static int keembay_timer_periodic(struct clock_event_device *ce)
-+{
-+	u32 flags = TIM_CONFIG_INTERRUPT_ENABLE | TIM_CONFIG_RESTART;
-+	struct timer_of *to = to_timer_of(ce);
-+
-+	keembay_timer_disable(timer_of_base(to));
-+	keembay_timer_update_counter(timer_of_base(to), timer_of_period(to));
-+	keembay_timer_enable(timer_of_base(to), flags);
-+
-+	return 0;
-+}
-+
-+static int keembay_timer_shutdown(struct clock_event_device *ce)
-+{
-+	struct timer_of *to = to_timer_of(ce);
-+
-+	keembay_timer_disable(timer_of_base(to));
-+
-+	return 0;
-+}
-+
-+static irqreturn_t keembay_timer_isr(int irq, void *dev_id)
-+{
-+	struct clock_event_device *evt = dev_id;
-+	struct timer_of *to = to_timer_of(evt);
-+	u32 val;
-+
-+	val = readl(timer_of_base(to) + TIM_CONFIG_OFFSET);
-+	val &= ~TIM_CONFIG_INTERRUPT_PENDING;
-+	writel(val, timer_of_base(to) + TIM_CONFIG_OFFSET);
-+
-+	if (clockevent_state_oneshot(evt))
-+		keembay_timer_disable(timer_of_base(to));
-+
-+	evt->event_handler(evt);
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static int __init keembay_timer_setup(struct device_node *np, struct keembay_init_data *data)
-+{
-+	struct timer_of *to = data->cfg;
-+	u32 val;
-+
-+	val = readl(data->base + TIM_CONFIG_OFFSET);
-+	if (!(val & data->mask))
-+		return -ENODEV;
-+
-+	return timer_of_init(np, to);
-+}
-+
-+static void keembay_timer_cleanup(struct device_node *np, struct keembay_init_data *data)
-+{
-+	iounmap(data->base);
-+}
-+
-+static struct timer_of keembay_ce_to = {
-+	.flags	= TIMER_OF_IRQ | TIMER_OF_BASE | TIMER_OF_CLOCK,
-+	.clkevt = {
-+		.name			= "keembay_sys_clkevt",
-+		.features		= CLOCK_EVT_FEAT_PERIODIC |
-+					  CLOCK_EVT_FEAT_ONESHOT  |
-+					  CLOCK_EVT_FEAT_DYNIRQ,
-+		.rating			= TIM_RATING,
-+		.set_next_event		= keembay_timer_set_next_event,
-+		.set_state_periodic	= keembay_timer_periodic,
-+		.set_state_shutdown	= keembay_timer_shutdown,
-+	},
-+	.of_base = {
-+		.index = 0,
-+	},
-+	.of_irq = {
-+		.handler = keembay_timer_isr,
-+		.flags = IRQF_TIMER | IRQF_IRQPOLL,
-+	},
-+};
-+
-+static int __init keembay_clockevent_init(struct device_node *np,
-+					  struct keembay_init_data *data)
-+{
-+	u32 val;
-+	int ret;
-+
-+	data->mask = TIM_CONFIG_PRESCALER_ENABLE;
-+	data->cfg = &keembay_ce_to;
-+	ret = keembay_timer_setup(np, data);
-+	if (ret)
-+		return ret;
-+
-+	val = readl(data->base + TIM_RELOAD_VAL_OFFSET);
-+
-+	keembay_ce_to.clkevt.cpumask = cpumask_of(0);
-+	keembay_ce_to.of_clk.rate = keembay_ce_to.of_clk.rate / (val + 1);
-+
-+	keembay_timer_disable(timer_of_base(&keembay_ce_to));
-+
-+	clockevents_config_and_register(&keembay_ce_to.clkevt,
-+					timer_of_rate(&keembay_ce_to), 1, U32_MAX);
-+	return 0;
-+}
-+
-+static struct timer_of keembay_cs_to = {
-+	.flags	= TIMER_OF_BASE | TIMER_OF_CLOCK,
-+	.of_base = {
-+		.index = 1,
-+	},
-+};
-+
-+static u64 notrace keembay_clocksource_read(struct clocksource *cs)
-+{
-+	return lo_hi_readq(timer_of_base(&keembay_cs_to));
-+}
-+
-+static struct clocksource keembay_counter = {
-+	.name			= "keembay_sys_counter",
-+	.rating			= TIM_RATING,
-+	.read			= keembay_clocksource_read,
-+	.mask			= CLOCKSOURCE_MASK(TIM_CLKSRC_BITS),
-+	.flags			= CLOCK_SOURCE_IS_CONTINUOUS |
-+				  CLOCK_SOURCE_SUSPEND_NONSTOP,
-+};
-+
-+static int __init keembay_clocksource_init(struct device_node *np,
-+					   struct keembay_init_data *data)
-+{
-+	int ret;
-+
-+	data->mask = TIM_CONFIG_ENABLE;
-+	data->cfg = &keembay_cs_to;
-+	ret = keembay_timer_setup(np, data);
-+	if (ret)
-+		return ret;
-+
-+	return clocksource_register_hz(&keembay_counter, timer_of_rate(&keembay_cs_to));
-+}
-+
-+static int __init keembay_timer_init(struct device_node *np)
-+{
-+	struct keembay_init_data data;
-+	int ret;
-+
-+	data.base = of_iomap(np, 2);
-+	if (!data.base)
-+		return -ENXIO;
-+
-+	ret = keembay_clocksource_init(np, &data);
-+	if (ret)
-+		goto exit;
-+
-+	ret = keembay_clockevent_init(np, &data);
-+
-+exit:
-+	keembay_timer_cleanup(np, &data);
-+
-+	return ret;
-+}
-+
-+TIMER_OF_DECLARE(keembay_timer, "intel,keembay-timer", keembay_timer_init);
--- 
-2.17.1
-
+> 
+> > > > +
+> > > >    ports:
+> > > >      type: object
+> > > >  
+> > > > @@ -72,6 +80,17 @@ examples:
+> > > >              reg = <0x58>;
+> > > >              enable-gpios = <&pio 45 GPIO_ACTIVE_HIGH>;
+> > > >              reset-gpios = <&pio 73 GPIO_ACTIVE_HIGH>;
+> > > > +            anx,swing-setting = <0x00 0x14>, <0x01 0x54>,
+> > > > +                <0x02 0x64>, <0x03 0x74>, <0x04 0x29>,
+> > > > +                <0x05 0x7b>, <0x06 0x77>, <0x07 0x5b>,
+> > > > +                <0x08 0x7f>, <0x0c 0x20>, <0x0d 0x60>,
+> > > > +                <0x10 0x60>, <0x12 0x40>, <0x13 0x60>,
+> > > > +                <0x14 0x14>, <0x15 0x54>, <0x16 0x64>,
+> > > > +                <0x17 0x74>, <0x18 0x29>, <0x19 0x7b>,
+> > > > +                <0x1a 0x77>, <0x1b 0x5b>, <0x1c 0x7f>,
+> > > > +                <0x20 0x20>, <0x21 0x60>, <0x24 0x60>,
+> > > > +                <0x26 0x40>, <0x27 0x60>;
+> > > > +            anx,mipi-dpi-in = <0>;
+> > > >  
+> > > >              ports {
+> > > >                  #address-cells = <1>;
+> 
+> -- 
+> Regards,
+> 
+> Laurent Pinchart
