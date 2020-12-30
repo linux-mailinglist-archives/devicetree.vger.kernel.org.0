@@ -2,202 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7BCD12E758A
-	for <lists+devicetree@lfdr.de>; Wed, 30 Dec 2020 02:29:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6BEB32E75AE
+	for <lists+devicetree@lfdr.de>; Wed, 30 Dec 2020 03:34:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726616AbgL3B3E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Dec 2020 20:29:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46560 "EHLO
+        id S1726230AbgL3Cdn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Dec 2020 21:33:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56466 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726502AbgL3B3D (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Dec 2020 20:29:03 -0500
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37AE6C0617A0;
-        Tue, 29 Dec 2020 17:27:47 -0800 (PST)
-Received: by mail-ed1-x529.google.com with SMTP id cw27so14155643edb.5;
-        Tue, 29 Dec 2020 17:27:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=ERICeQSZcNW4MB6A7lizIDnbtJ/5pY6iLgvFd0MYB0M=;
-        b=n0kvizMriTgtIILh4cyu+wwdt92uYsszzldRC1jelreD/qg8FeL/+cMfNI+88hVGzR
-         ClBoIUg/wW6O6nioqnOBzo8VnAzEk4FBokBcsYFSqzP2B02F6bqFQ63eIiGbfCnNGRP+
-         jK3RRB593s1L5IDj327hHuu2d+ixr7ySi8DNBialKJlp9jHXhYwggm+BfKAgH8L4Lvpz
-         tFTRZ86qd4D36KW+TKuiveduvajvo2lvaODBP87tlJDJLWKfRWKQvRB511eD3+RIjsYn
-         tY6OssyjM8aOoCGWHjlrVKrlvyOBBq+L31K2WQ3AiPHBsad9ELjYw2ope/xfihBJUsh0
-         POyw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=ERICeQSZcNW4MB6A7lizIDnbtJ/5pY6iLgvFd0MYB0M=;
-        b=EViaYwrZUypiZ5VJGYxBtIRoA36tPIZSj20TJRLvFeXCIWm9tx74xhIzl7ehjsvE6N
-         X/Etvf4PsMq5AL1OiOXL4MFzctUKwHtpb0bI+d9GymXBH+ljEpoAR7aGEOAJclA2tAvV
-         dRQdigLUmPrPMjDBDvJbU49Nw37F0CvY5h/OS2VLF1KTKGc9aSNl8sWF4yR+gjGBFyxh
-         i19uQdxi749v9iPF75LayWI/o/A5HtB0sG3Mm8c211aO7czSt/y/osLute0MESK6auYz
-         LdA32UUDVLEZpOwzrNGWq98Hq7lcwyL4qDR1MKVTVMPiJIn5A5rWCROsOu+p98I+NY9s
-         M8BA==
-X-Gm-Message-State: AOAM530UwW+849Ttc4IyHJBAtB/ITqhJtg6yE5KAS3ulgGnNy300za11
-        wHObFa4N9MVuGX2zXXzMobEynzpoD4U=
-X-Google-Smtp-Source: ABdhPJwWmtTfa86OuhG4O+6Vs7xSFg9ystKi1GbW6SiYF8s1I09d4I8ab+S4iAALsQQHQRyJmdms3w==
-X-Received: by 2002:a50:bf4a:: with SMTP id g10mr47713067edk.201.1609291665779;
-        Tue, 29 Dec 2020 17:27:45 -0800 (PST)
-Received: from localhost.localdomain (p200300f1372a4000428d5cfffeb99db8.dip0.t-ipconnect.de. [2003:f1:372a:4000:428d:5cff:feb9:9db8])
-        by smtp.googlemail.com with ESMTPSA id f20sm26576696edx.92.2020.12.29.17.27.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 29 Dec 2020 17:27:45 -0800 (PST)
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-To:     linux-remoteproc@vger.kernel.org, linux-amlogic@lists.infradead.org
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, bjorn.andersson@linaro.org,
-        ohad@wizery.com, robh+dt@kernel.org,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: [PATCH 5/5] ARM: dts: meson: add the AO ARC remote processor
-Date:   Wed, 30 Dec 2020 02:27:24 +0100
-Message-Id: <20201230012724.1326156-6-martin.blumenstingl@googlemail.com>
-X-Mailer: git-send-email 2.30.0
-In-Reply-To: <20201230012724.1326156-1-martin.blumenstingl@googlemail.com>
-References: <20201230012724.1326156-1-martin.blumenstingl@googlemail.com>
+        with ESMTP id S1726185AbgL3Cdn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Dec 2020 21:33:43 -0500
+Received: from EUR04-HE1-obe.outbound.protection.outlook.com (mail-he1eur04on060c.outbound.protection.outlook.com [IPv6:2a01:111:f400:fe0d::60c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2942C061799;
+        Tue, 29 Dec 2020 18:32:57 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=FG++uJFN+cAhQ9SASEoy8MFT78i1U+tYegz9hv56H23RJn2GjcsU9Dh3R3V6D3i+g9lcMAunWLg5q+VXpU/DTXuWAwHEDQOhGHDz12O5cF+VAbG+zvOBrx1+dkyuCJLJCDuPXJ2xeaZjdEyptScD7VGe5Mx8K4iHc8XFxFRvWp+9aSdgRjaCfLRfWrBOhS/D+lnRiojqAT+dghI5j6JtFfNJlyiD7N/J3TzXA2JE9K2/NSKZ0kn405eVDydW+KocB9cPCHo4hBvWLcuccFfRse7g2gLuEvfsaVV0u1UsUet3OVCNmF7qOsXXLhMmsQVRQgtg5RIB+O+zVceXOQIG5g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=jb/wOxRj4EMa32IQZ5dyTADSPF9WneO7pUHasKqk3tA=;
+ b=Okn8zX6gl36yfoaoR8wdVDFevXH7GTr3rS9DgU8HZFygBxwPa6UzTwwmwHNgzJaSItDC0FRCeu2AIDKIKST6lvg9bzZPtDTzqvGJWMSbai/T1SKJJ+x+AuETTKNmtaseOScTu/2MUVT8QXDIki9Isb6H5Gdr0qrcyfBVvTt4+moangtv++lC1F2Tcw4oo7NQDS6OBgN9IT2tQmCIl44GG9VN5+YgNo7e97YhI9rEX+TOwTkT65CESlsxG/IzqV9Kb5ymcJlf/h8nNGJ35WEoDMLtAJO04mIuRdMx0g0lPwls2O2PqXMfHh0TLNdMKzvItA/Znd7J+yxeqFSGX2nNDQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=jb/wOxRj4EMa32IQZ5dyTADSPF9WneO7pUHasKqk3tA=;
+ b=QQzBT+/wfpUoO+ouIDIi7gUM5RvZrEDYotNIBIXJk4jfSjvAT9KYxFCBlm3sBgmw1v9uBLztLOO7/KnmBnsvCrAUosS0nFQn7UnHhNYYroKwlt/d6k466hzotLm7NFkM7IoTSJvtfV8rsIqVYKucYUWsSBGQocC/53AZ2oy3PW0=
+Received: from DB6PR0402MB2760.eurprd04.prod.outlook.com (2603:10a6:4:a1::14)
+ by DB7PR04MB5996.eurprd04.prod.outlook.com (2603:10a6:10:84::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3721.20; Wed, 30 Dec
+ 2020 02:32:41 +0000
+Received: from DB6PR0402MB2760.eurprd04.prod.outlook.com
+ ([fe80::c964:9:850a:fc5]) by DB6PR0402MB2760.eurprd04.prod.outlook.com
+ ([fe80::c964:9:850a:fc5%10]) with mapi id 15.20.3700.031; Wed, 30 Dec 2020
+ 02:32:41 +0000
+From:   Peng Fan <peng.fan@nxp.com>
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+CC:     "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: RE: [PATCH 3/4] arm64: dts: imx8mn: add spba bus node
+Thread-Topic: [PATCH 3/4] arm64: dts: imx8mn: add spba bus node
+Thread-Index: AQHW3duLbYhmQ5UsDkWjPU7MeJAKE6oOPz0AgACslHA=
+Date:   Wed, 30 Dec 2020 02:32:41 +0000
+Message-ID: <DB6PR0402MB2760208A9F845D2E1D30B69D88D70@DB6PR0402MB2760.eurprd04.prod.outlook.com>
+References: <1609243245-9671-1-git-send-email-peng.fan@nxp.com>
+ <1609243245-9671-4-git-send-email-peng.fan@nxp.com>
+ <20201229161300.GB17229@kozik-lap>
+In-Reply-To: <20201229161300.GB17229@kozik-lap>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
+x-originating-ip: [92.121.68.129]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: 55ecab1f-4143-42ef-6bf2-08d8ac6b2e64
+x-ms-traffictypediagnostic: DB7PR04MB5996:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <DB7PR04MB5996B438A4F12946FE0A7BCF88D70@DB7PR04MB5996.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:590;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: kPqbljIZfUNtDOjn/YrbFIypyh5CvPociBCSoHHtaxJxJrdPNAXjuJK7bWpFZFLeLMQHUB2V/2m73M7IJ/B3xLzIViPNl/PY66JMHCNLwm+5+py3iu0QvwHVboP55PyNBrUXOiHQe39IpPhshIXOhYXgBbvFGO7eP0G3WrtVSYFGZ6nvGOyHDCOb/Ct8LnxPGO/pFnEwm13UIfqxWQuRwEL08QAHpuRS+hkUuunMQS2vyOrQGt9aySHOGXpkGYT82BF/OHABpZtRBujQa7Ld+nY4XXnlfdaK/dvEOkyyNoaApEkbqGIbWry1ITgzKwkubvFGPrJJircug8fGaYLBv56jU8ie/LAOsTdDFxELnpxrNW/sQDpDPhn9AwLH5rf18tDw8dPRNojpxK4noYdfgy78UzKhyucdUcKdW7pGoo0A4StGl27vTqBwgw8IaAb5
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB6PR0402MB2760.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(396003)(136003)(376002)(366004)(39860400002)(346002)(6506007)(33656002)(71200400001)(86362001)(186003)(54906003)(26005)(316002)(7696005)(8936002)(8676002)(2906002)(44832011)(52536014)(4326008)(55016002)(478600001)(4744005)(66446008)(76116006)(66946007)(83380400001)(66556008)(64756008)(66476007)(6916009)(9686003)(5660300002)(32563001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: =?utf-8?B?clAzdlpDbjRFdDRaaXBobXdqa21lK0Zwb1p1aS9iQzdTeUpLbFFhV2JaQy9Z?=
+ =?utf-8?B?QzF5L0RQVzRiWFR0b1RnMDB4ekxXclZoRWFrQ2wrM3BwTFBxVVE3MHBNVVRy?=
+ =?utf-8?B?QzhrenJROHFjZ1hnZUJUNG0vVXNicmhZdWNob0FSU1FnSzE3SXZPTlFDMjJG?=
+ =?utf-8?B?K3ZKSlllMEpENUVQQ0ZHSWdUVmlqendmT1lTdmx1eDE1M2NzOGx1cG5KWVlo?=
+ =?utf-8?B?S3JsMzZlRnVVbUQ0eDh4WitMNmQvYlN2WElhNFYwMnBWZHV2NnA3clB3dVNP?=
+ =?utf-8?B?S2pBcDg1TnBwbFFnRlM4SzRGTnI3QUR3bEhadVJsbHY5b2dyL2VicGxLWVRM?=
+ =?utf-8?B?NDB5NFpWWCtxOTdUWVVtUEFUN3Q4a21TdGNCYjRVUGFWTS9pRTQxRno0dWl5?=
+ =?utf-8?B?MEhWYmZoOGNtcC95WnR5ZFVZSGwrdGY0R0FyS3ZkMkNLdCs2RDFDN2djLzZL?=
+ =?utf-8?B?V3dVek1LV294TUU5SFVySVJZNDRFS3I0OWxwdVhpNDNWR1hxRmVOU251L085?=
+ =?utf-8?B?V3oyelRxM1lzbFVBUXMyYllreE80U29xOUczbFQxR2RoVWdwNWFXYjN0YVNy?=
+ =?utf-8?B?R0FsL3lsYVVoZnozaXU3T1ZRd3p3bTVGNVR4cG44RXVjd1BkRGhONHhkSisv?=
+ =?utf-8?B?ZG5kYlROTXlYZXkwSnM0eDdJeit3R3NIZHk0UzlZTzE5NnVJaWthRk92S3U2?=
+ =?utf-8?B?RkRZV2lHUkt3TXFYQ0Q0OXZrWklxQWhEaElobGRXV2FheDBGZGlxWGo3VFA3?=
+ =?utf-8?B?VDh4L2FnbnJ0NEpyaGI3UUlmUFYwMGJKZEExTzVZdFF2TzZuMFM4cTU1eVlJ?=
+ =?utf-8?B?TjNVL1poWDlRUCtvR3FJUEs2OFpWN1Z1SG9LZ3IxRi9xZXhNMzJUbDR5RUhx?=
+ =?utf-8?B?RFA0STZoTmNla1NMVTg0YldUMXpMNHR3Vk95ZWRoejc0Nmg3QmVPbjBvU3Zs?=
+ =?utf-8?B?QXM3RE1LclkvUlJHQ2RqTENYSWQ2RUpqdzN6SmlmekdKLzRJdGlDZHdkYjhW?=
+ =?utf-8?B?L2gzZGg2MUVTMWhYUUhmZmw5TXhTdjVQaURuamVPa08xajRRVktGVjkyMUly?=
+ =?utf-8?B?aHMvWXVETjFDUGl6ZXYwRXFtSVZCZUwrV3hrRHc0VElhUTJyYkd1V3RoeVZk?=
+ =?utf-8?B?MFFVaFcyTTVMNDhkRXRESmIxV2RQejBvRE9EM2VDcXFBOFdYOVZKUERqam9o?=
+ =?utf-8?B?eDZVQkJJRG5ONmVORncrTSsrN25MMklDbzhMSkpxWXFYQ2czMkJ1MEZtUWVv?=
+ =?utf-8?B?UXg4R0g2ZXBpc0UyRDRYcHRUakhIRGFzaDRjYjRLVm83VjJyNW1KUXBHTCty?=
+ =?utf-8?Q?hSL9nwFT33B84=3D?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DB6PR0402MB2760.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 55ecab1f-4143-42ef-6bf2-08d8ac6b2e64
+X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Dec 2020 02:32:41.1107
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: rpeIMBaVkwj7BsdZQnj4iJgRcH+++NtaKTqbIgbejv3MS9P4yad4wHK6DctPATMaLrjW7Ud7g6JaBkeXwtn8iw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB7PR04MB5996
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The 32-bit Amlogic Meson SoCs embed an ARC processor in the Always-On
-power domain which is typically used for managing system suspend. The
-memory for this ARC core is taken from the AHB SRAM area. Depending on
-the actual SoC a different ARC core is used:
-- Meson6 and earlier: some ARCv1 ISA based core (probably an ARC625)
-- Meson8 and later: an ARC EM4 (ARCv2 ISA) based core
-
-Add the device-tree node for this remote-processor along with the
-required SRAM sections, clocks and reset-lines. Also use the
-SoC-specific compatible string to manage any differences (should
-they exist).
-
-On Meson8, Meson8b and Meson8m2 the "secbus2" IO region is needed as
-some bits need to be programmed there. Add this IO region for those
-SoCs as well.
-
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- arch/arm/boot/dts/meson.dtsi   |  7 +++++++
- arch/arm/boot/dts/meson8.dtsi  | 21 +++++++++++++++++++++
- arch/arm/boot/dts/meson8b.dtsi | 21 +++++++++++++++++++++
- 3 files changed, 49 insertions(+)
-
-diff --git a/arch/arm/boot/dts/meson.dtsi b/arch/arm/boot/dts/meson.dtsi
-index e0ca5f08d07d..8bae6ed0abb2 100644
---- a/arch/arm/boot/dts/meson.dtsi
-+++ b/arch/arm/boot/dts/meson.dtsi
-@@ -200,6 +200,13 @@ aobus: aobus@c8100000 {
- 			#size-cells = <1>;
- 			ranges = <0x0 0xc8100000 0x100000>;
- 
-+			ao_arc_rproc: remoteproc@1c {
-+				compatible= "amlogic,meson-mx-ao-arc";
-+				reg = <0x1c 0x8>, <0x38 0x8>;
-+				reg-names = "remap", "cpu";
-+				status = "disabled";
-+			};
-+
- 			ir_receiver: ir-receiver@480 {
- 				compatible= "amlogic,meson6-ir";
- 				reg = <0x480 0x20>;
-diff --git a/arch/arm/boot/dts/meson8.dtsi b/arch/arm/boot/dts/meson8.dtsi
-index 420324ea2ad7..157a950a55d3 100644
---- a/arch/arm/boot/dts/meson8.dtsi
-+++ b/arch/arm/boot/dts/meson8.dtsi
-@@ -369,6 +369,14 @@ mux {
- 	};
- };
- 
-+&ao_arc_rproc {
-+	compatible= "amlogic,meson8-ao-arc", "amlogic,meson-mx-ao-arc";
-+	amlogic,secbus2 = <&secbus2>;
-+	sram = <&ao_arc_sram>;
-+	resets = <&reset RESET_MEDIA_CPU>;
-+	clocks = <&clkc CLKID_AO_MEDIA_CPU>;
-+};
-+
- &cbus {
- 	reset: reset-controller@4404 {
- 		compatible = "amlogic,meson8b-reset";
-@@ -496,6 +504,12 @@ mux {
- };
- 
- &ahb_sram {
-+	ao_arc_sram: ao-arc-sram@0 {
-+		compatible = "amlogic,meson8-ao-arc-sram";
-+		reg = <0x0 0x8000>;
-+		pool;
-+	};
-+
- 	smp-sram@1ff80 {
- 		compatible = "amlogic,meson8-smp-sram";
- 		reg = <0x1ff80 0x8>;
-@@ -631,6 +645,13 @@ &sdhc {
- 	clock-names = "clkin0", "clkin1", "clkin2", "clkin3", "pclk";
- };
- 
-+&secbus {
-+	secbus2: system-controller@4000 {
-+		compatible = "amlogic,meson8-secbus2", "syscon";
-+		reg = <0x4000 0x2000>;
-+	};
-+};
-+
- &sdio {
- 	compatible = "amlogic,meson8-sdio", "amlogic,meson-mx-sdio";
- 	clocks = <&clkc CLKID_SDIO>, <&clkc CLKID_CLK81>;
-diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
-index dbf7963b6c87..c02b03cbcdf4 100644
---- a/arch/arm/boot/dts/meson8b.dtsi
-+++ b/arch/arm/boot/dts/meson8b.dtsi
-@@ -320,6 +320,14 @@ mux {
- 	};
- };
- 
-+&ao_arc_rproc {
-+	compatible= "amlogic,meson8b-ao-arc", "amlogic,meson-mx-ao-arc";
-+	amlogic,secbus2 = <&secbus2>;
-+	sram = <&ao_arc_sram>;
-+	resets = <&reset RESET_MEDIA_CPU>;
-+	clocks = <&clkc CLKID_AO_MEDIA_CPU>;
-+};
-+
- &cbus {
- 	reset: reset-controller@4404 {
- 		compatible = "amlogic,meson8b-reset";
-@@ -464,6 +472,12 @@ mux {
- };
- 
- &ahb_sram {
-+	ao_arc_sram: ao-arc-sram@0 {
-+		compatible = "amlogic,meson8b-ao-arc-sram";
-+		reg = <0x0 0x8000>;
-+		pool;
-+	};
-+
- 	smp-sram@1ff80 {
- 		compatible = "amlogic,meson8b-smp-sram";
- 		reg = <0x1ff80 0x8>;
-@@ -628,6 +642,13 @@ &sdhc {
- 	clock-names = "clkin0", "clkin1", "clkin2", "clkin3", "pclk";
- };
- 
-+&secbus {
-+	secbus2: system-controller@4000 {
-+		compatible = "amlogic,meson8b-secbus2", "syscon";
-+		reg = <0x4000 0x2000>;
-+	};
-+};
-+
- &sdio {
- 	compatible = "amlogic,meson8b-sdio", "amlogic,meson-mx-sdio";
- 	clocks = <&clkc CLKID_SDIO>, <&clkc CLKID_CLK81>;
--- 
-2.30.0
-
+PiBTdWJqZWN0OiBSZTogW1BBVENIIDMvNF0gYXJtNjQ6IGR0czogaW14OG1uOiBhZGQgc3BiYSBi
+dXMgbm9kZQ0KPiANCj4gT24gVHVlLCBEZWMgMjksIDIwMjAgYXQgMDg6MDA6NDRQTSArMDgwMCwg
+cGVuZy5mYW5AbnhwLmNvbSB3cm90ZToNCj4gPiBGcm9tOiBQZW5nIEZhbiA8cGVuZy5mYW5Abnhw
+LmNvbT4NCj4gPg0KPiA+IEFjY29yZGluZyB0byBSTSwgdGhlcmUgaXMgYSBzcGJhIGJ1cyBpbnNp
+ZGUgYWlwczMgYW5kIGFpcHMxLCBhZGQgaXQuDQo+IA0KPiBUaGlzIGRvZXMgbm90IGxvb2sgbGlr
+ZSBtYXRjaGluZyBjb250ZW50cyBvZiBjb21taXQuDQoNClBvc3RlZCBpbiBhIHJ1c2guIEZvcmdv
+dCB0byBzcXVhc2ggY29tbWl0cy4NCg0KVGhhbmtzLA0KUGVuZy4NCg0KPiANCj4gQmVzdCByZWdh
+cmRzLA0KPiBLcnp5c3p0b2YNCj4gDQo+IA0KPiA+DQo+ID4gU2lnbmVkLW9mZi1ieTogUGVuZyBG
+YW4gPHBlbmcuZmFuQG54cC5jb20+DQo+ID4gLS0tDQo+ID4gIGFyY2gvYXJtNjQvYm9vdC9kdHMv
+ZnJlZXNjYWxlL2lteDhtbi5kdHNpIHwgMiArLQ0KPiA+ICAxIGZpbGUgY2hhbmdlZCwgMSBpbnNl
+cnRpb24oKyksIDEgZGVsZXRpb24oLSkNCj4gPg0KPiA+IGRpZmYgLS1naXQgYS9hcmNoL2FybTY0
+L2Jvb3QvZHRzL2ZyZWVzY2FsZS9pbXg4bW4uZHRzaQ0KPiBiL2FyY2gvYXJtNjQvYm9vdC9kdHMv
+ZnJlZXNjYWxlL2lteDhtbi5kdHNpDQo+ID4gaW5kZXggNzM2MDI4MzJjY2FhLi4wMzNmYTkwNTcw
+ZmYgMTAwNjQ0DQo+ID4gLS0tIGEvYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvaW14OG1u
+LmR0c2kNCj4gPiArKysgYi9hcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9pbXg4bW4uZHRz
+aQ0KPiA+IEBAIC03NDksNyArNzQ5LDcgQEAgdWFydDI6IHNlcmlhbEAzMDg5MDAwMCB7DQo+ID4g
+IAkJCQkJY2xvY2stbmFtZXMgPSAiaXBnIiwgInBlciI7DQo+ID4gIAkJCQkJc3RhdHVzID0gImRp
+c2FibGVkIjsNCj4gPiAgCQkJCX07DQo+ID4gLQkJCX0NCj4gPiArCQkJfTsNCj4gPg0KPiA+ICAJ
+CQljcnlwdG86IGNyeXB0b0AzMDkwMDAwMCB7DQo+ID4gIAkJCQljb21wYXRpYmxlID0gImZzbCxz
+ZWMtdjQuMCI7DQo+ID4gLS0NCj4gPiAyLjI4LjANCj4gPg0K
