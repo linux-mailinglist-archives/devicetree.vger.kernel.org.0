@@ -2,90 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C58A02E80F4
-	for <lists+devicetree@lfdr.de>; Thu, 31 Dec 2020 16:35:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0765B2E8106
+	for <lists+devicetree@lfdr.de>; Thu, 31 Dec 2020 16:40:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726356AbgLaPfd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Dec 2020 10:35:33 -0500
-Received: from mail-ot1-f50.google.com ([209.85.210.50]:36982 "EHLO
-        mail-ot1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726071AbgLaPfd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Dec 2020 10:35:33 -0500
-Received: by mail-ot1-f50.google.com with SMTP id o11so18275567ote.4;
-        Thu, 31 Dec 2020 07:35:17 -0800 (PST)
+        id S1726583AbgLaPkQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Dec 2020 10:40:16 -0500
+Received: from mail-oo1-f53.google.com ([209.85.161.53]:40086 "EHLO
+        mail-oo1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726080AbgLaPkQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Dec 2020 10:40:16 -0500
+Received: by mail-oo1-f53.google.com with SMTP id 9so4381554ooy.7;
+        Thu, 31 Dec 2020 07:40:00 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=U5+TgRxBr8Fo4F24dxi/XK3rCsce2994tILTdIkxtms=;
-        b=VYsOjXJADSQAuA4BKAbhJA2e89sZAZTVZdKcVFRiqM2ITm4EulVIYjXSIqk9RcRVgG
-         9w34n9nxx3abDZc16ct2PAjzdtKOZxTEG097n8Dvr8sgYt+zSUASpfev4wIEsbJs9yvz
-         039kQuOMNxAJyePvPzEo3LxL4FqSUML3nuiBSJ+xNU6wiqrBAtOzU7FXNIFAfdVPsTMo
-         RG1bWE206DhGtJgwtVNYKwLJDluk8TKq2NiZ0cm2QeINx6EmDjVxc+1XDmMtIIi/Ndr9
-         KwBqgWubnG27+ob02/6aplzsJP8/Gy+SHpDh9HUdNotwLWjDliB5m8OgsgZfhYc/laML
-         IHTg==
-X-Gm-Message-State: AOAM533ex3VVCMT+G1n4ezV4HRmJOp2wVxU3RKr+foA1nonui2fUpFeF
-        lZg4GfxbaHhZtJEOKXWiRQ==
-X-Google-Smtp-Source: ABdhPJwueo20TglGcEsIU4ebdW4CqO2h44on2UHrkgjVWDuMsGX+RxqetVDTW5S7wZkG+1Pb4x+4/w==
-X-Received: by 2002:a9d:5d02:: with SMTP id b2mr41960733oti.148.1609428892020;
-        Thu, 31 Dec 2020 07:34:52 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=aqRUTrB98zq19oUfqeTfRGQXti0Kp3OgPKPcu5cHQTM=;
+        b=M/SjJFSAUhwgApfUeLMUUySfsuWpzzWRA9QNR6qlAATZjvpc8J2W5LkgrJuGZXWKAe
+         +T0Y5jpz7vu0xJbw7TWfTWmOBq4aw0VzDt479jbdn2+KEIeYsinYkVaRdlmOR34myLQy
+         gc81Qy96WP2O7Xi+PT7sog5cQbzoC3dRL9089pIdoznDdMQHAH7Muw06/hWcVCXKfE4J
+         wLwjEqRXL9hYkZ19sZnhhE1nHlnjE6K3B/DJOmT1xyrTsbtcC2xvGWFoF3uWAA2B1Ooj
+         qBnhLx2q6vISnIYjtxa6VIwX0gM5zT+XBdfK6aD6ezdYcuQXH2DeoT4XBe/R+7A/U8Ee
+         chpA==
+X-Gm-Message-State: AOAM532XKfA5bdV5P7Ek7ursEjMLIp30U5geJw3MfPNNBXe7WY+hEAFd
+        h9tXky8OW4S/krkFXOzZrw==
+X-Google-Smtp-Source: ABdhPJx1uK9oxb1Sht+XTOoCn6qCnv276YFq7AbTWO1nihXVsG+83XjUs8P2ZFTe9vA3Jk0ICL3Vjg==
+X-Received: by 2002:a4a:e1b5:: with SMTP id 21mr39831446ooy.64.1609429175023;
+        Thu, 31 Dec 2020 07:39:35 -0800 (PST)
 Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id h30sm10449278ooi.12.2020.12.31.07.34.49
+        by smtp.gmail.com with ESMTPSA id f201sm10955753oig.21.2020.12.31.07.39.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 31 Dec 2020 07:34:50 -0800 (PST)
-Received: (nullmailer pid 1828652 invoked by uid 1000);
-        Thu, 31 Dec 2020 15:34:48 -0000
+        Thu, 31 Dec 2020 07:39:33 -0800 (PST)
+Received: (nullmailer pid 1836008 invoked by uid 1000);
+        Thu, 31 Dec 2020 15:39:31 -0000
+Date:   Thu, 31 Dec 2020 08:39:31 -0700
 From:   Rob Herring <robh@kernel.org>
-To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
-        linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
-        linux-remoteproc@vger.kernel.org, bjorn.andersson@linaro.org,
-        devicetree@vger.kernel.org, ohad@wizery.com
-In-Reply-To: <20201230012724.1326156-3-martin.blumenstingl@googlemail.com>
-References: <20201230012724.1326156-1-martin.blumenstingl@googlemail.com> <20201230012724.1326156-3-martin.blumenstingl@googlemail.com>
-Subject: Re: [PATCH 2/5] dt-bindings: Amlogic: add the documentation for the SECBUS2 registers
-Date:   Thu, 31 Dec 2020 08:34:48 -0700
-Message-Id: <1609428888.809731.1828651.nullmailer@robh.at.kernel.org>
+To:     Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
+Cc:     Stephen Boyd <sboyd@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Mark Brown <broonie@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        srv_heupstream@mediatek.com,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Subject: Re: [PATCH v5 1/4] dt-bindings: spmi: modify the constraint
+ 'maxItems' to 'minItems'
+Message-ID: <20201231153931.GA1833986@robh.at.kernel.org>
+References: <1608691469-20919-1-git-send-email-hsin-hsiung.wang@mediatek.com>
+ <1608691469-20919-2-git-send-email-hsin-hsiung.wang@mediatek.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1608691469-20919-2-git-send-email-hsin-hsiung.wang@mediatek.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 30 Dec 2020 02:27:21 +0100, Martin Blumenstingl wrote:
-> The Meson8/Meson8b/Meson8m2 SoCs have a register bank called SECBUS2 which
-> contains registers for various IP blocks such as pin-controller bits for
-> the BSD_EN and TEST_N GPIOs as well as some AO ARC core control bits.
-> The registers can be accessed directly when not running in "secure mode".
-> When "secure mode" is enabled then these registers have to be accessed
-> through secure monitor calls.
+On Wed, Dec 23, 2020 at 10:44:26AM +0800, Hsin-Hsiung Wang wrote:
+> The constraint of 'maxItem: 1' might be larger than 1, so we modify it
+> to 'minItem: 0'.
 > 
-> So far these SoCs are always known to boot in "non-secure mode".
-> Add a binding documentation using syscon (as these registers are shared
-> across different IPs) for the SECBUS2 registers.
-> 
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> Signed-off-by: Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
 > ---
->  .../arm/amlogic/amlogic,meson-mx-secbus2.yaml | 53 +++++++++++++++++++
->  1 file changed, 53 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/arm/amlogic/amlogic,meson-mx-secbus2.yaml
+>  Documentation/devicetree/bindings/spmi/spmi.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
+> diff --git a/Documentation/devicetree/bindings/spmi/spmi.yaml b/Documentation/devicetree/bindings/spmi/spmi.yaml
+> index 173940930719..f1a26391ffde 100644
+> --- a/Documentation/devicetree/bindings/spmi/spmi.yaml
+> +++ b/Documentation/devicetree/bindings/spmi/spmi.yaml
+> @@ -25,7 +25,7 @@ properties:
+>      pattern: "^spmi@.*"
+>  
+>    reg:
+> -    maxItems: 1
+> +    minItems: 0
 
-My bot found errors running 'make dt_binding_check' on your patch:
+0 is never right. That's 'reg' not present.
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/arm/amlogic/amlogic,meson-mx-secbus2.yaml:35:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
-
-dtschema/dtc warnings/errors:
-
-See https://patchwork.ozlabs.org/patch/1421302
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+>  
+>    "#address-cells":
+>      const: 2
+> -- 
+> 2.18.0
+> 
