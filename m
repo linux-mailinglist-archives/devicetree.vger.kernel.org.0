@@ -2,413 +2,305 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B5262E7F5C
-	for <lists+devicetree@lfdr.de>; Thu, 31 Dec 2020 11:19:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 963952E7F93
+	for <lists+devicetree@lfdr.de>; Thu, 31 Dec 2020 12:06:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726515AbgLaKTZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Dec 2020 05:19:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37840 "EHLO
+        id S1726219AbgLaLGF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Dec 2020 06:06:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44980 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726155AbgLaKTZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Dec 2020 05:19:25 -0500
-Received: from mail-pf1-x42c.google.com (mail-pf1-x42c.google.com [IPv6:2607:f8b0:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14F66C061799;
-        Thu, 31 Dec 2020 02:18:45 -0800 (PST)
-Received: by mail-pf1-x42c.google.com with SMTP id t8so11060488pfg.8;
-        Thu, 31 Dec 2020 02:18:45 -0800 (PST)
+        with ESMTP id S1726155AbgLaLGE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Dec 2020 06:06:04 -0500
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EAEB9C061573
+        for <devicetree@vger.kernel.org>; Thu, 31 Dec 2020 03:05:23 -0800 (PST)
+Received: by mail-wr1-x430.google.com with SMTP id r3so19848157wrt.2
+        for <devicetree@vger.kernel.org>; Thu, 31 Dec 2020 03:05:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=Xw698ctg4Ze5W/87ncdseRGuPD3JOZ7supZFvs8H2cs=;
-        b=GnESWj2jam8dYagjQrsGx+sfk6YpRaQ5Pk2awXCQY4gXnSdrRzX2hfcmEU+3yuQyGw
-         pjPX1tjVCnxUXNO2gnoht0RiOA4diL3wSiVmpJS/GTNsxzFk9/KtY7yvRHSI0Q7Yk/po
-         NU7DREleeXy1QDrkjGGnvnrTm4YQkUypwtv2gQhDdcnXg73M76IdkLiHboIs6g8anANo
-         QfFvPSVPf2ZyOb0+W4qZoY4QjcwGFhBdTNfIJm4gseruH2/u5+CopfX6TzG3nQzdXyGb
-         IrlrwagjUXhuTSiCqu0TIysi4DV5Z0qL0Rn402iNZ6DS8QoQdUNnJXwsKkrQsp/i0gNc
-         U6uA==
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=subject:to:references:from:autocrypt:organization:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=cxEudhZPFqhuhT8GK/KK/lyF11N/gNnuVpNnjBEKpzA=;
+        b=Zp3J7Klt9b2yeJQNf1Z7IvH3xsr5w5cp6bpwdi6FPkCxGFuRLbZHMwQXMP9vBYkH3f
+         sMl6Rj52XzZ+bRRCvqfCXWaq+ssBjZVpHqQ4oHPeKqaYwB8xmqOLKEp6r5g4jzSqYF7L
+         hyrA1gM5nJXCbMEw/zfdyKvgb22WJb+7D+zyv2jHtTmX0vn7RDM3UZ4jxXFlTrDd4OPv
+         AAGZVN87oXr76XQucQF2lwgYfghhjSwSWkOXwoTSz/1WSysW5LOk5yffIf2OgNpHoClA
+         3gr7eo0SnqEh51rEIS0P16hB2dhIaXP7dXY0Sbk2Vy+TjRPlrRiNZZB+0kqLuZkxXUGh
+         3Vgg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=Xw698ctg4Ze5W/87ncdseRGuPD3JOZ7supZFvs8H2cs=;
-        b=MD0x8YQi9lr1X3e3HntCqg+9UXlTHLyLjZ+b9ilmsO4sHjiJFrGM4HeenI++i6W++/
-         tAu1aGUfkljYsK6vKPP0Ta1dC4gKo+JQwa5SnLuW+pX2mwmt0yKM+erKY+jVeQToowhy
-         AMZd27jgLXlzHlTqSUX9zOtZdAH8WQEulzavaa+n9FHatsm0h0UW5L6q1RxbzIrrN+oZ
-         QO4FZyTtDmTdLFElrd3HDM/dRFdmRWf/SKfEGtJhozq3wBVWyIOFLvppwqOw3zUABe9J
-         sQEOHJ8P5ukEoTj8Qv6LJwYQPzyOK5bmlTZVtQFEbmkTQCKff8rH3iLFb4t7KuWHpR23
-         K/dg==
-X-Gm-Message-State: AOAM5334sRrRgp9cNdVDSo6AqhYqkmXg3GQ7SitZNlsEx/WUIbhBcBku
-        88pasl6Ow95MKnbdgANTFZk=
-X-Google-Smtp-Source: ABdhPJzhh9x8UuD7p0Hxj4Gg5iJpIjYvufvPp88dNcIwAvyOsbGJ8XFoajJIsiN0+xq4h3CDlI8JMA==
-X-Received: by 2002:a62:7d90:0:b029:19d:917b:6c65 with SMTP id y138-20020a627d900000b029019d917b6c65mr31766577pfc.28.1609409924556;
-        Thu, 31 Dec 2020 02:18:44 -0800 (PST)
-Received: from sh05419pcu.spreadtrum.com ([117.18.48.82])
-        by smtp.gmail.com with ESMTPSA id a141sm45470937pfa.189.2020.12.31.02.18.40
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 31 Dec 2020 02:18:43 -0800 (PST)
-From:   Hongtao Wu <wuht06@gmail.com>
-To:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Orson Zhai <orsonzhai@gmail.com>,
-        Baolin Wang <baolin.wang7@gmail.com>,
-        Chunyan Zhang <zhang.lyra@gmail.com>,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Hongtao Wu <billows.wu@unisoc.com>
-Subject: [PATCH v5 2/2] PCI: sprd: Add support for Unisoc SoCs' PCIe controller
-Date:   Thu, 31 Dec 2020 18:18:25 +0800
-Message-Id: <1609409905-30721-3-git-send-email-wuht06@gmail.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1609409905-30721-1-git-send-email-wuht06@gmail.com>
-References: <1609409905-30721-1-git-send-email-wuht06@gmail.com>
+        h=x-gm-message-state:subject:to:references:from:autocrypt
+         :organization:message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=cxEudhZPFqhuhT8GK/KK/lyF11N/gNnuVpNnjBEKpzA=;
+        b=Q89mC8bH1kvMapqnBS03gkPs8vOSMv/w9FsXlIro48BlNQBFhL8m1Z8C/V20QHPtD6
+         UKTTyn5imqXKR1XW7RxLRUwQOl2iPaIZEZzzztvXBUobvBj3eF95G8sUc2jv5yPCnK0A
+         +EiBTu2SiWsTjcy+mwurKOJPNXNyMqI5LfHbDhAaJnMQm/ueVdUawYxUu2KDGPiBq/Vw
+         A9f4Nsn2mQo8tglXvIooU5O8h9XUXgj7S8QW1tv+osSvC66vbc7sI5Djn+L3PCDuLPyI
+         mNQyhYvy3ZPvCxiqi0jbBnWRh9eL2DZ7vPjKuo4fV3uvKaVzUTiDi0ukBjoyOvRn2ZzJ
+         1Chw==
+X-Gm-Message-State: AOAM531ULztr99/SWqns78PiZZhqOIQI8d67+Imve25+7yb06LgDz26G
+        g8LRRAb2TCUs/W7ATjPIQn4TWA==
+X-Google-Smtp-Source: ABdhPJxeNCc4QIqjJGgUgd2mKoLxVMdnS6IxPx+VD9tcimGiL5GudXkGXB1z06VrxDaxIxwueTNMrA==
+X-Received: by 2002:a5d:47cc:: with SMTP id o12mr63039488wrc.236.1609412722447;
+        Thu, 31 Dec 2020 03:05:22 -0800 (PST)
+Received: from ?IPv6:2a01:e35:2ec0:82b0:543f:d93a:78dc:eb25? ([2a01:e35:2ec0:82b0:543f:d93a:78dc:eb25])
+        by smtp.gmail.com with ESMTPSA id f77sm10963934wmf.42.2020.12.31.03.05.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 31 Dec 2020 03:05:21 -0800 (PST)
+Subject: Re: [PATCH v2 2/2] arm64: dts: meson: add initial Beelink GS-King-X
+ device-tree
+To:     Christian Hewitt <christianshewitt@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20201230103729.2272-1-christianshewitt@gmail.com>
+ <20201230103729.2272-3-christianshewitt@gmail.com>
+From:   Neil Armstrong <narmstrong@baylibre.com>
+Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
+ 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
+ ZaTUOEkgIor5losDrePdPgE=
+Organization: Baylibre
+Message-ID: <5a582ac6-37b9-c640-dd12-4f42e4a957c0@baylibre.com>
+Date:   Thu, 31 Dec 2020 12:05:20 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
+MIME-Version: 1.0
+In-Reply-To: <20201230103729.2272-3-christianshewitt@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Hongtao Wu <billows.wu@unisoc.com>
+On 30/12/2020 11:37, Christian Hewitt wrote:
+> The Shenzen AZW (Beelink) GS-King-X is based on the Amlogic W400 reference
+> board with an S922X-H chip.
+> 
+> - 4GB LPDDR4 RAM
+> - 64GB eMMC storage
+> - 10/100/1000 Base-T Ethernet
+> - AP6356S Wireless (802.11 a/b/g/n/ac, BT 4.1)
+> - HDMI 2.1 video
+> - S/PDIF optical output
+> - 2x ESS9018 audio DACs
+> - 4x Ricor RT6862 audio amps
+> - Analogue headphone output
+> - 1x USB 2.0 OTG port
+> - 3x USB 3.0 ports
+> - IR receiver
+> - 1x micro SD card slot (internal)
+> - USB SATA controller with 2x 3.5" drive bays
+> - 1x Power on/off button
+> 
+> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+> ---
+>  arch/arm64/boot/dts/amlogic/Makefile          |   1 +
+>  .../boot/dts/amlogic/meson-g12b-gsking-x.dts  | 133 ++++++++++++++++++
+>  2 files changed, 134 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/amlogic/meson-g12b-gsking-x.dts
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
+> index ced03946314f..dce41cd3f347 100644
+> --- a/arch/arm64/boot/dts/amlogic/Makefile
+> +++ b/arch/arm64/boot/dts/amlogic/Makefile
+> @@ -3,6 +3,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-axg-s400.dtb
+>  dtb-$(CONFIG_ARCH_MESON) += meson-g12a-sei510.dtb
+>  dtb-$(CONFIG_ARCH_MESON) += meson-g12a-u200.dtb
+>  dtb-$(CONFIG_ARCH_MESON) += meson-g12a-x96-max.dtb
+> +dtb-$(CONFIG_ARCH_MESON) += meson-g12b-gsking-x.dtb
+>  dtb-$(CONFIG_ARCH_MESON) += meson-g12b-gtking.dtb
+>  dtb-$(CONFIG_ARCH_MESON) += meson-g12b-gtking-pro.dtb
+>  dtb-$(CONFIG_ARCH_MESON) += meson-g12b-a311d-khadas-vim3.dtb
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-gsking-x.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-gsking-x.dts
+> new file mode 100644
+> index 000000000000..c9d9dcb0cd65
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-gsking-x.dts
+> @@ -0,0 +1,133 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright (c) 2019 BayLibre, SAS
+> + * Author: Neil Armstrong <narmstrong@baylibre.com>
+> + * Copyright (c) 2019 Christian Hewitt <christianshewitt@gmail.com>
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "meson-g12b-w400.dtsi"
+> +#include <dt-bindings/leds/common.h>
+> +#include <dt-bindings/sound/meson-g12a-tohdmitx.h>
+> +
+> +/ {
+> +	compatible = "azw,gsking-x", "amlogic,g12b";
+> +	model = "Beelink GS-King X";
+> +
+> +	aliases {
+> +		rtc0 = &rtc;
+> +		rtc1 = &vrtc;
+> +	};
+> +
+> +	gpio-keys-polled {
+> +		compatible = "gpio-keys-polled";
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +		poll-interval = <100>;
+> +
+> +		power-button {
+> +			label = "power";
+> +			linux,code = <KEY_POWER>;
+> +			gpios = <&gpio_ao GPIOAO_3 GPIO_ACTIVE_HIGH>;
+> +		};
+> +	};
+> +
+> +	sound {
+> +		compatible = "amlogic,axg-sound-card";
+> +		model = "G12B-GSKING-X";
+> +		audio-aux-devs = <&tdmout_a>;
+> +		audio-routing = "TDMOUT_A IN 0", "FRDDR_A OUT 1",
+> +				"TDMOUT_A IN 1", "FRDDR_B OUT 1",
+> +				"TDMOUT_A IN 2", "FRDDR_C OUT 1",
+> +				"TDM_A Playback", "TDMOUT_A OUT";
+> +
+> +		assigned-clocks = <&clkc CLKID_MPLL2>,
+> +				  <&clkc CLKID_MPLL0>,
+> +				  <&clkc CLKID_MPLL1>;
+> +		assigned-clock-parents = <0>, <0>, <0>;
+> +		assigned-clock-rates = <294912000>,
+> +				       <270950400>,
+> +				       <393216000>;
+> +		status = "okay";
+> +
+> +		dai-link-0 {
+> +			sound-dai = <&frddr_a>;
+> +		};
+> +
+> +		dai-link-1 {
+> +			sound-dai = <&frddr_b>;
+> +		};
+> +
+> +		dai-link-2 {
+> +			sound-dai = <&frddr_c>;
+> +		};
+> +
+> +		/* 8ch hdmi interface */
+> +		dai-link-3 {
+> +			sound-dai = <&tdmif_a>;
+> +			dai-format = "i2s";
+> +			dai-tdm-slot-tx-mask-0 = <1 1>;
+> +			dai-tdm-slot-tx-mask-1 = <1 1>;
+> +			dai-tdm-slot-tx-mask-2 = <1 1>;
+> +			dai-tdm-slot-tx-mask-3 = <1 1>;
+> +			mclk-fs = <256>;
+> +
+> +			codec {
+> +				sound-dai = <&tohdmitx TOHDMITX_I2S_IN_A>;
+> +			};
+> +		};
+> +
+> +		dai-link-4 {
+> +			sound-dai = <&tohdmitx TOHDMITX_I2S_OUT>;
+> +
+> +			codec {
+> +				sound-dai = <&hdmi_tx>;
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&arb {
+> +	status = "okay";
+> +};
+> +
+> +&clkc_audio {
+> +	status = "okay";
+> +};
+> +
+> +&frddr_a {
+> +	status = "okay";
+> +};
+> +
+> +&frddr_b {
+> +	status = "okay";
+> +};
+> +
+> +&frddr_c {
+> +	status = "okay";
+> +};
+> +
+> +&i2c3 {
+> +	status = "okay";
+> +	pinctrl-0 = <&i2c3_sda_a_pins>, <&i2c3_sck_a_pins>;
+> +	pinctrl-names = "default";
+> +
+> +	rtc: rtc@51 {
+> +		compatible = "nxp,pcf8563";
+> +		reg = <0x51>;
+> +		wakeup-source;
+> +	};
+> +};
+> +
+> +&tdmif_a {
+> +	status = "okay";
+> +};
+> +
+> +&tdmout_a {
+> +	status = "okay";
+> +};
+> +
+> +&tohdmitx {
+> +	status = "okay";
+> +};
+> 
 
-This series adds PCIe controller driver for Unisoc SoCs.
-This controller is based on DesignWare PCIe IP.
-
-Signed-off-by: Hongtao Wu <billows.wu@unisoc.com>
----
- drivers/pci/controller/dwc/Kconfig     |  12 ++
- drivers/pci/controller/dwc/Makefile    |   1 +
- drivers/pci/controller/dwc/pcie-sprd.c | 293 +++++++++++++++++++++++++++++++++
- 3 files changed, 306 insertions(+)
- create mode 100644 drivers/pci/controller/dwc/pcie-sprd.c
-
-diff --git a/drivers/pci/controller/dwc/Kconfig b/drivers/pci/controller/dwc/Kconfig
-index 22c5529..61f0b79 100644
---- a/drivers/pci/controller/dwc/Kconfig
-+++ b/drivers/pci/controller/dwc/Kconfig
-@@ -318,4 +318,16 @@ config PCIE_AL
- 	  required only for DT-based platforms. ACPI platforms with the
- 	  Annapurna Labs PCIe controller don't need to enable this.
-
-+config PCIE_SPRD
-+	tristate "Unisoc PCIe controller - Host Mode"
-+	depends on ARCH_SPRD || COMPILE_TEST
-+	depends on PCI_MSI_IRQ_DOMAIN
-+	select PCIE_DW_HOST
-+	help
-+	  Unisoc PCIe controller uses the DesignWare core. It can be configured
-+	  as an Endpoint (EP) or a Root complex (RC). In order to enable host
-+	  mode (the controller works as RC), PCIE_SPRD must be selected.
-+	  Say Y or M here if you want to PCIe RC controller support on Unisoc
-+	  SoCs.
-+
- endmenu
-diff --git a/drivers/pci/controller/dwc/Makefile b/drivers/pci/controller/dwc/Makefile
-index a751553..eb546e9 100644
---- a/drivers/pci/controller/dwc/Makefile
-+++ b/drivers/pci/controller/dwc/Makefile
-@@ -20,6 +20,7 @@ obj-$(CONFIG_PCI_MESON) += pci-meson.o
- obj-$(CONFIG_PCIE_TEGRA194) += pcie-tegra194.o
- obj-$(CONFIG_PCIE_UNIPHIER) += pcie-uniphier.o
- obj-$(CONFIG_PCIE_UNIPHIER_EP) += pcie-uniphier-ep.o
-+obj-$(CONFIG_PCIE_SPRD) += pcie-sprd.o
-
- # The following drivers are for devices that use the generic ACPI
- # pci_root.c driver but don't support standard ECAM config access.
-diff --git a/drivers/pci/controller/dwc/pcie-sprd.c b/drivers/pci/controller/dwc/pcie-sprd.c
-new file mode 100644
-index 0000000..27d7231
---- /dev/null
-+++ b/drivers/pci/controller/dwc/pcie-sprd.c
-@@ -0,0 +1,293 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * PCIe host controller driver for Unisoc SoCs
-+ *
-+ * Copyright (C) 2020-2021 Unisoc, Inc.
-+ *
-+ * Author: Hongtao Wu <Billows.Wu@unisoc.com>
-+ */
-+
-+#include <linux/delay.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/interrupt.h>
-+#include <linux/mfd/syscon.h>
-+#include <linux/module.h>
-+#include <linux/of_device.h>
-+#include <linux/of_irq.h>
-+#include <linux/platform_device.h>
-+#include <linux/property.h>
-+#include <linux/regmap.h>
-+
-+#include "pcie-designware.h"
-+
-+/* aon apb syscon */
-+#define IPA_ACCESS_CFG		0xcd8
-+#define  AON_ACCESS_PCIE_EN	BIT(1)
-+
-+/* pmu apb syscon */
-+#define SNPS_PCIE3_SLP_CTRL	0xac
-+#define  PERST_N_ASSERT		BIT(1)
-+#define  PERST_N_AUTO_EN	BIT(0)
-+#define PD_PCIE_CFG_0		0x3e8
-+#define  PCIE_FORCE_SHUTDOWN	BIT(25)
-+
-+#define PCIE_SS_REG_BASE		0xE00
-+#define APB_CLKFREQ_TIMEOUT		0x4
-+#define  BUSERR_EN			BIT(12)
-+#define  APB_TIMER_DIS			BIT(10)
-+#define  APB_TIMER_LIMIT		GENMASK(31, 16)
-+
-+#define PE0_GEN_CTRL_3			0x58
-+#define  LTSSM_EN			BIT(0)
-+
-+struct sprd_pcie_soc_data {
-+	u32 syscon_offset;
-+};
-+
-+static const struct sprd_pcie_soc_data ums9520_syscon_data = {
-+	.syscon_offset = 0x1000,	/* The offset of set/clear register */
-+};
-+
-+struct sprd_pcie {
-+	u32 syscon_offset;
-+	struct device	*dev;
-+	struct dw_pcie	*pci;
-+	struct regmap	*aon_map;
-+	struct regmap	*pmu_map;
-+	const struct sprd_pcie_soc_data *socdata;
-+};
-+
-+enum sprd_pcie_syscon_type {
-+	normal_syscon,		/* it's not a set/clear register */
-+	set_syscon,		/* set a set/clear register */
-+	clr_syscon,		/* clear a set/clear register */
-+};
-+
-+static void sprd_pcie_buserr_enable(struct dw_pcie *pci)
-+{
-+	u32 val;
-+
-+	val = dw_pcie_readl_dbi(pci, PCIE_SS_REG_BASE + APB_CLKFREQ_TIMEOUT);
-+	val &= ~APB_TIMER_DIS;
-+	val |= BUSERR_EN;
-+	val |= APB_TIMER_LIMIT & (0x1f4 << 16);
-+	dw_pcie_writel_dbi(pci, PCIE_SS_REG_BASE + APB_CLKFREQ_TIMEOUT, val);
-+}
-+
-+static void sprd_pcie_ltssm_enable(struct dw_pcie *pci, bool enable)
-+{
-+	u32 val;
-+
-+	val = dw_pcie_readl_dbi(pci, PCIE_SS_REG_BASE + PE0_GEN_CTRL_3);
-+	if (enable)
-+		dw_pcie_writel_dbi(pci, PCIE_SS_REG_BASE + PE0_GEN_CTRL_3,
-+				   val | LTSSM_EN);
-+	else
-+		dw_pcie_writel_dbi(pci, PCIE_SS_REG_BASE + PE0_GEN_CTRL_3,
-+				   val & ~LTSSM_EN);
-+}
-+
-+static int sprd_pcie_syscon_set(struct sprd_pcie *ctrl, struct regmap *map,
-+				u32 reg, u32 mask, u32 val,
-+				enum sprd_pcie_syscon_type type)
-+{
-+	int ret = 0;
-+	u32 read_val;
-+	u32 offset = ctrl->syscon_offset;
-+	struct device *dev = ctrl->pci->dev;
-+
-+	/*
-+	 * Each set/clear register has three registers:
-+	 * reg:			base register
-+	 * reg + offset:	set register
-+	 * reg + offset * 2:	clear register
-+	 */
-+	switch (type) {
-+	case normal_syscon:
-+		ret = regmap_read(map, reg, &read_val);
-+		if (ret) {
-+			dev_err(dev, "failed to read register 0x%x\n", reg);
-+			return ret;
-+		}
-+		read_val &= ~mask;
-+		read_val |= (val & mask);
-+		ret = regmap_write(map, reg, read_val);
-+		break;
-+	case set_syscon:
-+		reg = reg + offset;
-+		ret = regmap_write(map, reg, val);
-+		break;
-+	case clr_syscon:
-+		reg = reg + offset * 2;
-+		ret = regmap_write(map, reg, val);
-+		break;
-+	default:
-+		break;
-+	}
-+
-+	if (ret)
-+		dev_err(dev, "failed to write register 0x%x\n", reg);
-+
-+	return ret;
-+}
-+
-+static int sprd_pcie_perst_assert(struct sprd_pcie *ctrl)
-+{
-+	return sprd_pcie_syscon_set(ctrl, ctrl->pmu_map, SNPS_PCIE3_SLP_CTRL,
-+				    PERST_N_ASSERT, PERST_N_ASSERT, set_syscon);
-+}
-+
-+static int sprd_pcie_perst_deassert(struct sprd_pcie *ctrl)
-+{
-+	int ret;
-+
-+	ret = sprd_pcie_syscon_set(ctrl, ctrl->pmu_map, SNPS_PCIE3_SLP_CTRL,
-+				   PERST_N_ASSERT, 0, clr_syscon);
-+	usleep_range(2000, 3000);
-+
-+	return ret;
-+}
-+
-+static int sprd_pcie_power_on(struct platform_device *pdev)
-+{
-+	int ret;
-+	struct sprd_pcie *ctrl = platform_get_drvdata(pdev);
-+	struct dw_pcie *pci = ctrl->pci;
-+
-+	ret = sprd_pcie_syscon_set(ctrl, ctrl->aon_map, PD_PCIE_CFG_0,
-+				   PCIE_FORCE_SHUTDOWN, 0, clr_syscon);
-+	if (ret)
-+		return ret;
-+
-+	ret = sprd_pcie_syscon_set(ctrl, ctrl->aon_map, IPA_ACCESS_CFG,
-+				   AON_ACCESS_PCIE_EN, AON_ACCESS_PCIE_EN,
-+				   set_syscon);
-+	if (ret)
-+		return ret;
-+
-+	ret = sprd_pcie_perst_deassert(ctrl);
-+	if (ret)
-+		return ret;
-+
-+	sprd_pcie_buserr_enable(pci);
-+	sprd_pcie_ltssm_enable(pci, true);
-+
-+	return ret;
-+}
-+
-+static int sprd_pcie_power_off(struct platform_device *pdev)
-+{
-+	struct sprd_pcie *ctrl = platform_get_drvdata(pdev);
-+	struct dw_pcie *pci = ctrl->pci;
-+
-+	sprd_pcie_ltssm_enable(pci, false);
-+
-+	sprd_pcie_perst_assert(ctrl);
-+	sprd_pcie_syscon_set(ctrl, ctrl->aon_map, PD_PCIE_CFG_0,
-+			     PCIE_FORCE_SHUTDOWN, PCIE_FORCE_SHUTDOWN,
-+			     set_syscon);
-+	sprd_pcie_syscon_set(ctrl, ctrl->aon_map, IPA_ACCESS_CFG,
-+			     AON_ACCESS_PCIE_EN, 0, clr_syscon);
-+
-+	return 0;
-+}
-+
-+static int sprd_add_pcie_port(struct platform_device *pdev)
-+{
-+	struct sprd_pcie *ctrl = platform_get_drvdata(pdev);
-+	struct dw_pcie *pci = ctrl->pci;
-+	struct pcie_port *pp = &pci->pp;
-+
-+	return dw_pcie_host_init(pp);
-+}
-+
-+static int sprd_pcie_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct sprd_pcie *ctrl;
-+	struct dw_pcie *pci;
-+	int ret;
-+
-+	ctrl = devm_kzalloc(dev, sizeof(*ctrl), GFP_KERNEL);
-+	if (!ctrl)
-+		return -ENOMEM;
-+
-+	ctrl->socdata =
-+		(struct sprd_pcie_soc_data *)of_device_get_match_data(dev);
-+	if (!ctrl->socdata) {
-+		dev_warn(dev,
-+			 "using the default set/clear register offset address");
-+		ctrl->syscon_offset = 0x1000;
-+	}
-+	ctrl->syscon_offset = ctrl->socdata->syscon_offset;
-+
-+	ctrl->aon_map = syscon_regmap_lookup_by_phandle(dev->of_node,
-+							"sprd, regmap-aon");
-+	if (IS_ERR(ctrl->aon_map)) {
-+		dev_err(dev, "failed to get syscon regmap aon\n");
-+		ret = PTR_ERR(ctrl->aon_map);
-+		goto err;
-+	}
-+
-+	ctrl->pmu_map = syscon_regmap_lookup_by_phandle(dev->of_node,
-+							"sprd, regmap-pmu");
-+	if (IS_ERR(ctrl->pmu_map)) {
-+		dev_err(dev, "failed to get syscon regmap pmu\n");
-+		ret = PTR_ERR(ctrl->pmu_map);
-+		goto err;
-+	}
-+
-+	pci = ctrl->pci;
-+	pci->dev = dev;
-+
-+	platform_set_drvdata(pdev, ctrl);
-+
-+	ret = sprd_pcie_power_on(pdev);
-+	if (ret < 0) {
-+		dev_err(dev, "failed to power on, return %d\n",
-+			ret);
-+		goto err_power_off;
-+	}
-+
-+	ret = sprd_add_pcie_port(pdev);
-+	if (ret) {
-+		dev_warn(dev, "failed to initialize RC controller\n");
-+		return ret;
-+	}
-+
-+	return 0;
-+
-+err_power_off:
-+	sprd_pcie_power_off(pdev);
-+err:
-+	return ret;
-+}
-+
-+static int sprd_pcie_remove(struct platform_device *pdev)
-+{
-+	sprd_pcie_power_off(pdev);
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id sprd_pcie_of_match[] = {
-+	{
-+		.compatible = "sprd,ums9520-pcie",
-+		.data  = &ums9520_syscon_data,
-+	},
-+	{},
-+};
-+
-+static struct platform_driver sprd_pcie_driver = {
-+	.probe = sprd_pcie_probe,
-+	.remove = __exit_p(sprd_pcie_remove),
-+	.driver = {
-+		.name = "sprd-pcie",
-+		.of_match_table = sprd_pcie_of_match,
-+	},
-+};
-+
-+module_platform_driver(sprd_pcie_driver);
-+
-+MODULE_DESCRIPTION("Unisoc PCIe host controller driver");
-+MODULE_LICENSE("GPL v2");
---
-2.7.4
-
+Tested-by: Neil Armstrong <narmstrong@baylibre.com>
