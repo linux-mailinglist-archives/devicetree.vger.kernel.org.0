@@ -2,145 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E7D82E823D
-	for <lists+devicetree@lfdr.de>; Thu, 31 Dec 2020 23:39:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F0FF22E8242
+	for <lists+devicetree@lfdr.de>; Thu, 31 Dec 2020 23:42:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726738AbgLaWj1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Dec 2020 17:39:27 -0500
-Received: from mail-il1-f174.google.com ([209.85.166.174]:35810 "EHLO
-        mail-il1-f174.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726641AbgLaWj1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Dec 2020 17:39:27 -0500
-Received: by mail-il1-f174.google.com with SMTP id t9so18384423ilf.2;
-        Thu, 31 Dec 2020 14:39:11 -0800 (PST)
+        id S1726651AbgLaWlo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Dec 2020 17:41:44 -0500
+Received: from mail-io1-f41.google.com ([209.85.166.41]:39827 "EHLO
+        mail-io1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726630AbgLaWlo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Dec 2020 17:41:44 -0500
+Received: by mail-io1-f41.google.com with SMTP id d9so18144488iob.6;
+        Thu, 31 Dec 2020 14:41:28 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=An3yvvM30RFSSdQsTF6nqBc3O8X7QGJ6M/oMxqoqkDg=;
-        b=EsT/hlN9FLmFod1GJiV9xLOX5lwxvaMe7HtkH4zyjNnc6wJBMN+DScfCFDc9SFgHPw
-         wvJtoyUD4o67XSIq2Zbjm27n5kIsekqrcdbM0y2HYpXQy2aTG4f7e6rLZcxB2UT+F0c1
-         9wgU2SlVfaxliye6UUOkYrmN++rscI2mPaAs2wIAaCZYAs+PRd2zJMNpjpqfcGyYYPep
-         QOYEwslH903Ih7myFscx/0fkhtLeiQz+VkCYuAzg5QfJp76fvzvTcsUMc5zExYw02XGP
-         6JaGXZmiCCRWRwZQKolbBsp+x0N4695nWT1Q2pebfBBsPaVdraJQgM/Got1dhrn8d4m3
-         eDlw==
-X-Gm-Message-State: AOAM5308WtRDubxNINBDv3rLTwBn7d0ZyvEmpWHlvA1Rmo4klmN6arGT
-        ShPABfDN5MweO//i1AJ161Lw36Kx+w==
-X-Google-Smtp-Source: ABdhPJwygH2C/u5I/SjE5VeC8cY1a79JkJGb77NCs+fguLBs7jezfjqi4R48w8/4D9Xk0nvHBtGSJQ==
-X-Received: by 2002:a92:9510:: with SMTP id y16mr58767465ilh.26.1609454326373;
-        Thu, 31 Dec 2020 14:38:46 -0800 (PST)
+        bh=bq1ampSovDf3E6K/Nut0jgcMzqjMGTsUaPGA2BE/HFs=;
+        b=AmPKoUO94GmrCn1vkl9nqFKLLODjE9XLAaLYjmR7m+YDGDd7LMWB57TPqoq8e/qeu6
+         +UsSc1cHlXSlHHEJv+G+i+cEXlPrgQIM7J752pxq3IVo9Xabxm+22+Zkc9p5ofyp/1gy
+         Bj0qCDRWzklqqmu8YAg6W2XLuCR3k/G5D+G15bkJCHGNXiAEcYqX5Jgd2jSdm2eZiirJ
+         Psn42K/6qXrRzIDqb/tlLSatmPxYbO6HRIhL4ocJolTHzKQYhKU/x+D0AsJLg3Q+1hQ0
+         weZEsSWjup5pvyixNtQQe2rPiz9y/akpUg7ZZJP3sgnGYiFFOlABMu0BZagUs8QBHJiH
+         ExvA==
+X-Gm-Message-State: AOAM530YMonjH9qWQg5a4vi8AHmjT4PXb71GJtTGABfrQSfaItgGF65T
+        yBgVdL2n3or/S0pA66RoXP9H3u0n8A==
+X-Google-Smtp-Source: ABdhPJx/IhyHgtSG6AFYHM9hSUmuPDlCR3dmePMBnSOqOxfvDdMCLvCvyfiIB/FtB12UbDksCb5c/Q==
+X-Received: by 2002:a05:6638:1a:: with SMTP id z26mr50695001jao.52.1609454463235;
+        Thu, 31 Dec 2020 14:41:03 -0800 (PST)
 Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id h2sm31671377ili.56.2020.12.31.14.38.44
+        by smtp.gmail.com with ESMTPSA id y3sm34534058ilq.9.2020.12.31.14.41.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 31 Dec 2020 14:38:45 -0800 (PST)
-Received: (nullmailer pid 2505330 invoked by uid 1000);
-        Thu, 31 Dec 2020 22:38:43 -0000
-Date:   Thu, 31 Dec 2020 15:38:43 -0700
+        Thu, 31 Dec 2020 14:41:02 -0800 (PST)
+Received: (nullmailer pid 2508944 invoked by uid 1000);
+        Thu, 31 Dec 2020 22:41:00 -0000
+Date:   Thu, 31 Dec 2020 15:41:00 -0700
 From:   Rob Herring <robh@kernel.org>
-To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Cc:     sboyd@kernel.org, john@phrozen.org, tsbogend@alpha.franken.de,
-        gregkh@linuxfoundation.org, gch981213@gmail.com,
-        hackpascal@gmail.com, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-mips@vger.kernel.org, devel@driverdev.osuosl.org,
-        neil@brown.name
-Subject: Re: [PATCH v5 2/6] dt: bindings: add mt7621-clk device tree binding
- documentation
-Message-ID: <20201231223843.GA2494920@robh.at.kernel.org>
-References: <20201220093724.4906-1-sergio.paracuellos@gmail.com>
- <20201220093724.4906-3-sergio.paracuellos@gmail.com>
+To:     Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+Cc:     linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH v3] dt-bindings: display: renesas,du: Convert binding to
+ YAML
+Message-ID: <20201231224100.GA2508888@robh.at.kernel.org>
+References: <20201220145053.7382-1-laurent.pinchart+renesas@ideasonboard.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201220093724.4906-3-sergio.paracuellos@gmail.com>
+In-Reply-To: <20201220145053.7382-1-laurent.pinchart+renesas@ideasonboard.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Dec 20, 2020 at 10:37:20AM +0100, Sergio Paracuellos wrote:
-> Adds device tree binding documentation for clocks in the
-> MT7621 SOC.
+On Sun, 20 Dec 2020 16:50:53 +0200, Laurent Pinchart wrote:
+> Convert the Renesas R-Car DU text binding to YAML.
 > 
-> Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+> Signed-off-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
 > ---
->  .../bindings/clock/mediatek,mt7621-clk.yaml   | 52 +++++++++++++++++++
->  1 file changed, 52 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/mediatek,mt7621-clk.yaml
+> Changes since v2:
 > 
-> diff --git a/Documentation/devicetree/bindings/clock/mediatek,mt7621-clk.yaml b/Documentation/devicetree/bindings/clock/mediatek,mt7621-clk.yaml
-> new file mode 100644
-> index 000000000000..f58d01bdc82c
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/mediatek,mt7621-clk.yaml
-> @@ -0,0 +1,52 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/mediatek,mt7621-clk.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MT7621 Clock Device Tree Bindings
-> +
-> +maintainers:
-> +  - Sergio Paracuellos <sergio.paracuellos@gmail.com>
-> +
-> +description: |
-> +  The MT7621 has a PLL controller from where the cpu clock is provided
-> +  as well as derived clocks for the bus and the peripherals. It also
-> +  can gate SoC device clocks.
-> +
-> +  Each clock is assigned an identifier and client nodes use this identifier
-> +  to specify the clock which they consume.
-> +
-> +  All these identifiers could be found in:
-> +  [1]: <include/dt-bindings/clock/mt7621-clk.h>.
-> +
-> +properties:
-> +  compatible:
-> +    const: mediatek,mt7621-clk
-> +
-> +  "#clock-cells":
-> +    description:
-> +      The first cell indicates the clock number, see [1] for available
-> +      clocks.
-> +    const: 1
-> +
-> +  clock-output-names:
-> +    maxItems: 8
-> +
-> +required:
-> +  - compatible
-> +  - '#clock-cells'
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/mt7621-clk.h>
-> +
-> +    pll {
-> +      compatible = "mediatek,mt7621-clk";
-> +      #clock-cells = <1>;
-> +      clock-output-names = "xtal", "cpu", "bus",
-> +                           "50m", "125m", "150m",
-> +                           "250m", "270m";
+> - Drop boilerplate for ports node
+> - Add description for interrupts peroperty
+> - Use single quoted strings to avoid double backslashes
+> 
+> Changes since v1:
+> 
+> - Use pattern instead of enum for dclkin
+> - Update MAINTAINERS
+> ---
+>  .../bindings/display/renesas,du.txt           | 145 ---
+>  .../bindings/display/renesas,du.yaml          | 831 ++++++++++++++++++
+>  MAINTAINERS                                   |   2 +-
+>  3 files changed, 832 insertions(+), 146 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/display/renesas,du.txt
+>  create mode 100644 Documentation/devicetree/bindings/display/renesas,du.yaml
+> 
 
-How do you access this h/w. There's nothing defined like 'reg' or 
-a parent node or...
-
-The suggestion on v4 was to get rid of the child node by merging it with 
-the parent like this:
-
-+    sysc: sysc@0 {
-+      compatible = "mediatek,mt7621-sysc", "syscon";
-+      reg = <0x0 0x100>;
-+      #clock-cells = <1>;
-+      clock-output-names = "xtal", "cpu", "bus",
-+                             "50m", "125m", "150m",
-+                             "250m", "270m";
-+    };
-
-Whether you need child nodes or not really depends on what all is in the 
-'mt7621-sysc' h/w block.
-
-Rob
+Reviewed-by: Rob Herring <robh@kernel.org>
