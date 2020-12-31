@@ -2,305 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 963952E7F93
-	for <lists+devicetree@lfdr.de>; Thu, 31 Dec 2020 12:06:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C7302E7FD8
+	for <lists+devicetree@lfdr.de>; Thu, 31 Dec 2020 13:19:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726219AbgLaLGF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Dec 2020 06:06:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44980 "EHLO
+        id S1726293AbgLaMSu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Dec 2020 07:18:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56070 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726155AbgLaLGE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Dec 2020 06:06:04 -0500
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EAEB9C061573
-        for <devicetree@vger.kernel.org>; Thu, 31 Dec 2020 03:05:23 -0800 (PST)
-Received: by mail-wr1-x430.google.com with SMTP id r3so19848157wrt.2
-        for <devicetree@vger.kernel.org>; Thu, 31 Dec 2020 03:05:23 -0800 (PST)
+        with ESMTP id S1726219AbgLaMSt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Dec 2020 07:18:49 -0500
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF930C061799
+        for <devicetree@vger.kernel.org>; Thu, 31 Dec 2020 04:18:08 -0800 (PST)
+Received: by mail-wm1-x32c.google.com with SMTP id g185so7140913wmf.3
+        for <devicetree@vger.kernel.org>; Thu, 31 Dec 2020 04:18:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=subject:to:references:from:autocrypt:organization:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=cxEudhZPFqhuhT8GK/KK/lyF11N/gNnuVpNnjBEKpzA=;
-        b=Zp3J7Klt9b2yeJQNf1Z7IvH3xsr5w5cp6bpwdi6FPkCxGFuRLbZHMwQXMP9vBYkH3f
-         sMl6Rj52XzZ+bRRCvqfCXWaq+ssBjZVpHqQ4oHPeKqaYwB8xmqOLKEp6r5g4jzSqYF7L
-         hyrA1gM5nJXCbMEw/zfdyKvgb22WJb+7D+zyv2jHtTmX0vn7RDM3UZ4jxXFlTrDd4OPv
-         AAGZVN87oXr76XQucQF2lwgYfghhjSwSWkOXwoTSz/1WSysW5LOk5yffIf2OgNpHoClA
-         3gr7eo0SnqEh51rEIS0P16hB2dhIaXP7dXY0Sbk2Vy+TjRPlrRiNZZB+0kqLuZkxXUGh
-         3Vgg==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=7SqcNl5KWJPGbXH65bKbbN1vtS8pHNjLIp3wmAVPS+8=;
+        b=F0Ty4zFCDW5DJIvU7G6DHJocno5RtfsBgnYkYnGMSK88ObGi0268Fnw/DLUJdepaxW
+         A6ZQM3J5FWnOBndRIGfHhgmNDZ8q4i3o5tf84GZU3fndsYVjgVqrCelSI1OkFUpHDDV3
+         OG9x14ceTTBlV+ytPQUQywLl0XlZMZvNir9NDn8eLY69sZY2NRW3Q7u+rIsAJ0/zRxGm
+         E4uhdTVSWJSPn2/ljRClFbQZ4B/9efeoO1O8+hCOTBZEjGOgaQwN8E7EGQEPNITYr81Z
+         qBQZdcB+FgEMd4ZvsrgDxCWat9IM7yeyBuU0v5X9ow3No6WxvbHtTKgq+G4vcCsHcGZK
+         8QUA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:references:from:autocrypt
-         :organization:message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=cxEudhZPFqhuhT8GK/KK/lyF11N/gNnuVpNnjBEKpzA=;
-        b=Q89mC8bH1kvMapqnBS03gkPs8vOSMv/w9FsXlIro48BlNQBFhL8m1Z8C/V20QHPtD6
-         UKTTyn5imqXKR1XW7RxLRUwQOl2iPaIZEZzzztvXBUobvBj3eF95G8sUc2jv5yPCnK0A
-         +EiBTu2SiWsTjcy+mwurKOJPNXNyMqI5LfHbDhAaJnMQm/ueVdUawYxUu2KDGPiBq/Vw
-         A9f4Nsn2mQo8tglXvIooU5O8h9XUXgj7S8QW1tv+osSvC66vbc7sI5Djn+L3PCDuLPyI
-         mNQyhYvy3ZPvCxiqi0jbBnWRh9eL2DZ7vPjKuo4fV3uvKaVzUTiDi0ukBjoyOvRn2ZzJ
-         1Chw==
-X-Gm-Message-State: AOAM531ULztr99/SWqns78PiZZhqOIQI8d67+Imve25+7yb06LgDz26G
-        g8LRRAb2TCUs/W7ATjPIQn4TWA==
-X-Google-Smtp-Source: ABdhPJxeNCc4QIqjJGgUgd2mKoLxVMdnS6IxPx+VD9tcimGiL5GudXkGXB1z06VrxDaxIxwueTNMrA==
-X-Received: by 2002:a5d:47cc:: with SMTP id o12mr63039488wrc.236.1609412722447;
-        Thu, 31 Dec 2020 03:05:22 -0800 (PST)
-Received: from ?IPv6:2a01:e35:2ec0:82b0:543f:d93a:78dc:eb25? ([2a01:e35:2ec0:82b0:543f:d93a:78dc:eb25])
-        by smtp.gmail.com with ESMTPSA id f77sm10963934wmf.42.2020.12.31.03.05.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 31 Dec 2020 03:05:21 -0800 (PST)
-Subject: Re: [PATCH v2 2/2] arm64: dts: meson: add initial Beelink GS-King-X
- device-tree
-To:     Christian Hewitt <christianshewitt@gmail.com>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=7SqcNl5KWJPGbXH65bKbbN1vtS8pHNjLIp3wmAVPS+8=;
+        b=rURHMGAHIGuHrPjdRCzV/PM0kYk8Ta6MkxemOclDdEhe6X/owCIJ1ybWqtazKGrW/2
+         M7ZJHnfQNS6/WU/hAFcRWPZYA15V8qARSPCK7KCnG95p7U/26mMhqrQVsZEijNFDr37s
+         DeJS5qlyY8lqhcoz/NgfprORPuedwk191OThmBbOf9PIRbUafRmyQuJ0hru09wMhvSEn
+         r3iRMQpAllMICZ2haVixdvoA/sV6H54NP8lLVPjzFAOFYscHy/HIcDbdCZX0bh1qduKb
+         8SRGPpoYW6sz2dtFskMPzI1bnuQ5HqYCHDMOB7RMsmSCOn5moefX+SCtkOggWyWFDk3a
+         DvOg==
+X-Gm-Message-State: AOAM531E1KLTR5QB1d54XH6clyh+MK36I9+7Ro0QXswFD76s0SwGdSo3
+        JFB23eqJuL0qC+uMVgBNlkFK7g==
+X-Google-Smtp-Source: ABdhPJyZpFCcTny/kpxj+lNXYT/J5a5zwnln/azNAkSLIx5BERCKXlTb9EROUOzJtMiXDd6c5BrYzg==
+X-Received: by 2002:a1c:4d0a:: with SMTP id o10mr11923999wmh.185.1609417086646;
+        Thu, 31 Dec 2020 04:18:06 -0800 (PST)
+Received: from dell ([91.110.221.133])
+        by smtp.gmail.com with ESMTPSA id a62sm12743892wmf.7.2020.12.31.04.18.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 31 Dec 2020 04:18:05 -0800 (PST)
+Date:   Thu, 31 Dec 2020 12:18:03 +0000
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Pavel Machek <pavel@ucw.cz>
+Cc:     Alexander Dahl <post@lespocky.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20201230103729.2272-1-christianshewitt@gmail.com>
- <20201230103729.2272-3-christianshewitt@gmail.com>
-From:   Neil Armstrong <narmstrong@baylibre.com>
-Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
- 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
- ZaTUOEkgIor5losDrePdPgE=
-Organization: Baylibre
-Message-ID: <5a582ac6-37b9-c640-dd12-4f42e4a957c0@baylibre.com>
-Date:   Thu, 31 Dec 2020 12:05:20 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        Alexander Dahl <ada@thorsis.com>, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-amlogic@lists.infradead.org, Jeff LaBundy <jeff@labundy.com>,
+        Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v9 1/4] dt-bindings: mfd: Fix schema warnings for pwm-leds
+Message-ID: <20201231121803.GC4413@dell>
+References: <20201228163217.32520-1-post@lespocky.de>
+ <20201228163217.32520-2-post@lespocky.de>
+ <20201230185439.GC25903@duo.ucw.cz>
+ <20201231083317.GB4413@dell>
+ <20201231093945.GA22962@amd>
 MIME-Version: 1.0
-In-Reply-To: <20201230103729.2272-3-christianshewitt@gmail.com>
 Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20201231093945.GA22962@amd>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/12/2020 11:37, Christian Hewitt wrote:
-> The Shenzen AZW (Beelink) GS-King-X is based on the Amlogic W400 reference
-> board with an S922X-H chip.
-> 
-> - 4GB LPDDR4 RAM
-> - 64GB eMMC storage
-> - 10/100/1000 Base-T Ethernet
-> - AP6356S Wireless (802.11 a/b/g/n/ac, BT 4.1)
-> - HDMI 2.1 video
-> - S/PDIF optical output
-> - 2x ESS9018 audio DACs
-> - 4x Ricor RT6862 audio amps
-> - Analogue headphone output
-> - 1x USB 2.0 OTG port
-> - 3x USB 3.0 ports
-> - IR receiver
-> - 1x micro SD card slot (internal)
-> - USB SATA controller with 2x 3.5" drive bays
-> - 1x Power on/off button
-> 
-> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
-> ---
->  arch/arm64/boot/dts/amlogic/Makefile          |   1 +
->  .../boot/dts/amlogic/meson-g12b-gsking-x.dts  | 133 ++++++++++++++++++
->  2 files changed, 134 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/amlogic/meson-g12b-gsking-x.dts
-> 
-> diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-> index ced03946314f..dce41cd3f347 100644
-> --- a/arch/arm64/boot/dts/amlogic/Makefile
-> +++ b/arch/arm64/boot/dts/amlogic/Makefile
-> @@ -3,6 +3,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-axg-s400.dtb
->  dtb-$(CONFIG_ARCH_MESON) += meson-g12a-sei510.dtb
->  dtb-$(CONFIG_ARCH_MESON) += meson-g12a-u200.dtb
->  dtb-$(CONFIG_ARCH_MESON) += meson-g12a-x96-max.dtb
-> +dtb-$(CONFIG_ARCH_MESON) += meson-g12b-gsking-x.dtb
->  dtb-$(CONFIG_ARCH_MESON) += meson-g12b-gtking.dtb
->  dtb-$(CONFIG_ARCH_MESON) += meson-g12b-gtking-pro.dtb
->  dtb-$(CONFIG_ARCH_MESON) += meson-g12b-a311d-khadas-vim3.dtb
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-gsking-x.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-gsking-x.dts
-> new file mode 100644
-> index 000000000000..c9d9dcb0cd65
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-gsking-x.dts
-> @@ -0,0 +1,133 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright (c) 2019 BayLibre, SAS
-> + * Author: Neil Armstrong <narmstrong@baylibre.com>
-> + * Copyright (c) 2019 Christian Hewitt <christianshewitt@gmail.com>
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "meson-g12b-w400.dtsi"
-> +#include <dt-bindings/leds/common.h>
-> +#include <dt-bindings/sound/meson-g12a-tohdmitx.h>
-> +
-> +/ {
-> +	compatible = "azw,gsking-x", "amlogic,g12b";
-> +	model = "Beelink GS-King X";
-> +
-> +	aliases {
-> +		rtc0 = &rtc;
-> +		rtc1 = &vrtc;
-> +	};
-> +
-> +	gpio-keys-polled {
-> +		compatible = "gpio-keys-polled";
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +		poll-interval = <100>;
-> +
-> +		power-button {
-> +			label = "power";
-> +			linux,code = <KEY_POWER>;
-> +			gpios = <&gpio_ao GPIOAO_3 GPIO_ACTIVE_HIGH>;
-> +		};
-> +	};
-> +
-> +	sound {
-> +		compatible = "amlogic,axg-sound-card";
-> +		model = "G12B-GSKING-X";
-> +		audio-aux-devs = <&tdmout_a>;
-> +		audio-routing = "TDMOUT_A IN 0", "FRDDR_A OUT 1",
-> +				"TDMOUT_A IN 1", "FRDDR_B OUT 1",
-> +				"TDMOUT_A IN 2", "FRDDR_C OUT 1",
-> +				"TDM_A Playback", "TDMOUT_A OUT";
-> +
-> +		assigned-clocks = <&clkc CLKID_MPLL2>,
-> +				  <&clkc CLKID_MPLL0>,
-> +				  <&clkc CLKID_MPLL1>;
-> +		assigned-clock-parents = <0>, <0>, <0>;
-> +		assigned-clock-rates = <294912000>,
-> +				       <270950400>,
-> +				       <393216000>;
-> +		status = "okay";
-> +
-> +		dai-link-0 {
-> +			sound-dai = <&frddr_a>;
-> +		};
-> +
-> +		dai-link-1 {
-> +			sound-dai = <&frddr_b>;
-> +		};
-> +
-> +		dai-link-2 {
-> +			sound-dai = <&frddr_c>;
-> +		};
-> +
-> +		/* 8ch hdmi interface */
-> +		dai-link-3 {
-> +			sound-dai = <&tdmif_a>;
-> +			dai-format = "i2s";
-> +			dai-tdm-slot-tx-mask-0 = <1 1>;
-> +			dai-tdm-slot-tx-mask-1 = <1 1>;
-> +			dai-tdm-slot-tx-mask-2 = <1 1>;
-> +			dai-tdm-slot-tx-mask-3 = <1 1>;
-> +			mclk-fs = <256>;
-> +
-> +			codec {
-> +				sound-dai = <&tohdmitx TOHDMITX_I2S_IN_A>;
-> +			};
-> +		};
-> +
-> +		dai-link-4 {
-> +			sound-dai = <&tohdmitx TOHDMITX_I2S_OUT>;
-> +
-> +			codec {
-> +				sound-dai = <&hdmi_tx>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&arb {
-> +	status = "okay";
-> +};
-> +
-> +&clkc_audio {
-> +	status = "okay";
-> +};
-> +
-> +&frddr_a {
-> +	status = "okay";
-> +};
-> +
-> +&frddr_b {
-> +	status = "okay";
-> +};
-> +
-> +&frddr_c {
-> +	status = "okay";
-> +};
-> +
-> +&i2c3 {
-> +	status = "okay";
-> +	pinctrl-0 = <&i2c3_sda_a_pins>, <&i2c3_sck_a_pins>;
-> +	pinctrl-names = "default";
-> +
-> +	rtc: rtc@51 {
-> +		compatible = "nxp,pcf8563";
-> +		reg = <0x51>;
-> +		wakeup-source;
-> +	};
-> +};
-> +
-> +&tdmif_a {
-> +	status = "okay";
-> +};
-> +
-> +&tdmout_a {
-> +	status = "okay";
-> +};
-> +
-> +&tohdmitx {
-> +	status = "okay";
-> +};
-> 
+On Thu, 31 Dec 2020, Pavel Machek wrote:
 
-Tested-by: Neil Armstrong <narmstrong@baylibre.com>
+> Hi!
+> 
+> > > > The node names for devices using the pwm-leds driver follow a certain
+> > > > naming scheme (now).  Parent node name is not enforced, but recommended
+> > > > by DT project.
+> > > > 
+> > > >   DTC     Documentation/devicetree/bindings/mfd/iqs62x.example.dt.yaml
+> > > >   CHECK   Documentation/devicetree/bindings/mfd/iqs62x.example.dt.yaml
+> > > > /home/alex/build/linux/Documentation/devicetree/bindings/mfd/iqs62x.example.dt.yaml: pwmleds: 'panel' does not match any of the regexes: '^led(-[0-9a-f]+)?$', 'pinctrl-[0-9]+'
+> > > >         From schema: /home/alex/src/linux/leds/Documentation/devicetree/bindings/leds/leds-pwm.yaml
+> > > > 
+> > > > Signed-off-by: Alexander Dahl <post@lespocky.de>
+> > > > Acked-by: Jeff LaBundy <jeff@labundy.com>
+> > > > Acked-by: Rob Herring <robh@kernel.org>
+> > > 
+> > > Thanks, applied.
+> > 
+> > Sorry, what?
+> > 
+> > Applied to what tree?
+> 
+> I took it to (local copy) of leds-next tree on. But now I realised it
+> is mfd, not a LED patch, so I undone that. Sorry for the confusion.
+> 
+> Anyway, patch still looks good to me:
+> 
+> Acked-by: Pavel Machek <pavel@ucw.cz>
+
+Thanks Pavel.
+
+I plan on taking this next week.
+
+-- 
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
