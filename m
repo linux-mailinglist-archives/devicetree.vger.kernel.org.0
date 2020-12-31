@@ -2,141 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D3E02E8190
-	for <lists+devicetree@lfdr.de>; Thu, 31 Dec 2020 19:15:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6DE102E81A2
+	for <lists+devicetree@lfdr.de>; Thu, 31 Dec 2020 19:35:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726673AbgLaSPL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Dec 2020 13:15:11 -0500
-Received: from mail-ot1-f41.google.com ([209.85.210.41]:38172 "EHLO
-        mail-ot1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726314AbgLaSPL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Dec 2020 13:15:11 -0500
-Received: by mail-ot1-f41.google.com with SMTP id j20so18583833otq.5;
-        Thu, 31 Dec 2020 10:14:55 -0800 (PST)
+        id S1726628AbgLaSem (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Dec 2020 13:34:42 -0500
+Received: from mail-oi1-f170.google.com ([209.85.167.170]:34204 "EHLO
+        mail-oi1-f170.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726606AbgLaSem (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Dec 2020 13:34:42 -0500
+Received: by mail-oi1-f170.google.com with SMTP id s75so22581336oih.1;
+        Thu, 31 Dec 2020 10:34:26 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=iq0dcWEVlFUmNv6kk0ISrl3suC2cnVnqKLX0qddM2wo=;
-        b=Yo50ISLJ7OXL/R6+eTS4WRMk2FYA5o3p9hWgMZ62y3ADTC8mdub4beYebzWNT88fcG
-         KhRa9URt5dv6RVVjLfIjafF4Y+NL4sQO86LzZToPBJX5mJIFjNDR4pBq082MUQ/dgzuE
-         VAw9nKeCNKCRnSCfcjdqD7eFozen+LBSp2MkMkE5MNjowEB5SSAVZ5HZVox+Klo4miRS
-         hjzayWuNSYsvtLefeDhwoCOjWEhl2j86JMHnnisqltiFe5LYuvnar/9Xcbkq7r7oGfEW
-         OIL5f+3jAsJ8JnYZb0IePCE5nLljnL7m/bidvHuW2ouU3SshLWLJDecKjxvXE8EGPpgh
-         O4tQ==
-X-Gm-Message-State: AOAM533D0PKYsofZuBwLnYHCfN1HDtfTyFj74GAD+0xUISs1BER1woTV
-        RlC+oHPF6y31HKP1ohLrWfXswiFaXQ==
-X-Google-Smtp-Source: ABdhPJxnSl31FNRefQoVvm0p3wnIQvQHkxPiFa4SHrf1hPyKCmgwy5k8a1uYLMvcEdPkcGpykvuJig==
-X-Received: by 2002:a05:6830:1de8:: with SMTP id b8mr41585182otj.204.1609438470100;
-        Thu, 31 Dec 2020 10:14:30 -0800 (PST)
+        bh=MK9jvU5T0a1F8Z3yYz4MVsd9Im04HOuhBeQZHz3+74k=;
+        b=VyIjriE0xCvZ9WqWgsxcz9NUqLBQ6SlalIi3UGNnEH3JS9P8FI2/AEev4svx+URxsD
+         3Du1CYhcb4yyYwzKiM0u8aQS0cDWeXWC48Sv3y62WmMQhCD2xEVAboMoRuNXbk6UE85L
+         ql6YCTcCDd+8Rc8bFm4lXJl5re10MN2fEjm3QeJ7Z9sOSSGpUuWAAWvjuSO0cnk73nq0
+         GzfguNRThMd/qitV2Kj8PeNK9ZeRofrDMk4CY1lIzZMSHTkaYEMVsE8M8jMYFpyV0CAZ
+         ObJWbj2CiwQaegszzrK2yY+LA3h40dXCIXw5HDZ+05FIj6k2FsCnGM1MJGIQ9jMCNt+B
+         Ldkw==
+X-Gm-Message-State: AOAM53089UlvERat5fays4G9qzSRzSA5iMv92vx8Itbrvv34Ir74NCX2
+        3NIRaQxjYnv56XxFDwBXAA==
+X-Google-Smtp-Source: ABdhPJzNofcyoenZ3rFYiWkQqrq9Ao9OW2jxP+9TNZPxAR/jbffWTqlpqhPrO4Pi33AiFUHcZ3W+Jg==
+X-Received: by 2002:aca:fcd7:: with SMTP id a206mr8527220oii.134.1609439641451;
+        Thu, 31 Dec 2020 10:34:01 -0800 (PST)
 Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id f25sm11148595oou.39.2020.12.31.10.14.26
+        by smtp.gmail.com with ESMTPSA id i25sm11241585oto.56.2020.12.31.10.33.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 31 Dec 2020 10:14:28 -0800 (PST)
-Received: (nullmailer pid 2077595 invoked by uid 1000);
-        Thu, 31 Dec 2020 18:14:25 -0000
-Date:   Thu, 31 Dec 2020 11:14:25 -0700
+        Thu, 31 Dec 2020 10:34:00 -0800 (PST)
+Received: (nullmailer pid 2112255 invoked by uid 1000);
+        Thu, 31 Dec 2020 18:33:57 -0000
+Date:   Thu, 31 Dec 2020 11:33:57 -0700
 From:   Rob Herring <robh@kernel.org>
-To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     linux-remoteproc@vger.kernel.org,
-        linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, bjorn.andersson@linaro.org,
-        ohad@wizery.com
-Subject: Re: [PATCH 2/5] dt-bindings: Amlogic: add the documentation for the
- SECBUS2 registers
-Message-ID: <20201231181425.GA2075418@robh.at.kernel.org>
-References: <20201230012724.1326156-1-martin.blumenstingl@googlemail.com>
- <20201230012724.1326156-3-martin.blumenstingl@googlemail.com>
+To:     Sowjanya Komatineni <skomatineni@nvidia.com>
+Cc:     linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org, lukas@wunner.de, bbrezillon@kernel.org,
+        p.yadav@ti.com, linux-tegra@vger.kernel.org, broonie@kernel.org,
+        tudor.ambarus@microchip.com, devicetree@vger.kernel.org,
+        jonathanh@nvidia.com, thierry.reding@gmail.com
+Subject: Re: [PATCH v5 2/9] dt-bindings: spi: Add Tegra Quad SPI device tree
+ binding
+Message-ID: <20201231183357.GA2112085@robh.at.kernel.org>
+References: <1608585459-17250-1-git-send-email-skomatineni@nvidia.com>
+ <1608585459-17250-3-git-send-email-skomatineni@nvidia.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201230012724.1326156-3-martin.blumenstingl@googlemail.com>
+In-Reply-To: <1608585459-17250-3-git-send-email-skomatineni@nvidia.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 30, 2020 at 02:27:21AM +0100, Martin Blumenstingl wrote:
-> The Meson8/Meson8b/Meson8m2 SoCs have a register bank called SECBUS2 which
-> contains registers for various IP blocks such as pin-controller bits for
-> the BSD_EN and TEST_N GPIOs as well as some AO ARC core control bits.
-> The registers can be accessed directly when not running in "secure mode".
-> When "secure mode" is enabled then these registers have to be accessed
-> through secure monitor calls.
+On Mon, 21 Dec 2020 13:17:32 -0800, Sowjanya Komatineni wrote:
+> This patch adds YAML based device tree binding document for Tegra
+> Quad SPI driver.
 > 
-> So far these SoCs are always known to boot in "non-secure mode".
-> Add a binding documentation using syscon (as these registers are shared
-> across different IPs) for the SECBUS2 registers.
-> 
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
 > ---
->  .../arm/amlogic/amlogic,meson-mx-secbus2.yaml | 53 +++++++++++++++++++
->  1 file changed, 53 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/arm/amlogic/amlogic,meson-mx-secbus2.yaml
+>  .../bindings/spi/nvidia,tegra210-quad.yaml         | 117 +++++++++++++++++++++
+>  1 file changed, 117 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/spi/nvidia,tegra210-quad.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/amlogic/amlogic,meson-mx-secbus2.yaml b/Documentation/devicetree/bindings/arm/amlogic/amlogic,meson-mx-secbus2.yaml
-> new file mode 100644
-> index 000000000000..cfa8e9de6c28
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/arm/amlogic/amlogic,meson-mx-secbus2.yaml
-> @@ -0,0 +1,53 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/arm/amlogic/amlogic,meson-mx-secbus2.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +
-> +title: Amlogic Meson8/Meson8b/Meson8m2 SECBUS2 register interface
-> +
-> +maintainers:
-> +  - Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> +
-> +description: |
-> +  The Meson8/Meson8b/Meson8m2 SoCs have a register bank called SECBUS2 which
-> +  contains registers for various IP blocks such as pin-controller bits for
-> +  the BSD_EN and TEST_N GPIOs as well as some AO ARC core control bits.
-> +  The registers can be accessed directly when not running in "secure mode".
-> +  When "secure mode" is enabled then these registers have to be accessed
-> +  through secure monitor calls.
-> +
-> +# We need a select here so we don't match all nodes with 'syscon'
 
-No, you don't. The default 'select' will ignore 'syscon' and 
-'simple-mfd'.
 
-> +select:
-> +  properties:
-> +    compatible:
-> +      contains:
-> +        enum:
-> +          - amlogic,meson8-secbus2
-> +          - amlogic,meson8b-secbus2
-> +  required:
-> +    - compatible
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +        - amlogic,meson8-secbus2
-> +        - amlogic,meson8b-secbus2
-> +      - const: syscon
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    secbus2: system-controller@4000 {
-> +      compatible = "amlogic,meson8-secbus2", "syscon";
-> +      reg = <0x4000 0x2000>;
-> +    };
-> -- 
-> 2.30.0
-> 
+Please add Acked-by/Reviewed-by tags when posting new versions. However,
+there's no need to repost patches *only* to add the tags. The upstream
+maintainer will do that for acks received on the version they apply.
+
+If a tag was not added on purpose, please state why and what changed.
+
