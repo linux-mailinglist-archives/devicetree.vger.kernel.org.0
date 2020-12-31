@@ -2,120 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BDF812E7DC4
-	for <lists+devicetree@lfdr.de>; Thu, 31 Dec 2020 03:49:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D90E2E7E97
+	for <lists+devicetree@lfdr.de>; Thu, 31 Dec 2020 08:28:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726523AbgLaCsc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Dec 2020 21:48:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53672 "EHLO
+        id S1726218AbgLaH2A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Dec 2020 02:28:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39848 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726302AbgLaCsc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Dec 2020 21:48:32 -0500
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A782C061573;
-        Wed, 30 Dec 2020 18:47:52 -0800 (PST)
-Received: by mail-wm1-x335.google.com with SMTP id r4so6265630wmh.5;
-        Wed, 30 Dec 2020 18:47:52 -0800 (PST)
+        with ESMTP id S1726139AbgLaH17 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Dec 2020 02:27:59 -0500
+Received: from mail-pg1-x536.google.com (mail-pg1-x536.google.com [IPv6:2607:f8b0:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AF39C061575
+        for <devicetree@vger.kernel.org>; Wed, 30 Dec 2020 23:27:19 -0800 (PST)
+Received: by mail-pg1-x536.google.com with SMTP id i5so12707755pgo.1
+        for <devicetree@vger.kernel.org>; Wed, 30 Dec 2020 23:27:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:subject:from:in-reply-to:date:cc
-         :content-transfer-encoding:message-id:references:to;
-        bh=uUa8PGFvQ1Nvv0Amw2GKK2Th/K2C6f4QRsmd3CKEORY=;
-        b=ey6xHkgPn+Tbwb+3sSG8iMG/XpU0ZmYxL3+LyHDbS74QzKq++QTCgb49u+3wRngW7T
-         jmWkyNX80fFkddKnguVV9HRJ6FCsejW8tIl2JFEmUsBerN8DpNSYzMpn5S3YUTxaxLaL
-         UDYzqzZLaXN6lgsn5jHro0U9SCbFVqLApd5b68rarc3YtIl+5q5zk7WIdoa6IbOAsNS1
-         dADrXtgoeN8omD1ggMma3kUNpwE6ZlH4kcLfAwg4dE1DENw3+B67zm3CCepmepeO7xkk
-         3X/Ju7T4XTqonKd45s3tatTAFm8YdIZ5ZAYv2mf1/WvGGGVSM9kctFtwP8ggzNHbuYaz
-         LP1A==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=L3rchCgn60UXSNg/RkUXBGhv13ATR5wc8YM8fhcBkn4=;
+        b=x4261brrKoUTmGEcVb8b6y4YuUMUAwI/WAJ6I3alcPunXupX7CbORvMgruLH8gs0G9
+         GwtAdwg8P7p1mHxUw/4OjxCjrbB2Z6g0cRSNkwaHoeZLFAUmcIha8qokVnKxlGudDett
+         NukWnXz3y8QOnK6oc4/j3OYiFTlktdT5Mt0cPNhPrgfxMQCi/6+N2kH9KDUFXU6XgX+s
+         aYxuDapL2VXTwKbOY7j2bfYQsKO5xJ8fMXkC9iDdf2Wn2K+WiHAVzpNHAKfRvcILbixJ
+         FxRUmWQgSOwAu5wVXBSHsjxxccz/qZU19+Esh9YYtfzQcMjhtI3eq5yp0tHQWs3XXBZ0
+         F4ow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
-         :content-transfer-encoding:message-id:references:to;
-        bh=uUa8PGFvQ1Nvv0Amw2GKK2Th/K2C6f4QRsmd3CKEORY=;
-        b=qK7DifVZhNjMXm7WoEtxXtgH3KTFOSaU4gdbXK2SnqMHopf4Udycn74j7HuBh2ba6K
-         B5bvaPpS0wMpPjJzOeIv7HfAQvgQVCnkaI10jOmgTUVz1m/z1lg5V8pRLYAePIYhXc9H
-         fzj+4486KFJ2pBgwwziqjyhBuAOzapGKfMaNl92xfqtBPw36WU+NqV08PsizP4Lhwnci
-         s2pCX4UdO9k8OGI+o0wdAnGnzWKs9DW3hzkSTpNSfOO5NigT7504OJu50lvsW6XYNTbc
-         qULmfOFJD+f/AV2T969jSrUftWNJoQtnb3xLv42KM+Qb+bhXMDVC3khAc01qRqnWE+pP
-         1XXg==
-X-Gm-Message-State: AOAM530CV58H0cUFIo3t6CRqWpALbtWP85sMYLxJ8o9IuBlfY/LlvpFw
-        z2aqrg5tZlZISnEktnJP59i/sqqKffE7fQ==
-X-Google-Smtp-Source: ABdhPJzPfV+OGIvkTCps1CXTf5mzKRTCy/Z2ALL44icJEGXDlTvkk+WIigwKnH0fS1+hlozjejxO5A==
-X-Received: by 2002:a05:600c:21d1:: with SMTP id x17mr9849152wmj.160.1609382870942;
-        Wed, 30 Dec 2020 18:47:50 -0800 (PST)
-Received: from [10.127.0.11] ([167.99.200.149])
-        by smtp.gmail.com with ESMTPSA id b83sm10526090wmd.48.2020.12.30.18.47.48
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 30 Dec 2020 18:47:50 -0800 (PST)
-Content-Type: text/plain;
-        charset=utf-8
-Mime-Version: 1.0 (Mac OS X Mail 12.4 \(3445.104.17\))
-Subject: Re: [PATCH v2 2/2] arm64: dts: meson: add initial Beelink GS-King-X
- device-tree
-From:   Christian Hewitt <christianshewitt@gmail.com>
-In-Reply-To: <CAFBinCCUV4piTy7n83GsV9Tny+JYA9_AXS0uiv5FeNPYejNR-Q@mail.gmail.com>
-Date:   Thu, 31 Dec 2020 06:47:46 +0400
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=L3rchCgn60UXSNg/RkUXBGhv13ATR5wc8YM8fhcBkn4=;
+        b=hOysP31IL4zytVSGy8gSHPhzMjj7Po1VOYore7O369DXME4mL55+EHUkYRRLReXjMX
+         LD81HCo5aNy2jPj5/+osFrE0tkOGk/wdulSAanMMdDmdrhnhPEhdSHlFc6r8k81YsGvG
+         vFSUyNMU+smuZIcKxzqE+Y+cG+dOnl86wvOZ9/QZ5vPYmrXgGF/5swH0CV3wnX3PzJgP
+         UYKiAv63OeUlrxH5eRyHyyBX2knyCyILxAbNdOOY1lAczXEI28Hi3uVTJUJWq5sHzG/e
+         LZvGcVvKkh+YAbrzntrCx8bXdxp55Evg8iEv4fZ/sZR1qL2Zzx6eYuolUEH6Q54AFbV7
+         j0DA==
+X-Gm-Message-State: AOAM530wA2hSd9cEstxor6G7m61Ntdm7Dlx0YwIzfrmQLF4Jzbw1O1RT
+        e6zvtKhmofUvVzdRsJ6nm002
+X-Google-Smtp-Source: ABdhPJyjSzd1B+plpmbHvjXcunIxJaD12PEru1NpFPYDBdpPKuhm2hQA1BpegeJ7YX2dsMxLKgqq+w==
+X-Received: by 2002:a63:4559:: with SMTP id u25mr26577840pgk.306.1609399639035;
+        Wed, 30 Dec 2020 23:27:19 -0800 (PST)
+Received: from thinkpad ([2409:4072:6d1f:be3b:71a9:d2bf:a32d:897d])
+        by smtp.gmail.com with ESMTPSA id j14sm9532596pjm.10.2020.12.30.23.27.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 30 Dec 2020 23:27:18 -0800 (PST)
+Date:   Thu, 31 Dec 2020 12:57:10 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
 Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Kevin Hilman <khilman@baylibre.com>,
+        Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <7D798BA5-B2C4-4F9E-BFAE-658C982741D6@gmail.com>
-References: <20201230103729.2272-1-christianshewitt@gmail.com>
- <20201230103729.2272-3-christianshewitt@gmail.com>
- <CAFBinCCUV4piTy7n83GsV9Tny+JYA9_AXS0uiv5FeNPYejNR-Q@mail.gmail.com>
-To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-X-Mailer: Apple Mail (2.3445.104.17)
+        linux-actions@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 11/13] arm: dts: owl-s500-roseapplepi: Add uSD support
+Message-ID: <20201231072710.GF7345@thinkpad>
+References: <cover.1609263738.git.cristian.ciocaltea@gmail.com>
+ <47ee9695e89198ec2fbc4ab6188f1d0ad0424b2f.1609263738.git.cristian.ciocaltea@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <47ee9695e89198ec2fbc4ab6188f1d0ad0424b2f.1609263738.git.cristian.ciocaltea@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Dec 29, 2020 at 11:17:26PM +0200, Cristian Ciocaltea wrote:
+> Add uSD support for RoseapplePi SBC using a fixed regulator as a
+> temporary solution until PMIC support becomes available.
+> 
+> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
 
-> On 31 Dec 2020, at 4:23 am, Martin Blumenstingl =
-<martin.blumenstingl@googlemail.com> wrote:
->=20
-> On Wed, Dec 30, 2020 at 11:38 AM Christian Hewitt
-> <christianshewitt@gmail.com> wrote:
->>=20
->> The Shenzen AZW (Beelink) GS-King-X is based on the Amlogic W400 =
-reference
->> board with an S922X-H chip.
->>=20
->> - 4GB LPDDR4 RAM
->> - 64GB eMMC storage
->> - 10/100/1000 Base-T Ethernet
->> - AP6356S Wireless (802.11 a/b/g/n/ac, BT 4.1)
->> - HDMI 2.1 video
->> - S/PDIF optical output
-> are you planning to enable this also?
+Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 
-I plan to add this later (after v1 comments).
+Thanks,
+Mani
 
->> - 2x ESS9018 audio DACs
->> - 4x Ricor RT6862 audio amps
->> - Analogue headphone output
-> there's no driver for that DAC so I think that's why you are not =
-enabling them
-
-ESS9018 is used with some Raspberry Pi DAC boards so there may be some =
-prior
-art to build upon. However it=E2=80=99s not clear (even with schematics) =
-how the DAC
-and AMP are controlled (they look like dumb input/output devices) so =
-this is
-still to be explored.
-
->> - 1x USB 2.0 OTG port
->> - 3x USB 3.0 ports
->> - IR receiver
->> - 1x micro SD card slot (internal)
->> - USB SATA controller with 2x 3.5" drive bays
->> - 1x Power on/off button
->>=20
->> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
-> I don't know/have this board but also I don't see anything problematic =
-so:
-> Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-
-Thx!=
+> ---
+> Changes in v3:
+>  - None
+> 
+>  arch/arm/boot/dts/owl-s500-roseapplepi.dts | 50 ++++++++++++++++++++++
+>  1 file changed, 50 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/owl-s500-roseapplepi.dts b/arch/arm/boot/dts/owl-s500-roseapplepi.dts
+> index 800edf5d2d12..fe9ae3619422 100644
+> --- a/arch/arm/boot/dts/owl-s500-roseapplepi.dts
+> +++ b/arch/arm/boot/dts/owl-s500-roseapplepi.dts
+> @@ -14,6 +14,7 @@ / {
+>  	model = "Roseapple Pi";
+>  
+>  	aliases {
+> +		mmc0 = &mmc0;
+>  		serial2 = &uart2;
+>  	};
+>  
+> @@ -25,6 +26,55 @@ memory@0 {
+>  		device_type = "memory";
+>  		reg = <0x0 0x80000000>; /* 2GB */
+>  	};
+> +
+> +	/* Fixed regulator used in the absence of PMIC */
+> +	sd_vcc: sd-vcc {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "fixed-3.1V";
+> +		regulator-min-microvolt = <3100000>;
+> +		regulator-max-microvolt = <3100000>;
+> +		regulator-always-on;
+> +	};
+> +};
+> +
+> +&pinctrl {
+> +	mmc0_pins: mmc0-pins {
+> +		pinmux {
+> +			groups = "sd0_d0_mfp", "sd0_d1_mfp", "sd0_d2_d3_mfp",
+> +				 "sd0_cmd_mfp", "sd0_clk_mfp";
+> +			function = "sd0";
+> +		};
+> +
+> +		drv-pinconf {
+> +			groups = "sd0_d0_d3_drv", "sd0_cmd_drv", "sd0_clk_drv";
+> +			drive-strength = <8>;
+> +		};
+> +
+> +		bias0-pinconf {
+> +			pins = "sd0_d0", "sd0_d1", "sd0_d2",
+> +			       "sd0_d3", "sd0_cmd";
+> +			bias-pull-up;
+> +		};
+> +
+> +		bias1-pinconf {
+> +			pins = "sd0_clk";
+> +			bias-pull-down;
+> +		};
+> +	};
+> +};
+> +
+> +/* uSD */
+> +&mmc0 {
+> +	status = "okay";
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&mmc0_pins>;
+> +	no-sdio;
+> +	no-mmc;
+> +	no-1-8-v;
+> +	cd-gpios = <&pinctrl 117 GPIO_ACTIVE_LOW>;
+> +	bus-width = <4>;
+> +	vmmc-supply = <&sd_vcc>;
+> +	vqmmc-supply = <&sd_vcc>;
+>  };
+>  
+>  &twd_timer {
+> -- 
+> 2.30.0
+> 
