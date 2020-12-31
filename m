@@ -2,78 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A4302E81A5
-	for <lists+devicetree@lfdr.de>; Thu, 31 Dec 2020 19:35:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 751FE2E81AA
+	for <lists+devicetree@lfdr.de>; Thu, 31 Dec 2020 19:54:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726492AbgLaSfV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Dec 2020 13:35:21 -0500
-Received: from mail-oi1-f173.google.com ([209.85.167.173]:45415 "EHLO
-        mail-oi1-f173.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726230AbgLaSfV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Dec 2020 13:35:21 -0500
-Received: by mail-oi1-f173.google.com with SMTP id f132so22521632oib.12
-        for <devicetree@vger.kernel.org>; Thu, 31 Dec 2020 10:35:05 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=F6GO/pF6op8vNadZMJry1vYTssx1a6tY68+XCu4xIas=;
-        b=FEtf6FzB4puc3Lj0Sj9r1NrQwGyiFZsLYU96GKgNqwV83qWkaAMYUPWwQ8Lel9oM2U
-         JEnhORYCf8GpWt9ZORcopKyq0DY8eaWkyFquaQsLH50LVJSjzpRVqjqhX9/EJYNuT6UE
-         3+zduR/IjYWC1bRxht72m0u9WE9FkJBSVe11nlzKEPcAM+/g82AzDgEMq/5ADr+Ck+Z7
-         BS7kOTUzcm2FDWpBLXfCx/G5Z0AjLLKQFO/65MPiTsJEgYeNQ86TiG1UTCKUaKRNgks7
-         ZKo64us1NjxpvDwKOKfRVYuBjYzgt5mRya12tWfqhFJ3b59fRmkyMXReFpF0MSCSGlIy
-         TfiA==
-X-Gm-Message-State: AOAM530nn+b4ytjs26Ek0MUlbiGm6XFVULfIZ7pNhn38kPk75W8xWEwy
-        TFHIy8eXzMpBJd09xHvchg==
-X-Google-Smtp-Source: ABdhPJw5jb2HbYQ/4+/j5s0xoEhsHOLYmsFBuhcXx7aFLOWXNkmjfe0Ob33KoZ3EIedtrzOcqKi60A==
-X-Received: by 2002:aca:f106:: with SMTP id p6mr8709854oih.63.1609439680378;
-        Thu, 31 Dec 2020 10:34:40 -0800 (PST)
-Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id r13sm11496792oti.49.2020.12.31.10.34.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 31 Dec 2020 10:34:39 -0800 (PST)
-Received: (nullmailer pid 2113540 invoked by uid 1000);
-        Thu, 31 Dec 2020 18:34:35 -0000
-Date:   Thu, 31 Dec 2020 11:34:35 -0700
-From:   Rob Herring <robh@kernel.org>
-To:     conor.dooley@microchip.com
-Cc:     damien.lemoal@wdc.com, devicetree@vger.kernel.org,
-        daire.mcnamara@microchip.com, paul.walmsley@sifive.com,
-        linux-riscv@lists.infradead.org, david.abdurachmanov@gmail.com,
-        aou@eecs.berkeley.edu, atish.patra@wdc.com,
-        lewis.hanly@microchip.com, j.neuschaefer@gmx.net,
-        cyril.jean@microchip.com, anup.patel@wdc.com, robh+dt@kernel.org,
-        jassisinghbrar@gmail.com, palmer@dabbelt.com
-Subject: Re: [PATCH v3 2/5] dt-bindings: add bindings for polarfire soc
- mailbox
-Message-ID: <20201231183435.GA2113432@robh.at.kernel.org>
-References: <20201223163302.29057-1-conor.dooley@microchip.com>
+        id S1726549AbgLaSyP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Dec 2020 13:54:15 -0500
+Received: from jabberwock.ucw.cz ([46.255.230.98]:46884 "EHLO
+        jabberwock.ucw.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726210AbgLaSyO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Dec 2020 13:54:14 -0500
+Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
+        id 876521C0B79; Thu, 31 Dec 2020 19:53:30 +0100 (CET)
+Date:   Thu, 31 Dec 2020 19:53:29 +0100
+From:   Pavel Machek <pavel@ucw.cz>
+To:     Tony Lindgren <tony@atomide.com>
+Cc:     linux-omap@vger.kernel.org,
+        =?iso-8859-1?Q?Beno=EEt?= Cousson <bcousson@baylibre.com>,
+        devicetree@vger.kernel.org, Carl Philipp Klemm <philipp@uvos.xyz>,
+        Merlijn Wajer <merlijn@wizzup.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Eduardo Valentin <edubezval@gmail.com>,
+        Peter Ujfalusi <peter.ujfalusi@gmail.com>
+Subject: Re: [PATCH 2/3] ARM: dts: motorola-mapphone: Configure lower
+ temperature passive cooling
+Message-ID: <20201231185329.GA28294@amd>
+References: <20201230084232.19221-1-tony@atomide.com>
+ <20201230084232.19221-2-tony@atomide.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha1;
+        protocol="application/pgp-signature"; boundary="OXfL5xGRrasGEqWY"
 Content-Disposition: inline
-In-Reply-To: <20201223163302.29057-1-conor.dooley@microchip.com>
+In-Reply-To: <20201230084232.19221-2-tony@atomide.com>
+User-Agent: Mutt/1.5.23 (2014-03-12)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 23 Dec 2020 16:33:02 +0000, conor.dooley@microchip.com wrote:
-> From: Conor Dooley <conor.dooley@microchip.com>
-> 
-> Add device tree bindings for the MSS system controller mailbox on
-> the Microchip PolarFire SoC.
-> 
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
->  .../mailbox/microchip,mailbox-mpfs.yaml       | 47 +++++++++++++++++++
->  1 file changed, 47 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mailbox/microchip,mailbox-mpfs.yaml
-> 
 
+--OXfL5xGRrasGEqWY
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Please add Acked-by/Reviewed-by tags when posting new versions. However,
-there's no need to repost patches *only* to add the tags. The upstream
-maintainer will do that for acks received on the version they apply.
+Hi!
 
-If a tag was not added on purpose, please state why and what changed.
+> The current cooling device temperature is too high at 100C as we have a
+> battery on the device right next to the SoC as pointed out by Carl Philipp
+> Klemm <philipp@uvos.xyz>. Let's configure the max temperature to
+> 80C.
 
+It is very possible I don't have power management set up correctly, as
+it breaks the modem.
+
+(Additional problem is that shutdown does not work for me, it reboots
+instead, so emergency poweroff won't do much good).
+
+Shortly after bootup with kernel 5.9, I was using for motmdm debugging.
+
+19:03, uptime 4min, CPU temp rose from 41 to 43C. Battery and board
+are at 28C, 30C. Let me plug in the charger. It draws 350mA from USB.
+
+19:20, CPU still at 43C, board and battery at 30C. That's way better
+than I remember.
+
+I ran "cat /dev/zero"; within seconds, CPU is at 52C. It also went
+down to 45C rather quickly.
+
+Lets try three instances of cat /dev/zero. Again, 52C in 20 seconds
+and it slowly climbs to 58.5C.
+
+Let's try ofono build. 60C rather quickly, then 62C and 65C. It takes
+few minutes to climb to 68.5C.
+
+But... this is way better then I remember. Let's hope temperatures
+don't climb back during some other use. (Also... machine seems cooler
+to touch.)
+
+Best regards,
+								Pavel
+
+--=20
+http://www.livejournal.com/~pavelmachek
+
+--OXfL5xGRrasGEqWY
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1
+
+iEYEARECAAYFAl/uHikACgkQMOfwapXb+vK9LACfR1wSOqcfb8LEiCHOD71dfbP2
+vJkAoLGNjajcYWJqMAf1m8evlr4fld/X
+=R5fC
+-----END PGP SIGNATURE-----
+
+--OXfL5xGRrasGEqWY--
