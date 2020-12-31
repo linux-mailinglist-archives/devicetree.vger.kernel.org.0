@@ -2,88 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 83A392E7F61
-	for <lists+devicetree@lfdr.de>; Thu, 31 Dec 2020 11:25:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 98DE42E7F5D
+	for <lists+devicetree@lfdr.de>; Thu, 31 Dec 2020 11:19:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726308AbgLaKZJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Dec 2020 05:25:09 -0500
-Received: from mo4-p00-ob.smtp.rzone.de ([85.215.255.24]:29003 "EHLO
-        mo4-p00-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726218AbgLaKZJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Dec 2020 05:25:09 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1609410077;
-        s=strato-dkim-0002; d=goldelico.com;
-        h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:From:
-        Subject:Sender;
-        bh=qzQ+GS3/plja56EfSfDaVpNIH/FFQzPqKUfj1vP4nTM=;
-        b=T0fVuzajDXV53EU35cZn6zWKhKPteMadmCZjcW2V9JS5mH7vvilhFtoj/7JISTLNT+
-        emsUdfoCqqQuB+71q2VnXmrAHvtjxxDA+XKWvwKsOJa23OeK2SKrQooGlfQ3TjHflw9F
-        Pwft2HbksLyH7Q/Uo/vapXMGHD6L3l0EOfLU2KwFgDb4impJVgF4du1wPXYJX75IhuAn
-        kylEF4sRYrgP5EouKuYcLQcKBMG31XOXqiwpMOk0PUDHYh2Unrt6WFu4x2zGL0079Rnr
-        PeZK/ch0fqGhqcCPkb7VvWdjm2E9adfzVXYpgnPNU7Fu7wrCQ43eH5CIZ29EkU/jUlUL
-        iN/A==
-X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMgPgp8VKxflSZ1P34KBj7wpz8NMGH/vvwDepDQ=="
-X-RZG-CLASS-ID: mo00
-Received: from imac.fritz.box
-        by smtp.strato.de (RZmta 47.10.7 DYNA|AUTH)
-        with ESMTPSA id 003539wBVADEGyn
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
-        (Client did not present a certificate);
-        Thu, 31 Dec 2020 11:13:14 +0100 (CET)
-Subject: Re: [PATCH  v2 1/1] ARM: dts: omap443x: Correct sgx clock to 307.2MHz as used on motorola vendor kernel
-Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
-Content-Type: text/plain; charset=us-ascii
-From:   "H. Nikolaus Schaller" <hns@goldelico.com>
-In-Reply-To: <20201231110040.bdbb9788abd1723d68b67df0@uvos.xyz>
-Date:   Thu, 31 Dec 2020 11:13:14 +0100
-Cc:     tony@atomide.com, bcousson@baylibre.com, robh+dt@kernel.org,
-        linux-omap@vger.kernel.org, devicetree@vger.kernel.org
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <05FC1BDC-044B-42E9-95AE-A602E149FD38@goldelico.com>
-References: <20201231110040.bdbb9788abd1723d68b67df0@uvos.xyz>
-To:     Carl Philipp Klemm <philipp@uvos.xyz>
-X-Mailer: Apple Mail (2.3124)
+        id S1726230AbgLaKTR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Dec 2020 05:19:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37816 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726155AbgLaKTR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Dec 2020 05:19:17 -0500
+Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com [IPv6:2607:f8b0:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B012C061573;
+        Thu, 31 Dec 2020 02:18:37 -0800 (PST)
+Received: by mail-pg1-x533.google.com with SMTP id n25so12900758pgb.0;
+        Thu, 31 Dec 2020 02:18:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=9R2jGV3ELt7e4yRKD7ul8p29a+2uSNEqBXC3W5gt1Gk=;
+        b=en66T6zNOVQmN1ObDfufH9C8UVy2z+bsJ3I8JkCTQqM8q2a8CkGzcFGs9d6deSfMFG
+         YBcGQ/VDd+dz0fqig7f+kCgdrbxvnpENOPWqX4+XBFRJfHFSgcv8fzoO3i6xa9i0ZMdl
+         Eu+aNtXzr6SRRhntTSLvEqqA8Iz9JI9LSZAvajlsP51WjK+irf6EHwsXDiKYz7nQIRgA
+         5HNDPOMzVUPn/AChwjuTHmwFbARkkQ90k1j++gPZJFxVdG9KyolFO2SVW8triwEdXxau
+         Nq2sgJemiZbYFLPM90meD3ga02JrqE1gcwwoQPYb7t5x7QHkjK/FBqglm3hMrXaYcqlp
+         EXzQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=9R2jGV3ELt7e4yRKD7ul8p29a+2uSNEqBXC3W5gt1Gk=;
+        b=DQV0HKQsmrs84cseQaLxD3dPRdRln8jrnCx9LTRPzC/NQC/vF/d4uWpIZoPyPgaf7t
+         EbWi/VZhd47rj4PlqeIj5YCN+Bgi/RDgiL4TcolLcV+jqZqle56/yyaEsMB4tFtYLTpL
+         udGepxcZ5ttT1Lb/+bJONzv20KIslvCM0PPpQHxb4E6Yi4G9OKO+ZHPbl0IOJWJynAB5
+         E3PVpFvQEq+i2BkbOseCs6qZaimQGVX0kHut9TH1/WX3Vooe4kkPS2gZaYtym0/Gs6A/
+         hNn3BkpdmaRpQIGBRqk9+MHiqG6mR/dxfQqoLciU/xIZpa4DtX2REd6bsz1IFejeDF59
+         vZng==
+X-Gm-Message-State: AOAM532i4i9Y00PYu+B1HEMh9BNZCBIlGyGMkDdMpRaH/kOLOHFsDegT
+        yy4vQqPPI1JBEeOPLcVQ0xUQsOibEFE=
+X-Google-Smtp-Source: ABdhPJzJoXvuqusBd5m0e3oR2Tr8yOJqQ0B3YLY9VN4xQnBxERuNBhD3a8nHuatRl2rj7k+5QI7C9g==
+X-Received: by 2002:a62:c1c4:0:b029:1a7:efe9:163c with SMTP id i187-20020a62c1c40000b02901a7efe9163cmr30994880pfg.47.1609409916508;
+        Thu, 31 Dec 2020 02:18:36 -0800 (PST)
+Received: from sh05419pcu.spreadtrum.com ([117.18.48.82])
+        by smtp.gmail.com with ESMTPSA id a141sm45470937pfa.189.2020.12.31.02.18.31
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 31 Dec 2020 02:18:35 -0800 (PST)
+From:   Hongtao Wu <wuht06@gmail.com>
+To:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Orson Zhai <orsonzhai@gmail.com>,
+        Baolin Wang <baolin.wang7@gmail.com>,
+        Chunyan Zhang <zhang.lyra@gmail.com>,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Hongtao Wu <billows.wu@unisoc.com>
+Subject: [PATCH v5 0/2] PCI: Add new Unisoc PCIe driver
+Date:   Thu, 31 Dec 2020 18:18:23 +0800
+Message-Id: <1609409905-30721-1-git-send-email-wuht06@gmail.com>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Hongtao Wu <billows.wu@unisoc.com>
 
-> Am 31.12.2020 um 11:00 schrieb Carl Philipp Klemm <philipp@uvos.xyz>:
->=20
-> The Android vendor kernel uses 307.2MHz or a devider ratio of /5 while =
-active=20
+This series adds PCIe controller driver for Unisoc SoCs.
+This controller is based on DesignWare PCIe IP.
 
-s/devider/divider/
+Changes from v1:
+1) Test this patch on top of Rob Herring's 40 part series of DWC clean-ups:
+   https://lore.kernel.org/linux-pci/20200821035420.380495-1-robh@kernel.org/
 
-> 153600000 or /10 is only used when the sgx core is inactive.
->=20
-> Signed-off-by: Carl Philipp Klemm <philipp@uvos.xyz>
-> ---
-> arch/arm/boot/dts/omap443x.dtsi | 4 ++--
-> 1 file changed, 2 insertions(+), 2 deletions(-)
->=20
-> diff --git a/arch/arm/boot/dts/omap443x.dtsi =
-b/arch/arm/boot/dts/omap443x.dtsi
-> index dd8ef58cbaed..8466161197ae 100644
-> --- a/arch/arm/boot/dts/omap443x.dtsi
-> +++ b/arch/arm/boot/dts/omap443x.dtsi
-> @@ -78,11 +78,11 @@ &cpu_thermal {
-> /include/ "omap443x-clocks.dtsi"
->=20
-> /*
-> - * Use dpll_per for sgx at 153.6MHz like droid4 stock v3.0.8 Android =
-kernel
-> + * Use dpll_per for sgx at 307.2MHz like droid4 stock v3.0.8 Android =
-kernel
->  */
-> &sgx_module {
-> 	assigned-clocks =3D <&l3_gfx_clkctrl OMAP4_GPU_CLKCTRL 24>,
-> 			  <&dpll_per_m7x2_ck>;
-> -	assigned-clock-rates =3D <0>, <153600000>;
-> +	assigned-clock-rates =3D <0>, <307200000>;
-> 	assigned-clock-parents =3D <&dpll_per_m7x2_ck>;
-> };
-> --=20
-> 2.29.2
->=20
+2) Delete empty function
+
+3) Document property "sprd,pcie-poweron-syscons" and
+   'sprd,pcie-poweroff-syscons'
+
+4) Delete runtime suspend/resume function
+
+5) Add COMPILE_TEST which CONFIG_PCIE_SPRD depends on
+
+Changes from v2:
+1) Change RC mode to host mode in drivers/pci/controller/dwc/Kconfig
+
+2) Change Signed-off-by from Billows Wu to Hongtao Wu
+
+Changes from v3:
+1) Split the property 'sprd,pcie-poweron-syscons' and
+   'sprd,pcie-poweroff-syscons' into reset, power domains, phy and so on.
+
+2) Delete the function to get resource 'msi' and 'dbi' which were parsed by the
+   DW core.
+
+3) Delete the function 'sprd_pcie_host_init', because the DW core has done it.
+
+Changes from v4:
+1) Install 'yamllint' and upgrade dt-schema in order to solve the yamllint and
+   dtschema/dtc warnings/errors.
+
+Hongtao Wu (2):
+  dt-bindings: PCI: sprd: Document Unisoc PCIe RC host controller
+  PCI: sprd: Add support for Unisoc SoCs' PCIe controller
+
+ .../devicetree/bindings/pci/sprd-pcie.yaml         |  93 +++++++
+ drivers/pci/controller/dwc/Kconfig                 |  12 +
+ drivers/pci/controller/dwc/Makefile                |   1 +
+ drivers/pci/controller/dwc/pcie-sprd.c             | 293 +++++++++++++++++++++
+ 4 files changed, 399 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pci/sprd-pcie.yaml
+ create mode 100644 drivers/pci/controller/dwc/pcie-sprd.c
+
+--
+2.7.4
 
