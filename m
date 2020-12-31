@@ -2,142 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 968622E7EA0
-	for <lists+devicetree@lfdr.de>; Thu, 31 Dec 2020 08:57:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 494AE2E7EBC
+	for <lists+devicetree@lfdr.de>; Thu, 31 Dec 2020 09:34:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726037AbgLaHzZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Dec 2020 02:55:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44034 "EHLO
+        id S1726388AbgLaIeD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Dec 2020 03:34:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49934 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726130AbgLaHzZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Dec 2020 02:55:25 -0500
-Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com [IPv6:2607:f8b0:4864:20::102b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F850C061575
-        for <devicetree@vger.kernel.org>; Wed, 30 Dec 2020 23:54:45 -0800 (PST)
-Received: by mail-pj1-x102b.google.com with SMTP id n3so2793772pjm.1
-        for <devicetree@vger.kernel.org>; Wed, 30 Dec 2020 23:54:45 -0800 (PST)
+        with ESMTP id S1726356AbgLaIeD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Dec 2020 03:34:03 -0500
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61F31C061575
+        for <devicetree@vger.kernel.org>; Thu, 31 Dec 2020 00:33:22 -0800 (PST)
+Received: by mail-wm1-x331.google.com with SMTP id 3so6711074wmg.4
+        for <devicetree@vger.kernel.org>; Thu, 31 Dec 2020 00:33:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=LjRECRtXIzwtRi7U4uWbCOAACvteq5kQEsUibs961Aw=;
-        b=eRyeXnAgxzHv2sIST/aF1FE0S5bB0fG5s3OFAU9Mig/dUKdY5CLYRbIz7fOmO+Q4+d
-         o6eeuqqNT8nzu5n82t3N+VgJhnvemmvg2xzLahiXRVHWSB8im9hJw5x51ytnFpTzBxAc
-         PqgXoXWPGBSpxcM7OVvbkzxbQ+sGszr8pMr1ciwHU2WCDPSg6k4Nw4jqan4UjA0l6i2z
-         TwfOii3APxx1q2r7/pAUVdyyH5PmQkBFV0drfCZedZbmTKDrzOMWWU3t7ol0I+UZAldX
-         WJCpif5reqZ3/IpIqFraKYhl0F8sWyD7GukX1qS6Ba0nGbupRe4gUvHqRV5QLNvKGSnp
-         mx2A==
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=7CZya83atebnWeu1yHEbLA0a58aDtjoVw0Tiqu5x01A=;
+        b=iPGHGeVR19yf0873nrpSscXEgUi6czdITxFf9XPnoJ9ABQczW4ok8EEnowhMbWE+RU
+         83H9Egp/wsOFoyI0KgnI6TUetGDp2RmqGYnfmjcSh8IhiYc/95wOBL3Ze+nAeK+YEmPU
+         30BbdPtfxtt8XqILPZFB4+EzKqmZ8y6T2jSUDbll+sIk2xB71at0b4XQHvfZ9E4NMyoY
+         1r9+Vu9dT1US1yuzq/3QCdSwye6xV+yiudh/tO4R1ebQ8XkHxsjfPg+eo/2NQK3j+ELL
+         PceYAOI3RTem7iJrRtgKxtYJrkRRJ5OG2EOn/dByp+36RCL1pUkuUKVuRZKNc4nkkVJ5
+         JtgQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=LjRECRtXIzwtRi7U4uWbCOAACvteq5kQEsUibs961Aw=;
-        b=aIoUqJ/fpKbWcJHjjLK0R1RlYf6/oaE+IPhAQRPSF+kNmtXYjagapkPBAjHLsH0XJu
-         RHob/XjlNkaXtnC4WnMqr4fWVS9dSk2pi9Puvqb0fwgrKQlmBuKBKUF9nyBf6dIq+iSK
-         +y6g55eAqnfWBktLlni2fcgQjvSn1wUCgBZvr9OWx90XkSmWku4uFieOC/U+mSPFdfj7
-         Jqs/QXygwv1hu+Mz2iinYYB8Q+CYdMTakvIx6O0Qk32K71RWhBD3Nb+8+UIjGFB5IA7t
-         bmJtM0lgeGu64nNtpCc3J9t309DgidadsDNIstzYazX1EBTfzUC1jgpwhrFTYjtZ8sTG
-         EdMw==
-X-Gm-Message-State: AOAM5311u6G4NvTWh/wGR57PlZm7p33FhlZJUMW1ChkhJU/7mnXerFvF
-        c5M0q3nfAMBZBKa8qQLWtp6W
-X-Google-Smtp-Source: ABdhPJy5P7AJ+WidqF/ZjXD1Won5mShdQwBoju/Dg6zwADGelOsHTdEdZSA8RHSVZHyR1QuZyCNbZg==
-X-Received: by 2002:a17:90a:348f:: with SMTP id p15mr12316040pjb.125.1609401284765;
-        Wed, 30 Dec 2020 23:54:44 -0800 (PST)
-Received: from thinkpad ([2409:4072:6d1f:be3b:71a9:d2bf:a32d:897d])
-        by smtp.gmail.com with ESMTPSA id z28sm46534047pfr.140.2020.12.30.23.54.38
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=7CZya83atebnWeu1yHEbLA0a58aDtjoVw0Tiqu5x01A=;
+        b=gkXOI3vjHO1+QPkv/+iam4/PRBtzfZtpbo+/EA5SdLTop7MgCvVmZgbxJlIOT/DWIa
+         xylI0y/CudwP5MPfgceVS4w71kio6p4rRWJRmLgm91KYnvCkfglutm2zjqLDF9aa7DiS
+         O93p39+GJJYEG0iSHw1Gsz3krLtziouVSViMRAsEUBY07G4yMq9YbKIe14ut8+CZ6ESF
+         bbJ8lulMYCpB64RLVvtND9MGAxCqsrogB8i4z3T2Qd7V+RnZVtgAgsHwf00SMaj20ad2
+         NnoxZqowLD70IK0lZX4NoxAQ0k5ICxHniEFQLM6cHvGC2Lov5jQWtJRhXKkI59MFNodv
+         xk2A==
+X-Gm-Message-State: AOAM531wveNB/PcF9LOG04+0mpWrE3M8+wwrqWnlw3K+WRqMifP0HUNE
+        naVw9xmo+Xcaqy2kZndJm12uDg==
+X-Google-Smtp-Source: ABdhPJxgVpv6k0MI/BzifwYgB548pcGt6oqlux6TtaOZNi7+9Ao4+rwMet8Sf7IpouJnC+LD4ubqhA==
+X-Received: by 2002:a1c:b407:: with SMTP id d7mr11034773wmf.34.1609403601033;
+        Thu, 31 Dec 2020 00:33:21 -0800 (PST)
+Received: from dell ([91.110.221.133])
+        by smtp.gmail.com with ESMTPSA id z15sm71074287wrv.67.2020.12.31.00.33.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 30 Dec 2020 23:54:43 -0800 (PST)
-Date:   Thu, 31 Dec 2020 13:24:35 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
-        Vinod Koul <vkoul@kernel.org>,
-        Dan Williams <dan.j.williams@intel.com>,
-        Wolfram Sang <wsa@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Peter Korsgaard <peter@korsgaard.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-actions@lists.infradead.org, linux-kernel@vger.kernel.org,
-        dmaengine@vger.kernel.org, linux-i2c@vger.kernel.org,
-        linux-mmc@vger.kernel.org
-Subject: Re: [PATCH v3 00/13] Add CMU/RMU/DMA/MMC/I2C support for Actions Semi
-Message-ID: <20201231075435.GG7345@thinkpad>
-References: <cover.1609263738.git.cristian.ciocaltea@gmail.com>
+        Thu, 31 Dec 2020 00:33:20 -0800 (PST)
+Date:   Thu, 31 Dec 2020 08:33:17 +0000
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Pavel Machek <pavel@ucw.cz>
+Cc:     Alexander Dahl <post@lespocky.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Alexander Dahl <ada@thorsis.com>, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-amlogic@lists.infradead.org, Jeff LaBundy <jeff@labundy.com>,
+        Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v9 1/4] dt-bindings: mfd: Fix schema warnings for pwm-leds
+Message-ID: <20201231083317.GB4413@dell>
+References: <20201228163217.32520-1-post@lespocky.de>
+ <20201228163217.32520-2-post@lespocky.de>
+ <20201230185439.GC25903@duo.ucw.cz>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <cover.1609263738.git.cristian.ciocaltea@gmail.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20201230185439.GC25903@duo.ucw.cz>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 29, 2020 at 11:17:15PM +0200, Cristian Ciocaltea wrote:
-> Hi,
-> 
-> This patchset brings a series of improvements for the Actions Semi S500
-> SoCs family, by adding support for Clock & Reset Management Units, DMA,
-> MMC, I2C & SIRQ controllers.
-> 
-> Please note the patches consist mostly of DTS and bindings/compatibles
-> changes, since all the work they depend on has been already merged,
-> i.e. clock fixes/additions, pinctrl driver, sirq driver.
-> 
-> For the moment, I have only enabled the features I could test on
-> RoseapplePi SBC.
-> 
+On Wed, 30 Dec 2020, Pavel Machek wrote:
 
-Applied all patches except the 2 dmaengine patches for v5.12. Andreas, please
-let me know if you want to do the PR this time. Else I'll proceed.
+> Hi!
+> 
+> > The node names for devices using the pwm-leds driver follow a certain
+> > naming scheme (now).  Parent node name is not enforced, but recommended
+> > by DT project.
+> > 
+> >   DTC     Documentation/devicetree/bindings/mfd/iqs62x.example.dt.yaml
+> >   CHECK   Documentation/devicetree/bindings/mfd/iqs62x.example.dt.yaml
+> > /home/alex/build/linux/Documentation/devicetree/bindings/mfd/iqs62x.example.dt.yaml: pwmleds: 'panel' does not match any of the regexes: '^led(-[0-9a-f]+)?$', 'pinctrl-[0-9]+'
+> >         From schema: /home/alex/src/linux/leds/Documentation/devicetree/bindings/leds/leds-pwm.yaml
+> > 
+> > Signed-off-by: Alexander Dahl <post@lespocky.de>
+> > Acked-by: Jeff LaBundy <jeff@labundy.com>
+> > Acked-by: Rob Herring <robh@kernel.org>
+> 
+> Thanks, applied.
 
-Thanks,
-Mani
+Sorry, what?
 
-> Thanks,
-> Cristi
-> 
-> Changes in v3:
-> - Squashed 'arm: dts: owl-s500-roseapplepi: Use UART clock from CMU' with
->   'arm: dts: owl-s500: Set CMU clocks for UARTs', according to Mani's review
-> - Rebased series on v5.11-rc1 and dropped the already merged patches:
->  * dt-bindings: mmc: owl: Add compatible string for Actions Semi S500 SoC
->  * dt-bindings: i2c: owl: Convert Actions Semi Owl binding to a schema
->  * MAINTAINERS: Update entry for Actions Semi Owl I2C binding
->  * i2c: owl: Add compatible for the Actions Semi S500 I2C controller
-> 
-> Changes in v2:
-> - Added new bindings/compatibles for S500 DMA, MMC & I2C controllers
-> - Added support for the SIRQ controller
-> - Added new entries in MAINTAINERS
-> - Updated naming of some patches in v1
-> 
-> Cristian Ciocaltea (13):
->   arm: dts: owl-s500: Add Clock Management Unit
->   arm: dts: owl-s500: Set CMU clocks for UARTs
->   arm: dts: owl-s500: Add Reset controller
->   dt-bindings: dma: owl: Add compatible string for Actions Semi S500 SoC
->   dmaengine: owl: Add compatible for the Actions Semi S500 DMA
->     controller
->   arm: dts: owl-s500: Add DMA controller
->   arm: dts: owl-s500: Add pinctrl & GPIO support
->   arm: dts: owl-s500: Add MMC support
->   arm: dts: owl-s500: Add I2C support
->   arm: dts: owl-s500: Add SIRQ controller
->   arm: dts: owl-s500-roseapplepi: Add uSD support
->   arm: dts: owl-s500-roseapplepi: Add I2C pinctrl configuration
->   MAINTAINERS: Add linux-actions ML for Actions Semi Arch
-> 
->  .../devicetree/bindings/dma/owl-dma.yaml      |   7 +-
->  MAINTAINERS                                   |   1 +
->  arch/arm/boot/dts/owl-s500-cubieboard6.dts    |   7 -
->  .../arm/boot/dts/owl-s500-guitar-bb-rev-b.dts |   7 -
->  .../arm/boot/dts/owl-s500-labrador-base-m.dts |   7 -
->  arch/arm/boot/dts/owl-s500-roseapplepi.dts    |  97 +++++++++++-
->  arch/arm/boot/dts/owl-s500-sparky.dts         |   7 -
->  arch/arm/boot/dts/owl-s500.dtsi               | 140 ++++++++++++++++++
->  drivers/dma/owl-dma.c                         |   3 +-
->  9 files changed, 239 insertions(+), 37 deletions(-)
-> 
-> -- 
-> 2.30.0
-> 
+Applied to what tree?
+
+-- 
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
