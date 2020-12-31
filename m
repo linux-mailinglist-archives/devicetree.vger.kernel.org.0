@@ -2,91 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 38EC82E7D5C
-	for <lists+devicetree@lfdr.de>; Thu, 31 Dec 2020 01:25:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 79DBE2E7D97
+	for <lists+devicetree@lfdr.de>; Thu, 31 Dec 2020 02:22:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726492AbgLaAYw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Dec 2020 19:24:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59864 "EHLO
+        id S1726323AbgLaBWn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Dec 2020 20:22:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40552 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726491AbgLaAYv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Dec 2020 19:24:51 -0500
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4CC84C061573;
-        Wed, 30 Dec 2020 16:24:11 -0800 (PST)
-Received: by mail-ej1-x62e.google.com with SMTP id qw4so23754268ejb.12;
-        Wed, 30 Dec 2020 16:24:11 -0800 (PST)
+        with ESMTP id S1726285AbgLaBWn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Dec 2020 20:22:43 -0500
+Received: from mail-vk1-xa2a.google.com (mail-vk1-xa2a.google.com [IPv6:2607:f8b0:4864:20::a2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E33F9C061575
+        for <devicetree@vger.kernel.org>; Wed, 30 Dec 2020 17:21:56 -0800 (PST)
+Received: by mail-vk1-xa2a.google.com with SMTP id m145so3997975vke.7
+        for <devicetree@vger.kernel.org>; Wed, 30 Dec 2020 17:21:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20161025;
+        d=chromium.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=aw/X/9HRdFlK3ENliYd8yhkSzevuBoqDvbJ7g1FREOk=;
-        b=oBhDqrr7CNIeA+HEckZ/BoMozBaZ67j517MnLQNWF9HHpKlIqcbDi+KgYiPH7xi+KR
-         dEROELyMEY9jwEJo/3g3xLv+DyU7iOcPMkKDvkL20U0bRwSpIKrvroIPmF2OiNgghdem
-         qm57V4I4n57aM+wl6J7q7YFvzobYCcLOUUB/LKM5eraIJmEEDjqDa5PUzi6gbQXlpq2e
-         6dlKXi9yGfxheRtTTszM9X+vWdFbrQB/Jl9vEm9xenlaeetoi8Uz0xL3EuEV832O5uiB
-         JXVYJLF+sTpKw/qBfMAQGvpQG7GsXEp532hX0saFjthrMIympWIjO3iu2EYAmBnEbMOT
-         3+qQ==
+        bh=mlkXVdHyhNYiM3/2KIoSx+pXpWswuzzhreZMYSFz1hg=;
+        b=aSw3CQT470ayL+TnbFzQRX0vGsaH4OBvdT0aCNT/hv0Q0LYzrJAEp/0i0h4rq6QHCm
+         dzxlpQgg5DpEIAjBM0GXaSkeYlsN/M4mJ+QpEfXKp78FlGQi9yUqYQUvfCmTCPWh3Ii1
+         tkGilqkmBxvJr7CHDSTuYCXfdQq01lh+4XvVs=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=aw/X/9HRdFlK3ENliYd8yhkSzevuBoqDvbJ7g1FREOk=;
-        b=EX6KyF+tanIEuwKvYrMuTG9KkGOBhFvFCIOZBn4z9RZXXhsp+azVUA2p98oF84f3Ii
-         7DjmIFSBWslJS0ioh+UI7YkPJEYGjDXoEM2+71ffwfUCvo09JhaVISO5yRryA4oPlvpP
-         OduGfOmWAWMatcYLg8CeDK2u8JCKmRELgQi3unnWOdofNAnB87ra4RF+pRCyFI3f3cbd
-         3Q0jZ1Kv72s7+Es6vPiCelqD2l7wzaXYvJM5hg4Zs1aQL839jgFF/INrrB1/y5O3Yoml
-         79xZ/58GB9IjjWdTjoDSCoKwE9AOLCy2Tk5X62WvaSN3kb1DelLikIZJdSecYLydtNkG
-         uEAQ==
-X-Gm-Message-State: AOAM533A4hYAb6wvmrNqxBuHRXRavz2qyaZTYedFmigOlqybbxAG1lYw
-        6L+112jrVMcQ5KXOUDPHd2niy87CFm/P/vyxMcs=
-X-Google-Smtp-Source: ABdhPJxrDxW07y8dLE5n+dcM/FUCVDaKSfs0FshgoV6zFzewudotaQBLzrHOOshSLszMCmD5zhQsLk6tRtwXHFx1Heg=
-X-Received: by 2002:a17:906:447:: with SMTP id e7mr50750226eja.172.1609374250025;
- Wed, 30 Dec 2020 16:24:10 -0800 (PST)
+        bh=mlkXVdHyhNYiM3/2KIoSx+pXpWswuzzhreZMYSFz1hg=;
+        b=NWRk6HYbceWzpGdz06IXmiYITN3cx+YP8rUeWm5DKNWCTIFT6PC64X+e0kpyYEmmk2
+         EJ+ytjl6pKoRmxWHl56A017PJnrVmMKLTvRMJ3Riw5LAtNbx9o7Myx+R5rHo+HYe0+g4
+         Axsfu2CQJKpu8Ott6MpLcKaGaWCTyNTA+jBirsJlEkbKG292FhzfQ2oMjeLPX0/1gMWb
+         nIoYFfAjec1WOLdVKHrvro8CzmzOxsSU03dclnfiRLcbD6j9TRVAAdlTjKr+QOiz75K/
+         mw6fOHPK17BvaZCjHk2CPIHmFY2YWJKHOi0TZn7+Hu8ITo6VH5e5lMiw2K7BqXigl6kQ
+         BuCA==
+X-Gm-Message-State: AOAM532mClv/3X4ZBhWeRuShDtwGogcoiVPZcCTV4n3ajuJuVq5YW3oH
+        iGrHs+r0et75hp5jMlRb7WbzEkD7y3vSCjRIhdDMrg==
+X-Google-Smtp-Source: ABdhPJzsqmjkBTHv/QEJaRsP982zznC3i91xEDQ66j6o4sJOhmDOVgkibqYEzzhJFkf9EQK3O0f9MLJhli4TwA0xbb8=
+X-Received: by 2002:a1f:9e83:: with SMTP id h125mr18571561vke.18.1609377715869;
+ Wed, 30 Dec 2020 17:21:55 -0800 (PST)
 MIME-Version: 1.0
-References: <20201230103729.2272-1-christianshewitt@gmail.com> <20201230103729.2272-3-christianshewitt@gmail.com>
-In-Reply-To: <20201230103729.2272-3-christianshewitt@gmail.com>
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Thu, 31 Dec 2020 01:23:59 +0100
-Message-ID: <CAFBinCCUV4piTy7n83GsV9Tny+JYA9_AXS0uiv5FeNPYejNR-Q@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] arm64: dts: meson: add initial Beelink GS-King-X device-tree
-To:     Christian Hewitt <christianshewitt@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+References: <1609144630-14721-1-git-send-email-yongqiang.niu@mediatek.com> <1609144630-14721-2-git-send-email-yongqiang.niu@mediatek.com>
+In-Reply-To: <1609144630-14721-2-git-send-email-yongqiang.niu@mediatek.com>
+From:   Nicolas Boichat <drinkcat@chromium.org>
+Date:   Thu, 31 Dec 2020 09:21:45 +0800
+Message-ID: <CANMq1KCRBz-rY6y3nHp8yh_QSohkmaYS=DqNDSPzvwmq-a09DQ@mail.gmail.com>
+Subject: Re: [PATCH v3, 1/8] soc: mediatek: mmsys: create mmsys folder
+To:     Yongqiang Niu <yongqiang.niu@mediatek.com>
+Cc:     CK Hu <ck.hu@mediatek.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
         Mark Rutland <mark.rutland@arm.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+        Devicetree List <devicetree@vger.kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        lkml <linux-kernel@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 30, 2020 at 11:38 AM Christian Hewitt
-<christianshewitt@gmail.com> wrote:
+On Mon, Dec 28, 2020 at 4:38 PM Yongqiang Niu
+<yongqiang.niu@mediatek.com> wrote:
 >
-> The Shenzen AZW (Beelink) GS-King-X is based on the Amlogic W400 reference
-> board with an S922X-H chip.
+> the mmsys will more and more complicated after support
+> more and more SoCs, add an independent folder will be
+> more clear
 >
-> - 4GB LPDDR4 RAM
-> - 64GB eMMC storage
-> - 10/100/1000 Base-T Ethernet
-> - AP6356S Wireless (802.11 a/b/g/n/ac, BT 4.1)
-> - HDMI 2.1 video
-> - S/PDIF optical output
-are you planning to enable this also?
+> Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
+> ---
+>  drivers/soc/mediatek/Makefile          |   2 +-
+>  drivers/soc/mediatek/mmsys/Makefile    |   2 +
+>  drivers/soc/mediatek/mmsys/mtk-mmsys.c | 380 +++++++++++++++++++++++++++++++++
+>  drivers/soc/mediatek/mtk-mmsys.c       | 380 ---------------------------------
 
-> - 2x ESS9018 audio DACs
-> - 4x Ricor RT6862 audio amps
-> - Analogue headphone output
-there's no driver for that DAC so I think that's why you are not enabling them
+I wonder why this doesn't get detected as a rename?
 
-> - 1x USB 2.0 OTG port
-> - 3x USB 3.0 ports
-> - IR receiver
-> - 1x micro SD card slot (internal)
-> - USB SATA controller with 2x 3.5" drive bays
-> - 1x Power on/off button
+>  4 files changed, 383 insertions(+), 381 deletions(-)
+>  create mode 100644 drivers/soc/mediatek/mmsys/Makefile
+>  create mode 100644 drivers/soc/mediatek/mmsys/mtk-mmsys.c
+>  delete mode 100644 drivers/soc/mediatek/mtk-mmsys.c
 >
-> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
-I don't know/have this board but also I don't see anything problematic so:
-Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> diff --git a/drivers/soc/mediatek/Makefile b/drivers/soc/mediatek/Makefile
+> index 01f9f87..b5987ca 100644
+> --- a/drivers/soc/mediatek/Makefile
+> +++ b/drivers/soc/mediatek/Makefile
+> @@ -3,4 +3,4 @@ obj-$(CONFIG_MTK_CMDQ) += mtk-cmdq-helper.o
+>  obj-$(CONFIG_MTK_INFRACFG) += mtk-infracfg.o
+>  obj-$(CONFIG_MTK_PMIC_WRAP) += mtk-pmic-wrap.o
+>  obj-$(CONFIG_MTK_SCPSYS) += mtk-scpsys.o
+> -obj-$(CONFIG_MTK_MMSYS) += mtk-mmsys.o
+> +obj-$(CONFIG_MTK_MMSYS) += mmsys/
+> diff --git a/drivers/soc/mediatek/mmsys/Makefile b/drivers/soc/mediatek/mmsys/Makefile
+> new file mode 100644
+> index 0000000..5d976d7
+> --- /dev/null
+> +++ b/drivers/soc/mediatek/mmsys/Makefile
+> @@ -0,0 +1,2 @@
+> +# SPDX-License-Identifier: GPL-2.0-only
+> +obj-$(CONFIG_MTK_MMSYS) += mtk-mmsys.o
+> \ No newline at end of file
+
+Nit: newline at end of file please.
