@@ -2,102 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 494AE2E7EBC
-	for <lists+devicetree@lfdr.de>; Thu, 31 Dec 2020 09:34:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 175742E7ECC
+	for <lists+devicetree@lfdr.de>; Thu, 31 Dec 2020 09:56:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726388AbgLaIeD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Dec 2020 03:34:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49934 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726356AbgLaIeD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Dec 2020 03:34:03 -0500
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61F31C061575
-        for <devicetree@vger.kernel.org>; Thu, 31 Dec 2020 00:33:22 -0800 (PST)
-Received: by mail-wm1-x331.google.com with SMTP id 3so6711074wmg.4
-        for <devicetree@vger.kernel.org>; Thu, 31 Dec 2020 00:33:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=7CZya83atebnWeu1yHEbLA0a58aDtjoVw0Tiqu5x01A=;
-        b=iPGHGeVR19yf0873nrpSscXEgUi6czdITxFf9XPnoJ9ABQczW4ok8EEnowhMbWE+RU
-         83H9Egp/wsOFoyI0KgnI6TUetGDp2RmqGYnfmjcSh8IhiYc/95wOBL3Ze+nAeK+YEmPU
-         30BbdPtfxtt8XqILPZFB4+EzKqmZ8y6T2jSUDbll+sIk2xB71at0b4XQHvfZ9E4NMyoY
-         1r9+Vu9dT1US1yuzq/3QCdSwye6xV+yiudh/tO4R1ebQ8XkHxsjfPg+eo/2NQK3j+ELL
-         PceYAOI3RTem7iJrRtgKxtYJrkRRJ5OG2EOn/dByp+36RCL1pUkuUKVuRZKNc4nkkVJ5
-         JtgQ==
+        id S1726130AbgLaIzw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Dec 2020 03:55:52 -0500
+Received: from mail-ed1-f46.google.com ([209.85.208.46]:43601 "EHLO
+        mail-ed1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726290AbgLaIzw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Dec 2020 03:55:52 -0500
+Received: by mail-ed1-f46.google.com with SMTP id y24so17605171edt.10;
+        Thu, 31 Dec 2020 00:55:35 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=7CZya83atebnWeu1yHEbLA0a58aDtjoVw0Tiqu5x01A=;
-        b=gkXOI3vjHO1+QPkv/+iam4/PRBtzfZtpbo+/EA5SdLTop7MgCvVmZgbxJlIOT/DWIa
-         xylI0y/CudwP5MPfgceVS4w71kio6p4rRWJRmLgm91KYnvCkfglutm2zjqLDF9aa7DiS
-         O93p39+GJJYEG0iSHw1Gsz3krLtziouVSViMRAsEUBY07G4yMq9YbKIe14ut8+CZ6ESF
-         bbJ8lulMYCpB64RLVvtND9MGAxCqsrogB8i4z3T2Qd7V+RnZVtgAgsHwf00SMaj20ad2
-         NnoxZqowLD70IK0lZX4NoxAQ0k5ICxHniEFQLM6cHvGC2Lov5jQWtJRhXKkI59MFNodv
-         xk2A==
-X-Gm-Message-State: AOAM531wveNB/PcF9LOG04+0mpWrE3M8+wwrqWnlw3K+WRqMifP0HUNE
-        naVw9xmo+Xcaqy2kZndJm12uDg==
-X-Google-Smtp-Source: ABdhPJxgVpv6k0MI/BzifwYgB548pcGt6oqlux6TtaOZNi7+9Ao4+rwMet8Sf7IpouJnC+LD4ubqhA==
-X-Received: by 2002:a1c:b407:: with SMTP id d7mr11034773wmf.34.1609403601033;
-        Thu, 31 Dec 2020 00:33:21 -0800 (PST)
-Received: from dell ([91.110.221.133])
-        by smtp.gmail.com with ESMTPSA id z15sm71074287wrv.67.2020.12.31.00.33.19
+         :mime-version:content-disposition:in-reply-to;
+        bh=uNA2f0Y9klhzKIC9fDHc8HD2Ytoultdhg1JorPCx44o=;
+        b=OGqrSWYHkNQV1GHCVrxJKAsvtEUTtmE5W6WEkZzit7FY5vqCrR3X1oK3uWzEM0T26D
+         BPORzGVM/UnQ8kucxGzPqTIXo5jP9Ynzuwa1jCd7DmbRytbNkrcbhAJBM8g/wZC3NU2r
+         SURuu5tUDsYgj5WZr+LCQPtP/6xnM+RHLillFiAcSF3pAtNhAmyXeNmJNvc+qLktbNgm
+         pw0XzJLTV+a3sQc6+nLJItBc7qUXgsRpRM5wKZwc8QT7VakvNednbAl4UP4iPHjvDJ8i
+         NflYolwgID00LGtt6zuQGs8fprixKmD+ZTkVqFMvSADcs/0gCEe6aK5sdN5p9btivzkb
+         L1dQ==
+X-Gm-Message-State: AOAM533duvYcAQfnEDYcQ1I+p50wJdQoJdJ7oynelqUEkigYWExjra9e
+        n68VM5rqemAS0F1yrPrZanc=
+X-Google-Smtp-Source: ABdhPJwP5cE4L9i7CK/EJFSuSBeru/Isv9KRT+5KTAwu+XyBMrUwDAHsHT581iTxZHa5NEOez33YGg==
+X-Received: by 2002:aa7:c543:: with SMTP id s3mr53448874edr.88.1609404909896;
+        Thu, 31 Dec 2020 00:55:09 -0800 (PST)
+Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
+        by smtp.googlemail.com with ESMTPSA id dk16sm19933758ejb.85.2020.12.31.00.55.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 31 Dec 2020 00:33:20 -0800 (PST)
-Date:   Thu, 31 Dec 2020 08:33:17 +0000
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Pavel Machek <pavel@ucw.cz>
-Cc:     Alexander Dahl <post@lespocky.de>,
+        Thu, 31 Dec 2020 00:55:08 -0800 (PST)
+Date:   Thu, 31 Dec 2020 09:55:07 +0100
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Timon Baetz <timon.baetz@protonmail.com>
+Cc:     Marek Szyprowski <m.szyprowski@samsung.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Alexander Dahl <ada@thorsis.com>, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-amlogic@lists.infradead.org, Jeff LaBundy <jeff@labundy.com>,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v9 1/4] dt-bindings: mfd: Fix schema warnings for pwm-leds
-Message-ID: <20201231083317.GB4413@dell>
-References: <20201228163217.32520-1-post@lespocky.de>
- <20201228163217.32520-2-post@lespocky.de>
- <20201230185439.GC25903@duo.ucw.cz>
+        linux-samsung-soc@vger.kernel.org, linux-pm@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH v6 3/8] power: supply: max8997_charger: Set CHARGER
+ current limit
+Message-ID: <20201231085507.GA69707@kozik-lap>
+References: <20201230205139.1812366-1-timon.baetz@protonmail.com>
+ <20201230205139.1812366-3-timon.baetz@protonmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20201230185439.GC25903@duo.ucw.cz>
+In-Reply-To: <20201230205139.1812366-3-timon.baetz@protonmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 30 Dec 2020, Pavel Machek wrote:
-
-> Hi!
+On Wed, Dec 30, 2020 at 08:52:15PM +0000, Timon Baetz wrote:
+> Register for extcon notification and set charging current depending on
+> the detected cable type. Current values are taken from vendor kernel,
+> where most charger types end up setting 650mA [0].
 > 
-> > The node names for devices using the pwm-leds driver follow a certain
-> > naming scheme (now).  Parent node name is not enforced, but recommended
-> > by DT project.
-> > 
-> >   DTC     Documentation/devicetree/bindings/mfd/iqs62x.example.dt.yaml
-> >   CHECK   Documentation/devicetree/bindings/mfd/iqs62x.example.dt.yaml
-> > /home/alex/build/linux/Documentation/devicetree/bindings/mfd/iqs62x.example.dt.yaml: pwmleds: 'panel' does not match any of the regexes: '^led(-[0-9a-f]+)?$', 'pinctrl-[0-9]+'
-> >         From schema: /home/alex/src/linux/leds/Documentation/devicetree/bindings/leds/leds-pwm.yaml
-> > 
-> > Signed-off-by: Alexander Dahl <post@lespocky.de>
-> > Acked-by: Jeff LaBundy <jeff@labundy.com>
-> > Acked-by: Rob Herring <robh@kernel.org>
+> Also enable and disable the CHARGER regulator based on extcon events.
 > 
-> Thanks, applied.
+> [0] https://github.com/krzk/linux-vendor-backup/blob/samsung/galaxy-s2-epic-4g-touch-sph-d710-exynos4210-dump/drivers/misc/max8997-muic.c#L1675-L1678
+> 
+> Signed-off-by: Timon Baetz <timon.baetz@protonmail.com>
+> ---
+> v6: dev_info() instead of dev_err().
+> v5: Use devm_regulator_get_optional(), dev_err() on failure.
+>     dev_err() on extcon_get_edev_by_phandle() failure.
+> v4: Make extcon and charger-supply optional.
+> v3: Split MFD change.
+>     return on regulator_set_current_limit() failure.
+> v2: Split DTS changes.
+>     Add missing include.
+>     Rename charger_data members.
+>     Disable regulator on regulator_set_current_limit() failure.
+>     Fix ret declaration.
+>     Remove unneeded variables.
+>     Don't dev_err() on deferral.
+>     Get regulator and extcon from DTS.
+>     Use devm_regulator_get(). 
+>     Fix indentation.
 
-Sorry, what?
 
-Applied to what tree?
 
--- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+
+Best regards,
+Krzysztof
