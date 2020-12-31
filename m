@@ -2,80 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 99FAA2E80A7
-	for <lists+devicetree@lfdr.de>; Thu, 31 Dec 2020 15:32:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 44D772E80BB
+	for <lists+devicetree@lfdr.de>; Thu, 31 Dec 2020 15:35:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726540AbgLaObs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Dec 2020 09:31:48 -0500
-Received: from relay12.mail.gandi.net ([217.70.178.232]:37783 "EHLO
-        relay12.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727270AbgLaObd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Dec 2020 09:31:33 -0500
-Received: from localhost.localdomain (196.109.29.93.rev.sfr.net [93.29.109.196])
-        (Authenticated sender: paul.kocialkowski@bootlin.com)
-        by relay12.mail.gandi.net (Postfix) with ESMTPSA id 105F1200015;
-        Thu, 31 Dec 2020 14:30:33 +0000 (UTC)
-From:   Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-To:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-doc@vger.kernel.org, devel@driverdev.osuosl.org,
-        linux-sunxi@googlegroups.com
-Cc:     Yong Deng <yong.deng@magewell.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Helen Koike <helen.koike@collabora.com>,
-        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Hans Verkuil <hans.verkuil@cisco.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        kevin.lhopital@hotmail.com
-Subject: [PATCH v4 15/15] MAINTAINERS: Add entry for the Allwinner A83T MIPI CSI-2 bridge
-Date:   Thu, 31 Dec 2020 15:29:48 +0100
-Message-Id: <20201231142948.3241780-16-paul.kocialkowski@bootlin.com>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20201231142948.3241780-1-paul.kocialkowski@bootlin.com>
-References: <20201231142948.3241780-1-paul.kocialkowski@bootlin.com>
+        id S1727195AbgLaOed (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Dec 2020 09:34:33 -0500
+Received: from jabberwock.ucw.cz ([46.255.230.98]:39218 "EHLO
+        jabberwock.ucw.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727193AbgLaOed (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Dec 2020 09:34:33 -0500
+Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
+        id 257A21C0B79; Thu, 31 Dec 2020 15:33:52 +0100 (CET)
+Date:   Thu, 31 Dec 2020 15:33:51 +0100
+From:   Pavel Machek <pavel@ucw.cz>
+To:     Tony Lindgren <tony@atomide.com>
+Cc:     linux-omap@vger.kernel.org,
+        =?iso-8859-1?Q?Beno=EEt?= Cousson <bcousson@baylibre.com>,
+        devicetree@vger.kernel.org, Carl Philipp Klemm <philipp@uvos.xyz>,
+        Merlijn Wajer <merlijn@wizzup.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Eduardo Valentin <edubezval@gmail.com>,
+        Peter Ujfalusi <peter.ujfalusi@gmail.com>
+Subject: Re: [PATCH 2/3] ARM: dts: motorola-mapphone: Configure lower
+ temperature passive cooling
+Message-ID: <20201231143351.GA22726@duo.ucw.cz>
+References: <20201230084232.19221-1-tony@atomide.com>
+ <20201230084232.19221-2-tony@atomide.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha1;
+        protocol="application/pgp-signature"; boundary="y0ulUmNC+osPPQO6"
+Content-Disposition: inline
+In-Reply-To: <20201230084232.19221-2-tony@atomide.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add myself as maintainer of the A83T MIPI CSI-2 bridge media driver.
 
-Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
----
- MAINTAINERS | 8 ++++++++
- 1 file changed, 8 insertions(+)
+--y0ulUmNC+osPPQO6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index a1352171778b..3b48612657b6 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -717,6 +717,14 @@ T:	git git://linuxtv.org/media_tree.git
- F:	Documentation/devicetree/bindings/media/allwinner,sun6i-a31-mipi-csi2.yaml
- F:	drivers/media/platform/sunxi/sun6i-mipi-csi2/
- 
-+ALLWINNER A83T MIPI CSI-2 BRIDGE
-+M:	Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-+L:	linux-media@vger.kernel.org
-+S:	Maintained
-+T:	git git://linuxtv.org/media_tree.git
-+F:	Documentation/devicetree/bindings/media/allwinner,sun8i-a83t-mipi-csi2.yaml
-+F:	drivers/media/platform/sunxi/sun8i-a83t-mipi-csi2/
-+
- ALLWINNER CPUFREQ DRIVER
- M:	Yangtao Li <tiny.windzz@gmail.com>
- L:	linux-pm@vger.kernel.org
--- 
-2.29.2
+Hi!
 
+> The current cooling device temperature is too high at 100C as we have a
+> battery on the device right next to the SoC as pointed out by Carl Philipp
+> Klemm <philipp@uvos.xyz>. Let's configure the max temperature to
+> 80C.
+
+Well... I am hitting even the 100C limit under load quite easily,
+IIRC. I believe my Droid idles around 80C.... so this is likely to
+make it... less useful.
+
+Let me re-try and get some more numbers...
+
+Best regards,
+								Pavel
+							=09
+--=20
+http://www.livejournal.com/~pavelmachek
+
+--y0ulUmNC+osPPQO6
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCX+3hTwAKCRAw5/Bqldv6
+8u//AJ4yV1Qv0S5aUf+UyyuFGvFE5ZmPNgCgqO1gV/3lFzvqopLSY9+X2QprRT8=
+=qDxr
+-----END PGP SIGNATURE-----
+
+--y0ulUmNC+osPPQO6--
