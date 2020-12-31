@@ -2,81 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7ED4F2E80FC
-	for <lists+devicetree@lfdr.de>; Thu, 31 Dec 2020 16:35:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C58A02E80F4
+	for <lists+devicetree@lfdr.de>; Thu, 31 Dec 2020 16:35:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727040AbgLaPfi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Dec 2020 10:35:38 -0500
-Received: from mail-oi1-f180.google.com ([209.85.167.180]:35250 "EHLO
-        mail-oi1-f180.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726071AbgLaPfh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Dec 2020 10:35:37 -0500
-Received: by mail-oi1-f180.google.com with SMTP id s2so22164055oij.2;
-        Thu, 31 Dec 2020 07:35:21 -0800 (PST)
+        id S1726356AbgLaPfd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Dec 2020 10:35:33 -0500
+Received: from mail-ot1-f50.google.com ([209.85.210.50]:36982 "EHLO
+        mail-ot1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726071AbgLaPfd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Dec 2020 10:35:33 -0500
+Received: by mail-ot1-f50.google.com with SMTP id o11so18275567ote.4;
+        Thu, 31 Dec 2020 07:35:17 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=d/j65F0xDeODzWQ7ItCBXGTIo7MfPYId6+AMLyCdHMo=;
-        b=Upk3o48fNW0UA4btqOqhgESVTgVfzjgbxsaVu9raRirbsVmILzxB4fQnsF1hzut5qW
-         bnd+9G69vi+xnB6MZHYsAA39HdtPVW+3YSDbe2e93Zq98WLe9WKK0RVnc8KTXVB/adMJ
-         R8o9G1lomgPCVJncmI66vukDF3U6F8RcnS+Z82QuyRAajhtrJieJ3dTJNyT0Q+cvH42n
-         x5yZ8TDLu6tLD4Kzk6+rpeT7GIMBupv3iEnE5agLj+fr+yRxJF/qt/aD5FU5/JkZOUhC
-         ovTuEZC7NYC956bxtyezit5U0doTsYetnWTDs6AaKgpG5XJKZcoJt1wfw69RkL1KfuLJ
-         DAHg==
-X-Gm-Message-State: AOAM5315dpOgGHjNPtEcG4nV/paA/j6F3BPh12F5myv404Wg6pTVvLwI
-        2j1RsDWHm86uYECFpGCVmRj3WZ76Zw==
-X-Google-Smtp-Source: ABdhPJwyhSC7NMQ5mvKqpnkKyC/xlzouqKLhslB1LhVgY0S5xZqFE84DSoQ+iZLaIOmB3FFlBE74Mw==
-X-Received: by 2002:aca:130a:: with SMTP id e10mr7909601oii.163.1609428895898;
-        Thu, 31 Dec 2020 07:34:55 -0800 (PST)
+        bh=U5+TgRxBr8Fo4F24dxi/XK3rCsce2994tILTdIkxtms=;
+        b=VYsOjXJADSQAuA4BKAbhJA2e89sZAZTVZdKcVFRiqM2ITm4EulVIYjXSIqk9RcRVgG
+         9w34n9nxx3abDZc16ct2PAjzdtKOZxTEG097n8Dvr8sgYt+zSUASpfev4wIEsbJs9yvz
+         039kQuOMNxAJyePvPzEo3LxL4FqSUML3nuiBSJ+xNU6wiqrBAtOzU7FXNIFAfdVPsTMo
+         RG1bWE206DhGtJgwtVNYKwLJDluk8TKq2NiZ0cm2QeINx6EmDjVxc+1XDmMtIIi/Ndr9
+         KwBqgWubnG27+ob02/6aplzsJP8/Gy+SHpDh9HUdNotwLWjDliB5m8OgsgZfhYc/laML
+         IHTg==
+X-Gm-Message-State: AOAM533ex3VVCMT+G1n4ezV4HRmJOp2wVxU3RKr+foA1nonui2fUpFeF
+        lZg4GfxbaHhZtJEOKXWiRQ==
+X-Google-Smtp-Source: ABdhPJwueo20TglGcEsIU4ebdW4CqO2h44on2UHrkgjVWDuMsGX+RxqetVDTW5S7wZkG+1Pb4x+4/w==
+X-Received: by 2002:a9d:5d02:: with SMTP id b2mr41960733oti.148.1609428892020;
+        Thu, 31 Dec 2020 07:34:52 -0800 (PST)
 Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id c204sm10932224oob.44.2020.12.31.07.34.53
+        by smtp.gmail.com with ESMTPSA id h30sm10449278ooi.12.2020.12.31.07.34.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 31 Dec 2020 07:34:55 -0800 (PST)
-Received: (nullmailer pid 1828659 invoked by uid 1000);
+        Thu, 31 Dec 2020 07:34:50 -0800 (PST)
+Received: (nullmailer pid 1828652 invoked by uid 1000);
         Thu, 31 Dec 2020 15:34:48 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Campion Kang <campion.kang@advantech.com.tw>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        AceLan Kao <chia-lin.kao@canonical.com>,
-        Lee Jones <lee.jones@linaro.org>, linux-kernel@vger.kernel.org,
-        linux-hwmon@vger.kernel.org,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        devicetree@vger.kernel.org, Jean Delvare <jdelvare@suse.com>,
-        linux-watchdog@vger.kernel.org
-In-Reply-To: <20201231123948.10473-3-campion.kang@advantech.com.tw>
-References: <20201231123948.10473-1-campion.kang@advantech.com.tw> <20201231123948.10473-3-campion.kang@advantech.com.tw>
-Subject: Re: [PATCH v5 3/6] dt-bindings: mfd: ahc1ec0.yaml: Add Advantech embedded controller - AHC1EC0
+To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc:     linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
+        linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+        linux-remoteproc@vger.kernel.org, bjorn.andersson@linaro.org,
+        devicetree@vger.kernel.org, ohad@wizery.com
+In-Reply-To: <20201230012724.1326156-3-martin.blumenstingl@googlemail.com>
+References: <20201230012724.1326156-1-martin.blumenstingl@googlemail.com> <20201230012724.1326156-3-martin.blumenstingl@googlemail.com>
+Subject: Re: [PATCH 2/5] dt-bindings: Amlogic: add the documentation for the SECBUS2 registers
 Date:   Thu, 31 Dec 2020 08:34:48 -0700
-Message-Id: <1609428888.845662.1828658.nullmailer@robh.at.kernel.org>
+Message-Id: <1609428888.809731.1828651.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 31 Dec 2020 20:39:45 +0800, Campion Kang wrote:
-> Add DT binding schema for Advantech embedded controller AHC1EC0.
+On Wed, 30 Dec 2020 02:27:21 +0100, Martin Blumenstingl wrote:
+> The Meson8/Meson8b/Meson8m2 SoCs have a register bank called SECBUS2 which
+> contains registers for various IP blocks such as pin-controller bits for
+> the BSD_EN and TEST_N GPIOs as well as some AO ARC core control bits.
+> The registers can be accessed directly when not running in "secure mode".
+> When "secure mode" is enabled then these registers have to be accessed
+> through secure monitor calls.
 > 
-> Signed-off-by: Campion Kang <campion.kang@advantech.com.tw>
+> So far these SoCs are always known to boot in "non-secure mode".
+> Add a binding documentation using syscon (as these registers are shared
+> across different IPs) for the SECBUS2 registers.
+> 
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 > ---
->  .../devicetree/bindings/mfd/ahc1ec0.yaml      | 69 +++++++++++++++++++
->  1 file changed, 69 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mfd/ahc1ec0.yaml
+>  .../arm/amlogic/amlogic,meson-mx-secbus2.yaml | 53 +++++++++++++++++++
+>  1 file changed, 53 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/arm/amlogic/amlogic,meson-mx-secbus2.yaml
 > 
 
 My bot found errors running 'make dt_binding_check' on your patch:
 
 yamllint warnings/errors:
+./Documentation/devicetree/bindings/arm/amlogic/amlogic,meson-mx-secbus2.yaml:35:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
 
 dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/mfd/ahc1ec0.example.dts:19:18: fatal error: dt-bindings/mfd/ahc1ec0.h: No such file or directory
-   19 |         #include <dt-bindings/mfd/ahc1ec0.h>
-      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~
-compilation terminated.
-make[1]: *** [scripts/Makefile.lib:344: Documentation/devicetree/bindings/mfd/ahc1ec0.example.dt.yaml] Error 1
-make: *** [Makefile:1370: dt_binding_check] Error 2
 
-See https://patchwork.ozlabs.org/patch/1421561
+See https://patchwork.ozlabs.org/patch/1421302
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
