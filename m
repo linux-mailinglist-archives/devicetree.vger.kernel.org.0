@@ -2,90 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ACC302E82C0
-	for <lists+devicetree@lfdr.de>; Fri,  1 Jan 2021 02:29:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 725E92E82CB
+	for <lists+devicetree@lfdr.de>; Fri,  1 Jan 2021 03:26:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726485AbhAAB3T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Dec 2020 20:29:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35660 "EHLO
+        id S1726583AbhAACZr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Dec 2020 21:25:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44326 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726044AbhAAB3T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Dec 2020 20:29:19 -0500
-Received: from mail-ot1-x32f.google.com (mail-ot1-x32f.google.com [IPv6:2607:f8b0:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEBDAC061573;
-        Thu, 31 Dec 2020 17:28:38 -0800 (PST)
-Received: by mail-ot1-x32f.google.com with SMTP id j12so19215096ota.7;
-        Thu, 31 Dec 2020 17:28:38 -0800 (PST)
+        with ESMTP id S1726219AbhAACZr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Dec 2020 21:25:47 -0500
+Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41A40C061575
+        for <devicetree@vger.kernel.org>; Thu, 31 Dec 2020 18:25:07 -0800 (PST)
+Received: by mail-pj1-x102d.google.com with SMTP id m5so6105359pjv.5
+        for <devicetree@vger.kernel.org>; Thu, 31 Dec 2020 18:25:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=sender:date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=nqTYURsZuNosp7QXLy1d+4/Lg7owmkjDgemSirLf0O8=;
-        b=OBpHXDjH3ZWbdl1j6JYel4Rfg+SjCgJdzU+UmLFLM0Ez2bF5Zj6yBKB75qPXf/eSHg
-         QtLTH0tU2epVH72kkFizk7eFUsMsfHat5k5zVTzIZD7RWlT5pNbNEAVYb2bXvrTUt3mQ
-         g/9sMXZ1oDhIns5W9v1Q+6b3lWtmIEFQt4wklx73I48+qrlam4773I8NFHWyZ/T5U22x
-         gdZL5kSTblTkywr/0aixFGM/sV0guRs/9WdbhNMTAAeqMjOAjP8MXfm6bSm9XEdoes5q
-         kFNPuorOrSQa1UQXcoXvzGdw7U3d5FnLgsAVZbqdCFablogmnJOP3ox9W+p5rggVCvFk
-         kh8Q==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id;
+        bh=BhoRxuko7KSfFYnhq5Nsjj2QrBDkwsvdM4s7SqoC3BY=;
+        b=xvUvyjiFavs1GRLLZlSBNqmBGNcJbm/MA4jwf5L+NEADwYI4aweCFXsrrPaMfO3hqH
+         lVCqlME/vKsvK7vRAfypJznWHbRVAWCp9/bnPmFiZPszr+M0+wScHirqBvrWJRVMR6QP
+         0TKyMuT4LQr7Yd7Mp0LnA4iUA7fpltTFf+EoYwZU3dMA4by9o9J9Dff32HQcqWFYN7Ay
+         JQArl9CTHqjPPWjSnTYQF1/8qNzvYO6/KM5iZ3UQIfl3aJbXgp9wsvtKoa6qfKIG5k3q
+         G53Bo/skDYOTEvpdHpwNGDVoA7A+Mg/iNskxTcZPy21qUc4UqK+UQOXZg//32HBeXczy
+         4iPA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
-         :references:mime-version:content-disposition:in-reply-to:user-agent;
-        bh=nqTYURsZuNosp7QXLy1d+4/Lg7owmkjDgemSirLf0O8=;
-        b=Yu5vIdLsoD0MoLe1MbNaLGV7J69pKZK24+UlzggrVh7bVQSnn22LW56QZ9zZfdNBbQ
-         a7Rak9uWsRIkiKWvYPiI6tNgoRq+Kw2sNdzFWJ32Bp/ASX0E8kqUhO+UW5v3z4S/pgl4
-         3ZihBr2sBnsazlDwFYVpY+uG2Y1cZbqhM5Q5W1weYsMexxAdsjko4jzEcevNjnTVziBn
-         la1ZfJGPVRURg4lh98KMktjT2aa1MKtAvgOUHNNB0f0Dv3Lh3/l6DFYbQJR57Lug/PU9
-         Xks6FEuppBe1DAN7O50fGhtmEOfzhNn+Ub6HmtlSdKTKBEkTYYqcLV7yFtzui/e3GaFo
-         XCfQ==
-X-Gm-Message-State: AOAM533VTQtFlP8mA8BZyb6QTWlQVuXGUF9JeXJDAkY6S9bvdwpPn1tZ
-        DXIaF4uw35pxWMw/iyDRQXc=
-X-Google-Smtp-Source: ABdhPJyK2xr4CLSiYfimv85b2ILkMBMwDP2MyFbSRpiwBdmIprcYs5SIhdKU7gPQNzguqIf/oSIf0A==
-X-Received: by 2002:a9d:8ea:: with SMTP id 97mr20145960otf.223.1609464518081;
-        Thu, 31 Dec 2020 17:28:38 -0800 (PST)
-Received: from localhost ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id t2sm8762554otj.47.2020.12.31.17.28.36
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Thu, 31 Dec 2020 17:28:36 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Thu, 31 Dec 2020 17:28:35 -0800
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Campion Kang <campion.kang@advantech.com.tw>
-Cc:     linux-kernel@vger.kernel.org, Lee Jones <lee.jones@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Jean Delvare <jdelvare@suse.com>, linux-hwmon@vger.kernel.org,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        linux-watchdog@vger.kernel.org,
-        AceLan Kao <chia-lin.kao@canonical.com>
-Subject: Re: [PATCH v5 5/6] hwmon: ahc1ec0-hwmon: Add sub-device hwmon for
- Advantech embedded controller
-Message-ID: <20210101012835.GA87441@roeck-us.net>
-References: <20201231123948.10473-1-campion.kang@advantech.com.tw>
- <20201231123948.10473-5-campion.kang@advantech.com.tw>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201231123948.10473-5-campion.kang@advantech.com.tw>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=BhoRxuko7KSfFYnhq5Nsjj2QrBDkwsvdM4s7SqoC3BY=;
+        b=d3FC4gpmg7npD/NizeKaLSL5/+g6pXs5YER1+XMdNPsjWR3m97iNmFIiQkhOQRwqZL
+         pjvlhpbf5vHi2m7DoU4LlAaTsNWses/xrXmBCvfonozwP8grBs1Q66wRH58rVuWFFDOX
+         fSEter2c6RD2SzAhcHjqf5H21XtkGIg54myFCUuGTx3av3TL0IiTN5/vyg1leSGQmy2q
+         EDExTGwJl60hKTt7dztCTa1OYOH+6am1Vh15tk5GxjwhffDYsUOAQZuZw70X1+KlZa2J
+         KQbRZC/vArHmNQpZnXx3/UMgwoqHbLXQGmPMTluPXt6kpJ69J40Snq9UedQUOCgWRfBZ
+         X9hw==
+X-Gm-Message-State: AOAM531HKoDgsBen85Km+9kvv+0OV6Tub9dzG3Itw+D0S5lM1ulaUxe2
+        Z4abA+bp1BFG6SQvgnMeDRUYwQ==
+X-Google-Smtp-Source: ABdhPJzaU1i3PsIxPoRBvl6XGNpEveuLPgCDAtOWwSG79NgSNt68bpmnEQdZ087aXPMeWV29M8GK8A==
+X-Received: by 2002:a17:90a:e64e:: with SMTP id ep14mr15198040pjb.5.1609467905725;
+        Thu, 31 Dec 2020 18:25:05 -0800 (PST)
+Received: from localhost.localdomain (80.251.214.228.16clouds.com. [80.251.214.228])
+        by smtp.gmail.com with ESMTPSA id h12sm50655035pgs.7.2020.12.31.18.25.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 31 Dec 2020 18:25:05 -0800 (PST)
+From:   Shawn Guo <shawn.guo@linaro.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, Shawn Guo <shawn.guo@linaro.org>
+Subject: [PATCH] arm64: dts: qcom: c630: keep both touchpad devices enabled
+Date:   Fri,  1 Jan 2021 10:24:51 +0800
+Message-Id: <20210101022451.21882-1-shawn.guo@linaro.org>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 31, 2020 at 08:39:47PM +0800, Campion Kang wrote:
-> This is one of sub-device driver for Advantech embedded controller
-> AHC1EC0. This driver provides sysfs ABI for Advantech related
-> applications to monitor the system status.
-> 
-> Signed-off-by: Campion Kang <campion.kang@advantech.com.tw>
-> ---
->  drivers/hwmon/Kconfig         |  10 +
+Indicated by AML code in ACPI table, the touchpad in-use could be found
+on two possible slave addresses on &i2c3, i.e. hid@15 and hid@2c.  And
+which one is in-use can be determined by reading another address on the
+I2C bus.  Unfortunately, for DT boot, there is currently no support in
+firmware to make this check and patch DT accordingly.  This results in
+a non-functional touchpad on those C630 devices with hid@2c.
 
-[ ... ]
+As i2c-hid driver will stop probing the device if there is nothing on
+the slave address, we can actually keep both devices enabled in DT, and
+i2c-hid driver will only probe the existing one.  The only problem is
+that we cannot set up pinctrl in both device nodes, as two devices with
+the same pinctrl will cause pin conflict that makes the second device
+fail to probe.  Let's move the pinctrl state up to parent node to solve
+this problem.
 
-> +	lmsensor_data.hwmon_dev = devm_hwmon_device_register_with_groups(&pdev->dev,
-> +			"ahc1ec0-hwmon", adv_ec_data, ahc1ec0_groups);
+Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts | 10 ++--------
+ 1 file changed, 2 insertions(+), 8 deletions(-)
 
-New drivers must use [devm_]hwmon_device_register_with_info() and will
-otherwise not be accepted.
+diff --git a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
+index dcfe66f169f9..802966e11152 100644
+--- a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
++++ b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
+@@ -353,6 +353,8 @@
+ &i2c3 {
+ 	status = "okay";
+ 	clock-frequency = <400000>;
++	pinctrl-names = "default";
++	pinctrl-0 = <&i2c3_hid_active>;
+ 
+ 	tsel: hid@15 {
+ 		compatible = "hid-over-i2c";
+@@ -360,9 +362,6 @@
+ 		hid-descr-addr = <0x1>;
+ 
+ 		interrupts-extended = <&tlmm 37 IRQ_TYPE_LEVEL_HIGH>;
+-
+-		pinctrl-names = "default";
+-		pinctrl-0 = <&i2c3_hid_active>;
+ 	};
+ 
+ 	tsc2: hid@2c {
+@@ -371,11 +370,6 @@
+ 		hid-descr-addr = <0x20>;
+ 
+ 		interrupts-extended = <&tlmm 37 IRQ_TYPE_LEVEL_HIGH>;
+-
+-		pinctrl-names = "default";
+-		pinctrl-0 = <&i2c3_hid_active>;
+-
+-		status = "disabled";
+ 	};
+ };
+ 
+-- 
+2.17.1
 
-Guenter
