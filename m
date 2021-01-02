@@ -2,99 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C95282E8797
-	for <lists+devicetree@lfdr.de>; Sat,  2 Jan 2021 15:16:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E87352E880B
+	for <lists+devicetree@lfdr.de>; Sat,  2 Jan 2021 17:24:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726530AbhABOP4 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Sat, 2 Jan 2021 09:15:56 -0500
-Received: from mail.kernel.org ([198.145.29.99]:44430 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726486AbhABOPz (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 2 Jan 2021 09:15:55 -0500
-Received: from archlinux (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 4C01B22482;
-        Sat,  2 Jan 2021 14:15:14 +0000 (UTC)
-Date:   Sat, 2 Jan 2021 14:15:10 +0000
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     "Denis, Tomislav AVL DiTEST" <Tomislav.Denis@avl.com>
-Cc:     "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH 2/2] bindings: iio: adc: Add documentation for ADS131E0x
- ADC driver
-Message-ID: <20210102141510.2f6f00bb@archlinux>
-In-Reply-To: <60ea32f43ac4485db97684ad9a94cfbf@avl.com>
-References: <20201127194240.15060-1-tomislav.denis@avl.com>
-        <20201127194240.15060-3-tomislav.denis@avl.com>
-        <20201128123417.7259ef13@archlinux>
-        <60ea32f43ac4485db97684ad9a94cfbf@avl.com>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+        id S1726617AbhABQYS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 2 Jan 2021 11:24:18 -0500
+Received: from jabberwock.ucw.cz ([46.255.230.98]:41500 "EHLO
+        jabberwock.ucw.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726598AbhABQYS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Jan 2021 11:24:18 -0500
+Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
+        id 8251B1C0B76; Sat,  2 Jan 2021 17:23:34 +0100 (CET)
+Date:   Sat, 2 Jan 2021 17:23:34 +0100
+From:   Pavel Machek <pavel@ucw.cz>
+To:     Tony Lindgren <tony@atomide.com>
+Cc:     Johan Hovold <johan@kernel.org>, phone-devel@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh@kernel.org>,
+        Alan Cox <gnomes@lxorguk.ukuu.org.uk>,
+        Lee Jones <lee.jones@linaro.org>, Jiri Slaby <jslaby@suse.cz>,
+        Merlijn Wajer <merlijn@wizzup.org>,
+        Peter Hurley <peter@hurleysoftware.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org
+Subject: Re: [PATCHv6 0/4] n_gsm serdev support and protocol driver for
+ droid4 modem
+Message-ID: <20210102162334.GA16186@duo.ucw.cz>
+References: <20200421232752.3070-1-tony@atomide.com>
+ <20200423114326.GQ18608@localhost>
+ <20200423153756.GE37466@atomide.com>
+ <20200528082420.GA10358@localhost>
+ <20201220224816.GA28213@duo.ucw.cz>
+ <20201224080239.GF26857@atomide.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 8BIT
+Content-Type: multipart/signed; micalg=pgp-sha1;
+        protocol="application/pgp-signature"; boundary="opJtzjQTFsWo+cga"
+Content-Disposition: inline
+In-Reply-To: <20201224080239.GF26857@atomide.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 1 Jan 2021 22:41:35 +0000
-"Denis, Tomislav AVL DiTEST" <Tomislav.Denis@avl.com> wrote:
 
-> Hi Jonathan,
-> 
-> Thanks for great review and hints that you gave me.
-> A few comments inline.
-> 
-> BR,
-> 
-> Tomislav
-> 
-Replies inline.
+--opJtzjQTFsWo+cga
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> > > +title: Texas Instruments ADS131E0x 4-, 6-, and 8-Channel ADCs  
-> > 
-> > Not currently supporting 6 channel variants?  
-> 
-> It should be working without problem! But since I don't have HW to test I've left it out. 
-> 
+Hi!
 
-Personally I'd just be an optimist and put it in.  Seems very unlikely
-it won't work given you have variants on either side of it.
+> > I'm afraid I'll need some more answers in near future, but for now:
+> >=20
+> > Tony, do you remember / can you figure out what gsmtty GPS is on? I
+> > never used it on that interface, and I can't seem to figure it out.
+> >=20
+> > My notes say:
+> >=20
+> > /dev/motmdm1 -- basic support, calls, on/off                           =
+        =20
+> > /dev/motmdm3 -- send sms interface                                     =
+        =20
+> > /dev/motmdm9 -- receive sms interface                                  =
+        =20
+> >
+> > (and gsmtty numbering is same)
+>=20
+> Yes I have not had a chance to look at these for several months now,
+> but have the latest set in droid4-pending-v5.10 branch in my github
+> tree.
+>=20
+> The gnss device is at /dev/gsmtty6, see the current droid4-agps tool
+> to upload the almanac also on github. That's has turned out to be a
+> pretty good gsm serdev test too :)
 
+Treason uncloaked!
 
-> > > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > > +    enum: [0, 1, 2]
-> > > +    default: 0
-> > > +
-> > > +  ti,datarate:
-> > > +    description: |
-> > > +      ADC data rate in kSPS
-> > > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > > +    enum: [1, 2, 4, 8, 16, 32, 64]
-> > > +    default: 1  
-> > 
-> > Why is this a devicetree element rather than runtime controllable?  
-> 
-> Number of data bytes per channel depends on data rate. To be able to change data rate 
-> dynamically would require to change scan_type.realbits also dynamically! I am not sure
-> if that make sense and also if it is possible to do it?
+While A-GPS is at gsmtty6 I guess, NMEA data are on gsmtty4. And I
+could not access that one, due to bitmask reserving it for gnss.
 
-Indeed not possible to do runtime variable resolution currently.  We have talked
-about implementing it a few times, but it's rather fiddly to do hence hasn't happened
-yet.
+But now I have figured it out, and should have something reviewable
+soon.
 
-hmm. It might be better to control the channel resolution in the device
-tree as that feels a bit less like something that ought to be runtime controllable.
+Thanks for support,
 
-From a quick look at the datasheet it looks like you can have the same data width
-for 32 and 64 ksps (16 bits) and the same for all the other rates (24 bits)
+								Pavel
+--=20
+http://www.livejournal.com/~pavelmachek
 
-However, given you are using the same number of storage bits anyway, you could
-be more cynical and claim 24 bits for all channels and just rely on the upper
-bits being 0 for the 16 bit cases.  That way this would just become a
-userspace sampling frequency control with slightly missleading apparent
-precision + the need to stash the realbits value you are using for scale
-somewhere else. If we do this we end up with entirely standard userspace
-interface and no need for this control in DT.
+--opJtzjQTFsWo+cga
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Jonathan
+-----BEGIN PGP SIGNATURE-----
+
+iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCX/CeBgAKCRAw5/Bqldv6
+8mDGAJ4hFqCVNfsoBFMmdNHP0ShhK8RkswCfdxhCfUSA2o0TiLEWex10yiMM7yQ=
+=3byw
+-----END PGP SIGNATURE-----
+
+--opJtzjQTFsWo+cga--
