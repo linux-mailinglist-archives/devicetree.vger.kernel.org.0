@@ -2,202 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 72F472E8895
-	for <lists+devicetree@lfdr.de>; Sat,  2 Jan 2021 22:00:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 677822E889C
+	for <lists+devicetree@lfdr.de>; Sat,  2 Jan 2021 22:05:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726973AbhABVAj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 2 Jan 2021 16:00:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45154 "EHLO
+        id S1726699AbhABVFD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 2 Jan 2021 16:05:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45856 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726667AbhABVAi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Jan 2021 16:00:38 -0500
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 382BCC061794;
-        Sat,  2 Jan 2021 12:59:21 -0800 (PST)
-Received: by mail-ej1-x62e.google.com with SMTP id ce23so31437062ejb.8;
-        Sat, 02 Jan 2021 12:59:21 -0800 (PST)
+        with ESMTP id S1726671AbhABVFD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Jan 2021 16:05:03 -0500
+Received: from mail-pg1-x532.google.com (mail-pg1-x532.google.com [IPv6:2607:f8b0:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A08CDC061573;
+        Sat,  2 Jan 2021 13:04:22 -0800 (PST)
+Received: by mail-pg1-x532.google.com with SMTP id 30so11569161pgr.6;
+        Sat, 02 Jan 2021 13:04:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=ERICeQSZcNW4MB6A7lizIDnbtJ/5pY6iLgvFd0MYB0M=;
-        b=LX0x+d/wlnC1sZkRyYDjLBXqvw+HuipbZaDas+tMA4keheA+uAaQE+3Kl/waQBgQ/N
-         NqmZd+VRa4fSSQeigZ4/xaqBdNLfxiCOvqLbHtkOleBVsvfmO3Ef1bDnt2fzVP3vGzqc
-         DJ5KrVZKX64j7gFgKarV0K2+m2F+P0wAQzJbvRVkFVOb8YJKxEpop59hBP6s+D6HcaVb
-         hJMHSEb9wTAxjT99DwV+9HVQ9ZaxxqPqfryPdsqL94c7x1apQFpg+kq6E1t9v0jZ2p3E
-         BxyS1HxwblLEu4oGe6+/lNGLJZxIQZBLwTumuhTpyeyI6omjo+Zx6XNR+Mg/yYKaQZlV
-         cUZQ==
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=batTpJaMOL1FFI0uGtWA1DfsObBuHXQtfvMMJL5nuPY=;
+        b=BlTP4nFqXWxo/gFNPnN/QvF9cqLiYKCC7FFH+1TzF5gx+fWXbhg54L0adxijxJaHF0
+         rzYoKqe7tQPPSksA2yS8GDUajlgiQMUXdCCA44FSwLVbmFr4iLLPl62akZF60SZK6whW
+         um4XM+W+RNaAQerGS+DSnY2O79SOPu5ayYRMRaqOMIDzFmKBa2k0CSqc8pt1VXY44JxZ
+         FOc7zza3W5mfhqn4iOvuRTACBbr4aD3CMDECppp3LaKU0tsW2PCDsC9HAaJuKKZP68qk
+         SzNnXIqwTlmx0YLD8AVmF/Yf9FpyEq8fr6BuPV26Zyaop4r8jioc6Ox/hhupTSW0zmlL
+         TAfw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=ERICeQSZcNW4MB6A7lizIDnbtJ/5pY6iLgvFd0MYB0M=;
-        b=NVT23UqT/tDoIK7X786Vm1f1ONYulj7/btkvXasZZwKYeXWG5QIpW0AQF1ulS/+sH2
-         zM5iUEWPX9yNoP0xpVdsZP50y04wRdkYmuRvN+tK/QKiaY7w4HLxKucogYX5HfmtZCU7
-         XsC4g7yffCuD5LHl1A7xzVxSKvI7iKEGrFBBmuwV3SQ3v4PG4GpguUBnNGVat7DdAbJC
-         k7vNimPR/E03jzFmxcG9pbKb2hgecrVmLFziOFJCSdzwj1NTbfYAYW5J655d0Z7g3PcT
-         S0hONuhPsarHvii2a9fYITxX/m/LG9sK44DzobQnhm08EJjVsg0Z2kPQLJPbOuOzc5+p
-         /XHQ==
-X-Gm-Message-State: AOAM530xdEulIdkTzE+IwmXUY5VqlZAEMWUktrIU7W0Yc8h/2Oe/XV+d
-        uslMfaqnpHzbrzZft0PR6vBj+cWwhJc=
-X-Google-Smtp-Source: ABdhPJx7xaUlcxjSoqcvq9+XCcHQA5d78D+yTzqO/Pl9D22nN2gd8ZHAQ3He1/KK3+GczWCzZh8VbQ==
-X-Received: by 2002:a17:906:d87:: with SMTP id m7mr60523857eji.108.1609621159822;
-        Sat, 02 Jan 2021 12:59:19 -0800 (PST)
-Received: from localhost.localdomain (p200300f13724fd00428d5cfffeb99db8.dip0.t-ipconnect.de. [2003:f1:3724:fd00:428d:5cff:feb9:9db8])
-        by smtp.googlemail.com with ESMTPSA id v18sm41420617edx.30.2021.01.02.12.59.18
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=batTpJaMOL1FFI0uGtWA1DfsObBuHXQtfvMMJL5nuPY=;
+        b=YAnkoxkOjqCyDyFuCpG/YkIWKJJFdxsZTxwR+yuBXzKliK832SiSz4fUmkn/b9cbgB
+         12zOM0zmpJFDBqopWkCor+vJKQEZ8qNfdZhhuYkIWXH9OImAI0c7p4CDoxBe6ee/RTAV
+         NMtb16wU8qlvZ7+HXuBs02KFDAYHpkAITLd1ldu0Mru7s0ctL3sYfq1SHDj+tRmLf/zM
+         K6Sg7oClWi8XoLvBTaIqRo8XMKGyf97gcPoI2Ps3y+vnEV8FSa0I0UE059mr+IRTxUQr
+         /FSCqvcpr0RibYH6uLuVaWUSrave4K7AtiSrPCeiJCcP48qr2KScxD8k4+97hw/vWfD5
+         OTFA==
+X-Gm-Message-State: AOAM533Wzk/xaNgZQFa8StrZsRDiOtMsuGR6o5GrxOLZwoEI6YAVBRFp
+        CgaQQ6NDDjQC3H3ZR5xs1LE=
+X-Google-Smtp-Source: ABdhPJyvzklQDstje9V+YroXzhRkM4BKP1nWETe4FmdNgNo3J1MTHjRg4+eJCWEkcsFAE0Px7S9Hqg==
+X-Received: by 2002:a63:5d3:: with SMTP id 202mr65071783pgf.286.1609621461908;
+        Sat, 02 Jan 2021 13:04:21 -0800 (PST)
+Received: from google.com ([2620:15c:202:201:a6ae:11ff:fe11:fcc3])
+        by smtp.gmail.com with ESMTPSA id b22sm51049570pfo.163.2021.01.02.13.04.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 02 Jan 2021 12:59:19 -0800 (PST)
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-To:     linux-remoteproc@vger.kernel.org, linux-amlogic@lists.infradead.org
-Cc:     ohad@wizery.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, bjorn.andersson@linaro.org,
-        robh+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: [PATCH v2 5/5] ARM: dts: meson: add the AO ARC remote processor
-Date:   Sat,  2 Jan 2021 21:59:04 +0100
-Message-Id: <20210102205904.2691120-6-martin.blumenstingl@googlemail.com>
-X-Mailer: git-send-email 2.30.0
-In-Reply-To: <20210102205904.2691120-1-martin.blumenstingl@googlemail.com>
-References: <20210102205904.2691120-1-martin.blumenstingl@googlemail.com>
+        Sat, 02 Jan 2021 13:04:21 -0800 (PST)
+Date:   Sat, 2 Jan 2021 13:04:18 -0800
+From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To:     Philip Chen <philipchen@chromium.org>
+Cc:     LKML <linux-kernel@vger.kernel.org>,
+        Dmitry Torokhov <dtor@chromium.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Rajat Jain <rajatja@chromium.org>,
+        Benson Leung <bleung@chromium.org>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Guenter Roeck <groeck@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Simon Glass <sjg@chromium.org>, devicetree@vger.kernel.org,
+        linux-input@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: input: cros-ec-keyb: Add a new property
+Message-ID: <X/Df0uuclk1ZNOps@google.com>
+References: <20201221174751.1.I025fb861cd5fa0ef5286b7dce514728e9df7ae74@changeid>
+ <X+rKPhJrQaykPxri@google.com>
+ <CA+cxXh=HH-UAt747OYRwaaABdJpT8r=TvrYcFah7PQ1vHqYutg@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CA+cxXh=HH-UAt747OYRwaaABdJpT8r=TvrYcFah7PQ1vHqYutg@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The 32-bit Amlogic Meson SoCs embed an ARC processor in the Always-On
-power domain which is typically used for managing system suspend. The
-memory for this ARC core is taken from the AHB SRAM area. Depending on
-the actual SoC a different ARC core is used:
-- Meson6 and earlier: some ARCv1 ISA based core (probably an ARC625)
-- Meson8 and later: an ARC EM4 (ARCv2 ISA) based core
+On Sat, Jan 02, 2021 at 11:39:34AM -0800, Philip Chen wrote:
+> Hi Dmitry,
+> 
+> Thanks for reviewing my patch over the holiday season.
+> Please check my CIL.
+> 
+> On Mon, Dec 28, 2020 at 10:18 PM Dmitry Torokhov
+> <dmitry.torokhov@gmail.com> wrote:
+> >
+> > Hi Philip,
+> >
+> > On Mon, Dec 21, 2020 at 05:47:57PM -0800, Philip Chen wrote:
+> > > This patch adds a new property `google,custom-keyb-top-row` to the
+> > > device tree for the custom keyboard top row design.
+> >
+> > Why don't we use the property we have for the same purpose in atkbd.c?
+> > I.e. function-row-physmap?
+> >
+> Because this property serves a different purpose than function-row-physmap.
+> `function-row-physmap` basically links the scancode to the physical
+> position in the top row.
+> `google,custom-keyb-top-row` aims at specifying the board-specific
+> keyboard top row design associated with the action codes.
+> 
+> In x86 path, the board-specific keyboard top row design associated
+> with the action codes is exposed from coreboot to kernel through
+> "linux,keymap" acpi table.
+> When coreboot generates this acpi table, it asks EC to provide this
+> information, since we add the board-specific top-row-design in EC
+> codebase.
+> (E.g. https://chromium.googlesource.com/chromiumos/platform/ec/+/refs/heads/main/board/jinlon/board.c#396)
+> 
+> In ARM, we don't plan to involve EC in the vivaldi support stack.
+> So `google,custom-keyb-top-row` DT property is our replacement for the
+> board-specific top-row-design in x86 EC codebase.
 
-Add the device-tree node for this remote-processor along with the
-required SRAM sections, clocks and reset-lines. Also use the
-SoC-specific compatible string to manage any differences (should
-they exist).
+I disagree with this decision. We already have "linux,keymap" property
+that is supposed to hold accurate keymap for the device in question,
+there should be no need to introduce yet another property to adjust the
+keymap to reflect the reality. If a device uses "non classic" ChromeOS
+top row it should not be using the default keymap from
+arch/arm/boot/dts/cros-ec-keyboard.dtsi but supply its own. You can
+consider splitting the keymap into generic lower portion and the top row
+and moving them into an .h file so they can be easily reused.
 
-On Meson8, Meson8b and Meson8m2 the "secbus2" IO region is needed as
-some bits need to be programmed there. Add this IO region for those
-SoCs as well.
+> 
+> > Also, instead of specifying keycodes in this array we should use
+> > combination of row and column identifying keys, like this:
+> >
+> >         function-row-physmap = <
+> >                 MATRIX_KEY(0x00, 0x02, KEY_F1),
+> >                 MATRIX_KEY(0x03, 0x02, KEY_F2),
+> >                 ...
+> >         >;
+> 
+> This mapping between row/column to function keycode is fixed for all
+> Chrome OS devices.
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- arch/arm/boot/dts/meson.dtsi   |  7 +++++++
- arch/arm/boot/dts/meson8.dtsi  | 21 +++++++++++++++++++++
- arch/arm/boot/dts/meson8b.dtsi | 21 +++++++++++++++++++++
- 3 files changed, 49 insertions(+)
+*for now* The mapping for the rest of the keyboard has also stayed
+static, but we still did not hardcode this information in the driver but
+rather used DT property to pass it into the kernel.
 
-diff --git a/arch/arm/boot/dts/meson.dtsi b/arch/arm/boot/dts/meson.dtsi
-index e0ca5f08d07d..8bae6ed0abb2 100644
---- a/arch/arm/boot/dts/meson.dtsi
-+++ b/arch/arm/boot/dts/meson.dtsi
-@@ -200,6 +200,13 @@ aobus: aobus@c8100000 {
- 			#size-cells = <1>;
- 			ranges = <0x0 0xc8100000 0x100000>;
- 
-+			ao_arc_rproc: remoteproc@1c {
-+				compatible= "amlogic,meson-mx-ao-arc";
-+				reg = <0x1c 0x8>, <0x38 0x8>;
-+				reg-names = "remap", "cpu";
-+				status = "disabled";
-+			};
-+
- 			ir_receiver: ir-receiver@480 {
- 				compatible= "amlogic,meson6-ir";
- 				reg = <0x480 0x20>;
-diff --git a/arch/arm/boot/dts/meson8.dtsi b/arch/arm/boot/dts/meson8.dtsi
-index 420324ea2ad7..157a950a55d3 100644
---- a/arch/arm/boot/dts/meson8.dtsi
-+++ b/arch/arm/boot/dts/meson8.dtsi
-@@ -369,6 +369,14 @@ mux {
- 	};
- };
- 
-+&ao_arc_rproc {
-+	compatible= "amlogic,meson8-ao-arc", "amlogic,meson-mx-ao-arc";
-+	amlogic,secbus2 = <&secbus2>;
-+	sram = <&ao_arc_sram>;
-+	resets = <&reset RESET_MEDIA_CPU>;
-+	clocks = <&clkc CLKID_AO_MEDIA_CPU>;
-+};
-+
- &cbus {
- 	reset: reset-controller@4404 {
- 		compatible = "amlogic,meson8b-reset";
-@@ -496,6 +504,12 @@ mux {
- };
- 
- &ahb_sram {
-+	ao_arc_sram: ao-arc-sram@0 {
-+		compatible = "amlogic,meson8-ao-arc-sram";
-+		reg = <0x0 0x8000>;
-+		pool;
-+	};
-+
- 	smp-sram@1ff80 {
- 		compatible = "amlogic,meson8-smp-sram";
- 		reg = <0x1ff80 0x8>;
-@@ -631,6 +645,13 @@ &sdhc {
- 	clock-names = "clkin0", "clkin1", "clkin2", "clkin3", "pclk";
- };
- 
-+&secbus {
-+	secbus2: system-controller@4000 {
-+		compatible = "amlogic,meson8-secbus2", "syscon";
-+		reg = <0x4000 0x2000>;
-+	};
-+};
-+
- &sdio {
- 	compatible = "amlogic,meson8-sdio", "amlogic,meson-mx-sdio";
- 	clocks = <&clkc CLKID_SDIO>, <&clkc CLKID_CLK81>;
-diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
-index dbf7963b6c87..c02b03cbcdf4 100644
---- a/arch/arm/boot/dts/meson8b.dtsi
-+++ b/arch/arm/boot/dts/meson8b.dtsi
-@@ -320,6 +320,14 @@ mux {
- 	};
- };
- 
-+&ao_arc_rproc {
-+	compatible= "amlogic,meson8b-ao-arc", "amlogic,meson-mx-ao-arc";
-+	amlogic,secbus2 = <&secbus2>;
-+	sram = <&ao_arc_sram>;
-+	resets = <&reset RESET_MEDIA_CPU>;
-+	clocks = <&clkc CLKID_AO_MEDIA_CPU>;
-+};
-+
- &cbus {
- 	reset: reset-controller@4404 {
- 		compatible = "amlogic,meson8b-reset";
-@@ -464,6 +472,12 @@ mux {
- };
- 
- &ahb_sram {
-+	ao_arc_sram: ao-arc-sram@0 {
-+		compatible = "amlogic,meson8b-ao-arc-sram";
-+		reg = <0x0 0x8000>;
-+		pool;
-+	};
-+
- 	smp-sram@1ff80 {
- 		compatible = "amlogic,meson8b-smp-sram";
- 		reg = <0x1ff80 0x8>;
-@@ -628,6 +642,13 @@ &sdhc {
- 	clock-names = "clkin0", "clkin1", "clkin2", "clkin3", "pclk";
- };
- 
-+&secbus {
-+	secbus2: system-controller@4000 {
-+		compatible = "amlogic,meson8b-secbus2", "syscon";
-+		reg = <0x4000 0x2000>;
-+	};
-+};
-+
- &sdio {
- 	compatible = "amlogic,meson8b-sdio", "amlogic,meson-mx-sdio";
- 	clocks = <&clkc CLKID_SDIO>, <&clkc CLKID_CLK81>;
+> So we don't really need to host this information in DT.
+> Instead, I plan to hardcode this information in cros_ec_keyb.c.
+> (Please see the array "top_row_key_pos[]" in my next patch: "[2/3]
+> Input: cros_ec_keyb - Support custom top-row keys".)
+> 
+> The only thing that could make the function-row-physmap file different
+> among boards is the number of top row keys.
+> But this information can be derived from the length of
+> `google,custom-keyb-top-row`.
+> So we don't need a separate DT property for it.
+
+I am sorry, but I must insist. We need to have:
+
+- accurate keymap in linux,keymap property
+- a separate property describing location of top row keys in terms of
+  rows and columns (whether we reuse MATRIX_KEY or define another macro
+  I do not really care).
+
+Thanks.
+
 -- 
-2.30.0
-
+Dmitry
