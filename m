@@ -2,94 +2,240 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E9A562E88E4
-	for <lists+devicetree@lfdr.de>; Sat,  2 Jan 2021 23:09:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B9B202E894D
+	for <lists+devicetree@lfdr.de>; Sun,  3 Jan 2021 00:17:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726822AbhABWIn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 2 Jan 2021 17:08:43 -0500
-Received: from helcar.hmeau.com ([216.24.177.18]:37340 "EHLO fornost.hmeau.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726823AbhABWIm (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 2 Jan 2021 17:08:42 -0500
-Received: from gwarestrin.arnor.me.apana.org.au ([192.168.103.7])
-        by fornost.hmeau.com with smtp (Exim 4.92 #5 (Debian))
-        id 1kvp3u-0000bT-DV; Sun, 03 Jan 2021 09:07:51 +1100
-Received: by gwarestrin.arnor.me.apana.org.au (sSMTP sendmail emulation); Sun, 03 Jan 2021 09:07:50 +1100
-Date:   Sun, 3 Jan 2021 09:07:50 +1100
-From:   Herbert Xu <herbert@gondor.apana.org.au>
-To:     Daniele Alessandrelli <daniele.alessandrelli@linux.intel.com>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Gross <mgross@linux.intel.com>,
-        Declan Murphy <declan.murphy@intel.com>,
-        Daniele Alessandrelli <daniele.alessandrelli@intel.com>
-Subject: Re: [PATCH v4 0/5] crypto: Add Keem Bay OCS HCU driver
-Message-ID: <20210102220750.GL12767@gondor.apana.org.au>
-References: <20201216114639.3451399-1-daniele.alessandrelli@linux.intel.com>
+        id S1726861AbhABXQC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 2 Jan 2021 18:16:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37584 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726904AbhABXQB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Jan 2021 18:16:01 -0500
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BFA4C0613D3
+        for <devicetree@vger.kernel.org>; Sat,  2 Jan 2021 15:15:20 -0800 (PST)
+Received: by mail-lf1-x132.google.com with SMTP id o17so56070375lfg.4
+        for <devicetree@vger.kernel.org>; Sat, 02 Jan 2021 15:15:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=9u5iq0kakVYuhYGTXnHBQdkf9ffgnEBS99aL91HMqDo=;
+        b=MUFfk9CS9fx2VjHaXZWTy6GR3mmpUKsZ5EOCcU2em3GuTF62+u03OyZ8n5rYX3Hzo9
+         lMkp8FmS2/40hEJL66NEf/IA+tOLSdKwcKhGNLEvjeOmwb1PQqbxi0VKYMiL2YHfIEnN
+         PWCdaDLldw4Ao+FmunpMXDc1VF3vbJZKiUnQ/5etxu55/0PXOUBeq6iGji91OZomG7Jv
+         hNbrNVyy8wO6WusIow2dhDGiXURbZRH4374scdT7XygMpZEUU9UVONV2CgWx1nI4kYLV
+         CelvX2H7QL8ahpjzopZ2lRgRp9dvin+xT574GLTy1I4rUpHKxCIxxzCJCctdGbZFsfGm
+         APUA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=9u5iq0kakVYuhYGTXnHBQdkf9ffgnEBS99aL91HMqDo=;
+        b=XEiIqE4KqKDWPK7mfe/nKUN8uCDJkWjGkQ9BfgRYZUHDIjPKfKYB+pjZIsJ5/rbODH
+         seCZPSsudOuWtESo8ACAufuStOc/PNUyiI8YYsax3qGaYmlTEz4kTiMEBYUr7XVArBeh
+         fNv8p67QPh6eEus77AQkMPerU3+LJ/H7G8cHwe4ac9/iGJnA+CDYMcZKEMu1PqtTLwn3
+         L01tuKua5PC9WdYyTSRg8jgBA1IQ9DXzPjGLvypUzFNY0SPQfP3BH+8gFbXxE9xer7nl
+         WhB5s1z/WFJF6fOjrkuakLZ4xhfiDa97e8CxAgzhcz1FEqbszyobvqFpwgsQ6HyQc6fo
+         TItQ==
+X-Gm-Message-State: AOAM532tIs4t92NTgZCONqqpofV5dwsNtg9z/toN3+ufMjTPGaWPPZxm
+        uUFG6vqHMSakkb5kx46x43Ri5w==
+X-Google-Smtp-Source: ABdhPJxmzHUIr58FJHaHzsPt+OG8rCwS6vmlqmBDuEodSdZcFJDmb+pcc+K/jwAABr3P/dGaPUkZ2g==
+X-Received: by 2002:a19:6901:: with SMTP id e1mr28116772lfc.335.1609629318794;
+        Sat, 02 Jan 2021 15:15:18 -0800 (PST)
+Received: from localhost.localdomain (c-92d7225c.014-348-6c756e10.bbcust.telenor.se. [92.34.215.146])
+        by smtp.gmail.com with ESMTPSA id 204sm6833732lfj.269.2021.01.02.15.15.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 02 Jan 2021 15:15:18 -0800 (PST)
+From:   Linus Walleij <linus.walleij@linaro.org>
+To:     Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>
+Cc:     linux-leds@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Sakari Ailus <sakari.ailus@iki.fi>, newbytee@protonmail.com,
+        Stephan Gerhold <stephan@gerhold.net>,
+        phone-devel@vger.kernel.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>
+Subject: [PATCH 1/2 v9] dt-bindings: leds: Add DT binding for Richtek RT8515
+Date:   Sun,  3 Jan 2021 00:15:09 +0100
+Message-Id: <20210102231510.2068851-1-linus.walleij@linaro.org>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201216114639.3451399-1-daniele.alessandrelli@linux.intel.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 16, 2020 at 11:46:34AM +0000, Daniele Alessandrelli wrote:
-> The Intel Keem Bay SoC has an Offload Crypto Subsystem (OCS) featuring a
-> Hashing Control Unit (HCU) for accelerating hashing operations.
-> 
-> This driver adds support for such hardware thus enabling hardware-accelerated
-> hashing on the Keem Bay SoC for the following algorithms:
-> - sha224 and hmac(sha224)
-> - sha256 and hmac(sha256)
-> - sha384 and hmac(sha384)
-> - sha512 and hmac(sha512)
-> - sm3    and hmac(sm3)
-> 
-> The driver is passing crypto manager self-tests, including the extra tests
-> (CRYPTO_MANAGER_EXTRA_TESTS=y).
-> 
-> v3 -> v4:
-> - Addressed comments from Mark Gross.
-> - Added Reviewed-by-tag from Rob Herring to DT binding patch.
-> - Driver reworked to better separate the code interacting with the hardware
->   from the code implementing the crypto ahash API.
-> - Main patch split into 3 different patches to simplify review (patch series is
->   now composed of 5 patches)
-> 
-> v2 -> v3:
-> - Fixed more issues with dt-bindings (removed useless descriptions for reg,
->   interrupts, and clocks)
-> 
-> v1 -> v2:
-> - Fixed issues with dt-bindings
-> 
-> Daniele Alessandrelli (3):
->   crypto: keembay-ocs-hcu - Add HMAC support
->   crypto: keembay-ocs-hcu - Add optional support for sha224
->   MAINTAINERS: Add maintainers for Keem Bay OCS HCU driver
-> 
-> Declan Murphy (2):
->   dt-bindings: crypto: Add Keem Bay OCS HCU bindings
->   crypto: keembay - Add Keem Bay OCS HCU driver
-> 
->  .../crypto/intel,keembay-ocs-hcu.yaml         |   46 +
->  MAINTAINERS                                   |   11 +
->  drivers/crypto/keembay/Kconfig                |   29 +
->  drivers/crypto/keembay/Makefile               |    3 +
->  drivers/crypto/keembay/keembay-ocs-hcu-core.c | 1264 +++++++++++++++++
->  drivers/crypto/keembay/ocs-hcu.c              |  840 +++++++++++
->  drivers/crypto/keembay/ocs-hcu.h              |  106 ++
->  7 files changed, 2299 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/crypto/intel,keembay-ocs-hcu.yaml
->  create mode 100644 drivers/crypto/keembay/keembay-ocs-hcu-core.c
->  create mode 100644 drivers/crypto/keembay/ocs-hcu.c
->  create mode 100644 drivers/crypto/keembay/ocs-hcu.h
+Add a YAML devicetree binding for the Richtek RT8515
+dual channel flash/torch LED driver.
 
-All applied.  Thanks.
+Cc: Sakari Ailus <sakari.ailus@iki.fi>
+Cc: newbytee@protonmail.com
+Cc: Stephan Gerhold <stephan@gerhold.net>
+Cc: phone-devel@vger.kernel.org
+Cc: linux-media@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Reviewed-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Sakari Ailus <sakari.ailus@linux.intel.com>
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+---
+ChangeLog v8->v9:
+- No changes, resend with the driver.
+ChangeLog v7->v8:
+- Add additionalProperties: fals to the leds subnode
+- Fix the bug in the example.
+- Collect Rob's Reviewed-by.
+ChangeLog v6->v7:
+- Use led-max-microamp for the torch mode max current.
+- Drop the torch-specific new property from common.yaml in
+  favor of this property.
+- Collect Sakari's review tag.
+ChangeLog v5->v6:
+- Use the suffix -ohms for the resistor values as this gets
+  recognized by default by dtschema and is nominal.
+ChangeLog v4->v5:
+- Fix the RFS/RTS resistors to reference the u32 schema.
+- Fix resisitor speling error.
+ChangeLog v3->v4:
+- Add DT attributes for the RFS and RTS resistors, so that
+  the hardware-defined maximum current can be determined.
+- Add torch-max-microamp to the common bindings so we can
+  set an attribute for the max microamp in torch mode.
+- Add flash-max-microamp and torch-max-microamp as optional
+  to the LED node.
+- Slot in some elabortative descriptions of the new
+  properties and describe what the hardware is doing.
+- Cc phone-devel@vger.kernel.org
+ChangeLog v2->v3:
+- Add Sakari to CC
+- Resend
+ChangeLog v1->v2:
+- Explicitly inherit function, color and flash-max-timeout-us
+  from common.yaml
+- Add "led" node as required.
+---
+ .../bindings/leds/richtek,rt8515.yaml         | 111 ++++++++++++++++++
+ 1 file changed, 111 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/leds/richtek,rt8515.yaml
+
+diff --git a/Documentation/devicetree/bindings/leds/richtek,rt8515.yaml b/Documentation/devicetree/bindings/leds/richtek,rt8515.yaml
+new file mode 100644
+index 000000000000..68c328eec03b
+--- /dev/null
++++ b/Documentation/devicetree/bindings/leds/richtek,rt8515.yaml
+@@ -0,0 +1,111 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/leds/richtek,rt8515.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Richtek RT8515 1.5A dual channel LED driver
++
++maintainers:
++  - Linus Walleij <linus.walleij@linaro.org>
++
++description: |
++  The Richtek RT8515 is a dual channel (two mode) LED driver that
++  supports driving a white LED in flash or torch mode. The maximum
++  current for each mode is defined in hardware using two resistors
++  RFS and RTS.
++
++properties:
++  compatible:
++    const: richtek,rt8515
++
++  enf-gpios:
++    maxItems: 1
++    description: A connection to the 'ENF' (enable flash) pin.
++
++  ent-gpios:
++    maxItems: 1
++    description: A connection to the 'ENT' (enable torch) pin.
++
++  richtek,rfs-ohms:
++    minimum: 7680
++    maximum: 367000
++    description: The resistance value of the RFS resistor. This
++      resistors limits the maximum flash current. This must be set
++      for the property flash-max-microamp to work, the RFS resistor
++      defines the range of the dimmer setting (brightness) of the
++      flash LED.
++
++  richtek,rts-ohms:
++    minimum: 7680
++    maximum: 367000
++    description: The resistance value of the RTS resistor. This
++      resistors limits the maximum torch current. This must be set
++      for the property torch-max-microamp to work, the RTS resistor
++      defines the range of the dimmer setting (brightness) of the
++      torch LED.
++
++  led:
++    type: object
++    $ref: common.yaml#
++    properties:
++      function: true
++      color: true
++      flash-max-timeout-us: true
++
++      flash-max-microamp:
++        maximum: 700000
++        description: The maximum current for flash mode
++          is hardwired to the component using the RFS resistor to
++          ground. The maximum hardware current setting is calculated
++          according to the formula Imax = 5500 / RFS. The lowest
++          allowed resistance value is 7.86 kOhm giving an absolute
++          maximum current of 700mA. By setting this attribute in
++          the device tree, you can further restrict the maximum
++          current below the hardware limit. This requires the RFS
++          to be defined as it defines the maximum range.
++
++      led-max-microamp:
++        maximum: 700000
++        description: The maximum current for torch mode
++          is hardwired to the component using the RTS resistor to
++          ground. The maximum hardware current setting is calculated
++          according to the formula Imax = 5500 / RTS. The lowest
++          allowed resistance value is 7.86 kOhm giving an absolute
++          maximum current of 700mA. By setting this attribute in
++          the device tree, you can further restrict the maximum
++          current below the hardware limit. This requires the RTS
++          to be defined as it defines the maximum range.
++
++    additionalProperties: false
++
++required:
++  - compatible
++  - ent-gpios
++  - enf-gpios
++  - led
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/leds/common.h>
++
++    led-controller {
++        compatible = "richtek,rt8515";
++        enf-gpios = <&gpio4 12 GPIO_ACTIVE_HIGH>;
++        ent-gpios = <&gpio4 13 GPIO_ACTIVE_HIGH>;
++        richtek,rfs-ohms = <16000>;
++        richtek,rts-ohms = <100000>;
++
++        led {
++            function = LED_FUNCTION_FLASH;
++            color = <LED_COLOR_ID_WHITE>;
++            flash-max-timeout-us = <250000>;
++            flash-max-microamp = <150000>;
++            led-max-microamp = <25000>;
++        };
++    };
++
++...
 -- 
-Email: Herbert Xu <herbert@gondor.apana.org.au>
-Home Page: http://gondor.apana.org.au/~herbert/
-PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
+2.29.2
+
