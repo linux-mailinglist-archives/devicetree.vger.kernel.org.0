@@ -2,90 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B73C2E882E
-	for <lists+devicetree@lfdr.de>; Sat,  2 Jan 2021 19:04:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4945D2E8851
+	for <lists+devicetree@lfdr.de>; Sat,  2 Jan 2021 20:40:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726619AbhABSEn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 2 Jan 2021 13:04:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45656 "EHLO
+        id S1726664AbhABTk1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 2 Jan 2021 14:40:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32826 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726567AbhABSEm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Jan 2021 13:04:42 -0500
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5EA2C0613C1
-        for <devicetree@vger.kernel.org>; Sat,  2 Jan 2021 10:04:01 -0800 (PST)
-Received: by mail-wr1-x42e.google.com with SMTP id r3so26872157wrt.2
-        for <devicetree@vger.kernel.org>; Sat, 02 Jan 2021 10:04:01 -0800 (PST)
+        with ESMTP id S1726627AbhABTk0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Jan 2021 14:40:26 -0500
+Received: from mail-yb1-xb2a.google.com (mail-yb1-xb2a.google.com [IPv6:2607:f8b0:4864:20::b2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0495AC061573
+        for <devicetree@vger.kernel.org>; Sat,  2 Jan 2021 11:39:45 -0800 (PST)
+Received: by mail-yb1-xb2a.google.com with SMTP id f6so22195990ybq.13
+        for <devicetree@vger.kernel.org>; Sat, 02 Jan 2021 11:39:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jamieiles-com.20150623.gappssmtp.com; s=20150623;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=PWNWWtqjXuhRBofwhd880gtdlxvyGF0Fap+WwqM+hHI=;
-        b=eLkwmntFIPeqPFQewS/PKJ6gDMz4HGYh3W6ZYAGXhokmV6sf5ibtMWI5E+2XB+4idI
-         uNCCrtDY6C/B8YgiUE/W5pBcfP8N+NIugHE2bpXA6L4YU4RLE+YeF9bfrFH++ywUHreB
-         bL44ihJrCPs3Tdmt9c2y0bn+0+kCQ8qz13085qwaN6P2rua1wopu+dK7zcEf/Ybny58R
-         oXD962oNTItAx9o+gO++axdhJ9NL3MukKK84laW+nctEdWIW47S5+rTJ4Wpy0A2RdMTq
-         f3S2Y7vnDpWljJltpWBs8tekICKFtP5hfYhgqmfjdpjGM6AZrom3HkWnD5HyRkC7mhA0
-         eE+w==
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=oZd1IcLptnzDJ9yC5SOmyx2eu91igeGhIPrRDbnjT1A=;
+        b=Af6nPHDnT4bVn/ADUgyRjBt2AgA5ifrT4Od7IOODjOSCF376Ww9Lmnt7s58se8snS8
+         a/kuj9PqWy9zTjsUb0VZE8gkBH0513N8q9uv/xp0ncG0iH1x1uJqZOzFulSK2CaoaXf1
+         dHHcrgfFkC6NWG/8b4VZ3slsTZrJUj5w58BCQ=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=PWNWWtqjXuhRBofwhd880gtdlxvyGF0Fap+WwqM+hHI=;
-        b=p6Rx9PkNWTrI1wvV3kePfuDGhJJ8NXM4CrN5JqBkzb32LWdJbUV3xdU46OOOGNv9od
-         wa6n4rOMbfgO4jPQXi5SuRDzonfqaGktxyui0b+CqjBFpJ8Awm/gvcbBFYMDUs7ih5ir
-         HlhYLGB/WqQo9LQIlFlD0TedzZ8gmoR0X/74qsaWUYIJhxr2x4RWA4uUy0cGM8r9DAGZ
-         TLyDV49coLW1bFhODN7pmQykDF4I1jPFN5EyLz2N+O1MznkxEm2YpsZJIjQB1grUYMof
-         BESQuJkZMJRSkQ0yHsODwpQ6CRq+fKOf2DYEEPSa5//UWkXrc0u5VQ1zIvzw8YSopmOT
-         gFFA==
-X-Gm-Message-State: AOAM533r2L2eR6MZEvkb7h1jsQO393B/KZU5PPRX4c2opAjyboNsmug7
-        u77e8i33Rl42gemaP+F/iuYa/A==
-X-Google-Smtp-Source: ABdhPJwRL5VBumv1xxr0bh6v+UMGz68EkeaPJuNuO19pyYUeH9obAVZlMtLxE2oY/yePO+FrdyRXsQ==
-X-Received: by 2002:a5d:6909:: with SMTP id t9mr71553849wru.327.1609610640397;
-        Sat, 02 Jan 2021 10:04:00 -0800 (PST)
-Received: from localhost ([82.44.17.50])
-        by smtp.gmail.com with ESMTPSA id b7sm75991272wrv.47.2021.01.02.10.03.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 02 Jan 2021 10:03:59 -0800 (PST)
-Date:   Sat, 2 Jan 2021 18:03:58 +0000
-From:   Jamie Iles <jamie@jamieiles.com>
-To:     Arnd Bergmann <arnd@kernel.org>
-Cc:     Jamie Iles <jamie@jamieiles.com>, Rob Herring <robh+dt@kernel.org>,
-        soc@kernel.org, Arnd Bergmann <arnd@arndb.de>,
-        Olof Johansson <olof@lixom.net>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] ARM: picoxcell: fix missing interrupt-parent properties
-Message-ID: <20210102180358.GA4063852@willow>
-References: <20201230152010.3914962-1-arnd@kernel.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=oZd1IcLptnzDJ9yC5SOmyx2eu91igeGhIPrRDbnjT1A=;
+        b=YnuV7/WNQK2mrfkq7pHyeHOIvOGMWmRMAp/zL3nIdt9Ausivwb7Fqs3XRZqJW0zDA0
+         1lWPE1ObxDeupZTLugZewObtuptJhBv+vY9MU0GzysfIeC42RNJIxnpNKep94rD9Pojm
+         Zee7XKMkzdyWwHuV5Dn2fIHGBhE7IjbkNae3Qs0CBIrXQuHagSZ8yw9wq2QFy3S1UMvW
+         +q3DHv1vKvgnmNX+JxnzE2RFsOYdG0GZyXf4JlsxkuS3Ju/SJMwVL8cNB/0YmgYs1Se3
+         iM/WLbp8ZJZOhiYj3yE4Y+pAABahYFj6tK32UQRApnjuTTuMQZHZaOy01An57C6vYoCd
+         gp0A==
+X-Gm-Message-State: AOAM5333j+7PBTqINA8/IRqKXrxlgSExhGw8q5cONIPtWclbUEcefKPQ
+        w12wBA3O2W094vyFBLINpNXkPKUll0LDM7BNOi4T0Q==
+X-Google-Smtp-Source: ABdhPJwg6CsFmUq8iIDUHfqRXA167oJOIeM0c6MY/+ekW1c+5R8pI69VLwVr7KSEfeyZJb3gBHb/E3uEOSVQZJ4WctU=
+X-Received: by 2002:a25:3a04:: with SMTP id h4mr81215834yba.285.1609616385131;
+ Sat, 02 Jan 2021 11:39:45 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201230152010.3914962-1-arnd@kernel.org>
+References: <20201221174751.1.I025fb861cd5fa0ef5286b7dce514728e9df7ae74@changeid>
+ <X+rKPhJrQaykPxri@google.com>
+In-Reply-To: <X+rKPhJrQaykPxri@google.com>
+From:   Philip Chen <philipchen@chromium.org>
+Date:   Sat, 2 Jan 2021 11:39:34 -0800
+Message-ID: <CA+cxXh=HH-UAt747OYRwaaABdJpT8r=TvrYcFah7PQ1vHqYutg@mail.gmail.com>
+Subject: Re: [PATCH 1/3] dt-bindings: input: cros-ec-keyb: Add a new property
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc:     LKML <linux-kernel@vger.kernel.org>,
+        Dmitry Torokhov <dtor@chromium.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Rajat Jain <rajatja@chromium.org>,
+        Benson Leung <bleung@chromium.org>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Guenter Roeck <groeck@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Simon Glass <sjg@chromium.org>, devicetree@vger.kernel.org,
+        linux-input@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 30, 2020 at 04:20:05PM +0100, Arnd Bergmann wrote:
-> From: Arnd Bergmann <arnd@arndb.de>
-> 
-> dtc points out that the interrupts for some devices are not parsable:
-> 
-> picoxcell-pc3x2.dtsi:45.19-49.5: Warning (interrupts_property): /paxi/gem@30000: Missing interrupt-parent
-> picoxcell-pc3x2.dtsi:51.21-55.5: Warning (interrupts_property): /paxi/dmac@40000: Missing interrupt-parent
-> picoxcell-pc3x2.dtsi:57.21-61.5: Warning (interrupts_property): /paxi/dmac@50000: Missing interrupt-parent
-> picoxcell-pc3x2.dtsi:233.21-237.5: Warning (interrupts_property): /rwid-axi/axi2pico@c0000000: Missing interrupt-parent
-> 
-> There are two VIC instances, so it's not clear which one needs to be
-> used. I found the BSP sources that reference VIC0, so use that:
-> 
-> https://github.com/r1mikey/meta-picoxcell/blob/master/recipes-kernel/linux/linux-picochip-3.0/0001-picoxcell-support-for-Picochip-picoXcell-SoC.patch
-> 
-> Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+Hi Dmitry,
 
-Acked-by: Jamie Iles <jamie@jamieiles.com>
+Thanks for reviewing my patch over the holiday season.
+Please check my CIL.
 
-Thanks Arnd!
+On Mon, Dec 28, 2020 at 10:18 PM Dmitry Torokhov
+<dmitry.torokhov@gmail.com> wrote:
+>
+> Hi Philip,
+>
+> On Mon, Dec 21, 2020 at 05:47:57PM -0800, Philip Chen wrote:
+> > This patch adds a new property `google,custom-keyb-top-row` to the
+> > device tree for the custom keyboard top row design.
+>
+> Why don't we use the property we have for the same purpose in atkbd.c?
+> I.e. function-row-physmap?
+>
+Because this property serves a different purpose than function-row-physmap.
+`function-row-physmap` basically links the scancode to the physical
+position in the top row.
+`google,custom-keyb-top-row` aims at specifying the board-specific
+keyboard top row design associated with the action codes.
 
-Jamie
+In x86 path, the board-specific keyboard top row design associated
+with the action codes is exposed from coreboot to kernel through
+"linux,keymap" acpi table.
+When coreboot generates this acpi table, it asks EC to provide this
+information, since we add the board-specific top-row-design in EC
+codebase.
+(E.g. https://chromium.googlesource.com/chromiumos/platform/ec/+/refs/heads/main/board/jinlon/board.c#396)
+
+In ARM, we don't plan to involve EC in the vivaldi support stack.
+So `google,custom-keyb-top-row` DT property is our replacement for the
+board-specific top-row-design in x86 EC codebase.
+
+> Also, instead of specifying keycodes in this array we should use
+> combination of row and column identifying keys, like this:
+>
+>         function-row-physmap = <
+>                 MATRIX_KEY(0x00, 0x02, KEY_F1),
+>                 MATRIX_KEY(0x03, 0x02, KEY_F2),
+>                 ...
+>         >;
+
+This mapping between row/column to function keycode is fixed for all
+Chrome OS devices.
+So we don't really need to host this information in DT.
+Instead, I plan to hardcode this information in cros_ec_keyb.c.
+(Please see the array "top_row_key_pos[]" in my next patch: "[2/3]
+Input: cros_ec_keyb - Support custom top-row keys".)
+
+The only thing that could make the function-row-physmap file different
+among boards is the number of top row keys.
+But this information can be derived from the length of
+`google,custom-keyb-top-row`.
+So we don't need a separate DT property for it.
+
+Thanks.
+>
+>
+> Note that the last item in the triple is purely cosmetic in this case,
+> you can change it to 0. It is row and column that are important.
+>
+> Then the mapping will work properly even if we change keymap, for
+> example from userspace.
+>
+> Thanks.
+>
+> --
+> Dmitry
