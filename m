@@ -2,88 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 263652E8D1F
-	for <lists+devicetree@lfdr.de>; Sun,  3 Jan 2021 17:27:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B56E42E8D2C
+	for <lists+devicetree@lfdr.de>; Sun,  3 Jan 2021 17:31:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727355AbhACQ01 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 3 Jan 2021 11:26:27 -0500
-Received: from mail-il1-f174.google.com ([209.85.166.174]:36435 "EHLO
-        mail-il1-f174.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727089AbhACQ01 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Jan 2021 11:26:27 -0500
-Received: by mail-il1-f174.google.com with SMTP id u12so23126480ilv.3;
-        Sun, 03 Jan 2021 08:26:11 -0800 (PST)
+        id S1727254AbhACQaq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 3 Jan 2021 11:30:46 -0500
+Received: from mail-io1-f45.google.com ([209.85.166.45]:42060 "EHLO
+        mail-io1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726962AbhACQaq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Jan 2021 11:30:46 -0500
+Received: by mail-io1-f45.google.com with SMTP id q137so22824920iod.9;
+        Sun, 03 Jan 2021 08:30:30 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=SCk5sLHOYObN1LtflP+npLNY+fu1HwfMPc8N5vmi9Rc=;
-        b=EOCc3dqBEtVSG2RkjDaOLOAhhurbiQyltO1oweo8PUES32ylAHrbbIgH3S3zrxcPeP
-         xozyoc0stdfX9uWWJqdg0vDQ+3v9hWiPvKKEZndfDOWc7fCyf1z4EvF/drvBscnrMaVf
-         M8kyU/QELkTH4l1OyKqIAqWa3HNNyrdQIiG2cHmdr8mHiKE/dCSoGWfsTVKXuizxQ7kz
-         U7V8MA2Zv1WOzLH65Zce1idNtWBMnoTUeyw1Wkakfp+LPdDP3/qcTQhSb+We0H79K26P
-         V9yAOfBFX9FCofeDdB9jReNadrEGd2smzRs+pa6zQCMskMcr0mIpldW81YkB+tjZ2tIg
-         hlyA==
-X-Gm-Message-State: AOAM5303jjCTcEUBnyA/9XZFCRB5MPlzYYObeHcIMXaD60LWBcmgt/kD
-        PYWNo1Di0vGkz378bBoL4NJprMVHIg==
-X-Google-Smtp-Source: ABdhPJyERsS1rlD8orinZwPIQuhBotgG7vJMD8pbQQHrpSYXEEw6RVmHks9o/qRqB9gl+m7ryPkrtQ==
-X-Received: by 2002:a05:6e02:160e:: with SMTP id t14mr14633157ilu.148.1609691146243;
-        Sun, 03 Jan 2021 08:25:46 -0800 (PST)
+        bh=86i+Dk92lWWCyD4iVoVNNMNzfrvFDGHE0Q+u7Pv1tAg=;
+        b=BnshLM5DI3x/zFyh+cH8bnbsKOENfPM2CYRv/VA96kBxLGuJod5/N6OTxEvNP4xKwV
+         MLtthZXDotLtN4Isj4iAMROJZKVdP1/VXuysbe/eK5f/rW0Nm4kWZejQ0aja/kGCvNdw
+         ATDlBI/Su9fORTQZqFli1pD+C65VGzfpIEGVuC31t1Sbj6S/BrYN1F/Spv5pEJLdRziT
+         /0hH566TznW2v3lKCZhec7c8x4RYc80p9fxTVOMZCUsz2FbiN7rAfSvK5LTJoXpWCT98
+         LA+MppjOmmZ5P1urVrSPQDIwKBs2QrxqLtyWp/YkUblLDC2OaInWimY1dXIBnAd/6rah
+         8kWA==
+X-Gm-Message-State: AOAM533kUJi4yntfHuUAtl+JS1YpCrKhWY9677w3FnVWjx0UUNyZd6ll
+        YvJKKnPb2+WtWpx19wn2pRydX3rVHw==
+X-Google-Smtp-Source: ABdhPJwbqg/++dfS2HqoOG718/oumLOl4T5g1ipEFEAmCd+vT/JgXsxqDnYrVQNU3eFKCHV9q4arbw==
+X-Received: by 2002:a02:9f8b:: with SMTP id a11mr60036063jam.108.1609691404905;
+        Sun, 03 Jan 2021 08:30:04 -0800 (PST)
 Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id h70sm40924928iof.31.2021.01.03.08.25.42
+        by smtp.gmail.com with ESMTPSA id 9sm41318898iob.28.2021.01.03.08.30.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 03 Jan 2021 08:25:45 -0800 (PST)
-Received: (nullmailer pid 3986255 invoked by uid 1000);
-        Sun, 03 Jan 2021 16:25:40 -0000
-Date:   Sun, 3 Jan 2021 09:25:40 -0700
+        Sun, 03 Jan 2021 08:30:03 -0800 (PST)
+Received: (nullmailer pid 3994326 invoked by uid 1000);
+        Sun, 03 Jan 2021 16:30:00 -0000
+Date:   Sun, 3 Jan 2021 09:30:00 -0700
 From:   Rob Herring <robh@kernel.org>
-To:     Yz.Wu@mediatek.com
-Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Seiya Wang <seiya.wang@mediatek.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: nvmem: mediatek: add support for
- MediaTek mt8192 SoC
-Message-ID: <20210103162540.GA3983563@robh.at.kernel.org>
-References: <20201221061018.18503-1-Yz.Wu@mediatek.com>
- <20201221061018.18503-2-Yz.Wu@mediatek.com>
+To:     Alexandru Ardelean <alexandru.ardelean@analog.com>
+Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, mturquette@baylibre.com,
+        sboyd@kernel.org, lars@metafoo.de, linux-fpga@vger.kernel.org,
+        mdf@kernel.org, dragos.bogdan@analog.com
+Subject: Re: [PATCH 2/2] dt-bindings: clock: adi,axi-clkgen: add Zynq &
+ ZynqMP compatible strings
+Message-ID: <20210103163000.GA3986534@robh.at.kernel.org>
+References: <20201221144224.50814-1-alexandru.ardelean@analog.com>
+ <20201221144224.50814-2-alexandru.ardelean@analog.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201221061018.18503-2-Yz.Wu@mediatek.com>
+In-Reply-To: <20201221144224.50814-2-alexandru.ardelean@analog.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 21, 2020 at 02:10:19PM +0800, Yz.Wu@mediatek.com wrote:
-> From: Ryan Wu <Yz.Wu@mediatek.com>
+On Mon, Dec 21, 2020 at 04:42:24PM +0200, Alexandru Ardelean wrote:
+> The axi-clkgen driver now supports ZynqMP (UltraScale) as well, however the
+> driver needs to use different PFD & VCO limits.
 > 
-> This updates dt-binding documentation for MediaTek mt8192
-> 
-> Signed-off-by: Ryan Wu <Yz.Wu@mediatek.com>
-> ---
-> This patch is based on v5.10-rc7.
-> ---
->  Documentation/devicetree/bindings/nvmem/mtk-efuse.txt | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/nvmem/mtk-efuse.txt b/Documentation/devicetree/bindings/nvmem/mtk-efuse.txt
-> index 0668c45a156d..e2f0c0f34d10 100644
-> --- a/Documentation/devicetree/bindings/nvmem/mtk-efuse.txt
-> +++ b/Documentation/devicetree/bindings/nvmem/mtk-efuse.txt
-> @@ -7,6 +7,7 @@ Required properties:
->  	      "mediatek,mt7622-efuse", "mediatek,efuse": for MT7622
->  	      "mediatek,mt7623-efuse", "mediatek,efuse": for MT7623
->  	      "mediatek,mt8173-efuse" or "mediatek,efuse": for MT8173
-> +	      "mediatek,mt8192-efuse" or "mediatek,efuse": for MT8192
+> For ZynqMP, these needs to be selected by using the
+> 'adi,zynqmp-axi-clkgen-2.00.a' string. For consistency a
+> 'adi,zynq-axi-clkgen-2.00.a' has been added which should behave as the
+> original compatible string (i.e. 'adi,axi-clkgen-2.00.a').
 
-No, "mediatek,efuse" by itself is only for MT8173.
+Version numbers and SoC are kind of rendundant.
 
->  - reg: Should contain registers location and length
+Does 'adi,axi-clkgen-2.00.a' apply to anything other than Zynq? If not, 
+you don't really need a new string. If so, you really want it to be:
+
+compatible = "adi,zynq-axi-clkgen-2.00.a", "adi,axi-clkgen-2.00.a";
+
+To be forwards and backwards compatible.
+
+> 
+> Signed-off-by: Alexandru Ardelean <alexandru.ardelean@analog.com>
+> ---
+>  Documentation/devicetree/bindings/clock/adi,axi-clkgen.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/adi,axi-clkgen.yaml b/Documentation/devicetree/bindings/clock/adi,axi-clkgen.yaml
+> index 0d06387184d6..398954ec6767 100644
+> --- a/Documentation/devicetree/bindings/clock/adi,axi-clkgen.yaml
+> +++ b/Documentation/devicetree/bindings/clock/adi,axi-clkgen.yaml
+> @@ -20,6 +20,8 @@ properties:
+>    compatible:
+>      enum:
+>        - adi,axi-clkgen-2.00.a
+> +      - adi,zynq-axi-clkgen-2.00.a
+> +      - adi,zynqmp-axi-clkgen-2.00.a
 >  
->  = Data cells =
+>    clocks:
+>      description:
 > -- 
-> 2.18.0
+> 2.17.1
 > 
