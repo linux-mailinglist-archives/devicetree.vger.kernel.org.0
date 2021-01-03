@@ -2,57 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D1A102E8D59
-	for <lists+devicetree@lfdr.de>; Sun,  3 Jan 2021 18:00:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 20BEF2E8D60
+	for <lists+devicetree@lfdr.de>; Sun,  3 Jan 2021 18:03:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727416AbhACRAn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 3 Jan 2021 12:00:43 -0500
-Received: from vps0.lunn.ch ([185.16.172.187]:47586 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727281AbhACRAn (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 3 Jan 2021 12:00:43 -0500
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94)
-        (envelope-from <andrew@lunn.ch>)
-        id 1kw6jT-00Fo9w-F3; Sun, 03 Jan 2021 17:59:55 +0100
-Date:   Sun, 3 Jan 2021 17:59:55 +0100
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Robert Marko <robert.marko@sartura.hr>, agross@kernel.org,
-        bjorn.andersson@linaro.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        davem@davemloft.net, kuba@kernel.org, netdev@vger.kernel.org,
-        linux@armlinux.org.uk, Luka Perkov <luka.perkov@sartura.hr>
-Subject: Re: [PATCH 2/4] dt-bindings: net: Add bindings for Qualcomm QCA807x
-Message-ID: <X/H4C1eBNHdDS4vO@lunn.ch>
-References: <20201222222637.3204929-1-robert.marko@sartura.hr>
- <20201222222637.3204929-3-robert.marko@sartura.hr>
- <20201223005633.GR3107610@lunn.ch>
- <20210103164613.GA4012977@robh.at.kernel.org>
+        id S1727471AbhACRDB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 3 Jan 2021 12:03:01 -0500
+Received: from mail-il1-f179.google.com ([209.85.166.179]:46644 "EHLO
+        mail-il1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727440AbhACRDA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Jan 2021 12:03:00 -0500
+Received: by mail-il1-f179.google.com with SMTP id 75so23139944ilv.13;
+        Sun, 03 Jan 2021 09:02:45 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=9nMWmrazoNH+sZVNzRiin5iySioX1ydc8fDj4HD1wZ0=;
+        b=LRroyV+whRkKmBDYnDFmfyNDphv4j7rcPlAAh9AaAe9R4mXMVOP4azikJlNjdnrW+g
+         wPQRbznoTd/HSQFSpEaueVColtbVfvql/40NXbsd8hwHcfc2t+LCZKH5wfJe8nzYZJQc
+         3o2FB96R74zmt6BlD3ElnNGsh/GQrKE+vp3T29DruvmpzqkAnUaZDHEE/ZYOlsTT0VBF
+         IcLrMZeVr9Geh9ONI/RDcObUirHNsnCaid/T0+pz5+8GPzVuf4LeUakYmhztzodsXv80
+         +KbzTWBx9ke/ELfJWUihokLa2kNqPp1v2BQwqcGR/BhEEZMkkR99TfaIxMqXSzsZotl7
+         D1Kw==
+X-Gm-Message-State: AOAM5311caZdaWCsGYb0kVptRX7/LJ8/TnHWOPTblZVbsmv0lNrPuQmI
+        heZ4L87xc5G8fch1/sLDYA==
+X-Google-Smtp-Source: ABdhPJx1DjfVEyAZrfCk6bihMZFNKKLUMcZ3aXMuFEqQsSV9gqprllvyCxBe7WDaFPMWhUKneQ5xqw==
+X-Received: by 2002:a92:d151:: with SMTP id t17mr69055226ilg.108.1609693339654;
+        Sun, 03 Jan 2021 09:02:19 -0800 (PST)
+Received: from robh.at.kernel.org ([64.188.179.253])
+        by smtp.gmail.com with ESMTPSA id o7sm41163123iov.1.2021.01.03.09.02.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 03 Jan 2021 09:02:18 -0800 (PST)
+Received: (nullmailer pid 4053640 invoked by uid 1000);
+        Sun, 03 Jan 2021 17:02:16 -0000
+Date:   Sun, 3 Jan 2021 10:02:16 -0700
+From:   Rob Herring <robh@kernel.org>
+To:     Anshuman Khandual <anshuman.khandual@arm.com>
+Cc:     linux-arm-kernel@lists.infradead.org, coresight@lists.linaro.org,
+        linux-kernel@vger.kernel.org,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Mike Leach <mike.leach@linaro.org>,
+        Linu Cherian <lcherian@marvell.com>, devicetree@vger.kernel.org
+Subject: Re: [PATCH 06/11] dts: bindings: Document device tree bindings for
+ ETE
+Message-ID: <20210103170216.GA4048658@robh.at.kernel.org>
+References: <1608717823-18387-1-git-send-email-anshuman.khandual@arm.com>
+ <1608717823-18387-7-git-send-email-anshuman.khandual@arm.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210103164613.GA4012977@robh.at.kernel.org>
+In-Reply-To: <1608717823-18387-7-git-send-email-anshuman.khandual@arm.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> > > +  qcom,tx-driver-strength:
-> > > +    description: PSGMII/QSGMII TX driver strength control.
-> > > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > > +    enum: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
-> > 
-> > Please use the actual values here, and have the driver convert to the
-> > value poked into the register. So the property would be
-> > qcom,tx-driver-strength-mv and it would have the value 220 for
-> > example.
+On Wed, Dec 23, 2020 at 03:33:38PM +0530, Anshuman Khandual wrote:
+> From: Suzuki K Poulose <suzuki.poulose@arm.com>
 > 
-> The LED binding has properties for specifying the current already. And 
-> it's max current which is the h/w property where as anything less is 
-> just software configuration (IOW, doesn't belong in DT).
+> Document the device tree bindings for Embedded Trace Extensions.
+> ETE can be connected to legacy coresight components and thus
+> could optionally contain a connection graph as described by
+> the CoreSight bindings.
+> 
+> Cc: devicetree@vger.kernel.org
+> Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
+> Cc: Mike Leach <mike.leach@linaro.org>
+> Cc: Rob Herring <robh@kernel.org>
+> Signed-off-by: Suzuki K Poulose <suzuki.poulose@arm.com>
+> Signed-off-by: Anshuman Khandual <anshuman.khandual@arm.com>
+> ---
+>  Documentation/devicetree/bindings/arm/ete.txt | 41 +++++++++++++++++++++++++++
+>  1 file changed, 41 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/arm/ete.txt
 
-Hi Rob
+Bindings are in schema format now, please convert this.
 
-My understanding of this is it is the drive strength of the SERDES
-line. Nothing to do with LEDs. The description needs improving.
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/ete.txt b/Documentation/devicetree/bindings/arm/ete.txt
+> new file mode 100644
+> index 0000000..b52b507
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/arm/ete.txt
+> @@ -0,0 +1,41 @@
+> +Arm Embedded Trace Extensions
+> +
+> +Arm Embedded Trace Extensions (ETE) is a per CPU trace component that
+> +allows tracing the CPU execution. It overlaps with the CoreSight ETMv4
+> +architecture and has extended support for future architecture changes.
+> +The trace generated by the ETE could be stored via legacy CoreSight
+> +components (e.g, TMC-ETR) or other means (e.g, using a per CPU buffer
+> +Arm Trace Buffer Extension (TRBE)). Since the ETE can be connected to
+> +legacy CoreSight components, a node must be listed per instance, along
+> +with any optional connection graph as per the coresight bindings.
+> +See bindings/arm/coresight.txt.
+> +
+> +** ETE Required properties:
+> +
+> +- compatible : should be one of:
+> +	"arm,embedded-trace-extensions"
+> +
+> +- cpu : the CPU phandle this ETE belongs to.
 
-      Andrew
+If this is 1:1 with CPUs, then perhaps it should be a child node of the 
+CPU nodes.
+
+> +
+> +** Optional properties:
+> +- CoreSight connection graph, see bindings/arm/coresight.txt.
+> +
+> +** Example:
+> +
+> +ete_0 {
+> +	compatible = "arm,embedded-trace-extension";
+> +	cpu = <&cpu_0>;
+> +};
+> +
+> +ete_1 {
+> +	compatible = "arm,embedded-trace-extension";
+> +	cpu = <&cpu_1>;
+> +
+> +	out-ports {	/* legacy CoreSight connection */
+> +		port {
+> +			ete1_out_port: endpoint@0 {
+> +				remote-endpoint = <&funnel_in_port0>;
+> +			};
+> +		};
+> +	};
+> +};
+> -- 
+> 2.7.4
+> 
