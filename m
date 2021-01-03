@@ -2,232 +2,181 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C29E2E8E6E
-	for <lists+devicetree@lfdr.de>; Sun,  3 Jan 2021 22:28:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 361632E8EB5
+	for <lists+devicetree@lfdr.de>; Sun,  3 Jan 2021 23:49:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727497AbhACV1w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 3 Jan 2021 16:27:52 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:55676 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727391AbhACV1w (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Jan 2021 16:27:52 -0500
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 103LQFho079029;
-        Sun, 3 Jan 2021 15:26:15 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1609709175;
-        bh=LzUKQIdtUxP3VT9n+rTF31A9EZWe/TWaIB53rZGrNTY=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=DPB+qve0s8heRhSIjLgjb8mCzQS6nrRBZtS6gnhzNNrkacXzb2GgmodhGi0xfG3iq
-         +MPyv5QRvPf5RwejlcdO/t45mDVZgcFNyrL8cr+yzfG6ycFnRXAxJke3+BPHJgb4P8
-         zYpmkA1vvOafGis9PDkzcXfNVtHCnvt14AK2SLEY=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 103LQE4v016396
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Sun, 3 Jan 2021 15:26:14 -0600
-Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Sun, 3 Jan
- 2021 15:26:14 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Sun, 3 Jan 2021 15:26:14 -0600
-Received: from [10.250.79.43] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 103LQEGo126039;
-        Sun, 3 Jan 2021 15:26:14 -0600
-Subject: Re: [EXTERNAL] Re: [PATCH v7 2/2] power: supply: bq256xx: Introduce
- the BQ256XX charger driver
-To:     Sebastian Reichel <sre@kernel.org>
-CC:     <robh+dt@kernel.org>, <linux-pm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <dmurphy@ti.com>
-References: <20201230230116.29697-1-r-rivera-matos@ti.com>
- <20201230230116.29697-3-r-rivera-matos@ti.com>
- <20210103012610.exkkwoqz3745bh2u@earth.universe>
-From:   Ricardo Rivera-Matos <r-rivera-matos@ti.com>
-Message-ID: <a31160cd-6023-236b-ff6f-4c9703bf937d@ti.com>
-Date:   Sun, 3 Jan 2021 15:26:14 -0600
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1727624AbhACWtN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 3 Jan 2021 17:49:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55650 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726610AbhACWtN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Jan 2021 17:49:13 -0500
+Received: from mail-pg1-x531.google.com (mail-pg1-x531.google.com [IPv6:2607:f8b0:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1AA25C061573;
+        Sun,  3 Jan 2021 14:48:33 -0800 (PST)
+Received: by mail-pg1-x531.google.com with SMTP id i5so17592492pgo.1;
+        Sun, 03 Jan 2021 14:48:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=t0zu2rRiEVfRsaF3pV2UiBvQuBiFNssfwxgn5PC1iG4=;
+        b=E5ga9ng/7cLpzhS9xKIdS8M5Hl+oy53UodMpPe1r2iC3o7RAHJAa87ip72YSSfxoJk
+         +Yl2h7SnGDSrPXo8LJLaIlM/TlZl0aS43bqdZ/DgGXRM5aTbWfnm8KYKYanpcKMAgrC6
+         2oywl3mEYkoz/s/0KDRip1gu09Wg3/mI2zMTfBOfr2IgN9fouRv/uvpih6/eJp6K/Op+
+         us8H4YryuNRwqrPYTeRlwLlMJdqQc1E66StDQQ90ZeHHYGNsmx/vsAbmbllyH4xEbsRo
+         0lwH+XxMV3ByJa7pndXl7bY0g69iNY5nO2fRVX0jc+jpeQ6R6yFlVxyqNOk0laEAdwIN
+         rvFQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=t0zu2rRiEVfRsaF3pV2UiBvQuBiFNssfwxgn5PC1iG4=;
+        b=e8a5IRkSDh0GOokibL4xHsXxHxP2yNADZ/jJdqq+El4jdW6BCRFsI7b8tleXLWnzSh
+         vAbOUy5XZ9jXSm4hKHmaHAuqjE+QItn7Ds0zH6uVg+fsnhEfjLGZg1Kz4yMu+Rjb/S7z
+         bZfXLN7psa7jxx3fTrOBxZHGfMWzp120Sc/o1hln+EcKaAT81ym3SLjXRtit2XBW8Io4
+         Jq9EnMz6+9UddLfxFtd+omn0rA+ZQmx7q+zRZcNMSIo/OsrcFCJzy5JWpI2hnkvHeH9J
+         j0qc7f8A2xfmDz73jicfU0/HvZ44PnRI5pxlxIwKlMxtlUQ1whMnAD4PoaH5LaLbyWhM
+         PrHA==
+X-Gm-Message-State: AOAM53336Csbi8EXTijyTs7FZD/5Iunj2VY4P/ndQdpH0WtgETKyjjKm
+        vT0cFVD7mLgkoGsH8Gx68HM=
+X-Google-Smtp-Source: ABdhPJxWGBkwsAPpmUmNUo0go5BQh4HaA87kiku/T8uLxrcKGUD3dpMkiV0I0qGchgQuTuP3ixGy/Q==
+X-Received: by 2002:a62:644c:0:b029:1a1:f568:d2d9 with SMTP id y73-20020a62644c0000b02901a1f568d2d9mr64670051pfb.64.1609714112574;
+        Sun, 03 Jan 2021 14:48:32 -0800 (PST)
+Received: from google.com ([2620:15c:202:201:a6ae:11ff:fe11:fcc3])
+        by smtp.gmail.com with ESMTPSA id b12sm24511144pgr.9.2021.01.03.14.48.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 03 Jan 2021 14:48:31 -0800 (PST)
+Date:   Sun, 3 Jan 2021 14:48:29 -0800
+From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To:     Philip Chen <philipchen@chromium.org>
+Cc:     LKML <linux-kernel@vger.kernel.org>,
+        Dmitry Torokhov <dtor@chromium.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Rajat Jain <rajatja@chromium.org>,
+        Benson Leung <bleung@chromium.org>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Guenter Roeck <groeck@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Simon Glass <sjg@chromium.org>, devicetree@vger.kernel.org,
+        linux-input@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: input: cros-ec-keyb: Add a new property
+Message-ID: <X/JJvUobb7DtgFyC@google.com>
+References: <20201221174751.1.I025fb861cd5fa0ef5286b7dce514728e9df7ae74@changeid>
+ <X+rKPhJrQaykPxri@google.com>
+ <CA+cxXh=HH-UAt747OYRwaaABdJpT8r=TvrYcFah7PQ1vHqYutg@mail.gmail.com>
+ <X/Df0uuclk1ZNOps@google.com>
+ <CA+cxXhnY_TpnA1iR8XJ87xNeNsi2Ba89+VJEPtB7wJ-=8O=4ag@mail.gmail.com>
+ <CA+cxXhkdZ2ifyCG=p3Fbxwnzu-8z3Q1jNzaBQ=MMfeJ3vqkfhw@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20210103012610.exkkwoqz3745bh2u@earth.universe>
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CA+cxXhkdZ2ifyCG=p3Fbxwnzu-8z3Q1jNzaBQ=MMfeJ3vqkfhw@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Sebastian
+Hi Philip,
 
-On 1/2/21 7:26 PM, Sebastian Reichel wrote:
-> Hi Ricardo,
->
-> On Wed, Dec 30, 2020 at 05:01:16PM -0600, Ricardo Rivera-Matos wrote:
->> The BQ256XX family of devices are highly integrated buck chargers
->> for single cell batteries.
->>
->> Signed-off-by: Ricardo Rivera-Matos <r-rivera-matos@ti.com>
->>
->> v5 - adds power_supply_put_battery_info() and devm_add_action_or_rest() calls
->>
->> v6 - implements bq256xx_remove function
->>
->> v7 - applies various fixes
->>
->>     - implements clamp() API
->>
->>     - implements memcmp() API
->>
->>     - changes cache_type to REGACHE_FLAT
->>
->>     - changes bq256xx_probe to properly unregister device
->>
->> Signed-off-by: Ricardo Rivera-Matos <r-rivera-matos@ti.com>
->> ---
-> Thanks, looks mostly good now.
-Cool :)
->
->>   drivers/power/supply/Kconfig           |   11 +
->>   drivers/power/supply/Makefile          |    1 +
->>   drivers/power/supply/bq256xx_charger.c | 1747 ++++++++++++++++++++++++
->>   3 files changed, 1759 insertions(+)
->>   create mode 100644 drivers/power/supply/bq256xx_charger.c
->>
->> diff --git a/drivers/power/supply/Kconfig b/drivers/power/supply/Kconfig
->> index 44d3c8512fb8..87d852914bc2 100644
->> --- a/drivers/power/supply/Kconfig
->> +++ b/drivers/power/supply/Kconfig
->> @@ -618,6 +618,17 @@ config CHARGER_BQ25890
->>   	help
->>   	  Say Y to enable support for the TI BQ25890 battery charger.
->>   
->> +config CHARGER_BQ256XX
->> +	tristate "TI BQ256XX battery charger driver"
->> +	depends on I2C
->> +	depends on GPIOLIB || COMPILE_TEST
->> +	select REGMAP_I2C
->> +	help
->> +	  Say Y to enable support for the TI BQ256XX battery chargers. The
->> +	  BQ256XX family of devices are highly-integrated, switch-mode battery
->> +	  charge management and system power path management devices for single
->> +	  cell Li-ion and Li-polymer batteries.
->> +
->>   config CHARGER_SMB347
->>   	tristate "Summit Microelectronics SMB347 Battery Charger"
->>   	depends on I2C
-> Please rebase to current power-supply for-next branch, Kconfig and
-> Makefile diff does not apply because of one additional BQ device.
-ACK
->
->> [...]
->> +static void bq256xx_usb_work(struct work_struct *data)
->> +{
->> +	struct bq256xx_device *bq =
->> +			container_of(data, struct bq256xx_device, usb_work);
->> +
->> +	switch (bq->usb_event) {
->> +	case USB_EVENT_ID:
->> +		break;
->> +
-> spurious newline, please remove!
-ACK
->
->> +	case USB_EVENT_NONE:
->> +		power_supply_changed(bq->charger);
->> +		break;
->> +	default:
->> +		dev_err(bq->dev, "Error switching to charger mode.\n");
->> +		break;
->> +	}
->> +}
->> +
->> [...]
->> +static int bq256xx_hw_init(struct bq256xx_device *bq)
->> +{
->> +	struct power_supply_battery_info bat_info = { };
->> +	int wd_reg_val = BQ256XX_WATCHDOG_DIS;
->> +	int ret = 0;
->> +	int i;
->> +
->> +	for (i = 0; i < BQ256XX_NUM_WD_VAL; i++) {
->> +		if (bq->watchdog_timer > bq256xx_watchdog_time[i] &&
->> +		    bq->watchdog_timer < bq256xx_watchdog_time[i + 1])
->> +			wd_reg_val = i;
->> +	}
->> +	ret = regmap_update_bits(bq->regmap, BQ256XX_CHARGER_CONTROL_1,
->> +				 BQ256XX_WATCHDOG_MASK, wd_reg_val <<
->> +						BQ256XX_WDT_BIT_SHIFT);
->> +
->> +	ret = power_supply_get_battery_info(bq->charger, &bat_info);
->> +	if (ret) {
->> +		dev_warn(bq->dev, "battery info missing, default values will be applied\n");
->> +
->> +		bat_info.constant_charge_current_max_ua =
->> +				bq->chip_info->bq256xx_def_ichg;
->> +
->> +		bat_info.constant_charge_voltage_max_uv =
->> +				bq->chip_info->bq256xx_def_vbatreg;
->> +
->> +		bat_info.precharge_current_ua =
->> +				bq->chip_info->bq256xx_def_iprechg;
->> +
->> +		bat_info.charge_term_current_ua =
->> +				bq->chip_info->bq256xx_def_iterm;
->> +
->> +		bq->init_data.ichg_max =
->> +				bq->chip_info->bq256xx_max_ichg;
->> +
->> +		bq->init_data.vbatreg_max =
->> +				bq->chip_info->bq256xx_max_vbatreg;
->> +	} else {
->> +		bq->init_data.ichg_max =
->> +			bat_info.constant_charge_current_max_ua;
->> +
->> +		bq->init_data.vbatreg_max =
->> +			bat_info.constant_charge_voltage_max_uv;
->> +	}
->> +
->> +	ret = bq->chip_info->bq256xx_set_vindpm(bq, bq->init_data.vindpm);
->> +	if (ret)
->> +		goto err_out;
->> +
->> +	ret = bq->chip_info->bq256xx_set_iindpm(bq, bq->init_data.iindpm);
->> +	if (ret)
->> +		goto err_out;
->> +
->> +	ret = bq->chip_info->bq256xx_set_ichg(bq,
->> +				bat_info.constant_charge_current_max_ua);
->> +	if (ret)
->> +		goto err_out;
->> +
->> +	ret = bq->chip_info->bq256xx_set_iprechg(bq,
->> +				bat_info.precharge_current_ua);
->> +	if (ret)
->> +		goto err_out;
->> +
->> +	ret = bq->chip_info->bq256xx_set_vbatreg(bq,
->> +				bat_info.constant_charge_voltage_max_uv);
->> +	if (ret)
->> +		goto err_out;
->> +
->> +	ret = bq->chip_info->bq256xx_set_iterm(bq,
->> +				bat_info.charge_term_current_ua);
->> +	if (ret)
->> +		goto err_out;
->> +
->> +	power_supply_put_battery_info(bq->charger, &bat_info);
->> +
->> +	return 0;
->> +
->> +err_out:
->> +	return ret;
-> please return error code directly instead of adding this useless
-> goto.
-ACK
->
->> [...]
-> -- Sebastian
-Ricardo
+On Sat, Jan 02, 2021 at 10:11:21PM -0800, Philip Chen wrote:
+> Hi Dmitry,
+> 
+> I have one more question below.
+> Could you take a look?
+> 
+> On Sat, Jan 2, 2021 at 8:53 PM Philip Chen <philipchen@chromium.org> wrote:
+> >
+> > Hi Dmitry,
+> >
+> > I see.
+> > I'll update these patch sets shortly based on your suggestion.
+> > Thanks.
+> >
+> > On Sat, Jan 2, 2021 at 1:04 PM Dmitry Torokhov
+> > <dmitry.torokhov@gmail.com> wrote:
+> > >
+> > > On Sat, Jan 02, 2021 at 11:39:34AM -0800, Philip Chen wrote:
+> > > > Hi Dmitry,
+> > > >
+> > > > Thanks for reviewing my patch over the holiday season.
+> > > > Please check my CIL.
+> > > >
+> > > > On Mon, Dec 28, 2020 at 10:18 PM Dmitry Torokhov
+> > > > <dmitry.torokhov@gmail.com> wrote:
+> > > > >
+> > > > > Hi Philip,
+> > > > >
+> > > > > On Mon, Dec 21, 2020 at 05:47:57PM -0800, Philip Chen wrote:
+> > > > > > This patch adds a new property `google,custom-keyb-top-row` to the
+> > > > > > device tree for the custom keyboard top row design.
+> > > > >
+> > > > > Why don't we use the property we have for the same purpose in atkbd.c?
+> > > > > I.e. function-row-physmap?
+> > > > >
+> > > > Because this property serves a different purpose than function-row-physmap.
+> > > > `function-row-physmap` basically links the scancode to the physical
+> > > > position in the top row.
+> > > > `google,custom-keyb-top-row` aims at specifying the board-specific
+> > > > keyboard top row design associated with the action codes.
+> > > >
+> > > > In x86 path, the board-specific keyboard top row design associated
+> > > > with the action codes is exposed from coreboot to kernel through
+> > > > "linux,keymap" acpi table.
+> > > > When coreboot generates this acpi table, it asks EC to provide this
+> > > > information, since we add the board-specific top-row-design in EC
+> > > > codebase.
+> > > > (E.g. https://chromium.googlesource.com/chromiumos/platform/ec/+/refs/heads/main/board/jinlon/board.c#396)
+> > > >
+> > > > In ARM, we don't plan to involve EC in the vivaldi support stack.
+> > > > So `google,custom-keyb-top-row` DT property is our replacement for the
+> > > > board-specific top-row-design in x86 EC codebase.
+> > >
+> > > I disagree with this decision. We already have "linux,keymap" property
+> > > that is supposed to hold accurate keymap for the device in question,
+> > > there should be no need to introduce yet another property to adjust the
+> > > keymap to reflect the reality. If a device uses "non classic" ChromeOS
+> > > top row it should not be using the default keymap from
+> > > arch/arm/boot/dts/cros-ec-keyboard.dtsi but supply its own. You can
+> > > consider splitting the keymap into generic lower portion and the top row
+> > > and moving them into an .h file so they can be easily reused.
+> > >
+> > > >
+> > > > > Also, instead of specifying keycodes in this array we should use
+> > > > > combination of row and column identifying keys, like this:
+> > > > >
+> > > > >         function-row-physmap = <
+> > > > >                 MATRIX_KEY(0x00, 0x02, KEY_F1),
+> > > > >                 MATRIX_KEY(0x03, 0x02, KEY_F2),
+> > > > >                 ...
+> > > > >         >;
+> > > >
+> > > > This mapping between row/column to function keycode is fixed for all
+> > > > Chrome OS devices.
+> > >
+> > > *for now* The mapping for the rest of the keyboard has also stayed
+> > > static, but we still did not hardcode this information in the driver but
+> > > rather used DT property to pass it into the kernel.
+> > >
+> > > > So we don't really need to host this information in DT.
+> > > > Instead, I plan to hardcode this information in cros_ec_keyb.c.
+> > > > (Please see the array "top_row_key_pos[]" in my next patch: "[2/3]
+> > > > Input: cros_ec_keyb - Support custom top-row keys".)
+> > > >
+> > > > The only thing that could make the function-row-physmap file different
+> > > > among boards is the number of top row keys.
+> Given the reason above, can we just add `num-top-row-keys` property
+> instead of the whole `function-row-physmap`?
+> I think this is the only thing cros_ec_keyb needs to know to generate
+> the board-specific function-row-physmap file for the userspace.
+
+This would mean that we need to hard-code the knowledge of the scan
+matrix in the driver and will not allow us to "skip" any keys in the top
+row. Given that we did not hard-code the keymap I do not see why we
+would want to do it differently with the top row. function-row-physmap
+provides greatest flexibility and I do not see any downsides.
+
+Thanks.
+
+-- 
+Dmitry
