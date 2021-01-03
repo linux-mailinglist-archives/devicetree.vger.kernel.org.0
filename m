@@ -2,55 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5FA532E8B1B
-	for <lists+devicetree@lfdr.de>; Sun,  3 Jan 2021 07:16:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A2B782E8B91
+	for <lists+devicetree@lfdr.de>; Sun,  3 Jan 2021 11:03:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725819AbhACGQE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 3 Jan 2021 01:16:04 -0500
-Received: from vps5.brixit.nl ([192.81.221.234]:57538 "EHLO vps5.brixit.nl"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725765AbhACGQE (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 3 Jan 2021 01:16:04 -0500
-Received: from [192.168.20.102] (unknown [77.239.252.99])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by vps5.brixit.nl (Postfix) with ESMTPSA id 5AA2460811;
-        Sun,  3 Jan 2021 06:15:21 +0000 (UTC)
-Subject: Re: [PATCH 1/4] ARM: dts: qcom: msm8974: add gpu support
-To:     Iskren Chernev <iskren.chernev@gmail.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Brian Masney <masneyb@onstation.org>
-References: <20201230155132.3661292-1-iskren.chernev@gmail.com>
-From:   Alexey Minnekhanov <alexeymin@postmarketos.org>
-Message-ID: <cf8ccf4e-4889-42d4-3b1c-a2a836bff496@postmarketos.org>
-Date:   Sun, 3 Jan 2021 09:16:11 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.0
+        id S1726072AbhACKBW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 3 Jan 2021 05:01:22 -0500
+Received: from new2-smtp.messagingengine.com ([66.111.4.224]:47227 "EHLO
+        new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726551AbhACKBR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Jan 2021 05:01:17 -0500
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 063BE5803E6;
+        Sun,  3 Jan 2021 05:00:11 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute5.internal (MEProxy); Sun, 03 Jan 2021 05:00:11 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+        from:to:cc:subject:date:message-id:mime-version
+        :content-transfer-encoding; s=fm1; bh=guJpiRmPNmpuay60jtLre2M1kZ
+        YS531pnroQeqKbbp8=; b=YLDuPULraX09Gwh5S9275jKOlHpmSStsqW94OkeYxn
+        Hh6Qil1iiurLo+nuzPV4bEpVKpyQJLUsWse5NAy8dmdCsct9RkzYP03e4kVJts/T
+        LaYfuqps8v+rZpM7oZPdjf0ypbWbYTjZlnu/RG0UDxfjrsPD5OjhIcn5RVH3nu+X
+        D8mMtSdrhMW3cbog1JF4CzfTxKAV1xuJOLpQkIa5WGQwO3fJTT+jAbLaHn27ix3c
+        wYwrGZD3qeSRSuwO862por3DxlXosye3jxCkm2pYfGz3JGEyRz6Hy+NkxxSm44Wv
+        HQl2LfXspvALgsknS2uFwbJWCYgqre8++bvqDBh2jSfQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:date:from
+        :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=guJpiRmPNmpuay60j
+        tLre2M1kZYS531pnroQeqKbbp8=; b=XqukjVFBhkXyrlYdkIfVHin2RGLB+4Xrp
+        5kCugZ3nr/hjQUb4ulN0voovduXwX8ulsZ8nHcNGHKRFdHMPxPvA3apRc1fiZ4o2
+        AyZjnUNup7eG03QXH5nUwwO+MU/3Iz7X1ynoAQmbRjtL5+RSLXvzyvReXfgLk5iI
+        lg2qmy2zJ5kUvP86Qa3jNEQm8dwi6CfYDUBRYNuVSytb9JLaBsePz11gjfDbola7
+        OfFviaN/DQr0AlNAtGpHnz4ozkuJFRHciLNvYFKnYwYkbdPe4ptr7Lg0Lbyed72K
+        tL+BkAZjmaDWT53tQKYWWBby1ei+YZUw8z0oKaV11tXjnUo8r5Acg==
+X-ME-Sender: <xms:qZXxX0phcwZrR8dRkK3P7v8ZrkTS3YVxss9LyeYLCIiTaHzA2boatQ>
+    <xme:qZXxX6oEt4wmoX6PEIoRaNly11DRrzVkBLjfuLra6Z_so6q8If2H-p8AyrD51IQex
+    L9GfhxvMQsy79miqA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrvdefuddguddtucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhephffvufffkffoggfgsedtkeertdertddtnecuhfhrohhmpefurghmuhgvlhcu
+    jfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenucggtffrrg
+    htthgvrhhnpeeiteekhfehuddugfeltddufeejjeefgeevheekueffhffhjeekheeiffdt
+    vedtveenucfkphepjedtrddufeehrddugeekrdduhedunecuvehluhhsthgvrhfuihiivg
+    eptdenucfrrghrrghmpehmrghilhhfrhhomhepshgrmhhuvghlsehshhholhhlrghnugdr
+    ohhrgh
+X-ME-Proxy: <xmx:qZXxX5MQNgi5QNT9nVQ-OM0WoSlteqazr5vufWThLufZAOB9WCP9wQ>
+    <xmx:qZXxX76MUBgCyU2tuM0GBzX5yp7WlXtI9DvgRr92WAkmlo9C1a5Hlg>
+    <xmx:qZXxXz5lKngfOPJnYJ_3JpD8YHZD10fH6P3gX3j0dNFqBp5SGj1Gjg>
+    <xmx:qpXxX6L9aMUoSmBILSK09FG75vCLdiXSlGuLRfc9mHgBaO1FMMDAfA>
+Received: from titanium.stl.sholland.net (70-135-148-151.lightspeed.stlsmo.sbcglobal.net [70.135.148.151])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 82CD11080059;
+        Sun,  3 Jan 2021 05:00:08 -0500 (EST)
+From:   Samuel Holland <samuel@sholland.org>
+To:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+Cc:     Andre Przywara <andre.przywara@arm.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com,
+        Samuel Holland <samuel@sholland.org>
+Subject: [PATCH v2 0/4] Allwinner H6 RSB support
+Date:   Sun,  3 Jan 2021 04:00:03 -0600
+Message-Id: <20210103100007.32867-1-samuel@sholland.org>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-In-Reply-To: <20201230155132.3661292-1-iskren.chernev@gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Tested these patches on Samsung Galaxy S5 along with other patches that 
-add panel driver and enable vram carve-out option on this device.
+The Allwinner H6 SoC contains an RSB controller. It is almost completely
+undocumented, so it was missed when doing the initial SoC bringup.
 
-Tested-by: Alexey Minnekhanov <alexeymin@postmarketos.org>
+This series adds the clock/reset, pin configuration, and device tree
+node needed to use the RSB controller. Since RSB is faster, simpler, and
+generally more reliable than the I2C controller IP in the SoC, switch to
+using it where possible.
 
-On 12/30/20 6:51 PM, Iskren Chernev wrote:
-> From: Brian Masney <masneyb@onstation.org>
-> 
-> Add support for the a3xx GPU
-> 
-> Signed-off-by: Brian Masney <masneyb@onstation.org>
-> ---
->   arch/arm/boot/dts/qcom-msm8974.dtsi | 45 +++++++++++++++++++++++++++++
->   1 file changed, 45 insertions(+)
-> 
+This was tested on an Orange Pi 3 and a Pine H64 model B. This series
+does not switch the Pine H64 to use RSB, as doing so would prevent
+accessing the external RTC that shares the I2C bus.
+
+Changes v1->v2:
+  - Put the new values at the end of the DT binding headers
+
+Samuel Holland (4):
+  clk: sunxi-ng: h6-r: Add R_APB2_RSB clock and reset
+  pinctrl: sunxi: h6-r: Add s_rsb pin functions
+  arm64: dts: allwinner: h6: Add RSB controller node
+  arm64: dts: allwinner: h6: Use RSB for AXP805 PMIC connection
+
+ .../dts/allwinner/sun50i-h6-beelink-gs1.dts   | 38 +++++++++----------
+ .../dts/allwinner/sun50i-h6-orangepi-3.dts    | 14 +++----
+ .../dts/allwinner/sun50i-h6-orangepi.dtsi     | 22 +++++------
+ arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi  | 19 ++++++++++
+ drivers/clk/sunxi-ng/ccu-sun50i-h6-r.c        |  5 +++
+ drivers/clk/sunxi-ng/ccu-sun50i-h6-r.h        |  2 +-
+ drivers/pinctrl/sunxi/pinctrl-sun50i-h6-r.c   |  2 +
+ include/dt-bindings/clock/sun50i-h6-r-ccu.h   |  2 +
+ include/dt-bindings/reset/sun50i-h6-r-ccu.h   |  1 +
+ 9 files changed, 67 insertions(+), 38 deletions(-)
+
+-- 
+2.26.2
+
