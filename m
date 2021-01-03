@@ -2,79 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 54C752E8C96
-	for <lists+devicetree@lfdr.de>; Sun,  3 Jan 2021 15:22:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 56E5B2E8D0F
+	for <lists+devicetree@lfdr.de>; Sun,  3 Jan 2021 17:17:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726042AbhACOUk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 3 Jan 2021 09:20:40 -0500
-Received: from mail-lf1-f52.google.com ([209.85.167.52]:43683 "EHLO
-        mail-lf1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725840AbhACOUj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Jan 2021 09:20:39 -0500
-Received: by mail-lf1-f52.google.com with SMTP id 23so58495556lfg.10;
-        Sun, 03 Jan 2021 06:20:22 -0800 (PST)
+        id S1725889AbhACQRS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 3 Jan 2021 11:17:18 -0500
+Received: from mail-io1-f44.google.com ([209.85.166.44]:36612 "EHLO
+        mail-io1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726008AbhACQRR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Jan 2021 11:17:17 -0500
+Received: by mail-io1-f44.google.com with SMTP id u26so20150783iof.3;
+        Sun, 03 Jan 2021 08:17:02 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=lyRDga/P88nXpUNSjHBPV4V01nLvTjv4Bg0ZMq7KWiw=;
-        b=Cs3qe7Y3sa+2q2LMYf0Bm7gIHJuTwHz6MmY4eRtwFa9XsmZNSFuNVrEackUJmhBlCY
-         PwhEHiZqJLiA3wwYy+AHKCXDsq7w/lvANqWtKWrDTbIUAEFo+XXFqmBxkSOEC8CGacmO
-         H2RDTHzEf9uAMy5Xz0AVd54y5PuqXgFPhkHyOUX8PVZvlHqBPNoWY6b9Ex8SlZ5Cen6x
-         9uQk/fIM/SyrojJgPswp5a3ZuHHt/XbPScYV7tZdLYm6T2IPkgJtEFVpZYEgNlJgx5My
-         Thf3kQnL5Y23KYjwxYOQVBo4hszTMDHSFpcOTyYzlAL15nMjJYdPgtOPn4zl6H0EGS5E
-         N/rA==
-X-Gm-Message-State: AOAM531YXMoc+jQ3/eKKoQ2GI3nqSmtj4K1QyWy1rne3R2vdh2awrWdH
-        L5nQLQuFO46DQOcymOKZo4atiyE6zkXQ1Q==
-X-Google-Smtp-Source: ABdhPJwqtCL2WZR2lgnS6qNkJmmik9smGPVjF1BAIHsjdmh83+L3Lk9l+Ce1n8Nn8PS141lKdVuKAA==
-X-Received: by 2002:ac2:430a:: with SMTP id l10mr10776662lfh.22.1609683596842;
-        Sun, 03 Jan 2021 06:19:56 -0800 (PST)
-Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com. [209.85.167.48])
-        by smtp.gmail.com with ESMTPSA id c16sm7006237lfb.236.2021.01.03.06.19.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 03 Jan 2021 06:19:56 -0800 (PST)
-Received: by mail-lf1-f48.google.com with SMTP id a12so58583911lfl.6;
-        Sun, 03 Jan 2021 06:19:56 -0800 (PST)
-X-Received: by 2002:a19:810:: with SMTP id 16mr33000667lfi.233.1609683595991;
- Sun, 03 Jan 2021 06:19:55 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=MLD+EZewrLbaWCLExHGTczXjOb1vPGkfTuYMAwGL1ik=;
+        b=ZOahjPbmJ0byghcRAsrXNFU7adn5H/Hf0dgOhGOBKlwPVCUUj8Pa7pkyX4hu1hs3Yh
+         Ckso3uXxHKUJ6nV43CVnI2ZspTX9Tjg6yok6dle1+7t9/98jiasA05Tb0uGg58+JLjn0
+         +17wba2grRjlgUfkcm8B1Tag6qva2bUPrrT2jMQfHtzq0hLirt1UZOiHNqZdMuUiN+Fx
+         bPY7KZlvOck9USWyXkV6gEGM840MOff1p5a3DYynYtcvs9d3H0IHQCGYCjg8kUBtnUaL
+         lreXYKSsw/9T3ajNQhKEna5u3gLy9ahRRKCZb/cDA8cZXOq4rK8TRqmYg7xAVOqTYDx2
+         MK9w==
+X-Gm-Message-State: AOAM531jRO0wXLe4OdcnTEUhHNM8/T4+hciep2SesqQvefhPP1hgSn/D
+        3I633NJhfKZvUewcdd7iUg==
+X-Google-Smtp-Source: ABdhPJyc0JoUpUvR/zYc0zoCYmpZ4Vkk8wTWqUmP5uUOt5Kab8Ra0bY81Vs354t6bo5sZe5p64pKJg==
+X-Received: by 2002:a02:ce2c:: with SMTP id v12mr58941999jar.60.1609690596661;
+        Sun, 03 Jan 2021 08:16:36 -0800 (PST)
+Received: from robh.at.kernel.org ([64.188.179.253])
+        by smtp.gmail.com with ESMTPSA id e1sm41109004iod.17.2021.01.03.08.16.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 03 Jan 2021 08:16:35 -0800 (PST)
+Received: (nullmailer pid 3960611 invoked by uid 1000);
+        Sun, 03 Jan 2021 16:16:32 -0000
+Date:   Sun, 3 Jan 2021 09:16:32 -0700
+From:   Rob Herring <robh@kernel.org>
+To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+Cc:     linux-kernel@vger.kernel.org, phil@raspberrypi.com,
+        tim.gover@raspberrypi.com, catalin.marinas@arm.com,
+        srinivas.kandagatla@linaro.org, devicetree@vger.kernel.org,
+        linux-rpi-kernel@lists.infradead.org,
+        Frank Rowand <frowand.list@gmail.com>, linux@armlinux.org.uk,
+        bcm-kernel-feedback-list@broadcom.com,
+        linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>, will@kernel.org
+Subject: Re: [PATCH v2 2/5] nvmem: Add driver to expose reserved memory as
+ nvmem
+Message-ID: <20210103161632.GA3960550@robh.at.kernel.org>
+References: <20201218154320.28368-1-nsaenzjulienne@suse.de>
+ <20201218154320.28368-3-nsaenzjulienne@suse.de>
 MIME-Version: 1.0
-References: <20210103100007.32867-1-samuel@sholland.org> <20210103100007.32867-3-samuel@sholland.org>
-In-Reply-To: <20210103100007.32867-3-samuel@sholland.org>
-From:   Chen-Yu Tsai <wens@csie.org>
-Date:   Sun, 3 Jan 2021 22:19:44 +0800
-X-Gmail-Original-Message-ID: <CAGb2v64KioyzGK0uLTVNyhc38fH2A8DWRYc8FVkEVZDjVwr6RA@mail.gmail.com>
-Message-ID: <CAGb2v64KioyzGK0uLTVNyhc38fH2A8DWRYc8FVkEVZDjVwr6RA@mail.gmail.com>
-Subject: Re: [linux-sunxi] [PATCH v2 2/4] pinctrl: sunxi: h6-r: Add s_rsb pin functions
-To:     Samuel Holland <samuel@sholland.org>
-Cc:     Maxime Ripard <mripard@kernel.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Andre Przywara <andre.przywara@arm.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-sunxi <linux-sunxi@googlegroups.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201218154320.28368-3-nsaenzjulienne@suse.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jan 3, 2021 at 6:00 PM Samuel Holland <samuel@sholland.org> wrote:
->
-> As there is an RSB controller in the H6 SoC, there should be some pin
-> configuration for it. While no such configuration is documented, the
-> "s_i2c" pins are suspiciously on the "alternate" function 3, with no
-> primary function 2 given. This suggests the primary function for these
-> pins is actually RSB, and that is indeed the case.
->
-> Add the "s_rsb" pin functions so the RSB controller can be used.
->
-> Signed-off-by: Samuel Holland <samuel@sholland.org>
+On Fri, 18 Dec 2020 16:43:17 +0100, Nicolas Saenz Julienne wrote:
+> Firmware/co-processors might use reserved memory areas in order to pass
+> data stemming from an nvmem device otherwise non accessible to Linux.
+> For example an EEPROM memory only physically accessible to firmware, or
+> data only accessible early at boot time.
+> 
+> In order to expose this data to other drivers and user-space, the driver
+> models the reserved memory area as an nvmem device.
+> 
+> Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+> 
+> ---
+> 
+> Changes since v1:
+>  - Remove reserved memory phandle indirection by directly creating a
+>    platform device from the reserved memory DT node
+>  - Only map memory upon reading it to avoid corruption
+>  - Small cosmetic cleanups
+> 
+>  drivers/nvmem/Kconfig  |  8 ++++
+>  drivers/nvmem/Makefile |  2 +
+>  drivers/nvmem/rmem.c   | 97 ++++++++++++++++++++++++++++++++++++++++++
+>  drivers/of/platform.c  |  1 +
+>  4 files changed, 108 insertions(+)
+>  create mode 100644 drivers/nvmem/rmem.c
+> 
 
-Acked-by: Chen-Yu Tsai <wens@csie.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
