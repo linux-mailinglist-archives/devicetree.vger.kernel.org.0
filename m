@@ -2,81 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 72AEE2E97F7
-	for <lists+devicetree@lfdr.de>; Mon,  4 Jan 2021 16:02:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C79BE2E98B4
+	for <lists+devicetree@lfdr.de>; Mon,  4 Jan 2021 16:31:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726908AbhADPBR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Jan 2021 10:01:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36500 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726762AbhADPBQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jan 2021 10:01:16 -0500
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 438CDC061793
-        for <devicetree@vger.kernel.org>; Mon,  4 Jan 2021 07:00:24 -0800 (PST)
-Received: by mail-lf1-x12c.google.com with SMTP id o17so64988800lfg.4
-        for <devicetree@vger.kernel.org>; Mon, 04 Jan 2021 07:00:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=tR4uUSuiT2yNCjy2l75xxGnO77PWcJQ+DtWty5i0rMc=;
-        b=LJ/AsciYj2BKHcnJ73UgKyavCV9Qw6QPv4rj+dpkZQo3YhzjsIYgubutakzgyTilOD
-         BP9w87saYt2mwvs7pZCpYcL045gJziDe+nWIOEIroRJOnA/6w6C3nho2eTCijDeSKdjt
-         PBqhmEKevTBMFjsa0IcaooKAmbg3t91gOMxVs09uohr1nFJay1Z1SsD25Pw+7ggP08aJ
-         5qjrV116BFU7LMFDr/xS64uW5vVHC3/z159BsSxs/JhDkCYSr0Lhd9QeDmh2c6lqrcBl
-         BvcUQtSkdSewYsZD9JVB7IA4M8OtwXfkhg1fq/nM+bJu/vwBI0RnGutIae+G/ZtFnR4+
-         UEZg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=tR4uUSuiT2yNCjy2l75xxGnO77PWcJQ+DtWty5i0rMc=;
-        b=dXJttCPCJgph6trNooy199BdjTDH5J+icGSE0CpxqczSgMXBCsJvZV5qn2SN52+SeR
-         EQysA7MwANAPdyOtltEkkuQXTlz+E0oApImr4Za0m0WDzhb96F4nzZVOA+oSUUf0gQiL
-         541xlLnR+wpEsTzHrKBqZxelo55H40R1Hh7LKgmr+K1I+yeGESAvtycldwnRHRU3D9Lh
-         Q7PHZESSPv7S2R/ziQyfVok0bi1al7Rpk6vx4DPHlGUcnlicr90HNUJD5K3qRuYdf7bR
-         8uaoBfw8yiih2AUt47TkNUBYZ7e5nOGN8oZK6OOsTnat8Hbmaac7XDkUTrfLI68YDV91
-         YU6Q==
-X-Gm-Message-State: AOAM530IrUlQ0n6jh6tirehKp317GkyOt+0fqRC10bj6oHnC9xJWgQKQ
-        iFwNm5TdXEnMCCJ+UZonMf+SK1m47x92Ca4R/xrvQw==
-X-Google-Smtp-Source: ABdhPJw8BDy+1PA7BTXsFDKivU2qz6c7DgAaqRK4RmPbkQPgVpVra4mzO3RTstCIcQRAlI3tqm7JphEKl6JVoakBr3M=
-X-Received: by 2002:a05:6512:74e:: with SMTP id c14mr34844158lfs.529.1609772422734;
- Mon, 04 Jan 2021 07:00:22 -0800 (PST)
+        id S1726246AbhADPbN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Jan 2021 10:31:13 -0500
+Received: from relay04.th.seeweb.it ([5.144.164.165]:54421 "EHLO
+        relay04.th.seeweb.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725830AbhADPbN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jan 2021 10:31:13 -0500
+X-Greylist: delayed 136794 seconds by postgrey-1.27 at vger.kernel.org; Mon, 04 Jan 2021 10:31:12 EST
+Received: from [192.168.1.101] (abaf53.neoplus.adsl.tpnet.pl [83.6.169.53])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id C2C981FFD5;
+        Mon,  4 Jan 2021 16:30:13 +0100 (CET)
+Subject: Re: [PATCH 4/5] clk: qcom: Add A7 PLL support
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+        jassisinghbrar@gmail.com
+Cc:     viresh.kumar@linaro.org, ulf.hansson@linaro.org,
+        bjorn.andersson@linaro.org, agross@kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org
+References: <20210104081125.147300-1-manivannan.sadhasivam@linaro.org>
+ <20210104081125.147300-5-manivannan.sadhasivam@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@somainline.org>
+Message-ID: <a880d96f-d879-52d0-48ff-cbcdb88a3f29@somainline.org>
+Date:   Mon, 4 Jan 2021 16:30:11 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.0
 MIME-Version: 1.0
-References: <20201217144338.3129140-1-nobuhiro1.iwamatsu@toshiba.co.jp> <20201217144338.3129140-5-nobuhiro1.iwamatsu@toshiba.co.jp>
-In-Reply-To: <20201217144338.3129140-5-nobuhiro1.iwamatsu@toshiba.co.jp>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Mon, 4 Jan 2021 16:00:11 +0100
-Message-ID: <CACRpkdb--GSy-0vnAFS9Pik4TjrNRTrYeZr2RBZD6SFM8zotyQ@mail.gmail.com>
-Subject: Re: [PATCH v5 4/4] arm: dts: visconti: Add DT support for Toshiba
- Visconti5 GPIO driver
-To:     Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Punit Agrawal <punit1.agrawal@toshiba.co.jp>,
-        yuji2.ishikawa@toshiba.co.jp,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20210104081125.147300-5-manivannan.sadhasivam@linaro.org>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 17, 2020 at 6:45 AM Nobuhiro Iwamatsu
-<nobuhiro1.iwamatsu@toshiba.co.jp> wrote:
+Hi,
 
-> Add the GPIO node in Toshiba Visconti5 SoC-specific DT file.
-> And enable the GPIO node in TMPV7708 RM main board's board-specific DT file.
->
-> Signed-off-by: Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-> Reviewed-by: Punit Agrawal <punit1.agrawal@toshiba.co.jp>
+could you explicitly state in the probe function (or just in the driver in general, as there's not much more?) and the config structs that the target SoC is X55?
 
-Acked-by: Linus Walleij <linus.walleij@linaro.org>
+A few more SoCs (MDM9607, MSM8x26 and some others) also use what's known as "A7PLL" downstream, but all of them have a separate configuration for their specific PLLs, which aren't compatible with each other.
 
-Please funnel this patch through the ARM SoC tree.
 
-Yours,
-Linus Walleij
+Konrad
+
