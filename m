@@ -2,145 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E6F7C2E9311
-	for <lists+devicetree@lfdr.de>; Mon,  4 Jan 2021 11:06:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CC73B2E931C
+	for <lists+devicetree@lfdr.de>; Mon,  4 Jan 2021 11:08:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726360AbhADKEb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Jan 2021 05:04:31 -0500
-Received: from mail.kernel.org ([198.145.29.99]:47808 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725468AbhADKEa (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 4 Jan 2021 05:04:30 -0500
-Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 7D5D020769;
-        Mon,  4 Jan 2021 10:03:49 +0000 (UTC)
-Received: from disco-boy.misterjones.org ([51.254.78.96] helo=www.loen.fr)
-        by disco-boy.misterjones.org with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        (Exim 4.94)
-        (envelope-from <maz@kernel.org>)
-        id 1kwMiJ-005Blr-DU; Mon, 04 Jan 2021 10:03:47 +0000
+        id S1726189AbhADKHs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Jan 2021 05:07:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47086 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726129AbhADKHs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jan 2021 05:07:48 -0500
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B2B6C061574;
+        Mon,  4 Jan 2021 02:07:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+         bh=iB8VDERroWSABUgrwCWnEDI6F4BOeb/hqsj74gIV3e0=; b=LH4HYLWkGGII5XUQ2r73l9+OB
+        v+uGv8xtz0PQ2Xo3txuxTvVg1aF30JDIkUnuH7qYSCfIuJ6S7Mxnx8iUWsnGqpXx92hfgWUS741pi
+        bCt157/gu31tIf2/QdDIw8KgztgV1QjbDl4o5bmSBR2kfNVrzQcnXgpF3vnCGrGTXwlC2HteSYfe2
+        eAW/zC1Q+yjDqBkrysGm0dD8Aov6/GL31c2PgrUCxX/R5+vUSxjHZUFibeSjy6XFyPYnefIyHDOBG
+        DDpL7iZ0RWBydZegbjrVeZ4VnonuaGGeWwZKOyGOJfxbUO+xlsyw96VsFGmWzmpcfvY4aVLpyen7v
+        3QnO10/EA==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:45052)
+        by pandora.armlinux.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <linux@armlinux.org.uk>)
+        id 1kwMlO-0008CR-Qk; Mon, 04 Jan 2021 10:06:58 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.92)
+        (envelope-from <linux@shell.armlinux.org.uk>)
+        id 1kwMlJ-0006gY-Fm; Mon, 04 Jan 2021 10:06:53 +0000
+Date:   Mon, 4 Jan 2021 10:06:53 +0000
+From:   Russell King - ARM Linux admin <linux@armlinux.org.uk>
+To:     Baruch Siach <baruch@tkos.co.il>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+        linux-pwm@vger.kernel.org,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        Chris Packham <chris.packham@alliedtelesis.co.nz>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Ralph Sennhauser <ralph.sennhauser@gmail.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        linux-arm-kernel@lists.infradead.org,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>
+Subject: Re: [PATCH v4 1/3] gpio: mvebu: add pwm support for Armada 8K/7K
+Message-ID: <20210104100653.GB1551@shell.armlinux.org.uk>
+References: <cover.1607601615.git.baruch@tkos.co.il>
+ <61a022834dce86eefa3144e696078946f332bdfe.1607601615.git.baruch@tkos.co.il>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Mon, 04 Jan 2021 10:03:47 +0000
-From:   Marc Zyngier <maz@kernel.org>
-To:     Samuel Holland <samuel@sholland.org>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Russell King <linux@armlinux.org.uk>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Ondrej Jirman <megous@megous.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 03/10] irqchip/sun6i-r: Use a stacked irqchip driver
-In-Reply-To: <8c1eaddd-577b-9c2a-aa6a-9ee716178d4a@sholland.org>
-References: <20210103103101.33603-1-samuel@sholland.org>
- <20210103103101.33603-4-samuel@sholland.org> <875z4el0p2.wl-maz@kernel.org>
- <66a7eb24-66c7-d5e6-1235-aa6846c5eef2@sholland.org>
- <8735zikvyq.wl-maz@kernel.org>
- <8c1eaddd-577b-9c2a-aa6a-9ee716178d4a@sholland.org>
-User-Agent: Roundcube Webmail/1.4.9
-Message-ID: <a9359739794dc803723c9a6750a96474@kernel.org>
-X-Sender: maz@kernel.org
-X-SA-Exim-Connect-IP: 51.254.78.96
-X-SA-Exim-Rcpt-To: samuel@sholland.org, tglx@linutronix.de, robh+dt@kernel.org, mripard@kernel.org, wens@csie.org, jernej.skrabec@siol.net, linux@armlinux.org.uk, catalin.marinas@arm.com, will@kernel.org, megous@megous.com, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <61a022834dce86eefa3144e696078946f332bdfe.1607601615.git.baruch@tkos.co.il>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Sender: Russell King - ARM Linux admin <linux@armlinux.org.uk>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-01-04 03:46, Samuel Holland wrote:
-> On 1/3/21 7:10 AM, Marc Zyngier wrote:
->> On Sun, 03 Jan 2021 12:08:43 +0000,
->> Samuel Holland <samuel@sholland.org> wrote:
->>> 
->>> On 1/3/21 5:27 AM, Marc Zyngier wrote:
+On Thu, Dec 10, 2020 at 02:15:58PM +0200, Baruch Siach wrote:
+> @@ -781,51 +787,80 @@ static int mvebu_pwm_probe(struct platform_device *pdev,
+>  	struct device *dev = &pdev->dev;
+>  	struct mvebu_pwm *mvpwm;
+>  	void __iomem *base;
+> +	u32 offset;
+>  	u32 set;
+>  
+> -	if (!of_device_is_compatible(mvchip->chip.of_node,
+> -				     "marvell,armada-370-gpio"))
+> -		return 0;
+> -
+> -	/*
+> -	 * There are only two sets of PWM configuration registers for
+> -	 * all the GPIO lines on those SoCs which this driver reserves
+> -	 * for the first two GPIO chips. So if the resource is missing
+> -	 * we can't treat it as an error.
+> -	 */
+> -	if (!platform_get_resource_byname(pdev, IORESOURCE_MEM, "pwm"))
+> +	if (of_device_is_compatible(mvchip->chip.of_node,
+> +				    "marvell,armada-370-gpio")) {
+> +		/*
+> +		 * There are only two sets of PWM configuration registers for
+> +		 * all the GPIO lines on those SoCs which this driver reserves
+> +		 * for the first two GPIO chips. So if the resource is missing
+> +		 * we can't treat it as an error.
+> +		 */
+> +		if (!platform_get_resource_byname(pdev, IORESOURCE_MEM, "pwm"))
+> +			return 0;
+> +		offset = 0;
+> +	} else if (mvchip->soc_variant == MVEBU_GPIO_SOC_VARIANT_A8K) {
+> +		int ret = of_property_read_u32(dev->of_node,
+> +					       "marvell,pwm-offset", &offset);
+> +		if (ret < 0)
+> +			return 0;
 
-[...]
+The reason my patches were rejected was because I was trying to keep
+compatibility with the existing DTs w.r.t the clock - and Uwe didn't
+like that.
 
->>> For edge interrupts, don't you want to ack as early as possible,
->>> before the handler clears the source of the interrupt? That way if a
->>> second interrupt comes in while you're handling the first one, you
->>> don't ack the second one without handling it?
->> 
->> It completely depends on what this block does. If, as I expect, it
->> latches the interrupt, then it needs clearing after the GIC has acked
->> the incoming interrupt.
-> 
-> Yes, there is an internal S/R latch.
->  - For edge interrupts, the latch is set once for each pulse.
->  - For level interrupts, it gets set continuously as long as the
->    pin is high/low.
->  - Writing a "1" to bit 0 of PENDING resets the latch.
->  - The output of the latch goes to the GIC.
-> 
->>>> It also begs the question: why would you want to clear the signal to
->>>> the GIC on mask (or unmask)? The expectations are that a pending
->>>> interrupt is preserved across a mask/unmask sequence.
->>> 
->>> I hadn't thought about anything masking the IRQ outside of the
->>> handler; but you're right, this breaks that case. I'm trying to work
->>> within the constraints of stacking the GIC driver, which assumes
->>> handle_fasteoi_irq, so it sounds like I should switch back to
->>> handle_fasteoi_ack_irq and use .irq_ack. Or based on your previous
->>> paragraph, maybe I'm missing some other consideration?
->> 
->> handle_fasteoi_ack_irq() sounds like a good match for edge
->> interrupts. Do you actually need to do anything for level signals? If
->> you do, piggybacking on .irq_eoi would do the trick.
-> 
-> For level interrupts, I have to reset the latch (see above) after the 
-> source of
-> the interrupt is cleared.
+I notice that you keep compatibility by detecting the presence or
+absence of the marvell,pwm-offset property which achieves the same
+goal.
 
-Right, so that is definitely to be done in .irq_eoi, at least in the
-non-threaded case (as it doesn't involve masking/unmasking).
+Also, you are missing fixing a bug in the PWM register calculations
+for get_state().
 
-> That was the bug with v2: I set IRQ_EOI_THREADED so .irq_eoi would run 
-> after the
-> thread. But with GICv2 EOImode==0, that blocked other interrupts from 
-> being
-> received during the IRQ thread. Which is why I moved it to .irq_unmask 
-> and
-> removed the flag: so .irq_eoi runs at the end of the hardirq 
-> (unblocking further
-> interrupts at the GIC), and .irq_unmask resets the latch at the end of
-> the thread.
-> 
-> With the flag removed, but still clearing the latch in .irq_eoi, every 
-> edge IRQ
-
-edge? Didn't you mean level here? Edge interrupts really should clear
-the latch in .irq_ack.
-
-> was followed by a second, spurious IRQ after the thread finished.
-> 
-> Does that make sense?
-
-It does. It is a bit of a kludge, but hey, silly HW (if only this could 
-be
-turned into a bypass, it'd all be simpler).
-
-To sum it up, this is what I'd expect to see:
-
-For edge interrupts:
-- clear latch in .irq_ack and .irq_set_irqchip_state(PENDING)
-- interrupt flow set to fasteoi_ack
-
-For level interrupts
-- clear latch in .irq_eoi (non-threaded) and .irq_unmask (threaded)
-- interrupt flow set to fasteoi (though leaving to the _ack version
-   should not hurt).
-
-Thanks,
-
-         M.
 -- 
-Jazz is not dead. It just smells funny...
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
