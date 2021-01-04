@@ -2,186 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AD29E2E91AE
-	for <lists+devicetree@lfdr.de>; Mon,  4 Jan 2021 09:24:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E2EC12E91C1
+	for <lists+devicetree@lfdr.de>; Mon,  4 Jan 2021 09:32:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726567AbhADIYI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Jan 2021 03:24:08 -0500
-Received: from esa.microchip.iphmx.com ([68.232.153.233]:54806 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726278AbhADIYI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jan 2021 03:24:08 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1609748647; x=1641284647;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=gp0CFQRZ5FxZ0LK9GyNyeJ3bFuor8ddJpyhyjnRbeTY=;
-  b=2pygeAdMtymm6eaC7JHtNVYGQ2sCM/3xsoDb06iy/9GCioPY2lCXMQ+p
-   KkC224fJQ/bZyGnlbAKhC72UX40mlSdnwJFgNNRZ8Y3+u8jBZa3rzGj/G
-   OA/2VpF7tvVgR65E4sFMazfnakdKaBUhImaSL0KHmqS1idtfHmlaOLGmf
-   6KJGeSQhszHwdRBQ5gb5B84i06gDkaWrkCFcUC9f64fDSFF1FYpHKj04f
-   srNRWUNNNKrZR/B0Yuk72D2dHcKIBtzuSx/q+tt/I8xeup4K3DHLMpshh
-   CHr9GYe0mbE2To4uQ/krBqhl59E87PgF9gI8KTINV+fwlBnYI9WF4aBfJ
-   g==;
-IronPort-SDR: vleUMH3zOkVsCA9wn0qFSYoJBXD0ojT+wKmjWVwPt0VF/V+18fcNW8f0YD0r7MqIVhdO2I+5Rf
- krYECU5+U80BkNtOf5KpBtVKnJGoMz5twxTQUS0M35aWU9ASVWzGD0e5HhvRH/c4eTHzcBmjlP
- 3tsL3ws2n4TZ7o7++BSI0UhzpEax2aZpCCpNjuEG5REYf/PdRs4LvtyYrfCjyenEj41wYeruDq
- gkFHDdFyTuJQ9lktcupiKb76ESBKaMxnOZqMqSdx5RiqYrhn2mWm4Wi0N5a5Fu0xDqf+hkT9oP
- Vf4=
-X-IronPort-AV: E=Sophos;i="5.78,473,1599548400"; 
-   d="scan'208";a="109665952"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 04 Jan 2021 01:23:18 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1979.3; Mon, 4 Jan 2021 01:22:30 -0700
-Received: from mchp-dev-shegelun.microchip.com (10.10.115.15) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
- 15.1.1979.3 via Frontend Transport; Mon, 4 Jan 2021 01:22:27 -0700
-From:   Steen Hegelund <steen.hegelund@microchip.com>
-To:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        Device Tree List <devicetree@vger.kernel.org>
-CC:     Steen Hegelund <steen.hegelund@microchip.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Lars Povlsen <lars.povlsen@microchip.com>,
-        Bjarni Jonasson <bjarni.jonasson@microchip.com>,
-        Microchip UNG Driver List <UNGLinuxDriver@microchip.com>,
-        <netdev@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh@kernel.org>, Andrew Lunn <andrew@lunn.ch>
-Subject: [PATCH v11 1/4] dt-bindings: phy: Add sparx5-serdes bindings
-Date:   Mon, 4 Jan 2021 09:22:15 +0100
-Message-ID: <20210104082218.1389450-2-steen.hegelund@microchip.com>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210104082218.1389450-1-steen.hegelund@microchip.com>
-References: <20210104082218.1389450-1-steen.hegelund@microchip.com>
+        id S1726289AbhADIcc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Jan 2021 03:32:32 -0500
+Received: from mail.kernel.org ([198.145.29.99]:36192 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726258AbhADIcb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 4 Jan 2021 03:32:31 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id C3C9A20798;
+        Mon,  4 Jan 2021 08:31:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1609749110;
+        bh=/l4LNgcZQuQKp8LjOcoiZ+3D5i2u+KxinFDst/ZT+Xw=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=bH9nLgUy6rQaKDLX1sw1beUf9Aq83lpTkkF5ADT9W2qKlL12x7qcISW2nja3aqI1Y
+         WzpG1HIteKGSrWtfL4/MJWWFZPBQZigPtLn7owPGJgh1SKwM/Z0NWd4326bSyG2UVp
+         cbtkAJ/BJ+ksAQAWS715qAMvFPntnXind4CHexEHnKoDA38+VGZGUq5N3KFvPcQKRJ
+         umggJKKxXJrxQebYyCNBK4D1yb/2Cva4LLilwnlwEgsxwCT0/1TdV5UeDY3sdvXAvG
+         TRTNprpXnycMUQpKcKL+L1jkCD7tuLfQvRYX6/z0/rd93m1CzYF32NtvmESwNcScE6
+         VCK/MmB55ljqQ==
+Received: by wens.tw (Postfix, from userid 1000)
+        id A190F5F823; Mon,  4 Jan 2021 16:31:48 +0800 (CST)
+Date:   Mon, 4 Jan 2021 16:31:48 +0800
+From:   Chen-Yu Tsai <wens@kernel.org>
+To:     Samuel Holland <samuel@sholland.org>
+Cc:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Andre Przywara <andre.przywara@arm.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com
+Subject: Re: [linux-sunxi] [PATCH v2 0/4] Allwinner H6 RSB support
+Message-ID: <X/LSdICpXl6vT65y@wens.csie.org>
+References: <20210103100007.32867-1-samuel@sholland.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210103100007.32867-1-samuel@sholland.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document the Sparx5 ethernet serdes phy driver bindings.
+Hi,
 
-Signed-off-by: Lars Povlsen <lars.povlsen@microchip.com>
-Signed-off-by: Steen Hegelund <steen.hegelund@microchip.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
----
- .../bindings/phy/microchip,sparx5-serdes.yaml | 100 ++++++++++++++++++
- 1 file changed, 100 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/phy/microchip,sparx5-serdes.yaml
+On Sun, Jan 03, 2021 at 04:00:03AM -0600, Samuel Holland wrote:
+> The Allwinner H6 SoC contains an RSB controller. It is almost completely
+> undocumented, so it was missed when doing the initial SoC bringup.
+> 
+> This series adds the clock/reset, pin configuration, and device tree
+> node needed to use the RSB controller. Since RSB is faster, simpler, and
+> generally more reliable than the I2C controller IP in the SoC, switch to
+> using it where possible.
+> 
+> This was tested on an Orange Pi 3 and a Pine H64 model B. This series
+> does not switch the Pine H64 to use RSB, as doing so would prevent
+> accessing the external RTC that shares the I2C bus.
+> 
+> Changes v1->v2:
+>   - Put the new values at the end of the DT binding headers
+> 
+> Samuel Holland (4):
+>   clk: sunxi-ng: h6-r: Add R_APB2_RSB clock and reset
+>   pinctrl: sunxi: h6-r: Add s_rsb pin functions
+>   arm64: dts: allwinner: h6: Add RSB controller node
+>   arm64: dts: allwinner: h6: Use RSB for AXP805 PMIC connection
 
-diff --git a/Documentation/devicetree/bindings/phy/microchip,sparx5-serdes.yaml b/Documentation/devicetree/bindings/phy/microchip,sparx5-serdes.yaml
-new file mode 100644
-index 000000000000..bdbdb3bbddbe
---- /dev/null
-+++ b/Documentation/devicetree/bindings/phy/microchip,sparx5-serdes.yaml
-@@ -0,0 +1,100 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/phy/microchip,sparx5-serdes.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Microchip Sparx5 Serdes controller
-+
-+maintainers:
-+  - Steen Hegelund <steen.hegelund@microchip.com>
-+
-+description: |
-+  The Sparx5 SERDES interfaces share the same basic functionality, but
-+  support different operating modes and line rates.
-+
-+  The following list lists the SERDES features:
-+
-+  * RX Adaptive Decision Feedback Equalizer (DFE)
-+  * Programmable continuous time linear equalizer (CTLE)
-+  * Rx variable gain control
-+  * Rx built-in fault detector (loss-of-lock/loss-of-signal)
-+  * Adjustable tx de-emphasis (FFE)
-+  * Tx output amplitude control
-+  * Supports rx eye monitor
-+  * Multiple loopback modes
-+  * Prbs generator and checker
-+  * Polarity inversion control
-+
-+  SERDES6G:
-+
-+  The SERDES6G is a high-speed SERDES interface, which can operate at
-+  the following data rates:
-+
-+  * 100 Mbps (100BASE-FX)
-+  * 1.25 Gbps (SGMII/1000BASE-X/1000BASE-KX)
-+  * 3.125 Gbps (2.5GBASE-X/2.5GBASE-KX)
-+  * 5.15625 Gbps (5GBASE-KR/5G-USXGMII)
-+
-+  SERDES10G
-+
-+  The SERDES10G is a high-speed SERDES interface, which can operate at
-+  the following data rates:
-+
-+  * 100 Mbps (100BASE-FX)
-+  * 1.25 Gbps (SGMII/1000BASE-X/1000BASE-KX)
-+  * 3.125 Gbps (2.5GBASE-X/2.5GBASE-KX)
-+  * 5 Gbps (QSGMII/USGMII)
-+  * 5.15625 Gbps (5GBASE-KR/5G-USXGMII)
-+  * 10 Gbps (10G-USGMII)
-+  * 10.3125 Gbps (10GBASE-R/10GBASE-KR/USXGMII)
-+
-+  SERDES25G
-+
-+  The SERDES25G is a high-speed SERDES interface, which can operate at
-+  the following data rates:
-+
-+  * 1.25 Gbps (SGMII/1000BASE-X/1000BASE-KX)
-+  * 3.125 Gbps (2.5GBASE-X/2.5GBASE-KX)
-+  * 5 Gbps (QSGMII/USGMII)
-+  * 5.15625 Gbps (5GBASE-KR/5G-USXGMII)
-+  * 10 Gbps (10G-USGMII)
-+  * 10.3125 Gbps (10GBASE-R/10GBASE-KR/USXGMII)
-+  * 25.78125 Gbps (25GBASE-KR/25GBASE-CR/25GBASE-SR/25GBASE-LR/25GBASE-ER)
-+
-+properties:
-+  $nodename:
-+    pattern: "^serdes@[0-9a-f]+$"
-+
-+  compatible:
-+    const: microchip,sparx5-serdes
-+
-+  reg:
-+    minItems: 1
-+
-+  '#phy-cells':
-+    const: 1
-+    description: |
-+      - The main serdes input port
-+
-+  clocks:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - '#phy-cells'
-+  - clocks
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    serdes: serdes@10808000 {
-+      compatible = "microchip,sparx5-serdes";
-+      #phy-cells = <1>;
-+      clocks = <&sys_clk>;
-+      reg = <0x10808000 0x5d0000>;
-+    };
-+
-+...
--- 
-2.29.2
+I queued up patches 1, 3, and 4 locally for v5.12. Obviously this won't
+work unless the pinctrl patch is also queued up, so they won't be pushed
+out until that happens.
 
+Regarding patch 3, I replaced the clock and reset macros with raw
+numbers to get rid of cross-tree dependencies. The following fix
+will be posted for v5.12 later on during its RC cycle.
+
+------------------------ >8 ------------------------
+
+commit 0b4781666adc5e19c4d4fb4a2bff33883181cc39
+Author: Chen-Yu Tsai <wens@csie.org>
+Date:   Mon Jan 4 16:19:17 2021 +0800
+
+    arm64: dts: allwinner: h6: Switch to macros for RSB clock/reset indices
+    
+    The macros for the clock and reset indices for the RSB hardware block
+    were replaced with raw numbers when the RSB controller node was added.
+    This was done to avoid cross-tree dependencies.
+    
+    Now that both the clk and DT changes have been merged, we can switch
+    back to using the macros.
+    
+    Signed-off-by: Chen-Yu Tsai <wens@csie.org>
+
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
+index d897697849d6..b043beea8e6e 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
++++ b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
+@@ -988,9 +988,9 @@ r_rsb: rsb@7083000 {
+ 			compatible = "allwinner,sun8i-a23-rsb";
+ 			reg = <0x07083000 0x400>;
+ 			interrupts = <GIC_SPI 108 IRQ_TYPE_LEVEL_HIGH>;
+-			clocks = <&r_ccu 13>;
++			clocks = <&r_ccu CLK_R_APB2_RSB>;
+ 			clock-frequency = <3000000>;
+-			resets = <&r_ccu 7>;
++			resets = <&r_ccu RST_R_APB2_RSB>;
+ 			pinctrl-names = "default";
+ 			pinctrl-0 = <&r_rsb_pins>;
+ 			status = "disabled";
+------------------------ >8 ------------------------
+
+> 
+>  .../dts/allwinner/sun50i-h6-beelink-gs1.dts   | 38 +++++++++----------
+>  .../dts/allwinner/sun50i-h6-orangepi-3.dts    | 14 +++----
+>  .../dts/allwinner/sun50i-h6-orangepi.dtsi     | 22 +++++------
+>  arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi  | 19 ++++++++++
+>  drivers/clk/sunxi-ng/ccu-sun50i-h6-r.c        |  5 +++
+>  drivers/clk/sunxi-ng/ccu-sun50i-h6-r.h        |  2 +-
+>  drivers/pinctrl/sunxi/pinctrl-sun50i-h6-r.c   |  2 +
+>  include/dt-bindings/clock/sun50i-h6-r-ccu.h   |  2 +
+>  include/dt-bindings/reset/sun50i-h6-r-ccu.h   |  1 +
+>  9 files changed, 67 insertions(+), 38 deletions(-)
+> 
+> -- 
+> 2.26.2
+> 
+> -- 
+> You received this message because you are subscribed to the Google Groups "linux-sunxi" group.
+> To unsubscribe from this group and stop receiving emails from it, send an email to linux-sunxi+unsubscribe@googlegroups.com.
+> To view this discussion on the web, visit https://groups.google.com/d/msgid/linux-sunxi/20210103100007.32867-1-samuel%40sholland.org.
