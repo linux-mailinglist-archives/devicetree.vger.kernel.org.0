@@ -2,127 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B665A2E9522
-	for <lists+devicetree@lfdr.de>; Mon,  4 Jan 2021 13:44:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 006DC2E9538
+	for <lists+devicetree@lfdr.de>; Mon,  4 Jan 2021 13:46:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726512AbhADMmu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Jan 2021 07:42:50 -0500
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:56502 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726278AbhADMmt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jan 2021 07:42:49 -0500
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 104Cg1Ai098496;
-        Mon, 4 Jan 2021 06:42:01 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1609764121;
-        bh=k3u+AVmoyV8AjjDEAKA55tnZJ8Kv6tWdf0rL6Di5au0=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=rAdjzeiC8CQMcOEpvggErBwS75NZ7TMRGP9V6lb9vef9mNtJDUspxN4fmaS2gZRSC
-         e18ZIt+t8YPfxToVroEkRzXTYJjxfhfCEecaqiMuR7WAo/YuBdvCoK/Aucx7TE3iD9
-         xP3gGfDJhiWqpSVlpCqOuBceYby6d0jMLaAK0YrQ=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 104Cg1mM096157
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 4 Jan 2021 06:42:01 -0600
-Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Mon, 4 Jan
- 2021 06:41:26 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Mon, 4 Jan 2021 06:41:26 -0600
-Received: from a0393678-ssd.ent.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 104Cf3bk034579;
-        Mon, 4 Jan 2021 06:41:22 -0600
-From:   Kishon Vijay Abraham I <kishon@ti.com>
-To:     Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Tom Joseph <tjoseph@cadence.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Nadeem Athani <nadeem@cadence.com>
-CC:     <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-omap@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-Subject: [PATCH v2 4/4] PCI: j721e: Add support to provide refclk to PCIe connector
-Date:   Mon, 4 Jan 2021 18:11:03 +0530
-Message-ID: <20210104124103.30930-5-kishon@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210104124103.30930-1-kishon@ti.com>
-References: <20210104124103.30930-1-kishon@ti.com>
+        id S1726614AbhADMq1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Jan 2021 07:46:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43654 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726602AbhADMq0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jan 2021 07:46:26 -0500
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43DF8C061793
+        for <devicetree@vger.kernel.org>; Mon,  4 Jan 2021 04:45:46 -0800 (PST)
+Received: by mail-ed1-x536.google.com with SMTP id b2so27225052edm.3
+        for <devicetree@vger.kernel.org>; Mon, 04 Jan 2021 04:45:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=konsulko.com; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=CuNuwNPfijpuOBaWzlXtwbGMCXD1JMeJ1Mw1oOpUEwI=;
+        b=aMaSeiP7KGjA0OhAkOvLzSLVjFZdVsZ85/cizFv8E+NSdJRTvvX2B3Ni6fVe9sUKNq
+         qy1EaxZOrmPlwo1CyyvpUZirfa9fMK3WDNgjDhniKi1CDIgjYY7V2rkLKticUOnVADEl
+         R02Zu1Jfz60Yj9NjNqfUp+o8RbpJDe0ax1AvQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=CuNuwNPfijpuOBaWzlXtwbGMCXD1JMeJ1Mw1oOpUEwI=;
+        b=fNp7I8b6ixKEL6jQ0gIslbQahcUMfFDDtrRPjXA0gKssmzLKmkUrHwhgb0hh28icp/
+         haf8D25HoKGXETixcxMu01OREfLmGdQThjeeY7nouHgdyFF0GWz/o+0wPPNGuJb/TMpq
+         g/GSlT65L0Xd+Hn1uaPCitLrAe4SnFVFEQFirnHQAJ86NNP3aPxMUN7NLG8DfPiK4gRq
+         lJCW+iHN6VLlL4RlZUsK0GZlLOF1II4Y1rds6Q+bT/lOXrD90TPDmYBQ0YkCRnYlh66b
+         DGEhtNJYJS3vZMaYdMnR6UwTr+pOYqVmnwza9zZlACeRquQ1/pPo9UcaGF5C7JVRCsv0
+         WjlQ==
+X-Gm-Message-State: AOAM532H8pXFYoAwdRMEicYHjfO87LbRc1WfHg5tesNPvMHPaYyJ+F0s
+        qW/ctv5eY46Zdu7GT/fR7e26Pg==
+X-Google-Smtp-Source: ABdhPJz1KtHMUthPUBeUyVRx9fuh2PGb9Fx0q0E3aCfc4hmnurWmE0pnveDcE/KyB/+cWsFCHLfPjQ==
+X-Received: by 2002:aa7:c3cd:: with SMTP id l13mr69825763edr.97.1609764344822;
+        Mon, 04 Jan 2021 04:45:44 -0800 (PST)
+Received: from lootbox.konsulko.bg (lan.nucleusys.com. [92.247.61.126])
+        by smtp.gmail.com with ESMTPSA id r18sm25359916edx.41.2021.01.04.04.45.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 04 Jan 2021 04:45:44 -0800 (PST)
+From:   Vitaly Wool <vitaly.wool@konsulko.com>
+To:     linux-riscv@lists.infradead.org
+Cc:     linux-kernel@vger.kernel.org, Bin Meng <bin.meng@windriver.com>,
+        Anup Patel <anup@brainfault.org>,
+        Palmer Dabbelt <palmerdabbelt@google.com>,
+        damien.lemoal@wdc.com, devicetree@vger.kernel.org,
+        Vitaly Wool <vitaly.wool@konsulko.com>
+Subject: [PATCH v2] riscv: add BUILTIN_DTB support for MMU-enabled targets
+Date:   Mon,  4 Jan 2021 14:43:15 +0200
+Message-Id: <20210104124314.7489-1-vitaly.wool@konsulko.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support to provide refclk to PCIe connector.
+Sometimes, especially in a production system we may not want to
+use a "smart bootloader" like u-boot to load kernel, ramdisk and
+device tree from a filesystem on eMMC, but rather load the kernel
+from a NAND partition and just run it as soon as we can, and in
+this case it is convenient to have device tree compiled into the
+kernel binary. Since this case is not limited to MMU-less systems,
+let's support it for these which have MMU enabled too.
 
-Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
+Signed-off-by: Vitaly Wool <vitaly.wool@konsulko.com>
 ---
- drivers/pci/controller/cadence/pci-j721e.c | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
+Changelog from v1:
+* no direct initial_boot_params assignment
+* skips the temporary mapping for DT if BUILTIN_DTB=y 
 
-diff --git a/drivers/pci/controller/cadence/pci-j721e.c b/drivers/pci/controller/cadence/pci-j721e.c
-index dac1ac8a7615..2e73729c7388 100644
---- a/drivers/pci/controller/cadence/pci-j721e.c
-+++ b/drivers/pci/controller/cadence/pci-j721e.c
-@@ -6,6 +6,7 @@
-  * Author: Kishon Vijay Abraham I <kishon@ti.com>
-  */
+ arch/riscv/Kconfig   |  1 -
+ arch/riscv/mm/init.c | 15 +++++++++++++--
+ 2 files changed, 13 insertions(+), 3 deletions(-)
+
+diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
+index 81b76d44725d..07a8bdcc423f 100644
+--- a/arch/riscv/Kconfig
++++ b/arch/riscv/Kconfig
+@@ -416,7 +416,6 @@ endmenu
  
-+#include <linux/clk.h>
- #include <linux/delay.h>
- #include <linux/gpio/consumer.h>
- #include <linux/io.h>
-@@ -50,6 +51,7 @@ enum link_status {
+ config BUILTIN_DTB
+ 	def_bool n
+-	depends on RISCV_M_MODE
+ 	depends on OF
  
- struct j721e_pcie {
- 	struct device		*dev;
-+	struct clk		*refclk;
- 	u32			mode;
- 	u32			num_lanes;
- 	struct cdns_pcie	*cdns_pcie;
-@@ -310,6 +312,7 @@ static int j721e_pcie_probe(struct platform_device *pdev)
- 	struct cdns_pcie_ep *ep;
- 	struct gpio_desc *gpiod;
- 	void __iomem *base;
-+	struct clk *clk;
- 	u32 num_lanes;
- 	u32 mode;
- 	int ret;
-@@ -408,6 +411,20 @@ static int j721e_pcie_probe(struct platform_device *pdev)
- 			goto err_get_sync;
- 		}
+ menu "Power management options"
+diff --git a/arch/riscv/mm/init.c b/arch/riscv/mm/init.c
+index 13ba533f462b..04aeee276817 100644
+--- a/arch/riscv/mm/init.c
++++ b/arch/riscv/mm/init.c
+@@ -191,10 +191,13 @@ void __init setup_bootmem(void)
+ #endif /* CONFIG_BLK_DEV_INITRD */
  
-+		clk = devm_clk_get_optional(dev, "pcie_refclk");
-+		if (IS_ERR(clk)) {
-+			dev_err(dev, "failed to get pcie_refclk\n");
-+			ret = PTR_ERR(clk);
-+			goto err_pcie_setup;
-+		}
-+
-+		ret = clk_prepare_enable(clk);
-+		if (ret) {
-+			dev_err(dev, "failed to enable pcie_refclk\n");
-+			goto err_get_sync;
-+		}
-+		pcie->refclk = clk;
-+
- 		/*
- 		 * "Power Sequencing and Reset Signal Timings" table in
- 		 * PCI EXPRESS CARD ELECTROMECHANICAL SPECIFICATION, REV. 3.0
-@@ -476,6 +493,7 @@ static int j721e_pcie_remove(struct platform_device *pdev)
- 	struct cdns_pcie *cdns_pcie = pcie->cdns_pcie;
- 	struct device *dev = &pdev->dev;
+ 	/*
+-	 * Avoid using early_init_fdt_reserve_self() since __pa() does
++	 * If DTB is built in, no need to reserve its memblock.
++	 * Otherwise, do reserve it but avoid using
++	 * early_init_fdt_reserve_self() since __pa() does
+ 	 * not work for DTB pointers that are fixmap addresses
+ 	 */
+-	memblock_reserve(dtb_early_pa, fdt_totalsize(dtb_early_va));
++	if (!IS_ENABLED(CONFIG_BUILTIN_DTB))
++		memblock_reserve(dtb_early_pa, fdt_totalsize(dtb_early_va));
  
-+	clk_disable_unprepare(pcie->refclk);
- 	cdns_pcie_disable_phy(cdns_pcie);
- 	pm_runtime_put(dev);
- 	pm_runtime_disable(dev);
+ 	early_init_fdt_scan_reserved_mem();
+ 	dma_contiguous_reserve(dma32_phys_limit);
+@@ -499,6 +502,7 @@ asmlinkage void __init setup_vm(uintptr_t dtb_pa)
+ 	/* Setup early PMD for DTB */
+ 	create_pgd_mapping(early_pg_dir, DTB_EARLY_BASE_VA,
+ 			   (uintptr_t)early_dtb_pmd, PGDIR_SIZE, PAGE_TABLE);
++#ifndef CONFIG_BUILTIN_DTB
+ 	/* Create two consecutive PMD mappings for FDT early scan */
+ 	pa = dtb_pa & ~(PMD_SIZE - 1);
+ 	create_pmd_mapping(early_dtb_pmd, DTB_EARLY_BASE_VA,
+@@ -506,7 +510,11 @@ asmlinkage void __init setup_vm(uintptr_t dtb_pa)
+ 	create_pmd_mapping(early_dtb_pmd, DTB_EARLY_BASE_VA + PMD_SIZE,
+ 			   pa + PMD_SIZE, PMD_SIZE, PAGE_KERNEL);
+ 	dtb_early_va = (void *)DTB_EARLY_BASE_VA + (dtb_pa & (PMD_SIZE - 1));
++#else /* CONFIG_BUILTIN_DTB */
++	dtb_early_va = __va(dtb_pa);
++#endif /* CONFIG_BUILTIN_DTB */
+ #else
++#ifndef CONFIG_BUILTIN_DTB
+ 	/* Create two consecutive PGD mappings for FDT early scan */
+ 	pa = dtb_pa & ~(PGDIR_SIZE - 1);
+ 	create_pgd_mapping(early_pg_dir, DTB_EARLY_BASE_VA,
+@@ -514,6 +522,9 @@ asmlinkage void __init setup_vm(uintptr_t dtb_pa)
+ 	create_pgd_mapping(early_pg_dir, DTB_EARLY_BASE_VA + PGDIR_SIZE,
+ 			   pa + PGDIR_SIZE, PGDIR_SIZE, PAGE_KERNEL);
+ 	dtb_early_va = (void *)DTB_EARLY_BASE_VA + (dtb_pa & (PGDIR_SIZE - 1));
++#else /* CONFIG_BUILTIN_DTB */
++	dtb_early_va = __va(dtb_pa);
++#endif /* CONFIG_BUILTIN_DTB */
+ #endif
+ 	dtb_early_pa = dtb_pa;
+ 
 -- 
-2.17.1
+2.20.1
 
