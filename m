@@ -2,56 +2,44 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 282E62E9F7C
-	for <lists+devicetree@lfdr.de>; Mon,  4 Jan 2021 22:26:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B0592E9F94
+	for <lists+devicetree@lfdr.de>; Mon,  4 Jan 2021 22:33:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726026AbhADVZ5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Jan 2021 16:25:57 -0500
-Received: from mail.kernel.org ([198.145.29.99]:39598 "EHLO mail.kernel.org"
+        id S1726718AbhADVcj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Jan 2021 16:32:39 -0500
+Received: from mail.kernel.org ([198.145.29.99]:40810 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725921AbhADVZ5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 4 Jan 2021 16:25:57 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id F0401216C4;
-        Mon,  4 Jan 2021 21:25:15 +0000 (UTC)
+        id S1726680AbhADVcj (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 4 Jan 2021 16:32:39 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 4023F216C4;
+        Mon,  4 Jan 2021 21:31:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1609795516;
-        bh=ENuN3yW4AW1o6Z39AIixJU3HWpYwrvRogBcKSXsjZPI=;
+        s=k20201202; t=1609795918;
+        bh=jGhGboXJLgp83o7a+zf9VPQq6PttDfIBMW/Cujx0Z6c=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=IDb5rwA/zMWUNyO+pboCFAAgX12vqdTkFlumCsmAim1FSponJel41VPzIXa/pK4qs
-         eNVFlZjx344b3sPtocDH5AOxyah5I0VS01awbekP+/VB52yzjraMLcDQU7wBFWTrlV
-         8aZEJPUwsXeN8+Qc6HKZfP0gIkA58Q/tUBI2FwzeXp+dEB41iVjx28QGgwZamJVyNI
-         zXqmzaP0rNOKaK0e42V3MgCR+kzV1gOlr4m/q321iXqgcF56IYLpTZWMJXfwrezhiT
-         1mDDlfzfVbGkg3qxr1VfNIlQXcnAOmJV0rMWBu5BJ4wXO74mI18LOuit/7/35rodZY
-         fQ/PfBzUCum1w==
-Date:   Mon, 4 Jan 2021 21:24:49 +0000
+        b=kTWb+fz3CvA3RbZMI/d0XAbWS/8yPs4ixn9QK87DyhrDLdyCzm7G4vh/+Dkj5iSLI
+         8TNu5t7idY3cwhL1VXgeCxR6QUyuTX2wH+XX35OTfCjD5h572amb3DWKNpuY70kLZW
+         F2zvjboFVnFDwPCLL4Yk5ys1cI6AkvRocuS593OU2/60Kl+HK6XOHYBOZF/TPW59Tc
+         V8oomtwNcNb2N1sPEBoK3/QXvBlhJCsr8Mx8WsXOzuwefQLd1tJdqsCwLeeFwl74Qf
+         0WDxm52xYT/gVm4A5SlezTyexEn1aj+/G/Kso3kiKTgf/eAUPxuORdXg/LmWITp7lP
+         tHNWXPKRUkc8w==
+Date:   Mon, 4 Jan 2021 21:31:31 +0000
 From:   Mark Brown <broonie@kernel.org>
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Timon Baetz <timon.baetz@protonmail.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-pm@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH v6 2/8] regulator: dt-bindings: Document max8997-pmic
- nodes
-Message-ID: <20210104212449.GJ5645@sirena.org.uk>
-References: <20201230205139.1812366-1-timon.baetz@protonmail.com>
- <20201230205139.1812366-2-timon.baetz@protonmail.com>
- <20210104135156.GB5645@sirena.org.uk>
- <20210104181825.GB27043@kozik-lap>
- <20210104182734.GH5645@sirena.org.uk>
- <20210104183821.GA29033@kozik-lap>
+To:     Bert Vermeulen <bert@biot.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Birger Koblitz <mail@birger-koblitz.de>,
+        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: spi: Realtek RTL838x/RTL839x SPI
+ controller
+Message-ID: <20210104213131.GL5645@sirena.org.uk>
+References: <20210101132432.2785663-1-bert@biot.com>
+ <20210101132432.2785663-2-bert@biot.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="/qIPZgKzMPM+y5U5"
+        protocol="application/pgp-signature"; boundary="7l042bGvurpep9Wg"
 Content-Disposition: inline
-In-Reply-To: <20210104183821.GA29033@kozik-lap>
+In-Reply-To: <20210101132432.2785663-2-bert@biot.com>
 X-Cookie: Stupidity is its own reward.
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
@@ -59,48 +47,37 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---/qIPZgKzMPM+y5U5
+--7l042bGvurpep9Wg
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
-On Mon, Jan 04, 2021 at 07:38:21PM +0100, Krzysztof Kozlowski wrote:
-> On Mon, Jan 04, 2021 at 06:27:34PM +0000, Mark Brown wrote:
+On Fri, Jan 01, 2021 at 02:24:31PM +0100, Bert Vermeulen wrote:
 
-> > We can indicate the presence of features without adding new compatible
-> > strings, that's just encoding the way Linux currently divides things up
-> > into the bindings.  For example having an extcon property seems like it
-> > should be enough to figure out if we're using extcon.
+> +  compatible:
+> +    const: realtek,rtl-spi
 
-> It won't be enough because MFD will create device for extcon and bind
-> the driver. The same for the charger. We have a board where max8997 is
-> used only as PMIC (providing regulators) without battery and USB
-> connectivity.
+This is still just using rtl-spi as the compatible string, please
+address the feedback on the previous version.
 
-I'm not sure I follow, sorry?  Either the core driver can parse the
-bindings enough to know what children it has or (probably better) it can
-instantiate the children unconditionally and then the function drivers
-can figure out if they need to do anything.
+Please submit patches using subject lines reflecting the style for the
+subsystem, this makes it easier for people to identify relevant patches.
+Look at what existing commits in the area you're changing are doing and
+make sure your subject lines visually resemble what they're doing.
+There's no need to resubmit to fix this alone.
 
-> Another point, is that this reflects the real hardware. The same as we
-> model entire SoC as multiple children of soc node (with their own
-> properties), here we represent smaller chip which also has
-> sub-components.
-
-Components we're calling things like "extcon"...
-
---/qIPZgKzMPM+y5U5
+--7l042bGvurpep9Wg
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl/zh6AACgkQJNaLcl1U
-h9D85Qf9HAkIDxqmUT3DuU1gC8iLvHOzcvGAFb/R2kAgDBX9QGM4PIo36fI1p7o2
-xwEdAv60V7yNTtP6gpTMfRj+IAl+URIZys7CzALyL77mH7uCc1EZOJgMHEN8FMif
-jngEiDVMzp816XxUJHO9SX9n4vTnWr/9D3j/qD/LdkA2wx98SqyOfUhCs4csGqns
-QUkI2r52B5op3cpVNlxlqcaWBF8b+4dMSNhGoSTw7ZnDCjz3ZVrNalGcQ5DOIi2q
-HbFlJkSA7jHdnrXf6HGfa3hAGRDNaQAg935Zzvc+PV8Sz5kaqxOYa1SoYASV1NZ4
-nwhwhH1ADHFKfU9mTF33rkqAKR8QYQ==
-=Xd45
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl/ziTMACgkQJNaLcl1U
+h9Dmkwf+IgiS05nspQXIaJkG86ncWujAt1joFokPRvyZ7r5TIfivPc2fJ0+dUOpr
+VvbD9EICjfq6QrJw+ufDhjEs/mcujM4N2QcEs9Dm6tZj4rS7OHQbbAmLv70zHt43
+OFTR9aZrtum1oT07q5g7MEoqDgUshxfiDL18x0y4AA227NvCMlAOgBXsqG9gl3Wr
+p0qlAY5bMnT3cRbyVMzwcdyNWOXm5/Vnwj7e7Sd+zEaEYOz8EHqi6ZRPP5jjqVUw
+XLkFNEG41F/nxhaml/GFWffwDFWBhZVq9l9E9TyuLBZQPuOCSTfoOLj8EgSsmdRB
+1qs4FUcE9zMIyYSE30J5vJ99bxS72A==
+=4CUf
 -----END PGP SIGNATURE-----
 
---/qIPZgKzMPM+y5U5--
+--7l042bGvurpep9Wg--
