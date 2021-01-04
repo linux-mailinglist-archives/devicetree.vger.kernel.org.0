@@ -2,80 +2,232 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F3412E9244
-	for <lists+devicetree@lfdr.de>; Mon,  4 Jan 2021 10:00:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E1FFD2E926D
+	for <lists+devicetree@lfdr.de>; Mon,  4 Jan 2021 10:19:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726673AbhADJAD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Jan 2021 04:00:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36592 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726606AbhADJAD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jan 2021 04:00:03 -0500
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CE22C061794
-        for <devicetree@vger.kernel.org>; Mon,  4 Jan 2021 00:59:23 -0800 (PST)
-Received: by mail-lf1-x12b.google.com with SMTP id m12so62599392lfo.7
-        for <devicetree@vger.kernel.org>; Mon, 04 Jan 2021 00:59:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=05t36dGE9bZNKvTJSmUC2VCNwPOgDHBT4ilFLddS6AM=;
-        b=rTdYfDoUNDEk9t81dezSnY0Y4BW9TKYrS/vndmeU++wFLQO+d656xBvytl+DkGaGkp
-         S71eysWt6txbLaKIHAllq7ncHU22bs1X9Ght3X+LGCknZHS85Lh8s6R5F12XigpOlXuB
-         LKcahK8O/RwdVrz4B4mDF41WUxI2oR4Lr+20mqTbiLzk003g+LF9v7BqlcnHDvGXINTA
-         2jY/4uZ2jtmKUzel8NOf+GmyKJMXvOfneJ2X60n+5lnv5YQsQ133LIdFtKrdX5y4C43G
-         VvpkyqAO4t5UB5NGOAhBXH/Q031cZzaB+xIlrnlHnwtDYH7WSIQZKv6998bLMdyQNesc
-         RWgg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=05t36dGE9bZNKvTJSmUC2VCNwPOgDHBT4ilFLddS6AM=;
-        b=L3y7TcPuZxKT4DyVa1nntrJH1HnK7HhMbCmLt0FuA3E+IFFPzjF56ZkKzgNDKhNQ8E
-         hb4DIaHOmZ+zzSWiKngU36oe0zhuYqmPYg7TRfNbNTl2HUpLpt7F85rJjdVRNgqoVnrK
-         RH+qukgH1r5P9GyYMysNqWvENICJ+jTRMnjfQTlOXRWHk5TQ4EOK3Z89S2Td4ejS2ltP
-         yyc2U+Hj3NWzQA+y+QpQAHg8rcPzkhizcApuKcj47XeIGHv5+zEGwAeOT7gq+5Es1P5X
-         5hFHfFh00k5gwyeozegxCLC1pptps+MjxgKUMfEvt8wQDKw9SIH7Wh8uPGjvgkcixYbh
-         WR3w==
-X-Gm-Message-State: AOAM532vfRXEu4BTmEG7VfxFlIVVfkqJzk8HORejadHiKXA5mypqMFgs
-        zxmxhGFM7D0XhtBeQyGQuIGeP2Yg2+ligwM92jsPbg==
-X-Google-Smtp-Source: ABdhPJwH+5EgjAH8XKKrWcsfJ2KYxTX6etw+GRpnp/HJsQqGleG+/kA56Pt1S9klS0Hk+rWCSvaUYwG7SApBeHC3QbM=
-X-Received: by 2002:ac2:5597:: with SMTP id v23mr24951562lfg.649.1609750761149;
- Mon, 04 Jan 2021 00:59:21 -0800 (PST)
+        id S1726248AbhADJRM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Jan 2021 04:17:12 -0500
+Received: from mail-eopbgr150049.outbound.protection.outlook.com ([40.107.15.49]:1335
+        "EHLO EUR01-DB5-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1725468AbhADJRL (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 4 Jan 2021 04:17:11 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=YM5JVvsj3O3ebhS3rJEcry5eaS/Znk/KZAmb3GXoeoZw/qOKl5lW3XiyI/0xuENMnaeIqs4J9WT+MSUbkaP2/u1bGT09AlIfLKpXtgKxbD8qMdwMLWNjcxRQa6xQaCE7vQv7i1Spab9i43WJqxVYFjIdl7++9NLTiNjLF7v05DhMQq8qkMlDv3kKhs5cVKfMjrGRzuOXS2JifYQG9zQFBwQBdjar3vQGaAzijuMU6qcu6SVAWQbSqCuJzdH6Th8agHKS+B5q1duAIlG9KYqRM+Lp735YY5t7XbJKHdLskxAJXjxjpP70VVPznj3CT4dWYvM1k2wYTetCMra2qTd2tQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=dg++rQanPLVRbp6RpVTU5674Hm/IELg9h7Ye5AyOd/Q=;
+ b=E0lRn1xR3anNocF3MmS5iqI7ROHMqZCM44k+ZnAajOpN7ULK9hR2+J9JOysfk1ottrZonpDRSL50np88/g/iE/fnFGyOLisEd8L6e749AYcGPhXZxAjM3yn5MwyuEva8T8xz3QNUDuY3YSxF9Df0sseg2hrLhDkQf5OymN0VgnE2cDiFxdNSrFx1VtKYm5DiVway2HQke8ooX5uD9c3QjEDPnMQHlRZ7Pkuce/RwTYdubRGsETN59Jp7TUW+A7KZxM3+hSHhk7DQ73BFh1v2nq/MW5yVHfhSh8sBFCv2CCCXGtagCRWDydUch+rjaPo1St/b/wg7ubeHW0MkP6OBzA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector2-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=dg++rQanPLVRbp6RpVTU5674Hm/IELg9h7Ye5AyOd/Q=;
+ b=L5+jtrkID0aGh1AP3vz+u4y5h4KJGdLLwHDCxJPpxX6ww+WhczzTL5h54kvi+8MIQJQklDDNFcP9WiAL6Q8QucTVOs17oDLp6dCawUDqxB8dzalZtQLPdSlgySPgSZNzR0dB91t9/Duv7sTqz9ukNvwtktkLIs4BnMlqpwqgKVI=
+Authentication-Results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=oss.nxp.com;
+Received: from AM6PR04MB6053.eurprd04.prod.outlook.com (2603:10a6:20b:b9::10)
+ by AM7PR04MB6982.eurprd04.prod.outlook.com (2603:10a6:20b:dd::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3721.20; Mon, 4 Jan
+ 2021 09:16:22 +0000
+Received: from AM6PR04MB6053.eurprd04.prod.outlook.com
+ ([fe80::78fe:9b7a:a2ac:9631]) by AM6PR04MB6053.eurprd04.prod.outlook.com
+ ([fe80::78fe:9b7a:a2ac:9631%7]) with mapi id 15.20.3721.024; Mon, 4 Jan 2021
+ 09:16:22 +0000
+From:   "Alice Guo (OSS)" <alice.guo@oss.nxp.com>
+To:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com, krzk@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-imx@nxp.com
+Subject: [PATCH v10 1/4] dt-bindings: soc: imx8m: add DT Binding doc for soc unique ID
+Date:   Mon,  4 Jan 2021 17:15:41 +0800
+Message-Id: <20210104091544.13972-1-alice.guo@oss.nxp.com>
+X-Mailer: git-send-email 2.17.1
+Content-Type: text/plain
+X-Originating-IP: [119.31.174.71]
+X-ClientProxiedBy: AM0PR10CA0055.EURPRD10.PROD.OUTLOOK.COM
+ (2603:10a6:20b:150::35) To AM6PR04MB6053.eurprd04.prod.outlook.com
+ (2603:10a6:20b:b9::10)
 MIME-Version: 1.0
-References: <cover.1607601615.git.baruch@tkos.co.il>
-In-Reply-To: <cover.1607601615.git.baruch@tkos.co.il>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Mon, 4 Jan 2021 09:59:10 +0100
-Message-ID: <CACRpkdaDzNyUUARs63ydC+XkW29vxvZBjtj4K5rp7+_WEUeeAQ@mail.gmail.com>
-Subject: Re: [PATCH v4 0/3] gpio: mvebu: Armada 8K/7K PWM support
-To:     Baruch Siach <baruch@tkos.co.il>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Chris Packham <chris.packham@alliedtelesis.co.nz>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Ralph Sennhauser <ralph.sennhauser@gmail.com>,
-        linux-pwm@vger.kernel.org,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from nxf55104-OptiPlex-7060.ap.freescale.net (119.31.174.71) by AM0PR10CA0055.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:150::35) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3721.20 via Frontend Transport; Mon, 4 Jan 2021 09:16:17 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: 98e77c4f-9e87-4686-8db5-08d8b091672a
+X-MS-TrafficTypeDiagnostic: AM7PR04MB6982:
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <AM7PR04MB6982394B8C0EEF9CD0893266A3D20@AM7PR04MB6982.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:4941;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 5d7X4f3EZacFg3Wr0hECJmj7YxYdWXyKubZiSMBM0T8MVbuqoPg1PbO5vNkm7W1iX0p0EyxOeyg159wGRt83C5pSgf8GSpJeFmjMfJRfmlM0hZU7/Xu+9rKaymtKK81+IBPq655kDpKN4xB6SzmDR8r6A90N5SQ1EbFJZkddF4mgpSafu/RCYsYlmUre8XgbPSf4cmWe1NmrWUcL1y8gJ4aYQS29EtZm7k5rSQsd9VtQK+gMQyUrzvZ5BW3HUQ8+oe9aPy+0LSzFifo6XG5nvqCZHE2quKTM7y53ibCjO15pstZbLQVDvXAAQ5riQZm2tGqDoQyL/kh2UHlUJD/RcFSO7rbnWv8kLU4x/l8Nvuqvy0Pemo7Jm/aSxKPJXkPTkO+gyWoZBwtL9zIgqpYNtrxmOpbccB9w9y3DfulGVv+I0LCwZpgMSSjwd01/2iWKemwfrUhei0kRX9QzDCvoY3qkAeuSo/4SX7z4RUJPj3SoZ5/xC67K1DpM04BgfKcGFNYRcUqSoAnkf97AljYAKw==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB6053.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(346002)(376002)(39860400002)(366004)(396003)(136003)(66476007)(66556008)(316002)(6512007)(6486002)(8936002)(8676002)(6666004)(1076003)(86362001)(2906002)(66946007)(4326008)(5660300002)(52116002)(16526019)(2616005)(6506007)(26005)(956004)(186003)(83380400001)(478600001)(966005)(32563001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?41ZklPOjE1q7jnCAjVxQvRyG+hZEQtn+/ivyfeAw/z3/hdcLEU+g0YgsecOV?=
+ =?us-ascii?Q?X3VyAOQpxoClGVcLZGNoijs2AV/NpByPX9cu/G9wNquRZhqfgoGWAbg1xhUM?=
+ =?us-ascii?Q?nO2lCcRgOLdz0TosfaD+/psNzsWCTGdovME0s8lqkiK9Gss5VxBceuzjokjf?=
+ =?us-ascii?Q?k0xPe9grmNt4Kc1nQuJQBRlZH6JMcuAJrOit6pgZcD/dtlEY3sv/A8IbMhsD?=
+ =?us-ascii?Q?7zGL5sT+vI2RCTaLyCA0VkMhsoApBQn4K6mqemAyc9wCUrg5DifiPR2PAq0U?=
+ =?us-ascii?Q?2HYyhCwiQfWNCJj7uupPJUpNF2kbRVbU+GmdeYc85oxjL9G+wtkG/3xGZ9OG?=
+ =?us-ascii?Q?1NvUCMY4ZvcyOwLi2J297oNefS4PZ4A7J4YtYKtu0sO6xvlD7Y4qQCFSTlFp?=
+ =?us-ascii?Q?mA9w2Sm2U4809cJjkbQHCORH+verSaUFgioTGbRx5efU1PSiRVa91uXKJlrZ?=
+ =?us-ascii?Q?VY78pP8MUMaWa3uSFf36UM2wFv2Toz4hZax4ZyXrRegfo/+Ntk1nPkdTe3Hi?=
+ =?us-ascii?Q?HuqPsempby+jkmtNzxxg7zk+sV3lSa5hkZYItNIES34hr1WBO1JBLSute7Xh?=
+ =?us-ascii?Q?Fh4UIZ3i+yOzsRuJcA7kABbma6ucBn2gZx42vhsFE2ybbreNjRW/hQYWD6ZN?=
+ =?us-ascii?Q?aWz5woMzf7124GyRaIs+HL8PbhbzD7+7ZaaVV2xu23BuPORIRWvMTFPYxCtD?=
+ =?us-ascii?Q?3CPWPAwVmo0VL/lWq/G2f9DCoi2CshaCkSE/OryqEIoA6VF1G0um/FU8Tbil?=
+ =?us-ascii?Q?UpCkWsIe8CqCzjlZbi2nEAhgACBwUY9E18r2F+NuSUoacvT+mrJBJMYKIvEq?=
+ =?us-ascii?Q?l6TD8IBCjAya4xOPRfLW+L1arRSm659jPpFSwsta/+H52Hv+CgySilLyScqK?=
+ =?us-ascii?Q?awVsI0EiY508SFMAWvHsj1i5ea4HDXsm3O84yNLH3KsjHccJinOBfncBF6dS?=
+ =?us-ascii?Q?dTXTaXjYZlis2Oikd7CtqPijwNW9b81fiMx6mi67ZO5gozunMSE7uN0Okz4/?=
+ =?us-ascii?Q?Otw/?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB6053.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Jan 2021 09:16:21.9244
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-Network-Message-Id: 98e77c4f-9e87-4686-8db5-08d8b091672a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: b1ZBofOQrS5nsty7wmd/R5xO8bqaH9ICw6fZhBUQeZu9AOulMq9RDUnj9v6yXdWmo2sYVHy73vVIfnWyPaAzMw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM7PR04MB6982
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Baruch,
+From: Alice Guo <alice.guo@nxp.com>
 
-this series seem to have missed the previous merge window due to
-remaining comments, will you rebase on v5.11-rc1 and resend them?
+Add DT Binding doc for the Unique ID of i.MX 8M series.
 
-Yours,
-Linus Walleij
+Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Alice Guo <alice.guo@nxp.com>
+---
+
+Changes for v10:
+ - add Reviewed-by
+Changes for v9:
+ - add additionalProperties for "^soc@[0-9a-f]+$"
+ - add examples
+Changes for v8:
+ - match soc node with regular expression
+Changes for v7:
+ - change to a separate schema file
+Changes for v6:
+ - none
+Changes for v5:
+ - correct the error of using allOf
+Changes for v4:
+ - use allOf to limit new version DTS files for i.MX8M to include
+   "fsl,imx8m*-soc", nvmem-cells and nvmem-cells-names
+Changes for v3:
+ - put it into Documentation/devicetree/bindings/arm/fsl.yaml
+ - modify the description of nvmem-cells
+ - use "make ARCH=arm64 dtbs_check" to make sure it is right
+Changes for v2:
+ - remove the subject prefix "LF-2571-1"
+
+ .../bindings/soc/imx/imx8m-soc.yaml           | 86 +++++++++++++++++++
+ 1 file changed, 86 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/soc/imx/imx8m-soc.yaml
+
+diff --git a/Documentation/devicetree/bindings/soc/imx/imx8m-soc.yaml b/Documentation/devicetree/bindings/soc/imx/imx8m-soc.yaml
+new file mode 100644
+index 000000000000..effcc72f9425
+--- /dev/null
++++ b/Documentation/devicetree/bindings/soc/imx/imx8m-soc.yaml
+@@ -0,0 +1,86 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/soc/imx/imx8m-soc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: NXP i.MX8M Series SoC
++
++maintainers:
++  - Alice Guo <alice.guo@nxp.com>
++
++description: |
++  NXP i.MX8M series SoCs contain fuse entries from which SoC Unique ID can be
++  obtained.
++
++select:
++  properties:
++    compatible:
++      contains:
++        enum:
++          - fsl,imx8mm
++          - fsl,imx8mn
++          - fsl,imx8mp
++          - fsl,imx8mq
++  required:
++    - compatible
++
++patternProperties:
++  "^soc@[0-9a-f]+$":
++    type: object
++    properties:
++      compatible:
++        items:
++          - enum:
++              - fsl,imx8mm-soc
++              - fsl,imx8mn-soc
++              - fsl,imx8mp-soc
++              - fsl,imx8mq-soc
++          - const: simple-bus
++
++      "#address-cells":
++        const: 1
++
++      "#size-cells":
++        const: 1
++
++      ranges: true
++
++      dma-ranges: true
++
++      nvmem-cells:
++        maxItems: 1
++        description: Phandle to the SOC Unique ID provided by a nvmem node
++
++      nvmem-cell-names:
++        const: soc_unique_id
++
++    required:
++      - compatible
++      - nvmem-cells
++      - nvmem-cell-names
++
++    additionalProperties:
++      type: object
++
++additionalProperties: true
++
++examples:
++  - |
++    / {
++        model = "FSL i.MX8MM EVK board";
++        compatible = "fsl,imx8mm-evk", "fsl,imx8mm";
++        #address-cells = <2>;
++        #size-cells = <2>;
++
++        soc@0 {
++            compatible = "fsl,imx8mm-soc", "simple-bus";
++            #address-cells = <1>;
++            #size-cells = <1>;
++            ranges = <0x0 0x0 0x0 0x3e000000>;
++            nvmem-cells = <&imx8mm_uid>;
++            nvmem-cell-names = "soc_unique_id";
++        };
++    };
++
++...
+--
+2.17.1
+
