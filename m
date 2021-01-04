@@ -2,96 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A201F2E92F2
-	for <lists+devicetree@lfdr.de>; Mon,  4 Jan 2021 10:54:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E6F7C2E9311
+	for <lists+devicetree@lfdr.de>; Mon,  4 Jan 2021 11:06:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726246AbhADJxu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Jan 2021 04:53:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44926 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726434AbhADJxu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jan 2021 04:53:50 -0500
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9FC9BC061795
-        for <devicetree@vger.kernel.org>; Mon,  4 Jan 2021 01:53:09 -0800 (PST)
-Received: by mail-ed1-x52f.google.com with SMTP id cm17so26696802edb.4
-        for <devicetree@vger.kernel.org>; Mon, 04 Jan 2021 01:53:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=pUWTniSHvQQ76L9k41lTs1LgXDjPdq16yIvZuuTtw2o=;
-        b=yQq/pVPI+7ebgB+5T5wnUZJjCEJHuAxRGM7H3+92VWxT/A55gThesrr/RBoFg5sN+Y
-         UaBtmiTBbuXWZHqcHQLXyQ7HtBYm4MRO3Gw3Y9o0HZjgcyfeVVJzI35X6+3PUknTVHRG
-         EcQ4w7qiLV274uymJ1GJlVhMRf5CqH1ybMA1wTD0Oxa0OXTMnhWpxO5KPEk6D8yWRAK5
-         x+sGxEKoz2zYWsDBDZSLVNzI05U6m4MvVR+WUg9NRYP4MAWc32KQ0cbiCGsrNS/RDZN3
-         8+GHpnldSLPTlB3g9FRYh2YnYKji20fdekv5XKjwb06rJM1mtwAzfl7bpiRUeN/P1JZU
-         c9sA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=pUWTniSHvQQ76L9k41lTs1LgXDjPdq16yIvZuuTtw2o=;
-        b=MqtjQrgVUDpRLR+bH5MypJlD/6HBgs8BTgRwRzW3eM12wgjf3m50+vfsmPLVBzzZF2
-         pO1FqgWCzJygLuFCnYrgs95TEgRLRsIz/E/55glLz9XOuYAwgpOLGVcaE3VyaSdfZFug
-         0egJykrAAXrjN0UqAdNXohAEU9rpdMlj2B2Tj5PCntc2lva6pjLCW0W4IIIdE0sLAXSS
-         pIKZeyzor1bt7Aepllb7c0Qc7WnNu3EdFjLrmgPIa8aYALGvuQiU+62XYYoPLkw8YXcX
-         ycU+sKUPYQfp+mmLakZfZCax157NZxKQw2IXO5l/LONUIRfM6NliJHBvqgAQOux+6Rd0
-         LRng==
-X-Gm-Message-State: AOAM531voxXq6upefR4eLjHuPHp4OVl8b7z6PEeihvy5vl36E/5ZY7hx
-        Yy7NJi3MQl0rZS+SjI3s7WeMNrrH4+cLrr+W0BcjaQ==
-X-Google-Smtp-Source: ABdhPJwCWSyixz8p/RHPD0EloMZbmtrEhw6f6F8Xqw07Y2jxng57m5awJmUUw3I15y2aKKntJOcCau+FzR6WZyX212Q=
-X-Received: by 2002:a05:6402:17:: with SMTP id d23mr17576990edu.341.1609753988292;
- Mon, 04 Jan 2021 01:53:08 -0800 (PST)
+        id S1726360AbhADKEb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Jan 2021 05:04:31 -0500
+Received: from mail.kernel.org ([198.145.29.99]:47808 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725468AbhADKEa (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 4 Jan 2021 05:04:30 -0500
+Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 7D5D020769;
+        Mon,  4 Jan 2021 10:03:49 +0000 (UTC)
+Received: from disco-boy.misterjones.org ([51.254.78.96] helo=www.loen.fr)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        (Exim 4.94)
+        (envelope-from <maz@kernel.org>)
+        id 1kwMiJ-005Blr-DU; Mon, 04 Jan 2021 10:03:47 +0000
 MIME-Version: 1.0
-References: <cover.1607601615.git.baruch@tkos.co.il> <CACRpkdaDzNyUUARs63ydC+XkW29vxvZBjtj4K5rp7+_WEUeeAQ@mail.gmail.com>
- <87pn2l9gwa.fsf@tarshish>
-In-Reply-To: <87pn2l9gwa.fsf@tarshish>
-From:   Bartosz Golaszewski <bgolaszewski@baylibre.com>
-Date:   Mon, 4 Jan 2021 10:52:57 +0100
-Message-ID: <CAMpxmJVyJOT9O6mqPrhLccDJkKeCUC7kssFGsVOYB=Jz5Ff+TQ@mail.gmail.com>
-Subject: Re: [PATCH v4 0/3] gpio: mvebu: Armada 8K/7K PWM support
-To:     Baruch Siach <baruch@tkos.co.il>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Chris Packham <chris.packham@alliedtelesis.co.nz>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Ralph Sennhauser <ralph.sennhauser@gmail.com>,
-        linux-pwm@vger.kernel.org,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Mon, 04 Jan 2021 10:03:47 +0000
+From:   Marc Zyngier <maz@kernel.org>
+To:     Samuel Holland <samuel@sholland.org>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Russell King <linux@armlinux.org.uk>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Ondrej Jirman <megous@megous.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 03/10] irqchip/sun6i-r: Use a stacked irqchip driver
+In-Reply-To: <8c1eaddd-577b-9c2a-aa6a-9ee716178d4a@sholland.org>
+References: <20210103103101.33603-1-samuel@sholland.org>
+ <20210103103101.33603-4-samuel@sholland.org> <875z4el0p2.wl-maz@kernel.org>
+ <66a7eb24-66c7-d5e6-1235-aa6846c5eef2@sholland.org>
+ <8735zikvyq.wl-maz@kernel.org>
+ <8c1eaddd-577b-9c2a-aa6a-9ee716178d4a@sholland.org>
+User-Agent: Roundcube Webmail/1.4.9
+Message-ID: <a9359739794dc803723c9a6750a96474@kernel.org>
+X-Sender: maz@kernel.org
+X-SA-Exim-Connect-IP: 51.254.78.96
+X-SA-Exim-Rcpt-To: samuel@sholland.org, tglx@linutronix.de, robh+dt@kernel.org, mripard@kernel.org, wens@csie.org, jernej.skrabec@siol.net, linux@armlinux.org.uk, catalin.marinas@arm.com, will@kernel.org, megous@megous.com, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 4, 2021 at 10:43 AM Baruch Siach <baruch@tkos.co.il> wrote:
->
-> Hi Linus,
->
-> On Mon, Jan 04 2021, Linus Walleij wrote:
-> > this series seem to have missed the previous merge window due to
-> > remaining comments, will you rebase on v5.11-rc1 and resend them?
->
-> This series applies cleanly on v5.11-rc2. I have just tested.
->
-> As far as I understand there are no remaining comments. Rob acked the
-> DT binding change.
->
-> Would you like me to post the series again anyway?
->
-> Thanks,
-> baruch
->
+On 2021-01-04 03:46, Samuel Holland wrote:
+> On 1/3/21 7:10 AM, Marc Zyngier wrote:
+>> On Sun, 03 Jan 2021 12:08:43 +0000,
+>> Samuel Holland <samuel@sholland.org> wrote:
+>>> 
+>>> On 1/3/21 5:27 AM, Marc Zyngier wrote:
 
-Yes, please resend it with RESEND PATCH in the tag.
+[...]
 
-Bartosz
+>>> For edge interrupts, don't you want to ack as early as possible,
+>>> before the handler clears the source of the interrupt? That way if a
+>>> second interrupt comes in while you're handling the first one, you
+>>> don't ack the second one without handling it?
+>> 
+>> It completely depends on what this block does. If, as I expect, it
+>> latches the interrupt, then it needs clearing after the GIC has acked
+>> the incoming interrupt.
+> 
+> Yes, there is an internal S/R latch.
+>  - For edge interrupts, the latch is set once for each pulse.
+>  - For level interrupts, it gets set continuously as long as the
+>    pin is high/low.
+>  - Writing a "1" to bit 0 of PENDING resets the latch.
+>  - The output of the latch goes to the GIC.
+> 
+>>>> It also begs the question: why would you want to clear the signal to
+>>>> the GIC on mask (or unmask)? The expectations are that a pending
+>>>> interrupt is preserved across a mask/unmask sequence.
+>>> 
+>>> I hadn't thought about anything masking the IRQ outside of the
+>>> handler; but you're right, this breaks that case. I'm trying to work
+>>> within the constraints of stacking the GIC driver, which assumes
+>>> handle_fasteoi_irq, so it sounds like I should switch back to
+>>> handle_fasteoi_ack_irq and use .irq_ack. Or based on your previous
+>>> paragraph, maybe I'm missing some other consideration?
+>> 
+>> handle_fasteoi_ack_irq() sounds like a good match for edge
+>> interrupts. Do you actually need to do anything for level signals? If
+>> you do, piggybacking on .irq_eoi would do the trick.
+> 
+> For level interrupts, I have to reset the latch (see above) after the 
+> source of
+> the interrupt is cleared.
+
+Right, so that is definitely to be done in .irq_eoi, at least in the
+non-threaded case (as it doesn't involve masking/unmasking).
+
+> That was the bug with v2: I set IRQ_EOI_THREADED so .irq_eoi would run 
+> after the
+> thread. But with GICv2 EOImode==0, that blocked other interrupts from 
+> being
+> received during the IRQ thread. Which is why I moved it to .irq_unmask 
+> and
+> removed the flag: so .irq_eoi runs at the end of the hardirq 
+> (unblocking further
+> interrupts at the GIC), and .irq_unmask resets the latch at the end of
+> the thread.
+> 
+> With the flag removed, but still clearing the latch in .irq_eoi, every 
+> edge IRQ
+
+edge? Didn't you mean level here? Edge interrupts really should clear
+the latch in .irq_ack.
+
+> was followed by a second, spurious IRQ after the thread finished.
+> 
+> Does that make sense?
+
+It does. It is a bit of a kludge, but hey, silly HW (if only this could 
+be
+turned into a bypass, it'd all be simpler).
+
+To sum it up, this is what I'd expect to see:
+
+For edge interrupts:
+- clear latch in .irq_ack and .irq_set_irqchip_state(PENDING)
+- interrupt flow set to fasteoi_ack
+
+For level interrupts
+- clear latch in .irq_eoi (non-threaded) and .irq_unmask (threaded)
+- interrupt flow set to fasteoi (though leaving to the _ack version
+   should not hurt).
+
+Thanks,
+
+         M.
+-- 
+Jazz is not dead. It just smells funny...
