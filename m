@@ -2,77 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DC32D2E93E7
-	for <lists+devicetree@lfdr.de>; Mon,  4 Jan 2021 12:05:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D31A2E941A
+	for <lists+devicetree@lfdr.de>; Mon,  4 Jan 2021 12:32:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726475AbhADLEY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Jan 2021 06:04:24 -0500
-Received: from mail-oi1-f175.google.com ([209.85.167.175]:32818 "EHLO
-        mail-oi1-f175.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726253AbhADLEY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jan 2021 06:04:24 -0500
-Received: by mail-oi1-f175.google.com with SMTP id d203so31732114oia.0;
-        Mon, 04 Jan 2021 03:04:08 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=H4g2ziabIiExWAC+uPZxI4bCHUzg0yvflC/2YZUTTYw=;
-        b=HyMgdvwxOciMkX4wU4fARIAyZoePZlquLhp4yP1mdce947Qb0csrIa9xw4VVE2qVR1
-         lcavWAcWCw+1jw4d2svtLXd85/OHXXBU+KaleL+Q1wLhfRBPGN65DA5dsipLldvCySiM
-         2Q2RktH7+fY8TmTFU9ley1VBcvmA8n+R47SSvK4Rfl7T/b0kDnGZ8AqbA1RQtTDri6yr
-         yCDunc/l2nBMswOQ22c+/nFsZNBf6WMpaqUxfcN2Z70d5UAmy64+RnjeM6gMvH9KfLAn
-         VygylsoZleZCorAbMQu8q99IFNI9jCBOuSSHO+Qsn22ZZW4VSs4eOWYM1Y28YC9FuWNf
-         cIvA==
-X-Gm-Message-State: AOAM532jYz3TAwNoyAtBAg/6qjWpa1miT8aOJ5TMZtCqJ33X47n4vtGx
-        2r087tc6f96/3+icwVcvGLZkgVEmjRx18rd4Wig=
-X-Google-Smtp-Source: ABdhPJzQr50t0WHB88K558MBAbgwFJoNsl8lbYFg8e/pADpO56kYAHzxhvPPsT4G5DDEC+RJARzSFgyPj/Wb7/hBB+w=
-X-Received: by 2002:aca:3cc5:: with SMTP id j188mr17555957oia.54.1609758223078;
- Mon, 04 Jan 2021 03:03:43 -0800 (PST)
-MIME-Version: 1.0
-References: <20210102115412.3402059-1-aford173@gmail.com> <20210102115412.3402059-3-aford173@gmail.com>
-In-Reply-To: <20210102115412.3402059-3-aford173@gmail.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 4 Jan 2021 12:03:32 +0100
-Message-ID: <CAMuHMdU5tYFisn-vco=ML2aoOaL7JcVn7_Rma4GU9RTnwVFKwA@mail.gmail.com>
-Subject: Re: [PATCH V2 3/4] spi: renesas rpc-if: Update Add RZ/G2 to Kconfig description
-To:     Adam Ford <aford173@gmail.com>
-Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Adam Ford-BE <aford@beaconembedded.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
+        id S1726189AbhADLcm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Jan 2021 06:32:42 -0500
+Received: from helcar.hmeau.com ([216.24.177.18]:49760 "EHLO fornost.hmeau.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726148AbhADLcm (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 4 Jan 2021 06:32:42 -0500
+Received: from gwarestrin.arnor.me.apana.org.au ([192.168.103.7])
+        by fornost.hmeau.com with smtp (Exim 4.92 #5 (Debian))
+        id 1kwO5U-0005wX-Ds; Mon, 04 Jan 2021 22:31:49 +1100
+Received: by gwarestrin.arnor.me.apana.org.au (sSMTP sendmail emulation); Mon, 04 Jan 2021 22:31:48 +1100
+Date:   Mon, 4 Jan 2021 22:31:48 +1100
+From:   Herbert Xu <herbert@gondor.apana.org.au>
+To:     "Reshetova, Elena" <elena.reshetova@intel.com>
+Cc:     Daniele Alessandrelli <daniele.alessandrelli@linux.intel.com>,
+        "linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, linux-spi <linux-spi@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        "Alessandrelli, Daniele" <daniele.alessandrelli@intel.com>,
+        Mark Gross <mgross@linux.intel.com>,
+        "Khurana, Prabhjot" <prabhjot.khurana@intel.com>
+Subject: Re: [RFC PATCH 0/6] Keem Bay OCS ECC crypto driver
+Message-ID: <20210104113148.GA20575@gondor.apana.org.au>
+References: <20201217172101.381772-1-daniele.alessandrelli@linux.intel.com>
+ <CY4PR1101MB2326ED0E6C23D1D868D53365E7D20@CY4PR1101MB2326.namprd11.prod.outlook.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CY4PR1101MB2326ED0E6C23D1D868D53365E7D20@CY4PR1101MB2326.namprd11.prod.outlook.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jan 2, 2021 at 12:54 PM Adam Ford <aford173@gmail.com> wrote:
-> The SPI driver for the Renesas RPC-IF is present on the RZ/G2
+On Mon, Jan 04, 2021 at 08:04:15AM +0000, Reshetova, Elena wrote:
+> > 2. The OCS ECC HW does not support the NIST P-192 curve. We were planning to
+> >    add SW fallback for P-192 in the driver, but the Intel Crypto team
+> >    (which, internally, has to approve any code involving cryptography)
+> >    advised against it, because they consider P-192 weak. As a result, the
+> >    driver is not passing crypto self-tests. Is there any possible solution
+> >    to this? Is it reasonable to change the self-tests to only test the
+> >    curves actually supported by the tested driver? (not fully sure how to do
+> >    that).
+> 
+> An additional reason against the P-192 SW fallback is the fact that it can 
+> potentially trigger unsafe behavior which is not even "visible" to the end user
+> of the ECC functionality. If I request (by my developer mistake) a P-192 
+> weaker curve from ECC Keem Bay HW driver, it is much safer to return a
+> "not supported" error that proceed behind my back with a SW code
+> implementation making me believe that I am actually getting a HW-backed up
+> functionality (since I don't think there is a way for me to check that I am using
+> SW fallback). 
 
-s/is/as/
+Sorry, but if you break the Crypto API requirement then your driver
+isn't getting merged.
 
-> Series.  Add that to the description.
->
-> Suggested-by: Biju Das <biju.das.jz@bp.renesas.com>
-> Signed-off-by: Adam Ford <aford173@gmail.com>
-
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
+Cheers,
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Email: Herbert Xu <herbert@gondor.apana.org.au>
+Home Page: http://gondor.apana.org.au/~herbert/
+PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
