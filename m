@@ -2,145 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 855E22E9CDD
-	for <lists+devicetree@lfdr.de>; Mon,  4 Jan 2021 19:16:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DFE2A2E9CE8
+	for <lists+devicetree@lfdr.de>; Mon,  4 Jan 2021 19:19:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726599AbhADSQe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Jan 2021 13:16:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38700 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726124AbhADSQe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jan 2021 13:16:34 -0500
-Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com [IPv6:2607:f8b0:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EACAEC061794
-        for <devicetree@vger.kernel.org>; Mon,  4 Jan 2021 10:15:53 -0800 (PST)
-Received: by mail-pl1-x635.google.com with SMTP id b8so14980881plx.0
-        for <devicetree@vger.kernel.org>; Mon, 04 Jan 2021 10:15:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=qlJz3MPXf5B/lkmLqteh5JmtegRMOP7WB6D/3515x34=;
-        b=uuoXjZHVb0uXZDct2hESQkXhwHbA9dpI/XSWZ858Igyd525ZYlmwjDPQ7k0SaYlV7Z
-         feUcuFH+G9i78m8rWHHhfY2FEBNSM8TcEu4CxKw5MKqd6yhQ9RaY+R+h+4fuhORoy7D4
-         m5++eqpEmMXymIgT0bSKacUhOrogPhNPCveS8LrnQN2f6OmKapIWAWzsGe6hQIDL6Ix8
-         UKfzJLQHgUH48dBNbG9d+8DK+FnBECsG24Y+fmRSsAjm7Lkk29ENprni5nOyGcRURZ/E
-         u9tVzcrNEBKDYP9lf2PBZ0eBNKBG98DB3ZhAq8RPD/hCaepCvAMXRz/90cgQXe+wr9gr
-         ef5Q==
+        id S1727121AbhADSTK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Jan 2021 13:19:10 -0500
+Received: from mail-wm1-f45.google.com ([209.85.128.45]:39292 "EHLO
+        mail-wm1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726452AbhADSTK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jan 2021 13:19:10 -0500
+Received: by mail-wm1-f45.google.com with SMTP id 3so127537wmg.4;
+        Mon, 04 Jan 2021 10:18:53 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=qlJz3MPXf5B/lkmLqteh5JmtegRMOP7WB6D/3515x34=;
-        b=aes6dk7VXGcEyJz5+YX6cwq6O7LMpiEmJ8EusZmXdD/oHIhbhXRarIAgapje77zUd3
-         EjFh4UEWukEzvuD8Xs4Jm/6ioturBc5lYRy2n3mvwR6YCgNxoOs6IFJazkgEIMkaBPXs
-         6aefAYQ0oA/zGAOtukZJtMzzGPPay5NOn6o8OH4yHQNp9Q3gFIPIapQTkpbQ2TRl70c0
-         uECynluRlZ756xbLOymdkmXpbt6gbcvhY2F5CTOT3/Lm0gzhDC3qStRmzpxRrKtmedUS
-         S+98WYYCjvt16ZcNyIsDeMgWz3M0KnIE2GZuIhPulYEc9UBCQDhOCU8r0GyNM3lPS+CY
-         zoDg==
-X-Gm-Message-State: AOAM530cejE1JW2kCTNwpYhCNiQox5Q7VuZhtbPvoq7lllQmPn9pi/PE
-        PZ9Xctgy0GuU/ZQ6b72/5uOrcw==
-X-Google-Smtp-Source: ABdhPJyl8A5Klo+A2Isr0dqOyZo3PSp4vR5pTue9lpMDm07o40T1XqxFtPt7Erj2uXAaggWb+FXsUA==
-X-Received: by 2002:a17:90a:638a:: with SMTP id f10mr91675pjj.191.1609784152689;
-        Mon, 04 Jan 2021 10:15:52 -0800 (PST)
-Received: from xps15 (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
-        by smtp.gmail.com with ESMTPSA id cq15sm55902pjb.27.2021.01.04.10.15.51
+        bh=y+NTvbLk4IzzMQK1/SZQ7lLpxAYEqAF6MOVXtS7spWg=;
+        b=AsMwAr/K7cyLetQtcPFpqs/NqKQabPftA/pVy0Wiu/KAq4PpwmK4msAZH1aN0QoBXN
+         ZXM7Xj/NFoZISFhjP46zxMksV+YTqZaxappTzgpZFjo+go83E1mEShg4Cy6895gIWdl2
+         q0kmq81inI8rw9rOPTlQhXEo/PMAs+rIcKr2Ov3a8zyfK5Bg9eY96uV9jdD8WaAm9ORH
+         9vUsQsAK0htmHmhBHAct6Qbh5DOF6DdHXS9TIlRnBreob3uQafRLMdDYgiI9fXZjTh36
+         G6EXatwzCzePU5sq+9P7TssECoiW+HrFbpFi7cLPcAfy0YQyLeoQkRTH3HJcNH2qj3iQ
+         +NTQ==
+X-Gm-Message-State: AOAM533Q57kutc8TeDN7MtU3TUl/n2XCVZDmstjqfK74m0/P1cf6fWCH
+        9cAS37TiYTowWykSDMxQtSI=
+X-Google-Smtp-Source: ABdhPJyxaw81/VsDm31di+CjRZDa5b043/h6CfX6p+2JizDxYrVRkfy8Dr09rKnqvDo/5ZkHa0Uyug==
+X-Received: by 2002:a1c:4483:: with SMTP id r125mr143991wma.80.1609784308269;
+        Mon, 04 Jan 2021 10:18:28 -0800 (PST)
+Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
+        by smtp.googlemail.com with ESMTPSA id x7sm210739wmi.11.2021.01.04.10.18.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 04 Jan 2021 10:15:51 -0800 (PST)
-Date:   Mon, 4 Jan 2021 11:15:49 -0700
-From:   Mathieu Poirier <mathieu.poirier@linaro.org>
-To:     Suzuki K Poulose <suzuki.poulose@arm.com>
-Cc:     Rob Herring <robh@kernel.org>,
-        Anshuman Khandual <anshuman.khandual@arm.com>,
-        linux-arm-kernel@lists.infradead.org, coresight@lists.linaro.org,
-        linux-kernel@vger.kernel.org, Mike Leach <mike.leach@linaro.org>,
-        Linu Cherian <lcherian@marvell.com>, devicetree@vger.kernel.org
-Subject: Re: [PATCH 06/11] dts: bindings: Document device tree bindings for
- ETE
-Message-ID: <20210104181549.GB2702940@xps15>
-References: <1608717823-18387-1-git-send-email-anshuman.khandual@arm.com>
- <1608717823-18387-7-git-send-email-anshuman.khandual@arm.com>
- <20210103170216.GA4048658@robh.at.kernel.org>
- <9d19b169-b037-20b1-7c00-b2ba2194addd@arm.com>
+        Mon, 04 Jan 2021 10:18:27 -0800 (PST)
+Date:   Mon, 4 Jan 2021 19:18:25 +0100
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Timon Baetz <timon.baetz@protonmail.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-pm@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH v6 2/8] regulator: dt-bindings: Document max8997-pmic
+ nodes
+Message-ID: <20210104181825.GB27043@kozik-lap>
+References: <20201230205139.1812366-1-timon.baetz@protonmail.com>
+ <20201230205139.1812366-2-timon.baetz@protonmail.com>
+ <20210104135156.GB5645@sirena.org.uk>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <9d19b169-b037-20b1-7c00-b2ba2194addd@arm.com>
+In-Reply-To: <20210104135156.GB5645@sirena.org.uk>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 04, 2021 at 02:42:08PM +0000, Suzuki K Poulose wrote:
-> Hi Rob,
+On Mon, Jan 04, 2021 at 01:51:56PM +0000, Mark Brown wrote:
+> On Wed, Dec 30, 2020 at 08:52:07PM +0000, Timon Baetz wrote:
 > 
-> On 1/3/21 5:02 PM, Rob Herring wrote:
-> > On Wed, Dec 23, 2020 at 03:33:38PM +0530, Anshuman Khandual wrote:
-> > > From: Suzuki K Poulose <suzuki.poulose@arm.com>
-> > > 
-> > > Document the device tree bindings for Embedded Trace Extensions.
-> > > ETE can be connected to legacy coresight components and thus
-> > > could optionally contain a connection graph as described by
-> > > the CoreSight bindings.
-> > > 
-> > > Cc: devicetree@vger.kernel.org
-> > > Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
-> > > Cc: Mike Leach <mike.leach@linaro.org>
-> > > Cc: Rob Herring <robh@kernel.org>
-> > > Signed-off-by: Suzuki K Poulose <suzuki.poulose@arm.com>
-> > > Signed-off-by: Anshuman Khandual <anshuman.khandual@arm.com>
-> > > ---
-> > >   Documentation/devicetree/bindings/arm/ete.txt | 41 +++++++++++++++++++++++++++
-> > >   1 file changed, 41 insertions(+)
-> > >   create mode 100644 Documentation/devicetree/bindings/arm/ete.txt
-> > 
-> > Bindings are in schema format now, please convert this.
-> > 
+> > +- charger: Node for configuring the charger driver.
+> > +  Required properties:
+> > +  - compatible: "maxim,max8997-battery"
+> > +  Optional properties:
+> > +  - extcon: extcon specifier for charging events
+> > +  - charger-supply: regulator node for charging current
+> > +
+> > +- muic: Node used only by extcon consumers.
+> > +  Required properties:
+> > +  - compatible: "maxim,max8997-muic"
 > 
-> Sure, will do that.
-> 
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/arm/ete.txt b/Documentation/devicetree/bindings/arm/ete.txt
-> > > new file mode 100644
-> > > index 0000000..b52b507
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/arm/ete.txt
-> > > @@ -0,0 +1,41 @@
-> > > +Arm Embedded Trace Extensions
-> > > +
-> > > +Arm Embedded Trace Extensions (ETE) is a per CPU trace component that
-> > > +allows tracing the CPU execution. It overlaps with the CoreSight ETMv4
-> > > +architecture and has extended support for future architecture changes.
-> > > +The trace generated by the ETE could be stored via legacy CoreSight
-> > > +components (e.g, TMC-ETR) or other means (e.g, using a per CPU buffer
-> > > +Arm Trace Buffer Extension (TRBE)). Since the ETE can be connected to
-> > > +legacy CoreSight components, a node must be listed per instance, along
-> > > +with any optional connection graph as per the coresight bindings.
-> > > +See bindings/arm/coresight.txt.
-> > > +
-> > > +** ETE Required properties:
-> > > +
-> > > +- compatible : should be one of:
-> > > +	"arm,embedded-trace-extensions"
-> > > +
-> > > +- cpu : the CPU phandle this ETE belongs to.
-> > 
-> > If this is 1:1 with CPUs, then perhaps it should be a child node of the
-> > CPU nodes.
-> 
-> Yes, it is 1:1 with the CPUs. I have tried to keep this aligned with that of
-> "coresight-etm4x". The same driver handles both. The only reason why this
-> was separated from the "coresight.txt" is to describe the new configurations
-> possible (read, TRBE).
+> Why do these need to appear in the DT binding?  We know these features
+> are there simply from knowing this is a max8997.
 
-Would it be possible to keep the CPU handle rather than moving things under the
-CPU nodes?  ETMv3.x and ETMv4.x are using a handle and as Suzuki points out ETE
-and ETMv4.x are sharing the same driver.  Proceeding differently for the ETE
-would be terribly confusing.
+If you refer to children nodes, then we do not know these entirely
+because the features could be disabled (pins not connected).  In such
+case these subnodes can be disabled and MFD framework will not
+instantiate children devices.
 
-> 
-> That said, I am happy to move this under the CPU, if Mathieu is happy with
-> the diversion.
-> 
-> Thanks for the review.
-> 
-> Suzuki
+If you mean "the properties" like extcon or charger, then indeed it's a
+good question. In theory, wires still could be routed differently, e.g.
+different charging regulator used as a charger.
+In practice this is highly unlikely, however such DT design allows
+easier hooking up of different devices and even potential re-usage of
+kernel drivers (also unlikely...).
+
+Best regards,
+Krzysztof
+
