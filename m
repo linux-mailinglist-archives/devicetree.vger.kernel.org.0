@@ -2,212 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D27462E9D14
-	for <lists+devicetree@lfdr.de>; Mon,  4 Jan 2021 19:32:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AA31D2E9D22
+	for <lists+devicetree@lfdr.de>; Mon,  4 Jan 2021 19:36:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726773AbhADSbm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Jan 2021 13:31:42 -0500
-Received: from vern.gendns.com ([98.142.107.122]:38774 "EHLO vern.gendns.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727319AbhADSbf (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 4 Jan 2021 13:31:35 -0500
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=lechnology.com; s=default; h=Content-Transfer-Encoding:MIME-Version:
-        References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:
-        Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=oDfcvjDf7SJg3FG/ecf6b0KnLwiHt36+ZCw6OZhhnAA=; b=JbCeEfUDhwi+v51kylqnDgrs8P
-        0spEItpSo98mL2zbfV+gjsgpBh6NNNlmQM3IBcJvjSVnhOSbZj5An5otTVZ7aiHCko7t+65wweGKh
-        tANEqB5TltFIBrpAh4iLzdN4nTrcwyXC8u0QYwohx88GcHHOSY26Z9HADsnJPEOK3Sllsm7Qw+ZRo
-        lqQ4ZdTbEry5NOUtWUSwgRu5Chs0D4zLTfqJMQqYYUoixgF9A6EGeE5/1jkoXS33Aj7T000aGTxgL
-        VF6nnXvwqDGGLV78Loc8qvtIEKsljVXwLS5cEeG/8ca7duZd2Kq++7TDVvX7jNJrfWXoEfAjBKdId
-        JhsxqTsw==;
-Received: from 108-198-5-147.lightspeed.okcbok.sbcglobal.net ([108.198.5.147]:51064 helo=freyr.lechnology.com)
-        by vern.gendns.com with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        (Exim 4.93)
-        (envelope-from <david@lechnology.com>)
-        id 1kwUd2-0002rB-Pr; Mon, 04 Jan 2021 13:30:52 -0500
-From:   David Lechner <david@lechnology.com>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     David Lechner <david@lechnology.com>,
+        id S1727762AbhADSfL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Jan 2021 13:35:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41572 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727696AbhADSfL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jan 2021 13:35:11 -0500
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95888C061793
+        for <devicetree@vger.kernel.org>; Mon,  4 Jan 2021 10:34:30 -0800 (PST)
+Received: by mail-wm1-x32c.google.com with SMTP id r4so162694wmh.5
+        for <devicetree@vger.kernel.org>; Mon, 04 Jan 2021 10:34:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=to:cc:references:from:subject:message-id:date:mime-version
+         :in-reply-to:content-language:content-transfer-encoding;
+        bh=b3mdNXCCr+viQUHC/DPnqNgJo78Ga5nEbT7QXKoyiHA=;
+        b=mJcGrH+CF7e3JLUi/6XdtHgMYZ05xDT4uKvH8qP6GKld3KbbCxzzrTReJoHQX0RRos
+         z6he8w1AD7bgKoP7w1Ou9GEfIcM0qI50PfzdklX1exifUgOoJxcl+my40jj0NFyHuRr+
+         eOO+6Ct4bbkEaXnW34IgnPcRJt2lDp+vcPG9v04pIcmIVVRHd4V37jm/5+e/LruGkdDs
+         DbnUK+4AvSXaTxqpQm9HTsNR7FcIOn/uAKi+rnqPum2lVyXnZx1liZpKrLuYc5I9QCUZ
+         vBCczjPJT8huRzKIvQC6Imx/iPGtTS7Z2tvxDigfcl0bbjGHA39H3hqnTJTf3Pm36iK1
+         2cpg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:to:cc:references:from:subject:message-id:date
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=b3mdNXCCr+viQUHC/DPnqNgJo78Ga5nEbT7QXKoyiHA=;
+        b=hXSw4CSEJHWNqef8Qjg/VldYVkVqpNru9L81tOaIMyMAO6MQRtCM6yXsKaErU7FQdD
+         /zdPFnNsFy22rDZIUbGETQaEaCzGekzW4ZfpcjH2PMkWKSKCbTWf7NVcfMO1nbQVJZcM
+         2B/Y95PgsczXawMvV7WcQzIa4G7YBNnKiLilT+VAsROqWPPF7DdTQU0Eeduv3gzvMDEh
+         NShJM93m/YYW3Wp6/oDVzwKZOVjSdXJZkkeIdRS0Ql5WDxDEptEd1GbDpxr5vnpR2QMc
+         Vuyem+JiIwSWDimxVe4tiTNcAc882gVByj4DlEPCh5QXTGJAtvZybnm4eVGfnBOuDwz2
+         6Y9A==
+X-Gm-Message-State: AOAM531xUL7jA/LeKR5zivxCHJLPeg89eNHwDr7Jv+Xp7jmb1n13saXE
+        can9bfbLIpVZKvcvxWgzNrQ9iQ==
+X-Google-Smtp-Source: ABdhPJwJYzGSd/ZPw+WDOq9k3YHFJGpNwRYCt7btmT6zdcFteWIZPoxAoFgw/VGVvxy40x8V6O0Sdg==
+X-Received: by 2002:a1c:6144:: with SMTP id v65mr164151wmb.125.1609785269279;
+        Mon, 04 Jan 2021 10:34:29 -0800 (PST)
+Received: from [10.44.66.8] ([212.45.67.2])
+        by smtp.googlemail.com with ESMTPSA id g78sm245217wme.33.2021.01.04.10.34.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 04 Jan 2021 10:34:28 -0800 (PST)
+To:     Henry Chen <henryc.chen@mediatek.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        Suman Anna <s-anna@ti.com>,
-        Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>,
-        Sekhar Nori <nsekhar@ti.com>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] soc: ti: pruss: add support for AM18XX/OMAP-L138 PRUSS
-Date:   Mon,  4 Jan 2021 12:30:21 -0600
-Message-Id: <20210104183021.330112-3-david@lechnology.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210104183021.330112-1-david@lechnology.com>
-References: <20210104183021.330112-1-david@lechnology.com>
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Ryan Case <ryandcase@chromium.org>,
+        Mark Brown <broonie@kernel.org>
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        Nicolas Boichat <drinkcat@google.com>,
+        Fan Chen <fan.chen@mediatek.com>,
+        James Liao <jamesjj.liao@mediatek.com>,
+        Arvin Wang <arvin.wang@mediatek.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org
+References: <1608790134-27425-1-git-send-email-henryc.chen@mediatek.com>
+ <1608790134-27425-8-git-send-email-henryc.chen@mediatek.com>
+From:   Georgi Djakov <georgi.djakov@linaro.org>
+Subject: Re: [PATCH V6 07/13] dt-bindings: interconnect: add MT6873
+ interconnect dt-bindings
+Message-ID: <f8951237-e236-aa99-5dbb-e92415752aa8@linaro.org>
+Date:   Mon, 4 Jan 2021 20:34:30 +0200
 MIME-Version: 1.0
+In-Reply-To: <1608790134-27425-8-git-send-email-henryc.chen@mediatek.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - vern.gendns.com
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - lechnology.com
-X-Get-Message-Sender-Via: vern.gendns.com: authenticated_id: davidmain+lechnology.com/only user confirmed/virtual account not confirmed
-X-Authenticated-Sender: vern.gendns.com: davidmain@lechnology.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds support for the PRUSS found in AM18XX/OMAP-L138. This PRUSS
-doesn't have a CFG register, so that is made optional as selected by
-the device tree compatible string.
+On 12/24/20 08:08, Henry Chen wrote:
+> From: "henryc.chen" <henryc.chen@mediatek.com>
+> 
+> Add interconnect provider dt-bindings for MT6873.
+> 
+> Signed-off-by: Henry Chen <henryc.chen@mediatek.com>
 
-ARCH_DAVINCI is added in the Kconfig so that the driver can be selected
-on that platform.
+checkpatch complains:
 
-Signed-off-by: David Lechner <david@lechnology.com>
----
- drivers/soc/ti/Kconfig |  2 +-
- drivers/soc/ti/pruss.c | 76 ++++++++++++++++++++++++------------------
- 2 files changed, 45 insertions(+), 33 deletions(-)
+From:/Signed-off-by: email name mismatch:
+'From: "henryc.chen" <henryc.chen@mediatek.com>' != 'Signed-off-by: Henry Chen 
+<henryc.chen@mediatek.com>'
 
-diff --git a/drivers/soc/ti/Kconfig b/drivers/soc/ti/Kconfig
-index 7e2fb1c16af1..7a692a21480a 100644
---- a/drivers/soc/ti/Kconfig
-+++ b/drivers/soc/ti/Kconfig
-@@ -85,7 +85,7 @@ config TI_K3_SOCINFO
- 
- config TI_PRUSS
- 	tristate "TI PRU-ICSS Subsystem Platform drivers"
--	depends on SOC_AM33XX || SOC_AM43XX || SOC_DRA7XX || ARCH_KEYSTONE || ARCH_K3
-+	depends on ARCH_DAVINCI || SOC_AM33XX || SOC_AM43XX || SOC_DRA7XX || ARCH_KEYSTONE || ARCH_K3
- 	select MFD_SYSCON
- 	help
- 	  TI PRU-ICSS Subsystem platform specific support.
-diff --git a/drivers/soc/ti/pruss.c b/drivers/soc/ti/pruss.c
-index 5d6e7132a5c4..bfaf3ff74b01 100644
---- a/drivers/soc/ti/pruss.c
-+++ b/drivers/soc/ti/pruss.c
-@@ -24,10 +24,12 @@
-  * struct pruss_private_data - PRUSS driver private data
-  * @has_no_sharedram: flag to indicate the absence of PRUSS Shared Data RAM
-  * @has_core_mux_clock: flag to indicate the presence of PRUSS core clock
-+ * @has_cfg: flag to indicate the presence of PRUSS CFG registers
-  */
- struct pruss_private_data {
- 	bool has_no_sharedram;
- 	bool has_core_mux_clock;
-+	bool has_cfg;
- };
- 
- static void pruss_of_free_clk_provider(void *data)
-@@ -239,42 +241,44 @@ static int pruss_probe(struct platform_device *pdev)
- 		goto rpm_disable;
- 	}
- 
--	child = of_get_child_by_name(np, "cfg");
--	if (!child) {
--		dev_err(dev, "%pOF is missing its 'cfg' node\n", child);
--		ret = -ENODEV;
--		goto rpm_put;
--	}
-+	if (data->has_cfg) {
-+		child = of_get_child_by_name(np, "cfg");
-+		if (!child) {
-+			dev_err(dev, "%pOF is missing its 'cfg' node\n", child);
-+			ret = -ENODEV;
-+			goto rpm_put;
-+		}
- 
--	if (of_address_to_resource(child, 0, &res)) {
--		ret = -ENOMEM;
--		goto node_put;
--	}
-+		if (of_address_to_resource(child, 0, &res)) {
-+			ret = -ENOMEM;
-+			goto node_put;
-+		}
- 
--	pruss->cfg_base = devm_ioremap(dev, res.start, resource_size(&res));
--	if (!pruss->cfg_base) {
--		ret = -ENOMEM;
--		goto node_put;
--	}
-+		pruss->cfg_base = devm_ioremap(dev, res.start, resource_size(&res));
-+		if (!pruss->cfg_base) {
-+			ret = -ENOMEM;
-+			goto node_put;
-+		}
- 
--	regmap_conf.name = kasprintf(GFP_KERNEL, "%pOFn@%llx", child,
--				     (u64)res.start);
--	regmap_conf.max_register = resource_size(&res) - 4;
--
--	pruss->cfg_regmap = devm_regmap_init_mmio(dev, pruss->cfg_base,
--						  &regmap_conf);
--	kfree(regmap_conf.name);
--	if (IS_ERR(pruss->cfg_regmap)) {
--		dev_err(dev, "regmap_init_mmio failed for cfg, ret = %ld\n",
--			PTR_ERR(pruss->cfg_regmap));
--		ret = PTR_ERR(pruss->cfg_regmap);
--		goto node_put;
--	}
-+		regmap_conf.name = kasprintf(GFP_KERNEL, "%pOFn@%llx", child,
-+					     (u64)res.start);
-+		regmap_conf.max_register = resource_size(&res) - 4;
-+
-+		pruss->cfg_regmap = devm_regmap_init_mmio(dev, pruss->cfg_base,
-+							  &regmap_conf);
-+		kfree(regmap_conf.name);
-+		if (IS_ERR(pruss->cfg_regmap)) {
-+			dev_err(dev, "regmap_init_mmio failed for cfg, ret = %ld\n",
-+				PTR_ERR(pruss->cfg_regmap));
-+			ret = PTR_ERR(pruss->cfg_regmap);
-+			goto node_put;
-+		}
- 
--	ret = pruss_clk_init(pruss, child);
--	if (ret) {
--		dev_err(dev, "failed to setup coreclk-mux\n");
--		goto node_put;
-+		ret = pruss_clk_init(pruss, child);
-+		if (ret) {
-+			dev_err(dev, "failed to setup coreclk-mux\n");
-+			goto node_put;
-+		}
- 	}
- 
- 	ret = devm_of_platform_populate(dev);
-@@ -309,19 +313,27 @@ static int pruss_remove(struct platform_device *pdev)
- }
- 
- /* instance-specific driver private data */
-+static const struct pruss_private_data am18xx_pruss_data = {
-+	.has_no_sharedram = true,
-+};
-+
- static const struct pruss_private_data am437x_pruss1_data = {
- 	.has_no_sharedram = false,
-+	.has_cfg = true,
- };
- 
- static const struct pruss_private_data am437x_pruss0_data = {
- 	.has_no_sharedram = true,
-+	.has_cfg = true,
- };
- 
- static const struct pruss_private_data am65x_j721e_pruss_data = {
- 	.has_core_mux_clock = true,
-+	.has_cfg = true,
- };
- 
- static const struct of_device_id pruss_of_match[] = {
-+	{ .compatible = "ti,am1806-pruss", .data = &am18xx_pruss_data, },
- 	{ .compatible = "ti,am3356-pruss" },
- 	{ .compatible = "ti,am4376-pruss0", .data = &am437x_pruss0_data, },
- 	{ .compatible = "ti,am4376-pruss1", .data = &am437x_pruss1_data, },
--- 
-2.25.1
+Thanks,
+Georgi
 
+> ---
+>   include/dt-bindings/interconnect/mtk,mt6873-emi.h | 41 +++++++++++++++++++++++
+>   1 file changed, 41 insertions(+)
+>   create mode 100644 include/dt-bindings/interconnect/mtk,mt6873-emi.h
+> 
+> diff --git a/include/dt-bindings/interconnect/mtk,mt6873-emi.h b/include/dt-bindings/interconnect/mtk,mt6873-emi.h
+> new file mode 100644
+> index 0000000..7a0bbfb
+> --- /dev/null
+> +++ b/include/dt-bindings/interconnect/mtk,mt6873-emi.h
+> @@ -0,0 +1,41 @@
+> +/* SPDX-License-Identifier: GPL-2.0
+> + *
+> + * Copyright (c) 2020 MediaTek Inc.
+> + */
+> +
+> +#ifndef __DT_BINDINGS_INTERCONNECT_MTK_MT6873_EMI_H
+> +#define __DT_BINDINGS_INTERCONNECT_MTK_MT6873_EMI_H
+> +
+> +#define MT6873_SLAVE_DDR_EMI		0
+> +#define MT6873_MASTER_MCUSYS		1
+> +#define MT6873_MASTER_GPUSYS		2
+> +#define MT6873_MASTER_MMSYS		3
+> +#define MT6873_MASTER_MM_VPU		4
+> +#define MT6873_MASTER_MM_DISP		5
+> +#define MT6873_MASTER_MM_VDEC		6
+> +#define MT6873_MASTER_MM_VENC		7
+> +#define MT6873_MASTER_MM_CAM		8
+> +#define MT6873_MASTER_MM_IMG		9
+> +#define MT6873_MASTER_MM_MDP		10
+> +#define MT6873_MASTER_VPUSYS		11
+> +#define MT6873_MASTER_VPU_0		12
+> +#define MT6873_MASTER_VPU_1		13
+> +#define MT6873_MASTER_MDLASYS		14
+> +#define MT6873_MASTER_MDLA_0		15
+> +#define MT6873_MASTER_UFS		16
+> +#define MT6873_MASTER_PCIE		17
+> +#define MT6873_MASTER_USB		18
+> +#define MT6873_MASTER_DBGIF		19
+> +#define MT6873_SLAVE_HRT_DDR_EMI	20
+> +#define MT6873_MASTER_HRT_MMSYS		21
+> +#define MT6873_MASTER_HRT_MM_DISP	22
+> +#define MT6873_MASTER_HRT_MM_VDEC	23
+> +#define MT6873_MASTER_HRT_MM_VENC	24
+> +#define MT6873_MASTER_HRT_MM_CAM	25
+> +#define MT6873_MASTER_HRT_MM_IMG	26
+> +#define MT6873_MASTER_HRT_MM_MDP	27
+> +#define MT6873_MASTER_HRT_DBGIF		28
+> +#define MT6873_MASTER_WIFI		29
+> +#define MT6873_MASTER_BT		30
+> +#define MT6873_MASTER_NETSYS		31
+> +#endif
+> 
