@@ -2,40 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 399562E9C3F
-	for <lists+devicetree@lfdr.de>; Mon,  4 Jan 2021 18:42:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E86212E9C45
+	for <lists+devicetree@lfdr.de>; Mon,  4 Jan 2021 18:42:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727896AbhADRlz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Jan 2021 12:41:55 -0500
-Received: from mail.kernel.org ([198.145.29.99]:36614 "EHLO mail.kernel.org"
+        id S1727946AbhADRmY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Jan 2021 12:42:24 -0500
+Received: from mail.kernel.org ([198.145.29.99]:36904 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727341AbhADRlz (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 4 Jan 2021 12:41:55 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id CE7772068D;
-        Mon,  4 Jan 2021 17:41:13 +0000 (UTC)
+        id S1727377AbhADRmX (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 4 Jan 2021 12:42:23 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id E66102250E;
+        Mon,  4 Jan 2021 17:41:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1609782074;
-        bh=k5ju6+jk760rADcHCAbaKDDu3K01ibNwMCfTBSegebw=;
+        s=k20201202; t=1609782103;
+        bh=BPnOnznoiq/XSjggH+RhjSgHG7IZo/HAB190GGe8BNA=;
         h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=UEeEs2fTzuJEQCK9xvUncUjHa/XX7mUxS8/FFMMzOrEBgWI1sXZjfoEp8+6gr6A0o
-         zkwTFnvcO+Dvax87DLmZuxC+foGtidfmPDJDDisyUVc4rFUtlR3f7DSui3TAfSSTER
-         9LgUHbvRdF0k3N60eplPVPhtVJcAbq/f+Dzk5u2RBPnaGjeW51hqtb1emZXcYjciOY
-         OUvFxLatMRLDRQpQJo7U0TVNWtiWmrnjzMWOlvxX0daaL5zr36vOscoqj7jK6QUbrX
-         l6+wYIcHtRC+/h/lw1H6iQ0Ka5pjEROtFXPKh8sKA7N3hsgYo6eIc3Hqaun4uGykq6
-         zrcJrezT9jbfg==
+        b=E9ebn3aaDsyTlV1sgH+066O2byDbBpr7WQHuTRleZn4w86BdM2QLxtROk9THLw0L7
+         usZrstEtoc7TpqGMb4MsfcGU4nyPMCZNkus7/JA5xyL2Kln7k7N+5ixAP8XmiqD2FW
+         iH0rPAoX4nb8Bl+MPX4NOqOiIiVSThzFsjzXaI1bP1JG+/NmqDeY1DGHLPUihqMNGK
+         0vbmrHAUmYqR8VoZD9Aq3GTB8TFKTia6qw2re7QF4NCF3LcWK1BlvoCaFEhGVoLGrN
+         jTcvSPJm6lMyz9c0hEM0MfPeL1SkXymY/2/TWJzvl7f56U+GJvgRsTUY0oSWrRPEF6
+         aePWRdTjRrS8w==
 From:   Mark Brown <broonie@kernel.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>
-Cc:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        devicetree@vger.kernel.org, Vinod Koul <vkoul@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20201231122348.637917-1-dmitry.baryshkov@linaro.org>
-References: <20201231122348.637917-1-dmitry.baryshkov@linaro.org>
-Subject: Re: [PATCH 0/4] regulator: fix pm8009 bindings on sm8250
-Message-Id: <160978203769.14485.17360727494427661134.b4-ty@kernel.org>
-Date:   Mon, 04 Jan 2021 17:40:37 +0000
+To:     linux-renesas-soc@vger.kernel.org, Adam Ford <aford173@gmail.com>
+Cc:     aford@beaconembedded.com,
+        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
+        biju.das.jz@bp.renesas.com, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Magnus Damm <magnus.damm@gmail.com>
+In-Reply-To: <20210102115412.3402059-1-aford173@gmail.com>
+References: <20210102115412.3402059-1-aford173@gmail.com>
+Subject: Re: (subset) [PATCH V2 1/4] dt-bindings: memory: Renesas RPC-IF: Add support for RZ/G2 Series
+Message-Id: <160978207205.14552.17083840940357811641.b4-ty@kernel.org>
+Date:   Mon, 04 Jan 2021 17:41:12 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -43,27 +45,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 31 Dec 2020 15:23:44 +0300, Dmitry Baryshkov wrote:
-> PM8009 has special revision (P=1), which is to be used for sm8250
-> platform. The major difference is the S2 regulator which supplies 0.95 V
-> instead of 2.848V. Declare regulators data to be used for this chip
-> revision. The datasheet calls the chip just pm8009-1, so use the same
-> name.
+On Sat, 2 Jan 2021 05:54:09 -0600, Adam Ford wrote:
+> The RZ/G2 Series has the RPC-IF interface.
+> Update bindings to support: r8a774a1, r8a774b1, r8a774c0, and r8a774e1
 
 Applied to
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
 
 Thanks!
 
-[1/4] dt-bindings: regulator: qcom,rpmh-regulator: add pm8009 revision
-      commit: 2bf3a72b08e7f6356a2db9e1571ca65f683510bb
-[2/4] regulator: qcom-rpmh-regulator: correct hfsmps515 definition
-      commit: df6b92fa40050e59ea89784294bf6d04c0c47705
-[3/4] regulator: qcom-rpmh-regulator: add pm8009-1 chip revision
-      commit: 951384cabc5dfb09251d440dbc26058eba86f97e
-[4/4] arm64: dts: qcom: qrb5165-rb5: fix pm8009 regulators
-      commit: c3da02421230639bf6ee5462b70b58f5b7f3b7c6
+[3/4] spi: renesas rpc-if: Update Add RZ/G2 to Kconfig description
+      commit: f4a10fc4225155ae4d2fcb411be9f24245bb5cf8
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
