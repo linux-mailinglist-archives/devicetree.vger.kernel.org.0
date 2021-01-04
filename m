@@ -2,68 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E29AE2E97BA
-	for <lists+devicetree@lfdr.de>; Mon,  4 Jan 2021 15:54:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5738E2E97CA
+	for <lists+devicetree@lfdr.de>; Mon,  4 Jan 2021 15:57:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727390AbhADOyO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Jan 2021 09:54:14 -0500
-Received: from mail.kernel.org ([198.145.29.99]:50554 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725840AbhADOyO (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 4 Jan 2021 09:54:14 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 84520221E5;
-        Mon,  4 Jan 2021 14:53:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1609772014;
-        bh=6cDGKM8nEu8BYsa8KY/klev5tWMRKU9jT3zWEyFDPxk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=eiClA8Z/cu9IRaSugaZmBjtmDwWr9gRIrhkTRwZI+/7Na/Tf3jMXxbM+GvlZjGRRa
-         qkzaMquRWV3knkqXV5nto7ev9Jv9un4KNv0LSmbDpHYJg/ruhgiXfFYOLRC/WDDCQs
-         k3QUamyoT002oODuhLQx97rdc8BnxyKdmTznsSDM=
-Date:   Mon, 4 Jan 2021 15:55:00 +0100
-From:   Greg KH <gregkh@linuxfoundation.org>
-To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        "open list:STAGING SUBSYSTEM" <devel@driverdev.osuosl.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Jason Yan <yanaijie@huawei.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH 0/8] pinctrl: ralink: rt2880: Some minimal clean ups
-Message-ID: <X/MsRF5+cUryg5Gm@kroah.com>
-References: <20201213161721.6514-1-sergio.paracuellos@gmail.com>
- <CACRpkdb8z8su9HPkSdnRitVe0unuBDtg0azif19LGb84F=m19A@mail.gmail.com>
- <CAMhs-H9ACwSbJeqRvVOy3w44mhUB9ij1s=idP6xnEDF4LVvQpw@mail.gmail.com>
+        id S1727463AbhADO4W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Jan 2021 09:56:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35718 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726908AbhADO4V (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jan 2021 09:56:21 -0500
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D606C061794
+        for <devicetree@vger.kernel.org>; Mon,  4 Jan 2021 06:55:41 -0800 (PST)
+Received: by mail-lf1-x12c.google.com with SMTP id h22so65007256lfu.2
+        for <devicetree@vger.kernel.org>; Mon, 04 Jan 2021 06:55:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=GUTl3XYEPQNLqNITOLN3Dz7CfnmJFnkxpyLgfafi0Vg=;
+        b=b097HQxmEu2vaEgM5lCSOZtRovx48qf732XtybaATR2L33DV6ZVW9ZQjzbEMP7OOMB
+         0aLtZP2n3f29y8pU/wqV98P1PJhmliQQwGg1EpEpGl9SjigYtQVR7/bDrm3563toi/Im
+         FA3RWbAmQ2g5InN47dV4rW8kdzIFZDZIofvE0+K/lsVUcbDBiBJ0vEXnk5+KQzobXC20
+         R8j5QdC+xxRHPARPshsLEXXXPyAAWxiyUU/f5LzEA5dgne4k1771RsGMXkwqRZJl0LcQ
+         8hpGpkJJiviJiHO8EIuVcAhu7ah8BHvC6QRAJcofmkbwZe7FovkgVwcvmT1+Ed4JB8KY
+         rPnQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=GUTl3XYEPQNLqNITOLN3Dz7CfnmJFnkxpyLgfafi0Vg=;
+        b=h8WVmwQahrjxjtBx6s4+zLYHfk3FT81UHmkzdkA2usvga58+8wE/b76+8KyjbdcJsF
+         UbU7abuMOXWJ0EYongzWBsYF50OaXFvEFBB0SIErsFnYqvs68sp8sXhyLpCCLrUr4cor
+         LNxCCmeayd+Fb86Oz1+yDleUqo7afwhckjaU8OaH1TxIZNG2PR2/i7wv/E1st76I1Yux
+         AsD6F/rjZB05juPXJ0TJB5YYJ6/ClJNvL/cPADjGuUqYNqTwUqiux2Lr5j/lj5QEhCzn
+         WBRwA3/hiogvmEMNI/VmGlJ4MX7x+aiKWKSG9HdDiATB8GaUmePxz/PdB7qmqTY+C2w9
+         3PVg==
+X-Gm-Message-State: AOAM533AJpyoKqRQBSpQpmoNeUOxjghzztOmRnnAkyXmuFqD64tVzjpO
+        a8VdtlVhU/Nlk8i8V95AypRTnYxX9k9i5GacAUPJ/Q==
+X-Google-Smtp-Source: ABdhPJymHsYJdcAZKvO7bmnu0n4vNpuBqEjEguwLo09sKXdIJxMMqq/DaWfqPLZ7uicWS4GwTIQ0KnUgeBzevRcF0BI=
+X-Received: by 2002:a19:6557:: with SMTP id c23mr29973497lfj.157.1609772139776;
+ Mon, 04 Jan 2021 06:55:39 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAMhs-H9ACwSbJeqRvVOy3w44mhUB9ij1s=idP6xnEDF4LVvQpw@mail.gmail.com>
+References: <20201217144338.3129140-1-nobuhiro1.iwamatsu@toshiba.co.jp> <20201217144338.3129140-2-nobuhiro1.iwamatsu@toshiba.co.jp>
+In-Reply-To: <20201217144338.3129140-2-nobuhiro1.iwamatsu@toshiba.co.jp>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Mon, 4 Jan 2021 15:55:28 +0100
+Message-ID: <CACRpkdYc9Qay+hQqC+8AbaG5XuO+-gYbnPmRUcKu+WuMAu7R+Q@mail.gmail.com>
+Subject: Re: [PATCH v5 1/4] dt-bindings: gpio: Add bindings for Toshiba
+ Visconti GPIO Controller
+To:     Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Punit Agrawal <punit1.agrawal@toshiba.co.jp>,
+        yuji2.ishikawa@toshiba.co.jp,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 04, 2021 at 03:45:36PM +0100, Sergio Paracuellos wrote:
-> Hi,
-> 
-> On Mon, Jan 4, 2021 at 3:39 PM Linus Walleij <linus.walleij@linaro.org> wrote:
-> >
-> > On Sun, Dec 13, 2020 at 5:17 PM Sergio Paracuellos
-> > <sergio.paracuellos@gmail.com> wrote:
-> >
-> > > After this driver was moved from staging into pinctrl subsytems
-> > > some reviews for bindigns and driver itself comes from Ron Herring
-> > > and Dan Carpenter. Get rid of all the comments to properly be in
-> > > a good shape before merge window.
-> >
-> > Applied patches 1-7 to the pinctrl tree, patch 8 needs to be sent
-> > to Greg.
-> 
-> Thanks Linus. PATCH 8 should apply directly as it is in this series
-> also in staging. Greg, can you take PATCH 8 from this series or do you
-> want me to resend it?
+On Thu, Dec 17, 2020 at 6:45 AM Nobuhiro Iwamatsu
+<nobuhiro1.iwamatsu@toshiba.co.jp> wrote:
 
-Resend please.
+> Add bindings for the Toshiba Visconti GPIO Controller.
+>
+> Signed-off-by: Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Reviewed-by: Punit Agrawal <punit1.agrawal@toshiba.co.jp>
 
-thanks,
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
-greg k-h
+Yours,
+Linus Walleij
