@@ -2,145 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 006DC2E9538
-	for <lists+devicetree@lfdr.de>; Mon,  4 Jan 2021 13:46:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9BB902E955B
+	for <lists+devicetree@lfdr.de>; Mon,  4 Jan 2021 13:57:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726614AbhADMq1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Jan 2021 07:46:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43654 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726602AbhADMq0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jan 2021 07:46:26 -0500
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43DF8C061793
-        for <devicetree@vger.kernel.org>; Mon,  4 Jan 2021 04:45:46 -0800 (PST)
-Received: by mail-ed1-x536.google.com with SMTP id b2so27225052edm.3
-        for <devicetree@vger.kernel.org>; Mon, 04 Jan 2021 04:45:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=konsulko.com; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=CuNuwNPfijpuOBaWzlXtwbGMCXD1JMeJ1Mw1oOpUEwI=;
-        b=aMaSeiP7KGjA0OhAkOvLzSLVjFZdVsZ85/cizFv8E+NSdJRTvvX2B3Ni6fVe9sUKNq
-         qy1EaxZOrmPlwo1CyyvpUZirfa9fMK3WDNgjDhniKi1CDIgjYY7V2rkLKticUOnVADEl
-         R02Zu1Jfz60Yj9NjNqfUp+o8RbpJDe0ax1AvQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=CuNuwNPfijpuOBaWzlXtwbGMCXD1JMeJ1Mw1oOpUEwI=;
-        b=fNp7I8b6ixKEL6jQ0gIslbQahcUMfFDDtrRPjXA0gKssmzLKmkUrHwhgb0hh28icp/
-         haf8D25HoKGXETixcxMu01OREfLmGdQThjeeY7nouHgdyFF0GWz/o+0wPPNGuJb/TMpq
-         g/GSlT65L0Xd+Hn1uaPCitLrAe4SnFVFEQFirnHQAJ86NNP3aPxMUN7NLG8DfPiK4gRq
-         lJCW+iHN6VLlL4RlZUsK0GZlLOF1II4Y1rds6Q+bT/lOXrD90TPDmYBQ0YkCRnYlh66b
-         DGEhtNJYJS3vZMaYdMnR6UwTr+pOYqVmnwza9zZlACeRquQ1/pPo9UcaGF5C7JVRCsv0
-         WjlQ==
-X-Gm-Message-State: AOAM532H8pXFYoAwdRMEicYHjfO87LbRc1WfHg5tesNPvMHPaYyJ+F0s
-        qW/ctv5eY46Zdu7GT/fR7e26Pg==
-X-Google-Smtp-Source: ABdhPJz1KtHMUthPUBeUyVRx9fuh2PGb9Fx0q0E3aCfc4hmnurWmE0pnveDcE/KyB/+cWsFCHLfPjQ==
-X-Received: by 2002:aa7:c3cd:: with SMTP id l13mr69825763edr.97.1609764344822;
-        Mon, 04 Jan 2021 04:45:44 -0800 (PST)
-Received: from lootbox.konsulko.bg (lan.nucleusys.com. [92.247.61.126])
-        by smtp.gmail.com with ESMTPSA id r18sm25359916edx.41.2021.01.04.04.45.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 04 Jan 2021 04:45:44 -0800 (PST)
-From:   Vitaly Wool <vitaly.wool@konsulko.com>
-To:     linux-riscv@lists.infradead.org
-Cc:     linux-kernel@vger.kernel.org, Bin Meng <bin.meng@windriver.com>,
-        Anup Patel <anup@brainfault.org>,
-        Palmer Dabbelt <palmerdabbelt@google.com>,
-        damien.lemoal@wdc.com, devicetree@vger.kernel.org,
-        Vitaly Wool <vitaly.wool@konsulko.com>
-Subject: [PATCH v2] riscv: add BUILTIN_DTB support for MMU-enabled targets
-Date:   Mon,  4 Jan 2021 14:43:15 +0200
-Message-Id: <20210104124314.7489-1-vitaly.wool@konsulko.com>
-X-Mailer: git-send-email 2.20.1
+        id S1726579AbhADM50 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Jan 2021 07:57:26 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:59606 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725921AbhADM50 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jan 2021 07:57:26 -0500
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 104CtjVK102918;
+        Mon, 4 Jan 2021 06:55:45 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1609764945;
+        bh=JiZZQu6dpjhga2YUtT9K1Udslqr6GMyu4soFi9cIwio=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=DzSiSZOOp8QBit06iy4hBadl2Qx6H08H2GD6CShGiZryvShximoPKvgBbnsc7+svK
+         L89oWNvFUmbZ9Nq4MhUyk5XmCKT90qLrIE3JqQ7Jc3/Jzn7S+A6QT9y2RXgrngHaNQ
+         WlYs1GoPwD3xawTOsrZlVsULogFOYIUUVGMYaU8Y=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 104CtjGO100189
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 4 Jan 2021 06:55:45 -0600
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Mon, 4 Jan
+ 2021 06:55:44 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Mon, 4 Jan 2021 06:55:44 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 104CtiPX093860;
+        Mon, 4 Jan 2021 06:55:44 -0600
+Date:   Mon, 4 Jan 2021 06:55:44 -0600
+From:   Nishanth Menon <nm@ti.com>
+To:     Kishon Vijay Abraham I <kishon@ti.com>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v3 1/6] arm64: dts: ti: k3-j721e-main: Fix supported max
+ outbound regions
+Message-ID: <20210104125544.arluqus2xbqwacez@curler>
+References: <20210104122232.24071-1-kishon@ti.com>
+ <20210104122232.24071-2-kishon@ti.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20210104122232.24071-2-kishon@ti.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Sometimes, especially in a production system we may not want to
-use a "smart bootloader" like u-boot to load kernel, ramdisk and
-device tree from a filesystem on eMMC, but rather load the kernel
-from a NAND partition and just run it as soon as we can, and in
-this case it is convenient to have device tree compiled into the
-kernel binary. Since this case is not limited to MMU-less systems,
-let's support it for these which have MMU enabled too.
+On 17:52-20210104, Kishon Vijay Abraham I wrote:
+> Cadence IP in J721E supports a maximum of 32 outbound regions. However
+> commit 4e5833884f66 ("arm64: dts: ti: k3-j721e-main: Add PCIe device
+> tree nodes") incorrectly added this as 16 outbound regions. Now that
+> "cdns,max-outbound-regions" is an optional property with default value
+> as 32, remove "cdns,max-outbound-regions" from endpoint DT node.
+> 
+> Fixes: 4e5833884f66 ("arm64: dts: ti: k3-j721e-main: Add PCIe device tree nodes")
 
-Signed-off-by: Vitaly Wool <vitaly.wool@konsulko.com>
----
-Changelog from v1:
-* no direct initial_boot_params assignment
-* skips the temporary mapping for DT if BUILTIN_DTB=y 
+^^ Is this a backward compatible fixup. If I were to apply this on
+v5.10, wont we have a broken PCIe functionality? Drop the fixes if this
+is not backward compatible fixup (unless ofcourse the driver fixup is
+backported all the way back as well - I am assuming will be done in a
+manner to preserve compatibility with older dtb?)
 
- arch/riscv/Kconfig   |  1 -
- arch/riscv/mm/init.c | 15 +++++++++++++--
- 2 files changed, 13 insertions(+), 3 deletions(-)
+On master right now:
+$ git grep "cdns,max-outbound-regions" .
+Documentation/devicetree/bindings/pci/cdns,cdns-pcie-ep.yaml:                cdns,max-outbound-regions = <16>;
+Documentation/devicetree/bindings/pci/cdns-pcie-ep.yaml:  cdns,max-outbound-regions:
+Documentation/devicetree/bindings/pci/cdns-pcie-host.yaml:  cdns,max-outbound-regions:
+arch/arm64/boot/dts/ti/k3-j721e-main.dtsi:              cdns,max-outbound-regions = <16>;
+arch/arm64/boot/dts/ti/k3-j721e-main.dtsi:              cdns,max-outbound-regions = <16>;
+arch/arm64/boot/dts/ti/k3-j721e-main.dtsi:              cdns,max-outbound-regions = <16>;
+arch/arm64/boot/dts/ti/k3-j721e-main.dtsi:              cdns,max-outbound-regions = <16>;
+drivers/pci/controller/cadence/pcie-cadence-ep.c:       of_property_read_u32(np, "cdns,max-outbound-regions", &ep->max_regions);
 
-diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
-index 81b76d44725d..07a8bdcc423f 100644
---- a/arch/riscv/Kconfig
-+++ b/arch/riscv/Kconfig
-@@ -416,7 +416,6 @@ endmenu
- 
- config BUILTIN_DTB
- 	def_bool n
--	depends on RISCV_M_MODE
- 	depends on OF
- 
- menu "Power management options"
-diff --git a/arch/riscv/mm/init.c b/arch/riscv/mm/init.c
-index 13ba533f462b..04aeee276817 100644
---- a/arch/riscv/mm/init.c
-+++ b/arch/riscv/mm/init.c
-@@ -191,10 +191,13 @@ void __init setup_bootmem(void)
- #endif /* CONFIG_BLK_DEV_INITRD */
- 
- 	/*
--	 * Avoid using early_init_fdt_reserve_self() since __pa() does
-+	 * If DTB is built in, no need to reserve its memblock.
-+	 * Otherwise, do reserve it but avoid using
-+	 * early_init_fdt_reserve_self() since __pa() does
- 	 * not work for DTB pointers that are fixmap addresses
- 	 */
--	memblock_reserve(dtb_early_pa, fdt_totalsize(dtb_early_va));
-+	if (!IS_ENABLED(CONFIG_BUILTIN_DTB))
-+		memblock_reserve(dtb_early_pa, fdt_totalsize(dtb_early_va));
- 
- 	early_init_fdt_scan_reserved_mem();
- 	dma_contiguous_reserve(dma32_phys_limit);
-@@ -499,6 +502,7 @@ asmlinkage void __init setup_vm(uintptr_t dtb_pa)
- 	/* Setup early PMD for DTB */
- 	create_pgd_mapping(early_pg_dir, DTB_EARLY_BASE_VA,
- 			   (uintptr_t)early_dtb_pmd, PGDIR_SIZE, PAGE_TABLE);
-+#ifndef CONFIG_BUILTIN_DTB
- 	/* Create two consecutive PMD mappings for FDT early scan */
- 	pa = dtb_pa & ~(PMD_SIZE - 1);
- 	create_pmd_mapping(early_dtb_pmd, DTB_EARLY_BASE_VA,
-@@ -506,7 +510,11 @@ asmlinkage void __init setup_vm(uintptr_t dtb_pa)
- 	create_pmd_mapping(early_dtb_pmd, DTB_EARLY_BASE_VA + PMD_SIZE,
- 			   pa + PMD_SIZE, PMD_SIZE, PAGE_KERNEL);
- 	dtb_early_va = (void *)DTB_EARLY_BASE_VA + (dtb_pa & (PMD_SIZE - 1));
-+#else /* CONFIG_BUILTIN_DTB */
-+	dtb_early_va = __va(dtb_pa);
-+#endif /* CONFIG_BUILTIN_DTB */
- #else
-+#ifndef CONFIG_BUILTIN_DTB
- 	/* Create two consecutive PGD mappings for FDT early scan */
- 	pa = dtb_pa & ~(PGDIR_SIZE - 1);
- 	create_pgd_mapping(early_pg_dir, DTB_EARLY_BASE_VA,
-@@ -514,6 +522,9 @@ asmlinkage void __init setup_vm(uintptr_t dtb_pa)
- 	create_pgd_mapping(early_pg_dir, DTB_EARLY_BASE_VA + PGDIR_SIZE,
- 			   pa + PGDIR_SIZE, PGDIR_SIZE, PAGE_KERNEL);
- 	dtb_early_va = (void *)DTB_EARLY_BASE_VA + (dtb_pa & (PGDIR_SIZE - 1));
-+#else /* CONFIG_BUILTIN_DTB */
-+	dtb_early_va = __va(dtb_pa);
-+#endif /* CONFIG_BUILTIN_DTB */
- #endif
- 	dtb_early_pa = dtb_pa;
- 
+
+> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
+> ---
+>  arch/arm64/boot/dts/ti/k3-j721e-main.dtsi | 4 ----
+>  1 file changed, 4 deletions(-)
+> 
+
 -- 
-2.20.1
-
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
