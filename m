@@ -2,97 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A87B82E97F1
-	for <lists+devicetree@lfdr.de>; Mon,  4 Jan 2021 16:02:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 72AEE2E97F7
+	for <lists+devicetree@lfdr.de>; Mon,  4 Jan 2021 16:02:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726733AbhADPBC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Jan 2021 10:01:02 -0500
-Received: from mail.kernel.org ([198.145.29.99]:52106 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727042AbhADPBC (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 4 Jan 2021 10:01:02 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 3BF672242A;
-        Mon,  4 Jan 2021 15:00:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1609772421;
-        bh=76McoPLoNXJ7zHHaiw/iwsZGfjPtMnTd4fHkz6RlLy8=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=hW3TIYlm5O2iQLM7GL7kuNEE+bfaGGMCrl/joYLmQoLp+GvMfX5+jbAcZlEXo+7s2
-         TDIwPmdczlyq67q6DKqSjrXAp50fN4u4heeDYwO+xIk9ZaFXp6m2NeuL2RLdBnpgv/
-         +41Di+IGZkc+36/YJbXYposq4uLlt9hHjtezqr3yDY4ziaegiysqAqOE48JnwVjkUc
-         b/QZzOu6Uxj3QXyX1EbO7oIf0FLlbyVmt5Ipt1cGK9NWA06sr4Y3HMrQ9Kc7u38eE+
-         vLLbsEgb5iObFMTURFJJQI8NQvqrTmOOEvlxQQAsU0D66jURCYMfL2GkCfhoz1Khk/
-         GVbmFhfBRE+xg==
-Received: by mail-ed1-f47.google.com with SMTP id y24so27601477edt.10;
-        Mon, 04 Jan 2021 07:00:21 -0800 (PST)
-X-Gm-Message-State: AOAM533WCV+oOMLAK7WzsEcP+vpx+nqE/I+PrJ0Oz0xgxT1NFSDKr6+a
-        lKG8kJL3XStV+/rjMhcu5tPW/EMA8IVBNk7+sw==
-X-Google-Smtp-Source: ABdhPJwP6EYjbmYykf88vjoK9iRw2jfL9KsS5MI6owjDaO1gbRR6sIbACzP27r40L+/JSgw7vJj4YjDeZpqVPcLQJ+g=
-X-Received: by 2002:a05:6402:ca2:: with SMTP id cn2mr71082828edb.137.1609772419839;
- Mon, 04 Jan 2021 07:00:19 -0800 (PST)
+        id S1726908AbhADPBR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Jan 2021 10:01:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36500 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726762AbhADPBQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jan 2021 10:01:16 -0500
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 438CDC061793
+        for <devicetree@vger.kernel.org>; Mon,  4 Jan 2021 07:00:24 -0800 (PST)
+Received: by mail-lf1-x12c.google.com with SMTP id o17so64988800lfg.4
+        for <devicetree@vger.kernel.org>; Mon, 04 Jan 2021 07:00:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=tR4uUSuiT2yNCjy2l75xxGnO77PWcJQ+DtWty5i0rMc=;
+        b=LJ/AsciYj2BKHcnJ73UgKyavCV9Qw6QPv4rj+dpkZQo3YhzjsIYgubutakzgyTilOD
+         BP9w87saYt2mwvs7pZCpYcL045gJziDe+nWIOEIroRJOnA/6w6C3nho2eTCijDeSKdjt
+         PBqhmEKevTBMFjsa0IcaooKAmbg3t91gOMxVs09uohr1nFJay1Z1SsD25Pw+7ggP08aJ
+         5qjrV116BFU7LMFDr/xS64uW5vVHC3/z159BsSxs/JhDkCYSr0Lhd9QeDmh2c6lqrcBl
+         BvcUQtSkdSewYsZD9JVB7IA4M8OtwXfkhg1fq/nM+bJu/vwBI0RnGutIae+G/ZtFnR4+
+         UEZg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=tR4uUSuiT2yNCjy2l75xxGnO77PWcJQ+DtWty5i0rMc=;
+        b=dXJttCPCJgph6trNooy199BdjTDH5J+icGSE0CpxqczSgMXBCsJvZV5qn2SN52+SeR
+         EQysA7MwANAPdyOtltEkkuQXTlz+E0oApImr4Za0m0WDzhb96F4nzZVOA+oSUUf0gQiL
+         541xlLnR+wpEsTzHrKBqZxelo55H40R1Hh7LKgmr+K1I+yeGESAvtycldwnRHRU3D9Lh
+         Q7PHZESSPv7S2R/ziQyfVok0bi1al7Rpk6vx4DPHlGUcnlicr90HNUJD5K3qRuYdf7bR
+         8uaoBfw8yiih2AUt47TkNUBYZ7e5nOGN8oZK6OOsTnat8Hbmaac7XDkUTrfLI68YDV91
+         YU6Q==
+X-Gm-Message-State: AOAM530IrUlQ0n6jh6tirehKp317GkyOt+0fqRC10bj6oHnC9xJWgQKQ
+        iFwNm5TdXEnMCCJ+UZonMf+SK1m47x92Ca4R/xrvQw==
+X-Google-Smtp-Source: ABdhPJw8BDy+1PA7BTXsFDKivU2qz6c7DgAaqRK4RmPbkQPgVpVra4mzO3RTstCIcQRAlI3tqm7JphEKl6JVoakBr3M=
+X-Received: by 2002:a05:6512:74e:: with SMTP id c14mr34844158lfs.529.1609772422734;
+ Mon, 04 Jan 2021 07:00:22 -0800 (PST)
 MIME-Version: 1.0
-References: <20201210134215.20424-1-peter.chen@kernel.org> <CAL_JsqKxcWjdxVHSSHKKRtshwOXeodjQWCYt6G7asJYjjuoWQQ@mail.gmail.com>
- <20201211020155.GA490@b29397-desktop>
-In-Reply-To: <20201211020155.GA490@b29397-desktop>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 4 Jan 2021 08:00:07 -0700
-X-Gmail-Original-Message-ID: <CAL_JsqKk1KBCnWp40XyLGAPMJP-R-qAdo9FRax+DgrowKhp1=g@mail.gmail.com>
-Message-ID: <CAL_JsqKk1KBCnWp40XyLGAPMJP-R-qAdo9FRax+DgrowKhp1=g@mail.gmail.com>
-Subject: Re: [PATCH 1/2] of: platform: introduce platform data length for auxdata
-To:     Peter Chen <peter.chen@nxp.com>
-Cc:     Peter Chen <peter.chen@kernel.org>,
-        Pawel Laszczak <pawell@cadence.com>,
-        Roger Quadros <rogerq@ti.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Linux USB List <linux-usb@vger.kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        Aswath Govindraju <a-govindraju@ti.com>,
-        Frank Li <frank.li@nxp.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+References: <20201217144338.3129140-1-nobuhiro1.iwamatsu@toshiba.co.jp> <20201217144338.3129140-5-nobuhiro1.iwamatsu@toshiba.co.jp>
+In-Reply-To: <20201217144338.3129140-5-nobuhiro1.iwamatsu@toshiba.co.jp>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Mon, 4 Jan 2021 16:00:11 +0100
+Message-ID: <CACRpkdb--GSy-0vnAFS9Pik4TjrNRTrYeZr2RBZD6SFM8zotyQ@mail.gmail.com>
+Subject: Re: [PATCH v5 4/4] arm: dts: visconti: Add DT support for Toshiba
+ Visconti5 GPIO driver
+To:     Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Punit Agrawal <punit1.agrawal@toshiba.co.jp>,
+        yuji2.ishikawa@toshiba.co.jp,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 10, 2020 at 7:02 PM Peter Chen <peter.chen@nxp.com> wrote:
->
-> On 20-12-10 09:38:49, Rob Herring wrote:
-> > On Thu, Dec 10, 2020 at 7:42 AM Peter Chen <peter.chen@kernel.org> wrote:
-> > >
-> > > From: Peter Chen <peter.chen@nxp.com>
-> > >
-> > > When a platform device is released, it frees the device platform_data
-> > > memory region using kfree, if the memory is not allocated by kmalloc,
-> > > it may run into trouble. See the below comments from kfree API.
-> > >
-> > >          * Don't free memory not originally allocated by kmalloc()
-> > >          * or you will run into trouble.
-> > >
-> > > For the device which is created dynamically using of_platform_populate,
-> > > if the platform_data is existed at of_dev_auxdata structure, the OF code
-> > > simply assigns the platform_data pointer to newly created device, but
-> > > not using platform_device_add_data to allocate one. For most of platform
-> > > data region at device driver, which may not be allocated by kmalloc, they
-> > > are at global data region or at stack region at some situations.
-> >
-> > auxdata is a "temporary" thing for transitioning to DT which I want to
-> > remove. So I don't really want to see it expanded nor new users. We've
-> > got about a dozen arm32 platforms and 5 cases under drivers/.
-> >
->
-> How to handle the below user case:
-> Parent device creates child device through device tree node (eg, usb/dwc3,
-> usb/cdns3), there are some platform quirks at parent device(vendor glue
-> layer) need child device (core IP device) driver to handle. The quirks
-> are not limited to the hardware quirk, may include the callbacks, software
-> flag (eg: XHCI_DEFAULT_PM_RUNTIME_ALLOW/XHCI_SKIP_PHY_INIT, at
-> drivers/usb/host/xhci.h)
+On Thu, Dec 17, 2020 at 6:45 AM Nobuhiro Iwamatsu
+<nobuhiro1.iwamatsu@toshiba.co.jp> wrote:
 
-The split of these between a platform specific driver and the core IP
-driver was just wrong to begin with. There should only be 1 driver
-with common 'library' functions like we do for every other case of
-common, licensed IP. Perhaps the core driver should stop pretending it
-is generic and figure out the quirks for itself by looking at the
-parent node.
+> Add the GPIO node in Toshiba Visconti5 SoC-specific DT file.
+> And enable the GPIO node in TMPV7708 RM main board's board-specific DT file.
+>
+> Signed-off-by: Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+> Reviewed-by: Punit Agrawal <punit1.agrawal@toshiba.co.jp>
 
-Rob
+Acked-by: Linus Walleij <linus.walleij@linaro.org>
+
+Please funnel this patch through the ARM SoC tree.
+
+Yours,
+Linus Walleij
