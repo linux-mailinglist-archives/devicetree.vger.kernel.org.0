@@ -2,47 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C2CCB2E9349
-	for <lists+devicetree@lfdr.de>; Mon,  4 Jan 2021 11:27:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E3AE92E9380
+	for <lists+devicetree@lfdr.de>; Mon,  4 Jan 2021 11:43:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726352AbhADK1U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Jan 2021 05:27:20 -0500
-Received: from relay10.mail.gandi.net ([217.70.178.230]:49267 "EHLO
-        relay10.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726124AbhADK1U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jan 2021 05:27:20 -0500
-Received: from localhost.localdomain (lfbn-tou-1-1535-bdcst.w90-89.abo.wanadoo.fr [90.89.98.255])
-        (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay10.mail.gandi.net (Postfix) with ESMTPSA id ACCC424000A;
-        Mon,  4 Jan 2021 10:26:36 +0000 (UTC)
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
-        robh+dt@kernel.org
-Cc:     devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        bjorn.andersson@linaro.org, linux-mtd@lists.infradead.org
-Subject: Re: [PATCH v4 1/4] dt-bindings: mtd: partitions: Add binding for Qcom SMEM parser
-Date:   Mon,  4 Jan 2021 11:26:34 +0100
-Message-Id: <20210104102634.8965-1-miquel.raynal@bootlin.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20210104041137.113075-2-manivannan.sadhasivam@linaro.org>
-References: 
+        id S1726616AbhADKm2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Jan 2021 05:42:28 -0500
+Received: from mail-ot1-f46.google.com ([209.85.210.46]:43825 "EHLO
+        mail-ot1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726599AbhADKm2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jan 2021 05:42:28 -0500
+Received: by mail-ot1-f46.google.com with SMTP id q25so25563716otn.10;
+        Mon, 04 Jan 2021 02:42:12 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=S4IVbE7LzJfQ0v8UqgW0RPFmuPLfdoUzAgSWkg+Ttc8=;
+        b=Udy122TOZsFa9aMxoS0cL6qJe/LofBB9z9trxJNRsd5TjlXzQQtwwL1n+BQFb1+Riy
+         k4Y4Plb2YZ4THD7u/0wP9WSIBiwU+M60hjAAvC8+Lsi7f1000LzG1w+CBshtxjqOgaVe
+         rCdgzWSDE55yycLQ+nfnF68Qs5r6Lsvv7DOBgfxCHsLJDwzwqCEk5ZCWFAgwMvGv2K97
+         ZSBkiuHag9ftj1BSmB0lEhbbDD0LPw/p7sqW+NOyN8zealQ7y84e5CM384lHeOsCg5qn
+         hv9+C53OO8QKEjKS5ViFJuXm9bdB/XxPubtxljmJf3ckhNeXpCGUkRJHCDh3zYnfUCHt
+         kSyw==
+X-Gm-Message-State: AOAM5322hQv4PeabErA6jNdGRCcw6jiUH/YJBlk5LI2ibMsngkn0kY7U
+        PP49m8ge+oCLjWrQw6kEKd5Eco+dr5gqCT9nmg4=
+X-Google-Smtp-Source: ABdhPJzpTyOsYqkffItlUkWN/wndvtYGxzzu7wXZ1SHmN7oyEIsTQAbA7mSKZymIYePJf+62beQfMfvBDnjDxkPFQjM=
+X-Received: by 2002:a05:6830:210a:: with SMTP id i10mr52172686otc.145.1609756907197;
+ Mon, 04 Jan 2021 02:41:47 -0800 (PST)
 MIME-Version: 1.0
-X-linux-mtd-patch-notification: thanks
-X-linux-mtd-patch-commit: ab109420908859d27315a6e7257c1597842d276d
-Content-Transfer-Encoding: 8bit
+References: <20201228213121.2331449-1-aford173@gmail.com> <20201228213121.2331449-4-aford173@gmail.com>
+In-Reply-To: <20201228213121.2331449-4-aford173@gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 4 Jan 2021 11:41:36 +0100
+Message-ID: <CAMuHMdUCsAGYGS8oygT2xySRSm3Op4cJJmcnEK9BC732ZvN6JA@mail.gmail.com>
+Subject: Re: [PATCH 4/4] net: ethernet: ravb: Name the AVB functional clock fck
+To:     Adam Ford <aford173@gmail.com>
+Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Adam Ford-BE <aford@beaconembedded.com>,
+        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        netdev <netdev@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2021-01-04 at 04:11:34 UTC, Manivannan Sadhasivam wrote:
-> Add YAML binding for Qualcomm Shared Memory (SMEM) Flash partition
-> parser.
-> 
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> Reviewed-by: Rob Herring <robh@kernel.org>
+Hi Adam,
 
-Applied to https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git nand/next, thanks.
+On Mon, Dec 28, 2020 at 10:32 PM Adam Ford <aford173@gmail.com> wrote:
+> The bindings have been updated to support two clocks, but the
+> original clock now requires the name fck to distinguish it
+> from the other.
+>
+> Signed-off-by: Adam Ford <aford173@gmail.com>
 
-Miquel
+Thanks for your patch!
+
+> --- a/drivers/net/ethernet/renesas/ravb_main.c
+> +++ b/drivers/net/ethernet/renesas/ravb_main.c
+> @@ -2142,7 +2142,7 @@ static int ravb_probe(struct platform_device *pdev)
+>
+>         priv->chip_id = chip_id;
+>
+> -       priv->clk = devm_clk_get(&pdev->dev, NULL);
+> +       priv->clk = devm_clk_get(&pdev->dev, "fck");
+
+This change is not backwards compatible, as existing DTB files do not
+have the "fck" clock.  So the driver has to keep on assuming the first
+clock is the functional clock, and this patch is thus not needed nor
+desired.
+
+>         if (IS_ERR(priv->clk)) {
+>                 error = PTR_ERR(priv->clk);
+>                 goto out_release;
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
