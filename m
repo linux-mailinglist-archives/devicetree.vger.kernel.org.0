@@ -2,99 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2120B2E9325
-	for <lists+devicetree@lfdr.de>; Mon,  4 Jan 2021 11:14:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C4DA52E934E
+	for <lists+devicetree@lfdr.de>; Mon,  4 Jan 2021 11:29:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726303AbhADKMs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Jan 2021 05:12:48 -0500
-Received: from guitar.tcltek.co.il ([192.115.133.116]:59298 "EHLO
-        mx.tkos.co.il" rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725616AbhADKMs (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 4 Jan 2021 05:12:48 -0500
-Received: from tarshish (unknown [10.0.8.2])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mx.tkos.co.il (Postfix) with ESMTPS id 52E89440AEE;
-        Mon,  4 Jan 2021 12:12:05 +0200 (IST)
-References: <cover.1607601615.git.baruch@tkos.co.il>
- <20210104092449.GA1551@shell.armlinux.org.uk>
-User-agent: mu4e 1.4.13; emacs 27.1
-From:   Baruch Siach <baruch@tkos.co.il>
-To:     Russell King - ARM Linux admin <linux@armlinux.org.uk>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Uwe =?utf-8?Q?Kleine-K?= =?utf-8?Q?=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-        linux-pwm@vger.kernel.org,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        Chris Packham <chris.packham@alliedtelesis.co.nz>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Ralph Sennhauser <ralph.sennhauser@gmail.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        linux-arm-kernel@lists.infradead.org,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>
-Subject: Re: [PATCH v4 0/3] gpio: mvebu: Armada 8K/7K PWM support
-In-reply-to: <20210104092449.GA1551@shell.armlinux.org.uk>
-Date:   Mon, 04 Jan 2021 12:12:04 +0200
-Message-ID: <87mtxp9fkb.fsf@tarshish>
+        id S1726693AbhADK1V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Jan 2021 05:27:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50112 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726258AbhADK1U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jan 2021 05:27:20 -0500
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4290C061794;
+        Mon,  4 Jan 2021 02:26:39 -0800 (PST)
+Received: by mail-lf1-x12a.google.com with SMTP id o19so63176893lfo.1;
+        Mon, 04 Jan 2021 02:26:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:reply-to:from:date:message-id
+         :subject:to:cc;
+        bh=Et4nxJuio4ZNTBtPlqRIFRZRUkaFWNJHBrb9tgeeeJc=;
+        b=qfqpLaDd16YyzQqx2QvpDrp+6se71QDteD8pteZxfq7GPL9UDayKnrFSnACESCR3vY
+         6NFiRNhr+9pa2+oqzHSdzyFV1wVgAireNDBuNjf5CRoyf8QqS7cd7KI+HLQOfAUdXOT6
+         CcUJSDWSjbrsvIhjcbU6OBqe8o7O4lsqY5rkGb0XzF7i5i7dS+3BehPAPe9Ke+w2/slA
+         nckodocSocGYhHsyF2TpLjAdcn0Mdvhoacl+f86Zg5JZthpl/z/UAcixm5IIHKWFIakG
+         5E0dK8qUp88WJ6wmwIsSENrS4g7BOcXyo/vI+g5foXwfP4k01JYO9gkjfsw6xtgGOq1F
+         AxeQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:reply-to
+         :from:date:message-id:subject:to:cc;
+        bh=Et4nxJuio4ZNTBtPlqRIFRZRUkaFWNJHBrb9tgeeeJc=;
+        b=PQkPgz3NtEo8r9E4vPpeO5vhDV1PtiZ++5mDAWpXzz6VYwBaWoz52t8swSPFYpwi0P
+         aCB6x8hqp9fdIPXRsmxrBiylKQSqvC9XEFEbf6Fy6UBIIiG6zzOnylhgOjcQgHKrhnyy
+         Z28n5O3EbGkOcnO1NWnbPD8EzsauRjfw4q4QD3z+z5EzZ6bYVcDUOZXBq4WQgKoN8GQ0
+         0xjZFdJhpCC2NK0ahZoPaDKp23gOb1qOBSkIH5WdNiGQ2iH94tqfje5TsU1KWrR6isO3
+         7QpII41o7OFIUWPQm+ri9klOXHglP18A9g2rW9iECKou5pY5e/y+CPsBahIb3sLzzQfE
+         QJ6g==
+X-Gm-Message-State: AOAM5300RbMkWogYvsoShBM1aRqQKWX1pe+JLukMsePpPvkx/4MwLVku
+        USwkp8yy4QYJohWNQ+ofxdpcOroketbxOgreSbusCd9yP1Q=
+X-Google-Smtp-Source: ABdhPJwrAY/Wb2Zq4TlZIihhl3On2eBpe9OQ90H5lTfXBVG3owYbx3F8E7q1iRtIY9G7ahLsLqBtDHkKFUg309Tr01k=
+X-Received: by 2002:a2e:8084:: with SMTP id i4mr37333079ljg.291.1609755998142;
+ Mon, 04 Jan 2021 02:26:38 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain
+References: <20201230205139.1812366-1-timon.baetz@protonmail.com>
+In-Reply-To: <20201230205139.1812366-1-timon.baetz@protonmail.com>
+Reply-To: cwchoi00@gmail.com
+From:   Chanwoo Choi <cwchoi00@gmail.com>
+Date:   Mon, 4 Jan 2021 19:26:01 +0900
+Message-ID: <CAGTfZH2WCamOtih1Gk5W8uJ2ewEfdFQegsPeWp0dSNYcUt7QLw@mail.gmail.com>
+Subject: Re: [PATCH v6 1/8] extcon: max8997: Add CHGINS and CHGRM interrupt handling
+To:     Timon Baetz <timon.baetz@protonmail.com>
+Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
+        Linux PM list <linux-pm@vger.kernel.org>,
+        ~postmarketos/upstreaming@lists.sr.ht
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Russell,
-
-On Mon, Jan 04 2021, Russell King - ARM Linux admin wrote:
-> On Thu, Dec 10, 2020 at 02:15:57PM +0200, Baruch Siach wrote:
->> This series makes two changes to v3:
->> 
->>   * Remove patches that are in LinusW linux-gpio for-next and fixes
->> 
->>   * Rename the 'pwm-offset' property to 'marvell,pwm-offset' as suggested by 
->>     Rob Herring
->> 
->> The original cover letter follows (with DT property name updated).
->> 
->> The gpio-mvebu driver supports the PWM functionality of the GPIO block for
->> earlier Armada variants like XP, 370 and 38x. This series extends support to
->> newer Armada variants that use CP11x and AP80x, like Armada 8K and 7K.
->> 
->> This series adds adds the 'marvell,pwm-offset' property to DT binding. 
->> 'marvell,pwm-offset' points to the base of A/B counter registers that 
->> determine the PWM period and duty cycle.
->> 
->> The existing PWM DT binding reflects an arbitrary decision to allocate the A
->> counter to the first GPIO block, and B counter to the other one. In attempt to
->> provide better future flexibility, the new 'marvell,pwm-offset' property 
->> always points to the base address of both A/B counters. The driver code still 
->> allocates the counters in the same way, but this might change in the future 
->> with no change to the DT.
->> 
->> Tested AP806 and CP110 (both) on Armada 8040 based system.
+On Thu, Dec 31, 2020 at 5:54 AM Timon Baetz <timon.baetz@protonmail.com> wrote:
 >
-> Did you see the patches I sent during the last year doing this and
-> adding support for the fan on the GT-8k?
+> This allows the MAX8997 charger to set the current limit depending on
+> the detected extcon charger type.
+>
+> Signed-off-by: Timon Baetz <timon.baetz@protonmail.com>
+> ---
+> v6: No change.
+> v5: No change.
+> v4: No change.
+> v3: No change.
+> v2: Remove empty line.
+>
+>  drivers/extcon/extcon-max8997.c | 4 ++++
+>  1 file changed, 4 insertions(+)
+>
+> diff --git a/drivers/extcon/extcon-max8997.c b/drivers/extcon/extcon-max8997.c
+> index 337b0eea4e62..e1408075ef7d 100644
+> --- a/drivers/extcon/extcon-max8997.c
+> +++ b/drivers/extcon/extcon-max8997.c
+> @@ -44,6 +44,8 @@ static struct max8997_muic_irq muic_irqs[] = {
+>         { MAX8997_MUICIRQ_ChgDetRun,    "muic-CHGDETRUN" },
+>         { MAX8997_MUICIRQ_ChgTyp,       "muic-CHGTYP" },
+>         { MAX8997_MUICIRQ_OVP,          "muic-OVP" },
+> +       { MAX8997_PMICIRQ_CHGINS,       "pmic-CHGINS" },
+> +       { MAX8997_PMICIRQ_CHGRM,        "pmic-CHGRM" },
+>  };
+>
+>  /* Define supported cable type */
+> @@ -538,6 +540,8 @@ static void max8997_muic_irq_work(struct work_struct *work)
+>         case MAX8997_MUICIRQ_DCDTmr:
+>         case MAX8997_MUICIRQ_ChgDetRun:
+>         case MAX8997_MUICIRQ_ChgTyp:
+> +       case MAX8997_PMICIRQ_CHGINS:
+> +       case MAX8997_PMICIRQ_CHGRM:
+>                 /* Handle charger cable */
+>                 ret = max8997_muic_chg_handler(info);
+>                 break;
+> --
+> 2.25.1
+>
+>
 
-You refer to the series linked below, right?
+Applied it. Thans.
 
-  https://lore.kernel.org/linux-pwm/20200329104549.GX25745@shell.armlinux.org.uk/
-
-(For some reason the LAKM archive is missing two years, including this
-time frame)
-
-I now remember that series. I even archived it locally. But then I
-forgot about it, so I ended up recreating Armada 8K PWM support from
-scratch. Sorry about that.
-
-Any comment on this series?
-
-baruch
 
 -- 
-                                                     ~. .~   Tk Open Systems
-=}------------------------------------------------ooO--U--Ooo------------{=
-   - baruch@tkos.co.il - tel: +972.52.368.4656, http://www.tkos.co.il -
+Best Regards,
+Chanwoo Choi
