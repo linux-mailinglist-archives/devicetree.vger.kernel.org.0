@@ -2,112 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 01F482E9E2C
-	for <lists+devicetree@lfdr.de>; Mon,  4 Jan 2021 20:29:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 044B52E9E5F
+	for <lists+devicetree@lfdr.de>; Mon,  4 Jan 2021 20:57:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728056AbhADT1i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Jan 2021 14:27:38 -0500
-Received: from linux.microsoft.com ([13.77.154.182]:36804 "EHLO
-        linux.microsoft.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728030AbhADT1e (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jan 2021 14:27:34 -0500
-Received: from localhost.localdomain (c-73-42-176-67.hsd1.wa.comcast.net [73.42.176.67])
-        by linux.microsoft.com (Postfix) with ESMTPSA id D92AC20B6C45;
-        Mon,  4 Jan 2021 11:26:14 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com D92AC20B6C45
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-        s=default; t=1609788375;
-        bh=FCu6sP1bcDlF9OaiyexlwuDb0Kzn6QXzfNaJvcH1L1U=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=UtFHy5rw9HKo0DNKwUq9Yxi4zH8SpP2pZaFBO2Dn9rEfgJSuXSbUsFtI3RndLIfRR
-         lndkSqacm7ZisdPXlJ9rJf5kHw7ifnbuNuSAT3m6SH7BrphF669/0XLfl2gKt/45Gq
-         ucjYvtokgPKTli4o47ZiBrnMenlOCOQhfnhyW7nA=
-From:   Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
-To:     zohar@linux.ibm.com, bauerman@linux.ibm.com, robh@kernel.org,
-        takahiro.akashi@linaro.org, gregkh@linuxfoundation.org,
-        will@kernel.org, catalin.marinas@arm.com, mpe@ellerman.id.au
-Cc:     james.morse@arm.com, sashal@kernel.org, benh@kernel.crashing.org,
-        paulus@samba.org, frowand.list@gmail.com,
-        vincenzo.frascino@arm.com, mark.rutland@arm.com,
-        dmitry.kasatkin@gmail.com, jmorris@namei.org, serge@hallyn.com,
-        pasha.tatashin@soleen.com, allison@lohutok.net,
-        masahiroy@kernel.org, bhsharma@redhat.com, mbrugger@suse.com,
-        hsinyi@chromium.org, tao.li@vivo.com, christophe.leroy@c-s.fr,
-        prsriva@linux.microsoft.com, balajib@linux.microsoft.com,
-        linux-integrity@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linuxppc-dev@vger.kernel.org
-Subject: [PATCH v14 6/6] arm64: Add IMA log information in kimage used for kexec
-Date:   Mon,  4 Jan 2021 11:26:02 -0800
-Message-Id: <20210104192602.10131-7-nramas@linux.microsoft.com>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210104192602.10131-1-nramas@linux.microsoft.com>
-References: <20210104192602.10131-1-nramas@linux.microsoft.com>
+        id S1726176AbhADT4r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Jan 2021 14:56:47 -0500
+Received: from vern.gendns.com ([98.142.107.122]:47578 "EHLO vern.gendns.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726168AbhADT4r (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 4 Jan 2021 14:56:47 -0500
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=lechnology.com; s=default; h=Content-Transfer-Encoding:Content-Type:
+        In-Reply-To:MIME-Version:Date:Message-ID:References:Cc:To:Subject:From:Sender
+        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=bJlwvAcTP6n9JlqTMododdUIqadilk9NCyhFDpB28QM=; b=oejsnWkewMFuL0K3OfU/1ZVdud
+        lHDUUVgj8utlNwF/oaBQQ28cGZGupfAkluRFJd71E2ux0p081glR2WFV3O2JM9Tvo1so8ZdS8CyiD
+        fcKkn75N3GUW08mEzKm/dpbf/pvNuVGcuImrHc4qfrw2kV33ofJznQPFHnTifVfbgd97485j1FFka
+        0xh0ed5I+cw0SZAh1BcPnxPs+/jn62KwkNAtdkilq10Q1MQqpMyaFibef0cTjB0ehy3JuH1/gbqVT
+        RD61ieBYnKDv7BsdLYDEGVWh9Yen4dlh6wfwGUjHTteM7Tz9sSkacC73gv4gtWEg4QbGxRCauHUkY
+        7EYJLm0A==;
+Received: from 108-198-5-147.lightspeed.okcbok.sbcglobal.net ([108.198.5.147]:53450 helo=[192.168.0.134])
+        by vern.gendns.com with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        (Exim 4.93)
+        (envelope-from <david@lechnology.com>)
+        id 1kwVxT-0008EX-4A; Mon, 04 Jan 2021 14:56:03 -0500
+From:   David Lechner <david@lechnology.com>
+Subject: Re: [PATCH 1/5] dt-bindings: remoteproc: Add PRU consumer bindings
+To:     robh@kernel.org
+Cc:     bjorn.andersson@linaro.org, devicetree@vger.kernel.org,
+        grzegorz.jaszczyk@linaro.org, lee.jones@linaro.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-omap@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        mathieu.poirier@linaro.org, ohad@wizery.com, praneeth@ti.com,
+        rogerq@ti.com, s-anna@ti.com, ssantosh@kernel.org
+References: <CAL_Jsq+W8GuqKdqSxt7bKcfpK3Wg35V9R-3+UzNi_+3uRqA=AQ@mail.gmail.com>
+Message-ID: <4fd5d68a-830a-83df-fc7a-1070e2619a86@lechnology.com>
+Date:   Mon, 4 Jan 2021 13:56:01 -0600
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAL_Jsq+W8GuqKdqSxt7bKcfpK3Wg35V9R-3+UzNi_+3uRqA=AQ@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - vern.gendns.com
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - lechnology.com
+X-Get-Message-Sender-Via: vern.gendns.com: authenticated_id: davidmain+lechnology.com/only user confirmed/virtual account not confirmed
+X-Authenticated-Sender: vern.gendns.com: davidmain@lechnology.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Address and size of the buffer containing the IMA measurement log need
-to be passed from the current kernel to the next kernel on kexec.
 
-Any existing "linux,ima-kexec-buffer" property in the device tree
-needs to be removed and its corresponding memory reservation in
-the currently running kernel needs to be freed. The address and
-size of the current kernel's IMA measurement log need to be added
-to the device tree's IMA kexec buffer node and memory for the buffer
-needs to be reserved for the log to be carried over to the next kernel
-on the kexec call.
+> Also, I think you can get rid of 'ti,pruss-gp-mux-sel'. Can't it just
+> be an arg cell in 'ti,prus' entries?
+> 
+> Rob
 
-Add address and size fields to "struct kimage_arch" for ARM64 platform
-to hold the address and size of the IMA measurement log buffer. Remove
-any existing "linux,ima-kexec-buffer" property in the device tree and
-free the corresponding memory reservation in the currently running
-kernel. Add "linux,ima-kexec-buffer" property to the device tree and
-reserve the memory for storing the IMA log that needs to be passed from
-the current kernel to the next one.
++1 for using cells instead of a separate property.
 
-Update CONFIG_KEXEC_FILE to select CONFIG_HAVE_IMA_KEXEC to indicate
-that the IMA measurement log information is present in the device tree
-for ARM64.
+FYI, we will have a similar issue with the PRUSSEVTSEL signal for the
+interrupt controller on the AM18XX. I am still of the opinion (described
+in more detail at [1]) that using a cell for this makes for both better
+device tree bindings and easier driver implementation. So I am interested
+to see what the resolution is here.
 
-Co-developed-by: Prakhar Srivastava <prsriva@linux.microsoft.com>
-Signed-off-by: Prakhar Srivastava <prsriva@linux.microsoft.com>
-Signed-off-by: Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
----
- arch/arm64/Kconfig             | 1 +
- arch/arm64/include/asm/kexec.h | 5 +++++
- 2 files changed, 6 insertions(+)
-
-diff --git a/arch/arm64/Kconfig b/arch/arm64/Kconfig
-index a6b5b7ef40ae..312b4d5ad232 100644
---- a/arch/arm64/Kconfig
-+++ b/arch/arm64/Kconfig
-@@ -1095,6 +1095,7 @@ config KEXEC
- config KEXEC_FILE
- 	bool "kexec file based system call"
- 	select KEXEC_CORE
-+	select HAVE_IMA_KEXEC if IMA
- 	help
- 	  This is new version of kexec system call. This system call is
- 	  file based and takes file descriptors as system call argument
-diff --git a/arch/arm64/include/asm/kexec.h b/arch/arm64/include/asm/kexec.h
-index d24b527e8c00..2bd19ccb6c43 100644
---- a/arch/arm64/include/asm/kexec.h
-+++ b/arch/arm64/include/asm/kexec.h
-@@ -100,6 +100,11 @@ struct kimage_arch {
- 	void *elf_headers;
- 	unsigned long elf_headers_mem;
- 	unsigned long elf_headers_sz;
-+
-+#ifdef CONFIG_IMA_KEXEC
-+	phys_addr_t ima_buffer_addr;
-+	size_t ima_buffer_size;
-+#endif
- };
- 
- extern const struct kexec_file_ops kexec_image_ops;
--- 
-2.29.2
-
+[1]: https://patchwork.kernel.org/project/linux-arm-kernel/patch/20190708035243.12170-5-s-anna@ti.com/
