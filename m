@@ -2,111 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C5672E977F
-	for <lists+devicetree@lfdr.de>; Mon,  4 Jan 2021 15:43:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 390562E9791
+	for <lists+devicetree@lfdr.de>; Mon,  4 Jan 2021 15:46:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726663AbhADOnF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Jan 2021 09:43:05 -0500
-Received: from foss.arm.com ([217.140.110.172]:37136 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726189AbhADOnD (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 4 Jan 2021 09:43:03 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 38DBD1FB;
-        Mon,  4 Jan 2021 06:42:17 -0800 (PST)
-Received: from [10.57.38.245] (unknown [10.57.38.245])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 5BC7F3F719;
-        Mon,  4 Jan 2021 06:42:15 -0800 (PST)
-Subject: Re: [PATCH 06/11] dts: bindings: Document device tree bindings for
- ETE
-To:     Rob Herring <robh@kernel.org>,
-        Anshuman Khandual <anshuman.khandual@arm.com>
-Cc:     linux-arm-kernel@lists.infradead.org, coresight@lists.linaro.org,
-        linux-kernel@vger.kernel.org,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Mike Leach <mike.leach@linaro.org>,
-        Linu Cherian <lcherian@marvell.com>, devicetree@vger.kernel.org
-References: <1608717823-18387-1-git-send-email-anshuman.khandual@arm.com>
- <1608717823-18387-7-git-send-email-anshuman.khandual@arm.com>
- <20210103170216.GA4048658@robh.at.kernel.org>
-From:   Suzuki K Poulose <suzuki.poulose@arm.com>
-Message-ID: <9d19b169-b037-20b1-7c00-b2ba2194addd@arm.com>
-Date:   Mon, 4 Jan 2021 14:42:08 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.0
+        id S1726822AbhADOq2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Jan 2021 09:46:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34078 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726685AbhADOq1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jan 2021 09:46:27 -0500
+Received: from mail-ot1-x333.google.com (mail-ot1-x333.google.com [IPv6:2607:f8b0:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72DDAC061793;
+        Mon,  4 Jan 2021 06:45:47 -0800 (PST)
+Received: by mail-ot1-x333.google.com with SMTP id j20so26205494otq.5;
+        Mon, 04 Jan 2021 06:45:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=OvAhumTD21QUbPNeTp8dtsndkhEIhLEEG5IdkVuRcDw=;
+        b=KuLf/7jx14Horyal9YVKcvo7laAoBg7ZLpYV1q/T4mSrNjF6SESdHf1RR+oEv/QQ7S
+         wfFVzp2b7aTvX7d1rP3L1JsAGoJ6iZg8Lw0lP1wFtUs/ef4RbRa+WYfjz8D9HYh1nkgW
+         bpjC/e0pF4myYNzLIBTFbWmsMjo/LgbceqrjJAoTOKxSiS2JdbtUaCTEm3XeHPy/7CBL
+         aJhqmOz/YRoVw9+0rNeNS7xVONqocWur9scKHUZ9eRmTzNQuRuSsIU6SbuMX1ioc8DMG
+         kpPM7yPF3oTwmEDf0Xm8BXPE1NYWlkJP6GMm4r0gaPZNLbeQB1SkdLAt3i4e1S9cR+CW
+         RyXA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=OvAhumTD21QUbPNeTp8dtsndkhEIhLEEG5IdkVuRcDw=;
+        b=eBBWv31nHqEUWIodr77Xf4BRjpa3dw+yUk+l+DIsA4ti/qcpXfwr6t19aIv066NyCj
+         BfwEwb0RxkvmXbiCemuSR8iarrBtgOwVRdUf4MmwCiH5JyJVId0C+qYw5bIB5YhBem/M
+         SYsuuy4evOv55idz7z1w16qPkI7UwuUxT2iTw7rmjcq09VyNmY2j1vKPJjxHjUE0zPhJ
+         nNy56PKj0RBqO8v4FimZ7yZ6k7zYmPeouRbxL4Xa+f6Q7UclkO+axR/ccPERh4/1dHAf
+         VGip+EOdNT82epjQHv56XeK2W5amcbqveJylp3y1TNEssKMu3UMeTK11jkjQTz7pe7Wa
+         A6Ig==
+X-Gm-Message-State: AOAM533u9UwBCZENHbft8snTxI8isjTKrsuitwMpNRHu9tlRxY29b6pR
+        zZMJ+mj4hjTMvxmCVtviCpVNoBci3vMwMX6CUFI=
+X-Google-Smtp-Source: ABdhPJz+K2k8tvHCkfVc6mhXH0D14IYsmur6gSoZwx2Qt/U1hsSxGNi7edFxjP6Kaki0PObxjphDzEJljToPhVRKNTA=
+X-Received: by 2002:a9d:730e:: with SMTP id e14mr52936430otk.74.1609771546969;
+ Mon, 04 Jan 2021 06:45:46 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20210103170216.GA4048658@robh.at.kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+References: <20201213161721.6514-1-sergio.paracuellos@gmail.com> <CACRpkdb8z8su9HPkSdnRitVe0unuBDtg0azif19LGb84F=m19A@mail.gmail.com>
+In-Reply-To: <CACRpkdb8z8su9HPkSdnRitVe0unuBDtg0azif19LGb84F=m19A@mail.gmail.com>
+From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Date:   Mon, 4 Jan 2021 15:45:36 +0100
+Message-ID: <CAMhs-H9ACwSbJeqRvVOy3w44mhUB9ij1s=idP6xnEDF4LVvQpw@mail.gmail.com>
+Subject: Re: [PATCH 0/8] pinctrl: ralink: rt2880: Some minimal clean ups
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Jason Yan <yanaijie@huawei.com>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:STAGING SUBSYSTEM" <devel@driverdev.osuosl.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Hi,
 
-On 1/3/21 5:02 PM, Rob Herring wrote:
-> On Wed, Dec 23, 2020 at 03:33:38PM +0530, Anshuman Khandual wrote:
->> From: Suzuki K Poulose <suzuki.poulose@arm.com>
->>
->> Document the device tree bindings for Embedded Trace Extensions.
->> ETE can be connected to legacy coresight components and thus
->> could optionally contain a connection graph as described by
->> the CoreSight bindings.
->>
->> Cc: devicetree@vger.kernel.org
->> Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
->> Cc: Mike Leach <mike.leach@linaro.org>
->> Cc: Rob Herring <robh@kernel.org>
->> Signed-off-by: Suzuki K Poulose <suzuki.poulose@arm.com>
->> Signed-off-by: Anshuman Khandual <anshuman.khandual@arm.com>
->> ---
->>   Documentation/devicetree/bindings/arm/ete.txt | 41 +++++++++++++++++++++++++++
->>   1 file changed, 41 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/arm/ete.txt
-> 
-> Bindings are in schema format now, please convert this.
-> 
+On Mon, Jan 4, 2021 at 3:39 PM Linus Walleij <linus.walleij@linaro.org> wrote:
+>
+> On Sun, Dec 13, 2020 at 5:17 PM Sergio Paracuellos
+> <sergio.paracuellos@gmail.com> wrote:
+>
+> > After this driver was moved from staging into pinctrl subsytems
+> > some reviews for bindigns and driver itself comes from Ron Herring
+> > and Dan Carpenter. Get rid of all the comments to properly be in
+> > a good shape before merge window.
+>
+> Applied patches 1-7 to the pinctrl tree, patch 8 needs to be sent
+> to Greg.
 
-Sure, will do that.
+Thanks Linus. PATCH 8 should apply directly as it is in this series
+also in staging. Greg, can you take PATCH 8 from this series or do you
+want me to resend it?
 
->>
->> diff --git a/Documentation/devicetree/bindings/arm/ete.txt b/Documentation/devicetree/bindings/arm/ete.txt
->> new file mode 100644
->> index 0000000..b52b507
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/arm/ete.txt
->> @@ -0,0 +1,41 @@
->> +Arm Embedded Trace Extensions
->> +
->> +Arm Embedded Trace Extensions (ETE) is a per CPU trace component that
->> +allows tracing the CPU execution. It overlaps with the CoreSight ETMv4
->> +architecture and has extended support for future architecture changes.
->> +The trace generated by the ETE could be stored via legacy CoreSight
->> +components (e.g, TMC-ETR) or other means (e.g, using a per CPU buffer
->> +Arm Trace Buffer Extension (TRBE)). Since the ETE can be connected to
->> +legacy CoreSight components, a node must be listed per instance, along
->> +with any optional connection graph as per the coresight bindings.
->> +See bindings/arm/coresight.txt.
->> +
->> +** ETE Required properties:
->> +
->> +- compatible : should be one of:
->> +	"arm,embedded-trace-extensions"
->> +
->> +- cpu : the CPU phandle this ETE belongs to.
-> 
-> If this is 1:1 with CPUs, then perhaps it should be a child node of the
-> CPU nodes.
+>
+> Yours,
+> Linus Walleij
 
-Yes, it is 1:1 with the CPUs. I have tried to keep this aligned with that of
-"coresight-etm4x". The same driver handles both. The only reason why this
-was separated from the "coresight.txt" is to describe the new configurations
-possible (read, TRBE).
-
-That said, I am happy to move this under the CPU, if Mathieu is happy with
-the diversion.
-
-Thanks for the review.
-
-Suzuki
+Best regards,
+    Sergio Paracuellos
