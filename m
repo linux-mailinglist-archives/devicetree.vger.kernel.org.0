@@ -2,55 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9BB902E955B
-	for <lists+devicetree@lfdr.de>; Mon,  4 Jan 2021 13:57:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D3C42E9569
+	for <lists+devicetree@lfdr.de>; Mon,  4 Jan 2021 14:01:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726579AbhADM50 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Jan 2021 07:57:26 -0500
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:59606 "EHLO
+        id S1726148AbhADNAu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Jan 2021 08:00:50 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:60506 "EHLO
         fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725921AbhADM50 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jan 2021 07:57:26 -0500
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 104CtjVK102918;
-        Mon, 4 Jan 2021 06:55:45 -0600
+        with ESMTP id S1726129AbhADNAu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jan 2021 08:00:50 -0500
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 104CxBO2104065;
+        Mon, 4 Jan 2021 06:59:11 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1609764945;
-        bh=JiZZQu6dpjhga2YUtT9K1Udslqr6GMyu4soFi9cIwio=;
+        s=ti-com-17Q1; t=1609765151;
+        bh=m6JflzaZ8fMMyd1WgjaKh7Ot81GWXzuk0qkicK6RY64=;
         h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=DzSiSZOOp8QBit06iy4hBadl2Qx6H08H2GD6CShGiZryvShximoPKvgBbnsc7+svK
-         L89oWNvFUmbZ9Nq4MhUyk5XmCKT90qLrIE3JqQ7Jc3/Jzn7S+A6QT9y2RXgrngHaNQ
-         WlYs1GoPwD3xawTOsrZlVsULogFOYIUUVGMYaU8Y=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 104CtjGO100189
+        b=fWveSOWB774rxDQ/IfgfgxQ0gQZZ2ByK0+m8ZcKLcSHI0/qJMnZICXq+394SFuFZz
+         lXIY55BrtGEuxM7a6v0YGbJVHDiyYoKEzP1W2ROHC/Vm1lzItvq3sR2jOG9UdrQz7i
+         WKJ6fmpveZp3h3KTh/YKPzcWaUDBn/DnfToiAuxU=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 104CxBgc107541
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 4 Jan 2021 06:55:45 -0600
-Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+        Mon, 4 Jan 2021 06:59:11 -0600
+Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Mon, 4 Jan
- 2021 06:55:44 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ 2021 06:59:10 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Mon, 4 Jan 2021 06:55:44 -0600
+ Frontend Transport; Mon, 4 Jan 2021 06:59:10 -0600
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 104CtiPX093860;
-        Mon, 4 Jan 2021 06:55:44 -0600
-Date:   Mon, 4 Jan 2021 06:55:44 -0600
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 104CxAKL063893;
+        Mon, 4 Jan 2021 06:59:10 -0600
+Date:   Mon, 4 Jan 2021 06:59:10 -0600
 From:   Nishanth Menon <nm@ti.com>
 To:     Kishon Vijay Abraham I <kishon@ti.com>
 CC:     Rob Herring <robh+dt@kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
         <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v3 1/6] arm64: dts: ti: k3-j721e-main: Fix supported max
- outbound regions
-Message-ID: <20210104125544.arluqus2xbqwacez@curler>
+Subject: Re: [PATCH v3 0/6] PCI: J7200/J721E PCIe bindings
+Message-ID: <20210104125910.qaf7vi3dx6vsne6t@backfield>
 References: <20210104122232.24071-1-kishon@ti.com>
- <20210104122232.24071-2-kishon@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20210104122232.24071-2-kishon@ti.com>
+In-Reply-To: <20210104122232.24071-1-kishon@ti.com>
 User-Agent: NeoMutt/20171215
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
@@ -58,37 +56,44 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 17:52-20210104, Kishon Vijay Abraham I wrote:
-> Cadence IP in J721E supports a maximum of 32 outbound regions. However
-> commit 4e5833884f66 ("arm64: dts: ti: k3-j721e-main: Add PCIe device
-> tree nodes") incorrectly added this as 16 outbound regions. Now that
-> "cdns,max-outbound-regions" is an optional property with default value
-> as 32, remove "cdns,max-outbound-regions" from endpoint DT node.
+> Patch series adds DT nodes in order to get PCIe working in J7200.
+> Also includes couple of fixes for J721e.
 > 
-> Fixes: 4e5833884f66 ("arm64: dts: ti: k3-j721e-main: Add PCIe device tree nodes")
-
-^^ Is this a backward compatible fixup. If I were to apply this on
-v5.10, wont we have a broken PCIe functionality? Drop the fixes if this
-is not backward compatible fixup (unless ofcourse the driver fixup is
-backported all the way back as well - I am assuming will be done in a
-manner to preserve compatibility with older dtb?)
-
-On master right now:
-$ git grep "cdns,max-outbound-regions" .
-Documentation/devicetree/bindings/pci/cdns,cdns-pcie-ep.yaml:                cdns,max-outbound-regions = <16>;
-Documentation/devicetree/bindings/pci/cdns-pcie-ep.yaml:  cdns,max-outbound-regions:
-Documentation/devicetree/bindings/pci/cdns-pcie-host.yaml:  cdns,max-outbound-regions:
-arch/arm64/boot/dts/ti/k3-j721e-main.dtsi:              cdns,max-outbound-regions = <16>;
-arch/arm64/boot/dts/ti/k3-j721e-main.dtsi:              cdns,max-outbound-regions = <16>;
-arch/arm64/boot/dts/ti/k3-j721e-main.dtsi:              cdns,max-outbound-regions = <16>;
-arch/arm64/boot/dts/ti/k3-j721e-main.dtsi:              cdns,max-outbound-regions = <16>;
-drivers/pci/controller/cadence/pcie-cadence-ep.c:       of_property_read_u32(np, "cdns,max-outbound-regions", &ep->max_regions);
-
-
-> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
-> ---
->  arch/arm64/boot/dts/ti/k3-j721e-main.dtsi | 4 ----
->  1 file changed, 4 deletions(-)
+> v1 of the patch series can be found @ [1]
+> v2 of the patch series can be found @ [2]
 > 
+> Changes from v2:
+> 1) Moved serdes_refclk node out of interconnect node and also replaced
+>    "_" with "-"
+> 
+> Changes from v1:
+> 1) Include only the device tree patches here (the binding patch is sent
+> separately)
+> 2) Include couple of patches that fixes J721E DTS.
+> 
+> [1] -> http://lore.kernel.org/r/20201102101154.13598-1-kishon@ti.com
+> [2] -> http://lore.kernel.org/r/20201210130747.25436-1-kishon@ti.com
+> 
+> Kishon Vijay Abraham I (6):
+>   arm64: dts: ti: k3-j721e-main: Fix supported max outbound regions
+>   arm64: dts: ti: k3-j721e-main: Remove "syscon" nodes added for
+>     pcieX_ctrl
+>   arm64: dts: ti: k3-j7200-main: Add SERDES and WIZ device tree node
+>   arm64: dts: ti: k3-j7200-main: Add PCIe device tree node
+>   arm64: dts: ti: k3-j7200-common-proc-board: Enable SERDES0
+>   arm64: dts: ti: k3-j7200-common-proc-board: Enable PCIe
+> 
+>  .../dts/ti/k3-j7200-common-proc-board.dts     |  38 ++++++
+>  arch/arm64/boot/dts/ti/k3-j7200-main.dtsi     | 111 ++++++++++++++++++
+>  arch/arm64/boot/dts/ti/k3-j721e-main.dtsi     |  52 ++------
+>  3 files changed, 157 insertions(+), 44 deletions(-)
+
+
+A bit confused on the dependency here. is there something merged into
+next-20210104 that makes this series ready for pickup? is there a way
+I can get a immutable tag for driver fixups to pull so that my dts
+next is not broken for PCIe (I am assuming looking at the series that
+this is probably not a backward compatible series?)?
 
 -- 
 Regards,
