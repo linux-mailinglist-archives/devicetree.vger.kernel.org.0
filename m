@@ -2,95 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C2BD62E8F83
-	for <lists+devicetree@lfdr.de>; Mon,  4 Jan 2021 04:09:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C4C792E8FA1
+	for <lists+devicetree@lfdr.de>; Mon,  4 Jan 2021 04:45:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727985AbhADDJc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 3 Jan 2021 22:09:32 -0500
-Received: from mailgw02.mediatek.com ([210.61.82.184]:43764 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726610AbhADDJc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Jan 2021 22:09:32 -0500
-X-UUID: 77c606a8b6504466ad3539b8f42d1d85-20210104
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:Reply-To:From:Subject:Message-ID; bh=FPK9ETN/EBdUIpqEXkfjhWCeHs6PHnTTo754Tn/L8j8=;
-        b=lPLmCKpnnNTHryJBkOdTMntgUW3zQec55YYxMIW/moUHzOxYOWyPqjEHTG4tX3i5V0FM9+Ui/2s/Fl0MaBbwXKz0TZJ+CEfFCok/X/aRp41WZBjsmsOBwRW3KPJFiGYDNQFByR84xX67ZrFjA3+zaSOGdmI/acVbLTAEiid2Geg=;
-X-UUID: 77c606a8b6504466ad3539b8f42d1d85-20210104
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
-        (envelope-from <yongqiang.niu@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 823065018; Mon, 04 Jan 2021 11:08:45 +0800
-Received: from MTKCAS36.mediatek.inc (172.27.4.186) by mtkmbs05n1.mediatek.inc
- (172.21.101.15) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 4 Jan
- 2021 11:08:44 +0800
-Received: from [10.17.3.153] (10.17.3.153) by MTKCAS36.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 4 Jan 2021 11:08:43 +0800
-Message-ID: <1609729722.1574.1.camel@mhfsdcap03>
-Subject: Re: [PATCH v3, 1/8] soc: mediatek: mmsys: create mmsys folder
-From:   Yongqiang Niu <yongqiang.niu@mediatek.com>
-Reply-To: Yongqiang Niu <yongqiang.niu@mediatek.com>
-To:     Nicolas Boichat <drinkcat@chromium.org>
-CC:     CK Hu <ck.hu@mediatek.com>, Philipp Zabel <p.zabel@pengutronix.de>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        lkml <linux-kernel@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        "Daniel Vetter" <daniel@ffwll.ch>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>
-Date:   Mon, 4 Jan 2021 11:08:42 +0800
-In-Reply-To: <CANMq1KCRBz-rY6y3nHp8yh_QSohkmaYS=DqNDSPzvwmq-a09DQ@mail.gmail.com>
-References: <1609144630-14721-1-git-send-email-yongqiang.niu@mediatek.com>
-         <1609144630-14721-2-git-send-email-yongqiang.niu@mediatek.com>
-         <CANMq1KCRBz-rY6y3nHp8yh_QSohkmaYS=DqNDSPzvwmq-a09DQ@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S1726124AbhADDpG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 3 Jan 2021 22:45:06 -0500
+Received: from foss.arm.com ([217.140.110.172]:50586 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725840AbhADDpG (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 3 Jan 2021 22:45:06 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 320B9101E;
+        Sun,  3 Jan 2021 19:44:20 -0800 (PST)
+Received: from [192.168.0.130] (unknown [172.31.20.19])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id F1D323F66E;
+        Sun,  3 Jan 2021 19:44:16 -0800 (PST)
+Subject: Re: [PATCH 11/11] dts: bindings: Document device tree binding for Arm
+ TRBE
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org, coresight@lists.linaro.org,
+        linux-kernel@vger.kernel.org,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Mike Leach <mike.leach@linaro.org>,
+        Linu Cherian <lcherian@marvell.com>, devicetree@vger.kernel.org
+References: <1608717823-18387-1-git-send-email-anshuman.khandual@arm.com>
+ <1608717823-18387-12-git-send-email-anshuman.khandual@arm.com>
+ <20210103170540.GA4055084@robh.at.kernel.org>
+From:   Anshuman Khandual <anshuman.khandual@arm.com>
+Message-ID: <21536a1c-0878-a390-aff3-fc2300be6941@arm.com>
+Date:   Mon, 4 Jan 2021 09:14:24 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-X-MTK:  N
-Content-Transfer-Encoding: base64
+In-Reply-To: <20210103170540.GA4055084@robh.at.kernel.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gVGh1LCAyMDIwLTEyLTMxIGF0IDA5OjIxICswODAwLCBOaWNvbGFzIEJvaWNoYXQgd3JvdGU6
-DQo+IE9uIE1vbiwgRGVjIDI4LCAyMDIwIGF0IDQ6MzggUE0gWW9uZ3FpYW5nIE5pdQ0KPiA8eW9u
-Z3FpYW5nLm5pdUBtZWRpYXRlay5jb20+IHdyb3RlOg0KPiA+DQo+ID4gdGhlIG1tc3lzIHdpbGwg
-bW9yZSBhbmQgbW9yZSBjb21wbGljYXRlZCBhZnRlciBzdXBwb3J0DQo+ID4gbW9yZSBhbmQgbW9y
-ZSBTb0NzLCBhZGQgYW4gaW5kZXBlbmRlbnQgZm9sZGVyIHdpbGwgYmUNCj4gPiBtb3JlIGNsZWFy
-DQo+ID4NCj4gPiBTaWduZWQtb2ZmLWJ5OiBZb25ncWlhbmcgTml1IDx5b25ncWlhbmcubml1QG1l
-ZGlhdGVrLmNvbT4NCj4gPiAtLS0NCj4gPiAgZHJpdmVycy9zb2MvbWVkaWF0ZWsvTWFrZWZpbGUg
-ICAgICAgICAgfCAgIDIgKy0NCj4gPiAgZHJpdmVycy9zb2MvbWVkaWF0ZWsvbW1zeXMvTWFrZWZp
-bGUgICAgfCAgIDIgKw0KPiA+ICBkcml2ZXJzL3NvYy9tZWRpYXRlay9tbXN5cy9tdGstbW1zeXMu
-YyB8IDM4MCArKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysNCj4gPiAgZHJpdmVycy9z
-b2MvbWVkaWF0ZWsvbXRrLW1tc3lzLmMgICAgICAgfCAzODAgLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tDQo+IA0KPiBJIHdvbmRlciB3aHkgdGhpcyBkb2Vzbid0IGdldCBkZXRlY3Rl
-ZCBhcyBhIHJlbmFtZT8NCg0KdGhlIHJlbmFtZSBtZXNzYWdlIGRpc3BsYXllZCB3aGVuIGdpdCBj
-b21taXQgLXMNCmdpdCBzaG93IHdpbGwgbm90IHNob3cgdGhlIHJlbmFtZSBpbmZvcm1hdGlvbg0K
-DQo+IA0KPiA+ICA0IGZpbGVzIGNoYW5nZWQsIDM4MyBpbnNlcnRpb25zKCspLCAzODEgZGVsZXRp
-b25zKC0pDQo+ID4gIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL3NvYy9tZWRpYXRlay9tbXN5
-cy9NYWtlZmlsZQ0KPiA+ICBjcmVhdGUgbW9kZSAxMDA2NDQgZHJpdmVycy9zb2MvbWVkaWF0ZWsv
-bW1zeXMvbXRrLW1tc3lzLmMNCj4gPiAgZGVsZXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMvc29jL21l
-ZGlhdGVrL210ay1tbXN5cy5jDQo+ID4NCj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9zb2MvbWVk
-aWF0ZWsvTWFrZWZpbGUgYi9kcml2ZXJzL3NvYy9tZWRpYXRlay9NYWtlZmlsZQ0KPiA+IGluZGV4
-IDAxZjlmODcuLmI1OTg3Y2EgMTAwNjQ0DQo+ID4gLS0tIGEvZHJpdmVycy9zb2MvbWVkaWF0ZWsv
-TWFrZWZpbGUNCj4gPiArKysgYi9kcml2ZXJzL3NvYy9tZWRpYXRlay9NYWtlZmlsZQ0KPiA+IEBA
-IC0zLDQgKzMsNCBAQCBvYmotJChDT05GSUdfTVRLX0NNRFEpICs9IG10ay1jbWRxLWhlbHBlci5v
-DQo+ID4gIG9iai0kKENPTkZJR19NVEtfSU5GUkFDRkcpICs9IG10ay1pbmZyYWNmZy5vDQo+ID4g
-IG9iai0kKENPTkZJR19NVEtfUE1JQ19XUkFQKSArPSBtdGstcG1pYy13cmFwLm8NCj4gPiAgb2Jq
-LSQoQ09ORklHX01US19TQ1BTWVMpICs9IG10ay1zY3BzeXMubw0KPiA+IC1vYmotJChDT05GSUdf
-TVRLX01NU1lTKSArPSBtdGstbW1zeXMubw0KPiA+ICtvYmotJChDT05GSUdfTVRLX01NU1lTKSAr
-PSBtbXN5cy8NCj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9zb2MvbWVkaWF0ZWsvbW1zeXMvTWFr
-ZWZpbGUgYi9kcml2ZXJzL3NvYy9tZWRpYXRlay9tbXN5cy9NYWtlZmlsZQ0KPiA+IG5ldyBmaWxl
-IG1vZGUgMTAwNjQ0DQo+ID4gaW5kZXggMDAwMDAwMC4uNWQ5NzZkNw0KPiA+IC0tLSAvZGV2L251
-bGwNCj4gPiArKysgYi9kcml2ZXJzL3NvYy9tZWRpYXRlay9tbXN5cy9NYWtlZmlsZQ0KPiA+IEBA
-IC0wLDAgKzEsMiBAQA0KPiA+ICsjIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiBHUEwtMi4wLW9u
-bHkNCj4gPiArb2JqLSQoQ09ORklHX01US19NTVNZUykgKz0gbXRrLW1tc3lzLm8NCj4gPiBcIE5v
-IG5ld2xpbmUgYXQgZW5kIG9mIGZpbGUNCj4gDQo+IE5pdDogbmV3bGluZSBhdCBlbmQgb2YgZmls
-ZSBwbGVhc2UuDQoNCml0IHdpbGwgYmUgZml4ZWQgaW4gbmV4dCB2ZXJzaW9uDQoNCg==
 
+On 1/3/21 10:35 PM, Rob Herring wrote:
+> On Wed, Dec 23, 2020 at 03:33:43PM +0530, Anshuman Khandual wrote:
+>> This patch documents the device tree binding in use for Arm TRBE.
+>>
+>> Cc: devicetree@vger.kernel.org
+>> Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
+>> Cc: Mike Leach <mike.leach@linaro.org>
+>> Cc: Suzuki K Poulose <suzuki.poulose@arm.com>
+>> Signed-off-by: Anshuman Khandual <anshuman.khandual@arm.com>
+>> ---
+>> Changes in V1:
+>>
+>> - TRBE DT entry has been renamed as 'arm, trace-buffer-extension'
+>>
+>>  Documentation/devicetree/bindings/arm/trbe.txt | 20 ++++++++++++++++++++
+>>  1 file changed, 20 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/arm/trbe.txt
+>>
+>> diff --git a/Documentation/devicetree/bindings/arm/trbe.txt b/Documentation/devicetree/bindings/arm/trbe.txt
+>> new file mode 100644
+>> index 0000000..001945d
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/arm/trbe.txt
+>> @@ -0,0 +1,20 @@
+>> +* Trace Buffer Extension (TRBE)
+>> +
+>> +Trace Buffer Extension (TRBE) is used for collecting trace data generated
+>> +from a corresponding trace unit (ETE) using an in memory trace buffer.
+>> +
+>> +** TRBE Required properties:
+>> +
+>> +- compatible : should be one of:
+>> +	       "arm,trace-buffer-extension"
+>> +
+>> +- interrupts : Exactly 1 PPI must be listed. For heterogeneous systems where
+>> +	       TRBE is only supported on a subset of the CPUs, please consult
+>> +	       the arm,gic-v3 binding for details on describing a PPI partition.
+>> +
+>> +** Example:
+>> +
+>> +trbe {
+>> +	compatible = "arm,trace-buffer-extension";
+>> +	interrupts = <GIC_PPI 15 IRQ_TYPE_LEVEL_HIGH>;
+> 
+> If only an interrupt, then could just be part of ETE? If not, how is 
+> this hardware block accessed? An interrupt alone is not enough unless 
+> there's some architected way to access.
+
+TRBE hardware block is accessed via respective new system registers but the
+PPI number where the IRQ will be triggered for various buffer events, would
+depend on the platform as defined in the SBSA.
+
+TRBE would need a ETE to work but the reverse is not true. ETE might just
+be present without a corresponding TRBE and can work with traditional sinks.
+Hence just wondering whether it would be prudent to add the TRBE interrupt
+number as part of the ETE DT specification.
