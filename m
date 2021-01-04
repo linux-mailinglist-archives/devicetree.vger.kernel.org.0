@@ -2,291 +2,181 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 69F682E8FD9
-	for <lists+devicetree@lfdr.de>; Mon,  4 Jan 2021 05:45:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 84BCD2E902F
+	for <lists+devicetree@lfdr.de>; Mon,  4 Jan 2021 06:41:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727181AbhADEpA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 3 Jan 2021 23:45:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53592 "EHLO
+        id S1727706AbhADFkp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Jan 2021 00:40:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33836 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727162AbhADEo7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Jan 2021 23:44:59 -0500
-Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com [IPv6:2607:f8b0:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50A13C061793
-        for <devicetree@vger.kernel.org>; Sun,  3 Jan 2021 20:44:19 -0800 (PST)
-Received: by mail-oi1-x22e.google.com with SMTP id w124so30892416oia.6
-        for <devicetree@vger.kernel.org>; Sun, 03 Jan 2021 20:44:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=hK9wYRV52OLCT1aIUIfPdQeCZ9d73qXQnCRxpSILOcQ=;
-        b=hFoeqrBBx1uol98LLny5xOtq7G2JLLTTnc0RnvYZhADnNMbYMplIGitPZJAfnGXh3r
-         RJxDXxfzGHiWLzgiQsD5AbLrFCEKXFlOLAj8dw7j06Z6/RqqLX7cqzERG8YIIV0BfNO6
-         zGUha4U4EnKrYsvi+9f1Ggkn/jhpvGR4tmTWP9XrsiNEQoXCMZ/X8Tjt1+c2g3y6BS5p
-         N9iYJq0fvC9Fdh3OoG7KJjJ726KvSxu5O6vfWVIvEZZa5hF03N2vqMJpxJwImi+0UCPr
-         qnuOiybQZMhDWzHbl3um2fSUXjNB9yNg03Z2h3UmuSQ+G+kS04yVnn2qtRS5CNuQ4Zb0
-         ZAhA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=hK9wYRV52OLCT1aIUIfPdQeCZ9d73qXQnCRxpSILOcQ=;
-        b=OePggN0vnPrUBlD2CeS0T/iX9+uda2s55F3sfjUk9z2CIHEGI2rZZ6PtRj9HqToGjJ
-         ubASQvkLHtVL9fKYtoPzD49rZIOfyeYRrP/68wdtIjnLQBGNGOCcJIMgfNwKWABrgC48
-         SPm7KIw/D58gxdzZjf0SsHL8f1kfcQMXppleYzdbZgEdwfpVcL2ds3IYgZ4IQSaLCJWc
-         qE+7R7ABQrIRmTWn8Vbzpfm1ftjFcYlYyBdn0HAHO7rSp/HxAFWni4NSFpXNKWX4eGq7
-         KHrKS3+eTZMn+ZBKmphRTSPEEEXCdhpjkCB9rpKB1yDIZN7VwsDenhOaRHZRR8lUjkL9
-         pf8A==
-X-Gm-Message-State: AOAM532vmRn9RQ1aWM2UDs9luc4QXYukamSifwDOP3ysguotSh6+unS6
-        aolvwZPrkWLhAiqzGBCLVd/nbQ==
-X-Google-Smtp-Source: ABdhPJwEdwKgWXXhOQUhxJ29lpsn17cZ7bxl7/tsvAjuTQmgb8PUjkfkAKGfOQk1oEuh1pszCiDIhQ==
-X-Received: by 2002:aca:1102:: with SMTP id 2mr17056991oir.100.1609735458485;
-        Sun, 03 Jan 2021 20:44:18 -0800 (PST)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id h2sm12524596ooa.25.2021.01.03.20.44.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 03 Jan 2021 20:44:17 -0800 (PST)
-Date:   Sun, 3 Jan 2021 22:44:16 -0600
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Danny Lin <danny@kdrag0n.dev>
-Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/3] arm64: dts: qcom: sm8150: Add PSCI idle states
-Message-ID: <X/KdIKDEabanfZhw@builder.lan>
-References: <20201221002907.2870059-1-danny@kdrag0n.dev>
- <20201221002907.2870059-3-danny@kdrag0n.dev>
- <X+AbJvE7OGs3cRCw@ripper>
- <e7776f3c-a517-4cf3-9265-92dc0ac09c88@www.fastmail.com>
- <X+odnnZYFW3qpubJ@builder.lan>
- <52495cb9-6230-4f7f-b138-83e74d2834cc@www.fastmail.com>
+        with ESMTP id S1727317AbhADFkp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jan 2021 00:40:45 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD5A1C061795;
+        Sun,  3 Jan 2021 21:40:04 -0800 (PST)
+Received: from pendragon.lan (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 9C3025B4;
+        Mon,  4 Jan 2021 06:40:01 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1609738802;
+        bh=kP98S8lkebWLhqEgkmSsmpb34HDFpNGDG2kO6EP1xeM=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=ia6LTt6R9IQUyduyqOSmcLHx29uAPk2GtTBdS3kVkeV4ivSUiFBj3vl06ZP2ZH4uX
+         gbcTTo2xO+cnonHTsqUknL9Yncn8TBUkmO1N5KPHtGHHzkaQxJFpFEtYqIQohqJYhW
+         9jkBs7QFP8IsccVfU+MiMia7IVNaEEpY4sI2Lyxw=
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     linux-media@vger.kernel.org
+Cc:     Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Benoit Parrot <bparrot@ti.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH 1/2] dt-bindings: media: Add bindings for OmniVision OV1063x sensors
+Date:   Mon,  4 Jan 2021 07:39:44 +0200
+Message-Id: <20210104053945.12409-2-laurent.pinchart@ideasonboard.com>
+X-Mailer: git-send-email 2.27.0
+In-Reply-To: <20210104053945.12409-1-laurent.pinchart@ideasonboard.com>
+References: <20210104053945.12409-1-laurent.pinchart@ideasonboard.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <52495cb9-6230-4f7f-b138-83e74d2834cc@www.fastmail.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue 29 Dec 17:19 CST 2020, Danny Lin wrote:
+From: Benoit Parrot <bparrot@ti.com>
 
-> On Mon, Dec 28, 2020 at10:02 AM, Bjorn Andersson wrote:
-> > On Tue 22 Dec 20:00 CST 2020, Danny Lin wrote:
-> > 
-> > > On Sun, Dec 20, 2020 at 7:48 PM, Bjorn Andersson wrote:
-> > > > On Sun 20 Dec 16:29 PST 2020, Danny Lin wrote:
-> > > > 
-> > > > > Like other Qualcomm SoCs, sm8150 exposes CPU and cluster idle states
-> > > > > through PSCI. Define the idle states to save power when the CPU is not
-> > > > > in active use.
-> > > > > 
-> > > > > These idle states, latency, and residency values match the downstream
-> > > > > 4.14 kernel from Qualcomm as of LA.UM.8.1.r1-15600-sm8150.0.
-> > > > > 
-> > > > > It's worth noting that the CPU has an additional C3 power collapse idle
-> > > > > state between WFI and rail power collapse (with PSCI mode 0x40000003),
-> > > > > but it is not officially used in downstream kernels due to "thermal
-> > > > > throttling issues."
-> > > > > 
-> > > > 
-> > > > Thanks Danny for this series, very happy to see this kind of additions.
-> > > > Just one small question about the cluster param below.
-> > > > 
-> > > > > Signed-off-by: Danny Lin <danny@kdrag0n.dev>
-> > > > > ---
-> > > > >  arch/arm64/boot/dts/qcom/sm8150.dtsi | 50 ++++++++++++++++++++++++++++
-> > > > >  1 file changed, 50 insertions(+)
-> > > > > 
-> > > > > diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-> > > > > index 75ed38ee5d88..edc1fe6d7f1b 100644
-> > > > > --- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
-> > > > > +++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-> > > > > @@ -50,6 +50,8 @@ CPU0: cpu@0 {
-> > > > >  			compatible = "qcom,kryo485";
-> > > > >  			reg = <0x0 0x0>;
-> > > > >  			enable-method = "psci";
-> > > > > +			cpu-idle-states = <&LITTLE_CPU_SLEEP_0
-> > > > > +					   &CLUSTER_SLEEP_0>;
-> > > > >  			next-level-cache = <&L2_0>;
-> > > > >  			qcom,freq-domain = <&cpufreq_hw 0>;
-> > > > >  			#cooling-cells = <2>;
-> > > > > @@ -67,6 +69,8 @@ CPU1: cpu@100 {
-> > > > >  			compatible = "qcom,kryo485";
-> > > > >  			reg = <0x0 0x100>;
-> > > > >  			enable-method = "psci";
-> > > > > +			cpu-idle-states = <&LITTLE_CPU_SLEEP_0
-> > > > > +					   &CLUSTER_SLEEP_0>;
-> > > > >  			next-level-cache = <&L2_100>;
-> > > > >  			qcom,freq-domain = <&cpufreq_hw 0>;
-> > > > >  			#cooling-cells = <2>;
-> > > > > @@ -82,6 +86,8 @@ CPU2: cpu@200 {
-> > > > >  			compatible = "qcom,kryo485";
-> > > > >  			reg = <0x0 0x200>;
-> > > > >  			enable-method = "psci";
-> > > > > +			cpu-idle-states = <&LITTLE_CPU_SLEEP_0
-> > > > > +					   &CLUSTER_SLEEP_0>;
-> > > > >  			next-level-cache = <&L2_200>;
-> > > > >  			qcom,freq-domain = <&cpufreq_hw 0>;
-> > > > >  			#cooling-cells = <2>;
-> > > > > @@ -96,6 +102,8 @@ CPU3: cpu@300 {
-> > > > >  			compatible = "qcom,kryo485";
-> > > > >  			reg = <0x0 0x300>;
-> > > > >  			enable-method = "psci";
-> > > > > +			cpu-idle-states = <&LITTLE_CPU_SLEEP_0
-> > > > > +					   &CLUSTER_SLEEP_0>;
-> > > > >  			next-level-cache = <&L2_300>;
-> > > > >  			qcom,freq-domain = <&cpufreq_hw 0>;
-> > > > >  			#cooling-cells = <2>;
-> > > > > @@ -110,6 +118,8 @@ CPU4: cpu@400 {
-> > > > >  			compatible = "qcom,kryo485";
-> > > > >  			reg = <0x0 0x400>;
-> > > > >  			enable-method = "psci";
-> > > > > +			cpu-idle-states = <&BIG_CPU_SLEEP_0
-> > > > > +					   &CLUSTER_SLEEP_0>;
-> > > > >  			next-level-cache = <&L2_400>;
-> > > > >  			qcom,freq-domain = <&cpufreq_hw 1>;
-> > > > >  			#cooling-cells = <2>;
-> > > > > @@ -124,6 +134,8 @@ CPU5: cpu@500 {
-> > > > >  			compatible = "qcom,kryo485";
-> > > > >  			reg = <0x0 0x500>;
-> > > > >  			enable-method = "psci";
-> > > > > +			cpu-idle-states = <&BIG_CPU_SLEEP_0
-> > > > > +					   &CLUSTER_SLEEP_0>;
-> > > > >  			next-level-cache = <&L2_500>;
-> > > > >  			qcom,freq-domain = <&cpufreq_hw 1>;
-> > > > >  			#cooling-cells = <2>;
-> > > > > @@ -138,6 +150,8 @@ CPU6: cpu@600 {
-> > > > >  			compatible = "qcom,kryo485";
-> > > > >  			reg = <0x0 0x600>;
-> > > > >  			enable-method = "psci";
-> > > > > +			cpu-idle-states = <&BIG_CPU_SLEEP_0
-> > > > > +					   &CLUSTER_SLEEP_0>;
-> > > > >  			next-level-cache = <&L2_600>;
-> > > > >  			qcom,freq-domain = <&cpufreq_hw 1>;
-> > > > >  			#cooling-cells = <2>;
-> > > > > @@ -152,6 +166,8 @@ CPU7: cpu@700 {
-> > > > >  			compatible = "qcom,kryo485";
-> > > > >  			reg = <0x0 0x700>;
-> > > > >  			enable-method = "psci";
-> > > > > +			cpu-idle-states = <&BIG_CPU_SLEEP_0
-> > > > > +					   &CLUSTER_SLEEP_0>;
-> > > > >  			next-level-cache = <&L2_700>;
-> > > > >  			qcom,freq-domain = <&cpufreq_hw 2>;
-> > > > >  			#cooling-cells = <2>;
-> > > > > @@ -196,6 +212,40 @@ core7 {
-> > > > >  				};
-> > > > >  			};
-> > > > >  		};
-> > > > > +
-> > > > > +		idle-states {
-> > > > > +			entry-method = "psci";
-> > > > > +
-> > > > > +			LITTLE_CPU_SLEEP_0: cpu-sleep-0-0 {
-> > > > > +				compatible = "arm,idle-state";
-> > > > > +				idle-state-name = "little-rail-power-collapse";
-> > > > > +				arm,psci-suspend-param = <0x40000004>;
-> > > > > +				entry-latency-us = <355>;
-> > > > > +				exit-latency-us = <909>;
-> > > > > +				min-residency-us = <3934>;
-> > > > > +				local-timer-stop;
-> > > > > +			};
-> > > > > +
-> > > > > +			BIG_CPU_SLEEP_0: cpu-sleep-1-0 {
-> > > > > +				compatible = "arm,idle-state";
-> > > > > +				idle-state-name = "big-rail-power-collapse";
-> > > > > +				arm,psci-suspend-param = <0x40000004>;
-> > > > > +				entry-latency-us = <241>;
-> > > > > +				exit-latency-us = <1461>;
-> > > > > +				min-residency-us = <4488>;
-> > > > > +				local-timer-stop;
-> > > > > +			};
-> > > > > +
-> > > > > +			CLUSTER_SLEEP_0: cluster-sleep-0 {
-> > > > > +				compatible = "arm,idle-state";
-> > > > > +				idle-state-name = "cluster-power-collapse";
-> > > > > +				arm,psci-suspend-param = <0x400000F4>;
-> > > > 
-> > > > How come this is 0xf4?
-> > > > 
-> > > > Isn't downstream saying that this should be either 0x1 << 4 or 0xc24 <<
-> > > > 4, depending on how deep we want to go? Could we at least mention why
-> > > > this is 0xf4?
-> > > 
-> > > I'm not sure where 0x400000F4 originally came from. I noticed that
-> > > sdm845 uses the same 0xc24 mode in downstream, but Qualcomm used
-> > > 0x400000F4 in mainline.
-> > > 
-> > > I did some testing on a downstream kernel and found that the real value
-> > > it uses on sm8150 is 0x4100c244, but the idle state doesn't work at all
-> > > if I use the same value on mainline. The logic appears to be the same in
-> > > the downstream sdm845 kernel. Maybe it has to do with how downstream has
-> > > "notify RPM" before attempting to enter the idle state?
-> > > 
-> > > In downstream, the final PSCI value is calculated as the sum of:
-> > > 
-> > > 1. (cluster-mode & cluster-mode-mask) << cluster-mode-shift = (0xc24 & 0xfff) << 4 = 0xc240
-> > > 2. (is-reset << 30) = 0x40000000
-> > > 3. (affinity level & 0x3) << 24 = 0x1000000
-> > > 4. (cpu-mode) = 0x4
-> > > 
-> > > so 0xc240 + 0x40000000 + 0x1000000 + 0x4 = 0x4100c244.
-> > > 
-> > > It's also possible that the problem comes from the cluster idle state
-> > > needing all CPUs in the cluster to be asleep (as far as I know), since
-> > > it doesn't look like mainline handles that.
-> > > 
-> > 
-> > Thanks for the explanation. I believe we have the code in place to do
-> > OSI sleep using the "psci domain cpuidle" driver, but I'm not entirely
-> > sure about the details about it - perhaps it's just a matter of wiring
-> > it all up(?).
-> > 
-> > Let's go with your current patches and then swing back to this once
-> > we've figured out the remaining details.
-> 
-> Following your hint, I was able to get cluster idle working using power
-> domain idle states. The cluster idle state is now successfully using the
-> same value as downstream with no apparent issues, and individual CPU
-> idle states are still working. Time spent in the cluster idle state
-> increases when and only when all CPUs are idle, which matches the
-> expected behavior.
-> 
+Add device tree bindings for the OmniVision OV10633 and OV10635 camera
+sensors.
 
-Really interesting, thanks for pursuing this!
+Signed-off-by: Benoit Parrot <bparrot@ti.com>
+Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+---
+ .../bindings/media/i2c/ov1063x.yaml           | 97 +++++++++++++++++++
+ MAINTAINERS                                   |  7 ++
+ 2 files changed, 104 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/ov1063x.yaml
 
-> Should I send a separate patch for it or revise this series? It might be
-> helpful for future reference to keep a record of how to convert the
-> current 0xf4 cluster states on modern Qualcomm SoCs in the commit
-> history.
-> 
+diff --git a/Documentation/devicetree/bindings/media/i2c/ov1063x.yaml b/Documentation/devicetree/bindings/media/i2c/ov1063x.yaml
+new file mode 100644
+index 000000000000..b5e08dd2f496
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/i2c/ov1063x.yaml
+@@ -0,0 +1,97 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/media/i2c/ov1063x.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: OmniVision OV10633/OV1035 Camera Sensor
++
++maintainers:
++  - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
++
++description: |-
++  The OmniVision OV1063x is a 720p camera sensor which supports resolutions up
++  to 1280x800 and 8- and 10-bit YUV output formats.
++
++properties:
++  compatible:
++    enum:
++      - ovti,ov10633
++      - ovti,ov10635
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  clocks-names:
++    const: xvclk
++
++  reset-gpios:
++    maxItems: 1
++    description:
++      Specifier for the GPIO connected to the RESETB pin.
++
++  powerdown-gpios:
++    maxItems: 1
++    description:
++      Specifier for the GPIO connected to the PWDN pin.
++
++  port:
++    $ref: /schemas/graph.yaml#/properties/port
++    additionalProperties: false
++
++    properties:
++      endpoint:
++        $ref: ../video-interfaces.yaml#
++        unevaluatedProperties: false
++
++        properties:
++          hsync-active: true
++          vsync-active: true
++          pclk-sample: true
++          bus-width:
++            enum: [ 8, 10 ]
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - clocks-names
++  - port
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++
++    i2c {
++        clock-frequency = <400000>;
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        camera@37 {
++            compatible = "ovti,ov10633";
++            reg = <0x37>;
++
++            clocks = <&fixed_clock>;
++            clocks-names = "xvclk";
++
++            reset-gpios = <&gpio4 17 GPIO_ACTIVE_HIGH>;
++            powerdown-gpios = <&gpio5 11 GPIO_ACTIVE_HIGH>;
++
++            port {
++                camera1: endpoint {
++                     remote-endpoint = <&vin1a_ep>;
++                     hsync-active = <1>;
++                     vsync-active = <1>;
++                     pclk-sample = <0>;
++                     bus-width = <8>;
++                };
++            };
++        };
++    };
++
++...
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 281de213ef47..9dc3a7d75460 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -12867,6 +12867,13 @@ M:	Harald Welte <laforge@gnumonks.org>
+ S:	Maintained
+ F:	drivers/char/pcmcia/cm4040_cs.*
+ 
++OMNIVISION OV10633 SENSOR DRIVER
++M:	Laurent Pinchart <laurent.pinchart@ideasonboard.com>
++L:	linux-media@vger.kernel.org
++S:	Maintained
++T:	git git://linuxtv.org/media_tree.git
++F:	Documentation/devicetree/bindings/media/i2c/ov1063x.yaml
++
+ OMNIVISION OV13858 SENSOR DRIVER
+ M:	Sakari Ailus <sakari.ailus@linux.intel.com>
+ L:	linux-media@vger.kernel.org
+-- 
+Regards,
 
-I did go ahead and merge this series last week, and I like the idea of
-"documenting" how the difference - so please send this as a separate
-patch(es).
+Laurent Pinchart
 
-Thanks,
-Bjorn
-
-> >
-> > Thanks,
-> > Bjorn
-> > 
-> > > > 
-> > > > Regards,
-> > > > Bjorn
-> > > > 
-> > > > > +				entry-latency-us = <3263>;
-> > > > > +				exit-latency-us = <6562>;
-> > > > > +				min-residency-us = <9987>;
-> > > > > +				local-timer-stop;
-> > > > > +			};
-> > > > > +		};
-> > > > >  	};
-> > > > >  
-> > > > >  	firmware {
-> > > > > -- 
-> > > > > 2.29.2
-> > > > > 
-> > > >
-> >
