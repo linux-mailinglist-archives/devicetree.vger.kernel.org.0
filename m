@@ -2,99 +2,219 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B26552E9291
-	for <lists+devicetree@lfdr.de>; Mon,  4 Jan 2021 10:27:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 78BE62E9296
+	for <lists+devicetree@lfdr.de>; Mon,  4 Jan 2021 10:28:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726950AbhADJ0I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Jan 2021 04:26:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40584 "EHLO
+        id S1726499AbhADJ2m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Jan 2021 04:28:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41040 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726925AbhADJ0I (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jan 2021 04:26:08 -0500
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EB38C061574;
-        Mon,  4 Jan 2021 01:25:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=V04ZqaHHc3N4cGcE8hdnQA0zTH4Xzj0ZsOCp5n+7/bE=; b=WPUr6ii1e/ernb82oDx5L0zAD
-        yg7yzcfZRLWBwTRKvDmVRo1sBWDVU8gskRpadsZS4awAkUFdz2sIxnpcvfAbWOZ9FsPIBRPPUYkHI
-        Imc5jjQDXzJggRFdhCpFwKG/dpC0tbKD/GKXGJfeVOC44p9MLqnJg+GYmiFiAqrA55kK1560yV0U0
-        JCI6F+cXJ6mqaJyG/9ndoABkN+edgb4iwHAQ4B0Nk0QTFfjoCw5XK405N31lM35+EPaFAk1JstTI5
-        iDjJg9bJ9Arb/LIXvSxKKrkwv2St/8fl8U67SoCJBKOfkIWTWyu7qBuIZZlWnkSG7/3+rNuCgeD1Q
-        jDFvoGLYg==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:45050)
-        by pandora.armlinux.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <linux@armlinux.org.uk>)
-        id 1kwM6j-0008AS-G7; Mon, 04 Jan 2021 09:24:57 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.92)
-        (envelope-from <linux@shell.armlinux.org.uk>)
-        id 1kwM6c-0006fN-5A; Mon, 04 Jan 2021 09:24:50 +0000
-Date:   Mon, 4 Jan 2021 09:24:50 +0000
-From:   Russell King - ARM Linux admin <linux@armlinux.org.uk>
-To:     Baruch Siach <baruch@tkos.co.il>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-        linux-pwm@vger.kernel.org,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        Chris Packham <chris.packham@alliedtelesis.co.nz>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Ralph Sennhauser <ralph.sennhauser@gmail.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        linux-arm-kernel@lists.infradead.org,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>
-Subject: Re: [PATCH v4 0/3] gpio: mvebu: Armada 8K/7K PWM support
-Message-ID: <20210104092449.GA1551@shell.armlinux.org.uk>
-References: <cover.1607601615.git.baruch@tkos.co.il>
+        with ESMTP id S1726329AbhADJ2m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jan 2021 04:28:42 -0500
+Received: from mail-vs1-xe35.google.com (mail-vs1-xe35.google.com [IPv6:2607:f8b0:4864:20::e35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E66DC061574
+        for <devicetree@vger.kernel.org>; Mon,  4 Jan 2021 01:28:01 -0800 (PST)
+Received: by mail-vs1-xe35.google.com with SMTP id e20so14137490vsr.12
+        for <devicetree@vger.kernel.org>; Mon, 04 Jan 2021 01:28:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=ExeHQWgqTKzH+DZSpsOqxVJU7/CNUO5Q/p82stk7PJg=;
+        b=X/Gi1auS3Z+zUYZURdGr75NeBrHpMm88ga/jDKcAnCz36LUKhNeJ0M3y88x8ecm4aW
+         jb4mF6EA6DYbILrCj8jk9pSE8WoyyMlSKbaZ7dPLlDioDHoVbnXORu5975RR0wGdbP/f
+         UiRWu0Iw93RxoFRjm8IrYO2fT7jyTbN6hNPks=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ExeHQWgqTKzH+DZSpsOqxVJU7/CNUO5Q/p82stk7PJg=;
+        b=HMxU2TO1hIRzhYHuEnuDCNRSCvC6M/kTdqThqxj1IfVCEJtdjRevI1gUHgPFsDvXWX
+         QGcbPO84KRpvGJMedom0G3ZsgjQ+VjIqn2A2XS/V89pQuTpKe18lsBTVdxicyB15EOJD
+         E2UzAo3zSsAbgDQDxMUJU0cHwCiBKb6OpkG6mqyOvp7ujG6Le53wkvFKqBfieS9ojjEw
+         ALuIVYWeQDyP/ii4IOEWdFFSYB4N3kt71if+iLQ94GHSAIxlWOLrik+nWHuHLtpw5Fz4
+         teXe4CZ7GLO7V/OhNzhIFG7BuF1NFEHxIBQT/2fD7qEMLRV4wqGNXdEGADHhOhyNMQZ2
+         Id6g==
+X-Gm-Message-State: AOAM532ZRxHJrJ1LUasdpKsro3usQkv+cPMQ9TXxMLa4CuaiVokQz0fz
+        oenu01b4NHY6EDVLM0VGg+N1Ay7rRiv200Gkcbl1Bg==
+X-Google-Smtp-Source: ABdhPJyF2xBh5X4KryFT0WGdabrZwrmbRW9n5pz8Ld0ZfllL2ZL5QKd1r3/IEp7q8KkK01cJ6iv5O7LHMnae2yoQXKE=
+X-Received: by 2002:a67:5c03:: with SMTP id q3mr43046284vsb.47.1609752480656;
+ Mon, 04 Jan 2021 01:28:00 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cover.1607601615.git.baruch@tkos.co.il>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Sender: Russell King - ARM Linux admin <linux@armlinux.org.uk>
+References: <20201227105449.11452-1-roger.lu@mediatek.com> <20201227105449.11452-4-roger.lu@mediatek.com>
+ <CANMq1KBNKy708Vz67WOc+n7V7ne4L1EZVkUVGj6abd5voxKjxA@mail.gmail.com> <1609750266.20758.40.camel@mtksdaap41>
+In-Reply-To: <1609750266.20758.40.camel@mtksdaap41>
+From:   Nicolas Boichat <drinkcat@chromium.org>
+Date:   Mon, 4 Jan 2021 17:27:49 +0800
+Message-ID: <CANMq1KDxVLo=JAAq-gjybke1WiX03COwNX7sHsZDMF9USzSECw@mail.gmail.com>
+Subject: Re: [PATCH v10 3/7] [v10, 3/7]: soc: mediatek: SVS: introduce MTK SVS engine
+To:     Roger Lu <roger.lu@mediatek.com>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Enric Balletbo Serra <eballetbo@gmail.com>,
+        Kevin Hilman <khilman@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Nicolas Boichat <drinkcat@google.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Nishanth Menon <nm@ti.com>, Angus Lin <Angus.Lin@mediatek.com>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        "open list:THERMAL" <linux-pm@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        Xiaoqing Liu <Xiaoqing.Liu@mediatek.com>,
+        YT Lee <yt.lee@mediatek.com>, Fan Chen <fan.chen@mediatek.com>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        HenryC Chen <HenryC.Chen@mediatek.com>,
+        Charles Yang <Charles.Yang@mediatek.com>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 10, 2020 at 02:15:57PM +0200, Baruch Siach wrote:
-> This series makes two changes to v3:
-> 
->   * Remove patches that are in LinusW linux-gpio for-next and fixes
-> 
->   * Rename the 'pwm-offset' property to 'marvell,pwm-offset' as suggested by 
->     Rob Herring
-> 
-> The original cover letter follows (with DT property name updated).
-> 
-> The gpio-mvebu driver supports the PWM functionality of the GPIO block for
-> earlier Armada variants like XP, 370 and 38x. This series extends support to
-> newer Armada variants that use CP11x and AP80x, like Armada 8K and 7K.
-> 
-> This series adds adds the 'marvell,pwm-offset' property to DT binding. 
-> 'marvell,pwm-offset' points to the base of A/B counter registers that 
-> determine the PWM period and duty cycle.
-> 
-> The existing PWM DT binding reflects an arbitrary decision to allocate the A
-> counter to the first GPIO block, and B counter to the other one. In attempt to
-> provide better future flexibility, the new 'marvell,pwm-offset' property 
-> always points to the base address of both A/B counters. The driver code still 
-> allocates the counters in the same way, but this might change in the future 
-> with no change to the DT.
-> 
-> Tested AP806 and CP110 (both) on Armada 8040 based system.
+On Mon, Jan 4, 2021 at 4:51 PM Roger Lu <roger.lu@mediatek.com> wrote:
+>
+>
+> Hi Nicolas,
+>
+> Thanks for all the advices.
+>
+> On Thu, 2020-12-31 at 10:10 +0800, Nicolas Boichat wrote:
+> > On Sun, Dec 27, 2020 at 6:55 PM Roger Lu <roger.lu@mediatek.com> wrote:
+[snip]
+> > > +static int svs_adjust_pm_opp_volts(struct svs_bank *svsb, bool force_update)
+> > > +{
+> > > +       int tzone_temp, ret = -EPERM;
+> >
+> > No need to initialize ret.
+>
+> Oh, excuse me, some coding check tool warn that this `ret` might return
+> without being uninitialized. Therefore, I'll keep the initialization.
 
-Did you see the patches I sent during the last year doing this and
-adding support for the fan on the GT-8k?
+Oh, you're right, there is a possible path where ret is not set. sgtm then.
 
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
+>
+> >
+> > > +       u32 i, svsb_volt, opp_volt, temp_offset = 0;
+> > > +
+> > > +       mutex_lock(&svsb->lock);
+> > > +
+> > > +       /*
+> > > +        * If svs bank is suspended, it means signed-off voltages are applied.
+> > > +        * Don't need to update opp voltage anymore.
+> > > +        */
+> > > +       if (svsb->suspended && !force_update) {
+> > > +               dev_notice(svsb->dev, "bank is suspended\n");
+> > > +               ret = -EPERM;
+> > > +               goto unlock_mutex;
+> > > +       }
+> > > +
+> > > +       /* Get thermal effect */
+> > > +       if (svsb->phase == SVSB_PHASE_MON) {
+> > > +               if (svsb->temp > svsb->temp_upper_bound &&
+> > > +                   svsb->temp < svsb->temp_lower_bound) {
+> > > +                       dev_warn(svsb->dev, "svsb temp = 0x%x?\n", svsb->temp);
+> > > +                       ret = -EINVAL;
+> > > +                       goto unlock_mutex;
+> > > +               }
+> > > +
+> > > +               ret = svs_get_bank_zone_temperature(svsb->tzone_name,
+> > > +                                                   &tzone_temp);
+> > > +               if (ret) {
+> > > +                       dev_err(svsb->dev, "no \"%s\"?(%d)?\n",
+> > > +                               svsb->tzone_name, ret);
+> > > +                       dev_err(svsb->dev, "set signed-off voltage\n");
+> >
+> > Please merge the error message in one line (I'm not sure what "set
+> > signed-off voltage" means here).
+>
+> 1. Ok, I'll merge them. Thanks.
+> 2. signed-off voltages means CPU DVFS default voltages
+
+So just write "default voltages" then? ,-)
+
+>
+> >
+[snip]
+> > > +static irqreturn_t svs_isr(int irq, void *data)
+> > > +{
+> > > +       struct svs_platform *svsp = (struct svs_platform *)data;
+> >
+> > cast not needed.
+>
+> Ok, I'll remove it. Thanks.
+>
+> >
+> > > +       struct svs_bank *svsb = NULL;
+> > > +       unsigned long flags;
+> > > +       u32 idx, int_sts, svs_en;
+> > > +
+> > > +       for (idx = 0; idx < svsp->bank_num; idx++) {
+> > > +               svsb = &svsp->banks[idx];
+> > > +
+> > > +               spin_lock_irqsave(&mtk_svs_lock, flags);
+> > > +               svsp->pbank = svsb;
+> > > +
+> > > +               /* Find out which svs bank fires interrupt */
+> > > +               if (svsb->int_st & svs_readl(svsp, INTST)) {
+> > > +                       spin_unlock_irqrestore(&mtk_svs_lock, flags);
+> > > +                       continue;
+> > > +               }
+> > > +
+> > > +               if (!svsb->suspended) {
+> > > +                       svs_switch_bank(svsp);
+> > > +                       int_sts = svs_readl(svsp, INTSTS);
+> > > +                       svs_en = svs_readl(svsp, SVSEN);
+> > > +
+> > > +                       if (int_sts == SVSB_INTSTS_COMPLETE &&
+> > > +                           ((svs_en & SVSB_EN_MASK) == SVSB_EN_INIT01))
+> > > +                               svs_init01_isr_handler(svsp);
+> > > +                       else if ((int_sts == SVSB_INTSTS_COMPLETE) &&
+> > > +                                ((svs_en & SVSB_EN_MASK) == SVSB_EN_INIT02))
+> > > +                               svs_init02_isr_handler(svsp);
+> > > +                       else if (!!(int_sts & SVSB_INTSTS_MONVOP))
+> >
+> > !! is not required.
+>
+> Ok, I'll remove it. Thanks.
+>
+> >
+> > > +                               svs_mon_mode_isr_handler(svsp);
+> > > +                       else
+> > > +                               svs_error_isr_handler(svsp);
+> > > +               }
+> > > +
+> > > +               spin_unlock_irqrestore(&mtk_svs_lock, flags);
+> > > +               break;
+> > > +       }
+> >
+> > This will panic if svsb is NULL, is that ok or do you want to catch that?
+>
+> Oh, it is fine. Thanks for the heads-up.
+
+I should have been stronger in my statement, I think you want to add a
+BUG_ON(!svsb) to crash in a slightly more predictable manner.
+
+[snip]
+> > > +
+> > > +       svsp->tefuse = (u32 *)nvmem_cell_read(cell, &svsp->tefuse_num);
+> >
+> > Cast not needed.
+>
+> Ok, I'll remove it if build/test ok. Because nvmem_cell_read returns
+> (void *).
+>
+> >
+> > Also, this need to be freed somewhere in remove code (kfree(svsp->tefuse)).
+> >
+> > And it seems like svsp->tefuse is only used in this function, can you
+> > just allocate it here?
+>
+> Oh, svsp->tefuse will be used in SVS debug patch for debug purpose. So,
+> I need to save it as struct member.
+
+Oh I missed that, sgtm then. Thanks.
+
+>
+[snip]
