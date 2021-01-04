@@ -2,181 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 361632E8EB5
-	for <lists+devicetree@lfdr.de>; Sun,  3 Jan 2021 23:49:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C2BD62E8F83
+	for <lists+devicetree@lfdr.de>; Mon,  4 Jan 2021 04:09:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727624AbhACWtN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 3 Jan 2021 17:49:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55650 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726610AbhACWtN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Jan 2021 17:49:13 -0500
-Received: from mail-pg1-x531.google.com (mail-pg1-x531.google.com [IPv6:2607:f8b0:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1AA25C061573;
-        Sun,  3 Jan 2021 14:48:33 -0800 (PST)
-Received: by mail-pg1-x531.google.com with SMTP id i5so17592492pgo.1;
-        Sun, 03 Jan 2021 14:48:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=t0zu2rRiEVfRsaF3pV2UiBvQuBiFNssfwxgn5PC1iG4=;
-        b=E5ga9ng/7cLpzhS9xKIdS8M5Hl+oy53UodMpPe1r2iC3o7RAHJAa87ip72YSSfxoJk
-         +Yl2h7SnGDSrPXo8LJLaIlM/TlZl0aS43bqdZ/DgGXRM5aTbWfnm8KYKYanpcKMAgrC6
-         2oywl3mEYkoz/s/0KDRip1gu09Wg3/mI2zMTfBOfr2IgN9fouRv/uvpih6/eJp6K/Op+
-         us8H4YryuNRwqrPYTeRlwLlMJdqQc1E66StDQQ90ZeHHYGNsmx/vsAbmbllyH4xEbsRo
-         0lwH+XxMV3ByJa7pndXl7bY0g69iNY5nO2fRVX0jc+jpeQ6R6yFlVxyqNOk0laEAdwIN
-         rvFQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=t0zu2rRiEVfRsaF3pV2UiBvQuBiFNssfwxgn5PC1iG4=;
-        b=e8a5IRkSDh0GOokibL4xHsXxHxP2yNADZ/jJdqq+El4jdW6BCRFsI7b8tleXLWnzSh
-         vAbOUy5XZ9jXSm4hKHmaHAuqjE+QItn7Ds0zH6uVg+fsnhEfjLGZg1Kz4yMu+Rjb/S7z
-         bZfXLN7psa7jxx3fTrOBxZHGfMWzp120Sc/o1hln+EcKaAT81ym3SLjXRtit2XBW8Io4
-         Jq9EnMz6+9UddLfxFtd+omn0rA+ZQmx7q+zRZcNMSIo/OsrcFCJzy5JWpI2hnkvHeH9J
-         j0qc7f8A2xfmDz73jicfU0/HvZ44PnRI5pxlxIwKlMxtlUQ1whMnAD4PoaH5LaLbyWhM
-         PrHA==
-X-Gm-Message-State: AOAM53336Csbi8EXTijyTs7FZD/5Iunj2VY4P/ndQdpH0WtgETKyjjKm
-        vT0cFVD7mLgkoGsH8Gx68HM=
-X-Google-Smtp-Source: ABdhPJxWGBkwsAPpmUmNUo0go5BQh4HaA87kiku/T8uLxrcKGUD3dpMkiV0I0qGchgQuTuP3ixGy/Q==
-X-Received: by 2002:a62:644c:0:b029:1a1:f568:d2d9 with SMTP id y73-20020a62644c0000b02901a1f568d2d9mr64670051pfb.64.1609714112574;
-        Sun, 03 Jan 2021 14:48:32 -0800 (PST)
-Received: from google.com ([2620:15c:202:201:a6ae:11ff:fe11:fcc3])
-        by smtp.gmail.com with ESMTPSA id b12sm24511144pgr.9.2021.01.03.14.48.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 03 Jan 2021 14:48:31 -0800 (PST)
-Date:   Sun, 3 Jan 2021 14:48:29 -0800
-From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To:     Philip Chen <philipchen@chromium.org>
-Cc:     LKML <linux-kernel@vger.kernel.org>,
-        Dmitry Torokhov <dtor@chromium.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Rajat Jain <rajatja@chromium.org>,
-        Benson Leung <bleung@chromium.org>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Guenter Roeck <groeck@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Simon Glass <sjg@chromium.org>, devicetree@vger.kernel.org,
-        linux-input@vger.kernel.org
-Subject: Re: [PATCH 1/3] dt-bindings: input: cros-ec-keyb: Add a new property
-Message-ID: <X/JJvUobb7DtgFyC@google.com>
-References: <20201221174751.1.I025fb861cd5fa0ef5286b7dce514728e9df7ae74@changeid>
- <X+rKPhJrQaykPxri@google.com>
- <CA+cxXh=HH-UAt747OYRwaaABdJpT8r=TvrYcFah7PQ1vHqYutg@mail.gmail.com>
- <X/Df0uuclk1ZNOps@google.com>
- <CA+cxXhnY_TpnA1iR8XJ87xNeNsi2Ba89+VJEPtB7wJ-=8O=4ag@mail.gmail.com>
- <CA+cxXhkdZ2ifyCG=p3Fbxwnzu-8z3Q1jNzaBQ=MMfeJ3vqkfhw@mail.gmail.com>
+        id S1727985AbhADDJc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 3 Jan 2021 22:09:32 -0500
+Received: from mailgw02.mediatek.com ([210.61.82.184]:43764 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726610AbhADDJc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Jan 2021 22:09:32 -0500
+X-UUID: 77c606a8b6504466ad3539b8f42d1d85-20210104
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:Reply-To:From:Subject:Message-ID; bh=FPK9ETN/EBdUIpqEXkfjhWCeHs6PHnTTo754Tn/L8j8=;
+        b=lPLmCKpnnNTHryJBkOdTMntgUW3zQec55YYxMIW/moUHzOxYOWyPqjEHTG4tX3i5V0FM9+Ui/2s/Fl0MaBbwXKz0TZJ+CEfFCok/X/aRp41WZBjsmsOBwRW3KPJFiGYDNQFByR84xX67ZrFjA3+zaSOGdmI/acVbLTAEiid2Geg=;
+X-UUID: 77c606a8b6504466ad3539b8f42d1d85-20210104
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
+        (envelope-from <yongqiang.niu@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 823065018; Mon, 04 Jan 2021 11:08:45 +0800
+Received: from MTKCAS36.mediatek.inc (172.27.4.186) by mtkmbs05n1.mediatek.inc
+ (172.21.101.15) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 4 Jan
+ 2021 11:08:44 +0800
+Received: from [10.17.3.153] (10.17.3.153) by MTKCAS36.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 4 Jan 2021 11:08:43 +0800
+Message-ID: <1609729722.1574.1.camel@mhfsdcap03>
+Subject: Re: [PATCH v3, 1/8] soc: mediatek: mmsys: create mmsys folder
+From:   Yongqiang Niu <yongqiang.niu@mediatek.com>
+Reply-To: Yongqiang Niu <yongqiang.niu@mediatek.com>
+To:     Nicolas Boichat <drinkcat@chromium.org>
+CC:     CK Hu <ck.hu@mediatek.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        lkml <linux-kernel@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        "Daniel Vetter" <daniel@ffwll.ch>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>
+Date:   Mon, 4 Jan 2021 11:08:42 +0800
+In-Reply-To: <CANMq1KCRBz-rY6y3nHp8yh_QSohkmaYS=DqNDSPzvwmq-a09DQ@mail.gmail.com>
+References: <1609144630-14721-1-git-send-email-yongqiang.niu@mediatek.com>
+         <1609144630-14721-2-git-send-email-yongqiang.niu@mediatek.com>
+         <CANMq1KCRBz-rY6y3nHp8yh_QSohkmaYS=DqNDSPzvwmq-a09DQ@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CA+cxXhkdZ2ifyCG=p3Fbxwnzu-8z3Q1jNzaBQ=MMfeJ3vqkfhw@mail.gmail.com>
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Philip,
+T24gVGh1LCAyMDIwLTEyLTMxIGF0IDA5OjIxICswODAwLCBOaWNvbGFzIEJvaWNoYXQgd3JvdGU6
+DQo+IE9uIE1vbiwgRGVjIDI4LCAyMDIwIGF0IDQ6MzggUE0gWW9uZ3FpYW5nIE5pdQ0KPiA8eW9u
+Z3FpYW5nLm5pdUBtZWRpYXRlay5jb20+IHdyb3RlOg0KPiA+DQo+ID4gdGhlIG1tc3lzIHdpbGwg
+bW9yZSBhbmQgbW9yZSBjb21wbGljYXRlZCBhZnRlciBzdXBwb3J0DQo+ID4gbW9yZSBhbmQgbW9y
+ZSBTb0NzLCBhZGQgYW4gaW5kZXBlbmRlbnQgZm9sZGVyIHdpbGwgYmUNCj4gPiBtb3JlIGNsZWFy
+DQo+ID4NCj4gPiBTaWduZWQtb2ZmLWJ5OiBZb25ncWlhbmcgTml1IDx5b25ncWlhbmcubml1QG1l
+ZGlhdGVrLmNvbT4NCj4gPiAtLS0NCj4gPiAgZHJpdmVycy9zb2MvbWVkaWF0ZWsvTWFrZWZpbGUg
+ICAgICAgICAgfCAgIDIgKy0NCj4gPiAgZHJpdmVycy9zb2MvbWVkaWF0ZWsvbW1zeXMvTWFrZWZp
+bGUgICAgfCAgIDIgKw0KPiA+ICBkcml2ZXJzL3NvYy9tZWRpYXRlay9tbXN5cy9tdGstbW1zeXMu
+YyB8IDM4MCArKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysNCj4gPiAgZHJpdmVycy9z
+b2MvbWVkaWF0ZWsvbXRrLW1tc3lzLmMgICAgICAgfCAzODAgLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tDQo+IA0KPiBJIHdvbmRlciB3aHkgdGhpcyBkb2Vzbid0IGdldCBkZXRlY3Rl
+ZCBhcyBhIHJlbmFtZT8NCg0KdGhlIHJlbmFtZSBtZXNzYWdlIGRpc3BsYXllZCB3aGVuIGdpdCBj
+b21taXQgLXMNCmdpdCBzaG93IHdpbGwgbm90IHNob3cgdGhlIHJlbmFtZSBpbmZvcm1hdGlvbg0K
+DQo+IA0KPiA+ICA0IGZpbGVzIGNoYW5nZWQsIDM4MyBpbnNlcnRpb25zKCspLCAzODEgZGVsZXRp
+b25zKC0pDQo+ID4gIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL3NvYy9tZWRpYXRlay9tbXN5
+cy9NYWtlZmlsZQ0KPiA+ICBjcmVhdGUgbW9kZSAxMDA2NDQgZHJpdmVycy9zb2MvbWVkaWF0ZWsv
+bW1zeXMvbXRrLW1tc3lzLmMNCj4gPiAgZGVsZXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMvc29jL21l
+ZGlhdGVrL210ay1tbXN5cy5jDQo+ID4NCj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9zb2MvbWVk
+aWF0ZWsvTWFrZWZpbGUgYi9kcml2ZXJzL3NvYy9tZWRpYXRlay9NYWtlZmlsZQ0KPiA+IGluZGV4
+IDAxZjlmODcuLmI1OTg3Y2EgMTAwNjQ0DQo+ID4gLS0tIGEvZHJpdmVycy9zb2MvbWVkaWF0ZWsv
+TWFrZWZpbGUNCj4gPiArKysgYi9kcml2ZXJzL3NvYy9tZWRpYXRlay9NYWtlZmlsZQ0KPiA+IEBA
+IC0zLDQgKzMsNCBAQCBvYmotJChDT05GSUdfTVRLX0NNRFEpICs9IG10ay1jbWRxLWhlbHBlci5v
+DQo+ID4gIG9iai0kKENPTkZJR19NVEtfSU5GUkFDRkcpICs9IG10ay1pbmZyYWNmZy5vDQo+ID4g
+IG9iai0kKENPTkZJR19NVEtfUE1JQ19XUkFQKSArPSBtdGstcG1pYy13cmFwLm8NCj4gPiAgb2Jq
+LSQoQ09ORklHX01US19TQ1BTWVMpICs9IG10ay1zY3BzeXMubw0KPiA+IC1vYmotJChDT05GSUdf
+TVRLX01NU1lTKSArPSBtdGstbW1zeXMubw0KPiA+ICtvYmotJChDT05GSUdfTVRLX01NU1lTKSAr
+PSBtbXN5cy8NCj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9zb2MvbWVkaWF0ZWsvbW1zeXMvTWFr
+ZWZpbGUgYi9kcml2ZXJzL3NvYy9tZWRpYXRlay9tbXN5cy9NYWtlZmlsZQ0KPiA+IG5ldyBmaWxl
+IG1vZGUgMTAwNjQ0DQo+ID4gaW5kZXggMDAwMDAwMC4uNWQ5NzZkNw0KPiA+IC0tLSAvZGV2L251
+bGwNCj4gPiArKysgYi9kcml2ZXJzL3NvYy9tZWRpYXRlay9tbXN5cy9NYWtlZmlsZQ0KPiA+IEBA
+IC0wLDAgKzEsMiBAQA0KPiA+ICsjIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiBHUEwtMi4wLW9u
+bHkNCj4gPiArb2JqLSQoQ09ORklHX01US19NTVNZUykgKz0gbXRrLW1tc3lzLm8NCj4gPiBcIE5v
+IG5ld2xpbmUgYXQgZW5kIG9mIGZpbGUNCj4gDQo+IE5pdDogbmV3bGluZSBhdCBlbmQgb2YgZmls
+ZSBwbGVhc2UuDQoNCml0IHdpbGwgYmUgZml4ZWQgaW4gbmV4dCB2ZXJzaW9uDQoNCg==
 
-On Sat, Jan 02, 2021 at 10:11:21PM -0800, Philip Chen wrote:
-> Hi Dmitry,
-> 
-> I have one more question below.
-> Could you take a look?
-> 
-> On Sat, Jan 2, 2021 at 8:53 PM Philip Chen <philipchen@chromium.org> wrote:
-> >
-> > Hi Dmitry,
-> >
-> > I see.
-> > I'll update these patch sets shortly based on your suggestion.
-> > Thanks.
-> >
-> > On Sat, Jan 2, 2021 at 1:04 PM Dmitry Torokhov
-> > <dmitry.torokhov@gmail.com> wrote:
-> > >
-> > > On Sat, Jan 02, 2021 at 11:39:34AM -0800, Philip Chen wrote:
-> > > > Hi Dmitry,
-> > > >
-> > > > Thanks for reviewing my patch over the holiday season.
-> > > > Please check my CIL.
-> > > >
-> > > > On Mon, Dec 28, 2020 at 10:18 PM Dmitry Torokhov
-> > > > <dmitry.torokhov@gmail.com> wrote:
-> > > > >
-> > > > > Hi Philip,
-> > > > >
-> > > > > On Mon, Dec 21, 2020 at 05:47:57PM -0800, Philip Chen wrote:
-> > > > > > This patch adds a new property `google,custom-keyb-top-row` to the
-> > > > > > device tree for the custom keyboard top row design.
-> > > > >
-> > > > > Why don't we use the property we have for the same purpose in atkbd.c?
-> > > > > I.e. function-row-physmap?
-> > > > >
-> > > > Because this property serves a different purpose than function-row-physmap.
-> > > > `function-row-physmap` basically links the scancode to the physical
-> > > > position in the top row.
-> > > > `google,custom-keyb-top-row` aims at specifying the board-specific
-> > > > keyboard top row design associated with the action codes.
-> > > >
-> > > > In x86 path, the board-specific keyboard top row design associated
-> > > > with the action codes is exposed from coreboot to kernel through
-> > > > "linux,keymap" acpi table.
-> > > > When coreboot generates this acpi table, it asks EC to provide this
-> > > > information, since we add the board-specific top-row-design in EC
-> > > > codebase.
-> > > > (E.g. https://chromium.googlesource.com/chromiumos/platform/ec/+/refs/heads/main/board/jinlon/board.c#396)
-> > > >
-> > > > In ARM, we don't plan to involve EC in the vivaldi support stack.
-> > > > So `google,custom-keyb-top-row` DT property is our replacement for the
-> > > > board-specific top-row-design in x86 EC codebase.
-> > >
-> > > I disagree with this decision. We already have "linux,keymap" property
-> > > that is supposed to hold accurate keymap for the device in question,
-> > > there should be no need to introduce yet another property to adjust the
-> > > keymap to reflect the reality. If a device uses "non classic" ChromeOS
-> > > top row it should not be using the default keymap from
-> > > arch/arm/boot/dts/cros-ec-keyboard.dtsi but supply its own. You can
-> > > consider splitting the keymap into generic lower portion and the top row
-> > > and moving them into an .h file so they can be easily reused.
-> > >
-> > > >
-> > > > > Also, instead of specifying keycodes in this array we should use
-> > > > > combination of row and column identifying keys, like this:
-> > > > >
-> > > > >         function-row-physmap = <
-> > > > >                 MATRIX_KEY(0x00, 0x02, KEY_F1),
-> > > > >                 MATRIX_KEY(0x03, 0x02, KEY_F2),
-> > > > >                 ...
-> > > > >         >;
-> > > >
-> > > > This mapping between row/column to function keycode is fixed for all
-> > > > Chrome OS devices.
-> > >
-> > > *for now* The mapping for the rest of the keyboard has also stayed
-> > > static, but we still did not hardcode this information in the driver but
-> > > rather used DT property to pass it into the kernel.
-> > >
-> > > > So we don't really need to host this information in DT.
-> > > > Instead, I plan to hardcode this information in cros_ec_keyb.c.
-> > > > (Please see the array "top_row_key_pos[]" in my next patch: "[2/3]
-> > > > Input: cros_ec_keyb - Support custom top-row keys".)
-> > > >
-> > > > The only thing that could make the function-row-physmap file different
-> > > > among boards is the number of top row keys.
-> Given the reason above, can we just add `num-top-row-keys` property
-> instead of the whole `function-row-physmap`?
-> I think this is the only thing cros_ec_keyb needs to know to generate
-> the board-specific function-row-physmap file for the userspace.
-
-This would mean that we need to hard-code the knowledge of the scan
-matrix in the driver and will not allow us to "skip" any keys in the top
-row. Given that we did not hard-code the keymap I do not see why we
-would want to do it differently with the top row. function-row-physmap
-provides greatest flexibility and I do not see any downsides.
-
-Thanks.
-
--- 
-Dmitry
