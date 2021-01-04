@@ -2,286 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 183B32E9D26
-	for <lists+devicetree@lfdr.de>; Mon,  4 Jan 2021 19:37:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EF0D32E9D2A
+	for <lists+devicetree@lfdr.de>; Mon,  4 Jan 2021 19:38:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727030AbhADSgp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Jan 2021 13:36:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41816 "EHLO
+        id S1727862AbhADShu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Jan 2021 13:37:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41992 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726328AbhADSgp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jan 2021 13:36:45 -0500
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70322C061793
-        for <devicetree@vger.kernel.org>; Mon,  4 Jan 2021 10:36:04 -0800 (PST)
-Received: by mail-wm1-x32c.google.com with SMTP id q75so186315wme.2
-        for <devicetree@vger.kernel.org>; Mon, 04 Jan 2021 10:36:04 -0800 (PST)
+        with ESMTP id S1727391AbhADShu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jan 2021 13:37:50 -0500
+Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com [IPv6:2607:f8b0:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 094AEC061798
+        for <devicetree@vger.kernel.org>; Mon,  4 Jan 2021 10:37:10 -0800 (PST)
+Received: by mail-oi1-x22a.google.com with SMTP id s75so33186142oih.1
+        for <devicetree@vger.kernel.org>; Mon, 04 Jan 2021 10:37:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=to:cc:references:from:subject:message-id:date:mime-version
-         :in-reply-to:content-language:content-transfer-encoding;
-        bh=VcMfSSwNdSOxEd5dJy/2gbjQYKroue8Hj5qE0mEd/LI=;
-        b=nLkvHP1hgzQdgENVXqsGNMFNdD1I9EHbRnziEi54DWLtNOZvie2eR4CU2sqag2LMwU
-         YZgqOU3yQcSVVjAnjvBDuhRljq7ay80IJ6Rvf7/I1o4JAlpJowNI7kwqEJaSdbDEhgR8
-         u9KFTfic/fAWKYzkLB26ypwxiq8MXhtY5UDeYlzSgts3Lw1/yJNkvuBJCstjrsWhSq1d
-         nmn3MJiw/sJZfCZYeE112MpcSVhWKlaHuAwmx+GYPdir6b5ks19ciFX9tBRdnE3xSoGc
-         GQlO6VBa1iFXwQu3Xa0eIz1yuLaIjyL7koGs8XUdZRUlrVQoeY/dcuEMZTqi//u2epx6
-         b3kA==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=D0br3wkGScF5qbNK3FSimsSwz8m6L15tNlHZCr/gQ1E=;
+        b=xeWdQz/PuaexWTTzQl1bJT9cuC98+rdp2YshmMf1IvsDTs6pnBX6F4tzfHjYe2G51P
+         pEG3RHn129a1qPg9bUri2XChBaA9earXdW2YUEkiaqeAUjB1gzfreu6YQ1D+drImPoMZ
+         LrnO+KOCiGVmVsiZHwOExgOhDXirFn722+up51qABGixHpgVI83r+vZI7tdkVFLSE6z4
+         7yOcBIJU5lj+atKfj3iZ5otp+DZgf5a2NLsrwiav4qx1EwlujRyUmMr8F+KpUTuXpdsY
+         NDMwIf5SERQ1jM1HzL2xjSydXRuB8TAyocpRbDlHNmeAHRRHVVUgfB+3SibCUkOFhFg+
+         6C2g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:to:cc:references:from:subject:message-id:date
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=VcMfSSwNdSOxEd5dJy/2gbjQYKroue8Hj5qE0mEd/LI=;
-        b=j0jhjxv/iiFoupAMe4/toX9BJalSMb0TGMEHEP2jUlkZukYW7QTbULraw7GJe8Fc4i
-         RZOi+7I/7kYzN7UBbGWMwYcksmZm6pbdHHomfMpp3mpbwRN8CCVVWnM11yChEuSK1jnU
-         Ht9Dng+XktnkHHo+vFrMt76lRrsgICWthoHkzi7pTeSCt3xOTms6dVr2Tr7FLA8mJPfY
-         njv1Rm05vbRJhTBHijc/lhPPDhBAxjx2IUsSZvVaNHs8ZkBeTN6uJrrmQEUtqrXVY38k
-         Me4nWbaGEP9ee2pUuietKgICYPIFUTDB1bMN64OuR11EVDb6Qdq08K2brLUt+1fOtUo7
-         F0FQ==
-X-Gm-Message-State: AOAM531QWrT5IFsIMORXS31p5My5C9SrOq7G805VCUutLoH2URHcfs2q
-        SPA4N8I+ts+1ReOFvgEB4mvbiw==
-X-Google-Smtp-Source: ABdhPJzELvss8TLuNgoP16gx9BnAupDOxbh0Wn4nAypeRpHgDOw6kAZ1sZnbdXYevsvWrmsQ3sVmJg==
-X-Received: by 2002:a1c:9acb:: with SMTP id c194mr178273wme.43.1609785363181;
-        Mon, 04 Jan 2021 10:36:03 -0800 (PST)
-Received: from [10.44.66.8] ([212.45.67.2])
-        by smtp.googlemail.com with ESMTPSA id h184sm298255wmh.23.2021.01.04.10.36.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 04 Jan 2021 10:36:02 -0800 (PST)
-To:     Henry Chen <henryc.chen@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Ryan Case <ryandcase@chromium.org>,
-        Mark Brown <broonie@kernel.org>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Nicolas Boichat <drinkcat@google.com>,
-        Fan Chen <fan.chen@mediatek.com>,
-        James Liao <jamesjj.liao@mediatek.com>,
-        Arvin Wang <arvin.wang@mediatek.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org
-References: <1608790134-27425-1-git-send-email-henryc.chen@mediatek.com>
- <1608790134-27425-9-git-send-email-henryc.chen@mediatek.com>
-From:   Georgi Djakov <georgi.djakov@linaro.org>
-Subject: Re: [PATCH V6 08/13] interconnect: mediatek: Add interconnect
- provider driver
-Message-ID: <c8b951b0-6412-d905-99e1-6350283b57c1@linaro.org>
-Date:   Mon, 4 Jan 2021 20:36:04 +0200
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=D0br3wkGScF5qbNK3FSimsSwz8m6L15tNlHZCr/gQ1E=;
+        b=Da0n5kHzwDByOuHTIYkzfa95IwQwyfUdAd/VbkBrCHTn4HPd8JUjYhJAuzsoECHZ7p
+         8wSELmPjgwEykqW8LOfyPD5mId7LECETd+Qfi5djd4YAqxQ/FquhSNQlWN4Sky3QYZi7
+         C71Exk/MuTsH4aF8hdcdGol6kLKB/2N2Ij4jEI9olyL2zN1y5bM6rJpCa5hlDcFlxZni
+         p09pBGmuBM0/w9f6q/aYffHUBb6e1ZiwHDHF7gaTVYV97JSD0IySgMc2/yKjgCV5an50
+         iYWRkOufVd1QlKwvnnQDOCHLXFDcWOjC+ssH9ZFAG5pgEaDOCDaJ0TsuFSQfehoU6aoA
+         mOMA==
+X-Gm-Message-State: AOAM530eOyvLcZrmHpQicYMB9ZoioqrfbFV/YRJDDi1AIvk39DV3ZzBK
+        jxVu/atdqY1ZhqNo/QMnfOORbueMXLIw8g==
+X-Google-Smtp-Source: ABdhPJwk5OyQVNrEWQj2HcRNSEsj5SteHD+WK+zbUk8xyIFouWIvjIDbz7gsJCyn0Xc5QcGcJCOIgg==
+X-Received: by 2002:a05:6808:7d0:: with SMTP id f16mr160921oij.109.1609785429256;
+        Mon, 04 Jan 2021 10:37:09 -0800 (PST)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id g3sm12866008ooi.28.2021.01.04.10.37.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 04 Jan 2021 10:37:08 -0800 (PST)
+Date:   Mon, 4 Jan 2021 12:37:06 -0600
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Vinod Koul <vkoul@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: pinctrl: qcom: Add SM8350 pinctrl
+ bindings
+Message-ID: <X/NgUp/pm9T0JlTw@builder.lan>
+References: <20201208085748.3684670-1-vkoul@kernel.org>
+ <20201210135253.GA2405508@robh.at.kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <1608790134-27425-9-git-send-email-henryc.chen@mediatek.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201210135253.GA2405508@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/24/20 08:08, Henry Chen wrote:
-> Introduce Mediatek MT6873/MT8183/MT8192 specific provider driver
-> using the interconnect framework.
+On Thu 10 Dec 07:52 CST 2020, Rob Herring wrote:
+
+> On Tue, Dec 08, 2020 at 02:27:47PM +0530, Vinod Koul wrote:
+> > Add device tree binding Documentation details for Qualcomm SM8350
+> > pinctrl driver.
+> > 
+> > Signed-off-by: Vinod Koul <vkoul@kernel.org>
+> > ---
+> > 
+> > Changes since v1:
+> >   - Fix pins pattern
+> >   - Fix example indent
+> > 
+> >  .../bindings/pinctrl/qcom,sm8350-pinctrl.yaml | 151 ++++++++++++++++++
+> >  1 file changed, 151 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,sm8350-pinctrl.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sm8350-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sm8350-pinctrl.yaml
+> > new file mode 100644
+> > index 000000000000..8ddb347c43da
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/pinctrl/qcom,sm8350-pinctrl.yaml
+> > @@ -0,0 +1,151 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/pinctrl/qcom,sm8350-pinctrl.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Qualcomm Technologies, Inc. SM8350 TLMM block
+> > +
+> > +maintainers:
+> > +  - Vinod Koul <vkoul@kernel.org>
+> > +
+> > +description: |
+> > +  This binding describes the Top Level Mode Multiplexer block found in the
+> > +  SM8350 platform.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: qcom,sm8350-pinctrl
 > 
->               ICC provider         ICC Nodes
->                                ----          ----
->               ---------       |CPU |   |--- |VPU |
->      -----   |         |-----  ----    |     ----
->     |DRAM |--|DRAM     |       ----    |     ----
->     |     |--|scheduler|----- |GPU |   |--- |DISP|
->     |     |--|(EMI)    |       ----    |     ----
->     |     |--|         |       -----   |     ----
->      -----   |         |----- |MMSYS|--|--- |VDEC|
->               ---------        -----   |     ----
->                 /|\                    |     ----
->                  |change DRAM freq     |--- |VENC|
->               ----------               |     ----
->              |  DVFSR   |              |
->              |          |              |     ----
->               ----------               |--- |IMG |
->                                        |     ----
->                                        |     ----
->                                        |--- |CAM |
->                                              ----
+> If this block is called TLMM, then I'd expect that to be in the 
+> compatible string. But I guess this is consistent with the others.
 > 
-> Signed-off-by: Henry Chen <henryc.chen@mediatek.com>
-> ---
->   drivers/interconnect/Kconfig            |   1 +
->   drivers/interconnect/Makefile           |   1 +
->   drivers/interconnect/mediatek/Kconfig   |  13 ++
->   drivers/interconnect/mediatek/Makefile  |   3 +
->   drivers/interconnect/mediatek/mtk-emi.c | 330 ++++++++++++++++++++++++++++++++
->   5 files changed, 348 insertions(+)
->   create mode 100644 drivers/interconnect/mediatek/Kconfig
->   create mode 100644 drivers/interconnect/mediatek/Makefile
->   create mode 100644 drivers/interconnect/mediatek/mtk-emi.c
-> 
-> diff --git a/drivers/interconnect/Kconfig b/drivers/interconnect/Kconfig
-> index 5b7204e..e939f5a 100644
-> --- a/drivers/interconnect/Kconfig
-> +++ b/drivers/interconnect/Kconfig
-> @@ -13,5 +13,6 @@ if INTERCONNECT
->   
->   source "drivers/interconnect/imx/Kconfig"
->   source "drivers/interconnect/qcom/Kconfig"
-> +source "drivers/interconnect/mediatek/Kconfig"
 
-Sort alphabetically please.
+This is my mistake 7 years ago and it bothers me every time we write a
+new one of these - in particular since we now support a few different
+"Qualcomm pinctrl" blocks.
 
->   
->   endif
-> diff --git a/drivers/interconnect/Makefile b/drivers/interconnect/Makefile
-> index d203520..0643a24 100644
-> --- a/drivers/interconnect/Makefile
-> +++ b/drivers/interconnect/Makefile
-> @@ -6,3 +6,4 @@ icc-core-objs				:= core.o bulk.o
->   obj-$(CONFIG_INTERCONNECT)		+= icc-core.o
->   obj-$(CONFIG_INTERCONNECT_IMX)		+= imx/
->   obj-$(CONFIG_INTERCONNECT_QCOM)		+= qcom/
-> +obj-$(CONFIG_INTERCONNECT_MTK)		+= mediatek/
+It would be ugly for a while, but I'm in favor of naming these
+"qcom,<platform>-tlmm" going forward.
 
-Ditto.
+PS. And we can solve the ugliness by introducing the "proper" naming
+(and keeping the old one for backwards compatibility) as we migrate the
+binding documents to yaml.
 
-> diff --git a/drivers/interconnect/mediatek/Kconfig b/drivers/interconnect/mediatek/Kconfig
-> new file mode 100644
-> index 0000000..972d3bb
-> --- /dev/null
-> +++ b/drivers/interconnect/mediatek/Kconfig
-> @@ -0,0 +1,13 @@
-> +config INTERCONNECT_MTK
-> +	bool "Mediatek Network-on-Chip interconnect drivers"
-> +	depends on ARCH_MEDIATEK
-> +	help
-> +	  Support for Mediatek's Network-on-Chip interconnect hardware.
-> +
-> +config INTERCONNECT_MTK_EMI
-> +	tristate "Mediatek EMI interconnect driver"
-> +	depends on INTERCONNECT_MTK
-> +	depends on (MTK_DVFSRC && OF)
-
-Would it be possible to enable COMPILE_TEST?
-
-> +	help
-> +	  This is a driver for the Mediatek Network-on-Chip on DVFSRC-based
-> +	  platforms.
-> diff --git a/drivers/interconnect/mediatek/Makefile b/drivers/interconnect/mediatek/Makefile
-> new file mode 100644
-> index 0000000..353842b
-> --- /dev/null
-> +++ b/drivers/interconnect/mediatek/Makefile
-> @@ -0,0 +1,3 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +
-> +obj-$(CONFIG_INTERCONNECT_MTK_EMI) += mtk-emi.o
-> \ No newline at end of file
-> diff --git a/drivers/interconnect/mediatek/mtk-emi.c b/drivers/interconnect/mediatek/mtk-emi.c
-> new file mode 100644
-> index 0000000..9670077
-> --- /dev/null
-> +++ b/drivers/interconnect/mediatek/mtk-emi.c
-> @@ -0,0 +1,330 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (c) 2020, The Linux Foundation. All rights reserved.
-
-Just a reminder that the year should be updated when you re-submit.
-
-> + *
-> + */
-> +
-> +#include <linux/device.h>
-> +#include <linux/interconnect-provider.h>
-> +#include <linux/module.h>
-> +#include <linux/of_device.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/soc/mediatek/mtk_dvfsrc.h>
-> +#include <dt-bindings/interconnect/mtk,mt8183-emi.h>
-> +#include <dt-bindings/interconnect/mtk,mt6873-emi.h>
-
-Nit: Alphanumeric order please.
-
-[..]
-> +static int emi_icc_remove(struct platform_device *pdev);
-> +static int emi_icc_probe(struct platform_device *pdev)
-> +{
-> +	const struct of_device_id *match;
-> +	const struct mtk_icc_desc *desc;
-> +	struct device *dev = &pdev->dev;
-> +	struct icc_node *node;
-> +	struct icc_onecell_data *data;
-> +	struct icc_provider *provider;
-> +	struct mtk_icc_node **mnodes;
-> +	size_t num_nodes, i, j;
-> +	int ret;
-> +
-> +	match = of_match_node(emi_icc_of_match, dev->parent->of_node);
-> +
-> +	if (!match) {
-> +		dev_err(dev, "invalid compatible string\n");
-> +		return -ENODEV;
-> +	}
-> +
-> +	desc = match->data;
-> +	mnodes = desc->nodes;
-> +	num_nodes = desc->num_nodes;
-> +
-> +	provider = devm_kzalloc(dev, sizeof(*provider), GFP_KERNEL);
-> +	if (!provider)
-> +		return -ENOMEM;
-> +
-> +	data = devm_kzalloc(dev, struct_size(data, nodes, num_nodes),
-> +			    GFP_KERNEL);
-> +	if (!data)
-> +		return -ENOMEM;
-> +
-> +	provider->dev = pdev->dev.parent;
-> +	provider->set = emi_icc_set;
-> +	provider->aggregate = emi_icc_aggregate;
-> +	provider->xlate = of_icc_xlate_onecell;
-> +	INIT_LIST_HEAD(&provider->nodes);
-> +	provider->data = data;
-> +
-> +	ret = icc_provider_add(provider);
-> +	if (ret) {
-> +		dev_err(&pdev->dev, "error adding interconnect provider\n");
-> +		return ret;
-> +	}
-> +
-> +	for (i = 0; i < num_nodes; i++) {
-> +		node = icc_node_create(mnodes[i]->id);
-> +		if (IS_ERR(node)) {
-> +			ret = PTR_ERR(node);
-> +			goto err;
-> +		}
-> +
-> +		node->name = mnodes[i]->name;
-> +		node->data = mnodes[i];
-> +		icc_node_add(node, provider);
-> +
-> +		for (j = 0; j < mnodes[i]->num_links; j++)
-> +			icc_link_create(node, mnodes[i]->links[j]);
-> +
-> +		data->nodes[i] = node;
-> +	}
-> +	data->num_nodes = num_nodes;
-> +
-> +	platform_set_drvdata(pdev, provider);
-> +
-> +	return 0;
-> +err:
-> +	icc_nodes_remove(provider);
-
-Also call icc_provider_del() to restore the original state on error.
-
-Thanks,
-Georgi
-
-> +	return ret;
-> +}
-> +
-> +static int emi_icc_remove(struct platform_device *pdev)
-> +{
-> +	struct icc_provider *provider = platform_get_drvdata(pdev);
-> +
-> +	icc_nodes_remove(provider);
-> +	return icc_provider_del(provider);
-> +}
-> +
+Regards,
+Bjorn
