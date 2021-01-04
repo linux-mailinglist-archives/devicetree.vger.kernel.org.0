@@ -2,77 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E86212E9C45
-	for <lists+devicetree@lfdr.de>; Mon,  4 Jan 2021 18:42:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D45082E9C6F
+	for <lists+devicetree@lfdr.de>; Mon,  4 Jan 2021 18:58:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727946AbhADRmY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Jan 2021 12:42:24 -0500
-Received: from mail.kernel.org ([198.145.29.99]:36904 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727377AbhADRmX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 4 Jan 2021 12:42:23 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id E66102250E;
-        Mon,  4 Jan 2021 17:41:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1609782103;
-        bh=BPnOnznoiq/XSjggH+RhjSgHG7IZo/HAB190GGe8BNA=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=E9ebn3aaDsyTlV1sgH+066O2byDbBpr7WQHuTRleZn4w86BdM2QLxtROk9THLw0L7
-         usZrstEtoc7TpqGMb4MsfcGU4nyPMCZNkus7/JA5xyL2Kln7k7N+5ixAP8XmiqD2FW
-         iH0rPAoX4nb8Bl+MPX4NOqOiIiVSThzFsjzXaI1bP1JG+/NmqDeY1DGHLPUihqMNGK
-         0vbmrHAUmYqR8VoZD9Aq3GTB8TFKTia6qw2re7QF4NCF3LcWK1BlvoCaFEhGVoLGrN
-         jTcvSPJm6lMyz9c0hEM0MfPeL1SkXymY/2/TWJzvl7f56U+GJvgRsTUY0oSWrRPEF6
-         aePWRdTjRrS8w==
-From:   Mark Brown <broonie@kernel.org>
-To:     linux-renesas-soc@vger.kernel.org, Adam Ford <aford173@gmail.com>
-Cc:     aford@beaconembedded.com,
-        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
-        biju.das.jz@bp.renesas.com, linux-kernel@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>
-In-Reply-To: <20210102115412.3402059-1-aford173@gmail.com>
-References: <20210102115412.3402059-1-aford173@gmail.com>
-Subject: Re: (subset) [PATCH V2 1/4] dt-bindings: memory: Renesas RPC-IF: Add support for RZ/G2 Series
-Message-Id: <160978207205.14552.17083840940357811641.b4-ty@kernel.org>
-Date:   Mon, 04 Jan 2021 17:41:12 +0000
+        id S1725921AbhADR6i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Jan 2021 12:58:38 -0500
+Received: from mail-wr1-f47.google.com ([209.85.221.47]:43878 "EHLO
+        mail-wr1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725840AbhADR6h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jan 2021 12:58:37 -0500
+Received: by mail-wr1-f47.google.com with SMTP id y17so33062381wrr.10;
+        Mon, 04 Jan 2021 09:58:21 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=zmPJ5e8163PgKunBmAEVCaIgenQTVsMEK+0mRPRp5Oo=;
+        b=J2OxTIl4jIJBOEyER19fOn9fyQsLsoUeBrrr3mgJYOnQTQsrBhr2+96LcNpUk9GEsq
+         5JbmwrAxwSJGIvdBu6HVJA+5I63br4dk38h/zeTGs1xtaTTambXKP0piTTsN4beoBuhz
+         J78djAhFMEAUHpQ/hEn7fgGRZH51wvFild5w2qtR0CVdXiJlIjqobmsND5uPKGmXwL+O
+         VXREUObCQsMCR5fG+IE25WtPJKJftvWwkMBc4y2gMp6ey3wIjK2z27E9RSZhbCdZU2Rp
+         0vpnVHTTcwAmKO+bDnoIC5jHyD20l6N/algD3f6cwcbDpMOS/nfzXk7fBYis7OOcfj8l
+         TkPQ==
+X-Gm-Message-State: AOAM532xxPSIlXDTgRXHnMT46yC8uCSzKRTbus/sxu3o/f5m9iHTyN9e
+        j+GUz11pdMRbGG2TrR587D0=
+X-Google-Smtp-Source: ABdhPJzSbBiG6yBgeDFASe3i6iURF8LEVVlmw6HGlrGuP2TSCXicp3GgFHrudVHFeaRLgBJYraNNyg==
+X-Received: by 2002:adf:e990:: with SMTP id h16mr83166214wrm.307.1609783075625;
+        Mon, 04 Jan 2021 09:57:55 -0800 (PST)
+Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
+        by smtp.googlemail.com with ESMTPSA id b127sm65635wmc.45.2021.01.04.09.57.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 04 Jan 2021 09:57:54 -0800 (PST)
+Date:   Mon, 4 Jan 2021 18:57:53 +0100
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Tim Harvey <tharvey@gateworks.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v5 2/2] arm64: dts: imx8mm: Add Gateworks i.MX 8M Mini
+ Development Kits
+Message-ID: <20210104175753.GA25954@kozik-lap>
+References: <1609781807-15096-1-git-send-email-tharvey@gateworks.com>
+ <1609781807-15096-2-git-send-email-tharvey@gateworks.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <1609781807-15096-2-git-send-email-tharvey@gateworks.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 2 Jan 2021 05:54:09 -0600, Adam Ford wrote:
-> The RZ/G2 Series has the RPC-IF interface.
-> Update bindings to support: r8a774a1, r8a774b1, r8a774c0, and r8a774e1
+On Mon, Jan 04, 2021 at 09:36:47AM -0800, Tim Harvey wrote:
+> The Gateworks Venice GW71xx-0x/GW72xx-0x/GW73xx-0x are development
+> kits consisting of a GW700x SoM and a Baseboard. Future SoM's such
+> as the GW701x will create additional combinations.
+> 
+> The GW700x SoM contains:
+>  - i.MX 8M Mini SoC
+>  - LPDDR4 DRAM
+>  - eMMC FLASH
+>  - Gateworks System Controller (eeprom/pushbutton/reset/voltage-monitor)
+>  - GbE PHY connected to the i.MX 8M Mini FEC
+>  - Power Management IC
+> 
+> The GW71xx Baseboard contains:
+>  - 1x MiniPCIe Socket with USB2.0, PCIe, and SIM
+>  - 1x RJ45 GbE (i.MX 8M Mini FEC)
+>  - I/O connector with 1x-SPI/1x-I2C/1x-UART/4x-GPIO signals
+>  - PCIe Clock generator
+>  - GPS and accelerometer
+>  - 1x USB 2.0 Front Panel connector
+>  - wide range power supply
+> 
+> The GW72xx Baseboard contains:
+>  - 2x MiniPCIe Socket with USB2.0, PCIe, and SIM
+>  - 2x RJ45 GbE (i.MX 8M Mini FEC and LAN743x)
+>  - 1x MicroSD connector
+>  - 1x USB 2.0 Front Panel connector
+>  - 1x SPI connector
+>  - 1x Serial connector supporting 2x-UART or 1x-UART configured as 1 of:
+>    RS232 w/ flow-control, RS485, RS422
+>  - PCIe Clock generator
+>  - GPS and accelerometer
+>  - Media Expansion connector (MIPI-CSI/MIPI-DSI/GPIO/I2S)
+>  - I/O connector with 2x-ADC,2x-GPIO,1x-UART,1x-I2C
+>  - wide range power supply
+> 
+> The GW73xx Baseboard contains:
+>  - 3x MiniPCIe Socket with USB2.0, PCIe, and SIM
+>  - 2x RJ45 GbE (i.MX 8M Mini FEC and LAN743x)
+>  - 1x MicroSD connector
+>  - 1x USB 2.0 Front Panel connector
+>  - 1x SPI connector
+>  - 1x Serial connector supporting 2x-UART or 1x-UART configured as 1 of:
+>    RS232 w/ flow-control, RS485, RS422
+>  - WiFi/BT
+>  - PCIe Clock generator
+>  - GPS and accelerometer
+>  - Media Expansion connector (MIPI-CSI/MIPI-DSI/GPIO/I2S)
+>  - I/O connector with 2x-ADC,2x-GPIO,1x-UART,1x-I2C
+>  - wide range power supply
+> 
+> Signed-off-by: Tim Harvey <tharvey@gateworks.com>
+> ---
+> v5:
+>  - fixed typo/grammar in commit log (s/controll/control s/comprised/consisting/)
+>  - removed underscore from remaining node names
+>  - removed blank line in hoggrp
+>  - removed unused assigned-clocks and assigned-clock-rates node from usdhc nodes
+> 
 
-Applied to
+Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+Best regards,
+Krzysztof
 
-Thanks!
-
-[3/4] spi: renesas rpc-if: Update Add RZ/G2 to Kconfig description
-      commit: f4a10fc4225155ae4d2fcb411be9f24245bb5cf8
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
