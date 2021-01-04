@@ -2,106 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 58DD42E9B96
-	for <lists+devicetree@lfdr.de>; Mon,  4 Jan 2021 18:01:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8CDD72E9C12
+	for <lists+devicetree@lfdr.de>; Mon,  4 Jan 2021 18:34:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728137AbhADRBs convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 4 Jan 2021 12:01:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55326 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728114AbhADRBp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jan 2021 12:01:45 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7509C061794
-        for <devicetree@vger.kernel.org>; Mon,  4 Jan 2021 09:01:04 -0800 (PST)
-Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1kwTE0-0002WN-FS; Mon, 04 Jan 2021 18:00:56 +0100
-Received: from pza by lupine with local (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1kwTDz-0007W2-J6; Mon, 04 Jan 2021 18:00:55 +0100
-Message-ID: <eb68242108a6ad7ad604616fb78bea2fb09dffc2.camel@pengutronix.de>
-Subject: Re: [PATCH v6 8/9] media: Avoid parsing quantization and huffman
- tables
-From:   Philipp Zabel <p.zabel@pengutronix.de>
-To:     "Mirela Rabulea (OSS)" <mirela.rabulea@oss.nxp.com>,
-        mchehab@kernel.org, hverkuil-cisco@xs4all.nl, shawnguo@kernel.org,
-        robh+dt@kernel.org
-Cc:     paul.kocialkowski@bootlin.com, linux-media@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-imx@nxp.com,
-        s.hauer@pengutronix.de, aisheng.dong@nxp.com,
-        daniel.baluta@nxp.com, robert.chiras@nxp.com,
-        laurentiu.palcu@nxp.com, mark.rutland@arm.com,
-        devicetree@vger.kernel.org, ezequiel@collabora.com,
-        laurent.pinchart+renesas@ideasonboard.com,
-        niklas.soderlund+renesas@ragnatech.se,
-        dafna.hirschfeld@collabora.com,
-        Mirela Rabulea <mirela.rabulea@nxp.com>
-Date:   Mon, 04 Jan 2021 18:00:55 +0100
-In-Reply-To: <20201215111843.30269-9-mirela.rabulea@oss.nxp.com>
-References: <20201215111843.30269-1-mirela.rabulea@oss.nxp.com>
-         <20201215111843.30269-9-mirela.rabulea@oss.nxp.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-User-Agent: Evolution 3.30.5-1.1 
+        id S1726896AbhADReJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Jan 2021 12:34:09 -0500
+Received: from hqnvemgate25.nvidia.com ([216.228.121.64]:16128 "EHLO
+        hqnvemgate25.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726939AbhADReJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jan 2021 12:34:09 -0500
+Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate25.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
+        id <B5ff351690000>; Mon, 04 Jan 2021 09:33:29 -0800
+Received: from [10.2.52.156] (172.20.145.6) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Mon, 4 Jan
+ 2021 17:33:24 +0000
+Subject: Re: [PATCH v5 2/9] dt-bindings: spi: Add Tegra Quad SPI device tree
+ binding
+To:     Rob Herring <robh@kernel.org>
+CC:     <linux-spi@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <robh+dt@kernel.org>, <lukas@wunner.de>, <bbrezillon@kernel.org>,
+        <p.yadav@ti.com>, <linux-tegra@vger.kernel.org>,
+        <broonie@kernel.org>, <tudor.ambarus@microchip.com>,
+        <devicetree@vger.kernel.org>, <jonathanh@nvidia.com>,
+        <thierry.reding@gmail.com>
+References: <1608585459-17250-1-git-send-email-skomatineni@nvidia.com>
+ <1608585459-17250-3-git-send-email-skomatineni@nvidia.com>
+ <20201231183357.GA2112085@robh.at.kernel.org>
+From:   Sowjanya Komatineni <skomatineni@nvidia.com>
+Message-ID: <4ac13c7b-dcf1-0a7d-c573-83890cba6a67@nvidia.com>
+Date:   Mon, 4 Jan 2021 09:33:22 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <20201231183357.GA2112085@robh.at.kernel.org>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-Originating-IP: [172.20.145.6]
+X-ClientProxiedBy: HQMAIL105.nvidia.com (172.20.187.12) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1609781609; bh=FflGbQbz9Rt+mAPwIs31x4CA96a3hQ7Bfw2cSc8cimI=;
+        h=Subject:To:CC:References:From:Message-ID:Date:User-Agent:
+         MIME-Version:In-Reply-To:Content-Type:Content-Transfer-Encoding:
+         Content-Language:X-Originating-IP:X-ClientProxiedBy;
+        b=Sd4nzTZeJqYepDeRiaEpnnwJcHFyDyi70DxTMBdkAB8oEWXEOlimXwUPeC4mPyPeg
+         U9tRy7UoglIY6dxqdCJ+MxSbbtWNRibthmNSJg1+vGih8W7eD80ISNdSv5lJvNiWwT
+         zyYi6hPSxOAoEd+0xOwWYiZhTgBImw9vvPgfMgDJG2oUonOmyY5JbkV9bgJ9NhgRcQ
+         bHUemHsFCSZNfgTURFhQPluPfA83MMUwgUiNlab6HVxCvUOiO6sJAmWZpJpMmp25z3
+         z7RE6mIWxugRwpPPlciMvaKVbW7cLAbeocCqSllov8JRX/ufqAHcGdJGJfPqfUR25r
+         3ZaYVt/L00l4Q==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 2020-12-15 at 13:18 +0200, Mirela Rabulea (OSS) wrote:
-> From: Mirela Rabulea <mirela.rabulea@nxp.com>
-> 
-> These are optional in struct v4l2_jpeg_header, so skip DHT/DQT segment
-> parsing if huffman_tables/quantization_tables were not requested by user,
-> to save time.
-> However, do count them (num_dht/num_dqt).
-> 
-> Signed-off-by: Mirela Rabulea <mirela.rabulea@nxp.com>
-> ---
-> Changes in v6:
->   Call jpeg_skip_segment() instead of jpeg_parse_quantization_table()/jpeg_parse_huffman_tables(),
->   when quantization/huffman tables are not requested by user.
->   Remove the NULL pointer check in the lower-level function.
->   Thanks Philipp & Hans for feedback
-> 
->  drivers/media/v4l2-core/v4l2-jpeg.c | 8 ++++++++
->  1 file changed, 8 insertions(+)
-> 
-> diff --git a/drivers/media/v4l2-core/v4l2-jpeg.c b/drivers/media/v4l2-core/v4l2-jpeg.c
-> index dc9def4c2648..f3d03d39defb 100644
-> --- a/drivers/media/v4l2-core/v4l2-jpeg.c
-> +++ b/drivers/media/v4l2-core/v4l2-jpeg.c
-> @@ -537,6 +537,10 @@ int v4l2_jpeg_parse_header(void *buf, size_t len, struct v4l2_jpeg_header *out)
->  					&out->dht[out->num_dht++ % 4]);
->  			if (ret < 0)
->  				return ret;
-> +			if (!out->huffman_tables) {
-> +				ret = jpeg_skip_segment(&stream);
-> +				break;
-> +			}
->  			ret = jpeg_parse_huffman_tables(&stream,
->  							out->huffman_tables);
->  			break;
-> @@ -545,6 +549,10 @@ int v4l2_jpeg_parse_header(void *buf, size_t len, struct v4l2_jpeg_header *out)
->  					&out->dqt[out->num_dqt++ % 4]);
->  			if (ret < 0)
->  				return ret;
-> +			if (!out->quantization_tables) {
-> +				ret = jpeg_skip_segment(&stream);
-> +				break;
-> +			}
->  			ret = jpeg_parse_quantization_tables(&stream,
->  					out->frame.precision,
->  					out->quantization_tables);
 
-Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
+On 12/31/20 10:33 AM, Rob Herring wrote:
+> On Mon, 21 Dec 2020 13:17:32 -0800, Sowjanya Komatineni wrote:
+>> This patch adds YAML based device tree binding document for Tegra
+>> Quad SPI driver.
+>>
+>> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
+>> ---
+>>   .../bindings/spi/nvidia,tegra210-quad.yaml         | 117 +++++++++++++++++++++
+>>   1 file changed, 117 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/spi/nvidia,tegra210-quad.yaml
+>>
+>
+> Please add Acked-by/Reviewed-by tags when posting new versions. However,
+> there's no need to repost patches *only* to add the tags. The upstream
+> maintainer will do that for acks received on the version they apply.
+>
+> If a tag was not added on purpose, please state why and what changed.
+>
+Sorry Rob. Missed to add tag from v4 to v5.
 
-regards
-Philipp
+Regards,
+
+Sowjanya
+
