@@ -2,265 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 12CEA2E9AD4
-	for <lists+devicetree@lfdr.de>; Mon,  4 Jan 2021 17:18:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D6BE2E9B11
+	for <lists+devicetree@lfdr.de>; Mon,  4 Jan 2021 17:30:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728925AbhADQPO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Jan 2021 11:15:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48076 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728799AbhADQPO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jan 2021 11:15:14 -0500
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A472C061793
-        for <devicetree@vger.kernel.org>; Mon,  4 Jan 2021 08:14:33 -0800 (PST)
-Received: by mail-ej1-x631.google.com with SMTP id ce23so37493889ejb.8
-        for <devicetree@vger.kernel.org>; Mon, 04 Jan 2021 08:14:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gateworks-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=u0ql2hOKODtiVe3WufYLopYmblBpBFbJZKkH4GzaQpU=;
-        b=ggeVSpKwsztGPvIJPdCt2kE0v578e87a9Lf0XeqPyivyKHwD5Rg2VMdg/cQWEJcTI4
-         J2xTWn5YYAEw78ihkUE4vk51fZYXMQxhWv46/KcHffh1BxFhUubMAxX7cpnUel9Reb/l
-         Hx9RcyKVTYMOtsbhBN3pDFh90J35YDwogovQLQ6i82OlVrpNBlm8Smdlq6leppBdEJel
-         eA8NaEKKO53hsWRPYLsaELltZ03h0NHCqvh/yMMqzBwZIxTsP9B7FpBWij/wBLP010H0
-         NuDycItjwAFNunJULq+FfFj/GlTEzZPrjqOgLw9rlrf93zgsIKDZOpPXdkG/tPEXEzAl
-         ZdgA==
+        id S1727919AbhADQ30 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Jan 2021 11:29:26 -0500
+Received: from mail-il1-f171.google.com ([209.85.166.171]:41164 "EHLO
+        mail-il1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725840AbhADQ30 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jan 2021 11:29:26 -0500
+Received: by mail-il1-f171.google.com with SMTP id w17so25785534ilj.8;
+        Mon, 04 Jan 2021 08:29:10 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=u0ql2hOKODtiVe3WufYLopYmblBpBFbJZKkH4GzaQpU=;
-        b=oPRRww2BBuJ67wZO+hSVXQtMWVaQ10RlZH51WB7xv+DZub84SgSuJzGGyK3w/qJySc
-         w2fvO4arPIf2i9l1PGxQitgkfDx+wqwCApPkicTd0e38MCMVeaoZWcFi9KL42kFtskIp
-         FmUm6H1KowQdLZc8Sj3C1dabh+ZknQoQ+5VnXjhnd9GStvj2GPlQs2/4c29xcILRRo67
-         B2RBVDhM6PWYW3dMH5w7zo4Orxhg2Qfwt2nMSUe7bWNe5l0fC8ce/dsAjv59g/X1gwP+
-         0rvV7XdbBFN01QummGIULT0a9w6xpL1XPmKI5UKnYcnpWxyOLIBTdd5WLGrcwBNejrR1
-         VH6w==
-X-Gm-Message-State: AOAM531W+DB5xmnrPFX00OOWYQhBvL1rhHhmiPNoCnR2FNyhw9GaoHLK
-        NRDT2WIcWbFkcaCi1ta+/MA6qGM2MQtb6nwEVWpPCQ==
-X-Google-Smtp-Source: ABdhPJwpq2WtyS4TdVSWKWivRyPvxpuEUH+t2wx3AtPMs7MSlX7TIchcFev9k+JfTxnOSKRR1l72ACs3BKa4T4SVueA=
-X-Received: by 2002:a17:906:6a45:: with SMTP id n5mr68507602ejs.514.1609776871823;
- Mon, 04 Jan 2021 08:14:31 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=6BE0bLFnBbRxZQebjCFcYcAXRZ2Cug808cMEhBnkBjQ=;
+        b=h7GgQSv4UessTmoe12W9gDuM8dkZHo0QG8UUrkRCyzOIV35XXRMjeGaeCChV9NssVd
+         jNoDLAj91n9SpAB2qB4g0vPEnRvhnicxIC+TEnaIHMIfKZopWVg3m8YOus3/B39ldiI7
+         TcYgn5hNlo/7w1y5IKOC+B2ijS5o+haP3qvm0qx5OhvRDpOnOqBPih1HdVD5Zd0ZKyMn
+         rJfYbvN3ouQwcR78c+I8VMIScKKDyAKlhCzoyFbfM1UhcQgneuRdtsf7hBSzYMMACxJ6
+         GDqv0lhonCnlRWdI+y8MHQ1y5j3g9eu5fJk9ReMUYmc2/GTIFwsmJwZfnAKhYvWJ7SY5
+         WHvA==
+X-Gm-Message-State: AOAM533OvRNH0XEETeH8lMEsI4Ea8MpCw7gw1UDUEPe1KUUg/dlxnsTA
+        4iJee2VFgEYmakH0TVHi1Q==
+X-Google-Smtp-Source: ABdhPJzRl+1dDFvpecCYtgp1pt4LNgqtUQWMaq4z26IKHkGBVToNJOC7zkPShcm4TERSM4BP/cFMJg==
+X-Received: by 2002:a05:6e02:ecc:: with SMTP id i12mr68736490ilk.0.1609777725189;
+        Mon, 04 Jan 2021 08:28:45 -0800 (PST)
+Received: from robh.at.kernel.org ([64.188.179.253])
+        by smtp.gmail.com with ESMTPSA id o7sm42568788iov.1.2021.01.04.08.28.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 04 Jan 2021 08:28:44 -0800 (PST)
+Received: (nullmailer pid 2106078 invoked by uid 1000);
+        Mon, 04 Jan 2021 16:28:43 -0000
+Date:   Mon, 4 Jan 2021 09:28:43 -0700
+From:   Rob Herring <robh@kernel.org>
+To:     soc@kernel.org
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jamie Iles <jamie@jamieiles.com>
+Subject: Re: [PATCH 0/4] Remove PicoXcell
+Message-ID: <20210104162843.GA1875909@robh.at.kernel.org>
+References: <20201210200315.2965567-1-robh@kernel.org>
 MIME-Version: 1.0
-References: <1609351123-22418-1-git-send-email-tharvey@gateworks.com>
- <1609351123-22418-2-git-send-email-tharvey@gateworks.com> <20210104123615.GA5974@kozik-lap>
-In-Reply-To: <20210104123615.GA5974@kozik-lap>
-From:   Tim Harvey <tharvey@gateworks.com>
-Date:   Mon, 4 Jan 2021 08:14:20 -0800
-Message-ID: <CAJ+vNU2xctqRVYd7uTUWKhgW9jAp6t2Pjv2VxSiXaGTnfj3chA@mail.gmail.com>
-Subject: Re: [PATCH v4 2/2] arm64: dts: imx8mm: Add Gateworks i.MX 8M Mini
- Development Kits
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Device Tree Mailing List <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201210200315.2965567-1-robh@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 4, 2021 at 4:36 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
->
-> On Wed, Dec 30, 2020 at 09:58:43AM -0800, Tim Harvey wrote:
-> > The Gateworks Venice GW71xx-0x/GW72xx-0x/GW73xx-0x are development
-> > kits comprised of a GW700x SoM and a Baseboard. Future SoM's such
-> > as the GW701x will create additional combinations.
-> >
-> > The GW700x SoM contains:
-> >  - i.MX 8M Mini SoC
-> >  - LPDDR4 DRAM
-> >  - eMMC FLASH
-> >  - Gateworks System Controller (eeprom/pushbutton/reset/voltage-monitor)
-> >  - GbE PHY connected to the i.MX 8M Mini FEC
-> >  - Power Management IC
-> >
-> > The GW71xx Baseboard contains:
-> >  - 1x MiniPCIe Socket with USB2.0, PCIe, and SIM
-> >  - 1x RJ45 GbE (i.MX 8M Mini FEC)
-> >  - I/O connector with 1x-SPI/1x-I2C/1x-UART/4x-GPIO signals
-> >  - PCIe Clock generator
-> >  - GPS and accelerometer
-> >  - 1x USB 2.0 Front Panel connector
-> >  - wide range power supply
-> >
-> > The GW72xx Baseboard contains:
-> >  - 2x MiniPCIe Socket with USB2.0, PCIe, and SIM
-> >  - 2x RJ45 GbE (i.MX 8M Mini FEC and LAN743x)
-> >  - 1x MicroSD connector
-> >  - 1x USB 2.0 Front Panel connector
-> >  - 1x SPI connector
-> >  - 1x Serial connector supporting 2x-UART or 1x-UART configured as 1 of:
-> >    RS232 w/ flow-controll, RS485, RS422
-> >  - PCIe Clock generator
-> >  - GPS and accelerometer
-> >  - Media Expansion connector (MIPI-CSI/MIPI-DSI/GPIO/I2S)
-> >  - I/O connector with 2x-ADC,2x-GPIO,1x-UART,1x-I2C
-> >  - wide range power supply
-> >
-> > The GW73xx Baseboard contains:
-> >  - 3x MiniPCIe Socket with USB2.0, PCIe, and SIM
-> >  - 2x RJ45 GbE (i.MX 8M Mini FEC and LAN743x)
-> >  - 1x MicroSD connector
-> >  - 1x USB 2.0 Front Panel connector
-> >  - 1x SPI connector
-> >  - 1x Serial connector supporting 2x-UART or 1x-UART configured as 1 of:
-> >    RS232 w/ flow-controll, RS485, RS422
-> >  - WiFi/BT
-> >  - PCIe Clock generator
-> >  - GPS and accelerometer
-> >  - Media Expansion connector (MIPI-CSI/MIPI-DSI/GPIO/I2S)
-> >  - I/O connector with 2x-ADC,2x-GPIO,1x-UART,1x-I2C
-> >  - wide range power supply
-> >
-> > Signed-off-by: Tim Harvey <tharvey@gateworks.com>
-> > ---
-> > v4:
-> >  - replace underscore with hyphen for gpio-keys node
-> >  - add 'off-board header' comments to i2c/spi/uart nodes that go off-board
-> >  - move node comments to own line above node
-> >  - add spaces after comma
-> >  - move uart2_gpio rs485 config pinmux to hoggroup as they don't necessarily
-> >    relate to uart2
-> >  - fix fifo-depth dt property for phy
-> >
-> > v3:
-> >  - fix gpio controller node name
-> >  - add rtc node to SoM
-> >  - add pmic pinctrl to SoM
-> >  - fixed compatible string for SoM eeprom's
-> >
-> > v2:
-> >  - fix i.MX 8M Mini name in commit log
-> >  - consistent use of underscore vs hyphen in labels
-> >  - fix gsc interrupt type
-> >  - fix iomux group node names
-> >  - fix led-controller bindings:
-> >    (use correct node names, color, function and remove label)
-> >  - use accelerometer node name vs accel
-> >  - remove sai3 from gw71xx baseboard
-> >  - added serial connector description to commit message
-> >  - added I/O connector description to commit message
-> >  - removed unnecessary #address-cells/#size-cells from gpio-keys node
-> >
-> > Signed-off-by: Tim Harvey <tharvey@gateworks.com>
-> > ---
-> >  arch/arm64/boot/dts/freescale/Makefile             |   3 +
-> >  .../boot/dts/freescale/imx8mm-venice-gw700x.dtsi   | 497 +++++++++++++++++++++
-> >  .../boot/dts/freescale/imx8mm-venice-gw71xx-0x.dts |  19 +
-> >  .../boot/dts/freescale/imx8mm-venice-gw71xx.dtsi   | 186 ++++++++
-> >  .../boot/dts/freescale/imx8mm-venice-gw72xx-0x.dts |  20 +
-> >  .../boot/dts/freescale/imx8mm-venice-gw72xx.dtsi   | 314 +++++++++++++
-> >  .../boot/dts/freescale/imx8mm-venice-gw73xx-0x.dts |  19 +
-> >  .../boot/dts/freescale/imx8mm-venice-gw73xx.dtsi   | 366 +++++++++++++++
-> >  8 files changed, 1424 insertions(+)
-> >  create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-venice-gw700x.dtsi
-> >  create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-venice-gw71xx-0x.dts
-> >  create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-venice-gw71xx.dtsi
-> >  create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx-0x.dts
-> >  create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx.dtsi
-> >  create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x.dts
-> >  create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx.dtsi
-> >
-> > diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-> > index f8d5943..ecdd233 100644
-> > --- a/arch/arm64/boot/dts/freescale/Makefile
-> > +++ b/arch/arm64/boot/dts/freescale/Makefile
-> > @@ -32,6 +32,9 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mm-beacon-kit.dtb
-> >  dtb-$(CONFIG_ARCH_MXC) += imx8mm-evk.dtb
-> >  dtb-$(CONFIG_ARCH_MXC) += imx8mm-ddr4-evk.dtb
-> >  dtb-$(CONFIG_ARCH_MXC) += imx8mm-var-som-symphony.dtb
-> > +dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw71xx-0x.dtb
-> > +dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw72xx-0x.dtb
-> > +dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw73xx-0x.dtb
-> >  dtb-$(CONFIG_ARCH_MXC) += imx8mn-evk.dtb
-> >  dtb-$(CONFIG_ARCH_MXC) += imx8mn-ddr4-evk.dtb
-> >  dtb-$(CONFIG_ARCH_MXC) += imx8mn-var-som-symphony.dtb
-> > diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw700x.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw700x.dtsi
-> > new file mode 100644
-> > index 00000000..5985a39
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw700x.dtsi
-> > @@ -0,0 +1,497 @@
-> > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> > +/*
-> > + * Copyright 2020 Gateworks Corporation
-> > + */
-> > +
-> > +#include <dt-bindings/gpio/gpio.h>
-> > +#include <dt-bindings/input/linux-event-codes.h>
-> > +#include <dt-bindings/net/ti-dp83867.h>
-> > +
-> > +/ {
-> > +     memory@40000000 {
-> > +             device_type = "memory";
-> > +             reg = <0x0 0x40000000 0 0x80000000>;
-> > +     };
-> > +
-> > +     gpio-keys {
-> > +             compatible = "gpio-keys";
-> > +
-> > +             user_pb {
->
-> All these nodes as well - hyphens instead of underscore.
+On Thu, Dec 10, 2020 at 02:03:11PM -0600, Rob Herring wrote:
+> PicoXcell has had nothing but treewide cleanups for at least the last 8
+> years and no signs of activity. The most recent activity is a yocto vendor
+> kernel based on v3.0 in 2015.
+> 
+> These patches can go via the respective maintainers' trees.
 
-will fix
+Arnd, Olof,
 
->
->
-> > +                     label = "user_pb";
-> > +                     gpios = <&gpio 2 GPIO_ACTIVE_LOW>;
-> > +                     linux,code = <BTN_0>;
-> > +             };
-> > +
-> > +             user_pb1x {
-> > +                     label = "user_pb1x";
-> > +                     linux,code = <BTN_1>;
-> > +                     interrupt-parent = <&gsc>;
-> > +                     interrupts = <0>;
-> > +             };
-> > +
-> > +             key_erased {
-> > +                     label = "key_erased";
-> > +                     linux,code = <BTN_2>;
-> > +                     interrupt-parent = <&gsc>;
-> > +                     interrupts = <1>;
-> > +             };
-> > +
-> > +             eeprom_wp {
-> > +                     label = "eeprom_wp";
-> > +                     linux,code = <BTN_3>;
-> > +                     interrupt-parent = <&gsc>;
-> > +                     interrupts = <2>;
-> > +             };
-> > +
-> > +             tamper {
-> > +                     label = "tamper";
-> > +                     linux,code = <BTN_4>;
-> > +                     interrupt-parent = <&gsc>;
-> > +                     interrupts = <5>;
-> > +             };
-> > +
-> > +             switch_hold {
-> > +                     label = "switch_hold";
-> > +                     linux,code = <BTN_5>;
-> > +                     interrupt-parent = <&gsc>;
-> > +                     interrupts = <7>;
-> > +             };
-> > +     };
->
-> Rest of DTS looks ok, thanks!
->
+Can you apply patches 1 and 2. The others have been applied.
 
-Great - thank you so much for the reviews! I will follow-up shortly
-with another revision.
+Rob
 
-Best regards and Happy New Year!
-
-Tim
+> 
+> Rob
+> 
+> Rob Herring (4):
+>   ARM: dts: Remove PicoXcell platforms
+>   ARM: Remove PicoXcell platform support
+>   crypto: Remove PicoXcell driver
+>   dt-bindings: Remove PicoXcell bindings
+> 
+>  .../devicetree/bindings/arm/picoxcell.txt     |   24 -
+>  .../bindings/crypto/picochip-spacc.txt        |   21 -
+>  .../devicetree/bindings/net/macb.txt          |    2 -
+>  .../bindings/timer/snps,dw-apb-timer.yaml     |    7 -
+>  MAINTAINERS                                   |    9 -
+>  arch/arm/Kconfig                              |    2 -
+>  arch/arm/Kconfig.debug                        |   13 +-
+>  arch/arm/Makefile                             |    1 -
+>  arch/arm/boot/dts/Makefile                    |    3 -
+>  arch/arm/boot/dts/picoxcell-pc3x2.dtsi        |  239 ---
+>  arch/arm/boot/dts/picoxcell-pc3x3.dtsi        |  355 ----
+>  arch/arm/boot/dts/picoxcell-pc7302-pc3x2.dts  |   78 -
+>  arch/arm/boot/dts/picoxcell-pc7302-pc3x3.dts  |   84 -
+>  arch/arm/mach-picoxcell/Kconfig               |    9 -
+>  arch/arm/mach-picoxcell/Makefile              |    2 -
+>  arch/arm/mach-picoxcell/common.c              |   81 -
+>  drivers/crypto/Kconfig                        |   18 -
+>  drivers/crypto/Makefile                       |    1 -
+>  drivers/crypto/picoxcell_crypto.c             | 1806 -----------------
+>  drivers/crypto/picoxcell_crypto_regs.h        |  115 --
+>  20 files changed, 1 insertion(+), 2869 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/arm/picoxcell.txt
+>  delete mode 100644 Documentation/devicetree/bindings/crypto/picochip-spacc.txt
+>  delete mode 100644 arch/arm/boot/dts/picoxcell-pc3x2.dtsi
+>  delete mode 100644 arch/arm/boot/dts/picoxcell-pc3x3.dtsi
+>  delete mode 100644 arch/arm/boot/dts/picoxcell-pc7302-pc3x2.dts
+>  delete mode 100644 arch/arm/boot/dts/picoxcell-pc7302-pc3x3.dts
+>  delete mode 100644 arch/arm/mach-picoxcell/Kconfig
+>  delete mode 100644 arch/arm/mach-picoxcell/Makefile
+>  delete mode 100644 arch/arm/mach-picoxcell/common.c
+>  delete mode 100644 drivers/crypto/picoxcell_crypto.c
+>  delete mode 100644 drivers/crypto/picoxcell_crypto_regs.h
+> 
+> --
+> 2.25.1
