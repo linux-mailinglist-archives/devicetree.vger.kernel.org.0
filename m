@@ -2,219 +2,372 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 78BE62E9296
-	for <lists+devicetree@lfdr.de>; Mon,  4 Jan 2021 10:28:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D15E42E92A4
+	for <lists+devicetree@lfdr.de>; Mon,  4 Jan 2021 10:36:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726499AbhADJ2m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Jan 2021 04:28:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41040 "EHLO
+        id S1726260AbhADJe2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Jan 2021 04:34:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41930 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726329AbhADJ2m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jan 2021 04:28:42 -0500
-Received: from mail-vs1-xe35.google.com (mail-vs1-xe35.google.com [IPv6:2607:f8b0:4864:20::e35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E66DC061574
-        for <devicetree@vger.kernel.org>; Mon,  4 Jan 2021 01:28:01 -0800 (PST)
-Received: by mail-vs1-xe35.google.com with SMTP id e20so14137490vsr.12
-        for <devicetree@vger.kernel.org>; Mon, 04 Jan 2021 01:28:01 -0800 (PST)
+        with ESMTP id S1726173AbhADJe2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jan 2021 04:34:28 -0500
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3684C061793
+        for <devicetree@vger.kernel.org>; Mon,  4 Jan 2021 01:33:47 -0800 (PST)
+Received: by mail-lf1-x131.google.com with SMTP id h205so62788253lfd.5
+        for <devicetree@vger.kernel.org>; Mon, 04 Jan 2021 01:33:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=ExeHQWgqTKzH+DZSpsOqxVJU7/CNUO5Q/p82stk7PJg=;
-        b=X/Gi1auS3Z+zUYZURdGr75NeBrHpMm88ga/jDKcAnCz36LUKhNeJ0M3y88x8ecm4aW
-         jb4mF6EA6DYbILrCj8jk9pSE8WoyyMlSKbaZ7dPLlDioDHoVbnXORu5975RR0wGdbP/f
-         UiRWu0Iw93RxoFRjm8IrYO2fT7jyTbN6hNPks=
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Sp2ZVVsfaRn48/FhBoaoMwI8s72Iim60HIepCXCqUd0=;
+        b=EoSoBjXHKV33QXrS65xXQT0RSqjSjwTnNxzldDSo0hu2nRScEvP8o+tQlz0zhorHJU
+         raQkPU4N+O8uP/XNRFqx9nIV05dScIhm/xiFGwkB86RNgppiFdLjtmBhbGnOd+xzLs79
+         lr5fbjB++iJVRxgldiFtjOm/KmYnpHtCavLYQTVeCj3fq/WvCe2QvGNAiBRTptfTTnkc
+         jzt7b00qxYKXU6mkaOXVURVJ8l4oRtTWF6sqdhV9QQczEJas/a1gsroHrih+NzkY8I6J
+         nVZY36xpjC3o4kNffXP7sfJvyt3NHE1ZPu7itIZWgM93CNJdbh3SDZqoz25SEnGUq//h
+         tJNg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=ExeHQWgqTKzH+DZSpsOqxVJU7/CNUO5Q/p82stk7PJg=;
-        b=HMxU2TO1hIRzhYHuEnuDCNRSCvC6M/kTdqThqxj1IfVCEJtdjRevI1gUHgPFsDvXWX
-         QGcbPO84KRpvGJMedom0G3ZsgjQ+VjIqn2A2XS/V89pQuTpKe18lsBTVdxicyB15EOJD
-         E2UzAo3zSsAbgDQDxMUJU0cHwCiBKb6OpkG6mqyOvp7ujG6Le53wkvFKqBfieS9ojjEw
-         ALuIVYWeQDyP/ii4IOEWdFFSYB4N3kt71if+iLQ94GHSAIxlWOLrik+nWHuHLtpw5Fz4
-         teXe4CZ7GLO7V/OhNzhIFG7BuF1NFEHxIBQT/2fD7qEMLRV4wqGNXdEGADHhOhyNMQZ2
-         Id6g==
-X-Gm-Message-State: AOAM532ZRxHJrJ1LUasdpKsro3usQkv+cPMQ9TXxMLa4CuaiVokQz0fz
-        oenu01b4NHY6EDVLM0VGg+N1Ay7rRiv200Gkcbl1Bg==
-X-Google-Smtp-Source: ABdhPJyF2xBh5X4KryFT0WGdabrZwrmbRW9n5pz8Ld0ZfllL2ZL5QKd1r3/IEp7q8KkK01cJ6iv5O7LHMnae2yoQXKE=
-X-Received: by 2002:a67:5c03:: with SMTP id q3mr43046284vsb.47.1609752480656;
- Mon, 04 Jan 2021 01:28:00 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Sp2ZVVsfaRn48/FhBoaoMwI8s72Iim60HIepCXCqUd0=;
+        b=CimQ6eN4QM4shiUKGnpujXEgiZXkvdZfHlZxlvJxq9ZBK6hG7UUih0SFbG1Rf0lIDf
+         lHhb5VTqwih1YT80zAnXKsjdhgBZw2GrKwrdPJFJYMWGoZIqsqDLGvHifndIiqKH5NGY
+         xQOlM/vTJMydN7alY0bwukgpN+n35xbgVqezUD74Z0rfKFKj2p3Z08oW4+6wBpmsLjP3
+         0IuY/fRC6foB8HHYEK9RIlQMjzZLsNejH8dld48IPOqRJ2xDH8stQOJOvxPLbyWeOzrY
+         sR8+c715C/dtsMB2paICqzQwV8wFgb8jA+BfIzqGjZXgZXwymjHuhvCRsuKz+OL/vfrn
+         wObg==
+X-Gm-Message-State: AOAM533UY2Es+y+/4iJ/EEdi3G/p3O4jrEZ29fhERnn2BxBpvYKvsnHg
+        u1sfwAIql2wsB5YY6/OGGBw8zw==
+X-Google-Smtp-Source: ABdhPJx0vk3dGfUUqxvExVYAxjJ3DEG6DFIe3wrs3/mJ+TqV79yXsU9+dPQfduEHNfmxHORoSKe16w==
+X-Received: by 2002:a05:651c:2101:: with SMTP id a1mr29304029ljq.322.1609752825999;
+        Mon, 04 Jan 2021 01:33:45 -0800 (PST)
+Received: from localhost.localdomain (c-92d7225c.014-348-6c756e10.bbcust.telenor.se. [92.34.215.146])
+        by smtp.gmail.com with ESMTPSA id o21sm7234066lfc.153.2021.01.04.01.33.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 04 Jan 2021 01:33:45 -0800 (PST)
+From:   Linus Walleij <linus.walleij@linaro.org>
+To:     Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org
+Cc:     Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>
+Subject: [PATCH] iio: st-sensors: Update ST Sensor bindings
+Date:   Mon,  4 Jan 2021 10:33:43 +0100
+Message-Id: <20210104093343.2134410-1-linus.walleij@linaro.org>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-References: <20201227105449.11452-1-roger.lu@mediatek.com> <20201227105449.11452-4-roger.lu@mediatek.com>
- <CANMq1KBNKy708Vz67WOc+n7V7ne4L1EZVkUVGj6abd5voxKjxA@mail.gmail.com> <1609750266.20758.40.camel@mtksdaap41>
-In-Reply-To: <1609750266.20758.40.camel@mtksdaap41>
-From:   Nicolas Boichat <drinkcat@chromium.org>
-Date:   Mon, 4 Jan 2021 17:27:49 +0800
-Message-ID: <CANMq1KDxVLo=JAAq-gjybke1WiX03COwNX7sHsZDMF9USzSECw@mail.gmail.com>
-Subject: Re: [PATCH v10 3/7] [v10, 3/7]: soc: mediatek: SVS: introduce MTK SVS engine
-To:     Roger Lu <roger.lu@mediatek.com>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Enric Balletbo Serra <eballetbo@gmail.com>,
-        Kevin Hilman <khilman@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Nicolas Boichat <drinkcat@google.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Nishanth Menon <nm@ti.com>, Angus Lin <Angus.Lin@mediatek.com>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        "open list:THERMAL" <linux-pm@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        Xiaoqing Liu <Xiaoqing.Liu@mediatek.com>,
-        YT Lee <yt.lee@mediatek.com>, Fan Chen <fan.chen@mediatek.com>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        HenryC Chen <HenryC.Chen@mediatek.com>,
-        Charles Yang <Charles.Yang@mediatek.com>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 4, 2021 at 4:51 PM Roger Lu <roger.lu@mediatek.com> wrote:
->
->
-> Hi Nicolas,
->
-> Thanks for all the advices.
->
-> On Thu, 2020-12-31 at 10:10 +0800, Nicolas Boichat wrote:
-> > On Sun, Dec 27, 2020 at 6:55 PM Roger Lu <roger.lu@mediatek.com> wrote:
-[snip]
-> > > +static int svs_adjust_pm_opp_volts(struct svs_bank *svsb, bool force_update)
-> > > +{
-> > > +       int tzone_temp, ret = -EPERM;
-> >
-> > No need to initialize ret.
->
-> Oh, excuse me, some coding check tool warn that this `ret` might return
-> without being uninitialized. Therefore, I'll keep the initialization.
+This adjusts the ST Sensor bindings with the more fine-grained
+syntax checks that were proposed late in the last kernel cycle
+and colliding with parallel work.
 
-Oh, you're right, there is a possible path where ret is not set. sgtm then.
+Cc: devicetree@vger.kernel.org
+Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+---
+ .../bindings/iio/st,st-sensors.yaml           | 252 ++++++++++++------
+ 1 file changed, 174 insertions(+), 78 deletions(-)
 
->
-> >
-> > > +       u32 i, svsb_volt, opp_volt, temp_offset = 0;
-> > > +
-> > > +       mutex_lock(&svsb->lock);
-> > > +
-> > > +       /*
-> > > +        * If svs bank is suspended, it means signed-off voltages are applied.
-> > > +        * Don't need to update opp voltage anymore.
-> > > +        */
-> > > +       if (svsb->suspended && !force_update) {
-> > > +               dev_notice(svsb->dev, "bank is suspended\n");
-> > > +               ret = -EPERM;
-> > > +               goto unlock_mutex;
-> > > +       }
-> > > +
-> > > +       /* Get thermal effect */
-> > > +       if (svsb->phase == SVSB_PHASE_MON) {
-> > > +               if (svsb->temp > svsb->temp_upper_bound &&
-> > > +                   svsb->temp < svsb->temp_lower_bound) {
-> > > +                       dev_warn(svsb->dev, "svsb temp = 0x%x?\n", svsb->temp);
-> > > +                       ret = -EINVAL;
-> > > +                       goto unlock_mutex;
-> > > +               }
-> > > +
-> > > +               ret = svs_get_bank_zone_temperature(svsb->tzone_name,
-> > > +                                                   &tzone_temp);
-> > > +               if (ret) {
-> > > +                       dev_err(svsb->dev, "no \"%s\"?(%d)?\n",
-> > > +                               svsb->tzone_name, ret);
-> > > +                       dev_err(svsb->dev, "set signed-off voltage\n");
-> >
-> > Please merge the error message in one line (I'm not sure what "set
-> > signed-off voltage" means here).
->
-> 1. Ok, I'll merge them. Thanks.
-> 2. signed-off voltages means CPU DVFS default voltages
+diff --git a/Documentation/devicetree/bindings/iio/st,st-sensors.yaml b/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
+index db291a9390b7..aba8dc4275a9 100644
+--- a/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
++++ b/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
+@@ -6,7 +6,9 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: STMicroelectronics MEMS sensors
+ 
+-description: |
++description: The STMicroelectronics sensor devices are pretty straight-forward
++  I2C or SPI devices, all sharing the same device tree descriptions no matter
++  what type of sensor it is.
+   Note that whilst this covers many STMicro MEMs sensors, some more complex
+   IMUs need their own bindings.
+   The STMicroelectronics sensor devices are pretty straight-forward I2C or
+@@ -15,89 +17,181 @@ description: |
+ 
+ maintainers:
+   - Denis Ciocca <denis.ciocca@st.com>
++  - Linus Walleij <linus.walleij@linaro.org>
+ 
+ properties:
+   compatible:
+-    description: |
+-      Some values are deprecated.
+-      st,lis3lv02d (deprecated, use st,lis3lv02dl-accel)
+-      st,lis302dl-spi (deprecated, use st,lis3lv02dl-accel)
+-    enum:
+-        # Accelerometers
+-      - st,lis3lv02d
+-      - st,lis302dl-spi
+-      - st,lis3lv02dl-accel
+-      - st,lsm303dlh-accel
+-      - st,lsm303dlhc-accel
+-      - st,lis3dh-accel
+-      - st,lsm330d-accel
+-      - st,lsm330dl-accel
+-      - st,lsm330dlc-accel
+-      - st,lis331dl-accel
+-      - st,lis331dlh-accel
+-      - st,lsm303dl-accel
+-      - st,lsm303dlm-accel
+-      - st,lsm330-accel
+-      - st,lsm303agr-accel
+-      - st,lis2dh12-accel
+-      - st,h3lis331dl-accel
+-      - st,lng2dm-accel
+-      - st,lis3l02dq
+-      - st,lis2dw12
+-      - st,lis3dhh
+-      - st,lis3de
+-      - st,lis2de12
+-      - st,lis2hh12
+-        # Gyroscopes
+-      - st,l3g4200d-gyro
+-      - st,lsm330d-gyro
+-      - st,lsm330dl-gyro
+-      - st,lsm330dlc-gyro
+-      - st,l3gd20-gyro
+-      - st,l3gd20h-gyro
+-      - st,l3g4is-gyro
+-      - st,lsm330-gyro
+-      - st,lsm9ds0-gyro
+-        # Magnetometers
+-      - st,lsm303agr-magn
+-      - st,lsm303dlh-magn
+-      - st,lsm303dlhc-magn
+-      - st,lsm303dlm-magn
+-      - st,lis3mdl-magn
+-      - st,lis2mdl
+-      - st,lsm9ds1-magn
+-        # Pressure sensors
+-      - st,lps001wp-press
+-      - st,lps25h-press
+-      - st,lps331ap-press
+-      - st,lps22hb-press
+-      - st,lps33hw
+-      - st,lps35hw
+-      - st,lps22hh
++    oneOf:
++      - description: STMicroelectronics Accelerometers
++        enum:
++          - st,h3lis331dl-accel
++          - st,lis2de12
++          - st,lis2dw12
++          - st,lis2hh12
++          - st,lis2dh12-accel
++          - st,lis331dl-accel
++          - st,lis331dlh-accel
++          - st,lis3de
++          - st,lis3dh-accel
++          - st,lis3dhh
++          - st,lis3l02dq
++          - st,lis3lv02dl-accel
++          - st,lng2dm-accel
++          - st,lsm303agr-accel
++          - st,lsm303dl-accel
++          - st,lsm303dlh-accel
++          - st,lsm303dlhc-accel
++          - st,lsm303dlm-accel
++          - st,lsm330-accel
++          - st,lsm330d-accel
++          - st,lsm330dl-accel
++          - st,lsm330dlc-accel
++      - description: STMicroelectronics Gyroscopes
++        enum:
++          - st,l3g4200d-gyro
++          - st,l3g4is-gyro
++          - st,l3gd20-gyro
++          - st,l3gd20h-gyro
++          - st,lsm330-gyro
++          - st,lsm330d-gyro
++          - st,lsm330dl-gyro
++          - st,lsm330dlc-gyro
++          - st,lsm9ds0-gyro
++      - description: STMicroelectronics Magnetometers
++        enum:
++          - st,lis2mdl
++          - st,lis3mdl-magn
++          - st,lsm303agr-magn
++          - st,lsm303dlh-magn
++          - st,lsm303dlhc-magn
++          - st,lsm303dlm-magn
++          - st,lsm9ds1-magn
++      - description: STMicroelectronics Pressure Sensors
++        enum:
++          - st,lps001wp-press
++          - st,lps22hb-press
++          - st,lps22hh
++          - st,lps25h-press
++          - st,lps331ap-press
++          - st,lps33hw
++          - st,lps35hw
++      - description: Deprecated bindings
++        enum:
++          - st,lis302dl-spi
++          - st,lis3lv02d
++        deprecated: true
+ 
+   reg:
+     maxItems: 1
+ 
+   interrupts:
++    description: interrupt line(s) connected to the DRDY line(s) and/or the
++      Intertial interrupt lines INT1 and INT2 if these exist. This means up to
++      three interrupts, and the DRDY must be the first one if it exists on
++      the package. The trigger edge of the interrupts is sometimes software
++      configurable in the hardware so the operating system should parse this
++      flag and set up the trigger edge as indicated in the device tree.
+     minItems: 1
++    maxItems: 2
+ 
+   vdd-supply: true
+   vddio-supply: true
+ 
+   st,drdy-int-pin:
+     $ref: /schemas/types.yaml#/definitions/uint32
+-    description:
+-      Some sensors have multiple possible pins via which they can provide
+-      a data ready interrupt.  This selects which one.
+-    enum:
+-      - 1
+-      - 2
++    maxItems: 1
++    description: the pin on the package that will be used to signal
++      "data ready" (valid values 1 or 2). This property is not configurable
++      on all sensors.
++    items:
++      minimum: 1
++      maximum: 2
+ 
+   drive-open-drain:
+-    $ref: /schemas/types.yaml#/definitions/flag
+-    description: |
+-      The interrupt/data ready line will be configured as open drain, which
+-      is useful if several sensors share the same interrupt line.
++    type: boolean
++    description: the interrupt/data ready line will be configured
++      as open drain, which is useful if several sensors share the same
++      interrupt line. (This binding is taken from pinctrl.)
++
++  mount-matrix:
++    description: an optional 3x3 mounting rotation matrix.
++
++allOf:
++  - if:
++      properties:
++        compatible:
++          enum:
++            # These have no interrupts
++            - st,lps001wp
++    then:
++      properties:
++        interrupts: false
++        st,drdy-int-pin: false
++        drive-open-drain: false
++
++  - if:
++      properties:
++        compatible:
++          enum:
++            # These have only DRDY
++            - st,lis2mdl
++            - st,lis3l02dq
++            - st,lis3lv02dl-accel
++            - st,lps22hb-press
++            - st,lps22hh
++            - st,lps25h-press
++            - st,lps33hw
++            - st,lps35hw
++            - st,lsm303agr-magn
++            - st,lsm303dlh-magn
++            - st,lsm303dlhc-magn
++            - st,lsm303dlm-magn
++    then:
++      properties:
++        interrupts:
++          maxItems: 1
++        st,drdy-int-pin: false
++
++  - if:
++      properties:
++        compatible:
++          enum:
++            # Two intertial interrupts i.e. accelerometer/gyro interrupts
++            - st,h3lis331dl-accel
++            - st,l3g4200d-gyro
++            - st,l3g4is-gyro
++            - st,l3gd20-gyro
++            - st,l3gd20h-gyro
++            - st,lis2de12
++            - st,lis2dw12
++            - st,lis2hh12
++            - st,lis2dh12-accel
++            - st,lis331dl-accel
++            - st,lis331dlh-accel
++            - st,lis3de
++            - st,lis3dh-accel
++            - st,lis3dhh
++            - st,lis3mdl-magn
++            - st,lng2dm-accel
++            - st,lps331ap-press
++            - st,lsm303agr-accel
++            - st,lsm303dlh-accel
++            - st,lsm303dlhc-accel
++            - st,lsm303dlm-accel
++            - st,lsm330-accel
++            - st,lsm330-gyro
++            - st,lsm330d-accel
++            - st,lsm330d-gyro
++            - st,lsm330dl-accel
++            - st,lsm330dl-gyro
++            - st,lsm330dlc-accel
++            - st,lsm330dlc-gyro
++            - st,lsm9ds0-gyro
++            - st,lsm9ds1-magn
++    then:
++      properties:
++        interrupts:
++          maxItems: 2
+ 
+ required:
+   - compatible
+@@ -108,16 +202,18 @@ additionalProperties: false
+ examples:
+   - |
+     #include <dt-bindings/interrupt-controller/irq.h>
++    #include <dt-bindings/gpio/gpio.h>
+     i2c {
+-        #address-cells = <1>;
+-        #size-cells = <0>;
+-        accelerometer@1d {
+-            compatible = "st,lis3lv02dl-accel";
+-            reg = <0x1d>;
+-            interrupt-parent = <&gpio2>;
+-            interrupts = <18 IRQ_TYPE_EDGE_RISING>;
+-            pinctrl-0 = <&lis3lv02dl_nhk_mode>;
+-            pinctrl-names = "default";
+-        };
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      accelerometer@1c {
++        compatible = "st,lis331dl-accel";
++        reg = <0x1c>;
++        st,drdy-int-pin = <1>;
++        vdd-supply = <&ldo1>;
++        vddio-supply = <&ldo2>;
++        interrupt-parent = <&gpio>;
++        interrupts = <18 IRQ_TYPE_EDGE_RISING>, <19 IRQ_TYPE_EDGE_RISING>;
++      };
+     };
+-...
+-- 
+2.29.2
 
-So just write "default voltages" then? ,-)
-
->
-> >
-[snip]
-> > > +static irqreturn_t svs_isr(int irq, void *data)
-> > > +{
-> > > +       struct svs_platform *svsp = (struct svs_platform *)data;
-> >
-> > cast not needed.
->
-> Ok, I'll remove it. Thanks.
->
-> >
-> > > +       struct svs_bank *svsb = NULL;
-> > > +       unsigned long flags;
-> > > +       u32 idx, int_sts, svs_en;
-> > > +
-> > > +       for (idx = 0; idx < svsp->bank_num; idx++) {
-> > > +               svsb = &svsp->banks[idx];
-> > > +
-> > > +               spin_lock_irqsave(&mtk_svs_lock, flags);
-> > > +               svsp->pbank = svsb;
-> > > +
-> > > +               /* Find out which svs bank fires interrupt */
-> > > +               if (svsb->int_st & svs_readl(svsp, INTST)) {
-> > > +                       spin_unlock_irqrestore(&mtk_svs_lock, flags);
-> > > +                       continue;
-> > > +               }
-> > > +
-> > > +               if (!svsb->suspended) {
-> > > +                       svs_switch_bank(svsp);
-> > > +                       int_sts = svs_readl(svsp, INTSTS);
-> > > +                       svs_en = svs_readl(svsp, SVSEN);
-> > > +
-> > > +                       if (int_sts == SVSB_INTSTS_COMPLETE &&
-> > > +                           ((svs_en & SVSB_EN_MASK) == SVSB_EN_INIT01))
-> > > +                               svs_init01_isr_handler(svsp);
-> > > +                       else if ((int_sts == SVSB_INTSTS_COMPLETE) &&
-> > > +                                ((svs_en & SVSB_EN_MASK) == SVSB_EN_INIT02))
-> > > +                               svs_init02_isr_handler(svsp);
-> > > +                       else if (!!(int_sts & SVSB_INTSTS_MONVOP))
-> >
-> > !! is not required.
->
-> Ok, I'll remove it. Thanks.
->
-> >
-> > > +                               svs_mon_mode_isr_handler(svsp);
-> > > +                       else
-> > > +                               svs_error_isr_handler(svsp);
-> > > +               }
-> > > +
-> > > +               spin_unlock_irqrestore(&mtk_svs_lock, flags);
-> > > +               break;
-> > > +       }
-> >
-> > This will panic if svsb is NULL, is that ok or do you want to catch that?
->
-> Oh, it is fine. Thanks for the heads-up.
-
-I should have been stronger in my statement, I think you want to add a
-BUG_ON(!svsb) to crash in a slightly more predictable manner.
-
-[snip]
-> > > +
-> > > +       svsp->tefuse = (u32 *)nvmem_cell_read(cell, &svsp->tefuse_num);
-> >
-> > Cast not needed.
->
-> Ok, I'll remove it if build/test ok. Because nvmem_cell_read returns
-> (void *).
->
-> >
-> > Also, this need to be freed somewhere in remove code (kfree(svsp->tefuse)).
-> >
-> > And it seems like svsp->tefuse is only used in this function, can you
-> > just allocate it here?
->
-> Oh, svsp->tefuse will be used in SVS debug patch for debug purpose. So,
-> I need to save it as struct member.
-
-Oh I missed that, sgtm then. Thanks.
-
->
-[snip]
