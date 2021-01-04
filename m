@@ -2,128 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C9D32E9EE1
-	for <lists+devicetree@lfdr.de>; Mon,  4 Jan 2021 21:32:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 05B792E9F02
+	for <lists+devicetree@lfdr.de>; Mon,  4 Jan 2021 21:47:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727672AbhADUcU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Jan 2021 15:32:20 -0500
-Received: from mail.kernel.org ([198.145.29.99]:35144 "EHLO mail.kernel.org"
+        id S1726026AbhADUrJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Jan 2021 15:47:09 -0500
+Received: from mail.kernel.org ([198.145.29.99]:36350 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726680AbhADUcU (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 4 Jan 2021 15:32:20 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 84BE12245C;
-        Mon,  4 Jan 2021 20:31:38 +0000 (UTC)
+        id S1726074AbhADUrJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 4 Jan 2021 15:47:09 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id C4D02216C4;
+        Mon,  4 Jan 2021 20:46:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1609792298;
-        bh=8D2TcfjNu1vAY7Hcupcy3ILO+TJDeUSwz62nJSdF59s=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=dXW3oMotNTGJH0XWaSehUbu8S97Hi6dCOiWaOkOZ0vhnnGBdHkttN7RKStZXssZ5t
-         ptS0QxCDJUV8eSd5d6JhQChvbxeZJCc3RQ4Dd5I+mkjJXiVtsXAqFO8d9zLRcmBcAc
-         UV6ic4FEhcZr8IlS1EqPRpj38b77HC/l/pKjvh3xTK3jSfxeXh5+vOqpTtNKkwMChB
-         g9MPUIZFVPOi5ZbJt9G0Iwwoy0TZcYJuvToPbGhQgmyx+ZRBwdPvjayYmyI9sFvtl7
-         DeG61/p27ilsxh64RoD3dzqF2MH7BXUDKiA8vVtuP0Jc3t6DoBGuW5N6DyXhfoMlXE
-         u0sxsFLaNYS0w==
-Received: by mail-ed1-f43.google.com with SMTP id dk8so28792521edb.1;
-        Mon, 04 Jan 2021 12:31:38 -0800 (PST)
-X-Gm-Message-State: AOAM5311QXZ8lLXfhGAoBUXKNVr92ATg8TPHGPaWrhASLMkuztQrL2Yz
-        ggmjY09JE4n1KNybVmrixRy4gtB7bKZX+XCE9g==
-X-Google-Smtp-Source: ABdhPJw/DtnTMlZfg/e7v430OBON7LhidDGoWSo4DCfzLAizx9wQwg1z+WE7uViintBlIVq3z2VyXY8gFN18lSjUZbs=
-X-Received: by 2002:a50:e78b:: with SMTP id b11mr71904806edn.165.1609792297081;
- Mon, 04 Jan 2021 12:31:37 -0800 (PST)
+        s=k20201202; t=1609793188;
+        bh=YqIdopmOGx1e+VJgMk2OWtmHGztHh2JIO7mbqBw+ZvA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=ojDlygvzJm6AJYbApbRtXGu5fn8IHOoEsnavSY9e/5GqTUkwKASrHQkAOWGGsuHaL
+         zPgCMvdZ1mG3pkjWKWmrOOcA2HAwQSUkq5PhQULpdHrln3mUhFkSCJz5T58RlfH5Dl
+         L4Q+q3hmaW57vJiBmLD1Dza0h6gGx3lBp8r5OM2a3ojps/sWAjZRobLN9lKOLofN5G
+         +7Hq0Mz/qS5C9Ipd2xsUOIN0ibiZQ2tdvl7Jx9Pa00tWw4hMEJq4pgUwW3UG2sN+kU
+         ogb1tXgieCNFnX/hQ9+mQe5eNv3hiUe6+lOIPFf0BWAw+a91yMokFHel7RisgsH8ft
+         pH0Ia0dcFLlug==
+Date:   Mon, 4 Jan 2021 12:46:26 -0800
+From:   Eric Biggers <ebiggers@kernel.org>
+To:     Ulf Hansson <ulf.hansson@linaro.org>
+Cc:     "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>, linux-fscrypt@vger.kernel.org,
+        Satya Tangirala <satyat@google.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Ritesh Harjani <riteshh@codeaurora.org>,
+        Asutosh Das <asutoshd@codeaurora.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Neeraj Soni <neersoni@codeaurora.org>,
+        Barani Muthukumaran <bmuthuku@codeaurora.org>,
+        Peng Zhou <peng.zhou@mediatek.com>,
+        Stanley Chu <stanley.chu@mediatek.com>,
+        Konrad Dybcio <konradybcio@gmail.com>
+Subject: Re: [PATCH 0/8] eMMC inline encryption support
+Message-ID: <X/N+ouEtmMPYT0Qa@sol.localdomain>
+References: <20201112194011.103774-1-ebiggers@kernel.org>
+ <X7gQ9Y44iIgkiM64@sol.localdomain>
+ <CAPDyKFrXtqqj3RXJ4m666e_danpp2neRD_M+FCaMWPC+Ow2jsA@mail.gmail.com>
 MIME-Version: 1.0
-References: <1608717823-18387-1-git-send-email-anshuman.khandual@arm.com>
- <1608717823-18387-7-git-send-email-anshuman.khandual@arm.com>
- <20210103170216.GA4048658@robh.at.kernel.org> <9d19b169-b037-20b1-7c00-b2ba2194addd@arm.com>
- <20210104181549.GB2702940@xps15>
-In-Reply-To: <20210104181549.GB2702940@xps15>
-From:   Rob Herring <robh@kernel.org>
-Date:   Mon, 4 Jan 2021 13:31:24 -0700
-X-Gmail-Original-Message-ID: <CAL_Jsq+oBrfZrJAcg40gScAi2X4XTaskKD=qk+QvacYY=NTr7w@mail.gmail.com>
-Message-ID: <CAL_Jsq+oBrfZrJAcg40gScAi2X4XTaskKD=qk+QvacYY=NTr7w@mail.gmail.com>
-Subject: Re: [PATCH 06/11] dts: bindings: Document device tree bindings for ETE
-To:     Mathieu Poirier <mathieu.poirier@linaro.org>
-Cc:     Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Anshuman Khandual <anshuman.khandual@arm.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Coresight ML <coresight@lists.linaro.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Mike Leach <mike.leach@linaro.org>,
-        Linu Cherian <lcherian@marvell.com>, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAPDyKFrXtqqj3RXJ4m666e_danpp2neRD_M+FCaMWPC+Ow2jsA@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 4, 2021 at 11:15 AM Mathieu Poirier
-<mathieu.poirier@linaro.org> wrote:
->
-> On Mon, Jan 04, 2021 at 02:42:08PM +0000, Suzuki K Poulose wrote:
-> > Hi Rob,
+On Wed, Nov 25, 2020 at 10:56:42AM +0100, Ulf Hansson wrote:
+> On Fri, 20 Nov 2020 at 19:54, Eric Biggers <ebiggers@kernel.org> wrote:
 > >
-> > On 1/3/21 5:02 PM, Rob Herring wrote:
-> > > On Wed, Dec 23, 2020 at 03:33:38PM +0530, Anshuman Khandual wrote:
-> > > > From: Suzuki K Poulose <suzuki.poulose@arm.com>
-> > > >
-> > > > Document the device tree bindings for Embedded Trace Extensions.
-> > > > ETE can be connected to legacy coresight components and thus
-> > > > could optionally contain a connection graph as described by
-> > > > the CoreSight bindings.
-> > > >
-> > > > Cc: devicetree@vger.kernel.org
-> > > > Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
-> > > > Cc: Mike Leach <mike.leach@linaro.org>
-> > > > Cc: Rob Herring <robh@kernel.org>
-> > > > Signed-off-by: Suzuki K Poulose <suzuki.poulose@arm.com>
-> > > > Signed-off-by: Anshuman Khandual <anshuman.khandual@arm.com>
-> > > > ---
-> > > >   Documentation/devicetree/bindings/arm/ete.txt | 41 +++++++++++++++++++++++++++
-> > > >   1 file changed, 41 insertions(+)
-> > > >   create mode 100644 Documentation/devicetree/bindings/arm/ete.txt
+> > On Thu, Nov 12, 2020 at 11:40:03AM -0800, Eric Biggers wrote:
+> > > Hello,
 > > >
-> > > Bindings are in schema format now, please convert this.
+> > > This patchset adds support for eMMC inline encryption, as specified by
+> > > the upcoming version of the eMMC specification and as already
+> > > implemented and used on many devices.  Building on that, it then adds
+> > > Qualcomm ICE support and wires it up for the Snapdragon 630 SoC.
 > > >
-> >
-> > Sure, will do that.
-> >
-> > > >
-> > > > diff --git a/Documentation/devicetree/bindings/arm/ete.txt b/Documentation/devicetree/bindings/arm/ete.txt
-> > > > new file mode 100644
-> > > > index 0000000..b52b507
-> > > > --- /dev/null
-> > > > +++ b/Documentation/devicetree/bindings/arm/ete.txt
-> > > > @@ -0,0 +1,41 @@
-> > > > +Arm Embedded Trace Extensions
-> > > > +
-> > > > +Arm Embedded Trace Extensions (ETE) is a per CPU trace component that
-> > > > +allows tracing the CPU execution. It overlaps with the CoreSight ETMv4
-> > > > +architecture and has extended support for future architecture changes.
-> > > > +The trace generated by the ETE could be stored via legacy CoreSight
-> > > > +components (e.g, TMC-ETR) or other means (e.g, using a per CPU buffer
-> > > > +Arm Trace Buffer Extension (TRBE)). Since the ETE can be connected to
-> > > > +legacy CoreSight components, a node must be listed per instance, along
-> > > > +with any optional connection graph as per the coresight bindings.
-> > > > +See bindings/arm/coresight.txt.
-> > > > +
-> > > > +** ETE Required properties:
-> > > > +
-> > > > +- compatible : should be one of:
-> > > > + "arm,embedded-trace-extensions"
-> > > > +
-> > > > +- cpu : the CPU phandle this ETE belongs to.
+> > > Inline encryption hardware improves the performance of storage
+> > > encryption and reduces power usage.  See
+> > > Documentation/block/inline-encryption.rst for more information about
+> > > inline encryption and the blk-crypto framework (upstreamed in v5.8)
+> > > which supports it.  Most mobile devices already use UFS or eMMC inline
+> > > encryption hardware; UFS support was already upstreamed in v5.9.
 > > >
-> > > If this is 1:1 with CPUs, then perhaps it should be a child node of the
-> > > CPU nodes.
+> > > Patches 1-3 add support for the standard eMMC inline encryption.
+> > >
+> > > However, as with UFS, host controller-specific patches are needed on top
+> > > of the standard support.  Therefore, patches 4-8 add Qualcomm ICE
+> > > (Inline Crypto Engine) support and wire it up on the Snapdragon 630 SoC.
+> > >
+> > > To test this I took advantage of the recently upstreamed support for the
+> > > Snapdragon 630 SoC, plus work-in-progress patches from the SoMainline
+> > > project (https://github.com/SoMainline/linux/tree/konrad/v5.10-rc3).  In
+> > > particular, I was able to run the fscrypt xfstests for ext4 and f2fs in
+> > > a Debian chroot.  Among other things, these tests verified that the
+> > > correct ciphertext is written to disk (the same as software encryption).
+> > >
+> > > It will also be possible to add support for Mediatek eMMC inline
+> > > encryption hardware in mtk-sd, and it should be easier than the Qualcomm
+> > > hardware since the Mediatek hardware follows the standard more closely.
+> > > I.e., patches 1-3 should be almost enough for the Mediatek hardware.
+> > > However, I don't have the hardware to do this yet.
+> > >
+> > > This patchset is based on v5.10-rc3, and it can also be retrieved from
+> > > tag "mmc-crypto-v1" of
+> > > https://git.kernel.org/pub/scm/linux/kernel/git/ebiggers/linux.git
+> > >
+> > > Note: the fscrypt inline encryption support is partially broken in
+> > > v5.10-rc3, so for testing a fscrypt fix needs to be applied too:
+> > > https://lkml.kernel.org/r/20201111015224.303073-1-ebiggers@kernel.org
+> > >
+> > > Eric Biggers (8):
+> > >   mmc: add basic support for inline encryption
+> > >   mmc: cqhci: rename cqhci.c to cqhci-core.c
+> > >   mmc: cqhci: add support for inline encryption
+> > >   mmc: cqhci: add cqhci_host_ops::program_key
+> > >   firmware: qcom_scm: update comment for ICE-related functions
+> > >   dt-bindings: mmc: sdhci-msm: add ICE registers and clock
+> > >   arm64: dts: qcom: sdm630: add ICE registers and clocks
+> > >   mmc: sdhci-msm: add Inline Crypto Engine support
 > >
-> > Yes, it is 1:1 with the CPUs. I have tried to keep this aligned with that of
-> > "coresight-etm4x". The same driver handles both. The only reason why this
-> > was separated from the "coresight.txt" is to describe the new configurations
-> > possible (read, TRBE).
->
-> Would it be possible to keep the CPU handle rather than moving things under the
-> CPU nodes?  ETMv3.x and ETMv4.x are using a handle and as Suzuki points out ETE
-> and ETMv4.x are sharing the same driver.  Proceeding differently for the ETE
-> would be terribly confusing.
+> > Any comments on this patchset?
+> 
+> I have been busy, but just wanted to let you know that I am moving to
+> start reviewing this series shortly.
+> 
+> I also need to catch up on the eMMC spec a bit, before I can provide
+> you with comments.
+> 
+> Kind regards
+> Uffe
 
-Yeah, no problem.
+Ulf, are you still planning to review this patchset?  I just sent out v4 of this
+patchset based on v5.11-rc2, but not a lot has changed from previous versions,
+since people have generally seemed happy with it.  Any chance that you will
+apply it for 5.12?  Thanks!
 
-Rob
+- Eric
