@@ -2,76 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 28D1E2E9174
-	for <lists+devicetree@lfdr.de>; Mon,  4 Jan 2021 09:09:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D8772E917C
+	for <lists+devicetree@lfdr.de>; Mon,  4 Jan 2021 09:13:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726418AbhADIJP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Jan 2021 03:09:15 -0500
-Received: from mailgw01.mediatek.com ([210.61.82.183]:39005 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1725468AbhADIJP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jan 2021 03:09:15 -0500
-X-UUID: 0750e7d523494772b0c081eccd77bf58-20210104
-X-UUID: 0750e7d523494772b0c081eccd77bf58-20210104
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
-        (envelope-from <argus.lin@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1052649964; Mon, 04 Jan 2021 16:08:29 +0800
-Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
- mtkmbs01n2.mediatek.inc (172.21.101.79) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Mon, 4 Jan 2021 16:08:28 +0800
-Received: from mtkswgap22.mediatek.inc (172.21.77.33) by MTKCAS06.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 4 Jan 2021 16:08:28 +0800
-From:   Argus Lin <argus.lin@mediatek.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will.deacon@arm.com>
-CC:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Anson Huang <Anson.Huang@nxp.com>,
-        Michael Walle <michael@walle.cc>, <agx@sigxcpu.org>,
-        Max Krummenacher <max.oss.09@gmail.com>,
-        <argus.lin@mediatek.com>, <wsd_upstream@mediatek.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>
-Subject: [PATCH 2/2] arm64: configs: Support pwrap on Mediatek MT6779 platform
-Date:   Mon, 4 Jan 2021 16:08:23 +0800
-Message-ID: <1609747703-27207-3-git-send-email-argus.lin@mediatek.com>
-X-Mailer: git-send-email 1.8.1.1.dirty
-In-Reply-To: <1609747703-27207-1-git-send-email-argus.lin@mediatek.com>
-References: <1609747703-27207-1-git-send-email-argus.lin@mediatek.com>
+        id S1726612AbhADIMU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Jan 2021 03:12:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57394 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726603AbhADIMR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jan 2021 03:12:17 -0500
+Received: from mail-pg1-x529.google.com (mail-pg1-x529.google.com [IPv6:2607:f8b0:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64C6BC061795
+        for <devicetree@vger.kernel.org>; Mon,  4 Jan 2021 00:11:37 -0800 (PST)
+Received: by mail-pg1-x529.google.com with SMTP id n10so18592826pgl.10
+        for <devicetree@vger.kernel.org>; Mon, 04 Jan 2021 00:11:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=N1N/VRl7IYxshCXfWBMhv9L4GKmc3hy8weZHQ7rGDVA=;
+        b=QghjExDFWmmI4IZigyH0QYWlIx8avgEsfnoIs9PxunNbsBTtE923wXAMJEJ+P8/91R
+         D6t4C9+Fl9vqSVyfoJtajrm0tne9TxIU3OUCnZ9dLy6Fvo26BpDAse8U9ksRrUOPwLl7
+         gExBmitmk3f8rEZLr1a0EnZzJNGzi8qtod2CWAITbLOWjezObnqxSZr4cbCz8V76+A6B
+         u4tyT2NFpiAjZa1pfG73A2Z+wTUym7bBHSoT4BcBkkY8VEQ/1THZTpwvCqm74ZXgZvIv
+         /Der4OumT93SCJijOyH7oZiqRctlteV9GhRMdxrFHE+mw5VHwsxGCKNBGklCsXEnx86F
+         MOlA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=N1N/VRl7IYxshCXfWBMhv9L4GKmc3hy8weZHQ7rGDVA=;
+        b=QqljAJm54ANGaG6tzI9lrFiPa3XjjExojB5/jsRVkb8supAkqVYlGsXJ5+zgIytjMK
+         mhopaKDLWbC9qNI9gnXczTp3idS62gXOInNQEz0710FKl2CIdcdioyXqM+K4E6uYN6GG
+         spm8Ml6s1CY+DDmOjih7HQq2yOt5s0g/q29StqiPPTwGaT1v9T7A3eu35Ex7MDv7qsc/
+         kze2EO9Cdj1hyczt6RGkFGJrYDEvbFDb+m3LfzLDRlZsCBtl7abUSKbaRFYsbIhn5dW8
+         Z7kM7TBL1gixhAoCx6RDusLG8bJ9tqVCS8nXyl8gikkFJD/IMue6DXu1X0VAMIzXHDQH
+         6XIQ==
+X-Gm-Message-State: AOAM530fVca5RZEZn36yVHW14qEKs1O4qAMd72rB2c/9G8OWdcfitDfb
+        GftmxyLiZXIDKKzWA5hKHH7OEksKl/wo
+X-Google-Smtp-Source: ABdhPJwBWRJhGyCA+bGdgK0mKkSL72v59XaeOdVINrKkcwTDtJKJKyRpAqgAIYgmNPrd78ZrHLSCiw==
+X-Received: by 2002:a62:2585:0:b029:1ab:7fb7:b965 with SMTP id l127-20020a6225850000b02901ab7fb7b965mr62847150pfl.2.1609747896658;
+        Mon, 04 Jan 2021 00:11:36 -0800 (PST)
+Received: from localhost.localdomain ([103.77.37.160])
+        by smtp.gmail.com with ESMTPSA id n7sm55051339pfn.141.2021.01.04.00.11.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 04 Jan 2021 00:11:36 -0800 (PST)
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+        jassisinghbrar@gmail.com
+Cc:     viresh.kumar@linaro.org, ulf.hansson@linaro.org,
+        bjorn.andersson@linaro.org, agross@kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Subject: [PATCH 0/5] Add APCS support for SDX55
+Date:   Mon,  4 Jan 2021 13:41:20 +0530
+Message-Id: <20210104081125.147300-1-manivannan.sadhasivam@linaro.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-TM-SNTS-SMTP: 3DCB31C1B1B77694DC1B2B165066C09602E2E195E18C46C67D4FBD0BB5C939062000:8
-X-MTK:  N
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Support pwrap on Mediatek MT6779 platform by enabling CONFIG_MTK_PMIC_WRAP.
+Hello,
 
-Signed-off-by: Argus Lin <argus.lin@mediatek.com>
----
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+This series adds APCS mailbox and clock support for SDX55. The APCS IP
+in SDX55 provides IPC and clock functionalities. Hence, mailbox support
+is added to the "qcom-apcs-ipc-mailbox" driver and a dedicated clock
+driver "apcs-sdx55" is added.
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 8383016..a2c926f 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -479,6 +479,7 @@ CONFIG_SPI_S3C64XX=y
- CONFIG_SPI_SH_MSIOF=m
- CONFIG_SPI_SUN6I=y
- CONFIG_SPI_SPIDEV=m
-+CONFIG_MTK_PMIC_WRAP=m
- CONFIG_SPMI=y
- CONFIG_PINCTRL_SINGLE=y
- CONFIG_PINCTRL_MAX77620=y
---
-1.8.1.1.dirty
+Also, the clock to the APCS block is coming from 3 different sources:
+
+1. Board XO
+2. Fixed rate GPLL0
+3. A7 PLL
+
+First source is from crystal osc, second is from GCC and third one is a
+separate clock source. Hence, a dedicated clk driver is added for the A7
+PLL as well.
+
+Apart from the mailbox support, another intention of this series is to add
+the CPUFreq support to SDX55 platform. Since there is no dedicated hardware
+IP in SDX55 to do CPUFreq duties, this platform makes use of the clock and
+regulators directly via cpufreq-dt driver.
+
+The trick here is attaching the power domain to cpudev. Usually the power
+domains for the target device is attached in the bus driver or in the
+dedicated device drivers. But in this case, there is no dedicated CPUFreq
+driver nor a bus driver. After discussing with Viresh, I concluded that
+A7 PLL driver might be the best place to do this!
+
+But this decision is subject to discussion, hence added Ulf and Viresh to
+this series.
+
+Thanks,
+Mani
+
+Manivannan Sadhasivam (5):
+  dt-bindings: mailbox: Add binding for SDX55 APCS
+  mailbox: qcom: Add support for SDX55 APCS IPC
+  dt-bindings: clock: Add Qualcomm A7 PLL binding
+  clk: qcom: Add A7 PLL support
+  clk: qcom: Add SDX55 APCS clock controller support
+
+ .../devicetree/bindings/clock/qcom,a7pll.yaml |  51 ++++++
+ .../mailbox/qcom,apcs-kpss-global.yaml        |  59 +++++--
+ drivers/clk/qcom/Kconfig                      |  17 ++
+ drivers/clk/qcom/Makefile                     |   2 +
+ drivers/clk/qcom/a7-pll.c                     | 100 ++++++++++++
+ drivers/clk/qcom/apcs-sdx55.c                 | 149 ++++++++++++++++++
+ drivers/mailbox/qcom-apcs-ipc-mailbox.c       |   5 +
+ 7 files changed, 374 insertions(+), 9 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,a7pll.yaml
+ create mode 100644 drivers/clk/qcom/a7-pll.c
+ create mode 100644 drivers/clk/qcom/apcs-sdx55.c
+
+-- 
+2.25.1
 
