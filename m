@@ -2,138 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F263D2E97AD
-	for <lists+devicetree@lfdr.de>; Mon,  4 Jan 2021 15:54:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B9DF2E97B0
+	for <lists+devicetree@lfdr.de>; Mon,  4 Jan 2021 15:54:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727032AbhADOxU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Jan 2021 09:53:20 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:35766 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727030AbhADOxT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jan 2021 09:53:19 -0500
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 104EpcLN061399;
-        Mon, 4 Jan 2021 08:51:38 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1609771898;
-        bh=HsuPNoLo8VM6yk6R7m7EpJMz+XW2jOU46ryH7hQW8SU=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=PF6Iopj6BYpVrJxfEuYlXVzWwWfDtgV2gdUcIidGoGlELatc/xLpijgyODkhAQspH
-         veHGSFy6mP9EEceAXO02Eu7vO+7uoYqVPVWz6z3ToV0JADdPr7VmMQgdR/a4YKc7HE
-         BCiGO61BFSehjNklgOCOzKyq80zMWAU8K3mvnr0w=
-Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 104EpcIA020797
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 4 Jan 2021 08:51:38 -0600
-Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Mon, 4 Jan
- 2021 08:51:37 -0600
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Mon, 4 Jan 2021 08:51:37 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 104EpbJ5019184;
-        Mon, 4 Jan 2021 08:51:37 -0600
-Date:   Mon, 4 Jan 2021 08:51:37 -0600
-From:   Nishanth Menon <nm@ti.com>
-To:     Kishon Vijay Abraham I <kishon@ti.com>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v3 0/6] PCI: J7200/J721E PCIe bindings
-Message-ID: <20210104145137.wmtppcvjzu374yly@kahuna>
-References: <20210104122232.24071-1-kishon@ti.com>
- <20210104125910.qaf7vi3dx6vsne6t@backfield>
- <465097c1-2d38-ad45-cc32-d92c385114c5@ti.com>
- <20210104131642.m5rgpkhnrffq5nrx@circular>
- <d50fa957-7371-090a-754c-816760b43a27@ti.com>
+        id S1727030AbhADOxp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Jan 2021 09:53:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35302 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726253AbhADOxp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jan 2021 09:53:45 -0500
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F5BDC061794
+        for <devicetree@vger.kernel.org>; Mon,  4 Jan 2021 06:53:05 -0800 (PST)
+Received: by mail-wr1-x42e.google.com with SMTP id d13so32414744wrc.13
+        for <devicetree@vger.kernel.org>; Mon, 04 Jan 2021 06:53:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=to:cc:references:from:subject:message-id:date:mime-version
+         :in-reply-to:content-language:content-transfer-encoding;
+        bh=HAtIHzU9YXuhZVDWQSq0AHxX7Ade0jobNAYTrIOov+c=;
+        b=pJhiM7EC4dN2iT0ISUQx5JqPG8ZY3ACJIIGv9zJTTKLVBzC7YV6m1d/5m+RIOcIZ3A
+         90vb/WnIZmv4NFR5rLeiwjNB1mNR1ioA0F81iPUXcSQ/aFrnD5PP8+m/6aIp+OHAmNnG
+         jYERNcn8dMXhXaJ+4etnqmtLlduCEeQkmjBCnXQ1p3L2PXzB6BMX+ML6zMLyVQIApOaq
+         rLTZhfrPSqPhVG6ytuIBlr8PqNYC72YS4F8FnZ9jtomLQ1C7dNDSX+b6ea97mMiyeJuD
+         65pHp9dtaQadBu/gFDJflOUzjyHzydfPS4jbnI5iS3D0h+YGjur225qJjqUJUuv6NFEt
+         qUnw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:to:cc:references:from:subject:message-id:date
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=HAtIHzU9YXuhZVDWQSq0AHxX7Ade0jobNAYTrIOov+c=;
+        b=EEM5ZOFQPCKQnNUol+OIcWDJ0mK4CqD/4gixZZkDm5MI//W68mChCfgKMr0VXL0icA
+         8xQ2DrjARIX4YxnkNJYie9mAdpZu4XySiMvo+2mBYexq0ATglh1UFWLWUBqYnUmT0t70
+         5jBP8OF6cTQDMoNyyyMwQGOXFqn5Q313USogGVgMuBtGFGMtoTOiCIacz+6/U1wDMktV
+         8idOwWn7vLSkM/GkDiBYmohtKwvmEAN4vrNqejNK+wGg3mUkW50ntpxtx1oOU1TFEqHD
+         ETtQWtdQaCulxqbR5usvtshfEqQxuzsPnF+W0enU8kyMhkFwroenJU1+oUIIxeE3tkBC
+         wjHQ==
+X-Gm-Message-State: AOAM530RGsgQXJmQKeh8izWYVsDPkpnyTBV/IHkhAGanG80x+WqFjyZt
+        WCBbOqq35NAzeT1xYwDtDw/wpw==
+X-Google-Smtp-Source: ABdhPJzSiDf76pgxkQZeU2oAlwxP1t9slLWuINnvnu/AaUe+1q+tQHfmKAhdcDzEm6EyMxwMP0Eb1g==
+X-Received: by 2002:a05:6000:10c4:: with SMTP id b4mr81788248wrx.170.1609771983699;
+        Mon, 04 Jan 2021 06:53:03 -0800 (PST)
+Received: from [10.44.66.8] ([212.45.67.2])
+        by smtp.googlemail.com with ESMTPSA id o74sm40110727wme.36.2021.01.04.06.53.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 04 Jan 2021 06:53:03 -0800 (PST)
+To:     Martin Kepplinger <martin.kepplinger@puri.sm>, robh@kernel.org,
+        shawnguo@kernel.org, festevam@gmail.com, catalin.marinas@arm.com,
+        will@kernel.org, cdleonard@gmail.com
+Cc:     kernel@pengutronix.de, linux-imx@nxp.com, kernel@puri.sm,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        Leonard Crestez <leonard.crestez@nxp.com>
+References: <20201210100906.18205-1-martin.kepplinger@puri.sm>
+ <20201210100906.18205-2-martin.kepplinger@puri.sm>
+From:   Georgi Djakov <georgi.djakov@linaro.org>
+Subject: Re: [PATCH v3 1/6] arm64: dts: imx8mq: Add NOC node
+Message-ID: <5af9ae66-039c-2e94-6b69-d5a6b0f2a0b3@linaro.org>
+Date:   Mon, 4 Jan 2021 16:53:03 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <d50fa957-7371-090a-754c-816760b43a27@ti.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <20201210100906.18205-2-martin.kepplinger@puri.sm>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18:52-20210104, Kishon Vijay Abraham I wrote:
-> Nishanth,
+On 12/10/20 12:09, Martin Kepplinger wrote:
+> From: Leonard Crestez <leonard.crestez@nxp.com>
 > 
-> On 04/01/21 6:46 pm, Nishanth Menon wrote:
-> > On 18:40-20210104, Kishon Vijay Abraham I wrote:
-> >> Nishanth,
-> >>
-> >> On 04/01/21 6:29 pm, Nishanth Menon wrote:
-> >>> On 17:52-20210104, Kishon Vijay Abraham I wrote:
-> >>>> Patch series adds DT nodes in order to get PCIe working in J7200.
-> >>>> Also includes couple of fixes for J721e.
-> >>>>
-> >>>> v1 of the patch series can be found @ [1]
-> >>>> v2 of the patch series can be found @ [2]
-> >>>>
-> >>>> Changes from v2:
-> >>>> 1) Moved serdes_refclk node out of interconnect node and also replaced
-> >>>>    "_" with "-"
-> >>>>
-> >>>> Changes from v1:
-> >>>> 1) Include only the device tree patches here (the binding patch is sent
-> >>>> separately)
-> >>>> 2) Include couple of patches that fixes J721E DTS.
-> >>>>
-> >>>> [1] -> http://lore.kernel.org/r/20201102101154.13598-1-kishon@ti.com
-> >>>> [2] -> http://lore.kernel.org/r/20201210130747.25436-1-kishon@ti.com
-> >>>>
-> >>>> Kishon Vijay Abraham I (6):
-> >>>>   arm64: dts: ti: k3-j721e-main: Fix supported max outbound regions
-> >>>>   arm64: dts: ti: k3-j721e-main: Remove "syscon" nodes added for
-> >>>>     pcieX_ctrl
-> >>>>   arm64: dts: ti: k3-j7200-main: Add SERDES and WIZ device tree node
-> >>>>   arm64: dts: ti: k3-j7200-main: Add PCIe device tree node
-> >>>>   arm64: dts: ti: k3-j7200-common-proc-board: Enable SERDES0
-> >>>>   arm64: dts: ti: k3-j7200-common-proc-board: Enable PCIe
-> >>>>
-> >>>>  .../dts/ti/k3-j7200-common-proc-board.dts     |  38 ++++++
-> >>>>  arch/arm64/boot/dts/ti/k3-j7200-main.dtsi     | 111 ++++++++++++++++++
-> >>>>  arch/arm64/boot/dts/ti/k3-j721e-main.dtsi     |  52 ++------
-> >>>>  3 files changed, 157 insertions(+), 44 deletions(-)
-> >>>
-> >>>
-> >>> A bit confused on the dependency here. is there something merged into
-> >>> next-20210104 that makes this series ready for pickup? is there a way
-> >>> I can get a immutable tag for driver fixups to pull so that my dts
-> >>> next is not broken for PCIe (I am assuming looking at the series that
-> >>> this is probably not a backward compatible series?)?
-> >>
-> >> There are no driver changes for the basic J7200 PCIe support and the DT
-> >> bindings are already merged [1].
-> >>
-> >> There are few errata fixes applicable for J721E which has to be removed
-> >> for J7200 but that depends on other patches to be merged [1] but that
-> >> doesn't impact j7200 functionality.
-> >>
-> >> [1] ->
-> >> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/pci/ti,j721e-pci-host.yaml#n19
-> >> [2] -> http://lore.kernel.org/r/20201230120515.2348-1-nadeem@cadence.com
-> > 
-> > So, Dropping stuff like "cdns,max-outbound-regions" (change from 16 to
-> > 32) will work on older kernels? Could you do a quick sanity check on the
-> > couple of "fixes" patches in this thread is not breaking functionality
-> > introduced in the older stable kernels?
+> Add initial support for dynamic frequency scaling of the main NOC
+> on imx8mq.
 > 
-> Okay, the driver changes are done such that it works with both old DT
-> and new DT however the newer DT will not work with old kernel. So I
-> think I should drop the "Fixes" tag in the DT patches.
+> Make DDRC the parent of the NOC (using passive governor) so that the
+> main NOC is automatically scaled together with DDRC by default.
+> 
+> Support for proactive scaling via interconnect will come on top.
+> 
+> Signed-off-by: Leonard Crestez <leonard.crestez@nxp.com>
+> Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
 
-If there is a specific stable kernel version you might like to use, you
-could use that as well for those stable tags (see [1])
+Acked-by: Georgi Djakov <georgi.djakov@linaro.org>
 
-
-[1] https://www.kernel.org/doc/html/latest/process/stable-kernel-rules.html
-
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+> ---
+>   arch/arm64/boot/dts/freescale/imx8mq.dtsi | 22 ++++++++++++++++++++++
+>   1 file changed, 22 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+> index a841a023e8e0..9c9d68a14e69 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+> @@ -1158,6 +1158,28 @@
+>   			};
+>   		};
+>   
+> +		noc: interconnect@32700000 {
+> +			compatible = "fsl,imx8mq-noc", "fsl,imx8m-noc";
+> +			reg = <0x32700000 0x100000>;
+> +			clocks = <&clk IMX8MQ_CLK_NOC>;
+> +			fsl,ddrc = <&ddrc>;
+> +			operating-points-v2 = <&noc_opp_table>;
+> +
+> +			noc_opp_table: opp-table {
+> +				compatible = "operating-points-v2";
+> +
+> +				opp-133M {
+> +					opp-hz = /bits/ 64 <133333333>;
+> +				};
+> +				opp-400M {
+> +					opp-hz = /bits/ 64 <400000000>;
+> +				};
+> +				opp-800M {
+> +					opp-hz = /bits/ 64 <800000000>;
+> +				};
+> +			};
+> +		};
+> +
+>   		bus@32c00000 { /* AIPS4 */
+>   			compatible = "fsl,aips-bus", "simple-bus";
+>   			reg = <0x32c00000 0x400000>;
+> 
