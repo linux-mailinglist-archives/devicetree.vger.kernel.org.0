@@ -2,284 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 381E22E90C2
-	for <lists+devicetree@lfdr.de>; Mon,  4 Jan 2021 08:12:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 47D6A2E90E3
+	for <lists+devicetree@lfdr.de>; Mon,  4 Jan 2021 08:23:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725830AbhADHMi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Jan 2021 02:12:38 -0500
-Received: from mailgw01.mediatek.com ([210.61.82.183]:45659 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1725468AbhADHMh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jan 2021 02:12:37 -0500
-X-UUID: 288678142bc64a98a659c31d51d5c4ac-20210104
-X-UUID: 288678142bc64a98a659c31d51d5c4ac-20210104
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
-        (envelope-from <nick.fan@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1535803569; Mon, 04 Jan 2021 15:11:52 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs05n1.mediatek.inc (172.21.101.15) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Mon, 4 Jan 2021 15:11:50 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 4 Jan 2021 15:11:50 +0800
-From:   Nick Fan <Nick.Fan@mediatek.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-CC:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        <dri-devel@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
-        <srv_heupstream@mediatek.com>,
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <nick.fan@mediatek.com>,
-        Nick Fan <Nick.Fan@mediatek.com>
-Subject: [PATCH v1 2/2] arm64: dts: mt8192: Add node for the Mali GPU
-Date:   Mon, 4 Jan 2021 15:11:14 +0800
-Message-ID: <20210104071114.23657-2-Nick.Fan@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20210104071114.23657-1-Nick.Fan@mediatek.com>
-References: <20210104071114.23657-1-Nick.Fan@mediatek.com>
+        id S1727582AbhADHX0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Jan 2021 02:23:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49628 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727562AbhADHX0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jan 2021 02:23:26 -0500
+Received: from mail-pg1-x529.google.com (mail-pg1-x529.google.com [IPv6:2607:f8b0:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 813DBC061793
+        for <devicetree@vger.kernel.org>; Sun,  3 Jan 2021 23:22:40 -0800 (PST)
+Received: by mail-pg1-x529.google.com with SMTP id z21so18518498pgj.4
+        for <devicetree@vger.kernel.org>; Sun, 03 Jan 2021 23:22:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=pXFP/mDtbX6rOKoKmCzMOZbkWkRy48BUP7gekqphCDg=;
+        b=brRLnzPM+VCNZQWtez6ENRPD5HNQEo3PCZwVieBiA/8lJWMIzQwXuVEHn8mV1qWFwT
+         RchZ0s9ml91okYiuwbNypm5R81tyH0IJvHjcDtf/A2n9yUnoXXbI2idHRh5AkIYu5xcU
+         6lnm//V+Xw2TZj6UeCN+mfzJoiMeLwkOTY4z3j94WyvkrbQaqNVhWe0WIGlMxHTGosCM
+         NJA8cUZkRfE1/GswcVV3MQH1/J9XSqFKfVEgkEdu6o5Z+gI+lRgbrClPNhahrLNH9v6N
+         tgO5AQ1svI4ULETEhCPyBWanET8p5m1hf8vFWM7I1nxh/Le58jZJsId/ZzhS60diHzy3
+         429g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=pXFP/mDtbX6rOKoKmCzMOZbkWkRy48BUP7gekqphCDg=;
+        b=EK0FYpdpJfCV0tafzphxniAgxx4/zfWN8VvMenm0NzH2L/W1yGZkLnvMeSFmPw9c+K
+         NKMWK7QMHcBR8d1h345+nVX+vt2d6cngbJvxZTzTOYju3zPfLg1anZg8LTtOwf5RjsyA
+         rwKwMkjvF5vJzo1Q3hPPM4+y3vd9nut0mGGqRCI4JqufayeiWA/oDSHlMudR6Ky53HI+
+         EFygQD5uToPb4i2wi5hFx/kunZXX3UbxFyy6EL45MTgAJqr5CUX6F5fHyr90UNWYaCUz
+         wY0fNle+EQ30d5y8pycWnvjB7LyzZ2IAduCoLMUPXi3OhVOlZcyiws32bx7W294IHVCS
+         Rveg==
+X-Gm-Message-State: AOAM532PAGJ6Hh+i4zSu0W7utVjB9Edouv8ld9GUmygIR2td2VFJFCSs
+        VuYqo1hK4PH/uAO4B1+gFt0O
+X-Google-Smtp-Source: ABdhPJz5zeJcaEXihwL5Z4D5OXRnNcKttdAONkI46PsJpNlLkxQ/qEihV7OsTSAl7yWZ+bxGIJfdSg==
+X-Received: by 2002:a63:1214:: with SMTP id h20mr46514167pgl.379.1609744960015;
+        Sun, 03 Jan 2021 23:22:40 -0800 (PST)
+Received: from localhost.localdomain ([103.77.37.160])
+        by smtp.gmail.com with ESMTPSA id h7sm56676668pfr.210.2021.01.03.23.22.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 03 Jan 2021 23:22:39 -0800 (PST)
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     kishon@ti.com, vkoul@kernel.org, robh+dt@kernel.org
+Cc:     bjorn.andersson@linaro.org, agross@kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Subject: [PATCH 0/2] Add support for USB3 PHY on SDX55
+Date:   Mon,  4 Jan 2021 12:52:10 +0530
+Message-Id: <20210104072212.144960-1-manivannan.sadhasivam@linaro.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a basic GPU node for mt8192.
+Hello,
 
-Signed-off-by: Nick Fan <Nick.Fan@mediatek.com>
----
-This patch depends on Mediatek power and regulator support.
+This series adds USB3 PHY support for SDX55 platform. The USB3 PHY is of
+type QMP and revision 4.0.0. In this revision, "com_aux" clock is not
+utilized.
 
-Listed as following.
+This series has been tested on SDX55-MTP along with the relevant DT node.
 
-[1]https://lore.kernel.org/patchwork/patch/1336293/
-[2]https://patchwork.kernel.org/project/linux-mediatek/list/?series=374013
-[3]https://lore.kernel.org/patchwork/patch/1356037/
-[4]https://patchwork.kernel.org/project/linux-mediatek/list/?series=405777
-[5]https://lore.kernel.org/patchwork/patch/1356175/
-[6]https://patchwork.kernel.org/project/linux-mediatek/patch/1605700894-32699-6-git-send-email-hsin-hsiung.wang@mediatek.com/
-[7]https://patchwork.kernel.org/project/linux-mediatek/patch/1608104827-7937-10-git-send-email-hsin-hsiung.wang@mediatek.com/
----
----
- arch/arm64/boot/dts/mediatek/mt8192-evb.dts |   7 +
- arch/arm64/boot/dts/mediatek/mt8192.dtsi    | 176 ++++++++++++++++++++
- 2 files changed, 183 insertions(+)
+Thanks,
+Mani
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8192-evb.dts b/arch/arm64/boot/dts/mediatek/mt8192-evb.dts
-index 6c1e2b3e8a60..48c0e240dd92 100644
---- a/arch/arm64/boot/dts/mediatek/mt8192-evb.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt8192-evb.dts
-@@ -5,6 +5,7 @@
-  */
- /dts-v1/;
- #include "mt8192.dtsi"
-+#include "mt6359.dtsi"
- 
- / {
- 	model = "MediaTek MT8192 evaluation board";
-@@ -70,6 +71,12 @@
- 	};
- };
- 
-+&gpu {
-+	supply-names = "mali","sram";
-+	mali-supply = <&mt6315_7_vbuck1>;
-+	sram-supply = <&mt6359_vsram_others_ldo_reg>;
-+};
-+
- &uart0 {
- 	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-index d6a4ad242a33..de166ea750af 100644
---- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-@@ -822,6 +822,182 @@
- 			#clock-cells = <1>;
- 		};
- 
-+		gpu: mali@13000000 {
-+			compatible = "mediatek,mt8192-mali", "arm,mali-valhall";
-+			reg = <0 0x13000000 0 0x4000>;
-+			interrupts =
-+				<GIC_SPI 363 IRQ_TYPE_LEVEL_HIGH 0>,
-+				<GIC_SPI 364 IRQ_TYPE_LEVEL_HIGH 0>,
-+				<GIC_SPI 365 IRQ_TYPE_LEVEL_HIGH 0>,
-+				<GIC_SPI 366 IRQ_TYPE_LEVEL_HIGH 0>,
-+				<GIC_SPI 367 IRQ_TYPE_LEVEL_HIGH 0>;
-+			interrupt-names =
-+				"GPU",
-+				"MMU",
-+				"JOB",
-+				"EVENT",
-+				"PWR";
-+
-+			clocks =
-+				<&apmixedsys CLK_APMIXED_MFGPLL>,
-+				<&topckgen CLK_TOP_MFG_PLL_SEL>,
-+				<&topckgen CLK_TOP_MFG_REF_SEL>,
-+				<&mfgcfg CLK_MFG_BG3D>;
-+			clock-names =
-+				"clk_main_parent",
-+				"clk_mux",
-+				"clk_sub_parent",
-+				"subsys_mfg_cg";
-+
-+			power-domains =
-+				<&scpsys MT8192_POWER_DOMAIN_MFG2>,
-+				<&scpsys MT8192_POWER_DOMAIN_MFG3>,
-+				<&scpsys MT8192_POWER_DOMAIN_MFG4>,
-+				<&scpsys MT8192_POWER_DOMAIN_MFG5>,
-+				<&scpsys MT8192_POWER_DOMAIN_MFG6>;
-+			power-domain-names = "core0",
-+					     "core1",
-+					     "core2",
-+					     "core3",
-+					     "core4";
-+
-+			operating-points-v2 = <&gpu_opp_table>;
-+			#cooling-cells = <2>;
-+		};
-+
-+		gpu_opp_table: opp_table0 {
-+			compatible = "operating-points-v2";
-+			opp-shared;
-+
-+			opp-358000000 {
-+				opp-hz = /bits/ 64 <358000000>;
-+				opp-hz-real = /bits/ 64 <358000000>,
-+					      /bits/ 64 <358000000>;
-+				opp-microvolt = <606250>,
-+						<750000>;
-+			};
-+
-+			opp-399000000 {
-+				opp-hz = /bits/ 64 <399000000>;
-+				opp-hz-real = /bits/ 64 <399000000>,
-+					      /bits/ 64 <399000000>;
-+				opp-microvolt = <618750>,
-+						<750000>;
-+			};
-+
-+			opp-440000000 {
-+				opp-hz = /bits/ 64 <440000000>;
-+				opp-hz-real = /bits/ 64 <440000000>,
-+					      /bits/ 64 <440000000>;
-+				opp-microvolt = <631250>,
-+						<750000>;
-+			};
-+
-+			opp-482000000 {
-+				opp-hz = /bits/ 64 <482000000>;
-+				opp-hz-real = /bits/ 64 <482000000>,
-+					      /bits/ 64 <482000000>;
-+				opp-microvolt = <643750>,
-+						<750000>;
-+			};
-+
-+			opp-523000000 {
-+				opp-hz = /bits/ 64 <523000000>;
-+				opp-hz-real = /bits/ 64 <523000000>,
-+					      /bits/ 64 <523000000>;
-+				opp-microvolt = <656250>,
-+						<750000>;
-+			};
-+
-+			opp-564000000 {
-+				opp-hz = /bits/ 64 <564000000>;
-+				opp-hz-real = /bits/ 64 <564000000>,
-+					      /bits/ 64 <564000000>;
-+				opp-microvolt = <668750>,
-+						<750000>;
-+			};
-+
-+			opp-605000000 {
-+				opp-hz = /bits/ 64 <605000000>;
-+				opp-hz-real = /bits/ 64 <605000000>,
-+					      /bits/ 64 <605000000>;
-+				opp-microvolt = <681250>,
-+						<750000>;
-+			};
-+
-+			opp-647000000 {
-+				opp-hz = /bits/ 64 <647000000>;
-+				opp-hz-real = /bits/ 64 <647000000>,
-+					      /bits/ 64 <647000000>;
-+				opp-microvolt = <693750>,
-+						<750000>;
-+			};
-+
-+			opp-688000000 {
-+				opp-hz = /bits/ 64 <688000000>;
-+				opp-hz-real = /bits/ 64 <688000000>,
-+					      /bits/ 64 <688000000>;
-+				opp-microvolt = <706250>,
-+						<750000>;
-+			};
-+
-+			opp-724000000 {
-+				opp-hz = /bits/ 64 <724000000>;
-+				opp-hz-real = /bits/ 64 <724000000>,
-+					      /bits/ 64 <724000000>;
-+				opp-microvolt = <725000>,
-+						<750000>;
-+			};
-+
-+			opp-760000000 {
-+				opp-hz = /bits/ 64 <760000000>;
-+				opp-hz-real = /bits/ 64 <760000000>,
-+					      /bits/ 64 <760000000>;
-+				opp-microvolt = <743750>,
-+						<750000>;
-+			};
-+
-+			opp-795000000 {
-+				opp-hz = /bits/ 64 <795000000>;
-+				opp-hz-real = /bits/ 64 <795000000>,
-+					      /bits/ 64 <795000000>;
-+				opp-microvolt = <762500>,
-+						<762500>;
-+			};
-+
-+			opp-831000000 {
-+				opp-hz = /bits/ 64 <831000000>;
-+				opp-hz-real = /bits/ 64 <831000000>,
-+					      /bits/ 64 <831000000>;
-+				opp-microvolt = <781250>,
-+						<781250>;
-+			};
-+
-+			opp-855000000 {
-+				opp-hz = /bits/ 64 <855000000>;
-+				opp-hz-real = /bits/ 64 <855000000>,
-+					      /bits/ 64 <855000000>;
-+				opp-microvolt = <793750>,
-+						<793750>;
-+			};
-+
-+			opp-902000000 {
-+				opp-hz = /bits/ 64 <902000000>;
-+				opp-hz-real = /bits/ 64 <902000000>,
-+					      /bits/ 64 <902000000>;
-+				opp-microvolt = <818750>,
-+						<818750>;
-+			};
-+
-+			opp-950000000 {
-+				opp-hz = /bits/ 64 <950000000>;
-+				opp-hz-real = /bits/ 64 <950000000>,
-+					      /bits/ 64 <950000000>;
-+				opp-microvolt = <843750>,
-+						<843750>;
-+			};
-+		};
-+
- 		mfgcfg: syscon@13fbf000 {
- 			compatible = "mediatek,mt8192-mfgcfg", "syscon";
- 			reg = <0 0x13fbf000 0 0x1000>;
+Manivannan Sadhasivam (2):
+  dt-bindings: phy: qcom,qmp: Add SDX55 USB PHY binding
+  phy: qcom-qmp: Add support for SDX55 QMP PHY
+
+ .../devicetree/bindings/phy/qcom,qmp-phy.yaml |  2 +
+ drivers/phy/qualcomm/phy-qcom-qmp.c           | 83 +++++++++++++++++++
+ 2 files changed, 85 insertions(+)
+
 -- 
-2.18.0
+2.25.1
 
