@@ -2,280 +2,186 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 339CC2E918F
-	for <lists+devicetree@lfdr.de>; Mon,  4 Jan 2021 09:15:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AD29E2E91AE
+	for <lists+devicetree@lfdr.de>; Mon,  4 Jan 2021 09:24:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726505AbhADINl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Jan 2021 03:13:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57632 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726517AbhADINk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jan 2021 03:13:40 -0500
-Received: from mail-pf1-x42f.google.com (mail-pf1-x42f.google.com [IPv6:2607:f8b0:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4D71C0617B1
-        for <devicetree@vger.kernel.org>; Mon,  4 Jan 2021 00:12:04 -0800 (PST)
-Received: by mail-pf1-x42f.google.com with SMTP id q22so16009548pfk.12
-        for <devicetree@vger.kernel.org>; Mon, 04 Jan 2021 00:12:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=uOArHEk74zxp/6R3wPGuqn1ZRRiW7s9F52OXIpe5TrE=;
-        b=FivOHfrboOpdeFtFAuYKXJVPL2wZyskFjtEDu8GWnsIjVE6dSwfH03r+nk+7Xtoa6F
-         6ZwclVjWES1UGDfajr7p08X6qcizFw+Ib0P8DHA3Taou3RMa58vj3+UPBpusFZJ+Lw5n
-         7zINpXJR/eyDjNjt9lC59pndDtNM5eAXNbmwh9qsGV/80jgmFH83kYY8QW4LSUstrLuR
-         nadTGVt2/D/pT0lrkGrAOGLWBSWCQ1kjAseIGkZhLpFudivTwyyFNgTXXa6fmHQDtUSa
-         JdRNnUTkCwe97d07XW/NvJZzo97/F5YKnAJuwpfpUyrRIpS9ExiMRldfwIyTRrpuZSqw
-         CsxA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=uOArHEk74zxp/6R3wPGuqn1ZRRiW7s9F52OXIpe5TrE=;
-        b=mym7okpNBW5BSOVREsWcUreBfQBDKvlxByiHyAymyyBVs2ADQ1fj5F36GERH0dZH/b
-         oOycupMm2Qj/gr4G0eEOKXZJcLjglhcdBkICUIL3HhtnLMM7w/3mwh/UrhoeiiX87tLk
-         7hzkTZRDQnlCAYDukHrY1cgTXFs3evriDXvRKty/CNRD8i7EvAuaGxhccBb23VTF1f1f
-         jJ5d7BI8QeD53RVbp6wscLcYXdaohxyPIqXopTWDdVMuIC+MXP/gypPMjHrWVv4tTWJ+
-         DssAM6D8pEXM1ICB7QSQAwAgT0+w+1+C8EQTNmTrNnqVbXKPCrTLrbkrnaUOjGtR5bqE
-         M7IA==
-X-Gm-Message-State: AOAM532ssHsWZfXdjyNzHXimYO0C75eUlsrdEV9Wfd+jJO6BEuX8t2C0
-        1S4TvesEFiATtdniwL1qmK6b
-X-Google-Smtp-Source: ABdhPJxE3BqIJsJ8naQa/DIb8BS95/0zYLM4AFPVp6E3ZKDMwBqc7aVLk3bBVyovMIoie2bt7o/XUA==
-X-Received: by 2002:a63:5924:: with SMTP id n36mr58899261pgb.9.1609747924240;
-        Mon, 04 Jan 2021 00:12:04 -0800 (PST)
-Received: from localhost.localdomain ([103.77.37.160])
-        by smtp.gmail.com with ESMTPSA id n7sm55051339pfn.141.2021.01.04.00.11.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 04 Jan 2021 00:12:03 -0800 (PST)
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
-        jassisinghbrar@gmail.com
-Cc:     viresh.kumar@linaro.org, ulf.hansson@linaro.org,
-        bjorn.andersson@linaro.org, agross@kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: [PATCH 5/5] clk: qcom: Add SDX55 APCS clock controller support
-Date:   Mon,  4 Jan 2021 13:41:25 +0530
-Message-Id: <20210104081125.147300-6-manivannan.sadhasivam@linaro.org>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210104081125.147300-1-manivannan.sadhasivam@linaro.org>
-References: <20210104081125.147300-1-manivannan.sadhasivam@linaro.org>
+        id S1726567AbhADIYI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Jan 2021 03:24:08 -0500
+Received: from esa.microchip.iphmx.com ([68.232.153.233]:54806 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726278AbhADIYI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jan 2021 03:24:08 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1609748647; x=1641284647;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=gp0CFQRZ5FxZ0LK9GyNyeJ3bFuor8ddJpyhyjnRbeTY=;
+  b=2pygeAdMtymm6eaC7JHtNVYGQ2sCM/3xsoDb06iy/9GCioPY2lCXMQ+p
+   KkC224fJQ/bZyGnlbAKhC72UX40mlSdnwJFgNNRZ8Y3+u8jBZa3rzGj/G
+   OA/2VpF7tvVgR65E4sFMazfnakdKaBUhImaSL0KHmqS1idtfHmlaOLGmf
+   6KJGeSQhszHwdRBQ5gb5B84i06gDkaWrkCFcUC9f64fDSFF1FYpHKj04f
+   srNRWUNNNKrZR/B0Yuk72D2dHcKIBtzuSx/q+tt/I8xeup4K3DHLMpshh
+   CHr9GYe0mbE2To4uQ/krBqhl59E87PgF9gI8KTINV+fwlBnYI9WF4aBfJ
+   g==;
+IronPort-SDR: vleUMH3zOkVsCA9wn0qFSYoJBXD0ojT+wKmjWVwPt0VF/V+18fcNW8f0YD0r7MqIVhdO2I+5Rf
+ krYECU5+U80BkNtOf5KpBtVKnJGoMz5twxTQUS0M35aWU9ASVWzGD0e5HhvRH/c4eTHzcBmjlP
+ 3tsL3ws2n4TZ7o7++BSI0UhzpEax2aZpCCpNjuEG5REYf/PdRs4LvtyYrfCjyenEj41wYeruDq
+ gkFHDdFyTuJQ9lktcupiKb76ESBKaMxnOZqMqSdx5RiqYrhn2mWm4Wi0N5a5Fu0xDqf+hkT9oP
+ Vf4=
+X-IronPort-AV: E=Sophos;i="5.78,473,1599548400"; 
+   d="scan'208";a="109665952"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 04 Jan 2021 01:23:18 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1979.3; Mon, 4 Jan 2021 01:22:30 -0700
+Received: from mchp-dev-shegelun.microchip.com (10.10.115.15) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
+ 15.1.1979.3 via Frontend Transport; Mon, 4 Jan 2021 01:22:27 -0700
+From:   Steen Hegelund <steen.hegelund@microchip.com>
+To:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        Device Tree List <devicetree@vger.kernel.org>
+CC:     Steen Hegelund <steen.hegelund@microchip.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Lars Povlsen <lars.povlsen@microchip.com>,
+        Bjarni Jonasson <bjarni.jonasson@microchip.com>,
+        Microchip UNG Driver List <UNGLinuxDriver@microchip.com>,
+        <netdev@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh@kernel.org>, Andrew Lunn <andrew@lunn.ch>
+Subject: [PATCH v11 1/4] dt-bindings: phy: Add sparx5-serdes bindings
+Date:   Mon, 4 Jan 2021 09:22:15 +0100
+Message-ID: <20210104082218.1389450-2-steen.hegelund@microchip.com>
+X-Mailer: git-send-email 2.29.2
+In-Reply-To: <20210104082218.1389450-1-steen.hegelund@microchip.com>
+References: <20210104082218.1389450-1-steen.hegelund@microchip.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a driver for the SDX55 APCS clock controller. It is part of the APCS
-hardware block, which among other things implements also a combined mux
-and half integer divider functionality. The APCS clock controller has 3
-parent clocks:
+Document the Sparx5 ethernet serdes phy driver bindings.
 
-1. Board XO
-2. Fixed rate GPLL0
-3. A7 PLL
-
-The source and the divider can be set both at the same time.
-
-This is required for enabling CPU frequency scaling on SDX55-based
-platforms.
-
-Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Signed-off-by: Lars Povlsen <lars.povlsen@microchip.com>
+Signed-off-by: Steen Hegelund <steen.hegelund@microchip.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 ---
- drivers/clk/qcom/Kconfig      |   9 ++
- drivers/clk/qcom/Makefile     |   1 +
- drivers/clk/qcom/apcs-sdx55.c | 149 ++++++++++++++++++++++++++++++++++
- 3 files changed, 159 insertions(+)
- create mode 100644 drivers/clk/qcom/apcs-sdx55.c
+ .../bindings/phy/microchip,sparx5-serdes.yaml | 100 ++++++++++++++++++
+ 1 file changed, 100 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/phy/microchip,sparx5-serdes.yaml
 
-diff --git a/drivers/clk/qcom/Kconfig b/drivers/clk/qcom/Kconfig
-index d6f4aee4427a..2c67fdfae913 100644
---- a/drivers/clk/qcom/Kconfig
-+++ b/drivers/clk/qcom/Kconfig
-@@ -45,6 +45,15 @@ config QCOM_CLK_APCS_MSM8916
- 	  Say Y if you want to support CPU frequency scaling on devices
- 	  such as msm8916.
- 
-+config QCOM_CLK_APCS_SDX55
-+	tristate "SDX55 APCS Clock Controller"
-+	depends on QCOM_APCS_IPC || COMPILE_TEST
-+	help
-+	  Support for the APCS Clock Controller on SDX55 platform. The
-+	  APCS is managing the mux and divider which feeds the CPUs.
-+	  Say Y if you want to support CPU frequency scaling on devices
-+	  such as SDX55.
-+
- config QCOM_CLK_APCC_MSM8996
- 	tristate "MSM8996 CPU Clock Controller"
- 	select QCOM_KRYO_L2_ACCESSORS
-diff --git a/drivers/clk/qcom/Makefile b/drivers/clk/qcom/Makefile
-index e7e0ac382176..a9271f40916c 100644
---- a/drivers/clk/qcom/Makefile
-+++ b/drivers/clk/qcom/Makefile
-@@ -46,6 +46,7 @@ obj-$(CONFIG_MSM_MMCC_8998) += mmcc-msm8998.o
- obj-$(CONFIG_QCOM_A53PLL) += a53-pll.o
- obj-$(CONFIG_QCOM_A7PLL) += a7-pll.o
- obj-$(CONFIG_QCOM_CLK_APCS_MSM8916) += apcs-msm8916.o
-+obj-$(CONFIG_QCOM_CLK_APCS_SDX55) += apcs-sdx55.o
- obj-$(CONFIG_QCOM_CLK_APCC_MSM8996) += clk-cpu-8996.o
- obj-$(CONFIG_QCOM_CLK_RPM) += clk-rpm.o
- obj-$(CONFIG_QCOM_CLK_RPMH) += clk-rpmh.o
-diff --git a/drivers/clk/qcom/apcs-sdx55.c b/drivers/clk/qcom/apcs-sdx55.c
+diff --git a/Documentation/devicetree/bindings/phy/microchip,sparx5-serdes.yaml b/Documentation/devicetree/bindings/phy/microchip,sparx5-serdes.yaml
 new file mode 100644
-index 000000000000..14413c957d83
+index 000000000000..bdbdb3bbddbe
 --- /dev/null
-+++ b/drivers/clk/qcom/apcs-sdx55.c
-@@ -0,0 +1,149 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Qualcomm SDX55 APCS clock controller driver
-+ *
-+ * Copyright (c) 2020, Linaro Limited
-+ * Author: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-+ */
++++ b/Documentation/devicetree/bindings/phy/microchip,sparx5-serdes.yaml
+@@ -0,0 +1,100 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/phy/microchip,sparx5-serdes.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+#include <linux/clk.h>
-+#include <linux/clk-provider.h>
-+#include <linux/cpu.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/platform_device.h>
-+#include <linux/pm_domain.h>
-+#include <linux/regmap.h>
-+#include <linux/slab.h>
++title: Microchip Sparx5 Serdes controller
 +
-+#include "clk-regmap.h"
-+#include "clk-regmap-mux-div.h"
-+#include "common.h"
++maintainers:
++  - Steen Hegelund <steen.hegelund@microchip.com>
 +
-+static const u32 apcs_mux_clk_parent_map[] = { 0, 1, 5 };
++description: |
++  The Sparx5 SERDES interfaces share the same basic functionality, but
++  support different operating modes and line rates.
 +
-+static const struct clk_parent_data pdata[] = {
-+	{ .fw_name = "ref", .name = "bi_tcxo", },
-+	{ .fw_name = "aux", .name = "gpll0", },
-+	{ .fw_name = "pll", .name = "a7pll", },
-+};
++  The following list lists the SERDES features:
 +
-+/*
-+ * We use the notifier function for switching to a temporary safe configuration
-+ * (mux and divider), while the A7 PLL is reconfigured.
-+ */
-+static int a7cc_notifier_cb(struct notifier_block *nb, unsigned long event,
-+			    void *data)
-+{
-+	int ret = 0;
-+	struct clk_regmap_mux_div *md = container_of(nb,
-+						     struct clk_regmap_mux_div,
-+						     clk_nb);
-+	if (event == PRE_RATE_CHANGE)
-+		/* set the mux and divider to safe frequency (400mhz) */
-+		ret = mux_div_set_src_div(md, 1, 2);
++  * RX Adaptive Decision Feedback Equalizer (DFE)
++  * Programmable continuous time linear equalizer (CTLE)
++  * Rx variable gain control
++  * Rx built-in fault detector (loss-of-lock/loss-of-signal)
++  * Adjustable tx de-emphasis (FFE)
++  * Tx output amplitude control
++  * Supports rx eye monitor
++  * Multiple loopback modes
++  * Prbs generator and checker
++  * Polarity inversion control
 +
-+	return notifier_from_errno(ret);
-+}
++  SERDES6G:
 +
-+static int qcom_apcs_sdx55_clk_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct device *parent = dev->parent;
-+	struct device *cpu_dev;
-+	struct clk_regmap_mux_div *a7cc;
-+	struct regmap *regmap;
-+	struct clk_init_data init = { };
-+	int ret = -ENODEV;
++  The SERDES6G is a high-speed SERDES interface, which can operate at
++  the following data rates:
 +
-+	regmap = dev_get_regmap(parent, NULL);
-+	if (!regmap) {
-+		dev_err(dev, "Failed to get parent regmap: %d\n", ret);
-+		return ret;
-+	}
++  * 100 Mbps (100BASE-FX)
++  * 1.25 Gbps (SGMII/1000BASE-X/1000BASE-KX)
++  * 3.125 Gbps (2.5GBASE-X/2.5GBASE-KX)
++  * 5.15625 Gbps (5GBASE-KR/5G-USXGMII)
 +
-+	a7cc = devm_kzalloc(dev, sizeof(*a7cc), GFP_KERNEL);
-+	if (!a7cc)
-+		return -ENOMEM;
++  SERDES10G
 +
-+	init.name = "a7mux";
-+	init.parent_data = pdata;
-+	init.num_parents = ARRAY_SIZE(pdata);
-+	init.ops = &clk_regmap_mux_div_ops;
++  The SERDES10G is a high-speed SERDES interface, which can operate at
++  the following data rates:
 +
-+	a7cc->clkr.hw.init = &init;
-+	a7cc->clkr.regmap = regmap;
-+	a7cc->reg_offset = 0x8;
-+	a7cc->hid_width = 5;
-+	a7cc->hid_shift = 0;
-+	a7cc->src_width = 3;
-+	a7cc->src_shift = 8;
-+	a7cc->parent_map = apcs_mux_clk_parent_map;
++  * 100 Mbps (100BASE-FX)
++  * 1.25 Gbps (SGMII/1000BASE-X/1000BASE-KX)
++  * 3.125 Gbps (2.5GBASE-X/2.5GBASE-KX)
++  * 5 Gbps (QSGMII/USGMII)
++  * 5.15625 Gbps (5GBASE-KR/5G-USXGMII)
++  * 10 Gbps (10G-USGMII)
++  * 10.3125 Gbps (10GBASE-R/10GBASE-KR/USXGMII)
 +
-+	a7cc->pclk = devm_clk_get(parent, "pll");
-+	if (IS_ERR(a7cc->pclk)) {
-+		ret = PTR_ERR(a7cc->pclk);
-+		if (ret != -EPROBE_DEFER)
-+			dev_err(dev, "Failed to get PLL clk: %d\n", ret);
-+		return ret;
-+	}
++  SERDES25G
 +
-+	a7cc->clk_nb.notifier_call = a7cc_notifier_cb;
-+	ret = clk_notifier_register(a7cc->pclk, &a7cc->clk_nb);
-+	if (ret) {
-+		dev_err(dev, "Failed to register clock notifier: %d\n", ret);
-+		return ret;
-+	}
++  The SERDES25G is a high-speed SERDES interface, which can operate at
++  the following data rates:
 +
-+	ret = devm_clk_register_regmap(dev, &a7cc->clkr);
-+	if (ret) {
-+		dev_err(dev, "Failed to register regmap clock: %d\n", ret);
-+		goto err;
-+	}
++  * 1.25 Gbps (SGMII/1000BASE-X/1000BASE-KX)
++  * 3.125 Gbps (2.5GBASE-X/2.5GBASE-KX)
++  * 5 Gbps (QSGMII/USGMII)
++  * 5.15625 Gbps (5GBASE-KR/5G-USXGMII)
++  * 10 Gbps (10G-USGMII)
++  * 10.3125 Gbps (10GBASE-R/10GBASE-KR/USXGMII)
++  * 25.78125 Gbps (25GBASE-KR/25GBASE-CR/25GBASE-SR/25GBASE-LR/25GBASE-ER)
 +
-+	ret = devm_of_clk_add_hw_provider(dev, of_clk_hw_simple_get,
-+					  &a7cc->clkr.hw);
-+	if (ret) {
-+		dev_err(dev, "Failed to add clock provider: %d\n", ret);
-+		goto err;
-+	}
++properties:
++  $nodename:
++    pattern: "^serdes@[0-9a-f]+$"
 +
-+	platform_set_drvdata(pdev, a7cc);
++  compatible:
++    const: microchip,sparx5-serdes
 +
-+	/*
-+	 * Attach the power domain to cpudev. There seems to be no better place
-+	 * to do this, so do it here.
-+	 */
-+	cpu_dev = get_cpu_device(0);
-+	dev_pm_domain_attach(cpu_dev, true);
++  reg:
++    minItems: 1
 +
-+	return 0;
++  '#phy-cells':
++    const: 1
++    description: |
++      - The main serdes input port
 +
-+err:
-+	clk_notifier_unregister(a7cc->pclk, &a7cc->clk_nb);
-+	return ret;
-+}
++  clocks:
++    maxItems: 1
 +
-+static int qcom_apcs_sdx55_clk_remove(struct platform_device *pdev)
-+{
-+	struct device *cpu_dev = get_cpu_device(0);
-+	struct clk_regmap_mux_div *a7cc = platform_get_drvdata(pdev);
++required:
++  - compatible
++  - reg
++  - '#phy-cells'
++  - clocks
 +
-+	clk_notifier_unregister(a7cc->pclk, &a7cc->clk_nb);
-+	dev_pm_domain_detach(cpu_dev, true);
++additionalProperties: false
 +
-+	return 0;
-+}
++examples:
++  - |
++    serdes: serdes@10808000 {
++      compatible = "microchip,sparx5-serdes";
++      #phy-cells = <1>;
++      clocks = <&sys_clk>;
++      reg = <0x10808000 0x5d0000>;
++    };
 +
-+static struct platform_driver qcom_apcs_sdx55_clk_driver = {
-+	.probe = qcom_apcs_sdx55_clk_probe,
-+	.remove = qcom_apcs_sdx55_clk_remove,
-+	.driver = {
-+		.name = "qcom-sdx55-acps-clk",
-+	},
-+};
-+module_platform_driver(qcom_apcs_sdx55_clk_driver);
-+
-+MODULE_AUTHOR("Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>");
-+MODULE_LICENSE("GPL v2");
-+MODULE_DESCRIPTION("Qualcomm SDX55 APCS clock driver");
++...
 -- 
-2.25.1
+2.29.2
 
