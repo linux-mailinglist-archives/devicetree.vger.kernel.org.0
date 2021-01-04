@@ -2,568 +2,252 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B0D622E8FA6
-	for <lists+devicetree@lfdr.de>; Mon,  4 Jan 2021 04:48:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BD1652E8FB3
+	for <lists+devicetree@lfdr.de>; Mon,  4 Jan 2021 05:09:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727345AbhADDrA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 3 Jan 2021 22:47:00 -0500
-Received: from new3-smtp.messagingengine.com ([66.111.4.229]:36789 "EHLO
-        new3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725840AbhADDrA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Jan 2021 22:47:00 -0500
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 8EEB358030A;
-        Sun,  3 Jan 2021 22:46:12 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute5.internal (MEProxy); Sun, 03 Jan 2021 22:46:12 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        subject:to:cc:references:from:message-id:date:mime-version
-        :in-reply-to:content-type:content-transfer-encoding; s=fm1; bh=e
-        O7HnlM7jr6Fj6k+gN6FxGA4nQOa/5xChjqlkjfuSYE=; b=nC/P7L8M3LLJe6wBa
-        dPsbKAB5Isk7OxY5IAFB95tC1fhBIXP/J5F7Y3dh8Z9rWv9iTmin3k1j1oKVWifB
-        6Z26ktuVOnh8XXA8T7Gl30ObMdaEZJrxwthiJwkgk5wXFGzPJ733uQ84JlciT5D8
-        4pW5lYJeEzQUXAMXL9vXlct2KjQQVQCSsoAbVklN3TddO/w6JopHP5F36E6nuHV7
-        XvWDexWxmJXoOSdhfuDEwxhNroF/jw5TvdWu1tDHa5EtPVELNL+LuVGy+zWACNbQ
-        LEkbs0CWt0BT10/ovssqiznuuDQ2c+AVyUH3ytb2yUv1Ia6LZF2DD6HlqjWNhZHl
-        KVHow==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:content-type
-        :date:from:in-reply-to:message-id:mime-version:references
-        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm1; bh=eO7HnlM7jr6Fj6k+gN6FxGA4nQOa/5xChjqlkjfuS
-        YE=; b=J0OctWxojmzs4E8mtebsST5bMJYA9sq5RaCxenXbtkhUm8h0su5qCJbsM
-        +IdbfzdhMpcOxdzxha/Byvw45xs6WIKNJGKjLduWmd7nZdoWZMFFHLsfu3IdiwJr
-        B+DfGLcDuA3Nn1d96RXsPCqx9QDo1qQ6UZbUNpcQlsBMIJnKHogi6zhqvJczlH3u
-        s0/LHxi77EGYt1YW44wM4YGMOeCZZhjHE7G7Vr8QZWaXtOe2O5KVfnSKJYNhASzu
-        rPxiQPRbA9/+o4UmrfK+CxCTO0AB0398qWQfM/9w+/wYiAcnyEucAxIBtbZMqPdv
-        QdT2tO+sWLO5/36BcxPcJ2sNqTORg==
-X-ME-Sender: <xms:g4_yX1b23kmMmkY9Ku5H8HMCqCsBVQkne5e9RWeq_S2pZ2ik5A2a6Q>
-    <xme:g4_yX8ZCfrgXryzF3H-D5Nk_6JYWTYSybvx4ZLU4uDa1CwG4B44qoqjCiQxPLA4WE
-    QDQkSSijqr2a9G01Q>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrvdefvddgieefucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepuffvfhfhkffffgggjggtgfesthejredttdefjeenucfhrhhomhepufgrmhhu
-    vghlucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecugg
-    ftrfgrthhtvghrnhepjeetledvueffvdetjeeuueeileffueffhedviefghefftedthfdt
-    ffffueefveehnecuffhomhgrihhnpehlihhnuhigqdhsuhhngihirdhorhhgpdhlkhhmlh
-    drohhrghenucfkphepjedtrddufeehrddugeekrdduhedunecuvehluhhsthgvrhfuihii
-    vgeptdenucfrrghrrghmpehmrghilhhfrhhomhepshgrmhhuvghlsehshhholhhlrghnug
-    drohhrgh
-X-ME-Proxy: <xmx:g4_yX3-qqDdiXc4RBi2pdzEm9zl9OIq_04bcGjrRc6Jk6D1i2fk9Ug>
-    <xmx:g4_yXzoe9s9iedHzUT42YYzlE8aOJP_pEkZzKqq2turcgp3Rtd2Dwg>
-    <xmx:g4_yXwq_rhDGMtCVtArO-tcsCZeNJKoD_1xRcxHtUM_2Jc3tLB7Vcg>
-    <xmx:hI_yX9gny3potYS1AidUFSQHyWiQlYv0dQwakB28eHGSNHu9gae8wA>
-Received: from [192.168.50.169] (70-135-148-151.lightspeed.stlsmo.sbcglobal.net [70.135.148.151])
-        by mail.messagingengine.com (Postfix) with ESMTPA id D02271080059;
-        Sun,  3 Jan 2021 22:46:10 -0500 (EST)
-Subject: Re: [PATCH v3 03/10] irqchip/sun6i-r: Use a stacked irqchip driver
-To:     Marc Zyngier <maz@kernel.org>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Russell King <linux@armlinux.org.uk>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Ondrej Jirman <megous@megous.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20210103103101.33603-1-samuel@sholland.org>
- <20210103103101.33603-4-samuel@sholland.org> <875z4el0p2.wl-maz@kernel.org>
- <66a7eb24-66c7-d5e6-1235-aa6846c5eef2@sholland.org>
- <8735zikvyq.wl-maz@kernel.org>
-From:   Samuel Holland <samuel@sholland.org>
-Message-ID: <8c1eaddd-577b-9c2a-aa6a-9ee716178d4a@sholland.org>
-Date:   Sun, 3 Jan 2021 21:46:10 -0600
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.6.0
-MIME-Version: 1.0
-In-Reply-To: <8735zikvyq.wl-maz@kernel.org>
-Content-Type: text/plain; charset=utf-8
+        id S1726427AbhADEJi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 3 Jan 2021 23:09:38 -0500
+Received: from mga11.intel.com ([192.55.52.93]:13736 "EHLO mga11.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726163AbhADEJh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 3 Jan 2021 23:09:37 -0500
+IronPort-SDR: CpNCf7ERW0s2PV/Zi+6VHPmmly3fAwCBW+mpjm4wplDccbIljCjXWTURnaeOHzwEUUans/vJgB
+ ot92ghsvuzuw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9853"; a="173400326"
+X-IronPort-AV: E=Sophos;i="5.78,473,1599548400"; 
+   d="scan'208";a="173400326"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Jan 2021 20:08:56 -0800
+IronPort-SDR: lcCwafBMoupLIWC4weJyDTowi0GMNy7kj+rRNrAyd8gUgpfPLVHJ1UJ7JoX8ZFjNSWD/SVMxRl
+ gEGOLniQlPJQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.78,473,1599548400"; 
+   d="scan'208";a="421215185"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+  by orsmga001.jf.intel.com with ESMTP; 03 Jan 2021 20:08:56 -0800
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Sun, 3 Jan 2021 20:08:55 -0800
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Sun, 3 Jan 2021 20:08:55 -0800
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5
+ via Frontend Transport; Sun, 3 Jan 2021 20:08:55 -0800
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.175)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.1713.5; Sun, 3 Jan 2021 20:08:51 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=bIGThTGJoDYI37sh8nEXu5/9sYL7ZyO3HsaMR8IDpiFxtGuJDUUPDRQkreUXHzHA6Odgip9xbAUIYgMvrjPoBqJy9FSXb9Px3HaB2uG2vgOXZHUkStdL4KY5vJ7kjXFRlj51I+8+9Q+3l9Y7GJGQ4iJpqIIqqsCEchKEd6VXDctw/PlG+PKGmXtFK00mbH7jev6eroaa94+6KI8xKPYC2eKnE08w1wSVKWOxMulnfy0E9wxJ5S1qO9J6XBstA9CP8qb4K9eIjDBcYtPwrBrfc0Yco3RWE9D6ph/iH99o5p8gXPWtxGpo0l5mlmbwNbiqfPQd+1QikUjGTDFhb1N/cw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=xGj0HgFd/JSmSMqtyHmsq7PXtbdPS2d6iBkpyS1SzCU=;
+ b=Kkrdo7GB/qkk7yDzwlyvCHU8+pJb54Y+XaRq93o4mj3XAGe28cDKnSO8LnRT63c6FAG/MyengGK4OhDkYitJmj+8coilXGWoQjruGivOryaYrSDqxr1a28TFltMw2kDxj6GCviHYbtPmNf4jyKCbVL9gmNlTHjOHYlZUhACiYv4yR9DRiqp0FTUk7gyqmhuK61Uux7VBoTreLbfryLs40a9+dCKP52BErEd3agbFpdEGM9HSzxMHdKVj6yh8sjcnj1ungkznAIvEpj35/GUK3+C25IvKICX0RmqMqYdyGDYT7WqzQo4vhnvsZeEtF56yY5PfTqqTHLK878Mc04gHHQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com;
+ s=selector2-intel-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=xGj0HgFd/JSmSMqtyHmsq7PXtbdPS2d6iBkpyS1SzCU=;
+ b=W1KhRhmmgEiuj+BZJfG9mV7P0aq7Rl0Y6ZYIVEIsU7IzNxis6g0wbALGXl0skVkGAW3yvCqu4KF1mZWynWN08Jrags7sQb9Y25jnSqOatd2Zaa4WmQZ90uyTr71Z8ZQXduBW3IEXvFQDuj4Qb6TjjHHcK4fEEjJHa8zow93k7NI=
+Received: from CO1PR11MB5026.namprd11.prod.outlook.com (2603:10b6:303:9c::13)
+ by MWHPR11MB1648.namprd11.prod.outlook.com (2603:10b6:301:e::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3721.19; Mon, 4 Jan
+ 2021 04:08:50 +0000
+Received: from CO1PR11MB5026.namprd11.prod.outlook.com
+ ([fe80::4820:6e90:3d0e:3b5f]) by CO1PR11MB5026.namprd11.prod.outlook.com
+ ([fe80::4820:6e90:3d0e:3b5f%4]) with mapi id 15.20.3721.024; Mon, 4 Jan 2021
+ 04:08:50 +0000
+From:   "Sia, Jee Heng" <jee.heng.sia@intel.com>
+To:     Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>,
+        Vinod Koul <vkoul@kernel.org>
+CC:     "andriy.shevchenko@linux.intel.com" 
+        <andriy.shevchenko@linux.intel.com>,
+        "dmaengine@vger.kernel.org" <dmaengine@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>
+Subject: RE: [PATCH v8 13/16] dmaengine: dw-axi-dmac: Add Intel KeemBay AxiDMA
+ handshake
+Thread-Topic: [PATCH v8 13/16] dmaengine: dw-axi-dmac: Add Intel KeemBay
+ AxiDMA handshake
+Thread-Index: AQHW3aAioccw/TUNekO0DxIVg+IMXqoRJs68gAWp9KA=
+Date:   Mon, 4 Jan 2021 04:08:50 +0000
+Message-ID: <CO1PR11MB5026C99B44D055930A6EB63EDAD20@CO1PR11MB5026.namprd11.prod.outlook.com>
+References: <20201229044713.28464-1-jee.heng.sia@intel.com>,<20201229044713.28464-14-jee.heng.sia@intel.com>
+ <MWHPR1201MB00297BC4BB351FA85FE66A12DED60@MWHPR1201MB0029.namprd12.prod.outlook.com>
+In-Reply-To: <MWHPR1201MB00297BC4BB351FA85FE66A12DED60@MWHPR1201MB0029.namprd12.prod.outlook.com>
+Accept-Language: en-US
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+dlp-version: 11.5.1.3
+authentication-results: synopsys.com; dkim=none (message not signed)
+ header.d=none;synopsys.com; dmarc=none action=none header.from=intel.com;
+x-originating-ip: [192.198.147.215]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: a4e23e42-997c-4bd0-a725-08d8b066710e
+x-ms-traffictypediagnostic: MWHPR11MB1648:
+x-microsoft-antispam-prvs: <MWHPR11MB16489D09DA12288EF87A8F36DAD20@MWHPR11MB1648.namprd11.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:6430;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: sDsx+jQjpD/QVrp/SxDnFEGwCPQlmxrqKfnD/eQJ//SP3nu362JWbtgJOdOP1eI1ByvuNnjStzPasOgvfuaH688lzNuM8gxPtu/XvdVyDkXS6iGpJkJRfiJUNsfqd5qPeX+0YI4BHgNOCLmcIfEUhrKbhJpLEDd7Q1DoWQtdGKvVO4InsxhOIDtCFw6tZomVan1V+x2fc8b+yxG2Zd+RKqjicoGmbT8k/Twgd7/lYBMpGr2qfzFwcdxvKQY3ZpJP/96SnRjHtHXflRnw8opM3K5/hGaMRjBp+Ssp3EENweymV3zm/8Ja43rX52SeIoqXrz7pALpSwpo9jmeVBLb3LJOWRkB5EfaOvqqAV/dZf6IuNoCJCoS7h5LvfGtG/RvNC7wIa5+vMEKZUOovJTfNMA==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO1PR11MB5026.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(39860400002)(366004)(346002)(136003)(396003)(376002)(478600001)(4326008)(33656002)(8676002)(55016002)(9686003)(83380400001)(71200400001)(52536014)(316002)(26005)(110136005)(5660300002)(66476007)(64756008)(66556008)(86362001)(186003)(66446008)(54906003)(76116006)(6506007)(53546011)(8936002)(7696005)(2906002)(66946007);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata: =?us-ascii?Q?uLo16jwUpp7aIoyxY5Uz1ohymS3ObK9sjwPkEYMU7DD9OnVJ0ABGedUwZoai?=
+ =?us-ascii?Q?Y4xDxlb0BQsxUIo2BjNNYdRBOewfv52T1quSsDiZJGN9G9eLUBI6hiTxahxw?=
+ =?us-ascii?Q?C5LtQIwe/4a1sosP2dS7me7CsYbxsvVnHZ6rAU4eC5hIcydhnqEddC4gGZVO?=
+ =?us-ascii?Q?odnDYE/Sy9UMT/QLRUkkJRQ6PplTQ2ipIoHMJznBAuqXRNkqKyc3QmcJcpFt?=
+ =?us-ascii?Q?WaY1MF/lBTKlujdskW9HQNOeHGOyIlKJGJ23DxyhlHKOndDrr6BP9M5UL9MO?=
+ =?us-ascii?Q?SHyD+226ue2rZ+Z0TnSz3IGcTfg9QHP+Mmx6z7qbZ4x8wkWz8trMWIdw3rcA?=
+ =?us-ascii?Q?2JP2GfrrhIV1/Ozhk88c7QOp3LwokDLdKOvVy+j2LnOXFQzXN8bAjlyFcWcM?=
+ =?us-ascii?Q?u/9Mz0YChcDnJO+EssZo/fSM919NGLp4MyJ11T54UN788EhQ/e9DvUkYIO+N?=
+ =?us-ascii?Q?TMP7Hed+7v8NQOYRWXo8iLXFmhUpbphfElO4MBmbrV7bb3u2q3A/A8IPEB/B?=
+ =?us-ascii?Q?vzcRZT/JlyjrRbUlqGG22JdhUbJ+fxqGOKZGHdhIhjfEdz2B7CgIxLmuOIRq?=
+ =?us-ascii?Q?CmKZt45FkzwzI388IdwsSUnYciSpLk8Jqzy40PL1LHZNdpfiiJu7ySRHaIxL?=
+ =?us-ascii?Q?yi0epKs+uAhrq8PVjS8KmRO91LJORNmcCxgxAO9oWjb9wfkeS/2HZmoyl/3v?=
+ =?us-ascii?Q?FEC0tmkx6lVa7CYwf1PT1qL8vtEp5UosF7CyI4mNDEi3Z0p+Rwf5R8ia0ob/?=
+ =?us-ascii?Q?WcnGqBi0eqI1+dkxEubDg6ItikVkTuAR4L0L+kHCs5G5hPhtpHt+OPcxou0O?=
+ =?us-ascii?Q?fIdRmuuVQMIrcwXXL5NzVtE6hEmEWvcIUIm1wZac7h62VYK6QdGXVhAjSHlA?=
+ =?us-ascii?Q?fXvl3h2eZsTZKE3WlPsOkol70tGv13T6JPi4INO0ZPk+LO7o3m+dhCUetBP6?=
+ =?us-ascii?Q?oIUfRBl4kP2qb0CeXTzVgFtf3eaUCcEk3HhMd5O9bew=3D?=
+x-ms-exchange-transport-forked: True
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB5026.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a4e23e42-997c-4bd0-a725-08d8b066710e
+X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Jan 2021 04:08:50.1828
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: ruurUJkG60g8hy8+VzYmP3SCAbg62e/SjJIB51pbYY+kDszB/DKTYQ1URxfqLpk7/jKA97Ll/nqomyYdQhFvZQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR11MB1648
+X-OriginatorOrg: intel.com
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 1/3/21 7:10 AM, Marc Zyngier wrote:
-> On Sun, 03 Jan 2021 12:08:43 +0000,
-> Samuel Holland <samuel@sholland.org> wrote:
->>
->> On 1/3/21 5:27 AM, Marc Zyngier wrote:
->>> On Sun, 03 Jan 2021 10:30:54 +0000,
->>> Samuel Holland <samuel@sholland.org> wrote:
->>>>
->>>> The R_INTC in the A31 and newer sun8i/sun50i SoCs is more similar to the
->>>> original sun4i interrupt controller than the sun7i/sun9i NMI controller.
->>>> It is used for two distinct purposes:
->>>>  - To control the trigger, latch, and mask for the NMI input pin
->>>>  - To provide the interrupt input for the ARISC coprocessor
->>>>
->>>> As this interrupt controller is not documented, information about it
->>>> comes from vendor-provided firmware blobs and from experimentation.
->>>>
->>>> Like the original sun4i interrupt controller, it has:
->>>>  - A VECTOR_REG at 0x00 (configurable via the BASE_ADDR_REG at 0x04)
->>>>  - A NMI_CTRL_REG, PENDING_REG, and ENABLE_REG as used by both the
->>>>    sun4i and sunxi-nmi drivers
->>>>  - A MASK_REG at 0x50
->>>>  - A RESP_REG at 0x60
->>>>
->>>> Differences from the sun4i interrupt controller appear to be:
->>>>  - It only has one or two registers of each kind (max 32 or 64 IRQs)
->>>>  - Multiplexing logic is added to support additional inputs
->>>>  - There is no FIQ-related logic
->>>>  - There is no interrupt priority logic
->>>>
->>>> In order to fulfill its two purposes, this hardware block combines four
->>>> types of IRQs. First, the NMI pin is routed to the "IRQ 0" input on this
->>>> chip, with a trigger type controlled by the NMI_CTRL_REG. The "IRQ 0
->>>> pending" output from this chip, if enabled, is then routed to a SPI IRQ
->>>> input on the GIC. In other words, bit 0 of IRQ_ENABLE_REG *does* affect
->>>> the NMI IRQ seen at the GIC.
->>>>
->>>> The NMI is followed by a contiguous block of 15 "direct" (my name for
->>>> them) IRQ inputs that are connected in parallel to both R_INTC and the
->>>> GIC. Or in other words, these bits of IRQ_ENABLE_REG *do not* affect the
->>>> IRQs seen at the GIC.
->>>>
->>>> Following the direct IRQs are the ARISC's copy of banked IRQs for shared
->>>> peripherals. These are not relevant to Linux. The remaining IRQs are
->>>> connected to a multiplexer and provide access to the first (up to) 128
->>>> SPIs from the ARISC. This range of SPIs overlaps with the direct IRQs.
->>>>
->>>> Finally, the global "IRQ pending" output from R_INTC, after being masked
->>>> by MASK_REG and RESP_REG, is connected to the "external interrupt" input
->>>> of the ARISC CPU. This path is also irrelevant to Linux.
->>>
->>> An ASCII-art version of this would help a lot, and would look good in
->>> the driver code...
->>
->> There is this diagram which I forgot to include in the cover letter:
->>
->>   https://linux-sunxi.org/images/5/5c/R_INTC.png
->>
->> I can try to come up with some ASCII art.
->>
->>>> Because of the 1:1 correspondence between R_INTC and GIC inputs, this is
->>>> a perfect scenario for using a stacked irqchip driver. We want to hook
->>>> into enabling/disabling IRQs to add more features to the GIC
->>>> (specifically to allow masking the NMI and setting its trigger type),
->>>> but we don't need to actually handle the IRQ in this driver.
->>>>
->>>> And since R_INTC is in the always-on power domain, and its output is
->>>> connected directly in to the power management coprocessor, a stacked
->>>> irqchip driver provides a simple way to add wakeup support to this set
->>>> of IRQs. That is the next patch; for now, just the NMI is moved over.
->>>>
->>>> To allow access to all multiplexed IRQs, this driver requires a new
->>>> binding where the interrupt number matches the GIC interrupt number.
->>>> (This moves the NMI number from 0 to 32 or 96, depending on the SoC.)
->>>> For simplicity, copy the three-cell GIC binding; this disambiguates
->>>> interrupt 0 in the old binding (the NMI) from interrupt 0 in the new
->>>> binding (SPI 0) by the number of cells.
->>>>
->>>> This commit mostly reverts commit 173bda53b340 ("irqchip/sunxi-nmi:
->>>> Support sun6i-a31-r-intc compatible").
->>>>
->>>> Signed-off-by: Samuel Holland <samuel@sholland.org>
->>>> ---
->>>>  arch/arm/mach-sunxi/Kconfig     |   1 +
->>>>  arch/arm64/Kconfig.platforms    |   1 +
->>>>  drivers/irqchip/Makefile        |   1 +
->>>>  drivers/irqchip/irq-sun6i-r.c   | 267 ++++++++++++++++++++++++++++++++
->>>>  drivers/irqchip/irq-sunxi-nmi.c |  26 +---
->>>>  5 files changed, 273 insertions(+), 23 deletions(-)
->>>>  create mode 100644 drivers/irqchip/irq-sun6i-r.c
->>>>
->>>
->>> [...]
->>>
->>>> diff --git a/drivers/irqchip/irq-sun6i-r.c b/drivers/irqchip/irq-sun6i-r.c
->>>> new file mode 100644
->>>> index 000000000000..7490ade7b254
->>>> --- /dev/null
->>>> +++ b/drivers/irqchip/irq-sun6i-r.c
->>>> @@ -0,0 +1,267 @@
->>>> +// SPDX-License-Identifier: GPL-2.0-only
->>>> +//
->>>> +// R_INTC driver for Allwinner A31 and newer SoCs
->>>> +//
->>>> +
->>>> +#include <linux/irq.h>
->>>> +#include <linux/irqchip.h>
->>>> +#include <linux/irqdomain.h>
->>>> +#include <linux/of.h>
->>>> +#include <linux/of_address.h>
->>>> +#include <linux/of_irq.h>
->>>> +
->>>> +#include <dt-bindings/interrupt-controller/arm-gic.h>
->>>> +
->>>> +/*
->>>> + * The R_INTC manages between 32 and 64 IRQs, divided into four groups. Example
->>>> + * bit numbers are for the original variant in the A31:
->>>> + *
->>>> + *   Bit      0: The "External NMI" input, connected in series to a GIC SPI.
->>>> + *   Bits  1-15: "Direct" IRQs for ARISC peripherals, connected in parallel to
->>>> + *               the GIC and mapped 1:1 to SPIs numerically following the NMI.
->>>> + *   Bits 16-18: "Banked" IRQs for peripherals that have separate interfaces
->>>> + *               for the ARM CPUs and ARISC. These do not map to any GIC SPI.
->>>> + *   Bits 19-31: "Muxed" IRQs, each corresponding to a group of up to 8 SPIs.
->>>> + *               Later variants added a second PENDING and ENABLE register to
->>>> + *               make use of all 128 mux inputs (16 IRQ lines).
->>>> + *
->>>> + * Since the direct IRQs are inside the muxed IRQ range, they do not increase
->>>> + * the number of HWIRQs needed.
->>>> + */
->>>> +#define SUN6I_NR_IRQS			64
->>>> +#define SUN6I_NR_DIRECT_IRQS		16
->>>> +#define SUN6I_NR_MUX_INPUTS		128
->>>> +#define SUN6I_NR_HWIRQS			SUN6I_NR_MUX_INPUTS
->>>> +
->>>> +#define SUN6I_NMI_CTRL			(0x0c)
->>>> +#define SUN6I_IRQ_PENDING(n)		(0x10 + 4 * (n))
->>>> +#define SUN6I_IRQ_ENABLE(n)		(0x40 + 4 * (n))
->>>> +#define SUN6I_MUX_ENABLE(n)		(0xc0 + 4 * (n))
->>>> +
->>>> +#define SUN6I_NMI_IRQ_BIT		BIT(0)
->>>> +
->>>> +static void __iomem *base;
->>>> +static irq_hw_number_t nmi_hwirq;
->>>> +static u32 nmi_type;
->>>> +
->>>> +static struct irq_chip sun6i_r_intc_edge_chip;
->>>> +static struct irq_chip sun6i_r_intc_level_chip;
->>>> +
->>>> +static void sun6i_r_intc_nmi_ack(void)
->>>> +{
->>>> +	/*
->>>> +	 * The NMI channel has a latch separate from its trigger type.
->>>> +	 * This latch must be cleared to clear the signal to the GIC.
->>>> +	 */
->>>> +	writel_relaxed(SUN6I_NMI_IRQ_BIT, base + SUN6I_IRQ_PENDING(0));
->>>> +}
->>>> +
->>>> +static void sun6i_r_intc_irq_mask(struct irq_data *data)
->>>> +{
->>>> +	if (data->hwirq == nmi_hwirq)
->>>> +		sun6i_r_intc_nmi_ack();
->>>
->>> I'm a bit worried by this. I can see it working with level interrupts
->>> (you can clear the input, and if the interrupt is asserted, it will
->>> fire again), but I'm worried that it will simply result in lost
->>> interrupts for edge signalling.
->>
->> For edge interrupts, don't you want to ack as early as possible,
->> before the handler clears the source of the interrupt? That way if a
->> second interrupt comes in while you're handling the first one, you
->> don't ack the second one without handling it?
-> 
-> It completely depends on what this block does. If, as I expect, it
-> latches the interrupt, then it needs clearing after the GIC has acked
-> the incoming interrupt.
 
-Yes, there is an internal S/R latch.
- - For edge interrupts, the latch is set once for each pulse.
- - For level interrupts, it gets set continuously as long as the
-   pin is high/low.
- - Writing a "1" to bit 0 of PENDING resets the latch.
- - The output of the latch goes to the GIC.
 
->>> It also begs the question: why would you want to clear the signal to
->>> the GIC on mask (or unmask)? The expectations are that a pending
->>> interrupt is preserved across a mask/unmask sequence.
->>
->> I hadn't thought about anything masking the IRQ outside of the
->> handler; but you're right, this breaks that case. I'm trying to work
->> within the constraints of stacking the GIC driver, which assumes
->> handle_fasteoi_irq, so it sounds like I should switch back to
->> handle_fasteoi_ack_irq and use .irq_ack. Or based on your previous
->> paragraph, maybe I'm missing some other consideration?
-> 
-> handle_fasteoi_ack_irq() sounds like a good match for edge
-> interrupts. Do you actually need to do anything for level signals? If
-> you do, piggybacking on .irq_eoi would do the trick.
-
-For level interrupts, I have to reset the latch (see above) after the source of
-the interrupt is cleared.
-
-That was the bug with v2: I set IRQ_EOI_THREADED so .irq_eoi would run after the
-thread. But with GICv2 EOImode==0, that blocked other interrupts from being
-received during the IRQ thread. Which is why I moved it to .irq_unmask and
-removed the flag: so .irq_eoi runs at the end of the hardirq (unblocking further
-interrupts at the GIC), and .irq_unmask resets the latch at the end of the thread.
-
-With the flag removed, but still clearing the latch in .irq_eoi, every edge IRQ
-was followed by a second, spurious IRQ after the thread finished.
-
-Does that make sense?
-
->>>> +
->>>> +	irq_chip_mask_parent(data);
->>>> +}
->>>> +
->>>> +static void sun6i_r_intc_irq_unmask(struct irq_data *data)
->>>> +{
->>>> +	if (data->hwirq == nmi_hwirq)
->>>> +		sun6i_r_intc_nmi_ack();
->>>> +
->>>> +	irq_chip_unmask_parent(data);
->>>> +}
->>>> +
->>>> +static int sun6i_r_intc_irq_set_type(struct irq_data *data, unsigned int type)
->>>> +{
->>>> +	/*
->>>> +	 * The GIC input labeled "External NMI" connects to bit 0 of the R_INTC
->>>> +	 * PENDING register, not to the pin directly. So the trigger type of the
->>>> +	 * GIC input does not depend on the trigger type of the NMI pin itself.
->>>> +	 *
->>>> +	 * Only the NMI channel is routed through this interrupt controller on
->>>> +	 * its way to the GIC. Other IRQs are routed to the GIC and R_INTC in
->>>> +	 * parallel; they must have a trigger type appropriate for the GIC.
->>>> +	 */
->>>> +	if (data->hwirq == nmi_hwirq) {
->>>> +		struct irq_chip *chip;
->>>> +		u32 nmi_src_type;
->>>> +
->>>> +		switch (type) {
->>>> +		case IRQ_TYPE_LEVEL_LOW:
->>>> +			chip = &sun6i_r_intc_level_chip;
->>>> +			nmi_src_type = 0;
->>>
->>> Please add symbolic names for these types.
->>
->> I removed them based on your previous comment:
->>
->> https://lkml.org/lkml/2020/1/20/278
->>> It is unusual to use an enum for values that get directly programmed into the HW.
->>
->> Do you want them to be specifically #defines?
-> 
-> Yes please.
-
-Will do.
-
->>
->>>> +			break;
->>>> +		case IRQ_TYPE_EDGE_FALLING:
->>>> +			chip = &sun6i_r_intc_edge_chip;
->>>> +			nmi_src_type = 1;
->>>> +			break;
->>>> +		case IRQ_TYPE_LEVEL_HIGH:
->>>> +			chip = &sun6i_r_intc_level_chip;
->>>> +			nmi_src_type = 2;
->>>> +			break;
->>>> +		case IRQ_TYPE_EDGE_RISING:
->>>> +			chip = &sun6i_r_intc_edge_chip;
->>>> +			nmi_src_type = 3;
->>>> +			break;
->>>> +		default:
->>>> +			pr_err("%pOF: invalid trigger type %d for IRQ %d\n",
->>>> +			       irq_domain_get_of_node(data->domain), type,
->>>> +			       data->irq);
->>>
->>> A failing set_type already triggers a kernel message.
->>
->> I'll remove this.
->>
->>>> +			return -EBADR;
->>>
->>> That's a pretty odd error. I see it used in 3 drivers (including the
->>> one this driver replaces), but the canonical error code is -EINVAL.
->>
->> I'll change it to -EINVAL.
->>
->>>> +		}
->>>> +
->>>> +		irq_set_chip_handler_name_locked(data, chip,
->>>> +						 handle_fasteoi_irq, NULL);
->>>> +
->>>> +		writel_relaxed(nmi_src_type, base + SUN6I_NMI_CTRL);
->>>> +
->>>> +		/*
->>>> +		 * Use the trigger type from the OF node for the NMI's
->>>> +		 * R_INTC to GIC connection.
->>>> +		 */
->>>> +		type = nmi_type;
->>>
->>> This looks wrong. The GIC only supports level-high and edge-rising, so
->>> half of the possible settings will result in an error. I assume the
->>> R_INTC has an inverter controlled by nmi_src_type, and only outputs
->>> something the GIC can grok.
->>
->> nmi_type isn't the setting from the incoming IRQ. nmi_type is from
->> the interrupts property in the irqchip OF node itself. So this is a
->> fwspec for `interrupt-parent = <&gic>;`, i.e. already assumed to be
->> GIC-compatible. I'm not sure what you mean by "half of the possible
->> settings".
-> 
-> Ah, I see. I misread where nmi_type was coming from. Please ignore me.
-> 
->>
->> Maybe I should remove the `interrupts` property and hardcode the
->> number and type connecting to the GIC? If I did that, I'm not quite
->> sure whether it would be high or rising.
-> 
-> I guess that the output of this block is a level signal, so you should
-> probably enforce that.
-
-Okay, I'll do that.
-
->> The output to the GIC is literally the bit in the pending register:
->> 1 for pending, 0 for not. Since that is after a latch (regardless of
->> the input trigger type) it sounds like it should be level-high,
->> because a pulse would have already been converted to a steady
->> signal. Or does it depend on when I clear the latch?
-> 
-> Level and edge will have different latch clearing requirements, as
-> outlined above. For level, it needs to be cleared after handling the
-> interrupt, at the point where you would deactivate it in the GIC
-> (.irq_eoi). For edge, that's an Ack.
-> 
-> [...]
-> 
->>>> +static int sun6i_r_intc_domain_alloc(struct irq_domain *domain,
->>>> +				     unsigned int virq,
->>>> +				     unsigned int nr_irqs, void *arg)
->>>> +{
->>>> +	struct irq_fwspec *fwspec = arg;
->>>> +	struct irq_fwspec gic_fwspec;
->>>> +	unsigned long hwirq;
->>>> +	unsigned int type;
->>>> +	int i, ret;
->>>> +
->>>> +	ret = sun6i_r_intc_domain_translate(domain, fwspec, &hwirq, &type);
->>>> +	if (ret)
->>>> +		return ret;
->>>> +	if (hwirq + nr_irqs > SUN6I_NR_HWIRQS)
->>>> +		return -EINVAL;
->>>> +
->>>> +	/* Construct a GIC-compatible fwspec from this fwspec. */
->>>> +	gic_fwspec = (struct irq_fwspec) {
->>>> +		.fwnode      = domain->parent->fwnode,
->>>> +		.param_count = 3,
->>>> +		.param       = { GIC_SPI, hwirq, type },
->>>> +	};
->>>> +
->>>> +	for (i = 0; i < nr_irqs; ++i)
->>>> +		irq_domain_set_hwirq_and_chip(domain, virq + i, hwirq + i,
->>>> +					      &sun6i_r_intc_level_chip, NULL);
->>>
->>> Unconditionally level, without looking at the requested type?
->>
->> __setup_irq calls __irq_set_trigger if any trigger is provided, which calls
->> chip->irq_set_type unconditionally. So I don't think the chip here matters,
->> because .irq_set_type will be called before the IRQ is enabled anyway. Again,
->> maybe I'm missing something.
-> 
-> It doesn't really matter, but it is a bit odd to have the information
-> at hand, and ignore it. This at least deserves a comment.
-> 
->> For non-NMI IRQs, the choice of chip doesn't matter, because this
->> driver handles nothing but .irq_set_wake for them (should I provide
->> a third chip for this that doesn't provide its own
->> ack/mask/unmask?).
-> 
-> I think you could handle the NMI with its own single irqchip (for both
-> level and edge, only checking for the configuration in ack/eoi), and
-> have a non-NMI chip for the rest.
-
-I will try that.
-
->>
->>>> +
->>>> +	return irq_domain_alloc_irqs_parent(domain, virq, nr_irqs, &gic_fwspec);
->>>> +}
->>>> +
->>>> +static const struct irq_domain_ops sun6i_r_intc_domain_ops = {
->>>> +	.translate	= sun6i_r_intc_domain_translate,
->>>> +	.alloc		= sun6i_r_intc_domain_alloc,
->>>> +	.free		= irq_domain_free_irqs_common,
->>>> +};
->>>> +
->>>> +static void sun6i_r_intc_resume(void)
->>>> +{
->>>> +	int i;
->>>> +
->>>> +	/* Only the NMI is relevant during normal operation. */
->>>> +	writel_relaxed(SUN6I_NMI_IRQ_BIT, base + SUN6I_IRQ_ENABLE(0));
->>>> +	for (i = 1; i < BITS_TO_U32(SUN6I_NR_IRQS); ++i)
->>>> +		writel_relaxed(0, base + SUN6I_IRQ_ENABLE(i));
->>>
->>> If only the NMI is relevant, why are the other interrupts enabled?
->>> Shouldn't this be moved to the following patch (I presume this is
->>> wake-up related...).
->>
->> The other IRQs aren't enabled? I'm writing all zeroes to the enable register.
-> 
-> Duh. -ECANTREAD.
-> 
->>>> +}
->>>> +
->>>> +static int __init sun6i_r_intc_init(struct device_node *node,
->>>> +				    struct device_node *parent)
->>>> +{
->>>> +	struct irq_domain *domain, *parent_domain;
->>>> +	struct of_phandle_args parent_irq;
->>>> +	int ret;
->>>> +
->>>> +	/* Extract the NMI's R_INTC to GIC mapping from the OF node. */
->>>> +	ret = of_irq_parse_one(node, 0, &parent_irq);
->>>> +	if (ret)
->>>> +		return ret;
->>>> +	if (parent_irq.args_count < 3 || parent_irq.args[0] != GIC_SPI)
->>>> +		return -EINVAL;
->>>> +	nmi_hwirq = parent_irq.args[1];
->>>> +	nmi_type = parent_irq.args[2];
->>>
->>> This looks a lot like the translate callback.
->>
->> Yes, I could use that here.
->>
->>>> +
->>>> +	parent_domain = irq_find_host(parent);
->>>> +	if (!parent_domain) {
->>>> +		pr_err("%pOF: Failed to obtain parent domain\n", node);
->>>> +		return -ENXIO;
->>>> +	}
->>>> +
->>>> +	base = of_io_request_and_map(node, 0, NULL);
->>>> +	if (IS_ERR(base)) {
->>>> +		pr_err("%pOF: Failed to map MMIO region\n", node);
->>>> +		return PTR_ERR(base);
->>>> +	}
->>>> +
->>>> +	sun6i_r_intc_nmi_ack();
->>>> +	sun6i_r_intc_resume();
->>>> +
->>>> +	domain = irq_domain_add_hierarchy(parent_domain, 0,
->>>> +					  SUN6I_NR_HWIRQS, node,
->>>> +					  &sun6i_r_intc_domain_ops, NULL);
->>>> +	if (!domain) {
->>>> +		pr_err("%pOF: Failed to allocate domain\n", node);
->>>> +		iounmap(base);
->>>> +		return -ENOMEM;
->>>> +	}
->>>> +
->>>> +	return 0;
->>>> +}
->>>> +IRQCHIP_DECLARE(sun6i_r_intc, "allwinner,sun6i-a31-r-intc", sun6i_r_intc_init);
->>>
->>> Thanks,
->>>
->>> 	M.
->>>
->>
->> Thank you for your (extremely quick, I must say) review!
-> 
-> Locked up home until Wednesday. I try to keep myself busy...
-> 
-> Thanks,
-> 
-> 	M.
-> 
-
-Thanks,
-Samuel
+> -----Original Message-----
+> From: Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>
+> Sent: 31 December 2020 8:44 PM
+> To: Sia, Jee Heng <jee.heng.sia@intel.com>; Vinod Koul
+> <vkoul@kernel.org>
+> Cc: andriy.shevchenko@linux.intel.com; dmaengine@vger.kernel.org;
+> linux-kernel@vger.kernel.org; devicetree@vger.kernel.org;
+> robh+dt@kernel.org
+> Subject: Re: [PATCH v8 13/16] dmaengine: dw-axi-dmac: Add Intel
+> KeemBay AxiDMA handshake
+>=20
+> Hi Sia Jee Heng,
+>=20
+> see my comments inlined:
+>=20
+> > From: Sia Jee Heng <jee.heng.sia@intel.com>
+> > Sent: Tuesday, December 29, 2020 07:47
+> > To: vkoul@kernel.org; Eugeniy Paltsev; robh+dt@kernel.org
+> > Cc: andriy.shevchenko@linux.intel.com;
+> dmaengine@vger.kernel.org;
+> > linux-kernel@vger.kernel.org; devicetree@vger.kernel.org
+> > Subject: [PATCH v8 13/16] dmaengine: dw-axi-dmac: Add Intel
+> KeemBay
+> > AxiDMA handshake
+> >
+> > Add support for Intel KeemBay AxiDMA device handshake
+> programming.
+> > Device handshake number passed in to the AxiDMA shall be written
+> to
+> > the Intel KeemBay AxiDMA hardware handshake registers before
+> DMA
+> > operations are started.
+> >
+> > Reviewed-by: Andy Shevchenko
+> <andriy.shevchenko@linux.intel.com>
+> > Signed-off-by: Sia Jee Heng <jee.heng.sia@intel.com>
+> > ---
+> >  .../dma/dw-axi-dmac/dw-axi-dmac-platform.c    | 52
+> +++++++++++++++++++
+> >  1 file changed, 52 insertions(+)
+> >
+> > diff --git a/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
+> > b/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
+> > index 062d27c61983..5e77eb3d040f 100644
+> > --- a/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
+> > +++ b/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
+>  [snip]
+> > +
+> > +       return 0;
+> > +}
+> > +
+> >  /*
+> >   * If DW_axi_dmac sees CHx_CTL.ShadowReg_Or_LLI_Last bit of
+> the fetched LLI
+> >   * as 1, it understands that the current block is the final block in
+> > the @@ -626,6 +668,9 @@ dw_axi_dma_chan_prep_cyclic(struct
+> dma_chan *dchan, dma_addr_t dma_addr,
+> >                 llp =3D hw_desc->llp;
+> >         } while (num_periods);
+> >
+> > +       if (dw_axi_dma_set_hw_channel(chan->chip, chan-
+> >hw_handshake_num, true))
+> > +               goto err_desc_get;
+> > +
+>=20
+> In this implementation 'dw_axi_dma_chan_prep_cyclic' callback will
+> fail if we don't have APB registers which are only specific for KeemBay.
+> Looking for the code of 'dw_axi_dma_chan_prep_cyclic' I don't see
+> the reason why it shouldn't work for vanila DW AXI DMAC without this
+> extension. So, could you please change this so we wouldn't reject
+> dw_axi_dma_chan_prep_cyclic in case of APB registers are missed.
+[>>] OK, I can change the code in such a way that dw_axi_dma_set_hw_channel=
+() will be executed only if apb_reg is valid.
+>=20
+> >         return vchan_tx_prep(&chan->vc, &desc->vd, flags);
+> >
+> >  err_desc_get:
+> > @@ -684,6 +729,9 @@ dw_axi_dma_chan_prep_slave_sg(struct
+> dma_chan *dchan, struct scatterlist *sgl,
+> >                 llp =3D hw_desc->llp;
+> >         } while (sg_len);
+> >
+> > +       if (dw_axi_dma_set_hw_channel(chan->chip, chan-
+> >hw_handshake_num, true))
+> > +               goto err_desc_get;
+> > +
+>=20
+> Same here.
+[>>] Sure, same method described above will be used.
+>=20
+>=20
+> >         return vchan_tx_prep(&chan->vc, &desc->vd, flags);
+> >
+> >  err_desc_get:
+> > @@ -959,6 +1007,10 @@ static int dma_chan_terminate_all(struct
+> dma_chan *dchan)
+> >                 dev_warn(dchan2dev(dchan),
+> >                          "%s failed to stop\n", axi_chan_name(chan));
+> >
+> > +       if (chan->direction !=3D DMA_MEM_TO_MEM)
+> > +               dw_axi_dma_set_hw_channel(chan->chip,
+> > +                                         chan->hw_handshake_num,
+> > + false);
+> > +
+> >         spin_lock_irqsave(&chan->vc.lock, flags);
+> >
+> >         vchan_get_all_descriptors(&chan->vc, &head);
+> > --
+> > 2.18.0
+> >
