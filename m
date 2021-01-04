@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D8772E917C
-	for <lists+devicetree@lfdr.de>; Mon,  4 Jan 2021 09:13:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 901712E917E
+	for <lists+devicetree@lfdr.de>; Mon,  4 Jan 2021 09:13:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726612AbhADIMU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Jan 2021 03:12:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57394 "EHLO
+        id S1726072AbhADIMX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Jan 2021 03:12:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57410 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726603AbhADIMR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jan 2021 03:12:17 -0500
-Received: from mail-pg1-x529.google.com (mail-pg1-x529.google.com [IPv6:2607:f8b0:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64C6BC061795
-        for <devicetree@vger.kernel.org>; Mon,  4 Jan 2021 00:11:37 -0800 (PST)
-Received: by mail-pg1-x529.google.com with SMTP id n10so18592826pgl.10
-        for <devicetree@vger.kernel.org>; Mon, 04 Jan 2021 00:11:37 -0800 (PST)
+        with ESMTP id S1726026AbhADIMW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jan 2021 03:12:22 -0500
+Received: from mail-pg1-x531.google.com (mail-pg1-x531.google.com [IPv6:2607:f8b0:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98FC0C061796
+        for <devicetree@vger.kernel.org>; Mon,  4 Jan 2021 00:11:42 -0800 (PST)
+Received: by mail-pg1-x531.google.com with SMTP id c22so18567584pgg.13
+        for <devicetree@vger.kernel.org>; Mon, 04 Jan 2021 00:11:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=N1N/VRl7IYxshCXfWBMhv9L4GKmc3hy8weZHQ7rGDVA=;
-        b=QghjExDFWmmI4IZigyH0QYWlIx8avgEsfnoIs9PxunNbsBTtE923wXAMJEJ+P8/91R
-         D6t4C9+Fl9vqSVyfoJtajrm0tne9TxIU3OUCnZ9dLy6Fvo26BpDAse8U9ksRrUOPwLl7
-         gExBmitmk3f8rEZLr1a0EnZzJNGzi8qtod2CWAITbLOWjezObnqxSZr4cbCz8V76+A6B
-         u4tyT2NFpiAjZa1pfG73A2Z+wTUym7bBHSoT4BcBkkY8VEQ/1THZTpwvCqm74ZXgZvIv
-         /Der4OumT93SCJijOyH7oZiqRctlteV9GhRMdxrFHE+mw5VHwsxGCKNBGklCsXEnx86F
-         MOlA==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=CxihuApHeST5FtR1ic0MIOxlrYHGlIn3irwCDLvd5sM=;
+        b=BpAHH4z7dBz+9MtlkHURf9h9Jom69vFHB+b4oROjoPES4tpnQZcIHzUGTYA6HA4we2
+         NvQH40Hhy/8qTIFq89IboeKBQoo3kWTl4AZUy9cvRjjYzoTeCwqKGc+PTZELhs9DkJv4
+         wSy6pyD6zbAg7cY5t/xJ769muFVFQUzII4m+WmHUdeGllqDotmtOr9Z3n7KrNC45FfPg
+         tCLg8zSz56Pqqohri8sSaSxwdmTpb41Z8HozHaDHKwZ+pDfMv6GjBOLl+DvDWXmqdzk0
+         PT4EEXLVxdhzMpeffC66L4pOMl/dbaMlcJbxT2UmoO+TEoR5og1/zpw8xVNpjJGwOMvR
+         vGlQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=N1N/VRl7IYxshCXfWBMhv9L4GKmc3hy8weZHQ7rGDVA=;
-        b=QqljAJm54ANGaG6tzI9lrFiPa3XjjExojB5/jsRVkb8supAkqVYlGsXJ5+zgIytjMK
-         mhopaKDLWbC9qNI9gnXczTp3idS62gXOInNQEz0710FKl2CIdcdioyXqM+K4E6uYN6GG
-         spm8Ml6s1CY+DDmOjih7HQq2yOt5s0g/q29StqiPPTwGaT1v9T7A3eu35Ex7MDv7qsc/
-         kze2EO9Cdj1hyczt6RGkFGJrYDEvbFDb+m3LfzLDRlZsCBtl7abUSKbaRFYsbIhn5dW8
-         Z7kM7TBL1gixhAoCx6RDusLG8bJ9tqVCS8nXyl8gikkFJD/IMue6DXu1X0VAMIzXHDQH
-         6XIQ==
-X-Gm-Message-State: AOAM530fVca5RZEZn36yVHW14qEKs1O4qAMd72rB2c/9G8OWdcfitDfb
-        GftmxyLiZXIDKKzWA5hKHH7OEksKl/wo
-X-Google-Smtp-Source: ABdhPJwBWRJhGyCA+bGdgK0mKkSL72v59XaeOdVINrKkcwTDtJKJKyRpAqgAIYgmNPrd78ZrHLSCiw==
-X-Received: by 2002:a62:2585:0:b029:1ab:7fb7:b965 with SMTP id l127-20020a6225850000b02901ab7fb7b965mr62847150pfl.2.1609747896658;
-        Mon, 04 Jan 2021 00:11:36 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=CxihuApHeST5FtR1ic0MIOxlrYHGlIn3irwCDLvd5sM=;
+        b=FHUHNCJuFr0daVTewmyDoKXqytVtyZTxv3PoE1fBQmNXx7y1PcdXhaiQm/Kc7Yc06r
+         DqOP2zTR2iTFmRnx9pqKHGLKd676FSCLo+ZjNfM+xhfrXOH7ckMwLwtJmXgVUQHP0wAq
+         ReZzW+3TPzvkcYvQ4WQXY8LdCt5j3yoDlQSSnpv9xjnSqHpKURBwSRgcOumXOW0G70Df
+         KhE/13GXnJ+37cYDBH3jECyolD5DgdtrDOurmd6eDjzt3tp8TzjJwquKoa5Fj2cYH80K
+         Q2CocxQicTSFYrZfbS//D9z6SQRSvwaR8HTiLoem4Rg0kOxnLh16PKsjNGWUXD7GecpU
+         FL6Q==
+X-Gm-Message-State: AOAM531iEsmhdUdxUgFMNH9OuTDi8uK9vIbmI870Y8q072RiIaaXKHXd
+        V08eKfqqsFfhVB9nR12amnwX
+X-Google-Smtp-Source: ABdhPJzsUzP25IuIbNHbmlezqcHXoggp/NpOFZ6YItSIZh0LEJkTFEBCupvJVazPbqroM29RL8ffzg==
+X-Received: by 2002:a65:458e:: with SMTP id o14mr64244220pgq.444.1609747902114;
+        Mon, 04 Jan 2021 00:11:42 -0800 (PST)
 Received: from localhost.localdomain ([103.77.37.160])
-        by smtp.gmail.com with ESMTPSA id n7sm55051339pfn.141.2021.01.04.00.11.31
+        by smtp.gmail.com with ESMTPSA id n7sm55051339pfn.141.2021.01.04.00.11.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 04 Jan 2021 00:11:36 -0800 (PST)
+        Mon, 04 Jan 2021 00:11:41 -0800 (PST)
 From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 To:     mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
         jassisinghbrar@gmail.com
@@ -55,69 +55,115 @@ Cc:     viresh.kumar@linaro.org, ulf.hansson@linaro.org,
         linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
         Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: [PATCH 0/5] Add APCS support for SDX55
-Date:   Mon,  4 Jan 2021 13:41:20 +0530
-Message-Id: <20210104081125.147300-1-manivannan.sadhasivam@linaro.org>
+Subject: [PATCH 1/5] dt-bindings: mailbox: Add binding for SDX55 APCS
+Date:   Mon,  4 Jan 2021 13:41:21 +0530
+Message-Id: <20210104081125.147300-2-manivannan.sadhasivam@linaro.org>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20210104081125.147300-1-manivannan.sadhasivam@linaro.org>
+References: <20210104081125.147300-1-manivannan.sadhasivam@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
+Add devicetree YAML binding for SDX55 APCS GCC block. The APCS block
+acts as the mailbox controller and also provides a clock output and
+takes 3 clock sources (pll, aux, ref) as input.
 
-This series adds APCS mailbox and clock support for SDX55. The APCS IP
-in SDX55 provides IPC and clock functionalities. Hence, mailbox support
-is added to the "qcom-apcs-ipc-mailbox" driver and a dedicated clock
-driver "apcs-sdx55" is added.
+Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+---
+ .../mailbox/qcom,apcs-kpss-global.yaml        | 59 ++++++++++++++++---
+ 1 file changed, 50 insertions(+), 9 deletions(-)
 
-Also, the clock to the APCS block is coming from 3 different sources:
-
-1. Board XO
-2. Fixed rate GPLL0
-3. A7 PLL
-
-First source is from crystal osc, second is from GCC and third one is a
-separate clock source. Hence, a dedicated clk driver is added for the A7
-PLL as well.
-
-Apart from the mailbox support, another intention of this series is to add
-the CPUFreq support to SDX55 platform. Since there is no dedicated hardware
-IP in SDX55 to do CPUFreq duties, this platform makes use of the clock and
-regulators directly via cpufreq-dt driver.
-
-The trick here is attaching the power domain to cpudev. Usually the power
-domains for the target device is attached in the bus driver or in the
-dedicated device drivers. But in this case, there is no dedicated CPUFreq
-driver nor a bus driver. After discussing with Viresh, I concluded that
-A7 PLL driver might be the best place to do this!
-
-But this decision is subject to discussion, hence added Ulf and Viresh to
-this series.
-
-Thanks,
-Mani
-
-Manivannan Sadhasivam (5):
-  dt-bindings: mailbox: Add binding for SDX55 APCS
-  mailbox: qcom: Add support for SDX55 APCS IPC
-  dt-bindings: clock: Add Qualcomm A7 PLL binding
-  clk: qcom: Add A7 PLL support
-  clk: qcom: Add SDX55 APCS clock controller support
-
- .../devicetree/bindings/clock/qcom,a7pll.yaml |  51 ++++++
- .../mailbox/qcom,apcs-kpss-global.yaml        |  59 +++++--
- drivers/clk/qcom/Kconfig                      |  17 ++
- drivers/clk/qcom/Makefile                     |   2 +
- drivers/clk/qcom/a7-pll.c                     | 100 ++++++++++++
- drivers/clk/qcom/apcs-sdx55.c                 | 149 ++++++++++++++++++
- drivers/mailbox/qcom-apcs-ipc-mailbox.c       |   5 +
- 7 files changed, 374 insertions(+), 9 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/clock/qcom,a7pll.yaml
- create mode 100644 drivers/clk/qcom/a7-pll.c
- create mode 100644 drivers/clk/qcom/apcs-sdx55.c
-
+diff --git a/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml b/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml
+index ffd09b664ff5..3c75ea0b6040 100644
+--- a/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml
++++ b/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml
+@@ -27,26 +27,24 @@ properties:
+       - qcom,sdm660-apcs-hmss-global
+       - qcom,sdm845-apss-shared
+       - qcom,sm8150-apss-shared
++      - qcom,sdx55-apcs-gcc
+ 
+   reg:
+     maxItems: 1
+ 
+-  clocks:
+-    description: phandles to the parent clocks of the clock driver
+-    items:
+-      - description: primary pll parent of the clock driver
+-      - description: auxiliary parent
+-
+   '#mbox-cells':
+     const: 1
+ 
+   '#clock-cells':
+     const: 0
+ 
++  clocks:
++    minItems: 2
++    maxItems: 3
++
+   clock-names:
+-    items:
+-      - const: pll
+-      - const: aux
++    minItems: 2
++    maxItems: 3
+ 
+ required:
+   - compatible
+@@ -55,6 +53,49 @@ required:
+ 
+ additionalProperties: false
+ 
++allOf:
++  - if:
++      properties:
++        compatible:
++          enum:
++            - qcom,ipq6018-apcs-apps-global
++            - qcom,ipq8074-apcs-apps-global
++            - qcom,msm8916-apcs-kpss-global
++            - qcom,msm8994-apcs-kpss-global
++            - qcom,msm8996-apcs-hmss-global
++            - qcom,msm8998-apcs-hmss-global
++            - qcom,qcs404-apcs-apps-global
++            - qcom,sc7180-apss-shared
++            - qcom,sdm660-apcs-hmss-global
++            - qcom,sdm845-apss-shared
++            - qcom,sm8150-apss-shared
++    then:
++      properties:
++        clocks:
++          items:
++            - description: Primary PLL parent of the clock driver
++            - description: Auxiliary parent
++        clock-names:
++          items:
++            - const: pll
++            - const: aux
++  - if:
++      properties:
++        compatible:
++          enum:
++            - qcom,sdx55-apcs-gcc
++    then:
++      properties:
++        clocks:
++          items:
++            - description: Primary PLL parent of the clock driver
++            - description: Auxiliary parent
++            - description: Reference clock
++        clock-names:
++          items:
++            - const: pll
++            - const: aux
++            - const: ref
+ examples:
+ 
+   # Example apcs with msm8996
 -- 
 2.25.1
 
