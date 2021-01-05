@@ -2,145 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9454A2EA9B9
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jan 2021 12:21:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1CB232EA9C8
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jan 2021 12:26:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728436AbhAELUM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jan 2021 06:20:12 -0500
-Received: from esa.microchip.iphmx.com ([68.232.154.123]:52695 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727764AbhAELUI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jan 2021 06:20:08 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1609845608; x=1641381608;
-  h=from:to:cc:subject:date:message-id:mime-version;
-  bh=K1ZVRShcvmk5YfFs3uIXX0LUIC7opQXrnO735QjgTVI=;
-  b=TCSJ5j0VUT8mLe4CYna3BxOFQ9NQ+FmlxV2Pu/dT8P7NVbDWDTqqVyzh
-   MhWdtP0UhOldA128QhtZl+/cOtX4hiaYj6XO0PXuHIqClvuNn6Id1npfk
-   J+lxZrTwOhQ0VLX+vZGCUk2Gi9rXg2UcZ0V/NhjG2CsBRNrkfVWzKl6HT
-   0BI6cYR54evkmWGdPe9GVj3+3SgMQ4a5Ov47WM20vrsCIfzwVSUDFgQt7
-   hLSnugUgf6rENuHcMfsowK0RonD9XeZY9fflAmXPKZwT8a+ZGC0dl7GW+
-   7fA2pbLiaZhoRh9cPkyX52fI7a5xmDKbuir7/fjH2a0breZBW0ruocK41
-   g==;
-IronPort-SDR: PIPqYiu/RlJphDhc78OvKhF2T4Q/jHDswbrWKdBuZAArDAs7Cyz8B1fSrPCL3TBzJQExFXAy3R
- a53gYcMvvTkNNsdp6utQgxe1/72PctbwUPzCrrBEnyO2xmZ2Z1yy/tYghli2GfiRp7bAB82yl4
- rZy4WnJGJviTJcN/nO1YJMC9EDjFydoxUg42quhMQcTjNRHKPlVOzHYSN2Mx0Ag31YAXseg64C
- tTgpWg1Dsed9hqVhn7CF0XHqK2vUG90pCs8638/c3xrLIJeU+Hf0d0V555vu0zlzBdf9vuHgA4
- Sbg=
-X-IronPort-AV: E=Sophos;i="5.78,476,1599548400"; 
-   d="scan'208";a="101796283"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 05 Jan 2021 04:18:53 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
- chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1979.3; Tue, 5 Jan 2021 04:18:52 -0700
-Received: from m18063-ThinkPad-T460p.microchip.com (10.10.115.15) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
- 15.1.1979.3 via Frontend Transport; Tue, 5 Jan 2021 04:18:48 -0700
-From:   Claudiu Beznea <claudiu.beznea@microchip.com>
-To:     <robh+dt@kernel.org>, <nicolas.ferre@microchip.com>,
-        <alexandre.belloni@bootlin.com>, <ludovic.desroches@microchip.com>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>
-Subject: [PATCH] ARM: dts: at91: sama5d2: remove atmel,wakeup-type references
-Date:   Tue, 5 Jan 2021 13:18:45 +0200
-Message-ID: <1609845525-10766-1-git-send-email-claudiu.beznea@microchip.com>
-X-Mailer: git-send-email 2.7.4
+        id S1727269AbhAELZO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jan 2021 06:25:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56184 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729102AbhAELZL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jan 2021 06:25:11 -0500
+Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8CEAC061793
+        for <devicetree@vger.kernel.org>; Tue,  5 Jan 2021 03:24:30 -0800 (PST)
+Received: by mail-pj1-x1030.google.com with SMTP id j13so1518701pjz.3
+        for <devicetree@vger.kernel.org>; Tue, 05 Jan 2021 03:24:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=0iojE0FbfksPxGDHaoi7nGrdC6/TZhC32X4xFEfuq34=;
+        b=sNDlCvXHU9mLxar1M2e31cqruXME5LN6Jy9m4aJa+LZqduw2ZZJhttZy1wsk5HnFNY
+         BsMZQz/Gc7kJDGvxkMNuV7koBFW+CsLmmomfJBuFE1x+awiQFt2rLV+rdDDWWH2cS2+3
+         7jwg7++0ZQLrwLOiCxfg+uiBg9RYAaDDIm2X96sU5o28cBbRiWkDBVrazPLHLGPefiQx
+         Hbh/hBSI0U97n0l0lzKxJiT4xtabaMeYDIxYz47b7WKTsWyziykZklTrenfhvtR5vsvi
+         7z8LLzsAjwxYQdM/bP+8U+QLCYtcFSYAp+BkkcInf5lkPKfJVIcDqKjppqYaTUVb7l1d
+         RElg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=0iojE0FbfksPxGDHaoi7nGrdC6/TZhC32X4xFEfuq34=;
+        b=BCP00X06eIW2OpPI3oOLELKKpyZbYe4EDmT+UHYKVYgiR+vBmrPUT6h9gsENq2/jW6
+         nUsILNDcHHdMZuv4CsXmcHVIIK7Uk+UfNX9kxg4ZhsBGk9N7tzpuVUHdd7IMSCcpdGpf
+         A/4RA2EwKD4A5Hg7Aq2cG2U3GehpzlYgEbJT+RNeA73iMDTj1tPrzwTj0ptrsQKAEavS
+         FmBTQDmT9rAItjF+5ZfGUvJCHj4Q+lsipVMlhQORuVoYg3UesMYiu1l8TsfXC7+Xw5hM
+         YaFoCkt1h8MGE5xOg1R9Pai1W+InaU3NWcnYXZRdH+7BoTAgwtBRoFfrui4Mi02yJLLp
+         U6Kw==
+X-Gm-Message-State: AOAM5309Ye+u2n3QYDgF5iKaeEVoje9K0khDAfgrVgQwocP0ebjbt3DW
+        DArMJgucieli/c81F7s9O6C8OA==
+X-Google-Smtp-Source: ABdhPJwzVyGl0/EingPinXtXC3JWREuAJMsR+Ve0tkMJ6goYPApiB5S/0FlD1EUbTmkYQxJgdKCCbg==
+X-Received: by 2002:a17:90a:c82:: with SMTP id v2mr3574430pja.171.1609845870173;
+        Tue, 05 Jan 2021 03:24:30 -0800 (PST)
+Received: from localhost ([122.172.20.109])
+        by smtp.gmail.com with ESMTPSA id k3sm39035119pgm.94.2021.01.05.03.24.28
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 05 Jan 2021 03:24:29 -0800 (PST)
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Michal Marek <michal.lkml@markovi.net>
+Cc:     Viresh Kumar <viresh.kumar@linaro.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-kbuild@vger.kernel.org,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Bill Mills <bill.mills@linaro.org>, tero.kristo@gmail.com
+Subject: [RFC 0/2] kbuild: Add support to build overlays (%.dtbo)
+Date:   Tue,  5 Jan 2021 16:54:15 +0530
+Message-Id: <cover.1609844956.git.viresh.kumar@linaro.org>
+X-Mailer: git-send-email 2.25.0.rc1.19.g042ed3e048af
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-atmel,wakeup-type DT property is not referenced anywhere in the current
-and previous version of the code thus remove it.
+Hello,
 
-Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
----
- arch/arm/boot/dts/at91-kizbox3_common.dtsi    | 1 -
- arch/arm/boot/dts/at91-sama5d27_som1_ek.dts   | 1 -
- arch/arm/boot/dts/at91-sama5d27_wlsom1_ek.dts | 1 -
- arch/arm/boot/dts/at91-sama5d2_icp.dts        | 1 -
- arch/arm/boot/dts/at91-sama5d2_ptc_ek.dts     | 1 -
- arch/arm/boot/dts/at91-sama5d2_xplained.dts   | 1 -
- 6 files changed, 6 deletions(-)
+Here is an attempt to make some changes in the kernel to allow building
+of device tree overlays.
 
-diff --git a/arch/arm/boot/dts/at91-kizbox3_common.dtsi b/arch/arm/boot/dts/at91-kizbox3_common.dtsi
-index 9ce513dd514b..c4b3750495da 100644
---- a/arch/arm/boot/dts/at91-kizbox3_common.dtsi
-+++ b/arch/arm/boot/dts/at91-kizbox3_common.dtsi
-@@ -341,7 +341,6 @@
- 
- 	input@0 {
- 		reg = <0>;
--		atmel,wakeup-type = "low";
- 	};
- };
- 
-diff --git a/arch/arm/boot/dts/at91-sama5d27_som1_ek.dts b/arch/arm/boot/dts/at91-sama5d27_som1_ek.dts
-index 0e159f879c15..84e1180f3e89 100644
---- a/arch/arm/boot/dts/at91-sama5d27_som1_ek.dts
-+++ b/arch/arm/boot/dts/at91-sama5d27_som1_ek.dts
-@@ -142,7 +142,6 @@
- 
- 				input@0 {
- 					reg = <0>;
--					atmel,wakeup-type = "low";
- 				};
- 			};
- 
-diff --git a/arch/arm/boot/dts/at91-sama5d27_wlsom1_ek.dts b/arch/arm/boot/dts/at91-sama5d27_wlsom1_ek.dts
-index 6b38fa3f5568..180a08765cb8 100644
---- a/arch/arm/boot/dts/at91-sama5d27_wlsom1_ek.dts
-+++ b/arch/arm/boot/dts/at91-sama5d27_wlsom1_ek.dts
-@@ -209,7 +209,6 @@
- 
- 	input@0 {
- 		reg = <0>;
--		atmel,wakeup-type = "low";
- 	};
- };
- 
-diff --git a/arch/arm/boot/dts/at91-sama5d2_icp.dts b/arch/arm/boot/dts/at91-sama5d2_icp.dts
-index 6783cf16ff81..46722a163184 100644
---- a/arch/arm/boot/dts/at91-sama5d2_icp.dts
-+++ b/arch/arm/boot/dts/at91-sama5d2_icp.dts
-@@ -697,7 +697,6 @@
- 
- 	input@0 {
- 		reg = <0>;
--		atmel,wakeup-type = "low";
- 	};
- };
- 
-diff --git a/arch/arm/boot/dts/at91-sama5d2_ptc_ek.dts b/arch/arm/boot/dts/at91-sama5d2_ptc_ek.dts
-index c894c7c788a9..8de57d164acd 100644
---- a/arch/arm/boot/dts/at91-sama5d2_ptc_ek.dts
-+++ b/arch/arm/boot/dts/at91-sama5d2_ptc_ek.dts
-@@ -206,7 +206,6 @@
- 
- 				input@0 {
- 					reg = <0>;
--					atmel,wakeup-type = "low";
- 				};
- 			};
- 
-diff --git a/arch/arm/boot/dts/at91-sama5d2_xplained.dts b/arch/arm/boot/dts/at91-sama5d2_xplained.dts
-index 058fae1b4a76..4e7cf21f124c 100644
---- a/arch/arm/boot/dts/at91-sama5d2_xplained.dts
-+++ b/arch/arm/boot/dts/at91-sama5d2_xplained.dts
-@@ -351,7 +351,6 @@
- 
- 				input@0 {
- 					reg = <0>;
--					atmel,wakeup-type = "low";
- 				};
- 			};
- 
+While at it, I would also like to discuss about how we should mention
+the base DT blobs in the Makefiles for the overlays, so they can be
+build tested to make sure the overlays apply properly.
+
+A simple way is to mention that with -base extension, like this:
+
+$(overlay-file)-base := platform-base.dtb
+
+Any other preference ?
+
+Also fdtoverlay is an external entity right now, and is not part of the
+kernel. Do we need to make it part of the kernel ? Or keep using the
+external entity ?
+
+Thanks.
+
+--
+Viresh
+
+Viresh Kumar (2):
+  kbuild: Add support to build overlays (%.dtbo)
+  scripts: dtc: Handle outform dtbo
+
+ Makefile             |  4 ++--
+ scripts/Makefile.lib | 12 ++++++++++++
+ scripts/dtc/dtc.c    |  2 ++
+ 3 files changed, 16 insertions(+), 2 deletions(-)
+
 -- 
-2.7.4
+2.25.0.rc1.19.g042ed3e048af
 
