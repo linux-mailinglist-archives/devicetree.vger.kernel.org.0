@@ -2,105 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3043B2EAB29
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jan 2021 13:49:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2BBBD2EAB33
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jan 2021 13:51:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726497AbhAEMtG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jan 2021 07:49:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41072 "EHLO
+        id S1729137AbhAEMuc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jan 2021 07:50:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41306 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726215AbhAEMtF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jan 2021 07:49:05 -0500
-Received: from mail-io1-xd2b.google.com (mail-io1-xd2b.google.com [IPv6:2607:f8b0:4864:20::d2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5AF44C061574;
-        Tue,  5 Jan 2021 04:48:25 -0800 (PST)
-Received: by mail-io1-xd2b.google.com with SMTP id q137so28033018iod.9;
-        Tue, 05 Jan 2021 04:48:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=CCTyf1sf2ZU7h0cZkeoRQ1POMJK2PzlWyw0VjZ882R0=;
-        b=LNb2SJ/6IKS1JI2IAIJzBNognHzy8pNMScBDz392rTPu3OyZxNZStZXmpSq+K1/Fyh
-         v+kxUmGcDuPXpa4etSFLIBtXEkGYoO50D+wQyY6kDdF+FTSA8lQbRd6mozjFhAbSnFPC
-         q/U4FidfqfI7tRnsGMgJBlbVMwK7D6tKfkxgL7Iv1CTg5lpGY58UWh9x0JURGYTxi9FS
-         LVJmRQpPrz89l4m52Uq2w57e42C4bQXHmBPU0djON2BEj2i7BTvkv7QqKEo/1rRMH5N7
-         wWu7nFUmye2/of/14PWepW+MUV1q/6SmOXEJsJ9roV/gF0QEhzACt8qsRbx5g13GDdNx
-         Z/tw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=CCTyf1sf2ZU7h0cZkeoRQ1POMJK2PzlWyw0VjZ882R0=;
-        b=Cxc5ySq4t7oLKi6PivwJhf537yk7uhJDPVIgIzsSDzwSAU/14n807tLB+pS4dT9aYm
-         R9h5LRv7ZW95vrgFButkzrykDtbrKGDrKdJAFVScIK5MKzcqt1ZyGopBqvTR0J06tvHT
-         Ae3WTejOijfjW/MM9Nngiuzf/xxT3bIKqUT6ph9meASCM4JZDVVeiTDE5inSoIYMcU5G
-         2i3JmVxTFcS1MsdAgpZj3VytOXNrfF13au/hXXJNWx16Jh4M5TBOmDUfDSR9xNE4Z2SE
-         SwPDGdYKARNJ8zATnhCcvmuE/2fmmD7jV4HEbL6wZYYMftH7x7FYySkFuLUXwgZKv+lu
-         E/3g==
-X-Gm-Message-State: AOAM532nRILoOgL/32T6dZMcxN949t4iBzZCtBtR/085zm0J3tiz05tZ
-        XqLO0e9arU3u/hOUEgdIF+eowyOMTn3Zx/AJD1EgUm0X
-X-Google-Smtp-Source: ABdhPJyGOGrjcyejMcrDu5EvsuKeaTBNFVKHaU8l74qNkF/Xo02ZNxPPYfivkyFMT99aFuslZk2q/Ft5edW37rlxkKk=
-X-Received: by 2002:a5d:9a8e:: with SMTP id c14mr63948716iom.178.1609850904542;
- Tue, 05 Jan 2021 04:48:24 -0800 (PST)
-MIME-Version: 1.0
-References: <20201202135950.22164-1-aford173@gmail.com> <20210105030308.GK4142@dragon>
-In-Reply-To: <20210105030308.GK4142@dragon>
-From:   Adam Ford <aford173@gmail.com>
-Date:   Tue, 5 Jan 2021 06:48:13 -0600
-Message-ID: <CAHCN7xJV11LqTwsJ=3Xz9gxHAjRg0B37RnMWgcx3CWDT+DiJHg@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: imx8mm-beacon: Fix WiFi Pinmuxing
-To:     Shawn Guo <shawnguo@kernel.org>
-Cc:     arm-soc <linux-arm-kernel@lists.infradead.org>,
-        Adam Ford-BE <aford@beaconembedded.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S1728006AbhAEMub (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jan 2021 07:50:31 -0500
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D86F2C061793;
+        Tue,  5 Jan 2021 04:49:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+         bh=bqNMDEYrecUR3M+dtWwwtcySm0za9HVVgygO49cltX4=; b=FCK6Wx4ClTXTLJF/RcMApdDjQ
+        AYx4P4TsOP12UPGxtWDEbi8Fk9lPUx98sIBRJm9Fv9V6r/1SvMykicrTuh50JnufrG8SyXeyxEchw
+        0tXUVknnRLGXboTK9+nerjucRV3gJ0teneoHMyna/x1ki0wcZAyNe93lGDFJMQl/nDxWdXVOVBhBA
+        Pjo1TWRNlIV3vpTcINKvwRBu0k1ovsilOQrfJNsPcx6ipHKiRGEeiZ27QHn3GdfIHf0QJRsobQ/ov
+        R94FSY7uoDVRuXD/qib6O34CCyyu8aAM2ypAEXng4xTRAuIzJDuZm1zZrbWPZTV7JbH7jgstreX0E
+        +vAId1mlQ==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:45098)
+        by pandora.armlinux.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <linux@armlinux.org.uk>)
+        id 1kwlm9-0000lV-Up; Tue, 05 Jan 2021 12:49:25 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.92)
+        (envelope-from <linux@shell.armlinux.org.uk>)
+        id 1kwlm2-0007jF-52; Tue, 05 Jan 2021 12:49:18 +0000
+Date:   Tue, 5 Jan 2021 12:49:18 +0000
+From:   Russell King - ARM Linux admin <linux@armlinux.org.uk>
+To:     Baruch Siach <baruch@tkos.co.il>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Chris Packham <chris.packham@alliedtelesis.co.nz>,
         Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Ralph Sennhauser <ralph.sennhauser@gmail.com>,
+        linux-pwm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v5 1/4] gpio: mvebu: fix pwm get_state period calculation
+Message-ID: <20210105124917.GC1551@shell.armlinux.org.uk>
+References: <cover.1609849176.git.baruch@tkos.co.il>
+ <0cd077886d37699bdf0a20295fd8ee422e5285b5.1609849176.git.baruch@tkos.co.il>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <0cd077886d37699bdf0a20295fd8ee422e5285b5.1609849176.git.baruch@tkos.co.il>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Sender: Russell King - ARM Linux admin <linux@armlinux.org.uk>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 4, 2021 at 9:03 PM Shawn Guo <shawnguo@kernel.org> wrote:
->
-> On Wed, Dec 02, 2020 at 07:59:50AM -0600, Adam Ford wrote:
-> > The WiFi chip is capable of communication at SDR104 speeds, and
-> > the pinmux was configured to support this, but the sdhc1 controller
-> > didn't properly reference the pinmux.  Enable 100Mhz and 200MHz pinmux
-> > as was originally intended.
-> >
-> > Fixes: 593816fa2f35 ("arm64: dts: imx: Add Beacon i.MX8m-Mini development kit")
->
-> This looks more like an improvement than bug fix.
+On Tue, Jan 05, 2021 at 02:42:28PM +0200, Baruch Siach wrote:
+> The period is the sum of on and off values.
+> 
+> Reported-by: Russell King <linux@armlinux.org.uk>
+> Fixes: 757642f9a584e ("gpio: mvebu: Add limited PWM support")
+> Signed-off-by: Baruch Siach <baruch@tkos.co.il>
+> ---
+>  drivers/gpio/gpio-mvebu.c | 16 ++++++----------
+>  1 file changed, 6 insertions(+), 10 deletions(-)
+> 
+> diff --git a/drivers/gpio/gpio-mvebu.c b/drivers/gpio/gpio-mvebu.c
+> index 672681a976f5..ac7cb6d3702e 100644
+> --- a/drivers/gpio/gpio-mvebu.c
+> +++ b/drivers/gpio/gpio-mvebu.c
+> @@ -679,17 +679,13 @@ static void mvebu_pwm_get_state(struct pwm_chip *chip,
+>  	regmap_read(mvpwm->regs, mvebu_pwmreg_blink_off_duration(mvpwm), &u);
+>  	val = (unsigned long long) u * NSEC_PER_SEC;
+>  	do_div(val, mvpwm->clk_rate);
+> -	if (val < state->duty_cycle) {
+> +	val += state->duty_cycle;
+> +	if (val > UINT_MAX)
+> +		state->period = UINT_MAX;
+> +	else if (val)
+> +		state->period = val;
+> +	else
+>  		state->period = 1;
 
-Do you want me to resubmit without the fixes tag?
+Are you sure this is the correct solution? Aren't you introducing
+rounding errors?
 
-adam
->
-> Shawn
->
-> > Signed-off-by: Adam Ford <aford173@gmail.com>
-> >
-> > diff --git a/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi
-> > index 6de86a4f0ec4..90fd15e95798 100644
-> > --- a/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi
-> > +++ b/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi
-> > @@ -217,8 +217,10 @@
-> >  &usdhc1 {
-> >       #address-cells = <1>;
-> >       #size-cells = <0>;
-> > -     pinctrl-names = "default";
-> > +     pinctrl-names = "default", "state_100mhz", "state_200mhz";
-> >       pinctrl-0 = <&pinctrl_usdhc1>;
-> > +     pinctrl-1 = <&pinctrl_usdhc1_100mhz>;
-> > +     pinctrl-2 = <&pinctrl_usdhc1_200mhz>;
-> >       bus-width = <4>;
-> >       non-removable;
-> >       cap-power-off-card;
-> > --
-> > 2.17.1
-> >
+The hardware will count to (on + off) clock ticks, so the right way
+to convert that is to add the two together and then convert to
+nanoseconds, which may result in a single rounding error. If you
+convert each individually to nanoseconds, then you can end up with
+two sets of rounding errors.
+
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
