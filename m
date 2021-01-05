@@ -2,81 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C0112EAA84
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jan 2021 13:17:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 562042EAABD
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jan 2021 13:28:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727796AbhAEMQJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jan 2021 07:16:09 -0500
-Received: from mail.kernel.org ([198.145.29.99]:47766 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726231AbhAEMQI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 5 Jan 2021 07:16:08 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 7C0552229C;
-        Tue,  5 Jan 2021 12:15:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1609848928;
-        bh=0rbmmR3ReQPovsOtuTvxe8cg7v1K8KmXSbOOlTtcfns=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=JdH+68mQjXlgLypOMEbUt6T4g0JvpINZgwGt5Im1IC+J3FbpEVd3xMQs0o92AEaBz
-         8ayThEF76lz768Jl+kr8OL+Po5G2LWNEemS0gXnp3xZeYvqxirGvC3SC0RRdzWYkl6
-         kv6w0WfiGNO5rn3VzWMLyH+MVKECv/AuIQSnzg9x/M/uPiEqXmHXSaDwFA+UYMcpOU
-         4vUdS502O1s1mIiyt3q1kAA2zfDYKc6F7CYKsY8JCTfIFgBC4gpTGcBVnOCWuX3iDi
-         QjMLh408xD64RIGTs1RI4o8wGxka4gN6T7PWhdDURHm51LMAyTmsXESLDPAMCjYVkx
-         BnBLiy3wRvJww==
-Date:   Tue, 5 Jan 2021 13:15:00 +0100
-From:   Marek =?UTF-8?B?QmVow7pu?= <kabel@kernel.org>
-To:     Pavana Sharma <pavana.sharma@digi.com>
-Cc:     kuba@kernel.org, andrew@lunn.ch, ashkan.boldaji@digi.com,
-        clang-built-linux@googlegroups.com, davem@davemloft.net,
-        devicetree@vger.kernel.org, f.fainelli@gmail.com,
-        gregkh@linuxfoundation.org, kbuild-all@lists.01.org,
-        linux-kernel@vger.kernel.org, lkp@intel.com,
-        netdev@vger.kernel.org, robh+dt@kernel.org,
-        vivien.didelot@gmail.com
-Subject: Re: [net-next PATCH v12 4/4] net: dsa: mv88e6xxx: Add support for
- mv88e6393x  family of Marvell
-Message-ID: <20210105131343.4d0fff05@nic.cz>
-In-Reply-To: <2c2bb4b92484ce21c0cf43076d6c7921bae7456a.1607685097.git.pavana.sharma@digi.com>
-References: <cover.1607685096.git.pavana.sharma@digi.com>
-        <2c2bb4b92484ce21c0cf43076d6c7921bae7456a.1607685097.git.pavana.sharma@digi.com>
-X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S1726589AbhAEM2T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jan 2021 07:28:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37772 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730145AbhAEM2S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jan 2021 07:28:18 -0500
+Received: from mail-pg1-x536.google.com (mail-pg1-x536.google.com [IPv6:2607:f8b0:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B20C7C06179A
+        for <devicetree@vger.kernel.org>; Tue,  5 Jan 2021 04:27:07 -0800 (PST)
+Received: by mail-pg1-x536.google.com with SMTP id n10so21167190pgl.10
+        for <devicetree@vger.kernel.org>; Tue, 05 Jan 2021 04:27:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=X6ZtUI4Q1Kv9KoNZEzoxKYY3jMlU4aqhIrm/Qzwt2c4=;
+        b=dKduIlTCdTKFktJ6HofjNmdTpknfFFyT90L+XjenCIy9ZZYrPa58pgF00E959x3T8p
+         6eQ5vyp6ceHB55CzY42nmWPRIyjY92b3vyU7Cj+qXO/5fQei/K14pZ4mMvrLhkNHa7/G
+         628UYcoWhzB9iZJstrdi0q1ESkC7Rk6U9LdszX0LDSI5TfEy8NUrCjf+g5WebqAXAUVR
+         4hzWNU4bh6rejwOZBAeILLbvpoTBoJs6XqQ8zvsyaS/FgO2NzIfXrIpnULUpE89ixnmo
+         jrGHmPPqI3Vwj5fhd1TNddRPJOzMSYjuicFMtYNdgmfSsHNjK/kz3uneo4Eg761+BTxo
+         YSkQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=X6ZtUI4Q1Kv9KoNZEzoxKYY3jMlU4aqhIrm/Qzwt2c4=;
+        b=JyV3FlrOSDRJSHa2nejdRa0m4BMVf3aTvtZ2Gijn5Bvd7fX+A/NamEXWo9xM1XOFbj
+         whiYrfo2A74j1huOsWyOBb3/94IL+AL9ajBpZqoP5QGYAhyA9qxFxNwXx+JqXK/eA4qs
+         GWihV8nAM/gft5Jcfhl4eZ7v+vncpMPFpBV4fc6MaBPXgqDKp0sFlk50avf23I6OLljN
+         lhvckFYtvYef5M/0XAkMEOonHN3j0wILBlsDVSfKfG90VKBBtqVbjh770qsjjZbrDA7z
+         9txKThlO+ejtEwduyDdJJ9RLDzv60YvpnbCl5YnNRdyQcPvk+4iGRkeHoE+5A6hv/JBu
+         FxCw==
+X-Gm-Message-State: AOAM530pryHVcF5ncOmoODAYf0cI2G/Xrp1ffmyNjvAEDh85hP/Prhew
+        XHiKnuoy7iTBkFgKQ9XwfP+N
+X-Google-Smtp-Source: ABdhPJy5Vot5UvDS/HhIZ/5oEs29EL8lEixpW1ONKPJX+34/Tvylj26riRvc1rLLbOJBmwOPJEAkuA==
+X-Received: by 2002:aa7:85d8:0:b029:19e:610e:1974 with SMTP id z24-20020aa785d80000b029019e610e1974mr50545499pfn.21.1609849627238;
+        Tue, 05 Jan 2021 04:27:07 -0800 (PST)
+Received: from localhost.localdomain ([103.77.37.191])
+        by smtp.gmail.com with ESMTPSA id t22sm64745402pgm.18.2021.01.05.04.27.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 05 Jan 2021 04:27:06 -0800 (PST)
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     agross@kernel.org, bjorn.andersson@linaro.org
+Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH v2 03/18] dt-bindings: mmc: sdhci-msm: Document the SDX55 compatible
+Date:   Tue,  5 Jan 2021 17:56:34 +0530
+Message-Id: <20210105122649.13581-4-manivannan.sadhasivam@linaro.org>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20210105122649.13581-1-manivannan.sadhasivam@linaro.org>
+References: <20210105122649.13581-1-manivannan.sadhasivam@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 11 Dec 2020 22:51:01 +1000
-Pavana Sharma <pavana.sharma@digi.com> wrote:
+The SDHCI controller on SDX55 is based on MSM SDHCI v5 IP. Hence,
+document the compatible with "qcom,sdhci-msm-v5" as the fallback.
 
-> +int mv88e6393x_serdes_irq_enable(struct mv88e6xxx_chip *chip, int port,
-> +				int lane, bool enable)
-> +{
-> +	u8 cmode = chip->ports[port].cmode;
-> +	int err = 0;
-> +
-> +	switch (cmode) {
-> +	case MV88E6XXX_PORT_STS_CMODE_SGMII:
-> +	case MV88E6XXX_PORT_STS_CMODE_1000BASEX:
-> +	case MV88E6XXX_PORT_STS_CMODE_2500BASEX:
-> +	case MV88E6XXX_PORT_STS_CMODE_5GBASER:
-> +	case MV88E6XXX_PORT_STS_CMODE_10GBASER:
-> +		err = mv88e6390_serdes_irq_enable_sgmii(chip, lane, enable);
-> +	}
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+---
+ Documentation/devicetree/bindings/mmc/sdhci-msm.txt | 1 +
+ 1 file changed, 1 insertion(+)
 
-This is wrong. IRQ for 5gbase-r and 10gbase-r is enabled differently.
-Please look at how I did it in my proposal
-https://www.mail-archive.com/netdev@vger.kernel.org/msg347854.html
-Please look at the following functions in that patch:
+diff --git a/Documentation/devicetree/bindings/mmc/sdhci-msm.txt b/Documentation/devicetree/bindings/mmc/sdhci-msm.txt
+index 3b602fd6180b..31f4a5628595 100644
+--- a/Documentation/devicetree/bindings/mmc/sdhci-msm.txt
++++ b/Documentation/devicetree/bindings/mmc/sdhci-msm.txt
+@@ -21,6 +21,7 @@ Required properties:
+ 		"qcom,sdm845-sdhci", "qcom,sdhci-msm-v5"
+ 		"qcom,qcs404-sdhci", "qcom,sdhci-msm-v5"
+ 		"qcom,sc7180-sdhci", "qcom,sdhci-msm-v5";
++		"qcom,sdx55-sdhci", "qcom,sdhci-msm-v5";
+ 	NOTE that some old device tree files may be floating around that only
+ 	have the string "qcom,sdhci-msm-v4" without the SoC compatible string
+ 	but doing that should be considered a deprecated practice.
+-- 
+2.25.1
 
-   mv88e6393x_serdes_irq_enable_10g()
-   mv88e6393x_serdes_irq_enable()
-   mv88e6393x_serdes_irq_status_10g()
-   irqreturn_t mv88e6393x_serdes_irq_status()
-
-and also at the constants added to serdes.h in that patch
-
-#define MV88E6393X_10G_INT_ENABLE      0x9000
-#define MV88E6393X_10G_INT_LINK_CHANGE BIT(2)
-#define MV88E6393X_10G_INT_STATUS      0x9001
