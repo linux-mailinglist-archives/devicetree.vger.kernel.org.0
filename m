@@ -2,112 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CDF622EA57C
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jan 2021 07:38:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9438B2EA59E
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jan 2021 07:57:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725815AbhAEGhF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jan 2021 01:37:05 -0500
-Received: from mailgw02.mediatek.com ([210.61.82.184]:57233 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1725710AbhAEGhF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jan 2021 01:37:05 -0500
-X-UUID: c90ba1b80b924e7bb4a62c880fbfec90-20210105
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:Reply-To:From:Subject:Message-ID; bh=uOuUrNyJqVyw+bf7rxjNIRMo6y7sN/EKdL9L1mBNcBM=;
-        b=aJsTy3qY9NtFIXiQXyTYFS8BX5x8xKLOXnMr8iMLFuMp4EHtPwk2gZXjNBMLYjMegvUWfbPVImx3xNBzEs08NV9EfQmYQIeKIKXNR7y+P1TYzSqHZA5ikfcR4q5hRUvU8JyUq9PqDdeNdXCBfRSU+P/HmWLmsuDEA3rhVNV2QNw=;
-X-UUID: c90ba1b80b924e7bb4a62c880fbfec90-20210105
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
-        (envelope-from <yongqiang.niu@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 71353384; Tue, 05 Jan 2021 14:36:20 +0800
-Received: from MTKCAS36.mediatek.inc (172.27.4.186) by mtkmbs05n2.mediatek.inc
- (172.21.101.140) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 5 Jan
- 2021 14:36:17 +0800
-Received: from [10.17.3.153] (10.17.3.153) by MTKCAS36.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 5 Jan 2021 14:36:17 +0800
-Message-ID: <1609828577.1574.5.camel@mhfsdcap03>
-Subject: Re: [PATCH v8, 5/6] drm/mediatek: add RDMA fifo size error handle
-From:   Yongqiang Niu <yongqiang.niu@mediatek.com>
-Reply-To: Yongqiang Niu <yongqiang.niu@mediatek.com>
-To:     Chun-Kuang Hu <chunkuang.hu@kernel.org>
-CC:     CK Hu <ck.hu@mediatek.com>, Philipp Zabel <p.zabel@pengutronix.de>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        DTML <devicetree@vger.kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        DRI Development <dri-devel@lists.freedesktop.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Date:   Tue, 5 Jan 2021 14:36:17 +0800
-In-Reply-To: <CAAOTY__HA95WLNppOKainvsZCxA6Wv3edLyvOW6FxAjUos=afQ@mail.gmail.com>
-References: <1607591262-21736-1-git-send-email-yongqiang.niu@mediatek.com>
-         <1607591262-21736-6-git-send-email-yongqiang.niu@mediatek.com>
-         <CAAOTY_-aYFz1Xg6r2ur+BF_k_35F3qNLLb16_2c0MaMsYre-+w@mail.gmail.com>
-         <1607647514.12750.5.camel@mhfsdcap03>
-         <CAAOTY__HA95WLNppOKainvsZCxA6Wv3edLyvOW6FxAjUos=afQ@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S1726224AbhAEGz0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jan 2021 01:55:26 -0500
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:49874 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725843AbhAEGz0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jan 2021 01:55:26 -0500
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1056rhgh014887;
+        Tue, 5 Jan 2021 00:53:43 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1609829623;
+        bh=LTOT+YRmvhkR78Ae74i29OdJCgRYMyZk9XPXTNgWqKU=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=PcADxtvm+lP2pE7vhuMw+X7OXkvFhp7TD0IiK9c8WksUveDr/Rhl+ckM73k5LNC2y
+         ho1dZpMSGdVaP9F81qST96Wa4naMXV23ixRFKdOKg2m/xhKSQvrZm5WsiT6LfTkFUI
+         Y3o+pW+0TiISMdUEQ2OOhnxN8Tgx3SsOwa421xms=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1056rhWK054587
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 5 Jan 2021 00:53:43 -0600
+Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 5 Jan
+ 2021 00:53:43 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Tue, 5 Jan 2021 00:53:43 -0600
+Received: from [10.250.232.169] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1056rcGq126926;
+        Tue, 5 Jan 2021 00:53:39 -0600
+Subject: Re: [PATCH 1/2] Documentation: devicetree: Add new compatible string
+ for eeprom microchip 93LC46B
+To:     Rob Herring <robh@kernel.org>
+CC:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Sekhar Nori <nsekhar@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Pratyush Yadav <p.yadav@ti.com>, Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Vadym Kochan <vadym.kochan@plvision.eu>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20201218140815.9501-1-a-govindraju@ti.com>
+ <20201218140815.9501-2-a-govindraju@ti.com>
+ <20201231191732.GA2198038@robh.at.kernel.org>
+From:   Aswath Govindraju <a-govindraju@ti.com>
+Message-ID: <fbcc277c-c8aa-1252-4e9f-ba8a4f5fd00a@ti.com>
+Date:   Tue, 5 Jan 2021 12:23:37 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-X-MTK:  N
-Content-Transfer-Encoding: base64
+In-Reply-To: <20201231191732.GA2198038@robh.at.kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gTW9uLCAyMDIwLTEyLTE0IGF0IDIyOjU0ICswODAwLCBDaHVuLUt1YW5nIEh1IHdyb3RlOg0K
-PiBIaSwgWW9uZ3FpYW5nOg0KPiANCj4gWW9uZ3FpYW5nIE5pdSA8eW9uZ3FpYW5nLm5pdUBtZWRp
-YXRlay5jb20+IOaWvCAyMDIw5bm0MTLmnIgxMeaXpSDpgLHkupQg5LiK5Y2IODo0NeWvq+mBk++8
-mg0KPiA+DQo+ID4gT24gVGh1LCAyMDIwLTEyLTEwIGF0IDIzOjUwICswODAwLCBDaHVuLUt1YW5n
-IEh1IHdyb3RlOg0KPiA+ID4gSGksIFlvbmdxaWFuZzoNCj4gPiA+DQo+ID4gPiBZb25ncWlhbmcg
-Tml1IDx5b25ncWlhbmcubml1QG1lZGlhdGVrLmNvbT4g5pa8IDIwMjDlubQxMuaciDEw5pelIOmA
-seWbmyDkuIvljYg1OjA45a+r6YGT77yaDQo+ID4gPiA+DQo+ID4gPiA+IFRoaXMgcGF0Y2ggYWRk
-IFJETUEgZmlmbyBzaXplIGVycm9yIGhhbmRsZQ0KPiA+ID4gPiByZG1hIGZpZm8gc2l6ZSB3aWxs
-IG5vdCBhbHdheXMgYmlnZ2VyIHRoYW4gdGhlIGNhbGN1bGF0ZWQgdGhyZXNob2xkDQo+ID4gPiA+
-IGlmIHRoYXQgY2FzZSBoYXBwZW5lZCwgd2UgbmVlZCBzZXQgZmlmbyBzaXplIGFzIHRoZSB0aHJl
-c2hvbGQNCj4gPiA+ID4NCj4gPiA+ID4gU2lnbmVkLW9mZi1ieTogWW9uZ3FpYW5nIE5pdSA8eW9u
-Z3FpYW5nLm5pdUBtZWRpYXRlay5jb20+DQo+ID4gPiA+IC0tLQ0KPiA+ID4gPiAgZHJpdmVycy9n
-cHUvZHJtL21lZGlhdGVrL210a19kaXNwX3JkbWEuYyB8IDQgKysrKw0KPiA+ID4gPiAgMSBmaWxl
-IGNoYW5nZWQsIDQgaW5zZXJ0aW9ucygrKQ0KPiA+ID4gPg0KPiA+ID4gPiBkaWZmIC0tZ2l0IGEv
-ZHJpdmVycy9ncHUvZHJtL21lZGlhdGVrL210a19kaXNwX3JkbWEuYyBiL2RyaXZlcnMvZ3B1L2Ry
-bS9tZWRpYXRlay9tdGtfZGlzcF9yZG1hLmMNCj4gPiA+ID4gaW5kZXggNzk0YWNjNS4uMDUwODM5
-MiAxMDA2NDQNCj4gPiA+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL21lZGlhdGVrL210a19kaXNw
-X3JkbWEuYw0KPiA+ID4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vbWVkaWF0ZWsvbXRrX2Rpc3Bf
-cmRtYS5jDQo+ID4gPiA+IEBAIC0xNTEsNiArMTUxLDEwIEBAIHN0YXRpYyB2b2lkIG10a19yZG1h
-X2NvbmZpZyhzdHJ1Y3QgbXRrX2RkcF9jb21wICpjb21wLCB1bnNpZ25lZCBpbnQgd2lkdGgsDQo+
-ID4gPiA+ICAgICAgICAgICogYWNjb3VudCBmb3IgYmxhbmtpbmcsIGFuZCB3aXRoIGEgcGl4ZWwg
-ZGVwdGggb2YgNCBieXRlczoNCj4gPiA+ID4gICAgICAgICAgKi8NCj4gPiA+ID4gICAgICAgICB0
-aHJlc2hvbGQgPSB3aWR0aCAqIGhlaWdodCAqIHZyZWZyZXNoICogNCAqIDcgLyAxMDAwMDAwOw0K
-PiA+ID4gPiArDQo+ID4gPiA+ICsgICAgICAgaWYgKHRocmVzaG9sZCA+IHJkbWFfZmlmb19zaXpl
-KQ0KPiA+ID4gPiArICAgICAgICAgICAgICAgdGhyZXNob2xkID0gcmRtYV9maWZvX3NpemU7DQo+
-ID4gPg0KPiA+ID4gSWYgdGhlIGZvcm11bGEgaXMgbm90IGNvcnJlY3QsIHlvdSBzaG91bGQgZml4
-IHRoZSBmb3JtdWxhIG5vdCB3b3JrIGFyb3VuZC4NCj4gPiA+DQo+ID4gPiBSZWdhcmRzLA0KPiA+
-ID4gQ2h1bi1LdWFuZy4NCj4gPg0KPiA+IGhvdyBhYm91dCB0aGlzOg0KPiA+IHRocmVzaG9sZCA9
-IG1heCh3aWR0aCAqIGhlaWdodCAqIHZyZWZyZXNoICogNCAqIDcgLyAxMDAwMDAwLA0KPiA+IHJk
-bWFfZmlmb19zaXplKTsNCj4gDQo+IFdoZW4gSSB1c2Ugd2lkdGggPSAxOTIwLCBoZWlnaHQgPSAx
-MDgwLCB2cmVmcmVzaCA9IDYwIHRvIGNhbGN1bGF0ZSwgSQ0KPiBnZXQgdGhyZXNob2xkID0gMjk4
-NS4NCj4gU28gSSB0aGluayBzZXQgdGhyZXNob2xkIHRvIGhhbGYgb2YgZmlmbyBzaXplIGlzIE9L
-IGZvciBNQVhfV0lEVEgsDQo+IE1BWF9IRUlHSFQsIE1BWF9WUkVGUkVTSCAodGhlc2UgdGhyZWUg
-bWF5IGJlIGRpZmZlcmVudCBpbiBlYWNoIFNvQykNCj4gDQo+IHRocmVzaG9sZCA9IFJETUFfRklG
-T19QU0VVRE9fU0laRShyZG1hX2ZpZm9fc2l6ZSkgLyAyOw0KPiANCj4gQnV0IEkgd29ycnkgaGFs
-ZiBmaWZvIHNpemUgaXMgdG9vIGJpZyBmb3Igc21hbGwgcmVzb2x1dGlvbiBhbmQgbGV0DQo+IHNt
-YWxsIHJlc29sdXRpb24gdG9vIGVhc3kgdG8gdHJpZ2dlciBidXJzdCByZWFkIERSQU0uIFNvIGxl
-dCB0aGUNCj4gZm9ybXVsYSB0byBiZSB0aGlzOg0KPiANCj4gdGhyZXNob2xkID0gUkRNQV9GSUZP
-X1BTRVVET19TSVpFKHJkbWFfZmlmb19zaXplKSAqIHdpZHRoICogaGVpZ2h0ICoNCj4gdnJlZnJl
-c2ggLyAyIC8gTUFYX1dJRFRIIC8gTUFYX0hFSUdIVCAvIE1BWF9WUkVGUkVTSDsNCj4gDQo+IEhv
-dyBkbyB5b3UgdGhpbmsgYWJvdXQgdGhpcz8NCj4gDQo+IFJlZ2FyZHMsDQo+IENodW4tS3Vhbmcu
-DQoNCmhvdyBhYm91dCByZW1vdmUgdGhpcyBmb3JtdWxhLCBhbmQgc2V0IHRocmVzaG9sZCA9IHJk
-bWFfZmlmb19zaXplDQo+IA0KPiA+ID4NCj4gPiA+ID4gKw0KPiA+ID4gPiAgICAgICAgIHJlZyA9
-IFJETUFfRklGT19VTkRFUkZMT1dfRU4gfA0KPiA+ID4gPiAgICAgICAgICAgICAgIFJETUFfRklG
-T19QU0VVRE9fU0laRShyZG1hX2ZpZm9fc2l6ZSkgfA0KPiA+ID4gPiAgICAgICAgICAgICAgIFJE
-TUFfT1VUUFVUX1ZBTElEX0ZJRk9fVEhSRVNIT0xEKHRocmVzaG9sZCk7DQo+ID4gPiA+IC0tDQo+
-ID4gPiA+IDEuOC4xLjEuZGlydHkNCj4gPiA+ID4gX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX18NCj4gPiA+ID4gTGludXgtbWVkaWF0ZWsgbWFpbGluZyBsaXN0
-DQo+ID4gPiA+IExpbnV4LW1lZGlhdGVrQGxpc3RzLmluZnJhZGVhZC5vcmcNCj4gPiA+ID4gaHR0
-cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1tZWRpYXRlaw0K
-PiA+DQoNCg==
+Hi Rob,
+
+On 01/01/21 12:47 am, Rob Herring wrote:
+> On Fri, Dec 18, 2020 at 07:38:10PM +0530, Aswath Govindraju wrote:
+>> Add a new compatible string for eeprom microchip 93LC46B in eeprom-93xx46
+>> dt-binding file as it belongs to the 93xx46 family of devices.
+>>
+>> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+>> ---
+>>  Documentation/devicetree/bindings/misc/eeprom-93xx46.txt | 1 +
+>>  1 file changed, 1 insertion(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/misc/eeprom-93xx46.txt b/Documentation/devicetree/bindings/misc/eeprom-93xx46.txt
+>> index a8ebb4621f79..9f272361f117 100644
+>> --- a/Documentation/devicetree/bindings/misc/eeprom-93xx46.txt
+>> +++ b/Documentation/devicetree/bindings/misc/eeprom-93xx46.txt
+>> @@ -4,6 +4,7 @@ Required properties:
+>>  - compatible : shall be one of:
+>>      "atmel,at93c46d"
+>>      "eeprom-93xx46"
+>> +    "microchip,93LC46B"
+> 
+> Generally, we use lowercase and that's the existing pattern here.
+
+ohh ok. I was trying to match the compatible string exactly with the the
+device name. I will make this change in the respin.
+
+Thanks,
+Aswath
+
+> 
+>>  - data-size : number of data bits per word (either 8 or 16)
+>>  
+>>  Optional properties:
+>> -- 
+>> 2.17.1
+>>
 
