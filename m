@@ -2,67 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 036B42EA381
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jan 2021 03:57:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 97F8C2EA3A0
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jan 2021 04:04:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726653AbhAEC4z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Jan 2021 21:56:55 -0500
-Received: from mail.kernel.org ([198.145.29.99]:59552 "EHLO mail.kernel.org"
+        id S1727697AbhAEDDz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Jan 2021 22:03:55 -0500
+Received: from mail.kernel.org ([198.145.29.99]:60852 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726477AbhAEC4z (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 4 Jan 2021 21:56:55 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 3BF5C22581;
-        Tue,  5 Jan 2021 02:56:12 +0000 (UTC)
+        id S1726653AbhAEDDz (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 4 Jan 2021 22:03:55 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 0827B22573;
+        Tue,  5 Jan 2021 03:03:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1609815374;
-        bh=3OWuMLKh9HSTyPne8PTtwAUU/g56o9RHORFLwfJqKtk=;
+        s=k20201202; t=1609815794;
+        bh=XE7SuiACZOYW31EJ7aMHbmMzUK72rlo4KYN550Ay5Sk=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=kyyfep+LwoHdopYtws6s/jz7ynjZ1GghNHum2AjuxtoVBJJDXS2qu6kDoHtcTA3va
-         KO15pf8OwNnu/70w14eXHvVR+nwRBAfPhbLiF079BOBQ/4lYFHRMm9+40OST+1Hf7/
-         m1VEmdaZzNKvO8DwmrdBPo7dpHcpCNqeKeikanbAamcE/+/S3WoeBQewx2LowplG+2
-         kp2ykAaR0rymrLbrCeiOPD7oLjC7GWVnWXzDcelkbNn1VNEJ1eALXDTGYvwFaADhq4
-         dKGaLmc2pkBpVP/7k2QFpLTgCzlVaoTAEeAIgfiHH2wAc8Lfr7jQGeIV4vtazIjaZB
-         AoazaQ9CRXBuw==
-Date:   Tue, 5 Jan 2021 10:56:08 +0800
+        b=hZZ8fJNlHnK4samldEl3EzVlUjJCO85NFtExNA4y3dQXmeqGpUL2+JfHNW2cZU6zQ
+         C2+fxKTyk4VgeKYPrTT8CA4If/qRg5YhtOYEdWVADzp6+IsOqyS2aRRFtXNFpLPnTu
+         rhYkWfmkXWNAKAJjQoiKVnUQ4U9aC7yPhi2ZeFAtVnCBj7ILqTRGeTaXE0uFVQxH2b
+         aD9raFLUtN/uO2a9jOJcJ7CxyiOS0ByB+ZxJVGexBlxjuY/zRAfPadCEfSJMnCm91l
+         uxuHaGvAQFkfQnSIJwxBdz1avcEeaz2F7QzzPs2npNvBqoWRQRkU2YA2d1CI6LfG9b
+         BEp4ardsdgjCg==
+Date:   Tue, 5 Jan 2021 11:03:09 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
-To:     Liu Ying <victor.liu@nxp.com>
-Cc:     linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        mturquette@baylibre.com, sboyd@kernel.org, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        robh+dt@kernel.org, aisheng.dong@nxp.com
-Subject: Re: [PATCH v2 0/4] Add some clocks support for i.MX8qxp
- DC0/MIPI-LVDS subsystems
-Message-ID: <20210105025607.GI4142@dragon>
-References: <1606887219-5854-1-git-send-email-victor.liu@nxp.com>
+To:     Adam Ford <aford173@gmail.com>
+Cc:     linux-arm-kernel@lists.infradead.org, aford@beaconembedded.com,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: imx8mm-beacon: Fix WiFi Pinmuxing
+Message-ID: <20210105030308.GK4142@dragon>
+References: <20201202135950.22164-1-aford173@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1606887219-5854-1-git-send-email-victor.liu@nxp.com>
+In-Reply-To: <20201202135950.22164-1-aford173@gmail.com>
 User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 02, 2020 at 01:33:35PM +0800, Liu Ying wrote:
-> This patch set adds some SCU clocks support for i.MX8qxp DC0/MIPI-LVDS
-> subsystems.
+On Wed, Dec 02, 2020 at 07:59:50AM -0600, Adam Ford wrote:
+> The WiFi chip is capable of communication at SDR104 speeds, and
+> the pinmux was configured to support this, but the sdhc1 controller
+> didn't properly reference the pinmux.  Enable 100Mhz and 200MHz pinmux
+> as was originally intended.
 > 
-> With this patch set, some basic clocks for i.MX8qxp LVDS displays can be got
-> by drivers.
-> 
-> v1->v2:
-> * Drop LPCG clocks as they can be registered directly in an in-tree new
->   DT binding way.
-> * Add DC0 bypass clocks support.
-> * Correct the way to register DC0 display clocks.
-> * Trivial tweak.
-> 
-> Liu Ying (4):
->   clk: imx: clk-imx8qxp: Add SCU clocks support for DC0 PLL clocks
->   clk: imx: clk-imx8qxp: Add SCU clocks support for DC0 bypass clocks
->   clk: imx: clk-imx8qxp: Register DC0 display clocks with imx_clk_scu2()
->   clk: imx: clk-imx8qxp: Add some SCU clocks support for MIPI-LVDS
->     subsystems
+> Fixes: 593816fa2f35 ("arm64: dts: imx: Add Beacon i.MX8m-Mini development kit")
 
-Applied all, thanks.
+This looks more like an improvement than bug fix.
+
+Shawn
+
+> Signed-off-by: Adam Ford <aford173@gmail.com>
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi
+> index 6de86a4f0ec4..90fd15e95798 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi
+> @@ -217,8 +217,10 @@
+>  &usdhc1 {
+>  	#address-cells = <1>;
+>  	#size-cells = <0>;
+> -	pinctrl-names = "default";
+> +	pinctrl-names = "default", "state_100mhz", "state_200mhz";
+>  	pinctrl-0 = <&pinctrl_usdhc1>;
+> +	pinctrl-1 = <&pinctrl_usdhc1_100mhz>;
+> +	pinctrl-2 = <&pinctrl_usdhc1_200mhz>;
+>  	bus-width = <4>;
+>  	non-removable;
+>  	cap-power-off-card;
+> -- 
+> 2.17.1
+> 
