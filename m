@@ -2,97 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 60ADC2EAE16
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jan 2021 16:20:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 51A9E2EAE06
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jan 2021 16:16:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725813AbhAEPQ0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jan 2021 10:16:26 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:47798 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725868AbhAEPQZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jan 2021 10:16:25 -0500
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 105FEkDg060829;
-        Tue, 5 Jan 2021 09:14:46 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1609859686;
-        bh=v8DeDg+aSnj9XDWh6SjoEmvU220d2QLKrD8S48HIXT4=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=yj3aKO12UPKPJDi5acfYe5Z5HixKedicAFUAqOGjPncovWUqLadmDB6fYe6flW0Uy
-         9wZgOiwC35Z4yzkeTVY5k667STn+tC34Q58up1b9uHni828sJ48CTQCJGfGx8HKJwc
-         mXESJfEeojXLvdL1CkuUAB1J/dVfuKGdIcojf52c=
-Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 105FEkmC015441
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 5 Jan 2021 09:14:46 -0600
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 5 Jan
- 2021 09:14:46 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Tue, 5 Jan 2021 09:14:46 -0600
-Received: from a0393678-ssd.ent.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 105FEPOI005961;
-        Tue, 5 Jan 2021 09:14:44 -0600
-From:   Kishon Vijay Abraham I <kishon@ti.com>
-To:     Nishanth Menon <nm@ti.com>, Rob Herring <robh+dt@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v4 6/6] arm64: dts: ti: k3-j7200-common-proc-board: Enable PCIe
-Date:   Tue, 5 Jan 2021 20:44:21 +0530
-Message-ID: <20210105151421.23237-7-kishon@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210105151421.23237-1-kishon@ti.com>
-References: <20210105151421.23237-1-kishon@ti.com>
+        id S1727163AbhAEPQC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jan 2021 10:16:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35642 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726328AbhAEPQC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jan 2021 10:16:02 -0500
+Received: from albert.telenet-ops.be (albert.telenet-ops.be [IPv6:2a02:1800:110:4::f00:1a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFD7CC061574
+        for <devicetree@vger.kernel.org>; Tue,  5 Jan 2021 07:15:21 -0800 (PST)
+Received: from ramsan.of.borg ([84.195.186.194])
+        by albert.telenet-ops.be with bizsmtp
+        id D3FJ2401y4C55Sk063FJUD; Tue, 05 Jan 2021 16:15:19 +0100
+Received: from rox.of.borg ([192.168.97.57])
+        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1kwo3K-001NHB-8U; Tue, 05 Jan 2021 16:15:18 +0100
+Received: from geert by rox.of.borg with local (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1kwo3J-006So0-K2; Tue, 05 Jan 2021 16:15:17 +0100
+From:   Geert Uytterhoeven <geert+renesas@glider.be>
+To:     Sergei Shtylyov <sergei.shtylyov@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     netdev@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH] dt-bindings: net: renesas,etheravb: RZ/G2H needs tx-internal-delay-ps
+Date:   Tue,  5 Jan 2021 16:15:16 +0100
+Message-Id: <20210105151516.1540653-1-geert+renesas@glider.be>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-x2 lane PCIe slot in the common processor board is enabled and connected to
-j7200 SOM. Add PCIe DT node in common processor board to reflect the
-same.
+The merge resolution of the interaction of commits 307eea32b202864c
+("dt-bindings: net: renesas,ravb: Add support for r8a774e1 SoC") and
+d7adf6331189cbe9 ("dt-bindings: net: renesas,etheravb: Convert to
+json-schema") missed that "tx-internal-delay-ps" should be a required
+property on RZ/G2H.
 
-Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
+Fixes: 8b0308fe319b8002 ("Merge git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net")
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 ---
- .../boot/dts/ti/k3-j7200-common-proc-board.dts    | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
+ Documentation/devicetree/bindings/net/renesas,etheravb.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
-index def98f563336..4a7182abccf5 100644
---- a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
-@@ -6,6 +6,7 @@
- /dts-v1/;
- 
- #include "k3-j7200-som-p0.dtsi"
-+#include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/net/ti-dp83867.h>
- #include <dt-bindings/mux/ti-serdes.h>
- #include <dt-bindings/phy/phy.h>
-@@ -241,3 +242,17 @@
- 		resets = <&serdes_wiz0 3>;
- 	};
- };
-+
-+&pcie1_rc {
-+	reset-gpios = <&exp1 2 GPIO_ACTIVE_HIGH>;
-+	phys = <&serdes0_pcie_link>;
-+	phy-names = "pcie-phy";
-+	num-lanes = <2>;
-+};
-+
-+&pcie1_ep {
-+	phys = <&serdes0_pcie_link>;
-+	phy-names = "pcie-phy";
-+	num-lanes = <2>;
-+	status = "disabled";
-+};
+diff --git a/Documentation/devicetree/bindings/net/renesas,etheravb.yaml b/Documentation/devicetree/bindings/net/renesas,etheravb.yaml
+index 244befb6402aa8b4..de9dd574a2f954a3 100644
+--- a/Documentation/devicetree/bindings/net/renesas,etheravb.yaml
++++ b/Documentation/devicetree/bindings/net/renesas,etheravb.yaml
+@@ -163,6 +163,7 @@ allOf:
+             enum:
+               - renesas,etheravb-r8a774a1
+               - renesas,etheravb-r8a774b1
++              - renesas,etheravb-r8a774e1
+               - renesas,etheravb-r8a7795
+               - renesas,etheravb-r8a7796
+               - renesas,etheravb-r8a77961
 -- 
-2.17.1
+2.25.1
 
