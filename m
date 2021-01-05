@@ -2,293 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A54C32EB5D0
-	for <lists+devicetree@lfdr.de>; Wed,  6 Jan 2021 00:07:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DC4752EB5F6
+	for <lists+devicetree@lfdr.de>; Wed,  6 Jan 2021 00:11:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727332AbhAEXGP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jan 2021 18:06:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53268 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726759AbhAEXGP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jan 2021 18:06:15 -0500
-Received: from mail-ot1-x32b.google.com (mail-ot1-x32b.google.com [IPv6:2607:f8b0:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC902C061795
-        for <devicetree@vger.kernel.org>; Tue,  5 Jan 2021 15:05:34 -0800 (PST)
-Received: by mail-ot1-x32b.google.com with SMTP id j12so1347301ota.7
-        for <devicetree@vger.kernel.org>; Tue, 05 Jan 2021 15:05:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=n+MJiDk+gXd8k7pAMaE3lFIIuuxOtCtew6SzM8WyLRI=;
-        b=f8gWn4bcjQkrBcOdgHhO9K16Z15wBUVuMNNmQCjs5VG+5U48Yl5XuJclGqsXY+ik2x
-         aZc8HUHpgIAo+RZ0El6XcsTUTtMoGbi0M/Q4cYd4W2Vb3l1xSoyGHFPdB+1ZECv+1gkx
-         s1Y1gDXSALeZxfB43E/byafO1D+6QdH9hRM5M8J07JzX1j6nkDwU9xvSfUkwJL5QU3V6
-         Q+r1jDaTSsi2DPI5ihe1eRcoPp70prrFCAsKDJjgbpAthWRmcSmJgW3OvNC3YPA+EOK4
-         USd48BckBVwePrwWnp/j1rK8Jnx9bI6WaEvgYLRoAz0/7AeS/pVCeZt1jp9lw/RQnBJF
-         YvKA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=n+MJiDk+gXd8k7pAMaE3lFIIuuxOtCtew6SzM8WyLRI=;
-        b=QnaeHvCZe+GqXGgZlJRjX15qMKKU7GPMsk3jjQWXHPKuhlXlz+inf4zlILD95fftKH
-         MLPgxycA4cxKudofPICiDUcfvIe3ps1AyQ2mPgid2YTF1+3OTfWFhR9R1AmeVrICb9Vm
-         Mb1yleZNj9+xTGNernnKQfPPDl5O7BEzW0ToRse55gezHg0dqyKG1jzne4Uie3e0VX4f
-         RVV7JdBuVjIrysxKRHPQKSk6jEiRKJ3dmixxNhE2G5ZIR8O5A9jwH4fPJVIPwesmwF0r
-         W6njZrUdVGTGLCPDAJ6SfqHSNVjdXseEhX0NNZ430G/EFVMSWmbK5rSzbCJwlurWVsZo
-         K1VA==
-X-Gm-Message-State: AOAM531M1Q86Kt21gbTtfhP1spuY0aWdsP5ih6yyrIeu3CdPVbsLqr2m
-        /Kdr7zcH2YH6/YGdzFcXUQigjg==
-X-Google-Smtp-Source: ABdhPJyTenkh5M6v8nX5Go1HWJLvlgwkSUUuj1HVOsFjsXLeFfgzn+4ZO2Men6HQs/ZUaIg1q1pxmA==
-X-Received: by 2002:a05:6830:1d0:: with SMTP id r16mr1360944ota.54.1609887933704;
-        Tue, 05 Jan 2021 15:05:33 -0800 (PST)
-Received: from ripper (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id o64sm201617oif.43.2021.01.05.15.05.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 Jan 2021 15:05:33 -0800 (PST)
-Date:   Tue, 5 Jan 2021 15:05:59 -0800
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Danny Lin <danny@kdrag0n.dev>, ulf.hansson@linaro.org
-Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: sm8150: Add support for deep CPU
- cluster idle
-Message-ID: <X/Tw13VgA5fOnlCV@ripper>
-References: <20210105201000.913183-1-danny@kdrag0n.dev>
+        id S1728071AbhAEXKV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jan 2021 18:10:21 -0500
+Received: from mail.kernel.org ([198.145.29.99]:58566 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728019AbhAEXKV (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 5 Jan 2021 18:10:21 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id CDC1023100;
+        Tue,  5 Jan 2021 23:09:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1609888180;
+        bh=fed5XlKEYP7XWtaTDihJhGMdXSKuB5tSlmnJYeJp5tA=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=XTorqmmoQFo45G1nbewWbvP/CAvceHKlyXWurSrvetkZZc/6Kuavisei2FTiVpZ13
+         vVx27/Msk/wjDmCKaBFSV0xmyQ1R1rqj2S7HfSDf8rBdcUKh/FQjukqWHttxrImIBq
+         i7q5eRq119nsRWEku8jfaeNm38AvuH8WI7exdD4y6oWj3Ej4qsbuUfrm1RUNEA4xuv
+         d0qy0RR9uo3rbPxZ46uOG2qGaE9/oRYGdygF/B5cMKUXGNBrO3woliFM7wKvJ5/D4X
+         goorMZ2I8ptX/nwdRzzsyYXqV7eAxwoDems14MOxsH0kTfIanPc6Nk6EINA1WNwL93
+         YLgNEr/YXSuEw==
+Received: by mail-ed1-f46.google.com with SMTP id r5so2552566eda.12;
+        Tue, 05 Jan 2021 15:09:39 -0800 (PST)
+X-Gm-Message-State: AOAM531y8+kAKzvNrnMc66NbVhJsDfGV55j7vZRwEejY/7cmNCa2VStj
+        6NkbSeg11CMmeZwNHdrisKEZ3dXBcx4HIR6x6Q==
+X-Google-Smtp-Source: ABdhPJzIhUlEvoUVEDqvgDDYC9VWDoT47pLXuX5VmL//f0UtuCznywGNVW5rGOqFAhZlyQJoJHGegCDvr8Y5OwVO8xU=
+X-Received: by 2002:a50:fc96:: with SMTP id f22mr2120443edq.162.1609888178364;
+ Tue, 05 Jan 2021 15:09:38 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210105201000.913183-1-danny@kdrag0n.dev>
+References: <1607591262-21736-1-git-send-email-yongqiang.niu@mediatek.com>
+ <1607591262-21736-6-git-send-email-yongqiang.niu@mediatek.com>
+ <CAAOTY_-aYFz1Xg6r2ur+BF_k_35F3qNLLb16_2c0MaMsYre-+w@mail.gmail.com>
+ <1607647514.12750.5.camel@mhfsdcap03> <CAAOTY__HA95WLNppOKainvsZCxA6Wv3edLyvOW6FxAjUos=afQ@mail.gmail.com>
+ <1609828577.1574.5.camel@mhfsdcap03>
+In-Reply-To: <1609828577.1574.5.camel@mhfsdcap03>
+From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Date:   Wed, 6 Jan 2021 07:09:27 +0800
+X-Gmail-Original-Message-ID: <CAAOTY_-AGNuwwCv-A_GWy7gDO8csXenJGciLsP7mRAUuUKWUKA@mail.gmail.com>
+Message-ID: <CAAOTY_-AGNuwwCv-A_GWy7gDO8csXenJGciLsP7mRAUuUKWUKA@mail.gmail.com>
+Subject: Re: [PATCH v8, 5/6] drm/mediatek: add RDMA fifo size error handle
+To:     Yongqiang Niu <yongqiang.niu@mediatek.com>
+Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        CK Hu <ck.hu@mediatek.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        DTML <devicetree@vger.kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        DRI Development <dri-devel@lists.freedesktop.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue 05 Jan 12:10 PST 2021, Danny Lin wrote:
+Hi, Yongqiang:
 
-> This commit adds support for deep idling of the entire unified DynamIQ
-> CPU cluster on sm8150. In this idle state, the LLCC (Last-Level Cache
-> Controller) is powered off and the AOP (Always-On Processor) enters a
-> low-power sleep state.
-> 
-> I'm not sure what the per-CPU 0x400000f4 idle state previously
-> contributed by Qualcomm as the "cluster sleep" state is, but the
-> downstream kernel has no such state. The real deep cluster idle state
-> is 0x41000c244, composed of:
-> 
->     Cluster idle state: (0xc24) << 4 = 0xc240
->     Is reset state: 1 << 30 = 0x40000000
->     Affinity level: 1 << 24 = 0x1000000
->     CPU idle state: 0x4 (power collapse)
-> 
-> This setup can be replicated with the PSCI power domain cpuidle driver,
-> which utilizes OSI to enter cluster idle when the last active CPU
-> enters idle.
-> 
-> The cluster idle state cannot be used as a plain cpuidle state because
-> it requires that all CPUs in the cluster are idling.
-> 
+Yongqiang Niu <yongqiang.niu@mediatek.com> =E6=96=BC 2021=E5=B9=B41=E6=9C=
+=885=E6=97=A5 =E9=80=B1=E4=BA=8C =E4=B8=8B=E5=8D=882:36=E5=AF=AB=E9=81=93=
+=EF=BC=9A
+>
+> On Mon, 2020-12-14 at 22:54 +0800, Chun-Kuang Hu wrote:
+> > Hi, Yongqiang:
+> >
+> > Yongqiang Niu <yongqiang.niu@mediatek.com> =E6=96=BC 2020=E5=B9=B412=E6=
+=9C=8811=E6=97=A5 =E9=80=B1=E4=BA=94 =E4=B8=8A=E5=8D=888:45=E5=AF=AB=E9=81=
+=93=EF=BC=9A
+> > >
+> > > On Thu, 2020-12-10 at 23:50 +0800, Chun-Kuang Hu wrote:
+> > > > Hi, Yongqiang:
+> > > >
+> > > > Yongqiang Niu <yongqiang.niu@mediatek.com> =E6=96=BC 2020=E5=B9=B41=
+2=E6=9C=8810=E6=97=A5 =E9=80=B1=E5=9B=9B =E4=B8=8B=E5=8D=885:08=E5=AF=AB=E9=
+=81=93=EF=BC=9A
+> > > > >
+> > > > > This patch add RDMA fifo size error handle
+> > > > > rdma fifo size will not always bigger than the calculated thresho=
+ld
+> > > > > if that case happened, we need set fifo size as the threshold
+> > > > >
+> > > > > Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
+> > > > > ---
+> > > > >  drivers/gpu/drm/mediatek/mtk_disp_rdma.c | 4 ++++
+> > > > >  1 file changed, 4 insertions(+)
+> > > > >
+> > > > > diff --git a/drivers/gpu/drm/mediatek/mtk_disp_rdma.c b/drivers/g=
+pu/drm/mediatek/mtk_disp_rdma.c
+> > > > > index 794acc5..0508392 100644
+> > > > > --- a/drivers/gpu/drm/mediatek/mtk_disp_rdma.c
+> > > > > +++ b/drivers/gpu/drm/mediatek/mtk_disp_rdma.c
+> > > > > @@ -151,6 +151,10 @@ static void mtk_rdma_config(struct mtk_ddp_c=
+omp *comp, unsigned int width,
+> > > > >          * account for blanking, and with a pixel depth of 4 byte=
+s:
+> > > > >          */
+> > > > >         threshold =3D width * height * vrefresh * 4 * 7 / 1000000=
+;
+> > > > > +
+> > > > > +       if (threshold > rdma_fifo_size)
+> > > > > +               threshold =3D rdma_fifo_size;
+> > > >
+> > > > If the formula is not correct, you should fix the formula not work =
+around.
+> > > >
+> > > > Regards,
+> > > > Chun-Kuang.
+> > >
+> > > how about this:
+> > > threshold =3D max(width * height * vrefresh * 4 * 7 / 1000000,
+> > > rdma_fifo_size);
+> >
+> > When I use width =3D 1920, height =3D 1080, vrefresh =3D 60 to calculat=
+e, I
+> > get threshold =3D 2985.
+> > So I think set threshold to half of fifo size is OK for MAX_WIDTH,
+> > MAX_HEIGHT, MAX_VREFRESH (these three may be different in each SoC)
+> >
+> > threshold =3D RDMA_FIFO_PSEUDO_SIZE(rdma_fifo_size) / 2;
+> >
+> > But I worry half fifo size is too big for small resolution and let
+> > small resolution too easy to trigger burst read DRAM. So let the
+> > formula to be this:
+> >
+> > threshold =3D RDMA_FIFO_PSEUDO_SIZE(rdma_fifo_size) * width * height *
+> > vrefresh / 2 / MAX_WIDTH / MAX_HEIGHT / MAX_VREFRESH;
+> >
+> > How do you think about this?
+> >
+> > Regards,
+> > Chun-Kuang.
+>
+> how about remove this formula, and set threshold =3D rdma_fifo_size
 
-This looks quite reasonable to me.
-
-@Ulf, this seems to be the first attempt at wiring up the domain idle
-pieces upstream, would you mind having a look?
-
-The SM8150 pretty much identical to RB3 in this regard.
+This means that RDMA would always trigger burst read. In normal case,
+I think no hardware would trigger burst read. Only the emergency
+occur, the hardware trigger burst read. RDMA always triggering burst
+read is good for RDMA, but it may hurt other hardware to read DRAM. So
+I think RDMA should trigger burst read only when fifo data is under a
+emergency threshold.
 
 Regards,
-Bjorn
+Chun-Kuang.
 
-> Signed-off-by: Danny Lin <danny@kdrag0n.dev>
-> ---
->  arch/arm64/boot/dts/qcom/sm8150.dtsi | 91 ++++++++++++++++++++++------
->  1 file changed, 73 insertions(+), 18 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-> index 309e00b6fa44..8956c6986744 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-> @@ -52,10 +52,10 @@ CPU0: cpu@0 {
->  			enable-method = "psci";
->  			capacity-dmips-mhz = <488>;
->  			dynamic-power-coefficient = <232>;
-> -			cpu-idle-states = <&LITTLE_CPU_SLEEP_0
-> -					   &CLUSTER_SLEEP_0>;
->  			next-level-cache = <&L2_0>;
->  			qcom,freq-domain = <&cpufreq_hw 0>;
-> +			power-domains = <&CPU_PD0>;
-> +			power-domain-names = "psci";
->  			#cooling-cells = <2>;
->  			L2_0: l2-cache {
->  				compatible = "cache";
-> @@ -73,10 +73,10 @@ CPU1: cpu@100 {
->  			enable-method = "psci";
->  			capacity-dmips-mhz = <488>;
->  			dynamic-power-coefficient = <232>;
-> -			cpu-idle-states = <&LITTLE_CPU_SLEEP_0
-> -					   &CLUSTER_SLEEP_0>;
->  			next-level-cache = <&L2_100>;
->  			qcom,freq-domain = <&cpufreq_hw 0>;
-> +			power-domains = <&CPU_PD1>;
-> +			power-domain-names = "psci";
->  			#cooling-cells = <2>;
->  			L2_100: l2-cache {
->  				compatible = "cache";
-> @@ -92,10 +92,10 @@ CPU2: cpu@200 {
->  			enable-method = "psci";
->  			capacity-dmips-mhz = <488>;
->  			dynamic-power-coefficient = <232>;
-> -			cpu-idle-states = <&LITTLE_CPU_SLEEP_0
-> -					   &CLUSTER_SLEEP_0>;
->  			next-level-cache = <&L2_200>;
->  			qcom,freq-domain = <&cpufreq_hw 0>;
-> +			power-domains = <&CPU_PD2>;
-> +			power-domain-names = "psci";
->  			#cooling-cells = <2>;
->  			L2_200: l2-cache {
->  				compatible = "cache";
-> @@ -110,10 +110,10 @@ CPU3: cpu@300 {
->  			enable-method = "psci";
->  			capacity-dmips-mhz = <488>;
->  			dynamic-power-coefficient = <232>;
-> -			cpu-idle-states = <&LITTLE_CPU_SLEEP_0
-> -					   &CLUSTER_SLEEP_0>;
->  			next-level-cache = <&L2_300>;
->  			qcom,freq-domain = <&cpufreq_hw 0>;
-> +			power-domains = <&CPU_PD3>;
-> +			power-domain-names = "psci";
->  			#cooling-cells = <2>;
->  			L2_300: l2-cache {
->  				compatible = "cache";
-> @@ -128,10 +128,10 @@ CPU4: cpu@400 {
->  			enable-method = "psci";
->  			capacity-dmips-mhz = <1024>;
->  			dynamic-power-coefficient = <369>;
-> -			cpu-idle-states = <&BIG_CPU_SLEEP_0
-> -					   &CLUSTER_SLEEP_0>;
->  			next-level-cache = <&L2_400>;
->  			qcom,freq-domain = <&cpufreq_hw 1>;
-> +			power-domains = <&CPU_PD4>;
-> +			power-domain-names = "psci";
->  			#cooling-cells = <2>;
->  			L2_400: l2-cache {
->  				compatible = "cache";
-> @@ -146,10 +146,10 @@ CPU5: cpu@500 {
->  			enable-method = "psci";
->  			capacity-dmips-mhz = <1024>;
->  			dynamic-power-coefficient = <369>;
-> -			cpu-idle-states = <&BIG_CPU_SLEEP_0
-> -					   &CLUSTER_SLEEP_0>;
->  			next-level-cache = <&L2_500>;
->  			qcom,freq-domain = <&cpufreq_hw 1>;
-> +			power-domains = <&CPU_PD5>;
-> +			power-domain-names = "psci";
->  			#cooling-cells = <2>;
->  			L2_500: l2-cache {
->  				compatible = "cache";
-> @@ -164,10 +164,10 @@ CPU6: cpu@600 {
->  			enable-method = "psci";
->  			capacity-dmips-mhz = <1024>;
->  			dynamic-power-coefficient = <369>;
-> -			cpu-idle-states = <&BIG_CPU_SLEEP_0
-> -					   &CLUSTER_SLEEP_0>;
->  			next-level-cache = <&L2_600>;
->  			qcom,freq-domain = <&cpufreq_hw 1>;
-> +			power-domains = <&CPU_PD6>;
-> +			power-domain-names = "psci";
->  			#cooling-cells = <2>;
->  			L2_600: l2-cache {
->  				compatible = "cache";
-> @@ -182,10 +182,10 @@ CPU7: cpu@700 {
->  			enable-method = "psci";
->  			capacity-dmips-mhz = <1024>;
->  			dynamic-power-coefficient = <421>;
-> -			cpu-idle-states = <&BIG_CPU_SLEEP_0
-> -					   &CLUSTER_SLEEP_0>;
->  			next-level-cache = <&L2_700>;
->  			qcom,freq-domain = <&cpufreq_hw 2>;
-> +			power-domains = <&CPU_PD7>;
-> +			power-domain-names = "psci";
->  			#cooling-cells = <2>;
->  			L2_700: l2-cache {
->  				compatible = "cache";
-> @@ -251,11 +251,13 @@ BIG_CPU_SLEEP_0: cpu-sleep-1-0 {
->  				min-residency-us = <4488>;
->  				local-timer-stop;
->  			};
-> +		};
->  
-> +		domain-idle-states {
->  			CLUSTER_SLEEP_0: cluster-sleep-0 {
-> -				compatible = "arm,idle-state";
-> +				compatible = "domain-idle-state";
->  				idle-state-name = "cluster-power-collapse";
-> -				arm,psci-suspend-param = <0x400000F4>;
-> +				arm,psci-suspend-param = <0x4100c244>;
->  				entry-latency-us = <3263>;
->  				exit-latency-us = <6562>;
->  				min-residency-us = <9987>;
-> @@ -291,6 +293,59 @@ pmu {
->  	psci {
->  		compatible = "arm,psci-1.0";
->  		method = "smc";
-> +
-> +		CPU_PD0: cpu0 {
-> +			#power-domain-cells = <0>;
-> +			power-domains = <&CLUSTER_PD>;
-> +			domain-idle-states = <&LITTLE_CPU_SLEEP_0>;
-> +		};
-> +
-> +		CPU_PD1: cpu1 {
-> +			#power-domain-cells = <0>;
-> +			power-domains = <&CLUSTER_PD>;
-> +			domain-idle-states = <&LITTLE_CPU_SLEEP_0>;
-> +		};
-> +
-> +		CPU_PD2: cpu2 {
-> +			#power-domain-cells = <0>;
-> +			power-domains = <&CLUSTER_PD>;
-> +			domain-idle-states = <&LITTLE_CPU_SLEEP_0>;
-> +		};
-> +
-> +		CPU_PD3: cpu3 {
-> +			#power-domain-cells = <0>;
-> +			power-domains = <&CLUSTER_PD>;
-> +			domain-idle-states = <&LITTLE_CPU_SLEEP_0>;
-> +		};
-> +
-> +		CPU_PD4: cpu4 {
-> +			#power-domain-cells = <0>;
-> +			power-domains = <&CLUSTER_PD>;
-> +			domain-idle-states = <&BIG_CPU_SLEEP_0>;
-> +		};
-> +
-> +		CPU_PD5: cpu5 {
-> +			#power-domain-cells = <0>;
-> +			power-domains = <&CLUSTER_PD>;
-> +			domain-idle-states = <&BIG_CPU_SLEEP_0>;
-> +		};
-> +
-> +		CPU_PD6: cpu6 {
-> +			#power-domain-cells = <0>;
-> +			power-domains = <&CLUSTER_PD>;
-> +			domain-idle-states = <&BIG_CPU_SLEEP_0>;
-> +		};
-> +
-> +		CPU_PD7: cpu7 {
-> +			#power-domain-cells = <0>;
-> +			power-domains = <&CLUSTER_PD>;
-> +			domain-idle-states = <&BIG_CPU_SLEEP_0>;
-> +		};
-> +
-> +		CLUSTER_PD: cpu-cluster0 {
-> +			#power-domain-cells = <0>;
-> +			domain-idle-states = <&CLUSTER_SLEEP_0>;
-> +		};
->  	};
->  
->  	reserved-memory {
-> -- 
-> 2.29.2
-> 
+> >
+> > > >
+> > > > > +
+> > > > >         reg =3D RDMA_FIFO_UNDERFLOW_EN |
+> > > > >               RDMA_FIFO_PSEUDO_SIZE(rdma_fifo_size) |
+> > > > >               RDMA_OUTPUT_VALID_FIFO_THRESHOLD(threshold);
+> > > > > --
+> > > > > 1.8.1.1.dirty
+> > > > > _______________________________________________
+> > > > > Linux-mediatek mailing list
+> > > > > Linux-mediatek@lists.infradead.org
+> > > > > http://lists.infradead.org/mailman/listinfo/linux-mediatek
+> > >
+>
