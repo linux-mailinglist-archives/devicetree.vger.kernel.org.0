@@ -2,219 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DC0FB2EB49E
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jan 2021 22:05:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EFDCD2EB4DF
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jan 2021 22:27:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728264AbhAEVEq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jan 2021 16:04:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34198 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726427AbhAEVEp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jan 2021 16:04:45 -0500
-Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55ABDC061793;
-        Tue,  5 Jan 2021 13:04:05 -0800 (PST)
-Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id 507AD23E64;
-        Tue,  5 Jan 2021 22:03:59 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1609880639;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=xD/IVxvyd6j7wfS9xaFAnKkf8kLdhLGDmJfadfDR494=;
-        b=OWfaK9H00GQ6RXMGITq6UFbwdIGWOxJxFd/VAkCLI687OrD0aT4Bb1MVkwhLNuZ2wJHHH2
-        XFyjMIdgOo1DgrYae4GaFM2ElxmrC6HQTmDEM1rV453P7kT1nhf7rLMC8I64DTMHDrii08
-        QabSAcXUBPi6fttXPLSouPHhPyFOnhU=
+        id S1728023AbhAEV1S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jan 2021 16:27:18 -0500
+Received: from mout.gmx.net ([212.227.17.21]:42137 "EHLO mout.gmx.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726020AbhAEV1R (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 5 Jan 2021 16:27:17 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1609881929;
+        bh=G0OVLdbaJsgO8HPhgo/xuHH4VcarVg+GV7RnGJ7YXdM=;
+        h=X-UI-Sender-Class:Date:From:To:Cc:Subject:References:In-Reply-To;
+        b=Bk4UHtUkaNQN8pmEkgqMXvvlLezQM4/a9/y6BmHYL8NQuM8ESeAjvijTwRtNjw7DE
+         lcyul/e3QnYqj+wcfGGH3GWJj0HGo/a1WIh/CI/1+M+yYecYLpC1GsWKx2ybTCdyu7
+         9UUMpdHbA1zLZGuTW0jPllLuVHOdv5p12ne0rb7Q=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from longitude ([37.201.215.57]) by mail.gmx.com (mrgmx104
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1MFbRm-1klMik3YaM-00H7Wo; Tue, 05
+ Jan 2021 22:25:28 +0100
+Date:   Tue, 5 Jan 2021 22:25:25 +0100
+From:   Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
+To:     conor.dooley@microchip.com
+Cc:     robh+dt@kernel.org, damien.lemoal@wdc.com,
+        jassisinghbrar@gmail.com, aou@eecs.berkeley.edu,
+        paul.walmsley@sifive.com, palmer@dabbelt.com,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        lewis.hanly@microchip.com, cyril.jean@microchip.com,
+        daire.mcnamara@microchip.com, atish.patra@wdc.com,
+        anup.patel@wdc.com, david.abdurachmanov@gmail.com,
+        j.neuschaefer@gmx.net
+Subject: Re: [PATCH v3 4/5] dt-bindings: add bindings for polarfire soc
+ system controller
+Message-ID: <X/TZRXPQv0wXvT+0@latitude>
+References: <20201223163247.28923-1-conor.dooley@microchip.com>
+ <20201223163316.29186-1-conor.dooley@microchip.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Tue, 05 Jan 2021 22:03:59 +0100
-From:   Michael Walle <michael@walle.cc>
-To:     Saravana Kannan <saravanak@google.com>
-Cc:     Ard Biesheuvel <ardb@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        Android Kernel Team <kernel-team@android.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Len Brown <lenb@kernel.org>,
-        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
-        linux-efi <linux-efi@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Marc Zyngier <maz@kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Tomi Valkeinen <tomi.valkeinen@ti.com>
-Subject: Re: [PATCH v2 16/17] driver core: Refactor fw_devlink feature
-In-Reply-To: <CAGETcx8BNkvz=F7Z6HGRZyEcPcQGyJ1hneVMZ=mOeJ8hdbGt1A@mail.gmail.com>
-References: <20201121020232.908850-17-saravanak@google.com>
- <20201229033440.32142-1-michael@walle.cc>
- <CAGETcx8BNkvz=F7Z6HGRZyEcPcQGyJ1hneVMZ=mOeJ8hdbGt1A@mail.gmail.com>
-User-Agent: Roundcube Webmail/1.4.9
-Message-ID: <6d5914f095556119f4a38def9297accd@walle.cc>
-X-Sender: michael@walle.cc
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="FMJAI3Xpdhqt2MKs"
+Content-Disposition: inline
+In-Reply-To: <20201223163316.29186-1-conor.dooley@microchip.com>
+X-Provags-ID: V03:K1:Gf17oAsiy5iz7mpMhRYz4egNe5BoH7WNT/wUW88YtCqDXne5g+C
+ e2uaohiym9EwmEtwsMV2r2FkbRo8kvy+9YvPbO74LgZoX6VlHOczciuwcqPr5bJqZGEpKgQ
+ lXbNdzOCwN+tT3UVQm5dOIsVD8oLKPGxVJRKtBbw5qXhqDXYAlnPafZUgiRxQW3NUjRv1pK
+ 9iS9vTqNZ/h9MTKIsLCKw==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:k1IA2ttbA+I=:Nzv6Ro/7yo7NnjwXZwfMM/
+ CctYuJ+TcwhItd0GMsOBXv7X6SPHbY+raN4/J83K2RV8uFUyr+LMkfrpJxUstl61JDnXOq+P4
+ oa0mRTQt5T5nUqhmIPsAAfvmUCDknPWxMxageQ6bkxeQPpbW1LS9GC++tTRR/YRoOnDdmvvxP
+ M/XPnwo/HSCAz6eN57aGLgcpgjAkm+r/UHsy4A6BfHIjDbE/A9cSJZgIJvkBYGSwCA9b3Sba7
+ uYVgYU1SYH7y5FX8Z4/zI2hPt0xmKHgpvyqwBqAc2Qm/4n0TN8IW/QhnH5oKUSKahOWcOgb8Y
+ wV6eEnHaXbAU5f93jdvaVWXqzFsPj6s3Cub8jdtPGFLfrMpX7hYYFrcaOfcthLtxik18tQL2u
+ ISY3GN7Grnv4VF0x3Ul98kL1abnod2X5fq9a/XHG941k1b7D8X88x9CH74qy4n4rqsS7B+FGS
+ 4PsMU7ZAR0eUTA6IRpD8HdraEbBQfio9eT/Jw64DuRpM2v9F5Zk8RRXX6vQFvF0ZRv3vb+QfH
+ RarMais8KR6GgSXq7qxJM5zGv0QMz6GbA9RXG1V2IRxAkdhSSY2dTazLttQpZdWRZhwRkjm00
+ Pb57d+hK3Udq2wKxgkuQKdtn4fm0m+uxObHM2+uHxN219Xl5YhiHxINZWn5TPgo+qyQ7ZZhPU
+ TYnNnMO+MvezBP0HHyTILOei+E0Nq4gJqORbENQ2ssNvrUPeFZ5mFYWlUMTvohmj9a/gRmaJw
+ 26DJNb/rKncJL0q44zfLdSC6KIBES5huHTMn4w7816LWZS9f8WeUAn+h3THVDc+jzhQsbpt0l
+ tB3ZUGER19700IONLAuQ+QP1XbcrrdRJ1UTsgmaaMEz9sOk0PsWfi+knyvJdDZLlxUMyfALmw
+ txbgTSeI9dWou15a5b+w==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am 2021-01-05 20:00, schrieb Saravana Kannan:
-> On Mon, Dec 28, 2020 at 7:35 PM Michael Walle <michael@walle.cc> wrote:
->> 
->> > The current implementation of fw_devlink is very inefficient because it
->> > tries to get away without creating fwnode links in the name of saving
->> > memory usage. Past attempts to optimize runtime at the cost of memory
->> > usage were blocked with request for data showing that the optimization
->> > made significant improvement for real world scenarios.
->> >
->> > We have those scenarios now. There have been several reports of boot
->> > time increase in the order of seconds in this thread [1]. Several OEMs
->> > and SoC manufacturers have also privately reported significant
->> > (350-400ms) increase in boot time due to all the parsing done by
->> > fw_devlink.
->> >
->> > So this patch uses all the setup done by the previous patches in this
->> > series to refactor fw_devlink to be more efficient. Most of the code has
->> > been moved out of firmware specific (DT mostly) code into driver core.
->> >
->> > This brings the following benefits:
->> > - Instead of parsing the device tree multiple times during bootup,
->> >   fw_devlink parses each fwnode node/property only once and creates
->> >   fwnode links. The rest of the fw_devlink code then just looks at these
->> >   fwnode links to do rest of the work.
->> >
->> > - Makes it much easier to debug probe issue due to fw_devlink in the
->> >   future. fw_devlink=on blocks the probing of devices if they depend on
->> >   a device that hasn't been added yet. With this refactor, it'll be very
->> >   easy to tell what that device is because we now have a reference to
->> >   the fwnode of the device.
->> >
->> > - Much easier to add fw_devlink support to ACPI and other firmware
->> >   types. A refactor to move the common bits from DT specific code to
->> >   driver core was in my TODO list as a prerequisite to adding ACPI
->> >   support to fw_devlink. This series gets that done.
->> >
->> > [1] - https://lore.kernel.org/linux-omap/ea02f57e-871d-cd16-4418-c1da4bbc4696@ti.com/
->> > Signed-off-by: Saravana Kannan <saravanak@google.com>
->> > Tested-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
->> > Tested-by: Grygorii Strashko <grygorii.strashko@ti.com>
->> 
->> git bisect show that this commit broke my board in 5.11-rc1:
->> 
->> [    2.294375] sysfs: cannot create duplicate filename 
->> '/devices/virtual/devlink/0000:00:00.1--0000:00:00.1'
->> [    2.303999] CPU: 1 PID: 1 Comm: swapper/0 Not tainted 
->> 5.11.0-rc1-00016-ga0fb284b267 #267
->> [    2.312125] Hardware name: Kontron SMARC-sAL28 (4 Lane) (DT)
->> [    2.317804] Call trace:
->> [    2.320253]  dump_backtrace+0x0/0x1b8
->> [    2.323936]  show_stack+0x20/0x70
->> [    2.327263]  dump_stack+0xd8/0x134
->> [    2.330677]  sysfs_warn_dup+0x6c/0x88
->> [    2.334351]  sysfs_create_dir_ns+0xe8/0x100
->> [    2.338547]  kobject_add_internal+0x9c/0x290
->> [    2.342833]  kobject_add+0xa0/0x108
->> [    2.346331]  device_add+0xfc/0x798
->> [    2.349746]  device_link_add+0x454/0x5e0
->> [    2.353682]  fw_devlink_create_devlink+0xb8/0xc8
->> [    2.358316]  __fw_devlink_link_to_suppliers+0x84/0x180
->> [    2.363474]  __fw_devlink_link_to_suppliers+0x134/0x180
->> [    2.368718]  device_add+0x778/0x798
->> [    2.372217]  device_register+0x28/0x38
->> [    2.375979]  __mdiobus_register+0x94/0x340
->> [    2.380089]  of_mdiobus_register+0xb4/0x380
->> [    2.384285]  enetc_pf_probe+0x73c/0xb10
->> [    2.388132]  local_pci_probe+0x48/0xb8
->> [    2.391896]  pci_device_probe+0x120/0x1c0
->> [    2.395920]  really_probe+0xec/0x3c0
->> [    2.399505]  driver_probe_device+0x60/0xc0
->> [    2.403614]  device_driver_attach+0x7c/0x88
->> [    2.407810]  __driver_attach+0x60/0xe8
->> [    2.411570]  bus_for_each_dev+0x7c/0xd0
->> [    2.415419]  driver_attach+0x2c/0x38
->> [    2.419004]  bus_add_driver+0x194/0x1f8
->> [    2.422851]  driver_register+0x6c/0x128
->> [    2.426698]  __pci_register_driver+0x4c/0x58
->> [    2.430983]  enetc_pf_driver_init+0x2c/0x38
->> [    2.435181]  do_one_initcall+0x54/0x2d8
->> [    2.439029]  kernel_init_freeable+0x1fc/0x268
->> [    2.443403]  kernel_init+0x1c/0x120
->> [    2.446904]  ret_from_fork+0x10/0x30
->> [    2.450502] kobject_add_internal failed for 
->> 0000:00:00.1--0000:00:00.1 with -EEXIST, don't try to register things 
->> with the same name in the same directory.
->> 
->> Looks like it will generate that link twice? Let me know if I can help
->> testing.
->> 
->> See also: https://lavalab.kontron.com/scheduler/job/3894#L831
-> 
-> I'll look into this this week. Is the DT for this board in upstream?
-> If so, can you point me to the DT file(s)?
 
-arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-kbox-a-230-ls.dts
+--FMJAI3Xpdhqt2MKs
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> Also, can you give me the output of this?
-> find /sys/devices -type d | grep "0000:00:00.1"
+Hi,
 
-# uname -a
-Linux buildroot 5.11.0-rc1-next-20210104 #298 SMP PREEMPT Tue Jan 5 
-21:55:23 CET 2021 aarch64 GNU/Linux
-# find /sys/devices -type d | grep "0000:00:00.1"
-/sys/devices/platform/soc/1f0000000.pcie/pci0000:00/0000:00:00.1
-/sys/devices/platform/soc/1f0000000.pcie/pci0000:00/0000:00:00.1/power
-/sys/devices/platform/soc/1f0000000.pcie/pci0000:00/0000:00:00.1/net
-/sys/devices/platform/soc/1f0000000.pcie/pci0000:00/0000:00:00.1/net/eno1
-/sys/devices/platform/soc/1f0000000.pcie/pci0000:00/0000:00:00.1/net/eno1/statistics
-/sys/devices/platform/soc/1f0000000.pcie/pci0000:00/0000:00:00.1/net/eno1/power
-/sys/devices/platform/soc/1f0000000.pcie/pci0000:00/0000:00:00.1/net/eno1/queues
-/sys/devices/platform/soc/1f0000000.pcie/pci0000:00/0000:00:00.1/net/eno1/queues/tx-6
-/sys/devices/platform/soc/1f0000000.pcie/pci0000:00/0000:00:00.1/net/eno1/queues/tx-6/byte_queue_limits
-/sys/devices/platform/soc/1f0000000.pcie/pci0000:00/0000:00:00.1/net/eno1/queues/tx-4
-/sys/devices/platform/soc/1f0000000.pcie/pci0000:00/0000:00:00.1/net/eno1/queues/tx-4/byte_queue_limits
-/sys/devices/platform/soc/1f0000000.pcie/pci0000:00/0000:00:00.1/net/eno1/queues/rx-7
-/sys/devices/platform/soc/1f0000000.pcie/pci0000:00/0000:00:00.1/net/eno1/queues/tx-2
-/sys/devices/platform/soc/1f0000000.pcie/pci0000:00/0000:00:00.1/net/eno1/queues/tx-2/byte_queue_limits
-/sys/devices/platform/soc/1f0000000.pcie/pci0000:00/0000:00:00.1/net/eno1/queues/rx-5
-/sys/devices/platform/soc/1f0000000.pcie/pci0000:00/0000:00:00.1/net/eno1/queues/tx-0
-/sys/devices/platform/soc/1f0000000.pcie/pci0000:00/0000:00:00.1/net/eno1/queues/tx-0/byte_queue_limits
-/sys/devices/platform/soc/1f0000000.pcie/pci0000:00/0000:00:00.1/net/eno1/queues/rx-3
-/sys/devices/platform/soc/1f0000000.pcie/pci0000:00/0000:00:00.1/net/eno1/queues/rx-1
-/sys/devices/platform/soc/1f0000000.pcie/pci0000:00/0000:00:00.1/net/eno1/queues/tx-7
-/sys/devices/platform/soc/1f0000000.pcie/pci0000:00/0000:00:00.1/net/eno1/queues/tx-7/byte_queue_limits
-/sys/devices/platform/soc/1f0000000.pcie/pci0000:00/0000:00:00.1/net/eno1/queues/tx-5
-/sys/devices/platform/soc/1f0000000.pcie/pci0000:00/0000:00:00.1/net/eno1/queues/tx-5/byte_queue_limits
-/sys/devices/platform/soc/1f0000000.pcie/pci0000:00/0000:00:00.1/net/eno1/queues/tx-3
-/sys/devices/platform/soc/1f0000000.pcie/pci0000:00/0000:00:00.1/net/eno1/queues/tx-3/byte_queue_limits
-/sys/devices/platform/soc/1f0000000.pcie/pci0000:00/0000:00:00.1/net/eno1/queues/rx-6
-/sys/devices/platform/soc/1f0000000.pcie/pci0000:00/0000:00:00.1/net/eno1/queues/tx-1
-/sys/devices/platform/soc/1f0000000.pcie/pci0000:00/0000:00:00.1/net/eno1/queues/tx-1/byte_queue_limits
-/sys/devices/platform/soc/1f0000000.pcie/pci0000:00/0000:00:00.1/net/eno1/queues/rx-4
-/sys/devices/platform/soc/1f0000000.pcie/pci0000:00/0000:00:00.1/net/eno1/queues/rx-2
-/sys/devices/platform/soc/1f0000000.pcie/pci0000:00/0000:00:00.1/net/eno1/queues/rx-0
-/sys/devices/platform/soc/1f0000000.pcie/pci0000:00/0000:00:00.1/mdio_bus
-/sys/devices/platform/soc/1f0000000.pcie/pci0000:00/0000:00:00.1/mdio_bus/0000:00:00.1
-/sys/devices/platform/soc/1f0000000.pcie/pci0000:00/0000:00:00.1/mdio_bus/0000:00:00.1/statistics
-/sys/devices/platform/soc/1f0000000.pcie/pci0000:00/0000:00:00.1/mdio_bus/0000:00:00.1/power
-/sys/devices/platform/soc/1f0000000.pcie/pci0000:00/0000:00:00.1/mdio_bus/0000:00:00.1/0000:00:00.1:04
-/sys/devices/platform/soc/1f0000000.pcie/pci0000:00/0000:00:00.1/mdio_bus/0000:00:00.1/0000:00:00.1:04/statistics
-/sys/devices/platform/soc/1f0000000.pcie/pci0000:00/0000:00:00.1/mdio_bus/0000:00:00.1/0000:00:00.1:04/regulator
-/sys/devices/platform/soc/1f0000000.pcie/pci0000:00/0000:00:00.1/mdio_bus/0000:00:00.1/0000:00:00.1:04/regulator/regulator.3
-/sys/devices/platform/soc/1f0000000.pcie/pci0000:00/0000:00:00.1/mdio_bus/0000:00:00.1/0000:00:00.1:04/regulator/regulator.3/power
-/sys/devices/platform/soc/1f0000000.pcie/pci0000:00/0000:00:00.1/mdio_bus/0000:00:00.1/0000:00:00.1:04/regulator/regulator.4
-/sys/devices/platform/soc/1f0000000.pcie/pci0000:00/0000:00:00.1/mdio_bus/0000:00:00.1/0000:00:00.1:04/regulator/regulator.4/power
-/sys/devices/platform/soc/1f0000000.pcie/pci0000:00/0000:00:00.1/mdio_bus/0000:00:00.1/0000:00:00.1:04/power
-/sys/devices/platform/soc/1f0000000.pcie/pci0000:00/0000:00:00.1/msi_irqs
-/sys/devices/platform/soc/1f0000000.pcie/pci0000:00/0000:00:00.1/link
-/sys/devices/virtual/devlink/5000000.iommu--0000:00:00.1
+On Wed, Dec 23, 2020 at 04:33:16PM +0000, conor.dooley@microchip.com wrote:
+> From: Conor Dooley <conor.dooley@microchip.com>
+>=20
+> Add device tree bindings for the MSS system controller on
+> the Microchip PolarFire SoC.
 
-HTH,
--michael
+"MSS" doesn't appear below, so perhaps an expansion in parentheses would
+be nice, e.g.: "MSS (microprocessor subsystem)"
+
+>=20
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> ---
+>  .../microchip,mpfs_sys_controller.yaml        | 34 +++++++++++++++++++
+>  1 file changed, 34 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/soc/microchip/micro=
+chip,mpfs_sys_controller.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/soc/microchip/microchip,mp=
+fs_sys_controller.yaml b/Documentation/devicetree/bindings/soc/microchip/mi=
+crochip,mpfs_sys_controller.yaml
+> new file mode 100644
+> index 000000000000..60fde1925910
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/soc/microchip/microchip,mpfs_sys_=
+controller.yaml
+> @@ -0,0 +1,34 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/soc/microchip/microchip,mpfs_sys_con=
+troller.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +
+> +title: Microchip PolarFire SoC (MPFS) system controller
+> +
+> +maintainers:
+> +  - Conor Dooley <conor.dooley@microchip.com>
+> +
+> +properties:
+> +  compatible:
+> +    const: microchip,polarfire-soc-sys-controller
+
+The file name and compatible string are inconsistent in phrasing
+(mpfs- vs. polarfire-soc-). If possible, please align them.
+
+> +
+> +  mboxes:
+> +    $ref: '/schemas/types.yaml#/definitions/phandle-array'
+> +    description: |
+> +      phandle and index of the mailbox controller device node.
+> +      See: ../mailbox/mailbox.txt for more information.
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - "mboxes"
+
+Quotation marks are unnecessary here, because there are no special
+characters in "mboxes".
+
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    syscontroller: syscontroller {
+> +      compatible =3D "microchip,polarfire-soc-sys-controller";
+> +      mboxes =3D <&mbox 0>;
+> +    };
+> --=20
+
+
+Best regards,
+Jonathan Neusch=C3=A4fer
+
+--FMJAI3Xpdhqt2MKs
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEvHAHGBBjQPVy+qvDCDBEmo7zX9sFAl/02T0ACgkQCDBEmo7z
+X9sWYQ/7Bwcca3EgLofiNd2r0011OLx1t8Jw8k38CkgtkY4Gu/0aAWbNK1ZiGncW
+Uf2sqJw9jU/pqHMhPBbq3WhBMxIZ8mJRLNxaDkcywMCjLlaV3UsSh4J7iU70Odo3
+JgLdybDMOdVZRX8e/k0LjZ6evJSGkgwKQuRqgqWc6N30zRBeINo2DTzYYgLY9j9d
+QZY/679R0Olf2V4LgHkYRsvElxYOgj0HIqFtVB0yADv0MdxGpdIJzpjDCwfL6POy
+356gORm8um+fywEBCZ1h3TKD6adfulFMdTVAAsky+Py1px8eFyPvbD5ln1a5+q1U
+kyQgvJ5ZQqZ2y13+3emdUZJslZSSxaqfKvqzESorrii1cfvMLmoArtBf4hJ+OHNb
+QVUT+9Y9IEEEEDVa3asjppkB64RxENNBVvjQfjAuN9gHE6ZMElAFrhNG/mWZiwI5
+hLpRN8iy80bOKT1RrreMSdoIT2spFQNY2HZGXAJtJNAEyIcjl3W7ZASJuRyr1Xxo
+95EF4WV8MQzNUNoz3aoyAa3oMcpe44xY3T9ac6gVeD3iYL3KoA49lC2f0EWpp2gt
+SkSrKRmXqjBNx2cvgsMEFuWUuAPw/VeR7lpBeiRN5KM6DOzn0hMxYBIy0gK8e5dq
+BMlWjrdiPcDhcvucwnf1CyLfwjoihMimxblN0bLqSkbR80O/+nY=
+=vass
+-----END PGP SIGNATURE-----
+
+--FMJAI3Xpdhqt2MKs--
