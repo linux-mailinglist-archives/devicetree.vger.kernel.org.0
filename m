@@ -2,141 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8CC892EA950
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jan 2021 12:01:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 59CCE2EA954
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jan 2021 12:01:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729126AbhAELAe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jan 2021 06:00:34 -0500
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:45594 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728507AbhAELAd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jan 2021 06:00:33 -0500
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 105AwofM058823;
-        Tue, 5 Jan 2021 04:58:50 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1609844330;
-        bh=AytViMSSM5J0cU6Cfi4k0xvLSDRJDzCcGCKwmlG9ANM=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=Q1m5n4XkoR+TslLpY5CETwl0nLz4sdY5QUGzHUARjX5ZgXBj5Er9LTQeMA2prVMN6
-         OnI6KQyn99VlH8ridDR/zEa1K50Qmz5LqLar6GDv2YqTPCXeR7kqw1gtENQDuKXJGQ
-         2S+4Rl5vOKnXKDm9J6ekTuqd6kdrgC4z+JlmK9lU=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 105Awo7w103055
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 5 Jan 2021 04:58:50 -0600
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 5 Jan
- 2021 04:58:50 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Tue, 5 Jan 2021 04:58:50 -0600
-Received: from gsaswath-HP-ProBook-640-G5.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 105AwK9B056260;
-        Tue, 5 Jan 2021 04:58:44 -0600
-From:   Aswath Govindraju <a-govindraju@ti.com>
-CC:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Sekhar Nori <nsekhar@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Pratyush Yadav <p.yadav@ti.com>,
-        Aswath Govindraju <a-govindraju@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Vadym Kochan <vadym.kochan@plvision.eu>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v2 2/2] misc: eeprom_93xx46: Add quirk to support Microchip 93LC46B eeprom
-Date:   Tue, 5 Jan 2021 16:28:12 +0530
-Message-ID: <20210105105817.17644-3-a-govindraju@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210105105817.17644-1-a-govindraju@ti.com>
-References: <20210105105817.17644-1-a-govindraju@ti.com>
+        id S1729381AbhAELAw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jan 2021 06:00:52 -0500
+Received: from mail-oo1-f47.google.com ([209.85.161.47]:33841 "EHLO
+        mail-oo1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729252AbhAELAw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jan 2021 06:00:52 -0500
+Received: by mail-oo1-f47.google.com with SMTP id x23so6992645oop.1;
+        Tue, 05 Jan 2021 03:00:36 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=jJeZsSi/01Cav7+K7JwyWm6MMO/wugP5/u44TAzN3Zk=;
+        b=bXn/8DQAJvYYNed9CzrkSvhkHrz4Me1NEJST7kXxga5hsfrUicl6b3dVLW9A2/34gP
+         I1QBwAkmaLr/Qza4V3X6hVtY2azkBlBnDR3cLcEMYodKBCygk8IuVsVP2Cmk01VIYP+H
+         OBLzNS/r9QxXZXqCstEXDkMhHiEZwFN0GTcAMxZ/8MA1DhB0YjpsNGzI2HQ0km940lD3
+         8h24faL7uiwX8j0W+VIkcERKYcycAV8lLQmFiaR2gShlMis08VLasZmKXOpNWHTzKc44
+         FUt2s+Oe9JB9Mvc5aKNhRaM/whq2rIgNUlTj8Ui1t1b/liT7nGP8j97S9ww+LM5fdLjv
+         Rnwg==
+X-Gm-Message-State: AOAM531dRMxQ9xwVq7WgEF9khNONEwbYz0RgBc8gc2LA7/Wyc52vALzu
+        v++KdH1lSXu8ERiK8D+Aknm4/xRzjp7Ed0DBj2Cr6GYF
+X-Google-Smtp-Source: ABdhPJyv3C2eY2G954afrjNLNxBIHalBcC0Idl3e7QMA00wrpLCXxslJNj0HUWj/oVgZ6TDqNWO4sllpP3AnTy9GcNs=
+X-Received: by 2002:a4a:ca14:: with SMTP id w20mr52111506ooq.11.1609844411459;
+ Tue, 05 Jan 2021 03:00:11 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-To:     unlisted-recipients:; (no To-header on input)
+References: <20201223172505.34736-1-wsa+renesas@sang-engineering.com> <20201223172505.34736-5-wsa+renesas@sang-engineering.com>
+In-Reply-To: <20201223172505.34736-5-wsa+renesas@sang-engineering.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 5 Jan 2021 12:00:00 +0100
+Message-ID: <CAMuHMdW0fQBHvQntbikQo+ywzwrRod9HuJmxCSt9J-X2OruRYA@mail.gmail.com>
+Subject: Re: [PATCH 4/5] arm64: dts: renesas: Add I2C support for falcon board
+To:     Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Koji Matsuoka <koji.matsuoka.xm@renesas.com>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-A dummy zero bit is sent preceding the data during a read transfer by the
-Microchip 93LC46B eeprom (section 2.7 of[1]). This results in right shift
-of data during a read. In order to ignore this bit a quirk can be added to
-send an extra zero bit after the read address.
+Hi Wolfram,
 
-Add a quirk to ignore the zero bit sent before data by adding a zero bit
-after the read address.
+On Wed, Dec 23, 2020 at 6:25 PM Wolfram Sang
+<wsa+renesas@sang-engineering.com> wrote:
+> From: Koji Matsuoka <koji.matsuoka.xm@renesas.com>
+>
+> Signed-off-by: Koji Matsuoka <koji.matsuoka.xm@renesas.com>
+> [wsa: rebased]
+> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 
-[1] - https://www.mouser.com/datasheet/2/268/20001749K-277859.pdf
+Thanks for your patch!
 
-Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
----
- drivers/misc/eeprom/eeprom_93xx46.c | 15 +++++++++++++++
- include/linux/eeprom_93xx46.h       |  2 ++
- 2 files changed, 17 insertions(+)
+> --- a/arch/arm64/boot/dts/renesas/r8a779a0-falcon.dts
+> +++ b/arch/arm64/boot/dts/renesas/r8a779a0-falcon.dts
+> @@ -21,6 +21,34 @@ chosen {
+>         };
+>  };
+>
+> +&i2c0 {
+> +       pinctrl-0 = <&i2c0_pins>;
+> +       pinctrl-names = "default";
+> +
+> +       status = "okay";
+> +       clock-frequency = <400000>;
+> +};
+> +
+> +&i2c1 {
+> +       pinctrl-0 = <&i2c1_pins>;
+> +       pinctrl-names = "default";
+> +
+> +       status = "okay";
+> +       clock-frequency = <400000>;
+> +};
+> +
+> +&pfc {
+> +       i2c0_pins: i2c0 {
+> +               groups = "i2c0";
+> +               function = "i2c0";
+> +       };
+> +
+> +       i2c1_pins: i2c1 {
+> +               groups = "i2c1";
+> +               function = "i2c1";
+> +       };
+> +};
+> +
 
-diff --git a/drivers/misc/eeprom/eeprom_93xx46.c b/drivers/misc/eeprom/eeprom_93xx46.c
-index 7c45f82b4302..a18247696ce7 100644
---- a/drivers/misc/eeprom/eeprom_93xx46.c
-+++ b/drivers/misc/eeprom/eeprom_93xx46.c
-@@ -35,6 +35,10 @@ static const struct eeprom_93xx46_devtype_data atmel_at93c46d_data = {
- 		  EEPROM_93XX46_QUIRK_INSTRUCTION_LENGTH,
- };
- 
-+static const struct eeprom_93xx46_devtype_data microchip_93lc46b_data = {
-+	.quirks = EEPROM_93XX46_QUIRK_EXTRA_READ_CYCLE,
-+};
-+
- struct eeprom_93xx46_dev {
- 	struct spi_device *spi;
- 	struct eeprom_93xx46_platform_data *pdata;
-@@ -55,6 +59,11 @@ static inline bool has_quirk_instruction_length(struct eeprom_93xx46_dev *edev)
- 	return edev->pdata->quirks & EEPROM_93XX46_QUIRK_INSTRUCTION_LENGTH;
- }
- 
-+static inline bool has_quirk_extra_read_cycle(struct eeprom_93xx46_dev *edev)
-+{
-+	return edev->pdata->quirks & EEPROM_93XX46_QUIRK_EXTRA_READ_CYCLE;
-+}
-+
- static int eeprom_93xx46_read(void *priv, unsigned int off,
- 			      void *val, size_t count)
- {
-@@ -96,6 +105,11 @@ static int eeprom_93xx46_read(void *priv, unsigned int off,
- 		dev_dbg(&edev->spi->dev, "read cmd 0x%x, %d Hz\n",
- 			cmd_addr, edev->spi->max_speed_hz);
- 
-+		if (has_quirk_extra_read_cycle(edev)) {
-+			cmd_addr <<= 1;
-+			bits += 1;
-+		}
-+
- 		spi_message_init(&m);
- 
- 		t[0].tx_buf = (char *)&cmd_addr;
-@@ -363,6 +377,7 @@ static void select_deassert(void *context)
- static const struct of_device_id eeprom_93xx46_of_table[] = {
- 	{ .compatible = "eeprom-93xx46", },
- 	{ .compatible = "atmel,at93c46d", .data = &atmel_at93c46d_data, },
-+	{ .compatible = "microchip,93lc46b", .data = &microchip_93lc46b_data, },
- 	{}
- };
- MODULE_DEVICE_TABLE(of, eeprom_93xx46_of_table);
-diff --git a/include/linux/eeprom_93xx46.h b/include/linux/eeprom_93xx46.h
-index eec7928ff8fe..99580c22f91a 100644
---- a/include/linux/eeprom_93xx46.h
-+++ b/include/linux/eeprom_93xx46.h
-@@ -16,6 +16,8 @@ struct eeprom_93xx46_platform_data {
- #define EEPROM_93XX46_QUIRK_SINGLE_WORD_READ		(1 << 0)
- /* Instructions such as EWEN are (addrlen + 2) in length. */
- #define EEPROM_93XX46_QUIRK_INSTRUCTION_LENGTH		(1 << 1)
-+/* Add extra cycle after address during a read */
-+#define EEPROM_93XX46_QUIRK_EXTRA_READ_CYCLE		BIT(2)
- 
- 	/*
- 	 * optional hooks to control additional logic
+BTW, why not adding i2c6, which also has slave devices connected to it?
+
+>  &rwdt {
+>         timeout-sec = <60>;
+>         status = "okay";
+
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
 -- 
-2.17.1
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
