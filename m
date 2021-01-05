@@ -2,89 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 453F22EAABF
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jan 2021 13:28:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 53EB72EAAF2
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jan 2021 13:32:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730182AbhAEM2X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jan 2021 07:28:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37794 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730176AbhAEM2V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jan 2021 07:28:21 -0500
-Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com [IPv6:2607:f8b0:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54177C0617A4
-        for <devicetree@vger.kernel.org>; Tue,  5 Jan 2021 04:27:14 -0800 (PST)
-Received: by mail-pl1-x635.google.com with SMTP id v3so16261896plz.13
-        for <devicetree@vger.kernel.org>; Tue, 05 Jan 2021 04:27:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=BVgPs4UTz0m97kkGkS/Y+gkUiFLrmZrneiZz02HakNw=;
-        b=OQaxZLZrGACL8Q54aGsrKM3UtdQOc3d9oBz5rGsFK5MYTq3dzA2t1r6lgPaRte30RK
-         7Zho0nQ0IwZWdj97ucxShx8X4W/CO36KVqPKs15ohWVWBugVWtZE0W83Zs5nQkBF6Z2b
-         odoEi2OR3OBDiv2o6fmfwBcxjSOoYdyQhx35nfLv879JlufiBWEsePYyjP93elxNNhGQ
-         eG2gVQm+fLEEoM5YMdXo/2s7wfbTIxuXnkRH+wvQOlWdiEXUjh13nlhhL5iwIG6h8drx
-         WT5kq3QTGe/gJ1EDTCPbnDfwHSWmTLKagPbS6JIWN6XW87SjYzES9URdK2CQ3f/W6X1e
-         uyCg==
+        id S1728054AbhAEMbd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jan 2021 07:31:33 -0500
+Received: from mail-oi1-f172.google.com ([209.85.167.172]:40268 "EHLO
+        mail-oi1-f172.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727725AbhAEMbc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jan 2021 07:31:32 -0500
+Received: by mail-oi1-f172.google.com with SMTP id p5so35776748oif.7;
+        Tue, 05 Jan 2021 04:31:16 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=BVgPs4UTz0m97kkGkS/Y+gkUiFLrmZrneiZz02HakNw=;
-        b=AbO3PZU3PeaqHlr22br/SWA5s7siuDH/WWuVkpV0cqciAa+m4kCCFg0Cj/RUq5uheg
-         MDhd45a2Ht3+J1UtQTgDer3+IFWuS0EEIxTt64Fdp4vxB5NcqAbLm6IgbXu3rLhiTZtc
-         kLoskeMLA5XwyqFfDPHFrYpS5qzGR1LKIJ1P2CNevoQE8a699RdVIS0DDjUVyKmu+toG
-         R/a9s0YSV005JiDqXHTW9ihCXRPHorMJxVelh9MfehlBepYPDvKfad050benwlM0HryZ
-         uWCHt4yp5anLydwKscKag+bwbudU5j93UbSQheU5QgK0MOkk/M0rdcV4jgeZrqrUVGhN
-         ygzA==
-X-Gm-Message-State: AOAM530WTtWnDo30zxEervIAHmUyb238m8v25yKcUHWq9V4PH8bmD1R/
-        IDugVSCEZlZWB2f61A2i5e4sq7wMMZlN
-X-Google-Smtp-Source: ABdhPJyxoMT1SpuSm2yhcMnDEwBBVoOFnTvmNvyODOP877OQwAFbVMVdWDJaKdU8QGhDSPTNjhArMg==
-X-Received: by 2002:a17:90b:228b:: with SMTP id kx11mr3968531pjb.122.1609849633859;
-        Tue, 05 Jan 2021 04:27:13 -0800 (PST)
-Received: from localhost.localdomain ([103.77.37.191])
-        by smtp.gmail.com with ESMTPSA id t22sm64745402pgm.18.2021.01.05.04.27.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 Jan 2021 04:27:13 -0800 (PST)
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     agross@kernel.org, bjorn.andersson@linaro.org
-Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH v2 05/18] dt-bindings: arm-smmu: Add binding for Qcom SDX55 SMMU
-Date:   Tue,  5 Jan 2021 17:56:36 +0530
-Message-Id: <20210105122649.13581-6-manivannan.sadhasivam@linaro.org>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210105122649.13581-1-manivannan.sadhasivam@linaro.org>
-References: <20210105122649.13581-1-manivannan.sadhasivam@linaro.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=12r0Bw4nS6BbOFWAUi5UOySbS/NhH/yJzSZDxReb0mc=;
+        b=YGRRjcWTRcrLlo7fzVd4yx/Rp3pF59DdlemgZMj15fHVt+bOyZAlVZbnb+yKjWmTCs
+         SFxcR87PA7pHplh+4zAAm0D9uf3nkpIsJqbUlCoaUqiHquF0w6g1ExAb6zS8D6ozXX4K
+         knRLXYODaD7xNm2527PaqdUICFOBGB9puifeKdTz9UPwcdWOA0vpkMRa5R2bQDLK21eV
+         y19iVqSBAzBwcrmKaB53PhOcHj0xobmN5Ke438MUbmGIp/mIUOXSAuVghfhZyevWZw2i
+         OaxHBeP16BOcI3WGOFsgPfSCE+AhKo8ww+Ph+rCwKA6z2SFoGjByIY3dUvv9UOM2Twva
+         uVyQ==
+X-Gm-Message-State: AOAM531jXh8hHj8D0Wo2Nj8lT9qSy6dXRmGiBNSWJz8hOorKFH7guOGc
+        H2PEIidZOXdy0jqtbjlIHYq9taYbKiVUW7kw+JI=
+X-Google-Smtp-Source: ABdhPJxhfYcB3nGeskK2H/0rnXAFgFKmRJsoddbw4QCk8GH9dI0Itm4pwCPMMe046eNRfR7hZ/AgHUvnwrFtDA9WrG4=
+X-Received: by 2002:aca:4b16:: with SMTP id y22mr2403452oia.148.1609849851249;
+ Tue, 05 Jan 2021 04:30:51 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20201223172505.34736-1-wsa+renesas@sang-engineering.com> <20201223172505.34736-2-wsa+renesas@sang-engineering.com>
+In-Reply-To: <20201223172505.34736-2-wsa+renesas@sang-engineering.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 5 Jan 2021 13:30:40 +0100
+Message-ID: <CAMuHMdVKmb8tCGQUQtCOfkjB3VxbVtwuA3u9kh2XuxQumKhekg@mail.gmail.com>
+Subject: Re: [PATCH 1/5] dt-bindings: i2c: renesas,i2c: add r8a779a0 (V3U) support
+To:     Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux I2C <linux-i2c@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add devicetree binding for Qualcomm SDX55 SMMU.
+On Wed, Dec 23, 2020 at 6:27 PM Wolfram Sang
+<wsa+renesas@sang-engineering.com> wrote:
+> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: devicetree@vger.kernel.org
-Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
----
- Documentation/devicetree/bindings/iommu/arm,smmu.yaml | 1 +
- 1 file changed, 1 insertion(+)
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-index 3b63f2ae24db..cc48d90de5fe 100644
---- a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-+++ b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-@@ -37,6 +37,7 @@ properties:
-               - qcom,sdm845-smmu-500
-               - qcom,sm8150-smmu-500
-               - qcom,sm8250-smmu-500
-+              - qcom,sdx55-smmu-500
-           - const: arm,mmu-500
-       - description: Qcom Adreno GPUs implementing "arm,smmu-v2"
-         items:
+> --- a/Documentation/devicetree/bindings/i2c/renesas,i2c.txt
+> +++ b/Documentation/devicetree/bindings/i2c/renesas,i2c.txt
+> @@ -26,6 +26,7 @@ Required properties:
+>         "renesas,i2c-r8a77980" if the device is a part of a R8A77980 SoC.
+>         "renesas,i2c-r8a77990" if the device is a part of a R8A77990 SoC.
+>         "renesas,i2c-r8a77995" if the device is a part of a R8A77995 SoC.
+> +       "renesas,i2c-r8a779a0" if the device is a part of a R8A779A0 SoC.
+>         "renesas,rcar-gen1-i2c" for a generic R-Car Gen1 compatible device.
+>         "renesas,rcar-gen2-i2c" for a generic R-Car Gen2 or RZ/G1 compatible
+>                                 device.
+
+Note that this doesn't say anything about (in)compatibility with generic
+R-Car Gen3 compatible devices (hint: yaml conversion?).
+
+New features:
+  - Slave Clock Stretch Select,
+  - Fast Mode+ Enable,
+  - Enhanced First Bit Setup Cycle configuration.
+
+Looks like the R-Car V3U variant can be treated as a generic R-Car Gen3
+variant (lacking the new features, of course).
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
 -- 
-2.25.1
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
