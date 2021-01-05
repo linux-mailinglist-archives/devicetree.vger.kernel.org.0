@@ -2,307 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A8D332EABE6
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jan 2021 14:28:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 021F42EAC3A
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jan 2021 14:47:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729337AbhAEN1f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jan 2021 08:27:35 -0500
-Received: from mail.kernel.org ([198.145.29.99]:35004 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729270AbhAEN1d (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 5 Jan 2021 08:27:33 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id C2877229C5;
-        Tue,  5 Jan 2021 13:26:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1609853212;
-        bh=W+IJs7urgK/jizFjM9m8hHegfA4Pv/rQbKGR6L2Iuno=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=SQmDp6iVBmWk+GZDr9TgzIdxQTc4EmgnSI7qSGotEP2IAau0DBtl1a2Jh8t+h3TXp
-         rbGKdapTRqphhfRejBGu7I6MOi8w+uBuQVmOAAZUySYq6da06DkOVm1HbLCFqv+KsK
-         GSJ5AAsIjUadZWbXEreNOxGLYI2avr2ZVYxwsDm4=
-Date:   Tue, 5 Jan 2021 14:28:16 +0100
-From:   'Greg Kroah-Hartman' <gregkh@linuxfoundation.org>
-To:     =?iso-8859-1?Q?J=F3zsef_Horv=E1th?= <info@ministro.hu>
-Cc:     'Rob Herring' <robh+dt@kernel.org>,
-        'Jiri Slaby' <jirislaby@kernel.org>,
-        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v7,1/2] Serial: silabs si4455 serial driver
-Message-ID: <X/RpcButq6PhqdIs@kroah.com>
-References: <20210105102921.GA10736@dev>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210105102921.GA10736@dev>
+        id S1728832AbhAENrB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jan 2021 08:47:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50072 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727178AbhAENrA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jan 2021 08:47:00 -0500
+Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A38BC061795;
+        Tue,  5 Jan 2021 05:46:20 -0800 (PST)
+Received: by mail-pj1-x102e.google.com with SMTP id v1so1709604pjr.2;
+        Tue, 05 Jan 2021 05:46:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=g0jobtBXA5sj9lDPVNKn9xThUOLvezyzWjBOk2AQI4o=;
+        b=j7R993e1p6XDqUzZu9+3yl32GIoPMOJlG4ZrwT3Nc2s8L8eOVjRui8reMP0z2Nz0IH
+         dUv9QtWe0gosaeqypUR8P7x6ho54pHerFBxPLwpXGq8BskFLq9lTsdXSLx4g3tHEJvnG
+         hUWjb7zmLX1e3QpUo8VwyXqXZSIgdxY2rM22uSeXmqIMVa1TFMhEuNHffM+uLGAOTV8R
+         Kd12gCUHBb6Ske7B1FuHWdrmYvtP0Z+Zyj6FJcV3ZQP6iBmYVXDOEuWjHFa9a+pfPc0l
+         PwG8W5mVApfcvxSBLnk+QfzHZg/d+sZkgXaD4ht9/EHXsgFXQBQiyzPtSl3MBZmUfA+c
+         0isA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=g0jobtBXA5sj9lDPVNKn9xThUOLvezyzWjBOk2AQI4o=;
+        b=dtqrPiGOo6OP+9LF93AaC1HfBqvIBHgLLNZBnxrXbRlmfeJdAsCE2MRhZhG1IABWwz
+         29ax/4JvY602IeUQ6a3+8P0hJNdU2CjNFbmCl6XAJCpgBtKuuKuGlvAjVQNyyPMrUujg
+         kuOfMhszsIospCf3RfByPaItYYVyaDWS1ip0w2iHhoK7gLJGVT/uLlxYMvHnf9dYSVS0
+         Ytj6mD/IhsvQqR1cIa2M69ntg0HYato8HJFm3WWm2XDVC81muaMT8jE1OfB4jDggj29M
+         4CF5wUOtT/TWlr2x6p0H8ZfXp+oH7Jx7fLvdqu+GGrjyQECISsmf5XN+MySY7pn2Tij0
+         c82Q==
+X-Gm-Message-State: AOAM532M9VdXfq89yyQLi/gibp0dSZazGql11xc5GYQAXPThyht+vgRV
+        2sofjDpJT3GM2j25B8spBpwPqd9xYVk=
+X-Google-Smtp-Source: ABdhPJxvd6mIQv1AA6rT/CDrdeIwQ5Gv03Zr0IMu8Te2vbFbkE9nf31TY6rfagk/VngB0+YLJKjv0Q==
+X-Received: by 2002:a17:90a:1b0d:: with SMTP id q13mr4092457pjq.21.1609854380057;
+        Tue, 05 Jan 2021 05:46:20 -0800 (PST)
+Received: from nj08008nbu.spreadtrum.com ([117.18.48.82])
+        by smtp.gmail.com with ESMTPSA id w63sm57582284pfc.20.2021.01.05.05.46.14
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 05 Jan 2021 05:46:19 -0800 (PST)
+From:   Kevin Tang <kevin3.tang@gmail.com>
+To:     maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+        sean@poorly.run, airlied@linux.ie, daniel@ffwll.ch,
+        robh+dt@kernel.org, mark.rutland@arm.com, kevin3.tang@gmail.com
+Cc:     orsonzhai@gmail.com, zhang.lyra@gmail.com,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH v3 0/6] Add Unisoc's drm kms module
+Date:   Tue,  5 Jan 2021 21:46:01 +0800
+Message-Id: <1609854367-2720-1-git-send-email-kevin3.tang@gmail.com>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 05, 2021 at 10:29:25AM +0000, József Horváth wrote:
-> This is a serial port driver for
->  Silicon Labs Si4455 Sub-GHz transciver.
-> 
-> The goal of this driver is to removing wires
->  between central(linux) device and remote serial devices/sensors,
->  but keeping the original user software.
->  It represents regular serial interface for the user space.
-> 
-> Datasheet: https://www.silabs.com/documents/public/data-sheets/Si4455.pdf
-> 
-> Guide: https://github.com/dministro/linux-serial-si4455
-> 
-> Signed-off-by: Jozsef Horvath <info@ministro.hu>
-> ---
-> 
-> changes v1:
->  - fixed: drivers: serial: si4455: coding style
->  - fixed: drivers: serial: si4455: error checking and order
->  - fixed: drivers: serial: si4455: remove unnecessary compatibility
->    strings from si4455_dt_ids
-> 
-> changes v2:
->  - fixed: drivers: serial: si4455: coding style
-> 
-> changes v3:
->  - fixed: drivers: serial: si4455: coding style
->  - fixed: drivers: serial: si4455: replace device configuration procedure
->    (SI4455_IOC_SEZC ioctl call) with request_firmware(...).
->    The firmware name comes from dt (silabs,ez-config)
->  - fixed: drivers: serial: si4455: replace transmit/receive channel
->    select (SI4455_IOC_STXC/SI4455_IOC_SRXC ioctl calls)
->    with sysfs entries (tx_channel, rx_channel).
->    Initial values comes from dt (silabs,tx-channel and silabs,rx-channel)
->  - fixed: drivers: serial: si4455: replace package size setting
->    (SI4455_IOC_SSIZ ioctl call) with sysfs entry (package_size).
->    Initial value comes from dt (silabs,package-size)
->  - fixed: drivers: serial: si4455: replace getting last rssi
->    (SI4455_IOC_GRSSI ioctl call) with sysfs entry (current_rssi)
->  - fixed: drivers: serial: si4455: remove si4455_api.h
->    and custom ioctl definitions
-> 
-> changes v5:
->  - fixed: drivers: serial: si4455: coding style
->  - fixed: drivers: serial: si4455: remove struct si4455_one,
->    members moved to struct si4455_port
->  - fixed: drivers: serial: si4455: fix line endings in dev_err and
->    dev_dbg messages
->  - fixed: drivers: serial: si4455: remove unnecessary else { ... }
->  - fixed: drivers: serial: si4455: refactor si4455_do_work(...),
->    xmit circular buffer handling and start tx moved to
->    si4455_start_tx_xmit(...)
->  - fixed: drivers: serial: si4455: refactor si4455_configure
->  - fixed: drivers: serial: si4455: refactor interrupt handling,
->    remove unnecessary wrapper
->  - fixed: drivers: serial: si4455: modem line(si4455_get_mctrl)
->    and tx buffer status(si4455_tx_empty) conditions and signaling
->  - fixed: drivers: serial: si4455: remove unsafe int to pointer conversion
-> 
-> changes v6:
->  - fixed: drivers: serial: si4455: illegal characters in
->    MODULE_AUTHOR("...") Reported-by: kernel test robot <lkp@intel.com>
-> 
-> changes v7:
->  - added: drivers: serial: si4455: variable packet length support
->  - added: drivers: serial: si4455: extended error handling
->  - added: dt: bindings: silabs,si4455: silabs,tx-timeout property definition
-> ---
->  MAINTAINERS                 |    6 +
->  drivers/tty/serial/Kconfig  |    8 +
->  drivers/tty/serial/Makefile |    1 +
->  drivers/tty/serial/si4455.c | 1721 +++++++++++++++++++++++++++++++++++
->  4 files changed, 1736 insertions(+)
->  create mode 100644 drivers/tty/serial/si4455.c
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index a008b70f3c16..ca6e32693a74 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -15952,6 +15952,12 @@ M:	Jérôme Pouiller <jerome.pouiller@silabs.com>
->  S:	Supported
->  F:	drivers/staging/wfx/
->  
-> +SILICON LABS SI4455 SERIAL DRIVER
-> +M:	Jozsef Horvath <info@ministro.hu>
-> +S:	Maintained
-> +F:	Documentation/devicetree/bindings/serial/silabs,si4455.yaml
-> +F:	drivers/tty/serial/si4455.c
-> +
->  SILICON MOTION SM712 FRAME BUFFER DRIVER
->  M:	Sudip Mukherjee <sudipm.mukherjee@gmail.com>
->  M:	Teddy Wang <teddy.wang@siliconmotion.com>
-> diff --git a/drivers/tty/serial/Kconfig b/drivers/tty/serial/Kconfig
-> index 28f22e58639c..560aa311cd03 100644
-> --- a/drivers/tty/serial/Kconfig
-> +++ b/drivers/tty/serial/Kconfig
-> @@ -1583,6 +1583,14 @@ config SERIAL_MILBEAUT_USIO_CONSOLE
->  	  receives all kernel messages and warnings and which allows logins in
->  	  single user mode).
->  
-> +config SERIAL_SI4455
-> +	tristate "Si4455 support"
-> +	depends on SPI
-> +	select SERIAL_CORE
-> +	help
-> +	  This driver is for Silicon Labs's Si4455 Sub-GHz transciver.
-> +	  Say 'Y' here if you wish to use it as serial port.
-> +
+ChangeList:
+RFC v1:
+1. only upstream modeset and atomic at first commit. 
+2. remove some unused code;
+3. use alpha and blend_mode properties;
+3. add yaml support;
+4. remove auto-adaptive panel driver;
+5. bugfix
 
-No module name?
+RFC v2:
+1. add sprd crtc and plane module for KMS, preparing for multi crtc&encoder
+2. remove gem drivers, use generic CMA handlers
+3. remove redundant "module_init", all the sub modules loading by KMS
 
->  endmenu
->  
->  config SERIAL_MCTRL_GPIO
-> diff --git a/drivers/tty/serial/Makefile b/drivers/tty/serial/Makefile
-> index caf167f0c10a..f01ff43db1d6 100644
-> --- a/drivers/tty/serial/Makefile
-> +++ b/drivers/tty/serial/Makefile
-> @@ -89,6 +89,7 @@ obj-$(CONFIG_SERIAL_MPS2_UART)	+= mps2-uart.o
->  obj-$(CONFIG_SERIAL_OWL)	+= owl-uart.o
->  obj-$(CONFIG_SERIAL_RDA)	+= rda-uart.o
->  obj-$(CONFIG_SERIAL_MILBEAUT_USIO) += milbeaut_usio.o
-> +obj-$(CONFIG_SERIAL_SI4455)	+= si4455.o
->  obj-$(CONFIG_SERIAL_SIFIVE)	+= sifive.o
->  
->  # GPIOLIB helpers for modem control lines
-> diff --git a/drivers/tty/serial/si4455.c b/drivers/tty/serial/si4455.c
-> new file mode 100644
-> index 000000000000..615c783b7aa2
-> --- /dev/null
-> +++ b/drivers/tty/serial/si4455.c
-> @@ -0,0 +1,1721 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (C) 2020 József Horváth <info@ministro.hu>
-> + *
-> + */
-> +#include <linux/bitops.h>
-> +#include <linux/clk.h>
-> +#include <linux/delay.h>
-> +#include <linux/device.h>
-> +#include <linux/gpio/driver.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/of_device.h>
-> +#include <linux/of_gpio.h>
-> +#include <linux/regmap.h>
-> +#include <linux/serial_core.h>
-> +#include <linux/serial.h>
-> +#include <linux/tty.h>
-> +#include <linux/tty_flip.h>
-> +#include <linux/spi/spi.h>
-> +#include <linux/uaccess.h>
-> +#include <linux/string.h>
-> +#include <linux/firmware.h>
-> +#include <linux/timer.h>
-> +#ifdef CONFIG_DEBUG_FS
-> +#include <linux/debugfs.h>
-> +#endif
+RFC v3:
+1. multi crtc&encoder design have problem, so rollback to v1
 
-No need for #ifdef for .h files.
+RFC v4:
+1. update to gcc-linaro-7.5.0
+2. update to Linux 5.6-rc3
+3. remove pm_runtime support
+4. add COMPILE_TEST, remove unused kconfig
+5. "drm_dev_put" on drm_unbind
+6. fix some naming convention issue
+7. remove semaphore lock for crtc flip
+8. remove static variables
 
-> +
-> +#define PORT_SI4455						1096
-> +#define SI4455_NAME						"Si4455"
-> +#define SI4455_MAJOR						432
-> +#define SI4455_MINOR						567
+RFC v5:
+1. optimize encoder and connector code implementation
+2. use "platform_get_irq" and "platform_get_resource"
+3. drop useless function return type, drop unless debug log
+4. custom properties should be separate, so drop it
+5. use DRM_XXX replase pr_xxx
+6. drop dsi&dphy hal callback ops
+7. drop unless callback ops checking
+8. add comments for sprd dpu structure
 
-Where are these major/minor numbers being used and where did they come
-from?  Why do you need them?
+RFC v6:
+1. Access registers via readl/writel
+2. Checking for unsupported KMS properties (format, rotation, blend_mode, etc) on plane_check ops
+3. Remove always true checks for dpu core ops
 
-> +struct si4455_port {
-> +	struct uart_port port;
-> +#ifdef CONFIG_DEBUG_FS
-> +	struct dentry *dbgfs_dir;
-> +#endif
+RFC v7:
+1. Fix DTC unit name warnings
+2. Fix the problem of maintainers
+3. Call drmm_mode_config_init to mode config init
+4. Embed drm_device in sprd_drm and use devm_drm_dev_alloc
+5. Replace DRM_XXX with drm_xxx on KMS module, but not suitable for other subsystems
+6. Remove plane_update stuff, dpu handles all the HW update in crtc->atomic_flush
+7. Dsi&Dphy Code structure adjustment, all move to "sprd/"
 
-Do not put #ifdefs in .c code, you never need to check for this type of
-thing.
+v0:
+1. Remove dpu_core_ops stuff layer for sprd drtc driver, but dpu_layer need to keeping.
+   Because all the HW update in crtc->atomic_flush, we need temporary storage all layers for
+   the dpu pageflip of atomic_flush.
+2. Add ports subnode with port@X.
 
-> +static struct uart_driver si4455_uart = {
-> +	.owner			= THIS_MODULE,
-> +	.driver_name		= SI4455_NAME,
-> +#ifdef CONFIG_DEVFS_FS
-> +	.dev_name		= "ttySI%d",
+v1:
+1. Remove dphy and dsi graph binding, merge the dphy driver into the dsi.
+2. Add commit messages for Unisoc's virtual nodes.
 
-Looks like you are porting this from a _VERY_ old kernel.  That config
-option went away 15+ years ago.  Are you sure this works?
+v2:
+1. Use drm_xxx to replace all DRM_XXX.
+2. Use kzalloc to replace devm_kzalloc for sprd_dsi/sprd_dpu structure init.
+3. Remove dpu_core_ops midlayer.
 
+v3:
+1. Remove dpu_layer midlayer and commit layers by aotmic_update
 
-> +#else
-> +	.dev_name		= "ttySI",
+Kevin Tang (6):
+  dt-bindings: display: add Unisoc's drm master bindings
+  drm/sprd: add Unisoc's drm kms master
+  dt-bindings: display: add Unisoc's dpu bindings
+  drm/sprd: add Unisoc's drm display controller driver
+  dt-bindings: display: add Unisoc's mipi dsi controller bindings
+  drm/sprd: add Unisoc's drm mipi dsi&dphy driver
 
-Where did you get that name from?
+ .../display/sprd/sprd,display-subsystem.yaml       |   64 +
+ .../bindings/display/sprd/sprd,sharkl3-dpu.yaml    |   77 +
+ .../display/sprd/sprd,sharkl3-dsi-host.yaml        |  102 ++
+ drivers/gpu/drm/Kconfig                            |    2 +
+ drivers/gpu/drm/Makefile                           |    1 +
+ drivers/gpu/drm/sprd/Kconfig                       |   13 +
+ drivers/gpu/drm/sprd/Makefile                      |    8 +
+ drivers/gpu/drm/sprd/dw_dsi_ctrl.c                 |  794 +++++++++++
+ drivers/gpu/drm/sprd/dw_dsi_ctrl.h                 | 1475 ++++++++++++++++++++
+ drivers/gpu/drm/sprd/dw_dsi_ctrl_ppi.c             |  157 +++
+ drivers/gpu/drm/sprd/dw_dsi_ctrl_ppi.h             |   26 +
+ drivers/gpu/drm/sprd/megacores_pll.c               |  317 +++++
+ drivers/gpu/drm/sprd/megacores_pll.h               |  146 ++
+ drivers/gpu/drm/sprd/sprd_dpu.c                    |  985 +++++++++++++
+ drivers/gpu/drm/sprd/sprd_dpu.h                    |  120 ++
+ drivers/gpu/drm/sprd/sprd_drm.c                    |  224 +++
+ drivers/gpu/drm/sprd/sprd_drm.h                    |   19 +
+ drivers/gpu/drm/sprd/sprd_dsi.c                    | 1162 +++++++++++++++
+ drivers/gpu/drm/sprd/sprd_dsi.h                    |  107 ++
+ 19 files changed, 5799 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/sprd/sprd,display-subsystem.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/sprd/sprd,sharkl3-dpu.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/sprd/sprd,sharkl3-dsi-host.yaml
+ create mode 100644 drivers/gpu/drm/sprd/Kconfig
+ create mode 100644 drivers/gpu/drm/sprd/Makefile
+ create mode 100644 drivers/gpu/drm/sprd/dw_dsi_ctrl.c
+ create mode 100644 drivers/gpu/drm/sprd/dw_dsi_ctrl.h
+ create mode 100644 drivers/gpu/drm/sprd/dw_dsi_ctrl_ppi.c
+ create mode 100644 drivers/gpu/drm/sprd/dw_dsi_ctrl_ppi.h
+ create mode 100644 drivers/gpu/drm/sprd/megacores_pll.c
+ create mode 100644 drivers/gpu/drm/sprd/megacores_pll.h
+ create mode 100644 drivers/gpu/drm/sprd/sprd_dpu.c
+ create mode 100644 drivers/gpu/drm/sprd/sprd_dpu.h
+ create mode 100644 drivers/gpu/drm/sprd/sprd_drm.c
+ create mode 100644 drivers/gpu/drm/sprd/sprd_drm.h
+ create mode 100644 drivers/gpu/drm/sprd/sprd_dsi.c
+ create mode 100644 drivers/gpu/drm/sprd/sprd_dsi.h
 
+-- 
+2.7.4
 
-> +static int si4455_begin_tx(struct uart_port *port, u32 channel, int length,
-> +			   u8 *data)
-> +{
-> +	int ret = 0;
-> +	struct si4455_int_status int_status = { 0 };
-> +	struct si4455_fifo_info fifo_info = { 0 };
-> +
-> +	dev_dbg(port->dev, "%s(%u, %u)\n", __func__, channel, length);
-
-No need for these types of debugging lines, just use ftrace.
-
-Please remove them, you have them in a few places (same for the end of
-functions.)
-
-> +static void si4455_null_void(struct uart_port *port)
-> +{
-> +	/* Do nothing */
-
-Why do you need this???
-
-> +#ifdef CONFIG_DEBUG_FS
-
-Again, no #ifdef needed.
-
-> +static int si4455_debugfs_init(struct device *dev)
-> +{
-> +	struct si4455_port *s = dev_get_drvdata(dev);
-> +	struct dentry *dbgfs_si_dir;
-> +	struct dentry *dbgfs_partinfo_dir;
-> +	struct dentry *dbgfs_entry;
-> +
-> +	s->dbgfs_dir = debugfs_create_dir(dev_name(dev), NULL);
-> +	if (IS_ERR(s->dbgfs_dir))
-> +		return PTR_ERR(s->dbgfs_dir);
-
-No  need to check any debugfs return value, just use it and move on.
-
-> +
-> +	dbgfs_si_dir = debugfs_create_dir("si4455", s->dbgfs_dir);
-> +	if (IS_ERR(dbgfs_si_dir))
-> +		return PTR_ERR(dbgfs_si_dir);
-> +
-> +	dbgfs_entry = debugfs_create_u32("cts_error_count", 0444,
-> +					 dbgfs_si_dir, &s->cts_error_count);
-> +	if (IS_ERR(dbgfs_entry))
-> +		return PTR_ERR(dbgfs_entry);
-
-Same for all of these, no need to check anything.
-
-> +
-> +	dbgfs_entry = debugfs_create_u32("tx_error_count", 0444,
-> +					 dbgfs_si_dir, &s->tx_error_count);
-> +	if (IS_ERR(dbgfs_entry))
-> +		return PTR_ERR(dbgfs_entry);
-> +
-> +	dbgfs_partinfo_dir = debugfs_create_dir("partinfo", dbgfs_si_dir);
-> +	if (IS_ERR(dbgfs_partinfo_dir))
-> +		return PTR_ERR(dbgfs_partinfo_dir);
-> +
-> +	dbgfs_entry = debugfs_create_u8("chip_rev", 0444,
-> +					dbgfs_partinfo_dir,
-> +					&s->part_info.chip_rev);
-
-Wait, did you even build this code?  Does it work?  It shouldn't, these
-debugfs calls have changed...
-
-I'm stopping reviewing here.
-
-thanks,
-
-greg k-h
