@@ -2,75 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C5C0A2EB10D
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jan 2021 18:09:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 565C92EB11F
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jan 2021 18:12:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726313AbhAERIO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jan 2021 12:08:14 -0500
-Received: from mail-wm1-f46.google.com ([209.85.128.46]:33423 "EHLO
-        mail-wm1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730430AbhAERIN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jan 2021 12:08:13 -0500
-Received: by mail-wm1-f46.google.com with SMTP id n16so1796008wmc.0;
-        Tue, 05 Jan 2021 09:07:56 -0800 (PST)
+        id S1728477AbhAERL5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jan 2021 12:11:57 -0500
+Received: from mail-wr1-f48.google.com ([209.85.221.48]:40751 "EHLO
+        mail-wr1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727036AbhAERL5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jan 2021 12:11:57 -0500
+Received: by mail-wr1-f48.google.com with SMTP id 91so36879706wrj.7;
+        Tue, 05 Jan 2021 09:11:40 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=8PYxaFWJILkA0uxuXAUf3F8/Qw1AAhsYzrjrCjqXI7k=;
-        b=qGEELhKWQeJW+KUFF5yZntH8F8B9EbAFXoAfONfAF7Sqjck9HvVy+zniRZDSGEiy/u
-         SnvFM2chszpYmUhdPoitqjTb3Ag7i3xe/OVpqt0Y4cTDL9RVfdcDXswG1P4FEjZhDuJl
-         uSNn+kiAIa7zyblT5w5K868qB9oCS1fllCq/YDd9nQZm/EZH3/EIX+AR49cREHWQ53i1
-         b7tNNVU9iSBciLf59R7MI78Ial1DmFcrQecQTyTD2+rtxGhiczk3pBGgDyqWan9d1wVK
-         yuMh4OBBvW1G7cBd6+Xm0webuYlWOllrG6thR76ZLQ+c5ytQ8hN/F9bdddauh12zN0x8
-         sEyg==
-X-Gm-Message-State: AOAM532pOYORbJE2IEMCGG0WeejxnGPbHDsO6W2BMhSrb4BUOgeKlr2W
-        2lKc5YmO6omHgOa7VssCjTM=
-X-Google-Smtp-Source: ABdhPJxole5Jba/g/S9ffjnINCy2WoPPG8JGvO/6WzDtgMTesiKUa/VhOrUaZ26zbSIRvODyIXpagg==
-X-Received: by 2002:a7b:c212:: with SMTP id x18mr86991wmi.113.1609866451239;
-        Tue, 05 Jan 2021 09:07:31 -0800 (PST)
+        bh=VnFj1rkcJWvtzQFI6dETJ2tJwVrz2a5nNVgi09YeJXc=;
+        b=BGBqSKaeWeXo3Dc8mD/CH0CHrKflfbFzeWfE9TPNPjpijohQnUpIEuibf+xKRFMpNs
+         pbwFutUp7GomgmRT8G+sKFiSyF15wbZobs3khI0aJU8abZFkqkGDgxgXBhXi6K1J+cwf
+         YSzuHaBplD4EtLHiDxDGt0PsEkU1zjnlyyjN5ulBhSs1B1oLEQsVllwtHOdDgWcrg64o
+         /soa/DcMhWQhwUFRxnmd+s6sdGd5cocrdzmqDiJF4csgEhQ5OKuetLKtET8KPMreh0ZT
+         mt5D77cqmSm7e3XOrwvqblGuPayifgSSG51CcgVe6y8+bj6hOB2wWXmvrljR5u20bZwr
+         H6Pg==
+X-Gm-Message-State: AOAM5311dMQZS7WTcWWR5o/DBgY2/g33m+tLzpkFJ1fSgHfsnVYyqgRh
+        8w1ckSCVFGA9F292VxTCp1g=
+X-Google-Smtp-Source: ABdhPJzS2tnUNQsATQJa8H0cqybMnT7xhuS0Tkf5JkW0sqRFgMdJGyc8820QQRayohYw3nqJBZqzFA==
+X-Received: by 2002:adf:94c7:: with SMTP id 65mr492225wrr.423.1609866674773;
+        Tue, 05 Jan 2021 09:11:14 -0800 (PST)
 Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
-        by smtp.googlemail.com with ESMTPSA id n11sm587517wra.9.2021.01.05.09.07.30
+        by smtp.googlemail.com with ESMTPSA id n12sm632321wrg.76.2021.01.05.09.11.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 Jan 2021 09:07:30 -0800 (PST)
-Date:   Tue, 5 Jan 2021 18:07:28 +0100
+        Tue, 05 Jan 2021 09:11:13 -0800 (PST)
+Date:   Tue, 5 Jan 2021 18:11:11 +0100
 From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Adam Ford <aford173@gmail.com>
-Cc:     linux-renesas-soc@vger.kernel.org, aford@beaconembedded.com,
-        biju.das.jz@bp.renesas.com, Rob Herring <robh+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
+To:     Dmitry Osipenko <digetx@gmail.com>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
         Mark Brown <broonie@kernel.org>,
-        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-spi@vger.kernel.org
-Subject: Re: [PATCH V2 2/4] memory: renesas rpc-if: Update Add RZ/G2 to
- Kconfig description
-Message-ID: <20210105170728.GB26301@kozik-lap>
-References: <20210102115412.3402059-1-aford173@gmail.com>
- <20210102115412.3402059-2-aford173@gmail.com>
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Nicolas Chauvet <kwizart@gmail.com>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Kevin Hilman <khilman@kernel.org>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        devel@driverdev.osuosl.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-media@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-clk@vger.kernel.org
+Subject: Re: [PATCH v2 00/48] Introduce core voltage scaling for NVIDIA
+ Tegra20/30 SoCs
+Message-ID: <20210105171111.GC26301@kozik-lap>
+References: <20201217180638.22748-1-digetx@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20210102115412.3402059-2-aford173@gmail.com>
+In-Reply-To: <20201217180638.22748-1-digetx@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jan 02, 2021 at 05:54:10AM -0600, Adam Ford wrote:
-> The Renesas RPC-IF is present on the RZ/G2 Series.  Add that to
-> the description.
+On Thu, Dec 17, 2020 at 09:05:50PM +0300, Dmitry Osipenko wrote:
+> Introduce core voltage scaling for NVIDIA Tegra20/30 SoCs, which reduces
+> power consumption and heating of the Tegra chips. Tegra SoC has multiple
+> hardware units which belong to a core power domain of the SoC and share
+> the core voltage. The voltage must be selected in accordance to a minimum
+> requirement of every core hardware unit.
 > 
-> Suggested-by: Biju Das <biju.das.jz@bp.renesas.com>
-> Signed-off-by: Adam Ford <aford173@gmail.com>
-> ---
->  drivers/memory/Kconfig | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
+> The minimum core voltage requirement depends on:
 > 
+>   1. Clock enable state of a hardware unit.
+>   2. Clock frequency.
+>   3. Unit's internal idling/active state.
+> 
+> This series is tested on Acer A500 (T20), AC100 (T20), Nexus 7 (T30),
+> Ouya (T30), TK1 (T124) and some others. I also added voltage scaling to
+> the Ventana (T20) and Cardhu (T30) boards which are tested by NVIDIA's CI
+> farm. Tegra30 is now couple degrees cooler on Nexus 7 and stays cool on
+> Ouya (instead of becoming burning hot) while system is idling. It should
+> be possible to improve this further by implementing a more advanced power
+> management features for the kernel drivers.
+> 
+> The DVFS support is opt-in for all boards, meaning that older DTBs will
+> continue to work like they did it before this series. It should be possible
+> to easily add the core voltage scaling support for Tegra114+ SoCs based on
+> this grounding work later on, if anyone will want to implement it.
 
-Thanks, applied with commit title change (renesas-rpc-if:) and fix
-pointed out by Geert.
+The same comment as for your interconnect work: for sets touching
+multiple systems please mention the dependencies between patches in the
+cover letter. Not as a reply to such remark like I make here, but as a
+separate entry in the cover letter.
 
 Best regards,
 Krzysztof
-
