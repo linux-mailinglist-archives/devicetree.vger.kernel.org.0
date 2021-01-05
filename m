@@ -2,98 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6AF612EAFD7
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jan 2021 17:16:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AE00A2EAFEA
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jan 2021 17:21:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726132AbhAEQQH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jan 2021 11:16:07 -0500
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:55278 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725838AbhAEQQH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jan 2021 11:16:07 -0500
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 105GEP9n037618;
-        Tue, 5 Jan 2021 10:14:25 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1609863265;
-        bh=HIEr3UqjNZ7O5IMzpO99TdypYMLXysadS7JaGPF4Trk=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=godpBQ0jG6RTGkRNX925v7mhT0y+8LFlkbRrA6b9bZhbIIr7m/GzDE2zNqPjtSpGq
-         InZeHOvbczdbGjAQZKkhjvb9YYNumGg/TIwp1A6uTg3s5RT2lxNYN0VtCgl/5O1lX6
-         Z0n9bhdZiZCJ070dlz2D2gTyjs2WQw4WkjT+TgTY=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 105GEP81001846
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 5 Jan 2021 10:14:25 -0600
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 5 Jan
- 2021 10:14:24 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Tue, 5 Jan 2021 10:14:24 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 105GEOum065563;
-        Tue, 5 Jan 2021 10:14:24 -0600
-Date:   Tue, 5 Jan 2021 10:14:24 -0600
-From:   Nishanth Menon <nm@ti.com>
-To:     Dave Gerlach <d-gerlach@ti.com>
-CC:     Suman Anna <s-anna@ti.com>, Rob Herring <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, Tony Lindgren <tony@atomide.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Sekhar Nori <nsekhar@ti.com>,
-        Kishon Vijay Abraham <kishon@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Aswath Govindraju <a-govindraju@ti.com>
-Subject: Re: [PATCH 2/3] arm64: dts: ti: Add Support for AM642 SoC
-Message-ID: <20210105161424.tt5p7h2kqtt3cx7a@relative>
-References: <20201125052004.17823-1-d-gerlach@ti.com>
- <20201125052004.17823-3-d-gerlach@ti.com>
- <9ef76d15-46e5-884d-2b00-3228c46a73ac@ti.com>
- <d62d6ce5-b346-d734-0bda-d2dd0d360d5c@ti.com>
- <c8df15fa-a41f-72b2-6b9d-9e27cc449e31@ti.com>
- <20210105151220.vy42nw7uwv5ax3z6@library>
- <8a3c7296-f372-5392-2e6e-2cc6e0510adf@ti.com>
+        id S1727571AbhAEQVl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jan 2021 11:21:41 -0500
+Received: from mail-oi1-f179.google.com ([209.85.167.179]:37588 "EHLO
+        mail-oi1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725838AbhAEQVl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jan 2021 11:21:41 -0500
+Received: by mail-oi1-f179.google.com with SMTP id l207so107294oib.4;
+        Tue, 05 Jan 2021 08:21:25 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=qPiqP3Lv6c+AAT30BoSKGDWtBOYr0gNlxMkgG1vPS+g=;
+        b=SWKo0Vn5MI7SKAbLx3Egxb82sH9oBjWxlNr0FLF4fYrbmSQ+yy5j3HK4yRWu2uGtbe
+         t37k/sv0CN8OTpBKdrA8ycy+MO9jNwvsHN++qN7IpzWeLt0i+XEshLtibLPkwBr4v94y
+         kHtW1Xr4D001ykEuEpbJHaGGgiBws8mwizRS5Q+djShmhJzKNq9QUGbuYo6mRmk1095x
+         ESc6L5TqBrCIAJNNquRgTIErISiGEJ9vhzMwrTh5h1hhd4Sx4/oWJqeYxR9+wpsYSCQN
+         /Mbbb+vJrlLWPOk4EU8PLy6E/PzoqzbIaTIRydzsA+rh9eePV0MUyzI4Ip4HP2h8tvhD
+         UMvQ==
+X-Gm-Message-State: AOAM532L9jBfym6wDjnj4IkbRe7SvnPRV23+CUlI+DzUYu76SfGYbL0l
+        CAgCtuVnwUtGA/eaQ7TMw4DhhLIO83UomB/J14k=
+X-Google-Smtp-Source: ABdhPJzKeiHygcjJT1k7Mhyr7MP4DEtsx88pBRnKEvamWmZWxnefwC1XNDpcOKWAcmdRFmo6BO3+CfONu3n+fqNcogU=
+X-Received: by 2002:aca:ec09:: with SMTP id k9mr178613oih.153.1609863660062;
+ Tue, 05 Jan 2021 08:21:00 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <8a3c7296-f372-5392-2e6e-2cc6e0510adf@ti.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <20201227130407.10991-1-wsa+renesas@sang-engineering.com> <20201227130407.10991-5-wsa+renesas@sang-engineering.com>
+In-Reply-To: <20201227130407.10991-5-wsa+renesas@sang-engineering.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 5 Jan 2021 17:20:49 +0100
+Message-ID: <CAMuHMdWSZ7Fw2fX6aYhqavDDV01qkYJmXrAUWv8Rud9hKVEBZQ@mail.gmail.com>
+Subject: Re: [PATCH 4/5] arm64: dts: renesas: falcon: Add Ethernet-AVB support
+To:     Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Tho Vu <tho.vu.wh@renesas.com>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09:53-20210105, Dave Gerlach wrote:
-> 
-> On 1/5/21 9:12 AM, Nishanth Menon wrote:
-> > On 22:02-20210104, Dave Gerlach wrote:
-> >>>> This is atleast missing the ranges for On-Chip SRAM and the R5FSS, but those can
-> >>>> always be added incrementally as well.
-> >>
-> >> Yes, I think they should be added incrementally once a user is present.
-> >>
-> > 
-> > 
-> > Most of the driver dependencies are resolved in v5.11-rc1. So, you
-> > should be able to add a lot of devices (aka users) instead of making
-> > this a barebones dts as the first introduction - I see no benefit of
-> > things coming in piece meal - other than creating all kind of dependency
-> > mayhem that I don't want to deal with.
-> > 
-> > Please make sure that all nodes for all peripherals that can be
-> > introduced in v5.11-rc1 is part of this introduction of device.
-> > 
-> 
-> Yeah that's no issue, I will add those that Suman referenced for v2 and
-> then that covers every entry I am currently aware of.
+Hi Wolfram,
 
+Thanks for your patch!
 
-Perfect, thanks.
+On Sun, Dec 27, 2020 at 2:04 PM Wolfram Sang
+<wsa+renesas@sang-engineering.com> wrote:
+> From: Tho Vu <tho.vu.wh@renesas.com>
+>
+> Define the Falcon board dependent part of the Ethernet-AVB device nodes.
+> Only AVB0 was tested because it was the only port with a PHY on current
+> hardware.
 
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+I'm a bit confused: according to the schematics, AVB0 is wired by
+default to a KSZ9031 PHY connected to an RJ45 connector on the
+breakout-board, while AVB1-5 are wired to 88Q2110 PHYs connected to a
+5port MATEnet connector on the Ethernet sub board.  So all PHYs are
+present?
+
+(The alternative wiring for AVB0 is to a 88Q2110 PHY connected to a
+1000Base-T1/TE MATEnet connector on the Ethernet sub board)
+
+>
+> Signed-off-by: Tho Vu <tho.vu.wh@renesas.com>
+> [wsa: rebased]
+> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+
+> --- a/arch/arm64/boot/dts/renesas/r8a779a0-falcon.dts
+> +++ b/arch/arm64/boot/dts/renesas/r8a779a0-falcon.dts
+> @@ -7,6 +7,7 @@
+>
+>  /dts-v1/;
+>  #include "r8a779a0-falcon-cpu.dtsi"
+> +#include <dt-bindings/gpio/gpio.h>
+>
+>  / {
+>         model = "Renesas Falcon CPU and Breakout boards based on r8a779a0";
+
+Missing ethernet0 alias, preventing U-Boot from finding the device-node
+and adding an appropriate "local-mac-address" property.
+
+> @@ -21,6 +22,97 @@ chosen {
+>         };
+>  };
+>
+> +&avb0 {
+> +       pinctrl-0 = <&avb0_pins>;
+> +       pinctrl-names = "default";
+> +       phy-handle = <&phy0>;
+> +       phy-mode = "rgmii-txid";
+
+As the default wiring of AVB0 is similar to Salvator-XS, I think the
+default phy-mode of "rgmii" in the base .dtsi should be fine, but
+"tx-internal-delay-ps" should be overridden to <2000>.
+
+> +       status = "okay";
+> +
+> +       phy0: ethernet-phy@0 {
+> +               rxc-skew-ps = <1500>;
+> +               reg = <0>;
+> +               interrupt-parent = <&gpio4>;
+> +               interrupts = <16 IRQ_TYPE_LEVEL_LOW>;
+> +               reset-gpios = <&gpio4 15 GPIO_ACTIVE_LOW>;
+> +       };
+> +};
+> +
+> +&avb1 {
+> +       pinctrl-0 = <&avb1_pins>;
+> +       pinctrl-names = "default";
+> +       phy-handle = <&phy1>;
+> +       phy-mode = "rgmii-txid";
+> +
+> +       phy1: ethernet-phy@1 {
+
+Why not @0?
+As the PHYs are present, why not set "status" to "okay"?
+
+> +               rxc-skew-ps = <1500>;
+
+This property is only supported by the Micrel PHY driver, not by
+the Marvell PHY driver.
+
+> +               reg = <0>;
+> +               interrupt-parent = <&gpio5>;
+> +               interrupts = <16 IRQ_TYPE_LEVEL_LOW>;
+> +               reset-gpios = <&gpio5 15 GPIO_ACTIVE_LOW>;
+> +       };
+> +};
+
+Same questions and comments for all instances below.
+Perhaps we should postpone adding avb1-5 until they can be tested?
+
+> @@ -78,6 +170,109 @@ &i2c6 {
+>  };
+>
+>  &pfc {
+> +       avb0_pins: avb0 {
+> +               mux {
+> +                       groups = "avb0_link", "avb0_mdio", "avb0_rgmii", "avb0_txcrefclk";
+> +                       function = "avb0";
+> +               };
+> +
+> +               pins_mdio {
+> +                       groups = "avb0_mdio";
+> +                       drive-strength = <21>;
+> +               };
+> +
+> +               pins_mii_tx {
+
+Strange node name, as the "avb0_rgmii" group includes rx pins.
+
+> +                       groups = "avb0_rgmii";
+> +                       drive-strength = <21>;
+
+I can't comment on the drive-strength values.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
