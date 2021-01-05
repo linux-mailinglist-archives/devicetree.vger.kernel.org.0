@@ -2,128 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 903572EADB9
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jan 2021 15:51:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 352542EADD5
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jan 2021 16:01:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726371AbhAEOu1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jan 2021 09:50:27 -0500
-Received: from relay11.mail.gandi.net ([217.70.178.231]:52269 "EHLO
-        relay11.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726313AbhAEOu1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jan 2021 09:50:27 -0500
+        id S1726020AbhAEPBB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jan 2021 10:01:01 -0500
+Received: from relay3-d.mail.gandi.net ([217.70.183.195]:45291 "EHLO
+        relay3-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725862AbhAEPBB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jan 2021 10:01:01 -0500
+X-Originating-IP: 93.29.109.196
 Received: from aptenodytes (196.109.29.93.rev.sfr.net [93.29.109.196])
         (Authenticated sender: paul.kocialkowski@bootlin.com)
-        by relay11.mail.gandi.net (Postfix) with ESMTPSA id A24A110000A;
-        Tue,  5 Jan 2021 14:49:41 +0000 (UTC)
-Date:   Tue, 5 Jan 2021 15:49:41 +0100
+        by relay3-d.mail.gandi.net (Postfix) with ESMTPSA id DDD2B6000A;
+        Tue,  5 Jan 2021 15:00:17 +0000 (UTC)
+Date:   Tue, 5 Jan 2021 16:00:17 +0100
 From:   Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-To:     Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+To:     Ilia Mirkin <imirkin@alum.mit.edu>
+Cc:     Simon Ser <contact@emersion.fr>,
+        devicetree <devicetree@vger.kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie <airlied@linux.ie>,
+        LKML <linux-kernel@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
         Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        kevin.lhopital@hotmail.com,
-        =?utf-8?B?S8OpdmluIEwnaMO0cGl0YWw=?= <kevin.lhopital@bootlin.com>
-Subject: Re: [PATCH v4 2/3] media: i2c: Add support for the OV8865 image
- sensor
-Message-ID: <X/R8hUdfB8Tbd8mJ@aptenodytes>
-References: <20201231142702.3095260-1-paul.kocialkowski@bootlin.com>
- <20201231142702.3095260-3-paul.kocialkowski@bootlin.com>
- <20210104120749.GK11878@paasikivi.fi.intel.com>
- <X/Qzp8/4gd/ANdXh@aptenodytes>
- <20210105144150.GS11878@paasikivi.fi.intel.com>
+        Lee Jones <lee.jones@linaro.org>
+Subject: Re: [PATCH v8 4/4] NOTFORMERGE: drm/logicvc: Add plane colorkey
+ support
+Message-ID: <X/R/AY7YXBEyWNG1@aptenodytes>
+References: <20201223212947.160565-1-paul.kocialkowski@bootlin.com>
+ <20201223212947.160565-5-paul.kocialkowski@bootlin.com>
+ <oDsOkjfTYKa11LxfNy4LBLqutkVidfFn8--tjQPZj4w9gzCYNTOFglHqxXohsrYqTJ4uDv2xgJNKXPHzgAsACGnCkbKQis95SScGucOb1PI=@emersion.fr>
+ <CAKb7UvhgHPkG5Sn-HLdpsFw0R=kATJKUmjSwPSuwviDCk0RGyw@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="UmQFmlcrjB44pt9h"
+        protocol="application/pgp-signature"; boundary="OSDOGVu8nZtJl5tY"
 Content-Disposition: inline
-In-Reply-To: <20210105144150.GS11878@paasikivi.fi.intel.com>
+In-Reply-To: <CAKb7UvhgHPkG5Sn-HLdpsFw0R=kATJKUmjSwPSuwviDCk0RGyw@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---UmQFmlcrjB44pt9h
+--OSDOGVu8nZtJl5tY
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Hi Sakari,
+Hi,
 
-On Tue 05 Jan 21, 16:41, Sakari Ailus wrote:
-> Hi Paul,
->=20
-> On Tue, Jan 05, 2021 at 10:38:47AM +0100, Paul Kocialkowski wrote:
-> > Hi Sakari,
-> >=20
-> > On Mon 04 Jan 21, 14:07, Sakari Ailus wrote:
-> > > Hi Paul,
-> > >=20
-> > > On Thu, Dec 31, 2020 at 03:27:01PM +0100, Paul Kocialkowski wrote:
-> > > > The OV8865 is a 8 Mpx CMOS image sensor producing 3264x2448 at 30 f=
-ps.
-> > > > Other modes (including some with sub-sampling) are available too.
-> > > > It outputs 10-bit bayer CFA data through a MIPI CSI-2 interface with
-> > > > up to 4 lanes supported.
-> > >=20
-> > > I've added the patches to a pull request to Mauro; there appear to st=
-ill be
-> > > some checkpatch.pl issues in both of the drivers.
-> > >=20
-> > > I don't mind the warnings on the assignment or the mutex though. Coul=
-d you
-> > > address these in additional patches, please?
-> >=20
-> > Sorry about that, I realized that I never run checkpatch with --strict
-> > so I completely missed those.
-> >=20
-> > I'll fix the cosmetic issues in a following patch.
-> >=20
-> > Just to clarify one thing:
-> > #define OV8865_PAD_PK_DRIVE_STRENGTH_2X		(1 << 5)
-> > #define OV8865_BLC_CTRL1_COL_SHIFT_128		(1 << 4)
-> >=20
-> > these are not single-bit fields so even though it looks like they should
-> > use BIT(), this would be incoherent with other possible values, such as:
-> > #define OV8865_PAD_PK_DRIVE_STRENGTH_3X		(2 << 5)
-> > #define OV8865_BLC_CTRL1_COL_SHIFT_64		(2 << 4)
->=20
-> Agreed.
->=20
-> You might not assign the top bit, but if you did, the left operand would
-> have to be unsigned to guarantee the intended result (otherwise it's
-> undefined).
+On Wed 23 Dec 20, 18:31, Ilia Mirkin wrote:
+> FWIW this is something I added, hoping it was going to get used at
+> some point, but I never followed up with support in xf86-video-nouveau
+> for Xv. At this point, I'm not sure I ever will. I encoded the
+> "enabled" part into the value with a high bit (1<<24) -- not sure that
+> was such a great idea. All NVIDIA hardware supports colorkey (and not
+> actual alpha, until the very latest GPUs - Volta/Turing families),
+> although my implementation only covers the pre-G80 series (i.e. DX9
+> and earlier GPUs - pre-2008). Should a determination of usefulness be
+> reached, it would be easy to implement on the remainder though.
 
-Ah right, that's the issue with shifting signed constants up to the sign bi=
-t.
-I had a quick look and I think this driver's safe about it.
+Interesting to know!
+
+Regarding a generic colorkey property, there was a discussion under thread:
+drm: Add generic colorkey properties for display planes
+
+and the latest proposal (RFC v4) can be found here:
+https://patchwork.ozlabs.org/project/linux-tegra/patch/20180807172202.1961-=
+2-digetx@gmail.com/
+
+It looks like this was much more complex than anticipated and the series
+was more or less abandonned. I didn't feel like picking it up in my logicvc
+series so I kept the colorkey patch as not for merge.
+
+If someone's up for picking the proposal and continuing the discussion,
+I could provide insight on how it would fit with logicvc though!
 
 Cheers,
 
 Paul
+
+> On Wed, Dec 23, 2020 at 5:20 PM Simon Ser <contact@emersion.fr> wrote:
+> >
+> > nouveau already has something for colorkey:
+> > https://drmdb.emersion.fr/properties/4008636142/colorkey
+> >
+> > I know this is marked "not for merge", but it would be nice to discuss
+> > with them and come up with a standardized property.
 
 --=20
 Paul Kocialkowski, Bootlin
 Embedded Linux and kernel engineering
 https://bootlin.com
 
---UmQFmlcrjB44pt9h
+--OSDOGVu8nZtJl5tY
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAEBCAAdFiEEJZpWjZeIetVBefti3cLmz3+fv9EFAl/0fIUACgkQ3cLmz3+f
-v9GA3Qf+PbkUakvgTadm3DLLo6iY8bQ1j+VKKrmJHJ1f2qEjuje+B5oSFkNFtBSS
-Aq7A2ZvO9qa2c7UzJHN5ZVlsGhrRBs4q6dPXblJF/YFno6BcfY6JlJan9OB6G8pY
-zYWuYcM6mL8SDP8V9pctbp77492sBRRmFezOw+W1/JTQUuIz/4wUPrJ62Z+IQjSb
-u4oBIgGqtmSgowDC7NpRfXKhIPcSmcnGqsPcTxcQLMuHPFbKuL9vgRbDOUjBvyY/
-qvtaRUp05zc/SU7GpqJ6E/dCW3Wm3Pyz+v/giDek3zZ/cc34GdABeAXOGbbn3W+R
-1hLwnNIwbStljzlbDpVc6Pp9+JcWWQ==
-=VFPQ
+iQEzBAEBCAAdFiEEJZpWjZeIetVBefti3cLmz3+fv9EFAl/0fwEACgkQ3cLmz3+f
+v9HOhgf8DU4twNl4hL4kO9201ULcHXezYqI7Ep2Kv9H4WmGOQHCYsz0Orr6KL8x7
+xWdRsnet9x2vfN4UZRBRmSiXv2SA8nQL2TZHWH/VKyrwxmOD4Btt9C+qs0YWhfii
+XfvU0IGYI8Y10uA03JTB44BfiXn409OR7otd1abp9/cO0GAf3zspshGdVuWST4wh
+SgglQZvdpYQljgQJjIcmGJvwJ9hQ1Eyk1+XnBLFLBvZrsrrVgqboKRDSrJ28i+p2
+fJIf2TSAzIdLnJbNBx77dRDiHTuHQlsdpOYomZyeeBPqcYvwiHBhJgE87JO27w03
+OlOzyMecE1vud4/LLA7ySAHGczWt6Q==
+=Ahth
 -----END PGP SIGNATURE-----
 
---UmQFmlcrjB44pt9h--
+--OSDOGVu8nZtJl5tY--
