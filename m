@@ -2,101 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1635E2EAB86
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jan 2021 14:09:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E8EC2EABC7
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jan 2021 14:22:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729696AbhAENHI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jan 2021 08:07:08 -0500
-Received: from mail-oo1-f41.google.com ([209.85.161.41]:44451 "EHLO
-        mail-oo1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729620AbhAENHH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jan 2021 08:07:07 -0500
-Received: by mail-oo1-f41.google.com with SMTP id j21so7047536oou.11;
-        Tue, 05 Jan 2021 05:06:52 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=dT9NJPB47K2vdQIzb8wF435sR/DGiQQ5DKYTXkvvtR8=;
-        b=GKN7JTAsnZ9fl034iGENAg6+byW68dkRbBOOVlAxKVtD87RWPUn9YanDBRfTivy764
-         F65uJI19MGWYLEhbtpbY5v/BJg4qzZUvJluurJm+nTfCxkXqP3HeH4mtt7OuCSaxEYO9
-         jISEPZ9tmGLRZEoKQwAJM8VPmjlq+WDdlIzC5wcupxandyYCjh7SyemXEfpcX9Kditow
-         oifGAnaPO+tZ13Y89syX5eQgbM4tO0vD6JvZ7IlzXyp+sejbwPxP20e/Ez4RFafYZovF
-         0jwS86LhT3EGqT+eBLG/KfkSyQkt6laf34UqlcpJnrYmy6MMhT9RXoZR+SGj3BaT5iT3
-         npdw==
-X-Gm-Message-State: AOAM530tAx5jMYau3k6apoVL4UFb3gwXJfXxOnyiAQ8ez08noVzkMf0x
-        Tyrt69/zy2LR4RXesGoWSOmWG2n+l6Z/Cyk7T7Q=
-X-Google-Smtp-Source: ABdhPJw6Jr+xDiE7gT045dIEp0A/HetgqtB4/A7vUAniSvrWqo1EZbaLC2kASXOTywmacMmlxtehR7NU7EALegUrog4=
-X-Received: by 2002:a4a:c191:: with SMTP id w17mr53201745oop.1.1609851986553;
- Tue, 05 Jan 2021 05:06:26 -0800 (PST)
+        id S1728720AbhAENVE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jan 2021 08:21:04 -0500
+Received: from mail.kernel.org ([198.145.29.99]:33656 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728009AbhAENVE (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 5 Jan 2021 08:21:04 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 4547F2255F;
+        Tue,  5 Jan 2021 13:20:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1609852823;
+        bh=zA5DtIeOvG2pZAiWgUaakzH1u5nm6GWCrS33DADbJaI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=OVLGxHqlEXiK/KmyjD08kFUQx3n1OM/MrRg+P1ZzeqdbgAdIVxEgQXzNgqYTvknlX
+         fOJu+f2LcbJ8RAfFGyfafEr9WV/nu+/yPtxdM6flmGsXSi+WelAatjBqpiI3q/fqB8
+         vToF07UEUrd4LP+K9J+VvtB5AIETSXuZdx2020qg=
+Date:   Tue, 5 Jan 2021 14:21:47 +0100
+From:   'Greg Kroah-Hartman' <gregkh@linuxfoundation.org>
+To:     =?iso-8859-1?Q?J=F3zsef_Horv=E1th?= <info@ministro.hu>
+Cc:     'Rob Herring' <robh+dt@kernel.org>,
+        'Jiri Slaby' <jirislaby@kernel.org>,
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v7,2/2] Serial: silabs si4455 serial driver
+Message-ID: <X/Rn62w/IpMHit5j@kroah.com>
+References: <20210105104347.GA18688@dev>
 MIME-Version: 1.0
-References: <20201227130407.10991-1-wsa+renesas@sang-engineering.com> <20201227130407.10991-2-wsa+renesas@sang-engineering.com>
-In-Reply-To: <20201227130407.10991-2-wsa+renesas@sang-engineering.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 5 Jan 2021 14:06:15 +0100
-Message-ID: <CAMuHMdXOQTXfZE1YOWiVdmtwO0ohtS4gkZsxh-+=euJCq=ZCdQ@mail.gmail.com>
-Subject: Re: [PATCH 1/5] dt-bindings: net: renesas,etheravb: Add r8a779a0 support
-To:     Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        netdev <netdev@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210105104347.GA18688@dev>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Wolfram,
+On Tue, Jan 05, 2021 at 10:43:49AM +0000, József Horváth wrote:
+> This is a device tree schema for serial port driver for
+>  Silicon Labs Si4455 Sub-GHz transciver.
+> 
+> Datasheet: https://www.silabs.com/documents/public/data-sheets/Si4455.pdf
+> 
+> Guide: https://github.com/dministro/linux-serial-si4455
+> 
+> Signed-off-by: Jozsef Horvath <info@ministro.hu>
+> ---
 
-On Sun, Dec 27, 2020 at 2:06 PM Wolfram Sang
-<wsa+renesas@sang-engineering.com> wrote:
-> Document the compatible value for the RAVB block in the Renesas R-Car
-> V3U (R8A779A0) SoC. This variant has no stream buffer, so we only need
-> to add the new compatible.
->
-> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Your subject line is incorrect here :(
 
-Thanks for your patch!
+Please fix up and resend the series properly threaded (git send-email
+will do it for you.)
 
-> --- a/Documentation/devicetree/bindings/net/renesas,etheravb.yaml
-> +++ b/Documentation/devicetree/bindings/net/renesas,etheravb.yaml
-> @@ -40,6 +40,7 @@ properties:
->                - renesas,etheravb-r8a77980     # R-Car V3H
->                - renesas,etheravb-r8a77990     # R-Car E3
->                - renesas,etheravb-r8a77995     # R-Car D3
-> +              - renesas,etheravb-r8a779a0     # R-Car V3U
->            - const: renesas,etheravb-rcar-gen3 # R-Car Gen3 and RZ/G2
->
->    reg: true
+thanks,
 
-EtherAVB on R-Car V3U does have the Tx clock internal Delay Mode
-bit in the APSR register, so its compatible value should be added to
-the list of SoCs where tx-internal-delay-ps is required.
-
-With that fixed:
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-
-The various Counter Registers starting at offset 0x700 are limited to
-16-bit values, like on R-Car Gen2, while they support 32-bit values on
-other R-Car Gen3 variants. The driver uses only the Transmit Retry Over
-Counter Register (TROCR), for statistics, so we can just ignore that
-difference.
-
-V3U also has a new block of registers related to UDP/IP support (offset
-0x800 and up).  I guess we can just ignore them too, for now.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+greg k-h
